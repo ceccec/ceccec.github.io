@@ -170,7 +170,7 @@ const implications = computed(() => panel.value.human.implications)
 }
 
 .human-resonance-panel__implication dt {
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
 }
 
 .human-resonance-panel__implication dd {

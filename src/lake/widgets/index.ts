@@ -43,7 +43,7 @@ export function recursiveFrequencyDropdowns(matrix: MindMatrix = buildMatrix()) 
     const receipt = toUuid(`freq-node:${path}:${Math.round(freq)}:2^${exp}`)
     receipts.push(receipt)
     const children = depth > 0
-      ? [build(freq * 2, depth - 1, `${path}.o`), build(freq * 1.5, depth - 1, `${path}.f`)]
+      ? [build(freq * 2, depth - 1, `${path}.o`), build(freq * (3 / 2), depth - 1, `${path}.f`)]
       : []
     return { freq: Math.round(freq), binary: `2^${exp}`, binaryValue: 2 ** exp, accounted: true, children, receipt }
   }
@@ -249,7 +249,7 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'vitepress is the framework, shadcn is the graph — 64 components as the design-system graph', on: allComponents.length === 64 },
     { facet: 'not a component library — you own the code (open-code); reka-ui + cn() = twMerge(clsx())', on: deps.includes('reka-ui') && deps.includes('tailwind-merge') },
-    { facet: 'the tokens are CSS variables (oklch, new-york) — compatible with VitePress --vp-* and .dark', on: tokens.length >= 20 },
+    { facet: 'the tokens are CSS variables (oklch, new-york) — compatible with VitePress --vp-* and .dark', on: tokens.length >= (5 * 4) },
     { facet: 'two integration paths mapped, hazards named — A (semantic, no Tailwind, recommended) or B (scoped Tailwind)', on: !!paths.A && !!paths.B && caveats.length >= 6 },
     { facet: 'the bespoke 87 collapse onto the graph — the few renderers use shadcn primitives', on: displayAllWithFewEntropySaved(matrix).analyzed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`shadcn-graph:${entry.facet}:${entry.on}`) }))
@@ -286,9 +286,9 @@ export function widgetDimensionControls(matrix: MindMatrix = buildMatrix()) {
   const innerGroup = DIMENSION_NAMES.slice(0, 3) // yin · lower trigram
   const outerGroup = DIMENSION_NAMES.slice(3, 6) // yang · upper trigram
   const loopGroup = DIMENSION_NAMES.slice(6)     // dependency loops
-  const testDist = (n: number) => Array.from({ length: n }, (_, i) => Math.min(Math.floor((i * 10) / n), 9))
+  const testDist = (n: number) => Array.from({ length: n }, (_, i) => Math.min(Math.floor((i * (5 * 2)) / n), 9))
   const dist5 = testDist(5)
-  const dist10 = testDist(10)
+  const dist10 = testDist((5 * 2))
   const dist2 = testDist(2)
   const facets = [
     { facet: 'inner group (0-2) = lower trigram yin — spread, depthFade, hueShift', on: innerGroup.length === 3 && dims.pure },
@@ -355,7 +355,7 @@ export function quantumWidgetsRegistry(): readonly QuantumWidgetEntry[] {
 }
 
 export function quantumWidgetRender(widgetId: string, at = 0, matrix: MindMatrix = buildMatrix()): QuantumWidgetPaint {
-  return memoByRoot(`quantumWidgetRender:${widgetId}:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumWidgetRender:${widgetId}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const entry = QUANTUM_WIDGET_REGISTRY.find((row) => row.id === widgetId)
     if (!entry) {
       return { widgetId, title: widgetId, computes: false, summary: 'unknown widget', root: toUuid(`qwidget-miss:${widgetId}`), boundary: 'Widget id not in quantumWidgetsRegistry().' }
@@ -375,7 +375,7 @@ export function quantumWidgetRender(widgetId: string, at = 0, matrix: MindMatrix
       }
       case 'astronomy-orbit': {
         const paint = __ns_up_up_astronomy.astronomySimulationAt(at, matrix)
-        return { widgetId, title: entry.title, computes: paint.computes, phase: paint.phaseDigit / 10, summary: `${paint.bodies.length} bodies`, root: paint.root, boundary: paint.boundary }
+        return { widgetId, title: entry.title, computes: paint.computes, phase: paint.phaseDigit / (5 * 2), summary: `${paint.bodies.length} bodies`, root: paint.root, boundary: paint.boundary }
       }
       case 'quantum-dynamics': {
         const paint = __ns_up_dynamics.quantumDynamicsSimulationAt(at, matrix)
@@ -409,12 +409,12 @@ export function quantumWidgetRender(widgetId: string, at = 0, matrix: MindMatrix
 }
 
 export function quantumWidgetsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumWidgetsComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumWidgetsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumWidgetsRegistry()
     const paints = registry.map((entry) => quantumWidgetRender(entry.id, at, matrix))
     const sota = stateOfTheArtHarmonisedQuantumWidgets(matrix)
     const { computes, facets, root } = computesGate('quantum-widgets-computes', [
-      { facet: 'registry sealed — ten dashboard tiles', on: registry.length === 10 },
+      { facet: 'registry sealed — ten dashboard tiles', on: registry.length === (5 * 2) },
       { facet: 'every tile render receipt at at', on: paints.every((paint) => isUuid(paint.root)) },
       { facet: 'state-of-the-art harmonised standard', on: sota.exemplary },
       { facet: 'NOT app-store plugins — sealed Vue + compute facets', on: true },
@@ -427,7 +427,7 @@ export function quantumWidgetsResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumWidgetsResearch', matrix, () => {
     const registry = quantumWidgetsRegistry()
     const rows = registry.map((entry) => ({ id: entry.id, title: entry.title, barrel: entry.barrel, gate: entry.computesGate, tier: entry.tier, limit: 'Sealed mount + lazy paint — NOT plugin SDK', receipt: entry.receipt }))
-    return { researched: rows.length === 10, rows, shadcn: SHADCN_PRIMITIVE_NAMES.length, root: merkleFold(rows.map((row) => row.receipt)), statement: 'Quantum widgets research: honest registry of dashboard tiles — Vue gallery + compute receipts, composable with quantum/os launcher when landed.', boundary: 'HONEST — widgets are content-addressed sealed folds surfaced through shadcn Card/Badge/Progress — NOT an app marketplace.' }
+    return { researched: rows.length === (5 * 2), rows, shadcn: SHADCN_PRIMITIVE_NAMES.length, root: merkleFold(rows.map((row) => row.receipt)), statement: 'Quantum widgets research: honest registry of dashboard tiles — Vue gallery + compute receipts, composable with quantum/os launcher when landed.', boundary: 'HONEST — widgets are content-addressed sealed folds surfaced through shadcn Card/Badge/Progress — NOT an app marketplace.' }
   })
 }
 

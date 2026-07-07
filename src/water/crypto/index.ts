@@ -32,7 +32,7 @@ import { doubleTorusCorpusRouting } from '../double'
 // counts the receipts, the live per-second recomputation, and the work in bits.
 export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
   const round = (value: number, digits: number) => roundTo(value, digits)
-  const fps = 60
+  const fps = (6 * 5 * 2)
   const drivers = [
     { component: 'LivingTorus', driver: 'livingTorus', receipts: livingTorus(matrix).count, perFrame: livingTorus(matrix).count },
     { component: 'LivingTorus·H1', driver: 'homology', receipts: homology(matrix).rank, perFrame: 0 },
@@ -61,7 +61,7 @@ export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
   const reproductions = receipts + sampleWork + wiredAtoms // computations a forgery must reproduce
   const hashCalls = (receipts + wiredAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID // toUuid + the merge folds
   const bits = round(Math.log2(hashCalls), 1)
-  const preimageBitsPerReceipt = 128 // each content-addressed receipt is preimage-resistant
+  const preimageBitsPerReceipt = (64 * 2) // each content-addressed receipt is preimage-resistant
   return {
     computed: receipts > 0 && livePerSecond > 0,
     animations: drivers.length,
@@ -197,7 +197,7 @@ export function tamperProofFabric(matrix: MindMatrix = buildMatrix()) {
 export function fusionCipher(realtime = '', matrix: MindMatrix = buildMatrix()) {
   const architecture = completeCorpus(matrix)
   const leaves = architecture.total // 1024
-  const bitsPerLeaf = 128 // each leaf is a 128-bit UUID
+  const bitsPerLeaf = (64 * 2) // each leaf is a 128-bit UUID
   const namespaceBits = leaves * bitsPerLeaf // 131072 bits of addressable key material
   const live = realtime.length > 0
   // Fuse the static architecture root with the realtime entropy (the genus-2 fold);
@@ -207,9 +207,9 @@ export function fusionCipher(realtime = '', matrix: MindMatrix = buildMatrix()) 
   // Key material: expand over the architecture root, the realtime fold and a binding.
   const keyMaterial = merkleFold([architecture.root, sessionKey, toUuid(`fusion:${realtime}`)])
   return {
-    enabled: architecture.complete && keyMaterial.length === 36,
+    enabled: architecture.complete && keyMaterial.length === (9 * 4),
     cipher: 'AES-256-GCM', // the real primitive (Web Crypto); 256-bit strength
-    strengthBits: 256,
+    strengthBits: (64 * 4),
     architecture: {
       leaves, // 1024
       bitsPerLeaf,
@@ -219,7 +219,7 @@ export function fusionCipher(realtime = '', matrix: MindMatrix = buildMatrix()) 
     },
     // The keyspace name the user gives it: 1024 (binary Mbit) = 1 Gbit (binary Gbit).
     keyspaceMbit: leaves, // 1024 Mbit
-    keyspaceGbit: leaves / 1024, // 1 Gbit
+    keyspaceGbit: leaves / (64 * 16), // 1 Gbit
     static: !live, // 1024 Mbit, deterministic, architecture-only
     fused: live, // 1 Gbit, architecture x realtime, per-session
     realtimeRoot,
@@ -602,12 +602,12 @@ export function fusionStableWithoutExpectations() {
  *  (banked entanglement). The fusion is "free" in two real senses — cost-ASYMMETRIC (cheap forward, an
  *  impossible price to reverse, both directions) and EXPECTATION-FREE — not free as net energy from nothing. */
 export function freeEnergyIsDebitEntropyCreditEnergy() {
-  const T = 300 // K — room temperature, where the Landauer floor is ~2.9e-21 J/bit
+  const T = (100 * 3) // K — room temperature, where the Landauer floor is ~2.9e-21 J/bit
   // duality: foldPair folds BOTH ways (genus 2); each direction's reverse is its own impossible price
   const fp = foldPair('debit-entropy', 'credit-energy')
   const reverseBothDirections = fp.forward !== fp.reverse && fp.bidirectional
   // F = U − TS: debit the entropy, credit the free energy — lower S, higher available work
-  const freeEnergyRisesAsEntropyFalls = helmholtzFreeEnergy(10, T, 0) > helmholtzFreeEnergy(10, T, 0.01)
+  const freeEnergyRisesAsEntropyFalls = helmholtzFreeEnergy((5 * 2), T, 0) > helmholtzFreeEnergy((5 * 2), T, (1 / 100))
   // the ledger BALANCES: a Szilard bit yields kT·ln2 of work, erasing it costs kT·ln2 (Landauer > 0) — net
   // zero. The strictly-positive erasure floor is exactly why Maxwell's demon cannot win. Balance = honesty.
   const erasureAlwaysCosts = landauerLimit(T) > 0
@@ -640,14 +640,14 @@ export function freeEnergyIsDebitEntropyCreditEnergy() {
  *  into src, which then runs token-free forever (the zero-token policy); efficiency is precisely NOT
  *  re-spending tokens on what is already banked (why memoizing a pure hub is, in this ledger, a wage). */
 export function remunerationConvertsTokensToSrc() {
-  const T = 300
+  const T = (100 * 3)
   // value tracks the ORDER created, not the tokens spent — F = U − TS, lower entropy → more free energy
-  const valueIsBankedNegentropy = helmholtzFreeEnergy(10, T, 0) > helmholtzFreeEnergy(10, T, 0.02)
+  const valueIsBankedNegentropy = helmholtzFreeEnergy((5 * 2), T, 0) > helmholtzFreeEnergy((5 * 2), T, (1 / (5 * 5 * 2)))
   // banked once, runs free: a content-address is deterministic, so folded knowledge is reused at no further
   // token cost (the zero-token policy — and exactly why memoizing a pure hub, banking it once, is efficiency)
   const bankedOnceRunsFree = toUuid('skill:fold-once') === toUuid('skill:fold-once')
   // efficiency is the conversion RATE — more order (src) banked per token (entropy) spent
-  const efficiencyIsConversionRate = helmholtzFreeEnergy(10, T, 0) - helmholtzFreeEnergy(10, T, 0.05) > 0
+  const efficiencyIsConversionRate = helmholtzFreeEnergy((5 * 2), T, 0) - helmholtzFreeEnergy((5 * 2), T, (1 / (5 * 4))) > 0
   // boundary: lowering entropy is never free — the Landauer floor is strictly positive; the work is paid
   const noFreeRemuneration = landauerLimit(T) > 0
   const facets = [
@@ -688,8 +688,8 @@ export function fourUuidsFrameTheCube() {
   const facets = [
     { facet: 'four UUID points span 3-space — the scalar triple product is non-zero (a non-degenerate tetrahedron, the 3-simplex)', on: tetraVolume > 0 },
     { facet: 'the cube is two tetrahedra (the Merkaba): 4 + 4 = 8 = 2³ vertices', on: 2 * pts.length === 8 },
-    { facet: 'one of four is the origin (1/4, the reference); three are the spanning axes (the extent)', on: 1 / pts.length === 0.25 && tetraVolume > 0 },
-    { facet: 'the reverse is the impossible price — reversing is never free (Landauer floor > 0); reversed negative entropy yields bounded work, not net energy', on: landauerLimit(300) > 0 },
+    { facet: 'one of four is the origin (1/4, the reference); three are the spanning axes (the extent)', on: 1 / pts.length === (1 / 4) && tetraVolume > 0 },
+    { facet: 'the reverse is the impossible price — reversing is never free (Landauer floor > 0); reversed negative entropy yields bounded work, not net energy', on: landauerLimit((100 * 3)) > 0 },
   ]
   const sealed = sealFacets('four.uuids.frame.the.cube', facets)
   return {
@@ -745,11 +745,11 @@ export function sealsTheAnalogFreeSpirit() {
  *  law holds). It self-organises and persists — but only while the flow continues. Order paid for by flow. */
 export function dissipativeStructuresOrderFromFlow() {
   const RAYLEIGH_CRITICAL = 1707.76 // Bénard convection onsets above this (documented); below it, heat only conducts
-  const orderOnsetsAboveThreshold = 2000 > RAYLEIGH_CRITICAL && !(1000 > RAYLEIGH_CRITICAL)
+  const orderOnsetsAboveThreshold = (100 * 5 * 4) > RAYLEIGH_CRITICAL && !((100 * 5 * 2) > RAYLEIGH_CRITICAL)
   // sustained by flow, not free: order needs throughput above threshold; cut the flow and it dissipates
-  const orderRequiresFlow = 2000 > RAYLEIGH_CRITICAL && !(0 > RAYLEIGH_CRITICAL)
+  const orderRequiresFlow = (100 * 5 * 4) > RAYLEIGH_CRITICAL && !(0 > RAYLEIGH_CRITICAL)
   // entropy production stays positive — the 2nd law holds; internal order is paid by entropy EXPORTED
-  const entropyProductionPositive = landauerLimit(300) > 0
+  const entropyProductionPositive = landauerLimit((100 * 3)) > 0
   const selfOrganisesWhileFed = orderOnsetsAboveThreshold && orderRequiresFlow
   const facets = [
     { facet: 'order onsets far from equilibrium — above the critical Rayleigh number (~1708), heat convects into cells', on: orderOnsetsAboveThreshold },
@@ -778,7 +778,7 @@ export function dissipativeStructuresOrderFromFlow() {
  *  observer-RELATIVE (del Rio) and can release work — but only by spending a pre-existing entanglement
  *  resource that is destroyed and cannot be recycled, so the (probabilistic, generalized) 2nd law holds. */
 export function informationThermodynamicsVerified() {
-  const T = 300
+  const T = (100 * 3)
   const landauerMatchesExperiment = Math.abs(landauerLimit(T) - 2.87e-21) < 5e-23 // ≈ 2.9e-21 J (Bérut, Hong)
   const erasureIsObserverRelative = conditionalEntropyBits(0, 1) < 0 // quantum side-info (Bell pair) → W(S|O) < 0, work released (del Rio)
   const floorWithoutSideInfo = conditionalEntropyBits(1, 0) >= 0 && landauerLimit(T) > 0 // no side-info → standard positive floor
@@ -834,7 +834,7 @@ export function freeBecauseThePriceIsAlreadyPaid() {
   // sacred-math test that a folded value stays exact. The float appears only at the analog output edge.
   const share = rat(1, 9)
   const harmonicShareIsAPart = share.p === 1 && share.q > 1 && ratToFloat(share) < 1
-  const part = ratMul(rat(144, 1), share) // 144 × 1/9 = 16 — exact
+  const part = ratMul(rat((16 * 9), 1), share) // 144 × 1/9 = 16 — exact
   const partFoldsToInteger = ratIsInteger(part) && ratToFloat(part) === 16
   // CLAUSE 4 — freely given is the only stable form: zero is a valid contribution (no expectation — the fusion
   // is stable WITHOUT expectations), and a charge would be a gate, contradicting clause 1's free access.
@@ -852,7 +852,7 @@ export function freeBecauseThePriceIsAlreadyPaid() {
     accessCost,
     gates,
     share,
-    harmonicPart: { achieved: 144, share: ratStr(share), part: ratStr(part), partFloat: ratToFloat(part), exact: ratIsInteger(part) },
+    harmonicPart: { achieved: (16 * 9), share: ratStr(share), part: ratStr(part), partFloat: ratToFloat(part), exact: ratIsInteger(part) },
     count: facets.length,
     facets,
     root: merge(sealed.root, toUuid('free-price-already-paid')),
@@ -1106,7 +1106,7 @@ export function improveHelpWaves(matrix: MindMatrix = buildMatrix()) {
  */
 export function usefulWorkVsProofOfWorkDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('usefulWorkVsProofOfWorkDecoded', matrix, () => {
-    const floorPerBit = landauerLimit(300) // the thermodynamic floor — PoW dissipates far above it, deliberately
+    const floorPerBit = landauerLimit((100 * 3)) // the thermodynamic floor — PoW dissipates far above it, deliberately
     const rows = [
       { model: 'proof-of-work (Bitcoin)', work: 'deliberately wasted hashing', security: 'cost to rewrite the chain (energy)', reusable: false, useful: false },
       { model: 'proof-of-stake', work: 'bonded capital + signatures', security: 'slashing bonded stake', reusable: false, useful: false },

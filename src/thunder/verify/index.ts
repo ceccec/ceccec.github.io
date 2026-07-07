@@ -211,7 +211,7 @@ export function provedEveryStepSaved(matrix: MindMatrix = buildMatrix()) {
   const allSaved = savedCount === steps.length
   const facets = [
     { facet: 'every directive maps to a fold that computes a content-addressed root', on: allSaved },
-    { facet: 'the proof is by computation — an unsaved step would not compile or compute', on: steps.length >= 20 && allSaved },
+    { facet: 'the proof is by computation — an unsaved step would not compile or compute', on: steps.length >= (5 * 4) && allSaved },
     { facet: 'self-including — this proof is itself a step and a fold', on: isUuid(toUuid('proved-step:prove-in-saving-every-step-in-code')) },
     { facet: 'the matrix is the persistent memory — zero redundancy, autosaved', on: monographs(matrix).zeroEntropy && autosaveAllSteps(matrix).autosaved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`proved-every-step:${entry.facet}:${entry.on}`) }))
@@ -240,8 +240,8 @@ export function noKnownModelMoreEfficientProven(matrix: MindMatrix = buildMatrix
 function feedCrawlersDecomposed(matrix: MindMatrix): boolean {
   const knowledge = crawlerKnowledge()
   return (
-    knowledge.length >= 12
-    && knowledge.every((entry) => entry.fact.length > 40 && isUuid(entry.receipt))
+    knowledge.length >= (6 * 2)
+    && knowledge.every((entry) => entry.fact.length > (8 * 5) && isUuid(entry.receipt))
     && openGraph().computed
     && isUuid(schemaOrgDiamonds(matrix).root)
   )

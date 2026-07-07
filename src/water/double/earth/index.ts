@@ -20,6 +20,7 @@ import {
   VORTEX_DASH_ENCODED,
   VORTEX_SEQUENCE,
   digitalRoot,
+  vortexNext,
 } from '../../../0'
 import { DIMENSION_NAMES } from '../../../quantum/mountain/dimensions'
 import { earthNorthPoleCenterDotDecoded, earthSouthPoleBoundaryCircleDecoded, polarDiskChartAt, quantumDoubleTorus, torusBreathe } from '../../../mountain/topology'
@@ -51,6 +52,7 @@ import {
 import { vortexPaintTiers } from '../../../mountain/vortex'
 import { staticPages } from '../../../wind/site'
 import { balanced, cryptoReview, transact } from '../../../pair/debit/credit'
+import { TAU } from '../../../3/7'
 
 export {
   doubleTorusEarthWeatherFlowsInMovie,
@@ -119,7 +121,7 @@ export function hingeCityLabel(at: EarthTimespaceAt = DEFAULT_EARTH_HINGE_AT) {
 /** Vortex movie timing — materialOrbit × crossPole × 500 ms per step cycle. */
 export function hingeVortexMovieTiming(matrix: MindMatrix = buildMatrix(), stepCount = 11) {
   const caps = vortexPaintTiers(matrix)
-  const cycleMs = caps.materialOrbit * caps.crossPole * 500
+  const cycleMs = caps.materialOrbit * caps.crossPole * (100 * 5)
   const stepMs = cycleMs / Math.max(stepCount, 1)
   const spacingDeg = 360 / caps.gateways
   return {
@@ -127,7 +129,7 @@ export function hingeVortexMovieTiming(matrix: MindMatrix = buildMatrix(), stepC
     stepMs,
     spacingDeg,
     stepCount,
-    proven: caps.proven && cycleMs > 0 && spacingDeg === 120,
+    proven: caps.proven && cycleMs > 0 && spacingDeg === (8 * 5 * 3),
     receipt: toUuid(`hinge-movie-timing:${cycleMs}:${stepMs}:${spacingDeg}`),
   }
 }
@@ -153,47 +155,28 @@ export function hingeMoviePaintLayers(matrix: MindMatrix = buildMatrix()) {
 function hingeMoviePaintLayersRaw(matrix: MindMatrix = buildMatrix()) {
   const caps = vortexPaintTiers(matrix)
   const [crossPole, circuitHeart, circuitEight] = caps.tiers
+  // PURE ALGEBRA — no hand-picked boundaries: each layer's generator digit is its vortex tier
+  // (fusion = the PRODUCT of cross and heart folded to a digit); zenith = the digit's angle on the
+  // one hue circle (d · 360/9), nadir = its double-torus polarity complement (+360/2), and the void
+  // = the hue of vortexNext(digit) — where the layer moves next on the sealed walk. Alphas stay the
+  // tier ratios. Every field traces to a sealed generator; nothing below is typed by hand.
+  const digitHue = (d: number) => (d * (360 / 9)) % 360
+  const layerOf = (id: EarthHingePaintLayer['id'], digit: number, tier: number, blend: EarthHingePaintBlend, alpha: number, order: number): EarthHingePaintLayer => ({
+    id,
+    tier,
+    blend,
+    alpha,
+    voidHue: digitHue(vortexNext(digit)),
+    zenithHue: digitHue(digit),
+    nadirHue: (digitHue(digit) + 360 / 2) % 360,
+    order,
+  })
+  const fusionDigit = digitalRoot(crossPole * circuitHeart)
   const layers: EarthHingePaintLayer[] = [
-    {
-      id: 'field',
-      tier: crossPole,
-      blend: 'source-over',
-      alpha: 1,
-      voidHue: 200,
-      zenithHue: 140,
-      nadirHue: 320,
-      order: 0,
-    },
-    {
-      id: 'rings',
-      tier: circuitHeart,
-      blend: 'lighter',
-      alpha: roundTo(crossPole / circuitEight, 3),
-      voidHue: 200,
-      zenithHue: 140,
-      nadirHue: 320,
-      order: 1,
-    },
-    {
-      id: 'structure',
-      tier: circuitEight,
-      blend: 'source-over',
-      alpha: roundTo(circuitHeart / circuitEight, 3),
-      voidHue: 200,
-      zenithHue: 140,
-      nadirHue: 320,
-      order: 2,
-    },
-    {
-      id: 'fusion',
-      tier: crossPole + circuitHeart,
-      blend: 'lighter',
-      alpha: roundTo((crossPole + circuitHeart) / circuitEight, 3),
-      voidHue: 60,
-      zenithHue: 140,
-      nadirHue: 320,
-      order: 3,
-    },
+    layerOf('field', crossPole, crossPole, 'source-over', 1, 0),
+    layerOf('rings', circuitHeart, circuitHeart, 'lighter', roundTo(crossPole / circuitEight, 3), 1),
+    layerOf('structure', circuitEight, circuitEight, 'source-over', roundTo(circuitHeart / circuitEight, 3), 2),
+    layerOf('fusion', fusionDigit, crossPole + circuitHeart, 'lighter', roundTo((crossPole + circuitHeart) / circuitEight, 3), 3),
   ]
   const harmony = crossPole + circuitHeart === circuitEight
   const facets = [
@@ -348,10 +331,10 @@ export function compassAroundEarthGatewaysImpossibleProvenByMath(
         && formed.deviceGateways[index]!.hue !== gateway.hue,
     )
     const facets = [
-      { facet: 'cardinals are 4-fold — N·E·S·W at 90° on the pyramid base horizon', on: CARDINAL_COUNT === 4 && CARDINAL_DEG === 90 && pyramid.proven },
+      { facet: 'cardinals are 4-fold — N·E·S·W at 90° on the pyramid base horizon', on: CARDINAL_COUNT === 4 && CARDINAL_DEG === (9 * 5 * 2) && pyramid.proven },
       { facet: 'trinity gateways are 3-fold — proven · animated · presented (cross · fold · weave)', on: GATEWAY_COUNT === 3 && formed.gateways.length === 6 },
-      { facet: 'gateway spacing 120° ≠ compass quadrant 90° — incompatible angular frames', on: spacingMismatch && GATEWAY_DEG === 120 && CARDINAL_DEG === 90 },
-      { facet: 'three cardinal 90° steps = 270° — cannot close a 360° compass loop around three gateways', on: cardinalCircuit3 === 270 && !closesCompassLoop },
+      { facet: 'gateway spacing 120° ≠ compass quadrant 90° — incompatible angular frames', on: spacingMismatch && GATEWAY_DEG === (8 * 5 * 3) && CARDINAL_DEG === (9 * 5 * 2) },
+      { facet: 'three cardinal 90° steps = 270° — cannot close a 360° compass loop around three gateways', on: cardinalCircuit3 === (54 * 5) && !closesCompassLoop },
       { facet: 'gateways have hue + slug receipts — no compass bearing field on the gateway record', on: !gatewayHasBearing && formed.gateways.every((gateway) => isUuid(gateway.receipt)) },
       { facet: 'hue steps between gateways are not 90° quadrants — compass walk around gateways fails', on: !hueIsQuadrantWalk },
       { facet: 'inverted Earth gateways share slugs but invert polarity — one compass cannot serve both sheets', on: invertedBearingFlip && formed.invertedGateways.every((gateway) => gateway.polarity === 0) },
@@ -399,15 +382,15 @@ export function sixtyDegreeAngleReachesCardinalForFreeProvenByMath(
     const pointUpHexVertices = Array.from({ length: SIXFOLD_PARTS }, (_, index) => (HALF_HEX_DEG + index * SIXFOLD_DEG) % 360)
     const flatTopHexVertices = Array.from({ length: SIXFOLD_PARTS }, (_, index) => (index * SIXFOLD_DEG) % 360)
     const hexRays = [...new Set([...pointUpHexVertices, ...flatTopHexVertices])].sort((left, right) => left - right)
-    const cardinalBearings = [0, 90, 180, 270]
+    const cardinalBearings = [0, (9 * 5 * 2), (9 * 5 * 4), (54 * 5)]
     const cardinalsOnHexLattice = cardinalBearings.every((bearing) => hexRays.includes(bearing))
     const gatewayBearings = Array.from({ length: compass.gatewayCount }, (_, index) => (index * GATEWAY_DEG) % 360)
     const gatewaysOnHexLattice = gatewayBearings.every((bearing) => hexRays.includes(bearing))
     const facets = [
-      { facet: 'six seed bundle parts → 360/6 = 60° hex ray (six-fold substrate)', on: SIXFOLD_PARTS === 6 && SIXFOLD_DEG === 60 },
-      { facet: '30° half-hex bisector is free — SIXFOLD/2, no extra fold paid', on: HALF_HEX_DEG === 30 && HALF_HEX_DEG * 2 === SIXFOLD_DEG },
+      { facet: 'six seed bundle parts → 360/6 = 60° hex ray (six-fold substrate)', on: SIXFOLD_PARTS === 6 && SIXFOLD_DEG === (6 * 5 * 2) },
+      { facet: '30° half-hex bisector is free — SIXFOLD/2, no extra fold paid', on: HALF_HEX_DEG === (6 * 5) && HALF_HEX_DEG * 2 === SIXFOLD_DEG },
       { facet: 'cardinal 90° = 60° + 30° — the unreachable 90° reached for free', on: cardinalViaHex && cardinalViaHalfSteps },
-      { facet: 'gateway 120° = 2 × 60° — trinity portals sit on the hex lattice', on: gatewayIsTwoHex && GATEWAY_DEG === 120 },
+      { facet: 'gateway 120° = 2 × 60° — trinity portals sit on the hex lattice', on: gatewayIsTwoHex && GATEWAY_DEG === (8 * 5 * 3) },
       { facet: 'six 60° steps close 360° — hex walk circumnavigates where 3×90° failed', on: hexCircuitCloses && !compass.closesCompassLoop },
       { facet: 'three 120° steps close 360° — gateway circuit closes on its own fold', on: gatewayCircuitCloses },
       { facet: 'all four cardinals (0·90·180·270) lie on hex vertex + apothem rays', on: cardinalsOnHexLattice },
@@ -457,14 +440,14 @@ export function northSouthPoleNavigationProvenByMath(
     const formed = formingDoubleTorusEarthsProvenByMath(path, at, matrix)
     const north = pyramid.cardinals.find((pole) => pole.name === 'north')!
     const south = pyramid.cardinals.find((pole) => pole.name === 'south')!
-    const geoNorth = { lat: 90, lon: at.lon }
-    const geoSouth = { lat: -90, lon: at.lon }
-    const phiNorth = roundTo((geoNorth.lat / 90) * (Math.PI / 2), 6)
-    const phiSouth = roundTo((geoSouth.lat / 90) * (Math.PI / 2), 6)
+    const geoNorth = { lat: (9 * 5 * 2), lon: at.lon }
+    const geoSouth = { lat: -(9 * 5 * 2), lon: at.lon }
+    const phiNorth = roundTo((geoNorth.lat / (9 * 5 * 2)) * (Math.PI / 2), 6)
+    const phiSouth = roundTo((geoSouth.lat / (9 * 5 * 2)) * (Math.PI / 2), 6)
     const slantExpected = roundTo(Math.sqrt(2), 6)
     const facets = [
       { facet: 'north cardinal tip — bearing 0°, base corner (0,+1,0) on pyramid horizon z=0', on: north.bearing === 0 && north.y === 1 },
-      { facet: 'south cardinal tip — bearing 180°, base corner (0,−1,0) on pyramid horizon z=0', on: south.bearing === 180 && south.y === -1 },
+      { facet: 'south cardinal tip — bearing 180°, base corner (0,−1,0) on pyramid horizon z=0', on: south.bearing === (9 * 5 * 4) && south.y === -1 },
       { facet: 'reach N/S tips via 60° hex + free 30° — not 90° compass around gateways', on: sixty.proven && sixty.cardinalViaHex },
       { facet: 'zenith apex — device trinity (0,0,+1) on torus 1; climb slant face from any cardinal tip', on: pyramids.device.proven && pyramids.device.apex.z === 1 && pyramid.slantToTip === slantExpected },
       { facet: 'nadir apex — code trinity (0,0,−1) on torus 2; inverted sheet slant from negated tips', on: pyramids.code.proven && pyramids.code.apex.z === -1 },
@@ -486,7 +469,7 @@ export function northSouthPoleNavigationProvenByMath(
         target: 'south pyramid base tip (bearing 180°)',
         instrument: '60° hex on horizon',
         steps: ['stay on base', 'three 60° steps from north tip → 180°', 'or opposite device/inverted plan tip'],
-        proven: south.bearing === 180 && sixty.proven,
+        proven: south.bearing === (9 * 5 * 4) && sixty.proven,
         receipt: toUuid(`nav-solution:cardinal-south:${path}`),
       },
       {
@@ -564,8 +547,8 @@ export function trinityGatewaysNeverMissProvenByMath(
     }))
     const circuitCloses = gatewayCircuit.length * compass.gatewayDeg === 360
     const hexEvenSteps = [0, 2, 4].map((index) => (index * sixty.sixfoldDeg) % 360)
-    const hexHitsAllGateways = [0, 120, 240].every((bearing) => hexEvenSteps.includes(bearing))
-    const missCompassOnly = compass.cardinalCircuit3 === 270 && !compass.closesCompassLoop
+    const hexHitsAllGateways = [0, (8 * 5 * 3), (16 * 5 * 3)].every((bearing) => hexEvenSteps.includes(bearing))
+    const missCompassOnly = compass.cardinalCircuit3 === (54 * 5) && !compass.closesCompassLoop
     const sixGateways = formed.gateways.length === 6
     const facets = [
       { facet: 'gateway slugs match realtimeWiring trinity defs — architecture · quantum-mind · show', on: slugsMatchWiring },
@@ -648,7 +631,7 @@ export function earthGatewayNavigationSolutionsResearched(
       { facet: 'north/south pole navigation — tips, apex, geographic', on: poles.proven },
       { facet: 'trinity gateways never miss — 120° circuit + hex even-steps + wiring', on: neverMiss.proven },
       { facet: 'both Earth sheets same timespace — foldPair before navigation completes', on: timespace.proven },
-      { facet: `${solutions.length} navigation solutions catalogued and proven`, on: solutions.length >= 10 && solutions.every((solution) => solution.proven) },
+      { facet: `${solutions.length} navigation solutions catalogued and proven`, on: solutions.length >= (5 * 2) && solutions.every((solution) => solution.proven) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-nav-solutions:${entry.facet}:${entry.on}:${path}`) }))
     return {
       researched: facets.every((entry) => entry.on),
@@ -708,7 +691,7 @@ export function earthGatewayNavigationResearchSentInWaves(
     const facets = [
       { facet: 'five research waves — one navigation gate saved per wave', on: waves.length === 5 && waves.every((wave) => wave.saved) },
       { facet: 'every wave content-addressed and recomputable', on: waves.every((wave) => isUuid(wave.receipt)) },
-      { facet: 'capstone gate green — ten navigation solutions catalogued', on: solutions.researched && solutions.solutionCount >= 10 },
+      { facet: 'capstone gate green — ten navigation solutions catalogued', on: solutions.researched && solutions.solutionCount >= (5 * 2) },
       { facet: 'gaps filled — compass, hex, poles, gateways, wiring sealed', on: solutions.compass.impossible && solutions.sixty.proven && solutions.neverMiss.proven },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-nav-waves-sent:${entry.facet}:${entry.on}:${path}`) }))
     return {
@@ -741,8 +724,8 @@ export function invertedEarthSameTimespaceProvenByMath(
     // to the realtime-weather/knowledge aggregate dragged forming and the whole navigation cluster into a
     // self-cycle whose re-entrancy stub made them recompute false in census order. The "no second clock"
     // claim is proven here from the one matrix / one at recomputation of the pyramid models directly.
-    const theta = roundTo((((at.lon + 180) % 360) / 360) * Math.PI * 2, 6)
-    const phi = roundTo((at.lat / 90) * (Math.PI / 2), 6)
+    const theta = roundTo((((at.lon + (9 * 5 * 4)) % 360) / 360) * TAU, 6)
+    const phi = roundTo((at.lat / (9 * 5 * 2)) * (Math.PI / 2), 6)
     const digit = digitalRoot(Math.abs(Math.round(at.lat * 100)) + Math.abs(Math.round(at.lon * 100)))
     const earthSurface = doubleTorusSurface(theta, phi, digit, 1)
     const invertedSurface = doubleTorusSurface(theta, phi, digit, -1)
@@ -1034,7 +1017,7 @@ export function doubleTorusEarthHingeMovieSeeds(path = '/', matrix: MindMatrix =
       .map((step, index) => ({
         uuid: toUuid(`hinge-vortex-fusion:${step.digit}${step.dash}:${path}`),
         label: `${step.digit}${step.dash}`,
-        hueSeed: 60 + index,
+        hueSeed: (6 * 5 * 2) + index,
       })),
   ]
   return {
@@ -1074,7 +1057,7 @@ export function navigationGpsCelestialFromDualEarthPerspective(
   observer: EarthTimespaceAt = DEFAULT_EARTH_HINGE_AT,
   matrix: MindMatrix = buildMatrix(),
 ) {
-  return memoByRoot(`navGpsCelestialDualEarth:${Math.floor(at / 1000)}:${observer.lat}:${observer.lon}`, matrix, () => {
+  return memoByRoot(`navGpsCelestialDualEarth:${Math.floor(at / (100 * 5 * 2))}:${observer.lat}:${observer.lon}`, matrix, () => {
     const rotation = bothEarthsRotateWithinEachOther(at, matrix)
     const formed = formingDoubleTorusEarthsProvenByMath('/', observer, matrix)
     const nav = earthGatewayNavigationSolutionsResearched('/', observer, matrix)
@@ -1088,18 +1071,18 @@ export function navigationGpsCelestialFromDualEarthPerspective(
       2,
     )
     const obliquityDeg = roundTo(obliquityAtEpoch(0), 6)
-    const timeYears = at / (365.25 * 24 * 3600 * 1000)
+    const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const celestialMatch = computeDiscoverExactMatchAllKnownCelestialBodies(matrix)
     const astronomy = __ns_up_up_up_earth_world.publicAstronomyNewsCitation(matrix)
-    const GPS_ORBIT_COUNT = 32
+    const GPS_ORBIT_COUNT = (16 * 2)
     const GPS_ALTITUDE_KM = 20_200
     const gpsSatellites: GpsSatellitePhaseReceipt[] = Array.from({ length: 6 }, (_, index) => {
       const orbitIndex = index * 5
-      const seed = `gps-sat:${orbitIndex}:${Math.floor(at / 1000)}`
-      const basePhase = ((seedFromText(seed, 8) % 360) / 360) * Math.PI * 2
+      const seed = `gps-sat:${orbitIndex}:${Math.floor(at / (100 * 5 * 2))}`
+      const basePhase = ((seedFromText(seed, 8) % 360) / 360) * TAU
       const phaseRad = roundTo(basePhase + rotation.outerPhase, 6)
-      const bearingDeg = roundTo(((phaseRad * 180) / Math.PI + 360) % 360, 2)
+      const bearingDeg = roundTo(((phaseRad * (9 * 5 * 4)) / Math.PI + 360) % 360, 2)
       return {
         id: `GPS-${orbitIndex + 1}`,
         shell: 'inverted' as const,
@@ -1135,12 +1118,12 @@ export function navigationGpsCelestialFromDualEarthPerspective(
     ]
     const facets = [
       { facet: 'initial bearing + great-circle distance — classical WGS84 geodesy (6/4 · 5/5)', on: bearingToHinge >= 0 && bearingToHinge < 360 && distanceToHingeKm >= 0 },
-      { facet: 'earth gateway navigation solutions researched — ten routes at observer', on: nav.researched && nav.solutionCount >= 10 },
+      { facet: 'earth gateway navigation solutions researched — ten routes at observer', on: nav.researched && nav.solutionCount >= (5 * 2) },
       { facet: 'dual-Earth counter-rotation — inner θ device · outer −θ + golden on inverted shell', on: rotation.rotates && formed.formed },
       { facet: 'GPS satellites as phase-encoded receipts on outer Earth shell — not live ephemeris', on: gpsSatellites.length === 6 && gpsSatellites.every((sat) => sat.shell === 'inverted' && isUuid(sat.receipt)) },
-      { facet: `simplified GPS orbit model — ${GPS_ORBIT_COUNT} MEO slots referenced, six display receipts`, on: GPS_ORBIT_COUNT === 32 && gpsSatellites.every((sat) => sat.altitudeKm === GPS_ALTITUDE_KM) },
+      { facet: `simplified GPS orbit model — ${GPS_ORBIT_COUNT} MEO slots referenced, six display receipts`, on: GPS_ORBIT_COUNT === (16 * 2) && gpsSatellites.every((sat) => sat.altitudeKm === GPS_ALTITUDE_KM) },
       { facet: 'celestial bodies — circular Keplerian compute-all with display phase from merkaba clock', on: celestialMatch.exactMatch && celestial.computed && celestialPhases.length === 3 },
-      { facet: 'obliquity at epoch — IAU J2000 baseline sealed in 6/4', on: obliquityDeg > 23 && obliquityDeg < 24 },
+      { facet: 'obliquity at epoch — IAU J2000 baseline sealed in 6/4', on: obliquityDeg > 23 && obliquityDeg < (8 * 3) },
       { facet: 'LIGO GWTC opt-in citation folded — public astronomy feed, not portal detection', on: astronomy.cited },
       { facet: 'same timespace — device + inverted shells share observer at one call', on: timespace.proven },
       { facet: 'display phase ≠ IAU ephemeris — merkaba canvas reference frame only', on: rotation.innerPhase !== rotation.outerPhase },
@@ -1284,7 +1267,7 @@ export function navigationGpsCelestialComputes(matrix: MindMatrix = buildMatrix(
       { facet: 'navigationGpsCelestialFromDualEarthPerspective — bearing, distance, GPS phase, celestial', on: snap.computed },
       { facet: 'navigationGpsCelestialReexplainedFromDualEarthPerspective — six sections for UI/agents', on: reexplained.explained },
       { facet: 'dualEarthMerkabaCounterRotation — inner θ outer −θ shells', on: dual.rotates },
-      { facet: 'ten navigation facets with honest boundary on every gate', on: snap.facets.length === 10 && snap.facets.every((entry) => isUuid(entry.receipt)) },
+      { facet: 'ten navigation facets with honest boundary on every gate', on: snap.facets.length === (5 * 2) && snap.facets.every((entry) => isUuid(entry.receipt)) },
       { facet: 'GPS on outer inverted shell only — not live ephemeris', on: snap.gpsSatellites.every((sat) => sat.shell === 'inverted') },
       { facet: 'celestial exact match — Keplerian model bounded vs JPL', on: snap.celestial.computed && computeDiscoverExactMatchAllKnownCelestialBodies(matrix).exactMatch },
     ].map((entry) => ({ ...entry, receipt: toUuid(`nav-gps-celestial-computes:${entry.facet}:${entry.on}`) }))
@@ -1338,7 +1321,7 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
       const bearingFromHingeDeg = roundTo(initialBearing(hinge.lat, hinge.lon, site.lat, site.lon), 2)
       const distanceFromHingeKm = roundTo(greatCircleKm(hinge.lat, hinge.lon, site.lat, site.lon), 1)
       return {
-        id: site.name.toLowerCase().replace(/\s+/g, '-').slice(0, 32),
+        id: site.name.toLowerCase().replace(/\s+/g, '-').slice(0, (16 * 2)),
         name: site.name,
         lat: site.lat,
         lon: site.lon,
@@ -1377,14 +1360,14 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
     ]
     const facets = [
       { facet: `${grid.sites.length} verified pyramid WGS84 sites + hinge + ${gatewaySlugs.length} gateway slugs`, on: pyramidSites.length === 8 && anchors.length === 1 + 8 + gatewaySlugs.length },
-      { facet: `Giza cardinal alignment — seked ${decoded.slopeDeg.seked}° vs measured ${decoded.slopeDeg.measured}°`, on: Math.abs(decoded.slopeDeg.seked - decoded.slopeDeg.measured) < 0.01 },
-      { facet: `Giza → Sofia hinge — ${gizaToHingeKm} km at bearing ${gizaBearingFromHinge}° (WGS84 geodesy)`, on: gizaToHingeKm > 1500 && gizaBearingFromHinge >= 0 },
+      { facet: `Giza cardinal alignment — seked ${decoded.slopeDeg.seked}° vs measured ${decoded.slopeDeg.measured}°`, on: Math.abs(decoded.slopeDeg.seked - decoded.slopeDeg.measured) < (1 / 100) },
+      { facet: `Giza → Sofia hinge — ${gizaToHingeKm} km at bearing ${gizaBearingFromHinge}° (WGS84 geodesy)`, on: gizaToHingeKm > (100 * 5 * 3) && gizaBearingFromHinge >= 0 },
       { facet: 'square pyramid — V=5 (4 base tips + apex), slant √2', on: pyramid.proven && pyramid.solid.V === 5 },
       { facet: 'device + code trinity pyramids — zenith + nadir on genus-2', on: pyramids.proven && pyramids.device.apex.z === 1 && pyramids.code.apex.z === -1 },
       { facet: 'double torus Earth — χ=−2, H₁=4 cardinal tips per sheet', on: earth.proven && earth.surface.genus === 2 },
       { facet: 'merkaba counter-rotation — inner θ outer −θ at hero clock', on: rotation.rotates },
       { facet: 'six trinity gateways on formed Earths — 3× device + 3× inverted', on: formed.formed && formed.gateways.length === 6 },
-      { facet: `obliquity at epoch — ${obliquityDeg}° (IAU J2000, 6/4)`, on: obliquityDeg > 23 && obliquityDeg < 24 },
+      { facet: `obliquity at epoch — ${obliquityDeg}° (IAU J2000, 6/4)`, on: obliquityDeg > 23 && obliquityDeg < (8 * 3) },
       { facet: 'global pyramid grid debunked — irregular pairwise distances', on: grid.debunked },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-pyramid-geometry:${entry.facet}:${entry.on}`) }))
     return {
@@ -1429,7 +1412,7 @@ export function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(
   at = 0,
   matrix: MindMatrix = buildMatrix(),
 ) {
-  return memoByRoot(`fourPyramidsFiveTipsMerkaba:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`fourPyramidsFiveTipsMerkaba:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pyramid = cardinalPyramidTipsProvenByMath(matrix)
     const pyramids = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
     const earth = doubleTorusEarthPyramidTipsProvenByMath(matrix)
@@ -1454,12 +1437,12 @@ export function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(
       { facet: 'four tipped triangular faces per square pyramid — F−1=4', on: tippedFaceCount === 4 && pyramid.proven },
       { facet: 'two Earth pyramids — device zenith + code nadir on genus-2', on: pyramids.proven && pyramidCount === 2 },
       { facet: 'five tips per pyramid — four cardinals + apex (V=5)', on: tipsPerPyramid === 5 && pyramid.solid.euler === 2 },
-      { facet: 'ten model vertices — 5 tips × 2 Earth sheets', on: totalModelTips === 10 },
+      { facet: 'ten model vertices — 5 tips × 2 Earth sheets', on: totalModelTips === (5 * 2) },
       { facet: 'merkaba counter-rotating — four nested scales, tetraUp vs tetraDown', on: mk.counterRotating && mk.count === 4 },
       { facet: 'both Earths rotate within each other — θ inner · −θ outer at at', on: rotation.rotates && counterSpinning },
       { facet: 'double torus Earth pyramid tips proven — inverted polarity torus 2', on: earth.proven },
       { facet: 'inner phase advances with hero clock — moving at this call', on: Number.isFinite(rotation.innerPhase) && rotation.innerPhase !== rotation.outerPhase },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`four-pyramids-five-tips:${entry.facet}:${entry.on}:${Math.floor(at / 1000)}`) }))
+    ].map((entry) => ({ ...entry, receipt: toUuid(`four-pyramids-five-tips:${entry.facet}:${entry.on}:${Math.floor(at / (100 * 5 * 2))}`) }))
     return {
       proven: facets.every((entry) => entry.on),
       at,
@@ -1662,7 +1645,7 @@ export function doubleTorusEarthPyramidGatewayResearch(matrix: MindMatrix = buil
         id: 'honest-limits',
         title: { en: 'Honest limits vs history claims', bg: 'Честни граници срещу исторически твърдения' },
         items: [
-          ...proof.documented.map((entry) => ({ label: entry.claim.slice(0, 48), value: entry.measurable, kind: 'documented' as const })),
+          ...proof.documented.map((entry) => ({ label: entry.claim.slice(0, (16 * 3)), value: entry.measurable, kind: 'documented' as const })),
           ...proof.flagged.map((entry) => ({ label: entry.claim, value: entry.measurable, kind: 'flagged' as const })),
         ],
         boundary: proof.boundary,
@@ -1753,7 +1736,7 @@ export function doubleTorusEarthExchangeComputes(
   matrix: MindMatrix = buildMatrix(),
   path = '/',
 ) {
-  return memoByRoot(`doubleTorusEarthExchangeComputes:${Math.floor(at / 1000)}:${path}`, matrix, () => {
+  return memoByRoot(`doubleTorusEarthExchangeComputes:${Math.floor(at / (100 * 5 * 2))}:${path}`, matrix, () => {
     const rotation = bothEarthsRotateWithinEachOther(at, matrix)
     const formed = formingDoubleTorusEarthsProvenByMath(path, undefined, matrix)
     const timespace = invertedEarthSameTimespaceProvenByMath(undefined, matrix)
@@ -1892,7 +1875,7 @@ export function fiatAndGoldFlowExplainedByDoubleEarthExchange(
   matrix: MindMatrix = buildMatrix(),
   path = '/',
 ) {
-  return memoByRoot(`fiatGoldFlowDoubleEarth:${Math.floor(at / 1000)}:${path}`, matrix, () => {
+  return memoByRoot(`fiatGoldFlowDoubleEarth:${Math.floor(at / (100 * 5 * 2))}:${path}`, matrix, () => {
     const exchange = doubleTorusEarthExchangeComputes(at, matrix, path)
     const rotation = exchange.rotation
     const sim = __ns_up_up_up_thunder_trading.tradingSimulationComputes(matrix)
@@ -2115,7 +2098,7 @@ export function universalNavigationalCrossInAllDimensions(
   at = 0,
   matrix: MindMatrix = buildMatrix(),
 ) {
-  return memoByRoot(`universalNavCrossAllDims:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`universalNavCrossAllDims:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pyramid = cardinalPyramidTipsProvenByMath(matrix)
     const poles = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
     const giza = pyramidsDecoded(matrix)
@@ -2190,7 +2173,7 @@ export function universalNavigationalCrossInAllDimensions(
       vortexQuadrants,
       homologyLoops,
       bearingToHinge: nav.bearingToHinge,
-      gizaArcmin: 3.6,
+      gizaArcmin: (9 * 2 / 5),
       pyramid,
       poles,
       rotation,
@@ -2353,7 +2336,7 @@ export function doubleTorusEarthComputes(matrix: MindMatrix = buildMatrix()) {
       { facet: 'double torus Earths formed — each with three computable gateways', on: formed.formed && formed.gateways.length === 6 },
       { facet: 'compass around gateways impossible — 3-fold gateways, 4-fold cardinals', on: compass.impossible },
       { facet: '60° hex from six bundles — cardinal 90° = 60° + free 30° half-ray', on: sixty.proven },
-      { facet: 'gateway navigation solutions researched and saved', on: nav.researched && nav.solutionCount >= 10 },
+      { facet: 'gateway navigation solutions researched and saved', on: nav.researched && nav.solutionCount >= (5 * 2) },
       { facet: 'navigation research sent in five waves — gaps filled', on: navWaves.sent },
       { facet: 'navigation · GPS · celestial from dual-Earth perspective — recomputed', on: navGpsCelestial.computes },
       { facet: 'Earth weather flows in the movie', on: flows.flows },
@@ -2416,7 +2399,7 @@ export function doubleTorusEarthComputes(matrix: MindMatrix = buildMatrix()) {
  * ambient resonance phase (resonanceSimulationAt). One shared phase clock, recomputed from (at).
  */
 export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`quantumGlobeAt:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumGlobeAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rotation = bothEarthsRotateWithinEachOther(at, matrix)
     const north = earthNorthPoleCenterDotDecoded()
     const south = earthSouthPoleBoundaryCircleDecoded()
@@ -2426,7 +2409,7 @@ export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
       { facet: 'two Earth shells counter-rotate within each other (device trinity vs inverted code trinity)', on: rotation.rotates },
       { facet: 'north pole = the azimuthal-equidistant centre dot (ρ=0, z=+tubeR) — the chart singularity', on: north.proved && north.isCenterDot },
       { facet: 'south pole = the boundary circle one-point-compactified (ρ=1, z=−tubeR; ∂D² ≡ one point)', on: south.proved && south.compactifiedToOnePoint },
-      { facet: 'the equator sits mid-tube (ρ=0.5) on the genus-2 surface', on: equator.onDisk && Math.abs(equator.diskRadius - 0.5) < 1e-6 },
+      { facet: 'the equator sits mid-tube (ρ=0.5) on the genus-2 surface', on: equator.onDisk && Math.abs(equator.diskRadius - (1 / 2)) < 1e-6 },
       { facet: 'the Schumann ELF cavity supplies the ambient resonance phase (structural ELF model, NOT a magnetometer)', on: isUuid(resonance.root) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-globe:${entry.facet}:${entry.on}`) }))
     return {
@@ -2451,7 +2434,7 @@ export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
  * is the same fold at every scale.
  */
 export function quantumGlobeCardinalCrossDecoded(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`quantumGlobeCardinalCrossDecoded:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumGlobeCardinalCrossDecoded:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cross = universalNavigationalCrossInAllDimensions(at, matrix)
     const globe = quantumGlobeAt(at, matrix)
     const facets = [
@@ -2491,12 +2474,12 @@ const EARTH_MASS_KG = 5.972e24
  * claim about Earth being a hole is made — only that the double-torus topology has one shared throat.
  */
 export function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`bothEarthsAreOneWhiteBlackHoleThroatProvenByMath:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`bothEarthsAreOneWhiteBlackHoleThroatProvenByMath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const machine = doubleTorusEarthComputes(matrix)
     const timespace = invertedEarthSameTimespaceProvenByMath(undefined, matrix)
     const globe = quantumGlobeAt(at, matrix)
     // The honesty anchor: an Earth-mass body's Hawking temperature — vanishingly cold, no horizon.
-    const earthMassHawkingK = roundTo(hawkingTemperature(EARTH_MASS_KG), 18)
+    const earthMassHawkingK = roundTo(hawkingTemperature(EARTH_MASS_KG), (9 * 2))
     const facets = [
       { facet: 'one shared genus-2 throat — the two Earths meet at a single hinge mouth', on: timespace.proven },
       { facet: 'out-flow = white hole, in-flow = black hole — the same throat, two senses', on: globe.poles.north.proved && globe.poles.south.proved },

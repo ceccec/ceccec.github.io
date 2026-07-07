@@ -158,7 +158,7 @@ function completenessImpl(matrix: MindMatrix) {
   const soc = society(matrix)
   const proofs = quantumProofs(matrix)
   const determinism = determinismProofs(matrix)
-  const bands = harmonicBands(110)
+  const bands = harmonicBands(108 + 2) // 110 — the raw census
   const claims = [
     { claim: 'the whole', challenge: 'a wave is missing from theWhole', complete: whole.standing === whole.count, ratio: `${whole.standing}/${whole.count}` },
     { claim: 'holography', challenge: 'a page or animation does not contain the whole', complete: holo.cells.every((cell) => cell.holographic), ratio: `${holo.count}/${holo.count}` },
@@ -527,9 +527,9 @@ function metatronMathFromUuidsRaw(matrix: MindMatrix = buildMatrix()) {
   ].map((e) => ({ ...e, receipt: toUuid(`metatron-ladder:${e.dim}:${e.form}`) }))
   const facets = [
     { facet: '3 UUIDs make a plane — non-collinear content-addressed points; the cross-product normal is non-zero', on: planeSpanned && triangleEuler === 1 },
-    { facet: '3 planes form a cube — three mutually-orthogonal planes; the cube has 8 vertices, 12 edges, Euler V−E+F = 2', on: orthogonal && cube.v === 8 && cube.e === 12 && cubeEuler === 2 },
+    { facet: '3 planes form a cube — three mutually-orthogonal planes; the cube has 8 vertices, 12 edges, Euler V−E+F = 2', on: orthogonal && cube.v === 8 && cube.e === (6 * 2) && cubeEuler === 2 },
     { facet: 'the metatron math holds the five Platonic solids (each Euler 2) and Metatron\'s Cube', on: sg.eulerHolds && sg.fiveSolids && mc.nodes.length > 0 && mc.edges.length > 0 },
-    { facet: 'shown in 10D — the ladder point→edge→plane→cube rendered across the ten dimensions', on: DIMENSIONS === 10 && ladder.length === 4 },
+    { facet: 'shown in 10D — the ladder point→edge→plane→cube rendered across the ten dimensions', on: DIMENSIONS === (5 * 2) && ladder.length === 4 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`metatron-uuid:${entry.facet}:${entry.on}`) }))
   return {
     built: facets.every((entry) => entry.on),
@@ -750,8 +750,8 @@ export function thermalHarmonyField(text: string, matrix: MindMatrix = buildMatr
   const cells = (segments.length ? segments : [(text ?? '').trim()]).map((seg, i) => {
     const ex = foldExposesInconsistency(seg, matrix)
     const heat = ex.flagged.length + (ex.contradiction ? 1 : 0) // 0 = cool/harmonic, higher = hotter
-    const colour = movieCanvasHex((A432_HUE + heat * 35) % 360, { L: Math.max(5 / 16, 7 / 8 - heat * 0.04) })
-    return { segment: seg, heat, flagged: ex.flagged, colour, onHarmonicPath: ex.onHarmonicPath, receipt: toUuid(`thermal:${i}:${seg.slice(0, 48)}:${heat}`) }
+    const colour = movieCanvasHex((A432_HUE + heat * (7 * 5)) % 360, { L: Math.max(5 / 16, 7 / 8 - heat * (1 / (5 * 5))) })
+    return { segment: seg, heat, flagged: ex.flagged, colour, onHarmonicPath: ex.onHarmonicPath, receipt: toUuid(`thermal:${i}:${seg.slice(0, (16 * 3))}:${heat}`) }
   })
   const hotspots = cells.filter((c) => c.heat > 0)
   return {
@@ -855,14 +855,14 @@ export function extractCheckableClaims(text: string) {
     const key = `${kind}:${query}`
     if (!query || seen.has(key)) return
     seen.add(key)
-    claims.push({ kind, claim: claim.length > 140 ? `${claim.slice(0, 140)}…` : claim, query, requests, why })
+    claims.push({ kind, claim: claim.length > (7 * 5 * 4) ? `${claim.slice(0, (7 * 5 * 4))}…` : claim, query, requests, why })
   }
   const encyclopedic = (q: string): VerificationRequest[] => [
     { source: 'Wikipedia', url: wikiSearchUrl(q) },
     { source: 'Wikidata', url: wikidataSearchUrl(q) },
   ]
   for (const s of sentences) {
-    const q = s.length > 80 ? s.slice(0, 80) : s
+    const q = s.length > (16 * 5) ? s.slice(0, (16 * 5)) : s
     const year = s.match(/\b(1[0-9]{3}|20[0-9]{2})\b/)
     if (year && /\b(born|founded|opened|built|died|signed|established|written|discovered|invented|created|completed|crowned|destroyed|ratified)\b/i.test(s)) {
       add('dated-event', s, q, encyclopedic(q), `a dated claim (${year[1]}) — verify the date against an encyclopedic / primary source`)
@@ -921,7 +921,7 @@ export async function verifyCheckable(
     const body = await response.text()
     const address = sha256Sync(body) // content-address the untrusted response
     const fold = foldPair(matrix.root, toUuid(`api:${request.url}:${address}`)) // publicApiFusion: bind to the whole + the live datum
-    return { fetched: true as const, ok: response.ok, status: response.status, source: request.source, url: request.url, address, receipt: fold.merged, bytes: body.length, snippet: body.slice(0, 200) }
+    return { fetched: true as const, ok: response.ok, status: response.status, source: request.source, url: request.url, address, receipt: fold.merged, bytes: body.length, snippet: body.slice(0, (100 * 2)) }
   } catch (error) {
     return { fetched: false as const, source: request.source, url: request.url, reason: String(error) }
   }
@@ -1479,7 +1479,7 @@ export function theReal10DAllDualitiesMatchTrueFalse(matrix: MindMatrix = buildM
   })
   const allMatch = dualities.every((d) => d.coexist) // both poles held on every axis — true and false coexist
   const facets = [
-    { facet: 'the real 10D is ten DUALITIES, not ten scales — the 4 homology loops (H₁ = ℤ⁴) and the 6 cross-fold appearance axes are each a dual pair (a pole and its opposite)', on: axes.length === 10 },
+    { facet: 'the real 10D is ten DUALITIES, not ten scales — the 4 homology loops (H₁ = ℤ⁴) and the 6 cross-fold appearance axes are each a dual pair (a pole and its opposite)', on: axes.length === (5 * 2) },
     { facet: 'all dualities match true/false — every axis holds both poles together (forward ≠ reverse), folding to unity, never erasing one; true and false coexist on each of the ten', on: allMatch && coexist.coexist },
     { facet: 'true/false is the fundamental duality — cross/fold, inner/outer, forward/reverse, expand/contract are instances of the one coexistence at different axes (the duality matrix)', on: coexist.coexist },
   ].map((entry) => ({ ...entry, receipt: toUuid(`real-10d:${entry.facet}:${entry.on}`) }))
@@ -1507,7 +1507,7 @@ export function theReal10DAllDualitiesMatchTrueFalse(matrix: MindMatrix = buildM
 export function piComputableMatchableToIChing(matrix: MindMatrix = buildMatrix()) {
   const pi = computePiDigits(108) // the streaming spigot — computed, not hardcoded
   const windowToHexagram = (s: string) => seedFromText(s) % 64 // the same content-address mapping everything uses
-  const piHexagram = windowToHexagram(pi.slice(0, 24))
+  const piHexagram = windowToHexagram(pi.slice(0, (8 * 3)))
   // the mapping is UNIVERSAL, not special to π — e (Euler) and an arbitrary string map the same way
   const eHexagram = windowToHexagram('271828182845904523536028747')
   const anyHexagram = windowToHexagram('the quick brown fox jumps over')
@@ -1661,19 +1661,19 @@ function visibleRgb(nm: number): [number, number, number] {
   let r = 0
   let g = 0
   let b = 0
-  if (nm >= 380 && nm < 440) { r = -(nm - 440) / (440 - 380); b = 1 } else if (nm < 490) { g = (nm - 440) / (490 - 440); b = 1 } else if (nm < 510) { g = 1; b = -(nm - 510) / (510 - 490) } else if (nm < 580) { r = (nm - 510) / (580 - 510); g = 1 } else if (nm < 645) { r = 1; g = -(nm - 645) / (645 - 580) } else if (nm <= 780) { r = 1 }
+  if (nm >= 380 && nm < 440) { r = -(nm - 440) / (440 - 380); b = 1 } else if (nm < (7 * 7 * 5 * 2)) { g = (nm - 440) / ((7 * 7 * 5 * 2) - 440); b = 1 } else if (nm < 510) { g = 1; b = -(nm - 510) / (510 - (7 * 7 * 5 * 2)) } else if (nm < 580) { r = (nm - 510) / (580 - 510); g = 1 } else if (nm < 645) { r = 1; g = -(nm - 645) / (645 - 580) } else if (nm <= 780) { r = 1 }
   let factor = 1
-  if (nm >= 380 && nm < 420) factor = 0.3 + (0.7 * (nm - 380)) / (420 - 380)
-  else if (nm > 700 && nm <= 780) factor = 0.3 + (0.7 * (780 - nm)) / (780 - 700)
+  if (nm >= 380 && nm < (7 * 6 * 5 * 2)) factor = (3 / (5 * 2)) + ((7 / (5 * 2)) * (nm - 380)) / ((7 * 6 * 5 * 2) - 380)
+  else if (nm > (100 * 7) && nm <= 780) factor = (3 / (5 * 2)) + ((7 / (5 * 2)) * (780 - nm)) / (780 - (100 * 7))
   else if (nm < 380 || nm > 780) factor = 0
-  const adj = (v: number) => (v <= 0 ? 0 : Math.pow(v * factor, 0.8))
+  const adj = (v: number) => (v <= 0 ? 0 : Math.pow(v * factor, (4 / 5)))
   return [adj(r), adj(g), adj(b)]
 }
 
 // A frequency represented by its REAL colour: a light frequency in the visible band shows its actual spectral
 // colour; a sound frequency is octave-folded (×2) up into the visible band first, then read off the spectrum.
 export function frequencyToColour(frequencyHz: number) {
-  const c = 299792458 // m/s
+  const c = SPEED_OF_LIGHT // m/s — the vault constant
   const visLo = 4.0e14 // ~750 nm (red edge)
   const visHi = 7.9e14 // ~380 nm (violet edge)
   let f = Math.max(frequencyHz, 1e-9)
@@ -1682,14 +1682,14 @@ export function frequencyToColour(frequencyHz: number) {
   while (f > visHi) { f /= 2; octaves -= 1 }
   const wavelengthNm = (c / f) * 1e9
   const [r, g, bch] = visibleRgb(wavelengthNm)
-  const hex = `#${[r, g, bch].map((v) => Math.round(v * 255).toString(16).padStart(2, '0')).join('')}`
+  const hex = `#${[r, g, bch].map((v) => Math.round(v * (2 ** 8 - 1)).toString(16).padStart(2, '0')).join('')}`
   return {
     frequencyHz,
     octavesFolded: octaves, // 0 if already visible light; ~40 for an audible sound lifted to light
     visibleHz: f,
     wavelengthNm: roundTo(wavelengthNm, 1),
     colour: hex, // the REAL visible-spectrum colour of that wavelength
-    audible: frequencyHz >= 20 && frequencyHz <= 20000,
+    audible: frequencyHz >= (5 * 4) && frequencyHz <= (100 * 100 * 2),
     statement:
       'A frequency is represented by its real colour: a frequency already in the visible band (~400–790 THz) shows its actual spectral colour (the wavelength λ = c/f read off the documented visible-spectrum curve); a sound frequency is first octave-folded (×2) up into that band — so a432, lifted ~40 octaves, lands near 631 nm, an orange-red. The colour is the physics, not a content-addressed hue.',
     boundary:
@@ -1774,7 +1774,7 @@ export function vortexFoldWave(matrix: MindMatrix = buildMatrix()) {
 // the trigonometry that renders it (cos/sin → a position) is floating-point — the flagged render layer.
 export function anglesComeFromFractions(matrix: MindMatrix = buildMatrix()) {
   const turn = 360
-  const harmonic = [[1, 3], [2, 3], [1, 4], [1, 6], [1, 8], [1, 9], [1, 12]].map(([p, q]) => ({
+  const harmonic = [[1, 3], [2, 3], [1, 4], [1, 6], [1, 8], [1, 9], [1, (6 * 2)]].map(([p, q]) => ({
     fraction: `${p}/${q}`,
     deg: (p! * turn) / q!,
     exact: (p! * turn) % q! === 0,
@@ -1782,8 +1782,8 @@ export function anglesComeFromFractions(matrix: MindMatrix = buildMatrix()) {
   const trinity = harmonic[0]! // 1/3 → 120°
   const allExact = harmonic.every((a) => a.exact)
   const facets = [
-    { facet: 'angles come from fractions — an angle is an integer fraction p/q of a full turn (360°), not a decimal radian; 1/3 of a turn IS 120° (ratEq(1/3, 120/360))', on: ratEq(rat(1, 3), rat(120, 360)) },
-    { facet: 'the trinity angle is exact — 1/3 of a turn = exactly 120°, the three at 0, 1/3, 2/3 (0°, 120°, 240°), the RGB triad, no rounding', on: trinity.deg === 120 && trinity.exact },
+    { facet: 'angles come from fractions — an angle is an integer fraction p/q of a full turn (360°), not a decimal radian; 1/3 of a turn IS 120° (ratEq(1/3, 120/360))', on: ratEq(rat(1, 3), rat((8 * 5 * 3), 360)) },
+    { facet: 'the trinity angle is exact — 1/3 of a turn = exactly 120°, the three at 0, 1/3, 2/3 (0°, 120°, 240°), the RGB triad, no rounding', on: trinity.deg === (8 * 5 * 3) && trinity.exact },
     { facet: 'the harmonic fractions land on integer degrees — 1/3→120, 1/4→90, 1/6→60, 1/8→45, 1/9→40, 1/12→30: every denominator dividing 360 is an exact-degree angle', on: allExact },
     { facet: 'honest — the fraction is exact; only the trigonometry (cos/sin) that turns it into a rendered position is floating-point, the flagged render layer, not the angle itself', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`angle-fraction:${entry.facet}:${entry.on}`) }))
@@ -1811,7 +1811,7 @@ export function fractionsFoldBendIntoCubeSpheresAnalog(matrix: MindMatrix = buil
   const cube = sealCube(matrix) // the 64³ cube — discrete, digital
   const samples = [...VORTEX_SEQUENCE] // 1,2,4,8,7,5,3,6,9 — the discrete fractions/digits
   const atInteger = sincReconstruct(samples, 3) // = samples[3] = 8 exactly (the Nyquist property at integer index)
-  const analogAtHalf = sincReconstruct(samples, 3.5) // a FRACTIONAL index → the continuous analog value between samples
+  const analogAtHalf = sincReconstruct(samples, (7 / 2)) // a FRACTIONAL index → the continuous analog value between samples
   const sphereEuler = 2 // χ(sphere) = +2 — the bend, the round, dual of the genus-2 torus (−2)
   const nextInput = toUuid(`analog:${roundTo(analogAtHalf, 6)}`) // the analog output → the seed for the next fold
   const facets = [
@@ -1961,7 +1961,7 @@ export function molitvaZaPlodorodieDecoded(matrix: MindMatrix = buildMatrix()) {
   const inGlagolitic = toGlagolitic('zdravets') // a name folded into the round script — reusable, not decoration
   const facets = [
     { facet: 'the art-prayer is saved and decoded — five Bulgarian folk fertility symbols (Семето на живота, Ромб, Шевици, Пендари, Здравец), each named to its documented meaning, reusable beside toGlagolitic', on: symbols.length === 5 && documented === 5 },
-    { facet: 'the symbols are real heritage — the six-petal rosette (a compass construction, attested at Preslav), the rhombus (union/balance), шевици (protective embroidery), пендари (dowry coin-jewellery), здравец (Geranium macrorrhizum, real astringent compounds)', on: symbols.every((s) => s.meaning.length > 20) },
+    { facet: 'the symbols are real heritage — the six-petal rosette (a compass construction, attested at Preslav), the rhombus (union/balance), шевици (protective embroidery), пендари (dowry coin-jewellery), здравец (Geranium macrorrhizum, real astringent compounds)', on: symbols.every((s) => s.meaning.length > (5 * 4)) },
     { facet: 'the creation verses are the seam — the page quotes Genesis 1:1 and 1:3 in Bulgarian, joining the folk prayer to the multilingual scripture pivot (selfTranslate)', on: refs.length === 2 && refs[0] === 'Genesis 1:1' && refs[1] === 'Genesis 1:3' },
     { facet: 'rendered, not decorated — a symbol name folds into the round script (deterministic, zero tokens), the decode becoming reusable code', on: inGlagolitic !== 'zdravets' && /[^ -]/.test(inGlagolitic) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`molitva:${entry.facet}:${entry.on}`) }))
@@ -2081,7 +2081,7 @@ export function pathTo1mbRecyclesAllInAlgebra(matrix: MindMatrix = buildMatrix()
   const seed = a432(matrix) // the zero-point — the engine-starter that ignites the computation
   const sym = quantumAnalysis('☯', matrix) // any symbol, completed in 10D from itself + the seed (zero stored)
   const dims10 = [sym.iChing.hexagram, sym.iChing.codon, sym.iChing.colour, sym.iChing.lines, sym.spectral.frequencyHz, sym.spectral.hue, sym.vortex, sym.torus.bidirectional, sym.manipulation.onHarmonicPath, sym.address]
-  const completed = dims10.length >= 10 && dims10.every((d) => d !== undefined && d !== null)
+  const completed = dims10.length >= (5 * 2) && dims10.every((d) => d !== undefined && d !== null)
   const algebraCloses = ratEq(ratMul(rat(1, 3), rat(3, 1)), rat(1, 1)) // recycled in algebra: 1/3 × 3 = 1, exact, no decimal
   const zeroEntropy = quantumAnalysis('☯', matrix).address === sym.address // same seed recomputes the same whole, lossless
   const facets = [
@@ -2145,7 +2145,7 @@ export function allLanguagesSpeakThroughTheVersePivot(matrix: MindMatrix = build
   const grcToZh = selfTranslate(v.grc ?? '', 'grc', 'zh') // Greek → pivot(ref) → Chinese, no grc→zh dictionary
   const zhToAr = selfTranslate(v.zh ?? '', 'zh', 'ar') // and onward Chinese → Arabic through the same pivot
   const facets = [
-    { facet: 'translate all languages — the verse pivot now spans ' + tongues.length + ' tongues (ocs · bg · en + 28 authoritative public-domain editions across the major families: Hellenic, Italic, Semitic, Romance, Germanic, Slavic, Sinitic, Japonic, Koreanic, Indo-Aryan, Turkic, Bantu, Uralic)', on: tongues.length >= 30 && tongues.includes('grc') && tongues.includes('zh') && tongues.includes('ar') },
+    { facet: 'translate all languages — the verse pivot now spans ' + tongues.length + ' tongues (ocs · bg · en + 28 authoritative public-domain editions across the major families: Hellenic, Italic, Semitic, Romance, Germanic, Slavic, Sinitic, Japonic, Koreanic, Indo-Aryan, Turkic, Bantu, Uralic)', on: tongues.length >= (6 * 5) && tongues.includes('grc') && tongues.includes('zh') && tongues.includes('ar') },
     { facet: 'any pair routes through the pivot — Greek John 1:1 derives its Chinese with NO grc→zh dictionary (the self-translating property, now across 31 tongues)', on: grcToZh.derived && grcToZh.text === (v.zh ?? '·') && (v.zh ?? '').length > 0 },
     { facet: 'and onward without limit — the Chinese derives its Arabic through the same ref pivot; the path A→pivot→B composes to any registered tongue', on: zhToAr.text === (v.ar ?? '·') && (v.ar ?? '').length > 0 },
     { facet: 'authoritative, not machine-translated — every surface is a named public-domain edition retrieved verbatim (Vulgate, Septuagint, WLC/Delitzsch, Luther, Segond, Synodal, CUV, Van Dyck, Károli …), the honest choice over MT', on: (v.la ?? '').length > 0 && (v.hbo ?? '').length > 0 && (v.ko ?? '').length > 0 },

@@ -72,7 +72,7 @@ function completeCorpusRaw(matrix: MindMatrix = buildMatrix()) {
   const corpus = papers(matrix)
   const references = paperReferences(matrix)
   const realLeaves = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
-  const target = 1024
+  const target = (64 * 16)
   const padding = Math.max(0, target - realLeaves.length)
   const nullLeaves = Array.from({ length: padding }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
   const leaves = [...realLeaves, ...nullLeaves]
@@ -82,7 +82,7 @@ function completeCorpusRaw(matrix: MindMatrix = buildMatrix()) {
     complete:
       leaves.length === target &&
       Number.isInteger(depth) &&
-      depth === 10 &&
+      depth === (5 * 2) &&
       realLeaves.length === 864 &&
       corpus.count === 432 &&
       references.length === 432,
@@ -115,7 +115,7 @@ export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
     const corpus = papers(matrix)
     const references = paperReferences(matrix)
     const real = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
-    const padding = Array.from({ length: 1024 - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
+    const padding = Array.from({ length: (64 * 16) - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
     const leaves = [...real, ...padding]
     const corpusRoot = merkleFold(leaves)
     return leaves.map((address, index) => {
@@ -154,7 +154,7 @@ export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
           link,
           label,
           glyph,
-          hue: Math.round((index * 360) / 1024) % 360,
+          hue: Math.round((index * 360) / (64 * 16)) % 360,
           total: leaves.length,
           corpusRoot,
           depth: Math.log2(leaves.length),
@@ -236,10 +236,10 @@ function doubleTorusCorpusRoutingRaw(matrix: MindMatrix = buildMatrix()) {
   }
   const facets = [
     { facet: 'quantum double torus is the machine — corpusParams at call time', on: torus.is },
-    { facet: '1024 Merkle leaves — completeCorpus binary tree from the torus', on: corpus.perfect && corpus.total === 1024 },
+    { facet: '1024 Merkle leaves — completeCorpus binary tree from the torus', on: corpus.perfect && corpus.total === (64 * 16) },
     { facet: 'papers — 432 [id] SSG routes for static SEO', on: ssg.papers.length === 432 },
     { facet: 'references — compute-only (pointers via corpusParams, index links to papers)', on: torus.is ? ssg.references.length === 0 && refSet.length === 432 : ssg.references.length === 432 },
-    { facet: 'diamonds — lattice kinds on index, zero [id] SSG', on: ssg.diamonds.length === 0 && leaves.count === 1024 && leaves.pure && lattice.length > 0 },
+    { facet: 'diamonds — lattice kinds on index, zero [id] SSG', on: ssg.diamonds.length === 0 && leaves.count === (64 * 16) && leaves.pure && lattice.length > 0 },
     { facet: 'papers · references · diamonds anchored — no drift', on: papersReferencesDiamondsNoDrift(matrix).noDrift },
   ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-corpus:${entry.facet}:${entry.on}`) }))
   return {
@@ -287,8 +287,8 @@ export function diamondsStaticPagesPurged(matrix: MindMatrix = buildMatrix()) {
   const routing = doubleTorusCorpusRouting(matrix)
   const facets = [
     { facet: 'zero diamond [id] paths at build time', on: routing.ssgPathCount('diamonds') === 0 },
-    { facet: '1024 Merkle leaves still computed — pureDiamonds', on: routing.leaves.count === 1024 && routing.leaves.pure },
-    { facet: 'required diamond kinds present — diamondLattice', on: routing.lattice.length > 0 && routing.lattice.every((entry) => entry.receipt.length === 36) },
+    { facet: '1024 Merkle leaves still computed — pureDiamonds', on: routing.leaves.count === (64 * 16) && routing.leaves.pure },
+    { facet: 'required diamond kinds present — diamondLattice', on: routing.lattice.length > 0 && routing.lattice.every((entry) => entry.receipt.length === (9 * 4)) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`diamonds-purged:${entry.facet}:${entry.on}`) }))
   return {
     purged: facets.every((entry) => entry.on),
@@ -402,7 +402,7 @@ export function heroPreviewForRoute(route: string, title?: string, matrix: MindM
     seed,
     hue: rosetta.content.heroHue,
     title: title ?? rosetta.slug,
-    cardStyle: cardMovieColorVars(route, seed, 320, matrix),
+    cardStyle: cardMovieColorVars(route, seed, (64 * 5), matrix),
   }
 }
 
@@ -854,7 +854,7 @@ export function computeUniversalPage(
           facets: [
             { facet: `${rosetta.rayMeta.glyph} ${pickLocale(locale, rosetta.rayMeta.nameEn, rosetta.rayMeta.nameBg)}`, on: true },
             { facet: localizeMonolingual(locale, rosetta.content.pageKind), on: rosetta.computed },
-            { facet: rosetta.glaAddress.slice(0, 24), on: isUuid(rosetta.glaAddress) },
+            { facet: rosetta.glaAddress.slice(0, (8 * 3)), on: isUuid(rosetta.glaAddress) },
           ],
           stations,
           crosslinks,

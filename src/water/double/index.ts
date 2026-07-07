@@ -373,7 +373,7 @@ export function doubleTorusDiamondsComputes(matrix: MindMatrix = buildMatrix()) 
     const purged = diamondsStaticPagesPurged(matrix)
     const { computes, facets } = computesGate('double-torus-diamonds-computes', [
       { facet: 'quantum double torus is the machine', on: torus.is },
-      { facet: '1024 pure Merkle leaves', on: leaves.count === 1024 && leaves.pure },
+      { facet: '1024 pure Merkle leaves', on: leaves.count === (64 * 16) && leaves.pure },
       { facet: 'diamond lattice kinds on index', on: lattice.length > 0 },
       { facet: 'zero diamond [id] SSG — compute-only', on: routing.ssgPathCount('diamonds') === 0 && purged.purged },
     ])

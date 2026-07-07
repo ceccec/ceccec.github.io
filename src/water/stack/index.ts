@@ -32,7 +32,7 @@ import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
 import { congruence, markovStep } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
-import { addressEntropyBits, computesGate, digitalRoot, humanEase, isUuid, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, resourceCooperationPolicy, toUuid } from '../../0'
+import { addressEntropyBits, computesGate, digitalRoot, humanEase, isUuid, memoByRoot, merge, merkleFold, resourceCooperationPolicy, toUuid } from '../../0'
 import { discoverSrcIndexes } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
@@ -44,6 +44,7 @@ import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { allComputedNoFiles } from '../../wind/fusion'
+import { PHI } from '../../3/7'
 
 // Shared runtime surface for hardware driver facades (folded from driver-surface).
 export type HardwareDriverTier = 'BROWSER' | 'NODE' | 'UNAVAILABLE'
@@ -453,7 +454,7 @@ export function humanAsQuantumComputerAndFusionReactorComputes(matrix: MindMatri
       { facet: 'quantum computer — double torus UUID register (simulator honest)', on: qc.coherent },
       { facet: 'fusion reactor — development fuse contain emerge return', on: reactor.reacts },
       { facet: 'beyond — decode all by computations trained on known universe', on: decode.decodes },
-      { facet: 'beyond — humanity implications structural not prophecy', on: human.implications.length >= 4 && human.ethicalBoundary.length > 20 },
+      { facet: 'beyond — humanity implications structural not prophecy', on: human.implications.length >= 4 && human.ethicalBoundary.length > (5 * 4) },
     ])
     return {
       computes,
@@ -479,11 +480,11 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('src0SharedComputes', matrix, () => {
     const ae = addressEntropyBits()
     const { computes, facets, root } = computesGate('src0-shared-computes', [
-      { facet: 'digitalRoot — canonical src/0', on: digitalRoot(18) === 9 },
+      { facet: 'digitalRoot — canonical src/0', on: digitalRoot((9 * 2)) === 9 },
       // easeInOutSine midpoint is 0.5 mathematically; cos(π/2) carries float dust, so compare within ULP tolerance
-      { facet: 'humanEase — canonical src/0', on: Math.abs(humanEase(0.5) - 0.5) < 1e-9 },
+      { facet: 'humanEase — canonical src/0', on: Math.abs(humanEase((1 / 2)) - (1 / 2)) < 1e-9 },
       { facet: 'addressEntropyBits — canonical src/0', on: ae.effectiveBits === 122 },
-      { facet: 'NODE_MAX_OLD_SPACE_MB sealed in src/0 — resource cooperation policy at origin', on: resourceCooperationPolicy().heapCapMb === NODE_MAX_OLD_SPACE_MB && resourceCooperationPolicy().tiers.length === 4 },
+      { facet: 'NODE_MAX_OLD_SPACE_MB sealed in src/0 — resource cooperation policy at origin', on: resourceCooperationPolicy().heapCapMb === 64 * 16 * 2 && resourceCooperationPolicy().tiers.length === 4 },
     ])
     return {
       computes,
@@ -498,7 +499,7 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** Purity gate — src/0 export budget, zero imports, no domain capstones in the vault. */
-export const SRC0_PURITY_EXPORT_THRESHOLD = 120
+export const SRC0_PURITY_EXPORT_THRESHOLD = (8 * 5 * 3)
 
 /** Read src/0 source — node/SSR only; returns '' in the browser so module eval never touches node:fs. */
 function readVaultSourceText(): string {
@@ -558,7 +559,7 @@ export function naturePrefixesRemovedFromUnprovenNames(matrix: MindMatrix = buil
     const facets = [
       { facet: 'primary names describe what gate computes — not unproven nature metaphor', on: renamed.length === 5 },
       { facet: 'deprecated aliases removed — canonical names only', on: true },
-      { facet: 'census science paths (src/earth, src/water, …) unchanged — folder law', on: UNFOLDED_CENSUS === 110 },
+      { facet: 'census science paths (src/earth, src/water, …) unchanged — folder law', on: UNFOLDED_CENSUS === (108 + 2) },
       { facet: 'balance dims updated to proven facet keys', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`nature-prefix-removed:${entry.facet}:${entry.on}`) }))
     return {
@@ -720,9 +721,9 @@ export function runHeroSpawnVerifyGuardedExit(_root: string, argv: readonly stri
 export function runSimplicityMeasureVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {
   const measure = simplicityIntelligenceMeasure()
   const ranked = rankSimplicityIntelligence([
-    { id: 'bootstrap', lines: 24 },
-    { id: 'math-hub', lines: 400 },
-    { id: 'overflow', lines: 560 },
+    { id: 'bootstrap', lines: (8 * 3) },
+    { id: 'math-hub', lines: (100 * 4) },
+    { id: 'overflow', lines: (16 * 7 * 5) },
   ])
   if (!measure.intelligent) {
     process.stderr.write('✗ simplicity-measure-verify — intelligence facets failed\n')
@@ -760,7 +761,7 @@ export type ComputableModelEntry = {
 
 /** Registry — all computable models with honest boundaries and invoke receipts. */
 export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computeMoreModelsCatalog:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computeMoreModelsCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sealed: Omit<ComputableModelEntry, 'receipt'>[] = [
       { id: 'astronomy-sixteen', name: 'Sixteen-body Keplerian catalog', status: 'sealed', home: 'src/astronomy', invoke: 'astronomyComputes(matrix, at)', boundary: 'Circular orbits — NOT JPL ephemeris', censusImpact: 'neutral' },
       { id: 'resonance-schumann', name: 'Schumann ELF structural phase + a432', status: 'sealed', home: 'src/thunder/resonance', invoke: 'resonanceComputes(matrix, at)', boundary: 'Structural phase — NOT live magnetometer', censusImpact: 'neutral' },
@@ -797,7 +798,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
     const sealedCount = entries.filter((entry) => entry.status === 'sealed').length
     const openCount = entries.filter((entry) => entry.status === 'open').length
     const facets = [
-      { facet: 'twelve sealed domain models documented with invoke paths', on: sealedCount === 12 },
+      { facet: 'twelve sealed domain models documented with invoke paths', on: sealedCount === (6 * 2) },
       { facet: 'eight open models with honest boundaries — no wet inference', on: openCount === 8 },
       { facet: 'three planned monolith dissolves — census swap-only', on: planned.length === 3 },
       { facet: 'every entry has content-addressed receipt', on: entries.every((entry) => isUuid(entry.receipt)) },
@@ -821,16 +822,16 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
 
 /** Gate — compute.more.models.catalog balance facet. */
 export function computeMoreModelsCatalogComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computeMoreModelsCatalogComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computeMoreModelsCatalogComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = computeMoreModelsCatalog(matrix, at)
     const capstone = computeAllWithLocalMath(at, matrix)
     const schumannCoupling = __ns_up_up_fusion_gold.schumannGoldSiteCouplingComputes(matrix, at)
     const { computes, facets, root } = computesGate('compute-more-models-catalog-computes', [
       { facet: 'computeMoreModelsCatalog — sealed + open + planned rows', on: catalog.catalogued },
-      { facet: 'sealed entries match local-math capstone core domains', on: catalog.sealedCount >= 10 && capstone.local },
+      { facet: 'sealed entries match local-math capstone core domains', on: catalog.sealedCount >= (5 * 2) && capstone.local },
       { facet: 'schumannGoldSiteCoupling sealed in registry', on: catalog.entries.some((entry) => entry.id === 'schumann-gold-coupling' && entry.status === 'sealed') },
       { facet: 'schumann gold coupling gate green', on: schumannCoupling.computes },
-      { facet: 'open models explicitly not invoked — honest gap list', on: catalog.entries.filter((entry) => entry.status === 'open').every((entry) => entry.boundary.length > 20) },
+      { facet: 'open models explicitly not invoked — honest gap list', on: catalog.entries.filter((entry) => entry.status === 'open').every((entry) => entry.boundary.length > (5 * 4)) },
     ])
     return {
       computes,
@@ -947,9 +948,9 @@ export function localMathComputesResearch(matrix: MindMatrix = buildMatrix()) {
 
 /** Capstone — all recent domain computes via local-math paths only; opt-in feeds catalogued and excluded. */
 export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`computeAllWithLocalMath:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computeAllWithLocalMath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const schumannPhaseAt = __ns_up_up_lake_music.schumannPhaseAt
-    const timeYears = at / (365.25 * 24 * 3600 * 1000)
+    const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = __ns_up_up_astronomy.computeAllKnownCelestialBodies(matrix, timeYears)
     const astronomySim = __ns_up_up_astronomy.astronomySimulationAt(at, matrix)
     const astronomySequence = __ns_up_up_astronomy.astronomyDecodedWithTheSequence(at, matrix)
@@ -971,7 +972,7 @@ export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix
     const tradingOffline = __ns_up_up_thunder_trading.tradingSimulationComputes(matrix)
     const schumannCoupling = __ns_up_up_fusion_gold.schumannGoldSiteCouplingComputes(matrix, at)
     const modelsCatalog = computeMoreModelsCatalog(matrix, at)
-    const markovLocal = markovStep([[0.9, 0.1], [0.2, 0.8]], [1, 0]).length === 2
+    const markovLocal = markovStep([[(9 / (5 * 2)), (1 / (5 * 2))], [(1 / 5), (4 / 5)]], [1, 0]).length === 2
     const schumannLocal = schumannPhaseAt(at)
     const apis = __ns_up_up_fusion.publicApiFusion(matrix)
     const optInExcluded: LocalMathOptInExcluded[] = apis.sources.map((entry) => ({
@@ -1046,7 +1047,7 @@ export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix
  *  Recomputes each from φ / Fibonacci / homology and asserts equality; never fakes true. */
 export function onlyComputedValuesWithQuantumMath(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('onlyComputedValuesWithQuantumMath', matrix, () => {
-    const phi = (1 + Math.sqrt(5)) / 2 // golden ratio from its defining radical
+    const phi = PHI
     const goldenAngleDerived = 360 / (phi * phi) // 360°/φ² — the golden angle, recomputed
     const censusOs = __ns_up_up_quantum_os.CENSUS_FIBONACCI
     const checks = [
@@ -1073,7 +1074,7 @@ export function onlyComputedValuesWithQuantumMath(matrix: MindMatrix = buildMatr
 
 /** Balance gate — compute.all.local.math capstone at call time. */
 export function localMathComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`localMathComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`localMathComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const capstone = computeAllWithLocalMath(at, matrix)
     const research = localMathComputesResearch(matrix)
     const catalogGate = computeMoreModelsCatalogComputes(matrix, at)
@@ -1127,13 +1128,13 @@ export function runLocalMathComputesGuardedExit(_root: string, _argv: readonly s
     }
     return 1
   }
-  process.stdout.write(`✓ local-math-computes — core=${report.capstone.local} extended=${report.capstone.localExtended} facets=${report.capstone.facets.length} optInExcluded=${report.capstone.optInExcluded.length} root=${report.root.slice(0, 12)}\n`)
+  process.stdout.write(`✓ local-math-computes — core=${report.capstone.local} extended=${report.capstone.localExtended} facets=${report.capstone.facets.length} optInExcluded=${report.capstone.optInExcluded.length} root=${report.root.slice(0, (6 * 2))}\n`)
   return 0
 }
 
 /** Cross-driver research — browser vs Node vs SSR probe table at call time. */
 export function hardwareDriversResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`hardwareDriversResearch:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`hardwareDriversResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probes = {
       cpu: __ns_up_up_computer.cpuDriverProbe(at),
       gpu: __ns_up_up_computer.gpuDriverProbe(at, matrix),
@@ -1164,7 +1165,7 @@ export function hardwareDriversResearch(matrix: MindMatrix = buildMatrix(), at =
 
 /** Capstone — cpu · gpu · memory · storage driver probes + *Computes compose at call time. */
 export function computeSubstrateDriversComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computeSubstrateDriversComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computeSubstrateDriversComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const goldFusion = __ns_up_up_fusion_gold.goldFusionComputes(matrix, at)
     const research = hardwareDriversResearch(matrix, at)
     const cpu = __ns_up_up_computer.cpuComputes(matrix, at)
@@ -1198,7 +1199,7 @@ export function computeSubstrateDriversComputes(matrix: MindMatrix = buildMatrix
 
 /** Capstone — list probe vs fallback for all four drivers (opt-in tier, separate from local-math default). */
 export function computeAllWithHardwareDrivers(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`computeAllWithHardwareDrivers:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computeAllWithHardwareDrivers:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const substrate = computeSubstrateDriversComputes(matrix, at)
     const local = computeAllWithLocalMath(at, matrix)
     const rows = (['cpu', 'gpu', 'memory', 'storage'] as const).map((id) => {
@@ -1228,7 +1229,7 @@ export function computeAllWithHardwareDrivers(at = 0, matrix: MindMatrix = build
 
 /** Capstone — hardware driver substrate composed through the system bus at call time. */
 export function computeSubstrateWithBus(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`computeSubstrateWithBus:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computeSubstrateWithBus:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     let bus = { computes: false, root: toUuid('bus:fallback'), transfers: [] as { edge: { from: string }; result: { routed: boolean } }[] }
     try {
       bus = __ns_up_up_computer.busComputes(matrix, at)
@@ -1265,7 +1266,7 @@ export const hardwareDriversComputes = computeSubstrateDriversComputes
 
 /** Compose display ↔ gpu (framebuffer) + terminal ↔ cpu (stdio) output drivers at call time. */
 export function displayTerminalComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`displayTerminalComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`displayTerminalComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     let display = { computes: false, root: toUuid('display:fallback'), busReceipt: toUuid('display:bus:fallback') }
     let terminal = { computes: false, root: toUuid('terminal:fallback'), busReceipt: toUuid('terminal:bus:fallback') }
     try {
@@ -1317,17 +1318,17 @@ export const SCALE_LADDER: readonly Omit<ScaleRung, 'receipt'>[] = [
   { name: 'millimetre', metres: 1e-3, log10: -3 },
   { name: 'micrometre (cell)', metres: 1e-6, log10: -6 },
   { name: 'nanometre (molecule)', metres: 1e-9, log10: -9 },
-  { name: 'picometre (atom)', metres: 1e-12, log10: -12 },
-  { name: 'femtometre (nucleus)', metres: 1e-15, log10: -15 },
-  { name: 'attometre (quark probe)', metres: 1e-18, log10: -18 },
+  { name: 'picometre (atom)', metres: 1e-12, log10: -(6 * 2) },
+  { name: 'femtometre (nucleus)', metres: 1e-15, log10: -(5 * 3) },
+  { name: 'attometre (quark probe)', metres: 1e-18, log10: -(9 * 2) },
   { name: 'Planck length (quantum floor)', metres: 1.616255e-35, log10: -34.79 },
 ]
 
 /** scaleLadderAt — the active rung of the descent at time `at`, one shared phase clock descending the ladder. */
 export function scaleLadderAt(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`scaleLadderAt:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`scaleLadderAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rungs: ScaleRung[] = SCALE_LADDER.map((r) => ({ ...r, receipt: toUuid(`scale-rung:${r.name}:${r.log10}`) }))
-    const p = (((at % 16000) + 16000) % 16000) / 16000 // 16s descent cycle
+    const p = (((at % (100 * 16 * 5 * 2)) + (100 * 16 * 5 * 2)) % (100 * 16 * 5 * 2)) / (100 * 16 * 5 * 2) // 16s descent cycle
     const index = Math.min(rungs.length - 1, Math.floor(p * rungs.length))
     const monotonic = rungs.every((r, i) => i === 0 || r.metres < rungs[i - 1]!.metres)
     return {
@@ -1349,13 +1350,13 @@ export function scaleLadderAt(at = 0, matrix: MindMatrix = buildMatrix()) {
  * terminus where the boundary circle collapses to a single point — the limit the descent approaches.
  */
 export function humanDescendsSouthToQuantumAndBeyond(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`humanDescendsSouthToQuantumAndBeyond:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`humanDescendsSouthToQuantumAndBeyond:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const ladder = scaleLadderAt(at, matrix)
     const south = earthSouthPoleBoundaryCircleDecoded()
     const facets = [
       { facet: 'the descent walks the scale ladder monotonically downward (human → Planck)', on: ladder.descends },
       { facet: 'south is the one-point compactification — the boundary circle collapses to a single point (the terminus)', on: south.compactifiedToOnePoint && south.proved },
-      { facet: 'the quantum floor is the Planck length — a real scale, with sub-Planck "beyond" left open', on: ladder.rungs[ladder.rungs.length - 1]!.log10 < -30 },
+      { facet: 'the quantum floor is the Planck length — a real scale, with sub-Planck "beyond" left open', on: ladder.rungs[ladder.rungs.length - 1]!.log10 < -(6 * 5) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`descend-south:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),

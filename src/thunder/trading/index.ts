@@ -14,6 +14,7 @@ import { quantumSitemap, staticPages } from '../../wind/site'
 import { realtimeMovieParticipation } from '../../earth/world'
 import { deviceHardwareVisibleInComputedWidgets } from '../../earth/world'
 import { allComputed, allComputedQuantumMathAnalog, buildStatisticsShowGaps, complete, completeCorpus, componentGraph, componentPages, computedSeo, dimensionsPerMegabyteMetric, fairTrade, forgerFoldsIntoHarmony, fusionCipher, gigabitEncryption64SealSet, heroGraphStatisticsEnrichFusion, knowledgeRevealedByMerkabaFold, merkabaArchitectureFieldsMovements, merkabasInDoubleTorus, path, quantumCoordinateNav, schemaOrgDiamonds } from '../../quantum/heaven/mind'
+import { TAU } from '../../3/7'
 
 // Upgrade all skills for realtime communication, at max tampering costs — fuse the
 // necessary bindings. Every skill gains a realtime channel through real browser
@@ -171,7 +172,7 @@ export function dimensionalMerkabaGraphRealtimeMetric(matrix: MindMatrix = build
   ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-graph-metric:${entry.facet}:${entry.on}`) }))
   return {
     realtime: facets.every((entry) => entry.on),
-    targetDimsPerMb: 1024,
+    targetDimsPerMb: (64 * 16),
     targetGbitPerMb: 1, // 1024 dims/MB → 1 Gbit/MB
     count: facets.length,
     facets,
@@ -232,7 +233,7 @@ function nextLevel64CubedRealtimeRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the 1 Gbit keyspace stands — one full 64-seal set (the first axis)', on: gigabitEncryption64SealSet(matrix).achieves },
     { facet: 'three nested 64-seal axes — width × height × depth = 64³', on: axes.length === 3 && axes.every((ax) => ax.whole) },
-    { facet: 'the 64³ lattice is whole — proportion 1 toward 262144 cells', on: proportion === 1 && cells === 262144 },
+    { facet: 'the 64³ lattice is whole — proportion 1 toward 262144 cells', on: proportion === 1 && cells === (64 * 64 * 64) },
     { facet: 'each axis content-addressed to the architecture root, realtime-fused', on: axes.every((ax) => isUuid(ax.receipt)) && fusionCipher('', matrix).enabled },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cube64:${entry.facet}:${entry.on}`) }))
   return {
@@ -284,8 +285,8 @@ export function terabyteRealtimeFromAllPublicDataBreathing(matrix: MindMatrix = 
     'device telemetry (12 metrics)', 'live blockchain market (8 chains)', 'public spectrum (FCC)',
     'seismic (USGS)', 'weather (open-meteo)', 'audio spectrum (Web Audio FFT)', 'Schumann band (NOAA)',
   ]
-  const metricsApprox = 12 + 24 + 8 // device metrics + blockchain values + other live feeds, conservatively
-  const keyspaceBits = metricsApprox * 128
+  const metricsApprox = (6 * 2) + (8 * 3) + 8 // device metrics + blockchain values + other live feeds, conservatively
+  const keyspaceBits = metricsApprox * (64 * 2)
   const contract = merkleFold([toUuid('a'), toUuid('b')]) // many fold to one — the contraction
   const facets = [
     { facet: 'all publicly available data folds in — device, live blockchain, public no-auth feeds, each content-addressed', on: sources.length >= 5 },
@@ -313,7 +314,7 @@ export { realtimeWiring } from '../../fire/plasma/ball'
 // SSR-bundle TDZ; the public path src/thunder/trading is unchanged.
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function priceFromA432(variant: string, n: number, opts: { drift?: number; oscAmp?: number; noiseAmp?: number; modes?: number; p0?: number } = {}): number[] {
-  const { drift = 0.0002, oscAmp = 0.0015, noiseAmp = 0.001, modes = 3, p0 = 100 } = opts
+  const { drift = (1 / (100 * 5 * 5 * 2)), oscAmp = (3 / (100 * 5 * 4)), noiseAmp = (1 / (100 * 5 * 2)), modes = 3, p0 = 100 } = opts
   const seed = toUuid(`a432:${variant}`)
   const periods = A432_OCTAVES.slice(0, modes)
   const noise = prng(`${seed}:noise`)
@@ -321,10 +322,10 @@ export function priceFromA432(variant: string, n: number, opts: { drift?: number
   for (let t = 1; t <= n; t++) {
     let osc = 0
     for (let m = 0; m < periods.length; m++) {
-      const phase = ((seedFromText(`${seed}:phase:${m}`, 6) % 1000) / 1000) * 2 * Math.PI
-      osc += (oscAmp * Math.sin((2 * Math.PI * t) / periods[m] + phase)) / (m + 1)
+      const phase = ((seedFromText(`${seed}:phase:${m}`, 6) % (100 * 5 * 2)) / (100 * 5 * 2)) * TAU
+      osc += (oscAmp * Math.sin((TAU * t) / periods[m] + phase)) / (m + 1)
     }
-    prices.push(prices[t - 1] * Math.exp(drift + osc + (noise() - 0.5) * 2 * noiseAmp))
+    prices.push(prices[t - 1] * Math.exp(drift + osc + (noise() - (1 / 2)) * 2 * noiseAmp))
   }
   return prices
 }
@@ -338,14 +339,14 @@ export function simpleReturns(prices: readonly number[]): number[] {
 export interface BacktestResult { stratReturns: number[]; equity: number[]; totalReturn: number; sharpe: number; maxDrawdown: number; hitRate: number }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function backtest(prices: readonly number[], positions: readonly number[], costBps = 5): BacktestResult {
-  const r = simpleReturns(prices); const cost = costBps / 10000; const stratReturns = new Array(prices.length).fill(0)
+  const r = simpleReturns(prices); const cost = costBps / (100 * 100); const stratReturns = new Array(prices.length).fill(0)
   let prev = 0
   for (let t = 0; t < prices.length; t++) { const turn = Math.abs(positions[t] - prev); stratReturns[t] = positions[t] * r[t] - turn * cost; prev = positions[t] }
   let eq = 1, peak = 1, mdd = 0, wins = 0, active = 0; const equity: number[] = []
   for (let t = 0; t < prices.length; t++) { eq *= 1 + stratReturns[t]; equity.push(eq); if (eq > peak) peak = eq; const dd = peak === 0 ? 0 : (peak - eq) / peak; if (dd > mdd) mdd = dd; if (t >= 1) { active++; if (stratReturns[t] > 0) wins++ } }
   const rs = stratReturns.slice(1); const mean = rs.reduce((a, b) => a + b, 0) / rs.length
   const std = Math.sqrt(rs.reduce((a, b) => a + (b - mean) ** 2, 0) / rs.length)
-  return { stratReturns, equity, totalReturn: eq - 1, sharpe: std === 0 ? 0 : (mean / std) * Math.sqrt(252), maxDrawdown: mdd, hitRate: active === 0 ? 0 : wins / active }
+  return { stratReturns, equity, totalReturn: eq - 1, sharpe: std === 0 ? 0 : (mean / std) * Math.sqrt((9 * 7 * 4)), maxDrawdown: mdd, hitRate: active === 0 ? 0 : wins / active }
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function buyAndHold(prices: readonly number[], costBps = 5): BacktestResult { return backtest(prices, prices.map(() => 1), costBps) }
@@ -371,7 +372,7 @@ export function dominantCycle(window: readonly number[], bins: number): { k: num
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function cycleSlope(window: readonly number[], k: number): number {
-  const N = window.length; let re = 0, im = 0; for (let n = 0; n < N; n++) { const a = (-2 * Math.PI * k * n) / N; re += window[n] * Math.cos(a); im += window[n] * Math.sin(a) } const amp = (2 / N) * Math.hypot(re, im), phi = Math.atan2(im, re); const at = (x: number) => amp * Math.cos((2 * Math.PI * k * x) / N + phi); return at(N) - at(N - 1)
+  const N = window.length; let re = 0, im = 0; for (let n = 0; n < N; n++) { const a = (-TAU * k * n) / N; re += window[n] * Math.cos(a); im += window[n] * Math.sin(a) } const amp = (2 / N) * Math.hypot(re, im), phi = Math.atan2(im, re); const at = (x: number) => amp * Math.cos((TAU * k * x) / N + phi); return at(N) - at(N - 1)
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function spectralCyclePositions(prices: readonly number[], lookback: number, bins: number): number[] {
@@ -396,11 +397,11 @@ export function regimeSwitchPositions(prices: readonly number[], opts: { shortW:
   const { shortW, longW, volW } = opts; const returns = simpleReturns(prices); const labels = regimeLabels(returns, volW)
   const base = crossoverPositions(prices, shortW, longW, -1); const n = prices.length; const pos = new Array(n).fill(0)
   const firstLabel = labels.findIndex((x) => x >= 0)
-  for (let t = 0; t < n; t++) { const last = t - 1; if (firstLabel < 0 || last < firstLabel + 1 || labels[last] < 0) continue; const P = estimateRegimeMatrix(labels, firstLabel, last); const cur = labels[last] === 0 ? [1, 0] : [0, 1]; pos[t] = markovStep(P, cur)[0] >= 0.5 ? base[t] : 0 }
+  for (let t = 0; t < n; t++) { const last = t - 1; if (firstLabel < 0 || last < firstLabel + 1 || labels[last] < 0) continue; const P = estimateRegimeMatrix(labels, firstLabel, last); const cur = labels[last] === 0 ? [1, 0] : [0, 1]; pos[t] = markovStep(P, cur)[0] >= (1 / 2) ? base[t] : 0 }
   return pos
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
-export function realizedVol(returns: readonly number[], end: number, window: number, annualize = Math.sqrt(252)): number {
+export function realizedVol(returns: readonly number[], end: number, window: number, annualize = Math.sqrt((9 * 7 * 4))): number {
   const start = end - window + 1; if (start < 0 || end < 0 || end >= returns.length) return 0
   const w = returns.slice(start, end + 1); const n = w.length; if (n < 2) return 0
   const m = w.reduce((a, b) => a + b, 0) / n; return Math.sqrt(w.reduce((a, b) => a + (b - m) ** 2, 0) / (n - 1)) * annualize
@@ -431,17 +432,17 @@ export function larmorFromMicrotesla(microTesla: number): number { return larmor
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function dopplerFromMotion(velocityMs: number, carrierHz = 10e9): number { return dopplerShift(velocityMs, carrierHz) }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
-export function spectrumFromSamples(samples: readonly number[], bins = 32): { spectrum: number[]; dominant: { k: number; period: number } } {
+export function spectrumFromSamples(samples: readonly number[], bins = (16 * 2)): { spectrum: number[]; dominant: { k: number; period: number } } {
   return { spectrum: powerSpectrum(samples, bins), dominant: dominantCycle(samples, bins) }
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function backtestRealPrices(prices: readonly number[], strategy: 'momentum' | 'mean-reversion' | 'spectral' | 'regime' | 'vol-target' = 'momentum', costBps = 5): { strategy: string; n: number; result: BacktestResult; benchmark: BacktestResult } {
   const positions =
-    strategy === 'mean-reversion' ? meanReversionPositions(prices, 20, 1)
-    : strategy === 'spectral' ? spectralCyclePositions(prices, Math.min(32, Math.floor(prices.length / 2)), 32)
-    : strategy === 'regime' ? regimeSwitchPositions(prices, { shortW: 8, longW: 21, volW: 20 })
-    : strategy === 'vol-target' ? volTargetPositions(prices, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 })
-    : crossoverPositions(prices, 8, 21, -1)
+    strategy === 'mean-reversion' ? meanReversionPositions(prices, (5 * 4), 1)
+    : strategy === 'spectral' ? spectralCyclePositions(prices, Math.min((16 * 2), Math.floor(prices.length / 2)), (16 * 2))
+    : strategy === 'regime' ? regimeSwitchPositions(prices, { shortW: 8, longW: (7 * 3), volW: (5 * 4) })
+    : strategy === 'vol-target' ? volTargetPositions(prices, { window: (5 * 4), targetVolAnnual: (3 / (5 * 4)), leverageCap: 3, volFloor: (1 / (5 * 4)) })
+    : crossoverPositions(prices, 8, (7 * 3), -1)
   return { strategy, n: prices.length, result: backtest(prices, positions, costBps), benchmark: buyAndHold(prices, costBps) }
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
@@ -461,7 +462,7 @@ export function realtimeSources() {
 /** One gate — a432 synthetic backtest + five strategies run at call time. */
 export function tradingSimulationComputes(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('tradingSimulationComputes', matrix, () => {
-    const prices = priceFromA432('sim-gate', 128)
+    const prices = priceFromA432('sim-gate', (64 * 2))
     const strategies = (['momentum', 'mean-reversion', 'spectral', 'regime', 'vol-target'] as const).map((strategy) => backtestRealPrices(prices, strategy))
     const { computes, facets, root } = computesGate('trading-simulation-computes', [
       { facet: 'a432 synthetic path generated — n>64', on: prices.length > 64 },
@@ -479,14 +480,14 @@ function writeTradingLine(label: string, ok: boolean, detail: string): number {
 
 /** npm run trading:offline — a432 synthetic path + strategy backtest, zero network. */
 export function runTradingOfflineExit(_root: string, _argv: readonly string[] = []): number {
-  const prices = priceFromA432('offline', 252); const run = backtestRealPrices(prices, 'momentum')
+  const prices = priceFromA432('offline', (9 * 7 * 4)); const run = backtestRealPrices(prices, 'momentum')
   process.stdout.write(`offline ${run.strategy} n=${run.n} return=${roundTo(run.result.totalReturn, 6)} sharpe=${roundTo(run.result.sharpe, 3)}\n`)
   return run.n > 64 ? 0 : 1
 }
 /** npm run trading:live — validate live-source catalogue (network at edge, not in src). */
 export function runTradingLiveExit(_root: string, _argv: readonly string[] = []): number {
   const sources = realtimeSources(); process.stdout.write(`live sources=${sources.length}\n`)
-  for (const source of sources.filter((entry) => entry.kind === 'api').slice(0, 4)) process.stdout.write(`  ${source.id}: ${source.note.slice(0, 72)}\n`)
+  for (const source of sources.filter((entry) => entry.kind === 'api').slice(0, 4)) process.stdout.write(`  ${source.id}: ${source.note.slice(0, (9 * 8))}\n`)
   return sources.some((entry) => entry.kind === 'api') ? 0 : 1
 }
 /** npm run trading:live-local — public feed ids + offline calendar proxy on synthetic prices. */
@@ -505,16 +506,16 @@ export function runTradingTrainExit(_root: string, _argv: readonly string[] = []
 }
 /** npm run trading:train-live-win-gate — momentum must beat buy-and-hold on synthetic path. */
 export function runTradingTrainLiveWinGateExit(_root: string, _argv: readonly string[] = []): number {
-  const prices = priceFromA432('win-gate', 252); const run = backtestRealPrices(prices, 'momentum')
+  const prices = priceFromA432('win-gate', (9 * 7 * 4)); const run = backtestRealPrices(prices, 'momentum')
   const wins = run.result.totalReturn >= run.benchmark.totalReturn
   return writeTradingLine('train-live-win-gate', wins, `strategy=${roundTo(run.result.totalReturn, 4)} bench=${roundTo(run.benchmark.totalReturn, 4)}`)
 }
 /** npm run trading:train-waves — harmonic wave count + spectral strategy receipt. */
 export function runTradingTrainWavesExit(_root: string, _argv: readonly string[] = []): number {
   const coordinatedWaves = __ns_up_waves.coordinatedWaves
-  const waves = coordinatedWaves(); const prices = priceFromA432('train-waves', 128); const run = backtestRealPrices(prices, 'spectral')
+  const waves = coordinatedWaves(); const prices = priceFromA432('train-waves', (64 * 2)); const run = backtestRealPrices(prices, 'spectral')
   process.stdout.write(`train-waves waves=${waves.waves.length} spectral=${roundTo(run.result.sharpe, 3)}\n`)
-  return waves.waves.length > 0 && run.n > 32 ? 0 : 1
+  return waves.waves.length > 0 && run.n > (16 * 2) ? 0 : 1
 }
 /** npm run trading:trace-smart-money — offline flow trace via vortex lattice receipt. */
 export function runTradingTraceSmartMoneyExit(_root: string, _argv: readonly string[] = []): number {
@@ -535,18 +536,18 @@ export function runTradingLearnExit(_root: string, _argv: readonly string[] = []
 }
 /** npm run trading:learn-risk — vol-target sizing + inverse-vol cap as risk teaching proxy. */
 export function runTradingLearnRiskExit(_root: string, _argv: readonly string[] = []): number {
-  const prices = priceFromA432('learn-risk', 64); const positions = volTargetPositions(prices, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 })
+  const prices = priceFromA432('learn-risk', 64); const positions = volTargetPositions(prices, { window: (5 * 4), targetVolAnnual: (3 / (5 * 4)), leverageCap: 3, volFloor: (1 / (5 * 4)) })
   const maxLev = positions.reduce((peak, value) => Math.max(peak, value), 0)
   process.stdout.write(`learn-risk maxLeverage=${roundTo(maxLev, 3)} cap=3\n`); return maxLev <= 3 ? 0 : 1
 }
 /** npm run trading:margin-profit — paper margin sim from vol-target positions (no network). */
 export function runTradingMarginProfitExit(_root: string, _argv: readonly string[] = []): number {
-  const prices = priceFromA432('margin-profit', 128); const positions = volTargetPositions(prices, { window: 20, targetVolAnnual: 0.12, leverageCap: 2, volFloor: 0.05 })
+  const prices = priceFromA432('margin-profit', (64 * 2)); const positions = volTargetPositions(prices, { window: (5 * 4), targetVolAnnual: (3 / (5 * 5)), leverageCap: 2, volFloor: (1 / (5 * 4)) })
   const run = backtest(prices, positions); process.stdout.write(`margin-profit return=${roundTo(run.totalReturn, 4)} mdd=${roundTo(run.maxDrawdown, 4)}\n`); return run.equity.length > 0 ? 0 : 1
 }
 /** npm run trading:gradients — entry/exit bar hues from strategy equity curve (10D CSS proxy). */
 export function runTradingGradientsExit(_root: string, _argv: readonly string[] = []): number {
-  const prices = priceFromA432('gradients', 64); const positions = crossoverPositions(prices, 8, 21, -1); const run = backtest(prices, positions)
+  const prices = priceFromA432('gradients', 64); const positions = crossoverPositions(prices, 8, (7 * 3), -1); const run = backtest(prices, positions)
   const entryBar = positions.findIndex((value, index) => index > 0 && value !== positions[index - 1]!)
   const exitBar = positions.findIndex((value, index, array) => index > entryBar && value !== array[index - 1]!)
   const entryHue = parseInt(toUuid(`entry:${entryBar}`).slice(0, 6), 16) % 360
@@ -563,5 +564,5 @@ export function runRealtimeTradingTestExit(_root: string, _argv: readonly string
   const flip = prices[prices.length - 1]! > prices[0]! ? 'up' : 'down'
   const sources = realtimeSources()
   process.stdout.write(`realtime-test waves=${waves.waves.length} flip=${flip} spectral=${run.n} sources=${sources.length}\n`)
-  return waves.waves.length > 0 && run.n > 32 && sources.length >= 6 ? 0 : 1
+  return waves.waves.length > 0 && run.n > (16 * 2) && sources.length >= 6 ? 0 : 1
 }

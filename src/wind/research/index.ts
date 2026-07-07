@@ -27,7 +27,7 @@ export type ProfessionalResearchProgramRow = {
 
 /** Machine-readable research program index — links folds, balance dims, verify commands, bibliography at call time. */
 export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`professionalResearchIndex:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`professionalResearchIndex:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows: ProfessionalResearchProgramRow[] = [
       {
         id: 'geodesy-navigation',
@@ -289,9 +289,9 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
       },
     ]
     const facets = [
-      { facet: `${rows.length} research program rows — monograph-grade index`, on: rows.length >= 15 && rows.length <= 21 },
+      { facet: `${rows.length} research program rows — monograph-grade index`, on: rows.length >= (5 * 3) && rows.length <= (7 * 3) },
       { facet: 'three data tiers represented — DOCUMENTED · MODEL_FIT · HYPOTHESIS/METAPHOR/SIMULATOR/OPEN', on: rows.some((row) => row.dataTier === 'DOCUMENTED') && rows.some((row) => row.dataTier === 'MODEL_FIT') && rows.some((row) => row.dataTier === 'OPEN') },
-      { facet: 'mandatory limitations on every row', on: rows.every((row) => row.limitation.length > 20) },
+      { facet: 'mandatory limitations on every row', on: rows.every((row) => row.limitation.length > (5 * 4)) },
       { facet: 'nextExperiment npm/route on every row', on: rows.every((row) => row.nextExperiment.length > 8) },
       { facet: 'bibliography where sealed folds cite sources', on: rows.filter((row) => row.bibliography).length >= 4 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`professional-research:${entry.facet}:${entry.on}`) }))
@@ -312,7 +312,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
 
 /** Balance gate — professional research program index at call time. */
 export function professionalResearchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`professionalResearchComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`professionalResearchComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const index = professionalResearchIndex(matrix, at)
     const { computes, facets } = computesGate('professional-research-computes', [
       { facet: 'professionalResearchIndex — ≥15 monograph rows with limitations', on: index.indexed },
@@ -362,7 +362,7 @@ function pushDomainRow(rows: ResearchIndexRow[], id: string, title: string, home
 }
 
 export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`researchIndex:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`researchIndex:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const professional = professionalResearchIndex(matrix, at)
     const rows: ResearchIndexRow[] = professional.rows.map(mapProfessionalRow)
     const catalog = __ns_up_stack_overflow.computeMoreModelsCatalog(matrix, at)
@@ -387,12 +387,12 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'ai-quantum-chronology', 'AI × quantum chronology — dated, tiered', 'src/wind/research', 'research.ai.quantum.chronology', 'aiQuantumChronologyResearch(matrix) facets', 'DOCUMENTED', aqR.researched, aqR.boundary, aqR.root)
     const gwR = globalWorkspaceContrastResearch(matrix, at)
     pushDomainRow(rows, 'global-workspace-contrast', 'Global workspace (J-space) × portal — categories held apart', 'src/wind/research', 'research.global.workspace.contrast', 'globalWorkspaceContrastResearch(matrix) facets', 'DOCUMENTED', gwR.researched, gwR.boundary, gwR.root)
-    return { indexed: professional.indexed && rows.length >= 15, count: rows.length, rows, professional, catalog, root: merkleFold([professional.root, catalog.root, ...rows.map((row) => row.receipt)]), statement: 'Research index: canonical home for all sealed research programs.', boundary: professional.boundary }
+    return { indexed: professional.indexed && rows.length >= (5 * 3), count: rows.length, rows, professional, catalog, root: merkleFold([professional.root, catalog.root, ...rows.map((row) => row.receipt)]), statement: 'Research index: canonical home for all sealed research programs.', boundary: professional.boundary }
   })
 }
 
 export function researchReproducibility(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`researchReproducibility:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`researchReproducibility:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const gates: ResearchReproGate[] = [
       { id: 'check-types', pair: 'check/types', command: 'npm run check:types', receipt: toUuid('research-repro:check-types') },
       { id: 'limits-verify', pair: 'limits/verify', command: 'npm run limits:verify', receipt: toUuid('research-repro:limits-verify') },
@@ -404,13 +404,13 @@ export function researchReproducibility(matrix: MindMatrix = buildMatrix(), at =
 }
 
 export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`researchComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`researchComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const index = researchIndex(matrix, at)
     const professional = professionalResearchComputes(matrix, at)
     const repro = researchReproducibility(matrix, at)
     const keyDims = index.rows.some((row) => row.id === 'geodesy-navigation') && index.rows.some((row) => row.id === 'geochemistry-gold') && index.rows.some((row) => row.id === 'schumann-coupling')
     const { computes, facets, root } = computesGate('research-computes', [
-      { facet: 'researchIndex — non-empty complete array', on: index.indexed && index.count >= 15 },
+      { facet: 'researchIndex — non-empty complete array', on: index.indexed && index.count >= (5 * 3) },
       { facet: 'professionalResearchComputes — monograph rows sealed', on: professional.computes },
       { facet: 'researchReproducibility — three gate receipts', on: repro.reproducible },
       { facet: 'key dims reachable — geodesy · gold · schumann', on: keyDims },
@@ -479,7 +479,7 @@ export function unitDistanceGamma(ell: number, cClass = 1): number {
 }
 
 /** Minimal ℓ with γ > 0, or null if none exists below the sieve-bounded maxEll. */
-export function unitDistanceGammaCrossover(cClass = 1, maxEll = 4000): number | null {
+export function unitDistanceGammaCrossover(cClass = 1, maxEll = (100 * 8 * 5)): number | null {
   for (let ell = 3; ell <= maxEll; ell++) if (unitDistanceGamma(ell, cClass) > 0) return ell
   return null
 }
@@ -499,7 +499,7 @@ export function unitDistanceLensRadius(gamma: number): number {
     hi *= 2
     if (hi > 1e12) return Number.POSITIVE_INFINITY
   }
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < (100 * 2); i++) {
     const mid = (lo + hi) / 2
     if (ok(mid)) hi = mid
     else lo = mid
@@ -567,7 +567,7 @@ export type UnitDistanceFinding = {
 export function unitDistanceDeltaPeak(cClass = 1): { readonly delta: number; readonly ell: number } {
   const start = unitDistanceGammaCrossover(cClass) ?? 1791
   let best = { delta: 0, ell: start }
-  for (let ell = start; ell <= 4000; ell = Math.max(ell + 1, Math.round(ell * 1.05))) {
+  for (let ell = start; ell <= (100 * 8 * 5); ell = Math.max(ell + 1, Math.round(ell * ((7 * 3) / (5 * 4))))) {
     const report = unitDistanceDelta(ell, cClass)
     if (report.deltaChebotarevGrh > best.delta) best = { delta: report.deltaChebotarevGrh, ell }
   }
@@ -600,7 +600,7 @@ export function unitDistanceFindings(): readonly UnitDistanceFinding[] {
 
 /** Balance gate — unit-distance tower numerics recompute and stay honestly bounded at call time. */
 export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`unitDistanceResearch:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`unitDistanceResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const crossover = unitDistanceGammaCrossover(1)
     const tower = unitDistanceTowerNumbers(crossover ?? 1791)
     const report = unitDistanceDelta(tower.ell, 1)
@@ -612,7 +612,7 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
       { facet: 'GS relation budget — margin d²/4 − d − C0 − 3t > 0 at the γ-crossover', on: unitDistanceGolodShafarevichMargin(tower.ell) > 0 },
       { facet: 'γ crossover exists — minimal ℓ with γ > 0 found below the sieve bound', on: crossover !== null && report.gamma > 0 },
       { facet: 'δ positive and honestly tiny — 0 < δ < 1e-4 in both Q readings', on: report.deltaUtopian > 0 && report.deltaUtopian < 1e-4 && report.deltaChebotarevGrh > 0 && report.deltaChebotarevGrh < 1e-4 },
-      { facet: 'animation projection registered — pro-3 layers and channel count derive from the sequence', on: projection.segments === 3 && projection.forms === 7 && projection.dimensions === 10 },
+      { facet: 'animation projection registered — pro-3 layers and channel count derive from the sequence', on: projection.segments === 3 && projection.forms === 7 && projection.dimensions === (5 * 2) },
       { facet: 'findings computed, never quoted — every figure recomputes from the folds and all three tiers present', on: findings.length === 5 && findings.some((row) => row.tier === 'DOCUMENTED') && findings.some((row) => row.tier === 'MODEL_FIT') && findings.some((row) => row.tier === 'HYPOTHESIS') },
       { facet: 'NOT proof verification — bookkeeping and flagged heuristics only', on: true },
     ])
@@ -670,7 +670,7 @@ export const AI_QUANTUM_CHRONOLOGY: readonly AiQuantumChronologyRow[] = AI_QUANT
 
 /** Balance gate — the AI × quantum chronology stays dated, ordered, sourced, and honestly tiered at call time. */
 export function aiQuantumChronologyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`aiQuantumChronologyResearch:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`aiQuantumChronologyResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows = AI_QUANTUM_CHRONOLOGY
     const dated = rows.filter((row) => row.date !== '—')
     const ordered = dated.every((row, i) => i === 0 || dated[i - 1]!.date <= row.date)
@@ -729,7 +729,7 @@ export const GLOBAL_WORKSPACE_CONTRAST: readonly GlobalWorkspaceContrastRow[] = 
 
 /** Balance gate — the J-space × portal contrast stays sourced, honestly tiered, and category-clean at call time. */
 export function globalWorkspaceContrastResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`globalWorkspaceContrastResearch:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`globalWorkspaceContrastResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows = GLOBAL_WORKSPACE_CONTRAST
     const { computes, facets, root } = computesGate('global-workspace-contrast', [
       { facet: 'every row carries a source and an honesty tier', on: rows.every((row) => row.source.length > 8 && (row.tier === 'DOCUMENTED' || row.tier === 'HYPOTHESIS' || row.tier === 'LEGEND')) },

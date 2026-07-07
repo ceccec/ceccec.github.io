@@ -30,6 +30,7 @@ import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
 import { PI_TRAIN_DIGITS, analogNoGapsNoLeak, computePiDigits, conceptCommands, doubleTorusFold, homology, path, piNotHarmonic, theWhole } from '../../quantum/heaven/mind'
 import { movieAllDimensionsAtOnce } from '../../thunder/movie/glass'
 import { MISSION_COMMANDS, agentSubmissionProtocol, foldQuantumCommandPairs, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
+import { GOLDEN_ANGLE_RAD, PHI, TAU } from '../../3/7'
 
 // The reverse of a digit folder (its backslash dual, n/0 \ ?) is the MULTIPLICATIVE INVERSE mod 9 —
 // n⁻¹ with n · n⁻¹ ≡ 1 (mod 9) — the ÷2 = ×5 map that runs the doubling circuit 1·2·4·8·7·5 BACKWARD
@@ -1916,8 +1917,7 @@ export function sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix: MindMa
 export function sevenStarRosettaNaturalMotion(at: number) {
   const RAYS = 7
   const LETTERS_PER_RAY = 4
-  const PHI = (1 + Math.sqrt(5)) / 2
-  const GOLDEN_ANGLE = (2 * Math.PI) / (PHI * PHI) // ~137.5° in radians
+  const GOLDEN_ANGLE = GOLDEN_ANGLE_RAD
   const DOUBLING_PERIOD = 6
   const DR_MODULUS = 9
   const STATION_COUNT = 10
@@ -1927,7 +1927,7 @@ export function sevenStarRosettaNaturalMotion(at: number) {
 
   const rays = Array.from({ length: RAYS }, (_, ray) => {
     // Each ray's base angle: evenly spaced (2π/7) + golden-angle offset per ray
-    const baseAngle = (ray / RAYS) * Math.PI * 2
+    const baseAngle = (ray / RAYS) * TAU
     // Coprime angular velocity: ray speed is (ray+1) which, being 1–7, is coprime to 6, 9, 10
     // (since gcd(k,6)=1 for k∈{1,5,7}, gcd(k,9)=1 for k∈{1,2,4,5,7,8}, gcd(k,10)=1 for k∈{1,3,7,9})
     // We use the vortex doubling rhythm: 1,2,4,8,7,5 mapped to rays cyclically
@@ -1935,7 +1935,7 @@ export function sevenStarRosettaNaturalMotion(at: number) {
     const vortexRate = doublingSequence[ray % DOUBLING_PERIOD]!
     const angularVelocity = vortexRate / DR_MODULUS // coprime to 9 guarantees no overlap at modular positions
 
-    const currentAngle = baseAngle + (at / 7000) * angularVelocity * Math.PI * 2
+    const currentAngle = baseAngle + (at / 7000) * angularVelocity * TAU
     const radius = breathRadius // modulated by human breath
 
     // 4 Glagolitic letters per ray, orbiting at sub-harmonics

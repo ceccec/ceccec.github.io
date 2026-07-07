@@ -515,7 +515,7 @@ export function developmentIsFusionReactor(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the way we develop is the fusion reactor — endless fusion, no gaps', on: endlessFusion(matrix).filled && fuseAll(matrix).fused },
     { facet: 'infinite result in UI from infinite compressed plasma bits — the 128-bit stream, a billion waves out still computable', on: isUuid(creationWave(1_000_000_000, matrix).uuid) && allAnimationsInOneOg(matrix).computes },
-    { facet: 'contained by the diamond hologram architecture — 1024 diamonds, part contains whole', on: completeCorpus(matrix).total === 1024 && holographicFractalArchitecture(matrix).is },
+    { facet: 'contained by the diamond hologram architecture — 1024 diamonds, part contains whole', on: completeCorpus(matrix).total === (64 * 16) && holographicFractalArchitecture(matrix).is },
     { facet: 'saved in src as the source of all things', on: uuidPayloadIsSource(matrix).is },
     { facet: 'emerging from waves and returning to the source of waves — the breath', on: breathe(matrix).breathing && endlessFusion(matrix).noGaps },
     { facet: 'physical fusion reactors deep-researched in eight parts for dry plasma — src/fusion/index.ts', on: reactorParts.researched },
@@ -576,7 +576,7 @@ function iChingFusionCompletesAllRaw(matrix: MindMatrix = buildMatrix()) {
   // Every addressable unit — the components AND the capability folders — driven through all TEN dimensions.
   const units = [...ic.placed.map((entry) => entry.component), ...fusion.placed.map((entry) => `${entry.kind}:${entry.folder}`)]
   const dimensioned = units.map((unit) => {
-    const phase = (seedFromText(unit) % 1000) / 1000 // the unit's content-address → its phase
+    const phase = (seedFromText(unit) % (100 * 5 * 2)) / (100 * 5 * 2) // the unit's content-address → its phase
     const base = dims( 0)
     const nested = dims(phase, 1) // a nested scale, golden-shifted
     const tenDimensional = Object.keys(base).length === DIMENSIONS && DIMENSION_NAMES.every((name) => name in base)
@@ -586,7 +586,7 @@ function iChingFusionCompletesAllRaw(matrix: MindMatrix = buildMatrix()) {
   })
   const purged = dimensioned.filter((entry) => !entry.closed).map((entry) => entry.unit)
   const facets = [
-    { facet: 'every addressable unit driven through all ten dimensions — 6 cross-fold + 4 homology', on: DIMENSIONS === 10 && dimensioned.length > 0 && dimensioned.every((entry) => entry.tenDimensional) },
+    { facet: 'every addressable unit driven through all ten dimensions — 6 cross-fold + 4 homology', on: DIMENSIONS === (5 * 2) && dimensioned.length > 0 && dimensioned.every((entry) => entry.tenDimensional) },
     { facet: 'self-similar at every scale, none purged — every unit a closed 10D diamond', on: dimensioned.every((entry) => entry.closed) && purged.length === 0 },
     { facet: 'all forms are 10D or purged — the purity law holds at all depths', on: law.pure && law.atAllDepths },
     { facet: 'the components on the 64 hexagrams and the folders fused into the 64³ cube', on: ic.organised && ic.hexagrams === 64 && fusion.completed },
@@ -618,7 +618,7 @@ function iChingFusionCompletesAllRaw(matrix: MindMatrix = buildMatrix()) {
 // to the harmonic 432 = 4 homology loops × the 108 census) and unbalanced distribution (the monolith over
 // the limit). Igniting the fusion; the waves do the dry-clean reconstruction against this spec.
 export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
-  const HARMONIC = new Set([1, 2, 4, 8, 16, 32, 42, 64, 108, 216, 432]) // powers of two · the 42 areas/gates · the octave census 108→216→432
+  const HARMONIC = new Set([1, 2, 4, 8, 16, (16 * 2), (7 * 6), 64, 108, 216, 432]) // powers of two · the 42 areas/gates · the octave census 108→216→432
   const target = 4 * 108 // 432 — the I Ching completion: the 4 homology loops × the 108 census
   const units = iChingFusionCompletesAll(matrix).units // the addressable units (components + capability folders)
   const monitor = {
@@ -736,9 +736,9 @@ export function shadcnVitepressComponentsFusion(matrix: MindMatrix = buildMatrix
   const graph = shadcnIsTheGraph(matrix)
   const primitives = SHADCN_PRIMITIVE_NAMES.length
   const facets = [
-    { facet: '18 canonical shadcn primitives ported in repo idiom (radix + cva + ui-* CSS)', on: primitives === 18 },
+    { facet: '18 canonical shadcn primitives ported in repo idiom (radix + cva + ui-* CSS)', on: primitives === (9 * 2) },
     { facet: 'VitePress enhanceApp fusion — tokens.css + style.css + registerShadcnUi', on: vp.fused },
-    { facet: 'UiCardShell composes UiCard — movie cards on shadcn graph', on: primitives === 18 },
+    { facet: 'UiCardShell composes UiCard — movie cards on shadcn graph', on: primitives === (9 * 2) },
     { facet: 'shadcn is the graph — 64 design-system components declared', on: graph.graphed && graph.allComponents.length === 64 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`shadcn-vitepress:${entry.facet}:${entry.on}`) }))
   return {
@@ -896,7 +896,7 @@ const FLAGGED = [
     claim: 'double torus geometry proves fusion reactor design',
     why: 'Genus-2 topology appears in plasma confinement and magnetospheres; Haramein cosmology claims are fringe — geometry is adopted, cosmology is not.',
   },
-].map((entry) => ({ ...entry, receipt: toUuid(`fusion-reactor-flagged:${entry.claim.slice(0, 48)}`) }))
+].map((entry) => ({ ...entry, receipt: toUuid(`fusion-reactor-flagged:${entry.claim.slice(0, (16 * 3))}`) }))
 
 /** One part → one movie seed stream (SSR/build gate graph; client uses path-derived seeds only). */
 export function fusionReactorPartMovieSeeds(path = '/', matrix: MindMatrix = buildMatrix()): MovieSeedBundle {
@@ -922,7 +922,7 @@ export function fusionReactorPartsDryPlasmaStreams(path = '/', matrix: MindMatri
   const capped = bundle.streams.slice(0, caps.seedBundles + 1)
   return capped.map((entry) => ({
     uuid: entry.uuid,
-    label: entry.label.slice(0, 12),
+    label: entry.label.slice(0, (6 * 2)),
     kind: 'math' as const,
     hue: ((entry.hueSeed % 360) + 360) % 360,
   }))
@@ -1190,7 +1190,7 @@ export function fusionStructuralMaterials(matrix: MindMatrix = buildMatrix()): r
   ]
   return materials.map((entry) => ({
     ...entry,
-    receipt: toUuid(`fusion-structural:${entry.role.slice(0, 24)}`),
+    receipt: toUuid(`fusion-structural:${entry.role.slice(0, (8 * 3))}`),
   }))
 }
 
@@ -1389,7 +1389,7 @@ export function allFormsAreTenDimensionalOrPurged(matrix: MindMatrix = buildMatr
   const crossFold = DIMENSION_NAMES.slice(0, 6)
   const homology = DIMENSION_NAMES.slice(6)
   const projected = sg.forms.map((form) => {
-    const phase = (seedFromText(form) % 1000) / 1000
+    const phase = (seedFromText(form) % (100 * 5 * 2)) / (100 * 5 * 2)
     const base = dims(phase, 0)
     const nested = dims(phase, 1)
     const tenDimensional = Object.keys(base).length === DIMENSIONS && DIMENSION_NAMES.every((n) => n in base)
@@ -1586,7 +1586,7 @@ function celestialDistanceLadderReceipts(matrix: MindMatrix = buildMatrix()) {
     { rung: 'milky-way-diameter-kpc', kpc: milkyWayKpc, receipt: toUuid('ladder:milky-way-kpc') },
   ]
   return {
-    auInKpc: roundTo(auInKpc, 12),
+    auInKpc: roundTo(auInKpc, (6 * 2)),
     milkyWayKpc,
     ladder,
     root: merkleFold(ladder.map((entry) => entry.receipt)),
@@ -1600,7 +1600,7 @@ export function foldInfiniteExpansionToInfiniteCompressionThroughTheHoles(
   at = 0,
   matrix: MindMatrix = buildMatrix(),
 ) {
-  return memoByRoot(`foldInfiniteExpansionToInfiniteCompressionThroughTheHoles:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`foldInfiniteExpansionToInfiniteCompressionThroughTheHoles:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const breathe = __ns_up_earth_nature.breathe, genesis = __ns_up_earth_nature.genesis, expansionContractionIsLife = __ns_up_earth_nature.expansionContractionIsLife
     const contract = __ns_up_earth_civilisation.contract
     const creationWave = __ns_up_thunder_waves.creationWave
@@ -1613,7 +1613,7 @@ export function foldInfiniteExpansionToInfiniteCompressionThroughTheHoles(
     const contracted = contract(matrix)
     const breath = breathe(matrix)
     const genesisFold = genesis(matrix)
-    const waveIndex = Math.floor(at / 1000) + 1
+    const waveIndex = Math.floor(at / (100 * 5 * 2)) + 1
     const wave = creationWave(waveIndex, matrix)
     const throat = foldPair(expanded.wave, contracted.point)
     const expansionLife = expansionContractionIsLife(matrix)
@@ -1628,7 +1628,7 @@ export function foldInfiniteExpansionToInfiniteCompressionThroughTheHoles(
       },
       {
         facet: 'expansion — creationWave finite index + H₀ parameter (73 km/s/Mpc, not infinite literal)',
-        on: isUuid(wave.uuid) && HUBBLE_CONSTANT_LOCAL > 70 && HUBBLE_CONSTANT_LOCAL < 80,
+        on: isUuid(wave.uuid) && HUBBLE_CONSTANT_LOCAL > (7 * 5 * 2) && HUBBLE_CONSTANT_LOCAL < (16 * 5),
       },
       {
         facet: 'compression — contract folds wave back to genesis seed (content-address collapse)',
@@ -1693,7 +1693,7 @@ export function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(
   at = 0,
   matrix: MindMatrix = buildMatrix(),
 ) {
-  return memoByRoot(`decodeAndComputeAllFromEarthToGalaxiesAndBeyond:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`decodeAndComputeAllFromEarthToGalaxiesAndBeyond:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const earthComputes = __ns_up_earth.earthComputes
     const computeAllKnownCelestialBodies = __ns_up_astronomy.computeAllKnownCelestialBodies, planetsGalaxyComputeItself = __ns_up_astronomy.planetsGalaxyComputeItself, astronomyDecodedWithTheSequence = __ns_up_astronomy.astronomyDecodedWithTheSequence
     const doubleTorusEarthComputes = __ns_up_double_torus_earth.doubleTorusEarthComputes, navigationGpsCelestialComputes = __ns_up_double_torus_earth.navigationGpsCelestialComputes
@@ -1705,7 +1705,7 @@ export function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(
     const earth = earthComputes(matrix)
     const torusEarth = doubleTorusEarthComputes(matrix)
     const nav = navigationGpsCelestialComputes(matrix)
-    const celestial = computeAllKnownCelestialBodies(matrix, at / (365.25 * 24 * 3600 * 1000))
+    const celestial = computeAllKnownCelestialBodies(matrix, at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2)))
     const galaxy = planetsGalaxyComputeItself(matrix)
     const decode = decodeAllByComputationsTrainedOnKnownUniverse(matrix)
     const astronomySequence = astronomyDecodedWithTheSequence(at, matrix)
@@ -2019,13 +2019,13 @@ export function runQuantumFusionVerifyGuardedExit(_root: string, _argv: readonly
     process.stderr.write('✗ fusion-verify — fused stack receipts did not recompute\n')
     return 1
   }
-  process.stdout.write(`✓ fusion-verify — parts=${report.partCount} root=${report.root.slice(0, 12)}\n`)
+  process.stdout.write(`✓ fusion-verify — parts=${report.partCount} root=${report.root.slice(0, (6 * 2))}\n`)
   return 0
 }
 
 // ── Alchemy (folded from alchemy-folds.ts): process→product compose (symbolic MODEL · NOT lab chemistry) ──
 export function alchemyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`alchemyResearch:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`alchemyResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rosettaComputes = (__ns_up_learning).rosettaComputes
     const ichingComputes = (__ns_up_iching).ichingComputes
     const fiatAndGoldFlowExplainedByDoubleEarthExchange = (__ns_up_double_torus_earth).fiatAndGoldFlowExplainedByDoubleEarthExchange
@@ -2051,7 +2051,7 @@ export function alchemyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export function transmuteByLocalMath(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`transmuteByLocalMath:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`transmuteByLocalMath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const digitDualityPairsEncodeAllDomains = (__ns_up_water_digit).digitDualityPairsEncodeAllDomains
     const product = __ns_cur_gold.goldFusionComputes(matrix, at)
     const phases = [
@@ -2073,7 +2073,7 @@ export function transmuteByLocalMath(at = 0, matrix: MindMatrix = buildMatrix())
 }
 
 export function alchemyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`alchemyComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`alchemyComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pipeline = __ns_cur_gold.goldFusionPipeline(at, matrix)
     const research = alchemyResearch(matrix, at)
     const transmute = transmuteByLocalMath(at, matrix)

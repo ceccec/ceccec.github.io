@@ -100,8 +100,8 @@ export function idxUuid(seed: string): string {
 
 export function digitIndexJson(matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
   const indices = piTrainDiamonds(matrix).diamonds.map((item) => {
-    const inward = Math.sin(item.theta) * (item.selfCollision ? 1 : 0.5)
-    const outward = Math.cos(item.phi) * (item.digit + 1) / 10
+    const inward = Math.sin(item.theta) * (item.selfCollision ? 1 : (1 / 2))
+    const outward = Math.cos(item.phi) * (item.digit + 1) / (5 * 2)
     const referenceReceipt = idxUuid(`ref:${item.previousIndex}->${item.index}->${item.nextIndex}:reverse=${item.reverseIndex}:harmonic=${item.harmonicIndex}`)
     const receipt = idxUuid(`${item.index}:${item.folder}:${item.nextHarmonicFolder}:${item.x}:${item.y}:${item.z}:${referenceReceipt}`)
     return { index: item.index, previousIndex: item.previousIndex, nextIndex: item.nextIndex, reverseIndex: item.reverseIndex, harmonicIndex: item.harmonicIndex, digit: item.digit, reverseDigit: item.reverseDigit, folder: item.folder, fraction: item.fraction, dualFraction: item.dualFraction, nextHarmonicFolder: item.nextHarmonicFolder, selfCollision: item.selfCollision, theta: item.theta, phi: item.phi, x: item.x, y: item.y, z: item.z, frequency: item.frequency, vibrationMs: item.vibrationMs, inward, outward, interference: inward * outward, referenceReceipt, receipt }
@@ -133,8 +133,8 @@ export function sitemapXml(siteUrl: string, matrix: MindMatrix = buildMatrix(), 
   const quantum = quantumSitemap(matrix)
   const altLinks = (alternates: readonly { hreflang: string; href: string }[]) => alternates.map((alt) => `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${absCross(siteUrl, alt.href)}" />`).join('\n')
   const urlBlock = (loc: string, priority: number, alternates: readonly { hreflang: string; href: string }[]) => ['  <url>', `    <loc>${absCross(siteUrl, loc)}</loc>`, `    <lastmod>${now}</lastmod>`, '    <changefreq>weekly</changefreq>', `    <priority>${priority.toFixed(1)}</priority>`, altLinks(alternates), '  </url>'].join('\n')
-  const allUrls = [...quantum.urls, ...monographPageUrls(matrix), ...corpusDetailUrls('papers', papers(matrix).papers.map((p) => p.id), 0.6)]
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<!-- quantum sitemap root: ${quantum.root} -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${allUrls.flatMap((url) => [urlBlock(url.gla, url.priority, url.alternates), urlBlock(url.en, url.priority, url.alternates), urlBlock(url.bg, url.priority * 0.8, url.alternates)]).join('\n')}\n</urlset>\n`
+  const allUrls = [...quantum.urls, ...monographPageUrls(matrix), ...corpusDetailUrls('papers', papers(matrix).papers.map((p) => p.id), (3 / 5))]
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<!-- quantum sitemap root: ${quantum.root} -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${allUrls.flatMap((url) => [urlBlock(url.gla, url.priority, url.alternates), urlBlock(url.en, url.priority, url.alternates), urlBlock(url.bg, url.priority * (4 / 5), url.alternates)]).join('\n')}\n</urlset>\n`
 }
 
 export function sitemapJson(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
@@ -166,7 +166,7 @@ export function vitePlugin(siteUrl: string): Plugin {
         if (!isPrefix && !isFolderJson) return next()
         const hit = computedDistRoute(pathname, siteUrl)
         if (!hit) return next()
-        res.statusCode = 200
+        res.statusCode = (100 * 2)
         res.setHeader('Content-Type', `${hit.mime}; charset=utf-8`)
         res.end(hit.content)
       })

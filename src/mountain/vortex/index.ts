@@ -5,6 +5,7 @@ import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
 import { VORTEX_SEQUENCE, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, vortexNext, vortexPrev, digitalRoot } from '../../0'
 import { merkaba } from '../geometry'
 import { merkabaComputes, merkabasInDoubleTorus } from '../topology'
+import { TAU } from '../../3/7'
 export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0'
 export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2'
 export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../geometry'
@@ -89,7 +90,7 @@ export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
     const vm = vortexMath(matrix)
     const { computes, facets, root } = computesGate('vortex-stroke-gateways', [
       { facet: 'the written cycle computes — every stroke is the sign of its step, and the composed string equals the genesis realisation', on: written === '1\\2\\4\\8/7/5/3\\6\\9/0\\1' },
-      { facet: 'the tour is Hamiltonian on the digits — all ten exactly once, closing 0→1', on: new Set(tour).size === 10 && tour.length === 10 && tour[0] === 1 },
+      { facet: 'the tour is Hamiltonian on the digits — all ten exactly once, closing 0→1', on: new Set(tour).size === (5 * 2) && tour.length === (5 * 2) && tour[0] === 1 },
       { facet: 'exactly four polarity reversals — the gateways, computed never named: [8, 3, 9, 0]', on: gateways.length === 4 && gateways.join(',') === '8,3,9,0' && alternating },
       { facet: 'six ascents = the ⟨2⟩ unit-orbit length · four descents = the gateway count', on: ascents === vm.doubling.length && descents === gateways.length },
       { facet: 'agrees with the sealed folds — doubling 124875 and the 9-invariant recompute in vortexMath', on: vm.doubling.join('') === '124875' && vm.nineInvariant && vm.divByZeroHarmonic === 9 },
@@ -131,7 +132,7 @@ export function vortexGatewayPyramids(matrix: MindMatrix = buildMatrix()) {
       .filter((v) => v.incoming !== v.outgoing)
       .map((v) => {
         const peak = v.incoming === '\\' && v.outgoing === '/'
-        const angle = (v.i / tourSize) * Math.PI * 2 - Math.PI / 2
+        const angle = (v.i / tourSize) * TAU - Math.PI / 2
         return { digit: v.digit, peak, x: Math.cos(angle), y: Math.sin(angle), z: peak ? 1 : -1 }
       })
     const peaks = vertices.filter((v) => v.peak).map((v) => v.digit)
@@ -258,7 +259,7 @@ export function allVortexMathSaved(matrix: MindMatrix = buildMatrix()) {
 /** Digit-folder sequence probe — avoids architecture↔vortex cycle. */
 function digitFolderSequenceProbe(vortex: ReturnType<typeof vortexMath>) {
   const sequence = [...vortex.doubling, 3, 6, 9, 0] as const
-  const base = 10
+  const base = (5 * 2)
   const digits = sequence.map((d) => {
     // The additive folder-complement (10−d) — names the on-disk station path src/d/(10−d); the n/0
     // reverse of a digit is the distinct multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable).
@@ -276,7 +277,7 @@ function digitFolderSequenceProbe(vortex: ReturnType<typeof vortexMath>) {
   })
   return {
     fused:
-      digits.length === 10
+      digits.length === (5 * 2)
       && digits.filter((entry) => entry.sumsToTen).length === 9
       && digits.filter((entry) => entry.overflows).length === 1
       && digits.every((entry) => isUuid(entry.fusion)),

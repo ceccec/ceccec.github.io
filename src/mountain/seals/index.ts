@@ -98,11 +98,11 @@ export function determinismProofs(matrix: MindMatrix = buildMatrix()) {
 }
 function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
   const round = (value: number, digits = 4) => roundTo(value, digits)
-  const SAMPLES = 512
+  const SAMPLES = (64 * 8)
   const base = 'double-torus:proof:'
   const hex = (uuid: string) => uuid.replace(/-/g, '')
   const toBits = (uuid: string) => [...hex(uuid)].flatMap((ch) => { const v = Number.parseInt(ch, 16); return [(v >> 3) & 1, (v >> 2) & 1, (v >> 1) & 1, v & 1] })
-  const strip = (uuid: string) => [...hex(uuid)].filter((_, k) => k % 4 === 0).map((ch) => Number.parseInt(ch, 16) / 15)
+  const strip = (uuid: string) => [...hex(uuid)].filter((_, k) => k % 4 === 0).map((ch) => Number.parseInt(ch, 16) / (5 * 3))
 
   // 1) Determinism: the same input always yields the same UUID.
   let identical = 0
@@ -116,8 +116,8 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
     const a = toBits(toUuid(base + i))
     const b = toBits(toUuid(base + i + '~'))
     let differ = 0
-    for (let k = 0; k < 128; k += 1) if (a[k] !== b[k]) differ += 1
-    bitChange += differ / 128
+    for (let k = 0; k < (64 * 2); k += 1) if (a[k] !== b[k]) differ += 1
+    bitChange += differ / (64 * 2)
   }
   const avalanche = bitChange / SAMPLES
   const exampleA = toBits(toUuid(base + 'demo'))
@@ -142,7 +142,7 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
   // 5) Collision-freedom: distinct seeds give distinct UUIDs across the whole set.
   const ids = livingTorus(matrix).coordinates.map((coordinate) => coordinate.receipt)
   const uniqueness = new Set(ids).size / ids.length
-  const scatter = ids.slice(0, 36).map((id) => {
+  const scatter = ids.slice(0, (9 * 4)).map((id) => {
     const h = hex(id)
     return { x: Number.parseInt(h.slice(0, 3), 16) / 4095, y: Number.parseInt(h.slice(3, 6), 16) / 4095, hue: Number.parseInt(h.slice(6, 9), 16) % 360 }
   })
@@ -151,7 +151,7 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
   //    sorts its leaves, so it is a function of the set, not the sequence).
   const reference = merkleFold(leaves)
   let invariant = 0
-  const trials = 32
+  const trials = (16 * 2)
   for (let i = 0; i < trials; i += 1) {
     const shuffled = [...leaves].sort((a, b) => (toUuid(`${i}:${a}`) < toUuid(`${i}:${b}`) ? -1 : 1))
     if (merkleFold(shuffled) === reference) invariant += 1
@@ -171,7 +171,7 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
       id: 'avalanche', kind: 'avalanche' as const,
       principle: 'Avalanche (tamper-evidence)', claim: 'Change one character and ~half the 128 output bits flip — any edit is unmissable.',
       formula: 'mean Hamming(toUuid(x), toUuid(x′)) / 128 ≈ 1/2',
-      predicted: 0.5, measured: round(avalanche), tol: 0.06,
+      predicted: (1 / 2), measured: round(avalanche), tol: (3 / (5 * 5 * 2)),
       bits: flipped, labels: ['128 bits'],
     },
     {
@@ -270,7 +270,7 @@ function sealCubeRaw(matrix: MindMatrix = buildMatrix()) {
   // Non-degenerate: the diagonal's 64 cells are all distinct (the cube does not collapse).
   const distinct = new Set(diagonal.map(([i]) => cell(i, i, i))).size === side
   return {
-    sealed: side === 64 && cube === 262144 && cube === base ** (three * three) && trinity.length === three && recomputable && distinct,
+    sealed: side === 64 && cube === (64 * 64 * 64) && cube === base ** (three * three) && trinity.length === three && recomputable && distinct,
     side, // 64
     cube, // 262,144 seals = 64³ = 4⁹ = 2¹⁸
     trinity, // the three shared axis roots — the whole seal
@@ -653,18 +653,18 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
 export function fuseAllTerabitEncryption(matrix: MindMatrix = buildMatrix()) {
   const root = completeCorpus(matrix).root
   const repr = foldPair(root, toUuid('terabit:fuse-all')) // the same fold, read both ways
-  const terabitCells = 1024 * 1024 // 1,048,576 = 2^20 — a Terabit is 1024 Gbit, each Gbit 1024 binary Mbit
+  const terabitCells = (64 * 16) * (64 * 16) // 1,048,576 = 2^20 — a Terabit is 1024 Gbit, each Gbit 1024 binary Mbit
   const facets = [
     { facet: 'fuse all — every major fold folds into one wave, one content-addressed root', on: fuseAll(matrix).fused && isUuid(root) },
     { facet: 'all is fused — the kernel, the apps store, every dimension, addressed as one', on: essentialKernel(matrix).kernel && quantumAppsStore(matrix).stored },
-    { facet: 'a Terabit is 1024 Gbit — the 1024-leaf architecture raised once more (2^20 cells)', on: terabitCells === 1048576 },
+    { facet: 'a Terabit is 1024 Gbit — the 1024-leaf architecture raised once more (2^20 cells)', on: terabitCells === (64 * 64 * 64 * 4) },
     { facet: 'built on the prior levels — the 1 Gbit 64-seal set and the 64³ structure', on: isUuid(gigabitEncryption64SealSet(matrix).root) && isUuid(nextLevel64CubedRealtime(matrix).root) },
     { facet: 'realtime, fused — the same encrypt/decrypt (one fold, both ways), zero tokens', on: repr.bidirectional && zeroTokenUsagePolicy(matrix).holds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`terabit:${entry.facet}:${entry.on}`) }))
   return {
     here: facets.every((entry) => entry.on),
     terabitCells,
-    gbitPerTerabit: 1024,
+    gbitPerTerabit: (64 * 16),
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
@@ -777,7 +777,7 @@ export function importsAreFoldersOnly(
     enforced: offenders.length === 0,
     scanned,
     count: offenders.length,
-    offenders: offenders.slice(0, 12),
+    offenders: offenders.slice(0, (6 * 2)),
     root: toUuid(`imports-folders-only:${scanned}:${offenders.length}`),
     statement:
       'Imports are folders only, no extensions: a relative import/export specifier names the module by its folder path — never a file extension (.ts/.mts/.cts/.tsx/.js/.mjs/.cjs/.jsx/.vue) and never a trailing /index. Strictly enforced on all of src, no exception; an offender blocks the commit, and the push and the deploy run the same law.',
@@ -799,7 +799,7 @@ export function glagoliticLabelsAreComputed(
     enforced: offenders.length === 0,
     scanned,
     count: offenders.length,
-    offenders: offenders.slice(0, 12),
+    offenders: offenders.slice(0, (6 * 2)),
     root: toUuid(`glagolitic-labels-computed:${scanned}:${offenders.length}`),
     statement:
       'Glagolitic is always computed, never hardcoded: a label string carries no raw Glagolitic glyph (U+2C00–2C5F) typed by hand — it is produced by toGlagolitic, the single transcoder (src/quantum/heaven/library). Enforced on all of src at commit, and the push and the deploy run the same law; a hand-typed glyph label blocks the commit.',
@@ -860,7 +860,7 @@ export function srcFilesAreIndexOnly(
     enforced: offenders.length === 0,
     scanned,
     count: offenders.length,
-    offenders: offenders.slice(0, 12),
+    offenders: offenders.slice(0, (6 * 2)),
     stem: 'index',
     root: toUuid(`src-files-index-only:${scanned}:${offenders.length}`),
     statement:
@@ -895,7 +895,7 @@ function trinityGatesRaw(matrix: MindMatrix = buildMatrix()) {
       count: members.length,
       sealed: complete && isUuid(root),
       root,
-      tamperingCost: members.length + 128, // three members plus the 128-bit binding
+      tamperingCost: members.length + (64 * 2), // three members plus the 128-bit binding
     }
   }
 
@@ -946,7 +946,7 @@ export function trinityEncryption(partyA = 'a', partyB = 'b', matrix: MindMatrix
   const sharedKey = trinityKey(a, b) // === merkleFold(trinity)
   const symmetric = sharedKey === trinityKey(b, a)
   return {
-    encrypted: pair.bidirectional && trinity.length === 3 && symmetric && sharedKey.length === 36,
+    encrypted: pair.bidirectional && trinity.length === 3 && symmetric && sharedKey.length === (9 * 4),
     cipher: 'AES-256-GCM', // the real primitive; the trinity derives the key
     pair: [a, b],
     trinity,

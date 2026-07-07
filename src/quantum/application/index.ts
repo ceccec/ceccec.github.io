@@ -17,7 +17,7 @@ export type QuantumApplicationFacetRow = {
 }
 
 export function quantumApplicationResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumApplicationResearch:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumApplicationResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows: QuantumApplicationFacetRow[] = [
       { id: 'quantum-computer', title: 'Quantum computer metaphor + simulator', home: 'src/fire/features', balanceDim: 'human.as.quantum.computer.fusion.reactor.beyond', receipt: toUuid('quantum-application:qc') },
       { id: 'quantum-dynamics', title: 'State-vector + classical dynamics simulators', home: 'src/quantum/dynamics', balanceDim: 'quantum.dynamics.computes', receipt: toUuid('quantum-application:dynamics') },
@@ -32,7 +32,7 @@ export function quantumApplicationResearch(matrix: MindMatrix = buildMatrix(), a
 }
 
 export function quantumApplicationComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumApplicationComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumApplicationComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = quantumApplicationResearch(matrix, at)
     const quantumComputer = __ns_up_up_fire_features.quantumComputer
     const dynamics = __ns_up_dynamics.quantumDynamicsComputes(matrix, at)

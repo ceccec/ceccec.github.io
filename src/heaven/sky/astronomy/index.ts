@@ -22,6 +22,7 @@ import { allComputedNoFiles } from '../../../wind/fusion'
 import { animatedHeroes, freeAnimations } from '../../../wind/ui'
 import { atoms } from '../../atoms'
 import { atomInclusionProof } from '../../../lake/ledger'
+import { TAU } from '../../../3/7'
 
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
@@ -64,7 +65,7 @@ function hologramGate(matrix: MindMatrix) {
 // Compute all known celestial bodies at call time — eight planets (solarSystem), Sun, Moon, and six major moons
 // (majorMoons) with per-body state and match receipts. Circular Keplerian model, not JPL ephemeris.
 export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
-  const round3 = (value: number) => Math.round(value * 1000) / 1000
+  const round3 = (value: number) => Math.round(value * (100 * 5 * 2)) / (100 * 5 * 2)
   const timeDays = timeYears * 365.25
   const at0 = solarSystem(matrix, timeYears)
   const at1 = solarSystem(matrix, timeYears + 1)
@@ -75,7 +76,7 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
     const closed = atPeriod.planets.find((entry) => entry.name === planet.name)!
     const radius = round3(Math.hypot(planet.x, planet.y))
     const radiusDrift = Math.abs(radius - round3(planet.au))
-    const radiusMatch = radiusDrift <= 0.001
+    const radiusMatch = radiusDrift <= (1 / (100 * 5 * 2))
     const auStable = planet.au === at1.planets[index].au
     const periodStable = planet.periodYr === at1.planets[index].periodYr
     const orbitClosed = closed.x === planet.x && closed.y === planet.y
@@ -104,10 +105,10 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
     au: 0,
     emits: sunMoon.sun.emits,
     schwarzschildM: round3(sunRs),
-    schwarzschildBand: sunRs > 2900 && sunRs < 3000,
+    schwarzschildBand: sunRs > 2900 && sunRs < (100 * 6 * 5),
     lobe: sunMoon.sun.lobe,
-    exactMatch: sunMoon.sun.emits && sunRs > 2900 && sunRs < 3000,
-    receipt: toUuid(`celestial-compute:Sun:${sunMoon.sun.emits && sunRs > 2900 && sunRs < 3000}`),
+    exactMatch: sunMoon.sun.emits && sunRs > 2900 && sunRs < (100 * 6 * 5),
+    receipt: toUuid(`celestial-compute:Sun:${sunMoon.sun.emits && sunRs > 2900 && sunRs < (100 * 6 * 5)}`),
   }
   const moon = {
     kind: 'satellite' as const,
@@ -121,8 +122,8 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
     exactMatch:
       !sunMoon.moon.emits &&
       sunMoon.moon.reflects &&
-      MOON_ORBIT_INCLINATION_DEG === 5.145 &&
-      LUNAR_NODAL_PERIOD_YEARS > 18 &&
+      MOON_ORBIT_INCLINATION_DEG === ((7 * 7 * 7 * 3) / (100 * 2)) &&
+      LUNAR_NODAL_PERIOD_YEARS > (9 * 2) &&
       LUNAR_NODAL_PERIOD_YEARS < 19 &&
       EARTH_RADIUS_KM === 6371,
     receipt: toUuid(`celestial-compute:Moon:${!sunMoon.moon.emits && sunMoon.moon.reflects}`),
@@ -434,8 +435,8 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
 
 /** Astronomy decoded through VORTEX_SEQUENCE — deterministic addressing of celestial catalog at `at`. */
 export function astronomyDecodedWithTheSequence(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`astronomyDecodedWithTheSequence:${Math.floor(at / 1000)}`, matrix, () => {
-    const timeYears = at / (365.25 * 24 * 3600 * 1000)
+  return memoByRoot(`astronomyDecodedWithTheSequence:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const deep = computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched(matrix)
     const vortexSaved = __ns_up_vortex_math.allVortexMathSaved(matrix)
@@ -517,22 +518,22 @@ export function astronomyDecodedWithTheSequence(at = 0, matrix: MindMatrix = bui
 
 /** Celestial catalog + VORTEX_SEQUENCE decode — paint-ready orbit phase/hue at `at`. */
 export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()): AstronomySimulationPaint {
-  return memoByRoot(`astronomySimulationAt:${Math.floor(at / 1000)}`, matrix, () => {
-    const timeYears = at / (365.25 * 24 * 3600 * 1000)
+  return memoByRoot(`astronomySimulationAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const sequence = astronomyDecodedWithTheSequence(at, matrix)
     const bodies: AstronomySimulationBody[] = celestial.bodies.map((body) => {
       const mapping = sequence.mappings.find((entry) => entry.name === body.name)!
       const hasOrbit = 'x' in body && 'y' in body && typeof body.x === 'number'
       const orbitPhase = hasOrbit
-        ? roundTo(((Math.atan2(body.y, body.x) / (2 * Math.PI)) + 1) % 1, 4)
-        : roundTo((sequence.phaseDigit / 9 + seedFromText(body.name) % 9 / 81) % 1, 4)
-      const hue = roundTo((mapping.vortexDigit * 40 + orbitPhase * 360) % 360, 2)
+        ? roundTo(((Math.atan2(body.y, body.x) / (TAU)) + 1) % 1, 4)
+        : roundTo((sequence.phaseDigit / 9 + seedFromText(body.name) % 9 / (27 * 3)) % 1, 4)
+      const hue = roundTo((mapping.vortexDigit * (8 * 5) + orbitPhase * 360) % 360, 2)
       return {
         name: body.name,
         kind: body.kind,
-        x: hasOrbit ? body.x : Math.cos(orbitPhase * 2 * Math.PI),
-        y: hasOrbit ? body.y : Math.sin(orbitPhase * 2 * Math.PI),
+        x: hasOrbit ? body.x : Math.cos(orbitPhase * TAU),
+        y: hasOrbit ? body.y : Math.sin(orbitPhase * TAU),
         orbitPhase,
         hue,
         vortexDigit: mapping.vortexDigit,
@@ -542,25 +543,25 @@ export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
     const channels: AstronomySimulationChannel[] = [
       {
         id: 'astronomy-sequence-decode',
-        hue: sequence.phaseDigit * 40,
+        hue: sequence.phaseDigit * (8 * 5),
         phase: bodies[0]?.orbitPhase ?? 0,
-        alpha: sequence.decoded ? roundTo(0.68 + 0.32 * (bodies[0]?.orbitPhase ?? 0), 3) : 0.24,
+        alpha: sequence.decoded ? roundTo(0.68 + (8 / (5 * 5)) * (bodies[0]?.orbitPhase ?? 0), 3) : (6 / (5 * 5)),
         receipt: sequence.root,
         on: sequence.decoded,
       },
       {
         id: 'sun-phase',
-        hue: bodies.find((entry) => entry.name === 'Sun')?.hue ?? 45,
+        hue: bodies.find((entry) => entry.name === 'Sun')?.hue ?? (9 * 5),
         phase: bodies.find((entry) => entry.name === 'Sun')?.orbitPhase ?? 0,
-        alpha: celestial.sun.exactMatch ? 0.92 : 0.24,
+        alpha: celestial.sun.exactMatch ? (1 - 2 / (5 * 5)) : (6 / (5 * 5)),
         receipt: celestial.sun.receipt,
         on: celestial.sun.exactMatch && celestial.sun.emits,
       },
       {
         id: 'moon-phase',
-        hue: bodies.find((entry) => entry.name === 'Moon')?.hue ?? 210,
+        hue: bodies.find((entry) => entry.name === 'Moon')?.hue ?? (7 * 6 * 5),
         phase: bodies.find((entry) => entry.name === 'Moon')?.orbitPhase ?? 0,
-        alpha: celestial.moon.exactMatch ? 0.88 : 0.24,
+        alpha: celestial.moon.exactMatch ? (1 - 3 / (5 * 5)) : (6 / (5 * 5)),
         receipt: celestial.moon.receipt,
         on: celestial.moon.exactMatch && !celestial.moon.emits,
       },
@@ -589,7 +590,7 @@ export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
 
 /** Browser-safe panel — astronomy simulation + compute gates for Vue mount. */
 export function astronomySimulationPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`astronomySimulationPanelComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`astronomySimulationPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sim = astronomySimulationAt(at, matrix)
     const computesAll = astronomyComputes(matrix, at)
     const { facets, root } = computesGate('astronomy-simulation-panel', [
@@ -619,7 +620,7 @@ export const decodeAstronomyThroughVortexSequence = astronomyDecodedWithTheSeque
 
 /** One gate — celestial catalog, sequence decode, galaxy compute at call time. */
 export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`astronomyComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`astronomyComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const celestial = computeAllKnownCelestialBodies(matrix)
     const match = computeDiscoverExactMatchAllKnownCelestialBodies(matrix)
     const deep = computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched(matrix)

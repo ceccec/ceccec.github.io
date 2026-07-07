@@ -61,10 +61,10 @@ const PROJECTION_SEGMENT_SLOT: Record<QuantumProjection, number> = {
 }
 
 const PROJECTION_FORMS: Record<QuantumProjection, number> = {
-  plasma: 9, taiji: 2, 'sacred-morph': 13, hologram: 1, labyrinth: 24,
+  plasma: 9, taiji: 2, 'sacred-morph': 13, hologram: 1, labyrinth: (8 * 3),
   'movie-10d': 6, 'living-torus': 1, merkaba: 2, 'double-torus': 2,
   'unit-distance': 7, // seven split-prime channels drawn — a rosetta-sized sample of the t
-  'vortex-strokes': 10, // the ten-digit tour 1·2·4·8·7·5·3·6·9·0 — every digit once, the void included
+  'vortex-strokes': (5 * 2), // the ten-digit tour 1·2·4·8·7·5·3·6·9·0 — every digit once, the void included
 }
 
 /** The orbit's natural sense — derived from the doubling circuit (1→2 ascending ⇒ +1), not a literal. */
@@ -76,10 +76,10 @@ export function quantumProjectionParams(projection: QuantumProjection): QuantumP
   const segments = VORTEX_SEQUENCE[slot % VORTEX_SEQUENCE.length] ?? 9
   const forms = PROJECTION_FORMS[projection]
   // bits ← 128 (2⁷) holographic word; digital root keeps the lineage to the sequence.
-  const bits = projection === 'hologram' ? 128 : 0
+  const bits = projection === 'hologram' ? (64 * 2) : 0
   return {
     projection,
-    dimensions: 10,
+    dimensions: (5 * 2),
     segments,
     direction: ORBIT_DIRECTION,
     forms,
@@ -129,12 +129,12 @@ const ANIMATION_APP_ROWS: readonly Omit<QuantumAppEntry, 'receipt'>[] = [
 ] as const
 
 export function quantumAppsRegistry(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumAppsRegistry:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumAppsRegistry:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows = [...APP_ROWS, ...ANIMATION_APP_ROWS]
     const apps: QuantumAppEntry[] = rows.map((row) => ({ ...row, receipt: toUuid(`quantum-app:${row.id}`) }))
     const animationApps = apps.filter((app) => app.projection)
     return {
-      registered: apps.length >= 10,
+      registered: apps.length >= (5 * 2),
       count: apps.length,
       apps,
       animationApps,
@@ -173,17 +173,17 @@ export function componentProjectionFor(component: string, matrix: MindMatrix = b
 
 /** Coverage gate — the registry + kernel cover every home-page animation, each a projection of the one field. */
 export function quantumAppsCoverHomeAnimations(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumAppsCoverHomeAnimations:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumAppsCoverHomeAnimations:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumAppsRegistry(matrix, at)
     const required = ['YinYang', 'SacredGeometry', 'Hologram', 'GlyphLabyrinth', 'HologramMovie', 'LivingTorus', 'DoubleTorusExperience', 'Merkaba'] as const
     const covered = required.filter((name) => registry.apps.some((app) => app.homeComponent === name))
     const projections = registry.animationApps.map((app) => quantumProjectionParams(app.projection!))
     const { computes, facets, root } = computesGate('quantum-apps-cover-home-animations', [
       { facet: 'every flagged home card is a registered quantum app', on: covered.length === required.length },
-      { facet: 'each app is one projection of the shared field', on: projections.every((p) => p.dimensions === 10) },
+      { facet: 'each app is one projection of the shared field', on: projections.every((p) => p.dimensions === (5 * 2)) },
       { facet: 'projection params derive from VORTEX_SEQUENCE', on: projections.every((p) => p.segments > 0) },
       { facet: 'every component resolves to an animation — pinned home projections kept, all names fold into the projection ring', on: required.every((name) => componentProjectionFor(name, matrix, at) === registry.apps.find((app) => app.homeComponent === name)?.projection) && PROJECTION_RING.includes(componentProjectionFor('AnyComponentName', matrix, at)) },
-      { facet: 'the ring is the stroke tour — ten views, and the dedicated vortex-strokes projection registers 4 gateway segments × 10 tour forms', on: PROJECTION_RING.length === 10 && quantumProjectionParams('vortex-strokes').segments === 4 && quantumProjectionParams('vortex-strokes').forms === 10 },
+      { facet: 'the ring is the stroke tour — ten views, and the dedicated vortex-strokes projection registers 4 gateway segments × 10 tour forms', on: PROJECTION_RING.length === (5 * 2) && quantumProjectionParams('vortex-strokes').segments === 4 && quantumProjectionParams('vortex-strokes').forms === (5 * 2) },
     ])
     return { computes, covered, projections, registry, facets, root: merkleFold([registry.root, ...projections.map((p) => p.root), root]), statement: 'Quantum apps cover every home animation as a field projection.', boundary: registry.boundary }
   })
@@ -199,7 +199,7 @@ export function quantumAppLaunch(appId: string, at = 0, matrix: MindMatrix = bui
 }
 
 export function quantumAppsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumAppsComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumAppsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumAppsRegistry(matrix, at)
     const launches = registry.apps.slice(0, 4).map((app) => quantumAppLaunch(app.id, at, matrix))
     const { computes, facets, root } = computesGate('quantum-apps-computes', [

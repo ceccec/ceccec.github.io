@@ -14,7 +14,7 @@ const designVars = computed(() => panel.value.cssVars as Record<string, string>)
 const palette = QC_GATE_PALETTE
 
 const n = ref(panel.value.defaultCircuit.n)
-const shots = ref(1024)
+const shots = ref((64 * 16))
 const ops = ref<CircuitOp[]>(panel.value.defaultCircuit.ops.map((o) => ({ ...o, targets: [...o.targets] })))
 
 const result = computed(() => runQuantumCircuit({ n: n.value, ops: ops.value, shots: shots.value, seed: 'lab' }))

@@ -4,7 +4,7 @@ import * as __ns_up_fusion from '../../wind/fusion'
 import * as __ns_up_ui from '../../wind/ui'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { computesGate, gcd, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { BAGUA, iChing } from '../../heaven/core'
 import {
   ICHING_NUMBERS,
@@ -96,20 +96,10 @@ export function ichingComputes(matrix: MindMatrix = buildMatrix()) {
 export function runIchingDistributeVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {
   const ICHING_TRIGRAMS = 8
   const ROSETTA_RAYS = 7
-  const gcd = (a: number, b: number): number => {
-    let x = a
-    let y = b
-    while (y) {
-      const t = y
-      y = x % y
-      x = t
-    }
-    return x
-  }
-  const rosettaCoprime = gcd(ROSETTA_RAYS, 6) === 1 && gcd(ROSETTA_RAYS, 9) === 1 && gcd(ROSETTA_RAYS, 10) === 1
-  const ichingAliases = gcd(ICHING_TRIGRAMS, 6) === 2 && gcd(ICHING_TRIGRAMS, 10) === 2
-  const rosettaCross = ROSETTA_RAYS * 10
-  const ichingCross = (ICHING_TRIGRAMS * 10) / gcd(ICHING_TRIGRAMS, 10)
+  const rosettaCoprime = gcd(ROSETTA_RAYS, 6) === 1 && gcd(ROSETTA_RAYS, 9) === 1 && gcd(ROSETTA_RAYS, (5 * 2)) === 1
+  const ichingAliases = gcd(ICHING_TRIGRAMS, 6) === 2 && gcd(ICHING_TRIGRAMS, (5 * 2)) === 2
+  const rosettaCross = ROSETTA_RAYS * (5 * 2)
+  const ichingCross = (ICHING_TRIGRAMS * (5 * 2)) / gcd(ICHING_TRIGRAMS, (5 * 2))
   if (!rosettaCoprime || !ichingAliases || rosettaCross <= ichingCross) {
     process.stderr.write('✗ iching-distribute — coprimality or cross-pair coverage failed\n')
     return 1

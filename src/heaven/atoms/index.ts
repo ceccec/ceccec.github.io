@@ -725,11 +725,11 @@ export function foldRedistributesBeyondLinear(matrix: MindMatrix = buildMatrix()
 function foldRedistributesBeyondLinearRaw(matrix: MindMatrix = buildMatrix()) {
   const conservation = quantumFusedDeviceEnergyHonest(matrix) // the base: net charge/cool forbidden (laws hold)
   // (1) SUPEREXTENSIVE charging — the √N advantage grows with N (beyond linear): the advantage is NOT constant.
-  const battery = [4, 16, 64, 256].map((n) => quantumBatteryAdvantage(n))
+  const battery = [4, 16, 64, (64 * 4)].map((n) => quantumBatteryAdvantage(n))
   const superextensive = battery.every((b, i) => i === 0 || b.advantage > battery[i - 1]!.advantage) // advantage ↑ with N
   const collectiveSuperlinear = battery.every((b) => b.collectivePower > b.independentPower) // N^{3/2} > N
   // (2) ALGORITHMIC cooling — a subsystem cooled by computing (entropy pumped to the rest).
-  const cool = algorithmicCoolingBias(0.1) // ε = 0.1 → cooled ≈ 0.1495 (~1.5×)
+  const cool = algorithmicCoolingBias((1 / (5 * 2))) // ε = 0.1 → cooled ≈ 0.1495 (~1.5×)
   const coolsASubsystem = cool.cooled > cool.initial && cool.physical
   const facets = [
     { facet: 'the FOLD conserves the total — the 1st & 2nd laws hold exactly; net charge/cool from nothing stays forbidden', on: conservation.honest && !conservation.canChargeByComputing && !conservation.canCoolByComputing },

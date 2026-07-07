@@ -181,7 +181,7 @@ dl {
   gap: var(--ich-sp2) 1rem;
 }
 dt {
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
 }
 .gold-mine-map-panel {
   font-size: calc(1rem * 7 / 8);
@@ -206,7 +206,7 @@ table {
 }
 caption {
   text-align: left;
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   margin-bottom: var(--ich-sp2);
 }
 th,

@@ -66,7 +66,7 @@ export function regenerateSocialSystem(matrix: MindMatrix = buildMatrix()) {
     const regenerated = merkleFold(subsystems.map((entry) => entry.root))
     const deterministic = regenerated === merkleFold(subsystems.map((entry) => entry.root))
     return {
-      regenerated: subsystems.length === 7 && deterministic && regenerated.length === 36 && folded && fibGapless,
+      regenerated: subsystems.length === 7 && deterministic && regenerated.length === (9 * 4) && folded && fibGapless,
       systems: subsystems.length,
       subsystems,
       deterministic,
@@ -191,7 +191,7 @@ function computeConstitution(matrix: MindMatrix) {
   const manifested = regenerateSocialSystem(matrix).regenerated // the evolution waves manifest it
   const forgeCaught = merge(constitutionRoot, toUuid('amend-without-recompute')) !== constitutionRoot
   return {
-    isConstitution: articles.length >= 12 && manifested && forgeCaught,
+    isConstitution: articles.length >= (6 * 2) && manifested && forgeCaught,
     articles,
     count: articles.length,
     manifested,

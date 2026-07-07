@@ -72,7 +72,7 @@ export function playLearn(word = 'play') {
 export function analogSpeech() {
   const params = [
     { param: 'pitch', range: [0, 2] as const, note: 'continuous tone — the voice is a wave, not a symbol' },
-    { param: 'rate', range: [0.5, 2] as const, note: 'continuous tempo' },
+    { param: 'rate', range: [(1 / 2), 2] as const, note: 'continuous tempo' },
     { param: 'volume', range: [0, 1] as const, note: 'continuous loudness' },
   ].map((entry) => ({ ...entry, analog: entry.range[1] > entry.range[0], receipt: toUuid(`analog-speech:${entry.param}`) }))
   return {
@@ -110,7 +110,7 @@ export function openGraph() {
     'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image',
   ].map((field, index) => ({ field, source: 'frontmatter', receipt: toUuid(`open-graph:${index}:${field}`) }))
   return {
-    computed: fields.length === 10,
+    computed: fields.length === (5 * 2),
     fields,
     root: merkleFold(fields.map((entry) => entry.receipt)),
     statement: 'Open Graph is computed from frontmatter: each page derives its og: and twitter: social card from its own frontmatter (ogTitle, ogDescription, ogType, image), falling back to the page title and description.',

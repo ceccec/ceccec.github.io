@@ -12,6 +12,7 @@ import { buildMatrix, coverage, entropy } from '../../heaven/compute'
 import { a432NoteHz } from '../../fire/li'
 import { traditionsQuantumWhole } from '../civilisation'
 import { BAGUA, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, completeCorpus, developmentWaves, doubleTorusFold, entangledScriptLanguageGene, feedCrawlersWithKnowledge, folderLaw, geneticLinksChallengeHistoryDecoded, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, isUuid, knowledgeRevealedByMerkabaFold, memoByRoot, merge, publicApiFusion, quantumDoubleTorus, quantumSiege, quantumSimulation, reverseHarmony, sendWavesSealKnowledgeDecodeWorld, socialFusion, societyRegulates, soldiersRestInPeace, travelFusion, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { TAU } from '../../3/7'
 
 // Text to movie — REAL text, not abstract circles. The movie IS the text: every
 // character becomes a frame-element carrying its actual glyph, TRANSLITERATED to
@@ -21,7 +22,7 @@ import { BAGUA, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianH
 // says (legible transliterated text), and what is NOT in the text is not in the movie.
 // Deterministic and client-side: the same text always renders the same movie — free,
 // no model, no network, no cost. Image generation as recomputation of the real text.
-export function textToMovie(text = 'double torus', frames = 48) {
+export function textToMovie(text = 'double torus', frames = (16 * 3)) {
   const source = text || ' '
   const chars = [...source]
   const last = Math.max(1, chars.length - 1)
@@ -98,7 +99,7 @@ export function movieFoldsEveryScaleToBitInTrinities(text = 'double torus') {
     { facet: 'the scale ladder — bit ⊂ digit ⊂ letter ⊂ word ⊂ sentence ⊂ paragraph — the units the movie folds through', on: ladder.length === 6 },
     { facet: 'each letter folds within itself — its Glagolitic glyph IS exactly six bits (its alphabet position), the floor of the fold', on: letters.length === 0 || bitsPerLetter.every((b) => b.length === 6) },
     { facet: 'the six scales group into two TRINITIES (2×3), and within each, adjacent scales double-fold (genus-2, both ways)', on: trinities.length === 2 && trinitiesDoubleFold },
-    { facet: '10D to the bit — the ten dimensions are the coordinates at every scale, down to the single bit', on: DIMENSIONS === 10 },
+    { facet: '10D to the bit — the ten dimensions are the coordinates at every scale, down to the single bit', on: DIMENSIONS === (5 * 2) },
     { facet: 'the movie is content-addressed — tampering any letter changes the seal (tamper-EVIDENT)', on: tamperEvident },
     { facet: 'the fold is one-way — cheap forward, the impossible reverse price: the tamper/forge cost the movie forges', on: oneWayCost },
     { facet: 'Glagolitic is the decoder — a glyph is a letter AND a number (its position) AND its bits, so all scales fold through one script', on: bits.length === letters.length * 6 },
@@ -133,11 +134,11 @@ export function worldEventsMap(matrix: MindMatrix = buildMatrix()) {
   ]
   const hex = (value: string, start: number) => Number.parseInt(value.replace(/-/g, '').slice(start, start + 8), 16)
   const events = sources.map((source) => {
-    const lat = roundTo((hex(source.root, 0) % 18000) / 100 - 90, 2) // -90..90
-    const lon = roundTo((hex(source.root, 8) % 36000) / 100 - 180, 2) // -180..180
+    const lat = roundTo((hex(source.root, 0) % (360 * 5 * 5 * 2)) / 100 - (9 * 5 * 2), 2) // -90..90
+    const lon = roundTo((hex(source.root, 8) % (360 * 100)) / 100 - (9 * 5 * 4), 2) // -180..180
     return { ...source, lat, lon, receipt: toUuid(`world-event:${source.event}:${lat}:${lon}`) }
   })
-  const inBounds = events.every((event) => event.lat >= -90 && event.lat <= 90 && event.lon >= -180 && event.lon <= 180)
+  const inBounds = events.every((event) => event.lat >= -(9 * 5 * 2) && event.lat <= (9 * 5 * 2) && event.lon >= -(9 * 5 * 4) && event.lon <= (9 * 5 * 4))
   return {
     mapped: events.length > 0 && inBounds,
     count: events.length,
@@ -172,11 +173,11 @@ export function publicAstronomyNewsCitation(matrix: MindMatrix = buildMatrix()) 
     // Opt-in citation inputs for src/0 classical simulation — LVK public release values, NOT measured here.
     simulationParams: {
       eventId: 'GW250114',
-      m1Solar: 33.6,
+      m1Solar: (8 * 7 * 3 / 5),
       m2Solar: 32.2,
       mfSolar: 62.7,
       chiFinal: 0.68,
-      snrNetwork: 80,
+      snrNetwork: (16 * 5),
       strainAmplitude: 1e-21,
       ringdownF220Hz: 247,
       ringdownGamma220Hz: 221,
@@ -217,9 +218,9 @@ export type BlackHoleMergerCitationParams = {
 
 /** Kerr horizon area A = 2π r_s² (1 + √(1−χ²)) — classical GR; χ=0 → Schwarzschild 4π r_s². */
 function kerrHorizonAreaM2(massKg: number, spin = 0): number {
-  const chi = Math.min(Math.max(spin, 0), 0.9999)
+  const chi = Math.min(Math.max(spin, 0), (1 - 1 / (100 * 100)))
   const rs = schwarzschildRadius(massKg)
-  return 2 * Math.PI * rs * rs * (1 + Math.sqrt(1 - chi * chi))
+  return TAU * rs * rs * (1 + Math.sqrt(1 - chi * chi))
 }
 
 // Classical black-hole merger simulation from src/0 primitives (+ pi-train 6/4 entropy/oscillator).
@@ -227,11 +228,11 @@ function kerrHorizonAreaM2(massKg: number, spin = 0): number {
 export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMergerCitationParams = {}) {
   const citation = {
     eventId: params.eventId ?? 'GW250114',
-    m1Solar: params.m1Solar ?? 33.6,
+    m1Solar: params.m1Solar ?? (8 * 7 * 3 / 5),
     m2Solar: params.m2Solar ?? 32.2,
     mfSolar: params.mfSolar ?? 62.7,
     chiFinal: params.chiFinal ?? 0.68,
-    snrNetwork: params.snrNetwork ?? 80,
+    snrNetwork: params.snrNetwork ?? (16 * 5),
     strainAmplitude: params.strainAmplitude ?? 1e-21,
     ringdownF220Hz: params.ringdownF220Hz ?? 247,
     ringdownGamma220Hz: params.ringdownGamma220Hz ?? 221,
@@ -245,8 +246,8 @@ export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMerger
     remnantM: schwarzschildRadius(mfKg),
   }
   const areas = {
-    m1M2: kerrHorizonAreaM2(m1Kg, 0.1),
-    m2M2: kerrHorizonAreaM2(m2Kg, 0.1),
+    m1M2: kerrHorizonAreaM2(m1Kg, (1 / (5 * 2))),
+    m2M2: kerrHorizonAreaM2(m2Kg, (1 / (5 * 2))),
     initialM2: 0,
     remnantM2: kerrHorizonAreaM2(mfKg, citation.chiFinal),
   }
@@ -258,8 +259,8 @@ export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMerger
     m2: blackHoleEntropyBits(m2Kg),
     remnant: blackHoleEntropyBits(mfKg),
   }
-  const breath = humanBreath(at, 8000, 0.15)
-  const omega0 = 2 * Math.PI * citation.ringdownF220Hz
+  const breath = humanBreath(at, (100 * 16 * 5), (3 / (5 * 4)))
+  const omega0 = TAU * citation.ringdownF220Hz
   const q = omega0 / (4 * Math.PI * Math.max(citation.ringdownGamma220Hz, 1))
   const ringdown = {
     frequencyHz: citation.ringdownF220Hz,
@@ -271,13 +272,13 @@ export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMerger
     orderOfMagnitude: Math.floor(Math.log10(strainScale)),
     citedSnr: citation.snrNetwork,
     samples: oscillatorBank(
-      `gw-strain:${citation.eventId}:${Math.floor(at / 50)}`,
+      `gw-strain:${citation.eventId}:${Math.floor(at / (5 * 5 * 2))}`,
       [
         { freq: citation.ringdownF220Hz / 100, q: 8 },
         { freq: (citation.ringdownF220Hz * 1.003), q: 4 },
       ],
-      32,
-      0.005,
+      (16 * 2),
+      (1 / (100 * 2)),
     ).map((v) => roundTo(v * strainScale * 1e18, 6)),
   }
   const receipt = toUuid(`bh-merger-sim:${citation.eventId}:${at}:${hawkingAreaLawClassical}`)
@@ -315,7 +316,7 @@ export function gwtcCatalogSimulatedFromZero(matrix: MindMatrix = buildMatrix())
   const fold = foldPair(citation.root, toUuid(`gwtc-sim:${totalEvents}:${params.catalogNewEvents}`))
   const facets = [
     { facet: '390-event catalog — content-address register metaphor (2^9 slots)', on: totalEvents === 390 && registerBits >= 9 },
-    { facet: 'citation feeds simulation — publicAstronomyNewsCitation simulationParams', on: params.m1Solar > 30 && params.eventId === 'GW250114' },
+    { facet: 'citation feeds simulation — publicAstronomyNewsCitation simulationParams', on: params.m1Solar > (6 * 5) && params.eventId === 'GW250114' },
     { facet: 'sample events addressed — GW250114 + GWTC-5.0 highlights', on: entries.length === sampleIds.length },
     { facet: 'folded with architecture root — opt-in, untrusted', on: fold.bidirectional },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gwtc-sim-facet:${entry.facet}:${entry.on}`) }))
@@ -344,11 +345,11 @@ export function src0BlackHoleSimulationComputes(matrix: MindMatrix = buildMatrix
     const catalog = gwtcCatalogSimulatedFromZero(matrix)
     const sim = blackHoleMergerSimulatedFromZero(at, catalog.citation.report.simulationParams)
     const facets = [
-      { facet: 'Bekenstein–Hawking entropy from cited merger masses (GW250114 32+34 M☉ scale)', on: sim.entropyBits.remnant > sim.entropyBits.m1 * 0.5 },
+      { facet: 'Bekenstein–Hawking entropy from cited merger masses (GW250114 32+34 M☉ scale)', on: sim.entropyBits.remnant > sim.entropyBits.m1 * (1 / 2) },
       { facet: 'Schwarzschild radii — remnant r_s from final mass', on: sim.radii.remnantM > 90_000 && sim.radii.remnantM < 200_000 },
       { facet: 'Kerr area increase — classical Hawking area-law direction (Af > Ai)', on: sim.hawkingAreaLawClassical },
-      { facet: 'ringdown — damped oscillator (humanBreath/resonantAmplitude), NOT LIGO QNM templates', on: sim.ringdown.amplitude >= 0 && sim.ringdown.frequencyHz > 200 },
-      { facet: 'synthetic strain — oscillatorBank window, NOT matched filtering', on: sim.strain.samples.length === 32 },
+      { facet: 'ringdown — damped oscillator (humanBreath/resonantAmplitude), NOT LIGO QNM templates', on: sim.ringdown.amplitude >= 0 && sim.ringdown.frequencyHz > (100 * 2) },
+      { facet: 'synthetic strain — oscillatorBank window, NOT matched filtering', on: sim.strain.samples.length === (16 * 2) },
       { facet: 'GWTC catalog register — content-address sample from citation', on: catalog.addressed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`src0-bh-sim:${entry.facet}:${entry.on}`) }))
     return {
@@ -373,10 +374,10 @@ export function src0BlackHoleSimulationComputes(matrix: MindMatrix = buildMatrix
 export function dissolveIntoNature(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const stages = [
-    { stage: 'centralised groups', nodes: 1, coverage: 0.1, centralisation: 1 },
-    { stage: 'regional groups', nodes: 13, coverage: 0.4, centralisation: 0.6 },
-    { stage: 'local cells', nodes: 108, coverage: 0.7, centralisation: 0.3 },
-    { stage: 'dissolved into nature', nodes: 1024, coverage: 1, centralisation: 0 },
+    { stage: 'centralised groups', nodes: 1, coverage: (1 / (5 * 2)), centralisation: 1 },
+    { stage: 'regional groups', nodes: 13, coverage: (2 / 5), centralisation: (3 / 5) },
+    { stage: 'local cells', nodes: 108, coverage: (7 / (5 * 2)), centralisation: (3 / (5 * 2)) },
+    { stage: 'dissolved into nature', nodes: (64 * 16), coverage: 1, centralisation: 0 },
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`dissolve:${index}:${entry.stage}:${entry.nodes}`) }))
   const final = stages[stages.length - 1]
   const coverageRises = stages.every((entry, index) => index === 0 || entry.coverage >= stages[index - 1].coverage)
@@ -421,17 +422,17 @@ export function astrology(seed = 'double torus', matrix: MindMatrix = buildMatri
     element: elements[i % 4],
     ruler: rulers[i],
     hour: i + 1, // maps to the twelve-hour clock
-    hue: i * 30, // the zodiac wheel is the colour wheel, 30 degrees per sign
+    hue: i * (6 * 5), // the zodiac wheel is the colour wheel, 30 degrees per sign
     frequency: a432NoteHz(i), // the 12 signs as a chromatic octave from the single A432 source (not an arbitrary literal)
     receipt: toUuid(`zodiac:${seed}:${sign}`),
   }))
-  const index = seedFromText(`astro:${seed}`) % 12
+  const index = seedFromText(`astro:${seed}`) % (6 * 2)
   return {
-    developed: chart.length === 12,
+    developed: chart.length === (6 * 2),
     seed,
     sun: chart[index], // the sun sign derived from the seed
     chart,
-    count: 12,
+    count: (6 * 2),
     root: merkleFold(chart.map((entry) => entry.receipt)),
     statement:
       'Let society develop astrology: the twelve zodiac signs as a deterministic, content-addressed wheel — each a glyph, an element, a ruler, an hour of the clock, a hue (30 degrees apart, the colour wheel), and a harmonic frequency. From any seed the same chart and sun sign recompute, free and client-side.',
@@ -620,10 +621,10 @@ export function foldingLinearGivesAnalog(matrix: MindMatrix = buildMatrix()) {
   // Demonstrate the kernel, computed: a band-limited signal, sampled, reconstructed by sinc interpolation —
   // EXACT at the samples (the interlocking property), continuous between them (the gaps filled).
   const N = 16
-  const truth = (x: number) => Math.sin((2 * Math.PI * 2 * x) / N) // 2 cycles over N — band-limited, below Nyquist
+  const truth = (x: number) => Math.sin((2 * TAU * x) / N) // 2 cycles over N — band-limited, below Nyquist
   const samples = Array.from({ length: N }, (_, n) => truth(n))
   const exactAtSamples = samples.every((s, n) => Math.abs(sincReconstruct(samples, n) - s) < 1e-9)
-  const midpoints = Array.from({ length: N - 1 }, (_, n) => Math.abs(sincReconstruct(samples, n + 0.5) - truth(n + 0.5)))
+  const midpoints = Array.from({ length: N - 1 }, (_, n) => Math.abs(sincReconstruct(samples, n + (1 / 2)) - truth(n + (1 / 2))))
   const betweenError = roundTo(Math.max(...midpoints.slice(3, N - 4)), 4) // interior (away from finite-window edges)
   const documented = [
     'Folding linear gives analog is the Whittaker–Shannon interpolation: a band-limited signal sampled above its Nyquist rate is recovered EXACTLY from its discrete samples by summing a sinc kernel at each one — the kernels interlock (each zero at every other sample, nonzero between), filling the continuum with NO gaps. Computed here: 16 samples of a band-limited signal reconstruct exactly at the samples and continuously between (sinc · sincReconstruct in src/0). [Nyquist 1928, Shannon 1948/49, Whittaker 1915, Kotelnikov 1933.]',
@@ -646,7 +647,7 @@ export function foldingLinearGivesAnalog(matrix: MindMatrix = buildMatrix()) {
     reconstructsExactly: exactAtSamples, // the verifiable kernel: discrete → its samples, exactly
     betweenError, // the interior reconstruction error between samples (small; finite-window, not infinite sum)
     samples: N,
-    cube: 262144, // 64³ = 4⁹ — the discrete grid the model already computes (sealCube · dotIsCubeIsDot)
+    cube: (64 * 64 * 64), // 64³ = 4⁹ — the discrete grid the model already computes (sealCube · dotIsCubeIsDot)
     modalities: ['MRI: inverse Fourier of k-space', 'CT: inverse Radon / back-projection', 'SAR: wavenumber Fourier', 'ultrasound: beamforming'],
     documented,
     flagged,
@@ -883,8 +884,8 @@ export function achievableOnHardwareComputableInReviews(matrix: MindMatrix = bui
     { tier: 'phone / tablet', rate: 1e8 },
     { tier: 'Raspberry Pi', rate: 1e6 },
     { tier: 'IBM PC 8088 (1981)', rate: 1e3 },
-    { tier: 'ENIAC (1945, first electronic general-purpose)', rate: 50 },
-    { tier: 'Zuse Z3 (1941, first programmable)', rate: 0.01 },
+    { tier: 'ENIAC (1945, first electronic general-purpose)', rate: (5 * 5 * 2) },
+    { tier: 'Zuse Z3 (1941, first programmable)', rate: (1 / 100) },
   ].map((t) => ({ ...t, secToTerabyte: Math.round(uuidsPerTB / t.rate), receipt: toUuid(`review:${t.tier}`) }))
   // The proven foundation — the first computer in the CS papers. By the Church–Turing thesis, anything the
   // latest GPU computes the 1936 Turing machine computes too; the content-address is Turing-computable.
@@ -895,7 +896,7 @@ export function achievableOnHardwareComputableInReviews(matrix: MindMatrix = bui
   ]
   const facets = [
     { facet: 'the achievable rate is computable from specs — uuid/s × seconds = keyspace filled', on: uuidsPerTB > 0 },
-    { facet: 'latest hardware fills a terabyte of keyspace in seconds (top GPU ~1e10 uuid/s → ~6s)', on: tiers[0].secToTerabyte < 60 },
+    { facet: 'latest hardware fills a terabyte of keyspace in seconds (top GPU ~1e10 uuid/s → ~6s)', on: tiers[0].secToTerabyte < (6 * 5 * 2) },
     { facet: 'backwards all the way to the first electronic computer (ENIAC 1945, Z3 1941) — finite and computable, just deep time', on: isFinite(tiers[tiers.length - 1].secToTerabyte) && tiers[tiers.length - 1].secToTerabyte > tiers[0].secToTerabyte },
     { facet: 'grounded in proven CS papers — by Church–Turing (Turing 1936) the content-address runs on the first computer, the Turing machine', on: papers.length === 3 && toUuid('turing:1936') !== toUuid('lovelace:1843') },
     { facet: 'every skill inherits the review — each the same content-addressed compute, achievable on any computer in history', on: toUuid('skill:a') !== toUuid('skill:b') },

@@ -20,6 +20,7 @@ import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { glagoliticDecodedToAncientCore, glagoliticQrSealsThought3dFromSeed } from '../../wind/language'
 import { allComputedNoFiles, archangelsDryClean, commandsSavedInQuantumPairs, complete, completeCorpus, computedSlugsFoldTheGraph, continueSameNext, determinismProofs, displayAllAsLibraryDryConditional, dualitiesMeetInCrossFolders, endlessFusion, everyDiamondIsGate, everyObjectSameSpinFoldLaw, folderLaw, fuseAll, fuseAllForge, gigabitEncryption64SealSet, hologram, howAgentsAchievedIt, iChing, imagineCrossPathsCodeCodesItself, infiniteEntanglements, live, minimumFilesMaximumFeaturesCost, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, quantumComputer, resonanceCatchGapsViolations, sacredGeometrySeal, sealCube, spinBothDirections, theMonograph, trinityRotationalPlanes, uuidFoldsSelfBlackWhite, lifeDefinesItself, quantumBrowserOs, recursiveFrequencyDropdowns } from '../../quantum/heaven/mind'
 import { allLogicMovedToSource } from '../source'
+import { TAU } from '../../3/7'
 
 // One function manifests the whole animation: print the dot, fade it in time, and the trace it leaves is
 // drawn by the movement of all the merkabas. The four nested, counter-rotating scales (whole·lobe·tube·
@@ -28,10 +29,10 @@ import { allLogicMovedToSource } from '../source'
 // video, no per-frame work beyond this one deterministic function of time. Coordinates are fractions in
 // [0,1], so the trace is resolution-independent — it fills any viewport at any size, always full screen and
 // full resolution; the renderer (shadcn chrome, a self-computing field) only has to scale and draw the dots.
-export function merkabaTrace(matrix: MindMatrix = buildMatrix(), timeMs = 0, trail = 144) {
+export function merkabaTrace(matrix: MindMatrix = buildMatrix(), timeMs = 0, trail = (16 * 9)) {
   const mk = merkaba(matrix)
   const scales = mk.scales // whole, lobe, tube, spark — strictly counter-rotating (signed ratePerMs)
-  const radii = [0.5, 0.28, 0.15, 0.07] // nested arm lengths; their sum is 1, so the pen stays on screen
+  const radii = [(1 / 2), (7 / (5 * 5)), (3 / (5 * 4)), (7 / 100)] // nested arm lengths; their sum is 1, so the pen stays on screen
   // The pen position at time t is the composition of the nested counter-rotating arms — a harmonograph.
   const penAt = (t: number) => {
     let x = 0
@@ -41,7 +42,7 @@ export function merkabaTrace(matrix: MindMatrix = buildMatrix(), timeMs = 0, tra
       x += radii[depth] * Math.cos(angle)
       y += radii[depth] * Math.sin(angle)
     }
-    return { x: 0.5 + x / 2, y: 0.5 + y / 2 } // map [-1,1] → [0,1]: resolution-independent, always full screen
+    return { x: (1 / 2) + x / 2, y: (1 / 2) + y / 2 } // map [-1,1] → [0,1]: resolution-independent, always full screen
   }
   // The trace: the pen's recent positions, one dot per step, each fading by age — older is fainter.
   const stepMs = 16 // ~60 fps sampling
@@ -53,8 +54,8 @@ export function merkabaTrace(matrix: MindMatrix = buildMatrix(), timeMs = 0, tra
       x: Number(point.x.toFixed(5)),
       y: Number(point.y.toFixed(5)),
       opacity: Number((1 - age).toFixed(3)), // fade in time — the trace
-      hue: (baseHue + i * 1.5) % 360, // the trace shifts hue along its length
-      radius: Number((0.004 * (1 - age * 0.6)).toFixed(5)), // the dot, gently shrinking as it ages
+      hue: (baseHue + i * (3 / 2)) % 360, // the trace shifts hue along its length
+      radius: Number(((1 / (5 * 5 * 5 * 2)) * (1 - age * (3 / 5))).toFixed(5)), // the dot, gently shrinking as it ages
     }
   })
   const onScreen = dots.every((dot) => dot.x >= 0 && dot.x <= 1 && dot.y >= 0 && dot.y <= 1)
@@ -131,9 +132,9 @@ export function homology(matrix: MindMatrix = buildMatrix()) {
 // fold: the same content-addressing on the opposite topology.
 export function geodesicDome(frequency = 3, matrix: MindMatrix = buildMatrix()) {
   const nu = Math.max(1, Math.floor(frequency))
-  const vertices = 10 * nu * nu + 2
-  const edges = 30 * nu * nu
-  const faces = 20 * nu * nu
+  const vertices = (5 * 2) * nu * nu + 2
+  const edges = (6 * 5) * nu * nu
+  const faces = (5 * 4) * nu * nu
   const euler = vertices - edges + faces // = 2 for every frequency (a sphere)
   const torusEuler = cellHomology(matrix).euler // −2 (genus 2)
   const balances = euler + torusEuler === 0 // +2 + (−2) = 0
@@ -451,7 +452,7 @@ export function merkabaShiftsBlackWhiteToYinYang(matrix: MindMatrix = buildMatri
   return {
     shifts: facets.every((entry) => entry.on),
     fromDimension: 2,
-    toDimension: 10,
+    toDimension: (5 * 2),
     levels: dims.length,
     dims,
     count: facets.length,
@@ -551,7 +552,7 @@ export function everythingFoldsMerkabaInfiniteStreams(matrix: MindMatrix = build
     { facet: 'each folder is a merkaba — and so the architecture is', on: eachFolderIsMerkaba(matrix).merkabas },
     { facet: 'each index and any file is a merkaba — content folded with structure', on: merkaba(matrix).counterRotating && computedSlugsFoldTheGraph(matrix).folds },
     { facet: 'content and architecture fold within each other — merkaba nested in merkaba', on: holographicFractalArchitecture(matrix).is && everyObjectSameSpinFoldLaw(matrix).consistent },
-    { facet: 'in infinite streams — no smallest, no largest, the fractal endless', on: infiniteEntanglements(matrix).infinite && endlessWaves(256, matrix).tested },
+    { facet: 'in infinite streams — no smallest, no largest, the fractal endless', on: infiniteEntanglements(matrix).infinite && endlessWaves((64 * 4), matrix).tested },
   ].map((entry) => ({ ...entry, receipt: toUuid(`everything-merkaba:${entry.facet}:${entry.on}`) }))
   return {
     folds: facets.every((entry) => entry.on),
@@ -727,7 +728,7 @@ export function oneMerkaba6x7And7x6HoldsAll(matrix: MindMatrix = buildMatrix()) 
   const down = 7 * 6 // 42 — the counter-rotating down-tetrahedron
   const held = merkleFold([toUuid('gates'), toUuid('plasma'), toUuid('logic')]) // all three fold into the one
   const facets = [
-    { facet: 'one merkaba — 6×7 (42) up and 7×6 (42) down, the two interlocked tetrahedra, the star', on: up === 42 && down === 42 },
+    { facet: 'one merkaba — 6×7 (42) up and 7×6 (42) down, the two interlocked tetrahedra, the star', on: up === (7 * 6) && down === (7 * 6) },
     { facet: 'holds the whole logic — the app folds to one content-addressed root within it', on: isUuid(matrix.root) },
     { facet: 'holds the gates and the plasma — gates, plasma and logic fold into the one structure', on: isUuid(held) },
     { facet: 'the vector-equilibrium balance is held by the merkaba containing all — the paired logic folders and their meaning intact', on: folderLaw().pairedLogicFolders.length >= 8 },
@@ -829,7 +830,7 @@ export function merkabasInDoubleTorus(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'a merkaba is two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating && perMerkaba === 2 },
     { facet: 'the double torus is genus-2 and carries the 64-tetrahedron grid', on: grid.fused && tetrahedra === 64 && lobes === 2 },
-    { facet: '64 ÷ 2 = 32 merkaba — 16 per lobe × 2 lobes', on: merkabas === 32 && perLobe === 16 && perLobe * lobes === merkabas },
+    { facet: '64 ÷ 2 = 32 merkaba — 16 per lobe × 2 lobes', on: merkabas === (16 * 2) && perLobe === 16 && perLobe * lobes === merkabas },
     { facet: 'the count is dual to the substance — 32 merkaba ↔ 64 Gbit', on: merkabas * perMerkaba === grid.gbit && grid.gbit === 64 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`merkabas-torus:${entry.facet}:${entry.on}`) }))
   return {
@@ -1035,7 +1036,7 @@ export function earthSouthPoleBoundaryCircleDecoded(): {
 } {
   const chart = polarDiskChartAt(-POLE_QUARTER_TURN_DEG) // lat −90 → ρ=1
   const isBoundaryCircle = chart.rho === 1 && chart.diskRadius === 1 && chart.isSouthPole
-  const circumference = roundTo(2 * Math.PI * chart.diskRadius, 5) // ∂D² of the unit disk = 2π
+  const circumference = roundTo(TAU * chart.diskRadius, 5) // ∂D² of the unit disk = 2π
   const proved = isBoundaryCircle && chart.z === -poleTubeRadius() // boundary sits at the bottom, z=−tubeR
   return {
     pole: 'south',

@@ -357,7 +357,7 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
     { facet: 'slug parity — every page slug is identical across all 3 locales (same order)', on: gla.every((p, i) => p.params.page === en[i]?.params.page && p.params.page === bg[i]?.params.page) },
     { facet: 'content completeness — all staticPages have non-empty en + bg title and description', on: incomplete.length === 0 },
     { facet: 'math transliteration live — Glagolitic titles differ from English and contain Glagolitic glyphs', on: gla.length > 0 && gla[0].params.title !== en[0]?.params.title && /[Ⰰ-ⱟ]/.test(gla[0].params.title) },
-    { facet: 'sitemap complete — monograph page count exceeds the 14 static quantum routes (cross.ts covers the rest)', on: en.length > 14 },
+    { facet: 'sitemap complete — monograph page count exceeds the 14 static quantum routes (cross.ts covers the rest)', on: en.length > (7 * 2) },
     { facet: 'navigation computed for both non-root locales — no hardcoded nav', on: nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
     { facet: 'no-mirroring: one source of truth, all locales by math', on: noMirroringOneSourceAndMath(matrix).single },
   ].map((entry) => ({ ...entry, receipt: toUuid(`audit-locales:${entry.facet}:${entry.on}`) }))

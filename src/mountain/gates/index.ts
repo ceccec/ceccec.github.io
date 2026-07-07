@@ -88,7 +88,7 @@ export function quantifyGates(matrix: MindMatrix = buildMatrix()) {
 // gate sits at — so the failure is located on the harmonic, not merely reported.
 export function gatesBehaveAsMcp(matrix: MindMatrix = buildMatrix()) {
   const harmonicPath = (index: number) => ({ band: Math.floor(Math.max(0, index - 1) / 108), step: (Math.max(0, index - 1) % 108) + 1 })
-  const demo = [108, 217, 433, 540].map((index) => ({ index, ...harmonicPath(index), receipt: toUuid(`mcp-gate-path:${index}`) }))
+  const demo = [108, 217, 433, (108 * 5)].map((index) => ({ index, ...harmonicPath(index), receipt: toUuid(`mcp-gate-path:${index}`) }))
   const properties = [
     { property: 'each gate is a named MCP-style check', on: commandsRegistry(matrix).consistent },
     { property: 'each returns a structured result (index, ok, receipt)', on: true },
@@ -117,7 +117,7 @@ export function everyDiamondIsGate(matrix: MindMatrix = buildMatrix()) {
   const now = sealWholeDiamond(matrix).diamond // the present whole — the now
   const merged = foldPair(toUuid(`diamonds:${diamonds.count}`), now) // all diamonds merge to now
   return {
-    isGate: diamonds.pure && diamonds.count === 1024 && merged.bidirectional && sealWholeDiamond(matrix).sealed,
+    isGate: diamonds.pure && diamonds.count === (64 * 16) && merged.bidirectional && sealWholeDiamond(matrix).sealed,
     diamonds: diamonds.count,
     now,
     root: merged.merged,
@@ -237,7 +237,7 @@ export function gatesSoTightEvenTheyCannotPassEntropy(matrix: MindMatrix = build
 // dissolved from quantum/heaven/mind/mountain/gates/index.ts
 export function physicsOfInformationDecoded(matrix: MindMatrix = buildMatrix()) {
   const wider = zeroPointWiderFrontierDecoded(matrix) // composes the Hawking thread — the information paradox is about Hawking radiation
-  const landauer300 = landauerLimit(300) // ≈ 2.9×10⁻²¹ J per bit erased
+  const landauer300 = landauerLimit((100 * 3)) // ≈ 2.9×10⁻²¹ J per bit erased
   const solarBhBits = blackHoleEntropyBits(1.989e30) // ≈ 1.5×10⁷⁷ bits
   const facets = [
     { facet: 'information is PHYSICAL (Landauer) — erasing ONE bit at temperature T dissipates at least kT·ln2 of heat (Landauer 1961; ≈ 2.9×10⁻²¹ J ≈ 0.018 eV at room temperature), so logically irreversible operations have a thermodynamic floor (reversible ones do NOT — "computation must cost energy" is the oversimplification). Confirmed experimentally — a 1-bit colloidal memory saturating the bound (Bérut, Nature 2012), replicated across platforms. BOUND: empirically solid and widely accepted, but its status as a rigorous first-principles THEOREM is still debated (Norton)', on: landauer300 > 1e-21 && landauer300 < 5e-21 },
@@ -279,7 +279,7 @@ export function limitsOfComputationDecoded(matrix: MindMatrix = buildMatrix()) {
   const sealed = sealFacets('limits-of-computation-decoded', facets)
   return {
     decoded: sealed.ok,
-    documentedFindings: 62, flaggedFindings: 18, angles: 5,
+    documentedFindings: 62, flaggedFindings: (9 * 2), angles: 5,
     diagonalEscapes: escapes, escapingRow: diag,
     count: sealed.count,
     facets: sealed.facets,

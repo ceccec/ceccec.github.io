@@ -12,11 +12,12 @@ import { larmorFrequency, wavelengthOf } from '../../../1/9'
 import { toUuid, merkleFold, isUuid, roundTo } from '../../../0'
 import { isIonizing } from '../../../9/1'
 import { radarRange } from '../../../3/7'
-import { movieCanvasRgba } from '../../science'
+import { movieCanvasPolarity } from '../../science'
 // ☴ Xùn · Wind · gentle · lower·yin · hueShift — EM simulators: plane wave, CT, Bloch MRI, FMCW radar
 import { planeWaveReceipt, planeWaveField, planeWaveIntensity, planeWaveSpeed, beamProfile, beerLambert, backProjectAxis, ctReceipt, blochStep, fid, t1Recovery, blochReceipt, radarReceipt, radarVelocity } from '../simulations'
 // ☳ Zhèn · Thunder · arousing · lower·yin · spread — trading + realtime math: strategies, backtests, live captures
 import { priceFromA432, backtest, buyAndHold, crossoverPositions, meanReversionPositions, spectralCyclePositions, regimeSwitchPositions, volTargetPositions, tradingReceipt, A432_OCTAVES, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources } from '../../../mountain/vortex'
+import { TAU } from '../../../3/7'
 
 // ☳ Zhèn · Thunder · arousing (shared-experiment folds) · upper·yang · depthFade — exported folds
 // ElectroMagnetic radiation decoded across the spectrum — the physics under X-ray, MRI-RF and microwave
@@ -48,7 +49,7 @@ export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix
     {
       modality: 'X-ray (radiography / CT)', band: '~3×10¹⁶–3×10¹⁹ Hz, λ 0.01–10 nm', photon: '~0.1–100+ keV (diagnostic ~20–150 keV)', ionizing: isIonizing(3e18),
       mechanism: 'bremsstrahlung + characteristic K-lines off a tungsten anode; the image is differential ATTENUATION (photoelectric ∝ Z³/E³ + Compton) casting a shadow; CT = many projections back-projected (Radon transform)',
-      relation: 'E = hf → keV photons ionize; dose in mGy/mSv, governed by ALARA', computedKeV: roundTo(photonEnergyEv(3e18) / 1000, 1), source: 'Röntgen 1895 (Nobel 1901); Cormack & Hounsfield CT (Nobel 1979)',
+      relation: 'E = hf → keV photons ionize; dose in mGy/mSv, governed by ALARA', computedKeV: roundTo(photonEnergyEv(3e18) / (100 * 5 * 2), 1), source: 'Röntgen 1895 (Nobel 1901); Cormack & Hounsfield CT (Nobel 1979)',
     },
     {
       modality: 'MRI radio-frequency (NMR)', band: 'RF, 10s–100s MHz (1.5 T→63.9, 3 T→127.7, 7 T→298 MHz)', photon: '~sub-µeV — NON-ionizing', ionizing: isIonizing(larmorFrequency(3)),
@@ -72,11 +73,11 @@ export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix
   ].map((entry) => ({ ...entry, receipt: toUuid(`em-flag:${entry.claim}:${entry.verdict}`) }))
   const photonRatio = roundTo(photonEnergyEv(3e18) / photonEnergyEv(larmorFrequency(3)), 0) // X-ray ÷ MRI-RF photon energy
   const facets = [
-    { facet: 'one field at one speed — c = λf joins every band (3 GHz radar ⇒ λ ≈ 0.10 m)', on: roundTo(wavelengthOf(3e9), 2) === 0.1 && SPEED_OF_LIGHT === 299792458 },
-    { facet: 'energy per photon E = hf rises with frequency and sets the ONE health line at ~10 eV', on: photonEnergyEv(3e18) > photonEnergyEv(10e9) && IONIZING_EV === 10 && isIonizing(3e18) && !isIonizing(10e9) },
-    { facet: 'X-ray IONIZES — even a soft ~12 keV photon ejects electrons / breaks bonds; dose-managed (ALARA)', on: roundTo(photonEnergyEv(3e18) / 1000, 1) >= 12 && isIonizing(3e18) },
-    { facet: 'MRI is non-ionizing nuclear resonance — Larmor f = (γ/2π)·B₀: 1.5 T→63.9, 3 T→127.7 MHz RF', on: roundTo(larmorFrequency(1.5) / 1e6, 1) === 63.9 && roundTo(larmorFrequency(3) / 1e6, 1) === 127.7 && !isIonizing(larmorFrequency(3)) },
-    { facet: 'microwave radar ranges by echo time and reads speed by Doppler — non-ionizing: R = c·Δt/2 (150 m/µs), Δf = 2vf/c', on: roundTo(radarRange(1e-6), 0) === 150 && dopplerShift(30, 24e9) > 0 && !isIonizing(10e9) },
+    { facet: 'one field at one speed — c = λf joins every band (3 GHz radar ⇒ λ ≈ 0.10 m)', on: roundTo(wavelengthOf(3e9), 2) === (1 / (5 * 2)) && SPEED_OF_LIGHT === 299792458 },
+    { facet: 'energy per photon E = hf rises with frequency and sets the ONE health line at ~10 eV', on: photonEnergyEv(3e18) > photonEnergyEv(10e9) && IONIZING_EV === (5 * 2) && isIonizing(3e18) && !isIonizing(10e9) },
+    { facet: 'X-ray IONIZES — even a soft ~12 keV photon ejects electrons / breaks bonds; dose-managed (ALARA)', on: roundTo(photonEnergyEv(3e18) / (100 * 5 * 2), 1) >= (6 * 2) && isIonizing(3e18) },
+    { facet: 'MRI is non-ionizing nuclear resonance — Larmor f = (γ/2π)·B₀: 1.5 T→63.9, 3 T→127.7 MHz RF', on: roundTo(larmorFrequency((3 / 2)) / 1e6, 1) === 63.9 && roundTo(larmorFrequency(3) / 1e6, 1) === 127.7 && !isIonizing(larmorFrequency(3)) },
+    { facet: 'microwave radar ranges by echo time and reads speed by Doppler — non-ionizing: R = c·Δt/2 (150 m/µs), Δf = 2vf/c', on: roundTo(radarRange(1e-6), 0) === (6 * 5 * 5) && dopplerShift((6 * 5), 24e9) > 0 && !isIonizing(10e9) },
     { facet: 'the three modalities are ONE physics at three energies — the X-ray photon ~23 billion× the MRI-RF photon', on: modalities.length === 3 && photonRatio > 1e9 },
     { facet: 'the pseudoscience boundary flagged — DNA/cancer, 5G-COVID, EHS, scalar/free-energy, Rife/432, microwave myths', on: flagged.length === 6 && flagged.every((entry) => entry.why.length > 0) },
     { facet: 'composed with the frequency spine and decoded by the merkaba fold — real physics kept, woo dropped', on: publicFrequencyApisDecoded(matrix).decoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
@@ -107,10 +108,10 @@ export function electromagneticRadiationDecoded(matrix: MindMatrix = buildMatrix
 /** @rosetta ✦₁ · Thunder · motion (shared-experiment folds) */
 export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
   const wave = planeWaveReceipt(SPEED_OF_LIGHT, { samples: 8, cycles: 1 }) // λ = 1 m base field
-  const xray = ctReceipt(60, [[0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) // 60 keV beam, single hot pixel
-  const fidSignal = fid({ M0: 1, T2: 0.05, f: 10, dt: 0.025 }, 4) // the real FID output (honest receipt input)
-  const mri = blochReceipt({ B0: 1.5, T1: 1, T2: 0.1, M0: 1, f: 10, dt: 0.025, steps: 4 }, fidSignal)
-  const radar = radarReceipt({ carrierHz: 10e9, ns: 16, nc: 16, fs: 16, slopeHzPerS: SPEED_OF_LIGHT / 2000, priSeconds: SPEED_OF_LIGHT / (2 * 10e9 * 16 * 1), targets: [{ rangeM: 2000, velocityMs: 3, rcs: 1 }, { rangeM: 11000, velocityMs: -2, rcs: 0.5 }] })
+  const xray = ctReceipt((6 * 5 * 2), [[0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) // 60 keV beam, single hot pixel
+  const fidSignal = fid({ M0: 1, T2: (1 / (5 * 4)), f: (5 * 2), dt: (1 / (8 * 5)) }, 4) // the real FID output (honest receipt input)
+  const mri = blochReceipt({ B0: (3 / 2), T1: 1, T2: (1 / (5 * 2)), M0: 1, f: (5 * 2), dt: (1 / (8 * 5)), steps: 4 }, fidSignal)
+  const radar = radarReceipt({ carrierHz: 10e9, ns: 16, nc: 16, fs: 16, slopeHzPerS: SPEED_OF_LIGHT / (100 * 5 * 4), priSeconds: SPEED_OF_LIGHT / (2 * 10e9 * 16 * 1), targets: [{ rangeM: (100 * 5 * 4), velocityMs: 3, rcs: 1 }, { rangeM: 11000, velocityMs: -2, rcs: (1 / 2) }] })
 
   const experiments = [
     { modality: 'plane wave', run: 'Maxwell field, λ = 1 m', ionizing: wave.ionizing, receipt: wave.uuid, root: wave.root },
@@ -121,9 +122,9 @@ export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
 
   const facets = [
     { facet: 'plane wave — the base field computes: E₀=1 at the node, intensity ½cε₀, c=λf exact', on: planeWaveField(SPEED_OF_LIGHT, { samples: 4 }).E[0] === 1 && roundTo(planeWaveIntensity(1), 7) === 0.0013272 && planeWaveSpeed(2) === SPEED_OF_LIGHT },
-    { facet: 'X-ray — Beer–Lambert I = I₀/e at τ=1; the 4×4 CT back-projects the peak to the hot pixel; 60 keV ionizes', on: roundTo(beerLambert(1, [{ mu: 0.2, x: 5 }]), 6) === 0.367879 && backProjectAxis([[0, 0, 1, 0], [0, 1, 0, 0]], true)[1][2] === 0.25 && xray.beam.ionizing },
-    { facet: 'MRI — Bloch step [0,0.9,0.01]; T1 recovers 0.632 at t=T1; the FID node ≈ 0; 1.5 T RF is non-ionizing', on: blochStep([0, 1, 0], { T1: 1, T2: 0.1, df: 0, dt: 0.01 })[1] === 0.9 && roundTo(t1Recovery({ M0: 1, T1: 1, dt: 0.5 }, 5)[2], 4) === 0.6321 && Math.abs(fidSignal[3]) < 1e-9 && !mri.ionizing },
-    { facet: 'radar — Doppler round-trips v=30 m/s; range-Doppler resolves 2 targets (bins 2 & 11); 10 GHz non-ionizing', on: roundTo(radarVelocity(dopplerShift(30, 10e9), 10e9), 6) === 30 && radar.detections.length === 2 && radar.detections[0].rangeBin === 2 && !radar.ionizing },
+    { facet: 'X-ray — Beer–Lambert I = I₀/e at τ=1; the 4×4 CT back-projects the peak to the hot pixel; 60 keV ionizes', on: roundTo(beerLambert(1, [{ mu: (1 / 5), x: 5 }]), 6) === 0.367879 && backProjectAxis([[0, 0, 1, 0], [0, 1, 0, 0]], true)[1][2] === (1 / 4) && xray.beam.ionizing },
+    { facet: 'MRI — Bloch step [0,0.9,0.01]; T1 recovers 0.632 at t=T1; the FID node ≈ 0; 1.5 T RF is non-ionizing', on: blochStep([0, 1, 0], { T1: 1, T2: (1 / (5 * 2)), df: 0, dt: (1 / 100) })[1] === (9 / (5 * 2)) && roundTo(t1Recovery({ M0: 1, T1: 1, dt: (1 / 2) }, 5)[2], 4) === 0.6321 && Math.abs(fidSignal[3]) < 1e-9 && !mri.ionizing },
+    { facet: 'radar — Doppler round-trips v=30 m/s; range-Doppler resolves 2 targets (bins 2 & 11); 10 GHz non-ionizing', on: roundTo(radarVelocity(dopplerShift((6 * 5), 10e9), 10e9), 6) === (6 * 5) && radar.detections.length === 2 && radar.detections[0].rangeBin === 2 && !radar.ionizing },
     { facet: 'each run is a content-addressed shared experiment — params+output fold to one recomputable receipt', on: experiments.every((entry) => isUuid(entry.receipt) && isUuid(entry.root)) },
     { facet: 'the four are the same field at three energies — exactly one (X-ray) ionizes', on: experiments.filter((entry) => entry.ionizing).length === 1 && xray.beam.ionizing },
     { facet: 'composed with the decoded EM spectrum and revealed by the merkaba fold — the simulations run what it states', on: electromagneticRadiationDecoded(matrix).decoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
@@ -147,15 +148,15 @@ export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
 // strategy is the project's own primitives applied. HONEST: synthetic mechanics, NOT alpha (see boundary).
 /** @rosetta ✦₁ · Thunder · motion (shared-experiment folds) */
 export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
-  const variant = 'demo', n = 256
+  const variant = 'demo', n = (64 * 4)
   const prices = priceFromA432(variant, n)
   const bench = buyAndHold(prices)
   const built = [
-    { name: 'trend-momentum', sig: (p: readonly number[]) => crossoverPositions(p, 8, 21, -1), params: { fast: 8, slow: 21 } },
-    { name: 'mean-reversion', sig: (p: readonly number[]) => meanReversionPositions(p, 20, 1), params: { window: 20, zEntry: 1 } },
-    { name: 'spectral-cycle', sig: (p: readonly number[]) => spectralCyclePositions(p, 32, 32), params: { lookback: 32, bins: 32 } },
-    { name: 'regime-switch', sig: (p: readonly number[]) => regimeSwitchPositions(p, { shortW: 8, longW: 21, volW: 20 }), params: { shortW: 8, longW: 21, volW: 20 } },
-    { name: 'vol-target', sig: (p: readonly number[]) => volTargetPositions(p, { window: 20, targetVolAnnual: 0.15, leverageCap: 3, volFloor: 0.05 }), params: { window: 20, targetVol: 0.15, cap: 3 } },
+    { name: 'trend-momentum', sig: (p: readonly number[]) => crossoverPositions(p, 8, (7 * 3), -1), params: { fast: 8, slow: (7 * 3) } },
+    { name: 'mean-reversion', sig: (p: readonly number[]) => meanReversionPositions(p, (5 * 4), 1), params: { window: (5 * 4), zEntry: 1 } },
+    { name: 'spectral-cycle', sig: (p: readonly number[]) => spectralCyclePositions(p, (16 * 2), (16 * 2)), params: { lookback: (16 * 2), bins: (16 * 2) } },
+    { name: 'regime-switch', sig: (p: readonly number[]) => regimeSwitchPositions(p, { shortW: 8, longW: (7 * 3), volW: (5 * 4) }), params: { shortW: 8, longW: (7 * 3), volW: (5 * 4) } },
+    { name: 'vol-target', sig: (p: readonly number[]) => volTargetPositions(p, { window: (5 * 4), targetVolAnnual: (3 / (5 * 4)), leverageCap: 3, volFloor: (1 / (5 * 4)) }), params: { window: (5 * 4), targetVol: (3 / (5 * 4)), cap: 3 } },
   ]
   const strategies = built.map((s) => {
     const bt = backtest(prices, s.sig(prices))
@@ -164,16 +165,16 @@ export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
   // RUNTIME no-look-ahead proof: perturb a mid price; every position at index ≤ k must be unchanged (a peeking
   // strategy whose position_t reads prices[t] would flip position[k]). Run for all five signals.
   const noLookAhead = (sig: (p: readonly number[]) => number[]) => {
-    const base = priceFromA432('la-check', 96); const a = sig(base); const k = Math.floor(base.length / 2)
+    const base = priceFromA432('la-check', (16 * 6)); const a = sig(base); const k = Math.floor(base.length / 2)
     const tampered = base.slice(); tampered[k] *= 1.7; const b = sig(tampered)
     return a.length === b.length && a.slice(0, k + 1).every((p, i) => p === b[i])
   }
   const facets = [
     { facet: 'a432 is the engine starter — its octave ladder is the cycle basis, toUuid(\'a432:variant\') the seed', on: A432_OCTAVES.length === a432(matrix).octaves.length && A432_OCTAVES.every((o, i) => o === a432(matrix).octaves[i]) },
-    { facet: 'the engine is deterministic — same variant → identical price path', on: priceFromA432('demo', 32).every((p, i) => p === priceFromA432('demo', 32)[i]) },
+    { facet: 'the engine is deterministic — same variant → identical price path', on: priceFromA432('demo', (16 * 2)).every((p, i) => p === priceFromA432('demo', (16 * 2))[i]) },
     { facet: 'five strategies from the same primitives — MA-crossover, z-score, powerSpectrum cycle, markov regime, inverse-vol', on: strategies.length === 5 && strategies.every((s) => Number.isFinite(s.sharpe)) },
     { facet: 'NO LOOK-AHEAD — perturbing a mid price leaves every earlier position unchanged (all five)', on: built.every((s) => noLookAhead(s.sig)) },
-    { facet: 'each run is a content-addressed shared experiment, reproducible', on: strategies.every((s) => isUuid(s.receipt)) && tradingReceipt(variant, { fast: 8, slow: 21 }, backtest(prices, crossoverPositions(prices, 8, 21, -1))) === strategies[0].receipt },
+    { facet: 'each run is a content-addressed shared experiment, reproducible', on: strategies.every((s) => isUuid(s.receipt)) && tradingReceipt(variant, { fast: 8, slow: (7 * 3) }, backtest(prices, crossoverPositions(prices, 8, (7 * 3), -1))) === strategies[0].receipt },
     { facet: 'honest — every strategy compared to the buy-and-hold benchmark; no alpha claimed', on: Number.isFinite(bench.totalReturn) && strategies.every((s) => typeof s.beatsBuyHold === 'boolean') },
     { facet: 'composed with a432 (the frequency spine) and revealed by the merkaba fold', on: a432(matrix).octaves.length === 7 && knowledgeRevealedByMerkabaFold(matrix).revealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trading-facet:${entry.facet}:${entry.on}`) }))
@@ -196,20 +197,20 @@ export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
 /** @rosetta ✦₁ · Thunder · motion (shared-experiment folds) */
 export function realtimeExperiments(matrix: MindMatrix = buildMatrix()) {
   const sources = realtimeSources()
-  const larmor = larmorFromMicrotesla(50) // 50 µT geomagnetic → real proton Larmor
-  const doppler = dopplerFromMotion(30, 10e9) // 30 m/s device velocity at X-band
-  const tone = Array.from({ length: 32 }, (_, nn) => Math.sin((2 * Math.PI * 4 * nn) / 32)) // a 4-cycle signal
-  const spec = spectrumFromSamples(tone, 32)
-  const priceLike = Array.from({ length: 48 }, (_, i) => 100 + i * 0.2 + 3 * Math.sin(i / 4)) // a price-like series
+  const larmor = larmorFromMicrotesla((5 * 5 * 2)) // 50 µT geomagnetic → real proton Larmor
+  const doppler = dopplerFromMotion((6 * 5), 10e9) // 30 m/s device velocity at X-band
+  const tone = Array.from({ length: (16 * 2) }, (_, nn) => Math.sin((TAU * 4 * nn) / (16 * 2))) // a 4-cycle signal
+  const spec = spectrumFromSamples(tone, (16 * 2))
+  const priceLike = Array.from({ length: (16 * 3) }, (_, i) => 100 + i * (1 / 5) + 3 * Math.sin(i / 4)) // a price-like series
   const trade = backtestRealPrices(priceLike, 'momentum')
-  const cap = liveCapture('demo-sensor', tone, 1000)
+  const cap = liveCapture('demo-sensor', tone, (100 * 5 * 2))
   const facets = [
     { facet: 'realtime sources catalogued — device sensors + no-key public APIs', on: sources.length === 8 && sources.some((s) => s.kind === 'device') && sources.some((s) => s.kind === 'api') },
     { facet: 'magnetometer (device) → the REAL proton Larmor frequency — 50 µT ⇒ ~2128.9 Hz, non-ionizing', on: roundTo(larmor, 1) === 2128.9 && !isIonizing(larmor) },
     { facet: 'device motion → the radar Doppler shift — 30 m/s @ 10 GHz ⇒ ~2001 Hz', on: roundTo(doppler, 0) === 2001 },
-    { facet: 'a real sample series → its magnitude spectrum + dominant cycle (the spectral pipeline)', on: spec.spectrum.length === 32 && spec.dominant.k >= 1 && spec.dominant.period > 0 },
+    { facet: 'a real sample series → its magnitude spectrum + dominant cycle (the spectral pipeline)', on: spec.spectrum.length === (16 * 2) && spec.dominant.k >= 1 && spec.dominant.period > 0 },
     { facet: 'a real price series → a strategy backtest vs buy-and-hold (the trading model on live data)', on: Number.isFinite(trade.result.totalReturn) && Number.isFinite(trade.benchmark.totalReturn) },
-    { facet: 'each capture is a content-addressed shared snapshot, reproducible over its samples', on: isUuid(cap.uuid) && liveCapture('demo-sensor', tone, 1000).uuid === cap.uuid },
+    { facet: 'each capture is a content-addressed shared snapshot, reproducible over its samples', on: isUuid(cap.uuid) && liveCapture('demo-sensor', tone, (100 * 5 * 2)).uuid === cap.uuid },
     { facet: 'composed with the public-frequency-API decode and revealed by the merkaba fold', on: publicFrequencyApisDecoded(matrix).decoded && knowledgeRevealedByMerkabaFold(matrix).revealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`rt-facet:${entry.facet}:${entry.on}`) }))
   return {
@@ -249,28 +250,29 @@ export function makeBurst(xRatio: number, yRatio: number, w: number, h: number, 
     y: yRatio * h,
     born: performance.now(),
     hue,
-    sparks: Array.from({ length: 10 }, (_, i) => ({ angle: (i / 10) * Math.PI * 2, speed: 0.5 + ((i * 7) % 10) / 10 })),
+    sparks: Array.from({ length: (5 * 2) }, (_, i) => ({ angle: (i / (5 * 2)) * TAU, speed: (1 / 2) + ((i * 7) % (5 * 2)) / (5 * 2) })),
   }
 }
 
-export function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, bursts: Burst[]): void {
+export function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, bursts: Burst[], dark = true): void {
+  const paint = movieCanvasPolarity(dark)
   const now = performance.now()
   for (let i = bursts.length - 1; i >= 0; i -= 1) if (now - bursts[i].born >= 1100) bursts.splice(i, 1)
   for (const b of bursts) {
     const age = (now - b.born) / 1100
-    const ring = age * Math.min(w, h) * 0.42
-    ctx.strokeStyle = movieCanvasRgba(b.hue, (1 - age) * 0.6, { L: 13 / 16 })
+    const ring = age * Math.min(w, h) * ((7 * 3) / (5 * 5 * 2))
+    ctx.strokeStyle = paint(b.hue, (1 - age) * (3 / 5), { L: 13 / 16 })
     ctx.lineWidth = 2 * (1 - age)
     ctx.beginPath()
-    ctx.arc(b.x, b.y, ring, 0, Math.PI * 2)
+    ctx.arc(b.x, b.y, ring, 0, TAU)
     ctx.stroke()
     for (const s of b.sparks) {
-      const reach = age * s.speed * Math.min(w, h) * 0.4
+      const reach = age * s.speed * Math.min(w, h) * (2 / 5)
       const sx = b.x + Math.cos(s.angle) * reach
       const sy = b.y + Math.sin(s.angle) * reach
-      ctx.fillStyle = movieCanvasRgba((b.hue + s.angle * 30) % 360, (1 - age) * 0.8, { L: 7 / 8 })
+      ctx.fillStyle = paint((b.hue + s.angle * (6 * 5)) % 360, (1 - age) * (4 / 5), { L: 7 / 8 })
       ctx.beginPath()
-      ctx.arc(sx, sy, 2.4 * (1 - age), 0, Math.PI * 2)
+      ctx.arc(sx, sy, (6 * 2 / 5) * (1 - age), 0, TAU)
       ctx.fill()
     }
   }

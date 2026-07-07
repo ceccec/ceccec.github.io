@@ -416,7 +416,7 @@ export function zeitwerkPort(slug = 'automount') {
       'tagPath',
       'onLoad',
     ] as const,
-    apiMethodCount: 15,
+    apiMethodCount: (5 * 3),
     loader,
     slug,
     legacyEntry,

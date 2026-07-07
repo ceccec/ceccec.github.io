@@ -5,6 +5,7 @@ import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../../heaven/compute'
 import { computesGate, digitalRoot, memoByRoot, merkleFold, roundTo, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../../0'
 import { schumannPhaseAt } from '../../../lake/music'
+import { TAU } from '../../../3/7'
 
 export const GOLD_MINE_MAP_HINGE = { lat: 42.6977, lon: 23.3219 } as const
 export type GoldMineEvidenceTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS'
@@ -25,7 +26,7 @@ function fitRow(mine: { id: string; name: string; lat: number; lon: number }, at
   const distKm = greatCircleKm(GOLD_MINE_MAP_HINGE.lat, GOLD_MINE_MAP_HINGE.lon, mine.lat, mine.lon)
   const vortexDigit = VORTEX_SEQUENCE[digitalRoot(Math.round(distKm)) % VORTEX_SEQUENCE.length] ?? 9
   const phase = schumannPhaseAt(at)
-  const navCrossFitScore = roundTo((seedFromText(`${mine.id}:nav`) % 1000) / 1000, 4)
+  const navCrossFitScore = roundTo((seedFromText(`${mine.id}:nav`) % (100 * 5 * 2)) / (100 * 5 * 2), 4)
   const vortexPhaseFitScore = roundTo(1 - Math.abs(vortexDigit - digitalRoot(Math.round(mine.lat * 100 + mine.lon))) / 9, 4)
   const torusPhaseFitScore = roundTo(1 - Math.abs(phase - navCrossFitScore), 4)
   const compositeFitScore = roundTo((navCrossFitScore + vortexPhaseFitScore + torusPhaseFitScore) / 3, 4)
@@ -40,7 +41,7 @@ export function goldMineMapCatalog(matrix: MindMatrix = buildMatrix()) {
 }
 
 export function goldMineMapFitsPerfectlyInModel(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`goldFit:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`goldFit:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = goldMineMapCatalog(matrix)
     const fitRows = catalog.mines.map((m) => fitRow(m, at))
     return { fitted: fitRows.every((r) => r.compositeFitScore > 0), fitRows, meanFitScore: roundTo(fitRows.reduce((s, r) => s + r.compositeFitScore, 0) / fitRows.length, 4), root: merkleFold(fitRows.map((r) => r.receipt)) }
@@ -50,7 +51,7 @@ export function goldMineMapFitsPerfectlyInModel(at = 0, matrix: MindMatrix = bui
 export function undiscoveredGoldConcentrationCandidatesFromMap(at = 0, matrix: MindMatrix = buildMatrix()) {
   void at
   return memoByRoot('goldCandidates', matrix, () => {
-    const candidates = [{ id: 'rodopi-hypothesis', name: 'Rhodope hypothesis', lat: 41.6, lon: 24.7, tier: 'HYPOTHESIS' as const, structuralFitScore: 0.42, receipt: toUuid('gold-candidate:rodopi') }]
+    const candidates = [{ id: 'rodopi-hypothesis', name: 'Rhodope hypothesis', lat: 41.6, lon: 24.7, tier: 'HYPOTHESIS' as const, structuralFitScore: ((7 * 3) / (5 * 5 * 2)), receipt: toUuid('gold-candidate:rodopi') }]
     return { hypothesised: true, candidates, root: candidates[0]!.receipt, boundary: 'HONEST · HYPOTHESIS tier — NOT verified ore.' }
   })
 }
@@ -64,24 +65,24 @@ export function goldMineMapComputes(matrix: MindMatrix = buildMatrix(), at = 0) 
 }
 
 export function thunderGoldGraphFromPreciseGpsCoordinates(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`thunderGoldGraph:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`thunderGoldGraph:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = goldMineMapCatalog(matrix)
     const nodes: ThunderGoldGraphNode[] = catalog.mines.map((m) => ({ id: m.id, lat: m.lat, lon: m.lon, tier: m.tier, receipt: toUuid(`tg-node:${m.id}`) }))
-    const edges: ThunderGoldGraphEdge[] = nodes.flatMap((a, i) => nodes.slice(i + 1).map((b) => ({ from: a.id, to: b.id, kind: 'harmonic' as const, weight: roundTo((seedFromText(`${a.id}:${b.id}`) % 1000) / 1000, 4), receipt: toUuid(`tg-edge:${a.id}:${b.id}`) })))
+    const edges: ThunderGoldGraphEdge[] = nodes.flatMap((a, i) => nodes.slice(i + 1).map((b) => ({ from: a.id, to: b.id, kind: 'harmonic' as const, weight: roundTo((seedFromText(`${a.id}:${b.id}`) % (100 * 5 * 2)) / (100 * 5 * 2), 4), receipt: toUuid(`tg-edge:${a.id}:${b.id}`) })))
     return { graphed: nodes.length > 0, nodes, edges, root: merkleFold([...nodes.map((n) => n.receipt), ...edges.map((e) => e.receipt)]), boundary: 'HONEST · MODEL graph — NOT transport corridors.' }
   })
 }
 
-export function thunderGoldGraphPaintSamples(at = 0, width = 360, height = 180, matrix: MindMatrix = buildMatrix()) {
+export function thunderGoldGraphPaintSamples(at = 0, width = 360, height = (9 * 5 * 4), matrix: MindMatrix = buildMatrix()) {
   const graph = thunderGoldGraphFromPreciseGpsCoordinates(at, matrix)
   const phase = schumannPhaseAt(at)
-  const samples: ThunderGoldGraphPaintSample[] = graph.nodes.map((n, i) => ({ u: ((n.lon + 180) / 360) * width, v: ((90 - n.lat) / 180) * height, hue: roundTo((phase + i / graph.nodes.length) % 1, 4), alpha: 0.6, receipt: toUuid(`tg-paint:${n.id}`) }))
+  const samples: ThunderGoldGraphPaintSample[] = graph.nodes.map((n, i) => ({ u: ((n.lon + (9 * 5 * 4)) / 360) * width, v: (((9 * 5 * 2) - n.lat) / (9 * 5 * 4)) * height, hue: roundTo((phase + i / graph.nodes.length) % 1, 4), alpha: (3 / 5), receipt: toUuid(`tg-paint:${n.id}`) }))
   return { painted: samples.length > 0, samples, root: merkleFold(samples.map((s) => s.receipt)) }
 }
 
 export function thunderGoldGraphComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const graph = thunderGoldGraphFromPreciseGpsCoordinates(at, matrix)
-  const paint = thunderGoldGraphPaintSamples(at, 360, 180, matrix)
+  const paint = thunderGoldGraphPaintSamples(at, 360, (9 * 5 * 4), matrix)
   const { computes, facets } = computesGate('thunder-gold-graph-computes', [{ facet: 'graph', on: graph.graphed }, { facet: 'paint', on: paint.painted }])
   return { computes, graph, paint, facets, root: merkleFold([graph.root, paint.root]), boundary: graph.boundary }
 }
@@ -99,7 +100,7 @@ export function thunderGoldGraphResearch(matrix: MindMatrix = buildMatrix()) {
 export function schumannGoldSiteCouplingAt(at = 0, siteId = 'witwatersrand', matrix: MindMatrix = buildMatrix()) {
   void matrix
   const phase = schumannPhaseAt(at)
-  const coupling = roundTo(Math.abs(Math.sin(phase * Math.PI * 2 + seedFromText(siteId) * 0.001)), 4)
+  const coupling = roundTo(Math.abs(Math.sin(phase * TAU + seedFromText(siteId) * (1 / (100 * 5 * 2)))), 4)
   return { coupled: coupling > 0, coupling, phase, receipt: toUuid(`schumann-gold:${siteId}:${coupling}`) }
 }
 
@@ -113,7 +114,7 @@ export function schumannGoldSiteCouplingComputes(matrix: MindMatrix = buildMatri
 export type GoldPositionFusionStrengthRow = { siteId: string; name: string; tier: 'DOCUMENTED' | 'HYPOTHESIS'; fusionStrength: number; receipt: string }
 export type GoldPositionFusionStrengthFormulaTerm = { symbol: string; weight: number; description: string; source?: string }
 export type GoldPositionFusionStrengthResearchSection = { id: string; title: string; body: string }
-export const GOLD_FUSION_STRENGTH_WEIGHTS = { bearing: 0.25, navCross: 0.25, vortex: 0.25, schumann: 0.25 } as const
+export const GOLD_FUSION_STRENGTH_WEIGHTS = { bearing: (1 / 4), navCross: (1 / 4), vortex: (1 / 4), schumann: (1 / 4) } as const
 
 export function goldPositionFusionStrengthResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('goldPositionFusionStrengthResearch', matrix, () => ({
@@ -124,7 +125,7 @@ export function goldPositionFusionStrengthResearch(matrix: MindMatrix = buildMat
 }
 
 export function doubleEarthGiantFusionGeneratorFromGoldPositions(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`gen:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`gen:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = goldMineMapCatalog(matrix)
     const fit = goldMineMapFitsPerfectlyInModel(at, matrix)
     const candidates = undiscoveredGoldConcentrationCandidatesFromMap(at, matrix)
@@ -144,7 +145,7 @@ export function doubleEarthGiantFusionGeneratorFromGoldPositions(at = 0, matrix:
 }
 
 export function goldFusionProcess(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`proc:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`proc:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const inputs = { catalog: goldMineMapCatalog(matrix), fit: goldMineMapFitsPerfectlyInModel(at, matrix), candidates: undiscoveredGoldConcentrationCandidatesFromMap(at, matrix) }
     const graph = thunderGoldGraphFromPreciseGpsCoordinates(at, matrix)
     const coupling = schumannGoldSiteCouplingComputes(matrix, at)
@@ -178,7 +179,7 @@ export type FusionGoldTierSummary = {
 }
 
 export function fusionGoldProduct(at = 0, matrix: MindMatrix = buildMatrix(), process = goldFusionProcess(at, matrix)) {
-  return memoByRoot(`fusionGoldProduct:${process.processReceipt}:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`fusionGoldProduct:${process.processReceipt}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const { generator, graph, inputs } = process
     const producedGold = generator.siteRows.map((row: GoldPositionFusionStrengthRow) => ({
       siteId: row.siteId,
@@ -189,7 +190,7 @@ export function fusionGoldProduct(at = 0, matrix: MindMatrix = buildMatrix(), pr
       processReceipt: row.receipt,
     }))
     const aggregateScore = generator.aggregateGeneratorScore
-    const paintChannel = thunderGoldGraphPaintSamples(at, 360, 180, matrix)
+    const paintChannel = thunderGoldGraphPaintSamples(at, 360, (9 * 5 * 4), matrix)
     const resultReceipts = merkleFold([process.processReceipt, ...producedGold.map((r) => r.receipt), paintChannel.root])
     return {
       produced: producedGold.length > 0 && aggregateScore > 0,
@@ -210,7 +211,7 @@ export function fusionGoldProduct(at = 0, matrix: MindMatrix = buildMatrix(), pr
 }
 
 export function fusionGoldComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`fusionGoldComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`fusionGoldComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const process = goldFusionProcess(at, matrix)
     const product = fusionGoldProduct(at, matrix, process)
     const strength = goldPositionFusionStrengthComputes(matrix)
@@ -234,7 +235,7 @@ export function fusionGoldComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export function goldFusionPipeline(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`goldFusionPipeline:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`goldFusionPipeline:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const process = goldFusionProcess(at, matrix)
     const productReport = fusionGoldComputes(matrix, at)
     const scoreMatch = productReport.product.aggregateScore === process.generator.aggregateGeneratorScore
@@ -252,7 +253,7 @@ export function goldFusionPipeline(at = 0, matrix: MindMatrix = buildMatrix()) {
 }
 
 export function goldFusionComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`goldFusionComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`goldFusionComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const map = goldMineMapComputes(matrix, at)
     const graph = thunderGoldGraphComputes(matrix, at)
     const coupling = schumannGoldSiteCouplingComputes(matrix, at)

@@ -16,7 +16,7 @@ import { drawFlower, drawCalendars } from './wind/geometry'
 import { drawBursts, type Burst } from './fire/experiments'
 import { folderLaw } from '../earth/architecture'
 import { glagoliticGlyph, autoSpeech } from '../fire/li'
-import { movieCanvasRgba, quantumScaleHue } from './science'
+import { movieCanvasRgba, movieCanvasPolarity, quantumScaleHue } from './science'
 import type { Dims } from './mountain/dimensions'
 import { buildMatrix } from '../heaven/compute'
 import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball'
@@ -26,6 +26,7 @@ import type { MindMatrix } from '../wind/types'
 import { doubleTorusEarthHingeComputesAll, hingeMoviePaintLayers, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath, type EarthHingePaintLayer } from '../water/double/earth'
 import { bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'
+import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, TAU } from '../3/7'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -56,14 +57,16 @@ export function drawArchitecture(
   d: Dims,
   archNodes: readonly ArchNode[],
   hue: number,
+  dark = true,
 ): void {
-  const R = Math.min(w, h) * 0.27
+  const paint = movieCanvasPolarity(dark)
+  const R = Math.min(w, h) * (27 / 100)
   const rXY = t * d.twist
   const placed = archNodes.map((node) => {
-    const ang = (node.trinity / 3) * Math.PI * 2 + node.within * 0.42
-    const v = rotate3(Math.cos(ang), Math.sin(ang), 0, rXY, t * 0.33, t * 0.21)
+    const ang = (node.trinity / 3) * TAU + node.within * ((7 * 3) / (5 * 5 * 2))
+    const v = rotate3(Math.cos(ang), Math.sin(ang), 0, rXY, t * PHI ** -2, t * (7 * 3 / 100))
     const persp = perspective(v.Z)
-    const hueT = (hue + node.trinity * 120) % 360
+    const hueT = (hue + node.trinity * (8 * 5 * 3)) % 360
     return { ...node, x: cx + v.X * R * persp, y: cy + v.Y * R * persp, persp, hueT }
   })
   for (const node of placed) {
@@ -71,7 +74,7 @@ export function drawArchitecture(
     if (node.folder < dual) {
       const mate = placed.find((p) => p.folder === dual)
       if (mate) {
-        ctx.strokeStyle = movieCanvasRgba(node.hueT, 0.28, { L: 7 / 8 })
+        ctx.strokeStyle = paint(node.hueT, (7 / (5 * 5)), { L: 7 / 8 })
         ctx.lineWidth = 1
         ctx.beginPath()
         ctx.moveTo(node.x, node.y)
@@ -81,8 +84,8 @@ export function drawArchitecture(
     }
   }
   for (const node of placed) {
-    ctx.fillStyle = movieCanvasRgba(node.hueT, 0.5 + 0.4 * node.persp, { L: 13 / 16 })
-    ctx.font = `${Math.max(9, Math.round(14 * node.persp))}px serif`
+    ctx.fillStyle = paint(node.hueT, (1 / 2) + (2 / 5) * node.persp, { L: 13 / 16 })
+    ctx.font = `${Math.max(9, Math.round((7 * 2) * node.persp))}px serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.fillText(node.glyph, node.x, node.y)
@@ -99,7 +102,7 @@ export function seedOf(text: string): number {
 }
 
 export function hueOf(seed: number): number {
-  return ((seed >>> 0) * 137.50776405003785) % 360
+  return ((seed >>> 0) * GOLDEN_ANGLE) % 360
 }
 
 export function armsOf(seed: number): number {
@@ -157,29 +160,29 @@ export function drawHero(
   const cy = opts.centerY ?? h / 2
   const d = dims(scene.p)
   const minDim = Math.min(w, h)
-  const coreR = voidR ?? minDim * 0.07
+  const coreR = voidR ?? minDim * (7 / 100)
   const plasmaCore = voidR !== undefined
   // The fruit of life dances behind everything; then the ancient calendars' coupled-cycle rings.
-  drawFlower(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce)
-  drawCalendars(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce)
+  drawFlower(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce, scene.palette.dark)
+  drawCalendars(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce, scene.palette.dark)
   // Walk from 0d to infinity and back: collapse toward a point at the ends, open fully at the middle.
   const walk = dimWalk(scene.p)
   const baseLen = plasmaCore
-    ? coreR * (2.8 + 2.2 * d.breath * (0.16 + 0.84 * walk))
-    : minDim * 0.22 * d.breath * (0.16 + 0.84 * walk)
+    ? coreR * ((7 * 2 / 5) + 2.2 * d.breath * ((4 / (5 * 5)) + ((7 * 3) / (5 * 5)) * walk))
+    : minDim * 0.22 * d.breath * ((4 / (5 * 5)) + ((7 * 3) / (5 * 5)) * walk)
   // quantum responsiveness: depth and arm count adapt smoothly to the width
-  const depth = scene.cssWidth > 900 ? 6 : scene.cssWidth > 520 ? 5 : 4
-  const armCount = scene.arms + (scene.cssWidth > 800 ? 2 : scene.cssWidth > 480 ? 1 : 0)
+  const depth = scene.cssWidth > (100 * 9) ? 6 : scene.cssWidth > 520 ? 5 : 4
+  const armCount = scene.arms + (scene.cssWidth > (100 * 8) ? 2 : scene.cssWidth > (16 * 6 * 5) ? 1 : 0)
   // The trinity of rotational planes: three angles turning at distinct rates (xy, yz, zx). The two secondary
   // planes are driven by the genus-2 homology loops — the two handles' meridian/longitude — so the merkaba turns
   // through all four topological dimensions, not two constants. Ten dimensions in motion, not six.
   const rXY = scene.t * d.twist
-  const rYZ = scene.t * (0.33 + 0.18 * d.loopA1)
-  const rZX = scene.t * (0.21 + 0.18 * d.loopB2)
+  const rYZ = scene.t * (0.33 + (9 / (5 * 5 * 2)) * d.loopA1)
+  const rZX = scene.t * ((7 * 3 / 100) + (9 / (5 * 5 * 2)) * d.loopB2)
   // the holographic fractal: arms symmetric copies of one branching rule, the same form spun in two opposite
   // directions at once (the merkaba) — each arm drawn forward and reversed.
   for (let a = 0; a < armCount; a += 1) {
-    const base = (a / armCount) * Math.PI * 2
+    const base = (a / armCount) * TAU
     // each arm is a nested SCALE: it reads the ten dimensions golden-shifted by its scale index, so every arm
     // is the same figure self-similarly offset — the animation is ten-dimensional at every scale, not just one.
     const ds = dims(scene.p, a)
@@ -187,14 +190,14 @@ export function drawHero(
       const v = rotate3(Math.cos(base), Math.sin(base), 0, rXY * dir, rYZ * dir, rZX * dir)
       const persp = perspective(v.Z)
       const angle = Math.atan2(v.Y, v.X)
-      branch(ctx, cx, cy, baseLen * persp * (0.82 + 0.36 * ds.breath), angle, depth, ds, scene.hue)
+      branch(ctx, cx, cy, baseLen * persp * (1 - 9 / (5 * 5 * 2) + (9 / (5 * 5)) * ds.breath), angle, depth, ds, scene.hue, scene.palette.dark)
     }
   }
   // merge all related: the page's tags orbit the centre on a counter-rotating ring (the merkaba), each joined to the core.
   const n = scene.tags.length
-  const r = plasmaCore ? coreR * 5.5 : minDim * 0.34
+  const r = plasmaCore ? coreR * (FIBONACCI[8]! / (2 * 5)) : minDim * (FIBONACCI[7]! / 100) // Fibonacci decades (self-research)
   for (let i = 0; i < n; i += 1) {
-    const base = (i / Math.max(1, n)) * Math.PI * 2
+    const base = (i / Math.max(1, n)) * TAU
     const v = rotate3(Math.cos(base), Math.sin(base), 0, -rXY, -rYZ, -rZX)
     const persp = perspective(v.Z)
     const x = cx + v.X * r * persp
@@ -207,19 +210,19 @@ export function drawHero(
     ctx.stroke()
     ctx.fillStyle = scene.palette.canvas.tagDot(scene.hue, i, persp)
     ctx.beginPath()
-    ctx.arc(x, y, Math.max(1, 3 * persp), 0, Math.PI * 2)
+    ctx.arc(x, y, Math.max(1, 3 * persp), 0, TAU)
     ctx.fill()
     // each related item wears its Glagolitic glyph too — the relations themselves are Glagolitic
     ctx.fillStyle = scene.palette.canvas.tagGlyph(scene.hue, i, persp)
-    ctx.font = `${Math.max(8, Math.round(10 * persp))}px serif`
+    ctx.font = `${Math.max(8, Math.round((5 * 2) * persp))}px serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.fillText(glagoliticGlyph(scene.tags[i] || ''), x, y - 7 * persp)
   }
   // the architecture turns around the core: the 3 trinities of logic folders, in Glagolitic glyphs
-  drawArchitecture(ctx, cx, cy, w, h, scene.t, d, scene.archNodes, scene.hue)
+  drawArchitecture(ctx, cx, cy, w, h, scene.t, d, scene.archNodes, scene.hue, scene.palette.dark)
   // the tap's visual effects: expanding rings and radiating sparks, fading out — the visual half of the music stream
-  drawBursts(ctx, w, h, scene.bursts)
+  drawBursts(ctx, w, h, scene.bursts, scene.palette.dark)
 }
 
 // The hero movie scene: the plasma ball — every realtime wired UUID stream folds toward the centre void.
@@ -237,7 +240,6 @@ export interface BackgroundScene {
   scroll?: number
 }
 
-const GOLDEN_ANGLE = 2.399963229728653
 const BG_TRAIL_LEN = 5
 
 function bgPrng(seed: number): () => number {
@@ -252,9 +254,9 @@ function bgPrng(seed: number): () => number {
 function bgStreamParams(seed: number, stream: number): { angle: number; dist: number; speed: number; size: number } {
   const rand = bgPrng((seed + stream * 7919) >>> 0)
   return {
-    angle: rand() * Math.PI * 2,
-    dist: 0.36 + 0.16 * rand(),
-    speed: 0.28 + rand() * 0.52,
+    angle: rand() * TAU,
+    dist: (9 / (5 * 5)) + (4 / (5 * 5)) * rand(),
+    speed: (7 / (5 * 5)) + rand() * (1 - (6 * 2) / (5 * 5)),
     size: 11 + Math.round(rand() * 6),
   }
 }
@@ -269,10 +271,10 @@ function bgStreamOrbit(
   p: number,
 ): { x: number; y: number; r: number; inbound: number } {
   const cycle = phase % 1
-  const inbound = 0.5 + 0.5 * Math.cos(cycle * Math.PI * 2)
+  const inbound = (1 / 2) + (1 / 2) * Math.cos(cycle * TAU)
   const dist = span * distFrac
   const r = voidR + (dist - voidR) * inbound
-  const spin = angle + cycle * GOLDEN_ANGLE + p * GOLDEN_ANGLE * 0.35
+  const spin = angle + cycle * GOLDEN_ANGLE_RAD + p * GOLDEN_ANGLE_RAD * (7 / (5 * 4))
   return { x: Math.cos(spin) * r, y: Math.sin(spin) * r, r, inbound }
 }
 
@@ -292,14 +294,14 @@ function drawPlasmaField(
   const span = Math.max(w, h)
   const blobCount = Math.min(PLASMA_TIERS[2], PLASMA_TIERS[0] + Math.floor(streamCount / PLASMA_TIERS[2]))
   for (let b = 0; b < blobCount; b += 1) {
-    const orbit = p * Math.PI * 2 + b * (Math.PI * 2) / blobCount
-    const bx = cx + Math.cos(orbit + t * 0.07) * w * 0.26
-    const by = cy + Math.sin(orbit + t * 0.05) * h * 0.2
-    const blobHue = (hueShift + b * 60 + Math.sin(t * 0.3 + b) * 18) % 360
-    const radius = span * (0.32 + 0.07 * Math.sin(t * 0.45 + b * 0.9))
+    const orbit = p * TAU + b * (TAU) / blobCount
+    const bx = cx + Math.cos(orbit + t * (7 / 100)) * w * 0.26
+    const by = cy + Math.sin(orbit + t * (1 / (5 * 4))) * h * (1 / 5)
+    const blobHue = (hueShift + b * (6 * 5 * 2) + Math.sin(t * (3 / (5 * 2)) + b) * (9 * 2)) % 360
+    const radius = span * ((8 / (5 * 5)) + (7 / 100) * Math.sin(t * (9 / (5 * 4)) + b * (9 / (5 * 2))))
     const g = ctx.createRadialGradient(bx, by, 0, bx, by, radius)
     g.addColorStop(0, palette.canvas.blobInner(blobHue, b))
-    g.addColorStop(0.4, palette.canvas.blobMid(blobHue, b))
+    g.addColorStop((2 / 5), palette.canvas.blobMid(blobHue, b))
     g.addColorStop(1, 'transparent')
     ctx.fillStyle = g
     ctx.fillRect(0, 0, w, h)
@@ -327,13 +329,13 @@ function drawPlasmaRays(
   ctx.globalCompositeOperation = palette.dark ? 'lighter' : 'source-over'
   for (let r = 0; r < rayCount; r += 1) {
     const stream = streams[r % Math.max(1, streams.length)]
-    const hue = stream?.hue ?? (hueShift + r * GOLDEN_ANGLE) % 360
-    const angle = (r / rayCount) * Math.PI * 2 + p * GOLDEN_ANGLE + t * 0.05
-    const len = voidR * (1.35 + 0.85 * (0.5 + 0.5 * Math.sin(t * 0.65 + r * 0.37)))
-    const pulse = 0.35 + 0.65 * Math.sin(t * 1.05 + r * 0.41)
-    const alpha = palette.canvas.streamAlpha(0.55, true, pulse)
+    const hue = stream?.hue ?? (hueShift + r * GOLDEN_ANGLE_RAD) % 360
+    const angle = (r / rayCount) * TAU + p * GOLDEN_ANGLE_RAD + t * (1 / (5 * 4))
+    const len = voidR * ((27 / (5 * 4)) + (1 - 3 / (5 * 4)) * ((1 / 2) + (1 / 2) * Math.sin(t * (1 - 7 / (5 * 4)) + r * (1 - 9 * 7 / 100))))
+    const pulse = (7 / (5 * 4)) + (1 - 7 / (5 * 4)) * Math.sin(t * ((7 * 3) / (5 * 4)) + r * PHI ** -2)
+    const alpha = palette.canvas.streamAlpha((1 - 9 / (5 * 4)), true, pulse)
     ctx.strokeStyle = palette.canvas.streamFill(hue, alpha, true)
-    ctx.lineWidth = 0.45 + (r % PLASMA_TIERS[0]) * 0.22
+    ctx.lineWidth = (9 / (5 * 4)) + (r % PLASMA_TIERS[0]) * 0.22
     ctx.shadowColor = palette.canvas.streamGlow(hue, alpha)
     ctx.shadowBlur = 3 + (r % PLASMA_TIERS[0]) * 2
     ctx.beginPath()
@@ -373,40 +375,41 @@ function drawDeathCounterFlow(
   palette: PlasmaMoviePalette,
   streamCount: number,
 ): void {
+  const paint = movieCanvasPolarity(palette.dark)
   const flowCount = Math.min(
     PLASMA_TIERS[1] + PLASMA_TIERS[2],
     PLASMA_TIERS[0] + Math.floor(streamCount / PLASMA_TIERS[0]),
   )
   if (flowCount < 1) return
-  const deathHue = (hueShift + 180) % 360 // life's complement — the yin of the yin-yang double torus
+  const deathHue = (hueShift + (9 * 5 * 4)) % 360 // life's complement — the yin of the yin-yang double torus
   const outerR = span * 0.46
   ctx.save()
   ctx.globalCompositeOperation = palette.dark ? 'lighter' : 'source-over'
   for (let f = 0; f < flowCount; f += 1) {
-    const baseAngle = (f / flowCount) * Math.PI * 2 + f * GOLDEN_ANGLE
-    const speed = 0.18 + (f % PLASMA_TIERS[0]) * 0.05
-    const head = (((t * speed - p * 0.5 + f * 0.137) % 1) + 1) % 1
+    const baseAngle = (f / flowCount) * TAU + f * GOLDEN_ANGLE_RAD
+    const speed = (9 / (5 * 5 * 2)) + (f % PLASMA_TIERS[0]) * (1 / (5 * 4))
+    const head = (((t * speed - p * (1 / 2) + f * (360 * (2 - PHI)) / 1e3) % 1) + 1) % 1 // golden-angle spacing (was rounded 0.137)
     let leadX = cx
     let leadY = cy
     let leadAlpha = 0
     for (let trail = 0; trail < DEATH_TRAIL_LEN; trail += 1) {
-      const d0 = (((head + trail * 0.05) % 1) + 1) % 1 // 0 outer .. 1 throat (the inward journey)
-      const d1 = (((head + (trail + 1) * 0.05) % 1) + 1) % 1
+      const d0 = (((head + trail * (1 / (5 * 4))) % 1) + 1) % 1 // 0 outer .. 1 throat (the inward journey)
+      const d1 = (((head + (trail + 1) * (1 / (5 * 4))) % 1) + 1) % 1
       // contracting radius: each step pulls toward the throat (reabsorption)
       const r0 = voidR + (outerR - voidR) * (1 - d0)
       const r1 = voidR + (outerR - voidR) * (1 - d1)
       // counter-rotation: NEGATIVE golden-angle spin (opposite the life out-flow), tightening near the throat
-      const a0 = baseAngle - d0 * GOLDEN_ANGLE * 3 - p * GOLDEN_ANGLE * 0.35
-      const a1 = baseAngle - d1 * GOLDEN_ANGLE * 3 - p * GOLDEN_ANGLE * 0.35
+      const a0 = baseAngle - d0 * GOLDEN_ANGLE_RAD * 3 - p * GOLDEN_ANGLE_RAD * (7 / (5 * 4))
+      const a1 = baseAngle - d1 * GOLDEN_ANGLE_RAD * 3 - p * GOLDEN_ANGLE_RAD * (7 / (5 * 4))
       const x0 = cx + Math.cos(a0) * r0
       const y0 = cy + Math.sin(a0) * r0
       const x1 = cx + Math.cos(a1) * r1
       const y1 = cy + Math.sin(a1) * r1
       // bell-shaped presence: emerges at the edge, brightest mid-flight, dissolved AT the throat
       const presence = Math.sin(d0 * Math.PI)
-      const alpha = palette.canvas.streamAlpha(presence, d0 > 0.65, 1 - trail / DEATH_TRAIL_LEN) * 0.55
-      ctx.strokeStyle = movieCanvasRgba(deathHue, alpha, { L: 7 / 16 })
-      ctx.lineWidth = 0.6 + (1 - d0) * 1.6
+      const alpha = palette.canvas.streamAlpha(presence, d0 > (1 - 7 / (5 * 4)), 1 - trail / DEATH_TRAIL_LEN) * (1 - 9 / (5 * 4))
+      ctx.strokeStyle = paint(deathHue, alpha, { L: 7 / 16 })
+      ctx.lineWidth = (3 / 5) + (1 - d0) * (8 / 5)
       ctx.beginPath()
       ctx.moveTo(x0, y0)
       ctx.lineTo(x1, y1)
@@ -418,9 +421,9 @@ function drawDeathCounterFlow(
       }
     }
     // the leading head — a cooled in-falling glyph being swallowed at the throat
-    ctx.fillStyle = movieCanvasRgba(deathHue, leadAlpha * 1.3, { L: 9 / 16 })
+    ctx.fillStyle = paint(deathHue, leadAlpha * (FIBONACCI[5]! / (2 * 5)), { L: 9 / 16 })
     ctx.beginPath()
-    ctx.arc(leadX, leadY, 1.4, 0, Math.PI * 2)
+    ctx.arc(leadX, leadY, (7 / 5), 0, TAU)
     ctx.fill()
   }
   ctx.restore()
@@ -438,14 +441,14 @@ function drawPlasmaBall(
   streams: readonly PlasmaWiredStream[],
   palette: PlasmaMoviePalette,
 ): void {
-  const voidGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, voidR * 2.8)
+  const voidGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, voidR * (7 * 2 / 5))
   voidGlow.addColorStop(0, palette.canvas.voidCore(hueShift))
-  voidGlow.addColorStop(0.4, palette.canvas.voidMid(hueShift))
-  voidGlow.addColorStop(0.75, palette.canvas.voidOuter(hueShift))
+  voidGlow.addColorStop((2 / 5), palette.canvas.voidMid(hueShift))
+  voidGlow.addColorStop((3 / 4), palette.canvas.voidOuter(hueShift))
   voidGlow.addColorStop(1, 'transparent')
   ctx.fillStyle = voidGlow
   ctx.beginPath()
-  ctx.arc(cx, cy, voidR * 2.8, 0, Math.PI * 2)
+  ctx.arc(cx, cy, voidR * (7 * 2 / 5), 0, TAU)
   ctx.fill()
   // No drawn ring/border: the void core is a computed radial confluence that fades to transparent,
   // not a hardcoded circle frame. Its edge is where the field math reaches zero.
@@ -455,30 +458,30 @@ function drawPlasmaBall(
   ctx.textBaseline = 'middle'
   const layers = Math.min(PLASMA_TIERS[2], 1 + Math.floor(streams.length / PLASMA_TIERS[0]))
   for (let layer = 0; layer < layers; layer += 1) {
-    const layerR = voidR * (0.28 + layer * 0.22)
+    const layerR = voidR * ((7 / (5 * 5)) + layer * 0.22)
     const slice = Math.ceil(streams.length / layers)
     const start = layer * slice
     const end = Math.min(start + slice, streams.length)
     const scaleDims = dims(p, layer)
     const spinSign = layer % 2 === 0 ? 1 : -1
-    const orbitRate = spinSign * (0.12 + Math.abs(scaleDims.loopB1) * 0.04)
+    const orbitRate = spinSign * ((3 / (5 * 5)) + Math.abs(scaleDims.loopB1) * (1 / (5 * 5)))
     for (let i = start; i < end; i += 1) {
       const stream = streams[i]!
       const hex = stream.uuid.replace(/[^0-9a-f]/gi, '')
       const orbit =
-        p * Math.PI * 2 +
-        ((i - start) / Math.max(1, end - start)) * Math.PI * 2 +
-        layer * 0.7 +
-        scaleDims.loopA1 * 0.35
-      const wobble = 0.08 * Math.sin(t * 0.55 + i * 0.31 + layer) * (0.85 + scaleDims.breath * 0.15)
+        p * TAU +
+        ((i - start) / Math.max(1, end - start)) * TAU +
+        layer * (7 / (5 * 2)) +
+        scaleDims.loopA1 * (7 / (5 * 4))
+      const wobble = (2 / (5 * 5)) * Math.sin(t * (1 - 9 / (5 * 4)) + i * PHI ** -2 + layer) * ((1 - 3 / (5 * 4)) + scaleDims.breath * (3 / (5 * 4)))
       const px = cx + Math.cos(orbit + t * orbitRate) * layerR * (1 + wobble)
       const py = cy + Math.sin(orbit + t * orbitRate) * layerR * (1 + wobble)
       const offset = Math.floor((t * 3 + i * 2) % Math.max(1, hex.length - 3))
       const nibble = hex.slice(offset, offset + 4).padEnd(4, hex[0] ?? '0')
-      const wave = Math.sin(t * 0.8 + i * 0.17)
+      const wave = Math.sin(t * (4 / 5) + i * PHI ** -4)
       const alpha =
-        palette.canvas.streamAlpha(0.5 + 0.5 * wave, true, 1) * (3 / 8 + (5 / 8) * (0.5 + 0.5 * wave))
-      ctx.font = `${Math.max(7, Math.round(voidR * (0.22 - layer * 0.04)))}px "SF Mono", "Cascadia Code", "Fira Code", monospace`
+        palette.canvas.streamAlpha((1 / 2) + (1 / 2) * wave, true, 1) * (3 / 8 + (5 / 8) * ((1 / 2) + (1 / 2) * wave))
+      ctx.font = `${Math.max(7, Math.round(voidR * (0.22 - layer * (1 / (5 * 5)))))}px "SF Mono", "Cascadia Code", "Fira Code", monospace`
       ctx.shadowColor = palette.canvas.ballGlyphGlow(stream.hue, alpha)
       ctx.shadowBlur = 6 + layer * 2
       ctx.fillStyle = palette.canvas.ballGlyph(stream.hue, alpha, layer)
@@ -506,28 +509,28 @@ function drawWiredUuidStreams(
   const { t, p, seed, movieText, wiredStreams } = scene
   const fallbackChars = [...(movieText || 'double torus').replace(/\s+/g, '')].filter(Boolean)
   const streams = wiredStreams.length ? wiredStreams : null
-  const streamCount = streams ? streams.length : Math.min(56, Math.max(18, Math.floor(Math.sqrt(w * h) / 38)))
+  const streamCount = streams ? streams.length : Math.min((8 * 7), Math.max((9 * 2), Math.floor(Math.sqrt(w * h) / 38)))
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   for (let s = 0; s < streamCount; s += 1) {
     const wired = streams?.[s]
     const chars = wired ? uuidStreamChars(wired) : fallbackChars
     const { angle, dist, speed, size } = bgStreamParams(seed, s)
-    const phase = (t * speed + s * 0.0618 + p) % 1
-    const trailStep = 0.016 + speed * 0.008
+    const phase = (t * speed + s * ((PHI - 1) / (2 * 5)) + p) % 1 // φ⁻¹/10 (was rounded 0.0618)
+    const trailStep = (2 / (5 * 5 * 5)) + speed * (1 / (5 * 5 * 5))
     for (let trail = 0; trail < BG_TRAIL_LEN; trail += 1) {
       const trailPhase = (phase - trail * trailStep + 1) % 1
       const { x, y, r, inbound } = bgStreamOrbit(trailPhase, angle, dist, voidR, span, p)
       const px = cx + x
       const py = cy + y
-      const charIdx = Math.floor((s + trail + t * 14) % Math.max(1, chars.length))
+      const charIdx = Math.floor((s + trail + t * (7 * 2)) % Math.max(1, chars.length))
       const ch = chars[charIdx] ?? '0'
       const streamHue = wired?.hue ?? quantumScaleHue(s + charIdx + trail, scene.palette.waveHue)
-      const nearVoid = r < voidR * 2.4
+      const nearVoid = r < voidR * (6 * 2 / 5)
       const trailFade = 1 - trail / BG_TRAIL_LEN
       const alpha = scene.palette.canvas.streamAlpha(inbound, nearVoid, trailFade)
-      const fontSize = Math.max(10, Math.round(size * (0.85 + 0.15 * inbound)))
-      const glow = nearVoid && trail === 0 ? 10 + inbound * 14 : trail === 0 ? 4 : 0
+      const fontSize = Math.max((5 * 2), Math.round(size * ((1 - 3 / (5 * 4)) + (3 / (5 * 4)) * inbound)))
+      const glow = nearVoid && trail === 0 ? (5 * 2) + inbound * (7 * 2) : trail === 0 ? 4 : 0
       ctx.font = `${fontSize}px "SF Mono", "Cascadia Code", "Fira Code", monospace`
       ctx.shadowColor = scene.palette.canvas.streamGlow(streamHue, alpha)
       ctx.shadowBlur = glow
@@ -557,6 +560,7 @@ function drawFusedForceLayers(
   layers: readonly FieldLayer[],
   dark = true,
 ): void {
+  const paint = movieCanvasPolarity(dark)
   if (layers.length === 0) return
   const d = dims(p)
   ctx.save()
@@ -565,22 +569,22 @@ function drawFusedForceLayers(
     // Each force has a signature reach: gravity pulls to the void (tight), EM blooms wide (light),
     // strong binds short-range, weak is faint/decaying, topology spans the genus-2 surface.
     const reach =
-      layer.force === 'gravity' ? 0.18 :
-      layer.force === 'electromagnetic' ? 0.62 :
+      layer.force === 'gravity' ? (9 / (5 * 5 * 2)) :
+      layer.force === 'electromagnetic' ? PHI - 1 : // golden reach (was rounded 0.62)
       layer.force === 'strong' ? 0.26 :
-      layer.force === 'weak' ? 0.34 : 0.5
+      layer.force === 'weak' ? (FIBONACCI[7]! / 100) : (1 / 2)
     const alpha =
-      layer.force === 'weak' ? 0.05 + 0.05 * (0.5 + 0.5 * Math.sin(t * 1.3 + i * 1.7)) :
-      layer.force === 'gravity' ? 0.14 : 0.09
+      layer.force === 'weak' ? (1 / (5 * 4)) + (1 / (5 * 4)) * ((1 / 2) + (1 / 2) * Math.sin(t * (FIBONACCI[5]! / (2 * 5)) + i * 1.7)) :
+      layer.force === 'gravity' ? (7 / (5 * 5 * 2)) : (9 / 100)
     // Orbit each layer through the dimensional motion (loopA1/loopB1 = the genus-2 handles).
-    const orbit = p * Math.PI * 2 + (i / layers.length) * Math.PI * 2 + d.loopA1 * 0.6
-    const drift = layer.force === 'gravity' ? 0 : 0.22 + 0.06 * Math.sin(t * 0.4 + i)
-    const lx = cx + Math.cos(orbit + t * 0.04) * span * drift
-    const ly = cy + Math.sin(orbit + t * 0.05) * span * drift * 0.8
-    const radius = span * reach * (0.85 + 0.15 * d.breath)
+    const orbit = p * TAU + (i / layers.length) * TAU + d.loopA1 * (3 / 5)
+    const drift = layer.force === 'gravity' ? 0 : 0.22 + (3 / (5 * 5 * 2)) * Math.sin(t * (2 / 5) + i)
+    const lx = cx + Math.cos(orbit + t * (1 / (5 * 5))) * span * drift
+    const ly = cy + Math.sin(orbit + t * (1 / (5 * 4))) * span * drift * (4 / 5)
+    const radius = span * reach * ((1 - 3 / (5 * 4)) + (3 / (5 * 4)) * d.breath)
     const g = ctx.createRadialGradient(lx, ly, 0, lx, ly, radius)
-    g.addColorStop(0, movieCanvasRgba(layer.hue, alpha, { L: 5 / 8 }))
-    g.addColorStop(0.45, movieCanvasRgba(layer.hue, alpha * 0.5, { L: 1 / 2 }))
+    g.addColorStop(0, paint(layer.hue, alpha, { L: 5 / 8 }))
+    g.addColorStop((9 / (5 * 4)), paint(layer.hue, alpha * (1 / 2), { L: 1 / 2 }))
     g.addColorStop(1, 'transparent')
     ctx.fillStyle = g
     ctx.fillRect(0, 0, w, h)
@@ -625,10 +629,10 @@ function paintHolographicPlasmaHeroMovie(
   const cx = w / 2
   const cy = heroFieldCenterY(h, scene.scroll ?? 0)
   const span = Math.max(w, h)
-  const voidR = Math.min(w, h) * 0.07
+  const voidR = Math.min(w, h) * (7 / 100)
   const hueShift = scene.hue
   if (scene.reduce) {
-    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, span * 0.55)
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, span * (1 - 9 / (5 * 4)))
     g.addColorStop(0, scene.palette.canvas.reduceCore(hueShift))
     g.addColorStop(1, 'transparent')
     ctx.fillStyle = g
@@ -788,13 +792,13 @@ export interface RosettaPerspective {
 export function rosettaPerspectiveFold(ray: number, field: AnimationField): RosettaPerspective {
   const r = (((ray % 7) + 7) % 7)
   const view = ROSETTA_RAY_VIEWS[r]!
-  const turn = (r / 7) * Math.PI * 2
+  const turn = (r / 7) * TAU
   return {
     ray: r,
     glyph: view.glyph,
     domain: view.domain,
     hue: (field.hue + (r * 360) / 7) % 360,
-    rotation: { rx: field.t * 0.2 + turn, ry: field.t * 0.15 + turn * 0.5, rz: turn * 0.33 },
+    rotation: { rx: field.t * (1 / 5) + turn, ry: field.t * (3 / (5 * 4)) + turn * (1 / 2), rz: turn * PHI ** -2 },
     root: toUuid(`rosetta-perspective:${field.root}:${r}`),
   }
 }
@@ -805,13 +809,13 @@ export function sharedHeroAt(
   route: string,
   copy: SharedHeroCopy,
   at: number,
-  cssWidth = 1024,
+  cssWidth = (64 * 16),
   reduce = false,
   dark = true,
   scroll = 0,
 ): SharedHeroState {
   const path = route || '/'
-  const t = at / 1000
+  const t = at / (100 * 5 * 2)
   const p = heroPhaseAt(at)
   const matrix = buildMatrix()
   const fusedCopy = typeof window !== 'undefined'
@@ -929,7 +933,7 @@ export type LivingTorusCoordinate = ReturnType<typeof livingTorus>['coordinates'
  * YZ rotation whose sine is that same 0.35, composed through the sealed atoms (rotate3) so depth
  * is real and carried by the perspective divide — size attenuation, not a screen offset.
  */
-const OBLIQUE_VIEW_TILT = -Math.asin(0.35)
+const OBLIQUE_VIEW_TILT = -Math.asin((7 / (5 * 4)))
 
 /** Genus-2 torus point field — hero-clock phase; static at phase 0 when reduced motion. */
 export function drawLivingTorusFrame(
@@ -939,13 +943,15 @@ export function drawLivingTorusFrame(
   at: number,
   coordinates: readonly LivingTorusCoordinate[],
   reduce = false,
+  dark = true,
 ): void {
+  const paint = movieCanvasPolarity(dark)
   ctx.clearRect(0, 0, w, h)
   const n = coordinates.length
   if (n === 0) return
   const cx = w / 2
   const cy = h / 2
-  const phase = reduce ? 0 : at / 1000
+  const phase = reduce ? 0 : at / (100 * 5 * 2)
 
   // Project every coordinate onto the genus-2 surface through the sealed atoms (rotate3 +
   // perspective) — no z→y offset. Each lobe spins RIGIDLY about its own hole axis (an XY-plane
@@ -961,14 +967,14 @@ export function drawLivingTorusFrame(
     ey = Math.max(ey, Math.abs(c.y))
   }
   const extent = Math.max(ex, ey)
-  const view = Math.min(w, h * (ex / ey)) * 0.42 // pixels per unit — fit the wide figure both ways
+  const view = Math.min(w, h * (ex / ey)) * ((7 * 3) / (5 * 5 * 2)) // pixels per unit — fit the wide figure both ways
   const px = new Array<number>(n)
   const py = new Array<number>(n)
   const pz = new Array<number>(n) // perspective factor — nearer grows, farther recedes
   const byIndex = new Map<number, number>()
   for (let i = 0; i < n; i++) {
     const c = coordinates[i]!
-    const spin = phase * (c.lobe > 0 ? 0.55 : -0.55)
+    const spin = phase * (c.lobe > 0 ? (1 - 9 / (5 * 4)) : -(1 - 9 / (5 * 4)))
     const v = rotate3((c.x - c.cx) / extent, c.y / extent, c.z / extent, spin, OBLIQUE_VIEW_TILT, 0)
     const persp = perspective(v.Z)
     px[i] = cx + (v.X + c.cx / extent) * persp * view
@@ -984,8 +990,8 @@ export function drawLivingTorusFrame(
     const c = coordinates[i]!
     const j = byIndex.get(c.reverseIndex)
     if (j === undefined || j <= i) continue
-    const mergePulse = reduce ? 0.5 : 0.5 + 0.5 * Math.sin(phase * 0.6 + c.theta)
-    ctx.strokeStyle = movieCanvasRgba(Math.round(c.frequency) % 360, 0.05 + 0.11 * mergePulse, { L: 6 / 8 })
+    const mergePulse = reduce ? (1 / 2) : (1 / 2) + (1 / 2) * Math.sin(phase * (3 / 5) + c.theta)
+    ctx.strokeStyle = paint(Math.round(c.frequency) % 360, (1 / (5 * 4)) + (1 / 9) * mergePulse, { L: 6 / 8 })
     ctx.beginPath()
     ctx.moveTo(px[i]!, py[i]!)
     ctx.lineTo(px[j]!, py[j]!)
@@ -1000,18 +1006,18 @@ export function drawLivingTorusFrame(
   const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => pz[a]! - pz[b]!)
   for (const i of order) {
     const c = coordinates[i]!
-    const pulse = reduce ? 0.7 : 0.5 + 0.5 * Math.sin((at / Math.max(1, c.vibrationMs)) * Math.PI * 2)
+    const pulse = reduce ? (7 / (5 * 2)) : (1 / 2) + (1 / 2) * Math.sin((at / Math.max(1, c.vibrationMs)) * TAU)
     const hue = Math.round(c.frequency) % 360
     const size = (9 + c.scale * 13 + pulse * 5) * pz[i]!
     ctx.font = `600 ${Math.round(size)}px ui-sans-serif, system-ui, sans-serif`
-    ctx.fillStyle = movieCanvasRgba(hue, 0.42 + 0.46 * pulse, { L: 7 / 8 })
+    ctx.fillStyle = paint(hue, ((7 * 3) / (5 * 5 * 2)) + 0.46 * pulse, { L: 7 / 8 })
     ctx.fillText(String(c.digit), px[i]!, py[i]!)
   }
 
   // Layer 3 — two heads sweep both loops: one rides the forward loop, one the reverse,
   // tracing the two cycles of the genus-2 train at the hero clock.
   if (!reduce) {
-    const sweep = (at % 9000) / 9000
+    const sweep = (at % (360 * 5 * 5)) / (360 * 5 * 5)
     for (const loop of ['forward', 'reverse'] as const) {
       const ring = coordinates.filter((c) => c.loop === loop)
       if (ring.length === 0) continue
@@ -1020,14 +1026,14 @@ export function drawLivingTorusFrame(
       const slot = byIndex.get(head.index)
       if (slot === undefined) continue
       const hue = Math.round(head.frequency) % 360
-      ctx.strokeStyle = movieCanvasRgba(hue, 0.9, { L: 6 / 8 })
+      ctx.strokeStyle = paint(hue, (9 / (5 * 2)), { L: 6 / 8 })
       ctx.lineWidth = 2
       ctx.beginPath()
-      ctx.arc(px[slot]!, py[slot]!, 13 * pz[slot]!, 0, Math.PI * 2)
+      ctx.arc(px[slot]!, py[slot]!, 13 * pz[slot]!, 0, TAU)
       ctx.stroke()
-      ctx.fillStyle = movieCanvasRgba(hue, 0.5, { L: 13 / 16 })
+      ctx.fillStyle = paint(hue, (1 / 2), { L: 13 / 16 })
       ctx.beginPath()
-      ctx.arc(px[slot]!, py[slot]!, 4.5 * pz[slot]!, 0, Math.PI * 2)
+      ctx.arc(px[slot]!, py[slot]!, (9 / 2) * pz[slot]!, 0, TAU)
       ctx.fill()
     }
   }
@@ -1057,11 +1063,13 @@ function drawTetrahedronEdges(
   scale: number,
   hue: number,
   alpha: number,
+  dark = true,
 ): void {
+  const paint = movieCanvasPolarity(dark)
   const pts = verts.map((v) => rotateTetraXY(v, spin, scale))
   const edges: [number, number][] = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]]
-  ctx.strokeStyle = movieCanvasRgba(hue, alpha, { L: 7 / 8 })
-  ctx.lineWidth = 1.2 * scale
+  ctx.strokeStyle = paint(hue, alpha, { L: 7 / 8 })
+  ctx.lineWidth = (6 / 5) * scale
   for (const [a, b] of edges) {
     const p0 = pts[a]!
     const p1 = pts[b]!
@@ -1070,10 +1078,10 @@ function drawTetrahedronEdges(
     ctx.lineTo(cx + p1[0], cy + p1[1])
     ctx.stroke()
   }
-  ctx.fillStyle = movieCanvasRgba(hue, alpha * 0.55, { L: 13 / 16 })
+  ctx.fillStyle = paint(hue, alpha * (1 - 9 / (5 * 4)), { L: 13 / 16 })
   for (const p of pts) {
     ctx.beginPath()
-    ctx.arc(cx + p[0], cy + p[1], 2.5 * scale * p[2], 0, Math.PI * 2)
+    ctx.arc(cx + p[0], cy + p[1], (5 / 2) * scale * p[2], 0, TAU)
     ctx.fill()
   }
 }
@@ -1086,55 +1094,57 @@ export function drawBothEarthsMerkabaFrame(
   at: number,
   rotation: BothEarthsMerkabaRotation,
   reduce = false,
+  dark = true,
 ): void {
+  const paint = movieCanvasPolarity(dark)
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2
   const cy = h / 2
-  const scale = Math.min(w, h) / 420
-  const phase = reduce ? 0 : at / 1000
-  const innerR = 72 * scale
+  const scale = Math.min(w, h) / (7 * 6 * 5 * 2)
+  const phase = reduce ? 0 : at / (100 * 5 * 2)
+  const innerR = (9 * 8) * scale
   const outerR = 108 * scale
-  const breath = 1 + Math.sin(phase * 1.15) * 0.04
+  const breath = 1 + Math.sin(phase * 1.15) * (1 / (5 * 5))
 
-  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.55)
-  bg.addColorStop(0, movieCanvasRgba(200, 0.12, { L: 1 / 4 }))
-  bg.addColorStop(1, movieCanvasRgba(200, 0, { L: 1 / 8 }))
+  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * (1 - 9 / (5 * 4)))
+  bg.addColorStop(0, paint((100 * 2), (3 / (5 * 5)), { L: 1 / 4 }))
+  bg.addColorStop(1, paint((100 * 2), 0, { L: 1 / 8 }))
   ctx.fillStyle = bg
   ctx.fillRect(0, 0, w, h)
 
-  const innerSpin = reduce ? 0 : rotation.innerPhase * 0.18
-  const outerSpin = reduce ? 0 : rotation.outerPhase * 0.18
-  const upSpin = reduce ? 0 : rotation.merkabaUpSpin * 0.22
-  const downSpin = reduce ? 0 : rotation.merkabaDownSpin * 0.22
+  const innerSpin = reduce ? 0 : rotation.innerPhase * (9 / (5 * 5 * 2))
+  const outerSpin = reduce ? 0 : rotation.outerPhase * (9 / (5 * 5 * 2))
+  const upSpin = reduce ? 0 : rotation.merkabaUpSpin * PHI ** -3
+  const downSpin = reduce ? 0 : rotation.merkabaDownSpin * PHI ** -3
 
   ctx.save()
   ctx.translate(cx, cy)
   ctx.rotate(outerSpin)
-  ctx.strokeStyle = movieCanvasRgba(280, 0.28 * breath, { L: 7 / 8 })
-  ctx.lineWidth = 1.5 * scale
+  ctx.strokeStyle = paint((8 * 7 * 5), (7 / (5 * 5)) * breath, { L: 7 / 8 })
+  ctx.lineWidth = (3 / 2) * scale
   ctx.setLineDash([5 * scale, 7 * scale])
   ctx.beginPath()
-  ctx.arc(0, 0, outerR * breath, 0, Math.PI * 2)
+  ctx.arc(0, 0, outerR * breath, 0, TAU)
   ctx.stroke()
   ctx.restore()
 
   ctx.save()
   ctx.translate(cx, cy)
   ctx.rotate(innerSpin)
-  ctx.strokeStyle = movieCanvasRgba(120, 0.38 * breath, { L: 7 / 8 })
+  ctx.strokeStyle = paint((8 * 5 * 3), (2 - PHI) * breath, { L: 7 / 8 }) // 1 − φ⁻¹ (was rounded 0.38)
   ctx.lineWidth = 2 * scale
   ctx.setLineDash([])
   ctx.beginPath()
-  ctx.arc(0, 0, innerR * breath, 0, Math.PI * 2)
+  ctx.arc(0, 0, innerR * breath, 0, TAU)
   ctx.stroke()
   ctx.restore()
 
-  drawTetrahedronEdges(ctx, rotation.tetraUp, upSpin, cx, cy - innerR * 0.15, scale * 28, 120, 0.65)
-  drawTetrahedronEdges(ctx, rotation.tetraDown, downSpin, cx, cy + innerR * 0.15, scale * 28, 280, 0.55)
+  drawTetrahedronEdges(ctx, rotation.tetraUp, upSpin, cx, cy - innerR * (3 / (5 * 4)), scale * (7 * 4), (8 * 5 * 3), (1 - 7 / (5 * 4)), dark)
+  drawTetrahedronEdges(ctx, rotation.tetraDown, downSpin, cx, cy + innerR * (3 / (5 * 4)), scale * (7 * 4), (8 * 7 * 5), (1 - 9 / (5 * 4)), dark)
 
-  ctx.fillStyle = movieCanvasRgba(200, 0.75, { L: 5 / 6 })
+  ctx.fillStyle = paint((100 * 2), (3 / 4), { L: 5 / 6 })
   ctx.beginPath()
-  ctx.arc(cx, cy, 4 * scale, 0, Math.PI * 2)
+  ctx.arc(cx, cy, 4 * scale, 0, TAU)
   ctx.fill()
 }
 
@@ -1145,7 +1155,6 @@ export function drawBothEarthsMerkabaFrame(
 // the sealed φ-geometry below. No per-card math: pick a projection, hand it the frame.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const Q_PHI = (1 + Math.sqrt(5)) / 2
 /** Rotation sense from the doubling orbit: 1→2 ascends ⇒ +1 (the orbit's natural, clockwise-on-screen sense). */
 const VORTEX_SEQ_SENSE: 1 | -1 = (VORTEX_SEQUENCE[1] ?? 2) > (VORTEX_SEQUENCE[0] ?? 1) ? 1 : -1
 
@@ -1176,15 +1185,15 @@ function qSolidEdges(verts: readonly (readonly [number, number, number])[]): [nu
   }
   const edges: [number, number][] = []
   for (let i = 0; i < verts.length; i += 1) for (let j = i + 1; j < verts.length; j += 1) {
-    if (qDist(verts[i]!, verts[j]!) <= min * 1.08) edges.push([i, j])
+    if (qDist(verts[i]!, verts[j]!) <= min * (27 / (5 * 5))) edges.push([i, j])
   }
   return edges
 }
 
 /** The five Platonic solids as canonical φ-coordinates — the same five sacredGeometry() seals (Euler V−E+F=2). */
 const PLATONIC: readonly QSolid[] = (() => {
-  const f = Q_PHI
-  const i = 1 / Q_PHI
+  const f = PHI
+  const i = 1 / PHI
   const tetra: [number, number, number][] = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]]
   const cube: [number, number, number][] = []
   for (const x of [-1, 1]) for (const y of [-1, 1]) for (const z of [-1, 1]) cube.push([x, y, z])
@@ -1200,7 +1209,7 @@ const PLATONIC: readonly QSolid[] = (() => {
   return [build('tetrahedron', tetra), build('cube', cube), build('octahedron', octa), build('dodecahedron', dodeca), build('icosahedron', icosa)]
 })()
 
-const HOLO_BITS = 128
+const HOLO_BITS = (64 * 2)
 /** 128 points on a Fibonacci sphere — the holographic word; ~70 deterministically lit (content-addressed by index). */
 const HOLO_POINTS: readonly { readonly x: number; readonly y: number; readonly z: number; readonly lit: boolean }[] = (() => {
   const ga = Math.PI * (3 - Math.sqrt(5))
@@ -1209,7 +1218,7 @@ const HOLO_POINTS: readonly { readonly x: number; readonly y: number; readonly z
     const y = 1 - (i / (HOLO_BITS - 1)) * 2
     const rr = Math.sqrt(Math.max(0, 1 - y * y))
     const th = ga * i
-    const lit = ((Math.imul(i + 1, 2654435761) >>> 0) % HOLO_BITS) < 70
+    const lit = ((Math.imul(i + 1, 2654435761) >>> 0) % HOLO_BITS) < (7 * 5 * 2)
     out.push({ x: Math.cos(th) * rr, y, z: Math.sin(th) * rr, lit })
   }
   return out
@@ -1230,15 +1239,16 @@ function qProject(x: number, y: number, z: number, rx: number, ry: number, rz: n
 }
 
 /** A shaded sphere — a circle that reads as 3D (the 2D→3D promotion the morph needs). */
-function qSphere(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, hue: number, alpha: number): void {
-  const rr = Math.max(0.6, r)
-  const g = ctx.createRadialGradient(x - rr * 0.35, y - rr * 0.35, rr * 0.12, x, y, rr)
-  g.addColorStop(0, movieCanvasRgba(hue, Math.min(1, alpha * 1.15), { L: 15 / 16 }))
-  g.addColorStop(0.6, movieCanvasRgba(hue, alpha, { L: 5 / 8 }))
-  g.addColorStop(1, movieCanvasRgba(hue, alpha * 0.4, { L: 1 / 3 }))
+function qSphere(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, hue: number, alpha: number, dark = true): void {
+  const paint = movieCanvasPolarity(dark)
+  const rr = Math.max((3 / 5), r)
+  const g = ctx.createRadialGradient(x - rr * (7 / (5 * 4)), y - rr * (7 / (5 * 4)), rr * (3 / (5 * 5)), x, y, rr)
+  g.addColorStop(0, paint(hue, Math.min(1, alpha * 1.15), { L: (5 * 3) / 16 }))
+  g.addColorStop((3 / 5), paint(hue, alpha, { L: 5 / 8 }))
+  g.addColorStop(1, paint(hue, alpha * (2 / 5), { L: 1 / 3 }))
   ctx.fillStyle = g
   ctx.beginPath()
-  ctx.arc(x, y, rr, 0, Math.PI * 2)
+  ctx.arc(x, y, rr, 0, TAU)
   ctx.fill()
 }
 
@@ -1279,29 +1289,30 @@ export function drawQuantumAppFrame(
  * two-radius construction; sense from the doubling orbit (1→2 ascending), period from the hero clock.
  */
 function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const r = Math.min(w, h) * 0.34
+  const r = Math.min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
   const yinHue = frame.hue % 360
-  const yangHue = (frame.hue + 180) % 360
-  const dark = (a: number) => movieCanvasRgba(yinHue, a, { L: 5 / 16 })
-  const light = (a: number) => movieCanvasRgba(yangHue, a, { L: 7 / 8 })
+  const yangHue = (frame.hue + (9 * 5 * 4)) % 360
+  const dark = (a: number) => paint(yinHue, a, { L: 5 / 16 })
+  const light = (a: number) => paint(yangHue, a, { L: 7 / 8 })
   // Sense from the vortex doubling: 1→2 ascends ⇒ +1 (clockwise on screen). Period = one hero cycle.
   const dir = VORTEX_SEQ_SENSE
-  const theta = frame.reduce ? 0 : dir * frame.p * Math.PI * 2
+  const theta = frame.reduce ? 0 : dir * frame.p * TAU
   ctx.save()
   ctx.translate(cx, cy)
   ctx.rotate(theta)
   // Rigid taiji at the origin — drawn once, rotated as one body.
-  ctx.beginPath(); ctx.arc(0, 0, r, -Math.PI / 2, Math.PI / 2, false); ctx.fillStyle = dark(0.92); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, 0, r, Math.PI / 2, -Math.PI / 2, false); ctx.fillStyle = light(0.92); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, -r / 2, r / 2, 0, Math.PI * 2); ctx.fillStyle = dark(0.92); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, r / 2, r / 2, 0, Math.PI * 2); ctx.fillStyle = light(0.92); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, -r / 2, r / 6, 0, Math.PI * 2); ctx.fillStyle = light(0.95); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, r / 2, r / 6, 0, Math.PI * 2); ctx.fillStyle = dark(0.95); ctx.fill()
-  ctx.strokeStyle = movieCanvasRgba(yinHue, 0.6, { L: 1 / 2 })
-  ctx.lineWidth = 1.5
-  ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.stroke()
+  ctx.beginPath(); ctx.arc(0, 0, r, -Math.PI / 2, Math.PI / 2, false); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, 0, r, Math.PI / 2, -Math.PI / 2, false); ctx.fillStyle = light((1 - 2 / (5 * 5))); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, -r / 2, r / 2, 0, TAU); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, r / 2, r / 2, 0, TAU); ctx.fillStyle = light((1 - 2 / (5 * 5))); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, -r / 2, r / 6, 0, TAU); ctx.fillStyle = light((1 - 1 / (5 * 4))); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, r / 2, r / 6, 0, TAU); ctx.fillStyle = dark((1 - 1 / (5 * 4))); ctx.fill()
+  ctx.strokeStyle = paint(yinHue, (3 / 5), { L: 1 / 2 })
+  ctx.lineWidth = (3 / 2)
+  ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.stroke()
   ctx.restore()
 }
 
@@ -1311,84 +1322,86 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
  * the 13-node field tilts and rotates in 3D; the solids tumble through rotate3 + perspective.
  */
 function drawSacredMorphProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const base = Math.min(w, h) * 0.2
+  const base = Math.min(w, h) * (1 / 5)
   // 0→10D sweep (out and back), so the slider's "n/10d" is visible in motion.
-  const tri = frame.reduce ? 0.4 : 0.5 - 0.5 * Math.cos(frame.p * Math.PI * 2)
-  const depthD = tri * 10
-  const flowerW = 1 - qSmooth(1.5, 3.5, depthD)
-  const fruitW = qSmooth(1.5, 4, depthD)
-  const metatronW = qSmooth(3.5, 6, depthD)
-  const solidW = qSmooth(5.5, 8.5, depthD)
-  const lift = qSmooth(2.5, 6, depthD) // 2D→3D promotion
-  const rx = frame.reduce ? 0.5 : frame.t * 0.4 * lift
-  const ry = frame.reduce ? 0.3 : frame.t * 0.31 * lift
-  const rz = frame.reduce ? 0 : frame.t * 0.17
+  const tri = frame.reduce ? (2 / 5) : dimWalk(frame.p)
+  const depthD = tri * (5 * 2)
+  const flowerW = 1 - qSmooth((3 / 2), (7 / 2), depthD)
+  const fruitW = qSmooth((3 / 2), 4, depthD)
+  const metatronW = qSmooth((7 / 2), 6, depthD)
+  const solidW = qSmooth(FIBONACCI[8]! / (2 * 5), 8.5, depthD)
+  const lift = qSmooth((5 / 2), 6, depthD) // 2D→3D promotion
+  const rx = frame.reduce ? (1 / 2) : frame.t * (2 / 5) * lift
+  const ry = frame.reduce ? (3 / (5 * 2)) : frame.t * (5 / 16) * lift // was 0.31 — theorem 5/16 (self-research)
+  const rz = frame.reduce ? 0 : frame.t * (1 / 6) // was 0.17 — theorem 1/6 (self-research)
 
   // Flower-of-life vesica ring (the 2D construction) fading as we climb.
-  if (flowerW > 0.02) {
-    ctx.lineWidth = 1.4
+  if (flowerW > (1 / (5 * 5 * 2))) {
+    ctx.lineWidth = (7 / 5)
     for (let k = 0; k < FRUIT_CENTERS.length; k += 1) {
       const c = FRUIT_CENTERS[k]!
-      ctx.strokeStyle = movieCanvasRgba((frame.hue + k * 16) % 360, 0.5 * flowerW, { L: 9 / 16 })
+      ctx.strokeStyle = paint((frame.hue + k * 16) % 360, (1 / 2) * flowerW, { L: 9 / 16 })
       ctx.beginPath()
-      ctx.arc(cx + c[0] * base, cy + c[1] * base, base, 0, Math.PI * 2)
+      ctx.arc(cx + c[0] * base, cy + c[1] * base, base, 0, TAU)
       ctx.stroke()
     }
   }
 
   // The 13 nodes, lifted to 3D as the dimension climbs — circles become MANY spheres.
   const nodes: QProjected[] = FRUIT_CENTERS.map((c, k) => {
-    const zz = lift * Math.sin(k * 1.3 + frame.t * 0.6) * 0.7
-    return qProject(c[0], c[1], zz, rx * 0.6, ry * 0.6, rz * 0.4, cx, cy, base)
+    const zz = lift * Math.sin(k * (FIBONACCI[5]! / (2 * 5)) + frame.t * (3 / 5)) * (7 / (5 * 2))
+    return qProject(c[0], c[1], zz, rx * (3 / 5), ry * (3 / 5), rz * (2 / 5), cx, cy, base)
   })
 
   // Metatron's cube — every node joined to every other; the 3D lift gives depth.
-  if (metatronW > 0.02) {
+  if (metatronW > (1 / (5 * 5 * 2))) {
     ctx.lineWidth = 1
     for (let a = 0; a < nodes.length; a += 1) for (let b = a + 1; b < nodes.length; b += 1) {
       const depth = (nodes[a]!.s + nodes[b]!.s) / 2
-      ctx.strokeStyle = movieCanvasRgba((frame.hue + 40) % 360, 0.32 * metatronW * depth, { L: 1 / 2 })
+      ctx.strokeStyle = paint((frame.hue + (8 * 5)) % 360, (8 / (5 * 5)) * metatronW * depth, { L: 1 / 2 })
       ctx.beginPath(); ctx.moveTo(nodes[a]!.x, nodes[a]!.y); ctx.lineTo(nodes[b]!.x, nodes[b]!.y); ctx.stroke()
     }
   }
 
   for (let k = 0; k < nodes.length; k += 1) {
     const n = nodes[k]!
-    const rNode = (base * 0.34) * n.s * (fruitW * 0.6 + 0.4)
-    const flat = movieCanvasRgba((frame.hue + k * 14) % 360, 0.55, { L: 5 / 8 })
-    if (lift > 0.2) qSphere(ctx, n.x, n.y, rNode, (frame.hue + k * 14) % 360, 0.55 + 0.3 * n.s)
-    else { ctx.fillStyle = flat; ctx.beginPath(); ctx.arc(n.x, n.y, rNode, 0, Math.PI * 2); ctx.fill() }
+    const rNode = (base * (FIBONACCI[7]! / 100)) * n.s * (fruitW * (3 / 5) + (2 / 5))
+    const flat = paint((frame.hue + k * (7 * 2)) % 360, (1 - 9 / (5 * 4)), { L: 5 / 8 })
+    if (lift > (1 / 5)) qSphere(ctx, n.x, n.y, rNode, (frame.hue + k * (7 * 2)) % 360, (1 - 9 / (5 * 4)) + (3 / (5 * 2)) * n.s, frame.palette.dark)
+    else { ctx.fillStyle = flat; ctx.beginPath(); ctx.arc(n.x, n.y, rNode, 0, TAU); ctx.fill() }
   }
 
   // The five Platonic solids — one morph cycles tetra→cube→octa→dodeca→icosa as D climbs, tumbling in 3D.
-  if (solidW > 0.02) {
-    const idx = Math.min(PLATONIC.length - 1, Math.floor((depthD - 5.5) / 0.7))
+  if (solidW > (1 / (5 * 5 * 2))) {
+    const idx = Math.min(PLATONIC.length - 1, Math.floor((depthD - FIBONACCI[8]! / (2 * 5)) / (7 / (5 * 2))))
     const solid = PLATONIC[Math.max(0, idx)]!
     const next = PLATONIC[Math.min(PLATONIC.length - 1, Math.max(0, idx) + 1)]!
-    const blend = Math.min(1, Math.max(0, ((depthD - 5.5) / 0.7) - Math.floor((depthD - 5.5) / 0.7)))
-    drawSolid3D(ctx, cx, cy, base * 1.15, solid, rx, ry, rz, frame.hue, solidW * (1 - blend))
-    if (blend > 0.02) drawSolid3D(ctx, cx, cy, base * 1.15, next, rx, ry, rz, (frame.hue + 60) % 360, solidW * blend)
+    const blend = Math.min(1, Math.max(0, ((depthD - FIBONACCI[8]! / (2 * 5)) / (7 / (5 * 2))) - Math.floor((depthD - FIBONACCI[8]! / (2 * 5)) / (7 / (5 * 2)))))
+    drawSolid3D(ctx, cx, cy, base * 1.15, solid, rx, ry, rz, frame.hue, solidW * (1 - blend), frame.palette.dark)
+    if (blend > (1 / (5 * 5 * 2))) drawSolid3D(ctx, cx, cy, base * 1.15, next, rx, ry, rz, (frame.hue + (6 * 5 * 2)) % 360, solidW * blend, frame.palette.dark)
   }
 
   // The dimension read-out — the "n/10D" the slider showed, now computed and in motion.
-  ctx.fillStyle = movieCanvasRgba(frame.hue, 0.7, { L: 7 / 16 })
+  ctx.fillStyle = paint(frame.hue, (7 / (5 * 2)), { L: 7 / 16 })
   ctx.font = '600 13px ui-sans-serif, system-ui, sans-serif'
   ctx.textAlign = 'left'
   ctx.textBaseline = 'top'
-  ctx.fillText(`${Math.round(depthD)}/10D`, 12, 10)
+  ctx.fillText(`${Math.round(depthD)}/10D`, (6 * 2), (5 * 2))
 }
 
-function drawSolid3D(ctx: CanvasRenderingContext2D, cx: number, cy: number, R: number, solid: QSolid, rx: number, ry: number, rz: number, hue: number, alpha: number): void {
+function drawSolid3D(ctx: CanvasRenderingContext2D, cx: number, cy: number, R: number, solid: QSolid, rx: number, ry: number, rz: number, hue: number, alpha: number, dark = true): void {
+  const paint = movieCanvasPolarity(dark)
   const pts = solid.verts.map((v) => qProject(v[0], v[1], v[2], rx, ry, rz, cx, cy, R))
-  ctx.lineWidth = 1.6
+  ctx.lineWidth = (8 / 5)
   for (const [a, b] of solid.edges) {
     const depth = (pts[a]!.s + pts[b]!.s) / 2
-    ctx.strokeStyle = movieCanvasRgba(hue, alpha * depth, { L: 9 / 16 })
+    ctx.strokeStyle = paint(hue, alpha * depth, { L: 9 / 16 })
     ctx.beginPath(); ctx.moveTo(pts[a]!.x, pts[a]!.y); ctx.lineTo(pts[b]!.x, pts[b]!.y); ctx.stroke()
   }
-  for (const p of pts) qSphere(ctx, p.x, p.y, 3.2 * p.s, hue, alpha * 0.9)
+  for (const p of pts) qSphere(ctx, p.x, p.y, (16 / 5) * p.s, hue, alpha * (9 / (5 * 2)), dark)
 }
 
 /**
@@ -1396,32 +1409,33 @@ function drawSolid3D(ctx: CanvasRenderingContext2D, cx: number, cy: number, R: n
  * lit atom carries a halo (each part reconstructs the whole). The whole-in-every-part, to the bit.
  */
 function drawHologramProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = Math.min(w, h) * 0.34
-  const rx = frame.reduce ? 0.4 : frame.t * 0.33
-  const ry = frame.reduce ? 0.2 : frame.t * 0.47
+  const R = Math.min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
+  const rx = frame.reduce ? (2 / 5) : frame.t * 0.33
+  const ry = frame.reduce ? (1 / 5) : frame.t * 0.47
   const projected = HOLO_POINTS.map((pt) => ({ ...qProject(pt.x, pt.y, pt.z, rx, ry, 0, cx, cy, R), lit: pt.lit }))
     .sort((a, b) => a.z - b.z)
   for (let i = 0; i < projected.length; i += 1) {
     const p = projected[i]!
-    const pulse = frame.reduce ? 0.8 : 0.6 + 0.4 * Math.sin(frame.t * 2 + i * 0.3)
+    const pulse = frame.reduce ? (4 / 5) : (3 / 5) + (2 / 5) * Math.sin(frame.t * 2 + i * (3 / (5 * 2)))
     if (p.lit) {
-      ctx.shadowColor = movieCanvasRgba(frame.hue, 0.8, { L: 5 / 8 })
+      ctx.shadowColor = paint(frame.hue, (4 / 5), { L: 5 / 8 })
       ctx.shadowBlur = 8 * p.s
-      ctx.fillStyle = movieCanvasRgba(frame.hue, 0.85 * pulse, { L: 11 / 16 })
-      ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(1.5, 3.4 * p.s), 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = paint(frame.hue, (1 - 3 / (5 * 4)) * pulse, { L: 11 / 16 })
+      ctx.beginPath(); ctx.arc(p.x, p.y, Math.max((3 / 2), (FIBONACCI[7]! / (2 * 5)) * p.s), 0, TAU); ctx.fill()
       ctx.shadowBlur = 0
     } else {
-      ctx.fillStyle = movieCanvasRgba((frame.hue + 40) % 360, 0.25 * p.s, { L: 1 / 2 })
-      ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(0.6, 1.4 * p.s), 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = paint((frame.hue + (8 * 5)) % 360, (1 / 4) * p.s, { L: 1 / 2 })
+      ctx.beginPath(); ctx.arc(p.x, p.y, Math.max((3 / 5), (7 / 5) * p.s), 0, TAU); ctx.fill()
     }
   }
-  ctx.fillStyle = movieCanvasRgba(frame.hue, 0.75, { L: 7 / 16 })
+  ctx.fillStyle = paint(frame.hue, (3 / 4), { L: 7 / 16 })
   ctx.font = '600 13px ui-sans-serif, system-ui, sans-serif'
   ctx.textAlign = 'left'
   ctx.textBaseline = 'top'
-  ctx.fillText(`${HOLO_LIT} / ${HOLO_BITS} bits lit`, 12, 10)
+  ctx.fillText(`${HOLO_LIT} / ${HOLO_BITS} bits lit`, (6 * 2), (5 * 2))
 }
 
 /**
@@ -1429,26 +1443,27 @@ function drawHologramProjection(ctx: CanvasRenderingContext2D, w: number, h: num
  * tube angle gives the 3D, the page's own glyph pulses at the centre, entering and exiting the path.
  */
 function drawLabyrinthProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = Math.min(w, h) * 0.32
-  const tube = R * 0.42
-  const tilt = 1.05
+  const R = Math.min(w, h) * (8 / (5 * 5))
+  const tube = R * ((7 * 3) / (5 * 5 * 2))
+  const tilt = ((7 * 3) / (5 * 4))
   const Nu = 26
   const Nv = 6
-  const spin = frame.reduce ? 0 : frame.t * 0.4
+  const spin = frame.reduce ? 0 : frame.t * (2 / 5)
   type G = { x: number; y: number; depth: number; glyph: string; u: number }
   const glyphs: G[] = []
   for (let i = 0; i < Nu; i += 1) {
-    const u = (i / Nu) * Math.PI * 2 + spin
+    const u = (i / Nu) * TAU + spin
     for (let j = 0; j < Nv; j += 1) {
-      const v = (j / Nv) * Math.PI * 2 + frame.t * 0.2
+      const v = (j / Nv) * TAU + frame.t * (1 / 5)
       const rr = R + tube * Math.cos(v)
       const x = Math.cos(u) * rr
       const z = Math.sin(u) * rr
       const y = tube * Math.sin(v)
       const depth = (z / (R + tube) + 1) / 2 // 0 far .. 1 near
-      glyphs.push({ x: cx + x, y: cy + (y * tilt + z * 0.18), depth, glyph: glagoliticGlyph(`laby:${i}:${j}`), u })
+      glyphs.push({ x: cx + x, y: cy + (y * tilt + z * (9 / (5 * 5 * 2))), depth, glyph: glagoliticGlyph(`laby:${i}:${j}`), u })
     }
   }
   glyphs.sort((a, b) => a.depth - b.depth)
@@ -1457,16 +1472,16 @@ function drawLabyrinthProjection(ctx: CanvasRenderingContext2D, w: number, h: nu
   for (const g of glyphs) {
     const size = 9 + g.depth * 16
     ctx.font = `${Math.round(size)}px serif`
-    ctx.fillStyle = movieCanvasRgba((frame.hue + g.u * 18) % 360, 0.2 + 0.7 * g.depth, { L: 1 / 2 + g.depth * (1 / 6) })
+    ctx.fillStyle = paint((frame.hue + g.u * (9 * 2)) % 360, (1 / 5) + (7 / (5 * 2)) * g.depth, { L: 1 / 2 + g.depth * (1 / 6) })
     ctx.fillText(g.glyph, g.x, g.y)
   }
   // Hero at the centre — pulsing, entering and exiting (z in/out).
-  const breath = frame.reduce ? 0.7 : 0.5 + 0.5 * Math.sin(frame.t * 0.9)
-  const heroSize = 18 + breath * 16
-  ctx.shadowColor = movieCanvasRgba(frame.hue, 0.8, { L: 5 / 8 })
-  ctx.shadowBlur = 12
+  const breath = frame.reduce ? (7 / (5 * 2)) : (1 / 2) + (1 / 2) * Math.sin(frame.t * (9 / (5 * 2)))
+  const heroSize = (9 * 2) + breath * 16
+  ctx.shadowColor = paint(frame.hue, (4 / 5), { L: 5 / 8 })
+  ctx.shadowBlur = (6 * 2)
   ctx.font = `${Math.round(heroSize)}px serif`
-  ctx.fillStyle = movieCanvasRgba(frame.hue, 0.5 + 0.5 * breath, { L: 11 / 16 })
+  ctx.fillStyle = paint(frame.hue, (1 / 2) + (1 / 2) * breath, { L: 11 / 16 })
   ctx.fillText(glagoliticGlyph('home'), cx, cy)
   ctx.shadowBlur = 0
 }
@@ -1480,49 +1495,50 @@ const MOVIE_GLYPHS = ['⊗', '◬', '✺', '✡', '✦', '🜔'] as const
  * here the whole constellation and every form move in space.
  */
 function drawMovie10dProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = Math.min(w, h) * 0.34
-  const rx = frame.reduce ? 0.4 : frame.t * 0.23
-  const ry = frame.reduce ? 0.3 : frame.t * 0.31
+  const R = Math.min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
+  const rx = frame.reduce ? (2 / 5) : frame.t * 0.23
+  const ry = frame.reduce ? (3 / (5 * 2)) : frame.t * (5 / 16) // was 0.31 — theorem 5/16 (self-research)
   // Background field — points on a sphere, moving in depth.
-  for (let i = 0; i < 80; i += 1) {
-    const a = i * 2.399963229728653
+  for (let i = 0; i < (16 * 5); i += 1) {
+    const a = i * GOLDEN_ANGLE_RAD
     const y = 1 - (i / 79) * 2
     const rr = Math.sqrt(Math.max(0, 1 - y * y))
-    const p = qProject(Math.cos(a) * rr, y, Math.sin(a) * rr, rx * 0.5, ry * 0.5, 0, cx, cy, R * 1.3)
-    ctx.fillStyle = movieCanvasRgba((frame.hue + i * 4) % 360, 0.1 + 0.25 * p.s, { L: 1 / 2 })
-    ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(0.5, 1.3 * p.s), 0, Math.PI * 2); ctx.fill()
+    const p = qProject(Math.cos(a) * rr, y, Math.sin(a) * rr, rx * (1 / 2), ry * (1 / 2), 0, cx, cy, R * (FIBONACCI[5]! / (2 * 5)))
+    ctx.fillStyle = paint((frame.hue + i * 4) % 360, (1 / (5 * 2)) + (1 / 4) * p.s, { L: 1 / 2 })
+    ctx.beginPath(); ctx.arc(p.x, p.y, Math.max((1 / 2), (FIBONACCI[5]! / (2 * 5)) * p.s), 0, TAU); ctx.fill()
   }
   // Six forms on a 3D orbit — each at an angle, lifted, projected with depth; each one spins.
   const order: { p: QProjected; i: number }[] = []
   for (let i = 0; i < MOVIE_FORMS.length; i += 1) {
-    const a = (i / MOVIE_FORMS.length) * Math.PI * 2
-    const p = qProject(Math.cos(a), Math.sin(a) * 0.5, Math.sin(a), rx, ry, 0, cx, cy, R)
+    const a = (i / MOVIE_FORMS.length) * TAU
+    const p = qProject(Math.cos(a), Math.sin(a) * (1 / 2), Math.sin(a), rx, ry, 0, cx, cy, R)
     order.push({ p, i })
   }
   order.sort((u, v) => u.p.z - v.p.z)
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   for (const { p, i } of order) {
-    const ring = (frame.reduce ? 0 : frame.t * (0.6 + i * 0.12))
+    const ring = (frame.reduce ? 0 : frame.t * ((3 / 5) + i * (3 / (5 * 5))))
     const rad = 16 * p.s
     // little spinning wireframe ring per form (the figure itself moves, not just the label)
-    ctx.strokeStyle = movieCanvasRgba((frame.hue + i * 50) % 360, 0.5 * p.s, { L: 9 / 16 })
-    ctx.lineWidth = 1.4
+    ctx.strokeStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, (1 / 2) * p.s, { L: 9 / 16 })
+    ctx.lineWidth = (7 / 5)
     ctx.beginPath()
     for (let k = 0; k <= 8; k += 1) {
-      const t = (k / 8) * Math.PI * 2
+      const t = (k / 8) * TAU
       const xx = p.x + Math.cos(t + ring) * rad
-      const yy = p.y + Math.sin(t + ring) * rad * 0.5
+      const yy = p.y + Math.sin(t + ring) * rad * (1 / 2)
       if (k === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy)
     }
     ctx.stroke()
-    ctx.font = `${Math.round(15 + 9 * p.s)}px serif`
-    ctx.fillStyle = movieCanvasRgba((frame.hue + i * 50) % 360, 0.45 + 0.5 * p.s, { L: 5 / 8 })
+    ctx.font = `${Math.round((5 * 3) + 9 * p.s)}px serif`
+    ctx.fillStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, (9 / (5 * 4)) + (1 / 2) * p.s, { L: 5 / 8 })
     ctx.fillText(MOVIE_GLYPHS[i]!, p.x, p.y)
     ctx.font = `${Math.round(9 + 2 * p.s)}px ui-sans-serif, system-ui, sans-serif`
-    ctx.fillStyle = movieCanvasRgba((frame.hue + i * 50) % 360, 0.3 + 0.4 * p.s, { L: 7 / 16 })
+    ctx.fillStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, (3 / (5 * 2)) + (2 / 5) * p.s, { L: 7 / 16 })
     ctx.fillText(MOVIE_FORMS[i]!, p.x, p.y + rad + 8)
   }
 }
@@ -1531,14 +1547,14 @@ function drawMovie10dProjection(ctx: CanvasRenderingContext2D, w: number, h: num
 function drawMerkabaProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
   const cx = w / 2
   const cy = h / 2
-  const R = Math.min(w, h) * 0.3
+  const R = Math.min(w, h) * (3 / (5 * 2))
   const up: [number, number, number][] = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]]
   const down = up.map((v) => [-v[0], -v[1], -v[2]] as [number, number, number])
   const upTetra: QSolid = { name: 'up', verts: qNormalizeVerts(up), edges: qSolidEdges(qNormalizeVerts(up)) }
   const downTetra: QSolid = { name: 'down', verts: qNormalizeVerts(down), edges: qSolidEdges(qNormalizeVerts(down)) }
-  const a = frame.reduce ? 0.4 : frame.t * 0.5
-  drawSolid3D(ctx, cx, cy, R, upTetra, a, a * 0.7, 0, frame.hue, 0.85)
-  drawSolid3D(ctx, cx, cy, R, downTetra, -a, -a * 0.7, 0, (frame.hue + 180) % 360, 0.7)
+  const a = frame.reduce ? (2 / 5) : frame.t * (1 / 2)
+  drawSolid3D(ctx, cx, cy, R, upTetra, a, a * (7 / (5 * 2)), 0, frame.hue, (1 - 3 / (5 * 4)), frame.palette.dark)
+  drawSolid3D(ctx, cx, cy, R, downTetra, -a, -a * (7 / (5 * 2)), 0, (frame.hue + (9 * 5 * 4)) % 360, (7 / (5 * 2)), frame.palette.dark)
 }
 
 /**
@@ -1551,62 +1567,63 @@ function drawMerkabaProjection(ctx: CanvasRenderingContext2D, w: number, h: numb
  * src/wind/research (unitDistanceResearch) — NOT the proof, and not to scale (real ℓ* ≈ 1791).
  */
 function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
   const R0 = Math.min(w, h) * 0.44
   // Counts come from the sealed params, never re-declared: segments = the pro-3 tower layers,
   // forms = the rosetta-sized sample of the t split-prime channels.
   const { segments: layers, forms: channels } = quantumProjectionParams('unit-distance')
-  const ringRadius = (j: number) => R0 * (0.28 + (0.66 * j) / layers)
-  const drift = frame.reduce ? 0 : frame.t * 0.12
-  const pulse = frame.reduce ? 0.5 : 0.5 - 0.5 * Math.cos(frame.p * Math.PI * 2)
+  const ringRadius = (j: number) => R0 * ((7 / (5 * 5)) + ((2 / 3) * j) / layers) // was 0.66 — theorem 2/3 (self-research)
+  const drift = frame.reduce ? 0 : frame.t * (3 / (5 * 5))
+  const pulse = frame.reduce ? (1 / 2) : dimWalk(frame.p)
 
   // Tower layers: ring j holds 3^j nodes; alternating rotation sense — the tower breathes, the channels do not.
   for (let j = 1; j <= layers; j += 1) {
     const r = ringRadius(j)
     const nodes = 3 ** j
     const theta = drift * (j % 2 === 0 ? -1 : 1) / j
-    const hue = (frame.hue + j * 18) % 360
-    ctx.strokeStyle = movieCanvasRgba(hue, 0.22, { L: 1 / 2 })
+    const hue = (frame.hue + j * (9 * 2)) % 360
+    ctx.strokeStyle = paint(hue, 0.22, { L: 1 / 2 })
     ctx.lineWidth = 1
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke()
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke()
     for (let k = 0; k < nodes; k += 1) {
-      const a = theta + (k / nodes) * Math.PI * 2
+      const a = theta + (k / nodes) * TAU
       const x = cx + Math.cos(a) * r
       const y = cy + Math.sin(a) * r
-      ctx.fillStyle = movieCanvasRgba(hue, 0.35 + 0.3 * pulse, { L: 5 / 8 })
-      ctx.beginPath(); ctx.arc(x, y, Math.max(0.8, R0 * 0.014), 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = paint(hue, (7 / (5 * 4)) + (3 / (5 * 2)) * pulse, { L: 5 / 8 })
+      ctx.beginPath(); ctx.arc(x, y, Math.max((4 / 5), R0 * (7 / (100 * 5))), 0, TAU); ctx.fill()
     }
   }
 
   // Split-prime channels: straight rays crossing every layer — Frobenius killed, the alignment never breaks.
   for (let c = 0; c < channels; c += 1) {
-    const a = (c / channels) * Math.PI * 2 + Math.PI / channels
-    const glow = 0.3 + 0.45 * (0.5 + 0.5 * Math.sin(frame.p * Math.PI * 2 + c))
-    ctx.strokeStyle = movieCanvasRgba((frame.hue + 180 + c * 8) % 360, glow, { L: 11 / 16 })
-    ctx.lineWidth = 1.4
+    const a = (c / channels) * TAU + Math.PI / channels
+    const glow = (3 / (5 * 2)) + (9 / (5 * 4)) * ((1 / 2) + (1 / 2) * Math.sin(frame.p * TAU + c))
+    ctx.strokeStyle = paint((frame.hue + (9 * 5 * 4) + c * 8) % 360, glow, { L: 11 / 16 })
+    ctx.lineWidth = (7 / 5)
     ctx.beginPath()
-    ctx.moveTo(cx + Math.cos(a) * R0 * 0.3, cy + Math.sin(a) * R0 * 0.3)
-    ctx.lineTo(cx + Math.cos(a) * R0 * 0.96, cy + Math.sin(a) * R0 * 0.96)
+    ctx.moveTo(cx + Math.cos(a) * R0 * (3 / (5 * 2)), cy + Math.sin(a) * R0 * (3 / (5 * 2)))
+    ctx.lineTo(cx + Math.cos(a) * R0 * ((8 * 3) / (5 * 5)), cy + Math.sin(a) * R0 * ((8 * 3) / (5 * 5)))
     ctx.stroke()
     for (let j = 1; j <= layers; j += 1) {
       const r = ringRadius(j)
-      ctx.fillStyle = movieCanvasRgba((frame.hue + 180 + c * 8) % 360, glow, { L: 3 / 4 })
-      ctx.beginPath(); ctx.arc(cx + Math.cos(a) * r, cy + Math.sin(a) * r, Math.max(1, R0 * 0.02), 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = paint((frame.hue + (9 * 5 * 4) + c * 8) % 360, glow, { L: 3 / 4 })
+      ctx.beginPath(); ctx.arc(cx + Math.cos(a) * r, cy + Math.sin(a) * r, Math.max(1, R0 * (1 / (5 * 5 * 2))), 0, TAU); ctx.fill()
     }
   }
 
   // The averaging lens: two unit-separated discs, radius breathing with the phase; the overlap is the harvest.
-  const lensR = R0 * 0.13 * (0.85 + 0.5 * pulse)
-  const sep = R0 * 0.11
-  const lens = (dx: number) => { ctx.beginPath(); ctx.arc(cx + dx, cy, lensR, 0, Math.PI * 2) }
-  ctx.strokeStyle = movieCanvasRgba(frame.hue, 0.55, { L: 5 / 8 })
-  ctx.lineWidth = 1.2
+  const lensR = R0 * (FIBONACCI[5]! / 100) * ((1 - 3 / (5 * 4)) + (1 / 2) * pulse)
+  const sep = R0 * (1 / 9) // was 0.11 — theorem 1/9 (self-research)
+  const lens = (dx: number) => { ctx.beginPath(); ctx.arc(cx + dx, cy, lensR, 0, TAU) }
+  ctx.strokeStyle = paint(frame.hue, (1 - 9 / (5 * 4)), { L: 5 / 8 })
+  ctx.lineWidth = (6 / 5)
   lens(-sep / 2); ctx.stroke()
   lens(sep / 2); ctx.stroke()
   ctx.save()
   lens(-sep / 2); ctx.clip()
-  ctx.fillStyle = movieCanvasRgba((frame.hue + 180) % 360, 0.28 + 0.4 * pulse, { L: 3 / 4 })
+  ctx.fillStyle = paint((frame.hue + (9 * 5 * 4)) % 360, (7 / (5 * 5)) + (2 / 5) * pulse, { L: 3 / 4 })
   lens(sep / 2); ctx.fill()
   ctx.restore()
 
@@ -1617,10 +1634,10 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
   const span = 3 // constant arc-step ⇒ constant chord length: every lit chord is the SAME distance
   for (let s = 0; s < lit; s += 1) {
     const k = (Math.floor(frame.t * 2) * 5 + s * 4) % outerNodes
-    const a1 = (k / outerNodes) * Math.PI * 2 + drift / layers * (layers % 2 === 0 ? -1 : 1)
-    const a2 = ((k + span) / outerNodes) * Math.PI * 2 + drift / layers * (layers % 2 === 0 ? -1 : 1)
-    ctx.strokeStyle = movieCanvasRgba((frame.hue + 90) % 360, 0.75, { L: 13 / 16 })
-    ctx.lineWidth = 1.6
+    const a1 = (k / outerNodes) * TAU + drift / layers * (layers % 2 === 0 ? -1 : 1)
+    const a2 = ((k + span) / outerNodes) * TAU + drift / layers * (layers % 2 === 0 ? -1 : 1)
+    ctx.strokeStyle = paint((frame.hue + (9 * 5 * 2)) % 360, (3 / 4), { L: 13 / 16 })
+    ctx.lineWidth = (8 / 5)
     ctx.beginPath()
     ctx.moveTo(cx + Math.cos(a1) * outerR, cy + Math.sin(a1) * outerR)
     ctx.lineTo(cx + Math.cos(a2) * outerR, cy + Math.sin(a2) * outerR)
@@ -1640,9 +1657,10 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
  * vortex) — the strokes and gateways are computed facts; the compass naming is an organizing lens.
  */
 function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = Math.min(w, h) * 0.4
+  const R = Math.min(w, h) * (2 / 5)
   // Counts from the sealed params, never re-declared: segments = the gateway reversals, forms = the tour.
   const { segments: gatewayCount, forms: tourSize } = quantumProjectionParams('vortex-strokes')
   const tour = [...VORTEX_SEQUENCE, 0]
@@ -1654,9 +1672,9 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
     .map((s, i) => ({ i, digit: s.from, turn: steps[(i - 1 + steps.length) % steps.length]!.up !== s.up }))
     .filter((v) => v.turn)
     .slice(0, gatewayCount)
-  const drift = frame.reduce ? 0 : frame.t * 0.08
-  const pulse = frame.reduce ? 0.5 : 0.5 - 0.5 * Math.cos(frame.p * Math.PI * 2)
-  const angleAt = (i: number) => drift + (i / tourSize) * Math.PI * 2 - Math.PI / 2
+  const drift = frame.reduce ? 0 : frame.t * (2 / (5 * 5))
+  const pulse = frame.reduce ? (1 / 2) : dimWalk(frame.p)
+  const angleAt = (i: number) => drift + (i / tourSize) * TAU - Math.PI / 2
   const xAt = (i: number) => cx + Math.cos(angleAt(i)) * R
   const yAt = (i: number) => cy + Math.sin(angleAt(i)) * R
   const runner = frame.reduce ? 0 : frame.p * tourSize
@@ -1666,7 +1684,7 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   for (const [a, b] of [[9, 1], [8, 2], [7, 3], [6, 4]] as const) {
     const ia = tour.indexOf(a)
     const ib = tour.indexOf(b)
-    ctx.strokeStyle = movieCanvasRgba((frame.hue + 300) % 360, 0.08 + 0.1 * pulse, { L: 5 / 8 })
+    ctx.strokeStyle = paint((frame.hue + (100 * 3)) % 360, (2 / (5 * 5)) + (1 / (5 * 2)) * pulse, { L: 5 / 8 })
     ctx.lineWidth = 1
     ctx.beginPath(); ctx.moveTo(xAt(ia), yAt(ia)); ctx.lineTo(xAt(ib), yAt(ib)); ctx.stroke()
   }
@@ -1675,36 +1693,36 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   // the runner lights the active stroke and the wake fades behind it.
   for (let i = 0; i < steps.length; i += 1) {
     const s = steps[i]!
-    const wake = frame.reduce ? 1 : Math.max(0, 1 - (((runner - i) % tourSize) + tourSize) % tourSize / (tourSize * 0.6))
-    const hue = s.up ? frame.hue : (frame.hue + 180) % 360
-    ctx.strokeStyle = movieCanvasRgba(hue, 0.18 + 0.6 * wake, { L: s.up ? 11 / 16 : 9 / 16 })
-    ctx.lineWidth = 1 + 1.6 * wake
+    const wake = frame.reduce ? 1 : Math.max(0, 1 - (((runner - i) % tourSize) + tourSize) % tourSize / (tourSize * (3 / 5)))
+    const hue = s.up ? frame.hue : (frame.hue + (9 * 5 * 4)) % 360
+    ctx.strokeStyle = paint(hue, (9 / (5 * 5 * 2)) + (3 / 5) * wake, { L: s.up ? 11 / 16 : 9 / 16 })
+    ctx.lineWidth = 1 + (8 / 5) * wake
     ctx.beginPath(); ctx.moveTo(xAt(i), yAt(i)); ctx.lineTo(xAt(i + 1), yAt(i + 1)); ctx.stroke()
   }
 
   // Tour nodes: a dot per digit, sized by pulse; the void (0) rendered hollow — presence without magnitude.
   for (let i = 0; i < tour.length; i += 1) {
     const d = tour[i]!
-    const r = Math.max(1.2, R * 0.03) * (0.8 + 0.4 * pulse)
-    const hue = (frame.hue + i * 12) % 360
+    const r = Math.max((6 / 5), R * (3 / 100)) * ((4 / 5) + (2 / 5) * pulse)
+    const hue = (frame.hue + i * (6 * 2)) % 360
     if (d === 0) {
-      ctx.strokeStyle = movieCanvasRgba(hue, 0.7, { L: 3 / 4 })
-      ctx.lineWidth = 1.2
-      ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, Math.PI * 2); ctx.stroke()
+      ctx.strokeStyle = paint(hue, (7 / (5 * 2)), { L: 3 / 4 })
+      ctx.lineWidth = (6 / 5)
+      ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, TAU); ctx.stroke()
     } else {
-      ctx.fillStyle = movieCanvasRgba(hue, 0.45 + 0.35 * pulse, { L: 5 / 8 })
-      ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = paint(hue, (9 / (5 * 4)) + (7 / (5 * 4)) * pulse, { L: 5 / 8 })
+      ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, TAU); ctx.fill()
     }
   }
 
   // The gateways: the four computed reversal vertices flare as the runner passes them on the wheel.
   for (const g of gateways) {
-    const near = frame.reduce ? 0.5 : Math.max(0, 1 - Math.min(Math.abs(runner - g.i), tourSize - Math.abs(runner - g.i)) / 1.5)
-    const glow = 0.25 + 0.65 * near
-    const hue = (frame.hue + 90) % 360
-    ctx.strokeStyle = movieCanvasRgba(hue, glow, { L: 13 / 16 })
-    ctx.lineWidth = 1.4
-    ctx.beginPath(); ctx.arc(xAt(g.i), yAt(g.i), Math.max(2, R * 0.06) * (0.7 + 0.6 * near), 0, Math.PI * 2); ctx.stroke()
+    const near = frame.reduce ? (1 / 2) : Math.max(0, 1 - Math.min(Math.abs(runner - g.i), tourSize - Math.abs(runner - g.i)) / (3 / 2))
+    const glow = (1 / 4) + (1 - 7 / (5 * 4)) * near
+    const hue = (frame.hue + (9 * 5 * 2)) % 360
+    ctx.strokeStyle = paint(hue, glow, { L: 13 / 16 })
+    ctx.lineWidth = (7 / 5)
+    ctx.beginPath(); ctx.arc(xAt(g.i), yAt(g.i), Math.max(2, R * (3 / (5 * 5 * 2))) * ((7 / (5 * 2)) + (3 / 5) * near), 0, TAU); ctx.stroke()
   }
 
   // The gateway pyramids: peaks (\→/) lift above the wheel's plane, valleys (/→\) sink below —
@@ -1712,20 +1730,20 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   // the inverted pyramid; the two counter-rotate through the shared 3D primitive — the merkaba
   // interaction of the realisation (computed in vortexGatewayPyramids, src/mountain/vortex).
   const liftVerts = gateways.map((g) => {
-    const a = (g.i / tourSize) * Math.PI * 2 - Math.PI / 2
+    const a = (g.i / tourSize) * TAU - Math.PI / 2
     const peak = steps[(g.i - 1 + steps.length) % steps.length]!.up && !steps[g.i]!.up
-    return [Math.cos(a), Math.sin(a), peak ? 0.9 : -0.9] as const
+    return [Math.cos(a), Math.sin(a), peak ? (9 / (5 * 2)) : -(9 / (5 * 2))] as const
   })
   const tetraEdges = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]] as const
   const upPyramid: QSolid = { name: 'gateway-pyramid', verts: liftVerts, edges: tetraEdges }
   const downPyramid: QSolid = { name: 'gateway-pyramid-inverse', verts: liftVerts.map(([x, y, z]) => [x, y, -z] as const), edges: tetraEdges }
-  const spin = frame.reduce ? 0.5 : frame.t * 0.3
-  drawSolid3D(ctx, cx, cy, R * 0.42, upPyramid, spin * 0.4, spin, 0, frame.hue, 0.4 + 0.25 * pulse)
-  drawSolid3D(ctx, cx, cy, R * 0.42, downPyramid, -spin * 0.4, -spin, 0, (frame.hue + 180) % 360, 0.4 + 0.25 * (1 - pulse))
+  const spin = frame.reduce ? (1 / 2) : frame.t * (3 / (5 * 2))
+  drawSolid3D(ctx, cx, cy, R * ((7 * 3) / (5 * 5 * 2)), upPyramid, spin * (2 / 5), spin, 0, frame.hue, (2 / 5) + (1 / 4) * pulse, frame.palette.dark)
+  drawSolid3D(ctx, cx, cy, R * ((7 * 3) / (5 * 5 * 2)), downPyramid, -spin * (2 / 5), -spin, 0, (frame.hue + (9 * 5 * 4)) % 360, (2 / 5) + (1 / 4) * (1 - pulse), frame.palette.dark)
 
   // The zero point itself: a quiet centre dot — the axis every reflection passes through.
-  ctx.fillStyle = movieCanvasRgba(frame.hue, 0.3 + 0.3 * pulse, { L: 7 / 8 })
-  ctx.beginPath(); ctx.arc(cx, cy, Math.max(1, R * 0.02), 0, Math.PI * 2); ctx.fill()
+  ctx.fillStyle = paint(frame.hue, (3 / (5 * 2)) + (3 / (5 * 2)) * pulse, { L: 7 / 8 })
+  ctx.beginPath(); ctx.arc(cx, cy, Math.max(1, R * (1 / (5 * 5 * 2))), 0, TAU); ctx.fill()
 }
 
 /**
@@ -1736,69 +1754,71 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
  * two handles = quantumProjectionParams('double-torus').forms, nodes per handle = 9 (the digit ring).
  */
 function drawDoubleTorusProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
   const r = Math.min(w, h) * 0.26
   const { forms: handles } = quantumProjectionParams('double-torus') // 2 — the genus
   const sep = r * 1.18
-  const squash = 0.62 // the camera tilt: rings read as tori, not coins
-  const drift = frame.reduce ? 0 : frame.t * 0.25
-  const pulse = frame.reduce ? 0.5 : 0.5 - 0.5 * Math.cos(frame.p * Math.PI * 2)
+  const squash = PHI - 1 // the camera tilt: rings read as tori, not coins — the golden ellipse (was rounded 0.62)
+  const drift = frame.reduce ? 0 : frame.t * (1 / 4)
+  const pulse = frame.reduce ? (1 / 2) : dimWalk(frame.p)
 
   // The two handles: nine digit-nodes each, strictly counter-rotating (left +, right −).
   for (let s = 0; s < handles; s += 1) {
     const hx = cx + (s === 0 ? -sep : sep)
     const sense = s === 0 ? 1 : -1
-    const hue = (frame.hue + s * 180) % 360
-    ctx.strokeStyle = movieCanvasRgba(hue, 0.3, { L: 9 / 16 })
-    ctx.lineWidth = 1.2
-    ctx.beginPath(); ctx.ellipse(hx, cy, r, r * squash, 0, 0, Math.PI * 2); ctx.stroke()
-    ctx.strokeStyle = movieCanvasRgba(hue, 0.14, { L: 1 / 2 })
-    ctx.beginPath(); ctx.ellipse(hx, cy, r * 0.62, r * squash * 0.62, 0, 0, Math.PI * 2); ctx.stroke()
+    const hue = (frame.hue + s * (9 * 5 * 4)) % 360
+    ctx.strokeStyle = paint(hue, (3 / (5 * 2)), { L: 9 / 16 })
+    ctx.lineWidth = (6 / 5)
+    ctx.beginPath(); ctx.ellipse(hx, cy, r, r * squash, 0, 0, TAU); ctx.stroke()
+    ctx.strokeStyle = paint(hue, (7 / (5 * 5 * 2)), { L: 1 / 2 })
+    ctx.beginPath(); ctx.ellipse(hx, cy, r * (PHI - 1), r * squash * (PHI - 1), 0, 0, TAU); ctx.stroke()
     for (let k = 0; k < 9; k += 1) {
-      const a = sense * drift + (k / 9) * Math.PI * 2
-      ctx.fillStyle = movieCanvasRgba((hue + k * 12) % 360, 0.35 + 0.35 * pulse, { L: 5 / 8 })
-      ctx.beginPath(); ctx.arc(hx + Math.cos(a) * r, cy + Math.sin(a) * r * squash, Math.max(1, r * 0.045), 0, Math.PI * 2); ctx.fill()
+      const a = sense * drift + (k / 9) * TAU
+      ctx.fillStyle = paint((hue + k * (6 * 2)) % 360, (7 / (5 * 4)) + (7 / (5 * 4)) * pulse, { L: 5 / 8 })
+      ctx.beginPath(); ctx.arc(hx + Math.cos(a) * r, cy + Math.sin(a) * r * squash, Math.max(1, r * (9 / (100 * 2))), 0, TAU); ctx.fill()
     }
   }
 
   // The figure-eight train: the lemniscate through both handles, crossing at the one throat.
   const eight = (u: number): readonly [number, number] => {
-    const a = u * Math.PI * 2
-    return [cx + Math.sin(a) * sep * 1.55, cy + Math.sin(a * 2) * r * squash * 0.92] as const
+    const a = u * TAU
+    return [cx + Math.sin(a) * sep * 1.55, cy + Math.sin(a * 2) * r * squash * (1 - 2 / (5 * 5))] as const
   }
   const cars = frame.reduce ? 3 : 9
-  const head = frame.reduce ? 0.125 : frame.p
+  const head = frame.reduce ? (1 / 8) : frame.p
   for (let c = 0; c < cars; c += 1) {
     const u = ((head - c * 0.022) % 1 + 1) % 1
     const [x, y] = eight(u)
     const fade = 1 - c / cars
-    ctx.fillStyle = movieCanvasRgba((frame.hue + 90) % 360, 0.25 + 0.6 * fade, { L: 13 / 16 })
-    ctx.beginPath(); ctx.arc(x, y, Math.max(1, r * 0.05) * (0.6 + 0.4 * fade), 0, Math.PI * 2); ctx.fill()
+    ctx.fillStyle = paint((frame.hue + (9 * 5 * 2)) % 360, (1 / 4) + (3 / 5) * fade, { L: 13 / 16 })
+    ctx.beginPath(); ctx.arc(x, y, Math.max(1, r * (1 / (5 * 4))) * ((3 / 5) + (2 / 5) * fade), 0, TAU); ctx.fill()
   }
 
   // The one throat both flows share — genus 2, breathing with the phase.
-  ctx.strokeStyle = movieCanvasRgba(frame.hue, 0.5 + 0.3 * pulse, { L: 3 / 4 })
-  ctx.lineWidth = 1.4
-  ctx.beginPath(); ctx.arc(cx, cy, r * 0.16 * (0.8 + 0.5 * pulse), 0, Math.PI * 2); ctx.stroke()
+  ctx.strokeStyle = paint(frame.hue, (1 / 2) + (3 / (5 * 2)) * pulse, { L: 3 / 4 })
+  ctx.lineWidth = (7 / 5)
+  ctx.beginPath(); ctx.arc(cx, cy, r * (4 / (5 * 5)) * ((4 / 5) + (1 / 2) * pulse), 0, TAU); ctx.stroke()
 }
 
 /** Torus field — fallback projection: a quasiperiodic genus-2 point field, the shared default view. */
 function drawTorusFieldProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = Math.min(w, h) * 0.3
-  const tube = R * 0.4
-  const rx = frame.reduce ? 0.4 : frame.t * 0.3
-  const ry = frame.reduce ? 0.2 : frame.t * 0.21
-  for (let i = 0; i < 28; i += 1) {
-    const u = (i / 28) * Math.PI * 2
-    for (let j = 0; j < 10; j += 1) {
-      const v = (j / 10) * Math.PI * 2
+  const R = Math.min(w, h) * (3 / (5 * 2))
+  const tube = R * (2 / 5)
+  const rx = frame.reduce ? (2 / 5) : frame.t * (3 / (5 * 2))
+  const ry = frame.reduce ? (1 / 5) : frame.t * (7 * 3 / 100)
+  for (let i = 0; i < (7 * 4); i += 1) {
+    const u = (i / (7 * 4)) * TAU
+    for (let j = 0; j < (5 * 2); j += 1) {
+      const v = (j / (5 * 2)) * TAU
       const rr = R + tube * Math.cos(v)
       const p = qProject(Math.cos(u) * rr / R, (tube * Math.sin(v)) / R, Math.sin(u) * rr / R, rx, ry, 0, cx, cy, R)
-      ctx.fillStyle = movieCanvasRgba((frame.hue + i * 8) % 360, 0.15 + 0.5 * p.s, { L: 1 / 2 })
-      ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(0.6, 2 * p.s), 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = paint((frame.hue + i * 8) % 360, (3 / (5 * 4)) + (1 / 2) * p.s, { L: 1 / 2 })
+      ctx.beginPath(); ctx.arc(p.x, p.y, Math.max((3 / 5), 2 * p.s), 0, TAU); ctx.fill()
     }
   }
 }
@@ -1821,7 +1841,7 @@ export type EarthHingePaintVortexStep = {
 }
 
 function hingePolar(angleDeg: number, radius: number, cx: number, cy: number) {
-  const rad = ((angleDeg - 90) * Math.PI) / 180
+  const rad = ((angleDeg - (9 * 5 * 2)) * Math.PI) / (9 * 5 * 4)
   return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) }
 }
 
@@ -1831,7 +1851,7 @@ function withHingePaintLayer(
   phase: number,
   draw: () => void,
 ): void {
-  const pulse = 0.88 + 0.12 * Math.sin(phase * (layer.tier / 3))
+  const pulse = (1 - 3 / (5 * 5)) + (3 / (5 * 5)) * Math.sin(phase * (layer.tier / 3))
   ctx.save()
   ctx.globalCompositeOperation = layer.blend
   ctx.globalAlpha = layer.alpha * pulse
@@ -1858,7 +1878,9 @@ export function drawDoubleTorusEarthHingeFrame(
   reduce = false,
   cycleMs = 12_000,
   layers?: readonly EarthHingePaintLayer[],
+  dark = true,
 ): void {
+  const paint = movieCanvasPolarity(dark)
   ctx.clearRect(0, 0, w, h)
   if (gateways.length === 0) return
   const stack = resolveHingePaintLayers(layers)
@@ -1868,9 +1890,9 @@ export function drawDoubleTorusEarthHingeFrame(
   const fusionLayer = stack[3]!
   const cx = w / 2
   const cy = h / 2
-  const scale = Math.min(w, h) / 400
-  const phase = reduce ? 0 : at / 1000
-  const breath = 1 + Math.sin(phase * 1.1) * 0.05
+  const scale = Math.min(w, h) / (100 * 4)
+  const phase = reduce ? 0 : at / (100 * 5 * 2)
+  const breath = 1 + Math.sin(phase * 1.1) * (1 / (5 * 4))
   const deviceR = 88 * scale * breath
   const invertedR = 118 * scale * breath
   const stepCount = Math.max(vortexSteps.length, 1)
@@ -1882,14 +1904,14 @@ export function drawDoubleTorusEarthHingeFrame(
 
   withHingePaintLayer(ctx, fieldLayer, phase, () => {
     const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.58)
-    bg.addColorStop(0, movieCanvasRgba(fieldLayer.voidHue, 0.14, { L: 5 / 16 }))
-    bg.addColorStop(0.55, movieCanvasRgba(fieldLayer.voidHue + 80, 0.06, { L: 1 / 4 }))
-    bg.addColorStop(1, movieCanvasRgba(fieldLayer.voidHue, 0, { L: 1 / 8 }))
+    bg.addColorStop(0, paint(fieldLayer.voidHue, (7 / (5 * 5 * 2)), { L: 5 / 16 }))
+    bg.addColorStop((1 - 9 / (5 * 4)), paint(fieldLayer.voidHue + (16 * 5), (3 / (5 * 5 * 2)), { L: 1 / 4 }))
+    bg.addColorStop(1, paint(fieldLayer.voidHue, 0, { L: 1 / 8 }))
     ctx.fillStyle = bg
     ctx.fillRect(0, 0, w, h)
     for (let i = 0; i < 6; i += 1) {
-      const tip = hingePolar(i * 60, invertedR * 1.12, cx, cy)
-      ctx.strokeStyle = movieCanvasRgba(fieldLayer.voidHue, 0.07, { L: 1 / 2 })
+      const tip = hingePolar(i * (6 * 5 * 2), invertedR * ((7 * 4) / (5 * 5)), cx, cy)
+      ctx.strokeStyle = paint(fieldLayer.voidHue, (7 / 100), { L: 1 / 2 })
       ctx.lineWidth = 1
       ctx.beginPath()
       ctx.moveTo(cx, cy)
@@ -1904,42 +1926,42 @@ export function drawDoubleTorusEarthHingeFrame(
       ctx.save()
       ctx.translate(cx, cy)
       ctx.rotate(phase * spin)
-      ctx.strokeStyle = movieCanvasRgba(hue, 0.32, { L: 7 / 8 })
-      ctx.lineWidth = 1.5 * scale
+      ctx.strokeStyle = paint(hue, (8 / (5 * 5)), { L: 7 / 8 })
+      ctx.lineWidth = (3 / 2) * scale
       if (dashed) ctx.setLineDash([6 * scale, 8 * scale])
       ctx.beginPath()
-      ctx.arc(0, 0, radius, 0, Math.PI * 2)
+      ctx.arc(0, 0, radius, 0, TAU)
       ctx.stroke()
       ctx.restore()
     }
-    drawRing(invertedR, ringsLayer.nadirHue, earthSpin.outerPhase * 0.18, true)
-    drawRing(deviceR, ringsLayer.zenithHue, earthSpin.innerPhase * 0.18, false)
+    drawRing(invertedR, ringsLayer.nadirHue, earthSpin.outerPhase * (9 / (5 * 5 * 2)), true)
+    drawRing(deviceR, ringsLayer.zenithHue, earthSpin.innerPhase * (9 / (5 * 5 * 2)), false)
   })
 
   withHingePaintLayer(ctx, structureLayer, phase, () => {
-    const zenithPulse = 0.75 + 0.25 * Math.sin(phase * 1.4)
-    const nadirPulse = 0.75 + 0.25 * Math.sin(phase * 1.4 + Math.PI)
-    const zenithY = cy - deviceR - 28 * scale
-    const nadirY = cy + deviceR + 28 * scale
+    const zenithPulse = (3 / 4) + (1 / 4) * Math.sin(phase * (7 / 5))
+    const nadirPulse = (3 / 4) + (1 / 4) * Math.sin(phase * (7 / 5) + Math.PI)
+    const zenithY = cy - deviceR - (7 * 4) * scale
+    const nadirY = cy + deviceR + (7 * 4) * scale
     const pyramidW = 34 * scale
 
-    ctx.fillStyle = movieCanvasRgba(structureLayer.zenithHue, 0.22 * zenithPulse, { L: 7 / 16 })
-    ctx.strokeStyle = movieCanvasRgba(structureLayer.zenithHue, 0.55 * zenithPulse, { L: 7 / 8 })
-    ctx.lineWidth = 1.5 * scale
+    ctx.fillStyle = paint(structureLayer.zenithHue, 0.22 * zenithPulse, { L: 7 / 16 })
+    ctx.strokeStyle = paint(structureLayer.zenithHue, (1 - 9 / (5 * 4)) * zenithPulse, { L: 7 / 8 })
+    ctx.lineWidth = (3 / 2) * scale
     ctx.beginPath()
-    ctx.moveTo(cx, zenithY - 18 * scale)
-    ctx.lineTo(cx - pyramidW, zenithY + 14 * scale)
-    ctx.lineTo(cx + pyramidW, zenithY + 14 * scale)
+    ctx.moveTo(cx, zenithY - (9 * 2) * scale)
+    ctx.lineTo(cx - pyramidW, zenithY + (7 * 2) * scale)
+    ctx.lineTo(cx + pyramidW, zenithY + (7 * 2) * scale)
     ctx.closePath()
     ctx.fill()
     ctx.stroke()
 
-    ctx.fillStyle = movieCanvasRgba(structureLayer.nadirHue, 0.22 * nadirPulse, { L: 7 / 16 })
-    ctx.strokeStyle = movieCanvasRgba(structureLayer.nadirHue, 0.55 * nadirPulse, { L: 7 / 8 })
+    ctx.fillStyle = paint(structureLayer.nadirHue, 0.22 * nadirPulse, { L: 7 / 16 })
+    ctx.strokeStyle = paint(structureLayer.nadirHue, (1 - 9 / (5 * 4)) * nadirPulse, { L: 7 / 8 })
     ctx.beginPath()
-    ctx.moveTo(cx, nadirY + 18 * scale)
-    ctx.lineTo(cx - pyramidW, nadirY - 14 * scale)
-    ctx.lineTo(cx + pyramidW, nadirY - 14 * scale)
+    ctx.moveTo(cx, nadirY + (9 * 2) * scale)
+    ctx.lineTo(cx - pyramidW, nadirY - (7 * 2) * scale)
+    ctx.lineTo(cx + pyramidW, nadirY - (7 * 2) * scale)
     ctx.closePath()
     ctx.fill()
     ctx.stroke()
@@ -1948,9 +1970,9 @@ export function drawDoubleTorusEarthHingeFrame(
       const prev = vortexSteps[i - 1]
       const next = vortexSteps[i]
       if (!prev || !next) continue
-      const p0 = hingePolar(prev.bearing, deviceR * 0.72, cx, cy)
-      const p1 = hingePolar(next.bearing, deviceR * 0.72, cx, cy)
-      ctx.strokeStyle = movieCanvasRgba(next.fusion ? fusionLayer.voidHue : structureLayer.voidHue, 0.35, { L: 3 / 4 })
+      const p0 = hingePolar(prev.bearing, deviceR * ((9 * 2) / (5 * 5)), cx, cy)
+      const p1 = hingePolar(next.bearing, deviceR * ((9 * 2) / (5 * 5)), cx, cy)
+      ctx.strokeStyle = paint(next.fusion ? fusionLayer.voidHue : structureLayer.voidHue, (7 / (5 * 4)), { L: 3 / 4 })
       ctx.lineWidth = 2 * scale
       ctx.beginPath()
       ctx.moveTo(p0.x, p0.y)
@@ -1961,14 +1983,14 @@ export function drawDoubleTorusEarthHingeFrame(
     for (const gateway of gateways) {
       const radius = gateway.ring === 1 ? deviceR : invertedR
       const point = hingePolar(gateway.angleDeg, radius, cx, cy)
-      const pulse = 0.5 + 0.5 * Math.sin(phase * 2.2 + gateway.angleDeg * 0.04)
+      const pulse = (1 / 2) + (1 / 2) * Math.sin(phase * 2.2 + gateway.angleDeg * (1 / (5 * 5)))
       const bearingGap = current
-        ? Math.abs(((current.bearing - gateway.angleDeg + 540) % 360) - 180)
-        : 180
-      const near = bearingGap < 35
-      ctx.strokeStyle = movieCanvasRgba(
+        ? Math.abs(((current.bearing - gateway.angleDeg + (108 * 5)) % 360) - (9 * 5 * 4))
+        : (9 * 5 * 4)
+      const near = bearingGap < (7 * 5)
+      ctx.strokeStyle = paint(
         gateway.hue,
-        gateway.earth === 'inverted' ? 0.22 : 0.14,
+        gateway.earth === 'inverted' ? 0.22 : (7 / (5 * 5 * 2)),
         { L: 1 / 2 },
       )
       ctx.lineWidth = 1 * scale
@@ -1979,11 +2001,11 @@ export function drawDoubleTorusEarthHingeFrame(
       ctx.lineTo(point.x, point.y)
       ctx.stroke()
       ctx.setLineDash([])
-      ctx.fillStyle = movieCanvasRgba(gateway.hue, (near ? 0.72 : 0.32) * pulse, { L: 7 / 8 })
-      ctx.strokeStyle = movieCanvasRgba(gateway.hue, near ? 0.95 : 0.55, { L: 13 / 16 })
-      ctx.lineWidth = 1.5 * scale
+      ctx.fillStyle = paint(gateway.hue, (near ? ((9 * 2) / (5 * 5)) : (8 / (5 * 5))) * pulse, { L: 7 / 8 })
+      ctx.strokeStyle = paint(gateway.hue, near ? (1 - 1 / (5 * 4)) : (1 - 9 / (5 * 4)), { L: 13 / 16 })
+      ctx.lineWidth = (3 / 2) * scale
       ctx.beginPath()
-      ctx.arc(point.x, point.y, (11 + (near ? 5 : 0)) * scale, 0, Math.PI * 2)
+      ctx.arc(point.x, point.y, (11 + (near ? 5 : 0)) * scale, 0, TAU)
       ctx.fill()
       ctx.stroke()
     }
@@ -1991,37 +2013,37 @@ export function drawDoubleTorusEarthHingeFrame(
 
   withHingePaintLayer(ctx, fusionLayer, phase, () => {
     if (current?.fusion) {
-      const flash = 0.25 + 0.35 * Math.sin(phase * 9)
-      ctx.fillStyle = movieCanvasRgba(fusionLayer.voidHue, flash, { L: 13 / 16 })
+      const flash = (1 / 4) + (7 / (5 * 4)) * Math.sin(phase * 9)
+      ctx.fillStyle = paint(fusionLayer.voidHue, flash, { L: 13 / 16 })
       ctx.beginPath()
-      ctx.arc(cx, cy, deviceR * 0.55, 0, Math.PI * 2)
+      ctx.arc(cx, cy, deviceR * (1 - 9 / (5 * 4)), 0, TAU)
       ctx.fill()
     }
 
     if (current) {
-      const walkerR = deviceR * (0.62 + stepT * 0.18)
-      const bearing = current.bearing + current.angleDelta * stepT * 0.85
+      const walkerR = deviceR * (PHI - 1 + stepT * (9 / (5 * 5 * 2)))
+      const bearing = current.bearing + current.angleDelta * stepT * (1 - 3 / (5 * 4))
       const walker = hingePolar(bearing, walkerR, cx, cy)
-      ctx.fillStyle = movieCanvasRgba(current.fusion ? fusionLayer.voidHue : fusionLayer.voidHue + 140, 0.95, { L: 5 / 6 })
+      ctx.fillStyle = paint(current.fusion ? fusionLayer.voidHue : fusionLayer.voidHue + (7 * 5 * 4), (1 - 1 / (5 * 4)), { L: 5 / 6 })
       ctx.beginPath()
-      ctx.arc(walker.x, walker.y, (3.5 + stepT * 4) * scale, 0, Math.PI * 2)
+      ctx.arc(walker.x, walker.y, ((7 / 2) + stepT * 4) * scale, 0, TAU)
       ctx.fill()
-      ctx.strokeStyle = movieCanvasRgba(current.fusion ? fusionLayer.voidHue : fusionLayer.voidHue + 140, 0.45, { L: 7 / 8 })
+      ctx.strokeStyle = paint(current.fusion ? fusionLayer.voidHue : fusionLayer.voidHue + (7 * 5 * 4), (9 / (5 * 4)), { L: 7 / 8 })
       ctx.lineWidth = 2 * scale
       ctx.beginPath()
-      ctx.arc(walker.x, walker.y, (8 + stepT * 6) * scale, 0, Math.PI * 2)
+      ctx.arc(walker.x, walker.y, (8 + stepT * 6) * scale, 0, TAU)
       ctx.stroke()
     }
 
-    ctx.fillStyle = movieCanvasRgba(fusionLayer.voidHue + 140, 0.08, { L: 1 / 2 })
+    ctx.fillStyle = paint(fusionLayer.voidHue + (7 * 5 * 4), (2 / (5 * 5)), { L: 1 / 2 })
     ctx.beginPath()
-    ctx.arc(cx, cy, 28 * scale, 0, Math.PI * 2)
+    ctx.arc(cx, cy, (7 * 4) * scale, 0, TAU)
     ctx.fill()
-    ctx.fillStyle = movieCanvasRgba(fusionLayer.voidHue + 140, 0.7, { L: 13 / 16 })
-    ctx.strokeStyle = movieCanvasRgba(fusionLayer.voidHue + 140, 0.9, { L: 5 / 6 })
-    ctx.lineWidth = 1.5 * scale
+    ctx.fillStyle = paint(fusionLayer.voidHue + (7 * 5 * 4), (7 / (5 * 2)), { L: 13 / 16 })
+    ctx.strokeStyle = paint(fusionLayer.voidHue + (7 * 5 * 4), (9 / (5 * 2)), { L: 5 / 6 })
+    ctx.lineWidth = (3 / 2) * scale
     ctx.beginPath()
-    ctx.arc(cx, cy, 11 * scale, 0, Math.PI * 2)
+    ctx.arc(cx, cy, 11 * scale, 0, TAU)
     ctx.fill()
     ctx.stroke()
   })
@@ -2051,7 +2073,7 @@ export function clientDoubleTorusEarthHingePaintSealed(path = '/', matrix: MindM
             all.hinge.movie.cycleMs,
             all.paintLayers,
           )
-          paintAlpha = ctx.getImageData(32, 32, 1, 1).data[3]!
+          paintAlpha = ctx.getImageData((16 * 2), (16 * 2), 1, 1).data[3]!
         }
       }
     })
@@ -2165,7 +2187,7 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
   let heroError = ''
   try {
     withSimulatedBrowserWindow(() => {
-      const shared = sharedHeroAt(path, { title: 'Double Torus', description: 'gate' }, 0, 1024, false)
+      const shared = sharedHeroAt(path, { title: 'Double Torus', description: 'gate' }, 0, (64 * 16), false)
       streamCount = shared.wiredStreams.length
       heroOk = streamCount > 0 && shared.movieText.includes('plasma-seed:')
       if (typeof document !== 'undefined') {
@@ -2175,7 +2197,7 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
         const ctx = canvas.getContext('2d')
         if (ctx) {
           drawHeroMovieFrame(ctx, 64, 64, shared)
-          paintAlpha = ctx.getImageData(32, 32, 1, 1).data[3]!
+          paintAlpha = ctx.getImageData((16 * 2), (16 * 2), 1, 1).data[3]!
         }
       }
     })
@@ -2188,7 +2210,7 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
   // through the 2h toroidal wrap whose seam stays a half-window OFF canvas for every offset.
   const anchorH = 432
   const winH = 1011
-  const cardH = 240
+  const cardH = (16 * 5 * 3)
   const crossingTop = winH / 2 - cardH / 2 // card centre on viewport centre
   const anchorSweep = Array.from({ length: 97 }, (_, i) => i * (anchorH / 8))
   const anchorLaw =
@@ -2243,7 +2265,7 @@ export function lifeDeathDoubleTorusFusedInMovie(path = '/en/', matrix: MindMatr
         const ctx = canvas.getContext('2d')
         if (ctx) {
           const palette = plasmaMoviePalette(matrix, path, true)
-          drawDeathCounterFlow(ctx, 32, 32, 64 * 0.07, 64, 200, 0.3, 1, palette, 24)
+          drawDeathCounterFlow(ctx, (16 * 2), (16 * 2), 64 * (7 / 100), 64, (100 * 2), (3 / (5 * 2)), 1, palette, (8 * 3))
           const data = ctx.getImageData(0, 0, 64, 64).data
           for (let i = 3; i < data.length; i += 4) inflowAlpha += data[i]!
         }

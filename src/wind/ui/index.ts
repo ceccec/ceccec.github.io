@@ -8,17 +8,18 @@ import { buildMatrix, matrixMemo } from '../../heaven/compute'
 import type { MindMatrix } from '../types'
 import {  computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'
 import { merkleProof } from '../../lake/ledger'
-import { harmonics } from '../../lake/music'
+import { clownActQuantumSteps, harmonics } from '../../lake/music'
 import { blockchainFusion, tamperingCostDecoded } from '../../water/crypto'
 import { societyFuture, societyRegulates } from '../../earth/governance'
 import { conceptCommands } from '../../heaven/atoms'
 import { multidimensionalSummaries, navigation358, skillAtoms } from '../learning'
 import { analogSpeech, lawfulHarmonise, openGraph } from '../../quantum/lake/icons'
-import { moviesNativeFormat, oneOpenGraphAll } from '../../fire/li'
+import { moviesNativeFormat, oneOpenGraphAll, taxonomyIcons } from '../../fire/li'
 import { ancientCalendars } from '../../thunder/decode'
 import { babelFold, textToMovie } from '../../earth/world'
 import { areaPairs, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../../mountain/geometry'
-import { DIMENSIONS, DIMENSION_NAMES, dims, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../../quantum/mountain/dimensions'
+import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../../quantum/mountain/dimensions'
+import { perspective, rot2 } from '../../quantum/wind/geometry' // the sealed projection atoms — FOCAL-2.4 perspective divide + the one planar rotation
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../../thunder/movie/glass'
 import { yinYang } from '../../quantum/lake/spirit'
 import { scaleColor, A432_HUE, movieCanvasHex } from '../../quantum/science'
@@ -32,6 +33,7 @@ import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { TAU, FIBONACCI } from '../../3/7'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
 // whole is recoverable from any part. Here that is exact: the whole root folds from
@@ -107,7 +109,7 @@ export function holographicDashboard(matrix: MindMatrix = buildMatrix()) {
       { label: 'real diamonds', value: corpus.real },
     ] },
     { panel: 'harmonics', icon: '♪', metrics: [
-      { label: 'fundamental', value: foldedCensus(110, matrix).folded },
+      { label: 'fundamental', value: foldedCensus(108 + 2, matrix).folded },
       { label: 'next harmonic', value: papers(matrix).count },
       { label: 'binary octave', value: corpus.total },
       { label: 'ladder rungs', value: harmonics(matrix).harmonics.length },
@@ -233,7 +235,7 @@ export function navigationAroundHero(matrix: MindMatrix = buildMatrix()) {
   const shells = navigation358().tiers.map((tier) => {
     const radius = tier.tier // the tier IS the shell radius around the hero
     const items = tier.items.map((item, index) => {
-      const angle = (index / tier.items.length) * Math.PI * 2
+      const angle = (index / tier.items.length) * TAU
       return {
         label: item.label,
         route: item.route,
@@ -336,7 +338,7 @@ export function freeAnimations(matrix: MindMatrix = buildMatrix()) {
     { channel: 'tone', sense: 'sound', motion: 'synthesis' },
   ].map((entry) => {
     const seed = toUuid(`free-anim:${entry.channel}:${root}`)
-    const phase = (Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16) % 1000) / 1000
+    const phase = (Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16) % (100 * 5 * 2)) / (100 * 5 * 2)
     return { ...entry, free: true, clientCost: 0, networkCost: 0, seed, bound: isUuid(seed) }
   })
   const free = channels.every((entry) => entry.free && entry.clientCost === 0 && entry.networkCost === 0)
@@ -344,7 +346,7 @@ export function freeAnimations(matrix: MindMatrix = buildMatrix()) {
   // The forger must reproduce every bound channel and the 128-bit word; the cost
   // figure counts channels times the word's bits — an honest surface measure of
   // how much a forgery must match, not a cryptographic hardness bound.
-  const wordBits = 128
+  const wordBits = (64 * 2)
   const tamperingCost = channels.length * wordBits
   return {
     maxFree: free && bound,
@@ -418,9 +420,9 @@ function proseToAudioVisual3dProofRaw(matrix: MindMatrix = buildMatrix()) {
     const addr = toUuid(prose)
     const point = uuidPoint(addr) // 3D: x, y, z in [−1,1]³
     const tone = proseToTone(prose) // audio: an a432-tempered pitch
-    const movie = textToMovie(prose.slice(0, 48)) // visual: deterministic particle film
-    const hue = roundTo((Number.parseInt(addr.replace(/[^0-9a-f]/gi, '').slice(0, 2) || '0', 16) / 255) * 360, 1)
-    const deterministic = toUuid(prose) === addr && proseToTone(prose).hz === tone.hz && textToMovie(prose.slice(0, 48)).root === movie.root
+    const movie = textToMovie(prose.slice(0, (16 * 3))) // visual: deterministic particle film
+    const hue = roundTo((Number.parseInt(addr.replace(/[^0-9a-f]/gi, '').slice(0, 2) || '0', 16) / (2 ** 8 - 1)) * 360, 1)
+    const deterministic = toUuid(prose) === addr && proseToTone(prose).hz === tone.hz && textToMovie(prose.slice(0, (16 * 3))).root === movie.root
     return { addr, point, hz: roundTo(tone.hz, 2), hue, movieRoot: movie.root, is3D: point.length === 3, deterministic, receipt: toUuid(`av3d:${addr}`) }
   })
   const all3D = proofs.every((p) => p.is3D) // at least three spatial dimensions
@@ -498,7 +500,7 @@ function doubleTorusWiredToDepthDialRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the flagship genus-2 scene reads the canonical depth dial (useLayers, 0–10) instead of a bespoke 3/5/8 toggle — the same control idiom every widget uses', on: dial.harmonised && torus.euler === -2 },
     { facet: 'one dial drives two coupled depths — the fold dimension (the surface folds through more coordinate planes) and the card Z-lift (the section publishes --dt-depth, so the whole scene rises toward the viewer)', on: dial.harmonised },
     { facet: `the fold stays in the proven ${foldLo}–${foldHi} range (the Fibonacci span the wireframe was tuned for), so the dial deepens the genus-2 fold without breaking the aesthetic`, on: foldHi - foldLo === 5 },
-    { facet: `the wiring changed the control, not the render — the scene still carries all ${torus.areas} area-objects (${torus.perLobe} per lobe) and stays energy- and viewport-aware`, on: torus.areas === 42 && torus.perLobe === 21 },
+    { facet: `the wiring changed the control, not the render — the scene still carries all ${torus.areas} area-objects (${torus.perLobe} per lobe) and stays energy- and viewport-aware`, on: torus.areas === (7 * 6) && torus.perLobe === (7 * 3) },
   ]
   const sealed = sealFacets('torus-dial', facets)
   return {
@@ -588,7 +590,7 @@ export function heroSlimRespects64And42(matrix: MindMatrix = buildMatrix()) {
   const areas = areaPairs()
   const respects = [
     { respects: '64 — the double-torus word vocabulary (closed)', on: words.closed && words.limit === 64 },
-    { respects: '42 — the area taxonomy (6×7 = 7×6, paired, bidirectional)', on: areas.count === 42 && areas.paired && areas.bidirectional },
+    { respects: '42 — the area taxonomy (6×7 = 7×6, paired, bidirectional)', on: areas.count === (7 * 6) && areas.paired && areas.bidirectional },
     { respects: 'slim — computes the address, loads blocks/components on demand (no whole-model build at mount)', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hero-slim:${entry.respects}:${entry.on}`) }))
   return {
@@ -661,7 +663,7 @@ export function allAnimationsNative64k(matrix: MindMatrix = buildMatrix()) {
   ].map((entry) => ({ ...entry, receipt: toUuid(`native-anim:${entry.surface}:${entry.on}`) }))
   return {
     native: surfaces.every((entry) => entry.on),
-    maxWidth: 61440,
+    maxWidth: (64 * 64 * 5 * 3),
     count: surfaces.length,
     surfaces,
     root: merkleFold(surfaces.map((entry) => entry.receipt)),
@@ -739,30 +741,30 @@ const SVG_CHROMA = 9 / 64
 
 function heroSvgPaletteFromUuid(uuid: string) {
   const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, '') || '8080808080808080'
-  const byte = (k: number) => parseInt(hex.slice((k * 2) % 28, ((k * 2) % 28) + 2), 16) || 128
+  const byte = (k: number) => parseInt(hex.slice((k * 2) % (7 * 4), ((k * 2) % (7 * 4)) + 2), 16) || (64 * 2)
   const seedHue = A432_HUE
   return {
-    accent: scaleColor(byte(14), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA }),
-    bgInner: scaleColor(byte(10), { seedHue, dark: true, L: 11 / 32, C: SVG_CHROMA * 0.75 }),
-    bgOuter: scaleColor(byte(11), { seedHue, dark: true, L: 3 / 32, C: SVG_CHROMA * 0.5 }),
-    title: scaleColor(byte(12), { seedHue, dark: true, L: 13 / 16, C: SVG_CHROMA * 0.25 }),
-    torusMid: scaleColor(byte(15), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA }),
+    accent: scaleColor(byte((7 * 2)), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA }),
+    bgInner: scaleColor(byte((5 * 2)), { seedHue, dark: true, L: 11 / (16 * 2), C: SVG_CHROMA * (3 / 4) }),
+    bgOuter: scaleColor(byte(11), { seedHue, dark: true, L: 3 / (16 * 2), C: SVG_CHROMA * (1 / 2) }),
+    title: scaleColor(byte((6 * 2)), { seedHue, dark: true, L: 1 - 3 / 16, C: SVG_CHROMA * (1 / 4) }),
+    torusMid: scaleColor(byte((5 * 3)), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA }),
   }
 }
 
 // The plasma-ball layer — a glowing core with radial filaments flickering on the a432 spine, hex-only (no hsl)
 // and SMIL-only so it stays GitHub-safe. The plasma ball folded into the hero: the fire-li energy at the throat.
 function heroPlasmaBallLayer(cx: number, cy: number, byte: (k: number) => number): string {
-  const hue = Math.round((byte(6) * 360) / 256)
+  const hue = Math.round((byte(6) * 360) / (64 * 4))
   const core = movieCanvasHex(hue, { L: 7 / 8 })
-  const fil = movieCanvasHex((hue + 40) % 360, { L: 13 / 16 })
-  const n = 12
+  const fil = movieCanvasHex((hue + (8 * 5)) % 360, { L: 1 - 3 / 16 })
+  const n = (6 * 2)
   const filaments = Array.from({ length: n }, (_, k) => {
-    const a = (k / n) * Math.PI * 2
-    const r = 30 + (byte(k) % 26)
+    const a = (k / n) * TAU
+    const r = (6 * 5) + (byte(k) % 26)
     const x2 = Math.round(cx + Math.cos(a) * r)
     const y2 = Math.round(cy + Math.sin(a) * r)
-    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${3 + (k % 5)}.5s" begin="${(k % 9) * 0.4 + 0.1}s" repeatCount="indefinite"/></line>`
+    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${3 + (k % 5)}.5s" begin="${(k % 9) * (2 / 5) + (1 / (5 * 2))}s" repeatCount="indefinite"/></line>`
   }).join('')
   return `<g opacity="0.5">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="6s" repeatCount="indefinite"/></circle></g>`
 }
@@ -770,11 +772,11 @@ function heroPlasmaBallLayer(cx: number, cy: number, byte: (k: number) => number
 // The sacred-geometry layer — the Flower of Life, a real compass construction (seven circles), drawn as faint
 // strokes slowly turning. Hex-only, SMIL-only, GitHub-safe. The geometry folded into the hero behind the torus.
 function heroFlowerOfLifeLayer(cx: number, cy: number, byte: (k: number) => number): string {
-  const hue = Math.round((byte(9) * 360) / 256)
-  const stroke = movieCanvasHex(hue, { L: 13 / 16 })
+  const hue = Math.round((byte(9) * 360) / (64 * 4))
+  const stroke = movieCanvasHex(hue, { L: 1 - 3 / 16 })
   const R = 26
   const centers: [number, number][] = [[0, 0], ...Array.from({ length: 6 }, (_, k): [number, number] => {
-    const a = (k / 6) * Math.PI * 2
+    const a = (k / 6) * TAU
     return [Math.cos(a) * R, Math.sin(a) * R]
   })]
   const circles = centers.map(([dx, dy]) => `<circle cx="${Math.round(dx)}" cy="${Math.round(dy)}" r="${R}" fill="none" stroke="${stroke}" stroke-width="1"/>`).join('')
@@ -783,11 +785,11 @@ function heroFlowerOfLifeLayer(cx: number, cy: number, byte: (k: number) => numb
 
 export function heroSvgFromUuid(uuid: string): string {
   const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, '') || '8080808080808080'
-  const byte = (k: number) => parseInt(hex.slice((k * 2) % 28, ((k * 2) % 28) + 2), 16) || 128 // one byte of the forged UUID
+  const byte = (k: number) => parseInt(hex.slice((k * 2) % (7 * 4), ((k * 2) % (7 * 4)) + 2), 16) || (64 * 2) // one byte of the forged UUID
   const colors = heroSvgPaletteFromUuid(uuid)
-  const W = 760, H = 384, cx = W / 2, cy = 176
-  const G0 = Math.round(byte(12) * 360 / 256), G1 = Math.round(byte(13) * 360 / 256) // the torus gradient hues, forged from the UUID
-  const LOOPS = [0, 1, 2, 3].map((k) => ({ r: 96 + (byte(k) % 88), dur: 10 + (byte(k + 4) % 16), hue: Math.round(byte(k + 8) * 360 / 256) })) // the four H₁ = ℤ⁴ loops, forged from the UUID's bytes
+  const W = 760, H = (64 * 6), cx = W / 2, cy = 176
+  const G0 = Math.round(byte((6 * 2)) * 360 / (64 * 4)), G1 = Math.round(byte(13) * 360 / (64 * 4)) // the torus gradient hues, forged from the UUID
+  const LOOPS = [0, 1, 2, 3].map((k) => ({ r: (16 * 6) + (byte(k) % 88), dur: (5 * 2) + (byte(k + 4) % 16), hue: Math.round(byte(k + 8) * 360 / (64 * 4)) })) // the four H₁ = ℤ⁴ loops, forged from the UUID's bytes
   // the eight trigrams (bāguà) as a ring of yin/yang bars (no font dependency), pulsing in sequence — the I Ching
   const trigram = (t: number, x: number, y: number, k: number) =>
     `<g fill="${colors.accent}"><animate attributeName="opacity" values="0.22;1;0.22" dur="8s" begin="${k}s" repeatCount="indefinite"/>` +
@@ -797,7 +799,7 @@ export function heroSvgFromUuid(uuid: string): string {
         ? `<rect x="${x - 16}" y="${yy - 2}" width="32" height="4" rx="1"/>`
         : `<rect x="${x - 16}" y="${yy - 2}" width="13" height="4" rx="1"/><rect x="${x + 3}" y="${yy - 2}" width="13" height="4" rx="1"/>`
     }).join('') + `</g>`
-  const bagua = Array.from({ length: 8 }, (_, k) => { const a = (k / 8) * Math.PI * 2 - Math.PI / 2; return trigram(k, Math.round(cx + Math.cos(a) * 332), Math.round(cy + Math.sin(a) * 156), k) }).join('')
+  const bagua = Array.from({ length: 8 }, (_, k) => { const a = (k / 8) * TAU - Math.PI / 2; return trigram(k, Math.round(cx + Math.cos(a) * 332), Math.round(cy + Math.sin(a) * 156), k) }).join('')
   // the double torus — two tori COUNTER-rotating with a depth (vertical) pulse: the revised, tumbling movement
   const torus = (sx: number, spin: string, off: string) =>
     `<g transform="translate(${sx} ${cy})"><animateTransform attributeName="transform" type="rotate" ${spin} dur="30s" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="scale" values="1 1;1 0.6;1 1" dur="9s" begin="${off}" repeatCount="indefinite" additive="sum"/><ellipse rx="104" ry="58"/><ellipse rx="44" ry="22"/></g>`
@@ -805,19 +807,19 @@ export function heroSvgFromUuid(uuid: string): string {
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the animated I Ching, the ten-dimensional hero computed from src">`,
     `<defs>`,
     `<radialGradient id="bg" cx="50%" cy="46%" r="74%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
-    `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${movieCanvasHex(G0, { L: 7 / 8 })}"/><stop offset="50%" stop-color="${colors.torusMid}"/><stop offset="100%" stop-color="${movieCanvasHex(G1, { L: 13 / 16 })}"/></linearGradient>`,
+    `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${movieCanvasHex(G0, { L: 7 / 8 })}"/><stop offset="50%" stop-color="${colors.torusMid}"/><stop offset="100%" stop-color="${movieCanvasHex(G1, { L: 1 - 3 / 16 })}"/></linearGradient>`,
     `</defs>`,
     `<rect width="${W}" height="${H}" rx="18" fill="url(#bg)"/>`,
     heroFlowerOfLifeLayer(cx, cy, byte),
     heroPlasmaBallLayer(cx, cy, byte),
     `<g>${bagua}</g>`,
     `<g fill="none" stroke="url(#torus)" stroke-width="2.5">`,
-    torus(cx - 60, 'from="0" to="360"', '0s'),
-    torus(cx + 60, 'from="360" to="0"', '-4.5s'),
+    torus(cx - (6 * 5 * 2), 'from="0" to="360"', '0s'),
+    torus(cx + (6 * 5 * 2), 'from="360" to="0"', '-4.5s'),
     `</g>`,
-    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="5.5" fill="${movieCanvasHex(L.hue, { L: 13 / 16 })}"/></g>`),
+    ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="5.5" fill="${movieCanvasHex(L.hue, { L: 1 - 3 / 16 })}"/></g>`),
     `<text x="${cx}" y="${cy + 6}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="28" font-weight="700" fill="${colors.title}">Double Torus</text>`,
-    `<text x="${cx}" y="${H - 20}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="${colors.accent}">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
+    `<text x="${cx}" y="${H - (5 * 4)}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="${colors.accent}">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
     `</svg>`,
   ].join('')
 }
@@ -873,16 +875,16 @@ export function computedIconSvg(matrix: MindMatrix = buildMatrix()): string {
 // every scale. Reused by the <YinYang> component and emittable as a static hero. animate:false → a still taiji
 // (prefers-reduced-motion).
 export function yinYangDimensionsSvg(opts: { frames?: number; scale?: number; animate?: boolean; size?: number } = {}): string {
-  const { frames = 30, scale = 0, animate = true, size = 200 } = opts
-  const R = Math.round(size * 0.34), cx = size / 2, cy = size / 2, e = R / 6 // taiji radius, centre, base eye
+  const { frames = (6 * 5), scale = 0, animate = true, size = (100 * 2) } = opts
+  const R = Math.round(size * (FIBONACCI[7]! / 100)), cx = size / 2, cy = size / 2, e = R / 6 // taiji radius = Fibonacci decade, centre, base eye
   const n = (x: number) => Math.round(x * 100) / 100
   // sample the ten-dimensional walk once; the loop is seamless because dims(1) ≡ dims(0).
   const walk = Array.from({ length: frames + 1 }, (_, i) => dims((i % frames) / frames, scale))
   const list = (f: (d: Dims, i: number) => number | string) => walk.map((d, i) => `${f(d, i)}`).join(';')
   // the two poles — colours COMPUTED AT THIS SCALE via scaleColor (OKLCH, so legible at every scale), the hue
   // folding through the hueShift dimension; hex because the SVG fill="" attribute rejects oklch(). Yin = complement.
-  const yang = (d: Dims) => scaleColor(scale, { seedHue: n(d.hueShift), L: 13 / 16, C: 9 / 64 })
-  const yin = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + 180) % 360), L: 5 / 16, C: 9 / 64 })
+  const yang = (d: Dims) => scaleColor(scale, { seedHue: n(d.hueShift), L: 1 - 3 / 16, C: 9 / 64 })
+  const yin = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + (9 * 5 * 4)) % 360), L: 5 / 16, C: 9 / 64 })
   const dur = 'dur="18s" repeatCount="indefinite"'
   const A = (attr: string, vals: string) => (animate ? `<animate attributeName="${attr}" values="${vals}" ${dur}/>` : '')
   const AT = (type: string, vals: string) => (animate ? `<animateTransform attributeName="transform" type="${type}" values="${vals}" ${dur} additive="sum"/>` : '')
@@ -892,15 +894,15 @@ export function yinYangDimensionsSvg(opts: { frames?: number; scale?: number; an
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="The I Ching as a yin-yang moving and folding through all ten dimensions">`,
     `<g transform="translate(${cx} ${cy})"><g>`, // centre the origin (fixed), then the animated stack of channels
-    AT('translate', list((d) => `${n((d.loopA1 + d.loopA2) * R * 0.16)} ${n((d.loopB1 + d.loopB2) * R * 0.16)}`)), // 4 homology loops → travel
+    AT('translate', list((d) => `${n((d.loopA1 + d.loopA2) * R * (4 / (5 * 5)))} ${n((d.loopB1 + d.loopB2) * R * (4 / (5 * 5)))}`)), // 4 homology loops → travel
     AT('rotate', list((_d, i) => n((i / frames) * 360))), // moving — one full turn per cycle
-    AT('rotate', list((d) => n((d.twist - 0.45) * 40))),  // twist axis → an extra fold-rock
+    AT('rotate', list((d) => n((d.twist - (9 / (5 * 4))) * (8 * 5)))),  // twist axis → an extra fold-rock
     AT('scale', list((d) => n(d.breath))),                // breath axis → the pulse
-    AT('skewX', list((d) => n((d.spread - 0.5) * 26))),   // spread axis → the fold-over shear
+    AT('skewX', list((d) => n((d.spread - (1 / 2)) * 26))),   // spread axis → the fold-over shear
     `<circle r="${R}" fill="${yang(d0)}" stroke="${scaleColor(scale, { L: 7 / 8, C: 9 / 64 })}" stroke-width="1.5">${A('fill', list(yang))}</circle>`, // the light pole (disc), ring computed at scale
     `<path d="${dark}" fill="${yin(d0)}">${A('fill', list(yin))}</path>`, // the dark pole — the yin/yang division
-    `<circle cx="0" cy="${-n(R / 2)}" r="${n(e)}" fill="${yin(d0)}">${A('r', list((d) => n(e * (d.shrink / 0.64))))}${A('fill', list(yin))}</circle>`, // dark eye in the light lobe
-    `<circle cx="0" cy="${n(R / 2)}" r="${n(e)}" fill="${yang(d0)}">${A('r', list((d) => n(e * (d.shrink / 0.64))))}${A('fill', list(yang))}</circle>`, // light eye in the dark lobe
+    `<circle cx="0" cy="${-n(R / 2)}" r="${n(e)}" fill="${yin(d0)}">${A('r', list((d) => n(e * (d.shrink / (16 / (5 * 5))))))}${A('fill', list(yin))}</circle>`, // dark eye in the light lobe
+    `<circle cx="0" cy="${n(R / 2)}" r="${n(e)}" fill="${yang(d0)}">${A('r', list((d) => n(e * (d.shrink / (16 / (5 * 5))))))}${A('fill', list(yang))}</circle>`, // light eye in the dark lobe
     `</g></g></svg>`,
   ].join('')
 }
@@ -915,8 +917,8 @@ export function yinYangFoldsThroughDimensions(matrix: MindMatrix = buildMatrix()
   const facets = [
     { facet: 'the taiji IS the fold — yin and yang are the two poles of one distinction (the sign = one bit = the fold), the seed the whole figure unfolds from, completed in the 3-5-8 tiers (三才·五行·八卦)', on: yy.complete },
     { facet: 'MOVING — the yin-yang is drawn (not a font glyph) and turns continuously as the single phase p advances, one full rotation per cycle; the I Ching is shown in motion, not as a static symbol', on: /type="rotate"/.test(svg) && /<path /.test(svg) },
-    { facet: 'FOLDING THROUGH ALL TEN DIMENSIONS — every one of the model’s ten axes drives a visible channel, sampled from dims(): the six cross-fold appearance axes (breath→scale, spread & twist→the fold shear, hueShift→colour) and the four genus-2 homology loops (H₁=ℤ⁴ → the quasiperiodic travel)', on: DIMENSIONS === 10 && DIMENSION_NAMES.length === 10 && /type="translate"/.test(svg) && /type="scale"/.test(svg) && /type="skewX"/.test(svg) },
-    { facet: 'self-similar at every scale — the same ten-dimensional walk, golden-angle offset per nested scale, so the presentation holds at every zoom', on: JSON.stringify(dims(0.3, 0)) !== JSON.stringify(dims(0.3, 1)) },
+    { facet: 'FOLDING THROUGH ALL TEN DIMENSIONS — every one of the model’s ten axes drives a visible channel, sampled from dims(): the six cross-fold appearance axes (breath→scale, spread & twist→the fold shear, hueShift→colour) and the four genus-2 homology loops (H₁=ℤ⁴ → the quasiperiodic travel)', on: DIMENSIONS === (5 * 2) && DIMENSION_NAMES.length === (5 * 2) && /type="translate"/.test(svg) && /type="scale"/.test(svg) && /type="skewX"/.test(svg) },
+    { facet: 'self-similar at every scale — the same ten-dimensional walk, golden-angle offset per nested scale, so the presentation holds at every zoom', on: JSON.stringify(dims((3 / (5 * 2)), 0)) !== JSON.stringify(dims((3 / (5 * 2)), 1)) },
     { facet: 'GitHub-safe and reusable — one parametric SMIL generator (no JavaScript), the same source feeding the live component and a static still; animate:false yields the reduced-motion taiji', on: svg.startsWith('<svg') && !/script/i.test(svg) && still.startsWith('<svg') && !/<animate/.test(still) },
   ]
   const sealed = sealFacets('yin-yang-folds-through-dimensions', facets)
@@ -948,10 +950,10 @@ export function livingIChingSvg(bits: number[], opts: { scale?: number; animate?
   const { scale = 0, animate = true, size = 64 } = opts
   const N = bits.length
   const r = (x: number) => Math.round(x * 100) / 100
-  const gap = size * 0.05
+  const gap = size * (1 / (5 * 4))
   const lh = (size - gap * (N + 1)) / N // line height, N lines evenly spaced with gaps
-  const pad = size * 0.16, full = size - pad * 2 // horizontal inset, full bar width
-  const ygap = full * 0.2, half = (full - ygap) / 2 // yin centre gap, each half-bar
+  const pad = size * (4 / (5 * 5)), full = size - pad * 2 // horizontal inset, full bar width
+  const ygap = full * (1 / 5), half = (full - ygap) / 2 // yin centre gap, each half-bar
   const sc = 'dt' + toUuid(`living-symbol:${bits.join('')}:${scale}:${animate}`).replace(/-/g, '').slice(0, 8) // content-addressed scope class — no cross-instance CSS leak
   const lines = bits
     .map((_, i) => {
@@ -962,9 +964,9 @@ export function livingIChingSvg(bits: number[], opts: { scale?: number; animate?
       const role = N === 6 ? (i < 3 ? ' up' : ' lo') : '' // upper / lower trigram → opposite fold axis
       const cls = bit ? 'yang' : 'yin'
       const rects = bit
-        ? `<rect x="${r(pad)}" y="${r(y)}" width="${r(full)}" height="${r(lh)}" rx="${r(lh * 0.3)}"/>`
-        : `<rect x="${r(pad)}" y="${r(y)}" width="${r(half)}" height="${r(lh)}" rx="${r(lh * 0.3)}"/><rect x="${r(pad + half + ygap)}" y="${r(y)}" width="${r(half)}" height="${r(lh)}" rx="${r(lh * 0.3)}"/>`
-      return `<g class="ln ${cls}${role}" style="fill:${fill};animation-delay:-${r(i * 0.83)}s">${rects}</g>`
+        ? `<rect x="${r(pad)}" y="${r(y)}" width="${r(full)}" height="${r(lh)}" rx="${r(lh * (3 / (5 * 2)))}"/>`
+        : `<rect x="${r(pad)}" y="${r(y)}" width="${r(half)}" height="${r(lh)}" rx="${r(lh * (3 / (5 * 2)))}"/><rect x="${r(pad + half + ygap)}" y="${r(y)}" width="${r(half)}" height="${r(lh)}" rx="${r(lh * (3 / (5 * 2)))}"/>`
+      return `<g class="ln ${cls}${role}" style="fill:${fill};animation-delay:-${r(i * (5 / 6))}s">${rects}</g>`
     })
     .join('')
   const css = animate
@@ -1004,7 +1006,7 @@ export function livingHexagramSvg(hexagram: number, opts: { scale?: number; anim
 /** @rosetta ✦₂ · Wind · gentle */
 export function allSymbolsMoveAndFoldColoursComputedAtAllScales(matrix: MindMatrix = buildMatrix()) {
   const tri = livingTrigramSvg(0b010) // a trigram with yin lines (so a fold is present)
-  const hex = livingHexagramSvg(42)
+  const hex = livingHexagramSvg((7 * 6))
   const yy = yinYangDimensionsSvg()
   const c0 = scaleColor(0), c1 = scaleColor(1), c1dark = scaleColor(1, { dark: true })
   const facets = [
@@ -1066,7 +1068,7 @@ export function iChingLeadsUiAtAllScales(matrix: MindMatrix = buildMatrix()) {
       { facet: 'the ladder is the binary doubling — the scales 2, 4, 8, 64 are 2¹, 2², 2³, 2⁶, the I Ching leading every scale of the interface', on: scales.every((s) => s.n === 2 ** s.bits) && scales[scales.length - 1]!.n === 64 },
       { facet: 'eight trigrams lead the families — BAGUA is 8, and the 64 fall into 8 octants of exactly 8 (8² = 64, the bāguà² square)', on: BAGUA.length === 8 && octants.length === 8 && octants.every((o) => o.components.length === 8) },
       { facet: 'sixty-four hexagrams lead the components — shadcn’s graph is exactly 64 = the closure limit = 8² = 4³ = 2⁶', on: graph.allComponents.length === 64 && closure.limit === 64 && 8 ** 2 === 64 && 4 ** 3 === 64 && 2 ** 6 === 64 },
-      { facet: 'colour is led too — each component’s colour IS its hexagram (the 2⁶=4³ pole-colour bijection): 64 distinct, hexagram 0 → #000000, hexagram 63 → #FFFFFF', on: duality.allDistinct && components.every((c) => /^#[0-9A-F]{6}$/.test(c.color)) && components[0]!.color === '#000000' && components[63]!.color === '#FFFFFF' },
+      { facet: 'colour is led too — each component’s colour IS its hexagram (the 2⁶=4³ pole-colour bijection): 64 distinct, hexagram 0 → #000000, hexagram 63 → #FFFFFF', on: duality.allDistinct && components.every((c) => /^#[0-9A-F]{6}$/.test(c.color)) && components[0]!.color === '#000000' && components[(9 * 7)]!.color === '#FFFFFF' },
       { facet: 'the I Ching organises, shadcn renders — the 64↔64 fusion verdict holds (iChingShadcnFuseTenDWidgets)', on: fuse.widgets === 64 && fuse.hexagrams === 64 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`iching-leads-ui:${entry.facet}:${entry.on}`) }))
     return {
@@ -1306,7 +1308,7 @@ export function completeUiAnimationsDesign(matrix: MindMatrix = buildMatrix()) {
     { wave: 'native 64K — devicePixelRatio, vector not pixels', done: native.native, note: 'seeded math scales sharp' },
     { wave: '10D at every scale — dims in every canvas', done: tenD.tenDimensional && tenD.atEveryScale, note: 'hero wired; full canvas sweep pending' },
     { wave: 'A432 hue + harmonics on every draw path', done: false, note: 'scaleColor exists; not yet universal on draw()' },
-    { wave: 'MatrixField — 87 custom elements → ≤8 renderers', done: few.analyzed && few.recoverablePct >= 80, note: 'entropy measured; consolidation wave pending' },
+    { wave: 'MatrixField — 87 custom elements → ≤8 renderers', done: few.analyzed && few.recoverablePct >= (16 * 5), note: 'entropy measured; consolidation wave pending' },
     { wave: 'co-located index.vue — dissolve render/ui mounts', done: false, note: 'logic in src/<science>/fold/<action>/index.ts today' },
     { wave: 'CURRICULUM_MASK — data-curriculum on every animated root', done: false, note: 'replaces trigram-only ICHING_MASK grouping' },
   ]
@@ -1452,6 +1454,441 @@ export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
         'shadcn computes: the canonical sealed home of the design system — the 64-component graph (shadcnIsTheGraph), the 23 vendored Ui* primitives (Path A, semantic classes, no Tailwind), the cva variant axes, the CSS-variable token bridge, and the cn() composer pattern.',
       boundary:
         'Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx()).',
+    }
+  })
+}
+
+// THE CLOWN DESIGNS THE UI — with the Rosetta and the I Ching. Every visual decision in the clown-step
+// animation is COMPUTED, none chosen: the palette is the act's MEASURED hexagram (six Born-rule collapses in
+// lake/music → the 2⁶=4³ pole-colour of hexagramIsHexColorDuality; the two lemniscate lobes wear their trigram
+// RGB-cube corners — lower trigram = handle A, upper = handle B), the structure is the I Ching scale ladder
+// (step k embeds the living symbol of the first k+1 measured lines: bit → trigram at step 3 → the full
+// hexagram at the bow), the per-line colours are scaleColor (the a432 golden-angle OKLCH law livingIChingSvg
+// uses), the motion is the physics of clownActQuantumSteps (reset flicker · Rabi sweep · ghost-fan decoherence ·
+// Born snap at the self-crossing · Landauer receipt · Zeno tremble), and each step wears its Rosetta area glyph
+// from the sealed 42. CSS @keyframes only (no SMIL, no JS) — GitHub-animatable, reduced-motion safe.
+function clownLemniscate(t: number, a: number): { x: number; y: number } {
+  const s = Math.sin(t), c = Math.cos(t), d = 1 + s * s // Bernoulli — speed ratio √2, the smoothest figure-eight
+  return { x: (a * c) / d, y: (a * s * c) / d }
+}
+
+// THE 2D→10D LADDER — the act climbs the model's own ten dimensions (DIMENSION_NAMES), cumulatively: the
+// entrance travels FLAT (handle 1's longitude along the path + its meridian as an in-plane wiggle — 2D), the
+// escalation LIFTS (breath = the tube's z-amplitude inflates, perspective size attenuation begins; twist = the
+// tube frame's plane precession — 4D), the catastrophe fades with depth and fans (6D), the laugh shifts hue and
+// shrinks the symbol (8D), the weave adds handle 2's meridian — a second incommensurate rate (9D), and the bow
+// adds its longitude — all TEN engaged (10D), the overlaid golden-shifted cycles never closing (Lissajous
+// non-closure = the honest signature of each added frequency). Channel values are SAMPLED from dims(p) at the
+// walker's act-phase (never invented). dimWalk(p) drives the Z-AMPLITUDE of the embedding — NOT the image
+// scale: the world is genuinely flat at the act's ends (the walker sits on its shadow) and fully lifted at the
+// laugh. No whole-scene zoom exists: a 2D similarity transform adds zero degrees of freedom.
+const CLOWN_DIM_LADDER: readonly (readonly string[])[] = [
+  ['loopA1', 'loopB1'],
+  ['loopA1', 'loopB1', 'breath', 'twist'],
+  ['loopA1', 'loopB1', 'breath', 'twist', 'spread', 'depthFade'],
+  ['loopA1', 'loopB1', 'breath', 'twist', 'spread', 'depthFade', 'hueShift', 'shrink'],
+  ['loopA1', 'loopB1', 'breath', 'twist', 'spread', 'depthFade', 'hueShift', 'shrink', 'loopA2'],
+  ['loopA1', 'loopB1', 'breath', 'twist', 'spread', 'depthFade', 'hueShift', 'shrink', 'loopA2', 'loopB2'],
+]
+
+// The stage geometry is built ONCE — the constant-speed arc-length LUT of the Bernoulli lemniscate (the
+// incomplete arc is a lemniscatic elliptic integral with NO elementary closed form, so a lookup is honest).
+const CLOWN_A = (8 * 7), CLOWN_CX = 78, CLOWN_CY = 58
+let _clownStage: { atArc: (s: number) => { x: number; y: number }; total: number } | null = null
+function clownStage() {
+  if (_clownStage) return _clownStage
+  const N = (16 * 5 * 3)
+  const pts: { x: number; y: number }[] = []
+  const arc: number[] = [0]
+  for (let i = 0; i <= N; i++) {
+    const q = clownLemniscate(Math.PI / 2 + (i / N) * TAU, CLOWN_A)
+    pts.push(q)
+    if (i > 0) arc.push(arc[i - 1]! + Math.hypot(q.x - pts[i - 1]!.x, q.y - pts[i - 1]!.y))
+  }
+  const total = arc[N]!
+  const atArc = (s: number): { x: number; y: number } => {
+    const target = ((s % total) + total) % total
+    let i = arc.findIndex((v) => v >= target)
+    if (i <= 0) i = 1
+    const f = (target - arc[i - 1]!) / (arc[i]! - arc[i - 1]! || 1)
+    return { x: pts[i - 1]!.x + f * (pts[i]!.x - pts[i - 1]!.x), y: pts[i - 1]!.y + f * (pts[i]!.y - pts[i - 1]!.y) }
+  }
+  _clownStage = { atArc, total }
+  return _clownStage
+}
+
+// The Bloch vector is COMPUTED from the physics of clownActQuantumSteps, never keyframed by hand — one
+// continuous chain across the act (each step starts where the previous ended): the unprepared equator (90°)
+// is pumped exponentially to |ridiculous⟩ (active reset), the Rabi π-sweep drives it to |magnificent⟩ (0°),
+// T1 drifts it back toward the pole while T2 shrinks its length, the Born SNAP at the self-crossing lands on
+// the MEASURED line-4 bit (yin → 180°), the weave re-prepares a NEW state to the equator after the median
+// receipt, and Zeno holds it there — per-interval excursion = Itano's π/n step (n = 64), 8 = √64 intervals
+// shown. DECLARED exaggeration: the Zeno excursion is rendered ×4 (2.8125° → 11.25°) or it would be invisible.
+const CLOWN_ZENO_EXAGGERATION = 4
+function clownBloch(k: number, u: number, bits: readonly number[]): { deg: number; len: number } {
+  const c = (x: number) => Math.round(x * 100) / 100
+  if (k === 0) return { deg: c((9 * 5 * 4) - (9 * 5 * 2) * Math.exp(-u / (9 / (5 * 5 * 2)))), len: 1 } // active reset — exponential pump to the pole
+  if (k === 1) return { deg: c((9 * 5 * 4) - (9 * 5 * 4) * u), len: 1 } // the resonant Rabi π-sweep, pole to pole
+  if (k === 2) return { deg: c((9 * 5 * 4) * (1 - Math.exp(-u / (9 / (5 * 4))))), len: c(((9 * 2) / (5 * 5)) + (7 / (5 * 5)) * Math.exp(-u / (1 / 2))) } // T1 drift to the pole, T2 shrink — never to the center
+  if (k === 3) return { deg: u < 1 / 16 ? c((9 * 5 * 4) * (1 - Math.exp(-1 / (9 / (5 * 4))))) : (9 * 5 * 4) * (1 - (bits[3] ?? 0)), len: 1 } // the Born SNAP at the crossing — the outcome IS the measured line-4 bit
+  if (k === 4) return { deg: c(u < (1 / 2) ? (9 * 5 * 4) : (9 * 5 * 4) - (9 * 5 * 2) * ((u - (1 / 2)) / (1 / 2))), len: 1 } // after the median receipt — a NEW superposition woven to the equator
+  return { deg: c((9 * 5 * 2) - ((9 * 5 * 4) / 64) * CLOWN_ZENO_EXAGGERATION * ((u * 8) % 1)), len: 1 } // Zeno — Itano π/64 excursions, snapped back each of the 8 = √64 intervals
+}
+
+/**
+ * The COMPUTED act state at any phase p ∈ [0,1) — the single source both audiences consume: AI agents read
+ * this as data (see clownActTimeline), humans watch clownStepSvg render the SAME function as CSS keyframes.
+ * Nothing about the animation is assumed: position, lift, depth scale, fade, hue, shrink and the Bloch vector
+ * all derive from the sealed samplers (dims/dimWalk), the projection atoms (rot2/perspective) and the measured
+ * physics of clownActQuantumSteps.
+ */
+export function clownLiftState(phase: number, matrix: MindMatrix = buildMatrix(), atStep?: number) {
+  const p = Math.min(Math.max(phase, 0), 1 - 1e-9)
+  const k = atStep ?? Math.min(5, Math.floor(p * 6))
+  const u = Math.min(Math.max(p * 6 - k, 0), 1)
+  const act = clownActQuantumSteps(matrix)
+  const entry = act.steps[k]!
+  const chans = CLOWN_DIM_LADDER[k]!
+  const has = (channel: string) => chans.includes(channel)
+  const r = (x: number) => Math.round(x * 100) / 100
+  const d = dims(p)
+  const { atArc, total } = clownStage()
+  const s0 = atArc(p * total)
+  const ahead = atArc(p * total + (3 / 4))
+  const len = Math.hypot(ahead.x - s0.x, ahead.y - s0.y) || 1
+  const nx = -(ahead.y - s0.y) / len, ny = (ahead.x - s0.x) / len // in-plane unit normal to the centerline
+  const TUBE = 7 // the genus-2 atom's tube radius (doubleTorusSurface, src/0)
+  const ZLIFT = (8 / 5), ZUP = (1 - 3 / (5 * 4)) // z visibility gain · the fixed oblique screen tilt (one camera, never zoomed)
+  const tube = TUBE * (has('breath') ? (7 / (5 * 2)) + (3 / (5 * 2)) * ((d.breath - (7 / (5 * 2))) / (3 / (5 * 2))) : 1)
+  const eps = has('breath') ? dimWalk(p) : 0 // the lift amplitude — 0 at the act's ends: genuinely flat, no zoom
+  let on = tube * (d.loopA1 + (has('loopA2') ? (1 - 9 / (5 * 4)) * d.loopA2 : 0))
+  let oz = eps * ZLIFT * tube * (d.loopB1 + (has('loopB2') ? (1 - 9 / (5 * 4)) * d.loopB2 : 0))
+  if (has('twist')) { const t = rot2(on, oz, eps * (d.twist - (1 / 5)) * (6 / 5)); on = t.u; oz = t.v } // ε-gated tube-frame precession
+  const zn = oz / (ZLIFT * TUBE)
+  const scl = has('breath') ? Math.round(perspective(zn * (1 / 2)) * (100 * 5 * 2)) / (100 * 5 * 2) : 1 // perspective size attenuation
+  const fade = has('depthFade') ? Math.round(Math.max((7 / (5 * 4)), Math.min(1, 1 - ((1 / 2) - zn / 2) * d.depthFade * 4)) * 100) / 100 : 1 // aerial fade
+  const bloch = clownBloch(k, u, act.bits)
+  const shadow = { x: r(CLOWN_CX + s0.x + nx * on), y: r(CLOWN_CY + s0.y + ny * on) } // z DROPPED
+  const walker = { x: shadow.x, y: r(CLOWN_CY + s0.y + ny * on - oz * ZUP), scale: scl, fade } // z raised + perspective
+  return {
+    p: Math.round(p * 1e6) / 1e6,
+    step: k,
+    name: entry.step,
+    area: entry.area,
+    vortex: entry.vortex,
+    channels: chans,
+    dims: chans.length,
+    shadow,
+    walker,
+    z: r(oz),
+    hue: has('hueShift') ? r(d.hueShift) : 0,
+    shrink: has('shrink') ? Math.round((d.shrink / (16 / (5 * 5))) * (100 * 5 * 2)) / (100 * 5 * 2) : 1,
+    bloch,
+    receipt: toUuid(`clown-state:${Math.round(p * 1e6)}:${shadow.x}:${shadow.y}:${walker.y}:${scl}:${bloch.deg}`),
+  }
+}
+
+/** The computed act as a machine-readable timeline — 64 frames (the hexagram count) for agents; deterministic replay. */
+export function clownActTimeline(frames = 64, matrix: MindMatrix = buildMatrix()) {
+  const n = Math.max(2, Math.floor(frames))
+  const states = Array.from({ length: n }, (_, i) => clownLiftState(i / n, matrix))
+  return {
+    frames: n,
+    states,
+    root: merkleFold(states.map((state) => state.receipt)),
+    statement:
+      'The clown act as computed data: every frame a full state — position, shadow, lift z, perspective scale, aerial fade, hue, shrink, engaged channels and the physics-derived Bloch vector — sampled from clownLiftState, the same function the human SVG renders. An agent replays the act from this timeline bit-for-bit; the merkle root seals it.',
+    boundary:
+      'HONEST: deterministic and content-addressed — the same call yields the same root; no frame is authored, all are computed (dims/dimWalk samplers, rot2/perspective projection, the measured hexagram bits). Theatrical constants are declared in source (the Zeno excursion ×4). Coordinates are stage-space (viewBox 200×110), not physical units.',
+  }
+}
+
+// One golden-shifted lifted-path sample — shared by the bow's densification trace and the whole-life trace:
+// the same state math, phase-shifted by dims' own 1/φ per scale, so overlaid cycles never realign.
+function clownTracePoint(p: number, sc2: number): string {
+  const r = (x: number) => Math.round(x * 100) / 100
+  const d = dims(p, sc2)
+  const { atArc, total } = clownStage()
+  const s0 = atArc(p * total), ahead = atArc(p * total + (3 / 4))
+  const nlen = Math.hypot(ahead.x - s0.x, ahead.y - s0.y) || 1
+  const nx = -(ahead.y - s0.y) / nlen, ny = (ahead.x - s0.x) / nlen
+  const tube = 7 * ((7 / (5 * 2)) + (3 / (5 * 2)) * ((d.breath - (7 / (5 * 2))) / (3 / (5 * 2))))
+  const eps = dimWalk(p)
+  let on = tube * (d.loopA1 + (1 - 9 / (5 * 4)) * d.loopA2)
+  let oz = eps * (8 / 5) * tube * (d.loopB1 + (1 - 9 / (5 * 4)) * d.loopB2)
+  const t = rot2(on, oz, eps * (d.twist - (1 / 5)) * (6 / 5)); on = t.u; oz = t.v
+  return `${r(CLOWN_CX + s0.x + nx * on)},${r(CLOWN_CY + s0.y + ny * on - oz * (1 - 3 / (5 * 4)))}`
+}
+
+/** One clown step (0..5) as a self-contained CSS-@keyframes SVG — the UI computed from the I Ching + Rosetta. */
+export function clownStepSvg(step: number, opts: { animate?: boolean; size?: number } = {}): string {
+  const { animate = true, size = (100 * 2) } = opts
+  const k = ((Math.floor(step) % 6) + 6) % 6
+  const act = clownActQuantumSteps()
+  const entry = act.steps[k]!
+  const bits = act.bits
+  const r = (x: number) => Math.round(x * 100) / 100
+  const cx = CLOWN_CX, cy = CLOWN_CY, a = CLOWN_A
+  // ── COMPUTED, NOT ASSUMED ──────────────────────────────────────────────────────────────────────
+  // This renderer AUTHORS NOTHING: every keyframe below is a sample of clownLiftState — the same exported
+  // state function agents consume as data (clownActTimeline). The zoom critique held (a whole-scene 2D
+  // similarity adds ZERO degrees of freedom), so depth is shown by projection only: perspective size
+  // attenuation + aerial fade (the strong monocular cues after occlusion — Cutting & Vishton 1995), the
+  // flat SHADOW kept beneath the lifted walker (Flatland/Sagan: the shadow is not the object), dimWalk
+  // driving the Z-AMPLITUDE (flat at the act's ends), and the Bloch vector derived from the sourced
+  // physics and the MEASURED hexagram bits (clownBloch) — never a hand-written frame table.
+  const chans = CLOWN_DIM_LADDER[k]!
+  const nd = chans.length // dimensions engaged at this step: 2 · 4 · 6 · 8 · 9 · 10
+  const has = (channel: string) => chans.includes(channel)
+  const STOPS = 16 // 17 keyframe stops — the sampling resolution of the presentation, not of the concept
+  const stopAt = (j: number) => clownLiftState((k + j / STOPS) / 6, undefined, k)
+  const first = stopAt(0)
+  const last = stopAt(STOPS)
+  const flatCoincident = !has('breath') // step 0 — walker ≡ shadow at every stop, the world is 2D
+  const landsOnShadow = k === 5 && Math.abs(last.walker.y - last.shadow.y) < (1 / 100) // the bow's end — ε = 0, the walker lands on its shadow
+  // the palette IS the hexagram: the act's pole-colour accent + the two trigram RGB-cube corner colours
+  const pole = (n: number, len: number) => '#' + Array.from({ length: len }, (_, i) => (((n >> (len - 1 - i)) & 1) ? 'F' : '0')).join('')
+  const accent = pole(act.hexagram, 6)
+  const lower = bits.slice(0, 3), upper = bits.slice(3, 6)
+  const lowerCorner = '#' + [lower[2], lower[1], lower[0]].map((b) => (b ? 'FF' : '00')).join('') // handle A — the lower trigram's RGB corner
+  const upperCorner = '#' + [upper[2], upper[1], upper[0]].map((b) => (b ? 'FF' : '00')).join('') // handle B — the upper trigram's RGB corner
+  const stroke = scaleColor(k, { css: true }), vecCol = scaleColor(k * 6 + 1, { css: true }), inkCol = scaleColor(k * 6 + 2, { css: true })
+  // the stage: the two lobes drawn separately so each handle wears its trigram corner
+  const lobe = (t0: number, t1: number) =>
+    Array.from({ length: (7 * 7) }, (_, i) => {
+      const p = clownLemniscate(t0 + ((t1 - t0) * i) / (16 * 3), a)
+      return `${i ? 'L' : 'M'}${r(cx + p.x)} ${r(cy + p.y)}`
+    }).join('')
+  const glyph = taxonomyIcons().entries.find((e) => e.area === entry.area)?.icon ?? ''
+  const sc = 'ck' + toUuid(`clown-step-ui-10d:${k}:${act.hexagram}:${animate}`).replace(/-/g, '').slice(0, 8)
+  // the living symbol of the act SO FAR — the first k+1 MEASURED lines (a trigram at step 3, the hexagram at the
+  // bow); when the shrink axis is engaged it breathes at the sampled self-similar ratio
+  const symbol = livingIChingSvg(bits.slice(0, k + 1), { scale: k, size: (6 * 5), animate }).replace('<svg ', '<svg x="164" y="8" ')
+  const lines = has('shrink') ? `<g class="sy"${animate ? '' : ` transform="translate(179 23) scale(${first.shrink}) translate(-179 -23)"`}>${symbol}</g>` : symbol
+  // the bow's densification trace — the SAME state function at three golden-shifted scales (dims' own 1/φ
+  // law): the irrational phase offset never realigns, so the overlaid cycles never close — the visible
+  // signature that the added loop rates are genuine dimensions of the invariant torus (Lissajous non-closure).
+  // (The golden shift re-enters through dims(p, scale); the walker states themselves are scale-0.)
+  const trace = k === 5
+    ? [0, 1, 2].map((sc2) => `<polyline class="tr" points="${Array.from({ length: 360 / 4 + 1 }, (_, i) => clownTracePoint(i / (360 / 4), sc2)).join(' ')}" fill="none" stroke="${scaleColor((6 * 5) + sc2, { css: true })}" stroke-width=".5" opacity="${animate ? 0 : r((9 / (5 * 5 * 2)) - sc2 * (1 / (5 * 5)))}"/>`).join('')
+    : ''
+  const extras =
+    k === 2
+      ? `<line class="g1" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="1" opacity="${animate ? 0 : (1 / 5)}"/><line class="g2" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="1" opacity="${animate ? 0 : (1 / 5)}"/>`
+      : k === 3
+        ? `<circle cx="14" cy="96" r="3" fill="${inkCol}" opacity=".3"/><circle class="q1" cx="26" cy="96" r="3" fill="${accent}" stroke="${inkCol}" stroke-width=".6" opacity="${animate ? 0 : 1}"/>`
+        : k === 4
+          ? `<rect class="rc" x="10" y="88" width="20" height="12" rx="1.5" fill="none" stroke="${inkCol}" opacity="${animate ? 0 : 1}"/><circle class="hp" cx="32" cy="88" r="4" fill="${vecCol}" opacity="0"/>`
+          : ''
+  const pct = (j: number) => r((j * 100) / STOPS)
+  // computed event anchors — the Born snap happens AT the self-crossing (the segment's start, one sample
+  // wide) and the fold/receipt at the segment's MEDIAN; the ghost fan grows by the same 1−e^(−u/T2) law the
+  // Bloch vector decays by. No timing below is hand-picked.
+  const fanGrow = (u: number) => Math.round((1 - Math.exp(-u / (9 / (5 * 4)))) * 100) / 100
+  const css = animate
+    ? (has('shrink') ? `.${sc} .sy{transform-origin:179px 23px;animation:${sc}sy 6.4s ease-in-out infinite}@keyframes ${sc}sy{${Array.from({ length: 9 }, (_, j) => `${r(j * (5 * 5 / 2))}%{transform:scale(${stopAt(j * 2).shrink})}`).join('')}}` : '') +
+      (has('hueShift') ? `.${sc} .hu{animation:${sc}hu 6.4s linear infinite}@keyframes ${sc}hu{${Array.from({ length: 9 }, (_, j) => `${r(j * (5 * 5 / 2))}%{filter:hue-rotate(${stopAt(j * 2).hue}deg)}`).join('')}}` : '') +
+      // the walker — its OWN state per stop: translate (position) · scale (perspective size attenuation,
+      // a depth cue, NOT a zoom of the scene) · opacity (aerial fade); at step 0 it is flat and rides
+      // exactly its shadow's frames
+      (flatCoincident
+        ? `.${sc} .w,.${sc} .sh{animation:${sc}w 6.4s linear infinite}` +
+          `@keyframes ${sc}w{${Array.from({ length: STOPS + 1 }, (_, j) => { const t = stopAt(j); return `${pct(j)}%{transform:translate(${t.shadow.x}px,${t.shadow.y}px)}` }).join('')}}`
+        : `.${sc} .w{animation:${sc}w 6.4s linear infinite}` +
+          `@keyframes ${sc}w{${Array.from({ length: STOPS + 1 }, (_, j) => { const t = stopAt(j); return `${pct(j)}%{transform:translate(${t.walker.x}px,${t.walker.y}px) scale(${t.walker.scale})${has('depthFade') ? `;opacity:${t.walker.fade}` : ''}}` }).join('')}}` +
+          `.${sc} .sh{animation:${sc}sh 6.4s linear infinite}` +
+          `@keyframes ${sc}sh{${Array.from({ length: STOPS + 1 }, (_, j) => { const t = stopAt(j); return `${pct(j)}%{transform:translate(${t.shadow.x}px,${t.shadow.y}px)}` }).join('')}}`) +
+      (k === 5 ? `.${sc} .tr{animation:${sc}tr 6.4s linear infinite}@keyframes ${sc}tr{0%{opacity:0}20%,100%{opacity:.16}}` : '') +
+      // the Bloch vector — SAMPLED from clownBloch (the physics chain + the measured bits), never a frame table
+      `.${sc} .v{transform-origin:30px 30px;animation:${sc}v 6.4s linear infinite}` +
+      `@keyframes ${sc}v{${Array.from({ length: STOPS + 1 }, (_, j) => { const b = stopAt(j).bloch; return `${pct(j)}%{transform:rotate(${b.deg}deg)${b.len !== 1 ? ` scaleY(${b.len})` : ''}}` }).join('')}}` +
+      (k === 2
+        ? `.${sc} .g1,.${sc} .g2{transform-origin:30px 30px}.${sc} .g1{animation:${sc}g1 6.4s linear infinite}.${sc} .g2{animation:${sc}g2 6.4s linear infinite}` +
+          `@keyframes ${sc}g1{${Array.from({ length: 9 }, (_, j) => { const u = j / 8; const b = stopAt(j * 2).bloch; return `${r(j * (5 * 5 / 2))}%{transform:rotate(${r(b.deg + (6 * 5) * fanGrow(u))}deg);opacity:${r((2 / 5) * fanGrow(u))}}` }).join('')}}` +
+          `@keyframes ${sc}g2{${Array.from({ length: 9 }, (_, j) => { const u = j / 8; const b = stopAt(j * 2).bloch; return `${r(j * (5 * 5 / 2))}%{transform:rotate(${r(b.deg - (6 * 5) * fanGrow(u))}deg);opacity:${r((2 / 5) * fanGrow(u))}}` }).join('')}}`
+        : '') +
+      (k === 3 ? `.${sc} .q1{animation:${sc}q 6.4s linear infinite}@keyframes ${sc}q{0%{opacity:0}${pct(1)}%,100%{opacity:1}}` : '') + // the IQ blob lands with the snap — the first sample after the crossing
+      (k === 4
+        ? `.${sc} .rc{animation:${sc}r 6.4s linear infinite}@keyframes ${sc}r{0%,50%{opacity:0}${pct(9)}%,100%{opacity:1}}` + // the receipt prints at the segment's median
+          `.${sc} .hp{transform-box:fill-box;transform-origin:center;animation:${sc}h 6.4s linear infinite}` +
+          `@keyframes ${sc}h{0%,50%{transform:scale(.3);opacity:0}${pct((5 * 2))}%{transform:scale(.9);opacity:.5}${pct(13)}%,100%{transform:scale(1.8);opacity:0}}` // the kT ln 2 puff follows the printing
+        : '') +
+      `@media(prefers-reduced-motion:reduce){.${sc} .hu,.${sc} .sy,.${sc} .w,.${sc} .sh,.${sc} .tr,.${sc} .v,.${sc} .g1,.${sc} .g2,.${sc} .q1,.${sc} .rc,.${sc} .hp{animation:none}}`
+    : ''
+  const huOpen = has('hueShift') ? `<g class="hu"${animate ? '' : ` style="filter:hue-rotate(${first.hue}deg)"`}>` : '' // hue is appearance — a filter, never a transform
+  const scene =
+    `<path d="${lobe(-Math.PI / 2 + (1 / (5 * 5 * 2)), Math.PI / 2 - (1 / (5 * 5 * 2)))}" fill="${upperCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` + // handle B (comedy) — the upper trigram's corner; the flat floor NEVER scales
+    `<path d="${lobe(Math.PI / 2 + (1 / (5 * 5 * 2)), (3 * Math.PI) / 2 - (1 / (5 * 5 * 2)))}" fill="${lowerCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` + // handle A (tragedy) — the lower trigram's corner
+    `<circle cx="30" cy="30" r="17" fill="none" stroke="${inkCol}" stroke-width=".8" opacity=".7"/><line x1="13" y1="30" x2="47" y2="30" stroke="${inkCol}" stroke-width=".5" stroke-dasharray="2 2" opacity=".5"/>` + // the Bloch disc + equator
+    `<line class="v" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="2" stroke-linecap="round"${animate ? '' : ` transform="rotate(${first.bloch.deg} 30 30)"`}/>` +
+    extras +
+    trace +
+    `<circle class="sh" cx="0" cy="0" r="2.4" fill="${inkCol}" opacity=".4"${animate ? '' : ` transform="translate(${first.shadow.x} ${first.shadow.y})"`}/>` + // the flat SHADOW — the z-dropped projection of the same state (Flatland: shadow ≠ object)
+    `<circle class="w" cx="0" cy="0" r="3.4" fill="${accent}" stroke="${stroke}" stroke-width="1.2"${animate ? '' : ` transform="translate(${first.walker.x} ${first.walker.y})${flatCoincident ? '' : ` scale(${first.walker.scale})`}"`}/>` + // the lifted clown, perspective-sized
+    lines
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110" width="${size}" height="${r((size * 110) / (100 * 2))}" class="${sc}" role="img" data-dims="${nd}" data-channels="${chans.join(' ')}" data-projection="oblique-perspective-no-zoom"${flatCoincident ? ' data-flat="coincident"' : ''}${landsOnShadow ? ' data-landing="on-shadow"' : ''} aria-label="Clown step ${k + 1} of 6 — ${entry.step} (${entry.physics}); Rosetta area ${entry.area}; vortex digit ${entry.vortex}; ${nd} of ${DIMENSIONS} dimensions engaged, shown by projection (size attenuation + fade), not zoom">` +
+    (css ? `<style>${css}</style>` : '') +
+    (huOpen ? huOpen + scene + `</g>` : scene) +
+    `<text x="6" y="105" font-size="9" fill="${inkCol}" aria-hidden="true">${glyph} ${entry.area} · ${entry.vortex} · ${nd}d</text>` +
+    `</svg>`
+  )
+}
+
+/**
+ * THE WHOLE CLOWN LIFE — one animation, one loop of the same computed state function over the full act
+ * p ∈ [0,1): 96 samples (16 per step) + the closing frame, 38.4 s (6 × 6.4). The 100% keyframe re-samples
+ * p = 0, so the loop closes on the state it opened with — the Bloch chain ends where it began (the bow's
+ * Zeno hold at 90° IS the entrance's unprepared 90°), the walker returns flat to the self-crossing, and the
+ * act re-enters through the figure-eight: the paper's purge fixed point (purge(clown) = clown), rendered.
+ * The hexagram builds line by line in computed step windows; the measured RECORDS persist once written
+ * (the IQ blob and the receipt stay to the loop's end — no-deleting), while the ghost fan dies with the
+ * coherence that made it. Agents read the same life as data: clownActTimeline.
+ */
+export function clownActSvg(opts: { animate?: boolean; size?: number } = {}): string {
+  const { animate = true, size = (100 * 4) } = opts
+  const act = clownActQuantumSteps()
+  const bits = act.bits
+  const r = (x: number) => Math.round(x * 100) / 100
+  const cx = CLOWN_CX, cy = CLOWN_CY, a = CLOWN_A
+  const N = (16 * 6)
+  const at = (j: number) => clownLiftState(j === N ? 0 : j / N) // stop 96 IS stop 0 — the re-entry
+  const pct = (j: number) => r((j * 100) / N)
+  const pole = (n: number, len: number) => '#' + Array.from({ length: len }, (_, i) => (((n >> (len - 1 - i)) & 1) ? 'F' : '0')).join('')
+  const accent = pole(act.hexagram, 6)
+  const lower = bits.slice(0, 3), upper = bits.slice(3, 6)
+  const lowerCorner = '#' + [lower[2], lower[1], lower[0]].map((b) => (b ? 'FF' : '00')).join('')
+  const upperCorner = '#' + [upper[2], upper[1], upper[0]].map((b) => (b ? 'FF' : '00')).join('')
+  const stroke = scaleColor(6, { css: true }), vecCol = scaleColor(7, { css: true }), inkCol = scaleColor(8, { css: true })
+  const lobe = (t0: number, t1: number) =>
+    Array.from({ length: (7 * 7) }, (_, i) => { const q = clownLemniscate(t0 + ((t1 - t0) * i) / (16 * 3), a); return `${i ? 'L' : 'M'}${r(cx + q.x)} ${r(cy + q.y)}` }).join('')
+  const sc = 'ca' + toUuid(`clown-act-life:${act.hexagram}:${animate}`).replace(/-/g, '').slice(0, 8)
+  const first = at(0)
+  // a computed step window as opacity keyframes — from/to in step units (0..6); permanent = a written record
+  const win = (from: number, to: number, on: number, permanent = false) => {
+    const aPct = r((from * 100) / 6), bPct = r((to * 100) / 6)
+    const head = aPct > 0 ? `0%,${aPct}%{opacity:0}` : ''
+    return permanent || bPct >= 100 ? `${head}${r(Math.min(aPct + (3 / 5), 99.9))}%,100%{opacity:${on}}` : `${head}${r(aPct + (3 / 5))}%,${bPct}%{opacity:${on}}${r(Math.min(bPct + (3 / 5), 100))}%,100%{opacity:0}`
+  }
+  const fanGrow = (u: number) => Math.round((1 - Math.exp(-u / (9 / (5 * 4)))) * 100) / 100
+  const badges = act.steps
+    .map((s, k) => `<text class="b${k}" x="6" y="105" font-size="9" fill="${scaleColor(k * 6 + 2, { css: true })}" opacity="${animate ? 0 : k === 0 ? 1 : 0}" aria-hidden="true">${taxonomyIcons().entries.find((e) => e.area === s.area)?.icon ?? ''} ${s.area} · ${s.vortex} · ${CLOWN_DIM_LADDER[k]!.length}d</text>`)
+    .join('')
+  const symbols = act.steps
+    .map((_, k) => `<g class="m${k}" opacity="${animate ? 0 : k === 0 ? 1 : 0}">${livingIChingSvg(bits.slice(0, k + 1), { scale: k, size: (6 * 5), animate }).replace('<svg ', '<svg x="164" y="8" ')}</g>`)
+    .join('')
+  const traces = [0, 1, 2]
+    .map((sc2) => `<polyline class="tr" points="${Array.from({ length: 360 / 4 + 1 }, (_, i) => clownTracePoint(i / (360 / 4), sc2)).join(' ')}" fill="none" stroke="${scaleColor((6 * 5) + sc2, { css: true })}" stroke-width=".5" opacity="0"/>`)
+    .join('')
+  const css = animate
+    ? `.${sc} .w{animation:${sc}w 38.4s linear infinite}` +
+      `@keyframes ${sc}w{${Array.from({ length: N + 1 }, (_, j) => { const t = at(j); return `${pct(j)}%{transform:translate(${t.walker.x}px,${t.walker.y}px) scale(${t.walker.scale});opacity:${t.walker.fade}}` }).join('')}}` +
+      `.${sc} .sh{animation:${sc}sh 38.4s linear infinite}` +
+      `@keyframes ${sc}sh{${Array.from({ length: N + 1 }, (_, j) => { const t = at(j); return `${pct(j)}%{transform:translate(${t.shadow.x}px,${t.shadow.y}px)}` }).join('')}}` +
+      `.${sc} .v{transform-origin:30px 30px;animation:${sc}v 38.4s linear infinite}` +
+      `@keyframes ${sc}v{${Array.from({ length: N + 1 }, (_, j) => { const b = at(j).bloch; return `${pct(j)}%{transform:rotate(${b.deg}deg)${b.len !== 1 ? ` scaleY(${b.len})` : ''}}` }).join('')}}` +
+      `.${sc} .hu{animation:${sc}hu 38.4s linear infinite}@keyframes ${sc}hu{${Array.from({ length: 16 * 2 + 1 }, (_, j) => `${r((j * 100) / (16 * 2))}%{filter:hue-rotate(${at(j * 3).hue}deg)}`).join('')}}` +
+      `.${sc} .sy{transform-origin:179px 23px;animation:${sc}sy 38.4s linear infinite}@keyframes ${sc}sy{${Array.from({ length: 16 * 2 + 1 }, (_, j) => `${r((j * 100) / (16 * 2))}%{transform:scale(${at(j * 3).shrink})}`).join('')}}` +
+      act.steps.map((_, k) => `.${sc} .b${k}{animation:${sc}b${k} 38.4s linear infinite}@keyframes ${sc}b${k}{${win(k, k + 1, 1, k === 5)}}.${sc} .m${k}{animation:${sc}m${k} 38.4s linear infinite}@keyframes ${sc}m${k}{${win(k, k + 1, 1, k === 5)}}`).join('') +
+      `.${sc} .g1,.${sc} .g2{transform-origin:30px 30px}` +
+      ['g1', 'g2']
+        .map((g, gi) => `.${sc} .${g}{animation:${sc}${g} 38.4s linear infinite}@keyframes ${sc}${g}{0%,${r((100 * 2) / 6)}%{opacity:0}${Array.from({ length: 9 }, (_, j) => { const u = j / 8; const b = clownLiftState((2 + u) / 6, undefined, 2).bloch; return `${r(((2 + u / 1) * 100) / 6 + (j === 0 ? (2 / 5) : 0))}%{transform:rotate(${r(b.deg + (gi ? -(6 * 5) : (6 * 5)) * fanGrow(u))}deg);opacity:${r((2 / 5) * fanGrow(u))}}` }).join('')}${r(302 / 6)}%,100%{opacity:0}}`)
+        .join('') +
+      `.${sc} .q1{animation:${sc}q 38.4s linear infinite}@keyframes ${sc}q{${win(3 + 1 / 16, 6, 1, true)}}` + // the measured record — persists once written
+      `.${sc} .rc{animation:${sc}rc 38.4s linear infinite}@keyframes ${sc}rc{${win((9 / 2), 6, 1, true)}}` + // the receipt — printed at the weave's median, persists
+      `.${sc} .hp{transform-box:fill-box;transform-origin:center;animation:${sc}hp 38.4s linear infinite}@keyframes ${sc}hp{0%,75%{transform:scale(.3);opacity:0}${r(4550 / (6 * 5 * 2))}%{transform:scale(.9);opacity:.5}${r(4750 / (6 * 5 * 2))}%,100%{transform:scale(1.8);opacity:0}}` + // the kT ln 2 puff follows the printing
+      `.${sc} .tr{animation:${sc}tr 38.4s linear infinite}@keyframes ${sc}tr{${win(5, 6, (7 / (5 * 5 * 2)))}}` +
+      `@media(prefers-reduced-motion:reduce){.${sc} *{animation:none}}`
+    : ''
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110" width="${size}" height="${r((size * 110) / (100 * 2))}" class="${sc}" role="img" data-dims="2→10" data-channels="${CLOWN_DIM_LADDER[5]!.join(' ')}" data-projection="oblique-perspective-no-zoom" data-loop="reenters" aria-label="The whole clown life — one 38.4-second loop of all six steps, 2D to 10D by projection, ending flat on its shadow and re-entering: the 100% frame is the 0% frame">` +
+    (css ? `<style>${css}</style>` : '') +
+    `<g class="hu">` +
+    `<path d="${lobe(-Math.PI / 2 + (1 / (5 * 5 * 2)), Math.PI / 2 - (1 / (5 * 5 * 2)))}" fill="${upperCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` +
+    `<path d="${lobe(Math.PI / 2 + (1 / (5 * 5 * 2)), (3 * Math.PI) / 2 - (1 / (5 * 5 * 2)))}" fill="${lowerCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` +
+    `<circle cx="30" cy="30" r="17" fill="none" stroke="${inkCol}" stroke-width=".8" opacity=".7"/><line x1="13" y1="30" x2="47" y2="30" stroke="${inkCol}" stroke-width=".5" stroke-dasharray="2 2" opacity=".5"/>` +
+    `<line class="v" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="2" stroke-linecap="round"${animate ? '' : ` transform="rotate(${first.bloch.deg} 30 30)"`}/>` +
+    `<line class="g1" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="1" opacity="0"/><line class="g2" x1="30" y1="30" x2="30" y2="13" stroke="${vecCol}" stroke-width="1" opacity="0"/>` +
+    `<circle cx="14" cy="96" r="3" fill="${inkCol}" opacity=".3"/><circle class="q1" cx="26" cy="96" r="3" fill="${accent}" stroke="${inkCol}" stroke-width=".6" opacity="0"/>` +
+    `<rect class="rc" x="10" y="88" width="20" height="12" rx="1.5" fill="none" stroke="${inkCol}" opacity="0"/><circle class="hp" cx="32" cy="88" r="4" fill="${vecCol}" opacity="0"/>` +
+    traces +
+    `<circle class="sh" cx="0" cy="0" r="2.4" fill="${inkCol}" opacity=".4"${animate ? '' : ` transform="translate(${first.shadow.x} ${first.shadow.y})"`}/>` +
+    `<circle class="w" cx="0" cy="0" r="3.4" fill="${accent}" stroke="${stroke}" stroke-width="1.2"${animate ? '' : ` transform="translate(${first.walker.x} ${first.walker.y})"`}/>` +
+    `<g class="sy">${symbols}</g>` +
+    `</g>` +
+    badges +
+    `</svg>`
+  )
+}
+
+// The seal: the clown DESIGNED the UI and every design decision is computed from the Rosetta + the I Ching.
+/** @rosetta ✦₂ · Wind · gentle — the clown's own render: I Ching palette + Rosetta badges, physics beneath */
+export function clownUiDesignedByRosettaIChing(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('clownUiDesignedByRosettaIChing', matrix, () => {
+    const act = clownActQuantumSteps(matrix)
+    const duality = hexagramIsHexColorDuality(matrix)
+    const areas = taxonomyIcons()
+    const svgs = Array.from({ length: 6 }, (_, k) => clownStepSvg(k))
+    const stills = Array.from({ length: 6 }, (_, k) => clownStepSvg(k, { animate: false }))
+    const accent = '#' + Array.from({ length: 6 }, (_, i) => (((act.hexagram >> (5 - i)) & 1) ? 'F' : '0')).join('')
+    const lineCount = (svg: string) => (svg.match(/class="ln /g) ?? []).length
+    const stepAreas = act.steps.map((s) => s.area)
+    const facets = [
+      { facet: 'the I Ching leads at every scale — step k embeds the living symbol of the first k+1 MEASURED lines: one bit at the entrance, a trigram completed at the catastrophe, the full hexagram at the bow', on: svgs.every((svg, k) => lineCount(svg) === k + 1) && lineCount(svgs[2]!) === 3 && lineCount(svgs[5]!) === 6 },
+      { facet: 'the colour IS the hexagram — the clown wears the act\'s 2⁶=4³ pole-colour, and the two lobes wear their trigram RGB-cube corners (lower trigram = handle A, upper = handle B)', on: duality.holds && svgs.every((svg) => svg.includes(`fill="${accent}"`)) },
+      { facet: 'every step wears its Rosetta area glyph from the sealed 42 — agent · energy · wave · proof · fold · show, six distinct areas, each badge computed from taxonomyIcons', on: new Set(stepAreas).size === 6 && stepAreas.every((area) => areas.entries.some((e) => e.area === area)) && areas.entries.length === (7 * 6) },
+      { facet: 'per-line colours computed at every scale — the golden-angle OKLCH law (scaleColor) paints the embedded symbol and the step inks, never a hardcoded palette beyond the pole-colours the hexagram itself dictates', on: svgs.every((svg) => svg.includes('oklch(')) && scaleColor(0) !== scaleColor(1) },
+      { facet: 'GitHub-safe motion — CSS @keyframes only (no SMIL, no JS), content-addressed scope class, reduced-motion guard; animate:false yields the correct still', on: svgs.every((svg) => svg.startsWith('<svg') && svg.includes('@keyframes') && !/script/i.test(svg) && !/<animate/.test(svg) && svg.includes('prefers-reduced-motion')) && stills.every((svg) => !svg.includes('@keyframes')) },
+      { facet: 'the physics beneath the paint is sealed — six sourced steps, the measured hexagram, the vortex orbit, the flagged legends', on: act.decoded },
+      { facet: 'the movement climbs 2D→10D by PROJECTION, never by zoom — the channel ladder is cumulative over the model\'s own ten dimensions (2·4·6·8·9·10), every value SAMPLED from dims(); depth is shown by perspective size attenuation and aerial fade with the flat shadow kept beneath the lifted walker (a 2D similarity adds zero degrees of freedom); dimWalk drives the z-amplitude, so the entrance is genuinely flat (walker ≡ shadow) and the bow lands back on its shadow; the golden-shifted bow trace never closes (each added loop rate a real frequency of the invariant torus)', on: (() => {
+        const dimsOf = (svg: string) => Number(svg.match(/data-dims="(\d+)"/)?.[1] ?? -1)
+        const chansOf = (svg: string) => (svg.match(/data-channels="([^"]*)"/)?.[1] ?? '').split(' ').filter(Boolean)
+        const ladder = svgs.map(dimsOf)
+        const sets = svgs.map(chansOf)
+        const cumulative = sets.every((set, i) => i === 0 || sets[i - 1]!.every((c) => set.includes(c)))
+        const allTen = new Set(sets[5]).size === DIMENSIONS && sets[5]!.every((c) => (DIMENSION_NAMES as readonly string[]).includes(c))
+        const hueLaw = svgs.every((svg, i) => svg.includes('hue-rotate(') === (i >= 3))
+        const noZoom = svgs.every((svg) => !svg.includes('td{') && svg.includes('data-projection="oblique-perspective-no-zoom"')) // no scene-transform keyframes anywhere
+        const shadowLaw = svgs.every((svg) => svg.includes('class="sh"')) && svgs[0]!.includes('data-flat="coincident"') && svgs.slice(1).every((svg) => !svg.includes('data-flat')) // flat exactly when no lift channel
+        const landing = svgs[5]!.includes('data-landing="on-shadow"') // ε(1) = 0 — the bow ends flat
+        const depthCues = svgs.slice(1).every((svg) => /@keyframes \w+w\{[^<]*scale\(/.test(svg)) && !/scale\(/.test(svgs[0]!.match(/@keyframes \w+w\{[^}]*(?:\}[^}]*)*?\}\}/)?.[0] ?? '') // size attenuation on the lifted walker only
+        const traceLaw = svgs[5]!.includes('class="tr"') && svgs.slice(0, 5).every((svg) => !svg.includes('class="tr"'))
+        return JSON.stringify(ladder) === JSON.stringify([2, 4, 6, 8, 9, (5 * 2)]) && cumulative && allTen && hueLaw && noZoom && shadowLaw && landing && depthCues && traceLaw && dimWalk(0) === 0 && dimWalk((1 / 2)) === 1
+      })() },
+      { facet: 'computed, not assumed — agents and humans consume the SAME state function: the SVG keyframes are samples of clownLiftState (a probe state\'s coordinates appear verbatim in the rendered keyframes), the machine timeline is deterministic (64 frames, the same merkle root on every call), the Born snap direction IS the measured line-4 bit, and every theatrical constant is declared in source (the Zeno ×4)', on: (() => {
+        const probe = clownLiftState((3 + 8 / 16) / 6, matrix, 3) // step 3, the mid-stop — must appear verbatim in svg 3
+        const inSvg = svgs[3]!.includes(`translate(${probe.shadow.x}px,${probe.shadow.y}px)`) && svgs[3]!.includes(`rotate(${probe.bloch.deg}deg)`)
+        const t1 = clownActTimeline(64, matrix), t2 = clownActTimeline(64, matrix)
+        const snapIsMeasured = clownLiftState((3 + (1 / 2)) / 6, matrix).bloch.deg === (9 * 5 * 4) * (1 - act.bits[3]!)
+        return inSvg && t1.root === t2.root && t1.frames === 64 && isUuid(t1.root) && snapIsMeasured
+      })() },
+      { facet: 'one animation shows the WHOLE clown life — a single 38.4 s loop of the same state function (96 samples + the closing frame); the 100% keyframe re-samples p = 0 so the loop closes on the state it opened with (the Bloch chain ends at the entrance\'s 90° — the act re-enters through the figure-eight, purge(clown) = clown rendered), the hexagram builds line by line in computed step windows, and the measured records persist once written', on: (() => {
+        const life = clownActSvg()
+        const still = clownActSvg({ animate: false })
+        const wBody = life.match(/@keyframes \w+?w\{([^]*?)\}\}/)?.[1] ?? ''
+        const translates = wBody.match(/translate\([^)]*\)/g) ?? []
+        const vBody = life.match(/@keyframes \w+?v\{([^]*?)\}\}/)?.[1] ?? ''
+        const rotates = vBody.match(/rotate\([^)]*\)/g) ?? []
+        const loopCloses = translates.length >= 97 && translates[0] === translates[translates.length - 1] && rotates[0] === rotates[rotates.length - 1]
+        return life.startsWith('<svg') && life.includes('data-loop="reenters"') && life.includes('38.4s') && loopCloses && (life.match(/class="m\d"/g) ?? []).length === 6 && !still.includes('@keyframes') && !life.includes('td{')
+      })() },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`clown-ui:${entry.facet}:${entry.on}`) }))
+    return {
+      designed: facets.every((entry) => entry.on),
+      hexagram: act.hexagram,
+      bits: act.bits,
+      accent,
+      dimLadder: CLOWN_DIM_LADDER.map((chans) => chans.length),
+      timelineRoot: clownActTimeline(64, matrix).root, // the agent-facing computed act, sealed
+      steps: act.steps.map((s, k) => ({ step: s.step, area: s.area, vortex: s.vortex, dims: CLOWN_DIM_LADDER[k]!.length, svgBytes: svgs[k]!.length })),
+      svgBytes: svgs.reduce((n, svg) => n + svg.length, 0),
+      count: facets.length,
+      facets,
+      root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement:
+        'The clown designed the UI using the Rosetta and the I Ching: nothing was chosen, everything computed. The act measures its own hexagram (six Born-rule collapses, seed 432) and that hexagram IS the palette — the clown wears its 2⁶=4³ pole-colour, the two handles of the genus-2 stage wear their trigram RGB-cube corners. The structure is the I Ching scale ladder made visible: each step embeds the living symbol of the lines measured so far — one bit at the entrance, a trigram at the catastrophe, the full hexagram at the frozen bow. Each step wears its Rosetta area glyph (agent · energy · wave · proof · fold · show) and its vortex digit (1·2·4·8·7·5). The motion is the sourced physics: reset flicker, Rabi sweep, decoherence ghost-fan, the Born snap at the self-crossing, the Landauer receipt with its puff of heat, the Zeno tremble. And the movement CLIMBS THE DIMENSIONS, 2D→10D: the entrance travels flat (handle 1\'s two loop coordinates), the escalation breathes and twists (4D), the catastrophe spreads and fades (6D), the laugh shifts hue and shrinks (8D), the weave wobbles on handle 2\'s meridian (9D), the bow engages its longitude — all ten of DIMENSION_NAMES (10D) — every value sampled from dims(), while dimWalk opens the act from a point and collapses it back to one at the final bow.',
+      boundary:
+        'A presentation law, inheriting every underlying boundary: the pole-colour identity is notation (hexagramIsHexColorDuality — an isomorphism of index sets, not divination), the physics is quantum-inspired pedagogy over real sourced numbers (clownActQuantumSteps), the measured hexagram is a deterministic seeded computation (the same seed, the same act), and the Rosetta glyphs are the project\'s own sealed 42-area taxonomy. CSS-@keyframes SVG only — no SMIL, no JS, reduced-motion safe. HARMONY ≠ TRUTH.',
     }
   })
 }

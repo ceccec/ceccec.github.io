@@ -13,6 +13,7 @@ import { doubleTorusMotifRealGeometryNotFringePhysics } from '../../../mountain/
 import { earthPolesAreADipoleDoubleTorusNotAGrid } from '../../water/cache'
 import { toUuid, merkleFold, isUuid, roundTo, memoByRoot, merge, sealFacets, doubleTorusSurface, digitalRoot } from '../../../0'
 import { addressed, covers } from '../../../5/5'
+import { TAU } from '../../../3/7'
 
 // ☵ Kǎn · Water · abysmal (weather realtime feeds) · upper·yang · spread — realtime forecast feeds
 // Weather forecast computed in realtime. Free, no-key realtime forecast feeds — Open-Meteo (fuses 15+
@@ -71,9 +72,9 @@ const SOFIA_GEO: WeatherForecastGeoAt = { lat: 42.6977, lon: 23.3219 }
 
 const CARDINAL_TIPS = [
   { name: 'north' as const, bearing: 0 },
-  { name: 'east' as const, bearing: 90 },
-  { name: 'south' as const, bearing: 180 },
-  { name: 'west' as const, bearing: 270 },
+  { name: 'east' as const, bearing: (9 * 5 * 2) },
+  { name: 'south' as const, bearing: (9 * 5 * 4) },
+  { name: 'west' as const, bearing: (54 * 5) },
 ]
 
 function nearestCardinalTip(bearingDeg: number) {
@@ -101,8 +102,8 @@ export function weatherForecastFromDoubleTorusEarthPerspective(
 ) {
   const weather = weatherForecastQuantumComputedRealtime(matrix)
   const earth = doubleTorusEarthPyramidTipsProvenByMath(matrix)
-  const theta = roundTo((((at.lon + 180) % 360) / 360) * Math.PI * 2, 6)
-  const phi = roundTo((at.lat / 90) * (Math.PI / 2), 6)
+  const theta = roundTo((((at.lon + (9 * 5 * 4)) % 360) / 360) * TAU, 6)
+  const phi = roundTo((at.lat / (9 * 5 * 2)) * (Math.PI / 2), 6)
   const northern = at.lat >= 0
   const torusIndex = northern ? (1 as const) : (2 as const)
   const lobe = northern ? 1 : -1
@@ -113,10 +114,10 @@ export function weatherForecastFromDoubleTorusEarthPerspective(
   const cardinal = nearestCardinalTip(bearing)
   const facets = [
     { facet: 'realtime weather feeds folded — Open-Meteo + US NWS composed with genus-2 Earth model', on: weather.realtime && earth.proven },
-    { facet: 'longitude → θ (0..2π) and latitude → φ (−π/2..π/2) on the shared doubleTorusSurface', on: theta >= 0 && theta <= Math.PI * 2 && phi >= -Math.PI / 2 && phi <= Math.PI / 2 },
+    { facet: 'longitude → θ (0..2π) and latitude → φ (−π/2..π/2) on the shared doubleTorusSurface', on: theta >= 0 && theta <= TAU && phi >= -Math.PI / 2 && phi <= Math.PI / 2 },
     { facet: 'northern hemisphere → torus 1 (+lobe, polarity 1); southern → torus 2 (−lobe, inverted polarity 0)', on: (northern && torusIndex === 1 && lobe === 1 && polarity === 1) || (!northern && torusIndex === 2 && lobe === -1 && polarity === 0) },
     { facet: 'vortex digit from digital root of rounded |lat|·100 + |lon|·100 — tube radius modulation on genus-2 surface', on: digit >= 1 && digit <= 9 },
-    { facet: 'nearest cardinal pyramid tip (N·E·S·W) from initial bearing (0°,0°) → (lat,lon)', on: CARDINAL_TIPS.some((tip) => tip.name === cardinal.name) && cardinal.angularDistance <= 45 },
+    { facet: 'nearest cardinal pyramid tip (N·E·S·W) from initial bearing (0°,0°) → (lat,lon)', on: CARDINAL_TIPS.some((tip) => tip.name === cardinal.name) && cardinal.angularDistance <= (9 * 5) },
     { facet: 'double-torus Earth pyramid tips proven at call time — H₁=ℤ⁴, χ=−2, inverted second torus', on: earth.proven && isUuid(earth.root) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`weather-torus-earth:${entry.facet}:${entry.on}:${at.lat}:${at.lon}`) }))
   const folded = facets.every((entry) => entry.on)
@@ -152,12 +153,12 @@ function doubleTorusSolutionsProvenByMathRaw(matrix: MindMatrix = buildMatrix())
   const compost = doubleTorusCompost(matrix)
   const tradingFlow = circulation
   const solutions = [
-    { id: 'circulation', domain: 'circulation', on: circulation.invariant && isUuid(circulation.root), receipt: toUuid(`solution:circulation:${circulation.root}:${circulation.invariant}`), statement: circulation.statement.slice(0, 120) },
-    { id: 'earth-topology', domain: 'earth-topology', on: earthTopology.proven, receipt: toUuid(`solution:earth-topology:${earthTopology.root}:${earthTopology.proven}`), statement: earthTopology.statement.slice(0, 120) },
-    { id: 'weather', domain: 'weather', on: weather.folded && earthTopology.proven, receipt: toUuid(`solution:weather:${weather.root}:${weather.folded}`), statement: weather.statement.slice(0, 120) },
-    { id: 'geodynamo', domain: 'geodynamo', on: geodynamo.decoded, receipt: toUuid(`solution:geodynamo:${geodynamo.root}:${geodynamo.decoded}`), statement: geodynamo.statement.slice(0, 120) },
-    { id: 'motif', domain: 'motif', on: motif.grounded, receipt: toUuid(`solution:motif:${motif.root}:${motif.grounded}`), statement: motif.statement.slice(0, 120) },
-    { id: 'compost', domain: 'compost', on: compost.revives, receipt: toUuid(`solution:compost:${compost.root}:${compost.revives}`), statement: compost.statement.slice(0, 120) },
+    { id: 'circulation', domain: 'circulation', on: circulation.invariant && isUuid(circulation.root), receipt: toUuid(`solution:circulation:${circulation.root}:${circulation.invariant}`), statement: circulation.statement.slice(0, (8 * 5 * 3)) },
+    { id: 'earth-topology', domain: 'earth-topology', on: earthTopology.proven, receipt: toUuid(`solution:earth-topology:${earthTopology.root}:${earthTopology.proven}`), statement: earthTopology.statement.slice(0, (8 * 5 * 3)) },
+    { id: 'weather', domain: 'weather', on: weather.folded && earthTopology.proven, receipt: toUuid(`solution:weather:${weather.root}:${weather.folded}`), statement: weather.statement.slice(0, (8 * 5 * 3)) },
+    { id: 'geodynamo', domain: 'geodynamo', on: geodynamo.decoded, receipt: toUuid(`solution:geodynamo:${geodynamo.root}:${geodynamo.decoded}`), statement: geodynamo.statement.slice(0, (8 * 5 * 3)) },
+    { id: 'motif', domain: 'motif', on: motif.grounded, receipt: toUuid(`solution:motif:${motif.root}:${motif.grounded}`), statement: motif.statement.slice(0, (8 * 5 * 3)) },
+    { id: 'compost', domain: 'compost', on: compost.revives, receipt: toUuid(`solution:compost:${compost.root}:${compost.revives}`), statement: compost.statement.slice(0, (8 * 5 * 3)) },
     { id: 'trading-streams', domain: 'trading-streams', on: tradingFlow.invariant && tradingFlow.flows.length > 0, receipt: toUuid(`solution:trading-streams:plasmaWiredUuidStreams:${tradingFlow.root}`), statement: 'Trading and plasma streams reuse circulateDoubleTorus on the genus-2 wire (plasmaWiredUuidStreams) — deterministic content-addressed flows, not live market sockets.' },
   ]
   const facets = [
@@ -260,7 +261,7 @@ export function doubleTorusEarthWeatherMovieSeeds(matrix: MindMatrix = buildMatr
     streams: [
       ...weather.facets.map((facet, index) => ({
         uuid: facet.receipt,
-        label: facet.facet.slice(0, 48),
+        label: facet.facet.slice(0, (16 * 3)),
         expr: 'weather-facet',
         expected: index,
         hueSeed: facet.on ? index * 41 + weather.torus.digit : index * 13,
@@ -274,7 +275,7 @@ export function doubleTorusEarthWeatherMovieSeeds(matrix: MindMatrix = buildMatr
       })),
       ...appleEarth.facets.map((facet, index) => ({
         uuid: facet.receipt,
-        label: facet.facet.slice(0, 48),
+        label: facet.facet.slice(0, (16 * 3)),
         expr: 'apple-earth-facet',
         expected: index,
         hueSeed: facet.on ? index * 47 + appleEarth.facets.length : index * 19,
@@ -284,11 +285,11 @@ export function doubleTorusEarthWeatherMovieSeeds(matrix: MindMatrix = buildMatr
         label: body.name,
         expr: 'celestial-body',
         expected: index,
-        hueSeed: body.exactMatch ? index * 53 + celestial.count : index * 21,
+        hueSeed: body.exactMatch ? index * 53 + celestial.count : index * (7 * 3),
       })),
       ...celestialDeep.findings.map((finding, index) => ({
         uuid: finding.receipt,
-        label: finding.topic.slice(0, 48),
+        label: finding.topic.slice(0, (16 * 3)),
         expr: `celestial-research-${finding.kind}`,
         expected: index,
         hueSeed: finding.kind === 'documented' ? index * 59 + celestialDeep.documented : index * 23,

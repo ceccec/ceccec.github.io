@@ -33,11 +33,11 @@ export function speechIntonation(matrix: MindMatrix = buildMatrix()) {
   const balance = frequencyBalance(matrix)
   const contour = balance.tones.map((tone) => {
     // cents (~ -1800..+1200) compressed to a pleasant speech-pitch multiplier.
-    const norm = Math.max(-1, Math.min(1, tone.cents / 1500))
-    return Math.round((1 + norm * 0.2) * 100) / 100
+    const norm = Math.max(-1, Math.min(1, tone.cents / (100 * 5 * 3)))
+    return Math.round((1 + norm * (1 / 5)) * 100) / 100
   })
   const harmonic =
-    contour.length >= 3 && new Set(contour).size > 1 && contour.every((pitch) => pitch >= 0.7 && pitch <= 1.4)
+    contour.length >= 3 && new Set(contour).size > 1 && contour.every((pitch) => pitch >= (7 / (5 * 2)) && pitch <= (7 / 5))
   return {
     harmonic,
     contour,
@@ -246,7 +246,7 @@ export function imagineTheRest(matrix: MindMatrix = buildMatrix()) {
     vision: foldPair(seed, toUuid(`imagine:${index}:${idea}`)).merged,
   }))
   return {
-    imagined: visions.length > 0 && visions.every((entry) => entry.vision.length === 36),
+    imagined: visions.length > 0 && visions.every((entry) => entry.vision.length === (9 * 4)),
     count: visions.length,
     visions,
     root: merkleFold(visions.map((entry) => entry.vision)),
@@ -268,7 +268,7 @@ export function imagineTheRest(matrix: MindMatrix = buildMatrix()) {
 // and is impossible to forge.
 export function studentQuantumMind(matrix: MindMatrix = buildMatrix()) {
   const bank = examBank(matrix)
-  const generative = generativeSpace(2000)
+  const generative = generativeSpace((100 * 5 * 4))
   const forgeCost = societyRegulates(matrix).forgerCost
   return {
     forms: bank.count > 0 && bank.graded,
@@ -319,7 +319,7 @@ export function playMind(matrix: MindMatrix = buildMatrix()) {
 // distinct deterministic palette, melody and movie — content-addressed, so distinct
 // seeds give distinct outputs. A sample confirms no collision at scale: the
 // generative space is effectively unbounded, computed client-side for free.
-export function generativeSpace(samples = 2000) {
+export function generativeSpace(samples = (100 * 5 * 4)) {
   const roots = new Set<string>()
   for (let i = 0; i < samples; i += 1) roots.add(textToMovie(`generate-${i}`).root)
   const distinct = roots.size

@@ -4,9 +4,11 @@
 // recedes), shared by the fractal arms, the architecture ring and the tag ring so they tumble as one figure.
 import { phase } from '../../../6/4'
 import type { Dims } from '../../mountain/dimensions'
-import { movieCanvasRgba } from '../../science'
+import { movieCanvasPolarity } from '../../science'
+import { FIBONACCI } from '../../../3/7'
+import { TAU } from '../../../3/7'
 
-export const FOCAL = 2.4 // perspective focal length, shared by every layer
+export const FOCAL = (6 * 2 / 5) // perspective focal length, shared by every layer
 
 export interface Vec3 {
   X: number
@@ -58,10 +60,10 @@ export function perspective(z: number): number {
 // compose rotate3 + perspective, and this fold states the law so no renderer re-fakes it. The
 // checks are the atoms' own invariants, computed live.
 export function depthIsThePerspectiveDivide() {
-  const r = rotate3(0.3, -0.5, 0.7, 0.4, -0.9, 1.3)
-  const rigid = Math.abs(Math.hypot(r.X, r.Y, r.Z) - Math.hypot(0.3, -0.5, 0.7)) < 1e-12 // rotation preserves length — an offset cannot
+  const r = rotate3((3 / (5 * 2)), -(1 / 2), (7 / (5 * 2)), (2 / 5), -(9 / (5 * 2)), FIBONACCI[5]! / (2 * 5))
+  const rigid = Math.abs(Math.hypot(r.X, r.Y, r.Z) - Math.hypot((3 / (5 * 2)), -(1 / 2), (7 / (5 * 2)))) < 1e-12 // rotation preserves length — an offset cannot
   const centered = perspective(0) === 1 // the screen plane is unmagnified
-  const nearGrows = perspective(0.5) > 1 && perspective(-0.5) < 1 // depth becomes SIZE, the honest cue
+  const nearGrows = perspective((1 / 2)) > 1 && perspective(-(1 / 2)) < 1 // depth becomes SIZE, the honest cue
   const monotone = perspective(-1) < perspective(0) && perspective(0) < perspective(1)
   return {
     holds: rigid && centered && nearGrows && monotone,
@@ -83,22 +85,24 @@ export function branch(
   depth: number,
   d: Dims,
   hue: number,
+  dark = true,
 ): void {
   if (depth <= 0 || len < 3) return
+  const paint = movieCanvasPolarity(dark)
   const x2 = x + Math.cos(angle) * len
   const y2 = y + Math.sin(angle) * len
-  ctx.strokeStyle = movieCanvasRgba((hue + d.hueShift + depth * 28) % 360, d.depthFade + depth * 0.1, { L: 7 / 8 })
-  ctx.lineWidth = Math.max(0.5, depth * 0.6)
+  ctx.strokeStyle = paint((hue + d.hueShift + depth * (7 * 4)) % 360, d.depthFade + depth * (1 / (5 * 2)), { L: 7 / 8 })
+  ctx.lineWidth = Math.max((1 / 2), depth * (3 / 5))
   ctx.beginPath()
   ctx.moveTo(x, y)
   ctx.lineTo(x2, y2)
   ctx.stroke()
-  branch(ctx, x2, y2, len * d.shrink, angle - d.spread, depth - 1, d, hue)
-  branch(ctx, x2, y2, len * d.shrink, angle + d.spread, depth - 1, d, hue)
+  branch(ctx, x2, y2, len * d.shrink, angle - d.spread, depth - 1, d, hue, dark)
+  branch(ctx, x2, y2, len * d.shrink, angle + d.spread, depth - 1, d, hue, dark)
 }
 
 const FOL_ARMS: readonly { r: number; w: number }[] = [
-  { r: 0.5, w: 0.7 }, { r: 0.28, w: -1.6 }, { r: 0.15, w: 2.6 }, { r: 0.08, w: -3.9 },
+  { r: (1 / 2), w: (7 / (5 * 2)) }, { r: (7 / (5 * 5)), w: -(8 / 5) }, { r: (3 / (5 * 4)), w: 2 * (FIBONACCI[5]! / (2 * 5)) }, { r: (2 / (5 * 5)), w: -(3 * (FIBONACCI[5]! / (2 * 5))) }, // arm speeds = multiples of the 13/10 fib decade
 ]
 
 export function drawFlower(
@@ -110,32 +114,36 @@ export function drawFlower(
   t: number,
   hue: number,
   reduce: boolean,
+  dark = true,
 ): void {
+  const paint = movieCanvasPolarity(dark)
   const R = Math.min(w, h) * 0.22
   const centers: { x: number; y: number }[] = [{ x: 0, y: 0 }]
   for (let k = 0; k < 6; k += 1) { const a = (k * Math.PI) / 3; centers.push({ x: Math.cos(a) * R, y: Math.sin(a) * R }) }
   for (let k = 0; k < 6; k += 1) { const a = (k * Math.PI) / 3 + Math.PI / 6; const d = R * Math.sqrt(3); centers.push({ x: Math.cos(a) * d, y: Math.sin(a) * d }) }
-  const localR = R * 0.5
-  const trail = reduce ? 1 : 40
+  const localR = R * (1 / 2)
+  const trail = reduce ? 1 : (8 * 5)
   const td = t * 8
-  const spin = t * 0.4
+  const spin = t * (2 / 5)
   ctx.save()
-  ctx.globalCompositeOperation = 'lighter'
+  // The polarity bit picks the composition the same way the plasma field does: additive light on the
+  // dark positive, normal density on the light negative.
+  ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over'
   for (let ci = 0; ci < centers.length; ci += 1) {
     const c = centers[ci]
     const ox = cx + (c.x * Math.cos(spin) - c.y * Math.sin(spin))
     const oy = cy + (c.x * Math.sin(spin) + c.y * Math.cos(spin))
     const hueC = (hue + ci * 27) % 360
     for (let i = trail; i >= 0; i -= 1) {
-      const tt = td - i * 0.05 + ci * 0.3
+      const tt = td - i * (1 / (5 * 4)) + ci * (3 / (5 * 2))
       let x = 0
       let y = 0
       for (const arm of FOL_ARMS) { x += arm.r * Math.cos(arm.w * tt); y += arm.r * Math.sin(arm.w * tt) }
       const age = i / trail
-      ctx.globalAlpha = Math.pow(1 - age, 1.6) * 0.42
-      ctx.fillStyle = movieCanvasRgba((hueC + i * 3) % 360, Math.pow(1 - age, 1.6) * 0.42, { L: 13 / 16 - age * (5 / 32) })
+      ctx.globalAlpha = Math.pow(1 - age, (8 / 5)) * ((7 * 3) / (5 * 5 * 2))
+      ctx.fillStyle = paint((hueC + i * 3) % 360, Math.pow(1 - age, (8 / 5)) * ((7 * 3) / (5 * 5 * 2)), { L: 1 - 3 / 16 - age * (5 / (16 * 2)) })
       ctx.beginPath()
-      ctx.arc(ox + x * localR, oy + y * localR, Math.max(0.5, (1 - age * 0.7) * 1.7), 0, Math.PI * 2)
+      ctx.arc(ox + x * localR, oy + y * localR, Math.max((1 / 2), (1 - age * (7 / (5 * 2))) * 1.7), 0, TAU)
       ctx.fill()
     }
   }
@@ -143,8 +151,8 @@ export function drawFlower(
 }
 
 const CAL_CYCLES: readonly { cycle: string; days: number }[] = [
-  { cycle: 'week', days: 7 }, { cycle: 'trecena', days: 13 }, { cycle: 'veintena', days: 20 },
-  { cycle: 'sexagenary', days: 60 }, { cycle: 'tzolkʼin', days: 260 }, { cycle: 'tun', days: 360 },
+  { cycle: 'week', days: 7 }, { cycle: 'trecena', days: 13 }, { cycle: 'veintena', days: (5 * 4) },
+  { cycle: 'sexagenary', days: (6 * 5 * 2) }, { cycle: 'tzolkʼin', days: 260 }, { cycle: 'tun', days: 360 },
   { cycle: 'haabʼ', days: 365 }, { cycle: '819', days: 819 }, { cycle: 'Metonic', days: 6940 },
   { cycle: 'Calendar Round', days: 18980 },
 ]
@@ -158,24 +166,26 @@ export function drawCalendars(
   t: number,
   hue: number,
   reduce: boolean,
+  dark = true,
 ): void {
-  const days = Date.now() / 86400000
+  const paint = movieCanvasPolarity(dark)
+  const days = Date.now() / (864 * 100 * 100 * 5 * 2)
   const base = Math.min(w, h)
   ctx.save()
   for (let i = 0; i < CAL_CYCLES.length; i += 1) {
     const cyc = CAL_CYCLES[i]
     const phase = ((((days % cyc.days) + cyc.days) % cyc.days) / cyc.days)
-    const radius = base * (0.15 + 0.027 * i)
-    const hueC = (hue + i * 24) % 360
-    ctx.strokeStyle = movieCanvasRgba(hueC, 0.1, { L: 11 / 16 })
-    ctx.lineWidth = 0.75
+    const radius = base * ((3 / (5 * 4)) + (27 / (100 * 5 * 2)) * i)
+    const hueC = (hue + i * (8 * 3)) % 360
+    ctx.strokeStyle = paint(hueC, (1 / (5 * 2)), { L: 1 - 5 / 16 })
+    ctx.lineWidth = (3 / 4)
     ctx.beginPath()
-    ctx.arc(cx, cy, radius, 0, Math.PI * 2)
+    ctx.arc(cx, cy, radius, 0, TAU)
     ctx.stroke()
-    const ang = phase * Math.PI * 2 - Math.PI / 2 + (reduce ? 0 : t * 0.05 * (i % 2 === 0 ? 1 : -1))
-    ctx.fillStyle = movieCanvasRgba(hueC, 0.7, { L: 13 / 16 })
+    const ang = phase * TAU - Math.PI / 2 + (reduce ? 0 : t * (1 / (5 * 4)) * (i % 2 === 0 ? 1 : -1))
+    ctx.fillStyle = paint(hueC, (7 / (5 * 2)), { L: 1 - 3 / 16 })
     ctx.beginPath()
-    ctx.arc(cx + Math.cos(ang) * radius, cy + Math.sin(ang) * radius, Math.max(1, base * 0.006), 0, Math.PI * 2)
+    ctx.arc(cx + Math.cos(ang) * radius, cy + Math.sin(ang) * radius, Math.max(1, base * (3 / (100 * 5))), 0, TAU)
     ctx.fill()
   }
   ctx.restore()

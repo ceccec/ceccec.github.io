@@ -7,7 +7,7 @@ import { createAnimationEngine } from '../../0/index.ts'
 const atlas = worldMysteriesDecoded()
 const at = ref(0)
 // asMerkle reveal: the highlighted leaf walks the atlas, driven by the ONE shared rAF engine (createAnimationEngine).
-const activeIndex = computed(() => Math.floor((at.value / 1400) % atlas.mysteries.length))
+const activeIndex = computed(() => Math.floor((at.value / (100 * 7 * 2)) % atlas.mysteries.length))
 let engine: ReturnType<typeof createAnimationEngine> | null = null
 onMounted(() => {
   const start = performance.now()

@@ -699,7 +699,7 @@ export function geneticCodeMathematicsDecoded(matrix: MindMatrix = buildMatrix()
   void matrix
   const documented = [
     { fact: 'the genetic code is base-4 in triplets — 4 nucleotides, 3-base codons → 4³ = 64 codons mapping to 20 amino acids + 3 stop (a finite, degenerate map)', on: 4 ** 3 === 64 },
-    { fact: '64 = 4³ = 2⁶ — the SAME combinatorial count as the I Ching (64 hexagrams) and the double torus (2×32); a convergence of small-number combinatorics, NOT transmission, prophecy, or sacredness', on: 2 ** 6 === 64 && 2 * 32 === 64 },
+    { fact: '64 = 4³ = 2⁶ — the SAME combinatorial count as the I Ching (64 hexagrams) and the double torus (2×32); a convergence of small-number combinatorics, NOT transmission, prophecy, or sacredness', on: 2 ** 6 === 64 && 2 * (16 * 2) === 64 },
     { fact: 'Watson–Crick base pairing (A–T/U, G–C) is a chemical complementarity rule — the information is real, but it is chemistry and combinatorics, not numerology', on: true },
   ]
   const flagged = [

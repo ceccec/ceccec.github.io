@@ -97,7 +97,7 @@ function launchDock(appId: string) {
 .quantum-os { position: relative; min-height: calc(64vh + 6vh); display: grid; grid-template-rows: auto 1fr auto; gap: var(--q-space-2, var(--ich-sp6)); isolation: isolate; accent-color: var(--q-accent); }
 .quantum-os__wallpaper { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
 .quantum-os__status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--q-space, var(--ich-sp4)); padding: var(--q-space, var(--ich-sp4)) var(--q-space-2, var(--ich-sp6)); backdrop-filter: blur(var(--ich-sp6)); background: color-mix(in srgb, var(--vp-c-bg) calc(64% + 8%), transparent); border-radius: var(--q-radius, 8px); border-top: 3px solid var(--q-primary, var(--vp-c-brand-1)); }
-.quantum-os__brand { font-weight: 700; margin-right: var(--ich-sp4); color: var(--q-primary, inherit); }
+.quantum-os__brand { font-weight: var(--ich-weight-bold); margin-right: var(--ich-sp4); color: var(--q-primary, inherit); }
 .quantum-os__design-badge { font-size: var(--ich-text-2xs); }
 .quantum-os__drivers { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); margin-left: auto; }
 .quantum-os__driver-badge { font-size: var(--ich-text-2xs); }

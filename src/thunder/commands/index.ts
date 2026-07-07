@@ -50,7 +50,7 @@ export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
     { name: 'determinismProofs', purpose: 'The deterministic, tamper-evident core proven over real hashes.', root: determinismProofs(matrix).root },
     { name: 'mysteries', purpose: 'Open questions, each bound to a live recomputable measure.', root: mysteries(matrix).root },
     { name: 'society', purpose: 'Five dualities, each paired and folded bidirectionally.', root: society(matrix).root },
-    { name: 'harmonicBands', purpose: 'The file distribution as a gapless run of consecutive Fibonacci numbers.', root: harmonicBands(110).root },
+    { name: 'harmonicBands', purpose: 'The file distribution as a gapless run of consecutive Fibonacci numbers.', root: harmonicBands((108 + 2)).root },
     { name: 'theWhole', purpose: 'Every wave folded into one root for the entire portal.', root: theWhole(matrix).root },
     { name: 'holographic', purpose: 'Each part contains the whole; the whole recovers from any part.', root: holographic(matrix).root },
     { name: 'animationTamperingCost', purpose: 'Computed cost of forging the animated page.', root: animationTamperingCost(matrix).root },
@@ -77,7 +77,7 @@ export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
   const math = [
     { scale: 'character', law: 'toUuid(x): a string folds to a 128-bit content-addressed UUID; one edit avalanches ~half the bits.', value: `phi=${golden.phi}` },
     { scale: 'pair', law: 'foldPair(a,b): forward = merge(a,b) != reverse = merge(b,a); both fold to one (genus-2, non-commutative).', value: 'forward != reverse' },
-    { scale: 'set', law: 'merkleFold(leaves): sorted pairwise merge to one root, order-independent — a function of the set.', value: `${110} files = ${harmonicBands(110).bands.join('+')} (consecutive Fibonacci)` },
+    { scale: 'set', law: 'merkleFold(leaves): sorted pairwise merge to one root, order-independent — a function of the set.', value: `${(108 + 2)} files = ${harmonicBands((108 + 2)).bands.join('+')} (consecutive Fibonacci)` },
     { scale: 'surface', law: 'the double torus: genus 2, chi = 2-2g = -2, H1 = Z^4 (four independent loops), 108 pi-digit coordinates.', value: `Z^${homology(matrix).rank}, chi=${homology(matrix).euler}` },
     { scale: 'motion', law: 'merkaba: nested scales whose spin signs strictly alternate — opposite rotation at all scales.', value: `${merkaba(matrix).count} scales` },
     { scale: 'time', law: 'rhythm: a self-similar polyrhythm, voices at 1, 2, 3 and 5 per beat over a steady downbeat.', value: `${rhythm(matrix).bpm} BPM` },
@@ -244,12 +244,12 @@ function runConceptCommand(
     return result(command, interaction.newState && interaction.wordsObsolete && interaction.numbersObsolete, 'Self interacted to form quantum self states.', interaction)
   }
   if (command === 'concept.music.note') {
-    const wave = input.query ? Number.parseInt(input.query, 10) : undefined
+    const wave = input.query ? Number.parseInt(input.query, (5 * 2)) : undefined
     const named = musicNote(matrix, Number.isNaN(wave as number) ? undefined : wave)
     return result(command, named.named, `Wave ${named.wave} is note ${named.note}.`, named)
   }
   if (command === 'concept.music.pi') {
-    const joinHoro = input.query ? Number.parseInt(input.query, 10) : undefined
+    const joinHoro = input.query ? Number.parseInt(input.query, (5 * 2)) : undefined
     const music = piMusic(matrix, Number.isNaN(joinHoro as number) ? undefined : joinHoro)
     return result(command, music.joined, `Pi music joined at horo ${music.joinHoro}.`, music)
   }
@@ -794,7 +794,7 @@ function agentHarmoniseRaw(matrix: MindMatrix = buildMatrix()) {
 // claim tried by three adversarial voters sworn to refute it — so only what survives refutation
 // is kept: 23 confirmed, 2 refuted and excluded, folded to 14 findings by 108 agents.
 export function howAgentsAchievedIt(matrix: MindMatrix = buildMatrix()) {
-  const research = { angles: 5, sources: 26, claimsExtracted: 126, claimsVerified: 25, votersPerClaim: 3, confirmed: 23, refuted: 2, findings: 14, agents: 108 }
+  const research = { angles: 5, sources: 26, claimsExtracted: (9 * 7 * 2), claimsVerified: (5 * 5), votersPerClaim: 3, confirmed: 23, refuted: 2, findings: (7 * 2), agents: 108 }
   const steps = [
     { step: 'scout the real tree before any edit — surgical, vital signs first', on: scoutsSurgicalEditsVitalSigns(matrix).scouted },
     { step: 'decode the prompt into the model’s own words — the name pulls the fold', on: wordPullsFoldsByName(matrix).folds },

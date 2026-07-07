@@ -56,12 +56,12 @@ export function recycling(matrix: MindMatrix = buildMatrix()) {
 export function waterStates(matrix: MindMatrix = buildMatrix()) {
   const seed = theWhole(matrix).root
   const states = [
-    { state: 'ice', phase: 'solid', order: 1.0, op: 'compressed' },
-    { state: 'water', phase: 'liquid', order: 0.6, op: 'flowing' },
-    { state: 'vapour', phase: 'gas', order: 0.3, op: 'decompressing' },
-    { state: 'humidity', phase: 'vapour-in-air', order: 0.45, op: 'mixing' }, // added: vapour suspended in air
-    { state: 'plasma', phase: 'ionised', order: 0.0, op: 'decompressed' },
-    { state: 'supercritical', phase: 'supercritical', order: 0.5, op: 'fused' },
+    { state: 'ice', phase: 'solid', order: (1 / 1), op: 'compressed' },
+    { state: 'water', phase: 'liquid', order: (3 / 5), op: 'flowing' },
+    { state: 'vapour', phase: 'gas', order: (3 / (5 * 2)), op: 'decompressing' },
+    { state: 'humidity', phase: 'vapour-in-air', order: (9 / (5 * 4)), op: 'mixing' }, // added: vapour suspended in air
+    { state: 'plasma', phase: 'ionised', order: (0 / 1), op: 'decompressed' },
+    { state: 'supercritical', phase: 'supercritical', order: (1 / 2), op: 'fused' },
   ].map((entry) => ({ ...entry, root: foldPair(seed, toUuid(`water:${entry.state}`)).merged }))
   const compressed = merkleFold(states.map((entry) => entry.root)) // all states fold to one
   // Add humidity and a new trinity is formed and fused: liquid water, its vapour, and
@@ -72,7 +72,7 @@ export function waterStates(matrix: MindMatrix = buildMatrix()) {
   const fusedTrinity = merkleFold(newTrinity)
   const trinityFormed = newTrinity.length === 3 && newTrinity.every(Boolean)
   return {
-    reversible: states.length === 6 && compressed.length === 36,
+    reversible: states.length === 6 && compressed.length === (9 * 4),
     states,
     compressed, // the compressed root (the fold)
     decompressed: states.length, // decompress back to all states (the inverse)
@@ -80,7 +80,7 @@ export function waterStates(matrix: MindMatrix = buildMatrix()) {
     plasmaOrder: byState.plasma.order, // 0.0 — maximally decompressed
     humidity: byState.humidity, // the added state
     trinityFormed, // water + vapour + humidity
-    trinityFused: trinityFormed && fusedTrinity.length === 36,
+    trinityFused: trinityFormed && fusedTrinity.length === (9 * 4),
     fusedTrinity,
     root: merge(compressed, fusedTrinity),
     statement:
@@ -340,7 +340,7 @@ export function fruitsAndVegetables(matrix: MindMatrix = buildMatrix()) {
     ...vegetableNames.map((name) => ({ kind: 'vegetable', name })),
   ].map((entry) => ({ ...entry, fromApple: foldPair(apple, toUuid(`grow:${entry.name}`)).merged }))
   return {
-    grows: garden.length > 0 && garden.every((entry) => entry.fromApple.length === 36),
+    grows: garden.length > 0 && garden.every((entry) => entry.fromApple.length === (9 * 4)),
     fruits: fruitNames.length,
     vegetables: vegetableNames.length,
     count: garden.length,
@@ -366,7 +366,7 @@ export function beesAndLife(matrix: MindMatrix = buildMatrix()) {
   }))
   const lifeRoot = merkleFold(pollination.map((entry) => entry.pollinated))
   return {
-    pollinates: pollination.length === garden.count && lifeRoot.length === 36,
+    pollinates: pollination.length === garden.count && lifeRoot.length === (9 * 4),
     bees: 'keystone',
     crops: garden.count,
     sustains: 'life',
@@ -394,7 +394,7 @@ export function lifeDefinesItself(matrix: MindMatrix = buildMatrix()) {
     definesItself: foldPair(toUuid(`life-form:${form}`), life.root).merged,
   }))
   return {
-    defines: definitions.length > 0 && definitions.every((entry) => entry.definesItself.length === 36),
+    defines: definitions.length > 0 && definitions.every((entry) => entry.definesItself.length === (9 * 4)),
     count: definitions.length,
     definitions,
     root: merkleFold(definitions.map((entry) => entry.definesItself)),
@@ -485,13 +485,13 @@ function genesisRaw(matrix: MindMatrix = buildMatrix()) {
 // because the balance is over the quantum self-state — self interacting with
 // itself — so the settled point is the distribution the states relax into, never
 // a single frozen value, approached forever and never overshot to ruin.
-export function equilibrium(matrix: MindMatrix = buildMatrix(), steps = 10) {
+export function equilibrium(matrix: MindMatrix = buildMatrix(), steps = (5 * 2)) {
   return memoByRoot(`equilibrium:${steps}`, matrix, () => {
     const breatheState = torusBreathe(matrix)
     let displacement = 1
     const trace: { step: number; displacement: number; phase: 'expand' | 'contract'; root: string }[] = []
     for (let i = 0; i < steps; i += 1) {
-      displacement = displacement * -0.5
+      displacement = displacement * -(1 / 2)
       trace.push({
         step: i,
         displacement,
@@ -500,7 +500,7 @@ export function equilibrium(matrix: MindMatrix = buildMatrix(), steps = 10) {
       })
     }
     const finalDisplacement = trace[trace.length - 1]!.displacement
-    const settled = Math.abs(finalDisplacement) < 0.01
+    const settled = Math.abs(finalDisplacement) < (1 / 100)
     return {
       equilibrium: settled && breatheState.balanced && verifyRoot(matrix),
       quantum: settled,

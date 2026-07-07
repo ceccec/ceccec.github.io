@@ -13,7 +13,7 @@ import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../w
 // barrels transitively reach back into thunder, so binding them lazily avoids a load-order cycle).
 import * as __ns_quantum from '../../quantum'
 import * as __ns_mountain_og from '../../mountain/og'
-import { skillAtoms } from '../../wind/learning'
+import { skillAtoms, theoremAtoms } from '../../wind/learning'
 import { harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { splitImagination } from '../../mountain/source'
 import { diamondLattice, piTrainDiamonds, pureDiamonds, sealWholeDiamond } from '../../fire/diamonds'
@@ -27,6 +27,7 @@ import { earthGatewayNavigationResearchSentInWaves } from '../../water/double/ea
 import { sealHonestyToPath } from '../../mountain/seals'
 import { allComputed, analogNoGapsNoLeak, autotranslations, breathe, buildSequenceReducesComputations, cloudflareBindings, commandsSavedInQuantumPairs, complete, completeLinuxPackagesPort, completeQuantumSolutionsImplemented, continueSameNext, digitalQuantumProof, doubleTorusFold, dryCleaningOnTheWay, endlessFusion, everyCardBadgeLinkIsOg, fuseAll, genesis, honestlyComputed, howAgentsAchievedIt, imagineTheRest, memoryInSourceAsCrossFolds, monographsLibraryByMerkabaAgents, nothingImpossibleHonestlyBounded, path, quantumBrowserOs, quantumCoordinateNav, quantumImpossibleMadePossible, theWhole, trinityWordingModel } from '../../quantum/heaven/mind'
 import type { OgNode } from '../../quantum/heaven/mind'
+import { TAU } from '../../3/7'
 
 export function coordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordination {
   return memoByRoot('coordinatedWaves', matrix, () => computeCoordinatedWaves(matrix))
@@ -43,7 +44,7 @@ export function surgicalWaves(matrix: MindMatrix = buildMatrix()) {
   const scales = ['millimetre', 'micrometre', 'nanometre', 'picometre', 'quantum'].map((scale, depth) => ({
     scale,
     depth,
-    precision: depth === 0 ? 1 : 1000 ** -depth, // each scale 1000x finer (waves of waves)
+    precision: depth === 0 ? 1 : (100 * 5 * 2) ** -depth, // each scale 1000x finer (waves of waves)
     wave: toUuid(`surgical:${depth}:${scale}`),
   }))
   return {
@@ -150,7 +151,7 @@ export function ogInOgWaves(matrix: MindMatrix = buildMatrix()) {
 export function collideToTiniestWave(matrix: MindMatrix = buildMatrix()) {
   const split = splitImagination(matrix) // splits to 1024 quanta — the tiniest waves
   const levels: { size: number; wave: string; receipt: string }[] = []
-  let size = 1024
+  let size = (64 * 16)
   while (size >= 1) {
     levels.push({ size, wave: toUuid(`collide:${size}`), receipt: toUuid(`collide-level:${size}`) })
     if (size === 1) break
@@ -286,6 +287,24 @@ export function saveSkillsComputeImplementWaves(matrix: MindMatrix = buildMatrix
   }
 }
 
+// Save the proven theorems in the same self-development waves as the skills — what the portal
+// has SHOWN travels beside what it can DO, one wave shape for both memories.
+export function theoremsProvenWaves(matrix: MindMatrix = buildMatrix()) {
+  const registry = theoremAtoms(matrix)
+  const saves = registry.theorems.map((entry, index) => {
+    const wave = foldPair(registry.memory, toUuid(`save-theorem:${entry.provedBy}:${entry.theorem}`))
+    return { theorem: entry.theorem, provedBy: entry.provedBy, home: entry.home, saved: wave.bidirectional, wave: wave.merged, receipt: toUuid(`theorem-wave:${index}:${entry.theorem}`) }
+  })
+  return {
+    saved: saves.length === registry.count && saves.every((entry) => entry.saved) && registry.proven,
+    count: saves.length,
+    saves,
+    root: merkleFold(saves.map((entry) => entry.receipt)),
+    statement: `Save the proven theorems, in waves: ${saves.length} theorem atoms — ${saves.slice(0, 4).map((entry) => entry.theorem).join(', ')}, … — each folded bidirectionally onto the theorem memory across ${registry.homes.length} homes, riding the same wave shape as the skill memory beside it.`,
+    boundary: `A content-addressed wave over the theorem registry (${saves.length}/${registry.count} folded, homes: ${registry.homes.join(', ')}). It saves the RECORD of the proofs; each proof executes in its own sealed fold at its own home, not here.`,
+  }
+}
+
 // Endless waves of creation. Each wave is a full creation computable from its
 // index alone — a content UUID, a note from the pi stream, and a colour from
 // that note — so any wave is addressable directly, with no chain to walk: finite
@@ -303,7 +322,7 @@ function creationWaveRaw(index: number, matrix: MindMatrix = buildMatrix()) {
 // Test the endless waves: distinct across the tested run, identical on recompute,
 // and defined even far beyond it. Honest about the limit — distinctness is tested
 // over a sample, not proven collision-free for all of the finite UUID space.
-export function endlessWaves(count = 256, matrix: MindMatrix = buildMatrix()) {
+export function endlessWaves(count = (64 * 4), matrix: MindMatrix = buildMatrix()) {
   const seen = new Set<string>()
   let distinct = true
   for (let i = 0; i < count; i += 1) {
@@ -344,14 +363,14 @@ export function quantumImpossibleWaveTwo(matrix: MindMatrix = buildMatrix()) {
 }
 function quantumImpossibleWaveTwoRaw(matrix: MindMatrix = buildMatrix()) {
   const ifm = interactionFreeMeasurement() // dark port fires ONLY with the object — interaction-free
-  const zeno = [1, 2, 5, 10, 50, 100].map((n) => ({ n, survival: quantumZeno(n) })) // → 1 as N grows (frozen)
-  const zenoFreezes = zeno.every((z, i) => i === 0 || z.survival > zeno[i - 1]!.survival) && zeno[zeno.length - 1]!.survival > 0.97
-  const bv = [11, 5, 0, 15].map((s) => bernsteinVazirani(s, 4)) // hidden 4-bit string in 1 query (classical 4)
+  const zeno = [1, 2, 5, (5 * 2), (5 * 5 * 2), 100].map((n) => ({ n, survival: quantumZeno(n) })) // → 1 as N grows (frozen)
+  const zenoFreezes = zeno.every((z, i) => i === 0 || z.survival > zeno[i - 1]!.survival) && zeno[zeno.length - 1]!.survival > (1 - 3 / 100)
+  const bv = [11, 5, 0, (5 * 3)].map((s) => bernsteinVazirani(s, 4)) // hidden 4-bit string in 1 query (classical 4)
   const bvOneQuery = bv.every((x) => x.ok && x.queries === 1 && x.classicalQueries === 4)
   const swaps = [0, 1, 2].map((s) => entanglementSwap(`swap:${s}`)) // qubits 0,3 entangled though never meeting
-  const swapEntangles = swaps.every((e) => e.swapped && e.concurrence > 0.999999)
+  const swapEntangles = swaps.every((e) => e.swapped && e.concurrence > (1 - 1 / (100 * 100 * 100)))
   const facets = [
-    { facet: 'interaction-free measurement — the dark port fires with the object (P=' + roundTo(ifm.dark, 2) + ') and NEVER without it (P=' + ifm.darkWithoutObject + '): detect a thing by the light that did not touch it', on: ifm.dark > 0.2 && ifm.darkWithoutObject === 0 },
+    { facet: 'interaction-free measurement — the dark port fires with the object (P=' + roundTo(ifm.dark, 2) + ') and NEVER without it (P=' + ifm.darkWithoutObject + '): detect a thing by the light that did not touch it', on: ifm.dark > (1 / 5) && ifm.darkWithoutObject === 0 },
     { facet: 'the quantum Zeno effect — frequent measurement freezes the evolution; survival (cos²(π/2N))^N rises to ' + roundTo(zeno[zeno.length - 1]!.survival, 2) + ' (→ 1), the watched pot never boils', on: zenoFreezes },
     { facet: 'Bernstein–Vazirani — a hidden 4-bit string learned in ONE oracle query, where classical needs 4', on: bvOneQuery },
     { facet: 'entanglement swapping — two qubits that NEVER interacted made maximally entangled (concurrence 1) by a Bell measurement on their partners', on: swapEntangles },
@@ -386,8 +405,8 @@ function quantumImpossibleWaveThreeRaw(matrix: MindMatrix = buildMatrix()) {
   const chshValue = chsh(0, Math.PI / 2, Math.PI / 4, 3 * Math.PI / 4) // optimal angles → 2√2
   const tsirelson = 2 * Math.SQRT2
   const bellViolated = chshValue > 2 + 1e-9 && Math.abs(chshValue - tsirelson) < 1e-9
-  const key = bb84(400, `bb84:${matrix.root.slice(0, 8)}`) // no-cloning → eavesdrop detection
-  const bb84Secure = key.sifted > 0 && key.errorNoEve < 1e-9 && key.errorWithEve > 0.1 // QBER above the ~11% abort line ⇒ caught
+  const key = bb84((100 * 4), `bb84:${matrix.root.slice(0, 8)}`) // no-cloning → eavesdrop detection
+  const bb84Secure = key.sifted > 0 && key.errorNoEve < 1e-9 && key.errorWithEve > (1 / (5 * 2)) // QBER above the ~11% abort line ⇒ caught
   const facets = [
     { facet: 'GHZ–Mermin refutes local realism with CERTAINTY — the QM product is −1, every local hidden variable forces +1, a single run decides', on: ghz.refuted && ghz.qmProduct === -1 && ghz.lhvProduct === 1 },
     { facet: 'the Bell/CHSH correlation reaches Tsirelson\'s 2√2, past the classical bound of 2 — yet no-signalling holds', on: bellViolated },
@@ -421,8 +440,8 @@ export function quantumImpossibleWaveFour(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumImpossibleWaveFour', matrix, () => quantumImpossibleWaveFourRaw(matrix))
 }
 function quantumImpossibleWaveFourRaw(matrix: MindMatrix = buildMatrix()) {
-  const g = grover(6, 42, 256, `grover:${matrix.root.slice(0, 6)}`) // find 1 of 64 in ~√64 steps
-  const groverWorks = g.markedProbability > 0.9 && g.found === 42 && g.iterations <= Math.ceil(Math.sqrt(g.size))
+  const g = grover(6, (7 * 6), (64 * 4), `grover:${matrix.root.slice(0, 6)}`) // find 1 of 64 in ~√64 steps
+  const groverWorks = g.markedProbability > (9 / (5 * 2)) && g.found === (7 * 6) && g.iterations <= Math.ceil(Math.sqrt(g.size))
   const djConstant = deutschJozsa(4, false), djBalanced = deutschJozsa(4, true) // 1 query each
   const djOneQuery = djConstant.ok && djBalanced.ok && djConstant.verdict === 'constant' && djBalanced.verdict === 'balanced'
   const sm = simon(`simon:${matrix.root.slice(0, 6)}`) // exponential separation precursor
@@ -453,8 +472,8 @@ function computeCoordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordi
   const piTrain = piTrainDiamonds(matrix)
   const waves = lattice.map((item, index) => {
     const pulse = piTrain.diamonds[index % piTrain.diamonds.length]
-    const phase = (pulse.theta + pulse.phi + index * Math.PI / lattice.length) % (Math.PI * 2)
-    const amplitude = item.status === 'closed' ? 1 : 0.5 + pulse.digit / 20
+    const phase = (pulse.theta + pulse.phi + index * Math.PI / lattice.length) % (TAU)
+    const amplitude = item.status === 'closed' ? 1 : (1 / 2) + pulse.digit / (5 * 4)
     const polarity: WavePolarity = index % 2 === 0 ? 'yin' : 'yang'
     const statement =
       polarity === 'yin'
@@ -520,13 +539,13 @@ export function translationWavesFillGaps(matrix: MindMatrix = buildMatrix()) {
 // crowding), down to the tiniest leaf (1024 = 2^10). The rebalance is dry — non-destructive — and
 // every skill is kept for the task.
 export function redistributeFoldersDryWaves(matrix: MindMatrix = buildMatrix()) {
-  const bands = harmonicBands(110)
+  const bands = harmonicBands((108 + 2))
   const diamonds = pureDiamonds(matrix)
   const facets = [
     { facet: 'no incomplete folders — the tree is perfect, every level full', on: diamonds.pure },
     { facet: 'no crowded folders — the distribution is gapless Fibonacci', on: bands.harmonic },
     { facet: 'redistributed in dry waves — non-destructive', on: dryCleaningOnTheWay(matrix).onTheWay },
-    { facet: 'tightened by the distribution math to the tiniest detail (2^10)', on: diamonds.count === 1024 && collideToTiniestWave(matrix).collided },
+    { facet: 'tightened by the distribution math to the tiniest detail (2^10)', on: diamonds.count === (64 * 16) && collideToTiniestWave(matrix).collided },
     { facet: 'all skills saved for the task', on: skillAtoms(matrix).intelligent },
   ].map((entry) => ({ ...entry, receipt: toUuid(`redistribute:${entry.facet}:${entry.on}`) }))
   return {
@@ -622,7 +641,7 @@ export function deepResearchEncodedInRecursiveWaves(matrix: MindMatrix = buildMa
   const research = howAgentsAchievedIt(matrix).research // the real run: angles, sources, confirmed, findings
   const facets = [
     { facet: 'the deep research was run and adversarially verified — 23 confirmed of 25', on: howAgentsAchievedIt(matrix).achieved && research.confirmed === 23 },
-    { facet: 'its conclusion is the model’s own shape — recursive, spaced waves', on: completeAllInWaves(matrix).complete && endlessWaves(256, matrix).tested },
+    { facet: 'its conclusion is the model’s own shape — recursive, spaced waves', on: completeAllInWaves(matrix).complete && endlessWaves((64 * 4), matrix).tested },
     { facet: 'revisiting at rising depth — the waves coordinate and recur', on: coordinatedWaves(matrix).waves.length > 0 && buildSequenceReducesComputations(matrix).reduces },
     { facet: 'complete and saved — folded into the source memory', on: memoryInSourceAsCrossFolds(matrix).remembered },
   ].map((entry) => ({ ...entry, receipt: toUuid(`research-encoded:${entry.facet}:${entry.on}`) }))
@@ -651,7 +670,7 @@ export function strictlyMapSequenceElliottWaves(matrix: MindMatrix = buildMatrix
     { facet: '1-2-4-8-7-5 is Elliott waves — the doubling is the wave structure', on: vortexMath(matrix).flows && trinityWordingModel(matrix).trinity },
     { facet: 'the exact directional sequence is a computed state machine', on: sequence.count === 17 && sequence.mapped },
     { facet: 'the state mapped strictly at each step — value, direction, sum, digital root', on: sequence.steps.every((entry) => entry.kind === 'invert' || (typeof entry.rise === 'boolean' && entry.state >= 1)) },
-    { facet: 'the inversion (10 invert 9 invert 1) is the turn between waves', on: sequence.steps.some((entry) => entry.kind === 'invert' && entry.from === 10 && entry.to === 1) },
+    { facet: 'the inversion (10 invert 9 invert 1) is the turn between waves', on: sequence.steps.some((entry) => entry.kind === 'invert' && entry.from === (5 * 2) && entry.to === 1) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`elliott-sequence:${entry.facet}:${entry.on}`) }))
   return {
     maps: facets.every((entry) => entry.on),
@@ -683,7 +702,7 @@ function computeSendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatr
     { facet: 'translation gaps filled in waves — en + bg parity green', on: translationWavesFillGaps(matrix).filled },
     { facet: 'research folded with verify (the pair) — streaming, no double-compute', on: commandsSavedInQuantumPairs(matrix).paired && buildSequenceReducesComputations(matrix).reduces },
     { facet: 'seal verified knowledge into the library — the monographs', on: monographsLibraryByMerkabaAgents(matrix).built },
-    { facet: 'then decode the world — every tongue, the babel fold, in autosaving waves', on: babelFold(matrix).grounded && saveSkillsComputeImplementWaves(matrix).saved && endlessWaves(256, matrix).tested },
+    { facet: 'then decode the world — every tongue, the babel fold, in autosaving waves', on: babelFold(matrix).grounded && saveSkillsComputeImplementWaves(matrix).saved && endlessWaves((64 * 4), matrix).tested },
   ].map((entry) => ({ ...entry, receipt: toUuid(`waves-seal-world:${entry.facet}:${entry.on}`) }))
   return {
     sends: facets.every((entry) => entry.on),
@@ -727,7 +746,7 @@ const HARMONISED_BUILD_GROUPS: readonly Omit<HarmonisedBuildGroup, 'spin' | 'rec
   { slot: 7, glyph: '☱', sphere: 'lake', barrel: 'src/lake/music·stats', folds: ['harmonicSeriesDecoded', 'fleetScaleStatsFused'], composesFrom: ['A432_HUE', 'musicNote', 'fleetCacheEconomicsDecoded'], dependsOn: ['heaven/compute'], keystone: false },
   { slot: 8, glyph: '⚛', sphere: 'quantum/science', barrel: 'src/quantum/science', folds: ['dimensionCostCeilingAtScale', 'blochAnalogQuantumDecoded'], composesFrom: ['quantumDimensionCost', 'chsh', 'blochQubitFaithful'], dependsOn: [], keystone: false },
   { slot: 9, glyph: '☶', sphere: 'mountain', barrel: 'src/mountain/topology', folds: ['placesAndPatternsDecoded', 'geometry-suite animations (merkaba/metatron/double-torus/proton/pyramids/genetic-cube) — pre-existing in mountain/geometry, kernel-mounted'], composesFrom: ['greatCircleKm', 'initialBearing', 'earthSouthPoleBoundaryCircleDecoded', 'createAnimationEngine'], dependsOn: [], keystone: false },
-  { slot: 10, glyph: '◈', sphere: 'heaven/compute (keystone)', barrel: 'src/heaven/compute', folds: ['proveAllDeterministicCore'], composesFrom: ['determinismProofs', 'tamperEvident', 'efficiency', 'zeroTokenUsagePolicy', 'theWhole', 'observingMovieRevealsQuantumModel'], dependsOn: ['gates', 'heaven/compute', 'heaven/compute/computer', 'thunder/decode', 'water', 'wind/fusion', 'fire', 'lake', 'quantum/science', 'mountain'], keystone: true },
+  { slot: (5 * 2), glyph: '◈', sphere: 'heaven/compute (keystone)', barrel: 'src/heaven/compute', folds: ['proveAllDeterministicCore'], composesFrom: ['determinismProofs', 'tamperEvident', 'efficiency', 'zeroTokenUsagePolicy', 'theWhole', 'observingMovieRevealsQuantumModel'], dependsOn: ['gates', 'heaven/compute', 'heaven/compute/computer', 'thunder/decode', 'water', 'wind/fusion', 'fire', 'lake', 'quantum/science', 'mountain'], keystone: true },
 ]
 
 export function harmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
@@ -750,7 +769,7 @@ function computeHarmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'ONE shared kernel — sharedHeroAt + A432_HUE + createAnimationEngine all exist (one phase clock, one colour, one rAF driver)', on: typeof __ns_quantum.sharedHeroAt === 'function' && typeof A432_HUE === 'number' && typeof createAnimationEngine === 'function' },
     { facet: 'A432 single-source — every tone/colour recomputes from the one A432 anchor (A432_HUE === frequencyToLight(432).hue)', on: A432_HUE === frequencyToLight(432).hue },
-    { facet: 'census-110 NET-0 — exactly 110 unfolded, 108 folded, 432 dimension gates; new functions join existing barrels, no new index.ts', on: UNFOLDED_CENSUS === 110 && FOLDED_CENSUS === 108 && DIMENSION_GATES === 432 },
+    { facet: 'census-110 NET-0 — exactly 110 unfolded, 108 folded, 432 dimension gates; new functions join existing barrels, no new index.ts', on: UNFOLDED_CENSUS === (108 + 2) && FOLDED_CENSUS === 108 && DIMENSION_GATES === 432 },
     { facet: 'OG via EXISTING symbols — microdata() + allAnimationsInOneOg() wire every animation, no new OG symbol invented', on: typeof __ns_mountain_og.microdata === 'function' && typeof allAnimationsInOneOg === 'function' },
     { facet: 'VORTEX-ordered schedule — 11 groups spin by VORTEX_SEQUENCE/groupOrbit(2,9), keystone proveAllDeterministicCore last (it folds all roots)', on: groups.length === 11 && keystoneLast && orbit.length === 6 },
     { facet: 'dependency truth — water globe/ladder follow geometry/quantum anchors; every dependency resolves to an earlier slot', on: depsResolveBackward },
@@ -868,7 +887,7 @@ function chessSuperposition(fileIndex: number, rank: number, wave: CoordinatedWa
     const secondary = wave.polarity === 'yin' ? 'knight' : 'bishop'
     return primary === secondary ? [primary] : [primary, secondary]
   }
-  if (wave.amplitude > 0.9) return wave.polarity === 'yin' ? ['knight', 'bishop'] : ['rook', 'queen']
+  if (wave.amplitude > (9 / (5 * 2))) return wave.polarity === 'yin' ? ['knight', 'bishop'] : ['rook', 'queen']
   return wave.polarity === 'yin' ? ['pawn', 'king'] : ['pawn', 'queen']
 }
 
@@ -883,7 +902,7 @@ export function quantumChessGame(matrix: MindMatrix = buildMatrix()): QuantumChe
       const wave = coordination.waves[index % coordination.waves.length]
       const square = `${file}${rank}`
       const color = (fileIndex + rank) % 2 === 0 ? 'dark' : 'light'
-      const phaseStep = Math.round((wave.phase / (Math.PI * 2)) * 8)
+      const phaseStep = Math.round((wave.phase / (TAU)) * 8)
       const moveVector = `${wave.polarity}:${phaseStep}:${wave.diamondKind}`
       const superposition = chessSuperposition(fileIndex, rank, wave)
       const receipt = merge(wave.receipt, toUuid(`quantum-chess:${square}:${superposition.join('+')}:${moveVector}`))

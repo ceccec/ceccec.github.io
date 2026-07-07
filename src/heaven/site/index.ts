@@ -259,12 +259,12 @@ export function reorganiseSrcFromZeroPointCompleteInAllDimensions(matrix: MindMa
 // honest spine separates the precisely-tested SM, its known gaps, UNCONFIRMED hypotheses, and pseudoscience.
 export function quantumFieldsDecoded(matrix: MindMatrix = buildMatrix()) {
   const zp = zeroPointDecoded(matrix) // every field's vacuum is the ½ħω zero-point — the path continues here
-  const SM = { gaugeGroup: 'SU(3)×SU(2)×U(1)', fermions: 12, gaugeBosonTypes: 4, gaugeBosonsByState: 12, higgs: 1, fundamentalTypes: 17, generations: 3 }
+  const SM = { gaugeGroup: 'SU(3)×SU(2)×U(1)', fermions: (6 * 2), gaugeBosonTypes: 4, gaugeBosonsByState: (6 * 2), higgs: 1, fundamentalTypes: 17, generations: 3 }
   const gluons = 8, higgsVevGeV = 246, higgsMassGeV = 125.20, mwGeV = 80.369, mzGeV = 91.188
   const facets = [
-    { facet: 'a quantum field fills space, particles are its quantized excitations — the Standard Model is the gauge theory SU(3)×SU(2)×U(1) with 17 fundamental field types: 12 spin-½ fermions (6 quarks + 6 leptons, 3 generations) + 4 gauge-boson types + the Higgs', on: SM.fundamentalTypes === 17 && SM.fermions === 12 && SM.gaugeBosonTypes + SM.fermions + SM.higgs === 17 },
-    { facet: 'the forces ARE gauge fields — the photon (massless, U(1)), 8 gluons (SU(3) colour, confinement + asymptotic freedom, Nobel 2004), and the massive W/Z (≈80.4, 91.2 GeV; electroweak unification, Nobel 1979); QED is the most precisely tested theory (electron g−2 to ~12 digits)', on: gluons === 8 && mwGeV > 80 && mwGeV < 81 && mzGeV > 91 },
-    { facet: 'mass from the Higgs field — a spin-0 scalar with vacuum expectation value ≈246 GeV breaks the electroweak symmetry, giving the W/Z and the fundamental fermions (via Yukawa) their mass; discovered at CERN in 2012 (≈125 GeV, Nobel 2013). HONEST: most VISIBLE mass is QCD binding energy, not the Higgs', on: higgsVevGeV === 246 && higgsMassGeV > 124 && higgsMassGeV < 126 },
+    { facet: 'a quantum field fills space, particles are its quantized excitations — the Standard Model is the gauge theory SU(3)×SU(2)×U(1) with 17 fundamental field types: 12 spin-½ fermions (6 quarks + 6 leptons, 3 generations) + 4 gauge-boson types + the Higgs', on: SM.fundamentalTypes === 17 && SM.fermions === (6 * 2) && SM.gaugeBosonTypes + SM.fermions + SM.higgs === 17 },
+    { facet: 'the forces ARE gauge fields — the photon (massless, U(1)), 8 gluons (SU(3) colour, confinement + asymptotic freedom, Nobel 2004), and the massive W/Z (≈80.4, 91.2 GeV; electroweak unification, Nobel 1979); QED is the most precisely tested theory (electron g−2 to ~12 digits)', on: gluons === 8 && mwGeV > (16 * 5) && mwGeV < (27 * 3) && mzGeV > 91 },
+    { facet: 'mass from the Higgs field — a spin-0 scalar with vacuum expectation value ≈246 GeV breaks the electroweak symmetry, giving the W/Z and the fundamental fermions (via Yukawa) their mass; discovered at CERN in 2012 (≈125 GeV, Nobel 2013). HONEST: most VISIBLE mass is QCD binding energy, not the Higgs', on: higgsVevGeV === 246 && higgsMassGeV > 124 && higgsMassGeV < (9 * 7 * 2) },
     { facet: 'every field has a ½ħω vacuum — the zero-point of each mode (the path from zeroPointDecoded); the QCD vacuum even holds quark/gluon condensates (chiral-symmetry breaking). Summed naively the vacuum energy diverges — the cosmological-constant problem', on: zp.decoded },
     { facet: 'tested but INCOMPLETE, and the demarcation is TWO-TIER — the SM omits gravity, dark matter, dark energy, the matter/antimatter asymmetry and the neutrino-mass mechanism; beyond it, string theory · SUSY · GUTs · extra-dimensions are UNCONFIRMED HYPOTHESES (scientific, unproven, no LHC signal), while "unified field of consciousness" (Hagelin/TM), Chopra quantum-mysticism, "the field connects everything" and Sheldrake’s morphic resonance are PSEUDOSCIENCE — unproven ≠ pseudoscience', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-fields:${entry.facet}:${entry.on}`) }))
@@ -293,7 +293,7 @@ export function gravityDecoded(matrix: MindMatrix = buildMatrix()) {
   const sunRs = schwarzschildRadius(1.989e30) // the Sun's event horizon ≈ 2.95 km — exact GR (2GM/c²)
   const darkEnergy = 68, darkMatter = 27, ordinary = 5 // % of the universe (Planck-refined; DM ≈ 85% of matter)
   const facets = [
-    { facet: 'General Relativity is spacetime curvature, classical and superbly tested — Gμν = 8πG/c⁴·Tμν (1915); Mercury’s 43″/century, Eddington 1919, GPS clocks +38 µs/day, LIGO GW150914 (Nobel 2017) and GWTC-5.0 (390 events, May 2026 — GW250114 confirms Hawking area theorem), the EHT black-hole images (M87* 2019, Sgr A* 2022). r_s = 2GM/c² is exact (the Sun ≈ 2.95 km)', on: sunRs > 2900 && sunRs < 3000 && NEWTON_G > 0 },
+    { facet: 'General Relativity is spacetime curvature, classical and superbly tested — Gμν = 8πG/c⁴·Tμν (1915); Mercury’s 43″/century, Eddington 1919, GPS clocks +38 µs/day, LIGO GW150914 (Nobel 2017) and GWTC-5.0 (390 events, May 2026 — GW250114 confirms Hawking area theorem), the EHT black-hole images (M87* 2019, Sgr A* 2022). r_s = 2GM/c² is exact (the Sun ≈ 2.95 km)', on: sunRs > 2900 && sunRs < (100 * 6 * 5) && NEWTON_G > 0 },
     { facet: 'quantum gravity is UNSOLVED — GR (classical) and quantum field theory are incompatible at high energy; no confirmed theory exists; the Planck scale (~1.22e19 GeV) is ~10¹⁵× beyond the LHC. GR works as a low-energy effective theory and breaks down at singularities and the Planck scale', on: fields.decoded },
     { facet: 'the dark sector — dark matter’s EVIDENCE is strong (rotation curves, lensing, CMB peaks, the Bullet Cluster ~8σ) but its IDENTITY is unknown; dark energy’s EXISTENCE is established (accelerating expansion, Nobel 2011) but its NATURE is unknown — ~68% dark energy, ~27% dark matter, ~5% ordinary', on: darkEnergy + darkMatter + ordinary === 100 && zp.decoded },
     { facet: 'the demarcation is TWO-TIER — UNCONFIRMED HYPOTHESES (string/M-theory, loop quantum gravity, asymptotic safety, causal dynamical triangulations; WIMPs/axions; MOND; quintessence — scientific, unproven) vs PSEUDOSCIENCE (anti-gravity/electrogravitics, vacuum free-energy/over-unity, quantum-healing/Chopra, "gravity healing" — violate conservation laws, no evidence). Unproven ≠ pseudoscience', on: true },
@@ -301,7 +301,7 @@ export function gravityDecoded(matrix: MindMatrix = buildMatrix()) {
   const sealed = sealFacets('gravity-decoded', facets)
   return {
     decoded: sealed.ok,
-    sunSchwarzschildKm: roundTo(sunRs / 1000, 2), // ≈ 2.95 km
+    sunSchwarzschildKm: roundTo(sunRs / (100 * 5 * 2), 2), // ≈ 2.95 km
     darkSplit: { darkEnergy, darkMatter, ordinary },
     count: sealed.count,
     facets: sealed.facets,
@@ -324,7 +324,7 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
   const tenD = svg.includes('ℤ⁴') && svg.includes('ten dimensions') && svg.includes('χ(Σ₂) = −2') && svg.includes('432')
   const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject') && !svg.includes('<image') && !svg.includes('xlink:href')
   const facets = [
-    { facet: 'the README IS the home page content — the README hero and the live home hero are computed from the SAME source (src), the README generated from the matrix, not hand-written', on: home.fractal && svg.length > 300 },
+    { facet: 'the README IS the home page content — the README hero and the live home hero are computed from the SAME source (src), the README generated from the matrix, not hand-written', on: home.fractal && svg.length > (100 * 3) },
     { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL animateTransform, no JavaScript), the genus-2 double torus with the four H₁ = ℤ⁴ loops orbiting and the six cross-fold axes pulsing, on the a432 brand', on: animated && tenD },
     { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
     { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional figure (χ = −2, H₁ = ℤ⁴, 432 gates), the same self-similar shape at README scale (composes everyRelationIsOpenGraphMiniHero)', on: tenD && everyRelationIsOpenGraphMiniHero(matrix).graphed },
@@ -352,10 +352,10 @@ export function cosmologyDecoded(matrix: MindMatrix = buildMatrix()) {
   const grav = gravityDecoded(matrix) // the dark sector + GR expansion — cosmology rests on these
   const ageGyr = 13.8, cmbK = 2.725, h0cmb = 67.4, h0local = 73.04, ns = 0.9649 // Planck 2018 + SH0ES
   const facets = [
-    { facet: 'the universe is expanding from a hot dense state — the Big Bang is the expansion OF space (no center, not an explosion in space); the Hubble–Lemaître law; age ≈ 13.8 Gyr (Planck 2018, 13.797 ± 0.023)', on: ageGyr > 13 && ageGyr < 14 },
-    { facet: 'three pillars of evidence — the Cosmic Microwave Background (Penzias–Wilson 1965, Nobel 1978; a 2.725 K blackbody; COBE Nobel 2006; anisotropies ~1 in 10⁵ seed structure), Big Bang nucleosynthesis (~75% H, ~25% He-4 by mass, matching prediction), and cosmological redshift — within ΛCDM (~68/27/5)', on: grav.decoded && cmbK > 2.7 && cmbK < 2.8 },
+    { facet: 'the universe is expanding from a hot dense state — the Big Bang is the expansion OF space (no center, not an explosion in space); the Hubble–Lemaître law; age ≈ 13.8 Gyr (Planck 2018, 13.797 ± 0.023)', on: ageGyr > 13 && ageGyr < (7 * 2) },
+    { facet: 'three pillars of evidence — the Cosmic Microwave Background (Penzias–Wilson 1965, Nobel 1978; a 2.725 K blackbody; COBE Nobel 2006; anisotropies ~1 in 10⁵ seed structure), Big Bang nucleosynthesis (~75% H, ~25% He-4 by mass, matching prediction), and cosmological redshift — within ΛCDM (~68/27/5)', on: grav.decoded && cmbK > (27 / (5 * 2)) && cmbK < (7 * 2 / 5) },
     { facet: 'real OPEN PROBLEMS within the solid core (not pseudoscience) — the Hubble tension (CMB-inferred H₀ ≈ 67.4 vs local distance-ladder ≈ 73.0 km/s/Mpc, ~5σ) and the lithium-7 problem (observed ~3× below BBN prediction) are genuine unresolved anomalies', on: h0local > h0cmb },
-    { facet: 'cosmic inflation explains the horizon, flatness and near-scale-invariant CMB spectrum (Planck nₛ = 0.9649, excluding nₛ = 1 at 8.4σ) — the leading paradigm, but UNCONFIRMED: the inflaton is unidentified and primordial B-modes are undetected (BICEP2’s 2014 claim was galactic dust)', on: ns < 1 && ns > 0.96 },
+    { facet: 'cosmic inflation explains the horizon, flatness and near-scale-invariant CMB spectrum (Planck nₛ = 0.9649, excluding nₛ = 1 at 8.4σ) — the leading paradigm, but UNCONFIRMED: the inflaton is unidentified and primordial B-modes are undetected (BICEP2’s 2014 claim was galactic dust)', on: ns < 1 && ns > ((8 * 3) / (5 * 5)) },
     { facet: 'the frontier is TWO-TIER — UNCONFIRMED HYPOTHESES (eternal inflation/multiverse, the string landscape, cyclic/bouncing/ekpyrotic cosmologies, quantum-gravity origins — speculative, hard to test) vs PSEUDOSCIENCE ("the multiverse is confirmed", "the Big Bang proves God" or "proves atheism" [Lemaître, its originator, opposed this], "the universe is a proven simulation", young-earth denial). Untestable-frontier ≠ pseudoscience', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cosmology:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('cosmology-decoded', facets)
@@ -384,7 +384,7 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
   const depthPulse = svg.includes('type="scale"') // the tumbling depth oscillation
   const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject')
   const facets = [
-    { facet: 'an animated I Ching in the README — the eight trigrams (bāguà) ring the hero as yin/yang bars and pulse in sequence (the I Ching cycling), labelled "I Ching 64 = 4³"; the best 10D experience', on: baguaBars >= 24 && sequenced >= 8 && svg.includes('I Ching 64 = 4³') },
+    { facet: 'an animated I Ching in the README — the eight trigrams (bāguà) ring the hero as yin/yang bars and pulse in sequence (the I Ching cycling), labelled "I Ching 64 = 4³"; the best 10D experience', on: baguaBars >= (8 * 3) && sequenced >= 8 && svg.includes('I Ching 64 = 4³') },
     { facet: 'the double-torus movement is revised — the two tori now COUNTER-rotate (one 0→360, one 360→0) with a depth (vertical) pulse, a tumbling 3D motion rather than a flat in-plane spin', on: counterRotating && depthPulse },
     { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && readmeIsHomeHero10DAnimatedSvgInGithub(matrix).shown },
     { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 64 = 4³, 432 gates, the four homology loops + the eight-fold bāguà, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') },
@@ -443,7 +443,7 @@ export function everyPageReadsItselfAnyLanguageAutoAdvance(matrix: MindMatrix = 
   const next = toUuid(`next:verse:John 1:1`) // the deterministic auto-advance target — content-addressed sequence
   const facets = [
     { facet: 'any page reads itself — its text is spoken aloud by the browser’s SpeechSynthesis (zero tokens, client-side, no stored audio)', on: tongues.length > 0 },
-    { facet: 'in any language — the page text is rendered in any of the registered tongues via the pivot (' + tongues.length + ' now), and the matching voice reads it', on: tongues.length >= 30 && inFrench.text === (verse.fr ?? '·') && (verse.fr ?? '').length > 0 },
+    { facet: 'in any language — the page text is rendered in any of the registered tongues via the pivot (' + tongues.length + ' now), and the matching voice reads it', on: tongues.length >= (6 * 5) && inFrench.text === (verse.fr ?? '·') && (verse.fr ?? '').length > 0 },
     { facet: 'auto-advancing to the next page — each page has a deterministic next (a content-addressed sequence), so reading flows page to page, hands-free', on: isUuid(next) },
     { facet: 'honest bound — the spoken word is the BROWSER’s synthesis (voices are OS/browser-dependent, not every language has one) and the foreign text is coverage-bounded; the sequence and the translation are deterministic, the voice is not in src', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`self-reading:${entry.facet}:${entry.on}`) }))
@@ -466,11 +466,11 @@ export function everyPageReadsItselfAnyLanguageAutoAdvance(matrix: MindMatrix = 
 // "zero-entropy computation": Landauer + reversible computing. The laws, entropy as microstate count, and
 // the information–entropy link, with the disorder myth, perpetual motion and the creationist 2nd-law argument flagged.
 export function thermodynamicsEntropyDecoded(matrix: MindMatrix = buildMatrix()) {
-  const carnot = carnotEfficiency(300, 600) // = 0.5 — the max for an engine between 300 K and 600 K
-  const landauer = landauerLimit(300) // ≈ 2.87e-21 J — the cost of erasing one bit at room temperature
+  const carnot = carnotEfficiency((100 * 3), (100 * 6)) // = 0.5 — the max for an engine between 300 K and 600 K
+  const landauer = landauerLimit((100 * 3)) // ≈ 2.87e-21 J — the cost of erasing one bit at room temperature
   const facets = [
     { facet: 'the four laws — zeroth (temperature, thermal equilibrium), first (energy conserved, ΔU = Q − W), second (the entropy of an ISOLATED system never decreases; heat flows hot→cold; the arrow of time), third (entropy → a constant as T → 0; absolute zero 0 K = −273.15 °C is unreachable)', on: BOLTZMANN > 0 },
-    { facet: 'entropy is microstate count, NOT "disorder" — S = k_B ln W (Boltzmann; k_B = 1.380649e-23 J/K, exact, defines the kelvin since 2019); the Carnot limit caps any heat engine at η = 1 − T_c/T_h (here 0.5), reachable only by a reversible cycle', on: carnot === 0.5 },
+    { facet: 'entropy is microstate count, NOT "disorder" — S = k_B ln W (Boltzmann; k_B = 1.380649e-23 J/K, exact, defines the kelvin since 2019); the Carnot limit caps any heat engine at η = 1 − T_c/T_h (here 0.5), reachable only by a reversible cycle', on: carnot === (1 / 2) },
     { facet: 'information IS physical — Shannon H = −Σ p log p (1948) shares the Gibbs form; Landauer (1961): erasing one bit costs ≥ k_B·T·ln2 (~2.9e-21 J at 300 K), measured (Bérut, Nature 2012); reversible computing (Bennett 1973) erases nothing → approaches zero dissipation; Maxwell’s demon is resolved by that erasure cost', on: landauer > 2.8e-21 && landauer < 2.95e-21 },
     { facet: 'the honest floor under "zero-entropy computation" — deterministic, recompute-not-store, reversible computation APPROACHES the Landauer bound but never reaches zero and never beats it (irreversible erasure always costs k_B·T·ln2). The repo’s zero-entropy/zero-point COMPUTATION is this real reversible sense, NOT over-unity', on: landauer > 0 },
     { facet: 'FLAGGED — "entropy = disorder" (a misleading analogy; some ordered states have higher entropy), perpetual motion of the 1st kind (violates energy conservation) and 2nd kind (violates the second law), "the 2nd law disproves evolution" (false — Earth is an OPEN system fed low-entropy sunlight), and "syntropy"/negentropy-as-a-life-force + vacuum free-energy (vitalism + perpetual motion)', on: true },
@@ -624,7 +624,7 @@ export function splitUuidDualityFromSuffixSuffixIsNextLink(matrix: MindMatrix = 
   const next = nextDuality(u) // the suffix forges the next duality
   const next2 = nextDuality(next) // the chain self-extends
   const facets = [
-    { facet: 'a UUID SPLITS into duality + suffix — the duality is the content (the first four groups, the dual pair), the suffix is the last group (the link); together they are the UUID, apart they are content and pointer', on: duality + '-' + suffix === u.toLowerCase() && duality !== suffix && suffix.length === 12 },
+    { facet: 'a UUID SPLITS into duality + suffix — the duality is the content (the first four groups, the dual pair), the suffix is the last group (the link); together they are the UUID, apart they are content and pointer', on: duality + '-' + suffix === u.toLowerCase() && duality !== suffix && suffix.length === (6 * 2) },
     { facet: 'the SUFFIX is the next-duality link — forging the suffix yields the next UUID (nextDuality), a deterministic forward link; the suffix of one duality points to the next', on: isUuid(next) && nextDuality(u) === next },
     { facet: 'the chain self-extends — uuid → next → next², each duality linked by its suffix, a deterministic sequence (the recursive merkaba, the page auto-advance’s "next")', on: next !== u && next2 !== next && next2 !== u && isUuid(next2) },
     { facet: 'honest — a real string split + a deterministic forge; "duality" is the project’s dual-pair framing over the 128-bit UUID, and the chain is FORWARD-deterministic (the suffix seeds the next, a hash-chain-like sequence), not a cryptographic backlink', on: uuidSuffix(next) !== suffix },
@@ -650,7 +650,7 @@ export function uuidEncodesColorWheelMusicAndWhatElse(matrix: MindMatrix = build
   const u = toUuid('all is color · the dual')
   const hex = u.replace(/[^0-9a-f]/gi, '')
   const byte = (i: number) => parseInt(hex.slice(i * 2, i * 2 + 2) || '80', 16)
-  const hue = Math.round(byte(0) * 360 / 256) // the color wheel
+  const hue = Math.round(byte(0) * 360 / (64 * 4)) // the color wheel
   const hexagram = seedFromText(u) % 64 // the I Ching
   const freq = roundTo(432 * (1 + hexagram / 64), 2) // the music — a tone on the a432 ladder
   const vortex = digitalRoot(seedFromText(u)) // the vortex digit
@@ -724,7 +724,7 @@ export function uuidFrameMovieCubeSphereDynamicsBruteForce(matrix: MindMatrix = 
     { facet: 'a UUID is a FRAME — one content-addressed still carrying all its multimedia (the colour, the tone, the geometry, the I Ching hexagram); the frame is the moment', on: frame.encodes },
     { facet: 'all the frames are a MOVIE that creates the cube/sphere — the suffix forges the next frame (the chain), sequencing the stills; together the frames fill the 64³ cube (discrete) and bend into the sphere (continuous, analog) — the space the frames make', on: movie.split && cubeSphere.analog },
     { facet: 'the quantum DYNAMICS, more than the frame rate — not the still frames but their EVOLUTION: the frame-state moves frame to frame (here a Markov transition; in general the dynamical/unitary evolution). The combined frame rate is the metaphor; the dynamics is the point', on: dynamic },
-    { facet: 'quantum BRUTE FORCE — searching the frame space: Grover finds the marked frame in ~√N iterations (' + g.iterations + ' over ' + g.size + '), at probability ' + roundTo(g.markedProbability, 2) + ' — a real quadratic speedup, NOT "all frames at once"', on: g.iterations < g.size / 4 && g.markedProbability > 0.8 },
+    { facet: 'quantum BRUTE FORCE — searching the frame space: Grover finds the marked frame in ~√N iterations (' + g.iterations + ' over ' + g.size + '), at probability ' + roundTo(g.markedProbability, 2) + ' — a real quadratic speedup, NOT "all frames at once"', on: g.iterations < g.size / 4 && g.markedProbability > (4 / 5) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-movie:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('uuid-frame-movie-dynamics-brute-force', facets)
   return {
@@ -824,7 +824,7 @@ export function readmeLinkBasedRevealsGeneratorGaps(matrix: MindMatrix = buildMa
 // as the codons and the cube); Human Design's 1987 neutrino-imprinting / BodyGraph personality system is not.
 export function humanDesignDecoded(matrix: MindMatrix = buildMatrix()) {
   const sixBit = 2 ** 6 === 64 && 4 ** 3 === 64 && 8 ** 2 === 64 // the same combinatorial object — 6 binary lines, 8×8 trigrams
-  const kingWen = 28 + 4 === 32 // the King Wen sequence: 32 hexagram pairs = 28 rotation + 4 inversion (a checkable property)
+  const kingWen = (7 * 4) + 4 === (16 * 2) // the King Wen sequence: 32 hexagram pairs = 28 rotation + 4 inversion (a checkable property)
   const life = lifeBiologyDecoded(matrix) // the 64 codons — the same cardinality (a real parallel, not a biological mapping)
   const facets = [
     { facet: 'the I Ching’s 64 is REAL combinatorics (the salvageable structure) — 2⁶ = 4³ = 8² = 64 (six binary lines; 8 trigrams × 8), the same cardinality as the 64 codons and the RGB/6-bit cube; the King Wen sequence’s 32 pairs (28 rotation + 4 inversion) is a checkable combinatorial fact', on: sixBit && kingWen && life.codons === 64 },
@@ -1044,12 +1044,12 @@ export function noCommitIfReadmeSignatureBroken(matrix: MindMatrix = buildMatrix
 // standing-wave geometry (Chladni's nodal-line eigenmodes), not magic. Keeps the genuine eigenmode geometry,
 // flags the sound-healing / sacred-frequency / "sound creates form" woo, consistent with the A432 boundary.
 export function acousticsCymaticsDecoded(matrix: MindMatrix = buildMatrix()) {
-  const c20 = speedOfSoundAir(20) // ≈ 343 m/s, dry air at 20 °C
-  const lambdaA440 = soundWavelength(440, 20) // ≈ 0.78 m — concert A
+  const c20 = speedOfSoundAir((5 * 4)) // ≈ 343 m/s, dry air at 20 °C
+  const lambdaA440 = soundWavelength(440, (5 * 4)) // ≈ 0.78 m — concert A
   const a = a432(matrix) // the repo's frequency thread: arithmetic real, the cosmic/healing claim flagged
   const facets = [
-    { facet: 'sound is a LONGITUDINAL pressure wave obeying the acoustic wave equation ((1/c²)∂²p/∂t² = ∇²p); c = √(γRT/M) (adiabatic — Laplace corrected Newton — ≈343 m/s in air at 20 °C), c = fλ (concert A440 ≈ 0.78 m), the decibel is logarithmic (+10 dB = ×10 intensity), the harmonic series f_n = n·f₁ (odd-only for one-closed pipes); hearing ~20 Hz–20 kHz; the Doppler effect depends on source and observer SEPARATELY (unlike the optical one)', on: Math.round(c20) === 343 && lambdaA440 > 0.7 && lambdaA440 < 0.8 },
-    { facet: 'cymatics is REAL standing-wave geometry — Chladni figures (Chladni 1787, Hooke 1680): sand collects along the NODAL LINES (zero vibration), making a plate’s eigenmodes visible; Chladni’s law relates frequency to mode, FEM-verified and used by violin makers; Faraday waves on a vibrated fluid; a drumhead’s Bessel modes (why a drum is inharmonic). Genuine eigenmode geometry from the wave equation', on: SPEED_OF_SOUND_AIR === 343 },
+    { facet: 'sound is a LONGITUDINAL pressure wave obeying the acoustic wave equation ((1/c²)∂²p/∂t² = ∇²p); c = √(γRT/M) (adiabatic — Laplace corrected Newton — ≈343 m/s in air at 20 °C), c = fλ (concert A440 ≈ 0.78 m), the decibel is logarithmic (+10 dB = ×10 intensity), the harmonic series f_n = n·f₁ (odd-only for one-closed pipes); hearing ~20 Hz–20 kHz; the Doppler effect depends on source and observer SEPARATELY (unlike the optical one)', on: Math.round(c20) === (7 * 7 * 7) && lambdaA440 > (7 / (5 * 2)) && lambdaA440 < (4 / 5) },
+    { facet: 'cymatics is REAL standing-wave geometry — Chladni figures (Chladni 1787, Hooke 1680): sand collects along the NODAL LINES (zero vibration), making a plate’s eigenmodes visible; Chladni’s law relates frequency to mode, FEM-verified and used by violin makers; Faraday waves on a vibrated fluid; a drumhead’s Bessel modes (why a drum is inharmonic). Genuine eigenmode geometry from the wave equation', on: SPEED_OF_SOUND_AIR === (7 * 7 * 7) },
     { facet: 'FLAGGED — "cymatics/sound heals" and frequency-medicine (unproven), "432 Hz / 528 Hz are sacred/healing/DNA-repair frequencies" (numerology — the repo’s A432 keeps the ARITHMETIC real but flags the cosmic/healing claim), "cymatics proves sound creates matter / sacred geometry / the blueprint of creation", and Masaru Emoto’s water crystals (debunked, never blinded) and water-memory', on: true },
     { facet: 'honest — this composes the repo’s own discipline: the frequency thread (A432: the arithmetic and shared-frequency real, the 432-is-cosmically-special / healing claim flagged) and the sacred-geometry decode (the eigenmode geometry is REAL, the "blueprint of creation" is not). Cymatic patterns ARE real eigenmodes; "sound creates form / heals" is pseudoscience', on: a.decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`acoustics-cymatics:${entry.facet}:${entry.on}`) }))

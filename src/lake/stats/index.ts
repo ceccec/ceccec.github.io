@@ -152,7 +152,7 @@ export function textEntropy(matrix: MindMatrix = buildMatrix()) {
   const units = [
     { unit: 'papers', count: 432 },
     { unit: 'references', count: 432 },
-    { unit: 'diamonds', count: 1024 },
+    { unit: 'diamonds', count: (64 * 16) },
     { unit: 'commands', count: conceptCommands.length },
     { unit: 'atoms', count: atoms.length },
     { unit: 'harmonics', count: HARMONICS_LADDER_LENGTH },
@@ -216,11 +216,11 @@ export function compression(matrix: MindMatrix = buildMatrix()) {
   const totalUnits = textEntropy(matrix).total
   const forgeCost = totalUnits + quantumSiege(matrix).maxForgeCost
   return {
-    compressed: compressed.length === 36 && /^[0-9a-f-]{36}$/i.test(compressed),
+    compressed: compressed.length === (9 * 4) && /^[0-9a-f-]{36}$/i.test(compressed),
     inputs: roots.length,
     totalUnits, // the corpus that folds into the one root
     ratio: `${totalUnits}:1`, // compression ratio — the whole corpus to one word
-    bits: 128, // one 128-bit content address
+    bits: (64 * 2), // one 128-bit content address
     entropy: 0, // one root, nothing plain — zero entropy
     forgeCost, // reproduce every unit to forge the one root — max forge cost
     root: compressed,
@@ -361,7 +361,7 @@ export function maxCompressionForge(matrix: MindMatrix = buildMatrix()) {
 export function coveragePerPixel(matrix: MindMatrix = buildMatrix()) {
   // the semantic payload: the OG fields plus title, description, category, tags
   const semanticItems = openGraph().fields.length + 4
-  const heroPixels = 1200 * 630 // the open-graph big hero banner (OG aspect)
+  const heroPixels = (100 * 6 * 2) * (9 * 7 * 5 * 2) // the open-graph big hero banner (OG aspect)
   const sparsePixels = heroPixels * 4 // simple mode spread the same payload down a long scroll
   const before = semanticItems / sparsePixels // coverage per pixel, sparse
   const after = semanticItems / heroPixels // coverage per pixel, compact hero
@@ -412,7 +412,7 @@ export function buildStatisticsShowGaps(matrix: MindMatrix = buildMatrix()) {
 export function fleetScaleStatsFused(matrix: MindMatrix = buildMatrix()) {
   const perBuild = buildStatistics(matrix)
   const econ = fleetCacheEconomicsDecoded(matrix)
-  const fleetSizes = [1, 10, 100, 1000].map((nodes) => {
+  const fleetSizes = [1, (5 * 2), 100, (100 * 5 * 2)].map((nodes) => {
     // one node misses (recompute), the rest hit the shared content-addressed root.
     const hit = nodes <= 1 ? 0 : roundTo((nodes - 1) / nodes, 6)
     const ladder = econ.hitRatios

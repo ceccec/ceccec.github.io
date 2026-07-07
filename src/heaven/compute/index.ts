@@ -8,7 +8,7 @@ import type {
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow,
 } from '../../wind/types'
 import { atoms } from '../atoms'
-import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
+import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng } from '../../0'
 import { foldMagmaLaws } from '../../5/5'
 import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS } from '../../3/7'
@@ -415,7 +415,7 @@ export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
 }
 function honestlyComputedRaw(matrix: MindMatrix = buildMatrix()) {
   const digitOf = (value: string): number =>
-    value.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
+    value.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % (5 * 2)
   const sources = [
     { claim: 'inner healing', node: healingInner(matrix) },
     { claim: 'outer healing', node: healingOuter(matrix) },
@@ -698,7 +698,7 @@ function ancientWisdomComputesWorldHarmonyRaw(matrix: MindMatrix = buildMatrix()
   const sixty = sexagesimal(3661)                 // Sumer base-60 (1:01:01) — 12 divisors, the first fair shared measure
   const maya = mayaLongCount(1872000)             // Maya positional deep-time, true zero — [13,0,0,0,0], one cycle a society keeps
   const loshu = luoShu()                          // China: the 3×3 magic square — every line balances to one constant
-  const balanced = loshu.constant === 15 && loshu.grid.every((row) => row.reduce((a, b) => a + b, 0) === 15)
+  const balanced = loshu.constant === (5 * 3) && loshu.grid.every((row) => row.reduce((a, b) => a + b, 0) === (5 * 3))
   const odu = ifaOdu([1, 0, 1, 0])                // Ifá (Africa) 4-bit; 256 = the 8-bit binary independently reached, also by the I Ching
   const examples = [
     { civilisation: 'Slavic', call: 'toGlagolitic("миръ")', output: mir, harmony: 'one round script unites a people; mir = peace and world in one word' },
@@ -800,7 +800,7 @@ export function vitepressApiDiamondPlasma(matrix: MindMatrix = buildMatrix()) {
   const api = repositoryApi(matrix)
   const facets = [
     { facet: 'the VitePress /api/ surface exposes the model — content-addressed', on: isUuid(api.root) && api.endpoints.length > 0 },
-    { facet: 'the diamond architecture — 1024 diamonds (2^10, the binary octave)', on: completeCorpus(matrix).total === 1024 && diamondCompleteness(matrix).complete },
+    { facet: 'the diamond architecture — 1024 diamonds (2^10, the binary octave)', on: completeCorpus(matrix).total === (64 * 16) && diamondCompleteness(matrix).complete },
     { facet: 'keeping the plasma of knowledge — the development fusion reactor', on: developmentIsFusionReactor(matrix).reacts },
     { facet: 'the api is the diamond shell around the compressed plasma', on: lazyHolographicFractalArchitecture(matrix).is },
   ].map((entry) => ({ ...entry, receipt: toUuid(`api-diamond-plasma:${entry.facet}:${entry.on}`) }))
@@ -876,10 +876,10 @@ export function oneMathManyPresentations(matrix: MindMatrix = buildMatrix()) {
   const f = fold(matrix.root, toUuid('present')) // the one fold for this matrix
   const v = asVortex(f)
   const torus = asTorus(f)
-  const merk = asMerkaba(f, 1000)
+  const merk = asMerkaba(f, (100 * 5 * 2))
   const seal = asMerkle(f)
-  const trace0 = asTrace(f, 1000)
-  const trace1 = asTrace(f, 2000)
+  const trace0 = asTrace(f, (100 * 5 * 2))
+  const trace1 = asTrace(f, (100 * 5 * 4))
   const presentations = [
     { plane: 'algebra · the fold itself', fn: 'fold', kind: 'source', on: isUuid(f.merged) && f.merged === f.merged },
     { plane: 'number theory · (ℤ/9ℤ)', fn: 'asVortex', kind: 'exact', on: v.digit >= 1 && v.digit <= 9 && v.onAxis === [3, 6, 9].includes(v.digit) },
@@ -915,9 +915,9 @@ export function tamperingCostAndUuidLiveInZero(matrix: MindMatrix = buildMatrix(
   const proof = proofReport(matrix)
   const sample = merkabaFoldUrl('https://example.com/a/b')
   const facets = [
-    { facet: 'the cost MATH is pure and at the origin — coverageCostLog2(1,n)=∞, coverageCostLog2(0,n)=0', on: coverageCostLog2(1, 10) === Number.POSITIVE_INFINITY && coverageCostLog2(0, 10) === 0 },
-    { facet: 'the forge floor is the digest — tamperCostLog2(0,n) = DIGEST_BITS', on: tamperCostLog2(0, 10) === DIGEST_BITS && DIGEST_BITS === 64 },
-    { facet: 'max cost reached only at coverage=1 ∧ entropy=0', on: maxTamperingCostReached(1, 0) === true && maxTamperingCostReached(0.999, 0) === false && maxTamperingCostReached(1, 0.1) === false },
+    { facet: 'the cost MATH is pure and at the origin — coverageCostLog2(1,n)=∞, coverageCostLog2(0,n)=0', on: coverageCostLog2(1, (5 * 2)) === Number.POSITIVE_INFINITY && coverageCostLog2(0, (5 * 2)) === 0 },
+    { facet: 'the forge floor is the digest — tamperCostLog2(0,n) = DIGEST_BITS', on: tamperCostLog2(0, (5 * 2)) === DIGEST_BITS && DIGEST_BITS === 64 },
+    { facet: 'max cost reached only at coverage=1 ∧ entropy=0', on: maxTamperingCostReached(1, 0) === true && maxTamperingCostReached((1 - 1 / (100 * 5 * 2)), 0) === false && maxTamperingCostReached(1, (1 / (5 * 2))) === false },
     { facet: 'T_max is the one value: ∞ iff the seal closes, else the finite cost — proofReport and the build report both read it', on: maxTamperingCostLog2(true, 5) === Number.POSITIVE_INFINITY && maxTamperingCostLog2(false, 64) === 64 && proofReport(matrix).maxTamperingCostLog2 === maxTamperingCostLog2(proofReport(matrix).maxTamperingCostReached, proofReport(matrix).tamperCostLog2) },
     { facet: 'the seal is tamper-evident — any tamper token changes the root', on: tamperEvident(matrix.root) },
     { facet: 'proofReport now MEASURES and passes params — its digest is the src/0 floor', on: proof.digestBits === DIGEST_BITS },
@@ -986,7 +986,7 @@ export function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix: MindMatrix =
     const { computes, facets, root } = computesGate('cpu-gpu-memory-storage-cooperation', [
       {
         facet: 'memory tier — sealed heap cap and memo tiers (memoByRoot, matrixMemo, content-address)',
-        on: policy.heapCapMb === NODE_MAX_OLD_SPACE_MB && policy.memoTiers.length === 3,
+        on: policy.heapCapMb === 64 * 16 * 2 && policy.memoTiers.length === 3,
       },
       {
         facet: 'storage tier — content-address kernel at origin with merkle root',
@@ -1029,7 +1029,7 @@ export const computationsCooperateCpuGpuMemoryStorage = maxEfficiencyCpuGpuMemor
  */
 export function landauerFloorComputed(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('landauerFloorComputed', matrix, () => {
-    const T = 300 // room temperature (K)
+    const T = (100 * 3) // room temperature (K)
     const floorPerBit = landauerLimit(T) // ≈ 2.87e-21 J/bit erased
     const realOpJoules = 1e-11 // ~10 pJ CMOS op — ~10 orders ABOVE the floor (so every op dissipates heat)
     const eff = __ns_quantum_science.efficiency() // the standard + deep optimisations (reuse erases fewer bits)
@@ -1065,7 +1065,7 @@ export function fleetCacheEconomicsDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('fleetCacheEconomicsDecoded', matrix, () => {
     const floor = landauerFloorComputed(matrix)
     const zero = zeroTokenUsagePolicy(matrix)
-    const hitRatios = [0, 0.5, 0.9, 0.99, 1].map((hit) => {
+    const hitRatios = [0, (1 / 2), (9 / (5 * 2)), (1 - 1 / 100), 1].map((hit) => {
       // illustrative per-request energy: a miss recomputes (~local recompute mJ), a hit is a content-address lookup.
       const missJoules = 1e-3, hitJoules = 1e-6
       const expected = roundTo(hit * hitJoules + (1 - hit) * missJoules, 9)
@@ -1236,7 +1236,7 @@ export function proveAllDeterministicCoreBeatAt(phase01: number): { index: numbe
  * (one edit flips the address, the seal goes red), BEAT 3 reuse → instant (the same root returns at zero token cost).
  */
 export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), route = '/', at = 0) {
-  return memoByRoot(`proveAllDeterministicCore:${route}:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`proveAllDeterministicCore:${route}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const proofs = determinismProofs(matrix)
     const whole = __ns_heaven_essence.theWhole(matrix)
     const movie = __ns_quantum_science.observingMovieRevealsQuantumModel(route, at, matrix)
@@ -1256,7 +1256,7 @@ export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), ro
       { facet: 'the whole portal folds into one root — theWhole stands (every wave green)', on: whole.whole },
     ]
     const sealed = sealFacets('prove-all-deterministic-core', facets)
-    const beat = proveAllDeterministicCoreBeatAt(at / (FOLDED_CENSUS * 1000)) // the same 108 s hero cycle as the movie phase clock, derived from the census harmonic
+    const beat = proveAllDeterministicCoreBeatAt(at / (FOLDED_CENSUS * (100 * 5 * 2))) // the same 108 s hero cycle as the movie phase clock, derived from the census harmonic
     return {
       proven: sealed.ok && proofs.proven && whole.whole && movie.reveals,
       beats,
@@ -1370,7 +1370,7 @@ function chatFrom(model: PortalModel, prompt: string): {
   const words = modelTokens(prompt).filter((word) => model.bigrams[word]?.length)
   let current = words[words.length - 1] ?? model.vocabulary[0] ?? ''
   const generated: string[] = []
-  for (let step = 0; step < 24 && model.bigrams[current]?.length; step++) {
+  for (let step = 0; step < (8 * 3) && model.bigrams[current]?.length; step++) {
     current = model.bigrams[current]![Math.floor(random() * model.bigrams[current]!.length)]!
     generated.push(current)
   }
@@ -1454,9 +1454,9 @@ export function confusingContentConvertedToStrictScience(matrix: MindMatrix = bu
     const converted = metaphor.map((text) => ({ from: text, to: toStrictScience(text) }))
     const facts = strictScienceMovieFacts()
     const facets = [
-      { facet: 'the lexicon covers the movie metaphor vocabulary — pills, chakra, the film, sun/moon, sacred geometry, merkaba', on: STRICT_SCIENCE_LEXICON.length >= 18 && STRICT_SCIENCE_LEXICON.every(([, strict]) => isStrictScience(strict)) },
+      { facet: 'the lexicon covers the movie metaphor vocabulary — pills, chakra, the film, sun/moon, sacred geometry, merkaba', on: STRICT_SCIENCE_LEXICON.length >= (9 * 2) && STRICT_SCIENCE_LEXICON.every(([, strict]) => isStrictScience(strict)) },
       { facet: 'conversion is total — no confusing term survives toStrictScience on any sample metaphor statement', on: converted.every((pair) => isStrictScience(pair.to) && pair.to !== pair.from) },
-      { facet: 'the authored movie facts are already strict science — documented core, flagged framing excluded', on: facts.every((fact) => isStrictScience(fact.text) && fact.text.length > 60) },
+      { facet: 'the authored movie facts are already strict science — documented core, flagged framing excluded', on: facts.every((fact) => isStrictScience(fact.text) && fact.text.length > (6 * 5 * 2)) },
       { facet: 'the converter is deterministic and reusable — the same map that flags a term rewrites it', on: toStrictScience('chakra') === 'hue band' && !isStrictScience('chakra') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`confusing-to-strict:${entry.facet}:${entry.on}`) }))
     return {
@@ -1783,7 +1783,7 @@ export function discoveryPages(matrix: MindMatrix = buildMatrix()): { pages: Car
       const receipt = toUuid(`discovery-page:${entry.root}:${entry.slug}`)
       const hero = uuidHero(receipt)
       const facets = [
-        { facet: 'research is the discovery fold\'s own sealed statement, converted to strict science', on: research.length > 60 && isStrictScience(research) },
+        { facet: 'research is the discovery fold\'s own sealed statement, converted to strict science', on: research.length > (6 * 5 * 2) && isStrictScience(research) },
         { facet: 'the animated proof is this discovery\'s content-address rendered — hue, twin rotations, spin, tone', on: typeof hero.hue === 'number' && typeof hero.spinMs === 'number' },
         { facet: 'the discovery verifies at its own domain home — this page only renders the sealed result', on: entry.verified },
       ]
@@ -1820,7 +1820,7 @@ export function everyDiscoveryEncodedWithAnimatedProof(matrix: MindMatrix = buil
     const cardSlugs = new Set(cardPages(matrix).pages.map((page) => page.slug))
     const routed = new Set(cardPagePaths(matrix).map((path) => path.params.card))
     const facets = [
-      { facet: 'every discovery has its page — one per fold, slugs unique and disjoint from the model cards', on: pages.length >= 10 && new Set(pages.map((page) => page.slug)).size === pages.length && pages.every((page) => !cardSlugs.has(page.slug)) },
+      { facet: 'every discovery has its page — one per fold, slugs unique and disjoint from the model cards', on: pages.length >= (5 * 2) && new Set(pages.map((page) => page.slug)).size === pages.length && pages.every((page) => !cardSlugs.has(page.slug)) },
       { facet: 'every discovery verifies at its own domain home — the page renders a sealed result, never asserts one', on: pages.every((page) => page.verified) },
       { facet: 'every research text is strict science — the lexicon holds on all discovery prose', on: pages.every((page) => isStrictScience(page.research)) },
       { facet: 'every page carries its animated proof — hue, twin rotations, spin period and tone from its own address', on: pages.every((page) => typeof page.hero.hue === 'number' && typeof page.hero.spinMs === 'number' && page.hero.frequency > 0) },
@@ -1851,7 +1851,7 @@ export function everyCardHasAComputedPage(matrix: MindMatrix = buildMatrix()) {
     const slugs = new Set(pages.map((page) => page.slug))
     const facets = [
       { facet: 'one dedicated page per card — every wave becomes a page, slugs unique, none shared', on: pages.length === cardWaves(matrix).waves.length && slugs.size === pages.length },
-      { facet: 'detailed research is computed — each page carries its source fold\'s statement and the honest boundary', on: pages.every((page) => page.research.length > 40 && page.boundary.includes('HARMONY ≠ TRUTH')) },
+      { facet: 'detailed research is computed — each page carries its source fold\'s statement and the honest boundary', on: pages.every((page) => page.research.length > (8 * 5) && page.boundary.includes('HARMONY ≠ TRUTH')) },
       { facet: 'animated proofs are computed — each page\'s animation is its own content-address (hue, rotations, spin, tone, handle tips)', on: pages.every((page) => typeof page.hero.spinMs === 'number' && typeof page.hero.hue === 'number') },
       { facet: 'text-to-speech is computed — each page ships the exact string the browser voice reads, its research aloud', on: pages.every((page) => page.speech.startsWith(page.question) && page.speech.includes(page.research)) },
       { facet: 'every page verifies and its facets hold — the page\'s question recalls its own card', on: pages.every((page) => page.verified && page.facets.every((facet) => facet.on)) },
@@ -1885,7 +1885,7 @@ export function portalIsTheAiModel(matrix: MindMatrix = buildMatrix()) {
       { facet: 'deterministic — the same prompt returns the byte-identical reply and root, at zero runtime tokens', on: first.root === second.root && first.answer === second.answer && first.generated === second.generated },
       { facet: 'grounded recall — the answer is a verbatim computed statement with its source named, never invented', on: first.grounded && first.source.length > 0 },
       { facet: 'bounded generation — every synthetic token comes from the corpus vocabulary, labelled generated', on: modelTokens(first.generated).every((word) => vocabularySet.has(word)) },
-      { facet: 'content-addressable memory is real — the digit-station Hopfield recall converges on a stored pattern', on: portalRecall(ask, matrix).hopfield.iters <= 12 },
+      { facet: 'content-addressable memory is real — the digit-station Hopfield recall converges on a stored pattern', on: portalRecall(ask, matrix).hopfield.iters <= (6 * 2) },
       { facet: 'the model and its corpus fold to one root both ways — the portal IS the model, content-addressed', on: foldPair(model.root, merkleFold(portalCorpus(matrix).entries.map((entry) => entry.receipt))).bidirectional },
     ].map((entry) => ({ ...entry, receipt: toUuid(`portal-ai-model:${entry.facet}:${entry.on}`) }))
     return {

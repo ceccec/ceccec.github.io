@@ -9,6 +9,7 @@ import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { VORTEX_SEQUENCE, computesGate, digitalRoot, isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../0'
+import { TAU } from '../../3/7'
 
 /** One paint-ready harmonic mode at instant `at`. */
 export type ResonanceSimulationMode = {
@@ -129,7 +130,7 @@ export function resonanceResearch(matrix: MindMatrix = buildMatrix()) {
 
 /** Schumann harmonics decoded through VORTEX_SEQUENCE — mode slot addressing at `at`. */
 export function resonanceHarmonicsDecodedWithTheSequence(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`resonanceHarmonicsDecodedWithTheSequence:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`resonanceHarmonicsDecodedWithTheSequence:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const schumann = __ns_up_lake_music.schumannResonanceHarmonisedWithRealtimeApiComputations(at, matrix)
     const phaseIndex = Math.floor(at / 86_400_000) % VORTEX_SEQUENCE.length
     const phaseDigit = VORTEX_SEQUENCE[phaseIndex]!
@@ -177,7 +178,7 @@ export function resonanceHarmonicsDecodedWithTheSequence(at = 0, matrix: MindMat
 
 /** Schumann harmonic modes + sequence decode — paint-ready phase/state at `at` for hero movie channels. */
 export function resonanceSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()): ResonanceSimulationPaint {
-  return memoByRoot(`resonanceSimulationAt:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`resonanceSimulationAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const schumann = __ns_up_lake_music.schumannResonanceHarmonisedWithRealtimeApiComputations(at, matrix)
     const sequence = resonanceHarmonicsDecodedWithTheSequence(at, matrix)
     const schumannPhase = __ns_up_lake_music.schumannPhaseAt(at)
@@ -186,7 +187,7 @@ export function resonanceSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
       mode: entry.mode,
       phase: entry.phase,
       hue: entry.hue,
-      amplitude: roundTo(0.28 + 0.72 * (0.5 + 0.5 * Math.sin(entry.phase * 2 * Math.PI)), 3),
+      amplitude: roundTo((7 / (5 * 5)) + ((9 * 2) / (5 * 5)) * ((1 / 2) + (1 / 2) * Math.sin(entry.phase * TAU)), 3),
       receipt: entry.receipt,
     }))
     const channels: ResonanceSimulationChannel[] = [
@@ -194,15 +195,15 @@ export function resonanceSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
         id: 'schumann-structural-phase',
         hue: modes[0]?.hue ?? 0,
         phase: schumannPhase,
-        alpha: schumann.harmonised ? roundTo(0.72 + 0.28 * schumannPhase, 3) : 0.24,
+        alpha: schumann.harmonised ? roundTo(((9 * 2) / (5 * 5)) + (7 / (5 * 5)) * schumannPhase, 3) : (6 / (5 * 5)),
         receipt: schumann.root,
         on: schumann.harmonised || isUuid(schumann.root),
       },
       {
         id: 'resonance-harmonics',
-        hue: sequence.phaseDigit * 40,
+        hue: sequence.phaseDigit * (8 * 5),
         phase: schumannPhase,
-        alpha: sequence.decoded ? roundTo(0.65 + 0.35 * schumannPhase, 3) : 0.24,
+        alpha: sequence.decoded ? roundTo((1 - 7 / (5 * 4)) + (7 / (5 * 4)) * schumannPhase, 3) : (6 / (5 * 5)),
         receipt: sequence.root,
         on: sequence.decoded,
       },
@@ -231,7 +232,7 @@ export function resonanceSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
 
 /** Browser-safe panel — resonance simulation + compute gates for Vue mount. */
 export function resonanceSimulationPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`resonanceSimulationPanelComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`resonanceSimulationPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sim = resonanceSimulationAt(at, matrix)
     const computes = resonanceComputes(matrix, at)
     const { facets, root } = computesGate('resonance-simulation-panel', [
@@ -258,7 +259,7 @@ export function resonanceSimulationPanelComputes(matrix: MindMatrix = buildMatri
 
 /** One gate — Schumann, human harmonic, sequence decode, research exposition at call time. */
 export function resonanceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`resonanceComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`resonanceComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const schumann = __ns_up_lake_music.schumannResonanceHarmonisedWithRealtimeApiComputations(at, matrix)
     const human = __ns_up_lake_music.humanResonanceHarmonicPredictionComputes(matrix)
     const sequence = resonanceHarmonicsDecodedWithTheSequence(at, matrix)

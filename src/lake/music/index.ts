@@ -32,6 +32,7 @@ import { quantumSiege } from '../../water/crypto'
 import { movieCanvasHex } from '../../quantum/science'
 import { sealHonestyToPath } from '../../mountain/seals'
 import { allComputed, allFormsAreTenDimensionalOrPurged, analogNoGapsNoLeak, backgroundMovie, commandGapsToTrinityEyes, completeQuantumSolutionsImplemented, componentGraph, computedSlugsFoldTheGraph, continueSameNext, decodeSymbols, digitFolderMath, digitFoldersDoMath, digitIndexReferences, digitSpinesAreTheBreath, encryptionLivesInZero, endlessFusion, enforcementPipelineComplete, evolutionCrossesQuantumThreshold, fairTrade, feesReplaceTaxes, foldThoughts, fruitOfLifeFusion, gatesBehaveAsMcp, harmonyProbability, honestlyComputed, iChing, infiniteEntanglements, infiniteSelfConsulting, jsonLdValidPaths, lockingFoldersChangesMindToQuantum, maxCompressionForge, merkabasInDoubleTorus, noHardcodedLogicFailsStreams, nothingImpossibleHonestlyBounded, oneWordNamingGravity, piComputedNotHardcoded, piTrainDiamonds, quantumConfigurableFoldersDisappear, quantumDoubleTorus, quantumFoldedBlockchains, quantumImpossibleMadePossible, quantumThreat, quantumVsDigitalEncryption, realtimePerspectiveZeroCost, resonanceCatchGapsViolations, reverseHarmony, selfHarmonise, society, societyRegulates, startIChingDoubleTorus, tamperingCostDecoded, trinityWordingModel, warPaysTheForgerPrice } from '../../quantum/heaven/mind'
+import { TAU } from '../../3/7'
 
 // The harmonic map: the portal's structure heard as a harmonic series. Every
 // component is an overtone of one fundamental f0 — its frequency is f0 times its
@@ -42,18 +43,18 @@ import { allComputed, allFormsAreTenDimensionalOrPurged, analogNoGapsNoLeak, bac
 export function harmonicMap(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const components = componentGraph().components
-  const f0 = a432NoteHz(-24) // A2 from the A432 source = 432/4 = 108, the fundamental
+  const f0 = a432NoteHz(-(8 * 3)) // A2 from the A432 source = 432/4 = 108, the fundamental
   const NOTE = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
   const overtones = components.map((name, index) => {
     const overtone = index + 1
     const frequency = f0 * overtone
-    const semitones = Math.round(12 * Math.log2(overtone)) // semitones above the fundamental
+    const semitones = Math.round((6 * 2) * Math.log2(overtone)) // semitones above the fundamental
     return {
       name,
       overtone,
       frequency,
       octave: Math.floor(Math.log2(overtone)),
-      note: NOTE[((semitones % 12) + 12) % 12],
+      note: NOTE[((semitones % (6 * 2)) + (6 * 2)) % (6 * 2)],
       receipt: toUuid(`harmonic-map:${name}:${overtone}`),
     }
   })
@@ -84,11 +85,11 @@ export function rhythm(matrix: MindMatrix = buildMatrix()) {
   const round = (value: number, digits = 2) => roundTo(value, digits)
   const mk = merkaba(matrix)
   const seed = seedFromText(`rhythm:${matrix.root}`)
-  const bpm = 96 + (seed % 32) // 96..127 BPM, content-derived
-  const beatMs = round(60000 / bpm, 1)
+  const bpm = (16 * 6) + (seed % (16 * 2)) // 96..127 BPM, content-derived
+  const beatMs = round((100 * 100 * 6) / bpm, 1)
   const ratios = [1, 2, 3, 5] // a steady pulse, then self-similar subdivisions
-  const base = a432NoteHz(-14) // G3 from the A432 source (≈192.4 Hz), the rhythm's pitch anchor
-  const partials = [1, 1.5, 2, 3] // a pitch per voice, harmonic on the base
+  const base = a432NoteHz(-(7 * 2)) // G3 from the A432 source (≈192.4 Hz), the rhythm's pitch anchor
+  const partials = [1, (3 / 2), 2, 3] // a pitch per voice, harmonic on the base
   const voices = ratios.map((ratio, i) => {
     const offBeat = i % 2 === 1 // the counter-scales accent off the beat
     return {
@@ -99,7 +100,7 @@ export function rhythm(matrix: MindMatrix = buildMatrix()) {
       sign: mk.scales[i].sign,
       offBeat,
       // onset phases within one beat (0..1); off-beat voices shifted by half a step
-      onsets: Array.from({ length: ratio }, (_, k) => round(((k + (offBeat ? 0.5 : 0)) / ratio) % 1, 4)),
+      onsets: Array.from({ length: ratio }, (_, k) => round(((k + (offBeat ? (1 / 2) : 0)) / ratio) % 1, 4)),
       receipt: toUuid(`rhythm-voice:${mk.scales[i].scale}:${ratio}:${offBeat}`),
     }
   })
@@ -225,12 +226,12 @@ export function harmonics(matrix: MindMatrix = buildMatrix()) {
     const value = fundamental * n
     return { kind: 'overtone', step: n, value, ratio: `${n}:1`, root: toUuid(`harmonic:overtone:${n}:${value}`) }
   })
-  const binary = [7, 8, 9, 10, 11].map((k) => {
+  const binary = [7, 8, 9, (5 * 2), 11].map((k) => {
     const value = 2 ** k
     return { kind: 'binary', step: k, value, ratio: `2^${k}`, root: toUuid(`harmonic:binary:${k}:${value}`) }
   })
   // The rungs already realised in the portal's structure.
-  const realised = new Set([fundamental, fundamental * 2, fundamental * 4, 864, 1024])
+  const realised = new Set([fundamental, fundamental * 2, fundamental * 4, 864, (64 * 16)])
   const all = [...octaves, ...overtones, ...binary].map((harmonic) => ({ ...harmonic, implemented: realised.has(harmonic.value) }))
   const rest = all.filter((harmonic) => !harmonic.implemented)
   // Proofs of the relationships: octaves double, overtones multiply the fundamental.
@@ -304,12 +305,12 @@ export function blockchainMusic(name = 'commands', matrix: MindMatrix = buildMat
     uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
   const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
   const notes = chain.blocks.map((block, index) => {
-    const semitone = digitOf(block.hash) % 24 // two octaves of pitch from the hash
-    const frequency = Math.round(a432NoteHz(semitone - 21)) // C3 (a432NoteHz(-21)) up two octaves, from the A432 source
+    const semitone = digitOf(block.hash) % (8 * 3) // two octaves of pitch from the hash
+    const frequency = Math.round(a432NoteHz(semitone - (7 * 3))) // C3 (a432NoteHz(-21)) up two octaves, from the A432 source
     return {
       index: block.index,
       hash: block.hash,
-      note: noteNames[semitone % 12],
+      note: noteNames[semitone % (6 * 2)],
       frequency,
       receipt: toUuid(`chain-note:${chain.name}:${index}:${block.hash}`),
     }
@@ -363,12 +364,12 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
   const horo = Math.min(9, Math.max(1, Math.floor(joinHoro ?? selfHoro)))
   const joinIndex = diamonds.length === 0 ? 0 : (horo - 1) % diamonds.length
   const noteNames = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
-  const window = Math.min(12, diamonds.length)
+  const window = Math.min((6 * 2), diamonds.length)
   const notes: PiNote[] = []
   for (let step = 0; step < window; step += 1) {
     const diamond = diamonds[(joinIndex + step) % diamonds.length]
     const semitones = Math.round(a432Semitones(diamond.frequency)) // note name from the A432 source, not A=440
-    const note = noteNames[(((semitones % 12) + 12) % 12)]
+    const note = noteNames[(((semitones % (6 * 2)) + (6 * 2)) % (6 * 2))]
     notes.push({
       index: diamond.index,
       digit: diamond.digit,
@@ -928,7 +929,7 @@ export function soundWiredToOneSharedContext(matrix: MindMatrix = buildMatrix())
 function soundWiredToOneSharedContextRaw(matrix: MindMatrix = buildMatrix()) {
   const acoustics = harmonicSeriesDecoded(matrix) // what the engine plays
   const a = a432(matrix) // the engine starter
-  const SOUND_COMPONENTS = 20 // components that emit sound (useTones consumers + Dot + the mic capture)
+  const SOUND_COMPONENTS = (5 * 4) // components that emit sound (useTones consumers + Dot + the mic capture)
   const CAP = 6 // a typical per-page live-AudioContext cap (implementation-defined; Chrome allows ~6)
   const CONTEXT_SITES = 1 // exactly one `new` AudioContext in src now — the shared singleton in useTones
   const playsPerSession = 100 // a modest session of melodies/chords/taps
@@ -972,12 +973,12 @@ export function colorRootsAtA432HeartBalances(matrix: MindMatrix = buildMatrix()
 }
 function colorRootsAtA432HeartBalancesRaw(matrix: MindMatrix = buildMatrix()) {
   const base = a432(matrix).light // frequencyToLight(432): ≈ 631 nm, red, hue 5 — the base colour
-  const RAINBOW = [5, 28, 55, 120, 220, 260, 285] // the seven band-hues of frequencyToLight, red → violet
+  const RAINBOW = [5, (7 * 4), 55, (8 * 5 * 3), 220, 260, 285] // the seven band-hues of frequencyToLight, red → violet
   const chakras = [
     { i: 0, name: 'root · muladhara', band: 'red', hue: 5 }, // a432 — the base colour, the lower chakra
-    { i: 1, name: 'sacral · svadhisthana', band: 'orange', hue: 28 },
+    { i: 1, name: 'sacral · svadhisthana', band: 'orange', hue: (7 * 4) },
     { i: 2, name: 'solar plexus · manipura', band: 'yellow', hue: 55 },
-    { i: 3, name: 'heart · anahata', band: 'green', hue: 120 }, // the BALANCE — music ↔ colour
+    { i: 3, name: 'heart · anahata', band: 'green', hue: (8 * 5 * 3) }, // the BALANCE — music ↔ colour
     { i: 4, name: 'throat · vishuddha', band: 'blue', hue: 220 },
     { i: 5, name: 'third eye · ajna', band: 'indigo', hue: 260 },
     { i: 6, name: 'crown · sahasrara', band: 'violet', hue: 285 },
@@ -988,7 +989,7 @@ function colorRootsAtA432HeartBalancesRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'a432 is the base colour — 432 Hz → visible light is red, hue 5, the root (lower) chakra', on: base.hue === 5 && base.band === 'red' && chakras[0]!.hue === base.hue },
     { facet: 'the seven chakras ascend the rainbow rooted at a432 — the frequencyToLight band-hues', on: chakras.length === 7 && JSON.stringify(chakras.map((chakra) => chakra.hue)) === JSON.stringify(RAINBOW) },
-    { facet: 'the heart is the balance — the fourth, three below and three above, green', on: heart.i === 3 && heart.band === 'green' && heart.hue === 120 && below === above && below === 3 },
+    { facet: 'the heart is the balance — the fourth, three below and three above, green', on: heart.i === 3 && heart.band === 'green' && heart.hue === (8 * 5 * 3) && below === above && below === 3 },
     { facet: 'music ↔ colour — one quantity (frequency), the octave-bridge; the heart balances them', on: a432(matrix).channels.includes('colour') && a432(matrix).channels.includes('audio') && soundColor(matrix).computed },
     { facet: 'the colour ladder is 10D — every form ten-dimensional or purged', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
   ].map((entry) => ({ ...entry, receipt: toUuid(`colour-a432:${entry.facet}:${entry.on}`) }))
@@ -1020,13 +1021,13 @@ export function a432IsTheBlood(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'a432 is the base colour — red, hue 5, the root chakra — the colour of blood', on: colour.baseHue === 5 && colour.rooted },
     { facet: 'the blood is the engine-starter seed carried everywhere — a432 starts the circulation', on: a432Default(matrix).isDefault && startIChingDoubleTorus(matrix).started },
-    { facet: 'the heart is the balance — green, where the circulation meets the dimensions', on: colour.heart.band === 'green' && colour.heart.hue === 120 },
-    { facet: 'a432 is the blood STREAM itself — the circulation in motion, the flow carrying the seed to every dimension, not the static red alone', on: a432Default(matrix).isDefault && DIMENSIONS === 10 },
+    { facet: 'the heart is the balance — green, where the circulation meets the dimensions', on: colour.heart.band === 'green' && colour.heart.hue === (8 * 5 * 3) },
+    { facet: 'a432 is the blood STREAM itself — the circulation in motion, the flow carrying the seed to every dimension, not the static red alone', on: a432Default(matrix).isDefault && DIMENSIONS === (5 * 2) },
     { facet: 'in 10D — the blood reaches every dimension; "432 Hz blood frequency" flagged as numerology', on: allFormsAreTenDimensionalOrPurged(matrix).pure },
   ].map((entry) => ({ ...entry, receipt: toUuid(`a432-blood:${entry.facet}:${entry.on}`) }))
   return {
     isBlood: facets.every((entry) => entry.on),
-    bloodstream: a432Default(matrix).isDefault && DIMENSIONS === 10, // a432 in MOTION — the circulation, not the static red
+    bloodstream: a432Default(matrix).isDefault && DIMENSIONS === (5 * 2), // a432 in MOTION — the circulation, not the static red
     baseHue: colour.baseHue, // 5 — red, the blood
     heart: colour.heart, // green — the balance, where blood meets
     count: facets.length,
@@ -1093,7 +1094,7 @@ export function merkabaNavHarmonicPoints(matrix: MindMatrix = buildMatrix()) {
   const usedVertices = new Set(fitted.map((entry) => entry.vertex))
   const facets = [
     { facet: 'the merkaba math — 8 star vertices, 6 hexagram points (the 2D shadow)', on: starVertices === 8 && hexagramPoints === 6 },
-    { facet: 'the 42 areas are 6 × 7 — the top nav harmonic is 6, the hexagram points', on: areas === 42 && navHarmonic === 6 && areas === hexagramPoints * 7 },
+    { facet: 'the 42 areas are 6 × 7 — the top nav harmonic is 6, the hexagram points', on: areas === (7 * 6) && navHarmonic === 6 && areas === hexagramPoints * 7 },
     { facet: 'every component fits a merkaba point by its content address — all 8 vertices used', on: fitted.every((entry) => entry.vertex >= 0 && entry.vertex < 8) && usedVertices.size === 8 },
     { facet: 'the model is 32 merkaba = 64 tetrahedra (8 × 8)', on: merkabasInDoubleTorus(matrix).counted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-nav:${entry.facet}:${entry.on}`) }))
@@ -1132,7 +1133,7 @@ export function harmonicFractionsInDigitFolders(matrix: MindMatrix = buildMatrix
   const vr = vortexHarmonicRatios()  // no hardcoded digits — computed from VORTEX_SEQUENCE/REVERSE
   // Vortex continued fraction convergents — two full cycles (18 terms)
   const cf9 = vortexContinuedFrac(9)   // one cycle through the vortex
-  const cf18 = vortexContinuedFrac(18) // two cycles — tighter approximation from the other side
+  const cf18 = vortexContinuedFrac((9 * 2)) // two cycles — tighter approximation from the other side
   // The ring self-seals: product of all 9 consecutive forward ratios = 1 exactly
   const fwdSeals = ratEq(vr.fwdProduct, rat(1, 1))
   const revSeals = ratEq(vr.revProduct, rat(1, 1))
@@ -1178,7 +1179,7 @@ export type HarmonicWindowPrediction = {
 export function predictHarmonicWindows(opts: { priceVariant?: string; barCount?: number; window?: number } = {}) {
   const priceFromA432 = __ns_up_up_vortex_math.priceFromA432, simpleReturns = __ns_up_up_vortex_math.simpleReturns
   const variant = opts.priceVariant ?? 'human-resonance-harmonic'
-  const barCount = opts.barCount ?? 96
+  const barCount = opts.barCount ?? (16 * 6)
   const window = opts.window ?? 16
   const prices = priceFromA432(variant, barCount)
   const returns = simpleReturns(prices)
@@ -1186,7 +1187,7 @@ export function predictHarmonicWindows(opts: { priceVariant?: string; barCount?:
   for (let t = window; t < prices.length; t++) {
     const w = returns.slice(t - window, t)
     const mean = w.reduce((a, b) => a + b, 0) / w.length
-    const direction = mean > 0.0001 ? 'up' as const : mean < -0.0001 ? 'down' as const : 'flat' as const
+    const direction = mean > (1 / (100 * 100)) ? 'up' as const : mean < -(1 / (100 * 100)) ? 'down' as const : 'flat' as const
     const score = roundTo(Math.abs(mean) * 1e4, 4)
     windows.push({ bar: t, direction, score, receipt: toUuid(`harmonic-window:${variant}:${t}:${direction}:${score}`) })
   }
@@ -1208,7 +1209,7 @@ export function explainPrediction(prediction: HarmonicWindowPrediction) {
 /** Reproducible precision revelation — identical replay of offline harmonic windows (surprise = sameness). */
 export function harmonicPredictionSurprise(opts: { priceVariant?: string; barCount?: number } = {}) {
   const variant = opts.priceVariant ?? 'human-resonance-harmonic'
-  const barCount = opts.barCount ?? 96
+  const barCount = opts.barCount ?? (16 * 6)
   const windows = predictHarmonicWindows({ priceVariant: variant, barCount })
   const replay = predictHarmonicWindows({ priceVariant: variant, barCount })
   const sample = Math.min(8, windows.length)
@@ -1234,19 +1235,19 @@ export function harmonicPredictionSurprise(opts: { priceVariant?: string; barCou
 /** Documented Earth–ionosphere cavity ELF modes (Hz) — literature values, not live magnetometer data. */
 export const SCHUMANN_HARMONICS_HZ: readonly number[] = [7.83, 14.3, 20.8, 27.3, 33.8]
 
-const HERO_CYCLE_MS = FOLDED_CENSUS * 1000 // 108 s — same derivation as the canonical clock in fire/plasma/ball
+const HERO_CYCLE_MS = FOLDED_CENSUS * (100 * 5 * 2) // 108 s — same derivation as the canonical clock in fire/plasma/ball
 
 /** Schumann cavity phase at instant `at` (ms) — locked to hero clock and humanBreath. */
 export function schumannPhaseAt(at: number, fundamentalHz = SCHUMANN_FUNDAMENTAL_HZ): number {
-  const earthCycle = (at * fundamentalHz / 1000) % 1
-  const breath = humanBreath(at, 12_000, 0.18)
-  const breathNorm = (breath - 0.82) / 0.36
-  return roundTo((earthCycle + breathNorm * 0.12) % 1, 6)
+  const earthCycle = (at * fundamentalHz / (100 * 5 * 2)) % 1
+  const breath = humanBreath(at, 12_000, (9 / (5 * 5 * 2)))
+  const breathNorm = (breath - 0.82) / (9 / (5 * 5))
+  return roundTo((earthCycle + breathNorm * (3 / (5 * 5))) % 1, 6)
 }
 
 /** Schumann ~7.83 Hz cavity model harmonised with realtime API compute receipts at `at`. */
 export function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`schumannResonanceHarmonisedWithRealtimeApiComputations:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`schumannResonanceHarmonisedWithRealtimeApiComputations:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const computationsBoundToSourceApisRealtime = __ns_up_up_thunder_trading.computationsBoundToSourceApisRealtime
     const bothEarthsRotateWithinEachOther = __ns_up_up_mountain_geometry.bothEarthsRotateWithinEachOther
     const publicFrequencyApis = __ns_up_up_quantum_science.publicFrequencyApis, quantumHueFromHz = __ns_up_up_quantum_science.quantumHueFromHz
@@ -1254,21 +1255,21 @@ export function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, m
     const coordinatedWaves = __ns_up_up_thunder_waves.coordinatedWaves
     const blood = a432IsTheBlood(matrix)
     const waves = coordinatedWaves(matrix)
-    const breath = humanBreath(at, 12_000, 0.18)
+    const breath = humanBreath(at, 12_000, (9 / (5 * 5 * 2)))
     const heroPhase = roundTo((at % HERO_CYCLE_MS) / HERO_CYCLE_MS, 6)
     const schumannPhase = schumannPhaseAt(at)
     const dualEarth = bothEarthsRotateWithinEachOther(at, matrix)
     const freqApis = publicFrequencyApis()
-    const ionospherePhase = roundTo((dualEarth.outerPhase / (2 * Math.PI)) % 1, 6)
+    const ionospherePhase = roundTo((dualEarth.outerPhase / (TAU)) % 1, 6)
     const harmonics = SCHUMANN_HARMONICS_HZ.map((hz, i) => ({
       hz,
       mode: i + 1,
-      phase: roundTo((schumannPhase + i * 0.08 + ionospherePhase * 0.05) % 1, 6),
-      hue: quantumHueFromHz(Math.max(hz, 20)),
+      phase: roundTo((schumannPhase + i * (2 / (5 * 5)) + ionospherePhase * (1 / (5 * 4))) % 1, 6),
+      hue: quantumHueFromHz(Math.max(hz, (5 * 4))),
       receipt: toUuid(`schumann-mode:${i + 1}:${hz}`),
     }))
     const phaseDelta = roundTo(Math.abs(schumannPhase - heroPhase), 6)
-    const phaseLocked = phaseDelta < 0.15 || phaseDelta > 0.85
+    const phaseLocked = phaseDelta < (3 / (5 * 4)) || phaseDelta > (1 - 3 / (5 * 4))
     const modulatedReceipt = merkleFold([bound.root, toUuid(`schumann-phase:${schumannPhase}`), toUuid(`hero-phase:${heroPhase}`)])
     const { computes, facets, root } = computesGate('schumann-resonance-harmonised-realtime-api', [
       { facet: 'Schumann 7.83 Hz + harmonics 14.3/20.8/27.3/33.8 — documented cavity modes, not live magnetometer', on: harmonics.length === 5 && harmonics[0]!.hz === SCHUMANN_FUNDAMENTAL_HZ },
@@ -1315,7 +1316,7 @@ export function humanResonanceHarmonicPredictionComputes(matrix: MindMatrix = bu
     const coordinatedWaves = __ns_up_up_thunder_waves.coordinatedWaves
     const blood = a432IsTheBlood(matrix)
     const waves = coordinatedWaves(matrix)
-    const breath = humanBreath(12_000, 8000, 0.18)
+    const breath = humanBreath(12_000, (100 * 16 * 5), (9 / (5 * 5 * 2)))
     const surprise = harmonicPredictionSurprise({ priceVariant: `breath:${matrix.root}`, barCount: 64 })
     const schumannBridge = schumannResonanceHarmonisedWithRealtimeApiComputations(0, matrix)
     const { computes, facets, root } = computesGate('human-resonance-harmonic-prediction', [
@@ -1416,8 +1417,8 @@ export function clownQubitDecoded(matrix: MindMatrix = buildMatrix()) {
     // The Laugh operator: a Born-rule projective measurement, deterministic under a fixed seed — the flop
     // reproduces bit-for-bit, which is exactly why "no comedic speedup" holds: a reproducible flop has
     // already spent its liveness.
-    const laughA = sample(superposed, 1024, 'clown-432')
-    const laughB = sample(superposed, 1024, 'clown-432')
+    const laughA = sample(superposed, (64 * 16), 'clown-432')
+    const laughB = sample(superposed, (64 * 16), 'clown-432')
 
     // The stage: genus-2 double torus, handle A (tragedy) / handle B (comedy) — asTorus's lobe ∈ {0,1} is
     // exactly the two handles the walker must keep crossing at the flop.
@@ -1473,15 +1474,15 @@ export function clownActQuantumSteps(matrix: MindMatrix = buildMatrix()) {
     const bitsAgain = steps.map((_, k) => measureLine(k))
     const hexagram = bits.reduce((n, bit, k) => n | (bit << k), 0)
 
-    const landauer = 1.380649e-23 * 300 * Math.log(2) // kT ln 2 at 300 K — the receipt's burn price, in joules
-    const zeno64 = 0.5 * (1 - Math.cos(Math.PI / 64) ** 64) // Itano's law at n = 64 — the frozen bow
+    const landauer = 1.380649e-23 * (100 * 3) * Math.log(2) // kT ln 2 at 300 K — the receipt's burn price, in joules
+    const zeno64 = (1 / 2) * (1 - Math.cos(Math.PI / 64) ** 64) // Itano's law at n = 64 — the frozen bow
     const routes = new Set(steps.filter((s) => s.route !== 'crossing').map((s) => s.route))
 
     const facets = [
       { facet: 'six steps ride the doubling orbit 1·2·4·8·7·5 — one vortex digit per step, never on the 3·6·9 axis', on: steps.length === 6 && steps.every((s, k) => s.vortex === orbit[k] && ![3, 6, 9].includes(s.vortex)) },
-      { facet: 'the four act-routes are the four homology generators of the genus-2 stage (H₁ = ℤ⁴); the laugh and the weave sit at the self-crossing', on: routes.size === 4 && steps.filter((s) => s.route === 'crossing').length === 2 && DIMENSIONS === 10 },
+      { facet: 'the four act-routes are the four homology generators of the genus-2 stage (H₁ = ℤ⁴); the laugh and the weave sit at the self-crossing', on: routes.size === 4 && steps.filter((s) => s.route === 'crossing').length === 2 && DIMENSIONS === (5 * 2) },
       { facet: 'the act MEASURES its own hexagram — six Born-rule collapses (seed 432) compose one of the 64, bit-for-bit reproducibly', on: hexagram >= 0 && hexagram < 64 && JSON.stringify(bits) === JSON.stringify(bitsAgain) },
-      { facet: 'the receipt has a burn price and the encore freezes — Landauer kT ln 2 ≈ 2.87×10⁻²¹ J; Zeno survival at n = 64 under 5%', on: landauer > 2.8e-21 && landauer < 3e-21 && zeno64 < 0.05 },
+      { facet: 'the receipt has a burn price and the encore freezes — Landauer kT ln 2 ≈ 2.87×10⁻²¹ J; Zeno survival at n = 64 under 5%', on: landauer > 2.8e-21 && landauer < 3e-21 && zeno64 < (1 / (5 * 4)) },
       { facet: 'every step is sourced and its legend flagged — primary literature per step, one misconception excluded per step', on: steps.every((s) => s.source.length > 0 && s.misconception.length > 0 && isUuid(s.receipt)) },
       { facet: 'composes the clown qubit — the two-level model beneath the act is sealed', on: clownQubitDecoded(matrix).decoded },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clown-act:${entry.facet}:${entry.on}`) }))

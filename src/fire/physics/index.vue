@@ -2,8 +2,9 @@
 // Display gate — co-located src/fire/physics/index.ts. The EMF→A432 balancing-field animation:
 // EM field shells around the device + the noise-seeded A432 balancing field, on the one animation
 // engine (useVisibleMovieCanvas) and the one colour source (A432_HUE / frequencyToLight).
-import { computed, ref, shallowRef } from 'vue'
+import { computed, ref, shallowRef, watch } from 'vue'
 import { drawEmfA432Field, emfA432PanelComputes } from './index.ts'
+import { useData } from 'vitepress'
 import { movieCanvasHex } from '../../../.vitepress/lib/hero-movie-paint'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../.vitepress/lib/mounts'
@@ -16,6 +17,8 @@ const panel = shallowRef(emfA432PanelComputes())
 const { pick } = useSiteLocale()
 const t = (pair: { en: string; bg: string }) => pick(pair.en, pair.bg)
 const reduce = prefersReducedMotion()
+// Polarity bit for the canvas and label ink — same negative law as the movie palette.
+const { isDark } = useData()
 const canvasHost = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 
@@ -23,10 +26,10 @@ const bands = computed(() => panel.value.bands)
 const field = computed(() => panel.value.balancingField)
 
 function paintEmf(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
-  drawEmfA432Field(ctx, w, h, reduce ? 0 : at, panel.value.hue)
+  drawEmfA432Field(ctx, w, h, reduce ? 0 : at, panel.value.hue, isDark.value)
 }
 
-useVisibleMovieCanvas({
+const { repaint } = useVisibleMovieCanvas({
   canvas,
   root: canvasHost,
   visibility: 'intersection',
@@ -36,6 +39,9 @@ useVisibleMovieCanvas({
   }),
   paint: paintEmf,
 })
+
+// Repaint on theme toggle so the reduced-motion still frame also recomputes its colours.
+watch(isDark, () => repaint())
 </script>
 
 <template>
@@ -71,7 +77,7 @@ useVisibleMovieCanvas({
 
       <ul class="emf-a432-panel__bands">
         <li v-for="b in bands" :key="b.receipt">
-          <span :style="{ color: movieCanvasHex(panel.hue) }">{{ b.source }}</span>
+          <span :style="{ color: movieCanvasHex(panel.hue, { dark: isDark }) }">{{ b.source }}</span>
           · {{ b.photonEvText }} eV · {{ b.ionizing ? 'ionizing' : 'non-ionizing' }}
           · ~{{ b.ordersBelowIonizing }} orders below 10 eV
         </li>

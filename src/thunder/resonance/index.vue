@@ -2,24 +2,28 @@
 import { computed, ref, shallowRef, watch } from 'vue'
 import { resonanceSimulationPanelComputes } from './index.ts'
 import { A432_HUE, movieCanvasHex, movieCanvasRgba } from '../../../.vitepress/lib/hero-movie-paint'
+import { useData } from 'vitepress'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../.vitepress/lib/mounts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiAlert from '../../../.vitepress/theme/components/ui/Alert.vue'
+import { TAU } from '../../3/7'
 
 const panel = shallowRef(resonanceSimulationPanelComputes())
 const { pick } = useSiteLocale()
 const t = (pair: { en: string; bg: string }) => pick(pair.en, pair.bg)
 const reduce = prefersReducedMotion()
+// Polarity bit: dark paints the sealed positive, light recomputes through the negative law.
+const { isDark } = useData()
 const canvasHost = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 
 const modes = computed(() => panel.value.sim.modes)
 
 // Near-white label ink from the A432 palette (high lightness, near-zero chroma) — no rgba literal.
-const ink = (alpha: number) => movieCanvasRgba(A432_HUE, alpha, { L: 15 / 16, C: 1 / 64 })
+const ink = (alpha: number) => movieCanvasRgba(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64, dark: isDark.value })
 
 function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = resonanceSimulationPanelComputes(undefined, at)
@@ -27,22 +31,22 @@ function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at:
   ctx.clearRect(0, 0, w, h)
   const labelPx = Math.max(9, Math.round(h / 27))
   const cx = w / 2
-  const cy = h * 0.55
-  const baseR = Math.min(w, h) * 0.32
-  ctx.strokeStyle = ink(0.08)
+  const cy = h * (1 - 9 / (5 * 4))
+  const baseR = Math.min(w, h) * (8 / (5 * 5))
+  ctx.strokeStyle = ink((2 / (5 * 5)))
   ctx.beginPath()
-  ctx.arc(cx, cy, baseR, 0, Math.PI * 2)
+  ctx.arc(cx, cy, baseR, 0, TAU)
   ctx.stroke()
   sim.modes.forEach((mode, index) => {
-    const angle = mode.phase * Math.PI * 2 + index * 0.4
-    const r = baseR * (0.55 + mode.amplitude * 0.45)
+    const angle = mode.phase * TAU + index * (2 / 5)
+    const r = baseR * ((1 - 9 / (5 * 4)) + mode.amplitude * (9 / (5 * 4)))
     const x = cx + Math.cos(angle) * r
     const y = cy + Math.sin(angle) * r
-    ctx.fillStyle = movieCanvasRgba(mode.hue, 0.35 + mode.amplitude * 0.55)
+    ctx.fillStyle = movieCanvasRgba(mode.hue, (7 / (5 * 4)) + mode.amplitude * (1 - 9 / (5 * 4)), { dark: isDark.value })
     ctx.beginPath()
-    ctx.arc(x, y, 6 + mode.amplitude * 10, 0, Math.PI * 2)
+    ctx.arc(x, y, 6 + mode.amplitude * (5 * 2), 0, TAU)
     ctx.fill()
-    ctx.strokeStyle = movieCanvasRgba(mode.hue, 0.5, { L: 13 / 16 })
+    ctx.strokeStyle = movieCanvasRgba(mode.hue, (1 / 2), { L: 13 / 16, dark: isDark.value })
     ctx.lineWidth = 1
     ctx.beginPath()
     ctx.moveTo(cx, cy)
@@ -50,13 +54,13 @@ function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at:
     ctx.stroke()
     if (!reduce) {
       ctx.font = `${labelPx}px sans-serif`
-      ctx.fillStyle = ink(0.75)
+      ctx.fillStyle = ink((3 / 4))
       ctx.fillText(`${mode.hz} Hz`, x + 8, y - 4)
     }
   })
 }
 
-const { at } = useVisibleMovieCanvas({
+const { at, repaint } = useVisibleMovieCanvas({
   canvas,
   root: canvasHost,
   visibility: 'intersection',
@@ -66,6 +70,9 @@ const { at } = useVisibleMovieCanvas({
   }),
   paint: paintResonance,
 })
+
+// Repaint on theme toggle so the reduced-motion still frame also recomputes its colours.
+watch(isDark, () => repaint())
 
 watch(at, (time) => {
   panel.value = resonanceSimulationPanelComputes(undefined, time)
@@ -109,7 +116,7 @@ watch(at, (time) => {
 
       <ul class="resonance-simulation-panel__modes">
         <li v-for="mode in modes" :key="mode.receipt">
-          <span :style="{ color: movieCanvasHex(mode.hue) }">{{ mode.hz }} Hz</span>
+          <span :style="{ color: movieCanvasHex(mode.hue, { dark: isDark }) }">{{ mode.hz }} Hz</span>
           · mode {{ mode.mode }} · amp {{ mode.amplitude }}
         </li>
       </ul>

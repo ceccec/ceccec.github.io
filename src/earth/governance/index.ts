@@ -158,7 +158,7 @@ export function societyEvolves(matrix: MindMatrix = buildMatrix()) {
   const discoveredRoot = merkleFold(discovered.map((entry) => entry.receipt))
   const generationRoot = foldPair(base.root, discoveredRoot).merged // the evolved society root
   return {
-    evolving: discovered.every((entry) => entry.members > 0) && rest.length > 0 && generationRoot.length === 36,
+    evolving: discovered.every((entry) => entry.members > 0) && rest.length > 0 && generationRoot.length === (9 * 4),
     discoveredDomains: discovered.length,
     discoveredMembers: discovered.reduce((sum, entry) => sum + entry.members, 0),
     discovered,
@@ -250,7 +250,7 @@ export function fairTrade(matrix: MindMatrix = buildMatrix()) {
   const provenance = merkleFold(chain.map((entry) => entry.receipt))
   const verified = merkleProof(chain.map((entry) => entry.receipt), chain[0].receipt).verified
   return {
-    regulated: chain.length === 6 && verified && provenance.length === 36,
+    regulated: chain.length === 6 && verified && provenance.length === (9 * 4),
     selfRegulating: verified, // anyone recomputes the provenance; no central certifier
     individualCost: 0, // free to verify for producer and buyer
     forgeCost: chain.length, // reproduce the whole chain to forge a claim
@@ -395,7 +395,7 @@ export function governanceVote(
   const averageRating = cast.length === 0 ? 0 : cast.reduce((sum, ballot) => sum + ballot.rating, 0) / cast.length
   return {
     defined: true,
-    approved: cast.length > 0 && approvalFraction > 0.5,
+    approved: cast.length > 0 && approvalFraction > (1 / 2),
     ballots: cast.length,
     averageRating,
     approvalFraction,
@@ -559,7 +559,7 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     {
       solid: 'cube',
       faces: 6,
-      edges: 12,
+      edges: (6 * 2),
       vertices: 8,
       builder: 'engineers',
       method: 'interface -> test -> deploy -> monitor -> receipt',
@@ -567,24 +567,24 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     {
       solid: 'octahedron',
       faces: 8,
-      edges: 12,
+      edges: (6 * 2),
       vertices: 6,
       builder: 'society architects',
       method: 'policy -> boundary -> consent -> reciprocity -> receipt',
     },
     {
       solid: 'dodecahedron',
-      faces: 12,
-      edges: 30,
-      vertices: 20,
+      faces: (6 * 2),
+      edges: (6 * 5),
+      vertices: (5 * 4),
       builder: 'review gates',
       method: 'review all gates before public projection',
     },
     {
       solid: 'icosahedron',
-      faces: 20,
-      edges: 30,
-      vertices: 12,
+      faces: (5 * 4),
+      edges: (6 * 5),
+      vertices: (6 * 2),
       builder: 'optimization waves',
       method: 'send many small improvements without breaking closure',
     },

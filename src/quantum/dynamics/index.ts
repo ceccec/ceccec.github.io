@@ -172,7 +172,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
         title: 'Superposition · entanglement · measurement collapse',
         layers: [
           { key: 'bell-pair', value: simulators.homed ? 'bellPair (|00⟩+|11⟩)/√2 in src/0' : 'partial', source: 'src/0 bellPair · fire/physics simulatorsLiveInZero' },
-          { key: 'chsh-tsirelson', value: `CHSH = ${Math.round(tsirelson * 10000) / 10000} (Tsirelson 2√2)`, source: 'src/0 chsh · thunder/waves Bell facet' },
+          { key: 'chsh-tsirelson', value: `CHSH = ${Math.round(tsirelson * (100 * 100)) / (100 * 100)} (Tsirelson 2√2)`, source: 'src/0 chsh · thunder/waves Bell facet' },
           { key: 'collapse-sample', value: 'sample/psample — projection to outcome + renormalize', source: 'src/0 sample · fire/li quantumSimulation measured' },
           { key: 'quantum-physics-fold', value: `${qPhysics.present}/8 phenomena bound`, source: 'fire/physics · quantumPhysics (computational metaphor)' },
         ],
@@ -249,13 +249,13 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
 
 /** State evolution decoded through VORTEX_SEQUENCE phase — Markov step + quantum sim + movie frame at `at`. */
 export function quantumStateEvolutionDecoded(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`quantumStateEvolutionDecoded:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumStateEvolutionDecoded:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const solutions = __ns_up_up_heaven_compute.completeQuantumSolutionsImplemented(matrix)
     const qsim = __ns_up_up_fire_li.quantumSimulation(matrix, 3)
     const tenD = __ns_up_up_thunder_movie_movielib.tenDimensionalMovie(matrix)
     const phaseIndex = Math.floor(at / 86_400_000) % VORTEX_SEQUENCE.length
     const phaseDigit = VORTEX_SEQUENCE[phaseIndex]!
-    const P = [[0.9, 0.1], [0.2, 0.8]] as const
+    const P = [[(9 / (5 * 2)), (1 / (5 * 2))], [(1 / 5), (4 / 5)]] as const
     const markovTrail = Array.from({ length: 5 }, (_, step) => markovEvolve(P, [1, 0], step + 1))
     const stat = stationary(P)
     const weights = hopfieldStore([[1, -1, 1, -1]])
@@ -328,19 +328,19 @@ export const decodeQuantumDynamicsThroughVortexSequence = quantumStateEvolutionD
 
 /** Discrete-time wavefunction proxy — superposition, entanglement, collapse at `at` for plasma paint. */
 export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()): QuantumDynamicsSimulationPaint {
-  return memoByRoot(`quantumDynamicsSimulationAt:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumDynamicsSimulationAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const evolution = quantumStateEvolutionDecoded(at, matrix)
-    const step = Math.floor(at / 1000) % 8
+    const step = Math.floor(at / (100 * 5 * 2)) % 8
     let state = bellPair()
     for (let i = 0; i < step % 4; i += 1) {
       state = applyGate(state, GATES.Z, 1)
     }
     const probs = probabilities(state)
-    const superposition = probs.filter((entry) => entry > 0.01).length >= 2
-    const collapseSeed = `quantum-dynamics:${Math.floor(at / 1000)}`
+    const superposition = probs.filter((entry) => entry > (1 / 100)).length >= 2
+    const collapseSeed = `quantum-dynamics:${Math.floor(at / (100 * 5 * 2))}`
     const collapsed = measure(state, 0, collapseSeed)
     const markovPhase = phaseDrift(365, 365.25, at / 86_400_000)
-    const entangled = Math.abs(probs[0] - 0.5) < 1e-6 && Math.abs(probs[3] - 0.5) < 1e-6 && probs[1] < 1e-6
+    const entangled = Math.abs(probs[0] - (1 / 2)) < 1e-6 && Math.abs(probs[3] - (1 / 2)) < 1e-6 && probs[1] < 1e-6
     const amplitudes: QuantumDynamicsAmplitude[] = probs.map((probability, index) => {
       const basis = index.toString(2).padStart(state.n, '0')
       const phase = roundTo((markovPhase + index / probs.length + step / 8) % 1, 4)
@@ -348,7 +348,7 @@ export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMa
         basis,
         probability: roundTo(probability, 6),
         phase,
-        hue: roundTo((index * 90 + phase * 360) % 360, 2),
+        hue: roundTo((index * (9 * 5 * 2) + phase * 360) % 360, 2),
         receipt: toUuid(`qdynamics-amp:${basis}:${probability}:${step}`),
       }
     }).filter((entry) => entry.probability > 1e-6)
@@ -358,15 +358,15 @@ export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMa
         id: 'quantum-dynamics-sim',
         hue: amplitudes[0]?.hue ?? 0,
         phase: markovPhase,
-        alpha: superposition ? roundTo(0.7 + 0.3 * markovPhase, 3) : 0.24,
+        alpha: superposition ? roundTo((7 / (5 * 2)) + (3 / (5 * 2)) * markovPhase, 3) : (6 / (5 * 5)),
         receipt: evolution.root,
         on: evolution.decoded && superposition,
       },
       {
         id: 'quantum-ghz-collapse',
-        hue: qsim.entangled ? 280 : 120,
+        hue: qsim.entangled ? (8 * 7 * 5) : (8 * 5 * 3),
         phase: roundTo((step / 8) % 1, 4),
-        alpha: collapsed.outcome !== undefined ? 0.86 : 0.24,
+        alpha: collapsed.outcome !== undefined ? (1 - 7 / (5 * 5 * 2)) : (6 / (5 * 5)),
         receipt: qsim.root,
         on: qsim.simulated && qsim.entangled,
       },
@@ -399,7 +399,7 @@ export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMa
 
 /** Browser-safe panel — quantum dynamics simulation + compute gates for Vue mount. */
 export function quantumDynamicsSimulationPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumDynamicsSimulationPanelComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumDynamicsSimulationPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sim = quantumDynamicsSimulationAt(at, matrix)
     const computesAll = quantumDynamicsComputes(matrix, at)
     const { facets, root } = computesGate('quantum-dynamics-simulation-panel', [
@@ -426,7 +426,7 @@ export function quantumDynamicsSimulationPanelComputes(matrix: MindMatrix = buil
 
 /** One gate — simulators, state evolution decode, research exposition, plasma vortex channel at call time. */
 export function quantumDynamicsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumDynamicsComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`quantumDynamicsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const solutions = __ns_up_up_heaven_compute.completeQuantumSolutionsImplemented(matrix)
     const simulators = __ns_up_up_fire_physics.simulatorsLiveInZero(matrix)
     const classical = __ns_up_up_fire_physics.decodedAreasAreMostlyClassical(matrix)

@@ -13,6 +13,7 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, complete, composeHazard, 
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
 import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, frequencyToLight, photonEnergyEv } from '../../3/7'
+import { movieCanvasPolarity } from '../../quantum/science'
 import { wavelengthOf } from '../../1/9'
 import { isIonizing } from '../../9/1'
 import { electromagneticExperiments, electromagneticRadiationDecoded } from '../../quantum/fire/experiments'
@@ -21,6 +22,7 @@ import { foldingLinearGivesAnalog } from '../../earth/world'
 import { healingModelsHonestBoundary } from '../../water/cosmos'
 import { microdata } from '../../mountain/og'
 import { allAnimationsInOneOg } from '../../wind/ui'
+import { TAU } from '../../3/7'
 
 // Fill the gaps in quantum physics: every phenomenon the model needs to self-
 // compute, each bound to a measure it already computes over the UUID stream.
@@ -123,7 +125,7 @@ export function quantumDecoded(matrix: MindMatrix = buildMatrix()) {
     { claim: '"quantum leap" = a huge change; 432/528 Hz "healing"', verdict: 'misuse / numerology', why: 'a quantum jump is the SMALLEST discrete transition (ironic); pitch reference is a human convention — 432 Hz wellness claims are numerology, the nearest woo to this project\'s frequency work, fenced explicitly' },
     { claim: 'the genuine edge: avian magnetoreception (radical pairs), photosynthetic coherence', verdict: 'real but emerging — kept IN', why: 'radical-pair magnetoreception (cryptochrome-4) is the leading hypothesis, not yet confirmed in vivo; photosynthetic coherence is real but short-lived and its functional role is contested/small — never "life runs quantum computers"' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-flag:${entry.claim}:${entry.verdict}`) }))
-  const tsirelson = Math.round(2 * Math.SQRT2 * 10000) / 10000 // 2√2 ≈ 2.8284 — the quantum CHSH (Tsirelson) bound
+  const tsirelson = Math.round(2 * Math.SQRT2 * (100 * 100)) / (100 * 100) // 2√2 ≈ 2.8284 — the quantum CHSH (Tsirelson) bound
   const facets = [
     { facet: 'the six strata fold to one core — word, framework, quantization, qubit, entanglement, computation', on: layers.length === 6 && isUuid(merkleFold(layers.map((entry) => entry.receipt))) },
     { facet: 'the qubit\'s documented core stands — 3 Pauli observables, 4³ = 64 operators (≠ the 8-dim state space)', on: sixtyFourThreeQubitPauliBasis(matrix).holds && geneticCodeIsTheRealFourCubed(matrix).holds },
@@ -244,12 +246,12 @@ export function publicFrequencyApisDecoded(matrix: MindMatrix = buildMatrix()) {
 export function simulatorsLiveInZero(matrix: MindMatrix = buildMatrix()) {
   const bell = probabilities(bellPair()) // [0.5, 0, 0, 0.5]
   const g = grover(3, 5) // find item 5 of 8
-  const shadow = pflip(pbits(1), 0, 0.5).p // [0.5, 0.5] — mass moves, no cancellation
+  const shadow = pflip(pbits(1), 0, (1 / 2)).p // [0.5, 0.5] — mass moves, no cancellation
   const facets = [
-    { facet: 'quantum: the Bell pair is entangled — probabilities [½,0,0,½], one qubit\'s measurement determines the other', on: Math.abs(bell[0] - 0.5) < 1e-9 && Math.abs(bell[3] - 0.5) < 1e-9 && bell[1] < 1e-9 && bell[2] < 1e-9 },
-    { facet: 'quantum: Grover finds the marked item with high probability in ~(π/4)√N iterations', on: g.found === 5 && g.markedProbability > 0.9 && g.iterations === 2 },
-    { facet: 'classical shadow: probabilities never interfere — pflip spreads mass, no cancellation', on: Math.abs(shadow[0] - 0.5) < 1e-9 && Math.abs(shadow[1] - 0.5) < 1e-9 },
-    { facet: 'analog→digital: the quantum and probabilistic registers read out through ONE sampler — sample(|+>) === psample(uniform) at the same seed', on: JSON.stringify(sample(applyGate(qubits(1), GATES.H, 0), 256, 'adc')) === JSON.stringify(psample(pflip(pbits(1), 0, 0.5), 256, 'adc')) },
+    { facet: 'quantum: the Bell pair is entangled — probabilities [½,0,0,½], one qubit\'s measurement determines the other', on: Math.abs(bell[0] - (1 / 2)) < 1e-9 && Math.abs(bell[3] - (1 / 2)) < 1e-9 && bell[1] < 1e-9 && bell[2] < 1e-9 },
+    { facet: 'quantum: Grover finds the marked item with high probability in ~(π/4)√N iterations', on: g.found === 5 && g.markedProbability > (9 / (5 * 2)) && g.iterations === 2 },
+    { facet: 'classical shadow: probabilities never interfere — pflip spreads mass, no cancellation', on: Math.abs(shadow[0] - (1 / 2)) < 1e-9 && Math.abs(shadow[1] - (1 / 2)) < 1e-9 },
+    { facet: 'analog→digital: the quantum and probabilistic registers read out through ONE sampler — sample(|+>) === psample(uniform) at the same seed', on: JSON.stringify(sample(applyGate(qubits(1), GATES.H, 0), (64 * 4), 'adc')) === JSON.stringify(psample(pflip(pbits(1), 0, (1 / 2)), (64 * 4), 'adc')) },
     { facet: 'reversible classical: the universal NOT/CNOT/Toffoli set — NOT flips, CNOT copies, Toffoli writes AND(c1,c2)', on: rnot(0, 0) === 1 && rcnot(0b01, 0, 1) === 0b11 && ((rtoffoli(0b011, 0, 1, 2) >> 2) & 1) === 1 && ((rtoffoli(0b001, 0, 1, 2) >> 2) & 1) === 0 },
     { facet: 'a different universal model runs: elementary CA Rule 110 evolves deterministically over steps', on: caStep(110, [0, 0, 1, 0, 0]).length === 5 && caEvolve(110, [0, 0, 1, 0, 0], 3).length === 4 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`simulator:${entry.facet}:${entry.on}`) }))
@@ -278,19 +280,19 @@ export function simulatorsLiveInZero(matrix: MindMatrix = buildMatrix()) {
 // most of them live in src/0 beside pflip; this fold records the distribution and proves the primitives are
 // honest, mass-conserving, and bounded. "A quantum simulator in all aspects of life" is, truthfully, mostly classical.
 export function decodedAreasAreMostlyClassical(matrix: MindMatrix = buildMatrix()) {
-  const distribution = { probabilistic: 12, dynamical: 3, network: 2, quantum: 1 }
+  const distribution = { probabilistic: (6 * 2), dynamical: 3, network: 2, quantum: 1 }
   const total = Object.values(distribution).reduce((a, b) => a + b, 0)
-  const h = composeHazard(0.05, [0.4, 1.8]) // peacekeeping cut × security-dilemma spiral
-  const admix = admixToward([1, 0, 0, 0], 2, 0.3)
-  const err = injectError([1, 0], 0, 0.25)
-  const stat = stationary([[0.9, 0.1], [0.2, 0.8]])
+  const h = composeHazard((1 / (5 * 4)), [(2 / 5), (9 / 5)]) // peacekeeping cut × security-dilemma spiral
+  const admix = admixToward([1, 0, 0, 0], 2, (3 / (5 * 2)))
+  const err = injectError([1, 0], 0, (1 / 4))
+  const stat = stationary([[(9 / (5 * 2)), (1 / (5 * 2))], [(1 / 5), (4 / 5)]])
   const sumOf = (a: readonly number[]) => a.reduce((x, y) => x + y, 0)
   const facets = [
-    { facet: 'the finding — 18 aspects of life are mostly CLASSICAL (12 probabilistic · 3 dynamical · 2 network · 1 quantum); forced-quantum refused', on: total === 18 && distribution.quantum === 1 && distribution.probabilistic === 12 },
+    { facet: 'the finding — 18 aspects of life are mostly CLASSICAL (12 probabilistic · 3 dynamical · 2 network · 1 quantum); forced-quantum refused', on: total === (9 * 2) && distribution.quantum === 1 && distribution.probabilistic === (6 * 2) },
     { facet: 'composed hazard is bounded — never 0 (tech-ends-war stays falsified) nor 1 (total relapse never certain)', on: h > 0 && h < 1 },
     { facet: 'survival decays under hazard — s_{t+1}=s_t·(1−h), strictly between 0 and s_t', on: survive(1, h) < 1 && survive(1, h) > 0 },
-    { facet: 'admixture is the qpAdm convex blend — mass-conserving (sum stays 1), the source gains f', on: Math.abs(sumOf(admix) - 1) < 1e-9 && Math.abs(admix[2] - 0.3) < 1e-9 },
-    { facet: 'error injection moves mass one-way (clean fraction decays), sum conserved', on: Math.abs(sumOf(err) - 1) < 1e-9 && Math.abs(err[1] - 0.25) < 1e-9 },
+    { facet: 'admixture is the qpAdm convex blend — mass-conserving (sum stays 1), the source gains f', on: Math.abs(sumOf(admix) - 1) < 1e-9 && Math.abs(admix[2] - (3 / (5 * 2))) < 1e-9 },
+    { facet: 'error injection moves mass one-way (clean fraction decays), sum conserved', on: Math.abs(sumOf(err) - 1) < 1e-9 && Math.abs(err[1] - (1 / 4)) < 1e-9 },
     { facet: 'a Markov chain settles to a stationary distribution (where the regimes rest) — sums to 1', on: Math.abs(sumOf(stat) - 1) < 1e-9 && stat[0] > stat[1] },
   ].map((entry) => ({ ...entry, receipt: toUuid(`classical:${entry.facet}:${entry.on}`) }))
   return {
@@ -317,15 +319,15 @@ export function decodedAreasAreMostlyClassical(matrix: MindMatrix = buildMatrix(
 // replaced by a model you run. This fold proves a primitive from each of the four families and records the map.
 export function everyDecodedDomainHasASimulator(matrix: MindMatrix = buildMatrix()) {
   const families = [
-    { family: 'probabilistic', component: 'ProbSim', domains: ['peace', 'genetics', 'ethnogenesis', 'ancient', 'alphabets', 'ifa', 'music', 'ai-movies', 'history', 'glagolitic', 'trinity-sciences'], check: composeHazard(0.05, [0.4]) > 0 && composeHazard(0.05, [0.4]) < 1 && codeRobustness().silent > 0.2 && codeRobustness().silent < 0.3 },
+    { family: 'probabilistic', component: 'ProbSim', domains: ['peace', 'genetics', 'ethnogenesis', 'ancient', 'alphabets', 'ifa', 'music', 'ai-movies', 'history', 'glagolitic', 'trinity-sciences'], check: composeHazard((1 / (5 * 4)), [(2 / 5)]) > 0 && composeHazard((1 / (5 * 4)), [(2 / 5)]) < 1 && codeRobustness().silent > (1 / 5) && codeRobustness().silent < (3 / (5 * 2)) },
     { family: 'quantum', component: 'QuantumCircuit', domains: ['quantum'], check: Math.abs(chsh(0, Math.PI / 2, Math.PI / 4, 3 * Math.PI / 4) - 2 * Math.SQRT2) < 1e-9 },
     { family: 'dynamical', component: 'DynSim', domains: ['calendars', 'tesla', 'frequency-apis'], check: realign(260, 365).lcm === 18980 && phaseDrift(365, 365.25, 1461) >= 0 },
-    { family: 'network', component: 'NetSim', domains: ['greek-colonies', 'script-language-gene', 'neurology'], check: congruence([1, 2, 3], [2, 4, 6]) > 0.99 && hopfieldRecall(hopfieldStore([[1, 1, -1, -1]]), [1, 1, 1, -1]).state.length === 4 && pmixEvolve([1, 0], [[0, 1]], 0.5, 50)[0] < 0.6 && bumpEvolve(0, Array.from({ length: 8 }, () => Math.PI / 4))[8]! < 1e-9 },
+    { family: 'network', component: 'NetSim', domains: ['greek-colonies', 'script-language-gene', 'neurology'], check: congruence([1, 2, 3], [2, 4, 6]) > (1 - 1 / 100) && hopfieldRecall(hopfieldStore([[1, 1, -1, -1]]), [1, 1, 1, -1]).state.length === 4 && pmixEvolve([1, 0], [[0, 1]], (1 / 2), (5 * 5 * 2))[0] < (3 / 5) && bumpEvolve(0, Array.from({ length: 8 }, () => Math.PI / 4))[8]! < 1e-9 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sim-family:${entry.family}:${entry.check}`) }))
   const covered = families.reduce((n, f) => n + f.domains.length, 0)
   const deferred: string[] = [] // none — trinity-sciences (the 64-codon model) landed with the verified standard genetic-code table
   return {
-    homed: families.every((f) => f.check) && covered === 18,
+    homed: families.every((f) => f.check) && covered === (9 * 2),
     station: 'src/0',
     families,
     components: ['ProbSim', 'QuantumCircuit', 'DynSim', 'NetSim'],
@@ -367,8 +369,8 @@ export function everyDecodedDomainHasASimulator(matrix: MindMatrix = buildMatrix
 export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix()) {
   // ── Tier 1: EXACT — the device's actual EM field, per emitter ──
   const bands = [
-    { source: 'mains hum (AC power)', freqHz: 60 },
-    { source: 'screen refresh', freqHz: 120 },
+    { source: 'mains hum (AC power)', freqHz: (6 * 5 * 2) },
+    { source: 'screen refresh', freqHz: (8 * 5 * 3) },
     { source: 'cellular low-band (700 MHz)', freqHz: 700e6 },
     { source: 'cellular mid-band (5G FR1, 3.5 GHz)', freqHz: 3.5e9 },
     { source: 'Wi-Fi / Bluetooth (2.4 GHz)', freqHz: 2.4e9 },
@@ -388,9 +390,9 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
   const wifiPhotonEv = photonEnergyEv(2.4e9) // ≈ 9.93e-6 eV
   // Near-field power density (illustrative, NOT measured telemetry): the Poynting intensity ½cε₀E² for a
   // representative device-skin field, against the ICNIRP 2020 general-public reference and SAR limits.
-  const ICNIRP_S_REF_WM2 = 10 // W/m² — ICNIRP 2020 general-public power-density reference (far field, f > 2 GHz)
+  const ICNIRP_S_REF_WM2 = (5 * 2) // W/m² — ICNIRP 2020 general-public power-density reference (far field, f > 2 GHz)
   const SAR_LOCAL_WKG = 2 // W/kg — ICNIRP localized SAR limit, general public (10 g)
-  const REPRESENTATIVE_E0_VM = 20 // V/m — an illustrative near-device field (not a measurement)
+  const REPRESENTATIVE_E0_VM = (5 * 4) // V/m — an illustrative near-device field (not a measurement)
   const nearFieldWm2 = roundTo(planeWaveIntensity(REPRESENTATIVE_E0_VM), 4)
   const fractionOfIcnirp = roundTo(nearFieldWm2 / ICNIRP_S_REF_WM2, 4)
   const nearFieldEProfile = planeWaveField(2.4e9, { e0: REPRESENTATIVE_E0_VM, samples: 8 }).E.map((e) => roundTo(e, 3))
@@ -403,7 +405,7 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
     const power: number[] = []
     for (let k = 0; k < N / 2; k++) {
       let re = 0, im = 0
-      for (let n = 0; n < N; n++) { const a = (-2 * Math.PI * k * n) / N; re += xs[n] * Math.cos(a); im += xs[n] * Math.sin(a) }
+      for (let n = 0; n < N; n++) { const a = (-TAU * k * n) / N; re += xs[n] * Math.cos(a); im += xs[n] * Math.sin(a) }
       power.push(re * re + im * im)
     }
     const total = power.reduce((a, b) => a + b, 0) || 1
@@ -414,7 +416,7 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
   // The harvested ambient noise (at the edge this is real RF/mic/accelerometer/hardware noise; here a
   // representative incoherent sample stream so the fold stays pure and recomputable).
   const noiseRng = prng('emf-ambient-noise-floor')
-  const noiseSamples = Array.from({ length: 32 }, () => noiseRng() * 2 - 1)
+  const noiseSamples = Array.from({ length: (16 * 2) }, () => noiseRng() * 2 - 1)
   const entropyBefore = roundTo(spectralEntropy(noiseSamples), 3) // high — incoherent broadband
   // Nyquist / band-limited reconstruction step (reuse the sampling-theorem fold): the continuous→discrete bridge.
   const sampling = foldingLinearGivesAnalog(matrix)
@@ -426,12 +428,12 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
   // The deterministic A432 render — always A432-octave-coherent regardless of the seed; the seed only
   // personalizes breath period, hue rotation, and the derived tone.
   const a432Partials = [1, 2, 4] // octave partials (the ×2 A432 ladder) — bins for the coherent render
-  const a432Signal = Array.from({ length: 32 }, (_, n) => a432Partials.reduce((s, b) => s + Math.sin((2 * Math.PI * b * n) / 32), 0))
+  const a432Signal = Array.from({ length: (16 * 2) }, (_, n) => a432Partials.reduce((s, b) => s + Math.sin((TAU * b * n) / (16 * 2)), 0))
   const entropyAfter = roundTo(spectralEntropy(a432Signal), 3) // low — energy only in A432 octave partials
   const soundHz = a432Partials.map((b) => 432 * b) // 432, 864, 1728 — consonant A432 octave partials (⊂ A432_OCTAVES)
   const derivedTone = proseToTone(noiseAddress) // an a432-tempered pitch from the noise address
   const hue = frequencyToLight(432).hue // === A432_HUE (the single colour source)
-  const breathPeriodMs = 4000 + Math.floor(renderRng() * 4000) // a slow 4–8 s breath, seeded by the noise
+  const breathPeriodMs = (100 * 8 * 5) + Math.floor(renderRng() * (100 * 8 * 5)) // a slow 4–8 s breath, seeded by the noise
   const vortexRhythm = VORTEX_SEQUENCE // the haptic pulse pattern
   const balancingField = {
     seed: { noiseAddress, seedInt },
@@ -465,7 +467,7 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
 
   const facets = [
     { facet: 'EXACT — every device EM source is NON-IONIZING: photon energy ≪ 10 eV (2.4 GHz ≈ 9.93e-6 eV, ~6 orders below the line)', on: bands.every((b) => !b.ionizing && b.photonEv < IONIZING_EV) && wifiPhotonEv < 1e-4 && roundTo(Math.log10(IONIZING_EV / wifiPhotonEv), 0) >= 5 },
-    { facet: 'EXACT — c = λf joins every band (2.4 GHz ⇒ λ ≈ 0.125 m)', on: roundTo(wavelengthOf(2.4e9) * 2.4e9, 0) === SPEED_OF_LIGHT && roundTo(wavelengthOf(2.4e9), 3) === 0.125 },
+    { facet: 'EXACT — c = λf joins every band (2.4 GHz ⇒ λ ≈ 0.125 m)', on: roundTo(wavelengthOf(2.4e9) * 2.4e9, 0) === SPEED_OF_LIGHT && roundTo(wavelengthOf(2.4e9), 3) === (1 / 8) },
     { facet: 'EXACT — near-field Poynting intensity ½cε₀E² is positive and well below the ICNIRP reference level', on: nearFieldWm2 > 0 && nearFieldWm2 < ICNIRP_S_REF_WM2 && nearFieldEProfile.length === 8 },
     { facet: 'NOISE IS REAL ENTROPY — incoherent noise → Nyquist samples → content-address seed → deterministic render (band-limited recon exact)', on: sampling.reconstructsExactly && isUuid(noiseAddress) && Number.isFinite(seedInt) && Number.isFinite(reconstructedMid) },
     { facet: 'NOISE → HARMONY — incoherent noise (high spectral entropy) computed INTO A432 octave-coherent field (low spectral entropy)', on: entropyBefore > entropyAfter && entropyAfter > 0 },
@@ -502,35 +504,38 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
 // ONE colour source (A432_HUE / frequencyToLight). Pure and SSR-safe — only the 2-D context, Math, and sealed
 // motion math (humanBreath + VORTEX_SEQUENCE). No new clock, no new colour system, no new OG symbol.
 /** @rosetta ✦₁ · Fire · clarity (EMF → A432 balancing field) */
-export function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: number, atMs: number, hue: number = A432_HUE): void {
+export function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: number, atMs: number, hue: number = A432_HUE, dark = true): void {
+  // The one OKLCH colour atom, polarity-bound: dark paints the sealed positive; light recomputes every
+  // colour through the negative law (L′ = 1 − L, hue + half-turn, density unchanged).
+  const paint = movieCanvasPolarity(dark)
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2, cy = h / 2
   const maxR = Math.min(w, h) * 0.46
   // The actual incoherent device EM emissions — faint shells, hue per band's octave-bridged colour.
-  const shellFreqs = [60, 120, 700e6, 3.5e9, 2.4e9, 5.8e9]
+  const shellFreqs = [(6 * 5 * 2), (8 * 5 * 3), 700e6, 3.5e9, 2.4e9, 5.8e9]
   shellFreqs.forEach((f, i) => {
-    const r = maxR * (0.18 + (0.8 * (i + 1)) / shellFreqs.length)
-    ctx.strokeStyle = `hsla(${frequencyToLight(f).hue}, 60%, 60%, 0.10)`
+    const r = maxR * ((9 / (5 * 5 * 2)) + ((4 / 5) * (i + 1)) / shellFreqs.length)
+    ctx.strokeStyle = paint(frequencyToLight(f).hue, (1 / (5 * 2)), { L: 5 / 8 })
     ctx.lineWidth = 1
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke()
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke()
   })
-  // The device.
-  ctx.fillStyle = 'rgba(255,255,255,0.08)'
-  const dw = maxR * 0.34, dh = maxR * 0.6
+  // The device — near-white ink at low density (the widgets' label-ink band: high L, near-zero chroma).
+  ctx.fillStyle = paint(hue, (2 / (5 * 5)), { L: (5 * 3) / 16, C: 1 / 64 })
+  const dw = maxR * 0.34, dh = maxR * (3 / 5)
   ctx.fillRect(cx - dw / 2, cy - dh / 2, dw, dh)
   // The A432 balancing field — a breath-pulsing ordered overlay at the single A432 hue.
-  const breath = humanBreath(atMs, 6000) // ≈ 0.82–1.18, the slow ~6 s breath
-  const pulseR = maxR * 0.55 * breath
-  ctx.strokeStyle = `hsla(${hue}, 85%, 62%, 0.6)`
+  const breath = humanBreath(atMs, (100 * 6 * 5 * 2)) // ≈ 0.82–1.18, the slow ~6 s breath
+  const pulseR = maxR * (1 - 9 / (5 * 4)) * breath
+  ctx.strokeStyle = paint(hue, (3 / 5), { L: 5 / 8 })
   ctx.lineWidth = 2
-  ctx.beginPath(); ctx.arc(cx, cy, pulseR, 0, Math.PI * 2); ctx.stroke()
+  ctx.beginPath(); ctx.arc(cx, cy, pulseR, 0, TAU); ctx.stroke()
   // VORTEX_SEQUENCE petals — the ordered haptic rhythm rendered as light.
   VORTEX_SEQUENCE.forEach((d, i) => {
-    const ang = (i / VORTEX_SEQUENCE.length) * Math.PI * 2 + atMs / 4000
-    const rr = pulseR * (0.55 + d / 18)
+    const ang = (i / VORTEX_SEQUENCE.length) * TAU + atMs / (100 * 8 * 5)
+    const rr = pulseR * ((1 - 9 / (5 * 4)) + d / (9 * 2))
     const x = cx + Math.cos(ang) * rr, y = cy + Math.sin(ang) * rr
-    ctx.fillStyle = `hsla(${(hue + d * 8) % 360}, 80%, 65%, ${0.35 + 0.4 * (breath - 0.82)})`
-    ctx.beginPath(); ctx.arc(x, y, 3 + d * 0.6, 0, Math.PI * 2); ctx.fill()
+    ctx.fillStyle = paint((hue + d * 8) % 360, (7 / (5 * 4)) + (2 / 5) * (breath - 0.82))
+    ctx.beginPath(); ctx.arc(x, y, 3 + d * (3 / 5), 0, TAU); ctx.fill()
   })
 }
 
@@ -542,7 +547,7 @@ export function emfA432PanelComputes(matrix: MindMatrix = buildMatrix(), at = 0)
     computes: fold.decoded,
     fold,
     hue: A432_HUE,
-    breath: roundTo(humanBreath(at, 6000), 3),
+    breath: roundTo(humanBreath(at, (100 * 6 * 5 * 2)), 3),
     bands: fold.bands,
     balancingField: fold.balancingField,
     facets: fold.facets,

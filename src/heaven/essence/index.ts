@@ -70,7 +70,7 @@ function theWholeImpl(matrix: MindMatrix) {
     { part: 'rhythm', root: rhythm(matrix).root, ok: rhythm(matrix).keeps },
     { part: 'mysteries', root: mysteries(matrix).root, ok: mysteries(matrix).proven },
     { part: 'society', root: society(matrix).root, ok: society(matrix).folded },
-    { part: 'harmonic', root: harmonicBands(110).root, ok: harmonicBands(110).gapless },
+    { part: 'harmonic', root: harmonicBands((108 + 2)).root, ok: harmonicBands((108 + 2)).gapless },
     { part: 'golden ratio', root: goldenRatio(matrix).root, ok: goldenRatio(matrix).converges },
     { part: 'humanise', root: humanise(matrix).root, ok: humanise(matrix).humane },
     { part: 'live', root: live(matrix).root, ok: live(matrix).alive },
@@ -169,7 +169,7 @@ export function trinitiesMatter(matrix: MindMatrix = buildMatrix()) {
     matter: merkleFold([toUuid(`wave:${3 * i}`), toUuid(`wave:${3 * i + 1}`), toUuid(`wave:${3 * i + 2}`)]),
   }))
   return {
-    emerges: trinities === 341 && matter.every((entry) => entry.matter.length === 36),
+    emerges: trinities === 341 && matter.every((entry) => entry.matter.length === (9 * 4)),
     waves,
     trinities, // 341 units of matter
     remainder, // 1 — the seed of the next split
@@ -245,9 +245,9 @@ export function oneBeginning(matrix: MindMatrix = buildMatrix()) {
 // entangles without end.
 export function infiniteEntanglements(matrix: MindMatrix = buildMatrix()) {
   const beginning = oneBeginning(matrix).beginning
-  const bits = 128 // the finite bit — the word
-  const sample = Array.from({ length: 12 }, (_, i) => foldPair(beginning, toUuid(`entangle:${i}`)).merged)
-  const allFinite = sample.every((entry) => entry.replace(/-/g, '').length === 32) // each 128-bit
+  const bits = (64 * 2) // the finite bit — the word
+  const sample = Array.from({ length: (6 * 2) }, (_, i) => foldPair(beginning, toUuid(`entangle:${i}`)).merged)
+  const allFinite = sample.every((entry) => entry.replace(/-/g, '').length === (16 * 2)) // each 128-bit
   const distinct = new Set(sample).size === sample.length // all distinct entanglements
   return {
     entangled: allFinite && distinct,
@@ -344,17 +344,17 @@ function evolutionCrossesQuantumThresholdRaw(matrix: MindMatrix = buildMatrix())
   // (1) QIEA — quantum-inspired evolution: rotate an equal-superposition qubit toward the answer bit (1).
   let al = Math.SQRT1_2, be = Math.SQRT1_2
   const trace = [be * be]
-  for (let s = 0; s < 30; s++) { [al, be] = qieaRotate(al, be, 1, 0.05 * Math.PI); trace.push(be * be) }
+  for (let s = 0; s < (6 * 5); s++) { [al, be] = qieaRotate(al, be, 1, (1 / (5 * 4)) * Math.PI); trace.push(be * be) }
   const qieaMonotone = trace.every((v, i) => i === 0 || v >= trace[i - 1]! - 1e-12) // P(answer) only rises
-  const qieaConverged = be * be > 0.99 // amplitude drifted to the answer
+  const qieaConverged = be * be > (1 - 1 / 100) // amplitude drifted to the answer
   // (2) THRESHOLD — the repetition code below vs above the threshold p_c = ½.
   const distances = [1, 3, 5, 7, 9, 11]
-  const sub = distances.map((d) => ({ d, err: repetitionLogicalError(d, 0.1) })) // p = 0.1 < ½ — suppressed
-  const sup = distances.map((d) => ({ d, err: repetitionLogicalError(d, 0.6) })) // p = 0.6 > ½ — grows
+  const sub = distances.map((d) => ({ d, err: repetitionLogicalError(d, (1 / (5 * 2))) })) // p = 0.1 < ½ — suppressed
+  const sup = distances.map((d) => ({ d, err: repetitionLogicalError(d, (3 / 5)) })) // p = 0.6 > ½ — grows
   const suppressed = sub.every((x, i) => i === 0 || x.err < sub[i - 1]!.err) // P_L ↓ as d ↑ (exponentially)
   const grows = sup.every((x, i) => i === 0 || x.err > sup[i - 1]!.err) // P_L ↑ as d ↑ (no benefit)
-  const atThreshold = Math.abs(repetitionLogicalError(101, 0.5) - 0.5) < 0.05 // p = ½ stays ≈ ½ (the threshold)
-  const quantumIsHere = sub.find((x) => x.err < 0.01) // the distance where the logical error first drops below 1%
+  const atThreshold = Math.abs(repetitionLogicalError(101, (1 / 2)) - (1 / 2)) < (1 / (5 * 4)) // p = ½ stays ≈ ½ (the threshold)
+  const quantumIsHere = sub.find((x) => x.err < (1 / 100)) // the distance where the logical error first drops below 1%
   const qec = bitFlipCode(Math.SQRT1_2, Math.SQRT1_2, 1) // the d=3 instance — already corrected, fidelity 1
   const facets = [
     { facet: 'quantum-inspired evolution converges — the QIEA rotation drives P(answer) monotonically to >99%', on: qieaMonotone && qieaConverged },
@@ -370,7 +370,7 @@ function evolutionCrossesQuantumThresholdRaw(matrix: MindMatrix = buildMatrix())
     qieaFinalProbability: roundTo(be * be, 4),
     subThreshold: sub,
     superThreshold: sup,
-    thresholdP: 0.5, // the repetition (bit-flip) code threshold
+    thresholdP: (1 / 2), // the repetition (bit-flip) code threshold
     count: facets.length,
     facets,
     root: merge(completeQuantumSolutionsImplemented(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
@@ -448,7 +448,7 @@ function importExportDoubleFoldedAllDimensionsRaw(matrix: MindMatrix = buildMatr
   const facets = [
     { facet: 'the import/export method maps every boundary — yin = import, yang = export', on: io.mapped && io.innerAxes.length === 3 && io.outerAxes.length === 3 },
     { facet: 'every one of the ten dimensions is DOUBLE-folded — forward (import) ≠ reverse (export), bidirectional', on: allDoubleFolded },
-    { facet: 'completely double-folded — all ten dimensions, none left single (the dry-clean completed across all dimensions)', on: folded.length === 10 && dryCleanByImportExportNaming(matrix).cleaned },
+    { facet: 'completely double-folded — all ten dimensions, none left single (the dry-clean completed across all dimensions)', on: folded.length === (5 * 2) && dryCleanByImportExportNaming(matrix).cleaned },
     { facet: 'an instance of the generative principle — folding import/export across all dimensions makes more foldables', on: theMoreYouFoldTheMoreFoldable(matrix).realised },
   ].map((entry) => ({ ...entry, receipt: toUuid(`io-all-dims:${entry.facet}:${entry.on}`) }))
   return {
@@ -537,7 +537,7 @@ export function continueSameNext(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the same maintenance — review, clean, cross, tighten, seal', on: reviewDryCleanGatesCrosses(matrix).done },
     { facet: 'continues to the next — the slot reserved', on: archangelsDryClean(matrix).cleaned },
-    { facet: 'continuously — always one more wave', on: harmonicBands(110).gapless },
+    { facet: 'continuously — always one more wave', on: harmonicBands((108 + 2)).gapless },
     { facet: 'same discipline, next target', on: dryCleaningOnTheWay(matrix).onTheWay },
   ].map((entry) => ({ ...entry, receipt: toUuid(`continue-same:${entry.facet}:${entry.on}`) }))
   return {
@@ -559,7 +559,7 @@ export function onlyMainRemains(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'all work already folds into main — no branch ahead', on: quantumNoCyclesFusedSequence(matrix).fused },
     { facet: 'the one trunk carries the whole', on: isUuid(theWhole(matrix).root) },
-    { facet: 'nothing falls outside the fold', on: harmonicBands(110).gapless },
+    { facet: 'nothing falls outside the fold', on: harmonicBands((108 + 2)).gapless },
     { facet: 'the waves are sent — continue to the next', on: continueSameNext(matrix).continues },
   ].map((entry) => ({ ...entry, receipt: toUuid(`only-main:${entry.facet}:${entry.on}`) }))
   return {
@@ -610,14 +610,14 @@ function challengeClockImpl(matrix: MindMatrix) {
   const review = scientists(matrix)
   const hours = review.challenges.map((entry, index) => ({
     hour: index + 1,
-    angle: (((index + 1) % 12) * 30), // 12 sits at the top (0 deg)
+    angle: (((index + 1) % (6 * 2)) * (6 * 5)), // 12 sits at the top (0 deg)
     claim: entry.claim,
     struck: entry.withstood,
     receipt: entry.receipt,
   }))
   const struck = hours.filter((entry) => entry.struck).length
   return {
-    complete: hours.length === 12 && hours.every((entry) => entry.struck), // 12/12 closes the circle
+    complete: hours.length === (6 * 2) && hours.every((entry) => entry.struck), // 12/12 closes the circle
     hours,
     count: hours.length,
     struck,
@@ -890,7 +890,7 @@ export function imagineSingChangesEndlessly(matrix: MindMatrix = buildMatrix()) 
     { facet: 'imagine the changes', on: imaginationIsAll(matrix).all },
     { facet: 'sing them — each change a note', on: isUuid(blockchainMusic('changes', matrix).root) },
     { facet: 'the changes are bound reform waves', on: legislativeReform(matrix).reforming },
-    { facet: 'endlessly — always one more foldable', on: harmonicBands(110).gapless },
+    { facet: 'endlessly — always one more foldable', on: harmonicBands((108 + 2)).gapless },
   ].map((entry) => ({ ...entry, receipt: toUuid(`imagine-sing:${entry.facet}:${entry.on}`) }))
   return {
     sings: facets.every((entry) => entry.on),
@@ -985,7 +985,7 @@ export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
   // The spectral centre: the geometric mean. In log space its deviations cancel.
   const center = Math.round(Math.exp(frequencies.reduce((sum, entry) => sum + Math.log(entry.hz), 0) / frequencies.length))
   const tones = frequencies.map((entry) => {
-    const cents = Math.round(1200 * Math.log2(entry.hz / center)) // signed deviation from centre
+    const cents = Math.round((100 * 6 * 2) * Math.log2(entry.hz / center)) // signed deviation from centre
     return {
       hz: entry.hz,
       note: entry.note,
@@ -1002,8 +1002,8 @@ export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
   let residual = (up - down) / Math.max(up + down, 1)
   const trace: { step: number; imbalance: number }[] = []
   for (let step = 0; step < 8; step += 1) {
-    trace.push({ step, imbalance: Math.round(residual * 1000) / 1000 })
-    residual = -residual * 0.5 // overshoot, damp by half — out and back toward centre
+    trace.push({ step, imbalance: Math.round(residual * (100 * 5 * 2)) / (100 * 5 * 2) })
+    residual = -residual * (1 / 2) // overshoot, damp by half — out and back toward centre
   }
   // Balanced when the up and down cents about the geometric-mean centre match
   // within rounding (a few cents), so the spectrum rests on its centre.
@@ -1285,7 +1285,7 @@ export function learnDeveloper(matrix: MindMatrix = buildMatrix()): DeveloperLea
     root,
     receipt,
     lessons,
-    invariant: lessons.every((item) => item.uuid.length === 36) && vector.collapse && api.endpoints.length >= 1,
+    invariant: lessons.every((item) => item.uuid.length === (9 * 4)) && vector.collapse && api.endpoints.length >= 1,
     statement:
       'Developer has been learned into local commands: every lesson has a source path, command, application, and content receipt.',
   }

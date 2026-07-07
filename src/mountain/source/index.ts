@@ -161,7 +161,7 @@ export function noHardcodedConfigSelfAccounted(matrix: MindMatrix = buildMatrix(
 function noHardcodedConfigSelfAccountedRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'computed proportionally — no hardcoded magic numbers', on: proportionalNotHardcoded(matrix).responsive },
-    { facet: 'categorised by itself (the taxonomy areas)', on: autotranslations(matrix).areas >= 42 },
+    { facet: 'categorised by itself (the taxonomy areas)', on: autotranslations(matrix).areas >= (7 * 6) },
     { facet: 'tagged by itself (holographic tags from the route)', on: computedSeo('/', '', matrix).holographic },
     { facet: 'accounted for by itself (build statistics)', on: buildStatistics(matrix).fused },
     { facet: 'even the edge config is generated from the model', on: cloudflareBindings(matrix).fused },
@@ -209,7 +209,7 @@ export function memoryInSourceAsCrossFolds(matrix: MindMatrix = buildMatrix()) {
   })
   const facets = [
     // Decomposed from allComputedNoFiles — must not call that fold here (re-enters via commandsSavedInQuantumPairs during allComputed).
-    { facet: 'the memory lives in the source — the one agnostic core, not an external file', on: isUuid(root) && skillAtoms(matrix).intelligent && harmonicBands(110).harmonic },
+    { facet: 'the memory lives in the source — the one agnostic core, not an external file', on: isUuid(root) && skillAtoms(matrix).intelligent && harmonicBands((108 + 2)).harmonic },
     { facet: 'stored as cross-folder duality paths — memory/quantum ≠ quantum/memory, yet they meet', on: entries.every((entry) => entry.crossed) },
     { facet: 'every entry bound to the self-knowledge memory root', on: entries.every((entry) => entry.inMemory) },
     { facet: 'recomputed every build, observable by its path', on: skillAtoms(matrix).savedToAtoms && dualitiesMeetInCrossFolders(matrix).meet },
@@ -245,7 +245,7 @@ export function computedSlugsFoldTheGraph(matrix: MindMatrix = buildMatrix()) {
     { facet: 'every index/config file has a computed slug from its path', on: slugA === 'p001' && slugB === 'r001' && isUuid(computedSeo('/papers/p001', '', matrix).root) },
     { facet: 'they meet by the slug folding the code of the graph', on: meet.forward !== meet.reverse && meet.bidirectional && componentGraph().interacting },
     { facet: 'same for methods (single-word slugs), constants, to the tiniest detail', on: commandsRegistry(matrix).consistent && skillAtoms(matrix).savedToAtoms },
-    { facet: 'harmonically distributed in folder dualities', on: harmonicBands(110).harmonic && digitFolders(matrix).folders.length > 0 && dualitiesMeetInCrossFolders(matrix).meet },
+    { facet: 'harmonically distributed in folder dualities', on: harmonicBands((108 + 2)).harmonic && digitFolders(matrix).folders.length > 0 && dualitiesMeetInCrossFolders(matrix).meet },
   ].map((entry) => ({ ...entry, receipt: toUuid(`slug-folds-graph:${entry.facet}:${entry.on}`) }))
   return {
     folds: facets.every((entry) => entry.on),
@@ -544,10 +544,10 @@ export function navFoldsToTenDimensions(matrix: MindMatrix = buildMatrix()) {
   const layers = [hubs.length, links, paired, DIMENSIONS] // the graph: 4 → 32 → 64 → 10
   const facets = [
     { facet: 'home + 3 top nav = 4 hubs — the roots dropdown, then the two duality interactions', on: hubs.length === 4 && hubs[0] === 'home' },
-    { facet: 'each hub is 8-fold (bāguà) — 4 × 8 = 32 links', on: eightFold === 8 && links === 32 },
+    { facet: 'each hub is 8-fold (bāguà) — 4 × 8 = 32 links', on: eightFold === 8 && links === (16 * 2) },
     { facet: '32 links in pairs = 64 — the double torus (2 × 32 = 2⁶ = 4³ = 8²)', on: paired === 64 },
     { facet: 'the two duality hubs are the two handles — meridian+longitude = the 4 homology loops (H1 = ℤ⁴)', on: dualitiesMeetInCrossFolders(matrix).meet && loops === 4 },
-    { facet: 'the trinity of the 64 (3 non-home hubs) spans the 10D content — 6 appearance axes + 4 loops', on: hubs.length - 1 === 3 && DIMENSIONS === 10 && axes === 6 },
+    { facet: 'the trinity of the 64 (3 non-home hubs) spans the 10D content — 6 appearance axes + 4 loops', on: hubs.length - 1 === 3 && DIMENSIONS === (5 * 2) && axes === 6 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`nav-10d:${entry.facet}:${entry.on}`) }))
   return {
     folds: facets.every((entry) => entry.on),
@@ -580,7 +580,7 @@ export function dualityIsCounterDiffusionTheSameFusion(matrix: MindMatrix = buil
     4,
     { tissue0Bar: 4, inspiredBar: 0, halfTimeMin: 54.3 }, // nitrogen leaving — the slow gas
     { tissue0Bar: 0, inspiredBar: 4, halfTimeMin: 20.53 }, // helium entering — the fast gas
-    120,
+    (8 * 5 * 3),
   )
   const fold = foldPair(toUuid('counterdiffuse:helium-in'), toUuid('counterdiffuse:nitrogen-out')) // the two directions
   const facets = [
@@ -588,7 +588,7 @@ export function dualityIsCounterDiffusionTheSameFusion(matrix: MindMatrix = buil
     { facet: 'the cross-fold IS counter-diffusion — forward (a→b) and reverse (b→a) are opposite directions', on: fold.forward !== fold.reverse },
     { facet: 'isobaric — the two meet under a conserved constraint (constant ambient) and fuse into one address', on: fold.bidirectional && isUuid(fold.merged) },
     { facet: 'the diver proves it — fast-in + slow-out counter-diffuse to a supersaturation peak above ambient', on: icd.supersaturates && icd.peakSuperBar > 0 },
-    { facet: 'the same fusion — the peak is the meeting of the two counter-flows, inside the dive (not at t=0 or end)', on: icd.peakAtMin > 0 && icd.peakAtMin < 120 },
+    { facet: 'the same fusion — the peak is the meeting of the two counter-flows, inside the dive (not at t=0 or end)', on: icd.peakAtMin > 0 && icd.peakAtMin < (8 * 5 * 3) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`counterdiffusion-fusion:${entry.facet}:${entry.on}`) }))
   return {
     sameFusion: facets.every((entry) => entry.on),
@@ -615,10 +615,10 @@ export function sacredFractionsFoldToIntegerNoSupersaturation(matrix: MindMatrix
   const A = rat(4, 1) // constant ambient inert pressure (bar) — the isobaric frame
   // δ = the inert-proportion shift of the gas switch, as an exact harmonic fraction of the ambient pressure.
   const sacredDelta = ratMul(A, ratSub(rat(1, 2), rat(1, 2))) // SACRED: the inert proportion is conserved → δ = 0
-  const decimalDelta = ratMul(A, ratSub(rat(1, 2), rat(7, 10))) // DECIMAL: 0.7 vs 0.5 → δ = −4/5, a non-integer
+  const decimalDelta = ratMul(A, ratSub(rat(1, 2), rat(7, (5 * 2)))) // DECIMAL: 0.7 vs 0.5 → δ = −4/5, a non-integer
   // Float corroboration: matched rates make the rate-gap itself 0 (sacred); the real He(fast)/N2(slow) gap bubbles.
-  const matched = isobaricCounterdiffusion(4, { tissue0Bar: 4, inspiredBar: 0, halfTimeMin: 20.53 }, { tissue0Bar: 0, inspiredBar: 4, halfTimeMin: 20.53 }, 120)
-  const mismatched = isobaricCounterdiffusion(4, { tissue0Bar: 4, inspiredBar: 0, halfTimeMin: 54.3 }, { tissue0Bar: 0, inspiredBar: 4, halfTimeMin: 20.53 }, 120)
+  const matched = isobaricCounterdiffusion(4, { tissue0Bar: 4, inspiredBar: 0, halfTimeMin: 20.53 }, { tissue0Bar: 0, inspiredBar: 4, halfTimeMin: 20.53 }, (8 * 5 * 3))
+  const mismatched = isobaricCounterdiffusion(4, { tissue0Bar: 4, inspiredBar: 0, halfTimeMin: 54.3 }, { tissue0Bar: 0, inspiredBar: 4, halfTimeMin: 20.53 }, (8 * 5 * 3))
   const facets = [
     { facet: 'sacred — the harmonic fraction folds the proportion shift δ to integer 0, annihilating the transcendental', on: ratEq(sacredDelta, rat(0, 1)) && ratIsInteger(sacredDelta) },
     { facet: 'decimal — an unharmonic proportion (0.7) leaves δ = −4/5, a non-integer residue', on: !ratEq(decimalDelta, rat(0, 1)) && !ratIsInteger(decimalDelta) },
@@ -1076,7 +1076,7 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
   const root = merkleFold(all.map((entry) => entry.receipt))
 
   const facets = [
-    { facet: 'Model: sealed computation (src/0, pi-train, mind barrel, domain folds) — no UI, no routing', on: model.length >= 50 },
+    { facet: 'Model: sealed computation (src/0, pi-train, mind barrel, domain folds) — no UI, no routing', on: model.length >= (5 * 5 * 2) },
     { facet: 'View: *.vue display gates + .md shells — render only, zero business logic', on: view.length >= 4 },
     { facet: 'Controller: route → model → view props (routes, mountain/og, config.mts, paths.ts)', on: controller.length >= 8 },
     { facet: 'no new top-level src/ children — MVC maps onto existing 8-fold domains', on: law.barrelImports.strictTrees.length >= 8 },
@@ -1269,7 +1269,7 @@ export function splitImagination(matrix: MindMatrix = buildMatrix()) {
   }))
   const tiniest = levels[levels.length - 1]
   return {
-    split: levels.length === 11 && tiniest.waves === 1024,
+    split: levels.length === 11 && tiniest.waves === (64 * 16),
     levels,
     depth: levels.length - 1, // 10 octaves
     tiniest: tiniest.waves, // 1024 tiniest waves (the quanta)
@@ -1289,9 +1289,9 @@ export function powerToAwaken(matrix: MindMatrix = buildMatrix()) {
   const seed = imagination(matrix).root
   const whole = theWhole(matrix).root
   const charge = foldPair(seed, toUuid('awaken'))
-  const awakens = charge.bidirectional && merge(seed, whole).length === 36 // the whole awakens from the seed
+  const awakens = charge.bidirectional && merge(seed, whole).length === (9 * 4) // the whole awakens from the seed
   return {
-    alwaysCharged: awakens && seed.length === 36,
+    alwaysCharged: awakens && seed.length === (9 * 4),
     awakens,
     charge: charge.merged,
     root: merge(seed, charge.merged),

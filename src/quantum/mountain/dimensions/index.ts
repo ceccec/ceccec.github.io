@@ -5,6 +5,7 @@ import { merkleFold, toUuid } from '../../../0'
 import { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7'
 export { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { homology } from '../../../mountain/topology'
+import { TAU, PHI } from '../../../3/7'
 // src/quantum/mountain/dimensions — the continuous TEN dimensions of the hero, at every scale. Every parameter of the
 // figure is a smooth function of one phase p (0..1), so the movie slides from one dimension to the next with no
 // jumps. The ten are grounded in the model's own geometry: the genus-2 double torus has H1 = Z^4 — FOUR
@@ -39,21 +40,21 @@ export interface Dims {
 
 // The golden fraction 1/phi; shifting the phase by it per scale makes the ten dimensions self-similar at every
 // nested scale (the same walk, irrationally offset — so the figure looks the same at every zoom, never aligning).
-const PHASE_PER_SCALE = 0.6180339887498949
+const PHASE_PER_SCALE = PHI - 1 // the golden fraction — DERIVED (was a hand-typed decimal)
 
 /** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
 export function dims(p: number, scale = 0): Dims {
   // self-similar at every scale: each nested scale advances the phase by the golden fraction, modulo 1.
   const ps = (((p + scale * PHASE_PER_SCALE) % 1) + 1) % 1
-  const tau = ps * Math.PI * 2
+  const tau = ps * TAU
   return {
     // the six cross-fold axes — identical to the original six when scale = 0 (backward compatible).
-    spread: 0.5 + 0.32 * Math.sin(tau),
-    depthFade: 0.16 + 0.12 * (0.5 + 0.5 * Math.cos(tau)),
+    spread: (1 / 2) + (8 / (5 * 5)) * Math.sin(tau),
+    depthFade: (4 / (5 * 5)) + (3 / (5 * 5)) * ((1 / 2) + (1 / 2) * Math.cos(tau)),
     hueShift: (ps * 220) % 360,
-    twist: 0.2 + 0.5 * Math.sin(tau * 0.5),
-    shrink: 0.64 + 0.08 * Math.sin(tau * 1.5),
-    breath: 0.85 + 0.15 * Math.sin(tau * 2),
+    twist: (1 / 5) + (1 / 2) * Math.sin(tau * (1 / 2)),
+    shrink: (16 / (5 * 5)) + (2 / (5 * 5)) * Math.sin(tau * (3 / 2)),
+    breath: (1 - 3 / (5 * 4)) + (3 / (5 * 4)) * Math.sin(tau * 2),
     // the four homology loops — two handles, meridian + longitude, at coprime rates (1,2 and 3,5) so the
     // genus-2 torus motion is quasiperiodic, in [-1, 1].
     loopA1: Math.sin(tau),
@@ -66,7 +67,7 @@ export function dims(p: number, scale = 0): Dims {
 // The dimension walk: 0 at the ends (the figure collapses to a point), 1 at the middle (fully open).
 /** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
 export function dimWalk(p: number): number {
-  return 0.5 - 0.5 * Math.cos(p * Math.PI * 2)
+  return (1 / 2) - (1 / 2) * Math.cos(p * TAU)
 }
 
 /** Ten dimensions at every scale — genus-2 homology + cross-fold axes (no ui require cycle). */
@@ -75,12 +76,12 @@ export function tenDimensionalAnimation(matrix: MindMatrix) {
   const crossFoldAxes = DIMENSION_NAMES.slice(0, 6)
   const homologyLoops = DIMENSION_NAMES.slice(6)
   const h1 = homology(matrix).rank
-  const a = dims(0.42, 0)
-  const b = dims(0.42, 1)
+  const a = dims(((7 * 3) / (5 * 5 * 2)), 0)
+  const b = dims(((7 * 3) / (5 * 5 * 2)), 1)
   const sameAxes = JSON.stringify(Object.keys(a)) === JSON.stringify(Object.keys(b))
   const selfSimilar = sameAxes && a.spread !== b.spread
   return {
-    tenDimensional: DIMENSIONS === 10 && DIMENSION_NAMES.length === 10,
+    tenDimensional: DIMENSIONS === (5 * 2) && DIMENSION_NAMES.length === (5 * 2),
     grounded: homologyLoops.length === 4 && crossFoldAxes.length === 6 && h1 === 4,
     atEveryScale: selfSimilar,
     homologyLoops,

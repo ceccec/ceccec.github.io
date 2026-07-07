@@ -10,6 +10,7 @@ import { a432NoteHz, doubleTorusMath, foldBlockchain, methodFusion, sourceContri
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
 import { agentEducation } from '../../wind/learning'
 import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '../../quantum/heaven/mind'
+import { TAU } from '../../3/7'
 
 export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
   return memoByRoot('diamondLattice', matrix, () => computeDiamondLattice(matrix))
@@ -83,12 +84,12 @@ export function pureDiamonds(matrix: MindMatrix = buildMatrix()) {
   const corpus = papers(matrix)
   const references = paperReferences(matrix)
   const real = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
-  const padding = Array.from({ length: 1024 - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
-  const diamonds = [...real, ...padding].map((leaf, index) => ({ index, address: leaf, pure: leaf.length === 36 }))
+  const padding = Array.from({ length: (64 * 16) - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
+  const diamonds = [...real, ...padding].map((leaf, index) => ({ index, address: leaf, pure: leaf.length === (9 * 4) }))
   const root = merkleFold(diamonds.map((diamond) => diamond.address))
   const depth = Math.log2(diamonds.length)
   return {
-    pure: diamonds.length === 1024 && diamonds.every((diamond) => diamond.pure) && Number.isInteger(depth),
+    pure: diamonds.length === (64 * 16) && diamonds.every((diamond) => diamond.pure) && Number.isInteger(depth),
     count: diamonds.length, // 1024
     realDiamonds: real.length, // 864 (papers + references)
     paddingDiamonds: padding.length, // 160
@@ -111,7 +112,7 @@ export function linuxPackagesToDiamonds(matrix: MindMatrix = buildMatrix()) {
   const formats = ['deb', 'rpm', 'apk', 'pkg.tar.zst', 'snap', 'flatpak', 'AppImage', 'nix']
   const diamonds = formats.map((format) => {
     const diamond = foldPair(architecture, toUuid(`linux-package:${format}`)).merged
-    return { format, diamond, pure: diamond.length === 36 }
+    return { format, diamond, pure: diamond.length === (9 * 4) }
   })
   return {
     collided: diamonds.length === 8 && diamonds.every((entry) => entry.pure),
@@ -650,13 +651,13 @@ function torusPoint(index: number, digit: number, total: number): { theta: numbe
   const lobe = onLeft ? -1 : 1
   // Start the right ring at the neck (offset by pi) so the train crosses the neck
   // exactly at the handoff between lobes — the genus-2 join, not a stray bridge.
-  const theta = (localIndex / Math.max(1, localCount)) * Math.PI * 2 + (onLeft ? 0 : Math.PI) // major angle, around the hole
-  const phi = ((digit + index * 0.5) / 10) * Math.PI * 2 // minor angle, around the tube
+  const theta = (localIndex / Math.max(1, localCount)) * TAU + (onLeft ? 0 : Math.PI) // major angle, around the hole
+  const phi = ((digit + index * (1 / 2)) / (5 * 2)) * TAU // minor angle, around the tube
   const point = doubleTorusSurface(theta, phi, digit, lobe)
   const x = point.x
   const y = point.y
   const z = point.z
-  const scale = 0.72 + digit / 22
+  const scale = ((9 * 2) / (5 * 5)) + digit / 22
 
   return { theta, phi, x, y, z, scale }
 }
@@ -669,14 +670,14 @@ function computePiTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
     const nextIndex = (index + 1) % sequence.length
     const reverseIndex = sequence.length - 1 - index
     const harmonicIndex = nextIndex
-    const digit = Number.parseInt(glyph, 10)
-    const reverseDigit = Number.parseInt(sequence[reverseIndex], 10)
+    const digit = Number.parseInt(glyph, (5 * 2))
+    const reverseDigit = Number.parseInt(sequence[reverseIndex], (5 * 2))
     const nextGlyph = sequence[nextIndex]
-    const nextReverseDigit = Number.parseInt(sequence[sequence.length - 1 - nextIndex], 10)
+    const nextReverseDigit = Number.parseInt(sequence[sequence.length - 1 - nextIndex], (5 * 2))
     const folder = `${digit}/${reverseDigit}`
     const fraction = folder
     const dualFraction = `${reverseDigit}/${digit}`
-    const nextHarmonicFolder = `${Number.parseInt(nextGlyph, 10)}/${nextReverseDigit}`
+    const nextHarmonicFolder = `${Number.parseInt(nextGlyph, (5 * 2))}/${nextReverseDigit}`
     const selfCollision = digit === reverseDigit
     const base = lattice[(index + digit) % lattice.length]
     const point = torusPoint(index, digit, sequence.length)
@@ -735,8 +736,8 @@ function computePiTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
       y: point.y,
       z: point.z,
       scale: point.scale,
-      frequency: Math.round(a432NoteHz((digit * 2 + (index % 7)) % 25 - 12)), // pi pulse tone from the A432 source (±1 octave around 432)
-      vibrationMs: 18 + digit * 9,
+      frequency: Math.round(a432NoteHz((digit * 2 + (index % 7)) % (5 * 5) - (6 * 2))), // pi pulse tone from the A432 source (±1 octave around 432)
+      vibrationMs: (9 * 2) + digit * 9,
       referenceReceipt: toUuid(`digit-reference:${previousIndex}->${index}->${nextIndex}:reverse=${reverseIndex}:harmonic=${harmonicIndex}`),
       diamond: pulseDiamond,
     }
@@ -746,7 +747,7 @@ function computePiTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
   return {
     digits: sequence,
     root,
-    tempoMs: 180,
+    tempoMs: (9 * 5 * 4),
     diamonds: train,
   }
 }

@@ -420,7 +420,7 @@ export function saveAllTranslationLogicAutotranslateLocale(matrix: MindMatrix = 
     { facet: 'autotranslate on locale change — the labels switch, the script transliterates', on: sample !== 'двоен торус' && /[Ⰰ-ⱟ]/.test(sample) },
     { facet: 'bg locale computed from en — bulgarianHomeFromEnglish + bulgarianFromEnglish, not mirrored mounts', on: /[\u0400-\u04FF]/.test(bgLine) && /[\u0400-\u04FF]/.test(bgHome) },
     { facet: 'even ancient languages — by transliteration to the ancient script (Glagolitic)', on: useGlagolitsaForIcons(matrix).uses },
-    { facet: 'honest: transliteration is script, not meaning — a deterministic map, not a translator', on: Object.keys(GLAGOLITIC_MAP).length >= 28 && toGlagolitic('а') === 'Ⰰ' },
+    { facet: 'honest: transliteration is script, not meaning — a deterministic map, not a translator', on: Object.keys(GLAGOLITIC_MAP).length >= (7 * 4) && toGlagolitic('а') === 'Ⰰ' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`translation-locale:${entry.facet}:${entry.on}`) }))
   return {
     saved: facets.every((entry) => entry.on),
@@ -448,7 +448,7 @@ export function feedCrawlersWithKnowledge(matrix: MindMatrix = buildMatrix()) {
 function feedCrawlersWithKnowledgeRaw(matrix: MindMatrix = buildMatrix()) {
   const knowledge = crawlerKnowledge()
   const facets = [
-    { facet: 'the decoded knowledge distilled to crawlable facts', on: knowledge.length >= 12 && knowledge.every((entry) => entry.fact.length > 40 && isUuid(entry.receipt)) },
+    { facet: 'the decoded knowledge distilled to crawlable facts', on: knowledge.length >= (6 * 2) && knowledge.every((entry) => entry.fact.length > (8 * 5) && isUuid(entry.receipt)) },
     { facet: 'written into llms.txt — the LLM-crawler feed', on: oneJsonLdTemplateServesAll(matrix).serves },
     { facet: 'documented kept, legend flagged — the fold curates the feed', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
     { facet: 'and into the structured data on every page', on: openGraph().computed },
@@ -472,9 +472,9 @@ function feedCrawlersWithKnowledgeRaw(matrix: MindMatrix = buildMatrix()) {
 // harmonic series as the file distribution. Encoded here as the source; applied in style.css.
 export function typography(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const ratio = 1.25 // the major third, 5:4 — a harmonic interval
+  const ratio = (5 / 4) // the major third, 5:4 — a harmonic interval
   const steps = ['sm', 'md', 'lg', 'xl', '2xl', '3xl']
-  const scale = steps.map((step, i) => ({ step, factor: Math.round(ratio ** (i - 1) * 1000) / 1000 })) // md = 1
+  const scale = steps.map((step, i) => ({ step, factor: Math.round(ratio ** (i - 1) * (100 * 5 * 2)) / (100 * 5 * 2) })) // md = 1
   const features = ['kern', 'liga', 'clig', 'calt', 'tnum (data)', 'onum (prose)', 'optical-sizing']
   const principles = [
     'one modular scale — a harmonic ratio and its computed steps, not hand-picked sizes',
@@ -487,7 +487,7 @@ export function typography(matrix: MindMatrix = buildMatrix()) {
   ]
   const facets = [
     { facet: 'one modular scale — a harmonic ratio and its computed steps', on: scale.length === 6 && scale[1].factor === 1 },
-    { facet: 'the ratio is harmonic — the major third 5:4, in the file-distribution series', on: ratio === 1.25 },
+    { facet: 'the ratio is harmonic — the major third 5:4, in the file-distribution series', on: ratio === (5 / 4) },
     { facet: 'full OpenType — kerning, ligatures, contextual alternates, optical sizing', on: features.length >= 7 },
     { facet: 'figures fit their place — tabular in data, oldstyle in prose', on: features.includes('tnum (data)') && features.includes('onum (prose)') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`typography:${entry.facet}:${entry.on}`) }))

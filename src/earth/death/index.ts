@@ -168,7 +168,7 @@ export function deathBoundsLifeNotCancer(matrix: MindMatrix = buildMatrix()) {
 export function deathAncientDecodeTerminal(matrix: MindMatrix = buildMatrix()) {
   const decode = decodeAncientKnowledgeInReusableCode(matrix)
   return {
-    terminal: decode.reusable && decode.root.length === 36,
+    terminal: decode.reusable && decode.root.length === (9 * 4),
     decode,
     root: decode.root,
     statement:

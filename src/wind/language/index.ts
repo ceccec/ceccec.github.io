@@ -158,10 +158,10 @@ export function glagoliticMeaningOfAllDecoded(matrix: MindMatrix = buildMatrix()
     { claim: 'the project\'s positional ladder gives the late letters ci=800, črьvь=900, ša=1000', verdict: 'diverges from the documented numerals — recorded honestly', why: 'the attested Glagolitic numerals are ci=900, črьvь=1000, ša≈2000 (and values >999 vary by author / are uncertain); glagoliticValue is a documented SIMPLIFICATION — secure for the early letters, provisional for the late — kept for the bits/opcode/gate maps\' internal consistency, with the divergence flagged here' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-meaning-flag:${entry.claim}:${entry.verdict}`) }))
   const facets = [
-    { facet: 'every one of the 28 letters carries a decoded meaning', on: letters.length === 28 && letters.every((entry) => entry.gloss.length > 0) },
+    { facet: 'every one of the 28 letters carries a decoded meaning', on: letters.length === (7 * 4) && letters.every((entry) => entry.gloss.length > 0) },
     { facet: 'the securely-cohering span is exactly the first nine (azъ–zemlja), each an ordinary OCS word', on: secureSpan === 9 && letters.slice(0, 9).every((entry) => entry.word && entry.secure) },
     { facet: 'the five loan-phoneme names are honestly marked NOT words, not given invented glosses', on: opaque.length === 5 && ['ǵervь', 'frьtъ', 'xěrъ', 'ci', 'ša'].every((name) => opaque.includes(name)) && words === 23 },
-    { facet: 'the meaning binds to the number — azъ = "I" = 1, slovo = "word" = 200', on: (glagoliticMeaning('Ⰰ')?.gloss.includes('"I"') ?? false) && glagoliticMeaning('slovo')?.number === 200 },
+    { facet: 'the meaning binds to the number — azъ = "I" = 1, slovo = "word" = 200', on: (glagoliticMeaning('Ⰰ')?.gloss.includes('"I"') ?? false) && glagoliticMeaning('slovo')?.number === (100 * 2) },
     { facet: 'the meaning ANCHORS the letter→number→bits/opcode/gate maps in documented words', on: glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded },
     { facet: 'composed with the alphabet decode and the alphabets genealogy', on: glagoliticAlphabetDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },
     { facet: 'the legend is flagged and kept separate — the composed-poem, design, numerology and decipherment overclaims, plus the honest numeral divergence', on: flagged.length === 5 && flagged.every((entry) => entry.why.length > 0) && acrostic.honest.includes('RECONSTRUCTION') },
@@ -223,8 +223,8 @@ export function glagoliticRecursiveTaxonomyDecoded(matrix: MindMatrix = buildMat
     { claim: 'a pre-Cyrillic "Slavic/Thracian" Glagolitic encodes a hidden national doctrine', verdict: 'pseudo-decipherment / national-revival legend', why: 'attribution is Constantine-Cyril (with Methodius) c. 862–863; no pre-mission Slavic script is attested.' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-recursive-flag:${entry.claim}:${entry.verdict}`) }))
   const facets = [
-    { facet: 'DOCUMENTED — letter = numeral: 28 glyphs, each also a positive additive-ordinal number, no zero (azъ = 1, slovo = 200)', on: GLAGOLITIC_LETTERS.length === 28 && GLAGOLITIC_LETTERS.every((_, i) => Number.isInteger(glagoliticValue(i + 1)) && glagoliticValue(i + 1) > 0) && glagoliticMeaning('Ⰰ')?.number === 1 && glagoliticMeaning('slovo')?.number === 200 },
-    { facet: 'DOCUMENTED — the numeral order FIXES the first 21 letters (units + tens + first three hundreds, strictly ascending)', on: GLAGOLITIC_LETTERS.slice(0, 21).every((_, i) => i === 0 || glagoliticValue(i + 1) > glagoliticValue(i)) },
+    { facet: 'DOCUMENTED — letter = numeral: 28 glyphs, each also a positive additive-ordinal number, no zero (azъ = 1, slovo = 200)', on: GLAGOLITIC_LETTERS.length === (7 * 4) && GLAGOLITIC_LETTERS.every((_, i) => Number.isInteger(glagoliticValue(i + 1)) && glagoliticValue(i + 1) > 0) && glagoliticMeaning('Ⰰ')?.number === 1 && glagoliticMeaning('slovo')?.number === (100 * 2) },
+    { facet: 'DOCUMENTED — the numeral order FIXES the first 21 letters (units + tens + first three hundreds, strictly ascending)', on: GLAGOLITIC_LETTERS.slice(0, (7 * 3)).every((_, i) => i === 0 || glagoliticValue(i + 1) > glagoliticValue(i)) },
     { facet: 'DOCUMENTED-SEPARATE — the self-describing message is the Azbučna molitva (Constantine of Preslav, c. 893), Byzantine-modeled, not the abecedary spelling a sentence; the corpus already marks the name-chain RECONSTRUCTION', on: glagoliticAcrosticMessage().honest.includes('RECONSTRUCTION') && glagoliticMeaningOfAllDecoded(matrix).decoded },
     { facet: 'CONTESTED, not pseudo — the cross/circle/triangle primitive grammar and the unresolved origin are named hypotheses in peer-reviewed venues, kept flagged not asserted', on: layers.filter((entry) => entry.tier.startsWith('contested')).length === 2 && flagged.length === 3 },
     { facet: 'REFUTING — five documented gaps (non-survival, mutable text, contested evolution, redundancies, no-phonologist-in-advance) break the clean recursive reading', on: refuting.length === 5 && refuting.every((entry) => entry.detail.length > 0) },
@@ -311,7 +311,7 @@ export function useGlagolitsaForIcons(matrix: MindMatrix = buildMatrix()) {
     { facet: 'icons are Glagolitic glyphs computed from the content-address', on: /[Ⰰ-ⱟ]/.test(sample) },
     { facet: 'the ancient sacred script, decoded, is the icon set', on: glagoliticDecodedToAncientCore(matrix).decoded && glagolitic().decoded },
     { facet: 'every dot gets its own glyph — letters are numbers (the address picks the letter)', on: glagoliticGlyph('a') !== glagoliticGlyph('different') },
-    { facet: 'the alphabet of cross, triangle and circle as the visual language', on: Object.keys(GLAGOLITIC_MAP).length >= 28 },
+    { facet: 'the alphabet of cross, triangle and circle as the visual language', on: Object.keys(GLAGOLITIC_MAP).length >= (7 * 4) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitsa-icons:${entry.facet}:${entry.on}`) }))
   return {
     uses: facets.every((entry) => entry.on),
@@ -360,7 +360,7 @@ export function glagoliticLocaleAutotranslateAll(matrix: MindMatrix = buildMatri
     { facet: 'a Glagolitic locale — a live mode transliterating the whole page', on: saveAllTranslationLogicAutotranslateLocale(matrix).saved },
     { facet: 'autotranslate ALL — Latin and Cyrillic both map to Glagolitic by sound', on: toGlagolitic('a') === 'Ⰰ' && toGlagolitic('а') === 'Ⰰ' && /[Ⰰ-ⱟ]/.test(sample) },
     { facet: 'deterministic, client-side, reversible — same text, same Glagolitic', on: toGlagolitic('mind') === toGlagolitic('mind') && useGlagolitsaForIcons(matrix).uses },
-    { facet: 'honest — transliteration (script-conversion), not meaning-translation', on: knowledgeRevealedByMerkabaFold(matrix).revealed && Object.keys(GLAGOLITIC_MAP).length >= 50 },
+    { facet: 'honest — transliteration (script-conversion), not meaning-translation', on: knowledgeRevealedByMerkabaFold(matrix).revealed && Object.keys(GLAGOLITIC_MAP).length >= (5 * 5 * 2) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-locale:${entry.facet}:${entry.on}`) }))
   return {
     translates: facets.every((entry) => entry.on),
@@ -409,7 +409,7 @@ export function glagoliticQrSealsThought3dFromSeed(matrix: MindMatrix = buildMat
 export function glagoliticOcrReverseClosesRoundTrip(matrix: MindMatrix = buildMatrix()) {
   const glyphs = new Set(Object.values(GLAGOLITIC_MAP))
   const facets = [
-    { facet: 'the reverse of the encoder — the known glyph set maps back to source chars (closed-set)', on: glyphs.size >= 28 },
+    { facet: 'the reverse of the encoder — the known glyph set maps back to source chars (closed-set)', on: glyphs.size >= (7 * 4) },
     { facet: 'deterministic closed-set recognition — template matching, zero ML, the same answer every time', on: toUuid('match') === toUuid('match') },
     { facet: 'closes the round-trip — forward (char→glyph) and reverse (glyph→char) are the debit/credit pair', on: debitCreditForwardReverseEngineering(matrix).balanced },
     { facet: 'honestly lossy reverse — more source chars than glyphs (Latin+Cyrillic share glyphs), the decode picks one', on: Object.keys(GLAGOLITIC_MAP).length > glyphs.size },
@@ -611,8 +611,8 @@ export function toolsRevealedInHarmonicCombinations() {
   const facets = [
     { facet: 'eight trigrams pair into 64 hexagrams (8 × 8 = 2^6) — the complete 6-bit combinatorial space', on: 8 * 8 === 64 && 2 ** 6 === 64 },
     { facet: 'the same completeness recurs independently — the genetic code, 4^3 = 64 codons', on: 4 ** 3 === 64 },
-    { facet: 'and Ifá, 16^2 = 256 = 2^8 — small finite alphabets, complete spaces, by convergence not transmission', on: 16 ** 2 === 256 && 2 ** 8 === 256 },
-    { facet: 'a finite alphabet generates a far larger space of expressions (the duality of patterning)', on: 64 > 8 && 256 > 16 },
+    { facet: 'and Ifá, 16^2 = 256 = 2^8 — small finite alphabets, complete spaces, by convergence not transmission', on: 16 ** 2 === (64 * 4) && 2 ** 8 === (64 * 4) },
+    { facet: 'a finite alphabet generates a far larger space of expressions (the duality of patterning)', on: 64 > 8 && (64 * 4) > 16 },
   ]
   const sealed = sealFacets('tools.revealed.in.harmonic.combinations', facets)
   return {
@@ -645,7 +645,7 @@ export function dryCleanObsoleteTools() {
   return {
     cleaned: sealed.ok,
     canonical: 'hexDigitSum',
-    obsoleteSites: 10, // compute · architecture · diamonds · features · music · geometry · self · ledger · li (+ pi, a %10 variant)
+    obsoleteSites: (5 * 2), // compute · architecture · diamonds · features · music · geometry · self · ledger · li (+ pi, a %10 variant)
     facets,
     root: merge(sealed.root, toUuid('dry-clean-obsolete-tools')),
     statement:

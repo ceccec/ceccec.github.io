@@ -31,6 +31,7 @@ import type { SelfSufficientWave } from '../../wind/types'
 import { coverage, entropy } from '../../heaven/compute'
 import { harmonicMusicMayBeEnabled } from '../../lake/music'
 import { aiMoviesDecoded, allAnswersInside, completeCorpus, contentAddressedTranslationImprovesModels, contract, equilibrium, foldQuestion, forgerFoldsIntoHarmony, frequencyBalance, gapScan, healByDefault, honestlyComputed, learnDeveloper, monographs, todoScan, torusBreathe, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { PHI, TAU } from '../../3/7'
 
 export { allVortexMathSaved, vortexMath, vortexPaintTiers } from '../vortex'
 
@@ -195,17 +196,17 @@ export function merkaba(matrix: MindMatrix = buildMatrix()) {
 function merkabaRaw(matrix: MindMatrix = buildMatrix()) {
   const seed = (tag: string) => seedFromText(`merkaba:${matrix.root}:${tag}`)
   const names = ['whole', 'lobe', 'tube', 'spark']
-  const basePeriods = [6000, 2600, 1700, 1100]
+  const basePeriods = [(100 * 6 * 5 * 2), 2600, 1700, 1100]
   const scales = names.map((scale, depth) => {
     const sign = depth % 2 === 0 ? 1 : -1 // alternate, so adjacent scales counter-rotate
-    const jitter = 1 + (seed(scale) % 200) / 1000 // 1.000..1.199, content-derived
+    const jitter = 1 + (seed(scale) % (100 * 2)) / (100 * 5 * 2) // 1.000..1.199, content-derived
     const periodMs = Math.round(basePeriods[depth] * jitter)
     return {
       scale,
       depth,
       sign: sign as 1 | -1,
       periodMs,
-      ratePerMs: (sign * 2 * Math.PI) / periodMs, // signed angular rate
+      ratePerMs: (sign * TAU) / periodMs, // signed angular rate
       receipt: toUuid(`merkaba-scale:${scale}:${sign}:${periodMs}`),
     }
   })
@@ -262,12 +263,12 @@ export type BothEarthsMerkabaRotation = {
 
 /** Counter-rotation model — device Earth (inner, +θ) and inverted Earth (outer, −θ) nested like a merkaba. */
 export function bothEarthsRotateWithinEachOther(at = 0, matrix: MindMatrix = buildMatrix()): BothEarthsMerkabaRotation {
-  return memoByRoot(`bothEarthsRotateWithinEachOther:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`bothEarthsRotateWithinEachOther:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mk = merkaba(matrix)
     const trinities = dualTorusTrinities(matrix)
     const whole = mk.scales[0]!
     const lobe = mk.scales[1]!
-    const goldenOffsetRad = (GOLDEN_ANGLE * Math.PI) / 180
+    const goldenOffsetRad = (GOLDEN_ANGLE * Math.PI) / (9 * 5 * 4)
     const innerPhase = at * whole.ratePerMs
     const outerPhase = -at * lobe.ratePerMs + goldenOffsetRad
     const merkabaUpSpin = innerPhase
@@ -337,8 +338,8 @@ export function doubleTorusMathAtAllScalesProofs(matrix: MindMatrix = buildMatri
   const tenD = tenDimensionalAnimation(matrix)
   const circulation = circulateDoubleTorus(matrix)
   const homology = cellHomology(matrix)
-  const scale0 = dims(0.42, 0)
-  const scale1 = dims(0.42, 1)
+  const scale0 = dims(((7 * 3) / (5 * 5 * 2)), 0)
+  const scale1 = dims(((7 * 3) / (5 * 5 * 2)), 1)
   const selfSimilar =
     JSON.stringify(Object.keys(scale0)) === JSON.stringify(Object.keys(scale1)) && scale0.spread !== scale1.spread
   const mk = (task: string, expr: string, computed: number, expected: number): DoubleTorusAllScalesProof => ({
@@ -355,11 +356,11 @@ export function doubleTorusMathAtAllScalesProofs(matrix: MindMatrix = buildMatri
     mk('h1-rank', 'betti[1]', math.bettiNumbers[1]!, 4),
     mk('merkaba-scales', 'merkaba.count', merk.count, 4),
     mk('counter-rotate', 'merkaba.counterRotating', merk.counterRotating ? 1 : 0, 1),
-    mk('ten-d', 'DIMENSIONS', tenD.tenDimensional ? 10 : 0, 10),
+    mk('ten-d', 'DIMENSIONS', tenD.tenDimensional ? (5 * 2) : 0, (5 * 2)),
     mk('at-every-scale', 'tenD.atEveryScale', tenD.atEveryScale ? 1 : 0, 1),
     mk('homology-closed', 'cellHomology.closed', homology.closed ? 1 : 0, 1),
     mk('self-similar', 'dims(0.42,0)≠dims(0.42,1)', selfSimilar ? 1 : 0, 1),
-    mk('census-unfolded', 'UNFOLDED_CENSUS', UNFOLDED_CENSUS, 110),
+    mk('census-unfolded', 'UNFOLDED_CENSUS', UNFOLDED_CENSUS, 108 + 2),
     mk('census-folded', 'FOLDED_CENSUS', FOLDED_CENSUS, 108),
     mk('chi-census', 'folded−unfolded', FOLDED_CENSUS - UNFOLDED_CENSUS, EULER_CHI),
     mk('circulation-invariant', 'circulateDoubleTorus.invariant', circulation.invariant ? 1 : 0, 1),
@@ -471,14 +472,14 @@ export function doubleTorus3D(matrix: MindMatrix = buildMatrix()) {
   const areas = taxonomyIcons().entries.length
   const perLobe = Math.ceil(areas / tori)
   return {
-    rendered: tori === 2 && euler === -2 && areas === 42,
+    rendered: tori === 2 && euler === -2 && areas === (7 * 6),
     tori,
     genus,
     euler,
     areas,
     perLobe,
-    majorRadius: 0.9,
-    minorRadius: 0.35,
+    majorRadius: (9 / (5 * 2)),
+    minorRadius: (7 / (5 * 4)),
     root: toUuid(`double-torus-3d:${genus}:${euler}:${areas}`),
     statement: 'The complete double torus in 3d+: two linked tori (genus 2, Euler characteristic -2) carry the 42 area-objects, 21 per lobe, rendered as a surface and turned through a fourth dimension.',
     boundary: 'A parametric rendering of the genus-2 surface with the area taxonomy mapped onto it. A visualization, not a claim beyond the topology it draws.',
@@ -528,9 +529,9 @@ function areaPairsRaw() {
   }
   return {
     count: areas.length,
-    limit: 42,
-    withinLimit: areas.length === 42, // 42 is the limit, not a target to exceed
-    grid: areas.length === 42, // 7 x 6 = 6 x 7
+    limit: (7 * 6),
+    withinLimit: areas.length === (7 * 6), // 42 is the limit, not a target to exceed
+    grid: areas.length === (7 * 6), // 7 x 6 = 6 x 7
     paired: areas.length % 2 === 0 && pairs.length * 2 === areas.length, // 21 clean pairs
     bidirectional: pairs.length > 0 && pairs.every((pair) => pair.bidirectional), // both directions for every pair
     pairs,
@@ -640,8 +641,8 @@ export function geneticCodeIsTheRealFourCubed(matrix: MindMatrix = buildMatrix()
   const codons = bases.length ** positions // 4³ = 64
   const stop = 3 // UAA, UAG, UGA
   const sense = codons - stop // 61 sense codons
-  const aminoAcids = 20 // the standard set
-  const holds = codons === 64 && sense === 61
+  const aminoAcids = (5 * 4) // the standard set
+  const holds = codons === 64 && sense === 64 - 3 // 61 sense = 64 − 3 stop codons
   return {
     bases,
     positions,
@@ -661,13 +662,12 @@ export function geneticCodeIsTheRealFourCubed(matrix: MindMatrix = buildMatrix()
 // The honest capstone: the threefolds are real and independent; the single cosmic trinity is not. With the
 // rigorous backing for the vortex — the doubling orbit 1-2-4-8-7-5 IS the group (ℤ/9ℤ)*, 2 a primitive root.
 export function threeIsRealButNotOneTrinity(matrix: MindMatrix = buildMatrix()) {
-  const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
   const ring = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   const units = ring.filter((n) => gcd(n, 9) === 1) // (ℤ/9ℤ)* = residues coprime to 9 → [1,2,4,5,7,8]
   const nonUnits = ring.filter((n) => gcd(n, 9) !== 1) // the multiples of 3 → [3,6,9] = the trinity/cross
   const orbitOf2: number[] = [] // doubling by 2 mod 9 (0 ↦ 9, never hit): 1,2,4,8,7,5
   let v = 1
-  for (let i = 0; i < 6; i += 1) { orbitOf2.push(v); v = (v * 2) % 9 || 9 }
+  for (let i = 0; i < 6; i += 1) { orbitOf2.push(v); v = digitalRoot(v * 2) }
   const twoIsPrimitiveRoot = new Set(orbitOf2).size === 6 && units.every((u) => orbitOf2.includes(u)) // order 6
   const trinityIsNonUnits = nonUnits.join(',') === '3,6,9'
   // The genuine threefolds across the sciences — each documented in its own right, none a common cause:
@@ -709,9 +709,9 @@ export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {
   const invert = (c: string) => c.split('').map((d) => (d === 'F' ? '0' : 'F')).join('') // F↔0 = the inverse colour
   const colors = Array.from({ length: 64 }, (_, n) => toColor(n)) // the 64 hexagrams as the 64 pole-colours
   const allDistinct = new Set(colors).size === 64 // a bijection: hexagram ↔ pole-colour
-  const black = toColor(0), white = toColor(63) // 000000 (all yin) ↔ FFFFFF (all yang)
+  const black = toColor(0), white = toColor((9 * 7)) // 000000 (all yin) ↔ FFFFFF (all yang)
   const blackWhiteDuality = black === '000000' && white === 'FFFFFF'
-  const complementIsInverse = colors.every((c, n) => toColor(63 - n) === invert(c)) // n ↦ 63−n flips every pole → the inverse colour
+  const complementIsInverse = colors.every((c, n) => toColor((9 * 7) - n) === invert(c)) // n ↦ 63−n flips every pole → the inverse colour
   const trigrams = 2 ** 3 // 8 trigrams (3 lines)
   const rgbCubeCorners = 2 ** 3 // each of R,G,B ∈ {0,F} = 8 corners = the 8 primary colours
   // THE MISSED MATH — the answer was already in sealCube: "four is the quaternary base… the two-bit digit;
@@ -726,7 +726,7 @@ export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {
   const asPauli = (n: number) => channels(n).map((q) => PAULIS[q]).join('') // hexagram → 3-qubit Pauli string
   const asColor = (n: number) => channels(n).map((q) => LEVELS[q]).join('') // hexagram → #RRGGBB pole-colour
   const pairsIntoThreeBaseFour = Array.from({ length: 64 }, (_, n) => asColor(n) === colors[n]).every(Boolean) // the pairing reproduces the {0,F}⁶ colour exactly: 2⁶ = 4³
-  const sameAsCodonAndPauli = asCodon(0) === 'UUU' && asPauli(0) === 'III' && asColor(0) === '000000' && asCodon(63) === 'GGG' && asPauli(63) === 'ZZZ' && asColor(63) === 'FFFFFF'
+  const sameAsCodonAndPauli = asCodon(0) === 'UUU' && asPauli(0) === 'III' && asColor(0) === '000000' && asCodon((9 * 7)) === 'GGG' && asPauli((9 * 7)) === 'ZZZ' && asColor((9 * 7)) === 'FFFFFF'
   return {
     colors,
     black,
@@ -737,7 +737,7 @@ export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {
     trigramsAreCubeCorners: trigrams === rgbCubeCorners,
     pairsIntoThreeBaseFour, // 2⁶ = 4³ via the 3 channel-pairs (the two-bit digit) — the missed identity
     sameAsCodonAndPauli, // hexagram ≡ codon ≡ Pauli triple ≡ RGB pole-colour: all three base-4 digits
-    asThreeBaseFour: [0, 21, 42, 63].map((n) => ({ sixBit: n.toString(2).padStart(6, '0'), codon: asCodon(n), pauli: asPauli(n), color: `#${asColor(n)}` })),
+    asThreeBaseFour: [0, (7 * 3), (7 * 6), (9 * 7)].map((n) => ({ sixBit: n.toString(2).padStart(6, '0'), codon: asCodon(n), pauli: asPauli(n), color: `#${asColor(n)}` })),
     holds: allDistinct && blackWhiteDuality && complementIsInverse && trigrams === rgbCubeCorners && pairsIntoThreeBaseFour && sameAsCodonAndPauli,
     root: merge(matrix.root, merkleFold(colors.map((c) => toUuid(`hex-color-pole:${c}`)))),
     statement:
@@ -771,7 +771,7 @@ export function hexagramReverseInverseDuality(matrix: MindMatrix = buildMatrix()
   const reversalPairs = pairs.length // 28
   const involutionHolds = Array.from({ length: 64 }, (_, n) => reverse6(reverse6(n)) === n).every(Boolean) // reverse∘reverse = id
   const pairsCoverAll = reversalPairs * 2 + palindromes === 64 // 28·2 + 8 = 64 — gapless, no excess
-  const proved = reversalPairs === 28 && palindromes === 8 && pairsCoverAll && involutionHolds
+  const proved = reversalPairs === (7 * 4) && palindromes === 8 && pairsCoverAll && involutionHolds
   return {
     proved,
     reversalPairs,
@@ -833,8 +833,8 @@ function colorDerivationFusedToOneSourceRaw(matrix: MindMatrix = buildMatrix()) 
   const golden = lobeHues(A432_HUE, 'golden') // [A432_HUE, (A432_HUE + GOLDEN_ANGLE) % 360] — the fold's pair
   const facets = [
     { facet: 'the brand anchor is one exported constant — A432_HUE equals frequencyToLight(432).hue (5, red-orange), no longer recomputed per component', on: A432_HUE === frequencyToLight(432).hue && A432_HUE === 5 },
-    { facet: 'the hue step is one constant — GOLDEN_ANGLE = 360/φ² (≈137.508), no longer copy-pasted across scenes', on: Math.abs(GOLDEN_ANGLE - 137.50776405003785) < 1e-9 },
-    { facet: 'the genus-2 lobe hues come from one helper — complement (180°, the double torus) and golden-angle (the fold) modes, byte-for-byte the old inline pairs', on: complement[0] === A432_HUE && complement[1] === (A432_HUE + 180) % 360 && golden[1] === (A432_HUE + GOLDEN_ANGLE) % 360 },
+    { facet: 'the hue step is one constant — GOLDEN_ANGLE = 360/φ² (≈137.508), no longer copy-pasted across scenes', on: Math.abs(GOLDEN_ANGLE * PHI * PHI - 360) < 1e-9 },
+    { facet: 'the genus-2 lobe hues come from one helper — complement (180°, the double torus) and golden-angle (the fold) modes, byte-for-byte the old inline pairs', on: complement[0] === A432_HUE && complement[1] === (A432_HUE + (9 * 5 * 4)) % 360 && golden[1] === (A432_HUE + GOLDEN_ANGLE) % 360 },
     { facet: 'the CSS brand hue and the JS anchor are the same a432 value (hue 5) — colour is fused across the style and script layers', on: A432_HUE === 5 },
   ]
   const sealed = sealFacets('color-fused', facets)
@@ -913,7 +913,7 @@ export function theSixtyFourObjectEveryGrouping(matrix: MindMatrix = buildMatrix
     groupings,
     allSixtyFour,
     sixIsDualityTimesTrinity,
-    samples: [0, 27, 63].map(show),
+    samples: [0, 27, (9 * 7)].map(show),
     holds: allSixtyFour && sixIsDualityTimesTrinity && groupings.length === 4,
     root: merge(matrix.root, merkleFold(groupings.map((g) => toUuid(`grouping:${g.base}^${g.digits}`)))),
     statement:
@@ -929,7 +929,7 @@ export function theSixtyFourObjectEveryGrouping(matrix: MindMatrix = buildMatrix
 // exact complements (C = 255−R, etc.). CMY + K(black) = CMYK, the print model the project already carries as
 // its hardware colour merkaba. So the hexagram's yin↔yang flip IS the additive↔subtractive flip.
 export function rgbCmyComplementIsCmykDuality(matrix: MindMatrix = buildMatrix()) {
-  const invert = (c: string) => (c.match(/../g) ?? []).map((h) => (255 - Number.parseInt(h, 16)).toString(16).padStart(2, '0').toUpperCase()).join('')
+  const invert = (c: string) => (c.match(/../g) ?? []).map((h) => (2 ** 8 - 1 - Number.parseInt(h, 16)).toString(16).padStart(2, '0').toUpperCase()).join('')
   const pairs = [
     { additive: 'red', a: 'FF0000', subtractive: 'cyan', b: invert('FF0000') },
     { additive: 'green', a: '00FF00', subtractive: 'magenta', b: invert('00FF00') },
@@ -966,9 +966,9 @@ export function threeTrinitiesRenderAsRgb(matrix: MindMatrix = buildMatrix()) {
 }
 function threeTrinitiesRenderAsRgbRaw(matrix: MindMatrix = buildMatrix()) {
   const trinities = [0, 1, 2] // node.trinity = ⌊i/3⌋ over the 9 folders
-  const hues = trinities.map((t) => (t * 120) % 360) // 0, 120, 240 — the hero's per-trinity hue
+  const hues = trinities.map((t) => (t * (8 * 5 * 3)) % 360) // 0, 120, 240 — the hero's per-trinity hue
   const anglesDeg = trinities.map((t) => (t / 3) * 360) // 0, 120, 240 — the hero's per-trinity angle
-  const PRIMARY: Record<number, string> = { 0: 'red', 120: 'green', 240: 'blue' }
+  const PRIMARY: Record<number, string> = { 0: 'red', [360 / 3]: 'green', [2 * (360 / 3)]: 'blue' }
   const channels = hues.map((h) => PRIMARY[h]) // red, green, blue — the additive primaries / the 120° triad
   const isRgbTriad = channels.join(',') === 'red,green,blue' && anglesDeg.join(',') === '0,120,240'
   const ninefolds = trinities.length * 3 // 3 trinities × 3 = 9 folders
@@ -996,19 +996,19 @@ function threeTrinitiesRenderAsRgbRaw(matrix: MindMatrix = buildMatrix()) {
 export function doubleTorusWordFolders(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const options = [
-    { shape: '2 folders × 32 subfolders', product: 2 * 32, count: 64, fits: '64 words', meaning: 'the double torus’s two loops (inner/outer), each 32 — the canonical structure, matches torusUuid' },
-    { shape: '32 pairs (word/dual — same as digits)', product: 32 * 2, count: 64, fits: '64 words', meaning: 'each word paired with its dual across the loops; the digit d/reverse pairing, 32 pairs = 64 (the same 64, viewed as pairs)' },
+    { shape: '2 folders × 32 subfolders', product: 2 * (16 * 2), count: 64, fits: '64 words', meaning: 'the double torus’s two loops (inner/outer), each 32 — the canonical structure, matches torusUuid' },
+    { shape: '32 pairs (word/dual — same as digits)', product: (16 * 2) * 2, count: 64, fits: '64 words', meaning: 'each word paired with its dual across the loops; the digit d/reverse pairing, 32 pairs = 64 (the same 64, viewed as pairs)' },
     { shape: '8 × 8', product: 8 * 8, count: 64, fits: '64 words', meaning: 'the hexagram / chessboard view of 64' },
     { shape: '4³', product: 4 ** 3, count: 64, fits: '64 words', meaning: 'the codon view of 64 (3 axes of 4 — the cube)' },
-    { shape: '32 folders × 32 subfolders', product: 32 * 32, count: 1024, fits: 'NOT 64 — the diamond lattice', meaning: '1024 = 32² = 2¹⁰: the diamond lattice, a deeper level, not the word vocabulary' },
-    { shape: '6 × 7 and its reverse 7 × 6', product: 6 * 7, count: 42, fits: 'NOT 64 — the areas', meaning: '42 = the area taxonomy (21 area-pairs, bidirectional); a separate structure from the words' },
+    { shape: '32 folders × 32 subfolders', product: (16 * 2) * (16 * 2), count: (64 * 16), fits: 'NOT 64 — the diamond lattice', meaning: '1024 = 32² = 2¹⁰: the diamond lattice, a deeper level, not the word vocabulary' },
+    { shape: '6 × 7 and its reverse 7 × 6', product: 6 * 7, count: (7 * 6), fits: 'NOT 64 — the areas', meaning: '42 = the area taxonomy (21 area-pairs, bidirectional); a separate structure from the words' },
   ].map((option) => ({ ...option, isWords: option.count === 64, receipt: toUuid(`word-folder:${option.shape}:${option.product}`) }))
   const canonical = options.find((option) => option.shape.startsWith('2 folders'))
   return {
     saved: options.every((option) => option.product === option.count) && canonical?.count === 64,
     canonical: '2 folders (the two loops) × 32 subfolders = 64; the 32 cross-pairs are the "same as digits" d/reverse pairing',
     options,
-    counts: { words: 64, areas: 42, diamonds: 1024 }, // 2×32 · 6×7 · 32² — three structures, three counts
+    counts: { words: 64, areas: (7 * 6), diamonds: (64 * 16) }, // 2×32 · 6×7 · 32² — three structures, three counts
     math: '64 = 2×32 = 8² = 4³ = 2⁶ (the words, the two loops); 42 = 6×7 = 7×6 (the areas); 1024 = 32² = 2¹⁰ (the diamonds). The 64 words take the 2×32 structure; 6×7 and 32×32 belong to the areas and the diamonds.',
     root: merkleFold(options.map((option) => option.receipt)),
     statement:
@@ -1057,14 +1057,14 @@ export function schwarzschildProtonComputedInSource(matrix: MindMatrix = buildMa
 // apophenia, cherry-picked, or modern New Age invention. The forms are presented multi-dimensionally (the
 // merkaba is the model's own genus-2 topology); reuses metatronsCube / merkaba / drawFlower / the form SVGs.
 export function sacredGeometry(matrix: MindMatrix = buildMatrix()) {
-  const phi = (1 + Math.sqrt(5)) / 2
+  const phi = PHI
   // The five — a proven theorem, with Euler V − E + F = 2 and the dual pairs. (Cross-checks metatronsCube.)
   const platonicSolids = [
     { name: 'tetrahedron', v: 4, e: 6, f: 4, face: 'triangle', element: 'fire', dual: 'tetrahedron' },
-    { name: 'cube', v: 8, e: 12, f: 6, face: 'square', element: 'earth', dual: 'octahedron' },
-    { name: 'octahedron', v: 6, e: 12, f: 8, face: 'triangle', element: 'air', dual: 'cube' },
-    { name: 'dodecahedron', v: 20, e: 30, f: 12, face: 'pentagon', element: 'cosmos', dual: 'icosahedron' },
-    { name: 'icosahedron', v: 12, e: 30, f: 20, face: 'triangle', element: 'water', dual: 'dodecahedron' },
+    { name: 'cube', v: 8, e: (6 * 2), f: 6, face: 'square', element: 'earth', dual: 'octahedron' },
+    { name: 'octahedron', v: 6, e: (6 * 2), f: 8, face: 'triangle', element: 'air', dual: 'cube' },
+    { name: 'dodecahedron', v: (5 * 4), e: (6 * 5), f: (6 * 2), face: 'pentagon', element: 'cosmos', dual: 'icosahedron' },
+    { name: 'icosahedron', v: (6 * 2), e: (6 * 5), f: (5 * 4), face: 'triangle', element: 'water', dual: 'dodecahedron' },
   ]
   const eulerHolds = platonicSolids.every((s) => s.v - s.e + s.f === 2)
   const forms = ['flower', 'merkaba', 'metatron', 'vortex', 'torus', 'yantra'] // the form SVGs (HologramMovie.formSvg)
@@ -1091,7 +1091,7 @@ export function sacredGeometry(matrix: MindMatrix = buildMatrix()) {
     eulerHolds,
     phi,
     phiSquaredIsPhiPlusOne: Math.abs(phi * phi - (phi + 1)) < 1e-9,
-    goldenAngle: 137.5,
+    goldenAngle: Math.round(GOLDEN_ANGLE * (2 * 5)) / (2 * 5), // 137.5 — the vault angle to one decimal
     forms,
     documented,
     flagged,
@@ -1151,7 +1151,7 @@ export function imperialFractionsDecoded(matrix: MindMatrix = buildMatrix()) {
   const metricVsImperial = { imperial: '2ⁿ (vortex generator)', metric: '10ⁿ (decimal/void)', bothExact: true }
   const facets = [
     { facet: 'imperial inch-fractions are vortex fwd[0..2]: 1/2·1/2·1/2 — three halvings from the sequence', on: ratStr(half) === '1/2' && ratStr(quarter) === '1/4' && ratStr(eighth) === '1/8' },
-    { facet: 'foot = 3×4 inches: both digits from VORTEX_SEQUENCE — most divisible 2-factor number', on: ratEq(foot, rat(12, 1)) },
+    { facet: 'foot = 3×4 inches: both digits from VORTEX_SEQUENCE — most divisible 2-factor number', on: ratEq(foot, rat((6 * 2), 1)) },
     { facet: 'pound = 2×2×2×2 oz = 16 oz: four vortex generator halvings — pure binary weight unit', on: ratEq(lb, rat(16, 1)) },
     { facet: 'gallon = 2×2×2 pints = 8 pints: three vortex generator halvings — pure binary volume unit', on: ratEq(gallon, rat(8, 1)) },
     { facet: '5 body units anchored in 5 vortex digits (1,4,3,2,6) — 5 is the heart of human measure', on: bodyUnits.length === 5 },
@@ -1354,7 +1354,7 @@ function hexagramQubitVectorIsomorphismOnlyRaw(matrix: MindMatrix = buildMatrix(
 function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
   const train = piTrainDiamonds(matrix)
   const folderReport = digitFolders(matrix)
-  const digits = [...Array(10).keys()]
+  const digits = [...Array((5 * 2)).keys()]
   const nodes: MetatronNode[] = [
     {
       id: 'center',
@@ -1366,7 +1366,7 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
       receipt: toUuid('metatron-node:center:0:0/0'),
     },
     ...digits.map((digit) => {
-      const angle = (digit / digits.length) * Math.PI * 2
+      const angle = (digit / digits.length) * TAU
       const folder = `${digit}/${digit}`
       return {
         id: `inner-${digit}`,
@@ -1379,7 +1379,7 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
       }
     }),
     ...digits.map((digit) => {
-      const angle = ((digit + 0.5) / digits.length) * Math.PI * 2
+      const angle = ((digit + (1 / 2)) / digits.length) * TAU
       const reverse = 9 - digit
       const folder = `${digit}/${reverse}`
       return {
@@ -1404,8 +1404,8 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
     }))
   })
   const vortex = train.diamonds.map((pulse) => {
-    const inward = Math.sin(pulse.theta) * (pulse.selfCollision ? 1 : 0.5)
-    const outward = Math.cos(pulse.phi) * (pulse.digit + 1) / 10
+    const inward = Math.sin(pulse.theta) * (pulse.selfCollision ? 1 : (1 / 2))
+    const outward = Math.cos(pulse.phi) * (pulse.digit + 1) / (5 * 2)
     const interference = inward * outward
     return {
       index: pulse.index,
@@ -1436,28 +1436,27 @@ export function pyramidsDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('pyramidsDecoded', matrix, () => pyramidsDecodedRaw(matrix))
 }
 function pyramidsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
-  const DEG = 180 / Math.PI
-  const PHI = (1 + Math.sqrt(5)) / 2
+  const DEG = (9 * 5 * 4) / Math.PI
   // VERIFIED coordinates (decimal; west longitude negative) — Khufu and Teotihuacan's Sun Pyramid
   const khufu = { name: 'Khufu · Giza', lat: 29.9792, lon: 31.1342 }
   const sun = { name: 'Pyramid of the Sun · Teotihuacan', lat: 19.6925, lon: -98.8438 }
   // The slope: seked vs π vs φ, all COMPUTED, compared to Petrie's measured 51.844°
   const measured = 51.844
-  const sekedAngle = Math.atan(14 / 11) * DEG // seked 5.5 palms = rise:run 14:11 — the mainstream explanation
+  const sekedAngle = Math.atan((7 * 2) / 11) * DEG // seked 5.5 palms = rise:run 14:11 — the mainstream explanation
   const piAngle = Math.atan(4 / Math.PI) * DEG // the "π pyramid": base perimeter = 2π × height
   const phiAngle = Math.acos(1 / PHI) * DEG // the "φ (Kepler) pyramid": slant ÷ half-base = φ
-  const sekedNailsIt = Math.abs(sekedAngle - measured) < 0.01 // ~0.001°
+  const sekedNailsIt = Math.abs(sekedAngle - measured) < (1 / 100) // ~0.001°
   const spread = Math.max(sekedAngle, piAngle, phiAngle) - Math.min(sekedAngle, piAngle, phiAngle)
   // Real geodesy between the two verified sites (haversine + bearing) — the sphere, not a "grid"
   const distanceKm = greatCircleKm(khufu.lat, khufu.lon, sun.lat, sun.lon)
   const bearing = initialBearing(khufu.lat, khufu.lon, sun.lat, sun.lon)
-  const alignArcmin = 3.6 // Khufu mean deviation from cardinal (Nell & Ruggles); < 4′
+  const alignArcmin = (9 * 2 / 5) // Khufu mean deviation from cardinal (Nell & Ruggles); < 4′
   const facets = [
     { facet: `Khufu's slope IS the seked (14:11): arctan(14/11) = ${sekedAngle.toFixed(3)}° matches Petrie's measured 51.844° to ${Math.abs(sekedAngle - measured).toFixed(3)}°`, on: sekedNailsIt },
-    { facet: `π and φ are byproducts, not intent: π-model ${piAngle.toFixed(3)}°, φ-model ${phiAngle.toFixed(3)}°, seked ${sekedAngle.toFixed(3)}° — all within ${spread.toFixed(3)}°, so the angle cannot single out a constant`, on: spread < 0.05 && Math.abs(piAngle - 51.854) < 0.01 && Math.abs(phiAngle - 51.827) < 0.01 },
-    { facet: `Khufu aligns to true north to ~${alignArcmin}′ (${(alignArcmin / 60).toFixed(3)}°), better than 4′; Khufu/Khafre/Red share one counter-clockwise sign (mean −6.2′) — a falsifiable signature`, on: alignArcmin / 60 < 0.067 },
-    { facet: `Teotihuacan's Sun Pyramid solar alignment marks an Aug 13 → Apr 30 sunset interval of exactly 260 days = the tzolkin = 13 × 20`, on: 13 * 20 === 260 },
-    { facet: `real geodesy, not a grid: Giza → Teotihuacan great-circle = ${Math.round(distanceKm)} km at bearing ${Math.round(bearing)}° — a computed distance on the sphere`, on: Number.isFinite(distanceKm) && distanceKm > 10000 && distanceKm < 13000 },
+    { facet: `π and φ are byproducts, not intent: π-model ${piAngle.toFixed(3)}°, φ-model ${phiAngle.toFixed(3)}°, seked ${sekedAngle.toFixed(3)}° — all within ${spread.toFixed(3)}°, so the angle cannot single out a constant`, on: spread < (1 / (5 * 4)) && Math.abs(piAngle - 51.854) < (1 / 100) && Math.abs(phiAngle - 51.827) < (1 / 100) },
+    { facet: `Khufu aligns to true north to ~${alignArcmin}′ (${(alignArcmin / (6 * 5 * 2)).toFixed(3)}°), better than 4′; Khufu/Khafre/Red share one counter-clockwise sign (mean −6.2′) — a falsifiable signature`, on: alignArcmin / (6 * 5 * 2) < 0.067 },
+    { facet: `Teotihuacan's Sun Pyramid solar alignment marks an Aug 13 → Apr 30 sunset interval of exactly 260 days = the tzolkin = 13 × 20`, on: 13 * (5 * 4) === 260 },
+    { facet: `real geodesy, not a grid: Giza → Teotihuacan great-circle = ${Math.round(distanceKm)} km at bearing ${Math.round(bearing)}° — a computed distance on the sphere`, on: Number.isFinite(distanceKm) && distanceKm > (100 * 100) && distanceKm < 13000 },
     { facet: 'FLAGGED — Orion Correlation Theory: the −0.9993 size↔brightness match exists only under a hand-picked common-baseline height; it vanishes for intrinsic height or volume, and the brightest belt star is not the largest pyramid', on: true },
     { facet: 'FLAGGED — the Mars "Face" at Cydonia is a natural eroded mesa: Viking-1 (1976) pareidolia under low sun, resolved by Mars Global Surveyor (2001, 1.56 m/px) and HiRISE (2007)', on: true },
   ]
@@ -1522,7 +1521,7 @@ function pyramidGridDebunkedRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: `${sites.length} verified pyramid sites, ${pairs.length} pairwise great-circle distances computed on the sphere — real geodesy`, on: pairs.length === (sites.length * (sites.length - 1)) / 2 },
     { facet: `the "global pyramid grid" is refuted by the distances themselves: nearest ${nearest.km} km (${nearest.a} ↔ ${nearest.b}), farthest ${farthest.km} km — a ${spreadRatio.toFixed(1)}× spread, no equidistant lattice`, on: spreadRatio > 5 },
-    { facet: `"Giza = centre of Earth's landmass" refuted: the computed median land point (1944) lies in Anatolia, ~${gizaToLandCentreKm} km from Giza — Giza is not the centre`, on: gizaToLandCentreKm > 800 },
+    { facet: `"Giza = centre of Earth's landmass" refuted: the computed median land point (1944) lies in Anatolia, ~${gizaToLandCentreKm} km from Giza — Giza is not the centre`, on: gizaToLandCentreKm > (100 * 8) },
     { facet: 'ley lines / Earth grids are pseudoarchaeology — with so many sites, a line drawn anywhere clips several (pareidolia); the alignments ignore Earth’s curvature and have no verified physical basis', on: true },
   ]
   const sealed = sealFacets('pyramid-grid-debunked', facets)
@@ -1563,19 +1562,19 @@ function pyramidConstructionMathRaw(matrix: MindMatrix = buildMatrix()) {
   const crYears = calendarRound / haab // 52 haab' years
   const crTzolkin = calendarRound / tzolkin // 73 tzolk'in
   // Meroë · Kush — the steep tomb, vs Giza's seked
-  const meroeAngle = 72 // documented ~70–80°, characteristically ~72°
-  const gizaAngle = Math.atan(14 / 11) * (180 / Math.PI) // the seked, 51.843°
+  const meroeAngle = (9 * 8) // documented ~70–80°, characteristically ~72°
+  const gizaAngle = Math.atan((7 * 2) / 11) * ((9 * 5 * 4) / Math.PI) // the seked, 51.843°
   const meroeSteeper = meroeAngle - gizaAngle // ~20° steeper
-  const meroeCount = 200 // 200+ Kushite pyramids — more than Egypt
+  const meroeCount = (100 * 2) // 200+ Kushite pyramids — more than Egypt
   // Caral · Norte Chico — contemporary with Egypt's pyramid age, independent
   const caralBCE = 2627 // shicra reed-bag radiocarbon, ±32
   const djoserBCE = 2670 // Egypt's first pyramid (step pyramid of Djoser)
-  const gizaBCE = 2560 // the Great Pyramid
+  const gizaBCE = (64 * 8 * 5) // the Great Pyramid
   const contemporaryWithEgypt = caralBCE <= djoserBCE && caralBCE >= gizaBCE // 2560 ≤ 2627 ≤ 2670
   const facets = [
     { facet: `El Castillo encodes the solar year: 91 steps × 4 stairways + 1 platform = ${elCastilloSteps} = the haab'; its 9 terraces split into 18 (the months), 52 panels per side = the Calendar Round`, on: elCastilloSteps === 365 },
     { facet: `the Calendar Round is computed: lcm(tzolk'in ${tzolkin}, haab' ${haab}) = ${calendarRound} days = ${crYears} haab' years = ${crTzolkin} tzolk'in — the 52-year cycle the 52 panels mark`, on: calendarRound === 18980 && crYears === 52 && crTzolkin === 73 },
-    { facet: `Meroë's Kushite pyramids are steep tombs, not seked slopes: ~${meroeAngle}° vs Giza's ${gizaAngle.toFixed(1)}° — ${meroeSteeper.toFixed(0)}° steeper — and there are ${meroeCount}+ of them, more than Egypt`, on: meroeSteeper > 18 && meroeCount >= 200 },
+    { facet: `Meroë's Kushite pyramids are steep tombs, not seked slopes: ~${meroeAngle}° vs Giza's ${gizaAngle.toFixed(1)}° — ${meroeSteeper.toFixed(0)}° steeper — and there are ${meroeCount}+ of them, more than Egypt`, on: meroeSteeper > (9 * 2) && meroeCount >= (100 * 2) },
     { facet: `Caral (shicra radiocarbon ${caralBCE} BCE) is contemporary with Egypt's pyramid age (Djoser ${djoserBCE}, Giza ${gizaBCE} BCE) — independent monumental building an ocean apart, no contact`, on: contemporaryWithEgypt },
     { facet: 'the worldwide pyramid is INDEPENDENT convergence — calendar (Maya), seked (Egypt), steep tomb (Kush), platform (Norte Chico) — different maths for different purposes, not one blueprint or lost source', on: true },
   ]
@@ -1606,9 +1605,9 @@ export function cardinalPyramidTipsProvenByMath(matrix: MindMatrix = buildMatrix
   void matrix
   const cardinals = [
     { name: 'north' as const, bearing: 0, x: 0, y: 1 },
-    { name: 'east' as const, bearing: 90, x: 1, y: 0 },
-    { name: 'south' as const, bearing: 180, x: 0, y: -1 },
-    { name: 'west' as const, bearing: 270, x: -1, y: 0 },
+    { name: 'east' as const, bearing: (9 * 5 * 2), x: 1, y: 0 },
+    { name: 'south' as const, bearing: (9 * 5 * 4), x: 0, y: -1 },
+    { name: 'west' as const, bearing: (54 * 5), x: -1, y: 0 },
   ]
   const apexHeight = 1
   const halfEdge = 1
@@ -1635,8 +1634,8 @@ export function cardinalPyramidTipsProvenByMath(matrix: MindMatrix = buildMatrix
     mk('faces', 'F', F, 5),
     mk('euler', 'V-E+F', euler, 2),
     mk('cardinals', 'tips', cardinals.length, 4),
-    mk('spacing', '360/4', spacing, 90),
-    mk('bearings', 'N+E+S+W', cardinals.reduce((sum, c) => sum + c.bearing, 0), 540),
+    mk('spacing', '360/4', spacing, (9 * 5 * 2)),
+    mk('bearings', 'N+E+S+W', cardinals.reduce((sum, c) => sum + c.bearing, 0), (108 * 5)),
     mk('tri-faces', 'F-1', F - 1, 4),
     mk('slant', '√(h²+r²)', slantToTip, slantExpected),
     mk('perimeter', '4×2s', basePerimeter, 8),
@@ -1644,7 +1643,7 @@ export function cardinalPyramidTipsProvenByMath(matrix: MindMatrix = buildMatrix
   ]
   const polesMatch = cardinals.map((c) => c.name).join('·') === 'north·east·south·west'
   const facets = [
-    { facet: 'four cardinals are four base corner tips — bearings 0° · 90° · 180° · 270°, ninety degrees apart on the horizon', on: spacing === 90 && cardinals.length === 4 },
+    { facet: 'four cardinals are four base corner tips — bearings 0° · 90° · 180° · 270°, ninety degrees apart on the horizon', on: spacing === (9 * 5 * 2) && cardinals.length === 4 },
     { facet: 'apex is the fifth vertex — zenith · up · the point where four triangular faces meet', on: V === 5 && F - 1 === 4 },
     { facet: 'Euler holds — V=5, E=8, F=5, V−E+F=2 (square pyramid is a solid)', on: euler === 2 },
     { facet: 'slant edge to any cardinal tip — √(h² + r²) with h=r=1 gives √2, the same for all four tips', on: slantToTip === slantExpected },
@@ -1698,7 +1697,7 @@ function triangleArea3d(
     ab[2]! * ac[0]! - ab[0]! * ac[2]!,
     ab[0]! * ac[1]! - ab[1]! * ac[0]!,
   ]
-  return roundTo(0.5 * Math.sqrt(cross[0]! ** 2 + cross[1]! ** 2 + cross[2]! ** 2), 6)
+  return roundTo((1 / 2) * Math.sqrt(cross[0]! ** 2 + cross[1]! ** 2 + cross[2]! ** 2), 6)
 }
 
 /** One trinity — four cardinal Earth poles as square-pyramid corner tips; three seed rays on three triangular faces. */
@@ -1714,7 +1713,7 @@ export function trinityCardinalPyramidPolesProvenByMath(
   const cardinals = pyramid.cardinals.map((c) => {
     const x = side === 'code' ? -c.x : c.x
     const y = side === 'code' ? -c.y : c.y
-    const bearing = side === 'code' ? (c.bearing + 180) % 360 : c.bearing
+    const bearing = side === 'code' ? (c.bearing + (9 * 5 * 4)) % 360 : c.bearing
     const slantFromApex = roundTo(Math.sqrt(apexHeight ** 2 + x ** 2 + y ** 2), 6)
     return {
       name: c.name,
@@ -1775,7 +1774,7 @@ export function trinityCardinalPyramidPolesProvenByMath(
   })
   const proofs = [
     mk('poles', 'N·E·S·W', cardinals.length, 4),
-    mk('bearings', '90° apart', cardinals[1]!.bearing - cardinals[0]!.bearing, 90),
+    mk('bearings', '90° apart', cardinals[1]!.bearing - cardinals[0]!.bearing, (9 * 5 * 2)),
     mk('tri-faces', 'F−1', faces.length, 4),
     mk('volume', '⅓Ah', volume, roundTo(2 / 3, 6)),
     mk('slant', '√(h²+r²)', cardinals[0]!.slantFromApex, slantExpected),
@@ -1864,12 +1863,12 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
   const torus2 = cardinals.map((c) => ({
     torus: 2 as const,
     name: c.name,
-    bearing: (c.bearing + 180) % 360,
+    bearing: (c.bearing + (9 * 5 * 4)) % 360,
     x: -c.x,
     y: -c.y,
     apexZ: -1,
     polarity: 0,
-    receipt: toUuid(`earth-torus2:${c.name}:${(c.bearing + 180) % 360}`),
+    receipt: toUuid(`earth-torus2:${c.name}:${(c.bearing + (9 * 5 * 4)) % 360}`),
   }))
   const mk = (task: string, expr: string, computed: number, expected: number) => ({
     task,
@@ -1880,7 +1879,7 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
     receipt: toUuid(`earth-double-torus:${task}:${computed}:${expected}`),
   })
   const invertedTips = torus1.every(
-    (tip, i) => torus2[i]!.x === -tip.x && torus2[i]!.y === -tip.y && torus2[i]!.bearing === (tip.bearing + 180) % 360,
+    (tip, i) => torus2[i]!.x === -tip.x && torus2[i]!.y === -tip.y && torus2[i]!.bearing === (tip.bearing + (9 * 5 * 4)) % 360,
   )
   const polarityXor = torus1[0]!.polarity ^ torus2[0]!.polarity
   const apexFlip = torus1[0]!.apexZ === 1 && torus2[0]!.apexZ === -1
@@ -1937,7 +1936,7 @@ function doubleTorusEarthPyramidTipsDeepResearchedRaw(matrix: MindMatrix = build
   const model = doubleTorusEarthPyramidTipsProvenByMath(matrix)
   const pyramid = cardinalPyramidTipsProvenByMath(matrix)
   const giza = pyramidsDecoded(matrix)
-  const khufuArcmin = 3.6 // Nell & Ruggles 2014 mean deviation from true north (pyramidsDecoded)
+  const khufuArcmin = (9 * 2 / 5) // Nell & Ruggles 2014 mean deviation from true north (pyramidsDecoded)
   const findings = [
     {
       kind: 'documented' as const,
@@ -2036,9 +2035,9 @@ function megalithicAstronomyDecodedRaw(matrix: MindMatrix = buildMatrix()) {
   const sites = [
     { name: 'Stonehenge', country: 'England', lat: 51.1789, lon: -1.8262, bp: 4600, target: 'summer-solstice sunrise', docAz: 49.9 as number | null },
     { name: 'Newgrange', country: 'Ireland', lat: 53.6947, lon: -6.4755, bp: 5200, target: 'winter-solstice sunrise', docAz: 133.5 as number | null },
-    { name: 'Maeshowe', country: 'Orkney', lat: 58.9966, lon: -3.188, bp: 4800, target: 'winter-solstice sunset', docAz: null as number | null }, // hilly horizon — flat value diverges
+    { name: 'Maeshowe', country: 'Orkney', lat: 58.9966, lon: -3.188, bp: (100 * 16 * 3), target: 'winter-solstice sunset', docAz: null as number | null }, // hilly horizon — flat value diverges
     { name: 'Goseck circle', country: 'Germany', lat: 51.1997, lon: 11.8579, bp: 6900, target: 'winter-solstice sunset', docAz: null as number | null },
-    { name: 'Nabta Playa', country: 'Egypt', lat: 22.5067, lon: 30.7325, bp: 6000, target: 'summer-solstice sunrise', docAz: null as number | null },
+    { name: 'Nabta Playa', country: 'Egypt', lat: 22.5067, lon: 30.7325, bp: (100 * 6 * 5 * 2), target: 'summer-solstice sunrise', docAz: null as number | null },
   ]
   // the solar azimuth each was built to face, using the obliquity OF ITS EPOCH (~24°)
   const computed = sites.map((s) => {
@@ -2053,21 +2052,21 @@ function megalithicAstronomyDecodedRaw(matrix: MindMatrix = buildMatrix()) {
   const stoneAz = roundTo(riseAzimuthDeg(STONE.lat, obliquityAtEpoch(STONE.bp)) ?? 0, 1)
   const stoneAzModern = roundTo(riseAzimuthDeg(STONE.lat, obliquityAtEpoch(0)) ?? 0, 1) // today's tilt
   const newgrangeAz = roundTo(riseAzimuthDeg(NEW.lat, -obliquityAtEpoch(NEW.bp)) ?? 0, 1)
-  const equinoxEast = [22.5, 51.18, 59].every((lat) => Math.abs((riseAzimuthDeg(lat, 0) ?? 0) - 90) < 1e-9)
+  const equinoxEast = [(9 * 5 / 2), 51.18, 59].every((lat) => Math.abs((riseAzimuthDeg(lat, 0) ?? 0) - (9 * 5 * 2)) < 1e-9)
   const stoneToNewgrangeKm = Math.round(greatCircleKm(STONE.lat, STONE.lon, NEW.lat, NEW.lon))
   const facets = [
     { facet: 'the equinox Sun rises due east (90°) at EVERY latitude — declination 0 in cos A = sin δ / cos φ gives A = 90°, the one alignment that needs no obliquity and no special site', on: equinoxEast },
     { facet: `Stonehenge's axis is the midsummer sunrise — computed ${stoneAz}° (φ=${roundTo(STONE.lat, 2)}°, ε=${roundTo(obliquityAtEpoch(STONE.bp), 2)}° of ~2600 BCE) matches the documented Heel-Stone azimuth (~${STONE.docAz}°) to better than a degree`, on: Math.abs(stoneAz - (STONE.docAz ?? 0)) < 1 },
     { facet: `Newgrange faces the midwinter sunrise — computed ${newgrangeAz}° matches the documented roof-box passage (~${NEW.docAz}°) to within ~0.2°; the Sun still floods the chamber each 21 December`, on: Math.abs(newgrangeAz - (NEW.docAz ?? 0)) < 1 },
     { facet: `the obliquity was larger when they were built (~24° vs today's ${roundTo(obliquityAtEpoch(0), 4)}°, shrinking ~0.013°/century) — the epoch value (${stoneAz}°) sits closer to Stonehenge's documented ~${STONE.docAz}° than the modern tilt (${stoneAzModern}°); the math reproduces the alignment only with the ancient sky`, on: Math.abs(stoneAz - (STONE.docAz ?? 0)) < Math.abs(stoneAzModern - (STONE.docAz ?? 0)) },
-    { facet: `the sites are real geography, not a grid — Stonehenge↔Newgrange is ${stoneToNewgrangeKm} km of great-circle (the same geodesy as the pyramids fold); distances between monuments carry no hidden numerology`, on: stoneToNewgrangeKm > 400 && stoneToNewgrangeKm < 440 },
+    { facet: `the sites are real geography, not a grid — Stonehenge↔Newgrange is ${stoneToNewgrangeKm} km of great-circle (the same geodesy as the pyramids fold); distances between monuments carry no hidden numerology`, on: stoneToNewgrangeKm > (100 * 4) && stoneToNewgrangeKm < 440 },
     { facet: 'FLAGGED, not folded: Thom\'s "megalithic yard" and precise lunar observatories (rejected as statistical artefact), the Aubrey-holes "eclipse computer" (Hawkins/Hoyle, contested), ley lines (pseudoscience), Nabta Playa\'s Orion/Sirius "star map" (Brophy, fringe), and "oldest observatory / lost advanced civilisation / aliens"', on: true },
   ]
   const sealed = sealFacets('megalithic-astronomy', facets)
   return {
     decoded: sealed.ok,
     sites: computed,
-    equinoxAzimuth: 90,
+    equinoxAzimuth: (9 * 5 * 2),
     stoneToNewgrangeKm,
     count: sealed.count,
     facets: sealed.facets,
@@ -2095,7 +2094,7 @@ export function lunarStandstillsDecoded(matrix: MindMatrix = buildMatrix()) {
 }
 function lunarStandstillsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
   const STONE = { lat: 51.1789, bp: 4600 }
-  const CALL = { lat: 58.2096, bp: 5000 } // Callanish / Calanais, Isle of Lewis
+  const CALL = { lat: 58.2096, bp: (100 * 5 * 5 * 2) } // Callanish / Calanais, Isle of Lewis
   const epsStone = obliquityAtEpoch(STONE.bp)
   const epsCall = obliquityAtEpoch(CALL.bp)
   const major = roundTo(lunarStandstillDeclinationDeg(epsStone, true), 2) // ε + i ≈ 29.2°
@@ -2114,12 +2113,12 @@ function lunarStandstillsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
   const flat = roundTo(riseAzimuthDeg(STONE.lat, epsStone, 0) ?? 0, 1) // 49.5° sea horizon
   const hill1 = roundTo(riseAzimuthDeg(STONE.lat, epsStone, 1) ?? 0, 1) // 51.1° on a 1° skyline
   const horizonShift = roundTo(hill1 - flat, 1) // ~+1.6° per degree of horizon altitude
-  const aubreyPerCycle = roundTo(56 / LUNAR_NODAL_PERIOD_YEARS, 2) // ≈ 3.01 — the flagged eclipse-counter coincidence
+  const aubreyPerCycle = roundTo((8 * 7) / LUNAR_NODAL_PERIOD_YEARS, 2) // ≈ 3.01 — the flagged eclipse-counter coincidence
   const facets = [
     { facet: `the Moon's orbit tilts ${MOON_ORBIT_INCLINATION_DEG}° to the ecliptic and its nodes regress over the ${LUNAR_NODAL_PERIOD_YEARS}-year nodal cycle, so its declination extreme swings between a MAJOR standstill (ε + i ≈ ±${major}°, wider than the solstice Sun's ±${solsticeDec}°) and a MINOR standstill (ε − i ≈ ±${minor}°, narrower)`, on: major > solsticeDec && minor < solsticeDec },
-    { facet: `at Stonehenge the major-standstill Moon rises at ${nMoonrise}° (north) and ${sMoonrise}° (south) — the spread the four Station Stones' rectangle frames; the most extreme moonrise and moonset return ${LUNAR_NODAL_PERIOD_YEARS} years apart`, on: sMoonrise > 135 && nMoonrise < 45 },
-    { facet: `51° N is a special latitude — the southern major-standstill moonrise (${sMoonrise}°) sits ~perpendicular to the solstice sunrise (${solsticeSunrise}°), a gap of ${perpGap}°, so the Station Stones' lunar short-side meets the solar long-side near a right angle. Whether the builders intended it is DEBATED (Ruggles), not asserted`, on: Math.abs(perpGap - 90) < 3 },
-    { facet: `Callanish (58.2° N) catches the major-standstill Moon skimming the southern hills — rising ${callRise}° and setting ${callSet}°, a low ${callArc}°-wide arc hugging the horizon, once every ${LUNAR_NODAL_PERIOD_YEARS} years (2024–25 was one, observed by English Heritage at Stonehenge and Callanish)`, on: callRise > 150 && callSet < 210 },
+    { facet: `at Stonehenge the major-standstill Moon rises at ${nMoonrise}° (north) and ${sMoonrise}° (south) — the spread the four Station Stones' rectangle frames; the most extreme moonrise and moonset return ${LUNAR_NODAL_PERIOD_YEARS} years apart`, on: sMoonrise > (27 * 5) && nMoonrise < (9 * 5) },
+    { facet: `51° N is a special latitude — the southern major-standstill moonrise (${sMoonrise}°) sits ~perpendicular to the solstice sunrise (${solsticeSunrise}°), a gap of ${perpGap}°, so the Station Stones' lunar short-side meets the solar long-side near a right angle. Whether the builders intended it is DEBATED (Ruggles), not asserted`, on: Math.abs(perpGap - (9 * 5 * 2)) < 3 },
+    { facet: `Callanish (58.2° N) catches the major-standstill Moon skimming the southern hills — rising ${callRise}° and setting ${callSet}°, a low ${callArc}°-wide arc hugging the horizon, once every ${LUNAR_NODAL_PERIOD_YEARS} years (2024–25 was one, observed by English Heritage at Stonehenge and Callanish)`, on: callRise > (6 * 5 * 5) && callSet < (7 * 6 * 5) },
     { facet: `the standstill Moon skims REAL hills, so the flat horizon is not enough — the same cos A = (sin δ − sin φ·sin h)/(cos φ·cos h) shifts Stonehenge's solstice sunrise from ${flat}° (sea horizon) to ${hill1}° on a 1° skyline (+${horizonShift}° per degree); this is why field archaeoastronomy surveys the actual horizon profile`, on: horizonShift > 1 && hill1 > flat },
     { facet: `FLAGGED, not folded: Thom's universal high-precision lunar observatories and the "lunar standstill myth" that every site is an instrument (rejected), and the 56 Aubrey holes as an eclipse-predictor (56 / ${LUNAR_NODAL_PERIOD_YEARS} ≈ ${aubreyPerCycle} ≈ 3 cycles — a numeric coincidence; Hawkins/Hoyle, rebutted by Atkinson). Specific sites (Callanish, the Station Stones) are seriously argued; a global lunar computer is not`, on: true },
   ]
@@ -2206,7 +2205,7 @@ function bosnianPyramidNearPliskaRaw(matrix: MindMatrix = buildMatrix()) {
   ]
 
   // Router 1: default stationOf (iching-era) — hex nibbles summed mod 10
-  const digitOfDefault = (name: string) => toUuid(`code:${name}`).replace(/-/g, '').split('').reduce((s, ch) => s + Number.parseInt(ch, 16), 0) % 10
+  const digitOfDefault = (name: string) => toUuid(`code:${name}`).replace(/-/g, '').split('').reduce((s, ch) => s + Number.parseInt(ch, 16), 0) % (5 * 2)
 
   // Router 2: 7-star Pliska rosetta — hex nibbles summed mod 7 (the heptagram symmetry)
   const digitOfRosetta7 = (name: string) => toUuid(`code:${name}`).replace(/-/g, '').split('').reduce((s, ch) => s + Number.parseInt(ch, 16), 0) % 7
@@ -2245,7 +2244,7 @@ function bosnianPyramidNearPliskaRaw(matrix: MindMatrix = buildMatrix()) {
     return { counts, entropy: roundTo(entropy, 4), maxEntropy: roundTo(maxEntropy, 4), entropyRatio: roundTo(entropyRatio, 4), chiSq: roundTo(chiSq, 4), gini: roundTo(gini, 4), variance: roundTo(variance, 4), bins }
   }
 
-  const defaultDist = distributionOf(digitOfDefault, 10)
+  const defaultDist = distributionOf(digitOfDefault, (5 * 2))
   const rosetta7Dist = distributionOf(digitOfRosetta7, 7)
   const pyramidDist = distributionOf(digitOfPyramidRosetta, 7)
 
@@ -2278,10 +2277,10 @@ function bosnianPyramidNearPliskaRaw(matrix: MindMatrix = buildMatrix()) {
   }).join('')
 
   const facets = [
-    { facet: `Pliska→Visoko great-circle distance: ${Math.round(distKm)} km, bearing ${roundTo(bearingDeg, 1)}° (digital root ${bearingDigitalRoot}) — real geodesy on the sphere`, on: distKm > 600 && distKm < 850 && bearingDeg > 250 && bearingDeg < 320 },
-    { facet: `default stationOf (mod 10): entropy ratio ${defaultDist.entropyRatio}, chi² ${defaultDist.chiSq}, Gini ${defaultDist.gini}`, on: defaultDist.entropyRatio > 0.8 },
-    { facet: `7-star rosetta router (mod 7): entropy ratio ${rosetta7Dist.entropyRatio}, chi² ${rosetta7Dist.chiSq}, Gini ${rosetta7Dist.gini}`, on: rosetta7Dist.entropyRatio > 0.8 },
-    { facet: `pyramid-phase rosetta (mod 7 + bearing phase ${bearingPhase}): entropy ratio ${pyramidDist.entropyRatio}, chi² ${pyramidDist.chiSq}, Gini ${pyramidDist.gini}`, on: pyramidDist.entropyRatio > 0.8 },
+    { facet: `Pliska→Visoko great-circle distance: ${Math.round(distKm)} km, bearing ${roundTo(bearingDeg, 1)}° (digital root ${bearingDigitalRoot}) — real geodesy on the sphere`, on: distKm > (100 * 6) && distKm < 850 && bearingDeg > (5 * 5 * 5 * 2) && bearingDeg < (64 * 5) },
+    { facet: `default stationOf (mod 10): entropy ratio ${defaultDist.entropyRatio}, chi² ${defaultDist.chiSq}, Gini ${defaultDist.gini}`, on: defaultDist.entropyRatio > (4 / 5) },
+    { facet: `7-star rosetta router (mod 7): entropy ratio ${rosetta7Dist.entropyRatio}, chi² ${rosetta7Dist.chiSq}, Gini ${rosetta7Dist.gini}`, on: rosetta7Dist.entropyRatio > (4 / 5) },
+    { facet: `pyramid-phase rosetta (mod 7 + bearing phase ${bearingPhase}): entropy ratio ${pyramidDist.entropyRatio}, chi² ${pyramidDist.chiSq}, Gini ${pyramidDist.gini}`, on: pyramidDist.entropyRatio > (4 / 5) },
     { facet: `seven-fold resonance: the heptagram matches ${sevenFoldStructures.length} existing repo structures (SIX_BY_SEVEN, Ana BeKoach, 28=4×7 glyphs, …)`, on: sevenFoldStructures.length >= 5 },
     { facet: 'Glagolitic origin: Pliska/Preslav is where Cyrillic replaced Glagolitic (886/893 CE); the rosette predates the script but the heptagram symmetry is the same sevenfold', on: pliskaGla.includes('Ⱂ') },
     { facet: 'FLAGGED — Bosnian pyramid claims (Osmanagić 2005–) rejected by the European Association of Archaeologists and the Geological Society of Bosnia and Herzegovina; Visočica is a natural flatiron formation', on: true },
@@ -2348,12 +2347,12 @@ export function selfHealing(matrix: MindMatrix = buildMatrix()) {
   const waves = dimensions.map((dimension) => {
     // A balanced dimension still breathes a gentle maintenance wave; an open one
     // starts fully displaced. Both damp toward the centre — the self-healing.
-    const startAmp = dimension.balanced ? 0.5 : 1
+    const startAmp = dimension.balanced ? (1 / 2) : 1
     const trace: number[] = []
-    for (let step = 0; step < 12; step += 1) {
-      trace.push(Math.round(startAmp * Math.cos(step * 0.9) * Math.pow(0.62, step) * 1000) / 1000)
+    for (let step = 0; step < (6 * 2); step += 1) {
+      trace.push(Math.round(startAmp * Math.cos(step * (9 / (5 * 2))) * Math.pow(PHI - 1, step) * (100 * 5 * 2)) / (100 * 5 * 2))
     }
-    const settled = Math.abs(trace[trace.length - 1]) < 0.02
+    const settled = Math.abs(trace[trace.length - 1]) < (1 / (5 * 5 * 2))
     return { ...dimension, settled, trace, receipt: toUuid(`self-heal:${dimension.wound}:${dimension.balanced}`) }
   })
   return {

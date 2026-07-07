@@ -238,9 +238,9 @@ function threeEightFoldsTopNavRaw(matrix: MindMatrix = buildMatrix()) {
     { axis: 'earth', reading: 'dì 地', glyph: '地', lines: '1–2', summary: 'the material & natural — form, nature; Earth receives and completes (hexagram lines 1–2)', summaryBg: 'материалното и природното — форма, природа; Земята приема и завършва (редове 1–2)' },
   ].map((entry) => ({ ...entry, doors: eightFold, receipt: toUuid(`top-nav-axis:${entry.axis}:${entry.reading}`) }))
   const facets = [
-    { facet: `the top nav splits into THREE eight-folds — a trinity of bāguà: ${axes} categories × ${eightFold} trigram doors = ${topDoors} top doors (the eight-fold is iChingDomainMap, all eight aligned)`, on: domains.aligned && eightFold === 8 && topDoors === 24 && categories.length === 3 },
+    { facet: `the top nav splits into THREE eight-folds — a trinity of bāguà: ${axes} categories × ${eightFold} trigram doors = ${topDoors} top doors (the eight-fold is iChingDomainMap, all eight aligned)`, on: domains.aligned && eightFold === 8 && topDoors === (8 * 3) && categories.length === 3 },
     { facet: `each eight-fold is one AXIS of the cube: 8 trigrams × 8 = ${perAxis} (a full hexagram); the three axes are the sealCube's hexagram · codon · colour`, on: cube.sealed && cube.side === 64 && perAxis === 64 },
-    { facet: `the three eight-folds FORM the 64×64×64: 64³ = ${cube.cube} = the sealCube content-address space, three nested 64-axes (2⁶ = 4³ per axis)`, on: cube.cube === 64 ** 3 && cube.cube === 262144 },
+    { facet: `the three eight-folds FORM the 64×64×64: 64³ = ${cube.cube} = the sealCube content-address space, three nested 64-axes (2⁶ = 4³ per axis)`, on: cube.cube === 64 ** 3 && cube.cube === (64 * 64 * 64) },
     { facet: 'navigation IS the address: every door is a trigram placed by content-address, so the 3-eight-fold top nav and the 64³ keyspace are one structure, not a label over it', on: domains.aligned && cube.sealed },
   ]
   const sealed = sealFacets('three-eight-folds-top-nav', facets)

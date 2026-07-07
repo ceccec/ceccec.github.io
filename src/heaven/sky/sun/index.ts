@@ -28,8 +28,8 @@ export function sunSchumannDaySideIonosphere(at = 0, matrix: MindMatrix = buildM
 
 /** One gate — solar constants, obliquity coupling, hero day phase, Schumann day-side, nav display phase. */
 export function sunComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sunComputes:${Math.floor(at / 1000)}`, matrix, () => {
-    const timeYears = at / (365.25 * 24 * 3600 * 1000)
+  return memoByRoot(`sunComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const sunBody = celestial.sun
     const obliquityDeg = roundTo(obliquityAtEpoch(0), 6)
@@ -39,7 +39,7 @@ export function sunComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const sunDisplay = nav.celestialPhases.find((entry) => entry.body === 'Sun')
     const { computes, facets } = computesGate('sun-computes', [
       { facet: 'compute-all Sun — schwarzschild band + inner lobe generator', on: sunBody.exactMatch && sunBody.emits },
-      { facet: 'obliquity at epoch — IAU J2000 baseline from 6/4', on: obliquityDeg > 23 && obliquityDeg < 24 },
+      { facet: 'obliquity at epoch — IAU J2000 baseline from 6/4', on: obliquityDeg > 23 && obliquityDeg < (8 * 3) },
       { facet: 'hero day phase ∈ [0,1) — shared plasma clock', on: dayPhase.phase >= 0 && dayPhase.phase < 1 },
       { facet: 'Schumann day-side ionosphere harmonised — structural ELF, not live SOHO/SDO', on: schumann.harmonised },
       { facet: 'nav celestial Sun display phase — dual-Earth inner θ shell', on: !!sunDisplay && sunDisplay.shell === 'device' },

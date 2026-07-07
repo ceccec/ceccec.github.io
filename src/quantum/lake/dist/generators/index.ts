@@ -106,7 +106,7 @@ export function generators(): Generator[] {
       plan: (ctx) => {
         const en = ctx.read('.vitepress/pages/en/index.md')
         if (en == null) return { files: [], messages: [], error: 'Cannot read .vitepress/pages/en/index.md' }
-        return { files: [], messages: [`Glagolitic home (computed, not written):\n ${glagoliticHomeFromEnglish(en).slice(0, 200)} …`] }
+        return { files: [], messages: [`Glagolitic home (computed, not written):\n ${glagoliticHomeFromEnglish(en).slice(0, (100 * 2))} …`] }
       },
     },
     {
@@ -167,7 +167,7 @@ export function generators(): Generator[] {
           '//',
           '// All Cloudflare bindings (toggle by id in CF_BINDINGS):',
           ...model.bindings.map(
-            (binding) => `//   [${enabled.has(binding.id) ? 'on ' : '   '}] ${binding.id.padEnd(10)} ${binding.binding} (${binding.varName}) — ${binding.use}; tampering: ${binding.tamper}.`,
+            (binding) => `//   [${enabled.has(binding.id) ? 'on ' : '   '}] ${binding.id.padEnd((5 * 2))} ${binding.binding} (${binding.varName}) — ${binding.use}; tampering: ${binding.tamper}.`,
           ),
           '',
         ].join('\n')

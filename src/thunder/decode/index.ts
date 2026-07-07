@@ -54,6 +54,8 @@ import { selfImprovementTrainingAndAccumulation } from '../../mountain/geometry'
 import { computationsBoundToSourceApisRealtime } from '../trading'
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHistoryDecoded } from '../../earth/world'
 import { completeCorpus, computerComponentsMergedDuality, fruitOfLifeFusion, genes, imagineTheRest, live, monographs, papers, sacredGeometrySeal, sharedBookOfCivilisations, textEntropy, worldFusion, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { PHI } from '../../3/7'
+import { gcd, lcm } from '../../0'
 
 // Decode 2020 from the history. 2020 was the corpus total at the reading where the live
 // units summed to it — 432 papers + 432 references + 1024 diamonds + the commands, atoms
@@ -197,8 +199,6 @@ export function decodeBooksToUnity(matrix: MindMatrix = buildMatrix()) {
 // time; the astronomical fits (Metonic, the lunar lock) are checked against the documented constants.
 export function coupledCalendarTori(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('coupledCalendarTori', matrix, () => {
-    const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
-    const lcm = (a: number, b: number): number => (a / gcd(a, b)) * b
     const SYNODIC = 29.53059 // mean synodic month, days (documented)
     const TROPICAL = 365.2422 // mean tropical year, days (documented)
     const cycles = [
@@ -299,8 +299,6 @@ export function kalachakraDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('kalachakraDecoded', matrix, () => {
     const SYNODIC = 29.53059
     const solarMonth = 365.2422 / 12
-    const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
-    const lcm = (a: number, b: number): number => (a / gcd(a, b)) * b
     const meshGap = Math.abs(67 * SYNODIC - 65 * solarMonth) // the tantra's equivalence vs modern means
     const leapsPer19 = (2 / 65) * 12 * 19 // 2 extra lunar months per 65 solar months → per 19 years
     const { computes, facets, root } = computesGate('kalachakra-decoded', [
@@ -1159,11 +1157,8 @@ export function iChingImportExportTenD(matrix: MindMatrix = buildMatrix()) {
 // from only ancient knowledge (the verified values) and sacred math (the fold), per the law in force.
 export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
-  const lcm = (a: number, b: number) => (a * b) / gcd(a, b)
   const choose2 = (n: number) => (n * (n - 1)) / 2
   const magicConstant = (n: number) => (n * (n * n + 1)) / 2
-  const PHI = (1 + Math.sqrt(5)) / 2
   const systems = [
     {
       name: 'Hebrew gematria + Sefer Yetzirah',
@@ -1334,8 +1329,6 @@ export function saveAndDecodeAncientTexts(matrix: MindMatrix = buildMatrix()) {
 /** @rosetta ✦₁ · Fire · clarity */
 export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
-  const lcm = (a: number, b: number) => (a * b) / gcd(a, b)
   const cycles = [
     { cycle: 'week', days: 7, tradition: 'planetary' },
     { cycle: 'trecena', days: 13, tradition: 'Maya' },

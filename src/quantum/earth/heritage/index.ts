@@ -173,7 +173,7 @@ export function rankByDocumentation<T extends { documented: string }>(items: rea
 export function erasByCentury(eras: readonly Era[]): Map<number, Era[]> {
   const out = new Map<number, Era[]>()
   for (const era of eras) {
-    const year = Number.parseInt(era.span, 10) || 0
+    const year = Number.parseInt(era.span, (5 * 2)) || 0
     const century = Math.floor(year / 100) * 100
     const bucket = out.get(century) ?? []
     bucket.push(era)

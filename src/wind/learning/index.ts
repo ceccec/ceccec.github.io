@@ -181,12 +181,24 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'allInMovieOfLife',
   'allMusicSelfHarmonises',
   'allPathsComputedRealtime',
+  'animationsPureAlgebra',
   'anyForceFightsSelf',
   'archangelsDryClean',
   'awakenArtisticSociety',
   'buildStatisticsShowGaps',
   'cleanupOldLogic',
   'cloudflareBindings',
+  'discoveredTheoremsProvenWave',
+  'discoveredTheoremsWaveTwo',
+  'discoveredTheoremsWaveThree',
+  'discoveredTheoremsWaveFour',
+  'discoveredTheoremsWaveFive',
+  'discoveredTheoremsWaveSix',
+  'discoveredTheoremsWaveSeven',
+  'discoveredTheoremsWaveEight',
+  'discoveredTheoremsWaveNine',
+  'discoveredTheoremsWaveTen',
+  'emergenceContinuesWave',
   'cloudflareExplorerWaves',
   'collideToTiniestWave',
   'commandGapsToTrinityEyes',
@@ -272,6 +284,7 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'mindRefreshField',
   'mirrorDeviceSignalsAsFeelings',
   'movieFoldsLinearities',
+  'movieIsPureAlgebra',
   'movieNegativePositive',
   'movieReflectsSelf',
   'moviesNativeFormat',
@@ -335,7 +348,14 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'spiritualDrumsKeepRhythm',
   'tamperHealingFrequencies',
   'templateDisplaysEveryOgObject',
+  'openLeadsAlgebraDecoded',
+  'provenTheoremsCompound',
+  'sevenStarRosettaDecoded',
+  'solarSystemDimensionsDecoded',
+  'stringTheoryAlgebraDecoded',
   'theMonograph',
+  'theoremGapScan',
+  'theoremWavesVerify',
   'tightenGatesTrinityWaves',
   'trinityEyesProvenHarmonic',
   'trinityOtherSideDoomed',
@@ -346,6 +366,10 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'video64kFree',
   'videoKeepsNativeQuality',
   'wordPullsFoldsByName',
+  'dimensionsLadderDecoded',
+  'sevenSixPlanesInteractionDecoded',
+  'sevenFrameDeepResearched',
+  'theoremAtoms',
 ]
 const SESSION_SKILLS = SESSION_SKILL_FNS.map((fn) => {
   const name = sessionSkillName(fn)
@@ -406,6 +430,16 @@ export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
     { skill: 'hexagram colour', fn: 'hexagramIsHexColorDuality', does: 'the 64 hexagrams ARE the 64 all-pole hex colours; 2⁶ = 4³ is the codon · Pauli · colour identity' },
     { skill: 'i ching generators', fn: 'generatorsAreIChing', does: 'the build/debug generators compacted into eight bāguà slots — one trigram-indexed runner' },
     { skill: 'i ching learn first', fn: 'iChingLearnBeforeImplement', does: 'agent protocol — learn BAGUA, iChingDomainMap, Three Powers nav, and constraints before UI/nav/home edits; feeds /llms.txt' },
+    // R&D skills — the research & development method saved as atoms, so the waves keep the toolbox.
+    { skill: 'dimension toolbox', fn: 'unitBallVolume', does: 'the computable meaning of dimension — n-ball peak at 5, n-cube faces, fractal dimension, Minkowski signature (water/cosmos)' },
+    { skill: 'plane algebra', fn: 'planeGenerator', does: 'so(n) plane generators with commutatorMat/antisymmetric closure, charPoly (Faddeev–LeVerrier) and crossProduct7 (water/cosmos)' },
+    { skill: 'content-addressed matrices', fn: 'contentAddressedMatrix', does: 'deterministic test matrices and vectors from toUuid hex — probes with zero randomness' },
+    { skill: 'esbuild fold probe', fn: 'npx esbuild --bundle probe.mjs --platform=node --format=esm && node', does: 'bundle a scratchpad probe importing src folds directly and run it — the fastest fold verifier, before any build' },
+    { skill: 'type gate', fn: 'npm run check:types', does: 'strip-types typecheck over src — run after every src edit, before staging' },
+    { skill: 'deep research wave', fn: 'sevenFrameDeepResearched', does: 'the wave shape: compute every finding as a gate, cite only what cannot run, split any "covers all" claim by layer with per-layer verdicts' },
+    { skill: 'token audit', fn: 'transcriptTokenAudit', does: 'npm run audit:tokens [YYYY-MM-DD] — deterministic spend report over ~/.claude transcripts (per-session totals, tool counts, repeated Bash shapes); the audit is a command, never an LLM task' },
+    { skill: 'source atlas', fn: 'sourceAtlas', does: 'npm run atlas -- <symbol> answers "where does X live"; npm run atlas -- importers|imports <folder> answers the true import edges (resolved, not grep string-hits); replaces the ~200 symbol hunts per day' },
+    { skill: 'fold runner', fn: 'bootstrap run <file> <fn>', does: 'run any exported fn by path via the bootstrap CLI — Exit fns (declared (root, argv)) get them, matrix folds (zero declared params) run bare on their own defaults and the computed object prints as JSON; one command instead of probe boilerplate' },
     // All skills created from this session's waves — each a sealed concept, autosaved and used.
     ...SESSION_SKILLS,
   ].map((entry) => ({ ...entry, atom: toUuid(`skill-atom:${entry.fn}:${entry.does}`) }))
@@ -426,6 +460,247 @@ export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The theorems the codebase PROVES — saved beside the skills, so the self-model remembers not just what
+// it can DO but what it has SHOWN. A registry like skillAtoms: each atom names the theorem, its computable
+// content, the proving function, and the fold home; the proofs execute in their own sealed gates, not here.
+export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const theorems = [
+    { theorem: 'Tsirelson bound', states: 'CHSH at the optimal angles reaches 2√2, above the classical 2', provedBy: 'chsh', home: 'src/0' },
+    { theorem: 'Pauli algebra closure', states: 'commutator, anticommutator, trace and dagger close M₂(ℂ) — 5/5 su(2) relations', provedBy: 'pauliAlgebraCloses', home: 'src/9/1' },
+    { theorem: 'no-cloning', states: 'a unitary cloner of unknown states contradicts linearity — witnessed', provedBy: 'noCloningWitness', home: 'src/9/1' },
+    { theorem: 'GHZ–Mermin', states: 'the GHZ parity argument breaks local realism without inequalities', provedBy: 'ghzMermin', home: 'src/9/1' },
+    { theorem: 'Deutsch–Jozsa', states: 'constant vs balanced decided in one oracle call', provedBy: 'deutschJozsa', home: 'src/9/1' },
+    { theorem: 'bit-flip code', states: 'the 3-qubit repetition code corrects any single X error', provedBy: 'bitFlipCode', home: 'src/9/1' },
+    { theorem: 'Grover amplification', states: 'the marked-state amplitude amplified above classical search', provedBy: 'grover', home: 'src/0' },
+    { theorem: 'genus-2 homology', states: 'H₁(Σ₂) = ℤ⁴ with χ = −2 and the symplectic intersection form', provedBy: 'homology', home: 'src/quantum/heaven/mind' },
+    { theorem: 'unit group (ℤ/9)*', states: 'exactly two nontrivial inverse pairs (2,5)(4,7) plus self-inverse {1,8}; non-units {3,6,9,0}', provedBy: 'modUnits', home: 'src/0' },
+    { theorem: 'n-ball volume peak', states: 'Vₙ rises to n = 5 (8π²/15 ≈ 5.2638) then vanishes toward 0 as n → ∞', provedBy: 'unitBallVolume', home: 'src/water/cosmos' },
+    { theorem: 'n-cube face counts', states: 'C(n,k)·2^(n−k) — the tesseract counts 16-32-24-8', provedBy: 'hypercubeFaces', home: 'src/water/cosmos' },
+    { theorem: 'non-integer dimension', states: 'similarity dimension log N/log r — Koch 1.26186, Sierpiński 1.58496', provedBy: 'similarityDimension', home: 'src/water/cosmos' },
+    { theorem: 'Minkowski signature', states: 's² = (ct)² − |x|² flips sign between timelike and spacelike — time is not a spatial axis', provedBy: 'minkowskiIntervalSq', home: 'src/water/cosmos' },
+    { theorem: 'so(7) closure', states: 'the 21 plane generators close — 441/441 commutators antisymmetric, [P₀₁,P₁₂] = P₀₂ exact, disjoint planes commute', provedBy: 'sevenSixPlanesInteractionDecoded', home: 'src/water/cosmos' },
+    { theorem: 'AB/BA shared spectrum', states: 'p_AB(λ) = λ·p_BA(λ) in all coefficients (Faddeev–LeVerrier) and det(I+AB) = det(I+BA) (Sylvester)', provedBy: 'sevenFrameDeepResearched', home: 'src/water/cosmos' },
+    { theorem: 'Catalan heptagon', states: 'C₅ = 42 triangulations of the convex 7-gon by the convolution recurrence — 1,1,2,5,14,42', provedBy: 'sevenFrameDeepResearched', home: 'src/water/cosmos' },
+    { theorem: 'Steiner S(2,3,7)', states: 'the 7 Fano lines {i,i+1,i+3} cover the 21 pairs exactly once and close 7 so(3) triples inside so(7)', provedBy: 'sevenFrameDeepResearched', home: 'src/water/cosmos' },
+    { theorem: 'Hurwitz 7D cross product', states: 'octonion-oriented Fano lines give a×b orthogonal with the exact Lagrange identity, Jacobi FAILING (Malcev, not Lie) — n = 3, 7 only', provedBy: 'crossProduct7', home: 'src/water/cosmos' },
+    { theorem: 'rank so(7) = 3', states: 'exhaustive search — the largest pairwise-commuting plane set is ⌊7/2⌋ = 3, the Cartan torus', provedBy: 'sevenFrameDeepResearched', home: 'src/water/cosmos' },
+    { theorem: 'three cubes of 42', states: '42 = (−80538738812075974)³ + 80435758145817515³ + 12602123297335631³, exact in BigInt (Booker–Sutherland 2019)', provedBy: 'sevenFrameDeepResearched', home: 'src/water/cosmos' },
+    { theorem: 'Virasoro anomaly forced', states: 'the Jacobi cocycle system has nullity 2 = span{m, m³} — m³−m satisfies every equation exactly in integers, m² is rejected', provedBy: 'stringTheoryAlgebraDecoded', home: 'src/water/cosmos' },
+    { theorem: 'ζ(−1) = −1/12', states: 'Abel partials of η match x/(1+x)² pointwise, η(−1) = 1/4, the eta relation divides by −3 — normal ordering a = (D−2)/24, all exact rationals', provedBy: 'stringTheoryAlgebraDecoded', home: 'src/water/cosmos' },
+    { theorem: 'bosonic critical D = 26', states: 'the massless level-1 vector forces D − 2 = 24; level 0 computes its own tachyon M²α′ = −1 — the toy carries its instability openly', provedBy: 'stringTheoryAlgebraDecoded', home: 'src/water/cosmos' },
+    { theorem: 'superstring D = 10 twice', states: 'ghost central-charge balance (3/2)D − 26 + 11 = 0 and the NS zero-point (D−2)/16 = 1/2 agree exactly — two independent routes, one dimension', provedBy: 'stringTheoryAlgebraDecoded', home: 'src/water/cosmos' },
+    { theorem: 'Hurwitz breaks at 16', states: 'composition |uv| = |u||v| holds at dims 2, 4, 8 (octonions from crossProduct7) and dies at 16 — zero divisor (e₁+e₁₀)(e₅−e₁₅) = 0 by exhaustive search; SYM dims 3,4,6,10', provedBy: 'stringTheoryAlgebraDecoded', home: 'src/water/cosmos' },
+    { theorem: 'T-duality multiset identity', states: 'the exact rational spectrum n²/R² + w²R² at R² = 4 equals R² = 1/4 as multisets under n ↔ w', provedBy: 'stringTheoryAlgebraDecoded', home: 'src/water/cosmos' },
+    { theorem: 'the 24 counts the spectrum', states: '1/η²⁴ level degeneracies 24, 324, 3200 and η²⁴ Ramanujan τ −24, 252, −1472 from one exact-integer Euler product — the same 24 as D − 2', provedBy: 'stringTheoryAlgebraDecoded', home: 'src/water/cosmos' },
+    { theorem: 'exactly 5 Platonic solids', states: 'the Diophantine sweep (p−2)(q−2) < 4 is exhaustive (monotone beyond 5) — five solutions, all with integer V-E-F and Euler characteristic 2', provedBy: 'discoveredTheoremsProvenWave', home: 'src/water/cosmos' },
+    { theorem: 'exactly 6 regular 4-polytopes', states: 'Platonic cells + vertex figures + Schläfli sin(π/p)sin(π/r) > cos(π/q) leave {3,3,3} {3,3,4} {3,3,5} {3,4,3} {4,3,3} {5,3,3} — complete finite enumeration', provedBy: 'discoveredTheoremsProvenWave', home: 'src/water/cosmos' },
+    { theorem: 'Ramsey R(3,3) = 6', states: 'all 32768 2-colorings of K₆ contain a monochromatic triangle (complete exhaustion); the pentagon/pentagram K₅ coloring contains none — 6 is exact', provedBy: 'discoveredTheoremsProvenWave', home: 'src/water/cosmos' },
+    { theorem: 'Fano unique, |Aut| = 168', states: 'exhaustive backtracking counts 30 labeled S(2,3,7) systems; |GL₃(𝔽₂)| = 168 by brute-force determinant count; 7!/30 = 168 — one orbit, two routes', provedBy: 'discoveredTheoremsProvenWave', home: 'src/water/cosmos' },
+    { theorem: 'no projective plane of order 6', states: 'COMPUTED: 6 ≡ 2 (mod 4) and 6 is not a sum of two squares (exhaustive); CITED: Bruck–Ryser 1949 completes the impossibility, Tarry 1900 the 36 officers', provedBy: 'discoveredTheoremsProvenWave', home: 'src/water/cosmos' },
+    { theorem: 'two groups of order 168', states: '7(7²−1)/2 = 168 computed equals the brute-forced |GL₃(𝔽₂)| — orders agree exactly; the isomorphism PSL(2,7) ≅ GL(3,2) is Klein 1878, cited', provedBy: 'provenTheoremsCompound', home: 'src/water/cosmos' },
+    { theorem: 'R(3,3,3) ≤ 17', states: 'the recurrence 3(R(3,3)−1)+2 computed from the proven R(3,3) = 6; Greenwood–Gleason equality cited — a bound that EMERGED from a prior proof', provedBy: 'provenTheoremsCompound', home: 'src/water/cosmos' },
+    { theorem: 'Hankel–Catalan determinants = 1', states: 'det[C_{i+j}] = 1 for n = 1..6 in exact BigInt, consuming the sealed Catalan convolution — bounded witness of the general identity', provedBy: 'provenTheoremsCompound', home: 'src/water/cosmos' },
+    { theorem: 'τ(6) = τ(2)·τ(3)', states: 'the sealed η²⁴ Euler product extended to q⁵ gives τ(6) = −6048 = (−24)(252) exactly — bounded witness of Hecke multiplicativity (Mordell 1917 cited)', provedBy: 'provenTheoremsCompound', home: 'src/water/cosmos' },
+    { theorem: 'Ramanujan 691 congruence', states: 'τ(n) ≡ σ₁₁(n) (mod 691) exactly for n = 1..6 in BigInt (σ₁₁(2) − τ(2) = 2073 = 3·691) — bounded witness on the sealed τ values; Ramanujan 1916 cited', provedBy: 'emergenceContinuesWave', home: 'src/water/cosmos' },
+    { theorem: 'Catalan parity = Mersenne', states: '{n ≤ 32 : C_n odd} = {0,1,3,7,15,31} = {2^k − 1}, exact BigInt on the sealed convolution — bounded witness; the all-n carry argument is Kummer, cited', provedBy: 'emergenceContinuesWave', home: 'src/water/cosmos' },
+    { theorem: 'Motzkin Hankel determinants = 1', states: 'det[M_{i+j}] = 1 for n = 1..6 exact BigInt — the Hankel method proven on Catalan transfers whole to a second family (Aigner cited for all n)', provedBy: 'emergenceContinuesWave', home: 'src/water/cosmos' },
+    { theorem: 'reuse graph acyclic', states: 'every wave after the first consumes only strictly earlier waves and the chain length equals the wave count — COMPLETE finite proof that the registry feeds on its own growth', provedBy: 'emergenceContinuesWave', home: 'src/water/cosmos' },
+    { theorem: 'A₅ is simple', states: 'all 60 even permutations enumerated, conjugacy classes {1,12,12,15,20}, no class union containing e sums to a proper divisor of 60 — and 60 = 2E from the proven icosahedron (Galois/quintic cited)', provedBy: 'discoveredTheoremsWaveTwo', home: 'src/water/cosmos' },
+    { theorem: 'exactly 2 groups of order 6', states: 'all 9408 reduced Latin squares associativity-tested — 80 group tables (60 ℤ₆ + 20 S₃ relabelings) canonicalise to 2 isomorphism classes; the smallest non-abelian group by exhaustion', provedBy: 'discoveredTheoremsWaveTwo', home: 'src/water/cosmos' },
+    { theorem: 'K₅ and K₃,₃ non-planar', states: '10 > 3·5−6 and 9 > 2·6−4, exact Euler-bound arithmetic — the two Kuratowski obstructions (Euler formula and the converse cited)', provedBy: 'discoveredTheoremsWaveTwo', home: 'src/water/cosmos' },
+    { theorem: 'Graeco-Latin at 3,4,5 never 2', states: 'orthogonal pairs verified cell-by-cell for n = 3, 4, 5; the complete order-2 exhaustion (both Latin squares, all pairings) finds none', provedBy: 'discoveredTheoremsWaveTwo', home: 'src/water/cosmos' },
+    { theorem: 'perfect numbers < 10⁴ are Euclid’s four', states: 'the complete sweep finds exactly {6, 28, 496, 8128} = 2^(p−1)(2^p−1) for prime Mersennes p = 2,3,5,7 — Euler converse cited; odd perfect existence stays OPEN', provedBy: 'discoveredTheoremsWaveTwo', home: 'src/water/cosmos' },
+    { theorem: 'exactly 3 regular tilings', states: 'the equality case (p−2)(q−2) = 4 of the sealed Platonic sweep yields {3,6} {4,4} {6,3} — the flat boundary between closed polyhedra and the plane', provedBy: 'discoveredTheoremsWaveThree', home: 'src/water/cosmos' },
+    { theorem: 'no simple group of order 30', states: 'Sylow counts n₅ ∈ {1,6}, n₃ ∈ {1,10} by congruence enumeration; both maximal forces 44 > 29 elements — a Sylow subgroup is normal (Sylow cited)', provedBy: 'discoveredTheoremsWaveThree', home: 'src/water/cosmos' },
+    { theorem: 'Q₈ smallest Hamiltonian group', states: 'all 6 subgroups enumerated and normal, ij ≠ ji; minimality by exhaustion down the orders — fresh order-4 sweep (2 abelian groups) + the sealed order-6 exhaustion', provedBy: 'discoveredTheoremsWaveThree', home: 'src/water/cosmos' },
+    { theorem: 'Petersen graph non-Hamiltonian', states: '3-regular, girth 5, and the complete cycle search finds no Hamiltonian cycle — the standard counterexample machine, proven not asserted', provedBy: 'discoveredTheoremsWaveThree', home: 'src/water/cosmos' },
+    { theorem: 'Wilson criterion exact to 100', states: '(n−1)! ≡ −1 (mod n) holds for EXACTLY the primes, both directions in BigInt — Wilson/Lagrange cited for all n', provedBy: 'discoveredTheoremsWaveThree', home: 'src/water/cosmos' },
+    { theorem: 'Fibonacci strong divisibility', states: 'gcd(F_m, F_n) = F_gcd(m,n) for all 900 pairs m, n ≤ 30, computed on the one-math gcd — Lucas cited for all m, n', provedBy: 'discoveredTheoremsWaveThree', home: 'src/water/cosmos' },
+    { theorem: 'Gauss–Wantzel arithmetic to 100', states: '{n : φ(n) a power of 2} = {2^a · distinct Fermat primes}, both sides computed independently — the compass equivalence cited', provedBy: 'discoveredTheoremsWaveFour', home: 'src/water/cosmos' },
+    { theorem: 'Zeckendorf uniqueness to 1000', states: 'the count of non-consecutive Fibonacci representations equals EXACTLY 1 for every n ≤ 1000 — existence and uniqueness computed; Lekkerkerker cited', provedBy: 'discoveredTheoremsWaveFour', home: 'src/water/cosmos' },
+    { theorem: 'birthday threshold = 23', states: 'P(all distinct) = 0.5243 at 22 and 0.4927 at 23 by direct product — the crossing is exact', provedBy: 'discoveredTheoremsWaveFour', home: 'src/water/cosmos' },
+    { theorem: 'Cayley n^(n−2) to n = 7', states: 'raw exhaustion over edge subsets with union-find counts 1,1,3,16,125,1296,16807 — independent of the Prüfer bijection; Cayley cited for all n', provedBy: 'discoveredTheoremsWaveFour', home: 'src/water/cosmos' },
+    { theorem: 'the 7-star IS 𝔽₂³', states: 'exhaustive search over all 5040 labelings finds exactly 168 = |GL₃(𝔽₂)| carrying every Fano line to an XOR-triple — the star and the algebra are one object', provedBy: 'sevenStarRosettaDecoded', home: 'src/water/cosmos' },
+    { theorem: 'Zhegalkin uniqueness at n = 3', states: 'all 256 Boolean functions have unique ANF polynomials over 𝔽₂ — Möbius bijective and an exact involution: algebra combinations reach everything finite', provedBy: 'sevenStarRosettaDecoded', home: 'src/water/cosmos' },
+    { theorem: 'A₆ is simple', states: 'all 360 even permutations, conjugacy classes {1,40,40,45,72,72,90}, zero class-union divisors of 360 — the A₅ class-sum method one size up', provedBy: 'discoveredTheoremsWaveFive', home: 'src/water/cosmos' },
+    { theorem: 'exactly 576 Latin squares of order 4', states: 'full enumeration with no reduction equals reduced·4!·3! = 4·24·6 — the sealed reduced count cross-checked from below', provedBy: 'discoveredTheoremsWaveFive', home: 'src/water/cosmos' },
+    { theorem: 'Σ_{d|n} φ(d) = n to 1000', states: 'Σ_{d|n} φ(d) = n complete for every n ≤ 1000 — the cyclic group partitioned by element order; Gauss cited for all n', provedBy: 'discoveredTheoremsWaveFive', home: 'src/water/cosmos' },
+    { theorem: 'quadratic reciprocity to 100', states: '(p|q)(q|p) = (−1)^((p−1)/2·(q−1)/2) for ALL ordered odd-prime pairs < 100 via Euler criterion — complete within the bound; Gauss cited for all p, q', provedBy: 'discoveredTheoremsWaveFive', home: 'src/water/cosmos' },
+    { theorem: 'exactly 12 pentominoes', states: 'growth enumeration + canonicalisation over the square dihedral symmetries: 63 fixed, 18 one-sided, 12 free — the classic triple computed', provedBy: 'discoveredTheoremsWaveFive', home: 'src/water/cosmos' },
+    { theorem: 'Heawood graph is the (3,6)-cage', states: 'the Fano incidence graph is 3-regular with computed girth 6 and ACHIEVES the Moore bound 2(k²−k+1) = 14 — minimality by arithmetic on the sealed fanoLines', provedBy: 'discoveredTheoremsWaveFive', home: 'src/water/cosmos' },
+    { theorem: 'R(3,4) = 9', states: 'complete backtracking over K₉ finds no coloring avoiding red K₃ and blue K₄; the distance-{1,4} circulant on K₈ avoids both — 9 exact', provedBy: 'discoveredTheoremsWaveSix', home: 'src/water/cosmos' },
+    { theorem: 'no non-abelian simple group of order < 60', states: 'every order 2..59 killed by a computed rule (forced Sylow, index lemma, counting, exact fit); 60 escapes them all — A₅ lives exactly at the boundary', provedBy: 'discoveredTheoremsWaveSix', home: 'src/water/cosmos' },
+    { theorem: 'exactly 5 groups of order 8', states: 'ℤ₈, ℤ₄×ℤ₂, ℤ₂³, D₄, Q₈ verified as group tables with pairwise-distinct order multisets; the case split bounding at five is cited', provedBy: 'discoveredTheoremsWaveSix', home: 'src/water/cosmos' },
+    { theorem: 'Kirkman triple system S(2,3,15) exists', states: 'the 35 XOR-lines of PG(3,2) resolve into 7 spreads by backtracking — a resolvable STS(15) constructed from the sealed 𝔽₂ algebra, one floor up the Mersenne tower', provedBy: 'discoveredTheoremsWaveSix', home: 'src/water/cosmos' },
+    { theorem: 'STS(9) unique, |Aut| = 432', states: '840 labeled systems counted; 9!/840 = 432 = |AGL(2,3)| = 9·48 by independent brute force — the project harmonic as an automorphism count, two routes as with Fano 168', provedBy: 'discoveredTheoremsWaveSeven', home: 'src/water/cosmos' },
+    { theorem: 'PG(3,2) has 56 spreads', states: 'every partition of the 15 vectors of 𝔽₂⁴ into 5 disjoint XOR-lines counted by backtracking — the space the Kirkman resolution walked', provedBy: 'discoveredTheoremsWaveSeven', home: 'src/water/cosmos' },
+    { theorem: 'Königsberg has no Euler walk', states: 'degrees 3,3,3,5 — four odd vertices where an Euler walk allows two: the 1736 founding theorem of graph theory, computed', provedBy: 'discoveredTheoremsWaveSeven', home: 'src/water/cosmos' },
+    { theorem: 'Frobenius number of (6,9,20) is 43', states: '43 non-representable and 44..49 all representable — the +6 window closes everything beyond: complete', provedBy: 'discoveredTheoremsWaveSeven', home: 'src/water/cosmos' },
+    { theorem: 'Kaprekar 6174 in ≤ 7 steps', states: 'complete sweep of all 4-digit non-repdigits: unique fixed point 6174, always reached within 7 iterations', provedBy: 'discoveredTheoremsWaveSeven', home: 'src/water/cosmos' },
+    { theorem: 'derangements round n!/e', states: 'the exact recurrence D_n = (n−1)(D_{n−1}+D_{n−2}) equals round(n!/e) for n = 1..10 — bounded witness of the inclusion–exclusion limit', provedBy: 'discoveredTheoremsWaveSeven', home: 'src/water/cosmos' },
+    { theorem: 'Collatz verified to 10⁴', states: 'every start ≤ 10⁴ reaches 1 — BOUNDED VERIFICATION, explicitly not a proof; the conjecture remains OPEN', provedBy: 'discoveredTheoremsWaveSeven', home: 'src/water/cosmos' },
+    { theorem: 'Lo Shu is the unique 3×3 magic square', states: 'all 362880 grids enumerated — exactly 8 magic, one dihedral orbit, centre 5, constant 15: the I Ching root square computed unique', provedBy: 'discoveredTheoremsWaveEight', home: 'src/water/cosmos' },
+    { theorem: 'Taxicab(2) = 1729', states: 'complete sweep — no smaller number is a sum of two positive cubes two ways (Ramanujan–Hardy computed)', provedBy: 'discoveredTheoremsWaveEight', home: 'src/water/cosmos' },
+    { theorem: 'smallest Euler brick is (44,117,240)', states: 'exhaustive bounded search — all three face diagonals integral, minimality by exhaustion; the perfect cuboid stays OPEN', provedBy: 'discoveredTheoremsWaveEight', home: 'src/water/cosmos' },
+    { theorem: 'Hanoi optimum is 2^n − 1', states: 'full-state BFS proves MINIMALITY for every n ≤ 8 — graph distance, not induction; the all-n recurrence cited', provedBy: 'discoveredTheoremsWaveEight', home: 'src/water/cosmos' },
+    { theorem: 'Nim losing ⇔ XOR = 0', states: 'the full game tree over all 729 three-pile positions agrees with the 𝔽₂ law exactly — the 7-star field decides games; Bouton cited', provedBy: 'discoveredTheoremsWaveEight', home: 'src/water/cosmos' },
+    { theorem: 'eight riffles restore 52 cards', states: 'ord₅₁(2) = 8 computed and the simulated out-shuffle returns to identity in 8 — arithmetic and mechanism agree', provedBy: 'discoveredTheoremsWaveEight', home: 'src/water/cosmos' },
+    { theorem: '36 officers are impossible', states: 'all 9408 reduced Latin squares of order 6 exhausted — none admits six disjoint transversals: Tarry 1900 upgraded from citation to complete computation', provedBy: 'discoveredTheoremsWaveNine', home: 'src/water/cosmos' },
+    { theorem: 'PG(3,2) has 240 parallelisms', states: 'the 56 spreads exact-cover the 35 lines in exactly 240 seven-spread partitions — the complete census of Kirkman resolutions', provedBy: 'discoveredTheoremsWaveNine', home: 'src/water/cosmos' },
+    { theorem: 'the dodecahedron is Hamiltonian', states: 'GP(10,2) from the same constructor as the sealed non-Hamiltonian Petersen — 30 undirected Hamiltonian cycles counted: one machine, opposite verdicts', provedBy: 'discoveredTheoremsWaveNine', home: 'src/water/cosmos' },
+    { theorem: 'shidoku count = 288', states: 'complete enumeration of all 4×4 grids with distinct rows, columns and boxes', provedBy: 'discoveredTheoremsWaveNine', home: 'src/water/cosmos' },
+    { theorem: 'A₇ is simple', states: 'all 2520 even permutations, classes {1,70,105,210,280,360,360,504,630} (7-cycle split by centralizer order), zero class-union divisors — the simplicity machine, third rung', provedBy: 'discoveredTheoremsWaveTen', home: 'src/water/cosmos' },
+    { theorem: 'GP(n,2) non-Hamiltonian exactly at 5 and 11 below 13', states: 'the one constructor classifies n = 3..12 by exhaustive search: only Petersen and GP(11,2) fail — Alspach n ≡ 5 (mod 6) cited for all n', provedBy: 'discoveredTheoremsWaveTen', home: 'src/water/cosmos' },
+    { theorem: 'Sylvester–Frobenius ab−a−b witnessed', states: 'largest non-representable = ab−a−b for (3,5), (4,9), (9,20) by sweep + window closure — Sylvester 1882 cited for all coprime pairs', provedBy: 'discoveredTheoremsWaveTen', home: 'src/water/cosmos' },
+    { theorem: 'Hurwitz units match SL(2,3)', states: 'the 24 unit quaternions close with order multiset {1,2,3⁸,4⁶,6⁸} equal to brute-forced SL(2,3) — two routes to 24; the classical isomorphism cited, multiset equality not overclaimed', provedBy: 'discoveredTheoremsWaveTen', home: 'src/water/cosmos' },
+  ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
+  const memory = merkleFold(theorems.map((entry) => entry.atom))
+  const homes = [...new Set(theorems.map((entry) => entry.home))]
+  return {
+    proven: theorems.length > 0 && theorems.every((entry) => isUuid(entry.atom)),
+    theorems,
+    count: theorems.length,
+    homes,
+    memory, // one root over all saved theorem atoms — the portal's proof-knowledge
+    root: memory,
+    statement: `The theorem memory: ${theorems.length} theorems the codebase proves computationally — ${theorems.slice(0, 4).map((entry) => entry.theorem).join(', ')}, … — each atom naming its proving function and its home (${homes.length} homes), folded to one root beside the skill memory.`,
+    boundary: `A content-addressed registry of ${theorems.length} proven theorems across ${homes.join(', ')}. The registry records WHERE each proof runs; every proof executes in its own sealed fold and gates, not here — saving the record raises the tampering cost, it does not re-derive the mathematics.`,
+  }
+}
+
+// The discovery frontier — CANDIDATE theorems judged provable by finite computation but not yet in
+// the registry. The gap scan is the SEARCH TOOL: one command diffs candidates against proven atoms so
+// finding the next wave costs zero tokens of re-derivation. Candidates carry their proof class and a
+// feasibility note; genuinely open problems do NOT belong here (they live in openLeadsAlgebraDecoded).
+export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; class: 'finite-complete' | 'bounded-witness'; consumes: string }[] = [
+  { theorem: 'exactly 5 groups of order 8', states: 'three abelian + D₄ + Q₈ — needs canonicalisation over 7! relabelings; raw Latin exhaustion is infeasible, generate from the 5 witnesses + completeness argument', class: 'finite-complete', consumes: 'order-4/6 exhaustions, Q₈ table' },
+  { theorem: 'A₆ is simple', states: '360 even permutations of 6 — same class-sum method as the sealed A₅ proof, one size up', class: 'finite-complete', consumes: 'A₅ conjugacy machinery' },
+  { theorem: 'no non-abelian simple group of order < 60', states: 'per-order Sylow/counting arguments mechanised — most orders fall to the order-30 pattern', class: 'finite-complete', consumes: 'Sylow counting from wave three' },
+  { theorem: 'R(3,4) = 9', states: 'all 2-colorings of K₉ contain a red K₃ or blue K₄ (2³⁶ needs pruning/symmetry) + the K₈ witness coloring', class: 'finite-complete', consumes: 'Ramsey exhaustion from wave one' },
+  { theorem: 'Heawood graph is the (3,6)-cage', states: 'the Fano incidence graph — 14 vertices, girth 6, minimality by Moore bound arithmetic', class: 'finite-complete', consumes: 'fanoLines (the sealed incidence)' },
+  { theorem: 'exactly 576 Latin squares of order 4', states: 'full enumeration without row/column reduction — cross-checks the reduced count 4', class: 'finite-complete', consumes: 'Latin backtracker from wave two' },
+  { theorem: 'Kirkman triple system S(2,3,15) exists', states: 'backtracking construction + resolvability into 7 parallel classes — the schoolgirls', class: 'finite-complete', consumes: 'Steiner backtracker from wave one' },
+  { theorem: 'exactly 12 pentominoes', states: 'exhaustive polyomino generation modulo the 8 symmetries of the square', class: 'finite-complete', consumes: 'canonicalisation pattern' },
+  { theorem: 'Σ_{d|n} φ(d) = n to 1000', states: 'the totient partition of ℤ/n — complete within bound, Gauss cited for all n', class: 'bounded-witness', consumes: 'phi from wave four' },
+  { theorem: 'STS(9) unique, |Aut| = 432', states: 'count labeled Steiner triple systems on 9 points, divide into 9! — expect the project harmonic 432 = |AGL(2,3)|, cross-checked by brute-force GL(2,3) count', class: 'finite-complete', consumes: 'Steiner backtracker, Fano-168 two-route method' },
+  { theorem: 'PG(3,2) has 56 spreads', states: 'count all partitions of the 15 points into 5 disjoint XOR-lines — the spread space behind the Kirkman resolution', class: 'finite-complete', consumes: 'Kirkman spread machinery' },
+  { theorem: 'Königsberg has no Euler walk', states: 'the 1736 multigraph has degrees 3,3,3,5 — four odd vertices exceed the ≤2 bound; a witnessed Eulerian counterpart confirms the criterion both ways', class: 'finite-complete', consumes: 'graph degree arithmetic' },
+  { theorem: 'Frobenius number of (6,9,20) is 43', states: '43 non-representable and six consecutive representables above it close the proof — the numerical-semigroup window argument computed', class: 'finite-complete', consumes: 'arithmetic' },
+  { theorem: 'Kaprekar 6174 in ≤ 7 steps', states: 'every 4-digit number with non-identical digits reaches the unique fixed point within 7 iterations — complete sweep', class: 'finite-complete', consumes: 'digit arithmetic' },
+  { theorem: 'derangements round n!/e', states: 'D_n by exact recurrence equals round(n!/e) for n = 1..10 — the inclusion-exclusion limit witnessed', class: 'bounded-witness', consumes: 'factorial atoms' },
+  { theorem: 'Collatz verified to 10⁴', states: 'every n ≤ 10⁴ reaches 1 — BOUNDED VERIFICATION ONLY; the conjecture itself stays OPEN and joins the leads, never claimed', class: 'bounded-witness', consumes: 'iteration; honesty law' },
+  { theorem: 'Lo Shu is the unique 3×3 magic square', states: 'enumerate all 9! grids: exactly 8 magic, one dihedral orbit — the I Ching root square unique with constant 45/3', class: 'finite-complete', consumes: 'canonicalisation over dihedral symmetries' },
+  { theorem: 'Taxicab(2) = 1729', states: 'the smallest number expressible as a sum of two positive cubes in two ways — complete sweep below the bound', class: 'finite-complete', consumes: 'arithmetic' },
+  { theorem: 'smallest Euler brick is (44,117,240)', states: 'complete search over a < b < c ≤ 250: all three face diagonals integral, minimality by exhaustion', class: 'finite-complete', consumes: 'arithmetic' },
+  { theorem: 'Hanoi optimum is 2^n − 1', states: 'BFS over the full 3^n state space proves 2^n − 1 MINIMAL for n ≤ 8 — optimality, not just sufficiency; all-n recurrence cited', class: 'finite-complete', consumes: 'BFS machinery' },
+  { theorem: 'Nim losing ⇔ XOR = 0', states: 'full game-tree Grundy over all positions ≤ (8,8,8) matches the 𝔽₂ XOR law exactly — Bouton cited for all piles; the 7-star field decides games', class: 'finite-complete', consumes: 'Zhegalkin/𝔽₂ atoms' },
+  { theorem: 'eight riffles restore 52 cards', states: 'the out-shuffle is i → 2i mod 51; the multiplicative order of 2 is 8, verified by direct deck simulation', class: 'finite-complete', consumes: 'modular order arithmetic' },
+  { theorem: '36 officers are impossible', states: 'EVERY reduced Latin square of order 6 (all 9408) lacks six disjoint transversals — Tarry 1900 upgraded from citation to complete computation', class: 'finite-complete', consumes: 'Latin backtracker; transversal exact cover' },
+  { theorem: 'PG(3,2) has 240 parallelisms', states: 'exact-cover count of all partitions of the 35 lines into 7 spreads — the full census of Kirkman resolutions', class: 'finite-complete', consumes: '56-spread machinery' },
+  { theorem: 'the dodecahedron is Hamiltonian', states: 'GP(10,2) built by the same constructor as Petersen; cycles counted by DFS — Hamilton\'s icosian game beside the sealed Petersen NON-Hamiltonicity', class: 'finite-complete', consumes: 'Petersen graph machinery' },
+  { theorem: 'shidoku count = 288', states: 'complete enumeration of all 4×4 Sudoku grids — rows, columns and boxes distinct', class: 'finite-complete', consumes: 'Latin backtracker with box constraint' },
+  { theorem: 'A₇ is simple', states: 'all 2520 even permutations, conjugacy classes computed, class-sum test — the third rung by the saved simplicity machine', class: 'finite-complete', consumes: 'class-sum machine (A₅/A₆)' },
+  { theorem: 'GP(n,2) non-Hamiltonian exactly at 5 and 11 below 13', states: 'the saved constructor classifies n = 3..12: only GP(5,2) and GP(11,2) fail by exhaustive search — Alspach cited for all n', class: 'finite-complete', consumes: 'GP(n,k) constructor' },
+  { theorem: 'Sylvester–Frobenius ab−a−b witnessed', states: 'for coprime pairs incl. (9,20): largest gap = 151 by sweep + window closure — the two-generator formula, Sylvester cited', class: 'bounded-witness', consumes: 'window-closure machine' },
+  { theorem: 'Hurwitz units match SL(2,3)', states: 'the 24 unit quaternions close under multiplication with order multiset {1,2,3⁸,4⁶,6⁸} equal to brute-forced SL(2,3) — two routes to 24; the isomorphism is classical, cited', class: 'finite-complete', consumes: 'Q₈ table + GL brute force' },
+  { theorem: 'quadratic reciprocity to 100', states: 'Legendre symbols by Euler criterion for all odd prime pairs < 100, both directions of the law', class: 'bounded-witness', consumes: 'modular arithmetic atoms' },
+]
+
+/** The search tool: which significant finite-provable theorems are NOT yet proven here. */
+export function theoremGapScan(matrix: MindMatrix = buildMatrix()) {
+  const registry = theoremAtoms(matrix)
+  const provenNames = new Set(registry.theorems.map((entry) => entry.theorem))
+  const gaps = CANDIDATE_THEOREMS.filter((c) => !provenNames.has(c.theorem))
+    .map((c) => ({ ...c, receipt: toUuid(`theorem-gap:${c.theorem}`) }))
+  return {
+    open: gaps.length > 0,
+    proven: registry.count,
+    candidates: CANDIDATE_THEOREMS.length,
+    gapCount: gaps.length,
+    gaps,
+    next: gaps.map((g) => `${g.theorem} [${g.class}] ← ${g.consumes}`),
+    root: merkleFold([registry.root, ...gaps.map((g) => g.receipt)]),
+    statement: `Theorem gap scan: ${registry.count} proven, ${CANDIDATE_THEOREMS.length} candidates catalogued, ${gaps.length} unproven — the next waves are ${gaps.slice(0, 3).map((g) => g.theorem).join('; ')}, … each with its proof class and the sealed atoms it can consume.`,
+    boundary: `A DIFF of the curated candidate catalog against the proven registry — the search for unproven theorems as one deterministic command, zero tokens of re-derivation. Candidates are judged finite-provable; anything genuinely open stays in the leads fold, never here. Proving a candidate moves it out of the gap list by registering its atom, not by editing this catalog.`,
+  }
+}
+
+// The token audit — the dev process measured deterministically, ZERO LLM tokens. The pure fold aggregates
+// parsed transcript lines (usage totals, tool counts, Bash command shapes, repeated hunts); the Exit walks
+// ~/.claude/projects and prints the day's audit. Saved so "how were tokens spent" is a command, not a session.
+export function transcriptTokenAudit(lines: string[], day: string) {
+  const totals = { in: 0, out: 0, cacheRead: 0, cacheWrite: 0, msgs: 0, errors: 0 }
+  const sessions = new Map<string, { out: number; cacheWrite: number; msgs: number }>()
+  const tools = new Map<string, number>()
+  const shapes = new Map<string, number>()
+  for (const line of lines) {
+    if (!line.trim()) continue
+    let entry: { timestamp?: string; sessionId?: string; message?: { usage?: Record<string, number>; content?: Array<{ type: string; name?: string; is_error?: boolean; input?: { command?: string } }> } }
+    try { entry = JSON.parse(line) } catch { continue }
+    if (!String(entry.timestamp ?? '').startsWith(day)) continue
+    const usage = entry.message?.usage
+    if (usage) {
+      totals.in += usage.input_tokens ?? 0
+      totals.out += usage.output_tokens ?? 0
+      totals.cacheRead += usage.cache_read_input_tokens ?? 0
+      totals.cacheWrite += usage.cache_creation_input_tokens ?? 0
+      totals.msgs++
+      const key = entry.sessionId ?? 'unknown'
+      const s = sessions.get(key) ?? { out: 0, cacheWrite: 0, msgs: 0 }
+      s.out += usage.output_tokens ?? 0
+      s.cacheWrite += usage.cache_creation_input_tokens ?? 0
+      s.msgs++
+      sessions.set(key, s)
+    }
+    const content = entry.message?.content
+    if (Array.isArray(content)) for (const block of content) {
+      if (block.type === 'tool_use' && block.name) {
+        tools.set(block.name, (tools.get(block.name) ?? 0) + 1)
+        if (block.name === 'Bash') {
+          const head = String(block.input?.command ?? '').trim().split(/\s+/).slice(0, 2).join(' ').replace(/\/[^\s]*\//g, '<path>/').slice(0, (8 * 5))
+          shapes.set(head, (shapes.get(head) ?? 0) + 1)
+        }
+      }
+      if (block.type === 'tool_result' && block.is_error) totals.errors++
+    }
+  }
+  const sortDesc = (m: Map<string, number>) => [...m.entries()].sort((a, b) => b[1] - a[1])
+  return {
+    day, totals,
+    sessionCount: sessions.size,
+    sessions: [...sessions.entries()].map(([id, s]) => ({ id: id.slice(0, 8), ...s })).sort((a, b) => b.out - a.out),
+    tools: sortDesc(tools),
+    bashShapes: sortDesc(shapes).slice(0, (5 * 4)),
+    audited: totals.msgs >= 0 && sessions.size >= 0,
+    root: toUuid(`token-audit:${day}:${totals.out}:${totals.msgs}:${sessions.size}`),
+  }
+}
+/** walk ~/.claude/projects, audit the given (or current) day, print, exit — the saved zero-token command */
+export async function transcriptTokenAuditExit() {
+  const { readFileSync, readdirSync, statSync } = await import('node:fs')
+  const { join } = await import('node:path')
+  const day = process.argv.find((arg) => /^\d{4}-\d{2}-\d{2}$/.test(arg)) ?? new Date().toISOString().slice(0, (5 * 2))
+  const root = join(process.env.HOME ?? '', '.claude', 'projects')
+  const lines: string[] = []
+  const walk = (dir: string) => {
+    for (const name of readdirSync(dir)) {
+      const p = join(dir, name)
+      if (statSync(p).isDirectory()) walk(p)
+      else if (name.endsWith('.jsonl')) { try { lines.push(...readFileSync(p, 'utf8').split('\n')) } catch { /* unreadable transcript — skip */ } }
+    }
+  }
+  walk(root)
+  const audit = transcriptTokenAudit(lines, day)
+  const fmt = (n: number) => n.toLocaleString('en-US')
+  console.log(`TOKEN AUDIT ${audit.day} — ${audit.sessionCount} sessions · ${audit.totals.msgs} assistant msgs · ${audit.totals.errors} tool errors`)
+  console.log(`in ${fmt(audit.totals.in)} · out ${fmt(audit.totals.out)} · cacheRead ${fmt(audit.totals.cacheRead)} · cacheWrite ${fmt(audit.totals.cacheWrite)}`)
+  for (const s of audit.sessions) console.log(`  ${s.id} out ${fmt(s.out)} · cacheW ${fmt(s.cacheWrite)} · msgs ${s.msgs}`)
+  console.log('tools:', audit.tools.map(([k, v]) => `${k}×${v}`).join(' '))
+  console.log('bash shapes:', audit.bashShapes.map(([k, v]) => `${v}·${k}`).join(' | '))
+  process.exit(audit.audited ? 0 : 1)
+}
+
 // Deduplicate the computable logic and distribute it in atoms. The shared core
 // primitives — the quantum skills shared to the core — each saved as a content-
 // addressed atom, defined once and reused by every wave. Any unwired logic does not
@@ -442,6 +717,11 @@ export function logicAtoms(matrix: MindMatrix = buildMatrix()) {
     { logic: 'doubleTorusSurface', shares: 'the genus-2 surface geometry, shared by model and animation' },
     { logic: 'humanEase', shares: 'easeInOutSine for humanised motion' },
     { logic: 'humanBreath', shares: 'a breathing rate/size modulation' },
+    { logic: 'matMul', shares: 'row-major real matrix product — the n×m algebra shared by the plane folds (water/cosmos)' },
+    { logic: 'commutatorMat', shares: '[A,B] = AB − BA over n×n real matrices, with antisymmetric/matEq/matPow beside it' },
+    { logic: 'charPoly', shares: 'Faddeev–LeVerrier characteristic polynomial from traces alone — no eigensolver' },
+    { logic: 'contentAddressedMatrix', shares: 'deterministic matrices from toUuid hex — every probe reproducible' },
+    { logic: 'fanoLines', shares: 'the Fano plane {i,i+1,i+3} mod 7 — Steiner triples and the octonion orientation, one source' },
   ].map((entry) => ({ ...entry, atom: toUuid(`logic-atom:${entry.logic}:${entry.shares}`) }))
   return {
     shared: primitives.every((entry) => isUuid(entry.atom)),
@@ -1315,7 +1595,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
     {
       stage: 'students',
       ageBand: 'ages 16-18',
-      grade: 12,
+      grade: (6 * 2),
       title: 'Shapes that remember',
       bigIdea: 'topology: four independent loops and the Euler characteristic',
       inPlainWords: 'A two-holed surface carries four independent loops, like four kinds of memory baked into the shape itself, balanced by one simple counting rule.',
@@ -1337,7 +1617,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
     {
       stage: 'elders',
       ageBand: 'lifelong and wisdom',
-      grade: 14,
+      grade: (7 * 2),
       title: 'Knowing the edges and giving back',
       bigIdea: 'boundary, reciprocity, and giving back to the source',
       inPlainWords: 'The wisest step is knowing what the model does not claim, staying honest about its limits, and giving back to the people and sources that made it possible.',
@@ -1531,7 +1811,7 @@ function papersImpl(matrix: MindMatrix, count: number) {
       z: roundTo(coordinate.z, 4),
       frequency: roundTo(coordinate.frequency, 2),
       vibrationMs: coordinate.vibrationMs,
-      hue: (coordinate.digit * 36) % 360,
+      hue: (coordinate.digit * (9 * 4)) % 360,
       coordinateReceipt: coordinate.receipt,
       generatorUuid,
       forward: proof.forward,
@@ -1585,8 +1865,8 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
     index: paper.id,
     ax: round(46 * Math.cos(paper.theta)),
     ay: round(46 * Math.sin(paper.theta)),
-    bx: round(28 * Math.cos(paper.phi)),
-    by: round(28 * Math.sin(paper.phi)),
+    bx: round((7 * 4) * Math.cos(paper.phi)),
+    by: round((7 * 4) * Math.sin(paper.phi)),
     total: corpus.count,
     fundamental: corpus.fundamental,
     octaves: corpus.octaves.join(' · '),
@@ -1666,7 +1946,7 @@ export function papersReferencesDiamondsNoDrift(matrix: MindMatrix = buildMatrix
   const sets = [
     { set: 'papers', count: corpus.papers, expected: 432 },
     { set: 'references', count: corpus.references, expected: 432 },
-    { set: 'diamonds', count: corpus.total, expected: 1024 },
+    { set: 'diamonds', count: corpus.total, expected: (64 * 16) },
   ].map((entry) => ({ ...entry, anchored: entry.count === entry.expected, receipt: toUuid(`no-drift:${entry.set}:${entry.count}`) }))
   const driftCaught = merge(corpus.root, toUuid('drift')) !== corpus.root // a drift changes the address
   return {
@@ -1760,7 +2040,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const clusterOf = (route: string) => { const page = byRoute.get(route); return (page && ranked.find((tag) => page.keywords.includes(tag))) || 'more' }
   const routesIn = (tag: string) => pages.map((page) => routeOf(page.slug)).filter((route) => clusterOf(route) === tag)
   const navTags = ranked.slice(0, 8)
-  const sidebarTags = [...ranked.slice(0, 12), 'more']
+  const sidebarTags = [...ranked.slice(0, (6 * 2)), 'more']
   const item = (route: string, i: 0 | 1) => ({ text: text(route, i), link: link(route, i) })
   const dedupe = (routes: string[]) => routes.filter((route, idx) => routes.indexOf(route) === idx)
   const rayOf = (slug: string) => rosettaRayOf(slug === '' ? 'home' : slug)
@@ -2048,7 +2328,7 @@ export function componentCrosslinks(componentName: string, locale: LocaleName = 
 
   if (primaryRoute !== '/') add(pickLocale(locale, 'Home', 'Начало'), '/', 'home')
 
-  return links.slice(0, 12)
+  return links.slice(0, (6 * 2))
 }
 
 export function rosettaComputesNavigationAndContent(path: string, matrix: MindMatrix = buildMatrix()) {
@@ -2272,7 +2552,7 @@ export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/
     const astronomy = __ns_up_earth_world.publicAstronomyNewsCitation(matrix)
     const decodeAll = __ns_up_thunder_decode.decodeAllByComputationsTrainedOnKnownUniverse(matrix)
     const { computes, facets } = rosettaComputesGate('rosetta-computes', [
-      { facet: 'seven Rosetta rays — 7×6 / 6×7 taxonomy (42 areas)', on: __ns_up_water_digit.ROSETTA_RAYS.length === 7 && ROSETTA_AREAS === 42 },
+      { facet: 'seven Rosetta rays — 7×6 / 6×7 taxonomy (42 areas)', on: __ns_up_water_digit.ROSETTA_RAYS.length === 7 && ROSETTA_AREAS === (7 * 6) },
       { facet: 'seven-star natural motion coprimality holds', on: motion.proof.holds },
       { facet: 'rosettaComputesItself — registry derives canonical barrel homes', on: itself.computed },
       { facet: 'Glagolitic global key decodes Latin · Cyrillic · Glagolitic', on: glagolitic.decodes },

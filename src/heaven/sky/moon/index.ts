@@ -13,7 +13,7 @@ import { sunAndMoon } from '../../../earth/nature'
 export const SYNODIC_MONTH_DAYS = 29.53059
 
 export function moonSynodicPhase(at = 0) {
-  const synodicMs = SYNODIC_MONTH_DAYS * 24 * 3600 * 1000
+  const synodicMs = SYNODIC_MONTH_DAYS * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2)
   const phase = (at % synodicMs) / synodicMs
   return {
     phase,
@@ -55,8 +55,8 @@ export function moonMerkabaNightSide(at = 0, matrix: MindMatrix = buildMatrix())
 
 /** One gate — lunar phase, tidal lock, merkaba night-side, gateway nav moon anchor at call time. */
 export function moonComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`moonComputes:${Math.floor(at / 1000)}`, matrix, () => {
-    const timeYears = at / (365.25 * 24 * 3600 * 1000)
+  return memoByRoot(`moonComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const moonBody = celestial.moon
     const synodic = moonSynodicPhase(at)

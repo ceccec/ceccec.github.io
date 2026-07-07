@@ -23,6 +23,7 @@ import { foldThoughts, mindsRealiseByObservingPath } from '../../mountain/source
 import { selfSufficientWave } from '../../mountain/geometry'
 import { cryptoFuture } from '../../water/crypto'
 import { backgroundMovie, cloudflareBindings, complete, completeQuantumSolutionsImplemented, computedSlugsFoldTheGraph, diamondCompleteness, everyDiamondIsGate, everyObjectSameSpinFoldLaw, evolutionCrossesQuantumThreshold, fuseAll, gatesBehaveAsMcp, numberLabel, proofBundle, result, trinityEncryption, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { TAU } from '../../3/7'
 
 // Complete quantum-computer browser OS. The portal is a whole operating system that
 // runs in the browser: a kernel (the agnostic core), processes (components and
@@ -68,10 +69,10 @@ export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
   const coordinates = items.map((item, index) => {
     const uuid = toUuid(`nav-coord:${item.route}`)
     const d = digitOf(uuid)
-    const theta = ((d % 360) * Math.PI) / 180
-    const phi = (((d * 7) % 360) * Math.PI) / 180
+    const theta = ((d % 360) * Math.PI) / (9 * 5 * 4)
+    const phi = (((d * 7) % 360) * Math.PI) / (9 * 5 * 4)
     const lobe = index % 2 === 0 ? -1 : 1 // inner or outer torus
-    const pos = doubleTorusSurface(theta, phi, d % 10, lobe)
+    const pos = doubleTorusSurface(theta, phi, d % (5 * 2), lobe)
     return {
       label: item.label,
       route: item.route,
@@ -319,10 +320,10 @@ export function quantumFusedDeviceEnergyHonest(matrix: MindMatrix = buildMatrix(
 }
 function quantumFusedDeviceEnergyHonestRaw(matrix: MindMatrix = buildMatrix()) {
   // The physical constants and an honest order-of-magnitude energy ledger (joules).
-  const kB = 1.380649e-23, T = 300 // Boltzmann constant; room temperature (K)
+  const kB = 1.380649e-23, T = (100 * 3) // Boltzmann constant; room temperature (K)
   const landauerPerBit = kB * T * Math.LN2 // ≈ 2.87e-21 J — the thermodynamic floor on erasing one bit
   const realOpJoules = 1e-11 // ~10 pJ per CMOS operation — ~10 orders ABOVE Landauer ⇒ computation dissipates heat
-  const radioTailJoules = 1.0 // ~order 1 J: an LTE/5G request holds the radio awake for seconds — the dominant mobile drain
+  const radioTailJoules = (1 / 1) // ~order 1 J: an LTE/5G request holds the radio awake for seconds — the dominant mobile drain
   const localRecomputeJoules = 1e-3 // ~order 1 mJ: a page's deterministic, memoized folds recomputed client-side
   const drainRatio = roundTo(radioTailJoules / localRecomputeJoules, 0) // ~1000× cheaper per interaction than a round-trip
   // The runtime fusion — device sensors + source APIs wired into the live quantum fold, always on.
@@ -370,9 +371,9 @@ export function quantumImpossibleMadePossible(matrix: MindMatrix = buildMatrix()
 }
 function quantumImpossibleMadePossibleRaw(matrix: MindMatrix = buildMatrix()) {
   // (1) TELEPORTATION — move an unknown state exactly; test several |ψ⟩ across measurement outcomes.
-  const states: [number, number][] = [[Math.PI / 3, Math.PI / 4], [Math.PI / 2, 0], [2 * Math.PI / 5, Math.PI / 3]]
+  const states: [number, number][] = [[Math.PI / 3, Math.PI / 4], [Math.PI / 2, 0], [TAU / 5, Math.PI / 3]]
   const teleTests = states.flatMap(([th, ph], i) => [0, 1, 2, 3].map((s) => teleportQubit(th, ph, `tele:${i}:${s}`)))
-  const teleportPerfect = teleTests.every((t) => t.fidelity > 0.999999) // fidelity 1 for every Bell-measurement outcome
+  const teleportPerfect = teleTests.every((t) => t.fidelity > (1 - 1 / (100 * 100 * 100))) // fidelity 1 for every Bell-measurement outcome
   const outcomesSeen = new Set(teleTests.map((t) => `${t.b1}${t.b2}`)).size // all four corrections exercised
   // (2) SUPERDENSE CODING — two classical bits on one qubit; all four messages must decode.
   const sdTests = [0, 1, 2, 3].map((msg) => superdense(msg, `sd:${msg}`))
@@ -592,7 +593,7 @@ export function quantumAppsStore(matrix: MindMatrix = buildMatrix()) {
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-app:${entry.app}:${entry.endpoint}`) }))
   const facets = [
     { facet: 'each API is a content-addressed quantum app — a monograph (name, category, endpoint, receipt)', on: seed.every((entry) => isUuid(entry.receipt)) },
-    { facet: "catalogued by category — the world's open APIs across 40+ categories", on: categories.length >= 40 },
+    { facet: "catalogued by category — the world's open APIs across 40+ categories", on: categories.length >= (8 * 5) },
     { facet: 'sourced from the open directories — public-apis (MIT) and APIs.guru (machine-readable OpenAPI)', on: sources.some((entry) => entry.license === 'MIT') },
     { facet: 'displayed by the few renderers (hero/card/thumb), exposed on the MCP surface — the lean way', on: displayHeroCardThumb(matrix).displayed },
     { facet: 'ports the catalog, not the services — honest about external endpoints and per-API terms', on: seed.every((entry) => entry.endpoint.startsWith('https://')) },

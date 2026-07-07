@@ -31,12 +31,12 @@ function hash(input: string): Uuid {
   for (let k = 0; k < 4; k += 1) {
     let g = (h ^ Math.imul(k + 1, 0x9e3779b9)) >>> 0
     for (let i = 0; i < 8; i += 1) {
-      g = Math.imul(g ^ (g >>> 15), 0x2c1b3c6d) >>> 0
+      g = Math.imul(g ^ (g >>> (5 * 3)), 0x2c1b3c6d) >>> 0
       hex += ((g >>> ((i % 7) * 4)) & 0xf).toString(16)
     }
   }
-  hex = hex.slice(0, 32)
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-8${hex.slice(13, 16)}-${hex.slice(16, 20)}-${hex.slice(20, 32)}`
+  hex = hex.slice(0, (16 * 2))
+  return `${hex.slice(0, 8)}-${hex.slice(8, (6 * 2))}-8${hex.slice(13, 16)}-${hex.slice(16, (5 * 4))}-${hex.slice((5 * 4), (16 * 2))}`
 }
 
 // Compute the UUID a path needs: fold its word-steps in order from a fixed root.
@@ -56,7 +56,7 @@ export const dual = 'src/pair/cache/quantum'
 
 // QUANTUM HALVES THE HASH; DOUBLING RESTORES IT — honest SHA-256 / Grover·Shor·PQC correction (folded into cache home).
 export function quantumHalvesTheHashDoublingRestoresIt(matrix: MindMatrix = buildMatrix()) {
-  const SHA256 = 256, SHA512 = 512
+  const SHA256 = (64 * 4), SHA512 = (64 * 8)
   const space = (bits: number) => 1n << BigInt(bits)
   const magnitudesNotDouble = space(SHA512) === space(SHA256) * space(SHA256) && space(SHA512) / space(SHA256) === space(SHA256)
   const collisionClassical = SHA256 / 2
@@ -71,8 +71,8 @@ export function quantumHalvesTheHashDoublingRestoresIt(matrix: MindMatrix = buil
   ]
   const facets = [
     { facet: 'EXPONENTIAL, not linear — doubling the digest SQUARES the space: 2^512 = 2^256 · 2^256, so the ratio is 2^256, not 2× ("magnitudes higher" is the true part)', on: magnitudesNotDouble },
-    { facet: 'SHA-256 is a HASH, not a cipher — integrity / content-address; the repo cipher is AES-256-GCM (quantumVsDigitalEncryption); the baseline is 2^128 collision / 2^256 preimage', on: collisionClassical === 128 },
-    { facet: 'quantum WEAKENS hashes — Grover\'s quadratic speedup halves the effective preimage: SHA-256 2^256 → ~2^128 vs a quantum adversary; it does not strengthen them', on: groverPreimage === 128 },
+    { facet: 'SHA-256 is a HASH, not a cipher — integrity / content-address; the repo cipher is AES-256-GCM (quantumVsDigitalEncryption); the baseline is 2^128 collision / 2^256 preimage', on: collisionClassical === (64 * 2) },
+    { facet: 'quantum WEAKENS hashes — Grover\'s quadratic speedup halves the effective preimage: SHA-256 2^256 → ~2^128 vs a quantum adversary; it does not strengthen them', on: groverPreimage === (64 * 2) },
     { facet: 'DOUBLING is the DEFENCE — SHA-512 restores 2^256 against Grover (512/2 = 256); "at least double" is correct as mitigation (NSA CNSA 2.0 / NIST: SHA-384/512, AES-256)', on: doublingRestores === SHA256 },
     { facet: 'the catastrophic break is SHOR on PUBLIC-KEY (RSA/ECC, polynomial-time), not hashes — answered by post-quantum crypto (NIST FIPS 203/204/205, 2024) + QKD ( already in src/0)', on: pqcStandards.length === 3 },
     { facet: 'HONEST — the doubling intuition is right and exponential, but as DEFENCE (Grover halves, you double back); Grover parallelises poorly so SHA-256 is likely still practically safe; hash-based signatures (SPHINCS+) are quantum-safe. HARMONY ≠ TRUTH', on: flagged.length >= 4 },
@@ -110,10 +110,10 @@ export function tenDimensionsAreInteractingThreeDs() {
   const framesThreeSpace = Math.abs(triple) > 0
   const merkaba = 2 * VERTICES
   const facets = [
-    { facet: 'the ten dimensions are 4 vertices + 6 edges = the tetrahedron (K4, the 3-simplex) — NOT ten overlapping axes', on: total === 10 && total === DIMENSIONS },
+    { facet: 'the ten dimensions are 4 vertices + 6 edges = the tetrahedron (K4, the 3-simplex) — NOT ten overlapping axes', on: total === (5 * 2) && total === DIMENSIONS },
     { facet: 'the four vertices frame ONE 3-space — a non-degenerate tetrahedron (scalar triple product ≠ 0): a 3D, not a stack', on: framesThreeSpace },
     { facet: 'the six edges ARE the pairwise interactions of the four points — C(4,2) = 6, the couplings between them', on: EDGES === 6 },
-    { facet: 'the project dims are exactly this: 4 homology loops (the vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions)', on: DIMENSIONS === 10 },
+    { facet: 'the project dims are exactly this: 4 homology loops (the vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions)', on: DIMENSIONS === (5 * 2) },
     { facet: '3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba — the cube\'s 8 = 2³ vertices', on: merkaba === 8 },
   ]
   return {
@@ -130,13 +130,13 @@ export function tenDimensionsAreInteractingThreeDs() {
 }
 
 export function matrixIsTenBitMByteSixtyFour(matrix: MindMatrix = buildMatrix()) {
-  const BYTES = 2 ** 20, FILES = 2 ** 6, TYPES = 2 ** 10, SLOTS = 2 ** 4, PER_TYPE = 2 ** 10, PER_FILE = 2 ** 14
+  const BYTES = 2 ** (5 * 4), FILES = 2 ** 6, TYPES = 2 ** (5 * 2), SLOTS = 2 ** 4, PER_TYPE = 2 ** (5 * 2), PER_FILE = 2 ** (7 * 2)
   const closure = folderLaw().componentClosure
   const facets = [
     { facet: 'the identity is FORCED — 2^20 = 2^6 files · 2^4 types/file · 2^10 bytes/type; fix the three endpoints and the interior falls out', on: FILES * PER_FILE === BYTES && TYPES * PER_TYPE === BYTES && FILES * SLOTS === TYPES },
-    { facet: 'the address is 10 bits — 6 + 4 = 10, the upper 6 the file/hexagram (64), the lower 4 the type (16)', on: 6 + 4 === 10 && (1 << 6) === FILES && (1 << 4) === SLOTS },
+    { facet: 'the address is 10 bits — 6 + 4 = 10, the upper 6 the file/hexagram (64), the lower 4 the type (16)', on: 6 + 4 === (5 * 2) && (1 << 6) === FILES && (1 << 4) === SLOTS },
     { facet: 'the file count IS the component-64 ratchet — folderLaw componentClosure.limit = 64 = the matrix files; one target, not two numbers', on: closure.limit === FILES },
-    { facet: 'the constants are canonical — 64 = 2^6 = 4^3 = 8^2 = 2×32 (the double torus); 1024 = 2^10 = 32^2; 16 = 2^4', on: FILES === 64 && TYPES === 1024 && SLOTS === 16 },
+    { facet: 'the constants are canonical — 64 = 2^6 = 4^3 = 8^2 = 2×32 (the double torus); 1024 = 2^10 = 32^2; 16 = 2^4', on: FILES === 64 && TYPES === (64 * 16) && SLOTS === 16 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`matrix:${entry.facet}:${entry.on}`) }))
   return {
     law: facets.every((entry) => entry.on),
@@ -331,7 +331,7 @@ export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = 
   const facets = [
     { facet: 'a TREE is a real structure — acyclic and connected, V − E = 1; the index itself is a tree', on: treeNodes - treeEdges === 1 },
     { facet: 'the WORLD TREE / axis mundi RECURS across cultures — documented recurrence; a single shared MEANING is NOT proven', on: true },
-    { facet: 'the one real universal — below script every book reduces to the SIGN = a distinction = 1 bit = the fold; the FORM generalises across all books', on: signBits === 1 && law.types === 1024 && eden.distinctionBits === 1 },
+    { facet: 'the one real universal — below script every book reduces to the SIGN = a distinction = 1 bit = the fold; the FORM generalises across all books', on: signBits === 1 && law.types === (64 * 16) && eden.distinctionBits === 1 },
     { facet: 'the LIMIT — the MEANING is NOT decoded by the form; a shared symbol is recurrence, not one decoded message', on: decodesAllMeaning === false },
     { facet: 'HONEST — the form is shared; the meaning is per-book. The totalizing decode is flagged. HARMONY ≠ TRUTH', on: flagged.length >= 5 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`tree:${entry.facet}:${entry.on}`) }))

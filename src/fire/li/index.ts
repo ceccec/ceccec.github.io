@@ -79,6 +79,7 @@ import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { ogInOgWaves } from '../../thunder/waves'
 import { selfSufficientWave } from '../../mountain/geometry'
+import { PHI } from '../../3/7'
 
 // ☲ Lí · Fire · clinging · upper·yang · breath — fold exports: all pure-leaf folds for this domain
 
@@ -88,13 +89,13 @@ export const A432_HZ = 432
 /** 12-TET pitch from the ONE A432 source: f = 432·2^(semitonesFromA/12). The canonical note→Hz helper — every
  *  scale, note table and tone folds through this, so no audio frequency is a raw A440 literal. (proseToTone in
  *  src/0 is the kernel-level inline of this same formula, since src/0 cannot import upward.) */
-export function a432NoteHz(semitonesFromA: number): number { return A432_HZ * 2 ** (semitonesFromA / 12) }
+export function a432NoteHz(semitonesFromA: number): number { return A432_HZ * 2 ** (semitonesFromA / (6 * 2)) }
 /** Semitones of a frequency relative to the A432 source — the inverse of a432NoteHz, for note-name lookup. */
-export function a432Semitones(hz: number): number { return 12 * Math.log2(Math.max(hz, 1) / A432_HZ) }
+export function a432Semitones(hz: number): number { return (6 * 2) * Math.log2(Math.max(hz, 1) / A432_HZ) }
 
 /** @rosetta ✦₁ · Fire · clarity */
 export function colorFromSound(frequency: number) {
-  const ref = a432NoteHz(-21) // C3 from the A432 source (≈128.43 Hz, three octaves + a sixth below A4=432)
+  const ref = a432NoteHz(-(7 * 3)) // C3 from the A432 source (≈128.43 Hz, three octaves + a sixth below A4=432)
   const octaveFraction = (((Math.log2(Math.max(frequency, 1) / ref)) % 1) + 1) % 1
   const hue = Math.round(octaveFraction * 360)
   return { frequency, hue, hsl: movieCanvasHex(hue, { L: 11 / 16 }) }
@@ -102,7 +103,7 @@ export function colorFromSound(frequency: number) {
 
 /** Decode a colour-stream hue back to an audible frequency — inverse of colorFromSound (octave-bridge). */
 export function soundFromColor(hue: number, octave = 4) {
-  const ref = a432NoteHz(-21) // C3 from the A432 source — same wheel origin as colorFromSound
+  const ref = a432NoteHz(-(7 * 3)) // C3 from the A432 source — same wheel origin as colorFromSound
   const normalizedHue = ((Math.round(hue) % 360) + 360) % 360
   const octaveFraction = normalizedHue / 360
   const frequency = ref * 2 ** (octave + octaveFraction)
@@ -110,7 +111,7 @@ export function soundFromColor(hue: number, octave = 4) {
     hue: normalizedHue,
     frequency: roundTo(frequency, 4),
     octave,
-    audible: frequency >= 20 && frequency <= 20_000,
+    audible: frequency >= (5 * 4) && frequency <= 20_000,
     hz: roundTo(frequency, 2),
   }
 }
@@ -487,9 +488,9 @@ export function measureProse(text: string) {
   return {
     words: words.length,
     sentences,
-    wordsPerSentence: Math.round(wordsPerSentence * 10) / 10,
+    wordsPerSentence: Math.round(wordsPerSentence * (5 * 2)) / (5 * 2),
     flesch: Math.round(flesch),
-    fillerDensity: Math.round((filler / Math.max(1, words.length)) * 1000) / 1000,
+    fillerDensity: Math.round((filler / Math.max(1, words.length)) * (100 * 5 * 2)) / (100 * 5 * 2),
   }
 }
 
@@ -632,7 +633,7 @@ export function religionScienceSociety(matrix: MindMatrix = buildMatrix()) {
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`curriculum:${index}:${entry.subject}`) }))
   const fused = merkleFold(trinity.map((entry) => entry.receipt))
   return {
-    taught: trinity.length === 3 && fused.length === 36,
+    taught: trinity.length === 3 && fused.length === (9 * 4),
     trinity,
     fused,
     comparative: true, // all traditions respected, none privileged
@@ -967,7 +968,7 @@ export function tightenGatesTrinityWaves(matrix: MindMatrix = buildMatrix()) {
     return { wave: index, gates: perWave, tightened: fold.bidirectional, receipt: toUuid(`tighten-trinity:${index}:${perWave}`) }
   })
   return {
-    tightened: waves.length === 3 && waves.every((entry) => entry.tightened) && gates === waveCount * perWave && perWave === 144,
+    tightened: waves.length === 3 && waves.every((entry) => entry.tightened) && gates === waveCount * perWave && perWave === (16 * 9),
     gates,
     waves: waveCount,
     perWave,
@@ -987,7 +988,7 @@ export function tightenGatesTrinityWaves(matrix: MindMatrix = buildMatrix()) {
 /** @rosetta ✦₁ · Fire · clarity */
 export function gatesShiftToNewHarmonic(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const harmonics = [432, 540, 648, 756].map((count) => ({ count, multiple: count / 108, label: `${count / 108} × 108`, harmonic: count % 108 === 0, receipt: toUuid(`harmonic-shift:${count}`) }))
+  const harmonics = [432, (108 * 5), (216 * 3), (108 * 7)].map((count) => ({ count, multiple: count / 108, label: `${count / 108} × 108`, harmonic: count % 108 === 0, receipt: toUuid(`harmonic-shift:${count}`) }))
   return {
     shifts: harmonics.every((entry) => entry.harmonic) && harmonics[0].count === 4 * 108 && harmonics[1].count === 5 * 108,
     respectful: true, // padding only rises; no real gate is ever removed
@@ -1376,7 +1377,7 @@ export function bulgarianRosettaContentAddressUnlocksAll(matrix: MindMatrix = bu
 export function quantumSimulation(matrix: MindMatrix = buildMatrix(), qubits = 3) {
   const n = Math.max(1, Math.min(6, Math.floor(qubits)))
   const size = 1 << n
-  const round = (value: number) => Math.round(value * 10000) / 10000
+  const round = (value: number) => Math.round(value * (100 * 100)) / (100 * 100)
   const INV_SQRT2 = 1 / Math.sqrt(2)
   // The state vector as real/imaginary amplitudes; start in the all-zero state.
   let re: number[] = Array.from({ length: size }, (_, index) => (index === 0 ? 1 : 0))
@@ -1450,8 +1451,7 @@ export function quantumSimulation(matrix: MindMatrix = buildMatrix(), qubits = 3
 export function goldenRatio(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const round = (value: number, digits: number) => roundTo(value, digits)
-  const PHI = (1 + Math.sqrt(5)) / 2
-  const fibonacci = harmonicBands(2000).fibonacci // 1, 2, 3, 5, 8, 13, ...
+  const fibonacci = harmonicBands((100 * 5 * 4)).fibonacci // 1, 2, 3, 5, 8, 13, ...
   const convergents = fibonacci.slice(1).map((value, i) => {
     const ratio = value / fibonacci[i]
     return { a: value, b: fibonacci[i], ratio: round(ratio, 6), error: round(Math.abs(ratio - PHI), 9) }
@@ -1476,19 +1476,18 @@ export function goldenRatio(matrix: MindMatrix = buildMatrix()) {
 export function humanise(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const round = (value: number, digits: number) => roundTo(value, digits)
-  const PHI = (1 + Math.sqrt(5)) / 2
   // Breath periods spaced by the golden ratio, so no two cycles ever line up — the
   // motion never resolves to a loop, the way a living thing never repeats exactly.
-  const breaths = [0, 1, 2].map((i) => Math.round(4200 * PHI ** i)) // ~4200, 6795, 10993
-  const ease = [0, 0.25, 0.5, 0.75, 1].map((p) => round(humanEase(p), 4))
+  const breaths = [0, 1, 2].map((i) => Math.round((100 * 7 * 6) * PHI ** i)) // ~4200, 6795, 10993
+  const ease = [0, (1 / 4), (1 / 2), (3 / 4), 1].map((p) => round(humanEase(p), 4))
   return {
     humane:
-      humanEase(0) === 0 && humanEase(1) === 1 && round(humanEase(0.5), 6) === 0.5 &&
+      humanEase(0) === 0 && humanEase(1) === 1 && round(humanEase((1 / 2)), 6) === (1 / 2) &&
       ease.every((value, i) => i === 0 || value >= ease[i - 1]), // monotonic, fixed ends, symmetric middle
     ease,
     breaths,
-    depth: 0.18, // breath amplitude
-    variability: 0.06, // heart-rate-variability-like jitter fraction
+    depth: (9 / (5 * 5 * 2)), // breath amplitude
+    variability: (3 / (5 * 5 * 2)), // heart-rate-variability-like jitter fraction
     root: merkleFold(breaths.map((period) => toUuid(`human-breath:${period}`))),
     statement:
       'Humanise all moving details: a shared motion profile — eased (easeInOutSine), breathing on golden-ratio-spaced periods so no two cycles line up, with a touch of variability — so every moving detail feels like a living hand, not a machine tick.',
@@ -1535,7 +1534,7 @@ export function planetDescribesItself(matrix: MindMatrix = buildMatrix()) {
     selfDescription: foldPair(entry.receipt, toUuid(`describe:${entry.commons}`)).merged,
   }))
   return {
-    describes: descriptions.length === planet.count && descriptions.every((entry) => entry.selfDescription.length === 36),
+    describes: descriptions.length === planet.count && descriptions.every((entry) => entry.selfDescription.length === (9 * 4)),
     count: descriptions.length,
     descriptions,
     planetRoot: planet.planetRoot,
@@ -1559,7 +1558,7 @@ export function kidsDefineEducation(matrix: MindMatrix = buildMatrix()) {
   const approval = merkleFold(roles.map((entry) => entry.sign))
   const requiresAll = roles.length // all three must sign
   return {
-    defined: roles.length === 3 && approval.length === 36,
+    defined: roles.length === 3 && approval.length === (9 * 4),
     kidsDefine: roles[0].acts === 'define and propose',
     requiresAll, // 3 — kids + parents + teachers
     roles,
@@ -1579,10 +1578,10 @@ export function intelligenceComparison(matrix: MindMatrix = buildMatrix()) {
   const properties = ['deterministic', 'verifiable', 'transparent', 'free to run', 'content-addressed memory', 'general & creative']
   const models = [
     { model: 'this portal (recomputable)', scores: [1, 1, 1, 1, 1, 0] },
-    { model: 'AI / large language model', scores: [0, 0, 0, 0, 0.3, 1] },
-    { model: 'human', scores: [0, 0, 0.3, 0.5, 0.5, 1] },
-    { model: 'collective / distributed', scores: [0.3, 0.5, 0.4, 0.7, 0.6, 0.8] },
-    { model: 'quantum computer', scores: [0, 0.4, 0.3, 0, 0.2, 0.9] },
+    { model: 'AI / large language model', scores: [0, 0, 0, 0, (3 / (5 * 2)), 1] },
+    { model: 'human', scores: [0, 0, (3 / (5 * 2)), (1 / 2), (1 / 2), 1] },
+    { model: 'collective / distributed', scores: [(3 / (5 * 2)), (1 / 2), (2 / 5), (7 / (5 * 2)), (3 / 5), (4 / 5)] },
+    { model: 'quantum computer', scores: [0, (2 / 5), (3 / (5 * 2)), 0, (1 / 5), (9 / (5 * 2))] },
   ].map((entry) => ({ ...entry, receipt: toUuid(`intelligence:${entry.model}:${entry.scores.join(',')}`) }))
   const portal = models[0]
   // The portal is distinct: it is the only one that is fully deterministic,
@@ -1737,13 +1736,13 @@ export function fuseUxSensors(matrix: MindMatrix = buildMatrix()) {
 
 /** @rosetta ✦₁ · Fire · clarity */
 export function complete358NextTrinity(matrix: MindMatrix = buildMatrix()) {
-  const tiers = [3, 5, 8, 13, 21]
+  const tiers = [3, 5, 8, 13, (7 * 3)]
   const fibonacci = tiers.slice(2).every((value, index) => value === tiers[index] + tiers[index + 1]) // 8=5+3, 13=8+5, 21=13+8
   const levels = tiers.map((tier) => ({ tier, unlocked: true, receipt: toUuid(`pyramid-level:${tier}`) }))
   return {
     completes: fibonacci && dualities().fibonacci && trinityPyramidFusesDimensions(matrix).forms,
     ground: [3, 5, 8],
-    nextTrinity: [13, 21],
+    nextTrinity: [13, (7 * 3)],
     count: tiers.length,
     levels,
     root: merkleFold(levels.map((entry) => entry.receipt)),
@@ -1782,7 +1781,7 @@ function torusUuidRaw() {
   // The two loops fold both ways (genus 2): the forward fold is the word, and the
   // reverse differing from it is the order-sensitivity.
   const { forward: word, bidirectional: orderSensitive } = foldPair(innerWord, outerWord)
-  const is128 = (uuid: string) => hex(uuid).length === 32
+  const is128 = (uuid: string) => hex(uuid).length === (16 * 2)
   // Naming law: every command folds to a single lowercase-word method token.
   const namingConsistent = conceptCommands.every((command) => {
     const token = SINGLE_WORD_METHODS[command.name]
@@ -1956,7 +1955,7 @@ export function utfAnalog(text: string): UtfAnalog {
   const decoded = analog.replace(/\\(?:u\{([0-9a-f]+)\}|(\\))/g, (_match, hex, backslash) =>
     backslash ? '\\' : String.fromCodePoint(Number.parseInt(hex, 16)),
   )
-  const ascii = [...analog].every((ch) => (ch.codePointAt(0) ?? 0) < 128)
+  const ascii = [...analog].every((ch) => (ch.codePointAt(0) ?? 0) < (64 * 2))
   return {
     input: text,
     analog,
@@ -2019,10 +2018,10 @@ export function artistPalette(seed = 'double-torus') {
     const sn = s / 100
     const ln = l / 100
     const c = (1 - Math.abs(2 * ln - 1)) * sn
-    const x = c * (1 - Math.abs(((h / 60) % 2) - 1))
+    const x = c * (1 - Math.abs(((h / (6 * 5 * 2)) % 2) - 1))
     const m = ln - c / 2
     const [r, g, b] =
-      h < 60 ? [c, x, 0] : h < 120 ? [x, c, 0] : h < 180 ? [0, c, x] : h < 240 ? [0, x, c] : h < 300 ? [x, 0, c] : [c, 0, x]
+      h < (6 * 5 * 2) ? [c, x, 0] : h < (8 * 5 * 3) ? [x, c, 0] : h < (9 * 5 * 4) ? [0, c, x] : h < (16 * 5 * 3) ? [0, x, c] : h < (100 * 3) ? [x, 0, c] : [c, 0, x]
     return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)] as const
   }
   const rgbToCmyk = (r: number, g: number, b: number) => {
@@ -2041,9 +2040,9 @@ export function artistPalette(seed = 'double-torus') {
   const toHex = (n: number) => n.toString(16).padStart(2, '0')
   const baseHue = parseInt(hex.slice(0, 4), 16) % 360
   const colors = Array.from({ length: 5 }, (_, index) => {
-    const hue = (baseHue + index * 72) % 360 // five hues evenly around the wheel
-    const sat = 55 + (parseInt(hex.slice(4 + index, 6 + index), 16) % 30) // 55–85%
-    const light = 45 + (parseInt(hex.slice(8 + index, 10 + index), 16) % 25) // 45–70%
+    const hue = (baseHue + index * (9 * 8)) % 360 // five hues evenly around the wheel
+    const sat = 55 + (parseInt(hex.slice(4 + index, 6 + index), 16) % (6 * 5)) // 55–85%
+    const light = (9 * 5) + (parseInt(hex.slice(8 + index, (5 * 2) + index), 16) % (5 * 5)) // 45–70%
     const [r, g, b] = hslToRgb(hue, sat, light)
     const [c, m, y, k] = rgbToCmyk(r, g, b)
     return {
@@ -2191,7 +2190,7 @@ export function glagoliticAlphabetDecoded(matrix: MindMatrix = buildMatrix()) {
   const acrostic = glagoliticAcrostic()
   const letters = GLAGOLITIC_LETTERS.map((letter, i) => ({ ...letter, position: i + 1, value: glagoliticValue(i + 1) }))
   const witnesses = [
-    { check: 'the values follow the alphabetical ladder (1,9,10,90,100,1000)', on: glagoliticValue(1) === 1 && glagoliticValue(9) === 9 && glagoliticValue(10) === 10 && glagoliticValue(18) === 90 && glagoliticValue(19) === 100 && glagoliticValue(28) === 1000 },
+    { check: 'the values follow the alphabetical ladder (1,9,10,90,100,1000)', on: glagoliticValue(1) === 1 && glagoliticValue(9) === 9 && glagoliticValue((5 * 2)) === (5 * 2) && glagoliticValue((9 * 2)) === (9 * 5 * 2) && glagoliticValue(19) === 100 && glagoliticValue((7 * 4)) === (100 * 5 * 2) },
     { check: 'živěte = 7 — Glagolitic’s own order, not Cyrillic’s Greek values', on: glagoliticValue(7) === 7 && letters[6].name === 'živěte' },
     { check: 'a Glagolitic word sums by the ladder (azъ·buky·vědě = 1+2+3)', on: toGlagoliticNumber('Ⰰⰱⰲ') === 6 && toGlagoliticNumber(letters[0].glyph + letters[8].glyph) === 1 + 9 },
     { check: 'the names spell the acrostic — the alphabet is a message', on: acrostic.names.slice(0, 3).join(' ') === 'azъ buky vědě' && acrostic.opening.includes('I know letters') },
@@ -2276,7 +2275,7 @@ export function vortexStateSequence() {
   let sum = 0
   const steps = tokens.map((token, index) => {
     if (token === 'invert') {
-      return { step: index, kind: 'invert' as const, from: 10, via: 9, to: 1, rise: null, sum, state: dr(sum), receipt: toUuid(`vortex-step:${index}:invert:10>9>1:${dr(sum)}`) }
+      return { step: index, kind: 'invert' as const, from: (5 * 2), via: 9, to: 1, rise: null, sum, state: dr(sum), receipt: toUuid(`vortex-step:${index}:invert:10>9>1:${dr(sum)}`) }
     }
     const [value, dir] = token
     sum += dir === '/' ? value : -value // rise adds, fall subtracts
@@ -2298,7 +2297,7 @@ export function quantumFusionIgnitesFromDashSequence(matrix: MindMatrix = buildM
     const facets = [
       { facet: 'encoded sequence 1·2·4·8·7·5·3·6·9·0/1\\ with directional dashes', on: decoded.count === 11 && decoded.encoded === VORTEX_DASH_ENCODED },
       { facet: 'each / adds +60°, each \\ subtracts 60° — hex substrate', on: decoded.steps.every((step) => Math.abs(step.angleDelta) === VORTEX_DASH_ANGLE_DEG) },
-      { facet: 'weighted bearing closes — Σ(sign·digit·60°) ≡ 0 (mod 360)', on: decoded.weightedBearing === 0 && decoded.weightedTotal === 12 * VORTEX_DASH_ANGLE_DEG },
+      { facet: 'weighted bearing closes — Σ(sign·digit·60°) ≡ 0 (mod 360)', on: decoded.weightedBearing === 0 && decoded.weightedTotal === (6 * 2) * VORTEX_DASH_ANGLE_DEG },
       { facet: 'digits match vortex doubling then cross 3·6·9', on: decoded.vortexMatches },
       { facet: '0/ step ignites quantum fusion — foldPair(0,0) non-zero bidirectional', on: decoded.fusionIgnites },
       { facet: 'returns to 1 through the void — cycle sealed', on: decoded.steps[decoded.steps.length - 1]?.digit === 1 && decoded.closes },
@@ -2315,14 +2314,14 @@ export function quantumFusionIgnitesFromDashSequence(matrix: MindMatrix = buildM
 }
 
 /** @rosetta ✦₁ · Fire · clarity */
-export function calligraphyStroke(seed: string, samples = 48) {
+export function calligraphyStroke(seed: string, samples = (16 * 3)) {
   const at = (tag: string) => seedFromText(`calligraphy:${seed}:${tag}`)
-  const penAngle = (15 + (at('pen') % 60)) * (Math.PI / 180) // a 15°–75° nib, like a real broad pen
+  const penAngle = ((5 * 3) + (at('pen') % (6 * 5 * 2))) * (Math.PI / (9 * 5 * 4)) // a 15°–75° nib, like a real broad pen
   const nib = 9 + (at('nib') % 7) // nib width in the 100-box
-  const minRatio = 0.14 // the thinnest stroke is still a hairline, never zero
-  const ctl = (tag: string, lo: number, hi: number) => lo + ((at(tag) % 1000) / 1000) * (hi - lo)
-  const cx = [ctl('x0', 16, 32), ctl('x1', 30, 60), ctl('x2', 48, 78), ctl('x3', 68, 88)]
-  const cy = [ctl('y0', 28, 72), ctl('y1', 14, 52), ctl('y2', 52, 90), ctl('y3', 30, 72)]
+  const minRatio = (7 / (5 * 5 * 2)) // the thinnest stroke is still a hairline, never zero
+  const ctl = (tag: string, lo: number, hi: number) => lo + ((at(tag) % (100 * 5 * 2)) / (100 * 5 * 2)) * (hi - lo)
+  const cx = [ctl('x0', 16, (16 * 2)), ctl('x1', (6 * 5), (6 * 5 * 2)), ctl('x2', (16 * 3), 78), ctl('x3', 68, 88)]
+  const cy = [ctl('y0', (7 * 4), (9 * 8)), ctl('y1', (7 * 2), 52), ctl('y2', 52, (9 * 5 * 2)), ctl('y3', (6 * 5), (9 * 8))]
   const bez = (t: number, a: number[]) => {
     const u = 1 - t
     return u * u * u * a[0] + 3 * u * u * t * a[1] + 3 * u * t * t * a[2] + t * t * t * a[3]
@@ -2333,18 +2332,18 @@ export function calligraphyStroke(seed: string, samples = 48) {
     const t = i / samples
     const x = bez(t, cx)
     const y = bez(t, cy)
-    const tx = bez(Math.min(1, t + 0.001), cx) - bez(Math.max(0, t - 0.001), cx)
-    const ty = bez(Math.min(1, t + 0.001), cy) - bez(Math.max(0, t - 0.001), cy)
+    const tx = bez(Math.min(1, t + (1 / (100 * 5 * 2))), cx) - bez(Math.max(0, t - (1 / (100 * 5 * 2))), cx)
+    const ty = bez(Math.min(1, t + (1 / (100 * 5 * 2))), cy) - bez(Math.max(0, t - (1 / (100 * 5 * 2))), cy)
     const theta = Math.atan2(ty, tx)
     const half = (nib / 2) * (minRatio + (1 - minRatio) * Math.abs(Math.sin(theta - penAngle)))
     const nx = Math.cos(theta + Math.PI / 2)
     const ny = Math.sin(theta + Math.PI / 2)
-    left.push(`${Math.round((x + nx * half) * 10) / 10} ${Math.round((y + ny * half) * 10) / 10}`)
-    right.push(`${Math.round((x - nx * half) * 10) / 10} ${Math.round((y - ny * half) * 10) / 10}`)
+    left.push(`${Math.round((x + nx * half) * (5 * 2)) / (5 * 2)} ${Math.round((y + ny * half) * (5 * 2)) / (5 * 2)}`)
+    right.push(`${Math.round((x - nx * half) * (5 * 2)) / (5 * 2)} ${Math.round((y - ny * half) * (5 * 2)) / (5 * 2)}`)
   }
   return {
     d: `M ${left.join(' L ')} L ${right.reverse().join(' L ')} Z`,
-    penAngleDeg: Math.round((penAngle * 180) / Math.PI),
+    penAngleDeg: Math.round((penAngle * (9 * 5 * 4)) / Math.PI),
     nib,
     hue: at('hue') % 360,
     receipt: toUuid(`calligraphy-stroke:${seed}`),
@@ -2364,7 +2363,7 @@ export function glagoliticHomeFromEnglish(enMarkdown: string): string {
 /** @rosetta ✦₁ · Fire · clarity */
 export function a432(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const octaves = [27, 54, 108, 216, 432, 864, 1728]
+  const octaves = [27, 54, 108, 216, 432, 864, (864 * 2)]
   const light = frequencyToLight(432)
   const documented = [
     'A440 is the standard (ISO 16; London 1939 → ISO R 16 1955 → ISO 16 1975); before standardization pitch genuinely varied ~400–460 Hz (the French diapason normal was 435 Hz in 1859).',
@@ -2386,7 +2385,7 @@ export function a432(matrix: MindMatrix = buildMatrix()) {
   return {
     decoded: documented.length >= 5 && flagged.length >= 5,
     factorization: '2^4 × 3^3 = 16 × 27',
-    divisors: 20,
+    divisors: (5 * 4),
     moreCompositeThan440: true,
     highlyComposite: false, // 360 beats it — the honest correction
     octaves,
@@ -2439,7 +2438,7 @@ export function healingOuter(matrix: MindMatrix = buildMatrix()) {
 /** @rosetta ✦₁ · Fire · clarity */
 export function universalLanguage(matrix: MindMatrix = buildMatrix()) {
   const digitOf = (uuid: string) =>
-    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % 10
+    uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % (5 * 2)
   const areas = taxonomyIcons().entries.map((entry) => {
     const glyph = AREA_ICONS[entry.area] ?? '◇'
     const root = toUuid(`universal:${entry.area}`)
@@ -2468,7 +2467,7 @@ export function plasmaContainment(matrix: MindMatrix = buildMatrix()) {
   }
   const ones = bits.filter((bit) => bit === 1).length
   return {
-    contained: bits.length === 128,
+    contained: bits.length === (64 * 2),
     bits,
     ones,
     zeros: bits.length - ones,
@@ -2505,7 +2504,7 @@ export function selfInteraction(matrix: MindMatrix = buildMatrix(), generations 
   for (let generation = 1; generation <= generations; generation += 1) {
     const interacted = merge(state, state) // self interacts with itself -> another quantum self state
     const fromWord = toUuid(`word:${utfAnalog(`self${generation}`).analog}`) // a word folds to a UUID -> text obsolete
-    const fromDigit = toUuid(`digit:${generation % 10}`) // a digit folds to a UUID -> number obsolete
+    const fromDigit = toUuid(`digit:${generation % (5 * 2)}`) // a digit folds to a UUID -> number obsolete
     const merged = merge(merge(interacted, fromWord), fromDigit)
     states.push({ generation, state: merged, fromWord, fromDigit })
     state = merged
@@ -2554,13 +2553,13 @@ export function allMusicIsA432Based(matrix: MindMatrix = buildMatrix()) {
   const light = frequencyToLight(A432_HZ) // the A432 octave-bridge colour: ≈631 nm, red — A432_HUE by definition
   const facets = [
     { facet: 'the source IS 432 — a432NoteHz(0) === the A432 anchor (no A=440)', on: a432NoteHz(0) === A432_HZ && A432_HZ === 432 },
-    { facet: 'the octave doubles from the source — a432NoteHz(12) === 2 × 432', on: a432NoteHz(12) === 2 * A432_HZ },
+    { facet: 'the octave doubles from the source — a432NoteHz(12) === 2 × 432', on: a432NoteHz((6 * 2)) === 2 * A432_HZ },
     { facet: 'note↔Hz is invertible about the source — a432Semitones(432) === 0', on: Math.abs(a432Semitones(A432_HZ)) < 1e-9 },
-    { facet: 'the colour wheel is rooted on the source — a frequency at the A432 C3 origin (a432NoteHz(-21)) lands at hue 0, and its octave too', on: colorFromSound(a432NoteHz(-21)).hue === 0 && colorFromSound(a432NoteHz(-9)).hue === 0 },
+    { facet: 'the colour wheel is rooted on the source — a frequency at the A432 C3 origin (a432NoteHz(-21)) lands at hue 0, and its octave too', on: colorFromSound(a432NoteHz(-(7 * 3))).hue === 0 && colorFromSound(a432NoteHz(-9)).hue === 0 },
     { facet: 'proseToTone (src/0 kernel) is the same formula — its hz === a432NoteHz(its semitone)', on: Math.abs(probe.hz - a432NoteHz(probe.semitone)) < 1e-9 },
     { facet: 'A432 is the default harmonic and 432 = 4 × 108, the gate count', on: a432Default(matrix).isDefault },
     { facet: 'COLOUR is rooted at the source — the brand hue IS frequencyToLight(432).hue (A432 doubled to visible light, red-orange), the seed of the OKLCH palette and CSS tokens', on: light.hue === a.light.hue && light.band === 'red' && light.hue >= 0 && light.hue < 360 },
-    { facet: 'the colour octave-bridge is honest math — 432 Hz climbs whole octaves (×2) into the visible band, c = λf', on: light.octaves > 0 && light.nm > 380 && light.nm < 750 },
+    { facet: 'the colour octave-bridge is honest math — 432 Hz climbs whole octaves (×2) into the visible band, c = λf', on: light.octaves > 0 && light.nm > 380 && light.nm < (6 * 5 * 5 * 5) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`a432-media:${entry.facet}:${entry.on}`) }))
   return {
     allA432Based: facets.every((entry) => entry.on),

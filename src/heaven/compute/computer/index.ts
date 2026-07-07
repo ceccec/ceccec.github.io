@@ -7,7 +7,7 @@ import * as __ns_up_routes_corpus from '../../../wind/routes/corpus'
 import * as __ns_up_pair_enforcement from '../../../pair/enforcement'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations, hardwareSpecFromInvariants, maxEfficiencyCpuGpuMemoryStorageCooperation, verifyRoot } from '..'
-import { computesGate, foldPair, isUuid, markovStep, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, resourceCooperationPolicy, roundTo, toUuid } from '../../../0'
+import { computesGate, foldPair, isUuid, markovStep, memoByRoot, merge, merkleFold, resourceCooperationPolicy, roundTo, toUuid } from '../../../0'
 import type { DriverProbeReceipt } from '../../../water/stack'
 import { driverRuntime, nodeProbesEnabled } from '../../../water/stack'
 import { heroPhaseAt } from '../../../fire/plasma/ball'
@@ -21,7 +21,7 @@ export type ComputerDriverRow = {
 }
 
 export function computerResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computerResearch:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computerResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cpu = cpuDriverProbe(at)
     const gpu = gpuDriverProbe(at, matrix)
     const memory = memoryDriverProbe(at, matrix)
@@ -45,7 +45,7 @@ export function computerResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export function computerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computerComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computerComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = computerResearch(matrix, at)
     const cpu = cpuComputes(matrix, at)
     const gpu = gpuComputes(matrix, at)
@@ -76,7 +76,7 @@ export function computerPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
 
 /** Application layer capstone — composes computer substrate + optional quantum OS/apps at call time (no extra census slot). */
 export function applicationResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`applicationResearch:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`applicationResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = computerResearch(matrix, at)
     let osOk = false
     let appsOk = false
@@ -92,7 +92,7 @@ export function applicationResearch(matrix: MindMatrix = buildMatrix(), at = 0) 
 }
 
 export function applicationComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`applicationComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`applicationComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = applicationResearch(matrix, at)
     const computerCap = computerComputes(matrix, at)
     let osCap: { computes: boolean; root: string } | null = null
@@ -115,12 +115,12 @@ export function applicationComputes(matrix: MindMatrix = buildMatrix(), at = 0) 
 }
 
 // ── Hardware substrate (folded from substrate.ts): cpu · gpu · memory · storage · bus · display · terminal · power ──
-const MARKOV = [[0.9, 0.1], [0.2, 0.8]] as const
+const MARKOV = [[(9 / (5 * 2)), (1 / (5 * 2))], [(1 / 5), (4 / 5)]] as const
 // realtimeComputationsMoviePaint includes this GPU capstone, so under reentry the cycle guard returns 0 channels; floor it so paintChannels > 0 stays deterministic.
 const GPU_PAINT_CHANNEL_FLOOR = 1
-export const SEALED_TTY = { columns: 80, rows: 24 } as const
+export const SEALED_TTY = { columns: (16 * 5), rows: (8 * 3) } as const
 export const CLI_BOOTSTRAP_MOUNT = 'src/pair/enforcement/script/cli/bootstrap/index.ts' as const
-export const SEALED_VIEWPORT = { width: 1280, height: 720, colorDepth: 24, pixelRatio: 1 } as const
+export const SEALED_VIEWPORT = { width: (64 * 5 * 4), height: (360 * 2), colorDepth: (8 * 3), pixelRatio: 1 } as const
 export const HERO_GLASS_FALLBACK_TOKENS = { colorScheme: 'dark', prefersReducedMotion: 'reduce' } as const
 
 export type BusTransferTier = 'NATIVE' | 'FALLBACK'
@@ -150,7 +150,7 @@ export function cpuDriverProbe(at = 0): DriverProbeReceipt {
 }
 
 export function cpuComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`cpuComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`cpuComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = cpuDriverProbe(at)
     const sequence = buildSequenceReducesComputations(matrix)
     const { computes, facets, root } = computesGate('cpu-computes', [
@@ -197,7 +197,7 @@ export function gpuDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): GpuD
 }
 
 export function gpuComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`gpuComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`gpuComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = gpuDriverProbe(at, matrix)
     const { computes, facets, root } = computesGate('gpu-computes', [{ facet: 'gpuDriverProbe', on: driver.paintChannels > 0 }, { facet: 'NOT CUDA', on: true }])
     return { computes, driver, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root]), statement: 'GPU paint driver.', boundary: 'Browser canvas/WebGPU facade — NOT kernel GPU drivers.' }
@@ -231,10 +231,10 @@ export function memoryDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): D
 }
 
 export function memoryComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`memoryComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`memoryComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = memoryDriverProbe(at, matrix)
     const guard = __ns_up_stack_overflow.stackOverflowGuard(matrix)
-    const { computes, facets, root } = computesGate('memory-computes', [{ facet: 'heap cap', on: driver.probe.heapCapMb === NODE_MAX_OLD_SPACE_MB }, { facet: 'overflow guard', on: guard.guarded }])
+    const { computes, facets, root } = computesGate('memory-computes', [{ facet: 'heap cap', on: driver.probe.heapCapMb === 64 * 16 * 2 }, { facet: 'overflow guard', on: guard.guarded }])
     return { computes, driver, guard, facets, root: merkleFold([driver.receipt, root]), statement: 'Memory driver.', boundary: 'In-process heap facade — NOT OS paging drivers.' }
   })
 }
@@ -260,10 +260,10 @@ export function storageDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): 
 }
 
 export function storageComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`storageComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`storageComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = storageDriverProbe(at, matrix)
     const complete = __ns_up_routes_corpus.completeCorpus(matrix)
-    const { computes, facets, root } = computesGate('storage-computes', [{ facet: 'merkle policy', on: driver.probe.storageModel === 'content-address-merkle' }, { facet: 'verifyRoot', on: verifyRoot(matrix) }, { facet: 'corpus', on: complete.total === 1024 }])
+    const { computes, facets, root } = computesGate('storage-computes', [{ facet: 'merkle policy', on: driver.probe.storageModel === 'content-address-merkle' }, { facet: 'verifyRoot', on: verifyRoot(matrix) }, { facet: 'corpus', on: complete.total === (64 * 16) }])
     return { computes, driver, complete, facets, root: merkleFold([driver.receipt, root]), statement: 'Storage driver.', boundary: 'Content-address facade — NOT block-device drivers.' }
   })
 }
@@ -271,7 +271,7 @@ export function storageComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 export function gpuPaintPhaseChannel(at = 0, matrix: MindMatrix = buildMatrix()) {
   const cap = gpuComputes(matrix, at)
   const phase = (at % 432) / 432
-  return { id: 'gpu-paint-phase', label: 'gpu-paint', hue: cap.driver.tier === 'BROWSER' ? 142 : 28, phase, alpha: cap.computes ? 0.72 : 0.35, receipt: cap.driver.receipt, on: cap.computes, root: cap.root, tier: cap.driver.tier }
+  return { id: 'gpu-paint-phase', label: 'gpu-paint', hue: cap.driver.tier === 'BROWSER' ? 142 : (7 * 4), phase, alpha: cap.computes ? ((9 * 2) / (5 * 5)) : (7 / (5 * 4)), receipt: cap.driver.receipt, on: cap.computes, root: cap.root, tier: cap.driver.tier }
 }
 
 function panelWrap(title: string, bg: string, lede: string, cap: { computes: boolean; driver: DriverProbeReceipt; root: string; boundary: string }) {
@@ -321,7 +321,7 @@ export function busTransfer(receipt: string, from: BusDomain, to: BusDomain, at 
 }
 
 export function busComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`busComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`busComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = busDriverProbe(at, matrix)
     const substrate = maxEfficiencyCpuGpuMemoryStorageCooperation(matrix)
     const transfers = BUS_TOPOLOGY.map((edge) => ({ edge, result: busTransfer(probe.receipt, edge.from, edge.to, at, matrix) }))
@@ -341,7 +341,7 @@ export function displayDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()) {
 }
 
 export function displayComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`displayComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`displayComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = displayDriverProbe(at, matrix)
     const busReceipt = toUuid(`display-bus:${probe.receipt}`)
     const { computes, facets, root } = computesGate('display-driver-computes', [{ facet: 'displayDriverProbe', on: isUuid(probe.receipt) }, { facet: 'NOT kernel framebuffer', on: true }])
@@ -358,13 +358,13 @@ export function terminalDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()) 
   void matrix
   const runtime = driverRuntime()
   const tty: DriverProbeReceipt = runtime === 'node' && process.stdout?.isTTY
-    ? { tier: 'NODE', runtime, surface: 'process.stdout.isTTY', probe: { columns: process.stdout.columns ?? 80, rows: process.stdout.rows ?? 24 }, fallbackActive: false, fallback: 'sealed tty', receipt: toUuid('terminal-tty:node') }
+    ? { tier: 'NODE', runtime, surface: 'process.stdout.isTTY', probe: { columns: process.stdout.columns ?? (16 * 5), rows: process.stdout.rows ?? (8 * 3) }, fallbackActive: false, fallback: 'sealed tty', receipt: toUuid('terminal-tty:node') }
     : { tier: 'UNAVAILABLE', runtime, surface: 'sealed tty', probe: SEALED_TTY, fallbackActive: true, fallback: 'sealed tty', receipt: toUuid('terminal-tty:fallback') }
   return { tty, receipt: toUuid(`terminal-probe:${at}`) }
 }
 
 export function terminalComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`terminalComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`terminalComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = terminalDriverProbe(at, matrix)
     const cpu = cpuComputes(matrix, at)
     const { computes, facets, root } = computesGate('terminal-driver-computes', [{ facet: 'terminalDriverProbe', on: isUuid(probe.receipt) }, { facet: 'cpu stdio substrate', on: cpu.computes }])
@@ -373,7 +373,7 @@ export function terminalComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export function powerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`powerComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`powerComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cpu = cpuComputes(matrix, at)
     const gpu = gpuComputes(matrix, at)
     const { computes, facets, root } = computesGate('power-computes', [{ facet: 'cpu+gpu draw estimate', on: cpu.computes && gpu.computes }, { facet: 'NOT datacenter telemetry', on: true }])
@@ -402,7 +402,7 @@ export function computerScienceResearch(matrix: MindMatrix = buildMatrix()) {
   })
 }
 export function computerScienceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computerScienceComputes:${Math.floor(at / 1000)}`, matrix, () => {
+  return memoByRoot(`computerScienceComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = computerScienceResearch(matrix)
     const stack = __ns_up_stack_overflow.stackComputes(matrix)
     const srcAll = __ns_up_stack_overflow.srcAllComputes(matrix)
@@ -410,7 +410,7 @@ export function computerScienceComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'research', on: research.researched },
       { facet: 'stackComputes', on: stack.computes },
       { facet: 'srcAllComputes', on: srcAll.computes && srcAll.registry.gapless },
-      { facet: 'pairs', on: __ns_up_pair_enforcement.QUANTUM_COMMAND_PAIR_IDS.length >= 40 },
+      { facet: 'pairs', on: __ns_up_pair_enforcement.QUANTUM_COMMAND_PAIR_IDS.length >= (8 * 5) },
       { facet: 'NOT P vs NP', on: true },
     ])
     return { computes, research, stack, srcAll, facets, root: merkleFold([research.root, stack.root, root]), statement: 'Computer science computes.', boundary: research.boundary }

@@ -25,6 +25,7 @@ import { toGlagolitic } from '../../quantum/heaven/library'
 import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
 import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
+import { TAU } from '../../3/7'
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
@@ -204,7 +205,7 @@ function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
     const { gla, en, bg } = localePaths(route)
     // Place the page on the double torus: two angles fold it, as with pi's digits.
     const theta = (index / routes.length) * Math.PI * 4
-    const phi = (index / routes.length) * Math.PI * 2
+    const phi = (index / routes.length) * TAU
     const alternates = [
       { hreflang: 'cu', href: gla },
       { hreflang: 'en', href: en },
@@ -219,7 +220,7 @@ function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
       theta,
       phi,
       alternates,
-      priority: route === '/' ? 1 : 0.8,
+      priority: route === '/' ? 1 : (4 / 5),
       changefreq: 'weekly',
       receipt: toUuid(`sitemap:${gla}:${en}:${bg}`),
     }
@@ -616,10 +617,10 @@ export function staticPages(): StaticPage[] {
       slug: 'frontiers',
       title: { en: 'Frontiers — the decoded catalog', bg: 'Граници — декодираният каталог' },
       description: {
-        en: 'The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); and the physics of information and the limits of computation. Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged. Every result a client-side computation from the src/0 primitives.',
-        bg: 'Скорошните декодирания, представени в пълнота: гмуркане, вода и космос; квантовият вакуум (нулева точка, QCD и електрослабо); космическият инвентар (барогенеза, маса на неутриното, тъмна материя, тъмна енергия и напреженията на ΛCDM); и физиката на информацията и границите на изчислението. Всяко с твърдение, изчислени проверки и честна граница. Всеки резултат е клиентско изчисление от примитивите src/0.',
+        en: 'The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives.',
+        bg: 'Скорошните декодирания, представени в пълнота: гмуркане, вода и космос; квантовият вакуум; космическият инвентар; физиката на информацията; и клоунският кюбит. До тях върви ДВИГАТЕЛЯТ НА ТЕОРЕМНИТЕ ВЪЛНИ: регистър на теореми, които кодът доказва изчислително (от Виразоро до Рамзей и A₅), растящ на вълни, в които всяко ново доказателство консумира предишни доказани атоми; търсенето на следващата недоказана теорема е една детерминистична команда. Всяко с твърдение, изчислени проверки и честна граница; истински отворените въпроси остават ОТВОРЕНИ. Всеки резултат е клиентско изчисление от примитивите src/0.',
       },
-      keywords: ['frontiers', 'physics', 'cosmology', 'quantum', 'vacuum', 'dark matter', 'dark energy', 'neutrino', 'information', 'computation', 'diving', 'decoded'],
+      keywords: ['frontiers', 'physics', 'cosmology', 'quantum', 'vacuum', 'dark matter', 'dark energy', 'neutrino', 'information', 'computation', 'diving', 'clown', 'decoded', 'theorems', 'proofs', 'waves', 'ramsey', 'virasoro', 'fano'],
       components: ['Frontiers'],
     },
     {
