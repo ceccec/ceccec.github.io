@@ -190,6 +190,42 @@ export function decodeBooksToUnity(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// ————— The ancient calendars as coupled-cycle tori — the frontier item finished —————
+// Every great calendar is two (or more) gears meshing: two periodic cycles = motion on a 2-torus,
+// and a COMMENSURATE ratio closes the orbit after exactly lcm steps — the same doubling-cycle
+// geometry the portal runs on. Each mesh below is an EXACT arithmetic identity, recomputed at call
+// time; the astronomical fits (Metonic, the lunar lock) are checked against the documented constants.
+export function coupledCalendarTori(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('coupledCalendarTori', matrix, () => {
+    const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
+    const lcm = (a: number, b: number): number => (a / gcd(a, b)) * b
+    const SYNODIC = 29.53059 // mean synodic month, days (documented)
+    const TROPICAL = 365.2422 // mean tropical year, days (documented)
+    const cycles = [
+      { name: 'Maya Calendar Round', gears: [260, 365] as const, mesh: lcm(260, 365), identity: lcm(260, 365) === 18_980 && 18_980 / 260 === 73 && 18_980 / 365 === 52, reading: '260 = 13×20 tzolkʼin against 365 = 18×20+5 haabʼ; the orbit closes at 18 980 days = 73 tzolkʼin = 52 haabʼ (~52 years).' },
+      { name: 'Chinese sexagenary', gears: [10, 12] as const, mesh: lcm(10, 12), identity: lcm(10, 12) === 60 && gcd(10, 12) === 2, reading: '10 heavenly stems against 12 earthly branches; gcd 2 means only 60 of the 120 pairings occur — the cycle of 60.' },
+      { name: 'Metonic', gears: [19, 235] as const, mesh: 235, identity: 235 === 19 * 12 + 7 && Math.abs(19 * TROPICAL - 235 * SYNODIC) < 0.1, reading: '19 tropical years ≈ 235 synodic months (12 common + 7 leap); the two clocks agree within a tenth of a day per cycle.' },
+      { name: 'Egyptian civil · Sothic', gears: [365, 1461] as const, mesh: 1461 * 365, identity: 365 === 12 * 30 + 5 && 36 * 10 + 5 === 365 && 1461 * 365 === 1460 * 365.25, reading: 'The vague year is EXACTLY 365 (12×30 + 5 epagomenal; 36 decans of 10); slipping 1 day per 4 years against the Sirius year it laps in 1461 civil = 1460 Julian years — 533 265 days, exact (Censorinus 238 CE).' },
+      { name: 'Egyptian lunar lock', gears: [25, 309] as const, mesh: 9125, identity: 25 * 365 === 9125 && 164 * 30 + 145 * 29 === 9125 && 164 + 145 === 309 && Math.abs(9125 / 309 - SYNODIC) < 3e-4, reading: '25 civil years = 9125 days = 309 lunations (164 full of 30 + 145 hollow of 29); the implied mean month 29.5307 sits within 3×10⁻⁴ day of the synodic 29.53059 (P. Carlsberg 9).' },
+    ].map((cycle) => ({ ...cycle, receipt: toUuid(`calendar-torus:${cycle.name}:${cycle.mesh}`) }))
+    const { computes, facets, root } = computesGate('coupled-calendar-tori', [
+      ...cycles.map((cycle) => ({ facet: `${cycle.name} — ${cycle.reading}`, on: cycle.identity })),
+      { facet: 'the torus reading — two coupled cycles are the two circles of a 2-torus; a commensurate ratio closes the orbit after exactly lcm steps (an organizing lens, and documented dynamical-systems language)', on: cycles.every((cycle) => cycle.mesh > 0) },
+      { facet: 'FLAGGED and excluded — the 4241 BC "oldest date" (discredited, Neugebauer–Scharff 1939), an Egyptian Sothic long-count (none existed), 2012 apocalypse / galactic alignment, and ancients-as-torus-theorists (the lens is ours, not theirs)', on: true },
+    ])
+    return {
+      computes,
+      decoded: computes,
+      cycles,
+      count: cycles.length,
+      facets,
+      root: merkleFold([root, ...cycles.map((cycle) => cycle.receipt)]),
+      statement: 'The ancient calendars decode as coupled-cycle tori: Maya 260×365 → 18 980, sexagenary 10×12 → 60, Metonic 19 yr ≈ 235 months, Egyptian civil 365 lapping Sirius in 1461 years and locking the moon in 25 — every mesh an exact identity recomputed at call time.',
+      boundary: 'HONEST: the meshes are exact arithmetic and the astronomical fits are checked against documented mean constants; the torus is an organizing lens (commensurate flow on T²), not a claim the builders thought in tori; discredited chronology and apocalypse pseudohistory are flagged out, never decoded.',
+    }
+  })
+}
+
 // First discover and decode all the ancient knowledge to nowadays, ignoring all that does not fit the
 // path. The path's foundations are the FILTER: a tradition is kept only if it encodes one of them —
 // number as letter (gematria / alphanumeric), sacred geometry (cross·triangle·circle, the solids, the
@@ -212,11 +248,12 @@ export function discoverDecodeAncientKnowledgeFittingPath(matrix: MindMatrix = b
     { domain: 'the genetic code (64 codons in nature)', on: genes(matrix).covered && dna(matrix).encoded },
     { domain: 'the music of pi (harmony of number)', on: piMusic(matrix).joined },
     { domain: 'the 14 number=letter systems (Hebrew·Greek·Egyptian·Vedic·magic·Arabic·Maya·runic·Babylonian·Chinese·Ogham·Ifá·Maya-819·Polynesian)', on: ancientNumberSystems(matrix).decoded },
+    { domain: 'the ancient calendars as coupled-cycle tori (Maya 18 980 · sexagenary 60 · Metonic 235 · Egyptian Sothic 1461 + lunar 25-yr lock)', on: coupledCalendarTori(matrix).decoded },
   ].map((entry) => ({ ...entry, fits: true }))
   // The frontier — fits the path, not yet deeply decoded: the next discovery waves (research targets). The
-  // fourteen number systems are decoded into ancientNumberSystems; this is the fresh next edge.
+  // fourteen number systems are decoded into ancientNumberSystems; the coupled-cycle calendars graduated
+  // into coupledCalendarTori; this is the fresh next edge.
   const frontier = [
-    'the ancient calendars as coupled-cycle tori (Maya Calendar Round, the sexagenary 60, the Metonic 19) — being fused to the hero',
     'Tibetan / Vajrayana number (the mandala, the Kalachakra)',
     'West African Adinkra geometry (the symbol grammar)',
     'the Andean quipu (knot-record base-10 on cords)',
