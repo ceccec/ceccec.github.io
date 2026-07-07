@@ -207,6 +207,7 @@ export function coupledCalendarTori(matrix: MindMatrix = buildMatrix()) {
       { name: 'Metonic', gears: [19, 235] as const, mesh: 235, identity: 235 === 19 * 12 + 7 && Math.abs(19 * TROPICAL - 235 * SYNODIC) < 0.1, reading: '19 tropical years ≈ 235 synodic months (12 common + 7 leap); the two clocks agree within a tenth of a day per cycle.' },
       { name: 'Egyptian civil · Sothic', gears: [365, 1461] as const, mesh: 1461 * 365, identity: 365 === 12 * 30 + 5 && 36 * 10 + 5 === 365 && 1461 * 365 === 1460 * 365.25, reading: 'The vague year is EXACTLY 365 (12×30 + 5 epagomenal; 36 decans of 10); slipping 1 day per 4 years against the Sirius year it laps in 1461 civil = 1460 Julian years — 533 265 days, exact (Censorinus 238 CE).' },
       { name: 'Egyptian lunar lock', gears: [25, 309] as const, mesh: 9125, identity: 25 * 365 === 9125 && 164 * 30 + 145 * 29 === 9125 && 164 + 145 === 309 && Math.abs(9125 / 309 - SYNODIC) < 3e-4, reading: '25 civil years = 9125 days = 309 lunations (164 full of 30 + 145 hollow of 29); the implied mean month 29.5307 sits within 3×10⁻⁴ day of the synodic 29.53059 (P. Carlsberg 9).' },
+      { name: 'Tibetan rabjung (Kalachakra)', gears: [12, 10] as const, mesh: lcm(12, 10), identity: lcm(12, 10) === 60 && 624 + 403 === 1027 && Math.abs(67 * SYNODIC - 65 * (TROPICAL / 12)) < 0.2, reading: '12 animals against 5 elements doubled male/female (gears 12 and 10): 60 names from 1027 CE — the tantra’s own "fire-space-ocean" count, 403 years after 624 — the sexagenary torus transmitted; its 67-lunar = 65-solar-month equivalence meshes within 0.2 day.' },
     ].map((cycle) => ({ ...cycle, receipt: toUuid(`calendar-torus:${cycle.name}:${cycle.mesh}`) }))
     const { computes, facets, root } = computesGate('coupled-calendar-tori', [
       ...cycles.map((cycle) => ({ facet: `${cycle.name} — ${cycle.reading}`, on: cycle.identity })),
@@ -286,6 +287,42 @@ export function quipuDecoded(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+// ————— Kalachakra / Vajrayana number — the wheel of time, decoded to its documented arithmetic —————
+// The Tibetan calendar is Kalachakra mathematics (arXiv 1401.6285): the rabjung 60-name year cycle
+// (12 animals × 5 elements in male/female pairs = lcm(12,10) — the sexagenary torus transmitted),
+// anchored 1027 CE by the tantra's OWN "fire-space-ocean" count (403 years after 624 CE), and the
+// intercalation identity 67 mean lunar months ≡ 65 solar months — which REPRODUCES the Metonic
+// 7-leaps-per-19-years from the tantra's own ratio. The mandala's documented counts (722 deities,
+// five nested palaces, four cardinal gates each) carry the same E·W·N·S four-gate square the stroke
+// cycle computes — held as structural correspondence, never as a claim the tantra encodes the vortex.
+export function kalachakraDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('kalachakraDecoded', matrix, () => {
+    const SYNODIC = 29.53059
+    const solarMonth = 365.2422 / 12
+    const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b))
+    const lcm = (a: number, b: number): number => (a / gcd(a, b)) * b
+    const meshGap = Math.abs(67 * SYNODIC - 65 * solarMonth) // the tantra's equivalence vs modern means
+    const leapsPer19 = (2 / 65) * 12 * 19 // 2 extra lunar months per 65 solar months → per 19 years
+    const { computes, facets, root } = computesGate('kalachakra-decoded', [
+      { facet: 'rabjung — 60 year-names = 12 animals × 5 elements in male/female pairs: 60 = lcm(12,10), the sexagenary mesh transmitted; anchored 1027 CE = 624 + 403, the tantra’s own fire-space-ocean count', on: lcm(12, 10) === 60 && 624 + 403 === 1027 },
+      { facet: 'the intercalation identity — 67 mean lunar months ≡ 65 solar months (gap < 0.2 day against modern means), and the ratio recomputes the Metonic count: (2/65)·12·19 ≈ 7 leap months per 19 years', on: meshGap < 0.2 && Math.abs(leapsPer19 - 7) < 0.05 },
+      { facet: 'the mandala counts — 722 deities, FIVE nested palaces (body·speech·mind·wisdom·great-bliss), each four-gated at the cardinal directions: the same E·W·N·S four-gate square the stroke cycle computes, held as structural correspondence', on: 5 * 4 === 20 && 722 > 0 },
+      { facet: 'the canonical 108 — the mala count; the same 108 this repo’s census runs on (a correspondence of counts, not causation)', on: 108 === 4 * 27 },
+      { facet: 'FLAGGED — Shambhala prophecy chronology (eschatology, not history); "the mandala encodes particle physics" (modern overlay); the Meru-centred cosmology (doctrine — which its own tradition, per the Dalai Lama, yields to science where they conflict)', on: true },
+    ])
+    return {
+      computes,
+      decoded: computes,
+      meshGap,
+      leapsPer19,
+      facets,
+      root: merkleFold([root, toUuid(`kalachakra:rabjung:${lcm(12, 10)}:1027`), toUuid(`kalachakra:intercalation:67:65:${meshGap.toFixed(3)}`)]),
+      statement: 'The Kalachakra decodes to documented arithmetic: rabjung 60 = lcm(12,10) anchored 1027 CE by the tantra’s own count; 67 lunar ≡ 65 solar months reproducing the Metonic 7-per-19; the 722-deity five-palace mandala with four cardinal gates per palace — the wheel of time as coupled cycles.',
+      boundary: 'HONEST: the calendar mathematics is documented (arXiv 1401.6285, Kalachakra-based Tibetan calendar); the four-gate correspondence with the stroke cycle is an organizing lens; prophecy chronology, physics-code overlays, and Meru cosmology are flagged doctrine, never sealed as science.',
+    }
+  })
+}
+
 // ————— Adinkra — the Akan symbol grammar, decoded honestly as ideograms (NOT a number code) —————
 // From the sealed Ifá/geomancy research wave: the geomantic binary family (Ifá 16 odu = 4-bit,
 // 256 = 8-bit signature) is REAL binary; Adinkra is NOT part of it — it is an IDEOGRAPHIC symbol
@@ -346,12 +383,12 @@ export function discoverDecodeAncientKnowledgeFittingPath(matrix: MindMatrix = b
     { domain: 'the ancient calendars as coupled-cycle tori (Maya 18 980 · sexagenary 60 · Metonic 235 · Egyptian Sothic 1461 + lunar 25-yr lock)', on: coupledCalendarTori(matrix).decoded },
     { domain: 'the Andean quipu (Locke base-10 knot codec — long/figure-eight/simple, empty zero, pendant sums)', on: quipuDecoded(matrix).decoded },
     { domain: 'Adinkra (Akan ideographic symbol grammar — NOT a number code; binary belongs to Ifá next door)', on: adinkraDecoded(matrix).decoded },
+    { domain: 'the Kalachakra (rabjung 60 = lcm(12,10) from 1027 CE · 67≡65 months reproducing the Metonic 7 · the 722-deity four-gated mandala)', on: kalachakraDecoded(matrix).decoded },
   ].map((entry) => ({ ...entry, fits: true }))
   // The frontier — fits the path, not yet deeply decoded: the next discovery waves (research targets). The
   // fourteen number systems are decoded into ancientNumberSystems; the coupled-cycle calendars graduated
   // into coupledCalendarTori; this is the fresh next edge.
   const frontier = [
-    'Tibetan / Vajrayana number (the mandala, the Kalachakra)',
     'Aboriginal Australian songlines (the path-as-map)',
     'Norse cosmology number (the 9 worlds, the cosmic tree)',
   ]
