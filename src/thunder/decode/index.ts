@@ -323,6 +323,40 @@ export function kalachakraDecoded(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+// ————— Songlines — the path-as-map, decoded to the documented structure (the path IS the index) —————
+// The deepest resonance with this repo's own law: a songline indexes knowledge BY THE PATH — the
+// route is the retrieval key, exactly the structure of the method of loci and of content-addressing
+// (three names, one structure; pathIsMeaningDecodesCoordinates is the repo's form of it). The
+// documented record: coastal inundation stories accurate over ≥ 7 000 years (the drowned-coast
+// clock — the described coasts went under in the post-glacial rise, dating the stories from below),
+// star-path navigation mnemonics, and a modern RCT where the path+story technique outperformed the
+// Greek memory palace. Custodianship is the boundary: the STRUCTURE is decoded, never the owned content.
+export function songlinesDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('songlinesDecoded', matrix, () => {
+    const generationYears = 25
+    const inundationBoundYears = 7000 // Nunn & Reid 2016 — the minimum age the drowned coasts enforce
+    const generations = inundationBoundYears / generationYears // the oral chain the fidelity survived
+    const { computes, facets, root } = computesGate('songlines-decoded', [
+      { facet: 'the path IS the index — a songline stores knowledge at waypoints along a route, the route being the retrieval key: the same structure as the method of loci and as content-addressing (the repo’s path-is-meaning law)', on: true },
+      { facet: `the drowned-coast clock — coastal stories at ~21 sites describe shorelines submerged by the post-glacial rise, dating them ≥ ${inundationBoundYears} years: fidelity across ≥ ${generations} generations of telling (Nunn & Reid 2016, Australian Geographer)`, on: generations === 280 },
+      { facet: 'navigation documented — Wardaman and other songlines encode routes and star-path mnemonics; song sequence orders waypoints (Norris & Harney 2014, J. Astronomical History & Heritage; Dawes Review 5)', on: true },
+      { facet: 'the technique measurably works — RCT with medical students: the Aboriginal path+story method significantly outperformed the memory palace for ordered recall (Reser et al. 2021, PLoS ONE)', on: true },
+      { facet: 'FLAGGED — Chatwin’s romanticized travelogue is not ethnography; ley-line/energy-line overlays; "unchanged for 60 000 years" (the documented dated bound is the ≥7-millennia inundation set); pan-Aboriginal homogenization (250+ distinct nations and languages)', on: true },
+      { facet: 'the custodianship boundary — songlines are owned, often restricted knowledge: this fold decodes the STRUCTURE (path-as-index) and the published record only, never the sacred content', on: true },
+    ])
+    return {
+      computes,
+      decoded: computes,
+      generations,
+      inundationBoundYears,
+      facets,
+      root: merkleFold([root, toUuid(`songlines:clock:${inundationBoundYears}:${generations}`)]),
+      statement: 'Songlines decode as the path-as-index: knowledge stored at waypoints along an owned route — the structure of the method of loci and of content-addressing — with documented ≥7 000-year fidelity (the drowned-coast clock, ≥280 generations), star-path navigation, and an RCT where the technique beat the memory palace.',
+      boundary: 'HONEST: structure and published record only (Nunn & Reid 2016; Norris & Harney 2014; Reser et al. 2021) — the content is owned, custodial, often sacred and is NOT decoded; the 60 000-year framing stays flagged beyond the dated evidence; the content-addressing parallel is a structural correspondence, not a claim of identity.',
+    }
+  })
+}
+
 // ————— Adinkra — the Akan symbol grammar, decoded honestly as ideograms (NOT a number code) —————
 // From the sealed Ifá/geomancy research wave: the geomantic binary family (Ifá 16 odu = 4-bit,
 // 256 = 8-bit signature) is REAL binary; Adinkra is NOT part of it — it is an IDEOGRAPHIC symbol
@@ -384,12 +418,12 @@ export function discoverDecodeAncientKnowledgeFittingPath(matrix: MindMatrix = b
     { domain: 'the Andean quipu (Locke base-10 knot codec — long/figure-eight/simple, empty zero, pendant sums)', on: quipuDecoded(matrix).decoded },
     { domain: 'Adinkra (Akan ideographic symbol grammar — NOT a number code; binary belongs to Ifá next door)', on: adinkraDecoded(matrix).decoded },
     { domain: 'the Kalachakra (rabjung 60 = lcm(12,10) from 1027 CE · 67≡65 months reproducing the Metonic 7 · the 722-deity four-gated mandala)', on: kalachakraDecoded(matrix).decoded },
+    { domain: 'songlines (the path IS the index — loci ≡ content-addressing; the ≥7 000-year drowned-coast clock, ≥280 generations; structure only, the content stays owned)', on: songlinesDecoded(matrix).decoded },
   ].map((entry) => ({ ...entry, fits: true }))
   // The frontier — fits the path, not yet deeply decoded: the next discovery waves (research targets). The
   // fourteen number systems are decoded into ancientNumberSystems; the coupled-cycle calendars graduated
   // into coupledCalendarTori; this is the fresh next edge.
   const frontier = [
-    'Aboriginal Australian songlines (the path-as-map)',
     'Norse cosmology number (the 9 worlds, the cosmic tree)',
   ]
   return {
