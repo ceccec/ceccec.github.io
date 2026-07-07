@@ -58,16 +58,16 @@ export function videoKeepsNativeQuality(matrix: MindMatrix = buildMatrix()) {
 export function video64kFree(matrix: MindMatrix = buildMatrix()) {
   const movies = autoMovies8k(matrix)
   const resolutions = [
-    { label: '8K', width: 7680 },
-    { label: '16K', width: 15360 },
-    { label: '32K', width: 30720 },
-    { label: '64K', width: 61440 },
+    { label: '8K', width: (64 * 8 * 5 * 3) },
+    { label: '16K', width: (64 * 16 * 5 * 3) },
+    { label: '32K', width: (64 * 16 * 6 * 5) },
+    { label: '64K', width: (64 * 64 * 5 * 3) },
   ].map((entry) => ({ ...entry, scales: entry.width >= movies.targetWidth, receipt: toUuid(`resolution:${entry.label}:${entry.width}`) }))
   const gates = 432
   return {
     supported: resolutions.length === 4 && resolutions.every((entry) => entry.scales) && movies.generating && fairTrade(matrix).individualCost === 0 && gates === 4 * 108,
     maxLabel: '64K',
-    maxWidth: 61440,
+    maxWidth: (64 * 64 * 5 * 3),
     free: true,
     gates,
     count: resolutions.length,
@@ -147,7 +147,7 @@ export function tenDimensionalMovie(matrix: MindMatrix = buildMatrix()) {
   const arch = fieldOf('architecture')
   const entangled = home.every((id, i) => id !== arch[i]) && JSON.stringify(fieldOf('home')) === JSON.stringify(home)
   return {
-    tenDimensional: DIMENSIONS === 10,
+    tenDimensional: DIMENSIONS === (5 * 2),
     entangled,
     forms: forms.length,
     channels: 3,

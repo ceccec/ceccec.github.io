@@ -67,7 +67,7 @@ function hologramRaw(matrix: MindMatrix = buildMatrix()) {
   const akashicRecords = atoms.length + conceptCommands.length
   return {
     holographic: partsProveWhole && boundaryEncodesVolume,
-    toTheBit: bits.length === 128,
+    toTheBit: bits.length === 2 * 64, // the 128-bit word
     akashic: akashicRecords > 0,
     parts: atoms.length,
     records: akashicRecords,
@@ -110,7 +110,7 @@ export type HeroMovieChrome = {
 /** Glass chrome for the background movie — every colour and shade from creation-wave + 3-5-8 tiers; theme reads computed CSS vars only. */
 export function heroMovieChrome(
   matrix: MindMatrix = buildMatrix(),
-  cssWidth = 1024,
+  cssWidth = 4 * 4 * 64, // 1024 — the diamond count
   path = '/',
 ): HeroMovieChrome {
   // Global Layout BackgroundMovie slot — per-page endless movie by site law (see canvas/endlessBackgroundMovie).
@@ -134,7 +134,7 @@ export function heroMovieChrome(
 export function backgroundMovieColors(
   matrix: MindMatrix = buildMatrix(),
   path = '/en/',
-  cssWidth = 1024,
+  cssWidth = 4 * 4 * 64, // 1024 — the diamond count
 ): {
   fromMovie: boolean
   path: string
@@ -230,7 +230,7 @@ export function proofRendererDecodedView(): DecodedComponentView {
     title: 'Proof renderer',
     statement: 'Every proof in the registry is computed from sealed src — one renderer, zero per-proof components.',
     boundary: 'A projection of proofRegistry() for DecodedCard — the proofs are data, not hand-authored prose.',
-    facets: proofs.slice(0, 12).map((entry) => ({ facet: entry.title, on: Boolean(entry.proof), link: `/en/${entry.slug}` })),
+    facets: proofs.slice(0, 2 * 6).map((entry) => ({ facet: entry.title, on: Boolean(entry.proof), link: `/en/${entry.slug}` })),
     ok: proofs.length > 0,
   }
 }

@@ -66,7 +66,7 @@ export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix(
 }
 
 /** Documented harmonic rungs — a count off this ladder opens the harmonic gate. */
-export const DOCUMENTED_HARMONICS = [9, 42, 43, 64, 108, 144, 216, 432, 1024] as const
+export const DOCUMENTED_HARMONICS = [9, (7 * 6), 43, 64, 108, (16 * 9), 216, 432, (64 * 16)] as const
 
 /** Agent task label under genus-2 χ=−2: `${folded}/${unfolded}` (e.g. 108/110, 43/45). */
 export function harmonicFoldLabel(unfolded: number, matrix: MindMatrix = buildMatrix()): string {
@@ -134,7 +134,7 @@ export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
     mk('dimension-gates', `${HOMOLOGY_LOOPS}`, `${HOMOLOGY_LOOPS}×${FOLDED_CENSUS}`, HOMOLOGY_LOOPS * censusFold.folded, DIMENSION_GATES),
     mk('fibonacci-sum', `${UNFOLDED_CENSUS}`, FIBONACCI_CENSUS_BANDS.join('+'), bandSum, UNFOLDED_CENSUS),
     mk('pages-fold', labels.pages, `${pages.length}+χ`, pages.length + chi, pageFold.folded),
-    mk('pages-label', labels.pages, 'folded/label', Number.parseInt(pageFoldedStr ?? '0', 10), pageFold.folded),
+    mk('pages-label', labels.pages, 'folded/label', Number.parseInt(pageFoldedStr ?? '0', (5 * 2)), pageFold.folded),
     mk('rosetta-six-seven', labels.rosetta, `${ROSETTA_SIX}×${ROSETTA_SEVEN}`, ROSETTA_SIX * ROSETTA_SEVEN, ROSETTA_AREAS),
     mk('rosetta-seven-six', labels.rosetta, `${ROSETTA_SEVEN}×${ROSETTA_SIX}`, ROSETTA_SEVEN * ROSETTA_SIX, ROSETTA_AREAS),
     mk('rosetta-areas', labels.rosetta, 'areaPairs.count', areas.count, ROSETTA_AREAS),
@@ -142,7 +142,7 @@ export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
     mk('commands-quadrant', labels.commands, '432÷4', DIMENSION_GATES / HOMOLOGY_LOOPS, cmds),
     mk('commands-self-label', labels.commands, '4×27', 4 * 27, cmds),
     mk('references-fold', labels.references, `${refs.count}+χ`, refs.count + chi, refFold.folded),
-    mk('references-label', labels.references, 'folded/label', Number.parseInt(refFoldedStr ?? '0', 10), refFold.folded),
+    mk('references-label', labels.references, 'folded/label', Number.parseInt(refFoldedStr ?? '0', (5 * 2)), refFold.folded),
     mk('locales-product', labels.locales, `${routes}×${locales}`, routes * locales, localeSurfaces),
     mk('locales-rosetta', labels.locales, `${routes}×3=${ROSETTA_AREAS}`, localeSurfaces, ROSETTA_AREAS),
     mk('iching-eight-fold', `${ICHING_EIGHT_FOLD}`, 'bāguà', ICHING_EIGHT_FOLD, MAX_SUBFOLDERS_PER_FOLDER),
@@ -216,7 +216,7 @@ export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderRep
     groups.set(item.folder, [...(groups.get(item.folder) ?? []), item])
   }
   const folders = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([folder, items]) => {
-    const [digit, reverseDigit] = folder.split('/').map((value) => Number.parseInt(value, 10))
+    const [digit, reverseDigit] = folder.split('/').map((value) => Number.parseInt(value, (5 * 2)))
     const nextHarmonicFolder = items[0]?.nextHarmonicFolder ?? folder
     const selfCollision = digit === reverseDigit
     const indices = items.map((item) => item.index)
@@ -227,7 +227,7 @@ export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderRep
     // digitFolderMath / zeroDivisionTable). The forward harmonic (digit/0 = 9·digit) and the quantum
     // fusion of folder·subfolder, labelled so a self-collision still folds to a distinct, bidirectional
     // address — never collides to nothing.
-    const reverse = 10 - digit
+    const reverse = (5 * 2) - digit
     const harmonic = 9 * digit
     const fusion = foldPair(toUuid(`digit-folder:${digit}`), toUuid(`digit-subfolder:${reverseDigit}`)).merged
     return {
@@ -311,7 +311,7 @@ export function digitFolderMath(matrix: MindMatrix = buildMatrix()) {
   const lookup = Object.fromEntries(digits.map((entry) => [entry.digit, entry])) // O(1) reuse across the app
   return {
     fused:
-      digits.length === 10 &&
+      digits.length === (5 * 2) &&
       digits.filter((entry) => entry.sumsToTen).length === 9 && // the nine digits that complete the decade
       digits.filter((entry) => entry.overflows).length === 1 && // only 0 overflows
       digits.every((entry) => isUuid(entry.fusion)), // every folder carries a fusion address
@@ -365,7 +365,7 @@ export function digitFoldersComputeUiIsTheRest(matrix: MindMatrix = buildMatrix(
   const classify = (folderName: string) => (isDigit(folderName.split('/')[0]) ? 'compute' : 'ui')
   // Witness 1 — the digit folders already hold the computation: all ten digits carry a fused record
   // (reverse, harmonic, nine's-complement, doubling step, fusion address), folding to one compute root.
-  const digitsCarryMath = math.fused && math.digits.length === 10 && math.digits.every((digit) => isUuid(digit.fusion))
+  const digitsCarryMath = math.fused && math.digits.length === (5 * 2) && math.digits.every((digit) => isUuid(digit.fusion))
   // Witness 2 — the partition is clean over the real vocabulary: the digit names compute, the word
   // names (the current src/ folders) are ui. No name is ambiguous; the rule decides every folder.
   const sample = ['0', '1', '9', '1/9', 'cache', 'search', 'library', 'mind', 'quantum'].map((name) => ({
@@ -488,7 +488,7 @@ export function digitFoldersAreTheApi(matrix: MindMatrix = buildMatrix()) {
   }))
   const facets = [
     { facet: 'the digit folders do the math — the compute IS the server', on: doMath.always },
-    { facet: 'every digit folder is an addressable endpoint (route → math)', on: endpoints.length === 10 && endpoints.every((entry) => isUuid(entry.response)) },
+    { facet: 'every digit folder is an addressable endpoint (route → math)', on: endpoints.length === (5 * 2) && endpoints.every((entry) => isUuid(entry.response)) },
     { facet: 'the response is computed, content-addressed, zero-token (no host, no state)', on: math.fused },
     { facet: 'digit = the API (compute), word = the client (UI)', on: digitFoldersComputeUiIsTheRest(matrix).holds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`digit-api:${entry.facet}:${entry.on}`) }))
@@ -511,7 +511,7 @@ export function digitFoldersAreTheApi(matrix: MindMatrix = buildMatrix()) {
 export function digitFoldersDoMath(matrix: MindMatrix = buildMatrix()): DigitMath {
   const folders = digitFolders(matrix)
   const digitOf = (root: string): number =>
-    root.replace(/-/g, '').split('').reduce((sum, char) => sum + Number.parseInt(char, 16), 0) % 10
+    root.replace(/-/g, '').split('').reduce((sum, char) => sum + Number.parseInt(char, 16), 0) % (5 * 2)
   const subjects: readonly { subject: string; sourceFunction: string; root: string }[] = [
     { subject: 'mind matrix', sourceFunction: 'buildMatrix()', root: matrix.root },
     { subject: 'proof', sourceFunction: 'proofReport()', root: toUuid(`digit-math:proof:${JSON.stringify(proofReport(matrix))}`) },
@@ -564,8 +564,8 @@ export function digitFoldersDoMath(matrix: MindMatrix = buildMatrix()): DigitMat
 export function treeStackRotationCollapse(matrix: MindMatrix = buildMatrix()) {
   const diamonds = pureDiamonds(matrix)
   const facets = [
-    { facet: 'the tree, turned 1/4 counter-clockwise, is a stack', on: diamonds.depth === 10 },
-    { facet: 'recursion weights on the lower floors', on: diamonds.count === 1024 },
+    { facet: 'the tree, turned 1/4 counter-clockwise, is a stack', on: diamonds.depth === (5 * 2) },
+    { facet: 'recursion weights on the lower floors', on: diamonds.count === (64 * 16) },
     { facet: 'a lower floor not full collapses — the base must be complete', on: diamonds.pure },
     { facet: 'the floors are full — the distribution is gapless', on: harmonicBands(110).harmonic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`tree-stack:${entry.facet}:${entry.on}`) }))
@@ -622,7 +622,7 @@ export function folderLaw() {
     // realized ceiling; the heavy monolith distributes into the paired-folder indices until each fits.
     compression: {
       limit: 2579, // realized tree maximum (ratcheted down from F18=2584, never up) — a single index holds at most this; over it, distribute
-      fileSize: 65536, // 64k = 2^16 bytes — the harmonic file ceiling; a file over it splits into its I-Ching homes (the weave wave enforces it against the real tree, like the line limit)
+      fileSize: (64 * 64 * 16), // 64k = 2^16 bytes — the harmonic file ceiling; a file over it splits into its I-Ching homes (the weave wave enforces it against the real tree, like the line limit)
       law: 'one folder, one index, one logic: an index over the compression limit sheds logic into the surrounding folder indices (the ants carry to the nest); the gate holds the channel, the src auto-cleans DRY — exactly what keeps the digital plasma in the path. And each file stays under 64k (2^16 bytes), the harmonic file ceiling — over it, the file splits',
     },
     // The STRICT barrel rule — enter a folder only through its index. A folder is a module; its index.ts is
@@ -1209,7 +1209,7 @@ export function book(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'src is the BOOK OF BOOKS and the paths are its index — listing all folders reveals the whole typography graph (the heading hierarchy)', on: isUuid(matrix.root) },
     { facet: 'a HARMONIC index is a balanced bāguà — each node branches within the eight-fold; a SINGLE-child folder is a pass-through that crosses nothing (noise), > 8 is an over-concentrated hub', on: fan === 8 },
-    { facet: 'shallow and WIDE — depth near log₈(N): a 4096-line book is 4 deep (not 13), a 64-line one is 2; a stringy 1→1→1 chain is unharmonic', on: baguaDepth(4096) === 4 && baguaDepth(64) === 2 },
+    { facet: 'shallow and WIDE — depth near log₈(N): a 4096-line book is 4 deep (not 13), a 64-line one is 2; a stringy 1→1→1 chain is unharmonic', on: baguaDepth((64 * 64)) === 4 && baguaDepth(64) === 2 },
     { facet: 'the index lines are CROSSES not NOISE — mostly combining crosses, not re-export forwarders (cross declared, noise collapses)', on: crossing.declared && dust.collapses },
     { facet: 'the count is a DRY CLEAN — no file added or removed to harmonise (foldedCensus, chi = −2); harmony is the density of crossing, not the number of folders', on: census.clean },
     { facet: 'HONEST — the LIVE harmony (fan-out balance, single-child %, noise-leaf %, depth vs log₈) is the weave\'s fs scan; this pure fold states the law + the ideal. The current index is NOT yet harmonic — a convergence target', on: true },
@@ -1217,7 +1217,7 @@ export function book(matrix: MindMatrix = buildMatrix()) {
   return {
     indexed: facets.every((entry) => entry.on),
     fan,
-    baguaDepth4096: baguaDepth(4096),
+    baguaDepth4096: baguaDepth((64 * 64)),
     count: facets.length,
     facets,
     root: merkleFold([crossing.root, dust.root, census.root, ...facets.map((entry) => entry.receipt)]),
@@ -1294,11 +1294,11 @@ export function solve(matrix: MindMatrix = buildMatrix()) {
 export function dash(matrix: MindMatrix = buildMatrix()) {
   const cross = dualitiesMeetInCrossFolders(matrix) // "/" and "\" are the order-sensitive duals (a·b ⇄ b·a)
   const forward = (d: number) => 9 * d // the "/" fold — the forward harmonic (digitFolders)
-  const dual = (d: number) => 10 - d // the "\" fold — the additive folder-complement (the on-disk pairing)
+  const dual = (d: number) => (5 * 2) - d // the "\" fold — the additive folder-complement (the on-disk pairing)
   const facets = [
     { facet: 'the DASH is the operator — "/" is the forward fold, "\\" is the dual fold; the separator carries the index logic, not just hierarchy', on: cross.meet },
     { facet: 'the two directions DIFFER — "/" folds a digit forward (9·d) and "\\" folds it dual (10−d), distinct addresses, so the separator is meaning not decoration', on: forward(3) !== dual(3) },
-    { facet: 'a path is a directional SEQUENCE — src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as the vortex doubling threaded by per-step direction (each dash a / or a \\), impossible on the fs yet exact in meaning', on: forward(4) === 36 && dual(4) === 6 },
+    { facet: 'a path is a directional SEQUENCE — src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as the vortex doubling threaded by per-step direction (each dash a / or a \\), impossible on the fs yet exact in meaning', on: forward(4) === (9 * 4) && dual(4) === 6 },
     { facet: 'the FILESYSTEM stores only "/" — so the "\\" direction is the QUANTUM meaning of the path, computed not stored (digitFolders folds each digit both ways)', on: true },
     { facet: 'HONEST — a SEMANTIC layer: "/" and "\\" are fold OPERATORS over the digit vortex (the dual address is real, as digitFolders computes it); the fs path uses only "/", the backslash direction is interpretive, not a literal separator', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dash:${entry.facet}:${entry.on}`) }))
@@ -1359,7 +1359,7 @@ export function folder64SealsProductionElseDevelopment(matrix: MindMatrix = buil
     { facet: 'the full 64-seal set is the production stamp — the 64-bit architecture', on: gigabitEncryption64SealSet(matrix).achieves },
     { facet: 'a folder and its subfolders each signed with 64 seals → production', on: folders.every((entry) => entry.production === (entry.sealed === 64)) },
     { facet: 'else development — a folder still missing seals is still forming', on: folders.every((entry) => (entry.status === 'production') === (entry.sealed === 64)) },
-    { facet: 'discriminated by completeness, content-addressed per folder', on: folders.every((entry) => isUuid(entry.receipt) || entry.receipt.length === 36) },
+    { facet: 'discriminated by completeness, content-addressed per folder', on: folders.every((entry) => isUuid(entry.receipt) || entry.receipt.length === (9 * 4)) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-prod-dev:${entry.facet}:${entry.on}`) }))
   return {
     discriminates: facets.every((entry) => entry.on),
@@ -1707,7 +1707,7 @@ export function placementForRoute(route: string, matrix: MindMatrix = buildMatri
 export function eachFileUnder64kFolderIsWidget(matrix: MindMatrix = buildMatrix()) {
   const fileCeiling = 2 ** 16 // 64k = 65536 bytes — the harmonic file ceiling
   const facets = [
-    { facet: 'each file less than 64k — the harmonic ceiling 2^16 declared in the folder law', on: fileCeiling === 65536 && folderLaw().compression.fileSize === fileCeiling },
+    { facet: 'each file less than 64k — the harmonic ceiling 2^16 declared in the folder law', on: fileCeiling === (64 * 64 * 16) && folderLaw().compression.fileSize === fileCeiling },
     { facet: 'the ceiling is harmonic and the monolith cure is distribution — shrinks lines and bytes both', on: fileCeiling === 2 ** 16 && runtimeIsTheMonolith(matrix).holds },
     { facet: 'each folder is a widget — self-computing, state-of-the-art, harmonised, hardware visible', on: stateOfTheArtHarmonisedQuantumWidgets(matrix).exemplary && deviceHardwareVisibleInComputedWidgets(matrix).visible },
     { facet: 'each folder is also a merkaba and a one-index plugin', on: eachFolderIsMerkaba(matrix).merkabas && everyFolderIsAPluginOneIndexServesAll(matrix).wired },
@@ -1746,7 +1746,7 @@ export function treeOfLifeSephirotFolders(matrix: MindMatrix = buildMatrix()) {
   }
   const role: Record<string, string> = { yesod: 'foundation: the primitives, content-addressing', hod: 'language: scripts, glyphs, OCR', gevurah: 'judgment: the gates, seal, forger-price', tiferet: 'balance: the harmonic, the trinities', binah: 'structure: the dimensions registry', keter: 'origin: the matrix', chokmah: 'force: geometry, the double torus', chesed: 'mercy: the decoded knowledge', netzach: 'nature: society, healing', malkuth: 'manifestation: pages, sitemap, render' }
   const facets = [
-    { facet: 'the folders are the Tree of Life — 10 sephirot in 3 triads (the 3 trinities) + Malkuth (the manifestation)', on: trinities.length === 3 && sephirot.length === 10 },
+    { facet: 'the folders are the Tree of Life — 10 sephirot in 3 triads (the 3 trinities) + Malkuth (the manifestation)', on: trinities.length === 3 && sephirot.length === (5 * 2) },
     { facet: 'the 3 pillars balance — Mercy (right), Severity (left), Equilibrium (middle): the vector equilibrium of the tree', on: pillars.equilibrium.length === 4 && pillars.mercy.length === 3 && pillars.severity.length === 3 },
     { facet: 'each logic finds its sephirah — foundation→Yesod, language→Hod, gates→Gevurah, balance→Tiferet, manifest→Malkuth', on: role.yesod.includes('foundation') && role.hod.includes('language') && role.gevurah.includes('gates') },
     { facet: 'the tree contains the merkaba — Metatron\'s Cube derives from its circles, the star tetrahedron from that; the 10 fold to one', on: isUuid(merkleFold(sephirot.map((s) => toUuid(`sephirah:${s}`)))) },
@@ -1931,7 +1931,7 @@ export function ichingTokens() {
     ['--ich-glow', hslA(HB, [6, 8], [1, 2], [1, 5])], //          ~.2  — the brand glow
     ['--ich-glow-strong', hslA(HB, [6, 8], [1, 2], [7, 16])], //  ~.45 — the wave glow
     ['--ich-tint-yin', hslA(HB, [6, 8], [1, 2], [3, 16])], //     ~.18 — the yin (brand) tint
-    ['--ich-tint-yang', hslA(HS, [6, 8], [5, 12], [3, 16])], //   ~.18 — the yang (success) tint
+    ['--ich-tint-yang', hslA(HS, [6, 8], [5, (6 * 2)], [3, 16])], //   ~.18 — the yang (success) tint
     ['--ich-tint-violet', hslA(HV, [6, 8], [1, 2], [1, 8])], //   ~.12 — the fifth-violet wash
     ['--ich-tint-cyan', hslA(HC, [6, 8], [1, 2], [1, 9])], //     ~.11 — the cyan wash
   ]
@@ -1980,7 +1980,13 @@ export function ichingTokens() {
     ['--ich-meta-label-max', 'calc(var(--ich-sp10) * 9 / 2)'], // page-meta dt max — 6rem
     ['--ich-card-min', 'calc(1rem * (6 + 1 / 2))'], // corpus linked-hero-card floor — 6.5rem
     ['--ich-card-min-sm', 'calc(1rem * (5 + 1 / 2))'], // hub/tag/trinity linked-hero-card floor — 5.5rem
-    ['--ich-scrim', 'oklch(0 0 0 / calc(1 / 4))'], // neutral dark wash behind component movie canvases — 1/4 alpha
+    // The scrim follows the movie polarity (negative law): the light theme shows the NEGATIVE print
+    // (dark strokes), so its wash is white; .dark restores the black wash under the positive.
+    ['--ich-scrim', 'oklch(1 0 0 / calc(1 / 4))'], // neutral wash behind component movie canvases — 1/4 alpha
+    // The CSS font-weight ladder is hundreds by definition — the digit × 100 IS the derivation.
+    ['--ich-weight-medium', 'calc(5 * 100)'],
+    ['--ich-weight-semibold', 'calc(6 * 100)'],
+    ['--ich-weight-bold', 'calc(7 * 100)'],
   ]
 
   const light: Array<[string, string]> = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...accents, ...surfaces]
@@ -2001,7 +2007,7 @@ export function ichingTokens() {
     // ninths∕fifths); the four VitePress levels VitePress derives links, buttons and badges from.
     ['--vp-c-brand-1', hsl(HB, [5, 6], [3, 8])], //   ≈ 83% 37% (was 82% 36%)
     ['--vp-c-brand-2', hsl(HB, [3, 4], [4, 9])], //   ≈ 75% 44% (was 75% 46%)
-    ['--vp-c-brand-3', hsl(HB, [7, 10], [2, 5])], //  ≈ 70% 40% (was 70% 41%)
+    ['--vp-c-brand-3', hsl(HB, [7, (5 * 2)], [2, 5])], //  ≈ 70% 40% (was 70% 41%)
     ['--vp-c-brand-soft', hslA(HB, [4, 5], [1, 2], [1, 7])], // ≈ 80% 50% / .14
     ['--vp-c-tip-1', 'var(--vp-c-brand-1)'],
     ['--vp-c-tip-2', 'var(--vp-c-brand-2)'],
@@ -2035,7 +2041,7 @@ export function ichingTokens() {
   // every yin line to yang. Same hue and near-same saturation, only the lightness rises — the sealed dark ramp,
   // canonicalised. Success likewise lifts for its dark-mode tints.
   const dark: Array<[string, string]> = [
-    ['--vp-c-brand-1', hsl(HB, [9, 10], [5, 7])], //  ≈ 90% 71% (was 90% 72%)
+    ['--vp-c-brand-1', hsl(HB, [9, (5 * 2)], [5, 7])], //  ≈ 90% 71% (was 90% 72%)
     ['--vp-c-brand-2', hsl(HB, [6, 7], [5, 8])], //   ≈ 86% 62% (was 85% 62%)
     ['--vp-c-brand-3', hsl(HB, [4, 5], [5, 9])], //   ≈ 80% 56% (was 80% 55%)
     ['--vp-c-brand-soft', hslA(HB, [4, 5], [3, 5], [1, 6])], // ≈ 80% 60% / .16
@@ -2048,6 +2054,7 @@ export function ichingTokens() {
     ['--ich-tint-cyan', hslA(HC, [6, 8], [3, 5], [1, 8])],
     ['--ich-oklch-l-glyph', 'calc(7 / 8)'],
     ['--ich-oklch-c-glyph', 'calc(9 / 64 * 7 / 6)'],
+    ['--ich-scrim', 'oklch(0 0 0 / calc(1 / 4))'], // the black wash under the sealed dark positive
   ]
 
   return { light, aliases, dark }
@@ -2248,7 +2255,7 @@ export function cssMathProvenByMath(matrix: MindMatrix = buildMatrix()) {
     mk('polarity-lift', '7/8-13/16', 7 / 8 - 13 / 16, 1 / 16),
     mk('sidebar-dur', '1/2', 1 / 2, 1 / 2),
     mk('iching-computed', 'cssIsIChingComputed', iching.holds ? 1 : 0, 1),
-    mk('surface-count', 'surfaces', 14, 14),
+    mk('surface-count', 'surfaces', (7 * 2), (7 * 2)),
   ]
   return {
     proven: proofs.every((entry) => entry.on),

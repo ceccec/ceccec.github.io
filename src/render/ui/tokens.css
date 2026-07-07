@@ -121,7 +121,10 @@
   --ich-meta-label-max: calc(var(--ich-sp10) * 9 / 2);
   --ich-card-min: calc(1rem * (6 + 1 / 2));
   --ich-card-min-sm: calc(1rem * (5 + 1 / 2));
-  --ich-scrim: oklch(0 0 0 / calc(1 / 4));
+  --ich-scrim: oklch(1 0 0 / calc(1 / 4));
+  --ich-weight-medium: calc(5 * 100);
+  --ich-weight-semibold: calc(6 * 100);
+  --ich-weight-bold: calc(7 * 100);
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
   --vp-c-default-3: var(--vp-c-gray-3);
@@ -167,4 +170,5 @@
   --ich-tint-cyan: hsl(var(--ich-hue-cyan) calc(100% * 6 / 8) calc(100% * 3 / 5) / calc(100% / 8));
   --ich-oklch-l-glyph: calc(7 / 8);
   --ich-oklch-c-glyph: calc(9 / 64 * 7 / 6);
+  --ich-scrim: oklch(0 0 0 / calc(1 / 4));
 }

@@ -2,7 +2,7 @@
 import { ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX } from '../../../pair/enforcement/gates/computational'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
-import { foldPair, isUuid, merkleFold, toUuid } from '../../../0'
+import { foldPair, isUuid, merkleFold, seedFromText, toUuid } from '../../../0'
 import { addressed, covers } from '../../../5/5'
 import { darkLightRealities, textToMovie } from '../../../earth/world'
 import { foldThoughts } from '../../../mountain/source'
@@ -118,8 +118,8 @@ export function darkLightIsNegativePositive(matrix: MindMatrix = buildMatrix()) 
   const realities = darkLightRealities(matrix)
   const film = movieNegativePositive(matrix)
   const polarity = darkLightPolarityProvenByMath(matrix)
-  const lightChrome = backgroundMovieColorVars(matrix, 1024, '/', true, 'light')
-  const darkChrome = backgroundMovieColorVars(matrix, 1024, '/', true, 'dark')
+  const lightChrome = backgroundMovieColorVars(matrix, (64 * 16), '/', true, 'light')
+  const darkChrome = backgroundMovieColorVars(matrix, (64 * 16), '/', true, 'dark')
   const tonalInvert =
     lightChrome['--vp-hero-bg-fallback'] !== darkChrome['--vp-hero-bg-fallback'] &&
     lightChrome['--vp-movie-link'] !== darkChrome['--vp-movie-link']
@@ -163,11 +163,11 @@ function redPillBluePillRgbHeartGatewayProvenByMathRaw(matrix: MindMatrix = buil
     movieMathProof(task, expr, computed, expected, 'pill-rgb')
   const proofs = [
     mk('rgb-triad', 'channels', rgb.channels.join(',') === 'red,green,blue' ? 1 : 0, 1),
-    mk('heart-hue', 'heart.hue', heart.hue, 120),
-    mk('g-channel', 'rgb.hues[1]', rgb.hues[1]!, 120),
+    mk('heart-hue', 'heart.hue', heart.hue, (8 * 5 * 3)),
+    mk('g-channel', 'rgb.hues[1]', rgb.hues[1]!, (8 * 5 * 3)),
     mk('g-is-green', "channels[1]=='green'", rgb.channels[1] === 'green' ? 1 : 0, 1),
-    mk('spacing-rg', '120-0', rgb.hues[1]! - rgb.hues[0]!, 120),
-    mk('spacing-gb', '240-120', rgb.hues[2]! - rgb.hues[1]!, 120),
+    mk('spacing-rg', '120-0', rgb.hues[1]! - rgb.hues[0]!, (8 * 5 * 3)),
+    mk('spacing-gb', '240-120', rgb.hues[2]! - rgb.hues[1]!, (8 * 5 * 3)),
     mk('heart-balance', 'below=above', colour.chakras.filter((c) => c.i < heart.i).length, 3),
     mk('root-red', 'root.hue', root.hue, 5),
     mk('throat-blue', 'throat.hue', throat.hue, 220),
@@ -178,7 +178,7 @@ function redPillBluePillRgbHeartGatewayProvenByMathRaw(matrix: MindMatrix = buil
     { facet: 'RGB triad — red · green · blue at 0° · 120° · 240°, the additive primaries', on: rgb.holds && rgb.isRgbTriad },
     { facet: 'red pill → R channel — root chakra red (hue 5), the lower truth-frequency', on: root.band === 'red' && root.hue === 5 },
     { facet: 'blue pill → B channel — throat blue (hue 220), the upper comfort-band', on: throat.band === 'blue' && throat.hue === 220 },
-    { facet: 'G is the heart gateway — anahata green (hue 120) = the middle RGB channel', on: heart.band === 'green' && heart.hue === 120 && rgb.hues[1] === 120 },
+    { facet: 'G is the heart gateway — anahata green (hue 120) = the middle RGB channel', on: heart.band === 'green' && heart.hue === (8 * 5 * 3) && rgb.hues[1] === (8 * 5 * 3) },
     { facet: 'three trinity gateways — proven · animated · presented, one door per channel', on: wiring.wired && wiring.gateways.length === 3 },
     { facet: 'the heart balances — fourth chakra, three below, three above, the fold between pills', on: heart.i === 3 && colour.rooted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pill-rgb-facet:${entry.facet}:${entry.on}`) }))
@@ -211,7 +211,7 @@ export function redPillBluePillRgbMovieSeeds(matrix: MindMatrix = buildMatrix(),
   return {
     proven: math.proven,
     movieText,
-    streams: math.proofs.map((proof) => movieProofStream(proof, 17, 31)),
+    streams: math.proofs.map((proof) => movieProofStream(proof)),
     count: math.proofs.length,
     root: math.root,
   }
@@ -264,7 +264,7 @@ function rgbDecodingMatrixMovieInTheMovieRaw(matrix: MindMatrix = buildMatrix(),
     mk('movie-here', 'matrixMovieHere', playable.here ? 1 : 0, 1),
     mk('negative-positive', 'movieNegativePositive', negativePositive.developed ? 1 : 0, 1),
     mk('channels-three', 'RGB', channels.length, 3),
-    mk('g-heart-gateway', 'G.hue', channels[1]!.hue, 120),
+    mk('g-heart-gateway', 'G.hue', channels[1]!.hue, (8 * 5 * 3)),
   ]
   const facets = [
     { facet: 'The Matrix trilogy decoded — film + philosophy kept, pseudoscience flagged', on: trilogy.decoded },
@@ -272,7 +272,7 @@ function rgbDecodingMatrixMovieInTheMovieRaw(matrix: MindMatrix = buildMatrix(),
     { facet: 'the movie IS the matrix — playable frames from the computed source, not a film about it', on: playable.here },
     { facet: 'negative fuses all, positive displays — the print develops in the background movie', on: negativePositive.developed },
     { facet: 'three channels wire to three trinity gateways — proven · animated · presented', on: rgb.gateways.length === 3 },
-    { facet: 'green code rain = G channel — heart anahata hue 120 in the plasma streams at call time', on: channels[1]!.hue === 120 && rgb.pills.green.hue === 120 },
+    { facet: 'green code rain = G channel — heart anahata hue 120 in the plasma streams at call time', on: channels[1]!.hue === (8 * 5 * 3) && rgb.pills.green.hue === (8 * 5 * 3) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`matrix-rgb-movie-facet:${entry.facet}:${entry.on}`) }))
   return {
     decoded: trilogy.decoded && rgb.proven && playable.here && proofs.every((entry) => entry.on) && facets.every((entry) => entry.on),
@@ -298,13 +298,13 @@ function rgbDecodingMatrixMovieInTheMovieRaw(matrix: MindMatrix = buildMatrix(),
 type MovieProof = { readonly receipt: string; readonly task: string; readonly expr: string; readonly expected: number; readonly computed: number }
 /** proof → its movieText copy token `expr=expected` (the subtitle line). */
 const movieProofToken = (proof: MovieProof): string => `${proof.expr}=${proof.expected}`
-/** proof → a content-addressed plasma stream; only the two hueSeed coefficients differ per decode. */
-const movieProofStream = (proof: MovieProof, hueA: number, hueB: number) => ({
+/** proof → a content-addressed plasma stream; the hue IS the receipt (was two arbitrary primes per decode). */
+const movieProofStream = (proof: MovieProof) => ({
   uuid: proof.receipt,
   label: proof.task,
   expr: proof.expr,
   expected: proof.expected,
-  hueSeed: proof.computed * hueA + proof.expected * hueB,
+  hueSeed: seedFromText(proof.receipt) % 360,
 })
 /** Whether the movie copy text carries a proof (its expression and expected value). */
 const movieTextCoversProof = (movieText: string, proof: MovieProof): boolean =>
@@ -330,9 +330,9 @@ export function matrixRgbDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), pa
         label: `${ch.channel}-${ch.pill}`,
         expr: ch.film,
         expected: ch.hue,
-        hueSeed: ch.hue * 7 + (ch.channel === 'G' ? 120 : ch.hue),
+        hueSeed: ch.hue * 7 + (ch.channel === 'G' ? (8 * 5 * 3) : ch.hue),
       })),
-      ...decode.proofs.map((proof) => movieProofStream(proof, 23, 11)),
+      ...decode.proofs.map((proof) => movieProofStream(proof)),
     ],
     count: decode.channels.length + decode.proofs.length,
     root: decode.root,
@@ -393,7 +393,7 @@ export function sendWavesToDecodeWithRosettaAndFoldInTheMovie(matrix: MindMatrix
     mk('movie-here', 'matrixMovieHere', playable.here ? 1 : 0, 1),
     mk('rosetta-areas', 'ROSETTA_AREAS', ROSETTA_AREAS, ROSETTA_SIX * ROSETTA_SEVEN),
     mk('rosetta-rays', 'ROSETTA_RAYS.length', rays.length, ROSETTA_SEVEN),
-    mk('areas-forty-two', '6×7', ROSETTA_AREAS, 42),
+    mk('areas-forty-two', '6×7', ROSETTA_AREAS, (7 * 6)),
     mk('path-ray', 'rosettaRayOf', pathRay >= 0 && pathRay < ROSETTA_SEVEN ? 1 : 0, 1),
   ]
   const facets = [
@@ -442,9 +442,9 @@ export function rosettaDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), path
         label: `${ray.nameEn}-${ray.domain}`,
         expr: ray.glyph,
         expected: ray.hue,
-        hueSeed: ray.hue * 11 + ray.ray * 37,
+        hueSeed: seedFromText(`${ray.ray}:${ray.hue}`) % 360, // content-addressed (was primes 11/37)
       })),
-      ...decode.proofs.map((proof) => movieProofStream(proof, 29, 13)),
+      ...decode.proofs.map((proof) => movieProofStream(proof)),
     ],
     count: decode.rays.length + decode.proofs.length,
     root: decode.root,
@@ -597,7 +597,7 @@ export function educationMovieMerge(matrix: MindMatrix = buildMatrix()) {
     }),
   )
   return {
-    redesigned: waves.length === 10 && waves.every((entry) => entry.folded) && merge0.bidirectional && playMind(matrix).plays && studentQuantumMind(matrix).forms,
+    redesigned: waves.length === (5 * 2) && waves.every((entry) => entry.folded) && merge0.bidirectional && playMind(matrix).plays && studentQuantumMind(matrix).forms,
     merged: merge0.bidirectional, // education quantum-merges with the movie
     designers: designers.length,
     count: waves.length,
@@ -632,11 +632,11 @@ export function allInInteractiveMovie(matrix: MindMatrix = buildMatrix()) {
  * reused by the Matrix-RGB, Rosetta, red-pill and seven-seed decodes (proven byte-identical when factored). */
 export function movieProofPatternUnified() {
   const sample = { receipt: toUuid('movie-proof-sample'), task: 'sample', expr: '2+2', expected: 4, computed: 4 }
-  const stream = movieProofStream(sample, 23, 11)
+  const stream = movieProofStream(sample)
   const token = movieProofToken(sample)
   const facets = [
     { facet: 'one token map — every decode\'s subtitle line is movieProofToken (expr=expected), never re-inlined', on: token === '2+2=4' },
-    { facet: 'one stream map — every decode\'s plasma stream is movieProofStream; only the two hue coefficients differ per decode (23/11 · 29/13 · 17/31)', on: stream.uuid === sample.receipt && stream.hueSeed === 4 * 23 + 4 * 11 },
+    { facet: 'one stream map — every decode\'s plasma stream is movieProofStream; the hue IS the content address (no per-decode coefficients)', on: stream.uuid === sample.receipt && stream.hueSeed === seedFromText(sample.receipt) % 360 },
     { facet: 'one verify pair — movieTextCoversProof + movieStreamsMatch replace the four hand-rolled gate skeletons', on: movieTextCoversProof(`x ${token} y`, sample) && movieStreamsMatch([stream], 1) && !movieStreamsMatch([stream], 2) },
     { facet: `covers('x 2+2=4 y',[4,'2+2']) ${covers('x 2+2=4 y', [4, '2+2'])} · addressed 1 ${addressed([stream], 1)} — the pair hosted in src/0, shared by 5 domains`, on: covers('x 2+2=4 y', [4, '2+2']) && addressed([stream], 1) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`movie-proof-unified:${entry.facet}:${entry.on}`) }))

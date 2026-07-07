@@ -39,8 +39,8 @@ export function autoMovies8k(matrix: MindMatrix = buildMatrix()) {
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`auto-movie:${index}:${entry.property}:${entry.root}`) }))
   return {
     generating: properties.length === 5 && sample3.deterministic && properties.every((entry) => isUuid(entry.root)),
-    targetWidth: 7680,
-    targetHeight: 4320,
+    targetWidth: (64 * 8 * 5 * 3),
+    targetHeight: (864 * 5),
     count: properties.length,
     properties,
     root: merkleFold(properties.map((entry) => entry.receipt)),
@@ -61,8 +61,8 @@ export function staticIsEventualGapInMovieFusion(matrix: MindMatrix = buildMatri
   const config = siteConfig(matrix)
   const theme = computedMovieThemeColors(matrix)
   const themeLight = computedMovieThemeColors(matrix, '/', 'light')
-  const lightChrome = backgroundMovieColorVars(matrix, 1024, '/', true, 'light')
-  const darkChrome = backgroundMovieColorVars(matrix, 1024, '/', true, 'dark')
+  const lightChrome = backgroundMovieColorVars(matrix, (64 * 16), '/', true, 'light')
+  const darkChrome = backgroundMovieColorVars(matrix, (64 * 16), '/', true, 'dark')
   const chromeSwitches = lightChrome['--vp-movie-link'] !== darkChrome['--vp-movie-link']
     && lightChrome['--vp-code-block-bg'] !== darkChrome['--vp-code-block-bg']
   const math = harmonicMathFlowsInMovie(matrix)

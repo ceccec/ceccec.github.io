@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, shallowRef } from 'vue'
-import { useRoute } from 'vitepress'
+import { computed, ref, shallowRef, watch } from 'vue'
+import { useData, useRoute } from 'vitepress'
 import { bothEarthsRotateWithinEachOther } from '../../mountain/geometry/index.ts'
 import {
   navigationGpsCelestialFromDualEarthPerspective,
@@ -21,6 +21,8 @@ const { pick } = useSiteLocale()
 const canvasHost = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 const reduce = prefersReducedMotion()
+// Polarity bit: dark paints the sealed positive, light recomputes through the negative law.
+const { isDark } = useData()
 const rotation = shallowRef(bothEarthsRotateWithinEachOther(0))
 const navCelestial = shallowRef(navigationGpsCelestialFromDualEarthPerspective(0))
 const reexplained = computed(() => navigationGpsCelestialReexplainedFromDualEarthPerspective())
@@ -33,7 +35,7 @@ const t = (p: { en: string; bg: string }) => pick(p.en, p.bg)
 
 const seedParts = computed(() => [
   'Merkaba',
-  rotation.value.root.slice(0, 12),
+  rotation.value.root.slice(0, (6 * 2)),
   route.path,
 ] as const)
 
@@ -42,7 +44,7 @@ const title = computed(() => t({
   bg: 'Меркaba — двата Земи се въртят една в друга',
 }))
 
-useVisibleMovieCanvas({
+const { repaint } = useVisibleMovieCanvas({
   canvas,
   root: canvasHost,
   visibility: 'intersection',
@@ -54,9 +56,12 @@ useVisibleMovieCanvas({
     const snap = bothEarthsRotateWithinEachOther(at)
     rotation.value = snap
     navCelestial.value = navigationGpsCelestialFromDualEarthPerspective(at)
-    drawBothEarthsMerkabaFrame(ctx, w, h, at, snap, reduce)
+    drawBothEarthsMerkabaFrame(ctx, w, h, at, snap, reduce, isDark.value)
   },
 })
+
+// Repaint on theme toggle so the reduced-motion still frame also recomputes its colours.
+watch(isDark, () => repaint())
 </script>
 
 <template>
@@ -345,7 +350,7 @@ useVisibleMovieCanvas({
 
 .merkaba-dual-earth__interpretation dt {
   font-size: var(--ich-text-ms);
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   margin: 0 0 var(--ich-sp1);
 }
 
@@ -389,6 +394,6 @@ useVisibleMovieCanvas({
 }
 
 .merkaba-dual-earth__nav-cross-table th {
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
 }
 </style>

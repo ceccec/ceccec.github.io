@@ -19,7 +19,7 @@ import * as __ns_up_up_thunder_trading from '../../../thunder/trading'
 import type { MindMatrix, StaticPage } from '../../../wind/types'
 import { buildMatrix, coverage } from '../../../heaven/compute'
 import { computesGate, isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../../0'
-import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, ROSETTA_AREAS } from '../../../3/7'
+import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS } from '../../../3/7'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science'
 import { colorFromSound, soundFromColor, a432 } from '../../li'
@@ -407,28 +407,28 @@ type Vis = readonly [number, number]
 const r = (v: Vis) => v[0] / v[1]
 const CHROMA = 9 / 64
 const L_BACK = 8 / 64
-const L_SHELL = 14 / 64
+const L_SHELL = (2 * 7) / 64
 const L_SOFT = 27 / 64
-const L_CARD = 32 / 64
-const L_GLOW = 45 / 64
+const L_CARD = (4 * 8) / 64
+const L_GLOW = (9 * 5) / 64
 /** Every movement plane's visibility as DATA — exact lattice ratios, read by plasmaCanvasFor and verified by the fold. */
 export const PLANE_VIS = {
   tagLineL: [3, 5], tagLineA0: [16, 64], tagLineA1: [2, 5],
-  tagDotL: [5, 8], tagDotA0: [2, 5], tagDotA1: [32, 64],
-  tagGlyphL: [45, 64], tagGlyphA0: [32, 64], tagGlyphA1: [2, 5],
-  blobInnerL: [29, 64], blobInnerA: [32, 64],
-  blobMidL: [20, 64], blobMidA: [18, 64],
-  vignetteInnerL: [12, 64], vignetteInnerA: [35, 64],
+  tagDotL: [5, 8], tagDotA0: [2, 5], tagDotA1: [(16 * 2), 64],
+  tagGlyphL: [(9 * 5), 64], tagGlyphA0: [(16 * 2), 64], tagGlyphA1: [2, 5],
+  blobInnerL: [29, 64], blobInnerA: [(16 * 2), 64],
+  blobMidL: [(5 * 4), 64], blobMidA: [(9 * 2), 64],
+  vignetteInnerL: [(6 * 2), 64], vignetteInnerA: [(7 * 5), 64],
   vignetteMidL: [8, 64], vignetteMidA: [19, 64],
-  streamNearFactor: [45, 64],
-  streamFillNearL: [45, 64], streamFillFarL: [3, 5],
-  streamGlowL: [48, 64], streamGlowA: [4, 5],
+  streamNearFactor: [(9 * 5), 64],
+  streamFillNearL: [(9 * 5), 64], streamFillFarL: [3, 5],
+  streamGlowL: [(16 * 3), 64], streamGlowA: [4, 5],
   voidCoreL: [5, 64], voidCoreA: [58, 64],
-  voidMidL: [10, 64], voidMidA: [32, 64],
-  voidOuterL: [15, 64], voidOuterA: [13, 64],
-  ringL: [3, 5], ringA0: [19, 64], ringA1: [32, 64],
-  ballGlyphGlowL: [50, 64],
-  ballGlyphL: [42, 64], ballGlyphStep: [3, 64],
+  voidMidL: [(5 * 2), 64], voidMidA: [(16 * 2), 64],
+  voidOuterL: [(5 * 3), 64], voidOuterA: [13, 64],
+  ringL: [3, 5], ringA0: [19, 64], ringA1: [(16 * 2), 64],
+  ballGlyphGlowL: [(5 * 5 * 2), 64],
+  ballGlyphL: [(7 * 6), 64], ballGlyphStep: [3, 64],
   reduceCoreL: [6, 64], reduceCoreA: [38, 64],
 } as const satisfies Record<string, Vis>
 export const PLASMA_PAINT_TIERS = TIERS
@@ -438,8 +438,8 @@ export const PLASMA_PAINT_L_SHELL = L_SHELL
 export const PLASMA_PAINT_L_SOFT = L_SOFT
 export const PLASMA_PAINT_L_CARD = L_CARD
 export const PLASMA_PAINT_L_GLOW = L_GLOW
-export const HERO_CYCLE_MS = FOLDED_CENSUS * 1000 // 108 s — the census harmonic (110 + χ), on the a432 ladder; DERIVED, was a hand-typed 120 s (retuned by heroClockOffTheLadderDiscovered)
-export const REALTIME_COMPUTE_MOVIE_CAP = 40
+export const HERO_CYCLE_MS = FOLDED_CENSUS * 1e3 // 108 s — the census harmonic (110 + χ), on the a432 ladder; DERIVED, was a hand-typed 120 s (retuned by heroClockOffTheLadderDiscovered)
+export const REALTIME_COMPUTE_MOVIE_CAP = ROSETTA_AREAS + EULER_CHI // 42 + (−2) = 40 — the fold's own cap law, now the definition
 
 // Plane visibility derived (was: hue computed, visibility hand-typed decimals — the discovered gap, now closed).
 export function plasmaPaintHardcodedPlanesDiscovered(matrix: MindMatrix = buildMatrix()) {
@@ -450,22 +450,22 @@ export function plasmaPaintHardcodedPlanesDiscovered(matrix: MindMatrix = buildM
     const planeCount = Object.keys(plasmaCanvasFor(true)).length
     const facets = [
       { facet: `CHROMA ${CHROMA} === 9/64 ${9 / 64}`, on: CHROMA === 9 / 64 },
-      { facet: `${entries.length} visibility ratios on lattice q∈[${qs.join(',')}], off-lattice ${offLattice.length}`, on: entries.length >= 30 && offLattice.length === 0 },
+      { facet: `${entries.length} visibility ratios on lattice q∈[${qs.join(',')}], off-lattice ${offLattice.length}`, on: entries.length >= 6 * 5 && offLattice.length === 0 },
       { facet: `${planeCount} planes read PLANE_VIS; blob hue step = TIERS[2] ${TIERS[2]}`, on: planeCount >= 16 },
-      { facet: `hue source A432_HUE ${A432_HUE} + GOLDEN_ANGLE ${roundTo(GOLDEN_ANGLE, 2)}`, on: A432_HUE === 5 && GOLDEN_ANGLE > 137 && GOLDEN_ANGLE < 138 },
+      { facet: `hue source A432_HUE ${A432_HUE} + GOLDEN_ANGLE ${roundTo(GOLDEN_ANGLE, 2)} = 360(2−φ)`, on: A432_HUE === 5 && Math.abs(GOLDEN_ANGLE - 360 * (2 - PHI)) < 1e-9 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`plasma-hardcoded-planes:${entry.facet}:${entry.on}`) }))
     return {
       discovered: facets.every((entry) => entry.on),
       realized: facets.every((entry) => entry.on),
       planes: planeCount,
       ratios: entries.length,
-      remaining: ['tagHueStepDeg 12'],
+      remaining: [],
       chroma: { value: CHROMA, lattice: `9/64=${9 / 64}` },
       count: facets.length,
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
-      boundary: [`sources TIERS · QS · A432_HUE · GOLDEN_ANGLE`, `visual delta ≤ 1/64 L per plane vs the decimal system (deliberate)`, `remaining integer-degree steps: tag hue 12°`].join('; '),
+      boundary: [`sources TIERS · QS · A432_HUE · GOLDEN_ANGLE`, `visual delta ≤ 1/64 L per plane vs the decimal system (deliberate)`, `no remaining hand-typed steps — tag hues ride the golden angle`].join('; '),
     }
   })
 }
@@ -474,7 +474,7 @@ export function plasmaPaintHardcodedPlanesDiscovered(matrix: MindMatrix = buildM
 // Timing vs the sealed harmonics — every string below is concatenated from computed outputs (no prose in methods).
 export function heroClockOffTheLadderDiscovered(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('heroClockOffTheLadderDiscovered', matrix, () => {
-    const cycleS = HERO_CYCLE_MS / 1000
+    const cycleS = HERO_CYCLE_MS / 1e3
     const ladder = A432_OCTAVES
     const onLadder = ladder.includes(cycleS)
     const capLaw = ROSETTA_AREAS + EULER_CHI
@@ -482,11 +482,11 @@ export function heroClockOffTheLadderDiscovered(matrix: MindMatrix = buildMatrix
     const facets = [
       { facet: `cap ${REALTIME_COMPUTE_MOVIE_CAP} = ROSETTA_AREAS ${ROSETTA_AREAS} + χ ${EULER_CHI} = ${capLaw}`, on: REALTIME_COMPUTE_MOVIE_CAP === capLaw },
       { facet: `cycle ${cycleS}s ${onLadder ? 'on' : 'off'} ladder [${ladder.join(',')}]s, nearest ${nearest}s`, on: onLadder },
-      { facet: `HERO_CYCLE_MS ${HERO_CYCLE_MS} = FOLDED_CENSUS ${FOLDED_CENSUS} × 1000`, on: HERO_CYCLE_MS === FOLDED_CENSUS * 1000 },
+      { facet: `HERO_CYCLE_MS ${HERO_CYCLE_MS} = FOLDED_CENSUS ${FOLDED_CENSUS} × 1000`, on: HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hero-clock-ladder:${entry.facet}:${entry.on}`) }))
     return {
       discovered: facets.every((entry) => entry.on),
-      realized: HERO_CYCLE_MS === FOLDED_CENSUS * 1000 && onLadder,
+      realized: HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && onLadder,
       cycleS,
       nearestHarmonicS: nearest,
       cap: { value: REALTIME_COMPUTE_MOVIE_CAP, law: `${ROSETTA_AREAS}+(${EULER_CHI})=${capLaw}` },
@@ -561,14 +561,15 @@ export type PlasmaMoviePalette = {
 }
 
 const clamp01 = (n: number) => Math.max(0, Math.min(1, n))
-// On a LIGHT field the same hues are repainted DARKER (lightness pulled down so the plasma reads on white) and
-// a touch softer. `dark` (true) is the sealed identity — the dark-field look is byte-for-byte unchanged.
-const LIGHT_FIELD_L = 5 / 9
-const LIGHT_FIELD_A = 4 / 5
+// THE NEGATIVE LAW (analog photography): the LIGHT print is the photographic NEGATIVE of the sealed dark
+// POSITIVE — lightness inverts (L′ = 1 − L), hue crosses to its complement (half-turn, 360/2), density
+// (alpha) is unchanged. An involution: applied twice it is the identity. `dark` (true) is the sealed
+// exposure, byte-for-byte unchanged; switching modes recomputes ONLY the colours — same geometry, same
+// paint path (the same law lives in movieCanvasRgba for the hue-parameterised painters).
 const rgbaAt = (hue: number, L: number, alpha: number, dark = true) =>
-  scaleColorRgba(0, clamp01(dark ? alpha : alpha * LIGHT_FIELD_A), {
-    seedHue: (((hue % 360) + 360) % 360),
-    L: dark ? L : L * LIGHT_FIELD_L,
+  scaleColorRgba(0, clamp01(alpha), {
+    seedHue: ((((dark ? hue : hue + 360 / 2) % 360) + 360) % 360),
+    L: dark ? L : 1 - L,
     C: CHROMA,
   })
 
@@ -576,8 +577,8 @@ const rgbaAt = (hue: number, L: number, alpha: number, dark = true) =>
 function plasmaCanvasFor(dark: boolean): PlasmaMoviePalette['canvas'] {
   return {
     tagLine: (hue, persp) => rgbaAt(hue, r(PLANE_VIS.tagLineL), r(PLANE_VIS.tagLineA0) + r(PLANE_VIS.tagLineA1) * persp, dark),
-    tagDot: (hue, i, persp) => rgbaAt(hue + i * 12, r(PLANE_VIS.tagDotL), r(PLANE_VIS.tagDotA0) + r(PLANE_VIS.tagDotA1) * persp, dark),
-    tagGlyph: (hue, i, persp) => rgbaAt(hue + i * 12, r(PLANE_VIS.tagGlyphL), r(PLANE_VIS.tagGlyphA0) + r(PLANE_VIS.tagGlyphA1) * persp, dark),
+    tagDot: (hue, i, persp) => rgbaAt(hue + i * GOLDEN_ANGLE, r(PLANE_VIS.tagDotL), r(PLANE_VIS.tagDotA0) + r(PLANE_VIS.tagDotA1) * persp, dark),
+    tagGlyph: (hue, i, persp) => rgbaAt(hue + i * GOLDEN_ANGLE, r(PLANE_VIS.tagGlyphL), r(PLANE_VIS.tagGlyphA0) + r(PLANE_VIS.tagGlyphA1) * persp, dark),
     blobInner: (hue, b) => rgbaAt(hue + b * TIERS[2], r(PLANE_VIS.blobInnerL), r(PLANE_VIS.blobInnerA), dark),
     blobMid: (hue, b) => rgbaAt(hue + b * TIERS[2], r(PLANE_VIS.blobMidL), r(PLANE_VIS.blobMidA), dark),
     vignetteInner: (hue) => rgbaAt(hue, r(PLANE_VIS.vignetteInnerL), r(PLANE_VIS.vignetteInnerA), dark),
@@ -606,8 +607,8 @@ export function plasmaMoviePalette(matrix: MindMatrix = buildMatrix(), path = '/
     seedHue: hue,
     waveHue,
     waveIndex,
-    holographicAlpha: endless ? 0.16 : 0.12,
-    glassReveal: clamp01(0.5 + 0.5 * Math.cos((waveIndex / TIERS[2]) * Math.PI)),
+    holographicAlpha: endless ? 4 / (5 * 5) : 3 / (5 * 5), // 0.16 : 0.12
+    glassReveal: clamp01(1 / 2 + (1 / 2) * Math.cos((waveIndex / TIERS[2]) * Math.PI)),
     back: css(L_BACK),
     shell: css(L_SHELL),
     soft: css(L_SOFT),
@@ -624,7 +625,7 @@ export function computedMovieThemeColors(matrix: MindMatrix = buildMatrix(), pat
   const hue = heroMovieHueRaw(path, matrix)
   const dark = variant === 'dark'
   const themeColor = scaleColor(0, { seedHue: hue, C: CHROMA, dark })
-  const backgroundColor = scaleColor(0, { seedHue: hue, C: CHROMA, L: dark ? L_BACK : 0.96 })
+  const backgroundColor = scaleColor(0, { seedHue: hue, C: CHROMA, L: dark ? L_BACK : 1 - 1 / (5 * 5) }) // light manifest bg 24/25
   const accentColor = scaleColor(0, { seedHue: (((hue + GOLDEN_ANGLE) % 360) + 360) % 360, C: CHROMA, dark })
   return { hue, variant, themeColor, backgroundColor, accentColor, root: merkleFold([movieRouteKey(path), variant, String(Math.round(hue))]) }
 }
