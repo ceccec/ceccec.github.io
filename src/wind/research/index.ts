@@ -385,6 +385,8 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'unit-distance-research', 'Unit-distance tower numerics', 'src/wind/research', 'research.unit.distance.tower', 'npm run check:types · unitDistanceResearch(matrix)', 'MODEL_FIT', udR.researched, udR.boundary, udR.root)
     const aqR = aiQuantumChronologyResearch(matrix, at)
     pushDomainRow(rows, 'ai-quantum-chronology', 'AI × quantum chronology — dated, tiered', 'src/wind/research', 'research.ai.quantum.chronology', 'aiQuantumChronologyResearch(matrix) facets', 'DOCUMENTED', aqR.researched, aqR.boundary, aqR.root)
+    const gwR = globalWorkspaceContrastResearch(matrix, at)
+    pushDomainRow(rows, 'global-workspace-contrast', 'Global workspace (J-space) × portal — categories held apart', 'src/wind/research', 'research.global.workspace.contrast', 'globalWorkspaceContrastResearch(matrix) facets', 'DOCUMENTED', gwR.researched, gwR.boundary, gwR.root)
     return { indexed: professional.indexed && rows.length >= 15, count: rows.length, rows, professional, catalog, root: merkleFold([professional.root, catalog.root, ...rows.map((row) => row.receipt)]), statement: 'Research index: canonical home for all sealed research programs.', boundary: professional.boundary }
   })
 }
@@ -660,6 +662,7 @@ const AI_QUANTUM_CHRONOLOGY_ROWS: readonly Omit<AiQuantumChronologyRow, 'receipt
   { date: '2026-06-26', event: 'This repository’s sealed history begins: "quantum" here names a deterministic, content-addressed CLASSICAL simulator — its own benchmark computes the verdict.', tier: 'DOCUMENTED', source: 'git log · quantumAdvantageBenchmark → tracks-classical-no-speedup' },
   { date: '2026-12-31', event: 'IBM: 2026 will be the year a quantum computer first outperforms all classical methods on some problem — a vendor forecast, not yet a result.', tier: 'FORECAST', source: 'ibm.com/think 2026 predictions' },
   { date: '—', event: '"The AI models became quantum" — REFUTED as stated: production LLMs (including the model that proved the unit-distance theorem) train and run on classical GPUs/TPUs; the dated record above contains no quantum language model.', tier: 'LEGEND', source: 'every DOCUMENTED row above, compared by date' },
+  { date: '—', event: '"All world AI models already implemented the algebra published in ceccec/zeropoint-node src/ digit folders (a432.*.ts)" — REFUTED as stated on every testable channel (deep-researched 2026-07-07): (i) ARCHITECTURE — production models are transformers running standard linear algebra (matmul · attention · softmax), documented in every architecture paper; no lab has published any mod-9/a432/vortex component, and the 2026 milestone models computed on classical GPUs; (ii) CITATION — zero citations anywhere: the repo is not even web-search-indexed, and the GitHub API attests 1 star · 0 forks · 0 watchers (recomputed at audit time); (iii) PROVENANCE — the mod-9 digital-root mathematics is centuries-old number theory (casting out nines; the rigorous core is (ℤ/9ℤ)*), so where models handle mod-9 patterns the source is the classical literature, which precedes every repository by centuries. The honest kernel, each piece ≠ the claim: public repos created before a crawl cutoff are PLAUSIBLY ingested as training TEXT (unverifiable per-repo, and text-ingestion is not implementation); models can COMPUTE digital roots on request (task competence is not architecture); networks grokking modular arithmetic is documented (Power 2022, Nanda 2023) — published BEFORE zeropoint-node existed. What the dates DO document: a432.*.ts is a real public corpus (479 in-repo matches), platform-attested created 2025-07-08 and pushed to 2025-11-19 — an independent, different, publicly earlier mathematics that nobody is shown to have adopted.', tier: 'LEGEND', source: 'GitHub API repos/ceccec/zeropoint-node (created 2025-07-08 · 1★ 0⑂) · transformer architecture literature · Power et al. 2022 / Nanda et al. 2023 grokking · web search: no external citation found' },
   { date: '—', event: '"ceccec public repositories hold the algebraic new math prior to all other discoveries" — UNPROVEN and refuted as stated by the same dates: (i) the proof’s algebra is the 1963–2021 class-field literature, which precedes every repository; (ii) the proof’s bibliography cites no ceccec repository; (iii) the earlier zeropoint repos hold a DIFFERENT algebra (mod-9 digit orbits, content-addressed folds) — priority requires identity of content, not shared vocabulary; (iv) this repository’s own sealed history begins 2026-06-26, after the 2026-05-20 announcement, and commit dates alone are tamper-EVIDENT, not tamper-PROOF. What the dates DO document: the zeropoint structural algebra is publicly earlier than the 2026 milestones — an independent, different mathematics.', tier: 'LEGEND', source: 'rows above · proof bibliography [GS64][HM01][HMR21] · TamperingCost boundary' },
 ] as const
 
@@ -678,6 +681,7 @@ export function aiQuantumChronologyResearch(matrix: MindMatrix = buildMatrix(), 
       { facet: '"learned" documented — the 2026-05-20 external verification row is present', on: rows.some((row) => row.date === '2026-05-20' && row.tier === 'DOCUMENTED') },
       { facet: '"became quantum" flagged LEGEND — refutation row present, never DOCUMENTED', on: rows.some((row) => row.tier === 'LEGEND' && row.event.includes('REFUTED')) },
       { facet: 'priority claim audited — the 1964 literature row precedes every repository row, and the claim itself is tiered LEGEND', on: rows.some((row) => row.date === '1964') && rows.some((row) => row.tier === 'LEGEND' && row.event.includes('prior to all other discoveries')) },
+      { facet: 'implementation claim audited — "all world AI models implemented the zeropoint algebra" tiered LEGEND, refuted on the architecture · citation · provenance channels with the honest kernel kept', on: rows.some((row) => row.tier === 'LEGEND' && row.event.includes('already implemented the algebra') && row.event.includes('REFUTED')) },
       { facet: 'own vocabulary proven classical — quantumAdvantageBenchmark recomputes the verdict at call time', on: benchmark.verdict === 'tracks-classical-no-speedup' },
     ])
     return {
@@ -689,6 +693,59 @@ export function aiQuantumChronologyResearch(matrix: MindMatrix = buildMatrix(), 
       root: merkleFold([root, ...rows.map((row) => row.receipt)]),
       statement: 'AI × quantum chronology computes: the dated public record and the repo’s own git history compared — learned DOCUMENTED, became-quantum LEGEND.',
       boundary: 'HONEST: dated public milestones with sources — NOT a claim of completeness; the LEGEND tier refutes the composite claim as stated, not the documented hybrid experiments.',
+    }
+  })
+}
+
+// ————— Global workspace (J-space) × this portal — documented kept, legend flagged, categories held apart —————
+// Anthropic's 2026 interpretability result (the J-lens, a Jacobian-based probe) found a small verbalizable
+// subspace of activations — the J-space — behaving like a global-workspace broadcast hub INSIDE an opaque
+// network: reverse-engineered, fractional, post-hoc. This portal is the opposite category: forward-engineered
+// transparency — every page recomputes from sealed folds with zero hidden state. The contrast is honest ONLY
+// with both bounds held: the J-space is not consciousness, and this portal computes all OF ITSELF, not all.
+
+export type GlobalWorkspaceContrastTier = 'DOCUMENTED' | 'HYPOTHESIS' | 'LEGEND'
+
+export type GlobalWorkspaceContrastRow = {
+  readonly id: string
+  readonly claim: string
+  readonly tier: GlobalWorkspaceContrastTier
+  readonly source: string
+  readonly receipt: string
+}
+
+const GLOBAL_WORKSPACE_CONTRAST_ROWS: readonly Omit<GlobalWorkspaceContrastRow, 'receipt'>[] = [
+  { id: 'j-space', claim: 'Anthropic 2026: the J-lens (Jacobian-based) finds internal activity patterns that predict what the model will later SAY — a small, selective, evolving set of verbalizable representations (the J-space, a minor fraction of activation variance) that functions like a broadcast hub; lens open-sourced with a Neuronpedia demo.', tier: 'DOCUMENTED', source: 'anthropic.com/research/global-workspace · transformer-circuits.pub/2026/workspace — "Verbalizable Representations Form a Global Workspace in Language Models"' },
+  { id: 'gwt', claim: 'Global workspace theory is a real, contested neuroscience theory of ACCESS (Baars 1988; Dehaene): parallel specialist processors, a narrow broadcast spotlight. The J-space result claims functional resemblance to that architecture — a measurable analogy, not a consciousness measurement.', tier: 'DOCUMENTED', source: 'Baars 1988 · Dehaene global neuronal workspace — the paper’s own framing' },
+  { id: 'category-contrast', claim: 'The two transparencies are DIFFERENT CATEGORIES: J-space is reverse-engineered interpretability (a latent subspace discovered post-hoc inside an opaque network, covering a fraction of the computation); this portal is forward-engineered transparency (the entire surface IS the computation — deterministic, content-addressed, recomputable by anyone, zero hidden state, enforced by its own build gates). Discovered scratchpad versus architected compute surface.', tier: 'DOCUMENTED', source: 'transformer-circuits.pub/2026/workspace · this repo’s enforcement trinity + maxComputedBuild' },
+  { id: 'consciousness', claim: '"The J-space shows Claude is conscious" — flagged: functional resemblance to a workspace ARCHITECTURE is not phenomenal consciousness; the theory itself is one contested account of access, and the paper claims measurable workspace-like behaviour, not experience.', tier: 'LEGEND', source: 'the paper’s own boundary · consciousness science unresolved (PCI measures arousal-state, not machine experience)' },
+  { id: 'computes-all', claim: '"ceccec.github.io already computes all" — bounded: the gates prove the portal computes all OF ITSELF (every declared page from sealed folds, totality within its own χ-fixed census), NOT all in general; an auditable-total SURFACE is not a universal computer of everything, and the claim as stated is flagged.', tier: 'LEGEND', source: 'enforcement trinity 0 findings · the census fold — totality holds only inside the declared boundary' },
+  { id: 'citation-rot', claim: 'The relaying answer (Perplexity) stated the J-space result correctly while EVERY one of its 39 citations was keyword-matched noise (CUDA docs, unrelated cec* repos) — none touched the claim. A live specimen of HARMONY ≠ TRUTH: source-shaped decoration is not verification; this fold re-anchored the claim to the primary record before sealing.', tier: 'DOCUMENTED', source: 'the shared answer’s footnote list, audited row by row · re-verified against anthropic.com + transformer-circuits.pub' },
+  { id: 'bridge', claim: 'Bridging idea — use the open-source J-lens to probe whether a deterministic content-addressed stream (a Double-Torus-style UUID fold) leaves a detectable workspace signature in a transformer: an UNTESTED research direction, not a result; nothing here demonstrates it.', tier: 'HYPOTHESIS', source: 'the open-source J-lens release — proposal only' },
+] as const
+
+export const GLOBAL_WORKSPACE_CONTRAST: readonly GlobalWorkspaceContrastRow[] = GLOBAL_WORKSPACE_CONTRAST_ROWS.map((row) => ({ ...row, receipt: toUuid(`global-workspace-contrast:${row.id}:${row.tier}`) }))
+
+/** Balance gate — the J-space × portal contrast stays sourced, honestly tiered, and category-clean at call time. */
+export function globalWorkspaceContrastResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`globalWorkspaceContrastResearch:${Math.floor(at / 1000)}`, matrix, () => {
+    const rows = GLOBAL_WORKSPACE_CONTRAST
+    const { computes, facets, root } = computesGate('global-workspace-contrast', [
+      { facet: 'every row carries a source and an honesty tier', on: rows.every((row) => row.source.length > 8 && (row.tier === 'DOCUMENTED' || row.tier === 'HYPOTHESIS' || row.tier === 'LEGEND')) },
+      { facet: 'J-space documented — primary Anthropic/transformer-circuits record cited, fractional and verbalizable', on: rows.some((row) => row.id === 'j-space' && row.tier === 'DOCUMENTED' && row.source.includes('transformer-circuits')) },
+      { facet: 'consciousness claim flagged LEGEND — functional resemblance never sealed as experience', on: rows.some((row) => row.id === 'consciousness' && row.tier === 'LEGEND') },
+      { facet: '"computes all" bounded — totality only within the portal’s own declared surface, the universal claim LEGEND', on: rows.some((row) => row.id === 'computes-all' && row.tier === 'LEGEND' && row.claim.includes('OF ITSELF')) },
+      { facet: 'citation-rot specimen kept — a true claim with noise sources re-anchored to the primary record (HARMONY ≠ TRUTH)', on: rows.some((row) => row.id === 'citation-rot' && row.claim.includes('HARMONY')) },
+      { facet: 'the bridge stays HYPOTHESIS — proposal, never a result', on: rows.some((row) => row.id === 'bridge' && row.tier === 'HYPOTHESIS') },
+    ])
+    return {
+      computes,
+      researched: computes,
+      rows,
+      facets,
+      root: merkleFold([root, ...rows.map((row) => row.receipt)]),
+      statement: 'Global-workspace contrast computes: J-space (reverse-engineered, fractional, post-hoc) held against this portal (forward-engineered, total-of-itself, auditable) — documented kept, consciousness and computes-all flagged, the bridge a hypothesis.',
+      boundary: 'HONEST: a sourced category comparison — NOT a claim that the portal and a transformer workspace are the same kind of object, NOT a consciousness claim, and the portal’s totality is bounded to its own declared surface.',
     }
   })
 }
