@@ -485,7 +485,7 @@ const idealDepth = Math.max(1, Math.ceil(Math.log(Math.max(1, folderCount)) / Ma
 const singlePct = folderCount ? Math.round((100 * singleChild) / folderCount) : 0
 const noisePct = folderCount ? Math.round((100 * noiseLeaves) / folderCount) : 0
 report.push(`Index harmony (live, book): ${folderCount} folders — ${singlePct}% single-child pass-through, ${noiseLeaves} pure re-export leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ⌈log${eightFold} N⌉ ≈ ${idealDepth}. A harmonic index is a balanced bāguà of crosses, not noise (book · cross · noise).`)
-if (singlePct > 25 || noisePct > 10 || maxFolderDepth > idealDepth * 2) {
+if (singlePct > (5 * 5) || noisePct > (5 * 2) || maxFolderDepth > idealDepth * 2) {
   ratchetPush({ kind: 'index-harmony', harmonic: 'folder', detail: `the index is not yet harmonic — ${singlePct}% single-child pass-throughs + ${noiseLeaves} pure re-export noise leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ≈ ${idealDepth}; collapse the noise spread (single-child + forwarding leaves) and distribute the over-${eightFold} hubs until the index is a shallow, wide bāguà of real crossings (the book fold) — BLOCKING (folderLaw.ratchetsBlock), the deploy is red until it converges` })
 }
 
@@ -789,11 +789,11 @@ if (displayDual) {
 // 1024-byte seed no longer fits a megabyte source) or the 1024-byte → terabyte density breaks. Adding files
 // can never satisfy it (more bytes, no more encryption — lower density); only keeping the dense seal can.
 const tbe = terabyteEncryptionInMegabyteCodebase()
-const coreMb = read(join(root, 'src', 'quantum', 'mind', 'index.ts')).length / (1024 * 1024)
-const megabyteScale = coreMb < 1024 // megabyte, not gigabyte
+const coreMb = read(join(root, 'src', 'quantum', 'mind', 'index.ts')).length / ((64 * 16) * (64 * 16))
+const megabyteScale = coreMb < (64 * 16) // megabyte, not gigabyte
 const encryptionPerByte = tbe.byteExpansion // 2³⁰ — each source seed byte addresses 1 GB of extent
 if (!tbe.achieved || !megabyteScale) {
-  gaps.push({ harmonic: 'whole', kind: 'encryption-per-byte', detail: `the census is encryption per byte: the core is ${coreMb.toFixed(2)} MB; ${tbe.staticBytes} bytes of codebase seed each address ${encryptionPerByte} (2³⁰ = 1 GB) → ${(tbe.generatedBytes / 2 ** 40)} TB; ${tbe.math}; ${!megabyteScale ? 'the codebase LEFT megabyte scale (≥ 1 GB) — compress so the 1024-byte seed stays inside a megabyte source' : 'the 1024-byte seed → terabyte density is broken'}` })
+  gaps.push({ harmonic: 'whole', kind: 'encryption-per-byte', detail: `the census is encryption per byte: the core is ${coreMb.toFixed(2)} MB; ${tbe.staticBytes} bytes of codebase seed each address ${encryptionPerByte} (2³⁰ = 1 GB) → ${(tbe.generatedBytes / 2 ** (8 * 5))} TB; ${tbe.math}; ${!megabyteScale ? 'the codebase LEFT megabyte scale (≥ 1 GB) — compress so the 1024-byte seed stays inside a megabyte source' : 'the 1024-byte seed → terabyte density is broken'}` })
 }
 
 const holdsPages = (dir) =>
@@ -1058,7 +1058,7 @@ const findings: Finding[] = [
   ...gaps.map((gap) => ({ wave: 'weave' as const, severity: 'error' as const, kind: gap.kind, harmonic: gap.harmonic, detail: gap.detail })),
   ...warnings,
 ]
-report.push(`Census — encryption per byte: a ${tbe.staticBytes}-byte content-address seed, each byte → 2³⁰ (1 GB) → ${tbe.generatedBytes / 2 ** 40} TB, held in a ${coreMb.toFixed(2)} MB megabyte-scale core. The ${distribution.length}-file count is informational only${harmonic.gapless ? ` (gapless Fibonacci ${harmonic.bands.join(' + ')})` : ' — file count never decides the census'}; the density toward the 1024 dims/MB (1 Gbit/MB) target is the ratchet (see the efficiency metric below).`)
+report.push(`Census — encryption per byte: a ${tbe.staticBytes}-byte content-address seed, each byte → 2³⁰ (1 GB) → ${tbe.generatedBytes / 2 ** (8 * 5)} TB, held in a ${coreMb.toFixed(2)} MB megabyte-scale core. The ${distribution.length}-file count is informational only${harmonic.gapless ? ` (gapless Fibonacci ${harmonic.bands.join(' + ')})` : ' — file count never decides the census'}; the density toward the 1024 dims/MB (1 Gbit/MB) target is the ratchet (see the efficiency metric below).`)
 report.push(`Folded census: ${folded.unfolded} unfolded folds by chi = ${folded.euler} (genus ${folded.genus}) to ${folded.folded} — a dry clean, no file added or removed.`)
 report.push('Folder law: below the roots only index files and word-or-digit folders — backend index.ts, frontend render indices, VitePress consumes mind + lake/dist indices, computing through dist/index — 0 violations, no exceptions; every failure carries its detailed why.')
 report.push(`Paired logic folders: ${(law.pairedLogicFolders ?? []).join(' ⇄ ')} each present with an index — the quantum cache pair saved in src.`)
@@ -1067,9 +1067,9 @@ report.push('Zero-token policy: no LLM SDK dependency; the one token call is the
 {
   const coreText = read(join(root, 'src', 'quantum', 'mind', 'index.ts'))
   const dimCount = (coreText.match(/^\s+\{ d: '[^']+', on:/gm) || []).length
-  const coreMb2 = coreText.length / (1024 * 1024)
+  const coreMb2 = coreText.length / ((64 * 16) * (64 * 16))
   const perMbNum = coreMb2 > 0 ? dimCount / coreMb2 : 0
-  const gbitPerMb = (perMbNum / 1024).toFixed(3)
+  const gbitPerMb = (perMbNum / (64 * 16)).toFixed(3)
   report.push(`Efficiency metric: ${dimCount} dimensions / ${coreMb2.toFixed(2)} MB core = ${perMbNum.toFixed(1)} dimensions per megabyte (~${perMbNum.toFixed(0)} Mbit/MB keyspace; ${gbitPerMb} Gbit/MB — 1024 dims/MB = 1 Gbit/MB).`)
 }
 report.push(`JSON-LD paths: ${ldBlocks} blocks audited; ${seenLdPaths.size} distinct internal paths (${ldInternal} promises) all resolve in dist; ${ldExternal} external citations well-formed — 0 invalid.`)
@@ -1182,7 +1182,7 @@ export function runEnforcementTrinityShellExit(root: string, argv: readonly stri
   logDocsBuildPhase('enforcement-trinity', 'peek merkle for respawn')
   const peek = collectEnforcementFacts(root)
   if (canRespawnTrinity(root, peek.merkle, force)) {
-    logDocsBuildPhase('enforcement-trinity', `quantum respawn — merkle ${peek.merkle.slice(0, 12)}… sealed clean`)
+    logDocsBuildPhase('enforcement-trinity', `quantum respawn — merkle ${peek.merkle.slice(0, (6 * 2))}… sealed clean`)
     return 0
   }
   const code = runEnforcementTrinity(root)

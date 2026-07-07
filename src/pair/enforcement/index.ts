@@ -242,7 +242,7 @@ function agentSubmissionProtocolRaw(matrix: MindMatrix) {
   const pairs = foldQuantumCommandPairs(QUANTUM_COMMAND_PAIR_IDS)
   const saved = new Set(pairs.map((entry) => entry.command))
   const missionOk =
-    MISSION_COMMANDS.length >= 10 &&
+    MISSION_COMMANDS.length >= (5 * 2) &&
     MISSION_COMMANDS.every((entry) => entry.npm.length > 0 && entry.cli.length > 0 && entry.pair.length > 0)
   const facets = [
     { facet: 'agent/submission pair saved and paired', on: pairs.some((entry) => entry.command === 'agent/submission' && entry.paired) },

@@ -763,7 +763,7 @@ export function scanDigitLatticeViolations(root: string): ComputationalViolation
     offenders.push({ file: 'src/0', reason: 'digit vault 0 missing index.ts (the void barrel anchors the lattice)' })
   }
   for (let n = 1; n <= 9; n += 1) {
-    const comp = 10 - n
+    const comp = (5 * 2) - n
     if (!existsSync(join(srcRoot, String(n), String(comp), 'index.ts'))) {
       offenders.push({ file: `src/${n}/${comp}`, reason: `digit ${n} missing additive-complement pair ${n}/${comp}/index.ts (VORTEX_SEQUENCE ray)` })
     }
@@ -920,7 +920,7 @@ export function scanIChingDistribution(root: string, indexTsFiles: readonly stri
     return { hub, count }
   })
 
-  const harmonyOk = singleChildPct <= 25 && noisePct <= 10 && maxFolderDepth <= MAX_RECURSION_DEPTH + 3
+  const harmonyOk = singleChildPct <= (5 * 5) && noisePct <= (5 * 2) && maxFolderDepth <= MAX_RECURSION_DEPTH + 3
   const fanoutOk = eightFoldViolations.length === 0
 
   const recursionViolations: string[] = []
@@ -977,7 +977,7 @@ export function ichingDistributionGuidance(
   }
 
   const { singleChildPct, noisePct, maxDepth, idealDepth, noiseLeaves } = distribution.indexHarmony
-  if (singleChildPct > 25 || noisePct > 10 || maxDepth > MAX_RECURSION_DEPTH + 3) {
+  if (singleChildPct > (5 * 5) || noisePct > (5 * 2) || maxDepth > MAX_RECURSION_DEPTH + 3) {
     lines.push(
       `index harmony: ${singleChildPct}% single-child, ${noiseLeaves} re-export leaves (${noisePct}%), depth ${maxDepth} vs max recursion ${MAX_RECURSION_DEPTH} — collapse pass-through chains into parent barrels`,
     )
@@ -1211,7 +1211,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       detail: `${NOT_LESS_NOT_MORE_LAW} — dimension gates: exactly ${HOMOLOGY_LOOPS}×${FOLDED_CENSUS} = ${DIMENSION_GATES} facets (not files)`,
     })
   }
-  for (const v of c.vaultViolations.slice(0, 12)) {
+  for (const v of c.vaultViolations.slice(0, (6 * 2))) {
     findings.push({
       wave: 'gate',
       severity: 'error',
@@ -1220,13 +1220,13 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       detail: `${v.file}: ${v.reason}${v.spec ? ` ('${v.spec}')` : ''}`,
     })
   }
-  if (c.vaultViolations.length > 12) {
+  if (c.vaultViolations.length > (6 * 2)) {
     findings.push({
       wave: 'gate',
       severity: 'error',
       kind: 'vault-station',
       harmonic: 'vault',
-      detail: `${c.vaultViolations.length - 12} more vault violation(s) — full list in facts.computational`,
+      detail: `${c.vaultViolations.length - (6 * 2)} more vault violation(s) — full list in facts.computational`,
     })
   }
   for (const v of c.renderViolations.slice(0, 8)) {

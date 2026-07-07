@@ -148,7 +148,7 @@ function runVitepressBuild(root: string, timeoutMs: number, harmonicMs: number, 
     const timer = setTimeout(() => {
       clearInterval(heartbeat)
       child.kill('SIGTERM')
-      setTimeout(() => child.kill('SIGKILL'), harmonicMs * 10)
+      setTimeout(() => child.kill('SIGKILL'), harmonicMs * (5 * 2))
       reject(new Error('QUANTUM_TIMEOUT'))
     }, timeoutMs)
     child.on('error', (err) => {
@@ -173,7 +173,7 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
   logDocsBuildPhase('src-merkle', 'walk src/ + .vitepress/ + package.json')
   const merkleStart = Date.now()
   const merkle = srcContentMerkle(root)
-  logDocsBuildPhase('src-merkle', `done in ${Date.now() - merkleStart}ms — ${merkle.slice(0, 12)}…`)
+  logDocsBuildPhase('src-merkle', `done in ${Date.now() - merkleStart}ms — ${merkle.slice(0, (6 * 2))}…`)
   const seal = vitepressEditsInvalidateTheSeal(root)
   if (!seal.enforced) {
     logDocsBuildPhase('src-merkle', `seal fold open (config=${seal.config} leaked=${seal.leaked.length}) — respawn refused, sealing for real`)

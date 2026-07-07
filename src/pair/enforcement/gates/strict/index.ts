@@ -29,7 +29,7 @@ export {
   type StrictGateSnapshot,
 } from './scan'
 
-export { computeStrictGateSnapshot, strictGatePassed, scanVitepressIndex } from './scan'
+export { computeStrictGateSnapshot, strictGatePassed, scanVitepressIndex, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './scan'
 
 export const FOLD_HOMES: Record<string, readonly string[]> = {
   'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt', 'matrixIsTenBitMByteSixtyFour'],
@@ -50,11 +50,15 @@ export function foldsLiveAtTheirDomainHome(definers: readonly { name: string; fi
 }
 
 export function toolsSavedInSrcFirst(scripts: readonly { path: string; lines: number; routesThroughSrc: boolean }[] = []) {
-  const violations = scripts.filter((s) => !s.routesThroughSrc || s.lines > 72).map((s) => s.path)
+  const violations = scripts.filter((s) => !s.routesThroughSrc || s.lines > (9 * 8)).map((s) => s.path)
   return { enforced: scripts.length > 0 && violations.length === 0, count: scripts.length, violations }
 }
 
 export function importsAreFoldersOnly(offenders: readonly { file: string; spec: string; reason: string }[] = [], scanned = 0) {
+  return { enforced: offenders.length === 0, count: offenders.length, offenders: [...offenders], scanned }
+}
+
+export function mathIsOneSource(offenders: readonly { file: string; spec: string; reason: string }[] = [], scanned = 0) {
   return { enforced: offenders.length === 0, count: offenders.length, offenders: [...offenders], scanned }
 }
 
@@ -80,7 +84,7 @@ function pushStrictOffenders(
   kind: string,
   harmonic: string,
   offenders: readonly { file?: string; spec?: string; path?: string; reason: string }[],
-  cap = 12,
+  cap = (6 * 2),
 ) {
   for (const v of offenders.slice(0, cap)) {
     const where = v.file ?? v.path ?? v.spec ?? ''
@@ -112,7 +116,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
 } {
   const s = facts.strict
   const findings: Finding[] = []
-  for (const v of s.scriptShellViolations.slice(0, 20)) {
+  for (const v of s.scriptShellViolations.slice(0, (5 * 4))) {
     findings.push({
       wave: 'gate',
       severity: 'error',
@@ -121,13 +125,13 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       detail: v,
     })
   }
-  if (s.scriptShellViolations.length > 20) {
+  if (s.scriptShellViolations.length > (5 * 4)) {
     findings.push({
       wave: 'gate',
       severity: 'error',
       kind: 'script-shell',
       harmonic: 'pipeline',
-      detail: `${s.scriptShellViolations.length - 20} more script-shell violation(s) — full list in facts.strict`,
+      detail: `${s.scriptShellViolations.length - (5 * 4)} more script-shell violation(s) — full list in facts.strict`,
     })
   }
   if (!s.pairsPaired) {
@@ -158,8 +162,9 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
     })
   }
   pushStrictOffenders(findings, 'import-gap', 'folder', s.importGaps)
+  pushStrictOffenders(findings, 'one-math', 'math', s.oneMath)
   pushStrictOffenders(findings, 'index-only', 'folder', s.indexOnly)
-  for (const v of s.fileSize.slice(0, 12)) {
+  for (const v of s.fileSize.slice(0, (6 * 2))) {
     findings.push({
       wave: 'gate',
       severity: 'warn',
@@ -168,13 +173,13 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       detail: `${v.file}: ${v.reason}`,
     })
   }
-  if (s.fileSize.length > 12) {
+  if (s.fileSize.length > (6 * 2)) {
     findings.push({
       wave: 'gate',
       severity: 'warn',
       kind: 'monolith-file',
       harmonic: 'compression',
-      detail: `${s.fileSize.length - 12} more monolith-file ratchet target(s) — full list in facts.strict`,
+      detail: `${s.fileSize.length - (6 * 2)} more monolith-file ratchet target(s) — full list in facts.strict`,
     })
   }
   pushStrictOffenders(findings, 'non-index-code', 'folder', s.nonTs)

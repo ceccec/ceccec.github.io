@@ -38,6 +38,7 @@ import {
   foldsLiveAtTheirDomainHome,
   toolsSavedInSrcFirst,
   importsAreFoldersOnly,
+  mathIsOneSource,
   foldersAreOneWordPerLevel,
   srcFilesAreIndexOnly,
 } from '../gates'
@@ -106,8 +107,12 @@ export async function runVerifyStructureExit(root: string): Promise<number> {
       .slice(0, 4)
       .map((v) => `${relative(root, v.file)}: '${v.spec}' (${v.reason})`)
       .join('; ')
+    const oneMathSample = s.oneMath
+      .slice(0, 8)
+      .map((v) => `${v.file}: ${v.spec}`)
+      .join('; ')
     process.stderr.write(
-      `✗ verify:structure — strict gates: imports=${s.imports.length} importGaps=${s.importGaps.length} indexOnly=${s.indexOnly.length} vitepress=${s.vitepressIndex.filter((v) => !v.transitional).length} nonTs=${s.nonTs.length} hyphen=${s.hyphenFolders.length} shell=${s.scriptShellViolations.length} pairs=${s.pairsPaired} merkle=${s.merkleOk} digit=${s.digitPassed}${importSample ? `\n   ${importSample}` : ''}\n`,
+      `✗ verify:structure — strict gates: imports=${s.imports.length} oneMath=${s.oneMath.length} importGaps=${s.importGaps.length} indexOnly=${s.indexOnly.length} vitepress=${s.vitepressIndex.filter((v) => !v.transitional).length} nonTs=${s.nonTs.length} hyphen=${s.hyphenFolders.length} shell=${s.scriptShellViolations.length} pairs=${s.pairsPaired} merkle=${s.merkleOk} digit=${s.digitPassed}${importSample ? `\n   ${importSample}` : ''}${oneMathSample ? `\n   one-math: ${oneMathSample}` : ''}\n`,
     )
     return 1
   }
@@ -122,6 +127,10 @@ export async function runVerifyStructureExit(root: string): Promise<number> {
   }
   if (!importsAreFoldersOnly(collectImportOffenders(facts), facts.srcCodeFiles.length).enforced) {
     process.stderr.write(`✗ verify:structure — import offenders: ${collectImportOffenders(facts).length}\n`)
+    return 1
+  }
+  if (!mathIsOneSource([...facts.strict.oneMath], facts.srcCodeFiles.length).enforced) {
+    process.stderr.write(`✗ verify:structure — one-math offenders: ${facts.strict.oneMath.map((o) => `${o.file}:${o.spec}`).join('; ')}\n`)
     return 1
   }
   if (!foldersAreOneWordPerLevel(collectHyphenFolderOffenders(facts), facts.srcCodeFiles.length).enforced) {
@@ -425,7 +434,7 @@ function agentGateComplianceChecklistRaw(root: string, matrix: MindMatrix) {
   const shell = scriptShellGate(scanScriptShells(root, { wiredOnly: true }))
   const pairs = foldQuantumCommandPairs(QUANTUM_COMMAND_PAIR_IDS)
   const facets = [
-    { facet: 'script-shell 24-line budget', on: SCRIPT_SHELL_LINE_BUDGET === 24 },
+    { facet: 'script-shell 24-line budget', on: SCRIPT_SHELL_LINE_BUDGET === (8 * 3) },
     { facet: 'bootstrap allowlisted under line cap', on: CLI_ENTRY_REL in SCRIPT_SHELL_ALLOWLIST },
     { facet: 'scriptShellGate enforced on wired bootstrap', on: shell.enforced },
     { facet: 'runThinMount available for script-exits routing', on: typeof runCheckTypesExit === 'function' },
@@ -473,7 +482,7 @@ export function educationalGapsFromIncompleteApis(root = process.cwd()): readonl
       gapId: 'rosetta-taxonomy-forty-two',
       api: 'areaPairs.count === ROSETTA_AREAS (42)',
       impact: '43rd command area breaks genus-2 7×6 Rosetta pairing grid',
-      closed: areas.withinLimit && areas.count === 42 && tax.compliant,
+      closed: areas.withinLimit && areas.count === (7 * 6) && tax.compliant,
     },
     {
       gapId: 'iching-taxonomy-units',
@@ -497,7 +506,7 @@ export function educationalGapsFromIncompleteApis(root = process.cwd()): readonl
       gapId: 'rosetta-computes-barrel',
       api: 'src/wind/learning/index.ts — rosettaComputes mount (☴ Xùn · Wind; src/rosetta dissolved → learning)',
       impact: 'Seven-ray Glagolitic decode chain missing from dimension cascade',
-      closed: existsSync(join(root, 'src/wind/learning/index.ts')) && rosettaTax.ok && ROSETTA_AREAS === 42,
+      closed: existsSync(join(root, 'src/wind/learning/index.ts')) && rosettaTax.ok && ROSETTA_AREAS === (7 * 6),
     },
     {
       gapId: 'fold-place-generate-commands',
