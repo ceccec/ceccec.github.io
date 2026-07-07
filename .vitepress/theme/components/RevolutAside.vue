@@ -44,7 +44,7 @@ const labels = computed(() => ({
 .revolut-aside__link {
   color: var(--vp-movie-link);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: var(--ich-weight-medium);
 }
 
 .revolut-aside__link:hover {

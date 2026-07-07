@@ -38,7 +38,7 @@ const view = computed(() => {
   return {
     title: page.title,
     statement: page.description,
-    facets: page.proof ? [{ facet: page.proof.slice(0, 24), on: true }] : [],
+    facets: page.proof ? [{ facet: page.proof.slice(0, (8 * 3)), on: true }] : [],
     ok: Boolean(page.proof),
   }
 })

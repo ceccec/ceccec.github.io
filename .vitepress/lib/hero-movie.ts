@@ -32,6 +32,7 @@ export {
   cardMovieColorVars,
   cardMoviePath,
   cardMovieSeed,
+  heroInkColor,
 } from '../../src/thunder/movie/movievars'
 export {
   plasmaMoviePalette,

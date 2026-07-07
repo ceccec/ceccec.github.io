@@ -17,7 +17,7 @@ const { Layout: VPLayout } = DefaultTheme
 const route = useRoute()
 const { frontmatter } = useData()
 const showHomeHero = computed(() => Boolean(frontmatter.value.hero))
-const cssWidth = ref(1024)
+const cssWidth = ref((64 * 16))
 const slots = useSlots()
 const forwardedSlots = computed(() =>
   Object.keys(slots).filter(

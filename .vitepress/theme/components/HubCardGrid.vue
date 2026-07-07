@@ -47,7 +47,7 @@ export default { name: 'HubCardGrid' }
 .hub-card-grid__heading {
   margin: 0 0 calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(3 / 4));
   font-size: var(--ich-em-card-heading);
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   text-shadow: var(--vp-hero-text-shadow);
 }
 

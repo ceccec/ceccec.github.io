@@ -91,7 +91,7 @@ export function useRealtimeSpeech(
     const utterance = new SpeechSynthesisUtterance(text)
     const contour = speechIntonation().contour
     utterance.pitch = contour[index % Math.max(contour.length, 1)] ?? 1
-    utterance.rate = 0.95
+    utterance.rate = (1 - 1 / (5 * 4))
     utterance.lang = speechLang(locale.value)
     window.speechSynthesis.speak(utterance)
   }

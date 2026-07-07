@@ -31,9 +31,9 @@ function paint(timeMs: number) {
   for (const page of pages.value) {
     const h = page.hero
     const spin = (timeMs / h.spinMs) * 2 * Math.PI
-    const pulse = 1 + humanBreath(timeMs, h.spinMs, 0.12) - 1 // gentle breathing scale about 1
-    const r1 = 46 * (1 + pulse * 0.15)
-    const r2 = 28 * (1 + pulse * 0.15)
+    const pulse = 1 + humanBreath(timeMs, h.spinMs, (3 / (5 * 5))) - 1 // gentle breathing scale about 1
+    const r1 = 46 * (1 + pulse * (3 / (5 * 4)))
+    const r2 = (7 * 4) * (1 + pulse * (3 / (5 * 4)))
     next[page.slug] = {
       ax: r1 * Math.cos(h.theta + spin), ay: r1 * Math.sin(h.theta + spin),
       bx: r2 * Math.cos(h.phi - spin), by: r2 * Math.sin(h.phi - spin), // −spin: counter-rotating handle
@@ -57,8 +57,8 @@ function speak(page: CardPage) {
   window.speechSynthesis.cancel()
   if (speaking.value === page.slug) { speaking.value = null; return }
   const u = new SpeechSynthesisUtterance(page.speech)
-  u.rate = 0.98
-  u.pitch = 0.5 + (page.hero.hue / 360) // pitch computed from the card's hue — the proof, heard
+  u.rate = ((7 * 7) / (5 * 5 * 2))
+  u.pitch = (1 / 2) + (page.hero.hue / 360) // pitch computed from the card's hue — the proof, heard
   u.onend = () => { if (speaking.value === page.slug) speaking.value = null }
   speaking.value = page.slug
   window.speechSynthesis.speak(u)
@@ -124,27 +124,27 @@ function speak(page: CardPage) {
 
 <style scoped>
 .model-cards { display: grid; gap: var(--ich-sp6); }
-.model-card__grid { display: grid; grid-template-columns: minmax(0, 180px) 1fr; gap: var(--ich-sp6); align-items: start; }
+.model-card__grid { display: grid; grid-template-columns: minmax(0, calc(1px * 360 / 2)) 1fr; gap: var(--ich-sp6); align-items: start; }
 .model-card__proof { margin: 0; display: grid; gap: var(--ich-sp2); justify-items: center; }
-.model-card__proof svg { width: 100%; max-width: 180px; aspect-ratio: 1; }
-.model-card__ring { fill: none; stroke: oklch(70% 0.12 calc(var(--hue) * 1deg)); stroke-width: 1; opacity: 0.4; }
+.model-card__proof svg { width: 100%; max-width: calc(1px * 360 / 2); aspect-ratio: 1; }
+.model-card__ring { fill: none; stroke: oklch(calc(7 / (2 * 5) * 100%) calc(3 / (5 * 5)) calc(var(--hue) * 1deg)); stroke-width: 1; opacity: calc(2 / 5); }
 .model-card__handle { stroke-width: 2; stroke-linecap: round; }
-.model-card__handle--up { stroke: oklch(72% 0.17 calc(var(--hue) * 1deg)); }
-.model-card__handle--down { stroke: oklch(60% 0.17 calc((var(--hue) + 180) * 1deg)); }
-.model-card__tip { fill: oklch(80% 0.18 calc(var(--hue) * 1deg)); }
-.model-card__glyph { fill: oklch(70% 0.14 calc(var(--hue) * 1deg)); font-size: 14px; opacity: 0.5; }
-.model-card__proof figcaption { font-size: var(--ich-text-ms); opacity: 0.7; font-variant-numeric: tabular-nums; }
+.model-card__handle--up { stroke: oklch(calc(2 * 9 / (5 * 5) * 100%) 0.17 calc(var(--hue) * 1deg)); }
+.model-card__handle--down { stroke: oklch(calc(3 / 5 * 100%) 0.17 calc((var(--hue) + 360 / 2) * 1deg)); }
+.model-card__tip { fill: oklch(calc(4 / 5 * 100%) calc(9 / (5 * 5 * 2)) calc(var(--hue) * 1deg)); }
+.model-card__glyph { fill: oklch(calc(7 / (2 * 5) * 100%) var(--ich-oklch-a-fill) calc(var(--hue) * 1deg)); font-size: 14px; opacity: var(--ich-op-half); }
+.model-card__proof figcaption { font-size: var(--ich-text-ms); opacity: calc(7 / (2 * 5)); font-variant-numeric: tabular-nums; }
 .model-card__body { display: grid; gap: var(--ich-sp4); }
 .model-card__head h2 { margin: var(--ich-sp2) 0 0; }
-.model-card__q { opacity: 0.7; font-style: italic; margin: 0; }
-.model-card__research { line-height: 1.6; }
+.model-card__q { opacity: calc(7 / (2 * 5)); font-style: italic; margin: 0; }
+.model-card__research { line-height: var(--ich-lh-relaxed); }
 .model-card__facets { display: flex; flex-wrap: wrap; gap: var(--ich-sp2); }
 .model-card__actions { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); align-items: center; }
 .model-card__speak {
-  border: 1px solid oklch(65% 0.14 calc(var(--a432-hue, 5) * 1deg));
+  border: 1px solid oklch(calc((1 - 7 / (4 * 5)) * 100%) var(--ich-oklch-a-fill) calc(var(--a432-hue, 5) * 1deg));
   background: transparent; color: inherit; border-radius: var(--ich-radius, 8px);
   padding: var(--ich-sp2) var(--ich-sp4); cursor: pointer; font-size: var(--ich-text-ms);
 }
-.model-card__speak:hover { background: oklch(65% 0.14 calc(var(--a432-hue, 5) * 1deg) / 0.12); }
+.model-card__speak:hover { background: oklch(calc((1 - 7 / (4 * 5)) * 100%) var(--ich-oklch-a-fill) calc(var(--a432-hue, 5) * 1deg) / var(--ich-oklch-a-fusion-fill)); }
 @media (max-width: 620px) { .model-card__grid { grid-template-columns: 1fr; } }
 </style>

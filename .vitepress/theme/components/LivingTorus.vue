@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useRoute } from 'vitepress'
+import { computed, ref, watch } from 'vue'
+import { useData, useRoute } from 'vitepress'
 import { drawLivingTorusFrame, livingTorus } from '@vp-lib/hero-movie'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/movie-canvas'
 import { useSiteLocale } from '../../lib/mounts'
@@ -14,8 +14,10 @@ const torus = livingTorus()
 const displayTitle = computed(() => t('Living Torus'))
 const seedParts = computed(() => ['LivingTorus', torus.statement, route.path] as const)
 const reduce = prefersReducedMotion()
+// Polarity bit: dark paints the sealed positive, light recomputes through the negative law.
+const { isDark } = useData()
 
-useVisibleMovieCanvas({
+const { repaint } = useVisibleMovieCanvas({
   canvas,
   root: canvasHost,
   visibility: 'intersection',
@@ -24,9 +26,12 @@ useVisibleMovieCanvas({
     h: canvasHost.value?.clientHeight ?? 0,
   }),
   paint: (ctx, w, h, at) => {
-    drawLivingTorusFrame(ctx, w, h, at, torus.coordinates, reduce)
+    drawLivingTorusFrame(ctx, w, h, at, torus.coordinates, reduce, isDark.value)
   },
 })
+
+// Repaint on theme toggle so the reduced-motion still frame also recomputes its colours.
+watch(isDark, () => repaint())
 </script>
 
 <template>

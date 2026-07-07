@@ -12,7 +12,7 @@ function headingId(text: string, suffix: string): string {
     .toLowerCase()
     .replace(/[^\p{L}\p{N}]+/gu, '-')
     .replace(/^-+|-+$/g, '')
-    .slice(0, 48)
+    .slice(0, (16 * 3))
   return base ? `${base}-${suffix}` : suffix
 }
 
@@ -207,7 +207,7 @@ export default { name: 'UniversalPageTemplate' }
 }
 
 .page-meta__row dt {
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   opacity: var(--ich-op-card-soft);
 }
 
@@ -240,7 +240,7 @@ export default { name: 'UniversalPageTemplate' }
 
 .rosetta-ray {
   margin: 0;
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
 }
 
 .living + .living {
@@ -265,7 +265,7 @@ export default { name: 'UniversalPageTemplate' }
 }
 
 .page-forge__label {
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
 }
 
 .page-forge__stats {

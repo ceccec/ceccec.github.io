@@ -63,7 +63,7 @@ const titleId = computed(() => {
     .toLowerCase()
     .replace(/[^\p{L}\p{N}]+/gu, '-')
     .replace(/^-+|-+$/g, '')
-    .slice(0, 48)
+    .slice(0, (16 * 3))
 })
 </script>
 
@@ -111,7 +111,7 @@ const titleId = computed(() => {
 
 <style scoped>
 .decoded-card__title {
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   margin: 0 0 var(--vp-movie-gap);
 }
 

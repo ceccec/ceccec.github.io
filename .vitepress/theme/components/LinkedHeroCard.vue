@@ -58,7 +58,7 @@ export default { name: 'LinkedHeroCard' }
 
 .linked-hero-card__title {
   display: block;
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   font-size: var(--ich-em-card-title);
   line-height: var(--ich-lh-card-title);
   text-shadow: var(--vp-hero-text-shadow);

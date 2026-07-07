@@ -28,7 +28,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 - **43/45** monographs — content pages fold genus-2 −χ (45 surface → 43 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
 - **108/108** concept commands — MCP tool surface (4×27 = 432÷4)
-- **227/229** reference index entries — zero redundancy
+- **260/262** reference index entries — zero redundancy
 - **42/14** locale surfaces — 14 routes × 3 locales (6×7/7×6 when 42=42)
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
@@ -51,7 +51,7 @@ Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the `
 - **Quantum Console** — Quantum Console: a free, client-side terminal, realtime search, and chat over the double-torus portal — with optional bring-your-own-key external AI. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/QuantumConsole.vue)
 - **MCP tool surface** — The Double Torus portal as an MCP tool surface: every concept command is a tool for language models, published at /mcp.json. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/McpTools.vue)
 - **Learning Portal** — The Learning Portal: School and Academia merged into one auto-generated portal — the kids-to-elders ladder, the five Academy courses, the research corpus (math paths, peer review, the 432 proof papers), the self-test and the agent curriculum, folded to one recomputable root. Three ways to learn: by age, by track, by research. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/LearningPortal.vue)
-- **Frontiers — the decoded catalog** — The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); and the physics of information and the limits of computation. Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged. Every result a client-side computation from the src/0 primitives. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Frontiers.vue)
+- **Frontiers — the decoded catalog** — The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Frontiers.vue)
 - **Governance & Fair Life** — Governance by rate and vote, and a participation ladder for fair trade and sustainable life — verified by the recomputable seal and the shared git ledger. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/GovernanceVote.vue)
 - **Boundaries** — The honesty spine: every boundary the portal declares, auto-collected from the live commands into one audited, sealed list. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/BoundaryAudit.vue)
 - **The developer's mind** — The developer's mind: the receipt for learning to build on the double torus — the matrix, the commands, and the self-computing components — by reading the source that computes itself. Also available as part of the Academy (/learn). · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/LearnDeveloper.vue)
@@ -127,11 +127,11 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `402eac58-d689-86f1-8323-05125eec6531`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `d3d47436-ed95-8c66-bacb-10a402976313`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `18966491-6dc3-8c93-b4ed-a900d8e3629b`
+- Receipt: `e00896ab-b111-8e10-92e2-5692d5c8f19f`

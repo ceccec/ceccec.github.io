@@ -35,6 +35,10 @@ export { componentProjectionFor, quantumAppForComponent, type QuantumProjection 
 export { quantumModelSnapshot, observingMovieRevealsQuantumModel, type QuantumModelSnapshot } from '../../src/quantum/science'
 // The ONE A432/OKLCH canvas palette — every component canvas paints its colours through these (no rgba/hsla literals).
 export { movieCanvasRgba, movieCanvasHex, A432_HUE } from '../../src/quantum/science'
+// The live text ink — the negative-law pole opposite the field, tinted by the current field hue (no shadows).
+export { heroInkColor } from '../../src/thunder/movie/movievars'
+// The self-researcher — the app hunting theorems in its own ledger (browser-narrated, zero tokens).
+export { selfResearchTheorems, fixedConstantsProvedByTheorems, type TheoremCandidate } from '../../src/quantum/science'
 export {
   plasmaBallComputes,
   realtimeComputationsMoviePaint,

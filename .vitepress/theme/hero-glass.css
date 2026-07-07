@@ -1,6 +1,9 @@
 /* Computed movie design — transparent surfaces; layout/accent from --vp-movie-* vars. */
 .vp-with-hero-movie {
-  color: var(--vp-c-text-1);
+  /* The LIVE computed ink — no shadows: the negative-law pole opposite the field, tinted by the
+     CURRENT field hue. --vp-hero-ink is written on the movie's own paint tick (page-level), and each
+     card scopes its own from its card field. Explicit colours (links, brand, marks) still win. */
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
   background: transparent;
 }
 
@@ -10,12 +13,11 @@
   background: transparent !important;
 }
 
-.vp-with-hero-movie .VPHomeHero .name,
 .vp-with-hero-movie .VPHomeHero .text,
 .vp-with-hero-movie .VPHomeHero .tagline,
 .vp-with-hero-movie .ui-card__content,
-.vp-with-hero-movie .ui-card__content :where(h1, h2, h3, h4, p, li, a, span) {
-  text-shadow: var(--vp-hero-text-shadow);
+.vp-with-hero-movie .ui-card__content :where(h1, h2, h3, h4, p, li, span) {
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
 }
 
 .vp-with-hero-movie .ui-card {
@@ -94,7 +96,7 @@
 }
 
 .vp-with-hero-movie .VPHome h2 {
-  text-shadow: var(--vp-hero-text-shadow);
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
   letter-spacing: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(1em / 16));
 }
 
@@ -122,7 +124,7 @@
 .vp-with-hero-movie .VPDocAside :where(.outline-link, .outline-title, .content),
 .vp-with-hero-movie .VPDocAside .revolut-aside :where(.ui-aside__title, .revolut-aside__link, .revolut-aside__receipt),
 .vp-with-hero-movie .VPLocalNav :where(.menu-text, .outline-link) {
-  text-shadow: var(--vp-hero-text-shadow);
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
 }
 
 .vp-with-hero-movie .VPDocAside .revolut-aside {
@@ -141,14 +143,13 @@
 }
 
 .vp-with-hero-movie .VPFooter :where(.message, .copyright) {
-  text-shadow: var(--vp-hero-text-shadow);
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
 }
 
 .vp-with-hero-movie .VPHomeHero,
-.vp-with-hero-movie .VPHomeHero .name,
 .vp-with-hero-movie .VPHomeHero .text,
 .vp-with-hero-movie .VPHomeHero .tagline {
-  text-shadow: var(--vp-hero-text-shadow);
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
 }
 
 .vp-with-hero-movie .VPDoc .VPHomeHero {
@@ -156,10 +157,10 @@
 }
 
 .vp-with-hero-movie .universal-page,
-.vp-with-hero-movie .universal-page :where(h1, h2, h3, p, li, a, code),
+.vp-with-hero-movie .universal-page :where(h1, h2, h3, p, li),
 .vp-with-hero-movie .universal-page .rosetta-ray,
-.vp-with-hero-movie .vp-doc :where(h1, h2, h3, h4, p, li, a) {
-  text-shadow: var(--vp-hero-text-shadow);
+.vp-with-hero-movie .vp-doc :where(h1, h2, h3, h4, p, li) {
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -208,7 +209,7 @@
 
 .vp-with-hero-movie .VPHome h3,
 .vp-with-hero-movie .VPHome h4 {
-  text-shadow: var(--vp-hero-text-shadow);
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
 }
 
 .vp-with-hero-movie .VPNavScreen {
@@ -216,5 +217,5 @@
 }
 
 .vp-with-hero-movie .VPNavScreen :where(.menu-link, .button, .title) {
-  text-shadow: var(--vp-hero-text-shadow);
+  color: var(--vp-hero-ink, var(--vp-c-text-1));
 }

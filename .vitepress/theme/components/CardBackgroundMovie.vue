@@ -6,12 +6,13 @@ import {
   cardMoviePath,
   drawBackgroundMovie,
   drawQuantumAppFrame,
+  heroInkColor,
   sharedHeroAt,
   type MovieIntensity,
   type QuantumProjection,
 } from '@vp-lib/hero-movie'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/movie-canvas'
-import { useRoute } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
 
 const props = withDefaults(
   defineProps<{
@@ -27,6 +28,9 @@ const props = withDefaults(
 )
 
 const route = useRoute()
+// The same polarity bit the page movie threads: dark paints the sealed positive, light recomputes
+// every colour through the negative law — the card and the page field stay one system.
+const { isDark } = useData()
 const root = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 const reduce = prefersReducedMotion()
@@ -35,14 +39,27 @@ const moviePath = computed(() => cardMoviePath(route.path, props.seed))
 // App-projection cards are the proving animations meant to be played; they opt into touch/sound/haptic.
 const isInteractive = computed(() => props.interactive ?? Boolean(props.app))
 
+// The card's own LIVE ink — each card field has its own hue, so the ink var is scoped to the card
+// element and written on the same paint tick, only when the integer hue or polarity changes.
+let lastInkKey = ''
+let lastInkHue: number | null = null
+function syncCardInk(hue: number): void {
+  const key = `${Math.round(hue)}:${isDark.value ? 1 : 0}`
+  if (key === lastInkKey) return
+  lastInkKey = key
+  lastInkHue = hue
+  const card = root.value?.closest('.ui-card') as HTMLElement | null
+  card?.style.setProperty('--vp-hero-ink', heroInkColor(hue, isDark.value))
+}
+
 const { repaint } = useVisibleMovieCanvas({
   canvas,
   root,
   visibility: 'intersection',
   ...(isInteractive.value ? { interactive: { seed: () => moviePath.value } } : {}),
   measure: () => ({
-    w: root.value?.clientWidth || 320,
-    h: root.value?.clientHeight || 120,
+    w: root.value?.clientWidth || (64 * 5),
+    h: root.value?.clientHeight || (8 * 5 * 3),
   }),
   paint: (ctx, w, h, at) => {
     // The meeting law (read INSIDE the tick — no listener): the card's mini-field centre is the ONE
@@ -56,9 +73,10 @@ const { repaint } = useVisibleMovieCanvas({
       at,
       w,
       reduce,
-      true,
+      isDark.value,
       cardFieldScroll(rectTop, h, winH),
     )
+    syncCardInk(shared.hue)
     if (props.app) {
       drawQuantumAppFrame(ctx, w, h, props.app, {
         hue: shared.hue,
@@ -75,6 +93,12 @@ const { repaint } = useVisibleMovieCanvas({
 })
 
 watch([moviePath, () => props.app], repaint)
+// Resync the ink DIRECTLY on the polarity flip — a hidden tab pauses the paint tick, but the pole
+// flip must not wait for the next frame.
+watch(isDark, () => {
+  if (lastInkHue !== null) syncCardInk(lastInkHue)
+  repaint()
+})
 </script>
 
 <template>

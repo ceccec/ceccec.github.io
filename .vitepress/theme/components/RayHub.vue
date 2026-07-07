@@ -86,7 +86,7 @@ export default { name: 'RayHub' }
 }
 
 .ray-hub__crumb--current {
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   opacity: 1;
 }
 
@@ -107,7 +107,7 @@ export default { name: 'RayHub' }
 
 .ray-hub__name {
   margin: 0;
-  font-weight: 700;
+  font-weight: var(--ich-weight-bold);
 }
 
 .ray-hub__domain {
@@ -136,7 +136,7 @@ export default { name: 'RayHub' }
 
 .ray-hub__ray-name {
   display: block;
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   font-size: var(--ich-em-card-title);
 }
 

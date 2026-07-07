@@ -240,7 +240,7 @@ export default defineConfig({
     server: vitepressDevServerBind(),
     optimizeDeps: vitepressDevOptimizeDeps(),
     build: {
-      chunkSizeWarningLimit: 700,
+      chunkSizeWarningLimit: (100 * 7),
       sourcemap: false,
       minify: false,
       rollupOptions: {

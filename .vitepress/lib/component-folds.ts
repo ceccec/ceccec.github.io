@@ -61,7 +61,7 @@ export async function withCrosslinks(
       return true
     }),
   ]
-  return { ...localized, crosslinks: merged.slice(0, 14) }
+  return { ...localized, crosslinks: merged.slice(0, (7 * 2)) }
 }
 
 type FoldLike = {
@@ -144,7 +144,7 @@ function fromFold(fold: FoldLike, title?: string): DecodedFoldView {
   }
   if (!facets && Array.isArray(fold.dualities)) {
     facets = (fold.dualities as Array<{ left: string; right: string }>)
-      .slice(0, 12)
+      .slice(0, (6 * 2))
       .map((pair) => ({ facet: `${pair.left} ↔ ${pair.right}`, on: true }))
   }
   if (!facets && Array.isArray(fold.roles)) {
@@ -266,7 +266,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
           on: true,
           link: item.route,
         })),
-      ).slice(0, 12),
+      ).slice(0, (6 * 2)),
       ok: fold.mapped,
     }
   },
@@ -292,7 +292,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       title: 'MCP tools',
       statement: fold.statement,
       boundary: fold.boundary,
-      facets: fold.tools.slice(0, 12).map((tool) => ({ facet: tool.name, on: true })),
+      facets: fold.tools.slice(0, (6 * 2)).map((tool) => ({ facet: tool.name, on: true })),
       crosslinks: [
         { text: 'MCP page', link: '/mcp', kind: 'topic' },
         { text: 'mcp.json', link: '/mcp.json', kind: 'detail' },
@@ -362,7 +362,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       title: 'Taxonomy icons',
       statement: fold.statement,
       boundary: fold.boundary,
-      facets: fold.entries.slice(0, 12).map((entry) => ({
+      facets: fold.entries.slice(0, (6 * 2)).map((entry) => ({
         facet: `${entry.icon} ${entry.area} (${entry.count})`,
         on: entry.clean,
       })),
@@ -371,7 +371,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
   },
   HarmonicMap: async () => {
     const { harmonicBands } = await import('../../src/quantum/lake/icons/index')
-    const fold = harmonicBands(110)
+    const fold = harmonicBands(108 + 2) // 110 — the raw census (folded 108 = 110 + χ)
     return {
       title: 'Harmonic map',
       statement: fold.statement,
@@ -406,7 +406,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       title: 'Quantum radar',
       statement: fold.statement,
       boundary: fold.boundary,
-      facets: fold.blips.slice(0, 12).map((blip) => ({
+      facets: fold.blips.slice(0, (6 * 2)).map((blip) => ({
         facet: `${blip.name} (${blip.ring})`,
         on: blip.ring === 'adopt',
       })),
@@ -454,7 +454,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       statement: fold.statement,
       boundary: fold.boundary,
       facets: fold.boundaries.slice(0, 8).map((entry) => ({
-        facet: entry.boundary.slice(0, 80),
+        facet: entry.boundary.slice(0, (16 * 5)),
         on: true,
       })),
       ok: fold.audited,
@@ -508,7 +508,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
         { facet: strokes.written, on: strokes.computes },
         ...strokes.facets,
         ...pyramids.facets,
-      ].slice(0, 12),
+      ].slice(0, (6 * 2)),
       ok: strokes.computes && pyramids.computes,
       movieApp: 'vortex-strokes',
     }

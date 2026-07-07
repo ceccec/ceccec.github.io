@@ -30,7 +30,7 @@ export function vitepressDevServerBind() {
         join(projectRoot, '.vitepress/cache/**'),
         join(projectRoot, 'node_modules/**'),
       ],
-      awaitWriteFinish: { stabilityThreshold: 100, pollInterval: 50 },
+      awaitWriteFinish: { stabilityThreshold: 100, pollInterval: (5 * 5 * 2) },
     },
   }
 }

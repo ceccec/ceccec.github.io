@@ -31,19 +31,19 @@ function sharedAudioContext(): AudioContext | null {
 
 /** Play one A432-sourced tone with a soft rise/fall envelope (no click). hz MUST come from the sealed A432
  *  source (proseToTone / a432NoteHz). Tied to a user gesture by the caller, so it respects autoplay policy. */
-export function playA432Tone(hz: number, durationMs = 240): void {
+export function playA432Tone(hz: number, durationMs = (16 * 5 * 3)): void {
   const ctx = sharedAudioContext()
   if (!ctx || !(hz > 0)) return
   if (ctx.state === 'suspended') void ctx.resume()
   const now = ctx.currentTime
-  const dur = Math.max(0.04, durationMs / 1000)
+  const dur = Math.max((1 / (5 * 5)), durationMs / (100 * 5 * 2))
   const osc = ctx.createOscillator()
   const gain = ctx.createGain()
   osc.type = 'sine'
   osc.frequency.setValueAtTime(hz, now)
-  gain.gain.setValueAtTime(0.0001, now)
-  gain.gain.exponentialRampToValueAtTime(0.12, now + 0.012) // rise
-  gain.gain.exponentialRampToValueAtTime(0.0001, now + dur) // fall
+  gain.gain.setValueAtTime((1 / (100 * 100)), now)
+  gain.gain.exponentialRampToValueAtTime((3 / (5 * 5)), now + (3 / (5 * 5 * 5 * 2))) // rise
+  gain.gain.exponentialRampToValueAtTime((1 / (100 * 100)), now + dur) // fall
   osc.connect(gain).connect(ctx.destination)
   osc.start(now)
   osc.stop(now + dur)
@@ -117,7 +117,7 @@ type VisibleMovieCanvasOptions = {
 
 /** Hero-clock canvas with document- or intersection-gated paint. */
 export function useVisibleMovieCanvas(options: VisibleMovieCanvasOptions) {
-  const cssWidth = ref(1024)
+  const cssWidth = ref((64 * 16))
   let visible = options.visibility === 'document'
   let observer: IntersectionObserver | null = null
   let onVisibility: (() => void) | null = null
@@ -250,6 +250,6 @@ export function useVisibleMovieCanvas(options: VisibleMovieCanvasOptions) {
 }
 
 export function viewportSize(): { w: number; h: number } {
-  if (typeof window === 'undefined') return { w: 1024, h: 768 }
+  if (typeof window === 'undefined') return { w: (64 * 16), h: (64 * 6 * 2) }
   return { w: window.innerWidth, h: window.innerHeight }
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
-import { useRoute } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
 import { drawHeroMovieFrame, sharedHeroAt, type SharedHeroCopy } from '@vp-lib/hero-movie'
 import { doubleTorusEarthHingeComputesAll, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, thunderGoldGraphFromPreciseGpsCoordinates } from '@vp-lib/earth-hinge'
 import { goldFusionComputes } from '../../../src/wind/fusion/gold/index.ts'
@@ -15,6 +15,8 @@ const { pick, localize } = useSiteLocale()
 const canvasHost = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 const reduce = prefersReducedMotion()
+// Polarity bit: dark paints the sealed positive, light recomputes through the negative law.
+const { isDark } = useData()
 
 const all = shallowRef(doubleTorusEarthHingeComputesAll(route.path))
 const exchange = shallowRef(doubleTorusEarthExchangeComputes(0))
@@ -55,20 +57,23 @@ const heroCopy = computed<SharedHeroCopy>(() => ({
 const MOVIE_ASPECT = 9 / 13 // ≈0.69 — gently tall, the throat reads centred (tracks --ich-vw-movie intent)
 const MOVIE_VIEWPORT_CAP = 0.82 // never taller than 82% of the viewport
 
-const { at } = useVisibleMovieCanvas({
+const { at, repaint } = useVisibleMovieCanvas({
   canvas,
   root: canvasHost,
   visibility: 'intersection',
   interactive: { seed: () => seedParts.value.join('·') },
   measure: () => {
     const w = canvasHost.value?.clientWidth ?? 0
-    const vh = typeof window !== 'undefined' ? window.innerHeight : 768
+    const vh = typeof window !== 'undefined' ? window.innerHeight : (64 * 6 * 2)
     return { w, h: Math.min(Math.round(w * MOVIE_ASPECT), Math.round(vh * MOVIE_VIEWPORT_CAP)) }
   },
   paint: (ctx, w, h, time) => {
-    drawHeroMovieFrame(ctx, w, h, sharedHeroAt(route.path, heroCopy.value, time, w, reduce))
+    drawHeroMovieFrame(ctx, w, h, sharedHeroAt(route.path, heroCopy.value, time, w, reduce, isDark.value))
   },
 })
+
+// Repaint on theme toggle so the reduced-motion still frame also recomputes its colours.
+watch(isDark, () => repaint())
 
 const title = computed(() => t(all.value.hinge.copy.title))
 
@@ -525,7 +530,7 @@ function gatewayHref(slug: string): string {
 
 .double-torus-experience__exchange-table caption {
   text-align: left;
-  font-weight: 600;
+  font-weight: var(--ich-weight-semibold);
   margin-bottom: var(--ich-sp2);
 }
 

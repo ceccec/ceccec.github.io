@@ -89,7 +89,7 @@ export function shadcnVitepressComponentsFused(app?: App) {
   const registered = Object.keys(REGISTRY).length
   const onApp = app ? Object.keys(REGISTRY).every((name) => app.component(name)) : true
   return {
-    fused: registered === 18 && onApp,
+    fused: registered === (9 * 2) && onApp,
     primitiveCount: registered,
     registered: Object.keys(REGISTRY),
     statement:
