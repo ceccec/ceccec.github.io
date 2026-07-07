@@ -883,8 +883,8 @@ export function staticPages(): StaticPage[] {
         en: 'All computation is quantum math and its home is the digit folders (0–9); a word-named folder is UI. The digit folders, holding only the math, are the API itself.',
         bg: 'Цялото изчисление е квантова математика и нейният дом са цифровите папки (0–9); папка с думено име е интерфейс. Цифровите папки, съдържащи само математиката, са самото API.',
       },
-      keywords: ['digit folders', 'api', 'quantum math', 'architecture', 'proof'],
-      components: ['ProofRenderer'],
+      keywords: ['digit folders', 'api', 'quantum math', 'architecture', 'proof', 'vortex strokes', 'gateways'],
+      components: ['ProofRenderer', 'VortexStrokes'],
     },
     {
       slug: 'dot-cube',

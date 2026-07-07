@@ -19,6 +19,7 @@ export type QuantumProjection =
   | 'merkaba'
   | 'double-torus'
   | 'unit-distance'
+  | 'vortex-strokes'
 
 export type QuantumAppEntry = {
   readonly id: string
@@ -56,12 +57,14 @@ const PROJECTION_SEGMENT_SLOT: Record<QuantumProjection, number> = {
   plasma: 0, taiji: 1, 'sacred-morph': 2, hologram: 3, labyrinth: 4,
   'movie-10d': 5, 'living-torus': 6, merkaba: 7, 'double-torus': 8,
   'unit-distance': 6, // VORTEX_SEQUENCE[6] = 3 — the pro-3 tower layers
+  'vortex-strokes': 2, // VORTEX_SEQUENCE[2] = 4 — the four gateway reversals of the stroke cycle
 }
 
 const PROJECTION_FORMS: Record<QuantumProjection, number> = {
   plasma: 9, taiji: 2, 'sacred-morph': 13, hologram: 1, labyrinth: 24,
   'movie-10d': 6, 'living-torus': 1, merkaba: 2, 'double-torus': 2,
   'unit-distance': 7, // seven split-prime channels drawn — a rosetta-sized sample of the t
+  'vortex-strokes': 10, // the ten-digit tour 1·2·4·8·7·5·3·6·9·0 — every digit once, the void included
 }
 
 /** The orbit's natural sense — derived from the doubling circuit (1→2 ascending ⇒ +1), not a literal. */
@@ -148,17 +151,18 @@ export function quantumAppForComponent(component: string, matrix: MindMatrix = b
 }
 
 /**
- * The drawable projection ring — the nine kernel views a card movie can play (one per vortex digit).
+ * The drawable projection ring — the ten kernel views a card movie can play: one per digit of the
+ * stroke tour 1·2·4·8·7·5·3·6·9·0 (nine vortex digits + the void's own view, vortex-strokes itself).
  * 'plasma' stays out: it is the default background scene, not a drawQuantumAppFrame case.
  */
 export const PROJECTION_RING: readonly QuantumProjection[] = [
-  'taiji', 'sacred-morph', 'hologram', 'labyrinth', 'movie-10d', 'living-torus', 'merkaba', 'double-torus', 'unit-distance',
+  'taiji', 'sacred-morph', 'hologram', 'labyrinth', 'movie-10d', 'living-torus', 'merkaba', 'double-torus', 'unit-distance', 'vortex-strokes',
 ] as const
 
 /**
  * Every component gets an animation: the projection for ANY component name, content-addressed —
  * a home-page animation component keeps its registered projection; every other component folds its
- * name into the nine-projection ring (same name ⇒ same movie, everywhere, deterministically).
+ * name into the projection ring (same name ⇒ same movie, everywhere, deterministically).
  */
 export function componentProjectionFor(component: string, matrix: MindMatrix = buildMatrix(), at = 0): QuantumProjection {
   const pinned = quantumAppForComponent(component, matrix, at)?.projection
@@ -178,7 +182,8 @@ export function quantumAppsCoverHomeAnimations(matrix: MindMatrix = buildMatrix(
       { facet: 'every flagged home card is a registered quantum app', on: covered.length === required.length },
       { facet: 'each app is one projection of the shared field', on: projections.every((p) => p.dimensions === 10) },
       { facet: 'projection params derive from VORTEX_SEQUENCE', on: projections.every((p) => p.segments > 0) },
-      { facet: 'every component resolves to an animation — pinned home projections kept, all names fold into the nine-projection ring', on: required.every((name) => componentProjectionFor(name, matrix, at) === registry.apps.find((app) => app.homeComponent === name)?.projection) && PROJECTION_RING.includes(componentProjectionFor('AnyComponentName', matrix, at)) },
+      { facet: 'every component resolves to an animation — pinned home projections kept, all names fold into the projection ring', on: required.every((name) => componentProjectionFor(name, matrix, at) === registry.apps.find((app) => app.homeComponent === name)?.projection) && PROJECTION_RING.includes(componentProjectionFor('AnyComponentName', matrix, at)) },
+      { facet: 'the ring is the stroke tour — ten views, and the dedicated vortex-strokes projection registers 4 gateway segments × 10 tour forms', on: PROJECTION_RING.length === 10 && quantumProjectionParams('vortex-strokes').segments === 4 && quantumProjectionParams('vortex-strokes').forms === 10 },
     ])
     return { computes, covered, projections, registry, facets, root: merkleFold([registry.root, ...projections.map((p) => p.root), root]), statement: 'Quantum apps cover every home animation as a field projection.', boundary: registry.boundary }
   })

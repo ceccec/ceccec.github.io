@@ -1208,6 +1208,7 @@ export function drawQuantumAppFrame(
     case 'movie-10d': return drawMovie10dProjection(ctx, w, h, frame)
     case 'merkaba': return drawMerkabaProjection(ctx, w, h, frame)
     case 'unit-distance': return drawUnitDistanceProjection(ctx, w, h, frame)
+    case 'vortex-strokes': return drawVortexStrokesProjection(ctx, w, h, frame)
     default: return drawTorusFieldProjection(ctx, w, h, frame)
   }
 }
@@ -1565,6 +1566,106 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
     ctx.lineTo(cx + Math.cos(a2) * outerR, cy + Math.sin(a2) * outerR)
     ctx.stroke()
   }
+}
+
+/**
+ * Vortex strokes — the genesis realisation as a movie: 1\2\4\8/7/5/3\6\9/0\1. The ten-digit tour
+ * (every digit once, the void included) laid on a slowly turning wheel; a runner traces the cycle,
+ * lighting each stroke with the ANGLE of its step — ascent chords in the base hue, descent chords in
+ * the opposite pole. The four polarity reversals (the gateways 8 · 3 · 9 · 0, computed never named)
+ * flare as the runner turns through them, each tied to the centre by a compass spoke — the
+ * east–west–north–south lens. Faint ten's-complement chords (9–1, 8–2, 7–3, 6–4) breathe through the
+ * middle: the zero-point reflection of the n/0\m reading. Counts come from quantumProjectionParams
+ * ('vortex-strokes': segments 4, forms 10). HONEST: a movie of vortexStrokeGateways (src/mountain/
+ * vortex) — the strokes and gateways are computed facts; the compass naming is an organizing lens.
+ */
+function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
+  const cx = w / 2
+  const cy = h / 2
+  const R = Math.min(w, h) * 0.4
+  // Counts from the sealed params, never re-declared: segments = the gateway reversals, forms = the tour.
+  const { segments: gatewayCount, forms: tourSize } = quantumProjectionParams('vortex-strokes')
+  const tour = [...VORTEX_SEQUENCE, 0]
+  const steps = tour.map((d, i) => {
+    const to = tour[(i + 1) % tour.length]!
+    return { from: d, to, up: to > d } // the stroke IS the sign of the step: \ ascent, / descent
+  })
+  const gateways = steps
+    .map((s, i) => ({ i, digit: s.from, turn: steps[(i - 1 + steps.length) % steps.length]!.up !== s.up }))
+    .filter((v) => v.turn)
+    .slice(0, gatewayCount)
+  const drift = frame.reduce ? 0 : frame.t * 0.08
+  const pulse = frame.reduce ? 0.5 : 0.5 - 0.5 * Math.cos(frame.p * Math.PI * 2)
+  const angleAt = (i: number) => drift + (i / tourSize) * Math.PI * 2 - Math.PI / 2
+  const xAt = (i: number) => cx + Math.cos(angleAt(i)) * R
+  const yAt = (i: number) => cy + Math.sin(angleAt(i)) * R
+  const runner = frame.reduce ? 0 : frame.p * tourSize
+
+  // Zero-point reflection: the ten's-complement chords (n, 10−n) breathing through the middle —
+  // the division-by-zero reading names reflection, so the chords pass THROUGH the centre region.
+  for (const [a, b] of [[9, 1], [8, 2], [7, 3], [6, 4]] as const) {
+    const ia = tour.indexOf(a)
+    const ib = tour.indexOf(b)
+    ctx.strokeStyle = movieCanvasRgba((frame.hue + 300) % 360, 0.08 + 0.1 * pulse, { L: 5 / 8 })
+    ctx.lineWidth = 1
+    ctx.beginPath(); ctx.moveTo(xAt(ia), yAt(ia)); ctx.lineTo(xAt(ib), yAt(ib)); ctx.stroke()
+  }
+
+  // The stroke cycle: chord per step, coloured by its angle (ascent = base hue, descent = the pole);
+  // the runner lights the active stroke and the wake fades behind it.
+  for (let i = 0; i < steps.length; i += 1) {
+    const s = steps[i]!
+    const wake = frame.reduce ? 1 : Math.max(0, 1 - (((runner - i) % tourSize) + tourSize) % tourSize / (tourSize * 0.6))
+    const hue = s.up ? frame.hue : (frame.hue + 180) % 360
+    ctx.strokeStyle = movieCanvasRgba(hue, 0.18 + 0.6 * wake, { L: s.up ? 11 / 16 : 9 / 16 })
+    ctx.lineWidth = 1 + 1.6 * wake
+    ctx.beginPath(); ctx.moveTo(xAt(i), yAt(i)); ctx.lineTo(xAt(i + 1), yAt(i + 1)); ctx.stroke()
+  }
+
+  // Tour nodes: a dot per digit, sized by pulse; the void (0) rendered hollow — presence without magnitude.
+  for (let i = 0; i < tour.length; i += 1) {
+    const d = tour[i]!
+    const r = Math.max(1.2, R * 0.03) * (0.8 + 0.4 * pulse)
+    const hue = (frame.hue + i * 12) % 360
+    if (d === 0) {
+      ctx.strokeStyle = movieCanvasRgba(hue, 0.7, { L: 3 / 4 })
+      ctx.lineWidth = 1.2
+      ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, Math.PI * 2); ctx.stroke()
+    } else {
+      ctx.fillStyle = movieCanvasRgba(hue, 0.45 + 0.35 * pulse, { L: 5 / 8 })
+      ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, Math.PI * 2); ctx.fill()
+    }
+  }
+
+  // The gateways: the four computed reversal vertices flare as the runner passes them on the wheel.
+  for (const g of gateways) {
+    const near = frame.reduce ? 0.5 : Math.max(0, 1 - Math.min(Math.abs(runner - g.i), tourSize - Math.abs(runner - g.i)) / 1.5)
+    const glow = 0.25 + 0.65 * near
+    const hue = (frame.hue + 90) % 360
+    ctx.strokeStyle = movieCanvasRgba(hue, glow, { L: 13 / 16 })
+    ctx.lineWidth = 1.4
+    ctx.beginPath(); ctx.arc(xAt(g.i), yAt(g.i), Math.max(2, R * 0.06) * (0.7 + 0.6 * near), 0, Math.PI * 2); ctx.stroke()
+  }
+
+  // The gateway pyramids: peaks (\→/) lift above the wheel's plane, valleys (/→\) sink below —
+  // four non-coplanar points, a pyramid of 4 triangular faces, NOT a 2D rose. Its polarity flip is
+  // the inverted pyramid; the two counter-rotate through the shared 3D primitive — the merkaba
+  // interaction of the realisation (computed in vortexGatewayPyramids, src/mountain/vortex).
+  const liftVerts = gateways.map((g) => {
+    const a = (g.i / tourSize) * Math.PI * 2 - Math.PI / 2
+    const peak = steps[(g.i - 1 + steps.length) % steps.length]!.up && !steps[g.i]!.up
+    return [Math.cos(a), Math.sin(a), peak ? 0.9 : -0.9] as const
+  })
+  const tetraEdges = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]] as const
+  const upPyramid: QSolid = { name: 'gateway-pyramid', verts: liftVerts, edges: tetraEdges }
+  const downPyramid: QSolid = { name: 'gateway-pyramid-inverse', verts: liftVerts.map(([x, y, z]) => [x, y, -z] as const), edges: tetraEdges }
+  const spin = frame.reduce ? 0.5 : frame.t * 0.3
+  drawSolid3D(ctx, cx, cy, R * 0.42, upPyramid, spin * 0.4, spin, 0, frame.hue, 0.4 + 0.25 * pulse)
+  drawSolid3D(ctx, cx, cy, R * 0.42, downPyramid, -spin * 0.4, -spin, 0, (frame.hue + 180) % 360, 0.4 + 0.25 * (1 - pulse))
+
+  // The zero point itself: a quiet centre dot — the axis every reflection passes through.
+  ctx.fillStyle = movieCanvasRgba(frame.hue, 0.3 + 0.3 * pulse, { L: 7 / 8 })
+  ctx.beginPath(); ctx.arc(cx, cy, Math.max(1, R * 0.02), 0, Math.PI * 2); ctx.fill()
 }
 
 /** Torus field — fallback projection: a quasiperiodic genus-2 point field, the shared default view. */

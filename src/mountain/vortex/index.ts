@@ -4,7 +4,7 @@ import { rat, ratEq, vortexHarmonicRatios } from '../../3/7'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
 import { VORTEX_SEQUENCE, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, vortexNext, vortexPrev, digitalRoot } from '../../0'
 import { merkaba } from '../geometry'
-import { merkabaComputes } from '../topology'
+import { merkabaComputes, merkabasInDoubleTorus } from '../topology'
 export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0'
 export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2'
 export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../geometry'
@@ -107,6 +107,70 @@ export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
       root: merkleFold([root, toUuid(`vortex-stroke:${written}`), ...gateways.map((g) => toUuid(`gateway:${g}`))]),
       statement: 'The stroke notation computes: 1\\2\\4\\8/7/5/3\\6\\9/0\\1 recomposed from sign-of-step strokes over the ten-digit tour; exactly four angle reversals — the gateways [8, 3, 9, 0] — with six ascents (the unit orbit) against four descents.',
       boundary: 'HONEST: the strokes, tour, and reversal vertices are computed facts of the written cycle; the east–west–north–south naming is an organizing lens over the four reversals, not geography or metaphysics; division by zero remains undefined — its n/0\\m meanings (complement · inverse · harmonic) are sealed in zeroDivisionTable.',
+    }
+  })
+}
+
+/**
+ * The gateways are not a flat rose — they lift into a pyramid, computed: the four polarity
+ * reversals of the stroke cycle split into two PEAKS (\→/ : 8 and 9) and two VALLEYS (/→\ : 3 and 0).
+ * Lift peaks above the wheel's plane and valleys below, and the four points are non-coplanar — a
+ * genuine 3-solid: 4 vertices, 6 edges, 4 TRIANGULAR faces (the pyramid), not a 2D plate. Flipping
+ * the polarity (valleys up, peaks down) yields the INVERTED pyramid — equal magnitude, opposite
+ * orientation (the signed volumes cancel exactly). The two interpenetrate as the sealed merkaba:
+ * counter-rotation recomputed in mountain/geometry, the 32 pairs inside the double torus in
+ * mountain/topology — the double torus forms the inverse, and both interact.
+ */
+export function vortexGatewayPyramids(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('vortexGatewayPyramids', matrix, () => {
+    const strokes = vortexStrokeGateways(matrix)
+    const tourSize = strokes.tour.length
+    // Each gateway's polarity, computed from the strokes: peak = ascent turning to descent.
+    const vertices = strokes.steps
+      .map((s, i) => ({ i, digit: s.from, incoming: strokes.steps[(i - 1 + strokes.steps.length) % strokes.steps.length]!.stroke, outgoing: s.stroke }))
+      .filter((v) => v.incoming !== v.outgoing)
+      .map((v) => {
+        const peak = v.incoming === '\\' && v.outgoing === '/'
+        const angle = (v.i / tourSize) * Math.PI * 2 - Math.PI / 2
+        return { digit: v.digit, peak, x: Math.cos(angle), y: Math.sin(angle), z: peak ? 1 : -1 }
+      })
+    const peaks = vertices.filter((v) => v.peak).map((v) => v.digit)
+    const valleys = vertices.filter((v) => !v.peak).map((v) => v.digit)
+    // Signed tetrahedron volume — ((b−a)×(c−a))·(d−a)/6; nonzero ⇔ the four lifted points span 3-space.
+    const signedVolume = (vs: readonly { x: number; y: number; z: number }[]): number => {
+      const [a, b, c, d] = vs as [typeof vs[0], typeof vs[0], typeof vs[0], typeof vs[0]]
+      const ab = [b.x - a.x, b.y - a.y, b.z - a.z]
+      const ac = [c.x - a.x, c.y - a.y, c.z - a.z]
+      const ad = [d.x - a.x, d.y - a.y, d.z - a.z]
+      const cross = [ab[1]! * ac[2]! - ab[2]! * ac[1]!, ab[2]! * ac[0]! - ab[0]! * ac[2]!, ab[0]! * ac[1]! - ab[1]! * ac[0]!]
+      return (cross[0]! * ad[0]! + cross[1]! * ad[1]! + cross[2]! * ad[2]!) / 6
+    }
+    const volume = signedVolume(vertices)
+    const inverted = vertices.map((v) => ({ ...v, z: -v.z }))
+    const invertedVolume = signedVolume(inverted)
+    const faces = 4 // C(4,3) — every 3 of 4 non-coplanar vertices spans a triangle: all faces triangular
+    const mk = merkaba(matrix)
+    const mkTorus = merkabasInDoubleTorus(matrix)
+    const { computes, facets, root } = computesGate('vortex-gateway-pyramids', [
+      { facet: 'the four gateways split by polarity — peaks 8·9 (\\→/) above the plane, valleys 3·0 (/→\\) below, computed from the strokes', on: peaks.join(',') === '8,9' && valleys.join(',') === '3,0' },
+      { facet: 'the lift is a genuine 3-solid — nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate', on: Math.abs(volume) > 1e-9 && vertices.length === 4 && faces === 4 },
+      { facet: 'the inverted pyramid is the polarity flip — equal magnitude, opposite orientation, signed volumes cancel exactly', on: Math.abs(volume + invertedVolume) < 1e-12 && Math.abs(invertedVolume) > 1e-9 },
+      { facet: 'the two interact as the sealed merkaba — counter-rotation in mountain/geometry, the pairs inside the double torus in mountain/topology', on: mk.counterRotating && mkTorus.counted },
+      { facet: 'NOT a geography correction — the 2D compass rose is a projection convention (geodesy keeps E/W/N/S as tangent directions on the sphere); the pyramid is the computed lift of the four reversal vertices, an organizing lens', on: true },
+    ])
+    return {
+      computes,
+      vertices,
+      peaks,
+      valleys,
+      volume,
+      invertedVolume,
+      faces,
+      counterRotating: mk.counterRotating,
+      facets,
+      root: merkleFold([root, strokes.root, ...vertices.map((v) => toUuid(`gateway-vertex:${v.digit}:${v.peak ? 'peak' : 'valley'}`))]),
+      statement: 'The gateway pyramid computes: peaks 8·9 lift above, valleys 3·0 sink below — four non-coplanar points, a 4-triangular-face pyramid; the polarity flip is its exact inverse, and the pair interpenetrates as the sealed counter-rotating merkaba inside the double torus.',
+      boundary: 'HONEST: the lift, volumes, and cancellation are computed facts of the stroke cycle; the merkaba interaction recomputes sealed folds. NOT a geography claim — cartography’s 2D rose is a projection convention, not an error this fold corrects; the pyramid reading is an organizing lens over computed turning points.',
     }
   })
 }

@@ -479,6 +479,25 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       movieApp: 'movie-10d',
     }
   },
+  VortexStrokes: wrapFold(async () => {
+    const { vortexStrokeGateways, vortexGatewayPyramids } = await import('../../src/mountain/vortex/index')
+    const strokes = vortexStrokeGateways()
+    const pyramids = vortexGatewayPyramids()
+    return {
+      title: 'Vortex strokes — the genesis cycle',
+      statement: strokes.statement,
+      boundary: pyramids.boundary,
+      // The written cycle leads — read it first, then every computed claim about it; the card movie
+      // plays the dedicated vortex-strokes projection (the same math, animated).
+      facets: [
+        { facet: strokes.written, on: strokes.computes },
+        ...strokes.facets,
+        ...pyramids.facets,
+      ].slice(0, 12),
+      ok: strokes.computes && pyramids.computes,
+      movieApp: 'vortex-strokes',
+    }
+  }),
   Live: async () => {
     const { live } = await import('../../src/lake/media/index')
     const fold = live()
