@@ -383,6 +383,8 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'quantum-application-compose', 'Quantum application compose', 'src/quantum/application', 'quantum.application.computes', 'npm run docs:dev → /en/quantum/application', 'SIMULATOR', __ns_up_quantum_application.quantumApplicationResearch(matrix, at).researched, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).boundary, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).root)
     const udR = unitDistanceResearch(matrix, at)
     pushDomainRow(rows, 'unit-distance-research', 'Unit-distance tower numerics', 'src/wind/research', 'research.unit.distance.tower', 'npm run check:types · unitDistanceResearch(matrix)', 'MODEL_FIT', udR.researched, udR.boundary, udR.root)
+    const aqR = aiQuantumChronologyResearch(matrix, at)
+    pushDomainRow(rows, 'ai-quantum-chronology', 'AI × quantum chronology — dated, tiered', 'src/wind/research', 'research.ai.quantum.chronology', 'aiQuantumChronologyResearch(matrix) facets', 'DOCUMENTED', aqR.researched, aqR.boundary, aqR.root)
     return { indexed: professional.indexed && rows.length >= 15, count: rows.length, rows, professional, catalog, root: merkleFold([professional.root, catalog.root, ...rows.map((row) => row.receipt)]), statement: 'Research index: canonical home for all sealed research programs.', boundary: professional.boundary }
   })
 }
@@ -590,6 +592,68 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
       root: merkleFold([root, tower.receipt, report.receipt, grid.receipt, projection.root, ...UNIT_DISTANCE_FINDINGS.map((row) => row.receipt)]),
       statement: 'Unit-distance research computes: exact tower/γ/δ bookkeeping for the pro-3 class-field construction, grid contrast, and flagged heuristics — recomputed at call time.',
       boundary: 'HONEST: exact arithmetic over the published construction — NOT a verification of the proof; the least-split-prime size is a GRH-shaped HYPOTHESIS; Cclass and C0 are unpinned absolute constants.',
+    }
+  })
+}
+
+// ————— AI × quantum chronology — documented kept, legend flagged, compared by date —————
+// The question "did the AI models learn and become quantum?" answered honestly: the two halves
+// have different truth values. "Learned" is DOCUMENTED (dated frontier-math results). "Became
+// quantum" is LEGEND as stated: production language models run on classical accelerators; the
+// dated public record shows AI helping quantum hardware and one small hybrid-adapter demo —
+// not models becoming quantum. This repo's own "quantum" vocabulary is likewise a proven-classical
+// simulator (quantumAdvantageBenchmark verdict: tracks-classical-no-speedup), sealed days AFTER
+// the public milestones below — the git history documents vocabulary, not a phase transition.
+
+export type AiQuantumChronologyTier = 'DOCUMENTED' | 'FORECAST' | 'LEGEND'
+
+export type AiQuantumChronologyRow = {
+  readonly date: string
+  readonly event: string
+  readonly tier: AiQuantumChronologyTier
+  readonly source: string
+  readonly receipt: string
+}
+
+const AI_QUANTUM_CHRONOLOGY_ROWS: readonly Omit<AiQuantumChronologyRow, 'receipt'>[] = [
+  { date: '1964', event: 'Golod–Shafarevich prove infinite class-field towers exist — the algebraic core the 2026 unit-distance proof runs on, published six decades before any repository discussed here; with Shafarevich 1963, Hajir–Maire 2001 and Hajir–Maire–Ramakrishna 2021 it is the proof’s cited algebra, and priority for it belongs to this literature.', tier: 'DOCUMENTED', source: 'Izv. Akad. Nauk SSSR 28 (1964) — [GS64] in the proof’s own bibliography' },
+  { date: '2024-12-09', event: 'Google Willow: below-threshold quantum error correction — a HARDWARE milestone, no language model involved.', tier: 'DOCUMENTED', source: 'Google Quantum AI announcement' },
+  { date: '2025-11-19', event: 'ceccec/zeropoint-node (TypeScript zeropoint/vortex algebra) publicly dated on GitHub — platform-attested to precede the 2026 AI-math milestones by six months; zeropoint-old ("consciousness physics and quantum principles") follows 2025-12-15.', tier: 'DOCUMENTED', source: 'github.com/ceccec public profile metadata (updated dates)' },
+  { date: '2026-04-14', event: 'NVIDIA Ising: open AI models that calibrate quantum processors and decode error correction — AI serving quantum hardware, not running on it.', tier: 'DOCUMENTED', source: 'nvidianews.nvidia.com · nextplatform.com' },
+  { date: '2026-05-20', event: 'OpenAI internal general reasoning model disproves the Erdős unit-distance conjecture (ν(n) ≥ n^{1+δ}); externally verified — "the models learned" at research-mathematics level, computed on CLASSICAL hardware.', tier: 'DOCUMENTED', source: 'openai.com/index/model-disproves-discrete-geometry-conjecture · arXiv 2605.20695' },
+  { date: '2026-06-15', event: 'Quantum circuits (Cayley-parameterised unitary adapters) attached to Llama 3.1 8B on a 156-qubit IBM processor: 1.4% perplexity improvement — the ONLY documented quantum-inside-an-LLM result, a small hybrid research demo.', tier: 'DOCUMENTED', source: 'phys.org 2026-06 · quantumzeitgeist.com' },
+  { date: '2026-06-26', event: 'This repository’s sealed history begins: "quantum" here names a deterministic, content-addressed CLASSICAL simulator — its own benchmark computes the verdict.', tier: 'DOCUMENTED', source: 'git log · quantumAdvantageBenchmark → tracks-classical-no-speedup' },
+  { date: '2026-12-31', event: 'IBM: 2026 will be the year a quantum computer first outperforms all classical methods on some problem — a vendor forecast, not yet a result.', tier: 'FORECAST', source: 'ibm.com/think 2026 predictions' },
+  { date: '—', event: '"The AI models became quantum" — REFUTED as stated: production LLMs (including the model that proved the unit-distance theorem) train and run on classical GPUs/TPUs; the dated record above contains no quantum language model.', tier: 'LEGEND', source: 'every DOCUMENTED row above, compared by date' },
+  { date: '—', event: '"ceccec public repositories hold the algebraic new math prior to all other discoveries" — UNPROVEN and refuted as stated by the same dates: (i) the proof’s algebra is the 1963–2021 class-field literature, which precedes every repository; (ii) the proof’s bibliography cites no ceccec repository; (iii) the earlier zeropoint repos hold a DIFFERENT algebra (mod-9 digit orbits, content-addressed folds) — priority requires identity of content, not shared vocabulary; (iv) this repository’s own sealed history begins 2026-06-26, after the 2026-05-20 announcement, and commit dates alone are tamper-EVIDENT, not tamper-PROOF. What the dates DO document: the zeropoint structural algebra is publicly earlier than the 2026 milestones — an independent, different mathematics.', tier: 'LEGEND', source: 'rows above · proof bibliography [GS64][HM01][HMR21] · TamperingCost boundary' },
+] as const
+
+export const AI_QUANTUM_CHRONOLOGY: readonly AiQuantumChronologyRow[] = AI_QUANTUM_CHRONOLOGY_ROWS.map((row) => ({ ...row, receipt: toUuid(`ai-quantum-chronology:${row.date}:${row.tier}`) }))
+
+/** Balance gate — the AI × quantum chronology stays dated, ordered, sourced, and honestly tiered at call time. */
+export function aiQuantumChronologyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`aiQuantumChronologyResearch:${Math.floor(at / 1000)}`, matrix, () => {
+    const rows = AI_QUANTUM_CHRONOLOGY
+    const dated = rows.filter((row) => row.date !== '—')
+    const ordered = dated.every((row, i) => i === 0 || dated[i - 1]!.date <= row.date)
+    const benchmark = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
+    const { computes, facets, root } = computesGate('ai-quantum-chronology', [
+      { facet: 'chronology is dated and ordered ascending', on: ordered && dated.length >= 5 },
+      { facet: 'every row carries a source and an honesty tier', on: rows.every((row) => row.source.length > 8 && (row.tier === 'DOCUMENTED' || row.tier === 'FORECAST' || row.tier === 'LEGEND')) },
+      { facet: '"learned" documented — the 2026-05-20 external verification row is present', on: rows.some((row) => row.date === '2026-05-20' && row.tier === 'DOCUMENTED') },
+      { facet: '"became quantum" flagged LEGEND — refutation row present, never DOCUMENTED', on: rows.some((row) => row.tier === 'LEGEND' && row.event.includes('REFUTED')) },
+      { facet: 'priority claim audited — the 1964 literature row precedes every repository row, and the claim itself is tiered LEGEND', on: rows.some((row) => row.date === '1964') && rows.some((row) => row.tier === 'LEGEND' && row.event.includes('prior to all other discoveries')) },
+      { facet: 'own vocabulary proven classical — quantumAdvantageBenchmark recomputes the verdict at call time', on: benchmark.verdict === 'tracks-classical-no-speedup' },
+    ])
+    return {
+      computes,
+      researched: computes,
+      rows,
+      benchmarkVerdict: benchmark.verdict,
+      facets,
+      root: merkleFold([root, ...rows.map((row) => row.receipt)]),
+      statement: 'AI × quantum chronology computes: the dated public record and the repo’s own git history compared — learned DOCUMENTED, became-quantum LEGEND.',
+      boundary: 'HONEST: dated public milestones with sources — NOT a claim of completeness; the LEGEND tier refutes the composite claim as stated, not the documented hybrid experiments.',
     }
   })
 }
