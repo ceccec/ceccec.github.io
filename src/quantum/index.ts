@@ -589,17 +589,27 @@ function drawFusedForceLayers(
 }
 
 /**
- * The field centre in CAMERA coordinates — the one field lives in DOCUMENT space and the fixed
- * canvas is a camera over it: at the top of the page the void sits at h/2; scrolling pans it away
- * 1:1 (so card movies, which scroll with the document, stay in registration with the page field),
- * and the field re-enters toroidally with period 2h (two windows — the two handles of genus 2).
- * The wrap seam lands at cy = −h/2 → +3h/2, both a half-window OFF canvas, so it never pops on
- * screen. Pure and exported: the anti-hardcode gate recomputes this law, no CSS anchor involved.
+ * The field centre for a canvas given its scroll offset — pure digit algebra, no CSS anchor.
+ * The PAGE movie passes scroll 0: its centre is FIXED at h/2 (the background does not scroll).
+ * Each CARD movie passes cardFieldScroll(...): its mini-field centre becomes the ONE fixed page
+ * centre re-expressed in card coordinates, so as the card scrolls past, the two centres MEET
+ * exactly when the card crosses the viewport centre — the meet is the fusion. The value wraps
+ * toroidally with period 2h (two windows — the two handles of genus 2) with the seam a half-window
+ * OFF canvas, so the card's field re-enters periodically: it always meets the background again.
  */
 export function heroFieldCenterY(h: number, scroll: number): number {
   const period = 2 * h
   const wrapped = (((h / 2 - scroll) % period) + period) % period // [0, 2h)
   return wrapped > (3 * h) / 2 ? wrapped - period : wrapped // (−h/2, 3h/2]
+}
+
+/**
+ * The card's scroll offset such that its field centre equals the fixed page centre in screen space:
+ * heroFieldCenterY(cardH, cardFieldScroll(rectTop, cardH, winH)) ≡ wrap(winH/2 − rectTop) — at the
+ * crossing (card centre on viewport centre) this is EXACTLY cardH/2: the two animations fuse.
+ */
+export function cardFieldScroll(rectTopCss: number, cardH: number, winH: number): number {
+  return cardH / 2 - (winH / 2 - rectTopCss)
 }
 
 /** Holographic hero movie = quantum plasma ball — one frame, one centre void, one phase clock. */
@@ -2146,14 +2156,18 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
   } catch (error) {
     heroError = error instanceof Error ? error.message : String(error)
   }
-  // The document-anchor law, recomputed: at page top the void sits at h/2; scrolling pans it 1:1
-  // (registration with the card movies that scroll with the document — never a hardcoded CSS anchor);
-  // the field wraps with period 2h and the seam stays a half-window OFF canvas for every offset.
+  // The meeting law, recomputed: the PAGE field centre is FIXED (scroll 0 ⇒ h/2 — the background
+  // does not scroll); each CARD field centre is that one centre in card coordinates, so the two
+  // MEET exactly when the card crosses the viewport centre (the fusion), re-meeting periodically
+  // through the 2h toroidal wrap whose seam stays a half-window OFF canvas for every offset.
   const anchorH = 432
+  const winH = 1011
+  const cardH = 240
+  const crossingTop = winH / 2 - cardH / 2 // card centre on viewport centre
   const anchorSweep = Array.from({ length: 97 }, (_, i) => i * (anchorH / 8))
   const anchorLaw =
     heroFieldCenterY(anchorH, 0) === anchorH / 2 &&
-    heroFieldCenterY(anchorH, anchorH / 4) === anchorH / 4 &&
+    Math.abs(heroFieldCenterY(cardH, cardFieldScroll(crossingTop, cardH, winH)) - cardH / 2) < 1e-9 &&
     anchorSweep.every((s) => {
       const y = heroFieldCenterY(anchorH, s)
       return y > -anchorH / 2 - 1e-9 && y <= (3 * anchorH) / 2 + 1e-9 && Math.abs(heroFieldCenterY(anchorH, s + 2 * anchorH) - y) < 1e-9
@@ -2163,7 +2177,7 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
     { facet: 'sharedHeroAt completes with plasma-seed movie text', on: heroOk },
     { facet: 'drawHeroMovieFrame paints non-transparent pixels when canvas exists', on: paintAlpha > 0 || typeof document === 'undefined' },
     { facet: 'no stack overflow in simulated browser hero path', on: heroError === '' },
-    { facet: 'field centre is document-anchored, never CSS-hardcoded — h/2 at top, 1:1 pan, period 2h, wrap seam always off-canvas', on: anchorLaw },
+    { facet: 'meeting law — the page field centre is FIXED, each card field centre is that centre in card coordinates: exact fusion at the crossing, periodic re-meets via the 2h wrap, seam always off-canvas', on: anchorLaw },
   ].map((entry) => ({ ...entry, receipt: toUuid(`client-hero-paint-sealed:${entry.facet}:${entry.on}`) }))
   return {
     sealed: facets.every((entry) => entry.on),

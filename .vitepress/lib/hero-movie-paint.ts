@@ -10,6 +10,8 @@ export {
   movieTextFromCopy,
   realtimeSubtitleAt,
   sharedHeroAt,
+  cardFieldScroll,
+  heroFieldCenterY,
   subscribeHeroClock,
   HERO_CYCLE_MS,
   type EarthHingePaintGateway,

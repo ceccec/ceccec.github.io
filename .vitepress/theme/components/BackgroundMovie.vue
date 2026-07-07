@@ -40,10 +40,10 @@ const { repaint } = useVisibleMovieCanvas({
   measure: () => viewportSize(),
   paint: (ctx, w, h, atMs) => {
     at.value = atMs
-    // The field lives in DOCUMENT space; the fixed canvas is a camera, so the live scroll offset is
-    // part of the field state (heroFieldCenterY pans the void 1:1, wrapping toroidally off-canvas).
-    const scroll = typeof window === 'undefined' ? 0 : window.scrollY
-    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value, scroll)
+    // The page field centre is FIXED (scroll 0 ⇒ h/2): the background movie does not scroll. The
+    // CARD movies pan their mini-fields (cardFieldScroll) to MEET this centre as they cross — the
+    // meet is the fusion; the one algebra, two frames of reference.
+    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value)
     drawHeroMovieFrame(ctx, w, h, shared)
   },
 })

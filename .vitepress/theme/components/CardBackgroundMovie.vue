@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import {
   backgroundSceneFromShared,
+  cardFieldScroll,
   cardMoviePath,
   drawBackgroundMovie,
   drawQuantumAppFrame,
@@ -44,12 +45,19 @@ const { repaint } = useVisibleMovieCanvas({
     h: root.value?.clientHeight || 120,
   }),
   paint: (ctx, w, h, at) => {
+    // The meeting law (read INSIDE the tick — no listener): the card's mini-field centre is the ONE
+    // fixed page centre in card coordinates, so as the card scrolls it MEETS the background movie
+    // exactly at the viewport-centre crossing — the meet is the fusion of the two digit fields.
+    const rectTop = root.value?.getBoundingClientRect().top ?? 0
+    const winH = typeof window === 'undefined' ? h : window.innerHeight
     const shared = sharedHeroAt(
       moviePath.value,
       { title: props.title ?? props.seed },
       at,
       w,
       reduce,
+      true,
+      cardFieldScroll(rectTop, h, winH),
     )
     if (props.app) {
       drawQuantumAppFrame(ctx, w, h, props.app, {

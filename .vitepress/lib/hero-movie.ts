@@ -11,6 +11,8 @@ export {
   movieTextFromCopy,
   realtimeSubtitleAt,
   sharedHeroAt,
+  cardFieldScroll,
+  heroFieldCenterY,
   subscribeHeroClock,
   componentProjectionFor,
   quantumAppForComponent,
