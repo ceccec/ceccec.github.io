@@ -218,10 +218,6 @@ export default defineConfig({
   description: siteDescription,
   // Page tree lives under .vitepress/pages (thin mounts + paths.ts); logic in src/; static assets in public/.
   srcDir: '.vitepress/pages',
-  // publicDir resolves RELATIVE TO srcDir (.vitepress/pages), so a bare 'public' silently pointed at a
-  // nonexistent folder and NOTHING from public/ shipped — sw.js, site.webmanifest and icon.svg 404ed in
-  // production (the service-worker console error on every page). Anchor it to the repo root.
-  publicDir: join(projectRoot, 'public'),
   cleanUrls: true,
   // Production seal (W6): dead markdown links FAIL the build — never suppressed. VitePress defaults to false,
   // but we pin it so no future edit can silence a broken link; gaps surface loud and get filled. The computed
@@ -235,6 +231,12 @@ export default defineConfig({
   // theme chunk is large by design. Raise the warning limit to keep build output
   // clean while still flagging genuine bloat above the headroom.
   vite: {
+    // Static assets live in repo-root public/, but vite resolves a default publicDir against its root
+    // (srcDir = .vitepress/pages), i.e. a nonexistent folder — so NOTHING from public/ shipped and sw.js,
+    // site.webmanifest and icon.svg 404ed in production. publicDir is a VITE option, not a VitePress
+    // site-config key (a top-level `publicDir:` is silently ignored — verified against a fresh build),
+    // so the absolute anchor must live HERE for vite's native copyPublicDir to run.
+    publicDir: join(projectRoot, 'public'),
     server: vitepressDevServerBind(),
     optimizeDeps: vitepressDevOptimizeDeps(),
     build: {
