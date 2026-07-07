@@ -109,7 +109,7 @@ function movieSeedBundleForRay(
   ray: string,
   path: string,
   trinity: 'device' | 'code',
-  hueMod: number,
+  seedHexLen: number, // hex-digit LENGTH for seedFromText (was misnamed hueMod — it never was a modulus)
 ): MovieSeedBundle {
   const side = trinity === 'device' ? 'device' : 'code'
   const movieText = `plasma-seed:${side}:${ray}:${path}`
@@ -117,7 +117,7 @@ function movieSeedBundleForRay(
     {
       uuid: toUuid(`client-movie-seed:${side}:${ray}:${path}`),
       label: ray,
-      hueSeed: seedFromText(`${path}:${side}:${ray}`, hueMod),
+      hueSeed: seedFromText(`${path}:${side}:${ray}`, seedHexLen),
     },
   ]
   return {
