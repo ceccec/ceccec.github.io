@@ -499,8 +499,8 @@ export function staticPages(): StaticPage[] {
         en: 'Explore the whole portal multidimensionally: eight dimensions of experience — see, hear, ask, prove, learn, pattern, sense, create — each browsable.',
         bg: 'Разгледай целия портал многоизмерно: осем измерения на опита — виж, чуй, питай, докажи, учи, шарка, усети, твори.',
       },
-      keywords: ['multidimensional', 'explore', 'dimensions', 'ux'],
-      components: ['Multidimensional', 'Mysteries', 'HarmonicSpiral'],
+      keywords: ['multidimensional', 'explore', 'dimensions', 'ux', 'ancient', 'decodes', 'frontier'],
+      components: ['Multidimensional', 'Mysteries', 'HarmonicSpiral', 'AncientDecodes'],
     },
     {
       slug: 'a432',

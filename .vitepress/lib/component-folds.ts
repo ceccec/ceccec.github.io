@@ -479,6 +479,21 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       movieApp: 'movie-10d',
     }
   },
+  AncientDecodes: wrapFold(async () => {
+    const { discoverDecodeAncientKnowledgeFittingPath } = await import('../../src/thunder/decode/index')
+    const fold = discoverDecodeAncientKnowledgeFittingPath()
+    return {
+      title: 'Ancient decodes — the path catalog',
+      statement: fold.statement,
+      boundary: fold.boundary,
+      // Green facets = decoded and holding; hollow facets = the open frontier (the next waves).
+      facets: [
+        ...fold.decoded.map((entry) => ({ facet: entry.domain, on: entry.on })),
+        ...fold.frontier.map((domain) => ({ facet: `frontier — ${domain}`, on: false })),
+      ],
+      ok: fold.discovering,
+    }
+  }),
   VortexStrokes: wrapFold(async () => {
     const { vortexStrokeGateways, vortexGatewayPyramids } = await import('../../src/mountain/vortex/index')
     const strokes = vortexStrokeGateways()

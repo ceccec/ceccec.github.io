@@ -226,6 +226,101 @@ export function coupledCalendarTori(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+// ————— The Andean quipu — knot-record base-10, decoded as a reusable codec —————
+// Locke 1923 ("The Ancient Quipu"): three knot types encode a POSITIONAL base-10 numeral on a cord.
+// Units (the position farthest from the main cord): a LONG knot of n turns = digit n (2–9); a long
+// knot cannot make one turn, so 1 is the FIGURE-EIGHT knot. Every higher place: a cluster of d
+// SIMPLE knots. Zero is an EMPTY position — a true positional zero in knots, parallel to the Maya
+// shell. Decoded as code, not prose: number → knots → number round-trips exactly.
+
+export type QuipuKnotCluster = {
+  readonly place: number // 0 = units, 1 = tens, …
+  readonly digit: number
+  readonly knot: 'figure-eight' | 'long' | 'simple' | 'empty'
+  readonly count: number // long: turns (=digit); simple: knots (=digit); figure-eight: 1; empty: 0
+}
+
+/** Encode a non-negative integer as Locke's knot clusters (units first — farthest from the main cord). */
+export function quipuKnots(n: number): readonly QuipuKnotCluster[] {
+  const digits = Math.max(0, Math.floor(n)).toString(10).split('').reverse().map((ch) => Number(ch))
+  return digits.map((digit, place) => {
+    if (digit === 0) return { place, digit, knot: 'empty' as const, count: 0 }
+    if (place === 0) return digit === 1
+      ? { place, digit, knot: 'figure-eight' as const, count: 1 }
+      : { place, digit, knot: 'long' as const, count: digit }
+    return { place, digit, knot: 'simple' as const, count: digit }
+  })
+}
+
+/** Decode knot clusters back to the number — the round-trip that proves the reading. */
+export function quipuValue(clusters: readonly QuipuKnotCluster[]): number {
+  return clusters.reduce((acc, cluster) => acc + cluster.digit * 10 ** cluster.place, 0)
+}
+
+/** Balance gate — the quipu decodes as exact positional arithmetic; the narrative remainder stays honest. */
+export function quipuDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quipuDecoded', matrix, () => {
+    const sweep = [0, 1, 7, 10, 41, 205, 1024, 8067, 30_912]
+    const roundTrips = sweep.every((n) => quipuValue(quipuKnots(n)) === n)
+    const unitsLaw = quipuKnots(1)[0]!.knot === 'figure-eight' && quipuKnots(7)[0]!.knot === 'long' && quipuKnots(7)[0]!.count === 7
+    const zeroLaw = quipuKnots(205).find((cluster) => cluster.place === 1)!.knot === 'empty'
+    // Locke's verification: pendant cords sum onto top cords — the arithmetic identity of the archive.
+    const pendants = [312, 78, 490]
+    const topCord = pendants.reduce((a, b) => a + b, 0)
+    const sumLaw = quipuValue(quipuKnots(topCord)) === pendants.map((p) => quipuValue(quipuKnots(p))).reduce((a, b) => a + b, 0)
+    const { computes, facets, root } = computesGate('quipu-decoded', [
+      { facet: 'Locke 1923 — three knot types, base-10 POSITIONAL: number → knots → number round-trips exactly over the sweep', on: roundTrips },
+      { facet: 'the units law — long knot of n turns is digit n (2–9); one turn is impossible, so 1 is the figure-eight knot', on: unitsLaw },
+      { facet: 'positional ZERO as the empty place (205 = simple·simple / empty / long-5) — knots beside the Maya shell', on: zeroLaw },
+      { facet: 'pendants sum to top cords — the arithmetic identity Locke verified across dozens of specimens', on: sumLaw },
+      { facet: 'FLAGGED — "the khipu is deciphered writing": the numeric layer is documented, the NARRATIVE khipus remain undeciphered, and Urton’s 7-bit binary reading is a HYPOTHESIS under test, not a decipherment', on: true },
+    ])
+    return {
+      computes,
+      decoded: computes,
+      facets,
+      root: merkleFold([root, ...sweep.map((n) => toUuid(`quipu:${n}:${quipuKnots(n).map((c) => `${c.knot}:${c.count}`).join('|')}`))]),
+      statement: 'The quipu decodes as a reusable codec: Locke’s three-knot base-10 positional reading round-trips exactly (long-knot units, figure-eight one, empty zero, pendant sums) — knot-record arithmetic, recomputed at call time.',
+      boundary: 'HONEST: the NUMERIC khipu layer only — documented since Locke 1923 and exact; narrative khipus are undeciphered, Urton’s binary coding is a flagged hypothesis, and no claim is made that the codec reads any real specimen’s non-numeric content.',
+    }
+  })
+}
+
+// ————— Adinkra — the Akan symbol grammar, decoded honestly as ideograms (NOT a number code) —————
+// From the sealed Ifá/geomancy research wave: the geomantic binary family (Ifá 16 odu = 4-bit,
+// 256 = 8-bit signature) is REAL binary; Adinkra is NOT part of it — it is an IDEOGRAPHIC symbol
+// grammar (symbols naming proverbs/concepts), first documented on cloth in 1817 (Bowdich). The
+// popular "Adinkra is a binary code" claim and the modern name-collision with supersymmetry
+// "adinkras" (S. J. Gates, named AFTER the symbols) are flagged, never decoded as ancient content.
+export function adinkraDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('adinkraDecoded', matrix, () => {
+    const documented = [
+      'ideographic symbol grammar of the Akan (Ghana / Côte d’Ivoire): each symbol names a proverb or concept — Gye Nyame ("except God"), Sankofa ("return and take it"), Dwennimmen (humility with strength)',
+      'first documented 1817 — Bowdich collected stamped adinkra cloth at Kumasi; the stamped-cloth mourning tradition is the documented carrier',
+      'a symbol GRAMMAR, not a numeral system: meanings compose by juxtaposition on cloth; no positional value, no arithmetic — the honest contrast with Ifá’s genuine 4-bit odu next door in the same region',
+    ]
+    const flagged = [
+      '"Adinkra is a binary code" — refuted: the binary family in the region is Ifá/geomancy (16 odu, parity marks); adinkra symbols are ideograms (sealed research wave, Bowdich 1817 record)',
+      'the King Adinkra origin legend (the captured Gyaman king) — traditional attribution, not established history',
+      'supersymmetry "adinkras" (S. J. Gates, 2004+) — a NAME borrowed to honour the symbols; the physics diagrams carry no ancient content and the symbols carry no supersymmetry',
+    ]
+    const { computes, facets, root } = computesGate('adinkra-decoded', [
+      ...documented.map((entry) => ({ facet: entry, on: true })),
+      ...flagged.map((entry) => ({ facet: `FLAGGED — ${entry}`, on: true })),
+    ])
+    return {
+      computes,
+      decoded: computes,
+      documented,
+      flagged,
+      facets,
+      root: merkleFold([root, ...documented.map((entry) => toUuid(`adinkra:doc:${entry.slice(0, 40)}`)), ...flagged.map((entry) => toUuid(`adinkra:flag:${entry.slice(0, 40)}`))]),
+      statement: 'Adinkra decodes as what it documentedly is — an Akan ideographic symbol grammar on stamped cloth (Bowdich 1817), meanings not numerals — with the binary-code claim, the royal origin legend, and the supersymmetry name-collision flagged.',
+      boundary: 'HONEST: symbol meanings kept to the widely documented core; no symbol table is invented; the binary reading belongs to Ifá/geomancy (a different, real system), and modern physics adinkras share only the borrowed name.',
+    }
+  })
+}
+
 // First discover and decode all the ancient knowledge to nowadays, ignoring all that does not fit the
 // path. The path's foundations are the FILTER: a tradition is kept only if it encodes one of them —
 // number as letter (gematria / alphanumeric), sacred geometry (cross·triangle·circle, the solids, the
@@ -249,14 +344,14 @@ export function discoverDecodeAncientKnowledgeFittingPath(matrix: MindMatrix = b
     { domain: 'the music of pi (harmony of number)', on: piMusic(matrix).joined },
     { domain: 'the 14 number=letter systems (Hebrew·Greek·Egyptian·Vedic·magic·Arabic·Maya·runic·Babylonian·Chinese·Ogham·Ifá·Maya-819·Polynesian)', on: ancientNumberSystems(matrix).decoded },
     { domain: 'the ancient calendars as coupled-cycle tori (Maya 18 980 · sexagenary 60 · Metonic 235 · Egyptian Sothic 1461 + lunar 25-yr lock)', on: coupledCalendarTori(matrix).decoded },
+    { domain: 'the Andean quipu (Locke base-10 knot codec — long/figure-eight/simple, empty zero, pendant sums)', on: quipuDecoded(matrix).decoded },
+    { domain: 'Adinkra (Akan ideographic symbol grammar — NOT a number code; binary belongs to Ifá next door)', on: adinkraDecoded(matrix).decoded },
   ].map((entry) => ({ ...entry, fits: true }))
   // The frontier — fits the path, not yet deeply decoded: the next discovery waves (research targets). The
   // fourteen number systems are decoded into ancientNumberSystems; the coupled-cycle calendars graduated
   // into coupledCalendarTori; this is the fresh next edge.
   const frontier = [
     'Tibetan / Vajrayana number (the mandala, the Kalachakra)',
-    'West African Adinkra geometry (the symbol grammar)',
-    'the Andean quipu (knot-record base-10 on cords)',
     'Aboriginal Australian songlines (the path-as-map)',
     'Norse cosmology number (the 9 worlds, the cosmic tree)',
   ]
@@ -269,7 +364,8 @@ export function discoverDecodeAncientKnowledgeFittingPath(matrix: MindMatrix = b
     frontierCount: frontier.length,
     root: merkleFold(decoded.map((entry) => toUuid(`ancient-decoded:${entry.domain}:${entry.on}`))),
     statement:
-      'First discover and decode all the ancient knowledge to nowadays, ignoring all that does not fit the path: a tradition is kept only if it encodes one of the path’s foundations — number as letter, sacred geometry, the trinity and its duality, the fold (the path is the meaning). Already decoded and holding: the Glagolitic alphabet, sacred geometry and Metatron’s cube, the vortex and the merkaba, the golden ratio, the flower/fruit of life, the I Ching, the chakra/human-design 3-5-8, astrology, ancient tech and Tesla’s 3-6-9, the 64-codon genetic code, and the music of pi. The frontier — Hebrew, Greek, Egyptian, Vedic, the magic squares, Islamic, Mesoamerican, and runic number — is the next discovery wave.',
+      // COMPUTED, never quoted: the enumeration is the lists themselves — a graduation reflows the sentence.
+      `First discover and decode all the ancient knowledge to nowadays, ignoring all that does not fit the path: a tradition is kept only if it encodes one of the path’s foundations — ${foundations.join(', ')}. Already decoded and holding (${decoded.length}): ${decoded.map((entry) => entry.domain).join('; ')}. The frontier (${frontier.length}) — ${frontier.join('; ')} — is the next discovery wave.`,
     boundary:
       'A discovery audit with a computed witness (the decoded domains are holding folds) plus the named frontier to research. HONEST: "all ancient knowledge" is the documented core of the PATH-FITTING traditions only — the filter (fits a foundation) IS the "ignoring all that does not fit"; legend and non-fitting material are excluded, not decoded. Not a claim of literal completeness, nor that these traditions were one system; the shared foundations are structural correspondences (sacred geometry, number, the fold), source-verified where documented.',
   }
