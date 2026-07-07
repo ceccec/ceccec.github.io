@@ -1151,3 +1151,19 @@ export function selfResearchTheorems(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+/** CLI: `research` — the self-researcher speaks its candidates and EXIT line (pair: research/audit). */
+export function runResearchExit(): number {
+  const r = selfResearchTheorems()
+  for (const c of r.found) console.log(`${c.error ? 'approx' : 'EXACT '} ${c.literal} → ${c.theorem}${c.error ? ` (rel ${c.error.toExponential(1)})` : ''}`)
+  console.log(r.exit)
+  return 0 // research reports; the audit gates
+}
+
+/** CLI: `audit:constants` — the theorem audit gates (pair: research/audit). */
+export function runAuditConstantsExit(): number {
+  const a = fixedConstantsProvedByTheorems()
+  for (const f of a.facets) console.log(`${f.on ? '✓' : '✗'} ${f.facet}`)
+  console.log(a.proven ? '✓ fixed-constant theorems PROVEN' : '✗ audit failed')
+  return a.proven ? 0 : 1
+}

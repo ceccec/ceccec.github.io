@@ -21,6 +21,7 @@ import { knowledgeRevealedByMerkabaFold } from '../../../mountain/topology'
 import { commandsSavedInQuantumPairs } from '../../../thunder/commands'
 import { sendWavesSealKnowledgeDecodeWorld } from '../../../thunder/waves'
 import { rosettaReuse } from '../../../water/digit'
+import { srcAllComputes } from '../../../water/stack'
 import { harmonicCountsProvenByMath } from '../../../earth/architecture'
 import {
   collectEnforcementFacts,
@@ -225,6 +226,97 @@ export function runRosettaDimensionsBatchExit(_root: string, argv: readonly stri
   return 1
 }
 
+
+/** REALTIME DIAGNOSTICS — every red printed at LEAF level in one pass, no field ever invisible:
+ * the strict snapshot is iterated GENERICALLY (a newly added gate array can never hide from the
+ * summary again), the harmonic proofs print computed-vs-expected, the emergent dimensions list
+ * their off names, and the census family prints its off facets. --watch reruns on src changes. */
+
+/** CRACK MEASUREMENT — the post-wave literal check as one command: per-file residue vs the ledger
+ * wildcard, stray literals listed WITH auto-suggested canonical compositions (search over products,
+ * powers and sums of the lattice), decimals matched against 1/q and the φ/golden family. Replaces
+ * the hand-run probe + hand-derivation chase that followed every wave. */
+export async function runCrackMeasureExit(root: string, argv: readonly string[] = []): Promise<number> {
+  const scan = await importQuantumBundle('src/pair/enforcement/gates/strict/scan/index.ts', root) as {
+    scanCrackSurface: (root: string) => { file: string; literal: string; count: number }[]
+  }
+  const filter = argv.find((a) => !a.startsWith('-'))
+  const offenders = scan.scanCrackSurface(root).filter((o) => !filter || o.file.includes(filter))
+  if (!offenders.length) { process.stdout.write('✓ cracks:measure — every literal accounted (lattice, named rows, wildcards exact)\n'); return 0 }
+  const lattice = [2, 3, 4, 5, 6, 7, 8, 9, 16, 27, 54, 64, 100, 108, 216, 360, 432, 864]
+  const suggest = (lit: string): string => {
+    const v = Number(lit)
+    if (!Number.isFinite(v)) return ''
+    if (Number.isInteger(v) && v > 1) {
+      for (const a of lattice) for (const b of lattice) {
+        if (a * b === v) return `${a} * ${b}`
+        if (a ** b === v) return `${a} ** ${b}`
+      }
+      for (const a of lattice) for (const b of lattice) for (const c of lattice) {
+        if (a * b + c === v) return `${a} * ${b} + ${c}`
+        if (a * b - c === v) return `${a} * ${b} - ${c}`
+        if (a * b * c === v) return `${a} * ${b} * ${c}`
+      }
+      return `String(x) === '${lit}'`
+    }
+    for (const q of lattice) for (let num = 1; num < q; num += 1) if (Math.abs(num / q - v) < 1e-9) return `${num} / ${q}`
+    return 'ledger row (data) or derive from PHI/TAU'
+  }
+  for (const o of offenders) {
+    const hint = o.literal.startsWith('ledger-') ? '→ re-measure and set the wildcard to the drifted count' : `→ ${suggest(o.literal)}`
+    process.stderr.write(`✗ ${o.file} — ${o.literal} ×${o.count} ${hint}\n`)
+  }
+  process.stderr.write(`${offenders.length} unaccounted literal(s)\n`)
+  return 1
+}
+
+export async function runDiagnoseExit(root: string, argv: readonly string[] = []): Promise<number> {
+  const once = (): number => {
+    const reds: string[] = []
+    const facts = collectEnforcementFacts(root)
+    // 1 · strict snapshot — generic: arrays with entries and false booleans are reds, whatever their names
+    const warns: string[] = []
+    for (const [key, value] of Object.entries(facts.strict)) {
+      if (Array.isArray(value) && value.length) {
+        const sample = value.slice(0, 3).map((v) => typeof v === 'string' ? v : `${(v as { file?: string; path?: string }).file ?? (v as { path?: string }).path ?? ''}${(v as { literal?: string; spec?: string }).literal ?? (v as { spec?: string }).spec ? ':' + ((v as { literal?: string }).literal ?? (v as { spec?: string }).spec) : ''}`).join(' · ')
+        if (key === 'vitepressIndex' && (value as { transitional?: boolean }[]).every((v) => v.transitional)) continue
+        if (key === 'fileSize') { warns.push(`strict.${key} ×${value.length} (warn ratchet) — ${sample}`); continue }
+        reds.push(`strict.${key} ×${value.length} — ${sample}`)
+      }
+      if (value === false && key !== 'digitPassed') reds.push(`strict.${key} = false`)
+      if (key === 'digitPassed' && value === false) reds.push('strict.digitPassed = false')
+    }
+    if (!computationalGatePassed(facts.computational)) reds.push(`computational — ${computationalLimitsGapDetail(facts.computational).split('\n')[0] ?? 'gates failed'}`)
+    // 2 · harmonic proofs — THE frequent root: print computed vs expected per failing proof
+    const math = harmonicCountsProvenByMath(buildMatrix())
+    for (const proof of (math.proofs as { label?: string; expr?: string; computed?: number; expected?: number; on?: boolean }[]).filter((entry) => !entry.on))
+      reds.push(`harmonic ${proof.label ?? ''} [${proof.expr ?? ''}] computed ${proof.computed} ≠ expected ${proof.expected}`)
+    // 3 · emergent dimensions — off names, capped
+    const dims = emergentDimensions(buildMatrix())
+    const off = (dims.dimensions as { d: string; on: boolean }[]).filter((entry) => !entry.on)
+    if (off.length) reds.push(`dimensions ${off.length}/${dims.count} off — ${off.slice(0, 8).map((entry) => entry.d).join(', ')}${off.length > 8 ? ' …' : ''}`)
+    // 4 · the census family — srcAllComputes off facets (the 110-census root family)
+    const census = srcAllComputes(buildMatrix())
+    for (const facet of (census.facets as { facet: string; on: boolean }[]).filter((entry) => !entry.on))
+      reds.push(`census — ${facet.facet.slice(0, 100)}`)
+    for (const line of warns) process.stdout.write(`⚠ ${line}\n`)
+    if (!reds.length) { process.stdout.write('✓ diagnose — all gates green at leaf level\n'); return 0 }
+    for (const line of reds) process.stderr.write(`✗ ${line}\n`)
+    process.stderr.write(`${reds.length} red(s) — leaf causes above, no drill-down needed\n`)
+    return 1
+  }
+  if (!argv.includes('--watch')) return once()
+  once()
+  const { watch } = await import('node:fs')
+  let timer: ReturnType<typeof setTimeout> | undefined
+  watch(join(root, 'src'), { recursive: true }, () => {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => { process.stdout.write(`\n— src changed, rediagnosing —\n`); once() }, 100 * 3)
+  })
+  await new Promise(() => {}) // watch mode runs until interrupted
+  return 0
+}
+
 export async function runRosettaDiagnoseExit(root: string, argv: readonly string[] = []): Promise<number> {
   void root
   const target = argv[0] ?? 'all'
@@ -399,6 +491,8 @@ export async function runCliExit(root: string, argv: string[] = []) {
     case 'mission:gate': return runMissionGateExit(root)
     case 'rosetta:batch':
     case 'iching:batch': return runRosettaBatchExit(root, rest)
+    case 'diagnose': return runDiagnoseExit(root, rest)
+    case 'cracks:measure': return runCrackMeasureExit(root, rest)
     case 'rosetta:diagnose':
     case 'iching:diagnose': return runRosettaDiagnoseExit(root, rest)
     case 'docs:build': return runDocsBuildExit(root, rest)
@@ -417,6 +511,12 @@ export async function runCliExit(root: string, argv: string[] = []) {
     case 'fold': return rest[0] ? runFoldExit(root, rest) : 1
     case 'solve': return runSolveExit(root, rest)
     case 'dissolve-flat': return runSolveExit(root, rest.includes('--dry') ? ['--dry'] : rest)
+    case 'research': return runThinMount('src/quantum/science/index.ts', 'runResearchExit', root, rest)
+    case 'audit:constants': return runThinMount('src/quantum/science/index.ts', 'runAuditConstantsExit', root, rest)
+    case 'cracks': {
+      const scan = (await importQuantumBundle('src/pair/enforcement/gates/strict/scan/index.ts', root)) as { runCracksExit: (r: string) => number }
+      return scan.runCracksExit(root)
+    }
     case 'timeout-demo':
       return runThinMount('src/mountain/vortex/index.ts', 'runTimeoutDemoExit', root, rest)
     default:

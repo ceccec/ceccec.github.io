@@ -28,7 +28,7 @@ A quantum-learning portal for language models and people, kids to elders — and
 
 - **43/45** monographs — content pages fold genus-2 −χ (45 surface → 43 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
 - **108/108** concept commands — MCP tool surface (4×27 = 432÷4)
-- **260/262** reference index entries — zero redundancy
+- **261/263** reference index entries — zero redundancy
 - **42/14** locale surfaces — 14 routes × 3 locales (6×7/7×6 when 42=42)
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
@@ -127,11 +127,11 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `d3d47436-ed95-8c66-bacb-10a402976313`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `6851578f-c0f5-8bd0-9bb0-33fa9e62172b`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `e00896ab-b111-8e10-92e2-5692d5c8f19f`
+- Receipt: `a22eb800-0c16-87c6-a4c2-68a922f539fb`

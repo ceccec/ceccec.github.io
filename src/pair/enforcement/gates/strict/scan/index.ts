@@ -2,7 +2,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, merkleFold, toUuid } from '../../../../../0'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, type CrackProvenance } from '../../../../../3/7'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, type CrackProvenance } from '../../../../../3/7'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
 import { SCRIPT_SHELL_ALLOWLIST, SCRIPT_SHELL_LINE_BUDGET } from '../../../script/shell'
@@ -511,4 +511,13 @@ export function scanCrackSurface(root: string): CrackOffender[] {
     bodies.set(rel, f.endsWith('.vue') ? vueValueSurface(raw) : raw)
   }
   return scanHardcodedCrackOffenders(root, files, bodies)
+}
+
+/** CLI: `cracks` — the codebase-wide census; zero offenders or the exact list (gated in strict). */
+export function runCracksExit(root: string): number {
+  const off = scanCrackSurface(root)
+  for (const o of off) console.log(`OFFENDER ${o.file} ${o.literal} ×${o.count}`)
+  const accounts = crackLedgerAccounts()
+  console.log(`census: ${off.length === 0 ? 'ZERO offenders' : off.length + ' offender rows'} · ledger ${accounts.entries} entries (${accounts.byKind.data} data · ${accounts.byKind.tuned} tuned) · invariants ${accounts.holds ? 'hold' : 'BROKEN'}`)
+  return off.length === 0 && accounts.holds ? 0 : 1
 }

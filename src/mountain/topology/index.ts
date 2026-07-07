@@ -377,6 +377,9 @@ const TORUS_WORD_FOLD: Record<string, string> = {
   shell: 'ui', state: 'quantum', streamwire: 'wave', succeed: 'complete', surfaces: 'site', taxonomy: 'icon',
   tech: 'computer', tools: 'commands', traditions: 'ancient', trinities: 'fold', usecases: 'action',
   utf: 'analog', vector: 'math', verify: 'proof', vote: 'lawful', word: 'torus', words: 'torus',
+  // the self hexagram (research · audit · law) folds onto the canonical trio — review, proof, lawful — and
+  // evidence rejoins proof: the theorem loop speaks the torus's own 64 words.
+  research: 'review', audit: 'proof', evidence: 'proof',
   // dry-clean closure — rare command segments folded onto the 64-word torus vocabulary (concept.schema.org.diamonds, fair-trade, gaps, …).
   fair: 'lawful', gaps: 'complete', merkle: 'proof', org: 'api', path: 'site', schema: 'api', stream: 'wave',
   train: 'educate', use: 'action', whole: 'all', wire: 'wave',

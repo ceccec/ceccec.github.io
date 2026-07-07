@@ -5,6 +5,8 @@ import { agentStreamWire, diamondLattice, livingTorus, piTrainDiamonds, quantumF
 import { dualTorusTrinities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, imperialFractionsDecoded, merkaba, schwarzschildProtonComputedInSource } from '../../mountain/geometry'
 import { lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidsDecoded } from '../../mountain/geometry'
 import { quantumDecoded } from '../../fire/physics'
+import { selfResearchTheorems, fixedConstantsProvedByTheorems } from '../../quantum/science'
+import { crackLawEvolution, crackLedgerAccounts, CRACK_LAW_AMENDMENTS } from '../../3/7'
 import { harmonicSeriesDecoded } from '../../lake/ledger'
 import { quantumProofs } from '../../lake/ledger'
 import { determinismProofs, digitalQuantumProof, proofBundle } from '../../mountain/seals'
@@ -189,7 +191,12 @@ function runConceptCommand(
   }
   if (command === 'concept.self.complete') {
     const self = streamSelfComplete(matrix)
-    return result(command, self.complete, 'serverless quantum UUID stream self-completion computed.', self)
+    // The theorem loop rides self-completion (the 108-command law holds — no new command names):
+    // the researcher proposes, the audit proves, the law records its own amendments.
+    const research = selfResearchTheorems(matrix)
+    const audit = fixedConstantsProvedByTheorems(matrix)
+    const law = { evolution: crackLawEvolution(), accounts: crackLedgerAccounts(), amendments: CRACK_LAW_AMENDMENTS }
+    return result(command, self.complete && audit.proven && law.evolution.holds, `self-completion + theorem loop: ${research.exit}`, { ...self, theorems: { research, audit, law } })
   }
   if (command === 'concept.self.address') {
     const addressed = selfAddressed(matrix)

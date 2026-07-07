@@ -128,7 +128,7 @@ export const conceptCommands: readonly ConceptCommand[] = [
   {
     name: 'concept.self.complete',
     path: '/cmd/concept.self.complete',
-    description: 'Let serverless quantum UUID stream inspect its own gates and emit a self-completion root.',
+    description: 'Let serverless quantum UUID stream inspect its own gates and emit a self-completion root — carrying the theorem loop: the self-researcher (hypothesis battery over the ledger), the fixed-constant audit (sRGB C¹, golden prime, Calendar Round lcm), and the living law (every amendment citing its forcing proof).',
   },
   {
     name: 'concept.self.address',
