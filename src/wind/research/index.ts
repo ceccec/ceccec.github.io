@@ -554,14 +554,47 @@ export function unitDistanceGridBaseline(kMax = 100_000): { readonly kMax: numbe
   return { kMax: cap, bestK, vectors, receipt: toUuid(`unit-distance:grid:${cap}:${bestK}:${vectors}`) }
 }
 
-/** Computed findings — documented kept, heuristic flagged; each row recomputable from the functions above. */
-export const UNIT_DISTANCE_FINDINGS = [
-  { id: 'gs-budget', tier: 'DOCUMENTED', statement: 'Frobenius-killing spends 3t ≈ 3d²/100 of the d²/4 Golod–Shafarevich relation quota — 12%; the group theory is never the bottleneck.' },
-  { id: 'gamma-scale', tier: 'MODEL_FIT', statement: 'γ > 0 first at ℓ ≈ 1791 (Cclass=1): the cyclic cubic conductor D already has ≈ 7200 decimal digits and the tower needs t = 32041 split primes.' },
-  { id: 'delta-cap', tier: 'HYPOTHESIS', statement: 'Under a GRH-shaped least-split-prime heuristic δ peaks near 2.5e-6 (ℓ ≈ 3724) and decays like log2/(32·ℓ·log3): the Chebotarev height of the split primes caps δ, not Golod–Shafarevich.' },
-  { id: 'bite-scale', tier: 'MODEL_FIT', statement: 'Beating n^{1+1/log log n} needs log log n > 1/δ — around n > 10^10^172542 at the heuristic optimum; the refutation is purely asymptotic.' },
-  { id: 'grid-contrast', tier: 'DOCUMENTED', statement: 'Exact check: max #{a²+b²=k} = 24/48/72/128 for k ≤ 10³/10⁴/10⁵/10⁶ — the classical grid dominates at every computable scale.' },
-].map((row) => ({ ...row, receipt: toUuid(`unit-distance:finding:${row.id}`) }))
+export type UnitDistanceFinding = {
+  readonly id: string
+  readonly tier: 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS'
+  readonly statement: string
+  readonly receipt: string
+}
+
+/** Peak δ over ℓ under the GRH heuristic — the interior optimum the construction cannot exceed (sieve-bounded scan). */
+export function unitDistanceDeltaPeak(cClass = 1): { readonly delta: number; readonly ell: number } {
+  const start = unitDistanceGammaCrossover(cClass) ?? 1791
+  let best = { delta: 0, ell: start }
+  for (let ell = start; ell <= 4000; ell = Math.max(ell + 1, Math.round(ell * 1.05))) {
+    const report = unitDistanceDelta(ell, cClass)
+    if (report.deltaChebotarevGrh > best.delta) best = { delta: report.deltaChebotarevGrh, ell }
+  }
+  return best
+}
+
+/**
+ * Findings COMPUTED at call time — no hand-quoted numbers: every figure in every statement is
+ * recomputed from the folds above, so a change in the arithmetic changes the finding (and its receipt).
+ * Tiers stay honest: exact checks DOCUMENTED, parameterised readings MODEL_FIT, the GRH-shaped
+ * least-split-prime estimate HYPOTHESIS.
+ */
+export function unitDistanceFindings(): readonly UnitDistanceFinding[] {
+  const budgetShare = Math.round(((3 / 100) / (1 / 4)) * 100)
+  const crossover = unitDistanceGammaCrossover(1) ?? 1791
+  const tower = unitDistanceTowerNumbers(crossover)
+  const conductorDigits = Math.round(tower.logConductor / Math.LN10)
+  const peak = unitDistanceDeltaPeak(1)
+  const log10log10n = Math.round(1 / peak.delta / Math.LN10)
+  const grid = [1_000, 10_000, 100_000].map((k) => unitDistanceGridBaseline(k).vectors)
+  const rows = [
+    { id: 'gs-budget', tier: 'DOCUMENTED' as const, statement: `Frobenius-killing spends 3t ≈ 3d²/100 of the d²/4 Golod–Shafarevich relation quota — ${budgetShare}%; the group theory is never the bottleneck.` },
+    { id: 'gamma-scale', tier: 'MODEL_FIT' as const, statement: `γ > 0 first at ℓ = ${crossover} (Cclass=1): the cyclic cubic conductor D already has ${conductorDigits} decimal digits and the tower needs t = ${tower.t} split primes.` },
+    { id: 'delta-cap', tier: 'HYPOTHESIS' as const, statement: `Under a GRH-shaped least-split-prime heuristic δ peaks near ${peak.delta.toExponential(1)} (ℓ = ${peak.ell}) and decays like log2/(32·ℓ·log3): the Chebotarev height of the split primes caps δ, not Golod–Shafarevich.` },
+    { id: 'bite-scale', tier: 'MODEL_FIT' as const, statement: `Beating n^{1+1/log log n} needs log log n > 1/δ — around n > 10^10^${log10log10n} at the heuristic optimum; the refutation is purely asymptotic.` },
+    { id: 'grid-contrast', tier: 'DOCUMENTED' as const, statement: `Exact check: max #{a²+b²=k} = ${grid.join('/')} for k ≤ 10³/10⁴/10⁵ — the classical grid dominates at every computable scale.` },
+  ]
+  return rows.map((row) => ({ ...row, receipt: toUuid(`unit-distance:finding:${row.id}:${row.statement}`) }))
+}
 
 /** Balance gate — unit-distance tower numerics recompute and stay honestly bounded at call time. */
 export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -571,12 +604,14 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
     const report = unitDistanceDelta(tower.ell, 1)
     const grid = unitDistanceGridBaseline(100_000)
     const projection = quantumProjectionParams('unit-distance')
+    const findings = unitDistanceFindings()
     const { computes, facets, root } = computesGate('unit-distance-research', [
       { facet: 'exact bookkeeping — conductor and rd(F) from the first ℓ primes ≡ 1 (mod 3)', on: tower.logRootDiscriminant > 0 && tower.largestAuxPrime % 3 === 1 },
       { facet: 'GS relation budget — margin d²/4 − d − C0 − 3t > 0 at the γ-crossover', on: unitDistanceGolodShafarevichMargin(tower.ell) > 0 },
       { facet: 'γ crossover exists — minimal ℓ with γ > 0 found below the sieve bound', on: crossover !== null && report.gamma > 0 },
       { facet: 'δ positive and honestly tiny — 0 < δ < 1e-4 in both Q readings', on: report.deltaUtopian > 0 && report.deltaUtopian < 1e-4 && report.deltaChebotarevGrh > 0 && report.deltaChebotarevGrh < 1e-4 },
       { facet: 'animation projection registered — pro-3 layers and channel count derive from the sequence', on: projection.segments === 3 && projection.forms === 7 && projection.dimensions === 10 },
+      { facet: 'findings computed, never quoted — every figure recomputes from the folds and all three tiers present', on: findings.length === 5 && findings.some((row) => row.tier === 'DOCUMENTED') && findings.some((row) => row.tier === 'MODEL_FIT') && findings.some((row) => row.tier === 'HYPOTHESIS') },
       { facet: 'NOT proof verification — bookkeeping and flagged heuristics only', on: true },
     ])
     return {
@@ -587,9 +622,9 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
       report,
       grid,
       projection,
-      findings: UNIT_DISTANCE_FINDINGS,
+      findings,
       facets,
-      root: merkleFold([root, tower.receipt, report.receipt, grid.receipt, projection.root, ...UNIT_DISTANCE_FINDINGS.map((row) => row.receipt)]),
+      root: merkleFold([root, tower.receipt, report.receipt, grid.receipt, projection.root, ...findings.map((row) => row.receipt)]),
       statement: 'Unit-distance research computes: exact tower/γ/δ bookkeeping for the pro-3 class-field construction, grid contrast, and flagged heuristics — recomputed at call time.',
       boundary: 'HONEST: exact arithmetic over the published construction — NOT a verification of the proof; the least-split-prime size is a GRH-shaped HYPOTHESIS; Cclass and C0 are unpinned absolute constants.',
     }

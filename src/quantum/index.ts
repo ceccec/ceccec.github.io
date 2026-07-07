@@ -25,7 +25,7 @@ import { merkleFold, toUuid, VORTEX_SEQUENCE } from '../0'
 import type { MindMatrix } from '../wind/types'
 import { doubleTorusEarthHingeComputesAll, hingeMoviePaintLayers, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath, type EarthHingePaintLayer } from '../water/double/earth'
 import { bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../mountain/geometry'
-import type { QuantumProjection } from './apps'
+import { quantumProjectionParams, type QuantumProjection } from './apps'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -1493,14 +1493,16 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
   const cx = w / 2
   const cy = h / 2
   const R0 = Math.min(w, h) * 0.44
-  const layers = 3 // VORTEX_SEQUENCE slot 6 — the pro-3 tower layers F₁ ⊂ F₂ ⊂ F₃
-  const channels = 7 // rosetta-sized sample of the t split primes
+  // Counts come from the sealed params, never re-declared: segments = the pro-3 tower layers,
+  // forms = the rosetta-sized sample of the t split-prime channels.
+  const { segments: layers, forms: channels } = quantumProjectionParams('unit-distance')
+  const ringRadius = (j: number) => R0 * (0.28 + (0.66 * j) / layers)
   const drift = frame.reduce ? 0 : frame.t * 0.12
   const pulse = frame.reduce ? 0.5 : 0.5 - 0.5 * Math.cos(frame.p * Math.PI * 2)
 
   // Tower layers: ring j holds 3^j nodes; alternating rotation sense — the tower breathes, the channels do not.
   for (let j = 1; j <= layers; j += 1) {
-    const r = R0 * (0.28 + (0.66 * j) / layers)
+    const r = ringRadius(j)
     const nodes = 3 ** j
     const theta = drift * (j % 2 === 0 ? -1 : 1) / j
     const hue = (frame.hue + j * 18) % 360
@@ -1527,7 +1529,7 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
     ctx.lineTo(cx + Math.cos(a) * R0 * 0.96, cy + Math.sin(a) * R0 * 0.96)
     ctx.stroke()
     for (let j = 1; j <= layers; j += 1) {
-      const r = R0 * (0.28 + (0.66 * j) / layers)
+      const r = ringRadius(j)
       ctx.fillStyle = movieCanvasRgba((frame.hue + 180 + c * 8) % 360, glow, { L: 3 / 4 })
       ctx.beginPath(); ctx.arc(cx + Math.cos(a) * r, cy + Math.sin(a) * r, Math.max(1, R0 * 0.02), 0, Math.PI * 2); ctx.fill()
     }
@@ -1548,7 +1550,7 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
   ctx.restore()
 
   // Unit chords on the outer layer: equal-length pairs lighting up in sequence — the ν(P) count.
-  const outerR = R0 * 0.94
+  const outerR = ringRadius(layers)
   const outerNodes = 3 ** layers
   const lit = frame.reduce ? 3 : 1 + Math.floor(pulse * 5)
   const span = 3 // constant arc-step ⇒ constant chord length: every lit chord is the SAME distance
