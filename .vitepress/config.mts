@@ -218,7 +218,10 @@ export default defineConfig({
   description: siteDescription,
   // Page tree lives under .vitepress/pages (thin mounts + paths.ts); logic in src/; static assets in public/.
   srcDir: '.vitepress/pages',
-  publicDir: 'public',
+  // publicDir resolves RELATIVE TO srcDir (.vitepress/pages), so a bare 'public' silently pointed at a
+  // nonexistent folder and NOTHING from public/ shipped — sw.js, site.webmanifest and icon.svg 404ed in
+  // production (the service-worker console error on every page). Anchor it to the repo root.
+  publicDir: join(projectRoot, 'public'),
   cleanUrls: true,
   // Production seal (W6): dead markdown links FAIL the build — never suppressed. VitePress defaults to false,
   // but we pin it so no future edit can silence a broken link; gaps surface loud and get filled. The computed
