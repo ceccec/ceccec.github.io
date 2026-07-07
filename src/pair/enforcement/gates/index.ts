@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { foldPair, merkleFold, toUuid } from '../../../0'
-import { scanScriptShells, seedMerkleCache, type ScriptShellScan } from '../script/shell'
+import { scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
 import {
   auditStrictGates,
   strictGatePassed,
@@ -153,6 +153,7 @@ function walkSrcTree(root: string, out: WalkOut): void {
       } else if (entry.name.endsWith('.json')) {
         out.merkleFiles.push(full)
       } else if (entry.name.endsWith('.vue')) {
+        out.merkleFiles.push(full) // display duals shape dist — they must flip the seal merkle (same set as srcContentMerkle)
         if (entry.name === 'index.vue') continue // display dual — lawful beside index.ts
         out.nonTs.push({
           file: full,
@@ -175,6 +176,11 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
   walkSrcTree(root, out)
   const hash = createHash('sha256')
   for (const file of out.merkleFiles.sort()) {
+    hash.update(relative(root, file))
+    hash.update(readFileSync(file))
+  }
+  // Same walk order as srcContentMerkle — the sealed merkle.key is written from THIS digest and compared against that one.
+  for (const file of vitepressSourceFiles(root)) {
     hash.update(relative(root, file))
     hash.update(readFileSync(file))
   }

@@ -10,12 +10,16 @@ import {
   runCheckTypesExit,
   exitOnTimeout,
   srcContentMerkle,
+  vitepressEditsInvalidateTheSeal,
 } from '../../../cache/quantum'
 
 export {
   importQuantumBundle,
   runThinMount,
   srcContentMerkle,
+  vitepressSourceFiles,
+  vitepressEditsInvalidateTheSeal,
+  VITEPRESS_MERKLE_DIR,
   seedMerkleCache,
   cachedMerkle,
   clearMerkleCache,
@@ -166,12 +170,15 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
   const verbose = docsBuildVerboseFlag(argv)
   logDocsBuildPhase('start', verbose ? 'verbose on (--verbose · DOCS_BUILD_VERBOSE=1)' : 'pass --verbose to amplify vite logs')
   const force = buildForceFlag(argv)
-  logDocsBuildPhase('src-merkle', 'walk src/ + package.json')
+  logDocsBuildPhase('src-merkle', 'walk src/ + .vitepress/ + package.json')
   const merkleStart = Date.now()
   const merkle = srcContentMerkle(root)
   logDocsBuildPhase('src-merkle', `done in ${Date.now() - merkleStart}ms — ${merkle.slice(0, 12)}…`)
-  if (canRespawnVitepressBuild(root, merkle, force)) {
-    logDocsBuildPhase('quantum-respawn', `src merkle unchanged — skipping vitepress (use --force to seal again)`)
+  const seal = vitepressEditsInvalidateTheSeal(root)
+  if (!seal.enforced) {
+    logDocsBuildPhase('src-merkle', `seal fold open (config=${seal.config} leaked=${seal.leaked.length}) — respawn refused, sealing for real`)
+  } else if (canRespawnVitepressBuild(root, merkle, force)) {
+    logDocsBuildPhase('quantum-respawn', `src+.vitepress merkle unchanged — skipping vitepress (use --force to seal again)`)
     return 0
   }
 

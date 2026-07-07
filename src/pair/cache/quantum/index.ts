@@ -126,9 +126,39 @@ function walkSrcFiles(dir: string, out: string[] = []): string[] {
     if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
     const full = join(dir, entry.name)
     if (entry.isDirectory()) walkSrcFiles(full, out)
-    else if (entry.name.endsWith('.ts')) out.push(full)
+    // .ts + .json + .vue (display duals shape dist too) — the same set gates' walkSrcTree hashes; the two digests must stay byte-identical.
+    else if (entry.name.endsWith('.ts') || entry.name.endsWith('.json') || entry.name.endsWith('.vue')) out.push(full)
   }
   return out
+}
+
+export const VITEPRESS_MERKLE_DIR = '.vitepress'
+/** Build outputs under .vitepress — never seal inputs (dot-dirs .temp/.build-lock are skipped by the walk). */
+const VITEPRESS_MERKLE_EXCLUDES: ReadonlySet<string> = new Set(['dist', 'cache', 'node_modules'])
+const VITEPRESS_MERKLE_SOURCE_RE = /\.(ts|mts|cts|tsx|js|mjs|cjs|vue|css|md|json)$/
+
+function walkVitepressFiles(dir: string, out: string[] = []): string[] {
+  if (!existsSync(dir)) return out
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || VITEPRESS_MERKLE_EXCLUDES.has(entry.name)) continue
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) walkVitepressFiles(full, out)
+    else if (VITEPRESS_MERKLE_SOURCE_RE.test(entry.name)) out.push(full)
+  }
+  return out
+}
+
+/** .vitepress seal inputs (config/lib/theme/pages) — every file here must flip the merkle, or a stale dist ships. */
+export function vitepressSourceFiles(root: string): string[] {
+  return walkVitepressFiles(join(root, VITEPRESS_MERKLE_DIR)).sort()
+}
+
+/** Fold — a .vitepress edit invalidates the seal: the walk reaches config.mts and never a dist/cache/.temp artifact. */
+export function vitepressEditsInvalidateTheSeal(root: string) {
+  const files = vitepressSourceFiles(root).map((file) => relative(root, file))
+  const config = files.includes(join(VITEPRESS_MERKLE_DIR, 'config.mts'))
+  const leaked = files.filter((file) => /(^|\/)(dist|cache|\.temp)\//.test(file))
+  return { enforced: config && leaked.length === 0, count: files.length, config, leaked }
 }
 
 export function srcContentMerkle(root: string): string {
@@ -136,6 +166,10 @@ export function srcContentMerkle(root: string): string {
   if (hit) return hit
   const hash = createHash('sha256')
   for (const file of walkSrcFiles(join(root, 'src')).sort()) {
+    hash.update(relative(root, file))
+    hash.update(readFileSync(file))
+  }
+  for (const file of vitepressSourceFiles(root)) {
     hash.update(relative(root, file))
     hash.update(readFileSync(file))
   }
