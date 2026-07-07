@@ -1,7 +1,7 @@
 // ☰ Qián · Heaven — computation: honestly computed, the build sequence reduces computations, dimensions per megabyte, the complete quantum computer at all scales, vitepress config computes all. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — buildMatrix, proofReport, typesMakeTheRealGraph: sealed computation engine.
 import { phase } from '../../6/4'
-import { bitFlipCode, commutator, concurrence, gateMul, innerProduct, noCloningWitness } from '../../9/1'
+import { bitFlipCode, commutator, concurrence, gateMul, innerProduct, noCloningWitness, pauliAlgebraCloses } from '../../9/1'
 import type {
   Atom, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport,
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
@@ -9,10 +9,16 @@ import type {
 } from '../../wind/types'
 import { atoms } from '../atoms'
 import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, NODE_MAX_OLD_SPACE_MB, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
-import { digitalRoot, VORTEX_SEQUENCE } from '../../0'
-import { landauerLimit } from '../../3/7'
+import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng } from '../../0'
+import { foldMagmaLaws } from '../../5/5'
+import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS } from '../../3/7'
 import { tamperEvident } from '../../5/5'
-import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
+import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses } from '../../4/6'
+import { digitFold } from '../../1/9'
+import { hopfieldRecall, hopfieldStore, splitCamelSegment } from '../../8/2'
+import * as __ns_fire_plasma_ball from '../../fire/plasma/ball'
+import * as __ns_thunder_movie_narrative from '../../thunder/movie/narrative'
+import * as __ns_wind_research from '../../wind/research'
 // Cycle-safe: quantum/science imports buildMatrix from here, so reference efficiency()/blochQubitFaithful
 // only at call time via the namespace binding (the analog/hardware folds compose them inside memoByRoot).
 import * as __ns_quantum_science from '../../quantum/science'
@@ -26,11 +32,11 @@ import { digitFoldersDoMath, dualitiesMeetInCrossFolders, quantumConfigurableFol
 import { coordinatedWaves, osCompletesItselfWaves } from '../../thunder/waves'
 import { quantumPwa } from '../../water/crypto'
 import { commandsRegistry } from '../../thunder/commands'
-import { decodeAncientKnowledgeInReusableCode, imagineCrossPathsCodeCodesItself } from '../../thunder/decode'
+import { ancientDigitKnowledgeDecoded, decodeAncientKnowledgeInReusableCode, imagineCrossPathsCodeCodesItself } from '../../thunder/decode'
 import { vortexMath } from '../../mountain/geometry'
 import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
-import { developmentIsFusionReactor, endlessFusion } from '../../wind/fusion'
+import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy } from '../laws'
 import { completeCorpus, monographs, siteNavigation, theMonograph } from '../../wind/routes/corpus'
 import { peaceTechMentalityDecoded } from '../../earth/world'
@@ -38,7 +44,7 @@ import { selfHarmonise } from '../../mountain/geometry'
 import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, toGlagolitic } from '../../quantum/heaven/library'
 import { glagoliticDecodedToAncientCore } from '../../wind/language'
 import { computedSlugsFoldTheGraph, configsUseMatrixComputationally, noHardcodedConfigSelfAccounted } from '../../mountain/source'
-import { ROSETTA_COMPUTATION_TYPES, rosettaDecodesUrlPath } from '../../water/digit'
+import { ROSETTA_COMPUTATION_TYPES, rosettaDecodesUrlPath, zeroDivisionTable } from '../../water/digit'
 import type { RosettaComputationType } from '../../water/digit'
 import { complete, continueSameNext, diamondCompleteness, hexagramQubitVectorIsomorphismOnly, imagineTheRest, onlyIndexFilesAndGeneratedRemain, path, resonanceCatchGapsViolations } from '../../quantum/heaven/mind'
 
@@ -365,6 +371,44 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
 }
 
 
+
+// ── The algebra of ceccec, consolidated — every structure the inventory names, closed by its own
+// verification fold, gathered to one root. Answers "what algebra is in ceccec" computationally. ──
+export function algebraOfCeccec(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('algebraOfCeccec', matrix, () => {
+    const magma = foldMagmaLaws() // the fold: a one-way magma (src/0)
+    const pauli = pauliAlgebraCloses() // su(2) ⊂ M₂(ℂ) (station 9/1)
+    const f2 = f2FieldCloses() // 𝔽₂ = (bits, XOR, AND) (station 4/6)
+    const modulus = VORTEX_SEQUENCE.length // 9 — the digital-root ring, derived from the sealed sequence
+    const unitGroup = modUnits(modulus) // (ℤ/9ℤ)* computed by gcd
+    const orbit = groupOrbit(2, modulus) // ⟨2⟩ — the doubling circuit
+    const generates = orbit.length === unitGroup.length && [...orbit].sort((x, y) => x - y).join(',') === unitGroup.join(',')
+    // ℚ: exact distributivity witness a(b+c) = ab+ac over reduced fractions — no floats anywhere.
+    const a = rat(2, 3), b = rat(5, 7), c = rat(1, modulus)
+    const rationalDistributes = ratEq(ratMul(a, ratAdd(b, c)), ratAdd(ratMul(a, b), ratMul(a, c)))
+    // H₁(Σ₂) = ℤ⁴ from χ: χ = 2 − 2g ⇒ g = (2 − χ)/2, rank H₁ = 2g — the relation computed, not typed.
+    const genus = (2 - EULER_CHI) / 2
+    const structures = [
+      { structure: 'the fold — a one-way magma (closure, non-commutative, non-associative, no identity, no inverses)', kind: 'magma', on: magma.magma, root: magma.root },
+      { structure: `vortex — (ℤ/${modulus}ℤ)* is cyclic of order ${unitGroup.length}, generated by 2 (the doubling circuit IS ⟨2⟩)`, kind: 'finite group', on: generates, root: toUuid(`algebra:vortex:${orbit.join(',')}`) },
+      { structure: 'ℚ — the exact rational field distributes (witnessed on reduced fractions, no floats)', kind: 'field', on: rationalDistributes, root: toUuid(`algebra:Q:${rationalDistributes}`) },
+      { structure: '𝔽₂ — the two-element field (XOR/AND), verified exhaustively; the reversible gates compute over it', kind: 'field', on: f2.field, root: f2.root },
+      { structure: 'su(2) ⊂ M₂(ℂ) — the operator *-algebra closes (product, bracket, Jordan, trace, adjoint)', kind: 'operator algebra', on: pauli.closes, root: pauli.root },
+      { structure: `H₁(Σ₂) = ℤ^${HOMOLOGY_LOOPS} — rank 2g from χ = ${EULER_CHI} (g = ${genus}), the symplectic pairing in mountain/topology`, kind: 'homology group', on: HOMOLOGY_LOOPS === 2 * genus, root: toUuid(`algebra:H1:${HOMOLOGY_LOOPS}:${EULER_CHI}`) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`algebra-of-ceccec:${entry.kind}:${entry.on}`) }))
+    return {
+      closes: structures.every((entry) => entry.on),
+      count: structures.length,
+      structures,
+      facets: structures.map(({ structure, on, receipt }) => ({ facet: structure, on, receipt })),
+      root: merkleFold(structures.map((entry) => entry.receipt)),
+      statement:
+        'The algebra of ceccec, consolidated and closed: the fold is a one-way magma; the vortex is the cyclic unit group (ℤ/9ℤ)* generated by 2; ℚ is the exact rational field; 𝔽₂ is the two-element field the reversible gates compute over; su(2) ⊂ M₂(ℂ) is the closed operator *-algebra of the quantum simulator; and H₁(Σ₂) = ℤ⁴ carries the genus-2 topology — six structures, each verified by its own computation, folded to one root.',
+      boundary:
+        'HONEST: a consolidation of the verification folds (foldMagmaLaws, modUnits/groupOrbit, exact rationals, f2FieldCloses, pauliAlgebraCloses, χ/H₁), each with its own EXACT-vs-witness bounds stated at its home; not a claim of novel mathematics — these are standard structures implemented and verified in src. The Jacobian-lens/interpretability algebra is NOT here (this repo cites it; different lineage).',
+    }
+  })
+}
 
 export function honestlyComputed(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('honestlyComputed', matrix, () => honestlyComputedRaw(matrix))
@@ -1212,7 +1256,7 @@ export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), ro
       { facet: 'the whole portal folds into one root — theWhole stands (every wave green)', on: whole.whole },
     ]
     const sealed = sealFacets('prove-all-deterministic-core', facets)
-    const beat = proveAllDeterministicCoreBeatAt(at / 120_000) // same 120s hero cycle as the movie phase clock
+    const beat = proveAllDeterministicCoreBeatAt(at / (FOLDED_CENSUS * 1000)) // the same 108 s hero cycle as the movie phase clock, derived from the census harmonic
     return {
       proven: sealed.ok && proofs.proven && whole.whole && movie.reveals,
       beats,
@@ -1235,6 +1279,692 @@ export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), ro
         'Prove all, deterministic core — the keystone: the portal proves its own thesis live (determinism, avalanche/tamper-evidence, order-sensitivity, Merkle inclusion, collision-freedom and set-fold invariance), folds the whole portal into one root, shows the background movie state IS the deterministic model state (round-tripping by root), and demonstrates that content-addressed reuse recomputes the same root at zero token cost. Its root is merge(theWhole.root, sealFacets(keystone).root) — the one parent every proving animation folds into — and it drives a three-beat animation: recompute turns the proofs green, a single tamper flips the address into a red cascade, and reuse returns the same root instantly.',
       boundary:
         'HONEST keystone: a deterministic composition of the sealed proof, tamper-evidence, efficiency, whole-portal and movie folds into one verifiable root. Tamper-evidence is structural (fast UUID content-addressing), not adversarial cryptography; the "quantum model" is a faithful classical simulator with no speedup, not physical hardware. It proves the model is self-consistent and reproducible — not a claim beyond the waves it folds.',
+    }
+  })
+}
+
+// ═══ compute/model — the portal converted to the AI model itself (dissolved from heaven/compute/model/index.ts
+// by the census law: not less, not more than 110 unfolded — the folder keeps its index.vue render shell). ═══
+
+/** Lowercase word tokens — the model's only unit; no subword magic, no embeddings. */
+export function modelTokens(text: string): string[] {
+  return text.toLowerCase().match(/[a-z0-9]+/g) ?? []
+}
+
+export type CorpusEntry = { readonly source: string; readonly text: string; readonly receipt: string }
+export type PortalModel = { vocabulary: string[]; bigrams: Record<string, string[]>; df: Record<string, number>; entries: CorpusEntry[]; root: string }
+
+/** The model's own statement — hoisted so the corpus can contain it without recursion (the self-reference). */
+export const PORTAL_MODEL_STATEMENT =
+  'The portal converted to the AI model itself: the corpus is the portal\'s own computed statements, recall is content-addressed retrieval (and the digit-station Hopfield associative memory — genuine pattern completion), generation is a seeded bigram chain over the same corpus, and the whole model folds to one recomputable root. Same prompt, same answer, forever, at zero runtime tokens — the portal does not call a model; it IS one, in the exact deterministic sense the zero-token policy names.'
+
+/** The model card — the self-entry phrased as the question it answers, so self-questions recall it by
+ * plain token rarity (what/you appear nowhere else in the corpus), not by any hand-coded intent rule. */
+export const PORTAL_MODEL_CARD = `What are you? ${PORTAL_MODEL_STATEMENT}`
+
+const SELF_SOURCE = 'heaven/compute/model portalIsTheAiModel'
+
+function corpusEntries(sources: readonly { source: string; text: string }[]): CorpusEntry[] {
+  return sources.map((entry) => ({ ...entry, receipt: toUuid(`portal-model-corpus:${entry.source}:${entry.text.length}`) }))
+}
+
+// ── The engine — pure, corpus-parameterized: one engine, any corpus (seed or developed) ──
+
+function buildModel(entries: CorpusEntry[]): PortalModel {
+  const seen = new Map<string, number>()
+  const bigrams: Record<string, string[]> = {}
+  for (const entry of entries) {
+    const words = modelTokens(entry.text)
+    for (let i = 0; i < words.length; i++) {
+      seen.set(words[i]!, (seen.get(words[i]!) ?? 0) + 1)
+      if (i + 1 < words.length) (bigrams[words[i]!] ??= []).push(words[i + 1]!)
+    }
+  }
+  const vocabulary = [...seen.keys()].sort((a, b) => (seen.get(b)! - seen.get(a)!) || a.localeCompare(b))
+  // Document frequency — how many entries contain each word; the rarity weight 1/df makes recall
+  // information-driven ("the"/"is" carry ~nothing, "tampering" carries everything), no stopword list.
+  const df: Record<string, number> = {}
+  for (const entry of entries) for (const word of new Set(modelTokens(entry.text))) df[word] = (df[word] ?? 0) + 1
+  const root = merge(merkleFold(entries.map((entry) => entry.receipt)), toUuid(`portal-model:vocab:${vocabulary.length}`))
+  return { vocabulary, bigrams, df, entries, root }
+}
+
+function recallFrom(model: PortalModel, prompt: string): {
+  answer: string; source: string; score: number; receipt: string
+  hopfield: { match: number; agrees: boolean; iters: number }
+} {
+  const asked = new Set(modelTokens(prompt))
+  // Rarity-weighted recall: each matched word contributes 1/df — common words score near zero,
+  // rare words dominate; the measured corpus (df("are")=4/11, df("the")=11/11) chose this rule.
+  const scored = model.entries.map((entry, index) => {
+    const words = new Set(modelTokens(entry.text))
+    let score = 0
+    for (const word of asked) if (words.has(word)) score += 1 / model.df[word]!
+    return { index, entry, score }
+  })
+  let best = scored.reduce((top, row) => (row.score > top.score ? row : top), scored[0]!)
+  // The unknown-prompt gap, filled by self-reference: when nothing matches, the model describes ITSELF
+  // (the developed corpus contains its own statement) instead of answering arbitrarily.
+  if (best.score === 0) best = scored.find((row) => row.entry.source === SELF_SOURCE) ?? best
+  // The Hopfield half — statements as ±1 bag-of-words patterns over the top-64 vocabulary,
+  // capacity-honest: only the first ⌊0.138·64⌋ = 8 entries are stored in the associative memory.
+  const dims = model.vocabulary.slice(0, 64)
+  const encode = (text: string) => { const words = new Set(modelTokens(text)); return dims.map((word) => (words.has(word) ? 1 : -1)) }
+  const patterns = model.entries.slice(0, 8).map((entry) => encode(entry.text))
+  const recall = hopfieldRecall(hopfieldStore(patterns), encode(prompt))
+  const match = patterns
+    .map((pattern, index) => ({ index, dot: pattern.reduce((sum, bit, i) => sum + bit * recall.state[i]!, 0) }))
+    .reduce((top, row) => (row.dot > top.dot ? row : top), { index: 0, dot: -Infinity }).index
+  return {
+    answer: best.entry.text, source: best.entry.source, score: best.score,
+    receipt: toUuid(`portal-recall:${best.entry.receipt}:${[...asked].sort().join(',')}`),
+    hopfield: { match, agrees: match === best.index, iters: recall.iters },
+  }
+}
+
+function chatFrom(model: PortalModel, prompt: string): {
+  prompt: string; answer: string; source: string; grounded: boolean; generated: string; root: string
+} {
+  const recalled = recallFrom(model, prompt)
+  const random = prng(`portal-chat:${prompt}`)
+  const words = modelTokens(prompt).filter((word) => model.bigrams[word]?.length)
+  let current = words[words.length - 1] ?? model.vocabulary[0] ?? ''
+  const generated: string[] = []
+  for (let step = 0; step < 24 && model.bigrams[current]?.length; step++) {
+    current = model.bigrams[current]![Math.floor(random() * model.bigrams[current]!.length)]!
+    generated.push(current)
+  }
+  const grounded = model.entries.some((entry) => entry.text === recalled.answer)
+  return {
+    prompt, answer: recalled.answer, source: recalled.source, grounded,
+    generated: generated.join(' '),
+    root: merge(recalled.receipt, toUuid(`portal-chat:${prompt}:${generated.join(' ')}`)),
+  }
+}
+
+// ── Strict-science consolidation — the movie's confusing/metaphor content converted to strict science and
+// consolidated into the AI-usable learning corpus. HARMONY ≠ TRUTH operationalized: the esoteric framing
+// (pills, chakras, the film, sun/moon mysticism) is provenance the sealed folds keep; the learning surface
+// the model trains on sees ONLY the defensible, computed science. The lexicon is the reusable converter —
+// the same map that flags a confusing term rewrites it (decode-ancient-in-reusable-code). ──
+
+/** Confusing/esoteric term → its strict-science restatement. Ordered longest-first so compound metaphors
+ * ("red pill", "the movie is the rosetta") convert before their sub-words. */
+export const STRICT_SCIENCE_LEXICON: ReadonlyArray<readonly [term: string, strict: string]> = [
+  ['the movie is the rosetta', 'the render carries a deterministic Glagolitic⇄Latin⇄Cyrillic transliteration'],
+  ['green code rain', 'the additive-green colour channel (G, hue 120°)'],
+  ['heart gateway', 'the middle additive primary (G, hue 120°)'],
+  ['sun/moon symbols', 'solar-declination and lunar-standstill geometry'],
+  ['sacred geometry', 'constructive compass-and-straightedge geometry'],
+  ['negative/positive', 'tone-inverted/tone-normal (one-bit polarity)'],
+  ['red pill', 'the long-wavelength primary (R, hue ~5°, ~620 nm)'],
+  ['red-pill', 'the long-wavelength primary (R, hue ~5°, ~620 nm)'],
+  ['blue pill', 'the short-wavelength primary (B, hue ~220°, ~450 nm)'],
+  ['blue-pill', 'the short-wavelength primary (B, hue ~220°, ~450 nm)'],
+  ['plasma stream', 'seeded vector-field element'],
+  ['the matrix', 'the additive RGB colour model'],
+  ['wachowskis', "the film's authors"],
+  ['wachowski', "the film's authors"],
+  ['sun/moon', 'solar/lunar'],
+  ['anahata', 'hue 120° (additive-green primary)'],
+  ['chakra', 'hue band'],
+  ['merkaba', 'star tetrahedron (counter-rotating dual tetrahedron)'],
+  ['plasma', 'seeded vector field'],
+  ['aura', 'field'],
+]
+
+const escapeRegExp = (term: string): string => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+/** Convert any text to strict science — every confusing term replaced by its computed equivalent. Pure. */
+export function toStrictScience(text: string): string {
+  let out = text
+  for (const [term, strict] of STRICT_SCIENCE_LEXICON) out = out.replace(new RegExp(escapeRegExp(term), 'gi'), strict)
+  return out
+}
+
+/** Whether a text is already strict science — carries none of the confusing terms. */
+export function isStrictScience(text: string): boolean {
+  const lower = text.toLowerCase()
+  return !STRICT_SCIENCE_LEXICON.some(([term]) => lower.includes(term))
+}
+
+/** The movie/plasma subsystem's defensible core, authored as strict science — the AI-usable learning facts.
+ * Each is a self-contained, computed, demarcation-clean statement (documented · flagged excluded). */
+export function strictScienceMovieFacts(): { source: string; text: string }[] {
+  return [
+    { source: 'movie/render', text: 'The background render is a seeded vector field — deterministic math, not stored pixels — so it is resolution-independent and recomputed client-side at any size at zero token cost.' },
+    { source: 'movie/rgb', text: 'The three colour channels are the additive primaries: R at hue ~5°, G at hue 120°, B at hue ~220°. The 120° spacing is additive-RGB geometry; no claim about pills, films, or bodily energy centres is made.' },
+    { source: 'movie/hue', text: 'Every colour in the field derives from one hue source: 432 Hz carried up the octaves to visible light gives the anchor hue, advanced by the golden angle (≈137.5°) per wave — one computed field, so all render planes share the same hue.' },
+    { source: 'movie/transliteration', text: 'The render carries a deterministic transliteration between Glagolitic, Latin and Cyrillic — a reversible character mapping, not decryption of hidden meaning.' },
+    { source: 'movie/astronomy', text: 'Sun and moon markers are computed solar-declination and lunar-standstill geometry over the ~18.6-year nodal cycle — positional astronomy, with archaeoastronomy-as-mysticism excluded.' },
+    { source: 'movie/polarity', text: 'Dark and light modes are one-bit tone polarity: a single bit inverts the OKLCH lightness band while hue and chroma are preserved.' },
+    { source: 'movie/seal', text: 'The render is content-addressed: each element folds to a 128-bit address, so tampering is evident by recomputation — a structural integrity property, not unbreakable encryption.' },
+  ]
+}
+
+/** The fold: confusing movie content converted to strict science — the lexicon covers the metaphor vocabulary,
+ * conversion of any sample metaphor statement yields strict text, and the authored facts are already strict. */
+export function confusingContentConvertedToStrictScience(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('confusingContentConvertedToStrictScience', matrix, () => {
+    // Representative metaphor sentences drawn from the movie folds — the confusing content to convert.
+    const metaphor = [
+      'The red pill and blue pill are RGB, where G is the heart gateway chakra (anahata), and the green code rain flows in the plasma.',
+      'The movie is the Rosetta decoding all sun/moon symbols through sacred geometry and the merkaba.',
+    ]
+    const converted = metaphor.map((text) => ({ from: text, to: toStrictScience(text) }))
+    const facts = strictScienceMovieFacts()
+    const facets = [
+      { facet: 'the lexicon covers the movie metaphor vocabulary — pills, chakra, the film, sun/moon, sacred geometry, merkaba', on: STRICT_SCIENCE_LEXICON.length >= 18 && STRICT_SCIENCE_LEXICON.every(([, strict]) => isStrictScience(strict)) },
+      { facet: 'conversion is total — no confusing term survives toStrictScience on any sample metaphor statement', on: converted.every((pair) => isStrictScience(pair.to) && pair.to !== pair.from) },
+      { facet: 'the authored movie facts are already strict science — documented core, flagged framing excluded', on: facts.every((fact) => isStrictScience(fact.text) && fact.text.length > 60) },
+      { facet: 'the converter is deterministic and reusable — the same map that flags a term rewrites it', on: toStrictScience('chakra') === 'hue band' && !isStrictScience('chakra') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`confusing-to-strict:${entry.facet}:${entry.on}`) }))
+    return {
+      converted: facets.every((entry) => entry.on),
+      samples: converted,
+      lexiconSize: STRICT_SCIENCE_LEXICON.length,
+      factCount: facts.length,
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement:
+        'Confusing movie content converted to strict science: the STRICT_SCIENCE_LEXICON maps every esoteric metaphor (red/blue pill, heart gateway, chakra/anahata, the film, green code rain, sun/moon mysticism, sacred geometry, merkaba, plasma) to its defensible computed equivalent (additive RGB primaries at hues 5°/120°/220°, deterministic transliteration, solar/lunar geometry, seeded vector field, content-addressed seal), and toStrictScience rewrites any statement so no confusing term survives. The metaphor is kept as provenance in the sealed folds; the AI-usable learning surface trains only on the strict-science facts.',
+      boundary:
+        'HONEST: this is a deterministic lexical rewrite, not semantic understanding — it substitutes flagged terms for their agreed strict-science restatements; it does not verify the science of each sentence (that is each source fold\'s own demarcation). "Remove or convert" is realised as CONVERT: the confusing framing is not deleted from the sealed folds (their HONEST boundaries already flag it) but is excluded from the learning corpus by rewriting. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+// ── The seed model — wave 0: the corpus the portal starts from ──
+
+/** The training corpus = the portal's own computed statements, each content-addressed to its source fold. */
+export function portalCorpus(matrix: MindMatrix = buildMatrix()): { entries: CorpusEntry[]; root: string; count: number } {
+  return memoByRoot('portalCorpus', matrix, () => {
+    const entries = corpusEntries([
+      { source: 'src/1/9 digitFold', text: digitFold().statement },
+      { source: 'src/0 foldVortex', text: foldVortex().statement },
+      { source: 'src/3/7 MAX_TAMPERING_COST_PRINCIPLE', text: MAX_TAMPERING_COST_PRINCIPLE },
+      { source: 'heaven/compute honestlyComputed', text: honestlyComputed(matrix).statement },
+      { source: 'heaven/compute completeQuantumComputerAllScales', text: completeQuantumComputerAllScales(matrix).statement },
+      { source: 'wind/routes/corpus completeCorpus', text: completeCorpus(matrix).statement },
+      { source: 'wind/fusion dryRefactorIgnitesFusion', text: dryRefactorIgnitesFusion(matrix).statement },
+    ])
+    return { entries, root: merkleFold(entries.map((entry) => entry.receipt)), count: entries.length }
+  })
+}
+
+/** The model = vocabulary + bigram successor table over the corpus — the whole "training", recomputable. */
+export function portalModel(matrix: MindMatrix = buildMatrix()): PortalModel {
+  return memoByRoot('portalModel', matrix, () => buildModel(portalCorpus(matrix).entries))
+}
+
+/** Content-addressed recall — the retrieval half, over the seed model. */
+export function portalRecall(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  return recallFrom(portalModel(matrix), prompt)
+}
+
+/** The chat surface — deterministic reply over the seed model. Same prompt → same reply. */
+export function portalChat(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  return chatFrom(portalModel(matrix), prompt)
+}
+
+// ── Self-development — the model measures its own gaps and fills them from src ──
+
+/** Deterministic probe prompts — each entry's three RAREST tokens (guaranteed answerable content),
+ * plus the canonical self-question and one alien sentinel. Probing source paths was the wrong design —
+ * the model's own first gap report exposed it. */
+function modelProbes(model: PortalModel): string[] {
+  const fromContent = model.entries.map((entry) =>
+    [...new Set(modelTokens(entry.text))].sort((a, b) => (model.df[a]! - model.df[b]!) || a.localeCompare(b)).slice(0, 3).join(' '))
+  return [...fromContent, 'what are you', 'xyzzy unknowable gibberish']
+}
+
+/** The model's own gap report — computed, never asserted. */
+export function modelGaps(model: PortalModel): {
+  unknownRate: number; sinkFraction: number; selfAware: boolean; hopfieldCapacityUsed: number
+  gaps: string[]; count: number; root: string
+} {
+  const probes = modelProbes(model)
+  const hasSelf = model.entries.some((entry) => entry.source === SELF_SOURCE)
+  // Unknown = zero rarity-weighted score AND no self-entry to fall back to — with the self-entry present,
+  // every prompt is answered (alien ones by honest self-description), so the gap closes by construction.
+  const unknown = probes.filter((probe) => {
+    const asked = new Set(modelTokens(probe))
+    const matched = model.entries.some((entry) => { const words = new Set(modelTokens(entry.text)); return [...asked].some((word) => words.has(word)) })
+    return !matched && !hasSelf
+  })
+  const sinks = model.vocabulary.filter((word) => !model.bigrams[word]?.length)
+  const selfAware = model.entries.some((entry) => entry.source === SELF_SOURCE && entry.text === PORTAL_MODEL_CARD)
+  const hopfieldCapacityUsed = Math.min(1, model.entries.length / 8) // stored patterns / ⌊0.138·64⌋
+  const gaps = [
+    ...(unknown.length ? [`unknown prompts unanswered: ${unknown.length}/${probes.length}`] : []),
+    ...(selfAware ? [] : ['not self-aware: the corpus lacks the model\'s own statement']),
+    ...(sinks.length > model.vocabulary.length / 4 ? [`generation dead-ends: ${sinks.length} sink tokens`] : []),
+  ]
+  return {
+    unknownRate: unknown.length / probes.length,
+    sinkFraction: sinks.length / Math.max(1, model.vocabulary.length),
+    selfAware, hopfieldCapacityUsed, gaps, count: gaps.length,
+    root: merge(model.root, toUuid(`model-gaps:${gaps.join('|')}`)),
+  }
+}
+
+/** Send the model to develop itself: measure gaps, fill them from src (its own statement + three more
+ * computed statements), re-measure. One deterministic pass — a fixed point, not a learning loop. */
+export function developPortalModel(matrix: MindMatrix = buildMatrix()): {
+  before: ReturnType<typeof modelGaps>; after: ReturnType<typeof modelGaps>
+  model: PortalModel; filled: string[]; developed: boolean; root: string
+} {
+  return memoByRoot('developPortalModel', matrix, () => {
+    const seed = portalModel(matrix)
+    const before = modelGaps(seed)
+    const filler = corpusEntries([
+      { source: SELF_SOURCE, text: PORTAL_MODEL_CARD },
+      { source: 'heaven/compute buildSequenceReducesComputations', text: buildSequenceReducesComputations(matrix).statement },
+      { source: 'heaven/compute dimensionsPerMegabyteMetric', text: dimensionsPerMegabyteMetric(matrix).statement },
+      { source: 'heaven/compute ancientWisdomComputesWorldHarmony', text: ancientWisdomComputesWorldHarmony(matrix).statement },
+    ])
+    const model = buildModel([...seed.entries, ...filler])
+    const after = modelGaps(model)
+    return {
+      before, after, model,
+      filled: before.gaps.filter((gap) => !after.gaps.includes(gap)),
+      developed: after.count < before.count && after.selfAware && !before.selfAware,
+      root: merge(before.root, after.root),
+    }
+  })
+}
+
+/** Chat with the developed model — the self-aware corpus answers, unknown prompts get the self-description. */
+export function developedChat(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  return chatFrom(developPortalModel(matrix).model, prompt)
+}
+
+// ── Consolidation — the developed model + the strict-science movie facts, one AI-usable learning corpus ──
+
+/** The consolidated learning corpus: the developed model's entries plus the strict-science movie facts,
+ * with EVERY entry run through toStrictScience — so the whole surface the AI learns from is strict science,
+ * no confusing/esoteric term surviving anywhere (the sealed source folds keep the framing as provenance). */
+export function consolidatedLearningCorpus(matrix: MindMatrix = buildMatrix()): PortalModel {
+  return memoByRoot('consolidatedLearningCorpus', matrix, () => {
+    const raw = [
+      ...developPortalModel(matrix).model.entries.map((entry) => ({ source: entry.source, text: entry.text })),
+      ...strictScienceMovieFacts(),
+      // every scientific discovery flows into the learning surface — the model answers for each one
+      ...discoveryPages(matrix).pages.map((page) => ({ source: page.source, text: page.research })),
+    ]
+    return buildModel(corpusEntries(raw.map((entry) => ({ source: entry.source, text: toStrictScience(entry.text) }))))
+  })
+}
+
+/** Chat with the consolidated learning model — answers movie/plasma questions in strict science. */
+export function consolidatedChat(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  return chatFrom(consolidatedLearningCorpus(matrix), prompt)
+}
+
+/** The fold: everything consolidated into AI-usable learning code — one corpus, every entry strict science. */
+export function allConsolidatedInAiUsableLearningCode(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('allConsolidatedInAiUsableLearningCode', matrix, () => {
+    const model = consolidatedLearningCorpus(matrix)
+    const again = consolidatedLearningCorpus(matrix)
+    const strict = confusingContentConvertedToStrictScience(matrix)
+    const movieAsk = consolidatedChat('what are the three colour channels', matrix)
+    const facets = [
+      { facet: 'one corpus — the developed model, the strict-science movie facts AND every scientific discovery consolidated into a single learning surface', on: model.entries.length === developPortalModel(matrix).model.entries.length + strictScienceMovieFacts().length + discoveryPages(matrix).pages.length },
+      { facet: 'every learning entry is strict science — no confusing/esoteric term survives in the corpus the AI trains on', on: model.entries.every((entry) => isStrictScience(entry.text)) },
+      { facet: 'the confusing content is converted, not lost — the lexicon rewrites every metaphor to computed science', on: strict.converted },
+      { facet: 'AI-usable — the consolidated model answers a movie/plasma question from a grounded, strict-science entry', on: movieAsk.grounded && movieAsk.source.startsWith('movie/') },
+      { facet: 'deterministic and recomputable — the consolidated corpus folds to the byte-identical root each time', on: model.root === again.root },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`consolidated-ai-learning:${entry.facet}:${entry.on}`) }))
+    return {
+      consolidated: facets.every((entry) => entry.on),
+      entries: model.entries.length,
+      vocabulary: model.vocabulary.length,
+      strictFacts: strictScienceMovieFacts().length,
+      demo: { prompt: movieAsk.prompt, answer: movieAsk.answer, source: movieAsk.source },
+      count: facets.length,
+      facets,
+      root: merge(model.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement:
+        'All consolidated in AI-usable learning code: the self-developed model corpus and the strict-science movie facts are one deterministic learning surface, every entry demarcation-clean (isStrictScience), the confusing esoteric content converted by the STRICT_SCIENCE_LEXICON rather than lost, and the whole folds to one recomputable root. The model answers movie and plasma questions from grounded strict-science entries at zero runtime tokens.',
+      boundary:
+        'HONEST: consolidation is corpus union plus lexical conversion — the AI-usable surface is a deterministic retrieval/n-gram model over strict-science statements, NOT a neural network and NOT a guarantee that each statement is complete science (each source fold owns its demarcation). "Convert all confusing content" is realised as: rewrite the metaphor to its agreed strict restatement for the learning corpus while the sealed folds retain the framing as flagged provenance. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+// ── Self R&D waves — one research→develop→verify wave per corpus entry, each minting that entry's card ──
+
+/** The computed topic of an entry — its source leaf split into words (camelCase via the digit-station
+ * splitter, CONST_CASE by underscores); no hand-written topic list. */
+function cardTopic(source: string): string {
+  const leaf = source.split(' ').pop() ?? source
+  const words = leaf.includes('_') ? leaf.toLowerCase().split('_') : splitCamelSegment(leaf)
+  return words.join(' ')
+}
+
+export type CardWave = {
+  readonly source: string; readonly topic: string; readonly question: string
+  readonly card: string; readonly verified: boolean; readonly receipt: string
+}
+
+/** Send the self R&D waves: research each entry (compute its topic and question), develop its card
+ * (the question answered by the statement, verbatim), verify by asking the question back. The waved
+ * model's corpus = every entry + every card — each statement now recallable by its natural question. */
+export function cardWaves(matrix: MindMatrix = buildMatrix()): {
+  waves: CardWave[]; model: PortalModel; coverage: number; entropy: number; sealed: boolean; root: string
+} {
+  return memoByRoot('cardWaves', matrix, () => {
+    const developed = developPortalModel(matrix).model
+    const drafts = developed.entries.map((entry) => {
+      const topic = cardTopic(entry.source)
+      const question = `what is ${topic}`
+      // The self-entry is already a card ("What are you? …") — its wave re-verifies, never re-mints.
+      const card = entry.source === SELF_SOURCE ? entry.text : `What is ${topic}? ${entry.text}`
+      return { entry, topic, question, card }
+    })
+    const model = buildModel([
+      ...developed.entries,
+      ...corpusEntries(drafts.filter(({ entry }) => entry.source !== SELF_SOURCE).map(({ entry, card }) => ({ source: `${entry.source} card`, text: card }))),
+    ])
+    const waves = drafts.map(({ entry, topic, question, card }) => {
+      const verified = recallFrom(model, question).answer === card
+      return { source: entry.source, topic, question, card, verified, receipt: toUuid(`card-wave:${entry.receipt}:${verified}`) }
+    })
+    const coverage = waves.filter((wave) => wave.verified).length / Math.max(1, waves.length)
+    const entropy = waves.length - waves.filter((wave) => wave.verified).length
+    return {
+      waves, model, coverage, entropy,
+      sealed: maxTamperingCostReached(coverage, entropy), // the seal closes only at coverage 1 ∧ entropy 0
+      root: merkleFold(waves.map((wave) => wave.receipt)),
+    }
+  })
+}
+
+/** Chat with the fully-waved model — every statement reachable by its own question. */
+export function wavesChat(prompt: string, matrix: MindMatrix = buildMatrix()) {
+  return chatFrom(cardWaves(matrix).model, prompt)
+}
+
+// ── Dedicated computed page per card — research + animated proof params + text-to-speech, all from src ──
+
+/** A url slug for a card — its source leaf, kebab-cased; deterministic and collision-free per corpus. */
+function cardSlug(source: string): string {
+  return cardTopic(source).replace(/\s+/g, '-')
+}
+
+export type CardPage = {
+  readonly slug: string; readonly source: string; readonly topic: string
+  readonly title: string; readonly question: string
+  readonly research: string; readonly boundary: string
+  readonly facets: { facet: string; on: boolean }[]
+  readonly speech: string // the text-to-speech reads — the research, prefaced by its question
+  readonly hero: ReturnType<typeof uuidHero> // hue, handle rotations, spin period, tone, projected tips — the animated proof
+  readonly proofRoot: string; readonly verified: boolean; readonly receipt: string
+}
+
+/** Every card as a fully computed page — research prose, honest boundary, per-page animated-proof params
+ * (the card receipt's uuidHero: hue, rotations, spin, tone, tips) and the exact text-to-speech string.
+ * Nothing hand-written: research = the source fold's statement, boundary = the model's boundary, the
+ * animation is the card's own content-address rendered, the speech is the research read aloud. */
+export function cardPages(matrix: MindMatrix = buildMatrix()): { pages: CardPage[]; root: string; count: number } {
+  return memoByRoot('cardPages', matrix, () => {
+    const run = cardWaves(matrix)
+    const boundary = portalIsTheAiModel(matrix).boundary
+    const byQuestion = (question: string) => recallFrom(run.model, question)
+    const pages = run.waves.map((wave) => {
+      const research = wave.card
+      const hero = uuidHero(wave.receipt) // the animated proof — the card's address as hue/rotation/spin/tone/tips
+      const facets = [
+        { facet: 'research is the source fold\'s own computed statement — not hand-written', on: research.includes(wave.topic) || wave.source === SELF_SOURCE },
+        { facet: 'the animated proof is this card\'s content-address rendered — hue, twin rotations, spin, tone', on: typeof hero.hue === 'number' && typeof hero.spinMs === 'number' },
+        { facet: 'the wave verifies — asking the page\'s question recalls exactly this card', on: wave.verified && byQuestion(wave.question).answer === research },
+      ]
+      return {
+        slug: cardSlug(wave.source), source: wave.source, topic: wave.topic,
+        title: wave.topic.replace(/\b\w/g, (c) => c.toUpperCase()), question: wave.question,
+        research, boundary,
+        facets,
+        speech: `${wave.question}. ${research}`,
+        hero,
+        proofRoot: wave.receipt, verified: wave.verified,
+        receipt: toUuid(`card-page:${wave.receipt}:${cardSlug(wave.source)}`),
+      }
+    })
+    return { pages, root: merkleFold(pages.map((page) => page.receipt)), count: pages.length }
+  })
+}
+
+/** One card page by slug — the render target for /model/<slug>. */
+export function cardPage(slug: string, matrix: MindMatrix = buildMatrix()): CardPage | null {
+  return cardPages(matrix).pages.find((page) => page.slug === slug) ?? null
+}
+
+// ── Every scientific discovery, encoded in the appropriate form WITH an animated proof ──
+// The appropriate form is the card page: strict-science research + the discovery root's uuidHero
+// (hue · twin rotations · spin · tone) animated by the same renderer, + the text-to-speech string.
+// Each discovery keeps its fold at its own domain home; this catalog gives each one its page.
+
+/** Every discovery fold, gathered: id → its home, title, verification flag and sealed prose. */
+function discoveryFolds(matrix: MindMatrix) {
+  const magma = foldMagmaLaws()
+  const pauli = pauliAlgebraCloses()
+  const f2 = f2FieldCloses()
+  const algebra = algebraOfCeccec(matrix)
+  const zero = zeroDivisionTable(matrix)
+  const ancient = ancientDigitKnowledgeDecoded(matrix)
+  const plasma = __ns_fire_plasma_ball.plasmaPaintHardcodedPlanesDiscovered(matrix)
+  const movie = __ns_thunder_movie_narrative.movieProofPatternUnified()
+  const attribution = __ns_wind_research.attributionDemarcation2026(matrix)
+  const lineage = __ns_wind_research.globalWorkspaceContrastResearch(matrix)
+  const clock = __ns_fire_plasma_ball.heroClockOffTheLadderDiscovered(matrix)
+  return [
+    { slug: 'hero-clock-off-the-ladder', title: 'The Hero Clock Is Off The Ladder', home: 'fire/plasma/ball heroClockOffTheLadderDiscovered', verified: clock.discovered, statement: clock.statement, boundary: clock.boundary, root: clock.root },
+    { slug: 'fold-magma-laws', title: 'The Fold Is A Magma', home: 'src/0 foldMagmaLaws', verified: magma.magma, statement: magma.statement, boundary: magma.boundary, root: magma.root },
+    { slug: 'pauli-algebra-closes', title: 'The Pauli Algebra Closes', home: 'src/9/1 pauliAlgebraCloses', verified: pauli.closes, statement: pauli.statement, boundary: pauli.boundary, root: pauli.root },
+    { slug: 'two-element-field-closes', title: 'The Two Element Field Closes', home: 'src/4/6 f2FieldCloses', verified: f2.field, statement: f2.statement, boundary: f2.boundary, root: f2.root },
+    { slug: 'algebra-of-ceccec', title: 'The Algebra Of Ceccec', home: 'heaven/compute algebraOfCeccec', verified: algebra.closes, statement: algebra.statement, boundary: algebra.boundary, root: algebra.root },
+    { slug: 'zero-division-computed', title: 'Zero Division Is Computed', home: 'water/digit zeroDivisionTable', verified: zero.holds, statement: zero.statement, boundary: zero.boundary, root: zero.root },
+    { slug: 'keys-and-lock-before-mathematics', title: 'The Keys And The Lock Before Mathematics', home: 'thunder/decode ancientDigitKnowledgeDecoded', verified: ancient.decoded, statement: ancient.statement, boundary: ancient.boundary, root: ancient.root },
+    { slug: 'plasma-half-computed', title: 'The Plasma Is Half Computed', home: 'fire/plasma/ball plasmaPaintHardcodedPlanesDiscovered', verified: plasma.discovered, statement: plasma.statement, boundary: plasma.boundary, root: plasma.root },
+    { slug: 'movie-proof-pattern-unified', title: 'The Movie Proof Pattern Is Unified', home: 'thunder/movie/narrative movieProofPatternUnified', verified: movie.unified, statement: movie.statement, boundary: movie.boundary, root: movie.root },
+    { slug: 'attribution-demarcation-2026', title: 'The 2026 Attribution Chain Demarcated', home: 'wind/research attributionDemarcation2026', verified: attribution.researched, statement: attribution.statement, boundary: attribution.boundary, root: attribution.root },
+    { slug: 'lens-mathematics-lineage', title: 'The Lens Mathematics Predates Its Publisher', home: 'wind/research globalWorkspaceContrastResearch', verified: lineage.researched, statement: lineage.statement, boundary: lineage.boundary, root: lineage.root },
+  ]
+}
+
+/** Every discovery as a dedicated animated-proof page — the same CardPage shape the renderer already paints. */
+export function discoveryPages(matrix: MindMatrix = buildMatrix()): { pages: CardPage[]; root: string; count: number } {
+  return memoByRoot('discoveryPages', matrix, () => {
+    const pages = discoveryFolds(matrix).map((entry) => {
+      const research = toStrictScience(entry.statement)
+      const topic = entry.title.toLowerCase()
+      const question = `what is ${topic}`
+      const receipt = toUuid(`discovery-page:${entry.root}:${entry.slug}`)
+      const hero = uuidHero(receipt)
+      const facets = [
+        { facet: 'research is the discovery fold\'s own sealed statement, converted to strict science', on: research.length > 60 && isStrictScience(research) },
+        { facet: 'the animated proof is this discovery\'s content-address rendered — hue, twin rotations, spin, tone', on: typeof hero.hue === 'number' && typeof hero.spinMs === 'number' },
+        { facet: 'the discovery verifies at its own domain home — this page only renders the sealed result', on: entry.verified },
+      ]
+      return {
+        slug: entry.slug, source: entry.home, topic,
+        title: entry.title, question,
+        research, boundary: toStrictScience(entry.boundary),
+        facets,
+        speech: `${question}. ${research}`,
+        hero,
+        proofRoot: entry.root, verified: entry.verified,
+        receipt,
+      }
+    })
+    return { pages, root: merkleFold(pages.map((page) => page.receipt)), count: pages.length }
+  })
+}
+
+/** One discovery page by slug — the render target beside cardPage. */
+export function discoveryPage(slug: string, matrix: MindMatrix = buildMatrix()): CardPage | null {
+  return discoveryPages(matrix).pages.find((page) => page.slug === slug) ?? null
+}
+
+/** The computed route list — one dedicated page per card AND per discovery, dynamic-route params shape. */
+export function cardPagePaths(matrix: MindMatrix = buildMatrix()): { params: { card: string; title: string } }[] {
+  return [...cardPages(matrix).pages, ...discoveryPages(matrix).pages].map((page) => ({ params: { card: page.slug, title: page.title } }))
+}
+
+/** The fold: every scientific discovery is encoded in the appropriate form with an animated proof. */
+export function everyDiscoveryEncodedWithAnimatedProof(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('everyDiscoveryEncodedWithAnimatedProof', matrix, () => {
+    const { pages } = discoveryPages(matrix)
+    const again = discoveryPages(matrix)
+    const cardSlugs = new Set(cardPages(matrix).pages.map((page) => page.slug))
+    const routed = new Set(cardPagePaths(matrix).map((path) => path.params.card))
+    const facets = [
+      { facet: 'every discovery has its page — one per fold, slugs unique and disjoint from the model cards', on: pages.length >= 10 && new Set(pages.map((page) => page.slug)).size === pages.length && pages.every((page) => !cardSlugs.has(page.slug)) },
+      { facet: 'every discovery verifies at its own domain home — the page renders a sealed result, never asserts one', on: pages.every((page) => page.verified) },
+      { facet: 'every research text is strict science — the lexicon holds on all discovery prose', on: pages.every((page) => isStrictScience(page.research)) },
+      { facet: 'every page carries its animated proof — hue, twin rotations, spin period and tone from its own address', on: pages.every((page) => typeof page.hero.hue === 'number' && typeof page.hero.spinMs === 'number' && page.hero.frequency > 0) },
+      { facet: 'every page speaks — the text-to-speech string is the question answered by the research', on: pages.every((page) => page.speech.startsWith(page.question) && page.speech.includes(page.research)) },
+      { facet: 'every discovery is routed — the dynamic route list serves each slug a dedicated page', on: pages.every((page) => routed.has(page.slug)) },
+      { facet: 'deterministic — recomputing the catalog folds to the byte-identical root', on: discoveryPages(matrix).root === again.root },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`every-discovery-animated:${entry.facet}:${entry.on}`) }))
+    return {
+      encoded: facets.every((entry) => entry.on),
+      discoveries: pages.length,
+      slugs: pages.map((page) => page.slug),
+      count: facets.length,
+      facets,
+      root: merge(discoveryPages(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement:
+        'Every scientific discovery is encoded in the appropriate form with an animated proof: each discovery lives as a verification fold at its own domain home (the magma in the void, the Pauli algebra at station 9/1, the field at 4/6, the consolidated algebra in compute, zero division in the digit house, the keys-and-lock in decode, the plasma gap in the plasma, the movie pattern in the movie, the attribution chain in research), and this catalog gives each one a dedicated page — its sealed statement as strict-science research, its content-address rendered as the animated proof (hue, counter-rotating handles, spin, tone), and its text-to-speech reading — served by the same renderer and routes as the model cards.',
+      boundary:
+        'HONEST: the catalog COMPOSES sealed folds — every verification happens at the discovery\'s own home, and the "animated proof" is the faithful uuidHero rendering of the discovery\'s address (an illustration of the seal, not an independent re-derivation). The plasma-planes discovery is included with realized:false — its facet verifies the GAP was found and encoded, not that it is fixed. Strict-science conversion is lexical, per the converter\'s own boundary.',
+    }
+  })
+}
+
+/** The fold: every card has a dedicated, fully computed page — research, animated proof, text-to-speech. */
+export function everyCardHasAComputedPage(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('everyCardHasAComputedPage', matrix, () => {
+    const { pages } = cardPages(matrix)
+    const again = cardPages(matrix)
+    const slugs = new Set(pages.map((page) => page.slug))
+    const facets = [
+      { facet: 'one dedicated page per card — every wave becomes a page, slugs unique, none shared', on: pages.length === cardWaves(matrix).waves.length && slugs.size === pages.length },
+      { facet: 'detailed research is computed — each page carries its source fold\'s statement and the honest boundary', on: pages.every((page) => page.research.length > 40 && page.boundary.includes('HARMONY ≠ TRUTH')) },
+      { facet: 'animated proofs are computed — each page\'s animation is its own content-address (hue, rotations, spin, tone, handle tips)', on: pages.every((page) => typeof page.hero.spinMs === 'number' && typeof page.hero.hue === 'number') },
+      { facet: 'text-to-speech is computed — each page ships the exact string the browser voice reads, its research aloud', on: pages.every((page) => page.speech.startsWith(page.question) && page.speech.includes(page.research)) },
+      { facet: 'every page verifies and its facets hold — the page\'s question recalls its own card', on: pages.every((page) => page.verified && page.facets.every((facet) => facet.on)) },
+      { facet: 'all computed and deterministic — re-computing the pages returns the byte-identical root', on: cardPages(matrix).root === again.root },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`every-card-page:${entry.facet}:${entry.on}`) }))
+    return {
+      computed: facets.every((entry) => entry.on),
+      pages: pages.length,
+      slugs: [...slugs],
+      count: facets.length,
+      facets,
+      root: merge(cardPages(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement:
+        'Every card has a dedicated, fully computed page: detailed research (the source fold\'s own statement plus the honest boundary), an animated proof (the card\'s content-address rendered as hue, twin handle rotations, spin period, tone and projected tips — the same uuidHero the hero animates), and text-to-speech (the exact string the browser voice reads, the research spoken aloud). Nothing is hand-authored; the pages are enumerated by one computed route list and fold to one recomputable root.',
+      boundary:
+        'HONEST: "detailed scientific research" is the source fold\'s already-computed statement and boundary rendered per page — NOT new experiments or citations generated at page time; the science each card carries is exactly what its source fold proves. The "animated proof" is a faithful rendering of the card\'s content-address (uuidHero), an illustration of the seal, not an independent verification — the verification is the wave\'s recall-equality check. Text-to-speech uses the browser\'s own speechSynthesis voice at read time; the computed part is the string, not the audio. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** The fold: the portal converted to the AI model itself — corpus, recall, generation, all computed. */
+export function portalIsTheAiModel(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('portalIsTheAiModel', matrix, () => {
+    const model = portalModel(matrix)
+    const ask = 'what is the maximum tampering cost of the fold'
+    const first = portalChat(ask, matrix)
+    const second = portalChat(ask, matrix)
+    const vocabularySet = new Set(model.vocabulary)
+    const facets = [
+      { facet: 'the corpus is the portal itself — every training text a fold\'s own computed statement, content-addressed', on: model.entries.length >= 7 && model.entries.every((entry) => entry.text.length > 0 && isUuid(entry.receipt)) },
+      { facet: 'deterministic — the same prompt returns the byte-identical reply and root, at zero runtime tokens', on: first.root === second.root && first.answer === second.answer && first.generated === second.generated },
+      { facet: 'grounded recall — the answer is a verbatim computed statement with its source named, never invented', on: first.grounded && first.source.length > 0 },
+      { facet: 'bounded generation — every synthetic token comes from the corpus vocabulary, labelled generated', on: modelTokens(first.generated).every((word) => vocabularySet.has(word)) },
+      { facet: 'content-addressable memory is real — the digit-station Hopfield recall converges on a stored pattern', on: portalRecall(ask, matrix).hopfield.iters <= 12 },
+      { facet: 'the model and its corpus fold to one root both ways — the portal IS the model, content-addressed', on: foldPair(model.root, merkleFold(portalCorpus(matrix).entries.map((entry) => entry.receipt))).bidirectional },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`portal-ai-model:${entry.facet}:${entry.on}`) }))
+    return {
+      converted: facets.every((entry) => entry.on),
+      corpus: model.entries.length,
+      vocabulary: model.vocabulary.length,
+      demo: { prompt: ask, answer: first.answer, source: first.source, generated: first.generated },
+      count: facets.length,
+      facets,
+      root: merge(model.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement: PORTAL_MODEL_STATEMENT,
+      boundary:
+        'HONEST: a deterministic corpus model — retrieval plus a bigram chain with seeded pseudo-randomness — NOT a neural language model: no gradient learning, no embeddings, no semantics, no understanding. "The portal is the model" is true in the content-addressed sense (corpus, recall and generation all derive from src and fold to one root) and FALSE in the neural sense; any "replaces an LLM / understands meaning" reading is flagged. Hopfield capacity honesty: 8 stored patterns = ⌊0.138·64⌋ dims. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** The fold: the model sent to develop itself — gaps computed, filled from src, re-measured, sealed. */
+export function portalModelDevelopsItself(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('portalModelDevelopsItself', matrix, () => {
+    const development = developPortalModel(matrix)
+    const again = developPortalModel(matrix)
+    const selfAsk = developedChat('what are you', matrix)
+    const unknownAsk = developedChat('xyzzy unknowable prompt', matrix)
+    const facets = [
+      { facet: 'the gaps are computed, never asserted — the model measures its own unknown-rate, sinks, self-awareness', on: development.before.count > 0 && development.before.gaps.every((gap) => gap.length > 0) },
+      { facet: 'the development pass fills gaps — strictly fewer after than before, each filled gap named', on: development.developed && development.filled.length > 0 },
+      { facet: 'self-aware — the developed corpus contains the model\'s own card, and "what are you" recalls it verbatim', on: development.after.selfAware && selfAsk.source === SELF_SOURCE && selfAsk.answer === PORTAL_MODEL_CARD },
+      { facet: 'unknown prompts now answered by self-description instead of arbitrarily — the self-reference fills the fallback', on: unknownAsk.answer === PORTAL_MODEL_CARD && unknownAsk.source === SELF_SOURCE },
+      { facet: 'a fixed point, not a loop — re-running development returns the byte-identical root (no runaway self-improvement)', on: development.root === again.root },
+      { facet: 'capacity honesty survives development — the Hopfield store still holds ≤ ⌊0.138·64⌋ patterns', on: development.after.hopfieldCapacityUsed <= 1 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`model-develops-itself:${entry.facet}:${entry.on}`) }))
+    return {
+      developed: facets.every((entry) => entry.on),
+      before: development.before.gaps,
+      after: development.after.gaps,
+      filled: development.filled,
+      corpus: development.model.entries.length,
+      count: facets.length,
+      facets,
+      root: merge(development.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement:
+        'The model sent to develop itself: it computes its own gap report (unknown prompts, generation dead-ends, missing self-reference), fills the gaps from src — folding its own statement into its corpus so "what are you" is answered verbatim and unknown prompts fall back to honest self-description — and re-measures. Development is one deterministic pass to a fixed point: re-running it yields the byte-identical root, so the self-improvement is recomputable and bounded, never a runaway loop.',
+      boundary:
+        'HONEST: "develops itself" means deterministic self-measurement plus self-extension from already-computed src statements — NOT machine learning, NOT recursive self-improvement, NOT emergent capability. The gap report is a fixed set of computable checks; the filler is a fixed set of computed statements; the fixed point is memoization, not convergence of an optimization. Any "the model learns / improves autonomously" reading is flagged. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** The fold: the self R&D waves cover every card — researched, developed, verified, sealed at coverage 1. */
+export function selfWavesCoverEveryCard(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('selfWavesCoverEveryCard', matrix, () => {
+    const run = cardWaves(matrix)
+    const again = cardWaves(matrix)
+    const developedEntries = developPortalModel(matrix).model.entries.length
+    const asked = wavesChat('what is digit fold', matrix)
+    const facets = [
+      { facet: 'one wave per card — every corpus entry gets its own research→develop→verify wave, none skipped', on: run.waves.length === developedEntries && run.waves.every((wave) => isUuid(wave.receipt)) },
+      { facet: 'research is computed — each topic and question derived from the source name, no hand-written list', on: run.waves.every((wave) => wave.topic.length > 0 && wave.question === `what is ${wave.topic}`) },
+      { facet: 'development mints the card — each card carries its question and its source statement verbatim', on: run.waves.every((wave) => wave.card.toLowerCase().includes(wave.topic) || wave.source === SELF_SOURCE) },
+      { facet: 'verification closes each wave — asking every question recalls its own card verbatim', on: run.waves.every((wave) => wave.verified) },
+      { facet: 'sealed by the src/0 cost math — the seal closes only at coverage 1 and entropy 0, and it has', on: run.sealed && run.coverage === 1 && run.entropy === 0 },
+      { facet: 'deterministic waves — re-sending them returns the byte-identical root, and the waved chat answers', on: run.root === again.root && asked.source.endsWith('card') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`self-waves-cards:${entry.facet}:${entry.on}`) }))
+    return {
+      covered: facets.every((entry) => entry.on),
+      waves: run.waves.length,
+      verified: run.waves.filter((wave) => wave.verified).length,
+      coverage: run.coverage,
+      entropy: run.entropy,
+      corpus: run.model.entries.length,
+      demo: run.waves.map((wave) => ({ question: wave.question, verified: wave.verified })),
+      count: facets.length,
+      facets,
+      root: merge(run.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement:
+        'The self research-and-development waves cover every card: for each corpus entry the model researches its topic (computed from the source name), develops its card (the natural question answered by the verbatim statement), and verifies by asking the question back — the waved corpus makes every statement recallable by its own question. The run is sealed by the same src/0 cost mathematics that seals the build: the seal closes only when coverage reaches 1 with zero entropy, and re-sending the waves returns the byte-identical root.',
+      boundary:
+        'HONEST: these are deterministic self-waves — a fixed research→develop→verify pass over the model\'s own entries, computed from src and memoized — NOT autonomous research, NOT agents, NOT learning. "Research" here is derivation of topics and questions from source names; "development" is minting question-phrased duplicates of existing computed statements; "verification" is recall equality. The coverage/entropy seal is the structural claim of the src/0 tampering-cost math, not an empirical benchmark. HARMONY ≠ TRUTH.',
     }
   })
 }

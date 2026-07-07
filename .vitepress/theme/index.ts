@@ -12,6 +12,7 @@ import './hero-glass.css'
 import './universal-page.css'
 import './computed-typography.css'
 import UniversalPageTemplate from './components/UniversalPageTemplate.vue'
+import ModelCardPages from './components/ModelCardPages.vue'
 
 export default {
   extends: DefaultTheme,
@@ -25,6 +26,7 @@ export default {
     if (!ctx.app.component('UniversalPageTemplate')) {
       ctx.app.component('UniversalPageTemplate', UniversalPageTemplate)
     }
+    if (!ctx.app.component('ModelCardPages')) ctx.app.component('ModelCardPages', ModelCardPages)
     if (!ctx.app.component('DigitMotion')) ctx.app.component('DigitMotion', DigitMotion)
     if (!ctx.app.component('SevenStarRosetta')) ctx.app.component('SevenStarRosetta', DigitMotion)
 

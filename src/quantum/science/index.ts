@@ -9,7 +9,7 @@ import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemen
 import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError } from '../../9/1'
-import { resonanceBandwidth, frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7'
+import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE } from '../../3/7'
 // frequencyToLight / A432_HUE / GOLDEN_ANGLE live in the zero-import leaf src/3/7 (beside SPEED_OF_LIGHT) so the
 // brand-anchor const initialises before any cyclic barrel, then re-export here for the canonical public path.
 export { frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7'
@@ -778,7 +778,7 @@ export function quantumComputerHonestClaim(matrix: MindMatrix = buildMatrix(), a
 // ── The background movie is the agent-facing window into the working (modeled) quantum computer ──
 // Same shared hero clock as the movie (HERO_CYCLE_MS), replicated as a pure formula so the snapshot uses the
 // EXACT phase the movie paints — the movie's state IS the model's state, without importing the heavy movie barrel.
-const HERO_CYCLE_MS = 120_000
+const HERO_CYCLE_MS = FOLDED_CENSUS * 1000 // 108 s — same derivation as the canonical clock in fire/plasma/ball (kept import-light, same source 3/7)
 function moviePhaseAt(at: number): number {
   const cycle = HERO_CYCLE_MS
   return roundTo((((at % cycle) + cycle) % cycle) / cycle, 6)

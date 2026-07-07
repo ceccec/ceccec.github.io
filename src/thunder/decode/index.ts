@@ -1446,3 +1446,95 @@ export function worldMysteriesDecoded(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+// ————— Ancient digit knowledge — the keys and the lock before mathematics —————
+// Deep-researched 2026-07: the matching law (key ↔ lock, one-to-one correspondence, tamper-evident
+// commitment) is DOCUMENTED tens of millennia before formal mathematics. The cognitive keys are innate
+// (subitizing ≤ 4, the approximate number system — pre-verbal, shared with animals: Dehaene 1997);
+// the physical locks are archaeological: Paleolithic tally bones (Lebombo ~44k BP, Ishango ~20–25k BP),
+// Neolithic clay tokens (~8000 BCE, shape = commodity, one-to-one BEFORE numerals), and the Mesopotamian
+// bulla (~3500 BCE) — tokens sealed in a clay envelope whose SURFACE carries impressions of its contents,
+// so the hidden interior is verifiable without opening and tampering is evident: a physical commitment
+// scheme. Writing itself emerged FROM this verification device (Schmandt-Besserat: bulla → flattened
+// tablet → proto-cuneiform numerals). The split tally (stock/foil halves that match only each other via
+// the wood's unique grain; the etymology of financial "stocks") is the same law refined — documented
+// prevalent in MEDIEVAL Europe (Exchequer, 12th–19th c.), kept honestly at its own date.
+
+/** The split tally, runnable: one record folds to a stock and a foil that match only each other.
+ * The wood grain's physical uniqueness is modelled by the content-address — same law, computed. */
+export function splitTally(record: string): {
+  stock: string; foil: string
+  match(stock: string, foil: string): boolean
+  matches: boolean; forgeryRejected: boolean; root: string
+} {
+  const stock = toUuid(`tally-stock:${record}`)
+  const foil = toUuid(`tally-foil:${record}`)
+  const whole = foldPair(stock, foil) // the un-split stick — the two halves' common fold
+  const match = (s: string, f: string) => foldPair(s, f).merged === whole.merged // verify = recompute
+  const matches = match(stock, foil)
+  const forgeryRejected = !match(stock, toUuid('tally-foil:forged'))
+  return { stock, foil, match, matches, forgeryRejected, root: whole.merged }
+}
+
+/** The bulla, runnable: contents sealed behind a surface that commits to them — verify without opening,
+ * tamper evident by recomputation. The clay envelope's token impressions, as the merkle they were. */
+export function bulla(tokens: readonly string[]): {
+  surface: string; count: number
+  verify(claimed: readonly string[]): boolean
+  verified: boolean; swapDetected: boolean
+} {
+  const surface = merkleFold(tokens.map((token) => toUuid(`bulla-token:${token}`)))
+  const verify = (claimed: readonly string[]) => merkleFold(claimed.map((token) => toUuid(`bulla-token:${token}`))) === surface
+  const swapped = tokens.length > 0 ? [...tokens.slice(1), 'swapped-token'] : ['swapped-token']
+  return { surface, count: tokens.length, verify, verified: verify(tokens), swapDetected: !verify(swapped) }
+}
+
+/** The fold: ancient digit knowledge decoded — the keys (innate number sense) and the lock (matching,
+ * commitment, tamper-evidence) are documented BEFORE mathematics; the dates prove the ordering. */
+export function ancientDigitKnowledgeDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('ancientDigitKnowledgeDecoded', matrix, () => {
+    // The documented timeline, years before present (negative = CE). The ordering is COMPUTED below.
+    const timeline = [
+      { event: 'innate number keys — subitizing (exact ≤ 4) + approximate number system; pre-verbal, shared with animals', yearsBP: Infinity, tier: 'DOCUMENTED', source: 'Dehaene 1997 The Number Sense · infant habituation (2 vs 3) · honeybees count to ~3' },
+      { event: 'Lebombo bone — 29 notches, broken end so the count is a minimum; a tally, whatever it tallied', yearsBP: 44000, tier: 'DOCUMENTED', source: 'Border Cave, ~44,000–43,000 BP; lunar-counter reading unprovable (broken end)' },
+      { event: 'Ishango bone — grouped notches; a counting/tally device', yearsBP: 22000, tier: 'DOCUMENTED', source: 'Ishango, ~20,000–25,000 BP (Brooks re-dating); interpretations beyond tallying contested' },
+      { event: 'clay tokens — shape = commodity, one-to-one correspondence accounting BEFORE numerals and writing', yearsBP: 10000, tier: 'DOCUMENTED', source: 'Schmandt-Besserat — tokens from ~8000 BCE across the Near East' },
+      { event: 'the bulla — tokens sealed in clay; cylinder-seal + token impressions on the SURFACE identify parties, prevent tampering, and let contents be verified without opening: a physical commitment scheme', yearsBP: 5500, tier: 'DOCUMENTED', source: 'Schmandt-Besserat; envelopes ~3500 BCE; "impressed the tokens on the surface … so the counters inside could be verified at all times"' },
+      { event: 'numerals — bullae flatten to tablets; proto-cuneiform begins with NUMERICAL signs: writing born from the verification device', yearsBP: 5100, tier: 'DOCUMENTED', source: 'proto-cuneiform ~3100 BCE; the widely accepted token→bulla→tablet reconstruction' },
+      { event: 'formal deductive mathematics — proof as a method', yearsBP: 2550, tier: 'DOCUMENTED', source: 'Greek deductive tradition, ~6th c. BCE (Thales/Pythagoreans)' },
+      { event: 'the split tally — stock/foil halves matching only each other (unique grain = unforgeable); "stocks" etymology', yearsBP: 850, tier: 'DOCUMENTED', source: 'medieval Europe; English Exchequer 12th–19th c. — the same matching law, kept at its own (LATER) date' },
+    ] as const
+    const flagged = [
+      { claim: 'Ishango notches are a prime-number table', why: 'primes require division, understood far later (Rudman: ~500 BCE); the groupings admit simpler readings', tier: 'FLAGGED' },
+      { claim: 'Lebombo/Ishango are lunar calendars', why: 'Marshack’s microscopic lunar reading is contested as over-interpretation (Robinson); Lebombo’s broken end makes 29 a minimum, not a month', tier: 'CONTESTED' },
+      { claim: 'the ancients practised cryptography / knew hash functions', why: 'anachronism — the bulla is a PHYSICAL commitment (clay, seals, grain), not mathematics; the structural parallel to content-addressing is ours, not theirs', tier: 'FLAGGED' },
+      { claim: '"oldest mathematical artifact" framing for tally bones', why: 'they are counting devices; "mathematics" (operations, proof) is a later layer — the artifact documents correspondence, not arithmetic', tier: 'CONTESTED' },
+    ] as const
+    const tally = splitTally('ten sheep owed at harvest')
+    const sealed = bulla(['sheep', 'sheep', 'grain-large', 'oil-jar'])
+    const mathBP = timeline.find((row) => row.event.startsWith('formal deductive'))!.yearsBP
+    const locks = timeline.filter((row) => row.event.startsWith('the bulla') || row.event.startsWith('clay tokens') || row.event.includes('bone'))
+    const facets = [
+      { facet: 'the keys are innate — subitizing and the approximate number system precede language, symbols and arithmetic (documented cognition, shared with animals)', on: timeline[0]!.tier === 'DOCUMENTED' },
+      { facet: 'the locks predate mathematics — every matching/commitment device (tally bones, tokens, the bulla) is dated BEFORE formal deductive math, computed from the timeline', on: locks.length >= 4 && locks.every((row) => row.yearsBP > mathBP) },
+      { facet: 'the bulla is a physical commitment scheme — surface commits to hidden contents, verify without opening, tamper evident (the documented wording, not our projection)', on: timeline.some((row) => row.event.startsWith('the bulla') && row.tier === 'DOCUMENTED') },
+      { facet: 'the split tally runs — stock and foil match only each other; a forged foil is rejected', on: tally.matches && tally.forgeryRejected && isUuid(tally.root) },
+      { facet: 'the bulla runs — contents verify against the surface; one swapped token is detected', on: sealed.verified && sealed.swapDetected && isUuid(sealed.surface) },
+      { facet: 'writing emerged from the lock — proto-cuneiform begins with numerical signs on flattened bullae (the accepted reconstruction), so the verification device precedes the notation', on: timeline.some((row) => row.event.startsWith('numerals') && row.yearsBP > mathBP) },
+      { facet: 'the over-readings stay flagged — Ishango primes, lunar calendars, ancient cryptography, "oldest math artifact" framing', on: flagged.length === 4 && flagged.every((row) => row.tier === 'FLAGGED' || row.tier === 'CONTESTED') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ancient-digit:${entry.facet}:${entry.on}`) }))
+    return {
+      decoded: facets.every((entry) => entry.on),
+      timeline,
+      flagged,
+      devices: { splitTally: tally.root, bulla: sealed.surface },
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement:
+        'Ancient digit knowledge decoded: the keys and the lock are defined before mathematics. The keys are innate — subitizing and the approximate number system run in infants and animals before any language or symbol. The locks are archaeological — tally bones (~44,000 BP) hold one-to-one correspondence; clay tokens (~8000 BCE) count commodities before numerals; the bulla (~3500 BCE) seals tokens behind a surface that commits to its contents, verifiable without opening and tamper-evident — a physical commitment scheme five millennia before public-key cryptography, and more than two millennia before deductive proof. Writing itself emerged from the verification device. The split tally’s stock and foil, matching only each other, refined the same law in medieval Europe — the law the fold formalizes: match = verify.',
+      boundary:
+        'HONEST: the documented core is the timeline and the devices’ own recorded function (the bulla wording — verify at all times, prevent tampering — is the sources’, not ours). The parallel to content-addressing (splitTally/bulla above, foldPair/merkleFold) is a STRUCTURAL formalization made here, NOT a claim that ancients practised cryptography or knew hash functions (flagged as anachronism). Ishango primes and lunar-calendar readings stay contested; the split tally’s documented prevalence is medieval, kept at its own date. "Before math was invented" means before formal deductive mathematics and before numerals — not before cognition: the innate keys ARE the oldest stratum. HARMONY ≠ TRUTH.',
+    }
+  })
+}

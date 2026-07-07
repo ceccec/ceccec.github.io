@@ -9,7 +9,7 @@ import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } fr
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
 import { areaPairs, bosnianPyramidNearPliskaHarmonisesDigitDistribution, doubleTorus3D, vortexMath } from '../../mountain/geometry'
-import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, toUuid, humanEase, addressEntropyBits, digitalRoot } from '../../0'
+import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, toUuid, humanEase, addressEntropyBits, digitalRoot, modUnits } from '../../0'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb } from '../../4/6'
@@ -45,16 +45,22 @@ import { MISSION_COMMANDS, agentSubmissionProtocol, foldQuantumCommandPairs, QUA
 // and is retained below as `complement`; the n/0 reverse is the multiplicative inverse.) The forward
 // harmonic n/0 = 9n (1/0 = 9), digital root always 9, is the separate forward reading.
 export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
-  const base = 10 // the radix — names the on-disk folder lattice N/(base−N); see `complement` below
+  const base = 10 // the radix — the ONE input; everything below derives from it (no hardcoded table)
+  const modulus = base - 1 // 9 — the digital-root ring ℤ/9ℤ, derived not typed
   const harmonic = vortexMath(matrix).divByZeroHarmonic // 1/0 = 9, the forward reading
-  // n⁻¹ mod 9: the reverse-doubling ÷2 = ×5 within the unit cycle (⟨2⟩ in (ℤ/9)*). null ⇒ non-unit.
+  // n⁻¹ mod (base−1): brute-force search — route 1 of the two independent computations. null ⇒ non-unit.
   const inverseMod9 = (n: number): number | null => {
-    const r = ((n % 9) + 9) % 9 // residue (9 ≡ 0, 0 ≡ 0)
-    if (r === 0) return null // 0 and 9 — non-units: the void / the 0-axis, no inverse
-    for (let x = 1; x <= 8; x += 1) if ((r * x) % 9 === 1) return x
-    return null // 3, 6 — non-units (the trinity axis), gcd(n,9) ≠ 1
+    const r = ((n % modulus) + modulus) % modulus // residue (9 ≡ 0, 0 ≡ 0)
+    if (r === 0) return null // the void / the 0-axis: no inverse
+    for (let x = 1; x < modulus; x += 1) if ((r * x) % modulus === 1) return x
+    return null // gcd(n, modulus) ≠ 1 — non-unit
   }
-  const table = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => {
+  // Route 2, independent: the unit group computed by gcd (src/0 modUnits) — the two routes must agree.
+  const unitGroup = modUnits(modulus) // (ℤ/9ℤ)* = {1,2,4,5,7,8}, computed not listed
+  const phi = unitGroup.length // Euler φ(9) = 6, computed
+  const involutive = unitGroup.filter((u) => (u * u) % modulus === 1) // x² ≡ 1 — {1,8}, computed
+  const digits = Array.from({ length: modulus }, (_, i) => i + 1) // 1..9 from the modulus, not a literal list
+  const table = digits.map((n) => {
     const inverse = inverseMod9(n) // n⁻¹ mod 9 (unit) or null (non-unit 3,6,9)
     const invertible = inverse !== null
     const complement = base - n // the ADDITIVE ten's complement (10 − n) — names the folder lattice N/(10−N), NOT the reverse
@@ -64,7 +70,7 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
       n,
       inverse, // the reverse: n⁻¹ mod 9 — 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8; null for 3,6,9
       invertible, // gcd(n,9) === 1 — the units {1,2,4,5,7,8}
-      inverseProductIsOne: invertible && (n * (inverse as number)) % 9 === 1, // the defining identity n · n⁻¹ ≡ 1
+      inverseProductIsOne: invertible && (n * (inverse as number)) % modulus === 1, // the defining identity n · n⁻¹ ≡ 1
       selfInverse: invertible && inverse === n, // involutive units {1,8}
       fusion: selfFusion.merged, // non-units route here (self-fold), like 0/0 — distinct, bidirectional
       reverse: complement, // RETAINED legacy field = the additive folder-complement (10 − n); read by frozen consumers (heaven/*) and the station-path lattice. Rename to `inverse` in the coordinated post-compression pass.
@@ -94,27 +100,29 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
     fusion: fusion.merged, // the quantum fusion — NOT 0
     reversesToFusion: overflow >= base && fusion.bidirectional && fusion.merged !== folderZero && isUuid(fusion.merged),
   }
-  const units = table.filter((row) => row.invertible) // {1,2,4,5,7,8} — (ℤ/9)*
-  const selfInverseUnits = units.filter((row) => row.selfInverse) // {1,8}
-  const nonUnits = table.filter((row) => !row.invertible) // {3,6,9} — the trinity axis
+  const units = table.filter((row) => row.invertible) // (ℤ/9)* by route 1 (brute-force inverse exists)
+  const selfInverseUnits = units.filter((row) => row.selfInverse) // involutive by route 1 (inverse === n)
+  const nonUnits = table.filter((row) => !row.invertible) // the non-units — no inverse found
   const inversePairs = units
     .filter((row) => !row.selfInverse && (row.inverse as number) > row.n)
-    .map((row) => [row.n, row.inverse as number] as const) // (2,5),(4,7)
-  // The corrected defining law: every unit's reverse satisfies n · n⁻¹ ≡ 1 (mod 9); the non-units
-  // (and the void) have no inverse and fold within themselves to a content address.
+    .map((row) => [row.n, row.inverse as number] as const) // the nontrivial inverse pairs
+  // The corrected defining law, verified by AGREEMENT of two independent computations — the brute-force
+  // inverse search (route 1) against the gcd unit group and x²≡1 involutives (route 2). Nothing expected
+  // is a literal: φ, the involutive set, the pair count and the non-unit count are all derived.
   const inverseVerified =
-    units.length === 6 &&
+    units.length === phi &&
+    units.map((row) => row.n).join(',') === unitGroup.join(',') &&
     units.every((row) => row.inverseProductIsOne) &&
-    selfInverseUnits.length === 2 &&
-    selfInverseUnits.every((row) => row.n === 1 || row.n === 8) &&
-    inversePairs.length === 2 &&
-    nonUnits.length === 3 &&
+    selfInverseUnits.length === involutive.length &&
+    selfInverseUnits.map((row) => row.n).join(',') === involutive.join(',') &&
+    inversePairs.length === (phi - involutive.length) / 2 &&
+    nonUnits.length === modulus - phi &&
     nonUnits.every((row) => !row.invertible && isUuid(row.fusion)) &&
     !zeroOverZero.invertible && isUuid(zeroOverZero.fusion)
   const allSumToTen = table.every((row) => row.sumsToTen) // a property of the additive complement (the folder lattice)
   const onlyFiveSelfPaired = table.filter((row) => row.selfPaired).length === 1 && table.find((row) => row.selfPaired)?.n === 5
-  const reverseNotAlwaysNine = table.filter((row) => row.reverse === 9).length === 1 // only the n=1 complement is 9
-  const harmonicDigitalRootAllNine = table.every((row) => row.digitalRoot === 9) // the forward altitude
+  const reverseNotAlwaysNine = table.filter((row) => row.reverse === modulus).length === 1 // only the n=1 complement is 9
+  const harmonicDigitalRootAllNine = table.every((row) => row.digitalRoot === modulus) // the forward altitude — digitalRoot's fixed point IS the modulus
   return {
     holds: inverseVerified && allSumToTen && onlyFiveSelfPaired && reverseNotAlwaysNine && harmonicDigitalRootAllNine && zeroOverZero.reversesToFusion,
     base,

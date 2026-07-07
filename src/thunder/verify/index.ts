@@ -7,6 +7,7 @@ import { cssMathProvenByMath, harmonicCountsProvenByMath } from '../../earth/arc
 import { darkLightPolarityProvenByMath } from '../movie/movievars'
 import { staticPages, crawlerKnowledge } from '../../wind/site'
 import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, toUuid } from '../../0'
+import { addressed, covers } from '../../5/5'
 import { schemaOrgDiamonds } from '../../fire/diamonds'
 import { groupOrbit } from '../../4/6'
 import { piThreeOpensTheTrinity } from '../../water/digit'
@@ -375,10 +376,8 @@ export function efficiencyMathFlowsInMovie(matrix: MindMatrix = buildMatrix()) {
 function efficiencyMathFlowsInMovieRaw(matrix: MindMatrix = buildMatrix()) {
   const bit = everyBitMostEfficientAlgorithmProvenByMath(matrix)
   const seeds = efficiencyMathMovieSeedsFromBit(bit)
-  const textCoversProofs = bit.proofs.every(
-    (proof) => seeds.movieText.includes(String(proof.expected)) && seeds.movieText.includes(proof.expr),
-  )
-  const streamsMatchProofs = seeds.streams.length === bit.proofs.length && seeds.streams.every((s) => isUuid(s.uuid))
+  const textCoversProofs = bit.proofs.every((proof) => covers(seeds.movieText, [proof.expected, proof.expr]))
+  const streamsMatchProofs = addressed(seeds.streams, bit.proofs.length)
   return {
     flows: bit.proven && textCoversProofs && streamsMatchProofs,
     proven: bit.proven,

@@ -2,7 +2,7 @@
 // Domain cuts only — vault primitives import from src/0 at call sites.
 import { IONIZING_EV, PROTON_MASS_MEV, photonEnergyEv } from '../../3/7'
 import type { Rational } from '../../3/7'
-import { applyGate, cnot, GATES, measure, prng, probabilities, qubits } from '../../0'
+import { applyGate, cnot, GATES, measure, merkleFold, prng, probabilities, qubits, toUuid } from '../../0'
 import type { QuantumState } from '../../0'
 
 export function innerProduct(a: QuantumState, b: QuantumState): { re: number; im: number; abs: number } {
@@ -37,6 +37,64 @@ export function gateMul(a: readonly number[], b: readonly number[]): number[] {
 export function commutator(a: readonly number[], b: readonly number[]): number[] {
   const ab = gateMul(a, b), ba = gateMul(b, a)
   return ab.map((v, i) => v - ba[i])
+}
+
+// ── Closing the operator algebra M₂(ℂ) — the gaps beside the product and the bracket ──
+// gateMul (·) and commutator ([·,·]) are the associative product and the Lie bracket; an algebra also needs the
+// Jordan product {·,·}, the trace functional, and the adjoint †. With them the Pauli relations close exactly:
+// σ_i² = I, {σ_i,σ_j} = 2δ_ij I, [σ_i,σ_j] = 2i ε_ijk σ_k, σ_i† = σ_i, tr σ_i = 0. Flat-8 gate layout: element
+// (row i, col k) at index (i·2+k)·2 (real) / +1 (imag) — the same layout gateMul uses.
+
+/** Anticommutator {A,B} = AB + BA — the Jordan product; {σ_i,σ_j} = 2δ_ij I completes the bracket. */
+export function anticommutator(a: readonly number[], b: readonly number[]): number[] {
+  const ab = gateMul(a, b), ba = gateMul(b, a)
+  return ab.map((v, i) => v + ba[i])
+}
+
+/** Trace tr(A) = A₀₀ + A₁₁ of a 2×2 complex gate — the linear functional; tr σ_i = 0, tr I = 2. */
+export function trace(a: readonly number[]): { re: number; im: number } {
+  return { re: a[0]! + a[6]!, im: a[1]! + a[7]! }
+}
+
+/** Adjoint A† — conjugate transpose (swap off-diagonals, negate every imaginary part). A unitary ⟺ A†A = I. */
+export function dagger(a: readonly number[]): number[] {
+  return [a[0]!, -a[1]!, a[4]!, -a[5]!, a[2]!, -a[3]!, a[6]!, -a[7]!]
+}
+
+const gateClose = (a: readonly number[], b: readonly number[]): boolean => a.every((v, i) => Math.abs(v - b[i]!) < 1e-9)
+/** 2i·A in flat-8 (each complex entry (r,i) ↦ (−2i, 2r)) — the RHS scale of the su(2) structure relation. */
+const twoI = (a: readonly number[]): number[] => a.flatMap((_, i) => (i % 2 === 0 ? [-2 * a[i + 1]!, 2 * a[i]!] : []))
+/** 2·I flat-8 = diag(2,2) — the RHS of the Jordan relation {σ_i,σ_i} = 2I. */
+const TWO_I2 = [2, 0, 0, 0, 0, 0, 2, 0]
+const ZERO8 = new Array<number>(8).fill(0)
+
+/** The fold: the operator algebra closes — the Pauli defining relations all hold, computed not asserted.
+ * Fills the gap the inventory named: gateMul + commutator alone are a product and a bracket; with the Jordan
+ * product, trace and adjoint the su(2) ⊂ M₂(ℂ) *-algebra is complete and self-verifying. */
+export function pauliAlgebraCloses(): {
+  closes: boolean; count: number
+  facets: { facet: string; on: boolean; receipt: string }[]
+  root: string; statement: string; boundary: string
+} {
+  const { I, X, Y, Z } = GATES
+  const paulis: [string, readonly number[]][] = [['X', X], ['Y', Y], ['Z', Z]]
+  const facets = [
+    { facet: 'involutive — σ_i² = I for i ∈ {X,Y,Z} (each Pauli its own inverse)', on: paulis.every(([, s]) => gateClose(gateMul(s, s), I)) },
+    { facet: 'Jordan product closes — {σ_i,σ_j} = 2δ_ij I (anticommute off-diagonal, 2I on the diagonal)', on: paulis.every(([, a], i) => paulis.every(([, b], j) => gateClose(anticommutator(a, b), i === j ? TWO_I2 : ZERO8))) },
+    { facet: 'su(2) structure closes — [σ_i,σ_j] = 2i ε_ijk σ_k ([X,Y]=2iZ, [Y,Z]=2iX, [Z,X]=2iY)', on: gateClose(commutator(X, Y), twoI(Z)) && gateClose(commutator(Y, Z), twoI(X)) && gateClose(commutator(Z, X), twoI(Y)) },
+    { facet: 'Hermitian and unitary — σ_i† = σ_i and σ_i†σ_i = I (self-adjoint observables that are also gates)', on: paulis.every(([, s]) => gateClose(dagger(s), s) && gateClose(gateMul(dagger(s), s), I)) },
+    { facet: 'traceless Paulis, tr I = 2 — the su(2) generators live in the traceless subspace', on: paulis.every(([, s]) => Math.abs(trace(s).re) < 1e-9 && Math.abs(trace(s).im) < 1e-9) && trace(I).re === 2 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pauli-algebra:${entry.facet}:${entry.on}`) }))
+  return {
+    closes: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The operator algebra closes: with the associative product (gateMul), the Lie bracket (commutator), the Jordan product (anticommutator), the trace and the adjoint, the Pauli defining relations all hold exactly — σ_i² = I, {σ_i,σ_j} = 2δ_ij I, [σ_i,σ_j] = 2i ε_ijk σ_k, σ_i† = σ_i, tr σ_i = 0 — so su(2) ⊂ M₂(ℂ) is a complete, self-verifying *-algebra, not just a product and a bracket.',
+    boundary:
+      'EXACT: the single-qubit operator algebra over ℂ, verified numerically (tolerance 1e-9) against its textbook defining relations — the same M₂(ℂ)/su(2) the gates and observables live in. It is the 2×2 (one-qubit) algebra; the n-qubit tensor algebra is generated from it via applyGate/cnot but not re-proved here.',
+  }
 }
 
 // Entanglement, measured: for a 2-qubit pure state Σ c_ij|ij⟩, the concurrence C = 2|c00·c11 − c01·c10| (twice

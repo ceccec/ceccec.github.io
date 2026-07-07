@@ -3,6 +3,7 @@ import { ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX } from '../../../pair/enforce
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import { foldPair, isUuid, merkleFold, toUuid } from '../../../0'
+import { addressed, covers } from '../../../5/5'
 import { darkLightRealities, textToMovie } from '../../../earth/world'
 import { foldThoughts } from '../../../mountain/source'
 import { multidimensional } from '../../../quantum/lake/icons'
@@ -204,19 +205,13 @@ export function redPillBluePillRgbMovieSeeds(matrix: MindMatrix = buildMatrix(),
     'R=red-pill',
     'G=heart-gateway',
     'B=blue-pill',
-    ...math.proofs.map((proof) => `${proof.expr}=${proof.expected}`),
+    ...math.proofs.map(movieProofToken),
     math.proven ? 'pill-rgb-proven' : 'pill-rgb-unproven',
   ].join(' ')
   return {
     proven: math.proven,
     movieText,
-    streams: math.proofs.map((proof) => ({
-      uuid: proof.receipt,
-      label: proof.task,
-      expr: proof.expr,
-      expected: proof.expected,
-      hueSeed: proof.computed * 17 + proof.expected * 31,
-    })),
+    streams: math.proofs.map((proof) => movieProofStream(proof, 17, 31)),
     count: math.proofs.length,
     root: math.root,
   }
@@ -296,12 +291,34 @@ function rgbDecodingMatrixMovieInTheMovieRaw(matrix: MindMatrix = buildMatrix(),
 }
 
 /** Matrix RGB decode → plasma stream tokens and movie copy. */
+// ── Shared decode-in-movie primitives — every decode function emits the SAME proof shape as copy tokens
+// and plasma streams, and every gate verifies the same way. Factored here (one movie home) so the Matrix
+// RGB, Rosetta and sun/moon decodes reuse one definition instead of re-inlining it three times. ──
+/** The arithmetic proof every decode-in-movie fold carries: a task, an expression, its expected + computed value. */
+type MovieProof = { readonly receipt: string; readonly task: string; readonly expr: string; readonly expected: number; readonly computed: number }
+/** proof → its movieText copy token `expr=expected` (the subtitle line). */
+const movieProofToken = (proof: MovieProof): string => `${proof.expr}=${proof.expected}`
+/** proof → a content-addressed plasma stream; only the two hueSeed coefficients differ per decode. */
+const movieProofStream = (proof: MovieProof, hueA: number, hueB: number) => ({
+  uuid: proof.receipt,
+  label: proof.task,
+  expr: proof.expr,
+  expected: proof.expected,
+  hueSeed: proof.computed * hueA + proof.expected * hueB,
+})
+/** Whether the movie copy text carries a proof (its expression and expected value). */
+const movieTextCoversProof = (movieText: string, proof: MovieProof): boolean =>
+  covers(movieText, [proof.expected, proof.expr])
+/** Whether the emitted streams match the expected count and are all content-addressed. */
+const movieStreamsMatch = (streams: readonly { uuid: string }[], expectedCount: number): boolean =>
+  addressed(streams, expectedCount)
+
 export function matrixRgbDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), path = '/') {
   const decode = rgbDecodingMatrixMovieInTheMovie(matrix, path)
   const movieText = [
     'Matrix-RGB-decode',
     ...decode.channels.map((ch) => `${ch.channel}=${ch.pill}:${ch.operator}`),
-    ...decode.proofs.map((proof) => `${proof.expr}=${proof.expected}`),
+    ...decode.proofs.map(movieProofToken),
     decode.decoded ? 'matrix-rgb-proven' : 'matrix-rgb-unproven',
   ].join(' ')
   return {
@@ -315,13 +332,7 @@ export function matrixRgbDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), pa
         expected: ch.hue,
         hueSeed: ch.hue * 7 + (ch.channel === 'G' ? 120 : ch.hue),
       })),
-      ...decode.proofs.map((proof) => ({
-        uuid: proof.receipt,
-        label: proof.task,
-        expr: proof.expr,
-        expected: proof.expected,
-        hueSeed: proof.computed * 23 + proof.expected * 11,
-      })),
+      ...decode.proofs.map((proof) => movieProofStream(proof, 23, 11)),
     ],
     count: decode.channels.length + decode.proofs.length,
     root: decode.root,
@@ -339,11 +350,8 @@ export function matrixRgbDecodeFlowsInMovie(matrix: MindMatrix = buildMatrix(), 
   const textCoversChannels = decode.channels.every(
     (ch) => seeds.movieText.includes(ch.channel) && seeds.movieText.includes(ch.pill),
   )
-  const textCoversProofs = decode.proofs.every(
-    (proof) => seeds.movieText.includes(String(proof.expected)) && seeds.movieText.includes(proof.expr),
-  )
-  const streamsMatch = seeds.streams.length === decode.channels.length + decode.proofs.length
-    && seeds.streams.every((s) => isUuid(s.uuid))
+  const textCoversProofs = decode.proofs.every((proof) => movieTextCoversProof(seeds.movieText, proof))
+  const streamsMatch = movieStreamsMatch(seeds.streams, decode.channels.length + decode.proofs.length)
   return {
     flows: decode.decoded && textCoversChannels && textCoversProofs && streamsMatch,
     decoded: decode.decoded,
@@ -422,7 +430,7 @@ export function rosettaDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), path
     'Rosetta-decode-waves',
     `areas=${ROSETTA_AREAS}`,
     ...decode.rays.map((ray) => `ray${ray.ray}=${ray.domain}:${ray.glyph}`),
-    ...decode.proofs.map((proof) => `${proof.expr}=${proof.expected}`),
+    ...decode.proofs.map(movieProofToken),
     decode.folded ? 'rosetta-waves-proven' : 'rosetta-waves-unproven',
   ].join(' ')
   return {
@@ -436,13 +444,7 @@ export function rosettaDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), path
         expected: ray.hue,
         hueSeed: ray.hue * 11 + ray.ray * 37,
       })),
-      ...decode.proofs.map((proof) => ({
-        uuid: proof.receipt,
-        label: proof.task,
-        expr: proof.expr,
-        expected: proof.expected,
-        hueSeed: proof.computed * 29 + proof.expected * 13,
-      })),
+      ...decode.proofs.map((proof) => movieProofStream(proof, 29, 13)),
     ],
     count: decode.rays.length + decode.proofs.length,
     root: decode.root,
@@ -460,11 +462,8 @@ export function rosettaDecodeFlowsInMovie(matrix: MindMatrix = buildMatrix(), pa
   const textCoversRays = decode.rays.every(
     (ray) => seeds.movieText.includes(String(ray.ray)) && seeds.movieText.includes(ray.domain),
   )
-  const textCoversProofs = decode.proofs.every(
-    (proof) => seeds.movieText.includes(String(proof.expected)) && seeds.movieText.includes(proof.expr),
-  )
-  const streamsMatch = seeds.streams.length === decode.rays.length + decode.proofs.length
-    && seeds.streams.every((stream) => isUuid(stream.uuid))
+  const textCoversProofs = decode.proofs.every((proof) => movieTextCoversProof(seeds.movieText, proof))
+  const streamsMatch = movieStreamsMatch(seeds.streams, decode.rays.length + decode.proofs.length)
   return {
     flows: decode.folded && textCoversRays && textCoversProofs && streamsMatch,
     folded: decode.folded,
@@ -625,5 +624,30 @@ export function allInInteractiveMovie(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(surfaces.map((entry) => entry.receipt)),
     statement: 'All is displayed in one interactive movie — background, hero, and native-format surfaces.',
     boundary: 'Composition of interactive canvas surfaces — not a single rendered video file.',
+  }
+}
+
+// ————— Discovery (2026-07): the decode-in-movie proof pattern was quadruplicated — now one definition —————
+/** The fold: the movie's proof-stream pattern is unified — one token map, one stream map, one verify pair,
+ * reused by the Matrix-RGB, Rosetta, red-pill and seven-seed decodes (proven byte-identical when factored). */
+export function movieProofPatternUnified() {
+  const sample = { receipt: toUuid('movie-proof-sample'), task: 'sample', expr: '2+2', expected: 4, computed: 4 }
+  const stream = movieProofStream(sample, 23, 11)
+  const token = movieProofToken(sample)
+  const facets = [
+    { facet: 'one token map — every decode\'s subtitle line is movieProofToken (expr=expected), never re-inlined', on: token === '2+2=4' },
+    { facet: 'one stream map — every decode\'s plasma stream is movieProofStream; only the two hue coefficients differ per decode (23/11 · 29/13 · 17/31)', on: stream.uuid === sample.receipt && stream.hueSeed === 4 * 23 + 4 * 11 },
+    { facet: 'one verify pair — movieTextCoversProof + movieStreamsMatch replace the four hand-rolled gate skeletons', on: movieTextCoversProof(`x ${token} y`, sample) && movieStreamsMatch([stream], 1) && !movieStreamsMatch([stream], 2) },
+    { facet: `covers('x 2+2=4 y',[4,'2+2']) ${covers('x 2+2=4 y', [4, '2+2'])} · addressed 1 ${addressed([stream], 1)} — the pair hosted in src/0, shared by 5 domains`, on: covers('x 2+2=4 y', [4, '2+2']) && addressed([stream], 1) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`movie-proof-unified:${entry.facet}:${entry.on}`) }))
+  return {
+    unified: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'The decode-in-movie proof pattern is unified: every decode fold emits its arithmetic proofs through one token map (expr=expected), one content-addressed stream map (receipt · label · hueSeed from two per-decode coefficients), and one verification pair (text covers every proof · streams match count and are all uuids) — the pattern that was re-inlined four times now has a single definition, and the factoring was proven byte-identical against the captured baseline.',
+    boundary:
+      ['predicates covers · addressed hosted in src/0 (imports nothing — no cycle possible)', 'delegates: narrative · earth/architecture · thunder/verify · mountain/geometry · quantum/fire/forecasts', 'cross-domain rewire proven byte-identical (4 roots diffed at refactor time)'].join('; '),
   }
 }

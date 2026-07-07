@@ -85,6 +85,9 @@ export { hopfieldStore, hopfieldRecall, hopfieldEnergy, bumpStep, bumpEvolve } f
 export { codeRobustness } from '../../../earth/life'
 export { SPEED_OF_LIGHT, dopplerShift } from '../../../3/7'
 export { isIonizing } from '../../../9/1' // wave 18: EM-radiation constants — c, E=hf, the ~10 eV ionizing line; wavelengthOf · larmorFrequency at 1/9
+export { anticommutator, trace, dagger, pauliAlgebraCloses } from '../../../9/1' // operator algebra M₂(ℂ)/su(2) closed — Jordan product, trace, adjoint + the Pauli-relations verification
+export { foldMagmaLaws } from '../../../5/5' // the fold as a magma — laws homed at the verify station; primitives stay in src/0
+export { f2Add, f2Mul, f2FieldCloses } from '../../../4/6' // 𝔽₂ — the two-element field (XOR/AND) the reversible gates and CA compute over
 export { PROTON_GYROMAGNETIC } from '../../../6/4' // pi-train wave 10 physical cut
 export { radarRange } from '../../../3/7' // pi-train wave 9 tier-A at station 3/7
 export { dims, DIMENSIONS, DIMENSION_NAMES } from '../../mountain/dimensions' // ten animation dimensions — the 6 cross-fold appearance axes + 4 genus-2 homology loops

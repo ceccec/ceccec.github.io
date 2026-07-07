@@ -19,6 +19,7 @@ import * as __ns_up_up_thunder_trading from '../../../thunder/trading'
 import type { MindMatrix, StaticPage } from '../../../wind/types'
 import { buildMatrix, coverage } from '../../../heaven/compute'
 import { computesGate, isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../../0'
+import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, ROSETTA_AREAS } from '../../../3/7'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science'
 import { colorFromSound, soundFromColor, a432 } from '../../li'
@@ -399,12 +400,37 @@ export function allMovieSeedCopyText(path = '/', matrix: MindMatrix = buildMatri
 
 // ── Paint constants (OKLCH lightness tiers for the hero orb) ──
 const TIERS = [3, 5, 8] as const
-const CHROMA = 0.14
-const L_BACK = 0.12
-const L_SHELL = 0.22
-const L_SOFT = 0.42
-const L_CARD = 0.5
-const L_GLOW = 0.7
+// The visibility lattice: exact ratios p/q with q from TIERS and its ×2 doubling (5 · 8 · 16 · 32 · 64).
+// Was a second, decimal colour system (CHROMA 0.14 = lossy 9/64); now every value is an exact lattice ratio.
+const QS = [TIERS[1], TIERS[2], TIERS[2] * 2, TIERS[2] * 4, TIERS[2] * 8] as const
+type Vis = readonly [number, number]
+const r = (v: Vis) => v[0] / v[1]
+const CHROMA = 9 / 64
+const L_BACK = 8 / 64
+const L_SHELL = 14 / 64
+const L_SOFT = 27 / 64
+const L_CARD = 32 / 64
+const L_GLOW = 45 / 64
+/** Every movement plane's visibility as DATA — exact lattice ratios, read by plasmaCanvasFor and verified by the fold. */
+export const PLANE_VIS = {
+  tagLineL: [3, 5], tagLineA0: [16, 64], tagLineA1: [2, 5],
+  tagDotL: [5, 8], tagDotA0: [2, 5], tagDotA1: [32, 64],
+  tagGlyphL: [45, 64], tagGlyphA0: [32, 64], tagGlyphA1: [2, 5],
+  blobInnerL: [29, 64], blobInnerA: [32, 64],
+  blobMidL: [20, 64], blobMidA: [18, 64],
+  vignetteInnerL: [12, 64], vignetteInnerA: [35, 64],
+  vignetteMidL: [8, 64], vignetteMidA: [19, 64],
+  streamNearFactor: [45, 64],
+  streamFillNearL: [45, 64], streamFillFarL: [3, 5],
+  streamGlowL: [48, 64], streamGlowA: [4, 5],
+  voidCoreL: [5, 64], voidCoreA: [58, 64],
+  voidMidL: [10, 64], voidMidA: [32, 64],
+  voidOuterL: [15, 64], voidOuterA: [13, 64],
+  ringL: [3, 5], ringA0: [19, 64], ringA1: [32, 64],
+  ballGlyphGlowL: [50, 64],
+  ballGlyphL: [42, 64], ballGlyphStep: [3, 64],
+  reduceCoreL: [6, 64], reduceCoreA: [38, 64],
+} as const satisfies Record<string, Vis>
 export const PLASMA_PAINT_TIERS = TIERS
 export const PLASMA_PAINT_CHROMA = CHROMA
 export const PLASMA_PAINT_L_BACK = L_BACK
@@ -412,8 +438,66 @@ export const PLASMA_PAINT_L_SHELL = L_SHELL
 export const PLASMA_PAINT_L_SOFT = L_SOFT
 export const PLASMA_PAINT_L_CARD = L_CARD
 export const PLASMA_PAINT_L_GLOW = L_GLOW
-export const HERO_CYCLE_MS = 120_000
+export const HERO_CYCLE_MS = FOLDED_CENSUS * 1000 // 108 s — the census harmonic (110 + χ), on the a432 ladder; DERIVED, was a hand-typed 120 s (retuned by heroClockOffTheLadderDiscovered)
 export const REALTIME_COMPUTE_MOVIE_CAP = 40
+
+// Plane visibility derived (was: hue computed, visibility hand-typed decimals — the discovered gap, now closed).
+export function plasmaPaintHardcodedPlanesDiscovered(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('plasmaPaintHardcodedPlanesDiscovered', matrix, () => {
+    const entries = Object.entries(PLANE_VIS) as [string, readonly [number, number]][]
+    const qs = QS as readonly number[]
+    const offLattice = entries.filter(([, [num, den]]) => !Number.isInteger(num) || !qs.includes(den))
+    const planeCount = Object.keys(plasmaCanvasFor(true)).length
+    const facets = [
+      { facet: `CHROMA ${CHROMA} === 9/64 ${9 / 64}`, on: CHROMA === 9 / 64 },
+      { facet: `${entries.length} visibility ratios on lattice q∈[${qs.join(',')}], off-lattice ${offLattice.length}`, on: entries.length >= 30 && offLattice.length === 0 },
+      { facet: `${planeCount} planes read PLANE_VIS; blob hue step = TIERS[2] ${TIERS[2]}`, on: planeCount >= 16 },
+      { facet: `hue source A432_HUE ${A432_HUE} + GOLDEN_ANGLE ${roundTo(GOLDEN_ANGLE, 2)}`, on: A432_HUE === 5 && GOLDEN_ANGLE > 137 && GOLDEN_ANGLE < 138 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`plasma-hardcoded-planes:${entry.facet}:${entry.on}`) }))
+    return {
+      discovered: facets.every((entry) => entry.on),
+      realized: facets.every((entry) => entry.on),
+      planes: planeCount,
+      ratios: entries.length,
+      remaining: ['tagHueStepDeg 12'],
+      chroma: { value: CHROMA, lattice: `9/64=${9 / 64}` },
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
+      boundary: [`sources TIERS · QS · A432_HUE · GOLDEN_ANGLE`, `visual delta ≤ 1/64 L per plane vs the decimal system (deliberate)`, `remaining integer-degree steps: tag hue 12°`].join('; '),
+    }
+  })
+}
+
+
+// Timing vs the sealed harmonics — every string below is concatenated from computed outputs (no prose in methods).
+export function heroClockOffTheLadderDiscovered(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('heroClockOffTheLadderDiscovered', matrix, () => {
+    const cycleS = HERO_CYCLE_MS / 1000
+    const ladder = A432_OCTAVES
+    const onLadder = ladder.includes(cycleS)
+    const capLaw = ROSETTA_AREAS + EULER_CHI
+    const nearest = ladder.reduce((a, b) => (Math.abs(b - cycleS) < Math.abs(a - cycleS) ? b : a))
+    const facets = [
+      { facet: `cap ${REALTIME_COMPUTE_MOVIE_CAP} = ROSETTA_AREAS ${ROSETTA_AREAS} + χ ${EULER_CHI} = ${capLaw}`, on: REALTIME_COMPUTE_MOVIE_CAP === capLaw },
+      { facet: `cycle ${cycleS}s ${onLadder ? 'on' : 'off'} ladder [${ladder.join(',')}]s, nearest ${nearest}s`, on: onLadder },
+      { facet: `HERO_CYCLE_MS ${HERO_CYCLE_MS} = FOLDED_CENSUS ${FOLDED_CENSUS} × 1000`, on: HERO_CYCLE_MS === FOLDED_CENSUS * 1000 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hero-clock-ladder:${entry.facet}:${entry.on}`) }))
+    return {
+      discovered: facets.every((entry) => entry.on),
+      realized: HERO_CYCLE_MS === FOLDED_CENSUS * 1000 && onLadder,
+      cycleS,
+      nearestHarmonicS: nearest,
+      cap: { value: REALTIME_COMPUTE_MOVIE_CAP, law: `${ROSETTA_AREAS}+(${EULER_CHI})=${capLaw}` },
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
+      boundary: [`sources A432_OCTAVES · FOLDED_CENSUS · ROSETTA_AREAS · EULER_CHI`, `timing retuned 120s → ${cycleS}s (visible, deliberate)`].join('; '),
+    }
+  })
+}
 
 /** 0..1 phase on the shared hero clock at time `at`. */
 export function heroPhaseAt(at: number = Date.now(), cycleMs = HERO_CYCLE_MS): number {
@@ -423,10 +507,8 @@ export function heroPhaseAt(at: number = Date.now(), cycleMs = HERO_CYCLE_MS): n
 
 function heroMovieHueRaw(path: string, matrix: MindMatrix): number {
   void matrix
-  // Anchored at the single A432 colour source (A432_HUE = frequencyToLight(432).hue): the route hue is a
-  // content-addressed ROTATION from the A432 brand light, never an arbitrary absolute hue. Mirrors the
-  // quantumMathDesignsTheUi() reference pattern (A432_HUE + movieHue + …), so the whole plasma palette and
-  // theme colours trace to one tuning anchor.
+  // Anchored at the single A432 colour source: the route hue is a content-addressed ROTATION from the
+  // A432 brand light, never an arbitrary absolute hue.
   return ((A432_HUE + seedFromText(`hero-movie-hue:${movieRouteKey(path)}`, 360)) % 360 + 360) % 360
 }
 
@@ -440,6 +522,7 @@ export function heroMoviePhaseHue(path = '/', at: number = 0, matrix: MindMatrix
   const base = heroMovieHueRaw(path, matrix)
   return (((base + at * GOLDEN_ANGLE) % 360) + 360) % 360
 }
+
 
 export type PlasmaMoviePalette = {
   hue: number
@@ -492,23 +575,23 @@ const rgbaAt = (hue: number, L: number, alpha: number, dark = true) =>
 /** Pure OKLCH canvas paint helpers — hue-parameterised, dark/light-aware (legible on either field). */
 function plasmaCanvasFor(dark: boolean): PlasmaMoviePalette['canvas'] {
   return {
-    tagLine: (hue, persp) => rgbaAt(hue, 0.6, 0.25 + 0.4 * persp, dark),
-    tagDot: (hue, i, persp) => rgbaAt(hue + i * 12, 0.62, 0.4 + 0.5 * persp, dark),
-    tagGlyph: (hue, i, persp) => rgbaAt(hue + i * 12, 0.7, 0.5 + 0.4 * persp, dark),
-    blobInner: (hue, b) => rgbaAt(hue + b * 8, 0.45, 0.5, dark),
-    blobMid: (hue, b) => rgbaAt(hue + b * 8, 0.32, 0.28, dark),
-    vignetteInner: (hue) => rgbaAt(hue, 0.18, 0.55, dark),
-    vignetteMid: (hue) => rgbaAt(hue, 0.12, 0.3, dark),
-    streamAlpha: (base, near, pulse) => clamp01(base * pulse * (near ? 1 : 0.7)),
-    streamFill: (hue, alpha, near) => rgbaAt(hue, near ? 0.7 : 0.6, alpha, dark),
-    streamGlow: (hue, alpha) => rgbaAt(hue, 0.75, alpha * 0.8, dark),
-    voidCore: (hue) => rgbaAt(hue, 0.08, 0.9, dark),
-    voidMid: (hue) => rgbaAt(hue, 0.16, 0.5, dark),
-    voidOuter: (hue) => rgbaAt(hue, 0.24, 0.2, dark),
-    ring: (hue, pulse) => rgbaAt(hue, 0.6, 0.3 + 0.5 * pulse, dark),
-    ballGlyphGlow: (hue, alpha) => rgbaAt(hue, 0.78, alpha, dark),
-    ballGlyph: (hue, alpha, layer) => rgbaAt(hue, 0.66 - layer * 0.05, alpha, dark),
-    reduceCore: (hue) => rgbaAt(hue, 0.1, 0.6, dark),
+    tagLine: (hue, persp) => rgbaAt(hue, r(PLANE_VIS.tagLineL), r(PLANE_VIS.tagLineA0) + r(PLANE_VIS.tagLineA1) * persp, dark),
+    tagDot: (hue, i, persp) => rgbaAt(hue + i * 12, r(PLANE_VIS.tagDotL), r(PLANE_VIS.tagDotA0) + r(PLANE_VIS.tagDotA1) * persp, dark),
+    tagGlyph: (hue, i, persp) => rgbaAt(hue + i * 12, r(PLANE_VIS.tagGlyphL), r(PLANE_VIS.tagGlyphA0) + r(PLANE_VIS.tagGlyphA1) * persp, dark),
+    blobInner: (hue, b) => rgbaAt(hue + b * TIERS[2], r(PLANE_VIS.blobInnerL), r(PLANE_VIS.blobInnerA), dark),
+    blobMid: (hue, b) => rgbaAt(hue + b * TIERS[2], r(PLANE_VIS.blobMidL), r(PLANE_VIS.blobMidA), dark),
+    vignetteInner: (hue) => rgbaAt(hue, r(PLANE_VIS.vignetteInnerL), r(PLANE_VIS.vignetteInnerA), dark),
+    vignetteMid: (hue) => rgbaAt(hue, r(PLANE_VIS.vignetteMidL), r(PLANE_VIS.vignetteMidA), dark),
+    streamAlpha: (base, near, pulse) => clamp01(base * pulse * (near ? 1 : r(PLANE_VIS.streamNearFactor))),
+    streamFill: (hue, alpha, near) => rgbaAt(hue, near ? r(PLANE_VIS.streamFillNearL) : r(PLANE_VIS.streamFillFarL), alpha, dark),
+    streamGlow: (hue, alpha) => rgbaAt(hue, r(PLANE_VIS.streamGlowL), alpha * r(PLANE_VIS.streamGlowA), dark),
+    voidCore: (hue) => rgbaAt(hue, r(PLANE_VIS.voidCoreL), r(PLANE_VIS.voidCoreA), dark),
+    voidMid: (hue) => rgbaAt(hue, r(PLANE_VIS.voidMidL), r(PLANE_VIS.voidMidA), dark),
+    voidOuter: (hue) => rgbaAt(hue, r(PLANE_VIS.voidOuterL), r(PLANE_VIS.voidOuterA), dark),
+    ring: (hue, pulse) => rgbaAt(hue, r(PLANE_VIS.ringL), r(PLANE_VIS.ringA0) + r(PLANE_VIS.ringA1) * pulse, dark),
+    ballGlyphGlow: (hue, alpha) => rgbaAt(hue, r(PLANE_VIS.ballGlyphGlowL), alpha, dark),
+    ballGlyph: (hue, alpha, layer) => rgbaAt(hue, r(PLANE_VIS.ballGlyphL) - layer * r(PLANE_VIS.ballGlyphStep), alpha, dark),
+    reduceCore: (hue) => rgbaAt(hue, r(PLANE_VIS.reduceCoreL), r(PLANE_VIS.reduceCoreA), dark),
   }
 }
 

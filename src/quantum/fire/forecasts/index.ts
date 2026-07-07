@@ -12,6 +12,7 @@ import { doubleTorusCompost } from '../../../fire/li'
 import { doubleTorusMotifRealGeometryNotFringePhysics } from '../../../mountain/topology'
 import { earthPolesAreADipoleDoubleTorusNotAGrid } from '../../water/cache'
 import { toUuid, merkleFold, isUuid, roundTo, memoByRoot, merge, sealFacets, doubleTorusSurface, digitalRoot } from '../../../0'
+import { addressed, covers } from '../../../5/5'
 
 // ☵ Kǎn · Water · abysmal (weather realtime feeds) · upper·yang · spread — realtime forecast feeds
 // Weather forecast computed in realtime. Free, no-key realtime forecast feeds — Open-Meteo (fuses 15+
@@ -320,14 +321,13 @@ export function doubleTorusEarthWeatherFlowsInMovie(matrix: MindMatrix = buildMa
   const celestialAll = computeAllKnownCelestialBodies(matrix)
   const bittenApple = decodeTheBittenApple(matrix)
   const seeds = doubleTorusEarthWeatherMovieSeeds(matrix)
-  const textCoversFacets = weather.facets.every((facet) => seeds.movieText.includes(facet.facet))
-  const textCoversDomains = solutions.solutions.every((solution) => seeds.movieText.includes(solution.domain))
-  const textCoversApple = appleEarth.facets.every((facet) => seeds.movieText.includes(facet.facet))
-  const textCoversCelestial = celestial.matched.every((name) => seeds.movieText.includes(`celestial:${name}`))
-  const textCoversCelestialDeep = celestialDeep.findings.every((finding) => seeds.movieText.includes(`celestial-research:${finding.kind}:${finding.topic}`))
-  const textCoversBittenApple = bittenApple.decodes.every((entry) => seeds.movieText.includes(entry.symbol))
-  const streamsMatch = seeds.streams.length === weather.facets.length + solutions.solutions.length + appleEarth.facets.length + celestial.bodies.length + celestialDeep.findings.length + bittenApple.decodes.length
-    && seeds.streams.every((stream) => isUuid(stream.uuid))
+  const textCoversFacets = covers(seeds.movieText, weather.facets.map((facet) => facet.facet))
+  const textCoversDomains = covers(seeds.movieText, solutions.solutions.map((solution) => solution.domain))
+  const textCoversApple = covers(seeds.movieText, appleEarth.facets.map((facet) => facet.facet))
+  const textCoversCelestial = covers(seeds.movieText, celestial.matched.map((name) => `celestial:${name}`))
+  const textCoversCelestialDeep = covers(seeds.movieText, celestialDeep.findings.map((finding) => `celestial-research:${finding.kind}:${finding.topic}`))
+  const textCoversBittenApple = covers(seeds.movieText, bittenApple.decodes.map((entry) => entry.symbol))
+  const streamsMatch = addressed(seeds.streams, weather.facets.length + solutions.solutions.length + appleEarth.facets.length + celestial.bodies.length + celestialDeep.findings.length + bittenApple.decodes.length)
   return {
     flows: weather.folded && solutions.proven && appleEarth.likeTheApple && celestial.exactMatch && celestialDeep.researched && celestialAll.computed && bittenApple.decoded && textCoversFacets && textCoversDomains && textCoversApple && textCoversCelestial && textCoversCelestialDeep && textCoversBittenApple && streamsMatch,
     folded: weather.folded,

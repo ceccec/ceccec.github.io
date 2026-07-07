@@ -4,6 +4,7 @@ import { bumpEvolve, bumpStep, hopfieldEnergy, hopfieldRecall, hopfieldStore } f
 import { rat, ratAdd, ratEq, ratMul, vortexHarmonicRatios } from '../../3/7'
 import { dopplerShift, frequencyOf, photonEnergyEv, schwarzschildRadius, seesawLightMassEv } from '../../3/7'
 import { chsh, congruence, inductionEvolve, inductionStep, markovEvolve, markovStep, pmixEvolve, pmixStep, stationary, survive } from '../../0'
+import { addressed, covers } from '../../5/5'
 import { bb84, bernsteinVazirani, deutschJozsa, entanglementSwap, ghzMermin, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, simon, teleportQubit } from '../../9/1'
 import { initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import type { AnalogChannel, DualTorusTrinities, MindMatrix, TrinityAxis, TrinityPair, TrinityPhase, TrinityStep, MetatronCubeReport, MetatronEdge, MetatronNode, SacredGeometrySeal, SealLeaf } from '../../wind/types'
@@ -405,11 +406,8 @@ export function doubleTorusMathAtAllScalesMovieSeeds(matrix: MindMatrix = buildM
 export function doubleTorusMathAtAllScalesFlowsInMovie(matrix: MindMatrix = buildMatrix()) {
   const report = doubleTorusMathAtAllScalesProofs(matrix)
   const seeds = doubleTorusMathAtAllScalesMovieSeeds(matrix)
-  const textCoversProofs = report.proofs.every(
-    (proof) => seeds.movieText.includes(String(proof.expected)) && seeds.movieText.includes(proof.expr),
-  )
-  const streamsMatch =
-    seeds.streams.length === report.proofs.length && seeds.streams.every((stream) => isUuid(stream.uuid))
+  const textCoversProofs = report.proofs.every((proof) => covers(seeds.movieText, [proof.expected, proof.expr]))
+  const streamsMatch = addressed(seeds.streams, report.proofs.length)
   return {
     flows: report.proven && textCoversProofs && streamsMatch,
     proven: report.proven,

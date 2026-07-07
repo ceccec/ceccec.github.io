@@ -6,6 +6,7 @@ import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/
 import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry'
 import { vortexMath } from '../../mountain/vortex'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE, ICHING_NUMBERS, digitalRoot } from '../../0'
+import { addressed, covers } from '../../5/5'
 import { methodNameFromFolderTail } from '../../9/1'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2'
 import { piTrainDiamonds, pureDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
@@ -193,10 +194,8 @@ export function harmonicMathFlowsInMovie(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('harmonicMathFlowsInMovie', matrix, () => {
     const math = harmonicCountsProvenByMath(matrix)
     const seeds = harmonicMathMovieSeeds(matrix)
-    const textCoversProofs = math.proofs.every(
-      (proof) => seeds.movieText.includes(String(proof.expected)) && seeds.movieText.includes(proof.expr),
-    )
-    const streamsMatchProofs = seeds.streams.length === math.proofs.length && seeds.streams.every((s) => isUuid(s.uuid))
+    const textCoversProofs = math.proofs.every((proof) => covers(seeds.movieText, [proof.expected, proof.expr]))
+    const streamsMatchProofs = addressed(seeds.streams, math.proofs.length)
     return {
       flows: math.proven && textCoversProofs && streamsMatchProofs,
       proven: math.proven,

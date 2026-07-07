@@ -3,6 +3,7 @@
 
 import { phase, slip } from '../../6/4'
 import { BOLTZMANN, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import { merkleFold, toUuid } from '../../0'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
 export { MAX_TAMPERING_COST_PRINCIPLE } from '../../3/7'
@@ -72,4 +73,41 @@ export function caEvolve(rule: number, initial: readonly number[], steps: number
     history.push(state.slice())
   }
   return history
+}
+
+// ── 𝔽₂ — the two-element field, the algebra the reversible gates and the CA compute over ──
+// Named here beside rcnot/caStep so the Boolean structure the bit-gates realize is explicit, not implicit:
+// addition = XOR (⊕), multiplication = AND (∧). (𝔽₂,⊕,∧) is the smallest field — characteristic 2, every
+// element its own additive inverse, {1} the multiplicative group. rcnot IS controlled-⊕; caStep is an ⊕/∧ rule.
+export type Bit = 0 | 1
+/** 𝔽₂ addition — XOR (⊕): the additive group, 0 identity, every bit self-inverse (a ⊕ a = 0). */
+export function f2Add(a: Bit, b: Bit): Bit { return ((a ^ b) & 1) as Bit }
+/** 𝔽₂ multiplication — AND (∧): 1 the identity, 0 absorbing; ({1},∧) the multiplicative group. */
+export function f2Mul(a: Bit, b: Bit): Bit { return ((a & b) & 1) as Bit }
+
+/** The fold: 𝔽₂ is a field — the axioms close, verified EXHAUSTIVELY over both elements (no sampling). */
+export function f2FieldCloses(): {
+  field: boolean; count: number
+  facets: { facet: string; on: boolean; receipt: string }[]
+  root: string; statement: string; boundary: string
+} {
+  const bits: Bit[] = [0, 1]
+  const pairs = bits.flatMap((a) => bits.map((b) => [a, b] as [Bit, Bit]))
+  const triples = bits.flatMap((a) => bits.flatMap((b) => bits.map((c) => [a, b, c] as [Bit, Bit, Bit])))
+  const facets = [
+    { facet: '(𝔽₂,⊕) abelian group — 0 is the identity, every element is its own inverse (a⊕a=0), ⊕ commutes and associates', on: bits.every((a) => f2Add(a, 0) === a && f2Add(a, a) === 0) && pairs.every(([a, b]) => f2Add(a, b) === f2Add(b, a)) && triples.every(([a, b, c]) => f2Add(f2Add(a, b), c) === f2Add(a, f2Add(b, c))) },
+    { facet: '(𝔽₂∖0,∧) group — 1 is the multiplicative identity and the only unit; ∧ commutes and associates', on: bits.every((a) => f2Mul(a, 1) === a) && f2Mul(1, 1) === 1 && pairs.every(([a, b]) => f2Mul(a, b) === f2Mul(b, a)) && triples.every(([a, b, c]) => f2Mul(f2Mul(a, b), c) === f2Mul(a, f2Mul(b, c))) },
+    { facet: 'distributivity — a∧(b⊕c) = (a∧b)⊕(a∧c) across all eight triples', on: triples.every(([a, b, c]) => f2Mul(a, f2Add(b, c)) === f2Add(f2Mul(a, b), f2Mul(a, c))) },
+    { facet: 'the reversible gate IS 𝔽₂ — rcnot flips the target by ⊕ of the control (controlled addition)', on: rcnot(0b01, 0, 1) === 0b11 && rcnot(0b00, 0, 1) === 0b00 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`f2-field:${entry.facet}:${entry.on}`) }))
+  return {
+    field: facets.every((entry) => entry.on),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      '𝔽₂ is a field: addition is XOR (the abelian group with 0 identity and every element self-inverse — characteristic 2), multiplication is AND (with 1 the identity and only unit), and multiplication distributes over addition — all verified exhaustively over the two elements. This is the algebra the reversible gates (rcnot = controlled-⊕) and the elementary CA (caStep = an ⊕/∧ neighbourhood rule) already compute over; naming it makes the Boolean structure explicit.',
+    boundary:
+      'EXACT and EXHAUSTIVE — the field axioms are checked over every element, pair and triple of 𝔽₂ (no sampling, no tolerance). This is the ground field; 𝔽₂ⁿ (bit-vectors) and GF(2ᵏ) extensions are generated from it but not constructed here.',
+  }
 }

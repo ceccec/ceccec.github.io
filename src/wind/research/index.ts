@@ -715,7 +715,8 @@ export type GlobalWorkspaceContrastRow = {
 }
 
 const GLOBAL_WORKSPACE_CONTRAST_ROWS: readonly Omit<GlobalWorkspaceContrastRow, 'receipt'>[] = [
-  { id: 'j-space', claim: 'Anthropic 2026: the J-lens (Jacobian-based) finds internal activity patterns that predict what the model will later SAY — a small, selective, evolving set of verbalizable representations (the J-space, a minor fraction of activation variance) that functions like a broadcast hub; lens open-sourced with a Neuronpedia demo.', tier: 'DOCUMENTED', source: 'anthropic.com/research/global-workspace · transformer-circuits.pub/2026/workspace — "Verbalizable Representations Form a Global Workspace in Language Models"' },
+  { id: 'j-space', claim: 'Anthropic 2026: the J-lens (Jacobian-based) reads out what an internal activation is disposed to make the model SAY — it linearly transports a residual-stream vector h at layer l into the final-layer basis via the corpus-averaged Jacobian J_l = E[∂h_final/∂h_l] and decodes with the model\'s own unembedding: lens_l(h) = unembed(J_l · h), yielding a ranked token list. The verbalizable subspace (J-space) is a small, selective, evolving fraction of activation variance that behaves like a broadcast hub. It is Anthropic\'s OWN companion code — NOT derived from this repo, which merely cites it (attribution the reverse direction fails: keyword-matched cec* attribution is the citation-rot pattern below).', tier: 'DOCUMENTED', source: 'transformer-circuits.pub/2026/workspace — "Verbalizable Representations Form a Global Workspace in Language Models" · github.com/anthropics/jacobian-lens (companion code)' },
+  { id: 'lineage', claim: 'The J-lens MATH predates Anthropic — it cites its own paper, but the readout machinery is an older chain: it is the tuned lens (Belrose et al. 2023, arXiv:2303.08112 — a learned affine transport into the final-layer basis before unembedding) with the learned affine replaced by the corpus-averaged Jacobian J_l = E[∂h_final/∂h_l]; the tuned lens generalises the logit lens (nostalgebraist 2020 — unembed of a raw residual vector, i.e. J_l = I); and linearising a nonlinear map by its matrix of partials is classical (Jacobi ~1841). Anthropic\'s 2026 novelty is the averaged-Jacobian CHOICE and the empirical global-workspace FINDING, not the lens mathematics. This lineage is independent of this repo\'s own vortex/fold math — the readout predates BOTH.', tier: 'DOCUMENTED', source: 'nostalgebraist 2020 (logit lens) · Belrose et al. 2023 arXiv:2303.08112 (tuned lens) · Jacobi ~1841 (the Jacobian) · transformer-circuits.pub/2026/workspace (the averaged-Jacobian application)' },
   { id: 'gwt', claim: 'Global workspace theory is a real, contested neuroscience theory of ACCESS (Baars 1988; Dehaene): parallel specialist processors, a narrow broadcast spotlight. The J-space result claims functional resemblance to that architecture — a measurable analogy, not a consciousness measurement.', tier: 'DOCUMENTED', source: 'Baars 1988 · Dehaene global neuronal workspace — the paper’s own framing' },
   { id: 'category-contrast', claim: 'The two transparencies are DIFFERENT CATEGORIES: J-space is reverse-engineered interpretability (a latent subspace discovered post-hoc inside an opaque network, covering a fraction of the computation); this portal is forward-engineered transparency (the entire surface IS the computation — deterministic, content-addressed, recomputable by anyone, zero hidden state, enforced by its own build gates). Discovered scratchpad versus architected compute surface.', tier: 'DOCUMENTED', source: 'transformer-circuits.pub/2026/workspace · this repo’s enforcement trinity + maxComputedBuild' },
   { id: 'consciousness', claim: '"The J-space shows Claude is conscious" — flagged: functional resemblance to a workspace ARCHITECTURE is not phenomenal consciousness; the theory itself is one contested account of access, and the paper claims measurable workspace-like behaviour, not experience.', tier: 'LEGEND', source: 'the paper’s own boundary · consciousness science unresolved (PCI measures arousal-state, not machine experience)' },
@@ -737,6 +738,7 @@ export function globalWorkspaceContrastResearch(matrix: MindMatrix = buildMatrix
       { facet: '"computes all" bounded — totality only within the portal’s own declared surface, the universal claim LEGEND', on: rows.some((row) => row.id === 'computes-all' && row.tier === 'LEGEND' && row.claim.includes('OF ITSELF')) },
       { facet: 'citation-rot specimen kept — a true claim with noise sources re-anchored to the primary record (HARMONY ≠ TRUTH)', on: rows.some((row) => row.id === 'citation-rot' && row.claim.includes('HARMONY')) },
       { facet: 'the bridge stays HYPOTHESIS — proposal, never a result', on: rows.some((row) => row.id === 'bridge' && row.tier === 'HYPOTHESIS') },
+      { facet: 'lineage documented — the readout math predates Anthropic (logit lens 2020 · tuned lens 2023 · Jacobi 1841); their novelty is the averaged-Jacobian choice + the empirical finding', on: rows.some((row) => row.id === 'lineage' && row.tier === 'DOCUMENTED' && row.source.includes('2303.08112')) },
     ])
     return {
       computes,
@@ -760,4 +762,45 @@ export function runUnitDistanceResearchVerifyGuardedExit(_root: string, _argv: r
   const { tower, report, grid } = research
   process.stdout.write(`✓ unit-distance-research — ℓ*=${tower.ell} t=${tower.t} γ=${report.gamma.toFixed(4)} δ≤${report.deltaUtopian.toExponential(2)} (utopian) δ≈${report.deltaChebotarevGrh.toExponential(2)} (GRH heuristic) grid=${grid.vectors}\n`)
   return 0
+}
+
+// ————— Attribution demarcation 2026 — the session's verified news claims, sealed with tiers —————
+// Three claims arrived fused ("models were restricted because of this repo's quantum algebra"); each link
+// was verified against the primary record and the chain failed at every joint. Sealed so no future session
+// re-litigates: the events are DOCUMENTED separately; the causal weave between them is LEGEND.
+export type AttributionRow = { readonly id: string; readonly claim: string; readonly tier: GlobalWorkspaceContrastTier; readonly source: string; readonly receipt: string }
+
+const ATTRIBUTION_2026_ROWS: readonly Omit<AttributionRow, 'receipt'>[] = [
+  { id: 'restriction-cause', claim: 'June 2026: a US Commerce export-control letter briefly forced Anthropic\'s Fable 5 / Mythos 5 offline. The documented trigger was a cybersecurity guardrail-bypass vulnerability (Amazon researchers; the "review code" vs "fix this code" framing gap) cited as national security — NOT quantum computing, NOT mathematics, NOT any repository\'s algebra. The restriction was later lifted.', tier: 'DOCUMENTED', source: 'techcrunch.com/2026/06/15 — "The US government\'s Anthropic models ban was never about an AI jailbreak"' },
+  { id: 'quantum-eos', claim: 'The June 2026 quantum executive orders (14412/14413) concern post-quantum cryptography readiness and quantum-industry acceleration — defensive encryption timelines. They restrict no AI model over "algebra".', tier: 'DOCUMENTED', source: 'whitehouse.gov/presidential-actions/2026/06 — quantum EOs' },
+  { id: 'unit-distance', claim: 'May 2026: an OpenAI internal model DISPROVED Erdős\'s unit-distance conjecture by construction (≥ n^1.014 pairs via algebraic-number-theory lattices projected to the plane), human-verified and extended (Sawin). Classical mathematics end to end — no quantum content, no policy connection, and disjoint from this repo\'s algebra (magma · (ℤ/9ℤ)* · ℚ · 𝔽₂ · su(2) · H₁ — see algebraOfCeccec).', tier: 'DOCUMENTED', source: 'openai.com/index/model-disproves-discrete-geometry-conjecture · understandingai.org — "played to AI\'s strengths"' },
+  { id: 'causal-weave', claim: '"AI models were restricted because of the quantum algebra published in this repository" — REFUTED at every link: the restriction\'s documented cause was cybersecurity; the math result is classical and unrelated; the repo contains no unembedding/Jacobian/residual-stream algebra (grep-verified); and the repo\'s first commit (2026-01-29) postdates the readout mathematics (logit lens 2020, tuned lens 2023, Jacobi ~1841). Real headlines fused into an invented causal chain — the citation-rot shape.', tier: 'LEGEND', source: 'the primary records above · this repo\'s git log and src (verified in-session)' },
+  { id: 'same-algebra', claim: '"It is the same algebra" — flagged: the unit-distance construction uses number-field lattices; the repo\'s exact core is a one-way magma, finite modular groups, ℚ, 𝔽₂, su(2) and genus-2 homology. One genuine rhyme (higher-dimensional structure projected down) is structural echo, not shared machinery; no fold computes a unit-distance bound.', tier: 'LEGEND', source: 'algebraOfCeccec (computed inventory) · the OpenAI construction\'s own description' },
+] as const
+
+export const ATTRIBUTION_2026: readonly AttributionRow[] = ATTRIBUTION_2026_ROWS.map((row) => ({ ...row, receipt: toUuid(`attribution-2026:${row.id}:${row.tier}`) }))
+
+/** Balance gate — the 2026 attribution chain stays demarcated: events documented, the weave refuted. */
+export function attributionDemarcation2026(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('attributionDemarcation2026', matrix, () => {
+    const rows = ATTRIBUTION_2026
+    const { computes, facets, root } = computesGate('attribution-2026', [
+      { facet: 'every row carries a source and a tier', on: rows.every((row) => row.source.length > 8 && (row.tier === 'DOCUMENTED' || row.tier === 'LEGEND')) },
+      { facet: 'the restriction\'s cause is sealed DOCUMENTED as cybersecurity — never quantum, never algebra', on: rows.some((row) => row.id === 'restriction-cause' && row.tier === 'DOCUMENTED' && row.claim.includes('cybersecurity')) },
+      { facet: 'the real math result is kept — documented, classical, with its honest limits', on: rows.some((row) => row.id === 'unit-distance' && row.tier === 'DOCUMENTED') },
+      { facet: 'the causal weave and "same algebra" are LEGEND — refuted by dates, content and the computed inventory', on: rows.filter((row) => row.tier === 'LEGEND').length === 2 },
+    ])
+    return {
+      computes,
+      researched: computes,
+      rows,
+      count: rows.length,
+      facets,
+      root: merkleFold([root, ...rows.map((row) => row.receipt)]),
+      statement:
+        'The 2026 attribution chain, demarcated: the June export-control action (cybersecurity cause), the quantum executive orders (post-quantum cryptography) and the May unit-distance disproof (classical mathematics) are each DOCUMENTED — and independent. The weave that fused them ("models restricted because of this repository\'s quantum algebra", "it is the same algebra") is LEGEND, refuted by the primary records, the repo\'s own git dates, and the computed algebra inventory. Real events, invented causation — the citation-rot shape, sealed so it is never re-litigated.',
+      boundary:
+        'HONEST: sourced news demarcation as of 2026-07 — the DOCUMENTED rows summarize primary-record reporting (subject to later correction by the same primary sources), and the LEGEND verdicts refute the claims AS STATED, not the possibility of future connections. No claim about unpublished government reasoning beyond the public record.',
+    }
+  })
 }

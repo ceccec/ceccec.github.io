@@ -1212,11 +1212,11 @@ interface PointerInteraction {
   readonly vibrate: readonly number[]
   readonly root: string
 }
-export function pointerInteraction(seed: string, px: number, py: number, width: number, height: number, cycleMs = 120_000): PointerInteraction {
+export function pointerInteraction(seed: string, px: number, py: number, width: number, height: number, cycleMs = 108_000): PointerInteraction { // default = the 108 s hero cycle (a432 census harmonic) — src/0 imports nothing, so the ladder value is MIRRORED here (canonical derivation: fire/plasma/ball HERO_CYCLE_MS)
   const tp = touchPhase(px, py, width, height)
   const tone = proseToTone(seed)
   const vibrate = foldHaptics(seed)
-  const cycle = cycleMs > 0 ? cycleMs : 120_000
+  const cycle = cycleMs > 0 ? cycleMs : 108_000
   return {
     phase: tp.phase,
     dim: tp.dim,
