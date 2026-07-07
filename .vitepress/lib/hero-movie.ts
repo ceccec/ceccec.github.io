@@ -12,6 +12,7 @@ export {
   realtimeSubtitleAt,
   sharedHeroAt,
   subscribeHeroClock,
+  componentProjectionFor,
   quantumAppForComponent,
   type EarthHingePaintGateway,
   type EarthHingePaintLayer,

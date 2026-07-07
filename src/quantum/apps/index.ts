@@ -147,6 +147,26 @@ export function quantumAppForComponent(component: string, matrix: MindMatrix = b
   return quantumAppsRegistry(matrix, at).apps.find((app) => app.homeComponent === component)
 }
 
+/**
+ * The drawable projection ring — the nine kernel views a card movie can play (one per vortex digit).
+ * 'plasma' stays out: it is the default background scene, not a drawQuantumAppFrame case.
+ */
+export const PROJECTION_RING: readonly QuantumProjection[] = [
+  'taiji', 'sacred-morph', 'hologram', 'labyrinth', 'movie-10d', 'living-torus', 'merkaba', 'double-torus', 'unit-distance',
+] as const
+
+/**
+ * Every component gets an animation: the projection for ANY component name, content-addressed —
+ * a home-page animation component keeps its registered projection; every other component folds its
+ * name into the nine-projection ring (same name ⇒ same movie, everywhere, deterministically).
+ */
+export function componentProjectionFor(component: string, matrix: MindMatrix = buildMatrix(), at = 0): QuantumProjection {
+  const pinned = quantumAppForComponent(component, matrix, at)?.projection
+  if (pinned) return pinned
+  const fold = Number.parseInt(toUuid(`component-projection:${component}`).slice(0, 8), 16)
+  return PROJECTION_RING[fold % PROJECTION_RING.length]!
+}
+
 /** Coverage gate — the registry + kernel cover every home-page animation, each a projection of the one field. */
 export function quantumAppsCoverHomeAnimations(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumAppsCoverHomeAnimations:${Math.floor(at / 1000)}`, matrix, () => {
@@ -158,6 +178,7 @@ export function quantumAppsCoverHomeAnimations(matrix: MindMatrix = buildMatrix(
       { facet: 'every flagged home card is a registered quantum app', on: covered.length === required.length },
       { facet: 'each app is one projection of the shared field', on: projections.every((p) => p.dimensions === 10) },
       { facet: 'projection params derive from VORTEX_SEQUENCE', on: projections.every((p) => p.segments > 0) },
+      { facet: 'every component resolves to an animation — pinned home projections kept, all names fold into the nine-projection ring', on: required.every((name) => componentProjectionFor(name, matrix, at) === registry.apps.find((app) => app.homeComponent === name)?.projection) && PROJECTION_RING.includes(componentProjectionFor('AnyComponentName', matrix, at)) },
     ])
     return { computes, covered, projections, registry, facets, root: merkleFold([registry.root, ...projections.map((p) => p.root), root]), statement: 'Quantum apps cover every home animation as a field projection.', boundary: registry.boundary }
   })

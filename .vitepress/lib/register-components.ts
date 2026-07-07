@@ -13,6 +13,7 @@ import CollectiveMind from '../theme/components/CollectiveMind.vue'
 import RevolutAside from '../theme/components/RevolutAside.vue'
 import VitePressPossibilities from '../theme/components/VitePressPossibilities.vue'
 import { componentDisplayName, useSiteLocale } from './mounts'
+import { componentProjectionFor } from './hero-movie-paint'
 import { COMPONENT_FOLD_LOADERS, invokeFoldLoader, withCrosslinks, type DecodedFoldView } from './component-folds'
 import { localeFromRoute } from './site-locale'
 
@@ -141,6 +142,8 @@ function gateComponent(name: string): Component {
             component: name,
             seedParts: movieParts(),
             title: cardTitle(),
+            // Every component animates: its content-addressed projection of the one field.
+            movieApp: componentProjectionFor(name),
             'data-slug': props.slug,
             'data-variant': props.variant,
           },
@@ -173,7 +176,8 @@ function decodedComponent(name: string, loader: import('./component-folds').AnyF
             view.value = await withCrosslinks(name, raw, locale)
           }
           watch(() => route.path, () => void load(), { immediate: true })
-          return () => (view.value ? h(DecodedCard, { ...view.value, ...attrs }) : null)
+          // A fold that names its projection keeps it; every other decoded card animates its content-addressed one.
+          return () => (view.value ? h(DecodedCard, { ...view.value, ...attrs, movieApp: view.value.movieApp ?? componentProjectionFor(name) }) : null)
         },
       }),
   })
