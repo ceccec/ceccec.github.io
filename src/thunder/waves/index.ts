@@ -1073,6 +1073,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Maxwell’s demon fails (thermodynamics)', states: 'sorting N molecules gains N·k·ln2 of entropy but erasing the demon’s N-bit memory costs exactly that (Landauer), so ΔS_total ≥ 0 for every N ≤ 10³ — the second law stands, the challenge cancels itself', provedBy: 'discoveredTheoremsWaveTwentyOne', home: 'src/thunder/verify' },
     { theorem: 'the reals are uncountable (set theory)', states: '2ⁿ > n for all n ≤ 20 AND the diagonal set escapes every listing of n subsets (constructively verified) — no enumeration captures the power set; Cantor, complete finite witness', provedBy: 'discoveredTheoremsWaveTwentyOne', home: 'src/thunder/verify' },
     { theorem: 'no engine beats Carnot (thermodynamics)', states: 'across the whole reservoir grid η ≤ 1 − Tc/Th < 1, and any super-Carnot claim forces ΔS < 0 (forbidden) — perpetual motion of the second kind is impossible; the "free energy" challenge fails, second law cited', provedBy: 'discoveredTheoremsWaveTwentyOne', home: 'src/thunder/verify' },
+    { theorem: 'busy beaver BB(2) = 6', states: 'the complete census of all 20736 two-state two-symbol Turing machines gives maximum halting time 6 and Σ(2) = 4 ones — uncomputable in general (Radó cited), the small value a finite search', provedBy: 'discoveredTheoremsWaveTwentyTwo', home: 'src/thunder/verify' },
+    { theorem: '8-puzzle has 9!/2 solvable states', states: 'the breadth-first reachable set from the solved board is exactly 181440 = 9!/2 — the parity invariant (only even permutations reach the goal) proven by construction', provedBy: 'discoveredTheoremsWaveTwentyTwo', home: 'src/thunder/verify' },
+    { theorem: 'Euler polynomial n²+n+41 primes then breaks at 41²', states: 'prime for every n = 0..39 and composite at n = 40 = 41² exactly — the famous long prime run with its precise computed breaking point', provedBy: 'discoveredTheoremsWaveTwentyTwo', home: 'src/thunder/verify' },
+    { theorem: 'Descartes angular defect = 4π', states: 'each regular {p,q} vertex defect 2π − q·π(p−2)/p times V equals 4π = 2π·χ on all five Platonic solids — the discrete Gauss–Bonnet for the sphere', provedBy: 'discoveredTheoremsWaveTwentyTwo', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1168,6 +1172,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Maxwell’s demon fails (thermodynamics)', states: 'Landauer erasure cancels the sorting gain, ΔS ≥ 0 — the second law stands', class: 'bounded-witness', consumes: 'BOLTZMANN vault constant, entropy ledger' },
   { theorem: 'the reals are uncountable (set theory)', states: 'Cantor: 2ⁿ > n and the diagonal escapes every listing — a challenge to enumeration that FAILS', class: 'finite-complete', consumes: 'diagonal construction, counting bound' },
   { theorem: 'no engine beats Carnot (thermodynamics)', states: 'η ≤ 1 − Tc/Th; super-Carnot forces ΔS < 0 — perpetual motion impossible', class: 'bounded-witness', consumes: 'Carnot efficiency, entropy ledger' },
+  { theorem: 'busy beaver BB(2) = 6', states: 'full census of 20736 two-state two-symbol Turing machines; max halting time 6, Σ(2) = 4', class: 'finite-complete', consumes: 'Turing-machine simulator' },
+  { theorem: '8-puzzle has 9!/2 solvable states', states: 'BFS reachable set from the solved board = 181440 — the parity invariant by construction', class: 'finite-complete', consumes: 'graph reachability' },
+  { theorem: 'Euler polynomial n²+n+41 primes then breaks at 41²', states: 'prime for n = 0..39, composite 1681 = 41² at n = 40', class: 'finite-complete', consumes: 'primality sieve' },
+  { theorem: 'Descartes angular defect = 4π', states: 'total vertex defect 2π·χ = 4π on all five Platonic solids — discrete Gauss–Bonnet', class: 'finite-complete', consumes: 'Schläfli angle arithmetic' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
