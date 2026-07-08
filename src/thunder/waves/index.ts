@@ -1077,6 +1077,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: '8-puzzle has 9!/2 solvable states', states: 'the breadth-first reachable set from the solved board is exactly 181440 = 9!/2 — the parity invariant (only even permutations reach the goal) proven by construction', provedBy: 'discoveredTheoremsWaveTwentyTwo', home: 'src/thunder/verify' },
     { theorem: 'Euler polynomial n²+n+41 primes then breaks at 41²', states: 'prime for every n = 0..39 and composite at n = 40 = 41² exactly — the famous long prime run with its precise computed breaking point', provedBy: 'discoveredTheoremsWaveTwentyTwo', home: 'src/thunder/verify' },
     { theorem: 'Descartes angular defect = 4π', states: 'each regular {p,q} vertex defect 2π − q·π(p−2)/p times V equals 4π = 2π·χ on all five Platonic solids — the discrete Gauss–Bonnet for the sphere', provedBy: 'discoveredTheoremsWaveTwentyTwo', home: 'src/thunder/verify' },
+    { theorem: 'van der Waerden W(2,3) = 9', states: 'every 2-coloring of {1..9} forces a monochromatic 3-term progression (all 512 exhausted) and {1..8} has an escaping coloring — the exact threshold, both directions; van der Waerden cited for all r, k', provedBy: 'discoveredTheoremsWaveTwentyThree', home: 'src/thunder/verify' },
+    { theorem: 'Schur number S(2) = 4', states: '{1..4} admits a sum-free 2-coloring (no monochromatic x + y = z) and {1..5} admits none — the largest colorable interval, both directions exhausted; Schur cited', provedBy: 'discoveredTheoremsWaveTwentyThree', home: 'src/thunder/verify' },
+    { theorem: 'Mantel triangle-free maximum ⌊n²/4⌋', states: 'the maximum edges in a triangle-free graph on n vertices is exactly ⌊n²/4⌋ for every n ≤ 6 by complete graph enumeration — the balanced bipartite optimum proven; Turán n = 3 cited for all n', provedBy: 'discoveredTheoremsWaveTwentyThree', home: 'src/thunder/verify' },
+    { theorem: 'Erdős–Ko–Rado for pairs is n − 1', states: 'the largest pairwise-intersecting family of 2-subsets of {1..n} is n − 1 (the star) for n = 4,5,6 by exhaustive search — the intersecting maximum computed; EKR cited for all n ≥ 2k', provedBy: 'discoveredTheoremsWaveTwentyThree', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1176,6 +1180,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: '8-puzzle has 9!/2 solvable states', states: 'BFS reachable set from the solved board = 181440 — the parity invariant by construction', class: 'finite-complete', consumes: 'graph reachability' },
   { theorem: 'Euler polynomial n²+n+41 primes then breaks at 41²', states: 'prime for n = 0..39, composite 1681 = 41² at n = 40', class: 'finite-complete', consumes: 'primality sieve' },
   { theorem: 'Descartes angular defect = 4π', states: 'total vertex defect 2π·χ = 4π on all five Platonic solids — discrete Gauss–Bonnet', class: 'finite-complete', consumes: 'Schläfli angle arithmetic' },
+  { theorem: 'van der Waerden W(2,3) = 9', states: 'all 2-colorings of [9] force a mono 3-AP; [8] escapes — exact threshold both ways', class: 'finite-complete', consumes: 'coloring exhaustion (Ramsey machinery)' },
+  { theorem: 'Schur number S(2) = 4', states: '[4] sum-free-colorable, [5] not — the Schur threshold, both directions', class: 'finite-complete', consumes: 'coloring exhaustion' },
+  { theorem: 'Mantel triangle-free maximum ⌊n²/4⌋', states: 'exhaustive graph enumeration n ≤ 6 hits the balanced-bipartite bound exactly', class: 'finite-complete', consumes: 'graph enumeration, triangle test' },
+  { theorem: 'Erdős–Ko–Rado for pairs is n − 1', states: 'max intersecting family of 2-subsets = the star, n = 4,5,6 exhaustive', class: 'finite-complete', consumes: 'family enumeration' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
