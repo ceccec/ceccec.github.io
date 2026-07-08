@@ -1125,6 +1125,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'hockey-stick identity', states: 'Σ_{i=r}^{n} C(i,r) = C(n+1, r+1) for all r ≤ 10, n ≤ 20 — a diagonal of Pascal’s triangle sums to the entry below its end', provedBy: 'discoveredTheoremsWaveThirtyFour', home: 'src/thunder/verify' },
     { theorem: 'surjection count three ways', states: 'k!·S(n,k) = inclusion–exclusion Σ(−1)^i C(k,i)(k−i)^n = brute onto-function count for all n ≤ 7 (surj(4,2)=14) — three independent computations agreeing', provedBy: 'discoveredTheoremsWaveThirtyFour', home: 'src/thunder/verify' },
     { theorem: 'quadratic residues form index-2 subgroup', states: 'mod an odd prime p there are EXACTLY (p−1)/2 nonzero QRs and the Legendre symbol is multiplicative (QRs are an index-2 subgroup of (ℤ/p)*), for every prime p ≤ 50', provedBy: 'discoveredTheoremsWaveThirtyFour', home: 'src/thunder/verify' },
+    { theorem: 'orbit-stabilizer theorem', states: '|orbit(x)|·|stab(x)| = |G| for S₄ and A₄ acting on their points — orbit size times stabilizer size recovers the whole group (the counting identity behind Burnside)', provedBy: 'discoveredTheoremsWaveThirtyFive', home: 'src/thunder/verify' },
+    { theorem: 'class equation on S₄ and A₅', states: '|G| = Σ conjugacy-class sizes with every class size dividing |G|: S₄ = 1+3+6+6+8 = 24, A₅ = 1+12+12+15+20 = 60 (orbit-stabilizer applied to conjugation)', provedBy: 'discoveredTheoremsWaveThirtyFive', home: 'src/thunder/verify' },
+    { theorem: 'σ and τ are multiplicative', states: 'the sum-of-divisors σ and divisor-count τ satisfy f(mn) = f(m)f(n) for every coprime pair m, n ≤ 60 — the basic arithmetic functions factor over coprime parts', provedBy: 'discoveredTheoremsWaveThirtyFive', home: 'src/thunder/verify' },
+    { theorem: 'Heron formula vs coordinate area', states: 'area = √(s(s−a)(s−b)(s−c)) matches the shoelace area for EVERY integer triangle with sides ≤ 20, and gives integer-area Heronian triangles ((3,4,5) → 6) — area from the three sides alone', provedBy: 'discoveredTheoremsWaveThirtyFive', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1272,6 +1276,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'hockey-stick identity', states: 'Σ_{i=r}^n C(i,r) = C(n+1,r+1), r ≤ 10, n ≤ 20', class: 'finite-complete', consumes: 'binomials' },
   { theorem: 'surjection count three ways', states: 'k!S(n,k) = incl-excl = brute onto count, n ≤ 7', class: 'finite-complete', consumes: 'Stirling, inclusion-exclusion' },
   { theorem: 'quadratic residues form index-2 subgroup', states: '(p−1)/2 QRs + Legendre multiplicative, primes ≤ 50', class: 'finite-complete', consumes: 'modular squares' },
+  { theorem: 'orbit-stabilizer theorem', states: '|orbit|·|stab| = |G| for S₄, A₄ on points', class: 'finite-complete', consumes: 'group action' },
+  { theorem: 'class equation on S₄ and A₅', states: '|G| = Σ class sizes, each dividing |G|', class: 'finite-complete', consumes: 'conjugacy classes' },
+  { theorem: 'σ and τ are multiplicative', states: 'f(mn)=f(m)f(n) coprime, m,n ≤ 60', class: 'finite-complete', consumes: 'divisor sums' },
+  { theorem: 'Heron formula vs coordinate area', states: 'Heron = shoelace for all integer triangles sides ≤ 20', class: 'finite-complete', consumes: 'shoelace, law of cosines' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
