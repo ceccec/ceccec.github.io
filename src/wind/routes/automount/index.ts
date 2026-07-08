@@ -478,11 +478,11 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
   // explore/learn keep their curated staticPages, so only non-curated hub slugs short-circuit here.
   const hub = rosettaRayHub(bare)
   if (hub && !staticPages().some((page) => page.slug === bare)) {
-    const rawTitle = `${hub.nameEn} — the ${ROSETTA_RAYS[hub.ray]!.nameEn} ray`
-    const rawDescription = `${hub.glyph} ${hub.nameEn}: the rosetta ray-hub for ${hub.domain} (computation kind "${hub.pageKind}"). The seven rays are an organizing lens for navigation, not a metaphysical claim.`
+    const rawTitle = `${hub.nameEn} — the ${hub.domain} hub`
+    const rawDescription = `${hub.nameEn}: the hub for ${hub.domain} (computation kind "${hub.pageKind}"). The seven hubs are an organizing lens for navigation, not a metaphysical claim.`
     return {
       page: hub.slug,
-      title: locale === 'gla' ? toGlagolitic(rawTitle) : locale === 'bg' ? `${hub.nameBg} — лъчът ${ROSETTA_RAYS[hub.ray]!.nameBg}` : rawTitle,
+      title: locale === 'gla' ? toGlagolitic(rawTitle) : locale === 'bg' ? hub.nameBg : rawTitle,
       description: locale === 'gla' ? toGlagolitic(rawDescription) : rawDescription,
       keywords: [hub.domain, `ray-${hub.ray}`, hub.pageKind, 'rosetta', 'hub'],
       components: ['RayHub'],

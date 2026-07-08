@@ -555,20 +555,24 @@ export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
 /** @rosetta ✦₆ · Water · the seven rosetta computation kinds (one per ray). */
 export type RosettaComputationType = 'monograph' | 'proof' | 'explore' | 'learn' | 'hub' | 'frontier' | 'reference'
 export const ROSETTA_COMPUTATION_TYPES: readonly RosettaComputationType[] = ['monograph', 'proof', 'explore', 'learn', 'hub', 'frontier', 'reference']
-/** The seven rosetta rays — Glagolitic ladder lenses (slug → ray) for nav, sidebar, footer, content kind. */
+/** The seven rosetta rays — functional lenses (slug → ray) for nav, sidebar, footer, content kind.
+ * FINDABILITY LAW: nameEn IS the ray's hub slug capitalized (label = URL word — a visitor reads the label,
+ * lands on that path); nameBg is its Bulgarian translation. The Glagolitic glyph keeps the script identity
+ * for the gla locale; mystical names (Alpha/Voice/Spirit…) were replaced — labels state content, not ideology. */
 export const ROSETTA_RAYS = [
-  { ray: 0, glyph: 'Ⰰ', nameEn: 'Alpha', nameBg: 'Алфа', domain: 'origin', hue: 0 },
-  { ray: 1, glyph: 'Ⰲ', nameEn: 'Voice', nameBg: 'Глас', domain: 'expression', hue: 51 },
-  { ray: 2, glyph: 'Ⰴ', nameEn: 'Spirit', nameBg: 'Дух', domain: 'knowledge', hue: 102 },
-  { ray: 3, glyph: 'Ⰶ', nameEn: 'Life', nameBg: 'Живот', domain: 'nature', hue: 154 },
-  { ray: 4, glyph: 'Ⰹ', nameEn: 'Thought', nameBg: 'Мисъл', domain: 'computation', hue: 205 },
-  { ray: 5, glyph: 'Ⰿ', nameEn: 'Form', nameBg: 'Форма', domain: 'geometry', hue: 257 },
-  { ray: 6, glyph: 'Ⱄ', nameEn: 'Word', nameBg: 'Слово', domain: 'language', hue: 308 },
+  { ray: 0, glyph: 'Ⰰ', nameEn: 'Origin', nameBg: 'Произход', domain: 'origin', hue: 0 },
+  { ray: 1, glyph: 'Ⰲ', nameEn: 'Proof', nameBg: 'Доказателства', domain: 'expression', hue: 51 },
+  { ray: 2, glyph: 'Ⰴ', nameEn: 'Explore', nameBg: 'Изследване', domain: 'knowledge', hue: 102 },
+  { ray: 3, glyph: 'Ⰶ', nameEn: 'Learn', nameBg: 'Обучение', domain: 'nature', hue: 154 },
+  { ray: 4, glyph: 'Ⰹ', nameEn: 'Apps', nameBg: 'Приложения', domain: 'computation', hue: 205 },
+  { ray: 5, glyph: 'Ⰿ', nameEn: 'Frontier', nameBg: 'Граници', domain: 'geometry', hue: 257 },
+  { ray: 6, glyph: 'Ⱄ', nameEn: 'Reference', nameBg: 'Справочник', domain: 'language', hue: 308 },
 ] as const
 export type RosettaRay = (typeof ROSETTA_RAYS)[number]
 /** The seven ray-hubs — the top-level information architecture. One slug per rosetta ray (index = ray):
- * Alpha→/origin, Voice→/proof, Spirit→/explore, Life→/learn, Thought→/apps, Form→/frontier, Word→/reference.
- * The Alpha hub (/origin) also fronts Home (/). Quantum-human-design IA: the 7 rays are the categorical lens. */
+ * Origin→/origin, Proof→/proof, Explore→/explore, Learn→/learn, Apps→/apps, Frontier→/frontier,
+ * Reference→/reference — label and URL are the same word (the findability law above). The Origin hub
+ * (/origin) also fronts Home (/). The 7 rays are the categorical lens. */
 export const ROSETTA_RAY_HUB_SLUGS = ['origin', 'proof', 'explore', 'learn', 'apps', 'frontier', 'reference'] as const
 export type RosettaRayHubSlug = (typeof ROSETTA_RAY_HUB_SLUGS)[number]
 /** A ray-hub: a top-level landing page, one per rosetta ray, derived (never hand-typed) from ROSETTA_RAYS +
@@ -600,6 +604,32 @@ export const ROSETTA_RAY_HUBS: readonly RosettaRayHub[] = ROSETTA_RAYS.map((rayM
 export function rosettaRayHub(slug: string): RosettaRayHub | null {
   const bare = (slug ?? '').replace(/^\/+/, '').split('/').pop() || ''
   return ROSETTA_RAY_HUBS.find((hub) => hub.slug === bare) ?? null
+}
+
+/** Science-portal content lenses — an ORDERED decision list shelving a page into its ray by what the
+ * page IS (curated keyword-stem classification data), replacing the Glagolitic-ladder slug hash for
+ * content layout: the hash distributes slugs uniformly (good for the coprime motion math, useless as a
+ * library shelf — it filed proof pages under "Learn"). First lens whose stems intersect the page's
+ * slug+keywords wins; no hit falls to ray 2 (Explore — the research shelf). Order encodes specificity:
+ * proof marks beat discipline words beat catch-alls. */
+export const ROSETTA_RAY_CONTENT_LENSES: readonly { ray: number; stems: readonly string[] }[] = [
+  { ray: 1, stems: ['proof', 'theorem'] },
+  { ray: 4, stems: ['console', 'terminal', 'commands', 'cmd', 'mcp', 'demo', 'show', 'simulations', 'simulator', 'api', 'audio', '432 hz'] },
+  { ray: 0, stems: ['three powers', 'san cai', 'start', 'governance', 'boundaries', 'honesty', 'architecture', 'matrix', 'model', 'mind', 'double torus', 'uuid', 'monograph'] },
+  { ray: 3, stems: ['learn', 'school', 'academy', 'curriculum', 'commons', 'natural law'] },
+  { ray: 2, stems: ['explore', 'heritage', 'history', 'ancient', 'decode', 'spirit', 'chakras', 'tesla', 'electromagnetic', 'patents', 'frequencies', 'ethnogenesis'] },
+  { ray: 6, stems: ['reference', 'language', 'speech', 'typography', 'dictionary', 'icons', 'glyphs', 'voice'] },
+  { ray: 5, stems: ['frontiers', 'physics', 'cosmology', 'quantum', 'geometry', 'golden ratio', 'analog', 'sampling', 'nyquist', 'cryptography', 'encryption', 'dimensions', 'vacuum'] },
+] as const
+/** Shelve content into its ray by the ordered lenses above — slug + keywords in, ray index out.
+ * Two passes: the slug alone first (a page NAMED frontiers belongs to Frontier no matter what its
+ * keyword tail accumulates), then slug+keywords. */
+export function rosettaRayOfContent(slug: string, keywords: readonly string[]): number {
+  const slugHay = slug.replace(/-/g, ' ').toLowerCase()
+  for (const lens of ROSETTA_RAY_CONTENT_LENSES) if (lens.stems.some((stem) => slugHay.includes(stem))) return lens.ray
+  const hay = [slugHay, ...keywords].join(' · ').toLowerCase()
+  for (const lens of ROSETTA_RAY_CONTENT_LENSES) if (lens.stems.some((stem) => hay.includes(stem))) return lens.ray
+  return 2
 }
 
 // Pi spigot + the 108 pi-digit train, and the diamond/analog requirement literals. Hosted in this zero-import

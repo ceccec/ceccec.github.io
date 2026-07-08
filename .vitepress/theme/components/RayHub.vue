@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vitepress'
 import { ROSETTA_RAY_HUBS, rosettaRayHub } from '../../../src/water/digit/index.ts'
-import { rosettaBreadcrumbs } from '../../../src/wind/routes/corpus/index.ts'
+import { rayHubPart, rosettaBreadcrumbs } from '../../../src/wind/routes/corpus/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 
@@ -12,6 +12,8 @@ const { pick, localize } = useSiteLocale()
 const bare = computed(() => route.path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/\/$/, '') || '/')
 const hub = computed(() => rosettaRayHub(bare.value) ?? ROSETTA_RAY_HUBS[0])
 const crumbs = computed(() => rosettaBreadcrumbs(bare.value))
+// The hub's reusable part: its content-shelved member pages — the shelf a visitor came here to browse.
+const part = computed(() => rayHubPart(bare.value).part)
 const siblings = computed(() => ROSETTA_RAY_HUBS.filter((entry) => entry.ray !== hub.value.ray))
 </script>
 
@@ -36,6 +38,25 @@ const siblings = computed(() => ROSETTA_RAY_HUBS.filter((entry) => entry.ray !==
         <p class="ray-hub__domain">{{ hub.domain }} · <code>{{ hub.pageKind }}</code></p>
       </div>
     </header>
+
+    <nav v-if="part.pages.length" class="ray-hub__pages" :aria-label="pick('Pages in this part', 'Страници в този дял')">
+      <a
+        v-for="page in part.pages"
+        :key="page.slug"
+        :href="localize(`/${page.slug}`)"
+        class="ray-hub__page"
+      >
+        <UiCardShell
+          class="ray-hub__ray-shell"
+          :seed-parts="[page.slug, page.titleEn]"
+          :title="pick(page.titleEn, page.titleBg)"
+          movie-intensity="whisper"
+        >
+          <span class="ray-hub__ray-name">{{ pick(page.titleEn, page.titleBg) }}</span>
+          <span class="ray-hub__ray-domain">/{{ page.slug }}</span>
+        </UiCardShell>
+      </a>
+    </nav>
 
     <nav class="ray-hub__rays" :aria-label="pick('The seven rays', 'Седемте лъча')">
       <a
@@ -116,10 +137,17 @@ export default { name: 'RayHub' }
   font-size: var(--ich-em-card-meta);
 }
 
-.ray-hub__rays {
+.ray-hub__rays,
+.ray-hub__pages {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--ich-grid-min-card), 1fr));
   gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(3 / 4));
+}
+
+.ray-hub__page {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .ray-hub__ray {

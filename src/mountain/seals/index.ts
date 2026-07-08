@@ -10,7 +10,7 @@ import { thriveByDefault } from '../../earth/civilisation'
 import { commandsRegistry } from '../../thunder/commands'
 import { SINGLE_WORD_METHODS } from '../../3/7'
 import { cloudflareBindings } from '../../heaven/core'
-import { threeWordWaves, siteNavigation } from '../../wind/learning'
+import { threeWordWaves, sciencePortalParts, siteNavigation } from '../../wind/learning'
 import { refactorLinearToTrinities } from '../../heaven/essence'
 import { endlessFusion, allFormsAreTenDimensionalOrPurged } from '../../wind/fusion'
 import { iChingDomainMap } from '../../heaven/balance'
@@ -28,7 +28,7 @@ import { digitFolders, digitFoldersAreTheApi, folder64SealsProductionElseDevelop
 import { coordinatedWaves, ogInOgWaves } from '../../thunder/waves'
 import { quantumChessGame } from '../../thunder/waves'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
-import { piThreeOpensTheTrinity } from '../../water/digit'
+import { piThreeOpensTheTrinity, ROSETTA_RAY_HUB_SLUGS } from '../../water/digit'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
 import { nextLevel64CubedRealtime } from '../../thunder/trading'
@@ -1156,20 +1156,22 @@ export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
 export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   const navFull = siteNavigation(matrix)
   const nav = navFull.en.nav
-  // Rosetta top nav (siteNavigation): Home + seven-ray Rosetta fold — replaces legacy Three Powers doors; 三才 remain on home body links.
+  // Findable top nav (siteNavigation): Home + the seven hubs surfaced directly (≤ 8 top entries, the
+  // eight-fold law), every group label a functional hub-slug word (label = URL word) — no single
+  // ideology-named drawer hiding the site. Enforces the "science and solutions, not prose and ideology" directive.
+  const hubSlugs = new Set<string>(ROSETTA_RAY_HUB_SLUGS)
   const navRosetta =
-    nav.length === 2 &&
+    nav.length >= 2 &&
+    nav.length <= 8 &&
     nav[0]?.text === 'Home' &&
-    nav[1]?.text === 'Rosetta' &&
-    nav[1] !== undefined &&
-    'items' in nav[1] &&
-    nav[1].items.length === 7
+    nav.slice(1).every((group) => 'items' in group && group.items.length > 0 && group.items.length <= 8 && hubSlugs.has(group.text.toLowerCase()))
   const tenD = tenDimensionalAnimation(matrix)
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll
   const trinityRoot = crossFoldTrinity(matrix).trinity
   const domainMap = iChingDomainMap(matrix)
   const waves = [
-    { wave: 'top nav = Home · Rosetta (seven Glagolitic rays — Pliska coprime decode)', done: navRosetta },
+    { wave: 'top nav = Home + seven functional hubs (label = hub-slug word; science, not ideology)', done: navRosetta },
+    { wave: 'every page shelved into a reusable part by content lenses, no part empty (slug hash retired from shelving)', done: sciencePortalParts(matrix).computed },
     { wave: '10D animations at every scale (4 homology loops + 6 cross-fold axes)', done: tenD.tenDimensional && tenD.atEveryScale },
     { wave: 'every card is one open-graph object', done: everyCardOg },
     { wave: 'browser-language routing, default English', done: true },
@@ -1189,7 +1191,7 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
     pending: waves.filter((w) => !w.done).map((w) => w.wave),
     root: merkleFold(waves.map((w) => toUuid(`redesign:${w.wave}:${w.done}`))),
     statement:
-      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home and a seven-ray Rosetta top nav (Glagolitic categorical lenses from rosettaRayOf; 三才 Three Powers remain on the home body), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave.',
+      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home plus the seven functional hubs in the top nav (group label = hub slug word from rosettaRayOf grouping; 三才 Three Powers remain on the home body), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave.',
     boundary:
       'A directive folded as a tracked plan. `holds` proves the parts enforceable from src now (Rosetta top nav, 10D animation, uniting trinity, every card OG, related sidebar, crosslinks). The deferred wave (reorganize every piece into trinities) stays open by design — not yet all true.',
   }

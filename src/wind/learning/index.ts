@@ -24,7 +24,7 @@ import { toGlagolitic } from '../../quantum/heaven/library'
 import { mcpCodebase } from '../../thunder/commands'
 import { completeCorpus } from '../routes/corpus'
 import { diamondLattice } from '../../fire/diamonds'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf } from '../../water/digit'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf, rosettaRayOfContent } from '../../water/digit'
 import { quantumCoordinateNav } from '../../fire/features'
 import { openGraph } from '../../quantum/lake/icons'
 import { navigationAroundHero } from '../ui'
@@ -1865,6 +1865,41 @@ export function ogBuildsNavigation(matrix: MindMatrix = buildMatrix()) {
       'A structural binding of each navigation destination to the open-graph root, framing the nav as OG-derived. It reflects the real path-matched nav and footer; it does not change where the links go.',
   }
 }
+/** The science portal organized into seven REUSABLE parts — one part per rosetta ray, each part =
+ * {ray, hub slug/route, functional labels, member pages} with membership decided by the content lenses
+ * (what a page IS), never the slug hash. Nav, sidebar, related sections, crosslinks and the RayHub
+ * landing all consume THIS one fold — change the shelving here and every surface follows. */
+export function sciencePortalParts(matrix: MindMatrix = buildMatrix()) {
+  return rosettaMemoByRoot('sciencePortalParts', matrix, () => {
+  const pages = staticPages()
+  const parts = ROSETTA_RAYS.map((ray) => {
+    const members = pages.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === ray.ray)
+    return {
+      ray: ray.ray,
+      slug: ROSETTA_RAY_HUB_SLUGS[ray.ray]!,
+      route: `/${ROSETTA_RAY_HUB_SLUGS[ray.ray]!}`,
+      labelEn: ray.nameEn,
+      labelBg: ray.nameBg,
+      glyph: ray.glyph,
+      hue: ray.hue,
+      count: members.length,
+      pages: members.map((page) => ({ slug: page.slug, titleEn: page.title.en, titleBg: page.title.bg })),
+    }
+  })
+  const assigned = parts.reduce((sum, part) => sum + part.count, 0)
+  const root = merkleFold(parts.map((part) => toUuid(`portal-part:${part.slug}:${part.pages.map((page) => page.slug).join(',')}`)))
+  return {
+    computed: parts.length === 7 && assigned === pages.length && parts.every((part) => part.count > 0) && isUuid(root),
+    parts,
+    partCount: parts.length,
+    pageCount: pages.length,
+    assigned,
+    root,
+    statement: `The science portal in seven reusable parts: ${parts.map((part) => `${part.labelEn} ${part.count}`).join(' · ')} — ${assigned}/${pages.length} pages shelved by content lenses.`,
+    boundary: 'Membership comes from ROSETTA_RAY_CONTENT_LENSES (curated keyword classification), not the Glagolitic-ladder slug hash — the hash stays for coprime motion math only. Every static page lands in exactly one part; the gate fails if a page is unshelved or a part is empty.',
+  }
+  })
+}
 export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // ONE page set: a component page whose EN title duplicates a curated card is the SAME surface
   // twice (QuantumConsole → /quantum-console beside /console) — the curated card is canonical.
@@ -1888,15 +1923,26 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const sidebarTags = [...ranked.slice(0, (6 * 2)), 'more']
   const item = (route: string, i: 0 | 1) => ({ text: text(route, i), link: link(route, i) })
   const dedupe = (routes: string[]) => routes.filter((route, idx) => routes.indexOf(route) === idx)
-  const rayOf = (slug: string) => rosettaRayOf(slug === '' ? 'home' : slug)
+  // The seven reusable parts shelve pages by CONTENT (sciencePortalParts lenses), never by slug hash.
+  // Labels are functional words (nameEn = the hub slug — label = URL), never glyph-prefixed prose:
+  // a visitor scans "Proof · Learn · Apps · Reference" and knows where to click. Science, not ideology.
+  const portal = sciencePortalParts(matrix)
+  const contentRayOf = (slug: string) => { const page = byRoute.get(routeOf(slug)); return rosettaRayOfContent(slug, page?.keywords ?? []) }
+  // Eight-fold law in every dropdown: a part with more than 8 pages shows its hub link ("All … — N")
+  // plus the first 7; the hub landing lists the whole part.
   const rosettaFold = (i: 0 | 1) =>
-    ROSETTA_RAYS.map((ray) => ({
-      text: `${ray.glyph} ${i === 1 ? ray.nameBg : ray.nameEn}`,
-      items: dedupe(staticPages().filter((page) => rayOf(page.slug) === ray.ray).map((page) => routeOf(page.slug))).map((route) => item(route, i)),
-    })).filter((section) => section.items.length > 0)
+    portal.parts.map((part) => {
+      const routes = dedupe(part.pages.map((page) => routeOf(page.slug)))
+      const items = routes.length > 8
+        ? [{ text: i === 1 ? `Всички — ${routes.length}` : `All — ${routes.length}`, link: link(part.route, i) }, ...routes.slice(0, 7).map((route) => item(route, i))]
+        : routes.map((route) => item(route, i))
+      return { text: i === 1 ? part.labelBg : part.labelEn, items }
+    }).filter((section) => section.items.length > 0)
+  // The seven hubs sit DIRECTLY in the top nav (Home + 7 = 8, the eight-fold law) — nothing hides
+  // behind a single ideology-named drawer; every section is one hover away.
   const buildNav = (i: 0 | 1) => [
     { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
-    { text: i === 1 ? 'Розета' : 'Rosetta', items: rosettaFold(i) },
+    ...rosettaFold(i),
   ]
   // ONE grouping law at every scale: the sidebar folds by the SAME seven rosetta rays as the nav,
   // related sections and crosslinks — two taxonomies were the confusion (13 tag groups + a 23-item
@@ -1905,14 +1951,14 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const buildRelatedSidebar = (i: 0 | 1): Record<string, { text: string; items: { text: string; link: string }[] }[]> => {
     const byRay = new Map<number, string[]>()
     for (const page of staticPages()) {
-      const ray = rayOf(page.slug)
+      const ray = contentRayOf(page.slug)
       if (!byRay.has(ray)) byRay.set(ray, [])
       byRay.get(ray)!.push(routeOf(page.slug))
     }
     const result: Record<string, { text: string; items: { text: string; link: string }[] }[]> = {}
     for (const [rayIdx, routes] of byRay.entries()) {
       const ray = ROSETTA_RAYS[rayIdx]!
-      const label = `${ray.glyph} ${i === 1 ? ray.nameBg : ray.nameEn}`
+      const label = i === 1 ? ray.nameBg : ray.nameEn
       const section = { text: label, items: dedupe(routes).map((route) => item(route, i)) }
       for (const route of dedupe(routes)) result[route] = [section]
     }
@@ -1921,14 +1967,14 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const buildCrosslinks = (i: 0 | 1): Record<string, { text: string; link: string }[]> => {
     const byRay = new Map<number, string[]>()
     for (const page of staticPages()) {
-      const ray = rayOf(page.slug)
+      const ray = contentRayOf(page.slug)
       if (!byRay.has(ray)) byRay.set(ray, [])
       byRay.get(ray)!.push(routeOf(page.slug))
     }
     const result: Record<string, { text: string; link: string }[]> = {}
     for (const page of staticPages()) {
       const route = routeOf(page.slug)
-      const ray = rayOf(page.slug)
+      const ray = contentRayOf(page.slug)
       const peers = dedupe((byRay.get(ray) ?? []).filter((r) => r !== route))
       result[route] = peers.map((r) => item(r, i))
     }
@@ -1978,9 +2024,9 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     routes: pages.map((page) => routeOf(page.slug)),
     root,
     statement:
-      'The navigation computes the whole path — nothing hardcoded. The page set (curated landing pages + every component\'s page) is the model; the labels are the pages\' own titles; the top nav groups by rosetta ray (seven Glagolitic categorical lenses from rosettaRayOf), the sidebar by keyword tag cloud, and the footer links the top clusters — recomputed whenever the pages or their tags change. config.mts only renders what this fold computes.',
+      'The navigation computes the whole path — nothing hardcoded. The page set (curated landing pages + every component\'s page) is the model; the labels are the pages\' own titles; the top nav is Home plus the seven functional hubs (group label = hub slug word from ROSETTA_RAYS — Origin/Proof/Explore/Learn/Apps/Frontier/Reference, the findability law), the sidebar folds by the same seven hubs, and the footer links the top clusters — recomputed whenever the pages or their tags change. config.mts only renders what this fold computes.',
     boundary:
-      'A computed projection of the VitePress navigation from the page set, rosetta ray grouping, and keyword tag cloud — no hardcoded labels, groups, sidebar or footer routes. Rosetta replaces the legacy I Ching Three Powers × trigram axes; clustering is by shared keyword in the sidebar (the most frequent tags become groups; the rest gather under "more"). config.mts holds no hardcoded nav/sidebar/footer and reads only this fold.',
+      'A computed projection of the VitePress navigation from the page set, ray-hub grouping, and keyword tag cloud — no hardcoded labels, groups, sidebar or footer routes. Group labels are functional content words (label = URL word), not mystical names; the seven hubs sit directly in the top nav instead of one collapsed drawer. config.mts holds no hardcoded nav/sidebar/footer and reads only this fold.',
   }
 }
 

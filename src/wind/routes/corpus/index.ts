@@ -6,7 +6,7 @@ import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
 import { buildMatrix } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaRayHub, rosettaRayOf, type RosettaRayHub } from '../../../water/digit'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
 import { cardMovieColorVars, cardMovieSeed } from '../../../thunder/movie/movievars'
 import { plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
 import { allPagesForPlasmaWiring } from '../../../water/double'
@@ -17,7 +17,7 @@ import { diamondLattice, pureDiamonds } from '../../../fire/diamonds'
 import { quantumDoubleTorus } from '../../../mountain/topology'
 import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../../quantum/heaven/mind'
 import type { CorpusKind } from '../../../quantum/heaven/mind'
-import { componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers, referenceParamsById, siteNavigation, type ComponentCrosslink } from '../../learning'
+import { componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers, referenceParamsById, sciencePortalParts, siteNavigation, type ComponentCrosslink } from '../../learning'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
@@ -769,14 +769,27 @@ function corpusDetailPage(
 
 export type RosettaBreadcrumb = { label: string; labelBg: string; glyph: string; route: string; current: boolean }
 
-/** Breadcrumb trail computed from rosettaComputesAll: Home (Alpha) → ray-hub → current page. The ray-hub IA
- * derives from the sealed rosetta tables (slug → ray → hub); a ray-hub landing has an EXPLICIT ray, every other
- * route folds to its hub by the Glagolitic-ladder digital root. The taxonomy is an organizing lens, not metaphysics. */
+/** The reusable science-portal part for a route: the hub plus its content-shelved member pages.
+ * A hub landing gets its own part; any other slug gets the part that shelves it (falling back to the
+ * content lenses on the slug alone for non-static routes). RayHub and breadcrumbs consume THIS. */
+export function rayHubPart(route: string, matrix: MindMatrix = buildMatrix()) {
+  const bare = (route ?? '/').replace(/^\/+/, '').replace(/^(en|bg)\//, '').split('/').pop() || ''
+  const portal = sciencePortalParts(matrix)
+  const explicit = rosettaRayHub(bare)
+  const part = (explicit && portal.parts.find((p) => p.ray === explicit.ray))
+    || portal.parts.find((p) => p.pages.some((page) => page.slug === bare))
+    || portal.parts.find((p) => p.ray === rosettaRayOfContent(bare, []))!
+  return { hub: ROSETTA_RAY_HUBS[part.ray]!, part, onHub: explicit !== null }
+}
+
+/** Breadcrumb trail: Home (Origin hub fronts /) → ray-hub → current page. The ray-hub IA derives from
+ * the sealed rosetta tables; a page folds to its hub by CONTENT shelving (sciencePortalParts lenses),
+ * not the slug hash. The taxonomy is an organizing lens, not metaphysics. */
 export function rosettaBreadcrumbs(route: string, at = 0, matrix: MindMatrix = buildMatrix()) {
   const computed = rosettaComputesAll(route, at, matrix)
-  const home = ROSETTA_RAY_HUBS[0]! // Alpha hub fronts Home (/)
+  const home = ROSETTA_RAY_HUBS[0]! // Origin hub fronts Home (/)
   const explicitHub = rosettaRayHub(computed.slug)
-  const hub: RosettaRayHub = explicitHub ?? ROSETTA_RAY_HUBS[computed.ray]!
+  const hub: RosettaRayHub = explicitHub ?? rayHubPart(route, matrix).hub
   const onHub = explicitHub !== null
   const isHome = route === '/' || route === '' || computed.slug === 'home'
   const trail: RosettaBreadcrumb[] = [
@@ -795,7 +808,7 @@ export function rosettaBreadcrumbs(route: string, at = 0, matrix: MindMatrix = b
     root: merkleFold(trail.map((step) => toUuid(`crumb:${step.route}:${step.label}`))),
     statement: `rosettaBreadcrumbs("${route}"): ${trail.map((step) => step.label).join(' › ')} — derived from the rosetta ray, not a hand-authored menu.`,
     boundary:
-      'Breadcrumbs computed from rosettaComputesAll (slug → ray → hub). The rosetta ray taxonomy is an organizing lens for navigation, not a metaphysical claim; every route resolves to exactly one of the seven ray-hubs by the Glagolitic-ladder digital root.',
+      'Breadcrumbs computed from the content-shelved parts (slug → part → hub via sciencePortalParts). The rosetta ray taxonomy is an organizing lens for navigation, not a metaphysical claim; every route resolves to exactly one of the seven ray-hubs by what its page IS.',
   }
 }
 
