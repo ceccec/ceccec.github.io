@@ -1448,29 +1448,29 @@ function drawLabyrinthProjection(ctx: CanvasRenderingContext2D, w: number, h: nu
   const cy = h / 2
   const R = Math.min(w, h) * (8 / (5 * 5))
   const tube = R * ((7 * 3) / (5 * 5 * 2))
-  const tilt = ((7 * 3) / (5 * 4))
+  const E = R + tube // the torus's own extent — unit-scale divisor for the shared kernel
   const Nu = 26
   const Nv = 6
   const spin = frame.reduce ? 0 : frame.t * (2 / 5)
-  type G = { x: number; y: number; depth: number; glyph: string; u: number }
+  type G = { x: number; y: number; depth: number; s: number; glyph: string; u: number }
   const glyphs: G[] = []
   for (let i = 0; i < Nu; i += 1) {
-    const u = (i / Nu) * TAU + spin
+    const u = (i / Nu) * TAU + spin // rigid spin about the hole axis, baked into the major angle
     for (let j = 0; j < Nv; j += 1) {
       const v = (j / Nv) * TAU + frame.t * (1 / 5)
       const rr = R + tube * Math.cos(v)
-      const x = Math.cos(u) * rr
-      const z = Math.sin(u) * rr
-      const y = tube * Math.sin(v)
-      const depth = (z / (R + tube) + 1) / 2 // 0 far .. 1 near
-      glyphs.push({ x: cx + x, y: cy + (y * tilt + z * (9 / (5 * 5 * 2))), depth, glyph: glagoliticGlyph(`laby:${i}:${j}`), u })
+      // Canonical torus (hole axis = y) through the shared kernel (rotate3 + perspective) —
+      // the oblique tilt is a real YZ rotation and depth is the perspective divide, not a z→y offset.
+      const p = qProject((Math.cos(u) * rr) / E, (tube * Math.sin(v)) / E, (Math.sin(u) * rr) / E, 0, OBLIQUE_VIEW_TILT, 0, cx, cy, E)
+      const depth = (p.z + 1) / 2 // 0 far .. 1 near
+      glyphs.push({ x: p.x, y: p.y, depth, s: p.s, glyph: glagoliticGlyph(`laby:${i}:${j}`), u })
     }
   }
   glyphs.sort((a, b) => a.depth - b.depth)
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   for (const g of glyphs) {
-    const size = 9 + g.depth * 16
+    const size = (7 * 2) * g.s // the perspective factor IS the size — nearer grows, farther recedes
     ctx.font = `${Math.round(size)}px serif`
     ctx.fillStyle = paint((frame.hue + g.u * (9 * 2)) % 360, (1 / 5) + (7 / (5 * 2)) * g.depth, { L: 1 / 2 + g.depth * (1 / 6) })
     ctx.fillText(g.glyph, g.x, g.y)
