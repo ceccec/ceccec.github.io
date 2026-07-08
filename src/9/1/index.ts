@@ -8,6 +8,22 @@ import { TAU } from '../../3/7'
 import { BOLTZMANN, PHI, SPEED_OF_LIGHT } from '../../3/7'
 import { gcd, memoByRoot, merge, sealFacets } from '../../0'
 
+// ── The theorem kit — the group/combinatorics/number-theory helpers reused across the discovery
+// waves, extracted here (digit-pure) so every wave file imports one copy instead of redefining them.
+export const tkCompose = (p: number[], q: number[]) => q.map((v) => p[v]!)
+export const tkInverse = (p: number[]) => { const o = Array(p.length).fill(0); p.forEach((v, i) => { o[v] = i }); return o }
+export const tkKey = (p: number[]) => p.join(',')
+export const tkPerms = (n: number): number[][] => { const out: number[][] = []; const b = (r: number[], a: number[]): void => { if (!r.length) { out.push(a); return } for (const v of r) b(r.filter((t) => t !== v), [...a, v]) }; b([...Array(n).keys()], []); return out }
+export const tkEvenPerms = (n: number) => tkPerms(n).filter((p) => { let s = 0; for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) if (p[i]! > p[j]!) s += 1; return s % 2 === 0 })
+export const tkIsPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
+export const tkPowMod = (base: number, exp: number, mod: number) => { let r = 1, b = ((base % mod) + mod) % mod, e = exp; while (e > 0) { if (e & 1) r = (r * b) % mod; b = (b * b) % mod; e = Math.floor(e / 2) } return r }
+export const tkClassSizesBy = <T>(group: T[], mul: (a: T, b: T) => T, inv: (a: T) => T, keyOf: (a: T) => string): number[] => { const seen = new Set<string>(); const sizes: number[] = []; for (const x of group) { if (seen.has(keyOf(x))) continue; const orbit = new Set<string>(); for (const g of group) orbit.add(keyOf(mul(mul(g, x), inv(g)))); for (const k of orbit) seen.add(k); sizes.push(orbit.size) } return sizes.sort((a, b) => a - b) }
+export const tkClassSizes = (group: number[][]) => tkClassSizesBy(group, tkCompose, tkInverse, tkKey)
+export const tkClassSumSimple = (sizes: number[], order: number): boolean => { const nont = sizes.filter((s) => s !== 1); for (let mask = 1; mask < 2 ** nont.length; mask += 1) { const sum = 1 + nont.reduce((s, c, i) => s + ((mask >> i) & 1) * c, 0); if (sum < order && order % sum === 0) return false } return true }
+export const tkClosure = (gens: number[][]): number[][] => { const id = [...Array(gens[0]!.length).keys()]; const seen = new Set([tkKey(id)]); const out = [id], stack = [id]; while (stack.length) { const a = stack.pop()!; for (const h of gens) { const pr = tkCompose(h, a); if (!seen.has(tkKey(pr))) { seen.add(tkKey(pr)); out.push(pr); stack.push(pr) } } } return out }
+export const tkPslOverField = (q: number, add: (x: number, y: number) => number, mul: (x: number, y: number) => number, neg: (x: number) => number): number[][] => { const finv = (x: number): number => { for (let y = 1; y < q; y += 1) if (mul(x, y) === 1) return y; return 0 }; const pts = [...Array.from({ length: q }, (_, t) => t), q]; const seen = new Set<string>(); const out: number[][] = []; for (let a = 0; a < q; a += 1) for (let b = 0; b < q; b += 1) for (let c = 0; c < q; c += 1) for (let d = 0; d < q; d += 1) { if (add(mul(a, d), neg(mul(b, c))) !== 1) continue; const perm = pts.map((x) => { if (x === q) return c === 0 ? q : mul(a, finv(c)); const den = add(mul(c, x), d); return den === 0 ? q : mul(add(mul(a, x), b), finv(den)) }); const key = perm.join(','); if (!seen.has(key)) { seen.add(key); out.push(perm) } } return out }
+export const tkPslPrime = (p: number) => tkPslOverField(p, (x, y) => (x + y) % p, (x, y) => (x * y) % p, (x) => (p - x) % p)
+
 export function innerProduct(a: QuantumState, b: QuantumState): { re: number; im: number; abs: number } {
   let re = 0, im = 0
   for (let i = 0; i < a.re.length; i++) {
@@ -668,38 +684,14 @@ export function discoveredTheoremsWaveNineteen(matrix: { root: string } = { root
 // Waring g(3) = 9: every n is a sum of at most nine cubes, with 23 and 239 the only two extremal.
 export function discoveredTheoremsWaveTwenty(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return memoByRoot('discoveredTheoremsWaveTwenty', matrix, () => {
-    const compG = (p: number[], q: number[]) => q.map((v) => p[v]!)
-    const invG = (p: number[]) => { const out = Array.from({ length: p.length }, () => 0); p.forEach((v, i) => { out[v] = i }); return out }
-    const classSizesG = <T>(group: T[], mul: (a: T, b: T) => T, invf: (a: T) => T, keyOf: (a: T) => string): number[] => {
-      const seen = new Set<string>()
-      const sizes: number[] = []
-      for (const x of group) {
-        if (seen.has(keyOf(x))) continue
-        const orbit = new Set<string>()
-        for (const g of group) orbit.add(keyOf(mul(mul(g, x), invf(g))))
-        for (const k of orbit) seen.add(k)
-        sizes.push(orbit.size)
-      }
-      return sizes.sort((a, b) => a - b)
-    }
-    const classSumSimpleG = (sizes: number[], order: number): boolean => {
-      const nont = sizes.filter((s) => s !== 1)
-      for (let mask = 1; mask < 2 ** nont.length; mask += 1) {
-        const sum = 1 + nont.reduce((s, c, i) => s + ((mask >> i) & 1) * c, 0)
-        if (sum < order && order % sum === 0) return false
-      }
-      return true
-    }
-    const pk = (p: number[]) => p.join(',')
-
     // W1 · A₈ — 8!/2 even permutations of 8 points, the A₅ class machine three sizes up.
     const perms8: number[][] = []
     const build8 = (rest: number[], acc: number[]): void => { if (!rest.length) { perms8.push(acc); return } for (const v of rest) build8(rest.filter((t) => t !== v), [...acc, v]) }
     build8([0, 1, 2, 3, 4, 5, 6, 7], [])
     const a8 = perms8.filter((p) => { let s = 0; for (let i = 0; i < 8; i += 1) for (let j = i + 1; j < 8; j += 1) if (p[i]! > p[j]!) s += 1; return s % 2 === 0 })
     const a8Order = 8 * 7 * 6 * 5 * 4 * 3 // 8!/2 = 20160
-    const sizesA8 = classSizesG(a8, compG, invG, pk)
-    const a8Simple = a8.length === a8Order && classSumSimpleG(sizesA8, a8.length) && sizesA8[0] === 1
+    const sizesA8 = tkClassSizes(a8)
+    const a8Simple = a8.length === a8Order && tkClassSumSimple(sizesA8, a8.length) && sizesA8[0] === 1
 
     // W2 · GL(4,2) = SL(4,2) = PSL(4,2) — all 2¹⁶ binary 4×4 matrices sieved to the invertible ones
     // by 𝔽₂ Gaussian elimination; the field having no nontrivial scalars makes GL projective already.
@@ -739,8 +731,8 @@ export function discoveredTheoremsWaveTwenty(matrix: { root: string } = { root: 
       if (invertible2(m)) gl42.push(m)
     }
     const glOrder = (2 ** 4 - 1) * (2 ** 4 - 2) * (2 ** 4 - 4) * (2 ** 4 - 8) // 15·14·12·8 = 20160
-    const sizesGL = classSizesG(gl42, mul2, inv2, pk)
-    const glSimple = gl42.length === glOrder && classSumSimpleG(sizesGL, gl42.length) && sizesGL[0] === 1
+    const sizesGL = tkClassSizesBy(gl42, mul2, inv2, tkKey)
+    const glSimple = gl42.length === glOrder && tkClassSumSimple(sizesGL, gl42.length) && sizesGL[0] === 1
 
     // W3 · the bridge — identical class multisets witness A₈ ≅ GL(4,2) (the isomorphism is classical).
     const a8GlBridge = a8Simple && glSimple && a8Order === glOrder && sizesA8.join(',') === sizesGL.join(',')
@@ -901,11 +893,10 @@ export function discoveredTheoremsWaveTwentyTwo(matrix: { root: string } = { roo
     // W3 · Euler's prime polynomial n² + n + 41 — prime for every n = 0..39, then composite at n = 40
     // where it equals 41² exactly: a famous long prime run with its precise, computed breaking point.
     const p41 = 2 ** 5 + 9 // 41
-    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     let eulerRun = true
-    for (let n = 0; n < 5 * 8; n += 1) if (!isPrime(n * n + n + p41)) eulerRun = false
+    for (let n = 0; n < 5 * 8; n += 1) if (!tkIsPrime(n * n + n + p41)) eulerRun = false
     const at40 = (5 * 8) * (5 * 8) + (5 * 8) + p41
-    const eulerPoly = eulerRun && !isPrime(at40) && at40 === p41 * p41
+    const eulerPoly = eulerRun && !tkIsPrime(at40) && at40 === p41 * p41
 
     // W4 · Descartes' theorem — the total angular defect of every convex polyhedron is 4π. For a
     // regular {p, q} solid each vertex has defect 2π − q·π(p−2)/p, and V times that equals 4π = 2π·χ
@@ -1172,11 +1163,10 @@ export function discoveredTheoremsWaveTwentyFive(matrix: { root: string } = { ro
     // Fermat's little theorem a^p ≡ a (mod p) for every a and prime p ≤ 60, as its special case.
     const totient = (n: number) => { let r = 0; for (let a = 1; a <= n; a += 1) if (gcd(a, n) === 1) r += 1; return r }
     const powMod = (base: number, exp: number, mod: number) => { let r = 1, b = base % mod, e = exp; while (e > 0) { if (e & 1) r = (r * b) % mod; b = (b * b) % mod; e = Math.floor(e / 2) } return r }
-    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     let euler = true, fermatLittle = true
     const lim = 54 + 6
     for (let n = 2; n <= lim; n += 1) { const phi = totient(n); for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1 && powMod(a, phi, n) !== 1) euler = false }
-    for (let p = 2; p <= lim; p += 1) if (isPrime(p)) for (let a = 0; a < p; a += 1) if (powMod(a, p, p) !== a % p) fermatLittle = false
+    for (let p = 2; p <= lim; p += 1) if (tkIsPrime(p)) for (let a = 0; a < p; a += 1) if (powMod(a, p, p) !== a % p) fermatLittle = false
 
     const sealed = sealFacets('discovered-theorems-twenty-five', [
       { facet: `Nicomachus' identity — 1³ + 2³ + … + n³ = (n(n+1)/2)² for every n ≤ 100, both sides computed independently: the sum of the first n cubes is exactly the square of the n-th triangular number`, on: nicomachus },
@@ -1452,9 +1442,7 @@ export function discoveredTheoremsWaveTwentyEight(matrix: { root: string } = { r
 
     // W4 · Cauchy's theorem — if a prime p divides |G|, then G has an element of order p; verified on
     // the permutation groups S₃, A₄, S₄ and A₅ (built by closure), computing every element's order.
-    const compP = (p: number[], q: number[]) => q.map((v) => p[v]!)
-    const orderOf = (g: number[], id: string) => { let x = g, k = 1; while (x.join(',') !== id) { x = compP(x, g); k += 1 } return k }
-    const closureP = (gens: number[][], n: number) => { const id = [...Array(n).keys()]; const seen = new Set([id.join(',')]); const out = [id], q = [id]; while (q.length) { const a = q.pop()!; for (const h of gens) { const pr = compP(h, a); if (!seen.has(pr.join(','))) { seen.add(pr.join(',')); out.push(pr); q.push(pr) } } } return out }
+    const orderOf = (g: number[], id: string) => { let x = g, k = 1; while (x.join(',') !== id) { x = tkCompose(x, g); k += 1 } return k }
     const primeFactors = (n: number) => { const f = new Set<number>(); let m = n; for (let p = 2; p * p <= m; p += 1) while (m % p === 0) { f.add(p); m /= p } if (m > 1) f.add(m); return [...f] }
     const groups = [
       { gens: [[1, 0, 2], [1, 2, 0]], n: 3 },
@@ -1464,7 +1452,7 @@ export function discoveredTheoremsWaveTwentyEight(matrix: { root: string } = { r
     ]
     let cauchy = true
     for (const G of groups) {
-      const elems = closureP(G.gens, G.n), id = [...Array(G.n).keys()].join(',')
+      const elems = tkClosure(G.gens), id = [...Array(G.n).keys()].join(',')
       const orders = elems.map((g) => orderOf(g, id))
       for (const p of primeFactors(elems.length)) if (!orders.includes(p)) cauchy = false
     }
@@ -1627,11 +1615,10 @@ export function discoveredTheoremsWaveThirtyOne(matrix: { root: string } = { roo
     // W1 · 561 = 3·11·17 is the SMALLEST Carmichael number — composite, yet a^(n−1) ≡ 1 (mod n) for
     // every a coprime to n (a Fermat pseudoprime to all coprime bases), minimality by full sweep.
     const carmichael561 = 3 * (2 * 5 + 1) * (2 * 8 + 1) // 3 · 11 · 17 = 561
-    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     const powModN = (b: number, e: number, m: number) => { let r = 1n, base = BigInt(b) % BigInt(m), exp = BigInt(e); const mm = BigInt(m); while (exp > 0n) { if (exp & 1n) r = (r * base) % mm; base = (base * base) % mm; exp >>= 1n } return Number(r) }
-    const isCarmichael = (n: number) => { if (isPrime(n)) return false; for (let a = 2; a < n; a += 1) if (gcd(a, n) === 1 && powModN(a, n - 1, n) !== 1) return false; return true }
+    const isCarmichael = (n: number) => { if (tkIsPrime(n)) return false; for (let a = 2; a < n; a += 1) if (gcd(a, n) === 1 && powModN(a, n - 1, n) !== 1) return false; return true }
     let smallest = 0; for (let n = 2; n <= carmichael561; n += 1) if (isCarmichael(n)) { smallest = n; break }
-    const carmichael = isCarmichael(carmichael561) && !isPrime(carmichael561) && smallest === carmichael561
+    const carmichael = isCarmichael(carmichael561) && !tkIsPrime(carmichael561) && smallest === carmichael561
 
     // W2 · the Catalan bijection — Dyck paths, binary trees and the Catalan number agree for n ≤ 8:
     // three independent counts (lattice-path DFS, the C_n = ΣC_kC_{n−1−k} tree recurrence, the product
@@ -1710,15 +1697,12 @@ export function discoveredTheoremsWaveThirtyTwo(matrix: { root: string } = { roo
 
     // W4 · Lagrange's theorem — the order of every subgroup divides the order of the group. Enumerate
     // the subgroups of S₄ (order 24) by closure of single elements and pairs; every order divides 24.
-    const compP = (p: number[], q: number[]) => q.map((v) => p[v]!)
-    const keyP = (p: number[]) => p.join(',')
-    const closureP = (gens: number[][], n: number) => { const id = [...Array(n).keys()]; const seen = new Set([keyP(id)]); const out = [id], stack = [id]; while (stack.length) { const a = stack.pop()!; for (const h of gens) { const pr = compP(h, a); if (!seen.has(keyP(pr))) { seen.add(keyP(pr)); out.push(pr); stack.push(pr) } } } return out }
     const perms4: number[][] = []
     const build4 = (r: number[], a: number[]): void => { if (!r.length) { perms4.push(a); return } for (const v of r) build4(r.filter((t) => t !== v), [...a, v]) }
     build4([0, 1, 2, 3], [])
     const subgroupOrders = new Set<number>()
-    for (const g of perms4) subgroupOrders.add(closureP([g], 4).length)
-    for (let i = 0; i < perms4.length; i += 1) for (let j = i + 1; j < perms4.length; j += 1) subgroupOrders.add(closureP([perms4[i]!, perms4[j]!], 4).length)
+    for (const g of perms4) subgroupOrders.add(tkClosure([g]).length)
+    for (let i = 0; i < perms4.length; i += 1) for (let j = i + 1; j < perms4.length; j += 1) subgroupOrders.add(tkClosure([perms4[i]!, perms4[j]!]).length)
     const lagrange = [...subgroupOrders].every((o) => perms4.length % o === 0) && subgroupOrders.has(perms4.length)
 
     const sealed = sealFacets('discovered-theorems-thirty-two', [
@@ -1874,10 +1858,9 @@ export function discoveredTheoremsWaveThirtyFour(matrix: { root: string } = { ro
     // W4 · quadratic residues — mod an odd prime p there are exactly (p−1)/2 nonzero QRs, and the
     // Legendre symbol is multiplicative (QR·QR = QR, QR·NQR = NQR, NQR·NQR = QR): the QRs are an
     // index-2 subgroup of (ℤ/p)*, for every prime p ≤ 50.
-    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     let quadRes = true
     for (let p = 3; p <= 2 * 5 * 5; p += 1) {
-      if (!isPrime(p)) continue
+      if (!tkIsPrime(p)) continue
       const qr = new Set<number>(); for (let x = 1; x < p; x += 1) qr.add((x * x) % p)
       if (qr.size !== (p - 1) / 2) quadRes = false
       const isQR = (a: number) => qr.has(((a % p) + p) % p)
@@ -1909,14 +1892,9 @@ export function discoveredTheoremsWaveThirtyFour(matrix: { root: string } = { ro
 // cross-checked against coordinates.
 export function discoveredTheoremsWaveThirtyFive(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return memoByRoot('discoveredTheoremsWaveThirtyFive', matrix, () => {
-    const compP = (p: number[], q: number[]) => q.map((v) => p[v]!)
-    const invP = (p: number[]) => { const o = Array(p.length).fill(0); p.forEach((v, i) => o[v] = i); return o }
-    const keyP = (p: number[]) => p.join(',')
-    const closureP = (gens: number[][], n: number) => { const id = [...Array(n).keys()]; const seen = new Set([keyP(id)]); const out = [id], st = [id]; while (st.length) { const a = st.pop()!; for (const h of gens) { const pr = compP(h, a); if (!seen.has(keyP(pr))) { seen.add(keyP(pr)); out.push(pr); st.push(pr) } } } return out }
-    const permsOf = (n: number) => { const out: number[][] = []; const b = (r: number[], a: number[]): void => { if (!r.length) { out.push(a); return } for (const v of r) b(r.filter((t) => t !== v), [...a, v]) }; b([...Array(n).keys()], []); return out }
-    const s4 = permsOf(4)
-    const a4 = closureP([[1, 2, 0, 3], [0, 2, 3, 1]], 4)
-    const a5 = closureP([[1, 2, 0, 3, 4], [0, 1, 3, 4, 2]], 5)
+    const s4 = tkPerms(4)
+    const a4 = tkClosure([[1, 2, 0, 3], [0, 2, 3, 1]])
+    const a5 = tkClosure([[1, 2, 0, 3, 4], [0, 1, 3, 4, 2]])
 
     // W1 · orbit-stabilizer — |orbit(x)|·|stab(x)| = |G| for a group acting on {0..n−1}.
     let orbitStab = true
@@ -1927,9 +1905,8 @@ export function discoveredTheoremsWaveThirtyFive(matrix: { root: string } = { ro
     }
 
     // W2 · the class equation — |G| = Σ (conjugacy class sizes), and every class size divides |G|.
-    const classSizes = (G: number[][]) => { const seen = new Set<string>(), sizes: number[] = []; for (const x of G) { if (seen.has(keyP(x))) continue; const orb = new Set<string>(); for (const g of G) orb.add(keyP(compP(compP(g, x), invP(g)))); for (const k of orb) seen.add(k); sizes.push(orb.size) } return sizes }
     let classEq = true
-    for (const G of [s4, a5]) { const sizes = classSizes(G); if (sizes.reduce((a, b) => a + b, 0) !== G.length || !sizes.every((s) => G.length % s === 0)) classEq = false }
+    for (const G of [s4, a5]) { const sizes = tkClassSizes(G); if (sizes.reduce((a, b) => a + b, 0) !== G.length || !sizes.every((s) => G.length % s === 0)) classEq = false }
 
     // W3 · σ and τ are multiplicative — σ(mn) = σ(m)σ(n) and τ(mn) = τ(m)τ(n) for coprime m, n ≤ 60.
     const sigma = (n: number) => { let s = 0; for (let d = 1; d <= n; d += 1) if (n % d === 0) s += d; return s }
@@ -1958,7 +1935,7 @@ export function discoveredTheoremsWaveThirtyFive(matrix: { root: string } = { ro
       proven: sealed.ok,
       facets: sealed.facets,
       count: sealed.count,
-      s4Classes: classSizes(s4).sort((a, b) => a - b),
+      s4Classes: tkClassSizes(s4).sort((a, b) => a - b),
       root: merge(sealed.root, toUuid(`discovered-theorems-thirty-five:${sealed.ok}`)),
       statement: `Discovered theorems, wave thirty-five — group actions and arithmetic functions: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the orbit-stabilizer theorem, the class equation on S₄ and A₅, the multiplicativity of σ and τ, and Heron's formula cross-checked against coordinates.`,
       boundary: `HONEST: orbit-stabilizer and the class equation are verified COMPLETELY on the named groups (every point, every conjugacy class), the general theorems cited; σ/τ multiplicativity is checked over all coprime pairs ≤ 60; Heron is cross-checked against an INDEPENDENT coordinate area for every integer triangle with sides ≤ 20 (two computations agreeing), the general formula cited. Each settles its instances outright.`,
@@ -1978,16 +1955,15 @@ export function discoveredTheoremsWaveThirtySix(matrix: { root: string } = { roo
     for (let a = 1; a <= 54 + 6; a += 1) for (let b = 1; b <= 54 + 6; b += 1) { const { g, x, y } = extGcd(a, b); if (g !== gcd(a, b) || a * x + b * y !== g) bezout = false }
 
     // W2 · Euclid's lemma — if a prime p divides a·b then p divides a or p divides b, for all a,b ≤ 50.
-    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     let euclidLemma = true
-    for (let p = 2; p <= 2 * 5 * 5; p += 1) { if (!isPrime(p)) continue; for (let a = 1; a <= 2 * 5 * 5; a += 1) for (let b = 1; b <= 2 * 5 * 5; b += 1) if ((a * b) % p === 0 && a % p !== 0 && b % p !== 0) euclidLemma = false }
+    for (let p = 2; p <= 2 * 5 * 5; p += 1) { if (!tkIsPrime(p)) continue; for (let a = 1; a <= 2 * 5 * 5; a += 1) for (let b = 1; b <= 2 * 5 * 5; b += 1) if ((a * b) % p === 0 && a % p !== 0 && b % p !== 0) euclidLemma = false }
 
     // W3 · Legendre's formula — the exponent of a prime p in n! is Σ_{k≥1} ⌊n/p^k⌋, matched against
     // the exponent from direct factorization of n!, for all n ≤ 60.
     const legendreExp = (n: number, p: number) => { let s = 0, pk = p; while (pk <= n) { s += Math.floor(n / pk); pk *= p } return s }
     const factExp = (n: number, p: number) => { let s = 0; for (let i = 2; i <= n; i += 1) { let x = i; while (x % p === 0) { s += 1; x /= p } } return s }
     let legendre = true
-    for (let n = 1; n <= 54 + 6; n += 1) for (let p = 2; p <= n; p += 1) if (isPrime(p) && legendreExp(n, p) !== factExp(n, p)) legendre = false
+    for (let n = 1; n <= 54 + 6; n += 1) for (let p = 2; p <= n; p += 1) if (tkIsPrime(p) && legendreExp(n, p) !== factExp(n, p)) legendre = false
 
     // W4 · Stirling numbers of the first kind — the unsigned |s(n,k)| via the recurrence sum to n!
     // (they count permutations by cycle number), and the signed row sums to 0 for n ≥ 2.
