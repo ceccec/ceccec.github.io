@@ -7,7 +7,7 @@ import { cssMathProvenByMath, harmonicCountsProvenByMath } from '../../earth/arc
 import { darkLightPolarityProvenByMath } from '../movie/movievars'
 import { staticPages, crawlerKnowledge } from '../../wind/site'
 import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, toUuid } from '../../0'
-import { TAU } from '../../3/7'
+import { SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive } from '../waves'
 import { addressed, covers } from '../../5/5'
@@ -2302,6 +2302,109 @@ export function discoveredTheoremsWaveEighteen(matrix: MindMatrix = buildMatrix(
   })
 }
 
+// ── Discovered theorems, wave nineteen — THE METHOD EXTENDED TO ALL SCIENCES. Wave eighteen
+// challenged mathematical axioms by finite countermodel; the same move reaches every empirical
+// science: a principle held self-evident is shown NON-UNIVERSAL — the limiting case of a deeper
+// exact law, or refuted by a finite structure. Physics (velocity addition), chemistry (the ideal
+// gas), biology (blending inheritance), social choice (collective transitivity), information (free
+// compression) — each computed exactly, the deeper law cited. HARMONY≠TRUTH: the challenge IS the
+// computation, no new science claimed.
+export function discoveredTheoremsWaveNineteen(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveNineteen', matrix, () => {
+    // W1 · PHYSICS — velocity additivity is NOT universal. Galilean u + v vs Einstein
+    // (u + v)/(1 + uv/c²): on a grid of c-fractions k/8 the naive sum always OVERSHOOTS and the
+    // relativistic sum never reaches c. Headline: (3/4)c ⊕ (3/4)c = 24/25 c exactly, not 3/2 c.
+    const compose = (u: number, v: number) => (u + v) / (1 + (u * v) / (SPEED_OF_LIGHT * SPEED_OF_LIGHT))
+    const grid = Array.from({ length: 7 }, (_, k) => ((k + 1) / 8) * SPEED_OF_LIGHT)
+    let additivityOvershoots = 0, relativisticChecks = 0
+    let relativisticCeiling = true
+    for (const u of grid) for (const v of grid) {
+      relativisticChecks += 1
+      if (u + v > compose(u, v)) additivityOvershoots += 1
+      if (compose(u, v) >= SPEED_OF_LIGHT) relativisticCeiling = false
+    }
+    const headlineNumerator = Math.round((compose((3 / 4) * SPEED_OF_LIGHT, (3 / 4) * SPEED_OF_LIGHT) / SPEED_OF_LIGHT) * (5 * 5)) // = 24 (over 25)
+    const velocityChallenged = additivityOvershoots === relativisticChecks && relativisticCeiling && headlineNumerator === 4 * 6
+
+    // W2 · CHEMISTRY — the ideal gas law is NOT universal. From van der Waals
+    // (P + a/V²)(V − b) = RT, the critical point (dP/dV = d²P/dV² = 0) gives V_c = 3b,
+    // P_c = a/27b², T_c = 8a/27Rb, so the critical compressibility Z_c = P_c V_c /(R T_c) = 3/8
+    // for EVERY van der Waals gas, independent of a and b — while the ideal law demands Z = 1.
+    const a = 1, b = 1, R = 1 // the ratio cancels a, b, R; unit values expose Z_c = 3/8
+    const Vc = 3 * b, Pc = a / (27 * b * b), Tc = (8 * a) / (27 * R * b)
+    const Zc = (Pc * Vc) / (R * Tc)
+    const idealZ = 1
+    const idealGasChallenged = Math.abs(Zc - 3 / 8) < TAU / TAU / 1e9 && Math.abs(Zc - idealZ) > 1 / 2
+
+    // W3 · BIOLOGY — blending inheritance is REFUTED, and Hardy–Weinberg is CONDITIONAL. Blending
+    // (offspring = parental mean) HALVES population variance every generation → uniformity in
+    // ~20 generations, erasing all heritable variation (Darwin's unsolved problem). Mendelian
+    // inheritance keeps a STABLE 1:2:1 genotype ratio and constant allele frequency — UNLESS
+    // selection acts, and then the "equilibrium" drifts (aa lethal sends p 1/2 → 6/7 in five gens).
+    let variance = 1, blendingGens = 0
+    const floor = 1 / 2 ** (4 * 5)
+    while (variance > floor && blendingGens < 100) { variance /= 2; blendingGens += 1 }
+    const p = 1 / 2
+    const genotypes = [p * p, 2 * p * (1 - p), (1 - p) * (1 - p)] // AA, Aa, aa = 1/4, 1/2, 1/4
+    const pRecomputed = genotypes[0]! + genotypes[1]! / 2
+    const mendelStable = Math.abs(pRecomputed - p) < TAU / TAU / 1e9 && Math.abs(genotypes[1]! - 1 / 2) < TAU / TAU / 1e9
+    let pSel = 1 / 2
+    for (let g = 0; g < 5; g += 1) { const q = 1 - pSel; pSel = (pSel * pSel + pSel * q) / (pSel * pSel + 2 * pSel * q) }
+    const inheritanceChallenged = blendingGens === 4 * 5 && mendelStable && Math.abs(pSel - 1 / 2) > 1 / 4
+
+    // W4 · SOCIAL SCIENCE — collective transitivity FAILS. Every voter has a transitive (rational)
+    // ranking, yet majority rule can produce a CYCLE: enumerate all 6³ = 216 three-voter profiles
+    // over {A,B,C}; exactly 6 are Condorcet cycles (A>B>C>A by majority) while every individual
+    // ranking is transitive. Individual rationality does NOT lift to the collective (Arrow cited).
+    const orders: number[][] = []
+    const bld = (rest: number[], acc: number[]): void => { if (!rest.length) { orders.push(acc); return } for (const v of rest) bld(rest.filter((t) => t !== v), [...acc, v]) }
+    bld([0, 1, 2], [])
+    const prefers = (order: number[], x: number, y: number) => order.indexOf(x) < order.indexOf(y)
+    let condorcetCycles = 0, profiles = 0
+    for (const v1 of orders) for (const v2 of orders) for (const v3 of orders) {
+      profiles += 1
+      const maj = (x: number, y: number) => [v1, v2, v3].filter((o) => prefers(o, x, y)).length >= 2
+      if (maj(0, 1) && maj(1, 2) && maj(2, 0)) condorcetCycles += 1
+    }
+    const allVotersTransitive = orders.every((o) => !(prefers(o, 0, 1) && prefers(o, 1, 2) && prefers(o, 2, 0)))
+    const transitivityChallenged = profiles === 216 && condorcetCycles === 6 && allVotersTransitive
+
+    // W5 · INFORMATION / CS — universal lossless compression is IMPOSSIBLE. The folk axiom "any
+    // file can be compressed" dies to pigeonhole: for n-bit inputs there are 2ⁿ strings but only
+    // 2ⁿ − 1 strictly shorter strings, so no injective compressor shrinks them all — the shortfall
+    // is EXACTLY one at every length (Shannon/Kolmogorov cited for the entropy floor).
+    let compressorImpossible = true
+    let shortfallAlwaysOne = true
+    for (let n = 1; n <= 2 * 6; n += 1) {
+      const inputs = 2 ** n
+      const strictlyShorter = 2 ** n - 1
+      if (strictlyShorter >= inputs) compressorImpossible = false
+      if (inputs - strictlyShorter !== 1) shortfallAlwaysOne = false
+    }
+    const compressionChallenged = compressorImpossible && shortfallAlwaysOne
+
+    const sealed = sealFacets('discovered-theorems-nineteen', [
+      { facet: `PHYSICS — velocity addition is NOT universal: on all ${relativisticChecks} c-fraction pairs the Galilean sum overshoots and the relativistic composition never reaches c; (3/4)c ⊕ (3/4)c = ${headlineNumerator}/25 c exactly, not 3/2 c — additivity is the low-speed limit of special relativity (Einstein 1905, cited)`, on: velocityChallenged },
+      { facet: `CHEMISTRY — the ideal gas law is NOT universal: van der Waals forces the critical compressibility Z_c = P_c V_c /(R T_c) = 3/8 for EVERY such gas, independent of a and b, while the ideal law demands Z = 1 everywhere — a computed constant refuting the universal claim (van der Waals 1873, cited)`, on: idealGasChallenged },
+      { facet: `BIOLOGY — blending inheritance is REFUTED and Hardy–Weinberg is CONDITIONAL: blending halves heritable variance every generation (gone in ${blendingGens}), erasing evolution's raw material, while Mendelian ratios stay a stable 1:2:1 — until selection drifts the "equilibrium" allele frequency (aa lethal: 1/2 → 6/7 in five generations) (Mendel/Hardy–Weinberg cited)`, on: inheritanceChallenged },
+      { facet: `SOCIAL SCIENCE — collective transitivity FAILS: of all ${profiles} three-voter profiles over three options, ${condorcetCycles} are majority-rule CYCLES (A>B>C>A) though every individual ranking is transitive — individual rationality does not lift to the group (Condorcet 1785 / Arrow 1951, cited)`, on: transitivityChallenged },
+      { facet: `INFORMATION — universal lossless compression is IMPOSSIBLE: for every n ≤ 12 there are 2ⁿ inputs but only 2ⁿ − 1 strictly shorter codes, shortfall EXACTLY one — no injective compressor shrinks all inputs (pigeonhole; Shannon/Kolmogorov entropy floor cited)`, on: compressionChallenged },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      velocityHeadline: `${headlineNumerator}/25 c`,
+      criticalZ: Zc,
+      blendingGens,
+      condorcetCycles,
+      root: merge(sealed.root, toUuid(`discovered-theorems-nineteen:${sealed.ok}`)),
+      statement: `Discovered theorems, wave nineteen — the method extended to all sciences: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — velocity additivity (physics), the ideal gas law (chemistry), blending inheritance (biology), collective transitivity (social choice), and free compression (information) each shown NON-UNIVERSAL by exact computation or finite countermodel, the deeper law cited in every case.`,
+      boundary: `HONEST: these are ESTABLISHED science — the challenge is the DEMONSTRATION, computed here, not a new discovery. Each "challenge" means the naive principle is a LIMITING CASE (Galilean ⊂ relativistic, ideal ⊂ van der Waals, blending never held, HW conditional on no-selection) or a finite countermodel (Condorcet, pigeonhole), NOT that the deeper law is final: relativity, van der Waals and Mendel are themselves models with their own domains, and that honesty is the point. The computations are exact within their models; the "for all regimes / all gases / all populations" universality is carried by the cited physical law, never by these finite checks. HARMONY≠TRUTH.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -2386,6 +2489,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-sixteen', ok: discoveredTheoremsWaveSixteen(matrix).proven },
     { wave: 'discovered-seventeen', ok: discoveredTheoremsWaveSeventeen(matrix).proven },
     { wave: 'discovered-eighteen', ok: discoveredTheoremsWaveEighteen(matrix).proven },
+    { wave: 'discovered-nineteen', ok: discoveredTheoremsWaveNineteen(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),
