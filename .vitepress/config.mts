@@ -20,7 +20,7 @@ function glagoliticIfLatin(text: string): string {
   return /[Ⰰ-ⱟ]/.test(text) ? text : toGlagolitic(text)
 }
 import { buildMatrix } from '../src/heaven/compute'
-import { computeUniversalPage } from '../src/wind/routes/corpus'
+import { computeUniversalPage, searchSectionsFor } from '../src/wind/routes/corpus'
 import { heroChromeStyleBlocks } from './lib/hero-chrome'
 import { universalRoutePath } from './lib/universal-route-path'
 import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-server-bind.mts'
@@ -482,6 +482,13 @@ export default defineConfig({
       provider: 'local',
       options: {
         detailedView: true,
+        // Fold-computed knowledge is searchable: resolved dynamic routes have no physical file, so
+        // the default indexer skips them entirely — the custom splitter computes their sections from
+        // the model (returning undefined for physical pages keeps the default path). See
+        // searchSectionsFor in src/wind/routes/corpus.
+        miniSearch: {
+          _splitIntoSections: (file: string, html: string) => searchSectionsFor(file, html),
+        },
         // The default locale is Glagolitic, so the search UI defaults to the ninth-century script;
         // English (/en/) and Bulgarian (/bg/) override it with their own labels.
         translations: {

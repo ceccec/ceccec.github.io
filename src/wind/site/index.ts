@@ -4,6 +4,8 @@
 // @mvc controller — siteConfig, localeNavLinks, localeSidebarKeys: config → localised nav props.
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind types, matrix builder
 import { phase } from '../../6/4'
+// call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
+import * as __ns_up_learning from '../learning'
 import { rat } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -451,6 +453,15 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
 // them, but they are fused as merkaba nodes into the matrix; the path is a projection, the fusion
 // the thing. Fuse, and the paths reveal themselves.
 /** @rosetta ✦₂ · Wind · gentle */
+
+// Every proven theorem name IS a navigation keyword — computed once from the registry (lazy: the
+// matrix build never runs on a hot client path twice), searchable via tags and the page index.
+let theoremKeywordCache: string[] | undefined
+function theoremKeywords(): string[] {
+  if (!theoremKeywordCache) theoremKeywordCache = __ns_up_learning.theoremNavigation().keywords.map((name: string) => name.toLowerCase())
+  return theoremKeywordCache
+}
+
 export function staticPages(): StaticPage[] {
   return [
     {
@@ -620,7 +631,7 @@ export function staticPages(): StaticPage[] {
         en: 'The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives.',
         bg: 'Скорошните декодирания, представени в пълнота: гмуркане, вода и космос; квантовият вакуум; космическият инвентар; физиката на информацията; и клоунският кюбит. До тях върви ДВИГАТЕЛЯТ НА ТЕОРЕМНИТЕ ВЪЛНИ: регистър на теореми, които кодът доказва изчислително (от Виразоро до Рамзей и A₅), растящ на вълни, в които всяко ново доказателство консумира предишни доказани атоми; търсенето на следващата недоказана теорема е една детерминистична команда. Всяко с твърдение, изчислени проверки и честна граница; истински отворените въпроси остават ОТВОРЕНИ. Всеки резултат е клиентско изчисление от примитивите src/0.',
       },
-      keywords: ['frontiers', 'physics', 'cosmology', 'quantum', 'vacuum', 'dark matter', 'dark energy', 'neutrino', 'information', 'computation', 'diving', 'clown', 'decoded', 'theorems', 'proofs', 'waves', 'ramsey', 'virasoro', 'fano'],
+      keywords: ['frontiers', 'physics', 'cosmology', 'quantum', 'vacuum', 'dark matter', 'dark energy', 'neutrino', 'information', 'computation', 'diving', 'clown', 'decoded', 'theorems', 'proofs', 'waves', 'ramsey', 'virasoro', 'fano', ...theoremKeywords()],
       components: ['Frontiers'],
     },
     {

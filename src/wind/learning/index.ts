@@ -198,6 +198,10 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'discoveredTheoremsWaveEight',
   'discoveredTheoremsWaveNine',
   'discoveredTheoremsWaveTen',
+  'discoveredTheoremsWaveEleven',
+  'discoveredTheoremsWaveTwelve',
+  'discoveredTheoremsWaveThirteen',
+  'discoveredTheoremsWaveFourteen',
   'emergenceContinuesWave',
   'cloudflareExplorerWaves',
   'collideToTiniestWave',
@@ -355,6 +359,7 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'stringTheoryAlgebraDecoded',
   'theMonograph',
   'theoremGapScan',
+  'theoremNavigation',
   'theoremWavesVerify',
   'tightenGatesTrinityWaves',
   'trinityEyesProvenHarmonic',
@@ -554,6 +559,20 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'GP(n,2) non-Hamiltonian exactly at 5 and 11 below 13', states: 'the one constructor classifies n = 3..12 by exhaustive search: only Petersen and GP(11,2) fail — Alspach n ≡ 5 (mod 6) cited for all n', provedBy: 'discoveredTheoremsWaveTen', home: 'src/water/cosmos' },
     { theorem: 'Sylvester–Frobenius ab−a−b witnessed', states: 'largest non-representable = ab−a−b for (3,5), (4,9), (9,20) by sweep + window closure — Sylvester 1882 cited for all coprime pairs', provedBy: 'discoveredTheoremsWaveTen', home: 'src/water/cosmos' },
     { theorem: 'Hurwitz units match SL(2,3)', states: 'the 24 unit quaternions close with order multiset {1,2,3⁸,4⁶,6⁸} equal to brute-forced SL(2,3) — two routes to 24; the classical isomorphism cited, multiset equality not overclaimed', provedBy: 'discoveredTheoremsWaveTen', home: 'src/water/cosmos' },
+    { theorem: 'A₈ is simple', states: 'classes from the partition formula 8!/z_λ with the odd-distinct split rule (cited), summing to 20160; zero class-union divisors — the simplicity machine running on arithmetic past brute force', provedBy: 'discoveredTheoremsWaveEleven', home: 'src/water/cosmos' },
+    { theorem: 'PSL(2,7) is simple and matches GL(3,2)', states: '168 fractional-linear permutations of P¹(𝔽₇), classes {1,21,24,24,42,56} identical to GL(3,2) on 𝔽₂³∖0, zero normal candidates — the registry two 168s bridged at class level; the isomorphism classical, cited', provedBy: 'discoveredTheoremsWaveEleven', home: 'src/water/cosmos' },
+    { theorem: 'Burnside counting witnessed on necklaces', states: '(1/n)Σ k^gcd(i,n) equals brute canonical-rotation counting for all 24 (n,k) instances, n ≤ 8, k ≤ 3 — the orbit-counting lemma on the one-math gcd', provedBy: 'discoveredTheoremsWaveEleven', home: 'src/water/cosmos' },
+    { theorem: 'Gauss sums |G(p)|² = p below 50', states: 'the quadratic exponential sum computed in ℂ for every odd prime — |G|² = p within 1e−6; Gauss cited for all p, the sign theorem not claimed', provedBy: 'discoveredTheoremsWaveEleven', home: 'src/water/cosmos' },
+    { theorem: 'PSL(2,11) is simple', states: '660 fractional-linear permutations of P¹(𝔽₁₁), classes {1,55,60,60,110,110,132,132}, class-sum test — the third-smallest nonabelian simple group', provedBy: 'discoveredTheoremsWaveTwelve', home: 'src/water/cosmos' },
+    { theorem: 'the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4)', states: 'three constructions from three fields (permutations, 𝔽₅, 𝔽₄ via ω²=ω+1) all with class multiset {1,12,12,15,20} — the exceptional isomorphisms witnessed at class level, cited as isomorphisms', provedBy: 'discoveredTheoremsWaveTwelve', home: 'src/water/cosmos' },
+    { theorem: 'Farey counts |F_n| = 1 + Σφ(k)', states: 'brute coprime enumeration equals the totient sum for every n ≤ 30 — complete within bound', provedBy: 'discoveredTheoremsWaveTwelve', home: 'src/water/cosmos' },
+    { theorem: 'Euler pentagonal recurrence to 50', states: 'p(n) by generalized pentagonal numbers equals the raw partition DP for all n ≤ 50, p(50) = 204226 — the η-identity in exact integers', provedBy: 'discoveredTheoremsWaveTwelve', home: 'src/water/cosmos' },
+    { theorem: 'PSL(2,8) is simple', states: '504 permutations of P¹(𝔽₈), 𝔽₈ = 𝔽₂[x]/(x³+x+1), class-sum clean — completing the five smallest nonabelian simple groups {60,168,360,504,660} all proven in-registry', provedBy: 'discoveredTheoremsWaveThirteen', home: 'src/water/cosmos' },
+    { theorem: 'PSL(2,9) matches A₆', states: '360 permutations of P¹(𝔽₉), 𝔽₉ = 𝔽₃[i], class multiset {1,40,40,45,72,72,90} identical to the sealed A₆ — second exceptional bridge, isomorphism cited', provedBy: 'discoveredTheoremsWaveThirteen', home: 'src/water/cosmos' },
+    { theorem: 'Fermat two squares to 200', states: 'p ≡ 1 (mod 4) ⇔ exactly one a²+b² representation, p ≡ 3 ⇔ none — existence, exclusion and uniqueness counted below 200', provedBy: 'discoveredTheoremsWaveThirteen', home: 'src/water/cosmos' },
+    { theorem: 'Legendre three squares to 1000', states: 'three squares suffice exactly when n ≠ 4^a(8b+7), four always — both directions whole below 1000', provedBy: 'discoveredTheoremsWaveThirteen', home: 'src/water/cosmos' },
+    { theorem: 'Pell fundamental solutions to d = 30', states: 'continued-fraction convergents of √d give the minimal x² − dy² = 1 solution for every nonsquare d ≤ 30, minimality swept (d=29: 9801, 1820) — Lagrange cited', provedBy: 'discoveredTheoremsWaveFourteen', home: 'src/water/cosmos' },
+    { theorem: 'Bertrand postulate to 10⁴', states: 'a prime with n < p ≤ 2n for every n ≤ 10⁴ by one sieve — Chebyshev cited for all n', provedBy: 'discoveredTheoremsWaveFourteen', home: 'src/water/cosmos' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -604,8 +623,48 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'GP(n,2) non-Hamiltonian exactly at 5 and 11 below 13', states: 'the saved constructor classifies n = 3..12: only GP(5,2) and GP(11,2) fail by exhaustive search — Alspach cited for all n', class: 'finite-complete', consumes: 'GP(n,k) constructor' },
   { theorem: 'Sylvester–Frobenius ab−a−b witnessed', states: 'for coprime pairs incl. (9,20): largest gap = 151 by sweep + window closure — the two-generator formula, Sylvester cited', class: 'bounded-witness', consumes: 'window-closure machine' },
   { theorem: 'Hurwitz units match SL(2,3)', states: 'the 24 unit quaternions close under multiplication with order multiset {1,2,3⁸,4⁶,6⁸} equal to brute-forced SL(2,3) — two routes to 24; the isomorphism is classical, cited', class: 'finite-complete', consumes: 'Q₈ table + GL brute force' },
+  { theorem: 'A₈ is simple', states: 'classes from the partition formula 8!/z_λ with the odd-distinct split rule (cited), then the class-sum test — the machine extended past brute-force conjugation', class: 'finite-complete', consumes: 'class-sum machine, partition arithmetic' },
+  { theorem: 'PSL(2,7) is simple and matches GL(3,2)', states: 'built as 168 fractional-linear permutations of P¹(𝔽₇); brute conjugacy classes; class-size multiset equals GL(3,2) acting on 𝔽₂³∖0 — the two 168s bridged at class level', class: 'finite-complete', consumes: 'two-route method, GL brute force' },
+  { theorem: 'Burnside counting witnessed on necklaces', states: '(1/n)Σ k^gcd(i,n) equals brute canonical-rotation counts for all n ≤ 8, k ≤ 3 — the orbit-counting lemma on the one-math gcd', class: 'finite-complete', consumes: 'one-math gcd, canonicalisation machine' },
+  { theorem: 'Gauss sums |G(p)|² = p below 50', states: 'the quadratic exponential sum computed in ℂ for every odd prime — magnitude exactly √p within float tolerance; Gauss cited for all p', class: 'bounded-witness', consumes: 'TAU, complex arithmetic' },
+  { theorem: 'PSL(2,11) is simple', states: '660 fractional-linear permutations of P¹(𝔽₁₁), brute conjugacy classes, class-sum test — the third-smallest nonabelian simple group by the scaled P¹ constructor', class: 'finite-complete', consumes: 'P¹(𝔽_q) constructor, class-sum machine' },
+  { theorem: 'the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4)', states: 'three groups from three different fields — permutations, 𝔽₅ fractions, 𝔽₄ fractions — all with class multiset {1,15,20,12,12}: the exceptional isomorphisms witnessed at class level, cited as isomorphisms', class: 'finite-complete', consumes: 'A₅ classes, P¹ constructor, 𝔽₄ arithmetic' },
+  { theorem: 'Farey counts |F_n| = 1 + Σφ(k)', states: 'brute fraction enumeration equals the totient sum for every n ≤ 30 — complete within bound', class: 'finite-complete', consumes: 'phi, gcd' },
+  { theorem: 'Euler pentagonal recurrence to 50', states: 'p(n) by the pentagonal-number recurrence equals direct partition DP for all n ≤ 50 — the generating-function identity witnessed in integers', class: 'bounded-witness', consumes: 'partition machine from wave eleven' },
+  { theorem: 'PSL(2,8) is simple', states: '504 fractional-linear permutations of P¹(𝔽₈) — 𝔽₈ built as 𝔽₂[x]/(x³+x+1); with 60, 168, 360, 660 sealed this completes the FIVE smallest nonabelian simple groups', class: 'finite-complete', consumes: '𝔽₄ machine extended, class-sum' },
+  { theorem: 'PSL(2,9) matches A₆', states: '360 permutations of P¹(𝔽₉) — 𝔽₉ = 𝔽₃[i], i² = −1 — with class multiset equal to the sealed A₆: the second exceptional bridge, isomorphism cited', class: 'finite-complete', consumes: 'A₆ classes, field-extension machine' },
+  { theorem: 'Fermat two squares to 200', states: 'odd p is a sum of two squares iff p ≡ 1 (mod 4), both directions complete below 200, with the representation unique up to order/sign for each such prime', class: 'finite-complete', consumes: 'arithmetic sweeps' },
+  { theorem: 'Legendre three squares to 1000', states: 'n needs four squares iff n = 4^a(8b+7) — both directions verified for every n ≤ 1000; Lagrange four always suffice', class: 'finite-complete', consumes: 'arithmetic sweeps' },
+  { theorem: 'Pell fundamental solutions to d = 30', states: 'for every nonsquare d ≤ 30 the continued-fraction convergents of √d yield the minimal solution of x² − dy² = 1, verified minimal by direct sweep — Lagrange cited for all d', class: 'finite-complete', consumes: 'cfEval machine' },
+  { theorem: 'Bertrand postulate to 10⁴', states: 'a prime strictly between n and 2n for every n ≤ 10⁴ — complete within bound; Chebyshev cited for all n', class: 'bounded-witness', consumes: 'prime sieve' },
   { theorem: 'quadratic reciprocity to 100', states: 'Legendre symbols by Euler criterion for all odd prime pairs < 100, both directions of the law', class: 'bounded-witness', consumes: 'modular arithmetic atoms' },
 ]
+
+/** NAVIGATION AS DATA — the whole theorem arc as a structured, searchable model with ZERO prose:
+ * waves in proof order, each atom carrying name · prover · class · home; flat searchLines for any
+ * index (tags, minisearch, llms.txt). The screen renders THIS; meaning is the structure itself. */
+export function theoremNavigation(matrix: MindMatrix = buildMatrix()) {
+  const registry = theoremAtoms(matrix)
+  const classOf = new Map(CANDIDATE_THEOREMS.map((entry) => [entry.theorem, entry.class]))
+  const byWave = new Map<string, { theorem: string; proofClass: string; home: string }[]>()
+  for (const entry of registry.theorems) {
+    const atom = { theorem: entry.theorem, proofClass: classOf.get(entry.theorem) ?? 'finite-complete', home: entry.home }
+    byWave.set(entry.provedBy, [...(byWave.get(entry.provedBy) ?? []), atom])
+  }
+  const waves = [...byWave.entries()].map(([provedBy, atoms]) => ({ provedBy, count: atoms.length, atoms }))
+  const searchLines = registry.theorems.map((entry) => `${entry.theorem} · ${entry.provedBy} · ${entry.home}`)
+  return {
+    navigable: waves.length > 0 && searchLines.length === registry.count,
+    waves,
+    waveCount: waves.length,
+    atomCount: registry.count,
+    searchLines,
+    keywords: registry.theorems.map((entry) => entry.theorem),
+    root: merkleFold([registry.root, toUuid(`theorem-navigation:${registry.count}:${waves.length}`)]),
+    statement: `Theorem navigation: ${registry.count} atoms across ${waves.length} proving folds, every entry a structured row (name · prover · class · home) and a search line — no meaning behind prose.`,
+    boundary: `A projection of the registry into navigation/search DATA — names, classes, homes, groupings. The proofs stay in their sealed folds; this model adds addressability, never re-derivation. Statements/boundaries (the prose) are deliberately EXCLUDED from the model: the screen shows structure, prose stays in the folds for those who drill.`,
+  }
+}
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
 export function theoremGapScan(matrix: MindMatrix = buildMatrix()) {

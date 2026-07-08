@@ -1,6 +1,8 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
 import type { MindMatrix, StaticPage } from '../../types'
+// call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
+import * as __ns_up_up_learning from '../../learning'
 import { buildMatrix } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
@@ -938,4 +940,34 @@ export function allIsMonographScientificPaper(matrix: MindMatrix = buildMatrix()
     statement: 'All is monograph — scientific-paper template unified from one source.',
     boundary: 'Standardises form across content; findings remain per monograph.',
   }
+}
+
+/** FULLY FUNCTIONAL SEARCH — VitePress local search skips every fold-driven page: resolved dynamic
+ * routes have no physical file, so the plugin's render() returns "" and nothing indexes (measured:
+ * the whole en index held only the home's 9 sections). This splitter fixes it at the right joint —
+ * miniSearch._splitIntoSections(file, html): for PHYSICAL pages (html present) it returns undefined
+ * so the DEFAULT splitter runs; for file-less dynamic routes it computes the page from the model
+ * (computeUniversalPage) and yields one section of pure searchable structure — title, description,
+ * decoded statement/facets/stations, corpus item titles, and the full theorem registry rows on the
+ * frontiers surface. Search ids stay per-route, so results deep-link correctly. */
+const searchSeenFiles = new Set<string>() // two dynamic route FAMILIES can resolve the same path — index each doc once
+export function searchSectionsFor(file: string, html: string): { anchor?: string; titles: string[]; text: string }[] | undefined {
+  if (html && /<h[1-6][\s>]/.test(html)) return undefined // page with real heading structure — the default splitter indexes it; component-only shells fall through to the computed sections
+  const docKey = file.replace(/\.md$/, '').replace(/\/index$/, '')
+  if (searchSeenFiles.has(docKey)) return [] // duplicate resolution (e.g. [page] and [path] both landing on /bg/earth) — skip
+  searchSeenFiles.add(docKey)
+  // srcDir coupling point: VitePress srcDir = .vitepress/pages (moved from site/ — memory updated); route = path below it
+  const below = file.split('/.vitepress/pages/').pop() ?? ''
+  const route = `/${below.replace(/\.md$/, '').replace(/index$/, '')}`
+  const page = computeUniversalPage(route, {})
+  const parts: string[] = [page.description]
+  if (page.decoded?.statement) parts.push(page.decoded.statement)
+  for (const facet of page.decoded?.facets ?? []) parts.push(facet.facet)
+  for (const station of page.decoded?.stations ?? []) parts.push(station.station)
+  for (const item of page.corpusItems) parts.push(item.title)
+  if (route.includes('frontiers')) {
+    const nav = __ns_up_up_learning.theoremNavigation()
+    parts.push(...nav.searchLines)
+  }
+  return [{ titles: [page.title], text: parts.filter(Boolean).join('\n') }]
 }
