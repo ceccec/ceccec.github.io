@@ -805,6 +805,15 @@ export function computeUniversalPage(
   params: Record<string, unknown> = {},
   matrix: MindMatrix = buildMatrix(),
 ): UniversalPage {
+  // BUILD-BUDGET LAW: ~150 ms of fold work per call, and the build touches each route several
+  // times (page data · SSR · SEO) — memoised per route+params on the matrix root, repeats are free.
+  return memoByRoot(`universalPage:${route}:${JSON.stringify(params)}`, matrix, () => computeUniversalPageRaw(route, params, matrix))
+}
+function computeUniversalPageRaw(
+  route: string,
+  params: Record<string, unknown> = {},
+  matrix: MindMatrix = buildMatrix(),
+): UniversalPage {
   const forge = pageForgeMaxTamper(route, matrix)
   const locale = localeFromRoute(route)
   const corpus = parseCorpusRoute(route)
