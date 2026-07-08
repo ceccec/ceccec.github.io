@@ -1159,6 +1159,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Vieta formulas roots↔coefficients', states: 'expanding ∏(x − r_i) gives the coefficient of x^(n−k) = (−1)^k · e_k(roots), verified on four root sets — the bridge between a polynomial’s roots and its coefficients', provedBy: 'discoveredTheoremsWaveFortyThree', home: 'src/9/1' },
     { theorem: 'rational root theorem', states: 'every rational root p/q (lowest terms) of an integer polynomial has p | constant and q | leading, verified by finding the actual rational roots for four polynomials — the finite candidate list', provedBy: 'discoveredTheoremsWaveFortyThree', home: 'src/9/1' },
     { theorem: 'Chebyshev cos(nθ) identity', states: 'T_n = 2x·T_{n−1} − T_{n−2} satisfies T_n(cos θ) = cos(nθ) for all n ≤ 10 across an angle grid — the polynomials that linearise multiple-angle cosines', provedBy: 'discoveredTheoremsWaveFortyThree', home: 'src/9/1' },
+    { theorem: 'quantum teleportation fidelity 1', states: 'the sealed teleportQubit recovers an unknown qubit with fidelity 1 for every Bell outcome across a Bloch-angle grid — one entangled pair + two classical bits move a state (no-cloning holds, no FTL); Bennett 1993, compounding', provedBy: 'discoveredTheoremsWaveFortyFour', home: 'src/9/1' },
+    { theorem: 'superdense coding 2 bits per qubit', states: 'Alice sends TWO classical bits through ONE qubit by acting on her half of a shared Bell pair (I/Z/X/XZ); Bob decodes to a basis state and reads both exactly — entanglement doubles a qubit’s classical capacity (Bennett–Wiesner 1992)', provedBy: 'discoveredTheoremsWaveFortyFour', home: 'src/9/1' },
+    { theorem: 'BB84 eavesdropping is detectable', states: 'matching bases give a shared key with ZERO error while an intercept-resend eavesdropper injects ~25% error on the sifted bits — detectable by no-cloning, the basis of quantum cryptography (Bennett–Brassard 1984)', provedBy: 'discoveredTheoremsWaveFortyFour', home: 'src/9/1' },
+    { theorem: 'Bernstein–Vazirani one-query recovery', states: 'a hidden n-bit string is recovered in ONE quantum query (H^n, phase oracle, H^n) where classical needs n, for all n ≤ 8 and every string — a proven query-complexity separation, computed', provedBy: 'discoveredTheoremsWaveFortyFour', home: 'src/9/1' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1340,6 +1344,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Vieta formulas roots↔coefficients', states: '∏(x−r_i) coefficients = signed elementary symmetric, four root sets', class: 'finite-complete', consumes: 'polynomial expansion' },
   { theorem: 'rational root theorem', states: 'p/q root ⇒ p|a₀, q|aₙ, verified on four integer polynomials', class: 'finite-complete', consumes: 'divisor enumeration' },
   { theorem: 'Chebyshev cos(nθ) identity', states: 'T_n(cos θ) = cos(nθ), recurrence to n=10 on an angle grid', class: 'finite-complete', consumes: 'Chebyshev recurrence' },
+  { theorem: 'quantum teleportation fidelity 1', states: 'teleportQubit recovers an unknown qubit exactly, Bloch-angle grid', class: 'finite-complete', consumes: 'sealed teleportQubit, state-vector sim' },
+  { theorem: 'superdense coding 2 bits per qubit', states: 'Bell-pair encode I/Z/X/XZ, decode reads both bits exactly', class: 'finite-complete', consumes: 'Clifford state-vector sim' },
+  { theorem: 'BB84 eavesdropping is detectable', states: 'zero sifted error clean, ~25% with intercept-resend Eve', class: 'finite-complete', consumes: 'no-cloning, basis sifting' },
+  { theorem: 'Bernstein–Vazirani one-query recovery', states: 'hidden n-bit string in 1 query, all n ≤ 8', class: 'finite-complete', consumes: 'phase oracle, H^n' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
