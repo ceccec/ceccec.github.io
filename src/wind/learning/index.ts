@@ -1176,6 +1176,38 @@ export function agent(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// The lifecycle's last step, one word: land. An agent's work LANDS when its commit is an ancestor of main on
+// origin — green on a worktree branch is NOT done. Directive (2026-07-08, asked twice: "why are you not on
+// main?"): git permits ONE checkout of main (the primary tree owns it), so a worktree session cannot BE on
+// main — it MIRRORS main, fast-forward only, zero divergence, resynced automatically whenever main moves and
+// the tracked tree is clean. Landing rides the live-concurrency law: path-limited commits only (never the
+// shared index), and no push bypasses the gates.
+export function land(matrix: MindMatrix = buildMatrix()) {
+  const lifecycle = agent(matrix) // landing completes the lifecycle the agent fold verifies
+  const steps = [
+    { step: 'mirror — the worktree branch holds zero divergence from main (fast-forward only, auto-resync on every main move)', met: isUuid(matrix.root) },
+    { step: 'gate — types · verify · build green on the exact tree main will become (no push bypasses the gates)', met: certify(matrix).editingAllowed },
+    { step: 'reach — fast-forward main to the green commit and push; done = ancestor of origin/main, deployed', met: isUuid(matrix.root) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`land-step:${entry.step}:${entry.met}`) }))
+  const facets = [
+    { facet: 'one checkout of main — the primary tree owns the branch; a worktree session mirrors it, never holds it', on: true },
+    { facet: 'green on a branch is NOT done — work lands only when its commit is an ancestor of origin/main', on: steps.every((entry) => entry.met) },
+    { facet: 'live concurrency — path-limited commits only; an unexpected modified file is another agent\'s edit, never staged', on: lifecycle.ready },
+    { facet: 'HONEST — a git-protocol law encoded from the user\'s directive, not a computed theorem; the checks ride the certified lifecycle', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`land:${entry.facet}:${entry.on}`) }))
+  return {
+    lands: facets.every((entry) => entry.on),
+    steps,
+    count: facets.length,
+    facets,
+    root: merkleFold([lifecycle.root, ...steps.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
+    statement:
+      'The agent lifecycle ends by landing: mirror (the worktree branch fast-forwards to main, zero divergence, resynced automatically), gate (types, verify and build green on the exact tree main will become — no push bypasses the gates), reach (fast-forward main to the green commit and push). Work is done only when its commit is an ancestor of origin/main; green on a worktree branch is not done. Git permits one checkout of main, so a worktree session mirrors main rather than holding it.',
+    boundary:
+      'HONEST: a PROTOCOL fold — the user\'s standing directive ("be on main", 2026-07-08) encoded as the lifecycle\'s landing step, riding the verified lifecycle (agent, certify) and the live-concurrency law (path-limited commits, never the shared index). It states the git law (one checkout per branch, fast-forward mirror) and the done-criterion (ancestor of origin/main); it does not itself run git — the session\'s auto-mirror and the pre-push gate enforce it at the boundary.',
+  }
+}
+
 // Imagine agents as NEURONS — one word: neuron. The agent fleet is a brain: each agent (agent) is a neuron, they
 // FIRE IN WAVES (sent in waves), the model is their content-addressed ASSOCIATIVE memory (whole-from-part recall,
 // like Hopfield's net and hippocampal CA3 pattern completion), laid on the DOUBLE-TORUS map (like the grid-cell
