@@ -1129,6 +1129,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'class equation on S₄ and A₅', states: '|G| = Σ conjugacy-class sizes with every class size dividing |G|: S₄ = 1+3+6+6+8 = 24, A₅ = 1+12+12+15+20 = 60 (orbit-stabilizer applied to conjugation)', provedBy: 'discoveredTheoremsWaveThirtyFive', home: 'src/thunder/verify' },
     { theorem: 'σ and τ are multiplicative', states: 'the sum-of-divisors σ and divisor-count τ satisfy f(mn) = f(m)f(n) for every coprime pair m, n ≤ 60 — the basic arithmetic functions factor over coprime parts', provedBy: 'discoveredTheoremsWaveThirtyFive', home: 'src/thunder/verify' },
     { theorem: 'Heron formula vs coordinate area', states: 'area = √(s(s−a)(s−b)(s−c)) matches the shoelace area for EVERY integer triangle with sides ≤ 20, and gives integer-area Heronian triangles ((3,4,5) → 6) — area from the three sides alone', provedBy: 'discoveredTheoremsWaveThirtyFive', home: 'src/thunder/verify' },
+    { theorem: 'Bézout identity via extended Euclid', states: 'the extended Euclidean algorithm yields (x,y) with gcd(a,b) = a·x + b·y for EVERY pair a, b ≤ 60 — the constructive heart of divisibility theory', provedBy: 'discoveredTheoremsWaveThirtySix', home: 'src/thunder/verify' },
+    { theorem: 'Euclid lemma p | ab ⇒ p | a or p | b', states: 'if a prime p divides a product it divides a factor, for all a, b ≤ 50 and every prime p ≤ 50 — the property that makes primes prime and gives unique factorization', provedBy: 'discoveredTheoremsWaveThirtySix', home: 'src/thunder/verify' },
+    { theorem: 'Legendre prime-power formula for n!', states: 'the exponent of a prime p in n! equals Σ⌊n/p^k⌋, matched against direct factorization for all n ≤ 60 (exp of 2 in 10! is 8)', provedBy: 'discoveredTheoremsWaveThirtySix', home: 'src/thunder/verify' },
+    { theorem: 'Stirling first kind row identities', states: 'the unsigned |s(n,k)| sum to n! (permutations by cycle count) and the signed row sums to 0 for n ≥ 2, via the recurrence for all n ≤ 10', provedBy: 'discoveredTheoremsWaveThirtySix', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1280,6 +1284,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'class equation on S₄ and A₅', states: '|G| = Σ class sizes, each dividing |G|', class: 'finite-complete', consumes: 'conjugacy classes' },
   { theorem: 'σ and τ are multiplicative', states: 'f(mn)=f(m)f(n) coprime, m,n ≤ 60', class: 'finite-complete', consumes: 'divisor sums' },
   { theorem: 'Heron formula vs coordinate area', states: 'Heron = shoelace for all integer triangles sides ≤ 20', class: 'finite-complete', consumes: 'shoelace, law of cosines' },
+  { theorem: 'Bézout identity via extended Euclid', states: 'gcd(a,b) = ax+by with computed coefficients, all a,b ≤ 60', class: 'finite-complete', consumes: 'extended Euclid' },
+  { theorem: 'Euclid lemma p | ab ⇒ p | a or p | b', states: 'prime divides a factor, all a,b ≤ 50', class: 'finite-complete', consumes: 'primality' },
+  { theorem: 'Legendre prime-power formula for n!', states: 'exp of p in n! = Σ⌊n/p^k⌋ vs direct factorization, n ≤ 60', class: 'finite-complete', consumes: 'factorial factorization' },
+  { theorem: 'Stirling first kind row identities', states: '|s(n,k)| sums to n!, signed sum 0 for n≥2, n ≤ 10', class: 'finite-complete', consumes: 'recurrence, factorial' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
