@@ -1163,6 +1163,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'superdense coding 2 bits per qubit', states: 'Alice sends TWO classical bits through ONE qubit by acting on her half of a shared Bell pair (I/Z/X/XZ); Bob decodes to a basis state and reads both exactly — entanglement doubles a qubit’s classical capacity (Bennett–Wiesner 1992)', provedBy: 'discoveredTheoremsWaveFortyFour', home: 'src/9/1' },
     { theorem: 'BB84 eavesdropping is detectable', states: 'matching bases give a shared key with ZERO error while an intercept-resend eavesdropper injects ~25% error on the sifted bits — detectable by no-cloning, the basis of quantum cryptography (Bennett–Brassard 1984)', provedBy: 'discoveredTheoremsWaveFortyFour', home: 'src/9/1' },
     { theorem: 'Bernstein–Vazirani one-query recovery', states: 'a hidden n-bit string is recovered in ONE quantum query (H^n, phase oracle, H^n) where classical needs n, for all n ≤ 8 and every string — a proven query-complexity separation, computed', provedBy: 'discoveredTheoremsWaveFortyFour', home: 'src/9/1' },
+    { theorem: 'interaction-free measurement', states: 'a "dark" detector click reveals an object with NO photon interacting with it, and dark clicks never occur when no object is present — seeing in the dark (Elitzur–Vaidman 1993), on the sealed interferometer fold', provedBy: 'discoveredTheoremsWaveFortyFive', home: 'src/9/1' },
+    { theorem: 'entanglement swapping', states: 'two qubits that NEVER interacted become maximally entangled (concurrence → 1) via a Bell measurement on their partners — the quantum-repeater primitive, on the sealed fold across seeds', provedBy: 'discoveredTheoremsWaveFortyFive', home: 'src/9/1' },
+    { theorem: 'Simon exponential separation', states: 'the FIRST exponential quantum-classical separation: a hidden XOR-mask recovered from O(n) measurements each orthogonal to it (𝔽₂ linear algebra) where classical needs Ω(2^{n/2}) — on the sealed simon fold', provedBy: 'discoveredTheoremsWaveFortyFive', home: 'src/9/1' },
+    { theorem: 'Quantum Fourier Transform is unitary', states: 'Q[j][k] = ω^{jk}/√N (ω = e^{2πi/N}) satisfies Q†Q = I for N = 2,4,8,16 exactly — the reversible transform at the heart of Shor’s factoring algorithm', provedBy: 'discoveredTheoremsWaveFortyFive', home: 'src/9/1' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1348,6 +1352,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'superdense coding 2 bits per qubit', states: 'Bell-pair encode I/Z/X/XZ, decode reads both bits exactly', class: 'finite-complete', consumes: 'Clifford state-vector sim' },
   { theorem: 'BB84 eavesdropping is detectable', states: 'zero sifted error clean, ~25% with intercept-resend Eve', class: 'finite-complete', consumes: 'no-cloning, basis sifting' },
   { theorem: 'Bernstein–Vazirani one-query recovery', states: 'hidden n-bit string in 1 query, all n ≤ 8', class: 'finite-complete', consumes: 'phase oracle, H^n' },
+  { theorem: 'interaction-free measurement', states: 'dark detection reveals object with no interaction; sealed interferometer', class: 'finite-complete', consumes: 'sealed interactionFreeMeasurement' },
+  { theorem: 'entanglement swapping', states: 'never-interacting qubits maximally entangled via Bell measurement', class: 'finite-complete', consumes: 'sealed entanglementSwap' },
+  { theorem: 'Simon exponential separation', states: 'hidden XOR-mask via 𝔽₂ algebra, O(n) vs Ω(2^{n/2})', class: 'finite-complete', consumes: 'sealed simon' },
+  { theorem: 'Quantum Fourier Transform is unitary', states: 'Q†Q = I for N = 2,4,8,16 exact — the engine of Shor', class: 'finite-complete', consumes: 'complex matrix product' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */

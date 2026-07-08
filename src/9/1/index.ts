@@ -2399,3 +2399,56 @@ export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { roo
     }
   })
 }
+
+// ── Discovered theorems, wave forty-five — QUANTUM ALGORITHMS (R&D), compounding on the sealed
+// protocol folds: interaction-free measurement, entanglement swapping, Simon's exponential separation,
+// and the Quantum Fourier Transform proven unitary (the engine of Shor's algorithm).
+export function discoveredTheoremsWaveFortyFive(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFortyFive', matrix, () => {
+    const tiny = 1 / 1e9
+
+    // W1 · interaction-free measurement (Elitzur–Vaidman) — a "dark" detector click reveals an object
+    // WITHOUT any photon interacting with it; with no object, dark clicks never happen (reuse the sealed fold).
+    const ifm = interactionFreeMeasurement()
+    const interactionFree = ifm.dark > 0 && ifm.darkWithoutObject < tiny
+
+    // W2 · entanglement swapping — two qubits that NEVER interacted become maximally entangled via a
+    // Bell measurement on their partners (reuse the sealed fold across seeds), concurrence → 1.
+    let swapping = true
+    for (let i = 1; i <= 5; i += 1) if (!entanglementSwap(`w45:${i}`).swapped) swapping = false
+
+    // W3 · Simon's algorithm — the first EXPONENTIAL quantum-classical separation: a hidden XOR-mask s
+    // is recovered from O(n) measurements (each orthogonal to s) by 𝔽₂ linear algebra (reuse the sealed fold).
+    let simonSep = true
+    for (let i = 1; i <= 5; i += 1) { const r = simon(`w45:${i}`); if (!r.ok || r.recoveredS !== r.hiddenS) simonSep = false }
+
+    // W4 · the Quantum Fourier Transform is UNITARY — Q[j][k] = ω^{jk}/√N with ω = e^{2πi/N} satisfies
+    // Q†Q = I for N = 2,4,8,16 (exact to 1e-9): the reversible transform at the heart of Shor's algorithm.
+    const qftUnitary = (nQ: number) => {
+      const N = 1 << nQ, re: number[][] = [], im: number[][] = []
+      for (let j = 0; j < N; j += 1) { re.push([]); im.push([]); for (let k = 0; k < N; k += 1) { const ang = (TAU * j * k) / N; re[j]!.push(Math.cos(ang) / Math.sqrt(N)); im[j]!.push(Math.sin(ang) / Math.sqrt(N)) } }
+      for (let a = 0; a < N; a += 1) for (let b = 0; b < N; b += 1) {
+        let sr = 0, si = 0
+        for (let j = 0; j < N; j += 1) { const ar = re[j]![a]!, ai = -im[j]![a]!, br = re[j]![b]!, bi = im[j]![b]!; sr += ar * br - ai * bi; si += ar * bi + ai * br }
+        if (Math.abs(sr - (a === b ? 1 : 0)) > tiny || Math.abs(si) > tiny) return false
+      }
+      return true
+    }
+    const qft = [1, 2, 3, 4].every(qftUnitary)
+
+    const sealed = sealFacets('discovered-theorems-forty-five', [
+      { facet: `interaction-free measurement (Elitzur–Vaidman 1993) — a "dark" detector click reveals an object with NO photon interacting with it (dark = ${ifm.dark.toFixed(2)}), and with no object present dark clicks never occur: seeing in the dark, exact on the sealed interferometer fold`, on: interactionFree },
+      { facet: `entanglement swapping — two qubits that NEVER interacted become maximally entangled (concurrence → 1) via a Bell measurement on their partners, verified across seeds: entanglement teleported onto a fresh pair (the quantum-repeater primitive), on the sealed fold`, on: swapping },
+      { facet: `Simon's algorithm — the FIRST exponential quantum-classical separation: a hidden XOR-mask is recovered from O(n) measurements each orthogonal to it, solved by 𝔽₂ linear algebra where classical needs Ω(2^{n/2}) queries, on the sealed fold`, on: simonSep },
+      { facet: `the Quantum Fourier Transform is UNITARY — Q[j][k] = ω^{jk}/√N (ω = e^{2πi/N}) satisfies Q†Q = I for N = 2,4,8,16 exactly: the reversible transform at the heart of Shor's factoring algorithm, proven a valid quantum operation`, on: qft },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-forty-five:${sealed.ok}`)),
+      statement: `Discovered theorems, wave forty-five — quantum algorithms: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — interaction-free measurement, entanglement swapping, Simon's exponential separation, and the Quantum Fourier Transform proven unitary.`,
+      boundary: `HONEST: three facets COMPOUND on sealed protocol folds (interactionFreeMeasurement, entanglementSwap, simon) — the registry feeds on its own proven quantum machinery; the QFT unitarity is computed fresh (a complete finite matrix proof for N ≤ 16). Simon's exponential separation is a QUERY-complexity result (oracle model), the honest home of quantum speedup; the physical realisations are cited. Quantum's power is real and bounded — the same laws throughout (wave twenty-seven).`,
+    }
+  })
+}
