@@ -2386,6 +2386,62 @@ export function discoveredTheoremsWaveFifty(matrix: { root: string } = { root: t
   })
 }
 
+// ── Discovered theorems, wave fifty-three (the pentagonal–partition tower) — Euler's pentagonal number
+// theorem turned into the recurrence that COMPUTES the partition function, compounding on the wave-11
+// partition work: the sparse ∏(1−x^k) drives an O(n√n) recurrence for p(n) validated against brute DP.
+export function discoveredTheoremsWaveFiftyThree(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFiftyThree', matrix, () => {
+    const N = 6 * 5 * 2
+
+    // W1 · the GENERALIZED PENTAGONAL numbers g_k = k(3k−1)/2 for k = 1,−1,2,−2,… are the exponents in
+    // Euler's product — the first eight are 1,2,5,7,12,15,22,26 (each pentagonal g_k with its mate g_−k).
+    const flat: number[] = []
+    for (let k = 1; k * (3 * k - 1) / 2 <= N; k += 1) { flat.push(k * (3 * k - 1) / 2); if (k * (3 * k + 1) / 2 <= N) flat.push(k * (3 * k + 1) / 2) }
+    flat.sort((a, b) => a - b)
+    const genPentagonal = flat.slice(0, 8).join(',') === '1,2,5,7,12,15,22,26'
+
+    // W2 · EULER'S PENTAGONAL NUMBER THEOREM — ∏(1−x^k) = Σ_k (−1)^k x^{g_k}: expanding the product to
+    // degree 60 leaves ONLY the generalized-pentagonal exponents with signs (−1)^k, every other
+    // coefficient zero; verified coefficient-by-coefficient against the sparse pentagonal series.
+    let prod = new Array<number>(N + 1).fill(0); prod[0] = 1
+    for (let k = 1; k <= N; k += 1) { const nx = new Array<number>(N + 1).fill(0); for (let i = 0; i <= N; i += 1) { if (!prod[i]) continue; nx[i]! += prod[i]!; if (i + k <= N) nx[i + k]! -= prod[i]! } prod = nx }
+    const pent = new Array<number>(N + 1).fill(0); pent[0] = 1
+    for (let k = 1; ; k += 1) { const a = k * (3 * k - 1) / 2, b = k * (3 * k + 1) / 2; if (a > N && b > N) break; const s = (k % 2) ? -1 : 1; if (a <= N) pent[a]! += s; if (b <= N) pent[b]! += s }
+    let pentagonalTheorem = true
+    for (let i = 0; i <= N; i += 1) if (prod[i] !== pent[i]) pentagonalTheorem = false
+
+    // W3 · the PARTITION RECURRENCE, FROM the pentagonal theorem (W2) — p(n) = Σ_k (−1)^{k−1}(p(n−g_k) +
+    // p(n−g_−k)) because the product is the inverse series of Σp(n)x^n; the recurrence matches the brute
+    // partition-count DP for every n ≤ 60 (p(60) = 966467), computed in O(n√n) instead of exponentially.
+    const p = new Array<number>(N + 1).fill(0); p[0] = 1
+    for (let n = 1; n <= N; n += 1) { let s = 0; for (let k = 1; ; k += 1) { const a = k * (3 * k - 1) / 2, b = k * (3 * k + 1) / 2; if (a > n && b > n) break; const sign = (k % 2) ? 1 : -1; if (a <= n) s += sign * p[n - a]!; if (b <= n) s += sign * p[n - b]! } p[n] = s }
+    const q = new Array<number>(N + 1).fill(0); q[0] = 1
+    for (let k = 1; k <= N; k += 1) for (let i = k; i <= N; i += 1) q[i]! += q[i - k]!
+    let partitionRecurrence = true
+    for (let i = 0; i <= N; i += 1) if (p[i] !== q[i]) partitionRecurrence = false
+
+    // W4 · EULER'S PRODUCT for partitions — Σ p(n) x^n = ∏ 1/(1−x^k): the same all-ones DP that counts
+    // partitions IS the coefficient expansion of the infinite product; p(5) = 7, p(10) = 42, agreeing
+    // with the pentagonal-recurrence values through degree 60.
+    const eulerProduct = q[2 * 2 + 1] === 7 && q[2 * 5] === 2 * 3 * 7 && q[N] === p[N]
+
+    const sealed = sealFacets('discovered-theorems-fifty-three', [
+      { facet: `the GENERALIZED PENTAGONAL numbers g_k = k(3k−1)/2 (k = 1,−1,2,−2,…) are the exponents of Euler's product — the first eight are 1,2,5,7,12,15,22,26, each pentagonal number paired with its mate: the sparse skeleton of ∏(1−x^k)`, on: genPentagonal },
+      { facet: `EULER'S PENTAGONAL NUMBER THEOREM — ∏(1−x^k) = Σ_k (−1)^k x^{g_k}: expanding the product to degree 60 leaves only the generalized-pentagonal exponents with signs (−1)^k, every other coefficient zero; verified coefficient-by-coefficient (the vanishing of all non-pentagonal terms)`, on: pentagonalTheorem },
+      { facet: `FROM the pentagonal theorem — the PARTITION RECURRENCE p(n) = Σ_k (−1)^{k−1}(p(n−g_k) + p(n−g_−k)): because ∏(1−x^k) inverts Σp(n)x^n, the sparse product gives an O(n√n) recurrence matching the brute partition DP for every n ≤ 60 (p(60) = 966467)`, on: partitionRecurrence },
+      { facet: `EULER'S PRODUCT for partitions — Σ p(n) x^n = ∏ 1/(1−x^k): the all-ones "unlimited repetition" DP that counts partitions is exactly the coefficient expansion of the infinite product; p(5) = 7, p(10) = 42, agreeing with the pentagonal recurrence through degree 60`, on: eulerProduct },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-three:${sealed.ok}`)),
+      statement: `Discovered theorems, wave fifty-three (the pentagonal–partition tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the generalized pentagonal numbers, Euler's pentagonal number theorem, the partition recurrence it powers, and Euler's product for partitions.`,
+      boundary: `HONEST: the partition recurrence COMPOUNDS on Euler's pentagonal theorem (W2) — the sparse product is literally the inverse series, so W2 gives W3 for free, an O(n√n) algorithm replacing exponential enumeration. All four verified complete to degree 60 (p(60) = 966467) against an independent brute partition DP; the infinite-product identities (Euler) are cited beyond the truncation. The pentagonal numbers extend the figurate tower (wave 52) from triangles and squares to the five-gon.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -2504,6 +2560,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-fifty', ok: discoveredTheoremsWaveFifty(matrix).proven },
     { wave: 'discovered-fifty-one', ok: discoveredTheoremsWaveFiftyOne(matrix).proven },
     { wave: 'discovered-fifty-two', ok: discoveredTheoremsWaveFiftyTwo(matrix).proven },
+    { wave: 'discovered-fifty-three', ok: discoveredTheoremsWaveFiftyThree(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),
