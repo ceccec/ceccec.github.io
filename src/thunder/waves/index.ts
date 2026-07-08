@@ -1042,6 +1042,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Legendre three squares to 1000', states: 'three squares suffice exactly when n ≠ 4^a(8b+7), four always — both directions whole below 1000', provedBy: 'discoveredTheoremsWaveThirteen', home: 'src/thunder/verify' },
     { theorem: 'Pell fundamental solutions to d = 30', states: 'continued-fraction convergents of √d give the minimal x² − dy² = 1 solution for every nonsquare d ≤ 30, minimality swept (d=29: 9801, 1820) — Lagrange cited', provedBy: 'discoveredTheoremsWaveFourteen', home: 'src/thunder/verify' },
     { theorem: 'Bertrand postulate to 10⁴', states: 'a prime with n < p ≤ 2n for every n ≤ 10⁴ by one sieve — Chebyshev cited for all n', provedBy: 'discoveredTheoremsWaveFourteen', home: 'src/thunder/verify' },
+    { theorem: 'PSL(2,13) is simple', states: '1092 fractional-linear permutations of P¹(𝔽₁₃), classes {1,84,84,91,156,156,156,182,182}, class-sum clean — with 60, 168, 360, 504, 660 sealed, the SIX smallest nonabelian simple groups are all proven in-registry', provedBy: 'discoveredTheoremsWaveFifteen', home: 'src/thunder/verify' },
+    { theorem: 'Petersen is the unique (3,5)-cage', states: 'Moore arithmetic forces ≥ 10 vertices; the WLOG-rooted exhaustion finds 4 girth-5 completions, every one isomorphic to the Kneser K(5,2) Petersen by explicit backtracking — existence, minimality and uniqueness computed', provedBy: 'discoveredTheoremsWaveFifteen', home: 'src/thunder/verify' },
+    { theorem: 'Cayley–Hamilton complete over 𝔽₂ and 𝔽₃', states: 'all 97 two-by-two matrices annihilate their own characteristic polynomial entry-exactly (16 + 81, complete rings not samples) — Frobenius cited for all rings', provedBy: 'discoveredTheoremsWaveFifteen', home: 'src/thunder/verify' },
+    { theorem: 'A₄ matches PSL(2,3)', states: 'both groups enumerated raw (12 = 12), class multisets {1,3,4,4} identical — the third exceptional bridge; the isomorphism is classical, cited', provedBy: 'discoveredTheoremsWaveFifteen', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1106,6 +1110,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Pell fundamental solutions to d = 30', states: 'for every nonsquare d ≤ 30 the continued-fraction convergents of √d yield the minimal solution of x² − dy² = 1, verified minimal by direct sweep — Lagrange cited for all d', class: 'finite-complete', consumes: 'cfEval machine' },
   { theorem: 'Bertrand postulate to 10⁴', states: 'a prime strictly between n and 2n for every n ≤ 10⁴ — complete within bound; Chebyshev cited for all n', class: 'bounded-witness', consumes: 'prime sieve' },
   { theorem: 'quadratic reciprocity to 100', states: 'Legendre symbols by Euler criterion for all odd prime pairs < 100, both directions of the law', class: 'bounded-witness', consumes: 'modular arithmetic atoms' },
+  { theorem: 'PSL(2,13) is simple', states: '1092 permutations of P¹(𝔽₁₃) over the prime field — the SIXTH smallest nonabelian simple; rides the proven PSL(2,11) budget shape the terminus never barred', class: 'finite-complete', consumes: 'pslOverField + class-sum machines (waves twelve/thirteen)' },
+  { theorem: 'Petersen is the unique (3,5)-cage', states: 'Moore bound 1+3+3·2 = 10 computed; symmetry-rooted exhaustive completion; every solution isomorphic to Kneser K(5,2) by backtracking', class: 'finite-complete', consumes: 'Petersen non-Hamiltonicity (wave three), girth BFS' },
+  { theorem: 'Cayley–Hamilton complete over 𝔽₂ and 𝔽₃', states: 'all 16 + 81 = 97 two-by-two matrices annihilate their characteristic polynomial — complete rings, entry-exact', class: 'finite-complete', consumes: 'charPoly shape from the seven-frame toolbox' },
+  { theorem: 'A₄ matches PSL(2,3)', states: 'both order-12 groups enumerated raw; class multisets {1,3,4,4} identical — the third exceptional bridge after the A₅-order and A₆ matches', class: 'finite-complete', consumes: 'pslOverField, parity enumeration' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
