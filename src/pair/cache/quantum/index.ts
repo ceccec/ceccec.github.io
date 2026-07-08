@@ -23,7 +23,7 @@ export const MAX_TRADING_TIMEOUT_MS = 120_000
 
 export function defaultTimeoutMs(kind: TimeoutKind): number {
   switch (kind) {
-    case 'build': return 360_000
+    case 'build': return 54 * (5 * 2) ** 4 // 540s — raised from 360s: the search-index pass adds ~2 min of fold-computed sections over ~800 routes
     case 'offline': return 30_000
     case 'live-local':
     case 'live-world':
