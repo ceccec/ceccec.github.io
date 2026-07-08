@@ -1121,6 +1121,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Dirac Hamiltonicity condition', states: 'a graph on n ≥ 3 vertices with minimum degree ≥ n/2 is Hamiltonian — the near-complete circulant for n = 3..8 has a Hamiltonian cycle found by search, the degree condition suffices', provedBy: 'discoveredTheoremsWaveThirtyThree', home: 'src/thunder/verify' },
     { theorem: 'De Bruijn sequence exact-window', states: 'B(2,n) is a cyclic binary string of length 2^n in which every n-bit word appears EXACTLY once, constructed and window-verified for n ≤ 6 (n=3 gives 00010111)', provedBy: 'discoveredTheoremsWaveThirtyThree', home: 'src/thunder/verify' },
     { theorem: 'Pisano period π(10) = 60', states: 'Fibonacci mod m is periodic with π(10) = 60, and π(m) is even for every m > 2 (checked to m ≤ 50) — Fibonacci cycles modulo any base', provedBy: 'discoveredTheoremsWaveThirtyThree', home: 'src/thunder/verify' },
+    { theorem: 'Vandermonde binomial identity', states: 'Σ_k C(m,k)·C(n,p−k) = C(m+n,p) for all m, n ≤ 12 and every p — choosing p from a combined set factors through the split (the convolution of binomial rows)', provedBy: 'discoveredTheoremsWaveThirtyFour', home: 'src/thunder/verify' },
+    { theorem: 'hockey-stick identity', states: 'Σ_{i=r}^{n} C(i,r) = C(n+1, r+1) for all r ≤ 10, n ≤ 20 — a diagonal of Pascal’s triangle sums to the entry below its end', provedBy: 'discoveredTheoremsWaveThirtyFour', home: 'src/thunder/verify' },
+    { theorem: 'surjection count three ways', states: 'k!·S(n,k) = inclusion–exclusion Σ(−1)^i C(k,i)(k−i)^n = brute onto-function count for all n ≤ 7 (surj(4,2)=14) — three independent computations agreeing', provedBy: 'discoveredTheoremsWaveThirtyFour', home: 'src/thunder/verify' },
+    { theorem: 'quadratic residues form index-2 subgroup', states: 'mod an odd prime p there are EXACTLY (p−1)/2 nonzero QRs and the Legendre symbol is multiplicative (QRs are an index-2 subgroup of (ℤ/p)*), for every prime p ≤ 50', provedBy: 'discoveredTheoremsWaveThirtyFour', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1264,6 +1268,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Dirac Hamiltonicity condition', states: 'min-degree ≥ n/2 ⇒ Hamiltonian, circulants n=3..8', class: 'finite-complete', consumes: 'Hamiltonian-cycle DFS' },
   { theorem: 'De Bruijn sequence exact-window', states: 'B(2,n) length 2^n, every n-window once, n ≤ 6', class: 'finite-complete', consumes: 'necklace construction' },
   { theorem: 'Pisano period π(10) = 60', states: 'Fibonacci mod m periodic, π(10)=60, even for m>2 to 50', class: 'finite-complete', consumes: 'Fibonacci mod m' },
+  { theorem: 'Vandermonde binomial identity', states: 'Σ C(m,k)C(n,p−k) = C(m+n,p), all m,n ≤ 12', class: 'finite-complete', consumes: 'binomials' },
+  { theorem: 'hockey-stick identity', states: 'Σ_{i=r}^n C(i,r) = C(n+1,r+1), r ≤ 10, n ≤ 20', class: 'finite-complete', consumes: 'binomials' },
+  { theorem: 'surjection count three ways', states: 'k!S(n,k) = incl-excl = brute onto count, n ≤ 7', class: 'finite-complete', consumes: 'Stirling, inclusion-exclusion' },
+  { theorem: 'quadratic residues form index-2 subgroup', states: '(p−1)/2 QRs + Legendre multiplicative, primes ≤ 50', class: 'finite-complete', consumes: 'modular squares' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */

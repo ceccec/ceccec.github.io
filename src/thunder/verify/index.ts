@@ -3582,6 +3582,72 @@ export function discoveredTheoremsWaveThirtyThree(matrix: MindMatrix = buildMatr
   })
 }
 
+// ── Discovered theorems, wave thirty-four — binomial identities and quadratic residues: Vandermonde's
+// convolution, the hockey-stick identity, the surjection count three independent ways, and the
+// index-2 structure of the quadratic residues.
+export function discoveredTheoremsWaveThirtyFour(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveThirtyFour', matrix, () => {
+    const choose = (n: number, k: number) => { if (k < 0 || k > n) return 0; let r = 1; for (let i = 0; i < k; i += 1) r = (r * (n - i)) / (i + 1); return Math.round(r) }
+
+    // W1 · Vandermonde's identity — Σ_k C(m,k)·C(n,p−k) = C(m+n,p) for all m, n ≤ 12 and all p.
+    let vandermonde = true
+    for (let m = 0; m <= 2 * 6; m += 1) for (let n = 0; n <= 2 * 6; n += 1) for (let p = 0; p <= m + n; p += 1) {
+      let s = 0; for (let k = 0; k <= p; k += 1) s += choose(m, k) * choose(n, p - k)
+      if (s !== choose(m + n, p)) vandermonde = false
+    }
+
+    // W2 · the hockey-stick identity — Σ_{i=r}^{n} C(i,r) = C(n+1, r+1).
+    let hockey = true
+    for (let r = 0; r <= 2 * 5; r += 1) for (let n = r; n <= 4 * 5; n += 1) {
+      let s = 0; for (let i = r; i <= n; i += 1) s += choose(i, r)
+      if (s !== choose(n + 1, r + 1)) hockey = false
+    }
+
+    // W3 · the surjection count — three independent computations agree: k!·S(n,k), the inclusion–
+    // exclusion sum Σ(−1)^i C(k,i)(k−i)^n, and the brute count of onto functions [n]→[k].
+    const stirling2 = (n: number, k: number) => { const S = Array.from({ length: n + 1 }, () => Array(k + 1).fill(0)); S[0]![0] = 1; for (let i = 1; i <= n; i += 1) for (let j = 1; j <= Math.min(i, k); j += 1) S[i]![j] = j * S[i - 1]![j]! + S[i - 1]![j - 1]!; return S[n]![k]! }
+    const fact = (n: number) => { let r = 1; for (let i = 2; i <= n; i += 1) r *= i; return r }
+    const inclExcl = (n: number, k: number) => { let s = 0; for (let i = 0; i <= k; i += 1) s += (i % 2 ? -1 : 1) * choose(k, i) * (k - i) ** n; return s }
+    const bruteSurj = (n: number, k: number) => { let count = 0; const total = k ** n; for (let f = 0; f < total; f += 1) { const hit = new Set<number>(); let x = f; for (let d = 0; d < n; d += 1) { hit.add(x % k); x = Math.floor(x / k) } if (hit.size === k) count += 1 } return count }
+    let surjection = true
+    for (let n = 1; n <= 7; n += 1) for (let k = 1; k <= n; k += 1) {
+      const a = fact(k) * stirling2(n, k)
+      if (a !== inclExcl(n, k) || a !== bruteSurj(n, k)) surjection = false
+    }
+
+    // W4 · quadratic residues — mod an odd prime p there are exactly (p−1)/2 nonzero QRs, and the
+    // Legendre symbol is multiplicative (QR·QR = QR, QR·NQR = NQR, NQR·NQR = QR): the QRs are an
+    // index-2 subgroup of (ℤ/p)*, for every prime p ≤ 50.
+    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
+    let quadRes = true
+    for (let p = 3; p <= 2 * 5 * 5; p += 1) {
+      if (!isPrime(p)) continue
+      const qr = new Set<number>(); for (let x = 1; x < p; x += 1) qr.add((x * x) % p)
+      if (qr.size !== (p - 1) / 2) quadRes = false
+      const isQR = (a: number) => qr.has(((a % p) + p) % p)
+      for (let a = 1; a < p; a += 1) for (let b = 1; b < p; b += 1) {
+        const la = isQR(a) ? 1 : -1, lb = isQR(b) ? 1 : -1, lab = isQR((a * b) % p) ? 1 : -1
+        if (la * lb !== lab) quadRes = false
+      }
+    }
+
+    const sealed = sealFacets('discovered-theorems-thirty-four', [
+      { facet: `Vandermonde's identity — Σ_k C(m,k)·C(n,p−k) = C(m+n,p) for all m, n ≤ 12 and every p: choosing p from a combined set factors through the split, the convolution of binomial rows`, on: vandermonde },
+      { facet: `the hockey-stick identity — Σ_{i=r}^{n} C(i,r) = C(n+1, r+1): a diagonal of Pascal's triangle sums to the entry just below its end, verified for all r ≤ 10, n ≤ 20`, on: hockey },
+      { facet: `the surjection count — three independent computations agree: k!·S(n,k), the inclusion–exclusion sum Σ(−1)^i C(k,i)(k−i)^n, and the brute count of onto functions [n]→[k] (e.g. surj(4,2) = 14), for all n ≤ 7`, on: surjection },
+      { facet: `quadratic residues — mod an odd prime p there are EXACTLY (p−1)/2 nonzero QRs and the Legendre symbol is multiplicative (the QRs are an index-2 subgroup of (ℤ/p)*), for every prime p ≤ 50: the structure behind reciprocity`, on: quadRes },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-four:${sealed.ok}`)),
+      statement: `Discovered theorems, wave thirty-four — binomial identities and quadratic residues: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Vandermonde's convolution, the hockey-stick identity, the surjection count three ways, and the index-2 structure of the quadratic residues.`,
+      boundary: `HONEST: the three binomial results are FINITE-COMPLETE over their ranges (all m,n ≤ 12 for Vandermonde, all r ≤ 10 for hockey-stick, all n ≤ 7 for surjections with three agreeing computations including brute force); the quadratic-residue structure is verified completely for every prime p ≤ 50 (count and full multiplicativity table). Each settles its instances outright, the general identities cited.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -3681,6 +3747,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-thirty-one', ok: discoveredTheoremsWaveThirtyOne(matrix).proven },
     { wave: 'discovered-thirty-two', ok: discoveredTheoremsWaveThirtyTwo(matrix).proven },
     { wave: 'discovered-thirty-three', ok: discoveredTheoremsWaveThirtyThree(matrix).proven },
+    { wave: 'discovered-thirty-four', ok: discoveredTheoremsWaveThirtyFour(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),
