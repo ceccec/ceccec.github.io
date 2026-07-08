@@ -1167,6 +1167,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'entanglement swapping', states: 'two qubits that NEVER interacted become maximally entangled (concurrence → 1) via a Bell measurement on their partners — the quantum-repeater primitive, on the sealed fold across seeds', provedBy: 'discoveredTheoremsWaveFortyFive', home: 'src/9/1' },
     { theorem: 'Simon exponential separation', states: 'the FIRST exponential quantum-classical separation: a hidden XOR-mask recovered from O(n) measurements each orthogonal to it (𝔽₂ linear algebra) where classical needs Ω(2^{n/2}) — on the sealed simon fold', provedBy: 'discoveredTheoremsWaveFortyFive', home: 'src/9/1' },
     { theorem: 'Quantum Fourier Transform is unitary', states: 'Q[j][k] = ω^{jk}/√N (ω = e^{2πi/N}) satisfies Q†Q = I for N = 2,4,8,16 exactly — the reversible transform at the heart of Shor’s factoring algorithm', provedBy: 'discoveredTheoremsWaveFortyFive', home: 'src/9/1' },
+    { theorem: 'element order divides |G| (from Lagrange)', states: 'every element’s order divides |G|, so a^|G| = e — derived from the proven Lagrange theorem (⟨a⟩ is a subgroup of order ord(a)), verified on S₄, A₅, Q₈: COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySix', home: 'src/thunder/verify' },
+    { theorem: 'no-deleting theorem (from no-cloning)', states: 'the same linearity argument as no-cloning: deleting an unknown state to a fixed blank forces ⟨ψ|φ⟩ = ⟨ψ|φ⟩² (∈ {0,1}), impossible for distinct non-orthogonal states — information moves, never destroyed: COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySix', home: 'src/thunder/verify' },
+    { theorem: 'p-group nontrivial center (from class equation)', states: '|G| = |Z| + Σ[G:C(x)] with each non-central index divisible by p forces p | |Z| and |Z| > 1 — verified on Q₈, Z₈, D₄, derived from the proven class equation: COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySix', home: 'src/thunder/verify' },
+    { theorem: 'RSA correctness (from Fermat–Euler)', states: 'with n = pq and d = e⁻¹ mod φ(n), Euler’s theorem gives m^(ed) ≡ m (mod n) for every message — decryption inverts encryption exactly, verified over all messages for three prime pairs; the technology the proven theorem begets (security NOT claimed): COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySix', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1356,6 +1360,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'entanglement swapping', states: 'never-interacting qubits maximally entangled via Bell measurement', class: 'finite-complete', consumes: 'sealed entanglementSwap' },
   { theorem: 'Simon exponential separation', states: 'hidden XOR-mask via 𝔽₂ algebra, O(n) vs Ω(2^{n/2})', class: 'finite-complete', consumes: 'sealed simon' },
   { theorem: 'Quantum Fourier Transform is unitary', states: 'Q†Q = I for N = 2,4,8,16 exact — the engine of Shor', class: 'finite-complete', consumes: 'complex matrix product' },
+  { theorem: 'element order divides |G| (from Lagrange)', states: 'a^|G| = e on S₄/A₅/Q₈ — derived from proven Lagrange', class: 'finite-complete', consumes: 'PROVEN Lagrange theorem' },
+  { theorem: 'no-deleting theorem (from no-cloning)', states: 'overlap = overlap² impossible for distinct states — from no-cloning', class: 'finite-complete', consumes: 'PROVEN no-cloning' },
+  { theorem: 'p-group nontrivial center (from class equation)', states: 'p | |Z|, |Z|>1 on Q₈/Z₈/D₄ — from class equation', class: 'finite-complete', consumes: 'PROVEN class equation' },
+  { theorem: 'RSA correctness (from Fermat–Euler)', states: 'm^(ed) ≡ m mod n over all messages, 3 prime pairs — from Euler', class: 'finite-complete', consumes: 'PROVEN Fermat–Euler congruences' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
