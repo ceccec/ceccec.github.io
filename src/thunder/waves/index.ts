@@ -1065,6 +1065,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'blending inheritance refuted (biology)', states: 'blending halves heritable variance every generation (gone in 20), erasing evolution’s raw material, while Mendelian ratios stay a stable 1:2:1 until selection drifts the "equilibrium" (aa lethal: 1/2 → 6/7 in five generations) — Mendel/Hardy–Weinberg cited', provedBy: 'discoveredTheoremsWaveNineteen', home: 'src/thunder/verify' },
     { theorem: 'collective transitivity fails (social choice)', states: 'of all 216 three-voter profiles over three options, 6 are majority-rule cycles (A>B>C>A) though every individual ranking is transitive — individual rationality does not lift to the group (Condorcet/Arrow cited)', provedBy: 'discoveredTheoremsWaveNineteen', home: 'src/thunder/verify' },
     { theorem: 'universal lossless compression impossible (information)', states: 'for every n ≤ 12 there are 2ⁿ inputs but only 2ⁿ − 1 strictly shorter codes, shortfall EXACTLY one — no injective compressor shrinks all inputs (pigeonhole; Shannon/Kolmogorov floor cited)', provedBy: 'discoveredTheoremsWaveNineteen', home: 'src/thunder/verify' },
+    { theorem: 'A₈ is simple', states: '20160 = 8!/2 even permutations, 14 classes, class-sum clean — the alternating ladder A₅→A₆→A₇→A₈ complete in-registry', provedBy: 'discoveredTheoremsWaveTwenty', home: 'src/thunder/verify' },
+    { theorem: 'GL(4,2) is simple', states: 'the 65536-matrix sweep sieves to 20160 invertible 4×4 over 𝔽₂ by Gaussian elimination (trivial scalars ⇒ already projective), 14 classes, class-sum clean', provedBy: 'discoveredTheoremsWaveTwenty', home: 'src/thunder/verify' },
+    { theorem: 'A₈ matches GL(4,2)', states: 'both order-20160 groups built raw carry the IDENTICAL 14-class multiset — the largest exceptional isomorphism in the registry, alternating meets linear; the isomorphism is classical, cited', provedBy: 'discoveredTheoremsWaveTwenty', home: 'src/thunder/verify' },
+    { theorem: 'Waring g(3) = 9', states: 'the minimal cube-count over every n ≤ 10⁴ peaks at 9, reached at EXACTLY {23, 239} and at most 8 elsewhere — the classical extremal pair recomputed; Kempner/Wieferich cited for all n', provedBy: 'discoveredTheoremsWaveTwenty', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1152,6 +1156,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'blending inheritance refuted (biology)', states: 'variance halves to zero under blending; Mendelian 1:2:1 stable; HW conditional on no selection', class: 'finite-complete', consumes: 'Hardy–Weinberg recurrence' },
   { theorem: 'collective transitivity fails (social choice)', states: 'Condorcet cycle among transitive voters — the full 216-profile enumeration', class: 'finite-complete', consumes: 'permutation enumeration (wave two)' },
   { theorem: 'universal lossless compression impossible (information)', states: 'pigeonhole: 2ⁿ inputs, 2ⁿ−1 shorter codes, shortfall one — no injective shrinking map', class: 'finite-complete', consumes: 'pigeonhole counting' },
+  { theorem: 'A₈ is simple', states: '20160 even permutations, class-sum clean — the alternating ladder complete to 8', class: 'finite-complete', consumes: 'class-sum machine (wave two)' },
+  { theorem: 'GL(4,2) is simple', states: '2¹⁶ binary matrix sweep + F2 Gaussian elimination → 20160 invertible, class-sum clean', class: 'finite-complete', consumes: 'F2 matrix sweep (Fano work)' },
+  { theorem: 'A₈ matches GL(4,2)', states: 'identical 14-class multisets — the largest exceptional bridge, alternating ≅ linear', class: 'finite-complete', consumes: 'A₈ and GL(4,2) class data (this wave)' },
+  { theorem: 'Waring g(3) = 9', states: 'minimal cube-count DP to 10⁴ peaks at 9, extremal {23, 239}', class: 'bounded-witness', consumes: 'dynamic-programming cube cover' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
