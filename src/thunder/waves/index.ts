@@ -1153,6 +1153,9 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Wolstenholme congruence C(2p,p) ≡ 2 mod p³', states: 'for every prime p ≥ 5, C(2p,p) ≡ 2 (mod p³) exact in BigInt to p ≤ 50 (C(26,13) ≡ 2 mod 13³) — one power beyond the elementary mod-p form', provedBy: 'discoveredTheoremsWaveFortyOne', home: 'src/thunder/verify' },
     { theorem: 'sum of two squares criterion (general n)', states: 'n is a sum of two squares iff every prime ≡ 3 (mod 4) divides n to an EVEN power, both directions vs direct search for all n ≤ 1000 — Fermat’s Christmas theorem generalised', provedBy: 'discoveredTheoremsWaveFortyOne', home: 'src/thunder/verify' },
     { theorem: 'Lucas–Fibonacci identities', states: 'L_n = F_{n−1} + F_{n+1} and L_n² − 5F_n² = 4(−1)^n, exact in BigInt to n ≤ 80 — the Lucas companion sequence tied to Fibonacci', provedBy: 'discoveredTheoremsWaveFortyOne', home: 'src/thunder/verify' },
+    { theorem: 'Josephus survivor J(n)', states: 'with every second person eliminated in a circle of n, the survivor sits at J(n) = 2·(n − 2^⌊log₂n⌋) + 1, matching a direct simulation for all n ≤ 200', provedBy: 'discoveredTheoremsWaveFortyTwo', home: 'src/thunder/waves' },
+    { theorem: 'reflected Gray code single-bit', states: 'g(i) = i XOR (i>>1) lists 0..2ⁿ−1 with consecutive codes (cyclically) differing in exactly ONE bit, a permutation for all n ≤ 12', provedBy: 'discoveredTheoremsWaveFortyTwo', home: 'src/thunder/waves' },
+    { theorem: 'Perrin primality signature', states: 'P(n) ≡ 0 (mod n) for EVERY prime n ≤ 200 (necessary), while the smallest composite passing it is 271441 = 521² (cited) — necessary but not sufficient, like Fermat’s', provedBy: 'discoveredTheoremsWaveFortyTwo', home: 'src/thunder/waves' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1328,6 +1331,9 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Wolstenholme congruence C(2p,p) ≡ 2 mod p³', states: 'primes 5 ≤ p ≤ 50 in BigInt', class: 'finite-complete', consumes: 'BigInt binomials' },
   { theorem: 'sum of two squares criterion (general n)', states: 'even power of every prime ≡3 mod4 ⇔ two-square, both ways to 1000', class: 'finite-complete', consumes: 'factorization, direct search' },
   { theorem: 'Lucas–Fibonacci identities', states: 'L_n = F_{n−1}+F_{n+1}, L_n²−5F_n² = 4(−1)^n, BigInt to 80', class: 'finite-complete', consumes: 'Fibonacci/Lucas BigInt' },
+  { theorem: 'Josephus survivor J(n)', states: 'J(n) = 2(n−2^⌊log₂n⌋)+1 vs simulation, all n ≤ 200', class: 'finite-complete', consumes: 'circle elimination' },
+  { theorem: 'reflected Gray code single-bit', states: 'i^(i>>1) permutation, consecutive differ 1 bit, n ≤ 12', class: 'finite-complete', consumes: 'bit operations' },
+  { theorem: 'Perrin primality signature', states: 'P(n)≡0 mod n for all primes ≤ 200; first pseudoprime 271441 cited', class: 'finite-complete', consumes: 'Perrin recurrence' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
@@ -1373,6 +1379,52 @@ export function theoremNavigation(matrix: MindMatrix = buildMatrix()) {
     statement: `Theorem navigation: ${registry.count} atoms across ${waves.length} proving folds, every entry a structured row (name · proof · prover · class · home) and a search line — the proof itself rides the row, visible and searchable, not only claimed.`,
     boundary: `A projection of the registry into navigation/search DATA — names, the computed proof line (witness counts, exact values, what is cited vs computed), classes, homes, groupings. The proof lines are the registry's own 'states' fields — concatenations of computed outputs, shown verbatim on screen and indexed for search. Re-derivation stays in the sealed proving folds.`,
   }
+}
+
+// ── Discovered theorems, wave forty-two — algorithms and integer sequences: the Josephus survivor,
+// the reflected Gray code, and the Perrin primality signature.
+export function discoveredTheoremsWaveFortyTwo(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveFortyTwo', matrix, () => {
+    // W1 · the Josephus problem (k = 2) — the survivor's position is J(n) = 2·(n − 2^⌊log₂n⌋) + 1,
+    // matched against a direct circle-elimination simulation for all n ≤ 200.
+    const josSim = (n: number) => { const a = Array.from({ length: n }, (_, i) => i + 1); let i = 0; while (a.length > 1) { i = (i + 1) % a.length; a.splice(i, 1) } return a[0]! }
+    const josForm = (n: number) => { let p = 1; while (p * 2 <= n) p *= 2; return 2 * (n - p) + 1 }
+    let josephus = true
+    for (let n = 1; n <= 2 * 100; n += 1) if (josSim(n) !== josForm(n)) josephus = false
+
+    // W2 · the reflected binary Gray code — g(i) = i XOR (i >> 1) is a permutation of 0..2ⁿ−1 in which
+    // CONSECUTIVE codes (cyclically) differ in exactly one bit, for all n ≤ 12.
+    const popcount = (x: number) => { let c = 0, v = x; while (v) { c += v & 1; v >>= 1 } return c }
+    let gray = true
+    for (let n = 1; n <= 2 * 6; n += 1) {
+      const N = 1 << n
+      const g = Array.from({ length: N }, (_, i) => i ^ (i >> 1))
+      if (new Set(g).size !== N) gray = false
+      for (let i = 0; i < N; i += 1) if (popcount(g[i]! ^ g[(i + 1) % N]!) !== 1) gray = false
+    }
+
+    // W3 · the Perrin primality signature — the Perrin sequence P (3, 0, 2, 3, 2, 5, …) satisfies
+    // P(n) ≡ 0 (mod n) for EVERY prime n (verified to 200); the smallest Perrin PSEUDOPRIME (a
+    // composite passing the test) is 271441 = 521², cited — the test is necessary, not sufficient.
+    const perrinMod = (n: number) => { if (n === 1) return 0; if (n === 2) return 2 % n; let a = 3, b = 0, c = 2; for (let i = 3; i <= n; i += 1) { const d = (a + b) % n; a = b; b = c; c = d } return c }
+    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
+    let perrin = true
+    for (let n = 2; n <= 2 * 100; n += 1) if (isPrime(n) && perrinMod(n) !== 0) perrin = false
+
+    const sealed = sealFacets('discovered-theorems-forty-two', [
+      { facet: `the Josephus problem — with every second person eliminated in a circle of n, the survivor sits at J(n) = 2·(n − 2^⌊log₂n⌋) + 1, matching a direct elimination simulation for all n ≤ 200: the closed form for the counting-out game`, on: josephus },
+      { facet: `the reflected Gray code — g(i) = i XOR (i >> 1) lists 0..2ⁿ−1 so that consecutive codes (cyclically) differ in exactly ONE bit, a genuine permutation for all n ≤ 12: the single-bit-change ordering behind rotary encoders and Karnaugh maps`, on: gray },
+      { facet: `the Perrin primality signature — P(n) ≡ 0 (mod n) for EVERY prime n ≤ 200 (a necessary condition), while the smallest composite passing it is 271441 = 521² (cited): a fast primality SIGNAL that is necessary but not sufficient, exactly like Fermat's`, on: perrin },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-forty-two:${sealed.ok}`)),
+      statement: `Discovered theorems, wave forty-two — algorithms and sequences: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the Josephus survivor J(n), the reflected Gray code's single-bit ordering, and the Perrin primality signature.`,
+      boundary: `HONEST: Josephus is checked against a direct simulation for all n ≤ 200; the Gray code's permutation-and-single-bit-change property is complete for all n ≤ 12; the Perrin signature is verified as NECESSARY for all primes ≤ 200, with its first pseudoprime (271441) recorded as the honest limit — the test does not prove primality. Each settles its instances; the unbounded claims are cited.`,
+    }
+  })
 }
 
 // ── Theorem provenance, for AGENTS — the honest marking of what is proven "for the first time" and
