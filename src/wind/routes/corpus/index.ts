@@ -2,7 +2,7 @@
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
-import * as __ns_up_up_learning from '../../learning'
+import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
 import { buildMatrix } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
@@ -951,23 +951,34 @@ export function allIsMonographScientificPaper(matrix: MindMatrix = buildMatrix()
  * decoded statement/facets/stations, corpus item titles, and the full theorem registry rows on the
  * frontiers surface. Search ids stay per-route, so results deep-link correctly. */
 const searchSeenFiles = new Set<string>() // two dynamic route FAMILIES can resolve the same path — index each doc once
+// BUILD-BUDGET LAW (>3 min = violation): search sections come from the LIGHT registries only —
+// card title/description/keywords + the theorem lines — never the full computeUniversalPage
+// (~150 ms/route × ~800 routes ≈ 2 min, measured). Names navigate; prose stays in the folds.
+let searchCardCache: Map<string, { title: string; text: string }> | undefined
+let searchTheoremLines: string[] | undefined
+function searchLightModel() {
+  if (!searchCardCache) {
+    searchCardCache = new Map()
+    for (const card of staticPages()) {
+      const text = [card.description.en, card.description.bg, card.keywords.join(' ')].filter(Boolean).join('\n')
+      searchCardCache.set(card.slug, { title: card.title.en, text })
+    }
+    searchTheoremLines = __ns_up_up_thunder_waves.theoremNavigation().searchLines
+  }
+  return { cards: searchCardCache, theoremLines: searchTheoremLines! }
+}
 export function searchSectionsFor(file: string, html: string): { anchor?: string; titles: string[]; text: string }[] | undefined {
-  if (html && /<h[1-6][\s>]/.test(html)) return undefined // page with real heading structure — the default splitter indexes it; component-only shells fall through to the computed sections
+  if (html && /<h[1-6][\s>]/.test(html)) return undefined // page with real heading structure — the default splitter indexes it; component-only shells fall through
   const docKey = file.replace(/\.md$/, '').replace(/\/index$/, '')
   if (searchSeenFiles.has(docKey)) return [] // duplicate resolution (e.g. [page] and [path] both landing on /bg/earth) — skip
   searchSeenFiles.add(docKey)
-  // srcDir coupling point: VitePress srcDir = .vitepress/pages (moved from site/ — memory updated); route = path below it
+  // srcDir coupling point: VitePress srcDir = .vitepress/pages; route = path below it
   const below = file.split('/.vitepress/pages/').pop() ?? ''
-  const route = `/${below.replace(/\.md$/, '').replace(/index$/, '')}`
-  const page = computeUniversalPage(route, {})
-  const parts: string[] = [page.description]
-  if (page.decoded?.statement) parts.push(page.decoded.statement)
-  for (const facet of page.decoded?.facets ?? []) parts.push(facet.facet)
-  for (const station of page.decoded?.stations ?? []) parts.push(station.station)
-  for (const item of page.corpusItems) parts.push(item.title)
-  if (route.includes('frontiers')) {
-    const nav = __ns_up_up_learning.theoremNavigation()
-    parts.push(...nav.searchLines)
-  }
-  return [{ titles: [page.title], text: parts.filter(Boolean).join('\n') }]
+  const slug = below.replace(/\.md$/, '').replace(/index$/, '').split('/').pop() || below.split('/')[0] || ''
+  const model = searchLightModel()
+  const card = model.cards.get(slug)
+  const title = card?.title ?? slug.split('-').map((w) => w ? w[0]!.toUpperCase() + w.slice(1) : w).join(' ')
+  const parts: string[] = card ? [card.text] : []
+  if (slug.includes('frontier')) parts.push(...model.theoremLines)
+  return [{ titles: [title], text: parts.join('\n') }]
 }

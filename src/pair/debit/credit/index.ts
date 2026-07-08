@@ -41,9 +41,9 @@ export function cryptoReview() {
     { account: 'confidentiality', debit: 0, credit: 0 }, // the model is public by design ⇒ claim none, deliver none
   ]
   // What the phrase "maximum tampering cost" credits: cryptographic unforgeability (128) against the FNV capability (0).
-  const overclaim: Entry[] = today.map((e) => (e.account === 'unforgeability' ? { ...e, credit: 128 } : e))
+  const overclaim: Entry[] = today.map((e) => (e.account === 'unforgeability' ? { ...e, credit: (64 * 2) } : e))
   // After the DELIBERATE cutover the built capability funds the claim: the SHA-256 content-address delivers the 128.
-  const afterCutover: Entry[] = today.map((e) => (e.account === 'unforgeability' ? { account: e.account, debit: 128, credit: 128 } : e))
+  const afterCutover: Entry[] = today.map((e) => (e.account === 'unforgeability' ? { account: e.account, debit: (64 * 2), credit: (64 * 2) } : e))
   return {
     today,
     overclaim,

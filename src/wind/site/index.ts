@@ -5,7 +5,7 @@
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind types, matrix builder
 import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
-import * as __ns_up_learning from '../learning'
+import * as __ns_up_thunder_waves from '../../thunder/waves'
 import { rat } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -458,7 +458,7 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
 // matrix build never runs on a hot client path twice), searchable via tags and the page index.
 let theoremKeywordCache: string[] | undefined
 function theoremKeywords(): string[] {
-  if (!theoremKeywordCache) theoremKeywordCache = __ns_up_learning.theoremNavigation().keywords.map((name: string) => name.toLowerCase())
+  if (!theoremKeywordCache) theoremKeywordCache = __ns_up_thunder_waves.theoremNavigation().keywords.map((name: string) => name.toLowerCase())
   return theoremKeywordCache
 }
 
