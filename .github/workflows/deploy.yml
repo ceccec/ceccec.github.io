@@ -41,15 +41,23 @@ jobs:
           cache: pnpm
       - name: Setup Pages
         uses: actions/configure-pages@v6
+      - name: Restore build caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            .vitepress/cache
+            ~/.cache/node-compile
+          key: vitepress-cache-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            vitepress-cache-${{ hashFiles('pnpm-lock.yaml') }}-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build with VitePress
         run: pnpm run docs:build
         env:
           GOOGLE_SITE_VERIFICATION: ${{ secrets.GOOGLE_SITE_VERIFICATION }}
-          # the internal vitepress-build watchdog defaults to 360s; the search-index pass (~2 min
-          # over ~800 fold-computed routes) needs the raised budget (max honoured: 900s)
-          QUANTUM_TIMEOUT_MS: '880000'
+          QUANTUM_TIMEOUT_MS: '880000' # headroom only — the 3-minute law is enforced by optimization, measured per run
+          NODE_COMPILE_CACHE: ~/.cache/node-compile
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
