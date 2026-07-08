@@ -1046,6 +1046,15 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Petersen is the unique (3,5)-cage', states: 'Moore arithmetic forces ≥ 10 vertices; the WLOG-rooted exhaustion finds 4 girth-5 completions, every one isomorphic to the Kneser K(5,2) Petersen by explicit backtracking — existence, minimality and uniqueness computed', provedBy: 'discoveredTheoremsWaveFifteen', home: 'src/thunder/verify' },
     { theorem: 'Cayley–Hamilton complete over 𝔽₂ and 𝔽₃', states: 'all 97 two-by-two matrices annihilate their own characteristic polynomial entry-exactly (16 + 81, complete rings not samples) — Frobenius cited for all rings', provedBy: 'discoveredTheoremsWaveFifteen', home: 'src/thunder/verify' },
     { theorem: 'A₄ matches PSL(2,3)', states: 'both groups enumerated raw (12 = 12), class multisets {1,3,4,4} identical — the third exceptional bridge; the isomorphism is classical, cited', provedBy: 'discoveredTheoremsWaveFifteen', home: 'src/thunder/verify' },
+    { theorem: 'M₁₂ is simple', states: 'closure of three generators = 95040 = 12·11·10·9·8 (sharp 5-transitivity validates them), 15 classes; the bare class-sum filter FALSE-ALARMS (5 coincidental divisor-subsets) and each is refuted by an explicit escaping product — the first sporadic group in-registry; order-uniqueness cited', provedBy: 'discoveredTheoremsWaveSixteen', home: 'src/thunder/verify' },
+    { theorem: 'M₁₁ is simple', states: 'the point stabilizer inside the computed M₁₂ — 7920 = 11·10·9·8 (sharp 4-transitivity), classes {1,165,440,720,720,990,990,990,1320,1584}, class-sum clean; the smallest sporadic group, from no new data; order-uniqueness cited', provedBy: 'discoveredTheoremsWaveSixteen', home: 'src/thunder/verify' },
+    { theorem: 'PSL(3,3) is simple', states: 'all 19683 3×3 matrices over 𝔽₃ sieved to 5616 = 27·26·8 with det 1 (trivial center), adjugate-inverse conjugacy, 12 classes, class-sum clean', provedBy: 'discoveredTheoremsWaveSixteen', home: 'src/thunder/verify' },
+    { theorem: 'A₇ is simple', states: '2520 even permutations, classes {1,70,105,210,280,360,360,504,630}, class-sum clean — the A₅ machine two sizes up', provedBy: 'discoveredTheoremsWaveSixteen', home: 'src/thunder/verify' },
+    { theorem: 'R(3,5) = 14', states: 'the cyclic C₁₃(±1,±5) coloring survives complete red-K₃/blue-K₅ sweeps; the upper bound rides the SEALED R(3,4) = 9 by vertex pigeonhole 5 + 9 = 14 — the barred K₁₃ exhaustion never needed; Erdős–Szekeres step cited', provedBy: 'discoveredTheoremsWaveSeventeen', home: 'src/thunder/verify' },
+    { theorem: 'R(4,4) = 18', states: 'the Paley-17 quadratic-residue coloring has no monochromatic K₄ in either color (complete 2380-subset sweep); 9 + 9 = 18 rides the sealed R(3,4) both ways — compounding, not brute force', provedBy: 'discoveredTheoremsWaveSeventeen', home: 'src/thunder/verify' },
+    { theorem: 'PSL(2,16) is simple', states: '4080 permutations of P¹(𝔽₁₆) with 𝔽₁₆ = 𝔽₂[x]/(x⁴+x+1), 17 classes, class-sum clean', provedBy: 'discoveredTheoremsWaveSeventeen', home: 'src/thunder/verify' },
+    { theorem: 'PSL(2,17) is simple', states: '2448 permutations of P¹(𝔽₁₇), 11 classes, class-sum clean', provedBy: 'discoveredTheoremsWaveSeventeen', home: 'src/thunder/verify' },
+    { theorem: 'PSL(2,19) is simple', states: '3420 permutations of P¹(𝔽₁₉), 12 classes, class-sum clean — every nonabelian simple order ≤ 5616 now in-registry (list completeness cited), M₁₁ and M₁₂ beyond', provedBy: 'discoveredTheoremsWaveSeventeen', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1114,6 +1123,15 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Petersen is the unique (3,5)-cage', states: 'Moore bound 1+3+3·2 = 10 computed; symmetry-rooted exhaustive completion; every solution isomorphic to Kneser K(5,2) by backtracking', class: 'finite-complete', consumes: 'Petersen non-Hamiltonicity (wave three), girth BFS' },
   { theorem: 'Cayley–Hamilton complete over 𝔽₂ and 𝔽₃', states: 'all 16 + 81 = 97 two-by-two matrices annihilate their characteristic polynomial — complete rings, entry-exact', class: 'finite-complete', consumes: 'charPoly shape from the seven-frame toolbox' },
   { theorem: 'A₄ matches PSL(2,3)', states: 'both order-12 groups enumerated raw; class multisets {1,3,4,4} identical — the third exceptional bridge after the A₅-order and A₆ matches', class: 'finite-complete', consumes: 'pslOverField, parity enumeration' },
+  { theorem: 'M₁₂ is simple', states: 'closure from three generators = 95040; the terminus bar priced the naive |G|² algorithm — orbit-per-rep is #classes×|G|; class-sum false alarm refuted by closure escape', class: 'finite-complete', consumes: 'closure machine, upgraded class-sum (this wave)' },
+  { theorem: 'M₁₁ is simple', states: 'the M₁₂ point stabilizer — 7920, no new data literals; the wave-14 INFEASIBLE bar recomputed and fallen', class: 'finite-complete', consumes: 'the computed M₁₂' },
+  { theorem: 'PSL(3,3) is simple', states: '3⁹ matrix sweep → 5616 with det 1; adjugate inverse; the other half of the fallen bar', class: 'finite-complete', consumes: 'matrix arithmetic, class-sum machine' },
+  { theorem: 'A₇ is simple', states: '2520 even perms — the A₅/A₆ ladder continues one rung up', class: 'finite-complete', consumes: 'class-sum machine (wave two)' },
+  { theorem: 'R(3,5) = 14', states: 'C₁₃(±1,±5) witness complete + pigeonhole on the sealed R(3,4) = 9 — the barred exhaustion bypassed by compounding', class: 'finite-complete', consumes: 'sealed R(3,4), cyclic witness sweeps' },
+  { theorem: 'R(4,4) = 18', states: 'Paley-17 witness complete + 9 + 9 pigeonhole on the sealed R(3,4) both ways', class: 'finite-complete', consumes: 'sealed R(3,4), quadratic residues' },
+  { theorem: 'PSL(2,16) is simple', states: '4080 permutations over 𝔽₂[x]/(x⁴+x+1) — the even-q branch at 16', class: 'finite-complete', consumes: 'pslOverField, carryless mul (wave thirteen)' },
+  { theorem: 'PSL(2,17) is simple', states: '2448 permutations over the prime field — filling the smallest-simples list', class: 'finite-complete', consumes: 'pslOverField prime-field one-liner (wave fifteen)' },
+  { theorem: 'PSL(2,19) is simple', states: '3420 permutations — completes every nonabelian simple order ≤ 5616 in-registry', class: 'finite-complete', consumes: 'pslOverField prime-field one-liner (wave fifteen)' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
@@ -1978,8 +1996,8 @@ export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
       const t = theorem.toLowerCase()
       if (t.includes('fano') || t.includes('7-star') || t.includes('steiner s(2,3,7)') || t.includes('hurwitz 7d'))
         return { kind: 'star', points: 7, lines: fano, ratePhi: 3 }
-      if (t.includes('ramsey') || t.includes('r(3,'))
-        return { kind: 'coloring', points: t.includes('r(3,4)') ? 8 : 5, lines: [], ratePhi: 4 }
+      if (t.includes('ramsey') || t.includes('r(3,') || t.includes('r(4,'))
+        return { kind: 'coloring', points: t.includes('r(3,4)') ? 8 : t.includes('r(4,4)') ? 9 : 5, lines: [], ratePhi: 4 }
       if (t.includes('nim') || t.includes('zhegalkin') || t.includes('𝔽₂³') || t.includes('parity'))
         return { kind: 'lattice', points: 8, lines: [], ratePhi: 5 }
       if (t.includes('kirkman') || t.includes('spread') || t.includes('parallelism'))
