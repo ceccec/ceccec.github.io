@@ -2293,3 +2293,53 @@ export function discoveredTheoremsWaveForty(matrix: { root: string } = { root: t
     }
   })
 }
+
+// ── Discovered theorems, wave forty-three — polynomials: Vieta's formulas, the rational root theorem,
+// and the Chebyshev cos(nθ) identity. Digit-pure algebra (imports only src/0 and src/3-7).
+export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFortyThree', matrix, () => {
+    // W1 · Vieta's formulas — expanding ∏(x − r_i) gives coefficients equal to the signed elementary
+    // symmetric functions of the roots: [x^n] = 1, [x^(n−k)] = (−1)^k e_k(roots), checked on four sets.
+    const polyFromRoots = (roots: number[]) => { let p = [1]; for (const r of roots) { const q = new Array(p.length + 1).fill(0); for (let i = 0; i < p.length; i += 1) { q[i] += p[i]!; q[i + 1] -= r * p[i]! } p = q } return p }
+    const esym = (roots: number[], k: number) => { const n = roots.length; let s = 0; const comb = (start: number, cur: number, cnt: number): void => { if (cnt === k) { s += cur; return } for (let i = start; i < n; i += 1) comb(i + 1, cur * roots[i]!, cnt + 1) }; comb(0, 1, 0); return s }
+    let vieta = true
+    for (const roots of [[1, 2, 3], [-1, 2, -3, 4], [2, 2, 5], [1, 1, 1, 1]]) {
+      const p = polyFromRoots(roots), n = roots.length
+      for (let k = 0; k <= n; k += 1) if (p[k] !== (k % 2 === 0 ? 1 : -1) * esym(roots, k)) vieta = false
+    }
+
+    // W2 · the rational root theorem — every rational root p/q (in lowest terms) of an integer
+    // polynomial has p dividing the constant term and q dividing the leading coefficient; verified by
+    // finding the actual rational roots and confirming the divisibility for four polynomials.
+    const evalPoly = (c: number[], x: number) => c.reduce((s, ci, i) => s + ci * x ** (c.length - 1 - i), 0)
+    const divs = (m: number) => { const r: number[] = []; for (let d = 1; d <= Math.abs(m); d += 1) if (m % d === 0) r.push(d, -d); return r.length ? r : [1, -1] }
+    let rationalRoot = true
+    for (const c of [[1, -3, 2], [2, -3, -3, 2], [6, -1, -2], [1, 0, -2]]) {
+      const an = c[0]!, a0 = c[c.length - 1]!
+      for (const p of divs(a0 * (2 * 5))) for (const q of divs(an * (2 * 5))) {
+        const x = p / q
+        if (Math.abs(evalPoly(c, x)) < 1 / 1e9) { const g = gcd(Math.abs(p), Math.abs(q)) || 1; if (a0 % (p / g) !== 0 || an % (q / g) !== 0) rationalRoot = false }
+      }
+    }
+
+    // W3 · the Chebyshev identity — the Chebyshev polynomials T_n (T_0=1, T_1=x, T_n = 2x·T_{n−1} −
+    // T_{n−2}) satisfy T_n(cos θ) = cos(nθ) for all n ≤ 10 and a grid of angles.
+    const cheb = (n: number, x: number) => { if (n === 0) return 1; let a = 1, b = x; for (let i = 2; i <= n; i += 1) { const cc = 2 * x * b - a; a = b; b = cc } return n === 1 ? x : b }
+    let chebyshev = true
+    for (let n = 0; n <= 2 * 5; n += 1) for (let j = 0; j < 4 * 5; j += 1) { const th = (j * Math.PI) / (2 * 5); if (Math.abs(cheb(n, Math.cos(th)) - Math.cos(n * th)) > 1 / 1e9) chebyshev = false }
+
+    const sealed = sealFacets('discovered-theorems-forty-three', [
+      { facet: `Vieta's formulas — expanding ∏(x − r_i) gives the coefficient of x^(n−k) equal to (−1)^k times the k-th elementary symmetric function of the roots, verified on four root sets: the bridge between a polynomial's roots and its coefficients`, on: vieta },
+      { facet: `the rational root theorem — every rational root p/q (lowest terms) of an integer polynomial has p | constant term and q | leading coefficient, verified by finding the actual rational roots for four polynomials: the finite candidate list that makes rational roots searchable`, on: rationalRoot },
+      { facet: `the Chebyshev identity — the recurrence T_n = 2x·T_{n−1} − T_{n−2} satisfies T_n(cos θ) = cos(nθ) for all n ≤ 10 across a grid of angles: the polynomials that linearise multiple-angle cosines`, on: chebyshev },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-forty-three:${sealed.ok}`)),
+      statement: `Discovered theorems, wave forty-three — polynomials: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Vieta's formulas, the rational root theorem, and the Chebyshev cos(nθ) identity.`,
+      boundary: `HONEST: Vieta is verified by exact coefficient expansion on four root sets; the rational root theorem is confirmed by finding the actual rational roots and checking the divisibility for four polynomials; the Chebyshev identity is checked to 1e-9 over n ≤ 10 and an angle grid. Each settles its instances; the general theorems are cited.`,
+    }
+  })
+}

@@ -1156,6 +1156,9 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Josephus survivor J(n)', states: 'with every second person eliminated in a circle of n, the survivor sits at J(n) = 2·(n − 2^⌊log₂n⌋) + 1, matching a direct simulation for all n ≤ 200', provedBy: 'discoveredTheoremsWaveFortyTwo', home: 'src/thunder/waves' },
     { theorem: 'reflected Gray code single-bit', states: 'g(i) = i XOR (i>>1) lists 0..2ⁿ−1 with consecutive codes (cyclically) differing in exactly ONE bit, a permutation for all n ≤ 12', provedBy: 'discoveredTheoremsWaveFortyTwo', home: 'src/thunder/waves' },
     { theorem: 'Perrin primality signature', states: 'P(n) ≡ 0 (mod n) for EVERY prime n ≤ 200 (necessary), while the smallest composite passing it is 271441 = 521² (cited) — necessary but not sufficient, like Fermat’s', provedBy: 'discoveredTheoremsWaveFortyTwo', home: 'src/thunder/waves' },
+    { theorem: 'Vieta formulas roots↔coefficients', states: 'expanding ∏(x − r_i) gives the coefficient of x^(n−k) = (−1)^k · e_k(roots), verified on four root sets — the bridge between a polynomial’s roots and its coefficients', provedBy: 'discoveredTheoremsWaveFortyThree', home: 'src/9/1' },
+    { theorem: 'rational root theorem', states: 'every rational root p/q (lowest terms) of an integer polynomial has p | constant and q | leading, verified by finding the actual rational roots for four polynomials — the finite candidate list', provedBy: 'discoveredTheoremsWaveFortyThree', home: 'src/9/1' },
+    { theorem: 'Chebyshev cos(nθ) identity', states: 'T_n = 2x·T_{n−1} − T_{n−2} satisfies T_n(cos θ) = cos(nθ) for all n ≤ 10 across an angle grid — the polynomials that linearise multiple-angle cosines', provedBy: 'discoveredTheoremsWaveFortyThree', home: 'src/9/1' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1334,6 +1337,9 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Josephus survivor J(n)', states: 'J(n) = 2(n−2^⌊log₂n⌋)+1 vs simulation, all n ≤ 200', class: 'finite-complete', consumes: 'circle elimination' },
   { theorem: 'reflected Gray code single-bit', states: 'i^(i>>1) permutation, consecutive differ 1 bit, n ≤ 12', class: 'finite-complete', consumes: 'bit operations' },
   { theorem: 'Perrin primality signature', states: 'P(n)≡0 mod n for all primes ≤ 200; first pseudoprime 271441 cited', class: 'finite-complete', consumes: 'Perrin recurrence' },
+  { theorem: 'Vieta formulas roots↔coefficients', states: '∏(x−r_i) coefficients = signed elementary symmetric, four root sets', class: 'finite-complete', consumes: 'polynomial expansion' },
+  { theorem: 'rational root theorem', states: 'p/q root ⇒ p|a₀, q|aₙ, verified on four integer polynomials', class: 'finite-complete', consumes: 'divisor enumeration' },
+  { theorem: 'Chebyshev cos(nθ) identity', states: 'T_n(cos θ) = cos(nθ), recurrence to n=10 on an angle grid', class: 'finite-complete', consumes: 'Chebyshev recurrence' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
