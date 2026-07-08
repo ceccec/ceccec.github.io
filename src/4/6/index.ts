@@ -437,3 +437,59 @@ export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { ro
     }
   })
 }
+
+// ── Discovered theorems, wave fifty-eight (the Gaussian-integer ℤ[i] tower) — the ring behind waves 50
+// and 51: the norm is the two-square form (Brahmagupta IS N(zw)=N(z)N(w)), the units are the norm-1
+// elements, ℤ[i] is Euclidean (hence a UFD), and irreducibility is decided by the norm (COMPOUNDS 50/51).
+export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFiftyEight', matrix, () => {
+    type GI = [number, number]
+    const norm = (z: GI) => z[0] * z[0] + z[1] * z[1]
+    const mul = (z: GI, w: GI): GI => [z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0]]
+    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
+    const R = 5
+    const grid: GI[] = []; for (let a = -R; a <= R; a += 1) for (let b = -R; b <= R; b += 1) grid.push([a, b])
+
+    // W1 · the NORM IS MULTIPLICATIVE — N(a+bi) = a²+b² and N(zw) = N(z)N(w): the two-square form of wave
+    // 51 IS the field norm, and its multiplicativity IS the Brahmagupta–Fibonacci identity; verified for
+    // every pair z,w on the ±5 grid (why the product of two sums of two squares is a sum of two squares).
+    let normMultiplicative = true
+    for (const z of grid) for (const w of grid) if (norm(mul(z, w)) !== norm(z) * norm(w)) normMultiplicative = false
+
+    // W2 · the UNITS ARE EXACTLY {±1, ±i} — the four elements of norm 1: a unit must have N = 1 (since
+    // N(u)N(u⁻¹) = 1 in the positive integers), and a²+b² = 1 forces (±1,0) or (0,±1); verified by
+    // enumerating the norm-1 elements of the grid — the finite unit group ℤ[i]* ≅ ℤ/4ℤ.
+    const units = grid.filter((z) => norm(z) === 1)
+    const unitsAreFour = units.length === 4 && units.every((z) => norm(z) === 1) && units.some((z) => z[0] === 1 && z[1] === 0) && units.some((z) => z[1] === 1 && z[0] === 0)
+
+    // W3 · ℤ[i] IS A EUCLIDEAN DOMAIN — for z and w ≠ 0 there is a quotient q with N(z−qw) < N(w):
+    // rounding z/w = z·w̄/N(w) to the nearest Gaussian integer leaves a remainder of norm ≤ N(w)/2 < N(w);
+    // verified for every z and every w ≠ 0 on the grid — the Euclidean property that makes ℤ[i] a UFD.
+    let euclidean = true
+    for (const z of grid) for (const w of grid) { const nw = norm(w); if (nw === 0) continue; const re = z[0] * w[0] + z[1] * w[1], im = z[1] * w[0] - z[0] * w[1]; const q: GI = [Math.round(re / nw), Math.round(im / nw)]; const qw = mul(q, w); if (norm([z[0] - qw[0], z[1] - qw[1]]) >= nw) euclidean = false }
+
+    // W4 · IRREDUCIBILITY BY NORM, COMPOUNDING on wave 50 — a Gaussian integer z is irreducible (a Gaussian
+    // prime) IFF N(z) is a rational prime OR N(z) = p² with p ≡ 3 (mod 4) and z = p·unit; verified by brute
+    // factor-search against the norm criterion for every z (N > 1) on the grid — the p ≡ 3 primes stay inert.
+    const divides = (u: GI, z: GI) => { const nu = norm(u); const re = z[0] * u[0] + z[1] * u[1], im = z[1] * u[0] - z[0] * u[1]; return re % nu === 0 && im % nu === 0 }
+    const irreducible = (z: GI) => { const n = norm(z); if (n <= 1) return false; for (const u of grid) { const nu = norm(u); if (nu <= 1 || nu >= n) continue; if (n % nu === 0 && divides(u, z)) return false } return true }
+    const normPredicts = (z: GI) => { const n = norm(z); if (isPrime(n)) return true; const s = Math.round(Math.sqrt(n)); return s * s === n && isPrime(s) && s % 4 === 3 && (z[0] === 0 || z[1] === 0) }
+    let irreducibleByNorm = true
+    for (const z of grid) { if (norm(z) <= 1) continue; if (irreducible(z) !== normPredicts(z)) irreducibleByNorm = false }
+
+    const sealed = sealFacets('discovered-theorems-fifty-eight', [
+      { facet: `the NORM IS MULTIPLICATIVE — N(a+bi) = a²+b² with N(zw) = N(z)N(w): the two-square form of wave 51 IS the field norm and its multiplicativity IS the Brahmagupta–Fibonacci identity; verified for every pair z,w on the ±5 grid (the ring reason a product of two sums of two squares is a sum of two squares)`, on: normMultiplicative },
+      { facet: `the UNITS ARE EXACTLY {±1, ±i} — the four norm-1 elements: a unit needs N(u) = 1, and a²+b² = 1 forces (±1,0) or (0,±1); verified by enumerating the grid's norm-1 elements — the unit group ℤ[i]* ≅ ℤ/4ℤ`, on: unitsAreFour },
+      { facet: `ℤ[i] IS A EUCLIDEAN DOMAIN — for z, w ≠ 0 there is a quotient q with N(z−qw) < N(w): rounding z·w̄/N(w) to the nearest Gaussian integer leaves norm ≤ N(w)/2; verified for every z and every w ≠ 0 on the grid — the Euclidean property making ℤ[i] a unique-factorisation domain`, on: euclidean },
+      { facet: `IRREDUCIBILITY BY NORM, COMPOUNDING on wave 50 — z is a Gaussian prime IFF N(z) is a rational prime OR N(z) = p² with p ≡ 3 (mod 4) and z = p·unit; verified by brute factor-search against the norm criterion for every z (N > 1) on the grid — the p ≡ 3 (mod 4) primes stay inert in ℤ[i]`, on: irreducibleByNorm },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-eight:${sealed.ok}`)),
+      statement: `Discovered theorems, wave fifty-eight (the Gaussian-integer ℤ[i] tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the multiplicative norm, the units {±1,±i}, ℤ[i] as a Euclidean domain, and irreducibility decided by the norm.`,
+      boundary: `HONEST: this is the ring ℤ[i] behind waves 50 and 51 — the norm IS the two-square form and its multiplicativity IS Brahmagupta (wave 51), and the irreducibility criterion COMPOUNDS on wave 50 (p ≡ 3 mod 4 inert, p ≡ 1 splits). All four verified complete over the ±5 Gaussian grid (116 elements for the norm classification); the all-z theorems — the Euclidean algorithm, unique factorisation, and the full Gaussian-prime classification — are cited beyond the grid. Rounding-remainder bound N(w)/2 witnesses the Euclidean function.`,
+    }
+  })
+}
