@@ -1145,6 +1145,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Cauchy-Schwarz inequality', states: '(Σ a_i b_i)² ≤ (Σ a_i²)(Σ b_i²), equality iff proportional — verified over many pairs on n ≤ 8 plus the proportional case b = 2a', provedBy: 'discoveredTheoremsWaveThirtyNine', home: 'src/thunder/verify' },
     { theorem: 'Euler φ product formula', states: 'φ(n) = n·Π_{p|n}(1 − 1/p) matches the direct coprime count for EVERY n ≤ 1000 (φ(36) = 12) — the totient factors over the prime divisors', provedBy: 'discoveredTheoremsWaveThirtyNine', home: 'src/thunder/verify' },
     { theorem: 'rearrangement inequality', states: 'for sorted a and any permutation of b, Σ a_i b_σ(i) is maximised with b sorted the same way, minimised opposite — exhaustive over permutations for n ≤ 6', provedBy: 'discoveredTheoremsWaveThirtyNine', home: 'src/thunder/verify' },
+    { theorem: 'geometric series closed form', states: 'Σ_{k=0}^N r^k = (1−r^{N+1})/(1−r) exactly and → 1/(1−r) for |r|<1, verified for five ratios including a negative one', provedBy: 'discoveredTheoremsWaveForty', home: 'src/thunder/verify' },
+    { theorem: 'telescoping sum n/(n+1)', states: 'Σ_{k=1}^n 1/(k(k+1)) = 1 − 1/(n+1) for every n ≤ 1000 — consecutive terms cancel via 1/(k(k+1)) = 1/k − 1/(k+1)', provedBy: 'discoveredTheoremsWaveForty', home: 'src/thunder/verify' },
+    { theorem: 'power-sum closed forms', states: 'Σk = n(n+1)/2, Σ(2k−1) = n², Σk² = n(n+1)(2n+1)/6 each exact for all n ≤ 1000 — the triangular, square and pyramidal formulas', provedBy: 'discoveredTheoremsWaveForty', home: 'src/thunder/verify' },
+    { theorem: 'Fibonacci partial sum F_{n+2}−1', states: 'Σ_{k=1}^n F_k = F_{n+2} − 1, exact in BigInt to n = 80 (Σ_{1..10} = 143 = F₁₂ − 1)', provedBy: 'discoveredTheoremsWaveForty', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1312,6 +1316,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Cauchy-Schwarz inequality', states: '(Σab)² ≤ (Σa²)(Σb²), equality iff proportional, n ≤ 8', class: 'bounded-witness', consumes: 'dot products' },
   { theorem: 'Euler φ product formula', states: 'φ(n) = n·Π(1−1/p) vs direct count, all n ≤ 1000', class: 'finite-complete', consumes: 'factorization, coprime count' },
   { theorem: 'rearrangement inequality', states: 'sorted-same maximises, opposite minimises Σa_ib_σ(i), n ≤ 6 exhaustive', class: 'finite-complete', consumes: 'permutation enumeration' },
+  { theorem: 'geometric series closed form', states: 'Σr^k = (1−r^{N+1})/(1−r) → 1/(1−r), five ratios', class: 'finite-complete', consumes: 'series' },
+  { theorem: 'telescoping sum n/(n+1)', states: 'Σ1/(k(k+1)) = 1 − 1/(n+1), all n ≤ 1000', class: 'finite-complete', consumes: 'partial fractions' },
+  { theorem: 'power-sum closed forms', states: 'Σk, Σ(2k−1)=n², Σk² exact to 1000', class: 'finite-complete', consumes: 'arithmetic sums' },
+  { theorem: 'Fibonacci partial sum F_{n+2}−1', states: 'Σ F_k = F_{n+2}−1 BigInt to n=80', class: 'finite-complete', consumes: 'Fibonacci BigInt' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */

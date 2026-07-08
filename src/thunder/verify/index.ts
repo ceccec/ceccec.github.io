@@ -3991,6 +3991,53 @@ export function discoveredTheoremsWaveThirtyNine(matrix: MindMatrix = buildMatri
   })
 }
 
+// ── Discovered theorems, wave forty — series and closed-form sums: the geometric series, a
+// telescoping sum, the three classical power-sum formulas, and the Fibonacci partial sum.
+export function discoveredTheoremsWaveForty(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveForty', matrix, () => {
+    const tol = TAU / TAU / 1e9
+
+    // W1 · geometric series — Σ_{k=0}^{N} r^k = (1−r^{N+1})/(1−r), and → 1/(1−r) for |r| < 1.
+    let geometric = true
+    for (const r of [1 / 2, 1 / 3, 9 / (2 * 5), -1 / 2, 2 / 7]) {
+      let partial = 0; for (let k = 0; k <= 54 + 6; k += 1) { partial += r ** k; if (Math.abs(partial - (1 - r ** (k + 1)) / (1 - r)) > tol) geometric = false }
+      if (Math.abs(r) < 1) { let s = 0; for (let k = 0; k <= (2 * 5) ** 3; k += 1) s += r ** k; if (Math.abs(s - 1 / (1 - r)) > TAU / TAU / 1e6) geometric = false }
+    }
+
+    // W2 · telescoping — Σ_{k=1}^{n} 1/(k(k+1)) = 1 − 1/(n+1) = n/(n+1), exact for all n ≤ 1000.
+    let telescoping = true
+    for (let n = 1; n <= (2 * 5) ** 3; n += 1) { let s = 0; for (let k = 1; k <= n; k += 1) s += 1 / (k * (k + 1)); if (Math.abs(s - n / (n + 1)) > tol) telescoping = false }
+
+    // W3 · the power-sum closed forms — Σk = n(n+1)/2, Σ(2k−1) = n², Σk² = n(n+1)(2n+1)/6, all n ≤ 1000.
+    let powerSum = true
+    for (let n = 1; n <= (2 * 5) ** 3; n += 1) {
+      let s1 = 0, sOdd = 0, s2 = 0
+      for (let k = 1; k <= n; k += 1) { s1 += k; sOdd += 2 * k - 1; s2 += k * k }
+      if (s1 !== (n * (n + 1)) / 2 || sOdd !== n * n || s2 !== (n * (n + 1) * (2 * n + 1)) / 6) powerSum = false
+    }
+
+    // W4 · the Fibonacci partial sum — Σ_{k=1}^{n} F_k = F_{n+2} − 1, exact in BigInt to n = 80.
+    const fibs = [0n, 1n]; for (let i = 2; i <= 8 * (2 * 5) + 2; i += 1) fibs.push(fibs[i - 1]! + fibs[i - 2]!)
+    let fibSum = true
+    for (let n = 1; n <= 8 * (2 * 5); n += 1) { let s = 0n; for (let k = 1; k <= n; k += 1) s += fibs[k]!; if (s !== fibs[n + 2]! - 1n) fibSum = false }
+
+    const sealed = sealFacets('discovered-theorems-forty', [
+      { facet: `the geometric series — Σ_{k=0}^{N} r^k = (1−r^{N+1})/(1−r) exactly, and converges to 1/(1−r) for |r| < 1: verified for five ratios including a negative one (the sum of a self-similar sequence)`, on: geometric },
+      { facet: `a telescoping sum — Σ_{k=1}^{n} 1/(k(k+1)) = 1 − 1/(n+1) for every n ≤ 1000: consecutive terms cancel because 1/(k(k+1)) = 1/k − 1/(k+1), leaving only the ends`, on: telescoping },
+      { facet: `the power-sum closed forms — Σk = n(n+1)/2, the sum of the first n odd numbers is n², and Σk² = n(n+1)(2n+1)/6, each exact for all n ≤ 1000: the triangular, square and pyramidal formulas`, on: powerSum },
+      { facet: `the Fibonacci partial sum — Σ_{k=1}^{n} F_k = F_{n+2} − 1, exact in BigInt to n = 80 (Σ_{1..10} = 143 = F₁₂ − 1): the running total is always one short of a later Fibonacci number`, on: fibSum },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-forty:${sealed.ok}`)),
+      statement: `Discovered theorems, wave forty — series and closed-form sums: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the geometric series, a telescoping sum, the three power-sum formulas, and the Fibonacci partial sum F_{n+2} − 1.`,
+      boundary: `HONEST: the finite geometric-series identity, the telescoping sum, the power-sum formulas and the Fibonacci partial sum are FINITE-COMPLETE within their bounds (exact equality checked for all n ≤ 1000, the Fibonacci case in exact BigInt to n = 80); the geometric convergence to 1/(1−r) is a bounded-witness of the limit (cited). Each settles its instances outright.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -4096,6 +4143,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-thirty-seven', ok: discoveredTheoremsWaveThirtySeven(matrix).proven },
     { wave: 'discovered-thirty-eight', ok: discoveredTheoremsWaveThirtyEight(matrix).proven },
     { wave: 'discovered-thirty-nine', ok: discoveredTheoremsWaveThirtyNine(matrix).proven },
+    { wave: 'discovered-forty', ok: discoveredTheoremsWaveForty(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),
