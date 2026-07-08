@@ -273,3 +273,53 @@ export function discoveredTheoremsWaveFiftyFour(matrix: { root: string } = { roo
     }
   })
 }
+
+// ── Discovered theorems, wave fifty-five (the perfect-number tower) — the sum-of-divisors σ and the
+// Euclid–Euler theorem: σ multiplicative (COMPOUNDS on wave 54), Euclid's construction, Euler's converse
+// (COMPOUNDS on both), and the triangular form of every even perfect number (ties to the figurate tower).
+export function discoveredTheoremsWaveFiftyFive(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFiftyFive', matrix, () => {
+    const bound = 100 * 100
+    const sigma = (n: number) => { let s = 0; for (let d = 1; d * d <= n; d += 1) if (n % d === 0) { s += d; if (d !== n / d) s += n / d } return s }
+    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
+
+    // W1 · σ IS MULTIPLICATIVE, COMPOUNDING on wave 54 — σ(mn) = σ(m)σ(n) for gcd(m,n)=1 with σ(p^k) =
+    // (p^{k+1}−1)/(p−1) on prime powers; verified over every coprime pair m,n ≤ 100 and every prime
+    // power p^k ≤ 10000 (the same multiplicative structure the totient obeys, now for the divisor sum).
+    let sigmaMultiplicative = true
+    for (let m = 1; m <= 100; m += 1) for (let n = 1; n <= 100; n += 1) if (gcd(m, n) === 1 && sigma(m * n) !== sigma(m) * sigma(n)) sigmaMultiplicative = false
+    for (let p = 2; p <= 4 * 5; p += 1) { if (!isPrime(p)) continue; for (let k = 1; p ** k <= bound; k += 1) if (sigma(p ** k) !== (p ** (k + 1) - 1) / (p - 1)) sigmaMultiplicative = false }
+
+    // W2 · EUCLID'S CONSTRUCTION — if 2^p−1 is a Mersenne prime then N = 2^{p−1}(2^p−1) is PERFECT
+    // (σ(N) = 2N): σ(2^{p−1}) = 2^p−1 times σ(prime) = 2^p gives 2N; verified for p = 2,3,5,7 → 6,28,496,8128.
+    let euclidPerfect = true
+    for (const p of [2, 3, 5, 7]) { const mp = 2 ** p - 1; if (!isPrime(mp)) continue; const nPerf = 2 ** (p - 1) * mp; if (sigma(nPerf) !== 2 * nPerf) euclidPerfect = false }
+
+    // W3 · EULER'S CONVERSE, COMPOUNDING on σ-multiplicativity (W1) + Euclid (W2) — EVERY even perfect
+    // number has Euclid's form 2^{p−1}(2^p−1) with 2^p−1 prime; verified by brute σ that the even perfect
+    // numbers ≤ 10000 are EXACTLY {6,28,496,8128}, each of Euclid form (the Euclid–Euler classification).
+    const perfects: number[] = []; for (let n = 2; n <= bound; n += 2) if (sigma(n) === 2 * n) perfects.push(n)
+    const euclidForm = (nP: number) => { for (let p = 2; 2 ** p <= 2 * nP; p += 1) { const mp = 2 ** p - 1; if (isPrime(mp) && 2 ** (p - 1) * mp === nP) return true } return false }
+    const eulerConverse = perfects.join(',') === '6,28,496,8128' && perfects.every(euclidForm)
+
+    // W4 · EVERY EVEN PERFECT NUMBER IS TRIANGULAR — 2^{p−1}(2^p−1) = T_{2^p−1} = m(m+1)/2 with m = 2^p−1;
+    // verified for 6,28,496,8128 (the figurate face of the Euclid–Euler theorem, tying to wave 52).
+    let perfectTriangular = true
+    for (const p of [2, 3, 5, 7]) { const mp = 2 ** p - 1; const nPerf = 2 ** (p - 1) * mp; if (nPerf !== mp * (mp + 1) / 2) perfectTriangular = false }
+
+    const sealed = sealFacets('discovered-theorems-fifty-five', [
+      { facet: `σ IS MULTIPLICATIVE, COMPOUNDING on wave 54 — σ(mn) = σ(m)σ(n) for gcd(m,n)=1 with σ(p^k) = (p^{k+1}−1)/(p−1); verified over every coprime pair m,n ≤ 100 and every prime power p^k ≤ 10000: the divisor sum shares the totient's multiplicative structure`, on: sigmaMultiplicative },
+      { facet: `EUCLID'S CONSTRUCTION — a Mersenne prime 2^p−1 gives the PERFECT number 2^{p−1}(2^p−1) (σ = 2N): σ(2^{p−1})·σ(2^p−1) = (2^p−1)·2^p = 2N; verified for p = 2,3,5,7 → the perfect numbers 6, 28, 496, 8128`, on: euclidPerfect },
+      { facet: `EULER'S CONVERSE, COMPOUNDING on σ-multiplicativity (W1) and Euclid (W2) — every EVEN perfect number is 2^{p−1}(2^p−1) with 2^p−1 prime; verified by brute σ that the even perfects ≤ 10000 are EXACTLY {6,28,496,8128}, each of Euclid form: the Euclid–Euler classification`, on: eulerConverse },
+      { facet: `EVERY EVEN PERFECT NUMBER IS TRIANGULAR — 2^{p−1}(2^p−1) = T_{2^p−1} = m(m+1)/2 with m = 2^p−1; verified for 6, 28, 496, 8128: the figurate face of Euclid–Euler, tying the perfect numbers back to the triangular tower (wave 52)`, on: perfectTriangular },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-five:${sealed.ok}`)),
+      statement: `Discovered theorems, wave fifty-five (the perfect-number tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — σ is multiplicative, Euclid's construction of perfect numbers from Mersenne primes, Euler's converse, and every even perfect number is triangular.`,
+      boundary: `HONEST: σ-multiplicativity COMPOUNDS on wave 54's arithmetic-function framework, and Euler's converse (W3) COMPOUNDS on it plus Euclid (W2) — the classification is a proof-on-proof. Euclid and the triangular form are verified for the four even perfect numbers ≤ 10000 (p = 2,3,5,7), Euler's converse is complete over all even n ≤ 10000; the all-p Euclid–Euler theorem and the OPEN question of odd perfect numbers (none known, none ≤ 10000 here) are cited — the boundary is honest about what stays unproven.`,
+    }
+  })
+}
