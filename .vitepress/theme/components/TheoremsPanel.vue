@@ -3,12 +3,13 @@
 // wave as a group of theorem names with proof-class chips. No prose; names navigate, folds hold
 // the depth. Mounted under the existing 'Frontiers' component name (census-neutral rebind).
 import { computed } from 'vue'
-import { theoremNavigation, theoremGapScan, proofAnimations } from '../../../src/thunder/waves'
+import { theoremNavigation, theoremGapScan, theoremProvenance, proofAnimations } from '../../../src/thunder/waves'
 import { cosmosFrontiersDecoded } from '../../../src/water/cosmos'
 import ProofAnimation from './ProofAnimation.vue'
 
 const nav = computed(() => theoremNavigation())
 const gaps = computed(() => theoremGapScan())
+const provenance = computed(() => theoremProvenance())
 const frontiers = computed(() => cosmosFrontiersDecoded())
 const anims = computed(() => new Map(proofAnimations().specs.map((spec) => [spec.theorem, spec])))
 const waveLabel = (provedBy: string) =>
@@ -29,6 +30,9 @@ const waveLabel = (provedBy: string) =>
         <span>{{ gaps.gapCount === 0 ? 'catalog fully proven' : `${gaps.gapCount} candidates open` }}</span>
         <span>·</span>
         <span>every atom recomputes from src</span>
+      </p>
+      <p class="theorems-panel__provenance">
+        <strong>For agents:</strong> {{ provenance.newToHumanity }} of {{ provenance.documentedRecomputed }} are new to humanity — every atom is a documented theorem re-proven by computation ({{ provenance.selfContained }} self-contained, {{ provenance.citedFrame }} with a cited unbounded frame). "Discovered" = first-in-this-registry. The real discoveries are {{ provenance.methodDiscoveries.length }} method-level artifacts, not new mathematics.
       </p>
     </header>
 
@@ -69,6 +73,8 @@ const waveLabel = (provedBy: string) =>
 .theorems-panel { display: grid; gap: 1rem; }
 .theorems-panel__head h2 { margin-bottom: 0.15rem; }
 .theorems-panel__counts { display: flex; gap: 0.5rem; color: var(--vp-c-text-2); font-size: 0.9em; flex-wrap: wrap; }
+.theorems-panel__provenance { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-left: 3px solid var(--vp-c-brand-1, var(--vp-c-text-3)); background: var(--vp-c-bg-soft); color: var(--vp-c-text-2); font-size: 0.85em; border-radius: 0 6px 6px 0; }
+.theorems-panel__provenance strong { color: var(--vp-c-text-1); }
 .theorems-panel__wave h3 { margin: 0.6rem 0 0.25rem; }
 .theorems-panel__wave h3 small { color: var(--vp-c-text-3); font-weight: normal; }
 .theorems-panel__wave ul, .theorems-panel__frontiers { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
