@@ -1149,6 +1149,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'telescoping sum n/(n+1)', states: 'Σ_{k=1}^n 1/(k(k+1)) = 1 − 1/(n+1) for every n ≤ 1000 — consecutive terms cancel via 1/(k(k+1)) = 1/k − 1/(k+1)', provedBy: 'discoveredTheoremsWaveForty', home: 'src/9/1' },
     { theorem: 'power-sum closed forms', states: 'Σk = n(n+1)/2, Σ(2k−1) = n², Σk² = n(n+1)(2n+1)/6 each exact for all n ≤ 1000 — the triangular, square and pyramidal formulas', provedBy: 'discoveredTheoremsWaveForty', home: 'src/9/1' },
     { theorem: 'Fibonacci partial sum F_{n+2}−1', states: 'Σ_{k=1}^n F_k = F_{n+2} − 1, exact in BigInt to n = 80 (Σ_{1..10} = 143 = F₁₂ − 1)', provedBy: 'discoveredTheoremsWaveForty', home: 'src/9/1' },
+    { theorem: 'Kummer carry theorem', states: 'the exponent of a prime p in C(m+n,n) equals the number of carries adding m and n in base p — Legendre’s formula vs a direct carry count for all m,n ≤ 40, p ∈ {2,3,5,7}', provedBy: 'discoveredTheoremsWaveFortyOne', home: 'src/thunder/verify' },
+    { theorem: 'Wolstenholme congruence C(2p,p) ≡ 2 mod p³', states: 'for every prime p ≥ 5, C(2p,p) ≡ 2 (mod p³) exact in BigInt to p ≤ 50 (C(26,13) ≡ 2 mod 13³) — one power beyond the elementary mod-p form', provedBy: 'discoveredTheoremsWaveFortyOne', home: 'src/thunder/verify' },
+    { theorem: 'sum of two squares criterion (general n)', states: 'n is a sum of two squares iff every prime ≡ 3 (mod 4) divides n to an EVEN power, both directions vs direct search for all n ≤ 1000 — Fermat’s Christmas theorem generalised', provedBy: 'discoveredTheoremsWaveFortyOne', home: 'src/thunder/verify' },
+    { theorem: 'Lucas–Fibonacci identities', states: 'L_n = F_{n−1} + F_{n+1} and L_n² − 5F_n² = 4(−1)^n, exact in BigInt to n ≤ 80 — the Lucas companion sequence tied to Fibonacci', provedBy: 'discoveredTheoremsWaveFortyOne', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1320,6 +1324,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'telescoping sum n/(n+1)', states: 'Σ1/(k(k+1)) = 1 − 1/(n+1), all n ≤ 1000', class: 'finite-complete', consumes: 'partial fractions' },
   { theorem: 'power-sum closed forms', states: 'Σk, Σ(2k−1)=n², Σk² exact to 1000', class: 'finite-complete', consumes: 'arithmetic sums' },
   { theorem: 'Fibonacci partial sum F_{n+2}−1', states: 'Σ F_k = F_{n+2}−1 BigInt to n=80', class: 'finite-complete', consumes: 'Fibonacci BigInt' },
+  { theorem: 'Kummer carry theorem', states: 'v_p(C(m+n,n)) = base-p carries, vs direct count, m,n ≤ 40', class: 'finite-complete', consumes: 'Legendre formula, carry count' },
+  { theorem: 'Wolstenholme congruence C(2p,p) ≡ 2 mod p³', states: 'primes 5 ≤ p ≤ 50 in BigInt', class: 'finite-complete', consumes: 'BigInt binomials' },
+  { theorem: 'sum of two squares criterion (general n)', states: 'even power of every prime ≡3 mod4 ⇔ two-square, both ways to 1000', class: 'finite-complete', consumes: 'factorization, direct search' },
+  { theorem: 'Lucas–Fibonacci identities', states: 'L_n = F_{n−1}+F_{n+1}, L_n²−5F_n² = 4(−1)^n, BigInt to 80', class: 'finite-complete', consumes: 'Fibonacci/Lucas BigInt' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */

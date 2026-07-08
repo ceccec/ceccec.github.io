@@ -2174,6 +2174,54 @@ export function discoveredTheoremsWaveSeventeen(matrix: MindMatrix = buildMatrix
 }
 
 
+// ── Discovered theorems, wave forty-one — deeper number theory: Kummer's carry theorem, Wolstenholme's
+// congruence, the sum-of-two-squares criterion, and the Lucas–Fibonacci identities.
+export function discoveredTheoremsWaveFortyOne(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFortyOne', matrix, () => {
+    // W1 · Kummer's theorem — the p-adic valuation of C(m+n, n) equals the number of carries when
+    // adding m and n in base p; verified via Legendre's formula vs a direct carry count, all m,n ≤ 40.
+    const vpBinom = (m: number, n: number, p: number) => { const s = (x: number) => { let v = 0, pk = p; while (pk <= x) { v += Math.floor(x / pk); pk *= p } return v }; return s(m + n) - s(m) - s(n) }
+    const carriesOf = (m: number, n: number, p: number) => { let c = 0, carry = 0; while (m > 0 || n > 0 || carry > 0) { const d = (m % p) + (n % p) + carry; carry = d >= p ? 1 : 0; c += carry; m = Math.floor(m / p); n = Math.floor(n / p) } return c }
+    let kummer = true
+    for (const p of [2, 3, 5, 7]) for (let m = 0; m <= 4 * (2 * 5); m += 1) for (let n = 0; n <= 4 * (2 * 5); n += 1) if (vpBinom(m, n, p) !== carriesOf(m, n, p)) kummer = false
+
+    // W2 · Wolstenholme's theorem — C(2p, p) ≡ 2 (mod p³) for every prime p ≥ 5 (exact in BigInt).
+    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
+    const binomBig = (n: number, k: number) => { let r = 1n; for (let i = 0n; i < BigInt(k); i += 1n) r = (r * (BigInt(n) - i)) / (i + 1n); return r }
+    let wolstenholme = true
+    for (let p = 5; p <= 2 * 5 * 5; p += 1) { if (!isPrime(p)) continue; const P = BigInt(p); if (binomBig(2 * p, p) % (P * P * P) !== 2n % (P * P * P)) wolstenholme = false }
+
+    // W3 · the sum-of-two-squares criterion — n is a sum of two squares iff every prime ≡ 3 (mod 4)
+    // divides n to an EVEN power; both directions verified against a direct search for all n ≤ 1000.
+    const sumTwoSquares = (n: number) => { for (let a = 0; a * a <= n; a += 1) { const r = n - a * a; const b = Math.round(Math.sqrt(r)); if (b * b === r) return true } return false }
+    const criterion = (n: number) => { let m = n; for (let p = 2; p * p <= m; p += 1) if (m % p === 0) { let e = 0; while (m % p === 0) { m /= p; e += 1 } if (p % 4 === 3 && e % 2 === 1) return false } if (m > 1 && m % 4 === 3) return false; return true }
+    let twoSquares = true
+    for (let n = 1; n <= (2 * 5) ** 3; n += 1) if (sumTwoSquares(n) !== criterion(n)) twoSquares = false
+
+    // W4 · the Lucas–Fibonacci identities — L_n = F_{n−1} + F_{n+1} and L_n² − 5·F_n² = 4·(−1)^n,
+    // exact in BigInt for all n ≤ 80.
+    const fibs = [0n, 1n], lucas = [2n, 1n]
+    for (let i = 2; i <= 8 * (2 * 5) + 2; i += 1) { fibs.push(fibs[i - 1]! + fibs[i - 2]!); lucas.push(lucas[i - 1]! + lucas[i - 2]!) }
+    let lucasIds = true
+    for (let n = 1; n <= 8 * (2 * 5); n += 1) { if (lucas[n]! !== fibs[n - 1]! + fibs[n + 1]!) lucasIds = false; if (lucas[n]! * lucas[n]! - 5n * fibs[n]! * fibs[n]! !== 4n * (n % 2 === 0 ? 1n : -1n)) lucasIds = false }
+
+    const sealed = sealFacets('discovered-theorems-forty-one', [
+      { facet: `Kummer's theorem — the exponent of a prime p in C(m+n, n) equals the number of carries when adding m and n in base p, verified via Legendre's formula against a direct carry count for all m, n ≤ 40 and p ∈ {2,3,5,7}: binomial divisibility is base-p carrying`, on: kummer },
+      { facet: `Wolstenholme's theorem — C(2p, p) ≡ 2 (mod p³) for every prime p ≥ 5 (C(26,13) ≡ 2 mod 13³), exact in BigInt to p ≤ 50: a deep congruence one power of p beyond the elementary C(2p,p) ≡ 2 (mod p)`, on: wolstenholme },
+      { facet: `the sum-of-two-squares criterion — n is a sum of two squares iff every prime ≡ 3 (mod 4) divides n to an EVEN power, both directions verified against a direct search for all n ≤ 1000 (Fermat's Christmas theorem, the general-n form)`, on: twoSquares },
+      { facet: `the Lucas–Fibonacci identities — L_n = F_{n−1} + F_{n+1} and L_n² − 5·F_n² = 4·(−1)^n, exact in BigInt to n ≤ 80: the Lucas numbers as the companion sequence tied to Fibonacci by these two relations`, on: lucasIds },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-forty-one:${sealed.ok}`)),
+      statement: `Discovered theorems, wave forty-one — deeper number theory: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Kummer's carry theorem, Wolstenholme's congruence, the sum-of-two-squares criterion, and the Lucas–Fibonacci identities.`,
+      boundary: `HONEST: Kummer is verified against an independent carry count for all m,n ≤ 40; Wolstenholme is exact in BigInt for all primes 5 ≤ p ≤ 50; the two-squares criterion is checked against a direct search for all n ≤ 1000 (both directions); the Lucas identities are exact in BigInt to n ≤ 80. Each settles its instances outright; the unbounded theorems are cited.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -2280,6 +2328,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-thirty-eight', ok: discoveredTheoremsWaveThirtyEight(matrix).proven },
     { wave: 'discovered-thirty-nine', ok: discoveredTheoremsWaveThirtyNine(matrix).proven },
     { wave: 'discovered-forty', ok: discoveredTheoremsWaveForty(matrix).proven },
+    { wave: 'discovered-forty-one', ok: discoveredTheoremsWaveFortyOne(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),
