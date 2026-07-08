@@ -377,3 +377,63 @@ export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root
     }
   })
 }
+
+// ── Discovered theorems, wave fifty-seven (the order-consequences tower) — what the multiplicative
+// order gives once you have it (COMPOUNDS on wave 56): the Lucas–Lehmer test for Mersenne primes (tying
+// wave 55), the order-(n−1) primality test, the cyclic order distribution, and Midy's repeating-decimal theorem.
+export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFiftySeven', matrix, () => {
+    const lim = 100
+    const B = 2 * 5
+    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
+    const phi = (n: number) => { let c = 0; for (let k = 1; k <= n; k += 1) if (gcd(k, n) === 1) c += 1; return c }
+    const ord = (a: number, n: number) => { let x = a % n, k = 1; while (x !== 1) { x = (x * a) % n; k += 1; if (k > n) return -1 } return k }
+
+    // W1 · the LUCAS–LEHMER TEST, tying wave 55 — for an odd prime p, M_p = 2^p−1 is prime IFF s_{p−1} ≡ 0
+    // (mod M_p) where s₀ = 4, s_{k+1} = s_k²−2; verified for p = 3,5,7,11,13 against actual primality of M_p
+    // (M = 7,31,127 prime, 2047 = 23·89 composite, 8191 prime) — the test that finds the Mersenne primes.
+    let lucasLehmer = true
+    for (let p = 3; p <= 16; p += 1) { if (!isPrime(p)) continue; const M = 2 ** p - 1; let s = 4; for (let i = 0; i < p - 2; i += 1) s = ((s * s - 2) % M + M) % M; if ((s === 0) !== isPrime(M)) lucasLehmer = false }
+
+    // W2 · the ORDER-(n−1) PRIMALITY TEST, COMPOUNDING on wave 56 — an element of order exactly n−1 exists
+    // in (ℤ/nℤ)* IFF n is prime (only then is the cyclic group's order φ(n) = n−1); verified for every
+    // n ≤ 100 (a primitive root of the full residue system exists exactly when the modulus is prime).
+    let orderPrimality = true
+    for (let n = 2; n <= lim; n += 1) { let has = false; for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1 && ord(a, n) === n - 1) { has = true; break } if (has !== isPrime(n)) orderPrimality = false }
+
+    // W3 · the CYCLIC ORDER DISTRIBUTION, COMPOUNDING on wave 56 + 54 — in (ℤ/pℤ)*, for each divisor d of
+    // p−1 there are EXACTLY φ(d) elements of order d (so Σ_{d|p−1} φ(d) = p−1, the divisor sum of wave 54);
+    // verified for every prime p ≤ 100 (the fine structure of the cyclic multiplicative group).
+    let cyclicDistribution = true
+    for (let p = 3; p <= lim; p += 1) { if (!isPrime(p)) continue; const cnt: Record<number, number> = {}; for (let a = 1; a < p; a += 1) { const o = ord(a, p); cnt[o] = (cnt[o] || 0) + 1 } for (let d = 1; d < p; d += 1) if ((p - 1) % d === 0 && (cnt[d] || 0) !== phi(d)) cyclicDistribution = false }
+
+    // W4 · MIDY'S THEOREM — for a prime p ∉ {2,5} whose reciprocal 1/p has EVEN period 2k, the two halves
+    // of the repeating block sum to Bᵏ−1 (all nines): 1/7 = 0.142857…, 142+857 = 999; verified in exact
+    // BigInt for every applicable prime p ≤ 100 (a consequence of ord_p(B) being the period, wave 56).
+    let midy = true
+    for (let p = 3; p <= lim; p += 1) {
+      if (!isPrime(p) || p === 5 || gcd(p, B) !== 1) continue
+      const period = ord(B, p); if (period % 2 !== 0) continue
+      const digits: number[] = []; let r = 1
+      for (let i = 0; i < period; i += 1) { r *= B; digits.push(Math.floor(r / p)); r %= p }
+      const half = period / 2; let lo = 0n, hi = 0n
+      for (let i = 0; i < half; i += 1) { lo = lo * BigInt(B) + BigInt(digits[i]!); hi = hi * BigInt(B) + BigInt(digits[half + i]!) }
+      if (lo + hi !== BigInt(B) ** BigInt(half) - 1n) midy = false
+    }
+
+    const sealed = sealFacets('discovered-theorems-fifty-seven', [
+      { facet: `the LUCAS–LEHMER TEST — for odd prime p, M_p = 2^p−1 is prime IFF s_{p−1} ≡ 0 (mod M_p) with s₀ = 4, s_{k+1} = s_k²−2; verified for p = 3,5,7,11,13 (M = 7,31,127 prime, 2047 = 23·89 composite, 8191 prime): the deterministic test that finds the Mersenne primes behind wave 55's perfect numbers`, on: lucasLehmer },
+      { facet: `the ORDER-(n−1) PRIMALITY TEST, COMPOUNDING on wave 56 — an element of order exactly n−1 exists in (ℤ/nℤ)* IFF n is prime (only then does the cyclic group have order φ(n) = n−1); verified for every n ≤ 100`, on: orderPrimality },
+      { facet: `the CYCLIC ORDER DISTRIBUTION, COMPOUNDING on wave 56 + 54 — in (ℤ/pℤ)*, for each divisor d of p−1 there are EXACTLY φ(d) elements of order d, so Σ_{d|p−1} φ(d) = p−1 (the totient divisor sum); verified for every prime p ≤ 100`, on: cyclicDistribution },
+      { facet: `MIDY'S THEOREM — for a prime p ∉ {2,5} with 1/p of even period 2k, the two halves of the repeating block sum to Bᵏ−1 (all nines: 1/7 = 0.142857…, 142+857 = 999); verified in exact BigInt for every applicable prime p ≤ 100 (a consequence of ord_p(10) being the decimal period)`, on: midy },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-seven:${sealed.ok}`)),
+      statement: `Discovered theorems, wave fifty-seven (the order-consequences tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the Lucas–Lehmer test, the order-(n−1) primality test, the cyclic order distribution, and Midy's repeating-decimal theorem.`,
+      boundary: `HONEST: all four are consequences of the multiplicative order that wave 56 established. Lucas–Lehmer ties back to wave 55 (its Mersenne primes ARE the perfect-number seeds), the order-(n−1) test and cyclic distribution COMPOUND on wave 56's primitive roots (and the distribution on wave 54's φ divisor sum), and Midy rides ord_p(10) as the decimal period. Verified complete within the bounds (p exponents ≤ 13 for Lucas–Lehmer, n ≤ 100 elsewhere); the all-n theorems (Lucas–Lehmer, Lucas's test, Midy) are cited.`,
+    }
+  })
+}
