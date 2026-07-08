@@ -11,6 +11,7 @@ import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo } from '../waves'
 import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree } from '../../9/1'
+import { tkCompose, tkInverse, tkKey, tkPerms, tkIsPrime, tkClassSizes, tkClassSumSimple, tkClosure, tkPslOverField } from '../../9/1'
 import { addressed, covers } from '../../5/5'
 import { schemaOrgDiamonds } from '../../fire/diamonds'
 import { groupOrbit } from '../../4/6'
@@ -1309,15 +1310,13 @@ export function discoveredTheoremsWaveEleven(matrix: MindMatrix = buildMatrix())
       if (!permsPsl.has(key)) { permsPsl.add(key); pslPerms.push(perm) }
     }
     function invMod(x: number, p: number): number { let r = 1; for (let e = 0; e < p - 2; e += 1) r = (r * x) % p; return ((r % p) + p) % p }
-    const compP = (p: number[], q: number[]) => q.map((v) => p[v]!)
-    const invP = (p: number[]) => { const out = Array.from({ length: p.length }, () => 0); p.forEach((v, i) => { out[v] = i }); return out }
     const classSizesOf = (group: number[][]): number[] => {
       const seen = new Set<string>()
       const sizes: number[] = []
       for (const x of group) {
         if (seen.has(x.join(','))) continue
         const orbit = new Set<string>()
-        for (const g of group) orbit.add(compP(compP(g, x), invP(g)).join(','))
+        for (const g of group) orbit.add(tkCompose(tkCompose(g, x), tkInverse(g)).join(','))
         for (const k of orbit) seen.add(k)
         sizes.push(orbit.size)
       }
@@ -1443,7 +1442,7 @@ export function discoveredTheoremsWaveTwelve(matrix: MindMatrix = buildMatrix())
     // W1 · PSL(2,11) is simple — 660 permutations of the 12 points of P¹(𝔽₁₁).
     const psl11 = pslOverPrime(6 + 5)
     const sizes11 = classSizes(psl11)
-    const psl11Simple = psl11.length === 6 * (100 + 5 * 2) && classSumSimple(sizes11, psl11.length) && sizes11[0] === 1
+    const psl11Simple = psl11.length === 6 * (100 + 5 * 2) && tkClassSumSimple(sizes11, psl11.length) && sizes11[0] === 1
 
     // W2 · the exceptional triple — A₅ (even permutations of 5), PSL(2,5) (P¹(𝔽₅), 6 points), and
     // PSL(2,4) (P¹(𝔽₄), 5 points, 𝔽₄ built as polynomials over 𝔽₂ mod x²+x+1): three constructions
@@ -1542,15 +1541,13 @@ export function discoveredTheoremsWaveTwelve(matrix: MindMatrix = buildMatrix())
 // within bounds — the two-square law with uniqueness, and Legendre's three-square characterisation.
 export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('discoveredTheoremsWaveThirteen', matrix, () => {
-    const compR = (p: number[], q: number[]) => q.map((v) => p[v]!)
-    const invR = (p: number[]) => { const out = Array.from({ length: p.length }, () => 0); p.forEach((v, i) => { out[v] = i }); return out }
     const classSizesR = (group: number[][]): number[] => {
       const seen = new Set<string>()
       const sizes: number[] = []
       for (const x of group) {
         if (seen.has(x.join(','))) continue
         const orbit = new Set<string>()
-        for (const g of group) orbit.add(compR(compR(g, x), invR(g)).join(','))
+        for (const g of group) orbit.add(tkCompose(tkCompose(g, x), tkInverse(g)).join(','))
         for (const k of orbit) seen.add(k)
         sizes.push(orbit.size)
       }
@@ -1595,7 +1592,7 @@ export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix(
     }
     const psl8 = pslOverField(8, (x, y) => x ^ y, mul8, (x) => x)
     const sizes8 = classSizesR(psl8)
-    const psl8Simple = psl8.length === 7 * 8 * 9 && classSumSimpleR(sizes8, psl8.length) && sizes8[0] === 1
+    const psl8Simple = psl8.length === 7 * 8 * 9 && tkClassSumSimple(sizes8, psl8.length) && sizes8[0] === 1
     const fiveSmallest = [54 + 6, 8 * 7 * 3, 360, psl8.length, 6 * (100 + 5 * 2)] // 60, 168, 360, 504, 660 — all proven in-registry
     const fiveComplete = psl8Simple && fiveSmallest.join(',') === [54 + 6, 8 * 7 * 3, 360, 7 * 8 * 9, 6 * (100 + 5 * 2)].join(',')
 
@@ -1616,10 +1613,9 @@ export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix(
 
     // W3 · Fermat's two squares — for every odd prime p < 200: p ≡ 1 (mod 4) ⇔ ∃ a ≤ b with
     // a² + b² = p, and when it exists the representation is UNIQUE (counted, not assumed).
-    const isPrT = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     let twoSquares = true
     for (let p = 3; p < 2 * 100; p += 1) {
-      if (!isPrT(p)) continue
+      if (!tkIsPrime(p)) continue
       let reps = 0
       for (let a = 1; a * a * 2 <= p; a += 1) { const rest = p - a * a; const b = Math.round(Math.sqrt(rest)); if (b >= a && b * b === rest) reps += 1 }
       if ((p % 4 === 1) !== (reps === 1)) twoSquares = false
@@ -1923,8 +1919,6 @@ export function discoveredTheoremsWaveFifteen(matrix: MindMatrix = buildMatrix()
 export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('discoveredTheoremsWaveSixteen', matrix, () => {
     const ten = 2 * 5, eleven = ten + 1, twelve = ten + 2
-    const compG = (p: number[], q: number[]) => q.map((v) => p[v]!)
-    const invG = (p: number[]) => { const out = Array.from({ length: p.length }, () => 0); p.forEach((v, i) => { out[v] = i }); return out }
     const closureG = (gens: number[][]): number[][] => {
       const idP = Array.from({ length: gens[0]!.length }, (_, i) => i)
       const seen = new Set([idP.join(',')])
@@ -1933,7 +1927,7 @@ export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()
       while (queue.length) {
         const g = queue.pop()!
         for (const h of gens) {
-          const prod = compG(h, g)
+          const prod = tkCompose(h, g)
           const key = prod.join(',')
           if (!seen.has(key)) { seen.add(key); out.push(prod); queue.push(prod) }
         }
@@ -1974,7 +1968,6 @@ export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()
       const sizes = classes.map((c) => c.length).sort((a, b) => a - b)
       return { sizes, dangerous, refuted, simple: sizes[0] === 1 && dangerous === refuted }
     }
-    const permKey = (p: number[]) => p.join(',')
 
     // W1 · M₁₂ — closure of three ATLAS-style generators; the order 12·11·10·9·8 (sharp 5-transitivity)
     // validates the generators, and the upgraded machine handles the class-sum false alarm.
@@ -1986,12 +1979,12 @@ export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()
     ])
     const m12Order = twelve * eleven * ten * 9 * 8 // 95040
     const idKey12 = Array.from({ length: twelve }, (_, i) => i).join(',')
-    const m12Data = simpleByClassClosure(m12, compG, invG, idKey12, permKey)
+    const m12Data = simpleByClassClosure(m12, tkCompose, tkInverse, idKey12, tkKey)
     const m12Simple = m12.length === m12Order && m12Data.simple && m12Data.dangerous > 0
 
     // W2 · M₁₁ — the point stabilizer inside the computed M₁₂; order 11·10·9·8 (sharp 4-transitivity).
     const m11 = m12.filter((p) => p[eleven] === eleven)
-    const m11Data = simpleByClassClosure(m11, compG, invG, idKey12, permKey)
+    const m11Data = simpleByClassClosure(m11, tkCompose, tkInverse, idKey12, tkKey)
     const m11Simple = m11.length === eleven * ten * 9 * 8 && m11Data.simple
 
     // W3 · PSL(3,3) = SL(3,3) — all 3⁹ matrices over 𝔽₃ sieved by det = 1; adjugate = inverse (det 1);
@@ -2024,7 +2017,7 @@ export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()
     build7([0, 1, 2, 3, 4, 5, 6], [])
     const a7 = perms7.filter((p) => { let s = 0; for (let i = 0; i < 7; i += 1) for (let j = i + 1; j < 7; j += 1) if (p[i]! > p[j]!) s += 1; return s % 2 === 0 })
     const idKey7 = Array.from({ length: 7 }, (_, i) => i).join(',')
-    const a7Data = simpleByClassClosure(a7, compG, invG, idKey7, permKey)
+    const a7Data = simpleByClassClosure(a7, tkCompose, tkInverse, idKey7, tkKey)
     const a7Simple = a7.length === 7 * 6 * 5 * 4 * 3 && a7Data.simple // 7!/2 = 2520
 
     // W5 · the terminus line RECOMPUTED — the wave-14 bar on M₁₁/PSL(3,3) falls to this very fold.
@@ -2090,15 +2083,13 @@ export function discoveredTheoremsWaveSeventeen(matrix: MindMatrix = buildMatrix
     const r44 = noMonoK4 && (9 - 1) + (9 - 1) < q17 && 9 + 9 === 2 * 9
 
     // W3-5 · PSL(2,16), PSL(2,17), PSL(2,19) — the same hermetic machines as waves thirteen/fifteen.
-    const compR = (p: number[], q: number[]) => q.map((v) => p[v]!)
-    const invR = (p: number[]) => { const out = Array.from({ length: p.length }, () => 0); p.forEach((v, i) => { out[v] = i }); return out }
     const classSizesR = (group: number[][]): number[] => {
       const seen = new Set<string>()
       const sizes: number[] = []
       for (const x of group) {
         if (seen.has(x.join(','))) continue
         const orbit = new Set<string>()
-        for (const g of group) orbit.add(compR(compR(g, x), invR(g)).join(','))
+        for (const g of group) orbit.add(tkCompose(tkCompose(g, x), tkInverse(g)).join(','))
         for (const k of orbit) seen.add(k)
         sizes.push(orbit.size)
       }
@@ -2137,14 +2128,14 @@ export function discoveredTheoremsWaveSeventeen(matrix: MindMatrix = buildMatrix
     }
     const psl16 = pslOverFieldR(q16, (x, y) => x ^ y, mul16, (x) => x)
     const sizes16 = classSizesR(psl16)
-    const psl16Simple = psl16.length === q16 * (q16 - 1) * (q16 + 1) && classSumSimpleR(sizes16, psl16.length) && sizes16[0] === 1
+    const psl16Simple = psl16.length === q16 * (q16 - 1) * (q16 + 1) && tkClassSumSimple(sizes16, psl16.length) && sizes16[0] === 1
     const psl17 = pslOverFieldR(q17, (x, y) => (x + y) % q17, (x, y) => (x * y) % q17, (x) => (q17 - x) % q17)
     const sizes17 = classSizesR(psl17)
-    const psl17Simple = psl17.length === (q17 * (q17 * q17 - 1)) / 2 && classSumSimpleR(sizes17, psl17.length) && sizes17[0] === 1
+    const psl17Simple = psl17.length === (q17 * (q17 * q17 - 1)) / 2 && tkClassSumSimple(sizes17, psl17.length) && sizes17[0] === 1
     const q19 = 2 * 5 + 9
     const psl19 = pslOverFieldR(q19, (x, y) => (x + y) % q19, (x, y) => (x * y) % q19, (x) => (q19 - x) % q19)
     const sizes19 = classSizesR(psl19)
-    const psl19Simple = psl19.length === (q19 * (q19 * q19 - 1)) / 2 && classSumSimpleR(sizes19, psl19.length) && sizes19[0] === 1
+    const psl19Simple = psl19.length === (q19 * (q19 * q19 - 1)) / 2 && tkClassSumSimple(sizes19, psl19.length) && sizes19[0] === 1
 
     // the milestone — every nonabelian simple order ≤ 5616 in-registry (list completeness cited):
     // waves 2-15 hold {60, 168, 360, 504, 660, 1092}; this wave adds {2448, 2520, 3420, 4080, 5616}.
@@ -2186,10 +2177,9 @@ export function discoveredTheoremsWaveFortyOne(matrix: { root: string } = { root
     for (const p of [2, 3, 5, 7]) for (let m = 0; m <= 4 * (2 * 5); m += 1) for (let n = 0; n <= 4 * (2 * 5); n += 1) if (vpBinom(m, n, p) !== carriesOf(m, n, p)) kummer = false
 
     // W2 · Wolstenholme's theorem — C(2p, p) ≡ 2 (mod p³) for every prime p ≥ 5 (exact in BigInt).
-    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     const binomBig = (n: number, k: number) => { let r = 1n; for (let i = 0n; i < BigInt(k); i += 1n) r = (r * (BigInt(n) - i)) / (i + 1n); return r }
     let wolstenholme = true
-    for (let p = 5; p <= 2 * 5 * 5; p += 1) { if (!isPrime(p)) continue; const P = BigInt(p); if (binomBig(2 * p, p) % (P * P * P) !== 2n % (P * P * P)) wolstenholme = false }
+    for (let p = 5; p <= 2 * 5 * 5; p += 1) { if (!tkIsPrime(p)) continue; const P = BigInt(p); if (binomBig(2 * p, p) % (P * P * P) !== 2n % (P * P * P)) wolstenholme = false }
 
     // W3 · the sum-of-two-squares criterion — n is a sum of two squares iff every prime ≡ 3 (mod 4)
     // divides n to an EVEN power; both directions verified against a direct search for all n ≤ 1000.
