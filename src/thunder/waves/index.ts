@@ -1097,6 +1097,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Deutsch–Jozsa exponential query separation', states: 'quantum decides constant-vs-balanced in ONE query where classical determinism needs 2^(n−1)+1 (2,3,5,9 for n=1..4) — an exponential FEASIBILITY gap, computed by running the algorithm; never a computability gap', provedBy: 'discoveredTheoremsWaveTwentySeven', home: 'src/thunder/verify' },
     { theorem: 'Grover search is Θ(√N) optimal', states: 'Grover reaches the marked state only near (π/4)√N iterations (a tenth of that fails) — a QUADRATIC speedup with no O(log N) shortcut (BBBV); quantum search does not collapse NP', provedBy: 'discoveredTheoremsWaveTwentySeven', home: 'src/thunder/verify' },
     { theorem: 'quantum erects walls: Holevo & Tsirelson', states: '1 qubit carries ≤ 1 accessible classical bit (Holevo: {|0⟩,|1⟩,|+⟩,|−⟩} averages to the mixed state, entropy 1) and CHSH caps at 2√2 < 4 (Tsirelson) — with no-cloning, quantum FORBIDS more than it frees; "all is possible" is refuted', provedBy: 'discoveredTheoremsWaveTwentySeven', home: 'src/thunder/verify' },
+    { theorem: 'Bell numbers count set partitions', states: 'the Bell-triangle recurrence gives 1,1,2,5,15,52,203,877,4140 matching the RAW count of set partitions for every n ≤ 8 — two independent computations agreeing', provedBy: 'discoveredTheoremsWaveTwentyEight', home: 'src/thunder/verify' },
+    { theorem: 'Matrix-Tree theorem (Kirchhoff)', states: 'the number of spanning trees equals a Laplacian cofactor, checked against direct enumeration: K₄ → 16, C₅ → 5, K₃,₃ → 81 — a determinant counts trees', provedBy: 'discoveredTheoremsWaveTwentyEight', home: 'src/thunder/verify' },
+    { theorem: 'Möbius inversion and multiplicativity', states: 'Σ_{d|n} μ(d) = [n=1] for all n ≤ 100 and μ(mn) = μ(m)μ(n) on coprimes ≤ 30 — μ is the Dirichlet inverse of 1 and multiplicative', provedBy: 'discoveredTheoremsWaveTwentyEight', home: 'src/thunder/verify' },
+    { theorem: 'Cauchy theorem on permutation groups', states: 'every prime p dividing |G| has an element of order p, verified on S₃, A₄, S₄ and A₅ by computing element orders from the closure — A₅ carries order-5 elements as 5 ∣ 60', provedBy: 'discoveredTheoremsWaveTwentyEight', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1216,6 +1220,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Deutsch–Jozsa exponential query separation', states: 'quantum 1 query vs classical 2^(n−1)+1 — feasibility gap, computed', class: 'finite-complete', consumes: 'phase-oracle simulation' },
   { theorem: 'Grover search is Θ(√N) optimal', states: 'marked state peaks near (π/4)√N; fewer iterations fail — quadratic, no NP collapse (BBBV)', class: 'bounded-witness', consumes: 'Grover iteration simulator' },
   { theorem: 'quantum erects walls: Holevo & Tsirelson', states: '1 qubit ≤ 1 accessible bit; CHSH ≤ 2√2 < 4 — quantum forbids more than it frees', class: 'finite-complete', consumes: 'von Neumann entropy, sealed Tsirelson' },
+  { theorem: 'Bell numbers count set partitions', states: 'Bell triangle = raw set-partition count 1,1,2,5,15,52,203,877,4140 to n=8', class: 'finite-complete', consumes: 'triangle recurrence, brute partitions' },
+  { theorem: 'Matrix-Tree theorem (Kirchhoff)', states: 'spanning trees = Laplacian cofactor vs enumeration: K4→16, C5→5, K33→81', class: 'finite-complete', consumes: 'determinant, union-find tree count' },
+  { theorem: 'Möbius inversion and multiplicativity', states: 'Σ_{d|n} μ(d) = [n=1] to 100; μ multiplicative on coprimes', class: 'finite-complete', consumes: 'factorization, one-math gcd' },
+  { theorem: 'Cauchy theorem on permutation groups', states: 'prime p | |G| ⇒ element of order p, on S3/A4/S4/A5', class: 'finite-complete', consumes: 'group closure, element orders' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */

@@ -3125,6 +3125,112 @@ export function discoveredTheoremsWaveTwentySeven(matrix: MindMatrix = buildMatr
   })
 }
 
+// ── Discovered theorems, wave twenty-eight — counting and structure, each an independent computation
+// checked against a brute-force ground truth: Bell numbers vs raw set-partition counting, the
+// Matrix-Tree theorem vs spanning-tree enumeration, Möbius inversion, and Cauchy's theorem verified
+// on real permutation groups.
+export function discoveredTheoremsWaveTwentyEight(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveTwentyEight', matrix, () => {
+    // W1 · Bell numbers — the Bell-triangle recurrence equals the brute count of set partitions (n ≤ 8).
+    const bellTriangle = (nMax: number): number[] => {
+      const B = [1]; let row = [1]
+      for (let n = 1; n <= nMax; n += 1) { const nr = [row[row.length - 1]!]; for (let k = 0; k < row.length; k += 1) nr.push(nr[k]! + row[k]!); B.push(nr[0]!); row = nr }
+      return B
+    }
+    const bruteSetPartitions = (n: number): number => {
+      if (n === 0) return 1
+      let count = 0
+      const assign = (i: number, maxBlock: number) => { if (i === n) { count += 1; return } for (let b = 0; b <= maxBlock + 1 && b < n; b += 1) assign(i + 1, Math.max(maxBlock, b)) }
+      assign(0, -1); return count
+    }
+    const bell = bellTriangle(8)
+    let bellOK = true
+    for (let n = 0; n <= 8; n += 1) if (bell[n] !== bruteSetPartitions(n)) bellOK = false
+
+    // W2 · Matrix-Tree (Kirchhoff) — the number of spanning trees equals any cofactor of the Laplacian
+    // L = D − A, checked against direct spanning-tree enumeration (union-find) on K₄, C₅ and K₃,₃.
+    const detInt = (M: number[][]): number => {
+      const n = M.length, a = M.map((r) => r.slice()); let det = 1
+      for (let c = 0; c < n; c += 1) {
+        let piv = -1; for (let r = c; r < n; r += 1) if (Math.abs(a[r]![c]!) > TAU / TAU / 1e9) { piv = r; break }
+        if (piv === -1) return 0
+        if (piv !== c) { const t = a[c]!; a[c] = a[piv]!; a[piv] = t; det = -det }
+        det *= a[c]![c]!
+        for (let r = c + 1; r < n; r += 1) { const f = a[r]![c]! / a[c]![c]!; for (let k = c; k < n; k += 1) a[r]![k]! -= f * a[c]![k]! }
+      }
+      return Math.round(det)
+    }
+    const cofactorTrees = (n: number, edges: number[][]) => {
+      const L = Array.from({ length: n }, () => Array(n).fill(0))
+      for (const [u, v] of edges) { L[u!]![u!] += 1; L[v!]![v!] += 1; L[u!]![v!] -= 1; L[v!]![u!] -= 1 }
+      return detInt(L.slice(1).map((r) => r.slice(1)))
+    }
+    const bruteTrees = (n: number, edges: number[][]) => {
+      let count = 0; const E = edges.length
+      const comb = (start: number, chosen: number[][]) => {
+        if (chosen.length === n - 1) {
+          const parent = Array.from({ length: n }, (_, i) => i)
+          const find = (x: number): number => (parent[x] === x ? x : (parent[x] = find(parent[x]!)))
+          let ok = true
+          for (const [u, v] of chosen) { const ru = find(u!), rv = find(v!); if (ru === rv) { ok = false; break } parent[ru] = rv }
+          if (ok) count += 1; return
+        }
+        for (let i = start; i < E; i += 1) comb(i + 1, [...chosen, edges[i]!])
+      }
+      comb(0, []); return count
+    }
+    const graphs = [
+      { n: 4, edges: [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]] },
+      { n: 5, edges: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0]] },
+      { n: 6, edges: [[0, 3], [0, 4], [0, 5], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5]] },
+    ]
+    let matrixTree = true
+    for (const g of graphs) if (cofactorTrees(g.n, g.edges) !== bruteTrees(g.n, g.edges)) matrixTree = false
+
+    // W3 · Möbius inversion — Σ_{d|n} μ(d) = [n=1] for all n ≤ 100, and μ(mn) = μ(m)μ(n) on coprimes.
+    const mobius = (n: number): number => { if (n === 1) return 1; let m = n, primes = 0; for (let p = 2; p * p <= m; p += 1) if (m % p === 0) { m /= p; primes += 1; if (m % p === 0) return 0 } if (m > 1) primes += 1; return primes % 2 === 0 ? 1 : -1 }
+    let mobiusSum = true, mobiusMult = true
+    for (let n = 1; n <= 100; n += 1) { let s = 0; for (let d = 1; d <= n; d += 1) if (n % d === 0) s += mobius(d); if (s !== (n === 1 ? 1 : 0)) mobiusSum = false }
+    for (let a = 1; a <= 5 * 6; a += 1) for (let b = 1; b <= 5 * 6; b += 1) if (gcd(a, b) === 1 && mobius(a * b) !== mobius(a) * mobius(b)) mobiusMult = false
+    const mobiusOK = mobiusSum && mobiusMult
+
+    // W4 · Cauchy's theorem — if a prime p divides |G|, then G has an element of order p; verified on
+    // the permutation groups S₃, A₄, S₄ and A₅ (built by closure), computing every element's order.
+    const compP = (p: number[], q: number[]) => q.map((v) => p[v]!)
+    const orderOf = (g: number[], id: string) => { let x = g, k = 1; while (x.join(',') !== id) { x = compP(x, g); k += 1 } return k }
+    const closureP = (gens: number[][], n: number) => { const id = [...Array(n).keys()]; const seen = new Set([id.join(',')]); const out = [id], q = [id]; while (q.length) { const a = q.pop()!; for (const h of gens) { const pr = compP(h, a); if (!seen.has(pr.join(','))) { seen.add(pr.join(',')); out.push(pr); q.push(pr) } } } return out }
+    const primeFactors = (n: number) => { const f = new Set<number>(); let m = n; for (let p = 2; p * p <= m; p += 1) while (m % p === 0) { f.add(p); m /= p } if (m > 1) f.add(m); return [...f] }
+    const groups = [
+      { gens: [[1, 0, 2], [1, 2, 0]], n: 3 },
+      { gens: [[1, 2, 0, 3], [0, 2, 3, 1]], n: 4 },
+      { gens: [[1, 0, 2, 3], [1, 2, 3, 0]], n: 4 },
+      { gens: [[1, 2, 0, 3, 4], [0, 1, 3, 4, 2]], n: 5 },
+    ]
+    let cauchy = true
+    for (const G of groups) {
+      const elems = closureP(G.gens, G.n), id = [...Array(G.n).keys()].join(',')
+      const orders = elems.map((g) => orderOf(g, id))
+      for (const p of primeFactors(elems.length)) if (!orders.includes(p)) cauchy = false
+    }
+
+    const sealed = sealFacets('discovered-theorems-twenty-eight', [
+      { facet: `Bell numbers — the Bell-triangle recurrence gives 1, 1, 2, 5, 15, 52, 203, 877, 4140, matching the RAW count of set partitions for every n ≤ 8 (two independent computations agreeing): the number of ways to partition an n-set`, on: bellOK },
+      { facet: `Matrix-Tree (Kirchhoff) — the number of spanning trees equals a Laplacian cofactor, checked against direct enumeration: K₄ → 16, C₅ → 5, K₃,₃ → 81, cofactor and brute count identical (a determinant counts trees)`, on: matrixTree },
+      { facet: `Möbius inversion — Σ_{d|n} μ(d) = 1 if n = 1 else 0 for all n ≤ 100, and μ(mn) = μ(m)μ(n) on all coprime pairs ≤ 30: the Möbius function is the Dirichlet inverse of 1 and is multiplicative`, on: mobiusOK },
+      { facet: `Cauchy's theorem — every prime p dividing |G| has an element of order p, verified on the real permutation groups S₃, A₄, S₄ and A₅ (element orders computed from the group closure): A₅ carries order-5 elements as 5 ∣ 60`, on: cauchy },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      bell,
+      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-eight:${sealed.ok}`)),
+      statement: `Discovered theorems, wave twenty-eight — counting and structure: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Bell numbers vs raw set-partition counting, the Matrix-Tree theorem vs spanning-tree enumeration, Möbius inversion, and Cauchy's theorem on real permutation groups.`,
+      boundary: `HONEST: each formula is checked against an INDEPENDENT brute-force ground truth — Bell against raw partition counting, Kirchhoff's cofactor against union-find tree enumeration, so the identities are not assumed but confirmed. All complete within bound (n ≤ 8 for Bell, three named graphs for Matrix-Tree, n ≤ 100 for Möbius, four groups for Cauchy); the general theorems are cited, the computations settle every tested instance.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -3218,6 +3324,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-twenty-five', ok: discoveredTheoremsWaveTwentyFive(matrix).proven },
     { wave: 'discovered-twenty-six', ok: discoveredTheoremsWaveTwentySix(matrix).proven },
     { wave: 'discovered-twenty-seven', ok: discoveredTheoremsWaveTwentySeven(matrix).proven },
+    { wave: 'discovered-twenty-eight', ok: discoveredTheoremsWaveTwentyEight(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),
