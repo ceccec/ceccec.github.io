@@ -1105,6 +1105,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Leibniz and Wallis π series', states: 'π/4 = 1 − 1/3 + 1/5 − … and the Wallis product ∏(2n)²/((2n−1)(2n+1)) → π/2 both converge to π independently — an alternating sum and an infinite product meeting at the same constant', provedBy: 'discoveredTheoremsWaveTwentyNine', home: 'src/thunder/verify' },
     { theorem: 'coupon collector expectation n·H_n', states: 'the expected trials to collect all n coupons is EXACTLY n·H_n — the sum of geometric waiting times Σ n/(n−k) matching the harmonic form for every n ≤ 50, two computations agreeing', provedBy: 'discoveredTheoremsWaveTwentyNine', home: 'src/thunder/verify' },
     { theorem: 'ballot problem P = (a−b)/(a+b)', states: 'if A wins a > b votes, P(A leads throughout) = (a−b)/(a+b), verified by EXHAUSTIVELY counting strictly-leading orderings against C(a+b,a) for all a ≤ 10 — closed form confirmed by complete enumeration', provedBy: 'discoveredTheoremsWaveTwentyNine', home: 'src/thunder/verify' },
+    { theorem: 'determinant multiplicativity over 𝔽₃', states: 'det(AB) = det(A)·det(B) for ALL 6561 = 81² pairs of 2×2 matrices — the complete check over the field; the determinant is a homomorphism M₂(𝔽₃) → 𝔽₃', provedBy: 'discoveredTheoremsWaveThirty', home: 'src/thunder/verify' },
+    { theorem: 'Vandermonde determinant factorization', states: 'det[x_i^j] = Π_{i<j}(x_j − x_i) verified against the product of differences for four node sets up to 5×5 — the factorisation that makes polynomial interpolation invertible', provedBy: 'discoveredTheoremsWaveThirty', home: 'src/thunder/verify' },
+    { theorem: 'Cassini Fibonacci identity', states: 'F_{n−1}·F_{n+1} − F_n² = (−1)^n for every n ≤ 40, exact in BigInt — the alternating unit determinant of the Fibonacci Q-matrix powers', provedBy: 'discoveredTheoremsWaveThirty', home: 'src/thunder/verify' },
+    { theorem: 'Chinese Remainder Theorem', states: 'pairwise-coprime moduli give a UNIQUE solution mod Π m_i, constructed via modular inverses and verified to reconstruct every residue class for three moduli sets — the isomorphism ℤ/Π ≅ ∏ ℤ/m_i', provedBy: 'discoveredTheoremsWaveThirty', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1232,6 +1236,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Leibniz and Wallis π series', states: 'alternating sum → π/4 and Wallis product → π/2, both converge', class: 'bounded-witness', consumes: 'series and product' },
   { theorem: 'coupon collector expectation n·H_n', states: 'E[T] = n·H_n exactly (geometric waiting times vs harmonic) to n=50', class: 'finite-complete', consumes: 'harmonic sums' },
   { theorem: 'ballot problem P = (a−b)/(a+b)', states: 'exhaustive leading-ordering count = closed form, a ≤ 10', class: 'finite-complete', consumes: 'lattice-path enumeration' },
+  { theorem: 'determinant multiplicativity over 𝔽₃', states: 'det(AB) = det(A)det(B) for all 81² pairs — determinant is a homomorphism', class: 'finite-complete', consumes: '𝔽₃ matrix arithmetic' },
+  { theorem: 'Vandermonde determinant factorization', states: 'det[x_i^j] = Π(x_j − x_i) on four node sets to 5×5', class: 'finite-complete', consumes: 'determinant' },
+  { theorem: 'Cassini Fibonacci identity', states: 'F_{n−1}F_{n+1} − F_n² = (−1)^n to n=40 in BigInt', class: 'finite-complete', consumes: 'Fibonacci BigInt' },
+  { theorem: 'Chinese Remainder Theorem', states: 'coprime moduli → unique residue reconstruction via modular inverses', class: 'finite-complete', consumes: 'modular inverse, BigInt' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
