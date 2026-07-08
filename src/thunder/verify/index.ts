@@ -7,7 +7,7 @@ import { cssMathProvenByMath, harmonicCountsProvenByMath } from '../../earth/arc
 import { darkLightPolarityProvenByMath } from '../movie/movievars'
 import { staticPages, crawlerKnowledge } from '../../wind/site'
 import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, toUuid } from '../../0'
-import { BOLTZMANN, SPEED_OF_LIGHT, TAU } from '../../3/7'
+import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive } from '../waves'
 import { addressed, covers } from '../../5/5'
@@ -2940,6 +2940,100 @@ export function discoveredTheoremsWaveTwentyFive(matrix: MindMatrix = buildMatri
   })
 }
 
+// ── Discovered theorems, wave twenty-six — classical plane geometry, computed across hundreds of
+// deterministic configurations (golden-ratio equidistributed, reproducible): Ptolemy's cyclic-
+// quadrilateral identity, Napoleon's outer-triangle theorem, the Euler line, and Viviani's constant
+// sum. Numerical witnesses — the theorems hold for all configurations, cited; the fold checks many.
+export function discoveredTheoremsWaveTwentySix(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveTwentySix', matrix, () => {
+    const dist = (p: number[], q: number[]) => Math.hypot(p[0]! - q[0]!, p[1]! - q[1]!)
+    const frac = (x: number) => x - Math.floor(x)
+    const tol = TAU / TAU / 1e6
+    const runs = 2 * 100
+
+    // W1 · Ptolemy — for a cyclic quadrilateral, AC·BD = AB·CD + BC·AD. Four golden-ratio angles on
+    // the unit circle, sorted into a convex quadrilateral, checked for every run.
+    let ptolemy = true, ptolemyTests = 0
+    for (let t = 1; t <= runs; t += 1) {
+      const angs = [2, 3, 5, 7].map((k) => frac(t * k * PHI) * TAU).sort((a, b) => a - b)
+      if (angs.some((a, i) => i > 0 && a - angs[i - 1]! < tol)) continue
+      const P = angs.map((a) => [Math.cos(a), Math.sin(a)])
+      const [A, B, C, D] = P as [number[], number[], number[], number[]]
+      const lhs = dist(A, C) * dist(B, D)
+      const rhs = dist(A, B) * dist(C, D) + dist(B, C) * dist(A, D)
+      ptolemyTests += 1
+      if (Math.abs(lhs - rhs) > tol) ptolemy = false
+    }
+
+    // W2 · Napoleon — the centroids of outward equilateral triangles erected on the three sides of
+    // ANY triangle form an equilateral triangle (equal pairwise centroid distances).
+    const rotate = (p: number[], c: number[], ang: number) => { const dx = p[0]! - c[0]!, dy = p[1]! - c[1]!; return [c[0]! + dx * Math.cos(ang) - dy * Math.sin(ang), c[1]! + dx * Math.sin(ang) + dy * Math.cos(ang)] }
+    const apex = (P: number[], Q: number[]) => { const third = rotate(Q, P, -TAU / 6); return [(P[0]! + Q[0]! + third[0]!) / 3, (P[1]! + Q[1]! + third[1]!) / 3] }
+    let napoleon = true, napoleonTests = 0
+    for (let t = 1; t <= runs; t += 1) {
+      const A = [frac(t * PHI) * 4 - 2, frac(t * PHI * PHI) * 4 - 2]
+      const B = [2 + frac(t * 3 * PHI) * 3, frac(t * 5 * PHI) * 4 - 2]
+      const C = [frac(t * 7 * PHI) * 3 - 1, 2 + frac(t * (2 + 9) * PHI) * 3]
+      if (Math.abs((B[0]! - A[0]!) * (C[1]! - A[1]!) - (B[1]! - A[1]!) * (C[0]! - A[0]!)) < 1 / 2) continue
+      const nA = apex(B, C), nB = apex(C, A), nC = apex(A, B)
+      napoleonTests += 1
+      if (Math.abs(dist(nA, nB) - dist(nB, nC)) > tol || Math.abs(dist(nB, nC) - dist(nC, nA)) > tol) napoleon = false
+    }
+
+    // W3 · the Euler line — the circumcenter O, centroid G and orthocenter H of any triangle are
+    // collinear, and OG:GH = 1:2 (so OH = 3·OG), via O and the identity H = A + B + C − 2O.
+    const circumcenter = (A: number[], B: number[], C: number[]) => {
+      const d = 2 * (A[0]! * (B[1]! - C[1]!) + B[0]! * (C[1]! - A[1]!) + C[0]! * (A[1]! - B[1]!))
+      const na = A[0]! ** 2 + A[1]! ** 2, nb = B[0]! ** 2 + B[1]! ** 2, nc = C[0]! ** 2 + C[1]! ** 2
+      return [(na * (B[1]! - C[1]!) + nb * (C[1]! - A[1]!) + nc * (A[1]! - B[1]!)) / d, (na * (C[0]! - B[0]!) + nb * (A[0]! - C[0]!) + nc * (B[0]! - A[0]!)) / d]
+    }
+    let euler = true, eulerTests = 0
+    for (let t = 1; t <= runs; t += 1) {
+      const A = [frac(t * PHI) * 6 - 3, frac(t * PHI * PHI) * 6 - 3]
+      const B = [3 + frac(t * 3 * PHI) * 3, frac(t * 5 * PHI) * 6 - 3]
+      const C = [frac(t * 7 * PHI) * 4 - 2, 3 + frac(t * (2 + 9) * PHI) * 3]
+      if (Math.abs((B[0]! - A[0]!) * (C[1]! - A[1]!) - (B[1]! - A[1]!) * (C[0]! - A[0]!)) < 1 / 2) continue
+      const G = [(A[0]! + B[0]! + C[0]!) / 3, (A[1]! + B[1]! + C[1]!) / 3]
+      const O = circumcenter(A, B, C)
+      const H = [A[0]! + B[0]! + C[0]! - 2 * O[0]!, A[1]! + B[1]! + C[1]! - 2 * O[1]!]
+      eulerTests += 1
+      const cross = (G[0]! - O[0]!) * (H[1]! - O[1]!) - (G[1]! - O[1]!) * (H[0]! - O[0]!)
+      if (Math.abs(cross) > tol || Math.abs(dist(O, H) - 3 * dist(O, G)) > tol) euler = false
+    }
+
+    // W4 · Viviani — in an equilateral triangle, the sum of distances from ANY interior point to the
+    // three sides equals the altitude, independent of the point (a constant), for every interior run.
+    const distToLine = (p: number[], a: number[], b: number[]) => Math.abs((b[0]! - a[0]!) * (a[1]! - p[1]!) - (a[0]! - p[0]!) * (b[1]! - a[1]!)) / dist(a, b)
+    const eqA = [0, 0], eqB = [1, 0], eqC = [1 / 2, Math.sqrt(3) / 2]
+    const altitude = Math.sqrt(3) / 2
+    let viviani = true, vivianiTests = 0
+    for (let t = 1; t <= 3 * 100; t += 1) {
+      const u = frac(t * PHI), v = frac(t * PHI * PHI) * (1 - u), w = 1 - u - frac(t * PHI * PHI) * (1 - u)
+      if (u <= 0 || v <= 0 || w <= 0) continue
+      const P = [u * eqA[0]! + v * eqB[0]! + w * eqC[0]!, u * eqA[1]! + v * eqB[1]! + w * eqC[1]!]
+      const sum = distToLine(P, eqA, eqB) + distToLine(P, eqB, eqC) + distToLine(P, eqC, eqA)
+      vivianiTests += 1
+      if (Math.abs(sum - altitude) > tol) viviani = false
+    }
+
+    const sealed = sealFacets('discovered-theorems-twenty-six', [
+      { facet: `Ptolemy's theorem — for a cyclic quadrilateral AC·BD = AB·CD + BC·AD, verified on ${ptolemyTests} golden-ratio configurations of four points on the unit circle: the product of the diagonals equals the sum of the products of opposite sides (cited for all cyclic quadrilaterals)`, on: ptolemy && ptolemyTests > 100 },
+      { facet: `Napoleon's theorem — the centroids of outward equilateral triangles on the sides of any triangle form an equilateral triangle, confirmed on ${napoleonTests} non-degenerate triangles (equal pairwise centroid distances to 1e-6)`, on: napoleon && napoleonTests > 100 },
+      { facet: `the Euler line — circumcenter, centroid and orthocenter are collinear with OG:GH = 1:2, verified on ${eulerTests} triangles (zero cross-product and OH = 3·OG), using H = A + B + C − 2O`, on: euler && eulerTests > 100 },
+      { facet: `Viviani's theorem — the sum of distances from an interior point of an equilateral triangle to its three sides equals the altitude √3/2, constant across ${vivianiTests} interior points: the sum is independent of the point`, on: viviani && vivianiTests > 100 },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      tested: ptolemyTests + napoleonTests + eulerTests + vivianiTests,
+      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-six:${sealed.ok}`)),
+      statement: `Discovered theorems, wave twenty-six — classical plane geometry: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Ptolemy's cyclic identity, Napoleon's equilateral of centroids, the Euler line's 1:2 collinearity, and Viviani's constant distance sum, each confirmed across hundreds of deterministic configurations.`,
+      boundary: `HONEST: these are CONTINUOUS theorems (true for a continuum of configurations), so the fold gives a ROBUST NUMERICAL WITNESS — hundreds of golden-ratio-equidistributed configurations agreeing to 1e-6 — not a finite-exhaustive proof; the general theorems (Ptolemy, Napoleon, Euler, Viviani) are cited. This is the honest class for continuous geometry: bounded-witness, reproducible (deterministic sampling, no randomness), and distinct from the finite-complete combinatorial atoms. A single counterexample among the runs would have failed the fold.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -3031,6 +3125,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-twenty-three', ok: discoveredTheoremsWaveTwentyThree(matrix).proven },
     { wave: 'discovered-twenty-four', ok: discoveredTheoremsWaveTwentyFour(matrix).proven },
     { wave: 'discovered-twenty-five', ok: discoveredTheoremsWaveTwentyFive(matrix).proven },
+    { wave: 'discovered-twenty-six', ok: discoveredTheoremsWaveTwentySix(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),

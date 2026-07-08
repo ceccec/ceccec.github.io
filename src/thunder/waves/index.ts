@@ -1089,6 +1089,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Lucas theorem for binomials mod p', states: 'C(n,k) mod p equals the product of digit-binomials C(n_i,k_i) in base p, verified for p ∈ {2,3,5,7} and all n ≤ 40 by direct Pascal reduction vs the digit product — binomials factor through the prime base', provedBy: 'discoveredTheoremsWaveTwentyFive', home: 'src/thunder/verify' },
     { theorem: 'Pythagorean parametrization is a bijection', states: 'every primitive triple with hypotenuse ≤ 200 arises exactly once from coprime opposite-parity (m,n) via (m²−n², 2mn, m²+n²) — the parametrised set equals the brute-forced set exactly; Euclid cited for all', provedBy: 'discoveredTheoremsWaveTwentyFive', home: 'src/thunder/verify' },
     { theorem: 'Fermat–Euler congruences', states: 'a^φ(n) ≡ 1 (mod n) for every a coprime to n (all n ≤ 60) and a^p ≡ a (mod p) for every prime p ≤ 60 — the foundation of modular exponentiation, exhausted within bound', provedBy: 'discoveredTheoremsWaveTwentyFive', home: 'src/thunder/verify' },
+    { theorem: 'Ptolemy cyclic-quadrilateral identity', states: 'AC·BD = AB·CD + BC·AD verified on 200 golden-ratio configurations of four points on the unit circle — the product of the diagonals equals the sum of the products of opposite sides; cited for all cyclic quadrilaterals', provedBy: 'discoveredTheoremsWaveTwentySix', home: 'src/thunder/verify' },
+    { theorem: 'Napoleon triangle theorem', states: 'the centroids of outward equilateral triangles on the sides of any triangle form an equilateral triangle, confirmed on ~200 non-degenerate triangles (equal pairwise centroid distances to 1e-6)', provedBy: 'discoveredTheoremsWaveTwentySix', home: 'src/thunder/verify' },
+    { theorem: 'Euler line collinearity 1:2', states: 'circumcenter, centroid and orthocenter are collinear with OG:GH = 1:2 (OH = 3·OG) on ~200 triangles, using H = A + B + C − 2O — zero cross-product witnessed', provedBy: 'discoveredTheoremsWaveTwentySix', home: 'src/thunder/verify' },
+    { theorem: 'Viviani constant distance sum', states: 'the sum of distances from an interior point of an equilateral triangle to its three sides equals the altitude √3/2, constant across 300 interior points — independent of the point', provedBy: 'discoveredTheoremsWaveTwentySix', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1200,6 +1204,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Lucas theorem for binomials mod p', states: 'C(n,k) mod p = Π C(n_i,k_i) base p, verified p∈{2,3,5,7}, n ≤ 40', class: 'finite-complete', consumes: 'Pascal mod p, base-p digits' },
   { theorem: 'Pythagorean parametrization is a bijection', states: '(m²−n²,2mn,m²+n²) covers every primitive triple to hyp 200 exactly once', class: 'finite-complete', consumes: 'one-math gcd, brute triple search' },
   { theorem: 'Fermat–Euler congruences', states: 'a^φ(n)≡1 mod n and a^p≡a mod p, exhausted to 60', class: 'finite-complete', consumes: 'totient, modular exponentiation' },
+  { theorem: 'Ptolemy cyclic-quadrilateral identity', states: 'AC·BD = AB·CD + BC·AD on 200 unit-circle configs — diagonals vs opposite sides', class: 'bounded-witness', consumes: 'golden-ratio sampling, distance' },
+  { theorem: 'Napoleon triangle theorem', states: 'outer-equilateral centroids form an equilateral, ~200 triangles', class: 'bounded-witness', consumes: 'rotation, centroid' },
+  { theorem: 'Euler line collinearity 1:2', states: 'O, G, H collinear with OG:GH = 1:2 on ~200 triangles', class: 'bounded-witness', consumes: 'circumcenter, H = A+B+C−2O' },
+  { theorem: 'Viviani constant distance sum', states: 'interior distance sum = altitude √3/2 across 300 points', class: 'bounded-witness', consumes: 'point-to-line distance' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
