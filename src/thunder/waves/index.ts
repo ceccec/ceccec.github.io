@@ -1192,6 +1192,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Fermat two-squares for general n (from Gaussian primes)', states: 'n = a²+b² iff every prime p ≡ 3 (mod 4) divides n to an even power — the brute search matches the factorization criterion for every n ≤ 500, compounding on the Gaussian-prime splitting', provedBy: 'discoveredTheoremsWaveFiftyOne', home: 'src/9/1' },
     { theorem: 'Legendre three-square theorem', states: 'n is a sum of three squares iff n is not of the form 4^a(8b+7) — the brute three-square search matches the exclusion for every n ≤ 500', provedBy: 'discoveredTheoremsWaveFiftyOne', home: 'src/9/1' },
     { theorem: 'Lagrange four-square theorem', states: 'every natural number is a sum of four squares (no residue class obstructs it) — verified by exhaustive witness for every n ≤ 500', provedBy: 'discoveredTheoremsWaveFiftyOne', home: 'src/9/1' },
+    { theorem: 'triangular–square bridge 8T_k+1 = (2k+1)²', states: 'every triangular number T_k = k(k+1)/2 satisfies the exact identity — the algebraic key turning a square into an odd square that carries sum-of-squares to the figurate numbers', provedBy: 'discoveredTheoremsWaveFiftyTwo', home: 'src/thunder/waves' },
+    { theorem: '8n+3 is always a sum of three squares (from Legendre)', states: '8n+3 ≡ 3 (mod 8) is never of the form 4^a(8b+7), so Legendre’s exclusion never fires — verified for every n ≤ 300, the residue channel surviving the three-square obstruction', provedBy: 'discoveredTheoremsWaveFiftyTwo', home: 'src/thunder/waves' },
+    { theorem: 'Gauss Eureka: every n is a sum of three triangular numbers', states: '8n+3 = odd²+odd²+odd² (three squares forced odd by mod 8) with 2k+1 ↔ T_k gives three triangular numbers — verified by exhaustive witness for every n ≤ 300, compounding on the three-square theorem', provedBy: 'discoveredTheoremsWaveFiftyTwo', home: 'src/thunder/waves' },
+    { theorem: 'two triangular numbers ↔ two squares of 4n+1', states: 'n is a sum of two triangular numbers iff 4n+1 is a sum of two squares — the companion bridge 4n+1 = odd²+even² ↔ T_a+T_b, verified for every n ≤ 300, compounding on Fermat’s two-squares', provedBy: 'discoveredTheoremsWaveFiftyTwo', home: 'src/thunder/waves' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1545,6 +1549,54 @@ export function discoveredTheoremsWaveFortyEight(matrix: MindMatrix = buildMatri
       root: merge(sealed.root, toUuid(`discovered-theorems-forty-eight:${sealed.ok}`)),
       statement: `Discovered theorems, wave forty-eight — second-order compounding: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — order-p² groups are abelian (from the p-group center), a cube has 10 two-colorings (from Burnside), Σr² = e₁²−2e₂ (from Newton), and Euler's criterion (from Fermat's little).`,
       boundary: `HONEST: this wave compounds on the COMPOUNDING waves — order-p² abelian rides the p-group-center theorem (wave 46), the cube count rides Burnside (wave 47), each itself derived from a proven atom: proofs on proofs on proofs, the emergence law iterated. Verified by computation on finite instances (four groups, the 24 cube rotations, three root sets, primes ≤ 50); the general theorems are cited.`,
+    }
+  })
+}
+
+// ── Discovered theorems, wave fifty-two (the figurate tower) — COMPOUNDS on wave 51: the triangular
+// numbers ride the sum-of-squares theorems through the identity 8·T_k + 1 = (2k+1)², turning
+// Legendre's three-square and Fermat's two-square into Gauss's Eureka and its two-triangular companion.
+export function discoveredTheoremsWaveFiftyTwo(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveFiftyTwo', matrix, () => {
+    const isSumK = (n: number, k: number): boolean => { if (k === 1) { const r = Math.round(Math.sqrt(n)); return r * r === n } for (let a = 0; a * a <= n; a += 1) if (isSumK(n - a * a, k - 1)) return true; return false }
+    const lim = 3 * 100
+    const triSet: number[] = []; for (let k = 0; k * (k + 1) / 2 <= lim; k += 1) triSet.push(k * (k + 1) / 2)
+    const triHas = new Set(triSet)
+
+    // W1 · the TRIANGULAR–SQUARE bridge — 8·T_k + 1 = (2k+1)²: every triangular number T_k = k(k+1)/2
+    // satisfies the exact identity, the algebraic key that turns three-square into three-triangular.
+    let triSquareId = true
+    for (let k = 0; k <= 9 * 9; k += 1) { const t = k * (k + 1) / 2; if (8 * t + 1 !== (2 * k + 1) ** 2) triSquareId = false }
+
+    // W2 · 8n+3 is ALWAYS a sum of three squares, FROM Legendre's three-square (wave 51) — 8n+3 ≡ 3
+    // (mod 8) is never of the form 4^a(8b+7), so the exclusion never fires; verified for every n ≤ 300.
+    let eightBridge = true
+    for (let n = 0; n <= lim; n += 1) if (!isSumK(8 * n + 3, 3)) eightBridge = false
+
+    // W3 · GAUSS'S EUREKA — every natural number is a sum of THREE triangular numbers, COMPOUNDING on
+    // wave 51: 8n+3 is a sum of three squares (W2), all forced ODD by mod 8, and 2k+1 ↔ T_k (W1);
+    // verified by exhaustive three-triangular witness for every n ≤ 300 (Gauss's "ΕΥΡΗΚΑ" theorem).
+    let eureka = true
+    for (let n = 0; n <= lim; n += 1) { let ok = false; for (const a of triSet) { if (a > n) break; for (const b of triSet) { if (a + b > n) break; if (triHas.has(n - a - b)) { ok = true; break } } if (ok) break } if (!ok) eureka = false }
+
+    // W4 · n is a sum of TWO triangular numbers iff 4n+1 is a sum of two squares, FROM Fermat's two-
+    // squares (wave 51) — the companion bridge 4n+1 = odd²+even² ↔ T_a+T_b; verified for every n ≤ 300.
+    let twoTri = true
+    for (let n = 0; n <= lim; n += 1) { let s2t = false; for (const a of triSet) { if (a > n) break; if (triHas.has(n - a)) { s2t = true; break } } if (s2t !== isSumK(4 * n + 1, 2)) twoTri = false }
+
+    const sealed = sealFacets('discovered-theorems-fifty-two', [
+      { facet: `the TRIANGULAR–SQUARE bridge — 8·T_k + 1 = (2k+1)² for every triangular number T_k = k(k+1)/2: the exact identity turning a square into an odd square, the algebraic key that carries the sum-of-squares tower to the figurate numbers`, on: triSquareId },
+      { facet: `FROM Legendre's three-square (wave 51) — 8n+3 is ALWAYS a sum of three squares: 8n+3 ≡ 3 (mod 8) is never of the form 4^a(8b+7), so the exclusion never fires; verified for every n ≤ 300 (the residue channel that survives the three-square obstruction)`, on: eightBridge },
+      { facet: `GAUSS'S EUREKA, COMPOUNDING on wave 51 — every natural number is a sum of THREE triangular numbers: 8n+3 = odd²+odd²+odd² (three squares forced odd by mod 8, W2) and 2k+1 ↔ T_k (W1); verified by exhaustive witness for every n ≤ 300 (Gauss's own "ΕΥΡΗΚΑ")`, on: eureka },
+      { facet: `FROM Fermat's two-squares (wave 51) — n is a sum of TWO triangular numbers iff 4n+1 is a sum of two squares: the companion bridge 4n+1 = odd²+even² ↔ T_a+T_b; verified for every n ≤ 300 (two-squares projected onto the triangular lattice)`, on: twoTri },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-two:${sealed.ok}`)),
+      statement: `Discovered theorems, wave fifty-two (the figurate tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the 8T_k+1 = (2k+1)² bridge, 8n+3 always three squares, Gauss's Eureka (every n is three triangular numbers), and two-triangular ↔ two-squares.`,
+      boundary: `HONEST: Gauss's Eureka COMPOUNDS on wave 51 — every n is three triangular numbers because 8n+3 is three squares (Legendre, wave 51), all odd by mod 8, and each odd square is 8·T+1. The two-triangular facet rides Fermat's two-squares the same way. All four verified complete for every n ≤ 300 (the general theorems — Gauss, Legendre, Fermat — cited); the figurate tower is the sum-of-squares tower read through the triangular–square identity.`,
     }
   })
 }

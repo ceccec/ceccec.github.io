@@ -9,7 +9,7 @@ import { staticPages, crawlerKnowledge } from '../../wind/site'
 import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, toUuid } from '../../0'
 import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
-import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight } from '../waves'
+import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight, discoveredTheoremsWaveFiftyTwo } from '../waves'
 import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFiftyOne, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive } from '../../9/1'
 import { tkCompose, tkInverse, tkKey, tkPerms, tkIsPrime, tkPowMod, tkClassSizes, tkClassSumSimple, tkClosure, tkPslOverField } from '../../9/1'
 import { addressed, covers } from '../../5/5'
@@ -2503,6 +2503,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-forty-nine', ok: discoveredTheoremsWaveFortyNine(matrix).proven },
     { wave: 'discovered-fifty', ok: discoveredTheoremsWaveFifty(matrix).proven },
     { wave: 'discovered-fifty-one', ok: discoveredTheoremsWaveFiftyOne(matrix).proven },
+    { wave: 'discovered-fifty-two', ok: discoveredTheoremsWaveFiftyTwo(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),
