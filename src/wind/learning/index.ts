@@ -1,5 +1,7 @@
 // ☴ Xùn · Wind — learning, agents & knowledge folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
 import * as __ns_up_water_digit from '../../water/digit'
+// call-time namespace edge (cycle-safe): thunder/waves imports learning; nav reads the registry back at call time
+import * as __ns_thunder_waves from '../../thunder/waves'
 import * as __ns_up_language from '../language'
 import * as __ns_up_earth_architecture from '../../earth/architecture'
 import * as __ns_up_earth_world from '../../earth/world'
@@ -1863,7 +1865,10 @@ export function ogBuildsNavigation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
-  const pages = [...staticPages(), ...componentPages()]
+  // ONE page set: a component page whose EN title duplicates a curated card is the SAME surface
+  // twice (QuantumConsole → /quantum-console beside /console) — the curated card is canonical.
+  const curatedTitles = new Set(staticPages().map((page) => page.title.en))
+  const pages = [...staticPages(), ...componentPages().filter((page) => !curatedTitles.has(page.title.en))]
   const routeOf = (slug: string) => (slug === '' ? '/' : `/${slug}`)
   const byRoute = new Map(pages.map((page) => [routeOf(page.slug), page]))
   const META = new Set(['component', 'proof'])
@@ -1892,10 +1897,10 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
     { text: i === 1 ? 'Розета' : 'Rosetta', items: rosettaFold(i) },
   ]
-  const buildSidebar = (i: 0 | 1) =>
-    sidebarTags
-      .map((tag) => ({ text: tag === 'more' ? (i === 1 ? 'Още' : 'More') : cap(tag), items: routesIn(tag).map((route) => item(route, i)) }))
-      .filter((section) => section.items.length > 0)
+  // ONE grouping law at every scale: the sidebar folds by the SAME seven rosetta rays as the nav,
+  // related sections and crosslinks — two taxonomies were the confusion (13 tag groups + a 23-item
+  // 'More' drawer, over the eight-fold law). Seven rays ≤ 8: the folder law holds in the sidebar too.
+  const buildSidebar = (i: 0 | 1) => rosettaFold(i)
   const buildRelatedSidebar = (i: 0 | 1): Record<string, { text: string; items: { text: string; link: string }[] }[]> => {
     const byRay = new Map<number, string[]>()
     for (const page of staticPages()) {
@@ -1930,6 +1935,23 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   }
   const enRelatedSidebar = buildRelatedSidebar(0)
   const bgRelatedSidebar = buildRelatedSidebar(1)
+  // theorems belong in the navigation — the frontiers route carries the registry as a group:
+  // the count is computed, the crown entries anchor the panel (never prose, always names).
+  const theoremGroup = (i: 0 | 1) => {
+    const nav358 = __ns_thunder_waves.theoremNavigation(matrix)
+    const crowns = ['STS(9) unique, |Aut| = 432', 'the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4)', '36 officers are impossible', 'Kirkman triple system S(2,3,15) exists']
+    return {
+      text: i === 1 ? `⊢ Теореми — ${nav358.atomCount} доказани` : `⊢ Theorems — ${nav358.atomCount} proven`,
+      items: [
+        { text: i === 1 ? 'Целият регистър' : 'The full registry', link: link('/frontiers', i) },
+        ...crowns.map((name) => ({ text: name, link: link('/frontiers', i) })),
+      ],
+    }
+  }
+  for (const [related, i] of [[enRelatedSidebar, 0], [bgRelatedSidebar, 1]] as const) {
+    const key = '/frontiers'
+    if (related[key]) related[key] = [theoremGroup(i), ...related[key]!]
+  }
   const enCrosslinks = buildCrosslinks(0)
   const bgCrosslinks = buildCrosslinks(1)
   const buildFooter = (i: 0 | 1) => {
@@ -2062,10 +2084,10 @@ function vitepressSidebarForLocale(
       ],
     },
   ]
-  const portalLinks = flattenSidebarLinks(main)
   const out: Record<string, VitePressSidebarItem[]> = { '/': main }
   for (const [path, related] of Object.entries(bundle.relatedSidebar)) {
-    out[path] = [...related, { text: portalLabel, collapsed: true, items: portalLinks }]
+    // the portal appears GROUPED (the same rosetta fold), collapsed — never a flat 45-link drawer
+    out[path] = [...related, { text: portalLabel, collapsed: true, items: main }]
   }
   for (const kind of ['papers', 'references', 'diamonds'] as const) {
     const sections = corpusPrefixSidebar(kind, i, matrix)

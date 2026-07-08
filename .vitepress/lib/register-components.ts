@@ -69,6 +69,8 @@ const THEME_RESERVED = new Set([
 ])
 
 const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
+  // the frontiers surface renders the theorem registry — the 102 proven atoms were invisible
+  Frontiers: () => import('../theme/components/TheoremsPanel.vue'),
   RayHub: () => import('../theme/components/RayHub.vue'),
   Monograph: () => import('../theme/components/MonographFold.vue'),
   Corpus: () => import('../theme/components/CorpusFold.vue'),
