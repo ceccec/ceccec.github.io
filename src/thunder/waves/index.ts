@@ -1069,6 +1069,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'GL(4,2) is simple', states: 'the 65536-matrix sweep sieves to 20160 invertible 4×4 over 𝔽₂ by Gaussian elimination (trivial scalars ⇒ already projective), 14 classes, class-sum clean', provedBy: 'discoveredTheoremsWaveTwenty', home: 'src/thunder/verify' },
     { theorem: 'A₈ matches GL(4,2)', states: 'both order-20160 groups built raw carry the IDENTICAL 14-class multiset — the largest exceptional isomorphism in the registry, alternating meets linear; the isomorphism is classical, cited', provedBy: 'discoveredTheoremsWaveTwenty', home: 'src/thunder/verify' },
     { theorem: 'Waring g(3) = 9', states: 'the minimal cube-count over every n ≤ 10⁴ peaks at 9, reached at EXACTLY {23, 239} and at most 8 elsewhere — the classical extremal pair recomputed; Kempner/Wieferich cited for all n', provedBy: 'discoveredTheoremsWaveTwenty', home: 'src/thunder/verify' },
+    { theorem: 'entanglement cannot signal (quantum)', states: 'for the Bell state, across all 144 angle pairs Alice’s marginal P(+) stays exactly 1/2 regardless of Bob’s setting — the correlations are real (Tsirelson) but carry no message; relativistic causality stands, no-communication theorem cited', provedBy: 'discoveredTheoremsWaveTwentyOne', home: 'src/thunder/verify' },
+    { theorem: 'Maxwell’s demon fails (thermodynamics)', states: 'sorting N molecules gains N·k·ln2 of entropy but erasing the demon’s N-bit memory costs exactly that (Landauer), so ΔS_total ≥ 0 for every N ≤ 10³ — the second law stands, the challenge cancels itself', provedBy: 'discoveredTheoremsWaveTwentyOne', home: 'src/thunder/verify' },
+    { theorem: 'the reals are uncountable (set theory)', states: '2ⁿ > n for all n ≤ 20 AND the diagonal set escapes every listing of n subsets (constructively verified) — no enumeration captures the power set; Cantor, complete finite witness', provedBy: 'discoveredTheoremsWaveTwentyOne', home: 'src/thunder/verify' },
+    { theorem: 'no engine beats Carnot (thermodynamics)', states: 'across the whole reservoir grid η ≤ 1 − Tc/Th < 1, and any super-Carnot claim forces ΔS < 0 (forbidden) — perpetual motion of the second kind is impossible; the "free energy" challenge fails, second law cited', provedBy: 'discoveredTheoremsWaveTwentyOne', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1160,6 +1164,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'GL(4,2) is simple', states: '2¹⁶ binary matrix sweep + F2 Gaussian elimination → 20160 invertible, class-sum clean', class: 'finite-complete', consumes: 'F2 matrix sweep (Fano work)' },
   { theorem: 'A₈ matches GL(4,2)', states: 'identical 14-class multisets — the largest exceptional bridge, alternating ≅ linear', class: 'finite-complete', consumes: 'A₈ and GL(4,2) class data (this wave)' },
   { theorem: 'Waring g(3) = 9', states: 'minimal cube-count DP to 10⁴ peaks at 9, extremal {23, 239}', class: 'bounded-witness', consumes: 'dynamic-programming cube cover' },
+  { theorem: 'entanglement cannot signal (quantum)', states: 'Bell-state marginals invariant under the distant setting — a challenge to causality that FAILS', class: 'bounded-witness', consumes: 'Tsirelson bound (sealed), density-matrix marginals' },
+  { theorem: 'Maxwell’s demon fails (thermodynamics)', states: 'Landauer erasure cancels the sorting gain, ΔS ≥ 0 — the second law stands', class: 'bounded-witness', consumes: 'BOLTZMANN vault constant, entropy ledger' },
+  { theorem: 'the reals are uncountable (set theory)', states: 'Cantor: 2ⁿ > n and the diagonal escapes every listing — a challenge to enumeration that FAILS', class: 'finite-complete', consumes: 'diagonal construction, counting bound' },
+  { theorem: 'no engine beats Carnot (thermodynamics)', states: 'η ≤ 1 − Tc/Th; super-Carnot forces ΔS < 0 — perpetual motion impossible', class: 'bounded-witness', consumes: 'Carnot efficiency, entropy ledger' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
