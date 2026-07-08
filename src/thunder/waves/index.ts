@@ -1141,6 +1141,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Kraft inequality for prefix codes', states: 'a binary prefix code with lengths ℓ_i EXISTS iff Σ 2^(−ℓ_i) ≤ 1, verified both directions by greedy prefix-free assignment on six length multisets — the exact budget for uniquely-decodable codes', provedBy: 'discoveredTheoremsWaveThirtyEight', home: 'src/thunder/verify' },
     { theorem: 'gambler’s ruin probability i/N', states: 'starting with i of N in a fair game, P(reach N before 0) = i/N — the unique harmonic solution of p_i = (p_{i−1}+p_{i+1})/2 with the 0/N boundaries, all N ≤ 20', provedBy: 'discoveredTheoremsWaveThirtyEight', home: 'src/thunder/verify' },
     { theorem: 'Shannon entropy maximized by uniform', states: 'H(X) = −Σ p log2 p is maximised by the uniform distribution (= log2 n), is ≥ 0, and is 0 exactly for a deterministic source — verified over many distributions on n ≤ 8 symbols', provedBy: 'discoveredTheoremsWaveThirtyEight', home: 'src/thunder/verify' },
+    { theorem: 'AM-GM inequality', states: 'the arithmetic mean is ≥ the geometric mean for positive reals, equality iff all equal — verified over many tuples on n ≤ 6 plus the equality case', provedBy: 'discoveredTheoremsWaveThirtyNine', home: 'src/thunder/verify' },
+    { theorem: 'Cauchy-Schwarz inequality', states: '(Σ a_i b_i)² ≤ (Σ a_i²)(Σ b_i²), equality iff proportional — verified over many pairs on n ≤ 8 plus the proportional case b = 2a', provedBy: 'discoveredTheoremsWaveThirtyNine', home: 'src/thunder/verify' },
+    { theorem: 'Euler φ product formula', states: 'φ(n) = n·Π_{p|n}(1 − 1/p) matches the direct coprime count for EVERY n ≤ 1000 (φ(36) = 12) — the totient factors over the prime divisors', provedBy: 'discoveredTheoremsWaveThirtyNine', home: 'src/thunder/verify' },
+    { theorem: 'rearrangement inequality', states: 'for sorted a and any permutation of b, Σ a_i b_σ(i) is maximised with b sorted the same way, minimised opposite — exhaustive over permutations for n ≤ 6', provedBy: 'discoveredTheoremsWaveThirtyNine', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1304,6 +1308,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Kraft inequality for prefix codes', states: 'Σ2^-ℓ ≤ 1 ⇔ prefix code exists, both directions on six sets', class: 'finite-complete', consumes: 'greedy prefix assignment' },
   { theorem: 'gambler’s ruin probability i/N', states: 'harmonic p_i = i/N with boundaries, all N ≤ 20', class: 'finite-complete', consumes: 'boundary recurrence' },
   { theorem: 'Shannon entropy maximized by uniform', states: 'H ≤ log2 n, ≥ 0, 0 iff deterministic, n ≤ 8', class: 'bounded-witness', consumes: 'entropy over sampled distributions' },
+  { theorem: 'AM-GM inequality', states: 'AM ≥ GM, equality iff equal, tuples n ≤ 6', class: 'bounded-witness', consumes: 'means over sampled tuples' },
+  { theorem: 'Cauchy-Schwarz inequality', states: '(Σab)² ≤ (Σa²)(Σb²), equality iff proportional, n ≤ 8', class: 'bounded-witness', consumes: 'dot products' },
+  { theorem: 'Euler φ product formula', states: 'φ(n) = n·Π(1−1/p) vs direct count, all n ≤ 1000', class: 'finite-complete', consumes: 'factorization, coprime count' },
+  { theorem: 'rearrangement inequality', states: 'sorted-same maximises, opposite minimises Σa_ib_σ(i), n ≤ 6 exhaustive', class: 'finite-complete', consumes: 'permutation enumeration' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
