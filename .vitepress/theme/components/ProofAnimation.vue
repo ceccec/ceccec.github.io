@@ -90,6 +90,100 @@ function draw(t: number) {
       const r = (c * (7 / 8) * Math.sqrt(i + 1)) / Math.sqrt(props.spec.points)
       ctx.beginPath(); ctx.arc(c + r * Math.cos(a), c + r * Math.sin(a), Math.max(1, s / (3 * 8)), 0, TAU); ctx.fill()
     }
+  } else if (k === 'circle') {
+    // points on a circle, every chord faint, one bright chord rotating (Ptolemy/Thales/inscribed angle)
+    const n = props.spec.points
+    const pts = ring(n, c * (3 / 4), c, c, 0)
+    const lit = Math.floor(((phase / TAU) % 1) * n) % n
+    stroke(1 / 4); ctx.beginPath(); ctx.arc(c, c, c * (3 / 4), 0, TAU); ctx.stroke()
+    for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) { stroke(i === lit ? 1 : 1 / 6); ctx.beginPath(); ctx.moveTo(...pts[i]!); ctx.lineTo(...pts[j]!); ctx.stroke() }
+  } else if (k === 'triangle') {
+    // a triangle with a cevian sweeping from a moving vertex and a pulsing incircle (plane geometry)
+    const tri = ring(3, c * (3 / 4), c, c, -TAU / 4)
+    stroke(3 / 4); ctx.beginPath(); for (let i = 0; i <= 3; i += 1) ctx.lineTo(...tri[i % 3]!); ctx.stroke()
+    const t = (phase / TAU) % 1
+    const foot = [tri[1]![0] + t * (tri[2]![0] - tri[1]![0]), tri[1]![1] + t * (tri[2]![1] - tri[1]![1])] as const
+    stroke(1); ctx.beginPath(); ctx.moveTo(...tri[0]!); ctx.lineTo(...foot); ctx.stroke()
+    fill(1 / 2); ctx.beginPath(); ctx.arc(c, c, s / (2 * 6) * (1 + Math.sin(phase) / 3), 0, TAU); ctx.fill()
+  } else if (k === 'series') {
+    // partial sums of a shrinking series converging to a limit line (Basel, Leibniz, geometric, power-sums)
+    const n = props.spec.points, limit = c * (1 / 4)
+    stroke(1 / 3); ctx.beginPath(); ctx.moveTo(0, c - limit); ctx.lineTo(s, c - limit); ctx.stroke()
+    let acc = 0
+    for (let i = 0; i < n; i += 1) {
+      acc += (limit * 2 * (3 / 4)) / 2 ** (i + 1)
+      const x = (s * (i + 1)) / (n + 1), grow = Math.min(1, (phase / TAU) / (i / 2 + 1))
+      stroke(i === Math.floor((phase / TAU) % n) ? 1 : 1 / 2)
+      ctx.beginPath(); ctx.moveTo(x, c + limit); ctx.lineTo(x, c + limit - acc * grow * 2); ctx.stroke()
+    }
+  } else if (k === 'polytope') {
+    // a rotating wireframe solid — cube vertices spun by the phase, projected (polytopes, dimension, string)
+    const verts = Array.from({ length: 8 }, (_, v) => {
+      let x = (v & 1) - 1 / 2, y = ((v >> 1) & 1) - 1 / 2, z = ((v >> 2) & 1) - 1 / 2
+      const cx = Math.cos(phase), sx = Math.sin(phase);[x, z] = [x * cx - z * sx, x * sx + z * cx]
+      const cy = Math.cos(phase * (2 / 3)), sy = Math.sin(phase * (2 / 3));[y, z] = [y * cy - z * sy, y * sy + z * cy]
+      const sc = c * (3 / 5) / (1 + z / 3)
+      return [c + x * sc, c + y * sc] as const
+    })
+    stroke(3 / 4)
+    for (let a = 0; a < 8; a += 1) for (const bit of [1, 2, 4]) { const b = a ^ bit; if (b > a) { ctx.beginPath(); ctx.moveTo(...verts[a]!); ctx.lineTo(...verts[b]!); ctx.stroke() } }
+  } else if (k === 'wave') {
+    // two interfering sine waves and their sum (quantum, spectra, string algebra, physics laws)
+    for (const [amp, freq, sh] of [[1, 2, 0], [1, 3, TAU / 3], [1, 0, 0]] as const) {
+      stroke(freq === 0 ? 1 : 1 / 2)
+      ctx.beginPath()
+      for (let px = 0; px <= s; px += 2) {
+        const u = (px / s) * TAU
+        const y = freq === 0
+          ? (Math.sin(u * 2 + phase) + Math.sin(u * 3 + phase + TAU / 3)) / 2
+          : Math.sin(u * freq + phase + sh)
+        if (px === 0) ctx.moveTo(px, c + y * (c / 2)); else ctx.lineTo(px, c + y * (c / 2))
+      }
+      ctx.stroke()
+    }
+  } else if (k === 'tree') {
+    // a branching binary tree, levels pulsing outward (Bell, Stirling, Catalan, counting bijections)
+    const draw = (x: number, y: number, dx: number, depth: number) => {
+      if (depth === 0) return
+      const ny = y + s / 5
+      for (const s2 of [-1, 1]) { const nx = x + s2 * dx; stroke((depth + phase / TAU) % 2 < 1 ? 1 : 1 / 3); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(nx, ny); ctx.stroke(); fill(1); ctx.beginPath(); ctx.arc(nx, ny, s / (3 * 8), 0, TAU); ctx.fill(); draw(nx, ny, dx / 2, depth - 1) }
+    }
+    fill(1); ctx.beginPath(); ctx.arc(c, s / 8, s / (3 * 8), 0, TAU); ctx.fill()
+    draw(c, s / 8, s / 4, 3)
+  } else if (k === 'balance') {
+    // a balance beam tilting toward level — the equality case of an inequality (AM-GM, Cauchy-Schwarz)
+    const tilt = Math.sin(phase) / 5
+    const pivot = [c, c] as const, arm = c * (3 / 5)
+    const l = [c - arm * Math.cos(tilt), c + arm * Math.sin(tilt)] as const
+    const r = [c + arm * Math.cos(tilt), c - arm * Math.sin(tilt)] as const
+    stroke(1); ctx.beginPath(); ctx.moveTo(...pivot); ctx.lineTo(c, c + arm / 2); ctx.stroke()
+    stroke(3 / 4); ctx.beginPath(); ctx.moveTo(...l); ctx.lineTo(...r); ctx.stroke()
+    fill(1); for (const p of [l, r]) { ctx.beginPath(); ctx.arc(p[0], p[1] + s / 8, s / (2 * 5), 0, TAU); ctx.fill() }
+  } else if (k === 'dice') {
+    // a probability wheel split into segments, one sweeping (Monty Hall, gambler, entropy, shuffles)
+    const n = Math.max(3, props.spec.points)
+    const lit = Math.floor(((phase / TAU) % 1) * n) % n
+    for (let i = 0; i < n; i += 1) {
+      fill(i === lit ? 3 / 4 : 1 / 5, (i * 360) / n)
+      ctx.beginPath(); ctx.moveTo(c, c); ctx.arc(c, c, c * (3 / 4), (i / n) * TAU, ((i + 1) / n) * TAU); ctx.closePath(); ctx.fill()
+    }
+  } else if (k === 'cycle') {
+    // a ring of nodes with a token hopping around and one edge lighting (Josephus, graph cycles, cages)
+    const n = props.spec.points
+    const pts = ring(n, c * (3 / 4), c, c, -TAU / 4)
+    stroke(1 / 3); ctx.beginPath(); for (let i = 0; i <= n; i += 1) ctx.lineTo(...pts[i % n]!); ctx.stroke()
+    const at = Math.floor(((phase / TAU) % 1) * n) % n
+    for (let i = 0; i < n; i += 1) { fill(i === at ? 1 : 1 / 4); ctx.beginPath(); ctx.arc(...pts[i]!, i === at ? s / (2 * 6) : s / (3 * 8), 0, TAU); ctx.fill() }
+  } else if (k === 'sieve') {
+    // a number grid, primes/marked cells lighting in a diagonal sweep (number theory, congruences, divisors)
+    const g = 6, cell = s / g, sweep = ((phase / TAU) % 1) * 2 * g
+    const isP = (x: number) => { if (x < 2) return false; for (let d = 2; d * d <= x; d += 1) if (x % d === 0) return false; return true }
+    for (let iy = 0; iy < g; iy += 1) for (let ix = 0; ix < g; ix += 1) {
+      const num = iy * g + ix + 1, on = isP(num)
+      const near = Math.abs((ix + iy) - sweep) < 1
+      if (on) fill(near ? 1 : 1 / 2); else fill(near ? 1 / 4 : 1 / (2 * 6))
+      ctx.beginPath(); ctx.arc(ix * cell + cell / 2, iy * cell + cell / 2, cell / (on ? 3 : 5), 0, TAU); ctx.fill()
+    }
   } else {
     // vortex — the 1-2-4-8-7-5 walk on the digit circle
     const seq = [1, 2, 4, 8, 7, 5]

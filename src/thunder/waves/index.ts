@@ -2286,9 +2286,11 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
 // pentagon 2-coloring, Nim pulses the XOR lattice, Kirkman cycles its 7 spreads, the simple groups
 // rotate their class rings. One renderer interprets the specs; no animation is hand-keyed — kind and
 // parameters derive from the registry atom, rates ride the φ-ladder or the canonical lattice.
+export type ProofAnimationKind = 'star' | 'coloring' | 'lattice' | 'spreads' | 'classes' | 'spiral' | 'vortex'
+  | 'circle' | 'triangle' | 'series' | 'polytope' | 'wave' | 'tree' | 'balance' | 'dice' | 'cycle' | 'sieve'
 export type ProofAnimationSpec = {
   readonly theorem: string
-  readonly kind: 'star' | 'coloring' | 'lattice' | 'spreads' | 'classes' | 'spiral' | 'vortex'
+  readonly kind: ProofAnimationKind
   readonly points: number
   readonly lines: readonly (readonly number[])[]
   readonly ratePhi: number // φ^−k rate index — quasi-periodic, never repeats
@@ -2299,21 +2301,32 @@ export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
     const registry = theoremAtoms(matrix)
     const fano = fanoLines()
     const digitOf = (name: string) => (([...name].reduce((s, ch) => s + ch.charCodeAt(0), 0) % 9) || 9)
+    // keyword → dedicated animation family, most-specific first; a theorem takes the first family it
+    // matches, so each proof gets a visual metaphor of its own subject (only the truly generic fall to vortex).
+    const families: readonly (readonly [readonly string[], ProofAnimationKind, number, number])[] = [
+      [['fano', '7-star', 'steiner s(2,3,7)', 'hurwitz 7d', 'octonion', 'associativity independent'], 'star', 7, 3],
+      [['ramsey', 'r(3,', 'r(4,', 'van der waerden', 'schur', 'mantel', 'erdős–ko', 'erdős–sz'], 'coloring', 5, 4],
+      [['ptolemy', 'thales', 'inscribed', 'circle', 'gauss sum'], 'circle', 6, 3],
+      [['ceva', 'menelaus', 'nine-point', 'euler line', 'napoleon', 'viviani', 'heron', 'pythagor', 'sylvester–gallai', 'sylvester–frobenius', 'parallel postulate', 'pick'], 'triangle', 3, 3],
+      [['basel', 'leibniz', 'wallis', 'geometric series', 'telescop', 'power-sum', 'nicomachus', 'harmonic', 'ζ(', 'the 24', 't-duality', 'ramanujan', 'τ('], 'series', 2 * 6, 3],
+      [['platonic', 'polytope', 'tiling', 'descartes', 'n-cube', 'n-ball', 'hypercube', 'q₈', 'quaternion', 'minkowski', 'so(7)', 'genus-2', 'signature', 'non-integer dimension'], 'polytope', 5, 2],
+      [['tsirelson', 'cloning', 'ghz', 'deutsch', 'grover', 'bit-flip', 'church–turing', 'holevo', 'quantum', 'bloch', 'pauli', 'entangle', 'virasoro', 'd = 26', 'd = 10', 'hurwitz breaks', 'bosonic', 'superstring', 'spectrum', 'velocity additivity', 'ideal gas', 'carnot', 'maxwell', 'blending'], 'wave', 8, 4],
+      [['bell number', 'stirling', 'catalan bijection', 'surjection', 'matrix-tree', 'cayley', 'derangement', 'vandermonde', 'hockey', 'motzkin', 'binomial', 'sheffer', 'burnside', 'partition'], 'tree', 7, 3],
+      [['am-gm', 'cauchy-schwarz', 'cauchy–schwarz', 'rearrangement', 'inequalit', 'jensen', 'excluded middle', 'uncountable', 'commutativity independent', 'transitivity', 'compression impossible', 'reuse graph'], 'balance', 5, 3],
+      [['monty', 'gambler', 'ballot', 'coupon', 'birthday', 'shannon', 'kraft', 'entropy', 'eight riffles', 'riffle'], 'dice', 6, 4],
+      [['josephus', 'hanoi', '8-puzzle', 'kaprekar', 'busy beaver', 'perrin', 'gray code', 'de bruijn', 'pisano', 'collatz', 'non-hamiltonian', 'hamiltonian', 'petersen', 'heawood', 'graphicality', 'dirac', 'gp(n', 'dodecahedron', 'non-planar', 'cage'], 'cycle', 8, 4],
+      [['nim', 'zhegalkin', '𝔽₂³', 'lo shu', 'magic square', 'shidoku', 'officers', 'latin squares', 'pentomino'], 'lattice', 8, 5],
+      [['kirkman', 'spread', 'parallelism'], 'spreads', 2 ** 4 - 1, 4],
+      [['simple', 'sts(9)', '168', 'psl', 'groups of order', 'mathieu', 'm₁', 'gl(4,2)', 'a₈ matches', 'a₄ matches', 'a₆', 'class equation', 'orbit-stab', 'lagrange', 'cauchy theorem', 'unit group', 'hurwitz units', 'ab/ba', 'rank so(7)'], 'classes', 9, 2],
+      [['pell', 'pentagonal', 'catalan', 'fibonacci', 'farey', 'zeckendorf', 'lucas', 'cassini', 'quadratic form', 'three cubes', 'taxicab'], 'spiral', 8 * 3, 3],
+      [['prime', 'fermat', 'wolstenholme', 'kummer', 'carmichael', 'euclid', 'legendre', 'möbius', 'mobius', 'quadratic residue', 'remainder', 'crt', 'bézout', 'bezout', 'two squares', 'wilson', 'totient', 'euler', 'armstrong', 'amicable', 'divisor', 'reciprocity', 'continued fraction', 'perfect', 'bertrand', 'waring', 'graeco', 'projective plane', 'σ and τ', 'φ(d)', 'wantzel', 'frobenius', 'determinant'], 'sieve', 100, 3],
+    ]
     const specOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit'> => {
       const t = theorem.toLowerCase()
-      if (t.includes('fano') || t.includes('7-star') || t.includes('steiner s(2,3,7)') || t.includes('hurwitz 7d'))
-        return { kind: 'star', points: 7, lines: fano, ratePhi: 3 }
-      if (t.includes('ramsey') || t.includes('r(3,') || t.includes('r(4,'))
-        return { kind: 'coloring', points: t.includes('r(3,4)') ? 8 : t.includes('r(4,4)') ? 9 : 5, lines: [], ratePhi: 4 }
-      if (t.includes('nim') || t.includes('zhegalkin') || t.includes('𝔽₂³') || t.includes('parity'))
-        return { kind: 'lattice', points: 8, lines: [], ratePhi: 5 }
-      if (t.includes('kirkman') || t.includes('spread') || t.includes('parallelism'))
-        return { kind: 'spreads', points: 2 ** 4 - 1, lines: [], ratePhi: 4 }
-      if (t.includes('simple') || t.includes('sts(9)') || t.includes('168') || t.includes('psl') || t.includes('groups of order'))
-        return { kind: 'classes', points: 9, lines: [], ratePhi: 2 }
-      if (t.includes('pell') || t.includes('pentagonal') || t.includes('catalan') || t.includes('fibonacci') || t.includes('farey') || t.includes('zeckendorf'))
-        return { kind: 'spiral', points: 8 * 3, lines: [], ratePhi: 3 }
-      return { kind: 'vortex', points: 9, lines: [], ratePhi: 4 }
+      const hit = families.find(([keys]) => keys.some((k) => t.includes(k)))
+      if (!hit) return { kind: 'vortex', points: 9, lines: [], ratePhi: 4 }
+      const [, kind, points, ratePhi] = hit
+      return { kind, points, lines: kind === 'star' ? fano : [], ratePhi }
     }
     const specs: ProofAnimationSpec[] = registry.theorems.map((entry) => ({
       theorem: entry.theorem,
