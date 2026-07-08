@@ -19,7 +19,7 @@ import { ancientCalendars } from '../../thunder/decode'
 import { babelFold, textToMovie } from '../../earth/world'
 import { areaPairs, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../../mountain/geometry'
 import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../../quantum/mountain/dimensions'
-import { perspective, rot2 } from '../../quantum/wind/geometry' // the sealed projection atoms — FOCAL-2.4 perspective divide + the one planar rotation
+import { depthIsThePerspectiveDivide, perspective, rot2 } from '../../quantum/wind/geometry' // the sealed projection atoms — FOCAL-2.4 perspective divide + the one planar rotation
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../../thunder/movie/glass'
 import { yinYang } from '../../quantum/lake/spirit'
 import { scaleColor, A432_HUE, movieCanvasHex } from '../../quantum/science'
@@ -1227,11 +1227,13 @@ export function animationsRespectTheField(matrix: MindMatrix = buildMatrix()) {
     { principle: 'one source per plane of spin', holds: true, why: 'rotateXY/rotateYZ/rotateZX are the shared atoms; a component composes the planes it needs in its own order — no re-derived sin/cos rotation' },
     { principle: 'realtime stream', holds: true, why: 'createAnimationEngine drives the loops, recomputed each frame and gated; sweep periods are field-derived, not magic' },
     { principle: 'no gaps', holds: true, why: 'every animating component now draws from the one source — rot2 (the planar-rotation atom) for all 3D and 4D spin, the shared prng for seeded movies; DoubleTorusExperience and QuantumClock re-verified as off the spin axis (DOM/clock), not gaps' },
+    { principle: 'depth is the perspective divide', holds: depthIsThePerspectiveDivide().holds, why: 'every canvas projection routes depth through perspective() composed with the rotation atoms — never a z→y screen offset; the 2026-07-07 audit purged the three fakes (living torus, tetra merkaba, glyph labyrinth) and the law fold checks the atoms\' invariants live' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`anim-principle:${entry.principle}:${entry.holds}`) }))
   // The wiring map — honest about which components draw from the shared spin atoms vs are pending the sweep.
   const wiring = [
     { component: 'HolographicHero · HologramMovie', via: 'drawHero (rotate3 + perspective + dims)', wired: true },
-    { component: 'LivingTorus', via: 'doubleTorusSurface + merkaba rates', wired: true, note: 'on the shared fold; its spin Euler step is the next atom-wiring' },
+    { component: 'LivingTorus', via: 'doubleTorusSurface + rotate3 + perspective — rigid per-lobe spin under the oblique view tilt', wired: true, note: 'atom-wired 2026-07-07: the z→y offset replaced by the perspective divide, extents data-derived' },
+    { component: 'QuantumApps (10 projections incl. labyrinth)', via: 'the qProject kernel (rotate3 + perspective), painter-sorted', wired: true, note: 'labyrinth was the last painter off the kernel — probed 157/157 glyphs on-canvas' },
     { component: 'Merkaba', via: 'rotateZX → rotateYZ (composed from the atoms)', wired: true },
     { component: 'QuantumRadar', via: 'sweep period field-derived from the radar content', wired: true },
     { component: 'DoubleTorus3D', via: 'rot2 for the 4D (x-w) fold AND the 3D (x-z) rotation — one atom', wired: true },
