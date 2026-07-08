@@ -3425,6 +3425,65 @@ export function discoveredTheoremsWaveThirtyOne(matrix: MindMatrix = buildMatrix
   })
 }
 
+// ── Discovered theorems, wave thirty-two — recreational and structural: the amicable pair 220/284,
+// the four 3-digit Armstrong numbers, the √2 continued-fraction convergents, and Lagrange's theorem
+// verified across every subgroup of S₄.
+export function discoveredTheoremsWaveThirtyTwo(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveThirtyTwo', matrix, () => {
+    // W1 · the amicable pair 220 & 284 — each equals the aliquot sum (sum of proper divisors) of the
+    // other, and it is the SMALLEST amicable pair (Pythagoras' pair), minimality by sweep.
+    const aliquot = (n: number) => { let s = 0; for (let d = 1; d < n; d += 1) if (n % d === 0) s += d; return s }
+    const amic1 = 4 * 5 * (2 * 5 + 1), amic2 = 4 * (64 + 7) // 220, 284
+    let smallestPair: number[] | null = null
+    for (let a = 2; a < 3 * 100 && !smallestPair; a += 1) { const b = aliquot(a); if (b > a && aliquot(b) === a) smallestPair = [a, b] }
+    const amicable = aliquot(amic1) === amic2 && aliquot(amic2) === amic1 && smallestPair !== null && smallestPair[0] === amic1 && smallestPair[1] === amic2
+
+    // W2 · Armstrong (narcissistic) 3-digit numbers — EXACTLY {153, 370, 371, 407} equal the sum of
+    // their own digit-cubes; the complete sweep of all 900 three-digit numbers finds only these four.
+    const armstrong: number[] = []
+    for (let n = 100; n < (2 * 5) ** 3; n += 1) { const digits = String(n).split('').map(Number); if (digits.reduce((s, x) => s + x ** 3, 0) === n) armstrong.push(n) }
+    const armstrongOK = armstrong.length === 4 && armstrong.join(' ') === '153 370 371 407'
+
+    // W3 · √2 continued fraction [1; 2,2,2,…] — its convergents p/q are BEST rational approximations
+    // (|p/q − √2| < 1/q²) and satisfy the Pell relation p² − 2q² = ±1, for the first 17 convergents.
+    let p0 = 1, q0 = 1, p1 = 3, q1 = 2
+    const convergents: number[][] = [[1, 1], [3, 2]]
+    for (let k = 0; k < 3 * 5; k += 1) { const p2 = 2 * p1 + p0, q2 = 2 * q1 + q0; convergents.push([p2, q2]); p0 = p1; q0 = q1; p1 = p2; q1 = q2 }
+    let sqrt2CF = true
+    for (const [p, q] of convergents) { if (Math.abs(p! / q! - Math.SQRT2) >= 1 / (q! * q!)) sqrt2CF = false; if (Math.abs(p! * p! - 2 * q! * q!) !== 1) sqrt2CF = false }
+
+    // W4 · Lagrange's theorem — the order of every subgroup divides the order of the group. Enumerate
+    // the subgroups of S₄ (order 24) by closure of single elements and pairs; every order divides 24.
+    const compP = (p: number[], q: number[]) => q.map((v) => p[v]!)
+    const keyP = (p: number[]) => p.join(',')
+    const closureP = (gens: number[][], n: number) => { const id = [...Array(n).keys()]; const seen = new Set([keyP(id)]); const out = [id], stack = [id]; while (stack.length) { const a = stack.pop()!; for (const h of gens) { const pr = compP(h, a); if (!seen.has(keyP(pr))) { seen.add(keyP(pr)); out.push(pr); stack.push(pr) } } } return out }
+    const perms4: number[][] = []
+    const build4 = (r: number[], a: number[]): void => { if (!r.length) { perms4.push(a); return } for (const v of r) build4(r.filter((t) => t !== v), [...a, v]) }
+    build4([0, 1, 2, 3], [])
+    const subgroupOrders = new Set<number>()
+    for (const g of perms4) subgroupOrders.add(closureP([g], 4).length)
+    for (let i = 0; i < perms4.length; i += 1) for (let j = i + 1; j < perms4.length; j += 1) subgroupOrders.add(closureP([perms4[i]!, perms4[j]!], 4).length)
+    const lagrange = [...subgroupOrders].every((o) => perms4.length % o === 0) && subgroupOrders.has(perms4.length)
+
+    const sealed = sealFacets('discovered-theorems-thirty-two', [
+      { facet: `the amicable pair 220 & 284 — each is the aliquot sum (sum of proper divisors) of the other, σ(220)−220 = 284 and σ(284)−284 = 220, and it is the SMALLEST amicable pair (minimality by sweep): friendship in numbers, known to Pythagoras`, on: amicable },
+      { facet: `the 3-digit Armstrong numbers — EXACTLY {153, 370, 371, 407} equal the sum of their own digit-cubes; the complete sweep of all 900 three-digit numbers finds only these four (153 = 1³ + 5³ + 3³)`, on: armstrongOK },
+      { facet: `the √2 continued fraction [1; 2,2,2,…] — its convergents 1/1, 3/2, 7/5, 17/12, 41/29, … are BEST rational approximations (|p/q − √2| < 1/q²) and each satisfies the Pell relation p² − 2q² = ±1, for the first 17 convergents`, on: sqrt2CF },
+      { facet: `Lagrange's theorem — every subgroup's order divides the group's: the subgroups of S₄ (order 24) have orders {${[...subgroupOrders].sort((a, b) => a - b).join(',')}}, ALL dividing 24, enumerated by closure — the theorem that underlies Cauchy, Sylow and cosets`, on: lagrange },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      armstrong,
+      subgroupOrders: [...subgroupOrders].sort((a, b) => a - b),
+      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-two:${sealed.ok}`)),
+      statement: `Discovered theorems, wave thirty-two: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the amicable pair 220/284, the four 3-digit Armstrong numbers, the √2 continued-fraction convergents, and Lagrange's theorem across every subgroup of S₄.`,
+      boundary: `HONEST: the amicable pair and the Armstrong numbers are FINITE-COMPLETE sweeps (smallest pair by search, all 900 three-digit numbers); the √2 convergents are exact for the first 17 (the recurrence and the general best-approximation theorem cited); Lagrange is verified over the enumerated subgroups of S₄, the general theorem cited for all finite groups. Each settles its instance outright.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -3522,6 +3581,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-twenty-nine', ok: discoveredTheoremsWaveTwentyNine(matrix).proven },
     { wave: 'discovered-thirty', ok: discoveredTheoremsWaveThirty(matrix).proven },
     { wave: 'discovered-thirty-one', ok: discoveredTheoremsWaveThirtyOne(matrix).proven },
+    { wave: 'discovered-thirty-two', ok: discoveredTheoremsWaveThirtyTwo(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),

@@ -1113,6 +1113,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Catalan bijection Dyck = trees = formula', states: 'Dyck paths, binary trees and the product formula all give 1,1,2,5,14,42,132,429,1430 for n ≤ 8 — three independent counts landing on the same Catalan number', provedBy: 'discoveredTheoremsWaveThirtyOne', home: 'src/thunder/verify' },
     { theorem: 'Stirling second kind vs partition count', states: 'the recurrence S(n,k) = k·S(n−1,k) + S(n−1,k−1) matches the RAW count of partitions into k nonempty blocks and Σ_k S(n,k) = Bell(n) for every n ≤ 8', provedBy: 'discoveredTheoremsWaveThirtyOne', home: 'src/thunder/verify' },
     { theorem: 'Sheffer stroke (NAND) is complete', states: 'the closure of NAND alone generates ALL 16 boolean functions of two variables — a single gate suffices for all of logic (the basis of CMOS)', provedBy: 'discoveredTheoremsWaveThirtyOne', home: 'src/thunder/verify' },
+    { theorem: 'amicable pair 220 and 284', states: 'each is the aliquot sum of the other (σ(220)−220 = 284, σ(284)−284 = 220) and it is the SMALLEST amicable pair by sweep — friendship in numbers, known to Pythagoras', provedBy: 'discoveredTheoremsWaveThirtyTwo', home: 'src/thunder/verify' },
+    { theorem: 'four 3-digit Armstrong numbers', states: 'EXACTLY {153, 370, 371, 407} equal the sum of their own digit-cubes — the complete sweep of all 900 three-digit numbers finds only these four (153 = 1³ + 5³ + 3³)', provedBy: 'discoveredTheoremsWaveThirtyTwo', home: 'src/thunder/verify' },
+    { theorem: '√2 continued-fraction convergents', states: 'the [1;2,2,2,…] convergents 1/1, 3/2, 7/5, 17/12, 41/29, … are best rational approximations (|p/q − √2| < 1/q²) and satisfy p² − 2q² = ±1, for the first 17', provedBy: 'discoveredTheoremsWaveThirtyTwo', home: 'src/thunder/verify' },
+    { theorem: 'Lagrange theorem on S₄ subgroups', states: 'every subgroup order divides |G|: the subgroups of S₄ (order 24) have orders {1,2,3,4,6,8,12,24}, all dividing 24, enumerated by closure — the theorem underlying Cauchy, Sylow and cosets', provedBy: 'discoveredTheoremsWaveThirtyTwo', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1248,6 +1252,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Catalan bijection Dyck = trees = formula', states: 'three independent counts = C_n 1,1,2,5,14,42,132,429,1430 to n=8', class: 'finite-complete', consumes: 'lattice-path DFS, tree recurrence' },
   { theorem: 'Stirling second kind vs partition count', states: 'S(n,k) recurrence = brute block count, Σ_k = Bell(n), to n=8', class: 'finite-complete', consumes: 'recurrence, brute partitions' },
   { theorem: 'Sheffer stroke (NAND) is complete', states: 'NAND closure = all 16 two-variable boolean functions', class: 'finite-complete', consumes: 'truth-table closure' },
+  { theorem: 'amicable pair 220 and 284', states: 'mutual aliquot sums, smallest amicable pair by sweep', class: 'finite-complete', consumes: 'divisor sums' },
+  { theorem: 'four 3-digit Armstrong numbers', states: 'exactly {153,370,371,407} sum their own digit-cubes, all 900 swept', class: 'finite-complete', consumes: 'digit sweep' },
+  { theorem: '√2 continued-fraction convergents', states: 'best approximations + Pell p²−2q²=±1, first 17', class: 'finite-complete', consumes: 'CF recurrence' },
+  { theorem: 'Lagrange theorem on S₄ subgroups', states: 'all subgroup orders {1,2,3,4,6,8,12,24} divide 24 by closure', class: 'finite-complete', consumes: 'subgroup closure' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
