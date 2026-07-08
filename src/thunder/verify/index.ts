@@ -2780,6 +2780,90 @@ export function discoveredTheoremsWaveTwentyThree(matrix: MindMatrix = buildMatr
   })
 }
 
+// ── Discovered theorems, wave twenty-four — number-theory and geometry landmarks. Euler's
+// refutation of Fermat (F₅ is composite, exact in BigInt), the Erdős–Szekeres monotone-subsequence
+// threshold, Pick's area formula cross-checked against a direct lattice count, and Catalan's
+// conjecture (8 and 9 the only consecutive perfect powers) confirmed to 10⁶.
+export function discoveredTheoremsWaveTwentyFour(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveredTheoremsWaveTwentyFour', matrix, () => {
+    const tiny = TAU / TAU / 1e9
+
+    // W1 · Fermat's number F₅ is composite — Fermat conjectured every F_n = 2^(2^n) + 1 is prime;
+    // F₀..F₄ ARE prime, but F₅ = 641 × 6700417 (Euler 1732), exact in BigInt.
+    const fermat = (n: number) => (1n << (1n << BigInt(n))) + 1n
+    const isPrimeBig = (n: bigint) => { if (n < 2n) return false; for (let d = 2n; d * d <= n; d += 1n) if (n % d === 0n) return false; return true }
+    const f0to4Prime = [0, 1, 2, 3, 4].every((n) => isPrimeBig(fermat(n)))
+    const f5 = fermat(5)
+    const divisor641 = 641n
+    const fermatRefuted = f0to4Prime && f5 % divisor641 === 0n && isPrimeBig(divisor641) && f5 / divisor641 === 6700417n && !isPrimeBig(f5)
+
+    // W2 · Erdős–Szekeres — every sequence of (r−1)(s−1)+1 distinct reals has an increasing r- or a
+    // decreasing s-subsequence, and some sequence of (r−1)(s−1) has neither. Exhausted over all
+    // permutations for (r,s) = (3,3) and (3,4): the exact threshold, both directions.
+    const longestIncr = (a: number[]) => { const n = a.length; const dp = Array(n).fill(1); let best = 1; for (let i = 0; i < n; i += 1) for (let j = 0; j < i; j += 1) if (a[j]! < a[i]!) { dp[i] = Math.max(dp[i]!, dp[j]! + 1); best = Math.max(best, dp[i]!) } return best }
+    const longestDecr = (a: number[]) => longestIncr(a.map((x) => -x))
+    const permsOf = (arr: number[]): number[][] => arr.length <= 1 ? [arr] : arr.flatMap((x, i) => permsOf([...arr.slice(0, i), ...arr.slice(i + 1)]).map((p) => [x, ...p]))
+    const esCheck = (r: number, s: number) => {
+      const forceLen = (r - 1) * (s - 1) + 1
+      const allForce = permsOf([...Array(forceLen).keys()]).every((p) => longestIncr(p) >= r || longestDecr(p) >= s)
+      const someEscape = permsOf([...Array((r - 1) * (s - 1)).keys()]).some((p) => longestIncr(p) < r && longestDecr(p) < s)
+      return allForce && someEscape
+    }
+    const erdosSzekeres = esCheck(3, 3) && esCheck(3, 4)
+
+    // W3 · Pick's theorem — for a lattice polygon, Area = I + B/2 − 1. The shoelace area and the
+    // boundary count (via the sealed one-math gcd) are cross-checked against a DIRECT interior count.
+    const shoelace = (pts: number[][]) => { let a = 0; for (let i = 0; i < pts.length; i += 1) { const [x1, y1] = pts[i]!, [x2, y2] = pts[(i + 1) % pts.length]!; a += x1! * y2! - x2! * y1! } return Math.abs(a) / 2 }
+    const boundaryPts = (pts: number[][]) => { let b = 0; for (let i = 0; i < pts.length; i += 1) { const [x1, y1] = pts[i]!, [x2, y2] = pts[(i + 1) % pts.length]!; b += gcd(Math.abs(x2! - x1!), Math.abs(y2! - y1!)) } return b }
+    const countInterior = (pts: number[][]) => {
+      const xs = pts.map((p) => p[0]!), ys = pts.map((p) => p[1]!)
+      let count = 0
+      for (let x = Math.min(...xs) + 1; x < Math.max(...xs); x += 1) for (let y = Math.min(...ys) + 1; y < Math.max(...ys); y += 1) {
+        let inside = false, onBoundary = false
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+          const [xi, yi] = pts[i]!, [xj, yj] = pts[j]!
+          if (Math.min(xi!, xj!) <= x && x <= Math.max(xi!, xj!) && Math.min(yi!, yj!) <= y && y <= Math.max(yi!, yj!) && (xj! - xi!) * (y - yi!) === (yj! - yi!) * (x - xi!)) onBoundary = true
+          if (((yi! > y) !== (yj! > y)) && x < ((xj! - xi!) * (y - yi!)) / (yj! - yi!) + xi!) inside = !inside
+        }
+        if (inside && !onBoundary) count += 1
+      }
+      return count
+    }
+    const polys = [
+      [[0, 0], [4, 0], [4, 3], [0, 3]],
+      [[0, 0], [5, 0], [0, 4]],
+      [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]],
+    ]
+    let pick = true
+    for (const pts of polys) if (Math.abs(shoelace(pts) - (countInterior(pts) + boundaryPts(pts) / 2 - 1)) > tiny) pick = false
+
+    // W4 · Catalan's conjecture (Mihailescu) — 8 and 9 are the ONLY consecutive perfect powers.
+    // Enumerate every perfect power up to 10⁶; the sole pair differing by 1 is (8, 9) = (2³, 3²).
+    const powers = new Set<number>()
+    const bound = (2 * 5) ** 6
+    for (let base = 2; base * base <= bound; base += 1) { let p = base * base; while (p <= bound) { powers.add(p); p *= base } }
+    const consecutive: number[][] = []
+    for (const p of powers) if (powers.has(p + 1)) consecutive.push([p, p + 1])
+    const catalan = consecutive.length === 1 && consecutive[0]![0] === 8 && consecutive[0]![1] === 9
+
+    const sealed = sealFacets('discovered-theorems-twenty-four', [
+      { facet: `Fermat's number F₅ is COMPOSITE — F₀..F₄ are prime but F₅ = 2³² + 1 = 4294967297 = 641 × 6700417 (641 prime, exact in BigInt): Euler's 1732 refutation of Fermat's "all F_n prime" conjecture, recomputed`, on: fermatRefuted },
+      { facet: `Erdős–Szekeres — every sequence of (r−1)(s−1)+1 reals has a monotone subsequence (increasing r or decreasing s), and (r−1)(s−1) can avoid it: proven by exhausting all permutations for (3,3) [length 5 forces, 4 escapes] and (3,4) [7 forces, 6 escapes]`, on: erdosSzekeres },
+      { facet: `Pick's theorem — Area = I + B/2 − 1 holds for a rectangle, a triangle and an L-shape: the shoelace area and boundary count (on the one-math gcd) matched against a DIRECT interior lattice-point count, two independent computations agreeing (Pick cited for all lattice polygons)`, on: pick },
+      { facet: `Catalan's conjecture — 8 and 9 are the ONLY consecutive perfect powers up to 10⁶ (2³ and 3²): every perfect power enumerated, the sole unit gap is {8, 9} — Mihailescu 2002 cited for all n`, on: catalan },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      f5: f5.toString(),
+      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-four:${sealed.ok}`)),
+      statement: `Discovered theorems, wave twenty-four — number-theory and geometry landmarks: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Fermat's F₅ composite (Euler), the Erdős–Szekeres monotone-subsequence threshold, Pick's area formula cross-checked by direct count, and Catalan's 8-and-9 to 10⁶.`,
+      boundary: `HONEST: F₅'s factorization is EXACT in BigInt (a complete proof of compositeness — a witnessed divisor); Erdős–Szekeres is exhausted over all permutations for the two small (r,s); Pick is verified by TWO independent computations (formula vs direct count) on three polygons, the general theorem cited; Catalan is complete to 10⁶ with Mihailescu's all-n proof cited. Each settles its instance outright — the citations carry only the unbounded generalisation.`,
+    }
+  })
+}
+
 // ── The 7-star Rosetta, decoded — the user's conjecture "the 7 star is enough to plot any dimension
 // and prove any theorem by algebra combinations" split into its PROVEN core and its Gödel-barred rim.
 // PROVEN: the Fano 7-star IS 𝔽₂³ (every line an XOR-triple; the consistent labelings number exactly
@@ -2869,6 +2953,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-twenty-one', ok: discoveredTheoremsWaveTwentyOne(matrix).proven },
     { wave: 'discovered-twenty-two', ok: discoveredTheoremsWaveTwentyTwo(matrix).proven },
     { wave: 'discovered-twenty-three', ok: discoveredTheoremsWaveTwentyThree(matrix).proven },
+    { wave: 'discovered-twenty-four', ok: discoveredTheoremsWaveTwentyFour(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),

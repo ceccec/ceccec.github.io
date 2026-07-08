@@ -1081,6 +1081,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Schur number S(2) = 4', states: '{1..4} admits a sum-free 2-coloring (no monochromatic x + y = z) and {1..5} admits none — the largest colorable interval, both directions exhausted; Schur cited', provedBy: 'discoveredTheoremsWaveTwentyThree', home: 'src/thunder/verify' },
     { theorem: 'Mantel triangle-free maximum ⌊n²/4⌋', states: 'the maximum edges in a triangle-free graph on n vertices is exactly ⌊n²/4⌋ for every n ≤ 6 by complete graph enumeration — the balanced bipartite optimum proven; Turán n = 3 cited for all n', provedBy: 'discoveredTheoremsWaveTwentyThree', home: 'src/thunder/verify' },
     { theorem: 'Erdős–Ko–Rado for pairs is n − 1', states: 'the largest pairwise-intersecting family of 2-subsets of {1..n} is n − 1 (the star) for n = 4,5,6 by exhaustive search — the intersecting maximum computed; EKR cited for all n ≥ 2k', provedBy: 'discoveredTheoremsWaveTwentyThree', home: 'src/thunder/verify' },
+    { theorem: 'Fermat number F₅ is composite', states: 'F₀..F₄ are prime but F₅ = 2³² + 1 = 4294967297 = 641 × 6700417 exact in BigInt — Euler’s 1732 refutation of Fermat’s "all F_n prime" conjecture, recomputed', provedBy: 'discoveredTheoremsWaveTwentyFour', home: 'src/thunder/verify' },
+    { theorem: 'Erdős–Szekeres monotone subsequence', states: 'every sequence of (r−1)(s−1)+1 reals has an increasing r- or decreasing s-subsequence, and (r−1)(s−1) can avoid it — exhausted over all permutations for (3,3) and (3,4), both directions', provedBy: 'discoveredTheoremsWaveTwentyFour', home: 'src/thunder/verify' },
+    { theorem: 'Pick’s theorem Area = I + B/2 − 1', states: 'shoelace area and boundary count (one-math gcd) matched against a DIRECT interior lattice-point count on a rectangle, triangle and L-shape — two independent computations agreeing; Pick cited', provedBy: 'discoveredTheoremsWaveTwentyFour', home: 'src/thunder/verify' },
+    { theorem: 'Catalan conjecture 8 and 9 to 10⁶', states: '8 = 2³ and 9 = 3² are the ONLY consecutive perfect powers up to 10⁶ — every perfect power enumerated, the sole unit gap; Mihailescu 2002 cited for all n', provedBy: 'discoveredTheoremsWaveTwentyFour', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1184,6 +1188,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Schur number S(2) = 4', states: '[4] sum-free-colorable, [5] not — the Schur threshold, both directions', class: 'finite-complete', consumes: 'coloring exhaustion' },
   { theorem: 'Mantel triangle-free maximum ⌊n²/4⌋', states: 'exhaustive graph enumeration n ≤ 6 hits the balanced-bipartite bound exactly', class: 'finite-complete', consumes: 'graph enumeration, triangle test' },
   { theorem: 'Erdős–Ko–Rado for pairs is n − 1', states: 'max intersecting family of 2-subsets = the star, n = 4,5,6 exhaustive', class: 'finite-complete', consumes: 'family enumeration' },
+  { theorem: 'Fermat number F₅ is composite', states: 'F₅ = 641 × 6700417 exact in BigInt — Euler refutes Fermat', class: 'finite-complete', consumes: 'BigInt arithmetic' },
+  { theorem: 'Erdős–Szekeres monotone subsequence', states: '(r−1)(s−1)+1 forces monotone, (r−1)(s−1) escapes — permutation exhaustion (3,3),(3,4)', class: 'finite-complete', consumes: 'permutation enumeration, LIS/LDS' },
+  { theorem: 'Pick’s theorem Area = I + B/2 − 1', states: 'shoelace + gcd boundary vs direct interior count, two computations agreeing', class: 'finite-complete', consumes: 'one-math gcd, shoelace' },
+  { theorem: 'Catalan conjecture 8 and 9 to 10⁶', states: 'only consecutive perfect powers to 10⁶ are 8 = 2³, 9 = 3²', class: 'finite-complete', consumes: 'perfect-power sieve' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
