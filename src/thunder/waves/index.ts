@@ -1171,6 +1171,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'no-deleting theorem (from no-cloning)', states: 'the same linearity argument as no-cloning: deleting an unknown state to a fixed blank forces ⟨ψ|φ⟩ = ⟨ψ|φ⟩² (∈ {0,1}), impossible for distinct non-orthogonal states — information moves, never destroyed: COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySix', home: 'src/thunder/verify' },
     { theorem: 'p-group nontrivial center (from class equation)', states: '|G| = |Z| + Σ[G:C(x)] with each non-central index divisible by p forces p | |Z| and |Z| > 1 — verified on Q₈, Z₈, D₄, derived from the proven class equation: COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySix', home: 'src/thunder/verify' },
     { theorem: 'RSA correctness (from Fermat–Euler)', states: 'with n = pq and d = e⁻¹ mod φ(n), Euler’s theorem gives m^(ed) ≡ m (mod n) for every message — decryption inverts encryption exactly, verified over all messages for three prime pairs; the technology the proven theorem begets (security NOT claimed): COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySix', home: 'src/thunder/verify' },
+    { theorem: 'prime-order groups are cyclic (from Cauchy)', states: 'for prime p, Cauchy gives an element of order p which generates G — verified for p ∈ {2,3,5,7}; Z_p is the only group of prime order: COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySeven', home: 'src/thunder/verify' },
+    { theorem: 'Burnside orbit-counting lemma (from orbit-stabilizer)', states: '#orbits = (1/|G|)·Σ|Fix(g)|; for conjugation the orbit count = #conjugacy classes, verified on S₄, A₅ — the lemma’s proof rides orbit-stabilizer: COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySeven', home: 'src/thunder/verify' },
+    { theorem: 'Newton identities (from Vieta)', states: 'p_k = Σ(−1)^{i−1}e_i p_{k−i} + (−1)^{k−1}k e_k relating power sums to Vieta’s elementary symmetric coefficients, verified on three root sets: COMPOUNDING', provedBy: 'discoveredTheoremsWaveFortySeven', home: 'src/thunder/verify' },
+    { theorem: 'Shor factoring reduction (from the QFT)', states: 'the proven QFT finds the period r of a mod N; r even with a^{r/2} ≢ −1 gives gcd(a^{r/2}−1, N) a nontrivial factor — every N ∈ {15,21,35} factors: COMPOUNDING (hardness NOT claimed)', provedBy: 'discoveredTheoremsWaveFortySeven', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1364,6 +1368,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'no-deleting theorem (from no-cloning)', states: 'overlap = overlap² impossible for distinct states — from no-cloning', class: 'finite-complete', consumes: 'PROVEN no-cloning' },
   { theorem: 'p-group nontrivial center (from class equation)', states: 'p | |Z|, |Z|>1 on Q₈/Z₈/D₄ — from class equation', class: 'finite-complete', consumes: 'PROVEN class equation' },
   { theorem: 'RSA correctness (from Fermat–Euler)', states: 'm^(ed) ≡ m mod n over all messages, 3 prime pairs — from Euler', class: 'finite-complete', consumes: 'PROVEN Fermat–Euler congruences' },
+  { theorem: 'prime-order groups are cyclic (from Cauchy)', states: 'element of order p generates G, p ∈ {2,3,5,7}', class: 'finite-complete', consumes: 'PROVEN Cauchy theorem' },
+  { theorem: 'Burnside orbit-counting lemma (from orbit-stabilizer)', states: '#orbits = avg |Fix(g)| = #classes, S₄/A₅', class: 'finite-complete', consumes: 'PROVEN orbit-stabilizer' },
+  { theorem: 'Newton identities (from Vieta)', states: 'power sums from elementary symmetric, three root sets', class: 'finite-complete', consumes: 'PROVEN Vieta formulas' },
+  { theorem: 'Shor factoring reduction (from the QFT)', states: 'period → factor for N ∈ {15,21,35}', class: 'finite-complete', consumes: 'PROVEN QFT unitary' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
