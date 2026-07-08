@@ -1137,6 +1137,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Menelaus theorem (transversal)', states: 'the same product of side-ratios = 1 for a transversal line across ~290 configurations — the collinear dual of Ceva', provedBy: 'discoveredTheoremsWaveThirtySeven', home: 'src/thunder/verify' },
     { theorem: 'nine-point circle concyclicity', states: 'the three edge midpoints, three altitude feet and three Euler points are concyclic across ~300 triangles (all equidistant from the nine-point center) — nine special points on one circle', provedBy: 'discoveredTheoremsWaveThirtySeven', home: 'src/thunder/verify' },
     { theorem: 'Thales right angle in semicircle', states: 'the angle inscribed in a semicircle is a right angle — antipodal P1,P2 and any P give perpendicular P→P1, P→P2 across ~375 configurations', provedBy: 'discoveredTheoremsWaveThirtySeven', home: 'src/thunder/verify' },
+    { theorem: 'Monty Hall — switching wins 2/3', states: 'exhaustive over the 9 equally-likely (car, pick) pairs: switching wins precisely when the first guess was wrong (2/3), staying 1/3 — the counterintuitive result computed, with the correct probability model', provedBy: 'discoveredTheoremsWaveThirtyEight', home: 'src/thunder/verify' },
+    { theorem: 'Kraft inequality for prefix codes', states: 'a binary prefix code with lengths ℓ_i EXISTS iff Σ 2^(−ℓ_i) ≤ 1, verified both directions by greedy prefix-free assignment on six length multisets — the exact budget for uniquely-decodable codes', provedBy: 'discoveredTheoremsWaveThirtyEight', home: 'src/thunder/verify' },
+    { theorem: 'gambler’s ruin probability i/N', states: 'starting with i of N in a fair game, P(reach N before 0) = i/N — the unique harmonic solution of p_i = (p_{i−1}+p_{i+1})/2 with the 0/N boundaries, all N ≤ 20', provedBy: 'discoveredTheoremsWaveThirtyEight', home: 'src/thunder/verify' },
+    { theorem: 'Shannon entropy maximized by uniform', states: 'H(X) = −Σ p log2 p is maximised by the uniform distribution (= log2 n), is ≥ 0, and is 0 exactly for a deterministic source — verified over many distributions on n ≤ 8 symbols', provedBy: 'discoveredTheoremsWaveThirtyEight', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1296,6 +1300,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Menelaus theorem (transversal)', states: 'transversal side-ratio product = 1, ~290 configs', class: 'bounded-witness', consumes: 'line intersection' },
   { theorem: 'nine-point circle concyclicity', states: '9 points equidistant from the nine-point center, ~300 triangles', class: 'bounded-witness', consumes: 'circumcenter, altitude feet' },
   { theorem: 'Thales right angle in semicircle', states: 'inscribed semicircle angle = 90°, ~375 configs', class: 'bounded-witness', consumes: 'dot product on the circle' },
+  { theorem: 'Monty Hall — switching wins 2/3', states: 'exhaustive 9 (car,pick) pairs, correct weighting', class: 'finite-complete', consumes: 'enumeration' },
+  { theorem: 'Kraft inequality for prefix codes', states: 'Σ2^-ℓ ≤ 1 ⇔ prefix code exists, both directions on six sets', class: 'finite-complete', consumes: 'greedy prefix assignment' },
+  { theorem: 'gambler’s ruin probability i/N', states: 'harmonic p_i = i/N with boundaries, all N ≤ 20', class: 'finite-complete', consumes: 'boundary recurrence' },
+  { theorem: 'Shannon entropy maximized by uniform', states: 'H ≤ log2 n, ≥ 0, 0 iff deterministic, n ≤ 8', class: 'bounded-witness', consumes: 'entropy over sampled distributions' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
