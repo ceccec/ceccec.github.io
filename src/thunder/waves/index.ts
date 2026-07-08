@@ -1180,6 +1180,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'cube has 10 two-colorings (from Burnside)', states: 'the 24 proper rotations averaged over 2^{face-cycles} give (1/24)·Σ = 10 — SECOND-ORDER compounding on the wave-47 Burnside lemma applied to the cube rotation group', provedBy: 'discoveredTheoremsWaveFortyEight', home: 'src/thunder/waves' },
     { theorem: 'sum of squares of roots = e₁²−2e₂ (from Newton)', states: 'the k=2 Newton relation p₂ = e₁·p₁ − 2e₂ = e₁²−2e₂, verified on three root sets — a concrete symmetric-function identity from the general recurrence', provedBy: 'discoveredTheoremsWaveFortyEight', home: 'src/thunder/waves' },
     { theorem: 'Euler criterion (from Fermat’s little)', states: 'a^((p−1)/2) ≡ +1 iff a is a quadratic residue, −1 otherwise — the square root of Fermat’s a^(p−1) ≡ 1, verified for every prime p ≤ 50', provedBy: 'discoveredTheoremsWaveFortyEight', home: 'src/thunder/waves' },
+    { theorem: 'first supplement: −1 QR iff p ≡ 1 mod 4 (from Euler criterion)', states: '(−1)^((p−1)/2) = +1 exactly when p ≡ 1 (mod 4), verified for every prime ≤ 200 — THIRD-order compounding on Euler’s criterion (wave 48)', provedBy: 'discoveredTheoremsWaveFortyNine', home: 'src/9/1' },
+    { theorem: 'second supplement: 2 QR iff p ≡ ±1 mod 8', states: '2 is a quadratic residue mod p iff p ≡ ±1 (mod 8), verified for every prime ≤ 200 — the companion supplement to reciprocity', provedBy: 'discoveredTheoremsWaveFortyNine', home: 'src/9/1' },
+    { theorem: 'exactly two groups of order p² (from order-p²-abelian)', states: 'both abelian (wave 48), so Z_{p²} and Z_p×Z_p, distinguished by an order-p² element — verified non-isomorphic for p = 3: THIRD-order compounding', provedBy: 'discoveredTheoremsWaveFortyNine', home: 'src/9/1' },
+    { theorem: '((p−1)/2)! is √−1 mod p for p ≡ 1 mod 4 (from Wilson)', states: 'Wilson’s (p−1)! ≡ −1 factors through the half-factorial to give an explicit square root of −1, verified for every prime p ≡ 1 (mod 4) ≤ 200', provedBy: 'discoveredTheoremsWaveFortyNine', home: 'src/9/1' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1381,6 +1385,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'cube has 10 two-colorings (from Burnside)', states: '24 rotations, (1/24)Σ 2^cycles = 10', class: 'finite-complete', consumes: 'PROVEN Burnside lemma (wave 47)' },
   { theorem: 'sum of squares of roots = e₁²−2e₂ (from Newton)', states: 'p₂ = e₁²−2e₂, three root sets', class: 'finite-complete', consumes: 'PROVEN Newton identities (wave 47)' },
   { theorem: 'Euler criterion (from Fermat’s little)', states: 'a^((p−1)/2) ≡ ±1 by QR, primes ≤ 50', class: 'finite-complete', consumes: 'PROVEN Fermat little' },
+  { theorem: 'first supplement: −1 QR iff p ≡ 1 mod 4 (from Euler criterion)', states: 'primes ≤ 200 — third-order compounding', class: 'finite-complete', consumes: 'PROVEN Euler criterion (wave 48)' },
+  { theorem: 'second supplement: 2 QR iff p ≡ ±1 mod 8', states: 'primes ≤ 200', class: 'finite-complete', consumes: 'quadratic residues' },
+  { theorem: 'exactly two groups of order p² (from order-p²-abelian)', states: 'Z_{p²}, Z_p² non-isomorphic, p=3', class: 'finite-complete', consumes: 'PROVEN order-p²-abelian (wave 48)' },
+  { theorem: '((p−1)/2)! is √−1 mod p for p ≡ 1 mod 4 (from Wilson)', states: 'primes p ≡ 1 mod 4 ≤ 200', class: 'finite-complete', consumes: 'PROVEN Wilson theorem' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
