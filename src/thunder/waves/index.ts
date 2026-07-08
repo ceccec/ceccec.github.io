@@ -1133,6 +1133,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Euclid lemma p | ab ⇒ p | a or p | b', states: 'if a prime p divides a product it divides a factor, for all a, b ≤ 50 and every prime p ≤ 50 — the property that makes primes prime and gives unique factorization', provedBy: 'discoveredTheoremsWaveThirtySix', home: 'src/thunder/verify' },
     { theorem: 'Legendre prime-power formula for n!', states: 'the exponent of a prime p in n! equals Σ⌊n/p^k⌋, matched against direct factorization for all n ≤ 60 (exp of 2 in 10! is 8)', provedBy: 'discoveredTheoremsWaveThirtySix', home: 'src/thunder/verify' },
     { theorem: 'Stirling first kind row identities', states: 'the unsigned |s(n,k)| sum to n! (permutations by cycle count) and the signed row sums to 0 for n ≥ 2, via the recurrence for all n ≤ 10', provedBy: 'discoveredTheoremsWaveThirtySix', home: 'src/thunder/verify' },
+    { theorem: 'Ceva theorem (concurrent cevians)', states: '(BD/DC)(CE/EA)(AF/FB) = 1 for cevians from an interior point, across ~300 triangles sampled by independent irrational rotations, to 1e-6', provedBy: 'discoveredTheoremsWaveThirtySeven', home: 'src/thunder/verify' },
+    { theorem: 'Menelaus theorem (transversal)', states: 'the same product of side-ratios = 1 for a transversal line across ~290 configurations — the collinear dual of Ceva', provedBy: 'discoveredTheoremsWaveThirtySeven', home: 'src/thunder/verify' },
+    { theorem: 'nine-point circle concyclicity', states: 'the three edge midpoints, three altitude feet and three Euler points are concyclic across ~300 triangles (all equidistant from the nine-point center) — nine special points on one circle', provedBy: 'discoveredTheoremsWaveThirtySeven', home: 'src/thunder/verify' },
+    { theorem: 'Thales right angle in semicircle', states: 'the angle inscribed in a semicircle is a right angle — antipodal P1,P2 and any P give perpendicular P→P1, P→P2 across ~375 configurations', provedBy: 'discoveredTheoremsWaveThirtySeven', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1288,6 +1292,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Euclid lemma p | ab ⇒ p | a or p | b', states: 'prime divides a factor, all a,b ≤ 50', class: 'finite-complete', consumes: 'primality' },
   { theorem: 'Legendre prime-power formula for n!', states: 'exp of p in n! = Σ⌊n/p^k⌋ vs direct factorization, n ≤ 60', class: 'finite-complete', consumes: 'factorial factorization' },
   { theorem: 'Stirling first kind row identities', states: '|s(n,k)| sums to n!, signed sum 0 for n≥2, n ≤ 10', class: 'finite-complete', consumes: 'recurrence, factorial' },
+  { theorem: 'Ceva theorem (concurrent cevians)', states: 'side-ratio product = 1, ~300 triangles', class: 'bounded-witness', consumes: 'independent irrational sampling, line intersection' },
+  { theorem: 'Menelaus theorem (transversal)', states: 'transversal side-ratio product = 1, ~290 configs', class: 'bounded-witness', consumes: 'line intersection' },
+  { theorem: 'nine-point circle concyclicity', states: '9 points equidistant from the nine-point center, ~300 triangles', class: 'bounded-witness', consumes: 'circumcenter, altitude feet' },
+  { theorem: 'Thales right angle in semicircle', states: 'inscribed semicircle angle = 90°, ~375 configs', class: 'bounded-witness', consumes: 'dot product on the circle' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
