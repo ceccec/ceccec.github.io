@@ -493,3 +493,56 @@ export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { ro
     }
   })
 }
+
+// ── Discovered theorems, wave fifty-nine (the Eisenstein-integer ℤ[ω] tower) — the SECOND quadratic ring,
+// parallel to ℤ[i] (wave 58): ω = e^{2πi/3}, ω²+ω+1 = 0, norm a²−ab+b². Six units, Euclidean, and a prime
+// splits IFF p ≡ 1 (mod 3) — the p ≡ 1 (mod 3) analogue of wave 50's mod-4 dichotomy (the x²+3y² form).
+export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFiftyNine', matrix, () => {
+    type EI = [number, number]
+    const norm = (z: EI) => z[0] * z[0] - z[0] * z[1] + z[1] * z[1]
+    const mul = (z: EI, w: EI): EI => [z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0] - z[1] * w[1]]
+    const sub = (z: EI, w: EI): EI => [z[0] - w[0], z[1] - w[1]]
+    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
+    const R = 5
+    const grid: EI[] = []; for (let a = -R; a <= R; a += 1) for (let b = -R; b <= R; b += 1) grid.push([a, b])
+
+    // W1 · the NORM N(a+bω) = a²−ab+b² IS MULTIPLICATIVE — with ω² = −1−ω the product (a+bω)(c+dω) =
+    // (ac−bd) + (ad+bc−bd)ω and N(zw) = N(z)N(w); verified for every pair on the ±5 grid (the norm is the
+    // quadratic form a²−ab+b², the mod-3 companion of the two-square form of wave 58).
+    let normMultiplicative = true
+    for (const z of grid) for (const w of grid) if (norm(mul(z, w)) !== norm(z) * norm(w)) normMultiplicative = false
+
+    // W2 · the UNITS ARE THE SIX SIXTH-ROOTS OF UNITY {±1, ±ω, ±ω²} — the norm-1 elements: a²−ab+b² = 1 has
+    // exactly six solutions, and ℤ[ω]* ≅ ℤ/6ℤ (vs ℤ[i]*'s four); verified by enumerating the grid.
+    const units = grid.filter((z) => norm(z) === 1)
+    const unitsAreSix = units.length === 6 && units.every((z) => norm(z) === 1)
+
+    // W3 · ℤ[ω] IS A EUCLIDEAN DOMAIN — for z and w ≠ 0 there is a quotient q with N(z−qw) < N(w): the
+    // hexagonal lattice has covering radius giving N(r) ≤ N(w)/3, found by searching the nearest lattice
+    // points to z·w̄/N(w); verified for every z and every w ≠ 0 on the grid — hence ℤ[ω] is a UFD.
+    let euclidean = true
+    for (const z of grid) for (const w of grid) { const nw = norm(w); if (nw === 0) continue; const cw: EI = [w[0] - w[1], -w[1]]; const zc = mul(z, cw); const a0 = Math.round(zc[0] / nw), b0 = Math.round(zc[1] / nw); let ok = false; for (let da = -1; da <= 1 && !ok; da += 1) for (let db = -1; db <= 1 && !ok; db += 1) { const q: EI = [a0 + da, b0 + db]; if (norm(sub(z, mul(q, w))) < nw) ok = true } if (!ok) euclidean = false }
+
+    // W4 · a rational prime SPLITS in ℤ[ω] IFF p ≡ 1 (mod 3) — equivalently p = a²−ab+b² (the x²+3y² form)
+    // iff p ≡ 1 (mod 3) or p = 3 (which ramifies); p ≡ 2 (mod 3) stays inert; verified for every prime
+    // p ≤ 200 by brute representation search vs the mod-3 criterion (the Eisenstein analogue of wave 50).
+    let splitsMod3 = true
+    for (let p = 2; p <= 2 * 100; p += 1) { if (!isPrime(p)) continue; let rep = false; for (let a = 0; a <= 4 * 5 && !rep; a += 1) for (let b = 0; b <= 4 * 5; b += 1) if (a * a - a * b + b * b === p) { rep = true; break } if (rep !== (p % 3 === 1 || p === 3)) splitsMod3 = false }
+
+    const sealed = sealFacets('discovered-theorems-fifty-nine', [
+      { facet: `the NORM N(a+bω) = a²−ab+b² IS MULTIPLICATIVE — with ω² = −1−ω, N(zw) = N(z)N(w); verified for every pair on the ±5 grid: the quadratic form a²−ab+b² is the mod-3 companion of the two-square form of wave 58`, on: normMultiplicative },
+      { facet: `the UNITS ARE THE SIX SIXTH-ROOTS OF UNITY {±1, ±ω, ±ω²} — the six norm-1 solutions of a²−ab+b² = 1, so ℤ[ω]* ≅ ℤ/6ℤ (against ℤ[i]*'s four); verified by enumerating the grid`, on: unitsAreSix },
+      { facet: `ℤ[ω] IS A EUCLIDEAN DOMAIN — for z, w ≠ 0 there is a quotient q with N(z−qw) < N(w): the hexagonal lattice's covering radius gives N(r) ≤ N(w)/3, found near z·w̄/N(w); verified for every z and every w ≠ 0 on the grid — hence a UFD`, on: euclidean },
+      { facet: `a rational prime SPLITS in ℤ[ω] IFF p ≡ 1 (mod 3) — equivalently p = a²−ab+b² (the x²+3y² form) iff p ≡ 1 (mod 3) or p = 3 (ramified); p ≡ 2 (mod 3) inert; verified for every prime p ≤ 200 — the Eisenstein analogue of wave 50's mod-4 dichotomy`, on: splitsMod3 },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-nine:${sealed.ok}`)),
+      statement: `Discovered theorems, wave fifty-nine (the Eisenstein-integer ℤ[ω] tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the multiplicative norm a²−ab+b², the six units, ℤ[ω] as a Euclidean domain, and primes splitting iff p ≡ 1 (mod 3).`,
+      boundary: `HONEST: ℤ[ω] is the second quadratic ring, parallel to ℤ[i] (wave 58) — same Euclidean-domain method, but the norm is a²−ab+b² and the splitting law is mod 3 rather than mod 4, the Eisenstein analogue of wave 50. All four verified complete over the ±5 grid (norm, units, Euclidean) and every prime ≤ 200 (the splitting law); the all-z Euclidean algorithm, unique factorisation, and full Eisenstein-prime classification are cited. Together waves 58–59 are the two rings of class number one behind the two-square and x²+3y² forms.`,
+    }
+  })
+}
