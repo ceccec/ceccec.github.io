@@ -517,8 +517,8 @@ export function transcriptTokenAudit(lines: string[], day: string) {
 }
 /** walk ~/.claude/projects, audit the given (or current) day, print, exit — the saved zero-token command */
 export async function transcriptTokenAuditExit() {
-  const { readFileSync, readdirSync, statSync } = await import('node:fs')
-  const { join } = await import('node:path')
+  const { readFileSync, readdirSync, statSync } = await import(/* @vite-ignore */ 'node' + ':fs') // constructed specifier: vite never resolves node builtins into the client graph
+  const { join } = await import(/* @vite-ignore */ 'node' + ':path')
   const day = process.argv.find((arg) => /^\d{4}-\d{2}-\d{2}$/.test(arg)) ?? new Date().toISOString().slice(0, (5 * 2))
   const root = join(process.env.HOME ?? '', '.claude', 'projects')
   const lines: string[] = []
