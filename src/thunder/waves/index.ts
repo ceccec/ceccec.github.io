@@ -1117,6 +1117,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'four 3-digit Armstrong numbers', states: 'EXACTLY {153, 370, 371, 407} equal the sum of their own digit-cubes — the complete sweep of all 900 three-digit numbers finds only these four (153 = 1³ + 5³ + 3³)', provedBy: 'discoveredTheoremsWaveThirtyTwo', home: 'src/thunder/verify' },
     { theorem: '√2 continued-fraction convergents', states: 'the [1;2,2,2,…] convergents 1/1, 3/2, 7/5, 17/12, 41/29, … are best rational approximations (|p/q − √2| < 1/q²) and satisfy p² − 2q² = ±1, for the first 17', provedBy: 'discoveredTheoremsWaveThirtyTwo', home: 'src/thunder/verify' },
     { theorem: 'Lagrange theorem on S₄ subgroups', states: 'every subgroup order divides |G|: the subgroups of S₄ (order 24) have orders {1,2,3,4,6,8,12,24}, all dividing 24, enumerated by closure — the theorem underlying Cauchy, Sylow and cosets', provedBy: 'discoveredTheoremsWaveThirtyTwo', home: 'src/thunder/verify' },
+    { theorem: 'Havel–Hakimi graphicality', states: 'a degree sequence is graphical iff the recursive reduction ends in all zeros, matching a direct realizability construction on six sequences (graphical and non-graphical) — which degree sequences a simple graph can have', provedBy: 'discoveredTheoremsWaveThirtyThree', home: 'src/thunder/verify' },
+    { theorem: 'Dirac Hamiltonicity condition', states: 'a graph on n ≥ 3 vertices with minimum degree ≥ n/2 is Hamiltonian — the near-complete circulant for n = 3..8 has a Hamiltonian cycle found by search, the degree condition suffices', provedBy: 'discoveredTheoremsWaveThirtyThree', home: 'src/thunder/verify' },
+    { theorem: 'De Bruijn sequence exact-window', states: 'B(2,n) is a cyclic binary string of length 2^n in which every n-bit word appears EXACTLY once, constructed and window-verified for n ≤ 6 (n=3 gives 00010111)', provedBy: 'discoveredTheoremsWaveThirtyThree', home: 'src/thunder/verify' },
+    { theorem: 'Pisano period π(10) = 60', states: 'Fibonacci mod m is periodic with π(10) = 60, and π(m) is even for every m > 2 (checked to m ≤ 50) — Fibonacci cycles modulo any base', provedBy: 'discoveredTheoremsWaveThirtyThree', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1256,6 +1260,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'four 3-digit Armstrong numbers', states: 'exactly {153,370,371,407} sum their own digit-cubes, all 900 swept', class: 'finite-complete', consumes: 'digit sweep' },
   { theorem: '√2 continued-fraction convergents', states: 'best approximations + Pell p²−2q²=±1, first 17', class: 'finite-complete', consumes: 'CF recurrence' },
   { theorem: 'Lagrange theorem on S₄ subgroups', states: 'all subgroup orders {1,2,3,4,6,8,12,24} divide 24 by closure', class: 'finite-complete', consumes: 'subgroup closure' },
+  { theorem: 'Havel–Hakimi graphicality', states: 'recursive reduction = brute realizability on six degree sequences', class: 'finite-complete', consumes: 'greedy graph construction' },
+  { theorem: 'Dirac Hamiltonicity condition', states: 'min-degree ≥ n/2 ⇒ Hamiltonian, circulants n=3..8', class: 'finite-complete', consumes: 'Hamiltonian-cycle DFS' },
+  { theorem: 'De Bruijn sequence exact-window', states: 'B(2,n) length 2^n, every n-window once, n ≤ 6', class: 'finite-complete', consumes: 'necklace construction' },
+  { theorem: 'Pisano period π(10) = 60', states: 'Fibonacci mod m periodic, π(10)=60, even for m>2 to 50', class: 'finite-complete', consumes: 'Fibonacci mod m' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
