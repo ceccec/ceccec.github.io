@@ -1055,6 +1055,11 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'PSL(2,16) is simple', states: '4080 permutations of P¹(𝔽₁₆) with 𝔽₁₆ = 𝔽₂[x]/(x⁴+x+1), 17 classes, class-sum clean', provedBy: 'discoveredTheoremsWaveSeventeen', home: 'src/thunder/verify' },
     { theorem: 'PSL(2,17) is simple', states: '2448 permutations of P¹(𝔽₁₇), 11 classes, class-sum clean', provedBy: 'discoveredTheoremsWaveSeventeen', home: 'src/thunder/verify' },
     { theorem: 'PSL(2,19) is simple', states: '3420 permutations of P¹(𝔽₁₉), 12 classes, class-sum clean — every nonabelian simple order ≤ 5616 now in-registry (list completeness cited), M₁₁ and M₁₂ beyond', provedBy: 'discoveredTheoremsWaveSeventeen', home: 'src/thunder/verify' },
+    { theorem: 'parallel postulate independent of incidence', states: 'AG(2,2) and PG(2,2) share the two-points-one-line core exhaustively; Playfair holds EXACTLY in one, all 21 line-pairs meet in the other — the Bolyai–Lobachevsky challenge completed in 11 points; classical models cited', provedBy: 'discoveredTheoremsWaveEighteen', home: 'src/thunder/verify' },
+    { theorem: 'excluded middle unprovable intuitionistically', states: 'the 3-chain Heyting algebra validates all nine Hilbert schemes under all 27 valuations with modus ponens sound, and p ∨ ¬p sticks at the middle — LEM is not a theorem of the rest; Heyting/Gödel cited', provedBy: 'discoveredTheoremsWaveEighteen', home: 'src/thunder/verify' },
+    { theorem: 'associativity independent of division and norm', states: 'the octonion basis on the oriented Fano lines: every unit invertible, sealed dim-8 norm composition, yet 168/343 ordered basis triples refuse to associate — (e₁e₂)e₃ = −e₁(e₂e₃); the 168 = |GL₃(𝔽₂)| count coincidence recorded as an open lead', provedBy: 'discoveredTheoremsWaveEighteen', home: 'src/thunder/verify' },
+    { theorem: 'Sylvester–Gallai needs order axioms', states: 'the Fano plane has ZERO ordinary lines — every point-pair rides a 3-point line, verified whole — while over ℝ the theorem forces one: the order of the real line is load-bearing; Gallai cited', provedBy: 'discoveredTheoremsWaveEighteen', home: 'src/thunder/verify' },
+    { theorem: 'commutativity independent of group axioms', states: 'S₃ passes the complete axiom check (closure, 216 associativity triples, identity, inverses) and refuses to commute; minimality rides the sealed order-4/6 exhaustions', provedBy: 'discoveredTheoremsWaveEighteen', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1132,6 +1137,11 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'PSL(2,16) is simple', states: '4080 permutations over 𝔽₂[x]/(x⁴+x+1) — the even-q branch at 16', class: 'finite-complete', consumes: 'pslOverField, carryless mul (wave thirteen)' },
   { theorem: 'PSL(2,17) is simple', states: '2448 permutations over the prime field — filling the smallest-simples list', class: 'finite-complete', consumes: 'pslOverField prime-field one-liner (wave fifteen)' },
   { theorem: 'PSL(2,19) is simple', states: '3420 permutations — completes every nonabelian simple order ≤ 5616 in-registry', class: 'finite-complete', consumes: 'pslOverField prime-field one-liner (wave fifteen)' },
+  { theorem: 'parallel postulate independent of incidence', states: 'two finite planes, one incidence core, opposite parallel verdicts — independence by countermodel, complete', class: 'finite-complete', consumes: 'fanoLines geometry, AG(2,2) enumeration' },
+  { theorem: 'excluded middle unprovable intuitionistically', states: '3-chain Heyting: nine schemes × 27 valuations + MP soundness + the stuck middle', class: 'finite-complete', consumes: 'finite lattice arithmetic' },
+  { theorem: 'associativity independent of division and norm', states: 'octonions divide without associating — 168/343 triples fail on the sealed oriented Fano lines', class: 'finite-complete', consumes: 'crossProduct7 orientation, Hurwitz norm seal' },
+  { theorem: 'Sylvester–Gallai needs order axioms', states: 'Fano: zero ordinary lines, complete sweep — incidence alone refutes what ℝ-order proves', class: 'finite-complete', consumes: 'fanoLines' },
+  { theorem: 'commutativity independent of group axioms', states: 'S₃ complete axiom check + non-commuting witness; smaller orders sealed abelian', class: 'finite-complete', consumes: 'order-4/6 exhaustions (wave two)' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
