@@ -1101,6 +1101,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Matrix-Tree theorem (Kirchhoff)', states: 'the number of spanning trees equals a Laplacian cofactor, checked against direct enumeration: K₄ → 16, C₅ → 5, K₃,₃ → 81 — a determinant counts trees', provedBy: 'discoveredTheoremsWaveTwentyEight', home: 'src/thunder/verify' },
     { theorem: 'Möbius inversion and multiplicativity', states: 'Σ_{d|n} μ(d) = [n=1] for all n ≤ 100 and μ(mn) = μ(m)μ(n) on coprimes ≤ 30 — μ is the Dirichlet inverse of 1 and multiplicative', provedBy: 'discoveredTheoremsWaveTwentyEight', home: 'src/thunder/verify' },
     { theorem: 'Cauchy theorem on permutation groups', states: 'every prime p dividing |G| has an element of order p, verified on S₃, A₄, S₄ and A₅ by computing element orders from the closure — A₅ carries order-5 elements as 5 ∣ 60', provedBy: 'discoveredTheoremsWaveTwentyEight', home: 'src/thunder/verify' },
+    { theorem: 'Basel problem Σ1/n² = π²/6', states: 'the partial sum to 10⁵ sits below the limit π²/6 and within the tail bound 1/N, monotone and bounded — Euler’s value witnessed to six figures', provedBy: 'discoveredTheoremsWaveTwentyNine', home: 'src/thunder/verify' },
+    { theorem: 'Leibniz and Wallis π series', states: 'π/4 = 1 − 1/3 + 1/5 − … and the Wallis product ∏(2n)²/((2n−1)(2n+1)) → π/2 both converge to π independently — an alternating sum and an infinite product meeting at the same constant', provedBy: 'discoveredTheoremsWaveTwentyNine', home: 'src/thunder/verify' },
+    { theorem: 'coupon collector expectation n·H_n', states: 'the expected trials to collect all n coupons is EXACTLY n·H_n — the sum of geometric waiting times Σ n/(n−k) matching the harmonic form for every n ≤ 50, two computations agreeing', provedBy: 'discoveredTheoremsWaveTwentyNine', home: 'src/thunder/verify' },
+    { theorem: 'ballot problem P = (a−b)/(a+b)', states: 'if A wins a > b votes, P(A leads throughout) = (a−b)/(a+b), verified by EXHAUSTIVELY counting strictly-leading orderings against C(a+b,a) for all a ≤ 10 — closed form confirmed by complete enumeration', provedBy: 'discoveredTheoremsWaveTwentyNine', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1224,6 +1228,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Matrix-Tree theorem (Kirchhoff)', states: 'spanning trees = Laplacian cofactor vs enumeration: K4→16, C5→5, K33→81', class: 'finite-complete', consumes: 'determinant, union-find tree count' },
   { theorem: 'Möbius inversion and multiplicativity', states: 'Σ_{d|n} μ(d) = [n=1] to 100; μ multiplicative on coprimes', class: 'finite-complete', consumes: 'factorization, one-math gcd' },
   { theorem: 'Cauchy theorem on permutation groups', states: 'prime p | |G| ⇒ element of order p, on S3/A4/S4/A5', class: 'finite-complete', consumes: 'group closure, element orders' },
+  { theorem: 'Basel problem Σ1/n² = π²/6', states: 'partial sum to 10⁵ below the limit within tail 1/N — Euler witnessed', class: 'bounded-witness', consumes: 'convergent series' },
+  { theorem: 'Leibniz and Wallis π series', states: 'alternating sum → π/4 and Wallis product → π/2, both converge', class: 'bounded-witness', consumes: 'series and product' },
+  { theorem: 'coupon collector expectation n·H_n', states: 'E[T] = n·H_n exactly (geometric waiting times vs harmonic) to n=50', class: 'finite-complete', consumes: 'harmonic sums' },
+  { theorem: 'ballot problem P = (a−b)/(a+b)', states: 'exhaustive leading-ordering count = closed form, a ≤ 10', class: 'finite-complete', consumes: 'lattice-path enumeration' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
