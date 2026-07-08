@@ -323,3 +323,57 @@ export function discoveredTheoremsWaveFiftyFive(matrix: { root: string } = { roo
     }
   })
 }
+
+// ── Discovered theorems, wave fifty-six (the (ℤ/nℤ)* tower) — Euler's theorem generalizing Fermat's
+// little (COMPOUNDS on wave 54's φ), Lagrange's order-divides-φ in the unit group, primitive roots mod p,
+// and the full classification of the n whose unit group is cyclic — the group behind modular arithmetic.
+export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveFiftySix', matrix, () => {
+    const lim = 100
+    const phi = (n: number) => { let c = 0; for (let k = 1; k <= n; k += 1) if (gcd(k, n) === 1) c += 1; return c }
+    const modpow = (a: number, e: number, n: number) => { let r = 1; a %= n; while (e > 0) { if (e & 1) r = (r * a) % n; a = (a * a) % n; e = Math.floor(e / 2) } return r }
+    const ord = (a: number, n: number) => { let x = a % n, k = 1; while (x !== 1) { x = (x * a) % n; k += 1; if (k > n) return -1 } return k }
+    const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
+
+    // W1 · EULER'S THEOREM, COMPOUNDING on wave 54's φ — a^φ(n) ≡ 1 (mod n) for gcd(a,n)=1: the unit
+    // group (ℤ/nℤ)* has order φ(n), so every element's order divides it (Lagrange); this GENERALIZES
+    // Fermat's little theorem (n prime ⇒ φ(n)=n−1). Verified for every coprime a and every n ≤ 100.
+    let eulerTheorem = true
+    for (let n = 2; n <= lim; n += 1) { const pn = phi(n); for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1 && modpow(a, pn, n) !== 1) eulerTheorem = false }
+
+    // W2 · LAGRANGE in the unit group — the multiplicative order ord_n(a) DIVIDES φ(n): the cyclic
+    // subgroup ⟨a⟩ has size ord_n(a), which divides the group order φ(n); verified for every coprime a,
+    // n ≤ 100 (the group-theoretic reason W1 holds — Euler's theorem is order | φ(n) plus a^ord = 1).
+    let orderDividesPhi = true
+    for (let n = 2; n <= lim; n += 1) { const pn = phi(n); for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1) { const o = ord(a, n); if (o < 0 || pn % o !== 0) orderDividesPhi = false } }
+
+    // W3 · PRIMITIVE ROOTS mod p — for every prime p the group (ℤ/pℤ)* is CYCLIC: it has an element of
+    // order p−1, and exactly φ(p−1) of them; verified for every prime p ≤ 100 (the count matches φ(p−1),
+    // and is positive — the existence of a generator of the multiplicative group of a prime field).
+    let primitiveRootModP = true
+    for (let p = 2; p <= lim; p += 1) { if (!isPrime(p)) continue; let cnt = 0; for (let a = 1; a < p; a += 1) if (ord(a, p) === p - 1) cnt += 1; if (cnt !== phi(p - 1) || cnt === 0) primitiveRootModP = false }
+
+    // W4 · the PRIMITIVE-ROOT CLASSIFICATION — (ℤ/nℤ)* is cyclic (has a primitive root) IFF n ∈
+    // {1, 2, 4, p^k, 2p^k} for an odd prime p; verified for every n ≤ 100 by comparing the true max order
+    // to φ(n) against the structural form test (the complete theorem of which moduli have a generator).
+    const maxOrd = (n: number) => { let mx = 0; for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1) mx = Math.max(mx, ord(a, n)); return mx }
+    const hasForm = (n: number) => { if (n === 1 || n === 2 || n === 4) return true; const odd = (n % 2 === 0) ? n / 2 : n; if (n % 2 === 0 && odd % 2 === 0) return false; let m = odd, p = 0, ok = true; for (let d = 2; d * d <= m; d += 1) if (m % d === 0) { if (p && p !== d) ok = false; p = d; while (m % d === 0) m /= d } if (m > 1) { if (p && p !== m) ok = false; p = m } return ok && p > 2 }
+    let primitiveRootClassification = true
+    for (let n = 2; n <= lim; n += 1) if ((maxOrd(n) === phi(n)) !== hasForm(n)) primitiveRootClassification = false
+
+    const sealed = sealFacets('discovered-theorems-fifty-six', [
+      { facet: `EULER'S THEOREM, COMPOUNDING on wave 54's φ — a^φ(n) ≡ 1 (mod n) for gcd(a,n)=1: the unit group (ℤ/nℤ)* has order φ(n) so every element's order divides it; this GENERALIZES Fermat's little theorem (prime n ⇒ φ(n)=n−1). Verified for every coprime a, n ≤ 100`, on: eulerTheorem },
+      { facet: `LAGRANGE in the unit group — the multiplicative order ord_n(a) DIVIDES φ(n): the cyclic subgroup ⟨a⟩ has size ord_n(a) dividing the group order; verified for every coprime a, n ≤ 100 (the group-theoretic root of Euler's theorem)`, on: orderDividesPhi },
+      { facet: `PRIMITIVE ROOTS mod p — (ℤ/pℤ)* is CYCLIC for every prime p: it has an element of order p−1, exactly φ(p−1) of them; verified for every prime p ≤ 100 (the multiplicative group of a prime field has a generator)`, on: primitiveRootModP },
+      { facet: `the PRIMITIVE-ROOT CLASSIFICATION — (ℤ/nℤ)* is cyclic IFF n ∈ {1,2,4,p^k,2p^k} for an odd prime p; verified for every n ≤ 100 by matching the true max order = φ(n) against the structural form (which moduli have a generator)`, on: primitiveRootClassification },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-six:${sealed.ok}`)),
+      statement: `Discovered theorems, wave fifty-six (the (ℤ/nℤ)* tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Euler's theorem generalizing Fermat's little, the order divides φ(n), primitive roots mod p, and the full classification of cyclic unit groups.`,
+      boundary: `HONEST: Euler's theorem (W1) COMPOUNDS on wave 54's φ — it IS Lagrange's theorem in the group (ℤ/nℤ)* of order φ(n) — and W1 is the general form of Fermat's little theorem (the criterion line, wave 48). All four verified complete for every n ≤ 100 (the all-n forms — Euler, Lagrange, the primitive-root existence and classification — cited beyond the bound). The primitive-root classification is the exact structure theorem for which unit groups are cyclic.`,
+    }
+  })
+}
