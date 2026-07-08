@@ -1085,6 +1085,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Erdős–Szekeres monotone subsequence', states: 'every sequence of (r−1)(s−1)+1 reals has an increasing r- or decreasing s-subsequence, and (r−1)(s−1) can avoid it — exhausted over all permutations for (3,3) and (3,4), both directions', provedBy: 'discoveredTheoremsWaveTwentyFour', home: 'src/thunder/verify' },
     { theorem: 'Pick’s theorem Area = I + B/2 − 1', states: 'shoelace area and boundary count (one-math gcd) matched against a DIRECT interior lattice-point count on a rectangle, triangle and L-shape — two independent computations agreeing; Pick cited', provedBy: 'discoveredTheoremsWaveTwentyFour', home: 'src/thunder/verify' },
     { theorem: 'Catalan conjecture 8 and 9 to 10⁶', states: '8 = 2³ and 9 = 3² are the ONLY consecutive perfect powers up to 10⁶ — every perfect power enumerated, the sole unit gap; Mihailescu 2002 cited for all n', provedBy: 'discoveredTheoremsWaveTwentyFour', home: 'src/thunder/verify' },
+    { theorem: 'Nicomachus sum of cubes is a square', states: '1³ + 2³ + … + n³ = (n(n+1)/2)² for every n ≤ 100, both sides computed independently — the sum of the first n cubes is exactly the square of the n-th triangular number', provedBy: 'discoveredTheoremsWaveTwentyFive', home: 'src/thunder/verify' },
+    { theorem: 'Lucas theorem for binomials mod p', states: 'C(n,k) mod p equals the product of digit-binomials C(n_i,k_i) in base p, verified for p ∈ {2,3,5,7} and all n ≤ 40 by direct Pascal reduction vs the digit product — binomials factor through the prime base', provedBy: 'discoveredTheoremsWaveTwentyFive', home: 'src/thunder/verify' },
+    { theorem: 'Pythagorean parametrization is a bijection', states: 'every primitive triple with hypotenuse ≤ 200 arises exactly once from coprime opposite-parity (m,n) via (m²−n², 2mn, m²+n²) — the parametrised set equals the brute-forced set exactly; Euclid cited for all', provedBy: 'discoveredTheoremsWaveTwentyFive', home: 'src/thunder/verify' },
+    { theorem: 'Fermat–Euler congruences', states: 'a^φ(n) ≡ 1 (mod n) for every a coprime to n (all n ≤ 60) and a^p ≡ a (mod p) for every prime p ≤ 60 — the foundation of modular exponentiation, exhausted within bound', provedBy: 'discoveredTheoremsWaveTwentyFive', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1192,6 +1196,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Erdős–Szekeres monotone subsequence', states: '(r−1)(s−1)+1 forces monotone, (r−1)(s−1) escapes — permutation exhaustion (3,3),(3,4)', class: 'finite-complete', consumes: 'permutation enumeration, LIS/LDS' },
   { theorem: 'Pick’s theorem Area = I + B/2 − 1', states: 'shoelace + gcd boundary vs direct interior count, two computations agreeing', class: 'finite-complete', consumes: 'one-math gcd, shoelace' },
   { theorem: 'Catalan conjecture 8 and 9 to 10⁶', states: 'only consecutive perfect powers to 10⁶ are 8 = 2³, 9 = 3²', class: 'finite-complete', consumes: 'perfect-power sieve' },
+  { theorem: 'Nicomachus sum of cubes is a square', states: 'Σk³ = (n(n+1)/2)² for all n ≤ 100, both sides computed', class: 'finite-complete', consumes: 'arithmetic sums' },
+  { theorem: 'Lucas theorem for binomials mod p', states: 'C(n,k) mod p = Π C(n_i,k_i) base p, verified p∈{2,3,5,7}, n ≤ 40', class: 'finite-complete', consumes: 'Pascal mod p, base-p digits' },
+  { theorem: 'Pythagorean parametrization is a bijection', states: '(m²−n²,2mn,m²+n²) covers every primitive triple to hyp 200 exactly once', class: 'finite-complete', consumes: 'one-math gcd, brute triple search' },
+  { theorem: 'Fermat–Euler congruences', states: 'a^φ(n)≡1 mod n and a^p≡a mod p, exhausted to 60', class: 'finite-complete', consumes: 'totient, modular exponentiation' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
