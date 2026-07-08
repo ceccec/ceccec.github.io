@@ -362,6 +362,7 @@ const SESSION_SKILL_FNS: readonly string[] = [
   'theMonograph',
   'theoremGapScan',
   'theoremNavigation',
+  'proofAnimations',
   'theoremWavesVerify',
   'tightenGatesTrinityWaves',
   'trinityEyesProvenHarmonic',

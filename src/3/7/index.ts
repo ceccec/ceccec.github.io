@@ -929,7 +929,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/water/cosmos/index.ts', literal: '0.0565', count: 1, kind: 'data', source: 'Saturn orbital eccentricity — JPL J2000 elements' },
   { file: 'src/water/cosmos/index.ts', literal: '0.0457', count: 1, kind: 'data', source: 'Uranus orbital eccentricity — JPL J2000 elements' },
   { file: 'src/water/cosmos/index.ts', literal: '0.0113', count: 1, kind: 'data', source: 'Neptune orbital eccentricity — JPL J2000 elements' },
-  { file: 'src/water/cosmos/index.ts', literal: '*', count: 146, kind: 'data', source: 'attested residue — string-theory/maths + solar/leads pins; discovery waves relocated to thunder/waves+verify 2026-07-08 (162→146)' },
+  { file: 'src/water/cosmos/index.ts', literal: '*', count: 148, kind: 'data', source: 'attested residue — string-theory/maths + solar/leads pins + frontier boundary gates (0.9/1.1 sanity bands) 2026-07-08 (146→148)' },
   { file: 'src/water/crypto/index.ts', literal: '*', count: 5, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/water/digit/index.ts', literal: '*', count: 217, kind: 'data', source: 'attested residue — digit/π corpus and derivation tables' },
   { file: 'src/water/double/earth/index.ts', literal: '*', count: 17, kind: 'data', source: 'attested residue — GPS coordinates and Earth data' },

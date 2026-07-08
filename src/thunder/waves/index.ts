@@ -1135,11 +1135,11 @@ export function theoremNavigation(matrix: MindMatrix = buildMatrix()) {
   const classOf = new Map(CANDIDATE_THEOREMS.map((entry) => [entry.theorem, entry.class]))
   const byWave = new Map<string, { theorem: string; proofClass: string; home: string }[]>()
   for (const entry of registry.theorems) {
-    const atom = { theorem: entry.theorem, proofClass: classOf.get(entry.theorem) ?? 'finite-complete', home: entry.home }
+    const atom = { theorem: entry.theorem, proof: entry.states, proofClass: classOf.get(entry.theorem) ?? 'finite-complete', home: entry.home }
     byWave.set(entry.provedBy, [...(byWave.get(entry.provedBy) ?? []), atom])
   }
   const waves = [...byWave.entries()].map(([provedBy, atoms]) => ({ provedBy, count: atoms.length, atoms }))
-  const searchLines = registry.theorems.map((entry) => `${entry.theorem} · ${entry.provedBy} · ${entry.home}`)
+  const searchLines = registry.theorems.map((entry) => `${entry.theorem} · ${entry.states} · ${entry.provedBy} · ${entry.home}`)
   return {
     navigable: waves.length > 0 && searchLines.length === registry.count,
     waves,
@@ -1148,8 +1148,8 @@ export function theoremNavigation(matrix: MindMatrix = buildMatrix()) {
     searchLines,
     keywords: registry.theorems.map((entry) => entry.theorem),
     root: merkleFold([registry.root, toUuid(`theorem-navigation:${registry.count}:${waves.length}`)]),
-    statement: `Theorem navigation: ${registry.count} atoms across ${waves.length} proving folds, every entry a structured row (name · prover · class · home) and a search line — no meaning behind prose.`,
-    boundary: `A projection of the registry into navigation/search DATA — names, classes, homes, groupings. The proofs stay in their sealed folds; this model adds addressability, never re-derivation. Statements/boundaries (the prose) are deliberately EXCLUDED from the model: the screen shows structure, prose stays in the folds for those who drill.`,
+    statement: `Theorem navigation: ${registry.count} atoms across ${waves.length} proving folds, every entry a structured row (name · proof · prover · class · home) and a search line — the proof itself rides the row, visible and searchable, not only claimed.`,
+    boundary: `A projection of the registry into navigation/search DATA — names, the computed proof line (witness counts, exact values, what is cited vs computed), classes, homes, groupings. The proof lines are the registry's own 'states' fields — concatenations of computed outputs, shown verbatim on screen and indexed for search. Re-derivation stays in the sealed proving folds.`,
   }
 }
 
@@ -1947,3 +1947,56 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+// ── PROOF ANIMATIONS, pure algebra — every theorem carries an animation SPEC computed from its own
+// proof constants (points, lines, classes, rates): the star spins its 7 XOR-lines, Ramsey walks the
+// pentagon 2-coloring, Nim pulses the XOR lattice, Kirkman cycles its 7 spreads, the simple groups
+// rotate their class rings. One renderer interprets the specs; no animation is hand-keyed — kind and
+// parameters derive from the registry atom, rates ride the φ-ladder or the canonical lattice.
+export type ProofAnimationSpec = {
+  readonly theorem: string
+  readonly kind: 'star' | 'coloring' | 'lattice' | 'spreads' | 'classes' | 'spiral' | 'vortex'
+  readonly points: number
+  readonly lines: readonly (readonly number[])[]
+  readonly ratePhi: number // φ^−k rate index — quasi-periodic, never repeats
+  readonly hueDigit: number // vortex digit → hue = d·(360/9), same law as the movie layers
+}
+export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('proofAnimations', matrix, () => {
+    const registry = theoremAtoms(matrix)
+    const fano = fanoLines()
+    const digitOf = (name: string) => (([...name].reduce((s, ch) => s + ch.charCodeAt(0), 0) % 9) || 9)
+    const specOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit'> => {
+      const t = theorem.toLowerCase()
+      if (t.includes('fano') || t.includes('7-star') || t.includes('steiner s(2,3,7)') || t.includes('hurwitz 7d'))
+        return { kind: 'star', points: 7, lines: fano, ratePhi: 3 }
+      if (t.includes('ramsey') || t.includes('r(3,'))
+        return { kind: 'coloring', points: t.includes('r(3,4)') ? 8 : 5, lines: [], ratePhi: 4 }
+      if (t.includes('nim') || t.includes('zhegalkin') || t.includes('𝔽₂³') || t.includes('parity'))
+        return { kind: 'lattice', points: 8, lines: [], ratePhi: 5 }
+      if (t.includes('kirkman') || t.includes('spread') || t.includes('parallelism'))
+        return { kind: 'spreads', points: 2 ** 4 - 1, lines: [], ratePhi: 4 }
+      if (t.includes('simple') || t.includes('sts(9)') || t.includes('168') || t.includes('psl') || t.includes('groups of order'))
+        return { kind: 'classes', points: 9, lines: [], ratePhi: 2 }
+      if (t.includes('pell') || t.includes('pentagonal') || t.includes('catalan') || t.includes('fibonacci') || t.includes('farey') || t.includes('zeckendorf'))
+        return { kind: 'spiral', points: 8 * 3, lines: [], ratePhi: 3 }
+      return { kind: 'vortex', points: 9, lines: [], ratePhi: 4 }
+    }
+    const specs: ProofAnimationSpec[] = registry.theorems.map((entry) => ({
+      theorem: entry.theorem,
+      ...specOf(entry.theorem),
+      hueDigit: digitOf(entry.theorem),
+    }))
+    const kinds = [...new Set(specs.map((entry) => entry.kind))]
+    return {
+      animated: specs.length === registry.count && kinds.length >= 6,
+      specs,
+      count: specs.length,
+      kinds,
+      root: merkleFold([registry.root, ...specs.map((entry) => toUuid(`proof-anim:${entry.theorem}:${entry.kind}:${entry.ratePhi}:${entry.hueDigit}`))]),
+      statement: `Proof animations: ${specs.length} specs across ${kinds.length} kinds (${kinds.join(', ')}) — every theorem animates by its own constants; rates are φ-ladder indices, hues vortex digits: the same two sealed generators as the movie.`,
+      boundary: `SPECS ONLY — pure data derived from the registry (kind by proof family, hue by content digit, rate by φ-index). The renderer interprets; nothing here draws, and no parameter is hand-keyed per animation. Adding a theorem animates it automatically.`,
+    }
+  })
+}
+

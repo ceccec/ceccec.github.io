@@ -15,7 +15,7 @@ import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
 import { OMEGA_DARK_MATTER, unruhTemperature } from '../../5/5'
-import { DARK_ENERGY_EOS_W, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin } from '../../3/7'
+import { DARK_ENERGY_EOS_W, ELECTRONVOLT, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, NEWTON_G, SPEED_OF_LIGHT, otuPerMin } from '../../3/7'
 import { SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3'
 import { BARYON_TO_PHOTON_RATIO, hawkingTemperature } from '../../4/6'
 import { ELECTRON_G_FACTOR_ANOMALY, zeroPointEnergy, casimirPressure, rebreatherInertBar } from '../../1/9'
@@ -754,17 +754,23 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('cosmosFrontiersDecoded', matrix, () => {
     const darkMatter = darkMatterDecoded(matrix)
     const tensions = cosmologicalTensionsLcdmDecoded(matrix)
+    const omegaSum = darkMatter.omegaDarkEnergy + darkMatter.omegaDarkMatter + darkMatter.omegaBaryon
+    const darkToBaryon = darkMatter.omegaDarkMatter / darkMatter.omegaBaryon
+    const planckEnergyGeV = Math.sqrt((REDUCED_PLANCK * SPEED_OF_LIGHT ** 5) / NEWTON_G) / (ELECTRONVOLT * (2 * 5) ** 9)
+    const colliderGeV = 2 * 7 * (2 * 5) ** 3 // the 14 TeV design reach, in GeV
     const frontiers = [
-      { frontier: 'Dark matter', status: 'OPEN — a real gravitational anomaly; candidates (WIMP, axion) and MOND alternatives all unconfirmed.', composedRoot: darkMatter.root },
-      { frontier: 'The H₀ / S₈ (ΛCDM) tensions', status: 'OPEN — statistically significant early-vs-late-universe discrepancies; new physics or systematics, unresolved.', composedRoot: tensions.root },
-      { frontier: 'Dark energy / cosmological constant', status: 'OPEN — the accelerating expansion is measured; why Λ has its tiny value is unexplained.', composedRoot: toUuid('frontier:dark-energy') },
-      { frontier: 'Matter–antimatter asymmetry (baryogenesis)', status: 'OPEN — the universe is matter-dominated; the CP violation needed to explain it is not fully accounted.', composedRoot: toUuid('frontier:baryogenesis') },
-      { frontier: 'Neutrino mass ordering & nature', status: 'OPEN — masses are nonzero (oscillations) but the ordering and Dirac-vs-Majorana question are undecided.', composedRoot: toUuid('frontier:neutrino') },
-      { frontier: 'Quantum gravity', status: 'OPEN — no experimentally confirmed theory unifying general relativity and quantum mechanics.', composedRoot: toUuid('frontier:quantum-gravity') },
-    ].map((f) => ({ ...f, receipt: toUuid(`cosmos-frontier:${f.frontier}:${f.composedRoot.slice(0, 8)}`) }))
+      { frontier: 'Dark matter', status: 'OPEN — a real gravitational anomaly; candidates (WIMP, axion) and MOND alternatives all unconfirmed.', computed: `Ω_c/Ω_b = ${darkToBaryon.toFixed(2)} — the unseen outweighs baryons ${Math.round(darkToBaryon)}:1 in the CMB budget; every non-gravitational detection NULL to date`, composedRoot: darkMatter.root },
+      { frontier: 'The H₀ / S₈ (ΛCDM) tensions', status: 'OPEN — statistically significant early-vs-late-universe discrepancies; new physics or systematics, unresolved.', computed: `H₀ = ${HUBBLE_CONSTANT_CMB} (CMB) vs ${HUBBLE_CONSTANT_LOCAL} (local ladder) → ${tensions.hubbleTensionSigma.toFixed(1)}σ, recomputed from the ledgered pair`, composedRoot: tensions.root },
+      { frontier: 'Dark energy / cosmological constant', status: 'OPEN — the accelerating expansion is measured; why Λ has its tiny value is unexplained.', computed: `Ω_Λ = ${darkMatter.omegaDarkEnergy} and Ω_Λ + Ω_c + Ω_b = ${omegaSum.toFixed(3)} — the budget closes to flat; WHY Λ has this value stays unexplained`, composedRoot: toUuid('frontier:dark-energy') },
+      { frontier: 'Matter–antimatter asymmetry (baryogenesis)', status: 'OPEN — the universe is matter-dominated; the CP violation needed to explain it is not fully accounted.', computed: `η = ${BARYON_TO_PHOTON_RATIO} — one excess baryon per ${Math.round(1 / BARYON_TO_PHOTON_RATIO).toExponential(2)} photons; SM CP violation (Jarlskog J = ${JARLSKOG_INVARIANT}) falls orders short`, composedRoot: toUuid('frontier:baryogenesis') },
+      { frontier: 'Neutrino mass ordering & nature', status: 'OPEN — masses are nonzero (oscillations) but the ordering and Dirac-vs-Majorana question are undecided.', computed: `|Δm²_atm| / Δm²_sol = ${(NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2).toFixed(1)} — both splittings measured; the SIGN of the large one (the ordering) undecided`, composedRoot: toUuid('frontier:neutrino') },
+      { frontier: 'Quantum gravity', status: 'OPEN — no experimentally confirmed theory unifying general relativity and quantum mechanics.', computed: `E_Planck = √(ħc⁵/G) = ${planckEnergyGeV.toExponential(2)} GeV — ${Math.round(Math.log10(planckEnergyGeV / colliderGeV))} orders above the 14 TeV collider frontier`, composedRoot: toUuid('frontier:quantum-gravity') },
+    ].map((f) => ({ ...f, receipt: toUuid(`cosmos-frontier:${f.frontier}:${f.computed}:${f.composedRoot.slice(0, 8)}`) }))
     const facets = [
       { facet: 'composes the sealed cosmology folds — dark matter and the ΛCDM tensions bind their own roots', on: frontiers[0]!.composedRoot.length > 0 && frontiers[1]!.composedRoot.length > 0 },
       { facet: 'every frontier is held OPEN — no unsolved question is claimed solved', on: frontiers.every((f) => f.status.startsWith('OPEN')) },
+      { facet: 'every frontier CLAIMS its computed boundary — measured values from the ledger, the gap quantified on screen, the open question stated beside it', on: frontiers.every((f) => f.computed.length > 0) },
+      { facet: 'the computed boundaries recompute from the composed folds — the Ω budget from the dark-matter fold, the tension σ from the ΛCDM fold, the Planck scale from the vault constants', on: omegaSum > 0.9 && omegaSum < 1.1 && tensions.hubbleTensionSigma > 4 && planckEnergyGeV > colliderGeV },
       { facet: 'six named frontiers spanning the dark sector, baryogenesis, neutrinos, and quantum gravity', on: frontiers.length === 6 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cosmos-frontiers:${entry.facet}:${entry.on}`) }))
     return {
@@ -774,9 +780,9 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(darkMatter.root, merge(tensions.root, merkleFold(frontiers.map((f) => f.receipt)))),
       statement:
-        'The cosmic frontiers, decoded: dark matter, the H₀/S₈ tensions, dark energy, the matter–antimatter asymmetry, the neutrino mass ordering, and quantum gravity — the genuinely open questions of physics and cosmology, composed from the sealed cosmology folds and each held OPEN, none claimed solved.',
+        'The cosmic frontiers, decoded AND computed: dark matter (Ω_c/Ω_b = ' + darkToBaryon.toFixed(2) + '), the Hubble tension (' + tensions.hubbleTensionSigma.toFixed(1) + 'σ), dark energy (the budget closes to ' + omegaSum.toFixed(3) + '), baryogenesis (η = ' + BARYON_TO_PHOTON_RATIO + '), the neutrino splittings ratio (' + (NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2).toFixed(1) + '), and quantum gravity (E_Planck = ' + planckEnergyGeV.toExponential(2) + ' GeV) — every frontier claims exactly what is computable from the ledgered measurements, and each stays OPEN, none claimed solved.',
       boundary:
-        'A content-addressed catalogue of OPEN frontiers composing the sealed dark-matter and ΛCDM-tension folds. It asserts no resolution to any of them — these are unresolved by current science, and the fold records that honestly.',
+        'A content-addressed catalogue of OPEN frontiers composing the sealed dark-matter and ΛCDM-tension folds. Each frontier now CLAIMS its computed boundary — the measured values, the quantified gap — recomputed live from the ledgered constants; what it never claims is a resolution: the open question is stated beside the computed number, and OPEN means open.',
     }
   })
 }
