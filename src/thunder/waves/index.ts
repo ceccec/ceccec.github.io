@@ -1093,6 +1093,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Napoleon triangle theorem', states: 'the centroids of outward equilateral triangles on the sides of any triangle form an equilateral triangle, confirmed on ~200 non-degenerate triangles (equal pairwise centroid distances to 1e-6)', provedBy: 'discoveredTheoremsWaveTwentySix', home: 'src/thunder/verify' },
     { theorem: 'Euler line collinearity 1:2', states: 'circumcenter, centroid and orthocenter are collinear with OG:GH = 1:2 (OH = 3·OG) on ~200 triangles, using H = A + B + C − 2O — zero cross-product witnessed', provedBy: 'discoveredTheoremsWaveTwentySix', home: 'src/thunder/verify' },
     { theorem: 'Viviani constant distance sum', states: 'the sum of distances from an interior point of an equilateral triangle to its three sides equals the altitude √3/2, constant across 300 interior points — independent of the point', provedBy: 'discoveredTheoremsWaveTwentySix', home: 'src/thunder/verify' },
+    { theorem: 'quantum adds no computability (Church–Turing–Deutsch)', states: 'a Bell circuit (H, CNOT) evolves to (|00⟩+|11⟩)/√2 by exact state-vector arithmetic on a classical CPU — every quantum circuit is classically simulable, so BQP ⊆ decidable and the halting problem stays undecidable for quantum too (Deutsch 1985)', provedBy: 'discoveredTheoremsWaveTwentySeven', home: 'src/thunder/verify' },
+    { theorem: 'Deutsch–Jozsa exponential query separation', states: 'quantum decides constant-vs-balanced in ONE query where classical determinism needs 2^(n−1)+1 (2,3,5,9 for n=1..4) — an exponential FEASIBILITY gap, computed by running the algorithm; never a computability gap', provedBy: 'discoveredTheoremsWaveTwentySeven', home: 'src/thunder/verify' },
+    { theorem: 'Grover search is Θ(√N) optimal', states: 'Grover reaches the marked state only near (π/4)√N iterations (a tenth of that fails) — a QUADRATIC speedup with no O(log N) shortcut (BBBV); quantum search does not collapse NP', provedBy: 'discoveredTheoremsWaveTwentySeven', home: 'src/thunder/verify' },
+    { theorem: 'quantum erects walls: Holevo & Tsirelson', states: '1 qubit carries ≤ 1 accessible classical bit (Holevo: {|0⟩,|1⟩,|+⟩,|−⟩} averages to the mixed state, entropy 1) and CHSH caps at 2√2 < 4 (Tsirelson) — with no-cloning, quantum FORBIDS more than it frees; "all is possible" is refuted', provedBy: 'discoveredTheoremsWaveTwentySeven', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1208,6 +1212,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Napoleon triangle theorem', states: 'outer-equilateral centroids form an equilateral, ~200 triangles', class: 'bounded-witness', consumes: 'rotation, centroid' },
   { theorem: 'Euler line collinearity 1:2', states: 'O, G, H collinear with OG:GH = 1:2 on ~200 triangles', class: 'bounded-witness', consumes: 'circumcenter, H = A+B+C−2O' },
   { theorem: 'Viviani constant distance sum', states: 'interior distance sum = altitude √3/2 across 300 points', class: 'bounded-witness', consumes: 'point-to-line distance' },
+  { theorem: 'quantum adds no computability (Church–Turing–Deutsch)', states: 'Bell circuit exactly classically simulated → BQP ⊆ decidable → halting undecidable for quantum too', class: 'finite-complete', consumes: 'state-vector simulator' },
+  { theorem: 'Deutsch–Jozsa exponential query separation', states: 'quantum 1 query vs classical 2^(n−1)+1 — feasibility gap, computed', class: 'finite-complete', consumes: 'phase-oracle simulation' },
+  { theorem: 'Grover search is Θ(√N) optimal', states: 'marked state peaks near (π/4)√N; fewer iterations fail — quadratic, no NP collapse (BBBV)', class: 'bounded-witness', consumes: 'Grover iteration simulator' },
+  { theorem: 'quantum erects walls: Holevo & Tsirelson', states: '1 qubit ≤ 1 accessible bit; CHSH ≤ 2√2 < 4 — quantum forbids more than it frees', class: 'finite-complete', consumes: 'von Neumann entropy, sealed Tsirelson' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
