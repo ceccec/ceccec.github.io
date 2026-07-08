@@ -10,7 +10,7 @@ import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFac
 import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight } from '../waves'
-import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive } from '../../9/1'
+import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFiftyOne, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive } from '../../9/1'
 import { tkCompose, tkInverse, tkKey, tkPerms, tkIsPrime, tkPowMod, tkClassSizes, tkClassSumSimple, tkClosure, tkPslOverField } from '../../9/1'
 import { addressed, covers } from '../../5/5'
 import { schemaOrgDiamonds } from '../../fire/diamonds'
@@ -2502,6 +2502,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-forty-eight', ok: discoveredTheoremsWaveFortyEight(matrix).proven },
     { wave: 'discovered-forty-nine', ok: discoveredTheoremsWaveFortyNine(matrix).proven },
     { wave: 'discovered-fifty', ok: discoveredTheoremsWaveFifty(matrix).proven },
+    { wave: 'discovered-fifty-one', ok: discoveredTheoremsWaveFiftyOne(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),
