@@ -1109,6 +1109,10 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     { theorem: 'Vandermonde determinant factorization', states: 'det[x_i^j] = Π_{i<j}(x_j − x_i) verified against the product of differences for four node sets up to 5×5 — the factorisation that makes polynomial interpolation invertible', provedBy: 'discoveredTheoremsWaveThirty', home: 'src/thunder/verify' },
     { theorem: 'Cassini Fibonacci identity', states: 'F_{n−1}·F_{n+1} − F_n² = (−1)^n for every n ≤ 40, exact in BigInt — the alternating unit determinant of the Fibonacci Q-matrix powers', provedBy: 'discoveredTheoremsWaveThirty', home: 'src/thunder/verify' },
     { theorem: 'Chinese Remainder Theorem', states: 'pairwise-coprime moduli give a UNIQUE solution mod Π m_i, constructed via modular inverses and verified to reconstruct every residue class for three moduli sets — the isomorphism ℤ/Π ≅ ∏ ℤ/m_i', provedBy: 'discoveredTheoremsWaveThirty', home: 'src/thunder/verify' },
+    { theorem: '561 is the smallest Carmichael number', states: 'composite (3·11·17) yet a^(n−1) ≡ 1 (mod 561) for EVERY a coprime to it — a Fermat pseudoprime to all coprime bases, minimality by full sweep; the reason the Fermat primality test can be fooled', provedBy: 'discoveredTheoremsWaveThirtyOne', home: 'src/thunder/verify' },
+    { theorem: 'Catalan bijection Dyck = trees = formula', states: 'Dyck paths, binary trees and the product formula all give 1,1,2,5,14,42,132,429,1430 for n ≤ 8 — three independent counts landing on the same Catalan number', provedBy: 'discoveredTheoremsWaveThirtyOne', home: 'src/thunder/verify' },
+    { theorem: 'Stirling second kind vs partition count', states: 'the recurrence S(n,k) = k·S(n−1,k) + S(n−1,k−1) matches the RAW count of partitions into k nonempty blocks and Σ_k S(n,k) = Bell(n) for every n ≤ 8', provedBy: 'discoveredTheoremsWaveThirtyOne', home: 'src/thunder/verify' },
+    { theorem: 'Sheffer stroke (NAND) is complete', states: 'the closure of NAND alone generates ALL 16 boolean functions of two variables — a single gate suffices for all of logic (the basis of CMOS)', provedBy: 'discoveredTheoremsWaveThirtyOne', home: 'src/thunder/verify' },
   ].map((entry) => ({ ...entry, atom: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
   const memory = merkleFold(theorems.map((entry) => entry.atom))
   const homes = [...new Set(theorems.map((entry) => entry.home))]
@@ -1240,6 +1244,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'Vandermonde determinant factorization', states: 'det[x_i^j] = Π(x_j − x_i) on four node sets to 5×5', class: 'finite-complete', consumes: 'determinant' },
   { theorem: 'Cassini Fibonacci identity', states: 'F_{n−1}F_{n+1} − F_n² = (−1)^n to n=40 in BigInt', class: 'finite-complete', consumes: 'Fibonacci BigInt' },
   { theorem: 'Chinese Remainder Theorem', states: 'coprime moduli → unique residue reconstruction via modular inverses', class: 'finite-complete', consumes: 'modular inverse, BigInt' },
+  { theorem: '561 is the smallest Carmichael number', states: 'composite 3·11·17, Fermat pseudoprime to all coprime bases, minimal by sweep', class: 'finite-complete', consumes: 'modular exponentiation, one-math gcd' },
+  { theorem: 'Catalan bijection Dyck = trees = formula', states: 'three independent counts = C_n 1,1,2,5,14,42,132,429,1430 to n=8', class: 'finite-complete', consumes: 'lattice-path DFS, tree recurrence' },
+  { theorem: 'Stirling second kind vs partition count', states: 'S(n,k) recurrence = brute block count, Σ_k = Bell(n), to n=8', class: 'finite-complete', consumes: 'recurrence, brute partitions' },
+  { theorem: 'Sheffer stroke (NAND) is complete', states: 'NAND closure = all 16 two-variable boolean functions', class: 'finite-complete', consumes: 'truth-table closure' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
