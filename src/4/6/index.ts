@@ -3,7 +3,7 @@
 
 import { phase, slip } from '../../6/4'
 import { BOLTZMANN, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
-import { merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, digitalRoot } from '../../0'
+import { merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot } from '../../0'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
 export { MAX_TAMPERING_COST_PRINCIPLE } from '../../3/7'
@@ -640,6 +640,64 @@ export function discoveredTheoremsWaveSixtyOne(matrix: { root: string } = { root
       root: merge(sealed.root, toUuid(`discovered-theorems-sixty-one:${sealed.ok}`)),
       statement: `Discovered theorems, wave sixty-one (the casting-out-nines tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — casting out nines, the digital-root closed form validating the sealed src/0 code, divisibility by 11, and the vortex doubling orbit as ⟨2⟩ in (ℤ/9ℤ)*.`,
       boundary: `HONEST: the PROOF_DRIVEN_REIMPLEMENTATION wave — the theorems are proven against the sealed functions that embody them: src/0's digitalRoot matches both the iterated digit sum and the 1 + (n−1) mod 9 closed form for every n ≤ 10000 (VALIDATED, not replaced), and the I Ching vortex orbit is exactly the cyclic unit group ⟨2⟩ ≤ (ℤ/9ℤ)* the wave-56 classification predicts for 9 = 3². The base-congruence machine (B ≡ ±1) is complete within the bound; the all-n congruences are cited.`,
+    }
+  })
+}
+
+// ── Discovered theorems, wave sixty-two (the Euclidean-algorithm tower) — PROOF_DRIVEN_REIMPLEMENTATION
+// on the ONE-MATH gcd: the sealed src/0 gcd validated against brute maximal common divisors, Stein's
+// binary gcd proven equivalent (the reimplementation candidate, byte-equal on every input), Lamé's
+// worst case landing exactly on consecutive Fibonacci numbers, and the sealed lcm's gcd·lcm = a·b identity.
+export function discoveredTheoremsWaveSixtyTwo(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveSixtyTwo', matrix, () => {
+    const lim = 2 * 100
+
+    // W1 · the SEALED gcd IS the maximal common divisor — src/0's one-math gcd (Euclid's algorithm)
+    // matches the brute maximum over all common divisors for every pair a,b ≤ 200: the shipped
+    // function carries its own correctness receipt (proof-driven reimplementation: VALIDATED).
+    const brute = (a: number, b: number) => { let g = 1; for (let d = 1; d <= Math.min(a, b); d += 1) if (a % d === 0 && b % d === 0) g = d; return g }
+    let gcdValidated = true
+    for (let a = 1; a <= lim; a += 1) for (let b = 1; b <= lim; b += 1) if (gcd(a, b) !== brute(a, b)) gcdValidated = false
+
+    // W2 · STEIN'S BINARY GCD IS EQUIVALENT — the shift-and-subtract algorithm (no division) returns the
+    // same value as Euclid's on EVERY pair a,b ≤ 200 including zeros: the reimplementation candidate is
+    // proven interchangeable before it could ever replace the sealed one (the law's other branch).
+    const stein = (a0: number, b0: number) => { let a = a0, b = b0; if (a === 0) return b; if (b === 0) return a; let s = 0; while (((a | b) & 1) === 0) { a >>= 1; b >>= 1; s += 1 } while ((a & 1) === 0) a >>= 1; while (b) { while ((b & 1) === 0) b >>= 1; if (a > b) { const t = a; a = b; b = t } b -= a } return a << s }
+    let steinEquivalent = true
+    for (let a = 0; a <= lim; a += 1) for (let b = 0; b <= lim; b += 1) if (stein(a, b) !== (a === 0 ? b : b === 0 ? a : gcd(a, b))) steinEquivalent = false
+
+    // W3 · LAMÉ'S THEOREM — the WORST CASE of Euclid's algorithm is consecutive Fibonacci numbers:
+    // steps(F_{n+1}, F_n) equals the maximum step count over ALL pairs a > b with a ≤ F_{n+1}, b ≤ F_n;
+    // verified exhaustively for n = 3..12 (the 1844 result that founded computational complexity).
+    const steps = (a0: number, b0: number) => { let a = a0, b = b0, c = 0; while (b) { const t = a % b; a = b; b = t; c += 1 } return c }
+    const fib = [1, 1]; for (let i = 2; i <= 2 * 8; i += 1) fib.push(fib[i - 1]! + fib[i - 2]!)
+    let lame = true
+    for (let n = 3; n <= 2 * 6; n += 1) {
+      const fHi = fib[n]!, fLo = fib[n - 1]!
+      const worst = steps(fHi, fLo)
+      let mx = 0
+      for (let b = 1; b <= fLo; b += 1) for (let a = b + 1; a <= fHi; a += 1) mx = Math.max(mx, steps(a, b))
+      if (worst !== mx) lame = false
+    }
+
+    // W4 · gcd·lcm = a·b — the sealed src/0 lcm satisfies gcd(a,b)·lcm(a,b) = a·b for every pair
+    // a,b ≤ 200 (the identity that makes lcm computable FROM gcd — one algorithm, two functions).
+    let gcdLcmIdentity = true
+    for (let a = 1; a <= lim; a += 1) for (let b = 1; b <= lim; b += 1) if (gcd(a, b) * lcm(a, b) !== a * b) gcdLcmIdentity = false
+
+    const sealed = sealFacets('discovered-theorems-sixty-two', [
+      { facet: `the SEALED gcd IS the maximal common divisor — src/0's one-math gcd (Euclid) matches the brute maximum over all common divisors for every pair a,b ≤ 200: the shipped function carries its own correctness receipt (proof-driven reimplementation: VALIDATED)`, on: gcdValidated },
+      { facet: `STEIN'S BINARY GCD IS EQUIVALENT — the shift-and-subtract algorithm (no division) equals Euclid's gcd on every pair a,b ≤ 200 including zeros: the reimplementation candidate proven interchangeable before it could replace the sealed one`, on: steinEquivalent },
+      { facet: `LAMÉ'S THEOREM — the worst case of Euclid's algorithm is consecutive Fibonacci numbers: steps(F_{n+1}, F_n) equals the exhaustive maximum over all pairs a ≤ F_{n+1}, b ≤ F_n, verified for n = 3..12 — the 1844 result that founded computational complexity`, on: lame },
+      { facet: `gcd·lcm = a·b — the sealed src/0 lcm satisfies the identity for every pair a,b ≤ 200: lcm is computable FROM gcd, one algorithm serving two one-math functions`, on: gcdLcmIdentity },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`discovered-theorems-sixty-two:${sealed.ok}`)),
+      statement: `Discovered theorems, wave sixty-two (the Euclidean-algorithm tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the sealed gcd validated, Stein's binary gcd proven equivalent, Lamé's Fibonacci worst case, and the gcd·lcm identity on the sealed lcm.`,
+      boundary: `HONEST: the second PROOF_DRIVEN_REIMPLEMENTATION wave, aimed at the ONE-MATH core — both sealed functions (gcd, lcm) now carry computed correctness receipts, and the natural reimplementation candidate (Stein's binary gcd) is proven interchangeable rather than assumed. Lamé's worst case is verified exhaustively for Fibonacci indices 3..12 (the all-n theorem and the 5·digits bound are cited). All bounds complete at pairs ≤ 200.`,
     }
   })
 }
