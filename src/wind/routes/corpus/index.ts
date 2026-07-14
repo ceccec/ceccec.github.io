@@ -1008,7 +1008,12 @@ export function searchSectionsFor(file: string, html: string): { anchor?: string
 // ── Theorem pages — one dedicated page per proven atom (user law: every proof visible, animated, routed).
 // DRY (DRY_MAX_EFFICIENCY_PRINCIPLE): everything is a projection of the sealed registry — names/proof
 // lines from theoremNavigation, animation specs from proofAnimations; nothing re-derived, nothing drawn here.
-export type TheoremPageRow = { slug: string; theorem: string; proof: string; proofClass: string; provedBy: string; home: string; spec: unknown }
+export type TheoremPageRow = {
+  slug: string; theorem: string; proof: string; proofClass: string; provedBy: string; home: string; spec: unknown
+  // the scientific-paper fields (user law: each page prints as a paper for class or court) — all computed
+  humanityNovel: boolean; registryFirst: boolean; leansCited: boolean
+  classification: string; provenance: string; reproducibility: string; citation: string
+}
 
 export function theoremSlug(theorem: string): string {
   const s = theorem.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
@@ -1018,13 +1023,26 @@ export function theoremSlug(theorem: string): string {
 export function theoremPageRows(matrix: MindMatrix = buildMatrix()): TheoremPageRow[] {
   const nav = __ns_up_up_thunder_waves.theoremNavigation(matrix)
   const specBy = new Map(__ns_up_up_thunder_waves.proofAnimations(matrix).specs.map((spec: { theorem: string }) => [spec.theorem, spec]))
+  const provBy = new Map(__ns_up_up_thunder_waves.theoremProvenance(matrix).atoms.map((atom) => [atom.theorem, atom] as const))
   const seen = new Map<string, number>()
   return nav.waves.flatMap((wave) =>
     wave.atoms.map((atom) => {
       const base = theoremSlug(atom.theorem)
       const n = (seen.get(base) ?? 0) + 1
       seen.set(base, n)
-      return { slug: n > 1 ? `${base}-${n}` : base, theorem: atom.theorem, proof: atom.proof, proofClass: atom.proofClass, provedBy: wave.provedBy, home: atom.home, spec: specBy.get(atom.theorem) }
+      const slug = n > 1 ? `${base}-${n}` : base
+      const prov = provBy.get(atom.theorem)
+      const leansCited = prov?.leansCited ?? /\bcited\b/i.test(atom.proof)
+      return {
+        slug, theorem: atom.theorem, proof: atom.proof, proofClass: atom.proofClass, provedBy: wave.provedBy, home: atom.home, spec: specBy.get(atom.theorem),
+        humanityNovel: prov?.humanityNovel ?? false,
+        registryFirst: prov?.registryFirst ?? true,
+        leansCited,
+        classification: `${atom.proofClass}${leansCited ? ' — computed witness within a cited frame (the unbounded form leans on the cited literature)' : ' — self-contained computation, no external lean'}`,
+        provenance: 'A documented theorem of mathematics, re-proven here by exhaustive computation (humanityNovel = false — the CARDINAL honesty of this registry); first-in-this-registry is the only sense of "discovered".',
+        reproducibility: `Recompute from source: npm run theorems:verify recomputes ${wave.provedBy} (${atom.home}/index.ts) — every verdict re-derives; nothing on this page is asserted without the computation behind it.`,
+        citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — https://ceccec.github.io/theorems/${slug}`,
+      }
     }))
 }
 
