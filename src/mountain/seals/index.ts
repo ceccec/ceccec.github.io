@@ -1161,10 +1161,9 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   // ideology-named drawer hiding the site. Enforces the "science and solutions, not prose and ideology" directive.
   const hubSlugs = new Set<string>(ROSETTA_RAY_HUB_SLUGS)
   const navRosetta =
-    nav.length >= 2 &&
-    nav.length <= 8 &&
+    nav.length === 7 &&
     nav[0]?.text === 'Home' &&
-    nav.slice(1).every((group) => 'items' in group && group.items.length > 0 && group.items.length <= 8 && hubSlugs.has(group.text.toLowerCase()))
+    nav.slice(1).every((group) => 'items' in group && group.items.length === 7 && hubSlugs.has(group.text.toLowerCase()))
   const tenD = tenDimensionalAnimation(matrix)
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll
   const trinityRoot = crossFoldTrinity(matrix).trinity

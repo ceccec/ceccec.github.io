@@ -32,8 +32,13 @@ const waveLabel = (provedBy: string) =>
         <span>every atom recomputes from src</span>
       </p>
       <p class="theorems-panel__provenance">
-        <strong>For agents:</strong> {{ provenance.newToHumanity }} of {{ provenance.documentedRecomputed }} are new to humanity — every atom is a documented theorem re-proven by computation ({{ provenance.selfContained }} self-contained, {{ provenance.citedFrame }} with a cited unbounded frame). "Discovered" = first-in-this-registry. The real discoveries are {{ provenance.methodDiscoveries.length }} method-level artifacts, not new mathematics.
+        <strong>For agents:</strong> {{ provenance.newToHumanity }} of {{ provenance.documentedRecomputed }} are new to humanity — every atom is a documented theorem re-proven by computation ({{ provenance.selfContained }} self-contained, {{ provenance.citedFrame }} with a cited unbounded frame). "Discovered" = first-in-this-registry. The real discoveries are the {{ provenance.methodDiscoveries.length }} method-level artifacts below, not new mathematics.
       </p>
+      <ul class="theorems-panel__discoveries">
+        <li v-for="entry in provenance.methodDiscoveries" :key="entry" :id="entry.split(' — ')[0].replace(/\s+/g, '-')">
+          {{ entry }}
+        </li>
+      </ul>
     </header>
 
     <div v-for="wave in nav.waves" :key="wave.provedBy" class="theorems-panel__wave">
@@ -75,6 +80,8 @@ const waveLabel = (provedBy: string) =>
 .theorems-panel__counts { display: flex; gap: 0.5rem; color: var(--vp-c-text-2); font-size: 0.9em; flex-wrap: wrap; }
 .theorems-panel__provenance { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-left: 3px solid var(--vp-c-brand-1, var(--vp-c-text-3)); background: var(--vp-c-bg-soft); color: var(--vp-c-text-2); font-size: 0.85em; border-radius: 0 6px 6px 0; }
 .theorems-panel__provenance strong { color: var(--vp-c-text-1); }
+.theorems-panel__discoveries { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem 0.6rem 2rem; background: var(--vp-c-bg-soft); font-size: 0.85em; border-radius: 6px; }
+.theorems-panel__discoveries li { margin: 0.2rem 0; scroll-margin-top: calc(1px * 2 * 5 * 8); }
 .theorems-panel__wave h3 { margin: 0.6rem 0 0.25rem; }
 .theorems-panel__wave h3 small { color: var(--vp-c-text-3); font-weight: normal; }
 .theorems-panel__wave ul, .theorems-panel__frontiers { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }

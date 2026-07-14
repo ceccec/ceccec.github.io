@@ -1939,11 +1939,42 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
         : routes.map((route) => item(route, i))
       return { text: i === 1 ? part.labelBg : part.labelEn, items }
     }).filter((section) => section.items.length > 0)
-  // The seven hubs sit DIRECTLY in the top nav (Home + 7 = 8, the eight-fold law) — nothing hides
-  // behind a single ideology-named drawer; every section is one hover away.
+  // THE ROSETTA OF MONOGRAPHS (user law) — the top nav IS the rosetta: Home (ray 0, Origin, the bare
+  // link) + SIX dropdowns (rays 1–6), each EXACTLY SEVEN monograph links — 6 × 7 = 42, the sealed area
+  // count. The Frontier dropdown carries the REAL discoveries: the seven METHOD-level artifacts
+  // (theoremProvenance), anchored on the frontiers page. Straight to the point — canonical slugs, no filler.
+  const DISCOVERY_LINKS: readonly (readonly [string, string, string])[] = [
+    ['recompute-instrument', 'Recompute instrument', 'Преизчисляващият инструмент'], ['compounding-law', 'Compounding law', 'Законът за наслагване'],
+    ['terminus-recompute', 'Terminus recompute', 'Преоцененият предел'], ['machine-honesty-catch', 'Machine-honesty catch', 'Уловът на машинната честност'],
+    ['proof-visibility', 'Proof visibility', 'Видимост на доказателството'], ['quantum-boundary-demarcation', 'Quantum boundary', 'Квантовата граница'],
+    ['honest-frontier-audit', 'Honest frontier audit', 'Честният одит на границите'],
+  ]
+  const NAV_FALLBACK: Record<string, readonly [string, string]> = {
+    '/proof': ['All proofs', 'Всички доказателства'], '/apps': ['All apps', 'Всички приложения'], '/reference': ['All reference', 'Целият справочник'],
+    '/papers/': ['Papers', 'Статии'], '/references': ['References', 'Източници'], '/diamonds': ['Diamonds', 'Диаманти'],
+  }
+  const MONOGRAPH_ROSETTA: readonly (readonly [number, readonly string[]])[] = [
+    [1, ['/frontiers', '/seven-star-rosetta', '/pi-trinity', '/qubit-trinity', '/pauli-basis', '/proven-or-purged', '/proof']],
+    [2, ['/explore', '/heritage', '/science', '/spirit', '/papers/', '/references', '/diamonds']],
+    [3, ['/learn', '/learn-developer', '/nature', '/start', '/quantum-mind', '/architecture', '/boundaries']],
+    [4, ['/a432', '/simulations', '/commands', '/console', '/mcp', '/show', '/apps']],
+    [5, DISCOVERY_LINKS.map((entry) => `/frontiers#${entry[0]}`)],
+    [6, ['/reference', '/voice', '/icons', '/governance', '/mcp.json', '/llms.txt', '/digit-index.json']],
+  ]
+  const navItem = (route: string, i: 0 | 1) => {
+    if (/\.(json|txt|webmanifest)$/.test(route)) return { text: route.slice(1), link: route }
+    const anchor = route.match(/^\/frontiers#(.+)$/)
+    if (anchor) { const entry = DISCOVERY_LINKS.find((d) => d[0] === anchor[1])!; return { text: i === 1 ? entry[2] : entry[1], link: link(route, i) } }
+    const page = byRoute.get(route)
+    const fallback = NAV_FALLBACK[route]
+    return { text: page ? text(route, i) : (fallback ? fallback[i] : route), link: link(route, i) }
+  }
   const buildNav = (i: 0 | 1) => [
     { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
-    ...rosettaFold(i),
+    ...MONOGRAPH_ROSETTA.map(([ray, routes]) => ({
+      text: i === 1 ? ROSETTA_RAYS[ray]!.nameBg : ROSETTA_RAYS[ray]!.nameEn,
+      items: routes.map((route) => navItem(route, i)),
+    })),
   ]
   // ONE grouping law at every scale: the sidebar folds by the SAME seven rosetta rays as the nav,
   // related sections and crosslinks — two taxonomies were the confusion (13 tag groups + a 23-item
@@ -2013,7 +2044,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const index = monographs(matrix)
   const root = merkleFold([index.root, ...pages.map((page) => toUuid(`nav:${routeOf(page.slug)}:${page.title.en}`)), ...navTags.map((tag) => toUuid(`nav-cluster:${tag}`))])
   return {
-    computed: navTags.length > 0 && buildNav(0).length > 1 && isUuid(root),
+    computed: navTags.length > 0 && buildNav(0).length === 7 && buildNav(0).slice(1).every((group) => 'items' in group && (group as { items: unknown[] }).items.length === 7) && isUuid(root),
     tagCloud: [...cloud.entries()].map(([tag, routes]) => ({ tag, count: routes.length })).sort((a, b) => b.count - a.count),
     clusters: navTags,
     en: { nav: buildNav(0), sidebar: buildSidebar(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
@@ -2025,7 +2056,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     routes: pages.map((page) => routeOf(page.slug)),
     root,
     statement:
-      'The navigation computes the whole path — nothing hardcoded. The page set (curated landing pages + every component\'s page) is the model; the labels are the pages\' own titles; the top nav is Home plus the seven functional hubs (group label = hub slug word from ROSETTA_RAYS — Origin/Proof/Explore/Learn/Apps/Frontier/Reference, the findability law), the sidebar folds by the same seven hubs, and the footer links the top clusters — recomputed whenever the pages or their tags change. config.mts only renders what this fold computes.',
+      'The navigation IS the rosetta of monographs: Home (Origin, the bare link) plus SIX dropdowns (Proof/Explore/Learn/Apps/Frontier/Reference — group label = hub slug word, the findability law), each EXACTLY SEVEN monograph links — 6 × 7 = 42, the sealed area count. The Frontier dropdown carries the real discoveries: the seven method-level artifacts of the theorem registry, anchored on the frontiers page. Labels are the pages\' own titles; the sidebar folds by the seven rays; config.mts only renders what this fold computes.',
     boundary:
       'A computed projection of the VitePress navigation from the page set, ray-hub grouping, and keyword tag cloud — no hardcoded labels, groups, sidebar or footer routes. Group labels are functional content words (label = URL word), not mystical names; the seven hubs sit directly in the top nav instead of one collapsed drawer. config.mts holds no hardcoded nav/sidebar/footer and reads only this fold.',
   }

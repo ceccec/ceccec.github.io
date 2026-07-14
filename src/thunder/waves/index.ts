@@ -1445,6 +1445,10 @@ export const CANDIDATE_THEOREMS: readonly { theorem: string; states: string; cla
   { theorem: 'second supplement: 2 QR iff p ≡ ±1 mod 8', states: 'primes ≤ 200', class: 'finite-complete', consumes: 'quadratic residues' },
   { theorem: 'exactly two groups of order p² (from order-p²-abelian)', states: 'Z_{p²}, Z_p² non-isomorphic, p=3', class: 'finite-complete', consumes: 'PROVEN order-p²-abelian (wave 48)' },
   { theorem: '((p−1)/2)! is √−1 mod p for p ≡ 1 mod 4 (from Wilson)', states: 'primes p ≡ 1 mod 4 ≤ 200', class: 'finite-complete', consumes: 'PROVEN Wilson theorem' },
+  { theorem: 'divisor-count multiplicativity τ(2^a·3^b) = (a+1)(b+1)', states: 'the lattice-size law behind the fractal clock generalized — τ multiplicative over every coprime pair ≤ 200, prime-power values (a+1) exact', class: 'finite-complete', consumes: 'PROVEN wave-63 divisor lattice, one-math gcd' },
+  { theorem: 'the millisecond fractal extends below the ladder', states: 'HERO_CYCLE_MS/(2^a·3^b) rungs are pairwise commensurable (ratio 2^x·3^y) and each completes exactly 2^a·3^b cycles per hero cycle — the JS breath periods (2600/1700/1100 ms) snap to 2250/1500/1125 with the same global period', class: 'finite-complete', consumes: 'PROVEN wave-63 lattice, humanBreath periods' },
+  { theorem: 'phase offsets never break global periodicity', states: 'begin/delay offsets shift phase, not period — any finite set of ladder animations with rational offsets still repeats within one 108 s hero cycle, verified over the full divisor set', class: 'finite-complete', consumes: 'PROVEN wave-63 global periodicity' },
+  { theorem: '3-smooth counting: 32 rungs to 432 on the log-lattice', states: 'the 3-smooth numbers ≤ 432 number exactly 32 = |{(a,b) : 2^a·3^b ≤ 432}| by complete sweep — the frequency octaves and the time ladder are one enumerated grid', class: 'finite-complete', consumes: 'strip machinery (wave 63), A432_OCTAVES' },
 ]
 
 /** The search tool: which significant finite-provable theorems are NOT yet proven here. */
