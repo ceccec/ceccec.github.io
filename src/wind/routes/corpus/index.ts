@@ -1041,7 +1041,7 @@ export function theoremPageRows(matrix: MindMatrix = buildMatrix()): TheoremPage
         classification: `${atom.proofClass}${leansCited ? ' — computed witness within a cited frame (the unbounded form leans on the cited literature)' : ' — self-contained computation, no external lean'}`,
         provenance: 'A documented theorem of mathematics, re-proven here by exhaustive computation (humanityNovel = false — the CARDINAL honesty of this registry); first-in-this-registry is the only sense of "discovered".',
         reproducibility: `Recompute from source: npm run theorems:verify recomputes ${wave.provedBy} (${atom.home}/index.ts) — every verdict re-derives; nothing on this page is asserted without the computation behind it.`,
-        citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — https://ceccec.github.io/theorems/${slug}`,
+        citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — https://ceccec.github.io${localePath(`/theorems/${slug}`, 'en')}`,
       }
     }))
 }
