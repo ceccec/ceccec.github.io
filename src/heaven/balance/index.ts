@@ -1262,9 +1262,9 @@ export function enforcementPipelineComplete(matrix: MindMatrix = buildMatrix()) 
 // Site locale configuration — single source of truth for all locale metadata.
 // Every locale's code, path, language tag, and og:locale derived here; no hardcoding in config or enforcement.
 export const SITE_LOCALES = [
-  { code: 'cu', label: toGlagolitic('Glagolica'), lang: 'cu', path: '/', slugPath: '', name: 'gla', type: 'root' as const, ogLocale: 'cu' },
-  { code: 'en', label: 'English', lang: 'en', path: '/en/', slugPath: 'en', name: 'en', type: 'locale' as const, ogLocale: 'en_US' },
+  { code: 'en', label: 'English', lang: 'en', path: '/', slugPath: '', name: 'en', type: 'root' as const, ogLocale: 'en_US' },
   { code: 'bg', label: 'Български', lang: 'bg-BG', path: '/bg/', slugPath: 'bg', name: 'bg', type: 'locale' as const, ogLocale: 'bg_BG' },
+  { code: 'cu', label: toGlagolitic('Glagolica'), lang: 'cu', path: '/gla/', slugPath: 'gla', name: 'gla', type: 'locale' as const, ogLocale: 'cu' },
 ]
 
 export { localeNavLinks, localePath, localePaths, localeSidebarKeys, vitepressLocaleLink, localizeMonolingual } from '../../wind/site'

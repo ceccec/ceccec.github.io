@@ -33,12 +33,12 @@ import { TAU } from '../../3/7'
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
 // Server canonical — client mirror: .vitepress/lib/site-locale.ts (browser-safe, no mind barrel).
 export type LocaleName = 'gla' | 'en' | 'bg'
-export type VitePressLocaleKey = 'root' | 'en' | 'bg'
+export type VitePressLocaleKey = 'root' | 'bg' | 'gla'
 
-const LOCALE_LINK: Record<LocaleName, string> = { gla: '/', en: '/en/', bg: '/bg/' }
+const LOCALE_LINK: Record<LocaleName, string> = { gla: '/gla/', en: '/', bg: '/bg/' }
 
 export function vitepressLocaleLink(localeKey: VitePressLocaleKey): string {
-  return localeKey === 'root' ? LOCALE_LINK.gla : LOCALE_LINK[localeKey]
+  return localeKey === 'root' ? LOCALE_LINK.en : LOCALE_LINK[localeKey === 'gla' ? 'gla' : 'bg']
 }
 
 function stripLocalePrefix(route: string): string {
@@ -46,6 +46,8 @@ function stripLocalePrefix(route: string): string {
   if (route.startsWith('/bg/')) return route.slice(3) || '/'
   if (route === '/en' || route === '/en/') return '/'
   if (route.startsWith('/en/')) return route.slice(3) || '/'
+  if (route === '/gla' || route === '/gla/') return '/'
+  if (route.startsWith('/gla/')) return route.slice(2 * 2) || '/'
   return route
 }
 
@@ -66,8 +68,8 @@ export function localePaths(route: string) {
 /** Runtime locale from a VitePress route path — pure; pairs with pickLocale in page scripts. */
 export function localeFromRoute(path: string): LocaleName {
   if (path.startsWith('/bg/') || path === '/bg') return 'bg'
-  if (path.startsWith('/en/') || path === '/en') return 'en'
-  return 'gla'
+  if (path.startsWith('/gla/') || path === '/gla') return 'gla'
+  return 'en'
 }
 
 /** Bilingual pick — en uses Latin source; bg uses Cyrillic; gla transliterates Latin to Glagolitic. */
@@ -140,7 +142,7 @@ const BULGARIAN_PHRASES: readonly (readonly [string, string])[] = [
 /** English → Bulgarian when locale is bg and text has no Cyrillic yet. */
 export function bulgarianFromEnglish(text: string): string {
   if (!text || CYRILLIC_RX.test(text)) return text
-  let out = text.replace(/\/en\//g, '/bg/')
+  let out = text.replace(/\/en\//g, '/bg/').replace(/\]\(\/(?!bg\/|gla\/|http)/g, '](/bg/')
   const sorted = [...BULGARIAN_PHRASES].sort((a, b) => b[0].length - a[0].length)
   for (const [en, bg] of sorted) {
     if (out.includes(en)) out = out.split(en).join(bg)
@@ -201,7 +203,7 @@ export function localeSidebarKeys(sidebar: Record<string, unknown>, locale: Loca
   for (const [key, sections] of Object.entries(sidebar)) {
     const localized = localePath(key, locale)
     out[localized] = sections
-    if (key === '/' && locale !== 'gla') {
+    if (key === '/' && locale !== 'en') {
       const prefix = LOCALE_LINK[locale].replace(/\/$/, '')
       if (prefix) out[prefix] = sections
     }

@@ -9,10 +9,10 @@ import { buildLockPlugin, releaseDirectBuildLock } from './build-lock-plugin.mts
 import { buildVerbosePlugin } from './build-verbose-plugin.mts'
 import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
 
-/** Root pages live under pages/ without en|bg prefix — default locale is Glagolitic (cu). */
+/** Root pages live under pages/ without bg|gla prefix — default locale is English (canonical bare URLs). */
 function siteLocaleForRelative(relative: string) {
-  if (relative.startsWith('bg/') || relative === 'bg/index.md') return SITE_LOCALES[2]!
-  if (relative.startsWith('en/') || relative === 'en/index.md') return SITE_LOCALES[1]!
+  if (relative.startsWith('bg/') || relative === 'bg/index.md') return SITE_LOCALES[1]!
+  if (relative.startsWith('gla/') || relative === 'gla/index.md') return SITE_LOCALES[2]!
   return SITE_LOCALES[0]!
 }
 
@@ -187,17 +187,17 @@ function vpLibNestedResolvePlugin(): import('vite').Plugin {
   }
 }
 
-// Root locale = Glagolitic: transliterate labels via localeNavLinks; bare routes stay at /.
+// Root locale = English: canonical bare routes at /; gla + bg prefixed via localeNavLinks.
 // Navigation uses 7 rosetta rays (Ⰰ Alpha…Ⱄ Word) grouped into three doors — computed from rosettaRayOf.
 // /en/ and /bg/ locales: localeNavLinks + localeSidebarKeys prefix from SITE_LOCALES (VitePress useLangs twin).
 const glaNav = {
   nav: localeNavLinks(nav.en.nav, 'gla', toGlagolitic),
-  sidebar: localeNavLinks(vpSidebar.en, 'gla', toGlagolitic),
+  sidebar: localeNavLinks(localeSidebarKeys(vpSidebar.en, 'gla'), 'gla', toGlagolitic),
   footer: localeNavLinks(nav.en.footer, 'gla', toGlagolitic),
 }
 const enNav = {
   nav: localeNavLinks(nav.en.nav, 'en'),
-  sidebar: localeNavLinks(localeSidebarKeys(vpSidebar.en, 'en'), 'en'),
+  sidebar: localeNavLinks(vpSidebar.en, 'en'),
   footer: localeNavLinks(nav.en.footer, 'en'),
 }
 const bgNav = {
@@ -502,7 +502,7 @@ export default defineConfig({
           },
         },
         locales: {
-          en: {
+          root: {
             translations: {
               button: { buttonText: 'Search', buttonAriaLabel: 'Search' },
               modal: {
@@ -532,33 +532,14 @@ export default defineConfig({
   },
   locales: {
     root: {
-      label: toGlagolitic('Glagolica'), // computed, never a hardcoded glyph string — Glagolitic is always toGlagolitic
-      lang: 'cu',
-      link: SITE_LOCALES[0].path,
-      title: toGlagolitic(siteTitle),
-      description: toGlagolitic(siteDescription),
-      themeConfig: {
-        // The DEFAULT locale is Glagolitic: navigation, sidebar and footer are computed from the model
-        // (siteNavigation) and transliterated into the ninth-century script, with the links kept at the
-        // root (/). Nothing hardcoded — to change the site, change the model. See vitepressConfigComputesAll.
-        nav: glaNav.nav,
-        sidebar: glaNav.sidebar,
-        footer: glaNav.footer,
-        outline: { label: toGlagolitic('On this page') },
-        darkModeSwitchLabel: toGlagolitic('Appearance'),
-        sidebarMenuLabel: toGlagolitic('Menu'),
-        returnToTopLabel: toGlagolitic('Return to top'),
-        langMenuLabel: toGlagolitic('Change language'),
-      },
-    },
-    en: {
       label: 'English',
       lang: 'en',
-      link: SITE_LOCALES[1].path,
+      link: SITE_LOCALES[0].path,
       title: siteTitle,
       description: siteDescription,
       themeConfig: {
-        // The Latin locale at /en/: the same model-computed navigation, its links prefixed /en/.
+        // The DEFAULT locale is English at the root — canonical, unprefixed URLs (no useless prefixes;
+        // the science reads straight from the slug). Navigation computed from the model (siteNavigation).
         nav: enNav.nav,
         sidebar: enNav.sidebar,
         footer: enNav.footer,
@@ -567,6 +548,25 @@ export default defineConfig({
         sidebarMenuLabel: 'Menu',
         returnToTopLabel: 'Return to top',
         langMenuLabel: 'Change language',
+      },
+    },
+    gla: {
+      label: toGlagolitic('Glagolica'), // computed, never a hardcoded glyph string — Glagolitic is always toGlagolitic
+      lang: 'cu',
+      link: SITE_LOCALES[2].path,
+      title: toGlagolitic(siteTitle),
+      description: toGlagolitic(siteDescription),
+      themeConfig: {
+        // The Glagolitic edition at /gla/: the same model-computed navigation, transliterated into the
+        // ninth-century script. An explicit locale, not the default. See vitepressConfigComputesAll.
+        nav: glaNav.nav,
+        sidebar: glaNav.sidebar,
+        footer: glaNav.footer,
+        outline: { label: toGlagolitic('On this page') },
+        darkModeSwitchLabel: toGlagolitic('Appearance'),
+        sidebarMenuLabel: toGlagolitic('Menu'),
+        returnToTopLabel: toGlagolitic('Return to top'),
+        langMenuLabel: toGlagolitic('Change language'),
       },
     },
     bg: {

@@ -4,11 +4,11 @@ import type { Connect } from 'vite'
 import { glagoliticHomeFromEnglish } from '../src/fire/li'
 import { bulgarianHomeFromEnglish } from '../src/wind/site/index'
 
-// Glagolitic root + Bulgarian home have no authoritative body on disk — computed from en at build/dev time.
+// Glagolitic (/gla/) + Bulgarian (/bg/) homes have no authoritative body on disk — computed from the root English home at build/dev time.
 export function computedPagesPlugin(projectRoot: string) {
   const pagesDir = join(projectRoot, '.vitepress/pages')
-  const enHomePath = join(pagesDir, 'en/index.md')
-  const glaHomePath = join(pagesDir, 'index.md')
+  const enHomePath = join(pagesDir, 'index.md')
+  const glaHomePath = join(pagesDir, 'gla/index.md')
   const bgHomePath = join(pagesDir, 'bg/index.md')
   const cacheDir = join(projectRoot, '.vitepress/cache')
 
@@ -39,7 +39,7 @@ export function computedPagesPlugin(projectRoot: string) {
     },
     load(id: string) {
       const clean = normalize(id.replace(/\?.*$/, ''))
-      if (clean === glaHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'index.md')}`)) {
+      if (clean === glaHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'gla', 'index.md')}`)) {
         return glagoliticHomeFromEnglish(readFileSync(enHomePath, 'utf8'))
       }
       if (clean === bgHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'bg', 'index.md')}`)) {

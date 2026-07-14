@@ -345,14 +345,14 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
   const pages = staticPages()
   const nav = siteNavigation(matrix)
   const incomplete = pages.filter((p) => !p.title.en || !p.title.bg || !p.description.en || !p.description.bg)
-  // Each non-root locale's slugPath tells the corpus what prefix to use: en → /en/, bg → /bg/
-  const enLocale = nonRoot.find((l) => l.code === 'en')
+  // Each non-root locale's slugPath tells the corpus what prefix to use: bg → /bg/, gla → /gla/
+  const glaLocale = nonRoot.find((l) => l.code === 'cu')
   const bgLocale = nonRoot.find((l) => l.code === 'bg')
   const facets = [
-    { facet: 'SITE_LOCALES: 3 locales — one root (cu/Glagolitic) and two non-root (en, bg)', on: locales.length === 3 && !!root && root.code === 'cu' && nonRoot.length === 2 && nonRoot.map((l) => l.code).sort().join(',') === 'bg,en' },
+    { facet: 'SITE_LOCALES: 3 locales — one root (en, canonical bare URLs) and two non-root (bg, cu/Glagolitic)', on: locales.length === 3 && !!root && root.code === 'en' && nonRoot.length === 2 && nonRoot.map((l) => l.code).sort().join(',') === 'bg,cu' },
     { facet: 'SITE_LOCALES: every locale has a BCP-47 lang tag, a path and an og:locale', on: locales.every((l) => !!l.lang && !!l.path && !!l.ogLocale) },
-    { facet: 'locale paths distinct — root at /, English at /en/, Bulgarian at /bg/ — no overlap', on: !!root && root.path === '/' && enLocale?.path === '/en/' && bgLocale?.path === '/bg/' && locales.every((l, i) => locales.every((m, j) => i === j || l.path !== m.path)) },
-    { facet: 'corpus locale slugPaths correct — en uses "en", bg uses "bg", root uses "" (Glagolitic at /kind/<id>, not mislabeled)', on: !!root && root.slugPath === '' && enLocale?.slugPath === 'en' && bgLocale?.slugPath === 'bg' },
+    { facet: 'locale paths distinct — English at /, Bulgarian at /bg/, Glagolitic at /gla/ — no overlap', on: !!root && root.path === '/' && glaLocale?.path === '/gla/' && bgLocale?.path === '/bg/' && locales.every((l, i) => locales.every((m, j) => i === j || l.path !== m.path)) },
+    { facet: 'corpus locale slugPaths correct — root uses "" (canonical bare slugs), bg uses "bg", gla uses "gla"', on: !!root && root.slugPath === '' && glaLocale?.slugPath === 'gla' && bgLocale?.slugPath === 'bg' },
     { facet: 'coverage parity — monographPaths returns the same page count for all 3 locales', on: gla.length === en.length && en.length === bg.length && gla.length > 0 },
     { facet: 'slug parity — every page slug is identical across all 3 locales (same order)', on: gla.every((p, i) => p.params.page === en[i]?.params.page && p.params.page === bg[i]?.params.page) },
     { facet: 'content completeness — all staticPages have non-empty en + bg title and description', on: incomplete.length === 0 },
@@ -370,8 +370,8 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
     locales: locales.map((l) => ({ code: l.code, lang: l.lang, path: l.path, type: l.type })),
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: 'Locale audit — a living census of the tri-locale system (Glagolitic/cu at root, English at /en/, Bulgarian at /bg/): SITE_LOCALES integrity, coverage parity, content completeness, hreflang coverage and computed navigation. All facts derived from the existing locale primitives; any gap opens this dimension.',
-    boundary: 'A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, siteNavigation and noMirroringOneSourceAndMath. "cu omitted from hreflang by design" is HONEST — cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console\'s supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic root IS served and indexed at /.',
+    statement: 'Locale audit — a living census of the tri-locale system (English at the canonical root /, Bulgarian at /bg/, Glagolitic/cu at /gla/): SITE_LOCALES integrity, coverage parity, content completeness, hreflang coverage and computed navigation. All facts derived from the existing locale primitives; any gap opens this dimension.',
+    boundary: 'A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, siteNavigation and noMirroringOneSourceAndMath. "cu omitted from hreflang by design" is HONEST — cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console\'s supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic edition is served at /gla/. English holds the canonical bare URLs (no useless prefixes).',
   }
 }
 

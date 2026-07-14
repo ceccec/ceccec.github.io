@@ -1006,9 +1006,9 @@ if (existsSync(dist)) {
 }
 
 // --- the one-source monograph gates, tightened: enforce all so entropy does not pass ---
-// No mirroring: each [page].paths.ts (root, en, bg) is a thin mount over the one source (monographPaths).
-// A reintroduced staticPages().map mirror is entropy — duplicated logic that can drift — and fails here.
-for (const [file, locale] of [['[page].paths.ts', 'gla'], ['en/[page].paths.ts', 'en'], ['bg/[page].paths.ts', 'bg']]) {
+// No mirroring: each [page].paths.ts (root = en, bg, gla) is a thin mount over the one source
+// (monographPaths). A reintroduced staticPages().map mirror is entropy — and fails here.
+for (const [file, locale] of [['[page].paths.ts', 'en'], ['bg/[page].paths.ts', 'bg'], ['gla/[page].paths.ts', 'gla']]) {
   const text = read(join(contentRoot, file))
   if (!text) {
     gaps.push({ harmonic: 'monograph', kind: 'mount-missing', detail: `${file} does not exist — why this fails: the [monograph] route mounts the one source (monographPaths) in each locale; without it the locale has no pages` })
