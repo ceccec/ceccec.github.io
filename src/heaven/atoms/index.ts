@@ -263,12 +263,12 @@ export const conceptCommands: readonly ConceptCommand[] = [
   {
     name: 'concept.geometry.seal',
     path: '/cmd/concept.geometry.seal',
-    description: 'Sacred geometry seals all seals: fold every seal root through the Metatron cube and Platonic solids.',
+    description: 'Seal composition: fold every computed seal root through the 13-node cube lattice and the Platonic solids into one master seal.',
   },
   {
     name: 'concept.society.sacred',
     path: '/cmd/concept.society.sacred',
-    description: 'Sacred society self-governed by sacred laws: zero living cost balanced by maximum forge cost.',
+    description: 'A self-governing commons under explicit rules: zero living cost balanced by maximum forge cost.',
   },
   {
     name: 'concept.commons.vote',

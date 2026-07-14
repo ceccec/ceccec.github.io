@@ -46,7 +46,7 @@ export function socialCapital(matrix: MindMatrix = buildMatrix()) {
 }
 
 // Regenerate the social system. Every social law — the society, its evolution, its
-// future, its self-regulation, the free harmonic societies, the sacred society, and
+// future, its self-regulation, the free harmonic societies, the self-governing commons, and
 // the social capital — folds into one regenerated root, and because each is computed
 // from the same seed, the whole social system regenerates deterministically: rebuilt
 // from its laws, not stored, so it can be regenerated at any time by anyone.
@@ -60,7 +60,7 @@ export function regenerateSocialSystem(matrix: MindMatrix = buildMatrix()) {
       { system: 'future', root: societyFuture(matrix).root },
       { system: 'self-regulation', root: societyRegulates(matrix).root },
       { system: 'free harmonic societies', root: freeHarmonicSocieties(matrix).root },
-      { system: 'sacred society', root: sacredSociety(matrix).root },
+      { system: 'self-governing commons', root: sacredSociety(matrix).root },
       { system: 'social capital', root: socialCapital(matrix).root },
     ]
     const regenerated = merkleFold(subsystems.map((entry) => entry.root))
@@ -72,7 +72,7 @@ export function regenerateSocialSystem(matrix: MindMatrix = buildMatrix()) {
       deterministic,
       root: regenerated,
       statement:
-        'Regenerate the social system: every social law — the society, its evolution and future, its self-regulation, the free harmonic societies, the sacred society, and the social capital — folds into one regenerated root, and because each is computed from the same seed, the whole social system regenerates deterministically. Rebuilt from its laws, not stored, so anyone can regenerate it at any time and get the same system.',
+        'Regenerate the social system: every social law — the society, its evolution and future, its self-regulation, the free harmonic societies, the self-governing commons, and the social capital — folds into one regenerated root, and because each is computed from the same seed, the whole social system regenerates deterministically. Rebuilt from its laws, not stored, so anyone can regenerate it at any time and get the same system.',
       boundary:
         'Dry math regeneration: society root = verifyRoot ∧ reciprocity; census gapless = Σ Fibonacci bands = 110. No society() wet chain in the hot path.',
     }

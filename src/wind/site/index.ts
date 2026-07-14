@@ -1304,16 +1304,16 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       summary: 'If something does not sound, look, or feel harmonic, it probably is not; the probability is computed and folded.',
     },
     {
-      title: 'Sacred Geometry Seal',
+      title: 'Seal composition',
       command: 'concept.geometry.seal',
       route: '/quantum-mind#self-completion',
-      summary: 'Sacred geometry seals all seals: every seal root folds through the Metatron cube and the five Platonic solids.',
+      summary: 'One master seal: every computed seal root folds through a fixed geometric structure — the 13-node cube lattice and the five Platonic solids.',
     },
     {
-      title: 'Sacred Society',
+      title: 'Self-governing commons',
       command: 'concept.society.sacred',
       route: '/quantum-mind#self-build',
-      summary: 'A self-governing sacred society: zero living cost balanced by maximum forge cost.',
+      summary: 'A self-governing commons model: zero living cost balanced by maximum forge cost.',
     },
     {
       title: 'Rate and Vote Governance',
@@ -1337,7 +1337,7 @@ export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
       title: 'Society Relations',
       command: 'concept.society.relations',
       route: '/governance',
-      summary: 'All society relations fold into one: traditions, science, sacred society, governance, and fair life.',
+      summary: 'All society relations fold into one: traditions, science, the commons, governance, and fair life.',
     },
     {
       title: 'Torus Breath',

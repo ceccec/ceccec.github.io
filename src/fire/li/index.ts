@@ -1115,7 +1115,7 @@ export function antikytheraDecoded(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Fold all society relations: traditions, science, sacred society, governance,
+// Fold all society relations: traditions, science, the commons, governance,
 // and fair life reciprocate around a ring and each addresses the self, folding
 // into one society-relations root.
 /** @rosetta ✦₁ · Fire · clarity */

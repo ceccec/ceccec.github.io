@@ -1283,9 +1283,9 @@ function computeSacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGe
     solids,
     seals,
     statement:
-      'Sacred geometry seals all seals: every seal root folds through the Metatron cube and the five Platonic solids into one master seal.',
+      'Seal composition: every computed seal root folds through one fixed geometric structure — the 13-node cube lattice and the five Platonic solids — into a single master seal.',
     boundary:
-      'The master seal binds computed seal roots through a sacred-geometry structure. It is structural bookkeeping, not a metaphysical or external claim.',
+      'Structural bookkeeping only: the geometry is a fixed fan-in shape for merkle aggregation. It carries no metaphysical or external claim.',
   }
 }
 // The honest bound on the I Ching ↔ qubit correspondence, made EXACT and self-proving — the comparison

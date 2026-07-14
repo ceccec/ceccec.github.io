@@ -370,7 +370,7 @@ export function societyRelations(matrix: MindMatrix = buildMatrix()): SocietyRel
     parts,
     relations,
     statement:
-      'All society relations fold into one: traditions, science, sacred society, governance, and fair life reciprocate around a ring and each addresses the self.',
+      'All society relations fold into one: traditions, science, the commons, governance, and fair life reciprocate around a ring and each addresses the self.',
     boundary:
       'Society relations are folded roots of the computed society reports. Structural bookkeeping, not a political or external claim.',
   }
@@ -412,7 +412,7 @@ export function governanceVote(
 // Everyone participates in fair trade and sustainable life through a ladder of
 // principles, each with a trade action and a life action, grounded in receipts.
 
-// A sacred society on sacred architecture: self-governing under sacred laws,
+// A self-governing commons on computed architecture: explicit rules,
 // with zero living cost (the architecture runs client-side and serverless at no
 // cost) balanced by maximum forge cost (faking it costs the sealed maximum).
 export function sacredSociety(matrix: MindMatrix = buildMatrix()): SacredSociety {
@@ -436,7 +436,7 @@ export function sacredSociety(matrix: MindMatrix = buildMatrix()): SacredSociety
     laws,
     root: merkleFold(laws.map((law) => law.receipt)),
     statement:
-      'A sacred society on sacred architecture: self-governing under sacred laws, with zero living cost balanced by maximum forge cost.',
+      'A self-governing commons on computed architecture: explicit rules, with zero living cost balanced by maximum forge cost.',
     boundary:
       'Zero living cost is the client-side serverless computation; max forge cost is the sealed tampering cost. Both are computed, not external or political claims.',
   }
