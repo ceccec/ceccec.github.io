@@ -783,7 +783,15 @@ function heroFlowerOfLifeLayer(cx: number, cy: number, byte: (k: number) => numb
   return `<g transform="translate(${cx} ${cy})" opacity="0.26"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${fractalClockDur(2)}" repeatCount="indefinite" additive="sum"/>${circles}</g>`
 }
 
-export function heroSvgFromUuid(uuid: string): string {
+/** The stillness channel for SMIL hosts — strips every self-closed animate/animateTransform element, leaving
+ * geometry and text intact. CSS hosts still via their animate:false option; SMIL ignores prefers-reduced-motion
+ * (a CSS media query cannot reach it), so for SMIL the still EMISSION is the reduced-motion form — the render
+ * harness picks. */
+export function stillSvg(svg: string): string {
+  return svg.replace(/<animate[^>]*\/>/g, '')
+}
+
+export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}): string {
   const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, '') || '8080808080808080'
   const byte = (k: number) => parseInt(hex.slice((k * 2) % (7 * 4), ((k * 2) % (7 * 4)) + 2), 16) || (64 * 2) // one byte of the forged UUID
   const colors = heroSvgPaletteFromUuid(uuid)
@@ -803,7 +811,7 @@ export function heroSvgFromUuid(uuid: string): string {
   // the double torus — two tori COUNTER-rotating with a depth (vertical) pulse: the revised, tumbling movement
   const torus = (sx: number, spin: string, off: string) =>
     `<g transform="translate(${sx} ${cy})"><animateTransform attributeName="transform" type="rotate" ${spin} dur="${fractalClockDur(4)}" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="scale" values="1 1;1 0.6;1 1" dur="${fractalClockDur(6 * 2)}" begin="${off}" repeatCount="indefinite" additive="sum"/><ellipse rx="104" ry="58"/><ellipse rx="44" ry="22"/></g>`
-  return [
+  const svg = [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the animated I Ching, the ten-dimensional hero computed from src">`,
     `<defs>`,
     `<radialGradient id="bg" cx="50%" cy="46%" r="74%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
@@ -822,6 +830,7 @@ export function heroSvgFromUuid(uuid: string): string {
     `<text x="${cx}" y="${H - (5 * 4)}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="${colors.accent}">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
     `</svg>`,
   ].join('')
+  return opts.animate === false ? stillSvg(svg) : svg
 }
 
 // tenDimensionalHeroSvg — the README hero, FORGED: the brand is content-addressed at MAX tampering cost (the
@@ -836,7 +845,7 @@ export function tenDimensionalHeroSvg(): string {
 // Any icon is animated too — the same way the hero is: a single trigram (one of the bāguà) as a small, self-
 // contained animated SVG (its yin/yang bars pulsing), GitHub-safe (SMIL, no script). The site's icons are not
 // static glyphs but the I Ching computed and breathing — favicons and inline marks alike.
-export function animatedTrigramIconSvg(trigram: number): string {
+export function animatedTrigramIconSvg(trigram: number, opts: { animate?: boolean } = {}): string {
   const t = ((trigram % 8) + 8) % 8
   const bars = [0, 1, 2].map((row) => {
     const yy = 16 + (1 - row) * 9
@@ -844,7 +853,44 @@ export function animatedTrigramIconSvg(trigram: number): string {
       ? `<rect x="3" y="${yy - 2}" width="26" height="4" rx="1"/>`
       : `<rect x="3" y="${yy - 2}" width="10" height="4" rx="1"/><rect x="19" y="${yy - 2}" width="10" height="4" rx="1"/>`
   }).join('')
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="trigram ${t}"><g fill="${scaleColor(t, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}"><animate attributeName="opacity" values="0.5;1;0.5" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/>${bars}</g></svg>`
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="trigram ${t}"><g fill="${scaleColor(t, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}"><animate attributeName="opacity" values="0.5;1;0.5" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/>${bars}</g></svg>`
+  return opts.animate === false ? stillSvg(svg) : svg
+}
+
+// HIDING THE TEXT DOES NOT HIDE THE ANIMATIONS (user law) — text and motion are INDEPENDENT channels of one
+// SVG: stripping every <text> node leaves every animation duration, and stilling every animation leaves every
+// <text> node. So each host carries BOTH switches — the text layer hides with the nodes, the motion layer
+// stills with animate:false (CSS hosts omit @keyframes; SMIL hosts strip through stillSvg, because SMIL cannot
+// hear prefers-reduced-motion — a CSS media query never reaches it). The one deliberate coupling is the clown
+// act's badges: text nodes that CARRY their own animation classes — hiding them removes the badge channel while
+// every keyframe persists in the stylesheet, motion definitions and text visibility staying separate layers.
+export function hidingTextDoesNotHideAnimationsDiscovered(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('hidingTextDoesNotHideAnimations', matrix, () => {
+    const hero = heroSvgFromUuid(toUuidSha256('double torus · ten dimensions · 432'))
+    const heroStill = heroSvgFromUuid(toUuidSha256('double torus · ten dimensions · 432'), { animate: false })
+    const icon = animatedTrigramIconSvg(5)
+    const iconStill = animatedTrigramIconSvg(5, { animate: false })
+    const act = clownActSvg()
+    const durs = (s: string) => (s.match(/dur="/g) ?? []).length
+    const texts = (s: string) => (s.match(/<text /g) ?? []).length
+    const smil = (s: string) => (s.match(/<animate/g) ?? []).length
+    const hideText = (s: string) => s.replace(/<text [^]*?<\/text>/g, '')
+    const facets = [
+      { facet: `hiding the text does not hide the animations — hero with ${texts(hero)} <text> stripped keeps ${durs(hideText(hero))}/${durs(hero)} durations`, on: texts(hero) >= 2 && texts(hideText(hero)) === 0 && durs(hideText(hero)) === durs(hero) },
+      { facet: `the DUAL holds — stilling the hero (animate:false → stillSvg) drops ${smil(hero)} SMIL elements to ${smil(heroStill)} while keeping ${texts(heroStill)}/${texts(hero)} <text> nodes and every shape`, on: smil(hero) > 0 && smil(heroStill) === 0 && texts(heroStill) === texts(hero) && heroStill.includes('<ellipse') },
+      { facet: `every SMIL host now carries the stillness switch — trigram icon ${smil(icon)}→${smil(iconStill)} animate elements, bars intact`, on: smil(icon) === 1 && smil(iconStill) === 0 && iconStill.includes('<rect') },
+      { facet: `the one deliberate text–motion coupling: the act's ${(act.match(/<text class="b/g) ?? []).length} badges are <text> nodes riding their own animation classes — hiding them leaves ${(hideText(act).match(/@keyframes/g) ?? []).length}/${(act.match(/@keyframes/g) ?? []).length} keyframes in the stylesheet`, on: (act.match(/<text class="b/g) ?? []).length === 6 && (hideText(act).match(/@keyframes/g) ?? []).length === (act.match(/@keyframes/g) ?? []).length },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hiding-text-not-animations:${entry.facet}:${entry.on}`) }))
+    return {
+      discovered: facets.every((entry) => entry.on),
+      realized: facets.every((entry) => entry.on),
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
+      boundary: [`text and motion are independent SVG channels — each host exposes both switches`, `SMIL ignores prefers-reduced-motion: stillSvg IS the reduced-motion emission for SMIL hosts, the render harness selects it`, `CSS hosts (yinYang · livingIChing · livingTrigram · clown) still via animate:false as before`].join('; '),
+    }
+  })
 }
 
 /** PWA icon — double torus glyph coloured from the movie palette (not static Tailwind hex). */
