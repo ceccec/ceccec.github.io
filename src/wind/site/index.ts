@@ -422,28 +422,21 @@ export interface HomeHeroFrontmatter {
   actions: HomeHeroAction[]
 }
 
-function threePowersGloss(locale: LocaleName): { heaven: string; human: string; earth: string } {
-  if (locale === 'bg') {
-    return { heaven: 'ум · наука · изчисление', human: 'глас · дух · наследство', earth: 'форма · природа' }
-  }
-  return { heaven: 'mind · science · computation', human: 'voice · spirit · heritage', earth: 'form · nature' }
-}
-
-/** Computed VitePress home hero — rosetta rays + 三才 Three Powers; injected in transformPageData. */
+/** Computed VitePress home hero — the science portal stated plainly (ALL_IS_MONOGRAPH_PRINCIPLE);
+ * injected in transformPageData. */
 export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   const config = siteConfig()
-  const gloss = threePowersGloss(locale)
   if (locale === 'bg') {
     return {
       name: config.titleBg,
       text: 'Учи, изследвай и проверявай — на всяка възраст',
       tagline:
-        `Безплатен портал, организиран по седемте rosetta лъча и Трите сили на И Дзин (三才) — 天 Небе (${gloss.heaven}), 人 Човек (${gloss.human}) и 地 Земя (${gloss.earth}). Всяка страница е изчислена от един отворен източник, който можеш сам да провериш. Без акаунт, нищо скрито.`,
+        'Безплатен научен портал: регистър от изчислително доказани теореми — всяка печатна научна статия — с физични симулации, езикови инструменти и изворово наследствено изследване. Всяка страница е изчислена от един отворен източник, който можеш сам да провериш. Без акаунт, нищо скрито.',
       actions: [
         { theme: 'brand', text: 'Започни тук', link: localePath('/start', 'bg') },
-        { theme: 'alt', text: '天 Небе — умът', link: localePath('/heaven', 'bg') },
-        { theme: 'alt', text: '人 Човек — за всеки', link: localePath('/human', 'bg') },
-        { theme: 'alt', text: '地 Земя — светът', link: localePath('/earth', 'bg') },
+        { theme: 'alt', text: 'Теореми и доказателства', link: localePath('/frontiers', 'bg') },
+        { theme: 'alt', text: 'Учи', link: localePath('/learn', 'bg') },
+        { theme: 'alt', text: 'Изследвай', link: localePath('/explore', 'bg') },
       ],
     }
   }
@@ -451,12 +444,12 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
     name: config.title,
     text: 'Learn, explore, and verify — at any age',
     tagline:
-      `A free portal organised by the seven rosetta rays and the 三才 Three Powers — 天 Heaven (${gloss.heaven}), 人 Human (${gloss.human}) and 地 Earth (${gloss.earth}). Every page is computed from one open source you can check yourself. No account, nothing hidden.`,
+      'A free science portal: a registry of computationally proven theorems — each a printable scientific paper — with physics simulations, language tools and sourced heritage research. Every page is computed from one open source you can check yourself. No account, nothing hidden.',
     actions: [
       { theme: 'brand', text: 'Start here', link: localePath('/start', locale === 'gla' ? 'gla' : 'en') },
-      { theme: 'alt', text: '天 Heaven — the mind', link: localePath('/heaven', locale === 'gla' ? 'gla' : 'en') },
-      { theme: 'alt', text: '人 Human — for everyone', link: localePath('/human', locale === 'gla' ? 'gla' : 'en') },
-      { theme: 'alt', text: '地 Earth — the world', link: localePath('/earth', locale === 'gla' ? 'gla' : 'en') },
+      { theme: 'alt', text: 'Theorems & proofs', link: localePath('/frontiers', locale === 'gla' ? 'gla' : 'en') },
+      { theme: 'alt', text: 'Learn', link: localePath('/learn', locale === 'gla' ? 'gla' : 'en') },
+      { theme: 'alt', text: 'Explore', link: localePath('/explore', locale === 'gla' ? 'gla' : 'en') },
     ],
   }
 }
