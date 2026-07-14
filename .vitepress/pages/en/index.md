@@ -6,7 +6,7 @@ keywords:
   - educational portal
   - double torus
   - self-verifying
-  - I Ching
+  - theorem registry
 teaches:
   - quantum learning
   - self-verifying architecture
@@ -20,11 +20,11 @@ audience:
 # hero: computed — homeHero() injects name, text, tagline, actions in transformPageData
 ---
 
-<!-- Body order: rosettaHomeBodyMarkdown() — seven rosetta ray sections + 三才. Generated from src on cross wave. -->
+<!-- Body: the root monograph (ALL_IS_MONOGRAPH_PRINCIPLE) — content-named, science-first sections; bg/gla homes are computed from this source. -->
 
-## Start here · 三才 Three Powers
+## Start here
 
-Four plain steps — the live proofs below follow the **eight trigrams (bāguà)**. Enter the three powers: [天 Heaven](/en/heaven) · [人 Human](/en/human) · [地 Earth](/en/earth).
+Four plain steps — see, learn, use, prove. Every page below is computed from one open source you can check yourself.
 
 <StartHere />
 
@@ -32,19 +32,23 @@ Four plain steps — the live proofs below follow the **eight trigrams (bāguà)
 
 <TagBrowser />
 
-## ☷ The Receptive
+## Proofs & computation
 
-Bulgarian history, Glagolitic, ethnogenesis, genetics — the land's memory.
+Pure computation: crypto, proofs, primitives. The theorem registry — every theorem proven by computation, each a printable scientific paper. [Seven Star Rosetta — natural motion](/en/seven-star-rosetta) shows the 7-ray coprime proof in motion.
 
-<BulgarianHeritage />
+<TamperingCost />
 
-<Society />
+<ProofRenderer />
 
-<SacredGeometry />
+<KnowledgeAtlas />
 
-## ☳ The Arousing
+<QuantumRadar />
 
-EM spectrum, Tesla patents, frequencies, dynamic simulations — arousing discovery.
+<QuantumClock />
+
+## Physics & simulations
+
+EM spectrum, Tesla patents, frequencies, dynamic simulations.
 
 <A432 />
 
@@ -58,9 +62,9 @@ EM spectrum, Tesla patents, frequencies, dynamic simulations — arousing discov
 
 <AnalogField />
 
-## ☵ The Abysmal
+## Language & interfaces
 
-Plain language, speech, UX, command flow — the communicative layer.
+Plain language, speech, UX, command flow.
 
 <PlayLearn />
 
@@ -74,9 +78,9 @@ Plain language, speech, UX, command flow — the communicative layer.
 
 <Compass />
 
-## ☱ The Joyous
+## Learning & dualities
 
-Chakras, dualities, dimensions, joyous learning and fair life.
+Dualities, dimensions, learning by play — documented cores with the flagged parts labelled.
 
 <Dualities />
 
@@ -90,29 +94,15 @@ Chakras, dualities, dimensions, joyous learning and fair life.
 
 <Monograph slug="quantum-mind" variant="hero" />
 
-## ☶ Keeping Still
+## Form & architecture
 
-Area icons, glyphs, computer architecture 3-5-8, harmonic bands — visual form.
+Area icons, glyphs, computer architecture 3-5-8, harmonic bands.
 
 <TaxonomyIcons />
 
 <HarmonicMap />
 
-## ☲ The Clinging
-
-Pure computation: crypto, proofs, primitives — the clinging fire of truth. [Seven Star Rosetta — natural motion](/en/seven-star-rosetta) shows the 7-ray coprime proof in motion.
-
-<TamperingCost />
-
-<ProofRenderer />
-
-<KnowledgeAtlas />
-
-<QuantumRadar />
-
-<QuantumClock />
-
-## ☴ The Gentle
+## Nature & society
 
 Natural law, the commons, society forms, gentle limits.
 
@@ -122,9 +112,19 @@ Natural law, the commons, society forms, gentle limits.
 
 <BoundaryAudit />
 
-## ☰ The Creative
+## Heritage & history
 
-The mind hub: the creative origin, the matrix, the architecture.
+Bulgarian history, Glagolitic, ethnogenesis, genetics — documented cores, legends kept separate.
+
+<BulgarianHeritage />
+
+<Society />
+
+<SacredGeometry />
+
+## Origin & mind
+
+The creative origin, the matrix, the architecture.
 
 <LivingTorus />
 

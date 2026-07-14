@@ -706,6 +706,11 @@ export const DRY_MAX_EFFICIENCY_PRINCIPLE =
 export const PROOF_DRIVEN_REIMPLEMENTATION_PRINCIPLE =
   'Every proof or discovery is a reason to reconsider related code for reimplementation: a sealed theorem either validates the code that embodies it or replaces it with the better algorithm the proof revealed.'
 
+/** User law (2026-07-14): consolidate all as monographs — every content surface presents through the one
+ * scientific-paper template (monographTemplate); section names state content, never cosmology. */
+export const ALL_IS_MONOGRAPH_PRINCIPLE =
+  'Consolidate all as monographs: one scientific-paper form for every surface — title, abstract, results, provenance, citation — with section names that state the content; the reader never needs the site’s internal cosmology to find the science.'
+
 // NASA/JPL mean orbital periods (days), semi-major axes (km), and radii (km) — circular Keplerian model, not
 // ephemeris. Hosted in this zero-import leaf so it initialises before any cyclic consumer barrel
 // (fire/li ↔ … ) runs, removing the SSR-bundle TDZ "Cannot access 'MAJOR_MOONS' before initialization".
