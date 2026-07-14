@@ -23,7 +23,7 @@ import { depthIsThePerspectiveDivide, perspective, rot2 } from '../../quantum/wi
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../../thunder/movie/glass'
 import { yinYang } from '../../quantum/lake/spirit'
 import { scaleColor, A432_HUE, movieCanvasHex } from '../../quantum/science'
-import { computedMovieThemeColors } from '../../fire/plasma/ball'
+import { computedMovieThemeColors, FRACTAL_CLOCK_DIVISORS, fractalClockDur, fractalClockS } from '../../fire/plasma/ball' // the ONE quantum clock — every declarative duration below is a divisor step of the 108 s hero cycle (animationsFractalOfOneClockDiscovered)
 export { scaleColor, oklchToHex } from '../../quantum/science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
 export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../site' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
 import { staticPages, homeHero } from '../site'
@@ -764,9 +764,9 @@ function heroPlasmaBallLayer(cx: number, cy: number, byte: (k: number) => number
     const r = (6 * 5) + (byte(k) % 26)
     const x2 = Math.round(cx + Math.cos(a) * r)
     const y2 = Math.round(cy + Math.sin(a) * r)
-    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${3 + (k % 5)}.5s" begin="${(k % 9) * (2 / 5) + (1 / (5 * 2))}s" repeatCount="indefinite"/></line>`
+    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[9 - (k % 4)]!)}" begin="${(k % 9) * (2 / 5) + (1 / (5 * 2))}s" repeatCount="indefinite"/></line>`
   }).join('')
-  return `<g opacity="0.5">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="6s" repeatCount="indefinite"/></circle></g>`
+  return `<g opacity="0.5">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/></circle></g>`
 }
 
 // The sacred-geometry layer — the Flower of Life, a real compass construction (seven circles), drawn as faint
@@ -780,7 +780,7 @@ function heroFlowerOfLifeLayer(cx: number, cy: number, byte: (k: number) => numb
     return [Math.cos(a) * R, Math.sin(a) * R]
   })]
   const circles = centers.map(([dx, dy]) => `<circle cx="${Math.round(dx)}" cy="${Math.round(dy)}" r="${R}" fill="none" stroke="${stroke}" stroke-width="1"/>`).join('')
-  return `<g transform="translate(${cx} ${cy})" opacity="0.26"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite" additive="sum"/>${circles}</g>`
+  return `<g transform="translate(${cx} ${cy})" opacity="0.26"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${fractalClockDur(2)}" repeatCount="indefinite" additive="sum"/>${circles}</g>`
 }
 
 export function heroSvgFromUuid(uuid: string): string {
@@ -789,10 +789,10 @@ export function heroSvgFromUuid(uuid: string): string {
   const colors = heroSvgPaletteFromUuid(uuid)
   const W = 760, H = (64 * 6), cx = W / 2, cy = 176
   const G0 = Math.round(byte((6 * 2)) * 360 / (64 * 4)), G1 = Math.round(byte(13) * 360 / (64 * 4)) // the torus gradient hues, forged from the UUID
-  const LOOPS = [0, 1, 2, 3].map((k) => ({ r: (16 * 6) + (byte(k) % 88), dur: (5 * 2) + (byte(k + 4) % 16), hue: Math.round(byte(k + 8) * 360 / (64 * 4)) })) // the four H₁ = ℤ⁴ loops, forged from the UUID's bytes
+  const LOOPS = [0, 1, 2, 3].map((k) => ({ r: (16 * 6) + (byte(k) % 88), dur: fractalClockS(Math.round(fractalClockS(1) / ((5 * 2) + (byte(k + 4) % 16)))), hue: Math.round(byte(k + 8) * 360 / (64 * 4)) })) // the four H₁ = ℤ⁴ loops — radii/hues forged from the UUID's bytes, periods SNAPPED onto the fractal clock lattice
   // the eight trigrams (bāguà) as a ring of yin/yang bars (no font dependency), pulsing in sequence — the I Ching
   const trigram = (t: number, x: number, y: number, k: number) =>
-    `<g fill="${colors.accent}"><animate attributeName="opacity" values="0.22;1;0.22" dur="8s" begin="${k}s" repeatCount="indefinite"/>` +
+    `<g fill="${colors.accent}"><animate attributeName="opacity" values="0.22;1;0.22" dur="${fractalClockDur(6 * 2)}" begin="${k}s" repeatCount="indefinite"/>` +
     [0, 1, 2].map((row) => {
       const yy = y + (1 - row) * 8 // row 0 bottom, 2 top; bit = 1 → yang (one solid bar), 0 → yin (two bars)
       return (t >> row) & 1
@@ -802,7 +802,7 @@ export function heroSvgFromUuid(uuid: string): string {
   const bagua = Array.from({ length: 8 }, (_, k) => { const a = (k / 8) * TAU - Math.PI / 2; return trigram(k, Math.round(cx + Math.cos(a) * 332), Math.round(cy + Math.sin(a) * 156), k) }).join('')
   // the double torus — two tori COUNTER-rotating with a depth (vertical) pulse: the revised, tumbling movement
   const torus = (sx: number, spin: string, off: string) =>
-    `<g transform="translate(${sx} ${cy})"><animateTransform attributeName="transform" type="rotate" ${spin} dur="30s" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="scale" values="1 1;1 0.6;1 1" dur="9s" begin="${off}" repeatCount="indefinite" additive="sum"/><ellipse rx="104" ry="58"/><ellipse rx="44" ry="22"/></g>`
+    `<g transform="translate(${sx} ${cy})"><animateTransform attributeName="transform" type="rotate" ${spin} dur="${fractalClockDur(4)}" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="scale" values="1 1;1 0.6;1 1" dur="${fractalClockDur(6 * 2)}" begin="${off}" repeatCount="indefinite" additive="sum"/><ellipse rx="104" ry="58"/><ellipse rx="44" ry="22"/></g>`
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the animated I Ching, the ten-dimensional hero computed from src">`,
     `<defs>`,
@@ -844,7 +844,7 @@ export function animatedTrigramIconSvg(trigram: number): string {
       ? `<rect x="3" y="${yy - 2}" width="26" height="4" rx="1"/>`
       : `<rect x="3" y="${yy - 2}" width="10" height="4" rx="1"/><rect x="19" y="${yy - 2}" width="10" height="4" rx="1"/>`
   }).join('')
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="trigram ${t}"><g fill="${scaleColor(t, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}"><animate attributeName="opacity" values="0.5;1;0.5" dur="6s" repeatCount="indefinite"/>${bars}</g></svg>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="trigram ${t}"><g fill="${scaleColor(t, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}"><animate attributeName="opacity" values="0.5;1;0.5" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/>${bars}</g></svg>`
 }
 
 /** PWA icon — double torus glyph coloured from the movie palette (not static Tailwind hex). */
@@ -885,7 +885,7 @@ export function yinYangDimensionsSvg(opts: { frames?: number; scale?: number; an
   // folding through the hueShift dimension; hex because the SVG fill="" attribute rejects oklch(). Yin = complement.
   const yang = (d: Dims) => scaleColor(scale, { seedHue: n(d.hueShift), L: 1 - 3 / 16, C: 9 / 64 })
   const yin = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + (9 * 5 * 4)) % 360), L: 5 / 16, C: 9 / 64 })
-  const dur = 'dur="18s" repeatCount="indefinite"'
+  const dur = `dur="${fractalClockDur(6)}" repeatCount="indefinite"`
   const A = (attr: string, vals: string) => (animate ? `<animate attributeName="${attr}" values="${vals}" ${dur}/>` : '')
   const AT = (type: string, vals: string) => (animate ? `<animateTransform attributeName="transform" type="${type}" values="${vals}" ${dur} additive="sum"/>` : '')
   // the drawn taiji, centred on the origin so rotate/scale/skew pivot on the centre.
@@ -970,11 +970,11 @@ export function livingIChingSvg(bits: number[], opts: { scale?: number; animate?
     })
     .join('')
   const css = animate
-    ? `.${sc} .sym{transform-box:fill-box;transform-origin:center;animation:${sc}b 7s ease-in-out infinite}` +
+    ? `.${sc} .sym{transform-box:fill-box;transform-origin:center;animation:${sc}b ${fractalClockDur(9)} ease-in-out infinite}` +
       `.${sc} .ln{transform-box:fill-box;transform-origin:center}` +
-      `.${sc} .yang{animation:${sc}l 8s ease-in-out infinite}` +
-      `.${sc} .yin{animation:${sc}f 6s ease-in-out infinite}` +
-      `.${sc} .lo.yin{animation:${sc}g 6s ease-in-out infinite}` +
+      `.${sc} .yang{animation:${sc}l ${fractalClockDur(6 * 2)} ease-in-out infinite}` +
+      `.${sc} .yin{animation:${sc}f ${fractalClockDur(9 * 2)} ease-in-out infinite}` +
+      `.${sc} .lo.yin{animation:${sc}g ${fractalClockDur(9 * 2)} ease-in-out infinite}` +
       `@keyframes ${sc}b{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}` +
       `@keyframes ${sc}l{0%,100%{transform:translateY(0)}50%{transform:translateY(-4%)}}` +
       `@keyframes ${sc}f{0%,100%{transform:scaleX(1) skewX(0)}50%{transform:scaleX(.84) skewX(8deg)}}` +
@@ -1687,32 +1687,33 @@ export function clownStepSvg(step: number, opts: { animate?: boolean; size?: num
   // wide) and the fold/receipt at the segment's MEDIAN; the ghost fan grows by the same 1−e^(−u/T2) law the
   // Bloch vector decays by. No timing below is hand-picked.
   const fanGrow = (u: number) => Math.round((1 - Math.exp(-u / (9 / (5 * 4)))) * 100) / 100
+  const beat = fractalClockDur(9 * 2) // one clown step = the d = 18 rung of the fractal clock — 6 s, 18 cycles per hero cycle
   const css = animate
-    ? (has('shrink') ? `.${sc} .sy{transform-origin:179px 23px;animation:${sc}sy 6.4s ease-in-out infinite}@keyframes ${sc}sy{${Array.from({ length: 9 }, (_, j) => `${r(j * (5 * 5 / 2))}%{transform:scale(${stopAt(j * 2).shrink})}`).join('')}}` : '') +
-      (has('hueShift') ? `.${sc} .hu{animation:${sc}hu 6.4s linear infinite}@keyframes ${sc}hu{${Array.from({ length: 9 }, (_, j) => `${r(j * (5 * 5 / 2))}%{filter:hue-rotate(${stopAt(j * 2).hue}deg)}`).join('')}}` : '') +
+    ? (has('shrink') ? `.${sc} .sy{transform-origin:179px 23px;animation:${sc}sy ${beat} ease-in-out infinite}@keyframes ${sc}sy{${Array.from({ length: 9 }, (_, j) => `${r(j * (5 * 5 / 2))}%{transform:scale(${stopAt(j * 2).shrink})}`).join('')}}` : '') +
+      (has('hueShift') ? `.${sc} .hu{animation:${sc}hu ${beat} linear infinite}@keyframes ${sc}hu{${Array.from({ length: 9 }, (_, j) => `${r(j * (5 * 5 / 2))}%{filter:hue-rotate(${stopAt(j * 2).hue}deg)}`).join('')}}` : '') +
       // the walker — its OWN state per stop: translate (position) · scale (perspective size attenuation,
       // a depth cue, NOT a zoom of the scene) · opacity (aerial fade); at step 0 it is flat and rides
       // exactly its shadow's frames
       (flatCoincident
-        ? `.${sc} .w,.${sc} .sh{animation:${sc}w 6.4s linear infinite}` +
+        ? `.${sc} .w,.${sc} .sh{animation:${sc}w ${beat} linear infinite}` +
           `@keyframes ${sc}w{${Array.from({ length: STOPS + 1 }, (_, j) => { const t = stopAt(j); return `${pct(j)}%{transform:translate(${t.shadow.x}px,${t.shadow.y}px)}` }).join('')}}`
-        : `.${sc} .w{animation:${sc}w 6.4s linear infinite}` +
+        : `.${sc} .w{animation:${sc}w ${beat} linear infinite}` +
           `@keyframes ${sc}w{${Array.from({ length: STOPS + 1 }, (_, j) => { const t = stopAt(j); return `${pct(j)}%{transform:translate(${t.walker.x}px,${t.walker.y}px) scale(${t.walker.scale})${has('depthFade') ? `;opacity:${t.walker.fade}` : ''}}` }).join('')}}` +
-          `.${sc} .sh{animation:${sc}sh 6.4s linear infinite}` +
+          `.${sc} .sh{animation:${sc}sh ${beat} linear infinite}` +
           `@keyframes ${sc}sh{${Array.from({ length: STOPS + 1 }, (_, j) => { const t = stopAt(j); return `${pct(j)}%{transform:translate(${t.shadow.x}px,${t.shadow.y}px)}` }).join('')}}`) +
-      (k === 5 ? `.${sc} .tr{animation:${sc}tr 6.4s linear infinite}@keyframes ${sc}tr{0%{opacity:0}20%,100%{opacity:.16}}` : '') +
+      (k === 5 ? `.${sc} .tr{animation:${sc}tr ${beat} linear infinite}@keyframes ${sc}tr{0%{opacity:0}20%,100%{opacity:.16}}` : '') +
       // the Bloch vector — SAMPLED from clownBloch (the physics chain + the measured bits), never a frame table
-      `.${sc} .v{transform-origin:30px 30px;animation:${sc}v 6.4s linear infinite}` +
+      `.${sc} .v{transform-origin:30px 30px;animation:${sc}v ${beat} linear infinite}` +
       `@keyframes ${sc}v{${Array.from({ length: STOPS + 1 }, (_, j) => { const b = stopAt(j).bloch; return `${pct(j)}%{transform:rotate(${b.deg}deg)${b.len !== 1 ? ` scaleY(${b.len})` : ''}}` }).join('')}}` +
       (k === 2
-        ? `.${sc} .g1,.${sc} .g2{transform-origin:30px 30px}.${sc} .g1{animation:${sc}g1 6.4s linear infinite}.${sc} .g2{animation:${sc}g2 6.4s linear infinite}` +
+        ? `.${sc} .g1,.${sc} .g2{transform-origin:30px 30px}.${sc} .g1{animation:${sc}g1 ${beat} linear infinite}.${sc} .g2{animation:${sc}g2 ${beat} linear infinite}` +
           `@keyframes ${sc}g1{${Array.from({ length: 9 }, (_, j) => { const u = j / 8; const b = stopAt(j * 2).bloch; return `${r(j * (5 * 5 / 2))}%{transform:rotate(${r(b.deg + (6 * 5) * fanGrow(u))}deg);opacity:${r((2 / 5) * fanGrow(u))}}` }).join('')}}` +
           `@keyframes ${sc}g2{${Array.from({ length: 9 }, (_, j) => { const u = j / 8; const b = stopAt(j * 2).bloch; return `${r(j * (5 * 5 / 2))}%{transform:rotate(${r(b.deg - (6 * 5) * fanGrow(u))}deg);opacity:${r((2 / 5) * fanGrow(u))}}` }).join('')}}`
         : '') +
-      (k === 3 ? `.${sc} .q1{animation:${sc}q 6.4s linear infinite}@keyframes ${sc}q{0%{opacity:0}${pct(1)}%,100%{opacity:1}}` : '') + // the IQ blob lands with the snap — the first sample after the crossing
+      (k === 3 ? `.${sc} .q1{animation:${sc}q ${beat} linear infinite}@keyframes ${sc}q{0%{opacity:0}${pct(1)}%,100%{opacity:1}}` : '') + // the IQ blob lands with the snap — the first sample after the crossing
       (k === 4
-        ? `.${sc} .rc{animation:${sc}r 6.4s linear infinite}@keyframes ${sc}r{0%,50%{opacity:0}${pct(9)}%,100%{opacity:1}}` + // the receipt prints at the segment's median
-          `.${sc} .hp{transform-box:fill-box;transform-origin:center;animation:${sc}h 6.4s linear infinite}` +
+        ? `.${sc} .rc{animation:${sc}r ${beat} linear infinite}@keyframes ${sc}r{0%,50%{opacity:0}${pct(9)}%,100%{opacity:1}}` + // the receipt prints at the segment's median
+          `.${sc} .hp{transform-box:fill-box;transform-origin:center;animation:${sc}h ${beat} linear infinite}` +
           `@keyframes ${sc}h{0%,50%{transform:scale(.3);opacity:0}${pct((5 * 2))}%{transform:scale(.9);opacity:.5}${pct(13)}%,100%{transform:scale(1.8);opacity:0}}` // the kT ln 2 puff follows the printing
         : '') +
       `@media(prefers-reduced-motion:reduce){.${sc} .hu,.${sc} .sy,.${sc} .w,.${sc} .sh,.${sc} .tr,.${sc} .v,.${sc} .g1,.${sc} .g2,.${sc} .q1,.${sc} .rc,.${sc} .hp{animation:none}}`
@@ -1739,7 +1740,8 @@ export function clownStepSvg(step: number, opts: { animate?: boolean; size?: num
 
 /**
  * THE WHOLE CLOWN LIFE — one animation, one loop of the same computed state function over the full act
- * p ∈ [0,1): 96 samples (16 per step) + the closing frame, 38.4 s (6 × 6.4). The 100% keyframe re-samples
+ * p ∈ [0,1): 96 samples (16 per step) + the closing frame, 36 s (6 × 6 — the d = 3 rung of the fractal
+ * clock, exactly 3 cycles per 108 s hero cycle; each step is the d = 18 rung). The 100% keyframe re-samples
  * p = 0, so the loop closes on the state it opened with — the Bloch chain ends where it began (the bow's
  * Zeno hold at 90° IS the entrance's unprepared 90°), the walker returns flat to the self-crossing, and the
  * act re-enters through the figure-eight: the paper's purge fixed point (purge(clown) = clown), rendered.
@@ -1773,6 +1775,7 @@ export function clownActSvg(opts: { animate?: boolean; size?: number } = {}): st
     return permanent || bPct >= 100 ? `${head}${r(Math.min(aPct + (3 / 5), 99.9))}%,100%{opacity:${on}}` : `${head}${r(aPct + (3 / 5))}%,${bPct}%{opacity:${on}}${r(Math.min(bPct + (3 / 5), 100))}%,100%{opacity:0}`
   }
   const fanGrow = (u: number) => Math.round((1 - Math.exp(-u / (9 / (5 * 4)))) * 100) / 100
+  const life = fractalClockDur(3) // the whole act = 6 beats = the d = 3 rung of the fractal clock — 36 s, 3 cycles per hero cycle
   const badges = act.steps
     .map((s, k) => `<text class="b${k}" x="6" y="105" font-size="9" fill="${scaleColor(k * 6 + 2, { css: true })}" opacity="${animate ? 0 : k === 0 ? 1 : 0}" aria-hidden="true">${taxonomyIcons().entries.find((e) => e.area === s.area)?.icon ?? ''} ${s.area} · ${s.vortex} · ${CLOWN_DIM_LADDER[k]!.length}d</text>`)
     .join('')
@@ -1783,27 +1786,27 @@ export function clownActSvg(opts: { animate?: boolean; size?: number } = {}): st
     .map((sc2) => `<polyline class="tr" points="${Array.from({ length: 360 / 4 + 1 }, (_, i) => clownTracePoint(i / (360 / 4), sc2)).join(' ')}" fill="none" stroke="${scaleColor((6 * 5) + sc2, { css: true })}" stroke-width=".5" opacity="0"/>`)
     .join('')
   const css = animate
-    ? `.${sc} .w{animation:${sc}w 38.4s linear infinite}` +
+    ? `.${sc} .w{animation:${sc}w ${life} linear infinite}` +
       `@keyframes ${sc}w{${Array.from({ length: N + 1 }, (_, j) => { const t = at(j); return `${pct(j)}%{transform:translate(${t.walker.x}px,${t.walker.y}px) scale(${t.walker.scale});opacity:${t.walker.fade}}` }).join('')}}` +
-      `.${sc} .sh{animation:${sc}sh 38.4s linear infinite}` +
+      `.${sc} .sh{animation:${sc}sh ${life} linear infinite}` +
       `@keyframes ${sc}sh{${Array.from({ length: N + 1 }, (_, j) => { const t = at(j); return `${pct(j)}%{transform:translate(${t.shadow.x}px,${t.shadow.y}px)}` }).join('')}}` +
-      `.${sc} .v{transform-origin:30px 30px;animation:${sc}v 38.4s linear infinite}` +
+      `.${sc} .v{transform-origin:30px 30px;animation:${sc}v ${life} linear infinite}` +
       `@keyframes ${sc}v{${Array.from({ length: N + 1 }, (_, j) => { const b = at(j).bloch; return `${pct(j)}%{transform:rotate(${b.deg}deg)${b.len !== 1 ? ` scaleY(${b.len})` : ''}}` }).join('')}}` +
-      `.${sc} .hu{animation:${sc}hu 38.4s linear infinite}@keyframes ${sc}hu{${Array.from({ length: 16 * 2 + 1 }, (_, j) => `${r((j * 100) / (16 * 2))}%{filter:hue-rotate(${at(j * 3).hue}deg)}`).join('')}}` +
-      `.${sc} .sy{transform-origin:179px 23px;animation:${sc}sy 38.4s linear infinite}@keyframes ${sc}sy{${Array.from({ length: 16 * 2 + 1 }, (_, j) => `${r((j * 100) / (16 * 2))}%{transform:scale(${at(j * 3).shrink})}`).join('')}}` +
-      act.steps.map((_, k) => `.${sc} .b${k}{animation:${sc}b${k} 38.4s linear infinite}@keyframes ${sc}b${k}{${win(k, k + 1, 1, k === 5)}}.${sc} .m${k}{animation:${sc}m${k} 38.4s linear infinite}@keyframes ${sc}m${k}{${win(k, k + 1, 1, k === 5)}}`).join('') +
+      `.${sc} .hu{animation:${sc}hu ${life} linear infinite}@keyframes ${sc}hu{${Array.from({ length: 16 * 2 + 1 }, (_, j) => `${r((j * 100) / (16 * 2))}%{filter:hue-rotate(${at(j * 3).hue}deg)}`).join('')}}` +
+      `.${sc} .sy{transform-origin:179px 23px;animation:${sc}sy ${life} linear infinite}@keyframes ${sc}sy{${Array.from({ length: 16 * 2 + 1 }, (_, j) => `${r((j * 100) / (16 * 2))}%{transform:scale(${at(j * 3).shrink})}`).join('')}}` +
+      act.steps.map((_, k) => `.${sc} .b${k}{animation:${sc}b${k} ${life} linear infinite}@keyframes ${sc}b${k}{${win(k, k + 1, 1, k === 5)}}.${sc} .m${k}{animation:${sc}m${k} ${life} linear infinite}@keyframes ${sc}m${k}{${win(k, k + 1, 1, k === 5)}}`).join('') +
       `.${sc} .g1,.${sc} .g2{transform-origin:30px 30px}` +
       ['g1', 'g2']
-        .map((g, gi) => `.${sc} .${g}{animation:${sc}${g} 38.4s linear infinite}@keyframes ${sc}${g}{0%,${r((100 * 2) / 6)}%{opacity:0}${Array.from({ length: 9 }, (_, j) => { const u = j / 8; const b = clownLiftState((2 + u) / 6, undefined, 2).bloch; return `${r(((2 + u / 1) * 100) / 6 + (j === 0 ? (2 / 5) : 0))}%{transform:rotate(${r(b.deg + (gi ? -(6 * 5) : (6 * 5)) * fanGrow(u))}deg);opacity:${r((2 / 5) * fanGrow(u))}}` }).join('')}${r(302 / 6)}%,100%{opacity:0}}`)
+        .map((g, gi) => `.${sc} .${g}{animation:${sc}${g} ${life} linear infinite}@keyframes ${sc}${g}{0%,${r((100 * 2) / 6)}%{opacity:0}${Array.from({ length: 9 }, (_, j) => { const u = j / 8; const b = clownLiftState((2 + u) / 6, undefined, 2).bloch; return `${r(((2 + u / 1) * 100) / 6 + (j === 0 ? (2 / 5) : 0))}%{transform:rotate(${r(b.deg + (gi ? -(6 * 5) : (6 * 5)) * fanGrow(u))}deg);opacity:${r((2 / 5) * fanGrow(u))}}` }).join('')}${r(302 / 6)}%,100%{opacity:0}}`)
         .join('') +
-      `.${sc} .q1{animation:${sc}q 38.4s linear infinite}@keyframes ${sc}q{${win(3 + 1 / 16, 6, 1, true)}}` + // the measured record — persists once written
-      `.${sc} .rc{animation:${sc}rc 38.4s linear infinite}@keyframes ${sc}rc{${win((9 / 2), 6, 1, true)}}` + // the receipt — printed at the weave's median, persists
-      `.${sc} .hp{transform-box:fill-box;transform-origin:center;animation:${sc}hp 38.4s linear infinite}@keyframes ${sc}hp{0%,75%{transform:scale(.3);opacity:0}${r(4550 / (6 * 5 * 2))}%{transform:scale(.9);opacity:.5}${r(4750 / (6 * 5 * 2))}%,100%{transform:scale(1.8);opacity:0}}` + // the kT ln 2 puff follows the printing
-      `.${sc} .tr{animation:${sc}tr 38.4s linear infinite}@keyframes ${sc}tr{${win(5, 6, (7 / (5 * 5 * 2)))}}` +
+      `.${sc} .q1{animation:${sc}q ${life} linear infinite}@keyframes ${sc}q{${win(3 + 1 / 16, 6, 1, true)}}` + // the measured record — persists once written
+      `.${sc} .rc{animation:${sc}rc ${life} linear infinite}@keyframes ${sc}rc{${win((9 / 2), 6, 1, true)}}` + // the receipt — printed at the weave's median, persists
+      `.${sc} .hp{transform-box:fill-box;transform-origin:center;animation:${sc}hp ${life} linear infinite}@keyframes ${sc}hp{0%,75%{transform:scale(.3);opacity:0}${r(4550 / (6 * 5 * 2))}%{transform:scale(.9);opacity:.5}${r(4750 / (6 * 5 * 2))}%,100%{transform:scale(1.8);opacity:0}}` + // the kT ln 2 puff follows the printing
+      `.${sc} .tr{animation:${sc}tr ${life} linear infinite}@keyframes ${sc}tr{${win(5, 6, (7 / (5 * 5 * 2)))}}` +
       `@media(prefers-reduced-motion:reduce){.${sc} *{animation:none}}`
     : ''
   return (
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110" width="${size}" height="${r((size * 110) / (100 * 2))}" class="${sc}" role="img" data-dims="2→10" data-channels="${CLOWN_DIM_LADDER[5]!.join(' ')}" data-projection="oblique-perspective-no-zoom" data-loop="reenters" aria-label="The whole clown life — one 38.4-second loop of all six steps, 2D to 10D by projection, ending flat on its shadow and re-entering: the 100% frame is the 0% frame">` +
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110" width="${size}" height="${r((size * 110) / (100 * 2))}" class="${sc}" role="img" data-dims="2→10" data-channels="${CLOWN_DIM_LADDER[5]!.join(' ')}" data-projection="oblique-perspective-no-zoom" data-loop="reenters" aria-label="The whole clown life — one ${fractalClockS(3)}-second loop of all six steps on the fractal clock, 2D to 10D by projection, ending flat on its shadow and re-entering: the 100% frame is the 0% frame">` +
     (css ? `<style>${css}</style>` : '') +
     `<g class="hu">` +
     `<path d="${lobe(-Math.PI / 2 + (1 / (5 * 5 * 2)), Math.PI / 2 - (1 / (5 * 5 * 2)))}" fill="${upperCorner}" fill-opacity=".08" stroke="${stroke}" stroke-width="1.2"/>` +
@@ -1864,7 +1867,7 @@ export function clownUiDesignedByRosettaIChing(matrix: MindMatrix = buildMatrix(
         const snapIsMeasured = clownLiftState((3 + (1 / 2)) / 6, matrix).bloch.deg === (9 * 5 * 4) * (1 - act.bits[3]!)
         return inSvg && t1.root === t2.root && t1.frames === 64 && isUuid(t1.root) && snapIsMeasured
       })() },
-      { facet: 'one animation shows the WHOLE clown life — a single 38.4 s loop of the same state function (96 samples + the closing frame); the 100% keyframe re-samples p = 0 so the loop closes on the state it opened with (the Bloch chain ends at the entrance\'s 90° — the act re-enters through the figure-eight, purge(clown) = clown rendered), the hexagram builds line by line in computed step windows, and the measured records persist once written', on: (() => {
+      { facet: `one animation shows the WHOLE clown life — a single ${fractalClockDur(3)} loop of the same state function (96 samples + the closing frame, the d = 3 rung of the fractal clock: 3 cycles per hero cycle); the 100% keyframe re-samples p = 0 so the loop closes on the state it opened with (the Bloch chain ends at the entrance's 90° — the act re-enters through the figure-eight, purge(clown) = clown rendered), the hexagram builds line by line in computed step windows, and the measured records persist once written`, on: (() => {
         const life = clownActSvg()
         const still = clownActSvg({ animate: false })
         const wBody = life.match(/@keyframes \w+?w\{([^]*?)\}\}/)?.[1] ?? ''
@@ -1872,7 +1875,7 @@ export function clownUiDesignedByRosettaIChing(matrix: MindMatrix = buildMatrix(
         const vBody = life.match(/@keyframes \w+?v\{([^]*?)\}\}/)?.[1] ?? ''
         const rotates = vBody.match(/rotate\([^)]*\)/g) ?? []
         const loopCloses = translates.length >= 97 && translates[0] === translates[translates.length - 1] && rotates[0] === rotates[rotates.length - 1]
-        return life.startsWith('<svg') && life.includes('data-loop="reenters"') && life.includes('38.4s') && loopCloses && (life.match(/class="m\d"/g) ?? []).length === 6 && !still.includes('@keyframes') && !life.includes('td{')
+        return life.startsWith('<svg') && life.includes('data-loop="reenters"') && life.includes(`${fractalClockDur(3)} linear infinite`) && loopCloses && (life.match(/class="m\d"/g) ?? []).length === 6 && !still.includes('@keyframes') && !life.includes('td{')
       })() },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clown-ui:${entry.facet}:${entry.on}`) }))
     return {

@@ -1050,7 +1050,6 @@ export const CRACK_RESEARCH_TARGETS: readonly CrackResearchTarget[] = [
   { file: 'src/wind/ui/index.ts', value: 58, context: 'path coordinate' },
   { file: 'src/wind/ui/index.ts', value: 4550, context: 'gradient stop (per mille)' },
   { file: 'src/wind/ui/index.ts', value: 4750, context: 'gradient stop (per mille)' },
-  { file: 'src/wind/ui/index.ts', value: 38.4, context: 'hue-cycle seconds (in keyframe string)' },
   { file: 'src/wind/ui/index.ts', value: 302, context: 'viewBox path x' },
   { file: 'src/wind/ui/index.ts', value: 99.9, context: 'keyframe hold percent' },
 ]
@@ -1071,6 +1070,7 @@ export const CRACK_LAW_AMENDMENTS: readonly CrackLawAmendment[] = [
   { version: 9, forcedBy: 'second run proposed fraction roundings for OKLab FIT OUTPUTS (0.0638 ≈ 1/16, 0.3963 ≈ 2/5) and gave 0.83 two fractions', change: 'kind-aware battery: approximate hypotheses only for TUNED claimants (provenance-explained data is not a rounding); one best fraction per value; exact structural identities stay fair for all kinds' },
   { version: 10, forcedBy: 'run 3 left four tuned candidates carrying residual error (0.83≈5/6 · 0.31≈5/16 · 0.11≈1/9 · 0.17≈1/6)', change: 'error-rate law: residual error over tuned claimants is the frontier metric — nonzero rate means theorems remain undiscovered; drives to zero by deeper theorems or by retuning the value TO its theorem (data keeps its historical error — facts are not retunable)' },
   { version: 11, forcedBy: 'the Fibonacci-decade wave: 1.3/3.4/5.5/0.13/0.34 all = F/10ᵏ EXACT (the tuner rode the golden ladder unknowingly); sRGB 0.055 = 55/10³; but 61 = 610/10 is exact AND WRONG (61 = 64 − 3 stops is causal)', change: 'competing exact identities are arbitrated by CAUSATION, not arithmetic: the audit fold prefers the derivation with a mechanism (biology, continuity, definition) over numeric coincidence; coincidences are recorded as curiosities' },
+  { version: 12, forcedBy: 'wave sixty-three: the divisor lattice of 108 = 2²·3³ (the fractal clock) — the ledgered 38.4 s hue-cycle retuned to the d = 3 rung (36 s) and its row RETIRED', change: 'animation periods are never ledgerable: every declarative duration derives from the fractal clock ladder (HERO_CYCLE_MS / divisor via fractalClockDur), so a literal duration is a crack even with provenance — the tuned frontier for timing is permanently zero' },
 ]
 
 /** Ledger self-invariants — computable at any call site: no duplicate (file, literal) rows, every

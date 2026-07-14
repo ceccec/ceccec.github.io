@@ -505,6 +505,48 @@ export function heroPhaseAt(at: number = Date.now(), cycleMs = HERO_CYCLE_MS): n
   return (((at % cycle) + cycle) % cycle) / cycle
 }
 
+// The fractal clock ladder (wave sixty-three realized) — the animations are a FRACTAL OF ONE CLOCK: every
+// declarative (CSS/SMIL) period is HERO_CYCLE_MS / d for a divisor d of FOLDED_CENSUS = 108 = 2²·3³, so each
+// completes exactly d integer cycles per hero cycle and any superposition repeats within ONE cycle (proven in
+// discoveredTheoremsWaveSixtyThree on the sealed gcd/lcm). The compositor drives every level — zero per-frame
+// CPU/GPU computation in our runtime; the numbers are computed once, here, from the census.
+export const FRACTAL_CLOCK_DIVISORS: readonly number[] = Array.from({ length: FOLDED_CENSUS }, (_, i) => i + 1).filter((d) => FOLDED_CENSUS % d === 0)
+/** The divisor-d period in seconds, snapped to the nearest ladder step when d is off-lattice (total, never throws). */
+export function fractalClockS(d: number): number {
+  const snapped = FRACTAL_CLOCK_DIVISORS.reduce((a, b) => (Math.abs(b - d) < Math.abs(a - d) ? b : a))
+  return FOLDED_CENSUS / snapped
+}
+/** The divisor-d period as a CSS/SMIL duration string — the ONE spelling every animation host uses. */
+export function fractalClockDur(d: number): string {
+  return `${fractalClockS(d)}s`
+}
+
+// Every animation one fractal of the one clock — the realization gate over the ladder itself.
+export function animationsFractalOfOneClockDiscovered(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('animationsFractalOfOneClockDiscovered', matrix, () => {
+    const ladder = FRACTAL_CLOCK_DIVISORS.map((d) => ({ d, s: fractalClockS(d) }))
+    const hero = heroClockOffTheLadderDiscovered(matrix)
+    const snapTotal = Array.from({ length: FOLDED_CENSUS }, (_, i) => i + 1).every((k) => FRACTAL_CLOCK_DIVISORS.includes(FOLDED_CENSUS / fractalClockS(k)))
+    const facets = [
+      { facet: `ladder = the ${FRACTAL_CLOCK_DIVISORS.length} divisors of FOLDED_CENSUS ${FOLDED_CENSUS} = (2+1)(3+1) steps: [${ladder.map((entry) => entry.s).join(',')}]s`, on: FRACTAL_CLOCK_DIVISORS.length === (2 + 1) * (3 + 1) },
+      { facet: `top step d=1 is the hero clock: fractalClockS(1) ${fractalClockS(1)}s × 1000 = HERO_CYCLE_MS ${HERO_CYCLE_MS}`, on: fractalClockS(1) * 1e3 === HERO_CYCLE_MS },
+      { facet: `every step integer seconds with d·s = ${FOLDED_CENSUS}: ${ladder.every((entry) => Number.isInteger(entry.s) && entry.d * entry.s === FOLDED_CENSUS)}`, on: ladder.every((entry) => Number.isInteger(entry.s) && entry.d * entry.s === FOLDED_CENSUS) },
+      { facet: `fractalClockS total on 1..${FOLDED_CENSUS} — every input snaps onto the lattice`, on: snapTotal },
+      { facet: `hero clock itself on the a432 ladder (heroClockOffTheLadderDiscovered realized ${hero.realized})`, on: hero.realized },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`animations-fractal-one-clock:${entry.facet}:${entry.on}`) }))
+    return {
+      discovered: facets.every((entry) => entry.on),
+      realized: facets.every((entry) => entry.on),
+      ladder,
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
+      boundary: [`sources FOLDED_CENSUS · HERO_CYCLE_MS · discoveredTheoremsWaveSixtyThree (the lattice proofs live there)`, `declarative periods only — JS-driven motion rides heroPhaseAt on the same clock`, `off-lattice input snaps to the nearest step, never throws`].join('; '),
+    }
+  })
+}
+
 function heroMovieHueRaw(path: string, matrix: MindMatrix): number {
   void matrix
   // Anchored at the single A432 colour source: the route hue is a content-addressed ROTATION from the

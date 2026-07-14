@@ -2,7 +2,7 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { phase, slip } from '../../6/4'
-import { BOLTZMANN, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import { A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
 import { merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot } from '../../0'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
@@ -698,6 +698,70 @@ export function discoveredTheoremsWaveSixtyTwo(matrix: { root: string } = { root
       root: merge(sealed.root, toUuid(`discovered-theorems-sixty-two:${sealed.ok}`)),
       statement: `Discovered theorems, wave sixty-two (the Euclidean-algorithm tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the sealed gcd validated, Stein's binary gcd proven equivalent, Lamé's Fibonacci worst case, and the gcd·lcm identity on the sealed lcm.`,
       boundary: `HONEST: the second PROOF_DRIVEN_REIMPLEMENTATION wave, aimed at the ONE-MATH core — both sealed functions (gcd, lcm) now carry computed correctness receipts, and the natural reimplementation candidate (Stein's binary gcd) is proven interchangeable rather than assumed. Lamé's worst case is verified exhaustively for Fibonacci indices 3..12 (the all-n theorem and the 5·digits bound are cited). All bounds complete at pairs ≤ 200.`,
+    }
+  })
+}
+
+// ── Discovered theorems, wave sixty-three (the fractal clock lattice) — the ONE QUANTUM CLOCK the
+// animations hang from: the hero cycle FOLDED_CENSUS = 108 s factors as 2²·3³, so its divisor lattice is
+// the finite {2^a·3^b} (3-smooth, Pythagorean) grid — every animation period cut from it completes an
+// integer number of cycles per hero cycle and the whole surface is globally periodic. Proven on the
+// SEALED one-math gcd/lcm (whose own receipts are wave sixty-two) — the theorems ARE the computations.
+export function discoveredTheoremsWaveSixtyThree(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return memoByRoot('discoveredTheoremsWaveSixtyThree', matrix, () => {
+    const C = FOLDED_CENSUS // 108 = 2²·3³ — the hero cycle in seconds
+    const divisors: number[] = []
+    for (let d = 1; d <= C; d += 1) if (C % d === 0) divisors.push(d)
+    const strip = (n0: number) => { let n = n0; while (n % 2 === 0) n /= 2; while (n % 3 === 0) n /= 3; return n }
+
+    // W1 · the DIVISOR LATTICE OF 108 IS the 3-SMOOTH GRID {2^a·3^b : a ≤ 2, b ≤ 3} — exactly
+    // (2+1)(3+1) = 12 divisors, every one 3-smooth, CLOSED under the sealed gcd and lcm, and
+    // DISTRIBUTIVE both ways over all 12³ triples: the product of chains C₃ × C₄, a finite fractal
+    // (self-similar under ×2 and ×3 zoom) — the clock tree the animations subdivide.
+    let lattice = divisors.length === (2 + 1) * (3 + 1) && divisors.every((d) => strip(d) === 1)
+    for (const a of divisors) for (const b of divisors) if (!divisors.includes(gcd(a, b)) || !divisors.includes(lcm(a, b))) lattice = false
+    for (const a of divisors) for (const b of divisors) for (const c of divisors) {
+      if (gcd(a, lcm(b, c)) !== lcm(gcd(a, b), gcd(a, c))) lattice = false
+      if (lcm(a, gcd(b, c)) !== gcd(lcm(a, b), lcm(a, c))) lattice = false
+    }
+
+    // W2 · GLOBAL PERIODICITY — every divisor clock C/d completes EXACTLY d integer cycles per hero
+    // cycle (d · C/d = C), and for every PAIR of ladder periods the sealed lcm of the two periods
+    // divides C: any superposition of ladder animations repeats within one hero cycle — one clock,
+    // every fractal level phase-locked to it.
+    let periodic = divisors.every((d) => d * (C / d) === C)
+    for (const a of divisors) for (const b of divisors) if (C % lcm(C / a, C / b) !== 0) periodic = false
+
+    // W3 · GAUSS PARTITIONS THE CLOCK — Σ_{d|108} φ(d) = 108 instantiated at the hero cycle: the 108
+    // integer phases split by gcd class, each divisor clock d owning exactly φ(d) primitive phases
+    // (COMPOUNDS on wave fifty-four's divisor-sum identity, here computed on the sealed gcd).
+    const phi = (n: number) => { let r = 0; for (let a = 1; a <= n; a += 1) if (gcd(a, n) === 1) r += 1; return r }
+    const gaussSum = divisors.reduce((s, d) => s + phi(d), 0)
+    const gauss = gaussSum === C
+
+    // W4 · the 6⁶ BRIDGE — the frequency anchor times the time anchor is the hexagram's own power:
+    // 432·108 = 2⁴3³·2²3³ = 2⁶3⁶ = 6⁶ = 46656 exactly; every A432_OCTAVES entry is 3-smooth and the
+    // anchor sits ON the ladder at 4·C — frequency (Hz) and duration (s) are reciprocal directions
+    // of ONE Pythagorean lattice, six lines to the sixth power apart.
+    const anchor = 4 * C // 432
+    const six = 2 * 3 // the hexagram's six lines
+    const bridge = A432_OCTAVES.includes(anchor) && anchor * C === six ** six && A432_OCTAVES.every((f) => strip(f) === 1)
+
+    const sealed = sealFacets('discovered-theorems-sixty-three', [
+      { facet: `the DIVISOR LATTICE OF 108 IS the 3-SMOOTH GRID — 108 = 2²·3³ has exactly (2+1)(3+1) = 12 divisors, every one of the form 2^a·3^b, closed under the sealed gcd/lcm and distributive over all 12³ triples: the product of chains C₃ × C₄, the finite fractal (self-similar under ×2 and ×3) the animations subdivide`, on: lattice },
+      { facet: `GLOBAL PERIODICITY — every divisor clock C/d completes exactly d integer cycles per hero cycle, and the sealed lcm of every pair of ladder periods divides 108: any superposition of ladder animations repeats within ONE hero cycle — one quantum clock, every fractal level phase-locked`, on: periodic },
+      { facet: `GAUSS PARTITIONS THE CLOCK — Σ_{d|108} φ(d) = ${gaussSum} = 108: the hero cycle's integer phases split by gcd class with each divisor clock owning exactly φ(d) primitive phases (compounds on wave fifty-four's divisor-sum identity, computed on the sealed gcd)`, on: gauss },
+      { facet: `the 6⁶ BRIDGE — 432·108 = 2⁴3³·2²3³ = 2⁶3⁶ = 6⁶ = ${anchor * C} exactly, the A432 anchor sits on the ladder at 4·108 with every octave 3-smooth: frequency and duration are reciprocal directions of one Pythagorean lattice, six lines to the sixth power apart`, on: bridge },
+    ])
+    return {
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      divisors,
+      ladderS: divisors.map((d) => C / d),
+      root: merge(sealed.root, toUuid(`discovered-theorems-sixty-three:${sealed.ok}`)),
+      statement: `Discovered theorems, wave sixty-three (the fractal clock lattice): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the divisor lattice of 108 as the 3-smooth grid, global periodicity of every ladder superposition, Gauss's totient partition of the clock, and the 6⁶ frequency–time bridge.`,
+      boundary: `HONEST: all four facets are COMPLETE finite computations on the sealed one-math gcd/lcm (themselves receipted by wave sixty-two) — the divisor lattice, distributivity, periodicity and totient partition are exhausted over all of 108's divisors, and 432·108 = 6⁶ is exact integer arithmetic. 3-smooth/Pythagorean is the documented name for {2^a·3^b} (A003586); no acoustic or physical claim rides on it — the lattice is the timing law, nothing more.`,
     }
   })
 }
