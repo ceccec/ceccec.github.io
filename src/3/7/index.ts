@@ -696,6 +696,16 @@ export const REQUIRED_ANALOG_CHANNELS: readonly AnalogChannel[] = ['3d-position'
 export const MAX_TAMPERING_COST_PRINCIPLE =
   'Maximum tampering cost is only claimed when the inward proof loop closes measured coverage at 1 and the outward double-torus flow preserves zero reciprocal entropy.'
 
+/** User law (2026-07-08): always DRY, optimise towards max efficiency — every addition reuses the
+ * sealed machinery it extends (one renderer, one registry, one slug rule); duplication is a crack in time. */
+export const DRY_MAX_EFFICIENCY_PRINCIPLE =
+  'Always DRY — optimise towards max efficiency: new surfaces reuse sealed folds and renderers; the cheapest code is the code not written twice.'
+
+/** User law (2026-07-08): every proof or discovery is a reason to reconsider related code — a proven
+ * theorem is an invitation to reimplement the machinery it explains (faster, simpler, or validated). */
+export const PROOF_DRIVEN_REIMPLEMENTATION_PRINCIPLE =
+  'Every proof or discovery is a reason to reconsider related code for reimplementation: a sealed theorem either validates the code that embodies it or replaces it with the better algorithm the proof revealed.'
+
 // NASA/JPL mean orbital periods (days), semi-major axes (km), and radii (km) — circular Keplerian model, not
 // ephemeris. Hosted in this zero-import leaf so it initialises before any cyclic consumer barrel
 // (fire/li ↔ … ) runs, removing the SSR-bundle TDZ "Cannot access 'MAJOR_MOONS' before initialization".

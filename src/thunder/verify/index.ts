@@ -14,7 +14,7 @@ import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discove
 import { tkCompose, tkInverse, tkKey, tkPerms, tkIsPrime, tkPowMod, tkClassSizes, tkClassSumSimple, tkClosure, tkPslOverField } from '../../9/1'
 import { addressed, covers } from '../../5/5'
 import { schemaOrgDiamonds } from '../../fire/diamonds'
-import { groupOrbit, discoveredTheoremsWaveFiftyOne, discoveredTheoremsWaveFiftyThree, discoveredTheoremsWaveFiftyFour, discoveredTheoremsWaveFiftyFive, discoveredTheoremsWaveFiftySix, discoveredTheoremsWaveFiftySeven, discoveredTheoremsWaveFiftyEight, discoveredTheoremsWaveFiftyNine, discoveredTheoremsWaveSixty } from '../../4/6'
+import { groupOrbit, discoveredTheoremsWaveFiftyOne, discoveredTheoremsWaveFiftyThree, discoveredTheoremsWaveFiftyFour, discoveredTheoremsWaveFiftyFive, discoveredTheoremsWaveFiftySix, discoveredTheoremsWaveFiftySeven, discoveredTheoremsWaveFiftyEight, discoveredTheoremsWaveFiftyNine, discoveredTheoremsWaveSixty, discoveredTheoremsWaveSixtyOne } from '../../4/6'
 import { piThreeOpensTheTrinity } from '../../water/digit'
 import { a432, animationEngineLivesInZero, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, qubitTrinityPauliBloch, repositoryLedger } from '../../fire/li'
 import { geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, rgbCmyComplementIsCmykDuality, sacredGeometry, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, vortexMath } from '../../mountain/geometry'
@@ -2512,6 +2512,7 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     { wave: 'discovered-fifty-eight', ok: discoveredTheoremsWaveFiftyEight(matrix).proven },
     { wave: 'discovered-fifty-nine', ok: discoveredTheoremsWaveFiftyNine(matrix).proven },
     { wave: 'discovered-sixty', ok: discoveredTheoremsWaveSixty(matrix).proven },
+    { wave: 'discovered-sixty-one', ok: discoveredTheoremsWaveSixtyOne(matrix).proven },
   ]
   return {
     allProven: waves.every((entry) => entry.ok),

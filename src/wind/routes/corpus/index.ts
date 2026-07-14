@@ -1004,3 +1004,34 @@ export function searchSectionsFor(file: string, html: string): { anchor?: string
   if (slug.includes('frontier')) parts.push(...model.theoremLines)
   return [{ titles: [title], text: parts.join('\n') }]
 }
+
+// ── Theorem pages — one dedicated page per proven atom (user law: every proof visible, animated, routed).
+// DRY (DRY_MAX_EFFICIENCY_PRINCIPLE): everything is a projection of the sealed registry — names/proof
+// lines from theoremNavigation, animation specs from proofAnimations; nothing re-derived, nothing drawn here.
+export type TheoremPageRow = { slug: string; theorem: string; proof: string; proofClass: string; provedBy: string; home: string; spec: unknown }
+
+export function theoremSlug(theorem: string): string {
+  const s = theorem.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+  return s || 'theorem'
+}
+
+export function theoremPageRows(matrix: MindMatrix = buildMatrix()): TheoremPageRow[] {
+  const nav = __ns_up_up_thunder_waves.theoremNavigation(matrix)
+  const specBy = new Map(__ns_up_up_thunder_waves.proofAnimations(matrix).specs.map((spec: { theorem: string }) => [spec.theorem, spec]))
+  const seen = new Map<string, number>()
+  return nav.waves.flatMap((wave) =>
+    wave.atoms.map((atom) => {
+      const base = theoremSlug(atom.theorem)
+      const n = (seen.get(base) ?? 0) + 1
+      seen.set(base, n)
+      return { slug: n > 1 ? `${base}-${n}` : base, theorem: atom.theorem, proof: atom.proof, proofClass: atom.proofClass, provedBy: wave.provedBy, home: atom.home, spec: specBy.get(atom.theorem) }
+    }))
+}
+
+export function theoremPagePaths(matrix: MindMatrix = buildMatrix()): { params: { slug: string; title: string } }[] {
+  return theoremPageRows(matrix).map((row) => ({ params: { slug: row.slug, title: row.theorem } }))
+}
+
+export function theoremPageBySlug(slug: string, matrix: MindMatrix = buildMatrix()): TheoremPageRow | null {
+  return theoremPageRows(matrix).find((row) => row.slug === slug) ?? null
+}

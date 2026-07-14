@@ -13,6 +13,7 @@ import './universal-page.css'
 import './computed-typography.css'
 import UniversalPageTemplate from './components/UniversalPageTemplate.vue'
 import ModelCardPages from './components/ModelCardPages.vue'
+import TheoremPages from './components/TheoremPages.vue'
 
 export default {
   extends: DefaultTheme,
@@ -27,6 +28,7 @@ export default {
       ctx.app.component('UniversalPageTemplate', UniversalPageTemplate)
     }
     if (!ctx.app.component('ModelCardPages')) ctx.app.component('ModelCardPages', ModelCardPages)
+    if (!ctx.app.component('TheoremPages')) ctx.app.component('TheoremPages', TheoremPages)
     if (!ctx.app.component('DigitMotion')) ctx.app.component('DigitMotion', DigitMotion)
     if (!ctx.app.component('SevenStarRosetta')) ctx.app.component('SevenStarRosetta', DigitMotion)
 
