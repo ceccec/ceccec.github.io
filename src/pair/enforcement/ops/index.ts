@@ -433,7 +433,7 @@ async function runRosettaExit(root: string, argv: readonly string[]) {
   const ctx = {
     env: process.env,
     args: [...argv.slice(1)],
-    siteUrl: (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, ''),
+    siteUrl: (process.env.SITE_URL || 'https://ceccec.psg.bg').replace(/\/$/, ''),
     read: (rel: string) => { try { return readFileSync(join(root, rel), 'utf8') } catch { return null } },
     list: (relDir: string, ext: string): string[] => {
       const found: string[] = []

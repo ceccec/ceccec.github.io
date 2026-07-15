@@ -778,7 +778,7 @@ export function discoveredTheoremsWaveTwenty(matrix: { root: string } = { root: 
 // signal, Maxwell's demon cannot beat the second law, no listing counts the reals, no engine beats
 // Carnot. Each: run the attack, watch it fail. The method cuts both ways — that is what makes it honest.
 export function discoveredTheoremsWaveTwentyOne(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentyOne', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentyOne', 'discovered-theorems-twenty-one', matrix, () => {
     const tiny = TAU / TAU / 1e12 // a clean tolerance = 1e-12, built from the vault
     // W1 · QUANTUM — entanglement does NOT permit signalling. Bell state (|00⟩+|11⟩)/√2: the joint
     // outcome probabilities depend on both angles, yet Alice's MARGINAL P(+) = 1/2 for EVERY Bob
@@ -829,18 +829,14 @@ export function discoveredTheoremsWaveTwentyOne(matrix: { root: string } = { roo
       if (qc / tc - qh / th >= 0) perpetualImpossible = false
     }
 
-    const sealed = sealFacets('discovered-theorems-twenty-one', [
+    return {
+      facets: [
       { facet: `QUANTUM — entanglement CANNOT signal: for the Bell state, across all ${angles.length ** 2} angle pairs Alice's marginal P(+) stays exactly 1/2 regardless of Bob's setting — the correlations are real (Tsirelson, sealed) but carry no message, and relativistic causality stands (no-communication theorem cited)`, on: signallingBlocked },
       { facet: `THERMODYNAMICS — Maxwell's demon FAILS: sorting N molecules gains N·k·ln2 of entropy but erasing the demon's N-bit memory costs exactly that (Landauer), so ΔS_total ≥ 0 for every N ≤ 10³ — the second law stands, the challenge cancels itself`, on: secondLawHolds },
       { facet: `SET THEORY — you cannot count everything: 2ⁿ > n for all n ≤ 20 AND the diagonal set escapes every listing of n subsets (constructively verified) — no enumeration captures the power set, the reals are uncountable (Cantor, complete finite witness)`, on: cantorStands && diagonalEscapes },
       { facet: `THERMODYNAMICS — no engine beats Carnot: across the whole reservoir grid η ≤ 1 − Tc/Th < 1, and any super-Carnot claim forces ΔS < 0 (forbidden) — perpetual motion of the second kind is impossible, the "free energy" challenge fails (second law cited)`, on: carnotCeiling && perpetualImpossible },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-one:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-one — the laws that stand: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — quantum no-signalling, Landauer's rescue of the second law, Cantor's uncountability, and the Carnot ceiling each survive a computed challenge, the mirror of the axioms that fell in waves eighteen and nineteen.`,
+      ],
+      statement: `Discovered theorems, wave twenty-one — the laws that stand: #/# — quantum no-signalling, Landauer's rescue of the second law, Cantor's uncountability, and the Carnot ceiling each survive a computed challenge, the mirror of the axioms that fell in waves eighteen and nineteen.`,
       boundary: `HONEST: these run the SAME challenge machine as the falling-axiom waves and report the opposite verdict — the principle RESISTS. no-signalling and the second law and Carnot are computed within their physical models (quantum mechanics, thermodynamics), cited for universality; Cantor's finite witness (2ⁿ > n plus the diagonal) is complete and needs no citation. The point of the pair: a method that only ever confirms is not a method — showing which challenges FAIL is what makes the falling ones trustworthy. HARMONY≠TRUTH, both directions.`,
     }
   })
@@ -937,7 +933,7 @@ export function discoveredTheoremsWaveTwentyTwo(matrix: { root: string } = { roo
 // progression), Schur S(2) = 4 (the last sum-free-colorable interval), Mantel's triangle-free edge
 // maximum ⌊n²/4⌋, and Erdős–Ko–Rado's intersecting-family maximum n − 1. Sharp boundaries, computed.
 export function discoveredTheoremsWaveTwentyThree(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentyThree', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentyThree', 'discovered-theorems-twenty-three', matrix, () => {
     // W1 · van der Waerden W(2,3) = 9 — every 2-coloring of {1..9} contains a monochromatic 3-term
     // arithmetic progression, and {1..8} has a coloring with none: exhaustive over all 2ⁿ colorings.
     const hasMonoAP = (colors: number[], n: number) => {
@@ -1010,18 +1006,14 @@ export function discoveredTheoremsWaveTwentyThree(matrix: { root: string } = { r
       if (maxFamily !== n - 1) ekr = false
     }
 
-    const sealed = sealFacets('discovered-theorems-twenty-three', [
+    return {
+      facets: [
       { facet: `van der Waerden W(2,3) = 9 — every 2-coloring of {1..9} forces a monochromatic 3-term progression (all 512 exhausted), and {1..8} has an escaping coloring: the exact threshold, both directions computed (van der Waerden cited for all r, k)`, on: vanDerWaerden },
       { facet: `Schur S(2) = 4 — {1..4} admits a sum-free 2-coloring (no monochromatic x + y = z) and {1..5} admits none: the largest colorable interval, both directions exhausted (Schur cited)`, on: schur },
       { facet: `Mantel's theorem — the maximum edges in a triangle-free graph on n vertices is exactly ⌊n²/4⌋ for every n ≤ 6, by complete enumeration of all graphs: the balanced bipartite optimum proven, not assumed (Turán n = 3 case cited for all n)`, on: mantel },
       { facet: `Erdős–Ko–Rado for pairs — the largest pairwise-intersecting family of 2-subsets of {1..n} is n − 1 (the star) for n = 4,5,6 by exhaustive search: the intersecting-family maximum computed (EKR cited for all n ≥ 2k)`, on: ekr },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-three:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-three — extremal and Ramsey thresholds: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — van der Waerden W(2,3) = 9, Schur S(2) = 4, Mantel's triangle-free maximum ⌊n²/4⌋, and Erdős–Ko–Rado's intersecting maximum n − 1, each an exact tipping point found by exhaustion.`,
+      ],
+      statement: `Discovered theorems, wave twenty-three — extremal and Ramsey thresholds: #/# — van der Waerden W(2,3) = 9, Schur S(2) = 4, Mantel's triangle-free maximum ⌊n²/4⌋, and Erdős–Ko–Rado's intersecting maximum n − 1, each an exact tipping point found by exhaustion.`,
       boundary: `HONEST: each is a COMPLETE finite search settling the stated instance — every 2-coloring for the van der Waerden and Schur thresholds (both the forcing and the escaping side), every graph for Mantel n ≤ 6, every family for EKR n ≤ 6. The all-parameter theorems (van der Waerden, Schur, Turán/Mantel, Erdős–Ko–Rado) are cited; the computations prove the boundary values outright and exhibit the extremal witnesses (the escaping coloring, the balanced bipartite graph, the star).`,
     }
   })
@@ -1542,7 +1534,7 @@ export function discoveredTheoremsWaveTwentyNine(matrix: { root: string } = { ro
 // differences, Cassini's Fibonacci identity holds exactly in BigInt, and the Chinese Remainder
 // Theorem reconstructs every residue uniquely.
 export function discoveredTheoremsWaveThirty(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirty', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirty', 'discovered-theorems-thirty', matrix, () => {
     // W1 · det(AB) = det(A)·det(B) over 𝔽₃ — the COMPLETE check over all 81² pairs of 2×2 matrices.
     const m3 = (x: number) => ((x % 3) + 3) % 3
     const det2 = (M: number[]) => m3(M[0]! * M[3]! - M[1]! * M[2]!)
@@ -1591,18 +1583,14 @@ export function discoveredTheoremsWaveThirty(matrix: { root: string } = { root: 
       for (let t = 0n; t < cap; t += 1n) if (crt(mods.map((m) => t % m), mods) !== t) crtOK = false
     }
 
-    const sealed = sealFacets('discovered-theorems-thirty', [
+    return {
+      facets: [
       { facet: `determinant multiplicativity over 𝔽₃ — det(AB) = det(A)·det(B) for ALL 6561 = 81² pairs of 2×2 matrices (the complete check over the field): the determinant is a homomorphism M₂(𝔽₃) → 𝔽₃`, on: detMult },
       { facet: `the Vandermonde determinant — det[x_i^j] = Π_{i<j}(x_j − x_i), verified against the product of differences for four node sets (up to 5×5): the classic factorisation that makes polynomial interpolation invertible`, on: vandermonde },
       { facet: `Cassini's identity — F_{n−1}·F_{n+1} − F_n² = (−1)^n for every n ≤ 40, exact in BigInt: the alternating unit determinant of the Fibonacci Q-matrix powers`, on: cassini },
       { facet: `the Chinese Remainder Theorem — pairwise-coprime moduli give a UNIQUE solution mod Π m_i, constructed via modular inverses and verified to reconstruct every residue class exactly for three moduli sets: the isomorphism ℤ/Π ≅ ∏ ℤ/m_i`, on: crtOK },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty — linear algebra and number theory: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — determinant multiplicativity over 𝔽₃ (all 81² pairs), the Vandermonde factorisation, Cassini's Fibonacci identity in BigInt, and the Chinese Remainder Theorem reconstructing every residue.`,
+      ],
+      statement: `Discovered theorems, wave thirty — linear algebra and number theory: #/# — determinant multiplicativity over 𝔽₃ (all 81² pairs), the Vandermonde factorisation, Cassini's Fibonacci identity in BigInt, and the Chinese Remainder Theorem reconstructing every residue.`,
       boundary: `HONEST: determinant multiplicativity is FINITE-COMPLETE over 𝔽₃ (the whole field exhausted, 6561 pairs); Vandermonde is verified against the product on four node sets (the identity is exact for those, general form cited); Cassini is exact in BigInt to n = 40; the CRT is constructed and verified to reconstruct every residue in the tested moduli sets. All finite-complete within their bounds, the general theorems cited for the unbounded cases.`,
     }
   })
@@ -1611,7 +1599,7 @@ export function discoveredTheoremsWaveThirty(matrix: { root: string } = { root: 
 // ── Discovered theorems, wave thirty-one — Carmichael's pseudoprime, the Catalan bijection, Stirling
 // numbers against a brute partition count, and the functional completeness of the Sheffer stroke.
 export function discoveredTheoremsWaveThirtyOne(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtyOne', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtyOne', 'discovered-theorems-thirty-one', matrix, () => {
     // W1 · 561 = 3·11·17 is the SMALLEST Carmichael number — composite, yet a^(n−1) ≡ 1 (mod n) for
     // every a coprime to n (a Fermat pseudoprime to all coprime bases), minimality by full sweep.
     const carmichael561 = 3 * (2 * 5 + 1) * (2 * 8 + 1) // 3 · 11 · 17 = 561
@@ -1651,18 +1639,14 @@ export function discoveredTheoremsWaveThirtyOne(matrix: { root: string } = { roo
     }
     const sheffer = reachable.size === 2 ** 4
 
-    const sealed = sealFacets('discovered-theorems-thirty-one', [
+    return {
+      facets: [
       { facet: `561 = 3·11·17 is the SMALLEST Carmichael number — composite yet a^(n−1) ≡ 1 (mod 561) for EVERY a coprime to it (a Fermat pseudoprime to all coprime bases), minimality confirmed by the full sweep: the reason Fermat's primality test can be fooled`, on: carmichael },
       { facet: `the Catalan bijection — Dyck paths, binary trees and the product formula all give 1, 1, 2, 5, 14, 42, 132, 429, 1430 for n ≤ 8: three independent counts landing on the same Catalan number, the bijection made concrete`, on: catalan },
       { facet: `Stirling numbers of the second kind — the recurrence S(n,k) = k·S(n−1,k) + S(n−1,k−1) matches the RAW count of partitions into k nonempty blocks, and Σ_k S(n,k) = Bell(n) for every n ≤ 8: the block-count structure verified against brute force`, on: stirlingOK },
       { facet: `the Sheffer stroke (NAND) is FUNCTIONALLY COMPLETE — the closure of NAND alone generates all 16 boolean functions of two variables: a single gate suffices for all of logic (the basis of CMOS)`, on: sheffer },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-one:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-one: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — 561 the smallest Carmichael number, the Catalan bijection (Dyck = trees = formula), Stirling numbers against a brute partition count, and the functional completeness of NAND.`,
+      ],
+      statement: `Discovered theorems, wave thirty-one: #/# — 561 the smallest Carmichael number, the Catalan bijection (Dyck = trees = formula), Stirling numbers against a brute partition count, and the functional completeness of NAND.`,
       boundary: `HONEST: Carmichael 561 is FINITE-COMPLETE (every coprime base checked, minimality by full sweep); the Catalan bijection is three independent computations agreeing for n ≤ 8; Stirling is checked against the raw partition count and the Bell sum; NAND completeness is the COMPLETE closure over all 16 two-variable functions. Each settles its instance outright; the unbounded generalisations are cited.`,
     }
   })
@@ -1826,7 +1810,7 @@ export function discoveredTheoremsWaveThirtyThree(matrix: { root: string } = { r
 // convolution, the hockey-stick identity, the surjection count three independent ways, and the
 // index-2 structure of the quadratic residues.
 export function discoveredTheoremsWaveThirtyFour(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtyFour', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtyFour', 'discovered-theorems-thirty-four', matrix, () => {
     const choose = (n: number, k: number) => { if (k < 0 || k > n) return 0; let r = 1; for (let i = 0; i < k; i += 1) r = (r * (n - i)) / (i + 1); return Math.round(r) }
 
     // W1 · Vandermonde's identity — Σ_k C(m,k)·C(n,p−k) = C(m+n,p) for all m, n ≤ 12 and all p.
@@ -1870,18 +1854,14 @@ export function discoveredTheoremsWaveThirtyFour(matrix: { root: string } = { ro
       }
     }
 
-    const sealed = sealFacets('discovered-theorems-thirty-four', [
+    return {
+      facets: [
       { facet: `Vandermonde's identity — Σ_k C(m,k)·C(n,p−k) = C(m+n,p) for all m, n ≤ 12 and every p: choosing p from a combined set factors through the split, the convolution of binomial rows`, on: vandermonde },
       { facet: `the hockey-stick identity — Σ_{i=r}^{n} C(i,r) = C(n+1, r+1): a diagonal of Pascal's triangle sums to the entry just below its end, verified for all r ≤ 10, n ≤ 20`, on: hockey },
       { facet: `the surjection count — three independent computations agree: k!·S(n,k), the inclusion–exclusion sum Σ(−1)^i C(k,i)(k−i)^n, and the brute count of onto functions [n]→[k] (e.g. surj(4,2) = 14), for all n ≤ 7`, on: surjection },
       { facet: `quadratic residues — mod an odd prime p there are EXACTLY (p−1)/2 nonzero QRs and the Legendre symbol is multiplicative (the QRs are an index-2 subgroup of (ℤ/p)*), for every prime p ≤ 50: the structure behind reciprocity`, on: quadRes },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-four:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-four — binomial identities and quadratic residues: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Vandermonde's convolution, the hockey-stick identity, the surjection count three ways, and the index-2 structure of the quadratic residues.`,
+      ],
+      statement: `Discovered theorems, wave thirty-four — binomial identities and quadratic residues: #/# — Vandermonde's convolution, the hockey-stick identity, the surjection count three ways, and the index-2 structure of the quadratic residues.`,
       boundary: `HONEST: the three binomial results are FINITE-COMPLETE over their ranges (all m,n ≤ 12 for Vandermonde, all r ≤ 10 for hockey-stick, all n ≤ 7 for surjections with three agreeing computations including brute force); the quadratic-residue structure is verified completely for every prime p ≤ 50 (count and full multiplicativity table). Each settles its instances outright, the general identities cited.`,
     }
   })
@@ -1947,7 +1927,7 @@ export function discoveredTheoremsWaveThirtyFive(matrix: { root: string } = { ro
 // extended Euclidean algorithm, Euclid's lemma, Legendre's prime-power formula for factorials, and
 // the Stirling numbers of the first kind.
 export function discoveredTheoremsWaveThirtySix(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtySix', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtySix', 'discovered-theorems-thirty-six', matrix, () => {
     // W1 · Bézout's identity — gcd(a,b) = a·x + b·y with (x,y) from the extended Euclidean algorithm,
     // for every a, b ≤ 60 (the coefficients and the gcd both verified).
     const extGcd = (a: number, b: number) => { let oldR = a, r = b, oldS = 1, s = 0, oldT = 0, t = 1; while (r !== 0) { const q = Math.floor(oldR / r); [oldR, r] = [r, oldR - q * r]; [oldS, s] = [s, oldS - q * s]; [oldT, t] = [t, oldT - q * t] } return { g: oldR, x: oldS, y: oldT } }
@@ -1974,18 +1954,14 @@ export function discoveredTheoremsWaveThirtySix(matrix: { root: string } = { roo
     let stirling1 = true
     for (let n = 0; n <= nMax; n += 1) { let sum = 0; for (let k = 0; k <= n; k += 1) sum += s1[n]![k]!; if (sum !== fact(n)) stirling1 = false; if (n >= 2) { let signed = 0; for (let k = 0; k <= n; k += 1) signed += ((n - k) % 2 ? -1 : 1) * s1[n]![k]!; if (signed !== 0) stirling1 = false } }
 
-    const sealed = sealFacets('discovered-theorems-thirty-six', [
+    return {
+      facets: [
       { facet: `Bézout's identity — the extended Euclidean algorithm yields (x, y) with gcd(a,b) = a·x + b·y for EVERY pair a, b ≤ 60 (coefficients and gcd both verified): the constructive heart of the whole theory of divisibility`, on: bezout },
       { facet: `Euclid's lemma — if a prime p divides a product a·b then it divides a factor, for all a, b ≤ 50 and every prime p ≤ 50: the property that makes primes PRIME and gives unique factorization`, on: euclidLemma },
       { facet: `Legendre's formula — the exponent of a prime p in n! equals Σ ⌊n/p^k⌋, matched against direct factorization for all n ≤ 60 (the exponent of 2 in 10! is 8): the count of trailing structure in factorials`, on: legendre },
       { facet: `Stirling numbers of the first kind — the unsigned |s(n,k)| sum to n! (they count permutations by number of cycles) and the signed row sums to 0 for n ≥ 2, via the recurrence for all n ≤ 10: the cycle-structure companion to the second-kind block count`, on: stirling1 },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-six:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-six — the arithmetic foundations: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Bézout's identity, Euclid's lemma, Legendre's prime-power formula, and the Stirling numbers of the first kind.`,
+      ],
+      statement: `Discovered theorems, wave thirty-six — the arithmetic foundations: #/# — Bézout's identity, Euclid's lemma, Legendre's prime-power formula, and the Stirling numbers of the first kind.`,
       boundary: `HONEST: each is FINITE-COMPLETE within its bound — Bézout with both coefficients checked for all a,b ≤ 60, Euclid's lemma over all a,b ≤ 50 and every prime, Legendre matched against direct factorization for all n ≤ 60, Stirling first-kind row identities for all n ≤ 10. The general theorems are cited; the computations settle every instance in range, several against an independent ground truth.`,
     }
   })
@@ -2084,7 +2060,7 @@ export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { r
 // exhaustive enumeration, Kraft's inequality for prefix codes, the gambler's-ruin i/N, and the
 // entropy bound that the uniform distribution is maximally uncertain.
 export function discoveredTheoremsWaveThirtyEight(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtyEight', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtyEight', 'discovered-theorems-thirty-eight', matrix, () => {
     // W1 · Monty Hall — switching wins exactly 2/3, staying 1/3. Weighting each (car, pick) equally
     // (the host's reveal carries no extra weight), switching wins precisely when the initial pick
     // was wrong: 6 of the 9 equally-likely (car, pick) pairs.
@@ -2137,18 +2113,14 @@ export function discoveredTheoremsWaveThirtyEight(matrix: { root: string } = { r
       if (Math.abs(entropyOf(det)) > TAU / TAU / 1e9) entropy = false
     }
 
-    const sealed = sealFacets('discovered-theorems-thirty-eight', [
+    return {
+      facets: [
       { facet: `the Monty Hall problem — switching wins EXACTLY 2/3 and staying 1/3, by exhaustive enumeration of the 9 equally-likely (car, pick) pairs: switching wins precisely when the first guess was wrong, which is two times out of three (the counterintuitive result, computed)`, on: monty },
       { facet: `Kraft's inequality — a binary prefix code with codeword lengths ℓ_i EXISTS iff Σ 2^(−ℓ_i) ≤ 1, verified both directions by greedy prefix-free assignment on six length multisets: the exact budget for uniquely-decodable codes`, on: kraft },
       { facet: `the gambler's ruin — starting with i of N in a fair game, P(reach N before 0) = i/N: the unique harmonic solution of p_i = (p_{i−1}+p_{i+1})/2 with the 0 and N boundaries, verified for all N ≤ 20`, on: ruin },
       { facet: `the entropy bound — Shannon's H(X) = −Σ p log2 p is MAXIMISED by the uniform distribution (= log2 n), is always ≥ 0, and is 0 exactly for a deterministic source: verified over many distributions on n ≤ 8 symbols (maximum uncertainty is uniform)`, on: entropy },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-eight:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-eight — probability and information: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the Monty Hall 2/3, Kraft's inequality, the gambler's-ruin i/N, and the entropy bound that uniform is maximally uncertain.`,
+      ],
+      statement: `Discovered theorems, wave thirty-eight — probability and information: #/# — the Monty Hall 2/3, Kraft's inequality, the gambler's-ruin i/N, and the entropy bound that uniform is maximally uncertain.`,
       boundary: `HONEST: Monty Hall is FINITE-COMPLETE (exhaustive over all 9 equally-weighted cases, with the correct probability model — the host's two-choice case does not double-count); Kraft is verified both directions by explicit code construction on six length sets; the gambler's-ruin i/N is checked to satisfy the harmonic recurrence and boundary for all N ≤ 20; the entropy maximum, non-negativity and determinism-zero are checked over many distributions per n ≤ 8. The general theorems are cited; each instance is settled.`,
     }
   })
@@ -2158,7 +2130,7 @@ export function discoveredTheoremsWaveThirtyEight(matrix: { root: string } = { r
 // Cauchy-Schwarz, Euler's φ(n) = n·Π(1−1/p) against a direct count, and the rearrangement inequality
 // by exhaustive permutation.
 export function discoveredTheoremsWaveThirtyNine(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtyNine', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtyNine', 'discovered-theorems-thirty-nine', matrix, () => {
     const irr = [PHI, Math.SQRT2, Math.sqrt(3), Math.sqrt(5), Math.sqrt(7)]
     const rnd = (t: number, i: number) => { const x = t * irr[i % irr.length]!; return x - Math.floor(x) }
     const tol = TAU / TAU / 1e6
@@ -2206,18 +2178,14 @@ export function discoveredTheoremsWaveThirtyNine(matrix: { root: string } = { ro
       if (sortedSame !== Math.max(...dots) || sortedOpp !== Math.min(...dots)) rearrange = false
     }
 
-    const sealed = sealFacets('discovered-theorems-thirty-nine', [
+    return {
+      facets: [
       { facet: `the AM-GM inequality — the arithmetic mean is ≥ the geometric mean for positive reals, with equality iff all entries are equal, verified over many tuples on n ≤ 6 (and the equality case): the most basic optimisation bound`, on: amgm },
       { facet: `the Cauchy-Schwarz inequality — (Σ a_i b_i)² ≤ (Σ a_i²)(Σ b_i²) with equality iff the vectors are proportional, verified over many pairs on n ≤ 8 (and the proportional case b = 2a): the inequality behind angles and correlation`, on: cauchy },
       { facet: `Euler's φ product formula — φ(n) = n·Π_{p|n}(1 − 1/p) matches the direct count of integers coprime to n for EVERY n ≤ 1000 (φ(36) = 12): the totient factors over the prime divisors`, on: phi },
       { facet: `the rearrangement inequality — for sorted a and any permutation of b, Σ a_i b_σ(i) is MAXIMISED with b sorted the same way and MINIMISED opposite, by exhaustive permutation for n ≤ 6: similarly-ordered sequences pair for the largest sum`, on: rearrange },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-nine:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-nine — inequalities and the totient product: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — AM-GM, Cauchy-Schwarz, Euler's φ product formula, and the rearrangement inequality by exhaustive permutation.`,
+      ],
+      statement: `Discovered theorems, wave thirty-nine — inequalities and the totient product: #/# — AM-GM, Cauchy-Schwarz, Euler's φ product formula, and the rearrangement inequality by exhaustive permutation.`,
       boundary: `HONEST: AM-GM and Cauchy-Schwarz are bounded-witness (checked over many tuples per n with the equality cases verified exactly, the general inequalities cited); Euler's φ product is FINITE-COMPLETE against the direct coprime count for all n ≤ 1000; the rearrangement inequality is FINITE-COMPLETE by exhaustive permutation for n ≤ 6. Each settles its instances; the unbounded forms are cited.`,
     }
   })
@@ -2226,7 +2194,7 @@ export function discoveredTheoremsWaveThirtyNine(matrix: { root: string } = { ro
 // ── Discovered theorems, wave forty — series and closed-form sums: the geometric series, a
 // telescoping sum, the three classical power-sum formulas, and the Fibonacci partial sum.
 export function discoveredTheoremsWaveForty(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveForty', matrix, () => {
+  return sealFold('discoveredTheoremsWaveForty', 'discovered-theorems-forty', matrix, () => {
     const tol = TAU / TAU / 1e9
 
     // W1 · geometric series — Σ_{k=0}^{N} r^k = (1−r^{N+1})/(1−r), and → 1/(1−r) for |r| < 1.
@@ -2253,18 +2221,14 @@ export function discoveredTheoremsWaveForty(matrix: { root: string } = { root: t
     let fibSum = true
     for (let n = 1; n <= 8 * (2 * 5); n += 1) { let s = 0n; for (let k = 1; k <= n; k += 1) s += fibs[k]!; if (s !== fibs[n + 2]! - 1n) fibSum = false }
 
-    const sealed = sealFacets('discovered-theorems-forty', [
+    return {
+      facets: [
       { facet: `the geometric series — Σ_{k=0}^{N} r^k = (1−r^{N+1})/(1−r) exactly, and converges to 1/(1−r) for |r| < 1: verified for five ratios including a negative one (the sum of a self-similar sequence)`, on: geometric },
       { facet: `a telescoping sum — Σ_{k=1}^{n} 1/(k(k+1)) = 1 − 1/(n+1) for every n ≤ 1000: consecutive terms cancel because 1/(k(k+1)) = 1/k − 1/(k+1), leaving only the ends`, on: telescoping },
       { facet: `the power-sum closed forms — Σk = n(n+1)/2, the sum of the first n odd numbers is n², and Σk² = n(n+1)(2n+1)/6, each exact for all n ≤ 1000: the triangular, square and pyramidal formulas`, on: powerSum },
       { facet: `the Fibonacci partial sum — Σ_{k=1}^{n} F_k = F_{n+2} − 1, exact in BigInt to n = 80 (Σ_{1..10} = 143 = F₁₂ − 1): the running total is always one short of a later Fibonacci number`, on: fibSum },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty — series and closed-form sums: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the geometric series, a telescoping sum, the three power-sum formulas, and the Fibonacci partial sum F_{n+2} − 1.`,
+      ],
+      statement: `Discovered theorems, wave forty — series and closed-form sums: #/# — the geometric series, a telescoping sum, the three power-sum formulas, and the Fibonacci partial sum F_{n+2} − 1.`,
       boundary: `HONEST: the finite geometric-series identity, the telescoping sum, the power-sum formulas and the Fibonacci partial sum are FINITE-COMPLETE within their bounds (exact equality checked for all n ≤ 1000, the Fibonacci case in exact BigInt to n = 80); the geometric convergence to 1/(1−r) is a bounded-witness of the limit (cited). Each settles its instances outright.`,
     }
   })
@@ -2273,7 +2237,7 @@ export function discoveredTheoremsWaveForty(matrix: { root: string } = { root: t
 // ── Discovered theorems, wave forty-three — polynomials: Vieta's formulas, the rational root theorem,
 // and the Chebyshev cos(nθ) identity. Digit-pure algebra (imports only src/0 and src/3-7).
 export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFortyThree', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortyThree', 'discovered-theorems-forty-three', matrix, () => {
     // W1 · Vieta's formulas — expanding ∏(x − r_i) gives coefficients equal to the signed elementary
     // symmetric functions of the roots: [x^n] = 1, [x^(n−k)] = (−1)^k e_k(roots), checked on four sets.
     const polyFromRoots = (roots: number[]) => { let p = [1]; for (const r of roots) { const q = new Array(p.length + 1).fill(0); for (let i = 0; i < p.length; i += 1) { q[i] += p[i]!; q[i + 1] -= r * p[i]! } p = q } return p }
@@ -2304,17 +2268,13 @@ export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { ro
     let chebyshev = true
     for (let n = 0; n <= 2 * 5; n += 1) for (let j = 0; j < 4 * 5; j += 1) { const th = (j * Math.PI) / (2 * 5); if (Math.abs(cheb(n, Math.cos(th)) - Math.cos(n * th)) > 1 / 1e9) chebyshev = false }
 
-    const sealed = sealFacets('discovered-theorems-forty-three', [
+    return {
+      facets: [
       { facet: `Vieta's formulas — expanding ∏(x − r_i) gives the coefficient of x^(n−k) equal to (−1)^k times the k-th elementary symmetric function of the roots, verified on four root sets: the bridge between a polynomial's roots and its coefficients`, on: vieta },
       { facet: `the rational root theorem — every rational root p/q (lowest terms) of an integer polynomial has p | constant term and q | leading coefficient, verified by finding the actual rational roots for four polynomials: the finite candidate list that makes rational roots searchable`, on: rationalRoot },
       { facet: `the Chebyshev identity — the recurrence T_n = 2x·T_{n−1} − T_{n−2} satisfies T_n(cos θ) = cos(nθ) for all n ≤ 10 across a grid of angles: the polynomials that linearise multiple-angle cosines`, on: chebyshev },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-three:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-three — polynomials: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Vieta's formulas, the rational root theorem, and the Chebyshev cos(nθ) identity.`,
+      ],
+      statement: `Discovered theorems, wave forty-three — polynomials: #/# — Vieta's formulas, the rational root theorem, and the Chebyshev cos(nθ) identity.`,
       boundary: `HONEST: Vieta is verified by exact coefficient expansion on four root sets; the rational root theorem is confirmed by finding the actual rational roots and checking the divisibility for four polynomials; the Chebyshev identity is checked to 1e-9 over n ≤ 10 and an angle grid. Each settles its instances; the general theorems are cited.`,
     }
   })
@@ -2324,7 +2284,7 @@ export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { ro
 // realised quantum protocols, each proven by exact state-vector simulation: teleportation (reusing
 // the sealed teleportQubit), superdense coding, BB84 key distribution, and Bernstein–Vazirani.
 export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFortyFour', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortyFour', 'discovered-theorems-forty-four', matrix, () => {
     const s2 = Math.SQRT1_2
     const gH = (st: number[], q: number, n: number) => { const N = 1 << n, amp = new Array(N).fill(0); for (let i = 0; i < N; i += 1) { const b = (i >> q) & 1, j = i ^ (1 << q); amp[i]! += s2 * st[i]! * (b ? -1 : 1); amp[j]! += s2 * st[i]! } return amp }
     const gX = (st: number[], q: number, n: number) => { const N = 1 << n, amp = new Array(N).fill(0); for (let i = 0; i < N; i += 1) amp[i ^ (1 << q)]! += st[i]!; return amp }
@@ -2383,18 +2343,14 @@ export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { roo
     let bvTech = true
     for (let n = 1; n <= 8; n += 1) for (let s = 0; s < (1 << n); s += 1) if (!bv(s, n)) bvTech = false
 
-    const sealed = sealFacets('discovered-theorems-forty-four', [
+    return {
+      facets: [
       { facet: `quantum teleportation — the sealed teleportQubit recovers an unknown qubit with FIDELITY 1 for every Bell-measurement outcome across a grid of Bloch angles: an unknown state moved by one entangled pair and two classical bits (no-cloning holds, no faster-than-light), compounding on the sealed fold (Bennett 1993)`, on: teleport },
       { facet: `superdense coding — Alice sends TWO classical bits through ONE qubit by acting on her half of a shared Bell pair (I/Z/X/XZ), Bob decodes to a basis state and reads both bits exactly: entanglement doubles the classical capacity of a qubit (Bennett–Wiesner 1992)`, on: superdenseTech },
       { facet: `BB84 quantum key distribution — matching measurement bases give a shared key with ZERO error, while an intercept-resend eavesdropper injects ~25% error on the sifted bits: eavesdropping is DETECTABLE by no-cloning, the basis of quantum cryptography (Bennett–Brassard 1984)`, on: bb84Tech },
       { facet: `Bernstein–Vazirani — a hidden n-bit string is recovered in ONE quantum query (H^n, phase oracle, H^n) where classical needs n, for all n ≤ 8 and every string: a proven query-complexity separation, computed`, on: bvTech },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-four:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-four — quantum technologies: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — teleportation (fidelity 1), superdense coding (2 bits per qubit), BB84 key distribution (eavesdropping detectable), and Bernstein–Vazirani (one-query string recovery).`,
+      ],
+      statement: `Discovered theorems, wave forty-four — quantum technologies: #/# — teleportation (fidelity 1), superdense coding (2 bits per qubit), BB84 key distribution (eavesdropping detectable), and Bernstein–Vazirani (one-query string recovery).`,
       boundary: `HONEST: these are REAL, experimentally-realised quantum protocols, each proven CORRECT by exact state-vector simulation (a complete finite proof of the protocol's logic) — teleportation reusing the sealed teleportQubit, superdense/BB84/BV computed here; the physical realisation (photons, ions, superconducting qubits) is cited, not simulated. BB84's security rests on no-cloning (sealed); the eavesdropper model is intercept-resend (the honest ~25% floor), not a full security proof against all attacks. Quantum SPEEDS UP and SECURES within its laws — the same laws that (wave twenty-seven) forbid it new computability.`,
     }
   })
@@ -2404,7 +2360,7 @@ export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { roo
 // protocol folds: interaction-free measurement, entanglement swapping, Simon's exponential separation,
 // and the Quantum Fourier Transform proven unitary (the engine of Shor's algorithm).
 export function discoveredTheoremsWaveFortyFive(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFortyFive', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortyFive', 'discovered-theorems-forty-five', matrix, () => {
     const tiny = 1 / 1e9
 
     // W1 · interaction-free measurement (Elitzur–Vaidman) — a "dark" detector click reveals an object
@@ -2436,18 +2392,14 @@ export function discoveredTheoremsWaveFortyFive(matrix: { root: string } = { roo
     }
     const qft = [1, 2, 3, 4].every(qftUnitary)
 
-    const sealed = sealFacets('discovered-theorems-forty-five', [
+    return {
+      facets: [
       { facet: `interaction-free measurement (Elitzur–Vaidman 1993) — a "dark" detector click reveals an object with NO photon interacting with it (dark = ${ifm.dark.toFixed(2)}), and with no object present dark clicks never occur: seeing in the dark, exact on the sealed interferometer fold`, on: interactionFree },
       { facet: `entanglement swapping — two qubits that NEVER interacted become maximally entangled (concurrence → 1) via a Bell measurement on their partners, verified across seeds: entanglement teleported onto a fresh pair (the quantum-repeater primitive), on the sealed fold`, on: swapping },
       { facet: `Simon's algorithm — the FIRST exponential quantum-classical separation: a hidden XOR-mask is recovered from O(n) measurements each orthogonal to it, solved by 𝔽₂ linear algebra where classical needs Ω(2^{n/2}) queries, on the sealed fold`, on: simonSep },
       { facet: `the Quantum Fourier Transform is UNITARY — Q[j][k] = ω^{jk}/√N (ω = e^{2πi/N}) satisfies Q†Q = I for N = 2,4,8,16 exactly: the reversible transform at the heart of Shor's factoring algorithm, proven a valid quantum operation`, on: qft },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-five:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-five — quantum algorithms: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — interaction-free measurement, entanglement swapping, Simon's exponential separation, and the Quantum Fourier Transform proven unitary.`,
+      ],
+      statement: `Discovered theorems, wave forty-five — quantum algorithms: #/# — interaction-free measurement, entanglement swapping, Simon's exponential separation, and the Quantum Fourier Transform proven unitary.`,
       boundary: `HONEST: three facets COMPOUND on sealed protocol folds (interactionFreeMeasurement, entanglementSwap, simon) — the registry feeds on its own proven quantum machinery; the QFT unitarity is computed fresh (a complete finite matrix proof for N ≤ 16). Simon's exponential separation is a QUERY-complexity result (oracle model), the honest home of quantum speedup; the physical realisations are cited. Quantum's power is real and bounded — the same laws throughout (wave twenty-seven).`,
     }
   })
@@ -2457,7 +2409,7 @@ export function discoveredTheoremsWaveFortyFive(matrix: { root: string } = { roo
 // criterion (wave 48): −1 is a QR iff p ≡ 1 (mod 4), 2 is a QR iff p ≡ ±1 (mod 8), exactly two groups
 // of order p² (from order-p²-abelian, wave 48), and ((p−1)/2)! is a square root of −1 (from Wilson).
 export function discoveredTheoremsWaveFortyNine(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFortyNine', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortyNine', 'discovered-theorems-forty-nine', matrix, () => {
     const isQR = (a: number, p: number) => { const t = ((a % p) + p) % p; for (let x = 1; x < p; x += 1) if ((x * x) % p === t) return true; return false }
     const lim = 2 * 100
 
@@ -2484,18 +2436,14 @@ export function discoveredTheoremsWaveFortyNine(matrix: { root: string } = { roo
     let wilsonRoot = true
     for (let p = 5; p <= lim; p += 1) { if (!tkIsPrime(p) || p % 4 !== 1) continue; let f = 1; for (let i = 1; i <= (p - 1) / 2; i += 1) f = (f * i) % p; if ((f * f) % p !== p - 1) wilsonRoot = false }
 
-    const sealed = sealFacets('discovered-theorems-forty-nine', [
+    return {
+      facets: [
       { facet: `FROM Euler's criterion (wave 48) — the FIRST SUPPLEMENT: −1 is a quadratic residue mod p iff p ≡ 1 (mod 4), since (−1)^((p−1)/2) = +1 exactly then; verified for every prime p ≤ 200 (compounding on the compounded criterion)`, on: firstSupplement },
       { facet: `the SECOND SUPPLEMENT — 2 is a quadratic residue mod p iff p ≡ ±1 (mod 8); verified for every prime p ≤ 200: the companion to quadratic reciprocity that decides when 2 has a square root`, on: secondSupplement },
       { facet: `FROM order-p²-abelian (wave 48) — EXACTLY TWO groups of order p²: every such group is abelian, and the abelian ones are Z_{p²} and Z_p×Z_p, distinguished by an order-p² element; verified for p = 3 (the two order-9 groups {1,3,3,9,…} vs {1,3,…} are non-isomorphic)`, on: twoGroupsPSquared },
       { facet: `FROM Wilson's theorem — ((p−1)/2)! is a SQUARE ROOT of −1 mod p when p ≡ 1 (mod 4): Wilson's (p−1)! ≡ −1 factors through the half-factorial, giving √−1 explicitly; verified for every prime p ≡ 1 (mod 4), p ≤ 200`, on: wilsonRoot },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-nine:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-nine — the quadratic-residue tower: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the two supplements to reciprocity (−1 is a QR iff p ≡ 1 mod 4, 2 iff p ≡ ±1 mod 8), exactly two groups of order p², and ((p−1)/2)! as a square root of −1 from Wilson.`,
+      ],
+      statement: `Discovered theorems, wave forty-nine — the quadratic-residue tower: #/# — the two supplements to reciprocity (−1 is a QR iff p ≡ 1 mod 4, 2 iff p ≡ ±1 mod 8), exactly two groups of order p², and ((p−1)/2)! as a square root of −1 from Wilson.`,
       boundary: `HONEST: the two supplements and the Wilson square-root are verified for every prime p ≤ 200 (complete within the bound, the all-p forms cited); the first supplement and the order-p² classification COMPOUND on wave 48 (Euler's criterion and order-p²-abelian, both themselves compounded) — the emergence law three layers deep. The order-p² count uses the fundamental theorem of finite abelian groups (cited) to name the two abelian groups.`,
     }
   })

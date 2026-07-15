@@ -44,27 +44,22 @@ const specOf = (row: TheoremPageRow) => row.spec as ProofAnimationSpec | undefin
         <figcaption>
           Fig. 1 — the proof animated: <em>{{ specOf(row)?.kind }}</em> family, rate φ⁻{{ specOf(row)?.ratePhi }},
           hue = vortex digit {{ specOf(row)?.hueDigit }} · {{ specOf(row)?.points }} points. The figure is computed
-          from the theorem's own constants by the one shared renderer; in print it certifies the family, on screen it moves.
+          from the theorem's own constants by the one shared renderer; in print it certifies the family, on screen it moves — the proof exhibited, not re-told.
         </figcaption>
       </figure>
 
       <section>
-        <h2>1 · Computational proof</h2>
-        <p>{{ row.proof }}</p>
-      </section>
-
-      <section>
-        <h2>2 · Classification</h2>
+        <h2>1 · Classification</h2>
         <p>{{ row.classification }}</p>
       </section>
 
       <section>
-        <h2>3 · Provenance &amp; honesty</h2>
+        <h2>2 · Provenance &amp; honesty</h2>
         <p>{{ row.provenance }}</p>
       </section>
 
       <section>
-        <h2>4 · Reproducibility</h2>
+        <h2>3 · Reproducibility</h2>
         <p>{{ row.reproducibility }}</p>
       </section>
 

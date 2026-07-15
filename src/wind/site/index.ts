@@ -477,7 +477,7 @@ export function staticPages(): StaticPage[] {
   return [
     {
       slug: 'heaven',
-      title: { en: '天 Heaven — the creative power', bg: '天 Небе — творческата сила' },
+      title: { en: 'Heaven', bg: 'Небе' },
       description: {
         en: 'Heaven (天), the first of the I Ching Three Powers (三才): the creative and cosmic realm — mind, science and computation. Its eight-fold gathers the abstract and computational domains; the complete triad with Human and Earth forms the 64³ content cube.',
         bg: 'Небе (天), първата от Трите сили на И Дзин (三才): творческата и космическа сфера — ум, наука и изчисление. Осемкратното ѝ събира абстрактните и изчислителните области; пълната троица с Човек и Земя образува куба 64³.',
@@ -487,7 +487,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'human',
-      title: { en: '人 Human — the communicative power', bg: '人 Човек — общуващата сила' },
+      title: { en: 'Human', bg: 'Човек' },
       description: {
         en: 'Human (人), the middle of the I Ching Three Powers (三才): the communicative and social realm — voice, spirit and heritage. Humanity mediates Heaven and Earth; its eight-fold gathers the lived and learning domains, completing the triad that forms the 64³ cube.',
         bg: 'Човек (人), средната от Трите сили на И Дзин (三才): общуващата и социална сфера — глас, дух и наследство. Човечеството посредничи между Небе и Земя; осемкратното му събира преживените и учебните области, завършвайки троицата, която образува куба 64³.',
@@ -497,7 +497,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'earth',
-      title: { en: '地 Earth — the receptive power', bg: '地 Земя — възприемчивата сила' },
+      title: { en: 'Earth', bg: 'Земя' },
       description: {
         en: 'Earth (地), the ground of the I Ching Three Powers (三才): the material and natural realm — form and nature. Its eight-fold is the semantic domain map; with Heaven and Human it completes the triad that covers all and forms the 64³ content-address cube.',
         bg: 'Земя (地), основата на Трите сили на И Дзин (三才): материалната и природна сфера — форма и природа. Осемкратното ѝ е семантичната карта на областите; с Небе и Човек завършва троицата, която покрива всичко и образува куба 64³.',
@@ -597,7 +597,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'commands',
-      title: { en: 'Command algebra', bg: 'Алгебра на командите' },
+      title: { en: 'Commands', bg: 'Команди' },
       description: {
         en: 'Command algebra for the double-torus UUID stream: cmd -> result -> receipt.',
         bg: 'Алгебра на командите за двойния тор UUID поток: cmd -> result -> receipt.',
@@ -607,7 +607,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'console',
-      title: { en: 'Quantum Console', bg: 'Квантова конзола' },
+      title: { en: 'Console', bg: 'Конзола' },
       description: {
         en: 'Quantum Console: a free, client-side terminal, realtime search, and chat over the double-torus portal — with optional bring-your-own-key external AI.',
         bg: 'Квантова конзола: безплатен терминал от страна на клиента, търсене в реално време и чат над портала Двоен торус — с опционален външен ИИ със собствен ключ.',
@@ -617,7 +617,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'mcp',
-      title: { en: 'MCP tool surface', bg: 'MCP инструментален слой' },
+      title: { en: 'MCP', bg: 'MCP' },
       description: {
         en: 'The Double Torus portal as an MCP tool surface: every concept command is a tool for language models, published at /mcp.json.',
         bg: 'Порталът Двоен торус като MCP инструментален слой: всяка концептуална команда е инструмент за езикови модели, публикуван на /mcp.json.',
@@ -627,7 +627,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'learn',
-      title: { en: 'Learning Portal', bg: 'Портал за учене' },
+      title: { en: 'Learn', bg: 'Обучение' },
       description: {
         en: 'The Learning Portal: School and Academia merged into one auto-generated portal — the kids-to-elders ladder, the five Academy courses, the research corpus (math paths, peer review, the 432 proof papers), the self-test and the agent curriculum, folded to one recomputable root. Three ways to learn: by age, by track, by research.',
         bg: 'Портал за учене: Училището и Академията, обединени в един авто-генериран портал — стълбицата от деца до възрастни, петте курса на Академията, изследователският корпус (математически пътеки, рецензия, 432-те доказателствени статии), самопроверката и обучението на агента, сгънати в един преизчислим корен. Три начина за учене: по възраст, по курс, по изследване.',
@@ -637,7 +637,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'frontiers',
-      title: { en: 'Frontiers — the decoded catalog', bg: 'Граници — декодираният каталог' },
+      title: { en: 'Frontiers', bg: 'Граници' },
       description: {
         en: 'The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives.',
         bg: 'Скорошните декодирания, представени в пълнота: гмуркане, вода и космос; квантовият вакуум; космическият инвентар; физиката на информацията; и клоунският кюбит. До тях върви ДВИГАТЕЛЯТ НА ТЕОРЕМНИТЕ ВЪЛНИ: регистър на теореми, които кодът доказва изчислително (от Виразоро до Рамзей и A₅), растящ на вълни, в които всяко ново доказателство консумира предишни доказани атоми; търсенето на следващата недоказана теорема е една детерминистична команда. Всяко с твърдение, изчислени проверки и честна граница; истински отворените въпроси остават ОТВОРЕНИ. Всеки резултат е клиентско изчисление от примитивите src/0.',
@@ -647,7 +647,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'governance',
-      title: { en: 'Governance & Fair Life', bg: 'Управление и справедлив живот' },
+      title: { en: 'Governance', bg: 'Управление' },
       description: {
         en: 'Governance by rate and vote, and a participation ladder for fair trade and sustainable life — verified by the recomputable seal and the shared git ledger.',
         bg: 'Управление чрез оценка и глас и стълба за участие в справедлива търговия и устойчив живот — проверени от преизчислимия печат и споделения git регистър.',
@@ -677,7 +677,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'show',
-      title: { en: 'Show all in action', bg: 'Всичко в действие' },
+      title: { en: 'Show', bg: 'Покажи' },
       description: {
         en: 'Show all in action: every command run live, all components interacting, all devices fused — client-side and verifiable.',
         bg: 'Всичко в действие: всяка команда изпълнена на живо, всички компоненти взаимодействат, всички устройства слети — от страна на клиента и проверимо.',
@@ -689,7 +689,7 @@ export function staticPages(): StaticPage[] {
     // ☰ QIAN (mind hub) and ☲ LI (pure-leaf proofs) are already covered by the main pages above.
     {
       slug: 'heritage',
-      title: { en: 'Bulgarian Heritage', bg: 'Българско наследство' },
+      title: { en: 'Heritage', bg: 'Наследство' },
       description: {
         en: 'Bulgarian heritage decoded in waves: history 681–present in six dual-mind eras, ancient civilisations from c.6200 BC (Varna gold), ethnogenesis — Bulgars, Slavs, Thracians — and the genetics that challenges the record; Glagolitic as the first Slavic script, script–language–gene as three independent inheritance systems. Documented kept, legend flagged.',
         bg: 'Българското наследство в вълни: история 681–до днес в шест епохи, древни цивилизации от ок. 6200 пр.Хр. (Варненско злато), етногенезис — българи, славяни, траки — и генетиката, оспорваща летописа; глаголицата като първата славянска азбука, сценарий–език–ген като три независими системи на наследяване. Документираното остава, легендата е отбелязана.',
@@ -699,7 +699,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'science',
-      title: { en: 'Science & Frequencies', bg: 'Наука и честоти' },
+      title: { en: 'Science', bg: 'Наука' },
       description: {
         en: 'Science decoded honestly: electromagnetic radiation, Tesla\'s five verified patents, public frequency data APIs (FCC, USGS, Schumann 7.83 Hz, Web Audio), and the ionising threshold (~10 eV). Documented physics first; wellness claims flagged. Every result a client-side computation from the src/0 spectrum primitives.',
         bg: 'Науката, декодирана честно: електромагнитно лъчение, петте верифицирани патента на Тесла, публични API за честоти (FCC, USGS, Шуман 7,83 Hz, Web Audio) и прагът на йонизация (~10 eV). Документираната физика на първо място; претенциите за благополучие са отбелязани. Всеки резултат е клиентско изчисление от примитивите src/0.',
@@ -709,7 +709,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'voice',
-      title: { en: 'Voice & Language', bg: 'Глас и език' },
+      title: { en: 'Voice', bg: 'Глас' },
       description: {
         en: 'Voice decoded: plain language for every idea, play-and-learn letters as coloured tiles and notes, speech as a continuous analog wave, typography and Open Graph principles, char-and-word content-addressing, and the portal\'s eight experience dimensions. The same word always plays the same song — deterministic and offline.',
         bg: 'Гласът, декодиран: ясен език за всяка идея, учебни букви като цветни плочки и ноти, речта като непрекъсната аналогова вълна, принципи за типография и Open Graph, адресиране по съдържание на знаци и думи, осемте измерения на опита с портала. Една и съща дума звучи винаги еднакво — детерминистично и офлайн.',
@@ -719,7 +719,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'spirit',
-      title: { en: 'Spirit & Dimensions', bg: 'Дух и измерения' },
+      title: { en: 'Spirit', bg: 'Дух' },
       description: {
         en: 'Spirit decoded honestly: the seven chakras and aura fields as a documented energy model, human design as a structural archetype system, yin-yang and dualities across sixteen pairs in three tiers, and the portal\'s eight experience dimensions. Each a deterministic computation; spiritual interpretations flagged.',
         bg: 'Духът, декодиран честно: седемте чакри и аурата като документиран енергиен модел, хюман дизайн като система от структурни архетипи, ин-ян и дуалности в шестнадесет двойки на три нива и осемте измерения на опита. Всяко е детерминистично изчисление; духовните интерпретации са отбелязани.',
@@ -729,7 +729,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'icons',
-      title: { en: 'Icons & Form', bg: 'Икони и форма' },
+      title: { en: 'Icons', bg: 'Икони' },
       description: {
         en: 'Icons and form decoded: the 44 area-icon map (emoji taxonomy), area labels in three locales, computer architecture in 3-5-8 (three buses, five von Neumann units, eight bits of a byte), harmonic Fibonacci band distribution, and the glyph/artifact seal. Every icon a structural assignment — the form that names each domain.',
         bg: 'Иконите и формата, декодирани: картата на 44 икони по области (emoji таксономия), надписи на три езика, компютърна архитектура в 3-5-8 (три шини, пет единици на фон Нойман, осем бита в байт), хармонично разпределение по ленти на Фибоначи и печатът на глифове и артефакти. Всяка икона е структурно присвояване.',
@@ -739,7 +739,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'nature',
-      title: { en: 'Nature & Society', bg: 'Природа и общество' },
+      title: { en: 'Nature', bg: 'Природа' },
       description: {
         en: 'Nature decoded: natural law and the commons as a recomputable rubric (every extraction matched by restoration), an attestation seal for peer-review-level claims, the lawful participation ladder — harmonic, imaginative, successful — and the society forms indexed. Documented kept, naivety flagged.',
         bg: 'Природата, декодирана: природно право и общите блага като преизчислимо ниво (всяко извличане съответствано от възстановяване), атестационен печат за претенции от ниво на партньорска проверка, законната стълба за участие — хармонична, въображаема, успешна — и формите на обществото. Документираното остава, наивността е отбелязана.',
@@ -921,7 +921,7 @@ export function staticPages(): StaticPage[] {
     },
     {
       slug: 'seven-star-rosetta',
-      title: { en: 'Seven Star Rosetta — Natural Motion', bg: 'Седемзвездна розета — естествено движение' },
+      title: { en: 'Seven Star Rosetta', bg: 'Седемзвездна Розета' },
       description: {
         en: 'The 7-star Pliska rosetta in coprime natural motion with 28 Glagolitic letters. Visual proof that gcd(7,6)=1, gcd(7,9)=1, gcd(7,10)=1 prevents aliasing in the digit distribution.',
         bg: 'Седемзвездната плиска розета в естествено движение с 28 глаголица букви. Визуално доказателство, че gcd(7,6)=1, gcd(7,9)=1, gcd(7,10)=1 предотвратява aliasing в цифровото разпределение.',

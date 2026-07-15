@@ -52,7 +52,7 @@ function verifyDigitIndex(root: string): string[] {
 }
 
 function siteUrl(): string {
-  return (process.env.SITE_URL || 'https://ceccec.github.io').replace(/\/$/, '')
+  return (process.env.SITE_URL || 'https://ceccec.psg.bg').replace(/\/$/, '')
 }
 
 /** Materialize — write the computed dist artifacts + README. The side effects the other waves read. */

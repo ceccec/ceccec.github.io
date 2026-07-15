@@ -1902,10 +1902,12 @@ export function sciencePortalParts(matrix: MindMatrix = buildMatrix()) {
   })
 }
 export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
-  // ONE page set: a component page whose EN title duplicates a curated card is the SAME surface
-  // twice (QuantumConsole → /quantum-console beside /console) — the curated card is canonical.
-  const curatedTitles = new Set(staticPages().map((page) => page.title.en))
-  const pages = [...staticPages(), ...componentPages().filter((page) => !curatedTitles.has(page.title.en))]
+  // ONE page set: a component page whose component is MOUNTED on a curated page is the SAME surface
+  // twice (QuantumConsole → /quantum-console beside /console) — dedup by mounted-component slug, so
+  // curated TITLES are free to simplify (rosetta law: label = URL word) without resurrecting duplicates.
+  const kebabName = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+  const curatedComponentSlugs = new Set(staticPages().flatMap((page) => page.components.map(kebabName)))
+  const pages = [...staticPages(), ...componentPages().filter((page) => !curatedComponentSlugs.has(page.slug))]
   const routeOf = (slug: string) => (slug === '' ? '/' : `/${slug}`)
   const byRoute = new Map(pages.map((page) => [routeOf(page.slug), page]))
   const META = new Set(['component', 'proof'])
