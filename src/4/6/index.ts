@@ -722,3 +722,68 @@ export function discoveredTheoremsWaveSixtyThree(matrix: { root: string } = { ro
     }
   })
 }
+
+// ── Discovered theorems, wave sixty-four (the clock-lattice consequences) — the four gaps the machine
+// itself named (theorems:gaps): τ multiplicativity generalizing wave 63's 12-divisor count, the
+// millisecond fractal below the ladder, offset-proof global periodicity, and the 32-rung log-lattice.
+export function discoveredTheoremsWaveSixtyFour(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
+  return sealFold('discoveredTheoremsWaveSixtyFour', 'discovered-theorems-sixty-four', matrix, () => {
+    const strip = (n0: number) => { let n = n0; while (n % 2 === 0) n /= 2; while (n % 3 === 0) n /= 3; return n }
+    const tau = (n: number) => { let c = 0; for (let d = 1; d <= n; d += 1) if (n % d === 0) c += 1; return c }
+    const lim = 2 * 100
+
+    // W1 · τ IS MULTIPLICATIVE with τ(p^k) = k+1 — the (2+1)(3+1) = 12 divisor count of wave 63's clock
+    // lattice generalized: τ(mn) = τ(m)τ(n) for every coprime pair ≤ 200, prime-power values exact.
+    let tauMultiplicative = true
+    for (let m = 1; m <= lim; m += 1) for (let n = 1; n <= lim; n += 1) if (gcd(m, n) === 1 && tau(m * n) !== tau(m) * tau(n)) tauMultiplicative = false
+    for (const p of [2, 3, 5, 7]) for (let k = 1; p ** k <= lim; k += 1) if (tau(p ** k) !== k + 1) tauMultiplicative = false
+
+    // W2 · the MILLISECOND FRACTAL EXTENDS BELOW THE LADDER — every duration d with HERO_MS/d 3-smooth is
+    // pairwise commensurable (reduced ratios 3-smooth both ways) and completes exactly HERO_MS/d cycles
+    // per hero cycle; the JS harmonograph arm periods (2600/1700/1100 ms) snap to the NEAREST rungs
+    // 2250/1500/1125 = HERO_MS/48, /72, /96 — the trace joins the one clock without a new period.
+    const HERO_MS = FOLDED_CENSUS * (5 * 2) ** 3
+    const durs: number[] = []
+    for (let d = 1; d <= HERO_MS; d += 1) if (HERO_MS % d === 0 && strip(HERO_MS / d) === 1) durs.push(d)
+    let msFractal = durs.length > 0
+    for (const a of durs) for (const b of durs) { const g = gcd(a, b); if (strip(a / g) !== 1 || strip(b / g) !== 1) msFractal = false }
+    const snap = (ms: number) => durs.reduce((best, d) => (Math.abs(d - ms) < Math.abs(best - ms) ? d : best), durs[0]!)
+    if (snap((27 - 1) * 100) !== HERO_MS / (16 * 3) || snap((16 + 1) * 100) !== HERO_MS / (8 * 9) || snap((9 + 2) * 100) !== HERO_MS / (16 * 6)) msFractal = false
+
+    // W3 · PHASE OFFSETS NEVER BREAK GLOBAL PERIODICITY — begin/delay shifts phase, not period: for every
+    // divisor duration d of the 108 s hero cycle and every rational offset k/12, the phase at t and t+108
+    // is identical (d | 108 makes the offset cancel); verified over the full divisor set × offset grid.
+    const divisors: number[] = []
+    for (let d = 1; d <= FOLDED_CENSUS; d += 1) if (FOLDED_CENSUS % d === 0) divisors.push(d)
+    let offsetsSafe = true
+    for (const d of divisors) for (let k = 0; k < 2 * 6; k += 1) {
+      const o = k / (2 * 6)
+      for (let i = 0; i < 5; i += 1) {
+        const t0 = i * (7 + 3 / (5 * 2))
+        const ph = (x: number) => (((x - o) % d) + d) % d
+        if (Math.abs(ph(t0) - ph(t0 + FOLDED_CENSUS)) > 1 / (6 ** 6)) offsetsSafe = false
+      }
+    }
+
+    // W4 · 32 RUNGS TO 432 ON THE LOG-LATTICE — the 3-smooth numbers ≤ 432 number exactly 2⁵ = 32, and
+    // equal the exponent pairs {(a,b) : 2^a·3^b ≤ 432}: the frequency octaves and the time ladder are
+    // one enumerated grid (A432_OCTAVES rides inside it, every entry 3-smooth by wave 63's bridge).
+    let smoothCount = 0
+    for (let n = 1; n <= 432; n += 1) if (strip(n) === 1) smoothCount += 1
+    let pairCount = 0
+    for (let a = 0; 2 ** a <= 432; a += 1) for (let b = 0; 2 ** a * 3 ** b <= 432; b += 1) pairCount += 1
+    const logLattice = smoothCount === 2 ** 5 && pairCount === smoothCount && A432_OCTAVES.every((f) => strip(f) === 1)
+
+    return {
+      facets: [
+        { facet: `τ IS MULTIPLICATIVE with τ(p^k) = k+1 — wave 63's (2+1)(3+1) = 12 divisor count generalized: τ(mn) = τ(m)τ(n) for every coprime pair ≤ 200, prime-power values exact (the lattice-size law behind the fractal clock)`, on: tauMultiplicative },
+        { facet: `the MILLISECOND FRACTAL EXTENDS BELOW THE LADDER — the ${durs.length} durations with 3-smooth quotient into 108000 ms are pairwise commensurable, and the JS harmonograph periods (2600/1700/1100 ms) snap to the nearest rungs 2250/1500/1125 = HERO_MS/48, /72, /96: the trace joins the one clock`, on: msFractal },
+        { facet: `PHASE OFFSETS NEVER BREAK GLOBAL PERIODICITY — begin/delay shifts phase, not period: for every divisor duration of the 108 s hero cycle and every offset k/12, the phase repeats exactly at +108 s (d | 108 cancels the offset); the full divisor × offset grid verified`, on: offsetsSafe },
+        { facet: `32 RUNGS TO 432 ON THE LOG-LATTICE — the 3-smooth numbers ≤ 432 number exactly 2⁵ = 32 and equal the exponent pairs {(a,b) : 2^a·3^b ≤ 432}; every A432_OCTAVES entry rides inside: frequency octaves and the time ladder are ONE enumerated grid`, on: logLattice },
+      ],
+      extras: { rungDurations: durs.length, smoothCount },
+      statement: `Discovered theorems, wave sixty-four (the clock-lattice consequences): #/# — τ multiplicativity, the millisecond fractal below the ladder, offset-proof global periodicity, and the 32-rung log-lattice to 432.`,
+      boundary: `HONEST: the four gaps the gap scan itself named, each compounding on wave 63's sealed lattice (τ generalizes its divisor count; the ms fractal and offset law extend its global periodicity below one second and under arbitrary rational offsets; the 32-rung grid unifies A432_OCTAVES with the time ladder). All finite-complete within their bounds (pairs ≤ 200, the full divisor/offset grids, the complete sweep to 432); the all-n τ theorem is cited.`,
+    }
+  })
+}
