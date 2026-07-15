@@ -1195,3 +1195,36 @@ export function preciousMetalsThunderGraphFromGps(at = 0, matrix: { root: string
     }
   })
 }
+
+// ── The energy/water flow thunder graph — the same GPS-lattice pattern on documented flow hubs
+// (WGS84 approx): hydro Three Gorges/Itaipu/Grand Coulee, oil Ghawar/Permian/Samotlor. Backlog
+// item 'water-oil-flow-graph' filled: STRUCTURAL flow metaphor on geodesic edges, one lattice law.
+export function energyFlowThunderGraphFromGps(at = 0, matrix: { root: string } = { root: toUuid('energy-flow') }) {
+  void at
+  return memoByRoot('energyFlowThunderGraphFromGps', matrix, () => {
+    const hubs = [
+      { id: 'three-gorges', kind: 'water', lat: 30.8, lon: 111.0 },
+      { id: 'itaipu', kind: 'water', lat: -25.4, lon: -54.6 },
+      { id: 'grand-coulee', kind: 'water', lat: 48.0, lon: -119.0 },
+      { id: 'ghawar', kind: 'oil', lat: 25.4, lon: 49.6 },
+      { id: 'permian', kind: 'oil', lat: 31.8, lon: -102.4 },
+      { id: 'samotlor', kind: 'oil', lat: 61.1, lon: 76.7 },
+    ] as const
+    const nodes = hubs.map((h) => ({ ...h, declinationDeg: roundTo(magneticDeclinationAtSite(h.lat, h.lon).declinationDeg, 1), receipt: toUuid(`ef-node:${h.id}`) }))
+    const edges = nodes.flatMap((a, i) => nodes.slice(i + 1).map((b) => ({
+      from: a.id, to: b.id, km: roundTo(greatCircleKm(a.lat, a.lon, b.lat, b.lon), 0),
+      flow: roundTo((seedFromText(`${a.id}:${b.id}`) % (100 * 5 * 2)) / (100 * 5 * 2), 4),
+      receipt: toUuid(`ef-edge:${a.id}:${b.id}`),
+    })))
+    const kinds = [...new Set(nodes.map((n) => n.kind))]
+    return {
+      graphed: nodes.length === 6 && kinds.length === 2 && edges.length === (6 * 5) / 2 && nodes.every((n) => Number.isFinite(n.declinationDeg)),
+      nodes,
+      edges,
+      kinds,
+      root: merkleFold([...nodes.map((n) => n.receipt), ...edges.map((e) => e.receipt)]),
+      statement: `Energy/water flow thunder graph: ${nodes.length} documented hubs (hydro + oil), ${edges.length} geodesic edges with harmonic flow weights, every node carrying its dipole declination — one lattice law, third instantiation.`,
+      boundary: 'HONEST: a STRUCTURAL flow metaphor over documented hub coordinates (WGS84 approximate, illustrative majors) — NOT pipeline telemetry, NOT production data; weights are content-addressed harmonics, not throughput.',
+    }
+  })
+}
