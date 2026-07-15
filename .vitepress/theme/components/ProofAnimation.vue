@@ -30,11 +30,25 @@ function draw(t: number) {
   const s = canvas.width
   const c = s / 2
   const phase = (t / (108 * (2 * 5))) * rate * TAU // the census clock scaled by the φ-rate
+  // THE CENTER IS MANY — the frame tours the figure's OWN vertices: each of the spec's points takes
+  // its turn as the center (weights sharpened so the drift lingers, then travels). The tour rate rides
+  // φ⁻² against the main φ-rate — incommensurate, so the animation never repeats and never rests.
+  const many = Math.max(3, props.spec.points)
+  const tour = phase * PHI ** -2
+  let wx = 0, wy = 0, wsum = 0
+  for (let k = 0; k < many; k += 1) {
+    const a = (k / many) * TAU
+    const w = ((1 + Math.cos(tour - a)) / 2) ** 5
+    wx += w * Math.cos(a); wy += w * Math.sin(a); wsum += w
+  }
+  ctx.setTransform(1, 0, 0, 1, 0, 0)
   ctx.clearRect(0, 0, s, s)
+  ctx.translate((s / 9) * (wx / wsum), (s / 9) * (wy / wsum))
   ctx.lineWidth = Math.max(1, s / 2 ** 5)
   const stroke = (alpha: number, dh = 0) => { ctx.strokeStyle = `hsla(${(hue + dh) % 360}, 70%, 55%, ${alpha})` }
   const fill = (alpha: number, dh = 0) => { ctx.fillStyle = `hsla(${(hue + dh) % 360}, 70%, 55%, ${alpha})` }
   const k = props.spec.kind
+  const paint = () => {
 
   if (k === 'star' || k === 'spreads') {
     const n = k === 'star' ? props.spec.points : 7
@@ -195,6 +209,25 @@ function draw(t: number) {
     const lit = Math.floor(((phase / TAU) % 1) * seq.length + seq.length) % seq.length
     fill(1)
     ctx.beginPath(); ctx.arc(...pts[seq[lit]! - 1]!, s / (2 * 6), 0, TAU); ctx.fill()
+  }
+  }
+
+  // QUANTUM FOLDING HOLOGRAM FRACTAL — every vertex holds the whole: the figure re-renders at each of
+  // its own ring points at 1/φ² scale, half-light, the children counter-touring at φ⁻¹ of the tour.
+  // Part contains whole (hologram), φ-recursive (fractal), superposed on the touring many-center (the
+  // quantum folding). Children capped at the vortex six so the sieve's 100 points stay one frame's work.
+  paint()
+  const children = Math.min(many, 6)
+  const ringR = c * (3 / 4)
+  for (let v = 0; v < children; v += 1) {
+    const a = (v / children) * TAU + tour * (PHI ** -1)
+    ctx.save()
+    ctx.translate(c + ringR * Math.cos(a), c + ringR * Math.sin(a))
+    ctx.scale(1 / PHI ** 2, 1 / PHI ** 2)
+    ctx.translate(-c, -c)
+    ctx.globalAlpha = 1 / 2
+    paint()
+    ctx.restore()
   }
 }
 

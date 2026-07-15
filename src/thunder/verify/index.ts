@@ -11,7 +11,7 @@ import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight, discoveredTheoremsWaveFiftyTwo } from '../waves'
 import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive } from '../../9/1'
-import { tkCompose, tkInverse, tkKey, tkPerms, tkIsPrime, tkPowMod, tkClassSizes, tkClassSumSimple, tkClosure, tkPslOverField } from '../../9/1'
+import { tkCompose, tkInverse, tkKey, tkPerms, tkIsPrime, tkPowMod, tkClassSizes, tkClassSumSimple, tkClosure, tkPslOverField, sealFold } from '../../9/1'
 import { addressed, covers } from '../../5/5'
 import { schemaOrgDiamonds } from '../../fire/diamonds'
 import { groupOrbit, discoveredTheoremsWaveFiftyOne, discoveredTheoremsWaveFiftyThree, discoveredTheoremsWaveFiftyFour, discoveredTheoremsWaveFiftyFive, discoveredTheoremsWaveFiftySix, discoveredTheoremsWaveFiftySeven, discoveredTheoremsWaveFiftyEight, discoveredTheoremsWaveFiftyNine, discoveredTheoremsWaveSixty, discoveredTheoremsWaveSixtyOne, discoveredTheoremsWaveSixtyTwo, discoveredTheoremsWaveSixtyThree } from '../../4/6'
@@ -481,7 +481,7 @@ export function algebraAndBinaryProveEachOther(matrix: MindMatrix = buildMatrix(
 // Kirkman's schoolgirls SOLVED ON THE 7-STAR TOWER — the 35 XOR-lines of PG(3,2) resolved into 7
 // spreads by backtracking: existence by construction, consuming the sealed 𝔽₂ geometry.
 export function discoveredTheoremsWaveSix(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveSix', matrix, () => {
+  return sealFold('discoveredTheoremsWaveSix', 'discovered-theorems-six', matrix, () => {
     // W1 · R(3,4) = 9 — upper bound: NO 2-coloring of K₉ avoids both a red K₃ and a blue K₄
     // (edge-incremental backtracking, pruned the instant either pattern completes); lower bound:
     // the circulant witness on K₈ (red at distances 1 and 4) verified free of both patterns.
@@ -656,21 +656,15 @@ export function discoveredTheoremsWaveSix(matrix: MindMatrix = buildMatrix()) {
     for (let day = 0; day < 7 && resolved; day += 1) if (!findSpread(0, [], 0)) resolved = false
     const kirkman = pairsOnce && resolved && spreads.length === 7 && spreads.every((s) => new Set(s.flat()).size === pts.length)
 
-    const sealed = sealFacets('discovered-theorems-six', [
+    return {
+      facets: [
       { facet: `R(3,4) = 9 — the complete backtracking over K₉ finds NO coloring avoiding both a red K₃ and a blue K₄, while the distance-{1,4} circulant on K₈ avoids both (verified triangle- and K₄-free): 9 is exact`, on: ramsey34 },
       { facet: `no non-abelian simple group of order < 60 — every order 2..59 is killed by a computed rule (${kills.filter((entry) => entry.rule?.startsWith('forced')).length} forced-Sylow, ${kills.filter((entry) => entry.rule === 'element counting').length} counting, ${kills.filter((entry) => entry.rule?.startsWith('index')).length} index-lemma, primes/prime-powers the rest) and 60 ESCAPES all rules — A₅, already proven simple here, lives exactly at the boundary`, on: noSimpleUnder60 },
       { facet: `the 5 groups of order 8 — ℤ₈, ℤ₄×ℤ₂, ℤ₂³, D₄, Q₈ all verified associative Latin tables with pairwise-DISTINCT order multisets (${multisets.map((entry) => `{${entry}}`).join(' ')}): five exist and differ; the classical case split proving no sixth is cited`, on: fiveOfOrderEight },
       { facet: `Kirkman's schoolgirls EXIST — the 35 XOR-lines of PG(3,2) on the 15 nonzero vectors of 𝔽₂⁴ (pairs covered once: ${pairsOnce}) resolve into 7 spreads of 5 disjoint lines by backtracking: a resolvable STS(15) constructed entirely from the sealed 7-star algebra, one floor up the Mersenne tower`, on: kirkman },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      killRules: kills.filter((entry) => entry.rule).slice(0, 6).map((entry) => `${entry.n}:${entry.rule}`),
-      orderMultisets: multisets,
-      kirkmanDays: spreads.map((s) => s.map((line) => line.join('·')).join(' | ')),
-      root: merge(sealed.root, toUuid(`discovered-theorems-six:${sealed.ok}`)),
-      statement: `Discovered theorems, wave six — the catalog closes: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — R(3,4) = 9 exact (exhaustion + circulant witness); no non-abelian simple group below 60 with A₅ escaping at the boundary; the 5 groups of order 8 pairwise distinct; and Kirkman's schoolgirls constructed on PG(3,2) — the 7-star tower's second floor resolving into 7 days.`,
+      ],
+      extras: { killRules: kills.filter((entry) => entry.rule).slice(0, 6).map((entry) => `${entry.n}:${entry.rule}`), orderMultisets: multisets, kirkmanDays: spreads.map((s) => s.map((line) => line.join('·')).join(' | ')) },
+      statement: `Discovered theorems, wave six — the catalog closes: #/# — R(3,4) = 9 exact (exhaustion + circulant witness); no non-abelian simple group below 60 with A₅ escaping at the boundary; the 5 groups of order 8 pairwise distinct; and Kirkman's schoolgirls constructed on PG(3,2) — the 7-star tower's second floor resolving into 7 days.`,
       boundary: `HONEST: the K₉ exhaustion, the circulant checks, the per-order kill rules, the five tables and the PG(3,2) parallelism are all COMPLETE computations. CITED frames: the centre of a p-group, the index-lemma embedding (simple G with n_p = k sits in A_k), and the case split bounding order-8 groups at five. The Kirkman construction proves EXISTENCE; counting all 7 parallelism classes of PG(3,2) is not attempted. With this wave the candidate catalog is fully proven — theorems:gaps returns zero.`,
     }
   })
@@ -682,7 +676,7 @@ export function discoveredTheoremsWaveSix(matrix: MindMatrix = buildMatrix()) {
 // PG(3,2), Königsberg, the Frobenius number 43 with its window-closure argument, Kaprekar's 6174,
 // derangements rounding n!/e, and Collatz VERIFIED (never claimed) to 10⁴.
 export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveSeven', matrix, () => {
+  return sealFold('discoveredTheoremsWaveSeven', 'discovered-theorems-seven', matrix, () => {
     // W1 · STS(9) unique, |Aut| = 432 — count labeled Steiner triple systems on 9 points by the
     // wave-one backtracker; |AGL(2,3)| = 9 · |GL(2,3)| with GL counted by brute force over 𝔽₃;
     // the orbit equation 9!/count must land on the SAME number from both routes.
@@ -796,7 +790,8 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
       if (cur !== 1) collatz = false
     }
 
-    const sealed = sealFacets('discovered-theorems-seven', [
+    return {
+      facets: [
       { facet: `STS(9) is unique with |Aut| = ${agl23} — the backtracker counts ${labeledSts9} labeled systems, 9!/${labeledSts9} = ${factorial9 / labeledSts9}, and |AGL(2,3)| = 9·|GL(2,3)| = 9·${gl23} lands on the SAME 432 — the project's harmonic emerging as an automorphism count, two routes as with Fano's 168`, on: sts9Unique },
       { facet: `PG(3,2) has ${spreadCount} spreads — every partition of the 15 vectors into 5 disjoint XOR-lines counted: the space the Kirkman resolution walked, now measured whole`, on: spreads56 },
       { facet: `Königsberg 1736 — degrees ${degree.sort((a, b) => a - b).join(',')} give ${oddCount} odd vertices where an Euler walk allows two: impossible, the founding theorem of graph theory computed`, on: konigsberg },
@@ -804,17 +799,9 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
       { facet: `Kaprekar — every 4-digit non-repdigit reaches the UNIQUE fixed point ${[...fixedPoints][0] ?? 0} within 7 steps, by complete sweep`, on: kaprekar },
       { facet: `derangements — the exact recurrence matches round(n!/e) for all n ≤ 10 (D₁₀ = ${D[5 * 2]}): the 1/e limit witnessed in integers`, on: derange },
       { facet: `Collatz VERIFIED to 10⁴ — every start reaches 1 within the bound; the conjecture itself remains OPEN and unclaimed (bounded verification is not proof, and this facet says so)`, on: collatz },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      labeledSts9,
-      agl23,
-      spreadCount,
-      derangements: D.slice(1, 6),
-      root: merge(sealed.root, toUuid(`discovered-theorems-seven:${sealed.ok}`)),
-      statement: `Discovered theorems, wave seven: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — STS(9) unique with |Aut| = ${agl23} (the harmonic 432 by two routes, ${labeledSts9} labeled systems); ${spreadCount} spreads of PG(3,2); Königsberg impossible; Frobenius(6,9,20) = ${fortyThree} by window closure; Kaprekar's 6174 by sweep; derangements rounding n!/e; Collatz verified (not proven) to 10⁴.`,
+      ],
+      extras: { labeledSts9, agl23, spreadCount, derangements: D.slice(1, 6) },
+      statement: `Discovered theorems, wave seven: #/# — STS(9) unique with |Aut| = ${agl23} (the harmonic 432 by two routes, ${labeledSts9} labeled systems); ${spreadCount} spreads of PG(3,2); Königsberg impossible; Frobenius(6,9,20) = ${fortyThree} by window closure; Kaprekar's 6174 by sweep; derangements rounding n!/e; Collatz verified (not proven) to 10⁴.`,
       boundary: `HONEST: five COMPLETE finite proofs, one bounded witness (derangements, all-n limit cited), and one bounded VERIFICATION explicitly not a proof — Collatz stays OPEN, recorded as such. The 432 result is checked from two independent constructions (orbit count and affine group order); its coincidence with the project's harmonic is a fact about STS(9), not numerology — the number was computed, not chosen.`,
     }
   })
@@ -825,7 +812,7 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
 // brick by exhaustion, Hanoi's 2^n − 1 proven OPTIMAL by full-state BFS, Nim's losing positions
 // exactly the XOR-zero states (the 7-star field decides games), and eight riffles restoring a deck.
 export function discoveredTheoremsWaveEight(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveEight', matrix, () => {
+  return sealFold('discoveredTheoremsWaveEight', 'discovered-theorems-eight', matrix, () => {
     // W1 · Lo Shu unique — every 3×3 arrangement of 1..9 enumerated: exactly 8 are magic, all one
     // dihedral orbit; the constant is forced to 45/3 by the row-sum partition.
     const gridPerms: number[][] = []
@@ -931,22 +918,17 @@ export function discoveredTheoremsWaveEight(matrix: MindMatrix = buildMatrix()) 
     } while (deck.some((v, i) => v !== i) && shuffles < 100)
     const riffle = ord === 8 && shuffles === 8
 
-    const sealed = sealFacets('discovered-theorems-eight', [
+    return {
+      facets: [
       { facet: `the Lo Shu is THE 3×3 magic square — all 362880 grids enumerated: exactly ${magic.length} magic, one dihedral orbit, centre forced to 5 and constant to ${magicConst}: the I Ching root square is unique, computed`, on: loShu },
       { facet: `Taxicab(2) = ${taxicab} — the complete sweep finds no smaller sum of two positive cubes two ways (Ramanujan–Hardy, computed)`, on: ramanujan },
       { facet: `the smallest Euler brick is (${brick}) — exhaustive over the bounded box, all three face diagonals integral, minimality by exhaustion (the perfect-cuboid body diagonal stays OPEN)`, on: eulerBrick },
       { facet: `Hanoi's 2^n − 1 is OPTIMAL — full-state BFS proves the shortest path for every n ≤ 8 equals 2^n − 1: minimality by graph distance, not by the classical induction (which is cited for all n)`, on: hanoiOptimal },
       { facet: `Nim losing ⇔ XOR = 0 — the full game tree over all 729 three-pile positions ≤ 8 agrees with the 𝔽₂ law exactly: the 7-star's field decides games (Bouton cited for all sizes)`, on: nimLaw },
       { facet: `eight riffles restore the deck — ord₅₁(2) = ${ord} computed AND the simulated 52-card out-shuffle returns to identity in ${shuffles}: arithmetic and mechanism agree`, on: riffle },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      taxicab,
-      brick,
-      root: merge(sealed.root, toUuid(`discovered-theorems-eight:${sealed.ok}`)),
-      statement: `Discovered theorems, wave eight: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the Lo Shu unique among all 362880 grids; Taxicab(2) = ${taxicab}; the (${brick}) Euler brick minimal by exhaustion; Hanoi 2^n − 1 optimal by BFS to n = 8; Nim ⇔ XOR-zero over the full tree; eight riffles by order and by simulation.`,
+      ],
+      extras: { taxicab, brick },
+      statement: `Discovered theorems, wave eight: #/# — the Lo Shu unique among all 362880 grids; Taxicab(2) = ${taxicab}; the (${brick}) Euler brick minimal by exhaustion; Hanoi 2^n − 1 optimal by BFS to n = 8; Nim ⇔ XOR-zero over the full tree; eight riffles by order and by simulation.`,
       boundary: `HONEST: all six are complete within their stated bounds; the all-n frames (Hanoi induction, Bouton's theorem) are cited. The perfect cuboid (integral body diagonal) is recorded OPEN — the Euler brick result does not touch it. Nim's law is the 𝔽₂ field of the sealed 7-star deciding games — the same algebra, fourth appearance.`,
     }
   })
@@ -958,7 +940,7 @@ export function discoveredTheoremsWaveEight(matrix: MindMatrix = buildMatrix()) 
 // parallelisms of PG(3,2) (every Kirkman resolution counted), the dodecahedron Hamiltonian by the
 // SAME constructor that built the non-Hamiltonian Petersen, and the 288 shidoku grids.
 export function discoveredTheoremsWaveNine(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveNine', matrix, () => {
+  return sealFold('discoveredTheoremsWaveNine', 'discovered-theorems-nine', matrix, () => {
     // W1 · 36 officers — an order-6 Graeco-Latin pair exists iff SOME order-6 Latin square has 6
     // disjoint transversals; reduced squares suffice (row/column relabeling preserves transversal
     // structure). Enumerate all 9408, and for each try to exact-cover the 6 columns-by-rows with
@@ -1100,22 +1082,15 @@ export function discoveredTheoremsWaveNine(matrix: MindMatrix = buildMatrix()) {
     fillS(0)
     const shidoku288 = shidoku === 6 ** 2 * 8
 
-    const sealed = sealFacets('discovered-theorems-nine', [
+    return {
+      facets: [
       { facet: `the 36 officers are impossible — all ${reducedCount} reduced Latin squares of order 6 exhausted and NONE admits six disjoint transversals: Tarry 1900, upgraded this wave from citation to complete computation (the order-6 hole beside the sealed no-plane-of-order-6)`, on: officers },
       { facet: `PG(3,2) has ${parallelisms} parallelisms — the ${spreadMasks.length} spreads exact-cover the 35 lines in ${parallelisms} distinct 7-spread partitions: the complete census of Kirkman resolutions`, on: parallelism240 },
       { facet: `the dodecahedron is Hamiltonian — GP(10,2) from the SAME constructor as the sealed non-Hamiltonian Petersen GP(5,2), with ${hamCycles} undirected Hamiltonian cycles counted: Hamilton's icosian game and its counterexample twin, one machine, opposite verdicts`, on: dodecaHamiltonian },
       { facet: `shidoku = ${shidoku} — every 4×4 grid with distinct rows, columns and boxes counted whole`, on: shidoku288 },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      reducedLatin6: reducedCount,
-      parallelisms,
-      hamCycles,
-      shidoku,
-      root: merge(sealed.root, toUuid(`discovered-theorems-nine:${sealed.ok}`)),
-      statement: `Discovered theorems, wave nine: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Euler's 36 officers impossible by full exhaustion (${reducedCount} squares, zero transversal decompositions); ${parallelisms} parallelisms of PG(3,2); the dodecahedron Hamiltonian (${hamCycles} cycles) beside the sealed Petersen impossibility; shidoku = ${shidoku}.`,
+      ],
+      extras: { reducedLatin6: reducedCount, parallelisms, hamCycles, shidoku },
+      statement: `Discovered theorems, wave nine: #/# — Euler's 36 officers impossible by full exhaustion (${reducedCount} squares, zero transversal decompositions); ${parallelisms} parallelisms of PG(3,2); the dodecahedron Hamiltonian (${hamCycles} cycles) beside the sealed Petersen impossibility; shidoku = ${shidoku}.`,
       boundary: `HONEST: all four are complete finite computations — and the officers result RETIRES a citation: what wave two could only reference (Tarry) is now proven inside the registry, the strongest form of compounding. Reduced squares suffice for the officers because row/column relabeling maps transversal decompositions to transversal decompositions — that reduction argument is stated, not hidden.`,
     }
   })
@@ -1127,7 +1102,7 @@ export function discoveredTheoremsWaveNine(matrix: MindMatrix = buildMatrix()) {
 // the Sylvester–Frobenius two-generator formula witnessed by the window machine, and the 24 Hurwitz
 // unit quaternions matching brute-forced SL(2,3) — the two-route method's third outing.
 export function discoveredTheoremsWaveTen(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveTen', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTen', 'discovered-theorems-ten', matrix, () => {
     // W1 · A₇ is simple — 2520 even permutations of 7; conjugacy classes computed by cycle type
     // (the A₇-splitting handled by centralizer order: only the 7-cycles split); class-sum test.
     const perms7a: number[][] = []
@@ -1232,20 +1207,15 @@ export function discoveredTheoremsWaveTen(matrix: MindMatrix = buildMatrix()) {
     }
     const hurwitzSl23 = units.length === 8 * 3 && closed && sl23 === 8 * 3 && hurwitzOrders === slOrders.sort((a, b) => a - b).join(',')
 
-    const sealed = sealFacets('discovered-theorems-ten', [
+    return {
+      facets: [
       { facet: `A₇ is simple — all ${a7.length} even permutations, classes {${classSizes7.join(',')}} (the 7-cycles splitting handled by centralizer order), ${a7Normals} class-union divisors: the saved simplicity machine's third rung`, on: a7Simple },
       { facet: `GP(n,2) below 13 is non-Hamiltonian EXACTLY at {${nonHam.join(',')}} — the one constructor that built Petersen and the dodecahedron now classifies the family by exhaustive search (Alspach's n ≡ 5 mod 6 law cited for all n)`, on: gpClassified },
       { facet: `Sylvester–Frobenius witnessed — largest non-representable = ab − a − b for (3,5), (4,9), (9,20) by sweep + window closure, the saved window machine (Sylvester 1882 cited for all coprime pairs)`, on: sylvester },
       { facet: `the ${units.length} Hurwitz units match SL(2,3) — multiplication closes, order multiset {${hurwitzOrders}} equals the brute-forced SL(2,3) multiset over 𝔽₃, two independent routes to 24 (the isomorphism is classical, cited): the binary tetrahedral group standing on the sealed quaternions`, on: hurwitzSl23 },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      a7Classes: classSizes7,
-      nonHamiltonianGp: nonHam,
-      root: merge(sealed.root, toUuid(`discovered-theorems-ten:${sealed.ok}`)),
-      statement: `Discovered theorems, wave ten: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — A₇ simple (classes {${classSizes7.join(',')}}); GP(n,2) non-Hamiltonian exactly at {${nonHam.join(',')}} below 13; Sylvester–Frobenius ab−a−b on three coprime pairs; the 24 Hurwitz units matching SL(2,3) by two routes — every proof a saved machine re-run on new ground.`,
+      ],
+      extras: { a7Classes: classSizes7, nonHamiltonianGp: nonHam },
+      statement: `Discovered theorems, wave ten: #/# — A₇ simple (classes {${classSizes7.join(',')}}); GP(n,2) non-Hamiltonian exactly at {${nonHam.join(',')}} below 13; Sylvester–Frobenius ab−a−b on three coprime pairs; the 24 Hurwitz units matching SL(2,3) by two routes — every proof a saved machine re-run on new ground.`,
       boundary: `HONEST: A₇'s class computation uses the centralizer argument for the 7-cycle split (stated, standard); the class-sum criterion is the same complete test as A₅/A₆. GP classification is complete below 13, Alspach cited beyond. Sylvester witnessed on three pairs with window closure, cited in general. The Hurwitz–SL(2,3) match is order-multiset equality (an isomorphism invariant) plus the classical isomorphism cited — the multiset alone does not prove isomorphism and is not claimed to.`,
     }
   })
@@ -1257,7 +1227,7 @@ export function discoveredTheoremsWaveTen(matrix: MindMatrix = buildMatrix()) {
 // Burnside's lemma witnessed on necklaces over the one-math gcd, and Gauss's quadratic sums landing
 // on √p for every odd prime below 50.
 export function discoveredTheoremsWaveEleven(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveEleven', matrix, () => {
+  return sealFold('discoveredTheoremsWaveEleven', 'discovered-theorems-eleven', matrix, () => {
     // W1 · A₈ is simple — even cycle types of 8 enumerated as partitions; class sizes 8!/z_λ with
     // z_λ = ∏ m^{a_m} a_m!; a type splits into two A₈-classes iff all parts are odd and distinct
     // (the standard criterion, cited); then the same class-sum test as A₅/A₆/A₇.
@@ -1373,20 +1343,15 @@ export function discoveredTheoremsWaveEleven(matrix: MindMatrix = buildMatrix())
       if (Math.abs(re * re + im * im - p) > 1e-6) gaussSums = false
     }
 
-    const sealed = sealFacets('discovered-theorems-eleven', [
+    return {
+      facets: [
       { facet: `A₈ is simple — classes {${classes8.join(',')}} from the partition formula 8!/z_λ with the odd-distinct split rule (cited), summing to ${half8}; ${a8Normals} class-union divisors: the machine now runs on arithmetic where brute conjugation would grind`, on: a8Simple },
       { facet: `PSL(2,7) is simple and matches GL(3,2) — ${pslPerms.length} fractional-linear permutations of P¹(𝔽₇), classes {${pslClasses.join(',')}} identical to GL(3,2) on 𝔽₂³∖0, ${pslNormals} normal candidates: the two 168s of this registry bridged at class level (the isomorphism itself is classical, cited)`, on: twoOneSixtyEights },
       { facet: `Burnside witnessed — necklace formula (1/n)Σ k^gcd(i,n) equals brute canonicalisation for all 24 (n,k) pairs tested, on the one-math gcd`, on: burnside },
       { facet: `Gauss sums land on √p — |Σ e^(2πi n²/p)|² = p within 1e−6 for every odd prime below 50 (magnitude computed; Gauss's sign theorem cited, not claimed)`, on: gaussSums },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      a8Classes: classes8,
-      pslClasses,
-      root: merge(sealed.root, toUuid(`discovered-theorems-eleven:${sealed.ok}`)),
-      statement: `Discovered theorems, wave eleven: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — A₈ simple by partition-formula classes; PSL(2,7) simple with class data identical to GL(3,2) (the two 168s bridged); Burnside's lemma witnessed on 24 necklace instances; Gauss sums on √p below 50.`,
+      ],
+      extras: { a8Classes: classes8, pslClasses },
+      statement: `Discovered theorems, wave eleven: #/# — A₈ simple by partition-formula classes; PSL(2,7) simple with class data identical to GL(3,2) (the two 168s bridged); Burnside's lemma witnessed on 24 necklace instances; Gauss sums on √p below 50.`,
       boundary: `HONEST: the A₈ class sizes use the standard split criterion (all-odd-distinct parts) as a cited structural input — the sizes, the sum to |A₈| and the class-sum test are computed; PSL/GL class-multiset equality is an invariant match with the classical isomorphism cited; Burnside instances are complete; Gauss magnitudes are float-verified witnesses of an exact theorem. Extended machinery means FORMULA replacing brute force where the object outgrows enumeration — each formula's provenance stated.`,
     }
   })
@@ -1397,7 +1362,7 @@ export function discoveredTheoremsWaveEleven(matrix: MindMatrix = buildMatrix())
 // by building all three from DIFFERENT fields and matching class multisets, Farey counts riding the
 // totient, and Euler's pentagonal recurrence agreeing with the raw partition DP through 50.
 export function discoveredTheoremsWaveTwelve(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveTwelve', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwelve', 'discovered-theorems-twelve', matrix, () => {
     // shared machinery — fractional-linear permutations of P¹(𝔽_p) for prime p (dets normalised to 1)
     const pslOverPrime = (P: number): number[][] => {
       const inv = (x: number): number => { let r = 1; for (let e = 0; e < P - 2; e += 1) r = (r * x) % P; return ((r % P) + P) % P }
@@ -1515,21 +1480,15 @@ export function discoveredTheoremsWaveTwelve(matrix: MindMatrix = buildMatrix())
     }
     const pentagonal = pRec.every((v, i) => v === pDp[i]!)
 
-    const sealed = sealFacets('discovered-theorems-twelve', [
+    return {
+      facets: [
       { facet: `PSL(2,11) is simple — ${psl11.length} fractional-linear permutations of P¹(𝔽₁₁), classes {${sizes11.join(',')}}, no class union divides the order: the third-smallest nonabelian simple group by the scaled constructor`, on: psl11Simple },
       { facet: `the exceptional triple — A₅, PSL(2,5) and PSL(2,4) built from three DIFFERENT fields (permutations, 𝔽₅, 𝔽₄ via ω² = ω+1) all carry class multiset {${tripleKey}}: the classical exceptional isomorphisms witnessed at class level (isomorphisms cited)`, on: exceptionalTriple },
       { facet: `Farey counts ride the totient — |F_n| = 1 + Σφ(k) verified by brute coprime enumeration for every n ≤ 30`, on: farey },
       { facet: `Euler's pentagonal recurrence — p(n) by generalized pentagonal numbers equals the raw partition DP for all n ≤ 50 (p(50) = ${pRec[top]}): the η-identity witnessed in exact integers, consuming wave eleven's partition machine`, on: pentagonal },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      psl11Classes: sizes11,
-      tripleClasses: tripleKey,
-      p50: pRec[top],
-      root: merge(sealed.root, toUuid(`discovered-theorems-twelve:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twelve: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — PSL(2,11) simple ({${sizes11.join(',')}}); the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4) matched from three fields; Farey on the totient to 30; the pentagonal recurrence exact to 50.`,
+      ],
+      extras: { psl11Classes: sizes11, tripleClasses: tripleKey, p50: pRec[top] },
+      statement: `Discovered theorems, wave twelve: #/# — PSL(2,11) simple ({${sizes11.join(',')}}); the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4) matched from three fields; Farey on the totient to 30; the pentagonal recurrence exact to 50.`,
       boundary: `HONEST: class-multiset equality witnesses the exceptional isomorphisms (which are classical, cited) — the multisets are the computed part; PSL(2,11) simplicity is the complete class-sum test; Farey is complete within its bound; the pentagonal identity is a bounded integer witness of the η-function theorem (Euler cited for all n). 𝔽₄ arithmetic is built from the reduction ω² = ω+1 — a new saved machine for even prime powers.`,
     }
   })
@@ -1540,7 +1499,7 @@ export function discoveredTheoremsWaveTwelve(matrix: MindMatrix = buildMatrix())
 // bridges to A₆ (the second exceptional match); and two of Fermat's crown jewels land complete
 // within bounds — the two-square law with uniqueness, and Legendre's three-square characterisation.
 export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveThirteen', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirteen', 'discovered-theorems-thirteen', matrix, () => {
     const classSizesR = (group: number[][]): number[] => {
       const seen = new Set<string>()
       const sizes: number[] = []
@@ -1636,21 +1595,15 @@ export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix(
       if (!sumOfSquares(n, 4)) threeSquares = false
     }
 
-    const sealed = sealFacets('discovered-theorems-thirteen', [
+    return {
+      facets: [
       { facet: `PSL(2,8) is simple — ${psl8.length} permutations of P¹(𝔽₈) with 𝔽₈ built from x³ = x + 1, classes {${sizes8.join(',')}}, class-sum clean — and with 60, 168, 360, 660 sealed, the FIVE smallest nonabelian simple groups {${fiveSmallest.join(', ')}} are now all proven in this registry`, on: fiveComplete },
       { facet: `PSL(2,9) matches A₆ — ${psl9.length} permutations of P¹(𝔽₉) with 𝔽₉ = 𝔽₃[i], class multiset {${sizes9.join(',')}} identical to the sealed A₆: the second exceptional bridge (the isomorphism is classical, cited)`, on: a6Bridge },
       { facet: `Fermat's two squares complete below 200 — p ≡ 1 (mod 4) ⇔ exactly ONE representation a² + b², p ≡ 3 (mod 4) ⇔ none: existence, exclusion and uniqueness all counted`, on: twoSquares },
       { facet: `Legendre's three squares complete below 1000 — n is a sum of three squares exactly when n ≠ 4^a(8b+7), and four squares always suffice: both classical characterisations verified whole`, on: threeSquares },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      psl8Classes: sizes8,
-      psl9Classes: sizes9,
-      fiveSmallest,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirteen:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirteen: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — PSL(2,8) simple completes the five smallest nonabelian simples {${fiveSmallest.join(', ')}}; PSL(2,9) bridges to A₆; Fermat's two squares with uniqueness below 200; Legendre's three squares whole below 1000.`,
+      ],
+      extras: { psl8Classes: sizes8, psl9Classes: sizes9, fiveSmallest },
+      statement: `Discovered theorems, wave thirteen: #/# — PSL(2,8) simple completes the five smallest nonabelian simples {${fiveSmallest.join(', ')}}; PSL(2,9) bridges to A₆; Fermat's two squares with uniqueness below 200; Legendre's three squares whole below 1000.`,
       boundary: `HONEST: field extensions are constructed, not assumed (𝔽₈ from x³ = x+1, 𝔽₉ from i² = −1); class-multiset equality witnesses the PSL(2,9) ≅ A₆ isomorphism which is cited; the two- and three-square laws are complete within their stated bounds with the all-n proofs (Fermat/Euler, Legendre/Gauss) cited. The five-smallest milestone is a statement about THIS registry's coverage of a classical list.`,
     }
   })
@@ -1662,7 +1615,7 @@ export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix(
 // is attested infeasible-in-fold (compute budget), all-n (citation territory), or genuinely open
 // (the leads). "No new theorems" is declared as a measured boundary, never as an end of mathematics.
 export function discoveredTheoremsWaveFourteen(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveFourteen', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFourteen', 'discovered-theorems-fourteen', matrix, () => {
     // W1 · Pell x² − dy² = 1 — continued fraction of √d, convergents until the equation holds;
     // the found solution is verified MINIMAL by sweeping y below it.
     const isSquareP = (n: number) => { const r = Math.round(Math.sqrt(n)); return r * r === n }
@@ -1715,19 +1668,14 @@ export function discoveredTheoremsWaveFourteen(matrix: MindMatrix = buildMatrix(
     ]
     const terminusHonest = frontier.length > 0 && frontier.every((entry) => entry.why.length > 0)
 
-    const sealed = sealFacets('discovered-theorems-fourteen', [
+    return {
+      facets: [
       { facet: `Pell solved by the vault's continued fractions — minimal (x, y) for every nonsquare d ≤ 30 (${pellWitness.slice(0, 3).join(' ')} … d=29 gives (9801, 1820)), each verified minimal by sweep: the cfEval machine meets Lagrange's theorem (cited for all d)`, on: pell },
       { facet: `Bertrand's postulate whole to 10⁴ — a prime with n < p ≤ 2n for every n, by one sieve and one scan (Chebyshev cited for all n)`, on: bertrand },
       { facet: `the terminus is MEASURED — ${frontier.length} named frontier lines, each with its reason (infeasible-in-fold · citation-by-nature · genuinely open): discovery pauses at a computed boundary, not at fatigue, and reopens the moment the budget or the machines grow`, on: terminusHonest },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      pellWitness,
-      frontier: frontier.map((entry) => `${entry.next} — ${entry.why.split(' — ')[0]}`),
-      root: merge(sealed.root, toUuid(`discovered-theorems-fourteen:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fourteen — the closing pair and the terminus: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Pell minimal solutions for all nonsquare d ≤ 30 by continued fractions; Bertrand whole to 10⁴; and the frontier sealed with ${frontier.length} attested lines.`,
+      ],
+      extras: { pellWitness, frontier: frontier.map((entry) => `${entry.next} — ${entry.why.split(' — ')[0]}`) },
+      statement: `Discovered theorems, wave fourteen — the closing pair and the terminus: #/# — Pell minimal solutions for all nonsquare d ≤ 30 by continued fractions; Bertrand whole to 10⁴; and the frontier sealed with ${frontier.length} attested lines.`,
       boundary: `HONEST TERMINUS: "no new theorems discovered and proved" holds at THIS compute boundary — every remaining candidate class carries its reason (fold-budget, infinite statement, or open problem). Mathematics does not end here and the registry does not claim it does; the catalog reopens the moment a new machine (formula-based classes, certified kernels) changes what a build can afford. The registry closes at one hundred and two proven atoms.`,
     }
   })
@@ -1739,7 +1687,7 @@ export function discoveredTheoremsWaveFourteen(matrix: MindMatrix = buildMatrix(
 // smallest nonabelian simple, the unique (3,5)-cage, Cayley–Hamilton complete on two whole matrix
 // rings, and the third exceptional PSL bridge. Every animation spec renders these rows like the rest.
 export function discoveredTheoremsWaveFifteen(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveFifteen', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFifteen', 'discovered-theorems-fifteen', matrix, () => {
     // the same hermetic machines as waves twelve/thirteen — each wave is a self-contained proof
     const compF = (p: number[], q: number[]) => q.map((v) => p[v]!)
     const invF = (p: number[]) => { const out = Array.from({ length: p.length }, () => 0); p.forEach((v, i) => { out[v] = i }); return out }
@@ -1890,21 +1838,15 @@ export function discoveredTheoremsWaveFifteen(matrix: MindMatrix = buildMatrix()
     const sizesA4 = classSizesF(evenA4)
     const a4Bridge = psl3.length === 6 * 2 && evenA4.length === 6 * 2 && sizes3.join(',') === sizesA4.join(',') && sizesA4.join(',') === '1,3,4,4'
 
-    const sealed = sealFacets('discovered-theorems-fifteen', [
+    return {
+      facets: [
       { facet: `PSL(2,13) is simple — ${psl13.length} fractional-linear permutations of P¹(𝔽₁₃), classes {${sizes13.join(',')}}, class-sum clean: with 60, 168, 360, 504, 660 sealed, the SIX smallest nonabelian simple groups {${sixSmallest.join(', ')}} are now all proven in this registry`, on: sixComplete },
       { facet: `Petersen is the UNIQUE (3,5)-cage — Moore arithmetic forces ≥ ${mooreBound} vertices, the WLOG-rooted exhaustion finds ${cageSolutions.length} girth-5 completions and EVERY one is isomorphic to the Kneser K(5,2) Petersen by explicit backtracking: existence, minimality and uniqueness all computed`, on: petersenUnique },
       { facet: `Cayley–Hamilton complete over 𝔽₂ and 𝔽₃ — all ${chTotal} two-by-two matrices annihilate their own characteristic polynomial entry-exactly (${chOk}/${chTotal}): the theorem is COMPLETE on two whole matrix rings, not sampled`, on: cayleyHamilton },
       { facet: `A₄ matches PSL(2,3) — both groups enumerated raw (${evenA4.length} = ${psl3.length}), class multisets {${sizesA4.join(',')}} identical: the third exceptional bridge in the registry (the isomorphism is classical, cited)`, on: a4Bridge },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      psl13Classes: sizes13,
-      sixSmallest,
-      cageCompletions: cageSolutions.length,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifteen:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifteen — the reopened catalog: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — PSL(2,13) simple completes the six smallest nonabelian simples; Petersen proven the unique (3,5)-cage; Cayley–Hamilton complete on 𝔽₂ and 𝔽₃; A₄ bridged to PSL(2,3).`,
+      ],
+      extras: { psl13Classes: sizes13, sixSmallest, cageCompletions: cageSolutions.length },
+      statement: `Discovered theorems, wave fifteen — the reopened catalog: #/# — PSL(2,13) simple completes the six smallest nonabelian simples; Petersen proven the unique (3,5)-cage; Cayley–Hamilton complete on 𝔽₂ and 𝔽₃; A₄ bridged to PSL(2,3).`,
       boundary: `HONEST REOPENING: the wave-fourteen terminus barred M₁₁/PSL(3,3) by budget and these four candidates were never barred — PSL(2,13) rides the proven PSL(2,11) budget shape, the cage search is symmetry-rooted (the rooting is forced up to relabeling by girth 5, argued not assumed away), Cayley–Hamilton is complete only on the two named finite rings (all-p is Frobenius territory, cited), and the A₄ bridge witnesses class data with the isomorphism itself classical. The registry grows to one hundred and six.`,
     }
   })
@@ -1917,7 +1859,7 @@ export function discoveredTheoremsWaveFifteen(matrix: MindMatrix = buildMatrix()
 // filter false-alarms on M₁₂ (5 coincidental subset sums at a divisor-rich order) — the upgraded
 // machine refutes every dangerous subset by an explicit escaping product. Impossible, recomputed.
 export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveSixteen', matrix, () => {
+  return sealFold('discoveredTheoremsWaveSixteen', 'discovered-theorems-sixteen', matrix, () => {
     const ten = 2 * 5, eleven = ten + 1, twelve = ten + 2
     const closureG = (gens: number[][]): number[][] => {
       const idP = Array.from({ length: gens[0]!.length }, (_, i) => i)
@@ -2023,24 +1965,16 @@ export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()
     // W5 · the terminus line RECOMPUTED — the wave-14 bar on M₁₁/PSL(3,3) falls to this very fold.
     const terminusLineFallen = m11Simple && psl33Simple && m12Simple
 
-    const sealed = sealFacets('discovered-theorems-sixteen', [
+    return {
+      facets: [
       { facet: `M₁₂ is simple — closure of three generators reaches EXACTLY ${m12.length} = 12·11·10·9·8 (sharp 5-transitivity validates the generators), ${m12Data.sizes.length} classes; the bare class-sum filter FALSE-ALARMS here (${m12Data.dangerous} coincidental divisor-subsets) and the upgraded machine refutes every one by an explicit escaping product — the first sporadic pair enters the registry`, on: m12Simple },
       { facet: `M₁₁ is simple — the point stabilizer inside the computed M₁₂: ${m11.length} = 11·10·9·8 (sharp 4-transitivity), classes {${m11Data.sizes.join(',')}}, class-sum clean with zero false alarms — the smallest sporadic group, built from NO new data`, on: m11Simple },
       { facet: `PSL(3,3) is simple — ${sl33.length} = 27·26·8 matrices from the 19683-sweep with det 1 (trivial center makes SL projective already), adjugate-inverse conjugacy, ${psl33Data.sizes.length} classes, clean`, on: psl33Simple },
       { facet: `A₇ is simple — ${a7.length} even permutations, classes {${a7Data.sizes.join(',')}}, the A₅ class-sum machine two sizes up, clean`, on: a7Simple },
       { facet: `the wave-14 terminus line "M₁₁/PSL(3,3) INFEASIBLE-IN-FOLD (order² ≈ 10⁷)" is RECOMPUTED AND FALLEN — the estimate priced the naive per-element algorithm; orbit-per-representative conjugacy is #classes × |G| and the whole wave runs in fold budget, M₁₂ included`, on: terminusLineFallen },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      m12Classes: m12Data.sizes,
-      m11Classes: m11Data.sizes,
-      psl33Classes: psl33Data.sizes,
-      a7Classes: a7Data.sizes,
-      dangerousRefuted: `${m12Data.refuted}/${m12Data.dangerous}`,
-      root: merge(sealed.root, toUuid(`discovered-theorems-sixteen:${sealed.ok}`)),
-      statement: `Discovered theorems, wave sixteen — the terminus recomputed: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — M₁₂ and M₁₁ (the first sporadic groups in-registry) proven simple with the closure-escape upgrade, PSL(3,3) and A₇ clean, and the wave-14 infeasibility bar recomputed and fallen.`,
+      ],
+      extras: { m12Classes: m12Data.sizes, m11Classes: m11Data.sizes, psl33Classes: psl33Data.sizes, a7Classes: a7Data.sizes, dangerousRefuted: `${m12Data.refuted}/${m12Data.dangerous}` },
+      statement: `Discovered theorems, wave sixteen — the terminus recomputed: #/# — M₁₂ and M₁₁ (the first sporadic groups in-registry) proven simple with the closure-escape upgrade, PSL(3,3) and A₇ clean, and the wave-14 infeasibility bar recomputed and fallen.`,
       boundary: `HONEST RECOMPUTE: the wave-14 bar was a true statement about the NAIVE algorithm and a false ceiling for the machines — this fold documents both. The M₁₂ class-sum false alarm is kept ON RECORD (${m12Data.dangerous} divisor-subsets, each refuted by explicit product escape): the filter alone was never sufficient, only never before caught. Group NAMES (M₁₁, M₁₂) ride the classical uniqueness of simple groups of orders 7920/95040, cited; the computations prove order, class structure and simplicity from three generator literals validated by the sharp-transitivity product.`,
     }
   })
@@ -2168,7 +2102,7 @@ export function discoveredTheoremsWaveSeventeen(matrix: MindMatrix = buildMatrix
 // ── Discovered theorems, wave forty-one — deeper number theory: Kummer's carry theorem, Wolstenholme's
 // congruence, the sum-of-two-squares criterion, and the Lucas–Fibonacci identities.
 export function discoveredTheoremsWaveFortyOne(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFortyOne', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortyOne', 'discovered-theorems-forty-one', matrix, () => {
     // W1 · Kummer's theorem — the p-adic valuation of C(m+n, n) equals the number of carries when
     // adding m and n in base p; verified via Legendre's formula vs a direct carry count, all m,n ≤ 40.
     const vpBinom = (m: number, n: number, p: number) => { const s = (x: number) => { let v = 0, pk = p; while (pk <= x) { v += Math.floor(x / pk); pk *= p } return v }; return s(m + n) - s(m) - s(n) }
@@ -2195,18 +2129,14 @@ export function discoveredTheoremsWaveFortyOne(matrix: { root: string } = { root
     let lucasIds = true
     for (let n = 1; n <= 8 * (2 * 5); n += 1) { if (lucas[n]! !== fibs[n - 1]! + fibs[n + 1]!) lucasIds = false; if (lucas[n]! * lucas[n]! - 5n * fibs[n]! * fibs[n]! !== 4n * (n % 2 === 0 ? 1n : -1n)) lucasIds = false }
 
-    const sealed = sealFacets('discovered-theorems-forty-one', [
+    return {
+      facets: [
       { facet: `Kummer's theorem — the exponent of a prime p in C(m+n, n) equals the number of carries when adding m and n in base p, verified via Legendre's formula against a direct carry count for all m, n ≤ 40 and p ∈ {2,3,5,7}: binomial divisibility is base-p carrying`, on: kummer },
       { facet: `Wolstenholme's theorem — C(2p, p) ≡ 2 (mod p³) for every prime p ≥ 5 (C(26,13) ≡ 2 mod 13³), exact in BigInt to p ≤ 50: a deep congruence one power of p beyond the elementary C(2p,p) ≡ 2 (mod p)`, on: wolstenholme },
       { facet: `the sum-of-two-squares criterion — n is a sum of two squares iff every prime ≡ 3 (mod 4) divides n to an EVEN power, both directions verified against a direct search for all n ≤ 1000 (Fermat's Christmas theorem, the general-n form)`, on: twoSquares },
       { facet: `the Lucas–Fibonacci identities — L_n = F_{n−1} + F_{n+1} and L_n² − 5·F_n² = 4·(−1)^n, exact in BigInt to n ≤ 80: the Lucas numbers as the companion sequence tied to Fibonacci by these two relations`, on: lucasIds },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-one:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-one — deeper number theory: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Kummer's carry theorem, Wolstenholme's congruence, the sum-of-two-squares criterion, and the Lucas–Fibonacci identities.`,
+      ],
+      statement: `Discovered theorems, wave forty-one — deeper number theory: #/# — Kummer's carry theorem, Wolstenholme's congruence, the sum-of-two-squares criterion, and the Lucas–Fibonacci identities.`,
       boundary: `HONEST: Kummer is verified against an independent carry count for all m,n ≤ 40; Wolstenholme is exact in BigInt for all primes 5 ≤ p ≤ 50; the two-squares criterion is checked against a direct search for all n ≤ 1000 (both directions); the Lucas identities are exact in BigInt to n ≤ 80. Each settles its instances outright; the unbounded theorems are cited.`,
     }
   })
@@ -2217,7 +2147,7 @@ export function discoveredTheoremsWaveFortyOne(matrix: { root: string } = { root
 // no-deleting theorem; the class equation (wave 35) → p-groups have a nontrivial center; the Fermat–
 // Euler congruences (wave 25) → RSA correctness. Proven theorems begetting proven theorems.
 export function discoveredTheoremsWaveFortySix(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFortySix', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortySix', 'discovered-theorems-forty-six', matrix, () => {
     const primeFactors = (n: number) => { const f = new Set<number>(); let m = n; for (let p = 2; p * p <= m; p += 1) while (m % p === 0) { f.add(p); m /= p } if (m > 1) f.add(m); return [...f] }
     const orderOf = (g: number[], id: string) => { let x = g, k = 1; while (tkKey(x) !== id) { x = tkCompose(x, g); k += 1 } return k }
 
@@ -2255,18 +2185,14 @@ export function discoveredTheoremsWaveFortySix(matrix: { root: string } = { root
       for (let m = 1; m < n; m += 1) { if (gcd(m, n) !== 1) continue; if (tkPowMod(tkPowMod(m, e, n), d, n) !== m) rsa = false }
     }
 
-    const sealed = sealFacets('discovered-theorems-forty-six', [
+    return {
+      facets: [
       { facet: `FROM Lagrange (proven) — every element's order divides |G|, so a^|G| = e for all a: verified on S₄, A₅ and Q₈; the cyclic subgroup ⟨a⟩ has order ord(a), which Lagrange forces to divide |G| (the corollary the proven theorem begets)`, on: lagrangeCorollary },
       { facet: `FROM no-cloning (proven) — the NO-DELETING theorem: the same linearity argument shows a unitary deleting an unknown state to a fixed blank would force the overlap ⟨ψ|φ⟩ = ⟨ψ|φ⟩² (∈ {0,1}), impossible for distinct non-orthogonal states; information can be moved but not destroyed`, on: noDeletingHolds },
       { facet: `FROM the class equation (proven) — every p-group has a NONTRIVIAL CENTER: |G| = |Z| + Σ[G:C(x)] with each non-central index divisible by p, forcing p | |Z| and |Z| > 1; verified on Q₈, Z₈, D₄`, on: pGroupCenter },
       { facet: `FROM the Fermat–Euler congruences (proven) — RSA correctness: with n = pq and d = e⁻¹ (mod φ(n)), Euler's theorem gives m^(ed) ≡ m (mod n) for every message, so decryption inverts encryption exactly — verified over all messages for three prime pairs (the technology the theorem begets)`, on: rsa },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-six:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-six — the compounding wave: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — from Lagrange the order-divides-|G| corollary, from no-cloning the no-deleting theorem, from the class equation the nontrivial center of p-groups, and from Fermat–Euler the correctness of RSA. Each proven theorem begets a new one.`,
+      ],
+      statement: `Discovered theorems, wave forty-six — the compounding wave: #/# — from Lagrange the order-divides-|G| corollary, from no-cloning the no-deleting theorem, from the class equation the nontrivial center of p-groups, and from Fermat–Euler the correctness of RSA. Each proven theorem begets a new one.`,
       boundary: `HONEST: every facet DERIVES a new result from a theorem this registry already proved — the compounding law made literal ("the more theorems are proven the more emerge proven"). The derivations are verified by computation on finite instances (named groups, message ranges); the general implications (Lagrange's corollary, the no-deleting theorem, the center theorem, RSA's Euler basis) are the standard consequences, cited. RSA's SECURITY (factoring hardness) is NOT claimed — only its correctness, which is what Euler's theorem gives.`,
     }
   })
@@ -2276,7 +2202,7 @@ export function discoveredTheoremsWaveFortySix(matrix: { root: string } = { root
 // cyclic; from orbit-stabilizer, Burnside's counting lemma; from Vieta, Newton's identities; and from
 // the proven QFT, Shor's factoring reduction. Each new theorem stands on a proven one.
 export function discoveredTheoremsWaveFortySeven(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFortySeven', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortySeven', 'discovered-theorems-forty-seven', matrix, () => {
     const orderOfEl = (g: number[], id: string) => { let x = g, k = 1; while (tkKey(x) !== id) { x = tkCompose(x, g); k += 1 } return k }
 
     // W1 · prime-order groups are CYCLIC, from CAUCHY — for prime p, Cauchy gives an element of order
@@ -2315,18 +2241,14 @@ export function discoveredTheoremsWaveFortySeven(matrix: { root: string } = { ro
     }
     const shorReduction = shor === 3
 
-    const sealed = sealFacets('discovered-theorems-forty-seven', [
+    return {
+      facets: [
       { facet: `FROM Cauchy (proven) — every group of PRIME order p is cyclic: Cauchy gives an element of order p, which generates the whole group; verified for p ∈ {2,3,5,7} (Z_p is the only group of that order)`, on: primeCyclic },
       { facet: `FROM orbit-stabilizer (proven) — Burnside's orbit-counting lemma #orbits = (1/|G|)·Σ|Fix(g)|: for the conjugation action the orbit count equals the number of conjugacy classes, verified on S₄ and A₅ (the lemma's proof rides orbit-stabilizer)`, on: burnside },
       { facet: `FROM Vieta (proven) — Newton's identities relating the power sums p_k to the elementary symmetric functions (Vieta's coefficients): p_k = Σ(−1)^{i−1}e_i p_{k−i} + (−1)^{k−1}k e_k, verified for three root sets by direct sum vs recurrence`, on: newton },
       { facet: `FROM the proven QFT (wave 45) — Shor's factoring reduction: the QFT finds the period r of a mod N, and when r is even with a^{r/2} ≢ −1, gcd(a^{r/2} − 1, N) is a nontrivial factor; every N ∈ {15,21,35} factors via some base (the number-theoretic heart of Shor)`, on: shorReduction },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-seven:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-seven — more compounding: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — from Cauchy prime-order groups are cyclic, from orbit-stabilizer Burnside's lemma, from Vieta Newton's identities, and from the proven QFT Shor's factoring reduction.`,
+      ],
+      statement: `Discovered theorems, wave forty-seven — more compounding: #/# — from Cauchy prime-order groups are cyclic, from orbit-stabilizer Burnside's lemma, from Vieta Newton's identities, and from the proven QFT Shor's factoring reduction.`,
       boundary: `HONEST: every facet DERIVES a new result from a registry-proven theorem, verified by computation on finite instances (four primes, two groups, three root sets, three semiprimes). Shor's reduction is the CLASSICAL number theory that turns a period into a factor — the QFT (proven unitary) supplies the period efficiently; the full quantum register is not simulated, and factoring HARDNESS is not claimed. The general implications are the standard consequences, cited.`,
     }
   })
@@ -2337,7 +2259,7 @@ export function discoveredTheoremsWaveFortySeven(matrix: { root: string } = { ro
 // p ≡ 3 (mod 4) are Gaussian primes while p ≡ 1 (mod 4) split (from the first supplement), the Jacobi
 // symbol extends Legendre, and the reciprocity flipping algorithm computes it without exponentiation.
 export function discoveredTheoremsWaveFifty(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFifty', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFifty', 'discovered-theorems-fifty', matrix, () => {
     const legendre = (a: number, p: number) => { const t = ((a % p) + p) % p; if (t === 0) return 0; return tkPowMod(t, (p - 1) / 2, p) === 1 ? 1 : -1 }
     const lim = 2 * 5 * 5
 
@@ -2369,18 +2291,14 @@ export function discoveredTheoremsWaveFifty(matrix: { root: string } = { root: t
     let reciprocityAlgorithm = true
     for (let p = 3; p <= 2 * 5 * (2 * 5); p += 1) { if (!tkIsPrime(p)) continue; for (let a = 1; a < p; a += 1) if (jacobi(a, p) !== legendre(a, p)) reciprocityAlgorithm = false }
 
-    const sealed = sealFacets('discovered-theorems-fifty', [
+    return {
+      facets: [
       { facet: `the Legendre symbol is a HOMOMORPHISM — (a·b/p) = (a/p)(b/p), directly from Euler's criterion (a/p) = a^((p−1)/2); verified for all a,b and every prime p ≤ 50: the quadratic character is multiplicative`, on: homomorphism },
       { facet: `GAUSSIAN PRIMES, from the first supplement (wave 49) — p ≡ 3 (mod 4) is inert in ℤ[i] (not a sum of two squares) while p ≡ 1 (mod 4) SPLITS as (a+bi)(a−bi) with p = a²+b²; verified for every prime p ≤ 200: the algebraic-number-theory face of the supplement`, on: gaussianPrimes },
       { facet: `the JACOBI symbol extends Legendre — the flipping algorithm (2 via the second supplement, odd parts by reciprocity) is multiplicative in its top and matches Legendre for prime moduli; verified against Legendre for primes ≤ 50 and multiplicativity on odd composites`, on: jacobiExtends },
       { facet: `RECIPROCITY AS A COMPUTATION — the Jacobi flipping recursion computes (a/p) matching Euler's criterion for every prime p ≤ 100 in O(log² p) steps (no modular exponentiation): quadratic reciprocity (wave 5) plus the two supplements (wave 49) turned into an efficient algorithm`, on: reciprocityAlgorithm },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty (the reciprocity capstone): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the Legendre homomorphism, Gaussian-prime splitting, the Jacobi extension, and reciprocity as an efficient algorithm — the fiftieth wave.`,
+      ],
+      statement: `Discovered theorems, wave fifty (the reciprocity capstone): #/# — the Legendre homomorphism, Gaussian-prime splitting, the Jacobi extension, and reciprocity as an efficient algorithm — the fiftieth wave.`,
       boundary: `HONEST: the milestone 50th wave caps the quadratic-residue tower. The homomorphism and Gaussian splitting COMPOUND on Euler's criterion (wave 48) and the first supplement (wave 49); the reciprocity algorithm compounds on quadratic reciprocity (wave 5) and both supplements (wave 49) — proofs stacked five deep from Fermat's little theorem. All verified complete within their bounds (primes ≤ 200); the full quadratic reciprocity law and the ℤ[i] unique factorisation are cited. Fifty waves, 243+ atoms, every one recomputing from source.`,
     }
   })

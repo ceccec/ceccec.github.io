@@ -2,7 +2,7 @@
 import { phase } from '../../6/4'
 import { chsh } from '../../mountain/vortex'
 import { bb84, bernsteinVazirani, concurrence, deutschJozsa, entanglementSwap, ghzMermin, interactionFreeMeasurement, simon } from '../../9/1'
-import { tkCompose, tkKey, tkClosure, tkPowMod, tkIsPrime } from '../../9/1'
+import { tkCompose, tkKey, tkClosure, tkPowMod, tkIsPrime, sealFold } from '../../9/1'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
 import {    createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, sealFacets, toUuid, prng, gcd, VORTEX_SEQUENCE } from '../../0'
@@ -1499,7 +1499,7 @@ export function theoremNavigation(matrix: MindMatrix = buildMatrix()) {
 // ── Discovered theorems, wave forty-two — algorithms and integer sequences: the Josephus survivor,
 // the reflected Gray code, and the Perrin primality signature.
 export function discoveredTheoremsWaveFortyTwo(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveFortyTwo', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortyTwo', 'discovered-theorems-forty-two', matrix, () => {
     // W1 · the Josephus problem (k = 2) — the survivor's position is J(n) = 2·(n − 2^⌊log₂n⌋) + 1,
     // matched against a direct circle-elimination simulation for all n ≤ 200.
     const josSim = (n: number) => { const a = Array.from({ length: n }, (_, i) => i + 1); let i = 0; while (a.length > 1) { i = (i + 1) % a.length; a.splice(i, 1) } return a[0]! }
@@ -1526,17 +1526,13 @@ export function discoveredTheoremsWaveFortyTwo(matrix: MindMatrix = buildMatrix(
     let perrin = true
     for (let n = 2; n <= 2 * 100; n += 1) if (isPrime(n) && perrinMod(n) !== 0) perrin = false
 
-    const sealed = sealFacets('discovered-theorems-forty-two', [
+    return {
+      facets: [
       { facet: `the Josephus problem — with every second person eliminated in a circle of n, the survivor sits at J(n) = 2·(n − 2^⌊log₂n⌋) + 1, matching a direct elimination simulation for all n ≤ 200: the closed form for the counting-out game`, on: josephus },
       { facet: `the reflected Gray code — g(i) = i XOR (i >> 1) lists 0..2ⁿ−1 so that consecutive codes (cyclically) differ in exactly ONE bit, a genuine permutation for all n ≤ 12: the single-bit-change ordering behind rotary encoders and Karnaugh maps`, on: gray },
       { facet: `the Perrin primality signature — P(n) ≡ 0 (mod n) for EVERY prime n ≤ 200 (a necessary condition), while the smallest composite passing it is 271441 = 521² (cited): a fast primality SIGNAL that is necessary but not sufficient, exactly like Fermat's`, on: perrin },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-two:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-two — algorithms and sequences: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the Josephus survivor J(n), the reflected Gray code's single-bit ordering, and the Perrin primality signature.`,
+      ],
+      statement: `Discovered theorems, wave forty-two — algorithms and sequences: #/# — the Josephus survivor J(n), the reflected Gray code's single-bit ordering, and the Perrin primality signature.`,
       boundary: `HONEST: Josephus is checked against a direct simulation for all n ≤ 200; the Gray code's permutation-and-single-bit-change property is complete for all n ≤ 12; the Perrin signature is verified as NECESSARY for all primes ≤ 200, with its first pseudoprime (271441) recorded as the honest limit — the test does not prove primality. Each settles its instances; the unbounded claims are cited.`,
     }
   })
@@ -1547,7 +1543,7 @@ export function discoveredTheoremsWaveFortyTwo(matrix: MindMatrix = buildMatrix(
 // Burnside (wave 47), a cube has 10 two-colorings; from Newton (wave 47), Σr² = e₁²−2e₂; from
 // Fermat's little, Euler's criterion. Proofs built on proofs built on proofs.
 export function discoveredTheoremsWaveFortyEight(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveFortyEight', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFortyEight', 'discovered-theorems-forty-eight', matrix, () => {
     // W1 · groups of order p² are ABELIAN, from the p-GROUP CENTER theorem (wave 46) — Z(G) is
     // nontrivial, so |Z| ∈ {p, p²}; if p then G/Z has order p hence cyclic, forcing G abelian; if p²
     // then G = Z. Verified on all groups of order 4 (Z₄, V₄) and order 9 (Z₉, Z₃×Z₃).
@@ -1584,18 +1580,14 @@ export function discoveredTheoremsWaveFortyEight(matrix: MindMatrix = buildMatri
     let eulerCriterion = true
     for (let p = 3; p <= 2 * 5 * 5; p += 1) { if (!tkIsPrime(p)) continue; const qr = new Set<number>(); for (let x = 1; x < p; x += 1) qr.add((x * x) % p); for (let a = 1; a < p; a += 1) if (tkPowMod(a, (p - 1) / 2, p) !== (qr.has(a) ? 1 : p - 1)) eulerCriterion = false }
 
-    const sealed = sealFacets('discovered-theorems-forty-eight', [
+    return {
+      facets: [
       { facet: `FROM the p-group center theorem (wave 46, itself compounded) — every group of order p² is ABELIAN: the nontrivial center forces G/Z cyclic hence G abelian; verified on Z₄, V₄, Z₉, Z₃×Z₃ (second-order compounding)`, on: pSquaredAbelian },
       { facet: `FROM Burnside (wave 47, itself compounded) — a cube has EXACTLY 10 two-colorings of its faces: the 24 proper rotations averaged over 2^{face-cycles} give (1/24)·Σ = 10 (second-order compounding, the lemma applied to the cube's rotation group)`, on: cubeColorings },
       { facet: `FROM Newton's identities (wave 47) — the sum of squares of the roots is e₁² − 2e₂ (the k=2 relation p₂ = e₁·p₁ − 2e₂), verified on three root sets: a concrete symmetric-function identity from the general recurrence`, on: sumSquares },
       { facet: `FROM Fermat's little theorem — Euler's criterion: a^((p−1)/2) ≡ +1 (mod p) iff a is a quadratic residue, −1 otherwise — the square root of Fermat's a^(p−1) ≡ 1, verified for every prime p ≤ 50`, on: eulerCriterion },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-forty-eight:${sealed.ok}`)),
-      statement: `Discovered theorems, wave forty-eight — second-order compounding: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — order-p² groups are abelian (from the p-group center), a cube has 10 two-colorings (from Burnside), Σr² = e₁²−2e₂ (from Newton), and Euler's criterion (from Fermat's little).`,
+      ],
+      statement: `Discovered theorems, wave forty-eight — second-order compounding: #/# — order-p² groups are abelian (from the p-group center), a cube has 10 two-colorings (from Burnside), Σr² = e₁²−2e₂ (from Newton), and Euler's criterion (from Fermat's little).`,
       boundary: `HONEST: this wave compounds on the COMPOUNDING waves — order-p² abelian rides the p-group-center theorem (wave 46), the cube count rides Burnside (wave 47), each itself derived from a proven atom: proofs on proofs on proofs, the emergence law iterated. Verified by computation on finite instances (four groups, the 24 cube rotations, three root sets, primes ≤ 50); the general theorems are cited.`,
     }
   })
@@ -1605,7 +1597,7 @@ export function discoveredTheoremsWaveFortyEight(matrix: MindMatrix = buildMatri
 // numbers ride the sum-of-squares theorems through the identity 8·T_k + 1 = (2k+1)², turning
 // Legendre's three-square and Fermat's two-square into Gauss's Eureka and its two-triangular companion.
 export function discoveredTheoremsWaveFiftyTwo(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveFiftyTwo', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftyTwo', 'discovered-theorems-fifty-two', matrix, () => {
     const isSumK = (n: number, k: number): boolean => { if (k === 1) { const r = Math.round(Math.sqrt(n)); return r * r === n } for (let a = 0; a * a <= n; a += 1) if (isSumK(n - a * a, k - 1)) return true; return false }
     const lim = 3 * 100
     const triSet: number[] = []; for (let k = 0; k * (k + 1) / 2 <= lim; k += 1) triSet.push(k * (k + 1) / 2)
@@ -1632,18 +1624,14 @@ export function discoveredTheoremsWaveFiftyTwo(matrix: MindMatrix = buildMatrix(
     let twoTri = true
     for (let n = 0; n <= lim; n += 1) { let s2t = false; for (const a of triSet) { if (a > n) break; if (triHas.has(n - a)) { s2t = true; break } } if (s2t !== isSumK(4 * n + 1, 2)) twoTri = false }
 
-    const sealed = sealFacets('discovered-theorems-fifty-two', [
+    return {
+      facets: [
       { facet: `the TRIANGULAR–SQUARE bridge — 8·T_k + 1 = (2k+1)² for every triangular number T_k = k(k+1)/2: the exact identity turning a square into an odd square, the algebraic key that carries the sum-of-squares tower to the figurate numbers`, on: triSquareId },
       { facet: `FROM Legendre's three-square (wave 51) — 8n+3 is ALWAYS a sum of three squares: 8n+3 ≡ 3 (mod 8) is never of the form 4^a(8b+7), so the exclusion never fires; verified for every n ≤ 300 (the residue channel that survives the three-square obstruction)`, on: eightBridge },
       { facet: `GAUSS'S EUREKA, COMPOUNDING on wave 51 — every natural number is a sum of THREE triangular numbers: 8n+3 = odd²+odd²+odd² (three squares forced odd by mod 8, W2) and 2k+1 ↔ T_k (W1); verified by exhaustive witness for every n ≤ 300 (Gauss's own "ΕΥΡΗΚΑ")`, on: eureka },
       { facet: `FROM Fermat's two-squares (wave 51) — n is a sum of TWO triangular numbers iff 4n+1 is a sum of two squares: the companion bridge 4n+1 = odd²+even² ↔ T_a+T_b; verified for every n ≤ 300 (two-squares projected onto the triangular lattice)`, on: twoTri },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-two:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-two (the figurate tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the 8T_k+1 = (2k+1)² bridge, 8n+3 always three squares, Gauss's Eureka (every n is three triangular numbers), and two-triangular ↔ two-squares.`,
+      ],
+      statement: `Discovered theorems, wave fifty-two (the figurate tower): #/# — the 8T_k+1 = (2k+1)² bridge, 8n+3 always three squares, Gauss's Eureka (every n is three triangular numbers), and two-triangular ↔ two-squares.`,
       boundary: `HONEST: Gauss's Eureka COMPOUNDS on wave 51 — every n is three triangular numbers because 8n+3 is three squares (Legendre, wave 51), all odd by mod 8, and each odd square is 8·T+1. The two-triangular facet rides Fermat's two-squares the same way. All four verified complete for every n ≤ 300 (the general theorems — Gauss, Legendre, Fermat — cited); the figurate tower is the sum-of-squares tower read through the triangular–square identity.`,
     }
   })
@@ -1713,7 +1701,7 @@ export function theoremProvenance(matrix: MindMatrix = buildMatrix()) {
 // proof: the 5 Platonic solids, the 6 regular 4-polytopes, Ramsey R(3,3) = 6, the labeled Fano count
 // 30 forcing |Aut| = 168 = |GL₃(𝔽₂)|, and (computed half + cited half) no projective plane of order 6.
 export function discoveredTheoremsProvenWave(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsProvenWave', matrix, () => {
+  return sealFold('discoveredTheoremsProvenWave', 'discovered-theorems', matrix, () => {
     // T1 · exactly 5 Platonic solids — q faces at a vertex need q(1−2/p) < 2 ⇔ (p−2)(q−2) < 4; for
     // p ≥ 6 or q ≥ 6 the product is ≥ 4 (monotone), so the 3..99 sweep is the WHOLE space.
     const platonic: { p: number; q: number; V: number; E: number; F: number }[] = []
@@ -1792,23 +1780,16 @@ export function discoveredTheoremsProvenWave(matrix: MindMatrix = buildMatrix())
     for (let a = 0; a * a <= 6; a += 1) for (let b = a; a * a + b * b <= 6; b += 1) if (a * a + b * b === 6) sumOfTwoSquares = true
     const bruckRyserSix = 6 % 4 === 2 && !sumOfTwoSquares
 
-    const sealed = sealFacets('discovered-theorems', [
+    return {
+      facets: [
       { facet: `exactly 5 Platonic solids — the Diophantine sweep (p−2)(q−2) < 4 over the whole bounded space yields ${platonic.length} solutions with integer V-E-F ${platonic.map((s) => `${s.V}-${s.E}-${s.F}`).join(', ')}, each satisfying Euler V−E+F = 2`, on: platonicFive },
       { facet: `exactly 6 regular 4-polytopes — Platonic cells + vertex figures + the Schläfli inequality sin(π/p)sin(π/r) > cos(π/q) leave ${polytopes4.length}: ${polytopes4.join(' ')}`, on: sixPolytopes },
       { facet: `Ramsey R(3,3) = 6 — all 32768 2-colorings of K₆ contain a monochromatic triangle (complete exhaustion) while the pentagon/pentagram coloring of K₅ contains none`, on: ramseySix },
       { facet: `the Fano plane is the unique PG(2,2) with |Aut| = 168 — exhaustive backtracking counts ${labeledFanos} labeled Steiner S(2,3,7) systems, brute-force counting finds |GL₃(𝔽₂)| = ${gl32} = 7·6·4, and 7!/${labeledFanos} = ${factorial7 / labeledFanos} — one orbit, two independent routes to 168`, on: fanoUnique },
       { facet: `no projective plane of order 6 — COMPUTED: 6 ≡ 2 (mod 4) and no a² + b² = 6 exists (exhaustive); the Bruck–Ryser step completing the proof is CITED (1949), as is Tarry's 36-officers exhaustion (1900)`, on: bruckRyserSix },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      platonic,
-      polytopes4,
-      labeledFanos,
-      gl32,
-      root: merge(sealed.root, toUuid(`discovered-theorems:${sealed.ok}`)),
-      statement: `Discovered theorems, proven: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — five theorems absent from the registry until this wave, four proven COMPLETELY by finite computation (5 Platonic solids; 6 regular 4-polytopes ${polytopes4.join(' ')}; R(3,3) = 6 by 32768-case exhaustion; ${labeledFanos} labeled Fanos ⇒ |Aut| = ${gl32} = |GL₃(𝔽₂)| twice over) and one half-computed half-cited (no plane of order 6).`,
+      ],
+      extras: { platonic, polytopes4, labeledFanos, gl32 },
+      statement: `Discovered theorems, proven: #/# — five theorems absent from the registry until this wave, four proven COMPLETELY by finite computation (5 Platonic solids; 6 regular 4-polytopes ${polytopes4.join(' ')}; R(3,3) = 6 by 32768-case exhaustion; ${labeledFanos} labeled Fanos ⇒ |Aut| = ${gl32} = |GL₃(𝔽₂)| twice over) and one half-computed half-cited (no plane of order 6).`,
       boundary: `HONEST: "discovered" means absent from this codebase's theoremAtoms registry, NOT new to humanity — these are documented theorems whose finite statements make exhaustive computation a complete proof. The Bruck–Ryser step of T5 and Tarry's exhaustion are CITED, not recomputed. Genuinely open problems remain OPEN in openLeadsAlgebraDecoded beside this wave; none is touched by these proofs.`,
     }
   })
@@ -2111,7 +2092,7 @@ export function discoveredTheoremsWaveTwo(matrix: MindMatrix = buildMatrix()) {
 // the Petersen graph proven non-Hamiltonian by full search, Wilson's criterion exact to 100, and
 // gcd(F_m, F_n) = F_gcd(m,n) on the one-math gcd.
 export function discoveredTheoremsWaveThree(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveThree', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThree', 'discovered-theorems-three', matrix, () => {
     // W1 · exactly 3 regular tilings — the EQUALITY case (p−2)(q−2) = 4 of the same sweep whose
     // strict inequality proved the 5 Platonic solids: flat vertices, not closed ones.
     const tilings: string[] = []
@@ -2249,23 +2230,17 @@ export function discoveredTheoremsWaveThree(matrix: MindMatrix = buildMatrix()) 
     for (let mIdx = 1; mIdx <= fibBound; mIdx += 1) for (let nIdx = 1; nIdx <= fibBound; nIdx += 1)
       if (gcd(fib[mIdx]!, fib[nIdx]!) !== fib[gcd(mIdx, nIdx)]!) fibGcd = false
 
-    const sealed = sealFacets('discovered-theorems-three', [
+    return {
+      facets: [
       { facet: `exactly 3 regular tilings — the equality case (p−2)(q−2) = 4 of the SAME sweep that proved the 5 solids yields ${tilings.join(' ')}: the flat boundary between closed polyhedra and the plane`, on: threeTilings },
       { facet: `no simple group of order 30 — Sylow counts n₅ ∈ {${n5.join(',')}}, n₃ ∈ {${n3.join(',')}} by congruence enumeration; both maximal forces ${overflow} > 29 elements, so a Sylow subgroup is normal (Sylow's theorems cited)`, on: noSimple30 },
       { facet: `Q₈ is the smallest Hamiltonian group — ${subgroups.length} subgroups enumerated, all normal, ij ≠ ji; minimality by exhaustion: orders 1,2,3,5,7 prime-cyclic, order 4 exhausted fresh (${canon4.size} groups, both abelian), order 6 sealed with S₃'s non-normal subgroup exhibited`, on: hamiltonianMinimal },
       { facet: `the Petersen graph is non-Hamiltonian — 3-regular (${threeRegular}), girth ${girth}, and the COMPLETE cycle search finds no Hamiltonian cycle: the standard counterexample machine, proven not asserted`, on: petersen },
       { facet: `Wilson's criterion exact to 100 — (n−1)! ≡ −1 (mod n) holds for EXACTLY the primes, both directions, BigInt (Wilson/Lagrange cited for all n)`, on: wilson },
       { facet: `gcd(F_m, F_n) = F_gcd(m,n) for all m, n ≤ 30 — 900 identities on the ONE-MATH gcd (the strong divisibility law; Lucas cited for all m, n)`, on: fibGcd },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      tilings,
-      q8Subgroups: subgroups.length,
-      girth,
-      root: merge(sealed.root, toUuid(`discovered-theorems-three:${sealed.ok}`)),
-      statement: `Discovered theorems, wave three: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the 3 regular tilings as the equality case of the sealed Platonic sweep; no simple group of order 30 by pure Sylow arithmetic; Q₈ the smallest Hamiltonian group (all ${subgroups.length} subgroups normal, minimality by exhaustion down the orders); the Petersen graph non-Hamiltonian by complete search (girth ${girth}); Wilson exact to 100; and 900 Fibonacci-gcd identities on the one-math gcd.`,
+      ],
+      extras: { tilings, q8Subgroups: subgroups.length, girth },
+      statement: `Discovered theorems, wave three: #/# — the 3 regular tilings as the equality case of the sealed Platonic sweep; no simple group of order 30 by pure Sylow arithmetic; Q₈ the smallest Hamiltonian group (all ${subgroups.length} subgroups normal, minimality by exhaustion down the orders); the Petersen graph non-Hamiltonian by complete search (girth ${girth}); Wilson exact to 100; and 900 Fibonacci-gcd identities on the one-math gcd.`,
       boundary: `HONEST: complete finite computations throughout — the cited frames (Sylow's theorems, Wilson/Lagrange, Lucas' strong divisibility) name the all-n generalisations, the bounded and structural claims are computed in full. Q₈'s minimality consumes the sealed order-6 exhaustion — compounding continues inside the discovery waves themselves.`,
     }
   })
@@ -2276,7 +2251,7 @@ export function discoveredTheoremsWaveThree(matrix: MindMatrix = buildMatrix()) 
 // birthday threshold 23, and Cayley's n^(n−2) verified by RAW exhaustive tree counting (independent
 // of the Prüfer bijection that usually proves it).
 export function discoveredTheoremsWaveFour(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveFour', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFour', 'discovered-theorems-four', matrix, () => {
     // W1 · Gauss–Wantzel, arithmetic half — {n ≤ 100 : φ(n) = 2^m} equals {2^a · distinct Fermat
     // primes}; both sides computed independently, the geometry (constructibility) is cited.
     const phi = (n: number) => { let r = n; for (let p = 2; p * p <= n; p += 1) if (n % p === 0) { while (n % p === 0) n /= p; r -= r / p } if (n > 1) r -= r / n; return r }
@@ -2337,20 +2312,15 @@ export function discoveredTheoremsWaveFour(matrix: MindMatrix = buildMatrix()) {
     const counts = Array.from({ length: 7 }, (_, i) => treeCount(i + 1))
     const cayley = counts.join(',') === expected.join(',')
 
-    const sealed = sealFacets('discovered-theorems-four', [
+    return {
+      facets: [
       { facet: `Gauss–Wantzel arithmetic to 100 — {n : φ(n) a power of 2} = {2^a · distinct Fermat primes} = {${byPhi.slice(0, 12).join(',')}…} (${byPhi.length} values), both sides computed independently (the compass-and-straightedge equivalence is Gauss–Wantzel, cited)`, on: gaussWantzel },
       { facet: `Zeckendorf to 1000 — every n has EXACTLY ONE representation as non-consecutive Fibonacci numbers: the representation COUNT is computed and equals 1 for all 1000 (Zeckendorf/Lekkerkerker cited for all n) — the golden vault made countable`, on: zeckendorf },
       { facet: `the birthday threshold is exactly 23 — P(distinct) = ${roundTo(p22, 4)} at 22 and ${roundTo(p23, 4)} at 23, straddling 1/2 by direct product`, on: birthday },
       { facet: `Cayley's n^(n−2) to n = 7 — raw exhaustion over edge subsets with union-find counts ${counts.join(', ')}, matching 1, 1, 3, 16, 125, 1296, 16807 with NO Prüfer bijection assumed (Cayley cited for all n)`, on: cayley },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      constructibleCount: byPhi.length,
-      treeCounts: counts,
-      root: merge(sealed.root, toUuid(`discovered-theorems-four:${sealed.ok}`)),
-      statement: `Discovered theorems, wave four: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Gauss–Wantzel's arithmetic equivalence exact to 100 (${byPhi.length} constructible orders); Zeckendorf existence AND uniqueness to 1000; the birthday threshold exactly 23 (${roundTo(p22, 4)} vs ${roundTo(p23, 4)}); Cayley's tree counts ${counts.join(',')} by raw exhaustion.`,
+      ],
+      extras: { constructibleCount: byPhi.length, treeCounts: counts },
+      statement: `Discovered theorems, wave four: #/# — Gauss–Wantzel's arithmetic equivalence exact to 100 (${byPhi.length} constructible orders); Zeckendorf existence AND uniqueness to 1000; the birthday threshold exactly 23 (${roundTo(p22, 4)} vs ${roundTo(p23, 4)}); Cayley's tree counts ${counts.join(',')} by raw exhaustion.`,
       boundary: `HONEST: bounded statements are proven completely within their stated bounds; the all-n frames (Gauss–Wantzel geometry, Lekkerkerker, Cayley) are cited. The Cayley verification deliberately avoids the Prüfer bijection so the count is INDEPENDENT evidence, not a restatement of the standard proof.`,
     }
   })
@@ -2362,7 +2332,7 @@ export function discoveredTheoremsWaveFour(matrix: MindMatrix = buildMatrix()) {
 // pentominoes (63 fixed, 18 one-sided), and the Heawood graph achieving the Moore bound — the Fano
 // incidence graph IS the (3,6)-cage, consuming the sealed fanoLines.
 export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('discoveredTheoremsWaveFive', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFive', 'discovered-theorems-five', matrix, () => {
     // W1 · A₆ is simple — 360 even permutations, conjugacy classes under A₆ itself, class-sum test.
     const perms6: number[][] = []
     const build6 = (rest: number[], acc: number[]) => { if (!rest.length) { perms6.push(acc); return } for (const v of rest) build6(rest.filter((t) => t !== v), [...acc, v]) }
@@ -2480,24 +2450,17 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
     const moore = 2 * (kReg * kReg - kReg + 1)
     const heawoodCage = regular3 && girth6 === 6 && heawood.length === moore
 
-    const sealed = sealFacets('discovered-theorems-five', [
+    return {
+      facets: [
       { facet: `A₆ is simple — all ${a6.length} even permutations, conjugacy classes {${cSizes.join(',')}}, ${a6Normals} class-union divisors of 360: the A₅ method transfers one size up (the second rung of the infinite simple family)`, on: a6Simple },
       { facet: `exactly ${latin4} Latin squares of order 4 — FULL enumeration equals reduced·4!·3! = 4·24·6: the sealed reduced count cross-checked from below`, on: latinCounted },
       { facet: `Gauss's totient identity Σ φ(d) = n holds for every n ≤ 1000 — the cyclic group ℤ/n partitions by element order, computed complete within the bound (Gauss cited for all n)`, on: totientIdentity },
       { facet: `quadratic reciprocity COMPLETE below 100 — (p|q)(q|p) = (−1)^((p−1)/2·(q−1)/2) for all ${oddPrimes.length}·${oddPrimes.length - 1} ordered odd-prime pairs via Euler's criterion`, on: reciprocity },
       { facet: `exactly 12 pentominoes — growth enumeration finds ${fixed} fixed, ${oneSided} one-sided, ${free} free shapes (63/18/12): the classic triple computed by canonicalisation over the square's 8 symmetries`, on: pentominoes },
       { facet: `the Heawood graph is the (3,6)-cage — the Fano incidence graph is 3-regular with computed girth ${girth6}, and it ACHIEVES the Moore bound 2(k²−k+1) = ${moore}: minimality by arithmetic, consuming the sealed fanoLines`, on: heawoodCage },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      a6ClassSizes: cSizes,
-      latin4,
-      pentominoCounts: [fixed, oneSided, free],
-      heawoodGirth: girth6,
-      root: merge(sealed.root, toUuid(`discovered-theorems-five:${sealed.ok}`)),
-      statement: `Discovered theorems, wave five: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — A₆ simple ({${cSizes.join(',')}}); ${latin4} Latin squares of order 4 by full enumeration; Σφ(d) = n to 1000; quadratic reciprocity complete below 100; pentominoes ${[fixed, oneSided, free].join('/')}; the Heawood graph achieving Moore ${moore} as the (3,6)-cage on the sealed Fano lines.`,
+      ],
+      extras: { a6ClassSizes: cSizes, latin4, pentominoCounts: [fixed, oneSided, free], heawoodGirth: girth6 },
+      statement: `Discovered theorems, wave five: #/# — A₆ simple ({${cSizes.join(',')}}); ${latin4} Latin squares of order 4 by full enumeration; Σφ(d) = n to 1000; quadratic reciprocity complete below 100; pentominoes ${[fixed, oneSided, free].join('/')}; the Heawood graph achieving Moore ${moore} as the (3,6)-cage on the sealed Fano lines.`,
       boundary: `HONEST: all six are COMPLETE finite computations within their stated bounds (the totient and reciprocity all-n laws are Gauss, cited). The Heawood minimality is the Moore-bound arithmetic plus achievement — the bound IS the cage proof. Six gap candidates from theorems:gaps cleared; the scan shrinks by registration, not by catalog edits.`,
     }
   })
@@ -2518,51 +2481,54 @@ export type ProofAnimationSpec = {
   readonly ratePhi: number // φ^−k rate index — quasi-periodic, never repeats
   readonly hueDigit: number // vortex digit → hue = d·(360/9), same law as the movie layers
 }
+// ── THE CONTENT→ANIMATION TABLE (simplify & animate law) — ONE keyword→family mapping animates ANY
+// title through the one ProofAnimation renderer: theorems, monograph cards, decoded pages alike.
+const contentDigitOf = (name: string) => (([...name].reduce((s, ch) => s + ch.charCodeAt(0), 0) % 9) || 9)
+// keyword → dedicated animation family, most-specific first; a theorem takes the first family it
+// matches, so each proof gets a visual metaphor of its own subject (only the truly generic fall to vortex).
+const CONTENT_ANIMATION_FAMILIES: readonly (readonly [readonly string[], ProofAnimationKind, number, number])[] = [
+  [['fano', '7-star', 'steiner s(2,3,7)', 'hurwitz 7d', 'octonion', 'associativity independent'], 'star', 7, 3],
+  [['ramsey', 'r(3,', 'r(4,', 'van der waerden', 'schur', 'mantel', 'erdős–ko', 'erdős–sz'], 'coloring', 5, 4],
+  [['ptolemy', 'thales', 'inscribed', 'circle', 'gauss sum'], 'circle', 6, 3],
+  [['ceva', 'menelaus', 'nine-point', 'euler line', 'napoleon', 'viviani', 'heron', 'pythagor', 'sylvester–gallai', 'sylvester–frobenius', 'parallel postulate', 'pick'], 'triangle', 3, 3],
+  [['basel', 'leibniz', 'wallis', 'geometric series', 'telescop', 'power-sum', 'nicomachus', 'harmonic', 'ζ(', 'the 24', 't-duality', 'ramanujan', 'τ('], 'series', 2 * 6, 3],
+  [['platonic', 'polytope', 'tiling', 'descartes', 'n-cube', 'n-ball', 'hypercube', 'q₈', 'quaternion', 'minkowski', 'so(7)', 'genus-2', 'signature', 'non-integer dimension'], 'polytope', 5, 2],
+  [['tsirelson', 'cloning', 'ghz', 'deutsch', 'grover', 'bit-flip', 'church–turing', 'holevo', 'quantum', 'bloch', 'pauli', 'entangle', 'virasoro', 'd = 26', 'd = 10', 'hurwitz breaks', 'bosonic', 'superstring', 'spectrum', 'velocity additivity', 'ideal gas', 'carnot', 'maxwell', 'blending'], 'wave', 8, 4],
+  [['bell number', 'stirling', 'catalan bijection', 'surjection', 'matrix-tree', 'cayley', 'derangement', 'vandermonde', 'hockey', 'motzkin', 'binomial', 'sheffer', 'burnside', 'partition'], 'tree', 7, 3],
+  [['am-gm', 'cauchy-schwarz', 'cauchy–schwarz', 'rearrangement', 'inequalit', 'jensen', 'excluded middle', 'uncountable', 'commutativity independent', 'transitivity', 'compression impossible', 'reuse graph'], 'balance', 5, 3],
+  [['monty', 'gambler', 'ballot', 'coupon', 'birthday', 'shannon', 'kraft', 'entropy', 'eight riffles', 'riffle'], 'dice', 6, 4],
+  [['josephus', 'hanoi', '8-puzzle', 'kaprekar', 'busy beaver', 'perrin', 'gray code', 'de bruijn', 'pisano', 'collatz', 'non-hamiltonian', 'hamiltonian', 'petersen', 'heawood', 'graphicality', 'dirac', 'gp(n', 'dodecahedron', 'non-planar', 'cage'], 'cycle', 8, 4],
+  [['nim', 'zhegalkin', '𝔽₂³', 'lo shu', 'magic square', 'shidoku', 'officers', 'latin squares', 'pentomino'], 'lattice', 8, 5],
+  [['kirkman', 'spread', 'parallelism'], 'spreads', 2 ** 4 - 1, 4],
+  [['simple', 'sts(9)', '168', 'psl', 'groups of order', 'mathieu', 'm₁', 'gl(4,2)', 'a₈ matches', 'a₄ matches', 'a₆', 'class equation', 'orbit-stab', 'lagrange', 'cauchy theorem', 'unit group', 'hurwitz units', 'ab/ba', 'rank so(7)'], 'classes', 9, 2],
+  [['pell', 'pentagonal', 'catalan', 'fibonacci', 'farey', 'zeckendorf', 'lucas', 'cassini', 'quadratic form', 'three cubes', 'taxicab'], 'spiral', 8 * 3, 3],
+  [['prime', 'fermat', 'wolstenholme', 'kummer', 'carmichael', 'euclid', 'legendre', 'möbius', 'mobius', 'quadratic residue', 'remainder', 'crt', 'bézout', 'bezout', 'two squares', 'wilson', 'totient', 'euler', 'armstrong', 'amicable', 'divisor', 'reciprocity', 'continued fraction', 'perfect', 'bertrand', 'waring', 'graeco', 'projective plane', 'σ and τ', 'φ(d)', 'wantzel', 'frobenius', 'determinant'], 'sieve', 100, 3],
+  // appended families (checked AFTER the above, so existing assignments are unchanged) — they route
+  // the former vortex fallbacks to the visual family of their own subject (user law: dedicated animations).
+  [['gaussian', 'eisenstein', 'ℤ[i]', 'ℤ[ω]'], 'lattice', 8, 5],
+  [['vieta', 'rational root', 'newton identities', 'sum of squares of roots', 'chebyshev'], 'series', 2 * 6, 3],
+  [['superdense', 'bb84', 'bernstein', 'interaction-free', 'simon', 'shor'], 'wave', 8, 4],
+  [['order-p²'], 'classes', 9, 2],
+  [['triangular', 'convergent'], 'spiral', 8 * 3, 3],
+  [['supplement', 'multiplicative', 'order divides', 'primitive-root', 'order-(', 'midy', 'nines', 'digital root', 'divisibility'], 'sieve', 100, 3],
+]
+const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit'> => {
+  const t = theorem.toLowerCase()
+  const hit = CONTENT_ANIMATION_FAMILIES.find(([keys]) => keys.some((k) => t.includes(k)))
+  if (!hit) return { kind: 'vortex', points: 9, lines: [], ratePhi: 4 }
+  const [, kind, points, ratePhi] = hit
+  return { kind, points, lines: kind === 'star' ? fanoLines() : [], ratePhi }
+}
+
+/** Any content title → its animation spec — the visual metaphor computed, never hand-keyed. */
+export function specForContent(title: string): ProofAnimationSpec {
+  return { theorem: title, ...contentSpecOf(title), hueDigit: contentDigitOf(title) }
+}
+
 export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('proofAnimations', matrix, () => {
     const registry = theoremAtoms(matrix)
-    const fano = fanoLines()
-    const digitOf = (name: string) => (([...name].reduce((s, ch) => s + ch.charCodeAt(0), 0) % 9) || 9)
-    // keyword → dedicated animation family, most-specific first; a theorem takes the first family it
-    // matches, so each proof gets a visual metaphor of its own subject (only the truly generic fall to vortex).
-    const families: readonly (readonly [readonly string[], ProofAnimationKind, number, number])[] = [
-      [['fano', '7-star', 'steiner s(2,3,7)', 'hurwitz 7d', 'octonion', 'associativity independent'], 'star', 7, 3],
-      [['ramsey', 'r(3,', 'r(4,', 'van der waerden', 'schur', 'mantel', 'erdős–ko', 'erdős–sz'], 'coloring', 5, 4],
-      [['ptolemy', 'thales', 'inscribed', 'circle', 'gauss sum'], 'circle', 6, 3],
-      [['ceva', 'menelaus', 'nine-point', 'euler line', 'napoleon', 'viviani', 'heron', 'pythagor', 'sylvester–gallai', 'sylvester–frobenius', 'parallel postulate', 'pick'], 'triangle', 3, 3],
-      [['basel', 'leibniz', 'wallis', 'geometric series', 'telescop', 'power-sum', 'nicomachus', 'harmonic', 'ζ(', 'the 24', 't-duality', 'ramanujan', 'τ('], 'series', 2 * 6, 3],
-      [['platonic', 'polytope', 'tiling', 'descartes', 'n-cube', 'n-ball', 'hypercube', 'q₈', 'quaternion', 'minkowski', 'so(7)', 'genus-2', 'signature', 'non-integer dimension'], 'polytope', 5, 2],
-      [['tsirelson', 'cloning', 'ghz', 'deutsch', 'grover', 'bit-flip', 'church–turing', 'holevo', 'quantum', 'bloch', 'pauli', 'entangle', 'virasoro', 'd = 26', 'd = 10', 'hurwitz breaks', 'bosonic', 'superstring', 'spectrum', 'velocity additivity', 'ideal gas', 'carnot', 'maxwell', 'blending'], 'wave', 8, 4],
-      [['bell number', 'stirling', 'catalan bijection', 'surjection', 'matrix-tree', 'cayley', 'derangement', 'vandermonde', 'hockey', 'motzkin', 'binomial', 'sheffer', 'burnside', 'partition'], 'tree', 7, 3],
-      [['am-gm', 'cauchy-schwarz', 'cauchy–schwarz', 'rearrangement', 'inequalit', 'jensen', 'excluded middle', 'uncountable', 'commutativity independent', 'transitivity', 'compression impossible', 'reuse graph'], 'balance', 5, 3],
-      [['monty', 'gambler', 'ballot', 'coupon', 'birthday', 'shannon', 'kraft', 'entropy', 'eight riffles', 'riffle'], 'dice', 6, 4],
-      [['josephus', 'hanoi', '8-puzzle', 'kaprekar', 'busy beaver', 'perrin', 'gray code', 'de bruijn', 'pisano', 'collatz', 'non-hamiltonian', 'hamiltonian', 'petersen', 'heawood', 'graphicality', 'dirac', 'gp(n', 'dodecahedron', 'non-planar', 'cage'], 'cycle', 8, 4],
-      [['nim', 'zhegalkin', '𝔽₂³', 'lo shu', 'magic square', 'shidoku', 'officers', 'latin squares', 'pentomino'], 'lattice', 8, 5],
-      [['kirkman', 'spread', 'parallelism'], 'spreads', 2 ** 4 - 1, 4],
-      [['simple', 'sts(9)', '168', 'psl', 'groups of order', 'mathieu', 'm₁', 'gl(4,2)', 'a₈ matches', 'a₄ matches', 'a₆', 'class equation', 'orbit-stab', 'lagrange', 'cauchy theorem', 'unit group', 'hurwitz units', 'ab/ba', 'rank so(7)'], 'classes', 9, 2],
-      [['pell', 'pentagonal', 'catalan', 'fibonacci', 'farey', 'zeckendorf', 'lucas', 'cassini', 'quadratic form', 'three cubes', 'taxicab'], 'spiral', 8 * 3, 3],
-      [['prime', 'fermat', 'wolstenholme', 'kummer', 'carmichael', 'euclid', 'legendre', 'möbius', 'mobius', 'quadratic residue', 'remainder', 'crt', 'bézout', 'bezout', 'two squares', 'wilson', 'totient', 'euler', 'armstrong', 'amicable', 'divisor', 'reciprocity', 'continued fraction', 'perfect', 'bertrand', 'waring', 'graeco', 'projective plane', 'σ and τ', 'φ(d)', 'wantzel', 'frobenius', 'determinant'], 'sieve', 100, 3],
-      // appended families (checked AFTER the above, so existing assignments are unchanged) — they route
-      // the former vortex fallbacks to the visual family of their own subject (user law: dedicated animations).
-      [['gaussian', 'eisenstein', 'ℤ[i]', 'ℤ[ω]'], 'lattice', 8, 5],
-      [['vieta', 'rational root', 'newton identities', 'sum of squares of roots', 'chebyshev'], 'series', 2 * 6, 3],
-      [['superdense', 'bb84', 'bernstein', 'interaction-free', 'simon', 'shor'], 'wave', 8, 4],
-      [['order-p²'], 'classes', 9, 2],
-      [['triangular', 'convergent'], 'spiral', 8 * 3, 3],
-      [['supplement', 'multiplicative', 'order divides', 'primitive-root', 'order-(', 'midy', 'nines', 'digital root', 'divisibility'], 'sieve', 100, 3],
-    ]
-    const specOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit'> => {
-      const t = theorem.toLowerCase()
-      const hit = families.find(([keys]) => keys.some((k) => t.includes(k)))
-      if (!hit) return { kind: 'vortex', points: 9, lines: [], ratePhi: 4 }
-      const [, kind, points, ratePhi] = hit
-      return { kind, points, lines: kind === 'star' ? fano : [], ratePhi }
-    }
-    const specs: ProofAnimationSpec[] = registry.theorems.map((entry) => ({
-      theorem: entry.theorem,
-      ...specOf(entry.theorem),
-      hueDigit: digitOf(entry.theorem),
-    }))
+    const specs: ProofAnimationSpec[] = registry.theorems.map((entry) => specForContent(entry.theorem))
     const kinds = [...new Set(specs.map((entry) => entry.kind))]
     return {
       animated: specs.length === registry.count && kinds.length >= 6,
