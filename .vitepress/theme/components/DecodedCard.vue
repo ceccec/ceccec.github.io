@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vitepress'
 import {
   decodedCardCrosslinksLabel,
@@ -61,6 +61,8 @@ const relatedAria = computed(() => pick('Related links', 'Свързани вр�
 // simplify & animate law: every card leads with its computed animation (the one renderer, the one
 // keyword table) unless a movie projection already animates it; prose clamps behind the figure.
 const animSpec = computed(() => (props.movieApp || !displayTitle.value ? null : specForContent(displayTitle.value)))
+// a11y: the prose clamp is a real disclosure — keyboard-operable, state announced (was a mouse-only <p @click>)
+const expanded = ref(false)
 
 const titleId = computed(() => {
   const title = displayTitle.value
@@ -86,7 +88,18 @@ const titleId = computed(() => {
         <ProofAnimation :spec="animSpec" :size="2 * 9 * 5" />
       </figure>
     </ClientOnly>
-    <p v-if="statement" class="decoded-card__statement decoded-card__clamp" @click="($event.currentTarget as HTMLElement).classList.toggle('decoded-card__clamp')">{{ t(statement) }}</p>
+    <p
+      v-if="statement"
+      class="decoded-card__statement"
+      :class="{ 'decoded-card__clamp': !expanded }"
+      role="button"
+      tabindex="0"
+      :aria-expanded="expanded"
+      :aria-label="expanded ? pick('Collapse description', 'Свий описанието') : pick('Expand description', 'Разгъни описанието')"
+      @click="expanded = !expanded"
+      @keydown.enter.prevent="expanded = !expanded"
+      @keydown.space.prevent="expanded = !expanded"
+    >{{ t(statement) }}</p>
     <p v-if="boundary" class="decoded-card__boundary">{{ t(boundary) }}</p>
     <ol v-if="displayStations?.length" class="decoded-card__stations">
       <li v-for="station in displayStations" :key="station.route + station.station">
@@ -170,5 +183,7 @@ const titleId = computed(() => {
 }
 .decoded-card__anim { margin: 0; display: grid; justify-items: center; }
 .decoded-card__anim canvas { max-width: calc(1px * 2 * 9 * 5); }
-.decoded-card__clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; cursor: pointer; }
+.decoded-card__statement[role='button'] { cursor: pointer; }
+.decoded-card__statement[role='button']:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.decoded-card__clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
 </style>

@@ -18,7 +18,7 @@ const groups = (a: Atlas) => Object.keys(a.sciences).sort().map((science) => ({ 
   <div class="source-atlas" data-logic="src/pair/enforcement/gates/computational/index.ts">
     <p v-if="failed">The atlas artifact is generated at deploy time — open <a href="/source-atlas.json">source-atlas.json</a>.</p>
     <template v-else-if="atlas">
-      <p class="source-atlas__census">{{ atlas.count }} sealed indexes · {{ Object.keys(atlas.sciences).length }} groups — recomputed every cross wave.</p>
+      <p class="source-atlas__census" role="status">{{ atlas.count }} sealed indexes · {{ Object.keys(atlas.sciences).length }} groups — recomputed every cross wave.</p>
       <section v-for="group in groups(atlas)" :key="group.science">
         <h3 :id="`atlas-${group.science}`">{{ group.science }} <small>{{ group.modules.length }}</small></h3>
         <ul>
