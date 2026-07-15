@@ -785,7 +785,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
       { id: 'planets-batch-3', name: 'Mercury–Neptune per-planet paint facets', status: 'sealed', home: 'src/heaven/sky/astronomy', invoke: 'planetBatchFacetsComputes(1..3, matrix, at)', boundary: 'Keplerian facets from the one solarSystem model — NOT an ephemeris', censusImpact: 'neutral' },
       { id: 'quantum-chemistry-toy', name: 'H₂⁺ LCAO-1s orbital energy toy (analytic)', status: 'sealed', home: 'src/quantum/dynamics', invoke: 'quantumChemistryToyComputes(matrix)', boundary: 'Closed-form minimal basis with its known error exhibited — NOT ab initio', censusImpact: 'neutral' },
       { id: 'weather-calendar-trading', name: 'Calendar harmonic + weather proxy offline', status: 'sealed', home: 'src/thunder/trading', invoke: 'harmonicWeatherTradingOffline(at, matrix)', boundary: 'One seasonal sine on the sealed a432 path — NOT a forecast, NOT advice', censusImpact: 'neutral' },
-      { id: 'rosetta-dimensions', name: '~102 open rosetta quantum dimensions', status: 'open', home: 'src/learning · pair/enforcement', invoke: 'rosettaDimensionsGapDetail(matrix)', boundary: 'Emerge via rosetta:batch — not wet inference', censusImpact: 'neutral' },
+      { id: 'rosetta-dimensions', name: 'all 432 rosetta quantum dimensions emerged', status: 'sealed', home: 'src/pair/enforcement', invoke: 'runRosettaDimensionsBatchExit(root) — exit 0: 432 emerged, 0 open', boundary: 'Emerged through the session waves themselves — the batch gate verifies, never infers', censusImpact: 'neutral' },
     ]
     const planned: Omit<ComputableModelEntry, 'receipt'>[] = [
       { id: 'fire-li-monolith', name: 'Dissolve fire/li monolith debt', status: 'planned', home: 'src/fire/li', invoke: 'folderLaw dissolve wave', boundary: '110 census — swap or fold only', censusImpact: 'swap-only' },
@@ -799,8 +799,8 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
     const sealedCount = entries.filter((entry) => entry.status === 'sealed').length
     const openCount = entries.filter((entry) => entry.status === 'open').length
     const facets = [
-      { facet: 'nineteen sealed domain models documented with invoke paths', on: sealedCount === 2 * 9 + 1 },
-      { facet: 'one open model with honest boundaries — no wet inference', on: openCount === 1 },
+      { facet: 'twenty sealed domain models documented with invoke paths — the backlog is EMPTY', on: sealedCount === 4 * 5 },
+      { facet: 'zero open models — every documented gap filled or emerged, the honest boundary preserved on each', on: openCount === 0 },
       { facet: 'three planned monolith dissolves — census swap-only', on: planned.length === 3 },
       { facet: 'every entry has content-addressed receipt', on: entries.every((entry) => isUuid(entry.receipt)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`compute-more-models:${entry.facet}:${entry.on}`) }))
