@@ -4,7 +4,7 @@ import { toGlagolitic } from '../../src/quantum/heaven/library'
 
 export type LocaleName = 'gla' | 'en' | 'bg'
 
-const LOCALE_LINK: Record<LocaleName, string> = { gla: '/', en: '/en/', bg: '/bg/' }
+const LOCALE_LINK: Record<LocaleName, string> = { gla: '/gla/', en: '/', bg: '/bg/' }
 
 function stripLocalePrefix(route: string): string {
   if (route === '/bg' || route === '/bg/') return '/'
@@ -14,7 +14,7 @@ function stripLocalePrefix(route: string): string {
   return route
 }
 
-export function localePath(route: string, locale: LocaleName = 'gla'): string {
+export function localePath(route: string, locale: LocaleName = 'en'): string {
   if (/^(https?:|#|mailto:)/.test(route)) return route
   if (/\.(json|txt|webmanifest)$/.test(route)) return route
   const path = stripLocalePrefix(route)
@@ -26,8 +26,8 @@ export function localePath(route: string, locale: LocaleName = 'gla'): string {
 
 export function localeFromRoute(path: string): LocaleName {
   if (path.startsWith('/bg/') || path === '/bg') return 'bg'
-  if (path.startsWith('/en/') || path === '/en') return 'en'
-  return 'gla'
+  if (path.startsWith('/gla/') || path === '/gla') return 'gla'
+  return 'en'
 }
 
 export function pickLocale<T>(locale: LocaleName, en: T, bg: T): T {

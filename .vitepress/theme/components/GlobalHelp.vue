@@ -69,6 +69,7 @@ function confidenceLabel(value: number) {
         class="global-help__input"
         type="search"
         name="q"
+        :aria-label="labels.placeholder"
         :placeholder="labels.placeholder"
         autocomplete="off"
         spellcheck="false"
