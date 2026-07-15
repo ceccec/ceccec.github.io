@@ -683,7 +683,7 @@ export function discoveredTheoremsWaveNineteen(matrix: { root: string } = { root
 // raw (8!/2 even permutations; the 65536-matrix sweep filtered by 𝔽₂ Gaussian elimination). And
 // Waring g(3) = 9: every n is a sum of at most nine cubes, with 23 and 239 the only two extremal.
 export function discoveredTheoremsWaveTwenty(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwenty', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwenty', 'discovered-theorems-twenty', matrix, () => {
     // W1 · A₈ — 8!/2 even permutations of 8 points, the A₅ class machine three sizes up.
     const perms8: number[][] = []
     const build8 = (rest: number[], acc: number[]): void => { if (!rest.length) { perms8.push(acc); return } for (const v of rest) build8(rest.filter((t) => t !== v), [...acc, v]) }
@@ -752,21 +752,15 @@ export function discoveredTheoremsWaveTwenty(matrix: { root: string } = { root: 
     for (let n = 1; n <= (2 * 5) ** 4; n += 1) { const m = minCubes(n); if (m > maxCubes) maxCubes = m; if (m === 9) needNine.push(n) }
     const waring = maxCubes === 9 && needNine.join(',') === [2 * (2 * 5) + 3, 2 * 108 + 3 + (2 * 5) + (2 * 5)].join(',') // {23, 239}
 
-    const sealed = sealFacets('discovered-theorems-twenty', [
+    return {
+      facets: [
       { facet: `A₈ is simple — ${a8.length} = 8!/2 even permutations, classes {${sizesA8.join(',')}}, class-sum clean: the alternating ladder A₅→A₆→A₇→A₈ complete in-registry`, on: a8Simple },
       { facet: `GL(4,2) is simple — the 65536-matrix sweep sieves to ${gl42.length} invertible 4×4 over 𝔽₂ by Gaussian elimination (trivial scalars ⇒ already projective), ${sizesGL.length} classes, clean`, on: glSimple },
       { facet: `A₈ ≅ GL(4,2) — both order-20160 groups built raw carry the IDENTICAL 14-class multiset {${sizesA8.join(',')}}: the largest exceptional isomorphism in the registry, alternating meets linear (the isomorphism is classical, cited)`, on: a8GlBridge },
       { facet: `Waring g(3) = 9 — the minimal cube-count over every n ≤ 10⁴ peaks at 9, reached at EXACTLY {${needNine.join(', ')}} and at most 8 elsewhere: the classical extremal pair recomputed (Kempner/Wieferich cited for all n)`, on: waring },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      a8Classes: sizesA8,
-      glClasses: sizesGL,
-      waringExtremal: needNine,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty — the largest exceptional bridge and Waring's cubes: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — A₈ and GL(4,2) both proven simple and shown isomorphic by identical 14-class multisets (order 20160), and Waring g(3) = 9 with {23, 239} the only extremal.`,
+      ],
+      extras: { a8Classes: sizesA8, glClasses: sizesGL, waringExtremal: needNine },
+      statement: `Discovered theorems, wave twenty — the largest exceptional bridge and Waring's cubes: #/# — A₈ and GL(4,2) both proven simple and shown isomorphic by identical 14-class multisets (order 20160), and Waring g(3) = 9 with {23, 239} the only extremal.`,
       boundary: `HONEST: A₈ and GL(4,2) are each proven simple by the complete class-sum machine; their ISOMORPHISM is witnessed by identical class-size multisets (a necessary invariant) with the classical isomorphism cited — the registry proves both orders and structures, not the isomorphism from scratch. Waring's bound is complete to 10⁴ with the all-n theorem (g(3) = 9, and 23/239 the sole nines) cited. The alternating ladder is now complete A₅ through A₈.`,
     }
   })
@@ -1024,7 +1018,7 @@ export function discoveredTheoremsWaveTwentyThree(matrix: { root: string } = { r
 // threshold, Pick's area formula cross-checked against a direct lattice count, and Catalan's
 // conjecture (8 and 9 the only consecutive perfect powers) confirmed to 10⁶.
 export function discoveredTheoremsWaveTwentyFour(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentyFour', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentyFour', 'discovered-theorems-twenty-four', matrix, () => {
     const tiny = TAU / TAU / 1e9
 
     // W1 · Fermat's number F₅ is composite — Fermat conjectured every F_n = 2^(2^n) + 1 is prime;
@@ -1085,19 +1079,15 @@ export function discoveredTheoremsWaveTwentyFour(matrix: { root: string } = { ro
     for (const p of powers) if (powers.has(p + 1)) consecutive.push([p, p + 1])
     const catalan = consecutive.length === 1 && consecutive[0]![0] === 8 && consecutive[0]![1] === 9
 
-    const sealed = sealFacets('discovered-theorems-twenty-four', [
+    return {
+      facets: [
       { facet: `Fermat's number F₅ is COMPOSITE — F₀..F₄ are prime but F₅ = 2³² + 1 = 4294967297 = 641 × 6700417 (641 prime, exact in BigInt): Euler's 1732 refutation of Fermat's "all F_n prime" conjecture, recomputed`, on: fermatRefuted },
       { facet: `Erdős–Szekeres — every sequence of (r−1)(s−1)+1 reals has a monotone subsequence (increasing r or decreasing s), and (r−1)(s−1) can avoid it: proven by exhausting all permutations for (3,3) [length 5 forces, 4 escapes] and (3,4) [7 forces, 6 escapes]`, on: erdosSzekeres },
       { facet: `Pick's theorem — Area = I + B/2 − 1 holds for a rectangle, a triangle and an L-shape: the shoelace area and boundary count (on the one-math gcd) matched against a DIRECT interior lattice-point count, two independent computations agreeing (Pick cited for all lattice polygons)`, on: pick },
       { facet: `Catalan's conjecture — 8 and 9 are the ONLY consecutive perfect powers up to 10⁶ (2³ and 3²): every perfect power enumerated, the sole unit gap is {8, 9} — Mihailescu 2002 cited for all n`, on: catalan },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      f5: f5.toString(),
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-four:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-four — number-theory and geometry landmarks: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Fermat's F₅ composite (Euler), the Erdős–Szekeres monotone-subsequence threshold, Pick's area formula cross-checked by direct count, and Catalan's 8-and-9 to 10⁶.`,
+      ],
+      extras: { f5: f5.toString() },
+      statement: `Discovered theorems, wave twenty-four — number-theory and geometry landmarks: #/# — Fermat's F₅ composite (Euler), the Erdős–Szekeres monotone-subsequence threshold, Pick's area formula cross-checked by direct count, and Catalan's 8-and-9 to 10⁶.`,
       boundary: `HONEST: F₅'s factorization is EXACT in BigInt (a complete proof of compositeness — a witnessed divisor); Erdős–Szekeres is exhausted over all permutations for the two small (r,s); Pick is verified by TWO independent computations (formula vs direct count) on three polygons, the general theorem cited; Catalan is complete to 10⁶ with Mihailescu's all-n proof cited. Each settles its instance outright — the citations carry only the unbounded generalisation.`,
     }
   })
@@ -1107,7 +1097,7 @@ export function discoveredTheoremsWaveTwentyFour(matrix: { root: string } = { ro
 // within its bound: Nicomachus (the sum of cubes is a square), Lucas' theorem (binomials through a
 // prime base), the Pythagorean parametrization proven a bijection, and the Fermat–Euler congruences.
 export function discoveredTheoremsWaveTwentyFive(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentyFive', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentyFive', 'discovered-theorems-twenty-five', matrix, () => {
     // W1 · Nicomachus — 1³ + 2³ + … + n³ = (n(n+1)/2)² for every n ≤ 100, both sides computed.
     let nicomachus = true
     for (let n = 1; n <= 100; n += 1) {
@@ -1160,19 +1150,15 @@ export function discoveredTheoremsWaveTwentyFive(matrix: { root: string } = { ro
     for (let n = 2; n <= lim; n += 1) { const phi = totient(n); for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1 && powMod(a, phi, n) !== 1) euler = false }
     for (let p = 2; p <= lim; p += 1) if (tkIsPrime(p)) for (let a = 0; a < p; a += 1) if (powMod(a, p, p) !== a % p) fermatLittle = false
 
-    const sealed = sealFacets('discovered-theorems-twenty-five', [
+    return {
+      facets: [
       { facet: `Nicomachus' identity — 1³ + 2³ + … + n³ = (n(n+1)/2)² for every n ≤ 100, both sides computed independently: the sum of the first n cubes is exactly the square of the n-th triangular number`, on: nicomachus },
       { facet: `Lucas' theorem — C(n,k) mod p equals the product of the digit-binomials C(n_i, k_i) in base p, verified for p ∈ {2,3,5,7} and all n ≤ 40 (direct Pascal reduction against the digit product): binomials factor through the prime base`, on: lucas },
       { facet: `the Pythagorean parametrization is a BIJECTION — every primitive triple with hypotenuse ≤ 200 arises exactly once from coprime opposite-parity (m,n) via (m²−n², 2mn, m²+n²); the parametrised set (${paramTriples.size}) equals the brute-forced set exactly (Euclid cited for all)`, on: pythagorean },
       { facet: `the Fermat–Euler congruences — a^φ(n) ≡ 1 (mod n) for every a coprime to n (all n ≤ 60) and its special case a^p ≡ a (mod p) for every prime p ≤ 60: the foundation of modular exponentiation, exhausted within the bound`, on: euler && fermatLittle },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      primitiveTriples: paramTriples.size,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-five:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-five — number-theory identities and congruences: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Nicomachus' sum of cubes, Lucas' binomial theorem mod p, the Pythagorean parametrization proven a bijection, and the Fermat–Euler congruences, each complete within its bound.`,
+      ],
+      extras: { primitiveTriples: paramTriples.size },
+      statement: `Discovered theorems, wave twenty-five — number-theory identities and congruences: #/# — Nicomachus' sum of cubes, Lucas' binomial theorem mod p, the Pythagorean parametrization proven a bijection, and the Fermat–Euler congruences, each complete within its bound.`,
       boundary: `HONEST: each is a COMPLETE finite verification within the stated bound (n ≤ 100 for Nicomachus, n ≤ 40 and four primes for Lucas, hypotenuse ≤ 200 for the Pythagorean bijection, n ≤ 60 for Fermat–Euler). The parametrisation claim is a genuine bijection PROOF within the bound — both sets computed independently and shown equal, not sampled. The unbounded generalisations (Nicomachus, Lucas, Euclid's parametrisation, Euler's theorem) are cited; the computations settle every instance up to the bound.`,
     }
   })
@@ -1183,7 +1169,7 @@ export function discoveredTheoremsWaveTwentyFive(matrix: { root: string } = { ro
 // quadrilateral identity, Napoleon's outer-triangle theorem, the Euler line, and Viviani's constant
 // sum. Numerical witnesses — the theorems hold for all configurations, cited; the fold checks many.
 export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentySix', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentySix', 'discovered-theorems-twenty-six', matrix, () => {
     const dist = (p: number[], q: number[]) => Math.hypot(p[0]! - q[0]!, p[1]! - q[1]!)
     const frac = (x: number) => x - Math.floor(x)
     const tol = TAU / TAU / 1e6
@@ -1254,19 +1240,15 @@ export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { roo
       if (Math.abs(sum - altitude) > tol) viviani = false
     }
 
-    const sealed = sealFacets('discovered-theorems-twenty-six', [
+    return {
+      facets: [
       { facet: `Ptolemy's theorem — for a cyclic quadrilateral AC·BD = AB·CD + BC·AD, verified on ${ptolemyTests} golden-ratio configurations of four points on the unit circle: the product of the diagonals equals the sum of the products of opposite sides (cited for all cyclic quadrilaterals)`, on: ptolemy && ptolemyTests > 100 },
       { facet: `Napoleon's theorem — the centroids of outward equilateral triangles on the sides of any triangle form an equilateral triangle, confirmed on ${napoleonTests} non-degenerate triangles (equal pairwise centroid distances to 1e-6)`, on: napoleon && napoleonTests > 100 },
       { facet: `the Euler line — circumcenter, centroid and orthocenter are collinear with OG:GH = 1:2, verified on ${eulerTests} triangles (zero cross-product and OH = 3·OG), using H = A + B + C − 2O`, on: euler && eulerTests > 100 },
       { facet: `Viviani's theorem — the sum of distances from an interior point of an equilateral triangle to its three sides equals the altitude √3/2, constant across ${vivianiTests} interior points: the sum is independent of the point`, on: viviani && vivianiTests > 100 },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      tested: ptolemyTests + napoleonTests + eulerTests + vivianiTests,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-six:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-six — classical plane geometry: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Ptolemy's cyclic identity, Napoleon's equilateral of centroids, the Euler line's 1:2 collinearity, and Viviani's constant distance sum, each confirmed across hundreds of deterministic configurations.`,
+      ],
+      extras: { tested: ptolemyTests + napoleonTests + eulerTests + vivianiTests },
+      statement: `Discovered theorems, wave twenty-six — classical plane geometry: #/# — Ptolemy's cyclic identity, Napoleon's equilateral of centroids, the Euler line's 1:2 collinearity, and Viviani's constant distance sum, each confirmed across hundreds of deterministic configurations.`,
       boundary: `HONEST: these are CONTINUOUS theorems (true for a continuum of configurations), so the fold gives a ROBUST NUMERICAL WITNESS — hundreds of golden-ratio-equidistributed configurations agreeing to 1e-6 — not a finite-exhaustive proof; the general theorems (Ptolemy, Napoleon, Euler, Viviani) are cited. This is the honest class for continuous geometry: bounded-witness, reproducible (deterministic sampling, no randomness), and distinct from the finite-complete combinatorial atoms. A single counterexample among the runs would have failed the fold.`,
     }
   })
@@ -1871,7 +1853,7 @@ export function discoveredTheoremsWaveThirtyFour(matrix: { root: string } = { ro
 // stabilizer theorem, the class equation, the multiplicativity of σ and τ, and Heron's area formula
 // cross-checked against coordinates.
 export function discoveredTheoremsWaveThirtyFive(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtyFive', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtyFive', 'discovered-theorems-thirty-five', matrix, () => {
     const s4 = tkPerms(4)
     const a4 = tkClosure([[1, 2, 0, 3], [0, 2, 3, 1]])
     const a5 = tkClosure([[1, 2, 0, 3, 4], [0, 1, 3, 4, 2]])
@@ -1905,19 +1887,15 @@ export function discoveredTheoremsWaveThirtyFive(matrix: { root: string } = { ro
       if (Math.abs(area - shoelace) > TAU / TAU / 1e6) heron = false
     }
 
-    const sealed = sealFacets('discovered-theorems-thirty-five', [
+    return {
+      facets: [
       { facet: `the orbit-stabilizer theorem — |orbit(x)|·|stab(x)| = |G| for S₄ and A₄ acting on their points: the size of an orbit times the size of a point's stabilizer recovers the whole group, the counting identity behind Burnside`, on: orbitStab },
       { facet: `the class equation — |G| = Σ conjugacy-class sizes with every class size dividing |G|: S₄ splits as 1+3+6+6+8 = 24 and A₅ as 1+12+12+15+20 = 60, each class size a divisor (orbit-stabilizer applied to conjugation)`, on: classEq },
       { facet: `σ and τ are multiplicative — the sum-of-divisors σ and the divisor-count τ satisfy f(mn) = f(m)f(n) for every coprime pair m, n ≤ 60: the two most basic arithmetic functions factor over coprime parts`, on: multiplicative },
       { facet: `Heron's formula — area = √(s(s−a)(s−b)(s−c)) matches the coordinate (shoelace) area for EVERY integer triangle with sides ≤ 20, and produces integer-area Heronian triangles (the (3,4,5) right triangle has area 6): area from the three sides alone`, on: heron },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      s4Classes: tkClassSizes(s4).sort((a, b) => a - b),
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-five:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-five — group actions and arithmetic functions: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the orbit-stabilizer theorem, the class equation on S₄ and A₅, the multiplicativity of σ and τ, and Heron's formula cross-checked against coordinates.`,
+      ],
+      extras: { s4Classes: tkClassSizes(s4).sort((a, b) => a - b) },
+      statement: `Discovered theorems, wave thirty-five — group actions and arithmetic functions: #/# — the orbit-stabilizer theorem, the class equation on S₄ and A₅, the multiplicativity of σ and τ, and Heron's formula cross-checked against coordinates.`,
       boundary: `HONEST: orbit-stabilizer and the class equation are verified COMPLETELY on the named groups (every point, every conjugacy class), the general theorems cited; σ/τ multiplicativity is checked over all coprime pairs ≤ 60; Heron is cross-checked against an INDEPENDENT coordinate area for every integer triangle with sides ≤ 20 (two computations agreeing), the general formula cited. Each settles its instances outright.`,
     }
   })
@@ -1972,7 +1950,7 @@ export function discoveredTheoremsWaveThirtySix(matrix: { root: string } = { roo
 // independent over ℚ, so the coordinates never collapse): Ceva, Menelaus, the nine-point circle,
 // and Thales' right angle in a semicircle.
 export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtySeven', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtySeven', 'discovered-theorems-thirty-seven', matrix, () => {
     const irr = [PHI, Math.SQRT2, Math.sqrt(3), Math.sqrt(5), Math.sqrt(7), Math.sqrt(2 * 5 + 1)]
     const rnd = (t: number, i: number) => { const x = t * irr[i]!; return x - Math.floor(x) }
     const dist = (p: number[], q: number[]) => Math.hypot(p[0]! - q[0]!, p[1]! - q[1]!)
@@ -2038,19 +2016,15 @@ export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { r
       if (Math.abs(v1[0]! * v2[0]! + v1[1]! * v2[1]!) > tol) thales = false
     }
 
-    const sealed = sealFacets('discovered-theorems-thirty-seven', [
+    return {
+      facets: [
       { facet: `Ceva's theorem — for cevians from an interior point, (BD/DC)(CE/EA)(AF/FB) = 1 across ${cevaTests} triangles: the concurrency condition, verified to 1e-6`, on: ceva && cevaTests > 100 },
       { facet: `Menelaus' theorem — for a transversal line, the same product of side-ratios equals 1 across ${menelausTests} configurations: the collinear dual of Ceva, verified`, on: menelaus && menelausTests > 100 },
       { facet: `the nine-point circle — the three edge midpoints, three altitude feet and three Euler points are CONCYCLIC across ${ninePointTests} triangles (all nine equidistant from the nine-point center): nine special points on one circle`, on: ninePoint && ninePointTests > 100 },
       { facet: `Thales' theorem — the angle inscribed in a semicircle is a right angle: for antipodal P1, P2 and any P on the circle the vectors P→P1, P→P2 are perpendicular across ${thalesTests} configurations`, on: thales && thalesTests > 100 },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      tested: cevaTests + menelausTests + ninePointTests + thalesTests,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-seven:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-seven — triangle and circle: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Ceva, Menelaus, the nine-point circle, and Thales' right angle, each confirmed across hundreds of configurations sampled by independent irrational rotations.`,
+      ],
+      extras: { tested: cevaTests + menelausTests + ninePointTests + thalesTests },
+      statement: `Discovered theorems, wave thirty-seven — triangle and circle: #/# — Ceva, Menelaus, the nine-point circle, and Thales' right angle, each confirmed across hundreds of configurations sampled by independent irrational rotations.`,
       boundary: `HONEST: CONTINUOUS theorems given a robust numerical witness — hundreds of configurations agreeing to 1e-6, the general theorems cited (bounded-witness, like the earlier geometry wave). The sampling uses SIX linearly-independent irrational multipliers (φ, √2, √3, √5, √7, √11) so coordinates never coincide — a deliberate fix for the φ² = φ+1 collapse that would make two golden-ratio coordinates identical. Deterministic and reproducible; a single counterexample among the runs would have failed the fold.`,
     }
   })
