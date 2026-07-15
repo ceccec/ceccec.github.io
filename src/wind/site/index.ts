@@ -1049,7 +1049,7 @@ export function monographAsScientificPaper(page: StaticPage) {
 // WITHOUT changing the URL. CRUD maps to the compute pipeline: READ = GET the canonical page (the one public
 // HTTP verb on a static site), CREATE = seed/imagine a new address, UPDATE = recompute (the content-address
 // changes, the PATH holds), DELETE = purge (what is not proven). SEO stable = canonical slug + hreflang + the
-// content-addressed sitemap, no churn. HONEST: the canonical <link> + the 301 redirect map are the gap (stable:false).
+// content-addressed sitemap, no churn; canonical <link> per page + legacy alias wired (the former gap).
 export function rest(matrix: MindMatrix = buildMatrix()) {
   const sitemap = quantumSitemap(matrix)
   const pages = staticPages()
@@ -1087,7 +1087,7 @@ export function rest(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Design the paths as a quantum RESTful CRUD matrix so SEO is stable: every resource is a page at a canonical, lowercase slug (the matrix is resources × CRUD; a SINGULAR slug is a MODEL — one resource — and a PLURAL slug is a COLLECTION — many), and the public path is the canonical slug — decoupled from the churning internal folder tree, so the one-word renames, the 64-component merge and the flat-file→folder dissolution move code without changing the URL. READ is GET the page (the one public HTTP verb on a static site); CREATE/UPDATE/DELETE map to the compute pipeline (seed, recompute, purge). SEO is stable because the slug, the hreflang set and the content-addressed sitemap do not churn — a moved path 301-redirects, it never 404s.',
     boundary:
-      'HONEST and bounded (stable:false until wired): the SCHEME is designed and the stable layer that ALREADY holds is the canonical slugs (staticPages), the cu/en/bg/x-default hreflang alternates and the content-addressed sitemap. The GAP for full SEO stability is the per-page canonical <link rel="canonical"> (computedSeo does not set it yet) and a 301 redirect/alias map, so a slug that DOES move keeps its SEO equity (no link rot). CRUD here is a SEMANTIC matrix on a static, read-only-over-HTTP computed site — READ is the only live HTTP verb; create/update/delete are the build-time compute pipeline (seed/recompute/purge), not live mutations. SEO stability is canonical + stable-slug + redirect discipline, NOT a ranking guarantee. Composed over routesAndNavFromFolderTree (route = folder path); this fold adds the STABILITY constraint — the public slug stays canonical and stable even as the tree converges.',
+      'HONEST: the stable layer now WIRED — canonical slugs (staticPages), cu/en/bg/x-default hreflang alternates, the content-addressed sitemap on CANONICAL_HOST, a per-page <link rel="canonical"> emitted in transformPageData, and the legacy-prefix alias (the 404 page strips /en/* client-side; a static host cannot emit HTTP 301, so moved slugs keep equity via canonical + alias, not status codes). CRUD here is a SEMANTIC matrix on a static, read-only-over-HTTP computed site — READ is the only live HTTP verb; create/update/delete are the build-time compute pipeline (seed/recompute/purge), not live mutations. SEO stability is canonical + stable-slug + redirect discipline, NOT a ranking guarantee. Composed over routesAndNavFromFolderTree (route = folder path); this fold adds the STABILITY constraint — the public slug stays canonical and stable even as the tree converges.',
   }
 }
 

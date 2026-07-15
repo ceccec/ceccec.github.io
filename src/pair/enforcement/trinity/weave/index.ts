@@ -3,6 +3,7 @@
 // auditWeave produces findings (errors) + ratchet warnings + the success report, returning all of
 // them so the intelligent cross-audit collects every wave in one pass; runWeave is the standalone
 // wrapper that prints and returns an exit code.
+import { CANONICAL_HOST } from '../../../../3/7'
 import { UNFOLDED_CENSUS } from '../../gates/computational'
 import type { Plugin } from 'vite'
 import { readFileSync, existsSync, writeFileSync, readdirSync, statSync, mkdirSync } from 'node:fs'
@@ -52,7 +53,7 @@ function verifyDigitIndex(root: string): string[] {
 }
 
 function siteUrl(): string {
-  return (process.env.SITE_URL || 'https://ceccec.psg.bg').replace(/\/$/, '')
+  return (process.env.SITE_URL || CANONICAL_HOST).replace(/\/$/, '')
 }
 
 /** Materialize — write the computed dist artifacts + README. The side effects the other waves read. */

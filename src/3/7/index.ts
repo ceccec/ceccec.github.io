@@ -708,6 +708,9 @@ export const PROOF_DRIVEN_REIMPLEMENTATION_PRINCIPLE =
 
 /** User law (2026-07-14): consolidate all as monographs — every content surface presents through the one
  * scientific-paper template (monographTemplate); section names state content, never cosmology. */
+/** The canonical host — the one deployed origin every sitemap URL, canonical link and citation uses. */
+export const CANONICAL_HOST = 'https://ceccec.psg.bg'
+
 export const ALL_IS_MONOGRAPH_PRINCIPLE =
   'Consolidate all as monographs: one scientific-paper form for every surface — title, abstract, results, provenance, citation — with section names that state the content; the reader never needs the site’s internal cosmology to find the science.'
 

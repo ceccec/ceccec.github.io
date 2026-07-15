@@ -1,5 +1,6 @@
 // @mvc controller — VitePress config: transformPageData (route → model → view head/meta), locale wiring, plugin composition.
 import { join } from 'node:path'
+import { CANONICAL_HOST } from '../src/3/7'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
 // One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
@@ -413,6 +414,9 @@ export default defineConfig({
       og.push(['meta', { name: 'twitter:image', content: image }])
     }
     for (const tag of og) head.push(tag)
+    // Every page declares its own canonical URL on the one deployed host — closes the rest-fold SEO gap.
+    const canonicalPath = '/' + pageData.relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
+    head.push(['link', { rel: 'canonical', href: `${CANONICAL_HOST}${canonicalPath}` }])
     // Home: doc layout (sidebars on) + computed hero in doc-before via Layout.vue.
     if (isHome) {
       if (frontmatter.layout === 'home') {

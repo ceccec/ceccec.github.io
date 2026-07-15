@@ -1,5 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
+import { CANONICAL_HOST } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -1041,7 +1042,7 @@ export function theoremPageRows(matrix: MindMatrix = buildMatrix()): TheoremPage
         classification: `${atom.proofClass}${leansCited ? ' — computed witness within a cited frame (the unbounded form leans on the cited literature)' : ' — self-contained computation, no external lean'}`,
         provenance: 'A documented theorem of mathematics, re-proven here by exhaustive computation (humanityNovel = false — the CARDINAL honesty of this registry); first-in-this-registry is the only sense of "discovered".',
         reproducibility: `Recompute from source: npm run theorems:verify recomputes ${wave.provedBy} (${atom.home}/index.ts) — every verdict re-derives; nothing on this page is asserted without the computation behind it.`,
-        citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — https://ceccec.psg.bg${localePath(`/theorems/${slug}`, 'en')}`,
+        citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — ${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`,
       }
     }))
 }

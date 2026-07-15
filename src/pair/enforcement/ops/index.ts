@@ -1,4 +1,5 @@
 // Mission ops — gate compliance · mission verify · CLI router.
+import { CANONICAL_HOST } from '../../../3/7'
 import * as __ns_up_up_up_fire_li from '../../../fire/li'
 import * as __ns_up_up_up_mountain_geometry from '../../../mountain/geometry'
 import * as __ns_up_up_up_quantum_lake_dist_generators from '../../../quantum/lake/dist/generators'
@@ -433,7 +434,7 @@ async function runRosettaExit(root: string, argv: readonly string[]) {
   const ctx = {
     env: process.env,
     args: [...argv.slice(1)],
-    siteUrl: (process.env.SITE_URL || 'https://ceccec.psg.bg').replace(/\/$/, ''),
+    siteUrl: (process.env.SITE_URL || CANONICAL_HOST).replace(/\/$/, ''),
     read: (rel: string) => { try { return readFileSync(join(root, rel), 'utf8') } catch { return null } },
     list: (relDir: string, ext: string): string[] => {
       const found: string[] = []
