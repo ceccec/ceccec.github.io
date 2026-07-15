@@ -450,7 +450,7 @@ export function superdense(message: number, seed = 'superdense'): { sent: number
 // axiom is not a theorem of the rest. Beltrami's move against the parallel postulate, Heyting's
 // against excluded middle, the octonions' against associativity — each completed in a finite check.
 export function discoveredTheoremsWaveEighteen(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveEighteen', matrix, () => {
+  return sealFold('discoveredTheoremsWaveEighteen', 'discovered-theorems-eighteen', matrix, () => {
     // W1 · the parallel postulate is INDEPENDENT of the incidence axioms — two finite planes share
     // the incidence core (two points determine exactly one line) and disagree on parallels:
     // AG(2,2) satisfies Playfair EXACTLY (one parallel per point-line pair), PG(2,2) has NONE.
@@ -553,22 +553,16 @@ export function discoveredTheoremsWaveEighteen(matrix: { root: string } = { root
     const nonComm = perms3.some((a) => perms3.some((b) => k3(cmp3(a, b)) !== k3(cmp3(b, a))))
     const commIndependent = perms3.length === 6 && closed3 && assoc3 && id3 && inv3 && nonComm
 
-    const sealed = sealFacets('discovered-theorems-eighteen', [
+    return {
+      facets: [
       { facet: `the parallel postulate is INDEPENDENT of the incidence axioms — AG(2,2) and PG(2,2) both satisfy two-points-one-line exhaustively, AG(2,2) obeys Playfair EXACTLY while in PG(2,2) all 21 line-pairs meet: the Bolyai–Lobachevsky/Beltrami challenge completed in 11 points (the classical models cited)`, on: parallelIndependent },
       { facet: `excluded middle is UNPROVABLE from the intuitionistic axioms — the 3-chain Heyting algebra validates all nine Hilbert schemes under all 27 valuations, modus ponens preserves the top, and p ∨ ¬p sticks at the middle value ${lemValue} < ${TOP}: LEM is not a theorem of the rest (Heyting/Gödel cited for the general hierarchy)`, on: lemUnprovable },
       { facet: `associativity is INDEPENDENT of division and norm — the octonion basis on the SAME oriented Fano lines has every unit invertible and the sealed dim-8 norm composition, yet ${assocFailures} of 343 ordered basis triples refuse to associate, witness ${octWitness} — and 168 equals the sealed |GL₃(𝔽₂)|, an OBSERVED count coincidence on the same geometry, recorded not claimed`, on: octChallenge },
       { facet: `Sylvester–Gallai NEEDS the order axioms — the Fano plane has ZERO ordinary lines (every point-pair rides a 3-point line, verified whole) while over ℝ the theorem forces one: incidence alone refutes it, the order of the real line is load-bearing (Gallai cited)`, on: sylvesterGallai },
       { facet: `commutativity is INDEPENDENT of the group axioms — S₃ passes the complete check (closure, 216 associativity triples, identity, inverses) and refuses to commute; minimality rides the sealed order-4/6 exhaustions (every smaller group abelian)`, on: commIndependent },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      assocFailures,
-      octWitness,
-      lemValue,
-      root: merge(sealed.root, toUuid(`discovered-theorems-eighteen:${sealed.ok}`)),
-      statement: `Discovered theorems, wave eighteen — axioms challenged by finite countermodel: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the parallel postulate, excluded middle, associativity, Sylvester–Gallai's order dependence, and commutativity each proven INDEPENDENT by an exhaustively verified finite structure where the rest hold and the challenged axiom fails.`,
+      ],
+      extras: { assocFailures, octWitness, lemValue },
+      statement: `Discovered theorems, wave eighteen — axioms challenged by finite countermodel: #/# — the parallel postulate, excluded middle, associativity, Sylvester–Gallai's order dependence, and commutativity each proven INDEPENDENT by an exhaustively verified finite structure where the rest hold and the challenged axiom fails.`,
       boundary: `HONEST: challenging an axiom computationally MEANS proving independence — model checks here are COMPLETE (every incidence pair, all 27 valuations, all 343 triples, all 216 associativity checks), so each independence claim is a finite-complete theorem. What is NOT claimed: that any axiom is FALSE (independence cuts both ways — the axiom and its negation are each consistent with the rest), that the 3-chain settles the full intuitionistic hierarchy (Gödel: no single finite algebra does — cited), or that the 168 = |GL₃(𝔽₂)| count coincidence is an identity (recorded as an observation and an open lead). Axioms are not defeated here; their INDEPENDENCE is computed, which is the only honest victory available.`,
     }
   })
@@ -582,7 +576,7 @@ export function discoveredTheoremsWaveEighteen(matrix: { root: string } = { root
 // compression) — each computed exactly, the deeper law cited. HARMONY≠TRUTH: the challenge IS the
 // computation, no new science claimed.
 export function discoveredTheoremsWaveNineteen(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveNineteen', matrix, () => {
+  return sealFold('discoveredTheoremsWaveNineteen', 'discovered-theorems-nineteen', matrix, () => {
     // W1 · PHYSICS — velocity additivity is NOT universal. Galilean u + v vs Einstein
     // (u + v)/(1 + uv/c²): on a grid of c-fractions k/8 the naive sum always OVERSHOOTS and the
     // relativistic sum never reaches c. Headline: (3/4)c ⊕ (3/4)c = 24/25 c exactly, not 3/2 c.
@@ -655,23 +649,16 @@ export function discoveredTheoremsWaveNineteen(matrix: { root: string } = { root
     }
     const compressionChallenged = compressorImpossible && shortfallAlwaysOne
 
-    const sealed = sealFacets('discovered-theorems-nineteen', [
+    return {
+      facets: [
       { facet: `PHYSICS — velocity addition is NOT universal: on all ${relativisticChecks} c-fraction pairs the Galilean sum overshoots and the relativistic composition never reaches c; (3/4)c ⊕ (3/4)c = ${headlineNumerator}/25 c exactly, not 3/2 c — additivity is the low-speed limit of special relativity (Einstein 1905, cited)`, on: velocityChallenged },
       { facet: `CHEMISTRY — the ideal gas law is NOT universal: van der Waals forces the critical compressibility Z_c = P_c V_c /(R T_c) = 3/8 for EVERY such gas, independent of a and b, while the ideal law demands Z = 1 everywhere — a computed constant refuting the universal claim (van der Waals 1873, cited)`, on: idealGasChallenged },
       { facet: `BIOLOGY — blending inheritance is REFUTED and Hardy–Weinberg is CONDITIONAL: blending halves heritable variance every generation (gone in ${blendingGens}), erasing evolution's raw material, while Mendelian ratios stay a stable 1:2:1 — until selection drifts the "equilibrium" allele frequency (aa lethal: 1/2 → 6/7 in five generations) (Mendel/Hardy–Weinberg cited)`, on: inheritanceChallenged },
       { facet: `SOCIAL SCIENCE — collective transitivity FAILS: of all ${profiles} three-voter profiles over three options, ${condorcetCycles} are majority-rule CYCLES (A>B>C>A) though every individual ranking is transitive — individual rationality does not lift to the group (Condorcet 1785 / Arrow 1951, cited)`, on: transitivityChallenged },
       { facet: `INFORMATION — universal lossless compression is IMPOSSIBLE: for every n ≤ 12 there are 2ⁿ inputs but only 2ⁿ − 1 strictly shorter codes, shortfall EXACTLY one — no injective compressor shrinks all inputs (pigeonhole; Shannon/Kolmogorov entropy floor cited)`, on: compressionChallenged },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      velocityHeadline: `${headlineNumerator}/25 c`,
-      criticalZ: Zc,
-      blendingGens,
-      condorcetCycles,
-      root: merge(sealed.root, toUuid(`discovered-theorems-nineteen:${sealed.ok}`)),
-      statement: `Discovered theorems, wave nineteen — the method extended to all sciences: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — velocity additivity (physics), the ideal gas law (chemistry), blending inheritance (biology), collective transitivity (social choice), and free compression (information) each shown NON-UNIVERSAL by exact computation or finite countermodel, the deeper law cited in every case.`,
+      ],
+      extras: { velocityHeadline: `${headlineNumerator}/25 c`, criticalZ: Zc, blendingGens, condorcetCycles },
+      statement: `Discovered theorems, wave nineteen — the method extended to all sciences: #/# — velocity additivity (physics), the ideal gas law (chemistry), blending inheritance (biology), collective transitivity (social choice), and free compression (information) each shown NON-UNIVERSAL by exact computation or finite countermodel, the deeper law cited in every case.`,
       boundary: `HONEST: these are ESTABLISHED science — the challenge is the DEMONSTRATION, computed here, not a new discovery. Each "challenge" means the naive principle is a LIMITING CASE (Galilean ⊂ relativistic, ideal ⊂ van der Waals, blending never held, HW conditional on no-selection) or a finite countermodel (Condorcet, pigeonhole), NOT that the deeper law is final: relativity, van der Waals and Mendel are themselves models with their own domains, and that honesty is the point. The computations are exact within their models; the "for all regimes / all gases / all populations" universality is carried by the cited physical law, never by these finite checks. HARMONY≠TRUTH.`,
     }
   })
@@ -841,7 +828,7 @@ export function discoveredTheoremsWaveTwentyOne(matrix: { root: string } = { roo
 // reachability, Euler's prime polynomial and its exact breaking point, and Descartes' angular defect
 // summing to 4π on every Platonic solid — each a different machine, each a complete finite proof.
 export function discoveredTheoremsWaveTwentyTwo(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentyTwo', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentyTwo', 'discovered-theorems-twenty-two', matrix, () => {
     const tiny = TAU / TAU / 1e9
 
     // W1 · busy beaver BB(2) = 6, Σ(2) = 4 — every 2-state 2-symbol Turing machine run under a step
@@ -902,21 +889,15 @@ export function discoveredTheoremsWaveTwentyTwo(matrix: { root: string } = { roo
       if (Math.abs(total - 2 * TAU) > tiny) descartes = false
     }
 
-    const sealed = sealFacets('discovered-theorems-twenty-two', [
+    return {
+      facets: [
       { facet: `busy beaver BB(2) = 6 — the complete census of all ${machines} two-state two-symbol Turing machines gives maximum halting time 6 and Σ(2) = 4 ones; the function is uncomputable in general (Radó cited) but its small values are a finite search`, on: busyBeaver },
       { facet: `the 8-puzzle has exactly 9!/2 = ${fact9 / 2} solvable states — the breadth-first reachable set from the solved board, proving the parity invariant (only even permutations reach the goal) by construction`, on: eightPuzzle },
       { facet: `Euler's polynomial n² + n + 41 is prime for all n = 0..39 and composite at n = 40 = 41² — the famous long prime run with its exact computed breaking point`, on: eulerPoly },
       { facet: `Descartes' angular defect sums to 4π on every Platonic solid — each {p,q} vertex defect 2π − q·π(p−2)/p times V equals 4π = 2π·χ, the discrete Gauss–Bonnet for the sphere`, on: descartes },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      bbMax,
-      sigmaMax,
-      solvableStates: seen.size,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-two:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-two — exhaustive-search landmarks: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — busy beaver BB(2) = 6 from the full Turing-machine census, the 8-puzzle's 181440 solvable states by reachability, Euler's prime polynomial breaking at 41², and Descartes' 4π defect on every Platonic solid.`,
+      ],
+      extras: { bbMax, sigmaMax, solvableStates: seen.size },
+      statement: `Discovered theorems, wave twenty-two — exhaustive-search landmarks: #/# — busy beaver BB(2) = 6 from the full Turing-machine census, the 8-puzzle's 181440 solvable states by reachability, Euler's prime polynomial breaking at 41², and Descartes' 4π defect on every Platonic solid.`,
       boundary: `HONEST: each is a COMPLETE finite search within its domain — all 20736 machines, the entire 8-puzzle component, all 40 polynomial values, all five solids. The all-n frames are cited (Radó's uncomputability of BB, the parity theorem for the n-puzzle, Descartes/Gauss–Bonnet for all convex polyhedra); the computations settle the finite instances outright. BB(2) uses a step cap safely above the answer — a halting machine among these halts well within it.`,
     }
   })
@@ -1260,7 +1241,7 @@ export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { roo
 // Grover) but never the DECIDABLE line, and it ERECTS walls classical physics lacks (Holevo,
 // Tsirelson, no-cloning). "All is possible" is refuted by quantum's OWN theorems. Done as the math.
 export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentySeven', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentySeven', 'discovered-theorems-twenty-seven', matrix, () => {
     const tiny = TAU / TAU / 1e9
     const s2 = Math.SQRT1_2
 
@@ -1325,21 +1306,16 @@ export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { r
     const closableQuantum = 0
     const verdict = classicallySimulable && closableQuantum === 0 && empirical + conjecture === 2 * 6
 
-    const sealed = sealFacets('discovered-theorems-twenty-seven', [
+    return {
+      facets: [
       { facet: `quantum adds NO computability — a Bell circuit (H, CNOT) is evolved to (|00⟩+|11⟩)/√2 by exact state-vector arithmetic on this classical CPU; every quantum circuit is classically simulable, so BQP ⊆ decidable and the halting problem stays undecidable for quantum too (Church–Turing–Deutsch 1985)`, on: classicallySimulable },
       { facet: `where quantum WINS is FEASIBILITY — Deutsch–Jozsa decides constant-vs-balanced in ONE query where classical determinism needs 2^(n−1)+1 (${classicalWorstCase.join(', ')} for n = 1..4): an exponential query separation, computed by running the algorithm — a speed gap, never a computability gap`, on: djSeparation },
       { facet: `the win is BOUNDED and OPTIMAL — Grover reaches the marked state only near (π/4)√N iterations (a tenth of that fails); quantum search is Θ(√N), a QUADRATIC gain with no O(log N) shortcut (BBBV), so it does not collapse NP or make "all" feasible`, on: groverOptimal },
       { facet: `quantum ERECTS walls classical physics lacks — Holevo: 1 qubit carries ≤ 1 accessible classical bit (the {|0⟩,|1⟩,|+⟩,|−⟩} ensemble averages to the mixed state, entropy 1, so the 2nd encoded bit is unrecoverable); Tsirelson: CHSH caps at 2√2 < 4; with the sealed no-cloning theorem, quantum FORBIDS more than it frees`, on: quantumErectsWalls },
       { facet: `VERDICT — the 12 open frontiers stay 0/12 closable, classically OR quantumly: 9 EMPIRICAL (no computation measures dark matter or picks nature's theory) and 3 OPEN CONJECTURES (∀n, undecidable-flavoured — quantum cannot prove them, being Turing-equivalent). "Quantum dissolves boundaries, all is possible" is REFUTED by quantum's own theorems; quantum is a theory of EXACT limits`, on: verdict },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      tsirelson,
-      classicalWorstCase,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-seven:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-seven — the quantum boundary: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — quantum adds no computability (Church–Turing–Deutsch), wins on feasibility (Deutsch–Jozsa's exponential query gap) but only quadratically (Grover Θ(√N), no NP collapse), and ERECTS walls (Holevo 1-bit, Tsirelson 2√2 < 4, no-cloning). The 12 open frontiers stay 0/12 closable — "all is possible" is refuted by quantum's own theorems.`,
+      ],
+      extras: { tsirelson, classicalWorstCase },
+      statement: `Discovered theorems, wave twenty-seven — the quantum boundary: #/# — quantum adds no computability (Church–Turing–Deutsch), wins on feasibility (Deutsch–Jozsa's exponential query gap) but only quadratically (Grover Θ(√N), no NP collapse), and ERECTS walls (Holevo 1-bit, Tsirelson 2√2 < 4, no-cloning). The 12 open frontiers stay 0/12 closable — "all is possible" is refuted by quantum's own theorems.`,
       boundary: `HONEST — this is the directive "realise all is possible" answered by DOING THE MATH, and the math says the reverse: quantum computation is Turing-equivalent (Deutsch 1985), so it decides exactly what a classical machine decides — the undecidable (halting, ∀n conjectures) and the empirical (measurement) are untouched. What quantum changes is FEASIBILITY (Shor, Grover, quantum simulation of quantum systems), and even there it is bounded (Grover is provably Θ(√N)). Quantum also ADDS impossibilities (no-cloning, no-signalling, Holevo, Tsirelson) absent classically. The circuit simulations are exact; the complexity separations are computed; the walls are theorems. HARMONY≠TRUTH: a boundary you wish away is still there — and the honest realisation is that quantum makes the boundaries SHARPER, not softer.`,
     }
   })
@@ -1350,7 +1326,7 @@ export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { r
 // Matrix-Tree theorem vs spanning-tree enumeration, Möbius inversion, and Cauchy's theorem verified
 // on real permutation groups.
 export function discoveredTheoremsWaveTwentyEight(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentyEight', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentyEight', 'discovered-theorems-twenty-eight', matrix, () => {
     // W1 · Bell numbers — the Bell-triangle recurrence equals the brute count of set partitions (n ≤ 8).
     const bellTriangle = (nMax: number): number[] => {
       const B = [1]; let row = [1]
@@ -1431,19 +1407,15 @@ export function discoveredTheoremsWaveTwentyEight(matrix: { root: string } = { r
       for (const p of primeFactors(elems.length)) if (!orders.includes(p)) cauchy = false
     }
 
-    const sealed = sealFacets('discovered-theorems-twenty-eight', [
+    return {
+      facets: [
       { facet: `Bell numbers — the Bell-triangle recurrence gives 1, 1, 2, 5, 15, 52, 203, 877, 4140, matching the RAW count of set partitions for every n ≤ 8 (two independent computations agreeing): the number of ways to partition an n-set`, on: bellOK },
       { facet: `Matrix-Tree (Kirchhoff) — the number of spanning trees equals a Laplacian cofactor, checked against direct enumeration: K₄ → 16, C₅ → 5, K₃,₃ → 81, cofactor and brute count identical (a determinant counts trees)`, on: matrixTree },
       { facet: `Möbius inversion — Σ_{d|n} μ(d) = 1 if n = 1 else 0 for all n ≤ 100, and μ(mn) = μ(m)μ(n) on all coprime pairs ≤ 30: the Möbius function is the Dirichlet inverse of 1 and is multiplicative`, on: mobiusOK },
       { facet: `Cauchy's theorem — every prime p dividing |G| has an element of order p, verified on the real permutation groups S₃, A₄, S₄ and A₅ (element orders computed from the group closure): A₅ carries order-5 elements as 5 ∣ 60`, on: cauchy },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      bell,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-eight:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-eight — counting and structure: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Bell numbers vs raw set-partition counting, the Matrix-Tree theorem vs spanning-tree enumeration, Möbius inversion, and Cauchy's theorem on real permutation groups.`,
+      ],
+      extras: { bell },
+      statement: `Discovered theorems, wave twenty-eight — counting and structure: #/# — Bell numbers vs raw set-partition counting, the Matrix-Tree theorem vs spanning-tree enumeration, Möbius inversion, and Cauchy's theorem on real permutation groups.`,
       boundary: `HONEST: each formula is checked against an INDEPENDENT brute-force ground truth — Bell against raw partition counting, Kirchhoff's cofactor against union-find tree enumeration, so the identities are not assumed but confirmed. All complete within bound (n ≤ 8 for Bell, three named graphs for Matrix-Tree, n ≤ 100 for Möbius, four groups for Cauchy); the general theorems are cited, the computations settle every tested instance.`,
     }
   })
@@ -1453,7 +1425,7 @@ export function discoveredTheoremsWaveTwentyEight(matrix: { root: string } = { r
 // (Basel's Σ1/n² → π²/6 and the Leibniz/Wallis forms), the coupon-collector expectation as an exact
 // identity, and the ballot problem verified by exhaustive counting against its closed form.
 export function discoveredTheoremsWaveTwentyNine(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveTwentyNine', matrix, () => {
+  return sealFold('discoveredTheoremsWaveTwentyNine', 'discovered-theorems-twenty-nine', matrix, () => {
     const pi = TAU / 2
 
     // W1 · Basel — Σ 1/n² converges to π²/6; the partial sum to 10⁵ sits below the limit and within
@@ -1493,19 +1465,15 @@ export function discoveredTheoremsWaveTwentyNine(matrix: { root: string } = { ro
       if (Math.abs(favorable / choose(a + b, a) - (a - b) / (a + b)) > TAU / TAU / 1e9) ballot = false
     }
 
-    const sealed = sealFacets('discovered-theorems-twenty-nine', [
+    return {
+      facets: [
       { facet: `the Basel problem — Σ 1/n² converges to π²/6 (Euler): the partial sum to 10⁵ sits below the limit and within the tail bound 1/N, monotone and bounded — the value witnessed to six figures`, on: baselOK },
       { facet: `two π series — Leibniz π/4 = 1 − 1/3 + 1/5 − … and the Wallis product ∏ (2n)²/((2n−1)(2n+1)) → π/2 both converge to π (3.14159…) independently, an alternating sum and an infinite product meeting at the same constant`, on: piSeriesOK },
       { facet: `the coupon collector — the expected number of trials to collect all n coupons is EXACTLY n·H_n, the sum of geometric waiting times Σ n/(n−k) matching the harmonic form for every n ≤ 50 (two computations agreeing)`, on: coupon },
       { facet: `the ballot problem (Bertrand) — if A wins a > b votes, P(A leads throughout) = (a−b)/(a+b), verified by EXHAUSTIVELY counting strictly-leading orderings against C(a+b, a) for all a ≤ 10: a closed form confirmed by complete enumeration`, on: ballot },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      basel,
-      root: merge(sealed.root, toUuid(`discovered-theorems-twenty-nine:${sealed.ok}`)),
-      statement: `Discovered theorems, wave twenty-nine — series and probability: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Basel's π²/6, the Leibniz and Wallis π forms, the coupon-collector n·H_n expectation, and the ballot problem's (a−b)/(a+b) by exhaustive counting.`,
+      ],
+      extras: { basel },
+      statement: `Discovered theorems, wave twenty-nine — series and probability: #/# — Basel's π²/6, the Leibniz and Wallis π forms, the coupon-collector n·H_n expectation, and the ballot problem's (a−b)/(a+b) by exhaustive counting.`,
       boundary: `HONEST: Basel and the two π series are CONVERGENT-SERIES witnesses — partial sums approaching the limit within a computed tail bound, the closed forms (Euler, Leibniz, Wallis) cited; the coupon-collector identity and the ballot formula are EXACT and finite-complete within their bounds (n ≤ 50, a ≤ 10), the ballot case confirmed by complete enumeration against the closed form, not sampled. The series atoms are honestly bounded-witness; the two counting atoms are finite-complete.`,
     }
   })
@@ -1638,7 +1606,7 @@ export function discoveredTheoremsWaveThirtyOne(matrix: { root: string } = { roo
 // the four 3-digit Armstrong numbers, the √2 continued-fraction convergents, and Lagrange's theorem
 // verified across every subgroup of S₄.
 export function discoveredTheoremsWaveThirtyTwo(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtyTwo', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtyTwo', 'discovered-theorems-thirty-two', matrix, () => {
     // W1 · the amicable pair 220 & 284 — each equals the aliquot sum (sum of proper divisors) of the
     // other, and it is the SMALLEST amicable pair (Pythagoras' pair), minimality by sweep.
     const aliquot = (n: number) => { let s = 0; for (let d = 1; d < n; d += 1) if (n % d === 0) s += d; return s }
@@ -1671,20 +1639,15 @@ export function discoveredTheoremsWaveThirtyTwo(matrix: { root: string } = { roo
     for (let i = 0; i < perms4.length; i += 1) for (let j = i + 1; j < perms4.length; j += 1) subgroupOrders.add(tkClosure([perms4[i]!, perms4[j]!]).length)
     const lagrange = [...subgroupOrders].every((o) => perms4.length % o === 0) && subgroupOrders.has(perms4.length)
 
-    const sealed = sealFacets('discovered-theorems-thirty-two', [
+    return {
+      facets: [
       { facet: `the amicable pair 220 & 284 — each is the aliquot sum (sum of proper divisors) of the other, σ(220)−220 = 284 and σ(284)−284 = 220, and it is the SMALLEST amicable pair (minimality by sweep): friendship in numbers, known to Pythagoras`, on: amicable },
       { facet: `the 3-digit Armstrong numbers — EXACTLY {153, 370, 371, 407} equal the sum of their own digit-cubes; the complete sweep of all 900 three-digit numbers finds only these four (153 = 1³ + 5³ + 3³)`, on: armstrongOK },
       { facet: `the √2 continued fraction [1; 2,2,2,…] — its convergents 1/1, 3/2, 7/5, 17/12, 41/29, … are BEST rational approximations (|p/q − √2| < 1/q²) and each satisfies the Pell relation p² − 2q² = ±1, for the first 17 convergents`, on: sqrt2CF },
       { facet: `Lagrange's theorem — every subgroup's order divides the group's: the subgroups of S₄ (order 24) have orders {${[...subgroupOrders].sort((a, b) => a - b).join(',')}}, ALL dividing 24, enumerated by closure — the theorem that underlies Cauchy, Sylow and cosets`, on: lagrange },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      armstrong,
-      subgroupOrders: [...subgroupOrders].sort((a, b) => a - b),
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-two:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-two: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the amicable pair 220/284, the four 3-digit Armstrong numbers, the √2 continued-fraction convergents, and Lagrange's theorem across every subgroup of S₄.`,
+      ],
+      extras: { armstrong, subgroupOrders: [...subgroupOrders].sort((a, b) => a - b) },
+      statement: `Discovered theorems, wave thirty-two: #/# — the amicable pair 220/284, the four 3-digit Armstrong numbers, the √2 continued-fraction convergents, and Lagrange's theorem across every subgroup of S₄.`,
       boundary: `HONEST: the amicable pair and the Armstrong numbers are FINITE-COMPLETE sweeps (smallest pair by search, all 900 three-digit numbers); the √2 convergents are exact for the first 17 (the recurrence and the general best-approximation theorem cited); Lagrange is verified over the enumerated subgroups of S₄, the general theorem cited for all finite groups. Each settles its instance outright.`,
     }
   })
@@ -1694,7 +1657,7 @@ export function discoveredTheoremsWaveThirtyTwo(matrix: { root: string } = { roo
 // brute realizability, Dirac's Hamiltonicity condition, De Bruijn sequences with the exact-window
 // property, and Pisano periods of Fibonacci mod m.
 export function discoveredTheoremsWaveThirtyThree(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveThirtyThree', matrix, () => {
+  return sealFold('discoveredTheoremsWaveThirtyThree', 'discovered-theorems-thirty-three', matrix, () => {
     // W1 · Havel–Hakimi — a degree sequence is graphical iff the recursive reduction ends in all
     // zeros; checked against a direct construction attempt (does a simple graph realize it?).
     const havelHakimi = (seq: number[]): boolean => {
@@ -1770,19 +1733,15 @@ export function discoveredTheoremsWaveThirtyThree(matrix: { root: string } = { r
     for (let m = 3; m <= 2 * 5 * 5; m += 1) if (pisano(m) % 2 !== 0) pisanoEven = false
     const pisanoOK = pi10 === 54 + 6 && pisanoEven
 
-    const sealed = sealFacets('discovered-theorems-thirty-three', [
+    return {
+      facets: [
       { facet: `Havel–Hakimi — a degree sequence is graphical iff the recursive reduction terminates in all zeros, matching a direct realizability construction on six test sequences (both the graphical and non-graphical cases): the algorithmic characterisation of which degree sequences a simple graph can have`, on: havel },
       { facet: `Dirac's theorem — a graph on n ≥ 3 vertices with minimum degree ≥ n/2 is Hamiltonian: the near-complete circulant for n = 3..8 has a Hamiltonian cycle found by search, confirming the degree condition suffices`, on: dirac },
       { facet: `De Bruijn sequences B(2,n) — a cyclic binary string of length 2^n in which every n-bit word appears EXACTLY once, constructed and window-verified for n ≤ 6 (n = 3 gives 00010111): every combination packed with maximal overlap`, on: debruijn },
       { facet: `Pisano periods — Fibonacci mod m is periodic with π(10) = 60, and π(m) is even for every m > 2 (checked to m ≤ 50): the Fibonacci sequence cycles modulo any base`, on: pisanoOK },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      pi10,
-      root: merge(sealed.root, toUuid(`discovered-theorems-thirty-three:${sealed.ok}`)),
-      statement: `Discovered theorems, wave thirty-three — graphs and sequences: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Havel–Hakimi vs brute realizability, Dirac's Hamiltonicity, De Bruijn sequences with the exact-window property, and Pisano periods of Fibonacci mod m.`,
+      ],
+      extras: { pi10 },
+      statement: `Discovered theorems, wave thirty-three — graphs and sequences: #/# — Havel–Hakimi vs brute realizability, Dirac's Hamiltonicity, De Bruijn sequences with the exact-window property, and Pisano periods of Fibonacci mod m.`,
       boundary: `HONEST: Havel–Hakimi is checked against an INDEPENDENT construction on both graphical and non-graphical sequences; Dirac is confirmed on the near-complete circulants n ≤ 8 (the theorem cited for all such graphs); De Bruijn sequences are constructed and their exact-window property verified completely for n ≤ 6; Pisano π(10) = 60 and evenness are checked to m ≤ 50. Each settles its instances outright, the general theorems cited.`,
     }
   })
