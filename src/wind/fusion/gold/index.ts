@@ -1,6 +1,6 @@
 // Gold — WGS84 catalog, thunder graph, Schumann coupling, fusion generator + product pipeline (MODEL · NOT USGS/bullion authority). Folded from lattice/generator/product.
 import { initialBearing } from '../../../6/4'
-import { magneticDeclinationAtSite } from '../../../earth/world'
+import { magneticDeclinationAtSite, preciousMetalsThunderGraphFromGps } from '../../../earth/world'
 import { greatCircleKm } from '../../../5/5'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../../heaven/compute'
@@ -260,7 +260,7 @@ export function goldFusionComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const coupling = schumannGoldSiteCouplingComputes(matrix, at)
     const strength = goldPositionFusionStrengthComputes(matrix)
     const product = fusionGoldComputes(matrix, at)
-    const { computes, facets } = computesGate('gold-fusion-computes', [
+    const { computes, facets } = computesGate('gold-fusion-computes', [{ facet: 'precious-metals graph — Ag/Pt/Cu districts ride the same lattice', on: preciousMetalsThunderGraphFromGps().graphed }, 
       { facet: 'goldMineMapComputes', on: map.computes },
       { facet: 'thunderGoldGraphComputes', on: graph.computes },
       { facet: 'schumannGoldSiteCouplingComputes', on: coupling.computes },

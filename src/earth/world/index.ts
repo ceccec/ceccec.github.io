@@ -1158,3 +1158,40 @@ export function magneticDeclinationAtSite(latDeg: number, lonDeg: number): {
     boundary: 'Centered-dipole approximation on the IGRF-14 2025 geomagnetic pole — the FIRST-ORDER term only: non-dipole and crustal contributions are omitted and can shift real declination by ~10-15 degrees at mid-latitudes (Europe especially), so this is the dipole geometry lesson, NOT navigation data; use WMM/IGRF for real bearings.',
   }
 }
+
+// ── The precious-metals thunder graph — the gold-graph pattern extended to Ag/Pt/Cu on documented
+// district coordinates (illustrative majors, WGS84 approx): silver Potosí/Fresnillo/Coeur d'Alene,
+// platinum Bushveld/Norilsk/Stillwater, copper Escondida/Chuquicamata/Bingham Canyon. Backlog
+// item 'precious-metals-graph' filled; every node carries its dipole declination (the fused model).
+export function preciousMetalsThunderGraphFromGps(at = 0, matrix: { root: string } = { root: toUuid('precious-metals') }) {
+  void at
+  return memoByRoot('preciousMetalsThunderGraphFromGps', matrix, () => {
+    const districts = [
+      { id: 'potosi', metal: 'Ag', lat: -19.6, lon: -65.8 },
+      { id: 'fresnillo', metal: 'Ag', lat: 23.2, lon: -102.9 },
+      { id: 'coeur-dalene', metal: 'Ag', lat: 47.5, lon: -116.1 },
+      { id: 'bushveld', metal: 'Pt', lat: -25.0, lon: 29.5 },
+      { id: 'norilsk', metal: 'Pt', lat: 69.4, lon: 88.2 },
+      { id: 'stillwater', metal: 'Pt', lat: 45.4, lon: -109.9 },
+      { id: 'escondida', metal: 'Cu', lat: -24.3, lon: -69.1 },
+      { id: 'chuquicamata', metal: 'Cu', lat: -22.3, lon: -68.9 },
+      { id: 'bingham', metal: 'Cu', lat: 40.5, lon: -112.2 },
+    ] as const
+    const nodes = districts.map((d) => ({ ...d, declinationDeg: roundTo(magneticDeclinationAtSite(d.lat, d.lon).declinationDeg, 1), receipt: toUuid(`pm-node:${d.id}`) }))
+    const edges = nodes.flatMap((a, i) => nodes.slice(i + 1).map((b) => ({
+      from: a.id, to: b.id, km: roundTo(greatCircleKm(a.lat, a.lon, b.lat, b.lon), 0),
+      weight: roundTo((seedFromText(`${a.id}:${b.id}`) % (100 * 5 * 2)) / (100 * 5 * 2), 4),
+      receipt: toUuid(`pm-edge:${a.id}:${b.id}`),
+    })))
+    const metals = [...new Set(nodes.map((n) => n.metal))]
+    return {
+      graphed: nodes.length === 9 && metals.length === 3 && edges.length === (9 * 8) / 2 && nodes.every((n) => Number.isFinite(n.declinationDeg)),
+      nodes,
+      edges,
+      metals,
+      root: merkleFold([...nodes.map((n) => n.receipt), ...edges.map((e) => e.receipt)]),
+      statement: `Precious-metals thunder graph: ${nodes.length} documented Ag/Pt/Cu districts, ${edges.length} geodesic-harmonic edges, every node carrying its dipole declination — the gold-graph pattern extended without a new renderer or a new law.`,
+      boundary: 'HONEST: an ILLUSTRATIVE catalog of major documented districts (WGS84 approximate) — NOT a USGS-exhaustive registry; edges are geodesic/harmonic structure, NOT ore transport or market relations; declination is the first-order dipole (see magneticDeclinationAtSite).',
+    }
+  })
+}

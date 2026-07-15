@@ -777,7 +777,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
       { id: 'cosmos-ladder', name: 'Earth → galaxies decode ladder', status: 'sealed', home: 'src/fusion', invoke: 'decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at, matrix)', boundary: 'Sealed scale ladder — NOT live telescope', censusImpact: 'neutral' },
     ]
     const open: Omit<ComputableModelEntry, 'receipt'>[] = [
-      { id: 'precious-metals-graph', name: 'Ag/Pt/Cu thunder graph on GPS lattice', status: 'open', home: 'src/earth/world', invoke: 'preciousMetalsThunderGraphFromGps(at, matrix)', boundary: 'Extend gold graph pattern — district coords only', censusImpact: 'neutral' },
+      { id: 'precious-metals-graph', name: 'Ag/Pt/Cu thunder graph on GPS lattice', status: 'sealed', home: 'src/earth/world', invoke: 'preciousMetalsThunderGraphFromGps(at, matrix)', boundary: 'Illustrative documented districts — NOT USGS-exhaustive; geodesic structure only', censusImpact: 'neutral' },
       { id: 'water-oil-flow-graph', name: 'Energy/water flow on GPS harmonic graph', status: 'open', home: 'src/earth/world', invoke: 'energyFlowThunderGraphFromGps(at, matrix)', boundary: 'Structural flow metaphor — NOT pipeline telemetry', censusImpact: 'neutral' },
       { id: 'magnetic-declination-sites', name: 'Declination at site from the centered dipole', status: 'sealed', home: 'src/earth/world', invoke: 'magneticDeclinationAtSite(lat, lon)', boundary: 'Centered-dipole on the IGRF-14 2025 pole — NOT WMM high-fidelity', censusImpact: 'neutral' },
       { id: 'society-merkaba-10d', name: 'Society actor 10D merkaba graph', status: 'open', home: 'src/earth/governance · route TBD', invoke: 'societyMerkabaGraphComputes(matrix)', boundary: 'Actor taxonomy + 10D state — NOT live market actors', censusImpact: 'neutral' },
@@ -798,8 +798,8 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
     const sealedCount = entries.filter((entry) => entry.status === 'sealed').length
     const openCount = entries.filter((entry) => entry.status === 'open').length
     const facets = [
-      { facet: 'fifteen sealed domain models documented with invoke paths', on: sealedCount === 3 * 5 },
-      { facet: 'five open models with honest boundaries — no wet inference', on: openCount === 5 },
+      { facet: 'sixteen sealed domain models documented with invoke paths', on: sealedCount === 16 },
+      { facet: 'four open models with honest boundaries — no wet inference', on: openCount === 4 },
       { facet: 'three planned monolith dissolves — census swap-only', on: planned.length === 3 },
       { facet: 'every entry has content-addressed receipt', on: entries.every((entry) => isUuid(entry.receipt)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`compute-more-models:${entry.facet}:${entry.on}`) }))
