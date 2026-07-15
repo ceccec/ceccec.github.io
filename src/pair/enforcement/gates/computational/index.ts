@@ -1369,3 +1369,19 @@ export function foldingEntropy(root: string): {
     boundary: 'HONEST: compression is a Kolmogorov PROXY — the local fold includes syntax and prose statistics that readable source legitimately carries (not purgeable); only the cross-file interference is refactor-reachable, and its value depends on the compressor window (gzip 32KB sees ~1%, brotli 16MB ~4.5%, xz ~9%). The linear class-sum route must converge with it before either number is trusted.',
   }
 }
+
+/** The source atlas — every sealed index enumerated with its science and domain path (the whole-source
+ * autodisplay data; the dedicated atlas ROUTE renders this artifact). Reuses the foldingEntropy walk. */
+export function sourceAtlasJson(root: string): { count: number; sciences: Record<string, number>; modules: { path: string; science: string }[] } {
+  const paths: string[] = []
+  const walk = (dir: string) => { for (const entry of readdirSync(dir, { withFileTypes: true })) { const p = join(dir, entry.name); if (entry.isDirectory()) walk(p); else if (entry.name === 'index.ts') paths.push(p) } }
+  walk(join(root, 'src'))
+  const modules = paths.sort().map((p) => {
+    const rel = relative(root, p).replace(/\\/g, '/')
+    const science = rel.split('/')[1] ?? 'src'
+    return { path: rel, science }
+  })
+  const sciences: Record<string, number> = {}
+  for (const m of modules) sciences[m.science] = (sciences[m.science] ?? 0) + 1
+  return { count: modules.length, sciences, modules }
+}
