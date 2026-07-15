@@ -2,6 +2,7 @@
 // node:fs / node:path are loaded lazily inside readVaultSourceText (node/SSR only) so this barrel stays
 // browser-eval-safe — a top-level `import { readFileSync } from 'node:fs'` eager-binds and throws in the client.
 import * as __ns_up_up_plasma_ball from '../../fire/plasma/ball'
+import * as __ns_up_up_earth_governance from '../../earth/governance'
 import * as __ns_up_up_earth from '../../earth'
 import * as __ns_up_up_sun from '../../heaven/sky/sun'
 import * as __ns_up_up_moon from '../../heaven/sky/moon'
@@ -780,7 +781,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
       { id: 'precious-metals-graph', name: 'Ag/Pt/Cu thunder graph on GPS lattice', status: 'sealed', home: 'src/earth/world', invoke: 'preciousMetalsThunderGraphFromGps(at, matrix)', boundary: 'Illustrative documented districts — NOT USGS-exhaustive; geodesic structure only', censusImpact: 'neutral' },
       { id: 'water-oil-flow-graph', name: 'Energy/water flow on GPS harmonic graph', status: 'sealed', home: 'src/earth/world', invoke: 'energyFlowThunderGraphFromGps(at, matrix)', boundary: 'Structural flow metaphor on documented hubs — NOT pipeline telemetry', censusImpact: 'neutral' },
       { id: 'magnetic-declination-sites', name: 'Declination at site from the centered dipole', status: 'sealed', home: 'src/earth/world', invoke: 'magneticDeclinationAtSite(lat, lon)', boundary: 'Centered-dipole on the IGRF-14 2025 pole — NOT WMM high-fidelity', censusImpact: 'neutral' },
-      { id: 'society-merkaba-10d', name: 'Society actor 10D merkaba graph', status: 'open', home: 'src/earth/governance · route TBD', invoke: 'societyMerkabaGraphComputes(matrix)', boundary: 'Actor taxonomy + 10D state — NOT live market actors', censusImpact: 'neutral' },
+      { id: 'society-merkaba-10d', name: 'Society actor 10D merkaba graph', status: 'sealed', home: 'src/earth/governance', invoke: 'societyMerkabaGraphComputes(matrix)', boundary: 'Documented actor taxonomy + content-addressed 10D state — NOT live actors or social measurement', censusImpact: 'neutral' },
       { id: 'planets-batch-3', name: 'Mercury–Neptune per-planet paint facets', status: 'sealed', home: 'src/heaven/sky/astronomy', invoke: 'planetBatchFacetsComputes(1..3, matrix, at)', boundary: 'Keplerian facets from the one solarSystem model — NOT an ephemeris', censusImpact: 'neutral' },
       { id: 'quantum-chemistry-toy', name: 'H₂⁺ LCAO-1s orbital energy toy (analytic)', status: 'sealed', home: 'src/quantum/dynamics', invoke: 'quantumChemistryToyComputes(matrix)', boundary: 'Closed-form minimal basis with its known error exhibited — NOT ab initio', censusImpact: 'neutral' },
       { id: 'weather-calendar-trading', name: 'Calendar harmonic + weather proxy offline', status: 'sealed', home: 'src/thunder/trading', invoke: 'harmonicWeatherTradingOffline(at, matrix)', boundary: 'One seasonal sine on the sealed a432 path — NOT a forecast, NOT advice', censusImpact: 'neutral' },
@@ -798,8 +799,8 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
     const sealedCount = entries.filter((entry) => entry.status === 'sealed').length
     const openCount = entries.filter((entry) => entry.status === 'open').length
     const facets = [
-      { facet: 'eighteen sealed domain models documented with invoke paths', on: sealedCount === 2 * 9 },
-      { facet: 'two open models with honest boundaries — no wet inference', on: openCount === 2 },
+      { facet: 'nineteen sealed domain models documented with invoke paths', on: sealedCount === 2 * 9 + 1 },
+      { facet: 'one open model with honest boundaries — no wet inference', on: openCount === 1 },
       { facet: 'three planned monolith dissolves — census swap-only', on: planned.length === 3 },
       { facet: 'every entry has content-addressed receipt', on: entries.every((entry) => isUuid(entry.receipt)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`compute-more-models:${entry.facet}:${entry.on}`) }))
@@ -971,6 +972,7 @@ export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix
     const shared = src0SharedComputes(matrix)
     const tradingOffline = __ns_up_up_thunder_trading.tradingSimulationComputes(matrix)
     const weatherTrading = __ns_up_up_thunder_trading.harmonicWeatherTradingOffline(0, matrix)
+    const societyMerkaba = __ns_up_up_earth_governance.societyMerkabaGraphComputes(matrix)
     const schumannCoupling = __ns_up_up_fusion_gold.schumannGoldSiteCouplingComputes(matrix, at)
     const modelsCatalog = computeMoreModelsCatalog(matrix, at)
     const markovLocal = markovStep([[(9 / (5 * 2)), (1 / (5 * 2))], [(1 / 5), (4 / 5)]], [1, 0]).length === 2
@@ -1002,6 +1004,7 @@ export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix
       { id: 'src0-vault', facet: 'digitalRoot + markovStep + schumannPhaseAt — src/0 primitives at at', on: digitalRoot(432) === 9 && markovLocal && schumannLocal >= 0 && schumannLocal < 1, source: 'src/0 · src/stack/overflow', receipt: toUuid(`src0-vault:${markovLocal}:${schumannLocal}`) },
       { id: 'trading-offline', facet: 'tradingSimulationComputes — a432 synthetic, zero network', on: tradingOffline.computes, source: 'src/thunder/trading', receipt: tradingOffline.root },
       { id: 'weather-trading', facet: 'harmonicWeatherTradingOffline — calendar-harmonic proxy on the sealed path', on: weatherTrading.computes, source: 'src/thunder/trading', receipt: weatherTrading.root },
+      { id: 'society-merkaba', facet: 'societyMerkabaGraphComputes — nine actors, 10D states, merkaba-fold edges', on: societyMerkaba.computes, source: 'src/earth/governance', receipt: societyMerkaba.root },
       { id: 'models-catalog', facet: 'computeMoreModelsCatalog — sealed/open/planned registry', on: modelsCatalog.catalogued, source: 'src/water/stack', receipt: modelsCatalog.root },
     ].map((entry) => ({ ...entry, receipt: toUuid(`local-math-facet:${entry.id}:${entry.on}:${entry.receipt}`) }))
     const coreIds = new Set(['astronomy', 'resonance', 'quantum-dynamics', 'gold-map', 'src0-vault', 'trading-offline', 'schumann-gold-coupling', 'models-catalog'])
