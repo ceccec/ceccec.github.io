@@ -53,6 +53,12 @@ const oneMathFormulas = (): readonly { name: string; pattern: RegExp; homes: rea
     { name: 'dim-walk-pulse', pattern: new RegExp(`0\\.5\\s*-\\s*0\\.5\\s*\\*\\s*${cos}`), homes: ['src/quantum/mountain/dimensions/index.ts'] },
     { name: 'digital-root-inline', pattern: /%\s*9\s*\|\|\s*9/, homes: ['src/0/index.ts'] },
     { name: 'golden-angle-decimal', pattern: new RegExp(`${goldenDeg}|${goldenRad}`), homes: [] },
+    // amendment 12 teeth — a literal animation period (SMIL dur or CSS animation seconds) bypasses the ONE
+    // clock even when the number sits on the lattice; every duration derives via fractalClockDur (canonical:
+    // fire/plasma/ball). Interpolations survive because `${` breaks the character-class run — only hand-typed
+    // seconds match. Phase offsets (begin/animation-delay with interpolation) stay free: wave sixty-four
+    // proved offsets never break global periodicity.
+    { name: 'fractal-clock-duration', pattern: /dur="\d|animation(?:-duration)?:[^;{}"'`]*\d+(?:\.\d+)?s\b/, homes: [] },
   ]
 }
 
