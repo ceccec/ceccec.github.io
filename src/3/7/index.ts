@@ -919,6 +919,8 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/earth/architecture/index.ts', literal: '*', count: (5 * 2), kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/earth/life/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — biology documented data' },
   { file: 'src/earth/nature/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — nature data' },
+  { file: 'src/quantum/dynamics/index.ts', literal: '27.2114', count: 1, kind: 'data', source: 'Hartree energy in eV — CODATA 2018' },
+  { file: 'src/quantum/dynamics/index.ts', literal: '0.6026', count: 1, kind: 'data', source: 'exact H₂⁺ ground-state energy (Ha) at equilibrium — Wind 1965' },
   { file: 'src/earth/world/index.ts', literal: '*', count: 21, kind: 'data', source: 'attested residue — world/geography documented data + IGRF-14 2025 geomagnetic pole (80.8 N, 72.7 W)' },
   { file: 'src/fire/diamonds/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/fire/features/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },

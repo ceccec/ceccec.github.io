@@ -425,6 +425,43 @@ export function quantumDynamicsSimulationPanelComputes(matrix: MindMatrix = buil
 }
 
 /** One gate — simulators, state evolution decode, research exposition, plasma vortex channel at call time. */
+// ── The quantum-chemistry toy — H₂⁺ in the LCAO-1s minimal basis, FULLY ANALYTIC (Griffiths 7.10 /
+// Szabo–Ostlund closed forms, atomic units): S = e⁻ᴿ(1+R+R²/3), ⟨a|1/r_b|a⟩ = 1/R − (1+1/R)e⁻²ᴿ,
+// ⟨a|1/r_b|b⟩ = (1+R)e⁻ᴿ. Backlog item 'quantum-chemistry-toy' filled: the orbital-energy exhibit.
+export function quantumChemistryToyComputes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumChemistryToyComputes', matrix, () => {
+    const HARTREE_EV = 27.2114
+    const EXACT_H2PLUS_HA = 0.6026
+    const S = (R: number) => Math.exp(-R) * (1 + R + R * R / 3)
+    const D = (R: number) => 1 / R - (1 + 1 / R) * Math.exp(-2 * R)
+    const X = (R: number) => (1 + R) * Math.exp(-R)
+    const bonding = (R: number) => -(1 / 2) - (D(R) + X(R)) / (1 + S(R)) + 1 / R
+    const antibonding = (R: number) => -(1 / 2) - (D(R) - X(R)) / (1 - S(R)) + 1 / R
+    let bestR = 0, bestE = 1
+    for (let i = 2 * 5 * 5; i <= 8 * 100; i += 1) { const R = i / 100; const E = bonding(R); if (E < bestE) { bestE = E; bestR = R } }
+    const bindingEv = (-(1 / 2) - bestE) * HARTREE_EV
+    const overlapSane = Math.abs(S(1 / (100 * 100)) - 1) < 1 / 100 && S(9) < 1 / 100 && S(1) > S(2)
+    const minimumBound = bestR > 2 && bestR < 3 && bindingEv > 3 / 2 && bindingEv < 2
+    const antibondingUnbound = Array.from({ length: 100 }, (_, i) => (i + 2 * 5) / (2 * 5)).every((R) => antibonding(R) > -(1 / 2))
+    const variational = bestE >= -EXACT_H2PLUS_HA
+    const facets = [
+      { facet: `the LCAO overlap behaves — S→1 at contact, monotone decay, S(9 a₀) < 1%`, on: overlapSane },
+      { facet: `the bonding orbital binds — minimum at R = ${bestR} a₀ with ${Math.round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100)} eV (the textbook LCAO-1s 2.49 a₀ · 1.76 eV; the exact H₂⁺ is 2.00 a₀ · 2.79 eV — the basis gap shown, not hidden)`, on: minimumBound },
+      { facet: `the antibonding orbital never binds — E₋(R) > −1/2 Ha at every separation`, on: antibondingUnbound },
+      { facet: `the variational principle holds — E₊ = ${Math.round(bestE * (100 * 100)) / (100 * 100)} Ha ≥ −${EXACT_H2PLUS_HA} Ha (the exact ground energy): the toy can only overestimate`, on: variational },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`qchem-toy:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      equilibriumA0: bestR,
+      bindingEv: Math.round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100),
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `Quantum chemistry toy — H₂⁺ LCAO-1s, fully analytic: bonding minimum at ${bestR} a₀ with ${Math.round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100)} eV binding, antibonding unbound everywhere, variational bound respected against the exact −${EXACT_H2PLUS_HA} Ha.`,
+      boundary: 'HONEST: the minimal-basis LCAO toy — closed-form integrals, zero fit parameters, and its KNOWN error exhibited (2.49 a₀ / 1.76 eV vs the exact 2.00 a₀ / 2.79 eV): a variational lesson, NOT ab initio chemistry. H₂/LiH many-electron energies are outside this one-electron model.',
+    }
+  })
+}
+
 export function quantumDynamicsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumDynamicsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const solutions = __ns_up_up_heaven_compute.completeQuantumSolutionsImplemented(matrix)
@@ -434,8 +471,10 @@ export function quantumDynamicsComputes(matrix: MindMatrix = buildMatrix(), at =
     const evolution = quantumStateEvolutionDecoded(at, matrix)
     const research = quantumDynamicsResearch(matrix)
     const simulation = quantumDynamicsSimulationAt(at, matrix)
+    const chemistry = quantumChemistryToyComputes(matrix)
     const vortexPlasma = __ns_up_up_vortex_math.vortexPlasmaComputes(matrix)
     const { computes, facets } = computesGate('quantum-dynamics-computes', [
+      { facet: 'H₂⁺ LCAO chemistry toy — bonding binds, antibonding does not, variational bound holds', on: chemistry.computes },
       { facet: 'complete quantum solutions — nine structures executed', on: solutions.implemented },
       { facet: 'simulators live in src/0 — analog→digital spine', on: simulators.homed },
       { facet: 'decoded life domains mostly classical — 12·3·2·1 distribution', on: classical.homed },
