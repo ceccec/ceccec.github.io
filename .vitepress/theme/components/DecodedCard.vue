@@ -10,6 +10,8 @@ import type { QuantumProjection } from '@vp-lib/hero-movie'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 import { UiBadge } from '../../lib/shadcn-ui.ts'
+import ProofAnimation from './ProofAnimation.vue'
+import { specForContent } from '../../../src/thunder/waves'
 
 export type DecodedFacet = { facet: string; on?: boolean; receipt?: string; link?: string }
 export type DecodedStation = { step?: number; station: string; route: string; why?: string }
@@ -56,6 +58,10 @@ const crosslinksLabel = computed(() =>
 )
 const relatedAria = computed(() => pick('Related links', 'Свързани връзки'))
 
+// simplify & animate law: every card leads with its computed animation (the one renderer, the one
+// keyword table) unless a movie projection already animates it; prose clamps behind the figure.
+const animSpec = computed(() => (props.movieApp || !displayTitle.value ? null : specForContent(displayTitle.value)))
+
 const titleId = computed(() => {
   const title = displayTitle.value
   if (!title) return undefined
@@ -75,7 +81,12 @@ const titleId = computed(() => {
       :id="titleId"
       class="decoded-card__title"
     >{{ displayTitle }}</component>
-    <p v-if="statement" class="decoded-card__statement">{{ t(statement) }}</p>
+    <ClientOnly v-if="animSpec">
+      <figure class="decoded-card__anim" aria-hidden="true">
+        <ProofAnimation :spec="animSpec" :size="2 * 9 * 5" />
+      </figure>
+    </ClientOnly>
+    <p v-if="statement" class="decoded-card__statement decoded-card__clamp" @click="($event.currentTarget as HTMLElement).classList.toggle('decoded-card__clamp')">{{ t(statement) }}</p>
     <p v-if="boundary" class="decoded-card__boundary">{{ t(boundary) }}</p>
     <ol v-if="displayStations?.length" class="decoded-card__stations">
       <li v-for="station in displayStations" :key="station.route + station.station">
@@ -157,4 +168,7 @@ const titleId = computed(() => {
 .decoded-card__crosslink {
   text-decoration: none;
 }
+.decoded-card__anim { margin: 0; display: grid; justify-items: center; }
+.decoded-card__anim canvas { max-width: calc(1px * 2 * 9 * 5); }
+.decoded-card__clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; cursor: pointer; }
 </style>
