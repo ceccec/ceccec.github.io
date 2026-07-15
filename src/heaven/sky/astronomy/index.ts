@@ -619,6 +619,30 @@ export function astronomySimulationPanelComputes(matrix: MindMatrix = buildMatri
 export const decodeAstronomyThroughVortexSequence = astronomyDecodedWithTheSequence
 
 /** One gate — celestial catalog, sequence decode, galaxy compute at call time. */
+// ── Per-planet paint facets in batches of three — backlog item 'planets-batch-3' filled: batch 1 =
+// Mercury/Venus/Earth, 2 = Mars/Jupiter/Saturn, 3 = Uranus/Neptune; every facet computed from the SAME
+// solarSystem Keplerian model (au · period · angle at time) plus paint (hue from the content-address).
+export function planetBatchFacetsComputes(batch: number, matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`planetBatchFacets:${batch}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const sys = solarSystem(matrix, at)
+    const chunk = sys.planets.slice((batch - 1) * 3, batch * 3)
+    const facets = chunk.map((p) => {
+      const hue = (Number.parseInt(toUuid(`planet-paint:${p.name}`).slice(0, 2), 16) * 360) / (16 * 16)
+      const on = Number.isFinite(p.angle) && Number.isFinite(p.x) && Number.isFinite(p.y) && p.periodYr > 0
+      return { facet: `${p.name} — ${p.au} au · ${p.periodYr} yr · angle ${p.angle} · hue ${Math.round(hue)}`, on, receipt: toUuid(`planet-batch:${batch}:${p.name}:${on}`) }
+    })
+    return {
+      computes: facets.length > 0 && facets.every((entry) => entry.on),
+      batch,
+      planets: chunk.map((p) => p.name),
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `Planet batch ${batch} paint facets: ${chunk.map((p) => p.name).join(' · ')} — au, period, live Keplerian angle and content-addressed hue, all from the one solarSystem model.`,
+      boundary: 'Circular Keplerian mean elements (NASA/JPL simplified, two decimals) with content-addressed paint — a deterministic exhibit, NOT an ephemeris.',
+    }
+  })
+}
+
 export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`astronomyComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const celestial = computeAllKnownCelestialBodies(matrix)
@@ -636,6 +660,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'astronomy-sequence-decode — VORTEX_SEQUENCE addresses bodies', on: sequence.decoded },
       { facet: 'astronomy simulation paint — orbit phase + hue at at', on: simulation.computes },
       { facet: 'astronomy sequence decode research exposition', on: research.researched },
+      { facet: 'per-planet paint facets — batches 1-3 cover Mercury-Neptune', on: [1, 2, 3].every((b) => planetBatchFacetsComputes(b, matrix, at).computes) },
     ])
     return {
       computes,
