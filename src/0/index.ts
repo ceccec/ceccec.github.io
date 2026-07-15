@@ -719,11 +719,15 @@ export function asMerkle(f: Fold): {
 // Presentation 5 — the harmonograph trace (dynamics/render). The composed tip of four nested,
 // counter-rotating arms (whole·lobe·tube·spark — the merkaba made self-similar); the fold seeds the
 // periods and phases. A point in [0,1]² at time t: the dot the engine plots, the figure it leaves.
+// The arm periods are MILLISECOND RUNGS of the fractal clock — HERO_CYCLE_MS_MIRROR/(2^a·3^b), the
+// wave-sixty-four snap of the once-tuned 2600/1700/1100 (retuned TO the theorem, ledger rows retired).
+// The hero cycle is MIRRORED once because src/0 imports nothing — canonical: fire/plasma/ball HERO_CYCLE_MS.
+const HERO_CYCLE_MS_MIRROR = 108_000 // module-local — call sites outside src/0 use the canonical fire/plasma/ball HERO_CYCLE_MS
 const TRACE_ARMS = [
-  { periodMs: (100 * 6 * 5 * 2), amp: (3 / (5 * 2)) },
-  { periodMs: 2600, amp: (4 / (5 * 5)) },
-  { periodMs: 1700, amp: (9 / 100) },
-  { periodMs: 1100, amp: (1 / (5 * 4)) },
+  { periodMs: (HERO_CYCLE_MS_MIRROR / (9 * 2)), amp: (3 / (5 * 2)) },   // 6000 ms — d = 18
+  { periodMs: (HERO_CYCLE_MS_MIRROR / (16 * 3)), amp: (4 / (5 * 5)) },  // 2250 ms — d = 48 (was 2600, tuned)
+  { periodMs: (HERO_CYCLE_MS_MIRROR / (8 * 9)), amp: (9 / 100) },       // 1500 ms — d = 72 (was 1700, tuned)
+  { periodMs: (HERO_CYCLE_MS_MIRROR / (16 * 6)), amp: (1 / (5 * 4)) },  // 1125 ms — d = 96 (was 1100, tuned)
 ] as const
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function asTrace(f: Fold, timeMs = 0): { x: number; y: number } {
@@ -1212,11 +1216,11 @@ interface PointerInteraction {
   readonly vibrate: readonly number[]
   readonly root: string
 }
-export function pointerInteraction(seed: string, px: number, py: number, width: number, height: number, cycleMs = 108_000): PointerInteraction { // default = the 108 s hero cycle (a432 census harmonic) — src/0 imports nothing, so the ladder value is MIRRORED here (canonical derivation: fire/plasma/ball HERO_CYCLE_MS)
+export function pointerInteraction(seed: string, px: number, py: number, width: number, height: number, cycleMs = HERO_CYCLE_MS_MIRROR): PointerInteraction { // default = the 108 s hero cycle (a432 census harmonic) — the one mirrored ladder value (canonical derivation: fire/plasma/ball HERO_CYCLE_MS)
   const tp = touchPhase(px, py, width, height)
   const tone = proseToTone(seed)
   const vibrate = foldHaptics(seed)
-  const cycle = cycleMs > 0 ? cycleMs : 108_000
+  const cycle = cycleMs > 0 ? cycleMs : HERO_CYCLE_MS_MIRROR
   return {
     phase: tp.phase,
     dim: tp.dim,

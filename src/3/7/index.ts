@@ -907,10 +907,10 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/thunder/movie/narrative/index.ts', literal: '220', count: 2, kind: 'data', source: 'expected throat hue (blue band) — regression pin for the red/blue-pill decode' },
   // ── FILE-LEVEL ATTESTATIONS ('*') — the residue census per file, exact counts, self-policing.
   // data = documented corpora/constants · tuned = awaiting derivation (the improvement frontier).
-  { file: 'src/0/index.ts', literal: '*', count: 11, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2, breath periods 2600/1700/1100 ms', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
+  { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: 168, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) homed here for browser-safety' },
+  { file: 'src/3/7/index.ts', literal: '*', count: 164, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) homed here for browser-safety' },
   { file: 'src/5/5/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/6/4/index.ts', literal: '*', count: 21, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
@@ -1045,9 +1045,6 @@ export const CRACK_RESEARCH_TARGETS: readonly CrackResearchTarget[] = [
   // src/0 — kernel timing
   { file: 'src/0/index.ts', value: 46, context: 'compass rose radius' },
   { file: 'src/0/index.ts', value: 2.2, context: 'torus lobe separation' },
-  { file: 'src/0/index.ts', value: 2600, context: 'breath period ms' },
-  { file: 'src/0/index.ts', value: 1700, context: 'breath period ms' },
-  { file: 'src/0/index.ts', value: 1100, context: 'breath period ms' },
   // wind/ui — SVG art
   { file: 'src/wind/ui/index.ts', value: 22, context: 'chip rect height' },
   { file: 'src/wind/ui/index.ts', value: 78, context: 'path coordinate' },
