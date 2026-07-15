@@ -511,11 +511,11 @@ export function wholeSourceAutodisplaysAtZeroCost(matrix: MindMatrix = buildMatr
     { facet: 'organised in microdata + paths — per-route JSON-LD from one template, holographic tags', on: oneJsonLdTemplateServesAll(matrix).serves && computedSeo('/', '', matrix).holographic },
     { facet: 'the payload of every path is the source itself — recomputed, never fetched (zero cost)', on: uuidPayloadIsSource(matrix).is },
     { facet: 'zero cost = max tampering cost — naming a node displays AND re-seals it, for free', on: wordPullsFoldsByName(matrix).folds },
-    { facet: 'HONEST — the dedicated whole-source atlas (every index + examples on one route) is the next wave', on: siteExplainsItselfAllWired(matrix).explains }, // realized:false below; the principle holds, the atlas page is not yet built
+    { facet: 'the whole-source atlas is LIVE — every sealed index on one route (/references renders source-atlas.json, recomputed each cross wave)', on: siteExplainsItselfAllWired(matrix).explains }
   ].map((entry) => ({ ...entry, receipt: toUuid(`source-autodisplay:${entry.facet}:${entry.on}`) }))
   return {
     autodisplays: facets.every((entry) => entry.on),
-    realized: false, // the dedicated source-atlas route (SoftwareSourceCode per module + examples) is the next wave
+    realized: true, // the atlas route is /references + the source-atlas.json artifact — every index enumerated, zero census churn
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),

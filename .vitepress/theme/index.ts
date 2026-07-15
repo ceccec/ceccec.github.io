@@ -14,6 +14,7 @@ import './computed-typography.css'
 import UniversalPageTemplate from './components/UniversalPageTemplate.vue'
 import ModelCardPages from './components/ModelCardPages.vue'
 import TheoremPages from './components/TheoremPages.vue'
+import SourceAtlas from './components/SourceAtlas.vue'
 
 export default {
   extends: DefaultTheme,
@@ -29,6 +30,7 @@ export default {
     }
     if (!ctx.app.component('ModelCardPages')) ctx.app.component('ModelCardPages', ModelCardPages)
     if (!ctx.app.component('TheoremPages')) ctx.app.component('TheoremPages', TheoremPages)
+    if (!ctx.app.component('SourceAtlas')) ctx.app.component('SourceAtlas', SourceAtlas)
     if (!ctx.app.component('DigitMotion')) ctx.app.component('DigitMotion', DigitMotion)
     if (!ctx.app.component('SevenStarRosetta')) ctx.app.component('SevenStarRosetta', DigitMotion)
 
