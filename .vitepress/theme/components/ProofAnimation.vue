@@ -253,7 +253,7 @@ onBeforeUnmount(() => { cancelAnimationFrame(raf); io?.disconnect() })
 </script>
 
 <template>
-  <canvas ref="el" class="proof-anim" :style="{ width: `${size ?? 4 * 7}px`, height: `${size ?? 4 * 7}px` }" :title="spec.kind" />
+  <canvas ref="el" class="proof-anim" role="img" :aria-label="`${spec.kind} animation of: ${spec.theorem}`" :style="{ width: `${size ?? 4 * 7}px`, height: `${size ?? 4 * 7}px` }" :title="spec.kind" />
 </template>
 
 <style scoped>
