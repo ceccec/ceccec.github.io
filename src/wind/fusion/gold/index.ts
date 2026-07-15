@@ -1,5 +1,6 @@
 // Gold — WGS84 catalog, thunder graph, Schumann coupling, fusion generator + product pipeline (MODEL · NOT USGS/bullion authority). Folded from lattice/generator/product.
 import { initialBearing } from '../../../6/4'
+import { magneticDeclinationAtSite } from '../../../earth/world'
 import { greatCircleKm } from '../../../5/5'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../../heaven/compute'
@@ -10,7 +11,7 @@ import { TAU } from '../../../3/7'
 export const GOLD_MINE_MAP_HINGE = { lat: 42.6977, lon: 23.3219 } as const
 export type GoldMineEvidenceTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS'
 export type ThunderGoldGraphEdgeKind = 'harmonic' | 'geodesic'
-export type ThunderGoldGraphNode = { id: string; lat: number; lon: number; tier: GoldMineEvidenceTier; receipt: string }
+export type ThunderGoldGraphNode = { id: string; lat: number; lon: number; tier: GoldMineEvidenceTier; declinationDeg: number; receipt: string }
 export type ThunderGoldGraphEdge = { from: string; to: string; kind: ThunderGoldGraphEdgeKind; weight: number; receipt: string }
 export type ThunderGoldGraphPaintSample = { u: number; v: number; hue: number; alpha: number; receipt: string }
 export type SchumannGoldSiteCouplingRow = { siteId: string; coupling: number; phase: number; receipt: string }
@@ -67,7 +68,7 @@ export function goldMineMapComputes(matrix: MindMatrix = buildMatrix(), at = 0) 
 export function thunderGoldGraphFromPreciseGpsCoordinates(at = 0, matrix: MindMatrix = buildMatrix()) {
   return memoByRoot(`thunderGoldGraph:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = goldMineMapCatalog(matrix)
-    const nodes: ThunderGoldGraphNode[] = catalog.mines.map((m) => ({ id: m.id, lat: m.lat, lon: m.lon, tier: m.tier, receipt: toUuid(`tg-node:${m.id}`) }))
+    const nodes: ThunderGoldGraphNode[] = catalog.mines.map((m) => ({ id: m.id, lat: m.lat, lon: m.lon, tier: m.tier, declinationDeg: roundTo(magneticDeclinationAtSite(m.lat, m.lon).declinationDeg, 1), receipt: toUuid(`tg-node:${m.id}`) }))
     const edges: ThunderGoldGraphEdge[] = nodes.flatMap((a, i) => nodes.slice(i + 1).map((b) => ({ from: a.id, to: b.id, kind: 'harmonic' as const, weight: roundTo((seedFromText(`${a.id}:${b.id}`) % (100 * 5 * 2)) / (100 * 5 * 2), 4), receipt: toUuid(`tg-edge:${a.id}:${b.id}`) })))
     return { graphed: nodes.length > 0, nodes, edges, root: merkleFold([...nodes.map((n) => n.receipt), ...edges.map((e) => e.receipt)]), boundary: 'HONEST · MODEL graph — NOT transport corridors.' }
   })

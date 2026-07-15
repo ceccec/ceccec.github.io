@@ -779,7 +779,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
     const open: Omit<ComputableModelEntry, 'receipt'>[] = [
       { id: 'precious-metals-graph', name: 'Ag/Pt/Cu thunder graph on GPS lattice', status: 'open', home: 'src/earth/world', invoke: 'preciousMetalsThunderGraphFromGps(at, matrix)', boundary: 'Extend gold graph pattern — district coords only', censusImpact: 'neutral' },
       { id: 'water-oil-flow-graph', name: 'Energy/water flow on GPS harmonic graph', status: 'open', home: 'src/earth/world', invoke: 'energyFlowThunderGraphFromGps(at, matrix)', boundary: 'Structural flow metaphor — NOT pipeline telemetry', censusImpact: 'neutral' },
-      { id: 'magnetic-declination-sites', name: 'Declination at mine coords from obliquity model', status: 'open', home: 'src/earth/world · src/3/7', invoke: 'magneticDeclinationAtSite(lat, lon, at)', boundary: 'Dipole/obliquity approx — NOT WMM high-fidelity', censusImpact: 'neutral' },
+      { id: 'magnetic-declination-sites', name: 'Declination at site from the centered dipole', status: 'sealed', home: 'src/earth/world', invoke: 'magneticDeclinationAtSite(lat, lon)', boundary: 'Centered-dipole on the IGRF-14 2025 pole — NOT WMM high-fidelity', censusImpact: 'neutral' },
       { id: 'society-merkaba-10d', name: 'Society actor 10D merkaba graph', status: 'open', home: 'src/earth/governance · route TBD', invoke: 'societyMerkabaGraphComputes(matrix)', boundary: 'Actor taxonomy + 10D state — NOT live market actors', censusImpact: 'neutral' },
       { id: 'planets-batch-3', name: 'Mercury–Neptune per-planet paint facets', status: 'open', home: 'src/astronomy', invoke: 'planetBatchFacetsComputes(3, matrix, at)', boundary: 'Keplerian facets — one batch per wave', censusImpact: 'neutral' },
       { id: 'quantum-chemistry-toy', name: 'Bounded H₂/LiH orbital energy toy', status: 'open', home: 'src/quantum/dynamics', invoke: 'quantumChemistryToyComputes(matrix)', boundary: 'Minimal basis toy — NOT ab initio', censusImpact: 'neutral' },
@@ -798,8 +798,8 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
     const sealedCount = entries.filter((entry) => entry.status === 'sealed').length
     const openCount = entries.filter((entry) => entry.status === 'open').length
     const facets = [
-      { facet: 'twelve sealed domain models documented with invoke paths', on: sealedCount === (6 * 2) },
-      { facet: 'eight open models with honest boundaries — no wet inference', on: openCount === 8 },
+      { facet: 'thirteen sealed domain models documented with invoke paths', on: sealedCount === (6 * 2) + 1 },
+      { facet: 'seven open models with honest boundaries — no wet inference', on: openCount === 7 },
       { facet: 'three planned monolith dissolves — census swap-only', on: planned.length === 3 },
       { facet: 'every entry has content-addressed receipt', on: entries.every((entry) => isUuid(entry.receipt)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`compute-more-models:${entry.facet}:${entry.on}`) }))

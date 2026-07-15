@@ -1140,3 +1140,21 @@ export {
   schumannGoldSiteCouplingAt,
   schumannGoldSiteCouplingComputes,
 } from '../../wind/fusion/gold'
+
+// ── Magnetic declination at a site — the centered-dipole model: declination ≈ the initial bearing from
+// the site to the geomagnetic north pole (the angle between true north and dipole north). Pole position
+// IGRF-14 epoch 2025 (data, ledgered): 80.8° N, 72.7° W. Backlog item 'magnetic-declination-sites' filled.
+export function magneticDeclinationAtSite(latDeg: number, lonDeg: number): {
+  declinationDeg: number; poleLatDeg: number; poleLonDeg: number; boundary: string
+} {
+  const poleLatDeg = 80.8
+  const poleLonDeg = -(72.7)
+  const bearing = initialBearing(latDeg, lonDeg, poleLatDeg, poleLonDeg)
+  const declinationDeg = ((bearing + 360 / 2) % 360) - 360 / 2
+  return {
+    declinationDeg,
+    poleLatDeg,
+    poleLonDeg,
+    boundary: 'Centered-dipole approximation on the IGRF-14 2025 geomagnetic pole — the FIRST-ORDER term only: non-dipole and crustal contributions are omitted and can shift real declination by ~10-15 degrees at mid-latitudes (Europe especially), so this is the dipole geometry lesson, NOT navigation data; use WMM/IGRF for real bearings.',
+  }
+}
