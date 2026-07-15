@@ -783,7 +783,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
       { id: 'society-merkaba-10d', name: 'Society actor 10D merkaba graph', status: 'open', home: 'src/earth/governance · route TBD', invoke: 'societyMerkabaGraphComputes(matrix)', boundary: 'Actor taxonomy + 10D state — NOT live market actors', censusImpact: 'neutral' },
       { id: 'planets-batch-3', name: 'Mercury–Neptune per-planet paint facets', status: 'sealed', home: 'src/heaven/sky/astronomy', invoke: 'planetBatchFacetsComputes(1..3, matrix, at)', boundary: 'Keplerian facets from the one solarSystem model — NOT an ephemeris', censusImpact: 'neutral' },
       { id: 'quantum-chemistry-toy', name: 'H₂⁺ LCAO-1s orbital energy toy (analytic)', status: 'sealed', home: 'src/quantum/dynamics', invoke: 'quantumChemistryToyComputes(matrix)', boundary: 'Closed-form minimal basis with its known error exhibited — NOT ab initio', censusImpact: 'neutral' },
-      { id: 'weather-calendar-trading', name: 'Calendar harmonic + weather proxy offline', status: 'open', home: 'src/thunder/trading · lake/music', invoke: 'harmonicWeatherTradingOffline(at, matrix)', boundary: 'Sealed calendar proxy — NOT live forecast', censusImpact: 'neutral' },
+      { id: 'weather-calendar-trading', name: 'Calendar harmonic + weather proxy offline', status: 'sealed', home: 'src/thunder/trading', invoke: 'harmonicWeatherTradingOffline(at, matrix)', boundary: 'One seasonal sine on the sealed a432 path — NOT a forecast, NOT advice', censusImpact: 'neutral' },
       { id: 'rosetta-dimensions', name: '~102 open rosetta quantum dimensions', status: 'open', home: 'src/learning · pair/enforcement', invoke: 'rosettaDimensionsGapDetail(matrix)', boundary: 'Emerge via rosetta:batch — not wet inference', censusImpact: 'neutral' },
     ]
     const planned: Omit<ComputableModelEntry, 'receipt'>[] = [
@@ -798,8 +798,8 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
     const sealedCount = entries.filter((entry) => entry.status === 'sealed').length
     const openCount = entries.filter((entry) => entry.status === 'open').length
     const facets = [
-      { facet: 'seventeen sealed domain models documented with invoke paths', on: sealedCount === 16 + 1 },
-      { facet: 'three open models with honest boundaries — no wet inference', on: openCount === 3 },
+      { facet: 'eighteen sealed domain models documented with invoke paths', on: sealedCount === 2 * 9 },
+      { facet: 'two open models with honest boundaries — no wet inference', on: openCount === 2 },
       { facet: 'three planned monolith dissolves — census swap-only', on: planned.length === 3 },
       { facet: 'every entry has content-addressed receipt', on: entries.every((entry) => isUuid(entry.receipt)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`compute-more-models:${entry.facet}:${entry.on}`) }))
@@ -970,6 +970,7 @@ export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix
     const cosmos = __ns_up_up_fusion.decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at, matrix)
     const shared = src0SharedComputes(matrix)
     const tradingOffline = __ns_up_up_thunder_trading.tradingSimulationComputes(matrix)
+    const weatherTrading = __ns_up_up_thunder_trading.harmonicWeatherTradingOffline(0, matrix)
     const schumannCoupling = __ns_up_up_fusion_gold.schumannGoldSiteCouplingComputes(matrix, at)
     const modelsCatalog = computeMoreModelsCatalog(matrix, at)
     const markovLocal = markovStep([[(9 / (5 * 2)), (1 / (5 * 2))], [(1 / 5), (4 / 5)]], [1, 0]).length === 2
@@ -1000,6 +1001,7 @@ export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix
       { id: 'cosmos-ladder', facet: 'decodeAndComputeAllFromEarthToGalaxiesAndBeyond — local Keplerian ladder', on: cosmos.computes, source: 'src/fusion', receipt: cosmos.root },
       { id: 'src0-vault', facet: 'digitalRoot + markovStep + schumannPhaseAt — src/0 primitives at at', on: digitalRoot(432) === 9 && markovLocal && schumannLocal >= 0 && schumannLocal < 1, source: 'src/0 · src/stack/overflow', receipt: toUuid(`src0-vault:${markovLocal}:${schumannLocal}`) },
       { id: 'trading-offline', facet: 'tradingSimulationComputes — a432 synthetic, zero network', on: tradingOffline.computes, source: 'src/thunder/trading', receipt: tradingOffline.root },
+      { id: 'weather-trading', facet: 'harmonicWeatherTradingOffline — calendar-harmonic proxy on the sealed path', on: weatherTrading.computes, source: 'src/thunder/trading', receipt: weatherTrading.root },
       { id: 'models-catalog', facet: 'computeMoreModelsCatalog — sealed/open/planned registry', on: modelsCatalog.catalogued, source: 'src/water/stack', receipt: modelsCatalog.root },
     ].map((entry) => ({ ...entry, receipt: toUuid(`local-math-facet:${entry.id}:${entry.on}:${entry.receipt}`) }))
     const coreIds = new Set(['astronomy', 'resonance', 'quantum-dynamics', 'gold-map', 'src0-vault', 'trading-offline', 'schumann-gold-coupling', 'models-catalog'])

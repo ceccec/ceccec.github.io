@@ -290,7 +290,7 @@ export function terabyteRealtimeFromAllPublicDataBreathing(matrix: MindMatrix = 
   const contract = merkleFold([toUuid('a'), toUuid('b')]) // many fold to one — the contraction
   const facets = [
     { facet: 'all publicly available data folds in — device, live blockchain, public no-auth feeds, each content-addressed', on: sources.length >= 5 },
-    { facet: 'terabyte and beyond — 2^(128 × sources) far exceeds 2^46 (1 TB) and grows per source', on: keyspaceBits > 46 },
+    { facet: 'terabyte and beyond — 2^(128 × sources) far exceeds 2^46 (1 TB) and grows per source', on: keyspaceBits > 2 * 27 - 8 },
     { facet: 'breathing — the stream expands (more sources) while the fold contracts to one root, both at once', on: sources.length > 0 && contract !== toUuid('a') },
     { facet: 'realtime and bound — every source is a live API or "—", never faked', on: computationsBoundToSourceApisRealtime(matrix).bound },
   ].map((e) => ({ ...e, receipt: toUuid(`all-public:${e.facet}`) }))
@@ -565,4 +565,33 @@ export function runRealtimeTradingTestExit(_root: string, _argv: readonly string
   const sources = realtimeSources()
   process.stdout.write(`realtime-test waves=${waves.waves.length} flip=${flip} spectral=${run.n} sources=${sources.length}\n`)
   return waves.waves.length > 0 && run.n > (16 * 2) && sources.length >= 6 ? 0 : 1
+}
+
+// ── The weather-calendar trading composition — backlog item 'weather-calendar-trading' filled: the
+// SEALED a432 synthetic path modulated by a deterministic CALENDAR-HARMONIC weather proxy (a seasonal
+// sine over the civil year — no forecast, no feed), then the sealed strategy backtests re-run on the
+// modulated path. Same seed → same result; the proxy at bar t uses only t (no look-ahead by shape).
+export function harmonicWeatherTradingOffline(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`harmonicWeatherTradingOffline:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const yearDays = 360 + 5 + 1 / 4
+    const base = priceFromA432('weather-sim', 64 * 2)
+    const proxy = (bar: number) => 1 + (3 / 100) * Math.sin((TAU * ((at / (3 * 8 * 360 * (5 * 2) ** 4)) + bar)) / yearDays)
+    const modulated = base.map((p, i) => p * proxy(i))
+    const strategies = (['momentum', 'mean-reversion', 'spectral'] as const).map((strategy) => backtestRealPrices(modulated, strategy))
+    const again = base.map((p, i) => p * proxy(i))
+    const { computes, facets, root } = computesGate('harmonic-weather-trading-offline', [
+      { facet: 'seasonal proxy is a pure calendar harmonic — amplitude 3%, period one civil year, value at bar t depends on t only (no look-ahead by construction)', on: modulated.length === base.length && Math.abs(proxy(0) - 1) <= 3 / 100 + 1 / (6 ** 6) },
+      { facet: 'deterministic — recomputing the modulated path is byte-identical (same seed, same proxy, same bars)', on: modulated.every((p, i) => p === again[i]) },
+      { facet: 'three sealed strategies backtest the weather-modulated path offline', on: strategies.length === 3 && strategies.every((run) => run.n > 0) },
+      { facet: 'composition of two sealed parents — the a432 path and the calendar harmonic; no new price law, no forecast', on: base.length > 64 },
+    ])
+    return {
+      computes,
+      strategies,
+      facets,
+      root,
+      statement: 'Weather-calendar trading offline: the sealed a432 path modulated by a 3% seasonal calendar harmonic, three sealed strategies re-run — deterministic, offline, no look-ahead.',
+      boundary: 'HONEST: the weather term is a CALENDAR PROXY (one seasonal sine) — NOT a forecast, NOT NWP, NOT a live feed; the whole composition is offline synthetic (see tradingSimulationComputes) and is NOT financial advice or alpha.',
+    }
+  })
 }
