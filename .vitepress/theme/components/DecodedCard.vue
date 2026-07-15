@@ -84,7 +84,7 @@ const titleId = computed(() => {
       class="decoded-card__title"
     >{{ displayTitle }}</component>
     <ClientOnly v-if="animSpec">
-      <figure class="decoded-card__anim" aria-hidden="true">
+      <figure class="decoded-card__anim">
         <ProofAnimation :spec="animSpec" :size="2 * 9 * 5" />
       </figure>
     </ClientOnly>
