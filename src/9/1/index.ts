@@ -2500,3 +2500,29 @@ export function discoveredTheoremsWaveFortyNine(matrix: { root: string } = { roo
     }
   })
 }
+
+/** THE FOLD FACTORY (Phase 0 of the seed/code split, 2026-07-14) — the return contract that 447 folds
+ * hand-carry (proven · facets · count · root · statement · boundary over memoByRoot + sealFacets) as ONE
+ * reusable object. `#/#` in the statement is replaced by the computed `okCount/count` so the sentence
+ * stays a concatenation of computed outputs (the no-prose law). New folds call this; old folds migrate. */
+export function sealFold<F extends { facet: string; on: boolean }>(
+  name: string,
+  tag: string,
+  matrix: { root: string },
+  compute: () => { facets: readonly F[]; statement: string; boundary: string; extras?: Record<string, unknown> },
+): { proven: boolean; facets: (F & { receipt: string })[]; count: number; root: string; statement: string; boundary: string } & Record<string, unknown> {
+  return memoByRoot(`${name}`, matrix, () => {
+    const body = compute()
+    const sealed = sealFacets(tag, body.facets)
+    const okCount = sealed.facets.filter((entry) => entry.on).length
+    return {
+      ...(body.extras ?? {}),
+      proven: sealed.ok,
+      facets: sealed.facets,
+      count: sealed.count,
+      root: merge(sealed.root, toUuid(`${tag}:${sealed.ok}`)),
+      statement: body.statement.replace('#/#', `${okCount}/${sealed.count}`),
+      boundary: body.boundary,
+    }
+  })
+}

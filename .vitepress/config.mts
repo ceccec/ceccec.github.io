@@ -276,16 +276,17 @@ export default defineConfig({
     },
   },
   head: [
-    // Discover the visitor's language and route to it, default English. The root (/) is the Glagolitic locale;
-    // a fresh visitor is sent to /bg/ (Bulgarian browser) or /en/ (everyone else — the default). Runs in <head>
-    // before hydration so there is no Glagolitic flash. An explicit choice sticks (localStorage 'dt-locale', set
-    // by the theme on every navigation), and internal navigation to / (picking Glagolitic from the menu) is
-    // respected — only a fresh, external entry to the root is auto-routed. No-JS visitors and crawlers keep the
-    // static Glagolitic root, with hreflang alternates pointing at every locale.
+    // The root (/) IS the English edition — no auto-route needed for English. A fresh external visitor with a
+    // Bulgarian browser is sent to /bg/; legacy stored choices (localStorage 'dt-locale', written by the pre-flip
+    // theme: 'en' root, 'bg' Bulgarian, 'cu' Glagolitic) are honoured against the NEW url map — 'en' stays at the
+    // root (never /en/, that tree is deleted), 'bg' → /bg/, 'cu' → /gla/. Legacy /en/* PATHS strip the prefix
+    // right here (this script rides every page INCLUDING the built 404 — VitePress overwrites public/404.html,
+    // so the 404 page itself carries the redirect). Internal navigation to / is respected;
+    // no-JS visitors and crawlers keep the static English root, with hreflang alternates for every locale.
     [
       'script',
       {},
-      `(function(){try{var p=location.pathname;if(p!=='/'&&p!=='/index.html')return;var k='dt-locale',s=localStorage.getItem(k);if(s==='cu')return;if(s==='en'||s==='bg'){location.replace('/'+s+'/');return;}if(document.referrer&&document.referrer.indexOf(location.origin)===0)return;var l=(navigator.language||navigator.userLanguage||'en').toLowerCase();location.replace(l.indexOf('bg')===0?'/bg/':'/en/');}catch(e){}})();`,
+      `(function(){try{var p=location.pathname;if(p==='/en'||p==='/en/'){location.replace('/'+location.search+location.hash);return;}if(p.indexOf('/en/')===0){location.replace(p.slice(3)+location.search+location.hash);return;}if(p!=='/'&&p!=='/index.html')return;var s=localStorage.getItem('dt-locale');if(s==='en')return;if(s==='bg'){location.replace('/bg/');return;}if(s==='cu'){location.replace('/gla/');return;}if(document.referrer&&document.referrer.indexOf(location.origin)===0)return;var l=(navigator.language||navigator.userLanguage||'en').toLowerCase();if(l.indexOf('bg')===0)location.replace('/bg/');}catch(e){}})();`,
     ],
     // Google Search Console ownership verification — token from GOOGLE_SITE_VERIFICATION env var.
     ...(process.env['GOOGLE_SITE_VERIFICATION']

@@ -127,11 +127,11 @@ The seal recomputes from src. To forge one value you would rebuild everything â€
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `433c181d-5063-870e-ab2d-a3be9cf32e39`. The monograph-index root: `2cf9832c-fd64-8940-80f6-a19ca267c22b`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `1748a3f3-00bb-81c3-93ff-e619cbabe813`. The monograph-index root: `2cf9832c-fd64-8940-80f6-a19ca267c22b`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does â€” the address is the proof, not a signature over prose.
 
-- Receipt: `bbc7cc6b-7dc6-8440-b835-baccc2b42840`
+- Receipt: `8df4e73a-5822-8e33-893d-300032457173`

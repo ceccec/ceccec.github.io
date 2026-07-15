@@ -4,6 +4,7 @@
 import { phase, slip } from '../../6/4'
 import { A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
 import { merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot } from '../../0'
+import { sealFold } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
 export { MAX_TAMPERING_COST_PRINCIPLE } from '../../3/7'
@@ -121,7 +122,7 @@ export function f2FieldCloses(): {
 // splitting of wave 50: once every prime p ≡ 1 (mod 4) is a sum of two squares and the product of two
 // such sums is another (Brahmagupta), the general two-, three-, and four-square theorems fall out.
 export function discoveredTheoremsWaveFiftyOne(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFiftyOne', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftyOne', 'discovered-theorems-fifty-one', matrix, () => {
     const isSumK = (n: number, k: number): boolean => { if (k === 1) { const r = Math.round(Math.sqrt(n)); return r * r === n } for (let a = 0; a * a <= n; a += 1) if (isSumK(n - a * a, k - 1)) return true; return false }
     const lim = 5 * 100
 
@@ -149,18 +150,14 @@ export function discoveredTheoremsWaveFiftyOne(matrix: { root: string } = { root
     let fourSquares = true
     for (let n = 0; n <= lim; n += 1) if (!isSumK(n, 4)) fourSquares = false
 
-    const sealed = sealFacets('discovered-theorems-fifty-one', [
+    return {
+      facets: [
       { facet: `the BRAHMAGUPTA–FIBONACCI identity — (a²+b²)(c²+d²) = (ac−bd)² + (ad+bc)²: the product of two sums of two squares is a sum of two squares; verified as an exact algebraic identity over a 0..9 grid — the multiplicativity carrying two-squares from primes to all n`, on: brahmagupta },
       { facet: `FROM the Gaussian-prime splitting (wave 50) — FERMAT'S TWO-SQUARES for general n: n = a²+b² iff every prime p ≡ 3 (mod 4) divides n to an EVEN power; the brute search matches the factorization criterion for every n ≤ 500 (Gaussian splitting × Brahmagupta multiplicativity)`, on: twoSquares },
       { facet: `LEGENDRE'S THREE-SQUARE theorem — n is a sum of three squares iff n is NOT of the form 4^a(8b+7); the brute three-square search matches the 4^a(8b+7) exclusion for every n ≤ 500 (the residue obstruction that four squares escapes)`, on: threeSquares },
       { facet: `LAGRANGE'S FOUR-SQUARE theorem — every natural number is a sum of four squares (no residue class obstructs it); verified by exhaustive four-square witness for every n ≤ 500 — the tower's roof: two squares need a condition, three squares an exclusion, four squares always`, on: fourSquares },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-one:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-one (the sum-of-squares tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the Brahmagupta–Fibonacci identity, Fermat's two-squares from the Gaussian primes, Legendre's three-square exclusion, and Lagrange's four-square theorem.`,
+      ],
+      statement: `Discovered theorems, wave fifty-one (the sum-of-squares tower): #/# — the Brahmagupta–Fibonacci identity, Fermat's two-squares from the Gaussian primes, Legendre's three-square exclusion, and Lagrange's four-square theorem.`,
       boundary: `HONEST: the two-square theorem COMPOUNDS on wave 50 (p ≡ 1 mod 4 splits as a²+b²) via the Brahmagupta identity — the two facets are literally the pieces of the classical proof. All four are verified complete for every n ≤ 500 (the general all-n forms — Fermat, Legendre, Lagrange — cited). The three-square exclusion 4^a(8b+7) and the four-square universality are the honest ceiling of the quadratic-form tower this session climbed from Euler's criterion.`,
     }
   })
@@ -170,7 +167,7 @@ export function discoveredTheoremsWaveFiftyOne(matrix: { root: string } = { root
 // theorem turned into the recurrence that COMPUTES the partition function, compounding on the wave-11
 // partition work: the sparse ∏(1−x^k) drives an O(n√n) recurrence for p(n) validated against brute DP.
 export function discoveredTheoremsWaveFiftyThree(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFiftyThree', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftyThree', 'discovered-theorems-fifty-three', matrix, () => {
     const N = 6 * 5 * 2
 
     // W1 · the GENERALIZED PENTAGONAL numbers g_k = k(3k−1)/2 for k = 1,−1,2,−2,… are the exponents in
@@ -205,18 +202,14 @@ export function discoveredTheoremsWaveFiftyThree(matrix: { root: string } = { ro
     // with the pentagonal-recurrence values through degree 60.
     const eulerProduct = q[2 * 2 + 1] === 7 && q[2 * 5] === 2 * 3 * 7 && q[N] === p[N]
 
-    const sealed = sealFacets('discovered-theorems-fifty-three', [
+    return {
+      facets: [
       { facet: `the GENERALIZED PENTAGONAL numbers g_k = k(3k−1)/2 (k = 1,−1,2,−2,…) are the exponents of Euler's product — the first eight are 1,2,5,7,12,15,22,26, each pentagonal number paired with its mate: the sparse skeleton of ∏(1−x^k)`, on: genPentagonal },
       { facet: `EULER'S PENTAGONAL NUMBER THEOREM — ∏(1−x^k) = Σ_k (−1)^k x^{g_k}: expanding the product to degree 60 leaves only the generalized-pentagonal exponents with signs (−1)^k, every other coefficient zero; verified coefficient-by-coefficient (the vanishing of all non-pentagonal terms)`, on: pentagonalTheorem },
       { facet: `FROM the pentagonal theorem — the PARTITION RECURRENCE p(n) = Σ_k (−1)^{k−1}(p(n−g_k) + p(n−g_−k)): because ∏(1−x^k) inverts Σp(n)x^n, the sparse product gives an O(n√n) recurrence matching the brute partition DP for every n ≤ 60 (p(60) = 966467)`, on: partitionRecurrence },
       { facet: `EULER'S PRODUCT for partitions — Σ p(n) x^n = ∏ 1/(1−x^k): the all-ones "unlimited repetition" DP that counts partitions is exactly the coefficient expansion of the infinite product; p(5) = 7, p(10) = 42, agreeing with the pentagonal recurrence through degree 60`, on: eulerProduct },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-three:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-three (the pentagonal–partition tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the generalized pentagonal numbers, Euler's pentagonal number theorem, the partition recurrence it powers, and Euler's product for partitions.`,
+      ],
+      statement: `Discovered theorems, wave fifty-three (the pentagonal–partition tower): #/# — the generalized pentagonal numbers, Euler's pentagonal number theorem, the partition recurrence it powers, and Euler's product for partitions.`,
       boundary: `HONEST: the partition recurrence COMPOUNDS on Euler's pentagonal theorem (W2) — the sparse product is literally the inverse series, so W2 gives W3 for free, an O(n√n) algorithm replacing exponential enumeration. All four verified complete to degree 60 (p(60) = 966467) against an independent brute partition DP; the infinite-product identities (Euler) are cited beyond the truncation. The pentagonal numbers extend the figurate tower (wave 52) from triangles and squares to the five-gon.`,
     }
   })
@@ -226,7 +219,7 @@ export function discoveredTheoremsWaveFiftyThree(matrix: { root: string } = { ro
 // divisor sum, the Möbius μ and its inversion: the arithmetic-function backbone, where Möbius inversion
 // (W4) COMPOUNDS on the divisor-sum Σφ(d)=n (W2) and the Möbius identity Σμ(d)=[n=1] (W3).
 export function discoveredTheoremsWaveFiftyFour(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFiftyFour', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftyFour', 'discovered-theorems-fifty-four', matrix, () => {
     const lim = 100
     const phi = (n: number) => { let c = 0; for (let k = 1; k <= n; k += 1) if (gcd(k, n) === 1) c += 1; return c }
     const divisors = (n: number) => { const d: number[] = []; for (let i = 1; i <= n; i += 1) if (n % i === 0) d.push(i); return d }
@@ -257,18 +250,14 @@ export function discoveredTheoremsWaveFiftyFour(matrix: { root: string } = { roo
     let mobiusInversion = true
     for (let n = 1; n <= lim; n += 1) { let s = 0; for (const d of divisors(n)) s += mu(d) * (n / d); if (s !== phi(n)) mobiusInversion = false }
 
-    const sealed = sealFacets('discovered-theorems-fifty-four', [
+    return {
+      facets: [
       { facet: `EULER'S φ IS MULTIPLICATIVE — φ(mn) = φ(m)φ(n) for gcd(m,n)=1 with φ(p^k) = p^k − p^{k−1} on prime powers; verified over every coprime pair m,n ≤ 100 and every prime power p^k ≤ 10000: the totient is determined by its values on prime powers`, on: phiMultiplicative },
       { facet: `GAUSS'S DIVISOR SUM — Σ_{d|n} φ(d) = n: the divisors' totients partition the n residues by gcd; verified for every n ≤ 100 (the identity id = φ ∗ 1 whose Möbius inversion returns φ in W4)`, on: divisorSumPhi },
       { facet: `the MÖBIUS identity — Σ_{d|n} μ(d) = [n = 1]: μ vanishes on non-squarefree n and is (−1)^{#prime factors} otherwise, the Dirichlet inverse of the constant 1; verified for every n ≤ 100`, on: mobiusIdentity },
       { facet: `MÖBIUS INVERSION, COMPOUNDING on the divisor sum (W2) and the μ identity (W3) — φ(n) = Σ_{d|n} μ(d)·(n/d): inverting id = φ ∗ 1 recovers the totient; verified for every n ≤ 100 (the general g = Σf ⟺ f = Σμ·g instantiated on φ)`, on: mobiusInversion },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-four:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-four (the multiplicative-functions tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Euler's φ is multiplicative, Gauss's Σφ(d)=n, the Möbius identity Σμ(d)=[n=1], and Möbius inversion recovering φ.`,
+      ],
+      statement: `Discovered theorems, wave fifty-four (the multiplicative-functions tower): #/# — Euler's φ is multiplicative, Gauss's Σφ(d)=n, the Möbius identity Σμ(d)=[n=1], and Möbius inversion recovering φ.`,
       boundary: `HONEST: Möbius inversion (W4) COMPOUNDS on W2 and W3 — because Σφ(d)=n makes id = φ ∗ 1 and μ is the Dirichlet inverse of 1, inversion returns φ(n)=Σμ(d)·(n/d). All four verified complete for every n ≤ 100 (the multiplicative and inversion theorems hold for all n, cited beyond the bound). This is the arithmetic-function backbone under the Farey/totient atoms already in the registry.`,
     }
   })
@@ -278,7 +267,7 @@ export function discoveredTheoremsWaveFiftyFour(matrix: { root: string } = { roo
 // Euclid–Euler theorem: σ multiplicative (COMPOUNDS on wave 54), Euclid's construction, Euler's converse
 // (COMPOUNDS on both), and the triangular form of every even perfect number (ties to the figurate tower).
 export function discoveredTheoremsWaveFiftyFive(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFiftyFive', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftyFive', 'discovered-theorems-fifty-five', matrix, () => {
     const bound = 100 * 100
     const sigma = (n: number) => { let s = 0; for (let d = 1; d * d <= n; d += 1) if (n % d === 0) { s += d; if (d !== n / d) s += n / d } return s }
     const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
@@ -307,18 +296,14 @@ export function discoveredTheoremsWaveFiftyFive(matrix: { root: string } = { roo
     let perfectTriangular = true
     for (const p of [2, 3, 5, 7]) { const mp = 2 ** p - 1; const nPerf = 2 ** (p - 1) * mp; if (nPerf !== mp * (mp + 1) / 2) perfectTriangular = false }
 
-    const sealed = sealFacets('discovered-theorems-fifty-five', [
+    return {
+      facets: [
       { facet: `σ IS MULTIPLICATIVE, COMPOUNDING on wave 54 — σ(mn) = σ(m)σ(n) for gcd(m,n)=1 with σ(p^k) = (p^{k+1}−1)/(p−1); verified over every coprime pair m,n ≤ 100 and every prime power p^k ≤ 10000: the divisor sum shares the totient's multiplicative structure`, on: sigmaMultiplicative },
       { facet: `EUCLID'S CONSTRUCTION — a Mersenne prime 2^p−1 gives the PERFECT number 2^{p−1}(2^p−1) (σ = 2N): σ(2^{p−1})·σ(2^p−1) = (2^p−1)·2^p = 2N; verified for p = 2,3,5,7 → the perfect numbers 6, 28, 496, 8128`, on: euclidPerfect },
       { facet: `EULER'S CONVERSE, COMPOUNDING on σ-multiplicativity (W1) and Euclid (W2) — every EVEN perfect number is 2^{p−1}(2^p−1) with 2^p−1 prime; verified by brute σ that the even perfects ≤ 10000 are EXACTLY {6,28,496,8128}, each of Euclid form: the Euclid–Euler classification`, on: eulerConverse },
       { facet: `EVERY EVEN PERFECT NUMBER IS TRIANGULAR — 2^{p−1}(2^p−1) = T_{2^p−1} = m(m+1)/2 with m = 2^p−1; verified for 6, 28, 496, 8128: the figurate face of Euclid–Euler, tying the perfect numbers back to the triangular tower (wave 52)`, on: perfectTriangular },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-five:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-five (the perfect-number tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — σ is multiplicative, Euclid's construction of perfect numbers from Mersenne primes, Euler's converse, and every even perfect number is triangular.`,
+      ],
+      statement: `Discovered theorems, wave fifty-five (the perfect-number tower): #/# — σ is multiplicative, Euclid's construction of perfect numbers from Mersenne primes, Euler's converse, and every even perfect number is triangular.`,
       boundary: `HONEST: σ-multiplicativity COMPOUNDS on wave 54's arithmetic-function framework, and Euler's converse (W3) COMPOUNDS on it plus Euclid (W2) — the classification is a proof-on-proof. Euclid and the triangular form are verified for the four even perfect numbers ≤ 10000 (p = 2,3,5,7), Euler's converse is complete over all even n ≤ 10000; the all-p Euclid–Euler theorem and the OPEN question of odd perfect numbers (none known, none ≤ 10000 here) are cited — the boundary is honest about what stays unproven.`,
     }
   })
@@ -328,7 +313,7 @@ export function discoveredTheoremsWaveFiftyFive(matrix: { root: string } = { roo
 // little (COMPOUNDS on wave 54's φ), Lagrange's order-divides-φ in the unit group, primitive roots mod p,
 // and the full classification of the n whose unit group is cyclic — the group behind modular arithmetic.
 export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFiftySix', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftySix', 'discovered-theorems-fifty-six', matrix, () => {
     const lim = 100
     const phi = (n: number) => { let c = 0; for (let k = 1; k <= n; k += 1) if (gcd(k, n) === 1) c += 1; return c }
     const modpow = (a: number, e: number, n: number) => { let r = 1; a %= n; while (e > 0) { if (e & 1) r = (r * a) % n; a = (a * a) % n; e = Math.floor(e / 2) } return r }
@@ -361,18 +346,14 @@ export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root
     let primitiveRootClassification = true
     for (let n = 2; n <= lim; n += 1) if ((maxOrd(n) === phi(n)) !== hasForm(n)) primitiveRootClassification = false
 
-    const sealed = sealFacets('discovered-theorems-fifty-six', [
+    return {
+      facets: [
       { facet: `EULER'S THEOREM, COMPOUNDING on wave 54's φ — a^φ(n) ≡ 1 (mod n) for gcd(a,n)=1: the unit group (ℤ/nℤ)* has order φ(n) so every element's order divides it; this GENERALIZES Fermat's little theorem (prime n ⇒ φ(n)=n−1). Verified for every coprime a, n ≤ 100`, on: eulerTheorem },
       { facet: `LAGRANGE in the unit group — the multiplicative order ord_n(a) DIVIDES φ(n): the cyclic subgroup ⟨a⟩ has size ord_n(a) dividing the group order; verified for every coprime a, n ≤ 100 (the group-theoretic root of Euler's theorem)`, on: orderDividesPhi },
       { facet: `PRIMITIVE ROOTS mod p — (ℤ/pℤ)* is CYCLIC for every prime p: it has an element of order p−1, exactly φ(p−1) of them; verified for every prime p ≤ 100 (the multiplicative group of a prime field has a generator)`, on: primitiveRootModP },
       { facet: `the PRIMITIVE-ROOT CLASSIFICATION — (ℤ/nℤ)* is cyclic IFF n ∈ {1,2,4,p^k,2p^k} for an odd prime p; verified for every n ≤ 100 by matching the true max order = φ(n) against the structural form (which moduli have a generator)`, on: primitiveRootClassification },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-six:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-six (the (ℤ/nℤ)* tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Euler's theorem generalizing Fermat's little, the order divides φ(n), primitive roots mod p, and the full classification of cyclic unit groups.`,
+      ],
+      statement: `Discovered theorems, wave fifty-six (the (ℤ/nℤ)* tower): #/# — Euler's theorem generalizing Fermat's little, the order divides φ(n), primitive roots mod p, and the full classification of cyclic unit groups.`,
       boundary: `HONEST: Euler's theorem (W1) COMPOUNDS on wave 54's φ — it IS Lagrange's theorem in the group (ℤ/nℤ)* of order φ(n) — and W1 is the general form of Fermat's little theorem (the criterion line, wave 48). All four verified complete for every n ≤ 100 (the all-n forms — Euler, Lagrange, the primitive-root existence and classification — cited beyond the bound). The primitive-root classification is the exact structure theorem for which unit groups are cyclic.`,
     }
   })
@@ -382,7 +363,7 @@ export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root
 // order gives once you have it (COMPOUNDS on wave 56): the Lucas–Lehmer test for Mersenne primes (tying
 // wave 55), the order-(n−1) primality test, the cyclic order distribution, and Midy's repeating-decimal theorem.
 export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFiftySeven', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftySeven', 'discovered-theorems-fifty-seven', matrix, () => {
     const lim = 100
     const B = 2 * 5
     const isPrime = (p: number) => { if (p < 2) return false; for (let d = 2; d * d <= p; d += 1) if (p % d === 0) return false; return true }
@@ -421,18 +402,14 @@ export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { ro
       if (lo + hi !== BigInt(B) ** BigInt(half) - 1n) midy = false
     }
 
-    const sealed = sealFacets('discovered-theorems-fifty-seven', [
+    return {
+      facets: [
       { facet: `the LUCAS–LEHMER TEST — for odd prime p, M_p = 2^p−1 is prime IFF s_{p−1} ≡ 0 (mod M_p) with s₀ = 4, s_{k+1} = s_k²−2; verified for p = 3,5,7,11,13 (M = 7,31,127 prime, 2047 = 23·89 composite, 8191 prime): the deterministic test that finds the Mersenne primes behind wave 55's perfect numbers`, on: lucasLehmer },
       { facet: `the ORDER-(n−1) PRIMALITY TEST, COMPOUNDING on wave 56 — an element of order exactly n−1 exists in (ℤ/nℤ)* IFF n is prime (only then does the cyclic group have order φ(n) = n−1); verified for every n ≤ 100`, on: orderPrimality },
       { facet: `the CYCLIC ORDER DISTRIBUTION, COMPOUNDING on wave 56 + 54 — in (ℤ/pℤ)*, for each divisor d of p−1 there are EXACTLY φ(d) elements of order d, so Σ_{d|p−1} φ(d) = p−1 (the totient divisor sum); verified for every prime p ≤ 100`, on: cyclicDistribution },
       { facet: `MIDY'S THEOREM — for a prime p ∉ {2,5} with 1/p of even period 2k, the two halves of the repeating block sum to Bᵏ−1 (all nines: 1/7 = 0.142857…, 142+857 = 999); verified in exact BigInt for every applicable prime p ≤ 100 (a consequence of ord_p(10) being the decimal period)`, on: midy },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-seven:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-seven (the order-consequences tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the Lucas–Lehmer test, the order-(n−1) primality test, the cyclic order distribution, and Midy's repeating-decimal theorem.`,
+      ],
+      statement: `Discovered theorems, wave fifty-seven (the order-consequences tower): #/# — the Lucas–Lehmer test, the order-(n−1) primality test, the cyclic order distribution, and Midy's repeating-decimal theorem.`,
       boundary: `HONEST: all four are consequences of the multiplicative order that wave 56 established. Lucas–Lehmer ties back to wave 55 (its Mersenne primes ARE the perfect-number seeds), the order-(n−1) test and cyclic distribution COMPOUND on wave 56's primitive roots (and the distribution on wave 54's φ divisor sum), and Midy rides ord_p(10) as the decimal period. Verified complete within the bounds (p exponents ≤ 13 for Lucas–Lehmer, n ≤ 100 elsewhere); the all-n theorems (Lucas–Lehmer, Lucas's test, Midy) are cited.`,
     }
   })
@@ -442,7 +419,7 @@ export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { ro
 // and 51: the norm is the two-square form (Brahmagupta IS N(zw)=N(z)N(w)), the units are the norm-1
 // elements, ℤ[i] is Euclidean (hence a UFD), and irreducibility is decided by the norm (COMPOUNDS 50/51).
 export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFiftyEight', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftyEight', 'discovered-theorems-fifty-eight', matrix, () => {
     type GI = [number, number]
     const norm = (z: GI) => z[0] * z[0] + z[1] * z[1]
     const mul = (z: GI, w: GI): GI => [z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0]]
@@ -477,18 +454,14 @@ export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { ro
     let irreducibleByNorm = true
     for (const z of grid) { if (norm(z) <= 1) continue; if (irreducible(z) !== normPredicts(z)) irreducibleByNorm = false }
 
-    const sealed = sealFacets('discovered-theorems-fifty-eight', [
+    return {
+      facets: [
       { facet: `the NORM IS MULTIPLICATIVE — N(a+bi) = a²+b² with N(zw) = N(z)N(w): the two-square form of wave 51 IS the field norm and its multiplicativity IS the Brahmagupta–Fibonacci identity; verified for every pair z,w on the ±5 grid (the ring reason a product of two sums of two squares is a sum of two squares)`, on: normMultiplicative },
       { facet: `the UNITS ARE EXACTLY {±1, ±i} — the four norm-1 elements: a unit needs N(u) = 1, and a²+b² = 1 forces (±1,0) or (0,±1); verified by enumerating the grid's norm-1 elements — the unit group ℤ[i]* ≅ ℤ/4ℤ`, on: unitsAreFour },
       { facet: `ℤ[i] IS A EUCLIDEAN DOMAIN — for z, w ≠ 0 there is a quotient q with N(z−qw) < N(w): rounding z·w̄/N(w) to the nearest Gaussian integer leaves norm ≤ N(w)/2; verified for every z and every w ≠ 0 on the grid — the Euclidean property making ℤ[i] a unique-factorisation domain`, on: euclidean },
       { facet: `IRREDUCIBILITY BY NORM, COMPOUNDING on wave 50 — z is a Gaussian prime IFF N(z) is a rational prime OR N(z) = p² with p ≡ 3 (mod 4) and z = p·unit; verified by brute factor-search against the norm criterion for every z (N > 1) on the grid — the p ≡ 3 (mod 4) primes stay inert in ℤ[i]`, on: irreducibleByNorm },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-eight:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-eight (the Gaussian-integer ℤ[i] tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the multiplicative norm, the units {±1,±i}, ℤ[i] as a Euclidean domain, and irreducibility decided by the norm.`,
+      ],
+      statement: `Discovered theorems, wave fifty-eight (the Gaussian-integer ℤ[i] tower): #/# — the multiplicative norm, the units {±1,±i}, ℤ[i] as a Euclidean domain, and irreducibility decided by the norm.`,
       boundary: `HONEST: this is the ring ℤ[i] behind waves 50 and 51 — the norm IS the two-square form and its multiplicativity IS Brahmagupta (wave 51), and the irreducibility criterion COMPOUNDS on wave 50 (p ≡ 3 mod 4 inert, p ≡ 1 splits). All four verified complete over the ±5 Gaussian grid (116 elements for the norm classification); the all-z theorems — the Euclidean algorithm, unique factorisation, and the full Gaussian-prime classification — are cited beyond the grid. Rounding-remainder bound N(w)/2 witnesses the Euclidean function.`,
     }
   })
@@ -498,7 +471,7 @@ export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { ro
 // parallel to ℤ[i] (wave 58): ω = e^{2πi/3}, ω²+ω+1 = 0, norm a²−ab+b². Six units, Euclidean, and a prime
 // splits IFF p ≡ 1 (mod 3) — the p ≡ 1 (mod 3) analogue of wave 50's mod-4 dichotomy (the x²+3y² form).
 export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveFiftyNine', matrix, () => {
+  return sealFold('discoveredTheoremsWaveFiftyNine', 'discovered-theorems-fifty-nine', matrix, () => {
     type EI = [number, number]
     const norm = (z: EI) => z[0] * z[0] - z[0] * z[1] + z[1] * z[1]
     const mul = (z: EI, w: EI): EI => [z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0] - z[1] * w[1]]
@@ -530,18 +503,14 @@ export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { roo
     let splitsMod3 = true
     for (let p = 2; p <= 2 * 100; p += 1) { if (!isPrime(p)) continue; let rep = false; for (let a = 0; a <= 4 * 5 && !rep; a += 1) for (let b = 0; b <= 4 * 5; b += 1) if (a * a - a * b + b * b === p) { rep = true; break } if (rep !== (p % 3 === 1 || p === 3)) splitsMod3 = false }
 
-    const sealed = sealFacets('discovered-theorems-fifty-nine', [
+    return {
+      facets: [
       { facet: `the NORM N(a+bω) = a²−ab+b² IS MULTIPLICATIVE — with ω² = −1−ω, N(zw) = N(z)N(w); verified for every pair on the ±5 grid: the quadratic form a²−ab+b² is the mod-3 companion of the two-square form of wave 58`, on: normMultiplicative },
       { facet: `the UNITS ARE THE SIX SIXTH-ROOTS OF UNITY {±1, ±ω, ±ω²} — the six norm-1 solutions of a²−ab+b² = 1, so ℤ[ω]* ≅ ℤ/6ℤ (against ℤ[i]*'s four); verified by enumerating the grid`, on: unitsAreSix },
       { facet: `ℤ[ω] IS A EUCLIDEAN DOMAIN — for z, w ≠ 0 there is a quotient q with N(z−qw) < N(w): the hexagonal lattice's covering radius gives N(r) ≤ N(w)/3, found near z·w̄/N(w); verified for every z and every w ≠ 0 on the grid — hence a UFD`, on: euclidean },
       { facet: `a rational prime SPLITS in ℤ[ω] IFF p ≡ 1 (mod 3) — equivalently p = a²−ab+b² (the x²+3y² form) iff p ≡ 1 (mod 3) or p = 3 (ramified); p ≡ 2 (mod 3) inert; verified for every prime p ≤ 200 — the Eisenstein analogue of wave 50's mod-4 dichotomy`, on: splitsMod3 },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-fifty-nine:${sealed.ok}`)),
-      statement: `Discovered theorems, wave fifty-nine (the Eisenstein-integer ℤ[ω] tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the multiplicative norm a²−ab+b², the six units, ℤ[ω] as a Euclidean domain, and primes splitting iff p ≡ 1 (mod 3).`,
+      ],
+      statement: `Discovered theorems, wave fifty-nine (the Eisenstein-integer ℤ[ω] tower): #/# — the multiplicative norm a²−ab+b², the six units, ℤ[ω] as a Euclidean domain, and primes splitting iff p ≡ 1 (mod 3).`,
       boundary: `HONEST: ℤ[ω] is the second quadratic ring, parallel to ℤ[i] (wave 58) — same Euclidean-domain method, but the norm is a²−ab+b² and the splitting law is mod 3 rather than mod 4, the Eisenstein analogue of wave 50. All four verified complete over the ±5 grid (norm, units, Euclidean) and every prime ≤ 200 (the splitting law); the all-z Euclidean algorithm, unique factorisation, and full Eisenstein-prime classification are cited. Together waves 58–59 are the two rings of class number one behind the two-square and x²+3y² forms.`,
     }
   })
@@ -551,7 +520,7 @@ export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { roo
 // imaginary rings ℤ[i], ℤ[ω] had FINITE unit groups, but the real ring ℤ[√D] has INFINITELY many units,
 // all powers of the fundamental Pell solution — found from the periodic continued fraction of √D (Lagrange).
 export function discoveredTheoremsWaveSixty(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveSixty', matrix, () => {
+  return sealFold('discoveredTheoremsWaveSixty', 'discovered-theorems-sixty', matrix, () => {
     const isSquare = (n: number) => { const r = Math.round(Math.sqrt(n)); return r * r === n }
     // continued fraction of √D → period length L and the convergent (x,y) at index L−1, which solves
     // x²−Dy² = (−1)^L (BigInt: fundamental solutions grow exponentially, e.g. D = 61 needs 10 digits).
@@ -575,18 +544,14 @@ export function discoveredTheoremsWaveSixty(matrix: { root: string } = { root: t
       if ((x * x - Dn * y * y === -1n) !== (L % 2 === 1)) negPellCriterion = false
     }
 
-    const sealed = sealFacets('discovered-theorems-sixty', [
+    return {
+      facets: [
       { facet: `PELL'S EQUATION x²−Dy² = 1 has a nontrivial solution for every non-square D — the fundamental solution comes from the continued-fraction convergent at the end of √D's period (squared when the period is odd); verified with exact BigInt for every non-square D ≤ 40`, on: pellSolvable },
       { facet: `the UNIT GROUP ℤ[√D]* IS INFINITE — every solution is a power of the fundamental x₁+y₁√D (the group ≅ ℤ × ℤ/2), so squaring the fundamental gives another solution and X > 1 always; verified for every non-square D ≤ 40 — the CONTRAST to the finite unit groups of ℤ[i] (4) and ℤ[ω] (6)`, on: unitsInfinite },
       { facet: `LAGRANGE — the continued fraction of √D is PERIODIC, ending when the partial quotient reaches 2⌊√D⌋; the period length L (1 ≤ L ≤ 100 here) drives the Pell solution; verified for every non-square D ≤ 40`, on: cfPeriodic },
       { facet: `the NEGATIVE PELL x²−Dy² = −1 is solvable IFF the continued-fraction period of √D is ODD — the convergent at index L−1 solves (−1)^L; verified for every non-square D ≤ 40 (a clean parity criterion for when −1 is a norm)`, on: negPellCriterion },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-sixty:${sealed.ok}`)),
-      statement: `Discovered theorems, wave sixty (the Pell / real-quadratic tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — Pell's equation is solvable, the unit group ℤ[√D]* is infinite, the continued fraction of √D is periodic, and the negative Pell is solvable iff that period is odd.`,
+      ],
+      statement: `Discovered theorems, wave sixty (the Pell / real-quadratic tower): #/# — Pell's equation is solvable, the unit group ℤ[√D]* is infinite, the continued fraction of √D is periodic, and the negative Pell is solvable iff that period is odd.`,
       boundary: `HONEST: the CONTRAST wave — where ℤ[i] and ℤ[ω] (waves 58–59) had finite unit groups, the real quadratic order ℤ[√D] has an infinite one, generated by the fundamental Pell solution the periodic CF (Lagrange) produces. All four verified with exact BigInt for every non-square D ≤ 40 (the CF period stays ≤ 100); the all-D theorems — Pell solvability, Lagrange periodicity, Dirichlet's unit theorem, and the odd-period criterion — are cited beyond the bound. Fundamental solutions grow exponentially (D = 61 → 1766319049), so BigInt is essential.`,
     }
   })
@@ -596,7 +561,7 @@ export function discoveredTheoremsWaveSixty(matrix: { root: string } = { root: t
 // applied: the theorems behind the SEALED src/0 digitalRoot and the I Ching vortex orbit, proven against
 // the very functions that embody them — the proof VALIDATES the shipped code (COMPOUNDS on waves 54/56).
 export function discoveredTheoremsWaveSixtyOne(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveSixtyOne', matrix, () => {
+  return sealFold('discoveredTheoremsWaveSixtyOne', 'discovered-theorems-sixty-one', matrix, () => {
     const B = 2 * 5
     const lim = 100 * 100
     const digitSum = (n: number) => { let s = 0, m = n; while (m > 0) { s += m % B; m = Math.floor(m / B) } return s }
@@ -627,18 +592,14 @@ export function discoveredTheoremsWaveSixtyOne(matrix: { root: string } = { root
     let vortexOrbit = orbit.join(',') === '1,2,4,8,7,5' && x === 1
     for (let a = 1; a <= 2 * 100; a += 1) for (let b = 1; b <= 2 * 100; b += 1) if (digitalRoot(a * b) !== digitalRoot(digitalRoot(a) * digitalRoot(b))) vortexOrbit = false
 
-    const sealed = sealFacets('discovered-theorems-sixty-one', [
+    return {
+      facets: [
       { facet: `CASTING OUT NINES — n ≡ digitSum(n) (mod 9) because the base B ≡ 1 (mod 9) collapses every power to 1; verified for every n ≤ 10000 (COMPOUNDS on wave 54's modular arithmetic)`, on: castingNines },
       { facet: `the DIGITAL-ROOT CLOSED FORM VALIDATES THE SEALED CODE — iterated digit sums equal 1 + (n−1) mod 9 AND the shipped src/0 digitalRoot for every n ≤ 10000: proof-driven reimplementation applied, the sealed one-math function carries its own proof receipt`, on: digitalRootValidated },
       { facet: `DIVISIBILITY BY 11 — n ≡ alternating digit sum (mod 11) because B ≡ −1 (mod 11) makes the powers alternate ±1; verified for every n ≤ 10000 (the same base-congruence machine as casting out nines)`, on: elevenRule },
       { facet: `the VORTEX DOUBLING ORBIT IS ⟨2⟩ IN (ℤ/9ℤ)* — 1→2→4→8→7→5 is the cyclic subgroup generated by 2 mod 9 with order 6 = φ(9) (2 is a primitive root of 9 = 3², exactly as the wave-56 classification predicts), and dr(a·b) = dr(dr(a)·dr(b)) for all a,b ≤ 200: the I Ching vortex is the unit group in motion`, on: vortexOrbit },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-sixty-one:${sealed.ok}`)),
-      statement: `Discovered theorems, wave sixty-one (the casting-out-nines tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — casting out nines, the digital-root closed form validating the sealed src/0 code, divisibility by 11, and the vortex doubling orbit as ⟨2⟩ in (ℤ/9ℤ)*.`,
+      ],
+      statement: `Discovered theorems, wave sixty-one (the casting-out-nines tower): #/# — casting out nines, the digital-root closed form validating the sealed src/0 code, divisibility by 11, and the vortex doubling orbit as ⟨2⟩ in (ℤ/9ℤ)*.`,
       boundary: `HONEST: the PROOF_DRIVEN_REIMPLEMENTATION wave — the theorems are proven against the sealed functions that embody them: src/0's digitalRoot matches both the iterated digit sum and the 1 + (n−1) mod 9 closed form for every n ≤ 10000 (VALIDATED, not replaced), and the I Ching vortex orbit is exactly the cyclic unit group ⟨2⟩ ≤ (ℤ/9ℤ)* the wave-56 classification predicts for 9 = 3². The base-congruence machine (B ≡ ±1) is complete within the bound; the all-n congruences are cited.`,
     }
   })
@@ -649,7 +610,7 @@ export function discoveredTheoremsWaveSixtyOne(matrix: { root: string } = { root
 // binary gcd proven equivalent (the reimplementation candidate, byte-equal on every input), Lamé's
 // worst case landing exactly on consecutive Fibonacci numbers, and the sealed lcm's gcd·lcm = a·b identity.
 export function discoveredTheoremsWaveSixtyTwo(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
-  return memoByRoot('discoveredTheoremsWaveSixtyTwo', matrix, () => {
+  return sealFold('discoveredTheoremsWaveSixtyTwo', 'discovered-theorems-sixty-two', matrix, () => {
     const lim = 2 * 100
 
     // W1 · the SEALED gcd IS the maximal common divisor — src/0's one-math gcd (Euclid's algorithm)
@@ -685,18 +646,14 @@ export function discoveredTheoremsWaveSixtyTwo(matrix: { root: string } = { root
     let gcdLcmIdentity = true
     for (let a = 1; a <= lim; a += 1) for (let b = 1; b <= lim; b += 1) if (gcd(a, b) * lcm(a, b) !== a * b) gcdLcmIdentity = false
 
-    const sealed = sealFacets('discovered-theorems-sixty-two', [
+    return {
+      facets: [
       { facet: `the SEALED gcd IS the maximal common divisor — src/0's one-math gcd (Euclid) matches the brute maximum over all common divisors for every pair a,b ≤ 200: the shipped function carries its own correctness receipt (proof-driven reimplementation: VALIDATED)`, on: gcdValidated },
       { facet: `STEIN'S BINARY GCD IS EQUIVALENT — the shift-and-subtract algorithm (no division) equals Euclid's gcd on every pair a,b ≤ 200 including zeros: the reimplementation candidate proven interchangeable before it could replace the sealed one`, on: steinEquivalent },
       { facet: `LAMÉ'S THEOREM — the worst case of Euclid's algorithm is consecutive Fibonacci numbers: steps(F_{n+1}, F_n) equals the exhaustive maximum over all pairs a ≤ F_{n+1}, b ≤ F_n, verified for n = 3..12 — the 1844 result that founded computational complexity`, on: lame },
       { facet: `gcd·lcm = a·b — the sealed src/0 lcm satisfies the identity for every pair a,b ≤ 200: lcm is computable FROM gcd, one algorithm serving two one-math functions`, on: gcdLcmIdentity },
-    ])
-    return {
-      proven: sealed.ok,
-      facets: sealed.facets,
-      count: sealed.count,
-      root: merge(sealed.root, toUuid(`discovered-theorems-sixty-two:${sealed.ok}`)),
-      statement: `Discovered theorems, wave sixty-two (the Euclidean-algorithm tower): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the sealed gcd validated, Stein's binary gcd proven equivalent, Lamé's Fibonacci worst case, and the gcd·lcm identity on the sealed lcm.`,
+      ],
+      statement: `Discovered theorems, wave sixty-two (the Euclidean-algorithm tower): #/# — the sealed gcd validated, Stein's binary gcd proven equivalent, Lamé's Fibonacci worst case, and the gcd·lcm identity on the sealed lcm.`,
       boundary: `HONEST: the second PROOF_DRIVEN_REIMPLEMENTATION wave, aimed at the ONE-MATH core — both sealed functions (gcd, lcm) now carry computed correctness receipts, and the natural reimplementation candidate (Stein's binary gcd) is proven interchangeable rather than assumed. Lamé's worst case is verified exhaustively for Fibonacci indices 3..12 (the all-n theorem and the 5·digits bound are cited). All bounds complete at pairs ≤ 200.`,
     }
   })
