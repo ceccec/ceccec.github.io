@@ -2,6 +2,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
 import { merkleFold, toUuid } from '../../../../0'
+import { stringMass } from '../strict/scan'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2'
 import { harmonicBands } from '../../../../quantum/lake/icons'
@@ -1367,6 +1368,48 @@ export function foldingEntropy(root: string): {
     root: merkleFold([toUuid(`folding-entropy:${paths.length}:${bytes}:${globalCompressed}`)]),
     statement: `Folding entropy over ${paths.length} sealed files (${bytes} bytes): local fold ${(localFold * 100).toFixed(1)}%, global fold ${(globalFold * 100).toFixed(1)}%, cross-file interference ${(crossFileInterference * 100).toFixed(1)}% — the refactor-reachable mass, measured as one superposition, not a linear class-sum.`,
     boundary: 'HONEST: compression is a Kolmogorov PROXY — the local fold includes syntax and prose statistics that readable source legitimately carries (not purgeable); only the cross-file interference is refactor-reachable, and its value depends on the compressor window (gzip 32KB sees ~1%, brotli 16MB ~4.5%, xz ~9%). The linear class-sum route must converge with it before either number is trusted.',
+  }
+}
+
+/** The prose-token monitor (user law 2026-07-16: monitor token usage coming from prose instead of
+ * token-free code). Reuses the strict scanner's character-walk (stringMass): per sealed file, bytes
+ * split into code (incl. ${} interpolations — computed, token-free), comment, templateText (prose
+ * BETWEEN interpolations — partially computed) and staticString (pure prose — the spend). The
+ * no-prose law's target: statements/boundaries as computed concatenations shrink staticString. */
+export function proseTokenMonitor(root: string): {
+  files: number; bytes: number; code: number; comment: number; staticString: number; templateText: number
+  proseShare: number; offenders: { file: string; staticString: number; share: number }[]
+  root: string; statement: string; boundary: string
+} {
+  const paths: string[] = []
+  const walk = (dir: string) => { for (const entry of readdirSync(dir, { withFileTypes: true })) { const p = join(dir, entry.name); if (entry.isDirectory()) walk(p); else if (entry.name === 'index.ts') paths.push(p) } }
+  walk(join(root, 'src'))
+  let bytes = 0, code = 0, comment = 0, staticString = 0, templateText = 0
+  const perFile: { file: string; staticString: number; share: number }[] = []
+  for (const p of paths.sort()) {
+    const text = readFileSync(p, 'utf8')
+    const mass = stringMass(text)
+    bytes += text.length
+    code += mass.code
+    comment += mass.comment
+    staticString += mass.staticString
+    templateText += mass.templateText
+    perFile.push({ file: relative(root, p), staticString: mass.staticString, share: mass.staticString / Math.max(1, text.length) })
+  }
+  const offenders = [...perFile].sort((a, b) => b.staticString - a.staticString).slice(0, 9)
+  const proseShare = staticString / Math.max(1, bytes)
+  return {
+    files: paths.length,
+    bytes,
+    code,
+    comment,
+    staticString,
+    templateText,
+    proseShare,
+    offenders,
+    root: merkleFold([toUuid(`prose-token-monitor:${paths.length}:${bytes}:${staticString}`)]),
+    statement: `Prose-token monitor over ${paths.length} sealed files (${bytes} bytes): static prose ${staticString} bytes (${(proseShare * 100).toFixed(1)}%), computed-template text ${templateText}, comments ${comment}, code ${code}. Top spender: ${offenders[0]?.file ?? 'none'} (${offenders[0]?.staticString ?? 0} prose bytes).`,
+    boundary: 'A MONITOR, not a red gate: static prose includes legitimate sealed decodes (documented sources, flagged claims) that must stay readable; the ratchet target is statements/boundaries in METHODS becoming computed concatenations. Bytes are a proxy for LLM tokens (≈4 bytes/token English); the walk is the same state machine as the crack scanner, so template interpolations count as code.',
   }
 }
 

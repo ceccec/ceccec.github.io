@@ -441,6 +441,69 @@ export function stripStringsAndComments(text: string): string {
   return out
 }
 
+/** Byte mass per channel — the SAME state machine as stripStringsAndComments, tallying instead of
+ * stripping. Channels: code (incl. ${} interpolations — token-free computed), comment, staticString
+ * (' " strings + templates with NO interpolation — the prose spend), templateText (prose BETWEEN
+ * interpolations — partially computed). The no-prose law's instrument reads these. */
+export function stringMass(text: string): { code: number; comment: number; staticString: number; templateText: number; interpolatedTemplates: number } {
+  let code = 0, comment = 0, staticString = 0, templateText = 0, interpolatedTemplates = 0
+  let i = 0
+  type S = 'code' | 'line' | 'block' | 'single' | 'double' | 'template' | 'regex' | 'regexClass'
+  let state: S = 'code'
+  const templates: { text: number; interp: boolean; depth: number }[] = []
+  let tail = '' // last code chars, for the regex-preceder test
+  const emit = (ch: string) => { code += ch.length; tail = (tail + ch).slice(-2 * 16) }
+  while (i < text.length) {
+    const ch = text[i]!
+    const two = text.slice(i, i + 2)
+    if (state === 'code') {
+      if (two === '//') { state = 'line'; i += 2; continue }
+      if (two === '/*') { state = 'block'; i += 2; continue }
+      if (ch === "'") { state = 'single'; i += 1; continue }
+      if (ch === '"') { state = 'double'; i += 1; continue }
+      if (ch === '`') { state = 'template'; templates.push({ text: 0, interp: false, depth: 0 }); i += 1; continue }
+      if (ch === '/' && REGEX_PRECEDER.test(tail.trimEnd())) { state = 'regex'; i += 1; continue }
+      if (ch === '}' && templates.length > 0 && templates[templates.length - 1]!.depth === 1) {
+        templates[templates.length - 1]!.depth = 0
+        state = 'template'
+        i += 1
+        continue
+      }
+      emit(ch)
+      i += 1
+      continue
+    }
+    if (state === 'line') { if (ch === '\n') { state = 'code'; emit(ch) } else comment += 1; i += 1; continue }
+    if (state === 'block') { if (two === '*/') { state = 'code'; i += 2 } else { comment += 1; i += 1 } continue }
+    if (state === 'single') { if (ch === '\\') { staticString += 2; i += 2 } else { if (ch === "'") state = 'code'; else staticString += 1; i += 1 } continue }
+    if (state === 'double') { if (ch === '\\') { staticString += 2; i += 2 } else { if (ch === '"') state = 'code'; else staticString += 1; i += 1 } continue }
+    if (state === 'regex') {
+      if (ch === '\\') { code += 2; i += 2; continue }
+      if (ch === '[') { state = 'regexClass'; code += 1; i += 1; continue }
+      if (ch === '/') { code += 1; i += 1; while (i < text.length && /[a-z]/i.test(text[i]!)) { code += 1; i += 1 } state = 'code'; continue }
+      if (ch === '\n') { state = 'code'; emit(ch) }
+      else code += 1
+      i += 1
+      continue
+    }
+    if (state === 'regexClass') { if (ch === '\\') { code += 2; i += 2 } else { if (ch === ']') state = 'regex'; code += 1; i += 1 } continue }
+    // template text
+    const top = templates[templates.length - 1]!
+    if (ch === '\\') { top.text += 2; i += 2; continue }
+    if (two === '${') { top.depth = 1; top.interp = true; state = 'code'; i += 2; continue }
+    if (ch === '`') {
+      templates.pop()
+      if (top.interp) { templateText += top.text; interpolatedTemplates += 1 } else staticString += top.text
+      state = 'code'
+      i += 1
+      continue
+    }
+    top.text += 1
+    i += 1
+  }
+  return { code, comment, staticString, templateText, interpolatedTemplates }
+}
+
 /** Numeric literals in the chokepoints that are NOT canonical I Ching numbers — each is a crack:
  * a magnitude with no derivation. Canonical fractions pass as their integer parts (9 / 64 → 9, 64).
  * Exponent-form literals (1e-6, 1e3) are scale/unit NOTATION — a named power of ten, not a magnitude —
