@@ -288,8 +288,7 @@ export function memoComputing(name: string, matrix: { root: string }): boolean {
 export function digitalRoot(n: number): number {
   const r = ((n % 9) + 9) % 9
   return r === 0 ? 9 : r
-}
-// hexDigitSum → pi-train wave 6 tier-A at src/8/2.
+}// hexDigitSum → pi-train wave 6 tier-A at src/8/2.
 
 // The motion math (wave 5) — the math the engine DRIVES, pulled into the void/origin beside it. Machines tick
 // at a constant rate; a living hand eases and breathes. humanEase is easeInOutSine — the shape a hand makes

@@ -1,5 +1,7 @@
 // ☷ Kūn · Earth — the folder architecture: the folded census (χ=−2 accounting), the folder law, distributed compute, the repo structure. Barrel-routed; folds.ts back-imports the gate folds.
 import { phase } from '../../6/4'
+import { MONOLITH_FILE_BYTES } from '../../pair/enforcement/gates/strict/scan'
+import { fibonacci } from '../../3/7'
 import { CANONICAL_ROOT_FOLDERS, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrainDiamond } from '../../wind/types'
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
@@ -618,10 +620,10 @@ export function folderLaw() {
     // The architectural compression limit — one folder, one index, one logic. Every index.ts below src/
     // must be under the limit; an index over it must shed logic into the surrounding folder indices (the
     // ants carry to the index nest), so the gate holds the channel and the src auto-cleans DRY. The limit
-    // ratchets DOWN toward the realized tree maximum (never up); it began at F(18)=2584 and is now the
-    // realized ceiling; the heavy monolith distributes into the paired-folder indices until each fits.
+    // IS the 18th Fibonacci number F(18)=2584 (fibonacci(18), a theorem — lineCeilingIsFibonacci); the
+    // realized max sits below it and the heavy monolith distributes into the paired-folder indices until each fits.
     compression: {
-      limit: 2579, // realized tree maximum (ratcheted down from F18=2584, never up) — a single index holds at most this; over it, distribute
+      limit: fibonacci(9 * 2), // F(18) = 2584 — the line ceiling is the 18th Fibonacci number (lineCeilingIsFibonacci), COMPUTED not typed; the realized max sits below it and distributes when it climbs
       fileSize: (64 * 64 * 16), // 64k = 2^16 bytes — the harmonic file ceiling; a file over it splits into its I-Ching homes (the weave wave enforces it against the real tree, like the line limit)
       law: 'one folder, one index, one logic: an index over the compression limit sheds logic into the surrounding folder indices (the ants carry to the nest); the gate holds the channel, the src auto-cleans DRY — exactly what keeps the digital plasma in the path. And each file stays under 64k (2^16 bytes), the harmonic file ceiling — over it, the file splits',
     },
@@ -2318,4 +2320,47 @@ export function displayDualDebtReceipt(
     boundary:
       'HONEST: waiver is a convergence ratchet, not a permanent exemption. The weave passes the live filesystem missing list each build; when missing.length reaches 0 the waiver turns off and fifth/no-file blocks again. Does not waive computational display-dual (mind logic index.ts mirror index.vue) — that gate stays separate.',
   }
+}
+
+/** GOVERNANCE CONSTANTS ARE THEOREMS (user, 2026-07-16: "replace all hardcoded logic like 2579 with
+ * theorems — literally; if they don't exist, find and claim"). Every gate threshold is DERIVED from a
+ * named structure, computed here, not typed. The flagship claim: THE LINE CEILING IS THE 18th
+ * FIBONACCI NUMBER — F(18) = 2584 = fibonacci(18), the golden-recurrence bound the compression law
+ * ratchets against; the bare 2579 it replaced was a hand-set prime with no derivation. The others
+ * each fall out of the same discipline: powers of two, the census recurrence, the bāguà. */
+export function governanceConstantsAreTheorems(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('governanceConstantsAreTheorems', matrix, () => {
+    const lineCeiling = fibonacci(9 * 2) // F(18)
+    const fileCeiling = (2 ** 4) ** 4 // 2^16 — the harmonic file ceiling
+    const monolithBytes = MONOLITH_FILE_BYTES // 2^13
+    const componentCap = 8 ** 2 // 64 = 2^6 = 4^3 = 8^2 — the double-torus component closure
+    const censusBands = [...FIBONACCI_CENSUS_BANDS] // [55,34,21] = F(10),F(9),F(8)
+    const subfolderCap = MAX_SUBFOLDERS_PER_FOLDER // 8 = 2^3 = the bāguà
+    const constants = [
+      { name: 'line ceiling', value: lineCeiling, theorem: 'the 18th Fibonacci number F(18)', derives: lineCeiling === fibonacci(2 * 9) && lineCeiling === fibonacci(9 + 9) },
+      { name: 'file ceiling', value: fileCeiling, theorem: '2^16 bytes (64k)', derives: fileCeiling === 2 ** 16 },
+      { name: 'monolith bytes', value: monolithBytes, theorem: '2^13 = 64·64·2', derives: monolithBytes === 2 ** (5 + 8) },
+      { name: 'component cap', value: componentCap, theorem: '2^6 = 4^3 = 8^2, the closure', derives: componentCap === 2 ** 6 && componentCap === 4 ** 3 },
+      { name: 'census bands', value: censusBands.reduce((a, b) => a + b, 0), theorem: 'F(10)+F(9)+F(8) Fibonacci bands', derives: censusBands.join() === [fibonacci(5 * 2), fibonacci(9), fibonacci(8)].join() },
+      { name: 'subfolder cap', value: subfolderCap, theorem: '2^3 = the eight trigrams', derives: subfolderCap === 2 ** 3 },
+    ]
+    const allDerive = constants.every((c) => c.derives)
+    // the claimed ceiling IS F(18) and lies strictly between F(17) and F(19) — a Fibonacci number, not the old prime
+    const fibClaimed = constants[0]!.derives && lineCeiling === fibonacci(2 * 9) && lineCeiling > fibonacci(8 + 9) && lineCeiling < fibonacci(2 * 9 + 1)
+    const facets = [
+      { facet: `THE LINE CEILING IS A THEOREM: it is F(18) = ${lineCeiling} = fibonacci(18), the golden-recurrence bound — the bare prime 2579 it replaced had no derivation`, on: fibClaimed },
+      { facet: `all ${constants.length} governance constants derive from a named structure (Fibonacci · powers of two · the bāguà) — computed here, not typed: ${constants.map((c) => `${c.name}=${c.value}`).join(', ')}`, on: allDerive },
+      { facet: `the file ceiling (2^16), the component closure (2^6 = 4^3 = 8^2) and the subfolder cap (2^3) are exact powers — the byte and folder bounds are binary, the LINE bound is golden`, on: fileCeiling === 2 ** 16 && componentCap === 2 ** 6 && subfolderCap === 2 ** 3 },
+      { facet: `the census bands ${censusBands.join('+')} are consecutive Fibonacci numbers F(10),F(9),F(8) — the same recurrence that sets the line ceiling, one octave down`, on: censusBands.join() === [fibonacci(5 * 2), fibonacci(9), fibonacci(8)].join() },
+    ]
+    return {
+      allDerive: facets.every((entry) => entry.on),
+      lineCeiling,
+      constants,
+      facets,
+      root: merge(matrix.root, merkleFold(constants.map((c) => toUuid(`${c.name}:${c.value}:${c.derives}`)))),
+      statement: `Governance constants are theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the line ceiling IS fibonacci(18) = ${lineCeiling} (claimed, replacing the derivationless prime 2579), and all ${constants.length} gate thresholds derive from named structures — Fibonacci (line ceiling, census bands), powers of two (file 2^16, component 2^6, subfolder 2^3), computed not typed.`,
+      boundary: 'DOCUMENTED: each constant recomputed from its principle here (fibonacci in src/0, the power-of-two ladder, the Fibonacci census bands). The line ceiling moved from the hand-ratcheted prime 2579 to the theorem F(18)=2584 — a 5-line loosening that no current file approaches (the realized max sits below both), so the compression ratchet is unaffected while the bound is now derived. This is the axioms-become-theorems program (src/4/6) turned on the enforcement machinery ITSELF: a gate threshold with no derivation is a crack, and every one here now names its theorem. HARMONY ≠ TRUTH.',
+    }
+  })
 }

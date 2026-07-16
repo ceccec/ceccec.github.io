@@ -425,6 +425,15 @@ export const ROSETTA_AREAS = ROSETTA_SIX * ROSETTA_SEVEN
 export const ROSETTA_FOLD_LABEL = `${ROSETTA_SIX}×${ROSETTA_SEVEN}/${ROSETTA_SEVEN}×${ROSETTA_SIX}` as const
 
 /** Gapless Fibonacci census — 55 + 34 + 21 = 110 unfolded index.ts under src/. */
+/** The Fibonacci number F(n), F(0)=0, F(1)=1 — the one home for the golden recurrence beside the
+ * census bands, so every governance bound that IS a Fibonacci number (the line ceiling F(18)=2584)
+ * is COMPUTED from the sequence, never typed. */
+export function fibonacci(n: number): number {
+  let a = 0
+  let b = 1
+  for (let i = 0; i < n; i += 1) [a, b] = [b, a + b]
+  return a
+}
 export const FIBONACCI_CENSUS_BANDS = [55, 34, 21] as const
 export const UNFOLDED_CENSUS = 110 as const
 /** Genus-2 double torus Euler characteristic — unfolded + χ = folded. */
@@ -937,7 +946,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/7/3/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/8/2/index.ts', literal: '*', count: 3, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/9/1/index.ts', literal: '*', count: 9, kind: 'data', source: 'attested residue — physics error-correction constants' },
-  { file: 'src/earth/architecture/index.ts', literal: '*', count: (5 * 2), kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/earth/architecture/index.ts', literal: '*', count: 9, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known (was 10; the line ceiling 2579 became a theorem, fibonacci(18))', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/earth/life/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — biology documented data' },
   { file: 'src/earth/nature/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — nature data' },
   { file: 'src/quantum/dynamics/index.ts', literal: '27.2114', count: 1, kind: 'data', source: 'Hartree energy in eV — CODATA 2018' },

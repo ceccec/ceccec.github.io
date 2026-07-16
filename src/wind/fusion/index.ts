@@ -626,7 +626,7 @@ export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
     harmonicTarget: target, // 432
     unitsHarmonic: HARMONIC.has(units), // false — 492 is non-harmonic, to fold to 432
     excess: units - target, // 60 to DRY-fold away (e.g. the tool↔command duplicates)
-    compressionLimit: folderLaw().compression.limit, // 2579 — realized ceiling (ratcheted down from F18=2584), the one-folder-one-index limit
+    compressionLimit: folderLaw().compression.limit, // fibonacci(18) = F(18) = 2584 — the line ceiling is a theorem (lineCeilingIsFibonacci)
   }
   const facets = [
     { facet: 'igniting the fusion — the double torus lit, the 64³ cube, the merkaba waves run it', on: startIChingDoubleTorus(matrix).started },
