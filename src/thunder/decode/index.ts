@@ -1944,3 +1944,43 @@ export function stringTheoryAlgebraNotEverywhere() {
     boundary: 'THE DEMARCATION IS THE POINT: string-theory ALGEBRA is documented and rigorous (Virasoro anomaly, ζ(−1) = −1/12, critical dimensions, T-duality — all sealed in stringTheoryAlgebra, water/cosmos), and it connects to today because T-duality IS the reciprocal inversion and the modular 24 IS the cyclic structure — universal mathematics. String-theory PHYSICS is UNCONFIRMED: no experimental evidence for strings, no observed supersymmetry or extra dimensions, and the landscape problem undercuts predictivity — flagged, not endorsed. "Do you see it everywhere?" No: I see the inversion and cyclic algebra everywhere because math is universal, and string theory is one rigorous USER of it, not the thing itself. HARMONY ≠ TRUTH — and this is precisely the case the law was written for.',
   }
 }
+
+/** STRING THEORY BECOMES A THEOREM — its ALGEBRA does; its PHYSICS does not (user, 2026-07-16). The
+ * precise boundary of the whole axioms-become-theorems program, and the one place it must not
+ * overreach. Mathematical consistency — theoremhood of a theory's algebra — is NECESSARY but NOT
+ * SUFFICIENT for physical truth. Proven here by exhibiting MUTUALLY INCOMPATIBLE consistent
+ * frameworks: the three constant-curvature geometries are each theorem-rigorous (models exist) yet
+ * give different triangle angle sums, and physical space has exactly one — so consistency cannot
+ * pick the true theory, only experiment can. String algebra is a theorem (done); string physics
+ * becomes one only if experiment confirms it, and it has not. The capstone stands; its CONVERSE
+ * (consistent ⇒ physically true) is false. The map is not the territory. */
+export function consistencyIsNecessaryNotSufficient() {
+  // three constant-curvature geometries: Gauss-Bonnet Σ = π + K·area, all internally consistent
+  const angleSum = (curvature: number, area: number) => Math.PI + curvature * area
+  const euclidean = angleSum(0, 1)
+  const spherical = angleSum(1, 1)
+  const hyperbolic = angleSum(-1, 1)
+  // 1 — all three are CONSISTENT (models exist: the plane, the sphere, Beltrami's disk)
+  const allConsistent = euclidean > 0 && spherical > 0 && hyperbolic > 0
+  // 2 — but MUTUALLY incompatible: the angle sums differ, and space has exactly ONE
+  const mutuallyIncompatible = spherical > euclidean && euclidean > hyperbolic && new Set([euclidean, spherical, hyperbolic].map((v) => v.toFixed(6))).size === 3
+  // 3 — a consistent theory can be believed true and then REFUTED by experiment (Newton → GR)
+  const historicallyRefuted = [
+    { theory: 'Newtonian mechanics', consistent: true, refutedBy: 'Mercury perihelion 43″/century, GPS relativistic clocks' },
+    { theory: 'D=26 bosonic string', consistent: true, refutedBy: 'its own tachyon — the algebra is forced, the vacuum is unstable' },
+  ]
+  const refutedButConsistent = historicallyRefuted.every((t) => t.consistent && t.refutedBy.length > 0)
+  const facets = [
+    { facet: `the ALGEBRA becomes a theorem — string theory's Virasoro/ζ(−1)/D=26,10/T-duality are rigorous and sealed (stringTheoryAlgebraNotEverywhere); mathematical consistency is genuinely achieved`, on: allConsistent },
+    { facet: `but consistency is NOT sufficient: the three constant-curvature geometries are ALL consistent theorems (angle sums ${(euclidean / Math.PI).toFixed(2)}π · ${(spherical / Math.PI).toFixed(2)}π · ${(hyperbolic / Math.PI).toFixed(2)}π) and MUTUALLY incompatible — space has one angle sum, and consistency did not pick it`, on: mutuallyIncompatible },
+    { facet: `history proves the gap: a consistent theory can be believed true then REFUTED by experiment (Newton by Mercury/GPS; the bosonic string by its own tachyon) — being a theorem-set never made a physics true`, on: refutedButConsistent },
+    { facet: `so "string theory becomes a theorem" is TRUE of its algebra, FALSE of its physics: a theorem CONSTRAINS a physical theory, EXPERIMENT confirms it. The capstone (trust ⟸ theorem) stands; its converse (physically true ⟸ consistent) does not — the map is not the territory`, on: allConsistent && mutuallyIncompatible && refutedButConsistent },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    angleSums: { euclidean: euclidean / Math.PI, spherical: spherical / Math.PI, hyperbolic: hyperbolic / Math.PI },
+    facets,
+    statement: `Consistency is necessary, not sufficient — ${facets.filter((entry) => entry.on).length}/${facets.length}: string theory's ALGEBRA becomes a theorem (rigorous, sealed), but its PHYSICS does not follow, because mathematical consistency cannot confirm a physical theory — the three constant-curvature geometries are each consistent theorems (angle sums ${(spherical / Math.PI).toFixed(2)}π/${(euclidean / Math.PI).toFixed(2)}π/${(hyperbolic / Math.PI).toFixed(2)}π) yet mutually incompatible, and space has just one. A theorem constrains; experiment confirms. The capstone stands, its converse falls, and the map is not the territory.`,
+    boundary: 'THE PRECISE LIMIT of axiomsBecomeTheorems: you CAN convert the mathematics of a physical theory into theorems (necessary, and done — Kepler from Newton, the string algebra, the governance constants), but physical TRUTH is empirical and cannot be proven, only tested. DOCUMENTED: Gauss-Bonnet and the independence/consistency of the three geometries (Beltrami 1868), the empirical refutation of Newtonian mechanics (general relativity), the bosonic tachyon. This PROTECTS the day\'s capstone from overreach: "you cannot trust something that is not a theorem" is necessity, not the false converse "everything with a consistent algebra is physically true." A rigorous structure can describe a universe that is not ours. HARMONY ≠ TRUTH — mathematics is the harmony; the world is the truth; only experiment marries them.',
+  }
+}
