@@ -5,9 +5,9 @@
 // Digit-1 gate (formerly src/0/1): period-6 orbit 1→2→4→8→7→5 under ×2 mod 9.
 
 import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
-import {   toUuid, merkleFold, digitalRoot } from '../../0'
+import {   toUuid, merkleFold, digitalRoot, gcd } from '../../0'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
-import { TAU } from '../../3/7'
+import { TAU, PHI } from '../../3/7'
 
 export const digit = 1
 export const role = 'circuit' as const
@@ -506,4 +506,46 @@ export function illusionsMeetInTheirInverse() {
     statement: `Illusions are illusions until they meet in their inverse — ${facets.filter((entry) => entry.on).length}/${facets.length}: a false limit dissolves at the fixed point of the inversion, where a thing meets its inverse (x = inv(x)). Every illusion the day walked through had one — the pole (0 = ∞), the tritone {${pitchFixed.join(',')}}, the units ±1, the self-dual R = 1 — computed from the arithmetic. And the diagnostic: an illusion has such a meeting and vanishes there; an invariant (no-signalling, Gödel) has none. The meeting point is exactly what tells an illusory limit from a real one — the whole inversion arc in one sentence.`,
     boundary: 'DOCUMENTED arithmetic: the fixed points of I(x) = −x mod 12 are {0, 6} (the tonic and tritone, the tritone being the self-inverse interval), of x ↦ x⁻¹ mod 9 are {1, 8} = ±1 (x² ≡ 1), the projective pole identifies 0 with ∞, and T-duality fixes R = 1 — all standard (modular arithmetic, projective geometry, self-dual points). The SYNTHESIS: this session\'s dissolved limits (divisionByZeroComputes, inverseNegatesAngle, invertedCircuitComputes, T-duality) each dissolve at an inverse-meeting, and the invariants (noSignallingComputes, the Gödel bound in onlyTheoremsCanBeTrusted) have no such fixed point — which is the diagnostic that separates an illusory limit from an invariant one, sharpening algebraDissolvesFalseLimitsProvesRealOnes. HARMONY ≠ TRUTH — and the meeting in the inverse is where the harmony reveals whether it was an illusion or a wall.',
   }
+}
+
+/** THE PENTAGRAM IS THE ROSETTA MEETING ITS INVERSE (user, 2026-07-16). A rosetta on n points
+ * connects k → k+g; the pentagon is {5/1} (step 1), the pentagram {5/2} (step 2). The pentagram is
+ * exactly where the C₅ rosetta MEETS ITS INVERSE: 2⁻¹ = 3 mod 5, and {5/3} is the same star reversed
+ * (3 = 5 − 2), so forward-by-2 and inverse-by-2 draw the identical figure — the pentagram is the
+ * fixed shape of the rosetta and its inverse (illusionsMeetInTheirInverse, on five points). And the
+ * meeting produces the golden ratio: the pentagram diagonal over the pentagon side is φ, while
+ * 2cos36° = φ and 2cos72° = 1/φ — φ and its reciprocal are the two chords of the star. The same φ the
+ * golden-angle UI rosetta rides (360/φ²) is what the pentagram's inverse-meeting yields. */
+export function thePentagramIsTheRosettaMeetingItsInverse() {
+    const n = 5
+    // 1 — the pentagram {5/2} is a Hamiltonian rosetta: step 2 generates all 5 (gcd(2,5)=1)
+    const orbit: number[] = [0]
+    let x = 0
+    do { x = (x + 2) % n; orbit.push(x) } while (x !== 0)
+    const pentagramGenerates = gcd(2, n) === 1 && new Set(orbit.slice(0, n)).size === n
+    // 2 — it MEETS ITS INVERSE: 2⁻¹ = 3 mod 5, {5/3} is {5/2} reversed (3 = 5 − 2)
+    const inverseStep = Array.from({ length: n - 1 }, (_, i) => i + 1).find((y) => (2 * y) % n === 1)!
+    const meetsItsInverse = inverseStep === 3 && n - 2 === inverseStep // 2⁻¹ = 3 = 5 − 2 (same star, reversed)
+    // 3 — φ AND 1/φ are its chords: diagonal/side = φ, 2cos36° = φ, 2cos72° = 1/φ
+    const side = 2 * Math.sin(Math.PI / n) // pentagon side, unit circumradius
+    const diagonal = 2 * Math.sin(TAU / n) // pentagram diagonal (2-step chord)
+    const goldenRatio = diagonal / side
+    const cos36 = 2 * Math.cos(Math.PI / n)
+    const cos72 = 2 * Math.cos(TAU / n)
+    const carriesPhiAndInverse = Math.abs(goldenRatio - PHI) < 1e-9 && Math.abs(cos36 - PHI) < 1e-9 && Math.abs(cos72 - 1 / PHI) < 1e-9
+    const facets = [
+      { facet: `the pentagram {5/2} is a Hamiltonian ROSETTA: step 2 generates all ${n} points (gcd(2,${n}) = 1), the orbit ${orbit.slice(0, n).join('→')} — a rosetta with generator 2`, on: pentagramGenerates },
+      { facet: `it MEETS ITS INVERSE: 2⁻¹ = ${inverseStep} mod ${n}, and {5/${inverseStep}} = {5/2} reversed (${inverseStep} = ${n} − 2) — forward-by-2 and inverse-by-2 draw the IDENTICAL star; the pentagram is the fixed shape of the rosetta and its inverse`, on: meetsItsInverse },
+      { facet: `and the meeting yields φ AND 1/φ: the pentagram diagonal / pentagon side = ${goldenRatio.toFixed(5)} = φ, while 2cos36° = ${cos36.toFixed(3)} = φ and 2cos72° = ${cos72.toFixed(3)} = 1/φ — the golden ratio and its reciprocal are the two chords`, on: carriesPhiAndInverse },
+      { facet: `so "the pentagram is the inverse of the rosetta" is EXACT: it is the C₅ rosetta seen at its inverse-meeting (illusionsMeetInTheirInverse on five points), and φ — the same golden ratio the UI rosetta rides as 360/φ² — is what the meeting produces`, on: pentagramGenerates && meetsItsInverse && carriesPhiAndInverse },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      orbit: orbit.slice(0, n),
+      inverseStep,
+      goldenRatio,
+      facets,
+      statement: `The pentagram is the rosetta meeting its inverse — ${facets.filter((entry) => entry.on).length}/${facets.length}: {5/2} is the C₅ rosetta with generator 2, and 2⁻¹ = 3 = 5 − 2 makes {5/3} the same star reversed, so the pentagram is the fixed figure where the rosetta meets its inverse. Its chords are φ and 1/φ (diagonal/side = φ = ${goldenRatio.toFixed(4)}, 2cos36° = φ, 2cos72° = 1/φ). "The pentagram is the inverse of the rosetta" is exact — the inverse-meeting on five points, and the golden ratio is what it yields.`,
+      boundary: 'DOCUMENTED: star polygons {n/k} (Coxeter), the pentagram {5/2} = {5/3} (mirror identity k ↔ n−k), 2 and 3 as multiplicative inverses mod 5, and the golden ratio in the pentagon/pentagram (diagonal/side = φ, 2cos(π/5) = φ, 2cos(2π/5) = 1/φ — standard). The SYNTHESIS: this session\'s illusionsMeetInTheirInverse and the golden-angle UI rosetta (theComputedUiIsARosetta) converge on the pentagram — it is the C₅ rosetta at the point where its generator meets its inverse, and φ with its reciprocal are the two angles of that meeting. No mystical claim about the pentagram is made; this is the star polygon as an inverse-meeting of a cyclic rosetta. HARMONY ≠ TRUTH.',
+    }
 }
