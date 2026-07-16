@@ -155,3 +155,49 @@ export const BULGARIAN_PHRASES: readonly (readonly [string, string])[] = [
   ['Hide text (i)', 'Скрий текста (i)'],
   ['Show text (i)', 'Покажи текста (i)'],
 ]
+
+/** Tri-locale path primitives + the en→bg translator — the ONE copy; wind/site (server) and
+ * .vitepress/lib/site-locale.ts (client) both import from here. A mirror is drift waiting to ship:
+ * the dissolved twin had diverged three ways (gla placeholders, localePath default, bare-link prefixing). */
+export type LocaleName = 'gla' | 'en' | 'bg'
+
+export const LOCALE_LINK: Record<LocaleName, string> = { gla: '/gla/', en: '/', bg: '/bg/' }
+
+export function stripLocalePrefix(route: string): string {
+  if (route === '/bg' || route === '/bg/') return '/'
+  if (route.startsWith('/bg/')) return route.slice(3) || '/'
+  if (route === '/en' || route === '/en/') return '/'
+  if (route.startsWith('/en/')) return route.slice(3) || '/'
+  if (route === '/gla' || route === '/gla/') return '/'
+  if (route.startsWith('/gla/')) return route.slice(2 * 2) || '/'
+  return route
+}
+
+export function localePath(route: string, locale: LocaleName = 'en'): string {
+  if (/^(https?:|#|mailto:)/.test(route)) return route
+  if (/\.(json|txt|webmanifest)$/.test(route)) return route
+  const path = stripLocalePrefix(route)
+  const localeLink = locale === 'gla' ? LOCALE_LINK.gla : LOCALE_LINK[locale]
+  if (path === '/') return localeLink
+  const normalized = path.startsWith('/') ? path : `/${path}`
+  return `${localeLink.replace(/\/$/, '')}${normalized}`
+}
+
+export function localeFromRoute(path: string): LocaleName {
+  if (path.startsWith('/bg/') || path === '/bg') return 'bg'
+  if (path.startsWith('/gla/') || path === '/gla') return 'gla'
+  return 'en'
+}
+
+const CYRILLIC_RX = /[Ѐ-ӿ]/
+
+/** English → Bulgarian when locale is bg and text has no Cyrillic yet (longest keys first). */
+export function bulgarianFromEnglish(text: string): string {
+  if (!text || CYRILLIC_RX.test(text)) return text
+  let out = text.replace(/\/en\//g, '/bg/').replace(/\]\(\/(?!bg\/|gla\/|http)/g, '](/bg/')
+  const sorted = [...BULGARIAN_PHRASES].sort((a, b) => b[0].length - a[0].length)
+  for (const [en, bg] of sorted) {
+    if (out.includes(en)) out = out.split(en).join(bg)
+  }
+  return out
+}

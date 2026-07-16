@@ -29,49 +29,20 @@ import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
 import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
 import { TAU } from '../../3/7'
-import { BULGARIAN_PHRASES } from '../../1/9'
+import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9'
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
-// Server canonical — client mirror: .vitepress/lib/site-locale.ts (browser-safe, no mind barrel).
-export type LocaleName = 'gla' | 'en' | 'bg'
+// The primitives live at station src/1/9 (the ONE copy — the client twin imports the same file).
+export { localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9'
 export type VitePressLocaleKey = 'root' | 'bg' | 'gla'
-
-const LOCALE_LINK: Record<LocaleName, string> = { gla: '/gla/', en: '/', bg: '/bg/' }
 
 export function vitepressLocaleLink(localeKey: VitePressLocaleKey): string {
   return localeKey === 'root' ? LOCALE_LINK.en : LOCALE_LINK[localeKey === 'gla' ? 'gla' : 'bg']
 }
 
-function stripLocalePrefix(route: string): string {
-  if (route === '/bg' || route === '/bg/') return '/'
-  if (route.startsWith('/bg/')) return route.slice(3) || '/'
-  if (route === '/en' || route === '/en/') return '/'
-  if (route.startsWith('/en/')) return route.slice(3) || '/'
-  if (route === '/gla' || route === '/gla/') return '/'
-  if (route.startsWith('/gla/')) return route.slice(2 * 2) || '/'
-  return route
-}
-
-export function localePath(route: string, locale: LocaleName = 'gla'): string {
-  if (/^(https?:|#|mailto:)/.test(route)) return route
-  if (/\.(json|txt|webmanifest)$/.test(route)) return route
-  const path = stripLocalePrefix(route)
-  const localeLink = locale === 'gla' ? LOCALE_LINK.gla : LOCALE_LINK[locale]
-  if (path === '/') return localeLink
-  const normalized = path.startsWith('/') ? path : `/${path}`
-  return `${localeLink.replace(/\/$/, '')}${normalized}`
-}
-
 export function localePaths(route: string) {
   return { gla: localePath(route, 'gla'), en: localePath(route, 'en'), bg: localePath(route, 'bg') }
-}
-
-/** Runtime locale from a VitePress route path — pure; pairs with pickLocale in page scripts. */
-export function localeFromRoute(path: string): LocaleName {
-  if (path.startsWith('/bg/') || path === '/bg') return 'bg'
-  if (path.startsWith('/gla/') || path === '/gla') return 'gla'
-  return 'en'
 }
 
 /** Bilingual pick — en uses Latin source; bg uses Cyrillic; gla transliterates Latin to Glagolitic. */
@@ -79,21 +50,6 @@ export function pickLocale<T>(locale: LocaleName, en: T, bg: T): T {
   if (locale === 'bg') return bg
   if (locale === 'gla' && typeof en === 'string') return toGlagolitic(en) as T
   return en
-}
-
-const CYRILLIC_RX = /[\u0400-\u04FF]/
-
-/** Sealed en→bg phrase map — home body, component titles, common UI (longest keys first at runtime). */
-
-/** English → Bulgarian when locale is bg and text has no Cyrillic yet. */
-export function bulgarianFromEnglish(text: string): string {
-  if (!text || CYRILLIC_RX.test(text)) return text
-  let out = text.replace(/\/en\//g, '/bg/').replace(/\]\(\/(?!bg\/|gla\/|http)/g, '](/bg/')
-  const sorted = [...BULGARIAN_PHRASES].sort((a, b) => b[0].length - a[0].length)
-  for (const [en, bg] of sorted) {
-    if (out.includes(en)) out = out.split(en).join(bg)
-  }
-  return out
 }
 
 /** Bulgarian home — computed from en/index.md (mirror of glagoliticHomeFromEnglish). */

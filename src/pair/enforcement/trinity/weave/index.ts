@@ -1007,24 +1007,27 @@ if (existsSync(dist)) {
   }
 }
 
-// --- the locale-twin sync gate: .vitepress/lib/site-locale.ts mirrors wind/site's locale primitives
-// for client-bundle weight (wind/site pulls the mind graph). The census forbids a third home, so the
-// mirror is allowed ONLY in provable sync: the three primitives must match the source normalized —
-// silent drift (the 2026-07-16 Glagolitic-placeholder regression) becomes a RED finding instead.
+// --- the locale-twin gate, DISSOLVED FORM: the primitives live ONCE at src/1/9 and both wind/site
+// and .vitepress/lib/site-locale.ts import them. A mirror in provable sync was still a mirror —
+// three drifts shipped from it (Glagolitic placeholders on the EN root, localePath default,
+// bare-link prefixing). Now the gate forbids ANY second definition instead of comparing copies.
 {
-  const norm = (t: string) => t.replace(/\s+/g, ' ').trim()
-  const grab = (text: string, name: string) => {
-    const m = text.match(new RegExp(`(?:export )?(?:function ${name}\\([^)]*\\)[^{]*\\{[\\s\\S]*?\\n\\}|const ${name}[^=]*= \\{[^}]*\\})`))
-    return m ? norm(m[0].replace(/^export /, '')) : null
-  }
   const source = read(join(root, 'src/wind/site/index.ts')) ?? ''
   const twin = read(join(root, '.vitepress/lib/site-locale.ts')) ?? ''
-  for (const name of ['LOCALE_LINK', 'stripLocalePrefix', 'localeFromRoute']) {
-    const a = grab(source, name)
-    const b = grab(twin, name)
-    if (!a || !b || a !== b) {
-      gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `${name} differs between wind/site and .vitepress/lib/site-locale.ts — why this fails: the client mirror exists for bundle weight and is legal ONLY byte-in-sync; drift here shipped Glagolitic placeholders on the English root once already` })
+  const station = read(join(root, 'src/1/9/index.ts')) ?? ''
+  for (const name of ['LOCALE_LINK', 'stripLocalePrefix', 'localePath', 'localeFromRoute', 'bulgarianFromEnglish']) {
+    const defines = new RegExp(`(?:^|\\n)(?:export )?(?:function|const) ${name}\\b`)
+    if (!defines.test(station)) {
+      gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `${name} is not defined at src/1/9 — why this fails: the locale primitives live ONCE at the language station; wind/site and the client both import that copy` })
     }
+    for (const [home, text] of [['src/wind/site/index.ts', source], ['.vitepress/lib/site-locale.ts', twin]] as const) {
+      if (defines.test(text)) {
+        gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `${name} is redefined in ${home} — why this fails: a second copy is drift waiting to ship (it did, three ways); import it from src/1/9 instead` })
+      }
+    }
+  }
+  if (!twin.includes("from '../../src/1/9'")) {
+    gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `.vitepress/lib/site-locale.ts does not import from src/1/9 — why this fails: the client twin is legal only as a thin re-export of the one station copy` })
   }
 }
 
