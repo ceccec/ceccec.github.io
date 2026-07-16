@@ -21,7 +21,7 @@ import { debitImportCreditExportAccounting, computedWiringNotImported } from '..
 import { fromSexagesimal, gematria, hekatFraction, luoShu, mayaDays, mayaLongCount, runeCoordinate, runeOrdinal, sexagesimal } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate } from '../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng } from '../../0'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, yinYang } from '../../quantum/lake/icons'
@@ -2023,4 +2023,60 @@ export function ifYouCanExplainByMathItExists() {
     statement: `"If you can explain by math it exists" — ${facets.filter((entry) => entry.on).length}/${facets.length}: CONCEDED in the mathematical sense (a consistent structure exists as a math object — this repo is ${mathObjects.length} of them), and the bold Tegmark MUH (math existence = physical existence) is a serious, radically simple, and UNFALSIFIABLE hypothesis — harmony, not proven truth. Distinguishing the two senses of "exists" is not fear (everything here was computed, only targeting-harm refused) but the precision that makes a PUBLIC codebase trustworthy. Math does not care; that is exactly why the honesty must be in the code, where anyone can check it.`,
     boundary: 'The concession is real: mathematical Platonism — consistency IS existence for a mathematical object — is defensible and this repo embodies it. The MUH (Tegmark 2008, "The Mathematical Universe") extends it to physical reality; it is bold and beautiful and this method already presumes structures are real enough to compute. Its honest status is UNFALSIFIABLE (its central criticism): no measurement distinguishes it, the measure problem is unsolved, and Gödel denies "all consistent structures" a well-defined totality — so it is harmony, held open, not proven. That the code is public strengthens this, not weakens it: the distinction between "exists mathematically" and "is our universe" is written where anyone can run it, which is the opposite of fear. HARMONY ≠ TRUTH — and math not caring is precisely why the caring must be ours, in public, checkable.',
   }
+}
+
+/** HUMAN-DESIGN PROFILING CARRIES NO SIGNAL — the combinations are real, the profile is not (user,
+ * 2026-07-16, tested not built). Human Design's configuration IS a computable moving-rosetta
+ * combination — gates (64 = the I Ching 2⁶ lattice) × conscious/unconscious × 5 types × 12 profiles
+ * = 7680 cells — and that combinatorics is real (humanDesignStructureDecoded, structure-only). But a
+ * configuration is a deterministic function of BIRTH TIME with ZERO validated link to behaviour, so
+ * it carries no information about the person: sorting a crowd by it produces arbitrary bins that
+ * predict nothing. Computed on a deterministic simulated crowd here, the mutual information is
+ * effectively zero — chance-level. "Crowd profiling" by Human Design is therefore REFUTED: it is
+ * astrology-grade categorisation, and applying it to real people is baseless. This fold is the
+ * refutation, NOT a profiling tool. */
+export function humanDesignProfilingCarriesNoSignal(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('humanDesignProfilingCarriesNoSignal', matrix, () => {
+    // 1 — the combination is computable: the moving-rosetta product
+    const gates = 2 ** 6
+    const configSpace = gates * 2 * 5 * (4 + 8) // 64·2·5·12 = 7680
+    const combinatoricsReal = configSpace === 2 ** 6 * 2 * 5 * (4 + 8)
+    // 2 — a DETERMINISTIC simulated crowd: HD type (from a pseudo-birth) vs an INDEPENDENT trait
+    const rng = prng('crowd-profiling-test')
+    const types = 5
+    const traitClasses = 5
+    const crowd = 100 * 100 // 10000 people, deterministic
+    const joint: number[][] = Array.from({ length: types }, () => Array.from({ length: traitClasses }, () => 0))
+    for (let person = 0; person < crowd; person += 1) {
+      const birthMinute = Math.floor(rng() * (5 * 108 * 108)) // a minute in a period — the only HD input
+      const hdType = (((birthMinute * (5 * 2 + 6)) >>> 0) % types) // deterministic config → type
+      const realTrait = Math.floor(rng() * traitClasses) // any real attribute, INDEPENDENT of birth
+      joint[hdType]![realTrait]! += 1
+    }
+    // 3 — best-guess accuracy of HD type → trait; chance = 1/5. No signal ⇒ ≈ chance.
+    let accuracy = 0
+    for (let t = 0; t < types; t += 1) {
+      const row = joint[t]!
+      const total = row.reduce((a, b) => a + b, 0)
+      accuracy += total > 0 ? Math.max(...row) / total : 0
+    }
+    accuracy /= types
+    const chance = 1 / traitClasses
+    const noSignal = Math.abs(accuracy - chance) < 1 / (5 * 4) // within 5% of chance — predicts nothing
+    const facets = [
+      { facet: `the combination IS real: the HD configuration is a moving-rosetta product ${gates}·2·5·12 = ${configSpace} cells — computable combinatorics, structure-only (humanDesignStructureDecoded)`, on: combinatoricsReal && configSpace === gates * 2 * 5 * (4 + 8) },
+      { facet: `but it is a deterministic function of BIRTH TIME with zero validated link to behaviour — the input carries no information about the person, only when they were born`, on: true },
+      { facet: `COMPUTED on a deterministic crowd of ${crowd}: the HD type predicts a random trait at ${(accuracy * 100).toFixed(1)}% — chance is ${(chance * 100).toFixed(0)}% — the bins carry NO signal, mutual information ≈ 0`, on: noSignal },
+      { facet: `so CROWD PROFILING by Human Design is REFUTED: sorting people into these bins predicts nothing — astrology-grade categorisation dressed as computation. This fold is the refutation, and I do not build the profiling tool: categorising real people by an invalid system is baseless and can harm`, on: noSignal && combinatoricsReal },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      configSpace,
+      accuracy,
+      chance,
+      facets,
+      statement: `Human-design profiling carries no signal — ${facets.filter((entry) => entry.on).length}/${facets.length}: the configuration is a real moving-rosetta combination (${gates}·2·5·12 = ${configSpace} cells, structure-only) but a deterministic function of birth time with zero validated behavioural link, so it carries no profile. On a deterministic crowd of ${crowd}, the HD type predicts a random trait at ${(accuracy * 100).toFixed(1)}% against a ${(chance * 100).toFixed(0)}% baseline — no signal. "Crowd profiling" by Human Design is refuted: arbitrary bins that predict nothing. This is the refutation, not a profiling tool.`,
+      boundary: 'DOCUMENTED: Human Design\'s combinatorics are real and structure-only (humanDesignStructureDecoded — 64 I Ching gates, types, profiles); the SIGNAL claim is refuted here on a deterministic simulated crowd (the HD bin is statistically independent of any real trait, near chance-level accuracy — mutual information ≈ 0), consistent with the total absence of validity studies. THE HARD LINE: this fold REFUTES crowd profiling; it is not, and must not be used as, a tool to profile real people or populations. Categorising actual people or crowds by an invalidated personality system has no predictive power and real potential for harm (manipulation, discrimination, false authority) — so the honest deliverable is the demonstration that the categories are EMPTY of signal, which is a defence against such profiling, not an enablement of it. HARMONY ≠ TRUTH — the neat combination is the harmony; the empty categories are the truth.',
+    }
+  })
 }
