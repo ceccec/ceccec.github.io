@@ -4,10 +4,13 @@
 // are vortex digits on the one circle (d·360/9): the same two sealed generators as the movie. A
 // single shared rAF drives every visible canvas; off-screen canvases pause via IntersectionObserver.
 import { onMounted, onBeforeUnmount, ref } from 'vue'
+import { useData } from 'vitepress'
 import { PHI, TAU } from '../../../src/3/7'
+import { movieCanvasRgba } from '../../lib/hero-movie-paint'
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
 
 const props = defineProps<{ spec: ProofAnimationSpec; size?: number }>()
+const { isDark } = useData()
 const el = ref<HTMLCanvasElement | null>(null)
 let raf = 0
 let visible = false
@@ -45,8 +48,9 @@ function draw(t: number) {
   ctx.clearRect(0, 0, s, s)
   ctx.translate((s / 9) * (wx / wsum), (s / 9) * (wy / wsum))
   ctx.lineWidth = Math.max(1, s / 2 ** 5)
-  const stroke = (alpha: number, dh = 0) => { ctx.strokeStyle = `hsla(${(hue + dh) % 360}, 70%, 55%, ${alpha})` }
-  const fill = (alpha: number, dh = 0) => { ctx.fillStyle = `hsla(${(hue + dh) % 360}, 70%, 55%, ${alpha})` }
+  // The ONE canvas palette (OKLCH + the negative law) — hsla here was the last literal colour math.
+  const stroke = (alpha: number, dh = 0) => { ctx.strokeStyle = movieCanvasRgba((hue + dh) % 360, alpha, { dark: isDark.value }) }
+  const fill = (alpha: number, dh = 0) => { ctx.fillStyle = movieCanvasRgba((hue + dh) % 360, alpha, { dark: isDark.value }) }
   const k = props.spec.kind
   const paint = () => {
 
