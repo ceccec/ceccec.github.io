@@ -245,3 +245,75 @@ export function counterdiffusionOnTheDoubleTorus() {
     boundary: 'SAFETY, FIRST AND LAST: this is a critique of models, NOT a model. Nothing here plans a dive — not this fold, not any fold in this repository. DOCUMENTED: circulation topology (two cycles); the Haldane-exponential ICD spike (a standard result, computed from the ledgered halftimes via Graham); the ICD literature (Lambertsen & Idicula 1975 · Doolette & Mitchell 2003); the correction history (ZHL-16A→B/C · Baker 1998 gradient factors · NEDU 2011 deep-stop reversal). REFUTED: that any topology forbids ICD — the body is the counterexample. HARMONY ≠ TRUTH, and here it is literal: an elegant claim that says a documented injury cannot happen is the most dangerous kind of harmony.',
   }
 }
+
+/** ONE EXPONENTIAL LAW — decompression developed in detail, and it is the same math as everything
+ * else (user, 2026-07-16: "do the math and see it is all the same"). Every first-order approach
+ * obeys dy/dt = λ(y∞ − y) with λ = ln2/t½: tissue gas washout, RC charging, radioactive decay,
+ * Newton cooling AND animation easing are ONE equation wearing five costumes — verified by
+ * integrating the differential form and matching the closed form to 1e-4 in every costume.
+ * THE LADDER IS FRACTAL — and the fit shows: Bühlmann's 16 halftimes are quasi-geometric with a
+ * middle rung ratio ≈ √2 (two compartments per OCTAVE, the same log-uniform ladder as A432), but
+ * the ratio drifts to 2.0 at the head and 1.28 at the tail — a law he approached and never
+ * derived, which is exactly why the model needed fitting. REUSE: washoutEasing IS the animation
+ * kernel — 16 compartments = 16 rates = one multi-rate fractal ladder, painted by the 'dome'
+ * renderer's sibling family. */
+export function oneExponentialLaw() {
+  /** THE kernel — the whole of Haldane decompression, and the whole of eased animation, in one line. */
+  const approach = (y0: number, yInf: number, halftime: number, t: number) =>
+    yInf + (y0 - yInf) * Math.exp((-Math.LN2 * t) / halftime)
+  /** The same law integrated from its DIFFERENTIAL form — the honest check that it is one ODE. */
+  const integrate = (y0: number, yInf: number, halftime: number, T: number) => {
+    const steps = 8 * 100 * 100
+    const dt = T / steps
+    const lambda = Math.LN2 / halftime
+    let y = y0
+    for (let i = 0; i < steps; i += 1) y += lambda * (yInf - y) * dt
+    return y
+  }
+  // The costume VALUES are arbitrary demonstrators — the theorem is the shared ODE, not the numbers —
+  // so every one is a lattice number: illustration must not smuggle in unprovenanced magnitudes.
+  const costumes: readonly (readonly [string, number, number, number, number])[] = [
+    ['tissue N₂ washout', 3, 4 / 5, 27, 108],
+    ['RC charging', 0, 5, 2, 9],
+    ['radioactive decay', 100, 0, 54, 216],
+    ['Newton cooling', 100, 16, 9, 27],
+    ['animation easing', 0, 1, 1 / 3, 1],
+  ]
+  // relative tolerance: the costumes span y ~ 1 to ~100, so an absolute bound would flatter the small ones
+  const oneEquation = costumes.every(([, y0, yInf, ht, T]) => {
+    const closed = approach(y0, yInf, ht, T)
+    const stepped = integrate(y0, yInf, ht, T)
+    return Math.abs(closed - stepped) / Math.max(Math.abs(closed), 1) < 1 / (100 * 100)
+  })
+  // the ladder: derived from the ledgered He measurements via Graham (no second table typed)
+  const ladder = ZHL16_HE_HALFTIMES.map((he) => he * Math.sqrt(7))
+  const ratios = ladder.slice(1).map((v, i) => v / ladder[i]!)
+  const geoMean = Math.exp(ratios.reduce((s, r) => s + Math.log(r), 0) / ratios.length)
+  const middle = ratios.slice(4, 8)
+  const middleMean = middle.reduce((s, r) => s + r, 0) / middle.length
+  const octaveRatio = Math.SQRT2
+  const middleIsOctaveLadder = Math.abs(middleMean - octaveRatio) / octaveRatio < 1 / 100
+  const headDrift = ratios[0]!
+  const tailDrift = ratios[ratios.length - 1]!
+  const ratioSpread = headDrift / tailDrift // a true geometric ladder has spread 1
+  // compartments per octave: log2 of the ratio inverted — the fractal rung count
+  const perOctave = Math.log(2) / Math.log(middleMean)
+  const facets = [
+    { facet: `ONE equation, ${costumes.length} costumes: tissue washout · RC · decay · cooling · easing all satisfy dy/dt = λ(y∞ − y) — closed form matches the integrated ODE in every case`, on: oneEquation },
+    { facet: `the ladder is an OCTAVE ladder where the model is honest: the middle rungs average ${middleMean.toFixed(4)} ≈ √2 (${perOctave.toFixed(2)} compartments per doubling) — the same log-uniform spacing as A432's octaves`, on: middleIsOctaveLadder },
+    { facet: `and the FIT shows at both ends: the rung ratio runs ${headDrift.toFixed(3)} at the head down to ${tailDrift.toFixed(3)} at the tail — a spread of ${ratioSpread.toFixed(2)}× where a true geometric ladder would hold 1.00; Bühlmann approached a law and never derived it, which is precisely the gap the fine-tuning had to fill`, on: ratioSpread > 3 / 2 },
+    { facet: `REUSE PROVEN: the same kernel eases an animation — approach(0, 1, t½, t) rises ${approach(0, 1, 1 / 3, 1 / 3).toFixed(3)} at one halftime and ${approach(0, 1, 1 / 3, 2 / 3).toFixed(3)} at two: gas loading and a fade are the same curve, so 16 compartments are 16 animation rates`, on: Math.abs(approach(0, 1, 1 / 3, 1 / 3) - 1 / 2) < 1e-12 && Math.abs(approach(0, 1, 1 / 3, 2 / 3) - 3 / 4) < 1e-12 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    ladder,
+    ratios,
+    geoMean,
+    middleMean,
+    perOctave,
+    approach,
+    facets,
+    statement: `One exponential law — ${facets.filter((entry) => entry.on).length}/${facets.length}: washout, RC, decay, cooling and easing are the same ODE (verified against numerical integration); the halftime ladder is an octave ladder at heart (middle ratio ${middleMean.toFixed(4)} ≈ √2, ${perOctave.toFixed(2)} compartments per doubling) whose ends drift (${headDrift.toFixed(3)} → ${tailDrift.toFixed(3)}) where the fitting shows; and the identical kernel eases every animation — gas loading and a fade are one curve.`,
+    boundary: 'DOCUMENTED: the first-order ODE and its closed form (Haldane 1908 · Bühlmann 1990 for the halftimes, which are MEASUREMENTS — derived here from the ledgered He table via Graham, never re-typed). The √2 middle rung is an OBSERVATION about the published ladder, not a claim that Bühlmann intended it — the drift at both ends is the evidence he fitted rather than derived. THIS IS MATHEMATICS AND ANIMATION, NOT A DIVE TOOL: no fold in this repository plans a dive (see counterdiffusionOnTheDoubleTorus). HARMONY ≠ TRUTH.',
+  }
+}

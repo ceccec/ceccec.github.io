@@ -7,17 +7,20 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { useData } from 'vitepress'
 import { PHI, TAU } from '../../../src/3/7'
 import { movieCanvasRgba } from '../../lib/hero-movie-paint'
-import { geodesicDomeComputes } from '../../../src/6/4'
+import { geodesicDomeComputes, oneExponentialLaw } from '../../../src/6/4'
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
 
 // The ν=3 icosphere computed once from φ — 270 struts in 3 classes; the dome painter raises it ring by ring.
 const DOME = geodesicDomeComputes(3).animation
+// The 16-compartment ladder — real Bühlmann halftimes (via Graham), reused as 16 animation rates:
+// gas loading and eased motion are the same curve (oneExponentialLaw), so the proof paints itself.
+const LADDER = oneExponentialLaw().ladder
 
 const props = defineProps<{ spec: ProofAnimationSpec; size?: number }>()
 const { isDark } = useData()
 const el = ref<HTMLCanvasElement | null>(null)
 let raf = 0
-let visible = false
+let visible = true // fail toward motion: a late or absent IntersectionObserver must not freeze the proof
 let io: IntersectionObserver | null = null
 
 const hue = (props.spec.hueDigit * (360 / 9)) % 360
@@ -57,6 +60,34 @@ function draw(t: number) {
   const fill = (alpha: number, dh = 0) => { ctx.fillStyle = movieCanvasRgba((hue + dh) % 360, alpha, { dark: isDark.value }) }
   const k = props.spec.kind
   const paint = () => {
+
+  if (k === 'washout') {
+    // Sixteen exponentials on one clock: each bar is a compartment loading then off-gassing at its
+    // own halftime — the octave ladder made visible (two rungs per doubling). Same kernel as easing.
+    const cycle = ((phase / TAU) % 1 + 1) % 1
+    const descending = cycle < 1 / 2
+    const t = (descending ? cycle : 1 - cycle) * 2 * LADDER[LADDER.length - 1]! / 9
+    const w = s / (LADDER.length + 2)
+    LADDER.forEach((halftime, i) => {
+      // approach(0→1) on the way down, (1→0) on the way up — the dive profile as one curve
+      const y = descending ? 1 - Math.exp(-Math.LN2 * t / halftime) : Math.exp(-Math.LN2 * t / halftime)
+      const x = w * (i + 1) + w / 2
+      const h = (s * (2 / 3)) * y
+      stroke(1 / 5)
+      ctx.beginPath(); ctx.moveTo(x, s * (5 / 6)); ctx.lineTo(x, s * (5 / 6) - s * (2 / 3)); ctx.stroke()
+      fill(1, (i * 360) / LADDER.length / 3)
+      ctx.fillRect(x - w / 3, s * (5 / 6) - h, (2 * w) / 3, h)
+    })
+    // the fast compartment leads, the slow lags — the fractal ladder in one glance
+    stroke(1 / 2)
+    ctx.beginPath()
+    LADDER.forEach((halftime, i) => {
+      const y = descending ? 1 - Math.exp(-Math.LN2 * t / halftime) : Math.exp(-Math.LN2 * t / halftime)
+      const x = w * (i + 1) + w / 2
+      ctx.lineTo(x, s * (5 / 6) - (s * (2 / 3)) * y)
+    })
+    ctx.stroke()
+  }
 
   if (k === 'dome') {
     // Dome construction planned in detail: the ghost blueprint (whole sphere plan) stands faint;
@@ -270,8 +301,6 @@ onMounted(() => {
   const size = props.size ?? 4 * 7
   canvas.width = size * 2
   canvas.height = size * 2
-  const rect = canvas.getBoundingClientRect()
-  visible = rect.bottom > 0 && rect.top < window.innerHeight
   draw(0) // one guaranteed frame — the proof glyph shows even where rAF/IO are throttled
   io = new IntersectionObserver((entries) => { visible = entries.some((entry) => entry.isIntersecting) })
   io.observe(canvas)
