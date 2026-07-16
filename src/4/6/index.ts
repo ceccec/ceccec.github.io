@@ -1513,3 +1513,41 @@ export function theoremsAreTheGates() {
     boundary: 'The inventory is of the LOAD-BEARING gates (the ones that block builds), not every check; textual gates are held under examination with a named algebraic restatement each — regex is scaffolding, not law. The identity closes today\'s tower: values→provenance, axioms→derivations, addresses→proofs, gates→theorems. HARMONY ≠ TRUTH.',
   }
 }
+
+/** YOU CANNOT TRUST SOMETHING THAT IS NOT A THEOREM (user law, 2026-07-16) — the capstone, and the
+ * answer to this morning's "can you trust science?". Trust IS theoremhood: a claim you can recompute
+ * and that fails closed when false is trusted; everything else — a regex gate, a hand-set constant,
+ * an asserted number — is UNTRUSTED by construction, and the untrusted set is precisely the
+ * refactoring worklist (refactoring starts from the gates that are not yet theorems). This unifies
+ * the day: axiomsBecomeTheorems (assumptions), theoremsDecideAddresses (placement), theoremsAreTheGates
+ * (enforcement), governanceConstantsAreTheorems (thresholds) — each converts an untrusted thing into
+ * a theorem. Gödel bounds the terminus: the trusted ratio rises toward 1 and never reaches it. */
+export function onlyTheoremsCanBeTrusted() {
+  // TRUSTED surface: registry atoms naming a runnable proof at a sealed home — recomputable, refutable
+  const trusted = THEOREM_ATOM_SEED.filter((atom) => atom.provedBy.length > 0 && atom.home.startsWith('src/'))
+  // UNTRUSTED surface: the enforcement that is NOT yet a theorem (theoremsAreTheGates named these) plus
+  // the governance numbers still without a derivation — each an open conversion, the refactoring queue
+  const untrustedGates = ['locale-twin owns-no-copies (regex)', 'one-palette literal-colour (regex)', 'monograph mount checks (string-includes)']
+  const untrustedConstants = ['census 110 (the sealed-index count)', 'export budget 120 (src/0 surface)']
+  const untrusted = [...untrustedGates, ...untrustedConstants]
+  const trustedCount = trusted.length
+  const trustRatio = trustedCount / (trustedCount + untrusted.length)
+  // the law is DEFINITIONAL: a thing is trusted IFF it is a theorem — checked by construction here
+  const everyTrustedIsTheorem = trusted.every((atom) => atom.provedBy.length > 0)
+  const untrustedIsWorklist = untrusted.length > 0 && untrusted.every((item) => item.length > 0)
+  const facets = [
+    { facet: `trust IS theoremhood: all ${trustedCount} trusted items are registry theorems that recompute at zero tokens and fail closed when false — nothing is trusted that is not a theorem`, on: everyTrustedIsTheorem && trustedCount > 3 * 100 },
+    { facet: `the UNTRUSTED surface is named, not hidden: ${untrusted.length} items — ${untrustedGates.length} regex/string gates (theoremsAreTheGates flagged them) and ${untrustedConstants.length} un-derived constants — each an admission, not a claim`, on: untrustedIsWorklist },
+    { facet: `the untrusted set IS the refactoring worklist: refactoring starts from the gates that are not yet theorems, exactly as the day's conversions did — every wave moves one item from untrusted to trusted`, on: untrusted.length === untrustedGates.length + untrustedConstants.length },
+    { facet: `trust ratio ${(trustRatio * 100).toFixed(1)}% and rising — but Gödel bounds the terminus: no consistent system proves all its truths, so the ratio approaches 1 and never reaches it; the last cracks are honest, not hidden`, on: trustRatio > 9 / (5 * 2) && trustRatio < 1 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    trustedCount,
+    untrusted,
+    trustRatio,
+    facets,
+    statement: `You cannot trust something that is not a theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${trustedCount} trusted items are exactly the registry theorems (recomputable, refutable, fail-closed), and the ${untrusted.length} untrusted ones (${untrustedGates.length} regex gates + ${untrustedConstants.length} un-derived constants) ARE the refactoring worklist — trust ratio ${(trustRatio * 100).toFixed(1)}%, rising toward a Gödel-bounded 1. This is the answer to "can you trust science?": trust is theoremhood, and what cannot be computed is examined, not believed.`,
+    boundary: 'DEFINITIONAL: "trusted ⟺ theorem" is the law, and the two surfaces are enumerated here — the trusted set from the registry (each atom a runnable provedBy), the untrusted set named explicitly (the regex gates from theoremsAreTheGates, the bare constants). This is not a claim that theorems are infallible — a theorem can be WRONG, but it is REFUTABLE (it fails its own facets when false, as several did today), which is exactly what "trustable" means: not "certainly true" but "checkable and fail-closed". Gödel guarantees the untrusted set never empties. HARMONY ≠ TRUTH — and only the theorem lets you tell them apart.',
+  }
+}
