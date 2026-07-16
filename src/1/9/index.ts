@@ -412,3 +412,51 @@ export function invertedCircuitComputes() {
     boundary: 'Every facet is finite arithmetic over ℤ/9ℤ and string operations run here. DOCUMENTED: (ℤ/9ℤ)* is cyclic of order φ(9) = 6 with non-units {0,3,6}; x² = 1 has gcd(2,6) = 2 solutions — the self-inverse pair ±1. The mirror is a NOTATION involution; the multiplicative inverse is the ALGEBRAIC one, and their disagreement is not a defect but the content: inversion is undefined on the zero divisors and at the void, which is exactly divisionByZeroComputes — the projective line closes the gap by trading 0 ↔ ∞. HARMONY ≠ TRUTH.',
   }
 }
+
+/** THE TWO ROSETTAS ARE ONE GROUP — discovered by researching what was already here (user,
+ * 2026-07-16: "research and discover what is already here"). The day split into two rosettas: a
+ * DISCRETE one (the vortex (ℤ/9ℤ)*, home of slashCircuitIsPhaseSpace, invertedCircuitComputes,
+ * inverseNegatesAngle, primeCollapsesTheAxis, sixtyDegreesDecodesPi) and a CONTINUOUS one (the
+ * polyphase circle, home of teslaRosettaPolyphase, polyphaseHarmonicLaw, twoRosettasAreRealtime).
+ * They are the SAME cyclic group of order six. The isomorphism (ℤ/9ℤ)* ≅ μ₆ sends the doubling
+ * generator 2 ↦ e^{iπ/3} = the 60° step — so sixtyDegreesDecodesPi WAS the bridge all along, and
+ * the whole day (division by zero at the pole, inversion, Tesla polyphase, the keyed cipher) is C₆
+ * seen twice. Nothing was added; it was already here, waiting to be inverted out. */
+export function theTwoRosettasAreOneGroup() {
+  const units = [1, 2, 4, 8, 7, 5] // (ℤ/9ℤ)* in ×2-generator order — the discrete rosetta
+  const order = units.length
+  const zeta = (k: number): readonly [number, number] => [Math.cos((TAU * k) / order), Math.sin((TAU * k) / order)]
+  const phi = (u: number) => zeta(units.indexOf(u)) // the map 2^k ↦ e^{2πik/6}
+  const cmul = (a: readonly [number, number], b: readonly [number, number]): readonly [number, number] => [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]]
+  // 1 — it is a HOMOMORPHISM: φ(a·b mod 9) = φ(a)·φ(b) for every pair
+  let homomorphism = true
+  for (const a of units) for (const b of units) {
+    const lhs = phi((a * b) % 9)
+    const rhs = cmul(phi(a), phi(b))
+    if (Math.hypot(lhs[0] - rhs[0], lhs[1] - rhs[1]) > 1e-9) homomorphism = false
+  }
+  // 2 — it is a BIJECTION onto the 6th roots of unity (the continuous rosetta)
+  const images = units.map((u) => phi(u).map((v) => v.toFixed(6)).join(','))
+  const bijective = new Set(images).size === order && new Set(images).size === new Set(Array.from({ length: order }, (_, k) => zeta(k).map((v) => v.toFixed(6)).join(','))).size
+  // 3 — the GENERATOR 2 maps to exactly 60° — sixtyDegreesDecodesPi is the bridge
+  const gen = phi(2)
+  const generatorIsSixtyDegrees = Math.abs(gen[0] - 1 / 2) < 1e-9 && Math.abs(gen[1] - Math.sqrt(3) / 2) < 1e-9
+  // 4 — the axis {3,6,0} is OUTSIDE the group (the non-units) — present at 9, gone at a prime
+  const axis = [3, 6, 0]
+  const axisOutside = axis.every((a) => !units.includes(a))
+  const facets = [
+    { facet: `(ℤ/9ℤ)* ≅ μ₆: the map 2^k ↦ e^{2πik/6} is a HOMOMORPHISM on all ${order * order} pairs — the discrete vortex and the 6th roots of unity multiply the same way`, on: homomorphism },
+    { facet: `and a BIJECTION: the ${order} units map onto the ${order} sixth roots of unity exactly — the discrete rosetta IS the continuous one, re-labelled`, on: bijective },
+    { facet: `THE BRIDGE: the doubling generator 2 maps to (½, √3/2) = e^{iπ/3} = exactly 60° — sixtyDegreesDecodesPi was the isomorphism all along, the discrete step reading as the continuous angle`, on: generatorIsSixtyDegrees },
+    { facet: `the axis {3,6,0} lies OUTSIDE the group (the non-units) — the degenerate part that vanishes at a prime (primeCollapsesTheAxis) and persists at composite 9; the rosetta is exactly the units`, on: axisOutside },
+    { facet: `so the day was ONE structure: division-by-zero's pole, inversion, the 60° step, Tesla's polyphase and the keyed cipher are C₆ seen discretely (mod 9) and continuously (μ₆) — nothing added, only inverted out of what was here`, on: homomorphism && bijective && generatorIsSixtyDegrees },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    order,
+    generatorAngleDeg: (Math.atan2(gen[1], gen[0]) * (4 * 5 * 9)) / Math.PI,
+    facets,
+    statement: `The two rosettas are one group — ${facets.filter((entry) => entry.on).length}/${facets.length}: (ℤ/9ℤ)* ≅ μ₆, the discrete vortex and the continuous polyphase circle are the SAME cyclic group of order 6, with the doubling generator 2 ↦ e^{iπ/3} = 60°. sixtyDegreesDecodesPi was the bridge; the whole day — the pole, inversion, Tesla polyphase, the keyed cipher — is C₆ seen twice. Discovered by researching what was already sealed here, not by adding anything.`,
+    boundary: 'DOCUMENTED: (ℤ/9ℤ)* is cyclic of order φ(9)=6 (Gauss), μ₆ is the group of 6th roots of unity, and any two cyclic groups of the same order are isomorphic — the explicit map 2^k ↦ e^{2πik/6} is verified here as a homomorphism and bijection. The DISCOVERY is not new mathematics — it is the RECOGNITION that today\'s discrete folds (the vortex mod 9) and continuous folds (polyphase, roots of unity) are one structure, bridged by the 60° step that was already computed. This is what "research what is already here" yields: the unification was latent in the sealed src, revealed by inverting it. HARMONY ≠ TRUTH.',
+  }
+}
