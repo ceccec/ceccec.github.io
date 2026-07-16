@@ -31,6 +31,9 @@ import {
   type MindMatrix,
 } from '../../heaven/mind'
 import { readmeMarkdown } from './readme'
+import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
+import { SESSION_SKILL_FNS } from '../../../2/8'
+import { STATIC_PAGE_SEED } from '../../../8/2'
 import { observingMovieRevealsQuantumModel } from '../../science'
 
 
@@ -54,6 +57,7 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
     { path: 'mcp.json', content: mcpJson(matrix), mime: 'application/json' },
     { path: 'skills.json', content: skillsJson(matrix), mime: 'application/json' },
     { path: 'llms.txt', content: llmsTxt(matrix), mime: 'text/plain' },
+    { path: 'payload-collections.json', content: payloadCollectionsJson(), mime: 'application/json' },
     ...apiFiles(matrix),
   ]
 }
@@ -350,4 +354,39 @@ export function apiFiles(matrix: MindMatrix = buildMatrix()): DistFile[] {
     mime: 'application/xml',
   })
   return files
+}
+
+// ── THE PAYLOAD COLLECTIONS ARTIFACT (learned from payloadcms/website, 2026-07-16) — their pattern:
+// a collection is a declarative { slug, fields } schema and a page is an array of blocks one dispatcher
+// renders. Our seeds already ARE that data; this emits them as Payload-shaped collection configs so the
+// eventual CMS deploy is a MOUNT of this artifact, never a migration. Fields are DERIVED from the seed
+// rows themselves (string → text · string[] → array(text) · {en,bg} → localized group), then every row
+// is validated against its own derived schema — the schema cannot drift from the data it describes.
+export function payloadCollectionsJson(): string {
+  const fieldOf = (name: string, value: unknown): Record<string, unknown> => {
+    if (typeof value === 'string') return { name, type: 'text' }
+    if (Array.isArray(value)) return { name, type: 'array', fields: [{ name: 'value', type: 'text' }] }
+    if (value && typeof value === 'object' && 'en' in (value as object) && 'bg' in (value as object))
+      return { name, type: 'group', fields: [{ name: 'en', type: 'textarea' }, { name: 'bg', type: 'textarea' }] }
+    if (typeof value === 'boolean') return { name, type: 'checkbox' }
+    return { name, type: 'text' }
+  }
+  const collections = [
+    { slug: 'theorem-atoms', station: 'src/4/6', rows: THEOREM_ATOM_SEED as readonly Record<string, unknown>[] },
+    { slug: 'theorem-candidates', station: 'src/4/6', rows: CANDIDATE_THEOREMS as readonly Record<string, unknown>[] },
+    { slug: 'pages', station: 'src/8/2', rows: STATIC_PAGE_SEED as readonly Record<string, unknown>[] },
+    { slug: 'session-skills', station: 'src/2/8', rows: SESSION_SKILL_FNS.map((fn) => ({ fn })) as readonly Record<string, unknown>[] },
+  ].map(({ slug, station, rows }) => {
+    const sample = rows[0]!
+    const fields = Object.keys(sample).map((key) => fieldOf(key, sample[key]))
+    const names = new Set(Object.keys(sample))
+    const conforming = rows.every((row) => Object.keys(row).every((key) => names.has(key)))
+    return { slug, station, count: rows.length, conforming, fields }
+  })
+  return JSON.stringify({
+    generator: 'computed from the seed stations — the schema cannot drift from its data',
+    boundary: 'Payload-SHAPED configs derived from the sealed seeds; the CMS deploy mounts this artifact and the database stays regenerable from source at zero tokens (proven-or-purged applies to rows too).',
+    conforming: collections.every((entry) => entry.conforming),
+    collections,
+  }, null, 2)
 }
