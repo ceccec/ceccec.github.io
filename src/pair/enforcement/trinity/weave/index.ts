@@ -1014,15 +1014,21 @@ if (existsSync(dist)) {
 {
   const source = read(join(root, 'src/wind/site/index.ts')) ?? ''
   const twin = read(join(root, '.vitepress/lib/site-locale.ts')) ?? ''
-  const station = read(join(root, 'src/1/9/index.ts')) ?? ''
-  for (const name of ['LOCALE_LINK', 'stripLocalePrefix', 'localePath', 'localeFromRoute', 'bulgarianFromEnglish']) {
-    const defines = new RegExp(`(?:^|\\n)(?:export )?(?:function|const) ${name}\\b`)
-    if (!defines.test(station)) {
-      gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `${name} is not defined at src/1/9 — why this fails: the locale primitives live ONCE at the language station; wind/site and the client both import that copy` })
-    }
-    for (const [home, text] of [['src/wind/site/index.ts', source], ['.vitepress/lib/site-locale.ts', twin]] as const) {
-      if (defines.test(text)) {
-        gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `${name} is redefined in ${home} — why this fails: a second copy is drift waiting to ship (it did, three ways); import it from src/1/9 instead` })
+  const homes: readonly (readonly [string, readonly string[]])[] = [
+    ['src/1/9/index.ts', ['LOCALE_LINK', 'stripLocalePrefix', 'localePath', 'localeFromRoute', 'bulgarianFromEnglish']],
+    ['src/quantum/heaven/library/index.ts', ['pickLocale', 'localizeMonolingual']],
+  ]
+  for (const [home, names] of homes) {
+    const station = read(join(root, home)) ?? ''
+    for (const name of names) {
+      const defines = new RegExp(`(?:^|\\n)(?:export )?(?:function|const) ${name}\\b`)
+      if (!defines.test(station)) {
+        gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `${name} is not defined at ${home} — why this fails: the locale fns live ONCE at their station; wind/site and the client both import that copy` })
+      }
+      for (const [other, text] of [['src/wind/site/index.ts', source], ['.vitepress/lib/site-locale.ts', twin]] as const) {
+        if (defines.test(text)) {
+          gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `${name} is redefined in ${other} — why this fails: a second copy is drift waiting to ship (it did, three ways); import it from ${home} instead` })
+        }
       }
     }
   }

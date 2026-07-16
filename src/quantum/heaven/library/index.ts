@@ -17,6 +17,7 @@
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · lower·yin · spread — content-address primitives (merkaba fold, entry, uuid, quantum sim)
 import { phase } from '../../../6/4'
 import { merkabaFoldUrl, entry, toUuid, isUuid, roundTo, addressEntropyBits, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../../0'
+import { bulgarianFromEnglish, type LocaleName } from '../../../1/9'
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · upper·yang · spread — re-exports and decoded library surface
 export { merkabaFoldUrl, entry, type Uuid, type Entry }
 
@@ -224,6 +225,22 @@ GLAGOLITIC_LETTERS.forEach((letter, i) => {
 // Sum a Glagolitic word to its number — the Glagolitic gematria, the same fold as gematria(), each letter
 // valued by the ladder from its position. Unknown glyphs contribute 0. Pure, deterministic, zero tokens.
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+/** Bilingual pick — en passes through; bg picks Cyrillic; gla transliterates Latin. Lives beside
+ * toGlagolitic, its only dependency: the ONE copy (wind/site and the client twin re-export it). */
+export function pickLocale<T>(locale: LocaleName, en: T, bg: T): T {
+  if (locale === 'bg') return bg
+  if (locale === 'gla' && typeof en === 'string') return toGlagolitic(en) as T
+  return en
+}
+
+/** Locale display copy — gla transliterates; bg maps sealed phrases; en passes through. */
+export function localizeMonolingual(locale: LocaleName, text: string): string {
+  if (!text) return text
+  if (locale === 'bg') return bulgarianFromEnglish(text)
+  if (locale === 'gla') return /[\u2C00-\u2C5F]/.test(text) ? text : toGlagolitic(text)
+  return text
+}
+
 export function toGlagoliticNumber(text: string): number {
   return [...text].reduce((sum, ch) => sum + (GLAGOLITIC_VALUE_BY_GLYPH[ch] ?? 0), 0)
 }

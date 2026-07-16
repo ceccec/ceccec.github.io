@@ -24,7 +24,6 @@ import { computedMovieThemeColors } from '../../fire/plasma/ball'
 import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { completeCorpus } from '../routes/corpus'
-import { toGlagolitic } from '../../quantum/heaven/library'
 import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
 import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
@@ -35,6 +34,7 @@ import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type Lo
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
 // The primitives live at station src/1/9 (the ONE copy — the client twin imports the same file).
 export { localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9'
+export { pickLocale, localizeMonolingual, localizeMonolingual as displayText } from '../../quantum/heaven/library'
 export type VitePressLocaleKey = 'root' | 'bg' | 'gla'
 
 export function vitepressLocaleLink(localeKey: VitePressLocaleKey): string {
@@ -43,13 +43,6 @@ export function vitepressLocaleLink(localeKey: VitePressLocaleKey): string {
 
 export function localePaths(route: string) {
   return { gla: localePath(route, 'gla'), en: localePath(route, 'en'), bg: localePath(route, 'bg') }
-}
-
-/** Bilingual pick — en uses Latin source; bg uses Cyrillic; gla transliterates Latin to Glagolitic. */
-export function pickLocale<T>(locale: LocaleName, en: T, bg: T): T {
-  if (locale === 'bg') return bg
-  if (locale === 'gla' && typeof en === 'string') return toGlagolitic(en) as T
-  return en
 }
 
 /** Bulgarian home — computed from en/index.md (mirror of glagoliticHomeFromEnglish). */
@@ -68,16 +61,6 @@ export function bulgarianHomeFromEnglish(enMarkdown: string): string {
   return `${front.replace(/^layout: home\n/m, '')}${translated}`
 }
 
-/** Locale display copy — gla transliterates; bg maps sealed phrases; en passes through. */
-export function localizeMonolingual(locale: LocaleName, text: string): string {
-  if (!text) return text
-  if (locale === 'bg') return bulgarianFromEnglish(text)
-  if (locale === 'gla') return /[Ⰰ-ⱟ]/.test(text) ? text : toGlagolitic(text)
-  return text
-}
-
-/** Alias for card/surface display — gla transliteration + bg phrase map. */
-export const displayText = localizeMonolingual
 
 export function localeNavLinks(node: unknown, locale: LocaleName, labelMapper?: (text: string) => string): unknown {
   if (Array.isArray(node)) return node.map((entry) => localeNavLinks(entry, locale, labelMapper))
