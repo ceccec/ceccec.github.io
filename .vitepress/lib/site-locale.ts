@@ -11,6 +11,8 @@ function stripLocalePrefix(route: string): string {
   if (route.startsWith('/bg/')) return route.slice(3) || '/'
   if (route === '/en' || route === '/en/') return '/'
   if (route.startsWith('/en/')) return route.slice(3) || '/'
+  if (route === '/gla' || route === '/gla/') return '/'
+  if (route.startsWith('/gla/')) return route.slice(2 * 2) || '/'
   return route
 }
 

@@ -1007,6 +1007,27 @@ if (existsSync(dist)) {
   }
 }
 
+// --- the locale-twin sync gate: .vitepress/lib/site-locale.ts mirrors wind/site's locale primitives
+// for client-bundle weight (wind/site pulls the mind graph). The census forbids a third home, so the
+// mirror is allowed ONLY in provable sync: the three primitives must match the source normalized —
+// silent drift (the 2026-07-16 Glagolitic-placeholder regression) becomes a RED finding instead.
+{
+  const norm = (t: string) => t.replace(/\s+/g, ' ').trim()
+  const grab = (text: string, name: string) => {
+    const m = text.match(new RegExp(`(?:export )?(?:function ${name}\\([^)]*\\)[^{]*\\{[\\s\\S]*?\\n\\}|const ${name}[^=]*= \\{[^}]*\\})`))
+    return m ? norm(m[0].replace(/^export /, '')) : null
+  }
+  const source = read(join(root, 'src/wind/site/index.ts')) ?? ''
+  const twin = read(join(root, '.vitepress/lib/site-locale.ts')) ?? ''
+  for (const name of ['LOCALE_LINK', 'stripLocalePrefix', 'localeFromRoute']) {
+    const a = grab(source, name)
+    const b = grab(twin, name)
+    if (!a || !b || a !== b) {
+      gaps.push({ harmonic: 'locale-twin', kind: 'mirror-drift', detail: `${name} differs between wind/site and .vitepress/lib/site-locale.ts — why this fails: the client mirror exists for bundle weight and is legal ONLY byte-in-sync; drift here shipped Glagolitic placeholders on the English root once already` })
+    }
+  }
+}
+
 // --- the one-source monograph gates, tightened: enforce all so entropy does not pass ---
 // No mirroring: each [page].paths.ts (root = en, bg, gla) is a thin mount over the one source
 // (monographPaths). A reintroduced staticPages().map mirror is entropy — and fails here.
