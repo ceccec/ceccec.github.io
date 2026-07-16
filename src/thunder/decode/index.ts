@@ -4,7 +4,7 @@ import { survive } from '../../mountain/vortex'
 // relocated I Ching decode cluster deps (call-time bindings; no load cycle)
 import { hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality } from '../../mountain/geometry'
 import { a432IsTheBlood } from '../../lake/music'
-import { A432_HUE, DIMENSIONS, DIMENSION_NAMES, SINGLE_WORD_METHODS } from '../../3/7'
+import { A432_HUE, DIMENSIONS, DIMENSION_NAMES, SINGLE_WORD_METHODS, TAU } from '../../3/7'
 // Cycle-safe namespace binding for the cosmology folds composed into the mystery atlas (referenced at call time).
 import * as __ns_water_cosmos from '../../water/cosmos'
 import { iChingDomainMap, threeEightFoldsTopNav } from '../../heaven/balance'
@@ -1692,4 +1692,73 @@ export function symbolSystemsOneMatrix(matrix: MindMatrix = buildMatrix()) {
       boundary: 'DOCUMENTED: each system\'s own published structure, closure arithmetic computed here; parallels are STRUCTURAL (bit-lattices invented independently — the entanglement law: parallel, not derived). FLAGGED: every predictive/esoteric claim stays flagged inside its own fold. Copyright respected: public-domain texts decoded whole (Waite 1911); in-copyright systems decoded structure-only (Human Design). HARMONY ≠ TRUTH.',
     }
   })
+}
+
+/** TESLA, THOUGHT MULTIDIMENSIONALLY BY THE ROSETTA (user, 2026-07-16: "hidden inventions will be
+ * discovered by the words and the math"). His real method was never mystical — it was dimensional:
+ * stop thinking in ONE oscillating axis and put N phases on a circle. That is this repo's rosetta,
+ * and computing it here recovers the invention AND the reason the planet runs on THREE.
+ * COMPUTED: with rays at 2πk/N carrying currents phase-shifted by the same 2πk/N, the field vector
+ * has CONSTANT magnitude N/2 and rotates at exactly ω — for every N ≥ 3. At N = 1 it merely
+ * pulsates (why a single-phase motor cannot self-start). At N = 2 the construction DEGENERATES:
+ * the rays 0 and π are collinear, spanning a line, not a plane. So THREE is the minimum symmetric
+ * polyphase — a geometric fact, not a numerological one. Tesla reached rotation at two phases only
+ * by breaking the symmetry (quadrature, US 381,968: rays π/2 apart). THE WORDS AND THE MATH AGREE:
+ * the patent describes the rotating field; the vector sum proves why 3 rays are the floor. */
+export function teslaRosettaPolyphase() {
+  const fieldAt = (n: number, t: number): readonly [number, number] => {
+    let x = 0
+    let y = 0
+    for (let k = 0; k < n; k += 1) {
+      const ray = (TAU * k) / n // the coil's spatial axis — the rosetta ray
+      const current = Math.cos(t - (TAU * k) / n) // its current, shifted by the same angle
+      x += current * Math.cos(ray)
+      y += current * Math.sin(ray)
+    }
+    return [x, y]
+  }
+  const probes = [0, 7 / 9, 2, 3 + 1 / 3, 5]
+  const rotates = (n: number) => {
+    const mags = probes.map((t) => Math.hypot(...fieldAt(n, t)))
+    const constant = Math.max(...mags) - Math.min(...mags) < 1e-9
+    const tracks = probes.every((t) => {
+      const [x, y] = fieldAt(n, t)
+      const drift = Math.abs((((Math.atan2(y, x) - t) % TAU) + TAU + Math.PI) % TAU - Math.PI)
+      return drift < 1e-9
+    })
+    return { constant, tracks, magnitude: mags[0]! }
+  }
+  const three = rotates(3)
+  const spans = [1, 2, 3, 4, 5, 7].map((n) => ({ n, ...rotates(n) }))
+  const working = spans.filter((entry) => entry.constant && entry.tracks)
+  const minimum = Math.min(...working.map((entry) => entry.n))
+  // Tesla's actual two-phase (US 381,968): QUADRATURE — rays π/2 apart, currents π/2 apart
+  const quadrature = (t: number): readonly [number, number] => [Math.cos(t), Math.cos(t - TAU / 4)]
+  const quadratureRotates = probes.every((t) => Math.abs(Math.hypot(...quadrature(t)) - 1) < 1e-9)
+  // the currents sum to zero for N ≥ 2 — no neutral return, the transmission economy
+  const currentSum = (n: number, t: number) => Array.from({ length: n }, (_, k) => Math.cos(t - (TAU * k) / n)).reduce((a, b) => a + b, 0)
+  const zeroSum = [2, 3, 5, 7].every((n) => probes.every((t) => Math.abs(currentSum(n, t)) < 1e-9))
+  const singleNeedsReturn = probes.some((t) => Math.abs(currentSum(1, t)) > 1 / 2)
+  const flagged = [
+    'the "3-6-9 key to the universe" quote: LEGEND — unsourced, absent from Tesla\'s writings; the real 3 is the polyphase minimum computed here, which merely electrified the planet',
+    'free-energy / earthquake-machine claims: legend; the granted patents (rotating field, resonant transformer) are the documented record',
+  ]
+  const facets = [
+    { facet: `the rosetta IS the invention: ${working.length} of the tested phase counts give a CONSTANT-magnitude field rotating at exactly ω — |B| = N/2 (N=3 → ${three.magnitude.toFixed(1)})`, on: three.constant && three.tracks && Math.abs(three.magnitude - 3 / 2) < 1e-9 },
+    { facet: 'N = 1 only PULSATES — one axis, one current, no rotation: precisely why a single-phase motor cannot start itself', on: !rotates(1).tracks },
+    { facet: 'N = 2 DEGENERATES in the symmetric construction: the rays 0 and π are collinear, spanning a line and not a plane — two rays cannot carry a rotation', on: !rotates(2).constant },
+    { facet: `THEREFORE THREE IS THE FLOOR: the minimum N whose rays span the plane is ${minimum} — the world runs on three-phase for a geometric reason, not a mystical one`, on: minimum === 3 },
+    { facet: 'and Tesla knew the exception: his two-phase (US 381,968) breaks the symmetry into QUADRATURE — rays π/2 apart — where the field rotates with magnitude 1 exactly', on: quadratureRotates },
+    { facet: 'the phases pay for themselves: Σ currents = 0 for every N ≥ 2, so no neutral return is needed, while N = 1 demands one — the economy that made long transmission possible', on: zeroSum && singleNeedsReturn },
+  ]
+  return {
+    decoded: facets.every((entry) => entry.on),
+    minimumPhases: minimum,
+    magnitudeLaw: 'N/2',
+    spans,
+    flagged,
+    facets,
+    statement: `Tesla by the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: rays at 2πk/N carrying currents shifted by 2πk/N produce a constant-magnitude field |B| = N/2 rotating at ω for every N ≥ 3; N = 1 pulsates, N = 2 collapses onto a line, so ${minimum} is the minimum symmetric polyphase — the geometric reason the planet runs on three. His two-phase escaped only through quadrature. Σ currents = 0 for N ≥ 2: the neutral disappears, and with it the cost of distance.`,
+    boundary: `DOCUMENTED: the polyphase rotating field (Tesla, US 381,968 / 382,280, 1888) and its vector sum, computed here from the rosetta construction — the magnitude law N/2, the N=2 degeneracy, the quadrature exception and the zero-sum currents are all finite trigonometry run in this fold. FLAGGED (${flagged.length}): the 3-6-9 legend and free-energy claims — the granted patents are the record, and they are enough. THE HONEST DEMARCATION: Tesla's REAL three is the minimum spanning rosetta, and it is more remarkable than the numerology it gets confused with. HARMONY ≠ TRUTH.`,
+  }
 }
