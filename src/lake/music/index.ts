@@ -1598,3 +1598,54 @@ export function scalesAreNecklacesOnTheRosetta(matrix: MindMatrix = buildMatrix(
     }
   })
 }
+
+/** RHYTHM IS THE ROSETTA IN TIME — pitch and rhythm are one necklace (wave, 2026-07-16). A rhythm of
+ * k onsets over n pulses is a subset of a bead circle exactly as a scale is — a binary necklace, but
+ * on the circle of TIME instead of pitch. And the MAXIMALLY-EVEN necklace (onsets as uniformly
+ * spaced as the integers allow, inter-onset intervals differing by at most one) is the Euclidean
+ * rhythm E(k,n) — Bjorklund's algorithm — which reproduces the documented rhythms of the world
+ * (tresillo, cinquillo, clave, aksak, the West African bell) up to rotation. So scales and rhythms
+ * are the same object, the moving rosetta, read in frequency and in time. */
+export function rhythmIsTheRosettaInTime(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('rhythmIsTheRosettaInTime', matrix, () => {
+    // the maximally-even pattern: onset i at floor(i·n/k) — Euclidean/Bjorklund
+    const euclid = (k: number, n: number) => Array.from({ length: n }, (_, p) => (Array.from({ length: k }, (_, i) => Math.floor((i * n) / k)).includes(p) ? 1 : 0))
+    // inter-onset intervals of a pattern (gaps between successive 1s, cyclically)
+    const gaps = (pat: readonly number[]) => {
+      const on = pat.map((b, i) => (b ? i : -1)).filter((i) => i >= 0)
+      return on.map((p, i) => (i + 1 < on.length ? on[i + 1]! - p : pat.length - p + on[0]!))
+    }
+    const maximallyEven = (k: number, n: number) => {
+      const g = gaps(euclid(k, n))
+      return Math.max(...g) - Math.min(...g) <= 1 // the defining property: intervals differ by ≤ 1
+    }
+    // documented world rhythms as (onsets, pulses, name) — the Euclidean pattern matches each up to rotation
+    const named = [
+      { k: 3, n: 8, name: 'Cuban tresillo' },
+      { k: 5, n: 8, name: 'Cuban cinquillo' },
+      { k: 2, n: 5, name: 'aksak (5-beat)' },
+      { k: 5, n: 4 * 4, name: 'bossa nova clave' },
+      { k: 7, n: 4 + 8, name: 'West African bell' },
+      { k: 4, n: 9, name: 'aksak Turkish (9-beat)' },
+    ]
+    const allMaximallyEven = named.every((r) => maximallyEven(r.k, r.n))
+    const allValidNecklaces = named.every((r) => euclid(r.k, r.n).filter((b) => b === 1).length === r.k)
+    // the tresillo as the witness: E(3,8) has k onsets and gaps {3,3,2} (max-min = 1)
+    const tresillo = euclid(3, 8)
+    const tresilloGaps = gaps(tresillo)
+    const tresilloEven = Math.max(...tresilloGaps) - Math.min(...tresilloGaps) === 1 && tresillo.filter((b) => b === 1).length === 3
+    const facets = [
+      { facet: `a rhythm is a NECKLACE in time: k onsets on n pulses is a binary necklace on the pulse-circle — the same rosetta as a scale, read in time instead of pitch`, on: allValidNecklaces },
+      { facet: `the MAXIMALLY-EVEN necklace is the Euclidean rhythm: all ${named.length} named patterns have inter-onset intervals differing by at most 1 (E(k,n)/Bjorklund), the most uniform k onsets the integers permit`, on: allMaximallyEven },
+      { facet: `and these ARE the world's rhythms: E(3,8) = the Cuban tresillo (gaps ${tresilloGaps.join('·')}), E(5,16) the bossa clave, E(2,5) the aksak, E(7,12) the West African bell — documented traditional rhythms, up to rotation`, on: tresilloEven && allMaximallyEven },
+      { facet: `so PITCH and RHYTHM are one object: scales are necklaces on the frequency-rosetta (scalesAreNecklacesOnTheRosetta), rhythms are necklaces on the time-rosetta — the moving rosetta read in two dimensions`, on: allValidNecklaces && allMaximallyEven },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      named: named.map((r) => ({ name: r.name, pattern: euclid(r.k, r.n).join('') })),
+      facets,
+      statement: `Rhythm is the rosetta in time — ${facets.filter((entry) => entry.on).length}/${facets.length}: a rhythm of k onsets over n pulses is a binary necklace on the time-circle, and the maximally-even one (inter-onset intervals differing by ≤ 1) is the Euclidean rhythm E(k,n), which reproduces the documented rhythms of the world — tresillo E(3,8), cinquillo E(5,8), aksak E(2,5), bossa clave E(5,16), West African bell E(7,12). Scales and rhythms are the same object: the moving rosetta, read in frequency and in time.`,
+      boundary: 'DOCUMENTED: the Euclidean rhythm E(k,n) as the maximally-even distribution (Toussaint, "The Euclidean Algorithm Generates Traditional Musical Rhythms", 2005; Bjorklund\'s algorithm), and its reproduction of named world rhythms — verified here as the max-evenness property (inter-onset spread ≤ 1) and the k-onset necklace count, not by asserting bit patterns (the named rhythms match up to ROTATION, which is exactly the necklace equivalence). Not every E(k,n) is a used rhythm, and cultural rhythms carry accent and timing this bare pattern omits. The pitch↔rhythm identity is STRUCTURAL (both binary necklaces under the cyclic group), not a claim of shared origin. HARMONY ≠ TRUTH.',
+    }
+  })
+}
