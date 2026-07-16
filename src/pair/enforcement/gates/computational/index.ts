@@ -5,6 +5,7 @@ import { merkleFold, toUuid } from '../../../../0'
 import { stringMass } from '../strict/scan'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2'
+import { THEOREM_ATOM_SEED } from '../../../../4/6'
 import { harmonicBands } from '../../../../quantum/lake/icons'
 
 function vaultSplitCamelSegment(segment: string): readonly string[] {
@@ -1369,6 +1370,36 @@ export function foldingEntropy(root: string): {
     statement: `Folding entropy over ${paths.length} sealed files (${bytes} bytes): local fold ${(localFold * 100).toFixed(1)}%, global fold ${(globalFold * 100).toFixed(1)}%, cross-file interference ${(crossFileInterference * 100).toFixed(1)}% — the refactor-reachable mass, measured as one superposition, not a linear class-sum.`,
     boundary: 'HONEST: compression is a Kolmogorov PROXY — the local fold includes syntax and prose statistics that readable source legitimately carries (not purgeable); only the cross-file interference is refactor-reachable, and its value depends on the compressor window (gzip 32KB sees ~1%, brotli 16MB ~4.5%, xz ~9%). The linear class-sum route must converge with it before either number is trusted.',
   }
+}
+
+/** Theorem sources (user law 2026-07-16: every card page exposes the source code of how all is
+ * achieved). For each registry atom, the provedBy function's text is brace-matched out of its home
+ * module and emitted as theorem-sources.json — the paper page shows the actual proof machine. */
+export function theoremSourcesJson(root: string): string {
+  const sources: Record<string, { home: string; code: string }> = {}
+  for (const atom of THEOREM_ATOM_SEED) {
+    if (sources[atom.provedBy]) continue
+    const file = join(root, atom.home, 'index.ts')
+    if (!existsSync(file)) continue
+    const text = readFileSync(file, 'utf8')
+    const head = text.match(new RegExp(`(?:^|\\n)((?:/\\*\\*[\\s\\S]*?\\*/\\n)?export (?:async )?function ${atom.provedBy}\\b)`))
+    let code = ''
+    if (head) {
+      const start = text.indexOf(head[1]!, head.index!)
+      const open = text.indexOf('{', start + head[1]!.length - 1)
+      let depth = 0
+      for (let i = text.indexOf('{', start); i < text.length; i += 1) {
+        if (text[i] === '{') depth += 1
+        if (text[i] === '}') { depth -= 1; if (depth === 0) { code = text.slice(start, i + 1); break } }
+      }
+      void open
+    } else {
+      const arrow = text.match(new RegExp(`(?:^|\\n)(export const ${atom.provedBy}\\b[\\s\\S]*?\\n)(?=export |$)`))
+      code = arrow ? arrow[1]!.trimEnd() : ''
+    }
+    if (code) sources[atom.provedBy] = { home: atom.home, code }
+  }
+  return JSON.stringify({ generator: 'brace-matched from the sealed homes each cross wave — the paper shows the proof machine itself', count: Object.keys(sources).length, sources }, null, 1)
 }
 
 /** The prose-token monitor (user law 2026-07-16: monitor token usage coming from prose instead of

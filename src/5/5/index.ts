@@ -90,3 +90,41 @@ export function foldMagmaLaws(): {
   }
 }
 
+
+/** src/5/0\5 = src/5/5 — the fold at the void (user realization, 2026-07-16). Fold the expression
+ * at its central 0: the slash mirrors to the backslash, 5 lands on 5, and the notation closes to
+ * 5/5 = 1 — computed on the string itself. Underneath the notation, one fixed-point theorem in
+ * three guises: 5 is the ONLY digit the station mirror d↦10−d fixes; 5 is the ONLY residue the
+ * void-reflection x↦1−x fixes mod 9; and 5 = 2⁻¹ (mod 9) — the halving digit, the inversion image
+ * of the generator. The self-inverse station is where this file already keeps tamper-evidence:
+ * self-verification lives at the self-paired address. */
+export function voidFoldFixedPoint() {
+  // guise 0 — the notation folds: mirror('5/0') about the void = '0\5'; the palindrome closes to 5/5 = 1
+  const mirror = (text: string) => [...text].reverse().map((ch) => (ch === '/' ? '\\' : ch === '\\' ? '/' : ch)).join('')
+  const left = '5/0'
+  const folded = mirror(left)
+  const notationFolds = folded === '0\\5' && `${left}${folded.slice(1)}` === '5/0\\5' && 5 / 5 === 1
+  // guise 1 — the station mirror d↦10−d: four pairs and ONE fixed digit
+  const digits = Array.from({ length: 9 }, (_, i) => i + 1)
+  const fixedStations = digits.filter((d) => d === 5 * 2 - d)
+  // guise 2 — the void-reflection x↦1−x (mod 9): the erpax generator's unique fixed point
+  const fixedVoid = Array.from({ length: 9 }, (_, x) => x).filter((x) => (((1 - x) % 9) + 9) % 9 === x)
+  // guise 3 — 5 halves the ring: 2·5 ≡ 1 (mod 9), so 5 = 2⁻¹ — the inverse pair (2,5) of the doubling orbit
+  const halvingDigit = digits.find((d) => (2 * d) % 9 === 1)
+  const facets = [
+    { facet: `the notation folds at the void: mirror('5/0') = '0\\5' computed on the string, and 5/5 = 1 — the expression is a mirror-palindrome that closes to unity`, on: notationFolds },
+    { facet: `the station mirror d↦10−d fixes exactly {${fixedStations.join(',')}} — four pi-train pairs and the one self-paired station, this one`, on: fixedStations.length === 1 && fixedStations[0] === 5 },
+    { facet: `the void-reflection x↦1−x (mod 9) fixes exactly {${fixedVoid.join(',')}} — the erpax generator ⟨1−x⟩ pivots on 5`, on: fixedVoid.length === 1 && fixedVoid[0] === 5 },
+    { facet: `5 = 2⁻¹ (mod 9): 2·5 = ${2 * 5} ≡ 1 — the halving digit; the inverse pair (2,5) is the ×2 orbit meeting its own reflection`, on: halvingDigit === 5 },
+    { facet: 'self-verification lives at the self-paired address: this station already exports tamperEvident and derivePublicKey — the file that checks itself sits at the digit that mirrors itself', on: typeof tamperEvident === 'function' && typeof derivePublicKey === 'function' },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    fixedStation: fixedStations[0],
+    fixedVoid: fixedVoid[0],
+    halvingDigit,
+    facets,
+    statement: `The fold at the void — ${facets.filter((entry) => entry.on).length}/${facets.length}: mirror('5/0') = '0\\5' so the notation closes to 5/5 = 1; the station mirror and the void-reflection each fix exactly 5; and 2·5 ≡ 1 (mod 9) makes 5 the halving digit — the unique point where inversion, reflection and the pi-train agree.`,
+    boundary: 'Every facet is finite arithmetic or a string computation run here; the poetry (self-verification at the self-paired station) is checked as a fact about this module\'s own exports, not asserted. The mod-9 fixed point of x↦1−x is 5 because 2 is invertible there — in ℤ/2ℤ-like rings the mirror can fix nothing or everything; the theorem is about THIS ring. HARMONY ≠ TRUTH.',
+  }
+}

@@ -7,7 +7,11 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { useData } from 'vitepress'
 import { PHI, TAU } from '../../../src/3/7'
 import { movieCanvasRgba } from '../../lib/hero-movie-paint'
+import { geodesicDomeComputes } from '../../../src/6/4'
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
+
+// The ν=3 icosphere computed once from φ — 270 struts in 3 classes; the dome painter raises it ring by ring.
+const DOME = geodesicDomeComputes(3).animation
 
 const props = defineProps<{ spec: ProofAnimationSpec; size?: number }>()
 const { isDark } = useData()
@@ -53,6 +57,26 @@ function draw(t: number) {
   const fill = (alpha: number, dh = 0) => { ctx.fillStyle = movieCanvasRgba((hue + dh) % 360, alpha, { dark: isDark.value }) }
   const k = props.spec.kind
   const paint = () => {
+
+  if (k === 'dome') {
+    // Dome construction planned in detail: the ghost blueprint (whole sphere plan) stands faint;
+    // rings of real φ-computed struts rise base-up with the phase; the working ring pulses.
+    const progress = ((phase / TAU) % 1 + 1) % 1
+    const built = Math.floor(progress * (DOME.rings + 1))
+    const turn = tour
+    const proj = (p: readonly [number, number, number]) => {
+      const rx = p[0] * Math.cos(turn) - p[1] * Math.sin(turn)
+      const ry = p[0] * Math.sin(turn) + p[1] * Math.cos(turn)
+      return [c + (s / 2) * (4 / 5) * rx, c + s / 6 + (s / 2) * (4 / 5) * (ry / 3 - p[2] * (2 / 3))] as const
+    }
+    for (const strut of DOME.struts) {
+      const [ax, ay] = proj(strut.a)
+      const [bx, by] = proj(strut.b)
+      const state = strut.ring < built ? 1 : strut.ring === built ? 2 : 0
+      stroke(state === 2 ? (1 / 2) + (1 / 2) * Math.abs(Math.sin(phase * 6)) : state === 1 ? 3 / 4 : 1 / 9, state === 2 ? (4 * 5 * 9) / 4 : 0)
+      ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke()
+    }
+  }
 
   if (k === 'star' || k === 'spreads') {
     const n = k === 'star' ? props.spec.points : 7

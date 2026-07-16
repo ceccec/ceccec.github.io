@@ -34,6 +34,7 @@ import { readmeMarkdown } from './readme'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
+import { SOURCE_REPO } from '../../../3/7'
 import { observingMovieRevealsQuantumModel } from '../../science'
 
 
@@ -58,6 +59,16 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
     { path: 'skills.json', content: skillsJson(matrix), mime: 'application/json' },
     { path: 'llms.txt', content: llmsTxt(matrix), mime: 'text/plain' },
     { path: 'payload-collections.json', content: payloadCollectionsJson(), mime: 'application/json' },
+    // learned back from erpax/erpax (which learned from here): one .well-known discovery surface —
+    // any agent landing on the deployed origin finds the whole protocol without guessing filenames.
+    { path: '.well-known/ai-skills.json', content: JSON.stringify({
+      version: '1',
+      repository: SOURCE_REPO,
+      entryPoint: 'README.md',
+      instruction: 'Paste the repo URL or the deployed origin — README.md is the root monograph; the protocol below is computed from sealed src at every build.',
+      surfaces: ['README.md', 'agents.json', 'agent-compliance.json', 'llms.txt', 'mcp.json', 'digit-index.json', 'source-atlas.json', 'payload-collections.json'],
+      zeroTokenPolicy: 'the runtime uses zero LLM tokens — everything here is deterministic from src',
+    }, null, 1), mime: 'application/json' },
     ...apiFiles(matrix),
   ]
 }

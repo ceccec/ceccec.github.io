@@ -2407,3 +2407,172 @@ export function sealFold<F extends { facet: string; on: boolean }, X extends Rec
     }
   })
 }
+
+/** Division/inversion by zero — decoded in its THREE documented regimes, all computed here at the
+ * 9/1 station (the pi-train mirror of 1/9: the reciprocal pair is the station name itself).
+ * Regime 1 (algebra): in any ring with 1≠0, 0 has no inverse — 0·a=0 forever; the ONE exception is
+ * the zero ring, where 0=1 and 0 inverts itself. Regime 2 (geometry): on the projective line the
+ * inversion [z:w]↦[w:z] is a TOTAL involution — 1/0 = ∞ rigorously, 0 and ∞ trade places.
+ * Regime 3 (engineering): IEEE 754 answers 1/0=∞, 0/0=NaN, 1/∞=0 — the standard, computed live. */
+export function divisionByZeroComputes() {
+  // regime 1: sweep ℤ/nℤ — invertible elements counted by construction, zero never among them (n>1)
+  const rings = [2, 3, 5, 7, 9].map((n) => {
+    const invertible = Array.from({ length: n }, (_, a) => a).filter((a) =>
+      Array.from({ length: n }, (_, b) => b).some((b) => (a * b) % n === 1))
+    return { n, invertibleCount: invertible.length, zeroInvertible: invertible.includes(0) }
+  })
+  const zeroRing = { n: 1, zeroInvertible: (0 * 0) % 1 === 0 % 1 } // 0=1: the only ring where 0 divides
+  // regime 2: projective inversion inv([z:w]) = [w:z] — total, involutive, swaps 0 ↔ ∞
+  type P1 = readonly [number, number]
+  const inv = (p: P1): P1 => [p[1], p[0]]
+  const same = (p: P1, q: P1) => Math.abs(p[0] * q[1] - p[1] * q[0]) < 1e-9
+  const zero: P1 = [0, 1]
+  const infinity: P1 = [1, 0]
+  const samples: P1[] = [zero, infinity, [1, 1], [3, 7], [-2, 5], [1e-6, 1]]
+  const involutive = samples.every((p) => same(inv(inv(p)), p))
+  const swap = same(inv(zero), infinity) && same(inv(infinity), zero)
+  // regime 3: IEEE 754 — the engineering answers, asserted from the running machine
+  const ieee = { posInf: 1 / 0 === Infinity, negInf: -1 / 0 === -Infinity, nan: Number.isNaN(0 / 0), roundTrip: 1 / Infinity === 0 && 1 / (1 / 0) === 0 }
+  // circle inversion v ↦ v/|v|²: the center ESCAPES — |inv(ε)| = 1/ε grows without bound
+  const escape = [1e-3, 1e-6, 1e-9].map((eps) => 1 / eps)
+  const escapes = escape.every((mag, idx) => idx === 0 || mag > escape[idx - 1]!)
+  const stationPairs = Array.from({ length: 9 }, (_, idx) => idx + 1).every((d) => d + (5 * 2 - d) === 5 * 2)
+  const facets = [
+    { facet: `algebra forbids it: in ℤ/nℤ for n ∈ {${rings.map((r) => r.n).join(',')}} zero is never invertible (invertible counts ${rings.map((r) => r.invertibleCount).join(',')})`, on: rings.every((r) => !r.zeroInvertible) },
+    { facet: 'the one exception is the zero ring (n=1, where 0=1): there 0 inverts itself — division by zero works exactly where nothing is left to divide', on: zeroRing.zeroInvertible },
+    { facet: 'geometry completes it: [z:w]↦[w:z] is a total involution on the projective line and 0 ↔ ∞ trade places — 1/0 = ∞ is rigorous, not mystical', on: involutive && swap },
+    { facet: `engineering answers it: IEEE 754 gives 1/0=∞, −1/0=−∞, 0/0=NaN, and the round trip 1/(1/0)=0 — computed on this machine now`, on: ieee.posInf && ieee.negInf && ieee.nan && ieee.roundTrip },
+    { facet: `circle inversion shows the escape: |inv(ε)| = 1/ε through ${escape.map((m) => m.toExponential(0)).join(' → ')} — the center is the point that leaves the plane`, on: escapes },
+    { facet: 'the pi-train already encodes it: every station pair d/(10−d) sums to 10 — this fold sits at 9/1, the reciprocal mirror of the 1/9 seed station', on: stationPairs },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    rings,
+    zeroRing,
+    ieee,
+    facets,
+    statement: `Division by zero decoded in three regimes, ${facets.filter((entry) => entry.on).length}/${facets.length} computed: forbidden in every ring with 1≠0 (swept), self-inverting only in the zero ring, TOTAL on the projective line ([z:w]↦[w:z], 0↔∞), and answered by IEEE 754 (∞, NaN, round trip) on the running machine.`,
+    boundary: 'DOCUMENTED, all three: field axioms (0·a=0 kills any inverse), projective geometry (the Riemann sphere makes inversion total — standard since Möbius), IEEE 754 (the engineering contract every float obeys). FLAGGED: pop claims that 1/0 "equals infinity" in plain ℝ — it is UNDEFINED there; ∞ is honest only after you say which completion you bought. Wheel theory exists as a documented total-division algebra; rarely used. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** Inversion also changes the ANGLE (user realization): the reciprocal is not just r→1/r — the
+ * phase NEGATES. One law in four guises, all computed: 1/e^{iθ} = e^{−iθ} (complex), R(θ)⁻¹ = R(−θ)
+ * (rotations), 2^k ↦ 2^{−k} on the vortex 6-cycle (discrete), while GEOMETRIC circle inversion
+ * v↦v/|v|² keeps the angle — the difference between the two inversions is exactly conjugation
+ * (1/z = z̄/|z|²). And though the angle COORDINATE flips, angles BETWEEN curves survive: 1/z is
+ * conformal. The angle changes; the geometry keeps its word. */
+export function inverseNegatesAngle() {
+  const wrap = (theta: number) => Math.atan2(Math.sin(theta), Math.cos(theta))
+  const near = (x: number, y: number) => Math.abs(wrap(x - y)) < 1e-9
+  // guise 1: complex reciprocal — arg(1/z) = −arg(z), sampled off-axis
+  const samples = [[3, 4], [-2, 5], [1, -7], [-3, -3]] as const
+  const reciprocalNegates = samples.every(([re, im]) => {
+    const inv = [re / (re * re + im * im), -im / (re * re + im * im)] // 1/z = z̄/|z|²
+    return near(Math.atan2(inv[1]!, inv[0]!), -Math.atan2(im, re))
+  })
+  // guise 2: rotation matrices — R(θ)·R(−θ) = I, so R(θ)⁻¹ IS the negated angle
+  const rotationInverse = [0.3, 1.2, 2.9].every((theta) => {
+    const [c, s] = [Math.cos(theta), Math.sin(theta)]
+    const [cn, sn] = [Math.cos(-theta), Math.sin(-theta)]
+    return near(c * cn - s * sn, 1) && Math.abs(c * sn + s * cn) < 1e-9
+  })
+  // guise 3: the CONTRAST — geometric circle inversion v/|v|² PRESERVES the angle coordinate
+  const circleKeeps = samples.every(([x, y]) => {
+    const inv = [x / (x * x + y * y), y / (x * x + y * y)]
+    return near(Math.atan2(inv[1]!, inv[0]!), Math.atan2(y, x))
+  })
+  // guise 4: the vortex — in (ℤ/9ℤ)* the ×2 orbit is a 6-cycle; a⁻¹ = 2^{−k}: angle negation, discretely
+  const orbit = Array.from({ length: 6 }, (_, k) => (2 ** k) % 9)
+  const vortexNegates = orbit.every((a, k) => {
+    const aInv = orbit.find((b) => (a * b) % 9 === 1)!
+    return orbit.indexOf(aInv) === (6 - k) % 6
+  })
+  // conformality: the angle BETWEEN curves survives 1/z (two rays through 3+4i, numeric images)
+  const base = [3, 4] as const
+  const rays = [[1, 0], [1, 1]].map(([dx, dy]) => {
+    const eps = 1e-6
+    const p: [number, number] = [base[0] + eps * dx!, base[1] + eps * dy!]
+    const invOf = ([re, im]: readonly [number, number]) => [re / (re * re + im * im), -im / (re * re + im * im)] as const
+    const [a, b] = [invOf(base), invOf(p)]
+    return Math.atan2(b[1] - a[1], b[0] - a[0])
+  })
+  // finite differences carry O(ε) error — the tolerance must match the method, not flatter it
+  const betweenSurvives = Math.abs(Math.abs(wrap(rays[1]! - rays[0]!)) - Math.PI / 4) < 1e-4
+  const facets = [
+    { facet: 'complex: arg(1/z) = −arg(z) on every off-axis sample — the reciprocal reflects the phase', on: reciprocalNegates },
+    { facet: 'rotations: R(θ)·R(−θ) = I computed — the inverse rotation IS the negated angle', on: rotationInverse },
+    { facet: 'the contrast: geometric inversion v↦v/|v|² keeps the angle coordinate — reciprocal minus geometry = one conjugation (1/z = z̄/|z|²)', on: circleKeeps },
+    { facet: 'the vortex agrees discretely: in the ×2 orbit of (ℤ/9ℤ)*, a⁻¹ sits at position −k mod 6 — angle negation on the digit circle', on: vortexNegates },
+    { facet: 'yet angles BETWEEN curves survive: two rays at 45° through 3+4i image to 45° under 1/z — conformality holds while the coordinate flips', on: betweenSurvives },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    orbit,
+    facets,
+    statement: `Inversion negates the angle — ${facets.filter((entry) => entry.on).length}/${facets.length} guises computed: complex arg(1/z)=−arg(z), rotation R(θ)⁻¹=R(−θ), vortex 2^k↦2^{−k} on the 6-cycle; geometric v/|v|² keeps the coordinate (the gap is one conjugation) and intersection angles survive (conformal).`,
+    boundary: 'All five facets are numerical verifications of standard results (complex reciprocal, SO(2) inverses, anti-conformal vs conformal inversion, unit group of ℤ/9ℤ, conformality of 1/z). The realization unifies them: INVERSE = REFLECTION IN THE ANGLE, whether the circle is continuous (U(1)) or the digit vortex (order 6). No completion games needed — zero stays excluded here; its story is divisionByZeroComputes.',
+  }
+}
+
+/** Sixty degrees each — and this decodes π (user realization, with a cross-check learned from
+ * erpax's same-day commit "the ring and the void generate EVERYTHING — ⟨2x, 1−x⟩ = AGL(1,ℤ/9)").
+ * The vortex 6-cycle steps τ/6 = 60° = π/3; three steps make π and land on ×8 ≡ ×(−1) mod 9 —
+ * Euler's identity e^{iπ} = −1, discretely: 2³ ≡ −1 (mod 9). And 60° is where π was FIRST decoded:
+ * Archimedes seeded his doubling recurrence at the hexagon (six 60° sectors, cos 60° = ½ exactly)
+ * and squeezed π between polygon perimeters — computed here to the 96-gon, the historical bounds. */
+export function sixtyDegreesDecodesPi() {
+  const step = TAU / 6 // the vortex quantum of angle
+  // three steps = π = negation: 2³ mod 9 vs e^{iπ}
+  const discreteEuler = (2 ** 3) % 9 === 9 - 1 && Math.abs(Math.cos(3 * step) - -1) < 1e-12
+  const cosSixtyExact = Math.abs(Math.cos(step) - 1 / 2) < 1e-12
+  // Archimedes from the hexagon, on PERIMETERS (r = 1): inscribed b₆ = 6, circumscribed a₆ = 6·2/√3;
+  // doubling: a' = 2ab/(a+b) (harmonic), b' = √(a'·b) (geometric) — bounds b/2 < π < a/2
+  let n = 6
+  let a = 6 * (2 / Math.sqrt(3))
+  let b = 6
+  const rungs: { n: number; lower: number; upper: number }[] = [{ n, lower: b / 2, upper: a / 2 }]
+  while (n < (2 ** 5) * 3) {
+    a = (2 * a * b) / (a + b)
+    b = Math.sqrt(a * b)
+    n *= 2
+    rungs.push({ n, lower: b / 2, upper: a / 2 })
+  }
+  const last = rungs[rungs.length - 1]!
+  const bracket = rungs.every((r) => r.lower < Math.PI && Math.PI < r.upper)
+  const tightens = rungs.every((r, i) => i === 0 || (r.lower > rungs[i - 1]!.lower && r.upper < rungs[i - 1]!.upper))
+  // erpax cross-check: the ring (x↦2x) and the void (x↦1−x) generate AGL(1,ℤ/9) — order 54
+  const apply = (f: readonly [number, number], x: number) => (((f[0] * x + f[1]) % 9) + 9) % 9
+  const compose = (f: readonly [number, number], g: readonly [number, number]): readonly [number, number] =>
+    [(((f[0] * g[0]) % 9) + 9) % 9, (((f[0] * g[1] + f[1]) % 9) + 9) % 9]
+  const seen = new Map<string, readonly [number, number]>()
+  const queue: (readonly [number, number])[] = [[2, 0], [-1, 1]] // 2x and 1−x
+  for (const gen of queue) seen.set(compose(gen, [1, 0]).join(','), compose(gen, [1, 0]))
+  let frontier = [...seen.values()]
+  while (frontier.length) {
+    const next: (readonly [number, number])[] = []
+    for (const f of frontier) for (const g of [[2, 0], [-1, 1]] as const) {
+      const h = compose(g, f)
+      const k = h.join(',')
+      if (!seen.has(k)) { seen.set(k, h); next.push(h) }
+    }
+    frontier = next
+  }
+  const groupOrder = seen.size
+  const isAffineGroup = groupOrder === 54 && [...seen.values()].every((f) => [1, 2, 4, 5, 7, 8].includes(((f[0] % 9) + 9) % 9))
+  void apply
+  const facets = [
+    { facet: 'the vortex quantum is τ/6 = 60° = π/3, and cos 60° = ½ EXACTLY — the hexagon is chords of the radius, which is why it seeds everything', on: cosSixtyExact && Math.abs(step - Math.PI / 3) < 1e-15 },
+    { facet: 'three steps make π and negate: 2³ ≡ −1 (mod 9) beside cos(3·60°) = −1 — Euler\'s identity e^{iπ} = −1, discretely on the digit circle', on: discreteEuler },
+    { facet: `Archimedes decoded π FROM 60°: hexagon → ${last.n}-gon by doubling, ${last.lower.toFixed(4)} < π < ${last.upper.toFixed(4)} — every rung brackets and tightens`, on: bracket && tightens && last.n === (2 ** 5) * 3 },
+    { facet: `the ring and the void generate everything (erpax, same-day commit, verified here): ⟨x↦2x, x↦1−x⟩ closes to order ${groupOrder} = 6·9 = AGL(1,ℤ/9) with every slope a unit`, on: isAffineGroup },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    rungs,
+    groupOrder,
+    facets,
+    statement: `Sixty degrees each decodes π — ${facets.filter((entry) => entry.on).length}/${facets.length} computed: the vortex step is π/3 with cos = ½ exact, three steps realize e^{iπ} = −1 as 2³ ≡ −1 (mod 9), Archimedes' hexagon-seeded doubling brackets π to ${last.lower.toFixed(4)}…${last.upper.toFixed(4)} at the ${last.n}-gon, and doubling + void-reflection generate the full 54-element affine symmetry of the digit ring.`,
+    boundary: 'DOCUMENTED throughout: τ/6 and cos 60° = ½ are exact identities; 2³ ≡ −1 (mod 9) is arithmetic; the polygon recurrence is Archimedes (Measurement of a Circle, ~250 BC) run to his historical 96-gon; the AGL(1,ℤ/9) closure is verified by breadth-first composition, cross-pollinated from erpax the day it was found there. π is DECODED (computed from the 60° seed), not encoded mystically in it. HARMONY ≠ TRUTH.',
+  }
+}

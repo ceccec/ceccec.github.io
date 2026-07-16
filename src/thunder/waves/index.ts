@@ -1981,7 +1981,7 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
 // pentagon 2-coloring, Nim pulses the XOR lattice, Kirkman cycles its 7 spreads, the simple groups
 // rotate their class rings. One renderer interprets the specs; no animation is hand-keyed — kind and
 // parameters derive from the registry atom, rates ride the φ-ladder or the canonical lattice.
-export type ProofAnimationKind = 'star' | 'coloring' | 'lattice' | 'spreads' | 'classes' | 'spiral' | 'vortex'
+export type ProofAnimationKind = 'star' | 'coloring' | 'lattice' | 'spreads' | 'classes' | 'spiral' | 'vortex' | 'dome'
   | 'circle' | 'triangle' | 'series' | 'polytope' | 'wave' | 'tree' | 'balance' | 'dice' | 'cycle' | 'sieve'
 export type ProofAnimationSpec = {
   readonly theorem: string
@@ -2015,6 +2015,7 @@ const CONTENT_ANIMATION_FAMILIES: readonly (readonly [readonly string[], ProofAn
   [['prime', 'fermat', 'wolstenholme', 'kummer', 'carmichael', 'euclid', 'legendre', 'möbius', 'mobius', 'quadratic residue', 'remainder', 'crt', 'bézout', 'bezout', 'two squares', 'wilson', 'totient', 'euler', 'armstrong', 'amicable', 'divisor', 'reciprocity', 'continued fraction', 'perfect', 'bertrand', 'waring', 'graeco', 'projective plane', 'σ and τ', 'φ(d)', 'wantzel', 'frobenius', 'determinant'], 'sieve', 100, 3],
   // appended families (checked AFTER the above, so existing assignments are unchanged) — they route
   // the former vortex fallbacks to the visual family of their own subject (user law: dedicated animations).
+  [['geodesic', 'dome'], 'dome', 9, 3],
   [['gaussian', 'eisenstein', 'ℤ[i]', 'ℤ[ω]'], 'lattice', 8, 5],
   [['vieta', 'rational root', 'newton identities', 'sum of squares of roots', 'chebyshev'], 'series', 2 * 6, 3],
   [['superdense', 'bb84', 'bernstein', 'interaction-free', 'simon', 'shor'], 'wave', 8, 4],

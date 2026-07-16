@@ -5,7 +5,7 @@
 // (wind/routes/corpus, a pure projection of the sealed registry + theoremProvenance); the figure is the
 // ONE ProofAnimation renderer. Print CSS turns the page into an A4 paper: serif, numbered sections,
 // site chrome removed — what the browser shows is what the printer certifies.
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vitepress'
 import { theoremPageBySlug, theoremPageRows, type TheoremPageRow } from '../../../src/wind/routes/corpus/index.ts'
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
@@ -21,6 +21,17 @@ const rows = computed<TheoremPageRow[]>(() => {
   return one ? [one] : theoremPageRows()
 })
 const specOf = (row: TheoremPageRow) => row.spec as ProofAnimationSpec | undefined
+
+// The source of the proof machine itself (user law: every card page exposes how all is achieved).
+// Brace-matched into theorem-sources.json each cross wave; fetched once, shared by every paper.
+const sources = ref<Record<string, { home: string; code: string }>>({})
+onMounted(async () => {
+  try {
+    const res = await fetch('/theorem-sources.json')
+    if (res.ok) sources.value = (await res.json()).sources ?? {}
+  } catch { /* dev without artifact — the section hides itself */ }
+})
+const sourceOf = (row: TheoremPageRow) => sources.value[row.provedBy]
 </script>
 
 <template>
@@ -31,6 +42,15 @@ const specOf = (row: TheoremPageRow) => row.spec as ProofAnimationSpec | undefin
         <span class="theorem-paper__id">theorems/{{ row.slug }}</span>
       </header>
 
+      <figure class="theorem-paper__figure theorem-paper__hero">
+        <ProofAnimation v-if="specOf(row)" :spec="specOf(row)!" :size="2 * 9 * 5 * 4" />
+        <figcaption>
+          The proof animated as the hero: <em>{{ specOf(row)?.kind }}</em> family, rate φ⁻{{ specOf(row)?.ratePhi }},
+          hue = vortex digit {{ specOf(row)?.hueDigit }} · {{ specOf(row)?.points }} points — computed
+          from the theorem's own constants by the one shared renderer; in print it certifies the family, on screen it moves.
+        </figcaption>
+      </figure>
+
       <h1 class="theorem-paper__title">{{ row.theorem }}</h1>
       <p class="theorem-paper__byline">{{ row.provedBy }} · {{ row.home }} · {{ row.proofClass }}</p>
 
@@ -38,15 +58,6 @@ const specOf = (row: TheoremPageRow) => row.spec as ProofAnimationSpec | undefin
         <h2>Abstract</h2>
         <p>{{ row.proof }}</p>
       </section>
-
-      <figure class="theorem-paper__figure">
-        <ProofAnimation v-if="specOf(row)" :spec="specOf(row)!" :size="2 * 9 * 5 * 2" />
-        <figcaption>
-          Fig. 1 — the proof animated: <em>{{ specOf(row)?.kind }}</em> family, rate φ⁻{{ specOf(row)?.ratePhi }},
-          hue = vortex digit {{ specOf(row)?.hueDigit }} · {{ specOf(row)?.points }} points. The figure is computed
-          from the theorem's own constants by the one shared renderer; in print it certifies the family, on screen it moves — the proof exhibited, not re-told.
-        </figcaption>
-      </figure>
 
       <section>
         <h2>1 · Classification</h2>
@@ -61,6 +72,15 @@ const specOf = (row: TheoremPageRow) => row.spec as ProofAnimationSpec | undefin
       <section>
         <h2>3 · Reproducibility</h2>
         <p>{{ row.reproducibility }}</p>
+      </section>
+
+      <section v-if="sourceOf(row)" class="theorem-paper__source">
+        <h2>4 · Source — how it is achieved</h2>
+        <p class="theorem-paper__source-home">
+          <code>{{ row.provedBy }}</code> at <code>{{ sourceOf(row)!.home }}/index.ts</code> — the function below IS the proof;
+          it runs at zero tokens on every build, and this page shows it unedited.
+        </p>
+        <pre class="theorem-paper__code"><code>{{ sourceOf(row)!.code }}</code></pre>
       </section>
 
       <footer class="theorem-paper__cite">
@@ -102,6 +122,13 @@ const specOf = (row: TheoremPageRow) => row.spec as ProofAnimationSpec | undefin
 .theorem-paper__figure { margin: var(--ich-sp5) auto; display: grid; justify-items: center; gap: var(--ich-sp2); }
 .theorem-paper__figure figcaption {
   font-size: calc(1em * 4 / 5); text-align: center; max-width: calc(1px * 5 * 100); opacity: calc(4 / 5);
+}
+.theorem-paper__hero { margin-top: var(--ich-sp4); }
+.theorem-paper__source-home { font-size: calc(1em * 4 / 5); opacity: calc(4 / 5); }
+.theorem-paper__code {
+  font-size: calc(1em * 7 / (2 * 5)); line-height: calc(7 / 5); overflow-x: auto;
+  border: 1px solid currentColor; border-radius: calc(1px * 4); padding: var(--ich-sp3);
+  font-family: ui-monospace, Menlo, monospace; text-align: left; white-space: pre;
 }
 .theorem-paper__cite { margin-top: var(--ich-sp5); border-top: 1px solid currentColor; padding-top: var(--ich-sp3); }
 .theorem-paper__cite p { font-size: calc(1em * 9 / (2 * 5)); font-variant-numeric: tabular-nums; }

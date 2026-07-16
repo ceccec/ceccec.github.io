@@ -4,7 +4,7 @@
 // them so the intelligent cross-audit collects every wave in one pass; runWeave is the standalone
 // wrapper that prints and returns an exit code.
 import { CANONICAL_HOST } from '../../../../3/7'
-import { UNFOLDED_CENSUS, sourceAtlasJson } from '../../gates/computational'
+import { UNFOLDED_CENSUS, sourceAtlasJson, theoremSourcesJson } from '../../gates/computational'
 import type { Plugin } from 'vite'
 import { readFileSync, existsSync, writeFileSync, readdirSync, statSync, mkdirSync } from 'node:fs'
 import { join, relative, dirname, resolve, basename } from 'node:path'
@@ -67,8 +67,10 @@ export function materializeCross(root: string): { count: number } {
     writeFileSync(target, file.content)
   }
   writeFileSync(join(outDir, 'source-atlas.json'), JSON.stringify(sourceAtlasJson(root), null, 2))
+  // every card page exposes the proof machine itself (user law) — brace-matched each cross wave
+  writeFileSync(join(outDir, 'theorem-sources.json'), theoremSourcesJson(root))
   writeFileSync(join(root, 'README.md'), readmeMarkdown())
-  return { count: files.length + 1 }
+  return { count: files.length + 2 }
 }
 
 /** Audit — verify the digit-index seal as findings (no writes). The shared root key is `digit`. */
