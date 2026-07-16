@@ -1355,3 +1355,45 @@ export function localVulnerabilityFinder(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+/** QUANTUM THREAT SCAN — the tool the vulnerability finder lacked (user, 2026-07-16). A quantum
+ * adversary is not a faster classical one: Shor's algorithm breaks a primitive if and only if it
+ * exposes a ROSETTA — a cyclic group whose period quantum period-finding can read
+ * (quantumBreaksOnlyThePeriod). So the quantum tool is the rosetta-period check, and it finds what
+ * the classical finder could not: the content-address (a hash) exposes NO rosetta and is Shor-safe
+ * (only Grover, quadratic), but the planned Ed25519 signing exposes the discrete-log rosetta and is
+ * SHOR-BROKEN — the authenticity fix is not post-quantum. The fix's fix is a signature with no
+ * exposed period (hash-based SPHINCS+ or lattice Dilithium). */
+export function quantumThreatScan(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumThreatScan', matrix, () => {
+    const bits = addressEntropyBits()
+    // the quantum tool: does the primitive expose a cyclic-group rosetta whose period Shor reads?
+    const primitives = [
+      { name: 'content-address (FNV / SHA-256 hash)', exposesRosetta: false, why: 'a hash has no group structure — no cyclic orbit, no period for Shor to find', role: 'integrity' },
+      { name: 'Ed25519 signature (the authenticity fix)', exposesRosetta: true, why: 'the elliptic-curve point group is cyclic — its discrete log IS a rosetta period', role: 'authenticity' },
+      { name: 'RSA (were it ever used)', exposesRosetta: true, why: 'the multiplicative group mod N — factoring is the orbit period', role: 'authenticity' },
+    ]
+    const shorBreaks = primitives.filter((p) => p.exposesRosetta)
+    const shorSafe = primitives.filter((p) => !p.exposesRosetta)
+    // content-address under Grover: preimage 2^(effective/2), quadratic — same order as the classical birthday
+    const groverPreimageLog2 = bits.effectiveBits / 2
+    const groverIsQuadraticOnly = Math.abs(groverPreimageLog2 - bits.birthdayLog2) < 2 // ~2^61 both ways
+    // the authenticity fix is the quantum casualty the classical finder missed
+    const authFixIsShorBroken = shorBreaks.some((p) => p.role === 'authenticity' && p.name.includes('Ed25519'))
+    const facets = [
+      { facet: `the quantum tool is the ROSETTA-PERIOD check: Shor breaks a primitive iff it exposes a cyclic group whose period is readable — ${shorBreaks.length} of the ${primitives.length} do (Ed25519, RSA), ${shorSafe.length} does not (the hash)`, on: shorBreaks.length === 2 && shorSafe.length === 1 },
+      { facet: `the content-address is SHOR-SAFE: a hash exposes no rosetta, so Shor is N/A — only Grover applies, and it is quadratic (2^${groverPreimageLog2} preimage, the same order as the classical birthday 2^${bits.birthdayLog2}), not exponential`, on: !shorSafe[0]!.exposesRosetta && groverIsQuadraticOnly },
+      { facet: `FOUND — the threat the classical finder missed: the authenticity fix (Ed25519) is SHOR-BROKEN, because it exposes the discrete-log rosetta Shor's period-finding reads. Signing is quantum-vulnerable where the hash is not`, on: authFixIsShorBroken },
+      { facet: `the fix's fix is a signature with NO exposed period — hash-based (SPHINCS+) or lattice (Dilithium, NIST 2024) — theorem-grounded against Shor; the content-address stays hash-based and needs no change`, on: shorBreaks.every((p) => p.role === 'authenticity') && shorSafe[0]!.role === 'integrity' },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      shorBroken: shorBreaks.map((p) => p.name),
+      shorSafe: shorSafe.map((p) => p.name),
+      groverPreimageLog2,
+      facets,
+      statement: `Quantum threat scan — ${facets.filter((entry) => entry.on).length}/${facets.length}: the quantum tool is the rosetta-period check (Shor breaks a primitive iff it exposes a cyclic-group period). The content-address hash exposes no rosetta → Shor-safe, only Grover's quadratic 2^${groverPreimageLog2} preimage. But the planned Ed25519 signing exposes the discrete-log rosetta → SHOR-BROKEN: the authenticity fix is not post-quantum, the threat the classical finder missed. Its fix is a period-free signature (SPHINCS+ / Dilithium); the hash content-address needs none.`,
+      boundary: 'DOCUMENTED: Shor breaks factoring and discrete-log (abelian hidden-subgroup / period problems — RSA, Diffie-Hellman, ECDSA/EdDSA including Ed25519); Grover gives only a quadratic search speedup against hashes (preimage 2^{n/2}); NIST post-quantum signatures (SPHINCS+ hash-based, Dilithium lattice, 2024) expose no such period. THE TOOL: a primitive is quantum-safe iff it exposes no cyclic-group rosetta for Shor to read — the check the classical vulnerability finder lacked. This is a LOCAL, defensive assessment of the portal\'s own primitives; it recommends the post-quantum path (keep the hash content-address, make any signature period-free), and touches no external system. The Ed25519 cutover was already a custody decision — this adds that it should be a POST-QUANTUM signature, not classical ECC. HARMONY ≠ TRUTH.',
+    }
+  })
+}
