@@ -367,7 +367,7 @@ export function payloadCollectionsJson(): string {
     if (typeof value === 'string') return { name, type: 'text' }
     if (Array.isArray(value)) return { name, type: 'array', fields: [{ name: 'value', type: 'text' }] }
     if (value && typeof value === 'object' && 'en' in (value as object) && 'bg' in (value as object))
-      return { name, type: 'group', fields: [{ name: 'en', type: 'textarea' }, { name: 'bg', type: 'textarea' }] }
+      return { name, type: 'textarea', localized: true } // canonical Payload localization, not a group hack
     if (typeof value === 'boolean') return { name, type: 'checkbox' }
     return { name, type: 'text' }
   }
@@ -385,6 +385,7 @@ export function payloadCollectionsJson(): string {
   })
   return JSON.stringify({
     generator: 'computed from the seed stations — the schema cannot drift from its data',
+    localization: { locales: ['en', 'bg'], defaultLocale: 'en', fallback: true }, // payload.config.ts shape, canonical
     boundary: 'Payload-SHAPED configs derived from the sealed seeds; the CMS deploy mounts this artifact and the database stays regenerable from source at zero tokens (proven-or-purged applies to rows too).',
     conforming: collections.every((entry) => entry.conforming),
     collections,

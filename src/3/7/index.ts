@@ -708,6 +708,11 @@ export const PROOF_DRIVEN_REIMPLEMENTATION_PRINCIPLE =
 
 /** User law (2026-07-14): consolidate all as monographs — every content surface presents through the one
  * scientific-paper template (monographTemplate); section names state content, never cosmology. */
+/** User law (2026-07-16): when working with packages, use them canonically — the author's documented
+ * API and config shapes, never a hand-rolled imitation of the package's schema. */
+export const CANONICAL_PACKAGE_USE_PRINCIPLE =
+  'Use packages canonically: the documented API, the official types, the intended config shapes — an imitation of a schema is drift waiting to ship.'
+
 /** The canonical host — the one deployed origin every sitemap URL, canonical link and citation uses. */
 export const CANONICAL_HOST = 'https://ceccec.psg.bg'
 
