@@ -29,6 +29,7 @@ import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
 import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
 import { TAU } from '../../3/7'
+import { BULGARIAN_PHRASES } from '../../1/9'
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
@@ -83,62 +84,6 @@ export function pickLocale<T>(locale: LocaleName, en: T, bg: T): T {
 const CYRILLIC_RX = /[\u0400-\u04FF]/
 
 /** Sealed en→bg phrase map — home body, component titles, common UI (longest keys first at runtime). */
-const BULGARIAN_PHRASES: readonly (readonly [string, string])[] = [
-  [
-    'Pure computation: crypto, proofs, primitives — the clinging fire of truth. [Seven Star Rosetta — natural motion](/en/seven-star-rosetta) shows the 7-ray coprime proof in motion.',
-    'Чисто изчисление: криптография, доказателства, примитиви — прилепващият огън на истината. [Седемзвездна Rosetta — естествено движение](/bg/seven-star-rosetta) показва 7-лъчното coprime доказателство в движение.',
-  ],
-  [
-    'Four plain steps — the live proofs below follow the **eight trigrams (bāguà)**. Enter the three powers: [天 Heaven](/en/heaven) · [人 Human](/en/human) · [地 Earth](/en/earth).',
-    'Четири прости стъпки — живите доказателства по-долу са под **осемте триграма (bāguà)**. Влез в трите сили: [天 Небе](/bg/heaven) · [人 Човек](/bg/human) · [地 Земя](/bg/earth).',
-  ],
-  ['Bulgarian history, Glagolitic, ethnogenesis, genetics — the land\'s memory.', 'Българска история, глаголица, етногенеза, генетика — паметта на земята.'],
-  ['Bulgarian history, Glagolitic, ethnogenesis, genetics — documented cores, legends kept separate.', 'Българска история, глаголица, етногенеза, генетика — документирани ядра, легендите пазени отделно.'],
-  ['EM spectrum, Tesla patents, frequencies, dynamic simulations — arousing discovery.', 'EM спектър, патенти на Tesla, честоти, динамични симулации — възбуждащо откритие.'],
-  ['EM spectrum, Tesla patents, frequencies, dynamic simulations.', 'EM спектър, патенти на Tesla, честоти, динамични симулации.'],
-  ['Plain language, speech, UX, command flow — the communicative layer.', 'Ясен език, реч, UX, поток от команди — общуващият слой.'],
-  ['Plain language, speech, UX, command flow.', 'Ясен език, реч, UX, поток от команди.'],
-  ['Chakras, dualities, dimensions, joyous learning and fair life.', 'Чакри, двойности, измерения, радостно учене и справедлив живот.'],
-  ['Dualities, dimensions, learning by play — documented cores with the flagged parts labelled.', 'Двойности, измерения, учене чрез игра — документирани ядра с обозначени спорни части.'],
-  ['Area icons, glyphs, computer architecture 3-5-8, harmonic bands — visual form.', 'Икони на области, глифове, компютърна архитектура 3-5-8, хармонични ленти — визуална форма.'],
-  ['Area icons, glyphs, computer architecture 3-5-8, harmonic bands.', 'Икони на области, глифове, компютърна архитектура 3-5-8, хармонични ленти.'],
-  ['Pure computation: crypto, proofs, primitives — the clinging fire of truth.', 'Чисто изчисление: криптография, доказателства, примитиви — прилепващият огън на истината.'],
-  ['Pure computation: crypto, proofs, primitives. The theorem registry — every theorem proven by computation, each a printable scientific paper.', 'Чисто изчисление: криптография, доказателства, примитиви. Регистърът от теореми — всяка теорема доказана чрез изчисление, всяка печатна научна статия.'],
-  ['Natural law, the commons, society forms, gentle limits.', 'Природен закон, общото, обществени форми, нежни граници.'],
-  ['The mind hub: the creative origin, the matrix, the architecture.', 'Центърът на ума: творческият източник, матрицата, архитектурата.'],
-  ['The creative origin, the matrix, the architecture.', 'Творческият източник, матрицата, архитектурата.'],
-  ['Four plain steps — see, learn, use, prove. Every page below is computed from one open source you can check yourself.', 'Четири прости стъпки — виж, научи, използвай, докажи. Всяка страница по-долу е изчислена от един отворен източник, който можеш да провериш сам.'],
-  ['## Start here · 三才 Three Powers', '## Започни тук · 三才 Трите сили'],
-  ['## Proofs & computation', '## Доказателства и изчисление'],
-  ['## Physics & simulations', '## Физика и симулации'],
-  ['## Language & interfaces', '## Език и интерфейси'],
-  ['## Learning & dualities', '## Учене и двойности'],
-  ['## Form & architecture', '## Форма и архитектура'],
-  ['## Nature & society', '## Природа и общество'],
-  ['## Heritage & history', '## Наследство и история'],
-  ['## Origin & mind', '## Източник и ум'],
-  ['## ☷ The Receptive', '## ☷ Възприемчивото'],
-  ['## ☳ The Arousing', '## ☳ Възбуждащото'],
-  ['## ☵ The Abysmal', '## ☵ Бездънното'],
-  ['## ☱ The Joyous', '## ☱ Радостното'],
-  ['## ☶ Keeping Still', '## ☶ Покоят'],
-  ['## ☲ The Clinging', '## ☲ Прилепващото'],
-  ['## ☴ The Gentle', '## ☴ Нежното'],
-  ['## ☰ The Creative', '## ☰ Творческото'],
-  ['Bulgarian heritage', 'Българско наследство'],
-  ['Bulgarian history', 'Българска история'],
-  ['Bulgarian ethnogenesis', 'Българска етногенеза'],
-  ['Sacred geometry', 'Свещена геометрия'],
-  ['Society', 'Общество'],
-  ['Play & learn', 'Играй и учи'],
-  ['Start here', 'Започни тук'],
-  ['Related', 'Свързани'],
-  ['Trinity gateways', 'Троични портали'],
-  ['Support · contact', 'Подкрепа · контакт'],
-  ['Open Revolut', 'Отвори Revolut'],
-  ['Hide text (i)', 'Скрий текста (i)'],
-  ['Show text (i)', 'Покажи текста (i)'],
-]
 
 /** English → Bulgarian when locale is bg and text has no Cyrillic yet. */
 export function bulgarianFromEnglish(text: string): string {
