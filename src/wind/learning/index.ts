@@ -35,6 +35,7 @@ import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { everythingFoldsMerkabaInfiniteStreams, merkabasInDoubleTorus } from '../../mountain/topology'
 import { anyUuidHeroContentFractal, displayHeroCardThumb, heroGraphStatisticsEnrichFusion, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle } from '../ui'
 import { ogControlsSpeech } from '../../mountain/og'
+import { DISCOVERY_LINKS, NAV_FALLBACK, MONOGRAPH_ROSETTA_SEED } from '../../8/2'
 
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
@@ -1739,24 +1740,9 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // link) + SIX dropdowns (rays 1–6), each EXACTLY SEVEN monograph links — 6 × 7 = 42, the sealed area
   // count. The Frontier dropdown carries the REAL discoveries: the seven METHOD-level artifacts
   // (theoremProvenance), anchored on the frontiers page. Straight to the point — canonical slugs, no filler.
-  const DISCOVERY_LINKS: readonly (readonly [string, string, string])[] = [
-    ['recompute-instrument', 'Recompute instrument', 'Преизчисляващият инструмент'], ['compounding-law', 'Compounding law', 'Законът за наслагване'],
-    ['terminus-recompute', 'Terminus recompute', 'Преоцененият предел'], ['machine-honesty-catch', 'Machine-honesty catch', 'Уловът на машинната честност'],
-    ['proof-visibility', 'Proof visibility', 'Видимост на доказателството'], ['quantum-boundary-demarcation', 'Quantum boundary', 'Квантовата граница'],
-    ['honest-frontier-audit', 'Honest frontier audit', 'Честният одит на границите'],
-  ]
-  const NAV_FALLBACK: Record<string, readonly [string, string]> = {
-    '/proof': ['All proofs', 'Всички доказателства'], '/apps': ['All apps', 'Всички приложения'], '/reference': ['All reference', 'Целият справочник'],
-    '/papers/': ['Papers', 'Статии'], '/references': ['References', 'Източници'], '/diamonds': ['Diamonds', 'Диаманти'],
-  }
-  const MONOGRAPH_ROSETTA: readonly (readonly [number, readonly string[]])[] = [
-    [1, ['/frontiers', '/seven-star-rosetta', '/pi-trinity', '/qubit-trinity', '/pauli-basis', '/proven-or-purged', '/proof']],
-    [2, ['/explore', '/heritage', '/science', '/spirit', '/papers/', '/references', '/diamonds']],
-    [3, ['/learn', '/learn-developer', '/nature', '/start', '/quantum-mind', '/architecture', '/boundaries']],
-    [4, ['/a432', '/simulations', '/commands', '/console', '/mcp', '/show', '/apps']],
-    [5, DISCOVERY_LINKS.map((entry) => `/frontiers#${entry[0]}`)],
-    [6, ['/reference', '/voice', '/icons', '/governance', '/mcp.json', '/llms.txt', '/digit-index.json']],
-  ]
+  const MONOGRAPH_ROSETTA: readonly (readonly [number, readonly string[]])[] = MONOGRAPH_ROSETTA_SEED.map(
+    ([ray, routes]) => (ray === 5 ? ([ray, DISCOVERY_LINKS.map((entry) => `/frontiers#${entry[0]}`)] as const) : ([ray, routes] as const)),
+  )
   const navItem = (route: string, i: 0 | 1) => {
     if (/\.(json|txt|webmanifest)$/.test(route)) return { text: route.slice(1), link: route }
     const anchor = route.match(/^\/frontiers#(.+)$/)

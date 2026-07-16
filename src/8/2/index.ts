@@ -554,3 +554,23 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       components: ['DigitMotion'],
     },
 ]
+
+/** Seed station: the top-nav rosetta tables (pure data; wind/learning assembles ray 5 from DISCOVERY_LINKS). */
+export const DISCOVERY_LINKS: readonly (readonly [string, string, string])[] = [
+  ['recompute-instrument', 'Recompute instrument', 'Преизчисляващият инструмент'], ['compounding-law', 'Compounding law', 'Законът за наслагване'],
+  ['terminus-recompute', 'Terminus recompute', 'Преоцененият предел'], ['machine-honesty-catch', 'Machine-honesty catch', 'Уловът на машинната честност'],
+  ['proof-visibility', 'Proof visibility', 'Видимост на доказателството'], ['quantum-boundary-demarcation', 'Quantum boundary', 'Квантовата граница'],
+  ['honest-frontier-audit', 'Honest frontier audit', 'Честният одит на границите'],
+]
+export const NAV_FALLBACK: Record<string, readonly [string, string]> = {
+  '/proof': ['All proofs', 'Всички доказателства'], '/apps': ['All apps', 'Всички приложения'], '/reference': ['All reference', 'Целият справочник'],
+  '/papers/': ['Papers', 'Статии'], '/references': ['References', 'Източници'], '/diamonds': ['Diamonds', 'Диаманти'],
+}
+export const MONOGRAPH_ROSETTA_SEED: readonly (readonly [number, readonly string[]])[] = [
+  [1, ['/frontiers', '/seven-star-rosetta', '/pi-trinity', '/qubit-trinity', '/pauli-basis', '/proven-or-purged', '/proof']],
+  [2, ['/explore', '/heritage', '/science', '/spirit', '/papers/', '/references', '/diamonds']],
+  [3, ['/learn', '/learn-developer', '/nature', '/start', '/quantum-mind', '/architecture', '/boundaries']],
+  [4, ['/a432', '/simulations', '/commands', '/console', '/mcp', '/show', '/apps']],
+  [5, []],  // ray 5 is computed — wind/learning fills it from DISCOVERY_LINKS
+  [6, ['/reference', '/voice', '/icons', '/governance', '/mcp.json', '/llms.txt', '/digit-index.json']],
+]
