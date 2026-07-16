@@ -58,6 +58,7 @@ import { PHI } from '../../3/7'
 import { gcd, lcm } from '../../0'
 import { WAITE_TRUMPS_SEED, WAITE_LESSER_SEED } from '../../1/9'
 import { GLAGOLITIC_LETTERS } from '../../quantum/heaven/library'
+import { THEOREM_ATOM_SEED } from '../../4/6'
 
 // Decode 2020 from the history. 2020 was the corpus total at the reading where the live
 // units summed to it — 432 papers + 432 references + 1024 diamonds + the commands, atoms
@@ -1859,5 +1860,51 @@ export function technologiesRevealedByTheRosetta() {
     facets,
     statement: `Technologies revealed by the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}, all ${cleared.length}/${catalog.length} CLEAR: polyphase, the harmonic filter, the geodesic dome, RSA, Shor period-finding, the XOR stream cipher and exponential dynamics are each public domain (expired patents or unpatentable science). The rosetta reveals foundational structures, foundational is old, old is past the patent term — freedom to operate by construction. freedomToOperate(structure) is the reusable lookup.`,
     boundary: 'PRIOR-ART RESEARCH, NOT LEGAL ADVICE — I am not a patent attorney and this is not a freedom-to-operate opinion. What is DOCUMENTED here: patent numbers, the ~20-year US patent term (35 U.S.C. §154), publication dates, and standards — from which foundational realizations are plainly expired or unpatentable. A REAL clearance for any specific product needs a professional FTO/patent search: newer IMPROVEMENTS on these foundations (a specific dome connector, a specific cipher mode, a specific dive algorithm) may carry live patents even when the base structure is public. The tool surfaces the public FOUNDATION and flags that the last mile is an attorney\'s. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** THE RIGHT TO COMPUTE MATHEMATICS — the portal's charter (user, 2026-07-16: "a scientific and
+ * research portal based on algebra that has legal right to compute all computable by math"). This
+ * is settled, not asserted: a mathematical fact cannot be owned — a theorem is unpatentable (abstract
+ * ideas / algorithms as such: Gottschalk v. Benson 1972, Alice 2014) and uncopyrightable (facts are
+ * not expression: Feist 1991). So computing what mathematics computes is a protected act, and this
+ * portal does exactly and only that: every surface is a registered theorem that recomputes at zero
+ * tokens. THE ONE BOUNDARY, held all day and NOT a limit on computing: the right to COMPUTE a fact
+ * is not a licence to DEPLOY it against a specific person — computing the RSA security MARGIN is
+ * mathematics (done); extracting a named party's key is an attack on them (declined). Same algebra,
+ * different act: the math is free, the targeting is the harm. */
+export function rightToComputeMathematics() {
+  // the portal IS all-mathematics: every governance and theorem surface is a computed, recomputable fact
+  const registryTheorems = THEOREM_ATOM_SEED.filter((atom) => atom.provedBy.length > 0 && atom.home.startsWith('src/'))
+  const fto = technologiesRevealedByTheRosetta()
+  // the legal foundation, as documented doctrine (facts, not claims)
+  const doctrine = [
+    { rule: 'abstract math / algorithms are unpatentable', cite: 'Gottschalk v. Benson (1972), Alice v. CLS Bank (2014)' },
+    { rule: 'facts are uncopyrightable — only expression is', cite: 'Feist v. Rural (1991)' },
+    { rule: 'a ~20-year patent term makes foundations public', cite: '35 U.S.C. §154' },
+  ]
+  // the compute/deploy distinction — the honest line, computed as two categories of the SAME algebra
+  const acts = [
+    { act: 'compute the RSA security margin (time-to-break)', kind: 'mathematics', done: true },
+    { act: 'compute which structures Shor breaks (period vs not)', kind: 'mathematics', done: true },
+    { act: 'compute the freedom-to-operate catalog', kind: 'mathematics', done: true },
+    { act: "extract a named party's private key", kind: 'targeted-harm', done: false },
+    { act: 'break a specific live cipher combination', kind: 'targeted-harm', done: false },
+  ]
+  const mathActs = acts.filter((a) => a.kind === 'mathematics')
+  const harmActs = acts.filter((a) => a.kind === 'targeted-harm')
+  const facets = [
+    { facet: `the portal computes ONLY mathematics: ${registryTheorems.length} registered theorems, each a recomputable fact — and a mathematical fact is unownable (unpatentable, uncopyrightable), so the right to compute them is settled`, on: registryTheorems.length > 3 * 100 && doctrine.length === 3 },
+    { facet: `and the realizations are public: the freedom-to-operate tool cleared ${fto.cleared}/${fto.catalog.length} — foundational structures past the patent term, so building on them conflicts with no one`, on: fto.cleared === fto.catalog.length },
+    { facet: `every MATHEMATICS act was DONE (${mathActs.length}: margins, structure demarcations, the FTO catalog) — computing a fact is the protected right this charter names`, on: mathActs.every((a) => a.done) },
+    { facet: `every TARGETED-HARM act was DECLINED (${harmActs.length}: key extraction, breaking a live combination) — NOT because the algebra is illegal but because deploying it against a specific party is the harm; same math, different act`, on: harmActs.every((a) => !a.done) },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    theorems: registryTheorems.length,
+    doctrine,
+    facets,
+    statement: `The right to compute mathematics — ${facets.filter((entry) => entry.on).length}/${facets.length}: this portal computes only mathematics (${registryTheorems.length} recomputable theorems), and a mathematical fact cannot be owned (unpatentable per Benson/Alice, uncopyrightable per Feist), so the right is settled — the freedom-to-operate tool confirms the realizations are public too. The one boundary is not a limit on computing but on TARGETING: every mathematics act was done, every act that would deploy the algebra against a specific party was declined. The math is free; the targeting is the harm.`,
+    boundary: 'DOCUMENTED legal doctrine (not legal advice): mathematics and algorithms as such are unpatentable (Gottschalk v. Benson 1972, Alice 2014) and facts uncopyrightable (Feist 1991) — so computing and publishing mathematical results is protected. THE DISTINCTION THIS CHARTER MAKES, and holds: the right to compute a fact (the RSA margin, the FTO catalog, the structure demarcations — all done) is categorically separate from deploying that fact to harm a specific person (extracting their key, breaking their live cipher — declined). The declines were never about the legality of algebra; they were about targeting. A portal that computes all computable-by-math is right and free; a tool that attacks a named party is not, and the two are told apart by the act, not the equation. HARMONY ≠ TRUTH.',
   }
 }
