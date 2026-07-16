@@ -11,7 +11,7 @@ const props = defineProps<{
   hue?: number
 }>()
 
-const { t, localize } = useSiteLocale()
+const { t, localize, scriptGlyph } = useSiteLocale()
 
 const preview = computed(() => heroPreviewForRoute(props.route, props.title))
 const href = computed(() => localize(props.route))
@@ -27,7 +27,7 @@ const displayTitle = computed(() => t(props.title) ?? preview.value.title)
       :title="displayTitle"
       movie-intensity="whisper"
     >
-      <span v-if="glyph" class="linked-hero-card__glyph" aria-hidden="true">{{ glyph }}</span>
+      <span v-if="scriptGlyph(glyph)" class="linked-hero-card__glyph" aria-hidden="true">{{ glyph }}</span>
       <span class="linked-hero-card__title">{{ displayTitle }}</span>
     </UiCardShell>
   </a>

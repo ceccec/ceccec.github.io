@@ -18,7 +18,7 @@ function headingId(text: string, suffix: string): string {
 
 const { params } = useData()
 const route = useRoute()
-const { pick } = useSiteLocale()
+const { pick, scriptGlyph } = useSiteLocale()
 
 const page = computed(
   () => (params.value as { universal?: UniversalPage })?.universal as UniversalPage,
@@ -81,7 +81,7 @@ const corpusProgressLabel = computed(() => {
       :data-ray="page.rosettaRay.ray"
       :style="{ '--ray-hue': page.rosettaRay.hue }"
     >
-      <span class="rosetta-ray__glyph">{{ page.rosettaRay.glyph }}</span>
+      <span v-if="scriptGlyph(page.rosettaRay.glyph)" class="rosetta-ray__glyph">{{ page.rosettaRay.glyph }}</span>
       <span class="rosetta-ray__name">{{ pick(page.rosettaRay.labelEn, page.rosettaRay.labelBg) }}</span>
       <span class="rosetta-ray__domain">{{ page.rosettaRay.domain }}</span>
     </h2>
@@ -136,7 +136,7 @@ const corpusProgressLabel = computed(() => {
           :data-ray="group.ray"
           :style="{ '--ray-hue': group.hue }"
         >
-          <span class="rosetta-ray__glyph">{{ group.glyph }}</span>
+          <span v-if="scriptGlyph(group.glyph)" class="rosetta-ray__glyph">{{ group.glyph }}</span>
           <span class="rosetta-ray__name">{{ pick(group.labelEn, group.labelBg) }}</span>
         </h2>
         <ClientOnly>

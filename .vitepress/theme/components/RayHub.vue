@@ -7,7 +7,9 @@ import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 
 const route = useRoute()
-const { pick, localize } = useSiteLocale()
+const { pick, localize, scriptGlyph } = useSiteLocale()
+const crumbLabel = (step: { glyph: string; label: string; labelBg: string }) =>
+  [scriptGlyph(step.glyph), pick(step.label, step.labelBg)].filter(Boolean).join(' ')
 
 const bare = computed(() => route.path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/\/$/, '') || '/')
 const hub = computed(() => rosettaRayHub(bare.value) ?? ROSETTA_RAY_HUBS[0])
@@ -26,13 +28,13 @@ const siblings = computed(() => ROSETTA_RAY_HUBS.filter((entry) => entry.ray !==
           v-if="!step.current"
           :href="localize(step.route)"
           class="ray-hub__crumb"
-        >{{ step.glyph }} {{ pick(step.label, step.labelBg) }}</a>
-        <span v-else class="ray-hub__crumb ray-hub__crumb--current" aria-current="page">{{ step.glyph }} {{ pick(step.label, step.labelBg) }}</span>
+        >{{ crumbLabel(step) }}</a>
+        <span v-else class="ray-hub__crumb ray-hub__crumb--current" aria-current="page">{{ crumbLabel(step) }}</span>
       </template>
     </nav>
 
     <header class="ray-hub__head">
-      <span class="ray-hub__glyph" aria-hidden="true">{{ hub.glyph }}</span>
+      <span v-if="scriptGlyph(hub.glyph)" class="ray-hub__glyph" aria-hidden="true">{{ hub.glyph }}</span>
       <div>
         <h2 class="ray-hub__name">{{ pick(hub.nameEn, hub.nameBg) }}</h2>
         <p class="ray-hub__domain">{{ hub.domain }} · <code>{{ hub.pageKind }}</code></p>
@@ -72,7 +74,7 @@ const siblings = computed(() => ROSETTA_RAY_HUBS.filter((entry) => entry.ray !==
           :title="pick(ray.nameEn, ray.nameBg)"
           movie-intensity="whisper"
         >
-          <span class="ray-hub__ray-glyph" aria-hidden="true">{{ ray.glyph }}</span>
+          <span v-if="scriptGlyph(ray.glyph)" class="ray-hub__ray-glyph" aria-hidden="true">{{ ray.glyph }}</span>
           <span class="ray-hub__ray-name">{{ pick(ray.nameEn, ray.nameBg) }}</span>
           <span class="ray-hub__ray-domain">{{ ray.domain }}</span>
         </UiCardShell>

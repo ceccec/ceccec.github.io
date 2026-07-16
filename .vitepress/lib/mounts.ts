@@ -54,7 +54,11 @@ export function useSiteLocale() {
   const t = (text?: string) => (text ? displayText(locale.value, text) : text)
   const localize = (path: string) => localePath(path, locale.value)
   const componentName = (name: string) => componentDisplayName(locale.value, name)
-  return { route, locale, pick, t, localize, componentName }
+  // Purge-arc slice 5 (science-not-ideology): Glagolitic glyphs are the gla edition's script
+  // identity — EN/BG surfaces stay plain words. Geometric/CJK icons pass through in every locale.
+  const scriptGlyph = (glyph?: string) =>
+    glyph && locale.value !== 'gla' && /[Ⰰ-ⱟ]/.test(glyph) ? '' : (glyph ?? '')
+  return { route, locale, pick, t, localize, componentName, scriptGlyph }
 }
 
 function speechLang(locale: LocaleName): string {
