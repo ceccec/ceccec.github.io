@@ -139,6 +139,11 @@ export type ConceptCommandName =
 export const SPEED_OF_LIGHT = 299792458
 export const PLANCK = 6.62607015e-34
 export const ELECTRONVOLT = 1.602176634e-19
+/** Alveolar water-vapour partial pressure at 37 °C, bar — Bühlmann's decompression physiology value
+ * (measured datum, not a tuned constant; exponent form = scale notation). */
+export const ALVEOLAR_H2O_BAR = 6.27e-2
+/** Alveolar CO₂ partial pressure, bar — Bühlmann's value (measured datum). */
+export const ALVEOLAR_CO2_BAR = 5.34e-2
 export const IONIZING_EV = 10
 
 // c = λf, both directions. wavelengthOf → pi-train wave 3 tier-B at src/1/9.

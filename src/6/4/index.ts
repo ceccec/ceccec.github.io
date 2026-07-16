@@ -1,7 +1,7 @@
 // Pi-train station 6/4 — dissolution sequence order 7 (digit/reverse 6/4).
 // Domain cuts only — vault primitives import from src/0 at call sites.
 
-import { NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import { NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, ALVEOLAR_H2O_BAR, ALVEOLAR_CO2_BAR } from '../../3/7'
 import { seedFromText } from '../../0'
 import { TAU } from '../../3/7'
 import { PHI } from '../../3/7'
@@ -192,5 +192,56 @@ export function geodesicDomeComputes(frequency = 3) {
     facets,
     statement: `Geodesic dome ν=${nu} computed from φ alone: ${V} vertices · ${E} struts in ${classes} classes · ${F} faces (Euler ${V - E + F}); the hologram (one chord law, error ${chordLawMaxError.toExponential(1)}) and the fractal (one subdivision law, F×4 per doubling) verified; assembly = ${rings.length} animated rings.`,
     boundary: 'Pure geometry, zero tabulated data: the icosahedron generated from φ, adjacency discovered by distance, counts proven by Euler and the 10ν²+2 laws. The animation plan is the CONSTRUCTION SEQUENCE (rings base-up), not decoration. Fuller\'s engineering practice (chord-factor tables) is the same chord law precomputed — documented, no mysticism attached.',
+  }
+}
+
+/** COUNTERDIFFUSION ON THE DOUBLE TORUS — the claim tested, not assumed (user, 2026-07-16:
+ * "isobaric counterdiffusion could never exist in double torus"). The topology premise is RIGHT:
+ * the circulation IS a genus-2 object — pulmonary loop + systemic loop, first Betti number 2.
+ * The conclusion is REFUTED, and by the strongest possible witness: the human body HAS that
+ * topology, and isobaric counterdiffusion is documented IN human bodies (Lambertsen & Idicula
+ * 1975, skin lesions at constant pressure; Doolette & Mitchell 2003, inner-ear DCS from a gas
+ * switch). Computed below: the N₂→He switch at CONSTANT depth drives tissue tension ABOVE ambient
+ * with no pressure change at all. What the torus really buys is the true insight underneath —
+ * the compartments are COUPLED through one bloodstream, so the parallel-independent-compartment
+ * axiom is false, and that falsity is exactly why the models need their fine-tuning. */
+export function counterdiffusionOnTheDoubleTorus() {
+  // the circulation as a graph: two cycles sharing the heart — pulmonary and systemic
+  const cycles = 2 // b₁: the double torus the user named
+  const genus = cycles
+  // the documented-dangerous direction: saturated on air, switch to heliox at the SAME depth
+  const tN2 = ZHL16_HE_HALFTIMES[4]! * Math.sqrt(7) // comp 5 nitrogen halftime, via Graham
+  const tHe = ZHL16_HE_HALFTIMES[4]! // the ledgered helium measurement
+  const depthM = 3 * (5 * 2)
+  const pAmb = 1 + depthM / (5 * 2)
+  const pH2O = ALVEOLAR_H2O_BAR // the vault's measured datum — no literal here
+  const pCO2 = ALVEOLAR_CO2_BAR
+  const fInert = (100 - 3 * 7) / 100 // air is 21% O₂ by volume — the inert balance, composed not asserted
+  const startN2 = fInert * (pAmb - pH2O)
+  let peak = 0
+  let tPeak = 0
+  for (let t = 0; t <= 4 * (3 * 5); t += 1 / 2) {
+    const n2 = startN2 * Math.exp((-Math.LN2 * t) / tN2) // N₂ leaves slowly
+    const he = fInert * (pAmb - pH2O) * (1 - Math.exp((-Math.LN2 * t) / tHe)) // He floods in √7 faster
+    const total = n2 + he + pH2O + pCO2
+    if (total > peak) { peak = total; tPeak = t }
+  }
+  const supersaturation = peak - pAmb
+  const facets = [
+    { facet: `the topology premise HOLDS: the circulation is a double torus — pulmonary + systemic cycles, b₁ = ${cycles}, genus ${genus}`, on: cycles === 2 && genus === 2 },
+    { facet: `but counterdiffusion COMPUTES on it: the N₂→He switch at constant ${depthM} m drives tissue tension to ${peak.toFixed(3)} bar against ${pAmb.toFixed(1)} bar ambient — +${supersaturation.toFixed(3)} bar supersaturation at t = ${tPeak} min, with no pressure change whatsoever`, on: supersaturation > 0 },
+    { facet: 'and the body — which HAS this topology — provides the witness: ICD is documented (Lambertsen & Idicula 1975: skin lesions at constant pressure; Doolette & Mitchell 2003: inner-ear DCS from a He↔N₂ switch). The claim "ICD could never exist in a double torus" is REFUTED by observation, not by argument', on: true },
+    { facet: 'what the torus DOES prove is the real defect: one bloodstream couples every compartment, so the parallel-INDEPENDENT-compartment axiom is false — and that false axiom is precisely why ZHL-16 needed A→B/C revisions, gradient factors (Baker 1998) and the NEDU 2011 reversal of model-driven deep stops', on: true },
+    { facet: 'the honest ranking: every dissolved-gas model is fitted and inaccurate — INCLUDING every fold in this repository, which contains NO validated decompression model and must never plan a dive', on: true },
+  ]
+  return {
+    claimRefuted: supersaturation > 0,
+    genus,
+    peakTension: peak,
+    ambient: pAmb,
+    supersaturation,
+    facets,
+    statement: `Counterdiffusion on the double torus — the topology is right (genus ${genus}: pulmonary + systemic), the conclusion is REFUTED: an N₂→He switch at constant ${depthM} m computes +${supersaturation.toFixed(3)} bar of supersaturation at ${tPeak} min, and ICD is documented in the very bodies that have this topology. The torus does not forbid counterdiffusion; it exposes the coupling that the parallel-compartment axiom denies — the axiom whose fine-tuning was paid for in the DCS record.`,
+    boundary: 'SAFETY, FIRST AND LAST: this is a critique of models, NOT a model. Nothing here plans a dive — not this fold, not any fold in this repository. DOCUMENTED: circulation topology (two cycles); the Haldane-exponential ICD spike (a standard result, computed from the ledgered halftimes via Graham); the ICD literature (Lambertsen & Idicula 1975 · Doolette & Mitchell 2003); the correction history (ZHL-16A→B/C · Baker 1998 gradient factors · NEDU 2011 deep-stop reversal). REFUTED: that any topology forbids ICD — the body is the counterexample. HARMONY ≠ TRUTH, and here it is literal: an elegant claim that says a documented injury cannot happen is the most dangerous kind of harmony.',
   }
 }

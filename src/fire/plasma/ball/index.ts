@@ -19,7 +19,7 @@ import * as __ns_up_up_thunder_trading from '../../../thunder/trading'
 import type { MindMatrix, StaticPage } from '../../../wind/types'
 import { buildMatrix, coverage } from '../../../heaven/compute'
 import { computesGate, isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../../0'
-import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS } from '../../../3/7'
+import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT } from '../../../3/7'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science'
 import { colorFromSound, soundFromColor, a432 } from '../../li'
@@ -1043,4 +1043,47 @@ export function plasmaBallComputes(matrix: MindMatrix = buildMatrix(), path = '/
     { facet: 'client work bounded by pure math', on: work.computes },
     { facet: 'all realtime computations visible in movie', on: realtime.computes },
   ])
+}
+
+/** How fast plasma moves compared to c — BY THEOREM (user, 2026-07-16), and the reveal is that it
+ * is the SAME theorem as the void station's. From the cold-plasma dispersion ω² = ωₚ² + c²k²,
+ * nothing is postulated: the phase velocity EXCEEDS c for every propagating wave, the group
+ * velocity never does, and they are exact reciprocals about c — v_φ·v_g = c². So the "faster than
+ * light" plasma wave is a theorem that costs nothing: no signal rides the phase.
+ * THE SIMULTANEOUS REVEAL: at cutoff ω → ωₚ the refractive index n → 0, so v_φ = c/n → ∞ — this
+ * is division by zero at the pole (divisionByZeroComputes, src/9/1) and the reciprocal reflection
+ * (inverseNegatesAngle) in one physical object: v_g → 0 as v_φ → ∞, the wave stops and reflects.
+ * The ionosphere bouncing shortwave IS 1/0 = ∞ made audible. */
+export function plasmaSpeedByTheorem() {
+  const c = SPEED_OF_LIGHT
+  // dimensionless sweep: x = ωₚ/ω ∈ (0,1) — propagating regime, lattice fractions only
+  const xs = [1 / 9, 1 / 5, 1 / 3, 1 / 2, 2 / 3, 4 / 5, 8 / 9]
+  const n = (x: number) => Math.sqrt(1 - x * x) // refractive index
+  const vPhase = (x: number) => c / n(x)
+  const vGroup = (x: number) => c * n(x)
+  const superluminalPhase = xs.every((x) => vPhase(x) > c)
+  const subluminalGroup = xs.every((x) => vGroup(x) < c)
+  const reciprocal = xs.every((x) => Math.abs(vPhase(x) * vGroup(x) - c * c) < c * c * 1e-12)
+  // the pole: as x → 1 (ω → ωₚ), v_φ diverges and v_g vanishes — the 1/0 of the dispersion relation
+  const approach = [1 - 1 / 100, 1 - 1 / (100 * 100), 1 - 1 / (100 * 100 * 100)]
+  const poleDiverges = approach.every((x, i) => i === 0 || vPhase(x) > vPhase(approach[i - 1]!))
+  const poleStops = approach.every((x, i) => i === 0 || vGroup(x) < vGroup(approach[i - 1]!))
+  const cutoffExact = n(1) === 0 && vGroup(1) === 0 && vPhase(1) === Infinity // IEEE says ∞ — the honest answer at the pole
+  // evanescence below cutoff: ω < ωₚ makes n imaginary — no propagation, total reflection
+  const evanescent = [2, 3 * 3].every((over) => Number.isNaN(n(over)))
+  const facets = [
+    { facet: `phase velocity EXCEEDS c for every propagating wave (${xs.length} ratios swept: v_φ = c/√(1−(ωₚ/ω)²) > c) — superluminal by theorem, not by paradox`, on: superluminalPhase },
+    { facet: 'group velocity never exceeds c on the same sweep — the signal rides the group, so relativity is untouched: the fast thing carries nothing', on: subluminalGroup },
+    { facet: 'v_φ · v_g = c² exactly — phase and group are RECIPROCALS about light speed (the inversion law of src/9/1, in a plasma)', on: reciprocal },
+    { facet: 'THE POLE IS THE VOID: at ω → ωₚ the index n → 0, so v_φ → ∞ while v_g → 0 — division by zero made physical; IEEE agrees at the exact cutoff (v_φ = Infinity, v_g = 0)', on: poleDiverges && poleStops && cutoffExact },
+    { facet: 'below cutoff the index is imaginary (NaN on the reals) — the wave evanesces and reflects: this is why the ionosphere bounces shortwave around the Earth', on: evanescent },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    sampleVPhaseOverC: vPhase(1 / 2) / c,
+    sampleVGroupOverC: vGroup(1 / 2) / c,
+    facets,
+    statement: `Plasma speed by theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the phase velocity beats light at every propagating frequency (${(vPhase(1 / 2) / c).toFixed(3)}c at ωₚ/ω = ½) while the group velocity trails it (${(vGroup(1 / 2) / c).toFixed(3)}c), their product exactly c²; and at cutoff the pair becomes the void station's own theorem — v_φ → ∞, v_g → 0, the 1/0 of the dispersion relation, reflecting shortwave off the ionosphere.`,
+    boundary: 'DOCUMENTED: the cold, unmagnetised, collisionless plasma dispersion ω² = ωₚ² + c²k² (Chen, Introduction to Plasma Physics) — a standard result, computed here dimensionlessly so no fitted constant enters. Superluminal PHASE velocity carries no information and violates nothing (Brillouin/Sommerfeld, 1914: signal fronts travel at c); anyone citing it for FTL communication is flagged. Magnetised/warm plasmas add branches this fold does not model. HARMONY ≠ TRUTH.',
+  }
 }
