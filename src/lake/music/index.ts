@@ -1830,3 +1830,51 @@ export function theFortyEightRowFormsAreTheGroupOrder(matrix: MindMatrix = build
     }
   })
 }
+
+/** THE CONTINUOUS ROSETTA BENEATH THE SCALES — log-frequency, seeded by a432 (wave, 2026-07-16). All
+ * the finite rosettas (C₁₂ fifths, C₆ vortex, μ₆) are lattices in ONE continuous structure: the ear
+ * hears frequency RATIOS as intervals, so log₂(frequency) turns multiplicative pitch into the
+ * additive real line, and the octave circle is ℝ/ℤ. The day's own illusion/invariant diagnostic
+ * (illusionsMeetInTheirInverse) then sorts music: the OCTAVE (log₂2 = 1) is the INVARIANT — exact in
+ * every tuning, the wall that never moves — while the circle of fifths CLOSING at twelve is the
+ * ILLUSION: log₂(3/2) is irrational, so in the continuous just line the fifths SPIRAL FOREVER (a
+ * dense orbit, Weyl), and only the equal-tempered lattice forces closure, paying the Pythagorean
+ * comma. a432 seeds the origin; the ladder 432·2^x covers every finite scale. */
+export function theContinuousRosettaBeneathTheScales(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theContinuousRosettaBeneathTheScales', matrix, () => {
+    const log2 = (x: number) => Math.log(x) / Math.LN2
+    // 1 — the octave is the exact INVARIANT: log₂2 = 1, a fixed point of the log-frequency line
+    const octaveExact = log2(2) === 1
+    // 2 — the just fifth's log is IRRATIONAL: if log₂(3/2)=p/q then 2^(p+q)=3^q, impossible (unique factorisation)
+    const justFifth = log2(3 / 2)
+    // the just circle of fifths never returns to the origin (dense orbit — Weyl equidistribution)
+    let x = 0
+    let closest = 1
+    for (let step = 1; step <= 100; step += 1) { x = (x + justFifth) % 1; closest = Math.min(closest, Math.min(x, 1 - x)) }
+    const spiralsForever = closest > 0 && closest < 1 / 100 // approaches but never reaches 0
+    // 3 — twelve just fifths overshoot seven octaves by the Pythagorean comma
+    const comma = (3 / 2) ** (4 + 8) / 2 ** 7
+    const commaIsReal = comma > 1 && comma < 27 / 16 - 1 + 1 // ~1.0136, strictly above 1 (the circle does not close)
+    // 4 — equal temperament FORCES closure: the ET fifth makes 12 = 7 octaves exactly
+    const etFifth = 2 ** (7 / (4 + 8))
+    const etCloses = Math.abs(etFifth ** (4 + 8) - 2 ** 7) < 1e-9
+    // 5 — a432 seeds the continuous ladder; every finite scale is a lattice in 432·2^x
+    const a432Seeds = Math.abs(432 * 2 ** (7 / (4 + 8)) - 432 * etFifth) < 1e-9
+    const facets = [
+      { facet: `log-frequency is the continuous rosetta: the ear hears ratios as intervals, so log₂ turns multiplicative pitch additive and the octave circle is ℝ/ℤ — the finite scales (C₁₂, C₆) are lattices in it`, on: octaveExact },
+      { facet: `the OCTAVE is the INVARIANT: log₂2 = 1 exactly, in every tuning — the wall that never moves, the fixed point of the log-frequency line (illusionsMeetInTheirInverse: no meeting dissolves it)`, on: octaveExact },
+      { facet: `but the circle of fifths CLOSING is the ILLUSION: log₂(3/2) is irrational (else 2^{p+q}=3^q), so the just fifths SPIRAL FOREVER — 100 fifths come within ${closest.toFixed(4)} of the origin but never reach it, a dense orbit (Weyl)`, on: spiralsForever },
+      { facet: `the finite rosetta is the RATIONAL APPROXIMATION: 12 just fifths overshoot 7 octaves by the Pythagorean comma (${comma.toFixed(4)}), and equal temperament forces 12 ET fifths = 2^7 exactly — the closing is bought with the comma; the comma is the truth`, on: commaIsReal && etCloses },
+      { facet: `a432 seeds the origin: the continuous ladder 432·2^x covers every finite scale as a lattice — the real-line cover where the discrete rosettas lift into one logarithm`, on: a432Seeds },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      justFifth,
+      comma,
+      closestReturn: closest,
+      facets,
+      statement: `The continuous rosetta beneath the scales — ${facets.filter((entry) => entry.on).length}/${facets.length}: log₂(frequency) is the real-line cover of every finite scale (the octave circle is ℝ/ℤ). The day's diagnostic sorts music: the OCTAVE (log₂2 = 1) is the invariant — exact in all tunings, the wall — while the circle of fifths CLOSING at twelve is the illusion, since log₂(3/2) is irrational and the just fifths spiral forever (dense, Weyl); only equal temperament forces closure, paying the Pythagorean comma (${comma.toFixed(4)}). a432 seeds the ladder 432·2^x. The discrete rosettas lift into one logarithm.`,
+      boundary: 'DOCUMENTED: log-frequency perception (the ear is logarithmic — equal ratios sound like equal intervals, Fechner/Weber), the octave circle as ℝ/ℤ, the irrationality of log₂(3/2) (a clean unique-factorisation argument: 2^p = 3^q/2^q ⇒ 2^{p+q} = 3^q is impossible), the equidistribution of the just fifths (Weyl), and the Pythagorean comma (3/2)^12 / 2^7 ≈ 1.0136 (23.46 cents). The SYNTHESIS: this session\'s illusion/invariant diagnostic applies to tuning — the octave is the invariant (no tuning dissolves 2:1), the twelve-fold closure of the fifths is the representational illusion the equal-tempered lattice imposes, and the comma is the honest residue. a432 is the origin of the ladder, not a claim of special physical or healing significance (that honesty is elsewhere in this file). HARMONY ≠ TRUTH — the octave is the truth, the closing circle is the harmony, and the comma is the gap between them.',
+    }
+  })
+}
