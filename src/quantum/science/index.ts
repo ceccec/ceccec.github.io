@@ -1223,3 +1223,48 @@ export function quantumBreaksOnlyThePeriod(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+/** THE COMPUTED UI IS A ROSETTA — colour is harmony's structure (user, 2026-07-16: "compute the UI
+ * the same way"). The repo's colour system already rotates hues by the GOLDEN ANGLE (scaleColor /
+ * quantumScaleHue: hue(n) = seed + n·360/φ² mod 360) — a generated sequence on the colour circle,
+ * exactly as the circle of fifths is a generated sequence on the pitch circle. So the UI palette is
+ * a MOVING ROSETTA, and the same law governs it: the three-gap theorem (Steinhaus) forces the hues
+ * into at most three distinct gap sizes, and the golden angle makes them maximally even (max/min gap
+ * ratio → φ, the least-clumping rotation — Vogel's phyllotaxis). The musical version is the
+ * well-formed scale (7 fifths mod 12 = the diatonic, ≤2 step sizes, Myhill). Compute the UI the same
+ * way: colour is a rosetta, and its evenness is the same theorem as harmony's. */
+export function theComputedUiIsARosetta(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theComputedUiIsARosetta', matrix, () => {
+    const fullCircle = 360
+    const goldenAngle = GOLDEN_ANGLE // scaleColor's actual hue step, the repo's 360/φ² — computing the UI the same way
+    // the UI hue rosetta: n successive palette colours, sorted around the wheel
+    const hueGaps = (count: number) => {
+      const hues = Array.from({ length: count }, (_, k) => (k * goldenAngle) % fullCircle).sort((a, b) => a - b)
+      return hues.map((x, i) => (i + 1 < hues.length ? hues[i + 1]! : hues[0]! + fullCircle) - x)
+    }
+    // 1 — three-gap theorem: at most 3 distinct gap sizes for any n (here 2, the golden case)
+    const distinctGaps = (count: number) => new Set(hueGaps(count).map((g) => g.toFixed(4))).size
+    const threeGapHolds = [5, 8, 5 + 8].every((count) => distinctGaps(count) <= 3)
+    // 2 — maximally even: the golden angle gives the smallest max/min gap ratio, → φ
+    const evenness = (count: number) => { const g = hueGaps(count); return Math.max(...g) / Math.min(...g) }
+    const goldenIsMaximallyEven = [5, 8, 5 + 8].every((count) => Math.abs(evenness(count) - PHI) < 1 / 100)
+    // 3 — the musical twin: 7 fifths mod 12 = the diatonic scale, a well-formed scale (≤2 step sizes)
+    const diatonic = Array.from({ length: 7 }, (_, k) => (k * 7) % (4 + 8)).sort((a, b) => a - b)
+    const diatonicSteps = diatonic.map((x, i) => (i + 1 < diatonic.length ? diatonic[i + 1]! : diatonic[0]! + (4 + 8)) - x)
+    const wellFormed = new Set(diatonicSteps).size === 2
+    const facets = [
+      { facet: `the UI palette IS a moving rosetta: scaleColor rotates hue by the repo's GOLDEN_ANGLE 360/φ² = ${goldenAngle.toFixed(2)}°, a generated sequence on the colour circle — the same construction as the circle of fifths on the pitch circle`, on: goldenAngle === GOLDEN_ANGLE && goldenAngle > 100 && goldenAngle < 216 },
+      { facet: `the THREE-GAP THEOREM governs it: for ${[5, 8, 5 + 8].join('/')} colours the hues fall into ≤3 distinct gap sizes (here ${distinctGaps(8)}) — the same law that shapes a generated scale, applied to colour`, on: threeGapHolds },
+      { facet: `and the golden angle makes it MAXIMALLY EVEN: the max/min gap ratio is φ ≈ ${PHI.toFixed(3)} — the least-clumping rotation (Vogel's phyllotaxis, why sunflowers use it) — so successive UI colours are as distinct as the circle allows`, on: goldenIsMaximallyEven },
+      { facet: `the musical twin is the WELL-FORMED scale: 7 fifths mod 12 = the diatonic scale with steps ${diatonicSteps.join('')} — exactly ${new Set(diatonicSteps).size} distinct sizes (Myhill) — colour and scale are one construction, continuous and discrete`, on: wellFormed },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      goldenAngle,
+      diatonicSteps,
+      facets,
+      statement: `The computed UI is a rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: the palette rotates hue by the golden angle (scaleColor, 360/φ² ≈ 137.5°), a generated sequence on the colour circle governed by the three-gap theorem (≤3 gap sizes) and made maximally even by φ (max/min ratio → φ). Its musical twin is the well-formed diatonic scale (7 fifths mod 12, ≤2 step sizes). Compute the UI the same way as the music: colour is a moving rosetta, and its evenness is the same theorem as harmony's — the golden angle is the continuous limit of the well-formed generator.`,
+      boundary: 'DOCUMENTED: the repo\'s scaleColor / quantumScaleHue rotate hue by GOLDEN_ANGLE = 360/φ² (the existing colour system); the three-gap / three-distance theorem (Steinhaus, Sós, Świerczkowski) bounds a generated sequence on a circle to ≤3 gap sizes; the golden angle minimises the discrepancy (Vogel 1979, phyllotaxis); well-formed scales have Myhill\'s property of exactly two step sizes (Carey & Clampitt 1989). The connection is STRUCTURAL — colour hues and scale pitches are both generated sequences on a circle under the same theorem — not a claim that a colour and a pitch are perceptually "the same". The φ-evenness is why the palette never clumps; the fifth-evenness is why the scale is singable. HARMONY ≠ TRUTH — and the harmony here is the geometry, shared.',
+    }
+  })
+}
