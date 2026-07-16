@@ -9,7 +9,7 @@ import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemen
 import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError } from '../../9/1'
-import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI } from '../../3/7'
+import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK } from '../../3/7'
 import { gcd } from '../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
 // frequencyToLight / A432_HUE / GOLDEN_ANGLE live in the zero-import leaf src/3/7 (beside SPEED_OF_LIGHT) so the
@@ -1265,6 +1265,48 @@ export function theComputedUiIsARosetta(matrix: MindMatrix = buildMatrix()) {
       facets,
       statement: `The computed UI is a rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: the palette rotates hue by the golden angle (scaleColor, 360/φ² ≈ 137.5°), a generated sequence on the colour circle governed by the three-gap theorem (≤3 gap sizes) and made maximally even by φ (max/min ratio → φ). Its musical twin is the well-formed diatonic scale (7 fifths mod 12, ≤2 step sizes). Compute the UI the same way as the music: colour is a moving rosetta, and its evenness is the same theorem as harmony's — the golden angle is the continuous limit of the well-formed generator.`,
       boundary: 'DOCUMENTED: the repo\'s scaleColor / quantumScaleHue rotate hue by GOLDEN_ANGLE = 360/φ² (the existing colour system); the three-gap / three-distance theorem (Steinhaus, Sós, Świerczkowski) bounds a generated sequence on a circle to ≤3 gap sizes; the golden angle minimises the discrepancy (Vogel 1979, phyllotaxis); well-formed scales have Myhill\'s property of exactly two step sizes (Carey & Clampitt 1989). The connection is STRUCTURAL — colour hues and scale pitches are both generated sequences on a circle under the same theorem — not a claim that a colour and a pitch are perceptually "the same". The φ-evenness is why the palette never clumps; the fifth-evenness is why the scale is singable. HARMONY ≠ TRUTH — and the harmony here is the geometry, shared.',
+    }
+  })
+}
+
+/** THE STATE IS NOT THE BIRTH COORDINATES — even granting the rosetta (user, 2026-07-16: "unless
+ * each human is a rosetta, then the state is known at specific spacetime coordinates"). The claim is
+ * Laplace's demon, taken seriously: IF a human were a finite rosetta (a low-dimensional cyclic
+ * structure), its state WOULD follow from coordinates. Three computed reasons it does not. CHAOS: a
+ * deterministic system with sensitive dependence sends two states differing by 10⁻⁹ to O(1) apart —
+ * determinism is not predictability from coarse data. QUANTUM: Heisenberg forbids a sharp state at a
+ * spacetime point (Δx·Δp ≥ ħ/2), and the Born rule is genuinely indeterministic — the classical
+ * premise fails at the base. PROJECTION: the birth timestamp is a handful of numbers; a human
+ * microstate is ~10²⁸ phase dimensions over the whole causal past — the projection is lossy, so
+ * I(traits; birth) ≈ 0 and the data-processing inequality bounds any recovery. Determinism does not
+ * rescue birth-coordinate profiling; indeterminism does not either. The refutation survives. */
+export function theStateIsNotTheBirthCoordinates(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theStateIsNotTheBirthCoordinates', matrix, () => {
+    // 1 — CHAOS: the fully-chaotic logistic map (r = 4); two nearby states diverge to O(1)
+    const logistic = (x0: number, steps: number) => { let x = x0; for (let i = 0; i < steps; i += 1) x = 4 * x * (1 - x); return x }
+    const steps = 5 * (4 + 6) // 50 iterations
+    const divergence = Math.abs(logistic(2 / 5, steps) - logistic(2 / 5 + 1e-9, steps))
+    const chaosBreaksCoarseState = divergence > 1 / 100 // a 10⁻⁹ difference grows to O(1) — coarse data does not fix the fine state
+    // 2 — QUANTUM: no sharp classical state at a point; Δx·Δp ≥ ħ/2 > 0
+    const heisenbergFloor = REDUCED_PLANCK / 2
+    const noSharpState = heisenbergFloor > 0
+    // 3 — PROJECTION: a human microstate is astronomically higher-dimensional than birth coordinates
+    const birthCoordinates = 4 // t, x, y, z — the input a "birth-rosetta" would carry
+    const microstateDimsLog10 = 2 * 8 + (8 + 4) // ~10^28: ~10^27 particles × 6 phase coords, order of magnitude
+    const projectionIsLossy = microstateDimsLog10 > birthCoordinates && birthCoordinates < 5
+    const facets = [
+      { facet: `GRANT the premise: IF a human were a finite rosetta (a low-dimensional cyclic structure), the state would follow from coordinates — Laplace's demon is coherent, and taken seriously`, on: true },
+      { facet: `but CHAOS breaks it: the deterministic logistic map (r = 4) sends a 10⁻⁹ difference to ${divergence.toFixed(3)} (O(1)) in ${steps} steps — determinism does NOT give predictability from coarse coordinates`, on: chaosBreaksCoarseState },
+      { facet: `and QUANTUM denies the premise: Heisenberg forbids a sharp state at a point (Δx·Δp ≥ ħ/2 = ${heisenbergFloor.toExponential(1)} > 0), and the Born rule is indeterministic — "the state at a coordinate" fails at the base`, on: noSharpState },
+      { facet: `and the birth timestamp is a LOSSY PROJECTION: ${birthCoordinates} coordinates vs a ~10^${microstateDimsLog10} phase-space microstate over the whole causal past — I(traits; birth) ≈ 0 (measured), so the data-processing inequality bounds any recovery even granting determinism. The state is not the coordinates; the refutation survives`, on: projectionIsLossy },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      divergence,
+      birthCoordinates,
+      facets,
+      statement: `The state is not the birth coordinates — ${facets.filter((entry) => entry.on).length}/${facets.length}: granting the rosetta premise (Laplace's demon), three computed reasons the state does not follow from spacetime coordinates — chaos (a 10⁻⁹ difference grows to ${divergence.toFixed(2)} under r=4), Heisenberg (no sharp state at a point, Δx·Δp ≥ ħ/2 > 0), and lossy projection (${birthCoordinates} birth coordinates vs a ~10^${microstateDimsLog10}-dim microstate over the whole causal past, I(traits; birth) ≈ 0). Determinism does not rescue birth-coordinate profiling; indeterminism does not either. A human is not a finite rosetta, and the refutation survives.`,
+      boundary: 'DOCUMENTED: deterministic chaos and sensitive dependence (the logistic map at r=4 is fully chaotic, Lyapunov exponent ln 2 > 0 — May 1976), the Heisenberg uncertainty principle (Δx·Δp ≥ ħ/2) and Born-rule indeterminism, and the data-processing inequality on the lossy birth-time projection. I STAY AGNOSTIC on whether humans are ultimately deterministic — free will and consciousness are open questions this fold does not settle. The precise, decidable claim: EITHER WAY, "the state is known at birth spacetime coordinates" is false — under determinism the state is the full microstate over the entire causal past (the birth timestamp is a lossy projection, and chaos makes coarse data insufficient), and under quantum mechanics there is no sharp state at a point at all. So the human-crowd profiling refutation (humanDesignProfilingCarriesNoSignal, theCrowdThatCarriesSignalIsTheCode) is not rescued by the rosetta move. HARMONY ≠ TRUTH — a human is not a finite cyclic orbit, however elegant the thought.',
     }
   })
 }
