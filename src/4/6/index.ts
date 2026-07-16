@@ -1330,7 +1330,7 @@ export function axiomsBecomeTheorems() {
     Array.from({ length: 3 * 4 }, (_, b) => b).every((b) => add(a, b) === add(b, a)))
   // ── computed replacement 3: Kepler's laws were AXIOMS of astronomy → theorems of one force.
   // Leapfrog an inverse-square orbit: equal areas (|r×v| drift) and bounded energy drift, computed.
-  let [x, y, vx, vy] = [1, 0, 0, 1.2]
+  let [x, y, vx, vy] = [1, 0, 0, 6 / 5]
   const dt = 1e-3
   const accel = (px: number, py: number) => { const r3 = Math.hypot(px, py) ** 3; return [-px / r3, -py / r3] as const }
   const L0 = Math.abs(x * vy - y * vx)
@@ -1352,7 +1352,7 @@ export function axiomsBecomeTheorems() {
   // (k = 0 Galileo, k = 1/c² Lorentz). Computed: the family is associative for EVERY k; a law off
   // the family breaks associativity — the postulate collapses to picking k by experiment.
   const compose = (k: number) => (v: number, w: number) => (v + w) / (1 + k * v * w)
-  const triples: readonly (readonly [number, number, number])[] = [[0.1, 0.2, 0.3], [0.5, -0.4, 0.2], [-0.3, 0.6, -0.1]]
+  const triples: readonly (readonly [number, number, number])[] = [[1 / 9, 2 / 9, 1 / 3], [1 / 2, -2 / 5, 1 / 5], [-1 / 3, 3 / 5, -1 / 9]]
   const familyAssociative = [0, 1, 1 / 4].every((k) => triples.every(([u, v, w]) => {
     const op = compose(k)
     return Math.abs(op(op(u, v), w) - op(u, op(v, w))) < 1e-12

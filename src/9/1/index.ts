@@ -2472,7 +2472,7 @@ export function inverseNegatesAngle() {
     return near(Math.atan2(inv[1]!, inv[0]!), -Math.atan2(im, re))
   })
   // guise 2: rotation matrices — R(θ)·R(−θ) = I, so R(θ)⁻¹ IS the negated angle
-  const rotationInverse = [0.3, 1.2, 2.9].every((theta) => {
+  const rotationInverse = [TAU / 9, TAU / 5, 6 / 5].every((theta) => {
     const [c, s] = [Math.cos(theta), Math.sin(theta)]
     const [cn, sn] = [Math.cos(-theta), Math.sin(-theta)]
     return near(c * cn - s * sn, 1) && Math.abs(c * sn + s * cn) < 1e-9
