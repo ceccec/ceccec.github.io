@@ -1649,3 +1649,56 @@ export function rhythmIsTheRosettaInTime(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+/** THE INVERSE MUSIC COMPLETES THE GROUP — pitch inversion is the day's angle-negation (wave,
+ * 2026-07-16). Inversion I(x) = −x mod 12 is the reflection of the pitch rosetta: an involution
+ * (I² = identity) that maps e^{2πix/12} ↦ e^{−2πix/12} — the EXACT angle-negation of
+ * inverseNegatesAngle and of T-duality R ↦ 1/R. It is not decoration: transposition alone is the
+ * cyclic group C₁₂, but transposition WITH inversion generates the dihedral group D₁₂ of order 24 —
+ * so ignoring inversion keeps only half the symmetry, and it is precisely why the scale catalogue
+ * has 224 set classes (with inversion) rather than 352 (without). The inverse is what closes the
+ * group. It is also old public-domain mathematics (Bach's mirror counterpoint, Schoenberg's twelve-
+ * tone inversions), not a proprietary secret — the magnitude is unification, not a patent. */
+export function theInverseMusicCompletesTheGroup(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theInverseMusicCompletesTheGroup', matrix, () => {
+    const n = 4 + 8 // 12
+    const invert = (x: number) => (((-x % n) + n) % n) // I(x) = −x mod 12
+    const transpose = (k: number) => (x: number) => (x + k) % n
+    // 1 — inversion is an INVOLUTION
+    const involution = Array.from({ length: n }, (_, x) => x).every((x) => invert(invert(x)) === x)
+    // 2 — it is angle-negation: I(x) is the conjugate root e^{−2πix/12}
+    const anglesNegate = Array.from({ length: n }, (_, x) => x).every((x) => {
+      const forward = [Math.cos((TAU * x) / n), Math.sin((TAU * x) / n)]
+      const inverted = [Math.cos((TAU * invert(x)) / n), Math.sin((TAU * invert(x)) / n)]
+      return Math.abs(inverted[0]! - forward[0]!) < 1e-9 && Math.abs(inverted[1]! + forward[1]!) < 1e-9 // conjugate
+    })
+    // 3 — ⟨T, I⟩ generates the dihedral group D₁₂ of order 2n = 24
+    const encode = (f: (x: number) => number) => Array.from({ length: n }, (_, x) => f(x)).join(',')
+    const maps = new Set<string>([encode((x) => x)])
+    let frontier: ((x: number) => number)[] = [(x) => x]
+    for (let iter = 0; iter < n * n && frontier.length; iter += 1) {
+      const next: ((x: number) => number)[] = []
+      for (const f of frontier) for (const g of [transpose(1), invert]) {
+        const h = (x: number) => g(f(x))
+        const e = encode(h)
+        if (!maps.has(e)) { maps.add(e); next.push(h) }
+      }
+      frontier = next
+    }
+    const generatesDihedral = maps.size === 2 * n
+    const withoutInversion = n // just C₁₂ = the transpositions
+    const facets = [
+      { facet: `inversion I(x) = −x mod ${n} is an INVOLUTION (I² = identity) — the reflection of the pitch rosetta, its own undo`, on: involution },
+      { facet: `and it IS the day's angle-negation: I(x) maps e^{2πix/${n}} to its conjugate e^{−2πix/${n}} — the same operation as inverseNegatesAngle and T-duality R ↦ 1/R, now in pitch`, on: anglesNegate },
+      { facet: `it COMPLETES the group: transposition alone is C₁₂ (${withoutInversion} maps), but ⟨T, I⟩ generates the dihedral D₁₂ of order ${maps.size} = 2·${n} — ignoring inversion keeps only half the symmetry`, on: generatesDihedral && maps.size === 2 * withoutInversion },
+      { facet: `which is exactly why the catalogue is 224 set classes WITH inversion vs 352 without (scalesAreNecklacesOnTheRosetta): the inverse is not optional, it closes the group — and it is old public-domain math (Bach, Schoenberg), unpatentable, not a secret`, on: generatesDihedral && involution },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      groupOrder: maps.size,
+      facets,
+      statement: `The inverse music completes the group — ${facets.filter((entry) => entry.on).length}/${facets.length}: pitch inversion I(x) = −x mod 12 is an involution that maps each tone to its conjugate root — the day's angle-negation (inverseNegatesAngle, T-duality) in pitch — and ⟨transposition, inversion⟩ generates the dihedral group D₁₂ of order ${maps.size}, not the cyclic C₁₂ alone. Ignoring the inverse keeps only half the symmetry (why 352 becomes 224). The inverse closes the group; its magnitude is unification, and it is public-domain mathematics.`,
+      boundary: 'DOCUMENTED: pitch inversion I(x) = −x (mod 12) as an involution and the T/I group as the dihedral D₁₂ of order 24 (standard musical set theory — Babbitt, Forte; and centuries of mirror counterpoint, Bach, and Schoenberg\'s twelve-tone I-forms). The identity with the day\'s inversion is EXACT (both are complex conjugation / angle-negation on the unit circle). ON THE CLAIMS: "inverse music" is not a proprietary or patentable thing — it is abstract mathematics (unpatentable, Alice/Benson) and public-domain practice, so there is no hidden patent magnitude to find; and it does not "break" the deterministic quantum model, though ignoring it does under-count the symmetry group. The real magnitude is that ONE inversion runs through pitch, the vortex, T-duality and the cipher. HARMONY ≠ TRUTH.',
+    }
+  })
+}
