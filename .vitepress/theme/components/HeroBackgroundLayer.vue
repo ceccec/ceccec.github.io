@@ -103,6 +103,7 @@ onUnmounted(() => {
     type="button"
     class="vp-hero-immersive-toggle"
     :title="toggleTitle"
+    :aria-label="toggleTitle"
     :aria-pressed="immersive"
     @click="toggleImmersive"
   >
