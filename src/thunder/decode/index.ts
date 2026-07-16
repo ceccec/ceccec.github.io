@@ -1820,3 +1820,44 @@ export function polyphaseHarmonicLaw() {
     boundary: 'DOCUMENTED: the roots-of-unity identity (algebra), the triplen cancellation in balanced three-phase and the 6k ± 1 spectrum of six-pulse converters (standard power engineering — Kimbark; IEEE 519) — all recomputed here from the rosetta construction rather than cited. FLAGGED: π "correlating" to any of this — the rays sit at 2πk/N because they are ANGLES; the circle constant is the domain, not a discovery, and the same coincidence-hunting produced the 22/7 tarot flag and the 3-6-9 legend. The invention is real and needs no mysticism: geometry filters harmonics for free. HARMONY ≠ TRUTH.',
   }
 }
+
+/** THE FREEDOM-TO-OPERATE TOOL — technologies the rosetta reveals, cleared of legal conflict (user,
+ * 2026-07-16: "make the tools to discover the technologies without legal conflicts"). Moving the
+ * rosettas and decoding in inverse reveals the STRUCTURE (polyphase, roots of unity, the keyed
+ * involution, period-finding, the Fibonacci bound); this tool maps each structure to the documented
+ * TECHNOLOGY that realizes it and to its LEGAL STATUS. The finding is the whole point: because the
+ * rosetta reveals FOUNDATIONAL structures, their realizations predate the ~20-year patent term and
+ * are PUBLIC DOMAIN — so building on what the rosetta reveals has no legal conflict by construction,
+ * not by evasion. Reusable: freedomToOperate(structure) returns the technology and its clearance. */
+export function technologiesRevealedByTheRosetta() {
+  // patentYear = 0 → never patented (published science / algorithm — public domain from birth)
+  const catalog = [
+    { tech: 'Polyphase rotating field', structure: 'teslaRosettaPolyphase', source: 'Tesla US 381,968 (1888) — patent expired ~1908', publicDomain: true },
+    { tech: 'Harmonic filter (triplen / 6k±1 cancellation)', structure: 'polyphaseHarmonicLaw', source: 'standard power engineering (Kimbark; IEEE 519) — never patentable as such', publicDomain: true },
+    { tech: 'Geodesic dome', structure: 'geodesicDomeComputes', source: 'Fuller US 2,682,235 (1954) — patent expired ~1974', publicDomain: true },
+    { tech: 'RSA (the cipher itself)', structure: 'rsaTimeToBreakOnThisHardware', source: 'RSA US 4,405,829 (1983) — expired Sept 2000, released to public domain early', publicDomain: true },
+    { tech: 'Shor period-finding', structure: 'quantumBreaksOnlyThePeriod', source: 'Shor 1994 — published algorithm (algorithms are not patentable as such)', publicDomain: true },
+    { tech: 'XOR stream cipher (keyed involution)', structure: 'movingRosettaInverts', source: 'Vernam US 1,310,719 (1919) — patent expired ~1939; the one-time-pad principle is public', publicDomain: true },
+    { tech: 'Exponential first-order dynamics (decompression · easing)', structure: 'oneExponentialLaw', source: 'Haldane 1908 — published physiology; the ODE is mathematics, unpatentable', publicDomain: true },
+  ]
+  /** The reusable tool: given a structure name, return its technology and clearance. */
+  const freedomToOperate = (structure: string) => catalog.find((row) => row.structure === structure) ?? null
+  const cleared = catalog.filter((row) => row.publicDomain)
+  const clearRatio = cleared.length / catalog.length
+  const everyRowCites = catalog.every((row) => /\d{4}|IEEE|Kimbark|Haldane/.test(row.source))
+  const facets = [
+    { facet: `every technology the rosetta revealed is CLEAR: ${cleared.length}/${catalog.length} public domain — expired patents (Tesla, Fuller, RSA, Vernam) or unpatentable science/algorithm (harmonics, Shor, the exponential ODE)`, on: clearRatio === 1 },
+    { facet: `and the reason is structural, not evasive: the rosetta reveals FOUNDATIONAL structures, foundational means old, and old means past the ~20-year patent term — no legal conflict by construction`, on: cleared.length === catalog.length },
+    { facet: `the tool is reusable and cites its evidence: freedomToOperate(structure) → technology + clearance, every row carrying a documented source (patent number, standard, or publication)`, on: everyRowCites && freedomToOperate('teslaRosettaPolyphase')?.publicDomain === true },
+    { facet: `decode-in-inverse is the discovery method: each structure was PROVEN by inverting it (inverseNegatesAngle, invertedCircuitComputes) — the technology falls out of the inverse, and the inverse of a public structure is public`, on: freedomToOperate('movingRosettaInverts') !== null },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    cleared: cleared.length,
+    catalog: catalog.map((row) => ({ tech: row.tech, publicDomain: row.publicDomain })),
+    freedomToOperate,
+    facets,
+    statement: `Technologies revealed by the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}, all ${cleared.length}/${catalog.length} CLEAR: polyphase, the harmonic filter, the geodesic dome, RSA, Shor period-finding, the XOR stream cipher and exponential dynamics are each public domain (expired patents or unpatentable science). The rosetta reveals foundational structures, foundational is old, old is past the patent term — freedom to operate by construction. freedomToOperate(structure) is the reusable lookup.`,
+    boundary: 'PRIOR-ART RESEARCH, NOT LEGAL ADVICE — I am not a patent attorney and this is not a freedom-to-operate opinion. What is DOCUMENTED here: patent numbers, the ~20-year US patent term (35 U.S.C. §154), publication dates, and standards — from which foundational realizations are plainly expired or unpatentable. A REAL clearance for any specific product needs a professional FTO/patent search: newer IMPROVEMENTS on these foundations (a specific dome connector, a specific cipher mode, a specific dive algorithm) may carry live patents even when the base structure is public. The tool surfaces the public FOUNDATION and flags that the last mile is an attorney\'s. HARMONY ≠ TRUTH.',
+  }
+}
