@@ -1039,6 +1039,30 @@ if (existsSync(dist)) {
   }
 }
 
+// --- NO AGENT MAY BYPASS THEOREMS: a theorem-shaped fold in the theorem station (src/4/6) that no
+// registry atom names has bypassed the verify machinery — it computes but is never checked. The
+// gap that bit the day (the capstone onlyTheoremsCanBeTrusted was defined but unregistered, so its
+// own facets were never run) becomes a RED finding: register it, or it is not a theorem, only code.
+{
+  const stationText = read(join(root, 'src/4/6/index.ts')) ?? ''
+  const registered = new Set([...stationText.matchAll(/provedBy: '(\w+)'/g)].map((m) => m[1]))
+  for (const m of stationText.matchAll(/export function (\w+)\s*\(/g)) {
+    const name = m[1]!
+    const rest = stationText.slice(m.index! + 1)
+    const nextExport = rest.search(/\nexport (?:function|const|type|interface|class) /)
+    const body = stationText.slice(m.index!, nextExport === -1 ? stationText.length : m.index! + 1 + nextExport)
+    // the canonical theorem signature: computes = facets.every((entry) => entry.on)
+    if (/computes:\s*facets\.every\(\(entry\) => entry\.on\)/.test(body) && !registered.has(name)) {
+      gaps.push({ harmonic: 'theorem', kind: 'unregistered-bypass', detail: `${name} in src/4/6 is a theorem-shaped fold (computes = facets.every) that NO registry atom names — it bypasses theoremWavesVerify and is never checked; add a THEOREM_ATOM_SEED row with provedBy: '${name}', or it is code, not a theorem` })
+    }
+  }
+  // and the reverse: a registered provedBy whose function exists nowhere is a claimed theorem with no proof
+  const exported = new Set<string>()
+  const collect = (dir: string) => { for (const entry of readdirSync(dir, { withFileTypes: true })) { const p = join(dir, entry.name); if (entry.isDirectory()) collect(p); else if (entry.name === 'index.ts') for (const mm of (read(p) ?? '').matchAll(/export (?:function|const) (\w+)/g)) exported.add(mm[1]!) } }
+  if (existsSync(join(root, 'src'))) collect(join(root, 'src'))
+  for (const name of registered) if (!exported.has(name)) gaps.push({ harmonic: 'theorem', kind: 'dangling-claim', detail: `registered theorem names provedBy '${name}' but no src function exports it — a claimed theorem with no proof` })
+}
+
 // --- the one-palette ratchet: the render layer paints ONLY through the sealed colour atoms ---
 // The ~65-literal backlog was cleared 2026-07-16 (the last hsla fell in ProofAnimation); this gate
 // keeps it at zero: any hsla()/rgb()/6-digit-hex literal in theme, lib or src/ui is a RED finding —
