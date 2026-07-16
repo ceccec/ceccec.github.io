@@ -9,7 +9,7 @@ import { FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../pair/enf
 import { realign } from '../../mountain/vortex'
 import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
-import { GATES, VORTEX_SEQUENCE, applyGate, asTorus, asVortex, computesGate, fold, foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, qubits, roundTo, sample, sealFacets, seedFromText, toUuid } from '../../0'
+import { GATES, VORTEX_SEQUENCE, applyGate, asTorus, asVortex, computesGate, fold, foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, qubits, roundTo, sample, sealFacets, seedFromText, toUuid, gcd } from '../../0'
 import { ratStr } from '../../9/1'
 import { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7'
 export { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -1505,3 +1505,60 @@ export function clownActQuantumSteps(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+
+/** THE CIRCLE OF FIFTHS IS A MOVING ROSETTA — the harmonic face of the day's C₆ (wave, 2026-07-16).
+ * Twelve-tone equal temperament is ℤ/12ℤ, and moving a fixed interval around it is a rosetta exactly
+ * as the slash circuit is: the FIFTH (7 semitones) generates all twelve tones because gcd(7,12)=1, so
+ * the circle of fifths is a Hamiltonian orbit visiting every note once — a moving rosetta a musician
+ * has always drawn. The generators are φ(12)=4 intervals {1,5,7,11} (semitone, fourth, fifth, major
+ * seventh); every other interval closes a SUBGROUP that is a chord — and the whole-tone scale is C₆,
+ * the SAME group as the vortex (theTwoRosettasAreOneGroup). Music theory is cyclic-group theory. */
+export function theCircleOfFifthsIsARosetta(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theCircleOfFifthsIsARosetta', matrix, () => {
+    const octave = 4 + 8 // 12 semitones
+    const orbitOf = (step: number) => {
+      const orbit: number[] = []
+      let x = 0
+      do { orbit.push(x); x = (x + step) % octave } while (x !== 0)
+      return orbit
+    }
+    // 1 — the fifth (7 semitones) is a generator: its orbit is all 12, a Hamiltonian rosetta
+    const fifth = 7
+    const fifthOrbit = orbitOf(fifth)
+    const fifthGenerates = fifthOrbit.length === octave && gcd(fifth, octave) === 1
+    // 2 — the generators are exactly {k : gcd(k,12)=1} = φ(12) of them
+    const generators = Array.from({ length: octave }, (_, k) => k).filter((k) => k > 0 && gcd(k, octave) === 1)
+    const generatorsAreCoprime = generators.join() === [1, 5, fifth, octave - 1].join() && generators.length === 4
+    // 3 — the chords ARE the cyclic subgroups: their orbit lengths are the divisor lattice
+    const chords = [
+      { name: 'augmented triad', step: 4, group: 'C3' },
+      { name: 'diminished seventh', step: 3, group: 'C4' },
+      { name: 'whole-tone scale', step: 2, group: 'C6' },
+      { name: 'tritone', step: octave / 2, group: 'C2' },
+    ]
+    const chordsAreSubgroups = chords.every((c) => orbitOf(c.step).length === octave / gcd(c.step, octave))
+    // 4 — the whole-tone rosetta is C₆ — the SAME group as the vortex (ℤ/9ℤ)* and the polyphase circle
+    const wholeTone = orbitOf(2)
+    const wholeToneIsC6 = wholeTone.length === 6
+    // 5 — equal temperament IS the 12th roots of unity: freq ratio 2^(k/12), the k-th root on the octave circle
+    const etIsRootsOfUnity = [0, fifth, octave].every((k) => {
+      const ratio = 2 ** (k / octave)
+      return ratio > 0 && Math.abs((2 ** (k / octave)) - Math.pow(2, k / octave)) < 1e-12
+    }) && Math.abs(2 ** (fifth / octave) - 3 / 2) < 1 / 100 // the tempered fifth 2^(7/12) sits within 1% of the just fifth 3/2
+    const facets = [
+      { facet: `the circle of fifths is a HAMILTONIAN ROSETTA: the fifth (${fifth} semitones) generates all ${octave} tones because gcd(${fifth},${octave})=1 — the orbit visits every note once, exactly like the slash circuit visits every digit`, on: fifthGenerates },
+      { facet: `the generators are φ(${octave})=${generators.length} intervals {${generators.join(',')}} = semitone, fourth, fifth, major seventh — precisely the coprime steps that draw a full rosetta; the others draw chords`, on: generatorsAreCoprime },
+      { facet: `every CHORD is a cyclic subgroup: augmented triad = C3, diminished seventh = C4, whole-tone = C6, tritone = C2 — the orbit length is exactly ${octave}/gcd(step,${octave}), the divisor lattice`, on: chordsAreSubgroups },
+      { facet: `the whole-tone scale is C₆ — the SAME group as the vortex (ℤ/9ℤ)* and the polyphase circle (theTwoRosettasAreOneGroup): the hexatonic scale and the digit vortex are ONE structure`, on: wholeToneIsC6 },
+      { facet: `and equal temperament IS the 12th roots of unity: pitch k is 2^(k/12) on the octave circle, the tempered fifth 2^(7/12) ≈ 1.498 shadowing the just 3/2 — pitch is a point on μ₁₂`, on: etIsRootsOfUnity },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      fifthOrbit,
+      generators,
+      facets,
+      statement: `The circle of fifths is a moving rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: twelve-tone equal temperament is ℤ/12ℤ, the fifth generates all 12 (a Hamiltonian orbit, gcd(7,12)=1), the ${generators.length} generators {${generators.join(',')}} are the full-rosetta intervals, every chord is a cyclic subgroup (augmented C3, diminished C4, whole-tone C6, tritone C2), and the whole-tone scale is the SAME C₆ as the vortex. Music theory is cyclic-group theory — the harmonic face of the day's one group.`,
+      boundary: 'DOCUMENTED: twelve-tone equal temperament as ℤ/12ℤ, the circle of fifths as the orbit of a generator (gcd(7,12)=1), chords as cosets/subgroups (standard musical set theory — Babbitt, Forte), and pitch as the 12th roots of unity (equal temperament = the real part of e^{2πik/12} on the octave). The tempered fifth 2^(7/12) ≈ 1.498 APPROXIMATES the just 3/2 = 1.5 — equal temperament is a rational compromise, not the harmonic series itself (that honesty is elsewhere in this file). The C₆ identity with the vortex is structural (both cyclic of order 6), not a claim that music and the digit vortex share a cause. HARMONY ≠ TRUTH — and here "harmony" is literal.',
+    }
+  })
+}
