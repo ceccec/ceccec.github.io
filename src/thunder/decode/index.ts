@@ -1762,3 +1762,61 @@ export function teslaRosettaPolyphase() {
     boundary: `DOCUMENTED: the polyphase rotating field (Tesla, US 381,968 / 382,280, 1888) and its vector sum, computed here from the rosetta construction — the magnitude law N/2, the N=2 degeneracy, the quadrature exception and the zero-sum currents are all finite trigonometry run in this fold. FLAGGED (${flagged.length}): the 3-6-9 legend and free-energy claims — the granted patents are the record, and they are enough. THE HONEST DEMARCATION: Tesla's REAL three is the minimum spanning rosetta, and it is more remarkable than the numerology it gets confused with. HARMONY ≠ TRUTH.`,
   }
 }
+
+/** THE LARGE-SCALE INVENTION THE ROSETTA HIDES: the harmonic law (user, 2026-07-16). Tesla's
+ * zero-neutral is not a coincidence and not π — it is the ROOTS OF UNITY: x^N − 1 =
+ * (x − 1)(x^(N−1) + … + 1), so the N roots sum to zero, exactly, for every N ≥ 2. Compute one step
+ * further and the grid falls out: feed the N-ray rosetta a harmonic h and only h ≡ ±1 (mod N)
+ * survives as a rotating field — every h ≡ 0 (mod N) CANCELS OUTRIGHT.
+ *   • N = 3 → the triplen harmonics (3, 6, 9, 12) die: why the third harmonic is absent from the
+ *     line currents of every balanced three-phase system on Earth.
+ *   • N = 6 → only 1, 5, 7, 11, 13 survive = 6k ± 1: the textbook six-pulse converter spectrum.
+ *   • Double it to twelve and the lowest survivor jumps 5 → 11: precisely why HVDC runs 12-pulse.
+ * MORE RAYS = CLEANER FIELD, and the filter is free — it is geometry, not components. π appears
+ * only as the circle constant (the rays live at 2πk/N); it is the DOMAIN, not a correlation. */
+export function polyphaseHarmonicLaw() {
+  const rootsSumToZero = (n: number) => {
+    let re = 0
+    let im = 0
+    for (let k = 0; k < n; k += 1) { re += Math.cos((TAU * k) / n); im += Math.sin((TAU * k) / n) }
+    return Math.hypot(re, im) < 1e-9
+  }
+  /** The h-th harmonic on the N-ray rosetta: amplitude of the resultant field. */
+  const harmonicAmplitude = (n: number, h: number) => {
+    let peak = 0
+    for (const t of [0, 3 / 5, 9 / 5, 3 + 1 / 9, 4 + 2 / 5]) {
+      let x = 0
+      let y = 0
+      for (let k = 0; k < n; k += 1) {
+        const ray = (TAU * k) / n
+        const current = Math.cos(h * (t - ray))
+        x += current * Math.cos(ray)
+        y += current * Math.sin(ray)
+      }
+      peak = Math.max(peak, Math.hypot(x, y))
+    }
+    return peak
+  }
+  const cancelled = (n: number) => Array.from({ length: 4 * 3 + 1 }, (_, i) => i + 1).filter((h) => harmonicAmplitude(n, h) < 1e-9)
+  const survivors = (n: number) => Array.from({ length: 4 * 3 + 1 }, (_, i) => i + 1).filter((h) => harmonicAmplitude(n, h) > 1e-9)
+  const triplens = cancelled(3)
+  const sixCancels = cancelled(6)
+  const sixSurvives = survivors(6)
+  const sixPulseLaw = sixSurvives.every((h) => h % 6 === 1 || h % 6 === 5)
+  const lowestOf = (n: number) => Math.min(...survivors(n).filter((h) => h > 1))
+  const facets = [
+    { facet: `the zero neutral is the ROOTS OF UNITY, not π: Σ e^(2πik/N) = 0 exactly for every tested N ≥ 2 — x^N − 1 factors through (x − 1), so the remaining roots must cancel`, on: [2, 3, 5, 7, 4 * 3].every(rootsSumToZero) && !rootsSumToZero(1) },
+    { facet: `N = 3 kills the TRIPLENS: harmonics ${triplens.join(', ')} cancel outright — the reason no third harmonic rides the line current of any balanced three-phase system`, on: triplens.length > 0 && triplens.every((h) => h % 3 === 0) && survivors(3).every((h) => h % 3 !== 0) },
+    { facet: `N = 6 leaves exactly 6k ± 1: survivors ${sixSurvives.join(', ')} — the six-pulse converter spectrum, derived rather than measured`, on: sixPulseLaw && sixCancels.every((h) => h % 6 !== 1 && h % 6 !== 5) },
+    { facet: `and THAT is why HVDC doubles to twelve: the lowest harmonic above the fundamental climbs from ${lowestOf(6)} at six phases toward ${lowestOf(4 * 3)} at twelve — the filter costs nothing but geometry`, on: lowestOf(4 * 3) > lowestOf(6) },
+    { facet: `MORE RAYS, CLEANER FIELD: six phases cancel ${sixCancels.length} of the first 13 harmonics against three phases' ${triplens.length} — the rosetta IS the filter`, on: sixCancels.length > triplens.length },
+  ]
+  return {
+    decoded: facets.every((entry) => entry.on),
+    triplens,
+    sixPulseSurvivors: sixSurvives,
+    facets,
+    statement: `The harmonic law — ${facets.filter((entry) => entry.on).length}/${facets.length}: the N-ray rosetta cancels every harmonic h ≡ 0 (mod N) and passes h ≡ ±1 (mod N). Three phases kill the triplens (${triplens.join(',')}); six leave exactly ${sixSurvives.join(',')} = 6k ± 1, the six-pulse spectrum; twelve push the lowest survivor from ${lowestOf(6)} to ${lowestOf(4 * 3)}, which is why HVDC converters are twelve-pulse. The zero neutral is the roots of unity summing to zero — π is only the circle the rays live on.`,
+    boundary: 'DOCUMENTED: the roots-of-unity identity (algebra), the triplen cancellation in balanced three-phase and the 6k ± 1 spectrum of six-pulse converters (standard power engineering — Kimbark; IEEE 519) — all recomputed here from the rosetta construction rather than cited. FLAGGED: π "correlating" to any of this — the rays sit at 2πk/N because they are ANGLES; the circle constant is the domain, not a discovery, and the same coincidence-hunting produced the 22/7 tarot flag and the 3-6-9 legend. The invention is real and needs no mysticism: geometry filters harmonics for free. HARMONY ≠ TRUTH.',
+  }
+}
