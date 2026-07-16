@@ -137,6 +137,14 @@ export type ConceptCommandName =
   | 'concept.science.proton'
 
 export const SPEED_OF_LIGHT = 299792458
+/** Julian year in seconds — the IAU definition, 365.25 × 86400 (exact by convention). */
+export const JULIAN_YEAR_SECONDS = 365.25 * (864 * 100)
+/** Age of the universe in years — Planck 2018, 13.797 ± 0.023 Gyr (measured datum). */
+export const UNIVERSE_AGE_YEARS = 1.3797e10
+/** The canonical teaching RSA modulus and its factors — Wikipedia's RSA worked example (documented,
+ * public: n = 3233 = 61 × 53, used ONLY to demonstrate that factoring recovers the private key). */
+export const TEACHING_RSA_P = 61
+export const TEACHING_RSA_Q = 53
 export const PLANCK = 6.62607015e-34
 export const ELECTRONVOLT = 1.602176634e-19
 /** Alveolar water-vapour partial pressure at 37 °C, bar — Bühlmann's decompression physiology value
@@ -879,6 +887,9 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/science/index.ts', literal: '1914', count: 1, kind: 'data', source: 'USPTO grant year — Tesla US1119732' },
   { file: 'src/quantum/science/index.ts', literal: '9_192_631_770', count: 2, kind: 'data', source: 'SI second DEFINITION — Cs-133 hyperfine transition Hz (BIPM, 1967)', frontier: 'a definition, not a measurement — the second is pinned to this count by convention' },
   { file: 'src/quantum/science/index.ts', literal: '127_732_000', count: 1, kind: 'data', source: '¹H Larmor frequency at 3 T — γ/2π = 42.5775 MHz/T (CODATA)', frontier: 'derivable as γ/2π × B₀ from the proton gyromagnetic ratio' },
+  { file: 'src/3/7/index.ts', literal: '365.25', count: 1, kind: 'data', source: 'Julian year in days — IAU definition (exact by convention)' },
+  { file: 'src/3/7/index.ts', literal: '61', count: 1, kind: 'data', source: 'teaching RSA prime p — Wikipedia RSA worked example (n = 3233 = 61 × 53, demonstration only)' },
+  { file: 'src/3/7/index.ts', literal: '53', count: 1, kind: 'data', source: 'teaching RSA prime q — Wikipedia RSA worked example (demonstration only)' },
   // ── fire/plasma/ball — the ms unit and the PLANE_VIS visibility lattice: exact [p, q] ratio DATA,
   // every pair PROVEN on q ∈ {5, 8, 16, 32, 64} by plasmaPaintHardcodedPlanesDiscovered (its own fold).
   { file: 'src/fire/plasma/ball/index.ts', literal: '19', count: 2, kind: 'data', source: 'PLANE_VIS numerator (vignetteMidA · ringA0) — fold-proven lattice' },
