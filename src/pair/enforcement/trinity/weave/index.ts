@@ -1037,6 +1037,34 @@ if (existsSync(dist)) {
   }
 }
 
+// --- the one-palette ratchet: the render layer paints ONLY through the sealed colour atoms ---
+// The ~65-literal backlog was cleared 2026-07-16 (the last hsla fell in ProofAnimation); this gate
+// keeps it at zero: any hsla()/rgb()/6-digit-hex literal in theme, lib or src/ui is a RED finding —
+// paint through movieCanvasRgba / scaleColor* (OKLCH + the negative law), not literal colour math.
+{
+  const literal = /hsla?\(|rgba?\(|#[0-9a-fA-F]{6}\b/
+  for (const dir of ['.vitepress/theme', '.vitepress/lib', 'src/ui']) {
+    const full = join(root, dir)
+    if (!existsSync(full)) continue
+    const files: string[] = []
+    const walk = (d: string) => {
+      for (const entry of readdirSync(d, { withFileTypes: true })) {
+        const f = join(d, entry.name)
+        if (entry.isDirectory()) walk(f)
+        else if (/\.(vue|ts|mts|css)$/.test(entry.name)) files.push(f)
+      }
+    }
+    walk(full)
+    for (const file of files) {
+      const text = readFileSync(file, 'utf8')
+      const hit = text.split('\n').findIndex((line) => literal.test(line))
+      if (hit >= 0) {
+        gaps.push({ harmonic: 'one-palette', kind: 'literal-colour', detail: `${relative(root, file)}:${hit + 1} paints a literal colour — why this fails: the render layer has ONE palette (movieCanvasRgba / scaleColor*, OKLCH + the negative law); literal colour math regrows the backlog that was cleared to zero` })
+      }
+    }
+  }
+}
+
 // --- the one-source monograph gates, tightened: enforce all so entropy does not pass ---
 // No mirroring: each [page].paths.ts (root = en, bg, gla) is a thin mount over the one source
 // (monographPaths). A reintroduced staticPages().map mirror is entropy — and fails here.
