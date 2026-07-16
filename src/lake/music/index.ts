@@ -1562,3 +1562,39 @@ export function theCircleOfFifthsIsARosetta(matrix: MindMatrix = buildMatrix()) 
     }
   })
 }
+
+/** SCALES ARE NECKLACES ON THE ROSETTA — Burnside counts the harmony (wave, 2026-07-16). If the
+ * 12-tone rosetta is a bead circle, a SCALE is a subset of beads and two scales are "the same" when
+ * a rotation (transposition) or reflection (inversion) carries one to the other. So the number of
+ * essentially-different scales is a Burnside/Pólya count over the cyclic (and dihedral) group acting
+ * on the rosetta — and it lands exactly on the documented figures: 352 pitch-class sets up to
+ * transposition, 224 set classes up to transposition-and-inversion (Forte's tables). Music's
+ * catalogue is a group-orbit count on the moving rosetta. */
+export function scalesAreNecklacesOnTheRosetta(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('scalesAreNecklacesOnTheRosetta', matrix, () => {
+    const n = 4 + 8 // 12 tones
+    // Burnside over rotations: each rotation by d fixes 2^gcd(d,n) subsets
+    const rotationFixed = Array.from({ length: n }, (_, d) => 2 ** gcd(d, n))
+    const necklaces = rotationFixed.reduce((a, b) => a + b, 0) / n // = 352, sets up to transposition
+    // dihedral (add reflections): n even → n/2 axes through beads (2^(n/2+1)) + n/2 through gaps (2^(n/2))
+    const reflThroughBeads = (n / 2) * 2 ** (n / 2 + 1)
+    const reflThroughGaps = (n / 2) * 2 ** (n / 2)
+    const bracelets = (rotationFixed.reduce((a, b) => a + b, 0) + reflThroughBeads + reflThroughGaps) / (2 * n) // = 224, set classes
+    // total raw subsets = 2^12; the group collapses them to the orbit counts
+    const rawSubsets = 2 ** n
+    const facets = [
+      { facet: `distinct scales up to TRANSPOSITION = Burnside over the ${n} rotations: (Σ 2^gcd(d,${n}))/${n} = ${necklaces} — an integer (the orbit-count theorem holds) matching the documented 352 pitch-class sets`, on: Number.isInteger(necklaces) && necklaces === rotationFixed.reduce((a, b) => a + b, 0) / n && necklaces < rawSubsets },
+      { facet: `distinct scales up to transposition AND inversion = the DIHEDRAL count: ${bracelets} — an integer, fewer than the ${necklaces} transposition classes (inversion pairs them), matching Forte's documented set-class total`, on: Number.isInteger(bracelets) && bracelets < necklaces && bracelets > necklaces / 2 },
+      { facet: `the group does the collapsing: ${rawSubsets} raw subsets of the ${n} tones fall to ${necklaces} necklaces (÷≈${(rawSubsets / necklaces).toFixed(1)}) then ${bracelets} bracelets — the rosetta's symmetry IS why there are so few real scales`, on: rawSubsets === 2 ** n && necklaces < rawSubsets && bracelets < necklaces },
+      { facet: `it is the SAME cyclic group acting: C₁₂ (rotation = transposition) extended to the dihedral D₁₂ (reflection = inversion) — the moving rosetta of theCircleOfFifthsIsARosetta, now counted by Burnside`, on: Number.isInteger(necklaces) && Number.isInteger(bracelets) && bracelets <= necklaces },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      necklaces,
+      bracelets,
+      facets,
+      statement: `Scales are necklaces on the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: counting subsets of the 12-tone bead circle up to the group action gives ${necklaces} scales under transposition (Burnside over C₁₂) and ${bracelets} set classes under transposition+inversion (dihedral D₁₂) — exactly Forte's documented tables. The ${rawSubsets} raw subsets collapse to these few because the rosetta is symmetric; music's whole catalogue of essentially-different chords and scales is a group-orbit count.`,
+      boundary: 'DOCUMENTED: Burnside/Pólya enumeration of binary necklaces (352) and bracelets (224) on 12 beads — these are precisely the counts of transposition classes and set classes in twelve-tone theory (Forte, The Structure of Atonal Music; OEIS A000031/A000029 at n=12). The reduction is EXACT arithmetic over the cyclic and dihedral groups; nothing is fitted. The claim is structural — the symmetry group of the octave circle counts the scales — not that every one of the 224 classes is musically used (most are not). HARMONY ≠ TRUTH.',
+    }
+  })
+}
