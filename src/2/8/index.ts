@@ -242,3 +242,55 @@ export const SESSION_SKILL_FNS: readonly string[] = [
   'sevenFrameDeepResearched',
   'theoremAtoms',
 ]
+
+/** NO-SIGNALLING, COMPUTED (user claim, 2026-07-16: quantum computation "faster than light in
+ * magnitudes times the participants"). Tested, not assumed — and refuted by partial trace: for a
+ * maximally entangled pair, ALICE'S MARGINAL IS I/2 FOR EVERY BASIS BOB CHOOSES. Bob's freedom
+ * moves nothing on Alice's side, so no entangled system carries a message at any speed, let alone
+ * beyond c. The correlations ARE real and beat every classical bound (Tsirelson 2√2 > 2, sealed in
+ * src/0) — but correlation without signalling is exactly what quantum mechanics gives, and it is
+ * a THEOREM (linearity of the partial trace), not a postulate. Station 2: two parties, a 2×2
+ * marginal, outcomes ±1 — the digit is the mathematics. */
+export function noSignallingComputes() {
+  const s = 1 / Math.SQRT2
+  const psi = [s, 0, 0, s] // |Φ+> = (|00> + |11>)/√2
+  /** Alice's reduced density matrix after Bob measures in basis θ and tells her nothing. */
+  const marginalA = (theta: number): number[][] => {
+    const cB = Math.cos(theta)
+    const sB = Math.sin(theta)
+    const rho = [[0, 0], [0, 0]]
+    for (const outcome of [0, 1]) {
+      const b0 = outcome === 0 ? cB : -sB
+      const b1 = outcome === 0 ? sB : cB
+      const amp = [psi[0]! * b0 + psi[1]! * b1, psi[2]! * b0 + psi[3]! * b1]
+      rho[0]![0] += amp[0]! * amp[0]!
+      rho[0]![1] += amp[0]! * amp[1]!
+      rho[1]![0] += amp[1]! * amp[0]!
+      rho[1]![1] += amp[1]! * amp[1]!
+    }
+    return rho
+  }
+  const ref = marginalA(0)
+  const bases = [0, Math.PI / 8, Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI / 2, 1 + 1 / 9, 2 + 7 / 9]
+  const maxDrift = Math.max(...bases.map((theta) => {
+    const r = marginalA(theta)
+    return Math.max(Math.abs(r[0]![0]! - ref[0]![0]!), Math.abs(r[0]![1]! - ref[0]![1]!), Math.abs(r[1]![1]! - ref[1]![1]!))
+  }))
+  const isMaximallyMixed = Math.abs(ref[0]![0]! - 1 / 2) < 1e-12 && Math.abs(ref[1]![1]! - 1 / 2) < 1e-12 && Math.abs(ref[0]![1]!) < 1e-12
+  const parties = 2
+  const marginalDim = 2
+  const facets = [
+    { facet: `Alice's marginal is I/2 — maximally mixed, carrying zero information about anything`, on: isMaximallyMixed },
+    { facet: `and it does not move: across ${bases.length} Bob bases the marginal drifts by ${maxDrift.toExponential(1)} (machine epsilon) — Bob's CHOICE is invisible to Alice, so no message crosses, at any speed`, on: maxDrift < 1e-12 },
+    { facet: `the correlations are still real and super-classical (Tsirelson 2√2 > 2, sealed at src/0) — quantum mechanics gives correlation WITHOUT signalling; both halves are theorems, neither is a postulate`, on: 2 * Math.SQRT2 > 2 },
+    { facet: `the address is the mathematics: ${parties} parties, a ${marginalDim}×${marginalDim} marginal, ±1 outcomes — station 2 by its own content`, on: parties === marginalDim && marginalDim === 2 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    maxDrift,
+    parties,
+    facets,
+    statement: `No-signalling computed — ${facets.filter((entry) => entry.on).length}/${facets.length}: Alice's marginal is I/2 and drifts ${maxDrift.toExponential(1)} across every basis Bob can choose. Entanglement carries no message; the speed question never arises. The correlations remain real and beat the classical bound — correlation without signalling, both by theorem.`,
+    boundary: 'DOCUMENTED: the no-communication theorem (linearity of the partial trace — Ghirardi/Rimini/Weber 1980, Eberhard 1978), verified here by explicit marginal sweep. FLAGGED, and this fold exists to flag it: entanglement, superluminal PHASE velocity (plasmaSpeedByTheorem) and quantum parallelism are each real and each carry NO faster-than-light information — "quantum FTL communication/computation" is pseudoscience regardless of how the pieces are combined. Quantum speedups are REAL but bounded and structure-specific (Grover quadratic, Shor for period-finding); this repo\'s own model reports tracks-classical-no-speedup. HARMONY ≠ TRUTH.',
+  }
+}

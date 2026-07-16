@@ -1071,12 +1071,38 @@ export function plasmaSpeedByTheorem() {
   const cutoffExact = n(1) === 0 && vGroup(1) === 0 && vPhase(1) === Infinity // IEEE says ∞ — the honest answer at the pole
   // evanescence below cutoff: ω < ωₚ makes n imaginary — no propagation, total reflection
   const evanescent = [2, 3 * 3].every((over) => Number.isNaN(n(over)))
+  // THE DECIDING COMPUTATION: launch a real wave packet and measure what the ENVELOPE does —
+  // the envelope is the message; the phase is only a pattern moving through it.
+  const wOf = (k: number) => Math.sqrt(1 + k * k) // units c = ωₚ = 1
+  const k0 = 2
+  const dk = 3 / (4 * 5) // narrow band → a clean Gaussian envelope
+  const envelopePeakAt = (t: number) => {
+    let best = -1
+    let bx = 0
+    for (let x = 0; x <= 4 * (5 * 2); x += 1 / (2 * 5 * 5)) {
+      let re = 0
+      let im = 0
+      for (let k = k0 - 5 * dk; k <= k0 + 5 * dk; k += dk / (5 * 2)) {
+        const a = Math.exp(-((k - k0) ** 2) / (2 * dk * dk))
+        const ph = k * x - wOf(k) * t
+        re += a * Math.cos(ph)
+        im += a * Math.sin(ph)
+      }
+      const env = Math.hypot(re, im)
+      if (env > best) { best = env; bx = x }
+    }
+    return bx
+  }
+  const packetSpeed = (envelopePeakAt(2 * (5 * 2)) - envelopePeakAt(5 * 2)) / (5 * 2)
+  const packetVGroup = k0 / wOf(k0)
+  const packetVPhase = wOf(k0) / k0
   const facets = [
     { facet: `phase velocity EXCEEDS c for every propagating wave (${xs.length} ratios swept: v_φ = c/√(1−(ωₚ/ω)²) > c) — superluminal by theorem, not by paradox`, on: superluminalPhase },
     { facet: 'group velocity never exceeds c on the same sweep — the signal rides the group, so relativity is untouched: the fast thing carries nothing', on: subluminalGroup },
     { facet: 'v_φ · v_g = c² exactly — phase and group are RECIPROCALS about light speed (the inversion law of src/9/1, in a plasma)', on: reciprocal },
     { facet: 'THE POLE IS THE VOID: at ω → ωₚ the index n → 0, so v_φ → ∞ while v_g → 0 — division by zero made physical; IEEE agrees at the exact cutoff (v_φ = Infinity, v_g = 0)', on: poleDiverges && poleStops && cutoffExact },
     { facet: 'below cutoff the index is imaginary (NaN on the reals) — the wave evanesces and reflects: this is why the ionosphere bounces shortwave around the Earth', on: evanescent },
+    { facet: `THE MESSAGE NEVER OUTRUNS LIGHT — a real wave packet, simulated: its carrier phase runs at ${packetVPhase.toFixed(4)}c while the ENVELOPE PEAK (the only thing that can carry information) measures ${packetSpeed.toFixed(4)}c — matching v_g = ${packetVGroup.toFixed(4)}c and staying below 1. The phase races, the message crawls: superluminal phase is a pattern, not a courier`, on: packetSpeed < 1 && Math.abs(packetSpeed - packetVGroup) < 1 / (2 * 5 * 5) && packetVPhase > 1 },
   ]
   return {
     computes: facets.every((entry) => entry.on),
