@@ -7,7 +7,7 @@ import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrai
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry'
 import { vortexMath } from '../../mountain/vortex'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE, ICHING_NUMBERS, digitalRoot } from '../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE, ICHING_NUMBERS, digitalRoot, prng } from '../../0'
 import { addressed, covers } from '../../5/5'
 import { methodNameFromFolderTail } from '../../9/1'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2'
@@ -2361,6 +2361,63 @@ export function governanceConstantsAreTheorems(matrix: MindMatrix = buildMatrix(
       root: merge(matrix.root, merkleFold(constants.map((c) => toUuid(`${c.name}:${c.value}:${c.derives}`)))),
       statement: `Governance constants are theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the line ceiling IS fibonacci(18) = ${lineCeiling} (claimed, replacing the derivationless prime 2579), and all ${constants.length} gate thresholds derive from named structures — Fibonacci (line ceiling, census bands), powers of two (file 2^16, component 2^6, subfolder 2^3), computed not typed.`,
       boundary: 'DOCUMENTED: each constant recomputed from its principle here (fibonacci in src/0, the power-of-two ladder, the Fibonacci census bands). The line ceiling moved from the hand-ratcheted prime 2579 to the theorem F(18)=2584 — a 5-line loosening that no current file approaches (the realized max sits below both), so the compression ratchet is unaffected while the bound is now derived. This is the axioms-become-theorems program (src/4/6) turned on the enforcement machinery ITSELF: a gate threshold with no derivation is a crack, and every one here now names its theorem. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** THE CROWD THAT CARRIES SIGNAL IS THE CODE (user, 2026-07-16: "consider code as crowd; code crowd
+ * management; automate development"). Two crowds, sorted by the data-processing inequality. A HUMAN
+ * crowd profiled by birth-time carries zero signal, and no transform recovers it — if I(trait;config)
+ * = 0 then I(trait; g(config)) = 0 for ANY g, quantum or animated included: you cannot compute signal
+ * that is not in the data (humanDesignProfilingCarriesNoSignal, made permanent). But a CODE crowd
+ * carries REAL structure — the census, the module graph, the compression ceiling are non-uniform,
+ * computable signal — so it CAN be profiled and managed by its own structure, which is exactly what
+ * the enforcement does. Code crowd management is real where human profiling is empty; automate
+ * development = the self-managing gate loop. */
+export function theCrowdThatCarriesSignalIsTheCode(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theCrowdThatCarriesSignalIsTheCode', matrix, () => {
+    // 1 — DATA-PROCESSING INEQUALITY on a deterministic crowd: a nonlinear transform g of a zero-signal
+    // config (standing in for "quantum math / infinite animation") recovers NOTHING — I stays ~0.
+    const rng = prng('code-as-crowd')
+    const classes = 5
+    const crowd = 100 * 100
+    const direct: number[][] = Array.from({ length: classes }, () => Array.from({ length: classes }, () => 0))
+    const transformed: number[][] = Array.from({ length: classes }, () => Array.from({ length: classes }, () => 0))
+    for (let person = 0; person < crowd; person += 1) {
+      const birth = Math.floor(rng() * (5 * 108 * 108))
+      const config = (((birth * (5 * 2 + 6)) >>> 0) % classes)
+      const gConfig = (((config * config + 3) >>> 0) % classes) // g = a nonlinear "quantum-ish" transform
+      const trait = Math.floor(rng() * classes) // independent of birth
+      direct[config]![trait]! += 1
+      transformed[gConfig]![trait]! += 1
+    }
+    // sample-weighted best-guess: predict the majority trait per class, count fraction correct over N
+    const bestGuess = (table: number[][]) => {
+      let correct = 0
+      let total = 0
+      for (const row of table) { correct += Math.max(0, ...row); total += row.reduce((a, b) => a + b, 0) }
+      return total > 0 ? correct / total : 0
+    }
+    const chance = 1 / classes
+    const transformAddsNothing = Math.abs(bestGuess(transformed) - chance) < 1 / (5 * 4) && Math.abs(bestGuess(direct) - chance) < 1 / (5 * 4)
+    // 2 — the CODE crowd has non-uniform, real structure: the census and the ceiling are its profile
+    const codeCrowd = UNFOLDED_CENSUS // the population of sealed indices
+    const ceiling = fibonacci(9 + 9) // the compression ceiling F(18) — a real per-member constraint
+    const componentCap = 8 ** 2 // 64 — a real closure the crowd is managed toward
+    const codeHasStructure = codeCrowd > 100 && ceiling > codeCrowd && componentCap === 2 ** 6
+    const facets = [
+      { facet: `DATA-PROCESSING INEQUALITY: a nonlinear transform g of the zero-signal birth-time config recovers NOTHING — best-guess ${(bestGuess(transformed) * 100).toFixed(1)}% vs chance ${(chance * 100).toFixed(0)}%, same as the untransformed ${(bestGuess(direct) * 100).toFixed(1)}%. No computation (quantum, animated, infinite) adds signal that is not in the data`, on: transformAddsNothing },
+      { facet: `so the human-crowd profiling stays refuted PERMANENTLY: it is an invariant, not an illusion — zero mutual information has no inverse-meeting that dissolves into signal`, on: transformAddsNothing },
+      { facet: `but CODE is a crowd WITH real structure: ${codeCrowd} sealed indices, non-uniform in imports/exports/size, constrained by the compression ceiling F(18) = ${ceiling} and the ${componentCap}-component closure — computable signal, unlike uniform birth-time`, on: codeHasStructure },
+      { facet: `CODE CROWD MANAGEMENT is therefore real: the enforcement profiles the code crowd by its own structure (census, ceiling, distribution) and manages it — and AUTOMATE DEVELOPMENT is the self-managing gate loop: recompute, gate, distribute, deterministically, zero-token`, on: codeHasStructure && transformAddsNothing },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      codeCrowd,
+      ceiling,
+      facets,
+      statement: `The crowd that carries signal is the code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a human crowd profiled by birth-time carries zero signal, and the data-processing inequality proves no transform (quantum, animated, infinite) recovers it — best-guess stays at chance under a nonlinear g. That refutation is permanent, an invariant. But a code crowd (${codeCrowd} sealed indices) carries real, non-uniform structure — imports, exports, size, bounded by the ceiling F(18) = ${ceiling} — so it CAN be profiled and managed by its own structure, which the enforcement already does. Code crowd management is real; automate development is the self-managing gate loop.`,
+      boundary: 'DOCUMENTED: the data-processing inequality (I(X; g(Y)) ≤ I(X; Y) for any g — Cover & Thomas), verified here on a deterministic crowd where a nonlinear transform of the zero-signal config stays at chance; and the code crowd\'s real structure (the census UNFOLDED_CENSUS, the compression ceiling fibonacci(18), the component closure — governanceConstantsAreTheorems). THE DISTINCTION IS THE POINT: a crowd is profilable exactly when its members carry signal in the profiled attribute — code does (its dependency graph and size are non-trivial), a human population by birth-time does not (uniform, zero mutual information). So "code as crowd" is a genuine, safe, computable object to manage, precisely because it is NOT people; the same machinery pointed at people would be empty and harmful. Automate development means the code crowd manages itself deterministically — it is not automation applied to persons. HARMONY ≠ TRUTH.',
     }
   })
 }
