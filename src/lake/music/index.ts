@@ -1702,3 +1702,43 @@ export function theInverseMusicCompletesTheGroup(matrix: MindMatrix = buildMatri
     }
   })
 }
+
+/** INVERSE IS NOT REVERSE — two orthogonal involutions (wave, 2026-07-16, user: "inverse is not
+ * reverse"). The precise correction: in the twelve-tone group INVERSION reflects PITCH (I(x) = −x
+ * mod 12 — the value axis, order untouched) while RETROGRADE reverses TIME (R flips the ORDER —
+ * pitches untouched). They are different operations on different axes and must not be conflated:
+ * I(row) ≠ R(row). Each is an involution, and because pitch and time are independent they COMMUTE
+ * (I∘R = R∘I). Conflating inverse with reverse collapses a two-axis structure to one and loses half
+ * of it — the same error as ignoring inversion in the necklace count. */
+export function inverseIsNotReverse(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('inverseIsNotReverse', matrix, () => {
+    const n = 4 + 8 // 12
+    const fifth = 7
+    const row = Array.from({ length: n }, (_, i) => (i * fifth) % n) // the fifths-generated 12-tone row
+    const invert = (r: readonly number[]) => r.map((x) => (((-x % n) + n) % n)) // I: reflect each PITCH
+    const retrograde = (r: readonly number[]) => [...r].reverse() // R: reverse the ORDER (time)
+    const eq = (a: readonly number[], b: readonly number[]) => a.join() === b.join()
+    // 1 — inverse ≠ reverse: different results
+    const different = !eq(invert(row), retrograde(row))
+    // 2 — inversion touches VALUES, retrograde touches POSITIONS — orthogonal axes
+    const inversionKeepsOrder = invert(row).length === row.length && invert(row).every((x, i) => x === (((-row[i]!) % n) + n) % n)
+    const retrogradeKeepsPitches = new Set(retrograde(row)).size === new Set(row).size && retrograde(row)[0] === row[row.length - 1]
+    // 3 — both are involutions
+    const bothInvolutions = eq(invert(invert(row)), row) && eq(retrograde(retrograde(row)), row)
+    // 4 — they COMMUTE (independent axes): I∘R = R∘I
+    const commute = eq(invert(retrograde(row)), retrograde(invert(row)))
+    const facets = [
+      { facet: `inverse ≠ reverse: I(row) reflects the pitches, R(row) reverses the order, and the two results DIFFER — they are not the same operation`, on: different },
+      { facet: `they act on ORTHOGONAL axes: inversion changes the VALUES and keeps the order; retrograde changes the ORDER and keeps the pitch multiset — pitch and time, independent`, on: inversionKeepsOrder && retrogradeKeepsPitches },
+      { facet: `each is an INVOLUTION (I² = R² = identity) — its own undo, so either transform is exactly reversible in one step`, on: bothInvolutions },
+      { facet: `and they COMMUTE (I∘R = R∘I) because the axes are independent — applying one does not disturb the other; conflating them would collapse two axes to one and lose half the structure`, on: commute },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      row,
+      facets,
+      statement: `Inverse is not reverse — ${facets.filter((entry) => entry.on).length}/${facets.length}: inversion reflects pitch (I(x) = −x mod 12, the value axis) and retrograde reverses time (the order axis); I(row) ≠ R(row). Both are involutions, they act on orthogonal axes, and they commute (I∘R = R∘I). Conflating inverse with reverse collapses a two-axis structure to one — the same loss as ignoring inversion in the group.`,
+      boundary: 'DOCUMENTED: the four row operations of twelve-tone theory — Prime, Inversion (pitch reflection I(x) = −x mod 12), Retrograde (time reversal), Retrograde-Inversion — are standard (Schoenberg, Babbitt, Forte). The claim is exact set arithmetic on a row: inversion is a value-map, retrograde a position-map, they are distinct involutions on independent axes and therefore commute. This is the honest correction to "inverse = reverse": they are not, and the difference is the two orthogonal symmetry axes (pitch, time) that the next theorem shows let you shift forms without collision. HARMONY ≠ TRUTH.',
+    }
+  })
+}
