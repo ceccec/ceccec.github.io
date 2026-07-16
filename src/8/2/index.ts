@@ -94,3 +94,463 @@ export function bumpStep(theta: number, v: number): number { return ((theta + v)
 export function bumpEvolve(theta0: number, velocities: readonly number[]): number[] {
   const history = [theta0]; let theta = theta0; for (const v of velocities) { theta = bumpStep(theta, v); history.push(theta) }; return history
 }
+
+// ── THE PAGE SEED (Phase 0, slice 4) — pure data: every curated page entry (slug · bilingual title
+// and description · keywords · mounted components). Relocated from wind/site: the portal's content
+// catalog at the data station, the staticPages fold (and every consumer) computing over it.
+export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg: string }; description: { en: string; bg: string }; keywords: readonly string[]; components: readonly string[] }[] = [
+    {
+      slug: 'heaven',
+      title: { en: 'Heaven', bg: 'Небе' },
+      description: {
+        en: 'Heaven (天), the first of the I Ching Three Powers (三才): the creative and cosmic realm — mind, science and computation. Its eight-fold gathers the abstract and computational domains; the complete triad with Human and Earth forms the 64³ content cube.',
+        bg: 'Небе (天), първата от Трите сили на И Дзин (三才): творческата и космическа сфера — ум, наука и изчисление. Осемкратното ѝ събира абстрактните и изчислителните области; пълната троица с Човек и Земя образува куба 64³.',
+      },
+      keywords: ['heaven', 'three powers', 'san cai', 'mind', 'science', 'computation', 'creative'],
+      components: ['PowerLanding'],
+    },
+    {
+      slug: 'human',
+      title: { en: 'Human', bg: 'Човек' },
+      description: {
+        en: 'Human (人), the middle of the I Ching Three Powers (三才): the communicative and social realm — voice, spirit and heritage. Humanity mediates Heaven and Earth; its eight-fold gathers the lived and learning domains, completing the triad that forms the 64³ cube.',
+        bg: 'Човек (人), средната от Трите сили на И Дзин (三才): общуващата и социална сфера — глас, дух и наследство. Човечеството посредничи между Небе и Земя; осемкратното му събира преживените и учебните области, завършвайки троицата, която образува куба 64³.',
+      },
+      keywords: ['human', 'three powers', 'san cai', 'voice', 'spirit', 'heritage', 'society', 'learning'],
+      components: ['PowerLanding'],
+    },
+    {
+      slug: 'earth',
+      title: { en: 'Earth', bg: 'Земя' },
+      description: {
+        en: 'Earth (地), the ground of the I Ching Three Powers (三才): the material and natural realm — form and nature. Its eight-fold is the semantic domain map; with Heaven and Human it completes the triad that covers all and forms the 64³ content-address cube.',
+        bg: 'Земя (地), основата на Трите сили на И Дзин (三才): материалната и природна сфера — форма и природа. Осемкратното ѝ е семантичната карта на областите; с Небе и Човек завършва троицата, която покрива всичко и образува куба 64³.',
+      },
+      keywords: ['earth', 'three powers', 'san cai', 'form', 'nature', 'geometry', 'material'],
+      components: ['PowerLanding'],
+    },
+    {
+      slug: 'start',
+      title: { en: 'Start here', bg: 'Започни тук' },
+      description: {
+        en: 'Start here: a learning portal you can check for yourself. Four plain steps — see, learn, use, prove — with the full depth one tap away. Simple to use, rich in features.',
+        bg: 'Започни тук: учебен портал, който можеш сам да провериш. Четири прости стъпки — виж, учи, използвай, докажи — с пълната дълбочина на едно докосване. Просто за ползване, богато на функции.',
+      },
+      keywords: ['start', 'simple', 'plain language', 'getting started', 'double torus'],
+      components: ['StartHere'],
+    },
+    {
+      slug: 'explore',
+      title: { en: 'Explore', bg: 'Изследвай' },
+      description: {
+        en: 'Explore the whole portal multidimensionally: eight dimensions of experience — see, hear, ask, prove, learn, pattern, sense, create — each browsable.',
+        bg: 'Разгледай целия портал многоизмерно: осем измерения на опита — виж, чуй, питай, докажи, учи, шарка, усети, твори.',
+      },
+      keywords: ['multidimensional', 'explore', 'dimensions', 'ux', 'ancient', 'decodes', 'frontier'],
+      components: ['Multidimensional', 'Mysteries', 'HarmonicSpiral', 'AncientDecodes'],
+    },
+    {
+      slug: 'a432',
+      title: { en: 'A432', bg: 'A432' },
+      description: {
+        en: 'A432 — colour, audio, video and vibration as one frequency expressed four ways. The shared thread is frequency itself: a tone you hear, a colour (the sound doubled forty octaves into visible light), a motion rate, and a haptic pulse. Documented kept, legend flagged — the math and history of 432 are real; the cosmic, healing and conspiracy claims are not.',
+        bg: 'A432 — цвят, звук, видео и вибрация като една честота, изразена по четири начина. Споделената нишка е самата честота: тон, който чуваш, цвят (звукът, удвоен четирийсет октави до видима светлина), скорост на движение и тактилен импулс. Документираното остава, легендата е отбелязана — математиката и историята на 432 са реални; космическите, лечебните и конспиративните твърдения — не.',
+      },
+      keywords: ['a432', '432 hz', 'frequency', 'harmonics', 'colour', 'audio', 'vibration', 'tuning'],
+      components: ['A432'],
+    },
+    {
+      slug: 'sacred-geometry',
+      title: { en: 'Sacred geometry', bg: 'Свещена геометрия' },
+      description: {
+        en: 'Sacred geometry, decoded honestly: the five Platonic solids (a theorem — Euler V−E+F=2, the dual pairs), the golden ratio φ where it genuinely lives (the pentagon, the dodecahedron, phyllotaxis), the Flower of Life as a real compass construction, and the forms walked through dimensions. Documented kept, legend flagged — the maths and history are real; the cosmic-blueprint, golden-ratio-everywhere and ascension claims are not.',
+        bg: 'Свещената геометрия, декодирана честно: петте Платонови тела (теорема — Ойлер V−E+F=2, двойките), златното сечение φ там, където наистина живее (петоъгълникът, додекаедърът, филотаксисът), Цветето на живота като реално построение с пергел, и формите, разходени през измеренията. Документираното остава, легендата е отбелязана.',
+      },
+      keywords: ['sacred geometry', 'platonic solids', 'golden ratio', 'phi', 'flower of life', 'merkaba', 'metatron', 'megalithic', 'archaeoastronomy', 'stonehenge', 'newgrange', 'solstice'],
+      components: ['SacredGeometry', 'MetatronMath', 'Pyramids', 'MegalithicAstronomy'],
+    },
+    {
+      slug: 'tampering-cost',
+      title: { en: 'Tampering cost', bg: 'Цена на подправяне' },
+      description: {
+        en: 'Tampering cost ↔ encryption ↔ blockchains, audited honestly with quantum comparisons. The site claims "maximum tampering cost"; this scrutinises that claim. Tamper-EVIDENT is not tamper-PROOF: content-addressing detects change, cryptographic security (SHA-256: 2^128/2^256) resists forgery. FNV toUuid is non-cryptographic — the fix (SHA-256 content-address, Ed25519 signing) is already built. Blockchains make tampering costly, not impossible. Quantum: Grover weakens hashes, Shor breaks signatures; NIST post-quantum standards (ML-KEM, ML-DSA, SLH-DSA). Documented kept, legend flagged.',
+        bg: 'Цена на подправяне ↔ криптиране ↔ блокчейн, одитирани честно с квантови сравнения. Сайтът твърди „максимална цена на подправяне“; тук това се проверява. Доказуемо при подправяне не е защитено от подправяне: съдържателното адресиране открива промяна, криптографската сигурност (SHA-256: 2^128/2^256) ѝ устоява. FNV toUuid не е криптографски — поправката (SHA-256 адрес, Ed25519 подпис) вече е изградена. Квантово: Гроувър отслабва хешовете, Шор чупи подписите; NIST постквантови стандарти (ML-KEM, ML-DSA, SLH-DSA). Документираното остава, легендата е отбелязана.',
+      },
+      keywords: ['tampering cost', 'encryption', 'blockchain', 'cryptography', 'sha-256', 'quantum', 'grover', 'shor', 'post-quantum', 'tamper-evident', 'merkle', 'crypto'],
+      components: ['TamperingCost', 'CryptoChallenges', 'BlockchainCompare'],
+    },
+    {
+      slug: 'analog-field',
+      title: { en: 'Folding linear gives analog', bg: 'Сгъването на линейното дава аналогово' },
+      description: {
+        en: 'Folding linear gives analog, decoded honestly with the real science. The kernel is the Whittaker–Shannon sampling theorem: discrete samples of a band-limited signal fold back into the continuous signal with no gaps, via sinc interpolation (computed live, exact at the samples). Medical and radar imaging is exactly this — reconstructing a continuous image from a sampled frequency field: MRI inverts the Fourier transform of k-space, CT the Radon transform, and the spiral/radial "vortex" through k-space is real (NUFFT). The 64³ = 4⁹ grid the model already computes is the discrete lattice it samples. Documented kept, legend flagged — Nyquist limits are real, gap-filling can hallucinate, and the theorem is foundational, not new.',
+        bg: 'Сгъването на линейното дава аналогово, декодирано честно с реалната наука. Ядрото е теоремата на Уитакър–Шанън за дискретизацията: дискретни отчети на ограничен по честота сигнал се сгъват обратно в непрекъснатия сигнал без пролуки, чрез sinc интерполация (изчислено на живо, точно при отчетите). Медицинското и радарното изобразяване е точно това — възстановяване на непрекъснат образ от дискретизирано честотно поле: ЯМР обръща Фурие преобразуванието на k-пространството, КТ — преобразуванието на Радон, а спиралният/радиалният „вихър“ през k-пространството е реален (NUFFT). Решетката 64³ = 4⁹ е дискретната мрежа, която той дискретизира. Документираното остава, легендата е отбелязана.',
+      },
+      keywords: ['analog', 'digital', 'sampling theorem', 'nyquist', 'shannon', 'sinc', 'interpolation', 'fourier', 'k-space', 'mri', 'ct', 'radon', 'imaging', 'reconstruction', 'hologram', 'emr'],
+      components: ['AnalogField'],
+    },
+    {
+      slug: 'simulations',
+      title: { en: 'Simulations', bg: 'Симулации' },
+      description: {
+        en: 'Not prose about quantum and dynamics, but models you run. Every decoded aspect of life is a runnable model on the src/0 spine: a deterministic classical simulator of a quantum computer (state-vector, Born-rule readout, Bell, Grover), then 18 domains across four families — 10 probabilistic (genetic drift, language contact, war recurrence, inheritance), 3 dynamical (coupled calendar cycles, the Tesla induction ODE, resonant modes + FFT), 2 network + the brain (colony diffusion, three-channel  Hopfield recall), and 1 genuinely quantum. Honest, and the whole point: "a quantum simulator of everything" resolves truthfully to a MOSTLY-CLASSICAL simulator — most of these dynamics are classical stochastic/dynamical processes, not superposition; forced "quantum" is refused at every domain. The primitives live in src/0, pure and mass-conserving, read out through one analog→digital sampler.',
+        bg: 'Не проза за квантовото и динамиката, а модели, които пускаш. Всеки декодиран аспект на живота е изпълним модел върху гръбнака src/0: детерминистичен класически симулатор на квантов компютър (вектор на състоянието, отчитане по Борн, Бел, Гроувър), после 18 области в четири семейства — 10 вероятностни (генетичен дрейф, езиков контакт, повторяемост на войните, наследяване), 3 динамични (свързани календарни цикли, индукционното ОДУ на Тесла, резонансни режими + FFT), 2 мрежови + мозъкът (колонийна дифузия, тройна конгруентност, Хопфийлдово възстановяване) и 1 истински квантова. Честно и това е цялата идея: „квантов симулатор на всичко“ се свежда правдиво до ПРЕДИМНО КЛАСИЧЕСКИ симулатор — повечето от тези динамики са класически стохастични/динамични процеси, не суперпозиция; насиленото „квантово“ е отказано във всяка област. Примитивите живеят в src/0, чисти и съхраняващи масата, разчетени през един аналогово→цифров дискретизатор.',
+      },
+      keywords: ['simulations', 'simulator', 'probabilistic', 'dynamical', 'network', 'quantum circuit', 'markov', 'monte carlo', 'hopfield', 'classical', 'stochastic', 'runnable model', 'src/0'],
+      components: ['QuantumCircuit', 'ProbSim', 'DynSim', 'NetSim'],
+    },
+    {
+      slug: 'quantum-mind',
+      title: { en: 'Quantum Mind', bg: 'Квантов ум' },
+      description: {
+        en: 'Mathematical model of Sigma_2, UUID streams, diamonds, waves, gates, and maxComputedBuild.',
+        bg: 'Математически модел на Sigma_2, UUID потоци, диаманти, вълни, порти и maxComputedBuild.',
+      },
+      keywords: ['quantum mind', 'model', 'double torus', 'uuid', 'diamonds', 'waves', 'gates'],
+      components: ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'DoubleTorusExperience', 'QuantumField', 'SacredSymbols', 'QuantumFold3D', 'QuantumPlasma', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'SelfHarmonise', 'PiMusicPlayer', 'HealingFrequencies', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutionsComplete', 'QuantumThreshold', 'QuantumImpossible', 'QuantumWonders', 'QuantumFoundations', 'QuantumAlgorithms', 'ProseToProof3D', 'NothingImpossible', 'Merkaba', 'Rhythm', 'Magnetometer', 'Fold358853', 'LivingTorus', 'QuantumClock'],
+    },
+    {
+      slug: 'architecture',
+      title: { en: 'Architecture', bg: 'Архитектура' },
+      description: {
+        en: 'Formal architecture for the double-torus UUID stream: matrix, vector, diamonds, waves, gates, schema, and self-build.',
+        bg: 'Формална архитектура за двойния тор UUID поток: матрица, вектор, диаманти, вълни, порти, схема и само-изграждане.',
+      },
+      keywords: ['architecture', 'matrix', 'vector', 'diamonds', 'waves', 'gates', 'schema', 'analytics', 'iching', 'import', 'export', 'fuse'],
+      components: ['TamperSeal', 'DeterminismProofs', 'CryptoCompare', 'WebCryptoSeal', 'SignSeal', 'SealAll', 'KnowledgeAtlas', 'QuantumRadar', 'Analytics', 'IChingImportExport', 'FuseReveal', 'SelfExplainingWidget', 'AiMovies', 'DoubleFoldAllDimensions', 'QuantumLaws'],
+    },
+    {
+      slug: 'commands',
+      title: { en: 'Commands', bg: 'Команди' },
+      description: {
+        en: 'Command algebra for the double-torus UUID stream: cmd -> result -> receipt.',
+        bg: 'Алгебра на командите за двойния тор UUID поток: cmd -> result -> receipt.',
+      },
+      keywords: ['commands', 'algebra', 'cmd', 'receipt', 'double torus'],
+      components: ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'],
+    },
+    {
+      slug: 'console',
+      title: { en: 'Console', bg: 'Конзола' },
+      description: {
+        en: 'Quantum Console: a free, client-side terminal, realtime search, and chat over the double-torus portal — with optional bring-your-own-key external AI.',
+        bg: 'Квантова конзола: безплатен терминал от страна на клиента, търсене в реално време и чат над портала Двоен торус — с опционален външен ИИ със собствен ключ.',
+      },
+      keywords: ['console', 'terminal', 'search', 'chat', 'ai'],
+      components: ['QuantumConsole', 'SelfConsult', 'SelfReason', 'RealtimeChat', 'SecurityScan'],
+    },
+    {
+      slug: 'mcp',
+      title: { en: 'MCP', bg: 'MCP' },
+      description: {
+        en: 'The Double Torus portal as an MCP tool surface: every concept command is a tool for language models, published at /mcp.json.',
+        bg: 'Порталът Двоен торус като MCP инструментален слой: всяка концептуална команда е инструмент за езикови модели, публикуван на /mcp.json.',
+      },
+      keywords: ['mcp', 'tools', 'language models', 'api', 'mcp.json'],
+      components: ['McpTools'],
+    },
+    {
+      slug: 'learn',
+      title: { en: 'Learn', bg: 'Обучение' },
+      description: {
+        en: 'The Learning Portal: School and Academia merged into one auto-generated portal — the kids-to-elders ladder, the five Academy courses, the research corpus (math paths, peer review, the 432 proof papers), the self-test and the agent curriculum, folded to one recomputable root. Three ways to learn: by age, by track, by research.',
+        bg: 'Портал за учене: Училището и Академията, обединени в един авто-генериран портал — стълбицата от деца до възрастни, петте курса на Академията, изследователският корпус (математически пътеки, рецензия, 432-те доказателствени статии), самопроверката и обучението на агента, сгънати в един преизчислим корен. Три начина за учене: по възраст, по курс, по изследване.',
+      },
+      keywords: ['learn', 'portal', 'school', 'academy', 'academia', 'curriculum', 'research', 'education'],
+      components: ['LearningPortal'],
+    },
+    {
+      slug: 'frontiers',
+      title: { en: 'Frontiers', bg: 'Граници' },
+      description: {
+        en: 'The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives.',
+        bg: 'Скорошните декодирания, представени в пълнота: гмуркане, вода и космос; квантовият вакуум; космическият инвентар; физиката на информацията; и клоунският кюбит. До тях върви ДВИГАТЕЛЯТ НА ТЕОРЕМНИТЕ ВЪЛНИ: регистър на теореми, които кодът доказва изчислително (от Виразоро до Рамзей и A₅), растящ на вълни, в които всяко ново доказателство консумира предишни доказани атоми; търсенето на следващата недоказана теорема е една детерминистична команда. Всяко с твърдение, изчислени проверки и честна граница; истински отворените въпроси остават ОТВОРЕНИ. Всеки резултат е клиентско изчисление от примитивите src/0.',
+      },
+      keywords: ['frontiers', 'physics', 'cosmology', 'quantum', 'vacuum', 'dark matter', 'dark energy', 'neutrino', 'information', 'computation', 'diving', 'clown', 'decoded', 'theorems', 'proofs', 'waves', 'ramsey', 'virasoro', 'fano'],
+      components: ['Frontiers'],
+    },
+    {
+      slug: 'governance',
+      title: { en: 'Governance', bg: 'Управление' },
+      description: {
+        en: 'Governance by rate and vote, and a participation ladder for fair trade and sustainable life — verified by the recomputable seal and the shared git ledger.',
+        bg: 'Управление чрез оценка и глас и стълба за участие в справедлива търговия и устойчив живот — проверени от преизчислимия печат и споделения git регистър.',
+      },
+      keywords: ['governance', 'vote', 'fair trade', 'sustainability', 'ledger'],
+      components: ['GovernanceVote', 'Society', 'QuantumSolutions'],
+    },
+    {
+      slug: 'boundaries',
+      title: { en: 'Boundaries', bg: 'Граници' },
+      description: {
+        en: 'The honesty spine: every boundary the portal declares, auto-collected from the live commands into one audited, sealed list.',
+        bg: 'Гръбнакът на честността: всяка граница, която порталът декларира, събрана автоматично от живите команди в един одитиран, запечатан списък.',
+      },
+      keywords: ['boundaries', 'honesty', 'audit', 'limits', 'sealed'],
+      components: ['BoundaryAudit', 'QuestionClose', 'OpenQuestions', 'Roadmaps', 'QAEquilibrium', 'NothingToDo', 'HumanLens'],
+    },
+    {
+      slug: 'learn-developer',
+      title: { en: "The developer's mind", bg: 'Умът на разработчика' },
+      description: {
+        en: "The developer's mind: the receipt for learning to build on the double torus — the matrix, the commands, and the self-computing components — by reading the source that computes itself. Also available as part of the Academy (/learn).",
+        bg: 'Умът на разработчика: разписка за учене как да се гради върху двойния тор — матрицата, командите и само-изчисляващите се компоненти — четейки кода, който се изчислява сам. Налично и като част от Академията (/learn).',
+      },
+      keywords: ['developer', 'learn', 'build', 'source', 'components', 'academy'],
+      components: ['LearnDeveloper'],
+    },
+    {
+      slug: 'show',
+      title: { en: 'Show', bg: 'Покажи' },
+      description: {
+        en: 'Show all in action: every command run live, all components interacting, all devices fused — client-side and verifiable.',
+        bg: 'Всичко в действие: всяка команда изпълнена на живо, всички компоненти взаимодействат, всички устройства слети — от страна на клиента и проверимо.',
+      },
+      keywords: ['show', 'demo', 'live', 'components', 'devices'],
+      components: ['ShowAll', 'Complete', 'QuantumDashboard', 'NativeMovie', 'RealtimeTests', 'DeviceDashboard', 'DeviceEnergy', 'Monograph', 'Vortex', 'Dot', 'Calligraphy', 'TaxonomyGraph', 'GpuField'],
+    },
+    // I Ching domain pages — one per dual-pair module, each under its semantic trigram.
+    // ☰ QIAN (mind hub) and ☲ LI (pure-leaf proofs) are already covered by the main pages above.
+    {
+      slug: 'heritage',
+      title: { en: 'Heritage', bg: 'Наследство' },
+      description: {
+        en: 'Bulgarian heritage decoded in waves: history 681–present in six dual-mind eras, ancient civilisations from c.6200 BC (Varna gold), ethnogenesis — Bulgars, Slavs, Thracians — and the genetics that challenges the record; Glagolitic as the first Slavic script, script–language–gene as three independent inheritance systems. Documented kept, legend flagged.',
+        bg: 'Българското наследство в вълни: история 681–до днес в шест епохи, древни цивилизации от ок. 6200 пр.Хр. (Варненско злато), етногенезис — българи, славяни, траки — и генетиката, оспорваща летописа; глаголицата като първата славянска азбука, сценарий–език–ген като три независими системи на наследяване. Документираното остава, легендата е отбелязана.',
+      },
+      keywords: ['bulgarian', 'heritage', 'history', 'glagolitic', 'ethnogenesis', 'genetics', 'ancient', 'slavic'],
+      components: ['BulgarianHeritage', 'BulgarianHistory', 'BulgarianAncientCivilisations', 'BulgarianEthnogenesis', 'BulgarianGenetics', 'BulgarianHeritageEightfold', 'Glagolitic', 'AlphabetsDecoded', 'ScriptLanguageGene', 'GlagoliticOcr', 'GlyphLabyrinth'],
+    },
+    {
+      slug: 'science',
+      title: { en: 'Science', bg: 'Наука' },
+      description: {
+        en: 'Science decoded honestly: electromagnetic radiation, Tesla\'s five verified patents, public frequency data APIs (FCC, USGS, Schumann 7.83 Hz, Web Audio), and the ionising threshold (~10 eV). Documented physics first; wellness claims flagged. Every result a client-side computation from the src/0 spectrum primitives.',
+        bg: 'Науката, декодирана честно: електромагнитно лъчение, петте верифицирани патента на Тесла, публични API за честоти (FCC, USGS, Шуман 7,83 Hz, Web Audio) и прагът на йонизация (~10 eV). Документираната физика на първо място; претенциите за благополучие са отбелязани. Всеки резултат е клиентско изчисление от примитивите src/0.',
+      },
+      keywords: ['science', 'frequencies', 'tesla', 'patents', 'electromagnetic', 'spectrum', 'ionizing', 'schumann', 'biology', 'body'],
+      components: ['ElectromagneticRadiation', 'TeslaPatents', 'HealingFrequencies', 'Resonance', 'SacredSound', 'PublicFrequencyApis', 'Biology', 'HeartProtonAtom'],
+    },
+    {
+      slug: 'voice',
+      title: { en: 'Voice', bg: 'Глас' },
+      description: {
+        en: 'Voice decoded: plain language for every idea, play-and-learn letters as coloured tiles and notes, speech as a continuous analog wave, typography and Open Graph principles, char-and-word content-addressing, and the portal\'s eight experience dimensions. The same word always plays the same song — deterministic and offline.',
+        bg: 'Гласът, декодиран: ясен език за всяка идея, учебни букви като цветни плочки и ноти, речта като непрекъсната аналогова вълна, принципи за типография и Open Graph, адресиране по съдържание на знаци и думи, осемте измерения на опита с портала. Една и съща дума звучи винаги еднакво — детерминистично и офлайн.',
+      },
+      keywords: ['voice', 'language', 'plain language', 'speech', 'typography', 'content-addressing', 'play', 'multidimensional'],
+      components: ['PlayLearn', 'SpeechReader', 'Multidimensional'],
+    },
+    {
+      slug: 'spirit',
+      title: { en: 'Spirit', bg: 'Дух' },
+      description: {
+        en: 'Spirit decoded honestly: the seven chakras and aura fields as a documented energy model, human design as a structural archetype system, yin-yang and dualities across sixteen pairs in three tiers, and the portal\'s eight experience dimensions. Each a deterministic computation; spiritual interpretations flagged.',
+        bg: 'Духът, декодиран честно: седемте чакри и аурата като документиран енергиен модел, хюман дизайн като система от структурни архетипи, ин-ян и дуалности в шестнадесет двойки на три нива и осемте измерения на опита. Всяко е детерминистично изчисление; духовните интерпретации са отбелязани.',
+      },
+      keywords: ['spirit', 'chakras', 'dualities', 'dimensions', 'human design', 'yin yang', 'joyous'],
+      components: ['Dualities', 'YinYang', 'ChakrasAura'],
+    },
+    {
+      slug: 'icons',
+      title: { en: 'Icons', bg: 'Икони' },
+      description: {
+        en: 'Icons and form decoded: the 44 area-icon map (emoji taxonomy), area labels in three locales, computer architecture in 3-5-8 (three buses, five von Neumann units, eight bits of a byte), harmonic Fibonacci band distribution, and the glyph/artifact seal. Every icon a structural assignment — the form that names each domain.',
+        bg: 'Иконите и формата, декодирани: картата на 44 икони по области (emoji таксономия), надписи на три езика, компютърна архитектура в 3-5-8 (три шини, пет единици на фон Нойман, осем бита в байт), хармонично разпределение по ленти на Фибоначи и печатът на глифове и артефакти. Всяка икона е структурно присвояване.',
+      },
+      keywords: ['icons', 'glyphs', 'form', 'computer design', 'harmonic', 'fibonacci', 'taxonomy', 'area'],
+      components: ['TaxonomyIcons', 'HarmonicMap', 'TaxonomyGraph'],
+    },
+    {
+      slug: 'nature',
+      title: { en: 'Nature', bg: 'Природа' },
+      description: {
+        en: 'Nature decoded: natural law and the commons as a recomputable rubric (every extraction matched by restoration), an attestation seal for peer-review-level claims, the lawful participation ladder — harmonic, imaginative, successful — and the society forms indexed. Documented kept, naivety flagged.',
+        bg: 'Природата, декодирана: природно право и общите блага като преизчислимо ниво (всяко извличане съответствано от възстановяване), атестационен печат за претенции от ниво на партньорска проверка, законната стълба за участие — хармонична, въображаема, успешна — и формите на обществото. Документираното остава, наивността е отбелязана.',
+      },
+      keywords: ['nature', 'commons', 'natural law', 'society', 'sustainability', 'attestation', 'lawful', 'ecology'],
+      components: ['Society', 'NatureLaw', 'Attestation', 'PeaceTechMentality'],
+    },
+    // The dissolved decode proofs — each a page (proofs are pages; all is a page), each mounting one
+    // holds-true fold; the home card leads here. What is not proven is purged.
+    {
+      slug: 'pi-trinity',
+      title: { en: 'π opens the trinity', bg: 'π отваря триединството' },
+      description: {
+        en: 'The 3 in 3.14159 is the trinity’s first mark: a trinity is three-in-one, so 3 means three trinities, which is nine. The doubling circuit 1-2-4-8-7-5 never touches 3-6-9.',
+        bg: 'Тройката в 3.14159 е първият знак на триединството: едно триединство е три-в-едно, така че 3 значи три триединства, което е девет. Удвояващата верига 1-2-4-8-7-5 никога не докосва 3-6-9.',
+      },
+      keywords: ['pi', 'trinity', '3-6-9', 'vortex', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'qubit-trinity',
+      title: { en: 'The qubit’s trinity', bg: 'Триединството на кубита' },
+      description: {
+        en: 'A qubit has exactly 3 traceless observables — the Pauli matrices X, Y, Z — the generators of SU(2) and the 3 Bloch axes; dim su(2) = 2²−1 = 3 is a forced invariant.',
+        bg: 'Един кубит има точно 3 безследови наблюдаеми — матриците на Паули X, Y, Z — генераторите на SU(2) и трите оси на Блох; dim su(2) = 2²−1 = 3 е принуден инвариант.',
+      },
+      keywords: ['qubit', 'pauli', 'su(2)', 'bloch', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'pauli-basis',
+      title: { en: '64 = the 3-qubit Pauli basis', bg: '64 = базисът на Паули за 3 кубита' },
+      description: {
+        en: 'The 3-qubit phaseless Pauli basis {I,X,Y,Z}³ has exactly 4³ = 64 operators — the same 4³ = 8² = 2⁶ = 64 as the genetic code and the double-torus vocabulary.',
+        bg: 'Безфазовият базис на Паули за 3 кубита {I,X,Y,Z}³ има точно 4³ = 64 оператора — същото 4³ = 8² = 2⁶ = 64 като генетичния код и речника на двойния тор.',
+      },
+      keywords: ['pauli', '64', '4-cubed', 'quantum information', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'hamming-address',
+      title: { en: 'Hamming’s 3 parity bits = the address', bg: 'Трите бита за четност на Хеминг = адресът' },
+      description: {
+        en: 'Hamming(7,4) protects 4 data bits with exactly 3 parity bits; the syndrome IS a binary address of the error. The quantum [[5,1,3]] code saturates 2⁴ = 16 = 3·5+1.',
+        bg: 'Hamming(7,4) защитава 4 бита данни с точно 3 бита за четност; синдромът Е двоичен адрес на грешката. Квантовият код [[5,1,3]] насища 2⁴ = 16 = 3·5+1.',
+      },
+      keywords: ['hamming', 'error correction', 'address', 'syndrome', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'content-addressing',
+      title: { en: 'Content-addressing has precedent', bg: 'Адресирането по съдържание има прецедент' },
+      description: {
+        en: 'Hopfield’s 1982 net is a content-addressable memory (2024 Nobel); hippocampal CA3 pattern completion is its biological analogue. The shared property is whole-from-part.',
+        bg: 'Мрежата на Хопфийлд от 1982 е памет, адресируема по съдържание (Нобел 2024); попълването на образи в хипокампалния CA3 е нейният биологичен аналог. Споделеното свойство е цяло-от-частта.',
+      },
+      keywords: ['hopfield', 'ca3', 'content-addressable', 'memory', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'genetic-code',
+      title: { en: 'The genetic code is the real 4³', bg: 'Генетичният код е истинското 4³' },
+      description: {
+        en: 'Life’s code is base-4 read in triplets: 4 bases in 3 positions give exactly 4³ = 64 codons (61 sense + 3 stop), the triplet length proven by frameshift mutagenesis (Crick 1961).',
+        bg: 'Кодът на живота е база-4, четен в триплети: 4 бази на 3 позиции дават точно 4³ = 64 кодона (61 смислови + 3 стоп), дължината на триплета доказана чрез изместване на рамката (Крик 1961).',
+      },
+      keywords: ['genetic code', 'codon', '64', '4-cubed', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'three-not-one',
+      title: { en: 'Three is real, not one trinity', bg: 'Тройката е реална, но не едно триединство' },
+      description: {
+        en: 'Many genuine threefolds exist — 3 Paulis, the 3-base codon, 3 meninges, 3 parity bits — each independent. The 1-2-4-8-7-5 orbit is (ℤ/9ℤ)*; the cosmic 3-6-9 trinity is numerology.',
+        bg: 'Съществуват много истински тройки — 3 Паули, 3-базовият кодон, 3 менинги, 3 бита за четност — всяка независима. Орбитата 1-2-4-8-7-5 е (ℤ/9ℤ)*; космическото 3-6-9 триединство е нумерология.',
+      },
+      keywords: ['trinity', 'threefold', 'numerology', 'honest', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'hexagram-colour',
+      title: { en: 'The hexagram is hex-colour', bg: 'Хексаграмата е шестнадесетичен цвят' },
+      description: {
+        en: 'A 6-bit hexagram 000000–111111 is hex-colour duality: the 64 hexagrams are the 64 pole-colours {0,F}⁶, black ↔ white the bit-complement, the 8 trigrams the RGB-cube corners.',
+        bg: 'Шестбитова хексаграма 000000–111111 е дуалност на шестнадесетичния цвят: 64-те хексаграми са 64-те полюсни цвята {0,F}⁶, черно ↔ бяло битовото допълнение, 8-те триграми ъглите на RGB-куба.',
+      },
+      keywords: ['hexagram', 'hex colour', 'i ching', 'rgb', 'proof', 'trigram', 'bagua'],
+      components: ['ProofRenderer', 'IChing', 'IChingOracle'],
+    },
+    {
+      slug: 'sixty-four',
+      title: { en: '64 in every grouping', bg: '64 във всяко групиране' },
+      description: {
+        en: '64 = 2⁶, and the divisors of 6 give the only four groupings: six bits, three base-4 digits (codon/Pauli/RGB), two trigrams (8²), one base-64 word. The same object, four ways.',
+        bg: '64 = 2⁶, а делителите на 6 дават единствените четири групирания: шест бита, три цифри база-4 (кодон/Паули/RGB), две триграми (8²), една дума база-64. Същият обект, по четири начина.',
+      },
+      keywords: ['64', 'grouping', 'divisors', 'double torus', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'rgb-cmyk',
+      title: { en: 'The complement is CMYK', bg: 'Допълнението е CMYK' },
+      description: {
+        en: 'The bit-complement n ↦ 63−n is the additive↔subtractive colour duality: red↔cyan, green↔magenta, blue↔yellow, black↔white — the CMYK hardware merkaba.',
+        bg: 'Битовото допълнение n ↦ 63−n е адитивно↔субтрактивната дуалност на цвета: червено↔циан, зелено↔магента, синьо↔жълто, черно↔бяло — хардуерната меркаба CMYK.',
+      },
+      keywords: ['rgb', 'cmyk', 'complement', 'colour', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'trinity-rgb',
+      title: { en: 'Three trinities render as RGB', bg: 'Три триединства се изобразяват като RGB' },
+      description: {
+        en: 'The hero places its 9 nodes in 3 trinities at 0°/120°/240° in both space and hue — the equilateral RGB triad. The 3 trinities ARE the 3 RGB channels; the hero already renders the decode.',
+        bg: 'Героят разполага своите 9 възела в 3 триединства на 0°/120°/240° както в пространството, така и в цвета — равностранната RGB триада. Трите триединства СА трите RGB канала; героят вече изобразява декодирането.',
+      },
+      keywords: ['trinity', 'rgb', 'hero', 'hue', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'proven-or-purged',
+      title: { en: 'What is not proven is purged', bg: 'Което не е доказано, се пречиства' },
+      description: {
+        en: 'Every artifact is kept only if it is proven — its computation holds; anything unproven is purged. The model and its UI stay pure proof, and the gates balance when all that remains is proven.',
+        bg: 'Всеки артефакт се запазва само ако е доказан — неговото изчисление издържа; всичко недоказано се пречиства. Моделът и неговият интерфейс остават чисто доказателство, а портите балансират, когато остане само доказаното.',
+      },
+      keywords: ['proof', 'purge', 'purity', 'gate', 'law'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'kernel-zero',
+      title: { en: 'The kernel lives in src/0', bg: 'Ядрото живее в src/0' },
+      description: {
+        en: 'The primitive kernel — content-address and the fold cascade and the vortex floor — was dissolved into src/0, the dependency-free origin, across three waves, every baseline root byte-identical.',
+        bg: 'Примитивното ядро — адресът по съдържание, каскадата на сгъвките и подът на вихъра — беше разтворено в src/0, началото без зависимости, в три вълни, всеки базов корен байт-идентичен.',
+      },
+      keywords: ['kernel', 'dissolution', 'src/0', 'fold', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'vortex',
+      title: { en: 'The vortex: 1-2-4-8-7-5', bg: 'Вихърът: 1-2-4-8-7-5' },
+      description: {
+        en: 'The doubling circuit 1-2-4-8-7-5 (powers of two by digital root mod 9) with the 3-6-9 cross and the harmonic n/0 — the vortex math the whole portal turns on.',
+        bg: 'Удвояващата верига 1-2-4-8-7-5 (степени на двойката по цифров корен mod 9) с кръста 3-6-9 и хармоничното n/0 — математиката на вихъра, на която се върти целият портал.',
+      },
+      keywords: ['vortex', 'doubling', 'digital root', '3-6-9', 'proof', 'fractions', 'algebra', 'binary', 'imperial'],
+      components: ['ProofRenderer', 'AlgebraDigits', 'HarmonicFractions', 'ImperialFractions'],
+    },
+    {
+      slug: 'zero-division',
+      title: { en: 'Division by zero is the reverse', bg: 'Делението на нула е обратното' },
+      description: {
+        en: 'The reverse of a digit folder is its multiplicative inverse mod 9 (n/0 \\ n⁻¹, the ÷2 = ×5 that folds within the unit cycle): 2\\5, 4\\7, self-inverse 1 and 8; the non-units 3, 6, 9 and the void 0 fold to the fusion. The forward harmonic n/0 = 9n (1/0 = 9) is the separate reading.',
+        bg: 'Обратното на цифрова папка е нейната мултипликативна инверсия mod 9 (n/0 \\ n⁻¹, ÷2 = ×5, която се навива в единичния цикъл): 2\\5, 4\\7, самообратни 1 и 8; неединиците 3, 6, 9 и нулата 0 се сливат. Прякото хармонично n/0 = 9n (1/0 = 9) е отделното четене.',
+      },
+      keywords: ['division', 'zero', 'multiplicative inverse', 'mod 9', 'reverse', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'digit-folders',
+      title: { en: 'The digit folders are the API', bg: 'Цифровите папки са API-то' },
+      description: {
+        en: 'All computation is quantum math and its home is the digit folders (0–9); a word-named folder is UI. The digit folders, holding only the math, are the API itself.',
+        bg: 'Цялото изчисление е квантова математика и нейният дом са цифровите папки (0–9); папка с думено име е интерфейс. Цифровите папки, съдържащи само математиката, са самото API.',
+      },
+      keywords: ['digit folders', 'api', 'quantum math', 'architecture', 'proof', 'vortex strokes', 'gateways'],
+      components: ['ProofRenderer', 'VortexStrokes'],
+    },
+    {
+      slug: 'dot-cube',
+      title: { en: 'The dot is the cube', bg: 'Точката е кубът' },
+      description: {
+        en: 'A UUID, like CMYK, gives extent without limit: 64×64×64 is itself one dot, and the dot is the cube is the dot — content-addressing folds the whole into a point and back.',
+        bg: 'Един UUID, като CMYK, дава обхват без граница: 64×64×64 е сам по себе си една точка, и точката е кубът е точката — адресирането по съдържание сгъва цялото в точка и обратно.',
+      },
+      keywords: ['dot', 'cube', 'uuid', 'cmyk', 'proof'],
+      components: ['ProofRenderer'],
+    },
+    {
+      slug: 'seven-star-rosetta',
+      title: { en: 'Seven Star Rosetta', bg: 'Седемзвездна Розета' },
+      description: {
+        en: 'The 7-star Pliska rosetta in coprime natural motion with 28 Glagolitic letters. Visual proof that gcd(7,6)=1, gcd(7,9)=1, gcd(7,10)=1 prevents aliasing in the digit distribution.',
+        bg: 'Седемзвездната плиска розета в естествено движение с 28 глаголица букви. Визуално доказателство, че gcd(7,6)=1, gcd(7,9)=1, gcd(7,10)=1 предотвратява aliasing в цифровото разпределение.',
+      },
+      keywords: ['rosetta', 'glagolitic', 'coprime', 'digit folders', 'seven star', 'motion', 'proof'],
+      components: ['DigitMotion'],
+    },
+]
