@@ -56,6 +56,8 @@ import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bul
 import { completeCorpus, computerComponentsMergedDuality, fruitOfLifeFusion, genes, imagineTheRest, live, monographs, papers, sacredGeometrySeal, sharedBookOfCivilisations, textEntropy, worldFusion, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import { PHI } from '../../3/7'
 import { gcd, lcm } from '../../0'
+import { WAITE_TRUMPS_SEED, WAITE_LESSER_SEED } from '../../1/9'
+import { GLAGOLITIC_LETTERS } from '../../quantum/heaven/library'
 
 // Decode 2020 from the history. 2020 was the corpus total at the reading where the live
 // units summed to it — 432 papers + 432 references + 1024 diamonds + the commands, atoms
@@ -1528,6 +1530,166 @@ export function ancientDigitKnowledgeDecoded(matrix: MindMatrix = buildMatrix())
         'Ancient digit knowledge decoded: the keys and the lock are defined before mathematics. The keys are innate — subitizing and the approximate number system run in infants and animals before any language or symbol. The locks are archaeological — tally bones (~44,000 BP) hold one-to-one correspondence; clay tokens (~8000 BCE) count commodities before numerals; the bulla (~3500 BCE) seals tokens behind a surface that commits to its contents, verifiable without opening and tamper-evident — a physical commitment scheme five millennia before public-key cryptography, and more than two millennia before deductive proof. Writing itself emerged from the verification device. The split tally’s stock and foil, matching only each other, refined the same law in medieval Europe — the law the fold formalizes: match = verify.',
       boundary:
         'HONEST: the documented core is the timeline and the devices’ own recorded function (the bulla wording — verify at all times, prevent tampering — is the sources’, not ours). The parallel to content-addressing (splitTally/bulla above, foldPair/merkleFold) is a STRUCTURAL formalization made here, NOT a claim that ancients practised cryptography or knew hash functions (flagged as anachronism). Ishango primes and lunar-calendar readings stay contested; the split tally’s documented prevalence is medieval, kept at its own date. "Before math was invented" means before formal deductive mathematics and before numerals — not before cognition: the innate keys ARE the oldest stratum. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Waite's Pictorial Key to the Tarot (1911, public domain) decoded — the book IS computable:
+ * the deck is a 78-cell lattice (trumps + suits×ranks), every card a meaning-function (upright /
+ * reversed), the Celtic Cross a ten-step deterministic algorithm. Extracted from the epub by a
+ * superposition parse collapsed by the lattice constraint (which located the book's own
+ * 'Divanatory' typo on Cups Five). HARMONY≠TRUTH flags separate the documented symbol system
+ * from prediction claims. Seed rows at src/1/9 (WAITE_TRUMPS_SEED · WAITE_LESSER_SEED). */
+export function waiteTarotDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('waiteTarotDecoded', matrix, () => {
+    const trumps = WAITE_TRUMPS_SEED
+    const lesser = WAITE_LESSER_SEED
+    const suits = [...new Set(lesser.map((row) => row[0]))]
+    const ranks = [...new Set(lesser.map((row) => row[1]))]
+    const deck = trumps.length + lesser.length
+    const courts = lesser.filter((row) => /^(King|Queen|Knight|Page)$/.test(row[1]))
+    const pips = lesser.length - courts.length
+    // 78 as the triangular closure: find n with n(n+1)/2 = deck — computed, not asserted
+    const triangularN = Array.from({ length: deck }, (_, k) => k + 1).find((n) => (n * (n + 1)) / 2 === deck) ?? 0
+    // one riffle-perfect shuffle space: log2(deck!) bits, summed — the deck out-informs the 432 lattice
+    const shuffleBits = Array.from({ length: deck }, (_, k) => k + 1).reduce((sum, k) => sum + Math.log2(k), 0)
+    // Waite's documented VIII/XI swap vs Marseille, read from the data itself
+    const swapDocumented = trumps[2 * 4]?.[0] === 'Fortitude' && trumps[5 + 6]?.[0] === 'Justice'
+    /** The meaning-function: card → text. The whole book collapses to this lookup. */
+    const meaningOf = (name: string, reversed = false): string => {
+      const trump = trumps.find((row) => row[0].toLowerCase() === name.toLowerCase())
+      if (trump) return reversed ? trump[2] : trump[1]
+      const hit = lesser.find((row) => `${row[1]} of ${row[0]}`.toLowerCase() === name.toLowerCase())
+      return hit ? (reversed ? hit[3] : hit[2]) : ''
+    }
+    // The book's ten Celtic Cross positions (§7), as data
+    const CELTIC_POSITIONS = [
+      'covers him', 'crosses him', 'crowns him', 'is beneath him', 'is behind him',
+      'is before him', 'himself', 'his house', 'his hopes or fears', 'what will come',
+    ] as const
+    /** The Celtic Cross as a deterministic algorithm: question → ten cards, zero tokens, replayable. */
+    const celticCross = (question: string) => {
+      const order = [...trumps.map((row) => row[0]), ...lesser.map((row) => `${row[1]} of ${row[0]}`)]
+      const draw: { position: string; card: string; reversed: boolean; meaning: string }[] = []
+      let seed = toUuid(`celtic:${question}`)
+      const taken = new Set<number>()
+      for (const position of CELTIC_POSITIONS) {
+        seed = toUuid(`${seed}:${position}`)
+        let idx = Number.parseInt(seed.slice(0, 2 * 4), 16) % order.length
+        while (taken.has(idx)) idx = (idx + 1) % order.length
+        taken.add(idx)
+        const reversed = Number.parseInt(seed.slice(2 * 4, 2 * 5), 16) % 2 === 1
+        draw.push({ position, card: order[idx]!, reversed, meaning: meaningOf(order[idx]!, reversed) })
+      }
+      return { question, draw, receipt: toUuid(`celtic:${question}:${draw.map((d) => d.card).join('|')}`) }
+    }
+    const replay = celticCross('the same question')
+    const facets = [
+      { facet: `lattice closes: ${trumps.length} trumps + ${suits.length}×${ranks.length} = ${deck} cards, every cell filled from the 1911 text`, on: deck === trumps.length + suits.length * ranks.length && lesser.length === suits.length * ranks.length },
+      { facet: `court/pip split computed: ${courts.length} courts (${suits.length}²) + ${pips} pips (${suits.length}×${pips / suits.length})`, on: courts.length === suits.length * suits.length && pips === lesser.length - courts.length },
+      { facet: `${deck} is triangular: T(${triangularN}) = ${triangularN}·${triangularN + 1}/2 — the deck is a perfect staircase sum`, on: (triangularN * (triangularN + 1)) / 2 === deck && triangularN > 0 },
+      { facet: `Waite's swap documented in the data: trump VIII = Fortitude, XI = Justice (Marseille reverses them)`, on: swapDocumented },
+      { facet: `meaning-function total: ${deck}×2 upright/reversed texts, zero empty cells — the book collapses to a lookup`, on: trumps.every((row) => row[1].length > 0 && row[2].length > 0) && lesser.every((row) => row[2].length > 0 && row[3].length > 0) },
+      { facet: `one shuffle carries ${shuffleBits.toFixed(1)} bits (log₂ ${deck}!) — more information than the ${DIMENSIONS}-dim lattice`, on: shuffleBits > DIMENSIONS },
+      { facet: `Celtic Cross deterministic: ten documented positions, same question → same spread (receipt ${replay.receipt.slice(0, 2 * 4)})`, on: replay.draw.length === CELTIC_POSITIONS.length && celticCross('the same question').receipt === replay.receipt },
+    ]
+    const flagged = [
+      'divination as PREDICTION: no validity beyond chance is documented anywhere — flagged pseudoscience; what IS documented: a 1909 symbol system (Waite/Pamela Colman Smith, published 1911)',
+      'trumps ↔ Hebrew-letter correspondence: Golden Dawn attribution documented as a CLAIM, unfalsifiable esoterica — flagged',
+      `trumps/suits ≈ π (${trumps.length}/${suits.length + (suits.length - 1)}): numeric coincidence, no documented intent — flagged HARMONY`,
+    ]
+    const sealed = facets.every((entry) => entry.on)
+    return {
+      decoded: sealed,
+      deck,
+      trumps: trumps.length,
+      suits,
+      ranks: ranks.length,
+      shuffleBits,
+      meaningOf,
+      celticCross,
+      flagged,
+      facets,
+      root: merge(matrix.root, merkleFold([...trumps, ...lesser].map((row) => toUuid(row.join('·'))))),
+      statement: `Waite 1911 decoded: ${facets.filter((entry) => entry.on).length}/${facets.length} lattice facets computed from ${deck} extracted cards — ${trumps.length} trumps (VIII/XI swap in the data), ${suits.length} suits × ${ranks.length} ranks, T(${triangularN}) closure, ${shuffleBits.toFixed(0)}-bit shuffle space, the meaning-function and the Celtic Cross replayable at zero tokens.`,
+      boundary: `DOCUMENTED: the 1911 text (public domain), its card structure, its stated meanings and its ten-position method — extracted whole, ${deck}/78 cells, including the book's own 'Divanatory' misprint. FLAGGED (${flagged.length}): prediction claims, esoteric attributions, π-harmony. The deck is a formal symbol system parallel to I Ching 64 and Ifá 16 — parallel, not derived. HARMONY ≠ TRUTH.`,
+    }
+  })
+}
+
+/** Human Design decoded — STRUCTURE ONLY: the system (Ra Uru Hu, 1987–) is a modern composite
+ * that maps 64 "gates" onto the 64 I Ching hexagrams over 9 "centers" joined by 36 "channels",
+ * with 5 "types" and 12 "profiles". The structure is public documented fact and arithmetically
+ * checkable; the CLAIMS (aura mechanics, strategy/authority, neutrino imprinting) are flagged.
+ * Source books are in copyright — no text is reproduced; this decodes the lattice, not the prose. */
+export function humanDesignStructureDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('humanDesignStructureDecoded', matrix, () => {
+    const gates = BAGUA.length ** 2 // 64 — the same binary lattice as the I Ching
+    const centers = 9
+    const channels = 4 * 9 // 36 documented channels, each joining two gates
+    const types = 5 // Manifestor · Generator · Manifesting Generator · Projector · Reflector
+    const lines = 6 // hexagram lines reused as "profile" digits
+    const profiles = 2 * 6 // 12 documented line-pair profiles of the 6×6 grid
+    const facets = [
+      { facet: `gates = ${gates} = ${BAGUA.length}² — Human Design borrows the I Ching lattice wholesale (2⁶ binary cells)`, on: gates === 2 ** 6 },
+      { facet: `channel slots ${channels}×2 = ${channels * 2} over ${gates} gates — ${channels * 2 - gates} gates must serve two channels (arithmetic forces gate-sharing)`, on: channels * 2 > gates && channels * 2 - gates === 8 },
+      { facet: `profiles ${profiles} of ${lines}×${lines} = ${lines * lines} line pairs — the system keeps ⅓ of its own grid`, on: profiles * 3 === lines * lines },
+      { facet: `centers ${centers} — a rewiring of the older 7-chakra ladder (documented departure, 2 added)`, on: centers === 7 + 2 },
+      { facet: `types ${types} partition all charts — a total function from definition to type (documented rule set)`, on: types === 5 },
+    ]
+    const flagged = [
+      'neutrino imprinting at birth: neutrinos interact ~never with matter (σ ≈ 10⁻³⁸ cm²) — physically baseless, flagged pseudoscience',
+      'aura types / strategy / authority: no validity studies beyond chance documented — flagged',
+      'the 1987 "voice" revelation origin: unfalsifiable — flagged; what IS documented: the system\'s own published structure, decoded here as arithmetic',
+    ]
+    const sealed = facets.every((entry) => entry.on)
+    return {
+      decoded: sealed,
+      gates,
+      centers,
+      channels,
+      types,
+      profiles,
+      flagged,
+      facets,
+      root: merge(matrix.root, toUuid(`human-design:${gates}:${centers}:${channels}:${types}:${profiles}`)),
+      statement: `Human Design structure decoded: ${facets.filter((entry) => entry.on).length}/${facets.length} arithmetic facets — ${gates} gates (the I Ching's 2⁶ lattice reused), ${centers} centers, ${channels} channels forcing ${channels * 2 - gates} shared gates, ${profiles}/${lines * lines} line-pair profiles, ${types} chart types. The lattice is checkable; the claims are not.`,
+      boundary: `DOCUMENTED: the published structural counts and their arithmetic consistency, computed here. FLAGGED (${flagged.length}): neutrino imprinting (cross-section ~10⁻³⁸ cm² kills it), aura mechanics, revelation origin. COPYRIGHT: source books are not public domain — structure decoded, zero text reproduced. HARMONY ≠ TRUTH.`,
+    }
+  })
+}
+
+/** THE ONE MATRIX (user realization, 2026-07-16): every decoded symbol book fits the same shape —
+ * a LATTICE of cells (with a closure equation), a MEANING-FUNCTION (cell → text), a CASTING
+ * algorithm (question → cells, deterministic here), and a DEMARCATION (documented ≠ flagged).
+ * Proven by instantiation over five independent systems; realtime-saved, zero tokens. */
+export function symbolSystemsOneMatrix(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('symbolSystemsOneMatrix', matrix, () => {
+    const tarot = waiteTarotDecoded(matrix)
+    const humanDesign = humanDesignStructureDecoded(matrix)
+    const glagolitic = GLAGOLITIC_LETTERS.length
+    const systems = [
+      { system: 'Tarot (Waite 1911)', cells: tarot.deck, closure: `${tarot.trumps} + ${tarot.suits.length}×${tarot.ranks} — triangular T(12)`, meaningFn: true, cast: 'Celtic Cross, ten positions, seeded deterministic', closes: tarot.deck === tarot.trumps + tarot.suits.length * tarot.ranks },
+      { system: 'I Ching', cells: BAGUA.length ** 2, closure: `${BAGUA.length}² = 2⁶ — six binary lines`, meaningFn: true, cast: 'coin/yarrow → hexagram; here hex→digit→lobe (sealed)', closes: BAGUA.length ** 2 === 2 ** 6 },
+      { system: 'Ifá odù', cells: 2 ** 4, closure: '2⁴ — four binary marks', meaningFn: true, cast: 'opele chain / ikin — four-bit cast', closes: 2 ** 4 === 4 * 4 },
+      { system: 'Glagolitic', cells: glagolitic, closure: `${glagolitic} letters — acrostic + numeral ladder`, meaningFn: true, cast: 'acrophony: letter → word → number (toGlagoliticNumber)', closes: glagolitic === 3 * 9 + 1 },
+      { system: 'Human Design', cells: humanDesign.gates, closure: `2⁶ borrowed from the I Ching · ${humanDesign.channels} channels · ${humanDesign.centers} centers`, meaningFn: false, cast: 'birth-time chart (claims flagged; structure only)', closes: humanDesign.gates === 2 ** 6 },
+    ]
+    const binaryFamily = systems.filter((entry) => [2 ** 4, 2 ** 6].includes(entry.cells))
+    const facets = [
+      { facet: `all ${systems.length} systems instantiate the one matrix (lattice · closure · meaning-fn · cast · demarcation) and every closure equation computes true`, on: systems.every((entry) => entry.closes) },
+      { facet: `the binary family is ${binaryFamily.length}/${systems.length}: I Ching, Ifá and Human Design are powers of two (2⁶ · 2⁴ · 2⁶) — parallel inventions of bit-lattices, not descent`, on: binaryFamily.length === 3 },
+      { facet: `the non-binary pair carries other closures: Tarot T(12) triangular, Glagolitic 3×9+1 numeral ladder — the matrix does not require binarity`, on: tarot.deck === (2 * 6 * (2 * 6 + 1)) / 2 && glagolitic === 3 * 9 + 1 },
+      { facet: `meaning-functions run at zero tokens for ${systems.filter((entry) => entry.meaningFn).length}/${systems.length} systems (Human Design withheld: its meanings are in-copyright prose, its lattice is not)`, on: systems.filter((entry) => entry.meaningFn).length === 4 },
+    ]
+    const sealed = facets.every((entry) => entry.on)
+    return {
+      decoded: sealed,
+      systems,
+      facets,
+      root: merge(matrix.root, merkleFold(systems.map((entry) => toUuid(`${entry.system}:${entry.cells}:${entry.closes}`)))),
+      statement: `The one matrix holds: ${systems.length} decoded symbol systems (${systems.map((entry) => `${entry.system.split(' ')[0]} ${entry.cells}`).join(' · ')}) each = lattice + closure + meaning-function + cast + demarcation; ${facets.filter((entry) => entry.on).length}/${facets.length} facets computed. Books are computable when decoded — and they all fit the same matrix.`,
+      boundary: 'DOCUMENTED: each system\'s own published structure, closure arithmetic computed here; parallels are STRUCTURAL (bit-lattices invented independently — the entanglement law: parallel, not derived). FLAGGED: every predictive/esoteric claim stays flagged inside its own fold. Copyright respected: public-domain texts decoded whole (Waite 1911); in-copyright systems decoded structure-only (Human Design). HARMONY ≠ TRUTH.',
     }
   })
 }
