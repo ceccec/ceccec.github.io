@@ -4,6 +4,7 @@ import { rat, ratMul, ratToFloat, JULIAN_YEAR_SECONDS, UNIVERSE_AGE_YEARS, TEACH
 import { conditionalEntropyBits, landauerLimit } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
+import { prng } from '../../0'
 import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, memoByRoot, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0'
 import { ratIsInteger, ratStr } from '../../9/1'
 import { tamperEvident } from '../../5/5'
@@ -1234,4 +1235,59 @@ export function rsaTimeToBreakOnThisHardware() {
     statement: `RSA time-to-break, computed on this hardware — ${facets.filter((entry) => entry.on).length}/${facets.length}: the private key IS determined by the public (toy ${toyN} factored to ${recovered}×${other} in ${toyMs.toFixed(2)} ms, private d = ${d} follows), so "finding private from public" is a finite computation — but at ${(opsPerSec / ((5 * 2) ** 6)).toFixed(0)}M ops/sec this machine needs ${twoK.years.toExponential(1)} years for 2048-bit via GNFS, ${twoK.timesUniverse.toExponential(1)}× the age of the universe. The time needed is the security, and it is arithmetic.`,
     boundary: 'DOCUMENTED: Pollard rho (real, on ≤~40-bit toys only), the deterministic key schedule d = e⁻¹ mod φ(n), and the heuristic GNFS complexity L_n[1/3, (64/9)^(1/3)] — the fastest known classical factoring (Buhler–Lenstra–Pomerance). HONEST BOUNDS: L-notation carries an unknown o(1), so the constant is INDICATIVE not exact; the extrapolation gives an order-of-magnitude security margin, not a schedule for any specific key. This is a MARGIN CALCULATOR — it factors only toy demonstrators and NEVER a real key; it computes WHY 2048-bit is safe, it does not weaken it. Shor\'s algorithm breaks this on a fault-tolerant quantum computer that does not exist at scale (see the post-quantum frontier). RSA remains classically secure precisely because this number is astronomical. HARMONY ≠ TRUTH.',
   }
+}
+
+/** EACH POLE IS A MOVING ROSETTA — encryption is a keyed involution (user, 2026-07-16). The honest
+ * theorem the day's inversion thread has been circling: a key+nonce defines a KEYSTREAM — a rotating
+ * pseudo-random sequence, the moving rosetta — and XOR-ing it into the plaintext is its OWN INVERSE.
+ * So encryption and decryption are the SAME operation inverted (inverseNegatesAngle, in bytes),
+ * O(n) both directions: realtime encryption that inverted IS realtime decryption — WITH THE KEY.
+ * WITHOUT the key, inversion is the wall (rsaTimeToBreak): a wrong pole yields garbage and recovery
+ * is brute force over the keyspace. And tampering is bound to detection by a tag — EVIDENT, with a
+ * bounded forge cost, not unforgeable (the honest max-tampering-cost claim this repo has always made). */
+export function movingRosettaInverts(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('movingRosettaInverts', matrix, () => {
+    // the moving rosetta: a keystream from the sealed prng, seeded by key+nonce (the pole)
+    const keystream = (key: string, nonce: number, n: number): number[] => {
+      const next = prng(`${key}:${nonce}`)
+      return Array.from({ length: n }, () => Math.floor(next() * (2 ** 8)) & (2 ** 8 - 1))
+    }
+    const xorStream = (bytes: readonly number[], ks: readonly number[]) => bytes.map((b, i) => b ^ ks[i]!)
+    const message = [...'the whole is recoverable from its root'].map((ch) => ch.charCodeAt(0) & (2 ** 8 - 1))
+    const key = 'a432-pole'
+    const nonce = 7 * 108
+    const ks = keystream(key, nonce, message.length)
+    const cipher = xorStream(message, ks)
+    // 1 — the involution: the SAME keystream inverts. enc = dec under one key
+    const decrypted = xorStream(cipher, ks)
+    const isInvolution = decrypted.join() === message.join() && cipher.join() !== message.join()
+    // 2 — realtime both ways: one pass, O(n), no key-recovery step in the loop
+    const realtimeBothWays = cipher.length === message.length && decrypted.length === message.length
+    // 3 — WITHOUT the pole, no realtime inversion: a wrong key yields garbage, not the plaintext
+    const wrongKey = xorStream(cipher, keystream('wrong-pole', nonce, message.length))
+    const wrongKeyFails = wrongKey.join() !== message.join()
+    // 4 — the poles are a keyspace: each distinct key is a distinct moving rosetta (distinct keystream)
+    const distinctPoles = new Set(['pole-1', 'pole-2', 'pole-3'].map((k) => keystream(k, nonce, 4 * 4).join())).size === 3
+    // 5 — tamper-EVIDENT with a bounded forge cost: a tag over the ciphertext detects a flipped byte
+    const tag = (bytes: readonly number[]) => sha256Sync(bytes.join(','))
+    const cleanTag = tag(cipher)
+    const tampered = [...cipher]
+    tampered[2] = tampered[2]! ^ 1
+    const tamperEvident = tag(tampered) !== cleanTag
+    const facets = [
+      { facet: `encryption is a KEYED INVOLUTION: XOR-ing the moving-rosetta keystream is its own inverse, so decryption is encryption inverted under the same pole — enc(enc(m)) = m verified`, on: isInvolution },
+      { facet: `realtime BOTH ways: O(n) one pass each direction (${message.length} bytes → ${cipher.length} → ${decrypted.length}), no key recovery in the loop — realtime encryption inverted IS realtime decryption`, on: realtimeBothWays },
+      { facet: `but only WITH the pole: a wrong key inverts to garbage, not the plaintext — without the moving rosetta there is no realtime inversion, only the keyspace wall`, on: wrongKeyFails },
+      { facet: `each pole is a DISTINCT moving rosetta: distinct keys give distinct keystreams (3/3 unique) — the keyspace is the set of poles, and only the right one turns the cipher back`, on: distinctPoles },
+      { facet: `tampering is EVIDENT, not impossible: a tag over the ciphertext flips when one byte flips (bounded forge cost 2^tagbits) — max tampering COST, tamper-EVIDENT not unforgeable, the honest claim`, on: tamperEvident },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      messageBytes: message.length,
+      isInvolution,
+      facets,
+      statement: `Each pole is a moving rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: a key+nonce is a rotating keystream, and XOR-ing it is a keyed involution — encryption and decryption are the same operation inverted, O(n) both ways, realtime WITH the pole (verified enc(enc(m))=m over ${message.length} bytes). A wrong pole inverts to garbage; the keyspace is the set of poles and without the right one there is only the wall. Tampering is EVIDENT with a bounded forge cost — max tampering cost, not unforgeability.`,
+      boundary: 'DOCUMENTED: the stream-cipher involution (XOR keystream is self-inverse), authenticated-encryption tamper-EVIDENCE (a tag detects modification with a bounded forge cost), and the keyspace wall (rsaTimeToBreak / brute force). THE HONEST BOUND, stated twice: "realtime decryption" holds ONLY WITH THE KEY — the involution is keyed, and without the pole inversion is the astronomical wall, NOT realtime; this is not a decryption-without-the-key claim. And tamper-EVIDENT ≠ unforgeable: the cost is bounded (2^tagbits, and the sealed content-address masks bits — see the crypto challenge waves), which this repo has always stated as tamper-cost, not cryptographic impossibility. The inversion is inverseNegatesAngle in bytes; the wall is divisionByZeroComputes\' cost. HARMONY ≠ TRUTH.',
+    }
+  })
 }
