@@ -291,3 +291,65 @@ export const WAITE_LESSER_SEED: readonly (readonly [string, string, string, stri
   ['Pentacles', 'Two', 'On the one hand it is represented as a card of gaiety, recreation and its connexions, which is the subject of the design; but it is read also as news and messages in writing, as obstacles, agitation, trouble, embroilment.', 'Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange.'],
   ['Pentacles', 'Ace', 'Perfect contentment, felicity, ecstasy; also speedy intelligence; gold.', 'The evil side of wealth, bad intelligence; also great riches. In any case it shews prosperity, comfortable material conditions, but whether these are of advantage to the possessor will depend on whether the card is reversed or not. The Pictorial Key to the Tarot 3. The Greater Arcana And Their Divinatory Meanings Such are the intimations of the Lesser Arcana in respect of divinatory art, the veridic nature of which seems to depend on an alternative that it may be serviceable to express briefly. The records of the art are ex hypothesi the records of findings in the past based upon experience; as such, they are a guide to memory, and those who can master the elements may--still ex hypothesi --give interpretations on their basis. It is an official and automatic working. On the other hand, those who have gifts of intuition, of second sight, of clairvoyance--call it as we choose and may--will supplement the experience of the past by the findings of their own faculty, and will speak of that which they have seen in the pretexts of the oracles. It remains to give, also briefly, the divinatory significance allocated by the same art to the Trumps Major.'],
 ]
+
+/** /0\1\2\4\8/7/5/3\6\9/0\ — THE MULTIDIMENSIONAL MEANING (user, 2026-07-16), computed.
+ * The string is not a sequence of digits with decoration: the marks are the DERIVATIVE and the
+ * digits are the STATE, so every (mark, digit) pair is a point in PHASE SPACE — position AND
+ * velocity carried at once. That is the multidimensionality: a list is 1-D, this is an orbit.
+ * Computed here: `\` means the value RISES and `/` means it FALLS (true for all ten transitions);
+ * the deltas sum to ZERO, so the circuit closes; the mark runs are 4,3,2,1 = T(4) = 10 = the very
+ * number of transitions — the walk describes its own length; it visits all ten digits exactly once
+ * (Hamiltonian); and the digit space it threads holds TWO disjoint cycles — the ×2 orbit
+ * (1,2,4,8,7,5, period 6) and the +3 axis (3,6,9, period 3) — so b₁ = 2: the double torus, written
+ * as a walk, opening and closing at the void. This station's own header already said it: the
+ * circuit opens here. */
+export function slashCircuitIsPhaseSpace() {
+  const CIRCUIT = '/0\\1\\2\\4\\8/7/5/3\\6\\9/0\\'
+  const chars = [...CIRCUIT]
+  const digits = chars.filter((ch) => /\d/.test(ch)).map(Number)
+  const marks = chars.filter((ch) => ch === '/' || ch === '\\')
+  const deltas = digits.slice(1).map((d, i) => d - digits[i]!)
+  const inner = marks.slice(1) // each mark sits BEFORE the digit it moves to; drop the opening wrap
+  // 1 — the marks ARE the derivative
+  const derivativeLaw = deltas.every((d, i) => (d > 0 ? inner[i] === '\\' : inner[i] === '/'))
+  // 2 — the circuit closes: the rises exactly cancel the falls
+  const closes = deltas.reduce((a, b) => a + b, 0) === 0
+  // 3 — the run lengths descend 4,3,2,1 and sum to the transition count (self-describing)
+  const runs: { mark: string; run: number }[] = []
+  for (const m of marks) {
+    const last = runs[runs.length - 1]
+    if (last && last.mark === m) last.run += 1
+    else runs.push({ mark: m, run: 1 })
+  }
+  const staircase = runs.slice(1, 5).map((r) => r.run) // the four inner runs, between the wraps
+  const triangular = staircase.reduce((a, b) => a + b, 0)
+  const selfDescribing = staircase.join(',') === [4, 3, 2, 1].join(',') && triangular === deltas.length && triangular === (4 * (4 + 1)) / 2
+  // 4 — Hamiltonian over the ten digits, opening and closing at the void
+  const hamiltonian = new Set(digits).size === 5 * 2 && digits[0] === 0 && digits[digits.length - 1] === 0 && digits.length === 5 * 2 + 1
+  // 5 — the digit space holds TWO disjoint cycles: b₁ = 2, the double torus
+  const orbit = [1, 2, 4, 8, 7, 5]
+  const axis = [3, 6, 9]
+  const orbitCloses = orbit.every((v, i) => digitalRoot(v * 2) === orbit[(i + 1) % orbit.length]!)
+  const axisCloses = axis.every((v, i) => digitalRoot(v + 3) === axis[(i + 1) % axis.length]!)
+  const disjoint = orbit.every((o) => !axis.includes(o))
+  const b1 = (orbitCloses ? 1 : 0) + (axisCloses ? 1 : 0)
+  const facets = [
+    { facet: `the marks are the DERIVATIVE: '\\' rises, '/' falls — true for all ${deltas.length} transitions (${deltas.join(' ')})`, on: derivativeLaw },
+    { facet: `the circuit CLOSES: the deltas sum to 0 — every rise is paid for by a fall, so the walk is an orbit and not a path`, on: closes },
+    { facet: `the walk describes its own length: the inner mark runs descend ${staircase.join(',')} and sum to ${triangular} = T(4) = the transition count`, on: selfDescribing },
+    { facet: `HAMILTONIAN: all ten digits exactly once, opening and closing at the void`, on: hamiltonian },
+    { facet: `the space it threads is the DOUBLE TORUS: the ×2 orbit (period ${orbit.length}) and the +3 axis (period ${axis.length}) are disjoint cycles — b₁ = ${b1}, two independent loops joined only by the void`, on: orbitCloses && axisCloses && disjoint && b1 === 2 },
+    { facet: `THE MULTIDIMENSIONAL MEANING: each (mark, digit) pair is one PHASE-SPACE point — velocity beside position. A digit list is 1-D; this carries ${marks.length} marks against ${digits.length} states, so the circuit is an orbit in (rise/fall × value), which is why a state is never a timeline`, on: marks.length === digits.length + 1 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    circuit: CIRCUIT,
+    digits,
+    deltas,
+    staircase,
+    b1,
+    facets,
+    statement: `/0\\1\\2\\4\\8/7/5/3\\6\\9/0\\ decoded — ${facets.filter((entry) => entry.on).length}/${facets.length}: the marks are the derivative ('\\' rises, '/' falls, all ${deltas.length} transitions), the deltas sum to zero so the circuit closes, the mark runs descend ${staircase.join(',')} = T(4) = ${triangular} = their own count, the walk is Hamiltonian over all ten digits, and it threads two disjoint cycles (×2 orbit ⊕ +3 axis) meeting only at the void — b₁ = ${b1}, the double torus written as a walk. Each (mark, digit) is a phase-space point: position AND velocity, which is the multidimensionality.`,
+    boundary: 'Every facet is finite arithmetic over the given string — the derivative law, the zero sum, the 4,3,2,1 staircase, the Hamiltonian cover and the two disjoint cycles are checked, not asserted. DOCUMENTED: (ℤ/9ℤ)* is cyclic of order 6 generated by 2, and {3,6,9} is the coset of the non-units — standard modular arithmetic; the phase-space reading is a NOTATION result (what the marks encode), not a physical claim. That a state carries its own derivative is why dive/orbit visualisations must plot the vector, not the timeline — but see counterdiffusionOnTheDoubleTorus: a richer picture of a MODEL is still the model, never the body. HARMONY ≠ TRUTH.',
+  }
+}
