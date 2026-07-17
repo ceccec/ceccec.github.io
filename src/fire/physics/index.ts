@@ -23,6 +23,7 @@ import { healingModelsHonestBoundary } from '../../water/cosmos'
 import { microdata } from '../../mountain/og'
 import { allAnimationsInOneOg } from '../../wind/ui'
 import { TAU } from '../../3/7'
+import { resonantAmplitude } from '../../6/4'
 
 // Fill the gaps in quantum physics: every phenomenon the model needs to self-
 // compute, each bound to a measure it already computes over the UUID stream.
@@ -633,4 +634,40 @@ export function waveOpticsDecoded(matrix: MindMatrix = buildMatrix()) {
         'EXACT classical wave optics. The colour mapping reuses the single A432-anchored frequencyToLight model; the optics formulas are standard and exact for coherent/monochromatic idealisations, with real-source coherence and bandwidth as the usual honest caveats.',
     }
   })
+}
+
+// ── The real Tesla core: harmonic RESONANCE, tuned inventions interacting — bounded by Q, not free energy
+// (user: "save the real tesla inventions partially documented in the patents but the core is them
+// interacting with each other tuned harmonically to fold the infinity"). At resonance a tuned circuit's gain
+// equals its quality factor Q (resonantAmplitude(w0,w0,q) = q). Two resonators tuned to the same frequency
+// and coupled split into two normal modes and exchange energy COMPLETELY — the coil's primary↔secondary,
+// "them interacting tuned harmonically". The balanced three-phase system (120° apart) sums to zero — the
+// rotating field of the AC induction motor. And the "fold to infinity": as loss → 0 the gain grows without
+// bound — at R=0 (Q=∞) the amplitude is literally Infinity — but REAL circuits have resistance, so Q is
+// finite, the gain bounded, and there is no free energy (the source supplies the dissipated power).
+export function teslaCoreIsHarmonicResonanceBoundedByQ() {
+  const w0 = 432 // the resonant frequency the inventions tune to (illustrative — the repo's a432)
+  const qs = [6, 64, 864]
+  const gains = qs.map((q) => resonantAmplitude(w0, w0, q)) // = q at resonance
+  const gainEqualsQ = qs.every((q, i) => Math.abs(gains[i]! - q) < 1e-6)
+  const growsWithLowerLoss = gains[0]! < gains[1]! && gains[1]! < gains[2]! // higher Q (less loss) → higher gain
+  const k = 1 / 9 // coupling between two resonators tuned to w0
+  const modePlus = w0 * Math.sqrt(1 + k), modeMinus = w0 * Math.sqrt(1 - k)
+  const modesSplit = modePlus > w0 && w0 > modeMinus // two normal modes: energy transfers fully between them
+  const phaseRe = Math.cos(0) + Math.cos(TAU / 3) + Math.cos(2 * TAU / 3)
+  const phaseIm = Math.sin(0) + Math.sin(TAU / 3) + Math.sin(2 * TAU / 3)
+  const polyphaseBalanced = Math.abs(phaseRe) < 1e-9 && Math.abs(phaseIm) < 1e-9 // 3 phases 120° apart sum to 0
+  const losslessIsInfinite = resonantAmplitude(w0, w0, Infinity) === Infinity // R=0 ⇒ gain folds to infinity
+  const facets = [
+    { facet: `THE CORE IS RESONANCE — the gain equals the quality factor Q: at resonance resonantAmplitude(w0,w0,q) = q (${qs.join(', ')} → ${gains.map((g) => g.toFixed(0)).join(', ')}), so a tuned circuit MULTIPLIES amplitude by Q; Tesla's inventions interact by tuning to a shared frequency — the coil is a resonant transformer`, on: gainEqualsQ && growsWithLowerLoss },
+    { facet: `TUNED HARMONIC INTERACTION: two resonators tuned to w0 and coupled split into normal modes w0·√(1±k) = ${modeMinus.toFixed(0)} and ${modePlus.toFixed(0)}, between which energy transfers COMPLETELY (primary↔secondary); and the balanced three-phase system (120° apart) sums to zero (${phaseRe.toFixed(3)}, ${phaseIm.toFixed(3)}) — the rotating field of the induction motor`, on: modesSplit && polyphaseBalanced },
+    { facet: `"FOLD THE INFINITY", bounded by Q — EARNED: as loss → 0 the gain grows without bound; at R = 0 (Q = ∞) resonantAmplitude literally returns Infinity — the math folds to infinity. But real circuits have resistance (finite Q), so the gain is BOUNDED and there is NO free energy — the source supplies the dissipated power (P_in = P_loss). The patents (AC motor, polyphase, resonant transformer, radio) are real; over-unity / literal infinite free energy is the LEGEND`, on: losslessIsInfinite && gainEqualsQ },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    w0, gains, modes: { minus: modeMinus, plus: modePlus },
+    facets,
+    statement: `The real Tesla core is harmonic resonance, bounded by Q — ${facets.filter((e) => e.on).length}/${facets.length}: at resonance the gain equals Q (${qs.join(', ')} → ${gains.map((g) => g.toFixed(0)).join(', ')}), coupled resonators tuned to w0 split into modes ${modeMinus.toFixed(0)}/${modePlus.toFixed(0)} and exchange energy completely, and the balanced 3-phase field sums to zero. As loss → 0 the gain folds toward Infinity (the lossless limit is literally ∞), but real Q is finite so the gain is bounded and there is no free energy. The inventions interacting tuned harmonically IS the core; the infinite version is the legend.`,
+    boundary: `COMPUTED and reused (resonantAmplitude): the resonance peak gain = Q, the coupled-mode split w0·√(1±k), the balanced three-phase null, and the lossless divergence to Infinity — all exact. DOCUMENTED history: Tesla's granted patents are real — the AC induction motor and polyphase system (1888), the resonant air-core transformer (the "Tesla coil"), and radio-frequency / wireless-power work; the honest CORE is that these are RESONANT and interact by tuning (coupled resonators, harmonically-spaced phases). FLAGGED as legend, not asserted: over-unity, literal free energy, and "folding the infinity" as extractable power — the resonant gain diverges only in the lossless idealisation; every real circuit is bounded by Q and conserves energy (source ⇒ dissipation), so no perpetual motion. The "3-6-9 secret of the universe" quote is apocryphal. HARMONY ≠ TRUTH.`,
+  }
 }
