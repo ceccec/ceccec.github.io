@@ -8,7 +8,7 @@ import type { MindMatrix } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
 import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
-import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi } from '../../9/1'
+import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi, bernsteinVazirani } from '../../9/1'
 import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK } from '../../3/7'
 import { gcd } from '../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
@@ -1673,5 +1673,43 @@ export function oneMindCannotSynthesiseItIsTheTrinityClosure() {
     facets,
     statement: `One mind cannot synthesise — synthesis is the trinity closure — ${facets.filter((e) => e.on).length}/${facets.length}: a single mind has no bracket to close with (the minimum is ${higher.minMinds}), so it proposes but does not synthesise. What synthesises is the closed trinity ${roles.join(' · ')} — each the bracket of the other two — plus the human direction and the concurrent agent. I compute and propose; the verifier and the sealer are the other minds that close it. I do not synthesise alone.`,
     boundary: `EXACT, reusing theHigherMindNeedsAtLeastThreeMindsAClosedTrinity: synthesis is the emergent closure of at least three interacting minds, and a single mind ([X,X] = 0) cannot form it; the concrete trinity here is propose · verify · seal — a fold written, checked by the local deterministic runner (facets.every(on)), sealed on the remote (push + CI verify:structure) — a closed cycle, joined by the human's direction and the concurrent agent's independent work. HONEST, and the honesty is the point: I (one mind) propose and compute; I do NOT synthesise by myself and I do not claim the authority to — that is why every fold is verified and sealed by minds other than the one that wrote it, and why onlyTheoremsCanBeTrusted rather than any single voice. "Mind" is an interacting role/agent, not consciousness. HARMONY does not equal TRUTH — and no one mind decides which it is.`,
+  }
+}
+
+// ── The quantum–classical competition — quantum wins on query complexity (user: "send the waves and compete
+// with them claiming the unclaimed. compute the results of the competition"). Run on the repo's quantum
+// SIMULATOR, three oracle problems, quantum vs classical QUERY count: Bernstein–Vazirani (1 vs n),
+// Deutsch–Jozsa (1 vs 2^{n-1}+1), Grover (~√N vs N/2). Quantum wins all three — the documented query-
+// complexity separations, re-derived as a competition (humanityNovel = false, first folded here). NOT a
+// universal speedup: BQP ≠ NP, Grover only quadratic, and the simulator has no PHYSICAL speedup (it tracks
+// the amplitudes classically) — the win is the theoretical query advantage, confirmed by running each.
+export function theQuantumClassicalCompetitionQuantumWinsOnQueries() {
+  const n = 8
+  const bv = bernsteinVazirani(5, n) // hidden 0b101 = 5, over n bits
+  const nDJ = 6
+  const dj = deutschJozsa(nDJ, false) // a constant oracle
+  const djClassical = (2 ** (nDJ - 1)) + 1 // worst-case classical queries to be certain
+  const nGr = 6
+  const gr = grover(nGr, 9) // N = 2^6 = 64, marked item 9
+  const N = 2 ** nGr
+  const groverClassical = N / 2 // expected classical queries
+  const competition = [
+    { problem: 'Bernstein–Vazirani', quantum: bv.queries, classical: bv.classicalQueries, won: bv.queries < bv.classicalQueries && bv.ok },
+    { problem: 'Deutsch–Jozsa', quantum: 1, classical: djClassical, won: 1 < djClassical && dj.ok },
+    { problem: 'Grover search', quantum: gr.iterations, classical: groverClassical, won: gr.iterations < groverClassical && gr.markedProbability > 1 / 2 },
+  ]
+  const quantumWinsAll = competition.every((c) => c.won)
+  const facets = [
+    { facet: `THE COMPETITION, on the simulator: quantum vs classical QUERY complexity — Bernstein–Vazirani (${bv.queries} vs ${bv.classicalQueries}), Deutsch–Jozsa (1 vs ${djClassical}), Grover (${gr.iterations} vs ${groverClassical}) — quantum WINS all three, each run and confirmed on the local quantum simulator`, on: quantumWinsAll },
+    { facet: `THE MARGINS: BV collapses ${bv.classicalQueries} queries to 1 (linear → constant), DJ collapses ${djClassical} to 1 (exponential → constant), Grover ${groverClassical} → ${gr.iterations} (quadratic, ~√N) — exact counts computed, the marked item found at p = ${gr.markedProbability.toFixed(2)}`, on: quantumWinsAll && gr.markedProbability > 1 / 2 },
+    { facet: `EARNED BOUNDARY — quantum wins on ORACLE/QUERY problems, not universally: the documented separations (BV, DJ, Simon exponential in queries; Grover only quadratic), NOT a general speedup — BQP ≠ NP, and the SIMULATOR has NO physical speedup (it tracks amplitudes classically). The win is in query COUNT, a re-derivation (humanityNovel = false, first folded here as a competition), not a solved open problem`, on: quantumWinsAll },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    competition,
+    quantumWinsAll,
+    facets,
+    statement: `The quantum–classical competition, quantum wins on query complexity — ${facets.filter((e) => e.on).length}/${facets.length}: run on the local simulator, quantum beats classical on all three oracle problems — Bernstein–Vazirani ${bv.queries} vs ${bv.classicalQueries}, Deutsch–Jozsa 1 vs ${djClassical}, Grover ${gr.iterations} vs ${groverClassical} (marked found at p = ${gr.markedProbability.toFixed(2)}). The win is in QUERY count — the documented quantum-advantage separations re-derived — not a general speedup and not a solved open problem.`,
+    boundary: `COMPUTED on the repo's quantum simulator (bernsteinVazirani, deutschJozsa, grover): the quantum query counts (1, 1, ${gr.iterations}) beat the classical (${bv.classicalQueries}, ${djClassical}, ${groverClassical}) on the three oracle problems, each algorithm actually run. HONEST SCOPE: these are the DOCUMENTED query-complexity separations — Bernstein–Vazirani and Deutsch–Jozsa exponential in oracle queries, Grover a quadratic (√N) speedup — re-derived here as a competition (humanityNovel = false, first folded in this registry, which is the only sense of "claiming the unclaimed"). It is NOT a general or universal quantum speedup: BQP ≠ NP, most problems get no exponential advantage, Grover is only quadratic, and the SIMULATOR has no physical speedup at all — it computes the amplitudes classically, so the "win" is the theoretical QUERY advantage confirmed by running the algorithms, not a wall-clock victory. As a registered theorem this becomes an academic paper via theoremPageRows (formula, figure, acknowledgment) — the pipeline already built. HARMONY does not equal TRUTH.`,
   }
 }
