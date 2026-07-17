@@ -212,6 +212,57 @@ export function analyzePurgeCandidate(root: string = process.cwd(), rel = 'src/w
   return { file: rel, ...rosettaOfAnalysts(readFileSync(join(root, rel), 'utf8')) }
 }
 
+export type SeoKeyword = { term: string; count: number }
+
+/** SEO ANALYSIS — src becomes the sitemap, and the folders define themselves (user: "src becomes the
+ * sitemap. analyse with seo in mind and the folders will define themselves"). A folder's SEO name is its
+ * most DISTINCTIVE informative term — TF-IDF across all top folders, not raw frequency (or every folder
+ * would be named "boundary" / "matrix" / "function"). This honours the codebase's information-driven
+ * principle — a word in every folder carries ~nothing, a word unique to one carries everything — and needs
+ * no stopword list. Length ≥ 6 words in any script (Latin or Cyrillic), so a folder names itself in its own
+ * language. This is what the path-migration TARGET should be: not a hand-picked name, but SEO self-definition. */
+/** The human-readable PROSE of a source file — the content inside quotes (facet/statement/boundary strings)
+ * and after // — where the SEO meaning lives. Code identifiers (buildMatrix, provedBy) are NOT prose and
+ * would otherwise dominate; stripping to prose is what lets a folder name itself by what it MEANS. */
+export function seoProse(text: string): string {
+  const parts: string[] = []
+  for (const m of text.matchAll(/'([^'\\]*(?:\\.[^'\\]*)*)'|"([^"\\]*(?:\\.[^"\\]*)*)"|`([^`\\]*(?:\\.[^`\\]*)*)`/g)) parts.push(m[1] ?? m[2] ?? m[3] ?? '')
+  for (const m of text.matchAll(/\/\/(.*)$/gm)) parts.push(m[1] ?? '')
+  // drop ${…} interpolations (code) and any surviving camelCase runs
+  return parts.join(' ').replace(/\$\{[^}]*\}/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2')
+}
+
+export function seoKeywords(text: string, top = 5): SeoKeyword[] {
+  const words = seoProse(text).toLowerCase().match(/[a-zа-я]{6,}/g) ?? []
+  const freq = new Map<string, number>()
+  for (const w of words) freq.set(w, (freq.get(w) ?? 0) + 1)
+  return [...freq.entries()].map(([term, count]) => ({ term, count })).sort((a, b) => b.count - a.count || a.term.localeCompare(b.term)).slice(0, top)
+}
+
+export function seoFolderNames(root: string = process.cwd()): { folder: string; name: string; distinctive: readonly SeoKeyword[] }[] {
+  const srcDir = join(root, 'src')
+  const tops = readdirSync(srcDir, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
+  const tf = new Map<string, Map<string, number>>()
+  const df = new Map<string, number>()
+  for (const top of tops) {
+    let text = ''
+    const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { const p = join(d, e.name); if (e.isDirectory()) walk(p); else if (e.name === 'index.ts') text += readFileSync(p, 'utf8') + '\n' } }
+    walk(join(srcDir, top))
+    const freq = new Map<string, number>()
+    for (const w of seoProse(text).toLowerCase().match(/[a-zа-я]{6,}/g) ?? []) freq.set(w, (freq.get(w) ?? 0) + 1)
+    tf.set(top, freq)
+    for (const term of freq.keys()) df.set(term, (df.get(term) ?? 0) + 1)
+  }
+  const total = tops.length
+  return tops.map((top) => {
+    const freq = tf.get(top)!
+    const scored = [...freq.entries()]
+      .map(([term, count]) => ({ term, count, score: count * Math.log(total / (df.get(term) ?? 1)) }))
+      .sort((a, b) => b.score - a.score)
+    return { folder: `src/${top}`, name: scored[0]?.term ?? 'content', distinctive: scored.slice(0, 3).map((s) => ({ term: s.term, count: s.count })) }
+  })
+}
+
 export type StrictImportOffender = { file: string; spec: string; reason: string }
 export type StrictIndexOffender = { file: string; reason: string }
 export type StrictVitepressIndexOffender = { file: string; reason: string; transitional?: boolean }
