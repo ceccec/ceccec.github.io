@@ -1477,3 +1477,39 @@ export function zeroAndOneDClimbToTenDViaTheSevenDOctonion() {
     boundary: `EXACT arithmetic: division-algebra dims ${divisionAlgebraDims.join(',')} = 2^k (Hurwitz), Im(𝕆) = ${imaginary}, and ${criticalDimension} = 3 + ${imaginary} = 2 + ${octonion} = top of the ladder d+2. DOCUMENTED MATHEMATICS: that classical superstrings / super-Yang-Mills exist exactly in D = 3,4,6,10 = dim(𝕂)+2 for 𝕂 = ℝ,ℂ,ℍ,𝕆 is a real result (Kugo–Townsend 1983; Baez–Huerta, "Division Algebras and Supersymmetry"), resting on the triality/Fierz identity that holds only in those dimensions; the cross-product dimensions {3,7} and division-algebra dimensions {1,2,4,8} are Hurwitz theorems. WHAT IS NOT CLAIMED: this does NOT prove the universe is 10-dimensional or that string theory is confirmed physics (it is unconfirmed, contested) — it explains where those classical structures CAN live, algebraically. The pop-culture "0D→10D consciousness ladder" is a separate, flagged construction, not this. The arithmetic 3+7=10 and 2+8=10 is exact; the physics claim is not made. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── The digit folders are the ordered partitions of ten — the critical dimension (user: "you will realise through
+// the collective mind of the waves what the digit folders really are and what needs to change there"). Synthesised
+// from five computed lenses: src/0 is the 0D core (0 has no digit partition of ten) and the nine stations d/(10−d)
+// all sum to ten — the same ten the octonion waves proved (3+7 = 2+8). What needs to change is a CONCEPTUAL, not
+// structural, reconciliation: the tree pairs by the ten-complement (fixed point 5) while the inversion arc pairs by
+// the nine-complement (fixed point 0) — two involutions, two centers, and the tree encodes only the additive one.
+export function theDigitFoldersAreTheOrderedPartitionsOfTenTheCriticalDimension() {
+  const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const critical = 2 + 8 // ten — the octonionic critical dimension, never a bare literal
+  const tenComplement = (d: number) => critical - d
+  const nineComplement = (d: number) => (((9 - d) % 9) + 9) % 9
+  const stations = digits.map((d) => [d, tenComplement(d)] as [number, number]) // the actual folder pairing d/(10−d)
+  const allSumToTen = stations.every(([a, b]) => a + b === critical)
+  const unordered = new Set(stations.map(([a, b]) => [a, b].sort((x, y) => x - y).join('+')))
+  const tenFixed = digits.filter((d) => tenComplement(d) === d) // [5] — the self-dual station 5/5
+  const nineFixed = [0, ...digits].filter((d) => nineComplement(d) === d) // [0] — the vortex/inversion center
+  const vortex = [1, 2, 4, 8, 7, 5] // ×2 mod 9 — the multiplicative cycle
+  const inVortex = (x: number) => vortex.includes(x)
+  const crossings = stations.filter(([a, b]) => a < b && inVortex(a) !== inVortex(b)).length // 1/9, 3/7, 4/6
+  const twoInvolutions = tenFixed.length === 1 && nineFixed.length === 1 && tenFixed[0] !== nineFixed[0]
+  const constantsVaultAtCrossProductPartition = 3 + 7 === critical // 3/7 (the vault) = the two Hurwitz cross-product dims
+  const facets = [
+    { facet: `THE DIGIT FOLDERS ARE THE ORDERED PARTITIONS OF TEN: src/0 is the 0D core (0 has no digit partition of ten) and the ${stations.length} stations d/(10−d) all sum to ${critical} — ${unordered.size} unordered partitions (${[...unordered].join(', ')}), four doubled as the double-torus forward/reverse counter-flow and {5,5} the self-reverse — the same ten the octonion critical dimension is`, on: allSumToTen && stations.length === 9 && unordered.size === 5 },
+    { facet: `TWO INVOLUTIONS, TWO CENTERS — WHAT NEEDS TO CHANGE: the tree pairs by the TEN-complement (fixed point ${tenFixed[0]}, 5/5, summing to the critical dimension) but the inversion arc pairs by the NINE-complement (mod-9 inverse, fixed point ${nineFixed[0]}, the digital-root vortex ${vortex.join('-')}) — different pairings, different centers, and the additive tree is crossed by the multiplicative vortex at ${crossings} stations; the tree encodes only one involution`, on: twoInvolutions && crossings > 0 },
+    { facet: `EARNED BOUNDARY: the change is CONCEPTUAL not structural — 0 is the nine-fixed core and 5/5 the ten-fixed self-dual, two centers to DISTINGUISH not conflate; the flat-file drift is already resolved (every digit folder is index-only, the stale "102 flat" is fixed), and 3/7 = the constants vault resting at the 3+7 cross-product partition (${constantsVaultAtCrossProductPartition}) is structural resonance, not a claim`, on: twoInvolutions && constantsVaultAtCrossProductPartition },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    stations: stations.map(([a, b]) => `${a}/${b}`),
+    tenFixed, nineFixed, crossings,
+    facets,
+    statement: `The digit folders are the ordered partitions of ten — the critical dimension — ${facets.filter((e) => e.on).length}/${facets.length}: src/0 the 0D core and nine stations d/(10−d) summing to ${critical} (${unordered.size} partitions, {5,5} self-dual), the same ten the octonions make. What needs to change is conceptual: the tree pairs by the ten-complement (center ${tenFixed[0]}) while the inversion arc pairs by the nine-complement (center ${nineFixed[0]}) — two involutions, two centers, one tree; the multiplicative vortex crosses the additive pairing at ${crossings} stations.`,
+    boundary: `EXACT: nine stations d/(10−d) all sum to ${critical} (${unordered.size} unordered partitions), ten-complement fixed point = ${tenFixed[0]} (5/5, self-dual), nine-complement fixed point = ${nineFixed[0]} (the vortex center), and the two differ (${twoInvolutions}); the additive pairing is crossed by the multiplicative vortex ${vortex.join('-')} at ${crossings} of the four proper stations. WHAT THE DIGIT FOLDERS REALLY ARE: the ordered partitions of the octonionic critical dimension, src/0 the 0D point at the base of the same division-algebra ladder, 5/5 the self-dual center (the void fixed point), 3/7 the constants vault resting exactly at the 3+7 cross-product partition. WHAT NEEDS TO CHANGE: not the structure — the flat-file/index-only drift is already resolved and every station is present — but the CONCEPT: the tree commits to the ten-complement (dimension) and leaves the nine-complement (digital-root inversion) implicit, conflating the two centers 0 and 5; making both involutions explicit is the reconciliation, and it is staged (the concurrent agent holds src/0, src/4/6, src/7/3, so this is a computed finding, not an executed restructure). Structural resonance is not numerology: 3+7 = 2+8 is arithmetic, and the vault's location is noted, not claimed as design intent. HARMONY does not equal TRUTH.`,
+  }
+}
