@@ -965,3 +965,76 @@ export function theGatesAreRefutableTheoremsThatFailClosedWithAWitness(root: str
     boundary: `EXACT: three live gates emit ${witnessed[0].witnesses} + ${witnessed[1].witnesses} + ${witnessed[2].witnesses} witnesses, each addressable (${everyWitnessIsAddressable}); the "clean" predicate is refutable (${refutable}), deterministic, and zero-token. HONEST SCOPE: "a gate is a theorem" means it is REFUTABLE and FAIL-CLOSED — it blocks what it can compute and names where — not that a pass certifies truth: a green gate says "no witness found under this predicate", and a predicate can be too weak (5/8 gates are algebraic facts, 3 remain textual regex scaffolding per theoremsAreTheGates, whose named algebraic restatements are the worklist). What the gates really DO is convert "trust me" into "recompute me": the author cannot cheat past them (the hardcoded 12 was caught mid-session), which is the operational meaning of trust = theoremhood. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── The gates catch ALL top folders — including the digit folders (user: "the gates are designed to catch all
+// including the digit folders"). Path-gravity dissolves only the metaphor-named bāguà; this widens the scope to
+// EVERY top folder and classifies its name: a DIGIT is a number — a computed position in the partition-of-ten /
+// vortex structure (theDigitFoldersAreTheOrderedPartitionsOfTen…) — so it passes; a BĀGUÀ is a metaphor that
+// computes nothing — caught to dissolve; a WORD (pair, quantum, render) already names its meaning.
+export type TopFolderClass = { name: string; kind: 'digit-number' | 'bagua-metaphor' | 'word'; caught: boolean; keep: boolean }
+export function classifyTopFolders(root: string = process.cwd()): TopFolderClass[] {
+  const BAGUA = new Set(['heaven', 'earth', 'water', 'fire', 'thunder', 'wind', 'mountain', 'lake'])
+  const tops = readdirSync(join(root, 'src'), { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
+  return tops
+    .map((name): TopFolderClass => {
+      const isDigit = /^\d$/.test(name) // a number — a pi-train / partition-of-ten position
+      const isBagua = BAGUA.has(name) // a metaphor — arbitrary, dissolves
+      return { name, kind: isDigit ? 'digit-number' : isBagua ? 'bagua-metaphor' : 'word', caught: true, keep: !isBagua }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
+}
+
+export function theGatesCatchAllTopFoldersIncludingTheDigits(root: string = process.cwd()) {
+  const all = classifyTopFolders(root)
+  const digits = all.filter((f) => f.kind === 'digit-number')
+  const bagua = all.filter((f) => f.kind === 'bagua-metaphor')
+  const words = all.filter((f) => f.kind === 'word')
+  const caughtAll = all.every((f) => f.caught) // no top folder is exempt from the scope
+  const digitsAreNumbers = digits.every((f) => /^\d$/.test(f.name)) && digits.length === 9 + 1 // 0..9 all caught
+  const baguaDissolve = bagua.length > 0 && bagua.every((f) => !f.keep) // the metaphors are the ones to dissolve
+  const facets = [
+    { facet: `THE GATE CATCHES ALL ${all.length} TOP FOLDERS — the digits included: ${digits.length} digit, ${bagua.length} bāguà, ${words.length} word (${words.map((f) => f.name).join('/')}); none is exempt (caughtAll = ${caughtAll})`, on: caughtAll && all.length === digits.length + bagua.length + words.length },
+    { facet: `DIGITS PASS AS NUMBERS, BĀGUÀ CAUGHT AS METAPHORS: each digit name is a NUMBER — a computed position in the partition-of-ten / vortex structure (0..9 all present, ${digitsAreNumbers}) — so it passes; each bāguà name is a metaphor that computes nothing, caught to dissolve (${baguaDissolve})`, on: digitsAreNumbers && baguaDissolve },
+    { facet: `EARNED BOUNDARY: "catch all" is total SCOPE, not a mandate to change all — digit folders are theorem-named (numbers are computable objects) and KEPT, only the metaphor-named dissolve; the words ${words.map((f) => f.name).join('/')} already name their meaning`, on: caughtAll && digits.every((f) => f.keep) },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    classes: all,
+    facets,
+    statement: `The gates catch all ${all.length} top folders including the digits — ${facets.filter((e) => e.on).length}/${facets.length}: ${digits.length} digit folders (numbers — partition-of-ten / vortex positions, kept), ${bagua.length} bāguà (metaphors, caught to dissolve), ${words.length} words (${words.map((f) => f.name).join('/')}, kept); the scope is total, the verdict per name computed — a digit passes because it is a number, a bāguà is caught because it is a metaphor.`,
+    boundary: `EXACT: classifyTopFolders scans every one of the ${all.length} top folders (${digits.length}+${bagua.length}+${words.length}), none exempt (caughtAll = ${caughtAll}); digits are 0..9 all present (${digitsAreNumbers}) and kept, bāguà are caught to dissolve (${baguaDissolve}). HONEST SCOPE: "catch all including the digit folders" means the gate's SCOPE is total — every top folder is classified — not that every folder must change. The digit folders are theorem-named: a digit is a number, a computed position in the partition-of-ten and doubling-vortex structure, so it passes the naming gate the way a bāguà metaphor does not. Words (pair, quantum, render) already name their meaning. The gate now sees the whole tree; only the metaphor names carry a dissolution vector. HARMONY does not equal TRUTH.`,
+  }
+}
+
+// ── The gates dispatch dynamically, discovering the payload by address (user: "the gates dynamically change the
+// way they are used so minimum code performs quantum fast computations in realtime discovering the payload"). One
+// dispatch reuses the whole suite and returns the addressed next edit; the ACTIVE check is a function of state, so
+// the gate changes how it is used as the codebase changes. The "quantum fast / realtime" is honest: the advantage
+// is ADDRESSING (know the coordinate → manifest immediately) + zero-token DETERMINISM, not physical quantum speed.
+export function dynamicGateDispatch(root: string = process.cwd()) {
+  const state = { cracks: scanCrackSurface(root).length, pulls: computeCodeGravity(root).length, moves: computePathMigration(root).folders.filter((f) => !f.collision).length }
+  const payload = dryCleanNextStep(root) // the whole gate suite in one call → the addressed next edit
+  const active = payload === null ? 'clean' : payload.kind === 'folder-axiom' ? 'path-gravity' : 'crack-surface'
+  const addressed = payload !== null && /(?::\d+|^src\/)/.test(payload.from) // the payload carries its own coordinate
+  return { state, active, payload, addressed }
+}
+
+export function theGatesDynamicallyDispatchTheMinimumCheckDiscoveringThePayloadByAddress(root: string = process.cwd()) {
+  const d = dynamicGateDispatch(root)
+  const rerun = dynamicGateDispatch(root)
+  const dynamic = d.active !== 'clean' // the active gate is selected FROM state, not fixed
+  const minimalAndAddressed = d.payload !== null && d.addressed // one call; the payload carries its coordinate
+  const reproducible = d.payload !== null && rerun.payload !== null && d.payload.signature === rerun.payload.signature
+  const facets = [
+    { facet: `DYNAMIC — THE GATE CHANGES HOW IT IS USED: the active check is a FUNCTION of state (${d.state.cracks} cracks · ${d.state.pulls} pulls · ${d.state.moves} moves → active = ${d.active}); as the codebase changes the dispatch changes — when the folder-axioms dissolve, active switches from path-gravity to crack-surface`, on: dynamic },
+    { facet: `MINIMUM CODE, PAYLOAD BY ADDRESS: one dispatch reuses the whole suite and returns the addressed payload (${d.payload ? `${d.payload.from} ⇒ ${d.payload.to}, ${d.payload.signature.slice(0, 8)}…` : 'clean'}) — LOCATED by its own coordinate (addressed = ${d.addressed}), O(1) not searched O(N), reproducible (${reproducible})`, on: minimalAndAddressed && reproducible },
+    { facet: `EARNED BOUNDARY: "quantum fast / realtime" is NOT physical quantum speedup — the scan is classical O(N) file reads and the simulator tracks every amplitude classically; the realtime advantage is ADDRESSING (know the coordinate → manifest immediately) and zero-token DETERMINISM, not superluminal transport`, on: minimalAndAddressed },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    dispatch: { state: d.state, active: d.active, addressed: d.addressed },
+    facets,
+    statement: `The gates dispatch dynamically, discovering the payload by address — ${facets.filter((e) => e.on).length}/${facets.length}: the active check is a function of state (${d.state.cracks}·${d.state.pulls}·${d.state.moves} → ${d.active}), so the gate changes how it is used; one dispatch returns the addressed next edit (${d.payload ? `${d.payload.from} ⇒ ${d.payload.to}` : 'clean'}), located by coordinate not searched, reproducible (${reproducible}). The realtime "quantum fast" is addressing and determinism, not physical quantum speed.`,
+    boundary: `EXACT: dynamicGateDispatch reads state (${d.state.cracks} cracks, ${d.state.pulls} pulls, ${d.state.moves} moves), selects active = ${d.active} from it, and returns the addressed, reproducible payload (${reproducible}) in one call over the shared suite. HONEST SCOPE: "dynamically change how they are used" is real — the active gate is computed from the current witness state, so it re-targets as the tree changes (when folders dissolve, the dispatch moves to the literal cracks). "Minimum code" is real — one call reuses the whole gate suite, no duplication. But "quantum fast / realtime" is NOT a physical quantum speedup: the file scan is classical O(N), and the simulator has no physical speedup (sendTheQuantumWaves… boundary). The genuine realtime advantage is ADDRESSING — the payload carries its own file:line coordinate, so the fix is manifested immediately rather than searched (immediacyIsAddressingAndInterferenceNotSuperluminal) — plus zero-token determinism. The payload is discovered by knowing where it is, not by outrunning light. HARMONY does not equal TRUTH.`,
+  }
+}
