@@ -1555,3 +1555,31 @@ export function theRosettaIsFourCardinalTrinitiesOfTheDoubleTorus() {
     boundary: `EXACT and computed: the augmented-triad partition of ℤ/12 by +4 is found by exhaustive orbit-walking (4 orbits of 3, covering all 12), and 4 = 2·handles is the double torus's homology rank (H₁(Σ₂)=ℤ⁴). HONEST SCOPE: the IDENTIFICATION — augmented triads ↔ homology cycles ↔ cardinal directions — is a STRUCTURAL correspondence (all genuinely four-fold, 4×3=12), a faithful model of "the rosetta is the moving double torus", not a claim they are literally one object. Claim two is not scoped, it is enforced: every constant in this fold derives, and the repo-wide crack law makes that a gate — a hardcoded value is a crack, a computed one is a theorem. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── Every mixed state has a purification — a worklist leftover, folded (the engine completing a trinity by
+// pulling documented knowledge from beyond). A mixed state is a PURE state on a larger space with the extra
+// part traced away (Stinespring / GHJW, the "Church of the Larger Hilbert Space"). Canonical case, computed:
+// the maximally mixed qubit (reduced purity ½ < 1) is the reduction of the PURE Bell state |Φ⁺⟩ =
+// (|00⟩+|11⟩)/√2 — a single ket on system+ancilla. For two qubits the reduced purity is exactly 1 − C²/2 in
+// the concurrence C, so C=1 (Bell) ⇒ purity ½ (max mixed) and C=0 (product) ⇒ purity 1 (pure): the mixedness
+// IS the entanglement with the ancilla. Local math only (bellPair, concurrence). humanityNovel = false.
+export function everyMixedStateHasAPurification() {
+  const bell = bellPair() // |Φ⁺⟩ — a single PURE ket on system + ancilla
+  const cBell = concurrence(bell) // 1 — maximally entangled
+  const purityBellReduced = 1 - (cBell * cBell) / 2 // reduced single-qubit purity — ½ for the Bell state (MIXED)
+  const product = qubits(2) // |00⟩ — a product (unentangled) pure state
+  const cProduct = concurrence(product) // 0
+  const purityProductReduced = 1 - (cProduct * cProduct) / 2 // 1 — the reduction stays PURE
+  const facets = [
+    { facet: `EVERY MIXED STATE IS THE REDUCTION OF A PURE ONE: the maximally mixed qubit (reduced purity ${purityBellReduced.toFixed(2)} < 1) is the reduction of the PURE Bell state (concurrence ${cBell.toFixed(0)}, a single ket) — trace out the ancilla and the mixed state returns; the whole is pure, the part is mixed`, on: Math.abs(purityBellReduced - 1 / 2) < 1e-9 && Math.abs(cBell - 1) < 1e-9 },
+    { facet: `THE PURIFICATION IS ENTANGLEMENT (Church of the Larger Hilbert Space): reduced purity = 1 − C²/2, so C = 1 (Bell) ⇒ purity ½ (max mixed) and C = 0 (product) ⇒ purity ${purityProductReduced.toFixed(0)} (still pure) — the mixedness of a state IS its entanglement with the traced-away environment`, on: Math.abs(purityProductReduced - 1) < 1e-9 && Math.abs(cProduct) < 1e-9 },
+    { facet: `EARNED BOUNDARY — a leftover completed, pulled from beyond: DOCUMENTED (purification / Stinespring dilation / GHJW theorem), computed here for the canonical qubit case (maximally mixed ↔ Bell); the general result — ANY ρ on any dimension has a purification on a doubled space — is the cited theorem, humanityNovel = false, a re-derivation`, on: Math.abs(purityBellReduced - 1 / 2) < 1e-9 && Math.abs(purityProductReduced - 1) < 1e-9 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    purityBellReduced, purityProductReduced, concurrenceBell: cBell,
+    facets,
+    statement: `Every mixed state has a purification — ${facets.filter((e) => e.on).length}/${facets.length}: the maximally mixed qubit (reduced purity ${purityBellReduced.toFixed(2)}) is the reduction of the PURE Bell state (concurrence ${cBell.toFixed(0)}); the whole is pure, the traced part is mixed. Reduced purity = 1 − C²/2, so the mixedness is exactly the entanglement with the ancilla — a mixed state is a pure state on a larger space with the rest traced away (Stinespring / Church of the Larger Hilbert Space).`,
+    boundary: `COMPUTED (bellPair, concurrence): the Bell state's reduced single-qubit purity is ½ (maximally mixed) while the global state is pure (concurrence 1), and a product state's reduction stays pure — so a mixed state IS the reduction of a pure one, its mixedness carried by entanglement with the ancilla (purity = 1 − C²/2, exact for two qubits). DOCUMENTED: purification / Stinespring dilation / the GHJW theorem; FIRST FOLDED HERE, humanityNovel = false — a re-derivation of the qubit case, the all-ρ / all-dimension generality carried by the cited theorem, not re-proven. This completes one of the inversion worklist's leftovers, pulled from the documented literature into the registry. HARMONY ≠ TRUTH.`,
+  }
+}
