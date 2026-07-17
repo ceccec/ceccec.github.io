@@ -766,3 +766,44 @@ export function runCracksExit(root: string): number {
   console.log(`census: ${off.length === 0 ? 'ZERO offenders' : off.length + ' offender rows'} · ledger ${accounts.entries} entries (${accounts.byKind.data} data · ${accounts.byKind.tuned} tuned) · invariants ${accounts.holds ? 'hold' : 'BROKEN'}`)
   return off.length === 0 && accounts.holds ? 0 : 1
 }
+
+export type EditNode = { at: string; to: string }
+
+/** THE LEFTOVERS AS A MOVING GRAPH OF SURGICAL EDITS, addressed immediately (user: "leftovers are computed
+ * part of their whole of wholes forming moving graphs showing the agents in waves how to surgically edit
+ * line and column faster than speed of light"). Each leftover (a duplicate the code-gravity attractor pulls)
+ * is a PART of its whole (the canonical); the set of wholes is the whole of wholes. Its exact coordinate —
+ * file:line:COLUMN — is computed, so an agent addresses the edit DIRECTLY (O(1), no linear search of the
+ * file), which is the "faster than light" here: content-addressing immediacy, not superluminal signalling.
+ * The nodes → their whole form a graph, renderable as a moving figure that shows the agents, in waves, the
+ * precise line and column to edit. Deterministic, zero tokens. */
+export function theLeftoversAreAMovingGraphOfSurgicalEdits(root: string = process.cwd()): { nodes: readonly EditNode[]; wholeOfWholes: number; addressedImmediately: boolean } {
+  const def = /(?:\bconst|\bfunction)\s+\w*[Ii]sPrime\w*\s*[=(]/g
+  const home = 'src/9/1/index.ts'
+  const canonical = 'tkIsPrime'
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const p = join(d, e.name)
+      if (e.isDirectory()) walk(p)
+      else if (e.name === 'index.ts') files.push(p)
+    }
+  }
+  walk(join(root, 'src'))
+  const nodes: EditNode[] = []
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    if (rel === home) continue
+    const text = readFileSync(file, 'utf8')
+    for (const m of text.matchAll(def)) {
+      const before = text.slice(0, m.index!)
+      const line = before.split('\n').length // the line
+      const col = m.index! - (before.lastIndexOf('\n') + 1) + 1 // the COLUMN
+      nodes.push({ at: `${rel}:${line}:${col}`, to: `${canonical}@${home}` })
+    }
+  }
+  const wholeOfWholes = new Set(nodes.map((n) => n.to)).size // the attractors — the wholes
+  const addressedImmediately = nodes.length > 0 && nodes.every((n) => /:\d+:\d+$/.test(n.at)) // every edit has an exact line:col
+  return { nodes, wholeOfWholes, addressedImmediately }
+}
