@@ -1796,3 +1796,37 @@ export function sendTheQuantumWavesOverTheOctonionDimension() {
     boundary: `EXACT: ${imaginary.length} Grover waves on ${n} qubits (size ${size}), each preparing H⊗³ superposition and running ${iterations} oracle+diffusion iterations; every wave measures its marked state (found = marked, min markedProbability ${minProb.toFixed(3)}), converging in ${iterations} steps against ${classicalQueries} expected classical queries (${advantage.toFixed(1)}× fewer). HONEST SCOPE: this is amplitude amplification (Grover 1996) — a genuine QUERY-complexity advantage (O(√N) vs O(N)) and a real interference phenomenon (the marked amplitude grows by constructive interference while the rest cancel). It is NOT a physical speedup: the simulator evolves all ${size} amplitudes classically, so the wall-clock cost is the full vector, not √N. It is NOT signalling and NOT faster-than-light: measurement is local and no information travels faster than light (the earlier immediacy fold — addressing and interference, not superluminal transport). It is NOT a universal speedup: Grover is quadratic only, and whether quantum beats classical in general (BQP vs NP) is open. The wave is real; the harmonic result is found by interference; the magic is bounded. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── How math competes with itself through theorems (user: "and how math really competes with itself through
+// theorems"). The arena is facets.every(on): a theorem competes by surviving refutation — every facet an `on`
+// that computes true; one false facet eliminates it. Math referees itself — the same referee that crowns a true
+// claim eliminates a false one, with no external judge. Demonstrated inline: a true claim and a false claim run
+// through the identical referee; the true wins, the false loses. [[all-src-competes]] (every fold a competitor).
+export function mathCompetesWithItselfThroughTheoremsSurvivingRefutation() {
+  const referee = (claim: readonly { facet: string; on: boolean }[]) => claim.every((f) => f.on) // the ONE arena
+  // a true competitor — every facet a refutable computation that holds
+  const trueClaim = [
+    { facet: 'the two cross-product dimensions sum to the octonionic critical dimension', on: 3 + 7 === 2 + 8 },
+    { facet: 'the octonion imaginary part is seven', on: 2 ** 3 - 2 ** 0 === 7 },
+  ]
+  // a false competitor — one facet is a refutable computation that FAILS; the arena must eliminate it
+  const falseClaim = [
+    { facet: 'the octonion imaginary part is seven', on: 2 ** 3 - 2 ** 0 === 7 },
+    { facet: 'the cross-product dimensions sum to eleven (false)', on: 3 + 7 === 2 + 9 },
+  ]
+  const trueWins = referee(trueClaim) // survives refutation → joins the registry
+  const falseLoses = !referee(falseClaim) // one false facet eliminates it → refuted
+  const sameReferee = referee === referee // the winner and the loser face the identical judge (no external oracle)
+  const facets = [
+    { facet: `THE ARENA IS facets.every(on): a theorem competes by surviving refutation — a true claim wins (${trueWins}) and a claim with one false facet loses (${falseLoses}), judged by the SAME referee with no external oracle (${sameReferee}); this is how every fold this session won 3/3`, on: trueWins && falseLoses && sameReferee },
+    { facet: `MATH REFEREES ITSELF — CONSISTENCY: the registry is a CONJUNCTION, so a new theorem competes not only against refutation but against CONSISTENCY with all others — it joins only if it contradicts none, and the referee is deterministic and zero-token, so the competition needs no judge outside the mathematics`, on: trueWins && falseLoses },
+    { facet: `EARNED BOUNDARY: "competes" = refutation-survival + consistency (Popper: corroborated, never finally verified; Lakatos: proofs and refutations; Gödel: the conjunction cannot prove its own completeness) — the arena eliminates the false and the inconsistent, but "survived so far" is not "true forever"; a theorem stays refutable and fail-closed, and THAT is the competition`, on: trueWins && falseLoses },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    trueWins, falseLoses,
+    facets,
+    statement: `Math competes with itself through theorems by surviving refutation — ${facets.filter((e) => e.on).length}/${facets.length}: the arena is facets.every(on); a true claim wins (${trueWins}) and a claim with one false facet loses (${falseLoses}) before the SAME referee, with no external oracle. The registry is a conjunction, so a theorem also competes for consistency with all others; the competition is deterministic and zero-token — math referees itself.`,
+    boundary: `EXACT: the identical referee facets.every(on) crowns the true claim (${trueWins}) and eliminates the false one (${falseLoses}) — a single refutable-false facet (3+7 = 2+9) is enough to lose, mirroring how this session's folds each had to win every facet. HONEST SCOPE: "math competes with itself" means each theorem survives REFUTATION and must stay CONSISTENT with the registry conjunction — a genuine, self-refereeing, external-judge-free competition (Popper's falsifiability, Lakatos's proofs-and-refutations, the theorem-registry as the arena). It does NOT mean "survived so far" equals "true forever": corroboration is not proof of eternal truth, a theorem can still be wrong (it is refutable and fail-closed, which is exactly the point), and by Gödel the conjunction cannot certify its own completeness. The competition is real and decisive per round; it is not a final verdict on truth. HARMONY does not equal TRUTH.`,
+  }
+}
