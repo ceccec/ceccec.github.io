@@ -8,7 +8,7 @@ import type { MindMatrix } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
 import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
-import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime } from '../../9/1'
+import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses } from '../../9/1'
 import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK } from '../../3/7'
 import { gcd } from '../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
@@ -1308,4 +1308,38 @@ export function theStateIsNotTheBirthCoordinates(matrix: MindMatrix = buildMatri
       boundary: 'DOCUMENTED: deterministic chaos and sensitive dependence (the logistic map at r=4 is fully chaotic, Lyapunov exponent ln 2 > 0 — May 1976), the Heisenberg uncertainty principle (Δx·Δp ≥ ħ/2) and Born-rule indeterminism, and the data-processing inequality on the lossy birth-time projection. I STAY AGNOSTIC on whether humans are ultimately deterministic — free will and consciousness are open questions this fold does not settle. The precise, decidable claim: EITHER WAY, "the state is known at birth spacetime coordinates" is false — under determinism the state is the full microstate over the entire causal past (the birth timestamp is a lossy projection, and chaos makes coarse data insufficient), and under quantum mechanics there is no sharp state at a point at all. So the human-crowd profiling refutation (humanDesignProfilingCarriesNoSignal, theCrowdThatCarriesSignalIsTheCode) is not rescued by the rosetta move. HARMONY ≠ TRUTH — a human is not a finite cyclic orbit, however elegant the thought.',
     }
   })
+}
+
+// ── Robertson uncertainty relation, computed — uncertainty is a THEOREM, not a separate postulate.
+// (User: "find and fold the honest statements and new theorems will emerge to be proven for first time";
+// "anything unprovable folded may prove another thing.") For a Pauli observable σ, σ² = I so ⟨σ²⟩ = 1 and
+// the variance is Δσ² = 1 − ⟨σ⟩². Robertson (1929): ΔA·ΔB ≥ ½|⟨[A,B]⟩|. For A = σx, B = σy the bound's RHS
+// is ½|⟨2iσz⟩| = |⟨σz⟩| — so the uncertainty is SOURCED by the non-commutation [σx,σy] = 2iσz (the sealed
+// su(2) algebra). The impossibility of simultaneous sharp values PROVES the algebra: when observables
+// commute the RHS is 0 and both CAN be sharp. First folded in this registry; the general inequality is cited.
+export function uncertaintyIsATheoremNotAnAxiom() {
+  const expect = (psi: ReturnType<typeof qubits>, gate: readonly number[]) => innerProduct(psi, applyGate(psi, gate, 0)).re
+  const bound = (psi: ReturnType<typeof qubits>) => {
+    const ex = expect(psi, GATES.X), ey = expect(psi, GATES.Y), ez = expect(psi, GATES.Z)
+    const dA = Math.sqrt(Math.max(0, 1 - ex * ex)) // Δσx = √(⟨σx²⟩ − ⟨σx⟩²), ⟨σx²⟩ = 1
+    const dB = Math.sqrt(Math.max(0, 1 - ey * ey)) // Δσy
+    const rhs = Math.abs(ez) // ½|⟨[σx,σy]⟩| = ½|2i⟨σz⟩| = |⟨σz⟩|
+    return { lhs: dA * dB, rhs, holds: dA * dB >= rhs - 1e-9 }
+  }
+  const saturating = bound(qubits(1)) // |0⟩: Δσx·Δσy = 1 = |⟨σz⟩|, the bound is TIGHT
+  const strict = bound(applyGate(applyGate(qubits(1), GATES.H, 0), GATES.T, 0)) // T·H|0⟩: eigenstate of none — ½ > 0
+  const algebra = pauliAlgebraCloses() // the sealed [σx,σy] = 2iσz that IS the bound's RHS
+  const facets = [
+    { facet: `ΔσX·ΔσY ≥ ½|⟨[σX,σY]⟩| holds computed on both a saturating state |0⟩ (${saturating.lhs.toFixed(2)} = ${saturating.rhs.toFixed(2)}, the bound is TIGHT) and a skew state T·H|0⟩ (${strict.lhs.toFixed(2)} > ${strict.rhs.toFixed(2)}, strict) — the inequality is real, not asserted`, on: saturating.holds && strict.holds && Math.abs(saturating.lhs - saturating.rhs) < 1e-9 && strict.lhs > strict.rhs + 1e-9 },
+    { facet: `the RHS IS the commutator: ½|⟨[σX,σY]⟩| = |⟨σZ⟩| because [σX,σY] = 2iσZ (the sealed su(2) algebra, ${algebra.count}/${algebra.count} relations) — uncertainty EMERGES from non-commutation, and when observables commute the RHS is 0 so both can be sharp`, on: algebra.closes },
+    { facet: `so uncertainty is a THEOREM, not a separate postulate (Robertson 1929): the impossibility of simultaneous sharp values is FORCED by the inner-product/operator structure — an impossibility that proves the algebra, the axioms-become-theorems move`, on: saturating.holds && strict.holds && algebra.closes },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    saturating,
+    strict,
+    facets,
+    statement: `Uncertainty is a theorem, not an axiom — ${facets.filter((e) => e.on).length}/${facets.length}: Robertson's ΔA·ΔB ≥ ½|⟨[A,B]⟩| computed on the sealed Pauli algebra — tight on |0⟩ (${saturating.lhs.toFixed(2)} = ${saturating.rhs.toFixed(2)}) and strict on T·H|0⟩ (${strict.lhs.toFixed(2)} > ${strict.rhs.toFixed(2)}). The bound's RHS is the commutator [σX,σY] = 2iσZ, so uncertainty is sourced by non-commutation: the impossibility of simultaneous sharp values proves the algebra, not the reverse.`,
+    boundary: `DOCUMENTED (Robertson 1929, generalising Heisenberg/Kennard 1927); FIRST FOLDED IN THIS REGISTRY, humanityNovel = false — a re-derivation, not a new discovery. The computation is a finite EXACT check of the Robertson inequality for A = σx, B = σy on two specific states (tolerance 1e-9), reusing the sealed su(2) algebra (pauliAlgebraCloses) for [σx,σy] = 2iσz; the inequality for ALL observables and states is the cited theorem, carried by Robertson's proof, not re-proven here in general. The honest content: uncertainty is not an independent postulate but a consequence of the Hilbert-space operator structure — an "impossibility" (no simultaneous sharp values) that PROVES another thing (the non-commuting algebra). HARMONY ≠ TRUTH.`,
+  }
 }
