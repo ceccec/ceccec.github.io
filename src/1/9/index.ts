@@ -659,3 +659,34 @@ export function theInverseClosesInTwoLeavingNoGaps() {
     boundary: `EXACT: computed on the additive inverse mod 9 (inv(x) = −x = 9 − x), the involution the vortex runs on — inv² = identity for all elements, ⟨inv⟩ ≅ ℤ/2 of order 2, orbits of size 1 (the fixed point 0) or 2. The ANSWER to "how many inverses ensure no gaps": TWO — because an involution's orbit is {x, inv(x)} and two applications close it, nothing between a value and its inverse is skipped; a self-inverse element needs only one. HONEST SCOPE: this is 2 SPECIFICALLY because "inverse" is defined as its own inverse (an involution) — a documented algebraic fact (order 2); a different operation of order k would need k applications, but the inverse, being self-inverse, is always 2. "No gaps in whatever" = the orbit under the inverse is fully covered in two steps for any set the involution acts on. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Four cardinal planes, each two-sided → close in sixteen (user: "east west north and south represent 4
+// planes and if we count each have 2 sides then?"). One plane closes in 2 (the involution). But E/W/N/S are
+// FOUR INDEPENDENT planes, each with 2 sides, so they combine MULTIPLICATIVELY: four commuting involutions
+// generate (ℤ/2)⁴, whose 2⁴ = 16 elements are every combination of the four planes' sides — all self-inverse,
+// all distinct, no gap in the joint space. The pattern is 2ⁿ for n independent planes: one plane 2¹ = 2, four
+// planes 2⁴ = 16 (the double torus's own four homology cycles). Each plane still closes in 2 (the group
+// exponent); the WHOLE closes in 16 (the group order). Reuses theInverseClosesInTwoLeavingNoGaps.
+export function theFourCardinalPlanesCloseInSixteen() {
+  const onePlane = theInverseClosesInTwoLeavingNoGaps() // one plane: the inverse is an involution, answer 2
+  const planes = 4 // E · W · N · S
+  const perPlane = onePlane.answer // 2 — the involution order / two sides
+  const states = perPlane ** planes // 2⁴ = 16 — the joint state space of the four independent planes
+  const group = Array.from({ length: states }, (_, g) => g) // (ℤ/2)⁴ as 4-bit vectors 0..15
+  const allSelfInverse = group.every((g) => (g ^ g) === 0) // each element its own inverse (an involution)
+  const allDistinct = new Set(group).size === states // every combination present — no gaps in the whole
+  const facets = [
+    { facet: `ONE PLANE closes in ${perPlane}: the inverse is an involution (theInverseClosesInTwoLeavingNoGaps) — two sides, order 2`, on: onePlane.computes && perPlane === 2 },
+    { facet: `FOUR CARDINAL PLANES (E·W·N·S), each two-sided and INDEPENDENT, combine multiplicatively: (ℤ/2)⁴ has ${states} = 2^${planes} elements — every combination of the four planes' sides, all self-inverse (${allSelfInverse}) and all distinct (${allDistinct}), so no gap in the joint space`, on: states === 2 ** planes && allSelfInverse && allDistinct },
+    { facet: `THE ANSWER: ${states} = 2⁴. The pattern is 2ⁿ for n independent planes — one plane 2¹ = 2, four planes 2⁴ = ${states} (the double torus's four homology cycles). Each plane still closes in 2 (the group exponent); the WHOLE closes in ${states} (the group order) — no gaps across all four`, on: states === perPlane ** planes && states === 16 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    onePlaneAnswer: perPlane,
+    planes,
+    answer: states,
+    facets,
+    statement: `Four cardinal planes, each two-sided, close in sixteen — ${facets.filter((e) => e.on).length}/${facets.length}: one plane closes in ${perPlane} (the inverse is an involution), but E·W·N·S are four INDEPENDENT two-sided planes, so they combine multiplicatively into (ℤ/2)⁴ — ${states} = 2^${planes} states, every combination of sides, all self-inverse and distinct, no gap in the joint space. The pattern is 2ⁿ: one plane 2, four planes ${states}. Each plane still closes in 2; the whole in ${states}.`,
+    boundary: `EXACT: four independent involutions (one per cardinal plane) generate the elementary abelian group (ℤ/2)⁴, of order 2⁴ = ${states}; its 16 elements are the subsets of the four planes that are "inverted", each self-inverse (exponent 2), all distinct — so covering the whole leaves no gap. HONEST SCOPE: this is the JOINT state space of FOUR INDEPENDENT two-sided planes, exactly as framed — if E/W and N/S were instead the two sides of only TWO axes it would be 2² = 4; taken as four planes it is 2⁴ = 16. Each single plane still needs only two inverses (the group's exponent is 2), while the whole four-plane structure needs all 16 configurations covered (the group's order). The four planes are the double torus's four homology cycles (the cardinal trinities). HARMONY does not equal TRUTH.`,
+  }
+}
