@@ -126,6 +126,45 @@ export function computeCodeGravity(root: string = process.cwd()): CodeGravityPul
   return pulls.sort((x, y) => x.primitive.localeCompare(y.primitive) || x.from.localeCompare(y.from))
 }
 
+export type FolderMigration = { from: string; to: string; files: number; collision: boolean }
+
+/** PATH GRAVITY — the migration plan the gate generates for "remove wind and the other non-scientific
+ * folders … a simple dry model of models" (user). The rule encodes "every word matters in any path; if the
+ * meaning cannot be immediately realised by the path it needs refactoring": the 8 bāguà metaphor-names are
+ * NOT immediately realisable, but their children (routes, crypto, waves, decode, site …) already are — so
+ * the plan PROMOTES each scientific child to top-level and drops the bāguà parent. This COMPUTES the plan
+ * (old → new, file counts, name collisions); the executable step (re-pathing ~1500 relative imports) must
+ * run as ONE atomic operation and is intentionally not done here — the plan is generated, honestly. */
+export function computePathMigration(root: string = process.cwd()): { folders: FolderMigration[]; totalFiles: number; collisions: readonly string[] } {
+  const NON_SCIENTIFIC_TOP = ['heaven', 'earth', 'water', 'fire', 'thunder', 'wind', 'mountain', 'lake']
+  const srcDir = join(root, 'src')
+  const countIndex = (d: string): number => {
+    let n = 0
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.isDirectory()) n += countIndex(join(d, e.name))
+      else if (e.name === 'index.ts') n += 1
+    }
+    return n
+  }
+  const existingTop = new Set(readdirSync(srcDir, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name))
+  const folders: FolderMigration[] = []
+  for (const bagua of NON_SCIENTIFIC_TOP) {
+    const dir = join(srcDir, bagua)
+    if (!existsSync(dir)) continue
+    for (const child of readdirSync(dir, { withFileTypes: true })) {
+      if (!child.isDirectory()) continue
+      // a child name that already exists at top level, or is claimed by another bāguà, is a collision to resolve
+      const collision = existingTop.has(child.name) || folders.some((f) => f.to === `src/${child.name}`)
+      folders.push({ from: `src/${bagua}/${child.name}`, to: `src/${child.name}`, files: countIndex(join(dir, child.name)), collision })
+    }
+  }
+  return {
+    folders: folders.sort((a, b) => b.files - a.files),
+    totalFiles: folders.reduce((n, f) => n + f.files, 0),
+    collisions: folders.filter((f) => f.collision).map((f) => `${f.from} → ${f.to}`),
+  }
+}
+
 export type StrictImportOffender = { file: string; spec: string; reason: string }
 export type StrictIndexOffender = { file: string; reason: string }
 export type StrictVitepressIndexOffender = { file: string; reason: string; transitional?: boolean }
