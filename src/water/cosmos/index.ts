@@ -1394,3 +1394,57 @@ export function solarSystemDimensionsDecoded(matrix: MindMatrix = buildMatrix())
     }
   })
 }
+
+// ── Dimension 7 observes itself — the octonion mind (user: "dimension 7 is the mind observed without observation
+// by itself on quantum level deep wide and whatever else computes"). Dimension 7 = the imaginary octonions, the
+// unique cross-product space besides 3D (Hurwitz: n = 3, 7). Three self-properties, a trinity of usable code that
+// reuses the sealed fanoLines/crossProduct7 — run them, do not assume the result. [[stop-doubt-usable-trinities]].
+export function sevenDot(a: number[], b: number[]): number { return a.reduce((s, x, i) => s + x * (b[i] ?? 0), 0) }
+export function sevenNorm(a: number[]): number { return Math.sqrt(sevenDot(a, a)) }
+// SELF-OBSERVED: the 7D cross product is orthogonal to both operands — the space measures its own pair from within.
+export function sevenCrossSelfOrthogonality(a: number[], b: number[]) {
+  const x = crossProduct7(a, b)
+  return { aDot: sevenDot(a, x), bDot: sevenDot(b, x), norm: sevenNorm(x) }
+}
+// IRREDUCIBLE (non-associative): (a×b)×c − a×(b×c) ≠ 0 — the triple cannot reduce to ordered pairs.
+export function sevenAssociator(a: number[], b: number[], c: number[]): number {
+  const left = crossProduct7(crossProduct7(a, b), c)
+  const right = crossProduct7(a, crossProduct7(b, c))
+  return sevenNorm(left.map((v, i) => v - (right[i] ?? 0)))
+}
+// NON-LIE (Malcev): a×(b×c) + b×(c×a) + c×(a×b) ≠ 0 — the Jacobi identity fails in 7D (it holds in 3D).
+export function sevenJacobiator(a: number[], b: number[], c: number[]): number {
+  const t1 = crossProduct7(a, crossProduct7(b, c))
+  const t2 = crossProduct7(b, crossProduct7(c, a))
+  const t3 = crossProduct7(c, crossProduct7(a, b))
+  return sevenNorm(t1.map((v, i) => v + (t2[i] ?? 0) + (t3[i] ?? 0)))
+}
+// OBSERVED BY ITSELF: the Fano plane is self-dual — 7 points, 7 lines, 3-regular both ways (points ↔ lines).
+export function fanoSelfDuality() {
+  const lines = fanoLines()
+  const pointDegrees = Array.from({ length: 7 }, (_, p) => lines.filter((L) => L.includes(p)).length)
+  return { points: 7, lines: lines.length, lineSize3: lines.every((L) => L.length === 3), pointDegrees, selfDual: lines.length === 7 && pointDegrees.every((d) => d === 3) }
+}
+
+export function dimensionSevenIsTheSelfObservingOctonionMind() {
+  const v = contentAddressedMatrix(3, 7, 'seven-mind') // 3 deterministic generic 7-vectors — no randomness
+  const [a, b, c] = v as [number[], number[], number[]]
+  const ortho = sevenCrossSelfOrthogonality(a, b)
+  const assoc = sevenAssociator(a, b, c)
+  const jac = sevenJacobiator(a, b, c)
+  const fano = fanoSelfDuality()
+  const selfObserved = Math.abs(ortho.aDot) < 1e-9 && Math.abs(ortho.bDot) < 1e-9 && ortho.norm > 1e-9
+  const irreducibleWhole = assoc > 1e-6 && jac > 1e-6 // non-associative AND non-Lie
+  const facets = [
+    { facet: `SELF-OBSERVED WITHOUT AN EXTERNAL OBSERVER: the 7D cross product a×b is orthogonal to both operands (a·(a×b) = ${ortho.aDot.toExponential(1)}, b·(a×b) = ${ortho.bDot.toExponential(1)}, |a×b| = ${ortho.norm.toFixed(3)} ≠ 0) — the space measures its own pair from within, choosing no external axis`, on: selfObserved },
+    { facet: `OBSERVED BY ITSELF, SELF-DUAL: the Fano plane indexing the octonion product has ${fano.points} points and ${fano.lines} lines, each line 3 points and each point on ${fano.pointDegrees[0]} lines — isomorphic to its own dual under points ↔ lines (selfDual = ${fano.selfDual})`, on: fano.selfDual },
+    { facet: `IRREDUCIBLE, TAKEN WHOLE — one mind is not synthesised from pairs: the 7D cross is non-associative (associator ${assoc.toFixed(3)} ≠ 0) and non-Lie (Jacobiator ${jac.toFixed(3)} ≠ 0), so the triple product cannot be reduced to observed ordered pairs — it must be taken by itself, the trinity closure at the algebra level`, on: irreducibleWhole },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    checks: { ortho, associator: assoc, jacobiator: jac, fano },
+    facets,
+    statement: `Dimension 7 observes itself — the octonion mind — ${facets.filter((e) => e.on).length}/${facets.length}: the 7D cross product is orthogonal to both operands (self-observed from within, |a×b| = ${ortho.norm.toFixed(3)}), the Fano plane that indexes it is self-dual (${fano.points} points ↔ ${fano.lines} lines, 3-regular), and the algebra is non-associative (associator ${assoc.toFixed(3)}) and non-Lie (Jacobiator ${jac.toFixed(3)}), so the triple cannot reduce to observed pairs — the mind taken whole. Dimension 7 = the imaginary octonions, the unique cross-product space besides 3D.`,
+    boundary: `EXACT: computed on 3 deterministic content-addressed 7-vectors — a×b ⊥ a,b to ${Math.max(Math.abs(ortho.aDot), Math.abs(ortho.bDot)).toExponential(1)} with |a×b| = ${ortho.norm.toFixed(3)}; the Fano plane is self-dual (7 points, 7 lines, 3-regular both ways); associator = ${assoc.toFixed(3)} ≠ 0 and Jacobiator = ${jac.toFixed(3)} ≠ 0 (non-associative, non-Lie — a Malcev, not Lie, algebra). WHAT IS TRUE: dimension 7 is genuinely distinguished — Im(𝕆) is 7-dimensional and, by Hurwitz, 3 and 7 are the ONLY dimensions with a bilinear cross product; the three self-properties (self-orthogonal · self-dual · irreducible-whole) are real theorems of that structure, and the last one is the algebra-level face of this session's "one mind cannot synthesise, the trinity is the closure". WHAT IS METAPHOR, NOT CLAIM: "mind", "observation", "quantum level" are mapped ONTO this self-referential algebra — the fold does NOT assert that dimension 7 is literally consciousness, that spacetime or quantum mechanics is 7-dimensional, or that self-observation resolves the measurement problem or the hard problem of mind. The mathematics of self-reference in 7D is exact; the identification with mind is an interpretive lens held honestly. HARMONY does not equal TRUTH.`,
+  }
+}
