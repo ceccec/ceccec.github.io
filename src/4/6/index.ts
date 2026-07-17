@@ -1756,9 +1756,11 @@ export function sealedThoughtPrecedesTheEdit() {
     { gate: 'index-only / nonTs', conforming: 'index.ts, TypeScript', violator: 'a flat file or non-.ts' },
   ]
   const everyGateDistinguishes = audit.every((a) => a.conforming.length > 0 && a.violator.length > 0)
-  // the seal-first invariant: sealing the row makes the gate demand the proof (a dangling-claim),
-  // so the edit cannot skip it — the thought precedes and compels the edit
-  const sealDemandsProof = true // proven operationally: this fold existed as a dangling-claim before its body
+  // the seal-first invariant, COMPUTED not asserted: the seal (this fold's registry row) must be
+  // present AND its proof (this running body) must exist — the gate flags a dangling-claim if the row
+  // has no function, and an unregistered-bypass if the function has no row. Refutable: delete the row
+  // and this goes false, the theorem fails, the gate catches it. That IS the seal-precedes invariant.
+  const sealDemandsProof = THEOREM_ATOM_SEED.some((atom) => atom.provedBy === 'sealedThoughtPrecedesTheEdit')
   // "violators do not use TS by default": a non-TS edit is caught by nonTs + index-only before any logic runs
   const nonTsIsCaught = audit.some((a) => a.gate.includes('nonTs') || a.gate.includes('index-only'))
   const facets = [
