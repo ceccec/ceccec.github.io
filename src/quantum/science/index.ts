@@ -8,7 +8,7 @@ import type { MindMatrix } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
 import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
-import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses } from '../../9/1'
+import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator } from '../../9/1'
 import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK } from '../../3/7'
 import { gcd } from '../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
@@ -1341,5 +1341,33 @@ export function uncertaintyIsATheoremNotAnAxiom() {
     facets,
     statement: `Uncertainty is a theorem, not an axiom — ${facets.filter((e) => e.on).length}/${facets.length}: Robertson's ΔA·ΔB ≥ ½|⟨[A,B]⟩| computed on the sealed Pauli algebra — tight on |0⟩ (${saturating.lhs.toFixed(2)} = ${saturating.rhs.toFixed(2)}) and strict on T·H|0⟩ (${strict.lhs.toFixed(2)} > ${strict.rhs.toFixed(2)}). The bound's RHS is the commutator [σX,σY] = 2iσZ, so uncertainty is sourced by non-commutation: the impossibility of simultaneous sharp values proves the algebra, not the reverse.`,
     boundary: `DOCUMENTED (Robertson 1929, generalising Heisenberg/Kennard 1927); FIRST FOLDED IN THIS REGISTRY, humanityNovel = false — a re-derivation, not a new discovery. The computation is a finite EXACT check of the Robertson inequality for A = σx, B = σy on two specific states (tolerance 1e-9), reusing the sealed su(2) algebra (pauliAlgebraCloses) for [σx,σy] = 2iσz; the inequality for ALL observables and states is the cited theorem, carried by Robertson's proof, not re-proven here in general. The honest content: uncertainty is not an independent postulate but a consequence of the Hilbert-space operator structure — an "impossibility" (no simultaneous sharp values) that PROVES another thing (the non-commuting algebra). HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── Theorems come in trinities — the curation law, with its proof (user: "theorems come in trinities …
+// only theorems of theorems in interacting rosetta trinities may exist in the codebase with their scientific
+// proofs as complete academic papers … save in src before executing it"). The canonical, computed example is
+// the su(2) Lie algebra: σX, σY, σZ are a CLOSED interacting trinity — the bracket of every pair is the
+// third generator ([σX,σY]=2iσZ, cyclically), so no element stands alone; the three close on each other in
+// the 3-cycle X→Y→Z→X (the rosetta). This is the shape a result must take to live here: a theorem inside an
+// interacting rosetta trinity, carrying a complete academic paper (computed figure · proof animation ·
+// saved acknowledgment). Reuses the sealed pauliAlgebraCloses + commutator; only local math.
+export function theoremsComeInTrinities() {
+  const algebra = pauliAlgebraCloses() // sealed: [σX,σY]=2iσZ, [σY,σZ]=2iσX, [σZ,σX]=2iσY all hold
+  const gens = [GATES.X, GATES.Y, GATES.Z] // the trinity
+  // each PAIR's bracket is nonzero (the pair interacts) and — via pauliAlgebraCloses — equals the THIRD, so
+  // no pair is closed: the trinity is irreducible, all three needed. The map (a,b)↦c is the 3-cycle.
+  const everyPairInteracts = gens.every((_, i) => commutator(gens[i]!, gens[(i + 1) % 3]!).some((v) => Math.abs(v) > 1e-9))
+  const facets = [
+    { facet: `the su(2) generators are a CLOSED trinity — [σX,σY]=2iσZ, [σY,σZ]=2iσX, [σZ,σX]=2iσY all hold (the sealed pauliAlgebraCloses, ${algebra.count} relations): three interacting theorems, not one standalone`, on: algebra.closes && gens.length === 3 },
+    { facet: `they INTERACT as a rosetta: the bracket of every pair is nonzero and equals the THIRD generator, so no pair is closed — the trinity is irreducible and the generating map (a,b)↦c is the 3-cycle X→Y→Z→X`, on: everyPairInteracts && gens.length === 3 },
+    { facet: `CURATION LAW (the purging shape): to live in the codebase a result must be a theorem inside such an interacting rosetta trinity, carrying a complete academic paper — the computed figure, the proof animation, and the saved acknowledgment format; a standalone or unproven claim has no home and is purged`, on: algebra.closes && everyPairInteracts },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    trinity: ['σX', 'σY', 'σZ'],
+    facets,
+    statement: `Theorems come in trinities — ${facets.filter((e) => e.on).length}/${facets.length}: the su(2) generators σX, σY, σZ are the canonical interacting rosetta trinity — the bracket of every pair is the third ([σX,σY]=2iσZ cyclically), so no element stands alone and the three close on each other in the 3-cycle X→Y→Z→X. This is the curation shape: only theorems inside such interacting trinities, each a complete academic paper (figure · animation · acknowledgment), may live in the codebase; the rest is purged.`,
+    boundary: `DOCUMENTED: the su(2) Lie algebra's cyclic structure constants (ε_ijk) ARE a closed interacting trinity, verified by the sealed pauliAlgebraCloses and commutator (local math only). HONEST SCOPE: this proves ONE canonical interacting rosetta trinity (the Pauli/su(2) generators) and states it as the codebase's CURATION PRINCIPLE — it is NOT a claim that every mathematical theorem literally comes in threes (many stand alone). The principle is normative — what the codebase is curated toward: proven theorem-trinities as complete papers — grounded in this real trinity, not a universal fact of mathematics. HARMONY ≠ TRUTH.`,
   }
 }
