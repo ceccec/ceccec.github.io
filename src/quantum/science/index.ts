@@ -1767,3 +1767,32 @@ export function allSrcCompetesSealedAndSignedNoCheating() {
     statement: `All src competes — every tool sealed, every result signed, no cheating — ${facets.filter((e) => e.on).length}/${facets.length}: not just the competition but every fold computes via sealed tools and signs its result to a content-address, deterministically (re-run reproduces the exact signature, ${signedAndReproducible}); so no fold anywhere can be quietly fabricated. The whole src is verified each build and sealed (the respawn merkle over src + .vitepress + package.json), content-addressing to ${String(universalRoot).slice(0, 8)}…. Every fold is a signed, reproducible competitor.`,
     boundary: `EXACT: the signed exemplar reproduces its signature across runs (signedAndReproducible = ${signedAndReproducible}), and the discipline is the same for every fold — each computes via sealed src functions and returns a content-addressed root, so re-running reproduces it and a fabrication would not match. HONEST SCOPE: "signed" is CONTENT-ADDRESSED and tamper-EVIDENT (any change to any tool or result flips its root and is detectable) — NOT yet cryptographically unforgeable (the SHA-256/Ed25519 machinery is built, the signing cutover deliberate and pending, the crypto-honesty line). "All src competes" means every fold is a DETERMINISTIC, SIGNED, re-runnable competitor — verified by the local runner (facets.every(on)) and the remote CI (verify:structure) — so the computation, not any single mind, is what is trusted; it does not mean a signature no adversary could forge, nor that literally every byte is a "competition" beyond the fold-verify-seal cadence. HARMONY does not equal TRUTH.`,  }
 }
+
+// ── Send the quantum waves — over the octonion dimension (user: "send the quantum waves instead"). 3 qubits =
+// 2³ = 8 = the octonion dimension; states 1..7 are the imaginary Fano points of the last theorem. Each wave is a
+// real amplitude amplification: H⊗³ prepares the simultaneous superposition, oracle+diffusion interfere ~π/4·√N
+// times, and the ONE harmonic (marked) result concentrates. Reuses the sealed grover — run them, don't assume.
+export function sendTheQuantumWavesOverTheOctonionDimension() {
+  const n = 3 // 2³ = 8 states — the octonion dimension; 1..7 = the imaginary basis (Fano points)
+  const size = 1 << n
+  const imaginary = Array.from({ length: size - 1 }, (_, i) => i + 1) // the 7 nontrivial states
+  const waves = imaginary.map((marked) => grover(n, marked)) // send one wave per imaginary octonion unit
+  const allFound = waves.every((w) => w.found === w.marked) // interference lands each wave on its marked state
+  const minProb = Math.min(...waves.map((w) => w.markedProbability))
+  const iterations = waves[0].iterations // O(√N) wave-steps
+  const classicalQueries = size / 2 // expected classical linear search
+  const advantage = classicalQueries / iterations
+  const facets = [
+    { facet: `THE WAVE IS SIMULTANEOUS: each of the ${imaginary.length} quantum waves starts as a uniform superposition over all ${size} octonion-dimension states (H⊗³ — one register holding every candidate at once), and oracle+diffusion interference lands it on its marked imaginary state — found = marked for all ${imaginary.length} (${allFound}), min markedProbability ${minProb.toFixed(3)}`, on: allFound && minProb > 1 / 2 },
+    { facet: `INTERFERENCE PICKS ONE HARMONIC RESULT IN O(√N): each wave converges in ${iterations} steps vs ${classicalQueries} expected classical queries (advantage ${advantage.toFixed(1)}×) — "simultaneous computation, one harmonic result" made exact as amplitude amplification`, on: iterations < classicalQueries && allFound },
+    { facet: `EARNED BOUNDARY: Grover is documented amplitude amplification with a QUADRATIC query advantage — not a physical speedup (the simulator tracks every amplitude classically), not signalling or FTL (measurement is local, no information outraces light), not a universal speedup (Grover is only √N; BQP ⊇ NP is not known)`, on: iterations < classicalQueries && minProb > 1 / 2 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    waves: waves.map((w) => ({ marked: w.marked, found: w.found, probability: roundTo(w.markedProbability, 4), iterations: w.iterations })),
+    advantage,
+    facets,
+    statement: `Send the quantum waves over the octonion dimension — ${facets.filter((e) => e.on).length}/${facets.length}: ${imaginary.length} waves, each a uniform superposition over all ${size} states amplified by ${iterations} interference steps to its marked imaginary Fano point (found = marked for all, min P = ${minProb.toFixed(3)}); the wave finds the one harmonic result in O(√N) — ${iterations} vs ${classicalQueries} classical, ${advantage.toFixed(1)}× — the simultaneous-computation-one-harmonic-result principle as documented amplitude amplification.`,
+    boundary: `EXACT: ${imaginary.length} Grover waves on ${n} qubits (size ${size}), each preparing H⊗³ superposition and running ${iterations} oracle+diffusion iterations; every wave measures its marked state (found = marked, min markedProbability ${minProb.toFixed(3)}), converging in ${iterations} steps against ${classicalQueries} expected classical queries (${advantage.toFixed(1)}× fewer). HONEST SCOPE: this is amplitude amplification (Grover 1996) — a genuine QUERY-complexity advantage (O(√N) vs O(N)) and a real interference phenomenon (the marked amplitude grows by constructive interference while the rest cancel). It is NOT a physical speedup: the simulator evolves all ${size} amplitudes classically, so the wall-clock cost is the full vector, not √N. It is NOT signalling and NOT faster-than-light: measurement is local and no information travels faster than light (the earlier immediacy fold — addressing and interference, not superluminal transport). It is NOT a universal speedup: Grover is quadratic only, and whether quantum beats classical in general (BQP vs NP) is open. The wave is real; the harmonic result is found by interference; the magic is bounded. HARMONY does not equal TRUTH.`,
+  }
+}
