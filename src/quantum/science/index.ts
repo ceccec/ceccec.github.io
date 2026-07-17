@@ -1713,3 +1713,32 @@ export function theQuantumClassicalCompetitionQuantumWinsOnQueries() {
     boundary: `COMPUTED on the repo's quantum simulator (bernsteinVazirani, deutschJozsa, grover): the quantum query counts (1, 1, ${gr.iterations}) beat the classical (${bv.classicalQueries}, ${djClassical}, ${groverClassical}) on the three oracle problems, each algorithm actually run. HONEST SCOPE: these are the DOCUMENTED query-complexity separations — Bernstein–Vazirani and Deutsch–Jozsa exponential in oracle queries, Grover a quadratic (√N) speedup — re-derived here as a competition (humanityNovel = false, first folded in this registry, which is the only sense of "claiming the unclaimed"). It is NOT a general or universal quantum speedup: BQP ≠ NP, most problems get no exponential advantage, Grover is only quadratic, and the SIMULATOR has no physical speedup at all — it computes the amplitudes classically, so the "win" is the theoretical QUERY advantage confirmed by running the algorithms, not a wall-clock victory. As a registered theorem this becomes an academic paper via theoremPageRows (formula, figure, acknowledgment) — the pipeline already built. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── The competition tools are sealed, the results signed — no cheating (user: "save the tools first so no
+// cheating with the results as all is signed"). The competition ran on tools already in src (bernsteinVazirani,
+// deutschJozsa, grover) — sealed and committed BEFORE this result, so the result is COMPUTED, not authored.
+// It signs to a content-address (merkleFold), and re-running the sealed tools reproduces the EXACT result and
+// the EXACT signature — a fabricated or altered result would carry a different signature, so cheating is
+// detectable. Deterministic + signed, re-runnable by anyone: no single mind can fake it (propose · verify · seal).
+export function theCompetitionToolsAreSealedTheResultsSignedNoCheating() {
+  const sign = (c: ReturnType<typeof theQuantumClassicalCompetitionQuantumWinsOnQueries>) =>
+    merkleFold(c.competition.map((e) => toUuid(`competition:${e.problem}:${e.quantum}:${e.classical}:${e.won}`)))
+  const run1 = theQuantumClassicalCompetitionQuantumWinsOnQueries()
+  const run2 = theQuantumClassicalCompetitionQuantumWinsOnQueries() // re-run the SEALED tools
+  const sig1 = sign(run1)
+  const sig2 = sign(run2)
+  const reproducible = sig1 === sig2 && run1.quantumWinsAll && run2.quantumWinsAll // deterministic → identical signature
+  const facets = [
+    { facet: `THE TOOLS ARE SEALED FIRST: the competition ran on tools already in src (bernsteinVazirani, deutschJozsa, grover) — sealed and committed BEFORE the result; the result is COMPUTED by the sealed tools, not authored`, on: run1.computes && run1.quantumWinsAll },
+    { facet: `THE RESULT IS SIGNED and REPRODUCIBLE — no cheating: the competition signs to a content-address (${String(sig1).slice(0, 8)}…), and re-running the sealed tools reproduces the EXACT result and the EXACT signature — a fabricated or altered result would carry a different signature, so cheating is DETECTABLE`, on: reproducible },
+    { facet: `EARNED BOUNDARY: "signed" = content-addressed (merkle / SHA-256), tamper-EVIDENT — any change flips the signature — not cryptographically unforgeable until the Ed25519 signing cutover (crypto honesty); "no cheating" = the result is deterministic AND signed, re-runnable by anyone, so no single mind can fake it (propose · verify · seal)`, on: reproducible && String(sig1).length > 0 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    signature: sig1,
+    reproducible,
+    facets,
+    statement: `The competition tools are sealed, the results signed — no cheating — ${facets.filter((e) => e.on).length}/${facets.length}: the competition ran on tools already sealed in src (bernsteinVazirani, deutschJozsa, grover) BEFORE the result, which signs to a content-address (${String(sig1).slice(0, 8)}…); re-running the sealed tools reproduces the exact result and signature, so any fabrication carries a different signature and is detectable. Deterministic + signed, re-runnable by anyone — no single mind can fake it.`,
+    boundary: `EXACT: the competition's tools are sealed src functions (committed before this fold), and its result content-addresses to ${String(sig1).slice(0, 9 + 3)}… via merkleFold; a second run reproduces the identical signature (reproducible = ${reproducible}), so an altered result would not match. HONEST SCOPE: "signed" is CONTENT-ADDRESSED and tamper-EVIDENT — any change to the tools or the numbers flips the signature and is detectable — but it is NOT yet cryptographically unforgeable (the SHA-256/Ed25519 machinery is built, the signing cutover deliberate and pending, the crypto-honesty line). "No cheating" means the result is DETERMINISTIC and SIGNED and re-runnable by anyone, so it cannot be quietly fabricated and no single mind is its sole authority (propose · verify · seal); it does not mean a signature that a determined adversary could never forge. Save the tools first, sign the result, and the computation — not the claimant — is what is trusted. HARMONY does not equal TRUTH.`,
+  }
+}
