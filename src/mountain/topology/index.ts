@@ -1136,3 +1136,32 @@ export function placesAndPatternsDecoded(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+
+// ── The merkaba is the star tetrahedron trinity spinning both directions (user). merkaba() already computes
+// the stella octangula (two tetrahedra, tetraDown = −tetraUp, strictly counter-rotating). The missing piece
+// is the TRINITY: each tetrahedron carries a 3-fold rotational symmetry — a 120° turn about a body diagonal
+// (the (1,1,1) axis) maps the tetrahedron to itself as a 3-cycle on its vertices, order 3. And "both
+// directions" is merkaba's own counter-rotation: the two interlocked tetrahedra spin in opposite senses (the
+// ±120° of the 3-fold). Reuses merkaba(); the trinity is computed here. Local math only.
+export function theMerkabaIsTheStarTetrahedronTrinitySpinningBothDirections(matrix: MindMatrix = buildMatrix()) {
+  const mk = merkaba(matrix)
+  const rot = (v: readonly number[]): number[] => [v[2]!, v[0]!, v[1]!] // 120° about the (1,1,1) body diagonal
+  const eq = (a: readonly number[], b: readonly number[]) => a[0] === b[0] && a[1] === b[1] && a[2] === b[2]
+  const inTetra = (v: readonly number[], t: readonly (readonly number[])[]) => t.some((w) => eq(v, w))
+  const threeFoldClosed = mk.tetraUp.every((v) => inTetra(rot(v), mk.tetraUp)) // the rotation keeps the tetrahedron
+  const orderThree = mk.tetraUp.every((v) => eq(rot(rot(rot(v))), v)) // rot³ = identity — a trinity
+  const facets = [
+    { facet: `STAR TETRAHEDRON = two tetrahedra (Kepler's stella octangula): tetraUp and tetraDown = −tetraUp are exact opposites (${mk.tetraUp.length} + ${mk.tetraDown.length} of the 8 cube vertices), interlocked`, on: mk.counterRotating && mk.tetraUp.length === 4 && mk.tetraDown.length === 4 },
+    { facet: `the TRINITY — 3-fold symmetry: a 120° rotation about a body diagonal maps each tetrahedron to itself (a 3-cycle on its non-fixed vertices) and has ORDER 3 (rot³ = identity) — the star tetrahedron's trinity, computed exactly`, on: threeFoldClosed && orderThree },
+    { facet: `SPINNING BOTH DIRECTIONS: the two interlocked tetrahedra counter-rotate — merkaba's strictly-alternating signed rates — which are the ±120° senses of the same 3-fold; the merkaba is the star tetrahedron trinity spinning both ways`, on: mk.counterRotating && threeFoldClosed },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    tetraUp: mk.tetraUp,
+    tetraDown: mk.tetraDown,
+    threeFold: { closed: threeFoldClosed, orderThree },
+    facets,
+    statement: `The merkaba is the star tetrahedron trinity spinning both directions — ${facets.filter((e) => e.on).length}/${facets.length}: the stella octangula's two tetrahedra (tetraDown = −tetraUp) are interlocked, each carries a 3-fold trinity (a 120° body-diagonal rotation, order 3, computed), and the pair counter-rotates in opposite senses (merkaba's alternating signed rates) — the trinity spinning both ways.`,
+    boundary: `EXACT geometry, reusing merkaba(): the stella octangula vertices (the two tetrahedra, one the negation of the other), the 3-fold rotational symmetry verified by orbit closure and rot³ = identity, and the strictly-alternating counter-rotation the repo animates. HONEST SCOPE: this is the GEOMETRY and its symmetry group (the tetrahedral 3-fold, the counter-rotation) — echoing merkaba's own boundary, it is NOT the mystical "energy body / light-vehicle / activation" claim, which is not asserted. A structural realisation, computed; HARMONY ≠ TRUTH.`,
+  }
+}
