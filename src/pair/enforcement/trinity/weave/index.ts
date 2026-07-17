@@ -1063,6 +1063,45 @@ if (existsSync(dist)) {
   for (const name of registered) if (!exported.has(name)) gaps.push({ harmonic: 'theorem', kind: 'dangling-claim', detail: `registered theorem names provedBy '${name}' but no src function exports it — a claimed theorem with no proof` })
 }
 
+// --- COMPUTE-ONCE: a proof re-derives once and is reused (user law: "if build time is so long
+// something is not a theorem but a hardcoded value or axiom"). An EXPORTED projection that re-runs a
+// heavy full-registry scan (theoremNavigation / proofAnimations / theoremProvenance) on EVERY call
+// without memoByRoot is recomputed once per page at build — the O(n²) that dragged the build until
+// theoremPageRows was memoized (d56919bb). The rosetta sweeps the per-page projection homes for the
+// pattern; a private worker inside a memoByRoot closure is exempt (not exported), so the fix clears it.
+{
+  const HEAVY = /\b(theoremNavigation|proofAnimations|theoremProvenance)\s*\(/
+  const scanComputeOnce = (dir: string) => {
+    if (!existsSync(dir)) return
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const p = join(dir, entry.name)
+      if (entry.isDirectory()) { scanComputeOnce(p); continue }
+      if (entry.name !== 'index.ts') continue
+      const text = read(p) ?? ''
+      // brace-match the function's OWN body (not up to the next export — intervening non-exported
+      // helpers, e.g. a module-cached searchLightModel, must not be misattributed to the export above).
+      const braceBody = (start: number): string => {
+        const open = text.indexOf('{', start)
+        if (open === -1) return ''
+        let depth = 0
+        for (let i = open; i < text.length; i += 1) {
+          if (text[i] === '{') depth += 1
+          else if (text[i] === '}') { depth -= 1; if (depth === 0) return text.slice(start, i + 1) }
+        }
+        return text.slice(start)
+      }
+      for (const m of text.matchAll(/export function (\w+)\s*\(/g)) {
+        const name = m[1]!
+        const body = braceBody(m.index!)
+        if (HEAVY.test(body) && !/memoByRoot\s*\(/.test(body)) {
+          gaps.push({ harmonic: 'compute-once', kind: 'unmemoized-projection', detail: `${relative(root, p)} · ${name} re-runs a heavy registry scan (theoremNavigation / proofAnimations / theoremProvenance) on every call but does NOT route through memoByRoot — at build every page recomputes it (the O(n²) that dragged the build); wrap the body in memoByRoot(key, matrix, () => …) as every sibling projection does, or move the heavy work into a private worker the memo calls once` })
+        }
+      }
+    }
+  }
+  scanComputeOnce(join(root, 'src/wind/routes'))
+}
+
 // --- the one-palette ratchet: the render layer paints ONLY through the sealed colour atoms ---
 // The ~65-literal backlog was cleared 2026-07-16 (the last hsla fell in ProofAnimation); this gate
 // keeps it at zero: any hsla()/rgb()/6-digit-hex literal in theme, lib or src/ui is a RED finding —
