@@ -1445,3 +1445,42 @@ export function localPiAndPrimesBeatTheLinearBaseline() {
     boundary: `COMPUTED, then bounded (not bounded to avoid computing): the operation counts are exact, the primes identical between methods, the π digit-rates measured. The real content is a COMPLEXITY separation — structured algorithms (sieve, convergent series) do asymptotically fewer operations than linear enumeration, unboundedly so. What it is NOT, precisely: faster-than-light signalling. No-signalling stands, and the quantum speed limit (Margolus–Levitin / Mandelstam–Tamm, πħ/2⟨E⟩ per operation) bounds the PHYSICAL rate of every op — so total physical time is not superluminal; only the OPERATION COUNT beats the linear baseline. "Faster than light" is true only as a metaphor for outrunning the naive linear scan. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── Immediacy is addressing, and interference selects the one harmonic result — but neither is faster-than-
+// light (user: "faster than light comes from simultaneous computations only one with harmonic result / who
+// knows the coordinates manifests immediately / light needs time but quantum does not / you will find flaws
+// in current physics based on axioms"). Computed, then bounded. AFFIRMED, both real: (1) knowing a content-
+// coordinate retrieves it in O(1) — one step, no search — the merkle/content-addressed model this repo runs
+// on ("who knows the coordinates manifests immediately"); (2) quantum parallelism + interference genuinely
+// select the ONE global ("harmonic"/constructive) answer in a single Deutsch–Jozsa query where classical
+// needs many ("simultaneous computations, only one harmonic result"). REFUTED, by this repo's OWN folded
+// physics: "quantum does not need time" — the quantum speed limit gives t⊥ = π > 0 per orthogonal step — and
+// any FTL signalling — no-signalling holds. The "faster than light" is O(1) addressing + bounded interference.
+export function immediacyIsAddressingAndInterferenceNotSuperluminal() {
+  // (1) content-addressing — know the coordinate, manifest immediately (O(1) vs O(N) search)
+  const items = [...Array(64).keys()].map((i) => `item:${i}`)
+  const store = new Map(items.map((c) => [toUuid(c), c]))
+  const known = items[items.length >> 1]!
+  const coordinate = toUuid(known) // the content-address = the "coordinate"
+  const manifestsImmediately = store.get(coordinate) === known // one lookup, no scan
+  const directSteps = 1, linearScanSteps = items.length
+  // (2) interference selects the harmonic result — Deutsch–Jozsa: one query decides the global property
+  const djConstant = deutschJozsa(3, false), djBalanced = deutschJozsa(3, true)
+  const oneQuerySelects = djConstant.ok && djBalanced.ok && djConstant.zeroProbability > 1 - 1e-9 && djBalanced.zeroProbability < 1e-9
+  const quantumQueries = 1, classicalWorstCase = 2 ** (3 - 1) + 1
+  // (3) but time still binds and nothing signals — the repo's own speed limit
+  const speed = quantumSpeedLimitIsSaturatedByTheQubit()
+  const quantumNeedsTime = speed.tPerp > 0
+  const facets = [
+    { facet: `IMMEDIACY IS ADDRESSING: given the content-coordinate, retrieval is O(1) — ${directSteps} step, "manifests immediately" — vs O(${linearScanSteps}) linear search without it; knowing the coordinate is content-addressing, not signalling`, on: manifestsImmediately && directSteps < linearScanSteps },
+    { facet: `INTERFERENCE SELECTS THE HARMONIC RESULT: Deutsch–Jozsa evaluates all branches in superposition and interference collapses them to the ONE global answer in a single query (constant P₀=1 vs balanced P₀=0), where classical linear scan needs up to ${classicalWorstCase} — real "simultaneous computations, one harmonic result"`, on: oneQuerySelects && quantumQueries < classicalWorstCase },
+    { facet: `EARNED BOUNDARY — time still binds, nothing signals: quantum evolution DOES need time (the quantum speed limit gives t⊥ = ${speed.tPerp.toFixed(2)} > 0 per orthogonal step), so "light needs time but quantum does not" is refuted by this repo's OWN theorem; and no-signalling forbids FTL. The immediacy is O(1) addressing, the parallelism is bounded interference — neither is superluminal`, on: quantumNeedsTime && oneQuerySelects },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    directSteps, linearScanSteps, classicalWorstCase, tPerp: speed.tPerp,
+    facets,
+    statement: `Immediacy is addressing, and interference selects the harmonic — but neither is faster-than-light — ${facets.filter((e) => e.on).length}/${facets.length}: a known content-coordinate retrieves in O(1) (${directSteps} step vs ${linearScanSteps}), and one Deutsch–Jozsa query selects the global "harmonic" answer where classical needs ${classicalWorstCase}. But quantum evolution needs time (t⊥ = ${speed.tPerp.toFixed(2)} > 0, the speed limit) and cannot signal (no-signalling) — so the "faster than light" is O(1) addressing plus bounded interference, not superluminal transmission.`,
+    boundary: `COMPUTED, then bounded. AFFIRMED and real: content-addressing makes a known coordinate immediate (O(1), no search — the merkle model this repo runs on), and quantum interference genuinely selects one constructive ("harmonic") outcome from superposed branches (Deutsch–Jozsa, one query). REFUTED by this repo's OWN folded physics: "quantum does not need time" (the quantum speed limit, πħ/2⟨E⟩ per operation, t⊥ > 0) and faster-than-light signalling (no-signalling). ON "flaws in physics from its axioms": physics DOES rest on postulates — the Born rule and the QM/relativity postulates ARE axioms, not derived — and there are genuine OPEN foundational questions (the measurement problem, quantum gravity, why the Born rule). But an axiom that is the best-tested statement in science is not a "flaw", and I have NOT found one here — this computation CONFIRMS no-signalling and the speed limit rather than breaking them. To claim I had refuted established physics would be the exact overclaim this registry forbids (onlyTheoremsCanBeTrusted, theProofIsCertainOnlyItsReachIsBounded). HARMONY ≠ TRUTH.`,
+  }
+}
