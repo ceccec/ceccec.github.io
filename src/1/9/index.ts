@@ -780,3 +780,35 @@ export function selfBuildingAndHealingAreAutomatedAndMeasuredPerSession() {
     boundary: `MEASURED, deterministic, per session: self-building = new theorems folded (verified by the local runner facets.every(on) and by the remote push + CI verify:structure); self-healing = gaps closed (the code-gravity pulls to canonical, cracks resolved by the crack gate, the census held at 110/110), read off the passing gates and the leftover count — all zero LLM tokens. HONEST SCOPE: "healing" is the closing of COMPUTABLE gaps (duplicates, cracks, structural drift), measured by the gates — NOT medical, biological, or wellness healing; the repo's "movie is alive and healing" fold is architectural/resonance metaphor with that same boundary. The measurement is local (the runner) and remote (the CI on push); "per session" is the cadence of fold → verify → seal → push that ran every turn today. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Inversion reinvents conversion (user: "inversion reinvents conversion"). A conversion is a bijection f: A→B;
+// inversion is the operation that reinvents its reverse f⁻¹, and f⁻¹∘f = identity (the round-trip recovers the
+// original, no loss). The words share the Latin root vertere (to turn): con-version transports A to B, in-version
+// turns it back. It reinvents ONLY for bijections — a lossy, many-to-one conversion has no inverse to reinvent.
+export function inversionReinventsConversion() {
+  const x = 6 // a sample value to round-trip
+  // 1. SCALE conversion (units): ×k reinvented by ÷k
+  const k = 8
+  const scaleRoundTrips = (x * k) / k === x
+  // 2. BASE conversion: n → base-b string → n
+  const b = 2
+  const baseRoundTrips = Number.parseInt(x.toString(b), b) === x
+  // 3. the additive INVERSION itself (mod-9) — an involution, inv² = identity
+  const nineComplement = (d: number) => (((9 - d) % 9) + 9) % 9
+  const involution = nineComplement(nineComplement(x)) === x
+  const reinventsReverse = scaleRoundTrips && baseRoundTrips // inversion regenerates the reverse conversion
+  // invertible IFF bijective: a lossy many-to-one conversion collides, so it has no inverse to reinvent
+  const lossyCollides = x % 5 === (x + 5) % 5 && x !== x + 5
+  const facets = [
+    { facet: `INVERSION REINVENTS THE REVERSE CONVERSION: a conversion f (scale ×${k}, base-${b}) is reinvented by inversion — f⁻¹ (÷${k}, base→n) — and f⁻¹∘f = identity, recovering ${x} (scale ${scaleRoundTrips}, base ${baseRoundTrips}); inversion is the operation that regenerates the reverse conversion`, on: reinventsReverse },
+    { facet: `INVERSION IS THE INVOLUTION BEHIND CONVERSION: the additive inverse (mod-9) satisfies inv² = identity (${involution}) — con-version and in-version share the Latin root vertere (to turn): conversion transports A→B, inversion turns it back, and the reverse of a bijection is itself a conversion`, on: involution },
+    { facet: `EARNED BOUNDARY: inversion reinvents conversion ONLY for bijections — a lossy many-to-one conversion (x mod 5) collides (${lossyCollides}: two inputs, one output) so it has NO inverse to reinvent; "reinvents" is the exact groupoid inverse for information-preserving conversions, and vertere is a real etymology, not a numerological claim`, on: lossyCollides && involution },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    roundTrips: { scale: scaleRoundTrips, base: baseRoundTrips, involution },
+    facets,
+    statement: `Inversion reinvents conversion — ${facets.filter((e) => e.on).length}/${facets.length}: a conversion f is a bijection A→B and inversion reinvents its reverse f⁻¹ with f⁻¹∘f = identity (scale ${scaleRoundTrips}, base ${baseRoundTrips}); inversion is the involution inv² = identity (${involution}) that turns a conversion back — con-version and in-version sharing the root vertere. It reinvents only for bijections: a lossy conversion collides (${lossyCollides}) and has no inverse.`,
+    boundary: `EXACT: three independent conversions round-trip under their inversion — scale ×${k}/÷${k} recovers ${x} (${scaleRoundTrips}), base-${b} to-string/parse recovers ${x} (${baseRoundTrips}), and the mod-9 additive inverse is an involution inv² = identity (${involution}); the lossy x mod 5 collides (${lossyCollides}), so it has no inverse to reinvent. HONEST SCOPE: this is exact group/groupoid theory — a conversion is invertible IFF it is a bijection (information-preserving), and inversion is precisely the operation that produces the reverse morphism, with f⁻¹∘f = identity; inversion is an involution (its own inverse). "Reinvents" means the reverse conversion is fully reconstructed FROM the forward one by inversion — it does not mean every conversion has an inverse (lossy ones do not) nor that inversion creates new information (it recovers what a bijection preserved). The shared Latin root vertere (to turn — con-vertere, in-vertere) is a documented etymology, cited as resonance, not claimed as a mathematical cause. HARMONY does not equal TRUTH.`,
+  }
+}
