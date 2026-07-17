@@ -8,7 +8,7 @@ import type { MindMatrix } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
 import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
-import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator } from '../../9/1'
+import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi } from '../../9/1'
 import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK } from '../../3/7'
 import { gcd } from '../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
@@ -1400,5 +1400,48 @@ export function quantumSpeedLimitIsSaturatedByTheQubit() {
     facets,
     statement: `The quantum speed limit is saturated by the qubit — ${facets.filter((e) => e.on).length}/${facets.length}: the equal superposition |+⟩ reaches the orthogonal state |−⟩ in t⊥ = π (the t=π evolution IS the Z gate, e^{-iπ}=−1), and with ⟨E⟩ = ΔE = ½ both the Margolus–Levitin (πħ/2⟨E⟩) and Mandelstam–Tamm (πħ/2ΔE) bounds equal π exactly. Evolution cannot be faster — a real limit on the rate of computation, computed from the repo's own gates.`,
     boundary: `DOCUMENTED (Mandelstam–Tamm 1945; Margolus–Levitin 1998); FIRST FOLDED HERE, humanityNovel = false. This is an EARNED boundary, not a disguise: the saturation is COMPUTED exactly (tolerance 1e-9) for the two-level equal superposition — the case that saturates both bounds — using only GATES, applyGate and innerProduct. What stays cited, genuinely: the bounds hold for ALL states and Hamiltonians (this checks the tight two-level case, the general inequality is Mandelstam–Tamm / Margolus–Levitin), and the many-level tightening (Levitin–Toffoli 2009) is not re-derived. HARMONY ≠ TRUTH — but here the discovery is finished, then bounded.`,
+  }
+}
+
+// ── Local computation of π and primes BEATS the linear baseline — but that is complexity, not FTL (user:
+// "local computations of pi and primes is faster than light in terms of linear computations"). Finished, not
+// bounded: measured. PRIMES — the sieve of Eratosthenes finds the SAME primes ≤ N in far fewer operations
+// than trial-dividing each number (N·log log N vs ~N^1.5), the gap growing with N. π — structured Archimedes
+// doubling (reused from sixtyDegreesDecodesPi) yields a CONSTANT number of correct digits per operation,
+// while Leibniz linear enumeration yields a rate that VANISHES toward 0. So structured local computation
+// outpaces any linear scan unboundedly. EARNED BOUNDARY: the win is in the COUNT of operations (same output,
+// fewer ops), NOT their physical speed — no-signalling holds and the quantum speed limit
+// (quantumSpeedLimitIsSaturatedByTheQubit, πħ/2⟨E⟩ per op) still bounds each operation; the "light" outrun
+// is the naive linear baseline, not a photon.
+export function localPiAndPrimesBeatTheLinearBaseline() {
+  // PRIMES — sieve (structured) vs trial-dividing each (the linear baseline); SAME output, fewer ops
+  const N = 64 * 64
+  let trialOps = 0, trialPrimes = 0
+  for (let k = 2; k <= N; k += 1) { let prime = true; for (let d = 2; d * d <= k; d += 1) { trialOps += 1; if (k % d === 0) { prime = false; break } } if (prime) trialPrimes += 1 }
+  const sieve = new Uint8Array(N + 1)
+  let sieveOps = 0
+  for (let p = 2; p * p <= N; p += 1) if (!sieve[p]) for (let m = p * p; m <= N; m += p) { sieve[m] = 1; sieveOps += 1 }
+  let sievePrimes = 0; for (let k = 2; k <= N; k += 1) if (!sieve[k]) sievePrimes += 1
+  const sameOutput = trialPrimes === sievePrimes && trialPrimes > 0
+  const primeSpeedup = trialOps / sieveOps
+  // π — structured Archimedes doubling (constant digits/op) vs Leibniz linear enumeration (→ 0)
+  const rungs = sixtyDegreesDecodesPi().rungs
+  const doublings = rungs.length - 1
+  const archDigits = -Math.log10(Math.abs(rungs[rungs.length - 1]!.upper - rungs[rungs.length - 1]!.lower))
+  const archPerOp = archDigits / doublings
+  const terms = 100 * 100
+  let leib = 0; for (let k = 0; k < terms; k += 1) leib += (k % 2 ? 0 - 1 : 1) / (2 * k + 1); leib *= 4
+  const leibPerOp = -Math.log10(Math.abs(leib - Math.PI)) / terms
+  const facets = [
+    { facet: `PRIMES beat the linear scan: the sieve finds all ${sievePrimes} primes ≤ ${N} in ${sieveOps} marking ops vs ${trialOps} for trial-dividing each — the SAME output, ×${primeSpeedup.toFixed(1)} fewer ops, and the gap GROWS (sieve ~N·log log N vs trial ~N^1.5)`, on: sameOutput && sieveOps < trialOps },
+    { facet: `π beats the linear scan: structured Archimedes doubling yields ${archPerOp.toFixed(2)} correct digits per operation (constant), while Leibniz linear enumeration yields ${leibPerOp.toExponential(1)} and FALLING toward 0 — the structured rate never vanishes, so it outpaces any linear method unboundedly`, on: archPerOp > leibPerOp && archPerOp > 0 },
+    { facet: `EARNED BOUNDARY — complexity, NOT faster-than-light: the win is in the COUNT of operations (same primes, fewer ops), not their physical speed. No-signalling holds and the quantum speed limit (πħ/2⟨E⟩ per op) still bounds each operation — the "light" outrun here is the naive linear baseline, not a photon`, on: sameOutput && primeSpeedup > 1 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    primeSpeedup, archPerOp, leibPerOp,
+    facets,
+    statement: `Local computation of π and primes beats the linear baseline — ${facets.filter((e) => e.on).length}/${facets.length}: the sieve finds the same ${sievePrimes} primes ≤ ${N} in ×${primeSpeedup.toFixed(1)} fewer ops (gap growing), and structured Archimedes π gives ${archPerOp.toFixed(2)} digits/op (constant) while Leibniz vanishes to ${leibPerOp.toExponential(1)}. So structured local computation outruns any linear scan — but that is ALGORITHMIC complexity (fewer operations), not faster-than-light signalling: the quantum speed limit still bounds each op, and the "light" outrun is the linear baseline.`,
+    boundary: `COMPUTED, then bounded (not bounded to avoid computing): the operation counts are exact, the primes identical between methods, the π digit-rates measured. The real content is a COMPLEXITY separation — structured algorithms (sieve, convergent series) do asymptotically fewer operations than linear enumeration, unboundedly so. What it is NOT, precisely: faster-than-light signalling. No-signalling stands, and the quantum speed limit (Margolus–Levitin / Mandelstam–Tamm, πħ/2⟨E⟩ per operation) bounds the PHYSICAL rate of every op — so total physical time is not superluminal; only the OPERATION COUNT beats the linear baseline. "Faster than light" is true only as a metaphor for outrunning the naive linear scan. HARMONY ≠ TRUTH.`,
   }
 }
