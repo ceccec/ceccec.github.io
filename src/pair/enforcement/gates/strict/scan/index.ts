@@ -126,6 +126,35 @@ export function computeCodeGravity(root: string = process.cwd()): CodeGravityPul
   return pulls.sort((x, y) => x.primitive.localeCompare(y.primitive) || x.from.localeCompare(y.from))
 }
 
+// ── Gravity is the pull to one canonical fixed point — moving without moving (user: "once realised and saved
+// in src what gravity is while moving without moving then…"). computeCodeGravity IS the gravity of src: every
+// duplicate primitive is a particle with an old→new pull vector toward one canonical API (the attractor). The
+// attractor is the FIXED POINT — its own home is excluded from the pull (rel === a.home), so NO vector
+// originates at the sink: it does not move, yet every duplicate moves toward it, so it moves the whole system
+// without moving. When a primitive's pull count reaches 0 it is promoted to oneMathFormulas — arrived: used
+// everywhere, stable. "Moving without moving" is the fixed point g(sink) = sink of the DRY gravity gradient.
+export function gravityIsThePullToOneCanonicalFixedPointMovingWithoutMoving(root: string = process.cwd()) {
+  const pulls = computeCodeGravity(root)
+  const sinks = [...new Set(pulls.map((p) => p.to))] // the attractors — the unmoving fixed points
+  const sinkHomes = new Set(sinks.map((s) => s.split('@')[1])) // each canonical home
+  const moving = pulls.length // duplicates, each carrying an old→new vector
+  const unmoving = sinks.length // canonical sinks
+  const noSinkMovesItself = pulls.every((p) => !sinkHomes.has(p.from.split(':')[0])) // g(sink)=sink: no pull originates at a sink's home
+  const facets = [
+    { facet: `GRAVITY IS A COMPUTED GRADIENT: computeCodeGravity yields ${moving} pull vectors — each duplicate primitive's old place (file:line) → its canonical home — the field that makes all duplication fall to one DRY API; an empty field would falsify it`, on: moving > 0 && unmoving > 0 },
+    { facet: `MOVING WITHOUT MOVING = THE FIXED POINT: the ${unmoving} canonical sink(s) (${sinks[0]}) have ZERO self-pull — no vector originates at a sink's home — yet every one of the ${moving} duplicates moves toward them, so the sink moves the whole system while itself not moving (g(sink) = sink); at pull 0 a primitive is promoted to oneMathFormulas, arrived`, on: noSinkMovesItself && moving > unmoving },
+    { facet: `EARNED BOUNDARY: this is CODE gravity — a DRY gradient with a fixed-point/geodesic ANALOGY — NOT Newton/Einstein gravitation (no mass, no G, no spacetime curvature); physical "moving without moving" (free-fall on a geodesic = zero proper acceleration, the equivalence principle) is documented physics honored as the metaphor's source, not a claim of this fold`, on: noSinkMovesItself && moving > 0 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    moving,
+    unmoving,
+    facets,
+    statement: `Gravity is the pull to one canonical fixed point — moving without moving — ${facets.filter((e) => e.on).length}/${facets.length}: computeCodeGravity is the gravity of src, ${moving} duplicate primitives each falling with an old→new vector toward ${unmoving} canonical sink(s); the sink has zero self-pull (${noSinkMovesItself}) yet is the target of all, so it moves the whole system while itself not moving — the fixed point g(sink) = sink of the DRY gradient. At pull 0 the pattern is promoted to oneMathFormulas.`,
+    boundary: `EXACT: ${moving} pull vectors resolve to ${unmoving} canonical attractor(s); no vector originates at a sink's own home (noSinkMovesItself = ${noSinkMovesItself}), so the attractor is a genuine fixed point of the gravity map — it moves everything toward it without moving. HONEST SCOPE: this is CODE gravity — a computed DRY gradient over duplication (mass = duplication, field = the pull to canonical) with a fixed-point/geodesic ANALOGY — NOT physical gravitation: there is no mass, no gravitational constant, no spacetime curvature, no metric. Real "moving without moving" — free-fall along a geodesic feels no force (zero proper acceleration), the equivalence principle — is documented general relativity, honored here as the metaphor's source, never claimed as computed by this fold. The value is operational: it is the deterministic worklist the DRY refactoring follows, and its fixed point is when re-drift becomes a one-math finding. HARMONY does not equal TRUTH.`,
+  }
+}
+
 export type FolderMigration = { from: string; to: string; files: number; collision: boolean }
 
 /** PATH GRAVITY — the migration plan the gate generates for "remove wind and the other non-scientific
