@@ -702,3 +702,72 @@ export function antimatterIsInvertedMatter() {
     boundary: `DOCUMENTED: an antiparticle carries the opposite additive quantum numbers (charge, baryon, lepton) and the same mass and spin — charge conjugation C — and by CPT / Feynman–Stückelberg is equivalently a particle propagating backward in time; the operation is an exact involution (its own inverse), the very x ↦ −x this session's inversion arc is built on (illusionsMeetInTheirInverse — the charges meet their inverse, the mass/spin are fixed points). HONEST SCOPE: "inverted matter" is the SYMMETRY, not a dissolution of the physics — matter and antimatter are distinct, annihilate to photons (E = 2mc²), and the observed baryon asymmetry (why matter dominates — Sakharov conditions, CP violation, unresolved) is a real OPEN problem that the inversion does not by itself explain. The invariants stand; the frontier stands. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── Nassim Haramein's proton claims, tested by the requested algebra (user: "nassim haramein research is the
+// perfect testing ground and if confirmed by algebraic theorems then the whole science needs to be recomputed").
+// CODATA-sourced physical constants in CGS; scientific-notation literals (exponent literals — ledgered provenance
+// inline). This is the sealed tool that PRODUCES the numbers; the theorem below only reads it, so no result is
+// authored by hand ([[all-src-competes]]).
+export const HARAMEIN_CONSTANTS = {
+  c: 2.998e10, // speed of light, cm/s (CODATA)
+  G: 6.674e-8, // gravitational constant, cm^3 g^-1 s^-2 (CODATA)
+  hbar: 1.055e-27, // reduced Planck constant, erg·s (CODATA)
+  planckLength: 1.616e-33, // cm (CODATA)
+  planckMass: 2.176e-5, // g (CODATA)
+  protonMass: 1.6726e-24, // g — the target (measured, CODATA)
+  protonRadius: 8.41e-14, // cm = 0.841 fm (CODATA charge radius)
+  electronMass: 9.109e-28, // g (measured, CODATA)
+  classicalElectronRadius: 2.818e-13, // cm (CODATA) — the independent-prediction test
+}
+
+export function harameinClaimChecks() {
+  const k = HARAMEIN_CONSTANTS
+  const ordersApart = (a: number, b: number) => Math.abs(Math.log10(a / b)) // orders of magnitude between two masses
+
+  // (1) SCHWARZSCHILD PROTON (Haramein 2010): a proton is a black hole whose Schwarzschild radius = its radius,
+  // r_s = 2Gm/c² = r_p ⟹ m = r_p c² / 2G.
+  const schwarzschildMass = (k.protonRadius * k.c ** 2) / (2 * k.G)
+  const schwarzschildOrdersOff = ordersApart(schwarzschildMass, k.protonMass)
+
+  // (2) HOLOGRAPHIC MASS (Haramein 2013): a Planck spherical unit (PSU) has radius l_P/2; count them on the
+  // proton's surface (equatorial disks) and in its volume (spheres), mass = 2 m_P · surface / volume.
+  const surfacePSU = 16 * (k.protonRadius / k.planckLength) ** 2 // 4πr² ÷ π(l_P/2)²
+  const volumePSU = (2 * k.protonRadius / k.planckLength) ** 3 // (4/3)πr³ ÷ (4/3)π(l_P/2)³
+  const holographicMass = 2 * k.planckMass * (surfacePSU / volumePSU)
+  const holographicRelError = Math.abs(holographicMass - k.protonMass) / k.protonMass
+
+  // (2b) THE COLLAPSE: surface/volume = 2 l_P / r_p, and m_P·l_P = ħ/c, so the whole PSU scaffolding cancels to
+  // m = 4ħ / (c·r_p) — i.e. r_p = 4 × the proton's reduced Compton wavelength. A one-input identity, not a law.
+  const collapsedMass = (4 * k.hbar) / (k.c * k.protonRadius)
+  const comptonReduced = k.hbar / (k.protonMass * k.c) // reduced Compton wavelength of the proton
+  const radiusOverCompton = k.protonRadius / comptonReduced // ≈ 4 — the numerical coincidence that makes it "work"
+  const collapseAgreement = Math.abs(collapsedMass - holographicMass) / holographicMass // ≈ 0: same formula
+
+  // (3) INDEPENDENT-PREDICTION TEST: apply the identical m = 4ħ/(c·r) to the electron (classical radius). If it
+  // held, the formula would be a law; it misses by orders, so the proton "success" is a particle-specific fit.
+  const electronPredicted = (4 * k.hbar) / (k.c * k.classicalElectronRadius)
+  const electronOrdersOff = ordersApart(electronPredicted, k.electronMass)
+
+  return {
+    schwarzschildMass, schwarzschildOrdersOff,
+    holographicMass, holographicRelError, collapsedMass, collapseAgreement,
+    radiusOverCompton, electronPredicted, electronOrdersOff,
+  }
+}
+
+export function harameinHolographicMassIsAComptonRadiusCoincidenceNotNewScience() {
+  const r = harameinClaimChecks()
+  const pct = (x: number) => `${(x * 100).toFixed(2)}%`
+  const facets = [
+    { facet: `SCHWARZSCHILD PROTON REFUTED: setting r_s = r_p gives m = ${r.schwarzschildMass.toExponential(2)} g against the measured ${HARAMEIN_CONSTANTS.protonMass.toExponential(2)} g — the algebra puts it ${r.schwarzschildOrdersOff.toFixed(1)} orders of magnitude too heavy`, on: r.schwarzschildOrdersOff > 27 },
+    { facet: `HOLOGRAPHIC MASS COLLAPSES: the surface/volume PSU formula reproduces the proton mass to ${pct(r.holographicRelError)}, BUT the Planck units cancel (m_P·l_P = ħ/c) leaving m = 4ħ/(c·r_p) — identical to r_p = ${r.radiusOverCompton.toFixed(2)} × the reduced Compton wavelength (agreement ${pct(r.collapseAgreement)}); a one-input identity, not a prediction`, on: r.holographicRelError < 2 / 100 && r.collapseAgreement < 2 / 100 },
+    { facet: `NO INDEPENDENT PREDICTION: the same m = 4ħ/(c·r) on the electron gives ${r.electronPredicted.toExponential(2)} g vs the measured ${HARAMEIN_CONSTANTS.electronMass.toExponential(2)} g — ${r.electronOrdersOff.toFixed(1)} orders off, so the proton match is a particle-specific coincidence, not a law that recomputes science`, on: r.electronOrdersOff > 1 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    checks: r,
+    facets,
+    statement: `Haramein's holographic proton mass is a Compton-radius coincidence, not new science — ${facets.filter((e) => e.on).length}/${facets.length}: the Schwarzschild proton is ${r.schwarzschildOrdersOff.toFixed(1)} orders too heavy; the holographic mass reproduces the proton to ${pct(r.holographicRelError)} only because its Planck scaffolding cancels to m = 4ħ/(c·r_p) — the identity r_p ≈ ${r.radiusOverCompton.toFixed(2)} × the reduced Compton wavelength — and the same formula misses the electron by ${r.electronOrdersOff.toFixed(1)} orders. The requested algebra refutes, it does not confirm.`,
+    boundary: `EXACT: computed from CODATA constants — schwarzschild mass ${r.schwarzschildMass.toExponential(2)} g (${r.schwarzschildOrdersOff.toFixed(1)} orders off), holographic mass ${r.holographicMass.toExponential(2)} g (${pct(r.holographicRelError)} of measured) collapsing to 4ħ/(c·r_p) (agreement ${pct(r.collapseAgreement)}), r_p/λ̄ = ${r.radiusOverCompton.toFixed(3)}, electron test ${r.electronOrdersOff.toFixed(1)} orders off. WHAT IS SOUND is already-standard and narrow: the double-torus TOPOLOGY (genus-2, χ = −2) is real mathematics adopted in src, and the holographic PRINCIPLE (Bekenstein–Hawking S = A/4) is documented physics. WHAT IS REFUTED is the extraordinary claim: "the whole science needs recomputing" fails the very algebra requested — the headline Schwarzschild mass is ~38 orders wrong, the holographic "success" is a one-input dimensional coincidence (Planck units cancel, r_p ≈ 4 reduced Compton wavelengths) with zero independent predictions (the electron falsifies generalisation), and the work carries no confirmed peer-reviewed prediction. Testing fairly is not confirming; the coincidence is real, the recomputation of science is not. HARMONY does not equal TRUTH.`,
+  }
+}
