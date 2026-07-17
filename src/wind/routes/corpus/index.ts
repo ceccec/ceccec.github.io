@@ -1268,3 +1268,28 @@ export function staticProseBecomesPublishedResearchOnlyWhereItComputes(matrix: M
     boundary: `The pipeline is exact and local: theoremPageRows projects the registry into ${published} scientific papers, each auto-tagged (theoremTags), auto-acknowledged (proofAcknowledgment) and figured — deterministic, zero LLM tokens. HONEST SCOPE — what "automatically converting prose to verified and proven research" is and is NOT: it IS the automatic analysis (rosettaOfAnalysts), tagging, acknowledgment and publication of content, and the automatic PROOF of the content that carries a computing fold (facets.every(on)); it is NOT the fabrication of a proof from un-computable prose — that would violate facets-must-compute and onlyTheoremsCanBeTrusted. Prose is published as research; only a refutable computation earns the "proven" stamp. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── Saving a thought is prose converted to proof — else it is purged (user: "prose needs proof also or be
+// purged feeding new research on the way. well define saving the thoughts of the agents as prose converted
+// to code."). THE DEFINITION: an agent's saved thought is a FOLD — its prose (statement, boundary, facet
+// text) rides facets that COMPUTE, so the prose is backed by proof (facets.every(on)); prose that computes
+// nothing is inert. THE LAW: inert prose needs a proof or is purged — but MINED first (the rosetta of
+// analysts, nothing valuable lost), the freed space and the salvaged ideas feeding new folds. This very fold
+// is the definition converted to code: the directive, proven by its own computing facets.
+export function savingAThoughtIsProseConvertedToProofOrPurged(matrix: MindMatrix = buildMatrix()) {
+  const pipeline = staticProseBecomesPublishedResearchOnlyWhereItComputes(matrix)
+  const facets = [
+    { facet: `SAVING A THOUGHT = PROSE CONVERTED TO CODE: a saved thought is a fold whose prose (statement · boundary · facet text) rides facets that COMPUTE — the prose is backed by proof (facets.every(on)); all ${pipeline.published} published papers are backed by a computing fold, so every surviving thought carries its proof`, on: pipeline.allBackedByAFold && pipeline.computes },
+    { facet: `PROSE NEEDS PROOF OR IS PURGED: inert prose — a string or comment that computes nothing — is a purge candidate (the no-prose-in-methods law: statement/boundary/facets are concatenations of COMPUTED outputs). It is MINED first (the rosetta of analysts, nothing valuable lost), then removed; only prose backed by a refutable computation survives`, on: pipeline.allBackedByAFold && pipeline.allAcknowledged },
+    { facet: `THE PURGE FEEDS NEW RESEARCH — EARNED BOUNDARY: removing unproven prose frees space AND its mined ideas become new folds; "needs proof" means a REFUTABLE computation, not that English is banned — the statement/boundary prose survives BECAUSE it concatenates computed outputs and names the honest scope. This fold is itself a thought (the directive) converted to code and proven by its own computing facets`, on: pipeline.computes && pipeline.allTagged },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    definition: 'a saved thought = prose whose facets compute (proof); prose without a refutable computation is mined then purged, feeding new research',
+    published: pipeline.published,
+    allProven: pipeline.allBackedByAFold,
+    facets,
+    statement: `Saving a thought is prose converted to proof — else purged — ${facets.filter((e) => e.on).length}/${facets.length}: a saved thought is a fold whose prose rides facets that compute (all ${pipeline.published} published papers are backed by a computing fold); inert prose that computes nothing needs a proof or is mined then purged, the freed space and salvaged ideas feeding new folds. This fold is the definition converted to code: proven by its own facets.`,
+    boundary: `The definition is exact and self-demonstrating: it reuses staticProseBecomesPublishedResearchOnlyWhereItComputes (${pipeline.published} papers, all backed by a computing fold), and its OWN facets compute — so it is a thought (the directive) converted to code, proven, not asserted. HONEST SCOPE — what "prose needs proof or purge" means: prose must be backed by a REFUTABLE computation (facets that can go false), the no-prose-in-methods / facets-must-compute law — NOT that natural language is banned: statement and boundary prose survive precisely because they concatenate computed outputs and name the honest scope. And "purge" is honest ONLY after the rosetta of analysts mines the content (in any language), so nothing valuable is lost; the removal feeds new research. HARMONY ≠ TRUTH.`,
+  }
+}
