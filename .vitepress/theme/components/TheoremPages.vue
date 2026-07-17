@@ -6,10 +6,12 @@
 // ONE ProofAnimation renderer. Print CSS turns the page into an A4 paper: serif, numbered sections,
 // site chrome removed — what the browser shows is what the printer certifies.
 import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vitepress'
+import { useRoute, withBase } from 'vitepress'
 import { theoremPageBySlug, theoremPageRows, type TheoremPageRow } from '../../../src/wind/routes/corpus/index.ts'
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
 import ProofAnimation from './ProofAnimation.vue'
+import TheoremFigure from './TheoremFigure.vue'
+import { theoremFigure } from '../../../src/wind/routes/corpus/index.ts'
 
 const route = useRoute()
 const slugFromRoute = computed(() => {
@@ -32,6 +34,10 @@ onMounted(async () => {
   } catch { /* dev without artifact — the section hides itself */ }
 })
 const sourceOf = (row: TheoremPageRow) => sources.value[row.provedBy]
+// tags link back to the organised index, scrolling to that tag's group (ids computed in TheoremIndex).
+const tagHref = (tag: string) => withBase(`/theorems/#tag-${tag.replace('/', '-')}`)
+// the computed graph for this theorem, if src exposes one (else no figure — never invented).
+const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
 </script>
 
 <template>
@@ -53,10 +59,18 @@ const sourceOf = (row: TheoremPageRow) => sources.value[row.provedBy]
 
       <h1 class="theorem-paper__title">{{ row.theorem }}</h1>
       <p class="theorem-paper__byline">{{ row.provedBy }} · {{ row.home }} · {{ row.proofClass }}</p>
+      <p class="theorem-paper__tags" aria-label="tags">
+        <a v-for="t in row.tags" :key="t" class="theorem-paper__tag" :href="tagHref(t)">{{ t }}</a>
+      </p>
 
       <section class="theorem-paper__abstract">
         <h2>Abstract</h2>
         <p>{{ row.proof }}</p>
+      </section>
+
+      <section v-if="figureOf(row)" class="theorem-paper__figure-block">
+        <h2>Figure — the proof, computed and plotted</h2>
+        <TheoremFigure :figure="figureOf(row)!" />
       </section>
 
       <section>
@@ -108,7 +122,13 @@ const sourceOf = (row: TheoremPageRow) => sources.value[row.provedBy]
 }
 .theorem-paper__id { font-variant-numeric: tabular-nums; }
 .theorem-paper__title { font-size: calc(1em * 2); line-height: calc(6 / 5); margin: var(--ich-sp4) 0 var(--ich-sp2); }
-.theorem-paper__byline { font-style: italic; opacity: calc(4 / 5); margin: 0 0 var(--ich-sp4); }
+.theorem-paper__byline { font-style: italic; opacity: calc(4 / 5); margin: 0 0 var(--ich-sp2); }
+.theorem-paper__tags { display: flex; flex-wrap: wrap; gap: calc(1px * 6); margin: 0 0 var(--ich-sp4); }
+.theorem-paper__tag {
+  font-family: ui-monospace, Menlo, monospace; font-size: calc(1em * 7 / (2 * 5)); text-decoration: none;
+  padding: 0 calc(1px * 6); border: 1px solid currentColor; border-radius: calc(1px * 4); opacity: calc(4 / 5); }
+.theorem-paper__tag:hover { opacity: 1; }
+@media print { .theorem-paper__tag { border-color: black; } }
 .theorem-paper__abstract {
   border-left: calc(1px * 3) solid currentColor; padding-left: var(--ich-sp4);
   margin: var(--ich-sp4) 0;

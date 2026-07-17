@@ -8,6 +8,7 @@ import { buildMatrix } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
+import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1'
 import { cardMovieColorVars, cardMovieSeed } from '../../../thunder/movie/movievars'
 import { plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
 import { allPagesForPlasmaWiring } from '../../../water/double'
@@ -1014,6 +1015,9 @@ export type TheoremPageRow = {
   // the scientific-paper fields (user law: each page prints as a paper for class or court) — all computed
   humanityNovel: boolean; registryFirst: boolean; leansCited: boolean
   classification: string; provenance: string; reproducibility: string; citation: string
+  // organisation fields — all DERIVED, no hand-authored taxonomy: ordinal = registry append position
+  // (latest = highest), tags = [domain(home) · proofClass · lean] each read from an existing field.
+  ordinal: number; tags: string[]
 }
 
 export function theoremSlug(theorem: string): string {
@@ -1021,11 +1025,28 @@ export function theoremSlug(theorem: string): string {
   return s || 'theorem'
 }
 
+/** The domain tag of a proving home: the terminal named folder (music, crypto, decode…) or, for a pure
+ * digit station, the station itself (9/1, 4/6). Derived from the home path — refutable: move the fold to
+ * another home and the tag changes. */
+export function theoremDomainTag(home: string): string {
+  const rel = home.replace(/^src\//, '')
+  const last = rel.split('/').pop() || rel
+  return /^\d+$/.test(last) ? rel : last
+}
+
+/** Computed tags for a theorem paper — three axes, each a projection of a real field, none hand-authored:
+ * the domain (home), the proof class (finite-complete / bounded-witness), and the method lean
+ * (self-contained vs cited-frame). Change the field and the tag changes; that is what makes it computed. */
+export function theoremTags(row: { home: string; proofClass: string; leansCited: boolean }): string[] {
+  return [theoremDomainTag(row.home), row.proofClass, row.leansCited ? 'cited-frame' : 'self-contained']
+}
+
 export function theoremPageRows(matrix: MindMatrix = buildMatrix()): TheoremPageRow[] {
   const nav = __ns_up_up_thunder_waves.theoremNavigation(matrix)
   const specBy = new Map(__ns_up_up_thunder_waves.proofAnimations(matrix).specs.map((spec: { theorem: string }) => [spec.theorem, spec]))
   const provBy = new Map(__ns_up_up_thunder_waves.theoremProvenance(matrix).atoms.map((atom) => [atom.theorem, atom] as const))
   const seen = new Map<string, number>()
+  let ordinal = 0
   return nav.waves.flatMap((wave) =>
     wave.atoms.map((atom) => {
       const base = theoremSlug(atom.theorem)
@@ -1039,6 +1060,8 @@ export function theoremPageRows(matrix: MindMatrix = buildMatrix()): TheoremPage
         humanityNovel: prov?.humanityNovel ?? false,
         registryFirst: prov?.registryFirst ?? true,
         leansCited,
+        ordinal: ++ordinal,
+        tags: theoremTags({ home: atom.home, proofClass: atom.proofClass, leansCited }),
         classification: `${atom.proofClass}${leansCited ? ' — computed witness within a cited frame (the unbounded form leans on the cited literature)' : ' — self-contained computation, no external lean'}`,
         provenance: 'A documented theorem of mathematics, re-proven here by exhaustive computation (humanityNovel = false — the CARDINAL honesty of this registry); first-in-this-registry is the only sense of "discovered".',
         reproducibility: `Recompute from source: npm run theorems:verify recomputes ${wave.provedBy} (${atom.home}/index.ts) — every verdict re-derives; nothing on this page is asserted without the computation behind it.`,
@@ -1053,4 +1076,122 @@ export function theoremPagePaths(matrix: MindMatrix = buildMatrix()): { params: 
 
 export function theoremPageBySlug(slug: string, matrix: MindMatrix = buildMatrix()): TheoremPageRow | null {
   return theoremPageRows(matrix).find((row) => row.slug === slug) ?? null
+}
+
+/** The papers latest-to-oldest — the user's reading order. Slug-stable: slugs are computed in the forward
+ * (append) pass, so reversing the finished array only flips display order, never a URL. "Latest" = highest
+ * registry ordinal (last appended); a deterministic proxy for recency, documented, not a wall-clock guess. */
+export function theoremPapersLatestFirst(matrix: MindMatrix = buildMatrix()): TheoremPageRow[] {
+  return [...theoremPageRows(matrix)].reverse()
+}
+
+export type TheoremTagGroup = { tag: string; axis: 'domain' | 'class' | 'lean'; count: number; papers: TheoremPageRow[] }
+
+/** The papers organised BY TAG — each group is a computed tag and the papers carrying it, latest-first
+ * inside the group. Groups are sorted by size (largest first) then tag name. A paper appears under each of
+ * its tags (domain · class · lean), so the whole registry is reachable from any axis, newest at the top. */
+export function theoremTagIndex(matrix: MindMatrix = buildMatrix()): TheoremTagGroup[] {
+  const latest = theoremPapersLatestFirst(matrix)
+  const axisOf = (tag: string, row: TheoremPageRow): TheoremTagGroup['axis'] =>
+    tag === (row.leansCited ? 'cited-frame' : 'self-contained') ? 'lean' : tag === row.proofClass ? 'class' : 'domain'
+  const groups = new Map<string, TheoremTagGroup>()
+  for (const row of latest) {
+    for (const tag of row.tags) {
+      const group = groups.get(tag) ?? { tag, axis: axisOf(tag, row), count: 0, papers: [] as TheoremPageRow[] }
+      group.papers.push(row)
+      group.count += 1
+      groups.set(tag, group)
+    }
+  }
+  return [...groups.values()].sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))
+}
+
+/** Lightweight tag headers (tag · axis · count) without the papers — for the index's filter chips and for
+ * SSR nav, so rendering the chip row never ships every paper's proof text. */
+export function theoremTagSummary(matrix: MindMatrix = buildMatrix()): { tag: string; axis: TheoremTagGroup['axis']; count: number }[] {
+  return theoremTagIndex(matrix).map(({ tag, axis, count }) => ({ tag, axis, count }))
+}
+
+// ── Computed FIGURES for the theorem papers — the graphs the proofs draw. User law: only local src tools
+// may do the math. π comes from sixtyDegreesDecodesPi().rungs (Archimedes, already in src); the prime run
+// from tkIsPrime (the local primality primitive). Nothing here decides mathematics — it only SHAPES the
+// already-computed numbers for the SVG grapher. Keyed by theorem slug; a slug with no builder shows no
+// figure (never invented). More theorems join by adding a builder that reads their fold's output.
+export type FigPoint = { x: number; y: number }
+export type FigRole = 'a' | 'b' | 'target' | 'ok' | 'bad'
+export type FigSeries = { label: string; kind: 'line' | 'dots'; role: FigRole; points: FigPoint[] }
+export type TheoremFigureData = {
+  formula: string; caption: string; xLabel: string; yLabel: string
+  series: FigSeries[]; refLines: { y: number; label: string }[]; source: string
+}
+
+const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
+  // π decoded from 60° — the inscribed/circumscribed perimeter-halves bracketing π, straight from the
+  // fold's own `rungs`. The math is sixtyDegreesDecodesPi()'s Archimedes doubling; we only read it.
+  'sixty-degrees-decodes-pi': () => {
+    const rungs = sixtyDegreesDecodesPi().rungs
+    const last = rungs[rungs.length - 1]!
+    const lx = (n: number) => Math.log2(n)
+    return {
+      formula: 'aₙ₊₁ = 2aₙbₙ/(aₙ+bₙ),  bₙ₊₁ = √(aₙ₊₁·bₙ)   (Archimedes, radius 1)',
+      caption: `Inscribed (lower) and circumscribed (upper) perimeter-halves bracket π. The hexagon (n = 6) doubles to the ${last.n}-gon, squeezing ${last.lower.toFixed(4)} < π < ${last.upper.toFixed(4)}. Computed by sixtyDegreesDecodesPi().`,
+      xLabel: 'log₂(polygon sides n)', yLabel: 'bound on π',
+      series: [
+        { label: 'upper (circumscribed a/2)', kind: 'line', role: 'a', points: rungs.map((r) => ({ x: lx(r.n), y: r.upper })) },
+        { label: 'lower (inscribed b/2)', kind: 'line', role: 'b', points: rungs.map((r) => ({ x: lx(r.n), y: r.lower })) },
+      ],
+      refLines: [{ y: Math.PI, label: 'π = 3.14159…' }],
+      source: 'sixtyDegreesDecodesPi().rungs @ src/9/1',
+    }
+  },
+  // The distribution of primes on Euler's polynomial: f(n)=n²+n+41 is prime for n=0…39, composite exactly
+  // at n=40 (=41²). Every point's colour is a call to the LOCAL tkIsPrime — the primality primitive plotted.
+  'euler-polynomial-n2-n-41-primes-then-breaks-at-412': () => {
+    const p41 = 2 ** 5 + 9 // 41 = the Euler constant, composed on the lattice as the proof fold does
+    const prime: FigPoint[] = []; const composite: FigPoint[] = []; let firstComposite = -1
+    for (let n = 0; n < 54; n += 1) {
+      const y = n * n + n + p41
+      if (tkIsPrime(y)) prime.push({ x: n, y })
+      else { composite.push({ x: n, y }); if (firstComposite < 0) firstComposite = n }
+    }
+    const breakVal = firstComposite * firstComposite + firstComposite + p41
+    return {
+      formula: 'f(n) = n² + n + 41',
+      caption: `Prime for every n = 0…39 — 40 primes in a row — then composite at n = ${firstComposite}: f(${firstComposite}) = ${breakVal} = 41². Each point's primality is decided by the local tkIsPrime; green = prime, red = composite.`,
+      xLabel: 'n', yLabel: 'f(n) = n² + n + 41',
+      series: [
+        { label: 'prime', kind: 'dots', role: 'ok', points: prime },
+        { label: 'composite', kind: 'dots', role: 'bad', points: composite },
+      ],
+      refLines: [], source: 'tkIsPrime @ src/9/1',
+    }
+  },
+  // √2's convergents — the error |pₖ/qₖ − √2| falls geometrically (a line on a log axis). Exact integer
+  // Pell recurrence; √2 reference is the machine constant. Deterministic and local.
+  '2-continued-fraction-convergents': () => {
+    let pPrev = 1, qPrev = 0, p = 1, q = 1
+    const pts: FigPoint[] = []
+    for (let k = 1; k <= 16; k += 1) {
+      pts.push({ x: k, y: Math.log10(Math.abs(p / q - Math.SQRT2)) })
+      const pn = 2 * p + pPrev, qn = 2 * q + qPrev
+      pPrev = p; qPrev = q; p = pn; q = qn
+    }
+    return {
+      formula: 'pₖ = 2pₖ₋₁ + pₖ₋₂,  qₖ = 2qₖ₋₁ + qₖ₋₂   (√2 = [1; 2,2,2,…]),   pₖ² − 2qₖ² = ±1',
+      caption: 'The convergents 1/1, 3/2, 7/5, 17/12, 41/29, … are best rational approximations: |pₖ/qₖ − √2| < 1/qₖ² and falls geometrically, so on a log axis the error is a straight descending line.',
+      xLabel: 'convergent index k', yLabel: 'log₁₀ |pₖ/qₖ − √2|',
+      series: [{ label: 'approximation error', kind: 'line', role: 'b', points: pts }],
+      refLines: [], source: 'Pell recurrence, exact integers',
+    }
+  },
+}
+
+/** The computed graph for a theorem, or null if src exposes none (never invented). */
+export function theoremFigure(slug: string): TheoremFigureData | null {
+  const build = theoremFigureBuilders[slug]
+  return build ? build() : null
+}
+
+export function hasTheoremFigure(slug: string): boolean {
+  return slug in theoremFigureBuilders
 }
