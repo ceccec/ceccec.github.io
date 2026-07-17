@@ -8,7 +8,7 @@ import type { MindMatrix } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented } from '../../heaven/compute'
 import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, toUuid, VORTEX_SEQUENCE } from '../../0'
 import type { CircuitOp } from '../../0'
-import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError } from '../../9/1'
+import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime } from '../../9/1'
 import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK } from '../../3/7'
 import { gcd } from '../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
@@ -1032,7 +1032,6 @@ export function fixedConstantsProvedByTheorems(matrix: MindMatrix = buildMatrix(
     // Fibonacci-hashing theorem: Knuth's multiplier is the prime nearest the golden section of 2³².
     const fib = Math.pow(2, 4 * 8) / PHI
     const knuth = 2654435761
-    const isPrime = (n: number) => { for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return n > 1 }
     // Maya Calendar Round theorem: 18980 = lcm(365, 260).
     const lcmRound = (365 * 260) / gcd(365, 260)
     const kinds = { data: 0, unit: 0, tuned: 0 }
@@ -1041,7 +1040,7 @@ export function fixedConstantsProvedByTheorems(matrix: MindMatrix = buildMatrix(
     const facets = [
       { facet: `sRGB C¹ knee from (a,γ) = ${roundTo(kneeExact, 7)} vs published 0.0031308 — the standard is off its own derivation by ${roundTo(Math.abs(kneeExact - 0.0031308) / kneeExact * 100, 1)}%`, on: c0 && Math.abs(kneeExact - 0.0031308) / kneeExact > 1 / (100 * 2) },
       { facet: `sRGB C¹ slope from (a,γ) = ${roundTo(slopeExact, 5)} vs published 12.92 — a hardcoded rounding`, on: c1 && Math.abs(slopeExact - 12.92) < 1 / 100 },
-      { facet: `Knuth ${knuth} is PRIME within ${roundTo(Math.abs(fib - knuth), 1)} of 2³²/φ = ${roundTo(fib, 2)} — the golden section of the 32-bit ring`, on: isPrime(knuth) && Math.abs(fib - knuth) < 2 * 5 },
+      { facet: `Knuth ${knuth} is PRIME within ${roundTo(Math.abs(fib - knuth), 1)} of 2³²/φ = ${roundTo(fib, 2)} — the golden section of the 32-bit ring`, on: tkIsPrime(knuth) && Math.abs(fib - knuth) < 2 * 5 },
       { facet: `Maya Calendar Round 18980 = lcm(365, 260) — the cycle meet theorem`, on: lcmRound === 18980 },
       { facet: `golden angle ${roundTo(GOLDEN_ANGLE, 4)} = 360/φ² = 360(2−φ) — one identity, three spellings`, on: Math.abs(GOLDEN_ANGLE - 360 * (2 - PHI)) < 1e-9 },
       { facet: `sense codons 61 = 64 − 3 stops — the biology is the derivation`, on: 64 - 3 === 61 },
@@ -1051,7 +1050,7 @@ export function fixedConstantsProvedByTheorems(matrix: MindMatrix = buildMatrix(
     return {
       proven: facets.every((entry) => entry.on),
       srgb: { kneeExact, slopeExact, publishedKnee: 0.0031308, publishedSlope: 12.92 },
-      fibonacciHash: { exact: fib, published: knuth, prime: isPrime(knuth) },
+      fibonacciHash: { exact: fib, published: knuth, prime: tkIsPrime(knuth) },
       calendarRound: lcmRound,
       ledger: { ...kinds, frontierNoted },
       count: facets.length,

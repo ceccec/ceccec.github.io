@@ -87,6 +87,45 @@ export function scanOneMathOffenders(
   return offenders
 }
 
+export type CodeGravityPull = { primitive: string; from: string; to: string }
+
+/** CODE GRAVITY — the computed worklist for standardising around one simple computable API (user: "imagine
+ * gravity in code itself computed with local tools and every column of every line will know its new/old
+ * place"; "standardise all around simple computable api like pi and the prime numbers with the rosetta").
+ * Each canonical primitive is an ATTRACTOR at one home; every duplicate definition elsewhere is a particle
+ * whose pull vector is computed — its OLD place (file:line) → its NEW place (the home). 100% coverage,
+ * deterministic, zero tokens. This is the map the DRY refactoring follows; when a primitive's pull count
+ * reaches 0, promote its pattern into oneMathFormulas() so any re-drift becomes a hard one-math finding. */
+export function computeCodeGravity(root: string = process.cwd()): CodeGravityPull[] {
+  const attractors: { primitive: string; home: string; canonical: string; def: RegExp }[] = [
+    // isPrime: ~13 hand-rolled trial divisions across the tree collapse to the one tkIsPrime.
+    { primitive: 'isPrime', home: 'src/9/1/index.ts', canonical: 'tkIsPrime', def: /(?:\bconst|\bfunction)\s+\w*[Ii]sPrime\w*\s*[=(]/g },
+  ]
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const f = join(d, e.name)
+      if (e.isDirectory()) walk(f)
+      else if (e.name === 'index.ts') files.push(f)
+    }
+  }
+  walk(join(root, 'src'))
+  const pulls: CodeGravityPull[] = []
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    const text = readFileSync(file, 'utf8')
+    for (const a of attractors) {
+      if (rel === a.home) continue // the attractor's own home is the sink, not a pull
+      for (const m of text.matchAll(a.def)) {
+        const line = text.slice(0, m.index!).split('\n').length // every duplicate knows its old place
+        pulls.push({ primitive: a.primitive, from: `${rel}:${line}`, to: `${a.canonical}@${a.home}` })
+      }
+    }
+  }
+  return pulls.sort((x, y) => x.primitive.localeCompare(y.primitive) || x.from.localeCompare(y.from))
+}
+
 export type StrictImportOffender = { file: string; spec: string; reason: string }
 export type StrictIndexOffender = { file: string; reason: string }
 export type StrictVitepressIndexOffender = { file: string; reason: string; transitional?: boolean }

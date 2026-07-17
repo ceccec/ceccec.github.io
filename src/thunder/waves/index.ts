@@ -1032,9 +1032,8 @@ export function discoveredTheoremsWaveFortyTwo(matrix: MindMatrix = buildMatrix(
     // P(n) ≡ 0 (mod n) for EVERY prime n (verified to 200); the smallest Perrin PSEUDOPRIME (a
     // composite passing the test) is 271441 = 521², cited — the test is necessary, not sufficient.
     const perrinMod = (n: number) => { if (n === 1) return 0; if (n === 2) return 2 % n; let a = 3, b = 0, c = 2; for (let i = 3; i <= n; i += 1) { const d = (a + b) % n; a = b; b = c; c = d } return c }
-    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     let perrin = true
-    for (let n = 2; n <= 2 * 100; n += 1) if (isPrime(n) && perrinMod(n) !== 0) perrin = false
+    for (let n = 2; n <= 2 * 100; n += 1) if (tkIsPrime(n) && perrinMod(n) !== 0) perrin = false
 
     return {
       facets: [
@@ -1570,9 +1569,8 @@ export function discoveredTheoremsWaveTwo(matrix: MindMatrix = buildMatrix()) {
     const sigma = (n: number) => { let s = 0; for (let d = 1; d < n; d += 1) if (n % d === 0) s += d; return s }
     const perfects: number[] = []
     for (let n = 2; n < 100 * 100; n += 1) if (sigma(n) === n) perfects.push(n)
-    const isPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     const euclid = [2, 3, 5, 7].map((p) => ({ p, mersenne: 2 ** p - 1, perfect: 2 ** (p - 1) * (2 ** p - 1) }))
-    const perfectFour = perfects.join(',') === euclid.map((e) => e.perfect).join(',') && euclid.every((e) => isPrime(e.mersenne))
+    const perfectFour = perfects.join(',') === euclid.map((e) => e.perfect).join(',') && euclid.every((e) => tkIsPrime(e.mersenne))
 
     const sealed = sealFacets('discovered-theorems-two', [
       { facet: `A₅ is simple — all ${a5.length} even permutations enumerated, conjugacy classes {${classSizes.join(',')}}, and NO union of classes containing the identity sums to a proper divisor of 60 (${properNormalCandidates} candidates) — with 60 = 2E = 2·${icosaEdges} emerging from the proven icosahedron (quintic unsolvability rests here; Galois cited)`, on: a5Simple },
@@ -1897,10 +1895,9 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
     for (let n = 1; n <= (5 * 2) ** 3; n += 1) { let s = 0; for (let d = 1; d <= n; d += 1) if (n % d === 0) s += phi5(d); if (s !== n) totientIdentity = false }
 
     // W4 · quadratic reciprocity — complete over all odd prime pairs p ≠ q < 100 via Euler's criterion.
-    const isPrime5 = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
     const modpow = (b: number, e: number, m: number) => { let r = 1n; let bb = BigInt(b % m); let ee = BigInt(e); const mm = BigInt(m); while (ee > 0n) { if (ee & 1n) r = (r * bb) % mm; bb = (bb * bb) % mm; ee >>= 1n } return Number(r) }
     const legendre = (a: number, p: number) => { const t = modpow(a, (p - 1) / 2, p); return t === p - 1 ? -1 : t }
-    const oddPrimes = Array.from({ length: 100 }, (_, n) => n).filter((n) => n > 2 && isPrime5(n))
+    const oddPrimes = Array.from({ length: 100 }, (_, n) => n).filter((n) => n > 2 && tkIsPrime(n))
     let reciprocity = true
     for (const p of oddPrimes) for (const q of oddPrimes) if (p !== q)
       if (legendre(p, q) * legendre(q, p) !== (-1) ** (((p - 1) / 2) * ((q - 1) / 2))) reciprocity = false
