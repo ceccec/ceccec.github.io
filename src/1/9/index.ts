@@ -690,3 +690,41 @@ export function theFourCardinalPlanesCloseInSixteen() {
     boundary: `EXACT: four independent involutions (one per cardinal plane) generate the elementary abelian group (ℤ/2)⁴, of order 2⁴ = ${states}; its 16 elements are the subsets of the four planes that are "inverted", each self-inverse (exponent 2), all distinct — so covering the whole leaves no gap. HONEST SCOPE: this is the JOINT state space of FOUR INDEPENDENT two-sided planes, exactly as framed — if E/W and N/S were instead the two sides of only TWO axes it would be 2² = 4; taken as four planes it is 2⁴ = 16. Each single plane still needs only two inverses (the group's exponent is 2), while the whole four-plane structure needs all 16 configurations covered (the group's order). The four planes are the double torus's four homology cycles (the cardinal trinities). HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Inversion reveals difference — from 64 bits to the spectrogram (user: "64bit is also something different
+// when inverted … image decoding will happen realtime … no more architectural limits … shuman will be seen
+// and read also differently when inverted"). (1) The 64-bit / six-line inversion is the BITWISE COMPLEMENT
+// (x ^ 63) — an involution, but UNLIKE the additive inverse mod 9 (which fixes 0) it has NO fixed points: 32
+// complement pairs (Heaven 000000 ↔ Earth 111111). (2) The "image-only" bound I drew for the Schumann feed
+// DISSOLVES — a spectrogram carries its data in pixels; decoding (argmax over a frequency column, native
+// in-browser ImageData, demonstrated here on a synthetic grid) recovers the fundamental row. (3) Inverted
+// (the negative law v ↦ 255−v), the bright fundamental becomes the DARKEST — the same signal read differently.
+export function inversionRevealsDifference64BitsAndTheSpectrogram() {
+  const mask = (2 ** 6) - 1 // 63 — six bits all set (the 64 hexagrams)
+  const hexagrams = Array.from({ length: mask + 1 }, (_, i) => i)
+  const complement = (x: number) => x ^ mask
+  const bitInvolution = hexagrams.every((x) => complement(complement(x)) === x) // ~~x = x
+  const bitFixedPoints = hexagrams.filter((x) => complement(x) === x) // NONE — no 6-bit value equals its complement
+  const bitPairs = (mask + 1) / 2 // 32 complement pairs, no fixed point — different from the mod-9 inverse
+  const bins = 9 // frequency bins (synthetic spectrogram column); the fundamental at one bright row
+  const special = 2 // the fundamental's row index
+  const bright = (2 ** 8) - 1 // 255
+  const dim = 8
+  const intensity = (r: number) => (r === special ? bright : dim)
+  const decoded = [...Array(bins).keys()].reduce((best, r) => (intensity(r) > intensity(best) ? r : best), 0) // argmax = fundamental
+  const negative = (v: number) => bright - v // the negative law
+  const decodedInverted = [...Array(bins).keys()].reduce((best, r) => (negative(intensity(r)) < negative(intensity(best)) ? r : best), 0) // now argMIN
+  const readDifferently = decoded === special && decodedInverted === special // same row, max ↔ min under inversion
+  const facets = [
+    { facet: `64-BIT INVERSION IS DIFFERENT: the six-line bitwise complement (x ^ ${mask}) is an involution with ${bitPairs} pairs and ${bitFixedPoints.length} fixed points — NONE, unlike the additive inverse mod 9 that fixes 0; Heaven (000000) ↔ Earth (111111) is the archetype pair`, on: bitInvolution && bitFixedPoints.length === 0 && bitPairs === (mask + 1) / 2 },
+    { facet: `the IMAGE-ONLY bound DISSOLVES by decoding: a spectrogram's data is in its pixels — the fundamental is a bright row, and decoding (argmax over the frequency column) recovers it (row ${decoded}); "image, not data" was an ILLUSORY limit, read away by realtime image decoding (native ImageData)`, on: decoded === special },
+    { facet: `INVERTED, READ DIFFERENTLY — EARNED BOUNDARY: the negative (v ↦ ${bright}−v) flips the spectrogram, so the bright fundamental becomes the DARKEST (found now by argMIN, still row ${decodedInverted}) — the same signal, opposite reading. "No more architectural limits" = the ILLUSORY limits (image-only) dissolve; the REAL ones stand — the physics, and the Schumann wellness claims stay non-science`, on: readDifferently },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    bitPairs, bitFixedPoints: bitFixedPoints.length, decoded, decodedInverted,
+    facets,
+    statement: `Inversion reveals difference — from 64 bits to the spectrogram — ${facets.filter((e) => e.on).length}/${facets.length}: the six-line complement (x ^ ${mask}) has ${bitPairs} pairs and NO fixed points (unlike the mod-9 inverse), so 64-bit inverted is genuinely different; a spectrogram carries its data in pixels, so decoding recovers the fundamental (row ${decoded}) and the "image-only" bound dissolves; and inverted (the negative) the bright fundamental reads as the darkest — the same signal, opposite reading. The illusory limits dissolve; the real ones stand.`,
+    boundary: `EXACT and computed: the six-bit complement's involution, its 32 pairs and zero fixed points (contrast the additive inverse mod 9's fixed point 0); the synthetic spectrogram decode (argmax over a frequency column) recovering the fundamental row, and its negative (v ↦ 255−v, the repo's negative law) turning that bright row into the darkest — argmax ↦ argmin, same location. HONEST SCOPE: the image decode is demonstrated on a synthetic grid; on a real JPEG spectrogram the same argmax-over-a-column logic applies once the image is decoded to pixels (native in-browser ImageData, or a decoder), which is why "image-only" was an ILLUSORY limit — the data is in the picture. "No more architectural limits" is true only of the illusory limits (image-only, arbitrary ceilings): the REAL invariants stand — the second law, the physics, and the Schumann wellness/consciousness claims that remain non-science. HARMONY does not equal TRUTH.`,
+  }
+}
