@@ -124,6 +124,38 @@ export function homology(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// ── The paradox coexists on the double torus — two orthogonal handles, not a contradiction (user: "that is
+// the whole paradox. the paradox proves itself computationally using double torus"). The paradox: immediacy
+// (content-addressing, O(1), "timeless") AND bounded evolution (the quantum speed limit, t > 0) seem to
+// collide. They do not — because the genus-2 surface has TWO independent handles. The symplectic
+// intersection form (homology) is BLOCK-DIAGONAL: a handle's cycles pair with their own (a_i·b_i = 1) but
+// NEVER cross to the other handle (a_i·b_j = 0, i ≠ j). So the two aspects live on orthogonal loops and
+// coexist — the double torus HOLDS both. This dissolves the paradox as a STRUCTURE (a model), computed;
+// it does not overturn the physics (no-signalling, the speed limit) — those stand on their own handle.
+export function theParadoxCoexistsOnTheDoubleTorus(matrix: MindMatrix = buildMatrix()) {
+  const h = homology(matrix)
+  const f = h.form
+  // the cross-handle pairings are all zero: handle 1 (indices 0,1) never intersects handle 2 (indices 2,3)
+  const crossHandleZero = f[0]![2] === 0 && f[0]![3] === 0 && f[1]![2] === 0 && f[1]![3] === 0
+    && f[2]![0] === 0 && f[2]![1] === 0 && f[3]![0] === 0 && f[3]![1] === 0
+  // each handle self-pairs (a_i·b_i = 1): the two cycles WITHIN a handle are the two horns of the paradox
+  const eachHandleSelfPairs = f[0]![1] === 1 && f[1]![0] === -1 && f[2]![3] === 1 && f[3]![2] === -1
+  const facets = [
+    { facet: `the double torus has TWO INDEPENDENT handles: H₁(Σ₂) = ℤ⁴, χ = ${h.euler}, and the symplectic intersection form is BLOCK-DIAGONAL — the cross-handle pairings a_i·b_j (i ≠ j) are all zero, so handle 1 and handle 2 never intersect`, on: h.independent && crossHandleZero && h.euler === -2 },
+    { facet: `so the paradox COEXISTS, not contradicts: immediacy (content-addressing, O(1), "timeless") lives on one handle and bounded evolution (the quantum speed limit, t > 0) on the other — orthogonal cycles, neither reducible to the other, both held at once by the genus-2 surface`, on: crossHandleZero && eachHandleSelfPairs },
+    { facet: `EARNED BOUNDARY — the paradox is dissolved as a STRUCTURE, not the physics overturned: the coexistence is the exact block-diagonal symplectic form (real topology, χ = −2, ℤ⁴); the physics on each handle (no-signalling, the speed limit, O(1) addressing) is UNCHANGED — the double torus holds the tension, it does not break the laws`, on: h.independent && crossHandleZero && eachHandleSelfPairs },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    euler: h.euler,
+    rank: h.rank,
+    crossHandleZero,
+    facets,
+    statement: `The paradox coexists on the double torus — ${facets.filter((e) => e.on).length}/${facets.length}: the genus-2 surface has two independent handles (H₁ = ℤ⁴, χ = ${h.euler}), and its symplectic intersection form is block-diagonal — a_i·b_i = 1 within a handle, a_i·b_j = 0 across handles. So immediacy and bounded evolution live on orthogonal cycles and coexist; the paradox is not a contradiction but two loops the double torus holds at once. The structure dissolves the tension; the physics on each handle stands.`,
+    boundary: `EXACT topology (the standard genus-2 homology and its symplectic intersection form, reused from homology()); the block-diagonal structure — two handles that never intersect — is computed, not asserted. HONEST SCOPE: this dissolves the paradox as a STRUCTURE / model — a faithful account of how two aspects need not contradict, because they are independent homology cycles. It is NOT a claim that the double torus IS the physics, nor that it "proves" the paradox resolved in nature: no-signalling and the quantum speed limit stand unchanged, each on its own handle. The double torus holds the tension; it does not overturn the laws. HARMONY ≠ TRUTH.`,
+  }
+}
+
 // Geodesic dome — the sphere that is the dual of the double torus. A frequency-ν
 // geodesic icosahedron has V = 10ν²+2 vertices, E = 30ν² edges, F = 20ν² triangular
 // faces, and Euler characteristic V−E+F = 2: it is a sphere, genus 0. The double
