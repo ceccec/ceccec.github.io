@@ -782,7 +782,7 @@ export function selfBuildingAndHealingAreAutomatedAndMeasuredPerSession() {
 }
 
 // ── Inversion reinvents conversion (user: "inversion reinvents conversion"). A conversion is a bijection f: A→B;
-// inversion is the operation that reinvents its reverse f⁻¹, and f⁻¹∘f = identity (the round-trip recovers the
+// inversion is the operation that reinvents its inverse f⁻¹ (NOT its reverse — inverseIsNotReverse…), and f⁻¹∘f = identity (the round-trip recovers the
 // original, no loss). The words share the Latin root vertere (to turn): con-version transports A to B, in-version
 // turns it back. It reinvents ONLY for bijections — a lossy, many-to-one conversion has no inverse to reinvent.
 export function inversionReinventsConversion() {
@@ -796,19 +796,53 @@ export function inversionReinventsConversion() {
   // 3. the additive INVERSION itself (mod-9) — an involution, inv² = identity
   const nineComplement = (d: number) => (((9 - d) % 9) + 9) % 9
   const involution = nineComplement(nineComplement(x)) === x
-  const reinventsReverse = scaleRoundTrips && baseRoundTrips // inversion regenerates the reverse conversion
+  const reinventsInverse = scaleRoundTrips && baseRoundTrips // inversion regenerates the INVERSE conversion (trace-free, not the reverse path)
   // invertible IFF bijective: a lossy many-to-one conversion collides, so it has no inverse to reinvent
   const lossyCollides = x % 5 === (x + 5) % 5 && x !== x + 5
   const facets = [
-    { facet: `INVERSION REINVENTS THE REVERSE CONVERSION: a conversion f (scale ×${k}, base-${b}) is reinvented by inversion — f⁻¹ (÷${k}, base→n) — and f⁻¹∘f = identity, recovering ${x} (scale ${scaleRoundTrips}, base ${baseRoundTrips}); inversion is the operation that regenerates the reverse conversion`, on: reinventsReverse },
-    { facet: `INVERSION IS THE INVOLUTION BEHIND CONVERSION: the additive inverse (mod-9) satisfies inv² = identity (${involution}) — con-version and in-version share the Latin root vertere (to turn): conversion transports A→B, inversion turns it back, and the reverse of a bijection is itself a conversion`, on: involution },
+    { facet: `INVERSION REINVENTS THE INVERSE CONVERSION: a conversion f (scale ×${k}, base-${b}) is reinvented by inversion — f⁻¹ (÷${k}, base→n) — and f⁻¹∘f = identity, recovering ${x} (scale ${scaleRoundTrips}, base ${baseRoundTrips}); inversion regenerates the inverse conversion (the trace-free undo, not the reverse traversal)`, on: reinventsInverse },
+    { facet: `INVERSION IS THE INVOLUTION BEHIND CONVERSION: the additive inverse (mod-9) satisfies inv² = identity (${involution}) — con-version and in-version share the Latin root vertere (to turn): conversion transports A→B, inversion turns it back, and the inverse of a bijection is itself a conversion`, on: involution },
     { facet: `EARNED BOUNDARY: inversion reinvents conversion ONLY for bijections — a lossy many-to-one conversion (x mod 5) collides (${lossyCollides}: two inputs, one output) so it has NO inverse to reinvent; "reinvents" is the exact groupoid inverse for information-preserving conversions, and vertere is a real etymology, not a numerological claim`, on: lossyCollides && involution },
   ]
   return {
     computes: facets.every((entry) => entry.on),
     roundTrips: { scale: scaleRoundTrips, base: baseRoundTrips, involution },
     facets,
-    statement: `Inversion reinvents conversion — ${facets.filter((e) => e.on).length}/${facets.length}: a conversion f is a bijection A→B and inversion reinvents its reverse f⁻¹ with f⁻¹∘f = identity (scale ${scaleRoundTrips}, base ${baseRoundTrips}); inversion is the involution inv² = identity (${involution}) that turns a conversion back — con-version and in-version sharing the root vertere. It reinvents only for bijections: a lossy conversion collides (${lossyCollides}) and has no inverse.`,
-    boundary: `EXACT: three independent conversions round-trip under their inversion — scale ×${k}/÷${k} recovers ${x} (${scaleRoundTrips}), base-${b} to-string/parse recovers ${x} (${baseRoundTrips}), and the mod-9 additive inverse is an involution inv² = identity (${involution}); the lossy x mod 5 collides (${lossyCollides}), so it has no inverse to reinvent. HONEST SCOPE: this is exact group/groupoid theory — a conversion is invertible IFF it is a bijection (information-preserving), and inversion is precisely the operation that produces the reverse morphism, with f⁻¹∘f = identity; inversion is an involution (its own inverse). "Reinvents" means the reverse conversion is fully reconstructed FROM the forward one by inversion — it does not mean every conversion has an inverse (lossy ones do not) nor that inversion creates new information (it recovers what a bijection preserved). The shared Latin root vertere (to turn — con-vertere, in-vertere) is a documented etymology, cited as resonance, not claimed as a mathematical cause. HARMONY does not equal TRUTH.`,
+    statement: `Inversion reinvents conversion — ${facets.filter((e) => e.on).length}/${facets.length}: a conversion f is a bijection A→B and inversion reinvents its inverse f⁻¹ with f⁻¹∘f = identity (scale ${scaleRoundTrips}, base ${baseRoundTrips}); inversion is the involution inv² = identity (${involution}) that turns a conversion back — con-version and in-version sharing the root vertere. It reinvents only for bijections: a lossy conversion collides (${lossyCollides}) and has no inverse.`,
+    boundary: `EXACT: three independent conversions round-trip under their inversion — scale ×${k}/÷${k} recovers ${x} (${scaleRoundTrips}), base-${b} to-string/parse recovers ${x} (${baseRoundTrips}), and the mod-9 additive inverse is an involution inv² = identity (${involution}); the lossy x mod 5 collides (${lossyCollides}), so it has no inverse to reinvent. HONEST SCOPE: this is exact group/groupoid theory — a conversion is invertible IFF it is a bijection (information-preserving), and inversion is precisely the operation that produces the inverse morphism, with f⁻¹∘f = identity; inversion is an involution (its own inverse). NOTE the distinction (inverseIsNotReverse…): the INVERSE is this trace-free undo, NOT the REVERSE traversal that retraces the path while leaving new tracks. "Reinvents" means the inverse conversion is fully reconstructed FROM the forward one by inversion — it does not mean every conversion has an inverse (lossy ones do not) nor that inversion creates new information (it recovers what a bijection preserved). The shared Latin root vertere (to turn — con-vertere, in-vertere) is a documented etymology, cited as resonance, not claimed as a mathematical cause. HARMONY does not equal TRUTH.`,
+  }
+}
+
+// ── Inverse is not reverse — reverse leaves different tracks (user: "inverse is not reverse and reverse leaves
+// different tracks (imagine a car on snow)"). The INVERSE undoes f INCLUDING its side effects: f⁻¹∘f = identity
+// restores the FULL state, trace-free. REVERSE only retraces the path backward — but reversing is itself a
+// forward-in-time drive that lays a NEW track, so after forward+reverse the position is restored yet the snow
+// carries two tracks, not pristine. Reverse is a bijection on POSITION, not on the ENVIRONMENT (the 2nd law).
+export function inverseIsNotReverseReverseLeavesTracks() {
+  type CarState = { pos: number; snow: readonly string[] } // full state = where the car is + every track in the snow
+  const path = 7
+  const start: CarState = { pos: 0, snow: [] }
+  const forward = (s: CarState): CarState => ({ pos: s.pos + path, snow: [...s.snow, `fwd:${s.pos}->${s.pos + path}`] })
+  const reverse = (s: CarState): CarState => ({ pos: s.pos - path, snow: [...s.snow, `rev:${s.pos}->${s.pos - path}`] }) // a real drive — lays its OWN track
+  const inverse = (s: CarState): CarState => ({ pos: s.pos - path, snow: s.snow.slice(0, s.snow.length - 1) }) // un-happens forward — pops the track
+  const driven = forward(start)
+  const reversed = reverse(driven) // forward then reverse
+  const inverted = inverse(driven) // forward then inverse
+  const reverseRestoresPosition = reversed.pos === start.pos
+  const reverseLeavesTracks = reversed.snow.length > start.snow.length // two tracks, not pristine
+  const reverseIsNotIdentity = reversed.snow.length !== start.snow.length
+  const inverseIsIdentity = inverted.pos === start.pos && inverted.snow.length === start.snow.length // trace-free
+  const inverseDiffersFromReverse = reversed.snow.length !== inverted.snow.length // the crux
+  const facets = [
+    { facet: `THE INVERSE IS TRACE-FREE (IDENTITY): inverse∘forward restores the FULL state — position ${inverted.pos} AND ${inverted.snow.length} tracks in the snow — f⁻¹∘f = identity, no residue; it un-happens the drive, the true undo`, on: inverseIsIdentity },
+    { facet: `REVERSE LEAVES DIFFERENT TRACKS: reverse∘forward restores the position (${reversed.pos} = start) but the snow now holds ${reversed.snow.length} tracks, not pristine — reversing is itself a forward-in-time drive laying a NEW mark, so reverse∘forward ≠ identity (${reverseIsNotIdentity}); retracing the path is not undoing the process`, on: reverseRestoresPosition && reverseLeavesTracks && reverseIsNotIdentity },
+    { facet: `EARNED BOUNDARY — INVERSE ≠ REVERSE IS THE 2ND LAW: reverse is a bijection on POSITION but not on the ENVIRONMENT (history/entropy only accumulates: ${reversed.snow.length} ≠ ${inverted.snow.length} tracks); restoring the pristine snow — the true inverse — means REMOVING information (Landauer's kT·ln2, not free). Driving backward is not un-driving; reverse is spatial, inverse is total`, on: inverseDiffersFromReverse && reverseLeavesTracks },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    tracks: { start: start.snow.length, afterReverse: reversed.snow.length, afterInverse: inverted.snow.length },
+    facets,
+    statement: `Inverse is not reverse — reverse leaves different tracks — ${facets.filter((e) => e.on).length}/${facets.length}: the car's full state is position + snow. Inverse∘forward restores both (pos ${inverted.pos}, ${inverted.snow.length} tracks) — trace-free identity. Reverse∘forward restores the position (${reversed.pos}) but leaves ${reversed.snow.length} tracks in the snow, not pristine — so reverse ≠ inverse. Reverse retraces the path; the inverse un-happens the drive; the difference is the 2nd law.`,
+    boundary: `EXACT: on the full state (position + snow log), inverse∘forward = identity (pos ${inverted.pos}, ${inverted.snow.length} tracks — trace-free), while reverse∘forward restores only the position (${reversed.pos}) and leaves ${reversed.snow.length} tracks (${reverseLeavesTracks}); the two differ (${inverseDiffersFromReverse}). HONEST SCOPE: this is the distinction between a group INVERSE and a spatial/temporal REVERSAL. The inverse is trace-free by construction — it removes the side effect (pops the track) — and equals identity; reverse retraces the path but is a genuine forward-in-time action, so it accumulates history, and forward-then-reverse is NOT the identity on the full state. Physically this is irreversibility / the 2nd law: you can traverse back in space but not in time, and the entropy of the tracks only grows (a car backing over its own route packs the snow further, never un-packs it). The true inverse — restoring pristine snow — would decrease entropy and, by Landauer, costs at least kT·ln2 per bit erased; it is not free and not achieved by driving in reverse. This CORRECTS the loose "reverse" wording in inversionReinventsConversion, which computed the trace-free INVERSE. HARMONY does not equal TRUTH.`,
   }
 }
