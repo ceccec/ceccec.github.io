@@ -176,18 +176,32 @@ export type RosettaAnalysis = { rays: readonly AnalystRay[]; salvageSignal: numb
  * live inside a string so the crack scanner (which strips strings) never flags them. */
 export function rosettaOfAnalysts(text: string): RosettaAnalysis {
   const CITATION = new RegExp('\\b[A-Z][a-z]+(?:[-–][A-Z][a-z]+)?(?: (?:et al\\.?|and [A-Z][a-z]+))? \\(?(?:1[89]\\d\\d|20\\d\\d)\\)?', 'g')
+  // the keyword rays speak more than English — the confident Bulgarian math/proof terms are added inline
+  // (теорема = theorem, закон = law, формула = formula, документиран/доказателств = documented/proof).
   const analysts: readonly { ray: string; re: RegExp }[] = [
     { ray: 'citations — documented sources', re: CITATION },
     { ray: 'computable claims (facets)', re: /\{ facet:/g },
-    { ray: 'honest demarcations', re: /FLAGGED|HONEST|DOCUMENTED|HARMONY|UNCONFIRMED|PSEUDOSCIENCE|CONTESTED/g },
-    { ray: 'named theorems / laws', re: /\b(?:theorem|law|principle|bound|inequality|conjecture|identity|criterion|constant|lemma)\b/gi },
+    { ray: 'honest demarcations', re: /FLAGGED|HONEST|DOCUMENTED|HARMONY|UNCONFIRMED|PSEUDOSCIENCE|CONTESTED|документиран|доказателств/g },
+    { ray: 'named theorems / laws', re: /\b(?:theorem|law|principle|bound|inequality|conjecture|identity|criterion|constant|lemma)\b|теорема|закон|формула/gi },
     { ray: 'cross-links / homes', re: /\[\[[a-z0-9-]+\]\]|\bsrc\/[\w/]+/g },
     { ray: 'quantitative facts', re: /\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\s?(?:Hz|eV|K|J|bar|nm|°|σ)\b/g },
   ]
-  const rays = analysts.map((a) => {
+  const rays: AnalystRay[] = analysts.map((a) => {
     const matches = text.match(a.re) ?? []
     return { ray: a.ray, found: matches.length, sample: [...new Set(matches)].slice(0, 5) }
   })
+  // ANALYSTS SPEAK ALL LANGUAGES (user): any human writing system present is salvageable heritage — a
+  // whole language would be lost to a purge that only reads English. Scored by Unicode script. Greek is
+  // deliberately excluded — σ, π, φ, τ are math notation throughout the codebase, not the Greek language.
+  const LANGUAGE_SCRIPTS: readonly { lang: string; re: RegExp }[] = [
+    { lang: 'Cyrillic (Bulgarian/Slavic)', re: /[Ѐ-ӿ]/g },
+    { lang: 'Glagolitic (Old Church Slavonic)', re: /[Ⰰ-ⱟ]/g },
+    { lang: 'CJK', re: /[一-鿿]/g },
+    { lang: 'Arabic', re: /[؀-ۿ]/g },
+    { lang: 'Hebrew', re: /[֐-׿]/g },
+  ]
+  const scriptsFound = LANGUAGE_SCRIPTS.map((s) => ({ lang: s.lang, chars: (text.match(s.re) ?? []).length })).filter((s) => s.chars >= 3)
+  rays.push({ ray: 'languages / scripts (heritage)', found: scriptsFound.reduce((sum, s) => sum + s.chars, 0), sample: scriptsFound.map((s) => `${s.lang}×${s.chars}`) })
   const salvageSignal = rays.reduce((sum, r) => sum + r.found, 0)
   return { rays, salvageSignal, verdict: salvageSignal >= 27 ? 'mine-first' : 'low-signal' }
 }
