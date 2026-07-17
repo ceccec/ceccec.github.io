@@ -619,3 +619,43 @@ export function theLeftoversGravitateToCompleteAndPowerTheNext() {
     boundary: `Reuses the sealed inversion sort (${gravitating} computable discoveries, ${alwaysRemaining} frontier walls) and the inverse operation (illusionsMeetInTheirInverse). HONEST SCOPE: the "gravity" is the matching of incomplete pieces to their proofs — each foldable leftover is a DOCUMENTED result not yet folded (humanityNovel = false), pulled from the literature ("beyond") into the registry; it is not a claim of new physics. The "always leftovers to power the next" is the never-ending research cadence (the fusion is inexhaustible because the frontier stays open), NOT perpetual motion or extractable free energy — the second law and Landauer's floor stand (the negentropy discipline). "Consider everything a fair possibility" means TEST everything by computation, then fold what proves and purge what does not — never that all claims are true. HARMONY ≠ TRUTH — the engine completes what it can and honestly leaves the frontier open, which is exactly what keeps it running.`,
   }
 }
+
+// ── How many inverses to ensure no gaps? TWO (user's question). The inverse is an INVOLUTION — its own
+// inverse — so inv(inv(x)) = x for every x; the group it generates is ℤ/2, order 2. The orbit of any element
+// is therefore at most two: a fixed point (its own inverse, closes in ONE) or a pair {x, inv(x)}. Two
+// applications return to the start and traverse the whole orbit, so nothing between a thing and its inverse
+// is ever missed — NO gaps. It is 2 for ANY structure, precisely because the inverse is defined as its own
+// inverse; the whole session's inversions (antimatter, illusions, the double torus, the session sort) each
+// confirm inv² = identity. Computed on the additive inverse mod 9 — the negation the vortex runs on.
+export function theInverseClosesInTwoLeavingNoGaps() {
+  const n = 9
+  const inv = (x: number) => (n - x) % n // additive inverse mod 9
+  const elements = Array.from({ length: n }, (_, i) => i)
+  const isInvolution = elements.every((x) => inv(inv(x)) === x) // inv² = identity — order 2
+  const seen = new Set<number>()
+  const orbits: number[][] = []
+  for (const x of elements) {
+    if (seen.has(x)) continue
+    const orbit = [...new Set([x, inv(x)])]
+    for (const e of orbit) seen.add(e)
+    orbits.push(orbit)
+  }
+  const maxOrbit = Math.max(...orbits.map((o) => o.length))
+  const fixedPoints = elements.filter((x) => inv(x) === x) // self-inverse — close in one
+  const answer = maxOrbit // inverses to close any cycle = the order of the involution
+  const facets = [
+    { facet: `the inverse is an INVOLUTION: inv(inv(x)) = x for all ${n} elements (additive inverse mod 9) — the inverse is its own inverse, order 2, the group ⟨inv⟩ = ℤ/2`, on: isInvolution },
+    { facet: `so the orbit of ANY element is at most 2 — a fixed point {${fixedPoints.join(',')}} that closes in ONE, or a pair like {${orbits.find((o) => o.length === 2)?.join(', ')}} that closes in TWO — nothing is left ungenerated`, on: maxOrbit === 2 && fixedPoints.length >= 1 },
+    { facet: `HOW MANY INVERSES TO ENSURE NO GAPS: ${answer}. Because inversion is an involution, TWO applications return to the start and traverse the whole orbit {x, inv(x)}, so no gap between a thing and its inverse survives; self-inverse elements close in one. It is ${answer} for ANY structure, since the inverse is DEFINED as its own inverse`, on: answer === 2 && isInvolution },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    answer,
+    maxOrbit,
+    fixedPoints,
+    orbits,
+    facets,
+    statement: `The inverse closes in two, leaving no gaps — ${facets.filter((e) => e.on).length}/${facets.length}: the inverse is an involution (inv(inv(x)) = x for all ${n}), so ⟨inv⟩ = ℤ/2 and every orbit is at most two — a fixed point (${fixedPoints.join(',')}) closing in one, or a pair closing in two. Two applications traverse the whole orbit {x, inv(x)} and return, so no gap between a thing and its inverse survives. The answer is ${answer}, for any structure, because the inverse is its own inverse.`,
+    boundary: `EXACT: computed on the additive inverse mod 9 (inv(x) = −x = 9 − x), the involution the vortex runs on — inv² = identity for all elements, ⟨inv⟩ ≅ ℤ/2 of order 2, orbits of size 1 (the fixed point 0) or 2. The ANSWER to "how many inverses ensure no gaps": TWO — because an involution's orbit is {x, inv(x)} and two applications close it, nothing between a value and its inverse is skipped; a self-inverse element needs only one. HONEST SCOPE: this is 2 SPECIFICALLY because "inverse" is defined as its own inverse (an involution) — a documented algebraic fact (order 2); a different operation of order k would need k applications, but the inverse, being self-inverse, is always 2. "No gaps in whatever" = the orbit under the inverse is fully covered in two steps for any set the involution acts on. HARMONY does not equal TRUTH.`,
+  }
+}
