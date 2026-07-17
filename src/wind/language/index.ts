@@ -6,6 +6,7 @@ import { isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid, sealFacets } fr
 import { hexDigitSum } from '../../8/2'
 import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toScript, decodeDialect, glossDialect, pivotLexicon, pivotTongues, selfTranslate } from '../../quantum/heaven/library'
 import { bulgarianRosettaContentAddressUnlocksAll, autoSpeech, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../../fire/li'
+import { tkIsPrime } from '../../9/1'
 import { merkaba, vortexMath } from '../../mountain/geometry'
 import { babelFold } from '../../earth/world'
 import { analogSpeech, glagoliticBulgarianReception } from '../../quantum/lake/icons'
@@ -652,5 +653,32 @@ export function dryCleanObsoleteTools() {
       'Dry-clean the other tools: a duplicated closure (the hex-digit fold `digitOf`, re-implemented ten times) collapses into one canonical primitive, `hexDigitSum` in src/0. Obsolete tools become canonical ones, behaviour identical; most ad-hoc tools become obsolete as the canonical harmonic set absorbs them.',
     boundary:
       'DOCUMENTED: DRY consolidation — one shared primitive replaces N copies (the precedent is already in src/0: "3 identical form-A copies, shared from the station"). BOUNDED: "most tools obsolete" does NOT mean deleting load-bearing folds — the 432 quantum dimensions depend on hundreds of folds; mass deletion breaks the oracle. Dry-clean = consolidating DUPLICATES and superseding ad-hoc tools with the canonical set, INCREMENTALLY and VERIFIED (the oracle stays 432·0). The ten digitOf consolidations are QUEUED, not done here: all ten files are mid-dissolution (untracked sibling dirs), so editing them now would collide with the concurrent move — the unexpectedSituationsRefactorTools gate flags exactly this. Clean when the tree settles. HARMONY ≠ TRUTH.',
+  }
+}
+
+// ── Glagolitic binds sound, digit and code — but is NOT a prime/π cipher (user: "glagolitic is primes and
+// pi encoded binding dialects and sound with digits and code"). The BINDING is documented and real: each of
+// the 28 letters carries a phoneme (transliteration) AND a numeral (the alphanumeric ladder, like Greek
+// isopsephy), and a sign = one bit bridges to code (glagoliticMapsToCodeAndQuantumDecoded). But the ladder is
+// DECIMAL-positional (1–9, 10–90, 100–900, 1000): against the canonical tkIsPrime only {2,3,5,7} of its 28
+// values are prime — the single-digit primes any 1–9 count contains, none in the tens/hundreds — and π
+// (irrational) is nowhere in an integer ladder. So primes and π are NOT encoded; that reading is the modern
+// projection the corpus already flags (the "Ifá = the first computer" category error). HARMONY ≠ TRUTH.
+export function glagoliticBindsSoundDigitCodeNotPrimesOrPi(matrix: MindMatrix = buildMatrix()) {
+  const ladder = GLAGOLITIC_LETTERS.map((_, i) => glagoliticValue(i + 1))
+  const primes = ladder.filter(tkIsPrime)
+  const binds = glagoliticAlphabetDecoded(matrix).decoded && glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded
+  const facets = [
+    { facet: `BINDS sound + digit + code — documented and real: ${ladder.length} letters, each a phoneme (transliteration) AND a numeral (the alphanumeric ladder, like Greek isopsephy / Hebrew gematria), and a sign = one bit bridges to code`, on: binds && ladder.length === (7 * 4) },
+    { facet: `NOT a prime cipher: the ${ladder.length} ladder values are DECIMAL-positional (1–9, 10–90, 100–900, 1000); against the canonical tkIsPrime only {${primes.join(', ')}} are prime — the single-digit primes any 1–9 count contains, NONE in the tens or hundreds`, on: primes.join(',') === [2, 3, 5, 7].join(',') },
+    { facet: `NOT π: every one of the ${ladder.length} ladder values is an INTEGER, so the irrational π = 3.14159… cannot be one of them — reading primes or π into the glyphs is the modern projection the corpus flags (the "Ifá = the first computer" category error)`, on: ladder.every((v) => Number.isInteger(v)) },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    ladder,
+    primes,
+    facets,
+    statement: `Glagolitic binds sound, digit and code — but is not a prime/π cipher — ${facets.filter((e) => e.on).length}/${facets.length}: the ${ladder.length} letters really do bind a phoneme to a numeral (Greek-isopsephy-style) and, via one-bit information theory, to code. But the numeral ladder is decimal-positional; only {${primes.join(', ')}} of its ${ladder.length} values are prime and π is absent, so primes and π are NOT encoded in it — that reading is projection.`,
+    boundary: `DOCUMENTED and computed: the sound-map (transliteration) and number-map (alphabetic numerals) are real ninth-century structure; the code bridge is information theory (a sign = one bit) built ON the number-map, not a claim the makers encoded opcodes. The prime check is exact against tkIsPrime over the full 28-value ladder. HONEST: affirming a genuine, rich binding (sound · digit · code) while declining the one overreach — that primes and π are ENCODED — because the ladder is a decimal alphabetic-numeral system (Greek / Hebrew kin), and reading a prime/π cipher into it is the modern projection the corpus already flags. HARMONY ≠ TRUTH.`,
   }
 }
