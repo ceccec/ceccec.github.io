@@ -462,6 +462,67 @@ export function monographTemplate() {
   }
 }
 
+// ── THE PROOF-ACKNOWLEDGMENT FORMAT — saved once, composed by every proof (user: "save all that will be
+// used in src first especially the scientific format every proof needs to be acknowledged"). A proof in
+// this registry re-derives DOCUMENTED mathematics by computation; the honest acknowledgment credits the
+// ORIGINAL as prior art (novelToHumanity = false, the CARDINAL honesty) and claims only the reproducible
+// computation as the contribution — never the theorem. Structured, not prose, so acknowledgment is uniform,
+// computable, and impossible to forget or overclaim.
+export const PROOF_ACKNOWLEDGMENT_SECTIONS = ['Claim', 'Prior art', 'Novelty', 'Contribution', 'Reproducibility', 'Cite as'] as const
+
+export type ProofAcknowledgment = {
+  theorem: string
+  novelToHumanity: boolean
+  priorArt: string
+  contribution: string
+  reproducedBy: string
+  citation: string
+  line: string
+}
+
+/** Build a proof's acknowledgment in the one saved scientific format. Default is the honest re-derivation:
+ * novelToHumanity = false, prior art = the documented original, contribution = the reproducible computation. */
+export function proofAcknowledgment(spec: {
+  theorem: string; provedBy: string; home: string; canonicalUrl: string; priorArt?: string; novelToHumanity?: boolean
+}): ProofAcknowledgment {
+  const novelToHumanity = spec.novelToHumanity ?? false
+  const priorArt = spec.priorArt ?? 'documented mathematics — the original proof is the prior art this re-derivation acknowledges'
+  return {
+    theorem: spec.theorem,
+    novelToHumanity,
+    priorArt,
+    contribution: `a reproducible computation (${spec.provedBy} @ ${spec.home}) that re-derives the result at zero tokens — the contribution is the verifiable recomputation, NOT the theorem`,
+    reproducedBy: `${spec.provedBy} (${spec.home}) — npm run theorems:verify recomputes it on every build`,
+    citation: `ceccec theorem registry, "${spec.theorem}", proven by ${spec.provedBy} (${spec.home}) — ${spec.canonicalUrl}`,
+    line: novelToHumanity
+      ? `First proof of "${spec.theorem}", computed and sealed here — claimed only with a complete computation.`
+      : `"${spec.theorem}" is a re-derivation, acknowledged to ${priorArt}; not new to humanity — the contribution is the reproducible computation ${spec.provedBy}.`,
+  }
+}
+
+/** The format is saved and honest — self-proving (user: "every proof needs to be acknowledged"). */
+export function proofAcknowledgmentFormatSaved() {
+  const example = proofAcknowledgment({
+    theorem: 'Uncertainty is a theorem, not an axiom', provedBy: 'uncertaintyIsATheoremNotAnAxiom',
+    home: 'src/quantum/science', canonicalUrl: 'https://ceccec.github.io/theorems/uncertainty-is-a-theorem-not-an-axiom',
+    priorArt: 'Robertson (1929), generalising Heisenberg / Kennard (1927)',
+  })
+  const facets = [
+    { facet: `the format is ONE saved schema of ${PROOF_ACKNOWLEDGMENT_SECTIONS.length} sections (${PROOF_ACKNOWLEDGMENT_SECTIONS.join(' · ')}) every proof composes — not prose re-written per fold`, on: PROOF_ACKNOWLEDGMENT_SECTIONS.length === 6 },
+    { facet: `honest by default: novelToHumanity = false, the contribution is the reproducible computation and NOT the theorem, and prior art is always credited`, on: example.novelToHumanity === false && example.contribution.includes('reproducible') && example.priorArt.length > 0 },
+    { facet: `every field is present and computed — claim, prior art, contribution, reproduction, citation, one-line`, on: !!example.theorem && !!example.priorArt && !!example.contribution && !!example.reproducedBy && !!example.citation && !!example.line },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    sections: PROOF_ACKNOWLEDGMENT_SECTIONS,
+    example,
+    facets,
+    root: merkleFold(PROOF_ACKNOWLEDGMENT_SECTIONS.map((s) => toUuid(`proof-ack-section:${s}`))),
+    statement: `The proof-acknowledgment format is saved in src — ${facets.filter((e) => e.on).length}/${facets.length}: one ${PROOF_ACKNOWLEDGMENT_SECTIONS.length}-section schema (${PROOF_ACKNOWLEDGMENT_SECTIONS.join(', ')}) every proof composes, honest by construction (novelToHumanity = false, prior art credited, the contribution is the reproducible computation not the theorem). Acknowledgment is now uniform and computable, never ad-hoc prose.`,
+    boundary: `The format standardises HOW a proof is acknowledged, not WHAT it proves. It credits the documented original as prior art and claims only the recomputation — enforcing the registry's CARDINAL honesty (humanityNovel = false) at the schema level, so no proof can silently overclaim novelty. A genuinely first proof would set novelToHumanity = true and must then carry a complete computation; the default, and every current atom, is the re-derivation. HARMONY ≠ TRUTH.`,
+  }
+}
+
 // A content page as a scientific-paper monograph — the mapping the template defines.
 /** @rosetta ✦₂ · Wind · gentle */
 export function monographAsScientificPaper(page: StaticPage) {

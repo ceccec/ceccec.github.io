@@ -83,6 +83,16 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
         <p>{{ row.provenance }}</p>
       </section>
 
+      <section class="theorem-paper__ack">
+        <h2>Acknowledgment</h2>
+        <p>{{ row.acknowledgment.line }}</p>
+        <dl class="theorem-paper__ack-grid">
+          <dt>Prior art</dt><dd>{{ row.acknowledgment.priorArt }}</dd>
+          <dt>Novelty</dt><dd>{{ row.acknowledgment.novelToHumanity ? 'a first proof, claimed only with a complete computation' : 'not new to humanity — a re-derivation (humanityNovel = false)' }}</dd>
+          <dt>Contribution</dt><dd>{{ row.acknowledgment.contribution }}</dd>
+        </dl>
+      </section>
+
       <section>
         <h2>3 · Reproducibility</h2>
         <p>{{ row.reproducibility }}</p>
@@ -128,6 +138,9 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
   font-family: ui-monospace, Menlo, monospace; font-size: calc(1em * 7 / (2 * 5)); text-decoration: none;
   padding: 0 calc(1px * 6); border: 1px solid currentColor; border-radius: calc(1px * 4); opacity: calc(4 / 5); }
 .theorem-paper__tag:hover { opacity: 1; }
+.theorem-paper__ack-grid { display: grid; grid-template-columns: max-content 1fr; gap: calc(1px * 2) var(--ich-sp3); margin: var(--ich-sp2) 0 0; }
+.theorem-paper__ack-grid dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
+.theorem-paper__ack-grid dd { margin: 0; text-align: justify; }
 @media print { .theorem-paper__tag { border-color: black; } }
 .theorem-paper__abstract {
   border-left: calc(1px * 3) solid currentColor; padding-left: var(--ich-sp4);

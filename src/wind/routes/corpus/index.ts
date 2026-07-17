@@ -6,7 +6,7 @@ import type { MindMatrix, StaticPage } from '../../types'
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
 import { buildMatrix } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
-import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, type LocaleName, type PageForgeSeal } from '../../site'
+import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
 import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1'
 import { cardMovieColorVars, cardMovieSeed } from '../../../thunder/movie/movievars'
@@ -1015,6 +1015,8 @@ export type TheoremPageRow = {
   // the scientific-paper fields (user law: each page prints as a paper for class or court) — all computed
   humanityNovel: boolean; registryFirst: boolean; leansCited: boolean
   classification: string; provenance: string; reproducibility: string; citation: string
+  // the acknowledgment in the one saved scientific format (wind/site) — every proof credits its prior art.
+  acknowledgment: ProofAcknowledgment
   // organisation fields — all DERIVED, no hand-authored taxonomy: ordinal = registry append position
   // (latest = highest), tags = [domain(home) · proofClass · lean] each read from an existing field.
   ordinal: number; tags: string[]
@@ -1073,6 +1075,7 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
         provenance: 'A documented theorem of mathematics, re-proven here by exhaustive computation (humanityNovel = false — the CARDINAL honesty of this registry); first-in-this-registry is the only sense of "discovered".',
         reproducibility: `Recompute from source: npm run theorems:verify recomputes ${wave.provedBy} (${atom.home}/index.ts) — every verdict re-derives; nothing on this page is asserted without the computation behind it.`,
         citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — ${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`,
+        acknowledgment: proofAcknowledgment({ theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, canonicalUrl: `${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`, novelToHumanity: prov?.humanityNovel ?? false }),
       }
     }))
 }
