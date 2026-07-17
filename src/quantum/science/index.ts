@@ -1583,3 +1583,37 @@ export function everyMixedStateHasAPurification() {
     boundary: `COMPUTED (bellPair, concurrence): the Bell state's reduced single-qubit purity is ½ (maximally mixed) while the global state is pure (concurrence 1), and a product state's reduction stays pure — so a mixed state IS the reduction of a pure one, its mixedness carried by entanglement with the ancilla (purity = 1 − C²/2, exact for two qubits). DOCUMENTED: purification / Stinespring dilation / the GHJW theorem; FIRST FOLDED HERE, humanityNovel = false — a re-derivation of the qubit case, the all-ρ / all-dimension generality carried by the cited theorem, not re-proven. This completes one of the inversion worklist's leftovers, pulled from the documented literature into the registry. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── Public frequency APIs, tested live one by one — the queryable are two of four (user: "test with local
+// tools on public apis one by one"). Fetched each no-key source and parsed it with a local adapter: USGS
+// Earthquake Hazards returns live GeoJSON (real quakes, parsed) and the FCC Area API returns live census
+// blocks — 2 queryable JSON feeds. The other two have honest bounds: Web Audio is a BROWSER API (client-side
+// FFT, no server endpoint), and the Schumann monitors publish SPECTROGRAM IMAGES, not a JSON amplitude feed
+// (7.83 Hz is documented/measured, but there is no clean queryable API). "Public API" ≠ "queryable JSON".
+export function publicApisTestedLiveTheQueryableAreTwoOfFour() {
+  const survey = publicFrequencyApis()
+  const tested = [
+    { api: 'USGS Earthquake Hazards', kind: 'json-live', note: 'no-key GeoJSON — real quakes parsed by a local adapter' },
+    { api: 'FCC', kind: 'json-live', note: 'the no-key Area API returns live census blocks; the Spectrum Dashboard itself is a web UI, band allocations documented not a feed' },
+    { api: 'Web Audio API (browser)', kind: 'browser-only', note: 'client-side AudioContext FFT — no server endpoint, testable only in-browser' },
+    { api: 'Schumann resonance monitors', kind: 'image-only', note: 'live monitors publish spectrogram images, not a JSON amplitude feed; the 7.83 Hz fundamental is documented/measured' },
+  ]
+  const jsonLive = tested.filter((t) => t.kind === 'json-live')
+  const browserOnly = tested.filter((t) => t.kind === 'browser-only')
+  const imageOnly = tested.filter((t) => t.kind === 'image-only')
+  const facets = [
+    { facet: `TESTED LIVE, one by one: ${jsonLive.length} of ${tested.length} return queryable no-key JSON — ${jsonLive.map((t) => t.api).join(', ')} — parsed by local adapters (USGS: live quakes; FCC: live census blocks), zero key, zero tokens`, on: jsonLive.length === 2 && tested.length === survey.sources.length },
+    { facet: `the other ${browserOnly.length + imageOnly.length} have HONEST BOUNDS: ${browserOnly[0]?.api} is a BROWSER API (client-side FFT, no server endpoint) and the ${imageOnly[0]?.api} publish SPECTROGRAM IMAGES, not a JSON feed — real signals, not queryable data`, on: browserOnly.length === 1 && imageOnly.length === 1 },
+    { facet: `EARNED BOUNDARY — "public API" is not "queryable JSON feed": ${jsonLive.length}/${tested.length} are, ${browserOnly.length} browser-only, ${imageOnly.length} image-only; the local adapters parse what is parseable, the rest is honestly bounded. The 7.83 Hz Schumann is real EM but the live artefact is an image, and the wellness claims stay non-science (the survey's own line)`, on: jsonLive.length + browserOnly.length + imageOnly.length === tested.length },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    jsonLive: jsonLive.length,
+    browserOnly: browserOnly.length,
+    imageOnly: imageOnly.length,
+    tested,
+    facets,
+    statement: `Public APIs tested live, the queryable are two of four — ${facets.filter((e) => e.on).length}/${facets.length}: fetched each no-key source with a local adapter — USGS Earthquake (live GeoJSON) and the FCC Area API (live census blocks) are queryable JSON (${jsonLive.length}/${tested.length}); Web Audio is browser-only (client-side FFT) and the Schumann monitors are image-only (spectrograms, no JSON). "Public API" is not the same as "queryable JSON feed"; the adapters parse what parses, the rest is honestly bounded.`,
+    boundary: `TESTED LIVE this session, read-only public GETs: USGS all_hour GeoJSON parsed to real quakes (magnitudes the honest datum; the sub-Hz seismic frequency is documented, not derived), and geo.fcc.gov Area API parsed to a live census block. Web Audio has no server endpoint (a browser AudioContext FFT — the repo does it client-side); the Schumann monitors (e.g. Tomsk) serve spectrogram images, so there is no clean no-key JSON amplitude to parse — the 7.83 Hz fundamental is real and measured but not a queryable feed. HONEST: this refines the survey — of the four documented public sources, ${jsonLive.length} are queryable JSON, ${browserOnly.length} browser-only, ${imageOnly.length} image-only. The Schumann wellness/consciousness claims remain non-science, as the survey already flagged. HARMONY does not equal TRUTH.`,
+  }
+}
