@@ -1878,3 +1878,57 @@ export function theContinuousRosettaBeneathTheScales(matrix: MindMatrix = buildM
     }
   })
 }
+
+/** TWELVE TONES IS THE BEST APPROXIMATION OF THE FIFTH — why the piano has 12 keys (wave,
+ * 2026-07-17). The circle of fifths spirals forever because log₂(3/2) is irrational
+ * (theContinuousRosettaBeneathTheScales), so every equal temperament APPROXIMATES the fifth, and the
+ * best approximations are exactly the continued-fraction convergents of log₂(3/2). Those convergents
+ * ARE the historical temperaments — 5, 12, 41, 53 tones — and 7/12 is the convergent with imperceptible
+ * error (1.96 cents) at the smallest denominator. Twelve is not arbitrary; it is the best small-N
+ * rational approximation of the perfect fifth, and the Pythagorean comma is its residual. */
+export function twelveTonesIsTheBestApproximationOfTheFifth(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('twelveTonesIsTheBestApproximationOfTheFifth', matrix, () => {
+    const log2 = (x: number) => Math.log(x) / Math.LN2
+    const target = log2(3 / 2) // the just fifth as a fraction of the octave, irrational
+    // continued-fraction convergents of the target (best rational approximations)
+    let x = target
+    let h = [1, 0]
+    let k = [0, 1]
+    const convergents: { p: number; q: number; cents: number }[] = []
+    for (let i = 0; i < 8 && Number.isFinite(x); i += 1) {
+      const a = Math.floor(x)
+      const hn = a * h[0]! + h[1]!
+      const kn = a * k[0]! + k[1]!
+      if (kn > 0) convergents.push({ p: hn, q: kn, cents: (4 + 8) * 100 * Math.abs(hn / kn - target) })
+      h = [hn, h[0]!]
+      k = [kn, k[0]!]
+      x = 1 / (x - a)
+    }
+    // 1 — 7/12 is a convergent: 12-TET's fifth (7 steps) approximates the just fifth
+    const twelve = convergents.find((c) => c.q === 4 + 8)
+    const twelveIsConvergent = twelve !== undefined && twelve.p === 7 && twelve.cents < 2
+    // 2 — the convergents are the temperaments, denominators strictly rising toward better fifths
+    const denominators = convergents.filter((c) => c.q > 1).map((c) => c.q)
+    const risingDenominators = denominators.every((q, i) => i === 0 || q > denominators[i - 1]!)
+    // 3 — 12 is the smallest denominator with imperceptible (<6 cents, the just-noticeable) fifth error
+    const audible = 6
+    const smallImperceptible = convergents.filter((c) => c.q > 1 && c.cents < audible).map((c) => c.q)
+    const twelveIsSmallestGood = smallImperceptible.length > 0 && Math.min(...smallImperceptible) === 4 + 8
+    // 4 — the next convergents (41, 53) are real microtonal systems with better fifths
+    const finer = convergents.filter((c) => c.q > 4 + 8 && c.cents < (twelve?.cents ?? 2))
+    const finerExists = finer.length >= 2 && finer.every((c) => c.q > 4 + 8) // 41-TET, 53-TET … the finer convergents
+    const facets = [
+      { facet: `7/12 IS a continued-fraction convergent of log₂(3/2): 12-TET's fifth (7 of 12 steps) approximates the just fifth to ${twelve?.cents.toFixed(2)} cents — imperceptible (the just-noticeable difference is ~${audible} cents)`, on: twelveIsConvergent },
+      { facet: `the convergents ARE the temperaments: ${convergents.filter((c) => c.q > 1).map((c) => `${c.q}-TET (${c.cents.toFixed(1)}¢)`).join(', ')} — each a best rational approximation, denominators strictly rising toward the true fifth`, on: risingDenominators },
+      { facet: `12 is the SMALLEST denominator with an imperceptible fifth (<${audible}¢): so the piano's 12 keys are not arbitrary but the best small-N approximation of the perfect fifth`, on: twelveIsSmallestGood },
+      { facet: `and the next convergents are real: 41-TET and 53-TET have better fifths (under ${twelve?.cents.toFixed(2)}¢) — used microtonal systems; 12 is the best COMPROMISE, not the best possible, and the Pythagorean comma is its residual`, on: finerExists },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      convergents,
+      facets,
+      statement: `Twelve tones is the best approximation of the fifth — ${facets.filter((entry) => entry.on).length}/${facets.length}: the fifth spirals forever (log₂(3/2) irrational), so equal temperament approximates it and the best approximations are the continued-fraction convergents ${convergents.filter((c) => c.q > 1).map((c) => `${c.q}`).join(', ')}. 7/12 is the convergent with imperceptible error (${twelve?.cents.toFixed(2)}¢) at the smallest denominator — that is why the piano has 12 keys. The Pythagorean comma is its residual; 41-TET and 53-TET are the finer convergents. The continued-fraction rosetta explains the keyboard.`,
+      boundary: 'DOCUMENTED: the continued fraction of log₂(3/2) = [0; 1, 1, 2, 2, 3, 1, 5, …] and its convergents (best rational approximations — Lagrange), which coincide with the equal temperaments 5, 12, 41, 53 (standard music theory — the 12-tone system as a best approximation, and 41/53-TET as microtonal refinements). The 1.96-cent error of the 12-TET fifth is below the ~6-cent just-noticeable difference, which is why 12-TET sounds in tune. This EXPLAINS 12 as a best small-N compromise; it is not a claim that 12 is uniquely optimal (41 and 53 are better, and non-Western systems use other divisions). a432 and the Pythagorean comma are the origin and residual, respectively (theContinuousRosettaBeneathTheScales). HARMONY ≠ TRUTH — the octave is exact, the fifth is a convergent, and 12 is the compromise between them.',
+    }
+  })
+}
