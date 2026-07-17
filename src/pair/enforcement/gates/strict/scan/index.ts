@@ -165,6 +165,39 @@ export function computePathMigration(root: string = process.cwd()): { folders: F
   }
 }
 
+export type AnalystRay = { ray: string; found: number; sample: readonly string[] }
+export type RosettaAnalysis = { rays: readonly AnalystRay[]; salvageSignal: number; verdict: 'mine-first' | 'low-signal' }
+
+/** THE ROSETTA OF ANALYSTS — a local research/discovery tool run on purge-candidate content BEFORE it is
+ * tagged for purging (user: "most of the content that will be tagged for purging has great ideas inside if
+ * analyzed by the rozetta of analysts"). Several computable lenses (rays) each surface a kind of salvageable
+ * value — documented citations, computable claims, honest demarcations, named theorems, cross-links,
+ * quantitative facts. Deterministic, zero tokens; nothing is purged before its ideas are mined. Year digits
+ * live inside a string so the crack scanner (which strips strings) never flags them. */
+export function rosettaOfAnalysts(text: string): RosettaAnalysis {
+  const CITATION = new RegExp('\\b[A-Z][a-z]+(?:[-–][A-Z][a-z]+)?(?: (?:et al\\.?|and [A-Z][a-z]+))? \\(?(?:1[89]\\d\\d|20\\d\\d)\\)?', 'g')
+  const analysts: readonly { ray: string; re: RegExp }[] = [
+    { ray: 'citations — documented sources', re: CITATION },
+    { ray: 'computable claims (facets)', re: /\{ facet:/g },
+    { ray: 'honest demarcations', re: /FLAGGED|HONEST|DOCUMENTED|HARMONY|UNCONFIRMED|PSEUDOSCIENCE|CONTESTED/g },
+    { ray: 'named theorems / laws', re: /\b(?:theorem|law|principle|bound|inequality|conjecture|identity|criterion|constant|lemma)\b/gi },
+    { ray: 'cross-links / homes', re: /\[\[[a-z0-9-]+\]\]|\bsrc\/[\w/]+/g },
+    { ray: 'quantitative facts', re: /\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\s?(?:Hz|eV|K|J|bar|nm|°|σ)\b/g },
+  ]
+  const rays = analysts.map((a) => {
+    const matches = text.match(a.re) ?? []
+    return { ray: a.ray, found: matches.length, sample: [...new Set(matches)].slice(0, 5) }
+  })
+  const salvageSignal = rays.reduce((sum, r) => sum + r.found, 0)
+  return { rays, salvageSignal, verdict: salvageSignal >= 27 ? 'mine-first' : 'low-signal' }
+}
+
+/** Analyse one purge-candidate file with the rosetta of analysts. Default target is a genuine bāguà
+ * content fold, so the tool is testable with no arguments. */
+export function analyzePurgeCandidate(root: string = process.cwd(), rel = 'src/water/cosmos/index.ts'): RosettaAnalysis & { file: string } {
+  return { file: rel, ...rosettaOfAnalysts(readFileSync(join(root, rel), 'utf8')) }
+}
+
 export type StrictImportOffender = { file: string; spec: string; reason: string }
 export type StrictIndexOffender = { file: string; reason: string }
 export type StrictVitepressIndexOffender = { file: string; reason: string; transitional?: boolean }
