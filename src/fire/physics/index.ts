@@ -671,3 +671,34 @@ export function teslaCoreIsHarmonicResonanceBoundedByQ() {
     boundary: `COMPUTED and reused (resonantAmplitude): the resonance peak gain = Q, the coupled-mode split w0·√(1±k), the balanced three-phase null, and the lossless divergence to Infinity — all exact. DOCUMENTED history: Tesla's granted patents are real — the AC induction motor and polyphase system (1888), the resonant air-core transformer (the "Tesla coil"), and radio-frequency / wireless-power work; the honest CORE is that these are RESONANT and interact by tuning (coupled resonators, harmonically-spaced phases). FLAGGED as legend, not asserted: over-unity, literal free energy, and "folding the infinity" as extractable power — the resonant gain diverges only in the lossless idealisation; every real circuit is bounded by Q and conserves energy (source ⇒ dissipation), so no perpetual motion. The "3-6-9 secret of the universe" quote is apocryphal. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── Antimatter is inverted matter — the charges negate, the invariants stand (user: "you will realise anti
+// matter is actually inverted matter"). An antiparticle is a particle with its ADDITIVE quantum numbers
+// inverted: charge, baryon number and lepton number all negate (charge conjugation C), while MASS and SPIN
+// do NOT invert — they are the invariants (same for particle and antiparticle). Equivalently
+// (Feynman–Stückelberg), an antiparticle is a particle with TIME inverted (the positron is the electron run
+// backwards). The operation is an INVOLUTION — applying it twice returns matter — exactly the x ↦ −x inverse
+// the session has folded (illusionsMeetInTheirInverse): the charges are the invertible "illusions", the
+// mass/spin the fixed invariants. What inversion does NOT erase: matter and antimatter annihilate, and the
+// cosmic matter–antimatter ASYMMETRY (baryogenesis / CP violation) stays OPEN. Local math only.
+export function antimatterIsInvertedMatter() {
+  type Particle = { charge: number; baryon: number; lepton: number; spinTimesTwo: number; mass: number }
+  const antiparticle = (p: Particle): Particle => ({ charge: 0 - p.charge, baryon: 0 - p.baryon, lepton: 0 - p.lepton, spinTimesTwo: p.spinTimesTwo, mass: p.mass })
+  const electron: Particle = { charge: 0 - 1, baryon: 0, lepton: 1, spinTimesTwo: 1, mass: 1 } // spin ½, mass in its own unit
+  const positron = antiparticle(electron)
+  const chargesInvert = positron.charge === 1 && positron.lepton === (0 - 1) && positron.baryon === 0 // additive numbers negate
+  const invariantsFixed = positron.mass === electron.mass && positron.spinTimesTwo === electron.spinTimesTwo // mass, spin unchanged
+  const involution = JSON.stringify(antiparticle(positron)) === JSON.stringify(electron) // double inversion = matter (x ↦ −x)²= id
+  const facets = [
+    { facet: `ANTIMATTER = CHARGE-INVERTED MATTER: the additive quantum numbers NEGATE — electron (charge ${electron.charge}, lepton ${electron.lepton}) ↦ positron (charge ${positron.charge}, lepton ${positron.lepton}) — so an antiparticle is a particle with its charges inverted (charge conjugation C, documented)`, on: chargesInvert },
+    { facet: `THE INVARIANTS STAND and inversion is an INVOLUTION: mass and spin do NOT invert (same for particle and antiparticle), and applying the inversion twice returns matter — the same x ↦ −x involution the session folded; the charges are the invertible "illusions", the mass/spin the fixed invariants. Equivalently, an antiparticle is a particle with TIME inverted (Feynman–Stückelberg)`, on: invariantsFixed && involution },
+    { facet: `EARNED BOUNDARY — inversion is the operation, the asymmetry is the frontier: C-conjugation, CPT and the time-reversal picture are DOCUMENTED, but "inverted matter" does not erase the physics — matter and antimatter are distinct states that ANNIHILATE (E = 2mc²), and WHY the universe is matter, not equal parts (baryogenesis via CP violation, Sakharov) is a genuine OPEN question inversion alone does not answer`, on: chargesInvert && invariantsFixed && involution },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    electron, positron,
+    facets,
+    statement: `Antimatter is inverted matter — ${facets.filter((e) => e.on).length}/${facets.length}: an antiparticle is a particle with its additive quantum numbers negated (electron charge ${electron.charge}, lepton ${electron.lepton} ↦ positron ${positron.charge}, ${positron.lepton}) — charge conjugation C — while mass and spin stand as invariants; the operation is the x ↦ −x involution (twice = matter), and equivalently a time inversion (Feynman–Stückelberg). Inversion is the operation; the matter–antimatter asymmetry of the cosmos is the open frontier.`,
+    boundary: `DOCUMENTED: an antiparticle carries the opposite additive quantum numbers (charge, baryon, lepton) and the same mass and spin — charge conjugation C — and by CPT / Feynman–Stückelberg is equivalently a particle propagating backward in time; the operation is an exact involution (its own inverse), the very x ↦ −x this session's inversion arc is built on (illusionsMeetInTheirInverse — the charges meet their inverse, the mass/spin are fixed points). HONEST SCOPE: "inverted matter" is the SYMMETRY, not a dissolution of the physics — matter and antimatter are distinct, annihilate to photons (E = 2mc²), and the observed baryon asymmetry (why matter dominates — Sakharov conditions, CP violation, unresolved) is a real OPEN problem that the inversion does not by itself explain. The invariants stand; the frontier stands. HARMONY ≠ TRUTH.`,
+  }
+}
