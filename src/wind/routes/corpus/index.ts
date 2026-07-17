@@ -1041,7 +1041,14 @@ export function theoremTags(row: { home: string; proofClass: string; leansCited:
   return [theoremDomainTag(row.home), row.proofClass, row.leansCited ? 'cited-frame' : 'self-contained']
 }
 
+// Compute-once: without the memo, theoremPageBySlug rebuilt ALL rows (theoremNavigation + proofAnimations
+// + theoremProvenance) for EVERY one of the ~357 pages — an O(n²) recomputation that dominated build time.
+// A proof re-derives once and is reused; memoByRoot keys on the matrix root so all pages share one build.
 export function theoremPageRows(matrix: MindMatrix = buildMatrix()): TheoremPageRow[] {
+  return memoByRoot('theoremPageRows', matrix, () => computeTheoremPageRows(matrix))
+}
+
+function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
   const nav = __ns_up_up_thunder_waves.theoremNavigation(matrix)
   const specBy = new Map(__ns_up_up_thunder_waves.proofAnimations(matrix).specs.map((spec: { theorem: string }) => [spec.theorem, spec]))
   const provBy = new Map(__ns_up_up_thunder_waves.theoremProvenance(matrix).atoms.map((atom) => [atom.theorem, atom] as const))
@@ -1182,6 +1189,38 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
       xLabel: 'convergent index k', yLabel: 'log₁₀ |pₖ/qₖ − √2|',
       series: [{ label: 'approximation error', kind: 'line', role: 'b', points: pts }],
       refLines: [], source: 'Pell recurrence, exact integers',
+    }
+  },
+  // Pisano — the last digit of the Fibonacci numbers cycles with period 60. Iterate the recurrence mod 10;
+  // the sequence of digits is the plot, and it restarts (0, 1) at n = 60.
+  'pisano-period-10-60': () => {
+    const m = 2 * 5 // Fibonacci taken mod 10 — the last decimal digit
+    let f0 = 0, f1 = 1
+    const pts: FigPoint[] = [{ x: 0, y: 0 }]
+    for (let n = 1; n < 64; n += 1) { pts.push({ x: n, y: f1 }); const nx = (f0 + f1) % m; f0 = f1; f1 = nx }
+    return {
+      formula: 'F₀ = 0, F₁ = 1,  Fₙ = (Fₙ₋₁ + Fₙ₋₂) mod 10   →   period π(10) = 60',
+      caption: 'The last digit of the Fibonacci numbers cycles with period 60: F₆₀ ≡ 0 and F₆₁ ≡ 1 (mod 10) restart the whole sequence. Computed by iterating the recurrence mod 10 — the pattern beyond n = 60 repeats n = 0.',
+      xLabel: 'n', yLabel: 'Fₙ mod 10 (last digit)',
+      series: [{ label: 'Fₙ mod 10', kind: 'line', role: 'b', points: pts }],
+      refLines: [], source: 'Fibonacci recurrence mod 10, exact',
+    }
+  },
+  // Legendre — n is a sum of three squares iff it is NOT of the form 4ᵏ(8m+7). The local test colours every
+  // n up to 108; the red exceptions expose the 8m+7 arithmetic progression (and its 4ᵏ echoes 28, 60, 92…).
+  'legendre-three-square-theorem': () => {
+    const isSumOfThree = (n: number) => { let r = n; while (r % 4 === 0) r = r / 4; return r % 8 !== 7 }
+    const yes: FigPoint[] = []; const no: FigPoint[] = []
+    for (let n = 0; n <= 108; n += 1) (isSumOfThree(n) ? yes : no).push({ x: n, y: n })
+    return {
+      formula: 'n = a² + b² + c²  ⟺  n ≠ 4ᵏ(8m + 7)',
+      caption: `Every n up to 108 is a sum of three squares EXCEPT those of the form 4ᵏ(8m+7): the ${no.length} red exceptions (7, 15, 23, 28, 31, …) laid bare by the local test. Green = representable, red = excluded.`,
+      xLabel: 'n', yLabel: 'n',
+      series: [
+        { label: 'sum of three squares', kind: 'dots', role: 'ok', points: yes },
+        { label: 'excluded — 4ᵏ(8m+7)', kind: 'dots', role: 'bad', points: no },
+      ],
+      refLines: [], source: 'Legendre 4ᵏ(8m+7) test, exact arithmetic',
     }
   },
 }
