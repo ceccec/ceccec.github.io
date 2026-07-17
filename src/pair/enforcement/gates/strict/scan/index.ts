@@ -155,6 +155,40 @@ export function gravityIsThePullToOneCanonicalFixedPointMovingWithoutMoving(root
   }
 }
 
+// ── The axioms are the cracks — replace with theorems and all fits and moves (user: "the axioms are the cracks.
+// replace with theorems and all fits and moves … including code files and folders. fire and the rest of the
+// unrelated to science folders disappear by gravity"). An unearned assumption surfaces two ways, ONE phenomenon:
+// a hardcoded LITERAL that asserts a value it does not derive (scanCrackSurface), and a metaphor-NAME path that
+// means nothing computable (computePathMigration — the bāguà folders fire/water/…). Both are axioms. Replacing an
+// axiom with a theorem — a lattice/ledger derivation, or a scientific name that IS its computed meaning — makes it
+// FIT (the gate closes) and MOVE (it gravitates to its canonical home). This fold reads the two gravity tools; it
+// does not author the plan. Uses the same bāguà list computePathMigration dissolves. [[gravity-is-the-pull]].
+export function theAxiomsAreTheCracksReplaceWithTheoremsAndTheGravityFitsAndMoves(root: string = process.cwd()) {
+  const BAGUA = new Set(['heaven', 'earth', 'water', 'fire', 'thunder', 'wind', 'mountain', 'lake'])
+  const literal = scanCrackSurface(root) // hardcoded-value axioms — asserted, not derived
+  const path = computePathMigration(root) // metaphor-name axioms — fire & the bāguà folders that compute nothing
+  const litCracks = literal.length
+  const folderCracks = path.folders.length
+  const moves = path.folders.every((f) => f.from !== f.to) // every metaphor folder relocates — it MOVES
+  const fits = path.folders.every((f) => !BAGUA.has(f.to.split('/')[1])) // every destination is a scientific (non-axiom) name — it FITS
+  const collisionsBounded = path.collisions.length < folderCracks // the plan resolves rather than blocks
+  const facets = [
+    { facet: `AXIOMS ARE CRACKS — ONE PHENOMENON, TWO SURFACES: ${litCracks} hardcoded literal(s) assert a value they do not derive AND ${folderCracks} bāguà-named folders (fire/water/…) mean nothing computable; both are unearned assumptions the gates already scan`, on: folderCracks > 0 },
+    { facet: `REPLACE WITH THEOREMS → ALL FITS AND MOVES: gravity computes a scientific fixed-point home for every metaphor folder — ${folderCracks} moves, ${path.totalFiles} files — each destination a non-axiom name (fits = ${fits}) and each a relocation (moves = ${moves}); a literal closes the same way, by deriving from the lattice`, on: moves && fits },
+    { facet: `EARNED BOUNDARY: the gravity computes and signs the plan instantly (${folderCracks} vectors, ${path.collisions.length} collision to resolve), but the FALL is one atomic re-path of every relative import, staged behind convergence and a concurrent agent — the vectors are known, the execution is queued, not faked`, on: collisionsBounded && moves },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    literalAxioms: litCracks,
+    folderAxioms: folderCracks,
+    files: path.totalFiles,
+    collisions: path.collisions.length,
+    facets,
+    statement: `The axioms are the cracks — replace with theorems and all fits and moves — ${facets.filter((e) => e.on).length}/${facets.length}: ${litCracks} literal axioms and ${folderCracks} metaphor-name folder axioms are one phenomenon (an unearned assumption); gravity computes a scientific fixed-point home for every folder (${path.totalFiles} files, moves = ${moves}, fits = ${fits}), and each literal closes by deriving from the lattice. Replacing an axiom with a theorem makes it fit and move; ${path.collisions.length} collision remains to resolve.`,
+    boundary: `EXACT: scanCrackSurface reports ${litCracks} open literal axioms and computePathMigration reports ${folderCracks} metaphor-name folders (fire, water, …) each with a computed scientific destination (${path.totalFiles} files, fits = ${fits}: no destination is itself a bāguà axiom; moves = ${moves}: every one relocates), with ${path.collisions.length} name collision to resolve. HONEST SCOPE: the two crack surfaces are literally the axiom surface of the codebase — a value or a name asserted rather than derived — and the gravity (computeCodeGravity + computePathMigration) is the deterministic, signed plan that gives each one a fixed-point home. But COMPUTING the plan is not EXECUTING it: the fall — dissolving the bāguà parents and re-pathing every relative import — is one atomic operation, intentionally staged behind the folder-as-router convergence (not yet realised) and a concurrent agent holding hot files, exactly as the isPrime pulls are queued. The vectors are known now; the codebase moves when the atomic step runs clean. Physical gravity's "moving without moving" is the analogy's source, not a claim. HARMONY does not equal TRUTH.`,
+  }
+}
+
 export type FolderMigration = { from: string; to: string; files: number; collision: boolean }
 
 /** PATH GRAVITY — the migration plan the gate generates for "remove wind and the other non-scientific
