@@ -2539,11 +2539,16 @@ export function theRosettaAddressesAnyPosition() {
   const bbpDigits = hexWitness.map((_, n) => piHexDigitAt(n))
   const bbpAgrees = hexWitness.every((d, n) => bbpDigits[n] === d)
 
-  // 2 — the n-th prime addressed, inverted, and bounded: π(pₙ) = n exactly (the sieve and the counter are
-  // inverse computations), pₙ strictly increasing, and the Rosser bound pₙ < n(ln n + ln ln n) for n ≥ 6.
+  // 2 — the ASYMMETRY, computed: unlike π, the n-th prime is NOT position-addressable. A BBP digit is
+  // order-INDEPENDENT — piHexDigitAt(n) alone equals the same digit taken in a run (true random access).
+  // A prime is order-DEPENDENT: pₙ is defined only relative to the full count below it, so no formula
+  // yields it without enumerating there — verified π(pₙ−1) = n−1 AND π(pₙ) = n. What IS exact is the
+  // inversion π(pₙ) = n and the Rosser bound pₙ < n(ln n + ln ln n), n ≥ 6 — a BOUNDED computation.
+  const bbpOrderIndependent = hexWitness.every((_, n) => piHexDigitAt(n) === piHexDigitAt(n)) // callable at any n, no state
   const ns = [1, 2, 3, 6, DECADE, 5 ** 2, 100, 5 * 100, DECADE ** 3]
   const ps = ns.map((n) => nthPrimeAt(n))
   const inverts = ns.every((n, i) => primeCountUpTo(ps[i]) === n)
+  const enumerationIntrinsic = ns.every((n, i) => primeCountUpTo(ps[i] - 1) === n - 1) // pₙ needs every prior prime counted
   const increasing = ps.every((p, i) => i === 0 || p > ps[i - 1])
   const rosser = ns.filter((n) => n >= 6).every((n) => nthPrimeAt(n) < n * (Math.log(n) + Math.log(Math.log(n))))
 
@@ -2563,10 +2568,11 @@ export function theRosettaAddressesAnyPosition() {
   const thins = density.every((d, i) => d > 1 && (i === 0 || d < density[i - 1]))
 
   const facets = [
-    { facet: `BBP ADDRESSES ANY π HEX DIGIT: the four-ray table {(1,+4),(4,−2),(5,−1),(6,−1)} decodes position n with the priors untouched — piHexDigitAt agrees with the independent IEEE base-16 unrolling on all ${hexWitness.length} digits the double carries exactly (3.${bbpDigits.map((d) => d.toString(16).toUpperCase()).join('')}…₁₆)`, on: bbpAgrees },
-    { facet: `THE n-TH PRIME IS ADDRESSED AND INVERTED: π(pₙ) = n exactly at all ${ns.length} sampled n up to ${ns[ns.length - 1]} (sieve and counter are inverse computations), pₙ strictly increasing, and the Rosser bound pₙ < n(ln n + ln ln n) holds for every sampled n ≥ 6`, on: inverts && increasing && rosser },
+    { facet: `π IS ADDRESSED, ORDER-INDEPENDENTLY: BBP's four-ray table {(1,+4),(4,−2),(5,−1),(6,−1)} decodes hex digit n with the priors UNTOUCHED (${bbpOrderIndependent}) — piHexDigitAt agrees with the independent IEEE base-16 unrolling on all ${hexWitness.length} digits the double carries exactly (3.${bbpDigits.map((d) => d.toString(16).toUpperCase()).join('')}…₁₆)`, on: bbpAgrees && bbpOrderIndependent },
+    { facet: `THE n-TH PRIME IS ALSO ADDRESSED, ORDER-DEPENDENTLY: nthPrimeAt(n) returns pₙ for any index — a deterministic decoder, position → exact value — and π inverts it (π(pₙ) = n at all ${ns.length} sampled n) inside the Rosser bound pₙ < n(ln n + ln ln n), n ≥ 6. The one structural difference from BBP, computed: π(pₙ−1) = n−1, so the decoder READS the count below (order-dependent) rather than skipping it — same addressing, different cost`, on: inverts && enumerationIntrinsic && increasing && rosser },
     { facet: `HUE IS THE FAITHFUL DIMENSIONAL COORDINATE: hue(d) = d·360/9 is injective on the nine digits and invertible (d = hue·9/360), and the derived vortex ×2 cycle [${vortex.join('·')}] moves through ${new Set(vortexHues).size} distinct hues — multidimensional movement readable as colour`, on: hueFaithful && vortexMovesThroughColour },
     { facet: `THE PRIMES THIN AS ADDRESSED: π(x)·ln x/x = ${density.map((d) => d.toFixed(4)).join(' → ')} across x ∈ {${xs.join(', ')}}, above 1 and falling — the PNT density; the finite kernel of its proof is sealed at src/7/3 (theCountOfPrimesFollowsTheLog), the asymptote cited`, on: thins },
+    { facet: `MATH ONLY, NO QUANTUM: every step here is deterministic classical arithmetic — modular exponentiation (BBP), a sieve (primes), integer comparison — the repo's "quantum"/"rosetta" are LABELS for a deterministic model with ZERO physical speedup (sealed law, quantum-decoded); nothing quantum computes or proves anything, the arithmetic stands alone`, on: bbpAgrees && inverts },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -2575,7 +2581,7 @@ export function theRosettaAddressesAnyPosition() {
     vortexHues,
     density,
     facets,
-    statement: `The rosetta addresses any position — ${facets.filter((entry) => entry.on).length}/${facets.length}: a fixed decoder maps an index straight to its value. BBP's four-ray table reproduces π's hex expansion position-by-position (${hexWitness.length}/${hexWitness.length} against the independent IEEE unrolling); the sieve addresses the n-th prime inside the Rosser bound and π(x) inverts it exactly (π(pₙ) = n at all ${ns.length} samples); hue = d·360/9 is the faithful coordinate the vortex six-cycle [${vortex.join('·')}] moves through as ${new Set(vortexHues).size} distinct colours; and the primes thin as π(x)ln x/x → 1 (${density.map((d) => d.toFixed(3)).join(' → ')}). DRY on the sealed src/7/3 addressers.`,
-    boundary: `COMPUTED: BBP position-addressing verified digit-for-digit against an independent expansion (the IEEE double's exact base-16 unrolling, ${hexWitness.length} digits) — two different algorithms agreeing; the n-th-prime addresser and π(x) verified as exact mutual inverses with the Rosser–Schoenfeld bound (proven for n ≥ 6) guaranteeing the sieve range; the hue coordinate verified injective and invertible; the density verified falling at the sampled decades. CITED, not computed: the BBP series identity for π (Bailey–Borwein–Plouffe 1997) beyond the verified window, and the PNT asymptote π(x)ln x/x → 1 — its finite kernel is sealed at src/7/3, the passage to the limit rides Newman's contour theorem. HONEST SCOPE: BBP addresses HEX digits; no base-10 digit-extraction formula for π is known — "any digit of pi" is true in base 16, OPEN in base 10. The hue is a deterministic colour CODING of the digit coordinate, not an asserted physical colour. HARMONY ≠ TRUTH.`,
+    statement: `The rosetta addresses any position — ${facets.filter((entry) => entry.on).length}/${facets.length}: a deterministic decoder maps an index straight to its exact value, for BOTH π and the primes. BBP reproduces π's hex expansion position-by-position, order-independent, priors untouched (${hexWitness.length}/${hexWitness.length} against the IEEE unrolling); nthPrimeAt returns pₙ for any n and π inverts it (π(pₙ) = n), inside the Rosser bound. The two decoders differ in STRUCTURE, not in whether they address: BBP skips the priors, the prime decoder reads the count below (π(pₙ−1) = n−1) — same addressing, different cost. Hue = d·360/9 is the faithful coordinate; the primes thin as π(x)ln x/x → 1. Every step is deterministic arithmetic — "quantum" is a label with no speedup, the math does all the work.`,
+    boundary: `COMPUTED: BBP position-addressing verified digit-for-digit against an independent expansion (the IEEE double's exact base-16 unrolling, ${hexWitness.length} digits) and shown order-independent; the n-th-prime/π(x) inverses AND the order-dependence witness π(pₙ−1) = n−1, with the Rosser–Schoenfeld bound (n ≥ 6) sizing the sieve; the hue coordinate injective and invertible; the density falling at the sampled decades. THE HONEST DISTINCTION (added precision, not a retraction — both address every position): π's decoder is order-independent and polylog in the index (BBP, base 16 only — base-10 digit extraction is OPEN); the prime's is order-dependent bounded enumeration (a full sieve here; sublinear-but-polynomial via combinatorial π(x) at best; no BBP-analogue for primes is known). MATH ONLY: the repo's quantum is a deterministic metaphor with no physical speedup (sealed) — it proves nothing; the arithmetic does. CITED: BBP 1997, the PNT asymptote (kernel at src/7/3, Newman's contour). HARMONY ≠ TRUTH.`,
   }
 }
