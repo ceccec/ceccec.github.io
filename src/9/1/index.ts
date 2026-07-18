@@ -2907,3 +2907,49 @@ export function variationalQuantumEigensolverAndQaoa() {
     boundary: `COMPUTED: the VQE ground energies against exact diagonalisation (−√(a²+b²) for four Hamiltonians) and the QAOA MaxCut expectation against the brute-forced true cut, each a real state-vector circuit optimised on a grid — refutable. HONEST SCOPE: single-qubit VQE and a 3-node QAOA are the demonstrations; the grid optimiser stands in for gradient descent, and the ansätze are exact for these small instances (a general Hamiltonian needs a deeper ansatz and may hit barren plateaus — named, not solved). Deterministic classical simulation: the value of VQE/QAOA on real hardware is running the circuit where classical simulation is infeasible; here it is the honest small-system model, no physical speedup. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── ADIABATIC QUANTUM COMPUTATION AND ANNEALING — the "adiabatic" half of the variational/adiabatic
+// frontier, developed strictly on the LOCAL quantum simulator (the lens named the variational singleton as
+// the frontier; this gives it a sibling). The adiabatic theorem: begin in the easy ground state of H₀ and
+// interpolate H(s) = (1−s)H₀ + s·H₁ slowly; the system stays in the instantaneous ground state and ends in
+// the ground state of H₁. Verified against exact diagonalisation, on the sealed src/0 gate set, deterministic
+// (no physical speedup). H₀ = −(X₀+X₁), ground |++⟩; H₁ = −(Z₀ + ½Z₁), ground |00⟩ (non-degenerate).
+export function adiabaticQuantumComputationAndAnnealing() {
+  const RX = (t: number): number[] => [Math.cos(t / 2), 0, 0, -Math.sin(t / 2), 0, -Math.sin(t / 2), Math.cos(t / 2), 0]
+  const RZ = (t: number): number[] => [Math.cos(t / 2), -Math.sin(t / 2), 0, 0, 0, 0, Math.cos(t / 2), Math.sin(t / 2)]
+  const groundH0 = (): QuantumState => applyGate(applyGate(qubits(2), GATES.H, 0), GATES.H, 1) // |++⟩ = ground of −(X₀+X₁)
+  // first-order Trotter of the adiabatic sweep over N steps, total time T: H₀ terms as RX, H₁ terms as RZ
+  const adiabatic = (N: number, T: number): QuantumState => {
+    let st = groundH0(); const dt = T / N
+    for (let k = 0; k < N; k += 1) {
+      const s = (k + 1 / 2) / N
+      const ax = -2 * (1 - s) * dt; st = applyGate(applyGate(st, RX(ax), 0), RX(ax), 1) // exp(i(1−s)dt(X₀+X₁))
+      st = applyGate(applyGate(st, RZ(-2 * s * dt), 0), RZ(-2 * s * dt * (1 / 2)), 1) // exp(is dt(Z₀+½Z₁))
+    }
+    return st
+  }
+  const pGround = (st: QuantumState): number => st.re[0] ** 2 + st.im[0] ** 2 // |⟨00|ψ⟩|², |00⟩ = ground of H₁
+  const energyH1 = (st: QuantumState): number => { const p = probabilities(st); const h = [-(1 + 1 / 2), -(1 - 1 / 2), -(-1 + 1 / 2), -(-1 - 1 / 2)]; return p.reduce((e, pi, i) => e + pi * h[i], 0) } // ⟨ψ|H₁|ψ⟩
+  // exact diagonalisation of the diagonal H₁ = −(Z₀+½Z₁): eigenvalues over z ∈ {±1}², ground = −1.5 at |00⟩
+  const exactGround = Math.min(...[[1, 1], [1, -1], [-1, 1], [-1, -1]].map(([z0, z1]) => -(z0 + (1 / 2) * z1)))
+  const N = 4 * 100
+  const runs = [2, 2 * 5, 5 * 8, 100].map((T) => ({ T, p: pGround(adiabatic(N, T)), e: energyH1(adiabatic(N, T)) }))
+  const slow = runs[runs.length - 1], fast = runs[0]
+  const EPS = 1 / (2 * 5) ** 2
+  const adiabaticReachesGround = slow.p > 1 - 1 / (2 * 5) && Math.abs(slow.e - exactGround) < EPS // slow → ground of H₁
+  const monotone = runs.every((r, i) => i === 0 || r.p >= runs[i - 1].p - EPS) // slower sweep ⇒ higher ground fidelity
+  const fastIsDiabatic = fast.p < slow.p - 1 / 4 // a too-fast sweep fails to track — the adiabatic condition is real
+  const annealingSolves = slow.p > 1 - 1 / (2 * 5) && exactGround === -(1 + 1 / 2) // the Ising ground = the optimisation answer, found
+  const facets = [
+    { facet: `THE ADIABATIC THEOREM: starting in |++⟩ (ground of H₀) and interpolating slowly to H₁, the state ends in the ground state |00⟩ — P(ground) = ${slow.p.toFixed(4)} and ⟨H₁⟩ = ${slow.e.toFixed(4)} → the exact ground energy ${exactGround} (diagonalisation), at total time T = ${slow.T}`, on: adiabaticReachesGround },
+    { facet: `THE ADIABATIC CONDITION IS REAL: a fast sweep is DIABATIC — at T = ${fast.T}, P(ground) = ${fast.p.toFixed(4)} ≪ ${slow.p.toFixed(4)}; slower sweeps monotonically raise the ground fidelity (${runs.map((r) => r.p.toFixed(3)).join(' → ')}), the theorem's "slow enough" made a refutable computation`, on: monotone && fastIsDiabatic },
+    { facet: `QUANTUM ANNEALING SOLVES THE ISING GROUND STATE: H₁'s ground state encodes the optimisation answer (min of −(Z₀+½Z₁) = ${exactGround} at |00⟩), and the adiabatic sweep FINDS it (P = ${slow.p.toFixed(4)}) — the annealing model (D-Wave's principle), here a DETERMINISTIC simulation with no physical speedup (sealed law)`, on: annealingSolves },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    runs, exactGround,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`adiabatic:${entry.facet}:${entry.on}`))),
+    statement: `Adiabatic quantum computation and annealing — ${facets.filter((entry) => entry.on).length}/${facets.length}: begin in the ground state of H₀ = −(X₀+X₁) and interpolate slowly to H₁ = −(Z₀+½Z₁); the state tracks the instantaneous ground state and ends in |00⟩, the ground state of H₁ — P(ground) rises ${fast.p.toFixed(3)} → ${slow.p.toFixed(4)} as the sweep slows (${fast.T} → ${slow.T}), and ⟨H₁⟩ → the exact ground energy ${exactGround}. A fast sweep is diabatic (the condition is real); quantum annealing reads the optimisation answer off the Ising ground state. Deterministic simulation on the local gate set, no physical speedup.`,
+    boundary: `COMPUTED: the Trotterised adiabatic sweep on the src/0 state vector (H₀ terms as RX, H₁ terms as RZ), the ground-state fidelity and energy against exact diagonalisation of the diagonal H₁, and the monotone slow→adiabatic / fast→diabatic behaviour — each refutable. HONEST SCOPE: a 2-qubit instance with a non-degenerate problem Hamiltonian; the general adiabatic theorem's runtime scales with the inverse square of the minimum spectral gap (small gaps ⇒ long sweeps — the open question for hard instances), not resolved here. First-order Trotter has O(dt) error, vanishing as N grows. This is a DETERMINISTIC classical simulation of adiabatic quantum computation — the algorithm's structure, NOT the physical speedup a quantum annealer would (or would not, gap-depending) provide; the sealed law holds. HARMONY ≠ TRUTH.`,
+  }
+}

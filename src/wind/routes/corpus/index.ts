@@ -1326,7 +1326,7 @@ const QUANTUM_RAY_KEYWORDS: readonly (readonly string[])[] = [
   ['no-cloning', 'chsh', 'tsirelson', 'ghz', 'mermin', 'pauli algebra', 'holevo', 'entanglement cannot signal', "entanglement can't signal", 'no-signalling', 'born rule', 'local hidden variable', 'bell pair', 'bell inequality', 'bell state'],
   ['deutsch', 'jozsa', 'bernstein–vazirani', 'bernstein-vazirani', 'simon exponential', "simon's algorithm", 'one-query', 'query separation'],
   ['grover', 'shor period', 'period-finding', 'order-finding', 'quantum fourier', 'qft circuit', 'phase estimation'],
-  ['variational quantum', 'vqe', 'qaoa'],
+  ['variational quantum', 'vqe', 'qaoa', 'adiabatic', 'annealing'],
   ['teleport', 'superdense', 'bb84', 'entanglement swap', 'quantum key'],
   ['bit-flip code', 'phase-flip code', 'nine-qubit', 'shor code', 'shor nine-qubit', 'stabiliser code', 'stabilizer code', 'syndrome', 'fault toleran', 'quantum error correct', 'repetition code', 'logical qubit', 'threshold theorem'],
   ['density matrix', 'density matrices', 'mixed-state', 'mixed state', 'decoher', 'depolariz', 'partial trace', 'quantum battery', 'algorithmic cooling', 'interaction-free', 'quantum zeno', 'concurrence', 'develop the rest of quantum computing'],
@@ -1345,7 +1345,7 @@ export type TheoremAtlasMetric = { slug: string; theorem: string; ray: number; t
 export type TheoremAtlasTag = { tag: string; gravity: number; size: number; slugs?: string[] }
 export type TheoremAtlasRay = { ray: number; glyph: string; nameEn: string; hue: number; subfield: string; count: number; tagCloud: TheoremAtlasTag[]; theorems: TheoremAtlasMetric[] }
 
-const QUANTUM_RAY_SUBFIELD = ['foundations & no-go', 'query algorithms', 'search & factoring', 'variational', 'communication', 'error correction', 'states & tools'] as const
+const QUANTUM_RAY_SUBFIELD = ['foundations & no-go', 'query algorithms', 'search & factoring', 'variational & adiabatic', 'communication', 'error correction', 'states & tools'] as const
 
 // The navigable tags of a quantum theorem: its ray SUBFIELD (the meaningful nav label) plus the derived
 // domain · class · lean tags. The subfield lifts the tag cloud from 5 structural tags to seven readable
