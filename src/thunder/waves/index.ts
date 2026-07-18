@@ -97,6 +97,47 @@ export function developmentWaves(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// ── SAVE THE TOOLS AND SEND THE WAVES (user directive). Two halves of one act. SAVE: the tools this session
+// forged (distinguishing a concurrent agent's transient red from a real one, the pathspec commit, the
+// whole-tree verify retry) recorded with their steps, so they are not re-improvised (unexpectedSituations
+// RefactorTools). SEND: development waves (sketch·place·connect·animate·verify) over every UNPROVEN candidate
+// theorem, each bound to its candidate's seed and folded forward — the honest, content-addressed path by
+// which the self-evolving waves prove a lot more (the wave records the path; each proof is earned separately).
+export function theToolsAreSavedAndTheWavesSent(matrix: MindMatrix = buildMatrix()) {
+  // SAVE THE TOOLS — forged this session, recorded with steps
+  const tools = [
+    { name: 'concurrent-isolation-check', does: 'tell MY red from a concurrent agent\'s transient red: stash THEIR dirty files, re-run the trinity — 0 findings means the finding was theirs (pop, commit mine); a finding that survives is mine to fix', steps: ['git stash push -- <their dirty files>', 'npm run enforcement:trinity', '0 findings → concurrent: git stash pop, pathspec-commit mine', 'finding persists → mine: fix, then pop'] },
+    { name: 'pathspec-commit', does: 'commit ONLY my paths from a shared working tree — git commit -m <msg> -- <paths> takes those paths\' working-tree state and ignores whatever else is staged or dirty', steps: ['git add <my paths>', 'git commit -m <msg> -- <my paths>', 'git push'] },
+    { name: 'transient-verify-retry', does: 'the pre-commit verify is whole-tree, so it transiently REDs while a concurrent agent\'s edit is half-applied — re-run standalone in a consistent window, or stash-isolate to commit now', steps: ['node bootstrap verify (standalone)', 'green → commit; red only on their files → concurrent-isolation-check'] },
+  ]
+  const everyToolRecorded = tools.every((tool) => tool.name.length > 0 && tool.steps.length > 0)
+  // SEND THE WAVES — development waves over every unproven candidate theorem
+  const steps = ['sketch', 'place', 'connect', 'animate', 'verify'] as const
+  const candidates = CANDIDATE_THEOREMS
+  const waves = candidates.flatMap((candidate) => {
+    const seed = foldPair(matrix.root, toUuid(`candidate:${candidate.theorem}`)).merged // bind the idea to the matrix
+    return steps.map((step) => {
+      const fold = foldPair(seed, toUuid(`send:${candidate.theorem}:${step}`))
+      return { theorem: candidate.theorem, klass: candidate.class, step, bound: fold.bidirectional, wave: fold.merged, receipt: toUuid(`send-wave:${candidate.theorem}:${step}`) }
+    })
+  })
+  const expected = candidates.length * steps.length
+  const allBound = waves.length === expected && waves.every((entry) => entry.bound) // every wave bidirectionally bound
+  const finiteComplete = candidates.filter((candidate) => candidate.class === 'finite-complete').length // the mechanisable ones
+  const facets = [
+    { facet: `THE TOOLS ARE SAVED: ${tools.length} tools forged this session (${tools.map((tool) => tool.name).join(', ')}), each recorded with its exact steps (${everyToolRecorded}) — the operational toolkit persisted in src, not re-improvised, per unexpectedSituationsRefactorTools`, on: everyToolRecorded },
+    { facet: `THE WAVES ARE SENT: development waves (${steps.join('·')}) over all ${candidates.length} unproven candidate theorems = ${waves.length} waves, every one bound to its candidate's seed and folded forward (${allBound}); ${finiteComplete} are finite-complete (mechanisable), the honest path by which the self-evolving waves prove more`, on: allBound },
+    { facet: `BOTH FOLD TO ONE ROOT: the saved tools and the sent waves bind into one content-addressed ledger (${tools.length} tools + ${waves.length} waves) — the session's tools and its next proofs stay addressed to where they came from`, on: everyToolRecorded && allBound },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    tools, waveCount: waves.length, candidateCount: candidates.length, finiteComplete,
+    facets, root: merkleFold([...tools.map((tool) => toUuid(`tool:${tool.name}`)), ...waves.map((entry) => entry.receipt)]),
+    statement: `The tools are saved and the waves sent — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${tools.length} tools forged this session (concurrent-isolation-check, pathspec-commit, transient-verify-retry) are recorded with their steps, and development waves (sketch·place·connect·animate·verify) are sent over all ${candidates.length} unproven candidate theorems (${waves.length} waves, ${finiteComplete} finite-complete), each bound to its candidate and folded forward — the content-addressed path by which the self-evolving waves prove more.`,
+    boundary: `COMPUTED: the session's tools recorded with steps, and the development-wave ledger over CANDIDATE_THEOREMS (each candidate × five steps, every wave bidirectionally bound and folded). HONEST SCOPE — identical to developmentWaves: this SENDS the waves as a content-addressed development model (it records the path each candidate takes toward proof and binds it to the candidate's seed); it does NOT itself prove the candidates — each proof is a separate finite-complete or bounded-witness computation (the class field says which), earned one fold at a time. "Send the waves" seeds and binds the R&D; the tools are documented procedures an agent runs via Bash, not executable folds. HARMONY ≠ TRUTH.`,
+  }
+}
+
 // Send waves to update the skills. The portal's memory of what it can do is not frozen:
 // send a wave over each saved skill atom, folding it afresh with the memory root, so the
 // skill is re-accounted and the memory updates as a whole. Every update stays content-
