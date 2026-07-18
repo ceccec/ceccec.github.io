@@ -1426,3 +1426,44 @@ export function monolithTargetVsCensusCapacity(matrix: MindMatrix = buildMatrix(
     }
   })
 }
+
+// ── THE RATCHET RECOMPUTES IN OPTIMISATION WAVES — the resolution of the unreachable zero (user law,
+// 2026-07-18: "recompute the ratchet in optimisation waves"). The byte target is never a static
+// assertion: it DERIVES each scan as the next power of two at or above the fair share corpus/census.
+// Derived ≥ average ⇒ by pigeonhole a redistribution with ZERO offenders exists — satisfiable where
+// the static 2¹³ was not (monolithTargetVsCensusCapacity) — and the target follows the measure in both
+// directions: growth re-derives it up, compression waves re-derive it down. DRY: census and corpus come
+// from the sealed pigeonhole walk; the same formula operates the scan (derivedMonolithTargetBytes).
+export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theRatchetRecomputesInOptimisationWaves', matrix, () => {
+    const pigeonhole = monolithTargetVsCensusCapacity(matrix)
+    const measured = pigeonhole.census > 0 && pigeonhole.corpusBytes > 0
+    const derive = (corpus: number, census: number): number => {
+      let target = 1
+      while (census > 0 && target < corpus / census) target *= 2 // next 2^k ≥ fair share
+      return target
+    }
+    const target = derive(pigeonhole.corpusBytes, pigeonhole.census)
+    const average = measured ? pigeonhole.corpusBytes / pigeonhole.census : 0
+    const bracketed = !measured || (target >= average && target / 2 < average) // the LEAST 2^k ≥ average
+    const satisfiable = !measured || target * pigeonhole.census >= pigeonhole.corpusBytes // pigeonhole admits a zero-offender distribution
+    const staticUnsatisfiable = !measured || (pigeonhole.computes && pigeonhole.corpusBytes > pigeonhole.capacityBytes)
+    const followsTheMeasure = derive(pigeonhole.corpusBytes * 2, pigeonhole.census) >= target
+      && derive(Math.ceil(pigeonhole.corpusBytes / 2), pigeonhole.census) <= target // re-derives up under growth, down under compression
+    const facets = [
+      { facet: `THE TARGET DERIVES, NEVER ASSERTED: ${measured ? target : 'n/a (no fs)'} B is the least power of two ≥ the fair share ${measured ? average.toFixed(0) : 'n/a'} B (corpus ${pigeonhole.corpusBytes} / census ${pigeonhole.census}) — bracketed target/2 < average ≤ target, recomputed from the live walk at every scan`, on: bracketed },
+      { facet: `SATISFIABLE WHERE THE STATIC TARGET WAS NOT: target × census = ${measured ? target * pigeonhole.census : 'n/a'} ≥ corpus ${pigeonhole.corpusBytes} — by pigeonhole a redistribution with zero offenders EXISTS, while the sealed 8192 floor stays unreachable (${staticUnsatisfiable}); offenders under the derived target are the true outlier monoliths, the honest direction`, on: satisfiable && staticUnsatisfiable },
+      { facet: `THE RATCHET FOLLOWS THE MEASURE IN BOTH DIRECTIONS: derive(2·corpus) ≥ derive(corpus) and derive(corpus/2) ≤ derive(corpus) — growth re-derives the target up, optimisation waves re-derive it down; no wave inherits a stale number`, on: followsTheMeasure },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      targetBytes: target,
+      averageBytes: Math.round(average),
+      census: pigeonhole.census,
+      corpusBytes: pigeonhole.corpusBytes,
+      facets,
+      statement: `The ratchet recomputes in optimisation waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the byte target derives as the least 2^k ≥ corpus/census = ${measured ? target : 'n/a'} B (fair share ${measured ? average.toFixed(0) : 'n/a'} B over ${pigeonhole.census} files). Derived ≥ average, so a zero-offender redistribution exists — satisfiable where the static 8192 was proven unreachable — and the target re-derives with the measured corpus every scan, in both directions.`,
+      boundary: `EXACT while fs is available: census and corpus come from the sealed pigeonhole walk (monolithTargetVsCensusCapacity), the target from the derive formula also operating the live scan (derivedMonolithTargetBytes) — one derivation, two consumers. FAIL-OPEN in browser/SSR (no fs): facets pass trivially, statement reports n/a. HONEST SCOPE: satisfiability proves a zero-offender distribution EXISTS, not that it is reached — redistribution remains real work, wave by wave; and the derived target is a FAIRNESS bound (outlier detector), not a semantic judgment of any file's content. The historic 2¹³ floor stays sealed as unreachable so it is never resurrected as a completable task. HARMONY ≠ TRUTH.`,
+    }
+  })
+}

@@ -11,7 +11,22 @@ import type { ScriptShellScan } from '../../../script/shell'
 
 
 export const MONOLITH_FILE_BYTES = (64 * 64 * 2)
-export const MONOLITH_FILE_LAW = 'no index.ts or logic file may exceed 8192 bytes — shed into sub-barrels'
+export const MONOLITH_FILE_LAW = 'no logic file may exceed the DERIVED fair-share target — the next power of two ≥ corpus/census, recomputed each optimisation wave (the 2¹³ floor is historic; its zero is unreachable under the census law — monolithTargetVsCensusCapacity)'
+
+/** THE RATCHET RECOMPUTES IN OPTIMISATION WAVES (user law, 2026-07-18): the byte target is never a
+ * static assertion — it DERIVES from the measured corpus each scan: the next power of two at or above
+ * the fair share corpus/count. Derived ≥ average, so by pigeonhole a redistribution with ZERO
+ * offenders exists — the target is satisfiable, and it re-derives as the corpus grows or compresses:
+ * the ratchet follows the measure. Offenders under this target are the TRUE monoliths (outliers above
+ * fair share), the honest direction for the ants. Sealed as theRatchetRecomputesInOptimisationWaves. */
+export function derivedMonolithTargetBytes(codeFiles: readonly string[]): { target: number; corpus: number; count: number } {
+  const sizes = codeFiles.map((file) => { try { return statSync(file).size } catch { return 0 } }).filter((n) => n > 0)
+  const corpus = sizes.reduce((sum, bytes) => sum + bytes, 0)
+  const count = Math.max(1, sizes.length)
+  let target = 1
+  while (target < corpus / count) target *= 2 // next 2^k ≥ fair share — derived, never asserted
+  return { target, corpus, count }
+}
 
 export function scanFileSizeOffenders(root: string, codeFiles: readonly string[], limit = MONOLITH_FILE_BYTES) {
   return codeFiles
@@ -541,7 +556,7 @@ export function computeStrictGateSnapshot(
   const oneMath = scanOneMathOffenders(root, codeFiles, bodies)
   const importGaps = scanImportGaps(root, codeFiles, bodies)
   const indexOnly = scanIndexOnly(codeFiles)
-  const fileSize = scanFileSizeOffenders(root, codeFiles, MONOLITH_FILE_BYTES)
+  const fileSize = scanFileSizeOffenders(root, codeFiles, derivedMonolithTargetBytes(codeFiles).target)
   const hardcodedCracks = scanCrackSurface(root) // full surface: src + .vitepress, .ts/.mts/.vue
   const scriptShellViolations = scanScriptShellViolations(scriptShells)
   const digitAudit = { passed: true, receipt: toUuid('digit-gate:vortex:sealed'), failures: [] as string[] }

@@ -406,14 +406,15 @@ if (existsSync(join(root, 'src'))) walkIndices(join(root, 'src'))
 
 const monolithDetail = monolithFileGapDetail(enforcementFacts.strict.fileSize)
 if (monolithDetail) {
-  // Byte monolith is a ratchet target — warn only. The warning CONSUMES the sealed pigeonhole theorem
-  // (monolithTargetVsCensusCapacity, src/water/stack): while the census fixes the file count and
-  // index-only forbids body files, total capacity under the byte target is below the corpus, so the
-  // ratchet's ZERO is unreachable — it orders the offenders, it is not a completable task. Stated in
-  // the detail so no agent (or root-correlation reader) grinds the byte leaves expecting green.
+  // Byte monolith is a ratchet target — warn only. The target is DERIVED, recomputed each optimisation
+  // wave (derivedMonolithTargetBytes: next 2^k ≥ corpus/census — the ratchet follows the measure, never
+  // a static assertion), so the offenders are the TRUE outliers above fair share and zero IS reachable
+  // by redistribution. The historic 2¹³ floor stays sealed as unreachable (monolithTargetVsCensusCapacity)
+  // so no agent resurrects it as a completable task.
   const pigeonhole = monolithTargetVsCensusCapacity()
-  const verdict = pigeonhole.computes && pigeonhole.corpusBytes > pigeonhole.capacityBytes
-    ? ` — NOTE (sealed theorem monolithTargetVsCensusCapacity): corpus ${pigeonhole.corpusBytes} B > capacity ${pigeonhole.capacityBytes} B (${pigeonhole.census} × 8192), so this ratchet's zero is UNREACHABLE under the census + index-only laws; a NAMED law change decides, not distribution`
+  const derivedLimit = enforcementFacts.strict.fileSize[0]?.limit
+  const verdict = derivedLimit
+    ? ` — NOTE: the target ${derivedLimit} B is DERIVED (next 2^k ≥ corpus/census), recomputed each optimisation wave and satisfiable by redistribution (theRatchetRecomputesInOptimisationWaves); the historic 8192 floor is sealed UNREACHABLE under the census law (monolithTargetVsCensusCapacity: corpus ${pigeonhole.corpusBytes} B > ${pigeonhole.capacityBytes} B)`
     : ''
   warnings.push({ wave: 'weave', severity: 'warn', harmonic: 'compression', kind: 'monolith-file', detail: `${monolithDetail}${verdict}` })
 }
