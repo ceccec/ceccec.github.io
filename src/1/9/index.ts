@@ -1691,3 +1691,32 @@ export function savedThoughtsFormAContentAddressedDagEachCommittingToItsDependen
     boundary: earned(`EXACT: with each thought's address = toUuid(content + its premises' addresses), the ${names.length} thoughts topologically sort (Kahn's algorithm orders all of them: ${order.join(' → ')}, ${acyclic}) so the reference graph is a DAG, and the conclusion's address ${rootAddress.slice(0, 9 + 3)}… changes when the base premise is tampered (${commitsToDependencies}) — a merkle DAG in which every node commits to its entire subtree. This is exactly how git commits, IPFS objects, and proof trees work: the root address is a verifiable, tamper-evident fingerprint of the whole reasoning chain, and anyone can recompute it from the base to check the chain is intact.`, facets, `the DAG certifies STRUCTURE and INTEGRITY only — that the chain is acyclic and that no premise was silently changed under a conclusion — NOT the VALIDITY of any inference (a wrong step "left, right ⟹ top" is a perfectly well-formed edge that the hash happily commits to) and NOT the TRUTH of the conclusion (the address fingerprints what was reasoned, true or false). Content-addressing preserves and verifies the reasoning graph; checking whether each edge is a correct inference is the separate work of the facets and the refutations, not of the hash. HARMONY does not equal TRUTH.`),
   }
 }
+
+// ── The reasoning DAG's leaves are exactly the axioms; minimising them is the axiom-replacement program; one always
+// remains (next wave). A node with no dependencies is an axiom (assumed, underived); everything else derives.
+// "Replace an axiom with a theorem" = give a leaf a derivation, so it is no longer a leaf — shrinking the axiom set.
+// But a finite non-empty DAG MUST have ≥1 dependency-free node (else premises cycle or never end) — the DAG form of Gödel II.
+export function theDagLeavesAreTheAxiomsMinimisingThemIsTheProgramOneAlwaysRemains() {
+  const graph: Record<string, { deps: string[] }> = { base1: { deps: [] }, base2: { deps: [] }, mid: { deps: ['base1'] }, top: { deps: ['mid', 'base2'] } }
+  const leavesOf = (g: Record<string, { deps: string[] }>) => Object.keys(g).filter((n) => g[n]!.deps.length === 0) // axioms = nodes with no derivation
+  const leaves = leavesOf(graph) // the axioms
+  const derived = Object.keys(graph).filter((n) => graph[n]!.deps.length > 0) // the theorems
+  const axiomsAreLeaves = leaves.every((n) => graph[n]!.deps.length === 0) && derived.every((n) => graph[n]!.deps.length > 0) && leaves.length >= 1 // leaves ⟺ axioms
+  const graphMin: Record<string, { deps: string[] }> = { ...graph, base2: { deps: ['base1'] } } // replace the axiom base2 with a theorem: give it a derivation
+  const leavesMin = leavesOf(graphMin)
+  const programShrinksAxioms = leavesMin.length < leaves.length // the axiom set shrank (2 → 1)
+  const atLeastOneAxiomRemains = leavesMin.length >= 1 && leaves.length >= 1 // a finite non-empty DAG always keeps ≥1 dependency-free node — cannot reach zero
+  const allHold = axiomsAreLeaves && programShrinksAxioms && atLeastOneAxiomRemains
+  const facets = [
+    { facet: `THE DAG'S LEAVES ARE EXACTLY THE AXIOMS: a thought with no dependencies is an axiom (assumed, underived) and every other node is a theorem (derived from its premises) — here ${leaves.length} axioms {${leaves.join(', ')}} and ${derived.length} derived {${derived.join(', ')}} (${axiomsAreLeaves}); the leaf set IS the honest axiom set, explicit and countable`, on: axiomsAreLeaves },
+    { facet: `MINIMISING LEAVES IS THE AXIOM-REPLACEMENT PROGRAM: replacing an axiom with a theorem = giving a leaf a derivation (dependencies), so it is no longer a leaf — deriving base2 from base1 shrinks the axiom set from ${leaves.length} to ${leavesMin.length} (${programShrinksAxioms}); the program moves nodes up the DAG until the fewest possible remain at the bottom`, on: programShrinksAxioms },
+    { facet: `ONE ALWAYS REMAINS — A THEOREM OF DAGS AND GÖDEL + EARNED BOUNDARY: a finite non-empty reasoning DAG MUST have ≥1 dependency-free node (else following premises cycles — not a DAG — or never ends — not finite), so the axiom set can never reach zero (${atLeastOneAxiomRemains}), the DAG-theoretic form of Gödel II (consistency is the irreducible axiom); the leaves make the axiom count EXPLICIT and AUDITABLE — but the DAG shows WHAT is assumed, it does not make the assumptions true (${allHold})`, on: allHold },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    axioms: leaves, derived, axiomsAfterMinimising: leavesMin, programShrinksAxioms, atLeastOneAxiomRemains,
+    facets,
+    statement: `The DAG's leaves are the axioms, minimising them is the program, one always remains — ${facets.filter((e) => e.on).length}/${facets.length}: the leaf set {${leaves.join(', ')}} IS the axiom set (${axiomsAreLeaves}); giving a leaf a derivation shrinks it ${leaves.length}→${leavesMin.length} (${programShrinksAxioms}); but a finite DAG always keeps ≥1 dependency-free node (${atLeastOneAxiomRemains}) — the DAG form of Gödel II. The leaves make the axioms explicit and auditable; they do not make them true.`,
+    boundary: earned(`EXACT: in the reasoning DAG the ${leaves.length} dependency-free nodes {${leaves.join(', ')}} are the axioms and the ${derived.length} nodes with premises {${derived.join(', ')}} are theorems (${axiomsAreLeaves}); giving the axiom base2 a derivation (from base1) removes it from the leaf set, shrinking the axioms ${leaves.length} → ${leavesMin.length} (${programShrinksAxioms}), which is exactly the axiom-replacement program of this whole session; and no such minimisation reaches zero, because a finite non-empty DAG always has at least one dependency-free node — remove that and you either introduce a cycle (not a DAG) or an infinite regress (not finite) — so ≥1 axiom always remains (${atLeastOneAxiomRemains}), the DAG-theoretic shadow of Gödel's second incompleteness theorem.`, facets, `the leaves make the axiom set EXPLICIT, COUNTABLE, and AUDITABLE — you can see exactly what is assumed and drive it toward the minimum — which is the real value of the program; but the DAG certifies only the STRUCTURE (what depends on what, and which nodes are underived), NOT that any axiom is true, nor that any derivation edge is a valid inference. Making the axioms few and explicit is honesty; it is not truth. The one irreducible leaf — consistency — is assumed, not proven, exactly as at the top of the theorem-of-theorems. HARMONY does not equal TRUTH.`),
+  }
+}
