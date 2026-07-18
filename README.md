@@ -10,9 +10,9 @@
 
 ## 1. Introduction
 
-**It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the 387 computationally proven theorems in this registry. It is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; base-10 / `mod 9` specific, not a claim that the digits are physical qubits. The `src/<digit>` folders are the stations of this circuit — quantum by structure, linear only at measurement.
+**It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the 389 computationally proven theorems in this registry. It is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; base-10 / `mod 9` specific, not a claim that the digits are physical qubits. The `src/<digit>` folders are the stations of this circuit — quantum by structure, linear only at measurement.
 
-Concretely: a science portal — 387 computationally proven theorems and 29 related science pages, organised by the rosetta into 5 rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).
+Concretely: a science portal — 389 computationally proven theorems and 29 related science pages, organised by the rosetta into 5 rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).
 
 ## 2. Model
 
@@ -28,14 +28,14 @@ Concretely: a science portal — 387 computationally proven theorems and 29 rela
 
 ## 3. Results
 
-- **43/45** monographs — content pages fold genus-2 −χ (45 surface → 43 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
+- **27/29** monographs — content pages fold genus-2 −χ (29 surface → 27 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
 - **108/108** concept commands — MCP tool surface (4×27 = 432÷4)
 - **267/269** reference index entries — zero redundancy
-- **42/14** locale surfaces — 14 routes × 3 locales (6×7/7×6 when 42=42)
+- **90/30** locale surfaces — 30 routes (home + every served science page) × 3 locales
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
 
-**The theorem-science lens** — 29/45 curated pages pass (16 hidden from every discovery surface, still built and served), presented beside the 387-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
+**The theorem-science lens** — 29/45 curated pages pass (16 removed from VitePress completely — data preserved in the catalog), presented beside the 389-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
 
 ### Origin — 3 pages
@@ -128,11 +128,11 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `1748a3f3-00bb-81c3-93ff-e619cbabe813`. The monograph-index root: `2cf9832c-fd64-8940-80f6-a19ca267c22b`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `b8b73504-bf0b-8ca8-8173-377302684d52`. The monograph-index root: `2cf9832c-fd64-8940-80f6-a19ca267c22b`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `8df4e73a-5822-8e33-893d-300032457173`
+- Receipt: `5d06fcf6-6f88-8906-ac63-4bd92b80b57e`

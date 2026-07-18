@@ -625,6 +625,40 @@ export function monographAsScientificPaper(page: StaticPage) {
 // All is monograph described as a scientific paper: every content page is a paper with the one template,
 // and the README is the root monograph that defines it. Form unified, one source.
 
+// ── EVERY PAGE IS A PRINTABLE FORMATTED SCIENTIFIC PAPER (user law) — the paper DATA proven complete for
+// the whole served set: every page the site serves maps through monographAsScientificPaper to a full
+// article head (title · abstract · keywords · live-component results · receipt), in both locales, and the
+// render layer projects it (PaperFrame leads every document from the computed frontmatter; the @media
+// print sheet strips the chrome so paper shows a formatted serif article). The data is proven HERE; the
+// projection is the theme's job, cited in the boundary.
+export function everyPageIsAPrintableScientificPaper(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('everyPageIsAPrintableScientificPaper', matrix, () => {
+    const pages = staticPages()
+    const papers = pages.map((page) => ({ page, paper: monographAsScientificPaper(page) }))
+    const headComplete = papers.every(({ paper }) => paper.title.length > 0 && paper.abstract.length > 0 && paper.keywords.length > 0 && isUuid(paper.receipt))
+    const bilingual = pages.every((page) => page.title.bg.length > 0 && page.description.bg.length > 0)
+    const resultsLive = papers.every(({ paper }) => paper.results.length > 0)
+    const template = monographTemplate()
+    const onlyScience = pages.every((page) => theoremScienceVisible(page.slug, page.keywords))
+    const facets = [
+      { facet: `every served page is a paper — ${papers.length}/${pages.length} map to a full article head (title · abstract · keywords · receipt), none empty`, on: papers.length === pages.length && headComplete },
+      { facet: `bilingual — every paper carries its Bulgarian title and abstract beside the English`, on: bilingual },
+      { facet: `the results are LIVE — every paper's results section is its mounted components (${papers.reduce((sum, { paper }) => sum + paper.results.length, 0)} components across the set), figures that compute, not static images`, on: resultsLive },
+      { facet: `one template forms them all — the monograph template (${template.sections.length} sections) defines the article form the README roots`, on: template.sections.length > 0 && isUuid(template.root) },
+      { facet: `and every paper is science — the served set is exactly the theorem-science lens roster`, on: onlyScience && pages.length > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`printable-paper:${entry.facet}:${entry.on}`) }))
+    return {
+      papers: facets.every((entry) => entry.on),
+      count: papers.length,
+      componentResults: papers.reduce((sum, { paper }) => sum + paper.results.length, 0),
+      facets,
+      root: merkleFold([template.root, ...papers.map(({ paper }) => paper.receipt), ...facets.map((entry) => entry.receipt)]),
+      statement: `Every page is a printable formatted scientific paper — ${papers.length}/${pages.length} served pages map to a full article head (title · abstract · keywords · live-component results · receipt) in both locales under the one monograph template, and all of them are theorem-science lens survivors.`,
+      boundary: `COMPUTED: the paper-data completeness over the whole served set — refutable (empty an abstract or a keyword list and a facet flips). HONEST SCOPE: this fold proves the DATA; the visual projection is the render layer — PaperFrame (the abstract + keywords chrome leading every document, read from the computed frontmatter transformPageData lifts) and the @media print stylesheet (chrome stripped, serif article form) — which a build renders and a browser prints; CSS is not re-parsed here. "Formatted" = the one monograph template; page-specific sections beyond it live in the page's own components. HARMONY ≠ TRUTH.`,
+    }
+  })
+}
+
 // Design the paths as a quantum RESTful CRUD matrix, so SEO is STABLE — one word: rest. A resource is a page
 // at a CANONICAL slug (heaven, show, a432 — one stable, lowercase, resource-oriented segment); the matrix is
 // resources × CRUD. STABILITY: the public path IS the canonical slug, DECOUPLED from the churning internal

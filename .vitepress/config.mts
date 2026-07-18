@@ -421,7 +421,9 @@ export default defineConfig({
       (typeof fm.ogTitle === 'string' && fm.ogTitle) ||
       (isHome || name === fullSiteTitle ? fullSiteTitle : `${name} | ${fullSiteTitle}`)
     const ogDescription = (typeof fm.ogDescription === 'string' && fm.ogDescription) || description
-    const ogType = (typeof fm.ogType === 'string' && fm.ogType) || (isDoc ? 'article' : 'website')
+    // Every served page is a printable formatted scientific paper (user law) — og:type article for all
+    // papers; only the home (the root monograph portal) stays a website object.
+    const ogType = (typeof fm.ogType === 'string' && fm.ogType) || (isHome ? 'website' : 'article')
     const og: [string, Record<string, string>][] = [
       ['meta', { property: 'og:type', content: ogType }],
       ['meta', { property: 'og:title', content: ogTitle }],
