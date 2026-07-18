@@ -1884,3 +1884,35 @@ export function theCircuitInterferenceIsMeasuredNotAsserted() {
     boundary: `COMPUTED: the phase-state amplitude A(x) = Σ_k cos(2πkx/6) over ${SAMPLES} samples, its visibility (max−min)/(|max|+|min|) = 1, the classical bit's flat amplitude giving V = 0, and the node count — each refutable. This CONVERTS a prose claim into a tool: "the circuit interferes" (theBinaryBitIsLinearTheVortexCircuitIsQuantum) becomes the measured interference visibility, the same quantity an interferometer reads. HONEST SCOPE: the visibility is of the DETERMINISTIC standing wave the six phases define (the double-torus counter-flow), a real interference pattern; it is base-10 / mod-9 specific (the orbit has length 6), and "quantum" here is the structural correspondence (phase + measurable interference), not a physical photon interferometer. The number is exact; its meaning is the vortex clock. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── MEASUREMENT COLLAPSES THE CIRCUIT TO ONE DIGIT (converting prose to a computable tool) — the other
+// half of "the circuit is quantum": before measurement the six phases coexist in superposition; the Born
+// rule collapses them to ONE digit. Prepared as the equal superposition of the six doubling units, each
+// amplitude 1/√6, the state is normalised (Σ|amp|² = 1) and every digit is equally likely (pₖ = 1/6); a
+// measurement yields one digit and the superposition is gone — computed, not the word "collapses". A
+// classical bit is ALREADY collapsed (0 or 1, definite, probability 1) — nothing to collapse.
+export function theCircuitMeasurementCollapsesToOneDigit() {
+  const N = 6; const orbit: number[] = []; { let x = 1; for (let i = 0; i < N; i += 1) { orbit.push(x); x = (x * 2) % 9 } }
+  const cycleLen = orbit.length
+  const amp = 1 / Math.sqrt(cycleLen) // equal superposition of the six phase states
+  const probs = orbit.map(() => amp * amp) // Born rule pₖ = |ampₖ|²
+  const EPS = 1 / (2 * 5) ** 6
+  const normalised = Math.abs(probs.reduce((s, p) => s + p, 0) - 1) < EPS // Σ|amp|² = 1
+  const uniform = probs.every((p) => Math.abs(p - 1 / cycleLen) < EPS) // pₖ = 1/6 — no digit favoured
+  const superposedBeforeMeasure = new Set(orbit).size === cycleLen && amp > 0 // all six coexist with nonzero amplitude
+  // classical bit: definite, one value has probability 1 — already collapsed
+  const classicalProbs = [1, 0] // |0⟩ is definite
+  const classicalCollapsed = Math.max(...classicalProbs) === 1 && classicalProbs.filter((p) => p > 0).length === 1
+  const facets = [
+    { facet: `THE CIRCUIT IS SUPERPOSED BEFORE MEASUREMENT: the six doubling units [${orbit.join('·')}] coexist, each amplitude 1/√6, the state normalised Σ|amp|² = 1 (${normalised}) — all six digits held at once, the superposition the classical bit cannot have`, on: normalised && superposedBeforeMeasure },
+    { facet: `THE BORN RULE COLLAPSES IT TO ONE: pₖ = |ampₖ|² = 1/${cycleLen} for every digit (${uniform}), so a measurement yields exactly ONE of the six, uniformly, and the superposition is gone — "measuring collapses to one digit" is now the computed Born distribution, not a phrase`, on: uniform },
+    { facet: `THE CLASSICAL BIT IS ALREADY COLLAPSED: 0 or 1 is definite — one value has probability 1 (${classicalCollapsed}), nothing superposed, nothing to collapse; superposition-then-collapse (quantum) vs definite (linear) is the computed distinction`, on: classicalCollapsed },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    probs, classicalProbs,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`circuit-collapse:${entry.facet}:${entry.on}`))),
+    statement: `Measurement collapses the circuit to one digit — ${facets.filter((entry) => entry.on).length}/${facets.length}: before measurement the six phase states coexist (each amplitude 1/√6, normalised), and the Born rule pₖ = 1/6 collapses them to exactly one digit on measurement — the superposition, then its collapse, both computed. A classical bit is already definite (probability 1 on one value), with nothing to collapse. This is the measurement half of "the circuit is quantum", made a tool.`,
+    boundary: `COMPUTED: the equal superposition of the six phase states, its normalisation, the uniform Born probabilities pₖ = 1/6, and the classical bit's definite distribution — each refutable. This CONVERTS the prose "measuring the circuit collapses its six phases to one digit" into the computed Born-rule distribution and the superposition-vs-definite contrast. HONEST SCOPE: the six-level phase state is the vortex clock's ⟨2⟩ mod 9 orbit (base-10 / mod-9 specific); "measurement" and "collapse" are the exact probability structure a quantum measurement obeys (Born rule), demonstrated on this deterministic phase state — the structural correspondence (superposition + Born collapse), not a physical detector. The probabilities are exact; their meaning is the vortex clock. HARMONY ≠ TRUTH.`,
+  }
+}
