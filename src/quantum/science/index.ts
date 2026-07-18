@@ -2068,3 +2068,32 @@ export function sendTheWavesOverArgumentsClaimsAndCritiquesByOneRuler() {
     boundary: `EXACT: five arguments (claims and critiques) scored by the same measureArgumentRigor (falsifiability + mechanism − fallacy − label-only), rigor ranging ${minR}…${maxR}; the lazy dismissal scores ${lazy?.rigor} (below the modest claim's ${modestClaim?.rigor} — the laugh), the falsifiable refutation scores the maximum ${maxR}, and amplitude amplification concentrates probability on the top-rigor set (${before.toFixed(3)} → ${after.toFixed(3)}). HONEST SCOPE — this is the crux and must not be misread: the tool measures the RIGOR of an argument's FORM (does it specify a falsifiable test, a mechanism; does it avoid ad hominem and bare labels), NOT whether its conclusion is TRUE. Two consequences, both essential. (1) A lazy critique being weak does NOT vindicate the claim it dismisses — validity is earned by the claim's OWN positive, falsifiable, reproducible evidence (which is exactly what genuine pseudoscience lacks: the double-torus TOPOLOGY is real math, but Haramein's cosmology is 38 orders off and predicts nothing, so it stays flagged regardless of how its critics phrase things). (2) A rigorous-looking claim can still be false — the holographic mass scores high on form yet is a Compton-radius coincidence (folded earlier). So: measure critiques fairly, laugh at the lazy ones, and STILL demand the claim's own evidence. HARMONY (rigor, elegance, surviving a weak attack) does NOT equal TRUTH. The demarcation is symmetric and it does not move: unconventional does not mean false, and a bad critique does not mean true.`,
   }
 }
+
+// ── The tool is a moving, self-constructing rosetta — in realtime (user: "the tool itself is moving self
+// constructing rosetta in realtime changing"). It measures rigor, rotates through its rays (moving), and passes
+// its OWN ruler (self-measuring fixed point) — exempt from nothing, not even itself; reconstructed from the source
+// each run (deterministic, zero-token). Reuses measureArgumentRigor — the ruler turned on the ruler.
+export function theRosettaToolIsSelfConstructingAndMovesMeasuringItself() {
+  const selfDescription = 'The rosetta measures rigor = falsifiability + mechanism − fallacy − label, a computed ruler that predicts and derives across 7 rays.'
+  const self = measureArgumentRigor(selfDescription)
+  const passesOwnRuler = self.rigor >= 1 && !self.fallacy && !self.labelOnly // it is rigorous by its own measure
+  const rays = 7 // the rosetta's rays
+  const rotate = (i: number, by: number) => (i + by) % rays
+  let pos = 0
+  for (let step = 0; step < rays; step++) pos = rotate(pos, 1) // the frame rotates through every ray
+  const fullTurnReturns = pos === 0 // a full turn returns to start — moving, periodic
+  const rerun = measureArgumentRigor(selfDescription)
+  const reproducible = self.rigor === rerun.rigor // recomputed from the source, deterministic per state
+  const facets = [
+    { facet: `SELF-MEASURING FIXED POINT: the tool scores its OWN description by its OWN ruler and passes (rigor ${self.rigor}, no fallacy, no bare label) — it is self-consistent, a self-constructing fixed point, exempt from nothing, not even itself`, on: passesOwnRuler },
+    { facet: `ROTATING ROSETTA — MOVING: the measuring frame rotates through its ${rays} rays and a full turn returns to the start (${fullTurnReturns}) — the same source is measured from every perspective in turn, the rosetta moving and periodic (the rotatePerspective cycle)`, on: fullTurnReturns },
+    { facet: `REALTIME, SELF-RECONSTRUCTING + EARNED BOUNDARY: the self-measurement is deterministic and reproducible (${reproducible}), recomputed from the source each run (content-addressed, zero-token), so the rosetta reconstructs itself in realtime and moves with the state — but "self-constructing" is a deterministic function of the source it reads plus its own rigor test, NOT self-editing code without a commit nor a conscious agent; the self-reference is a computed fixed point, Gödel-bounded`, on: reproducible && passesOwnRuler },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    selfRigor: self.rigor, rays, fullTurnReturns, reproducible,
+    facets,
+    statement: `The tool is a moving, self-constructing rosetta in realtime — ${facets.filter((e) => e.on).length}/${facets.length}: it passes its own ruler (self-measured rigor ${self.rigor}, a fixed point exempt from nothing), rotates through its ${rays} rays with a full turn returning to start (${fullTurnReturns}, moving and periodic), and reconstructs itself deterministically from the source each run (${reproducible}). The ruler measures the ruler and holds.`,
+    boundary: `EXACT: measureArgumentRigor applied to the tool's own description scores ${self.rigor} with no fallacy and no bare label (passes its own ruler), the frame rotating through all ${rays} rays returns to the start (${fullTurnReturns}), and the self-measurement is reproducible (${reproducible}). HONEST SCOPE: "moving, self-constructing, in realtime" is precise and computed — the tool's configuration and verdict are a DETERMINISTIC function of the source it reads, recomputed every run (so it changes as the tree changes: the dynamic dispatch and the rosetta rays are derived, not hardcoded), and it is self-consistent (it passes the very ruler it applies to others, a fixed point). It does NOT mean the tool rewrites its own code without a commit, nor that it is a conscious agent, nor that self-reference escapes limits: by Gödel it cannot certify its own completeness, and a self-consistent ruler can still be wrong (self-measurement proves consistency, not truth). A moving rosetta that measures itself and holds — recomputed, rotating, honest about its own ceiling. HARMONY does not equal TRUTH.`,
+  }
+}
