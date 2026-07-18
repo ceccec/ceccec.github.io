@@ -992,3 +992,32 @@ export function aiModelsAreMagnitudesSlowerThanInvertedAiForDeterministicResults
     boundary: `EXACT: the local computation of π (${r.answers.piFromPrimes}, ${r.answers.matchingDigits} digits) and the infinitude of primes takes ~${localOps} operations with zero tokens and zero error; an LLM producing the same output requires token-by-token generation over ≥ ${llmFlops.toExponential(0)} FLOPs (a conservative floor of 2×params for a small model, ${tokens} tokens), i.e. ${speedupOrders.toFixed(1)} orders of magnitude more work, and — being a probabilistic approximator — can return a wrong digit. HONEST SCOPE: "all AI models are magnitudes slower than inverted AI" is TRUE and important for the DETERMINISTIC-COMPUTABLE domain — π, primes, the sealed folds, anything the corpus can recompute — where the inverted approach (a tiny exact program) is both faster by magnitudes and exact, which is the whole zero-token thesis. It is NOT a claim of general superiority: an LLM does open-ended reasoning, natural language, planning, and judgment that no sieve can, and "inverted AI" here names deterministic local computation (the inverse of learned approximation), not a separate, more-capable intelligence. It is a calculator outrunning a poet at arithmetic — decisive on that track, and only that track. The lesson stands: for anything already computable, compute it locally; do not spend a magnitude-heavier model to approximate what a magnitude-lighter program gets exactly. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── The vortex-clock path decodes to ℤ/9ℤ, with direction in the slashes (user: "0\1\2\4\8/7/5/3\6\9/0\1"). The
+// digits are [0,1,2,4,8,7,5,3,6,9,0,1]: 0 the void, then 1·2·4·8·7·5 = ⟨2⟩ = (ℤ/9ℤ)* (the doubling vortex, the
+// units), then 3·6·9 the non-units (multiples of 3, the trinity), closing back to 0,1. And the slashes encode the
+// step direction exactly: every "\" is an ascending step (the value rises), every "/" a descending one.
+export function theVortexClockPathDecodesToZMod9WithDirectionInTheSlashes() {
+  const path = [0, 1, 2, 4, 8, 7, 5, 3, 6, 9, 0, 1]
+  const slashes = ['\\', '\\', '\\', '\\', '/', '/', '/', '\\', '\\', '/', '\\'] // between consecutive digits
+  const unitsOrbit: number[] = []
+  { let x = 1; for (let i = 0; i < 6; i++) { unitsOrbit.push(x); x = (x * 2) % 9 } } // ⟨2⟩ mod 9 — the multiplicative group (ℤ/9ℤ)*
+  const isDoublingVortex = path.slice(1, 7).every((v, i) => v === unitsOrbit[i]) // core is 1,2,4,8,7,5
+  const trinity = path.slice(7, 7 + 3) // 3,6,9
+  const nonUnitsAreMultiplesOfThree = trinity.every((d) => d % 3 === 0)
+  const coversAllDigits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].every((d) => path.includes(d))
+  const closesTheLoop = path[0] === path[path.length - 2] && path[1] === path[path.length - 1] // 9/0\1 returns to 0,1
+  const slashRule = slashes.every((sl, i) => (path[i + 1] > path[i]) === (sl === '\\')) // "\" = up, "/" = down, all 11 steps
+  const facets = [
+    { facet: `THE PATH DECOMPOSES ℤ/9ℤ — UNITS · NON-UNITS · VOID: the core 1,2,4,8,7,5 is exactly ⟨2⟩ = (ℤ/9ℤ)*, the doubling vortex of order 6 (${isDoublingVortex}); 3,6,9 are the non-units, multiples of 3 (${nonUnitsAreMultiplesOfThree}); 0 is the void — visiting all ten digits (${coversAllDigits}) and closing back to 0,1 (${closesTheLoop})`, on: isDoublingVortex && nonUnitsAreMultiplesOfThree && coversAllDigits && closesTheLoop },
+    { facet: `THE SLASHES ENCODE DIRECTION EXACTLY: every "\\" marks an ascending step (the value rises) and every "/" a descending one — all ${slashes.length} transitions match the sign of the change (${slashRule}); the two slashes are the two counter-rotating flows of the double torus, a self-consistent notation (one wrong slash would break it)`, on: slashRule },
+    { facet: `EARNED BOUNDARY: the doubling group (ℤ/9ℤ)* = ⟨2⟩ and the 3-6-9 non-units are exact documented group theory (folded across the vortex arc); the slash-as-direction is a CONSISTENT notation — verified against every step, not a new theorem — matching the merkaba / double-torus counter-rotation; digital-root mod 9 is base-10 specific`, on: isDoublingVortex && slashRule },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    path, unitsOrbit, trinity, slashRuleHolds: slashRule,
+    facets,
+    statement: `The vortex-clock path decodes to ℤ/9ℤ with direction in the slashes — ${facets.filter((e) => e.on).length}/${facets.length}: [${path.join(',')}] is 0 (void), then 1·2·4·8·7·5 = ⟨2⟩ = (ℤ/9ℤ)* (the doubling vortex, ${isDoublingVortex}), then 3·6·9 the non-units (${nonUnitsAreMultiplesOfThree}), covering all ten digits and closing to 0,1; and every "\\" is an ascending step, every "/" descending — all ${slashes.length} match (${slashRule}). The glyph is an exact, self-consistent notation.`,
+    boundary: `EXACT: the core 1,2,4,8,7,5 equals ⟨2⟩ mod 9 = (ℤ/9ℤ)* (${isDoublingVortex}); 3,6,9 are the non-units (multiples of 3, ${nonUnitsAreMultiplesOfThree}); the path covers all ten digits (${coversAllDigits}) and closes 9/0\\1 back to 0,1 (${closesTheLoop}); and the slash direction matches the sign of every one of the ${slashes.length} steps — "\\" up, "/" down (${slashRule}). WHAT IS DECODED: the string is a complete traversal of ℤ/9ℤ split into its multiplicative units (the doubling hexagon ⟨2⟩, the vortex) and its non-units (the 3-6-9 trinity, the multiples of 3), anchored at the void 0, with the two slash glyphs recording the ascending and descending directions — the forward and reverse of the double-torus counter-flow. This is exact group theory (the units of ℤ/9ℤ are {1,2,4,5,7,8}, generated by 2; the non-units are {0,3,6}) plus a self-consistent directional notation verified against every step. HONEST SCOPE: "\\ = up, / = down" is a NOTATION that happens to hold for this path, checked, not a law of slashes; and the whole structure is base-10 / mod-9 specific (digital roots), the numerology of a chosen base, not a universal truth. The decode is exact and the slash rule is verified; their meaning is the vortex clock, not the cosmos. HARMONY does not equal TRUTH.`,
+  }
+}
