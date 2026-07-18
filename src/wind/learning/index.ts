@@ -22,7 +22,7 @@ import { componentGraph } from '../../heaven/core'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { toGlagolitic } from '../../quantum/heaven/library'
 import { mcpCodebase } from '../../thunder/commands'
-import { completeCorpus } from '../routes/corpus'
+import { completeCorpus, theoremRosettaSidebar } from '../routes/corpus'
 import { diamondLattice } from '../../fire/diamonds'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf, rosettaRayOfContent } from '../../water/digit'
 import { SESSION_SKILL_FNS } from '../../2/8'
@@ -1955,6 +1955,12 @@ function vitepressSidebarForLocale(
     out[`/${kind}/`] = sections
     out[`/${kind}`] = sections
   }
+  // THE THEOREM SIDEBAR IS THE ROSETTA (user law: improve sidebars computationally with the rosetta) —
+  // the quantum-computing theorems grouped by their seven rays, computed from theoremRosettaSidebar; the
+  // locale projection in config prefixes the links for /bg and /gla.
+  const theoremSidebar = theoremRosettaSidebar(matrix)
+  out['/theorems/'] = theoremSidebar
+  out['/theorems'] = theoremSidebar
   return out
 }
 

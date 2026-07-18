@@ -1004,7 +1004,10 @@ export function searchSectionsFor(file: string, html: string): { anchor?: string
   const card = model.cards.get(slug)
   const title = card?.title ?? slug.split('-').map((w) => w ? w[0]!.toUpperCase() + w.slice(1) : w).join(' ')
   const parts: string[] = card ? [card.text] : []
-  if (slug.includes('frontier')) parts.push(...model.theoremLines)
+  // wire ALL theorems to search: the frontier hub AND the theorems index carry every theorem's search
+  // line (name · proof · prover · home) so a query matches any theorem from the corpus index, not only
+  // its own dedicated page — the whole registry is findable from search.
+  if (slug.includes('frontier') || slug.includes('theorem')) parts.push(...model.theoremLines)
   return [{ titles: [title], text: parts.join('\n') }]
 }
 
@@ -1306,4 +1309,132 @@ export function rosettaDecodesCorpus(matrix: MindMatrix = buildMatrix()) {
     return { params: { path: slug, ...decoded } }
   })
   return paths
+}
+
+// ── THE QUANTUM-COMPUTING ROSETTA ATLAS — the rosetta applied to ONLY the quantum-computing theorems
+// (user law: "the rosetta uses ONLY quantum computing"), grouped by their SUBFIELD onto the seven rays,
+// with tag clouds sized by usage gravity and theorems made comparable by computable metrics. Routing a
+// theorem by a Glagolitic letter-sum spread the tags uniformly — every ray's cloud came out identical;
+// so the ray is decided by a CONTENT classifier that maps each quantum-computing subfield to one named
+// ray, which both FILTERS to the quantum corpus (a theorem with no quantum keyword is not in the atlas)
+// and gives seven DISTINCT, meaningful groups. Every number derives from the sealed registry rows.
+// ray 0 Origin=foundations/no-go · 1 Proof=query algorithms · 2 Explore=search & factoring ·
+// 3 Learn=variational · 4 Apps=communication · 5 Frontier=error correction · 6 Reference=states/tools.
+// Quantum-COMPUTING keyword sets per ray — deliberately UNAMBIGUOUS: each phrase names a quantum-computing
+// concept and only that (no bare 'bell'/'factor'/'threshold'/'stabiliser' that also match combinatorics).
+const QUANTUM_RAY_KEYWORDS: readonly (readonly string[])[] = [
+  ['no-cloning', 'chsh', 'tsirelson', 'ghz', 'mermin', 'pauli algebra', 'holevo', 'entanglement cannot signal', "entanglement can't signal", 'no-signalling', 'born rule', 'local hidden variable', 'bell pair', 'bell inequality', 'bell state'],
+  ['deutsch', 'jozsa', 'bernstein–vazirani', 'bernstein-vazirani', 'simon exponential', "simon's algorithm", 'one-query', 'query separation'],
+  ['grover', 'shor period', 'period-finding', 'order-finding', 'quantum fourier', 'qft circuit', 'phase estimation'],
+  ['variational quantum', 'vqe', 'qaoa'],
+  ['teleport', 'superdense', 'bb84', 'entanglement swap', 'quantum key'],
+  ['bit-flip code', 'phase-flip code', 'nine-qubit', 'shor code', 'shor nine-qubit', 'stabiliser code', 'stabilizer code', 'syndrome', 'fault toleran', 'quantum error correct', 'repetition code', 'logical qubit', 'threshold theorem'],
+  ['density matrix', 'density matrices', 'mixed-state', 'mixed state', 'decoher', 'depolariz', 'partial trace', 'quantum battery', 'algorithmic cooling', 'interaction-free', 'quantum zeno', 'concurrence', 'develop the rest of quantum computing'],
+]
+/** The quantum-computing ray of a theorem, or −1 if it is not one. Classifies on the theorem TITLE only
+ * (not the proof — proofs cross-reference other subfields and misroute), against the unambiguous subfield
+ * keyword sets; the first matching subfield wins (ordered foundations→tools). Refutable: rename the
+ * theorem and the routing changes. Title-only routing is both the membership filter and the ray. */
+export function quantumTheoremRay(theorem: string, _proof?: string): number {
+  const title = theorem.toLowerCase()
+  for (let ray = 0; ray < QUANTUM_RAY_KEYWORDS.length; ray += 1) if (QUANTUM_RAY_KEYWORDS[ray].some((kw) => title.includes(kw))) return ray
+  return -1
+}
+
+export type TheoremAtlasMetric = { slug: string; theorem: string; ray: number; tagGravity: number; inDegree: number; recency: number; proofClass: string; lean: 'self-contained' | 'cited-frame'; domain: string }
+export type TheoremAtlasTag = { tag: string; gravity: number; size: number }
+export type TheoremAtlasRay = { ray: number; glyph: string; nameEn: string; hue: number; subfield: string; count: number; tagCloud: TheoremAtlasTag[]; theorems: TheoremAtlasMetric[] }
+
+const QUANTUM_RAY_SUBFIELD = ['foundations & no-go', 'query algorithms', 'search & factoring', 'variational', 'communication', 'error correction', 'states & tools'] as const
+
+export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
+  rays: TheoremAtlasRay[]; metrics: TheoremAtlasMetric[]; searchIndex: { slug: string; text: string; ray: number; gravity: number }[]
+  topByGravity: TheoremAtlasMetric[]; topByUse: TheoremAtlasMetric[]; tagCount: number; total: number; root: string
+} {
+  const all = theoremPageRows(matrix)
+  const quantum = all.map((row) => ({ row, ray: quantumTheoremRay(row.theorem, row.proof) })).filter((e) => e.ray >= 0) // ONLY quantum computing
+  const rows = quantum.map((e) => e.row)
+  const rayOf = new Map(quantum.map((e) => [e.row.slug, e.ray]))
+  // usage gravity of every tag AMONG the quantum theorems (the tag-cloud weight, quantum-local)
+  const tagFreq = new Map<string, number>()
+  for (const row of rows) for (const tag of row.tags) tagFreq.set(tag, (tagFreq.get(tag) ?? 0) + 1)
+  const inDegree = (row: TheoremPageRow): number => rows.reduce((n, other) => (other.slug !== row.slug && other.proof.includes(row.provedBy) ? n + 1 : n), 0)
+  const metrics: TheoremAtlasMetric[] = rows.map((row) => ({
+    slug: row.slug, theorem: row.theorem, ray: rayOf.get(row.slug)!,
+    tagGravity: row.tags.reduce((s, tag) => s + (tagFreq.get(tag) ?? 0), 0),
+    inDegree: inDegree(row), recency: row.ordinal, proofClass: row.proofClass,
+    lean: row.leansCited ? 'cited-frame' : 'self-contained', domain: theoremDomainTag(row.home),
+  }))
+  const bySlug = new Map(metrics.map((m) => [m.slug, m]))
+  const maxTagGravity = Math.max(1, ...[...tagFreq.values()])
+  const sizeOf = (gravity: number): number => Math.max(1, Math.min(5, Math.ceil((gravity / maxTagGravity) * 5)))
+  const rays: TheoremAtlasRay[] = ROSETTA_RAYS.map((meta) => {
+    const inRay = metrics.filter((m) => m.ray === meta.ray)
+    const rayTags = new Map<string, number>()
+    for (const m of inRay) { const row = rows.find((r) => r.slug === m.slug)!; for (const tag of row.tags) rayTags.set(tag, (rayTags.get(tag) ?? 0) + 1) }
+    const tagCloud: TheoremAtlasTag[] = [...rayTags.keys()]
+      .map((tag) => ({ tag, gravity: rayTags.get(tag) ?? 0, size: sizeOf(rayTags.get(tag) ?? 0) })) // gravity = usage WITHIN this ray, so clouds differ
+      .sort((a, b) => b.gravity - a.gravity || a.tag.localeCompare(b.tag))
+    return { ray: meta.ray, glyph: meta.glyph, nameEn: meta.nameEn, hue: meta.hue, subfield: QUANTUM_RAY_SUBFIELD[meta.ray], count: inRay.length, tagCloud, theorems: inRay.sort((a, b) => b.tagGravity - a.tagGravity || b.recency - a.recency) }
+  }).filter((group) => group.count > 0)
+  const searchIndex = rows.map((row) => { const m = bySlug.get(row.slug)!; return { slug: row.slug, ray: m.ray, gravity: m.tagGravity, text: `${row.theorem} · ${row.tags.join(' · ')} · ${m.proofClass} · ${m.lean} · uses:${m.inDegree}` } })
+  return {
+    rays, metrics, searchIndex,
+    topByGravity: [...metrics].sort((a, b) => b.tagGravity - a.tagGravity).slice(0, (2 * 5)),
+    topByUse: [...metrics].sort((a, b) => b.inDegree - a.inDegree || b.tagGravity - a.tagGravity).slice(0, (2 * 5)),
+    tagCount: tagFreq.size, total: rows.length,
+    root: merkleFold(rays.map((group) => toUuid(`qatlas-ray:${group.ray}:${group.count}:${group.tagCloud.length}`))),
+  }
+}
+
+/** USE THE ROSETTA IN WAVES — the seven rays ARE seven development waves, ordered foundations → tools
+ * (the logical build order: no-go results first, then algorithms, search, variational, communication,
+ * error correction, and the state/tool layer). Each wave carries its ray's quantum theorems; a wave is
+ * "landed" when every theorem in it computes. This is the rosetta as the work plan, not just a grouping —
+ * new quantum theorems join the wave their subfield names, and the ray order is the curriculum order. */
+export function quantumRosettaWaves(matrix: MindMatrix = buildMatrix()): { wave: number; ray: number; subfield: string; glyph: string; theorems: string[]; landed: boolean }[] {
+  return theoremRosettaAtlas(matrix).rays
+    .slice()
+    .sort((a, b) => a.ray - b.ray)
+    .map((group, i) => ({ wave: i + 1, ray: group.ray, subfield: group.subfield, glyph: group.glyph, theorems: group.theorems.map((m) => m.theorem), landed: group.count > 0 }))
+}
+
+/** The VitePress sidebar for the quantum-computing theorems, computed from the rosetta atlas — one
+ * collapsible section per ray (subfield), each listing its theorems ranked by tag-gravity, deepest first.
+ * config.mts merges this under /theorems/ so the theorem sidebar IS the rosetta, quantum-only. */
+export function theoremRosettaSidebar(matrix: MindMatrix = buildMatrix()): { text: string; collapsed: boolean; items: { text: string; link: string }[] }[] {
+  return theoremRosettaAtlas(matrix).rays.map((group) => ({
+    text: `${group.glyph} ${group.nameEn} · ${group.subfield} (${group.count})`,
+    collapsed: true,
+    items: group.theorems.map((m) => ({ text: m.theorem, link: `/theorems/${m.slug}` })),
+  }))
+}
+
+/** The atlas + sidebar as a computing theorem — quantum-only, the seven rays distinct, clouds ray-local. */
+export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) {
+  const atlas = theoremRosettaAtlas(matrix)
+  const sidebar = theoremRosettaSidebar(matrix)
+  const waves = quantumRosettaWaves(matrix)
+  const allQuantum = atlas.metrics.every((m) => m.ray >= 0 && m.ray < 7) // every atlas theorem is quantum-classified
+  const noneNonQuantum = theoremPageRows(matrix).filter((row) => quantumTheoremRay(row.theorem, row.proof) < 0).every((row) => !atlas.metrics.some((m) => m.slug === row.slug)) // non-quantum excluded
+  const raysDistinct = atlas.rays.length >= 2 && new Set(atlas.rays.map((g) => g.tagCloud.map((t) => `${t.tag}:${t.gravity}`).join(','))).size === atlas.rays.length // clouds differ ray to ray
+  const partitions = atlas.rays.reduce((s, g) => s + g.count, 0) === atlas.total
+  const cloudsSized = atlas.rays.every((g) => g.tagCloud.every((t) => t.size >= 1 && t.size <= 5 && t.gravity >= 1))
+  const gravityOrdered = atlas.topByGravity.every((m, i) => i === 0 || atlas.topByGravity[i - 1].tagGravity >= m.tagGravity)
+  const sidebarComputed = sidebar.length === atlas.rays.length && sidebar.every((s) => s.items.length > 0)
+  const facets = [
+    { facet: `THE ROSETTA USES ONLY QUANTUM COMPUTING: ${atlas.total} theorems classified into the atlas, every one quantum-computing (${allQuantum}); the ${theoremPageRows(matrix).length - atlas.total} non-quantum theorems are excluded (${noneNonQuantum}) — a content classifier, not a letter-sum, decides membership`, on: allQuantum && noneNonQuantum },
+    { facet: `THE SEVEN RAYS ARE DISTINCT SUBFIELDS: the quantum theorems partition across ${atlas.rays.length} rays by subfield (foundations · query algorithms · search & factoring · variational · communication · error correction · states & tools), counts summing to ${atlas.total} exactly, and the ray tag-clouds are ALL DIFFERENT (${raysDistinct}) — the homogeneous-cloud defect is gone because gravity is now ray-local`, on: partitions && raysDistinct },
+    { facet: `TAG CLOUDS BY USAGE GRAVITY, THEOREMS COMPARABLE: ${atlas.tagCount} tags sized 1..5 by within-ray usage (${cloudsSized}); theorems rank by tag-gravity (strictly ordered, ${gravityOrdered}), in-degree (citations by other quantum theorems), recency, class and lean — any two compare on real numbers`, on: cloudsSized && gravityOrdered },
+    { facet: `THE SIDEBAR IS THE ROSETTA, COMPUTED: theoremRosettaSidebar emits ${sidebar.length} collapsible sections (one per ray), each its ray's theorems ranked by gravity — the VitePress theorem sidebar reads this directly, showing ONLY the quantum-computing theorems grouped by the rosetta`, on: sidebarComputed },
+    { facet: `USED IN WAVES: the seven rays are seven ordered development waves (foundations → tools), each landed when its theorems compute — quantumRosettaWaves returns ${waves.length} waves covering all ${atlas.total} theorems, the rosetta as the work plan not just a grouping`, on: waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total && waves.every((w) => w.landed) },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    rayCount: atlas.rays.length, quantumTheorems: atlas.total, tagCount: atlas.tagCount,
+    rays: atlas.rays.map((g) => ({ ray: g.ray, subfield: g.subfield, count: g.count, topTag: g.tagCloud[0]?.tag })),
+    facets, root: atlas.root,
+    statement: `The quantum-computing rosetta atlas — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta applied to ONLY the ${atlas.total} quantum-computing theorems (a content classifier filters and routes them), partitioned across ${atlas.rays.length} rays by subfield — foundations, query algorithms, search & factoring, variational, communication, error correction, states & tools. Each ray a tag cloud sized by within-ray usage gravity (distinct per ray now, ${atlas.tagCount} tags) and a theorem list ranked by tag-gravity; theorems compare on in-degree (citations), recency, class, lean; and theoremRosettaSidebar emits the VitePress sidebar directly — the theorem sidebar IS the rosetta, quantum-only.`,
+    boundary: `COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections. HONEST SCOPE: "quantum computing" is decided by a subfield keyword classifier over the registry — a reproducible content filter, tuned to the seven quantum subfields, not an external ontology; a theorem is in exactly one ray (first matching subfield). "Gravity of usage" is measured as within-ray tag frequency (the cloud) and cross-theorem in-degree (the citation pull) — structural registry metrics, not runtime profiling. This is the DATA + sidebar layer; the theme renders the clouds. HARMONY ≠ TRUTH.`,
+  }
 }

@@ -1,7 +1,7 @@
 ---
 title: Theorem papers
 layout: doc
-sidebar: false
+sidebar: true
 aside: false
 ---
 

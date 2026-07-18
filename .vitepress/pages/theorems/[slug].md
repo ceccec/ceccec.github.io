@@ -1,6 +1,6 @@
 ---
 layout: doc
-sidebar: false
+sidebar: true
 aside: false
 ---
 
