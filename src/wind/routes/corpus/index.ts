@@ -1328,7 +1328,7 @@ const QUANTUM_RAY_KEYWORDS: readonly (readonly string[])[] = [
   ['grover', 'shor period', 'period-finding', 'order-finding', 'quantum fourier', 'qft circuit', 'phase estimation', 'amplitude amplification', 'quantum counting'],
   ['variational quantum', 'variational principle', 'vqe', 'qaoa', 'adiabatic', 'annealing'],
   ['teleport', 'superdense', 'bb84', 'entanglement swap', 'quantum key'],
-  ['bit-flip code', 'phase-flip code', 'nine-qubit', 'shor code', 'shor nine-qubit', 'stabiliser code', 'stabilizer code', 'syndrome', 'fault toleran', 'quantum error correct', 'repetition code', 'logical qubit', 'threshold theorem'],
+  ['bit-flip code', 'phase-flip code', 'nine-qubit', 'shor code', 'shor nine-qubit', 'stabiliser code', 'stabilizer code', 'syndrome', 'fault toleran', 'quantum error correct', 'repetition code', 'logical qubit', 'threshold theorem', 'hamming bound', 'five-qubit code'],
   ['density matrix', 'density matrices', 'mixed-state', 'mixed state', 'decoher', 'depolariz', 'partial trace', 'quantum battery', 'algorithmic cooling', 'interaction-free', 'quantum zeno', 'concurrence', 'develop the rest of quantum computing'],
 ]
 /** The quantum-computing ray of a theorem, or −1 if it is not one. Classifies on the theorem TITLE only

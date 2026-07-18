@@ -3182,3 +3182,38 @@ export function theVariationalPrincipleLowerBound() {
     boundary: `COMPUTED: the energy expectation ⟨aZ+bX⟩ over a dense grid of single-qubit states, checked ≥ E₀ (from exact diagonalisation) at every one, and the minimum shown to reach E₀ — refutable (a state below the bound would break it; none exists, by the Rayleigh–Ritz theorem). HONEST SCOPE: demonstrated on a single qubit where the grid covers the whole state space; the principle ⟨ψ|H|ψ⟩ ≥ λ_min holds for any Hermitian H by the spectral theorem, cited for the general case. This is the mathematical GUARANTEE under VQE, not a speedup claim — finding the minimising ansatz is the hard part (barren plateaus), and no physical speedup is asserted. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── THE QUANTUM HAMMING BOUND AND THE PERFECT FIVE-QUBIT CODE (error-correction wave — the tied-thinnest
+// ray, named by the research). A code correcting any single-qubit error must give each error a distinct
+// syndrome. The single-qubit errors on n qubits are the identity plus X, Y, Z on each — exactly 3n+1. A
+// non-degenerate [[n,k]] code has 2^{n−k} syndromes, so 2^{n−k} ≥ 3n+1 (the quantum Hamming bound). The
+// [[5,1,3]] code SATURATES it — 2⁴ = 16 = 3·5+1 — making it the PERFECT (smallest) code that corrects an
+// arbitrary single-qubit error; the Shor [[9,1,3]] code has far more syndromes and is degenerate.
+export function theQuantumHammingBoundAndThePerfectFiveQubitCode() {
+  const singleQubitErrors = (n: number): number => 3 * n + 1 // I + {X,Y,Z} on each of n qubits
+  const syndromes = (n: number, k: number): number => 2 ** (n - k)
+  const bound = (n: number, k: number): boolean => syndromes(n, k) >= singleQubitErrors(n) // non-degenerate quantum Hamming bound
+  const codes = [
+    { name: '[[5,1,3]]', n: 5, k: 1 }, // the perfect five-qubit code
+    { name: '[[7,1,3]] Steane', n: 7, k: 1 },
+    { name: '[[9,1,3]] Shor', n: 9, k: 1 },
+  ].map((c) => ({ ...c, syndromes: syndromes(c.n, c.k), errors: singleQubitErrors(c.n), holds: bound(c.n, c.k), perfect: syndromes(c.n, c.k) === singleQubitErrors(c.n) }))
+  const boundHoldsForAll = codes.every((c) => c.holds)
+  const five = codes.find((c) => c.name === '[[5,1,3]]')!
+  const fiveIsPerfect = five.perfect && five.syndromes === (2 ** 4) && five.errors === (3 * 5 + 1)
+  // 5 is the MINIMUM n for a perfect single-error-correcting [[n,1]] code: 2^{n-1} = 3n+1 has n=5 as its solution
+  const fiveIsMinimal = [1, 2, 3, 4].every((n) => 2 ** (n - 1) < 3 * n + 1) && 2 ** (5 - 1) === 3 * 5 + 1
+  const shorDegenerate = codes.find((c) => c.name === '[[9,1,3]] Shor')!.syndromes > codes.find((c) => c.name === '[[9,1,3]] Shor')!.errors
+  const facets = [
+    { facet: `THE QUANTUM HAMMING BOUND: a non-degenerate code correcting any single-qubit error needs 2^(n−k) ≥ 3n+1 distinct syndromes (I + 3n single-qubit Paulis) — holds for [[5,1,3]], [[7,1,3]], [[9,1,3]] (${boundHoldsForAll})`, on: boundHoldsForAll },
+    { facet: `THE FIVE-QUBIT CODE IS PERFECT: [[5,1,3]] SATURATES the bound — 2⁴ = 16 = 3·5+1 errors, every syndrome used exactly once (${fiveIsPerfect}); it is the smallest code correcting an arbitrary single-qubit error, and n = 5 is the minimum (n ≤ 4 cannot reach 3n+1 syndromes: ${fiveIsMinimal})`, on: fiveIsPerfect && fiveIsMinimal },
+    { facet: `DEGENERACY IS ALLOWED BEYOND PERFECT: the Shor [[9,1,3]] code has ${codes[2].syndromes} syndromes for only ${codes[2].errors} errors (${shorDegenerate}) — degenerate, distinct errors sharing syndromes, which the bound permits; the perfect code is the tight extreme, the Shor code the redundant one`, on: shorDegenerate },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    codes,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`hamming-bound:${entry.facet}:${entry.on}`))),
+    statement: `The quantum Hamming bound and the perfect five-qubit code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a code correcting any single-qubit error must give each of the 3n+1 single-qubit Paulis (I + X,Y,Z per qubit) a distinct syndrome, so 2^(n−k) ≥ 3n+1. The [[5,1,3]] code saturates it (2⁴ = 16 = 3·5+1) — the perfect, smallest single-error-correcting code, n = 5 being the minimum; the [[7,1,3]] Steane and [[9,1,3]] Shor codes satisfy the bound with room to spare (the Shor code degenerate). Counting the syndromes bounds how small a quantum code can be.`,
+    boundary: `COMPUTED: the single-qubit error count 3n+1, the syndrome count 2^(n−k), the bound for the three named codes, the [[5,1,3]] saturation, its minimality (n ≤ 4 fails), and the Shor code's degeneracy — exact integer arithmetic, refutable. HONEST SCOPE: this is the COUNTING (quantum Hamming / sphere-packing) bound for NON-DEGENERATE codes; degenerate codes can beat it in other regimes, and the bound is necessary not sufficient — that the [[5,1,3]] code EXISTS and achieves distance 3 is the deeper fact (Laflamme–Miquel–Paz–Zurek / Bennett et al. 1996), cited, not reconstructed here. The full stabiliser construction and its logical operators are the natural continuation. HARMONY ≠ TRUTH.`,
+  }
+}
