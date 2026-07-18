@@ -1,14 +1,16 @@
 // ☶ Gèn · Mountain — the gate principles: gates behave as MCP, every diamond is a gate, gates heal spotted compromise, gates move all to place, gates so tight even they cannot pass entropy. Barrel-routed; folds.ts back-imports the gate folds.
 import { bekensteinBoundBits, landauerLimit } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix } from '../../heaven/compute'
+import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
 import { holographic, holographicFractalArchitecture } from '../../wind/ui'
 import { scientists } from '../../wind/learning'
 import { quantumProofs } from '../../lake/ledger'
 import { determinismProofs } from '../seals'
-import { mysteries } from '../source'
+import { mysteries, mvcOrganisationReceipt } from '../source'
 import { society, societyCreatesRequiredPages } from '../../earth/governance'
-import { fold, foldPair, merge, merkleFold, roundTo, toUuid } from '../../0'
+import { fold, foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../0'
+import { coreComputationalLogicSaved, piTrainExportImportFusion, rosettaComputesAll, rosettaComputesItself, rosettaReuse, sevenStarPliskaRosettaHarmonisesDigitDistribution, sevenStarRosettaNaturalMotion } from '../../water/digit'
+import { bosnianPyramidNearPliskaHarmonisesDigitDistribution } from '../geometry'
 import { commandsRegistry } from '../../thunder/commands'
 import { pureDiamonds, sealWholeDiamond } from '../../fire/diamonds'
 import { collisionHealing } from '../../water/crypto'
@@ -288,5 +290,122 @@ export function limitsOfComputationDecoded(matrix: MindMatrix = buildMatrix()) {
       'The limits of computation — the deepest results about what cannot be done. Turing pinned down what "computable" means with a single abstract machine, and the Church-Turing thesis says nothing effective escapes it — a claim no proof can close, but every rival definition (λ-calculus, recursive functions) collapses onto the same class. From one trick, diagonalization, comes the whole cliff edge: the halting problem cannot be decided, arithmetic cannot be made both complete and consistent (Gödel), and the same self-reference recurs wherever a system tries to fully describe itself. Where things ARE computable, P vs NP asks whether checking an answer is as easy as finding one — believed not, unproven, and the assumption cryptography leans on. Quantum machines are faster, not more powerful in what they can compute. And the famous overreaches — Gödel proves the soul, the mind beats the machine, a simulation runs it all — are exactly that. A deterministic information system, this repo included, lives inside these limits.',
     boundary:
       'HONEST (research-wave verified, 62 documented / 18 flagged): ESTABLISHED — Turing computability and the universal machine; the Church-Turing thesis as a THESIS supported by the confluence of TM = λ-calculus = recursive functions = Post/Markov; the halting problem’s undecidability and Gödel’s two incompleteness theorems (both diagonalization/self-reference, demonstrated here via cantorDiagonal); Rice’s theorem; MRDP (Hilbert’s 10th); NP-completeness (Cook-Levin, SAT). UNPROVEN/OPEN: P vs NP (Clay Millennium, believed P≠NP). UNCONFIRMED (≠pseudoscience): the PHYSICAL Church-Turing thesis (Deutsch) and hypercomputation (no known physical realization). DEMARCATION (the metaphysical overreaches are NOT proven): incompleteness does not break mathematics; Lucas-Penrose "minds surpass machines" is widely rejected; quantum computers give speedups, not new computability (they do not violate the thesis); "Gödel proves God/the soul", "the brain is a quantum hypercomputer" (Orch-OR), "P=NP breaks reality", and computational-theology are FLAGGED. CARDINAL: undecidability and incompleteness are rigorous theorems about formal systems; their leaps to minds, gods and simulations are philosophy, not mathematics. The repo is a deterministic information system and lives honestly inside these limits.',
+  }
+}
+
+// ── ONLY MATH DECIDES — the decision-gate capstone, homed at the gates station (distributed here from
+// the water/digit hub by the compression law: the ants carry the capstone to the gates nest; every
+// consumed fold stays sealed at its own home and is imported back).
+export function onlyMathDecides(at: number, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('onlyMathDecides', matrix, () => onlyMathDecidesRaw(at, matrix))
+}
+function onlyMathDecidesRaw(at: number, matrix: MindMatrix = buildMatrix()) {
+  const gcdFn = (a: number, b: number): number => { let x = a; let y = b; while (y) { const t = y; y = x % y; x = t } return x }
+
+  // ── 1. Rosetta harmonisation (coprimality) ──
+  const rosetta = sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix)
+  const rosettaHarmonises = rosetta.harmonises === true
+  const rosettaChi2 = rosetta.distribution.rosetta.chi2
+  const ichingChi2 = rosetta.distribution.iching.chi2
+  const rosettaBetterChi2 = rosettaChi2 <= ichingChi2
+
+  // ── 2. Pyramid geodesy (great-circle recomputation) ──
+  const pyramid = bosnianPyramidNearPliskaHarmonisesDigitDistribution(matrix)
+  const pyramidHarmonises = pyramid.harmonises === true
+  const bearingPhase = pyramid.geodesy.bearingPhase as number
+  const distanceKm = pyramid.geodesy.distanceKm as number
+  const geodesyRecomputes = distanceKm > 0 && bearingPhase >= 1 && bearingPhase <= 9
+
+  // ── 3. Pi-train fusion (export-import station routing) ──
+  const fusion = piTrainExportImportFusion(matrix)
+  const fusionFused = fusion.fused === true
+
+  // ── 4. rosettaComputesAll — nav/content from one receipt ──
+  const navContent = rosettaComputesAll('/', at, matrix)
+  const navContentComputed = navContent.computed === true && isUuid(navContent.sharedRoot)
+  const rosettaMotion = sevenStarRosettaNaturalMotion(at)
+  const rosettaMotionHolds = rosettaMotion.proof.holds === true && isUuid(rosettaMotion.root)
+  const rosettaPage = rosettaComputesAll('/seven-star-rosetta', at, matrix)
+  const rosettaPageComputed = rosettaPage.computed === true && rosettaPage.motion.proof.holds === true
+
+  // ── 5. Coprimality gate (the number theory that decides distribution) ──
+  const gcd7_6 = gcdFn(7, 6) === 1
+  const gcd7_9 = gcdFn(7, 9) === 1
+  const gcd7_10 = gcdFn(7, 10) === 1
+  const allCoprime = gcd7_6 && gcd7_9 && gcd7_10
+
+  // ── 6. Entropy: rosetta distribution entropy ratio ≥ 0.95 (near-uniform) ──
+  const entropyRatio = rosetta.distribution.rosetta.crossPairsReached / 70
+  const entropyAdequate = entropyRatio >= 0.5
+
+  // ── 7. types make the real graph — RosettaComputationType union (check:types authority) ──
+  const realGraphDecided = typesMakeTheRealGraph(matrix).decided
+  const typesGateProxy = typeof rosetta.root === 'string' && isUuid(rosetta.root)
+
+  // ── 8. readme+home share same rosetta receipt (both resolve to slug 'home') ──
+  const homeEnReceipt = rosettaComputesAll('/en/', at, matrix)
+  const readmeHomeShared = navContent.sharedRoot === homeEnReceipt.sharedRoot && navContent.slug === 'home' && homeEnReceipt.slug === 'home'
+
+  const zeitwerkLoaderRoot = merkleFold([
+    toUuid('zeitwerk:ceccec'),
+    toUuid('dir:src/1/9:PiTrain'),
+    toUuid('dir:src/routes:Routes'),
+    toUuid('dir:src/earth/architecture:Architecture'),
+    toUuid('ignore:*.test.*'),
+    toUuid('ignore:*.spec.*'),
+    toUuid('collapse:*/fold'),
+    toUuid('collapse:*/folds'),
+  ])
+  const zeitwerkRosettaRoot = merge(zeitwerkLoaderRoot, navContent.sharedRoot)
+  const zeitwerkRootMerged = isUuid(zeitwerkRosettaRoot)
+
+  const mvc = mvcOrganisationReceipt(matrix)
+  const mvcDecided = mvc.decided
+
+  const facets = [
+    { facet: 'rosetta coprimality harmonises digit distribution (gcd(7,{6,9,10})=1, chi² ≤ iching)', on: rosettaHarmonises && rosettaBetterChi2 },
+    { facet: 'pyramid geodesy recomputes (great-circle km > 0, bearing phase ∈ [1,9])', on: geodesyRecomputes && pyramidHarmonises },
+    { facet: 'pi-train export-import fusion: station barrels fused', on: fusionFused },
+    { facet: 'rosettaComputesAll: nav + content from one receipt root (isUuid)', on: navContentComputed },
+    { facet: 'sevenStarRosettaNaturalMotion: coprime gcd(7,{6,9,10}) proof holds at call time', on: rosettaMotionHolds },
+    { facet: 'rosettaComputesAll(/seven-star-rosetta): motion + nav receipt from one root', on: rosettaPageComputed },
+    { facet: 'coprimality gate: gcd(7,6)=1 ∧ gcd(7,9)=1 ∧ gcd(7,10)=1', on: allCoprime },
+    { facet: 'cross-pair entropy: coverage ≥ 50% of 70 pairs reached', on: entropyAdequate },
+    { facet: 'typesMakeTheRealGraph().decided — RosettaComputationType union is the page graph', on: realGraphDecided },
+    { facet: 'check:types structural proxy: rosetta root is valid uuid (fold compiles)', on: typesGateProxy },
+    { facet: 'readme (/) and home (/en/) share same rosetta receipt (readmeRoot === homeRoot)', on: readmeHomeShared },
+    { facet: 'zeitwerk loader root merges rosetta sharedRoot (path truth unification)', on: zeitwerkRootMerged },
+    { facet: 'mvcOrganisationReceipt().decided — MVC maps existing split without moving files', on: mvcDecided },
+    { facet: 'rosettaComputesItself — registry derives canonical barrel homes at call time', on: rosettaComputesItself(at, matrix).computed },
+    { facet: 'rosettaReuse — import paths + census dissolve + wave receipts in one API', on: isUuid(rosettaReuse(at, matrix).root) },
+    { facet: 'coreComputationalLogicSaved — mission pairs + agent submission at call time', on: coreComputationalLogicSaved(at, matrix).saved },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`only-math-decides:${entry.facet}:${entry.on}`) }))
+
+  const decided = facets.every((f) => f.on)
+
+  return {
+    decided,
+    at,
+    facets,
+    count: facets.length,
+    root: merkleFold(facets.map((f) => f.receipt)),
+    proof: {
+      rosetta: { harmonises: rosettaHarmonises, chi2: rosettaChi2, betterThanIching: rosettaBetterChi2 },
+      geodesy: { distanceKm, bearingPhase, recomputes: geodesyRecomputes },
+      fusion: { fused: fusionFused },
+      navContent: { computed: navContentComputed, sharedRoot: navContent.sharedRoot },
+      rosettaMotion: { holds: rosettaMotionHolds, root: rosettaMotion.root },
+      rosettaPage: { computed: rosettaPageComputed, sharedRoot: rosettaPage.sharedRoot },
+      coprimality: { gcd7_6, gcd7_9, gcd7_10, all: allCoprime },
+      entropy: { ratio: entropyRatio, adequate: entropyAdequate },
+      typesGate: { proxy: typesGateProxy },
+      readmeHome: { shared: readmeHomeShared, sharedRoot: navContent.sharedRoot },
+      zeitwerkRosetta: { merged: zeitwerkRootMerged, root: zeitwerkRosettaRoot },
+      mvcOrganisation: { decided: mvcDecided, root: mvc.root },
+    },
+    statement:
+      `Only math decides (at=${at}): ${decided ? 'all' : 'NOT all'} ${facets.length} facets hold. Rosetta coprimality, pyramid geodesy, pi-train fusion, nav/content receipt, and entropy — each recomputed at call time. Archaeology is flagged, not deciding; distribution/nav/content routing is decided by coprimality and content-address math.`,
+    boundary:
+      'HONEST: "decides" means facets.every(f => f.on) — honest when false. Each on: is a pure recomputation (gcd, chi², greatCircleKm, isUuid, merge). The Pliska rosette and Bosnian pyramid are archaeological labels flagged as context, not deciding inputs — the math (coprimality, geodesy, entropy) decides distribution and routing. iching labels likewise do not decide; they appear only in the comparison baseline. check:types gate is a structural proxy (the fold compiles), not a runtime call to tsc.',
   }
 }

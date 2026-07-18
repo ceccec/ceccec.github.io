@@ -7,7 +7,8 @@ import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
 import { buildMatrix } from '../../../heaven/compute'
 import { isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
+import { conceptCommands } from '../../../heaven/atoms'
 import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1'
 import { cardMovieColorVars, cardMovieSeed } from '../../../thunder/movie/movievars'
 import { plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
@@ -1293,4 +1294,16 @@ export function savingAThoughtIsProseConvertedToProofOrPurged(matrix: MindMatrix
     statement: `Saving a thought is prose converted to proof — else purged — ${facets.filter((e) => e.on).length}/${facets.length}: a saved thought is a fold whose prose rides facets that compute (all ${pipeline.published} published papers are backed by a computing fold); inert prose that computes nothing needs a proof or is mined then purged, the freed space and salvaged ideas feeding new folds. This fold is the definition converted to code: proven by its own facets.`,
     boundary: `The definition is exact and self-demonstrating: it reuses staticProseBecomesPublishedResearchOnlyWhereItComputes (${pipeline.published} papers, all backed by a computing fold), and its OWN facets compute — so it is a thought (the directive) converted to code, proven, not asserted. HONEST SCOPE — what "prose needs proof or purge" means: prose must be backed by a REFUTABLE computation (facets that can go false), the no-prose-in-methods / facets-must-compute law — NOT that natural language is banned: statement and boundary prose survive precisely because they concatenate computed outputs and name the honest scope. And "purge" is honest ONLY after the rosetta of analysts mines the content (in any language), so nothing valuable is lost; the removal feeds new research. HARMONY ≠ TRUTH.`,
   }
+}
+
+// ── Corpus paths decoded by the rosetta — homed at the corpus-routing station (distributed here from
+// the water/digit hub by the compression law; the decoder stays sealed at its home and is imported).
+export function rosettaDecodesCorpus(matrix: MindMatrix = buildMatrix()) {
+  const allPages = [...conceptCommands.map((c) => c.name)]
+  const paths = allPages.map((name) => {
+    const slug = name.replace(/\./g, '-')
+    const decoded = rosettaDecodesUrlPath(`/${name}`, matrix)
+    return { params: { path: slug, ...decoded } }
+  })
+  return paths
 }

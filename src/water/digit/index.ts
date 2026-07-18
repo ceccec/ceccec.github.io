@@ -415,8 +415,6 @@ export function digitSpinesAreTheBreath(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-
-
 // Physical station path: single-digit segments only (0..9). Nesting is legal when each step comes from
 // the sequence — digit d then its additive folder-complement r = 10−d (src/d/r). Void overflow (0,
 // complement 10) stays at src/0 — "10" is not a folder name; the fusion lives in the vault leaf. (The
@@ -2343,15 +2341,6 @@ export function rosettaReuse(at = 0, matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-export function rosettaDecodesCorpus(matrix: MindMatrix = buildMatrix()) {
-  const allPages = [...conceptCommands.map((c) => c.name)]
-  const paths = allPages.map((name) => {
-    const slug = name.replace(/\./g, '-')
-    const decoded = rosettaDecodesUrlPath(`/${name}`, matrix)
-    return { params: { path: slug, ...decoded } }
-  })
-  return paths
-}
 
 const DOCS_DEV_PORT = 5173
 const ROSETTA_PROBE_PATHS = ['/en/foo-bar-baz', '/en/vortex/42', '/bg/test', '/en/home', '/seven-star-rosetta'] as const
@@ -2416,120 +2405,6 @@ export function rosettaComputesResponseForPath(path: string, at = 0, matrix: Min
       `rosettaComputesResponseForPath("${path}"): computationType "${decoded.computationType}" (ray ${decoded.ray}), station ${decoded.station} — path is computed at response time, no static page required; the rosetta receipt is the response. Probe ${probeReceipts.length} random paths via docs:dev (port ${DOCS_DEV_PORT}): ${allProbesCompute ? 'all compute' : 'some failed'}.`,
     boundary:
       'Composes rosettaDecodesUrlPath + rosettaComputesAll into a single response-time proof: any URL path yields a valid uuid root, a defined computationType, and nav+content sharing one root. A 404 is an honest facet (computes=false), not a static file miss. curlExamples are for npm run docs:dev — random paths like /en/foo-bar-baz decode via rosetta ray math and return computed HTML, not static file misses.',
-  }
-}
-
-export function onlyMathDecides(at: number, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('onlyMathDecides', matrix, () => onlyMathDecidesRaw(at, matrix))
-}
-function onlyMathDecidesRaw(at: number, matrix: MindMatrix = buildMatrix()) {
-  const gcdFn = (a: number, b: number): number => { let x = a; let y = b; while (y) { const t = y; y = x % y; x = t } return x }
-
-  // ── 1. Rosetta harmonisation (coprimality) ──
-  const rosetta = sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix)
-  const rosettaHarmonises = rosetta.harmonises === true
-  const rosettaChi2 = rosetta.distribution.rosetta.chi2
-  const ichingChi2 = rosetta.distribution.iching.chi2
-  const rosettaBetterChi2 = rosettaChi2 <= ichingChi2
-
-  // ── 2. Pyramid geodesy (great-circle recomputation) ──
-  const pyramid = bosnianPyramidNearPliskaHarmonisesDigitDistribution(matrix)
-  const pyramidHarmonises = pyramid.harmonises === true
-  const bearingPhase = pyramid.geodesy.bearingPhase as number
-  const distanceKm = pyramid.geodesy.distanceKm as number
-  const geodesyRecomputes = distanceKm > 0 && bearingPhase >= 1 && bearingPhase <= 9
-
-  // ── 3. Pi-train fusion (export-import station routing) ──
-  const fusion = piTrainExportImportFusion(matrix)
-  const fusionFused = fusion.fused === true
-
-  // ── 4. rosettaComputesAll — nav/content from one receipt ──
-  const navContent = rosettaComputesAll('/', at, matrix)
-  const navContentComputed = navContent.computed === true && isUuid(navContent.sharedRoot)
-  const rosettaMotion = sevenStarRosettaNaturalMotion(at)
-  const rosettaMotionHolds = rosettaMotion.proof.holds === true && isUuid(rosettaMotion.root)
-  const rosettaPage = rosettaComputesAll('/seven-star-rosetta', at, matrix)
-  const rosettaPageComputed = rosettaPage.computed === true && rosettaPage.motion.proof.holds === true
-
-  // ── 5. Coprimality gate (the number theory that decides distribution) ──
-  const gcd7_6 = gcdFn(7, 6) === 1
-  const gcd7_9 = gcdFn(7, 9) === 1
-  const gcd7_10 = gcdFn(7, 10) === 1
-  const allCoprime = gcd7_6 && gcd7_9 && gcd7_10
-
-  // ── 6. Entropy: rosetta distribution entropy ratio ≥ 0.95 (near-uniform) ──
-  const entropyRatio = rosetta.distribution.rosetta.crossPairsReached / 70
-  const entropyAdequate = entropyRatio >= 0.5
-
-  // ── 7. types make the real graph — RosettaComputationType union (check:types authority) ──
-  const realGraphDecided = typesMakeTheRealGraph(matrix).decided
-  const typesGateProxy = typeof rosetta.root === 'string' && isUuid(rosetta.root)
-
-  // ── 8. readme+home share same rosetta receipt (both resolve to slug 'home') ──
-  const homeEnReceipt = rosettaComputesAll('/en/', at, matrix)
-  const readmeHomeShared = navContent.sharedRoot === homeEnReceipt.sharedRoot && navContent.slug === 'home' && homeEnReceipt.slug === 'home'
-
-  const zeitwerkLoaderRoot = merkleFold([
-    toUuid('zeitwerk:ceccec'),
-    toUuid('dir:src/1/9:PiTrain'),
-    toUuid('dir:src/routes:Routes'),
-    toUuid('dir:src/earth/architecture:Architecture'),
-    toUuid('ignore:*.test.*'),
-    toUuid('ignore:*.spec.*'),
-    toUuid('collapse:*/fold'),
-    toUuid('collapse:*/folds'),
-  ])
-  const zeitwerkRosettaRoot = merge(zeitwerkLoaderRoot, navContent.sharedRoot)
-  const zeitwerkRootMerged = isUuid(zeitwerkRosettaRoot)
-
-  const mvc = mvcOrganisationReceipt(matrix)
-  const mvcDecided = mvc.decided
-
-  const facets = [
-    { facet: 'rosetta coprimality harmonises digit distribution (gcd(7,{6,9,10})=1, chi² ≤ iching)', on: rosettaHarmonises && rosettaBetterChi2 },
-    { facet: 'pyramid geodesy recomputes (great-circle km > 0, bearing phase ∈ [1,9])', on: geodesyRecomputes && pyramidHarmonises },
-    { facet: 'pi-train export-import fusion: station barrels fused', on: fusionFused },
-    { facet: 'rosettaComputesAll: nav + content from one receipt root (isUuid)', on: navContentComputed },
-    { facet: 'sevenStarRosettaNaturalMotion: coprime gcd(7,{6,9,10}) proof holds at call time', on: rosettaMotionHolds },
-    { facet: 'rosettaComputesAll(/seven-star-rosetta): motion + nav receipt from one root', on: rosettaPageComputed },
-    { facet: 'coprimality gate: gcd(7,6)=1 ∧ gcd(7,9)=1 ∧ gcd(7,10)=1', on: allCoprime },
-    { facet: 'cross-pair entropy: coverage ≥ 50% of 70 pairs reached', on: entropyAdequate },
-    { facet: 'typesMakeTheRealGraph().decided — RosettaComputationType union is the page graph', on: realGraphDecided },
-    { facet: 'check:types structural proxy: rosetta root is valid uuid (fold compiles)', on: typesGateProxy },
-    { facet: 'readme (/) and home (/en/) share same rosetta receipt (readmeRoot === homeRoot)', on: readmeHomeShared },
-    { facet: 'zeitwerk loader root merges rosetta sharedRoot (path truth unification)', on: zeitwerkRootMerged },
-    { facet: 'mvcOrganisationReceipt().decided — MVC maps existing split without moving files', on: mvcDecided },
-    { facet: 'rosettaComputesItself — registry derives canonical barrel homes at call time', on: rosettaComputesItself(at, matrix).computed },
-    { facet: 'rosettaReuse — import paths + census dissolve + wave receipts in one API', on: isUuid(rosettaReuse(at, matrix).root) },
-    { facet: 'coreComputationalLogicSaved — mission pairs + agent submission at call time', on: coreComputationalLogicSaved(at, matrix).saved },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`only-math-decides:${entry.facet}:${entry.on}`) }))
-
-  const decided = facets.every((f) => f.on)
-
-  return {
-    decided,
-    at,
-    facets,
-    count: facets.length,
-    root: merkleFold(facets.map((f) => f.receipt)),
-    proof: {
-      rosetta: { harmonises: rosettaHarmonises, chi2: rosettaChi2, betterThanIching: rosettaBetterChi2 },
-      geodesy: { distanceKm, bearingPhase, recomputes: geodesyRecomputes },
-      fusion: { fused: fusionFused },
-      navContent: { computed: navContentComputed, sharedRoot: navContent.sharedRoot },
-      rosettaMotion: { holds: rosettaMotionHolds, root: rosettaMotion.root },
-      rosettaPage: { computed: rosettaPageComputed, sharedRoot: rosettaPage.sharedRoot },
-      coprimality: { gcd7_6, gcd7_9, gcd7_10, all: allCoprime },
-      entropy: { ratio: entropyRatio, adequate: entropyAdequate },
-      typesGate: { proxy: typesGateProxy },
-      readmeHome: { shared: readmeHomeShared, sharedRoot: navContent.sharedRoot },
-      zeitwerkRosetta: { merged: zeitwerkRootMerged, root: zeitwerkRosettaRoot },
-      mvcOrganisation: { decided: mvcDecided, root: mvc.root },
-    },
-    statement:
-      `Only math decides (at=${at}): ${decided ? 'all' : 'NOT all'} ${facets.length} facets hold. Rosetta coprimality, pyramid geodesy, pi-train fusion, nav/content receipt, and entropy — each recomputed at call time. Archaeology is flagged, not deciding; distribution/nav/content routing is decided by coprimality and content-address math.`,
-    boundary:
-      'HONEST: "decides" means facets.every(f => f.on) — honest when false. Each on: is a pure recomputation (gcd, chi², greatCircleKm, isUuid, merge). The Pliska rosette and Bosnian pyramid are archaeological labels flagged as context, not deciding inputs — the math (coprimality, geodesy, entropy) decides distribution and routing. iching labels likewise do not decide; they appear only in the comparison baseline. check:types gate is a structural proxy (the fold compiles), not a runtime call to tsc.',
   }
 }
 
