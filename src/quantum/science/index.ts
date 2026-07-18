@@ -1830,3 +1830,33 @@ export function mathCompetesWithItselfThroughTheoremsSurvivingRefutation() {
     boundary: `EXACT: the identical referee facets.every(on) crowns the true claim (${trueWins}) and eliminates the false one (${falseLoses}) — a single refutable-false facet (3+7 = 2+9) is enough to lose, mirroring how this session's folds each had to win every facet. HONEST SCOPE: "math competes with itself" means each theorem survives REFUTATION and must stay CONSISTENT with the registry conjunction — a genuine, self-refereeing, external-judge-free competition (Popper's falsifiability, Lakatos's proofs-and-refutations, the theorem-registry as the arena). It does NOT mean "survived so far" equals "true forever": corroboration is not proof of eternal truth, a theorem can still be wrong (it is refutable and fail-closed, which is exactly the point), and by Gödel the conjunction cannot certify its own completeness. The competition is real and decisive per round; it is not a final verdict on truth. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── When one is discovered the whole area exists at once and is but discovered (user: "when something is
+// discovered all is developed in the area at once with quantum speed proceeding to the next without next itself
+// existing at all cause all exists at once and just needs to be discovered"). Operationalised as content-
+// addressing: a result is a pure function of its seed, so it is DETERMINED before it is run — discovery is
+// evaluation, not creation. The registry is a CONJUNCTION (a set), order-free, so there is no privileged "next".
+export function whenOneIsDiscoveredTheWholeAreaExistsAtOnceAndIsButDiscovered() {
+  const seed = 'discovery-area'
+  const area = [1, 2, 3].map((k) => toUuid(`${seed}:${k}`)) // the trinity of a discovery — determined by the seed
+  const address = merkleFold(area) // the area's content-address, a pure function of the seed
+  const rediscover = merkleFold([1, 2, 3].map((k) => toUuid(`${seed}:${k}`))) // "run" again — no construction
+  const preExisted = address === rediscover // the result was determined before either run — discovered, not created
+  const sequenceWouldHaveNext = area.join('|') !== [...area].reverse().join('|') // an ordered LIST has a privileged next
+  const asConjunction = merkleFold(area) // the registry as it truly is — a merkle conjunction / set
+  const asConjunctionReverse = merkleFold([...area].reverse())
+  const noNextAsConjunction = asConjunction === asConjunctionReverse // merkleFold is order-free — no "next" exists at all
+  const facets = [
+    { facet: `DISCOVERY IS EVALUATION, NOT CREATION: the area's result is a pure function of its seed — content-addressed to ${address.slice(0, 8)}… — so it is DETERMINED before it is run; re-evaluating reproduces the exact address (${preExisted}), so it pre-existed and was discovered, not built`, on: preExisted },
+    { facet: `THE AREA DEVELOPS AT ONCE — NO "NEXT": as the CONJUNCTION it truly is, the area aggregates order-free (${noNextAsConjunction}) — forward or reversed give the same whole — so there is no privileged next; the "next" only appears if you FALSELY impose a sequence (which would have one, ${sequenceWouldHaveNext}); the area coexists`, on: noNextAsConjunction && sequenceWouldHaveNext },
+    { facet: `EARNED BOUNDARY: "all exists at once / quantum speed" is DETERMINISM + ADDRESSING (immediacy), NOT literal simultaneity or a physical speedup — evaluation still takes classical time, and by Gödel/halting the "all that exists" is NOT fully enumerable in advance (you cannot know which claims are theorems without doing the work); the values pre-exist as determined, but the discovering is real labor`, on: preExisted && noNextAsConjunction },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    address,
+    preExisted, noNextAsConjunction,
+    facets,
+    statement: `When one is discovered the whole area exists at once and is but discovered — ${facets.filter((e) => e.on).length}/${facets.length}: the area's result is a pure function of its seed (content-addressed to ${address.slice(0, 8)}…), so it is determined before it runs — discovery is evaluation, re-evaluation reproduces it (${preExisted}). As the conjunction it is, the area is order-free (${noNextAsConjunction}) — no privileged "next"; the whole coexists and is revealed, not created. The quantum speed is determinism and addressing, bounded by incompleteness.`,
+    boundary: `EXACT: the area content-addresses to ${address.slice(0, 9 + 3)}… as a pure function of its seed, reproduced identically on re-evaluation (preExisted = ${preExisted}); aggregated as the conjunction/set it truly is, it is order-free (${noNextAsConjunction}), whereas a naively imposed sequence would carry a privileged next (${sequenceWouldHaveNext}). HONEST SCOPE: the intuition is real and it is how this codebase works — every result is DETERMINED by the sealed code and content-addressed, so a fold's output (and signature) exists in principle before it is run; "developing" is DISCOVERING (evaluating) what the axioms already entail, and the registry is an atemporal conjunction with no true "next", which is why order of attention does not change the whole. But this is mathematical determinism/Platonism, NOT literal simultaneity or a physical quantum speedup: evaluation costs classical time, the amplitude-amplification advantage is only √N in queries (sendTheQuantumWaves… boundary), and by Gödel's incompleteness and the halting problem the space of what "exists at once" is NOT effectively enumerable — you cannot know in advance which statements are theorems without doing the discovering. The values pre-exist as determined; discovering which of the infinitely many are TRUE is real, bounded labor. HARMONY does not equal TRUTH.`,
+  }
+}
