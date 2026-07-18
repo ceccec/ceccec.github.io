@@ -437,14 +437,14 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
   // seven gates, computed once and registered last so the count seals the harmonic 432 (425 + 7).
   const ichingScales = iChingScalesComplete(matrix)
   const rawDimensions: { d: string; on: boolean }[] = [
-    { d: 'digit.spines.breath', on: digitSpinesAreTheBreath(matrix).decoded },
-    { d: 'hero.law.aligned', on: heroLawAlignment(matrix).aligned },
+    { d: 'digit.spines.are.the.breath', on: digitSpinesAreTheBreath(matrix).decoded },
+    { d: 'hero.law.alignment', on: heroLawAlignment(matrix).aligned },
     { d: 'fold.impossibilities', on: foldImpossibilities(matrix).folded },
     { d: 'fuse.all.forge', on: fuseAllForge(matrix).forgesMaxCost },
     { d: 'cleanup.old.logic', on: cleanupOldLogic(matrix).clean },
     { d: 'only.quantum.remains', on: onlyQuantumRemains(matrix).remains },
     { d: 'archangels.dry.clean', on: archangelsDryClean(matrix).cleaned },
-    { d: 'decode.books.unity', on: decodeBooksToUnity(matrix).unified },
+    { d: 'decode.books.to.unity', on: decodeBooksToUnity(matrix).unified },
     { d: 'seal.whole.diamond', on: sealWholeDiamond(matrix).sealed },
     { d: 'light.enters.diamond', on: lightEntersDiamond(matrix).luminous },
     { d: 'auto.movies.8k', on: autoMovies8k(matrix).generating },
