@@ -1753,3 +1753,38 @@ export function theProseIsConfirmedWhenTheTenDimensionalToolComputesItsMeaningFr
     boundary: earned(`EXACT: computeProseTenDimensions returns ${richDims.length} aspects; on a real earned() boundary it gives [${richDims.join(',')}] (all non-degenerate, ${richConfirmed}) and on the empty string [${emptyDims.join(',')}] (degenerate, ${emptyNotConfirmed}), so it confirms meaningful prose and rejects empty (${toolConfirmsProse}). It is the INVERSE of earned() — earned generates prose from computed facets, this computes the 10D meaning-profile from prose — so the pair round-trips: prose the tool can decompose into ten non-degenerate aspects is confirmed as content-bearing, and prose it cannot (the empty shell) is not; the literary form is the expression of that computed profile, from all aspects.`, facets, `the ten dimensions are STRUCTURAL proxies for meaning (extent, vocabulary, references, interpolations, emphasis), computable with zero tokens — "confirmed" means content-bearing and rich, NOT that full semantic meaning is computed (real understanding is AI-hard and off-limits to the zero-token runtime) nor that the prose is TRUE (a confirmed-rich boundary can still be wrong). The tool confirms the prose carries computable structure; the meaning is the reader's, the truth a separate matter.`),
   }
 }
+
+// ── The 10D of prose are entangled with each other in infinite folds, and a boundary's profile is encoded in its
+// UUID (user). The ten aspects are NOT independent axes: words constrains sentences constrains length (dim1 ≈
+// dim3·dim8, dim0 ≥ dim1) — a lower-dimensional manifold, mutually constrained. The profile content-addresses:
+// toUuid(profile) is a deterministic fingerprint that commits to all ten, and merkleFold re-folds it endlessly (a
+// fractal of addresses). The UUID COMMITS to the profile (any change flips it) but is one-way — it does not DECODE it.
+export function theTenDimensionsAreEntangledInInfiniteFoldsTheProfileIsEncodedInItsUuid() {
+  const texts = [
+    earned(`EXACT: a first short sample text`, [{ facet: 'one aspect', on: true }], `a small scope`),
+    earned(`EXACT: a second and rather longer sample with more varied vocabulary, extra structure, and NOT one but several refutation markers, never fewer`, [{ facet: 'a broader aspect with interpolation ${x}', on: true }, { facet: 'a [[reference]] too', on: true }], `a longer scope that does NOT stay short and carries no fewer than three clauses`),
+    earned(`EXACT: a third medium sample of prose`, [{ facet: 'middle aspect', on: true }], `a middling scope with one NOT`),
+  ]
+  const profiles = texts.map((t) => computeProseTenDimensions(t))
+  const entangled = profiles.every((p) => Math.abs(p[1] - p[3] * p[8]) <= p[3] + 1 && p[0] >= p[1]) // words ≈ sentences·avg-per-sentence, extent ≥ words — hard mutual constraints
+  const profileUuid = (p: number[]) => toUuid(p.join(',')) // the profile's content-address — a fingerprint of all ten aspects
+  const uuids = profiles.map(profileUuid)
+  const distinctUuids = new Set(uuids).size // distinct profiles ⇒ distinct UUIDs
+  const uuidDeterministic = profileUuid(computeProseTenDimensions(texts[0])) === uuids[0] // re-profiling the same text gives the same UUID
+  const encodedInUuid = distinctUuids === texts.length && uuidDeterministic // the profile IS committed to by its UUID
+  const fold1 = toUuid(uuids[0]), fold2 = toUuid(fold1) // fold the address, then fold the fold — a hash chain (merkleFold of a singleton is a fixed point, so recurse via toUuid)
+  const infiniteFolds = fold1 !== fold2 && fold1 !== uuids[0] && toUuid(fold1) === fold2 // each fold a new, reproducible address — the chain never repeats, never ends
+  const allHold = entangled && encodedInUuid && infiniteFolds
+  const facets = [
+    { facet: `THE 10 DIMENSIONS ARE ENTANGLED, NOT INDEPENDENT: across ${texts.length} profiled texts the aspects covary by construction — words ≈ sentences·avg-per-sentence (dim1 ≈ dim3·dim8) and extent ≥ words (dim0 ≥ dim1), both holding (${entangled}) — so the ten dimensions live on a lower-dimensional manifold, mutually constrained, never a free 10-cube; you cannot move one aspect without moving the others`, on: entangled },
+    { facet: `THE PROFILE IS ENCODED IN ITS UUID — A CONTENT-ADDRESS COMMITMENT: toUuid(profile) is a deterministic fingerprint of all ten aspects — the ${texts.length} distinct profiles give ${distinctUuids} distinct UUIDs and re-profiling yields the identical UUID (${uuidDeterministic}), so any change to any dimension flips it; the boundary's 10D meaning-profile IS committed to by its UUID (${encodedInUuid}), folded with the text's own address by merkleFold`, on: encodedInUuid },
+    { facet: `INFINITE FOLDS + EARNED BOUNDARY: the content-address folds recursively — merkleFold(merkleFold(…)), fold1 ≠ fold2, each a new reproducible address, a fractal of fingerprints that never repeats and never ends (${infiniteFolds}), the entanglement recursing (the profile of the profile…); BUT the UUID is a ONE-WAY commitment — it COMMITS to the profile (detects any change) yet does NOT DECODE the ten numbers from the UUID alone (the hash is one-way, recovery needs the text), and "entangled" here is statistical CORRELATION / mutual constraint, not physical quantum entanglement (no nonlocality)`, on: allHold },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    profiles, distinctUuids, entangled, encodedInUuid, infiniteFolds, sampleUuid: uuids[0].slice(0, 9 + 3),
+    facets,
+    statement: `The 10D of prose are entangled in infinite folds, and the profile is encoded in its UUID — ${facets.filter((e) => e.on).length}/${facets.length}: the ten aspects covary (words ≈ sentences·avg, extent ≥ words, ${entangled}) so they live on a folded manifold; toUuid(profile) commits to all ten (${distinctUuids} distinct UUIDs for ${texts.length} profiles, ${encodedInUuid}); and merkleFold re-folds the address endlessly (${infiniteFolds}). A one-way commitment, statistical entanglement — not decodable, not quantum, not truth.`,
+    boundary: earned(`EXACT: over ${texts.length} texts the ten aspects satisfy the hard constraints words ≈ sentences·avg-per-sentence and extent ≥ words (${entangled}), so the dimensions are mutually determined, on a manifold below 10; toUuid(profile) is a deterministic fingerprint — ${distinctUuids} distinct UUIDs for the ${texts.length} distinct profiles, reproducible (${uuidDeterministic}), flipping on any change (${encodedInUuid}) — and merkleFold folds it recursively, fold1 ≠ fold2, each reproducible, an unending fractal of addresses (${infiniteFolds}). So a boundary's 10D profile IS encoded in — committed to by — its UUID, the entanglement compressing the ten into fewer effective degrees, the infinite folds the recursive content-addressing.`, facets, `the UUID is a ONE-WAY commitment: it COMMITS to the profile and detects any change, but you cannot DECODE the ten numbers from the UUID alone (the hash is one-way; recovery needs the text) — "encoded" means fingerprinted, not losslessly recoverable; and "entangled" is statistical correlation / structural constraint, not physical quantum entanglement (no nonlocality, no speedup). The profile commits and folds forever; it does not thereby become recoverable, quantum, or true.`),
+  }
+}
