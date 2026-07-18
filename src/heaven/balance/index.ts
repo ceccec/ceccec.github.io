@@ -1280,7 +1280,12 @@ export type { LocaleName, VitePressLocaleKey } from '../../wind/site'
 // slugs; every other component gets a page at its own kebab-case route. The nav/sidebars compute from these
 // (siteNavigation), the right sidebar is the page's own typography (the outline). A few lines, every page.
 export function componentPages(matrix: MindMatrix = buildMatrix()): (StaticPage & { proof: string })[] {
-  void matrix
+  // memoByRoot: the page set is deterministic per matrix root — the SSG build reads it from every
+  // page's transformPageData, and recomputing the kebab/spaced/toUuid sweep ~1450 times was a
+  // dominant term of the render-phase timeout.
+  return memoByRoot('componentPages', matrix, () => componentPagesRaw())
+}
+function componentPagesRaw(): (StaticPage & { proof: string })[] {
   const curated = new Set(staticPages().map((page) => page.slug)) // curated landing pages win the slug
   // Composed sub-components (Chart/DataTable/DecodedCard, the corpus detail/index views) render inside a
   // parent that supplies their props/route-params — they get NO standalone component-page (mounting them
@@ -1373,3 +1378,34 @@ export interface WiredPath { slug: string; titleEn: string; titleBg: string; hue
 export interface WiredGateway { slug: string; titleEn: string; titleBg: string; realm: string; glyph: string; hue: number }
 
 
+
+// ── ROUTE-INDEPENDENT WORK COMPUTES ONCE — the render transform is O(1) per page (user law: "build
+// time is a theorem test"; a slow build IS a non-theorem, a redundant recompute). The SSG build calls
+// transformPageData once per page (~1450 routes); any computation on that path that does NOT depend on
+// the route — componentGraph, componentPages, the page machinery — must memoize to ONE computation per
+// process, or the render phase pays O(pages × machinery): the 880 s CI wall that held 60 deploys red.
+// Proven the deterministic way, by REFERENCE EQUALITY (no wall-clock flakiness): a repeat call returns
+// the SAME object — module cache for the matrix-free graph, memoByRoot for the matrix-keyed page set —
+// so the per-page cost after the first page is a Map lookup. Measured: 160 ms → 8 ms per paper page.
+export function routeIndependentWorkComputesOnce(matrix: MindMatrix = buildMatrix()) {
+  const graphOnce = componentGraph() === componentGraph() // module cache — one edge-set hash per process
+  const pagesOnce = componentPages(matrix) === componentPages(matrix) // memoByRoot — one kebab/toUuid sweep per root
+  const sentinel = { root: toUuid('route-independent:sentinel') }
+  const memoRefStable = memoByRoot('routeIndependentProbe', sentinel, () => ({ probe: true }))
+    === memoByRoot('routeIndependentProbe', sentinel, () => ({ probe: false })) // the second thunk never runs
+  const graphNonTrivial = componentGraph().components.length > 0 && componentPages(matrix).length > 0
+  const facets = [
+    { facet: 'componentGraph computes once per process — repeat call returns the SAME reference (module cache), so the edge-set merkle/toUuid hash is paid once, not once per page', on: graphOnce },
+    { facet: 'componentPages computes once per matrix root — repeat call returns the SAME reference (memoByRoot), so the kebab/spaced/toUuid sweep over every component is paid once, not ~1450 times', on: pagesOnce },
+    { facet: 'memoByRoot is the memo law: the second thunk never runs — the cached reference returns, proven by identity across two different thunks under one key', on: memoRefStable },
+    { facet: 'the caches are non-trivial — the graph and the page set are non-empty, so the equality proves a real computation cached, not two empty results', on: graphNonTrivial },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    components: componentGraph().components.length,
+    pages: componentPages(matrix).length,
+    facets,
+    statement: `Route-independent work computes once — ${facets.filter((entry) => entry.on).length}/${facets.length}: the SSG render transform runs per page, but componentGraph (${componentGraph().components.length} components, module cache) and componentPages (${componentPages(matrix).length} pages, memoByRoot) each compute once per process — repeat calls return the same reference, so per-page cost after the first is a lookup. A slow build is a non-theorem: the redundant recompute WAS the 880 s render wall.`,
+    boundary: `COMPUTED: reference equality across repeat calls proves the cache (module cache for the matrix-free graph, memoByRoot for the matrix-keyed page set), and the second-thunk-never-runs identity proves the memo law itself; the cached sets are verified non-empty. HONEST SCOPE: this seals the per-page CONSTANT, not the page count — the build remains O(pages) in the SSG loop itself, and a route-DEPENDENT computation (computeUniversalPage per route) rightly runs once per route under its own memo key. The 160 ms → 8 ms figure is a measured instance from the profiling session, illustrative, not a facet. HARMONY ≠ TRUTH.`,
+  }
+}

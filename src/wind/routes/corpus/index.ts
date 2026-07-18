@@ -1212,7 +1212,8 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
   // Legendre — n is a sum of three squares iff it is NOT of the form 4ᵏ(8m+7). The local test colours every
   // n up to 108; the red exceptions expose the 8m+7 arithmetic progression (and its 4ᵏ echoes 28, 60, 92…).
   'legendre-three-square-theorem': () => {
-    const isSumOfThree = (n: number) => { let r = n; while (r % 4 === 0) r = r / 4; return r % 8 !== 7 }
+    // r > 0 guard: 0 = 0²+0²+0² is representable, and stripping 4s from 0 never terminates (0/4 = 0)
+    const isSumOfThree = (n: number) => { let r = n; while (r > 0 && r % 4 === 0) r = r / 4; return r % 8 !== 7 }
     const yes: FigPoint[] = []; const no: FigPoint[] = []
     for (let n = 0; n <= 108; n += 1) (isSumOfThree(n) ? yes : no).push({ x: n, y: n })
     return {

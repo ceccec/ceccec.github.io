@@ -378,7 +378,14 @@ export function path(matrix: MindMatrix = buildMatrix()) {
 // Imagine all VitePress components interacting: the registered components and
 // the pages they are placed on form a graph, with the global components folded
 // into every page.
+// Deterministic and matrix-free — computed once per process (the SSG build calls this from every
+// page's transformPageData; unmemoized it re-hashed the whole edge set ~1450 times, the render-phase
+// timeout). Same module-cache law as theoremKeywords in wind/site.
+let componentGraphCache: ReturnType<typeof componentGraphRaw> | undefined
 export function componentGraph() {
+  return (componentGraphCache ??= componentGraphRaw())
+}
+function componentGraphRaw() {
   // TrinityGateways + VoidSidebar fold into every page via sidebar-nav-after; RevolutAside via aside-bottom (right doc aside).
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways']
   // Corpus index pages mount UniversalPageTemplate in every locale (.vitepress/pages/**/{papers,references,diamonds}/index.md); monograph pages use [page].paths.ts + monographPaths.
