@@ -1,5 +1,5 @@
 // Browser-safe component → sealed fold loaders (dynamic import — no monolith at parse time).
-import type { ComponentCrosslink } from './crosslinks'
+import type { ComponentCrosslink } from '../../src/wind/learning/index'
 import type { DecodedFacet, DecodedStation } from '../theme/components/DecodedCard.vue'
 import type { QuantumProjection } from './hero-movie'
 import { displayText, localePath, pickLocale, type LocaleName } from './site-locale'
@@ -44,7 +44,7 @@ export async function withCrosslinks(
   view: DecodedFoldView,
   locale: LocaleName = 'en',
 ): Promise<DecodedFoldView> {
-  const { componentCrosslinks } = await import('./crosslinks')
+  const { componentCrosslinks } = await import('../../src/wind/learning/index')
   const localized = localizeDecodedView(view, locale)
   const computed = componentCrosslinks(name, locale)
   const seen = new Set(computed.map((entry) => entry.link))

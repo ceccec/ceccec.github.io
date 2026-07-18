@@ -5,7 +5,7 @@ import {
   decodedCardCrosslinksLabel,
   decodedCardFacetMark,
 } from '@vp-lib/hero-movie'
-import type { ComponentCrosslink } from '../../lib/crosslinks'
+import type { ComponentCrosslink } from '../../../src/wind/learning/index'
 import type { QuantumProjection } from '@vp-lib/hero-movie'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
