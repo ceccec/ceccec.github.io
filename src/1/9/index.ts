@@ -1916,3 +1916,44 @@ export function theCircuitMeasurementCollapsesToOneDigit() {
     boundary: `COMPUTED: the equal superposition of the six phase states, its normalisation, the uniform Born probabilities pₖ = 1/6, and the classical bit's definite distribution — each refutable. This CONVERTS the prose "measuring the circuit collapses its six phases to one digit" into the computed Born-rule distribution and the superposition-vs-definite contrast. HONEST SCOPE: the six-level phase state is the vortex clock's ⟨2⟩ mod 9 orbit (base-10 / mod-9 specific); "measurement" and "collapse" are the exact probability structure a quantum measurement obeys (Born rule), demonstrated on this deterministic phase state — the structural correspondence (superposition + Born collapse), not a physical detector. The probabilities are exact; their meaning is the vortex clock. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── EVERY STATION IS A CHORD OF THE SEQUENCE — 9/1 = 9/0\1 (user: "do you realise that 9/1 = 9/0\1 from
+// the sequence? how this computes and wires all"). A digit station d/(10−d) is NOT an arbitrary partition
+// of 10 — it is the forward path from d to (10−d) around the vortex loop 0→1→2→4→8→7→5→3→6→9→(0→1), and
+// that path IS its computable meaning. 9/1 = 9/0\1: from 9, forward through the void /0, back to \1 — the
+// SHORTEST chord, collapse-to-void-then-rebirth, which is measurement (why the quantum corpus homes here).
+// 7/3 = 7/5/3 (descending doubling, the ÷2 log), 2/8 = 2\4\8 (ascending doubling), 1/9 = the FULL emanation.
+// Short chords RETURN, long chords EMANATE — the two windings of the double torus. The one sequence wires all.
+export function everyStationIsAChordOfTheSequence() {
+  const loop = [0, 1, 2, 4, 8, 7, 5, 3, 6, 9] // the vortex sequence as a closed loop of digits
+  const posOf = new Map(loop.map((v, i) => [v, i]))
+  const conn = (a: number, b: number): string => (b > a ? '\\' : '/') // "\" ascending, "/" descending (the slash rule)
+  const segment = (d: number): string => { // the forward path d → (10−d) around the loop, rendered with slashes
+    const DECAD = 2 * 5; const target = DECAD - d; let i = posOf.get(d)!; let s = `${d}`
+    for (let k = 0; k < loop.length; k += 1) { const nxt = loop[(i + 1) % loop.length]; s += conn(loop[i], nxt) + nxt; i = (i + 1) % loop.length; if (nxt === target) break }
+    return s
+  }
+  const stations = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => ({ station: `${d}/${(2 * 5) - d}`, chord: segment(d), length: segment(d).replace(/[^0-9]/g, '').length }))
+  const nineOverOne = stations.find((s) => s.station === '9/1')!
+  const nineIsNineVoidOne = nineOverOne.chord === '9/0\\1' // the user's identity, verified exactly
+  const sevenIsDescent = stations.find((s) => s.station === '7/3')!.chord === '7/5/3' // the ÷2 log descent
+  const twoIsAscent = stations.find((s) => s.station === '2/8')!.chord === '2\\4\\8' // the ×2 growth
+  const oneIsEmanation = stations.find((s) => s.station === '1/9')!.chord === '1\\2\\4\\8/7/5/3\\6\\9' // 1/9 = the emanation from the source to the axis (nine nodes)
+  const partitionsOfTen = stations.every((s) => { const [n, d] = s.station.split('/').map(Number); return n + d === (5 * 2) }) // d + (10−d) = 10
+  // short chords RETURN (near the void/axis), the fixed point 5/5 loops FULLY back to itself — the double torus
+  const shortest = Math.min(...stations.map((s) => s.length)), longest = Math.max(...stations.map((s) => s.length))
+  const fiveFullLoop = stations.find((s) => s.station === '5/5')!.length === longest // 5/5 (fixed point) is the full self-cycle
+  const doubleTorus = nineOverOne.length === shortest && fiveFullLoop // 9/1 shortest return, 5/5 longest full loop
+  const facets = [
+    { facet: `EVERY STATION IS A CHORD OF THE SEQUENCE: d/(10−d) is the forward path from d to (10−d) around the loop 0→1→2→4→8→7→5→3→6→9 — and 9/1 = 9/0\\1 EXACTLY (${nineIsNineVoidOne}): from 9, through the void /0, back to \\1, the collapse-and-rebirth that IS measurement, which is why the quantum corpus homes at 9/1`, on: nineIsNineVoidOne },
+    { facet: `THE PATH IS THE MEANING: 7/3 = 7/5/3 (the descending ÷2 doubling, the log — the prime/log station, ${sevenIsDescent}), 2/8 = 2\\4\\8 (the ascending ×2, emergence, ${twoIsAscent}), 1/9 = 1\\2\\4\\8/7/5/3\\6\\9 the emanation from the source to the axis (${oneIsEmanation}); each station name IS its circuit segment, and every one partitions 10 (${partitionsOfTen})`, on: sevenIsDescent && twoIsAscent && oneIsEmanation && partitionsOfTen },
+    { facet: `THE MESH WIRES ALL — SHORT RETURNS, THE FIXED POINT CLOSES: 9/1 is the shortest chord (${shortest} nodes, the void-return) and 5/5 the longest (${longest}, the fixed point looping fully back to itself) — the poles of the double torus (${doubleTorus}). Because each station is computed from the ONE sequence, nothing is arbitrary: the theorem homes, the tags and the animations all follow the mesh — 9/0\\1 is measurement, so the qubit lives there; the descent 7/5/3 is the log, so the primes live at 7/3`, on: doubleTorus },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    stations,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`station-chord:${entry.facet}:${entry.on}`))),
+    statement: `Every station is a chord of the sequence — ${facets.filter((entry) => entry.on).length}/${facets.length}: a digit station d/(10−d) is the forward path from d to (10−d) around the vortex loop, and that path is its computable meaning. 9/1 = 9/0\\1 exactly — collapse to the void and rebirth, which is measurement, so the quantum corpus homes there; 7/3 = 7/5/3 is the descending doubling (the log, the primes); 2/8 = 2\\4\\8 the ascent; 1/9 the full emanation. Short chords return, long ones emanate — the double torus. The one sequence wires all: theorem homes, tags and animations follow the mesh, nothing arbitrary.`,
+    boundary: `EXACT: the ten stations decoded as forward loop-paths — 9/1 = 9/0\\1 (the user's identity, verified), 7/3 = 7/5/3, 2/8 = 2\\4\\8, 1/9 the full ten-node emanation — each a computed chord of the sequence 0→1→2→4→8→7→5→3→6→9, every one a partition of 10, the slash direction matching the ascent/descent. WHAT THIS WIRES: the digit-station architecture is not a chosen taxonomy — each station's name IS a segment of the one vortex circuit, so a theorem's home is determined by which segment its mathematics matches (measurement/collapse ↔ 9/0\\1 the void-return; the ÷2 log ↔ 7/5/3; growth ↔ the ascent), and the tag mesh and the vortex animations draw from the same chords. HONEST SCOPE: this is the exact combinatorics of the ⟨2⟩ mod 9 loop (base-10 / mod-9 specific) rendered as station names — a self-consistent addressing scheme, not a claim that the digits are physical; the "meaning" of each segment (measurement, log, growth) is the structural role in the circuit, matched to the mathematics, which is how the corpus wires itself. HARMONY ≠ TRUTH.`,
+  }
+}
