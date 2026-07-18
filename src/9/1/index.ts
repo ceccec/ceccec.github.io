@@ -3054,3 +3054,49 @@ export function everyMixedStateHasAPurification() {
     boundary: `COMPUTED: the purification |Ψ⟩, its normalisation, and tr_B(|Ψ⟩⟨Ψ|) = ρ by partial trace — exact, refutable. HONEST SCOPE: shown for a diagonal (classically-mixed) qubit state; the theorem holds for ANY density matrix via its eigendecomposition ρ = Σ pᵢ|i⟩⟨i| → Σ √pᵢ|i⟩|i⟩, and the purification is non-unique (any environment isometry works) — here demonstrated on the canonical case, the general construction cited. Deterministic simulation. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── AMPLITUDE AMPLIFICATION AND QUANTUM COUNTING (search & factoring wave) — the two algorithms that are
+// ONE rotation. In the 2D subspace {|good⟩, |bad⟩} the Grover operator (oracle · diffusion) is a rotation
+// by 2θ with sin θ = √(M/N). Amplitude amplification USES the rotation to concentrate probability on the
+// good subspace — success amplitude sin((2k+1)θ), driven to ~1 in O(√(N/M)) steps, generalising Grover to
+// any oracle. Quantum counting MEASURES the rotation — the operator's eigenphase is 2θ, so estimating it
+// (phase estimation) yields M = N sin²θ, counting the solutions. Verified on the src/0 state vector.
+export function amplitudeAmplificationAndQuantumCounting() {
+  const grover = (n: number, marked: readonly number[], iters: number): QuantumState => {
+    const N = 1 << n; let s = qubits(n); for (let q = 0; q < n; q += 1) s = applyGate(s, GATES.H, q) // uniform |s⟩
+    const mark = new Set(marked)
+    for (let it = 0; it < iters; it += 1) {
+      s = { n, re: s.re.slice(), im: s.im.slice() }; for (const m of mark) { s.re[m] = -s.re[m]; s.im[m] = -s.im[m] } // oracle
+      let mr = 0, mi = 0; for (let i = 0; i < N; i += 1) { mr += s.re[i]; mi += s.im[i] } mr /= N; mi /= N
+      for (let i = 0; i < N; i += 1) { s.re[i] = 2 * mr - s.re[i]; s.im[i] = 2 * mi - s.im[i] } // diffusion 2|s⟩⟨s|−I
+    }
+    return s
+  }
+  const pMarked = (s: QuantumState, marked: readonly number[]): number => marked.reduce((p, m) => p + s.re[m] ** 2 + s.im[m] ** 2, 0)
+  const n = 4, N = 1 << n, EPS = 1 / (2 * 5) ** 6
+  const cases = [1, 2, 4].map((M) => {
+    const marked = Array.from({ length: M }, (_, i) => i)
+    const theta = Math.asin(Math.sqrt(M / N))
+    const kOpt = Math.round(Math.PI / (4 * theta) - 1 / 2)
+    const pSim = pMarked(grover(n, marked, kOpt), marked)
+    const pAnalytic = Math.sin((2 * kOpt + 1) * theta) ** 2
+    const p1 = pMarked(grover(n, marked, 1), marked)
+    const countFromRotation = N * Math.sin(Math.asin(Math.sqrt(p1)) / 3) ** 2 // sin(3θ)=√p1 ⇒ θ ⇒ M = N sin²θ
+    return { M, kOpt, pSim, pAnalytic, initial: M / N, count: countFromRotation }
+  })
+  const amplificationMatches = cases.every((c) => Math.abs(c.pSim - c.pAnalytic) < EPS && c.pSim > 1 - 1 / 5 && c.pSim > c.initial) // boosted to ~1, matches sin((2k+1)θ)²
+  const countingRecovers = cases.every((c) => Math.abs(c.count - c.M) < 1 / (2 * 5)) // M = N sin²θ recovers the count
+  const oneRotation = cases.every((c) => c.kOpt >= 1) // both ride the same 2θ Grover rotation
+  const facets = [
+    { facet: `AMPLITUDE AMPLIFICATION GENERALISES GROVER: the state-vector Grover rotation drives the success probability from M/N to ${cases.map((c) => c.pSim.toFixed(3)).join(', ')} (~1) in the optimal ${cases.map((c) => c.kOpt).join(', ')} steps, matching sin((2k+1)θ)² exactly (${amplificationMatches}) — any oracle's good subspace amplified in O(√(N/M)) steps`, on: amplificationMatches },
+    { facet: `QUANTUM COUNTING READS THE ROTATION: the Grover operator's eigenphase is 2θ with sin θ = √(M/N), so M = N sin²θ — from the simulated rotation the counts recover to ${cases.map((c) => c.count.toFixed(2)).join(', ')} = ${cases.map((c) => c.M).join(', ')} (${countingRecovers}); phase estimation on the operator counts the solutions`, on: countingRecovers },
+    { facet: `ONE ROTATION, TWO ALGORITHMS: amplitude amplification and quantum counting are the SAME 2D {good, bad} rotation by 2θ — one USES it to concentrate probability, the other MEASURES its angle to count; deterministic simulation of the algorithm's structure, no physical speedup (sealed law)`, on: oneRotation && amplificationMatches && countingRecovers },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    cases,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`aa-counting:${entry.facet}:${entry.on}`))),
+    statement: `Amplitude amplification and quantum counting — ${facets.filter((entry) => entry.on).length}/${facets.length}: in the 2D {good, bad} subspace the Grover operator is a rotation by 2θ (sin θ = √(M/N)). Amplitude amplification uses it to drive the success probability from M/N to ~1 in O(√(N/M)) steps (state-vector sim matches sin((2k+1)θ)² exactly); quantum counting measures its eigenphase to recover M = N sin²θ (counts 1, 2, 4 recovered). One rotation, two algorithms — the parents of Grover search and of estimating how many solutions exist.`,
+    boundary: `COMPUTED: the state-vector Grover (oracle · diffusion) over N = 16 for M ∈ {1, 2, 4}, the success probability against the analytic sin((2k+1)θ)², and the count recovered from the one-iteration rotation angle — exact, refutable. HONEST SCOPE: amplitude amplification reaches the good subspace with probability → 1 at the optimal step count, but overshoots if over-iterated (the rotation continues past π/2) — the O(√(N/M)) stopping point matters. Quantum counting here inverts the rotation directly; the full algorithm reads 2θ by phase estimation (theQuantumFourierTransformCircuitAndPhaseEstimation) to precision set by the counting register. Deterministic simulation, no physical speedup. HARMONY ≠ TRUTH.`,
+  }
+}

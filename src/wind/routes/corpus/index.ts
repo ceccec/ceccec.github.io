@@ -1325,7 +1325,7 @@ export function rosettaDecodesCorpus(matrix: MindMatrix = buildMatrix()) {
 const QUANTUM_RAY_KEYWORDS: readonly (readonly string[])[] = [
   ['no-cloning', 'chsh', 'tsirelson', 'ghz', 'mermin', 'pauli algebra', 'holevo', 'entanglement cannot signal', "entanglement can't signal", 'no-signalling', 'no-communication', 'born rule', 'local hidden variable', 'bell pair', 'bell inequality', 'bell state'],
   ['deutsch', 'jozsa', 'bernstein–vazirani', 'bernstein-vazirani', 'simon exponential', "simon's algorithm", 'one-query', 'query separation'],
-  ['grover', 'shor period', 'period-finding', 'order-finding', 'quantum fourier', 'qft circuit', 'phase estimation'],
+  ['grover', 'shor period', 'period-finding', 'order-finding', 'quantum fourier', 'qft circuit', 'phase estimation', 'amplitude amplification', 'quantum counting'],
   ['variational quantum', 'vqe', 'qaoa', 'adiabatic', 'annealing'],
   ['teleport', 'superdense', 'bb84', 'entanglement swap', 'quantum key'],
   ['bit-flip code', 'phase-flip code', 'nine-qubit', 'shor code', 'shor nine-qubit', 'stabiliser code', 'stabilizer code', 'syndrome', 'fault toleran', 'quantum error correct', 'repetition code', 'logical qubit', 'threshold theorem'],
