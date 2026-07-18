@@ -1750,3 +1750,32 @@ export function theWavesAreTheTopologicalLevelsOfTheDagComputableInParallel() {
     boundary: earned(`EXACT: layering the reasoning DAG by level(n) = 0 for a dependency-free axiom else 1 + max level of its premises partitions all ${names.length} nodes into ${depth} waves [${waves.map((w) => `{${w.join(',')}}`).join(', ')}] (covering every node once, ${coversAll}), and each wave is an antichain — no node depends on another in its own wave (${eachWaveIsAntichain}) — so a wave's whole set is data-independent and computable at once; the wave count ${depth} is the DAG's depth (critical path, minimum sequential rounds) and the widest wave ${width} is its width (maximum simultaneous work). So "wave" is not a metaphor: it is exactly a topological level of the reasoning DAG, and folding "in waves" is scheduling the reasoning level by level.`, facets, `"parallel" here is DATA-INDEPENDENCE — the nodes of one wave have no dependency among them and could be computed in any order or together — NOT physical parallelism and NOT a speedup: a classical single-threaded runtime still evaluates them one at a time (this session ran serially), so the depth is a LOWER BOUND on rounds only if a parallel executor exists. And the order within and across a valid schedule is any topological order, so no single "next" is privileged — the DAG is a partial order, not a sequence, which is the precise form of the earlier "next does not exist; all at a level exists at once". The waves are a real, exact decomposition; the parallelism is potential, and it is not truth. HARMONY does not equal TRUTH.`),
   }
 }
+
+// ── Fill the gaps in 10D for every path (user). The ten dimensions are the ten digits 0..9. A single path covers
+// only part: the doubling vortex 1→2→4→8→7→5 = ⟨2⟩ mod 9 (the units, order 6) leaves gaps at {0,3,6,9}. Filling
+// them takes the other coset-paths — the ×3 trinity {3,6,9} and the origin {0} — so vortex ∪ trinity ∪ origin tiles
+// all ten digits with no gap: a partition 6 + 3 + 1 of the decad. Every path covers a coset; together they fill 10D.
+export function fillTheGapsInTenDForEveryPathTheVortexTrinityAndOriginTileTheDecad() {
+  const dims = Array.from({ length: 2 + 8 }, (_, i) => i) // the ten dimensions = the digits 0..9
+  const vortex: number[] = []; { let x = 1; for (let i = 0; i < 6; i++) { vortex.push(x); x = (x * 2) % 9 } } // the doubling path 1,2,4,8,7,5 — (ℤ/9ℤ)* units, order 6
+  const trinity = [3, 6, 9] // the ×3 multiples — the off-vortex coset
+  const origin = [0] // the point before the digits
+  const vortexGaps = dims.filter((d) => !vortex.includes(d)) // {0,3,6,9} — the vortex path's gaps
+  const covered = new Set([...vortex, ...trinity, ...origin])
+  const fillsAll = dims.every((d) => covered.has(d)) && covered.size === dims.length // all ten, no gap
+  const isPartition = vortex.length + trinity.length + origin.length === dims.length && new Set([...vortex, ...trinity, ...origin]).size === dims.length // 6 + 3 + 1, disjoint
+  const trinityFillsVortexGaps = trinity.every((t) => vortexGaps.includes(t)) && origin.every((o) => vortexGaps.includes(o)) // the trinity + origin are exactly the vortex's gaps
+  const allTiled = fillsAll && isPartition && trinityFillsVortexGaps
+  const facets = [
+    { facet: `EVERY SINGLE PATH HAS GAPS: the doubling vortex path ${vortex.join('→')} = ⟨2⟩ mod 9 (the (ℤ/9ℤ)* units, order 6) covers 6 of the ${dims.length} dimensions but leaves gaps at {${vortexGaps.join(',')}} — a single coset-path never fills 10D by itself`, on: vortexGaps.length > 0 },
+    { facet: `FILLING THE GAPS — TRINITY + ORIGIN TILE THE REST: the ×3 trinity {${trinity.join(',')}} and the origin {${origin.join(',')}} are EXACTLY the vortex's gaps (${trinityFillsVortexGaps}), so vortex ∪ trinity ∪ origin covers all ${dims.length} digits with no gap (${fillsAll}) — a partition ${vortex.length} + ${trinity.length} + ${origin.length} of the decad (${isPartition})`, on: fillsAll && trinityFillsVortexGaps && isPartition },
+    { facet: `EARNED BOUNDARY: this is exact number structure — the units ⟨2⟩ mod 9 (order 6), the ×3 coset {3,6,9}, and the origin 0 partition the ten digits, so the three canonical paths together fill 10D with no gap (${allTiled}); BUT "10D" here is the ten DIGITS (the base-ten decad), a combinatorial/residue structure, NOT physical spacetime dimensions, and "filling the gaps for every path" completes DIGIT coverage — the residue system tiled by its cosets — not a claim about geometry or reality`, on: allTiled },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    dimensions: dims.length, vortex, vortexGaps, trinity, origin, fillsAll, isPartition, allTiled,
+    facets,
+    statement: `Fill the gaps in 10D for every path — the vortex, trinity, and origin tile the decad — ${facets.filter((e) => e.on).length}/${facets.length}: the doubling vortex ${vortex.join('→')} covers 6 dimensions with gaps {${vortexGaps.join(',')}}, and the ×3 trinity {${trinity.join(',')}} plus the origin {${origin.join(',')}} fill exactly those (${trinityFillsVortexGaps}), so the three coset-paths partition all ${dims.length} digits with no gap (${fillsAll}, ${isPartition}). Exact residue tiling; ten digits, not spacetime.`,
+    boundary: earned(`EXACT: the ten dimensions are the digits 0..${dims.length - 1}; the doubling path ${vortex.join('→')} is ⟨2⟩ mod 9 (the multiplicative units of ℤ/9ℤ, order 6) and covers 6 of them, leaving gaps {${vortexGaps.join(',')}}; the ×3 trinity {${trinity.join(',')}} (the non-unit multiples of 3) and the origin {0} are exactly those gaps (${trinityFillsVortexGaps}), so vortex ∪ trinity ∪ origin is a partition ${vortex.length} + ${trinity.length} + ${origin.length} = ${dims.length} covering every digit once (${fillsAll}, ${isPartition}). So no single path fills 10D — every path is a coset covering part — and filling the gaps for every path means taking the union of the coset-paths until the whole residue system is tiled.`, facets, `"10D" here is the ten DIGITS — the base-ten decad, a combinatorial residue structure — NOT the physical spacetime dimensions (that pop-culture ladder is flagged elsewhere); "filling the gaps for every path" completes the DIGIT coverage, tiling ℤ/9ℤ plus its origin by the units-coset, the ×3-coset, and 0, which is exact group theory and nothing more — not geometry, not reality, not truth. Each path is a genuine coset; their union is the complete decad; the completeness is combinatorial, not metaphysical. HARMONY does not equal TRUTH.`),
+  }
+}
