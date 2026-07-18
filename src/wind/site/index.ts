@@ -103,10 +103,9 @@ export function quantumSitemap(matrix: MindMatrix = buildMatrix()) {
 }
 function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const routes = [
-    '/', '/start', '/console', '/show', '/explore', '/learn', '/frontiers', '/governance',
-    '/mcp', '/learn-developer', '/commands', '/quantum-mind', '/architecture', '/boundaries',
-  ]
+  // The route list is COMPUTED from the served page set (the theorem-science lens roster) — the old
+  // hand-typed 14-route list was both a hardcoded relic and a leak of removed pages into the sitemap.
+  const routes = ['/', ...staticPages().map((page) => `/${page.slug}`)]
   const urls = routes.map((route, index) => {
     const { gla, en, bg } = localePaths(route)
     // Place the page on the double torus: two angles fold it, as with pi's digits.
@@ -365,7 +364,9 @@ function theoremKeywords(): string[] {
   return theoremKeywordCache
 }
 
-export function staticPages(): StaticPage[] {
+/** The FULL curated catalog (seed + enrichment) — the lens's domain. Data is preserved here;
+ * VitePress never routes from this set directly. */
+export function staticPagesAll(): StaticPage[] {
   // the seed is pure data; the one computed enrichment (every theorem name as a frontiers keyword)
   // happens here, operator-side — the reason the spread could not live in the seed.
   return STATIC_PAGE_SEED.map((page) => ({
@@ -373,6 +374,15 @@ export function staticPages(): StaticPage[] {
     keywords: page.slug === 'frontiers' ? [...page.keywords, ...theoremKeywords()] : [...page.keywords],
     components: [...page.components],
   }))
+}
+
+/** THE SERVED PAGE SET (user law: ONLY science theorems and related pages — remove the rest from
+ * VitePress completely). staticPages() IS the theorem-science lens roster: every consumer — routes,
+ * automount, sitemap, search, nav, README, MCP served-set — reads THIS, so a page outside the lens has
+ * no route, no build, no search entry, no sitemap line. The full catalog stays in staticPagesAll (data,
+ * not surface); restoring a page = giving it a science keyword, never re-wiring VitePress. */
+export function staticPages(): StaticPage[] {
+  return staticPagesAll().filter((page) => theoremScienceVisible(page.slug, page.keywords))
 }
 
 // ── THE THEOREM-SCIENCE LENS (user law: VitePress shows only science) — the visible page set is COMPUTED,
@@ -401,7 +411,7 @@ export function theoremScienceVisible(slug: string, keywords: readonly string[])
 
 export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theoremScienceLens', matrix, () => {
-    const pages = staticPages()
+    const pages = staticPagesAll()
     const visible = pages.filter((page) => theoremScienceVisible(page.slug, page.keywords))
     const hidden = pages.filter((page) => !theoremScienceVisible(page.slug, page.keywords))
     const proofRay = ROSETTA_RAY_CONTENT_LENSES.find((lens) => lens.stems.includes(THEOREM_SCIENCE_NAME_STEMS[0]))!.ray
@@ -422,7 +432,7 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
     const facets = [
       { facet: `every proof-ray page passes the lens — the ${proofPages.length} theorem pages shelved by the sealed lenses are all visible`, on: proofPages.length > 0 && proofPages.every((page) => theoremScienceVisible(page.slug, page.keywords)) },
       { facet: `the registry carrier passes — the frontiers page (enriched with every registry theorem name) is in the lens`, on: visible.some((page) => page.slug === 'frontiers') },
-      { facet: `the lens CUTS — ${hidden.length} of ${pages.length} curated pages carry no science stem and leave every discovery surface`, on: hidden.length > 0 && visible.length + hidden.length === pages.length },
+      { facet: `the lens REMOVES — ${hidden.length} of ${pages.length} curated pages carry no science stem and are removed from VitePress completely: staticPages() serves only the roster, so they have no route, no build, no search entry, no sitemap line`, on: hidden.length > 0 && visible.length + hidden.length === pages.length && staticPages().length === visible.length },
       { facet: `organised by the rosetta — the ${visible.length} visible pages shelve into ${rays.length} ≤ 7 rays with none lost`, on: shelved === visible.length && rays.length > 0 && rays.length <= ROSETTA_RAYS.length },
       { facet: `the theorem corpus rides beside the pages — ${corpusRoutes.length} corpus surfaces and ${registry.atomCount} registry theorems`, on: corpusRoutes.length > 0 && registry.atomCount > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-science-lens:${entry.facet}:${entry.on}`) }))
@@ -438,8 +448,8 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
       pageCount: pages.length,
       facets,
       root,
-      statement: `Science through the theorem-science lens — ${visible.length}/${pages.length} curated pages pass (${hidden.length} hidden from every discovery surface), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}), beside the theorem corpus (${corpusRoutes.join(' · ')}; ${registry.atomCount} registry theorems).`,
-      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs the DISCOVERY surfaces (nav, sidebar, footer, related sections, crosslinks, home hero, README); hidden pages stay built and served, so bookmarks and inbound links never break. HARMONY ≠ TRUTH.`,
+      statement: `Science through the theorem-science lens — ${visible.length}/${pages.length} curated pages pass (${hidden.length} removed from VitePress completely), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}), beside the theorem corpus (${corpusRoutes.join(' · ')}; ${registry.atomCount} registry theorems).`,
+      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs EXISTENCE in VitePress (user law: remove the rest completely) — staticPages() IS the roster, so a page outside the lens has no route, no build, no search entry, no sitemap line; its DATA stays in staticPagesAll and one science keyword restores it. Removed routes 404 — bookmarks to them break by design. HARMONY ≠ TRUTH.`,
     }
   })
 }

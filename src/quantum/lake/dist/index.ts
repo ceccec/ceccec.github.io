@@ -132,16 +132,18 @@ function absCross(siteUrl: string, path: string) {
 function corpusDetailUrls(kind: 'papers' | 'references', ids: readonly string[], priority: number) {
   return ids.map((id) => {
     const { gla, en, bg } = localePaths(`/${kind}/${id}`)
-    return { gla, en, bg, priority, alternates: [{ hreflang: 'cu', href: gla }, { hreflang: 'en', href: en }, { hreflang: 'bg', href: bg }, { hreflang: 'x-default', href: gla }] }
+    return { gla, en, bg, priority, alternates: [{ hreflang: 'cu', href: gla }, { hreflang: 'en', href: en }, { hreflang: 'bg', href: bg }, { hreflang: 'x-default', href: en }] }
   })
 }
 
 function monographPageUrls(matrix: MindMatrix = buildMatrix()) {
   const quantum = quantumSitemap(matrix)
   const covered = new Set(quantum.urls.map((u) => u.route))
+  // Every sitemap page IS a served science page (staticPages = the theorem-science lens roster), so the
+  // whole map carries one content priority; removed pages have no line to rank at all.
   return monographPaths('en').filter((p) => !covered.has(p.params.page === '' ? '/' : `/${p.params.page}`)).map((p) => {
     const { gla, en, bg } = localePaths(p.params.page === '' ? '/' : `/${p.params.page}`)
-    return { gla, en, bg, priority: 0.7, alternates: [{ hreflang: 'cu', href: gla }, { hreflang: 'en', href: en }, { hreflang: 'bg', href: bg }, { hreflang: 'x-default', href: gla }] }
+    return { gla, en, bg, priority: 0.7, alternates: [{ hreflang: 'cu', href: gla }, { hreflang: 'en', href: en }, { hreflang: 'bg', href: bg }, { hreflang: 'x-default', href: en }] }
   })
 }
 

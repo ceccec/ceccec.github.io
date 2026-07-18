@@ -8,7 +8,7 @@ import { defineConfig } from 'vitepress'
 import { srcFolderPlugins } from './src-plugins.mts'
 import { buildLockPlugin, releaseDirectBuildLock } from './build-lock-plugin.mts'
 import { buildVerbosePlugin } from './build-verbose-plugin.mts'
-import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
+import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
 
 /** Root pages live under pages/ without bg|gla prefix — default locale is English (canonical bare URLs). */
 function siteLocaleForRelative(relative: string) {
@@ -324,7 +324,8 @@ export default defineConfig({
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
     ['link', { rel: 'icon', href: '/icon.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'apple-touch-icon', href: '/icon.svg' }],
-    ...SITE_LOCALES.map(locale => ['link', { rel: 'alternate', hreflang: locale.lang, href: locale.path }] as const),
+    // hreflang alternates are PER PAGE (each page's own locale editions, absolute, x-default = English) —
+    // emitted in transformPageData via pageHreflangAlternates; site-level locale-home links were wrong here.
     // The site-level JSON-LD now comes from the one template too: jsonLdTemplate
     // emits the site graph on every page in transformPageData — one source, no
     // static twin here to drift from it.
@@ -385,7 +386,10 @@ export default defineConfig({
     const seo = computedSeo(path, pageData.title || (frontmatter.title as string) || '')
     ;(pageData as { __harmonicSeo?: typeof seo }).__harmonicSeo = seo
     const name = pageData.title || (frontmatter.title as string) || seo.title
-    const description = pageData.description || frontmatter.description || seo.description
+    // The meta/OG/JSON-LD description is clamped to the search-display budget (seoMetaDescription);
+    // page bodies keep the full text — the clamp governs the head projection only.
+    if (typeof pageData.description === 'string' && pageData.description) pageData.description = seoMetaDescription(pageData.description)
+    const description = seoMetaDescription(String(pageData.description || frontmatter.description || seo.description))
     const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-developer']
     const isDoc = docPages.some((doc) => relative.endsWith(`${doc}.md`))
     // Holographic tags and a category, revealed in frontmatter and as article meta.
@@ -422,7 +426,8 @@ export default defineConfig({
       ['meta', { property: 'og:type', content: ogType }],
       ['meta', { property: 'og:title', content: ogTitle }],
       ['meta', { property: 'og:description', content: ogDescription }],
-      ['meta', { property: 'og:url', content: path }],
+      // og:url must be ABSOLUTE — social scrapers resolve nothing; the canonical host anchors it.
+      ['meta', { property: 'og:url', content: `${CANONICAL_HOST}${path}` }],
       ['meta', { property: 'og:locale', content: siteLocale.ogLocale }],
       ['meta', { name: 'twitter:card', content: image ? 'summary_large_image' : 'summary' }],
       ['meta', { name: 'twitter:title', content: ogTitle }],
@@ -436,6 +441,8 @@ export default defineConfig({
     // Every page declares its own canonical URL on the one deployed host — closes the rest-fold SEO gap.
     const canonicalPath = '/' + pageData.relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
     head.push(['link', { rel: 'canonical', href: `${CANONICAL_HOST}${canonicalPath}` }])
+    // Per-page hreflang: this page's OWN locale editions (en · bg · cu), absolute, x-default = English.
+    for (const alt of pageHreflangAlternates(path)) head.push(['link', { rel: 'alternate', hreflang: alt.hreflang, href: alt.href }])
     // Home: doc layout (sidebars on) + computed hero in doc-before via Layout.vue.
     if (isHome) {
       if (frontmatter.layout === 'home') {

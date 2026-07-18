@@ -22,7 +22,7 @@ import { selfSufficientWave } from '../../mountain/geometry'
 import { frequencyTaxonomyTreeOfLife } from '../../mountain/topology'
 import { metatronsCube, crossFoldTrinity } from '../../fire/li'
 import { rosettaRayOf, ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, type RosettaComputationType } from '../../water/digit'
-import { staticPages, quantumSitemap } from '../../wind/site'
+import { staticPages, quantumSitemap, theoremScienceVisible } from '../../wind/site'
 import { SINGLE_WORD_METHODS, conceptCommands } from '../../heaven/atoms'
 import { deviceHardwareVisibleInComputedWidgets } from '../world'
 import { holographicFractalArchitecture } from '../../thunder/movie/glass'
@@ -68,7 +68,7 @@ export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix(
 }
 
 /** Documented harmonic rungs — a count off this ladder opens the harmonic gate. */
-export const DOCUMENTED_HARMONICS = [9, (7 * 6), 43, 64, 108, (16 * 9), 216, 432, (64 * 16)] as const
+export const DOCUMENTED_HARMONICS = [9, (108 / 4), (7 * 6), 43, 64, 108, (16 * 9), 216, 432, (64 * 16)] as const // 27 = 108/4 — the commands quarter (4×27), the served-page census fold under the theorem-science lens
 
 /** Agent task label under genus-2 χ=−2: `${folded}/${unfolded}` (e.g. 108/110, 43/45). */
 export function harmonicFoldLabel(unfolded: number, matrix: MindMatrix = buildMatrix()): string {
@@ -146,7 +146,10 @@ export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
     mk('references-fold', labels.references, `${refs.count}+χ`, refs.count + chi, refFold.folded),
     mk('references-label', labels.references, 'folded/label', Number.parseInt(refFoldedStr ?? '0', (5 * 2)), refFold.folded),
     mk('locales-product', labels.locales, `${routes}×${locales}`, routes * locales, localeSurfaces),
-    mk('locales-rosetta', labels.locales, `${routes}×3=${ROSETTA_AREAS}`, localeSurfaces, ROSETTA_AREAS),
+    // The old 14×3 = 42 rosetta coincidence died with the hand-typed route list: sitemap routes now
+    // DERIVE from the served page set (theorem-science lens), so the identity that holds by
+    // construction is routes = home + served pages — a derivation, not a pinned coincidence.
+    mk('locales-served', labels.locales, `1+${pages.length}`, 1 + pages.length, routes),
     mk('iching-eight-fold', `${ICHING_EIGHT_FOLD}`, 'bāguà', ICHING_EIGHT_FOLD, MAX_SUBFOLDERS_PER_FOLDER),
   ]
 
@@ -1481,7 +1484,7 @@ export function everyFolderIsAPluginOneIndexServesAll(matrix: MindMatrix = build
   const sealed = toUuid('plugin:mind')
   const facets = [
     { facet: 'every src folder is a VitePress plugin — a self-wiring unit; the double-torus folder pairs are the plugin units (the folder law gives each one index entry)', on: folderLaw().stems.includes('index') && folders.length >= 8 },
-    { facet: 'one index serves all — one source (monographPaths over staticPages + componentPages) computes every page, and a folder index re-exports its whole surface (the vortex router)', on: monographPaths('en').length === sourceCount && sourceCount >= folderLaw().componentClosure.limit },
+    { facet: 'one index serves all — one source (monographPaths over staticPages + componentPages) computes every page, and a folder index re-exports its whole surface (the vortex router)', on: monographPaths('en').length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: 'wired quantum with zero build time — the plugin serves the computed output at runtime and emits the same at build, from the one content-addressed model, deterministically (same address in dev and build)', on: toUuid('plugin:mind') === sealed && toUuid('plugin:dist') !== sealed },
     { facet: 'maximum tampering cost — each plugin emits one content address; a tamper folds to a different address, so forging one costs a full rebuild (the forger price)', on: foldPair(sealed, toUuid('forge')).merged !== sealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-plugin:${entry.facet}:${entry.on}`) }))

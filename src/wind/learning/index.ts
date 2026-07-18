@@ -1666,6 +1666,8 @@ export function ogBuildsNavigation(matrix: MindMatrix = buildMatrix()) {
  * landing all consume THIS one fold — change the shelving here and every surface follows. */
 export function sciencePortalParts(matrix: MindMatrix = buildMatrix()) {
   return rosettaMemoByRoot('sciencePortalParts', matrix, () => {
+  // staticPages() is the SERVED set (the theorem-science lens roster) — under the only-science law a
+  // ray with no science member simply has no shelf: parts are the NON-EMPTY rays, ≤ 7 of them.
   const pages = staticPages()
   const parts = ROSETTA_RAYS.map((ray) => {
     const members = pages.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === ray.ray)
@@ -1680,18 +1682,18 @@ export function sciencePortalParts(matrix: MindMatrix = buildMatrix()) {
       count: members.length,
       pages: members.map((page) => ({ slug: page.slug, titleEn: page.title.en, titleBg: page.title.bg })),
     }
-  })
+  }).filter((part) => part.count > 0)
   const assigned = parts.reduce((sum, part) => sum + part.count, 0)
   const root = merkleFold(parts.map((part) => toUuid(`portal-part:${part.slug}:${part.pages.map((page) => page.slug).join(',')}`)))
   return {
-    computed: parts.length === 7 && assigned === pages.length && parts.every((part) => part.count > 0) && isUuid(root),
+    computed: parts.length > 0 && parts.length <= ROSETTA_RAYS.length && assigned === pages.length && parts.every((part) => part.count > 0) && isUuid(root),
     parts,
     partCount: parts.length,
     pageCount: pages.length,
     assigned,
     root,
-    statement: `The science portal in seven reusable parts: ${parts.map((part) => `${part.labelEn} ${part.count}`).join(' · ')} — ${assigned}/${pages.length} pages shelved by content lenses.`,
-    boundary: 'Membership comes from ROSETTA_RAY_CONTENT_LENSES (curated keyword classification), not the Glagolitic-ladder slug hash — the hash stays for coprime motion math only. Every static page lands in exactly one part; the gate fails if a page is unshelved or a part is empty.',
+    statement: `The science portal in ${parts.length} reusable parts: ${parts.map((part) => `${part.labelEn} ${part.count}`).join(' · ')} — ${assigned}/${pages.length} served pages shelved by content lenses.`,
+    boundary: 'Membership comes from ROSETTA_RAY_CONTENT_LENSES (curated keyword classification), not the Glagolitic-ladder slug hash — the hash stays for coprime motion math only. The page set is the SERVED set (theorem-science lens): every served page lands in exactly one part, empty rays have no shelf, and the gate fails if a served page is unshelved.',
   }
   })
 }
@@ -1862,7 +1864,7 @@ export function vitepressShowsOnlyScience(matrix: MindMatrix = buildMatrix()) {
   const heroStatesTheLens = hero.tagline.includes(String(lens.theoremCount)) && hero.tagline.includes(String(lens.visibleCount))
   const lensPagesRouted = lens.pages.every((page) => nav.routes.includes(routeOf(page.slug)))
   const facets = [
-    { facet: `SCIENCE SHOWS, THE REST IS HIDDEN — the nav gate carries the lens law (every rendered item a lens survivor, corpus surface or hub anchor), the related sections and crosslinks cover exactly the lens roster, and the lens genuinely cuts (${lens.hidden.length} pages hidden)`, on: nav.computed && nav.relatedSidebarComplete && nav.crosslinksComplete && lens.hidden.length > 0 },
+    { facet: `SCIENCE SHOWS, THE REST IS HIDDEN — the nav gate carries the lens law (every rendered item a lens survivor, corpus surface or hub anchor), the related sections and crosslinks cover exactly the lens roster, and the lens genuinely removes (${lens.hidden.length} pages with no route, no build, no search entry)`, on: nav.computed && nav.relatedSidebarComplete && nav.crosslinksComplete && lens.hidden.length > 0 },
     { facet: `ORGANISED BY THE ROSETTA — the ${lens.visibleCount} visible pages shelve into ${lens.rays.length} rosetta rays with none lost, and the theorem sidebar is the rosetta atlas tag cloud (${reconf.sidebarSections} sections by gravity)`, on: lens.computes && reconf.computes },
     { facet: `ALL WIRED IN VITEPRESS SEARCH — every one of the ${reconf.searchLines} registry theorems is a search line fed to the local index, and every lens page is a built route the same index covers (${lensPagesRouted})`, on: reconf.searchLines > 0 && lensPagesRouted },
     { facet: `THE MCP USES THE SAME SEARCH — the manifest instructions point agents at the VitePress local index and the searchable corpora are served pages`, on: mcp.computes },
@@ -1878,7 +1880,7 @@ export function vitepressShowsOnlyScience(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold([lens.root, nav.root, ...facets.map((entry) => entry.receipt)]),
     statement: `VitePress shows science through the theorem-science lens — ${facets.filter((entry) => entry.on).length}/${facets.length}: the lens passes ${lens.visibleCount}/${lens.pageCount} curated pages (${lens.hidden.length} hidden from every discovery surface), organised by the rosetta into ${lens.rays.length} rays beside the ${lens.theoremCount}-theorem registry; all of it is wired into the VitePress local search (${reconf.searchLines} theorem lines + every lens page a built route), the MCP discovers through that same search, and the homepage hero states the lens with computed counts.`,
-    boundary: `COMPUTED: the five joins — the nav-gate lens law, the rosetta shelving, the search wiring, the MCP search pointer, and the hero's lens-visible actions — each read from its own live fold and refutable there. HONEST SCOPE: the lens governs the discovery surfaces; hidden pages stay built, served and locally searchable (the static index covers built pages) — the lens governs what the site PRESENTS, not what exists. The README's match to the lens is proven by its own signature fold (readmeSignatureValid + readme audit), cited, not re-proven here — the dist layer consumes this fold, never the reverse. HARMONY ≠ TRUTH.`,
+    boundary: `COMPUTED: the five joins — the nav-gate lens law, the rosetta shelving, the search wiring, the MCP search pointer, and the hero's lens-visible actions — each read from its own live fold and refutable there. HONEST SCOPE: the lens governs EXISTENCE (user law: remove the rest completely) — staticPages() serves only the roster, so removed pages have no route, no build, no search entry and no sitemap line; their data stays in staticPagesAll. The README's match to the lens is proven by its own signature fold (readmeSignatureValid + readme audit), cited, not re-proven here — the dist layer consumes this fold, never the reverse. HARMONY ≠ TRUTH.`,
   }
 }
 

@@ -5,7 +5,7 @@ import { SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, indexRegistryF
 import {  isUuid, merge, merkleFold, toUuid } from '../../../0'
 import { discoverSrcIndexes, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
 import { toGlagolitic } from '../../../quantum/heaven/library'
-import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf } from '../../../water/digit'
+import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf, rosettaRayOfContent } from '../../../water/digit'
 import { staticPages } from '../../site'
 import { componentPages } from '../../../quantum/heaven/mind'
 
@@ -461,11 +461,13 @@ export function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg') {
     add(page.slug)
     // Keywords resolve at runtime via monographSliceFromRoute — not SSG-enumerated (see [path].md).
   }
-  // The seven rosetta ray-hubs — top-level IA landings, mounted via the catch-all (not staticPages, so the
-  // harmonic page census stays a documented harmonic). explore/learn already exist as curated pages (skipped).
-  for (const hub of ROSETTA_RAY_HUBS) add(hub.slug)
-  // Declared aliases (/academy, /school → /learn) keep old URLs resolving to the unified learn surface.
-  for (const alias of Object.keys(ROUTE_ALIASES)) add(alias)
+  // The rosetta ray-hubs — top-level IA landings, mounted via the catch-all. ONLY science is served
+  // (user law): a hub mounts iff its ray holds at least one served page — an empty shelf has no landing.
+  const populatedRays = new Set(staticPages().map((page) => rosettaRayOfContent(page.slug, page.keywords)))
+  for (const hub of ROSETTA_RAY_HUBS) if (populatedRays.has(hub.ray)) add(hub.slug)
+  // Declared aliases mount only when their canonical slug is itself served — /academy and /school pointed
+  // at the learn portal, which is outside the theorem-science lens, so they mount nothing now.
+  for (const [alias, canonical] of Object.entries(ROUTE_ALIASES)) if (staticPages().some((page) => page.slug === canonical)) add(alias)
   return paths
 }
 

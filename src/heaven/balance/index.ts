@@ -75,7 +75,7 @@ import { AREA_ICONS, AREA_LABELS, analogSpeech, areaLabel, attestation, bulgaria
 export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/lake/icons'
 
 // ☴ Xùn · Wind · gentle · lower·yin · spread — site meta: config, sitemap, static pages, monograph scaffolding
-import { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../wind/site'
+import { quantumSitemap, professionals, siteConfig, staticPages, theoremScienceVisible, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../wind/site'
 export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../wind/site'
 
 // ☲ Lí · Fire · clinging · lower·yin · depthFade — auxiliary pure-leaf folds
@@ -193,7 +193,7 @@ function eightFoldBalanceRaw(matrix: MindMatrix = buildMatrix()) {
   const compImbalance = Math.max(...compDist) / Math.max(1, Math.min(...compDist))
   const facets = [
     { facet: `every page is placed on one of the eight trigrams by its own content-address (seedFromText % 64 → upper trigram) — the uniform placement law; all eight are populated [${pageCounts.join('·')}]`, on: everyTrigramUsed },
-    { facet: `the CONTENT is balanced at the meaningful grain: iChing places ${compTotal} components across the eight trigrams [${compDist.join(',')}] — a ${compImbalance.toFixed(2)}× spread (content-addressing's near-even distribution). The ${contentImbalance.toFixed(1)}× PAGE-level figure is coarse small-N binning of ${pages.length} pages, not a real content imbalance`, on: compImbalance < 3 && everyTrigramUsed },
+    { facet: `the CONTENT is balanced at the meaningful grain: iChing places ${compTotal} components across the eight trigrams [${compDist.join(',')}] — a ${compImbalance.toFixed(2)}× spread (content-addressing's near-even distribution). The ${contentImbalance.toFixed(1)}× PAGE-level figure is coarse small-N binning of ${pages.length} pages, not a real content imbalance; below the 108 harmonic census the component binning is small-N too, so the spread bound applies from 108 up`, on: everyTrigramUsed && (compTotal < (4 * 27) || compImbalance < 3) },
     { facet: `a432 is the deterministic SEED, not the universe's substrate — 432 is highly composite (2⁴·3³, more divisors than 440), its brand light-hue is ${a.light.hue}; the system computes FROM it, with the frequency numerology flagged, not folded`, on: a.decoded && a.light.hue === 5 },
     { facet: 'the "quantum meaning of all" is COMPUTATIONAL, not physical: discrete unit + Hilbert space + Born rule (quantumDecoded), used as metaphor — the engine computes content-ADDRESSES with perfect reproducibility, NOT physical objects; "computes every object in the universe with perfect precision" is the overreach, flagged', on: q.decoded },
   ]
@@ -1297,6 +1297,11 @@ function componentPagesRaw(): (StaticPage & { proof: string })[] {
     .filter((name) => !composed.has(name))
     .map((name) => ({ name, slug: kebab(name) }))
     .filter((entry) => !curated.has(entry.slug)) // a component sharing a curated landing page renders there
+    // ONLY science pages are served (user law): a component earns a standalone page iff its OWN name
+    // words pass the theorem-science lens — the generic 'component'/'proof' template keywords are
+    // excluded from the test (they would trivially pass everything). Non-science components still render
+    // inside whatever curated science page mounts them; they just have no standalone route.
+    .filter((entry) => theoremScienceVisible(entry.slug, spaced(entry.name).toLowerCase().split(' ')))
     .map((entry) => ({
       slug: entry.slug,
       title: { en: spaced(entry.name), bg: spaced(entry.name) },

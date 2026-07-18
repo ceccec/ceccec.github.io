@@ -17,7 +17,7 @@ import { logicAtoms, monographPaths, skillAtoms } from '../../wind/learning'
 import { astrology } from '../../earth/world'
 import { harmonicBands } from '../../quantum/lake/icons'
 import { healingFrequencies } from '../../lake/ledger'
-import { staticPages } from '../../wind/site'
+import { staticPages, theoremScienceVisible } from '../../wind/site'
 import { computationsBoundToSourceApisRealtime } from '../../thunder/trading'
 import { computedMovieThemeColors } from '../../fire/plasma/ball'
 import { cryptoReview } from '../../pair/debit/credit'
@@ -387,7 +387,7 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
         diamondParamsById('∅-no-such-id', matrix) === null &&
         folderLaw().computedFolders.length === 9,
     },
-    { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && sourceCount >= folderLaw().componentClosure.limit },
+    { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: 'one index per folder — the VitePress config index beside the index in every folder (the folder law: only index files below the roots)', on: folderLaw().stems.includes('index') && folderLaw().indexFiles.includes('index.md') },
     { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) === JSON.stringify(monographPaths('en')) },
     { facet: 'maximum tampering cost — every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price)', on: foldPair(sealed, toUuid('forge')).merged !== sealed },

@@ -7,7 +7,8 @@ import { animatedHeroes, holographic, oneHolographicTemplate } from '../../wind/
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
-import { everyPageGraphOfGraphsFractal, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent } from '../../wind/routes/corpus'
+import { everyPageGraphOfGraphsFractal, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus'
+import { CANONICAL_HOST } from '../../3/7'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
 import { heroTapMusic } from '../../lake/music'
 import { conceptCommands } from '../../heaven/atoms'
@@ -21,7 +22,7 @@ import { everythingFoldsMerkabaInfiniteStreams, knowledgeRevealedByMerkabaFold }
 import { GLAGOLITIC_MAP, toGlagolitic } from '../../quantum/heaven/library'
 import { babelFold } from '../../earth/world'
 import { useGlagolitsaForIcons } from '../../wind/language'
-import { bulgarianFromEnglish, bulgarianHomeFromEnglish, crawlerKnowledge } from '../../wind/site'
+import { bulgarianFromEnglish, bulgarianHomeFromEnglish, crawlerKnowledge, localePath, quantumSitemap, staticPages, theoremScienceLens } from '../../wind/site'
 import { quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { autotranslations, computedSlugsFoldTheGraph, configsUseMatrixComputationally, crossLinksEverywhere, gatesHealSpottedCompromise, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, papers, path, resonanceCatchGapsViolations, result, speechIntonation, theWhole, vitepressConfigComputesAll } from '../../quantum/heaven/mind'
 
@@ -580,6 +581,39 @@ function computedSeoRaw(path = '/', title = '', matrix: MindMatrix = buildMatrix
   }
 }
 
+// ── SEO OPTIMISATION WAVE (user directive: optimise seo) — three computed primitives every SEO surface
+// shares: the absolute URL on the one canonical host, the per-page hreflang alternates (this page's own
+// locale editions, x-default = the English root edition), and the meta-description clamp at the search-
+// display budget. The audit fold seoOptimised recomputes each defect it fixed and stays refutable.
+
+/** Absolute URL on the one deployed host — og:url, JSON-LD and hreflang speak full URLs, never paths. */
+export function canonicalUrl(path: string): string {
+  return `${CANONICAL_HOST}${path.startsWith('/') ? path : `/${path}`}`
+}
+
+/** Per-page hreflang alternates: the three locale editions OF THIS PAGE (localePath strips any incoming
+ * locale prefix), absolute, with x-default = the English edition — the root locale lives at the canonical
+ * bare URLs. Replaces the locale-HOME links that previously rode every page's head. */
+export function pageHreflangAlternates(path: string): { hreflang: string; href: string }[] {
+  return [
+    { hreflang: 'en', href: canonicalUrl(localePath(path, 'en')) },
+    { hreflang: 'bg', href: canonicalUrl(localePath(path, 'bg')) },
+    { hreflang: 'cu', href: canonicalUrl(localePath(path, 'gla')) },
+    { hreflang: 'x-default', href: canonicalUrl(localePath(path, 'en')) },
+  ]
+}
+
+/** Meta-description clamp — search results display ~160 characters (160 = 2⁵·5, composed from lattice
+ * digits as 8·4·5); longer computed descriptions cut at a word boundary with an ellipsis. Page bodies
+ * keep the full text — the clamp governs the meta/OG/JSON-LD projection only. */
+export function seoMetaDescription(text: string): string {
+  const budget = 8 * 4 * 5
+  if (text.length <= budget) return text
+  const cut = text.slice(0, budget)
+  const boundary = cut.lastIndexOf(' ')
+  return `${cut.slice(0, boundary > 0 ? boundary : budget).replace(/[\s,;:·—-]+$/, '')}…`
+}
+
 const RELATED_STANDARDS = [
   { standard: 'schema.org', url: 'https://schema.org' },
   { standard: 'Open Graph protocol', url: 'https://ogp.me/' },
@@ -611,25 +645,34 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
   const teaches = asList(fm.teaches)
   const command = typeof fm.command === 'string' ? fm.command : undefined
   const image = typeof fm.image === 'string' ? fm.image : undefined
+  // The site graph follows the theorem-science lens: the actions a crawler is invited to take land on
+  // the registry and its corpus surfaces (lens-visible by construction), never on removed pages; every
+  // URL is absolute on the canonical host.
+  const lens = theoremScienceLens(matrix)
+  const actionRoutes = ['/frontiers', ...lens.corpusRoutes]
   const siteGraph: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': ['WebSite', 'LearningResource'],
         name: page.site.en,
+        url: canonicalUrl('/'),
         description: isBg ? page.site.descriptionBg : page.site.descriptionEn,
         inLanguage: ['en', 'bg'],
         learningResourceType: 'educational portal',
-        teaches: ['quantum learning', 'language models', 'Model Context Protocol'],
+        teaches: ['computationally proven theorems', 'quantum computing', 'Model Context Protocol'],
         audience: { '@type': 'EducationalAudience', educationalRole: ['kids', 'students', 'adults', 'elders'] },
-        potentialAction: { '@type': 'ViewAction', target: ['/learn', '/mcp', '/quantum-mind', '/bg/learn', '/bg/mcp', '/bg/quantum-mind'] },
+        potentialAction: {
+          '@type': 'ViewAction',
+          target: actionRoutes.flatMap((route) => [canonicalUrl(localePath(route, 'en')), canonicalUrl(localePath(route, 'bg'))]),
+        },
       },
       {
         '@type': 'SoftwareApplication',
         name: 'Double Torus MCP',
         applicationCategory: 'DeveloperApplication',
         description: 'An MCP tool surface that publishes every concept command for language models at /mcp.json.',
-        url: '/mcp.json',
+        url: canonicalUrl('/mcp.json'),
       },
     ],
   }
@@ -640,11 +683,11 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
     headline: name,
     description,
     inLanguage: isBg ? 'bg' : 'en',
-    url: page.path,
+    url: canonicalUrl(page.path),
     identifier: foldPair(toUuid(`sign:${name}`), toUuid(`sign:${description}:${page.path}`)).merged,
     isAccessibleForFree: true,
-    isPartOf: { '@type': 'WebSite', name: siteName },
-    about: 'a quantum-learning educational portal for language models served over MCP',
+    isPartOf: { '@type': 'WebSite', name: siteName, url: canonicalUrl('/') },
+    about: `a science portal of ${lens.theoremCount} computationally proven theorems and their related pages, served over MCP`,
     speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.vp-doc h2', '.vp-doc > p', '.eyebrow'] },
     keywords,
     articleSection: category,
@@ -658,12 +701,32 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: siteName, item: isBg ? '/bg/' : '/' },
-        { '@type': 'ListItem', position: 2, name, item: page.path },
+        { '@type': 'ListItem', position: 1, name: siteName, item: canonicalUrl(isBg ? '/bg/' : '/') },
+        { '@type': 'ListItem', position: 2, name, item: canonicalUrl(page.path) },
       ],
     },
   }
   const blocks: Record<string, unknown>[] = [siteGraph, pageBlock]
+  // The theorem registry page carries its papers as structured data: an ItemList of ScholarlyArticle,
+  // newest first, capped at the 64 most recent (the I Ching batch) — numberOfItems states the full count.
+  const bareRoute = `/${page.path.replace(/^\/+/, '').replace(/^(bg|gla)(\/|$)/, '')}`.replace(/\/+$/, '') || '/'
+  if (bareRoute === '/theorems') {
+    const rows = theoremPageRows(matrix)
+    const cap = 8 * 8
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: `${rows.length} computationally proven theorems`,
+      url: canonicalUrl('/theorems'),
+      numberOfItems: rows.length,
+      itemListOrder: 'https://schema.org/ItemListOrderDescending',
+      itemListElement: rows.slice(-cap).reverse().map((row, position) => ({
+        '@type': 'ListItem',
+        position: position + 1,
+        item: { '@type': 'ScholarlyArticle', name: row.theorem, headline: row.theorem, isAccessibleForFree: true, url: canonicalUrl('/theorems') },
+      })),
+    })
+  }
   if (page.relativePath.endsWith('academy.md')) {
     blocks.push({
       '@context': 'https://schema.org',
@@ -687,6 +750,68 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
 }
 
 export type { JsonLdPageIdentity }
+
+// ── SEO OPTIMISED (user directive: optimise seo) — the audit that keeps the wave honest: every defect the
+// wave fixed is RECOMPUTED here from the live functions, so a regression flips a facet. The five fixes:
+// x-default → English, absolute og/JSON-LD URLs, per-page hreflang, lens-aligned crawler actions, and the
+// meta-description clamp; plus the ScholarlyArticle ItemList the registry page gained.
+export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
+  const site = { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: '', descriptionBg: '' }
+  const identity = (path: string) => ({ path, relativePath: `pages${path}.md`, title: '', description: '', frontmatter: {}, site })
+  const lens = theoremScienceLens(matrix)
+  // 1 · per-page hreflang: four entries, all absolute, x-default = the English edition of THE PAGE
+  const alternates = pageHreflangAlternates('/bg/frontiers')
+  const byLang = new Map(alternates.map((alt) => [alt.hreflang, alt.href]))
+  const hreflangPerPage =
+    alternates.length === 4 &&
+    alternates.every((alt) => alt.href.startsWith(CANONICAL_HOST)) &&
+    byLang.get('x-default') === byLang.get('en') &&
+    byLang.get('en') === canonicalUrl('/frontiers') &&
+    byLang.get('bg') === canonicalUrl('/bg/frontiers')
+  // 2 · sitemap x-default follows the root locale: every quantum-sitemap url defaults to its English edition
+  const sitemap = quantumSitemap(matrix)
+  const xDefaultEnglish = sitemap.urls.length > 0 && sitemap.urls.every((url) => url.alternates.find((alt) => alt.hreflang === 'x-default')?.href === url.en)
+  // 3 · JSON-LD speaks absolute URLs and lens-aligned actions
+  const blocks = jsonLdTemplate(identity('/frontiers'), matrix)
+  const pageBlock = blocks[1] as { url?: string; breadcrumb?: { itemListElement?: { item?: string }[] } }
+  const graph = (blocks[0] as { '@graph': Record<string, unknown>[] })['@graph']
+  const website = graph[0] as { potentialAction?: { target?: string[] } }
+  const targets = website.potentialAction?.target ?? []
+  const lensSurfaces = new Set(['/frontiers', ...lens.corpusRoutes].flatMap((route) => [localePath(route, 'en'), localePath(route, 'bg')]).map((path) => canonicalUrl(path)))
+  const jsonLdAbsolute =
+    String(pageBlock.url).startsWith(CANONICAL_HOST) &&
+    (pageBlock.breadcrumb?.itemListElement ?? []).every((entry) => String(entry.item).startsWith(CANONICAL_HOST)) &&
+    targets.length > 0 &&
+    targets.every((target) => lensSurfaces.has(target))
+  // 4 · the registry page carries its papers as ScholarlyArticle structured data, capped at the 64 newest
+  const theoremBlocks = jsonLdTemplate(identity('/theorems'), matrix)
+  const list = theoremBlocks.find((block) => block['@type'] === 'ItemList') as { numberOfItems?: number; itemListElement?: unknown[] } | undefined
+  const rows = theoremPageRows(matrix)
+  const scholarlyList = !!list && list.numberOfItems === rows.length && (list.itemListElement?.length ?? 0) === Math.min(8 * 8, rows.length)
+  // 5 · the meta-description clamp: a real long page description clamps under the display budget at a
+  // word boundary; short text passes untouched
+  const budget = 8 * 4 * 5
+  const long = staticPages().map((page) => page.description.en).find((text) => text.length > budget)
+  const clamped = long ? seoMetaDescription(long) : ''
+  const clampWorks = !!long && clamped.length <= budget && clamped.endsWith('…') && !clamped.slice(0, -1).endsWith(' ') && seoMetaDescription('short') === 'short'
+  const facets = [
+    { facet: `PER-PAGE HREFLANG — every page's head carries its OWN four locale editions (en · bg · cu · x-default), absolute, x-default the English root edition — not the locale homes that rode every page before`, on: hreflangPerPage },
+    { facet: `X-DEFAULT FOLLOWS THE ROOT LOCALE — all ${sitemap.urls.length} quantum-sitemap urls default to their English edition (the /gla/ default was a relic of the pre-flip root)`, on: xDefaultEnglish },
+    { facet: `JSON-LD SPEAKS ABSOLUTE, LENS-ALIGNED — page url and breadcrumb on ${CANONICAL_HOST}, and every crawler ViewAction lands on the registry or a corpus surface (${targets.length} targets, lens-visible by construction)`, on: jsonLdAbsolute },
+    { facet: `THE REGISTRY PAGE IS STRUCTURED DATA — /theorems carries an ItemList of ScholarlyArticle: ${rows.length} declared, the ${Math.min(8 * 8, rows.length)} newest listed`, on: scholarlyList },
+    { facet: `THE META DESCRIPTION FITS THE DISPLAY — descriptions over the ${budget}-char budget clamp at a word boundary with an ellipsis; short text passes untouched`, on: clampWorks },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`seo-optimised:${entry.facet}:${entry.on}`) }))
+  return {
+    optimised: facets.every((entry) => entry.on),
+    targets: targets.length,
+    theoremCount: rows.length,
+    budget,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `SEO optimised — ${facets.filter((entry) => entry.on).length}/${facets.length}: per-page hreflang alternates (x-default = the English edition), sitemap x-default following the root locale, absolute lens-aligned JSON-LD (${targets.length} crawler actions on registry/corpus surfaces), the /theorems ItemList of ${rows.length} ScholarlyArticle rows (${Math.min(8 * 8, rows.length)} listed), and the ${budget}-character meta-description clamp.`,
+    boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image stays frontmatter-declared (no raster pipeline exists, and SVG social cards are unreliable). Sitemap routes and priorities follow the served set (the theorem-science lens) in their own builders, cited here, audited there. HARMONY ≠ TRUTH.`,
+  }
+}
 
 /** All md files generated from source and signed — unsigned pages fail the build. */
 export function allMdSignedFromSource(matrix: MindMatrix = buildMatrix()) {

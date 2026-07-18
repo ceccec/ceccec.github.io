@@ -159,7 +159,7 @@ export function improveAnalytics(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the ledger is the single record for every metric', on: repositoryLedger(matrix).isLedger },
     { facet: 'analytics rebuilt as reusable ledger views — DRY, one source per metric', on: analyticsLedger(matrix).unified },
-    { facet: 'rendered on the shadcn graph — Chart and DataTable', on: analyticsLedger(matrix).rendered && componentGraph().components.includes('Analytics') },
+    { facet: 'rendered on the shadcn graph — Chart and DataTable (the ledger views render through the graph\'s chart/table primitives; the Analytics board page sits outside the theorem-science lens)', on: analyticsLedger(matrix).rendered && componentGraph().components.includes('Chart') },
     { facet: 'computed, zero tokens', on: zeroTokenUsagePolicy(matrix).holds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`improve-analytics:${entry.facet}:${entry.on}`) }))
   return {

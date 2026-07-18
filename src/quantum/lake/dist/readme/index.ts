@@ -96,11 +96,11 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     `- **${labels.pages}** monographs — content pages fold genus-2 −χ (${paperList.length} surface → ${census.folded} folded); census **${labels.census}**; Rosetta **${labels.rosetta}=${ROSETTA_AREAS}** areas`,
     `- **${labels.commands}** concept commands — MCP tool surface (4×27 = 432÷4)`,
     `- **${labels.references}** reference index entries — zero redundancy`,
-    `- **${labels.locales}** locale surfaces — ${sitemap.urls.length} routes × 3 locales (${labels.rosetta} when ${labels.locales.split('/')[0]}=${ROSETTA_AREAS})`,
+    `- **${labels.locales}** locale surfaces — ${sitemap.urls.length} routes (home + every served science page) × 3 locales`,
     `- **${math.count} arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: ${math.proven})`,
     `- **${efficiency.count} efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: ${efficiency.proven})`,
     '',
-    `**The theorem-science lens** — ${lens.visibleCount}/${lens.pageCount} curated pages pass (${lens.hidden.length} hidden from every discovery surface, still built and served), presented beside the ${lens.theoremCount}-theorem registry and its corpus surfaces (${lens.corpusRoutes.join(' · ')}). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.`,
+    `**The theorem-science lens** — ${lens.visibleCount}/${lens.pageCount} curated pages pass (${lens.hidden.length} removed from VitePress completely — data preserved in the catalog), presented beside the ${lens.theoremCount}-theorem registry and its corpus surfaces (${lens.corpusRoutes.join(' · ')}). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.`,
     '',
     // Each result links to the SOURCE CODE that proves it — its primary component (the widget that renders the
     // proof), or the page registry when a section page has none. "The README links to source code."
