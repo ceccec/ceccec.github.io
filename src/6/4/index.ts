@@ -101,7 +101,8 @@ export function geodesicDomeComputes(frequency = 3) {
   for (const shift of [0, 1, 2]) {
     for (const s1 of [1, -1]) for (const s2 of [1, -1]) {
       const raw: number[] = [0, s1, s2 * PHI]
-      base.push(norm([raw[(3 - shift) % 3]!, raw[(4 - shift) % 3]!, raw[(5 - shift) % 3]!] as unknown as V3))
+      const triple: V3 = [raw[(3 - shift) % 3]!, raw[(4 - shift) % 3]!, raw[(5 - shift) % 3]!] // contextual tuple type — no cast
+      base.push(norm(triple))
     }
   }
   // edges discovered as the minimal pair distance; faces as mutually adjacent triples

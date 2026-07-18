@@ -319,9 +319,9 @@ export function animationsPureAlgebra(matrix: MindMatrix = buildMatrix()) {
     // the lattice generator: the hero dimension walk uses canonical-digit harmonics — commensurate,
     // so the Lissajous CLOSES after one cycle (verified: dims at tau and tau + TAU agree).
     const probe = 4 / 5
-    const atPhase = dims(probe) as unknown as Record<string, number>
-    const atPhaseNext = dims(probe + 1) as unknown as Record<string, number>
-    const closes = Object.keys(atPhase).every((k) => atPhaseNext[k] === atPhase[k]) // period 1 in phase — EXACT closure
+    const atPhase = dims(probe)
+    const atPhaseNext = dims(probe + 1)
+    const closes = (Object.keys(atPhase) as (keyof typeof atPhase)[]).every((k) => atPhaseNext[k] === atPhase[k]) // period 1 in phase — EXACT closure, typed keys
     const sealed = sealFacets('animations-pure-algebra', [
       { facet: `φ is the extremal irrational — its continued fraction computes to [${cfTerms.join(';')}] (all ones over ${cfTerms.length} terms), so φ-ladder rates are the provably slowest to ever look periodic (Hurwitz's theorem cited): the hero's converted time/phase rates ride φ^−2..φ^−4`, on: allOnes && ladderMonotone },
       { facet: `the lattice generator closes — the dimension walk's canonical-digit harmonics are commensurate and dims(p) = dims(p + 1) EXACTLY (bit-equal, the mod-1 phase law): repetition is a computed property, not an accident`, on: closes },
