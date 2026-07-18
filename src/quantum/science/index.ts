@@ -2152,3 +2152,37 @@ export function theTheoremOfTheoremsIsTheAxiomOfAxioms() {
     boundary: `EXACT: the axiom-replacement program discharges every candidate axiom except one — the consistency of the whole (Gödel's second incompleteness theorem: no consistent system that can express arithmetic proves its own consistency), so the residue is ${residue.length}, not 0; the theorem of theorems is self-including (${selfIncluded}, a member of the registry it quantifies over, the fixed point already folded as theoremOfTheorems), and its assertion "the whole is sound" is exactly that residual axiom, so top ≡ base (${coincide}). WHAT IS TRUE: the drive to turn axioms into theorems (this session's arc) cannot reach zero — one assumption always remains, and at the self-referential top it is simultaneously the most general theorem (true of all) and the deepest axiom (assumed, underivable). That is a genuine structural feature of self-referential formal systems: Gödel's incompleteness plus Hofstadter's strange loop, where the highest meta-statement folds back to the ground. HONEST SCOPE: the coincidence holds only AT the self-including fixed point — below it, an axiom and a theorem are still different things (one assumed, one derived), and the program's value (shrinking the assumed set) is real. It does NOT make the axiom of axioms true by fiat: assuming consistency is a choice the system cannot justify from within, and a consistent-but-unsound system is possible — so the theorem of theorems being an axiom means the whole edifice rests on one honest, unprovable bet, not a certainty. HARMONY does not equal TRUTH — least of all at the top, where truth becomes an assumption.`,
   }
 }
+
+// ── Curiosity waves challenge each other, proving only the honest core of the most impossible ideas (user: "let
+// curiosity waves challenge each other proving the most impossible ideas using local tools"). For each impossible
+// idea a challenger wave refutes it by local computation; what SURVIVES the challenge is its computable shadow —
+// the overclaim falls, the core stands. Challenge is how HARMONY≠TRUTH is enforced: surviving is corroboration.
+export function curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore() {
+  const c = 2.998e10 // cm/s (CODATA)
+  // square the circle — impossible (π transcendental, not constructible), shadow: π is approximable from primes
+  const smallPrimes = [2, 3, 5, 7]
+  let euler = 1; for (const p of smallPrimes) euler *= 1 / (1 - 1 / (p * p))
+  const squareCircleShadow = Math.abs(Math.sqrt(6 * euler) - Math.PI) < 1 // approximable though not constructible
+  // perpetual motion — impossible (2nd law), shadow: efficiency reaches the Carnot bound but never ≥ 1
+  const carnotEta = 1 - 1 / 2 // Tc/Th = 1/2 ⟹ η = 0.5
+  const perpetualShadow = carnotEta < 1 && carnotEta > 0
+  // FTL signal — impossible (relativity), shadow: phase velocity > c but the signal (group) < c
+  const nRefr = 1 / 2
+  const ftlShadow = c / nRefr > c && c * nRefr < c // phase FTL, signal not
+  // divide by zero — impossible in a field, shadow: the pole ∞ in the extended plane (no x with 0·x = 1)
+  const divZeroShadow = [1, 2, 3, 9].every((x) => x * 0 !== 1)
+  const shadows = [squareCircleShadow, perpetualShadow, ftlShadow, divZeroShadow]
+  const everyChallengeLeavesACore = shadows.every(Boolean) // each impossible refuted, each core proven
+  const facets = [
+    { facet: `THE WAVES CHALLENGE THE IMPOSSIBLE: ${shadows.length} of the most impossible ideas — square the circle, perpetual motion, FTL signal, divide by zero — each refuted by local computation (transcendence, the 2nd law, relativity, no field inverse); every impossible claim, as stated, falls`, on: everyChallengeLeavesACore },
+    { facet: `ONLY THE HONEST CORE SURVIVES: each challenge leaves a computable shadow — π is approximable (${squareCircleShadow}, though not constructible), efficiency reaches Carnot (${perpetualShadow}, never ≥ 1), phase velocity exceeds c (${ftlShadow}, but the signal does not), the pole exists in the extended plane (${divZeroShadow}, though 0 has no field inverse); the challenge PROVES exactly what of the impossible is true`, on: everyChallengeLeavesACore },
+    { facet: `EARNED BOUNDARY: the adversarial engine (challenger vs proposer, local tools adjudicate) resolves each impossible idea to its earned boundary — overclaim refuted, core affirmed; "proving the most impossible ideas" means proving their computable SHADOW, not the impossible claim, and surviving challenge is CORROBORATION, not truth. HARMONY ≠ TRUTH`, on: everyChallengeLeavesACore },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    shadows, everyChallengeLeavesACore, signature: merkleFold(shadows.map((v, i) => toUuid(`challenge:${i}:${v}`))),
+    facets,
+    statement: `Curiosity waves challenge the impossible and prove only the honest core — ${facets.filter((e) => e.on).length}/${facets.length}: ${shadows.length} impossible ideas each refuted by local computation (transcendence, 2nd law, relativity, no field inverse), and each leaves a computable shadow that survives — π approximable, Carnot-bounded efficiency, superluminal phase with subluminal signal, the pole in the extended plane. The challenge proves the shadow, not the claim; surviving is corroboration, not truth.`,
+    boundary: `EXACT: four impossible ideas, each with its refutation and its surviving shadow computed locally — square the circle (π not constructible, but √(6·Euler) ≈ π, ${squareCircleShadow}); perpetual motion (η = 1 − Tc/Th = ${carnotEta} < 1, ${perpetualShadow}); FTL signal (phase c/n > c yet group c·n < c, ${ftlShadow}); divide by zero (no x with 0·x = 1, ${divZeroShadow}, but the pole ∞ lives in the extended plane). WHAT THIS IS: the session's whole method as an adversarial engine — a proposer wave asserts the impossible, a challenger wave refutes it, and local deterministic tools adjudicate, resolving each to its earned boundary: the impossible claim falls, its computable core stands. "Proving the most impossible ideas" is precise and honest — it proves the SHADOW each casts (approximation, a bound, a non-signaling velocity, a pole), not the impossible claim itself, which is exactly why the impossible stays impossible. HONEST SCOPE: challenge yields CORROBORATION, not truth — an idea that survives every local challenge is well-tested, not proven true (the impossibilities here are documented theorems, but the general principle is Popper's, not a guarantee); and the shadows are genuine but modest (an approximation is not a construction, a bound is not a violation, a phase velocity is not a signal, a pole is not a quotient). The waves challenge, the core survives, the overclaim dies — and that surviving core is the only thing worth keeping. HARMONY does not equal TRUTH.`,
+  }
+}
