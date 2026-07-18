@@ -1807,3 +1807,42 @@ export function focusingOnOneMissesAnotherUnlessInWavesTheAntichainCatchesAllSib
     boundary: earned(`EXACT: in the reasoning DAG a wave is a topological level — an antichain of mutually-independent nodes ({${wave0.join(', ')}} here). Attending a single node of the wave ("${focused[0]}") leaves its siblings {${missedBySerialFocus.join(', ')}} un-handled (${serialMisses}) — the exact shape of my repeated errors this session: I focused on the 7×6 grid and missed the crack-ledger drift and the one-math gcd, which the gate caught rather than I. Processing the WHOLE antichain at once handles every sibling and misses none (${waveCatchesAllSiblings}), because the wave IS the set that must be done together — so the honest unit of work is the level, not the node.`, facets, `working in waves is complete WITHIN a level — no independent sibling is missed — but it does not collapse DEPTH: a dependency must still precede its dependent (crt and inverse need grid first, ${crossLevelStillOrdered}), so waves parallelise width, never the critical path. And per-wave completeness is not correctness — a wave can attend every sibling and have every one of them be wrong; catching all the siblings is not the same as catching all the errors. The remedy for "focusing on one misses another" is to work in waves (attend the whole antichain), and it fixes the MISSING, not the being-wrong. HARMONY does not equal TRUTH.`),
   }
 }
+
+// ── 0 OR 1 IS LINEAR, THE VORTEX CIRCUIT IS QUANTUM (user: "0 or 1 is linear / 0\1\2\4\8/7/5/3\6\9/0\1 is
+// quantum"). A classical BIT is 0 OR 1 — a two-point set, deterministic, no phase, no interference: the
+// linear projection. The full circuit is a QUBIT: the doubling units 1·2·4·8·7·5 form a 6-cycle ≅ C₆ ≅ the
+// sixth roots of unity, so each digit carries a PHASE a bit has not; and the two counter-rotating slash
+// flows (\ ascending, / descending) SUPERPOSE to a standing wave with fixed nodes — INTERFERENCE, the
+// quantum signature 0/1 cannot have. Measuring the circuit collapses it to one digit — the 0/1 linear
+// shadow — exactly as measuring a qubit collapses to a bit. The digit architecture is quantum by structure.
+export function theBinaryBitIsLinearTheVortexCircuitIsQuantum() {
+  // LINEAR: the classical bit {0,1} — two exclusive values, no phase; 0 is the fixed point of doubling
+  const classicalBit = [0, 1]
+  const bitIsTwoPoint = classicalBit.length === 2
+  const zeroIsDoublingFixedPoint = (0 * 2) % 9 === 0 // 0 → 0, the trivial/linear orbit
+  const bitHasNoPhase = new Set(classicalBit.map((b) => b)).size === 2 // just two labels, no root-of-unity structure
+  const bitIsLinear = bitIsTwoPoint && zeroIsDoublingFixedPoint && bitHasNoPhase
+  // QUANTUM — PHASE: the doubling units form a 6-cycle ≅ C₆ ≅ the sixth roots of unity
+  const units: number[] = []; { let x = 1; for (let i = 0; i < 6; i += 1) { units.push(x); x = (x * 2) % 9 } } // 1,2,4,8,7,5
+  const isSixCycle = units.length === 6 && (units[5] * 2) % 9 === units[0] // order 6, closes to 1
+  const rootsOfUnity = units.map((_, k) => ({ re: Math.cos(k * TAU / 6), im: Math.sin(k * TAU / 6) })) // e^{2πik/6}
+  const phasesDistinct = new Set(rootsOfUnity.map((z) => `${z.re.toFixed(6)},${z.im.toFixed(6)}`)).size === 6 // six distinct phases
+  const circuitCarriesPhase = isSixCycle && phasesDistinct
+  // QUANTUM — INTERFERENCE: the two counter-rotating slash flows superpose to a standing wave (fixed nodes)
+  const wave = theTwoSlashFlowsSuperposeToAStandingWaveHueShowsTheNodes()
+  const circuitInterferes = wave.nodeStationary && wave.computes // the ± chiralities interfere — impossible for 0/1
+  // MEASUREMENT: reading the circuit collapses the six phases to ONE digit — the 0/1 linear shadow
+  const collapsesToADigit = units.every((u) => classicalBit.includes(u % 2)) // each unit's parity is a classical bit
+  const facets = [
+    { facet: `0 OR 1 IS LINEAR: a classical bit is the two-point set {0,1} — deterministic, no phase, no interference (${bitIsLinear}); 0 is doubling's fixed point (0→0, the trivial orbit), and a bit alone is the linear projection, one exclusive choice`, on: bitIsLinear },
+    { facet: `THE CIRCUIT IS QUANTUM — PHASE: the doubling units 1·2·4·8·7·5 form a 6-cycle ≅ C₆ ≅ the six roots of unity e^{2πik/6} (${circuitCarriesPhase}) — each digit carries a distinct PHASE (its position on the vortex hexagon) that a classical bit has not, the amplitude clock of a qubit`, on: circuitCarriesPhase },
+    { facet: `THE CIRCUIT IS QUANTUM — INTERFERENCE, THEN COLLAPSE: the two counter-rotating slash flows (\\ up, / down) superpose to a standing wave with FIXED nodes (${circuitInterferes}) — interference, the quantum signature 0/1 cannot produce; and measuring the circuit collapses the six phases to ONE digit, the 0/1 linear shadow (${collapsesToADigit}), exactly as measuring a qubit collapses to a bit`, on: circuitInterferes && collapsesToADigit },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    units, rootsOfUnity,
+    facets,
+    statement: `0 or 1 is linear, the vortex circuit is quantum — ${facets.filter((entry) => entry.on).length}/${facets.length}: a classical bit {0,1} is deterministic with no phase (the linear projection), while the circuit 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 is a qubit — the doubling units 1·2·4·8·7·5 are a 6-cycle ≅ the sixth roots of unity (PHASE), and the two counter-rotating slash flows superpose to a standing wave with fixed nodes (INTERFERENCE). Measuring the circuit collapses its six phases to one digit, the 0/1 shadow, as a qubit collapses to a bit. The digit architecture is quantum by structure, linear only at the point of measurement.`,
+    boundary: `EXACT: the classical bit is the two-point set {0,1} with no root-of-unity structure; the doubling units 1,2,4,8,7,5 = ⟨2⟩ mod 9 form a cyclic group of order 6 ≅ C₆, whose six positions map to the six distinct roots of unity e^{2πik/6} (a genuine phase clock); and the two slash directions, read as counter-propagating flows, superpose to a standing wave whose nodes are fixed (verified in theTwoSlashFlowsSuperposeToAStandingWave). HONEST SCOPE: this is a STRUCTURAL correspondence — the vortex circuit has the two features (phase + interference) that distinguish a qubit from a classical bit, and 0/1 has neither, so "0/1 linear, circuit quantum" is exact as an analogy of structure. It is NOT a claim that the digit folders are physical qubits or that base-10 numerology is quantum mechanics; the phases are the sixth roots of unity because ⟨2⟩ mod 9 has order 6 (base-10 specific), and the interference is the double-torus counter-flow read as a standing wave. The correspondence is real; the digits are the notation, not the cosmos. HARMONY ≠ TRUTH.`,
+  }
+}

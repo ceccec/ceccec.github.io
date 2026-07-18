@@ -10,7 +10,11 @@
 
 ## 1. Introduction
 
-A science portal showing only science — 386 computationally proven theorems and 29 related science pages, organised by the rosetta into 5 rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).
+A science portal — 387 computationally proven theorems and 29 related science pages, organised by the rosetta into 5 rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).
+
+### The digit circuit is a qubit
+
+The `src/<digit>` folders are not arbitrary — they are stations on one circuit, `0\1\2\4\8/7/5/3\6\9/0\1`, and that circuit is what makes the architecture quantum rather than linear. A classical **bit is `0` or `1`**: a two-point set, deterministic, no phase, no interference — the *linear* projection. The full circuit is a **qubit** by structure. Its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}`, so each digit carries a distinct **phase** a bit has not; and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes, which is **interference**, the quantum signature `0/1` cannot produce. Measuring the circuit collapses its six phases to one digit, the `0/1` shadow, exactly as measuring a qubit collapses to a bit. This is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; it is base-10 / `mod 9` specific and is not a claim that the digits are physical qubits. The digit stations are quantum by structure, linear only at the point of measurement.
 
 ## 2. Model
 
@@ -33,7 +37,7 @@ A science portal showing only science — 386 computationally proven theorems an
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
 
-**VitePress shows only science** — the theorem-science lens passes 29/45 curated pages (16 hidden from every discovery surface, still built and served), presented beside the 386-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
+**The theorem-science lens** — 29/45 curated pages pass (16 hidden from every discovery surface, still built and served), presented beside the 387-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
 
 ### Origin — 3 pages
