@@ -3,6 +3,8 @@
 // Dual: src/spirit/voice/quantum (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
+import { servedRouteFromSlugs, theoremScienceVisible } from '../../../3/7'
+import { STATIC_PAGE_SEED } from '../../../8/2'
 import { toUuid, merkleFold } from '../../../0'
 import { movieCanvasHex } from '../../science'
 import { a432NoteHz } from '../../../fire/li'
@@ -225,12 +227,17 @@ export function multidimensional() {
     ] },
   ]
   const items = dims.flatMap((d) => d.items)
+  // ONLY SERVED ROUTES survive (user law: purge old links) — the guide keeps a dimension only while
+  // it still has served destinations; the theorem-science lens decides, at call time, from the seed.
+  const servedSlugs = new Set(STATIC_PAGE_SEED.filter((page) => theoremScienceVisible(page.slug, page.keywords)).map((page) => page.slug))
+  const isServed = (route: string) => servedRouteFromSlugs(route, servedSlugs) // ONE route grammar (src/3/7)
+  const dimsServed = dims.map((d) => ({ ...d, items: d.items.filter((item) => isServed(item.route)) })).filter((d) => d.items.length > 0)
   return {
-    mapped: dims.length === 8 && dims.every((d) => d.items.length > 0),
-    dimensions: dims,
-    count: items.length,
-    root: merkleFold(items.map((item) => toUuid(`multidim:${item.label}`))),
-    statement: 'Present all multidimensionally: the portal in eight dimensions of experience — see, hear, ask, prove, learn, pattern, sense, create — each browsable, so the breadth is a map, not a scroll.',
-    boundary: 'A presentation map over the existing routes and features. A guide for the user experience, not new capability.',
+    mapped: dimsServed.length > 0 && dimsServed.length <= 8 && dimsServed.every((d) => d.items.length > 0),
+    dimensions: dimsServed,
+    count: dimsServed.reduce((sum, d) => sum + d.items.length, 0),
+    root: merkleFold(dimsServed.flatMap((d) => d.items.map((item) => toUuid(`multidim:${item.label}`)))),
+    statement: `Present all multidimensionally: the served portal in ${dimsServed.length} dimensions of experience, each browsable — every destination a served science surface (the purge law filters at call time), so the breadth is a map, not a scroll.`,
+    boundary: 'A presentation map over the SERVED routes only — items whose pages left the theorem-science lens drop at call time, and a dimension with no served destination has no entry. A guide for the user experience, not new capability.',
   }
 }

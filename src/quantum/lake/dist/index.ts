@@ -23,6 +23,7 @@ import {
   piTrainDiamonds,
   quantumMcp,
   canonicalUrl,
+  pageCombination,
   everyPageIsAPrintableScientificPaper,
   printStylesheet,
   theoremScienceLens,
@@ -34,6 +35,7 @@ import {
   staticPages,
   toGlagolitic,
   toUuid,
+  verifyRoot,
   type MindMatrix,
 } from '../../heaven/mind'
 import { readmeMarkdown } from './readme'
@@ -88,6 +90,9 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
  *  the static deploy the same JSON-LD lives inside each page's HTML (config.mts); this is its computed twin. */
 export function pathJson(pathname: string, matrix: MindMatrix = buildMatrix()): DistFile | null {
   if (!pathname.endsWith('.json')) return null
+  // REALTIME GUARD (user law: dimension changes go through the uuid matrix only) — the per-page API
+  // serves nothing from a matrix whose root does not verify: tamper collapses the surface, live.
+  if (!verifyRoot(matrix)) return null
   const raw = pathname.replace(/^\//, '').replace(/\.json$/, '').replace(/\/$/, '')
   const locale = /^en(\/|$)/.test(raw) ? 'en' : /^bg(\/|$)/.test(raw) ? 'bg' : 'gla' // root is the Glagolitic locale
   const slug = raw.replace(/^(en|bg)(\/|$)/, '')
@@ -96,6 +101,9 @@ export function pathJson(pathname: string, matrix: MindMatrix = buildMatrix()): 
   // nothing bypasses transcoding: the root (gla) view is COMPUTED via toGlagolitic, never hardcoded; en/bg use their text
   const name = locale === 'bg' ? page.title.bg : locale === 'en' ? page.title.en : toGlagolitic(page.title.en)
   const description = locale === 'bg' ? page.description.bg : locale === 'en' ? page.description.en : toGlagolitic(page.description.en)
+  // The page's rosetta combination of theorems rides its own API (user realization: pages are
+  // combinations; theorems communicate by content-address, payload-free, computed on request).
+  const combination = pageCombination(page.slug, page.keywords, matrix)
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -105,6 +113,10 @@ export function pathJson(pathname: string, matrix: MindMatrix = buildMatrix()): 
     description,
     keywords: page.keywords,
     hasPart: page.components, // the folder's own parts — the components it composes
+    combination: {
+      root: combination.root,
+      members: combination.members.map((member) => ({ theorem: member.theorem, receipt: member.receipt })),
+    },
   }
   return { path: pathname.replace(/^\//, ''), content: JSON.stringify(ld, null, 2), mime: 'application/ld+json' }
 }

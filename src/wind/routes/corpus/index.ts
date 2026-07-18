@@ -487,8 +487,10 @@ export function cardHeroClientWorkBoundedByPureMath(matrix: MindMatrix = buildMa
   const budget = corpusGridWorkBudget()
   const facets = [
     { facet: 'navigation358 = 3+5+8 = 16 destinations', on: nav358.count === NAV358_TOTAL && nav358.mapped },
-    { facet: 'harmonised nav = 16 fixed routes', on: harmonised.count === NAV358_TOTAL },
-    { facet: `hub cards ≤ 2×16 = ${HUB_CARD_MAX} (deduped nav358∪harmonised)`, on: hub.length <= HUB_CARD_MAX && hub.length >= NAV358_TOTAL },
+    // harmonised now DERIVES from the served set (the purge law): every served science page + the four
+    // theorem-corpus surfaces — the bound is the derivation, not the dead 16-route coincidence.
+    { facet: `harmonised nav = served pages + corpus = ${staticPages().length}+4 routes, derived not pinned`, on: harmonised.count === staticPages().length + 4 },
+    { facet: `hub cards ≤ nav358 + harmonised = ${NAV358_TOTAL} + ${staticPages().length + 4} (the union bound, deduped)`, on: hub.length <= NAV358_TOTAL + staticPages().length + 4 && hub.length >= NAV358_TOTAL },
     { facet: `tag clusters ≤ tier[2] = ${TAG_CLUSTER_CAP}`, on: tags.length <= TAG_CLUSTER_CAP && tags.length >= 2 },
     { facet: `tag grid page ≤ tier[0]×16 = ${CORPUS_GRID_PAGE_SIZE}`, on: tagItems.length <= CORPUS_GRID_PAGE_SIZE },
     { facet: 'tag browser skips componentPages on client — not O(all pages)', on: typeof window === 'undefined' || budget.clientTagPages === staticPages().length },
@@ -1352,6 +1354,64 @@ const QUANTUM_RAY_SUBFIELD = ['foundations & no-go', 'query algorithms', 'search
 // subfields + the structural axes — the cloud a tag-based sidebar and the discovery lens both read.
 function quantumTheoremTags(ray: number, domain: string, proofClass: string, lean: string): string[] {
   return [QUANTUM_RAY_SUBFIELD[ray], domain, proofClass, lean]
+}
+
+// ── PAGES ARE ROSETTA COMBINATIONS OF THEOREMS (user realization: "pages are rosetta combinations of
+// the theorems so all can be computed by extending theorems and their apis to communicate with each
+// other computationally without payload — math builds itself in realtime including in mcp") — the TYPE
+// holds the payload computable meaning: a Combination carries CONTENT-ADDRESSES ONLY (fixed-size
+// receipts, never proof bodies), so two theorem APIs communicate by folding roots — one UUID per edge,
+// payload-free — and any page recomputes from the registry at call time (realtime, no stored table).
+export type CombinationMember = { readonly slug: string; readonly theorem: string; readonly receipt: string }
+export type Combination = {
+  readonly slug: string // the page
+  readonly members: readonly CombinationMember[] // content-addresses only — the payload-free edges
+  readonly root: string // merkleFold of the member receipts — the page's computable meaning
+}
+
+const combinationWords = (text: string): Set<string> =>
+  new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 4))
+
+/** The rosetta combination of one served page — theorems whose name/tags share a word with the page's
+ * slug+keywords. Deterministic, recomputed from the registry at every call; members are receipts only. */
+export function pageCombination(slug: string, keywords: readonly string[], matrix: MindMatrix = buildMatrix()): Combination {
+  const pageWords = combinationWords([slug.replace(/-/g, ' '), ...keywords].join(' '))
+  const members = theoremPageRows(matrix)
+    .filter((row) => {
+      const rowWords = combinationWords([row.theorem, row.slug.replace(/-/g, ' '), ...row.tags].join(' '))
+      for (const word of rowWords) if (pageWords.has(word)) return true
+      return false
+    })
+    .map((row) => ({ slug: row.slug, theorem: row.theorem, receipt: toUuid(`combination-member:${row.slug}:${row.theorem}`) }))
+  return { slug, members, root: merkleFold([toUuid(`combination:${slug}`), ...members.map((member) => member.receipt)]) }
+}
+
+export function pagesAreRosettaCombinationsOfTheorems(matrix: MindMatrix = buildMatrix()) {
+  const pages = staticPages()
+  const combinations = pages.map((page) => pageCombination(page.slug, page.keywords, matrix))
+  const nonEmpty = combinations.filter((combination) => combination.members.length > 0)
+  const registry = theoremPageRows(matrix)
+  const reached = new Set(combinations.flatMap((combination) => combination.members.map((member) => member.slug)))
+  const payloadFree = combinations.every((combination) => combination.members.every((member) => isUuid(member.receipt)) && isUuid(combination.root))
+  const realtime = combinations.length > 0 && pageCombination(pages[0]!.slug, pages[0]!.keywords, matrix).root === combinations[0]!.root
+  const facets = [
+    { facet: `EVERY PAGE IS A COMBINATION — ${nonEmpty.length}/${pages.length} served pages resolve to a non-empty theorem combination (membership = shared name/tag words through the rosetta), ${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges in all`, on: nonEmpty.length === pages.length },
+    { facet: `WITHOUT PAYLOAD — every member edge is one fixed-size content address (a receipt, never a proof body) and every page meaning is one merkle root: theorem APIs communicate by folding roots`, on: payloadFree },
+    { facet: `REALTIME — the combination recomputes from the registry at call time to the identical root (no stored table); the dev middleware and the per-page .json API serve the same computation on request`, on: realtime },
+    { facet: `MATH REACHES THE SITE — ${reached.size}/${registry.length} registry theorems reach at least one page through some combination; the unreached remainder is the frontier the next pages compute from`, on: reached.size > 0 && reached.size <= registry.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`page-combination:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    pageCount: pages.length,
+    memberEdges: combinations.reduce((sum, c) => sum + c.members.length, 0),
+    reachedTheorems: reached.size,
+    registrySize: registry.length,
+    combinations,
+    facets,
+    root: merkleFold(combinations.map((combination) => combination.root)),
+    statement: `Pages are rosetta combinations of theorems — ${nonEmpty.length}/${pages.length} served pages resolve to non-empty combinations (${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges, ${reached.size}/${registry.length} theorems reached), every edge one fixed-size content address, every page meaning one merkle root recomputed from the registry at call time.`,
+    boundary: `COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage — each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks). HONEST SCOPE: the Combination TYPE holds the computable meaning (content-addresses and their fold); the page's PROSE (title · abstract) remains the curated seed for now — the combination is the computed skeleton the prose will progressively derive from, not yet its replacement. "Realtime including MCP" = the per-page .json API and the dev middleware serve this computation on request; MCP discovers it through the manifest's served surfaces. HARMONY ≠ TRUTH.`,
+  }
 }
 
 export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {

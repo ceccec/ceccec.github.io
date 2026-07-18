@@ -105,6 +105,74 @@ export function scanOneMathOffenders(
 
 export type CodeGravityPull = { primitive: string; from: string; to: string }
 
+/** METHOD GRAVITY (user law: consolidate by gravity pulling towards one word, then compression adds
+ * words; the TYPE holds the payload computable meaning) — the name-space scanned as a gravity field:
+ * exported function names cluster by their shared name-words; each cluster's ATTRACTOR is its shortest
+ * member containing the gravity word (the one-word root), every other member is a pull in the
+ * consolidation worklist (compression = the attractor word + added words). Executed in quantum waves:
+ * one cluster per wave, the attractor gains the cluster's ONE exported type, members become projections. */
+/** UUID IS THE 0 FROM THE SEQUENCE (user law) — the content-address kernel (toUuid · merkleFold) has
+ * ONE home: src/0, the void station of the vortex sequence 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1. Every dimension
+ * change (import/export) passes through the uuid matrix; a kernel primitive REDEFINED outside the void
+ * is a second zero — forbidden. Zero offenders today; this scan keeps it zero. */
+export function scanUuidKernelOffenders(root: string = process.cwd()): { file: string; line: number; primitive: string }[] {
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const f = join(d, e.name)
+      if (e.isDirectory()) walk(f)
+      else if (e.name === 'index.ts') files.push(f)
+    }
+  }
+  walk(join(root, 'src'))
+  const offenders: { file: string; line: number; primitive: string }[] = []
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    if (rel.startsWith('src/0/')) continue // the void station IS the kernel home
+    const text = stripStringsAndComments(readFileSync(file, 'utf8'))
+    for (const m of text.matchAll(/(?:^|\n)\s*(?:export\s+)?(?:function|const)\s+(toUuid|merkleFold)\b\s*[=(]/g)) {
+      offenders.push({ file: rel, line: text.slice(0, m.index!).split('\n').length, primitive: m[1]! })
+    }
+  }
+  return offenders
+}
+
+export type MethodGravityCluster = { word: string; attractor: string; members: string[]; pulls: number }
+export function methodGravity(root: string = process.cwd(), minCluster = 4): MethodGravityCluster[] {
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const f = join(d, e.name)
+      if (e.isDirectory()) walk(f)
+      else if (e.name === 'index.ts') files.push(f)
+    }
+  }
+  walk(join(root, 'src'))
+  const names = new Set<string>()
+  for (const file of files) {
+    const text = readFileSync(file, 'utf8')
+    for (const m of text.matchAll(/export function ([a-zA-Z0-9]+)/g)) names.add(m[1]!)
+  }
+  const words = new Map<string, string[]>()
+  for (const name of names) {
+    for (const word of name.replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase().split(' ')) {
+      if (word.length < 4) continue // particles below the stem threshold do not gravitate
+      if (!words.has(word)) words.set(word, [])
+      words.get(word)!.push(name)
+    }
+  }
+  return [...words.entries()]
+    .filter(([, members]) => members.length >= minCluster)
+    .map(([word, members]) => {
+      const attractor = [...members].sort((a, b) => a.length - b.length || a.localeCompare(b))[0]!
+      return { word, attractor, members: [...members].sort(), pulls: members.length - 1 }
+    })
+    .sort((a, b) => b.pulls - a.pulls || a.word.localeCompare(b.word))
+}
+
+
 /** CODE GRAVITY — the computed worklist for standardising around one simple computable API (user: "imagine
  * gravity in code itself computed with local tools and every column of every line will know its new/old
  * place"; "standardise all around simple computable api like pi and the prime numbers with the rosetta").

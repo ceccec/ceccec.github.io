@@ -17,7 +17,7 @@ import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalL
 import { rhythm } from '../../lake/music'
 import { heartProtonAtomDecoded } from '../../mountain/geometry'
 import { monographSliceFromRoute, ROUTE_ALIASES } from '../routes/automount'
-import { homeHero, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, type LocaleName } from '../site'
+import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, type LocaleName } from '../site'
 import { componentGraph } from '../../heaven/core'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { toGlagolitic } from '../../quantum/heaven/library'
@@ -615,62 +615,49 @@ export function decodeKnowledge(matrix: MindMatrix = buildMatrix()) {
 // Navigation in 3-5-8, with a tooltip on every destination. Three ways to
 // arrive, five to use, eight to go deep — the whole portal as one tooltip-rich
 // map, organized by the Fibonacci tiers.
-export function navigation358() {
+export function navigation358(matrix: MindMatrix = buildMatrix()) {
+  // COMPUTED 3-5-8 (user law: purge old links; pages are rosetta combinations of theorems) — no hand
+  // list survives: arrive = home + the two theorem surfaces, use = the populated ray hubs (the lens
+  // decides which rays hold served pages), deep = the corpus REST + the machine artifacts. 3 + 5 = 8.
+  const lens = theoremScienceLens(matrix)
+  const hubs = lens.rays.map((ray) => ({ label: ray.labelEn, route: `/${ray.slug}`, tip: `${ray.labelEn}: ${ray.pages.length} served science ${ray.pages.length === 1 ? 'paper' : 'papers'}.` }))
   const tiers = [
     { tier: 3, name: 'arrive', items: [
-      { label: 'Home', route: '/', tip: 'The promises, in plain words.' },
-      { label: 'School', route: '/learn', tip: 'Learn it from the ground up, at any age.' },
-      { label: 'Academy', route: '/learn', tip: 'Five courses, a recomputable credential.' },
+      { label: 'Home', route: '/', tip: 'The root monograph — the portal in one page.' },
+      { label: 'Frontiers', route: '/frontiers', tip: `The registry: ${lens.theoremCount} proven theorems.` },
+      { label: 'Theorems', route: '/theorems', tip: 'Every theorem as a printable scientific paper.' },
     ] },
-    { tier: 5, name: 'use', items: [
-      { label: 'Console', route: '/console', tip: 'Ask — it consults itself before answering.' },
-      { label: 'Commands', route: '/commands', tip: 'Every capability, named and runnable.' },
-      { label: 'MCP', route: '/mcp', tip: 'The tool surface for language models.' },
-      { label: 'Show', route: '/show', tip: 'Everything in action, fused into one wave.' },
-      { label: 'Mind', route: '/quantum-mind', tip: 'The shape — the double torus, in 3d 5d 8d.' },
-    ] },
+    { tier: 5, name: 'use', items: hubs.slice(0, 5) },
     { tier: 8, name: 'go deep', items: [
-      { label: 'Architecture', route: '/architecture', tip: 'The formal model and the live seal.' },
-      { label: 'Boundaries', route: '/boundaries', tip: 'Every limit it declares, in one place.' },
-      { label: 'Governance', route: '/governance', tip: 'Rate and vote over the recomputable seal.' },
-      { label: "Developer's mind", route: '/learn-developer', tip: 'All is the mind of the developer.' },
+      { label: 'Papers', route: '/papers/', tip: 'The 432 proof papers, RESTful.' },
+      { label: 'References', route: '/references', tip: 'The reference corpus behind the papers.' },
+      { label: 'Diamonds', route: '/diamonds', tip: 'The computational diamond lattice.' },
       { label: 'mcp.json', route: '/mcp.json', tip: 'Every command as an MCP tool.' },
-      { label: 'llms.txt', route: '/llms.txt', tip: 'The agent harmonisation protocol.' },
+      { label: 'llms.txt', route: '/llms.txt', tip: 'The agent protocol and the science corpus.' },
       { label: 'digit-index.json', route: '/digit-index.json', tip: 'The pi-digit fold index.' },
+      { label: 'print.css', route: '/print.css', tip: 'The paper projection, media="print".' },
       { label: 'site.webmanifest', route: '/site.webmanifest', tip: 'The installable PWA manifest.' },
     ] },
   ]
   const items = tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })))
-  // Gate facet: every nav route must resolve to a built page, a declared alias, or a real dist file artifact.
-  const builtSlugs = new Set<string>([
-    '', 'home',
-    ...staticPages().map((page) => page.slug),
-    ...componentPages().map((page) => page.slug),
-    ...ROSETTA_RAY_HUB_SLUGS,
-    ...Object.keys(ROUTE_ALIASES),
-  ])
-  const routeResolves = (route: string) => {
-    const bare = route.replace(/^\//, '').replace(/#.*$/, '')
-    if (/\.(json|txt|webmanifest|xml|svg|png|ico)$/.test(bare)) return true // a real dist file artifact
-    return builtSlugs.has(bare)
-  }
-  const unresolved = items.filter((item) => !routeResolves(item.route))
+  const unresolved = items.filter((item) => !isServedRoute(item.route))
   const facets = [
-    { facet: 'every nav route resolves to a built page or declared alias', on: unresolved.length === 0 },
-    { facet: '3-5-8 shape holds — the deep tier equals arrive + use', on: tiers[2].items.length === tiers[1].items.length + tiers[0].items.length },
+    { facet: 'every nav route is a SERVED surface (isServedRoute — the purge law): no removed page can appear', on: unresolved.length === 0 },
+    { facet: '3-5-8 shape holds — the deep tier equals arrive + use', on: tiers[2]!.items.length === tiers[1]!.items.length + tiers[0]!.items.length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`nav358-facet:${entry.facet}:${entry.on}`) }))
   return {
-    mapped: items.length === 16 && tiers[2].items.length === tiers[1].items.length + tiers[0].items.length,
+    mapped: items.length === (8 * 2) && facets.every((entry) => entry.on),
     tiers,
     count: items.length,
     facets,
     routesResolve: facets[0]!.on,
     unresolved: unresolved.map((item) => item.route),
     root: merkleFold(items.map((item) => toUuid(`nav358:${item.tier}:${item.label}`))),
-    statement: 'Navigation in 3-5-8: three ways to arrive (home, school, academy), five to use (console, commands, mcp, show, mind), and eight to go deep (architecture, boundaries, governance, developer, mcp.json, llms.txt, digit-index, manifest) — every destination with a tooltip, and every route verified to resolve to a built page, a declared alias (/academy, /school → /learn), or a real dist artifact.',
-    boundary: 'A navigation map of the portal organized in 3-5-8 tiers with tooltips. A guide over the real routes and artifacts; routesResolve recomputes the built-slug set at call time (staticPages + componentPages + ray-hubs + declared aliases + file artifacts), so a dangling link flips the facet.',
+    statement: `Navigation in 3-5-8, computed: three ways to arrive (home · frontiers · theorems), five to use (the populated ray hubs: ${hubs.map((hub) => hub.label).join(' · ')}), eight to go deep (the corpus REST + the machine artifacts) — every destination a served surface with a tooltip, no hand-typed route list left to rot.`,
+    boundary: 'The 3-5-8 map derives at call time from the theorem-science lens (hubs of populated rays), the corpus REST trio and the real dist artifacts; isServedRoute gates every item, so a removed page flips the facet. The tier shape 3 + 5 = 8 is the Fibonacci law the map keeps.',
   }
 }
+
 
 // Multidimensional summaries — including the one third from beyond. The eight dimensions of
 // experience each get a one-line summary, and the missing one is added: the third from beyond —
@@ -1621,8 +1608,10 @@ export function navigationIsMovie(matrix: MindMatrix = buildMatrix()) {
 }
 
 export function harmonisedNavigation(matrix: MindMatrix = buildMatrix()) {
+  // The route list DERIVES from the served set (user law: purge old links) — every served science page
+  // plus the corpus REST; the old hand-typed portal list carried removed pages.
+  const routes = [...staticPages().map((page) => `/${page.slug}`), '/theorems', '/papers', '/references', '/diamonds']
   void matrix
-  const routes = ['/start', '/explore', '/learn', '/frontiers', '/learn-developer', '/console', '/commands', '/mcp', '/show', '/quantum-mind', '/architecture', '/boundaries', '/governance', '/papers', '/references', '/diamonds']
   const titleOf = (path: string) => path.slice(1).split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   const slugOf = (title: string) => title.toLowerCase().replace(/ /g, '-')
   const items = routes.map((path) => {

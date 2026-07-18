@@ -69,8 +69,11 @@ export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
   const coordinates = items.map((item, index) => {
     const uuid = toUuid(`nav-coord:${item.route}`)
     const d = digitOf(uuid)
+    // phi seeds from an INDEPENDENT fold of the route — one digit sum cannot place two routes on the
+    // same point unless both folds coincide (a double collision the distinctness check would catch).
+    const dPhi = digitOf(toUuid(`nav-coord-phi:${item.route}`))
     const theta = ((d % 360) * Math.PI) / (9 * 5 * 4)
-    const phi = (((d * 7) % 360) * Math.PI) / (9 * 5 * 4)
+    const phi = (((dPhi * 7) % 360) * Math.PI) / (9 * 5 * 4)
     const lobe = index % 2 === 0 ? -1 : 1 // inner or outer torus
     const pos = doubleTorusSurface(theta, phi, d % (5 * 2), lobe)
     return {

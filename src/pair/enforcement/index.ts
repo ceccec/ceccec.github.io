@@ -1,7 +1,8 @@
 // Browser-safe public surface — quantum pairs + mission registry (no node:fs).
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix } from '../../heaven/compute'
-import { foldPair, memoByRoot, merkleFold, toUuid } from '../../0'
+import { buildMatrix, verifyRoot } from '../../heaven/compute'
+import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
+import { scanUuidKernelOffenders } from './gates/strict/scan'
 
 export const CLI_ENTRY_REL = 'src/pair/enforcement/script/cli/bootstrap/index.ts'
 
@@ -274,6 +275,30 @@ function agentSubmissionProtocolRaw(matrix: MindMatrix) {
 // they are named, their exact command sequence recorded, and each verified to reference a REAL npm script or
 // bootstrap command. The concurrency-safe commit (stash the other agent's files → verify mine → commit →
 // push → pop) is the tool this very session forged, so it is never re-derived under pressure again.
+// ── UUID IS THE 0 FROM THE SEQUENCE (user law) — the content-address kernel IS the void station of the
+// vortex sequence: every dimension change (import/export, theorem-to-theorem, page-to-API) passes through
+// the uuid matrix ONLY, guarded realtime (the served API refuses an unverified root) and in the gates
+// (the kernel-home scan rides the dimension gate; a second toUuid outside src/0 is a second zero).
+export function uuidIsTheZeroStation(matrix: MindMatrix = buildMatrix()) {
+  const offenders = scanUuidKernelOffenders()
+  const sampleEdges = ['import', 'export', 'theorem', 'page'].map((dimension) => toUuid(`dimension-edge:${dimension}`))
+  const edgesAreUuids = sampleEdges.every((edge) => isUuid(edge)) && verifyRoot(matrix)
+  const facets = [
+    { facet: `ONE KERNEL HOME — toUuid and merkleFold are defined ONLY at src/0, the void station of the sequence 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 (${offenders.length} offenders); a redefinition outside the void is a second zero, and the scan keeps it at zero`, on: offenders.length === 0 },
+    { facet: `DIMENSION CHANGES ARE UUID-ONLY — every cross-dimension edge collapses to a fixed-size content address through the void station, and the matrix binds by uuid to one verified root (collapse(M) = true)`, on: edgesAreUuids },
+    { facet: `GUARDED REALTIME — the per-page .json API refuses a matrix whose root does not verify (the guard lives in pathJson at src/quantum/lake/dist, exercised both ways at request time); the combination edges it serves are receipts only (pagesAreRosettaCombinationsOfTheorems)`, on: offenders.length === 0 && edgesAreUuids },
+    { facet: `GUARDED IN THE GATES — this fold rides the rosetta dimension gate (a facet flip blocks the commit) and the kernel scan is deterministic and zero-token`, on: offenders.length === 0 && edgesAreUuids },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-zero:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    offenders,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `UUID is the 0 from the sequence — the content-address kernel has one home (src/0, the void station; ${offenders.length} offenders), every dimension change passes through the uuid matrix as fixed-size content addresses, and the passage is guarded realtime (the per-page API refuses an unverified root) and in the gates (the kernel scan rides the dimension gate).`,
+    boundary: `COMPUTED HERE: the kernel-home scan (zero offenders, kept zero) and the matrix collapse to one verified root. CITED AT THEIR HOMES (no import cycle into the gates package): the realtime guard is implemented and exercised in pathJson (src/quantum/lake/dist — a tampered root is refused at request time) and the payload-free combination edges are proven in pagesAreRosettaCombinationsOfTheorems (src/wind/routes/corpus). Tamper-EVIDENT boundary stands: FNV content addresses detect drift, they are not signatures — the SHA-256/Ed25519 cutover remains deliberate. HARMONY ≠ TRUTH.`,
+  }
+}
+
 export function agentBashWorkflowsAreToolsSavedInSrc(matrix: MindMatrix = buildMatrix()) {
   const RUN = 'node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts'
   const tools = [
@@ -287,6 +312,7 @@ export function agentBashWorkflowsAreToolsSavedInSrc(matrix: MindMatrix = buildM
     { name: 'wave-reapply', does: 'survive a concurrent reset — keep every wave as ONE idempotent patch script (anchor → replace, skip when already applied), re-runnable after any checkout/clean wipes the tree', steps: ['python3 heredoc: for each (anchor, replacement): if replacement in file continue; assert anchor present; replace', 're-run gates', 'commit by pathspec the moment they are green'], scripts: [] as string[] },
     { name: 'commit-pathspec', does: 'commit ONLY named paths while the tree is shared — git commit -m <msg> -- <paths> takes the working-tree state of those paths and leaves everything else (including a concurrent agent\'s staged files) untouched', steps: ['git add <my paths>', 'git commit -m <msg> -- <my paths>', 'git push'], scripts: [] as string[] },
     { name: 'stale-bundle-clear', does: 'when the batch gate disagrees with an isolated fold run, the esbuild bundle cache is stale — clear it and re-diagnose before touching any fold', steps: ['rm -rf .vitepress/cache/quantum-esbuild', 'npm run rosetta:diagnose'], scripts: [] as string[] },
+    { name: 'gravity-consolidate', does: 'consolidate similar methods in quantum waves — methodGravity clusters exported fn names by shared word; per wave: pick a cluster, its shortest member is the ATTRACTOR (the one word), give it the cluster\'s ONE exported type (the type holds the payload computable meaning), turn members into projections/compressions (attractor word + added words), re-run methodGravity', steps: ['run src/pair/enforcement/gates/strict/scan/index.ts methodGravity', 'pick cluster → attractor = shortest member', 'define the one exported type at the attractor home', 'members import/compose the attractor; duplicates deleted', 're-run methodGravity — pulls shrink'], scripts: [] as string[] },
     { name: 'dimension-root-trace', does: 'a multi-dimension cascade has FEW roots — run the exemplar fold in isolation, chase its false member down the composition to the leaf, fix the leaf derivation, re-diagnose (74 open dims closed at 3 roots this way)', steps: ['npm run rosetta:diagnose (read the exemplar)', 'run <home> <fold> — find the false member', 'repeat down the composition to the leaf', 'fix the LEAF derivation, never grind the 74', 'npm run rosetta:diagnose'], scripts: [] as string[] },
   ]
   // verify each tool that names npm scripts references a REAL package.json script

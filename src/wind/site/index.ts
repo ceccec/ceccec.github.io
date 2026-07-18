@@ -8,7 +8,7 @@ import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
 import * as __ns_up_thunder_waves from '../../thunder/waves'
 import { rat } from '../../3/7'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent } from '../../3/7'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { congruence } from '../../mountain/vortex'
@@ -393,20 +393,23 @@ export function staticPages(): StaticPage[] {
 // 'theorem' and 'science' — the fold's own name — are the only stems not read from the sealed table; every
 // refinement is a keyword edit on a page or a stem edit in ROSETTA_RAY_CONTENT_LENSES, both refutable.
 // Nav, sidebar, footer, related sections, crosslinks, the home hero and the README all consume THIS one fold.
-const THEOREM_SCIENCE_NAME_STEMS = ['theorem', 'science'] as const
-/** The lens predicate — shared by staticPages, componentPages and any route surface. */
-export function theoremScienceVisible(slug: string, keywords: readonly string[]): boolean {
-  const frontierRay = rosettaRayOfContent('frontiers', [])
-  const stems = [
-    ...new Set([
-      ...ROSETTA_RAY_CONTENT_LENSES.filter(
-        (lens) => lens.stems.some((stem) => (THEOREM_SCIENCE_NAME_STEMS as readonly string[]).includes(stem)) || lens.ray === frontierRay,
-      ).flatMap((lens) => lens.stems),
-      ...THEOREM_SCIENCE_NAME_STEMS,
-    ]),
-  ]
-  const hay = [slug.replace(/-/g, ' '), ...keywords].join(' · ').toLowerCase()
-  return stems.some((stem) => hay.includes(stem))
+// The predicate is hosted in the zero-import leaf src/3/7 (beside its lens tables) so every layer can
+// consult it without cycles; this public path re-exports it unchanged.
+export { theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS } from '../../3/7'
+
+/** THE SERVED-ROUTE LAW (user law: purge old links) — a route is LIVE iff its bare slug is the home,
+ * a served science page, a populated ray hub, a corpus surface, or a real file artifact. Every guide,
+ * gateway and section map sanitizes through THIS predicate, so no surface can emit a removed link. */
+export function isServedRoute(route: string): boolean {
+  // ONE logic home (gravity): the route grammar lives in servedRouteFromSlugs (src/3/7); this operator
+  // form supplies the enriched slug set — served pages plus the populated ray hubs.
+  const pages = staticPages()
+  const populatedRays = new Set(pages.map((page) => rosettaRayOfContent(page.slug, page.keywords)))
+  const slugs = new Set<string>([
+    ...pages.map((page) => page.slug),
+    ...ROSETTA_RAY_HUB_SLUGS.filter((slug, ray) => populatedRays.has(ray)),
+  ])
+  return servedRouteFromSlugs(route, slugs)
 }
 
 export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
@@ -891,6 +894,12 @@ export function proveAllOnHomePage(matrix: MindMatrix = buildMatrix()) {
 
 // ── relocated from src/wind/learning (census-neutral line-compression) ──
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
+  // sections sanitize through isServedRoute (user law: purge old links) — a command whose page left the
+  // lens keeps its card but routes to the portal root, never to a removed page.
+  const serve = (route: string) => (isServedRoute(route) ? route : '/')
+  return sections().map((section) => ({ ...section, route: serve(section.route) }))
+}
+function sections(): readonly ConceptSiteSection[] {
   return [
     {
       title: 'Concept Shell',

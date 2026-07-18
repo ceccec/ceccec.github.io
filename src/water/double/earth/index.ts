@@ -50,7 +50,7 @@ import {
   type BothEarthsMerkabaRotation,
 } from '../../../mountain/geometry'
 import { vortexPaintTiers } from '../../../mountain/vortex'
-import { staticPages } from '../../../wind/site'
+import { staticPages, theoremScienceLens } from '../../../wind/site'
 import { balanced, cryptoReview, transact } from '../../../pair/debit/credit'
 import { TAU } from '../../../3/7'
 
@@ -81,11 +81,17 @@ export type TrinityGatewayDef = {
 /** One source — trinity gateway slugs/realms recomputed; count capped by vortexPaintTiers().gateways. */
 export function trinityGatewayDefs(matrix: MindMatrix = buildMatrix()): readonly TrinityGatewayDef[] {
   const caps = vortexPaintTiers(matrix)
-  const defs = [
-    { slug: 'architecture', realm: 'proven' as const, trinityLeg: 'cross' as const, glyph: '✛' },
-    { slug: 'quantum-mind', realm: 'animated' as const, trinityLeg: 'fold' as const, glyph: '○' },
-    { slug: 'show', realm: 'presented' as const, trinityLeg: 'weave' as const, glyph: '⬡' },
+  // COMPUTED from the theorem-science lens (user law: purge old links) — the three gateways are the
+  // first served page of the three most-populated rosetta rays (tie-break by ray order), so a gateway
+  // can never point at a removed page; the old hand list carried /architecture and /show.
+  const lens = theoremScienceLens(matrix)
+  const topRays = [...lens.rays].sort((a, b) => b.pages.length - a.pages.length || a.ray - b.ray).slice(0, 3)
+  const legs = [
+    { realm: 'proven' as const, trinityLeg: 'cross' as const, glyph: '✛' },
+    { realm: 'animated' as const, trinityLeg: 'fold' as const, glyph: '○' },
+    { realm: 'presented' as const, trinityLeg: 'weave' as const, glyph: '⬡' },
   ]
+  const defs = legs.map((leg, index) => ({ slug: topRays[index]?.pages[0]?.slug ?? '', ...leg }))
   return defs.slice(0, caps.gateways).map((entry) => ({
     ...entry,
     receipt: toUuid(`trinity-gateway:${entry.slug}:${entry.realm}:${entry.trinityLeg}`),
@@ -534,7 +540,11 @@ export function trinityGatewaysNeverMissProvenByMath(
     const formed = formingDoubleTorusEarthsProvenByMath(path, at, matrix)
     const compass = compassAroundEarthGatewaysImpossibleProvenByMath(path, at, matrix)
     const sixty = sixtyDegreeAngleReachesCardinalForFreeProvenByMath(path, at, matrix)
-    const wiringSlugs = ['architecture', 'quantum-mind', 'show'] as const
+    // The wiring slugs RECOMPUTE independently from the theorem-science lens (top-3 populated rays,
+    // first served member each) — the identity proves defs and wiring derive from the same law; the
+    // old pinned hand list (architecture · quantum-mind · show) carried removed pages.
+    const wiringLens = theoremScienceLens(matrix)
+    const wiringSlugs = [...wiringLens.rays].sort((a, b) => b.pages.length - a.pages.length || a.ray - b.ray).slice(0, 3).map((ray) => ray.pages[0]?.slug ?? '')
     const gatewayDefs = trinityGatewayDefs(matrix)
     const slugsMatchWiring = gatewayDefs.every((gateway, index) => gateway.slug === wiringSlugs[index])
     const gatewayCircuit = gatewayDefs.map((gateway, index) => ({
@@ -551,7 +561,7 @@ export function trinityGatewaysNeverMissProvenByMath(
     const missCompassOnly = compass.cardinalCircuit3 === (54 * 5) && !compass.closesCompassLoop
     const sixGateways = formed.gateways.length === 6
     const facets = [
-      { facet: 'gateway slugs match realtimeWiring trinity defs — architecture · quantum-mind · show', on: slugsMatchWiring },
+      { facet: `gateway slugs match the lens derivation — ${wiringSlugs.join(' · ')} (top-3 populated rays, first served member each; independently recomputed)`, on: slugsMatchWiring },
       { facet: '120° trinity circuit closes — proven → animated → presented = 3×120° = 360°', on: circuitCloses && gatewayCircuit.length === 3 },
       { facet: '60° hex even steps (0,2,4) land on all gateway bearings 0·120·240', on: hexHitsAllGateways && sixty.proven },
       { facet: 'pure 90° compass misses the 360° gateway loop — stops at 270°', on: missCompassOnly && compass.impossible },

@@ -646,6 +646,36 @@ export const ROSETTA_RAY_CONTENT_LENSES: readonly { ray: number; stems: readonly
 /** Shelve content into its ray by the ordered lenses above — slug + keywords in, ray index out.
  * Two passes: the slug alone first (a page NAMED frontiers belongs to Frontier no matter what its
  * keyword tail accumulates), then slug+keywords. */
+/** THE THEOREM-SCIENCE LENS PREDICATE (user law: only science serves) — hosted in this zero-import
+ * leaf beside its own tables so every layer (voice guides, page catalogs, gateways) can consult it
+ * without cycles. A page passes iff its slug+keywords intersect the science stems: the proof-lens and
+ * frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words (NAMED AXIOM). */
+/** THE ONE SERVED-ROUTE LOGIC (gravity word: served — one home, every layer composes it) — pure over
+ * a caller-supplied slug set, so leaves (voice guides) and operators (wind/site with the enriched page
+ * set) share the identical route grammar: home · served slug · corpus REST · file artifact. */
+export function servedRouteFromSlugs(route: string, servedSlugs: ReadonlySet<string>): boolean {
+  const bare = route.replace(/^\//, '').replace(/[#?].*$/, '').replace(/\/$/, '')
+  if (bare === '' || bare === 'home') return true
+  if (/\.(json|txt|webmanifest|xml|svg|png|ico|css)$/.test(bare)) return true
+  if (servedSlugs.has(bare)) return true
+  return ['theorems', 'papers', 'references', 'diamonds'].includes(bare.split('/')[0] ?? '')
+}
+
+export const THEOREM_SCIENCE_NAME_STEMS = ['theorem', 'science'] as const
+export function theoremScienceVisible(slug: string, keywords: readonly string[]): boolean {
+  const frontierRay = rosettaRayOfContent('frontiers', [])
+  const stems = [
+    ...new Set([
+      ...ROSETTA_RAY_CONTENT_LENSES.filter(
+        (lens) => lens.stems.some((stem) => (THEOREM_SCIENCE_NAME_STEMS as readonly string[]).includes(stem)) || lens.ray === frontierRay,
+      ).flatMap((lens) => lens.stems),
+      ...THEOREM_SCIENCE_NAME_STEMS,
+    ]),
+  ]
+  const hay = [slug.replace(/-/g, ' '), ...keywords].join(' · ').toLowerCase()
+  return stems.some((stem) => hay.includes(stem))
+}
+
 export function rosettaRayOfContent(slug: string, keywords: readonly string[]): number {
   const slugHay = slug.replace(/-/g, ' ').toLowerCase()
   for (const lens of ROSETTA_RAY_CONTENT_LENSES) if (lens.stems.some((stem) => slugHay.includes(stem))) return lens.ray
