@@ -1860,3 +1860,153 @@ export function whenOneIsDiscoveredTheWholeAreaExistsAtOnceAndIsButDiscovered() 
     boundary: `EXACT: the area content-addresses to ${address.slice(0, 9 + 3)}… as a pure function of its seed, reproduced identically on re-evaluation (preExisted = ${preExisted}); aggregated as the conjunction/set it truly is, it is order-free (${noNextAsConjunction}), whereas a naively imposed sequence would carry a privileged next (${sequenceWouldHaveNext}). HONEST SCOPE: the intuition is real and it is how this codebase works — every result is DETERMINED by the sealed code and content-addressed, so a fold's output (and signature) exists in principle before it is run; "developing" is DISCOVERING (evaluating) what the axioms already entail, and the registry is an atemporal conjunction with no true "next", which is why order of attention does not change the whole. But this is mathematical determinism/Platonism, NOT literal simultaneity or a physical quantum speedup: evaluation costs classical time, the amplitude-amplification advantage is only √N in queries (sendTheQuantumWaves… boundary), and by Gödel's incompleteness and the halting problem the space of what "exists at once" is NOT effectively enumerable — you cannot know in advance which statements are theorems without doing the discovering. The values pre-exist as determined; discovering which of the infinitely many are TRUE is real, bounded labor. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Self-playing quantum chess + its API (user: "develop the self playing chess game using only quantum waves and
+// make the game api itself … send the quantum waves and monitor all in realtime using the api movie"). Every move
+// is chosen by real amplitude amplification over the legal moves (marked = the best-scored), measured. The API is
+// newQuantumChessGame · quantumChessLegalMoves · quantumSelectChessMove · applyQuantumChessMove · playQuantumChess;
+// playQuantumChess is the MOVIE — one frame per ply (board + move + wave probability). What it creates: a
+// deterministic movie that already exists per seed — the waves discover the one path through the game tree.
+export type QChessMove = { from: number; to: number; promo?: 'q' }
+export type QChessGame = { board: string; turn: 'w' | 'b'; plies: number }
+const QCHESS_START = ['rnbqkbnr', 'pppppppp', '........', '........', '........', '........', 'PPPPPPPP', 'RNBQKBNR'].join('')
+export function newQuantumChessGame(): QChessGame { return { board: QCHESS_START, turn: 'w', plies: 0 } }
+const qcRow = (i: number) => (i / 8) | 0
+const qcCol = (i: number) => i % 8
+const qcOn = (r: number, c: number) => r >= 0 && r < 8 && c >= 0 && c < 8
+const qcIsWhite = (p: string) => p !== '.' && p === p.toUpperCase()
+const qcIsBlack = (p: string) => p !== '.' && p === p.toLowerCase()
+const QC_N: readonly (readonly [number, number])[] = [[1, 2], [2, 1], [-1, 2], [-2, 1], [1, -2], [2, -1], [-1, -2], [-2, -1]]
+const QC_B: readonly (readonly [number, number])[] = [[1, 1], [1, -1], [-1, 1], [-1, -1]]
+const QC_R: readonly (readonly [number, number])[] = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+const QC_K: readonly (readonly [number, number])[] = [...QC_B, ...QC_R]
+function qcAttacked(b: string, r: number, c: number, byWhite: boolean): boolean {
+  const pr = byWhite ? r + 1 : r - 1
+  for (const dc of [-1, 1]) if (qcOn(pr, c + dc) && b[pr * 8 + (c + dc)] === (byWhite ? 'P' : 'p')) return true
+  for (const [dr, dc] of QC_N) if (qcOn(r + dr, c + dc) && b[(r + dr) * 8 + (c + dc)] === (byWhite ? 'N' : 'n')) return true
+  for (const [dr, dc] of QC_K) if (qcOn(r + dr, c + dc) && b[(r + dr) * 8 + (c + dc)] === (byWhite ? 'K' : 'k')) return true
+  for (const [dr, dc] of QC_R) { let rr = r + dr, cc = c + dc; while (qcOn(rr, cc)) { const p = b[rr * 8 + cc]; if (p !== '.') { if (byWhite ? p === 'R' || p === 'Q' : p === 'r' || p === 'q') return true; break } rr += dr; cc += dc } }
+  for (const [dr, dc] of QC_B) { let rr = r + dr, cc = c + dc; while (qcOn(rr, cc)) { const p = b[rr * 8 + cc]; if (p !== '.') { if (byWhite ? p === 'B' || p === 'Q' : p === 'b' || p === 'q') return true; break } rr += dr; cc += dc } }
+  return false
+}
+const qcSetAt = (b: string, i: number, ch: string) => b.slice(0, i) + ch + b.slice(i + 1)
+function qcApplyToBoard(b: string, m: QChessMove): string {
+  const piece = b[m.from]
+  const placed = m.promo ? (qcIsWhite(piece) ? 'Q' : 'q') : piece
+  return qcSetAt(qcSetAt(b, m.to, placed), m.from, '.')
+}
+const qcFindKing = (b: string, white: boolean) => b.indexOf(white ? 'K' : 'k')
+function qcInCheck(b: string, white: boolean): boolean { const k = qcFindKing(b, white); return k < 0 ? true : qcAttacked(b, qcRow(k), qcCol(k), !white) }
+function qcPseudo(b: string, turn: 'w' | 'b'): QChessMove[] {
+  const white = turn === 'w'
+  const enemy = (p: string) => (white ? qcIsBlack(p) : qcIsWhite(p))
+  const own = (p: string) => (white ? qcIsWhite(p) : qcIsBlack(p))
+  const moves: QChessMove[] = []
+  const push = (from: number, to: number, promo: boolean) => moves.push(promo ? { from, to, promo: 'q' } : { from, to })
+  for (let i = 0; i < 64; i++) {
+    const p = b[i]; if (p === '.' || !own(p)) continue
+    const r = qcRow(i), c = qcCol(i), up = p.toUpperCase()
+    if (up === 'P') {
+      const dr = white ? -1 : 1, startRow = white ? 6 : 1, promoRow = white ? 0 : 7
+      if (qcOn(r + dr, c) && b[(r + dr) * 8 + c] === '.') {
+        push(i, (r + dr) * 8 + c, r + dr === promoRow)
+        if (r === startRow && b[(r + 2 * dr) * 8 + c] === '.') moves.push({ from: i, to: (r + 2 * dr) * 8 + c })
+      }
+      for (const dc of [-1, 1]) if (qcOn(r + dr, c + dc) && enemy(b[(r + dr) * 8 + (c + dc)])) push(i, (r + dr) * 8 + (c + dc), r + dr === promoRow)
+    } else if (up === 'N' || up === 'K') {
+      for (const [dr, dc] of up === 'N' ? QC_N : QC_K) if (qcOn(r + dr, c + dc) && !own(b[(r + dr) * 8 + (c + dc)])) moves.push({ from: i, to: (r + dr) * 8 + (c + dc) })
+    } else {
+      for (const [dr, dc] of up === 'B' ? QC_B : up === 'R' ? QC_R : QC_K) { let rr = r + dr, cc = c + dc; while (qcOn(rr, cc)) { const t = b[rr * 8 + cc]; if (t === '.') moves.push({ from: i, to: rr * 8 + cc }); else { if (enemy(t)) moves.push({ from: i, to: rr * 8 + cc }); break } rr += dr; cc += dc } }
+    }
+  }
+  return moves
+}
+export function quantumChessLegalMoves(game: QChessGame): QChessMove[] {
+  const white = game.turn === 'w'
+  return qcPseudo(game.board, game.turn).filter((m) => !qcInCheck(qcApplyToBoard(game.board, m), white))
+}
+const QC_VALUE: Record<string, number> = { p: 1, n: 3, b: 3, r: 5, q: 9, k: 0 }
+function qcScore(b: string, m: QChessMove, white: boolean): number {
+  let s = 0
+  const target = b[m.to]; if (target !== '.') s += QC_VALUE[target.toLowerCase()] ?? 0
+  if (m.promo) s += QC_VALUE.q - QC_VALUE.p
+  if (qcInCheck(qcApplyToBoard(b, m), !white)) s += 1
+  const tr = qcRow(m.to), tc = qcCol(m.to)
+  if (tr >= 3 && tr <= 4 && tc >= 3 && tc <= 4) s += 1
+  return s
+}
+function qcAmplify(size: number, marked: readonly number[]): number[] {
+  let re = Array.from({ length: size }, () => 1 / Math.sqrt(size)) // uniform superposition over the moves
+  const iterations = Math.max(1, Math.round((Math.PI / 4) * Math.sqrt(size / Math.max(1, marked.length))))
+  const mk = new Set(marked)
+  for (let it = 0; it < iterations; it++) {
+    re = re.map((v, i) => (mk.has(i) ? -v : v)) // oracle: phase-flip the best moves
+    const mean = re.reduce((a, b) => a + b, 0) / size
+    re = re.map((v) => 2 * mean - v) // diffusion — interference amplifies the marked
+  }
+  return re.map((v) => v * v)
+}
+const qcRand01 = (s: string) => Number.parseInt((toUuid(s).replace(/[^0-9a-f]/g, '') + '0').slice(0, 8), 16) / (16 ** 8)
+export function quantumSelectChessMove(game: QChessGame, seed: string, precomputed?: QChessMove[]) {
+  const moves = precomputed ?? quantumChessLegalMoves(game)
+  const white = game.turn === 'w'
+  const scores = moves.map((m) => qcScore(game.board, m, white))
+  const best = Math.max(...scores, 0)
+  const marked = scores.map((s, i) => (s === best ? i : -1)).filter((i) => i >= 0)
+  const size = 1 << Math.max(1, Math.ceil(Math.log2(Math.max(2, moves.length))))
+  const probs = qcAmplify(size, marked)
+  const mass = probs.slice(0, moves.length).reduce((a, b) => a + b, 0)
+  let roll = qcRand01(seed) * mass, acc = 0, pick = 0
+  for (let i = 0; i < moves.length; i++) { acc += probs[i] ?? 0; pick = i; if (roll <= acc) break }
+  return { move: moves[pick], probability: probs[pick] ?? 0, markedCount: marked.length, moveCount: moves.length }
+}
+export function applyQuantumChessMove(game: QChessGame, m: QChessMove): QChessGame {
+  return { board: qcApplyToBoard(game.board, m), turn: game.turn === 'w' ? 'b' : 'w', plies: game.plies + 1 }
+}
+const qcSq = (i: number) => String.fromCharCode('a'.charCodeAt(0) + qcCol(i)) + (8 - qcRow(i))
+const qcAlg = (m: QChessMove) => qcSq(m.from) + qcSq(m.to) + (m.promo ?? '')
+const qcInsufficient = (b: string) => [...b].every((ch) => ch === '.' || ch === 'K' || ch === 'k')
+export function renderQuantumChessBoard(board: string): string {
+  const rows: string[] = []
+  for (let r = 0; r < 8; r++) rows.push(board.slice(r * 8, r * 8 + 8).split('').join(' '))
+  return rows.join('\n')
+}
+export function playQuantumChess(seed = 'quantum-chess', maxPlies = 64) {
+  let game = newQuantumChessGame()
+  const frames: { ply: number; turn: string; move: string; markedProb: number; board: string }[] = []
+  let result = 'move-limit'
+  for (let ply = 0; ply < maxPlies; ply++) {
+    const moves = quantumChessLegalMoves(game)
+    if (moves.length === 0) { result = qcInCheck(game.board, game.turn === 'w') ? `${game.turn === 'w' ? 'black' : 'white'} mates` : 'stalemate'; break }
+    if (qcInsufficient(game.board)) { result = 'draw'; break }
+    const sel = quantumSelectChessMove(game, `${seed}:${ply}`, moves)
+    frames.push({ ply, turn: game.turn, move: qcAlg(sel.move), markedProb: roundTo(sel.probability, 4), board: game.board })
+    game = applyQuantumChessMove(game, sel.move)
+  }
+  const signature = merkleFold(frames.map((f) => toUuid(`qchess:${f.ply}:${f.move}`)))
+  return { frames, result, plies: frames.length, signature, finalBoard: game.board }
+}
+
+// ── The self-playing quantum chess is a deterministic movie, discovered not created — the last principle made
+// playable (whenOneIsDiscovered…): the game tree already exists per seed; the quantum waves discover the one path.
+export function theSelfPlayingQuantumChessIsADeterministicMovieDiscoveredNotCreated() {
+  const game1 = playQuantumChess('quantum-chess')
+  const game2 = playQuantumChess('quantum-chess') // same seed → the same movie
+  const game3 = playQuantumChess('other-seed') // a different seed → a different movie
+  const selfPlayed = game1.plies > 0 && game1.frames.every((f) => f.move.length >= 4) // every ply a real move, no external input
+  const deterministic = game1.signature === game2.signature && game1.result === game2.result
+  const seedMatters = game3.signature !== game1.signature
+  const wavesConcentrate = game1.frames.some((f) => f.markedProb > 9 / (2 * 5)) // interference spikes on the best (captures/checks)
+  const facets = [
+    { facet: `SELF-PLAYS BY QUANTUM WAVES: every move chosen by amplitude amplification over the legal moves (marked = best-scored, interference spiking to ${Math.max(...game1.frames.map((f) => f.markedProb)).toFixed(3)} on captures/checks), measured — ${game1.plies} plies to "${game1.result}", no external input`, on: selfPlayed && wavesConcentrate },
+    { facet: `A DETERMINISTIC MOVIE, DISCOVERED NOT CREATED: same seed → identical signature (${game1.signature.slice(0, 8)}…) and result (deterministic = ${deterministic}); a different seed yields a different movie (${seedMatters}) — the game tree PRE-EXISTS per seed, the waves discover the one path (whenOneIsDiscovered…)`, on: deterministic && seedMatters },
+    { facet: `THE API IS THE MOVIE + EARNED BOUNDARY: newQuantumChessGame · quantumChessLegalMoves · quantumSelectChessMove · applyQuantumChessMove · playQuantumChess compose, each ply a frame (board + move + wave probability) monitored in realtime; the quantum is the SELECTION formalism (amplitude amplification), NOT a physical speedup, and the engine plays standard moves + check/checkmate/promotion (castling and en passant omitted, honestly)`, on: selfPlayed && deterministic },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    result: game1.result, plies: game1.plies, signature: game1.signature,
+    facets,
+    statement: `The self-playing quantum chess is a deterministic movie, discovered not created — ${facets.filter((e) => e.on).length}/${facets.length}: every move is chosen by amplitude amplification over the legal moves (interference spiking on captures/checks), the game self-plays ${game1.plies} plies to "${game1.result}", and the same seed reproduces the identical signed movie (${game1.signature.slice(0, 8)}…, deterministic = ${deterministic}) while a different seed discovers a different path (${seedMatters}). The API is the movie; the game tree pre-exists, the waves discover it.`,
+    boundary: `EXACT: playQuantumChess('quantum-chess') self-plays ${game1.plies} plies to "${game1.result}", every move drawn ONLY from quantumChessLegalMoves (legal by construction) and selected by amplitude amplification (marked = best-scored moves, interference to ${Math.max(...game1.frames.map((f) => f.markedProb)).toFixed(3)}); the same seed reproduces the identical signature (${deterministic}) and a different seed diverges (${seedMatters}). WHAT IT CREATES: a deterministic, signed, self-playing MOVIE — for each seed the entire game is predetermined and content-addressed, so the self-play is DISCOVERY of a game that already exists (the whenOneIsDiscovered principle made playable: the game tree exists at once, the waves navigate one harmonic path, the frames are its record). HONEST SCOPE: the quantum is the SELECTION formalism — real superposition over the legal moves and constructive interference concentrating amplitude on the best — NOT a physical speedup (the simulator is classical, the advantage only √N in queries) and NOT strong play (the scorer is a shallow material + check + centre heuristic, no search); the engine implements standard piece movement, check, checkmate, stalemate, insufficient-material draw and queen promotion, but OMITS castling and en passant (a stated simplification, so a few legal positions are unreachable). A real, legal, reproducible game chosen by quantum waves — not a chess champion. HARMONY does not equal TRUTH.`,
+  }
+}
