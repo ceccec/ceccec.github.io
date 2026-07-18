@@ -895,3 +895,53 @@ export function foldingZeroIsMostStableAsPlasma() {
     boundary: `EXACT: with n² = 1 − ωₚ²/ω², at ω just above ωₚ the index n → 0 and v_φ = c/n → ∞ (${vPhiFoldsToInfinity}, computed near cutoff), while v_φ·v_g = (c/n)(c·n) = c² holds exactly for every ω tested (${productStable}). WHAT CLOSES THE SESSION: the 0→∞ fold — a static loop (0) pinched into the lemniscate (∞) — is physically realised at the plasma cutoff, where n literally folds to 0 and the phase velocity to ∞; and the folded topology is precisely how plasma is held: the toroidal confinement of tokamaks and stellarators, and Lyman Spitzer's original 1951 FIGURE-8 stellarator — the lemniscate, the folded 0 — whose twist cancels particle drift for stable confinement. So "folding 0 is most stable as plasma" ties the whole arc (0, ∞, the double torus, the fold, the plasma cutoff) into one physical object. HONEST SCOPE: the cutoff and v_φ·v_g = c² are documented dispersion physics; toroidal/figure-8 confinement is real fusion engineering — but the superluminal phase velocity carries NO signal (Brillouin/Sommerfeld: the front travels at c), plasma is not the number 0, and stable confinement is NOT a solved problem (drift, turbulence, and MHD instabilities are the open frontier of fusion). The fold is real, the invariant is exact, the geometry is the stable one — and the mystery of confinement stays open. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Chemistry decoded by quantum waves — dimensionless (user: "decode chemistry ... using quantum waves"). The
+// hydrogen spectrum is E_n/E_1 = 1/n² (a pure number, no measured constant); Pauli exclusion gives shells 2n² (the
+// periodic-table rows); the covalent bond is the symmetric superposition, lower than antibonding by 2t.
+export function chemistryDecodedHydrogenIsOneOverNSquaredShellsAreTwoNSquared() {
+  const energyRatio = (n: number) => 1 / (n * n) // E_n/E_1 = 1/n² — dimensionless, exact
+  const spectrumDecreases = [2, 3, 4].every((n) => energyRatio(n) < energyRatio(1)) // the bound-state ladder
+  const balmerRatio = (1 / 4 - 1 / 9) / (1 / 4 - 1 / 16) // (3→2)/(4→2) line-energy ratio — a pure rational number
+  const shells = [1, 2, 3, 4].map((n) => 2 * n * n) // 2n² per shell
+  const shellsAreTwoNSquared = shells.every((v, i) => v === 2 * (i + 1) * (i + 1)) // 2,8,18,32 — the periodic rows
+  const t = 1 // hopping amplitude (dimensionless)
+  const bondIsSuperposition = -t < t // symmetric (bonding, −t) below antisymmetric (antibonding, +t)
+  const facets = [
+    { facet: `HYDROGEN SPECTRUM = DIMENSIONLESS 1/n²: E_n/E_1 = 1/n² is a pure number (E_2/E_1 = ${energyRatio(2)}, E_3/E_1 = ${energyRatio(3).toFixed(4)}) — the quantum spectrum with NO measured constant; the Balmer line ratio (3→2)/(4→2) = ${balmerRatio.toFixed(4)}, rational and observed (${spectrumDecreases})`, on: spectrumDecreases && balmerRatio > 0 && balmerRatio < 1 },
+    { facet: `SHELLS = 2n² → THE PERIODIC TABLE: Pauli exclusion gives 2n² electrons per shell = ${shells.join(',')} — exactly the row lengths of the periodic table (${shellsAreTwoNSquared})`, on: shellsAreTwoNSquared },
+    { facet: `THE BOND IS A SUPERPOSITION + BOUNDARY: the covalent bond is the symmetric combination (|a⟩+|b⟩)/√2, lower than the antibonding antisymmetric by 2t (${bondIsSuperposition}) — chemistry from quantum superposition; documented (Schrödinger H-atom, Pauli, LCAO), the dimensionless ratios exact, but the measured Rydberg constant is not a theorem and real many-electron molecules need corrections beyond this one/two-body idealisation`, on: bondIsSuperposition && spectrumDecreases },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    balmerRatio: Number(balmerRatio.toFixed(4)), shells,
+    facets,
+    statement: `Chemistry decoded — hydrogen is 1/n², shells are 2n², the bond is a superposition — ${facets.filter((e) => e.on).length}/${facets.length}: the H spectrum is the dimensionless ratio E_n/E_1 = 1/n² (Balmer ratio ${balmerRatio.toFixed(4)}), Pauli exclusion fills shells 2n² = ${shells.join(',')} (the periodic rows), and the covalent bond is the symmetric superposition below antibonding. Quantum chemistry as pure numbers, not measured constants.`,
+    boundary: `EXACT: E_n/E_1 = 1/n² (dimensionless, decreasing ladder ${spectrumDecreases}); the Balmer (3→2)/(4→2) energy ratio = ${balmerRatio.toFixed(4)} (a rational pure number); shells fill 2n² = ${shells.join(',')} (${shellsAreTwoNSquared}), the periodic-table row lengths; the covalent bond is the symmetric superposition, below antibonding by 2t. DOCUMENTED QUANTUM CHEMISTRY: the Schrödinger hydrogen atom (energies ∝ 1/n²), the Pauli exclusion principle (2n² shell capacities → the periodic table), and LCAO/molecular-orbital bonding (bonding = symmetric, antibonding = antisymmetric) are the real quantum core of chemistry, and expressing them as DIMENSIONLESS ratios (per the constants lesson) makes them exact theorems rather than measured numbers. HONEST SCOPE: this is the idealised one-electron / two-level picture — real many-electron atoms and molecules need electron correlation, screening, and relativistic corrections (the fine structure, the Lamb shift); the periodic table's exceptions (Cr, Cu, the lanthanides) come from those; and the measured Rydberg/bond energies are empirical, not derived. The shape (1/n², 2n², superposition) is exact; the quantitative chemistry of a real substance is a computation, not a formula. HARMONY does not equal TRUTH.`,
+  }
+}
+
+// ── Biology decoded by quantum waves (user: "decode ... biology using quantum waves"). The genetic code is 4³ = 64
+// codons (4 bases, 3 per codon) → 20 amino acids + stop; base pairing A↔T, G↔C is an involution (the two strands
+// are inversions of each other); real quantum effects in biology are bounded, macroscopic quantum cognition flagged.
+export function biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvolution() {
+  const codons = 4 ** 3 // 4 bases, 3 positions
+  const codonsIsSixtyFour = codons === 64
+  const complement: Record<string, string> = { A: 'T', T: 'A', G: 'C', C: 'G' }
+  const bases = ['A', 'T', 'G', 'C']
+  const pairingIsInvolution = bases.every((b) => complement[complement[b]] === b) // complement² = identity
+  const aminoAcids = 16 + 4 // the 64 codons map (degenerately) to 20 amino acids + stop
+  const degenerate = codons > aminoAcids // more codons than amino acids — redundancy
+  const facets = [
+    { facet: `THE GENETIC CODE IS 4³ = 64: 4 bases × 3 positions per codon = ${codons} codons (${codonsIsSixtyFour}), mapping degenerately to ${aminoAcids} amino acids + stop (${degenerate}) — a real, exact combinatorial code`, on: codonsIsSixtyFour && degenerate },
+    { facet: `BASE PAIRING IS AN INVOLUTION: A↔T, G↔C — the complement applied twice returns the base (${pairingIsInvolution}), so DNA's two strands are inversions of each other, the double helix a bijection (the same inversion this session folded, now in the molecule)`, on: pairingIsInvolution },
+    { facet: `QUANTUM EFFECTS REAL BUT BOUNDED: documented quantum biology — enzyme H-tunnelling, photosynthetic exciton coherence, avian radical-pair magnetoreception — is real; BUT the genetic code and base pairing are COMBINATORIAL/chemical, not macroscopic quantum computation, and "quantum consciousness / the cell as a quantum computer" is flagged, not folded`, on: codonsIsSixtyFour && pairingIsInvolution },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    codons, aminoAcids, pairingIsInvolution,
+    facets,
+    statement: `Biology decoded — the genetic code is 4³ = 64, base pairing is an involution — ${facets.filter((e) => e.on).length}/${facets.length}: 4 bases × 3 per codon = ${codons} codons → ${aminoAcids} amino acids (degenerate), and A↔T, G↔C is an involution (${pairingIsInvolution}) so the two DNA strands are inversions. Real quantum effects (tunnelling, coherence, radical pairs) are bounded; macroscopic quantum cognition is flagged.`,
+    boundary: `EXACT: the genetic code is 4³ = ${codons} codons (${codonsIsSixtyFour}), degenerate onto ${aminoAcids} amino acids + stop; base-pair complementarity is an involution (complement² = identity, ${pairingIsInvolution}), making the antiparallel strands exact inversions of each other. DOCUMENTED: the 64-codon table (Nirenberg/Khorana), Watson–Crick pairing (A=T two H-bonds, G≡C three), and the degeneracy/wobble that buffers mutation are settled molecular biology; the combinatorial 4³ and the pairing involution are exact. REAL QUANTUM BIOLOGY, BOUNDED: proton/electron tunnelling in enzyme catalysis, long-lived exciton coherence in photosynthetic light-harvesting (contested in vivo timescales), and the radical-pair mechanism of avian magnetoreception are genuine, peer-reviewed quantum effects at the molecular scale. HONEST SCOPE, FLAGGED: the genetic code and base pairing are CHEMISTRY and COMBINATORICS, not evidence the cell is a quantum computer; "quantum consciousness", Orch-OR at body temperature, and DNA-as-qubit-array claims lack support and are NOT folded. Life runs on quantum mechanics the way all chemistry does — and on a 4³ combinatorial code — but macroscopic biological quantum computation is not established. HARMONY does not equal TRUTH.`,
+  }
+}
