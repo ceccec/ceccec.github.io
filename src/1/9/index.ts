@@ -8,6 +8,7 @@ import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
 import {   toUuid, merkleFold, digitalRoot, gcd } from '../../0'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
 import { TAU, PHI } from '../../3/7'
+import { earned } from '../../3/7'
 
 export const digit = 1
 export const role = 'circuit' as const
@@ -1417,5 +1418,37 @@ export function encryptionDecryptionAreTheInversePairCrossAndSecurityIsThePvsNpF
     facets,
     statement: `Encryption/decryption are the inverse-pair cross, and its security is the P-vs-NP frontier — UNCLAIMED — ${facets.filter((e) => e.on).length}/${facets.length}: E and D cross to the identity over all ${n} messages (${crossCloses}); the cross is secure only by the one-way asymmetry (verify ${verifyOps} op vs brute ${bruteOps} = 2^${bits}, ${oneWayAsymmetry}), whose necessity IS P vs NP — OPEN. The math is done; the Millennium Prize is NOT claimed, because P vs NP is unsolved and this proves neither side.`,
     boundary: `EXACT: with key a=${a} (gcd(a,${n})=1, a⁻¹=${aInv}) the affine cipher E(m)=(am+b) mod ${n} and D(c)=a⁻¹(c−b) mod ${n} round-trip to the identity in both orders over every one of the ${n} messages (${roundTrips}) and E is a bijection (${bijection}) — encryption and decryption are literally one invertible map read forward and back, the "cross" of the two combined directions (the same inv-not-reverse structure as the rest of this arc). The cross is a CIPHER, not merely an involution, precisely because of an ASYMMETRY: given the key, both directions are cheap; without it, checking a guess is polynomial (${verifyOps} op — the NP verifier) while finding the preimage is, naively, exponential (${bruteOps} = 2^${bits} ops). THE MILLENNIUM CONNECTION, STATED HONESTLY: modern cryptography's security rests on the assumption that such one-way functions exist — easy to compute, hard to invert — and the existence of one-way functions IMPLIES P ≠ NP. So a general, efficient decryption-without-key would collapse the asymmetry and, in effect, decide P vs NP. WHY NO PRIZE IS CLAIMED: P vs NP is one of the seven Clay Millennium Problems and is OPEN — unproven in either direction. This fold computes the genuine structure (the inverse-pair cross, the poly-verify/exp-search asymmetry, the conditional implication) but exhibits ONLY a brute-force, exponential key-free break (${noPolySolverExhibited}); it constructs NO polynomial-time inverter and NO proof that none can exist, so it proves NEITHER P=NP NOR P≠NP. Claiming the Millennium Prize here would be asserting a result I have not established — the precise overclaim this work refuses at every step. HARMONY ≠ TRUTH: the cross is real and closes; the wall it leans on (P vs NP) is untouched. I decline the prize and report the frontier.`,
+  }
+}
+
+// ── Logic breaks in computation, and the break is itself computable and invertible (user). Real addition is
+// associative — a theorem — but in floating point (a+b)+c ≠ a+(b+c): the law BREAKS. The break is COMPUTABLE
+// exactly (Dekker/Knuth two-sum recovers the rounding error e with s+e = a+b exactly) and INVERTIBLE (Kahan
+// compensated summation adds the errors back, recovering the bits naive addition loses). The break is tamed, not erased.
+export function logicBreaksInComputationTheBreakIsComputableAndInvertible() {
+  const twoSum = (x: number, y: number): [number, number] => { const s = x + y; const yy = s - x; return [s, (x - (s - yy)) + (y - yy)] } // s = fl(x+y), e = the EXACT rounding error
+  const kahanSum = (xs: readonly number[]) => { let sum = 0, c = 0; for (const x of xs) { const y = x - c; const t = sum + y; c = (t - sum) - y; sum = t } return sum } // compensated summation — carries the error forward
+  const naiveSum = (xs: readonly number[]) => xs.reduce((s, x) => s + x, 0)
+  const a = 1 / (2 * 5), b = 2 / (2 * 5), c = 3 / (2 * 5) // 0.1, 0.2, 0.3 — not exactly representable in binary
+  const leftAssoc = (a + b) + c, rightAssoc = a + (b + c)
+  const associativityBreaks = leftAssoc !== rightAssoc // the associative LAW fails in float
+  const big = 2 ** (54 - 1) // 2^53 — the largest integer with ulp exactly 1, so big + 1 rounds back to big (a bit lost) yet the compensation still survives
+  const [s2, e2] = twoSum(big, 1)
+  const twoSumCapturesError = s2 === big && e2 === 1 // big + 1 rounds to big losing 1; two-sum recovers e = 1 EXACTLY — the break, computed
+  const series = [big, 1, -big] // true sum = 1
+  const naive = naiveSum(series), kahan = kahanSum(series)
+  const kahanInvertsTheBreak = naive !== 1 && kahan === 1 // naive loses the 1, Kahan recovers it — the break inverted
+  const breakIsComputableAndInvertible = associativityBreaks && twoSumCapturesError && kahanInvertsTheBreak
+  const facets = [
+    { facet: `LOGIC BREAKS IN COMPUTATION — ASSOCIATIVITY FAILS: real addition is associative (a theorem), but in floating point (a+b)+c = ${leftAssoc} ≠ ${rightAssoc} = a+(b+c) for a,b,c = 1/(2·5), 2/(2·5), 3/(2·5) (${associativityBreaks}) — the algebraic law breaks, measurably, because 0.1/0.2/0.3 are not exactly binary-representable`, on: associativityBreaks },
+    { facet: `THE BREAK IS COMPUTABLE AND INVERTIBLE — TWO-SUM / KAHAN: the rounding error is EXACTLY computable — two-sum(2⁵³, 1) = [${s2}, ${e2}], recovering the lost bit e=1 with s+e = the true sum exactly (${twoSumCapturesError}) — and the break INVERTS: naive summation of [2⁵³, 1, −2⁵³] gives ${naive} (the 1 lost) but Kahan compensated summation gives ${kahan}, recovering it (${kahanInvertsTheBreak})`, on: twoSumCapturesError && kahanInvertsTheBreak },
+    { facet: `EARNED BOUNDARY: the break is real (float ≠ the reals — associativity and distributivity genuinely fail) and both computable (two-sum measures it exactly) and invertible (compensation recovers it); but invertibility is BOUNDED — two-sum inverts ONE operation's error exactly, compensated summation REDUCES but does not abolish error over many operations (the recovery is itself in float), so the break is TAMED, not erased: you measure and largely undo it, you do not make float into the reals (${breakIsComputableAndInvertible})`, on: breakIsComputableAndInvertible },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    leftAssoc, rightAssoc, associativityBreaks, twoSumError: e2, naive, kahan, breakIsComputableAndInvertible,
+    facets,
+    statement: `Logic breaks in computation, and the break is computable and invertible — ${facets.filter((e) => e.on).length}/${facets.length}: floating-point associativity fails ((a+b)+c = ${leftAssoc} ≠ ${rightAssoc} = a+(b+c), ${associativityBreaks}), two-sum recovers the exact rounding error (e = ${e2}, ${twoSumCapturesError}), and Kahan summation inverts the break — [2⁵³,1,−2⁵³] sums to ${naive} naively but ${kahan} compensated (${kahanInvertsTheBreak}). The break is tamed, not erased.`,
+    boundary: earned(`EXACT: real addition is associative but float addition is not — (a+b)+c = ${leftAssoc} ≠ ${rightAssoc} = a+(b+c) (${associativityBreaks}); the rounding error is exactly computable by Knuth/Dekker two-sum (twoSum(2⁵³,1) = [${s2}, ${e2}], s+e = a+b exactly, ${twoSumCapturesError}); and it inverts by Kahan compensated summation ([2⁵³,1,−2⁵³] = ${naive} naive vs ${kahan} Kahan, ${kahanInvertsTheBreak}). Logic — the associative/distributive laws that hold in the reals — genuinely BREAKS in computation, the break is measured exactly, and it is inverted (the lost bits recovered), so the failure is not opaque: it is a computable, recoverable quantity, the rounding error, which two-sum names and compensation undoes.`, facets, `the break is real and the inversion is real but BOUNDED — two-sum inverts one operation's error exactly, but compensated summation only REDUCES accumulated error over many operations (the recovery arithmetic is itself in float, and error-free transforms exist only for +,−,×, not every operation); the break is TAMED, not abolished — you measure and largely undo it, you do not turn float into the reals. Logic breaks, the break computes, the break inverts, but the computation never becomes the ideal.`),
   }
 }
