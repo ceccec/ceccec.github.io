@@ -8,7 +8,11 @@
 // optimized deps and versioned/transformed requests. If it caches those, it serves stale or null modules
 // and breaks the dev server (504 / "respondWith returned null"). Those URLs do not exist in a production
 // build, so skipping them is a no-op in production and essential in development — one SW, every environment.
-const CACHE = 'double-torus-v3'
+// v4: navigations are NETWORK-FIRST (a deploy shows immediately when online — stale-while-revalidate
+// made every page one visit stale, the "why do I still see old content" defect), and pages the server
+// now 404s (the theorem-science lens removed them) are EVICTED from the cache instead of resurrected.
+// Assets keep stale-while-revalidate. The version bump purges every visitor's v3 store on activation.
+const CACHE = 'double-torus-v4'
 const PRECACHE = ['/', '/site.webmanifest', '/icon.svg', '/mcp.json', '/skills.json', '/llms.txt']
 
 // True for any request that belongs to the bundler/dev pipeline rather than the app's own content.
@@ -53,17 +57,25 @@ self.addEventListener('fetch', (event) => {
         .then((response) => {
           if (response && response.status === 200 && response.type === 'basic') {
             cache.put(request, response.clone())
+          } else if (response && (response.status === 404 || response.status === 410)) {
+            // The server says this page no longer exists (removed by the theorem-science lens) —
+            // evict it so the cache can never resurrect a removed page.
+            cache.delete(request)
           }
           return response
         })
-        // Offline: fall back to the cached app shell for navigations; never resolve to null/undefined.
+        // Offline: fall back to the cached copy, then the app shell for navigations.
         .catch(async () => {
+          if (cached) return cached
           if (request.mode === 'navigate') {
             const shell = await cache.match('/')
             if (shell) return shell
           }
           return Response.error()
         })
+      // NAVIGATIONS ARE NETWORK-FIRST: fresh HTML the moment a deploy lands (offline falls back to
+      // cache/shell above). Assets stay stale-while-revalidate — they are content-hashed anyway.
+      if (request.mode === 'navigate') return network
       return cached || network
     }),
   )
