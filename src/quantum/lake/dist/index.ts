@@ -39,6 +39,7 @@ import {
   type MindMatrix,
 } from '../../heaven/mind'
 import { readmeMarkdown } from './readme'
+import { agentBashWorkflowsAreToolsSavedInSrc } from '../../../pair/enforcement'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
@@ -55,6 +56,27 @@ export interface DistFile {
 
 export { readme, readmeMarkdown, homeMarkdown, readmeSignatureValid } from './readme'
 
+/** The saved manual workflows as a dist artifact — one source (the enforcement fold), served at
+ *  /workflows.json and listed as an MCP resource, so any agent fetches the operational toolkit
+ *  (probe, verify, regenerate, commit-isolated, the token-audit improvement loop) instead of
+ *  re-improvising it. Deterministic from src; the transcript token audit itself stays a local
+ *  command (it reads ~/.claude, machine state, never a served artifact). */
+export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
+  const saved = agentBashWorkflowsAreToolsSavedInSrc(matrix)
+  return `${JSON.stringify(
+    {
+      computes: saved.computes,
+      count: saved.tools.length,
+      root: saved.root,
+      statement: saved.statement,
+      boundary: saved.boundary,
+      tools: saved.tools,
+    },
+    null,
+    2,
+  )}\n`
+}
+
 /** Every dist artifact — computed in one pass from the model. */
 export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()): readonly DistFile[] {
   const site = siteUrl.replace(/\/$/, '')
@@ -65,6 +87,9 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
     { path: 'digit-index.json', content: JSON.stringify(digitIndexJson(matrix, now), null, 2), mime: 'application/json' },
     { path: 'mcp.json', content: mcpJson(matrix), mime: 'application/json' },
     { path: 'skills.json', content: skillsJson(matrix), mime: 'application/json' },
+    // The saved manual workflows (agentBashWorkflowsAreToolsSavedInSrc) as a served surface — the
+    // agent's operational toolkit fetchable over MCP, computed from the one fold, never a second list.
+    { path: 'workflows.json', content: workflowsJson(matrix), mime: 'application/json' },
     // The print projection is its OWN file with media="print" (user law: separate css, skipping the
     // layout) — zero print bytes in the screen bundle; computed from src/wind/site printStylesheet.
     { path: 'print.css', content: printStylesheet(), mime: 'text/css' },
@@ -77,7 +102,7 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
       repository: SOURCE_REPO,
       entryPoint: 'README.md',
       instruction: 'Paste the repo URL or the deployed origin — README.md is the root monograph; the protocol below is computed from sealed src at every build.',
-      surfaces: ['README.md', 'agents.json', 'agent-compliance.json', 'llms.txt', 'mcp.json', 'digit-index.json', 'source-atlas.json', 'payload-collections.json'],
+      surfaces: ['README.md', 'agents.json', 'agent-compliance.json', 'llms.txt', 'mcp.json', 'workflows.json', 'digit-index.json', 'source-atlas.json', 'payload-collections.json'],
       zeroTokenPolicy: 'the runtime uses zero LLM tokens — everything here is deterministic from src',
     }, null, 1), mime: 'application/json' },
     ...apiFiles(matrix),
@@ -225,7 +250,7 @@ export const dual = 'src/pair/cache/quantum'
 // live at dev time. The same files are written to disk at build by the enforcement cross wave; here the
 // dev server serves them recomputed-per-request from the model (zero build). One folder, one index, its
 // own VitePress plugin — the dist half of the dist⇄quantum pair, gathered by srcFolderPlugins.
-const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/llms.txt', '/print.css', '/api/'] as const
+const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/workflows.json', '/llms.txt', '/print.css', '/api/'] as const
 export function vitePlugin(siteUrl: string): Plugin {
   return {
     name: 'double-torus:dist',

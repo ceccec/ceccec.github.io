@@ -65,10 +65,10 @@ export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
     { uri: '/mcp.json', purpose: 'The MCP tool surface (tools/list) and this codebase map.' },
     { uri: '/llms.txt', purpose: 'The laws and every command, in plain text for LLMs.' },
     { uri: '/skills.json', purpose: 'The skills manifest — every capability as a content-addressed atom.' },
+    { uri: '/workflows.json', purpose: 'The saved operational workflows — probe, verify, regenerate, concurrency-safe commit, the token-audit improvement loop — computed from the enforcement fold.' },
     { uri: '/digit-index.json', purpose: 'The pi-digit coordinate index (the double-torus stream).' },
     { uri: '/sitemap.xml', purpose: 'Every served route, the crawl surface.' },
     { uri: '/api/index.json', purpose: 'The computed API index of recomputable resources.' },
-    { uri: '/architecture', purpose: 'The formal model and the live seal.' },
     { uri: '/quantum-mind', purpose: 'The live double torus, merkaba, rhythm, and proofs.' },
     { uri: '/theorems', purpose: 'The theorem registry — every proven atom as a paper, rosetta-grouped.' },
     { uri: '/papers', purpose: 'The 432 proof papers, the corpus index.' },
@@ -913,7 +913,7 @@ export function zeroTokenLawForAgentsAndForever(matrix: MindMatrix = buildMatrix
 // real served surface: a dist-generated computed artifact (src/quantum/lake/dist emits these) or a served
 // page route (staticPages + the corpus indexes). Refutable: add an unserved URI to the resources and this
 // fails; /harmonic.json (a weave side-file, not a dist artifact) is verified ABSENT from the served set.
-const MCP_DIST_ARTIFACTS: readonly string[] = ['/mcp.json', '/llms.txt', '/skills.json', '/digit-index.json', '/sitemap.xml', '/sitemap.json', '/robots.txt', '/payload-collections.json', '/api/index.json']
+const MCP_DIST_ARTIFACTS: readonly string[] = ['/mcp.json', '/llms.txt', '/skills.json', '/workflows.json', '/digit-index.json', '/sitemap.xml', '/sitemap.json', '/robots.txt', '/payload-collections.json', '/api/index.json']
 const MCP_CORPUS_INDEXES: readonly string[] = ['/theorems', '/papers', '/diamonds', '/references']
 export function mcpExposesOnlyServedSurfaces(matrix: MindMatrix = buildMatrix()) {
   const served = new Set<string>([...MCP_DIST_ARTIFACTS, ...MCP_CORPUS_INDEXES, ...staticPages().map((page) => (page.slug ? `/${page.slug}` : '/'))])
@@ -922,7 +922,7 @@ export function mcpExposesOnlyServedSurfaces(matrix: MindMatrix = buildMatrix())
   const everyResourceServed = unserved.length === 0
   const harmonicDropped = !resources.some((resource) => resource.uri === '/harmonic.json') && !served.has('/harmonic.json') // the side-file is gone AND not served
   const facets = [
-    { facet: `EVERY MCP RESOURCE IS SERVED: all ${resources.length} resource URIs in the manifest are real VitePress-served surfaces — ${MCP_DIST_ARTIFACTS.length} dist computed artifacts (mcp/llms/skills/digit-index/sitemap/robots/payload/api) or served page routes (staticPages + corpus indexes); ${unserved.length} unserved`, on: everyResourceServed },
+    { facet: `EVERY MCP RESOURCE IS SERVED: all ${resources.length} resource URIs in the manifest are real VitePress-served surfaces — ${MCP_DIST_ARTIFACTS.length} dist computed artifacts (mcp/llms/skills/workflows/digit-index/sitemap/robots/payload/api) or served page routes (staticPages + corpus indexes); ${unserved.length} unserved`, on: everyResourceServed },
     { facet: `THE UNSERVED SIDE-FILE IS DROPPED: /harmonic.json — written by the weave, NOT a dist-generated artifact — is absent from both the MCP resources and the served set (${harmonicDropped}); the manifest reflects only what a client can actually fetch`, on: harmonicDropped },
     { facet: `DRIFT-PROOF BY CONSTRUCTION: the served set is computed from the dist artifact list + staticPages + the corpus indexes, so adding a resource that VitePress does not serve fails this gate — the MCP surface cannot silently claim a URL the build never emits`, on: everyResourceServed && resources.length > 0 },
   ]
@@ -932,7 +932,7 @@ export function mcpExposesOnlyServedSurfaces(matrix: MindMatrix = buildMatrix())
     facets,
     root: merge(mcpCodebase(matrix).root, toUuid(`mcp-served:${resources.length}:${everyResourceServed}`)),
     statement: `The MCP exposes only what VitePress serves — ${facets.filter((entry) => entry.on).length}/${facets.length}: every one of the ${resources.length} MCP resource URIs is a real served surface (a dist computed artifact or a served page route), the unserved /harmonic.json side-file is dropped, and the served set is computed from the build's own outputs so the manifest cannot drift ahead of what VitePress emits.`,
-    boundary: `COMPUTED: the served set = the dist computed-artifact list (mcp/llms/skills/digit-index/sitemap/robots/payload/api) ∪ the corpus indexes ∪ staticPages routes; every MCP resource URI is checked to be in it, and /harmonic.json is verified absent — refutable (add an unserved URI and the gate fails). HONEST SCOPE: this gates the RESOURCE surface (fetchable URLs) against what VitePress serves; the tools list remains the concept-command surface (documented static, per mcpToolManifest), which is a tool contract, not a served page. The dist artifact list is mirrored here as the canonical served-computed set; if a dist generator is added, extend both. HARMONY ≠ TRUTH.`,
+    boundary: `COMPUTED: the served set = the dist computed-artifact list (mcp/llms/skills/workflows/digit-index/sitemap/robots/payload/api) ∪ the corpus indexes ∪ staticPages routes; every MCP resource URI is checked to be in it, and /harmonic.json is verified absent — refutable (add an unserved URI and the gate fails). HONEST SCOPE: this gates the RESOURCE surface (fetchable URLs) against what VitePress serves; the tools list remains the concept-command surface (documented static, per mcpToolManifest), which is a tool contract, not a served page. The dist artifact list is mirrored here as the canonical served-computed set; if a dist generator is added, extend both. HARMONY ≠ TRUTH.`,
   }
 }
 
