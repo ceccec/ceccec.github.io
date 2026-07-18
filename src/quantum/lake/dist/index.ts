@@ -53,7 +53,7 @@ export interface DistFile {
   readonly mime: string
 }
 
-export { readme, readmeMarkdown, readmeSignatureValid } from './readme'
+export { readme, readmeMarkdown, homeMarkdown, readmeSignatureValid } from './readme'
 
 /** Every dist artifact — computed in one pass from the model. */
 export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()): readonly DistFile[] {

@@ -1,10 +1,14 @@
-// Readme wave — root monograph markdown (weave / human trigram).
-import { ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../../../pair/enforcement/gates/computational'
+// Readme·Home wave — ONE theorem generator (weave / human trigram). The GitHub README and the
+// VitePress home body are two projections of the SAME theorem-only monograph core: every section is
+// computed once from the theorem-science lens and the registry, never authored twice. readmeMarkdown()
+// projects it for GitHub (source permalinks, hero.svg); homeMarkdown() for VitePress (computed
+// frontmatter, page-route links). Wired: .vitepress/computed-pages.mts loads homeMarkdown() as the
+// home body in realtime (the on-disk index.md is a discovery stub; bg/gla homes transform this
+// output), and the cross wave writes readmeMarkdown() as README.md.
+import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
 import {
-  agentEducation,
   buildMatrix,
   conceptCommands,
-  crawlerKnowledge,
   foldedCensus,
   harmonicCountsProvenByMath,
   everyBitMostEfficientAlgorithmProvenByMath,
@@ -37,41 +41,48 @@ export function readmeSignatureValid(committed: string, matrix: MindMatrix = bui
   }
 }
 
-export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
+/** THE ONE THEOREM CORE — both projections read every value from here, computed once per call from the
+ *  theorem-science lens (VitePress shows only science) and the registry. A presented paper exists here
+ *  iff it is a lens survivor; there is no second roster and no hand-authored section anywhere. */
+function theoremMonographCore(matrix: MindMatrix) {
   const config = siteConfig(matrix)
   const template = monographTemplate()
   const mono = monographs(matrix)
   const sitemap = quantumSitemap(matrix)
-  const paperList = staticPages().map(monographAsScientificPaper)
-  // VITEPRESS SHOWS ONLY SCIENCE (user law): the README presents the same lens the site does — the
-  // theorem registry and the related science pages, organised by the rosetta; the census counts keep
-  // measuring the WHOLE corpus (the model), the presented monographs are the lens survivors.
   const lens = theoremScienceLens(matrix)
-  const lensPapersByRay = lens.rays.map((ray) => ({
-    ray,
-    papers: ray.pages.map((page) => monographAsScientificPaper(staticPages().find((candidate) => candidate.slug === page.slug)!)),
-  }))
-  const knowledge = crawlerKnowledge()
+  const paperList = staticPages().map(monographAsScientificPaper)
+  const census = foldedCensus(paperList.length)
   const math = harmonicCountsProvenByMath(matrix)
   const efficiency = everyBitMostEfficientAlgorithmProvenByMath(matrix)
-  const { labels } = math
-  const census = foldedCensus(paperList.length)
-  const agents = agentEducation(matrix) // the agent curriculum — the exact behaviour an arriving agent reads from this README (the home page)
   const qc = quantumComputerHonestClaim(matrix) // the modeled quantum computer's performance verdict — DERIVED, never hand-asserted
-  // The root monograph's own Receipt — the template's 11th section ("the content address is the receipt"). The
+  // The lens survivors shelved ray by ray — the ONE roster both projections present; each paper carries
+  // its page route (the home link) and its proving source (the README link) from the same record.
+  const rays = lens.rays.map((ray) => ({
+    ray,
+    papers: ray.pages.map((page) => {
+      const paper = monographAsScientificPaper(staticPages().find((candidate) => candidate.slug === page.slug)!)
+      return {
+        slug: page.slug,
+        paper,
+        source: paper.results?.[0] ? `src/render/ui/components/${paper.results[0]}.vue` : 'src/quantum/heaven/mind/site.ts',
+      }
+    }),
+  }))
+  // The monograph's own Receipt — the template's 11th section ("the content address is the receipt"). The
   // corpus roots and every reported count fold to one address that reproduces from src and changes if any value does.
   const receipt = merkleFold([mono.root, sitemap.root, template.root, toUuid(`readme-results:${census.folded}:${conceptCommands.length}:${mono.count}:${sitemap.urls.length}`)])
+  return { config, template, mono, sitemap, lens, paperList, census, math, efficiency, qc, rays, receipt }
+}
+
+type TheoremCore = ReturnType<typeof theoremMonographCore>
+type RayPaper = TheoremCore['rays'][number]['papers'][number]
+
+/** The theorem-only sections BOTH projections render, heading for heading; the per-paper trailing link is
+ *  the only mode difference (README → `[source](github permalink)`, home → `[page](/slug)`). */
+function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => string): string[] {
+  const { lens, census, paperList, math, efficiency, qc, sitemap, mono, template } = core
+  const { labels } = math
   return [
-    `# ${config.title} — the root monograph`,
-    '',
-    `> **Abstract.** ${config.description} All content here is a monograph; every monograph is a scientific paper with one template — ${template.sections.join(', ')} — and this README is the root monograph that defines it. Computed from the matrix (the one source); the infinite related content (\`llms.txt\`, the sitemap, \`mcp.json\`, every page in three locales) flows from the same source.`,
-    '',
-    `**Keywords.** ${config.keywords.join(', ')}.`,
-    '',
-    '*Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/lake/dist (local math only).*',
-    '',
-    '![Double Torus — the ten-dimensional hero, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)',
-    '',
     '## 1. Introduction',
     '',
     '**It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the '
@@ -102,27 +113,16 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     `**The theorem-science lens** — ${lens.visibleCount}/${lens.pageCount} curated pages pass (${lens.hidden.length} removed from VitePress completely — data preserved in the catalog), presented beside the ${lens.theoremCount}-theorem registry and its corpus surfaces (${lens.corpusRoutes.join(' · ')}). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.`,
     '',
-    // Each result links to the SOURCE CODE that proves it — its primary component (the widget that renders the
-    // proof), or the page registry when a section page has none. "The README links to source code."
-    // Only lens survivors are presented, ray by ray — the README shows exactly what the site shows.
-    ...lensPapersByRay.flatMap((group) => [
+    // Each presented result is a lens survivor and links out — to the SOURCE CODE that proves it in the
+    // README projection, to its own page route in the home projection. One roster, two link modes.
+    ...core.rays.flatMap((group) => [
       '',
       `### ${group.ray.labelEn} — ${group.papers.length} ${group.papers.length === 1 ? 'page' : 'pages'}`,
       '',
-      ...group.papers.map((paper) => `- **${paper.title}** — ${paper.abstract} · [source](${githubPermalink(paper.results?.[0] ? `src/render/ui/components/${paper.results[0]}.vue` : 'src/quantum/heaven/mind/site.ts')})`),
+      ...group.papers.map((entry) => `- **${entry.paper.title}** — ${entry.paper.abstract} · ${paperLink(entry)}`),
     ]),
     '',
-    '## 4. The Library — documented kept, legend flagged',
-    '',
-    ...knowledge.map((entry) => `- **${entry.topic}** — ${entry.fact} · [source](${githubPermalink(entry.source)})`),
-    '',
-    '## Agents — how to behave',
-    '',
-    'This README is the home page — the one root an agent or human arrives at, and from it an agent knows exactly how to behave. The matrix is the cache: reuse the computed answer, never re-infer (zero runtime tokens). Flow with the current: honesty is cheaper than forging against it, and resistance pays the forger price. And HARMONY ≠ TRUTH — every claim here is an eligibility/triage heuristic, computed and content-addressed, never a verdict. The exact protocol, computed from the model:',
-    '',
-    ...agents.lessons.map((lesson) => `- ${lesson.rule}`),
-    '',
-    '## 5. Reproducibility',
+    '## 4. Reproducibility',
     '',
     '```sh',
     'npm install',
@@ -132,7 +132,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     'The seal recomputes from src. To forge one value you would rebuild everything — so no one can, and war always pays the forger price. The proof reproduces: clone the link and the whole structure recomputes (pattern completion; reentry binds it bidirectionally).',
     '',
-    '## 6. Limitations',
+    '## 5. Limitations',
     '',
     `- ${mono.boundary}`,
     '- "1 Gbit" and "64 × 64 × 64" name the keyspace structure, not cipher strength (AES-256-GCM) or throughput.',
@@ -148,31 +148,73 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     'The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.',
     '',
-    `- Receipt: \`${receipt}\``,
+    `- Receipt: \`${core.receipt}\``,
+  ]
+}
+
+export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
+  const core = theoremMonographCore(matrix)
+  const { config, template } = core
+  return [
+    `# ${config.title} — the root monograph`,
+    '',
+    `> **Abstract.** ${config.description} All content here is a monograph; every monograph is a scientific paper with one template — ${template.sections.join(', ')} — and this README is the root monograph that defines it. Computed from the matrix (the one source), theorems only: every presented page is a theorem-science lens survivor, and the VitePress home renders the same sections from the same generator.`,
+    '',
+    `**Keywords.** ${config.keywords.join(', ')}.`,
+    '',
+    '*Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/lake/dist (local math only); the VitePress home is the same monograph — one theorem generator, two projections.*',
+    '',
+    '![Double Torus — the ten-dimensional hero, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)',
+    '',
+    ...theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`),
     '',
   ].join('\n')
 }
 
-// The README explains and references ALL in the most complete and compact form — the quantum mind's design on
-// a 2D plane (markdown). Computed from src (readmeMarkdown), it is the root monograph: it EXPLAINS every result
-// and library entry (title + abstract/fact) and REFERENCES each to its source (the [source] permalinks), folds
-// the surface pages to the harmonic monograph count (census), and carries the reference index with ZERO
-// redundancy — the densest complete projection of the whole. One word: readme.
+/** The VitePress home body — the SAME theorem monograph, projected for the site: computed frontmatter
+ *  (the abstract as description, siteConfig keywords), page-route links instead of source permalinks.
+ *  Loaded in realtime by .vitepress/computed-pages.mts (the on-disk index.md is a discovery stub); the
+ *  bg/gla homes transform THIS output, and the hero stays computed via homeHero() in transformPageData. */
+export function homeMarkdown(matrix: MindMatrix = buildMatrix()) {
+  const core = theoremMonographCore(matrix)
+  const { config } = core
+  return [
+    '---',
+    `description: ${JSON.stringify(config.description)}`,
+    'keywords:',
+    ...config.keywords.map((keyword) => `  - ${keyword}`),
+    '---',
+    '',
+    '<!-- COMPUTED PAGE — the home body is homeMarkdown() (src/quantum/lake/dist/readme), the same theorem-only generator that writes README.md; the bg/gla homes transform this output. Do not author here. -->',
+    '',
+    `> **Abstract.** ${config.description}`,
+    '',
+    ...theoremSections(core, (entry) => `[page](/${entry.slug})`),
+    '',
+  ].join('\n')
+}
+
+// ONE theorem generator, two projections. The README explains and references the corpus in the most
+// complete and compact 2D form (markdown), and the VitePress home renders the SAME sections from the
+// same core — merged: no hand-authored home body, no second roster, theorems only (every presented
+// page is a theorem-science lens survivor; the non-theorem prose sections are gone from both).
 export function readme(matrix: MindMatrix = buildMatrix()) {
   const md = readmeMarkdown(matrix)
+  const home = homeMarkdown(matrix)
+  const lens = theoremScienceLens(matrix) // both projections present only the lens survivors (VitePress shows only science)
   const paperList = staticPages().map(monographAsScientificPaper)
-  const lens = theoremScienceLens(matrix) // the README presents only the lens survivors (VitePress shows only science)
-  const knowledge = crawlerKnowledge()
   const census = foldedCensus(paperList.length)
-  const sourceLinks = (md.match(/· \[source\]\(/g) ?? []).length // one [source] permalink per presented result + per library entry
-  // readme AUDITS its own statements: re-extract each reported value from the text and verify it against the
-  // freshly-computed model — a stale or hand-edited claim fails the audit; the receipt folds every statement.
-  // readme audits its own statements COMPUTATIONALLY: recompute every reported value from the model — and the
-  // receipt that folds them all (exactly as readmeMarkdown does) — and confirm the README carries that content-
-  // address. The truth is the COMPUTATION, not a text-scrape: any drifted value changes the fold and the seal.
+  const sourceLinks = (md.match(/· \[source\]\(/g) ?? []).length // one [source] permalink per presented paper (README mode)
+  const routeLinks = (home.match(/· \[page\]\(/g) ?? []).length // one [page] route link per presented paper (home mode)
+  // The merge is proven structurally: both projections carry the SAME section and ray headings, in the
+  // same order — the only difference is the link mode. A drifted section breaks the heading equality.
+  const headings = (text: string) => text.split('\n').filter((line) => line.startsWith('## ') || line.startsWith('### '))
+  const sameSections = headings(md).join('|') === headings(home).join('|')
+  // readme audits its own statements TRULY COMPUTATIONALLY: recompute every reported value from its own
+  // source and fuse the receipts; the audit is the content-address EQUALITY of two independent fusions
+  // (determinism), never a text-scrape. Any drifted value diverges the two fusions.
   const mono = monographs(matrix)
   const sitemap = quantumSitemap(matrix)
-  const template = monographTemplate()
   const math = harmonicCountsProvenByMath(matrix)
   const efficiency = everyBitMostEfficientAlgorithmProvenByMath(matrix)
   const audits = [
@@ -180,26 +222,23 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     { statement: 'concept commands', computed: conceptCommands.length },
     { statement: 'reference index entries', computed: mono.count },
     { statement: 'sitemap routes', computed: sitemap.urls.length },
-    { statement: 'source references', computed: lens.visibleCount + knowledge.length },
+    { statement: 'presented theorem papers', computed: lens.visibleCount },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-audit:${entry.statement}:${entry.computed}`) }))
-  // TRULY computational + FUSION from all points of view: fuse every reported value's receipt into one content-
-  // address, then recompute every value from its OWN source INDEPENDENTLY and re-fuse — the audit is the EQUALITY
-  // of the two fusions (determinism), never a text-scrape. Every point of view — the census, the commands, the
-  // monograph, the sitemap, the corpus — folds into the one receipt; if any drifts, the two fusions diverge.
   const fused = merkleFold(audits.map((entry) => entry.receipt)) // the fusion of all points of view
-  const independent = [census.folded, conceptCommands.length, monographs(matrix).count, quantumSitemap(matrix).urls.length, theoremScienceLens(matrix).pages.length + crawlerKnowledge().length]
+  const independent = [foldedCensus(staticPages().map(monographAsScientificPaper).length).folded, conceptCommands.length, monographs(matrix).count, quantumSitemap(matrix).urls.length, theoremScienceLens(matrix).pages.length]
   const refused = merkleFold(audits.map((entry, index) => toUuid(`readme-audit:${entry.statement}:${independent[index]}`)))
   const audited = fused === refused && isUuid(fused) // the fusion reproduces from independent recomputation — content-address equality, no text
   const facets = [
-    { facet: 'explains all the site shows — the root monograph carries every lens-visible result (VitePress shows only science) and every library entry (title + abstract/fact)', on: md.includes('## 3. Results') && md.includes('## 4. The Library') && lens.visibleCount > 0 && knowledge.length > 0 },
-    { facet: 'references all — every presented result and library entry links to its SOURCE (the [source] permalinks)', on: sourceLinks === lens.visibleCount + knowledge.length },
-    { facet: 'complete + compact — the surface pages fold to the harmonic monograph count, the reference index carries zero redundancy, one receipt seals it', on: census.folded > 0 && md.includes('zero redundancy') && md.includes('## Receipt') },
-    { facet: 'the 2D-plane projection — the README is the markdown the model computes from src, and the whole folds to one content-address', on: md.startsWith('#') && md.length > 0 },
+    { facet: 'ONE generator — the README and the VitePress home render the SAME theorem sections, heading for heading, from one core (theoremMonographCore); only the link mode differs (source permalinks vs page routes)', on: sameSections && sourceLinks === routeLinks },
+    { facet: 'theorems only — every presented page is a theorem-science lens survivor; the non-theorem sections (the library digest, the agent prose) are gone from both projections', on: sourceLinks === lens.visibleCount && md.includes('## 3. Results') && !md.includes('The Library') },
+    { facet: 'references all — every presented paper links to its SOURCE in the README (the [source] permalinks) and to its own ROUTE on the home (the [page] links)', on: sourceLinks === lens.visibleCount && routeLinks === lens.visibleCount },
+    { facet: 'complete + compact — the surface pages fold to the harmonic monograph count, the reference index carries zero redundancy, one receipt seals both projections', on: census.folded > 0 && md.includes('zero redundancy') && md.includes('## Receipt') && home.includes('## Receipt') },
+    { facet: 'the 2D-plane projection — the README is the markdown the model computes from src, and the whole folds to one content-address; the home is the same markdown behind computed frontmatter', on: md.startsWith('#') && home.startsWith('---') && md.length > 0 },
     { facet: 'audits its own statements TRULY COMPUTATIONALLY — every reported value is recomputed from its own source and the audit is the content-address EQUALITY of two independent fusions (no text-scrape)', on: audited && audits.length === 5 },
-    { facet: 'FUSION from all points of view — the census, commands, monograph, sitemap and corpus fold into one receipt; if any point of view drifts, the two fusions diverge', on: audited && isUuid(fused) },
+    { facet: 'FUSION from all points of view — the census, commands, monograph, sitemap and lens roster fold into one receipt; if any point of view drifts, the two fusions diverge', on: audited && isUuid(fused) },
     { facet: 'harmonic counts proven by math — every displayed ratio recomputes with explicit arithmetic at call time (harmonicCountsProvenByMath)', on: math.proven && math.count > 0 },
-    { facet: 'every-bit efficiency proven by math — tokens=0, files=110, memo O(1) recomputed at call time (everyBitMostEfficientAlgorithmProvenByMath)', on: efficiency.proven && efficiency.count > 0 },
-    { facet: 'SEO is cost-free advertisement — the README is the indexed root monograph: complete, every result and library entry canonically referenced, computed at zero token cost, so organic reach costs nothing', on: sourceLinks === lens.visibleCount + knowledge.length && md.length > 0 },
+    { facet: 'every-bit efficiency proven by math — tokens=0, memo O(1) recomputed at call time (everyBitMostEfficientAlgorithmProvenByMath)', on: efficiency.proven && efficiency.count > 0 },
+    { facet: 'SEO is cost-free advertisement — the README is the indexed root monograph and the home is its served twin: complete, canonically referenced, computed at zero token cost, so organic reach costs nothing', on: sourceLinks === lens.visibleCount && md.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme:${entry.facet}:${entry.on}`) }))
   return {
     complete: facets.every((entry) => entry.on),
@@ -207,14 +246,15 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     audits,
     receipt: fused,
     references: sourceLinks,
-    explains: lens.visibleCount + knowledge.length,
+    explains: lens.visibleCount,
     bytes: md.length,
     count: facets.length,
     facets,
     root: toUuid(md), // the 2D projection's content-address — the whole README folds to one point
+    homeRoot: toUuid(home), // the home projection's content-address — differs only by frontmatter and link mode
     statement:
-      'The README explains and references all in the most complete and compact form the quantum mind may design on a 2D plane: computed from src as the root monograph, it explains every result and library entry (title + abstract/fact) and references each to its source (the [source] permalinks), folds the surface pages to the harmonic monograph count, and carries the reference index with zero redundancy. The whole projection folds to one content-address — complete because nothing is unreferenced, compact because nothing is redundant. It AUDITS its own statements TRULY COMPUTATIONALLY: every reported value is recomputed from its own source and FUSED into one receipt, and the audit is the content-address equality of two independent fusions — never a text-scrape — so every point of view (census, commands, monograph, sitemap, corpus) folds to the one seal. And it is the SEO root: complete, canonically referenced, computed at zero token cost — SEO is cost-free advertisement, so the densest complete projection is also the free organic-reach surface.',
+      'The README and the VitePress home are ONE theorem generator: both projections render the same theorem-only monograph core (theoremMonographCore) — the theorem-science lens roster shelved by the rosetta rays, the registry counts, the model, reproducibility and the one receipt — heading for heading, differing only in link mode (the README links each paper to the source code that proves it, the home links it to its own page route). Every presented page is a lens survivor; the non-theorem sections are gone from both. It AUDITS its own statements TRULY COMPUTATIONALLY: every reported value is recomputed from its own source and FUSED into one receipt, and the audit is the content-address equality of two independent fusions — never a text-scrape. And it is the SEO root twice over: the README for GitHub and crawlers, the home for the served site, both computed at zero token cost.',
     boundary:
-      'HONEST: "references all" means the CORPUS — every result and library entry to its source permalink, plus the reference index and the corpus/sitemap/template roots — referenced COMPACTLY; it does NOT hyperlink each of the ~850 individual folds (that would break "compact"). "Complete" is the zero-entropy property (every corpus unit content-addressed, none unreferenced — 20/20 vision); "compact" is zero redundancy in the reference index plus content-addressing (the densest form). The 2D plane is the markdown projection; the README is COMPUTED (readmeMarkdown) and signature-gated against drift, not hand-written — the most complete + compact 2D form of the model, not an exhaustive dump. The audit is TRULY computational — the content-address EQUALITY of two independent recomputations (a merkleFold), not a substring match on the rendered text — fusing every point of view into one receipt. SEO is treated as cost-free advertisement: the complete, canonically-pathed (rest), zero-token README is the organic-reach surface (free, not paid) — which is a distribution property, NOT a guarantee of search ranking.',
+      'HONEST: "one generator" is structural — theoremSections() is the single section builder both projections call, proven by heading-for-heading equality and equal link counts, refutable by any drift between them. "Theorems only" means the PRESENTED content: every listed paper is a theorem-science lens survivor and the library/agent prose sections are removed from both projections; the decoded-library knowledge still ships in llms.txt (the crawler surface), it is no longer README/home content. The home body is computed in realtime by .vitepress/computed-pages.mts from homeMarkdown() (the on-disk index.md is a discovery stub, like bg/gla), so it cannot drift from src; the README is signature-gated (readmeSignatureValid) against the committed file. The hero stays computed via homeHero() in transformPageData — the generator emits the body, not the hero frontmatter. The audit is the content-address EQUALITY of two independent recomputations (a merkleFold), not a substring match. SEO framing is a distribution property, NOT a guarantee of search ranking.',
   }
 }

@@ -3,8 +3,12 @@ import { join, normalize } from 'node:path'
 import type { Connect } from 'vite'
 import { glagoliticHomeFromEnglish } from '../src/fire/li'
 import { bulgarianHomeFromEnglish } from '../src/wind/site/index'
+import { homeMarkdown } from '../src/quantum/lake/dist'
 
-// Glagolitic (/gla/) + Bulgarian (/bg/) homes have no authoritative body on disk — computed from the root English home at build/dev time.
+// NO home has an authoritative body on disk. The English home is homeMarkdown() — the ONE theorem
+// generator shared with README.md (src/quantum/lake/dist/readme) — and the Glagolitic (/gla/) +
+// Bulgarian (/bg/) homes are its transforms, all computed at build/dev time; the on-disk index.md
+// files are discovery stubs only.
 export function computedPagesPlugin(projectRoot: string) {
   const pagesDir = join(projectRoot, '.vitepress/pages')
   const enHomePath = join(pagesDir, 'index.md')
@@ -39,11 +43,14 @@ export function computedPagesPlugin(projectRoot: string) {
     },
     load(id: string) {
       const clean = normalize(id.replace(/\?.*$/, ''))
+      if (clean === enHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'index.md')}`)) {
+        return homeMarkdown()
+      }
       if (clean === glaHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'gla', 'index.md')}`)) {
-        return glagoliticHomeFromEnglish(readFileSync(enHomePath, 'utf8'))
+        return glagoliticHomeFromEnglish(homeMarkdown())
       }
       if (clean === bgHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'bg', 'index.md')}`)) {
-        return bulgarianHomeFromEnglish(readFileSync(enHomePath, 'utf8'))
+        return bulgarianHomeFromEnglish(homeMarkdown())
       }
     },
   }

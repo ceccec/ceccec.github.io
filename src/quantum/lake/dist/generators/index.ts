@@ -8,7 +8,7 @@ import { merkleFold, toUuid, foldVortex } from '../../../../0'
 import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../../heaven/mind'
 import { glagoliticHomeFromEnglish } from '../../../heaven/mind'
 import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../../heaven/library'
-import { computedDistFiles, readmeMarkdown } from '..'
+import { computedDistFiles, homeMarkdown, readmeMarkdown } from '..'
 
 // What the runner hands every plan: the environment, the positional args after the selector, a
 // repo-relative file reader (null if missing), and the resolved site URL. No plan touches the disk
@@ -102,11 +102,12 @@ export function generators(): Generator[] {
       name: 'glagolitic',
       title: 'Glagolitic home — computed, not written (debug echo)',
       summary:
-        'Superseded by glagoliticHomeFromEnglish served live through the Vite plugin; kept as a manual debug helper that echoes the computed home so you can eyeball the realtime render.',
+        'Superseded by glagoliticHomeFromEnglish served live through the Vite plugin over the computed homeMarkdown(); kept as a manual debug helper that echoes the computed home so you can eyeball the realtime render.',
       plan: (ctx) => {
-        const en = ctx.read('.vitepress/pages/en/index.md')
-        if (en == null) return { files: [], messages: [], error: 'Cannot read .vitepress/pages/en/index.md' }
-        return { files: [], messages: [`Glagolitic home (computed, not written):\n ${glagoliticHomeFromEnglish(en).slice(0, (100 * 2))} …`] }
+        void ctx
+        // The English home body is COMPUTED (homeMarkdown — the one theorem generator shared with the
+        // README); the Glagolitic home is its transform, exactly what the Vite plugin serves in realtime.
+        return { files: [], messages: [`Glagolitic home (computed, not written):\n ${glagoliticHomeFromEnglish(homeMarkdown()).slice(0, (100 * 2))} …`] }
       },
     },
     {
