@@ -17,12 +17,12 @@ import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalL
 import { rhythm } from '../../lake/music'
 import { heartProtonAtomDecoded } from '../../mountain/geometry'
 import { monographSliceFromRoute, ROUTE_ALIASES } from '../routes/automount'
-import { localePath, pickLocale, displayText, quantumSitemap, staticPages, type LocaleName } from '../site'
+import { homeHero, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, type LocaleName } from '../site'
 import { componentGraph } from '../../heaven/core'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { toGlagolitic } from '../../quantum/heaven/library'
-import { mcpCodebase } from '../../thunder/commands'
-import { completeCorpus, theoremRosettaSidebar } from '../routes/corpus'
+import { mcpCodebase, mcpUsesVitepressSearch } from '../../thunder/commands'
+import { completeCorpus, theoremRosettaSidebar, theRosettaReconfiguresVitepress } from '../routes/corpus'
 import { diamondLattice } from '../../fire/diamonds'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf, rosettaRayOfContent } from '../../water/digit'
 import { SESSION_SKILL_FNS } from '../../2/8'
@@ -35,7 +35,6 @@ import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { everythingFoldsMerkabaInfiniteStreams, merkabasInDoubleTorus } from '../../mountain/topology'
 import { anyUuidHeroContentFractal, displayHeroCardThumb, heroGraphStatisticsEnrichFusion, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle } from '../ui'
 import { ogControlsSpeech } from '../../mountain/og'
-import { DISCOVERY_LINKS, NAV_FALLBACK, MONOGRAPH_ROSETTA_SEED } from '../../8/2'
 
 export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducation {
   const verifiedRoot = verifyRoot(matrix)
@@ -1700,9 +1699,14 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // ONE page set: a component page whose component is MOUNTED on a curated page is the SAME surface
   // twice (QuantumConsole → /quantum-console beside /console) — dedup by mounted-component slug, so
   // curated TITLES are free to simplify (rosetta law: label = URL word) without resurrecting duplicates.
+  // VITEPRESS SHOWS ONLY SCIENCE (user law): the one theorem-science lens then filters the whole set —
+  // every discovery surface below (nav, sidebar, footer, related, crosslinks) is built from lens survivors.
   const kebabName = (name: string) => name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
   const curatedComponentSlugs = new Set(staticPages().flatMap((page) => page.components.map(kebabName)))
-  const pages = [...staticPages(), ...componentPages().filter((page) => !curatedComponentSlugs.has(page.slug))]
+  const lens = theoremScienceLens(matrix)
+  const pages = [...staticPages(), ...componentPages().filter((page) => !curatedComponentSlugs.has(page.slug))].filter((page) =>
+    theoremScienceVisible(page.slug, page.keywords),
+  )
   const routeOf = (slug: string) => (slug === '' ? '/' : `/${slug}`)
   const byRoute = new Map(pages.map((page) => [routeOf(page.slug), page]))
   const META = new Set(['component', 'proof'])
@@ -1727,36 +1731,38 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const portal = sciencePortalParts(matrix)
   const contentRayOf = (slug: string) => { const page = byRoute.get(routeOf(slug)); return rosettaRayOfContent(slug, page?.keywords ?? []) }
   // Eight-fold law in every dropdown: a part with more than 8 pages shows its hub link ("All … — N")
-  // plus the first 7; the hub landing lists the whole part.
+  // plus the first 7; the hub landing lists the whole part. Only lens survivors (byRoute) appear.
   const rosettaFold = (i: 0 | 1) =>
     portal.parts.map((part) => {
-      const routes = dedupe(part.pages.map((page) => routeOf(page.slug)))
+      const routes = dedupe(part.pages.map((page) => routeOf(page.slug)).filter((route) => byRoute.has(route)))
       const items = routes.length > 8
         ? [{ text: i === 1 ? `Всички — ${routes.length}` : `All — ${routes.length}`, link: link(part.route, i) }, ...routes.slice(0, 7).map((route) => item(route, i))]
         : routes.map((route) => item(route, i))
       return { text: i === 1 ? part.labelBg : part.labelEn, items }
     }).filter((section) => section.items.length > 0)
-  // THE ROSETTA OF MONOGRAPHS (user law) — the top nav IS the rosetta: Home (ray 0, Origin, the bare
-  // link) + SIX dropdowns (rays 1–6), each EXACTLY SEVEN monograph links — 6 × 7 = 42, the sealed area
-  // count. The Frontier dropdown carries the REAL discoveries: the seven METHOD-level artifacts
-  // (theoremProvenance), anchored on the frontiers page. Straight to the point — canonical slugs, no filler.
-  const MONOGRAPH_ROSETTA: readonly (readonly [number, readonly string[]])[] = MONOGRAPH_ROSETTA_SEED.map(
-    ([ray, routes]) => (ray === 5 ? ([ray, DISCOVERY_LINKS.map((entry) => `/frontiers#${entry[0]}`)] as const) : ([ray, routes] as const)),
-  )
-  const navItem = (route: string, i: 0 | 1) => {
-    if (/\.(json|txt|webmanifest)$/.test(route)) return { text: route.slice(1), link: route }
-    const anchor = route.match(/^\/frontiers#(.+)$/)
-    if (anchor) { const entry = DISCOVERY_LINKS.find((d) => d[0] === anchor[1])!; return { text: i === 1 ? entry[2] : entry[1], link: link(route, i) } }
-    const page = byRoute.get(route)
-    const fallback = NAV_FALLBACK[route]
-    return { text: page ? text(route, i) : (fallback ? fallback[i] : route), link: link(route, i) }
+  // theorems belong in the navigation — the frontiers route carries the registry, the corpus surfaces ride
+  // beside it (lens.corpusRoutes), and the crown entries anchor the panel (never prose, always names).
+  // 1 registry link + 4 corpus + 3 crowns = 8: the eight-fold law holds in the theorem dropdown too.
+  const theoremGroup = (i: 0 | 1) => {
+    const nav358 = __ns_thunder_waves.theoremNavigation(matrix)
+    const corpusLabels: readonly (readonly [string, string])[] = [['Theorem atlas', 'Теоремен атлас'], ['Papers', 'Статии'], ['References', 'Референции'], ['Diamonds', 'Диаманти']]
+    const crowns = ['STS(9) unique, |Aut| = 432', 'the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4)', '36 officers are impossible']
+    return {
+      text: i === 1 ? `⊢ Теореми — ${nav358.atomCount} доказани` : `⊢ Theorems — ${nav358.atomCount} proven`,
+      items: [
+        { text: i === 1 ? 'Целият регистър' : 'The full registry', link: link('/frontiers', i) },
+        ...lens.corpusRoutes.map((route, index) => ({ text: corpusLabels[index]![i], link: link(route, i) })),
+        ...crowns.map((name) => ({ text: name, link: link('/frontiers', i) })),
+      ],
+    }
   }
+  // VITEPRESS SHOWS ONLY SCIENCE (user law) — the top nav IS the lens organised by the rosetta: Home (the
+  // bare link) + one dropdown per rosetta ray that holds lens survivors + the theorem dropdown (registry,
+  // corpus surfaces, crowns). No hand-listed routes: every item is a lens page or a corpus surface.
   const buildNav = (i: 0 | 1) => [
     { text: i === 1 ? 'Начало' : 'Home', link: link('/', i) },
-    ...MONOGRAPH_ROSETTA.map(([ray, routes]) => ({
-      text: i === 1 ? ROSETTA_RAYS[ray]!.nameBg : ROSETTA_RAYS[ray]!.nameEn,
-      items: routes.map((route) => navItem(route, i)),
-    })),
+    ...rosettaFold(i),
+    theoremGroup(i),
   ]
   // ONE grouping law at every scale: the sidebar folds by the SAME seven rosetta rays as the nav,
   // related sections and crosslinks — two taxonomies were the confusion (13 tag groups + a 23-item
@@ -1764,7 +1770,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const buildSidebar = (i: 0 | 1) => rosettaFold(i)
   const buildRelatedSidebar = (i: 0 | 1): Record<string, { text: string; items: { text: string; link: string }[] }[]> => {
     const byRay = new Map<number, string[]>()
-    for (const page of staticPages()) {
+    for (const page of lens.pages) {
       const ray = contentRayOf(page.slug)
       if (!byRay.has(ray)) byRay.set(ray, [])
       byRay.get(ray)!.push(routeOf(page.slug))
@@ -1780,13 +1786,13 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   }
   const buildCrosslinks = (i: 0 | 1): Record<string, { text: string; link: string }[]> => {
     const byRay = new Map<number, string[]>()
-    for (const page of staticPages()) {
+    for (const page of lens.pages) {
       const ray = contentRayOf(page.slug)
       if (!byRay.has(ray)) byRay.set(ray, [])
       byRay.get(ray)!.push(routeOf(page.slug))
     }
     const result: Record<string, { text: string; link: string }[]> = {}
-    for (const page of staticPages()) {
+    for (const page of lens.pages) {
       const route = routeOf(page.slug)
       const ray = contentRayOf(page.slug)
       const peers = dedupe((byRay.get(ray) ?? []).filter((r) => r !== route))
@@ -1796,19 +1802,6 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   }
   const enRelatedSidebar = buildRelatedSidebar(0)
   const bgRelatedSidebar = buildRelatedSidebar(1)
-  // theorems belong in the navigation — the frontiers route carries the registry as a group:
-  // the count is computed, the crown entries anchor the panel (never prose, always names).
-  const theoremGroup = (i: 0 | 1) => {
-    const nav358 = __ns_thunder_waves.theoremNavigation(matrix)
-    const crowns = ['STS(9) unique, |Aut| = 432', 'the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4)', '36 officers are impossible', 'Kirkman triple system S(2,3,15) exists']
-    return {
-      text: i === 1 ? `⊢ Теореми — ${nav358.atomCount} доказани` : `⊢ Theorems — ${nav358.atomCount} proven`,
-      items: [
-        { text: i === 1 ? 'Целият регистър' : 'The full registry', link: link('/frontiers', i) },
-        ...crowns.map((name) => ({ text: name, link: link('/frontiers', i) })),
-      ],
-    }
-  }
   for (const [related, i] of [[enRelatedSidebar, 0], [bgRelatedSidebar, 1]] as const) {
     const key = '/frontiers'
     if (related[key]) related[key] = [theoremGroup(i), ...related[key]!]
@@ -1817,30 +1810,75 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   const bgCrosslinks = buildCrosslinks(1)
   const buildFooter = (i: 0 | 1) => {
     const parts = navTags.map((tag) => routesIn(tag)[0]).filter(Boolean).map((route) => `<a href="${link(route, i)}">${text(route, i)}</a>`)
-    if (byRoute.has('/governance')) parts.push(`<a href="${link('/governance', i)}#license">${i === 1 ? 'Лиценз' : 'License'}</a>`, `<a href="${link('/governance', i)}#privacy">${i === 1 ? 'Поверителност' : 'Privacy'}</a>`)
+    // License/Privacy are legal chrome, not content pages — they stay in the footer even when the
+    // governance page itself is outside the theorem-science lens.
+    if (staticPages().some((page) => page.slug === 'governance')) parts.push(`<a href="${link('/governance', i)}#license">${i === 1 ? 'Лиценз' : 'License'}</a>`, `<a href="${link('/governance', i)}#privacy">${i === 1 ? 'Поверителност' : 'Privacy'}</a>`)
     return {
       message: parts.join(' · '),
       copyright: i === 1 ? 'Отворен, преизчислим, адресиран по съдържание — Двоен торус.' : 'Open, recomputable, content-addressed — the Double Torus.',
     }
   }
   const index = monographs(matrix)
-  const root = merkleFold([index.root, ...pages.map((page) => toUuid(`nav:${routeOf(page.slug)}:${page.title.en}`)), ...navTags.map((tag) => toUuid(`nav-cluster:${tag}`))])
+  const root = merkleFold([lens.root, index.root, ...pages.map((page) => toUuid(`nav:${routeOf(page.slug)}:${page.title.en}`)), ...navTags.map((tag) => toUuid(`nav-cluster:${tag}`))])
+  // The lens law, checked on the rendered nav itself: every dropdown non-empty, within the eight-fold,
+  // and every item a lens survivor, a corpus surface, or a frontiers/hub anchor — nothing else shows.
+  const visibleNavRoutes = new Set<string>(['/', '/frontiers', ...pages.map((page) => routeOf(page.slug)), ...lens.corpusRoutes, ...portal.parts.map((part) => part.route)])
+  const navGroups = buildNav(0).slice(1) as { text: string; items: { text: string; link: string }[] }[]
+  const navLensed =
+    navGroups.length > 0 &&
+    navGroups.every((group) => Array.isArray(group.items) && group.items.length > 0 && group.items.length <= 8 && group.items.every((entry) => visibleNavRoutes.has(entry.link)))
   return {
-    computed: navTags.length > 0 && buildNav(0).length === 7 && buildNav(0).slice(1).every((group) => 'items' in group && (group as { items: unknown[] }).items.length === 7) && isUuid(root),
+    computed: navTags.length > 0 && lens.computes && navLensed && isUuid(root),
     tagCloud: [...cloud.entries()].map(([tag, routes]) => ({ tag, count: routes.length })).sort((a, b) => b.count - a.count),
     clusters: navTags,
     en: { nav: buildNav(0), sidebar: buildSidebar(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
     bg: { nav: buildNav(1), sidebar: buildSidebar(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
-    relatedSidebarComplete: staticPages().every((p) => routeOf(p.slug) in enRelatedSidebar),
-    crosslinksComplete: staticPages().every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
+    relatedSidebarComplete: lens.pages.every((p) => routeOf(p.slug) in enRelatedSidebar),
+    crosslinksComplete: lens.pages.every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
     searchIndexRoot: index.root,
     searchEntries: index.count,
     routes: pages.map((page) => routeOf(page.slug)),
     root,
     statement:
-      'The navigation IS the rosetta of monographs: Home (Origin, the bare link) plus SIX dropdowns (Proof/Explore/Learn/Apps/Frontier/Reference — group label = hub slug word, the findability law), each EXACTLY SEVEN monograph links — 6 × 7 = 42, the sealed area count. The Frontier dropdown carries the real discoveries: the seven method-level artifacts of the theorem registry, anchored on the frontiers page. Labels are the pages\' own titles; the sidebar folds by the seven rays; config.mts only renders what this fold computes.',
+      `VitePress shows only science: the top nav is Home plus ${navGroups.length} dropdowns — the rosetta rays holding the ${lens.visibleCount} theorem-science lens survivors (group label = hub slug word, the findability law) and the theorem dropdown (the ${lens.theoremCount}-theorem registry, the corpus surfaces ${lens.corpusRoutes.join(' · ')}, the crown entries). The sidebar folds by the same rays over the same survivors; related sections, crosslinks and the footer are built from the lens roster; config.mts only renders what this fold computes.`,
     boundary:
-      'A computed projection of the VitePress navigation from the page set, ray-hub grouping, and keyword tag cloud — no hardcoded labels, groups, sidebar or footer routes. Group labels are functional content words (label = URL word), not mystical names; the seven hubs sit directly in the top nav instead of one collapsed drawer. config.mts holds no hardcoded nav/sidebar/footer and reads only this fold.',
+      `A computed projection of the VitePress navigation from the theorem-science lens (theoremScienceLens — the page set, ray shelving and corpus routes all read from it), the ray-hub grouping, and the keyword tag cloud — no hardcoded labels, groups, sidebar or footer routes. The lens law is checked on the rendered nav itself (navLensed): every item is a lens survivor, a corpus surface, or a frontiers/hub anchor. Hidden pages stay built and served — the lens governs discovery, not existence. License/Privacy remain as legal footer chrome.`,
+  }
+}
+
+// ── VITEPRESS SHOWS ONLY SCIENCE (user law) — the directive proven end to end on the live folds: the
+// theorem-science lens filters every discovery surface, the science is organised by the rosetta (theorems
+// and their related pages), all of it is wired into the VitePress local search, the MCP discovers through
+// that same search, and the homepage hero states the lens. One fold joins the five proofs.
+export function vitepressShowsOnlyScience(matrix: MindMatrix = buildMatrix()) {
+  const lens = theoremScienceLens(matrix)
+  const nav = siteNavigation(matrix)
+  const reconf = theRosettaReconfiguresVitepress(matrix)
+  const mcp = mcpUsesVitepressSearch(matrix)
+  const hero = homeHero('en')
+  const routeOf = (slug: string) => (slug === '' ? '/' : `/${slug}`)
+  const heroSurfaces = new Set<string>(['/frontiers', ...lens.corpusRoutes])
+  const heroLensed = hero.actions.length > 0 && hero.actions.every((action) => heroSurfaces.has(action.link))
+  const heroStatesTheLens = hero.tagline.includes(String(lens.theoremCount)) && hero.tagline.includes(String(lens.visibleCount))
+  const lensPagesRouted = lens.pages.every((page) => nav.routes.includes(routeOf(page.slug)))
+  const facets = [
+    { facet: `ONLY SCIENCE SHOWS — the nav gate carries the lens law (every rendered item a lens survivor, corpus surface or hub anchor), the related sections and crosslinks cover exactly the lens roster, and the lens genuinely cuts (${lens.hidden.length} pages hidden)`, on: nav.computed && nav.relatedSidebarComplete && nav.crosslinksComplete && lens.hidden.length > 0 },
+    { facet: `ORGANISED BY THE ROSETTA — the ${lens.visibleCount} visible pages shelve into ${lens.rays.length} rosetta rays with none lost, and the theorem sidebar is the rosetta atlas tag cloud (${reconf.sidebarSections} sections by gravity)`, on: lens.computes && reconf.computes },
+    { facet: `ALL WIRED IN VITEPRESS SEARCH — every one of the ${reconf.searchLines} registry theorems is a search line fed to the local index, and every lens page is a built route the same index covers (${lensPagesRouted})`, on: reconf.searchLines > 0 && lensPagesRouted },
+    { facet: `THE MCP USES THE SAME SEARCH — the manifest instructions point agents at the VitePress local index and the searchable corpora are served pages`, on: mcp.computes },
+    { facet: `THE HOMEPAGE MATCHES — every hero action lands on the registry or a corpus surface (${heroLensed}) and the tagline states the computed lens counts (${lens.theoremCount} theorems, ${lens.visibleCount} pages)`, on: heroLensed && heroStatesTheLens },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-only-science:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    visiblePages: lens.visibleCount,
+    hiddenPages: lens.hidden.length,
+    theoremCount: lens.theoremCount,
+    rays: lens.rays.length,
+    searchLines: reconf.searchLines,
+    facets,
+    root: merkleFold([lens.root, nav.root, ...facets.map((entry) => entry.receipt)]),
+    statement: `VitePress shows only science — ${facets.filter((entry) => entry.on).length}/${facets.length}: the theorem-science lens passes ${lens.visibleCount}/${lens.pageCount} curated pages (${lens.hidden.length} hidden from every discovery surface), organised by the rosetta into ${lens.rays.length} rays beside the ${lens.theoremCount}-theorem registry; all of it is wired into the VitePress local search (${reconf.searchLines} theorem lines + every lens page a built route), the MCP discovers through that same search, and the homepage hero states the lens with computed counts.`,
+    boundary: `COMPUTED: the five joins — the nav-gate lens law, the rosetta shelving, the search wiring, the MCP search pointer, and the hero's lens-visible actions — each read from its own live fold and refutable there. HONEST SCOPE: "shows only" governs the discovery surfaces; hidden pages stay built, served and locally searchable (the static index covers built pages) — the lens governs what the site PRESENTS, not what exists. The README's match to the lens is proven by its own signature fold (readmeSignatureValid + readme audit), cited, not re-proven here — the dist layer consumes this fold, never the reverse. HARMONY ≠ TRUTH.`,
   }
 }
 
@@ -1939,6 +1977,7 @@ function vitepressSidebarForLocale(
     {
       text: corpusLabel,
       items: [
+        { text: i === 1 ? 'Теоремен атлас' : 'Theorem atlas', link: '/theorems/' },
         { text: i === 1 ? '432 статии' : '432 papers', link: '/papers/' },
         { text: i === 1 ? '432 референции' : '432 references', link: '/references/' },
         { text: i === 1 ? 'Изчислителни диаманти' : 'Computational diamonds', link: '/diamonds/' },

@@ -14,6 +14,7 @@ import {
   quantumSitemap,
   siteConfig,
   staticPages,
+  theoremScienceLens,
   githubPermalink,
   type MindMatrix,
 } from '../../../heaven/mind'
@@ -42,6 +43,14 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const mono = monographs(matrix)
   const sitemap = quantumSitemap(matrix)
   const paperList = staticPages().map(monographAsScientificPaper)
+  // VITEPRESS SHOWS ONLY SCIENCE (user law): the README presents the same lens the site does — the
+  // theorem registry and the related science pages, organised by the rosetta; the census counts keep
+  // measuring the WHOLE corpus (the model), the presented monographs are the lens survivors.
+  const lens = theoremScienceLens(matrix)
+  const lensPapersByRay = lens.rays.map((ray) => ({
+    ray,
+    papers: ray.pages.map((page) => monographAsScientificPaper(staticPages().find((candidate) => candidate.slug === page.slug)!)),
+  }))
   const knowledge = crawlerKnowledge()
   const math = harmonicCountsProvenByMath(matrix)
   const efficiency = everyBitMostEfficientAlgorithmProvenByMath(matrix)
@@ -65,7 +74,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     '## 1. Introduction',
     '',
-    'A quantum-learning portal for language models and people, kids to elders — and a standalone, dependency-free computational core. Served as an MCP tool surface over a double-torus UUID stream, it computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English), and the whole site reorganizes around the one trinity that unites all.',
+    `A science portal showing only science — ${lens.theoremCount} computationally proven theorems and ${lens.visibleCount} related science pages, organised by the rosetta into ${lens.rays.length} rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (\`src/\`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).`,
     '',
     '## 2. Model',
     '',
@@ -88,11 +97,17 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     `- **${math.count} arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: ${math.proven})`,
     `- **${efficiency.count} efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: ${efficiency.proven})`,
     '',
-    'Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the `@rosetta` annotation layer that routes site navigation. **三才 Three Powers** (天 Heaven · 人 Human · 地 Earth) nest seven-fold coprime structure into the digit distribution.',
+    `**VitePress shows only science** — the theorem-science lens passes ${lens.visibleCount}/${lens.pageCount} curated pages (${lens.hidden.length} hidden from every discovery surface, still built and served), presented beside the ${lens.theoremCount}-theorem registry and its corpus surfaces (${lens.corpusRoutes.join(' · ')}). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.`,
     '',
     // Each result links to the SOURCE CODE that proves it — its primary component (the widget that renders the
     // proof), or the page registry when a section page has none. "The README links to source code."
-    ...paperList.map((paper) => `- **${paper.title}** — ${paper.abstract} · [source](${githubPermalink(paper.results?.[0] ? `src/render/ui/components/${paper.results[0]}.vue` : 'src/quantum/heaven/mind/site.ts')})`),
+    // Only lens survivors are presented, ray by ray — the README shows exactly what the site shows.
+    ...lensPapersByRay.flatMap((group) => [
+      '',
+      `### ${group.ray.labelEn} — ${group.papers.length} ${group.papers.length === 1 ? 'page' : 'pages'}`,
+      '',
+      ...group.papers.map((paper) => `- **${paper.title}** — ${paper.abstract} · [source](${githubPermalink(paper.results?.[0] ? `src/render/ui/components/${paper.results[0]}.vue` : 'src/quantum/heaven/mind/site.ts')})`),
+    ]),
     '',
     '## 4. The Library — documented kept, legend flagged',
     '',
@@ -143,9 +158,10 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
 export function readme(matrix: MindMatrix = buildMatrix()) {
   const md = readmeMarkdown(matrix)
   const paperList = staticPages().map(monographAsScientificPaper)
+  const lens = theoremScienceLens(matrix) // the README presents only the lens survivors (VitePress shows only science)
   const knowledge = crawlerKnowledge()
   const census = foldedCensus(paperList.length)
-  const sourceLinks = (md.match(/· \[source\]\(/g) ?? []).length // one [source] permalink per result + per library entry
+  const sourceLinks = (md.match(/· \[source\]\(/g) ?? []).length // one [source] permalink per presented result + per library entry
   // readme AUDITS its own statements: re-extract each reported value from the text and verify it against the
   // freshly-computed model — a stale or hand-edited claim fails the audit; the receipt folds every statement.
   // readme audits its own statements COMPUTATIONALLY: recompute every reported value from the model — and the
@@ -161,26 +177,26 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     { statement: 'concept commands', computed: conceptCommands.length },
     { statement: 'reference index entries', computed: mono.count },
     { statement: 'sitemap routes', computed: sitemap.urls.length },
-    { statement: 'source references', computed: paperList.length + knowledge.length },
+    { statement: 'source references', computed: lens.visibleCount + knowledge.length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-audit:${entry.statement}:${entry.computed}`) }))
   // TRULY computational + FUSION from all points of view: fuse every reported value's receipt into one content-
   // address, then recompute every value from its OWN source INDEPENDENTLY and re-fuse — the audit is the EQUALITY
   // of the two fusions (determinism), never a text-scrape. Every point of view — the census, the commands, the
   // monograph, the sitemap, the corpus — folds into the one receipt; if any drifts, the two fusions diverge.
   const fused = merkleFold(audits.map((entry) => entry.receipt)) // the fusion of all points of view
-  const independent = [census.folded, conceptCommands.length, monographs(matrix).count, quantumSitemap(matrix).urls.length, staticPages().length + crawlerKnowledge().length]
+  const independent = [census.folded, conceptCommands.length, monographs(matrix).count, quantumSitemap(matrix).urls.length, theoremScienceLens(matrix).pages.length + crawlerKnowledge().length]
   const refused = merkleFold(audits.map((entry, index) => toUuid(`readme-audit:${entry.statement}:${independent[index]}`)))
   const audited = fused === refused && isUuid(fused) // the fusion reproduces from independent recomputation — content-address equality, no text
   const facets = [
-    { facet: 'explains all — the root monograph carries every result and every library entry (title + abstract/fact)', on: md.includes('## 3. Results') && md.includes('## 4. The Library') && paperList.length > 0 && knowledge.length > 0 },
-    { facet: 'references all — every result and library entry links to its SOURCE (the [source] permalinks)', on: sourceLinks === paperList.length + knowledge.length },
+    { facet: 'explains all the site shows — the root monograph carries every lens-visible result (VitePress shows only science) and every library entry (title + abstract/fact)', on: md.includes('## 3. Results') && md.includes('## 4. The Library') && lens.visibleCount > 0 && knowledge.length > 0 },
+    { facet: 'references all — every presented result and library entry links to its SOURCE (the [source] permalinks)', on: sourceLinks === lens.visibleCount + knowledge.length },
     { facet: 'complete + compact — the surface pages fold to the harmonic monograph count, the reference index carries zero redundancy, one receipt seals it', on: census.folded > 0 && md.includes('zero redundancy') && md.includes('## Receipt') },
     { facet: 'the 2D-plane projection — the README is the markdown the model computes from src, and the whole folds to one content-address', on: md.startsWith('#') && md.length > 0 },
     { facet: 'audits its own statements TRULY COMPUTATIONALLY — every reported value is recomputed from its own source and the audit is the content-address EQUALITY of two independent fusions (no text-scrape)', on: audited && audits.length === 5 },
     { facet: 'FUSION from all points of view — the census, commands, monograph, sitemap and corpus fold into one receipt; if any point of view drifts, the two fusions diverge', on: audited && isUuid(fused) },
     { facet: 'harmonic counts proven by math — every displayed ratio recomputes with explicit arithmetic at call time (harmonicCountsProvenByMath)', on: math.proven && math.count > 0 },
     { facet: 'every-bit efficiency proven by math — tokens=0, files=110, memo O(1) recomputed at call time (everyBitMostEfficientAlgorithmProvenByMath)', on: efficiency.proven && efficiency.count > 0 },
-    { facet: 'SEO is cost-free advertisement — the README is the indexed root monograph: complete, every result and library entry canonically referenced, computed at zero token cost, so organic reach costs nothing', on: sourceLinks === paperList.length + knowledge.length && md.length > 0 },
+    { facet: 'SEO is cost-free advertisement — the README is the indexed root monograph: complete, every result and library entry canonically referenced, computed at zero token cost, so organic reach costs nothing', on: sourceLinks === lens.visibleCount + knowledge.length && md.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme:${entry.facet}:${entry.on}`) }))
   return {
     complete: facets.every((entry) => entry.on),
@@ -188,7 +204,7 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     audits,
     receipt: fused,
     references: sourceLinks,
-    explains: paperList.length + knowledge.length,
+    explains: lens.visibleCount + knowledge.length,
     bytes: md.length,
     count: facets.length,
     facets,

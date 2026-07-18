@@ -28,7 +28,7 @@ import { digitFolders, digitFoldersAreTheApi, folder64SealsProductionElseDevelop
 import { coordinatedWaves, ogInOgWaves } from '../../thunder/waves'
 import { quantumChessGame } from '../../thunder/waves'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
-import { piThreeOpensTheTrinity, ROSETTA_RAY_HUB_SLUGS } from '../../water/digit'
+import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
 import { nextLevel64CubedRealtime } from '../../thunder/trading'
@@ -1156,14 +1156,17 @@ export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
 export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
   const navFull = siteNavigation(matrix)
   const nav = navFull.en.nav
-  // Findable top nav (siteNavigation): Home + the seven hubs surfaced directly (≤ 8 top entries, the
-  // eight-fold law), every group label a functional hub-slug word (label = URL word) — no single
-  // ideology-named drawer hiding the site. Enforces the "science and solutions, not prose and ideology" directive.
-  const hubSlugs = new Set<string>(ROSETTA_RAY_HUB_SLUGS)
+  // Findable top nav (siteNavigation, under the theorem-science lens): Home + one dropdown per rosetta ray
+  // holding lens survivors + the theorem dropdown — ≤ 8 top entries and ≤ 8 items per dropdown (the
+  // eight-fold law), every ray label a functional hub-slug word (label = URL word) and the theorem group
+  // carrying the computed registry count. Enforces "science and solutions, not prose and ideology" AND
+  // "VitePress shows only science" — the lens law itself is gated inside siteNavigation.computed (navLensed).
+  const hubSlugs = new Set<string>(ROSETTA_RAYS.map((ray) => ray.nameEn.toLowerCase()))
   const navRosetta =
-    nav.length === 7 &&
+    navFull.computed &&
+    nav.length <= 8 &&
     nav[0]?.text === 'Home' &&
-    nav.slice(1).every((group) => 'items' in group && group.items.length === 7 && hubSlugs.has(group.text.toLowerCase()))
+    nav.slice(1).every((group) => 'items' in group && group.items.length > 0 && group.items.length <= 8 && (hubSlugs.has(group.text.toLowerCase()) || group.text.includes('⊢')))
   const tenD = tenDimensionalAnimation(matrix)
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll
   const trinityRoot = crossFoldTrinity(matrix).trinity

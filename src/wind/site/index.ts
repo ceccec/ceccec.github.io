@@ -8,6 +8,7 @@ import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
 import * as __ns_up_thunder_waves from '../../thunder/waves'
 import { rat } from '../../3/7'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { congruence } from '../../mountain/vortex'
@@ -309,34 +310,38 @@ export interface HomeHeroFrontmatter {
   actions: HomeHeroAction[]
 }
 
-/** Computed VitePress home hero — the science portal stated plainly (ALL_IS_MONOGRAPH_PRINCIPLE);
- * injected in transformPageData. */
+/** Computed VitePress home hero — VitePress shows only science (theoremScienceLens): the hero states the
+ * registry and the lens roster, and every action lands on a lens-visible surface; injected in transformPageData. */
 export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   const config = siteConfig()
+  const lens = theoremScienceLens()
   if (locale === 'bg') {
     return {
       name: config.titleBg,
-      text: 'Учи, изследвай и проверявай — на всяка възраст',
-      tagline:
-        'Безплатен научен портал: регистър от изчислително доказани теореми — всяка печатна научна статия — с физични симулации, езикови инструменти и изворово наследствено изследване. Всяка страница е изчислена от един отворен източник, който можеш сам да провериш. Без акаунт, нищо скрито.',
+      text: 'Само наука — теореми и свързаните с тях страници',
+      tagline: `Безплатен научен портал, показващ само наука: ${lens.theoremCount} изчислително доказани теореми — всяка печатна научна статия — и ${lens.visibleCount} свързани научни страници, подредени от розетата в ${lens.rays.length} лъча. Всяка страница е изчислена от един отворен източник, който можеш сам да провериш. Без акаунт, нищо скрито.`,
       actions: [
-        { theme: 'brand', text: 'Започни тук', link: localePath('/start', 'bg') },
-        { theme: 'alt', text: 'Теореми и доказателства', link: localePath('/frontiers', 'bg') },
-        { theme: 'alt', text: 'Учи', link: localePath('/learn', 'bg') },
-        { theme: 'alt', text: 'Изследвай', link: localePath('/explore', 'bg') },
+        { theme: 'brand', text: 'Теореми и доказателства', link: localePath('/frontiers', 'bg') },
+        ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
+          theme: 'alt' as const,
+          text: ['Теоремен атлас', 'Статии', 'Референции'][index]!,
+          link: localePath(route, 'bg'),
+        })),
       ],
     }
   }
+  const heroLocale = locale === 'gla' ? 'gla' : 'en'
   return {
     name: config.title,
-    text: 'Learn, explore, and verify — at any age',
-    tagline:
-      'A free science portal: a registry of computationally proven theorems — each a printable scientific paper — with physics simulations, language tools and sourced heritage research. Every page is computed from one open source you can check yourself. No account, nothing hidden.',
+    text: 'Only science — theorems and their related pages',
+    tagline: `A free science portal showing only science: ${lens.theoremCount} computationally proven theorems — each a printable scientific paper — and ${lens.visibleCount} related science pages, organised by the rosetta into ${lens.rays.length} rays. Every page is computed from one open source you can check yourself. No account, nothing hidden.`,
     actions: [
-      { theme: 'brand', text: 'Start here', link: localePath('/start', locale === 'gla' ? 'gla' : 'en') },
-      { theme: 'alt', text: 'Theorems & proofs', link: localePath('/frontiers', locale === 'gla' ? 'gla' : 'en') },
-      { theme: 'alt', text: 'Learn', link: localePath('/learn', locale === 'gla' ? 'gla' : 'en') },
-      { theme: 'alt', text: 'Explore', link: localePath('/explore', locale === 'gla' ? 'gla' : 'en') },
+      { theme: 'brand', text: 'Theorems & proofs', link: localePath('/frontiers', heroLocale) },
+      ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
+        theme: 'alt' as const,
+        text: ['Theorem atlas', 'Papers', 'References'][index]!,
+        link: localePath(route, heroLocale),
+      })),
     ],
   }
 }
@@ -366,6 +371,75 @@ export function staticPages(): StaticPage[] {
     keywords: page.slug === 'frontiers' ? [...page.keywords, ...theoremKeywords()] : [...page.keywords],
     components: [...page.components],
   }))
+}
+
+// ── THE THEOREM-SCIENCE LENS (user law: VitePress shows only science) — the visible page set is COMPUTED,
+// never a curated roster: a page passes iff its slug+keywords intersect the science stems, and the stems are
+// READ from the sealed content-lens table, never re-typed — the proof-lens row (selected by carrying the
+// lens's first name word, 'theorem') and the frontier-lens row (selected as the row that shelves the
+// 'frontiers' slug), plus the lens's own two name words. NAMED AXIOM (theorem-science demarcation): the words
+// 'theorem' and 'science' — the fold's own name — are the only stems not read from the sealed table; every
+// refinement is a keyword edit on a page or a stem edit in ROSETTA_RAY_CONTENT_LENSES, both refutable.
+// Nav, sidebar, footer, related sections, crosslinks, the home hero and the README all consume THIS one fold.
+const THEOREM_SCIENCE_NAME_STEMS = ['theorem', 'science'] as const
+/** The lens predicate — shared by staticPages, componentPages and any route surface. */
+export function theoremScienceVisible(slug: string, keywords: readonly string[]): boolean {
+  const frontierRay = rosettaRayOfContent('frontiers', [])
+  const stems = [
+    ...new Set([
+      ...ROSETTA_RAY_CONTENT_LENSES.filter(
+        (lens) => lens.stems.some((stem) => (THEOREM_SCIENCE_NAME_STEMS as readonly string[]).includes(stem)) || lens.ray === frontierRay,
+      ).flatMap((lens) => lens.stems),
+      ...THEOREM_SCIENCE_NAME_STEMS,
+    ]),
+  ]
+  const hay = [slug.replace(/-/g, ' '), ...keywords].join(' · ').toLowerCase()
+  return stems.some((stem) => hay.includes(stem))
+}
+
+export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theoremScienceLens', matrix, () => {
+    const pages = staticPages()
+    const visible = pages.filter((page) => theoremScienceVisible(page.slug, page.keywords))
+    const hidden = pages.filter((page) => !theoremScienceVisible(page.slug, page.keywords))
+    const proofRay = ROSETTA_RAY_CONTENT_LENSES.find((lens) => lens.stems.includes(THEOREM_SCIENCE_NAME_STEMS[0]))!.ray
+    // organised by the rosetta: the visible roster shelved by the sealed content lenses, one ray each
+    const rays = ROSETTA_RAYS.map((rayMeta) => ({
+      ray: rayMeta.ray,
+      slug: ROSETTA_RAY_HUB_SLUGS[rayMeta.ray]!,
+      labelEn: rayMeta.nameEn,
+      labelBg: rayMeta.nameBg,
+      pages: visible.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === rayMeta.ray).map((page) => ({ slug: page.slug, titleEn: page.title.en, titleBg: page.title.bg })),
+    })).filter((group) => group.pages.length > 0)
+    // the theorem corpus surfaces — in the lens by construction (they ARE the theorems): the rosetta
+    // theorem atlas plus the three REST corpora already served as path-prefix sidebars.
+    const corpusRoutes = ['/theorems', '/papers/', '/references', '/diamonds'] as const
+    const registry = __ns_up_thunder_waves.theoremNavigation(matrix)
+    const shelved = rays.reduce((sum, group) => sum + group.pages.length, 0)
+    const proofPages = pages.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === proofRay)
+    const facets = [
+      { facet: `every proof-ray page passes the lens — the ${proofPages.length} theorem pages shelved by the sealed lenses are all visible`, on: proofPages.length > 0 && proofPages.every((page) => theoremScienceVisible(page.slug, page.keywords)) },
+      { facet: `the registry carrier passes — the frontiers page (enriched with every registry theorem name) is in the lens`, on: visible.some((page) => page.slug === 'frontiers') },
+      { facet: `the lens CUTS — ${hidden.length} of ${pages.length} curated pages carry no science stem and leave every discovery surface`, on: hidden.length > 0 && visible.length + hidden.length === pages.length },
+      { facet: `organised by the rosetta — the ${visible.length} visible pages shelve into ${rays.length} ≤ 7 rays with none lost`, on: shelved === visible.length && rays.length > 0 && rays.length <= ROSETTA_RAYS.length },
+      { facet: `the theorem corpus rides beside the pages — ${corpusRoutes.length} corpus surfaces and ${registry.atomCount} registry theorems`, on: corpusRoutes.length > 0 && registry.atomCount > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-science-lens:${entry.facet}:${entry.on}`) }))
+    const root = merkleFold([registry.root, ...visible.map((page) => toUuid(`lens-page:${page.slug}`)), ...facets.map((entry) => entry.receipt)])
+    return {
+      computes: facets.every((entry) => entry.on),
+      pages: visible,
+      hidden: hidden.map((page) => page.slug),
+      rays,
+      corpusRoutes,
+      theoremCount: registry.atomCount,
+      visibleCount: visible.length,
+      pageCount: pages.length,
+      facets,
+      root,
+      statement: `VitePress shows only science — ${visible.length}/${pages.length} curated pages pass the theorem-science lens (${hidden.length} hidden from every discovery surface), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}), beside the theorem corpus (${corpusRoutes.join(' · ')}; ${registry.atomCount} registry theorems).`,
+      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: "shows only" governs the DISCOVERY surfaces (nav, sidebar, footer, related sections, crosslinks, home hero, README); hidden pages stay built and served, so bookmarks and inbound links never break. HARMONY ≠ TRUTH.`,
+    }
+  })
 }
 
 // The repo's source-of-truth on GitHub — so every README statement can link to the code that proves it
