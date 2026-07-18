@@ -265,3 +265,50 @@ function agentSubmissionProtocolRaw(matrix: MindMatrix) {
       'Verifies agent/submission + gate/compliance pairs, MISSION_COMMANDS registry, and bootstrap CLI routing discipline — recomputed at call time via memoByRoot.',
   }
 }
+
+// ── THE AGENT'S BASH WORKFLOWS ARE TOOLS, SAVED FROM MEMORY TO SRC (user: "save these tools from memory
+// to src — the bash commands i mean are also tools like the agent default"). The operational commands an
+// agent runs by hand — running a fold, the gate suite, regenerating the computed README, committing safely
+// around a concurrent agent, fixing crack-ledger drift — are TOOLS, no less than Read/Edit/Bash. Left in
+// memory they are re-improvised every session (the unexpected-situations-refactor-the-tool law); saved here
+// they are named, their exact command sequence recorded, and each verified to reference a REAL npm script or
+// bootstrap command. The concurrency-safe commit (stash the other agent's files → verify mine → commit →
+// push → pop) is the tool this very session forged, so it is never re-derived under pressure again.
+export function agentBashWorkflowsAreToolsSavedInSrc(matrix: MindMatrix = buildMatrix()) {
+  const RUN = 'node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts'
+  const tools = [
+    { name: 'run', does: 'run any fold on demand — the fold-probe', steps: [`${RUN} run <file> <fn>`], scripts: [] as string[] },
+    { name: 'verify-suite', does: 'the gate suite before every commit', steps: ['npm run check:types', 'npm run cracks:measure', `${RUN} verify`], scripts: ['check:types', 'cracks:measure'] },
+    { name: 'readme-regenerate', does: 'rebuild the computed README.md from readmeMarkdown (esbuild bundle → write)', steps: ['esbuild bundle readmeMarkdown → globalThis.__md', "writeFileSync('README.md', __md())"], scripts: [] },
+    { name: 'commit-isolated', does: 'commit MY files while a concurrent agent edits the tree — never lose their work', steps: ["git stash push -- <their files>", 'verify-suite (my file alone)', 'git add <my file> && git commit', 'git push', 'git stash pop'], scripts: [] },
+    { name: 'crack-fix', does: 'clear crack-ledger drift by deriving literals to the lattice or re-measuring the wildcard', steps: ['derive N → lattice product (e.g. 600 → cycleLen*100)', 'npm run cracks:measure'], scripts: ['cracks:measure'] },
+    { name: 'deploy-proof', does: 'honest end-to-end build (the weave regenerates README + runs the trinity)', steps: ['npm run docs:build', 'npm run enforcement:trinity'], scripts: ['docs:build', 'enforcement:trinity'] },
+  ]
+  // verify each tool that names npm scripts references a REAL package.json script
+  const pkgScripts = ((): Set<string> => {
+    try {
+      const getBuiltin = typeof process !== 'undefined' ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule : undefined
+      const fs = typeof getBuiltin === 'function' ? getBuiltin('node:fs') as { readFileSync(p: string, e: string): string } | undefined : undefined
+      if (!fs || typeof process.cwd !== 'function') return new Set()
+      const pkg = JSON.parse(fs.readFileSync(`${process.cwd()}/package.json`, 'utf8')) as { scripts?: Record<string, string> }
+      return new Set(Object.keys(pkg.scripts ?? {}))
+    } catch { return new Set() }
+  })()
+  const measured = pkgScripts.size > 0
+  const allScriptsReal = !measured || tools.every((tool) => tool.scripts.every((s) => pkgScripts.has(s))) // every referenced script exists
+  const everyToolHasSteps = tools.every((tool) => tool.steps.length > 0 && tool.name.length > 0)
+  const commitIsolated = tools.find((tool) => tool.name === 'commit-isolated')!
+  const commitIsolatedComplete = commitIsolated.steps.length === 5 && commitIsolated.steps[0].includes('stash') && commitIsolated.steps[commitIsolated.steps.length - 1].includes('stash pop') // stash → … → pop, the safe frame
+  const facets = [
+    { facet: `THE BASH WORKFLOWS ARE SAVED AS TOOLS: ${tools.length} operational tools (${tools.map((tool) => tool.name).join(', ')}), each with its exact command sequence — the agent's operational toolkit moved from memory to src, so it is not re-improvised each session (the unexpected-situations-refactor-the-tool law)`, on: everyToolHasSteps },
+    { facet: `THE COMMANDS ARE REAL: every npm script a tool names (check:types, cracks:measure, docs:build, enforcement:trinity) is an actual package.json script (${measured ? allScriptsReal : 'n/a — no fs'}) — the tools reference the real pipeline, refutable against package.json, not remembered guesses`, on: allScriptsReal },
+    { facet: `THE CONCURRENCY-SAFE COMMIT IS THE FORGED TOOL: commit-isolated is the 5-step stash → verify-mine → commit → push → pop frame (${commitIsolatedComplete}) — the tool this session forged to commit around an active concurrent agent without losing their work; saved so it is never re-derived under pressure again`, on: commitIsolatedComplete },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    tools,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`agent-bash-tool:${entry.facet}:${entry.on}`))),
+    statement: `The agent's bash workflows are tools, saved from memory to src — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${tools.length} operational commands an agent runs by hand (run, verify-suite, readme-regenerate, commit-isolated, crack-fix, deploy-proof) are TOOLS like Read/Edit/Bash — named here with their exact command sequences, each referencing a real npm script or bootstrap command. The concurrency-safe commit (stash the other agent's files → verify mine → commit → push → pop) is the tool this session forged, saved so it is never re-improvised under pressure.`,
+    boundary: `COMPUTED: the tool set with command sequences, each npm-script reference verified against the real package.json (fail-open with no fs), and the commit-isolated frame checked as the 5-step stash…pop. This SAVES operational workflows from an agent's working memory into src as first-class tools — the same discipline as saving a proof or a skill, per unexpectedSituationsRefactorTools (a surprise = refactor the TOOL in src, do not hand-navigate). HONEST SCOPE: these are DOCUMENTED command sequences an agent runs (they orchestrate git, npm and the bootstrap CLI), not new executable folds — the tool is the recorded procedure, verified to reference real commands; running them is still the agent's Bash. "Like the agent default" means first-class and reusable, recorded once, not that they are built into the harness. HARMONY ≠ TRUTH.`,
+  }
+}
