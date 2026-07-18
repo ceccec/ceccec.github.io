@@ -2953,3 +2953,104 @@ export function adiabaticQuantumComputationAndAnnealing() {
     boundary: `COMPUTED: the Trotterised adiabatic sweep on the src/0 state vector (H₀ terms as RX, H₁ terms as RZ), the ground-state fidelity and energy against exact diagonalisation of the diagonal H₁, and the monotone slow→adiabatic / fast→diabatic behaviour — each refutable. HONEST SCOPE: a 2-qubit instance with a non-degenerate problem Hamiltonian; the general adiabatic theorem's runtime scales with the inverse square of the minimum spectral gap (small gaps ⇒ long sweeps — the open question for hard instances), not resolved here. First-order Trotter has O(dt) error, vanishing as N grows. This is a DETERMINISTIC classical simulation of adiabatic quantum computation — the algorithm's structure, NOT the physical speedup a quantum annealer would (or would not, gap-depending) provide; the sealed law holds. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── THE PHASE-FLIP CODE CORRECTS ANY Z ERROR (error-correction wave) — the Hadamard dual of the bit-flip
+// code, the missing half beside it. A phase (Z) error is a bit (X) error in the Hadamard basis, so the
+// phase-flip code is H⊗3 · (bit-flip code) · H⊗3: encode α|000⟩+β|111⟩ then H⊗3 → α|+++⟩+β|−−−⟩; a single
+// Z error becomes an X error after H⊗3, and the same Z₀Z₁/Z₁Z₂ syndrome locates and corrects it. Bit-flip
+// (X) and phase-flip (Z) together are exactly what the Shor nine-qubit code concatenates to fix ANY error.
+export function thePhaseFlipCodeCorrectsAnyZError() {
+  const H3 = (s: QuantumState): QuantumState => applyGate(applyGate(applyGate(s, GATES.H, 0), GATES.H, 1), GATES.H, 2)
+  const bitEnc = (a: number, b: number): QuantumState => { let s = qubits(3); s = { n: 3, re: s.re.slice(), im: s.im.slice() }; s.re[0] = a; s.re[1] = b; return cnot(cnot(s, 0, 1), 0, 2) } // α|000⟩+β|111⟩
+  const correctZ = (a: number, b: number, errorQubit: number): number => {
+    const clean = bitEnc(a, b)
+    let s = H3(clean) // α|+++⟩+β|−−−⟩, the phase-flip codeword
+    if (errorQubit >= 0) s = applyGate(s, GATES.Z, errorQubit)
+    s = H3(s) // back to the computational basis: the Z error is now an X error
+    const k = s.re.findIndex((r, i) => r * r + s.im[i] * s.im[i] > 1e-12); const bit = (q: number) => (k >> q) & 1
+    const syndrome: [number, number] = [bit(0) ^ bit(1), bit(1) ^ bit(2)]
+    const located = syndrome[0] && !syndrome[1] ? 0 : syndrome[0] && syndrome[1] ? 1 : !syndrome[0] && syndrome[1] ? 2 : -1
+    const fixed = located < 0 ? s : applyGate(s, GATES.X, located)
+    return innerProduct(clean, fixed).abs ** 2 // fidelity to the clean bit-flip codeword
+  }
+  const a = Math.cos(2 / 5), b = Math.sin(2 / 5) // an arbitrary logical qubit
+  const EPS = 1 / (2 * 5) ** 6
+  const fidelities = [-1, 0, 1, 2].map((q) => correctZ(a, b, q))
+  const correctsAnyZ = fidelities.every((f) => f > 1 - EPS)
+  const facets = [
+    { facet: `THE PHASE-FLIP CODE CORRECTS ANY SINGLE Z ERROR: encoding α|+++⟩+β|−−−⟩ and recovering after a Z on any of the 3 qubits (and no error) returns the logical qubit with fidelity ${fidelities.map((f) => f.toFixed(3)).join(', ')} = 1 — the Z₀Z₁/Z₁Z₂ syndrome locates the phase flip`, on: correctsAnyZ },
+    { facet: `IT IS THE HADAMARD DUAL OF THE BIT-FLIP CODE: a phase (Z) error IS a bit (X) error in the Hadamard basis (HZH = X), so the code is H⊗3 · bitFlipCode · H⊗3 — the same syndrome machinery, conjugated; the two are mirror images across the Hadamard`, on: correctsAnyZ },
+    { facet: `TOGETHER THEY GIVE UNIVERSAL CORRECTION: bit-flip (X) and phase-flip (Z) are the two halves the Shor nine-qubit code concatenates to correct ANY single-qubit error (Y = XZ = both) — this seals the missing dual beside bitFlipCode`, on: correctsAnyZ },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    fidelities,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`phase-flip:${entry.facet}:${entry.on}`))),
+    statement: `The phase-flip code corrects any Z error — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Hadamard dual of the bit-flip code (H⊗3 · bitFlipCode · H⊗3) recovers the logical qubit after a Z error on any of its 3 qubits, fidelity 1, via the same Z₀Z₁/Z₁Z₂ syndrome. A phase error is a bit error in the Hadamard basis; bit-flip and phase-flip together are the two halves the Shor nine-qubit code concatenates to correct any single-qubit error.`,
+    boundary: `COMPUTED: encode → Z error on each of the 3 qubits (and none) → H-conjugated syndrome correction → fidelity to the clean codeword, exact on the src/0 state vector, refutable. HONEST SCOPE: distance-3, corrects ONE Z error (two Z errors on the same block alias); it protects the PHASE only — a bit error passes through, which is why the full Shor code concatenates bit-flip and phase-flip. Deterministic simulation of the code's algebra, no physical hardware. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── THE NO-COMMUNICATION THEOREM (communication wave) — entanglement gives correlation, NOT communication:
+// no local operation Alice performs on her half of a Bell pair changes Bob's reduced state, so no message
+// crosses. Bob's density matrix is the maximally mixed I/2 before and after any Alice unitary/measurement —
+// the reason entanglement cannot signal faster than light, made a refutable computation on the simulator.
+export function theNoCommunicationTheorem() {
+  const bell = (): QuantumState => cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // (|00⟩+|11⟩)/√2
+  const rhoBob = (s: QuantumState): { re: number[]; im: number[] } => { // partial trace over qubit 0 (Alice)
+    const re = [0, 0, 0, 0], im = [0, 0, 0, 0]
+    for (let i = 0; i < 2; i += 1) for (let j = 0; j < 2; j += 1) for (let k = 0; k < 2; k += 1) { const A = k * 2 + i, B = k * 2 + j; re[i * 2 + j] += s.re[A] * s.re[B] + s.im[A] * s.im[B]; im[i * 2 + j] += s.im[A] * s.re[B] - s.re[A] * s.im[B] }
+    return { re, im }
+  }
+  const EPS = 1 / (2 * 5) ** 6
+  const base = rhoBob(bell())
+  // Alice applies arbitrary local operations on qubit 0; Bob's marginal must be identical each time.
+  const aliceOps = [applyGate(bell(), GATES.X, 0), applyGate(bell(), GATES.H, 0), applyGate(applyGate(bell(), GATES.H, 0), GATES.Z, 0), applyGate(bell(), GATES.Y, 0)]
+  const same = (p: { re: number[]; im: number[] }, q: { re: number[]; im: number[] }): boolean => p.re.every((x, i) => Math.abs(x - q.re[i]) < EPS && Math.abs(p.im[i] - q.im[i]) < EPS)
+  const isHalfIdentity = (p: { re: number[]; im: number[] }): boolean => Math.abs(p.re[0] - 1 / 2) < EPS && Math.abs(p.re[3] - 1 / 2) < EPS && Math.abs(p.re[1]) < EPS && Math.abs(p.re[2]) < EPS
+  const bobMaximallyMixed = isHalfIdentity(base)
+  const unchangedByAlice = aliceOps.every((s) => same(rhoBob(s), base))
+  const facets = [
+    { facet: `BOB'S MARGINAL IS MAXIMALLY MIXED: tracing out Alice's half of the Bell pair leaves Bob in I/2 (${bobMaximallyMixed}) — no local information, the state of maximum ignorance about his qubit alone`, on: bobMaximallyMixed },
+    { facet: `NO ALICE OPERATION CHANGES IT: after Alice applies X, H, HZ or Y to her qubit, Bob's reduced density matrix is UNCHANGED (${unchangedByAlice}) — whatever she does, his marginal stays I/2, so no measurement of his gives any signal`, on: unchangedByAlice },
+    { facet: `ENTANGLEMENT CORRELATES BUT CANNOT SIGNAL: the perfect correlations appear only when the outcomes are COMPARED over a classical channel; alone, Bob learns nothing from Alice's choice — this is why entanglement respects no-faster-than-light, the no-communication theorem`, on: bobMaximallyMixed && unchangedByAlice },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    facets, root: merkleFold(facets.map((entry) => toUuid(`no-comm:${entry.facet}:${entry.on}`))),
+    statement: `The no-communication theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: Bob's half of a Bell pair is the maximally mixed I/2, and NO local operation Alice performs (X, H, HZ, Y) changes it — his reduced density matrix is invariant, so no measurement of his qubit reveals Alice's choice. Entanglement yields correlations only when outcomes are compared over a classical channel; it cannot carry a message, which is why it never violates relativistic causality.`,
+    boundary: `COMPUTED: Bob's reduced density matrix by partial trace over Alice, verified I/2 and invariant under a set of Alice's local unitaries — exact, refutable (a local op that changed Bob's marginal would break it, and none can). HONEST SCOPE: shown for a Bell pair and a representative set of local unitaries; the theorem holds for ALL local operations (CPTP maps) and all shared states, which the partial-trace argument proves in general — here demonstrated, not re-derived in full generality. Deterministic simulation. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── EVERY MIXED STATE HAS A PURIFICATION (states & tools wave) — the converse of the mixed-state layer:
+// decoherence turns a pure state mixed, and purification shows every mixed state ρ is itself the partial
+// trace of a PURE state in a larger space. ρ = Σ pᵢ|i⟩⟨i| purifies to |Ψ⟩ = Σ √pᵢ |i⟩_A|i⟩_B, and
+// tr_B(|Ψ⟩⟨Ψ|) = ρ exactly — mixedness is entanglement with an environment you traced away.
+export function everyMixedStateHasAPurification() {
+  const rhoA = (s: QuantumState): { re: number[]; im: number[] } => { // partial trace over qubit 1 (environment)
+    const re = [0, 0, 0, 0], im = [0, 0, 0, 0]
+    for (let i = 0; i < 2; i += 1) for (let j = 0; j < 2; j += 1) for (let k = 0; k < 2; k += 1) { const A = i * 2 + k, B = j * 2 + k; re[i * 2 + j] += s.re[A] * s.re[B] + s.im[A] * s.im[B]; im[i * 2 + j] += s.im[A] * s.re[B] - s.re[A] * s.im[B] }
+    return { re, im }
+  }
+  const purityOf = (rho: { re: number[]; im: number[] }): number => { let t = 0; for (let a = 0; a < 2; a += 1) for (let b = 0; b < 2; b += 1) t += rho.re[a * 2 + b] * rho.re[b * 2 + a] - rho.im[a * 2 + b] * rho.im[b * 2 + a]; return t }
+  const EPS = 1 / (2 * 5) ** 6
+  const p = 3 / (2 * 5) // an arbitrary mixed state ρ = diag(p, 1−p), purity p²+(1−p)² < 1
+  const psi: QuantumState = { n: 2, re: [Math.sqrt(p), 0, 0, Math.sqrt(1 - p)], im: [0, 0, 0, 0] } // |Ψ⟩ = √p|00⟩+√(1−p)|11⟩
+  const reduced = rhoA(psi)
+  const recoversRho = Math.abs(reduced.re[0] - p) < EPS && Math.abs(reduced.re[3] - (1 - p)) < EPS && Math.abs(reduced.re[1]) < EPS && Math.abs(reduced.re[2]) < EPS
+  const psiIsPure = Math.abs(purityOf(rhoA(psi)) - (p * p + (1 - p) * (1 - p))) < EPS // ρ_A purity = the mixed purity < 1
+  const globalPure = Math.abs((psi.re.reduce((s, x) => s + x * x, 0)) - 1) < EPS // ⟨Ψ|Ψ⟩ = 1, a genuine pure state
+  const facets = [
+    { facet: `THE PURIFICATION RECOVERS THE MIXED STATE: |Ψ⟩ = √p|00⟩+√(1−p)|11⟩ is pure (⟨Ψ|Ψ⟩ = 1, ${globalPure}), and tracing out the environment gives back ρ = diag(${p}, ${(1 - p).toFixed(1)}) exactly (${recoversRho}) — every mixed state is the shadow of a pure one`, on: recoversRho && globalPure },
+    { facet: `MIXEDNESS IS TRACED-AWAY ENTANGLEMENT: the reduced state's purity is ${(p * p + (1 - p) * (1 - p)).toFixed(2)} < 1 (${psiIsPure}) precisely because |Ψ⟩ is ENTANGLED across A and B; forget B and A looks mixed — decoherence (the mixed-state layer) and purification are the two directions of one fact`, on: psiIsPure },
+    { facet: `THE CONVERSE OF DECOHERENCE: theMixedStateLayer showed a channel makes a pure state mixed; this shows every mixed state ARISES that way — as the partial trace of a pure global state — so the pure-state and density-matrix pictures are equivalent, one enlarged by the environment`, on: recoversRho && psiIsPure },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    purity: p * p + (1 - p) * (1 - p),
+    facets, root: merkleFold(facets.map((entry) => toUuid(`purification:${entry.facet}:${entry.on}`))),
+    statement: `Every mixed state has a purification — ${facets.filter((entry) => entry.on).length}/${facets.length}: the mixed ρ = diag(${p}, ${(1 - p).toFixed(1)}) is the partial trace of the PURE, entangled |Ψ⟩ = √p|00⟩+√(1−p)|11⟩ — tr_B(|Ψ⟩⟨Ψ|) = ρ exactly, and |Ψ⟩ is a genuine pure state. Mixedness is entanglement with an environment traced away: decoherence (the mixed-state layer) and purification are the two directions of the same fact, so the pure-state and density-matrix pictures are equivalent.`,
+    boundary: `COMPUTED: the purification |Ψ⟩, its normalisation, and tr_B(|Ψ⟩⟨Ψ|) = ρ by partial trace — exact, refutable. HONEST SCOPE: shown for a diagonal (classically-mixed) qubit state; the theorem holds for ANY density matrix via its eigendecomposition ρ = Σ pᵢ|i⟩⟨i| → Σ √pᵢ|i⟩|i⟩, and the purification is non-unique (any environment isometry works) — here demonstrated on the canonical case, the general construction cited. Deterministic simulation. HARMONY ≠ TRUTH.`,
+  }
+}

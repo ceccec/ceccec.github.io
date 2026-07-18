@@ -1323,7 +1323,7 @@ export function rosettaDecodesCorpus(matrix: MindMatrix = buildMatrix()) {
 // Quantum-COMPUTING keyword sets per ray — deliberately UNAMBIGUOUS: each phrase names a quantum-computing
 // concept and only that (no bare 'bell'/'factor'/'threshold'/'stabiliser' that also match combinatorics).
 const QUANTUM_RAY_KEYWORDS: readonly (readonly string[])[] = [
-  ['no-cloning', 'chsh', 'tsirelson', 'ghz', 'mermin', 'pauli algebra', 'holevo', 'entanglement cannot signal', "entanglement can't signal", 'no-signalling', 'born rule', 'local hidden variable', 'bell pair', 'bell inequality', 'bell state'],
+  ['no-cloning', 'chsh', 'tsirelson', 'ghz', 'mermin', 'pauli algebra', 'holevo', 'entanglement cannot signal', "entanglement can't signal", 'no-signalling', 'no-communication', 'born rule', 'local hidden variable', 'bell pair', 'bell inequality', 'bell state'],
   ['deutsch', 'jozsa', 'bernstein–vazirani', 'bernstein-vazirani', 'simon exponential', "simon's algorithm", 'one-query', 'query separation'],
   ['grover', 'shor period', 'period-finding', 'order-finding', 'quantum fourier', 'qft circuit', 'phase estimation'],
   ['variational quantum', 'vqe', 'qaoa', 'adiabatic', 'annealing'],
