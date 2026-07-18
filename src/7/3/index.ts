@@ -3,6 +3,7 @@
 
 import { MOON_ORBIT_INCLINATION_DEG } from '../../8/2'
 import { gcd } from '../../0'
+import { rat, ratAdd, ratDiv, ratEq, ratMul, ratSub } from '../../3/7'
 
 /** Planck 2018 primordial spectral index n_s. */
 export const SCALAR_SPECTRAL_INDEX_NS = 0.9649
@@ -228,5 +229,112 @@ export function theCountOfPrimesFollowsTheLog() {
     facets,
     statement: `The count of primes follows the log — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Prime Number Theorem ϑ(x) ∼ x, hence π(x) ∼ x/ln x, carried by the finite kernel of Newman–Zagier. The reduction ϑ(x) ≤ π(x)·ln x holds across ${sample.length} samples; Chebyshev's C(2n,n) ≤ 4ⁿ (exact BigInt, n ≤ ${nMax}) bounds ϑ = O(x); the Fejér kernel Σ C(4,k)cos((k−2)x) = (2cos(x/2))⁴ ≥ 0 forbids a zero on Re s = 1, and 6 − 8μ − 2ν ≥ 0 forces μ = 0 so ζ(1+iα) ≠ 0; and ϑ(x)/x → 1 faster than π(x)ln x/x, which is why the prime count lags by ∼1/ln x. The asymptotic passage rides Newman's contour theorem — CITED.`,
     boundary: `BOUNDED WITNESS, honest to the letter: the finite algebraic lemmas of the Newman–Zagier proof are recomputed here exactly — the reduction (pointwise inequality), Chebyshev's O(x) bound (∏_{n<p≤2n}p | C(2n,n) ≤ 4ⁿ in BigInt), the positivity of the de la Vallée Poussin kernel, and the integer arithmetic 6−8μ−2ν≥0 ⇒ μ=0 that yields ζ(1+iα) ≠ 0. CITED, not computed: the analytic continuation of ζ past Re s = 1, Newman's contour (tauberian) theorem, and the passage to the limit ϑ(x) ∼ x — these are asymptotic and NOT exhaustively verifiable; Newman 1980, Zagier 1997, Hadamard–de la Vallée Poussin 1896. The numerical illustration settles only its sampled x. This atom raises the tampering cost on the KERNEL; it does not claim to have machine-proven an asymptotic law. The Riemann Hypothesis (all nontrivial zeros on Re s = ½, the optimal error term) stays OPEN and is claimed nowhere. HARMONY ≠ TRUTH.`,
+  }
+}
+
+/** THE SMALLEST CURVES WITNESS BIRCH–SWINNERTON-DYER — the finite kernel of the Clay description,
+ * every fact below recomputed exactly; the conjecture itself CITED OPEN and claimed nowhere.
+ *   1 · EUCLID IS COMPLETE: primitive Pythagorean triples ⟺ (m² − n², 2mn, m² + n²), m > n ≥ 1,
+ *       coprime, opposite parity — verified as a BIJECTION against brute-force enumeration.
+ *   2 · THE RANK-0 POLE: x⁴ + y⁴ = z² has no nontrivial solution (swept; Fermat's infinite descent,
+ *       cited, closes ALL sizes) ⟹ 1 is not congruent ⟹ y² = x³ − x holds only its four torsion points.
+ *   3 · THE RANK-≥1 POLE: P = (−4, 6) on y² = x³ − 25x; 2P computed by the group law in exact
+ *       rationals is NON-INTEGRAL ⟹ (Nagell–Lutz, cited) P has INFINITE order ⟹ infinitely many
+ *       rational points; the (3/2, 20/3, 41/6) right triangle of area exactly 5 realizes it.
+ *   4 · TUNNELL'S COUNTS (the unconditional direction): 2A₁ ≠ B₁ refuses n = 1; 2A₅ = B₅ admits n = 5.
+ *   5 · THE ASSOCIATED ZETA IS COMPUTED: aₚ = p + 1 − #E(𝔽ₚ) by exact point counts; Hasse
+ *       |aₚ| ≤ 2√p and the CM vanishing aₚ = 0 ⟺ p ≡ 3 (mod 4) verified across the prime range.
+ * Both witness curves have CM (j = 1728), so for THEM the zeta-sees-the-points bridge is a THEOREM
+ * (Coates–Wiles 1977; Gross–Zagier 1986 + Kolyvagin 1988); the general conjecture is OPEN (Millennium,
+ * UNCLAIMED), and Hilbert's tenth has no general algorithm (Matiyasevich 1970, cited). */
+export function theSmallestCurvesWitnessBirchSwinnertonDyer() {
+  // 1 — EUCLID COMPLETE: brute-force primitive triples to hypotenuse 100 vs the (m,n) parametrization.
+  const H = 100
+  const brute = new Set<string>()
+  for (let a = 1; a <= H; a += 1) for (let b = a + 1; b <= H; b += 1) {
+    const c2 = a * a + b * b; const c = Math.round(Math.sqrt(c2))
+    if (c * c === c2 && c <= H && gcd(a, b) === 1) brute.add(`${a},${b},${c}`)
+  }
+  const generated = new Set<string>()
+  for (let m = 2; m * m <= H; m += 1) for (let n = 1; n < m; n += 1) {
+    if (gcd(m, n) !== 1 || (m - n) % 2 === 0) continue
+    const trip = [m * m - n * n, 2 * m * n, m * m + n * n]
+    if (trip[2] > H) continue
+    const [a, b] = trip[0] < trip[1] ? [trip[0], trip[1]] : [trip[1], trip[0]]
+    generated.add(`${a},${b},${trip[2]}`)
+  }
+  const euclidComplete = brute.size > 0 && brute.size === generated.size && [...brute].every((t) => generated.has(t))
+
+  // 2 — THE RANK-0 POLE: Fermat's quartic, swept; the descent (cited) closes all sizes. The four
+  // torsion points of y² = x³ − x verified on-curve; no other integral point in the sweep.
+  const B = 2 * 5 * 5
+  let quarticInsoluble = true
+  for (let x = 1; x <= B; x += 1) for (let y = 1; y <= B; y += 1) {
+    const s = x ** 4 + y ** 4; const z = Math.round(Math.sqrt(s))
+    if (z * z === s) quarticInsoluble = false
+  }
+  const onE1 = (x: number, y: number) => y * y === x * x * x - x
+  const torsion = [[0, 0], [1, 0], [-1, 0]] as const
+  let e1OnlyTorsion = torsion.every(([x, y]) => onE1(x, y))
+  for (let x = -H; x <= H; x += 1) for (let y = 1; y <= H; y += 1) if (onE1(x, y)) e1OnlyTorsion = false
+
+  // 3 — THE RANK-≥1 POLE: the group law on E₅: y² = x³ − 25x at P = (−4, 6), in exact rationals.
+  const A5 = -(5 ** 2)
+  const px = rat(-4, 1); const py = rat(6, 1)
+  const pOnCurve = ratEq(ratMul(py, py), ratAdd(ratMul(ratMul(px, px), px), ratMul(rat(A5, 1), px)))
+  const lambda = ratDiv(ratAdd(ratMul(rat(3, 1), ratMul(px, px)), rat(A5, 1)), ratMul(rat(2, 1), py))
+  const x2 = ratSub(ratMul(lambda, lambda), ratMul(rat(2, 1), px))
+  const y2 = ratSub(ratMul(lambda, ratSub(px, x2)), py)
+  // clear denominators: x₂ = X/Z², y₂ = Y/Z³ — integer on-curve check stays inside exact doubles
+  const Z = Math.round(Math.sqrt(x2.q))
+  const X = x2.p; const Y = y2.p
+  const doublingExact = Z * Z === x2.q && Z ** 3 === y2.q
+    && Y * Y === X ** 3 + A5 * X * Z ** 4 // Y² = X³ − 25XZ⁴ — 2P is ON the curve, exactly
+  const nonIntegral = x2.q > 1 // Nagell–Lutz (cited): torsion is integral, so a non-integral 2P ⟹ P has infinite order
+  const legA = rat(3, 2); const legB = rat(4 * 5, 3)
+  const hyp2 = ratAdd(ratMul(legA, legA), ratMul(legB, legB))
+  const hypP = Math.round(Math.sqrt(hyp2.p)); const hypQ = Math.round(Math.sqrt(hyp2.q))
+  const triangleArea5 = hypP * hypP === hyp2.p && hypQ * hypQ === hyp2.q // hypotenuse 41/6 is exact
+    && ratEq(ratMul(rat(1, 2), ratMul(legA, legB)), rat(5, 1)) // area = ½·(3/2)·(20/3) = 5 exactly
+
+  // 4 — TUNNELL'S COUNTS (unconditional direction): A_n = #{n = 2x² + y² + 32z²}, B_n = #{n = 2x² + y² + 8z²}.
+  const tunnell = (n: number, zc: number) => {
+    let count = 0
+    const bx = Math.ceil(Math.sqrt(n / 2)); const by = Math.ceil(Math.sqrt(n)); const bz = Math.ceil(Math.sqrt(n / zc))
+    for (let x = -bx; x <= bx; x += 1) for (let y = -by; y <= by; y += 1) for (let z = -bz; z <= bz; z += 1) {
+      if (2 * x * x + y * y + zc * z * z === n) count += 1
+    }
+    return count
+  }
+  const refusesOne = 2 * tunnell(1, 2 * 16) !== tunnell(1, 8) // 2A₁ = 4 ≠ 2 = B₁ ⟹ 1 NOT congruent
+  const admitsFive = 2 * tunnell(5, 2 * 16) === tunnell(5, 8) // 2A₅ = 0 = B₅ — the necessary condition passes
+
+  // 5 — THE ASSOCIATED ZETA COMPUTED: aₚ for E₁: y² = x³ − x by exact 𝔽ₚ point counts (odd good p).
+  const aps: { p: number; ap: number }[] = []
+  for (let i = 2; ; i += 1) {
+    const p = nthPrimeAt(i)
+    if (p > H) break
+    let affine = 0
+    for (let x = 0; x < p; x += 1) for (let y = 0; y < p; y += 1) if ((y * y - (x * x * x - x)) % p === 0) affine += 1
+    aps.push({ p, ap: p + 1 - (affine + 1) })
+  }
+  const hasse = aps.every(({ p, ap }) => ap * ap <= 4 * p)
+  const cmVanishing = aps.every(({ p, ap }) => (p % 4 === 3) === (ap === 0))
+
+  const facets = [
+    { facet: `EUCLID IS COMPLETE: the (m,n) parametrization is a bijection with the ${brute.size} brute-forced primitive Pythagorean triples to hypotenuse ${H} — the equation the Clay text opens with is fully solved, and verified so`, on: euclidComplete },
+    { facet: `THE RANK-0 POLE: x⁴ + y⁴ = z² has no nontrivial solution for x, y ≤ ${B} (Fermat's infinite descent, cited, closes ALL sizes) ⟹ 1 is not congruent; y² = x³ − x carries exactly its torsion {∞, (0,0), (±1,0)} — no other integral point to ${H}: finitely many rational points, UNCONDITIONALLY`, on: quarticInsoluble && e1OnlyTorsion },
+    { facet: `THE RANK-≥1 POLE: P = (−4,6) on y² = x³ − 25x (${pOnCurve}); 2P = (${X}/${Z}², ${Y}/${Z}³) computed by the group law in exact rationals, ON the curve exactly and NON-INTEGRAL ⟹ Nagell–Lutz gives P infinite order: infinitely many rational points, UNCONDITIONALLY — realized by the (3/2, ${4 * 5}/3, ${hypP}/${hypQ}) triangle of area exactly 5`, on: pOnCurve && doublingExact && nonIntegral && triangleArea5 },
+    { facet: `TUNNELL SEPARATES THE POLES (unconditional direction): 2A₁ ≠ B₁ refuses n = 1 (${refusesOne}); 2A₅ = B₅ admits n = 5 (${admitsFive}) — the modular-form counts, exact finite sweeps`, on: refusesOne && admitsFive },
+    { facet: `THE ASSOCIATED ZETA IS A COMPUTED OBJECT: aₚ = p + 1 − #E(𝔽ₚ) for the ${aps.length} odd good primes ≤ ${H}; Hasse |aₚ| ≤ 2√p exact, and the CM vanishing aₚ = 0 ⟺ p ≡ 3 (mod 4) holds at every sampled prime`, on: aps.length > 0 && hasse && cmVanishing },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    primitiveTriples: brute.size,
+    doubledPoint: { X, Z, Y },
+    aps: aps.slice(0, 2 * 5),
+    facets,
+    statement: `The smallest curves witness Birch–Swinnerton-Dyer — ${facets.filter((entry) => entry.on).length}/${facets.length}: Euclid's opening equation is completely solved (${brute.size} primitive triples, bijection verified); the two poles the conjecture bridges are both realized UNCONDITIONALLY at the smallest scale — y² = x³ − x holds finitely many rational points (Fermat's descent), y² = x³ − 25x holds infinitely many (P = (−4,6) of infinite order by exact doubling, the area-5 triangle (3/2, 20/3, 41/6)); Tunnell's counts separate them; and the associated zeta's aₚ compute exactly with Hasse and CM patterns. The bridge itself — rank ⟷ ord_{s=1} L — is CITED: a theorem for these CM curves (Coates–Wiles; Gross–Zagier–Kolyvagin), OPEN in general.`,
+    boundary: `EXACT AND FINITE: the triple bijection, the quartic sweep, the integral-point sweep, the group-law doubling (denominators cleared, every integer inside the exact-double range), the Tunnell sweeps, and the 𝔽ₚ point counts — each refutable. CITED, NOT COMPUTED: Fermat's infinite descent beyond the sweep (elementary and complete), Nagell–Lutz (torsion is integral), Tunnell's theorem (its unconditional direction rides Coates–Wiles), Matiyasevich's negative solution of Hilbert's tenth (1970), and the CM-case BSD theorems (Coates–Wiles 1977, Gross–Zagier 1986, Kolyvagin 1988). OPEN AND UNTOUCHED: the general Birch–Swinnerton-Dyer conjecture — rank(E) = ord_{s=1} L(E, s) for ALL elliptic curves over ℚ — a Clay Millennium Problem, UNCLAIMED here per the standing law (solve NONE, define honestly); this fold computes the finite kernel the Clay description stands on and stops at exactly the frontier. HARMONY ≠ TRUTH.`,
   }
 }
