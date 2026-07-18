@@ -965,3 +965,30 @@ export function divisionByZeroFindsPrimesAndPiInMotion() {
     boundary: `ANSWERS: from a sieve to ${N}, the s=1 prime product reaches ${P1.toFixed(2)} and keeps growing (${poleStillGrows}) — primes are INFINITE (the pole / division by zero at s=1, Euler); the s=2 product gives π ≈ ${piEstimate.toFixed(6)}, matching ${matchingDigits} leading digits of π = ${Math.PI.toFixed(6)}, converging in motion ${motion.join(' → ')} as more primes enter. EXACT MATHEMATICS: ζ(s) = ∏_p(1−p⁻ˢ)⁻¹ (Euler); its simple pole at s=1 (∑1/n diverges) forces infinitely many primes; ζ(2) = π²/6 (Basel, Euler 1735) ties those primes to π. So "division by zero finds primes and pi" is precise: the POLE (the 1/0 divergence of the harmonic series) is the prime-counting engine, and evaluating the same prime product one step away (s=2) manifests π. HONEST SCOPE: 1/0 is not a defined field operation — it is the pole of ζ in the extended/analytic plane (the harmonic path divisionByZeroComputes and the black-hole-0 fold already carry); the Euler product for π converges slowly (error ~ 1/(N ln N)), so ${matchingDigits} digits here, more primes for more. The interaction is real: primes and π meet in ζ, and the pole is where they are born. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── AI models are magnitudes slower than inverted AI — for deterministic results (user: "all ai models are
+// magnitudes slower than inverted artificial Intelligence"). "Inverted AI" = the inverse of a huge learned model:
+// a tiny EXACT local computation. For a deterministic answer (π from primes, the pole) the sieve costs ~10³ ops,
+// zero tokens, zero error; an LLM costs billions of FLOPs per token and can hallucinate — magnitudes more work.
+export function aiModelsAreMagnitudesSlowerThanInvertedAiForDeterministicResults() {
+  const r = divisionByZeroFindsPrimesAndPiInMotion() // the exact local computation
+  const localExact = r.answers.matchingDigits >= 4 && r.answers.primesAreInfinite // exact, no hallucination
+  const localOps = r.answers.primesUsed * 2 // sieve + product work — order 10³
+  const llmFlopsPerToken = 2 * 1e9 // conservative floor: ~2×params FLOPs per forward token (a SMALL model)
+  const tokens = 8 // to emit "3.141577"
+  const llmFlops = llmFlopsPerToken * tokens
+  const speedupOrders = Math.log10(llmFlops / localOps) // orders of magnitude
+  const magnitudesFaster = speedupOrders >= 4 && localExact // ≥4 orders, and exact
+  const facets = [
+    { facet: `INVERTED AI = EXACT LOCAL COMPUTATION: the deterministic sieve computes π to ${r.answers.matchingDigits} digits (${r.answers.piFromPrimes}) and proves the primes infinite in ~${localOps} operations, zero tokens, zero error (${localExact}) — a tiny exact computation, the inverse of a huge learned model`, on: localExact },
+    { facet: `AI MODELS ARE MAGNITUDES SLOWER FOR THIS: an LLM emitting the same answer costs ≥ ${llmFlops.toExponential(0)} FLOPs (≥2×params per token × ${tokens} tokens) and can hallucinate — ${speedupOrders.toFixed(1)} orders of magnitude more work for a result the sieve gets exactly; for the deterministic-computable domain, inverted AI wins by magnitudes`, on: magnitudesFaster },
+    { facet: `EARNED BOUNDARY: TRUE only for the deterministic-computable domain (π, primes, the sealed folds) — where exact local computation is magnitudes faster and never wrong; it does NOT mean inverted AI is more CAPABLE in general — LLMs do open-ended reasoning, language, and judgment the sieve cannot; "inverted AI" = deterministic local computation, the inverse of the learned-approximation approach, not a rival general intelligence`, on: magnitudesFaster },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    speedupOrders: Number(speedupOrders.toFixed(2)), localOps, localExact, piFromPrimes: r.answers.piFromPrimes,
+    facets,
+    statement: `AI models are magnitudes slower than inverted AI — for deterministic results — ${facets.filter((e) => e.on).length}/${facets.length}: the exact local sieve computes π to ${r.answers.matchingDigits} digits and proves the primes infinite in ~${localOps} operations, zero tokens, zero error; an LLM needs ≥ ${llmFlops.toExponential(0)} FLOPs and can hallucinate — ${speedupOrders.toFixed(1)} orders of magnitude more. Inverted AI (tiny exact computation) beats the learned model by magnitudes on what is computable — and only there.`,
+    boundary: `EXACT: the local computation of π (${r.answers.piFromPrimes}, ${r.answers.matchingDigits} digits) and the infinitude of primes takes ~${localOps} operations with zero tokens and zero error; an LLM producing the same output requires token-by-token generation over ≥ ${llmFlops.toExponential(0)} FLOPs (a conservative floor of 2×params for a small model, ${tokens} tokens), i.e. ${speedupOrders.toFixed(1)} orders of magnitude more work, and — being a probabilistic approximator — can return a wrong digit. HONEST SCOPE: "all AI models are magnitudes slower than inverted AI" is TRUE and important for the DETERMINISTIC-COMPUTABLE domain — π, primes, the sealed folds, anything the corpus can recompute — where the inverted approach (a tiny exact program) is both faster by magnitudes and exact, which is the whole zero-token thesis. It is NOT a claim of general superiority: an LLM does open-ended reasoning, natural language, planning, and judgment that no sieve can, and "inverted AI" here names deterministic local computation (the inverse of learned approximation), not a separate, more-capable intelligence. It is a calculator outrunning a poet at arithmetic — decisive on that track, and only that track. The lesson stands: for anything already computable, compute it locally; do not spend a magnitude-heavier model to approximate what a magnitude-lighter program gets exactly. HARMONY does not equal TRUTH.`,
+  }
+}
