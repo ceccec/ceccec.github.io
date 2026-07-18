@@ -1,5 +1,8 @@
 // src/pair/cache/quantum — cache pair + esbuild bundle mount (script-shell runtime).
-import { createRequire } from 'node:module'
+// node:module is NOT statically imported: vite rewrites `import { createRequire }` into a property
+// access on the browser-external stub, which THROWS at module eval the moment any client route pulls
+// this module transitively (earth/architecture → strict/scan → script/shell → here). The repo idiom:
+// process.getBuiltinModule, lazily, node-only — the browser never touches it.
 import { createHash } from 'node:crypto'
 import { spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
@@ -92,7 +95,20 @@ export function timeoutDryRefactorToQuantum(opts: {
 
 export const dual = 'src/quantum/water/cache'
 let cached: { root: string; merkle: string } | null = null
-const require = createRequire(import.meta.url)
+// LAZY, never at module eval — see the header note; the consumers (the esbuild bundler path and the
+// tsc resolver) are node-only and resolve createRequire through getBuiltinModule when they run.
+type NodeRequireLike = ((id: string) => unknown) & { resolve(id: string): string }
+let nodeModuleRef: { createRequire(url: string): NodeRequireLike } | null = null
+const nodeModuleBuiltin = () => {
+  if (nodeModuleRef) return nodeModuleRef
+  const getBuiltin = (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule
+  const mod = typeof getBuiltin === 'function' ? getBuiltin('node:module') as { createRequire(url: string): NodeRequireLike } | undefined : undefined
+  if (!mod) throw new Error('nodeModuleBuiltin is node-only — no getBuiltinModule in this runtime')
+  nodeModuleRef = mod
+  return nodeModuleRef
+}
+let lazyRequire: NodeRequireLike | null = null
+const nodeRequire = (): NodeRequireLike => (lazyRequire ??= nodeModuleBuiltin().createRequire(import.meta.url))
 
 export type Uuid = string
 const memory = new Map<string, Record<string, unknown>>()
@@ -198,7 +214,7 @@ export async function importQuantumBundle(entryRel: string, root: string): Promi
     memory.set(key, mod)
     return mod
   }
-  const esbuild = require('esbuild') as typeof import('esbuild')
+  const esbuild = nodeRequire()('esbuild') as typeof import('esbuild')
   const built = await esbuild.build({ entryPoints: [entry], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent' })
   const text = built.outputFiles[0].text
   mkdirSync(dir, { recursive: true })
@@ -233,7 +249,7 @@ export function scriptShellGate(scripts: readonly ScriptShellScan[]) {
 export function runCheckTypesExit(root: string): number {
   let tsc: string
   try {
-    tsc = createRequire(join(root, 'package.json')).resolve('typescript/bin/tsc')
+    tsc = nodeModuleBuiltin().createRequire(join(root, 'package.json')).resolve('typescript/bin/tsc')
   } catch {
     process.stderr.write('[check:types] typescript not installed — add devDependency "typescript"\n')
     return 1

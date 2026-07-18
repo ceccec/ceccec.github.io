@@ -134,6 +134,12 @@ function nodeOnlyClientStubPlugin(): import('vite').Plugin {
   // and stub the fs-walking scanners to no-ops. Node/SSG keep the real module (ssrBuild → null).
   const computationalRx = /pair\/enforcement\/gates\/computational(\/index(\.ts)?)?(\?|$)/
   const automountRx = /wind\/fold\/routes\/automount/
+  // strict/scan statically imports script/shell → pair/cache/quantum → node:crypto/fs/module; in the
+  // dev client vite's browser-external Proxy THROWS on the import destructure at module eval, so any
+  // route that pulls earth/architecture (which reads MONOLITH_FILE_BYTES from scan) dies with
+  // "Cannot access node:module.createRequire". Stub the scan module for the client with its pure
+  // constants — the node-only trio then never enters the client graph. Node/SSG keep the real module.
+  const strictScanRx = /pair\/enforcement\/gates\/strict\/scan(\/index(\.ts)?)?(\?|$)/
   let ssrBuild = false
   return {
     name: 'double-torus:node-only-client-stub',
@@ -146,8 +152,21 @@ function nodeOnlyClientStubPlugin(): import('vite').Plugin {
       const norm = id.replace(/\\/g, '/')
       if (computationalRx.test(norm)) return '\0node-stub:computational'
       if (automountRx.test(norm)) return '\0node-stub:automount'
+      if (strictScanRx.test(norm)) return '\0node-stub:strict-scan'
     },
     load(id) {
+      if (id === '\0node-stub:strict-scan') {
+        return `export const MONOLITH_FILE_BYTES = (64 * 64 * 2)
+export const MONOLITH_FILE_LAW = 'no logic file may exceed the DERIVED fair-share target — the next power of two ≥ corpus/census, recomputed each optimisation wave'
+export function derivedMonolithTargetBytes() { return { target: 0, corpus: 0, count: 0 } }
+export function scanFileSizeOffenders() { return [] }
+export function monolithFileGapDetail() { return '' }
+export function scanCrackSurface() { return [] }
+export function stripComments(text) { return text }
+export const ONE_MATH_LAW = 'one math — every derived constant/primitive is defined once at its home and imported everywhere else'
+export function scanOneMathOffenders() { return [] }
+`
+      }
       if (id === '\0node-stub:computational') return computationalClientStubSource()
       if (id === '\0node-stub:automount') {
         return `export function discoverSrcIndexes() { return []; }
