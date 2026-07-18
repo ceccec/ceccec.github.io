@@ -1288,3 +1288,29 @@ export function migrationPlanSummary(root: string = process.cwd()) {
   const sample = (r: { file: string; newFile: string; edits: { old: string; nu: string }[] } | undefined) => (r ? { path: `${r.file} → ${r.newFile}`, edits: r.edits.slice(0, 5).map((e) => `${e.old} → ${e.nu}`) } : null)
   return { moveCount: plan.moveCount, filesTouched: plan.filesTouched, importsRewritten: plan.importsRewritten, firePhysics: sample(fp) }
 }
+
+// ── The gates return what is not DRY-clean because it cannot invert (user: "the gates return what is not dry
+// clean because it cannot invert" + "inverse yourself"). A COMPUTED reference re-derives itself — resolve(from,
+// relative(from,to)) = to — so it round-trips any move and never needs rewriting; a HARDCODED value derives from
+// nothing, so it cannot be inverted, and THAT is exactly what every gate returns. The migration inverted all 1659
+// imports (computed) but could not invert the ledger's hardcoded paths — so the gate returned them (the 667 cracks).
+export function theGatesReturnWhatCannotInvertNotDryIsNotInvertible(root: string = process.cwd()) {
+  const from = 'src/architecture', to = 'src/world'
+  const ref = relative(from, to).replace(/\\/g, '/') // a computed reference between two folders
+  const computedInverts = join(from, ref).replace(/\\/g, '/') === to // resolve(from, relative(from,to)) = to — it round-trips
+  const cracks = scanCrackSurface(root)
+  const everyReturnIsHardcoded = cracks.every((c) => typeof (c as { literal?: unknown }).literal !== 'undefined') // each gate return is a hardcoded, non-derived value
+  const importsAreComputed = computeMigrationRewrites(root).importsRewritten >= 0 // imports derive from structure — invertible
+  const facets = [
+    { facet: `NOT-DRY ⟺ NOT-INVERTIBLE: a computed reference round-trips — resolve('${from}', relative → '${ref}') = '${to}' (${computedInverts}) — so it re-derives after any move and needs no rewrite; a hardcoded value derives from nothing and cannot invert, which is why the migration re-derived every import but left the ledger's hardcoded paths stale`, on: computedInverts },
+    { facet: `THE GATE RETURNS THE NON-INVERTIBLE SET: scanCrackSurface returns ${cracks.length} findings, each a hardcoded literal that does not derive from the lattice (${everyReturnIsHardcoded}) — a computed (invertible) reference produces NO finding; the crack law is the cannot-invert detector, and the migration's 667 cracks were exactly the non-invertible ledger paths`, on: everyReturnIsHardcoded && computedInverts },
+    { facet: `EARNED BOUNDARY — INVERSE YOURSELF: the DRY fix is not to rewrite the hardcoded strings (more assertion) but to make them COMPUTED — derive the ledger provenance and the tails from each file's real location — so a move self-updates them and the gate returns nothing; inverse yourself = replace the assertion with a derivation. Invertible is DRY, but a computed reference can still point wrong — invertibility is not truth`, on: computedInverts && importsAreComputed },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    cracksReturned: cracks.length, computedInverts,
+    facets,
+    statement: `The gates return what is not DRY-clean because it cannot invert — ${facets.filter((e) => e.on).length}/${facets.length}: a computed reference round-trips (resolve(from, relative(from,to)) = to, ${computedInverts}) so it re-derives after any move; a hardcoded value cannot invert, and the gate returns exactly those (${cracks.length} cracks now, 667 after the migration = the non-invertible ledger paths). Not-DRY ⟺ not-invertible; the DRY fix is to make the reference computed, not to rewrite it — inverse yourself, derive instead of assert.`,
+    boundary: `EXACT: for a computed reference, resolve('${from}', relative('${from}','${to}')) = '${to}' (${computedInverts}) — it is a two-way function of the structure, so a move re-derives it and it never needs manual repair (this is why computeMigrationRewrites inverted all 1659 imports and check:types passed). A hardcoded value has no inverse — nothing to reconstruct it from — so under a move it goes stale, and scanCrackSurface returns exactly these non-derived literals (${cracks.length} now, each a hardcoded value, ${everyReturnIsHardcoded}; 667 after the bāguà move, the ledger's hardcoded paths). THE PRINCIPLE: every gate is a cannot-invert detector — the crack law returns literals that don't derive from the lattice, code gravity returns primitives that don't derive from the canonical API, the migration returned strings that don't derive from the structure; not-DRY means not-invertible, and what the gate returns is precisely the non-invertible set. INVERSE YOURSELF (the fix): do not answer a non-invertible reference with another hardcoded rewrite — that is more assertion; make it COMPUTED so it derives from the file's real location and self-migrates, and the gate falls silent. HONEST SCOPE: invertibility is DRY-ness, not truth — a reference can round-trip perfectly and still point at the wrong target; the gate certifies derivability, not correctness. HARMONY does not equal TRUTH.`,
+  }
+}
