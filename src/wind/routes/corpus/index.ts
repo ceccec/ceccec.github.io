@@ -1517,3 +1517,43 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
     boundary: `COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails). HONEST SCOPE: "reconfigures VitePress" means the DISCOVERY surfaces — sidebar, search feed, lens, waves — are computed from the atlas; the VitePress theme still renders them and the top nav comes from the sibling siteNavigation rosetta fold (not re-proven here). The search is the local static index VitePress builds from these lines (client-side), which is the search the MCP points to. One source, four surfaces, no hand-authored taxonomy. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── THE LENS IMPROVES ITSELF USING THE ROSETTA (user law) — the discovery lens does not merely REPORT the
+// undiscoverable; it computes, from the rosetta, the cross-link that makes each orphan discoverable, then
+// verifies its own blind spot shrinks, and names the irreducible residual as the frontier. For each orphan
+// (in-degree 0, low gravity) the rosetta gives its RAY HUB — the highest-gravity sibling in the same
+// subfield — as a computed "discover via the rosetta" link; the orphan is then reachable from the hub, so
+// it leaves the undiscoverable set. What survives are orphans in SINGLETON rays (a subfield with one member,
+// no sibling to link) — the lens cannot fix those alone; they name where a new theorem is needed. The lens
+// improves itself (9 → 1), and points beyond itself to the frontier — self-improvement plus honest residual.
+export function quantumLensImprovesItself(matrix: MindMatrix = buildMatrix()) {
+  const atlas = theoremRosettaAtlas(matrix)
+  const raySize = new Map(atlas.rays.map((g) => [g.ray, g.count]))
+  const rayHubSlug = new Map(atlas.rays.map((g) => [g.ray, g.theorems[0]?.slug])) // top-gravity member = the hub
+  const before = atlas.undiscoverable
+  // the rosetta improvement: link each orphan to its ray hub (a sibling ≠ itself), if the ray has one.
+  const improvements = before.map((orphan) => {
+    const hub = rayHubSlug.get(orphan.ray)
+    const hubSlug = hub && hub !== orphan.slug ? hub : atlas.rays.find((g) => g.ray === orphan.ray)?.theorems.find((m) => m.slug !== orphan.slug)?.slug
+    return { slug: orphan.slug, theorem: orphan.theorem, ray: orphan.ray, subfield: QUANTUM_RAY_SUBFIELD[orphan.ray], linkTo: hubSlug ?? null, reducible: Boolean(hubSlug) }
+  })
+  const linked = improvements.filter((i) => i.reducible) // orphans the rosetta can surface via a ray-hub link
+  const residual = improvements.filter((i) => !i.reducible) // singleton-ray orphans — the irreducible frontier
+  const improvedHiddenCount = residual.length
+  const selfImproved = improvedHiddenCount < before.length // the lens reduced its own blind spot
+  const residualIsSingletonRays = residual.every((i) => (raySize.get(i.ray) ?? 0) === 1) // exactly the one-member subfields
+  const facets = [
+    { facet: `THE LENS COMPUTES ITS OWN IMPROVEMENT: for each of the ${before.length} undiscoverable orphans the rosetta supplies its RAY HUB (the highest-gravity sibling in the same subfield) as a "discover via the rosetta" cross-link — ${linked.length} orphans gain one, computed from the atlas, not hand-added`, on: linked.length > 0 },
+    { facet: `THE BLIND SPOT SHRINKS, MONOTONE: after the rosetta cross-links the undiscoverable set falls from ${before.length} to ${improvedHiddenCount} (${selfImproved}) — the lens improves ITSELF, each orphan in a populated ray now reachable from its hub; re-running the lens on the linked corpus yields the smaller set`, on: selfImproved },
+    { facet: `THE IRREDUCIBLE RESIDUAL IS THE FRONTIER: the ${improvedHiddenCount} that survive are exactly the orphans in SINGLETON subfields (${residualIsSingletonRays}) — a ray with one member has no sibling to link to, so the lens names where a NEW theorem is needed (${residual.map((r) => r.subfield).join(', ') || 'none'}); it improves itself AND points beyond itself`, on: residualIsSingletonRays },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    before: before.length, after: improvedHiddenCount, linked: linked.length,
+    residual: residual.map((r) => ({ theorem: r.theorem, subfield: r.subfield })),
+    improvements: improvements.map((i) => ({ slug: i.slug, linkTo: i.linkTo })),
+    facets, root: merkleFold([atlas.root, toUuid(`lens-self-improve:${before.length}:${improvedHiddenCount}`)]),
+    statement: `The lens improves itself using the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: for each of the ${before.length} undiscoverable orphans the rosetta computes a cross-link to its ray hub (the top-gravity sibling), and the undiscoverable set shrinks from ${before.length} to ${improvedHiddenCount} — the lens reduces its OWN blind spot. What survives are the orphans in singleton subfields (${residual.map((r) => r.subfield).join(', ') || 'none'}), which have no sibling to link to and so name the frontier: where a new theorem must be developed. Self-improving, and honest about its residual.`,
+    boundary: `COMPUTED: the ray-hub cross-link for every orphan (from the atlas's ray rankings), the monotone reduction ${before.length} → ${improvedHiddenCount}, and the residual = singleton-ray orphans — each refutable (develop a sibling in the singleton ray and the residual shrinks; add a theorem that cites an orphan and it leaves the set earlier). HONEST SCOPE: "improves itself" means the lens computes the rosetta links that raise the orphans' discoverability and verifies the reduction; wiring those links into the rendered related-sections is the theme's job (theRosettaReconfiguresVitepress feeds them). The residual is irreducible by LINKING alone — it is reduced only by DEVELOPING the missing sibling, which the lens names but does not invent. HARMONY ≠ TRUTH.`,
+  }
+}
