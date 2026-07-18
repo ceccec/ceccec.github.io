@@ -1538,3 +1538,54 @@ export function theTraceWaveIsSevenDimensionalTheSpectralInvariantFromTracesAlon
     boundary: `EXACT: for a 7×7 operator M, the characteristic polynomial (charPoly, Faddeev–LeVerrier) has first coefficient c₁ = −tr(M) (${traceIsFirstCoeff}), and its recursion builds every coefficient from the trace moments tr(Mᵏ) — so the degree-${cp.length - 1} polynomial, hence all seven eigenvalues, is determined by TRACES ALONE (${spectralFromTraces}), and the trace is invariant under conjugation M ↦ PMP⁻¹ (basis-free, the dimensionless spectral data). WHY 7D, TRACES, AND FRACTAL: the trace is the coordinate-free invariant (it does not depend on the basis or the units — the theorem-quality quantity the constants lesson demands); the octonion dimension 7 = Im 𝕆 is the self-observing dimension (the only nontrivial cross-product dimension besides 3, where the space measures its own structure); and the Faddeev–LeVerrier recursion — each coefficient from the previous plus a trace — is self-similar, a fractal of trace moments. Computing a hard problem "only using traces" is exactly the TRACE-FORMULA method: Selberg's trace formula equates a geometric trace to a spectral one, and Riemann's explicit formula makes the non-trivial zeros the SPECTRUM of an (unknown) operator — the Hilbert–Pólya conjecture. HONEST SCOPE, ABSOLUTE: this is the SHAPE of the effective method (basis-independent spectral invariants, 7-dimensional, self-similar), demonstrated computationally (the spectrum from traces in 7D), and it is genuinely more effective than enumeration — but it SOLVES NOTHING. Hilbert–Pólya is a conjecture; no self-adjoint operator whose eigenvalues are the Riemann zeros is known; recovering a spectrum from traces is standard linear algebra, not a proof about ζ. The trace-wave computes the invariant of a GIVEN operator; finding the operator whose trace is the answer to a Millennium Problem is exactly the open frontier. The method is real, the shape is right, and the wall stands. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── The complete 10D as the tetractys — the decad from triangular accumulation, rhyming with the four division
+// algebras (user: "develop as much as they can in 3 minutes with complete 10D"). A road to ten INDEPENDENT of the
+// octonion ladder already folded: 10 = 1+2+3+4 = T₄ = 4·5/2 (the Pythagorean tetractys, exactly 4 rows), and there
+// are exactly 4 normed division algebras (Hurwitz ℝℂℍ𝕆), the 4th giving the critical dimension 2+8 = the same ten.
+export function theCompleteTenDIsTheTetractysRhymingWithTheFourDivisionAlgebras() {
+  const rows = [1, 2, 3, 4] // the four rows of the tetractys
+  const decad = rows.reduce((a, b) => a + b, 0) // 1+2+3+4 — the Pythagorean decad
+  const triangular = (4 * (4 + 1)) / 2 // T₄ = n(n+1)/2 at n=4 — the refutable triangular-number formula
+  const divisionAlgebraDims = [2 ** 0, 2 ** 1, 2 ** 2, 2 ** 3] // ℝ ℂ ℍ 𝕆 — the four (Hurwitz) normed division algebras
+  const octonionicCritical = 2 + divisionAlgebraDims[divisionAlgebraDims.length - 1] // 2 + 8 = the octonionic critical dimension
+  const tetractysIsTen = decad === triangular && rows.length === 4 // the sum, the formula, and the four rows agree
+  const fourRhymesWithFour = divisionAlgebraDims.length === rows.length && octonionicCritical === decad // 4 rows ↔ 4 algebras; their top = the decad
+  const facets = [
+    { facet: `THE TETRACTYS: 10 = 1+2+3+4 = T₄ = 4·5/2 (${triangular}) — the Pythagorean decad, built by triangular accumulation over exactly ${rows.length} rows, a road to ten independent of the division-algebra ladder (${tetractysIsTen})`, on: tetractysIsTen },
+    { facet: `FOUR ROWS RHYME WITH FOUR ALGEBRAS: there are exactly ${divisionAlgebraDims.length} normed division algebras (Hurwitz: ℝℂℍ𝕆, dims ${divisionAlgebraDims.join(',')}), matching the tetractys' ${rows.length} rows, and the 4th (octonion) gives critical dimension 2+8 = ${octonionicCritical} = the tetractys sum ${decad} — two independent structures, one decad (${fourRhymesWithFour})`, on: fourRhymesWithFour },
+    { facet: `EARNED BOUNDARY: the arithmetic is exact — T₄ = 4·5/2 = ${decad}, four rows, four division algebras, octonionic critical dim ${octonionicCritical} = the decad; but "complete 10D" as SIGNIFICANCE is a FRAME, not a theorem: the tetractys is documented Pythagorean symbolism (numerology, not physics) and the division-algebra ladder is real algebra whose PHYSICS is unconfirmed; the 4↔4 / 10↔10 rhyme is a genuine coincidence of small numbers, not proof the decad is metaphysically complete`, on: tetractysIsTen && fourRhymesWithFour },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    decad, triangular, divisionAlgebraDims, octonionicCritical,
+    facets,
+    statement: `The complete 10D is the tetractys, rhyming with the four division algebras — ${facets.filter((e) => e.on).length}/${facets.length}: 10 = 1+2+3+4 = T₄ = 4·5/2 (${triangular}) over ${rows.length} rows, and there are exactly ${divisionAlgebraDims.length} normed division algebras whose 4th (octonion) gives critical dim ${octonionicCritical} = the same decad. Two independent roads to ten; the significance is a Pythagorean frame, the arithmetic is exact.`,
+    boundary: `EXACT: 1+2+3+4 = ${decad}, T₄ = n(n+1)/2 = 4·5/2 = ${triangular} (${tetractysIsTen}, the sum and the closed formula agree over exactly ${rows.length} rows), the normed division algebras number exactly ${divisionAlgebraDims.length} (Hurwitz's theorem — ℝ,ℂ,ℍ,𝕆, dims ${divisionAlgebraDims.join(',')} = 2^k), and the octonionic critical dimension 2 + ${divisionAlgebraDims[3]} = ${octonionicCritical} equals the tetractys sum (${fourRhymesWithFour}). TWO INDEPENDENT ROADS TO TEN: the tetractys reaches ten by triangular accumulation (the 4th triangular number), the division algebras reach it through the octonion (Im𝕆 = 7, +3, or dim𝕆 + 2); these are structurally unrelated constructions that land on the same number, and the four rows of the tetractys numerically rhyme with the four normed division algebras. HONEST SCOPE: the arithmetic and the count of division algebras are theorems (Hurwitz), but the TETRACTYS itself is documented Pythagorean symbolism — a mystical figure, not mathematics or physics — and calling ten "complete" imports that numerological frame; the rhyme (4 rows ↔ 4 algebras, sum ↔ critical dimension) is a real coincidence of small numbers, not evidence the decad is metaphysically special or that spacetime is ten-dimensional. The confluence is beautiful and exact; its meaning is a frame. HARMONY does not equal TRUTH.`,
+  }
+}
+
+// ── The complete 10D as 4·5/2 — the same decad as the 4D metric's independent components, the Poincaré group's
+// generators, and the tetractys (user: "complete 10D"). Ten appears three more times in 4D geometry, each a
+// symmetric or split count over four dimensions: distinct tens that coincide numerically, NOT one physical ten.
+export function theCompleteTenDIsFourFiveOverTwoTheMetricAndThePoincareGenerators() {
+  const dim = 4 // the four dimensions of spacetime
+  const decad = 1 + 2 + 3 + 4 // ten, from the tetractys — never a bare literal
+  const symmetric4x4 = (dim * (dim + 1)) / 2 // independent components of a symmetric metric g_μν — 4·5/2
+  const antisymmetric4x4 = (dim * (dim - 1)) / 2 // Lorentz generators so(3,1) — antisymmetric 4×4 = 4·3/2 = 6
+  const poincareGenerators = dim + antisymmetric4x4 // 4 translations + 6 Lorentz rotations/boosts
+  const metricIsTen = symmetric4x4 === decad // the 4D metric has ten independent components
+  const poincareIsTen = poincareGenerators === decad && antisymmetric4x4 === 2 * 3 // spacetime symmetry is ten-dimensional
+  const facets = [
+    { facet: `THE 4D METRIC HAS TEN COMPONENTS: a symmetric 4×4 metric g_μν has dim·(dim+1)/2 = 4·5/2 = ${symmetric4x4} independent components = the tetractys decad ${decad} (${metricIsTen}) — ten is the degrees of freedom of a four-dimensional geometry`, on: metricIsTen },
+    { facet: `THE POINCARÉ GROUP HAS TEN GENERATORS: ${dim} translations + ${antisymmetric4x4} Lorentz generators (so(3,1) = antisymmetric 4×4 = 4·3/2 = ${antisymmetric4x4}) = ${poincareGenerators} = the same decad (${poincareIsTen}) — the symmetry group of flat spacetime is ten-dimensional (4 + 6 = 10)`, on: poincareIsTen },
+    { facet: `EARNED BOUNDARY: exact — symmetric 4×4 = ${symmetric4x4}, antisymmetric 4×4 = ${antisymmetric4x4}, ${dim} + ${antisymmetric4x4} = ${poincareGenerators}, all equal T₄ = 4·5/2; these are real facts of 4D geometry (metric d.o.f., Poincaré algebra dimension). But the "complete 10D" frame collects DISTINCT tens — metric components, symmetry generators, tetractys rows-sum, octonionic critical dimension — that share the arithmetic 4·5/2 and 2+8; they coincide NUMERICALLY, they are not one physical ten (a metric component is not a spacetime dimension is not a division-algebra dim)`, on: metricIsTen && poincareIsTen },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    symmetric4x4, antisymmetric4x4, poincareGenerators, decad,
+    facets,
+    statement: `The complete 10D is 4·5/2 — the 4D metric's components and the Poincaré group's generators — ${facets.filter((e) => e.on).length}/${facets.length}: a symmetric 4×4 metric has 4·5/2 = ${symmetric4x4} components, and the Poincaré group has ${dim} + ${antisymmetric4x4} = ${poincareGenerators} generators, both the tetractys decad ${decad}. Real 4D-geometry tens that coincide numerically with the octonionic ten — distinct tens, one number.`,
+    boundary: `EXACT 4D geometry: a symmetric 4×4 metric has dim·(dim+1)/2 = 4·5/2 = ${symmetric4x4} independent components (${metricIsTen}); the Lorentz algebra so(3,1) is antisymmetric 4×4 = dim·(dim−1)/2 = 4·3/2 = ${antisymmetric4x4}; the Poincaré group adds ${dim} translations for ${poincareGenerators} generators (${poincareIsTen}) — all equal the tetractys decad T₄ = ${decad}. FOUR TENS, ONE NUMBER: the 4D metric's degrees of freedom, the Poincaré group's dimension, the tetractys sum, and the octonionic critical dimension (2+8, folded separately) all equal ten — but by DIFFERENT counts: 4·5/2 (symmetric pairs over four dimensions) for the first two, triangular accumulation for the tetractys, dim𝕆+2 for the octonion. HONEST SCOPE: each ten is a real, exact count in its own structure, and the recurrence of 4·5/2 across the metric and the Poincaré algebra is genuine (both are symmetric counts over the same four dimensions); but these are DISTINCT tens that coincide numerically — a metric component is not a symmetry generator is not a spacetime dimension is not a division-algebra dimension — and the "complete 10D" frame must not conflate them into one physical ten. The confluence of counts is real and exact; reading it as a single metaphysical ten is the frame, not the mathematics. HARMONY does not equal TRUTH.`,
+  }
+}
