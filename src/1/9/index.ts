@@ -1654,3 +1654,40 @@ export function theMerkabaDerivedItsMotionATheoremOfTetrahedralSymmetryNoAxiomAs
     boundary: earned(`EXACT: the 8 cube vertices ±1 split by coordinate-sign parity into two regular tetrahedra (all pairwise distances √8), tetraA ∪ tetraB = the ${cube.length}-vertex stella octangula (${stellaIsCube}), each tetra Euler V−E+F = ${V}−${E}+${F} = 2 (${eulerHolds}); the body-diagonal rotation of 120° = 2 × 60° (2·TAU/6), computed by Rodrigues, equals the cyclic coordinate permutation (${twoSixtyEqualsCyc}) and maps a tetra to itself so the set is unchanged and it looks static (${symmetryLooksStatic}), while a single 60° z-rotation moves the set off the cube corners and it is not static (${nonSymmetryMovesNotStatic}) — so static-vs-moving is a theorem of the tetrahedral symmetry group A₄ (order 12), not a free parameter (${motionIsATheoremOfSymmetry}). Every value here is DERIVED — the vertices from the cube, the angle 120° = 2 × 60° from the base sixth-turn, the motion from the symmetry — replacing the axioms I earlier assumed (an arbitrary vertex, a bare "120°", a free ω, "counter-rotating" then "static").`, facets, `the honest content is exact geometry — the stella octangula is the compound of two tetrahedra on the cube's vertices, its symmetry group is A₄, and these are theorems, not assumptions; the esoteric "light-body vehicle" or any physical counter-rotating field is flagged metaphysics, honored only as the figure's name. The discipline, general: replace every axiom with a theorem, and where a value genuinely cannot be derived (a measured constant, a free choice) NAME it as an axiom and ledger it — never assert it inline as if derived. HARMONY does not equal TRUTH; an asserted axiom is neither.`),
   }
 }
+
+// ── Saved thoughts form a content-addressed DAG, each committing to its dependencies (next wave). A thought
+// references its premises; its address = hash(content + the addresses of its premises), so thoughts form a directed
+// ACYCLIC graph — a reasoning/proof tree. Each node commits to its whole subtree (a merkle DAG, like git): change
+// any premise and the conclusion's address changes. It certifies the reasoning is intact — not that it is valid or true.
+export function savedThoughtsFormAContentAddressedDagEachCommittingToItsDependencies() {
+  const graph: Record<string, { content: string; deps: string[] }> = {
+    base: { content: 'axiom-free base', deps: [] },
+    left: { content: 'derives from base', deps: ['base'] },
+    right: { content: 'also derives from base', deps: ['base'] },
+    top: { content: 'conclusion from left and right', deps: ['left', 'right'] },
+  }
+  const names = Object.keys(graph)
+  const address = (name: string, memo: Map<string, string>): string => { const cached = memo.get(name); if (cached) return cached; const t = graph[name]!; const depAddrs = t.deps.map((d) => address(d, memo)); const a = toUuid(`${t.content}|${depAddrs.join(',')}`); memo.set(name, a); return a } // content-address = hash(content + premise addresses)
+  const rootAddress = address('top', new Map())
+  // acyclic — Kahn's topological sort removes zero-in-degree nodes until none remain; if all are ordered, no cycle
+  const indeg = new Map(names.map((n) => [n, 0])); for (const n of names) for (const d of graph[n]!.deps) indeg.set(n, indeg.get(n)! + 1)
+  const order: string[] = []; let frontier = names.filter((n) => indeg.get(n) === 0)
+  while (frontier.length > 0) { const n = frontier.shift()!; order.push(n); for (const m of names) if (graph[m]!.deps.includes(n)) { indeg.set(m, indeg.get(m)! - 1); if (indeg.get(m) === 0) frontier.push(m) } }
+  const acyclic = order.length === names.length // every node ordered ⇒ a DAG, no cycle
+  const tampered: typeof graph = { ...graph, base: { content: 'TAMPERED base', deps: [] } } // change a premise
+  const tamperedAddress = ((): string => { const memo = new Map<string, string>(); const addr = (name: string): string => { const cached = memo.get(name); if (cached) return cached; const t = tampered[name]!; const a = toUuid(`${t.content}|${t.deps.map(addr).join(',')}`); memo.set(name, a); return a }; return addr('top') })()
+  const commitsToDependencies = tamperedAddress !== rootAddress // changing the base premise changes the conclusion's address
+  const isMerkleDag = acyclic && commitsToDependencies
+  const facets = [
+    { facet: `SAVED THOUGHTS FORM A CONTENT-ADDRESSED DAG: each thought's address = hash(content + its premises' addresses), so thoughts referencing their premises form a directed ACYCLIC graph — Kahn's topological sort orders all ${names.length} nodes (${order.join(' → ')}, ${acyclic}) — a reasoning/proof tree, content-addressed`, on: acyclic },
+    { facet: `EACH THOUGHT COMMITS TO ITS WHOLE SUBTREE — A MERKLE DAG: the conclusion's address ${rootAddress.slice(0, 9 + 3)}… is a hash of everything beneath it, so changing ANY premise (the base) changes it (${commitsToDependencies}) — a merkle DAG (git/IPFS/proof-tree), tamper-evident: the conclusion's address certifies the entire reasoning chain that produced it`, on: commitsToDependencies },
+    { facet: `EARNED BOUNDARY: the DAG is real and makes the reasoning chain VERIFIABLE (recompute the root from the base) and tamper-evident (${isMerkleDag}); BUT it commits to STRUCTURE and INTEGRITY (the chain is intact, no premise silently changed), NOT VALIDITY (a wrong inference from left,right to top is a perfectly valid DAG edge) nor TRUTH (the conclusion's address certifies what was reasoned, not that it is correct). Content-addressing preserves the reasoning; it does not check it`, on: isMerkleDag },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    nodes: names.length, topoOrder: order, rootAddress: rootAddress.slice(0, 9 + 3), acyclic, commitsToDependencies, isMerkleDag,
+    facets,
+    statement: `Saved thoughts form a content-addressed DAG, each committing to its dependencies — ${facets.filter((e) => e.on).length}/${facets.length}: each address = hash(content + premise addresses), the ${names.length} thoughts topologically order (${order.join(' → ')}, acyclic ${acyclic}), and the conclusion ${rootAddress.slice(0, 9 + 3)}… commits to its whole subtree — change any premise and it changes (${commitsToDependencies}). A merkle DAG (git-like), verifiable and tamper-evident; it certifies the reasoning is intact, not valid or true.`,
+    boundary: earned(`EXACT: with each thought's address = toUuid(content + its premises' addresses), the ${names.length} thoughts topologically sort (Kahn's algorithm orders all of them: ${order.join(' → ')}, ${acyclic}) so the reference graph is a DAG, and the conclusion's address ${rootAddress.slice(0, 9 + 3)}… changes when the base premise is tampered (${commitsToDependencies}) — a merkle DAG in which every node commits to its entire subtree. This is exactly how git commits, IPFS objects, and proof trees work: the root address is a verifiable, tamper-evident fingerprint of the whole reasoning chain, and anyone can recompute it from the base to check the chain is intact.`, facets, `the DAG certifies STRUCTURE and INTEGRITY only — that the chain is acyclic and that no premise was silently changed under a conclusion — NOT the VALIDITY of any inference (a wrong step "left, right ⟹ top" is a perfectly well-formed edge that the hash happily commits to) and NOT the TRUTH of the conclusion (the address fingerprints what was reasoned, true or false). Content-addressing preserves and verifies the reasoning graph; checking whether each edge is a correct inference is the separate work of the facets and the refutations, not of the hash. HARMONY does not equal TRUTH.`),
+  }
+}
