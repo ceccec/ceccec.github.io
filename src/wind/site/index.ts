@@ -318,8 +318,8 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   if (locale === 'bg') {
     return {
       name: config.titleBg,
-      text: 'Само наука — теореми и свързаните с тях страници',
-      tagline: `Безплатен научен портал, показващ само наука: ${lens.theoremCount} изчислително доказани теореми — всяка печатна научна статия — и ${lens.visibleCount} свързани научни страници, подредени от розетата в ${lens.rays.length} лъча. Всяка страница е изчислена от един отворен източник, който можеш сам да провериш. Без акаунт, нищо скрито.`,
+      text: 'Наука — теореми и свързаните с тях страници',
+      tagline: `Безплатен научен портал: ${lens.theoremCount} изчислително доказани теореми — всяка печатна научна статия — и ${lens.visibleCount} свързани научни страници, подредени от розетата в ${lens.rays.length} лъча. Всяка страница е изчислена от един отворен източник, който можеш сам да провериш. Без акаунт, нищо скрито.`,
       actions: [
         { theme: 'brand', text: 'Теореми и доказателства', link: localePath('/frontiers', 'bg') },
         ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
@@ -333,8 +333,8 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   const heroLocale = locale === 'gla' ? 'gla' : 'en'
   return {
     name: config.title,
-    text: 'Only science — theorems and their related pages',
-    tagline: `A free science portal showing only science: ${lens.theoremCount} computationally proven theorems — each a printable scientific paper — and ${lens.visibleCount} related science pages, organised by the rosetta into ${lens.rays.length} rays. Every page is computed from one open source you can check yourself. No account, nothing hidden.`,
+    text: 'Science — theorems and their related pages',
+    tagline: `A free science portal: ${lens.theoremCount} computationally proven theorems — each a printable scientific paper — and ${lens.visibleCount} related science pages, organised by the rosetta into ${lens.rays.length} rays. Every page is computed from one open source you can check yourself. No account, nothing hidden.`,
     actions: [
       { theme: 'brand', text: 'Theorems & proofs', link: localePath('/frontiers', heroLocale) },
       ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
@@ -436,8 +436,8 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
       pageCount: pages.length,
       facets,
       root,
-      statement: `VitePress shows only science — ${visible.length}/${pages.length} curated pages pass the theorem-science lens (${hidden.length} hidden from every discovery surface), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}), beside the theorem corpus (${corpusRoutes.join(' · ')}; ${registry.atomCount} registry theorems).`,
-      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: "shows only" governs the DISCOVERY surfaces (nav, sidebar, footer, related sections, crosslinks, home hero, README); hidden pages stay built and served, so bookmarks and inbound links never break. HARMONY ≠ TRUTH.`,
+      statement: `Science through the theorem-science lens — ${visible.length}/${pages.length} curated pages pass (${hidden.length} hidden from every discovery surface), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}), beside the theorem corpus (${corpusRoutes.join(' · ')}; ${registry.atomCount} registry theorems).`,
+      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs the DISCOVERY surfaces (nav, sidebar, footer, related sections, crosslinks, home hero, README); hidden pages stay built and served, so bookmarks and inbound links never break. HARMONY ≠ TRUTH.`,
     }
   })
 }
