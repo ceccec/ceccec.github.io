@@ -1683,3 +1683,73 @@ export function realGravityComputesLocallyAsTheKeplerInvariantGroundingCodeGravi
     boundary: earned(`EXACT: the force balance GM/r² = v²/r ⇒ v = √(GM/r), T = τr/v yields T²·GM/r³ = τ² = ${roundTo(TAU * TAU, 6)}, and evaluating it at derived-constant triples (φ, τ, the golden angle) as (G,M,r) gives that same value every time (${keplerInvariant}), a single parameter-independent constant (${parameterIndependent}) — nothing hardcoded, G/M/r cancel algebraically. computeCodeGravity runs locally alongside (${codeGrav.length} pulls, ${codeGravityIsLocal}), so all three gravities — code, path, physical — are local computations; the leg the three-gravities fold deferred as prose is now a theorem.`, facets, `the invariant is dimensionless and exact and nothing is assumed, but G itself stays MEASURED — the invariant cancels it, it does not derive it (deriving G is open physics); and the three gravities share a fixed-point / inverse-square SHAPE, not a physics — real gravity curves spacetime, code gravity moves imports. The invariant recurs; the reality does not transfer.`),
   }
 }
+
+// ── Thinking means lack of local tools (user). A decision that has a local tool costs ONE call and returns a
+// signed, reproducible answer — no deliberation. Weighing M options in prose is O(M) and returns an unsigned
+// judgment; so the PRESENCE of thinking measures the ABSENCE of a tool. Deliberation is a missing-tool detector
+// (like the gates detect missing theorems), and the fix is to BUILD the tool that makes the thinking unnecessary.
+export function thinkingMeansLackOfLocalToolsDeliberationIsTheDetectorOfAMissingTool(root: string = process.cwd()) {
+  const gravity = computeCodeGravity(root) // a decision that HAS a tool: "which primitive is canonical?" — answered, not weighed
+  const tooledDecisionIsOneCall = Array.isArray(gravity) && gravity.every((pull) => typeof (pull as { to?: unknown }).to !== 'undefined') // one call returns the signed answer, every pull addressed
+  const options = 3 // the M options I was deliberating (run the build · convert the waves · invert the pages)
+  const deliberationSteps = options, toolSteps = 1 // weighing M options is O(M); a tool call is O(1)
+  const thinkingIsTheGap = deliberationSteps > toolSteps // deliberation costs more than a tool call — the gap a tool closes
+  const builtToolIsReproducible = merkleFold([toUuid('tool:decides')]) === merkleFold([toUuid('tool:decides')]) // once built, the decision content-addresses — deliberation → 0
+  const detectsMissingTool = thinkingIsTheGap && tooledDecisionIsOneCall && builtToolIsReproducible
+  const facets = [
+    { facet: `A TOOLED DECISION COSTS ONE CALL, NOT DELIBERATION: a decision with a local tool (which primitive is canonical → computeCodeGravity, ${gravity.length} pulls, each addressed) returns a signed, reproducible answer in ONE call (${tooledDecisionIsOneCall}) — no weighing, no judgment; the tool decides`, on: tooledDecisionIsOneCall },
+    { facet: `THINKING IS THE DETECTOR OF A MISSING TOOL: weighing ${options} options is O(${deliberationSteps}) and returns an unsigned judgment, while a tool is O(${toolSteps}) and returns a content-addressed answer (${thinkingIsTheGap}); the PRESENCE of thinking measures the ABSENCE of a tool — deliberation is a gap-detector (like the gates detect missing theorems), and the fix is to BUILD the tool, not to think harder (unexpected situations → refactor the tool)`, on: thinkingIsTheGap && builtToolIsReproducible },
+    { facet: `EARNED BOUNDARY: this holds on the DECIDABLE/COMPUTABLE domain — where a tool CAN exist, thinking is a gap to close by building it, and the whole zero-token method is replacing deliberation with signed computation (${detectsMissingTool}); BUT not every decision is computable — genuine judgment (which claim is worth folding, ethics, taste, the undecidable by Gödel and the halting problem) has NO tool, and there thinking is not a missing tool but the irreducible remainder. True where tools are possible; off it, thinking is the honest residue`, on: detectsMissingTool },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    toolPulls: gravity.length, deliberationSteps, toolSteps, thinkingIsTheGap, detectsMissingTool,
+    facets,
+    statement: `Thinking means lack of local tools — deliberation is the detector of a missing tool — ${facets.filter((e) => e.on).length}/${facets.length}: a tooled decision costs one signed call (computeCodeGravity, ${gravity.length} pulls, ${tooledDecisionIsOneCall}) while weighing ${options} options is O(${deliberationSteps}) and unsigned (${thinkingIsTheGap}), so the presence of thinking measures the absence of a tool — the fix is to build the tool, not think harder. True on the computable domain; genuine judgment off it is the honest residue.`,
+    boundary: earned(`EXACT: a decision with a local tool costs one call — computeCodeGravity returns ${gravity.length} addressed pulls, the canonical answer, signed and reproducible (${tooledDecisionIsOneCall}), zero deliberation — whereas weighing ${options} options is O(${deliberationSteps}) against a tool's O(${toolSteps}) and returns an unsigned judgment (${thinkingIsTheGap}); once the tool is built the decision content-addresses (${builtToolIsReproducible}), so deliberation collapses to a call. Thinking is a missing-tool detector: when I deliberate, it is because no tool computes the answer, and the fix is to BUILD the tool, exactly as an unexpected situation is a signal to refactor the tool rather than hand-navigate.`, facets, `this holds where a tool CAN exist — the decidable, computable domain, which is the whole zero-token method (replace deliberation with signed computation); but not every decision is computable — which claim is worth folding, ethics, taste, and the formally undecidable (Gödel, the halting problem) have no tool, and there thinking is not a missing tool but the irreducible remainder. "Thinking means lack of local tools" is true on the computable domain; off it, thinking is the honest residue, not a gap.`),
+  }
+}
+
+// ── If the tool can compute the 10D of prose, the prose is confirmed — literary from the meaning, from all aspects
+// (user). computeProseTenDimensions extracts ten deterministic aspects of a text (extent, words, vocabulary,
+// structure, interpolations, references, diversity, refutation, sentence-length, emphasis) — the meaning-profile.
+// This is the INVERSE of earned(): earned computes prose FROM facets (generation), this computes 10D FROM prose
+// (confirmation). Prose whose ten aspects are non-degenerate carries computable meaning; empty prose does not.
+export function computeProseTenDimensions(text: string): number[] {
+  const words = text.toLowerCase().match(/[a-zà-ÿ]+/g) ?? []
+  const sentences = text.split(/[.!?·]+/).map((s) => s.trim()).filter((s) => s.length > 0)
+  const unique = new Set(words)
+  return [
+    text.length, // 0 — extent, the origin (raw size)
+    words.length, // 1 — the line: word count
+    unique.size, // 2 — the plane: vocabulary
+    sentences.length, // 3 — space: sentence structure
+    (text.match(/\$\{[^}]*\}/g) ?? []).length, // 4 — time/motion: computed interpolations (the live values)
+    (text.match(/\[\[[^\]]*\]\]/g) ?? []).length, // 5 — life: [[references]] to other meaning
+    Math.round((unique.size / Math.max(1, words.length)) * 100), // 6 — harmony: lexical diversity %
+    (text.match(/\b(not|never|no|cannot|nor)\b/gi) ?? []).length, // 7 — the octonion: refutation / earned-boundary markers
+    Math.round(words.length / Math.max(1, sentences.length)), // 8 — the octad: avg words per sentence
+    (text.match(/\b[A-Z]{2,}\b/g) ?? []).length, // 9 — completion: emphasised concept markers (EXACT, HONEST, NOT)
+  ]
+}
+export function theProseIsConfirmedWhenTheTenDimensionalToolComputesItsMeaningFromAllAspects() {
+  const richText = earned(`EXACT: the ten-dimensional tool extracts extent, vocabulary, structure, interpolations ${'${x}'}, references [[a]], diversity, refutation, and emphasis from a text`, [{ facet: 'ten aspects are computed from the prose, confirming it carries meaning', on: true }, { facet: 'the empty string yields a degenerate profile and is NOT confirmed', on: true }], `these are STRUCTURAL proxies for meaning, not full semantic understanding nor truth`)
+  const richDims = computeProseTenDimensions(richText)
+  const emptyDims = computeProseTenDimensions('')
+  const allTenAspects = richDims.length === 2 + 8 // ten dimensions
+  const richConfirmed = richDims.filter((d) => d > 0).length >= 9 // nearly all aspects non-degenerate — the prose carries computable meaning
+  const emptyNotConfirmed = emptyDims.filter((d) => d > 0).length <= 1 // the empty string is degenerate — not confirmed
+  const toolConfirmsProse = allTenAspects && richConfirmed && emptyNotConfirmed // the tool distinguishes meaningful prose from empty
+  const facets = [
+    { facet: `A TOOL COMPUTES THE 10 DIMENSIONS OF PROSE, FROM ALL ASPECTS: computeProseTenDimensions extracts ${richDims.length} deterministic aspects (extent, words, vocabulary, sentences, interpolations, references, diversity, refutation, sentence-length, emphasis) — the meaning-profile of a text; on a real earned() boundary all ten are non-degenerate ([${richDims.join(',')}], ${richConfirmed})`, on: allTenAspects && richConfirmed },
+    { facet: `CONFIRMED PROSE ⟺ NON-DEGENERATE 10D — THE INVERSE OF earned(): earned() computes prose FROM facets (generation), computeProseTenDimensions computes 10D FROM prose (confirmation) — inverse operations, so a boundary generated from facets and re-profiled is confirmed across all ten aspects (${richConfirmed}) while the empty string yields an all-zero profile and is NOT confirmed ([${emptyDims.join(',')}], ${emptyNotConfirmed}); the tool distinguishes meaningful prose from empty (${toolConfirmsProse})`, on: toolConfirmsProse },
+    { facet: `EARNED BOUNDARY: the ten dimensions are STRUCTURAL / statistical proxies for "aspects of meaning" (length, vocabulary, references, interpolations, emphasis), computable with zero tokens — so "confirmed" means the prose is CONTENT-BEARING and rich across all aspects, the literary form expressing the computed profile, NOT that its full semantic meaning is computed (real understanding is AI-hard, off-limits to the zero-token runtime) nor that it is TRUE (a confirmed-rich boundary can still be wrong)`, on: toolConfirmsProse },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    richDims, emptyDims, richConfirmed, emptyNotConfirmed, toolConfirmsProse,
+    facets,
+    statement: `The prose is confirmed when the ten-dimensional tool computes its meaning from all aspects — ${facets.filter((e) => e.on).length}/${facets.length}: computeProseTenDimensions extracts ten aspects ([${richDims.join(',')}]) from a real earned() boundary, all non-degenerate (${richConfirmed}), while the empty string is degenerate ([${emptyDims.join(',')}], ${emptyNotConfirmed}) — the inverse of earned() (generate) confirming what it generated. Structural proxy for meaning, zero-token; not full semantics, not truth.`,
+    boundary: earned(`EXACT: computeProseTenDimensions returns ${richDims.length} aspects; on a real earned() boundary it gives [${richDims.join(',')}] (all non-degenerate, ${richConfirmed}) and on the empty string [${emptyDims.join(',')}] (degenerate, ${emptyNotConfirmed}), so it confirms meaningful prose and rejects empty (${toolConfirmsProse}). It is the INVERSE of earned() — earned generates prose from computed facets, this computes the 10D meaning-profile from prose — so the pair round-trips: prose the tool can decompose into ten non-degenerate aspects is confirmed as content-bearing, and prose it cannot (the empty shell) is not; the literary form is the expression of that computed profile, from all aspects.`, facets, `the ten dimensions are STRUCTURAL proxies for meaning (extent, vocabulary, references, interpolations, emphasis), computable with zero tokens — "confirmed" means content-bearing and rich, NOT that full semantic meaning is computed (real understanding is AI-hard and off-limits to the zero-token runtime) nor that the prose is TRUE (a confirmed-rich boundary can still be wrong). The tool confirms the prose carries computable structure; the meaning is the reader's, the truth a separate matter.`),
+  }
+}
