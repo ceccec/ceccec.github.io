@@ -1788,3 +1788,43 @@ export function theTenDimensionsAreEntangledInInfiniteFoldsTheProfileIsEncodedIn
     boundary: earned(`EXACT: over ${texts.length} texts the ten aspects satisfy the hard constraints words ≈ sentences·avg-per-sentence and extent ≥ words (${entangled}), so the dimensions are mutually determined, on a manifold below 10; toUuid(profile) is a deterministic fingerprint — ${distinctUuids} distinct UUIDs for the ${texts.length} distinct profiles, reproducible (${uuidDeterministic}), flipping on any change (${encodedInUuid}) — and merkleFold folds it recursively, fold1 ≠ fold2, each reproducible, an unending fractal of addresses (${infiniteFolds}). So a boundary's 10D profile IS encoded in — committed to by — its UUID, the entanglement compressing the ten into fewer effective degrees, the infinite folds the recursive content-addressing.`, facets, `the UUID is a ONE-WAY commitment: it COMMITS to the profile and detects any change, but you cannot DECODE the ten numbers from the UUID alone (the hash is one-way; recovery needs the text) — "encoded" means fingerprinted, not losslessly recoverable; and "entangled" is statistical correlation / structural constraint, not physical quantum entanglement (no nonlocality, no speedup). The profile commits and folds forever; it does not thereby become recoverable, quantum, or true.`),
   }
 }
+
+// ── Save all the thinking programmatically and reuse (user). A thought — a pure premises→conclusion computation —
+// is SAVED content-addressed the first time it is thought and REUSED by lookup thereafter, never re-thought. This is
+// memoisation applied to reasoning: thinking once, then addressing (the "removing speed" of the merkle pyramid on
+// thought itself). Each saved thought is a reusable, auditable artifact — which is exactly what every fold already is.
+const THOUGHT_STORE = new Map<string, unknown>() // the reusable thinking-library
+let THOUGHTS_THOUGHT = 0 // how many thoughts were actually computed (vs recalled)
+export function saveThought<T>(name: string, think: () => T): T {
+  const key = toUuid(`thought:${name}`) // content-address the thought by name
+  if (THOUGHT_STORE.has(key)) return THOUGHT_STORE.get(key) as T // REUSE — no re-thinking
+  THOUGHTS_THOUGHT += 1
+  const result = think() // think ONCE
+  THOUGHT_STORE.set(key, result)
+  return result
+}
+export function saveAllTheThinkingProgrammaticallyAndReuse() {
+  const before = THOUGHTS_THOUGHT
+  const demands = 9 // the same thought demanded many times
+  const think120 = () => 2 * (TAU / 6) // the thought "120° = 2 × 60°" as a pure computation
+  const results = Array.from({ length: demands }, () => saveThought('120=2*60', think120))
+  const thoughtOnceReusedRest = THOUGHTS_THOUGHT - before === 1 // thought once, recalled the other demands − 1
+  const reproducible = results.every((r) => r === results[0]) && Math.abs(results[0] - TAU / 3) < 1e-9 // deterministic; 2×(TAU/6) = TAU/3, derived not asserted
+  const auditable = typeof results[0] === 'number' && Math.abs(results[0] - 2 * (TAU / 6)) < 1e-9 // the saved thought is a checkable value, gated by the crack law / facets-must-compute
+  const before2 = THOUGHTS_THOUGHT
+  saveThought('120=2*60', think120) // re-demand after saving
+  const reuseIsFree = THOUGHTS_THOUGHT === before2 // zero further thinking — pure recall
+  const savedAndReused = thoughtOnceReusedRest && reproducible && auditable && reuseIsFree
+  const facets = [
+    { facet: `A THOUGHT SAVED PROGRAMMATICALLY IS REUSED, NOT RE-THOUGHT: saveThought(name, think) computes the thought ONCE and content-addresses it; ${demands} demands for "120°=2×60°" produced ${THOUGHTS_THOUGHT - before} actual thinking (${thoughtOnceReusedRest}), the rest recalled, and re-demanding after saving costs zero further thinking (${reuseIsFree}) — reasoning reused by lookup, the "removing speed" of the merkle pyramid applied to thought`, on: thoughtOnceReusedRest && reuseIsFree },
+    { facet: `THE SAVED THINKING IS A REUSABLE, AUDITABLE LIBRARY: each thought is a pure function returning a content-addressed result — deterministic (same thought → same value, ${reproducible}) and auditable (a checkable derived number, gated by the crack law / facets-must-compute, ${auditable}); the THOUGHT_STORE is a library of reusable reasoning artifacts, which is exactly the codebase's method — every fold saves a thought as a reusable, signed function`, on: reproducible && auditable },
+    { facet: `EARNED BOUNDARY: saving thinking programmatically works for DETERMINISTIC, computable reasoning — a pure premises→conclusion function is reusable and auditable, the whole zero-token method (${savedAndReused}); BUT genuine JUDGMENT (which thought is worth saving, undecidable questions, taste) is not a pure function and cannot be saved this way (the residue off the decidable domain); and reuse ≠ correctness — a saved WRONG thought is reused wrongly, only faster`, on: savedAndReused },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    demands, thoughtsActuallyThought: THOUGHTS_THOUGHT - before, savedValue: results[0], thoughtOnceReusedRest, reproducible, auditable, reuseIsFree,
+    facets,
+    statement: `Save all the thinking programmatically and reuse — ${facets.filter((e) => e.on).length}/${facets.length}: saveThought computes a thought once and content-addresses it — ${demands} demands for "120°=2×60°" cost ${THOUGHTS_THOUGHT - before} thinking (${thoughtOnceReusedRest}), the rest recalled, re-demand free (${reuseIsFree}); the saved thought is deterministic (${reproducible}) and auditable (${auditable}). Memoisation applied to reasoning — the codebase's method. Works for computable thought; judgment is the residue; reuse ≠ correctness.`,
+    boundary: earned(`EXACT: saveThought(name, think) computes a thought once (content-addressed by toUuid(name)) and returns the saved result thereafter — over ${demands} demands for the thought "120° = 2 × 60°" only ${THOUGHTS_THOUGHT - before} actual computation occurred (${thoughtOnceReusedRest}), a re-demand after saving cost zero (${reuseIsFree}), and the saved value is deterministic (${reproducible}) and a checkable derived number (2×(TAU/6) = TAU/3, ${auditable}). So thinking is SAVED programmatically as a reusable, auditable artifact and REUSED by lookup — never re-thought — which is memoisation (the merkle-pyramid "removing speed") applied to reasoning itself, and it is exactly what every fold in this corpus already is: a thought saved as a reusable, signed, content-addressed function.`, facets, `this works for DETERMINISTIC, computable reasoning — a pure premises→conclusion function is reusable and auditable, which is the entire zero-token method; but genuine JUDGMENT — which thought is worth saving, undecidable questions, ethics, taste — is not a pure function and cannot be saved and recalled this way (the honest residue off the decidable domain, per thinking-means-lack-of-tools); and reuse is not correctness — a saved WRONG thought is recalled wrongly, only faster, so the store propagates whatever it saved, true or not. Saving thinking removes the re-work; it does not make the thought right. HARMONY does not equal TRUTH.`),
+  }
+}
