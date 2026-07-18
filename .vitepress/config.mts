@@ -324,6 +324,9 @@ export default defineConfig({
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
     ['link', { rel: 'icon', href: '/icon.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'apple-touch-icon', href: '/icon.svg' }],
+    // The print stylesheet is a SEPARATE file with media="print" — the screen layout skips it entirely
+    // (non-blocking, zero bytes in the bundle); computed from src and served as a dist artifact.
+    ['link', { rel: 'stylesheet', href: '/print.css', media: 'print' }],
     // hreflang alternates are PER PAGE (each page's own locale editions, absolute, x-default = English) —
     // emitted in transformPageData via pageHreflangAlternates; site-level locale-home links were wrong here.
     // The site-level JSON-LD now comes from the one template too: jsonLdTemplate

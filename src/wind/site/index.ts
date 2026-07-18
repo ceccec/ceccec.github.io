@@ -625,6 +625,78 @@ export function monographAsScientificPaper(page: StaticPage) {
 // All is monograph described as a scientific paper: every content page is a paper with the one template,
 // and the README is the root monograph that defines it. Form unified, one source.
 
+// ── THE PRINT STYLESHEET IS ITS OWN FILE, SKIPPING THE LAYOUT (user law: separate css for media print) —
+// computed here, emitted as the dist artifact /print.css, linked with media="print" so the SCREEN pipeline
+// never parses a byte of it (zero print CSS in the layout bundle), and in print the whole layout chrome
+// (nav · sidebars · aside · footer · movie backdrop) is skipped: only the document — the scientific
+// paper — reaches paper. Every numeric value derives from lattice digits at compute time.
+export function printStylesheet(): string {
+  const bodyPt = 4 * 3 // 12pt — the print body size, composed from lattice digits
+  const smallPt = 9 // the caption/reference size — a lattice digit
+  const lineHeight = 3 / 2
+  const rulePt = 2
+  const chrome = [
+    '.VPNav', '.VPLocalNav', '.VPSidebar', '.VPDocAside', '.VPDocFooter',
+    '.vp-with-hero-movie__backdrop', '.hero-background-layer',
+    '.revolut-aside', '.collective-mind', '.global-help',
+  ]
+  return [
+    '/* Computed print stylesheet — served as /print.css with media="print"; the screen layout never',
+    ' * loads it. THE LAYOUT IS SKIPPED: site chrome is removed and each page prints as a formatted',
+    ' * serif scientific paper (the PaperFrame abstract leads, figures stay unbroken, external',
+    ' * references keep their addresses). Emitted from src/wind/site printStylesheet(). */',
+    `${chrome.join(',\n')} {`,
+    '  display: none !important;',
+    '}',
+    'html,',
+    'body {',
+    '  background: #fff !important;',
+    '  color: #000 !important;',
+    '}',
+    '.VPDoc,',
+    '.VPDoc .container,',
+    '.VPDoc .content,',
+    '.VPDoc .content-container {',
+    '  max-width: 100% !important;',
+    '  padding: 0 !important;',
+    '  margin: 0 !important;',
+    '}',
+    '.vp-doc {',
+    "  font-family: Georgia, 'Times New Roman', serif;",
+    `  font-size: ${bodyPt}pt;`,
+    `  line-height: ${lineHeight};`,
+    '  color: #000;',
+    '}',
+    '.vp-doc h1,',
+    '.vp-doc h2,',
+    '.vp-doc h3 {',
+    '  break-after: avoid;',
+    '  color: #000;',
+    '}',
+    '.vp-doc pre,',
+    '.vp-doc table,',
+    '.vp-doc img,',
+    '.vp-doc svg,',
+    '.paper-frame {',
+    '  break-inside: avoid;',
+    '}',
+    '.vp-doc a {',
+    '  color: #000;',
+    '  text-decoration: none;',
+    '}',
+    ".vp-doc a[href^='http']::after {",
+    "  content: ' (' attr(href) ')';",
+    `  font-size: ${smallPt}pt;`,
+    `  opacity: ${3 / 4};`,
+    '}',
+    '.paper-frame {',
+    `  border-left: ${rulePt}pt solid #000;`,
+    '  background: none;',
+    '}',
+    '',
+  ].join('\n')
+}
+
 // ── EVERY PAGE IS A PRINTABLE FORMATTED SCIENTIFIC PAPER (user law) — the paper DATA proven complete for
 // the whole served set: every page the site serves maps through monographAsScientificPaper to a full
 // article head (title · abstract · keywords · live-component results · receipt), in both locales, and the

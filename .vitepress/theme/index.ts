@@ -11,7 +11,7 @@ import { registerShadcnUi } from '../lib/shadcn-ui.ts'
 import './hero-glass.css'
 import './universal-page.css'
 import './computed-typography.css'
-import './print.css'
+// print styles live in the SEPARATE /print.css dist artifact (media="print") — not in this bundle
 import UniversalPageTemplate from './components/UniversalPageTemplate.vue'
 import ModelCardPages from './components/ModelCardPages.vue'
 import TheoremPages from './components/TheoremPages.vue'
