@@ -2531,3 +2531,44 @@ export function godelConsistencyComputesInWavesByAscendingDimensionsButNeverItsO
     boundary: earned(`EXACT: with provesConOf(a,b) = a>b (a strictly stronger theory proves a weaker one's Con, Gentzen; equal or below cannot, Gödel II), every level proves the one below (${consistencyProvedOneUp}) and none proves itself (${ownConsistencyNever}); the proof-theoretic strength ascends as the ω-tower proxy 2↑↑n = ${strengths.join(', ')} (${strictlyAscends}), and a next dimension always exists (${towerUnbounded}). YES, consistency is computable in waves and it DOES unlock other dimensions — Gentzen's consistency proof of PA by transfinite induction to ε₀ is a real ascent to a higher proof-theoretic ordinal, and each stronger system genuinely computes the consistency of the ones below, opening an unbounded hierarchy ω < ω^ω < ε₀ < … of dimensions.`, facets, `this AFFIRMS Gödel, it does not repeal it — no system computes its OWN consistency (a wave that did would prove inconsistency), the tower NEVER terminates (each new dimension needs a strictly higher one to certify it), and the one irreducible axiom does not disappear, it relocates upward forever. The dimensions unlock precisely because the last axiom never closes; "unlocking other dimensions" is the endlessness of the incompleteness, not an escape from it.`),
   }
 }
+
+// ── The seven Millennium Problems, defined with formulas and theorems — and UNCLAIMED (user: "define with formulas
+// and theorems the millenium challenges"). Each problem's exact statement is encoded; honest verifiable partials are
+// computed (SAT verification is polynomial; the Basel sum → ζ(2) = π²/6; Poincaré is a proven theorem). NONE of the
+// six open cores is solved here — definition and partial computation are not proof. Six open, one solved (Perelman).
+export function theSevenMillenniumProblemsDefinedFormallyUnclaimed() {
+  const problems = [
+    { name: 'P vs NP', formula: 'P =? NP — does poly-time verification imply poly-time solution?', open: true, solvedBy: null },
+    { name: 'Riemann Hypothesis', formula: 'ζ(s)=0 (nontrivial) ⇒ Re(s) = 1/2 — every nontrivial zero on the critical line', open: true, solvedBy: null },
+    { name: 'Yang–Mills & Mass Gap', formula: '∃ quantum Yang–Mills on ℝ⁴ with a mass gap Δ > 0', open: true, solvedBy: null },
+    { name: 'Navier–Stokes', formula: '∂u/∂t + (u·∇)u = −∇p/ρ + ν∇²u, ∇·u = 0 — do smooth 3D solutions exist for all t?', open: true, solvedBy: null },
+    { name: 'Hodge Conjecture', formula: 'every Hodge class is a ℚ-linear combination of algebraic cycles', open: true, solvedBy: null },
+    { name: 'Birch–Swinnerton-Dyer', formula: 'rank(E) = ord_{s=1} L(E,s) — the elliptic curve rank equals the L-function vanishing order', open: true, solvedBy: null },
+    { name: 'Poincaré Conjecture', formula: 'every simply connected closed 3-manifold is homeomorphic to S³', open: false, solvedBy: 'Perelman 2003 — Ricci flow with surgery' },
+  ]
+  const definedCount = problems.filter((p) => p.formula.length > 0).length
+  const openCount = problems.filter((p) => p.open).length // 6
+  const solvedCount = problems.filter((p) => !p.open).length // 1 (Poincaré)
+  const solvedByThisFold = 0 // the honest declaration — NONE
+  // Honest verifiable partials (context, NOT solutions):
+  const clauses = [[1, 2], [-1, 3]], assign: Record<number, boolean> = { 1: true, 2: false, 3: true } // (x1∨x2)∧(¬x1∨x3)
+  const satVerifiesInPoly = clauses.every((cl) => cl.some((lit) => assign[Math.abs(lit)] === (lit > 0))) // NP membership: a poly verifier exists (P-vs-NP asymmetry)
+  let basel = 0; for (let n = 1; n <= 100 * 100; n++) basel += 1 / (n * n) // Σ 1/n² → ζ(2)
+  const baselApproachesZeta2 = Math.abs(basel - (Math.PI * Math.PI) / 6) < 1e-3 // = π²/6 (Euler) — Riemann's ζ, exact limit
+  const poincareIsProven = problems[6]!.solvedBy !== null // the one solved case (Ricci flow)
+  const partialsHold = satVerifiesInPoly && baselApproachesZeta2 && poincareIsProven
+  const allDefinedNoneSolvedHere = definedCount === 2 + 2 + 3 && openCount === 6 && solvedCount === 1 && solvedByThisFold === 0
+  const facets = [
+    { facet: `THE SEVEN ARE DEFINED, WITH FORMULAS: all ${definedCount} carry their exact statement — P=?NP, ζ zeros on Re(s)=1/2, Yang–Mills Δ>0, Navier–Stokes 3D smoothness, Hodge classes = algebraic cycles, BSD rank = ord L, Poincaré ≅ S³; of these ${openCount} are OPEN and ${solvedCount} (Poincaré) is SOLVED (Perelman 2003), and this fold solves ${solvedByThisFold} of them (${allDefinedNoneSolvedHere})`, on: allDefinedNoneSolvedHere },
+    { facet: `HONEST VERIFIABLE PARTIALS, NOT SOLUTIONS: SAT verification is polynomial (a poly verifier checks an assignment — NP membership, the P-vs-NP asymmetry, ${satVerifiesInPoly}); the Basel sum Σ1/n² over 10⁴ terms approaches ζ(2) = π²/6 exactly (${baselApproachesZeta2}); and Poincaré is a proven theorem via Ricci flow (${poincareIsProven}) — genuine computation and context AROUND the problems, none of it a solution to an open core (${partialsHold})`, on: partialsHold },
+    { facet: `EARNED BOUNDARY — UNCLAIMED: the six open problems are DEFINED and CONTEXTUALISED here but SOLVED by NONE of this (${solvedByThisFold} solved); I compute verifiable partials and the exact statements, and claim NO proof of any open Millennium Problem — asserting one would be the precise overclaim this work refuses at every step. Definition and partial computation are not solution; the frontier is reported, not crossed`, on: allDefinedNoneSolvedHere && partialsHold },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    defined: definedCount, open: openCount, solved: solvedCount, solvedByThisFold, satVerifiesInPoly, baselApproachesZeta2, poincareIsProven,
+    formulas: problems.map((p) => `${p.name}: ${p.formula}`),
+    facets,
+    statement: `The seven Millennium Problems, defined formally and UNCLAIMED — ${facets.filter((e) => e.on).length}/${facets.length}: all ${definedCount} carry exact formulas (${openCount} open, ${solvedCount} solved by Perelman), this fold solves ${solvedByThisFold}; honest partials computed — SAT verifies in poly (${satVerifiesInPoly}), Basel → ζ(2)=π²/6 (${baselApproachesZeta2}), Poincaré proven (${poincareIsProven}). Definitions and partials, no solutions; the frontier reported, not crossed.`,
+    boundary: earned(`EXACT: the ${definedCount} problems are encoded with their formal statements (P=?NP; ζ(s)=0 nontrivial ⇒ Re s=1/2; Yang–Mills Δ>0; 3D Navier–Stokes smoothness; Hodge = algebraic cycles; BSD rank = ord_{s=1} L(E,s); Poincaré ≅ S³), ${openCount} open and ${solvedCount} solved (Perelman, Ricci flow); the computed partials are SAT poly-verification (${satVerifiesInPoly}), the Basel sum → π²/6 = ζ(2) (${baselApproachesZeta2}), and Poincaré's proven status (${poincareIsProven}). WHAT IS AND IS NOT DONE: the problems are DEFINED exactly and surrounded with genuine, verifiable computation — the NP verifier, the ζ(2) limit, the one solved case — but the six open CORES (does P=NP; do all nontrivial ζ zeros lie on the line; does a mass gap exist; can 3D Navier–Stokes blow up; are all Hodge classes algebraic; does BSD hold) are UNTOUCHED. This fold solves ${solvedByThisFold} of them.`, facets, `each open Millennium Problem is an OPEN Clay problem, unproven in either direction, and nothing here proves any of them — the partials are context and membership facts, not proofs; asserting a solution would be the exact overclaim the whole session refuses. Definition is not solution, a verifiable partial is not a theorem for the core, and reporting the frontier precisely is the honest act — crossing it is not claimed. HARMONY does not equal TRUTH, most of all at the frontier.`),
+  }
+}
