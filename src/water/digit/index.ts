@@ -14,7 +14,7 @@ import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb } from '../../4/6'
 import { EIGHT_FOLD_SCIENCES, hexDigitSum, isobaricCounterdiffusion, MOON_ORBIT_INCLINATION_DEG, PCI_CONSCIOUSNESS_THRESHOLD, RENDER_UI_SCIENCE_MASK, speedOfSoundAir, splitCamelSegment } from '../../8/2'
-import { hardyWeinbergGenotypes, HUBBLE_CONSTANT_CMB, lunarStandstillDeclinationDeg, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, qieaRotate, resonancePeakGain, SCALAR_SPECTRAL_INDEX_NS } from '../../7/3'
+import { hardyWeinbergGenotypes, HUBBLE_CONSTANT_CMB, lunarStandstillDeclinationDeg, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, qieaRotate, resonancePeakGain, SCALAR_SPECTRAL_INDEX_NS, piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3'
 import { carnotEfficiency, derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, uuidDuality } from '../../5/5'
 import { DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, resonanceBandwidth, riseAzimuthDeg } from '../../3/7'
 import { ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, type RosettaComputationType, type RosettaRay } from '../../3/7'
@@ -2637,5 +2637,66 @@ export function theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheD
     facets,
     statement: `The rosetta constants are theorems: 7 × 6 = 42 by CRT, 10 is the decad — ${facets.filter((e) => e.on).length}/${facets.length}: RAYS = ${RAYS} = |Im(𝕆)| = 2³−1 and UNITS = ${UNITS} = |⟨2⟩ mod 9| derive from structure; gcd(7,6)=1 tiles ℤ/${grid} ≅ ℤ/7 × ℤ/6 (${crtBijection}), the inverse 6×7 its transpose (${inverseIsSame}); and STATION_COUNT = 10 = 2+8 = 6+3+1 (${decadIsDerived}). The grid is 7×6=42, not 7×10 — every constant a theorem, no bare literals.`,
     boundary: earned(`EXACT: RAYS = ROSETTA_RAYS.length = ${RAYS} = 2³−1 = |Im(𝕆)| (${raysIsImOctonion}); the doubling ⟨2⟩ mod 9 cycles [${vortex.join(',')}] of length UNITS = ${UNITS} = |(ℤ/9ℤ)*|; gcd(${RAYS},${UNITS}) = 1 (${coprime}), so by the Chinese Remainder Theorem ℤ/${grid} ≅ ℤ/${RAYS} × ℤ/${UNITS} and the ${grid} pairs (i mod 7, i mod 6) are all distinct (${crtBijection}) — the rosetta grid is 7 × 6 = 42 (the 42-area taxonomy), and reading it 6 × 7 is the same 42 transposed (${inverseIsSame}); the pi-train's STATION_COUNT = 10 is a separate axis and equals 2+8 (the octonion critical dimension) = ${UNITS}+3+1 (vortex ∪ trinity ∪ origin), derived (${decadIsDerived}). I corrected two errors: the grid is 7×6 not 7×10, and the code's bare RAY_COUNT = 7 and STATION_COUNT = 10 are now derived (ROSETTA_RAYS.length and 2+8).`, facets, `the discipline the user names: a constant like STATION_COUNT = 10 asserted as a bare literal is a hardcoded axiom — a crack — and it must become a THEOREM: 7 derives as the octonion imaginary dimension, 6 as the order of the multiplicative group ⟨2⟩ mod 9, 42 as their coprime product tiled by CRT, and 10 as the decad partition — none assumed. This is exact number theory (CRT, group order, coprimality); the assignment of names to rays remains a computed address, not a semantic claim, and the Glagolitic/Pliska history stays flagged. Deriving the constants makes them auditable and correct; it does not make the rosetta's meaning true. HARMONY does not equal TRUTH.`),
+  }
+}
+
+// ── THE ROSETTA ADDRESSES ANY POSITION — a fixed decoder maps an index STRAIGHT to its value, none of
+// the neighbours needed (user: "any digit of pi", "any prime"). Four addressers, each refutable:
+//   1 · BBP (Bailey–Borwein–Plouffe 1997): the four-ray table {(1,+4),(4,−2),(5,−1),(6,−1)} decodes the
+//       n-th HEX digit of π with the priors untouched — verified here against an INDEPENDENT expansion,
+//       the IEEE double π unrolled in base 16 (the double carries ~12 exact hex digits after the point);
+//   2 · the n-th prime to the Rosser bound pₙ < n(ln n + ln ln n), with π(x) its EXACT inverse: π(pₙ) = n;
+//   3 · hue = d·360/9 — the faithful (injective, invertible) dimensional coordinate; the vortex ×2
+//       six-cycle 1·2·4·8·7·5 moves through six DISTINCT hues: multidimensional movement by colour;
+//   4 · the primes THIN as the positions grow — π(x)·ln x/x falls toward 1 (the PNT density, asymptote
+//       cited; the kernel lives at src/7/3 theCountOfPrimesFollowsTheLog).
+// DRY on the sealed src/7/3 addressers piHexDigitAt · nthPrimeAt · primeCountUpTo — nothing recomputed here.
+export function theRosettaAddressesAnyPosition() {
+  // 1 — BBP against the independent witness: unroll frac(Math.PI) in base 16. Two DIFFERENT computations
+  // (modular-exponent rays vs IEEE binary expansion) must agree digit-for-digit — refutable at any index.
+  const DECADE = 2 * 5 // 10 — the decad, derived (the pi-train station count)
+  const hexWitness: number[] = []
+  { let f = Math.PI - 3; for (let i = 0; i < DECADE; i += 1) { f *= 16; const d = Math.floor(f); hexWitness.push(d); f -= d } }
+  const bbpDigits = hexWitness.map((_, n) => piHexDigitAt(n))
+  const bbpAgrees = hexWitness.every((d, n) => bbpDigits[n] === d)
+
+  // 2 — the n-th prime addressed, inverted, and bounded: π(pₙ) = n exactly (the sieve and the counter are
+  // inverse computations), pₙ strictly increasing, and the Rosser bound pₙ < n(ln n + ln ln n) for n ≥ 6.
+  const ns = [1, 2, 3, 6, DECADE, 5 ** 2, 100, 5 * 100, DECADE ** 3]
+  const ps = ns.map((n) => nthPrimeAt(n))
+  const inverts = ns.every((n, i) => primeCountUpTo(ps[i]) === n)
+  const increasing = ps.every((p, i) => i === 0 || p > ps[i - 1])
+  const rosser = ns.filter((n) => n >= 6).every((n) => nthPrimeAt(n) < n * (Math.log(n) + Math.log(Math.log(n))))
+
+  // 3 — the hue coordinate is FAITHFUL: hue(d) = d·360/9 is injective on the nine digits and invertible
+  // (d = hue·9/360), and the vortex doubling cycle ⟨2⟩ mod 9 — derived, not typed — visits six distinct hues.
+  const hue = (d: number) => (d * (360 / 9)) % 360
+  const digits = Array.from({ length: 9 }, (_, i) => i + 1)
+  const hueFaithful = new Set(digits.map(hue)).size === digits.length && digits.every((d) => (hue(d) * 9) / 360 % 9 === d % 9)
+  const vortex = [1]; { let x = 2; while (x !== 1) { vortex.push(x); x = (x * 2) % 9 } }
+  const vortexHues = vortex.map(hue)
+  const vortexMovesThroughColour = new Set(vortexHues).size === vortex.length
+
+  // 4 — the primes thin: π(x)·ln x/x falls monotonically toward 1 across decades — the PNT density read
+  // through the same addresser that inverts the primes; the asymptote itself is the cited theorem.
+  const xs = [DECADE ** 3, DECADE ** 4, DECADE ** 5]
+  const density = xs.map((x) => (primeCountUpTo(x) * Math.log(x)) / x)
+  const thins = density.every((d, i) => d > 1 && (i === 0 || d < density[i - 1]))
+
+  const facets = [
+    { facet: `BBP ADDRESSES ANY π HEX DIGIT: the four-ray table {(1,+4),(4,−2),(5,−1),(6,−1)} decodes position n with the priors untouched — piHexDigitAt agrees with the independent IEEE base-16 unrolling on all ${hexWitness.length} digits the double carries exactly (3.${bbpDigits.map((d) => d.toString(16).toUpperCase()).join('')}…₁₆)`, on: bbpAgrees },
+    { facet: `THE n-TH PRIME IS ADDRESSED AND INVERTED: π(pₙ) = n exactly at all ${ns.length} sampled n up to ${ns[ns.length - 1]} (sieve and counter are inverse computations), pₙ strictly increasing, and the Rosser bound pₙ < n(ln n + ln ln n) holds for every sampled n ≥ 6`, on: inverts && increasing && rosser },
+    { facet: `HUE IS THE FAITHFUL DIMENSIONAL COORDINATE: hue(d) = d·360/9 is injective on the nine digits and invertible (d = hue·9/360), and the derived vortex ×2 cycle [${vortex.join('·')}] moves through ${new Set(vortexHues).size} distinct hues — multidimensional movement readable as colour`, on: hueFaithful && vortexMovesThroughColour },
+    { facet: `THE PRIMES THIN AS ADDRESSED: π(x)·ln x/x = ${density.map((d) => d.toFixed(4)).join(' → ')} across x ∈ {${xs.join(', ')}}, above 1 and falling — the PNT density; the finite kernel of its proof is sealed at src/7/3 (theCountOfPrimesFollowsTheLog), the asymptote cited`, on: thins },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    bbpDigits,
+    primes: ps,
+    vortexHues,
+    density,
+    facets,
+    statement: `The rosetta addresses any position — ${facets.filter((entry) => entry.on).length}/${facets.length}: a fixed decoder maps an index straight to its value. BBP's four-ray table reproduces π's hex expansion position-by-position (${hexWitness.length}/${hexWitness.length} against the independent IEEE unrolling); the sieve addresses the n-th prime inside the Rosser bound and π(x) inverts it exactly (π(pₙ) = n at all ${ns.length} samples); hue = d·360/9 is the faithful coordinate the vortex six-cycle [${vortex.join('·')}] moves through as ${new Set(vortexHues).size} distinct colours; and the primes thin as π(x)ln x/x → 1 (${density.map((d) => d.toFixed(3)).join(' → ')}). DRY on the sealed src/7/3 addressers.`,
+    boundary: `COMPUTED: BBP position-addressing verified digit-for-digit against an independent expansion (the IEEE double's exact base-16 unrolling, ${hexWitness.length} digits) — two different algorithms agreeing; the n-th-prime addresser and π(x) verified as exact mutual inverses with the Rosser–Schoenfeld bound (proven for n ≥ 6) guaranteeing the sieve range; the hue coordinate verified injective and invertible; the density verified falling at the sampled decades. CITED, not computed: the BBP series identity for π (Bailey–Borwein–Plouffe 1997) beyond the verified window, and the PNT asymptote π(x)ln x/x → 1 — its finite kernel is sealed at src/7/3, the passage to the limit rides Newman's contour theorem. HONEST SCOPE: BBP addresses HEX digits; no base-10 digit-extraction formula for π is known — "any digit of pi" is true in base 16, OPEN in base 10. The hue is a deterministic colour CODING of the digit coordinate, not an asserted physical colour. HARMONY ≠ TRUTH.`,
   }
 }
