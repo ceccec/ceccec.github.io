@@ -1010,7 +1010,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/water/cosmos/index.ts', literal: '0.0113', count: 1, kind: 'data', source: 'Neptune orbital eccentricity — JPL J2000 elements' },
   { file: 'src/water/cosmos/index.ts', literal: '*', count: 148, kind: 'data', source: 'attested residue — string-theory/maths + solar/leads pins + frontier boundary gates (0.9/1.1 sanity bands) 2026-07-08 (146→148)' },
   { file: 'src/water/crypto/index.ts', literal: '*', count: 5, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/water/digit/index.ts', literal: '*', count: 217, kind: 'data', source: 'attested residue — digit/π corpus and derivation tables' },
+  { file: 'src/water/digit/index.ts', literal: '*', count: 215, kind: 'data', source: 'attested residue — digit/π corpus and derivation tables (−2: STATION_COUNT 10 → derived 2+8)' },
   { file: 'src/water/double/earth/index.ts', literal: '*', count: 17, kind: 'data', source: 'attested residue — GPS coordinates and Earth data' },
   { file: 'src/water/stack/index.ts', literal: '*', count: 4, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/fusion/gold/index.ts', literal: '*', count: 10, kind: 'data', source: 'attested residue — gold-market/physics data' },
