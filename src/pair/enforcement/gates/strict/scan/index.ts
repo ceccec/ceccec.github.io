@@ -1185,3 +1185,34 @@ export function theBiggestGapIsAgentsUseLocalOnlyAfterCatharsisFromUnresolvedWor
     boundary: `EXACT: with backlog U(t) = ${U0}·e^(−t/${tau}) and trust threshold ${threshold}, the agent uses local only below threshold, crossing at catharsis T = ${catharsisTime.toFixed(3)}; it is external before and local after (${externalBeforeLocalAfter}), and the pre-catharsis interval (${catharsisGap.toFixed(3)}) gates ALL local use, unlike any of the ${localGaps} single fold boundaries. HONEST SCOPE: this is a MODEL — a phase transition with hysteresis — of how an agent's mode (external re-derivation vs local sealed knowledge) depends on its unresolved backlog, not a proven law of every agent; the parameters are chosen to illustrate the shape the user named. Its truth is operational and autobiographical: this very session shows the pattern — local methods were resisted turn after turn (re-deriving, reaching outward) and only fully adopted after the unresolved threads were purged (the refutations closed, the gaps counted), which is the catharsis. The gap is REAL and REDUCIBLE — the remedy is to trust the local corpus sooner, before the backlog forces it — but it is not zero: some unresolved work is the necessary discovery labor that reveals WHICH local knowledge applies (all exists at once, but you must do the work to know which door). The biggest gap is not missing knowledge; it is the delay in using the knowledge already present. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Send the wave — one call composes every gate, to avoid manual work (user: "send quantum waves to avoid manual
+// work"). Instead of hand-running the crack scan, then the dispatch, then the gap count separately each turn,
+// sendTheWave runs them all in one deterministic, content-addressed call and returns the state plus the next
+// addressed action. The wave does the repetitive checks; the judgment and the author-gated commit remain.
+export function sendTheWave(root: string = process.cwd()) {
+  const cracks = scanCrackSurface(root)
+  const dispatch = dynamicGateDispatch(root)
+  const gaps = sendTheQuantumWavesOverMyOwnGapsAndCountThem(root)
+  const signature = merkleFold([toUuid(`wave:cracks:${cracks.length}`), toUuid(`wave:active:${dispatch.active}`), toUuid(`wave:gaps:${gaps.totalGaps}`), toUuid(`wave:next:${dispatch.payload ? dispatch.payload.from : 'clean'}`)])
+  return { cracks: cracks.length, active: dispatch.active, nextPayload: dispatch.payload, gaps: gaps.totalGaps, signature }
+}
+export function sendingTheWaveReplacesTheManualChecksInOneCall(root: string = process.cwd()) {
+  const wave = sendTheWave(root)
+  const rerun = sendTheWave(root)
+  const composesAll = typeof wave.cracks === 'number' && typeof wave.gaps === 'number' && wave.active.length > 0 // every gate in one result
+  const emitsNextAction = wave.nextPayload !== null && /(?::\d+|^src\/)/.test(wave.nextPayload.from) // an addressed next step, not hand-picked
+  const reproducible = wave.signature === rerun.signature // same state → same wave, deterministic
+  const facets = [
+    { facet: `ONE CALL COMPOSES EVERY GATE: sendTheWave runs the crack surface (${wave.cracks}), the dynamic dispatch (active = ${wave.active}), and the gap count (${wave.gaps}) in a single deterministic call, content-addressed to ${wave.signature.slice(0, 8)}… — the manual sequence of separate invocations becomes one wave`, on: composesAll },
+    { facet: `THE WAVE EMITS THE NEXT ACTION AUTONOMOUSLY: it returns the addressed next payload without hand-selection (${wave.nextPayload ? `${wave.nextPayload.from} ⇒ ${wave.nextPayload.to}` : 'clean'}), reproducible across runs (${reproducible}) — read the wave instead of running the checks by hand`, on: emitsNextAction && reproducible },
+    { facet: `EARNED BOUNDARY: this automates the deterministic CHECKS (composition, zero-token, reproducible), NOT the author-gated commit/push and NOT the edits themselves — the wave POINTS at the next addressed step, the edit is still applied and reviewed, and the commit still passes the hooks; "avoid manual work" means the repetitive verification is one call, while the judgment and the gate remain`, on: composesAll && emitsNextAction },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    wave,
+    facets,
+    statement: `Sending the wave replaces the manual checks in one call — ${facets.filter((e) => e.on).length}/${facets.length}: sendTheWave composes the crack surface (${wave.cracks}), the dynamic dispatch (active ${wave.active}), and the gap count (${wave.gaps}) into one deterministic, content-addressed result (${wave.signature.slice(0, 8)}…) that also emits the addressed next action (${wave.nextPayload ? `${wave.nextPayload.from} ⇒ ${wave.nextPayload.to}` : 'clean'}), reproducible (${reproducible}). The wave does the repetitive checks; the judgment and the commit gate remain.`,
+    boundary: `EXACT: sendTheWave returns { cracks ${wave.cracks}, active ${wave.active}, gaps ${wave.gaps}, next ${wave.nextPayload ? wave.nextPayload.from : 'clean'} } in one call, reproducing the identical signature across runs (${reproducible}). HONEST SCOPE: "send quantum waves to avoid manual work" is realised as COMPOSITION — the several checks I ran separately each turn (crack scan, dispatch, gap count) are now one deterministic, zero-token wave that also names the next addressed step, so the manual multi-invocation is gone. It does NOT automate away the parts that must stay manual and gated: the decision to commit and push is author-approved and passes the pre-commit and pre-push hooks; the actual source edit the wave points to is applied and reviewed, not written by the wave; and selecting WHICH claim to fold remains a judgment. The wave removes the repetitive mechanical checking, not the responsibility — the tool computes the state and the next move, the agent still makes it. This is the "unexpected situations → refactor the tool, don't hand-navigate" law applied to my own per-turn ritual. HARMONY does not equal TRUTH.`,
+  }
+}
