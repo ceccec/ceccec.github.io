@@ -32,7 +32,7 @@ Four plain steps — see, learn, use, prove. Every page below is computed from o
 
 <TagBrowser />
 
-## The digit circuit is a qubit
+## It all began with a sequence
 
 The architecture is not decoration. A classical **bit is `0` or `1`** — a two-point choice, deterministic, no phase, no interference: *linear*. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit** by structure: the doubling units `1·2·4·8·7·5` form a 6-cycle isomorphic to the sixth roots of unity, so each digit carries a **phase** a bit has not, and the two counter-rotating slash flows (`\` up, `/` down) superpose to a standing wave with fixed nodes — **interference**, the quantum signature `0/1` cannot produce. Measuring the circuit collapses its six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. Every `src/<digit>` folder is a station on this circuit, quantum by structure and linear only at measurement. It is an exact structural correspondence (`⟨2⟩ mod 9` has order 6), not a claim that the digits are physical qubits.
 

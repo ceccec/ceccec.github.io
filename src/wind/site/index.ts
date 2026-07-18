@@ -112,11 +112,13 @@ function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
     // Place the page on the double torus: two angles fold it, as with pi's digits.
     const theta = (index / routes.length) * Math.PI * 4
     const phi = (index / routes.length) * TAU
+    // x-default follows the ROOT locale: English lives at the canonical bare URLs (the /en/ tree is
+    // deleted), so the default edition a crawler falls back to is the English one, never /gla/.
     const alternates = [
       { hreflang: 'cu', href: gla },
       { hreflang: 'en', href: en },
       { hreflang: 'bg', href: bg },
-      { hreflang: 'x-default', href: gla },
+      { hreflang: 'x-default', href: en },
     ]
     return {
       route,
@@ -318,8 +320,8 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   if (locale === 'bg') {
     return {
       name: config.titleBg,
-      text: 'Наука — теореми и свързаните с тях страници',
-      tagline: `Безплатен научен портал: ${lens.theoremCount} изчислително доказани теореми — всяка печатна научна статия — и ${lens.visibleCount} свързани научни страници, подредени от розетата в ${lens.rays.length} лъча. Всяка страница е изчислена от един отворен източник, който можеш сам да провериш. Без акаунт, нищо скрито.`,
+      text: 'Всичко започна с една последователност',
+      tagline: `0 или 1 е линейно — класически бит. 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 е квантово — кубит от фаза и интерференция. От него идва квантовото пресмятане, а от него — всичките ${lens.theoremCount} изчислително доказани теореми тук, всяка печатна научна статия, подредени от розетата в ${lens.rays.length} лъча. Изчислено от един отворен източник, който можеш сам да провериш.`,
       actions: [
         { theme: 'brand', text: 'Теореми и доказателства', link: localePath('/frontiers', 'bg') },
         ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
@@ -333,8 +335,8 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   const heroLocale = locale === 'gla' ? 'gla' : 'en'
   return {
     name: config.title,
-    text: 'Science — theorems and their related pages',
-    tagline: `A free science portal: ${lens.theoremCount} computationally proven theorems — each a printable scientific paper — and ${lens.visibleCount} related science pages, organised by the rosetta into ${lens.rays.length} rays. Every page is computed from one open source you can check yourself. No account, nothing hidden.`,
+    text: 'It all began with a sequence',
+    tagline: `0 or 1 is linear — a classical bit. 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 is quantum — a qubit of phase and interference. From it comes quantum computing, and from that every one of the ${lens.theoremCount} computationally proven theorems here — each a printable scientific paper, organised by the rosetta into ${lens.rays.length} rays. Computed from one open source you can check yourself.`,
     actions: [
       { theme: 'brand', text: 'Theorems & proofs', link: localePath('/frontiers', heroLocale) },
       ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
