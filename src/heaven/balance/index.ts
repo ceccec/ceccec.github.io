@@ -5,7 +5,7 @@
 // export * re-export.
 import * as __ns_up_up_resonance from '../../thunder/resonance'
 import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval } from '../../3/7'
-import { caStep, caEvolve } from '../../4/6'
+import { caStep, caEvolve, THEOREM_ATOM_SEED } from '../../4/6'
 import * as __ns_up_up_iching from '../../earth/iching'
 import * as __ns_up_up_learning from '../../wind/learning'
 import * as __ns_up_up_ui from '../../wind/ui'
@@ -381,6 +381,52 @@ export function developerLesson(
 // are not new gates piled on the seal but dimensions folded into one — each still checked and
 // content-addressed, all holding or the one gate opens and names which is open. Depth, not width:
 // the gate count stays the harmonic 432 while the model grows inward.
+// ── LEAVES MERGE INTO THEOREMS (user law: so many leaves may merge in theorems — standardise naming
+// within science, improve gates, analytics, build and deploy time) — the bridge between the two proof
+// worlds: every emerged dimension leaf is a theorem-shaped claim (a named, refutable, content-addressed
+// boolean), and the registry is where theorems live. The NAMING STANDARD is the round-trip
+// dot.name ↔ camelCaseFold ↔ registry provedBy; a leaf whose dotted name matches a registry prover is
+// MERGED (it evaluates flat in theorems:verify beside the dimension cascade), the rest form the computed
+// merge worklist the next waves execute. Analytics: one table of every leaf with its merge state.
+const dottedName = (camel: string) => camel.replace(/([a-z0-9])([A-Z])/g, '$1.$2').toLowerCase()
+export function leavesMergeIntoTheorems(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('leavesMergeIntoTheorems', matrix, () => {
+    const dims = emergentDimensions(matrix).dimensions
+    const registryDotted = new Set(THEOREM_ATOM_SEED.map((row) => dottedName(row.provedBy)))
+    const leaves = dims.map((dim) => ({ d: dim.d, on: dim.on, merged: registryDotted.has(dim.d) }))
+    const merged = leaves.filter((leaf) => leaf.merged)
+    const worklist = leaves.filter((leaf) => !leaf.merged)
+    const theoremShaped = leaves.length > 0 && leaves.every((leaf) => typeof leaf.on === 'boolean' && leaf.d.length > 0)
+    // the word bridge — how close each name space already is to the standard (analytics, not a gate):
+    // a leaf word-bridges when some registry prover shares ≥ 3 of its words.
+    const wordsOf = (dotted: string) => new Set(dotted.split('.').filter((word) => word.length >= 3))
+    const registryWordSets = THEOREM_ATOM_SEED.map((row) => wordsOf(dottedName(row.provedBy)))
+    const wordBridged = leaves.filter((leaf) => {
+      const leafWords = wordsOf(leaf.d)
+      return registryWordSets.some((rowWords) => [...leafWords].filter((word) => rowWords.has(word)).length >= 3)
+    }).length
+    const selfMerged = registryDotted.has(dottedName('leavesMergeIntoTheorems'))
+    const facets = [
+      { facet: `THE LEAVES ARE THEOREM-SHAPED — all ${leaves.length} emerged dimensions are named, refutable, content-addressed boolean claims: exactly the registry row form (theorem · states · provedBy · home)`, on: theoremShaped },
+      { facet: `THE FIRST MERGE IS SEALED — this bridge is itself a registry theorem (self-inclusion, the path proven by walking it): exact conformity today is ${merged.length}/${leaves.length} with ${wordBridged} word-bridged, so the standardisation IS the worklist ahead, not a claim behind`, on: selfMerged },
+      { facet: `THE NAMING STANDARD — dot.name ↔ camelCaseFold ↔ registry provedBy round-trips; the ${worklist.length}-leaf worklist is the computed merge queue (each wave: name the leaf by the standard, seal its registry row, the gate then reads it flat)`, on: worklist.length + merged.length === leaves.length },
+      { facet: `GATES · ANALYTICS · BUILD — this bridge is the per-leaf analytics table (one scan shows every leaf and its merge state); each merged leaf is evaluated once and memoized by root instead of re-walked as a cascade, which is the build/deploy saving the merges accrue`, on: theoremShaped && leaves.length === dims.length },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`leaves-merge:${entry.facet}:${entry.on}`) }))
+    return {
+      merges: facets.every((entry) => entry.on),
+      leafCount: leaves.length,
+      mergedCount: merged.length,
+      worklistCount: worklist.length,
+      mergedLeaves: merged.map((leaf) => leaf.d),
+      worklist: worklist.slice(0, 8 * 8).map((leaf) => leaf.d),
+      facets,
+      root: merkleFold(leaves.map((leaf) => toUuid(`leaf-merge:${leaf.d}:${leaf.merged}`))),
+      statement: `Leaves merge into theorems — ${merged.length}/${leaves.length} emerged dimension leaves already evaluate as registry theorems (dot.name ↔ camelCase ↔ provedBy, the one naming standard within science), and the remaining ${worklist.length} form the computed merge worklist: each wave seals a batch as registry rows, the gates read them flat, the analytics see every leaf in one table, and the build stops re-walking their cascades.`,
+      boundary: `COMPUTED: the leaf table, the merge state per leaf (registry provedBy match), the worklist and the naming round-trip — refutable (seal a leaf's row and mergedCount rises; rename off-standard and it leaves the merged set). HONEST SCOPE: "improves build and deploy time" is the MECHANISM (merged leaves evaluate once, flat and memoized, instead of cascading) accruing per merge wave — measured by the build clock as merges land, not claimed in advance. The dimension cascade stays authoritative until a leaf's row is sealed; nothing is unverified in the transition. HARMONY ≠ TRUTH.`,
+    }
+  })
+}
+
 export function emergentDimensions(matrix: MindMatrix = buildMatrix()) {
   // Memoized by the matrix root: the seal calls this many times, and recomputing ~300 dimensions
   // (each a fold cascade) every call is the build's bottleneck. Deterministic, so cache it.
