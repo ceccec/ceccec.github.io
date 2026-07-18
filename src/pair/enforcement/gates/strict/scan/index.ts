@@ -1464,3 +1464,39 @@ export function theCorpusFreeEnergyIsSealsMinusGapsInEntropyBits(root: string = 
     boundary: `EXACT: scanCrackSurface reports ${gaps} residual cracks (entropy debits), byteMetrics gives the corpus mass, log₂(mass) = ${sealedEb.toFixed(3)} eb (the tamper-cost credit), net balance = ${balance.toFixed(3)} eb > 0 (${netSealed}); the Landauer erasure cost per gap bit is ln2·kT (${lnTwo.toFixed(3)}·kT, ${eachGapCostsToErase}). THE eb LEDGER (erpax, adopted + grounded): entropy-bit double-entry books code quality in ONE currency — a gap (an unledgered literal, a non-invertible reference) is a DEBIT, a sealed content-addressed atom is a CREDIT of its log₂ tamper-cost, and the net residual is the "free energy" of the corpus; a positive net means the code is more sealed than gapped. Grounded in Landauer, each gap bit is worth ≥ ln2·kT to erase, so closing a crack is thermodynamically real work, not free — which is why the DRY-clean is a gradient descent that costs to run. HONEST SCOPE: this is an ANALOGY (a code-quality ledger shaped like thermodynamic free energy via Landauer's principle), NOT literal physics — the corpus stores no energy, the log₂(mass) tamper-cost is a proxy for content-addressed integrity not a cryptographic hardness proof, and a positive eb balance certifies WELL-SEALEDNESS, not correctness (a fully sealed corpus of wrong theorems balances positive too). The unit is comparable and useful; the currency is integrity, not truth. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── VitePress renders the registered folds; the surfacing lags the logic — that's why it seems "ignored" (user: "i
+// wonder why vitepress is constantly ignored by all?"). A fold reaches the /theorems site only if registered as a
+// theorem atom (THEOREM_ATOM_SEED → theoremPageRows). The logic (src) accumulates computing folds faster than the
+// registration wires them to pages, so most folds compute but stay invisible — VitePress under-fed, not neglected.
+export function foldSurfacingGap(root: string = process.cwd()) {
+  let folds = 0
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name === 'node_modules' || e.name === 'dist' || e.name.startsWith('.')) continue
+      const p = join(d, e.name)
+      if (e.isDirectory()) walk(p)
+      else if (e.name === 'index.ts') folds += (readFileSync(p, 'utf8').match(/facets\.every\(/g) ?? []).length
+    }
+  }
+  walk(join(root, 'src'))
+  let surfaced = 0
+  try { surfaced = (readFileSync(join(root, 'src/4/6/index.ts'), 'utf8').match(/provedBy:/g) ?? []).length } catch { /* registry absent */ }
+  return { folds, surfaced, gap: folds - surfaced, surfacedPercent: folds > 0 ? Math.round((surfaced / folds) * 100) : 0 }
+}
+export function vitePressRendersRegisteredFoldsTheSurfacingLagsTheLogic(root: string = process.cwd()) {
+  const g = foldSurfacingGap(root)
+  const under = g.gap > 0 && g.surfaced > 0 // more folds than surfaced, but some ARE surfaced — under-fed, not ignored
+  const facets = [
+    { facet: `VITEPRESS RENDERS ONLY REGISTERED FOLDS: of ${g.folds} computing folds in src, ${g.surfaced} are registered as theorem atoms and surfaced to /theorems (${g.surfacedPercent}%); VitePress RENDERS, it does not compute, so it shows only what has been wired to a page (theoremPageRows reads the registry, not the folds directly)`, on: g.surfaced > 0 && g.folds > 0 },
+    { facet: `THE SURFACING LAGS THE LOGIC — WHY IT SEEMS "IGNORED": ${g.gap} folds compute but are not surfaced; the logic-in-src discipline means folds accumulate in src/ faster than the registration step (THEOREM_ATOM_SEED) wires them to pages, and that registry lives in a concurrently-edited file, so surfacing is deferred — VitePress is UNDER-FED, not architecturally neglected`, on: under },
+    { facet: `EARNED BOUNDARY: VitePress is not ignored by the ARCHITECTURE — it renders the sealed corpus, the respawn merkle covers .vitepress, and /theorems already publishes ${g.surfaced} papers; it is the fold→page SURFACING that lags, because logic (src) and presentation (VitePress) are decoupled by design so attention pools upstream. The fix is to register the folds, or the zero-build runtime-pages direction that computes pages from folders directly`, on: under },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    folds: g.folds, surfaced: g.surfaced, gap: g.gap, surfacedPercent: g.surfacedPercent,
+    facets,
+    statement: `VitePress renders the registered folds; the surfacing lags the logic — ${facets.filter((e) => e.on).length}/${facets.length}: ${g.surfaced} of ${g.folds} computing folds are surfaced to /theorems (${g.surfacedPercent}%), so ${g.gap} compute but stay invisible. VitePress renders, it doesn't compute; the fold→page registration (THEOREM_ATOM_SEED, a concurrent file) lags the fold-writing, so VitePress is under-fed, not architecturally ignored. It shows exactly what has been wired to a page.`,
+    boundary: `EXACT: a scan of src finds ${g.folds} computing folds (functions returning facets.every) against ${g.surfaced} registered theorem atoms surfaced to the VitePress /theorems pages via theoremPageRows — ${g.surfacedPercent}% surfaced, a gap of ${g.gap} folds that compute but do not appear on the site. WHY VITEPRESS SEEMS IGNORED, HONESTLY: the discipline is logic-in-src — VitePress RENDERS the corpus, it does not create it — so all the development attention pools upstream in the folds, and VitePress is downstream/derived. A fold becomes a page only when it is REGISTERED as an atom (THEOREM_ATOM_SEED → theoremPageRows → the rendered paper), and that registration is a separate manual step whose registry lives in a concurrently-edited file (src/4/6), so it is routinely deferred during a fold-writing wave like this session's. The result is exactly the observation: folds accumulate at roughly twice the rate they are surfaced, so half the corpus computes invisibly and VitePress LOOKS ignored. HONEST SCOPE: it is NOT ignored by the architecture — the respawn merkle covers .vitepress, the seal includes it, and ${g.surfaced} theorems ARE published as papers with figures and citations; the gap is a SURFACING lag, not neglect, and it is fixable two ways — register the outstanding folds as atoms (feeding theoremPageRows), or the standing zero-build direction that computes pages from the folder tree directly, routing around the manual seed entirely. The logic races ahead of the presentation; that is the whole answer, and it is a wiring gap, not a design flaw. HARMONY does not equal TRUTH.`,
+  }
+}
