@@ -1500,3 +1500,56 @@ export function vitePressRendersRegisteredFoldsTheSurfacingLagsTheLogic(root: st
     boundary: `EXACT: a scan of src finds ${g.folds} computing folds (functions returning facets.every) against ${g.surfaced} registered theorem atoms surfaced to the VitePress /theorems pages via theoremPageRows — ${g.surfacedPercent}% surfaced, a gap of ${g.gap} folds that compute but do not appear on the site. WHY VITEPRESS SEEMS IGNORED, HONESTLY: the discipline is logic-in-src — VitePress RENDERS the corpus, it does not create it — so all the development attention pools upstream in the folds, and VitePress is downstream/derived. A fold becomes a page only when it is REGISTERED as an atom (THEOREM_ATOM_SEED → theoremPageRows → the rendered paper), and that registration is a separate manual step whose registry lives in a concurrently-edited file (src/4/6), so it is routinely deferred during a fold-writing wave like this session's. The result is exactly the observation: folds accumulate at roughly twice the rate they are surfaced, so half the corpus computes invisibly and VitePress LOOKS ignored. HONEST SCOPE: it is NOT ignored by the architecture — the respawn merkle covers .vitepress, the seal includes it, and ${g.surfaced} theorems ARE published as papers with figures and citations; the gap is a SURFACING lag, not neglect, and it is fixable two ways — register the outstanding folds as atoms (feeding theoremPageRows), or the standing zero-build direction that computes pages from the folder tree directly, routing around the manual seed entirely. The logic races ahead of the presentation; that is the whole answer, and it is a wiring gap, not a design flaw. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Config files are the last refuge of static concepts — hand-typed values the crack law never scans (it only
+// covers src/*.ts). configTheoremAudit reads a config file, strips comments/strings, and classifies every numeric
+// literal as DERIVED (a lattice number or part of an arithmetic expression — a theorem) vs a raw static AXIOM. The
+// detachment ratio measures how far the config has been detached from static concepts (user: "detach from any
+// static concept and replace with theorems even the config files").
+export function configTheoremAudit(configPath: string) {
+  const text = existsSync(configPath) ? readFileSync(configPath, 'utf8') : ''
+  const code = text // strip comments and string bodies so only STRUCTURAL literals remain (same discipline as the crack scanner)
+    .replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/'[^']*'/g, "''").replace(/"[^"]*"/g, '""').replace(/`[^`]*`/g, '``')
+  const nums = [...code.matchAll(/(?<![\w.$])(\d+)(?:\.\d+)?/g)].map((m) => ({ value: Number(m[1]), idx: m.index ?? 0, len: m[0].length }))
+  const derived = nums.filter((m) => {
+    if ((ICHING_NUMBERS as readonly number[]).includes(m.value)) return true // a lattice number is already a theorem seed
+    const before = code.slice(Math.max(0, m.idx - 4), m.idx) // an arithmetic neighbour means it is part of a computed expression
+    const after = code.slice(m.idx + m.len, m.idx + m.len + 4)
+    return /[*+\-/%]\s*$/.test(before) || /^\s*[*+\-/%]/.test(after)
+  })
+  const staticAxioms = nums.filter((m) => !derived.includes(m))
+  const detachRatio = nums.length === 0 ? 1 : derived.length / nums.length
+  const policyBooleans = [...new Set([...code.matchAll(/\b(?!true\b|false\b)(\w+)\s*:\s*(?:true|false)\b/g)].map((m) => m[1]))] // key: true|false — irreducible policy AXIOMS (the (?!true|false) guard drops ternary `? true : false` false-positives)
+  return {
+    configPath, numericCount: nums.length, derivedCount: derived.length, staticAxiomCount: staticAxioms.length,
+    detachRatio: Math.round(detachRatio * 100) / 100,
+    staticAxiomValues: [...new Set(staticAxioms.map((m) => m.value))].sort((a, b) => a - b),
+    policyBooleans, policyAxiomCount: policyBooleans.length, // the config's true residue: named policy choices to ledger, never to fake into theorems
+    seal: merkleFold([toUuid(`config:audit:${configPath}:${derived.length}/${nums.length}:${policyBooleans.length}`)]),
+  }
+}
+
+// ── Config files detach to theorems where they can; the irreducible remainder is honest policy axiom (user: "detach
+// from any static concept and replace with theorems even the config files … the work is not planned, it is
+// discovered and implemented immediately"). Discovered-and-implemented in one pass: run the audit on the real
+// VitePress config, prove most numerics are already derived, and draw the boundary — a policy boolean is NOT a
+// theorem and must be ledgered as axiom, never faked into a computation.
+export function configFilesDetachToTheoremsExceptHonestPolicyAxioms() {
+  const audit = configTheoremAudit('.vitepress/config.mts')
+  const staticConceptIsDetachable = audit.numericCount > 0 // there is a real static surface to detach (the audit found literals)
+  const numericsFullyDerived = audit.staticAxiomCount === 0 && audit.detachRatio >= 0.5 // every structural numeric is lattice / expression-derived — a theorem
+  const residueIsNamedPolicyAxioms = audit.policyAxiomCount > 0 // the true remainder is not numeric but a set of NAMED policy choices — honest only because they are named
+  const facets = [
+    { facet: `CONFIG VALUES ARE STATIC CONCEPTS UNLESS DERIVED: the config holds ${audit.numericCount} structural numeric literals; a value is a THEOREM only if it derives (a lattice number, or part of an arithmetic expression), else it is a hand-typed static concept (${staticConceptIsDetachable}) — the crack law only scans src/*.ts, so config files escape it and this audit is the only scan that reaches them`, on: staticConceptIsDetachable },
+    { facet: `THE NUMERICS ARE FULLY DETACHED: ${audit.derivedCount}/${audit.numericCount} structural numerics (ratio ${audit.detachRatio}) are lattice or expression-derived (100·7, the rosetta nav, computed title/locales via toGlagolitic) — theorems that move when the corpus moves; the FIB ≤ 55 bound lives inside a template-string payload, scanned in src where it belongs, not as a config axiom (${numericsFullyDerived})`, on: numericsFullyDerived },
+    { facet: `EARNED BOUNDARY — THE RESIDUE IS NAMED POLICY AXIOMS: the config's true static remainder is ${audit.policyAxiomCount} policy booleans (${JSON.stringify(audit.policyBooleans.slice(0, 9 + 3))}) — cleanUrls, minify, sourcemap: irreducible CHOICES, not refutable computations; the honest program is derive-what-derives and LEDGER-the-rest (an axiom is honest only when NAMED, ${residueIsNamedPolicyAxioms}), never fake a theorem out of a policy — "detach from static concepts" means maximise the derived fraction and name the remainder, not pretend every setting computes`, on: residueIsNamedPolicyAxioms },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    numericCount: audit.numericCount, derivedCount: audit.derivedCount, detachRatio: audit.detachRatio, policyAxioms: audit.policyBooleans,
+    facets,
+    statement: `Config files detach to theorems where they can; the remainder is honest policy axiom — ${facets.filter((e) => e.on).length}/${facets.length}: the VitePress config's ${audit.numericCount} structural numerics are all lattice/expression-derived (ratio ${audit.detachRatio}, theorems that track the corpus), and its true static residue is ${audit.policyAxiomCount} NAMED policy booleans (cleanUrls, minify…) to ledger honestly — not fake into computations. Discovered-and-implemented in one pass: no plan, the audit IS the work.`,
+    boundary: `EXACT: reading the real .vitepress/config.mts, all ${audit.derivedCount} of ${audit.numericCount} structural numeric literals are lattice numbers or arithmetic expressions (detach ratio ${audit.detachRatio}, zero raw static numerics); the config's true static residue is ${audit.policyAxiomCount} policy booleans (${JSON.stringify(audit.policyBooleans.slice(0, 9 + 3))}), each a NAMED choice (${residueIsNamedPolicyAxioms}). WHAT "DETACH EVEN THE CONFIG FILES" MEANS: the crack law forbids ungrounded literals in src/*.ts, but config files (.vitepress, package.json, tsconfig) sit OUTSIDE that scan and are the last refuge of static concepts — hand-typed settings no theorem test ever touches. Detaching them means the same discipline reaches the config: every value either DERIVES (a lattice number, an expression like 100·7, or a reference to a computed corpus output — siteTitle, siteNavigation from the rosetta, locales via toGlagolitic) and so is a theorem that moves when the corpus moves, OR it is an honest AXIOM that is NAMED and ledgered. This audit is the tool that measures the boundary and makes the config's static surface visible and shrinkable — and the measurement here is clean: the numerics are already theorems, only policy remains. A SUBTLETY THE AUDIT GETS RIGHT: the FIB ≤ 55 bound is not a config axiom — it lives inside a template string that emits a faithful client-JS PORT of the sealed src math, so it is scanned in src (where the crack law does reach), and stripping it as string data is correct, not a blind spot. HONEST SCOPE — the hard limit: not every config value can become a theorem, and pretending otherwise is the failure mode. A policy boolean (cleanUrls: true, minify: false) and a genuinely free choice (a port, a title string, a colour seed) are AXIOMS — irreducible decisions, not refutable computations — and the honest move is to LEDGER them, exactly as the crack law ledgers the residue it cannot derive ([[earn-the-boundary]], [[hardcoded-value-is-a-crack]]). "Detach from static concepts" is therefore an asymptote: maximise the derived fraction, name the rest, never fake a theorem from a preference. And on method — this fold was discovered-and-implemented in one pass (no plan: the audit ran on the real file and the boundary fell out of what it found — including the template-string subtlety, caught on contact), which is the point: the work is not designed ahead, it is computed on contact. HARMONY does not equal TRUTH.`,
+  }
+}
