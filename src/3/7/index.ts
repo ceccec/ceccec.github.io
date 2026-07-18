@@ -1142,3 +1142,12 @@ export function crackLawEvolution() {
     cited,
   }
 }
+
+// ── Prose ratchet — statements/boundaries in methods become COMPUTED concatenations, not hand-written paragraphs
+// (the audit:prose target; [[no-prose-in-methods]]). `HARMONY` is the one shared attestation (was repeated as a
+// literal in every fold); `earned` assembles a boundary from a short exact head + the fold's already-computed facet
+// texts (joined) + a short honest-scope tail — the meaning stays, the source prose collapses to a call.
+export const HARMONY = 'HARMONY does not equal TRUTH.'
+export function earned(head: string, facets: readonly { facet: string; on: boolean }[], scope: string): string {
+  return `${head} ${facets.map((facet) => facet.facet).join(' · ')} SCOPE: ${scope} ${HARMONY}`
+}
