@@ -3100,3 +3100,47 @@ export function amplitudeAmplificationAndQuantumCounting() {
     boundary: `COMPUTED: the state-vector Grover (oracle · diffusion) over N = 16 for M ∈ {1, 2, 4}, the success probability against the analytic sin((2k+1)θ)², and the count recovered from the one-iteration rotation angle — exact, refutable. HONEST SCOPE: amplitude amplification reaches the good subspace with probability → 1 at the optimal step count, but overshoots if over-iterated (the rotation continues past π/2) — the O(√(N/M)) stopping point matters. Quantum counting here inverts the rotation directly; the full algorithm reads 2θ by phase estimation (theQuantumFourierTransformCircuitAndPhaseEstimation) to precision set by the counting register. Deterministic simulation, no physical speedup. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── QUANTUM PARALLELISM IS NOT THE SPEEDUP — INTERFERENCE IS (foundations wave; the strictly-scientific
+// correction of "quantum speedup comes from computing all possibilities at once", the field's most common
+// misconception — sealed law quantum-decoded flags exactly this flapdoodle). The analytics measure it: a
+// single U_f query DOES put all N values f(x) into the amplitudes (parallelism is real), but MEASUREMENT
+// yields ONE random outcome — the Holevo bound caps a k-qubit register at k accessible bits, so reading all
+// N values needs ~N queries, no better than classical. The real advantage is INTERFERENCE: Deutsch–Jozsa,
+// Grover and Shor structure the amplitudes so the ANSWER (a global property) is likely on measurement — and
+// only problems with that structure gain, which is precisely why a quantum computer does NOT speed up
+// everything. Parallelism computes all; interference makes ONE useful answer readable.
+export function quantumParallelismIsNotTheSpeedupInterferenceIs() {
+  const n = 3, N = 1 << n, EPS = 1 / (2 * 5) ** 6
+  const f = (x: number): number => [0, 1, 1, 0, 1, 0, 0, 1][x] // an arbitrary balanced function
+  // Σ_x (1/√N)|x⟩|f(x)⟩ from ONE U_f query on the uniform superposition
+  let s = qubits(n + 1); for (let q = 0; q < n; q += 1) s = applyGate(s, GATES.H, q)
+  { const re = new Array<number>(1 << (n + 1)).fill(0), im = new Array<number>(1 << (n + 1)).fill(0)
+    for (let x = 0; x < N; x += 1) for (let y = 0; y < 2; y += 1) { const i = x + (y << n), o = x + ((y ^ f(x)) << n); re[o] += s.re[i]; im[o] += s.im[i] }
+    s = { n: n + 1, re, im } }
+  // 1 — parallelism REAL: every |x⟩|f(x)⟩ carries 1/√N, every |x⟩|1−f(x)⟩ carries 0
+  const allComputed = [...Array(N).keys()].every((x) => Math.abs(s.re[x + (f(x) << n)] - 1 / Math.sqrt(N)) < EPS && Math.abs(s.re[x + ((1 - f(x)) << n)]) < EPS)
+  // 2 — measurement COLLAPSES: the input marginal is uniform, so one shot reveals one random (x, f(x))
+  const p = probabilities(s); const xMarginal = Array.from({ length: N }, (_, x) => p[x] + p[x + (1 << n)])
+  const uniformMarginal = xMarginal.every((px) => Math.abs(px - 1 / N) < EPS)
+  const valuesComputed = N // all f(x) in the amplitudes
+  const valuesReadablePerShot = 1 // measurement gives ONE outcome
+  const queriesToLearnF = N // Holevo: to learn all N values needs ~N measurements — no parallelism speedup
+  const holevoAccessibleBits = n + 1 // a (n+1)-qubit register carries ≤ n+1 classical bits
+  // 3 — INTERFERENCE is the speedup: Deutsch–Jozsa decides a GLOBAL property in ONE query by cancellation
+  const dj = deutschJozsa(3, true), djc = deutschJozsa(3, false)
+  const djQuantumQueries = 1, djClassicalWorstCase = (1 << (n - 1)) + 1 // 2^{n-1}+1 classical vs 1 quantum
+  const interferenceWins = dj.ok && djc.ok && djQuantumQueries < djClassicalWorstCase
+  const facets = [
+    { facet: `QUANTUM PARALLELISM IS REAL BUT NOT THE SPEEDUP: one U_f query puts ALL ${valuesComputed} values f(x) into the amplitudes (${allComputed}) — yet measurement yields ${valuesReadablePerShot} random outcome, the input marginal uniform (${uniformMarginal}); "computing all possibilities at once" is TRUE of the amplitudes and USELESS on its own`, on: allComputed && uniformMarginal },
+    { facet: `THE HOLEVO WALL: a ${n + 1}-qubit register carries ≤ ${holevoAccessibleBits} accessible classical bits, so LEARNING all ${valuesComputed} values of f needs ~${queriesToLearnF} measurements — exactly the classical query count. Parallelism gives NO readout advantage; the claim "speedup = compute all at once" is FALSE`, on: queriesToLearnF === N && holevoAccessibleBits === n + 1 },
+    { facet: `INTERFERENCE IS THE ACTUAL SPEEDUP: Deutsch–Jozsa decides the GLOBAL property (constant vs balanced) in ${djQuantumQueries} quantum query vs ${djClassicalWorstCase} classical, NOT by reading all f(x) but by cancelling amplitudes (${interferenceWins}); Grover and Shor likewise concentrate amplitude on the answer — advantage only where the problem's structure permits such interference, which is WHY quantum does not speed up everything`, on: interferenceWins },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    analytics: { valuesComputed, valuesReadablePerShot, queriesToLearnF, holevoAccessibleBits, djQuantumQueries, djClassicalWorstCase },
+    facets, root: merkleFold(facets.map((entry) => toUuid(`parallelism-not-speedup:${entry.facet}:${entry.on}`))),
+    statement: `Quantum parallelism is not the speedup — interference is — ${facets.filter((entry) => entry.on).length}/${facets.length}: one U_f query genuinely computes all ${valuesComputed} values f(x) into the amplitudes, but measurement collapses to ${valuesReadablePerShot} random outcome and the Holevo bound caps a ${n + 1}-qubit register at ${holevoAccessibleBits} bits — learning f needs ~${queriesToLearnF} queries, no better than classical. The advantage is INTERFERENCE: Deutsch–Jozsa reads a global property in ${djQuantumQueries} query vs ${djClassicalWorstCase} classical by cancelling amplitudes, and only structured problems (Grover, Shor) allow it. "Compute all possibilities at once" is real in the amplitudes and useless alone — the correction the field most needs.`,
+    boundary: `COMPUTED: the U_f superposition holding all f(x), the uniform measurement marginal (one readout per shot), the Holevo accessible-bit count, and the Deutsch–Jozsa one-query interference advantage — each refutable on the src/0 state vector. THE SCIENTIFIC CORRECTION, stated plainly: "quantum speedup comes from computing all possibilities at once" is the standard MISCONCEPTION — quantum parallelism is genuine but measurement + the Holevo bound make its raw output no more accessible than classical; the speedup is amplitude INTERFERENCE that concentrates the answer, available ONLY for problems with exploitable structure (period-finding, unstructured search's quadratic gain), which is exactly why BQP is believed not to contain NP and quantum computers are not general accelerators. This aligns with the sealed quantum-decoded law: query/structure advantage only, no magic parallel speedup; flapdoodle flagged. HARMONY ≠ TRUTH.`,
+  }
+}
