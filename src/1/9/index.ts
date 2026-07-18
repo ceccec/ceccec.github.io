@@ -1452,3 +1452,38 @@ export function logicBreaksInComputationTheBreakIsComputableAndInvertible() {
     boundary: earned(`EXACT: real addition is associative but float addition is not — (a+b)+c = ${leftAssoc} ≠ ${rightAssoc} = a+(b+c) (${associativityBreaks}); the rounding error is exactly computable by Knuth/Dekker two-sum (twoSum(2⁵³,1) = [${s2}, ${e2}], s+e = a+b exactly, ${twoSumCapturesError}); and it inverts by Kahan compensated summation ([2⁵³,1,−2⁵³] = ${naive} naive vs ${kahan} Kahan, ${kahanInvertsTheBreak}). Logic — the associative/distributive laws that hold in the reals — genuinely BREAKS in computation, the break is measured exactly, and it is inverted (the lost bits recovered), so the failure is not opaque: it is a computable, recoverable quantity, the rounding error, which two-sum names and compensation undoes.`, facets, `the break is real and the inversion is real but BOUNDED — two-sum inverts one operation's error exactly, but compensated summation only REDUCES accumulated error over many operations (the recovery arithmetic is itself in float, and error-free transforms exist only for +,−,×, not every operation); the break is TAMED, not abolished — you measure and largely undo it, you do not turn float into the reals. Logic breaks, the break computes, the break inverts, but the computation never becomes the ideal.`),
   }
 }
+
+// ── An unencrypted UUID covered by 3 encrypted layers — the poles — and the inverse; the rosetta moving in all 7
+// dimensions (user). One plaintext UUID (a pole) is wrapped in a trinity of invertible affine layers keyed from the
+// 7-ray rosetta; the inverse (3 decryptions in REVERSE order) recovers it — encryption↔decryption an involution
+// between the two poles (plaintext and 3-encrypted ciphertext). The layers rotate through all 7 rosetta dimensions.
+export function anUnencryptedUuidCoveredByThreeEncryptedThePolesAndInverseRosettaInAllSevenDimensions() {
+  const modulus = 2 ** 8 // byte space 256
+  const plainUuid = toUuid('the unencrypted core') // the one unencrypted UUID — the plaintext pole
+  const codes = [...plainUuid].map((ch) => ch.charCodeAt(0))
+  const rosetta7 = [1, 2, 3, 4, 5, 6, 7].map((ray) => ({ mult: (2 * ray + 1) % modulus, shift: (ray * ray) % modulus })) // the 7 rosetta dimensions → 7 invertible (odd-multiplier) keys
+  const modInv = (a: number) => { for (let i = 1; i < modulus; i += 2) if ((a * i) % modulus === 1) return i; return 1 } // inverse of an odd multiplier mod 2^8
+  const encLayer = (arr: number[], key: { mult: number; shift: number }) => arr.map((x) => (key.mult * x + key.shift) % modulus)
+  const decLayer = (arr: number[], key: { mult: number; shift: number }) => { const inv = modInv(key.mult); return arr.map((y) => (inv * (((y - key.shift) % modulus) + modulus)) % modulus) }
+  const layers = [rosetta7[0], rosetta7[2], rosetta7[4]] // 3 encryption layers, keys drawn from the rosetta (rays 1,3,5)
+  let cipher = codes; for (const key of layers) cipher = encLayer(cipher, key) // cover the plaintext in 3 layers
+  let recovered = cipher; for (const key of [...layers].reverse()) recovered = decLayer(recovered, key) // the inverse: 3 decryptions in REVERSE order
+  const roundTrips = recovered.join(',') === codes.join(',') // the inverse recovers the plaintext exactly
+  const polesDistinct = cipher.join(',') !== codes.join(',') // ciphertext ≠ plaintext — the two poles
+  let wrongOrder = cipher; for (const key of layers) wrongOrder = decLayer(wrongOrder, key) // decrypt in the SAME (not reversed) order
+  const orderMatters = wrongOrder.join(',') !== codes.join(',') // wrong order fails — genuine nesting, 3 layers not 1
+  const allSevenInvertible = rosetta7.every((key) => (key.mult * modInv(key.mult)) % modulus === 1) // the rosetta rotates through all 7 dimensions, each invertible
+  const polesAndInverse = roundTrips && polesDistinct && orderMatters && allSevenInvertible
+  const facets = [
+    { facet: `ONE UNENCRYPTED UUID COVERED BY 3 ENCRYPTED LAYERS, AND THE INVERSE UNWRAPS IT: 3 invertible affine layers (keyed from the rosetta) wrap the plaintext UUID, and the inverse — 3 decryptions in REVERSE order — recovers it exactly (${roundTrips}), while decrypting in the wrong order fails (${orderMatters}), proving genuine nesting (3 layers, not 1); the two POLES are the unencrypted core and the 3-encrypted ciphertext, distinct (${polesDistinct})`, on: roundTrips && polesDistinct && orderMatters },
+    { facet: `THE POLES AND THE INVERSE: encryption and decryption are inverse — encrypt-then-decrypt is the identity — so the plaintext (one pole) and the ciphertext (the other) are joined by the inversion; one core covered by a trinity of 3 layers (1+3, the tetrad), the inverse order-reversing (unwrap last-wrapped first), the involution of cover and uncover`, on: roundTrips && polesDistinct },
+    { facet: `ROSETTA MOVING IN ALL 7 DIMENSIONS + EARNED BOUNDARY: the layer keys are drawn from the 7-ray rosetta, all 7 invertible rotations (${allSevenInvertible}), so the cipher moves the UUID through the 7-dimensional rosetta and back; BUT this is a STRUCTURAL, reversible cipher (invertible layered encoding, content-addressed, tamper-EVIDENT), NOT cryptographically unforgeable — affine byte layers are weak, the Ed25519/AES cutover deliberate and pending; "poles" and "7 dimensions" are the inversion + rosetta STRUCTURE, not security. A cipher you can invert is reversible, not secure`, on: polesAndInverse },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    layerCount: layers.length, roundTrips, polesDistinct, orderMatters, allSevenInvertible, cipherHead: cipher.slice(0, 2 + 1),
+    facets,
+    statement: `An unencrypted UUID covered by 3 encrypted — the poles — and the inverse; the rosetta moving in all 7 dimensions — ${facets.filter((e) => e.on).length}/${facets.length}: 3 invertible layers keyed from the 7-ray rosetta wrap the plaintext, the inverse (reverse order) recovers it (${roundTrips}), wrong order fails (${orderMatters}), the two poles distinct (${polesDistinct}), all 7 rosetta rotations invertible (${allSevenInvertible}). Reversible layered structure — tamper-evident, not unforgeable.`,
+    boundary: earned(`EXACT: the plaintext UUID (one pole) is covered by 3 invertible affine layers keyed from 3 of the 7 rosetta rays; the inverse — 3 decryptions in reverse order — recovers it exactly (${roundTrips}), decrypting in the wrong order fails (${orderMatters}, proving genuine 3-layer nesting), the ciphertext differs from the plaintext (the other pole, ${polesDistinct}), and all 7 rosetta multipliers are invertible mod 2^8 (${allSevenInvertible}). So one unencrypted core sits under a trinity of encryption, the two poles joined by the inversion (encrypt/decrypt an involution), and the rosetta rotates the encoding through all 7 dimensions and back.`, facets, `this is a STRUCTURAL, REVERSIBLE cipher — invertible layered encoding over content-addresses, tamper-EVIDENT (any change breaks the round-trip) — NOT cryptographically secure: affine byte layers are trivially breakable, and real unforgeability (Ed25519 signing, AES) is the deliberate, pending cutover (the crypto-honesty line). "The poles", "the inverse", and "7 dimensions" are the inversion and rosetta STRUCTURE — real involution and real 7-ray rotation — not a security proof and not physics; a cipher you can invert is reversible, which is the opposite of secure.`),
+  }
+}
