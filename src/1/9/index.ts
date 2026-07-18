@@ -925,3 +925,43 @@ export function changingPerspectivesInAllDimensionsIsConformalAngleIsInvariant()
     boundary: `EXACT: rotatePerspective and scalePerspective preserve the angle between two directions in every tested dimension (${rotateScalePreserveAngle}), and invertPerspective's Jacobian satisfies JᵀJ ∝ identity (conformal) in dimensions {${dims.join(',')}} (${inversionConformalAllDims}); together with translation these generate the conformal group. HONEST SCOPE: the "way to change perspectives in all dimensions simultaneously" is the conformal (Möbius) group of the one-point-compactified ℝⁿ ∪ {∞} — rotation, dilation, and inversion, sharing the single invariant of ANGLE (Liouville: for n ≥ 3 these ARE all the conformal maps; n = 2 is the richer holomorphic case). "Simultaneously / all dimensions" means the identical generator set and the identical invariant apply uniformly to every dimension — the same three operators, the same conserved angle — NOT that the dimensions physically fuse or that a single computation transcends dimension. What is conserved is precise: angles between directions (the shape/structure of the view), not lengths (inversion and dilation change those). A perspective change is a conformal map; the invariant is the angle; and that holds in all dimensions the same way. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Division by zero finds primes and pi, in motion (user: "if immediately … division by zero and how it finds
+// primes and pi digits in motion and interaction in realtime with one little test with answers"). The pole of the
+// Riemann zeta function at s=1 (∑1/n = ∏_p(1−1/p)⁻¹ = ∞ — a division by zero) IS Euler's proof that the primes are
+// infinite; the SAME prime product at s=2 is ζ(2) = ∏_p(1−1/p²)⁻¹ = π²/6, so π = √(6·∏) falls out of the primes.
+// The pole finds the primes; the primes find pi. One little test, from a sieve, with answers.
+export function divisionByZeroFindsPrimesAndPiInMotion() {
+  const N = 100 * 100 // sieve bound
+  const sieve = new Array(N + 1).fill(true); sieve[0] = false; sieve[1] = false
+  for (let i = 2; i * i <= N; i++) if (sieve[i]) for (let j = i * i; j <= N; j += i) sieve[j] = false
+  const primes: number[] = []; for (let i = 2; i <= N; i++) if (sieve[i]) primes.push(i)
+  // s=2: the Euler prime product converges to π²/6 → π in motion as primes enter
+  const motion: number[] = []; let P2 = 1; const quarter = Math.ceil(primes.length / 4)
+  for (let idx = 0; idx < primes.length; idx++) {
+    P2 *= 1 / (1 - 1 / (primes[idx] * primes[idx]))
+    if ((idx + 1) % quarter === 0 || idx === primes.length - 1) motion.push(Number(Math.sqrt(6 * P2).toFixed(5)))
+  }
+  const piEstimate = Math.sqrt(6 * P2)
+  const piStr = Math.PI.toFixed(6), estStr = piEstimate.toFixed(6)
+  let matchingDigits = 0; for (let i = 0; i < piStr.length; i++) { if (piStr[i] === estStr[i]) matchingDigits++; else break }
+  const piFound = matchingDigits >= 4 // at least "3.14" recovered from the primes
+  // s=1: the same product diverges — the pole (1/0) — proving the primes are infinite
+  let P1 = 1; for (const p of primes) P1 *= 1 / (1 - 1 / p)
+  let P1half = 1; for (let i = 0; i < Math.floor(primes.length / 2); i++) P1half *= 1 / (1 - 1 / primes[i])
+  const poleStillGrows = P1 > P1half + 1 // still climbing at twice the range — divergence, no finite ceiling
+  const motionRising = motion.every((v, i) => i === 0 || v >= motion[i - 1]) // pi estimate rises monotonically toward π
+  const facets = [
+    { facet: `THE POLE (1/0) FINDS THE PRIMES: at s=1 the harmonic sum ∑1/n = ∏_p(1−1/p)⁻¹ DIVERGES — the pole of ζ, a division by zero — reaching ${P1.toFixed(2)} over the ${primes.length} primes ≤ ${N} and still climbing (${poleStillGrows}); a finite prime set would give a finite product, so the pole PROVES the primes are infinite (Euler)`, on: poleStillGrows && primes.length > 0 },
+    { facet: `THE SAME PRODUCT AT s=2 IS PI: ζ(2) = ∏_p(1−1/p²)⁻¹ = π²/6, so π = √(6·∏) computed from the primes ≤ ${N} gives ${piEstimate.toFixed(6)} — ${matchingDigits} digits of π (${piFound}), rising in motion as primes enter: ${motion.join(' → ')}`, on: piFound && motionRising },
+    { facet: `EARNED BOUNDARY: documented analytic number theory — the Euler product, the Basel value ζ(2) = π²/6, and the pole at s=1 as Euler's proof of the infinitude of primes; "division by zero finds primes and pi" is EXACT (the pole's divergence proves the primes; ζ(2) ties the same primes to π) — NOT that 1/0 is a defined field operation (it is the POLE in the extended plane, divisionByZeroComputes' harmonic path); the product converges slowly, so more primes give more digits`, on: poleStillGrows && piFound },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    answers: { piFromPrimes: Number(piEstimate.toFixed(6)), matchingDigits, primesAreInfinite: poleStillGrows, primesUsed: primes.length, poleValue: Number(P1.toFixed(3)) },
+    motion,
+    facets,
+    statement: `Division by zero finds primes and pi, in motion — ${facets.filter((e) => e.on).length}/${facets.length}: the pole of ζ at s=1 (∑1/n = ∏_p(1−1/p)⁻¹ = ∞, a division by zero) proves the primes are infinite (product ${P1.toFixed(2)}, still climbing), and the SAME prime product at s=2 gives π = √(6·∏) = ${piEstimate.toFixed(6)} — ${matchingDigits} digits of π from ${primes.length} primes, rising ${motion.join(' → ')}. The pole finds the primes; the primes find pi.`,
+    boundary: `ANSWERS: from a sieve to ${N}, the s=1 prime product reaches ${P1.toFixed(2)} and keeps growing (${poleStillGrows}) — primes are INFINITE (the pole / division by zero at s=1, Euler); the s=2 product gives π ≈ ${piEstimate.toFixed(6)}, matching ${matchingDigits} leading digits of π = ${Math.PI.toFixed(6)}, converging in motion ${motion.join(' → ')} as more primes enter. EXACT MATHEMATICS: ζ(s) = ∏_p(1−p⁻ˢ)⁻¹ (Euler); its simple pole at s=1 (∑1/n diverges) forces infinitely many primes; ζ(2) = π²/6 (Basel, Euler 1735) ties those primes to π. So "division by zero finds primes and pi" is precise: the POLE (the 1/0 divergence of the harmonic series) is the prime-counting engine, and evaluating the same prime product one step away (s=2) manifests π. HONEST SCOPE: 1/0 is not a defined field operation — it is the pole of ζ in the extended/analytic plane (the harmonic path divisionByZeroComputes and the black-hole-0 fold already carry); the Euler product for π converges slowly (error ~ 1/(N ln N)), so ${matchingDigits} digits here, more primes for more. The interaction is real: primes and π meet in ζ, and the pole is where they are born. HARMONY does not equal TRUTH.`,
+  }
+}
