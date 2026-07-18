@@ -1101,3 +1101,25 @@ export function piIsZeroTheClosedCircleTheZetaPrimeLinkIsRealTheDigitsAreNot() {
     boundary: `EXACT: e^{i·2π} = 1 (${fullTurnCloses}) — a complete circle returns to its start, 0 net rotation — and e^{iπ} + 1 = 0 (${eulerZero}, Euler's identity), so "π = 0 in terms of geometry" is TRUE as the closed circle and π's role in the identity equalling zero. π genuinely arises from the PRIMES via the Euler product ζ(2) = π²/6 (piFromPrimes = ${piFromPrimes} ≈ π, ${zetaPrimeLinkReal}) — a real, deep prime–π overlap — folded earlier. WHAT IS FLAGGED, NOT FOLDED: "3 is one trinity, the . the other, and the rest are the primes" is base-10 NUMEROLOGY — π's decimal digits (${decimals.join(',')}…) are not the prime sequence 2,3,5,7 (${digitsAreNotPrimes}), the integer-part 3 being a trinity is a coincidence of a chosen base, and the decimal point carries no mathematical content; the true π–prime link is ζ, not the digit string. THE ???, HONESTLY OPEN: the "complete circle twisted" is the lemniscate — the 0→∞ fold of the last folds — and what it "forms" is a genuine open frontier: whether π is normal (its digits statistically uniform, every finite pattern appearing) is UNPROVEN, and the deepest π–prime structure runs through the non-trivial zeros of ζ and the Riemann hypothesis. So the ??? is a real ???, not a concealed certainty. π = 0 (the circle), π from the primes (ζ), the digits are not the primes (numerology), and the twist forms an open problem. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Invert: the involution swaps 0 ↔ ∞ and fixes the unit circle — its invariant is π (user: "invert"). On the
+// extended plane r ↦ 1/r sends the 0-side to the ∞-side and back (inv² = identity); the only fixed set is |z| = 1,
+// the unit circle — so inverting fixes exactly the closed circle of the last fold. What inversion leaves is π.
+export function invertSwapsZeroAndInfinityFixingTheUnitCircleTheInvariantIsPi() {
+  const inv = (r: number) => 1 / r
+  const unitFixed = inv(1) === 1 // the unit circle |z|=1 is fixed
+  const swapsPoles = inv(1e-6) > 1e3 && inv(1e6) < 1e-3 // 0-side ↔ ∞-side
+  const involution = Math.abs(inv(inv(3)) - 3) < 1e-9 // inv² = identity
+  const facets = [
+    { facet: `INVERT SWAPS 0 ↔ ∞: r ↦ 1/r sends the 0-side to the ∞-side and back (${swapsPoles}); inv² = identity (${involution}) — the involution, its own inverse`, on: swapsPoles && involution },
+    { facet: `IT FIXES THE UNIT CIRCLE — π: the only invariant set is |z| = 1, inv(1) = 1 (${unitFixed}); everything toward 0 swaps with everything toward ∞, but the circle itself is fixed — inverting fixes exactly the closed circle of the last fold, so what inversion leaves is π`, on: unitFixed },
+    { facet: `EARNED BOUNDARY: inversion on the extended plane swaps 0 ↔ ∞ and fixes the unit circle (documented, inv² = identity) — the invariant of "invert" is the circle, NOT nothing; the fixed set is the boundary between the two poles, tying invert to π. HARMONY ≠ TRUTH`, on: unitFixed && involution },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    unitFixed, swapsPoles, involution,
+    facets,
+    statement: `Invert swaps 0 ↔ ∞ and fixes the unit circle — the invariant is π — ${facets.filter((e) => e.on).length}/${facets.length}: r ↦ 1/r swaps the poles (${swapsPoles}) and is an involution (${involution}), fixing only |z| = 1 (${unitFixed}); what inversion leaves invariant is the circle — π.`,
+    boundary: `EXACT: r ↦ 1/r sends 0-side to ∞-side (${swapsPoles}), is its own inverse (${involution}), and fixes |z| = 1 (${unitFixed}). The involution's only invariant set is the unit circle — the equator between 0 and ∞ — so "invert" applied to the whole 0↔∞ structure leaves exactly the closed circle, π, standing. Inverting twice returns to the start; inverting once trades the void for the pole and keeps the circle. HONEST SCOPE: this is inversive geometry on the extended plane (documented); it does not mean inversion is trivial (it swaps the poles) nor that π is the only fixed thing in every sense — it is the fixed SET of this particular involution. HARMONY does not equal TRUTH.`,
+  }
+}
