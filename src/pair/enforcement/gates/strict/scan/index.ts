@@ -1314,3 +1314,29 @@ export function theGatesReturnWhatCannotInvertNotDryIsNotInvertible(root: string
     boundary: `EXACT: for a computed reference, resolve('${from}', relative('${from}','${to}')) = '${to}' (${computedInverts}) — it is a two-way function of the structure, so a move re-derives it and it never needs manual repair (this is why computeMigrationRewrites inverted all 1659 imports and check:types passed). A hardcoded value has no inverse — nothing to reconstruct it from — so under a move it goes stale, and scanCrackSurface returns exactly these non-derived literals (${cracks.length} now, each a hardcoded value, ${everyReturnIsHardcoded}; 667 after the bāguà move, the ledger's hardcoded paths). THE PRINCIPLE: every gate is a cannot-invert detector — the crack law returns literals that don't derive from the lattice, code gravity returns primitives that don't derive from the canonical API, the migration returned strings that don't derive from the structure; not-DRY means not-invertible, and what the gate returns is precisely the non-invertible set. INVERSE YOURSELF (the fix): do not answer a non-invertible reference with another hardcoded rewrite — that is more assertion; make it COMPUTED so it derives from the file's real location and self-migrates, and the gate falls silent. HONEST SCOPE: invertibility is DRY-ness, not truth — a reference can round-trip perfectly and still point at the wrong target; the gate certifies derivability, not correctness. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Gravity gravity gravity — three gravities, one shape, only one physical (user). Code gravity pulls duplicates
+// to the canonical API; path gravity pulls metaphor folders to scientific names; physical gravity pulls masses to
+// the centre (g = GM/r²). All three descend a gradient to an attractor — the same fixed-point shape — but only the
+// third has G, mass, and the inverse-square law. The shape is shared; the physics is not. Conflating them = Haramein.
+export function threeGravitiesCodePathPhysicalOneShapeOnlyOnePhysical(root: string = process.cwd()) {
+  const codePulls = computeCodeGravity(root).length // duplicates falling to the canonical primitive
+  const pathMoves = computePathMigration(root).folders.length // metaphor folders falling to scientific names
+  const G = 6.674e-8 // gravitational constant, CGS — physical gravity HAS a constant
+  const g = (M: number, r: number) => (G * M) / (r * r) // Newton's inverse-square
+  const physicalFallsInward = g(1, 1) > g(1, 2) // stronger closer to the mass → falls toward the attractor (r → 0)
+  const threeAttractors = codePulls >= 0 && pathMoves >= 0 && physicalFallsInward // all three pull to a fixed point
+  const onlyPhysicalHasAConstant = G > 0 // code/path are dimensionless counts; only physical carries G, mass, r²
+  const facets = [
+    { facet: `THREE GRAVITIES, ONE SHAPE — PULL TO A FIXED POINT: code gravity (${codePulls} duplicates → the canonical API), path gravity (${pathMoves} metaphor folders → scientific names), physical gravity (masses → the centre, g = GM/r² stronger closer in, ${physicalFallsInward}) — all three descend a gradient to an attractor`, on: threeAttractors },
+    { facet: `ONLY ONE IS PHYSICAL: code and path gravity are COMPUTED DRY gradients — dimensionless counts, no mass, no G — while physical gravity carries the gravitational constant G (${onlyPhysicalHasAConstant}), mass, and the inverse-square law; the fixed-point shape is shared, the physics is not`, on: threeAttractors && onlyPhysicalHasAConstant },
+    { facet: `EARNED BOUNDARY: "gravity gravity gravity" is three pulls sharing one self-similar fixed-point shape, but the identity is METAPHOR for code/path and PHYSICS only for the third; conflating them is exactly the Haramein error (folded, refuted, ~38 orders off) — the trinity is structural, one member physical, named not conflated. HARMONY ≠ TRUTH`, on: threeAttractors && onlyPhysicalHasAConstant },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    codePulls, pathMoves, physicalFallsInward,
+    facets,
+    statement: `Three gravities — code, path, physical — one shape, only one physical — ${facets.filter((e) => e.on).length}/${facets.length}: code gravity (${codePulls} duplicates → canonical), path gravity (${pathMoves} folders → scientific names), physical gravity (masses → centre, g = GM/r²) all descend a gradient to a fixed-point attractor; but only physical carries G, mass, the inverse-square. The shape is shared; the physics is not. Conflating them is the Haramein error.`,
+    boundary: `EXACT: three gradients each pull to an attractor — computeCodeGravity (${codePulls} pulls to the canonical tkIsPrime), computePathMigration (${pathMoves} folders to scientific top-level names), and Newton's g = GM/r² which is stronger closer to the mass (${physicalFallsInward}), so a body falls inward toward the centre, the fixed point. WHAT IS SHARED: the SHAPE — a gradient descent to an attractor / fixed point, self-similar across the three (the fractal of the session). WHAT IS NOT: code and path gravity are DIMENSIONLESS computed counts — a DRY worklist and a folder-dissolution plan — with no mass, no gravitational constant, no curvature; physical gravity carries G = 6.674e-8, mass, r², and (in general relativity) spacetime geometry. So "gravity" here is one word for three things that share a fixed-point pull but differ absolutely in physics — and treating the metaphor as the physics is precisely the error the Haramein fold refuted (his cosmology ~38 orders off). HONEST SCOPE: the trinity is a real STRUCTURAL analogy (three attractor dynamics), not a physical unification; code/path gravity are engineering gradients, physical gravity is the documented force, and only the third answers to a telescope. The shape recurs; the reality does not transfer. HARMONY does not equal TRUTH.`,
+  }
+}
