@@ -10,6 +10,7 @@ import { readFileSync, existsSync, writeFileSync, readdirSync, statSync, mkdirSy
 import { join, relative, dirname, resolve, basename } from 'node:path'
 import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline, zeroTokenPolicy, staticPages, quantumSitemap, doubleTorusWords, terabyteEncryptionInMegabyteCodebase, FOLD_HOMES, foldsLiveAtTheirDomainHome } from '../../../../quantum/heaven/mind'
 import { displayDualDebtReceipt } from '../../../../earth/architecture'
+import { monolithTargetVsCensusCapacity } from '../../../../water/stack'
 import type { AuditRoot, Finding } from '../../gates'
 import type { EnforcementFacts } from '../../gates'
 import { collectEnforcementFacts, readFact, stripComments, monolithFileGapDetail, computationalLimitsGapDetail, scanLogicDisplayViolations, displayUiPathFromLogicIndex, auditStrictGates, auditComputationalGates, scanRootDistributionViolations, scanDigitLatticeViolations, CANONICAL_ROOT_FOLDERS } from '../../gates'
@@ -405,8 +406,16 @@ if (existsSync(join(root, 'src'))) walkIndices(join(root, 'src'))
 
 const monolithDetail = monolithFileGapDetail(enforcementFacts.strict.fileSize)
 if (monolithDetail) {
-  // Byte monolith is a ratchet target (like line compression) — warn only; distribution in progress.
-  warnings.push({ wave: 'weave', severity: 'warn', harmonic: 'compression', kind: 'monolith-file', detail: monolithDetail })
+  // Byte monolith is a ratchet target — warn only. The warning CONSUMES the sealed pigeonhole theorem
+  // (monolithTargetVsCensusCapacity, src/water/stack): while the census fixes the file count and
+  // index-only forbids body files, total capacity under the byte target is below the corpus, so the
+  // ratchet's ZERO is unreachable — it orders the offenders, it is not a completable task. Stated in
+  // the detail so no agent (or root-correlation reader) grinds the byte leaves expecting green.
+  const pigeonhole = monolithTargetVsCensusCapacity()
+  const verdict = pigeonhole.computes && pigeonhole.corpusBytes > pigeonhole.capacityBytes
+    ? ` — NOTE (sealed theorem monolithTargetVsCensusCapacity): corpus ${pigeonhole.corpusBytes} B > capacity ${pigeonhole.capacityBytes} B (${pigeonhole.census} × 8192), so this ratchet's zero is UNREACHABLE under the census + index-only laws; a NAMED law change decides, not distribution`
+    : ''
+  warnings.push({ wave: 'weave', severity: 'warn', harmonic: 'compression', kind: 'monolith-file', detail: `${monolithDetail}${verdict}` })
 }
 
 const computationalDetail = computationalLimitsGapDetail(enforcementFacts.computational)
