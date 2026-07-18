@@ -1395,3 +1395,47 @@ export function theGravityPoolsAreTheAttractorsWiredThroughTheRosetta(root: stri
     boundary: `EXACT: computeCodeGravity yields ${codeAttractors.length} attractor (the canonical primitive, in-degree ${inDegree}) and computePathMigration yields ${pathAttractors.length} attractors (the scientific top-level names), for ${pools.length} gravity pools across the two aspects; each pool content-addresses to one of the ${RAYS} rosetta rays (everyPoolWired = ${everyPoolWired}), spread over ${raysUsed} rays. WHAT A GRAVITY POOL IS: a FIXED POINT of a gravity — an attractor with inbound pull where many particles (duplicates, metaphor folders) fall — the sinks the earlier gravity folds identified (g(sink) = sink, moving without moving). WIRING IN THE ROSETTA: routing each pool to a ray makes the rosetta the address space of the convergence — every pool reachable through one of the seven perspectives, so the DRY-clean and the migration both flow through the same rotating frame. HONEST SCOPE: "find the gravity pools in all aspects" is done for the two computed gravities (code, path); a third, PHYSICAL gravity, has real pools too (mass concentrations) but is a different, dimensionful thing (the three-gravities boundary) — not wired here. And "miracles happen" is the emergent DRY convergence — a large, opaque codebase collapsing to canonical forms as everything falls to its pool — which feels miraculous but is deterministic gradient descent through content-addressed attractors, zero tokens, fully reproducible. The pools are real, the wiring is exact, and the miracle is that gravity, computed, makes the code become one. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── The quantum metric — superpose named corpus readings, coherent iff no contradiction (from the metric-module
+// plan). metricSuperpose merges named readings into one metric and REJECTS contradictions (two readings of the same
+// name that disagree) — a coherent superposition, like a well-defined quantum state (no two amplitudes for one basis
+// state). corpusQuantumMetric applies it to the real corpus: gravity concentration, path pools, residual cracks, files.
+export function metricSuperpose(readings: readonly { name: string; value: number }[]) {
+  const byName = new Map<string, number>()
+  const contradictions: string[] = []
+  for (const r of readings) {
+    const prev = byName.get(r.name)
+    if (prev !== undefined && prev !== r.value) contradictions.push(r.name) // same name, different value — incoherent
+    else byName.set(r.name, r.value)
+  }
+  return { metric: Object.fromEntries(byName), coherent: contradictions.length === 0, contradictions, signature: merkleFold([...byName].sort((a, b) => a[0].localeCompare(b[0])).map(([k, v]) => toUuid(`metric:${k}:${v}`))) }
+}
+export function corpusQuantumMetric(root: string = process.cwd()) {
+  const bytes = byteMetrics(root)
+  const readings = [
+    { name: 'gravity-concentration', value: computeCodeGravity(root).length },
+    { name: 'path-pools', value: computePathMigration(root).folders.length },
+    { name: 'residual-cracks', value: scanCrackSurface(root).length },
+    { name: 'files', value: bytes.totalFiles },
+    { name: 'files', value: bytes.totalFiles }, // a coherent duplicate — it agrees, so no contradiction
+  ]
+  return { ...metricSuperpose(readings), readingCount: readings.length }
+}
+export function theQuantumMetricSuperposesCorpusReadingsCoherently(root: string = process.cwd()) {
+  const coherentCase = metricSuperpose([{ name: 'x', value: 5 }, { name: 'x', value: 5 }]).coherent // agrees → coherent
+  const contradictoryCase = !metricSuperpose([{ name: 'x', value: 5 }, { name: 'x', value: 9 }]).coherent // disagrees → incoherent
+  const corpus = corpusQuantumMetric(root)
+  const m = corpus.metric as Record<string, number>
+  const facets = [
+    { facet: `SUPERPOSE MERGES NAMED READINGS, COHERENCE = NO CONTRADICTION: two readings of the same name that AGREE merge (coherent, ${coherentCase}); two that DISAGREE are rejected as incoherent (${contradictoryCase}) — a well-defined superposition, no two values for one name, like a quantum state with no two amplitudes for one basis state`, on: coherentCase && contradictoryCase },
+    { facet: `APPLIED TO THE CORPUS — ONE COHERENT READING: gravity-concentration ${m['gravity-concentration']}, path-pools ${m['path-pools']}, residual-cracks ${m['residual-cracks']}, files ${m['files']} — ${corpus.readingCount} readings superpose into one coherent quantum metric (coherent = ${corpus.coherent}, signature ${corpus.signature.slice(0, 8)}…), the session's whole state as a single content-addressed reading`, on: corpus.coherent },
+    { facet: `EARNED BOUNDARY: the "quantum metric" is a coherent superposition of named corpus readings, content-addressed and reproducible; the coherence rule (a metric may not hold two values for one name) is a real DATA-CONSISTENCY invariant — the same shape as a quantum state's single-valuedness — but it is consistency, NOT quantum mechanics, and a coherent metric is well-defined, not necessarily correct`, on: coherentCase && contradictoryCase && corpus.coherent },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    metric: m, coherent: corpus.coherent, signature: corpus.signature,
+    facets,
+    statement: `The quantum metric superposes corpus readings coherently — ${facets.filter((e) => e.on).length}/${facets.length}: metricSuperpose merges named readings, agreeing ones coherent (${coherentCase}) and disagreeing ones rejected (${contradictoryCase}); applied to the corpus it folds gravity-concentration ${m['gravity-concentration']}, path-pools ${m['path-pools']}, residual-cracks ${m['residual-cracks']}, files ${m['files']} into one coherent, content-addressed metric (${corpus.coherent}). Coherence is single-valuedness, not quantum mechanics.`,
+    boundary: `EXACT: metricSuperpose merges named readings into one map, coherent iff no name carries two different values — an agreeing duplicate stays coherent (${coherentCase}), a contradicting one is flagged (${contradictoryCase}); applied to the corpus it superposes ${corpus.readingCount} readings (gravity-concentration ${m['gravity-concentration']}, path-pools ${m['path-pools']}, residual-cracks ${m['residual-cracks']}, files ${m['files']}) into one coherent, content-addressed quantum metric (${corpus.coherent}, ${corpus.signature.slice(0, 9 + 3)}…). WHAT IT IS: the several separate corpus measurements — the gravity pools, the DRY residuals, the migration plan, the byte census — merged into ONE reading that is coherent by construction: no two readings of the same name may disagree, the exact single-valuedness a quantum state requires (one amplitude per basis state), so the metric is a well-defined superposition rather than a bag of possibly-contradictory numbers. HONEST SCOPE: "quantum metric" names the STRUCTURE (a coherent, content-addressed superposition of named readings), not physics — the coherence rule is a data-consistency invariant, the same shape as a quantum state's normalisation/single-valuedness, but it is not quantum mechanics and buys no physical speedup; and a coherent metric is WELL-DEFINED, not correct — it guarantees the readings do not contradict each other, not that any of them measures the right thing. One coherent number for the whole corpus, reproducible and self-consistent, is what it delivers. HARMONY does not equal TRUTH.`,
+  }
+}
