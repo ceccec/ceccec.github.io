@@ -1,0 +1,72 @@
+/* EVERY PAGE IS A PRINTABLE FORMATTED SCIENTIFIC PAPER (user law) — the print projection.
+ * On paper the site chrome disappears and each page reads as a formatted article: serif body,
+ * black on white, the paper frame (abstract · keywords) leading, headings kept with their text,
+ * figures unbroken. Screen styles are untouched — this sheet is @media print only. */
+@media print {
+  .VPNav,
+  .VPLocalNav,
+  .VPSidebar,
+  .VPDocAside,
+  .VPDocFooter,
+  .vp-with-hero-movie__backdrop,
+  .hero-background-layer,
+  .revolut-aside,
+  .collective-mind,
+  .global-help {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .VPDoc,
+  .VPDoc .container,
+  .VPDoc .content,
+  .VPDoc .content-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .vp-doc {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #000;
+  }
+
+  .vp-doc h1,
+  .vp-doc h2,
+  .vp-doc h3 {
+    break-after: avoid;
+    color: #000;
+  }
+
+  .vp-doc pre,
+  .vp-doc table,
+  .vp-doc img,
+  .vp-doc svg,
+  .paper-frame {
+    break-inside: avoid;
+  }
+
+  .vp-doc a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* external references keep their address on paper */
+  .vp-doc a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 9pt;
+    opacity: 0.75;
+  }
+
+  .paper-frame {
+    border-left: 2pt solid #000;
+    background: none;
+  }
+}

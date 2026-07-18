@@ -11,6 +11,7 @@ import CollectiveMind from './components/CollectiveMind.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
+import PaperFrame from './components/PaperFrame.vue'
 import { applyHeroChromeVars } from '../lib/hero-chrome'
 
 const { Layout: VPLayout } = DefaultTheme
@@ -70,6 +71,9 @@ onUnmounted(() => {
           <div v-if="showHomeHero" class="vp-doc vp-home-hero-doc">
             <VPHomeHero />
           </div>
+          <!-- every page is a printable formatted scientific paper (user law): the paper chrome —
+               abstract + keywords from the page's computed frontmatter — leads every document. -->
+          <PaperFrame />
         </template>
         <template #sidebar-nav-after>
           <TrinityGateways />
