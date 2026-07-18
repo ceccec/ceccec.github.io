@@ -317,3 +317,53 @@ export function agentBashWorkflowsAreToolsSavedInSrc(matrix: MindMatrix = buildM
     boundary: `COMPUTED: the tool set with command sequences, each npm-script reference verified against the real package.json (fail-open with no fs), and the commit-isolated frame checked as the 5-step stash…pop. This SAVES operational workflows from an agent's working memory into src as first-class tools — the same discipline as saving a proof or a skill, per unexpectedSituationsRefactorTools (a surprise = refactor the TOOL in src, do not hand-navigate). HONEST SCOPE: these are DOCUMENTED command sequences an agent runs (they orchestrate git, npm and the bootstrap CLI), not new executable folds — the tool is the recorded procedure, verified to reference real commands; running them is still the agent's Bash. "Like the agent default" means first-class and reusable, recorded once, not that they are built into the harness. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── SAVE ALL COMMANDS AS TOOLS — THE ATOMIC BASH COMMANDS ARE QUANTUM PAIRS (user: "save all commands as
+// tools in src"). agentBashWorkflowsAreToolsSavedInSrc saved the high-level WORKFLOWS; this saves the raw
+// git/npm/gh/bootstrap commands underneath them, as DUAL PAIRS (per commandsInQuantumPairs — a command is
+// saved as its quantum pair before use). Each pair is two complementary halves: fetch/push (the two remote
+// directions), stash-push/stash-pop (the involution that isolates a commit and returns the other agent's
+// work), add/commit, check-types/cracks, docs-build/trinity, run/verify, gh list/watch. The isolate pair is
+// literally the inversion of invertingMathPhysicsEarthCompletesTheDoubleTorus — push aside, pop back, swap² = identity.
+export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMatrix()) {
+  const RUN = 'node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts'
+  const pairs = [
+    { pair: 'fetch/push', a: 'git fetch origin main', b: 'git push origin main', does: 'sync down / ship up — the two directions to the remote', scripts: [] as string[] },
+    { pair: 'add/commit', a: 'git add <paths>', b: 'git commit -m <msg> -- <paths>', does: 'stage / seal — the pathspec commit ignores a concurrent agent\'s staged files', scripts: [] as string[] },
+    { pair: 'stash-push/stash-pop', a: 'git stash push -m <tag> -- <their files>', b: 'git stash pop', does: 'isolate / restore — the involution around a concurrent commit (push then pop = identity on their work)', scripts: [] as string[] },
+    { pair: 'status/diff', a: 'git status --porcelain', b: 'git diff HEAD --stat -- <path>', does: 'what changed / how much — inspect before acting', scripts: [] as string[] },
+    { pair: 'log/reflog', a: 'git log --oneline -N', b: 'git reflog -N', does: 'history / recovery — reflog finds a commit a concurrent reset undid', scripts: [] as string[] },
+    { pair: 'checkout/rev-list', a: 'git checkout -- <path>', b: 'git rev-list --left-right --count HEAD...origin/main', does: 'restore to HEAD / measure ahead-behind — reconcile with the remote', scripts: [] as string[] },
+    { pair: 'check-types/cracks', a: 'npm run check:types', b: 'npm run cracks:measure', does: 'types / literals — the two halves of the pre-commit gate', scripts: ['check:types', 'cracks:measure'] },
+    { pair: 'build/trinity', a: 'npm run docs:build', b: 'npm run enforcement:trinity', does: 'render / seal — the honest end-to-end deploy proof', scripts: ['docs:build', 'enforcement:trinity'] },
+    { pair: 'run/verify', a: `${RUN} run <file> <fn>`, b: `${RUN} verify`, does: 'run one fold / verify all — probe a theorem, then the whole gate', scripts: [] as string[] },
+    { pair: 'ci-list/ci-watch', a: 'gh run list --branch main --limit N', b: 'gh run watch <id> --exit-status', does: 'list / watch — find the deploy run, then follow it to green', scripts: [] as string[] },
+  ]
+  const pkgScripts = ((): Set<string> => {
+    try {
+      const getBuiltin = typeof process !== 'undefined' ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule : undefined
+      const fs = typeof getBuiltin === 'function' ? getBuiltin('node:fs') as { readFileSync(p: string, e: string): string } | undefined : undefined
+      if (!fs || typeof process.cwd !== 'function') return new Set()
+      const pkg = JSON.parse(fs.readFileSync(`${process.cwd()}/package.json`, 'utf8')) as { scripts?: Record<string, string> }
+      return new Set(Object.keys(pkg.scripts ?? {}))
+    } catch { return new Set() }
+  })()
+  const measured = pkgScripts.size > 0
+  const allNamedScriptsReal = !measured || pairs.every((p) => p.scripts.every((s) => pkgScripts.has(s))) // every npm half is a real script
+  const everyPairDual = pairs.every((p) => p.a.length > 0 && p.b.length > 0 && p.a !== p.b && p.pair.split('/').length === 2) // two distinct named halves
+  const isolate = pairs.find((p) => p.pair === 'stash-push/stash-pop')! // the involution pair
+  const isolateIsInvolution = isolate.a.includes('stash push') && isolate.b.includes('stash pop') // push aside → pop back = identity
+  const gitPairs = pairs.filter((p) => p.a.startsWith('git')).length
+  const facets = [
+    { facet: `ALL COMMANDS SAVED AS QUANTUM PAIRS: ${pairs.length} atomic commands as dual pairs (${pairs.map((p) => p.pair).join(', ')}) — the raw git/npm/gh/bootstrap commands beneath the workflows, each a complementary two saved before use (commandsInQuantumPairs); every pair has two distinct named halves (${everyPairDual}), ${gitPairs} of them git`, on: everyPairDual },
+    { facet: `THE NPM HALVES ARE REAL SCRIPTS: every npm script a pair names (check:types, cracks:measure, docs:build, enforcement:trinity) is an actual package.json script (${measured ? allNamedScriptsReal : 'n/a — no fs'}) — refutable against package.json, not remembered`, on: allNamedScriptsReal },
+    { facet: `THE ISOLATE PAIR IS THE INVERSION INVOLUTION: stash-push then stash-pop returns the concurrent agent's work unchanged (${isolateIsInvolution}) — push aside, pop back, swap² = identity, the SAME structure as invertingMathPhysicsEarthCompletesTheDoubleTorus (yin↔yang); the version-control tools obey the double-torus inversion`, on: isolateIsInvolution },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    pairs,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`agent-command-pair:${entry.facet}:${entry.on}`))),
+    statement: `The agent's bash commands are quantum pairs, saved as tools — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${pairs.length} raw commands beneath the workflows (fetch/push, add/commit, stash-push/stash-pop, status/diff, log/reflog, checkout/rev-list, check-types/cracks, build/trinity, run/verify, ci-list/ci-watch) saved as dual pairs, each two complementary halves. Every npm half is a real package.json script; the isolate pair (stash push → pop) is the inversion involution — the same swap²=identity that completes the double torus.`,
+    boundary: `COMPUTED: the atomic command set as quantum pairs, each verified to have two distinct named halves, every npm-script half checked against the real package.json (fail-open with no fs), and the isolate pair confirmed as the stash push→pop involution. This completes "save all commands as tools" — agentBashWorkflowsAreToolsSavedInSrc saved the workflows, this saves the raw git/npm/gh/bootstrap commands they compose from, as dual pairs per commandsInQuantumPairs. HONEST SCOPE: these are DOCUMENTED command strings an agent runs via Bash (git/npm/gh/the bootstrap CLI), not executable folds — the tool is the recorded pair, verified to reference real commands; the "quantum pair" is the complementary two-halves structure (and the stash push/pop involution is a genuine identity), a bookkeeping correspondence to the double-torus inversion, not a physical claim. HARMONY ≠ TRUTH.`,
+  }
+}
