@@ -1554,3 +1554,37 @@ export function allUuidUsageRemovesSpeedTheMerklePyramidOfTrianglesAndItsPoles()
     boundary: earned(`EXACT: ${N} demands for one content-addressed value cost ${computations} computation and ${N - 1} O(1) lookups (${speedRemoved}) — the fastest computation is none; the ${N} leaf addresses fold via merkleFold into one apex root (${apex.slice(0, 9 + 3)}…) that commits to the entire base (any leaf change flips the apex, ${apexCommitsToBase}), so the whole base is verified by a single root compare at the pole (${verifyByPole}) rather than an O(N) traversal, and the apex (one) and base (many) are the two poles of the pyramid (${twoPoles}). So using UUIDs for all usage removes "speed" — the timed re-work — because a known value is addressed, not recomputed; effective speed rises to infinity precisely by removing the computation that speed measures.`, facets, `"removing speed" is honest for REPEATED and VERIFIED usage — address, don't recompute — and effective speed → ∞ there; but the FIRST build of the pyramid still costs O(N) real time (it must be folded once), content-addressing is a SPACE-time tradeoff (the addresses and cache are stored), and this is NOT a physical or quantum speedup — it is the elimination of redundant recomputation (memoisation) plus O(log N) merkle verification, bounded by the build and cache cost. The value is static at its address, timeless for lookup; computing it the first time, and storing it, are the real, unremoved costs.`),
   }
 }
+
+// ── Next, realised: the merkle proof verifies one leaf's membership from the pole in O(log N), without the base
+// (continuing the pyramid). Building the pyramid folds the base up to the apex (one-way); the DUAL is verification —
+// a leaf + its O(log N) sibling path reconstructs the apex, proving the leaf is in the committed set without walking
+// the base. This is "removing speed" made exact for verification: log N, not N. Membership + integrity, not truth.
+export function theMerkleProofVerifiesMembershipFromThePoleInLogNWithoutTheBase() {
+  const pair = (a: string, b: string) => toUuid(`${a}|${b}`) // an ordered node hash (a triangle: two children → one parent)
+  const buildLevels = (leaves: string[]) => { const levels = [leaves]; let cur = leaves; while (cur.length > 1) { const next: string[] = []; for (let i = 0; i < cur.length; i += 2) next.push(pair(cur[i]!, cur[i + 1] ?? cur[i]!)); levels.push(next); cur = next } return levels }
+  const proofPath = (levels: string[][], index: number) => { const path: { sibling: string; right: boolean }[] = []; let idx = index; for (let l = 0; l < levels.length - 1; l++) { const level = levels[l]!; const isRight = idx % 2 === 1; const sib = isRight ? idx - 1 : idx + 1; path.push({ sibling: level[sib] ?? level[idx]!, right: isRight }); idx = Math.floor(idx / 2) } return path }
+  const verify = (leaf: string, path: { sibling: string; right: boolean }[], apex: string) => { let h = leaf; for (const step of path) h = step.right ? pair(step.sibling, h) : pair(h, step.sibling); return h === apex }
+  const N = 2 ** 3 // 8 leaves — a clean pyramid
+  const leaves = Array.from({ length: N }, (_, i) => toUuid(`leaf:${i}`))
+  const levels = buildLevels(leaves)
+  const apex = levels[levels.length - 1]![0]! // the pole — one root
+  const index = 2 + 3 // the leaf to prove (5)
+  const path = proofPath(levels, index)
+  const proofLength = path.length // = log2(N)
+  const verifiesFromPole = verify(leaves[index]!, path, apex) // the leaf + its path reconstruct the apex
+  const tamperFails = !verify(toUuid('forged leaf'), path, apex) // a forged leaf does NOT verify
+  const logNotLinear = proofLength === 3 && proofLength < N // O(log N) path, not O(N) base traversal
+  const proofHolds = verifiesFromPole && tamperFails && logNotLinear
+  const facets = [
+    { facet: `THE MERKLE PROOF VERIFIES MEMBERSHIP FROM THE POLE: leaf #${index} plus its ${proofLength}-hash sibling path reconstructs the apex ${apex.slice(0, 9 + 3)}… exactly (${verifiesFromPole}), proving the leaf is in the committed base WITHOUT walking the base; a forged leaf on the same path does NOT reach the apex (${tamperFails}) — membership and integrity in one check`, on: verifiesFromPole && tamperFails },
+    { facet: `LOG N FROM THE POLE, NOT O(N) OVER THE BASE: the proof is ${proofLength} = log₂(${N}) hashes against the ${N}-leaf base (${logNotLinear}), so verifying membership costs O(log N) from the apex + a short path, not an O(N) traversal — the pyramid's dual to building it (base→apex, one-way): verification is apex + path → membership, the "removing speed" of the earlier fold made exact for proofs`, on: logNotLinear },
+    { facet: `EARNED BOUNDARY: the proof verifies MEMBERSHIP (this leaf is in the committed set) and INTEGRITY (a changed leaf or path fails), NOT truth or secrecy — it shows a value was committed to the apex, not that the value is CORRECT, and its unforgeability rests on the hash's collision-resistance, which is ASSUMED not proven here (toUuid is tamper-EVIDENT, the SHA-256/Ed25519 cutover pending, the crypto-honesty line); and O(log N) is an algorithmic, not a physical, speedup`, on: proofHolds },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    leaves: N, proofLength, apex: apex.slice(0, 9 + 3), verifiesFromPole, tamperFails, logNotLinear,
+    facets,
+    statement: `The merkle proof verifies membership from the pole in O(log N), without the base — ${facets.filter((e) => e.on).length}/${facets.length}: leaf #${index} + its ${proofLength}-hash path (= log₂ ${N}) reconstructs the apex ${apex.slice(0, 9 + 3)}… (${verifiesFromPole}) while a forged leaf fails (${tamperFails}); membership is checked from the pole + a short path, not an O(${N}) base walk (${logNotLinear}). The pyramid's dual — build is one-way, verify is log N; membership and integrity, not truth or secrecy.`,
+    boundary: earned(`EXACT: an ${N}-leaf merkle pyramid folds to one apex ${apex.slice(0, 9 + 3)}…; leaf #${index} plus its ${proofLength}-hash sibling path (${proofLength} = log₂ ${N}) reconstructs the apex exactly (${verifiesFromPole}), a forged leaf on the same path does not (${tamperFails}), and the check is O(log N) from the pole rather than an O(${N}) traversal of the base (${logNotLinear}). So the pole verifies membership in the whole base via a short path — building the pyramid is one-way (base → apex), and its dual is this proof (apex + path → membership), the exact, verification-side form of the earlier "content-addressing removes the O(N) re-work".`, facets, `the proof establishes MEMBERSHIP and INTEGRITY only — that a value was committed to the apex and that no leaf or path hash changed — NOT that the value is correct (a false theorem can be a perfectly valid merkle leaf) nor that the commitment is unforgeable (that rests on the hash's collision-resistance, assumed here; toUuid is tamper-EVIDENT, real cryptographic hardness is the deliberate, pending cutover). And O(log N) is an algorithmic win — fewer hashes to check — not a physical or quantum speedup. The pole proves what is in the base, cheaply and tamper-evidently; it does not prove any of it true.`),
+  }
+}
