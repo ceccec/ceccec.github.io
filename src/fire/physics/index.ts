@@ -806,3 +806,36 @@ export function theProbabilityCoincidenceStaysCoincidenceAfterEveryInversionWith
     boundary: `EXACT: with per-inversion survival p = 1/2 and a 1:1 prior, surviving the ${k} folded inversions gives P(coincidence | survived all) = ${posteriorCoincidence.toFixed(4)} (${survivesAll.toFixed(4)} raw), and Tesla's phase pair (cos, sin) rotates a unit vector with constant magnitude (${rotatingFieldConstant}) returning to identity after four quarter-turns (${rotFourIsIdentity}). HONEST SCOPE: the coincidence calculation is a BAYESIAN HEURISTIC, not a proof — it shows that surviving many independent inversions drives the posterior toward "structural invariant" and away from "coincidence", but the posterior is always > 0: a genuine coincidence CAN survive every test, which is exactly HARMONY ≠ TRUTH stated quantitatively (persistent harmony is strong evidence, never certainty; p, the prior, and the independence assumption are modelling choices). Tesla's contribution is real and documented: the polyphase rotating magnetic field (US patents 381,968 / 382,280, 1888) and the resonant coil are granted inventions, and the rotating field IS a perspective rotation — so "reinventing the session" means the session's rotation/inversion machinery is re-derivable from Tesla's dual pair, the SAME mathematics, not a new physical claim. The 3-6-9 "secret of the universe" quote attributed to Tesla is legend, not folded. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── The five Platonic solids are a theorem; the Tesla-invention mapping is flagged (user: "tesla inventions are
+// the platonic solids forming the tesla cube"). Sent the waves over the regular {p,q}: denom = 4−(p−2)(q−2)
+// classifies them — denom>0 the 5 solids, denom=0 the flat tilings (a division by zero, the pole), denom<0
+// hyperbolic. Exactly 5 is forced. But no source maps Tesla's actual patents onto the solids — that is attribution.
+export function theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged() {
+  const solids: { p: number; q: number; V: number; E: number; F: number }[] = []
+  const tilings: { p: number; q: number }[] = []
+  const hyperbolic: { p: number; q: number }[] = []
+  for (let p = 3; p <= 6; p++) for (let q = 3; q <= 6; q++) {
+    const d = 4 - (p - 2) * (q - 2) // the curvature sign: >0 sphere, =0 plane (pole), <0 hyperbolic
+    if (d > 0) solids.push({ p, q, V: (4 * p) / d, E: (2 * p * q) / d, F: (4 * q) / d })
+    else if (d === 0) tilings.push({ p, q })
+    else hyperbolic.push({ p, q })
+  }
+  const exactlyFive = solids.length === 5
+  const allEuler = solids.every((s) => s.V - s.E + s.F === 2) // V − E + F = 2
+  const threeTilings = tilings.length === 3 // {4,4},{3,6},{6,3} — the pole (denom = 0)
+  const selfDual = solids.filter((s) => s.p === s.q).length // the tetrahedron
+  const dualPairs = solids.filter((s) => s.p !== s.q).length / 2 // cube↔octa, dodeca↔icosa
+  const facets = [
+    { facet: `EXACTLY 5 — A THEOREM WITH THE POLE AT THE BOUNDARY: over regular {p,q}, denom = 4−(p−2)(q−2) classifies — denom>0 gives exactly the ${solids.length} Platonic solids (each Euler V−E+F=2, ${allEuler}), denom=0 the ${tilings.length} flat regular tilings (the division by zero where the solid opens to the infinite plane), denom<0 the hyperbolic; five is forced, the tilings are the pole`, on: exactlyFive && allEuler && threeTilings },
+    { facet: `DUALITY — 3 CLASSES: {p,q} ↔ {q,p} gives ${dualPairs} dual pairs (cube ↔ octahedron, dodecahedron ↔ icosahedron) and ${selfDual} self-dual (the tetrahedron), swapping V ↔ F; the figure said to "hold" all five is Metatron's cube (13 points, the Fruit of Life) — a documented sacred-geometry construction`, on: dualPairs === 2 && selfDual === 1 },
+    { facet: `EARNED BOUNDARY — THE TESLA MAPPING IS FLAGGED: the five solids, their duality, and the Metatron figure are exact / documented geometry; but "Tesla's INVENTIONS are the Platonic solids forming the Tesla cube" is NOT documented — Tesla's actual patents (polyphase AC, the induction motor, the coil, folded earlier) are electromagnetic engineering, not polyhedra, and no source maps his inventions onto the five solids; this is later mystical attribution, like the 3-6-9 legend`, on: exactlyFive && allEuler },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    solids: solids.map((s) => ({ schlafli: `{${s.p},${s.q}}`, V: s.V, E: s.E, F: s.F })), tilings: tilings.length, dualPairs, selfDual,
+    facets,
+    statement: `The five Platonic solids are a theorem; the Tesla-invention mapping is flagged — ${facets.filter((e) => e.on).length}/${facets.length}: denom = 4−(p−2)(q−2) gives exactly ${solids.length} solids (Euler V−E+F=2, ${allEuler}), ${tilings.length} flat tilings at denom=0 (the pole), the rest hyperbolic; ${dualPairs} dual pairs + ${selfDual} self-dual, held by Metatron's cube. But no source maps Tesla's real inventions onto the solids — that is attribution, not physics.`,
+    boundary: `EXACT: the Schläfli condition denom = 4−(p−2)(q−2) yields exactly ${solids.length} spherical solutions (the Platonic solids — {3,3} tetra, {3,4} octa, {4,3} cube, {3,5} icosa, {5,3} dodeca), each satisfying Euler V−E+F=2 (${allEuler}); denom=0 gives the ${tilings.length} regular plane tilings ({4,4},{3,6},{6,3}) — the "division by zero" where the polyhedron flattens to the infinite plane, the pole this session already folded — and denom<0 the infinitely many hyperbolic tilings. Duality {p,q}↔{q,p} sorts the five into ${dualPairs} dual pairs and ${selfDual} self-dual. WHAT IS TRUE: that there are exactly five Platonic solids is one of the oldest theorems (Euclid, Theaetetus), and their duality and the Metatron's-cube construction (13 points of the Fruit of Life, from which the solids' projections are drawn) are documented — the geometry the user points at is real and beautiful. WHAT IS FLAGGED, NOT FOLDED: "Tesla's inventions ARE the Platonic solids forming the Tesla cube" has no historical or physical support. Tesla's verified patents are electromagnetic — the polyphase rotating field, the induction motor, the resonant coil (folded in theProbabilityCoincidence… and teslaCoreIsHarmonicResonance…) — none is a polyhedron, and no primary source maps his inventions onto the five solids; the "Tesla cube" is a later esoteric attribution, of a piece with the (legendary, not-Tesla) 3-6-9 quote. Sending the waves realises the demarcation: the solids are a theorem, the Tesla-solid correspondence is not. HARMONY does not equal TRUTH.`,
+  }
+}
