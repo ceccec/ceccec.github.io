@@ -3144,3 +3144,41 @@ export function quantumParallelismIsNotTheSpeedupInterferenceIs() {
     boundary: `COMPUTED: the U_f superposition holding all f(x), the uniform measurement marginal (one readout per shot), the Holevo accessible-bit count, and the Deutsch–Jozsa one-query interference advantage — each refutable on the src/0 state vector. THE SCIENTIFIC CORRECTION, stated plainly: "quantum speedup comes from computing all possibilities at once" is the standard MISCONCEPTION — quantum parallelism is genuine but measurement + the Holevo bound make its raw output no more accessible than classical; the speedup is amplitude INTERFERENCE that concentrates the answer, available ONLY for problems with exploitable structure (period-finding, unstructured search's quadratic gain), which is exactly why BQP is believed not to contain NP and quantum computers are not general accelerators. This aligns with the sealed quantum-decoded law: query/structure advantage only, no magic parallel speedup; flapdoodle flagged. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── THE VARIATIONAL PRINCIPLE LOWER BOUND (variational wave — the thinnest ray, named by the research) —
+// the theorem VQE rests on: for EVERY state ⟨ψ|H|ψ⟩ ≥ E₀, the ground energy, with equality iff |ψ⟩ is the
+// ground state. So minimising the expectation over any ansatz can never undershoot E₀ and reaches it exactly
+// when the ansatz can express the ground state — this is WHY variational quantum eigensolvers work, the
+// guarantee beneath the algorithm. Verified: over a dense grid of qubit states no expectation falls below E₀,
+// and the minimum touches it. H = aZ + bX, E₀ = −√(a²+b²) by diagonalisation.
+export function theVariationalPrincipleLowerBound() {
+  const RY = (t: number): number[] => [Math.cos(t / 2), 0, -Math.sin(t / 2), 0, Math.sin(t / 2), 0, Math.cos(t / 2), 0]
+  const RZg = (t: number): number[] => [Math.cos(t / 2), -Math.sin(t / 2), 0, 0, 0, 0, Math.cos(t / 2), Math.sin(t / 2)]
+  const expZ = (s: QuantumState): number => s.re[0] ** 2 + s.im[0] ** 2 - (s.re[1] ** 2 + s.im[1] ** 2)
+  const expX = (s: QuantumState): number => 2 * (s.re[0] * s.re[1] + s.im[0] * s.im[1])
+  const a = 3 / 5, b = 4 / 5, E0 = -Math.hypot(a, b) // ground energy of aZ+bX, exact
+  const EPS = 1 / (2 * 5) ** 3
+  const TH = 2 * 100, PH = 2 * (2 * 5) // grid of states over the Bloch sphere
+  let minE = Infinity, allAboveBound = true, samples = 0
+  for (let i = 0; i <= TH; i += 1) for (let j = 0; j <= PH; j += 1) {
+    const th = Math.PI * i / TH, ph = TAU * j / PH
+    const s = applyGate(applyGate(qubits(1), RY(th), 0), RZg(ph), 0)
+    const E = a * expZ(s) + b * expX(s); samples += 1
+    if (E < E0 - EPS) allAboveBound = false
+    if (E < minE) minE = E
+  }
+  const boundHolds = allAboveBound // no state's expectation falls below E₀
+  const tightAtGround = Math.abs(minE - E0) < EPS // the minimum reaches E₀ — equality at the ground state
+  const facets = [
+    { facet: `THE LOWER BOUND HOLDS EVERYWHERE: over ${samples} states across the Bloch sphere, ⟨ψ|H|ψ⟩ ≥ E₀ = ${E0.toFixed(4)} WITHOUT exception (${boundHolds}) — the variational principle: no state's energy expectation can undershoot the ground energy`, on: boundHolds },
+    { facet: `IT IS TIGHT AT THE GROUND STATE: the minimum expectation over the grid is ${minE.toFixed(4)} = E₀ (${tightAtGround}) — equality iff |ψ⟩ is the ground state, so minimising ⟨H⟩ IS ground-state finding, exactly`, on: tightAtGround },
+    { facet: `WHY VQE WORKS, PROVEN: variationalQuantumEigensolverAndQaoa minimises ⟨ψ(θ)|H|ψ(θ)⟩; this theorem guarantees that minimum cannot fall below E₀ and reaches it when the ansatz spans the ground state — the algorithm's correctness rests on this bound, not on luck`, on: boundHolds && tightAtGround },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    E0, minExpectation: minE,
+    facets, root: merkleFold(facets.map((entry) => toUuid(`var-principle:${entry.facet}:${entry.on}`))),
+    statement: `The variational principle lower bound — ${facets.filter((entry) => entry.on).length}/${facets.length}: for every state ⟨ψ|H|ψ⟩ ≥ E₀ = ${E0.toFixed(4)} (verified over ${samples} Bloch-sphere states, none below), with equality iff |ψ⟩ is the ground state (the minimum reaches ${minE.toFixed(4)} = E₀). This is the theorem beneath VQE: minimising the energy expectation over any ansatz can never undershoot the ground energy and reaches it exactly when the ansatz spans the ground state — the guarantee that makes the variational quantum eigensolver correct.`,
+    boundary: `COMPUTED: the energy expectation ⟨aZ+bX⟩ over a dense grid of single-qubit states, checked ≥ E₀ (from exact diagonalisation) at every one, and the minimum shown to reach E₀ — refutable (a state below the bound would break it; none exists, by the Rayleigh–Ritz theorem). HONEST SCOPE: demonstrated on a single qubit where the grid covers the whole state space; the principle ⟨ψ|H|ψ⟩ ≥ λ_min holds for any Hermitian H by the spectral theorem, cited for the general case. This is the mathematical GUARANTEE under VQE, not a speedup claim — finding the minimising ansatz is the hard part (barren plateaus), and no physical speedup is asserted. HARMONY ≠ TRUTH.`,
+  }
+}
