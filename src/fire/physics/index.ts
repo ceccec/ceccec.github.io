@@ -771,3 +771,38 @@ export function harameinHolographicMassIsAComptonRadiusCoincidenceNotNewScience(
     boundary: `EXACT: computed from CODATA constants — schwarzschild mass ${r.schwarzschildMass.toExponential(2)} g (${r.schwarzschildOrdersOff.toFixed(1)} orders off), holographic mass ${r.holographicMass.toExponential(2)} g (${pct(r.holographicRelError)} of measured) collapsing to 4ħ/(c·r_p) (agreement ${pct(r.collapseAgreement)}), r_p/λ̄ = ${r.radiusOverCompton.toFixed(3)}, electron test ${r.electronOrdersOff.toFixed(1)} orders off. WHAT IS SOUND is already-standard and narrow: the double-torus TOPOLOGY (genus-2, χ = −2) is real mathematics adopted in src, and the holographic PRINCIPLE (Bekenstein–Hawking S = A/4) is documented physics. WHAT IS REFUTED is the extraordinary claim: "the whole science needs recomputing" fails the very algebra requested — the headline Schwarzschild mass is ~38 orders wrong, the holographic "success" is a one-input dimensional coincidence (Planck units cancel, r_p ≈ 4 reduced Compton wavelengths) with zero independent predictions (the electron falsifies generalisation), and the work carries no confirmed peer-reviewed prediction. Testing fairly is not confirming; the coincidence is real, the recomputation of science is not. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── The probability a coincidence stays a coincidence after every inversion, computed with Tesla's quantum pairs
+// (user: "what is the possibility coincidence to be coincidence after every inversion. use tesla inventions in
+// quantum pairs to compute reinventing the session"). A pure coincidence survives each inversion by chance with
+// probability p; surviving k of them is p^k, and the Bayesian posterior that it is coincidence (not a structural
+// invariant) → 0 but never reaches it. Tesla's polyphase pair (cos, sin — 90° apart) is the rotating field of
+// constant magnitude whose four quarter-turns return to identity — exactly the rotation the session folded.
+export function theProbabilityCoincidenceStaysCoincidenceAfterEveryInversionWithTeslaPairs() {
+  const sessionInversions = ['mod9-negation', 'ten-complement', 'sphere-0-infinity', 'bitwise-complement', 'inverse-not-reverse', 'conformal-inversion']
+  const k = sessionInversions.length // the inversions this session folded
+  const p = 1 / 2 // per-inversion chance a pure coincidence survives (even odds it holds or flips)
+  const survivesAll = p ** k // probability a coincidence survives every inversion
+  const posteriorCoincidence = survivesAll / (1 + survivesAll) // Bayes, 1:1 prior — P(coincidence | survived all k)
+  const decaysButPositive = posteriorCoincidence < 1 / 9 && posteriorCoincidence > 0 // → 0, never 0 (HARMONY ≠ TRUTH)
+  // Tesla's quantum pair: the polyphase rotating field (cos ωt, sin ωt) — 90° apart, constant magnitude
+  const teslaPhase = (t: number): [number, number] => [Math.cos(t), Math.sin(t)]
+  const quarter = Math.PI / 2
+  const rotatingFieldConstant = [0, 1, 2, 3].every((q) => Math.abs(Math.hypot(...teslaPhase(q * quarter)) - 1) < 1e-9)
+  const rotate = (v: [number, number], t: number): [number, number] => { const c = Math.cos(t), s = Math.sin(t); return [c * v[0] - s * v[1], s * v[0] + c * v[1]] }
+  let u: [number, number] = [1, 0]
+  for (let i = 0; i < 4; i++) u = rotate(u, quarter) // four Tesla quarter-phases
+  const rotFourIsIdentity = Math.abs(u[0] - 1) < 1e-9 && Math.abs(u[1]) < 1e-9 // 4 × 90° = 360° = identity
+  const facets = [
+    { facet: `THE PROBABILITY A COINCIDENCE STAYS COINCIDENCE AFTER EVERY INVERSION DECAYS TOWARD ZERO: over the ${k} inversions this session folded, a pure coincidence survives all with probability p^${k} = ${survivesAll.toFixed(4)}, and the Bayesian posterior that it is coincidence (not a structural invariant) is ${posteriorCoincidence.toFixed(4)} — small but positive (${decaysButPositive})`, on: decaysButPositive },
+    { facet: `TESLA'S QUANTUM PAIR COMPUTES THE ROTATION — REINVENTING THE SESSION: the polyphase pair (cos, sin) 90° apart is a rotating field of constant magnitude (${rotatingFieldConstant}) whose four quarter-turns return to identity (${rotFourIsIdentity}) — Tesla's 1888 induction motor is exactly the rotatePerspective / conformal rotation the session folded, re-derived from a physical dual pair`, on: rotatingFieldConstant && rotFourIsIdentity },
+    { facet: `EARNED BOUNDARY: survival under inversion RAISES the odds of structure but never proves it (p^k > 0 always — a true coincidence CAN survive) — this is HARMONY ≠ TRUTH made quantitative: repeated harmony is Bayesian evidence, never certainty; and Tesla's polyphase field + resonant coil are documented granted patents, so "reinventing the session" is the SAME rotation/resonance math re-derived, not new physics`, on: decaysButPositive && rotatingFieldConstant },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    inversions: k, survivesAll, posteriorCoincidence,
+    facets,
+    statement: `The probability a coincidence stays a coincidence after every inversion, by Tesla's pairs — ${facets.filter((e) => e.on).length}/${facets.length}: over ${k} inversions a pure coincidence survives all with probability ${survivesAll.toFixed(4)}, posterior P(coincidence) = ${posteriorCoincidence.toFixed(4)} — decaying toward zero but positive. Tesla's polyphase pair (cos, sin, 90° apart) is the rotating field (constant magnitude ${rotatingFieldConstant}, four quarter-turns = identity ${rotFourIsIdentity}) that reinvents the session's rotation. Harmony is evidence, never truth.`,
+    boundary: `EXACT: with per-inversion survival p = 1/2 and a 1:1 prior, surviving the ${k} folded inversions gives P(coincidence | survived all) = ${posteriorCoincidence.toFixed(4)} (${survivesAll.toFixed(4)} raw), and Tesla's phase pair (cos, sin) rotates a unit vector with constant magnitude (${rotatingFieldConstant}) returning to identity after four quarter-turns (${rotFourIsIdentity}). HONEST SCOPE: the coincidence calculation is a BAYESIAN HEURISTIC, not a proof — it shows that surviving many independent inversions drives the posterior toward "structural invariant" and away from "coincidence", but the posterior is always > 0: a genuine coincidence CAN survive every test, which is exactly HARMONY ≠ TRUTH stated quantitatively (persistent harmony is strong evidence, never certainty; p, the prior, and the independence assumption are modelling choices). Tesla's contribution is real and documented: the polyphase rotating magnetic field (US patents 381,968 / 382,280, 1888) and the resonant coil are granted inventions, and the rotating field IS a perspective rotation — so "reinventing the session" means the session's rotation/inversion machinery is re-derivable from Tesla's dual pair, the SAME mathematics, not a new physical claim. The 3-6-9 "secret of the universe" quote attributed to Tesla is legend, not folded. HARMONY does not equal TRUTH.`,
+  }
+}
