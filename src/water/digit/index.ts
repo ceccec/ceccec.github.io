@@ -2,9 +2,9 @@
 // @mvc model — pure domain math: rosetta decoder, digital root, zero-division — no UI, no routing.
 import { CANONICAL_SCIENCE_MASK, EIGHT_CURRICULUM_SCIENCES, FORBIDDEN_FOLDER_NAMES, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, displayPathFromScienceModelAction, folderTailFromMethodName, indexRegistryFromLogicRel, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMethodName, scienceModelActionFromMindTail, scienceModelActionFromWords, scienceModelActionMaskRowsFromMindTails, scienceModelActionTail, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import { GENETIC_CODE, codeRobustness, mutationClass } from '../../earth/life'
-import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
+import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength, DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, resonanceBandwidth, riseAzimuthDeg, ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, type RosettaComputationType, type RosettaRay } from '../../3/7'
 import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../mountain/vortex'
-import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
+import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit, CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, bumpProfile, isIonizing, leafFromPathTail, methodNameFromFolderTail, qcdMassFractionOfProton, ratIsInteger, ratStr, superdense, syncSpeedRpm } from '../../9/1'
 import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
@@ -16,11 +16,8 @@ import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvan
 import { EIGHT_FOLD_SCIENCES, hexDigitSum, isobaricCounterdiffusion, MOON_ORBIT_INCLINATION_DEG, PCI_CONSCIOUSNESS_THRESHOLD, RENDER_UI_SCIENCE_MASK, speedOfSoundAir, splitCamelSegment } from '../../8/2'
 import { hardyWeinbergGenotypes, HUBBLE_CONSTANT_CMB, lunarStandstillDeclinationDeg, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, qieaRotate, resonancePeakGain, SCALAR_SPECTRAL_INDEX_NS, piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3'
 import { carnotEfficiency, derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, uuidDuality } from '../../5/5'
-import { DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, resonanceBandwidth, riseAzimuthDeg } from '../../3/7'
-import { ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, type RosettaComputationType, type RosettaRay } from '../../3/7'
 export { ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, ROSETTA_RAY_CONTENT_LENSES, ROSETTA_RAY_HUBS, ROSETTA_RAY_HUB_SLUGS, rosettaRayHub, rosettaRayOfContent, type RosettaComputationType, type RosettaRay, type RosettaRayHub, type RosettaRayHubSlug } from '../../3/7' // hub IA + rosetta tables + content lenses hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { PROTON_GYROMAGNETIC, ZHL16_HE_HALFTIMES, HUBBLE_CONSTANT_LOCAL, resonantAmplitude, oscillatorBank, casimirEnergyPerArea, blackHoleEntropyBits, cantorDiagonal, quantumZeno } from '../../6/4'
-import { CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, bumpProfile, isIonizing, leafFromPathTail, methodNameFromFolderTail, qcdMassFractionOfProton, ratIsInteger, ratStr, superdense, syncSpeedRpm } from '../../9/1'
 import { digitFolderMath, digitFolders, digitFoldersComputeUiIsTheRest, folderLaw } from '../../earth/architecture'
 import { sealCube } from '../../mountain/seals'
 import { mvcOrganisationReceipt } from '../../mountain/source'
@@ -30,8 +27,7 @@ import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
 import { PI_TRAIN_DIGITS, analogNoGapsNoLeak, computePiDigits, conceptCommands, doubleTorusFold, homology, path, piNotHarmonic, theWhole } from '../../quantum/heaven/mind'
 import { movieAllDimensionsAtOnce } from '../../thunder/movie/glass'
 import { MISSION_COMMANDS, agentSubmissionProtocol, foldQuantumCommandPairs, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
-import { GOLDEN_ANGLE_RAD, PHI, TAU } from '../../3/7'
-import { earned } from '../../3/7'
+import { GOLDEN_ANGLE_RAD, PHI, TAU, earned } from '../../3/7'
 
 // The reverse of a digit folder (its backslash dual, n/0 \ ?) is the MULTIPLICATIVE INVERSE mod 9 —
 // n⁻¹ with n · n⁻¹ ≡ 1 (mod 9) — the ÷2 = ×5 map that runs the doubling circuit 1·2·4·8·7·5 BACKWARD
