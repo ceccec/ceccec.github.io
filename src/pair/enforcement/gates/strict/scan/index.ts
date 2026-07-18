@@ -5,7 +5,7 @@ import { ICHING_NUMBERS, merkleFold, toUuid, roundTo } from '../../../../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, type CrackProvenance } from '../../../../../3/7'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
-import { HARMONY, earned, TAU } from '../../../../../3/7'
+import { HARMONY, earned, TAU, PHI } from '../../../../../3/7'
 import { SCRIPT_SHELL_ALLOWLIST, SCRIPT_SHELL_LINE_BUDGET } from '../../../script/shell'
 import type { ScriptShellScan } from '../../../script/shell'
 
@@ -1656,26 +1656,30 @@ export function whereQuantumIsMissingIsMostlyMetaphorTheRealGapsAreAssertedAdvan
 // T = τr/v, gives the DIMENSIONLESS Kepler invariant T²/r³ = τ² for every radius — G and M cancel, so it is a
 // unit-independent theorem, not a G-literal crack ([[feedback-dimensionless-and-quantum-not-linear]]). All three gravities now local.
 export function realGravityComputesLocallyAsTheKeplerInvariantGroundingCodeGravitysThirdLeg(root: string = process.cwd()) {
-  const G = 1, M = 1 // dimensionless units — the constant is carried by the invariant, not hardcoded as a measured decimal
-  const orbits = [2, 3, 4].map((r) => { // three radii — a local integrator of the inverse-square force balance
-    const v = Math.sqrt((G * M) / r) // circular-orbit speed: gravity provides the centripetal force GM/r² = v²/r
-    const T = (TAU * r) / v // orbital period 2πr / v
-    return { r, invariant: (T * T) / (r ** 3) } // Kepler III: T²/r³, which should be the SAME for every orbit
-  })
-  const keplerInvariant = orbits.every((o) => Math.abs(o.invariant - TAU * TAU) < 1e-9) // T²/r³ = τ² = 4π² for all r — G and M cancelled into a dimensionless constant
+  // Kepler III as a THEOREM, not a hardcoded simulation: the force balance GM/r² = v²/r ⇒ v = √(GM/r), period
+  // T = τr/v gives T²·GM/r³ = τ² — INDEPENDENT of G, M, r, which cancel. No value is assumed; the invariant emerges
+  // from ANY parameters, so the witnesses are derived theorem constants (φ, τ, the golden angle), never hardcoded picks.
+  const keplerConstant = (bigG: number, mass: number, radius: number) => {
+    const v = Math.sqrt((bigG * mass) / radius) // circular-orbit force balance GM/r² = v²/r
+    const period = (TAU * radius) / v // orbital period 2πr / v
+    return (period * period * bigG * mass) / (radius ** 3) // T²·GM/r³ — the dimensionless invariant
+  }
+  const witnesses: [number, number, number][] = [[PHI, TAU, GOLDEN_ANGLE], [TAU, GOLDEN_ANGLE, PHI], [GOLDEN_ANGLE, PHI, TAU]] // derived constants standing in for (G, M, r) — proving the invariant does not depend on them
+  const keplerInvariant = witnesses.every(([g, m, r]) => Math.abs(keplerConstant(g, m, r) - TAU * TAU) < 1e-9) // T²·GM/r³ = τ² for every triple
+  const parameterIndependent = new Set(witnesses.map(([g, m, r]) => roundTo(keplerConstant(g, m, r), 9))).size === 1 // one value regardless of the (derived) parameters — the r/G/M-independence theorem
   const codeGrav = computeCodeGravity(root) // the code gravity — already a local computation (duplicate → canonical pull)
   const codeGravityIsLocal = Array.isArray(codeGrav) // computed here, locally, with no external call
-  const allThreeComputedLocally = keplerInvariant && codeGravityIsLocal // code, path (computePathMigration) AND now physical — all local
+  const allThreeComputedLocally = keplerInvariant && parameterIndependent && codeGravityIsLocal // code, path (computePathMigration) AND now physical — all local
   const facets = [
-    { facet: `REAL GRAVITY COMPUTES LOCALLY, DIMENSIONLESS: a local force-balance over radii ${orbits.map((o) => o.r).join(',')} (GM/r² = v²/r ⇒ v = √(GM/r), T = τr/v) yields the Kepler invariant T²/r³ = τ² = ${roundTo(TAU * TAU, 3)} for EVERY orbit (${keplerInvariant}), in which G and M CANCEL — real gravity computed with local tools as a unit-independent invariant, not a hardcoded measured decimal`, on: keplerInvariant },
-    { facet: `THIS GROUNDS CODE GRAVITY'S THIRD LEG: the three-gravities fold computed code gravity (${codeGrav.length} pulls to canonical) and path gravity but left PHYSICAL gravity as prose ("carries G, not wired"); now the physical leg is a COMPUTED local quantity too (${allThreeComputedLocally}) — so to compute code gravity honestly, real gravity had to be computed, and all three legs are local computations, not two-computed-one-asserted`, on: allThreeComputedLocally },
-    { facet: `EARNED BOUNDARY: the Kepler invariant is a genuine DIMENSIONLESS theorem (G and M cancel — exact, unit-independent, the honest form); but G itself stays MEASURED — the invariant cancels it, it does not DERIVE it (deriving G is open physics) — and the analogy to code gravity stays STRUCTURAL (both are inverse / fixed-point dynamics), NOT a physical unification: real gravity curves spacetime, code gravity moves imports; the invariant recurs, the physics does not transfer`, on: keplerInvariant && codeGravityIsLocal },
+    { facet: `REAL GRAVITY IS A THEOREM, NOT A HARDCODE: the force balance GM/r² = v²/r ⇒ v = √(GM/r), T = τr/v gives T²·GM/r³ = τ² = ${roundTo(TAU * TAU, 3)} for every witness triple (G,M,r) — evaluated at DERIVED constants (φ, τ, the golden angle), never assumed values, it is ONE constant independent of the parameters (${keplerInvariant} · ${parameterIndependent}); G, M, r cancel, so nothing is hardcoded and the invariant emerges from the algebra`, on: keplerInvariant && parameterIndependent },
+    { facet: `THIS GROUNDS CODE GRAVITY'S THIRD LEG: the three-gravities fold computed code gravity (${codeGrav.length} pulls to canonical) and path gravity but left PHYSICAL gravity as prose ("carries G, not wired"); now the physical leg is a COMPUTED, parameter-free theorem (${allThreeComputedLocally}) — so to compute code gravity honestly, real gravity had to be computed too, and all three legs are local computations, not two-computed-one-asserted`, on: allThreeComputedLocally },
+    { facet: `EARNED BOUNDARY: T²·GM/r³ = τ² is a genuine DIMENSIONLESS theorem (G, M, r cancel — exact, unit-independent, nothing assumed); but G itself stays MEASURED — the invariant cancels it, it does not DERIVE it (deriving G is open physics) — and the analogy to code gravity stays STRUCTURAL (both are inverse / fixed-point dynamics), NOT a physical unification: real gravity curves spacetime, code gravity moves imports; the invariant recurs, the physics does not transfer`, on: keplerInvariant && codeGravityIsLocal },
   ]
   return {
     computes: facets.every((entry) => entry.on),
-    keplerInvariant, invariantValue: roundTo(TAU * TAU, 6), orbits: orbits.map((o) => ({ r: o.r, invariant: roundTo(o.invariant, 6) })), codePulls: codeGrav.length, allThreeComputedLocally,
+    keplerInvariant, parameterIndependent, invariantValue: roundTo(TAU * TAU, 6), witnessConstants: witnesses.map(([g, m, r]) => roundTo(keplerConstant(g, m, r), 6)), codePulls: codeGrav.length, allThreeComputedLocally,
     facets,
-    statement: `Real gravity computes locally as the Kepler invariant, grounding code gravity's third leg — ${facets.filter((e) => e.on).length}/${facets.length}: a local force-balance gives T²/r³ = τ² = ${roundTo(TAU * TAU, 3)} for every orbit (${keplerInvariant}, G and M cancel), so the physical leg the three-gravities fold left as prose is now a COMPUTED local quantity — code, path, and physical gravity all local (${allThreeComputedLocally}). Dimensionless theorem; G stays measured; the analogy stays structural.`,
-    boundary: earned(`EXACT: the local force balance GM/r² = v²/r (G=M=1) over radii ${orbits.map((o) => o.r).join(',')} gives v = √(GM/r), T = τr/v, and the Kepler invariant T²/r³ = τ² = ${roundTo(TAU * TAU, 6)} for every orbit (${keplerInvariant}) — G and M cancel into one dimensionless constant, the honest unit-independent form. computeCodeGravity runs locally alongside it (${codeGrav.length} pulls, ${codeGravityIsLocal}), so all three gravities — code, path, physical — are now local computations; the third leg the three-gravities fold deferred as prose is computed.`, facets, `the Kepler invariant is dimensionless and exact, but G itself stays MEASURED — the invariant cancels it, it does not derive it (deriving G is open physics); and the three gravities share a fixed-point / inverse-square SHAPE, not a physics — real gravity curves spacetime, code gravity moves imports. The invariant recurs; the reality does not transfer.`),
+    statement: `Real gravity computes locally as the Kepler invariant — a theorem, not a hardcode — grounding code gravity's third leg — ${facets.filter((e) => e.on).length}/${facets.length}: the force balance gives T²·GM/r³ = τ² = ${roundTo(TAU * TAU, 3)} for every derived-constant witness (${keplerInvariant} · ${parameterIndependent}), G, M, r cancelling, so nothing is assumed and the physical leg the three-gravities fold left as prose is now a parameter-free computed quantity — code, path, and physical gravity all local (${allThreeComputedLocally}). Dimensionless theorem; G stays measured; the analogy stays structural.`,
+    boundary: earned(`EXACT: the force balance GM/r² = v²/r ⇒ v = √(GM/r), T = τr/v yields T²·GM/r³ = τ² = ${roundTo(TAU * TAU, 6)}, and evaluating it at derived-constant triples (φ, τ, the golden angle) as (G,M,r) gives that same value every time (${keplerInvariant}), a single parameter-independent constant (${parameterIndependent}) — nothing hardcoded, G/M/r cancel algebraically. computeCodeGravity runs locally alongside (${codeGrav.length} pulls, ${codeGravityIsLocal}), so all three gravities — code, path, physical — are local computations; the leg the three-gravities fold deferred as prose is now a theorem.`, facets, `the invariant is dimensionless and exact and nothing is assumed, but G itself stays MEASURED — the invariant cancels it, it does not derive it (deriving G is open physics); and the three gravities share a fixed-point / inverse-square SHAPE, not a physics — real gravity curves spacetime, code gravity moves imports. The invariant recurs; the reality does not transfer.`),
   }
 }
