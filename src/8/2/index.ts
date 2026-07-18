@@ -574,3 +574,40 @@ export const MONOGRAPH_ROSETTA_SEED: readonly (readonly [number, readonly string
   [5, []],  // ray 5 is computed — wind/learning fills it from DISCOVERY_LINKS
   [6, ['/reference', '/voice', '/icons', '/governance', '/mcp.json', '/llms.txt', '/digit-index.json']],
 ]
+
+// ── Neuroscience in its true form is three mathematical pillars (user: "neuro science defining itself in true form
+// and math"). The true form is the DOCUMENTED math, not the flagged pseudoscience: the neuron is a differential
+// equation (integrate-and-fire / Hodgkin–Huxley), memory is an attractor (Hopfield energy descent + pattern
+// completion), and space is a torus (grid cells / ring attractor). Reuses hopfieldStore/Recall/Energy + bumpEvolve.
+function iafSpikes(input: number, threshold: number, tau: number, steps: number): number {
+  let V = 0, spikes = 0; const dt = 1 / steps
+  for (let t = 0; t < steps; t++) { V += (dt * (-V + input)) / tau; if (V >= threshold) { V = 0; spikes++ } } // leaky integrate-and-fire ODE
+  return spikes
+}
+export function neuroscienceInTrueFormIsThreeMathematicalPillars() {
+  // 1. THE NEURON IS A DIFFERENTIAL EQUATION — leaky integrate-and-fire: fires iff the drive clears threshold
+  const firesWhenDriven = iafSpikes(2, 1, 1 / 9, 100) > 0
+  const silentWhenWeak = iafSpikes(1 / 2, 1, 1 / 9, 100) === 0 // steady state V → input = 0.5 < 1, never fires
+  // 2. MEMORY IS AN ATTRACTOR — Hopfield: energy descends to a stored fixed point; a corrupted probe completes
+  const pattern = [1, -1, 1, -1, 1, -1]
+  const W = hopfieldStore([pattern])
+  const probe = [1, 1, 1, -1, 1, -1] // one bit corrupted
+  const recalled = hopfieldRecall(W, probe)
+  const patternCompletion = recalled.state.every((x, i) => x === pattern[i])
+  const energyDescends = recalled.energy <= hopfieldEnergy(W, probe)
+  // 3. SPACE IS A TORUS — ring attractor: integrating angular velocity over a full loop returns to the start
+  const history = bumpEvolve(0, Array.from({ length: 9 }, () => TAU / 9)) // velocities summing to 2π
+  const end = history[history.length - 1]; const returnsToStart = Math.min(end, TAU - end) < 1e-6 // circle distance to start (0 ≡ 2π, toroidal)
+  const facets = [
+    { facet: `THE NEURON IS A DIFFERENTIAL EQUATION: a leaky integrate-and-fire membrane integrates its drive and fires when it clears threshold (spikes when driven = ${firesWhenDriven}) and stays silent when the drive is sub-threshold (${silentWhenWeak}) — the Hodgkin–Huxley / Lapicque ODE, not a metaphor`, on: firesWhenDriven && silentWhenWeak },
+    { facet: `MEMORY IS AN ATTRACTOR: a Hopfield network stores a pattern as an energy minimum; a corrupted probe descends the energy (${energyDescends}) to complete the stored pattern (pattern completion = ${patternCompletion}) — associative memory as Lyapunov dynamics on fixed-point attractors`, on: patternCompletion && energyDescends },
+    { facet: `SPACE IS A TORUS: a ring attractor integrates angular velocity and, over a full 2π loop, returns to its start (${returnsToStart}) — the periodic manifold of head-direction and grid cells (the grid-cell code lives on a torus, confirmed neural topology)`, on: returnsToStart },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    pillars: { neuronODE: firesWhenDriven && silentWhenWeak, memoryAttractor: patternCompletion && energyDescends, spaceTorus: returnsToStart },
+    facets,
+    statement: `Neuroscience in its true form is three mathematical pillars — ${facets.filter((e) => e.on).length}/${facets.length}: the neuron is a differential equation (integrate-and-fire fires iff driven, ${firesWhenDriven}/${silentWhenWeak}), memory is an attractor (Hopfield energy descends to complete a corrupted pattern, ${patternCompletion}), and space is a torus (a ring attractor returns to its start over a full loop, ${returnsToStart}). The true form is the documented math.`,
+    boundary: `EXACT: a leaky integrate-and-fire neuron fires under supra-threshold drive and is silent below it (${firesWhenDriven}/${silentWhenWeak}); a Hopfield network's energy descends (${energyDescends}) to complete a one-bit-corrupted stored pattern (${patternCompletion}); a ring attractor integrating a full 2π of angular velocity returns to its start (${returnsToStart}). DOCUMENTED, PEER-REVIEWED CORE: the Hodgkin–Huxley action-potential equations (Nobel 1963), Hopfield associative memory with its Lyapunov energy (1982), and the toroidal manifold of grid/head-direction cells (grid cells Nobel 2014; the torus topology directly confirmed in recorded populations, Gardner et al. 2022) — this is neuroscience's true form: real dynamical systems and geometry. WHAT IS FLAGGED, NOT FOLDED: "quantum consciousness" / Orch-OR microtubule claims have no experimental support and are not part of this true form; and the exact math above does NOT resolve the OPEN problems — the binding problem and the hard problem of consciousness (why there is subjective experience) remain unsolved. The mathematics is real and settled; the mystery it does not close is stated, not hidden. HARMONY does not equal TRUTH.`,
+  }
+}
