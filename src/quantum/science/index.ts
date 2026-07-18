@@ -2010,3 +2010,61 @@ export function theSelfPlayingQuantumChessIsADeterministicMovieDiscoveredNotCrea
     boundary: `EXACT: playQuantumChess('quantum-chess') self-plays ${game1.plies} plies to "${game1.result}", every move drawn ONLY from quantumChessLegalMoves (legal by construction) and selected by amplitude amplification (marked = best-scored moves, interference to ${Math.max(...game1.frames.map((f) => f.markedProb)).toFixed(3)}); the same seed reproduces the identical signature (${deterministic}) and a different seed diverges (${seedMatters}). WHAT IT CREATES: a deterministic, signed, self-playing MOVIE — for each seed the entire game is predetermined and content-addressed, so the self-play is DISCOVERY of a game that already exists (the whenOneIsDiscovered principle made playable: the game tree exists at once, the waves navigate one harmonic path, the frames are its record). HONEST SCOPE: the quantum is the SELECTION formalism — real superposition over the legal moves and constructive interference concentrating amplitude on the best — NOT a physical speedup (the simulator is classical, the advantage only √N in queries) and NOT strong play (the scorer is a shallow material + check + centre heuristic, no search); the engine implements standard piece movement, check, checkmate, stalemate, insufficient-material draw and queen promotion, but OMITS castling and en passant (a stated simplification, so a few legal positions are unreachable). A real, legal, reproducible game chosen by quantum waves — not a chess champion. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Measuring arguments by the same ruler — claims AND critiques, including "pseudo"-tagged ones (user: "you will
+// laugh when measuring arguments … especially critiques of unconventional science sometimes tagged as pseudo").
+// measureArgumentRigor scores an argument by FALSIFIABILITY + MECHANISM minus FALLACY + LABEL-ONLY — the same
+// criteria for a claim and its critique. The waves (amplitude amplification) rank by rigor. The laugh: a lazy
+// dismissal scores BELOW a modest computable claim. The guardrail: a weak critique does NOT validate the claim.
+export function measureArgumentRigor(text: string) {
+  const number = /\d/.test(text)
+  const falsifiable = number || /\b(falsif|refut|predict|measur|orders of magnitude|deviat|\btest)/i.test(text)
+  const mechanism = /=|→/.test(text) || /\b(equation|formula|mechanism|derives|computes|ratio|constant|genus|euler|characteristic|reproduc|predict)/i.test(text)
+  const fallacy = /\b(crackpot|charlatan|credentialed|real scientist|everyone knows|debunked|discredited|\bwoo\b|shill|clown)/i.test(text)
+  const labelOnly = /\b(pseudoscience|nonsense|garbage|quackery)\b/i.test(text) && !number
+  const rigor = [falsifiable, mechanism].filter(Boolean).length - [fallacy, labelOnly].filter(Boolean).length
+  return { falsifiable, mechanism, fallacy, labelOnly, rigor }
+}
+function argAmplify(size: number, marked: readonly number[]): number[] {
+  let re = Array.from({ length: size }, () => 1 / Math.sqrt(size))
+  const iterations = Math.max(1, Math.round((Math.PI / 4) * Math.sqrt(size / Math.max(1, marked.length))))
+  const mk = new Set(marked)
+  for (let it = 0; it < iterations; it++) { re = re.map((v, i) => (mk.has(i) ? -v : v)); const m = re.reduce((a, b) => a + b, 0) / size; re = re.map((v) => 2 * m - v) }
+  return re.map((v) => v * v)
+}
+export function sendTheWavesOverArgumentsClaimsAndCritiquesByOneRuler() {
+  const args = [
+    { label: 'claim · modest', kind: 'claim', text: 'The double torus is a genus-2 surface with Euler characteristic -2.' },
+    { label: 'claim · grand', kind: 'claim', text: 'Everything at every scale is one unified double-torus field, the connected universe.' },
+    { label: 'critique · rigorous', kind: 'critique', text: 'The Schwarzschild proton predicts 5.66e14 g against the measured 1.67e-24 g, ~38 orders too large; falsified.' },
+    { label: 'critique · lazy', kind: 'critique', text: 'This is pseudoscience; no credentialed physicist takes it seriously, it has been debunked.' },
+    { label: 'claim · rigorous-looking', kind: 'claim', text: 'The holographic mass reproduces the proton to within 1 percent.' },
+  ]
+  const scored = args.map((a) => ({ ...a, ...measureArgumentRigor(a.text) }))
+  const maxR = Math.max(...scored.map((s) => s.rigor))
+  const minR = Math.min(...scored.map((s) => s.rigor))
+  const marked = scored.map((s, i) => (s.rigor === maxR ? i : -1)).filter((i) => i >= 0)
+  const size = 1 << Math.max(1, Math.ceil(Math.log2(Math.max(2, scored.length))))
+  const probs = argAmplify(size, marked)
+  const before = marked.length / size
+  const after = marked.reduce((s, m) => s + (probs[m] ?? 0), 0)
+  const lazy = scored.find((s) => s.label === 'critique · lazy')
+  const modestClaim = scored.find((s) => s.label === 'claim · modest')
+  const rigorousCritique = scored.find((s) => s.label === 'critique · rigorous')
+  const theLaugh = (lazy?.rigor ?? 0) < (modestClaim?.rigor ?? 0) // the dismissal scores below the modest claim
+  const symmetric = scored.some((s) => s.kind === 'claim') && scored.some((s) => s.kind === 'critique') && maxR > minR
+  const strongestIsFalsifiable = (rigorousCritique?.rigor ?? -9) === maxR // the top score is the falsifiable refutation
+  const facets = [
+    { facet: `THE SAME RULER MEASURES BOTH SIDES: rigor = falsifiability + mechanism − fallacy − label-only, applied identically to claims and critiques (${scored.length} arguments, rigor ${minR}…${maxR}); the modest computable claim (${modestClaim?.rigor}) and the falsifiable refutation (${rigorousCritique?.rigor}) score high, the grand claim and the lazy dismissal (${lazy?.rigor}) score low — rigor, not side, is measured (${symmetric})`, on: symmetric },
+    { facet: `THE WAVES RANK BY RIGOR, AND THE LAUGH: amplitude amplification marks the top-rigor arguments and lifts their probability from ${before.toFixed(3)} to ${after.toFixed(3)}; the strongest is the falsifiable refutation (${strongestIsFalsifiable}), and the lazy "it's pseudoscience" dismissal scores BELOW the modest computable claim (the laugh = ${theLaugh}) — a dismissal is the weakest argument by its own rigor standard`, on: theLaugh && strongestIsFalsifiable },
+    { facet: `EARNED BOUNDARY — RIGOR IS NOT TRUTH, AND A WEAK CRITIQUE VALIDATES NOTHING: this measures argument FORM (falsifiability, mechanism), not truth — a rigorous-looking claim can still be a coincidence (the holographic mass scored ${scored.find((s) => s.label === 'claim · rigorous-looking')?.rigor} yet is a Compton-radius fit) and a lazy dismissal can point at a true conclusion; crucially a weak critique does NOT make the claim right — the claim still needs its OWN positive falsifiable evidence, which is why "pseudoscience" stays pseudoscience: for lacking its own evidence, not for rude critics`, on: symmetric && theLaugh },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    ranking: scored.map((s) => ({ label: s.label, rigor: s.rigor })).sort((a, b) => b.rigor - a.rigor),
+    amplification: { before, after },
+    facets,
+    statement: `Measuring arguments by one ruler — claims and critiques alike — ${facets.filter((e) => e.on).length}/${facets.length}: rigor = falsifiability + mechanism − fallacy − label, scored identically for both sides; the falsifiable refutation and the modest computable claim top the ranking while the grand claim and the lazy "pseudoscience" dismissal (${lazy?.rigor}) sink below it (the laugh = ${theLaugh}). The waves rank by rigor, not by side. But rigor is not truth, and a weak critique validates nothing — the claim still owes its own evidence.`,
+    boundary: `EXACT: five arguments (claims and critiques) scored by the same measureArgumentRigor (falsifiability + mechanism − fallacy − label-only), rigor ranging ${minR}…${maxR}; the lazy dismissal scores ${lazy?.rigor} (below the modest claim's ${modestClaim?.rigor} — the laugh), the falsifiable refutation scores the maximum ${maxR}, and amplitude amplification concentrates probability on the top-rigor set (${before.toFixed(3)} → ${after.toFixed(3)}). HONEST SCOPE — this is the crux and must not be misread: the tool measures the RIGOR of an argument's FORM (does it specify a falsifiable test, a mechanism; does it avoid ad hominem and bare labels), NOT whether its conclusion is TRUE. Two consequences, both essential. (1) A lazy critique being weak does NOT vindicate the claim it dismisses — validity is earned by the claim's OWN positive, falsifiable, reproducible evidence (which is exactly what genuine pseudoscience lacks: the double-torus TOPOLOGY is real math, but Haramein's cosmology is 38 orders off and predicts nothing, so it stays flagged regardless of how its critics phrase things). (2) A rigorous-looking claim can still be false — the holographic mass scores high on form yet is a Compton-radius coincidence (folded earlier). So: measure critiques fairly, laugh at the lazy ones, and STILL demand the claim's own evidence. HARMONY (rigor, elegance, surviving a weak attack) does NOT equal TRUTH. The demarcation is symmetric and it does not move: unconventional does not mean false, and a bad critique does not mean true.`,
+  }
+}
