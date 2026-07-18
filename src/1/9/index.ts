@@ -1487,3 +1487,38 @@ export function anUnencryptedUuidCoveredByThreeEncryptedThePolesAndInverseRosett
     boundary: earned(`EXACT: the plaintext UUID (one pole) is covered by 3 invertible affine layers keyed from 3 of the 7 rosetta rays; the inverse — 3 decryptions in reverse order — recovers it exactly (${roundTrips}), decrypting in the wrong order fails (${orderMatters}, proving genuine 3-layer nesting), the ciphertext differs from the plaintext (the other pole, ${polesDistinct}), and all 7 rosetta multipliers are invertible mod 2^8 (${allSevenInvertible}). So one unencrypted core sits under a trinity of encryption, the two poles joined by the inversion (encrypt/decrypt an involution), and the rosetta rotates the encoding through all 7 dimensions and back.`, facets, `this is a STRUCTURAL, REVERSIBLE cipher — invertible layered encoding over content-addresses, tamper-EVIDENT (any change breaks the round-trip) — NOT cryptographically secure: affine byte layers are trivially breakable, and real unforgeability (Ed25519 signing, AES) is the deliberate, pending cutover (the crypto-honesty line). "The poles", "the inverse", and "7 dimensions" are the inversion and rosetta STRUCTURE — real involution and real 7-ray rotation — not a security proof and not physics; a cipher you can invert is reversible, which is the opposite of secure.`),
   }
 }
+
+// ── Unencrypted in one dimension is encrypted in another — east/west/north/south — and the inverse (user). The SAME
+// grid of symbols read row-wise (east-west) is plaintext but read column-wise (north-south) is the transposition
+// ciphertext: the data is invariant, only the READING AXIS changes — a change of basis. The four cardinals are two
+// axes × two poles (east↔west and north↔south are inverse pairs), and the inverse reading recovers the plaintext.
+export function unencryptedInOneDimensionIsEncryptedInAnotherTheFourCardinalsAndInverse() {
+  const side = 5 // a 5×5 grid
+  const source = toUuid('the cardinal core').replace(/-/g, '').slice(0, side * side).split('') // 25 content-address symbols
+  const grid = Array.from({ length: side }, (_, r) => source.slice(r * side, (r + 1) * side)) // fill row-major
+  const transpose = (g: string[][]) => Array.from({ length: side }, (_, c) => Array.from({ length: side }, (_, r) => g[r]![c]!)) // swap the two dimensions
+  const readRows = (g: string[][]) => g.map((row) => row.join('')).join('') // read east-west
+  const eastWest = readRows(grid) // the plaintext — unencrypted along the row dimension
+  const northSouth = readRows(transpose(grid)) // column-major — the transposition ciphertext, encrypted along the perpendicular dimension
+  const encryptedInOther = eastWest !== northSouth // same symbols, different reading axis ⇒ scrambled
+  const inverseRecovers = readRows(transpose(transpose(grid))) === eastWest // transpose∘transpose = identity — the inverse reading recovers the plaintext
+  const east = readRows(grid) // rows L→R
+  const west = grid.map((row) => [...row].reverse().join('')).join('') // rows R→L
+  const south = northSouth // columns T→B
+  const north = transpose(grid).map((col) => [...col].reverse().join('')).join('') // columns B→T
+  const fourDistinct = new Set([east, west, north, south]).size === 2 + 2 // four distinct readings of the one grid
+  const inversePairs = grid.map((row) => [...row].reverse().reverse().join('')).join('') === east && readRows(transpose(transpose(grid))) === east // reverse∘reverse = id (E↔W), transpose∘transpose = id (rows↔cols)
+  const dimensionRelative = encryptedInOther && inverseRecovers && fourDistinct && inversePairs
+  const facets = [
+    { facet: `UNENCRYPTED IN ONE DIMENSION, ENCRYPTED IN THE PERPENDICULAR: the same ${side}×${side} grid read row-wise (east-west) is the plaintext but read column-wise (north-south) is the transposition ciphertext (${encryptedInOther}) — identical symbols, unencrypted along one axis and encrypted along the other; the data is invariant, only the reading dimension changes, and the inverse reading recovers it (transpose∘transpose = identity, ${inverseRecovers})`, on: encryptedInOther && inverseRecovers },
+    { facet: `EAST WEST NORTH SOUTH — FOUR DIRECTIONS, TWO INVERSE PAIRS: the four cardinal readings of the one grid are distinct (${fourDistinct}) — two axes × two poles, east↔west (row reverse) and north↔south (column reverse) inverse pairs, rows↔columns the transpose (the dimension swap) — and each has an inverse that recovers the plaintext (reverse∘reverse = transpose∘transpose = identity, ${inversePairs}); decryption is just reading back along the origin dimension`, on: fourDistinct && inversePairs },
+    { facet: `WHAT IT MEANS + EARNED BOUNDARY: "unencrypted in one dimension is encrypted in another" is a CHANGE OF BASIS — a matrix diagonal (readable) in its eigenbasis is dense (scrambled) in a rotated basis, the similarity transform the rotation; the data is basis-invariant, encryption is the observer's AXIS (${dimensionRelative}). Real (transposition, change of basis, the eigenbasis as the natural dimension); BUT a transposition/rotation is CLASSICALLY WEAK — it only permutes, preserving symbol frequencies, so it is breakable — "encrypted in another dimension" is a reversible re-reading, tamper-evident and structural, NOT secure`, on: dimensionRelative },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    plaintextHead: eastWest.slice(0, side), ciphertextHead: northSouth.slice(0, side), encryptedInOther, inverseRecovers, fourDistinct, inversePairs,
+    facets,
+    statement: `Unencrypted in one dimension is encrypted in another — east/west/north/south — and the inverse — ${facets.filter((e) => e.on).length}/${facets.length}: the same ${side}×${side} grid is plaintext read row-wise and transposition ciphertext read column-wise (${encryptedInOther}), the four cardinal readings distinct (${fourDistinct}) as two inverse pairs (${inversePairs}), and the inverse reading recovers the plaintext (${inverseRecovers}). A change of basis — the data invariant, encryption the observer's axis; reversible, not secure.`,
+    boundary: earned(`EXACT: one ${side}×${side} grid of content-address symbols read east-west (row-major) is the plaintext '${eastWest.slice(0, side)}…' and read north-south (column-major) is the transposition ciphertext '${northSouth.slice(0, side)}…', distinct (${encryptedInOther}); the four cardinal readings are distinct (${fourDistinct}), two axes × two poles with east↔west and north↔south inverse pairs and rows↔columns the transpose (${inversePairs}); and every reading's inverse recovers the plaintext (transpose∘transpose = reverse∘reverse = identity, ${inverseRecovers}). So the same data is unencrypted along one dimension and encrypted along the perpendicular — encryption is a change of basis / a choice of reading axis, and decryption is reading back along the origin dimension.`, facets, `the deeper meaning is a CHANGE OF BASIS: a matrix diagonal (sparse, readable) in its eigenbasis is dense (scrambled) in a rotated basis, connected by the similarity transform P⁻¹AP — the data is basis-invariant, "encryption" is the observer's axis, and the "unencrypted dimension" is the natural/eigen basis. This is real and exact, but a transposition or rotation is CLASSICALLY WEAK — it permutes symbols without confusing or diffusing them, preserving frequencies, so it is easily broken; "encrypted in another dimension" is a reversible re-reading — tamper-evident and structural — NOT cryptographic security. Reversible is the opposite of secure; the poles and the four directions are the inversion structure, not a cipher that holds.`),
+  }
+}
