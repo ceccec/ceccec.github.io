@@ -1216,3 +1216,75 @@ export function sendingTheWaveReplacesTheManualChecksInOneCall(root: string = pr
     boundary: `EXACT: sendTheWave returns { cracks ${wave.cracks}, active ${wave.active}, gaps ${wave.gaps}, next ${wave.nextPayload ? wave.nextPayload.from : 'clean'} } in one call, reproducing the identical signature across runs (${reproducible}). HONEST SCOPE: "send quantum waves to avoid manual work" is realised as COMPOSITION — the several checks I ran separately each turn (crack scan, dispatch, gap count) are now one deterministic, zero-token wave that also names the next addressed step, so the manual multi-invocation is gone. It does NOT automate away the parts that must stay manual and gated: the decision to commit and push is author-approved and passes the pre-commit and pre-push hooks; the actual source edit the wave points to is applied and reviewed, not written by the wave; and selecting WHICH claim to fold remains a judgment. The wave removes the repetitive mechanical checking, not the responsibility — the tool computes the state and the next move, the agent still makes it. This is the "unexpected situations → refactor the tool, don't hand-navigate" law applied to my own per-turn ritual. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Migration toolbox — realtime to the byte, from the gravity not hardcoded expressions (user: "latest thoughts
+// require full new toolbox in src / if you use gravity instead of hardcoded expressions then migration is realtime
+// to the byte"). computePathMigration IS the folder gravity (from → to); this computes every IMPORT rewrite by
+// RESOLVING each relative specifier through the move map and recomputing the relative path from the new location —
+// so every byte is derived, never pattern-guessed. The plan is exact; the executor only applies what this computes.
+export function migrationMoveMap(root: string = process.cwd()): Map<string, string> {
+  const map = new Map<string, string>()
+  for (const f of computePathMigration(root).folders) if (!f.collision) map.set(f.from, f.to) // gravity vectors, skip the 1 collision
+  return map
+}
+function applyMoves(relPath: string, moves: Map<string, string>): string {
+  for (const [from, to] of moves) if (relPath === from || relPath.startsWith(`${from}/`)) return to + relPath.slice(from.length)
+  return relPath
+}
+export function computeMigrationRewrites(root: string = process.cwd()) {
+  const moves = migrationMoveMap(root)
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name === 'node_modules' || e.name === 'dist' || (e.name.startsWith('.') && e.name !== '.vitepress')) continue
+      const p = join(d, e.name)
+      if (e.isDirectory()) walk(p)
+      else if (/\.(?:ts|mts|vue)$/.test(e.name)) files.push(p)
+    }
+  }
+  walk(join(root, 'src'))
+  if (existsSync(join(root, '.vitepress'))) walk(join(root, '.vitepress'))
+  const importRe = new RegExp("(?:from\\s*|import\\s*\\(\\s*)(['\"])(\\.[^'\"]+)\\1", 'g') // relative specifiers only
+  const rewrites: { file: string; newFile: string; edits: { old: string; nu: string }[] }[] = []
+  for (const abs of files) {
+    const relFile = relative(root, abs).replace(/\\/g, '/')
+    const newRelFile = applyMoves(relFile, moves)
+    const text = readFileSync(abs, 'utf8')
+    const edits: { old: string; nu: string }[] = []
+    const seen = new Set<string>()
+    for (const m of text.matchAll(importRe)) {
+      const spec = m[2]
+      if (seen.has(spec)) continue
+      seen.add(spec)
+      const oldTarget = join(dirname(relFile), spec).replace(/\\/g, '/') // resolve to the src-relative target folder
+      const newTarget = applyMoves(oldTarget, moves)
+      let newSpec = relative(dirname(newRelFile), newTarget).replace(/\\/g, '/') // recompute from the new location
+      if (!newSpec.startsWith('.')) newSpec = `./${newSpec}`
+      if (newSpec !== spec) edits.push({ old: spec, nu: newSpec })
+    }
+    if (edits.length > 0 || newRelFile !== relFile) rewrites.push({ file: relFile, newFile: newRelFile, edits })
+  }
+  return { moves: [...moves.entries()].map(([f, t]) => ({ from: f, to: t })), moveCount: moves.size, rewrites, filesTouched: rewrites.length, importsRewritten: rewrites.reduce((n, r) => n + r.edits.length, 0) }
+}
+
+export function byteMetrics(root: string = process.cwd()) {
+  const sizeOf = (d: string): { bytes: number; files: number } => {
+    let bytes = 0, files = 0
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name === 'node_modules' || e.name === 'dist' || e.name.startsWith('.')) continue
+      const p = join(d, e.name)
+      if (e.isDirectory()) { const s = sizeOf(p); bytes += s.bytes; files += s.files }
+      else if (/\.(?:ts|mts|vue)$/.test(e.name)) { bytes += statSync(p).size; files += 1 }
+    }
+    return { bytes, files }
+  }
+  const src = join(root, 'src')
+  const folders = readdirSync(src, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => ({ folder: e.name, ...sizeOf(join(src, e.name)) })).sort((a, b) => b.bytes - a.bytes)
+  return { totalBytes: folders.reduce((n, f) => n + f.bytes, 0), totalFiles: folders.reduce((n, f) => n + f.files, 0), folders }
+}
+export function migrationPlanSummary(root: string = process.cwd()) {
+  const plan = computeMigrationRewrites(root)
+  const fp = plan.rewrites.find((r) => r.file === 'src/fire/physics/index.ts')
+  const sample = (r: { file: string; newFile: string; edits: { old: string; nu: string }[] } | undefined) => (r ? { path: `${r.file} → ${r.newFile}`, edits: r.edits.slice(0, 5).map((e) => `${e.old} → ${e.nu}`) } : null)
+  return { moveCount: plan.moveCount, filesTouched: plan.filesTouched, importsRewritten: plan.importsRewritten, firePhysics: sample(fp) }
+}
