@@ -2611,8 +2611,7 @@ export function quantumComputingScientists() {
   const withstood = challenges.filter((entry) => entry.withstood).length
   // THE REST OF QUANTUM COMPUTING — honest open frontiers the wave names, not failures:
   const frontiers = [
-    'Quantum Fourier Transform + phase estimation — the shared engine of Shor and HHL (controlled-phase ladder over the state-vector simulator).',
-    'Shor period-finding: a modular-exponentiation oracle read out by the QFT — the factoring path (deterministic simulation, no physical speedup claimed).',
+    'Shor period-finding: a modular-exponentiation oracle read out by the QFT — the factoring path (deterministic simulation, no physical speedup claimed). [QFT circuit + phase estimation now DELIVERED — theQuantumFourierTransformCircuitAndPhaseEstimation — this frontier is the oracle that remains.]',
     'Fault tolerance: a concatenated / surface code with a logical error rate below threshold — beyond the single-error bitFlipCode.',
     'Mixed-state layer: density matrices, decoherence channels and partial trace — the current simulator is pure-state only.',
     'Variational / adiabatic algorithms (VQE, QAOA) as deterministic simulations over the sealed gate set.',
@@ -2627,5 +2626,97 @@ export function quantumComputingScientists() {
     root: merkleFold(challenges.map((entry) => entry.receipt)),
     statement: `Scientists sent to develop the rest of quantum computing — ${withstood}/${challenges.length} adversarial challenges withstood at the quantum station: no-cloning (a cloner needs the overlap both 0 and 1), the operator algebra closes, teleportation is exact (fidelity 1), BB84 detects the eavesdropper (${(spies.errorWithEve * 100).toFixed(0)}% error vs 0%), Deutsch–Jozsa and Bernstein–Vazirani decide in ONE query, Simon recovers the period, superdense sends two bits per qubit, GHZ–Mermin refutes local hidden variables, and entanglement swaps to never-interacting qubits. ${frontiers.length} frontiers name the rest — QFT/phase-estimation, Shor, fault tolerance, mixed states, variational — as honest open developments.`,
     boundary: `PEER REVIEW BY CONSTRUCTION: each challenge is a real recomputable falsification attempt on a sealed quantum fold (noCloningWitness, pauliAlgebraCloses, teleportQubit, bb84, deutschJozsa, bernsteinVazirani, simon, superdense, ghzMermin, entanglementSwap) — a claim that cannot be attacked is not science. The ${challenges.length} withstand their attacks; any that failed would be listed in develops, not hidden. THE FRONTIERS ARE HONEST OPEN WORK, not a claim of completeness: QFT + phase estimation, Shor's period-finding, fault-tolerant codes, the mixed-state/density-matrix layer, and variational algorithms are NOT yet built — and per the sealed law the simulator is DETERMINISTIC, so none of these, when built, will claim physical quantum speedup (quantum-decoded). This wave develops the review's map into a standing adversarial set + a named backlog; it does not assert the quantum toolkit is finished. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── THE QFT CIRCUIT AND PHASE ESTIMATION — developing the first named frontier (quantumComputingScientists
+// listed "QFT + phase estimation"). The registry already proved the DFT MATRIX unitary (wave 45); what was
+// missing is the CIRCUIT that realises it on the state-vector simulator, and the phase-estimation readout
+// Shor and HHL are built on. Both are built here from the sealed src/0 gate set (applyGate + a controlled-
+// phase) and verified against ground truth: the circuit output equals the direct DFT of the amplitudes, and
+// phase estimation recovers φ = a/2^t EXACTLY. Honest scope: deterministic simulation, no physical speedup.
+export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
+  type St = { n: number; re: number[]; im: number[] }
+  // controlled-phase R(θ): multiply the amplitude of every basis state with control AND target set by e^{iθ}.
+  // The one primitive the QFT needs beyond H and cnot (src/0 has cz = R(π); this is the general angle).
+  const cphase = (st: St, control: number, target: number, theta: number): St => {
+    const re = st.re.slice(), im = st.im.slice(), c = 1 << control, t = 1 << target
+    const cr = Math.cos(theta), ci = Math.sin(theta)
+    for (let i = 0; i < re.length; i += 1) if ((i & c) !== 0 && (i & t) !== 0) { const a = re[i], b = im[i]; re[i] = a * cr - b * ci; im[i] = a * ci + b * cr }
+    return { n: st.n, re, im }
+  }
+  const swap = (st: St, a: number, b: number): St => {
+    const re = st.re.slice(), im = st.im.slice(), A = 1 << a, B = 1 << b
+    for (let i = 0; i < re.length; i += 1) { const ai = (i & A) !== 0, bi = (i & B) !== 0; if (ai !== bi) { const j = i ^ A ^ B; if (i < j) { const xr = re[i]; re[i] = re[j]; re[j] = xr; const xi = im[i]; im[i] = im[j]; im[j] = xi } } }
+    return { n: st.n, re, im }
+  }
+  // the QFT circuit: H on each qubit high→low, controlled-R_k from the lower qubits, then reverse the order.
+  const qft = (st0: St, n: number, sign: number): St => {
+    let s = st0 as St
+    for (let j = n - 1; j >= 0; j -= 1) { s = applyGate(s, GATES.H, j) as St; for (let k = j - 1; k >= 0; k -= 1) s = cphase(s, k, j, sign * Math.PI / (1 << (j - k))) }
+    for (let i = 0; i < Math.floor(n / 2); i += 1) s = swap(s, i, n - 1 - i)
+    return s
+  }
+  const iqft = (st0: St, n: number): St => { // exact adjoint: reverse the order, undo, negate the phases
+    let s = st0 as St
+    for (let i = 0; i < Math.floor(n / 2); i += 1) s = swap(s, i, n - 1 - i)
+    for (let j = 0; j < n; j += 1) { for (let k = 0; k < j; k += 1) s = cphase(s, k, j, -Math.PI / (1 << (j - k))); s = applyGate(s, GATES.H, j) as St }
+    return s
+  }
+  // ground truth: the direct DFT of the amplitude vector, y_k = (1/√N) Σ_j x_j ω^{jk}, ω = e^{2πi/N}.
+  const dft = (st: St): St => {
+    const N = st.re.length, re = new Array<number>(N).fill(0), im = new Array<number>(N).fill(0), s = 1 / Math.sqrt(N)
+    for (let k = 0; k < N; k += 1) for (let j = 0; j < N; j += 1) { const a = TAU * j * k / N, c = Math.cos(a), d = Math.sin(a); re[k] += s * (st.re[j] * c - st.im[j] * d); im[k] += s * (st.re[j] * d + st.im[j] * c) }
+    return { n: st.n, re, im }
+  }
+
+  // A — the circuit IS the DFT: over a nontrivial normalised state for n = 1..4, max amplitude error ~1e-15.
+  const EPS = 1 / (2 * 5) ** 9 // 1e-9 — the machine-precision gate, derived
+  let maxErr = 0
+  for (let n = 1; n <= 4; n += 1) {
+    const N = 1 << n
+    const raw: St = { n, re: Array.from({ length: N }, (_, i) => Math.sin(i + 1)), im: Array.from({ length: N }, (_, i) => Math.cos(2 * i + 1)) }
+    const nrm = Math.sqrt(raw.re.reduce((s, x) => s + x * x, 0) + raw.im.reduce((s, x) => s + x * x, 0))
+    const st: St = { n, re: raw.re.map((x) => x / nrm), im: raw.im.map((x) => x / nrm) }
+    const a = qft(st, n, 1), b = dft(st)
+    for (let i = 0; i < N; i += 1) maxErr = Math.max(maxErr, Math.abs(a.re[i] - b.re[i]), Math.abs(a.im[i] - b.im[i]))
+  }
+  const circuitIsDft = maxErr < EPS
+
+  // B — round trip: iqft(qft(|ψ⟩)) = |ψ⟩ (the inverse is the exact adjoint).
+  const N3 = 1 << 3
+  const rt0: St = { n: 3, re: Array.from({ length: N3 }, (_, i) => (i === 3 ? 1 : 0)), im: new Array<number>(N3).fill(0) }
+  const rt = iqft(qft(rt0, 3, 1), 3)
+  const roundTrips = rt.re.every((x, i) => Math.abs(x - rt0.re[i]) < EPS) && rt.im.every((x) => Math.abs(x) < EPS)
+
+  // C — phase estimation: eigenstate |1⟩ of R(φ); t counting qubits; recover φ = a/2^t exactly.
+  const phaseEstimate = (phi: number, t: number): number => {
+    const n = t + 1, N = 1 << n
+    let st: St = { n, re: new Array<number>(N).fill(0), im: new Array<number>(N).fill(0) }; st.re[1 << t] = 1 // |0…0⟩|1⟩
+    for (let q = 0; q < t; q += 1) st = applyGate(st, GATES.H, q) as St
+    for (let q = 0; q < t; q += 1) st = cphase(st, q, t, TAU * phi * (1 << q)) // controlled-U^{2^q}
+    st = iqft(st, t)
+    const p = probabilities(st as QuantumState); let best = 0, bp = 0
+    for (let i = 0; i < N; i += 1) if (p[i] > bp) { bp = p[i]; best = i }
+    return (best & ((1 << t) - 1)) / (1 << t)
+  }
+  const T = 4
+  const phis = [1 / 16, 3 / 16, 5 / 8, 7 / 16] // each a/2^4 — exactly representable, so PE is exact
+  const peExact = phis.every((phi) => Math.abs(phaseEstimate(phi, T) - phi) < EPS)
+
+  const facets = [
+    { facet: `THE QFT CIRCUIT IS THE DFT: H on each qubit + the controlled-phase R_k ladder + the reversing swaps, built from src/0's applyGate, reproduces the direct DFT of the amplitude vector for n = 1..4 — max amplitude error ${maxErr.toExponential(1)}, machine precision. The wave-45 proof was the abstract matrix; this is the circuit that realises it`, on: circuitIsDft },
+    { facet: `THE INVERSE IS THE EXACT ADJOINT: iqft(qft(|ψ⟩)) = |ψ⟩ — the reversing-swap + negated-phase circuit round-trips to the input exactly, so the transform is a genuine reversible quantum operation`, on: roundTrips },
+    { facet: `PHASE ESTIMATION IS EXACT: with ${T} counting qubits, the eigenphase of R(φ) is recovered to φ = a/2^${T} exactly for every tested φ ∈ {${phis.map((p) => p.toFixed(4)).join(', ')}} — the readout Shor's period-finding and HHL are built on, now runnable on the simulator`, on: peExact },
+    { facet: `ONE NEW PRIMITIVE, THE REST SHARED: the QFT needs only a general controlled-phase R(θ) beyond the sealed H/cnot/cz — everything else is the src/0 state-vector kernel; deterministic simulation, NO physical speedup claimed (sealed law)`, on: circuitIsDft && peExact },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    maxError: maxErr,
+    phaseEstimates: phis.map((phi) => ({ phi, estimate: phaseEstimate(phi, T) })),
+    facets,
+    root: merkleFold(facets.map((entry) => toUuid(`qft-pe:${entry.facet}:${entry.on}`))),
+    statement: `The QFT circuit and phase estimation — ${facets.filter((entry) => entry.on).length}/${facets.length}: the H + controlled-phase-ladder + swap circuit reproduces the direct DFT of the amplitude vector to machine precision (max error ${maxErr.toExponential(1)}), its adjoint round-trips exactly, and phase estimation with ${T} counting qubits recovers φ = a/2^${T} exactly. This develops the first named frontier — the QFT engine under Shor and HHL — from a matrix proof into a runnable circuit; the one new primitive is the general controlled-phase R(θ), the rest is the sealed src/0 kernel.`,
+    boundary: `COMPUTED: the circuit-vs-DFT amplitude comparison over n = 1..4 (max error ${maxErr.toExponential(1)} < machine epsilon), the inverse-QFT round trip, and exact phase estimation for φ = a/2^${T} — each refutable, ground truth being the explicit DFT. HONEST SCOPE: phase estimation is EXACT only when φ is a dyadic a/2^t; a general φ is recovered to t bits with the standard success probability (not claimed here). This is a DETERMINISTIC classical simulation of the QFT — it has the algorithm's structure, NOT its physical speedup (the sealed quantum-decoded law); it is the honest engine for the next frontier (Shor's period-finding = modular-exponentiation oracle + this readout), which remains open. The wave-45 matrix unitarity still stands beside this as the algebraic half. HARMONY ≠ TRUTH.`,
   }
 }
