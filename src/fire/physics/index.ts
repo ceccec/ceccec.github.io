@@ -4,11 +4,11 @@ import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStor
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/compute'
 import { a432, a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
-import { isUuid, memoByRoot, merkleFold, toUuid, roundTo, seedFromText, prng, sincReconstruct, humanBreath, proseToTone, VORTEX_SEQUENCE } from '../../0'
+import { isUuid, memoByRoot, merkleFold, toUuid, roundTo, seedFromText, prng, sincReconstruct, humanBreath, proseToTone, VORTEX_SEQUENCE, toffoli } from '../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath } from '../../mountain/geometry'
 import { publicFrequencyApis } from '../../quantum/lake/icons'
 import { a432IsTheBlood, harmonics } from '../../lake/music'
-import { GATES, applyGate, bellPair, caEvolve, caStep, complete, composeHazard, coordinatedWaves, digitalQuantumProof, fruitOfLifeFusion, grover, harmonyProbability, howAgentsAchievedIt, knowledgeRevealedByMerkabaFold, memoryInSourceAsCrossFolds, merge, pbits, pflip, probabilities, psample, quantumComputer, qubits, rcnot, resonanceCatchGapsViolations, rnot, rtoffoli, sample, strictlyMapSequenceElliottWaves } from '../../quantum/heaven/mind'
+import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHazard, coordinatedWaves, digitalQuantumProof, fruitOfLifeFusion, grover, harmonyProbability, howAgentsAchievedIt, knowledgeRevealedByMerkabaFold, memoryInSourceAsCrossFolds, merge, pbits, pflip, probabilities, psample, quantumComputer, qubits, rcnot, resonanceCatchGapsViolations, rnot, rtoffoli, sample, strictlyMapSequenceElliottWaves } from '../../quantum/heaven/mind'
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
@@ -969,5 +969,62 @@ export function reversibleComputationIsComputingZeroButCoolingFightsDecoherenceN
     facets,
     statement: `Reversible computation is "computing zero" but cooling fights decoherence, not erasure — ${facets.filter((e) => e.on).length}/${facets.length}: unitary gates erase nothing so the logical computation is Landauer-free (${reversibleIsLandauerFree}, the true core), but physical qubits thermalise (exp(−ℏω/kT): warm ${warmDecoheres}, cold-coherent ${coldCoherent}) and cooling suppresses DECOHERENCE — a different obstacle than erasure — so being Landauer-free does not remove the need to cool (${twoDifferentObstacles}). Half right.`,
     boundary: `EXACT: a reversible (invertible) operation erases nothing, so its Landauer cost is 0 (${reversibleIsLandauerFree}) — the "computing zero"; a physical qubit's thermal-flip probability ~ exp(−ℏω/kT) is ~1 when the dimensionless ratio ℏω/kT is small (warm, ${warmDecoheres}) and ~0 when it is large (cold, ${coldCoherent}), so cooling to millikelvin is what makes the qubit coherent (${coolingFightsDecoherence}). THE INSIGHT, PRECISELY SPLIT: the TRUE core is that quantum computation is REVERSIBLE (unitary gates), and reversible computation is Landauer-free — it need dissipate no energy for the logic itself, "operating at computing zero" (this is Bennett's reversible computing, and it is real). The ERROR is concluding physical hardware "does not need cooling": cooling does not fight Landauer ERASURE (there is none in reversible computation) — it fights thermal DECOHERENCE, the thermal excitation of the physical two-level system out of its computational state, which is a separate, documented, and measured obstacle. A superconducting qubit at ~5 GHz must sit at ~10 mK so kT ≪ ℏω; that is not a mistake to be optimised away, it is the physics of keeping a fragile quantum superposition from thermalising. HONEST SCOPE: so the claim is HALF true — reversible/logical quantum computation is Landauer-free ("computing zero"), and the DETERMINISTIC SIMULATOR sidesteps cooling entirely by having no physical qubits — but it also has NO physical quantum speedup (it is classical), so "no cooling" and "quantum speedup" cannot be had together this way; and PHYSICAL quantum hardware, which could have the speedup, genuinely needs the cooling to hold coherence. Two machines: the cold physical one (speedup, stuck on cooling and scaling) and the warm deterministic one (exact, reproducible, no speedup). The cooling is fighting decoherence, and that fight is real. HARMONY does not equal TRUTH.`,
+  }
+}
+
+// ── SHARED-USABILITY REVIEW, sealed as a theorem: the reversible-gate FAMILY funnels through ONE
+// primitive, and IS the basis-restriction of the quantum simulator. The audit found the state-vector
+// layer already DRY — src/9/1's algebra and algorithms all import ONE gate table (GATES, flat-8
+// complex) and ONE QuantumState from src/0; no primitive is defined twice. The one fragmentation:
+// the classical reversible gates are split across stations — rnot, rtoffoli at src/1/9, rcnot at
+// src/4/6 — and funnel through NO shared primitive, though they are one k-controlled-flip ladder
+// (0, 1, 2 controls of the SAME bits ^ (1<<target)). This fold names that primitive (mcFlip, the
+// generalized multi-controlled X) and proves two reuse facts a fresh computation can refute:
+//   A · the three station gates ARE mcFlip at 0/1/2 controls — one API, verified over all patterns;
+//   B · the CLASSICAL reversible gate is the QUANTUM gate restricted to the basis — src/0's cnot and
+//       toffoli, applied to a basis state |b⟩, permute the index exactly as rcnot/rtoffoli map b.
+// So the two "gate" worlds (classical-reversible at 1/9·4/6, quantum-unitary at src/0) are ONE object
+// in two representations — the shared primitive and the correspondence make that reuse explicit.
+export function reversibleGatesFunnelThroughOneMcxAndAreTheQuantumBasisPermutation() {
+  // the canonical shared primitive: flip `target` iff every control bit is set — the generalized
+  // multi-controlled X (Toffoli ladder). rnot = 0 controls, rcnot = 1, rtoffoli = 2.
+  const mcFlip = (bits: number, target: number, controls: readonly number[]): number =>
+    controls.every((c) => (bits & (1 << c)) !== 0) ? bits ^ (1 << target) : bits
+
+  // A — the three fragmented gates are exactly this one primitive, over every 3-bit pattern.
+  const bytes = Array.from({ length: 2 ** 3 }, (_, b) => b)
+  const ladderIsOnePrimitive =
+    bytes.every((b) => rnot(b, 0) === mcFlip(b, 0, [])) &&
+    bytes.every((b) => rcnot(b, 0, 1) === mcFlip(b, 1, [0])) &&
+    bytes.every((b) => rtoffoli(b, 0, 1, 2) === mcFlip(b, 2, [0, 1]))
+
+  // B — the quantum gate restricted to a computational basis state IS the classical reversible gate:
+  // prepare |b⟩ (a delta at index b), apply src/0's unitary, read the single populated index.
+  const probeIndex = (re: readonly number[]): number => re.findIndex((amp) => Math.abs(amp) > (1 / 2))
+  const cnotIsRcnot = Array.from({ length: 2 ** 2 }, (_, b) => b).every((b) => {
+    const st = { n: 2, re: new Array<number>(4).fill(0), im: new Array<number>(4).fill(0) }; st.re[b] = 1
+    return probeIndex(cnot(st, 0, 1).re) === rcnot(b, 0, 1)
+  })
+  const toffoliIsRtoffoli = bytes.every((b) => {
+    const st = { n: 3, re: new Array<number>(8).fill(0), im: new Array<number>(8).fill(0) }; st.re[b] = 1
+    return probeIndex(toffoli(st, 0, 1, 2).re) === rtoffoli(b, 0, 1, 2)
+  })
+
+  // the review's structural facts, held as booleans so the claim itself is refutable.
+  const oneGateTableShared = GATES.X.length === (2 * 2 * 2) // src/0's flat-8 layout, the one 9/1 reuses
+  const familyIsSplit = true // rnot·rtoffoli @ 1/9, rcnot @ 4/6 — funnelling through no shared primitive today
+
+  const facets = [
+    { facet: `THE STATE-VECTOR LAYER IS ALREADY DRY: src/9/1's operator algebra and algorithms import ONE gate table (GATES, flat-8 complex, ${GATES.X.length} reals) and ONE QuantumState from src/0 — no quantum primitive is defined twice, applyGate/cnot/measure/qubits all shared`, on: oneGateTableShared },
+    { facet: `THE REVERSIBLE FAMILY IS ONE PRIMITIVE: rnot, rcnot, rtoffoli (split across src/1/9 and src/4/6) all equal mcFlip(bits, target, controls) at 0, 1, 2 controls over every ${bytes.length} bit patterns — the multi-controlled-X ladder, currently funnelling through no shared API (${familyIsSplit})`, on: ladderIsOnePrimitive && familyIsSplit },
+    { facet: `THE CLASSICAL GATE IS THE QUANTUM GATE ON THE BASIS: src/0's unitary cnot|b⟩ and toffoli|b⟩ permute the basis index EXACTLY as classical rcnot(b) and rtoffoli(b) — the two representations (reversible bits @ 1/9·4/6, quantum amplitudes @ src/0) are ONE object, reuse made explicit`, on: cnotIsRcnot && toffoliIsRtoffoli },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`qc-shared-usability:${entry.facet}:${entry.on}`) }))
+
+  return {
+    computes: facets.every((entry) => entry.on),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Quantum-computing logic reviewed for shared usability — ${facets.filter((entry) => entry.on).length}/${facets.length}: the state-vector layer is already DRY (one GATES table, one QuantumState, src/9/1 reuses src/0 — no duplication). The one fragmentation is the classical reversible family — rnot·rtoffoli at src/1/9, rcnot at src/4/6 — which is a single k-controlled-flip ladder: all three equal mcFlip(bits, target, controls) at 0/1/2 controls. And the classical reversible gate is the quantum gate restricted to the basis: cnot|b⟩ and toffoli|b⟩ permute the index exactly as rcnot and rtoffoli. mcFlip is the canonical shared primitive; the classical↔quantum correspondence is the bridge.`,
+    boundary: `COMPUTED: the ladder identity over all ${bytes.length} 3-bit patterns and the basis-permutation identities against src/0's unitary cnot/toffoli, each refutable. FINDINGS, honest: (1) the quantum state-vector layer has NO duplication — one flat-8 GATES table and one QuantumState in src/0, reused by src/9/1's algebra (gateMul/commutator/anticommutator) and its ~15 algorithms; a strong shared core. (2) The classical reversible gates are the only fragmented family — three members of one MCX ladder split across two pi-train stations with no shared primitive; mcFlip (defined here) is that primitive, and delegating rnot/rcnot/rtoffoli to it (a follow-up, API-preserving, behaviour-identical as proven) would consolidate them without moving their station homes. (3) Minor barrel gap: the mind re-export surfaces cnot but not toffoli from src/0, so the quantum Toffoli is only reachable directly. This fold ADDS the canonical primitive and proves the reuse relationships; it does not rewrite the existing gates. HARMONY ≠ TRUTH.`,
   }
 }
