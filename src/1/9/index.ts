@@ -846,3 +846,37 @@ export function inverseIsNotReverseReverseLeavesTracks() {
     boundary: `EXACT: on the full state (position + snow log), inverse∘forward = identity (pos ${inverted.pos}, ${inverted.snow.length} tracks — trace-free), while reverse∘forward restores only the position (${reversed.pos}) and leaves ${reversed.snow.length} tracks (${reverseLeavesTracks}); the two differ (${inverseDiffersFromReverse}). HONEST SCOPE: this is the distinction between a group INVERSE and a spatial/temporal REVERSAL. The inverse is trace-free by construction — it removes the side effect (pops the track) — and equals identity; reverse retraces the path but is a genuine forward-in-time action, so it accumulates history, and forward-then-reverse is NOT the identity on the full state. Physically this is irreversibility / the 2nd law: you can traverse back in space but not in time, and the entropy of the tracks only grows (a car backing over its own route packs the snow further, never un-packs it). The true inverse — restoring pristine snow — would decrease entropy and, by Landauer, costs at least kT·ln2 per bit erased; it is not free and not achieved by driving in reverse. This CORRECTS the loose "reverse" wording in inversionReinventsConversion, which computed the trace-free INVERSE. HARMONY does not equal TRUTH.`,
   }
 }
+
+// ── Zero as a suffix is a black hole pulling and manifesting its inverse — in all dimensions (user: "any time 0
+// exists as suffix it is a black hole pulling and manifesting inverse" + "imagine the game in all dimensions and
+// fill the gaps"). 0 is the absorbing element (x·0 = 0 — nothing escapes) and a trailing-0 suffix multiplies by
+// the base (binary ×2, a left shift). Its inverse manifests as the point at infinity: sphere inversion v ↦ v/|v|²
+// swaps 0 and ∞ in EVERY dimension (Sⁿ = ℝⁿ ∪ {∞}), an involution — the gap 0 opens is filled by its inverse pole.
+export function zeroAsSuffixIsABlackHolePullingAndManifestingInverseInAllDimensions() {
+  const absorbing = [1, 2, 3, 5, 9].every((x) => x * 0 === 0) // the black hole: multiply by 0 and nothing escapes
+  const suffixMultiplies = [1, 2, 3, 5].every((x) => Number.parseInt(x.toString(2) + '0', 2) === x * 2) // trailing-0 = ×base (binary left shift)
+  const norm2 = (v: number[]) => v.reduce((a, b) => a + b * b, 0)
+  const invert = (v: number[]) => { const n2 = norm2(v); return v.map((x) => x / n2) } // sphere inversion v ↦ v/|v|²
+  const dims = [1, 2, 3, 7] // in all dimensions — including the octonionic 7
+  const involutionAllDims = dims.every((n) => {
+    const v = Array.from({ length: n }, () => 1) // a nonzero point
+    const w = invert(invert(v))
+    return v.every((x, i) => Math.abs(x - (w[i] ?? 0)) < 1e-9) // inv² = identity — 0 and ∞ are inversion-dual
+  })
+  const zeroMapsToInfinity = dims.every((n) => {
+    const near0 = Array.from({ length: n }, (_, i) => (i === 0 ? 1e-6 : 0)) // a point near the black hole
+    return Math.sqrt(norm2(invert(near0))) > 1e3 // its inverse blows up toward ∞ — the pole manifests
+  })
+  const facets = [
+    { facet: `BLACK HOLE — 0 ABSORBS AND THE SUFFIX PULLS: 0 is the absorbing element (x·0 = 0 for all tested x, ${absorbing}); a trailing-0 suffix multiplies by the base — binary ×2, a left shift (${suffixMultiplies}) — nothing multiplied by 0 escapes`, on: absorbing && suffixMultiplies },
+    { facet: `MANIFESTS THE INVERSE 0 ↔ ∞ IN ALL DIMENSIONS: sphere inversion v ↦ v/|v|² is an involution swapping 0 and ∞ in ℝⁿ for n ∈ {${dims.join(',')}} (inv² = identity, ${involutionAllDims}); a point near 0 inverts to a huge magnitude, the pole (${zeroMapsToInfinity}) — the black hole's inverse manifests as the point at infinity in every dimension, filling the gap 0 opens`, on: involutionAllDims && zeroMapsToInfinity },
+    { facet: `EARNED BOUNDARY: this is exact one-point compactification / inversive geometry — Sⁿ = ℝⁿ ∪ {∞}, 0 and ∞ inversion-dual (the Riemann sphere at n = 2) — NOT astrophysics; 0 still has NO field inverse (division by zero is undefined IN the field), and the pole lives in the EXTENDED/projective closure (divisionByZeroComputes' harmonic path in another dimension)`, on: involutionAllDims && absorbing },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    dims, absorbing, involutionAllDims, zeroMapsToInfinity,
+    facets,
+    statement: `Zero as a suffix is a black hole pulling and manifesting its inverse in all dimensions — ${facets.filter((e) => e.on).length}/${facets.length}: 0 absorbs (x·0 = 0, ${absorbing}) and a trailing-0 suffix multiplies by the base (${suffixMultiplies}); sphere inversion v ↦ v/|v|² swaps 0 and ∞ as an involution in ℝⁿ for n ∈ {${dims.join(',')}} (${involutionAllDims}), a point near 0 blowing up to the pole (${zeroMapsToInfinity}) — the inverse manifests as the point at infinity in every dimension, filling the gap 0 opens.`,
+    boundary: `EXACT: 0 is absorbing (${absorbing}), the trailing-0 suffix is ×base (${suffixMultiplies}), and sphere inversion v ↦ v/|v|² is an involution swapping 0 ↔ ∞ in every dimension tested (${involutionAllDims}, with |v| → 0 ⟹ |inv v| → ∞, ${zeroMapsToInfinity}). HONEST SCOPE: this is the one-point compactification Sⁿ = ℝⁿ ∪ {∞} and inversive geometry (the Riemann sphere for n = 2), where 0 and ∞ are exact inversion duals — a real, documented structure that holds in ALL dimensions, which is why "the game in all dimensions" and "fill the gaps" coincide: the inverse pole fills the point 0 removes. "Black hole" and "manifesting inverse" are this projective structure, NOT astrophysical black holes and NOT a claim that division by zero is defined IN the field (it is not — 0 has no multiplicative inverse); the pole lives in the EXTENDED plane, the harmonic path divisionByZeroComputes already folds. A suffix 0 pulls (absorbs) in the field and manifests ∞ in the closure — the two are one inversion apart. HARMONY does not equal TRUTH.`,
+  }
+}
