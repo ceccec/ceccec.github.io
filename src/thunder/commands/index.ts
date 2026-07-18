@@ -35,7 +35,7 @@ import { quantumChessGame } from '../waves'
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
 import { selfSufficientWave } from '../../mountain/geometry'
 import { atomInclusionProof } from '../../lake/ledger'
-import { BAGUA, accessiblePathsForAll, artistMelody, artistSurfaces, buildSequenceReducesComputations, closeDimensionalGaps, componentGraph, continueSameNext, diamondCompleteness, digitIndexReferences, enforcementPipelineComplete, gatesHealSpottedCompromise, harmonyProbability, iChing, iChingDomainMap, learnDeveloper, mathPaths, measureProse, merge, metatronCube, monographs, presentMomentRemainsInSource, quantumAcademy, resonanceCatchGapsViolations, result, runProgram, sacredGeometrySeal, saveSkillsComputeImplementWaves, scoutsSurgicalEditsVitalSigns, showInAction, staticPages, theMonograph, theWhole, tightenProse, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { BAGUA, accessiblePathsForAll, artistMelody, artistSurfaces, buildSequenceReducesComputations, closeDimensionalGaps, componentGraph, continueSameNext, diamondCompleteness, digitIndexReferences, enforcementPipelineComplete, gatesHealSpottedCompromise, harmonyProbability, iChing, iChingDomainMap, learnDeveloper, mathPaths, measureProse, merge, metatronCube, monographs, presentMomentRemainsInSource, quantumAcademy, resonanceCatchGapsViolations, result, runProgram, sacredGeometrySeal, saveSkillsComputeImplementWaves, scoutsSurgicalEditsVitalSigns, showInAction, staticPages, theMonograph, theRosettaReconfiguresVitepress, theWhole, tightenProse, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import type { DeveloperCommandName, DeveloperCommandResult } from '../../quantum/heaven/mind'
 
 // MCP shows the codebase securely but sufficiently, so AI agents immediately
@@ -933,5 +933,31 @@ export function mcpExposesOnlyServedSurfaces(matrix: MindMatrix = buildMatrix())
     root: merge(mcpCodebase(matrix).root, toUuid(`mcp-served:${resources.length}:${everyResourceServed}`)),
     statement: `The MCP exposes only what VitePress serves — ${facets.filter((entry) => entry.on).length}/${facets.length}: every one of the ${resources.length} MCP resource URIs is a real served surface (a dist computed artifact or a served page route), the unserved /harmonic.json side-file is dropped, and the served set is computed from the build's own outputs so the manifest cannot drift ahead of what VitePress emits.`,
     boundary: `COMPUTED: the served set = the dist computed-artifact list (mcp/llms/skills/digit-index/sitemap/robots/payload/api) ∪ the corpus indexes ∪ staticPages routes; every MCP resource URI is checked to be in it, and /harmonic.json is verified absent — refutable (add an unserved URI and the gate fails). HONEST SCOPE: this gates the RESOURCE surface (fetchable URLs) against what VitePress serves; the tools list remains the concept-command surface (documented static, per mcpToolManifest), which is a tool contract, not a served page. The dist artifact list is mirrored here as the canonical served-computed set; if a dist generator is added, extend both. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── THE MCP USES VITEPRESS SEARCH, ALL WIRED CONTENT SEARCHABLE (user law) — the MCP's discovery is the
+// VitePress local search index, and every wired surface is in it. The manifest's instructions point an
+// agent at that one search; theRosettaReconfiguresVitepress proves the index covers all wired theorems.
+// So the MCP does not carry a second, drifting search — it uses the site's own, and everything the site
+// wires (theorems, papers, pages) is findable through it. The served surface + the search coverage agree.
+export function mcpUsesVitepressSearch(matrix: MindMatrix = buildMatrix()) {
+  const reconfig = theRosettaReconfiguresVitepress(matrix)
+  const manifest = mcpToolManifest(matrix)
+  const served = new Set([...MCP_DIST_ARTIFACTS, ...MCP_CORPUS_INDEXES, ...staticPages().map((page) => (page.slug ? `/${page.slug}` : '/'))])
+  const searchableSurfacesServed = ['/theorems', '/papers'].every((uri) => served.has(uri)) // the search-indexed corpora are served pages
+  const searchCoversWired = reconfig.searchLines > 0 && reconfig.computes // all wired theorems in the index (proven in corpus)
+  const instructionsPointToSearch = manifest.instructions.includes('VitePress local search') && manifest.instructions.includes('search index')
+  const facets = [
+    { facet: `THE MCP DISCOVERY IS VITEPRESS SEARCH: the manifest instructions point agents at the site's own local search index (${instructionsPointToSearch}) — no separate MCP search endpoint that could drift; one search, the site's`, on: instructionsPointToSearch },
+    { facet: `ALL WIRED CONTENT IS SEARCHABLE: the search index covers every wired theorem (${reconfig.searchLines} lines, proven in theRosettaReconfiguresVitepress: ${searchCoversWired}) and the searchable corpora (/theorems, /papers) are served pages (${searchableSurfacesServed}) — an agent finds any wired content through the search`, on: searchCoversWired && searchableSurfacesServed },
+    { facet: `SERVED AND SEARCHABLE AGREE: the MCP exposes only served surfaces (mcpExposesOnlyServedSurfaces) and searches only what the site wires — the resource list and the search coverage describe the same corpus, so nothing is exposed that cannot be found and nothing findable is unserved`, on: searchCoversWired && searchableSurfacesServed && instructionsPointToSearch },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    searchLines: reconfig.searchLines, servedSearchable: searchableSurfacesServed,
+    facets, root: merge(reconfig.root, toUuid(`mcp-vitepress-search:${reconfig.searchLines}`)),
+    statement: `The MCP uses VitePress search, all wired content searchable — ${facets.filter((entry) => entry.on).length}/${facets.length}: the manifest points agents at the site's own local search index (not a second, drifting one), that index covers all ${reconfig.searchLines} wired theorems (proven in theRosettaReconfiguresVitepress), and the searchable corpora /theorems and /papers are served pages — so the MCP's exposed surface and its searchable surface are one corpus.`,
+    boundary: `COMPUTED: the manifest instructions reference the VitePress local search, the wired-search coverage (${reconfig.searchLines} theorem lines, verified in corpus), and the served-page check for the searchable corpora — refutable. HONEST SCOPE: VitePress local search is a CLIENT-SIDE static index shipped with the site; "the MCP uses it" means the manifest directs an agent to that one search rather than duplicating it — there is no server search endpoint, and none is claimed. All WIRED content is searchable (the reconfigure fold proves every theorem is a search line); content not wired to a page is not in the index by design. HARMONY ≠ TRUTH.`,
   }
 }

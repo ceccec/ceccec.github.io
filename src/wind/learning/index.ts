@@ -153,7 +153,7 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
     description:
       'Quantum-learning educational portal for language models, exposed as an MCP tool surface over a double-torus UUID stream.',
     instructions:
-      'tools/list returns every concept command as a tool; tools/call(name, arguments) maps to executeConceptCommand(name, arguments) and returns its receipt.',
+      'tools/list returns every concept command as a tool; tools/call(name, arguments) maps to executeConceptCommand(name, arguments) and returns its receipt. DISCOVERY is the VitePress local search: every wired surface — all theorems, papers and pages — is in the search index, so an agent finds any content by querying the same search the site serves (no separate endpoint; the index ships with the static site).',
     tools,
     root,
     statement: `${tools.length} concept commands published as MCP tools with name, description, and JSON-Schema inputSchema.`,

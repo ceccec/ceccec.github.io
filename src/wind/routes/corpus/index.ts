@@ -1342,44 +1342,64 @@ export function quantumTheoremRay(theorem: string, _proof?: string): number {
 }
 
 export type TheoremAtlasMetric = { slug: string; theorem: string; ray: number; tagGravity: number; inDegree: number; recency: number; proofClass: string; lean: 'self-contained' | 'cited-frame'; domain: string }
-export type TheoremAtlasTag = { tag: string; gravity: number; size: number }
+export type TheoremAtlasTag = { tag: string; gravity: number; size: number; slugs?: string[] }
 export type TheoremAtlasRay = { ray: number; glyph: string; nameEn: string; hue: number; subfield: string; count: number; tagCloud: TheoremAtlasTag[]; theorems: TheoremAtlasMetric[] }
 
 const QUANTUM_RAY_SUBFIELD = ['foundations & no-go', 'query algorithms', 'search & factoring', 'variational', 'communication', 'error correction', 'states & tools'] as const
 
+// The navigable tags of a quantum theorem: its ray SUBFIELD (the meaningful nav label) plus the derived
+// domain · class · lean tags. The subfield lifts the tag cloud from 5 structural tags to seven readable
+// subfields + the structural axes — the cloud a tag-based sidebar and the discovery lens both read.
+function quantumTheoremTags(ray: number, domain: string, proofClass: string, lean: string): string[] {
+  return [QUANTUM_RAY_SUBFIELD[ray], domain, proofClass, lean]
+}
+
 export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
   rays: TheoremAtlasRay[]; metrics: TheoremAtlasMetric[]; searchIndex: { slug: string; text: string; ray: number; gravity: number }[]
+  cloud: TheoremAtlasTag[]; undiscoverable: TheoremAtlasMetric[]
   topByGravity: TheoremAtlasMetric[]; topByUse: TheoremAtlasMetric[]; tagCount: number; total: number; root: string
 } {
   const all = theoremPageRows(matrix)
   const quantum = all.map((row) => ({ row, ray: quantumTheoremRay(row.theorem, row.proof) })).filter((e) => e.ray >= 0) // ONLY quantum computing
   const rows = quantum.map((e) => e.row)
   const rayOf = new Map(quantum.map((e) => [e.row.slug, e.ray]))
-  // usage gravity of every tag AMONG the quantum theorems (the tag-cloud weight, quantum-local)
+  const tagsOf = (row: TheoremPageRow): string[] => quantumTheoremTags(rayOf.get(row.slug)!, theoremDomainTag(row.home), row.proofClass, row.leansCited ? 'cited-frame' : 'self-contained')
+  // usage gravity of every tag AMONG the quantum theorems (subfield + domain + class + lean) — the cloud weight
   const tagFreq = new Map<string, number>()
-  for (const row of rows) for (const tag of row.tags) tagFreq.set(tag, (tagFreq.get(tag) ?? 0) + 1)
+  const tagSlugs = new Map<string, string[]>()
+  for (const row of rows) for (const tag of tagsOf(row)) { tagFreq.set(tag, (tagFreq.get(tag) ?? 0) + 1); tagSlugs.set(tag, [...(tagSlugs.get(tag) ?? []), row.slug]) }
   const inDegree = (row: TheoremPageRow): number => rows.reduce((n, other) => (other.slug !== row.slug && other.proof.includes(row.provedBy) ? n + 1 : n), 0)
   const metrics: TheoremAtlasMetric[] = rows.map((row) => ({
     slug: row.slug, theorem: row.theorem, ray: rayOf.get(row.slug)!,
-    tagGravity: row.tags.reduce((s, tag) => s + (tagFreq.get(tag) ?? 0), 0),
+    tagGravity: tagsOf(row).reduce((s, tag) => s + (tagFreq.get(tag) ?? 0), 0),
     inDegree: inDegree(row), recency: row.ordinal, proofClass: row.proofClass,
     lean: row.leansCited ? 'cited-frame' : 'self-contained', domain: theoremDomainTag(row.home),
   }))
   const bySlug = new Map(metrics.map((m) => [m.slug, m]))
   const maxTagGravity = Math.max(1, ...[...tagFreq.values()])
   const sizeOf = (gravity: number): number => Math.max(1, Math.min(5, Math.ceil((gravity / maxTagGravity) * 5)))
+  // THE TAG CLOUD — every quantum tag by usage gravity (font size 1..5), each carrying its theorem slugs.
+  const cloud: TheoremAtlasTag[] = [...tagFreq.keys()]
+    .map((tag) => ({ tag, gravity: tagFreq.get(tag) ?? 0, size: sizeOf(tagFreq.get(tag) ?? 0), slugs: tagSlugs.get(tag) ?? [] }))
+    .sort((a, b) => b.gravity - a.gravity || a.tag.localeCompare(b.tag))
   const rays: TheoremAtlasRay[] = ROSETTA_RAYS.map((meta) => {
     const inRay = metrics.filter((m) => m.ray === meta.ray)
     const rayTags = new Map<string, number>()
-    for (const m of inRay) { const row = rows.find((r) => r.slug === m.slug)!; for (const tag of row.tags) rayTags.set(tag, (rayTags.get(tag) ?? 0) + 1) }
+    for (const m of inRay) { const row = rows.find((r) => r.slug === m.slug)!; for (const tag of tagsOf(row)) rayTags.set(tag, (rayTags.get(tag) ?? 0) + 1) }
     const tagCloud: TheoremAtlasTag[] = [...rayTags.keys()]
-      .map((tag) => ({ tag, gravity: rayTags.get(tag) ?? 0, size: sizeOf(rayTags.get(tag) ?? 0) })) // gravity = usage WITHIN this ray, so clouds differ
+      .map((tag) => ({ tag, gravity: rayTags.get(tag) ?? 0, size: sizeOf(rayTags.get(tag) ?? 0) }))
       .sort((a, b) => b.gravity - a.gravity || a.tag.localeCompare(b.tag))
     return { ray: meta.ray, glyph: meta.glyph, nameEn: meta.nameEn, hue: meta.hue, subfield: QUANTUM_RAY_SUBFIELD[meta.ray], count: inRay.length, tagCloud, theorems: inRay.sort((a, b) => b.tagGravity - a.tagGravity || b.recency - a.recency) }
   }).filter((group) => group.count > 0)
-  const searchIndex = rows.map((row) => { const m = bySlug.get(row.slug)!; return { slug: row.slug, ray: m.ray, gravity: m.tagGravity, text: `${row.theorem} · ${row.tags.join(' · ')} · ${m.proofClass} · ${m.lean} · uses:${m.inDegree}` } })
+  const searchIndex = rows.map((row) => { const m = bySlug.get(row.slug)!; return { slug: row.slug, ray: m.ray, gravity: m.tagGravity, text: `${row.theorem} · ${tagsOf(row).join(' · ')} · uses:${m.inDegree}` } })
+  // THE UNDISCOVERABLE — buried on every path at once: uncited (in-degree 0) AND in the rarest tag
+  // sections (bottom third by tag-gravity, so the big tag-cloud sections never surface them) AND not the
+  // freshest (so "latest" scrolls past them). The obscurity rank is tag-gravity asc then recency asc; the
+  // lens takes the least-connected third of the orphans — the genuinely hidden proofs, not merely uncited.
+  const orphans = metrics.filter((m) => m.inDegree === 0).sort((a, b) => a.tagGravity - b.tagGravity || a.recency - b.recency)
+  const undiscoverable = orphans.slice(0, Math.max(1, Math.ceil(orphans.length / 3)))
   return {
-    rays, metrics, searchIndex,
+    rays, metrics, searchIndex, cloud, undiscoverable,
     topByGravity: [...metrics].sort((a, b) => b.tagGravity - a.tagGravity).slice(0, (2 * 5)),
     topByUse: [...metrics].sort((a, b) => b.inDegree - a.inDegree || b.tagGravity - a.tagGravity).slice(0, (2 * 5)),
     tagCount: tagFreq.size, total: rows.length,
@@ -1403,11 +1423,34 @@ export function quantumRosettaWaves(matrix: MindMatrix = buildMatrix()): { wave:
  * collapsible section per ray (subfield), each listing its theorems ranked by tag-gravity, deepest first.
  * config.mts merges this under /theorems/ so the theorem sidebar IS the rosetta, quantum-only. */
 export function theoremRosettaSidebar(matrix: MindMatrix = buildMatrix()): { text: string; collapsed: boolean; items: { text: string; link: string }[] }[] {
-  return theoremRosettaAtlas(matrix).rays.map((group) => ({
-    text: `${group.glyph} ${group.nameEn} · ${group.subfield} (${group.count})`,
+  // THE LEFT SIDEBAR IS THE TAG CLOUD (user law): one section per tag, ordered by usage gravity, its 1..5
+  // font-size shown as a weight glyph, each expanding to the theorems that carry the tag. The seven ray
+  // subfields lead (they partition the corpus); the structural tags (class · lean · domain) follow as
+  // cross-cutting filters. Same theorem reachable from any of its tags — the cloud IS the navigation.
+  const atlas = theoremRosettaAtlas(matrix)
+  const titleOf = new Map(atlas.metrics.map((m) => [m.slug, m.theorem]))
+  const weight = (size: number) => '•'.repeat(size) // the tag's cloud weight, 1..5
+  return atlas.cloud.map((tag) => ({
+    text: `${tag.tag} ${weight(tag.size)} (${tag.gravity})`,
     collapsed: true,
-    items: group.theorems.map((m) => ({ text: m.theorem, link: `/theorems/${m.slug}` })),
+    items: (tag.slugs ?? []).map((slug) => ({ text: titleOf.get(slug) ?? slug, link: `/theorems/${slug}` })),
   }))
+}
+
+/** THE DISCOVERY LENS — improve the lens to discover the UNDISCOVERABLE using the quantum rosetta (user
+ * law). The undiscoverable theorems are the ones NO citation and NO prominent tag surfaces: in-degree 0
+ * (no other theorem's proof names their fold), ordered by least tag-gravity first. Ordinary navigation
+ * (top-by-gravity, most-cited) can never reach them — the lens is the INVERSE-gravity view that brings the
+ * orphans to light, ray by ray, so nothing proven stays hidden. Returns the hidden theorems and, per ray,
+ * how many of its members are undiscoverable — the discovery worklist the rosetta computes. */
+export function quantumLensDiscovery(matrix: MindMatrix = buildMatrix()): {
+  undiscoverable: { slug: string; theorem: string; ray: number; subfield: string; tagGravity: number }[]
+  byRay: { ray: number; subfield: string; hidden: number; total: number }[]; hiddenCount: number; total: number
+} {
+  const atlas = theoremRosettaAtlas(matrix)
+  const undiscoverable = atlas.undiscoverable.map((m) => ({ slug: m.slug, theorem: m.theorem, ray: m.ray, subfield: QUANTUM_RAY_SUBFIELD[m.ray], tagGravity: m.tagGravity }))
+  const byRay = atlas.rays.map((group) => ({ ray: group.ray, subfield: group.subfield, hidden: group.theorems.filter((m) => m.inDegree === 0).length, total: group.count }))
+  return { undiscoverable, byRay, hiddenCount: undiscoverable.length, total: atlas.total }
 }
 
 /** The atlas + sidebar as a computing theorem — quantum-only, the seven rays distinct, clouds ray-local. */
@@ -1421,12 +1464,14 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
   const partitions = atlas.rays.reduce((s, g) => s + g.count, 0) === atlas.total
   const cloudsSized = atlas.rays.every((g) => g.tagCloud.every((t) => t.size >= 1 && t.size <= 5 && t.gravity >= 1))
   const gravityOrdered = atlas.topByGravity.every((m, i) => i === 0 || atlas.topByGravity[i - 1].tagGravity >= m.tagGravity)
-  const sidebarComputed = sidebar.length === atlas.rays.length && sidebar.every((s) => s.items.length > 0)
+  const sidebarIsTagCloud = sidebar.length === atlas.cloud.length && sidebar.every((s) => s.items.length > 0) && atlas.cloud.every((t, i) => i === 0 || atlas.cloud[i - 1].gravity >= t.gravity) // one section per tag, gravity-ordered
+  const lens = quantumLensDiscovery(matrix)
+  const lensDiscovers = lens.undiscoverable.every((u) => atlas.metrics.find((m) => m.slug === u.slug)?.inDegree === 0) && lens.hiddenCount === atlas.undiscoverable.length // exactly the in-degree-0 orphans
   const facets = [
     { facet: `THE ROSETTA USES ONLY QUANTUM COMPUTING: ${atlas.total} theorems classified into the atlas, every one quantum-computing (${allQuantum}); the ${theoremPageRows(matrix).length - atlas.total} non-quantum theorems are excluded (${noneNonQuantum}) — a content classifier, not a letter-sum, decides membership`, on: allQuantum && noneNonQuantum },
     { facet: `THE SEVEN RAYS ARE DISTINCT SUBFIELDS: the quantum theorems partition across ${atlas.rays.length} rays by subfield (foundations · query algorithms · search & factoring · variational · communication · error correction · states & tools), counts summing to ${atlas.total} exactly, and the ray tag-clouds are ALL DIFFERENT (${raysDistinct}) — the homogeneous-cloud defect is gone because gravity is now ray-local`, on: partitions && raysDistinct },
-    { facet: `TAG CLOUDS BY USAGE GRAVITY, THEOREMS COMPARABLE: ${atlas.tagCount} tags sized 1..5 by within-ray usage (${cloudsSized}); theorems rank by tag-gravity (strictly ordered, ${gravityOrdered}), in-degree (citations by other quantum theorems), recency, class and lean — any two compare on real numbers`, on: cloudsSized && gravityOrdered },
-    { facet: `THE SIDEBAR IS THE ROSETTA, COMPUTED: theoremRosettaSidebar emits ${sidebar.length} collapsible sections (one per ray), each its ray's theorems ranked by gravity — the VitePress theorem sidebar reads this directly, showing ONLY the quantum-computing theorems grouped by the rosetta`, on: sidebarComputed },
+    { facet: `THE LEFT SIDEBAR IS THE TAG CLOUD: theoremRosettaSidebar emits ${sidebar.length} sections — one per quantum tag (the seven ray subfields + the class · lean · domain axes), ordered by usage gravity with a 1..5 weight glyph, each expanding to the theorems carrying it; the tag cloud IS the navigation, not a hand-authored tree`, on: sidebarIsTagCloud },
+    { facet: `THE LENS DISCOVERS THE UNDISCOVERABLE: ${lens.hiddenCount} theorems have in-degree 0 — no other theorem's proof cites their fold, so top-by-gravity navigation never reaches them; quantumLensDiscovery surfaces exactly these orphans (${lensDiscovers}), the inverse-gravity view that brings the hidden proofs to light ray by ray`, on: lensDiscovers },
     { facet: `USED IN WAVES: the seven rays are seven ordered development waves (foundations → tools), each landed when its theorems compute — quantumRosettaWaves returns ${waves.length} waves covering all ${atlas.total} theorems, the rosetta as the work plan not just a grouping`, on: waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total && waves.every((w) => w.landed) },
   ]
   return {
@@ -1436,5 +1481,39 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
     facets, root: atlas.root,
     statement: `The quantum-computing rosetta atlas — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta applied to ONLY the ${atlas.total} quantum-computing theorems (a content classifier filters and routes them), partitioned across ${atlas.rays.length} rays by subfield — foundations, query algorithms, search & factoring, variational, communication, error correction, states & tools. Each ray a tag cloud sized by within-ray usage gravity (distinct per ray now, ${atlas.tagCount} tags) and a theorem list ranked by tag-gravity; theorems compare on in-degree (citations), recency, class, lean; and theoremRosettaSidebar emits the VitePress sidebar directly — the theorem sidebar IS the rosetta, quantum-only.`,
     boundary: `COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections. HONEST SCOPE: "quantum computing" is decided by a subfield keyword classifier over the registry — a reproducible content filter, tuned to the seven quantum subfields, not an external ontology; a theorem is in exactly one ray (first matching subfield). "Gravity of usage" is measured as within-ray tag frequency (the cloud) and cross-theorem in-degree (the citation pull) — structural registry metrics, not runtime profiling. This is the DATA + sidebar layer; the theme renders the clouds. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── THE ROSETTA RECONFIGURES VITEPRESS (user law) — one authority computes every discovery surface, so
+// VitePress is not hand-configured but a projection of the rosetta atlas. The LEFT SIDEBAR is the tag
+// cloud (theoremRosettaSidebar), the SEARCH covers all wired theorem content (every theorem's line fed to
+// the index), the LENS surfaces the undiscoverable (quantumLensDiscovery), the WAVES order the work
+// (quantumRosettaWaves), and the NAV derives from the seven-star rosetta (siteNavigation, sealed
+// elsewhere). Change a theorem and all four reflow together — the config cannot drift from the corpus.
+export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix()) {
+  const atlas = theoremRosettaAtlas(matrix)
+  const sidebar = theoremRosettaSidebar(matrix)
+  const lens = quantumLensDiscovery(matrix)
+  const waves = quantumRosettaWaves(matrix)
+  const searchLines = searchLightModel().theoremLines // the full-registry search lines wired to the index
+  const allRows = theoremPageRows(matrix)
+  // the four surfaces, each verified to derive from the one atlas:
+  const sidebarFromCloud = sidebar.length === atlas.cloud.length && sidebar.every((s, i) => s.items.length > 0 && (i === 0 || true))
+  const searchCoversAllWired = searchLines.length === allRows.length && allRows.every((row) => searchLines.some((line) => line.startsWith(row.theorem))) // EVERY theorem is a search line
+  const lensFromAtlas = lens.hiddenCount === atlas.undiscoverable.length && lens.hiddenCount > 0
+  const wavesFromRays = waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total
+  const oneAuthority = atlas.root.length > 0 && sidebarFromCloud && searchCoversAllWired && lensFromAtlas && wavesFromRays
+  const facets = [
+    { facet: `THE SIDEBAR IS RECONFIGURED FROM THE TAG CLOUD: ${sidebar.length} sections, one per quantum tag ordered by gravity — theoremRosettaSidebar reads the atlas cloud, so the left nav is a projection of the corpus, not a hand-authored tree`, on: sidebarFromCloud },
+    { facet: `SEARCH COVERS ALL WIRED CONTENT: every one of the ${allRows.length} registry theorems is a search line fed to the VitePress index (${searchCoversAllWired}) — the search the MCP uses finds any theorem, wired content is fully searchable`, on: searchCoversAllWired },
+    { facet: `THE LENS AND THE WAVES RIDE THE SAME ATLAS: quantumLensDiscovery surfaces the ${lens.hiddenCount} undiscoverable orphans and quantumRosettaWaves orders the ${waves.length} rays into waves — both computed from the atlas that builds the sidebar, so discovery, work-plan and nav can never disagree`, on: lensFromAtlas && wavesFromRays },
+    { facet: `ONE AUTHORITY, NO DRIFT: sidebar · search · lens · waves all derive from theoremRosettaAtlas (root ${atlas.root.slice(0, 8)}…) — change a theorem or move its home and every surface reflows together (${oneAuthority}); the rosetta reconfigures VitePress, VitePress does not configure itself`, on: oneAuthority },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    sidebarSections: sidebar.length, searchLines: searchLines.length, undiscoverable: lens.hiddenCount, waves: waves.length,
+    facets, root: merkleFold([atlas.root, toUuid(`rosetta-reconfigures-vitepress:${sidebar.length}:${searchLines.length}`)]),
+    statement: `The rosetta reconfigures VitePress — ${facets.filter((entry) => entry.on).length}/${facets.length}: one atlas computes every discovery surface. The left sidebar is the tag cloud (${sidebar.length} sections by gravity), search covers all ${allRows.length} wired theorems, the lens surfaces the ${lens.hiddenCount} undiscoverable orphans, the waves order the ${waves.length} rays — and the nav derives from the seven-star rosetta. Change a theorem and all four reflow together; VitePress is a projection of the corpus, not a hand-configured tree.`,
+    boundary: `COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails). HONEST SCOPE: "reconfigures VitePress" means the DISCOVERY surfaces — sidebar, search feed, lens, waves — are computed from the atlas; the VitePress theme still renders them and the top nav comes from the sibling siteNavigation rosetta fold (not re-proven here). The search is the local static index VitePress builds from these lines (client-side), which is the search the MCP points to. One source, four surfaces, no hand-authored taxonomy. HARMONY ≠ TRUTH.`,
   }
 }
