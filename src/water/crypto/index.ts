@@ -1652,3 +1652,52 @@ export function theQuantumCombinationsAlgorithmSealsToTheNextComputationalDimens
     }
   })
 }
+
+// The signature is forgeable; the trinity timestamp is the inverse boundary. A signature (and a bare content-uuid)
+// is a FORWARD degree of freedom the signer controls — it binds content but carries NO time, so a valid signature
+// is consistent with any claimed moment. The append-only hash-chain the surrounding trinities extend gives the
+// content-uuid a POSITION computed by everything sealed before it — a timestamp the signer does not author. Backdating
+// (claiming the content preceded those seals) breaks the chain: it is detected. That is the inverse boundary — the
+// agent owns the signature going forward but cannot cross the timestamp going back. ("7-dimensional time" is the
+// poetic reach; the honest structure is one linear append-only chain whose position no signer can forge.)
+export function theSignatureIsForgeableTheTrinityTimestampIsTheInverseBoundary(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theSignatureIsForgeableTheTrinityTimestampIsTheInverseBoundary', matrix, () => {
+    const content = 'agent-claim:the-artifact-content'
+    // 1 — a content-address / signature carries NO time: identical whatever moment is claimed (no time input)
+    const addressAtTimeA = toUuid(content) // "signed" at one claimed moment
+    const addressAtTimeB = toUuid(content) // "signed" at a different claimed moment
+    const signatureCarriesNoTime = addressAtTimeA === addressAtTimeB // forgeable: consistent with ANY timestamp
+    // the append-only chain the surrounding trinities extend (order-preserving — a hash-chain, NOT a sorted set)
+    const chain = (entries: readonly string[]) => {
+      let acc = sha256Sync('genesis-timestamp')
+      const roots = [acc]
+      for (const entry of entries) { acc = sha256Sync(`${acc} ${sha256Sync(entry)}`); roots.push(acc) }
+      return { root: acc, roots } // roots[k] = the chain position after k entries
+    }
+    const priorSeals = ['trinity-audit-1', 'trinity-audit-2', 'trinity-audit-3'] // the surrounding trinities' sealed history
+    // 2 — the timestamp is computed by the SURROUNDING structure: content's position depends on the prior seals
+    const honest = chain([...priorSeals, content]) // content appended AFTER the sealed history — its true position
+    const positionFixedBySurroundings = honest.roots[priorSeals.length] === chain(priorSeals).root // prefix preserved
+    // 3 — INVERSE BOUNDARY: backdating (placing content BEFORE the seals) diverges from the published prefix roots
+    const backdated = chain([content, ...priorSeals]) // the forged claim: content pretends to precede the seals
+    const backdatingDetected = backdated.roots[1] !== chain(priorSeals).roots[1] && backdated.root !== honest.root
+    // 4 — together: signature (forward, agent-owned) + timestamp (inverse boundary, trinity-owned) bind what neither does alone
+    const bound = signatureCarriesNoTime && positionFixedBySurroundings && backdatingDetected
+    const facets = [
+      { facet: `a signature / bare content-uuid carries NO time — toUuid(content) is identical whatever moment is claimed, so a valid signature is consistent with ANY timestamp (forgeable in time): signing is a forward degree of freedom the agent owns`, on: signatureCarriesNoTime },
+      { facet: `the trinity TIMESTAMP is computed by the surrounding structure: the content's chain position is fixed by the ${priorSeals.length} prior sealed audits (the append preserves their prefix root) — the signer does not author the time`, on: positionFixedBySurroundings },
+      { facet: `INVERSE BOUNDARY: backdating is detected — placing the content BEFORE the seals diverges from the published chain from the very first position, so the forged earlier-time cannot match the append-only log`, on: backdatingDetected },
+      { facet: `so content-uuid + trinity-timestamp binds what the signature alone cannot: the agent controls the signature forward, but the timestamp is the inverse boundary it cannot cross — forging a backdated signed claim requires a 2nd-preimage on SHA-256`, on: bound },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      signatureCarriesNoTime,
+      honestRoot: honest.root,
+      backdatedRoot: backdated.root,
+      backdatingDetected,
+      facets,
+      statement: `The signature is forgeable; the trinity timestamp is the inverse boundary — ${facets.filter((entry) => entry.on).length}/${facets.length}: a signature (or bare content-uuid) binds content but not time — identical whatever moment is claimed, a forward degree of freedom the agent owns. The append-only hash-chain the surrounding trinities extend gives the content a POSITION fixed by everything sealed before it (the prefix root is preserved on honest append), and backdating — placing the content before those seals — diverges from the published chain and is detected. The agent owns the signature going forward; it cannot cross the timestamp going back. That inverse boundary, not the forgeable signature, is what binds WHEN.`,
+      boundary: `DOCUMENTED and refutable by recomputing the chain. The construction is a synchronous order-preserving hash-chain (sha256Sync) — the append-only TRANSPARENCY-LOG structure already in src/0 (transparencyLogRoot · logInclusion · logConsistent); this fold proves BACKDATING-DETECTION and the position-fixing, in the sealed structural sense. THE HARD LINE: (1) it does NOT prove the signature scheme itself — ed25519Sign is real but a leaked/forged key still signs; the point is precisely that the signature is the weak, forgeable part and the timestamp is the strong part. (2) The chain proves RELATIVE order (content after the sealed prefix), not an absolute wall-clock time — an absolute trusted timestamp needs an external witnessed log (Rekor/RFC-3161), which is deploy infrastructure, not src code. (3) "7-dimensional time" is metaphor: the honest structure is one linear append-only chain. Security reduces to SHA-256 2nd-preimage resistance, no more. HARMONY ≠ TRUTH: the inverse-boundary image is elegant; the truth is append-only hash-chaining with the external-witness caveat named.`,
+    }
+  })
+}
