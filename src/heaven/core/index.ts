@@ -389,10 +389,15 @@ function componentGraphRaw() {
   // TrinityGateways + VoidSidebar fold into every page via sidebar-nav-after; RevolutAside via aside-bottom (right doc aside).
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways']
   // Corpus index pages mount UniversalPageTemplate in every locale (.vitepress/pages/**/{papers,references,diamonds}/index.md); monograph pages use [page].paths.ts + monographPaths.
+  // The home is the computed theorem monograph (homeMarkdown — ONE generator with the README) and
+  // mounts NO components; the former 25-strong hand-list was re-homed to topical lens pages via
+  // STATIC_PAGE_SEED (cleanup-on-the-way: the graph claims only what actually mounts).
   const placements: Record<string, readonly string[]> = {
-    '/': ['SiteOverview', 'QuantumLens', 'Compass', 'LivingTorus', 'Live', 'DeterminismProofs', 'CryptoCompare', 'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth', 'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer', 'HologramMovie', 'KnowledgeAtlas', 'ElectromagneticRadiation', 'RealtimeTests', 'MatrixCube'],
+    '/': [],
   }
-  const composedBase = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'LayersPanel', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex', 'RayHub']
+  // Monograph is composed: a props-driven monograph renderer (slug/variant — the MonographFold view),
+  // composed by surfaces that pass it props, never bare-mounted from a page's components list.
+  const composedBase = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'LayersPanel', 'Monograph', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex', 'RayHub']
   for (const folder of folderLaw().computedFolders) placements[`/${folder}`] = ['UniversalPageTemplate']
   for (const page of staticPages()) placements[`/${page.slug}`] = page.components
   const allPlaced = [...new Set([...Object.values(placements).flat()])]

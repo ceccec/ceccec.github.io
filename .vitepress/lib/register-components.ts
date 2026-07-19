@@ -93,7 +93,9 @@ const STATIC_GLOBALS: Record<string, Component> = {
 /** Browser-safe registry — mirrors heaven/core componentGraph without loading the mind barrel at enhanceApp. */
 function browserComponentNames(): readonly string[] {
   const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways'] as const
-  const home = [
+  // Formerly the home list — the home is now the computed componentless theorem monograph; these
+  // names are page-placed (STATIC_PAGE_SEED) or composed, and stay registered for those mounts.
+  const pagePlaced = [
     'SiteOverview', 'QuantumLens', 'Compass', 'LivingTorus', 'Merkaba', 'DoubleTorusExperience', 'Live', 'DeterminismProofs', 'CryptoCompare',
     'Hologram', 'Equilibrium', 'QuantumRadar', 'DeviceDashboard', 'BlockchainCompare', 'GlyphLabyrinth',
     'GlagoliticOcr', 'Monograph', 'HumanLens', 'PathGuide', 'QuantumClock', 'Nav358', 'ProofRenderer',
@@ -109,7 +111,7 @@ function browserComponentNames(): readonly string[] {
   ] as const
   return [...new Set([
     ...globals,
-    ...home,
+    ...pagePlaced,
     ...composed,
     ...Object.keys(OVERRIDES),
     ...Object.keys(COMPONENT_FOLD_LOADERS),

@@ -147,7 +147,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Разгледай целия портал многоизмерно: осем измерения на опита — виж, чуй, питай, докажи, учи, шарка, усети, твори.',
       },
       keywords: ['multidimensional', 'explore', 'dimensions', 'ux', 'ancient', 'decodes', 'frontier'],
-      components: ['Multidimensional', 'Mysteries', 'HarmonicSpiral', 'AncientDecodes'],
+      components: ['Multidimensional', 'Mysteries', 'HarmonicSpiral', 'AncientDecodes', 'SiteOverview', 'Compass', 'PathGuide', 'GlagoliticOcr'],
     },
     {
       slug: 'a432',
@@ -167,7 +167,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Свещената геометрия, декодирана честно: петте Платонови тела (теорема — Ойлер V−E+F=2, двойките), златното сечение φ там, където наистина живее (петоъгълникът, додекаедърът, филотаксисът), Цветето на живота като реално построение с пергел, и формите, разходени през измеренията. Документираното остава, легендата е отбелязана.',
       },
       keywords: ['sacred geometry', 'platonic solids', 'golden ratio', 'phi', 'flower of life', 'merkaba', 'metatron', 'megalithic', 'archaeoastronomy', 'stonehenge', 'newgrange', 'solstice'],
-      components: ['SacredGeometry', 'MetatronMath', 'Pyramids', 'MegalithicAstronomy'],
+      components: ['SacredGeometry', 'MetatronMath', 'Pyramids', 'MegalithicAstronomy', 'GlyphLabyrinth'],
     },
     {
       slug: 'tampering-cost',
@@ -177,7 +177,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Цена на подправяне ↔ криптиране ↔ блокчейн, одитирани честно с квантови сравнения. Сайтът твърди „максимална цена на подправяне“; тук това се проверява. Доказуемо при подправяне не е защитено от подправяне: съдържателното адресиране открива промяна, криптографската сигурност (SHA-256: 2^128/2^256) ѝ устоява. FNV toUuid не е криптографски — поправката (SHA-256 адрес, Ed25519 подпис) вече е изградена. Квантово: Гроувър отслабва хешовете, Шор чупи подписите; NIST постквантови стандарти (ML-KEM, ML-DSA, SLH-DSA). Документираното остава, легендата е отбелязана.',
       },
       keywords: ['tampering cost', 'encryption', 'blockchain', 'cryptography', 'sha-256', 'quantum', 'grover', 'shor', 'post-quantum', 'tamper-evident', 'merkle', 'crypto'],
-      components: ['TamperingCost', 'CryptoChallenges', 'BlockchainCompare'],
+      components: ['TamperingCost', 'CryptoChallenges', 'BlockchainCompare', 'DeterminismProofs', 'CryptoCompare'],
     },
     {
       slug: 'analog-field',
@@ -207,7 +207,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Математически модел на Sigma_2, UUID потоци, диаманти, вълни, порти и maxComputedBuild.',
       },
       keywords: ['quantum mind', 'model', 'double torus', 'uuid', 'diamonds', 'waves', 'gates'],
-      components: ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'DoubleTorusExperience', 'QuantumField', 'SacredSymbols', 'QuantumFold3D', 'QuantumPlasma', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'SelfHarmonise', 'PiMusicPlayer', 'HealingFrequencies', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutionsComplete', 'QuantumThreshold', 'QuantumImpossible', 'QuantumWonders', 'QuantumFoundations', 'QuantumAlgorithms', 'ProseToProof3D', 'NothingImpossible', 'Merkaba', 'Rhythm', 'Magnetometer', 'Fold358853', 'LivingTorus', 'QuantumClock'],
+      components: ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'DoubleTorusExperience', 'QuantumField', 'SacredSymbols', 'QuantumFold3D', 'QuantumPlasma', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'SelfHarmonise', 'PiMusicPlayer', 'HealingFrequencies', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutionsComplete', 'QuantumThreshold', 'QuantumImpossible', 'QuantumWonders', 'QuantumFoundations', 'QuantumAlgorithms', 'ProseToProof3D', 'NothingImpossible', 'Merkaba', 'Rhythm', 'Magnetometer', 'Fold358853', 'LivingTorus', 'QuantumClock', 'QuantumLens', 'Live', 'QuantumRadar', 'Nav358', 'HologramMovie', 'MatrixCube'],
     },
     {
       slug: 'architecture',
@@ -267,7 +267,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Скорошните декодирания, представени в пълнота: гмуркане, вода и космос; квантовият вакуум; космическият инвентар; физиката на информацията; и клоунският кюбит. До тях върви ДВИГАТЕЛЯТ НА ТЕОРЕМНИТЕ ВЪЛНИ: регистър на теореми, които кодът доказва изчислително (от Виразоро до Рамзей и A₅), растящ на вълни, в които всяко ново доказателство консумира предишни доказани атоми; търсенето на следващата недоказана теорема е една детерминистична команда. Всяко с твърдение, изчислени проверки и честна граница; истински отворените въпроси остават ОТВОРЕНИ. Всеки резултат е клиентско изчисление от примитивите src/0.',
       },
       keywords: ['frontiers', 'physics', 'cosmology', 'quantum', 'vacuum', 'dark matter', 'dark energy', 'neutrino', 'information', 'computation', 'diving', 'clown', 'decoded', 'theorems', 'proofs', 'waves', 'ramsey', 'virasoro', 'fano'],
-      components: ['Frontiers'],
+      components: ['Frontiers', 'KnowledgeAtlas'],
     },
     {
       slug: 'governance',
@@ -329,7 +329,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Науката, декодирана честно: електромагнитно лъчение, петте верифицирани патента на Тесла, публични API за честоти (FCC, USGS, Шуман 7,83 Hz, Web Audio) и прагът на йонизация (~10 eV). Документираната физика на първо място; претенциите за благополучие са отбелязани. Всеки резултат е клиентско изчисление от примитивите src/0.',
       },
       keywords: ['science', 'frequencies', 'tesla', 'patents', 'electromagnetic', 'spectrum', 'ionizing', 'schumann', 'biology', 'body'],
-      components: ['ElectromagneticRadiation', 'TeslaPatents', 'HealingFrequencies', 'Resonance', 'SacredSound', 'PublicFrequencyApis', 'Biology', 'HeartProtonAtom'],
+      components: ['ElectromagneticRadiation', 'TeslaPatents', 'HealingFrequencies', 'Resonance', 'SacredSound', 'PublicFrequencyApis', 'Biology', 'HeartProtonAtom', 'DeviceDashboard', 'RealtimeTests', 'HumanLens'],
     },
     {
       slug: 'voice',
