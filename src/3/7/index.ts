@@ -635,13 +635,17 @@ export function rosettaRayHub(slug: string): RosettaRayHub | null {
  * slug+keywords wins; no hit falls to ray 2 (Explore — the research shelf). Order encodes specificity:
  * proof marks beat discipline words beat catch-alls. */
 export const ROSETTA_RAY_CONTENT_LENSES: readonly { ray: number; stems: readonly string[] }[] = [
-  { ray: 1, stems: ['proof', 'theorem'] },
+  // SUBJECT rays first, PROOF last: every visible page is theorem/proof-backed (theoremScienceVisible), so a greedy
+  // proof-first lens shelved 90% under Proof (rosettaRayDistribution…). Sub-categorising the proofs: a page proves
+  // SOMETHING — classify it by that subject (geometry→Frontier, simulator→Apps, decode→Explore, language→Reference,
+  // architecture→Origin, school→Learn); only a page with no subject falls to Proof, the receptive default.
   { ray: 4, stems: ['console', 'terminal', 'commands', 'cmd', 'mcp', 'demo', 'show', 'simulations', 'simulator', 'api', 'audio', '432 hz'] },
-  { ray: 0, stems: ['three powers', 'san cai', 'start', 'governance', 'boundaries', 'honesty', 'architecture', 'matrix', 'model', 'mind', 'double torus', 'uuid', 'monograph'] },
-  { ray: 3, stems: ['learn', 'school', 'academy', 'curriculum', 'commons', 'natural law'] },
-  { ray: 2, stems: ['explore', 'heritage', 'history', 'ancient', 'decode', 'spirit', 'chakras', 'tesla', 'electromagnetic', 'patents', 'frequencies', 'ethnogenesis'] },
-  { ray: 6, stems: ['reference', 'language', 'speech', 'typography', 'dictionary', 'icons', 'glyphs', 'voice'] },
   { ray: 5, stems: ['frontiers', 'physics', 'cosmology', 'quantum', 'geometry', 'golden ratio', 'analog', 'sampling', 'nyquist', 'cryptography', 'encryption', 'dimensions', 'vacuum'] },
+  { ray: 2, stems: ['explore', 'heritage', 'history', 'ancient', 'decode', 'spirit', 'chakras', 'tesla', 'electromagnetic', 'patents', 'frequencies', 'ethnogenesis'] },
+  { ray: 3, stems: ['learn', 'school', 'academy', 'curriculum', 'commons', 'natural law'] },
+  { ray: 6, stems: ['reference', 'language', 'speech', 'typography', 'dictionary', 'icons', 'glyphs', 'voice'] },
+  { ray: 0, stems: ['three powers', 'san cai', 'start', 'governance', 'boundaries', 'honesty', 'architecture', 'matrix', 'model', 'mind', 'double torus', 'uuid', 'monograph'] },
+  { ray: 1, stems: ['proof', 'theorem'] }, // the receptive default — a pure proof with no subject shelves here
 ] as const
 /** Shelve content into its ray by the ordered lenses above — slug + keywords in, ray index out.
  * Two passes: the slug alone first (a page NAMED frontiers belongs to Frontier no matter what its
