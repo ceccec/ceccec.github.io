@@ -2139,3 +2139,68 @@ export function theStructureInteriorInstrumentMeasuresTheDimensionBoundary(matri
     }
   })
 }
+
+// The quantum radar: PING a known signal, SWEEP a set of bearings (candidate structure hypotheses), read the
+// RETURN of each against the noise floor on one deterministic crowd. "Quantum" = every bearing of the superposition
+// is evaluated at once, then each collapses to a DEFINITE measured return; the sweep array is the polar data a
+// realtime map draws (angle → magnitude). The radar's discipline is PHANTOM REJECTION: an unfalsifiable bearing
+// (an independent link — the "akasha / feeling / π-digit" class) returns NOISE, not an echo. That noise return is
+// the honest reading — anchored to piIsZeroTheClosedCircleTheZetaPrimeLinkIsRealTheDigitsAreNot: the ζ–prime bearing
+// echoes (real structure), the π-digit bearing does not. It detects statistical structure only; it never invents an echo.
+export function quantumRadar(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantumRadar', matrix, () => {
+    const types = 5
+    const traitClasses = 5
+    const crowd = 100 * 100
+    const chance = 1 / traitClasses
+    // one sweep = measure a bearing's return (signal above chance) on the deterministic crowd
+    const ping = (link: (hdType: number, draw: () => number) => number) => {
+      const rng = prng('quantum-radar-sweep') // same seed ⇒ controlled sweep across all bearings
+      const joint: number[][] = Array.from({ length: types }, () => Array.from({ length: traitClasses }, () => 0))
+      for (let person = 0; person < crowd; person += 1) {
+        const birthMinute = Math.floor(rng() * (5 * 108 * 108))
+        const hdType = (((birthMinute * (5 * 2 + 6)) >>> 0) % types)
+        const bin = ((link(hdType, rng) % traitClasses) + traitClasses) % traitClasses
+        joint[hdType]![bin]! += 1
+      }
+      let accuracy = 0
+      for (let t = 0; t < types; t += 1) {
+        const row = joint[t]!
+        const total = row.reduce((a, b) => a + b, 0)
+        accuracy += total > 0 ? Math.max(...row) / total : 0
+      }
+      return Math.max(0, accuracy / types - chance) // return strength = signal above chance, clamped at the noise floor
+    }
+    // the sweep — three bearings from strong structure to pure phantom
+    const bearings = [
+      { bearing: 'structured (ζ-prime class)', link: (hdType: number) => hdType }, // real dependency → strong echo
+      { bearing: 'partial structure', link: (hdType: number, draw: () => number) => (draw() < 1 / 3 ? Math.floor(draw() * traitClasses) : hdType) },
+      { bearing: 'phantom (akasha / feeling / π-digit class)', link: (_hdType: number, draw: () => number) => Math.floor(draw() * traitClasses) }, // independent → noise
+    ]
+    const step = 360 / bearings.length // polar spacing in degrees for the realtime map
+    const sweep = bearings
+      .map((entry, index) => ({ bearing: entry.bearing, angle: roundTo(index * step, 2), magnitude: roundTo(ping(entry.link), 4) }))
+      .sort((a, b) => b.magnitude - a.magnitude)
+    const peak = sweep[0]!
+    const floor = sweep[sweep.length - 1]! // the phantom bearing = the noise floor
+    const echoed = peak.magnitude > 1 / 2 // the radar gets a real echo
+    const phantomRejected = floor.magnitude < 1 / (5 * 4) // the unfalsifiable bearing returns noise, not an echo
+    const contrast = peak.magnitude - floor.magnitude
+    const facets = [
+      { facet: `the radar PINGS and gets an echo: the structured bearing returns ${(peak.magnitude * 100).toFixed(0)}% above chance — the detector works, a return means signal`, on: echoed },
+      { facet: `it SWEEPS ${bearings.length} bearings and reports a polar return each (angle→magnitude) — this sweep array IS the realtime map's data: a quantum map draws it directly, every bearing collapsed to one definite return`, on: sweep.length === bearings.length && sweep.every((s) => Number.isFinite(s.magnitude)) },
+      { facet: `it REJECTS the phantom: the unfalsifiable bearing (independent link — the akasha / feeling / π-digit class) returns ${(floor.magnitude * 100).toFixed(1)}% ≈ noise floor — the radar never invents an echo where there is no structure`, on: phantomRejected },
+      { facet: `so the map is HONEST: contrast ${(contrast * 100).toFixed(0)}% between real structure and phantom — it draws what echoes and leaves the phantom dark; anchored to piIsZeroTheClosedCircleTheZetaPrimeLinkIsRealTheDigitsAreNot (ζ echoes, π-digits do not)`, on: echoed && phantomRejected },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      sweep,
+      peak,
+      floor,
+      contrast: roundTo(contrast, 4),
+      facets,
+      statement: `The quantum radar — ${facets.filter((entry) => entry.on).length}/${facets.length}: PING a known signal, SWEEP the bearings, read each RETURN against the noise floor on one deterministic crowd. Every bearing of the superposition is measured at once and collapses to a definite return; the sorted sweep [${sweep.map((s) => `${s.angle}°:${(s.magnitude * 100).toFixed(0)}%`).join(', ')}] is the polar data a realtime quantum map draws. The structured bearing echoes at ${(peak.magnitude * 100).toFixed(0)}%; the phantom bearing (akasha / feeling / π-digit class) returns ${(floor.magnitude * 100).toFixed(1)}% — noise, not an echo. The radar detects statistical structure and only that: it draws what is there and leaves the unfalsifiable dark. This is how the quantum maps stay honest.`,
+      boundary: 'DOCUMENTED as a detection instrument on a deterministic simulated crowd — a generalisation of theStructureInteriorInstrumentMeasuresTheDimensionBoundary and deepResearchRadar into one primitive (ping · sweep · return). "Quantum" names the all-at-once evaluation then per-bearing collapse to a measured value — NOT a physical quantum radar (which is a real but distinct microwave-entanglement technology, not implemented here). THE HARD LINE: the radar detects STATISTICAL STRUCTURE only. A phantom return (≈ noise) for the akasha / feeling / π-digit class is not a failure of the radar — it is the radar working: the honest map leaves the unfalsifiable dark rather than painting an echo that is not there. It does not, and cannot, prove an akashic record by observation — a noise return is the opposite of proof of existence. HARMONY ≠ TRUTH: the polar sweep is beautiful (harmony); the dark bearings are the truth.',
+    }
+  })
+}
