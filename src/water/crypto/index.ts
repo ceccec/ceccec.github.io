@@ -1810,3 +1810,50 @@ export function theAesBlockCipherComputesWithItsInverseIso18033(matrix: MindMatr
     }
   })
 }
+
+// Improve the crack gate to find WEAK ENCRYPTION by theorems: the crack gate finds hardcoded literals; this
+// finds weak crypto. Each weakness is a THEOREM (a refutable criterion with its why), trained from the experience
+// of this corpus — Math.random is no CSPRNG, MD5/SHA-1/DES/RC4/ECB are broken, a home-rolled cipher is not
+// constant-time, a secret compared with === leaks timing, a public content-address gives integrity not authenticity.
+// A weakness is a CRACK only if UNBOUNDED — code that NAMES its own weakness (a reference, "not constant-time",
+// "tamper-evident not tamper-proof") passes, exactly as the AES reference and toUuid folds already do.
+export function theCrackGateFindsWeakEncryptionByTheorems(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theCrackGateFindsWeakEncryptionByTheorems', matrix, () => {
+    const signatures = [
+      { theorem: 'weak-randomness', pattern: /Math\.random\s*\(\s*\)/, why: 'Math.random is not a CSPRNG — never for keys, IVs or nonces (predictable, seedable)' },
+      { theorem: 'broken-primitive', pattern: /\b(md5|sha-?1|\bdes\b|rc4|\becb\b)\b/i, why: 'MD5/SHA-1/DES/RC4/ECB are broken or structure-leaking (SHA-1 collided by SHAttered at ~2^63)' },
+      { theorem: 'rolled-cipher-for-secrets', pattern: /\bxor[A-Za-z]*\s*\(/i, why: 'a home-rolled XOR/keystream cipher for real secrets is malleable and not constant-time' },
+      { theorem: 'non-constant-time-compare', pattern: /\b(mac|tag|token|password|secret|hmac|digest)\b[^\n]{0,24}===/i, why: 'a secret compared with === leaks via early-exit timing; use a constant-time compare' },
+      { theorem: 'integrity-as-authenticity', pattern: /\b(fnv|touuid|content.?address)\b[^\n]{0,48}\b(secure|authentic|unforgeable|tamper.?proof)\b/i, why: 'a public, deterministic address gives INTEGRITY, not authenticity — an adversary recomputes it' },
+    ]
+    const bounded = (code: string) => /\bnot\s+constant.?time|\breference\b|not\s+(for\s+)?(real\s+)?secrets|tamper.?evident|not\s+collision|integrity,?\s+not\s+authentic/i.test(code)
+    const analyze = (code: string) => { const weaknesses = signatures.filter((s) => s.pattern.test(code)); return { weaknesses, isCrack: weaknesses.length > 0 && !bounded(code) } }
+    // negative + positive controls, so the gate DISCRIMINATES rather than asserts
+    const weakUnbounded = 'function auth(mac, userMac){ if (mac === userMac) return grant(); const k = Math.random(); return xorCipher(secret, k) }'
+    const weakBounded = 'const c = xorCipher(secret, key) // NOTE: not constant-time — a reference, not for real secrets'
+    const strong = 'await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, data); const ok = timingSafeEqual(mac, expected)'
+    const flaggedUnbounded = analyze(weakUnbounded)
+    const passedBounded = analyze(weakBounded)
+    const cleanStrong = analyze(strong)
+    const detectsByTheorem = flaggedUnbounded.weaknesses.length >= 2 // catches weak-randomness AND timing compare (and rolled cipher)
+    const discriminates = flaggedUnbounded.isCrack && !passedBounded.isCrack // unbounded weakness is a crack; named weakness passes
+    const positiveControlClean = cleanStrong.weaknesses.length === 0 // strong crypto raises no weakness (no false positive)
+    const remembers = signatures.length >= 5 && signatures.every((s) => s.why.length > 0)
+    const facets = [
+      { facet: `finds weak encryption BY THEOREM: ${signatures.length} criteria (weak PRNG · broken primitive · rolled cipher for secrets · non-constant-time compare · integrity-as-authenticity), each a refutable rule with its why — not a static blocklist`, on: detectsByTheorem && remembers },
+      { facet: `DISCRIMINATES bounded vs unbounded: the unbounded sample is a CRACK (${flaggedUnbounded.weaknesses.length} weaknesses, no caveat), the sample that NAMES its weakness passes — same honesty as the AES reference and toUuid folds`, on: discriminates },
+      { facet: `positive control clean: strong crypto (Web-Crypto AES-GCM + a constant-time compare) raises ${cleanStrong.weaknesses.length} weaknesses — the gate does not false-positive on correct code`, on: positiveControlClean },
+      { facet: `it REMEMBERS the experience as theorems: each signature encodes a real lesson this corpus learned (FNV not collision-resistant, the AES reference not constant-time, integrity ≠ authenticity) — computation, not remembered prose`, on: remembers && discriminates },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      criteria: signatures.length,
+      unboundedWeaknesses: flaggedUnbounded.weaknesses.map((w) => w.theorem),
+      boundedIsCrack: passedBounded.isCrack,
+      strongWeaknesses: cleanStrong.weaknesses.length,
+      facets,
+      statement: `The crack gate finds weak encryption by theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${signatures.length} weakness criteria (weak PRNG, broken primitive, rolled cipher for secrets, non-constant-time compare, integrity-as-authenticity), each a refutable theorem with its why. A weakness is a CRACK only if UNBOUNDED — code that names its own weakness passes (the AES reference, the toUuid honesty). The unbounded sample flags [${flaggedUnbounded.weaknesses.map((w) => w.theorem).join(', ')}]; the bounded sample and the strong Web-Crypto sample pass. It remembers the corpus's crypto experience as computation, not prose.`,
+      boundary: `DOCUMENTED and refutable by feeding any code to analyze(). This is a HEURISTIC pattern-detector: NECESSARY not sufficient — it catches known weak SHAPES (a source-level lint), it CANNOT prove a cipher strong, and the absence of a flag is NOT a proof of security (a novel weakness with no signature passes silently). It reduces the "don't roll your own crypto" and "constant-time / collision-resistance / authenticity" lessons to source signatures; real assurance still needs review and, for timing, constant-time execution the source cannot show. Wiring it as a BLOCKING gate in the enforcement trinity is the next surfacing step, not silently claimed here. HARMONY ≠ TRUTH: a clean scan is the harmony (no known weak shape), a proven-strong construction is the truth — this shows the first.`,
+    }
+  })
+}
