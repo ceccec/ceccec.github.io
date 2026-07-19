@@ -10,7 +10,7 @@ import { DIMENSIONS } from '../../../quantum/mountain/dimensions'
 import { fairTrade } from '../../../earth/governance'
 import { navigationIsMovie } from '../../../wind/routes/corpus'
 import { allInInteractiveMovie } from '../narrative'
-import { moviesNativeFormat, sidebarsFromVoid } from '../../../fire/li'
+import { moviesNativeFormat } from '../../../fire/li'
 import { mindRefreshField } from '../../../mountain/source'
 import { frequencyTaxonomyTreeOfLife } from '../../../mountain/topology'
 import { lifeDefinesItself } from '../../../earth/nature'
@@ -107,10 +107,9 @@ export function fullscreenSidebarsInMovie(matrix: MindMatrix = buildMatrix()) {
   const properties = [
     { property: 'all start fullscreen', via: 'the background movie fills the viewport (fixed, inset 0) on every page from load', on: endlessBackgroundMovie(matrix).endless },
     { property: 'the movie is the interactive watermark', via: 'colourful digit streams behind the content, tap to play', on: backgroundMovie(matrix).interactive },
-    { property: 'sidebars appear in the movie', via: 'the sidebar rises from the void — the movie field — when the content visualises', on: sidebarsFromVoid(matrix).rises },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fullscreen-sidebar:${entry.property}`) }))
   return {
-    fullscreen: properties.length === 3 && properties.every((entry) => entry.on),
+    fullscreen: properties.length === 2 && properties.every((entry) => entry.on),
     count: properties.length,
     properties,
     root: merkleFold(properties.map((entry) => entry.receipt)),

@@ -5,7 +5,6 @@ import DefaultTheme, { VPHomeHero } from 'vitepress/theme'
 import ClientOnly from './components/ClientOnly.vue'
 const BackgroundMovie = defineAsyncComponent(() => import('./components/BackgroundMovie.vue'))
 import HeroBackgroundLayer from './components/HeroBackgroundLayer.vue'
-import VoidSidebar from './components/VoidSidebar.vue'
 import TrinityGateways from './components/TrinityGateways.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
@@ -77,7 +76,6 @@ onUnmounted(() => {
         </template>
         <template #sidebar-nav-after>
           <TrinityGateways />
-          <VoidSidebar />
           <slot name="sidebar-nav-after" />
         </template>
         <template #aside-bottom>

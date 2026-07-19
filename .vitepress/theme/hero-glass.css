@@ -163,23 +163,6 @@
   color: var(--vp-hero-ink, var(--vp-c-text-1));
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .vp-with-hero-movie .VPSidebar.vp-sidebar-from-void {
-    animation: vp-sidebar-from-void var(--ich-dur-sidebar) var(--ich-ease);
-  }
-}
-
-@keyframes vp-sidebar-from-void {
-  from {
-    opacity: 0;
-    filter: blur(var(--ich-blur-sidebar));
-  }
-
-  to {
-    opacity: 1;
-    filter: blur(0);
-  }
-}
 
 /* Code and custom blocks — translucent over the movie, still readable. */
 .vp-with-hero-movie .vp-code-block,

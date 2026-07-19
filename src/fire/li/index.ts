@@ -881,30 +881,6 @@ export function pairTrinityOpenGraph(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// Sidebars appear from the void when the content is visualising. The sidebar is not a
-// fixed frame: each time the content renders anew (a route change), the sidebar rises
-// from the void — the background — fading and lifting into place, then settling. A
-// render-only effect over VitePress's own sidebar, energy- and reduced-motion-aware.
-/** @rosetta ✦₁ · Fire · clarity */
-export function sidebarsFromVoid(matrix: MindMatrix = buildMatrix()) {
-  const properties = [
-    { property: 'rises on content visualising', via: 'a route change replays a fade-and-lift animation on the sidebar' },
-    { property: 'from the void', via: 'the animation starts from the background (opacity 0, lifted, blurred) and settles' },
-    { property: 'render-only', via: 'a class on VitePress’s own .VPSidebar — it never replaces or bypasses the sidebar' },
-    { property: 'energy- and motion-aware', via: 'no animation under prefers-reduced-motion; cheap transform-and-opacity only' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`void-sidebar:${entry.property}`) }))
-  return {
-    rises: properties.length === 4,
-    count: properties.length,
-    properties,
-    root: merkleFold(properties.map((entry) => entry.receipt)),
-    statement:
-      'Sidebars appear from the void when the content is visualising: on each content render (a route change) the sidebar rises from the background — fading and lifting into place, then settling — a render-only animation on VitePress’s own sidebar, energy- and reduced-motion-aware.',
-    boundary:
-      'A description of the real VoidSidebar render effect: a brief CSS animation applied to the existing sidebar on navigation. It changes only the entrance animation, not the sidebar’s content or routing.',
-  }
-}
-
 // Display movies in native format. The deterministic, seeded movie is rendered at the
 // device's native resolution — the canvas backing store at full devicePixelRatio — and
 // can be saved in the browser's native video format (WebM via MediaRecorder over the
@@ -2115,7 +2091,6 @@ export function animationEngineLivesInZero(matrix: MindMatrix = buildMatrix()) {
     'Live', 'Rhythm', 'BackgroundMovie', // canvas loops
     'GpuField', // WebGL render loop (start/dispose alongside the GL teardown)
     'DeviceDashboard', // the FPS-meter loop
-    'VoidSidebar', // one-shot frame on route change (tick)
   ]
   const homed = components.map((name) => ({ name, receipt: toUuid(`animate:${station}:${name}`) }))
   return {
@@ -2169,6 +2144,7 @@ export function onlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
     '<router-link', '<router-view', '<RouterLink', '<RouterView', // vue-router's own template components
     'location.href =', 'location.assign(', 'location.replace(', 'window.location =', // raw navigation
     'history.pushState(', 'history.replaceState(', // the raw History API — a router bypass
+    "querySelector('.VP", 'querySelector(".VP', "querySelector('.vp-doc", // reaching into VitePress's PRIVATE rendered DOM classes — a render bypass (VoidSidebar did this)
   ]
   return {
     api,
@@ -2178,7 +2154,7 @@ export function onlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
     holds: true, // enforced over the whole render tree by the harmonic gate's render/non-vitepress-api check
     root: merge(matrix.root, merkleFold(forbidden.map((f) => toUuid(`only-vitepress:${f}`)))),
     statement:
-      'STRICT VitePress: the render layer routes, navigates and reads page data only through the VitePress API. Pages are markdown and the [page] dynamic route (params via useData); data and locale come from useData; internal navigation is a plain <a href> link VitePress intercepts, or useRouter().go. The whole non-VitePress surface is refused at the gate over the entire src/ui render layer (every .vue + src/render/ui/index.ts): no parallel router (vue-router / createRouter / createWeb(Hash)History / createMemoryHistory), no router template components (<router-link> / <router-view>), no raw navigation (assigning location.href or window.location, location.assign / replace), and no History API (history.pushState / replaceState). One render API, no drift.',
+      'STRICT VitePress: the render layer routes, navigates and reads page data only through the VitePress API. Pages are markdown and the [page] dynamic route (params via useData); data and locale come from useData; internal navigation is a plain <a href> link VitePress intercepts, or useRouter().go. The whole non-VitePress surface is refused at the gate over the entire src/ui render layer (every .vue + src/render/ui/index.ts): no parallel router (vue-router / createRouter / createWeb(Hash)History / createMemoryHistory), no router template components (<router-link> / <router-view>), no raw navigation (assigning location.href or window.location, location.assign / replace), no History API (history.pushState / replaceState), and no reaching into VitePress’s PRIVATE rendered DOM classes (document.querySelector on .VP* / .vp-doc to mutate what VitePress owns — the sidebar, nav, doc). One render API, no drift.',
     boundary:
       'A strict structural rule over the render layer (.vue + the theme entry), enforced by scanning the real tree (render/non-vitepress-api). It governs routing, navigation and page data — the surface VitePress owns — not a component\'s own computation: canvas, Web Audio, Web Crypto and fetch to data endpoints remain theirs. Reading location (origin, reload, search) is allowed; only navigation that bypasses VitePress is refused.',
   }

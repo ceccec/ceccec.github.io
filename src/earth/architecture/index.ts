@@ -1953,8 +1953,6 @@ export function ichingTokens() {
     ['--ich-oklch-c-glyph', 'calc(9 / 64)'],
     ['--ich-oklch-c-gateway', 'calc(9 / 64 * 6 / 7)'],
     ['--ich-rosetta-measure', `calc(${ROSETTA_AREAS} * 1rem)`],
-    ['--ich-dur-sidebar', 'calc(1s / 2)'],
-    ['--ich-blur-sidebar', 'var(--ich-sp3)'],
     ['--ich-size-toggle', 'calc(var(--ich-unit) * 8)'],
     ['--ich-track-ui', 'calc(1em / 100 * 6)'],
     ['--ich-gap-row', 'calc(var(--ich-sp4) + var(--ich-sp1))'],

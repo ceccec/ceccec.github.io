@@ -205,7 +205,6 @@ export const SESSION_SKILL_FNS: readonly string[] = [
   'sealSpiritToPath',
   'sealWholeDiamond',
   'selfCompassion',
-  'sidebarsFromVoid',
   'vitepressSidebar',
   'signedTrafficTrinityRouting',
   'siteIsMovieAndLibrary',

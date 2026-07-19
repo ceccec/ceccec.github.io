@@ -6,7 +6,6 @@ import UiCardShell from '../theme/components/UiCardShell.vue'
 import LinkedHeroCard from '../theme/components/LinkedHeroCard.vue'
 import HubCardGrid from '../theme/components/HubCardGrid.vue'
 import TagBrowser from '../theme/components/TagBrowser.vue'
-import VoidSidebar from '../theme/components/VoidSidebar.vue'
 import TrinityGateways from '../theme/components/TrinityGateways.vue'
 import GlobalHelp from '../theme/components/GlobalHelp.vue'
 import CollectiveMind from '../theme/components/CollectiveMind.vue'
@@ -83,7 +82,6 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
 // Layout.vue mounts these on every page, so they live in the theme entry chunk already —
 // register the same static modules; a dynamic import here could never split them out.
 const STATIC_GLOBALS: Record<string, Component> = {
-  VoidSidebar,
   TrinityGateways,
   GlobalHelp,
   CollectiveMind,
@@ -93,7 +91,7 @@ const STATIC_GLOBALS: Record<string, Component> = {
 
 /** Browser-safe registry — mirrors heaven/core componentGraph without loading the mind barrel at enhanceApp. */
 function browserComponentNames(): readonly string[] {
-  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'VoidSidebar', 'TrinityGateways'] as const
+  const globals = ['GlobalHelp', 'CollectiveMind', 'RevolutAside', 'VitePressPossibilities', 'TrinityGateways'] as const
   // Formerly the home list — the home is now the computed componentless theorem monograph; these
   // names are page-placed (STATIC_PAGE_SEED) or composed, and stay registered for those mounts.
   const pagePlaced = [
