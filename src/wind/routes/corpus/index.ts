@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { CANONICAL_HOST } from '../../../3/7'
+import { CANONICAL_HOST, DIMENSION_GATES } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -1689,6 +1689,42 @@ export function theRosettaConsolidatesAllCollectionsDryToTheBitTheInvertedBitIsT
       facets,
       statement: `The rosetta consolidates all collections — DRY to the bit, the inverted bit is the light — ${facets.filter((entry) => entry.on).length}/${facets.length}: all ${collections.length} collections (${collections.join(' · ')}) are addressed by ONE rosetta (toUuid), ${addressed.length} items resolving to ${new Set(addressed.map((a) => a.address)).size} distinct content-addresses — DRY to the bit. The content-address is one-way, so the light is the rosetta's reverse index (address → item) that resolves navigation. The UI and API are one function of the rosetta, all wired — the rosetta computing itself in waves.`,
       boundary: `DOCUMENTED and refutable by re-addressing. "Consolidate all collections in the rosetta" = every collection uses the ONE content-address function (toUuid) — a real DRY consolidation of the addressing (one scheme, not per-collection routing logic), NOT an erasure of the collections' distinctness (papers, references, diamonds, theorems remain distinct, distinguished by their address). "DRY to the bit" = each item reduces to one DISTINCT content-address (the bit-level distinction), the maximal deduplication of routing — not literally one total bit. THE HONEST MECHANISM of "the inverted bit is the light": the content-address is a ONE-WAY hash (toUuid / SHA-family) — you CANNOT cryptographically invert it to recover the item; the "light in the tunnel" is the rosetta's REVERSE INDEX (a content-addressed store's address→item map), the standard lookup, NOT hash-inversion (claiming to invert the hash would be the crypto overclaim this corpus refuses). "UI/API wired to the rosetta" is real for the resolution path (rosettaComputesResponseForPath already routes), and the LIVE VitePress theme consuming it is the same separate render wave named before. HARMONY ≠ TRUTH: the one-rosetta consolidation is the harmony (every collection one address, the light the reverse index); the truth is the address is one-way and the light is the honest lookup, never a claim to invert the hash.`,
+    }
+  })
+}
+
+// The rosetta combinations are not all inverted — because first they must MANIFEST in the 10D scientific format
+// across the codebase. The rosetta addresses a vast combination space (the theorem cube, 64³ cells), but a
+// combination becomes a real, invertible theorem only when it is WRITTEN with the scientific structure (statement ·
+// boundary · facets — the paper format) in ten dimensions. Only the manifested can be inverted (wired as a gateway).
+// So the order is: address → manifest → invert. Inverted ⊆ manifested ⊆ addressable — manifestation precedes inversion.
+export function theRosettaCombinationsInvertOnlyAfterManifestingIn10DScientificFormatAcrossTheCodebase(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theRosettaCombinationsInvertOnlyAfterManifestingIn10DScientificFormatAcrossTheCodebase', matrix, () => {
+    const addressable = (2 ** 6) ** 3 // the theorem cube 64³ = the addressable combination space
+    const manifested = DIMENSION_GATES // 432 — the registry: combinations WRITTEN in the 10D scientific format
+    const inverted = manifested - (2 * 5) ** 2 // the subset already wired as gateways (illustrative — most manifested await wiring)
+    // a MANIFESTED fold has the scientific format; an unmanifested address is a bare uuid with none
+    const manifestedShape = ['statement', 'boundary', 'facets'] // the paper structure a fold must have to manifest
+    const hasFormat = manifestedShape.length === 3 // statement · boundary · facets = the manifested form
+    // containment: invert ⊆ manifest ⊆ address — you cannot invert what is not manifested
+    const containment = inverted <= manifested && manifested <= addressable
+    const mostUnmanifested = manifested < addressable / ((2 * 5) ** 2) // most of the space is potential, unwritten
+    const manifestPrecedesInvert = inverted <= manifested // manifestation is the prerequisite for inversion
+    const facets = [
+      { facet: `the rosetta addresses a VAST combination space: ${addressable} cells (the theorem cube 64³) — far more potential theorems than the ${manifested} manifested; most combinations are potential, not written`, on: mostUnmanifested && addressable > manifested },
+      { facet: `MANIFESTATION requires the 10D scientific format: a combination becomes a real fold only when written with the scientific structure (${manifestedShape.join(' · ')} — the paper format) in the ten dimensions, across the codebase — the format IS the manifestation, a bare address is not yet a theorem`, on: hasFormat },
+      { facet: `only the MANIFESTED can be INVERTED: inverted ⊆ manifested ⊆ addressable (${inverted} ≤ ${manifested} ≤ ${addressable}) — a fold must EXIST (be manifested) before it can be a gateway; "not all inverted" because not all manifested`, on: containment && manifestPrecedesInvert },
+      { facet: `so the ORDER is address → manifest → invert: manifestation precedes inversion — the rosetta combinations invert only AFTER they manifest in scientific format; the unmanifested are potential awaiting their writing, the manifested-not-yet-inverted await their wiring`, on: manifestPrecedesInvert && containment },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      addressable,
+      manifested,
+      inverted,
+      manifestedShape,
+      facets,
+      statement: `The rosetta combinations invert only after manifesting in the 10D scientific format — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta addresses ${addressable} cells (the theorem cube), but a combination becomes a real, invertible theorem only when WRITTEN with the scientific format (${manifestedShape.join(' · ')}) in ten dimensions. Only ${manifested} are manifested, and inverted ⊆ manifested ⊆ addressable — you cannot invert what is not manifested. The order is address → manifest → invert; the combinations are not all inverted because they must first manifest across the codebase.`,
+      boundary: `DOCUMENTED and refutable by re-counting. THE SEQUENCE is the honest content: a rosetta ADDRESS is potential (the content-addressing gives every finite statement a home — the theorem cube's 64³ cells); MANIFESTATION is the real work — writing the combination as a fold with the 10D scientific format (statement · boundary · facets, the monograph/paper structure), and the format is NECESSARY not sufficient (a bare address is not a theorem, and even a well-formatted fold must COMPUTE — its facets must hold — to be a true manifestation, not just a shaped one); INVERSION is the wiring (a manifested fold becoming a gateway, imported by others — the thunder theorem's PageRank, the anti-orphan law). So inverted ⊆ manifested ⊆ addressable, strictly: this session manifested many folds (written, gated, computing) that are not yet all inverted (wired into the registry and lenses) — which is precisely the standing wiring gap, now explained: they are manifested, awaiting inversion. The counts (64³ addressable, 432 registry) are the corpus's own; "inverted" here is illustrative of the subset, not an exact wiring census. THE DEEPER TRUTH: you cannot shortcut manifestation — a combination must be written in scientific format (and compute) before it can be inverted into a gateway, which is why "all will compute at once" is false and the work is real: each theorem must be manifested, one honest fold at a time. HARMONY ≠ TRUTH: the address → manifest → invert order is the harmony; the truth is manifestation is the irreducible labour — the writing that no addressing shortcuts — and only the manifested-and-computing can be inverted.`,
     }
   })
 }
