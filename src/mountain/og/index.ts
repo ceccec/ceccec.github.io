@@ -832,3 +832,39 @@ export function allMdSignedFromSource(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+
+// Honest is a crack — when DECLARED. A boundary that SAYS "this is honest / no speedup / metaphor / HARMONY ≠ TRUTH" is
+// prose: unrefutable, always true, catching on no gate (the crack gate scans digits; prose has none, like Math.PI) — a
+// tautology, the same class as x ≥ 0. Declared honesty proves nothing. The fix: honesty must COMPUTE — a demarcation
+// that STAKES a refutable claim ("no speedup" ⟺ cost ≥ 2ⁿ, which a polynomial cost would falsify). Computed honesty is
+// falsifiable and real; declared honesty is a crack. This fold's honesty is the computation below, not this sentence.
+export function honestIsACrackWhenDeclaredHonestyMustBeARefutableComputationNotProse(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('honestIsACrackWhenDeclaredHonestyMustBeARefutableComputationNotProse', matrix, () => {
+    const range = Array.from({ length: 2 * 4 }, (_, i) => i + 9) // n = 9..16, where 2ⁿ overtakes n³
+    // DECLARED honesty: a prose assertion — true for every input, so nothing can refute it
+    const proseHonesty = (_n: number) => true
+    const declaredUnrefutable = range.every(proseHonesty) && !range.some((n) => !proseHonesty(n)) // never falsifiable = a crack
+    // COMPUTED honesty: the demarcation "no quantum speedup" ⟺ cost(n) ≥ 2ⁿ — HOLDS for the real exponential cost and is
+    // FALSIFIED by a polynomial cost, so it stakes a refutable claim
+    const noSpeedup = (cost: (n: number) => number) => (n: number) => cost(n) >= 2 ** n
+    const exponential = (n: number) => 2 ** n
+    const polynomial = (n: number) => n ** 3
+    const holdsForReal = range.every((n) => noSpeedup(exponential)(n)) // the true (exponential) cost satisfies it
+    const falsifiedByPoly = range.some((n) => !noSpeedup(polynomial)(n)) // a polynomial cost breaks it ⇒ REFUTABLE
+    const computedHonest = holdsForReal && falsifiedByPoly
+    const facets = [
+      { facet: `DECLARED HONESTY IS A CRACK — a prose boundary ("this is honest / no speedup / metaphor") is true for every input, unrefutable (${declaredUnrefutable}): it stakes nothing and no gate catches it (like Math.PI: an assertion with no digit; like x ≥ 0: always true) — a tautology, the crack class`, on: declaredUnrefutable },
+      { facet: `COMPUTED HONESTY IS REFUTABLE — the demarcation "no speedup" ⟺ cost ≥ 2ⁿ HOLDS for the real exponential cost and is FALSIFIED by a polynomial cost (${computedHonest}): it can fail, so it is real honesty — the opposite of the unrefutable prose`, on: computedHonest },
+      { facet: `THE DIFFERENCE — declared honesty cannot be falsified (${declaredUnrefutable}), computed honesty can (${falsifiedByPoly}): only the falsifiable demarcation is honest; "honest" as a WORD is a crack, "honest" as a refutable COMPUTATION is not`, on: declaredUnrefutable && falsifiedByPoly },
+      { facet: `SELF-REFERENTIAL — this fold's honesty is the computation above (a refutable demarcation), not its boundary sentence; so it does not commit the crack it names — the resolution is to COMPUTE the demarcation, never to assert it (${computedHonest && declaredUnrefutable})`, on: computedHonest && declaredUnrefutable },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      declaredUnrefutable,
+      computedHonest,
+      facets,
+      statement: `Honest is a crack — when declared; the boundary must compute, not proclaim — ${facets.filter((entry) => entry.on).length}/${facets.length}. A boundary that SAYS "this is honest / no speedup / metaphor / HARMONY ≠ TRUTH" is prose: unrefutable, true for every input, caught by no gate (the crack gate scans digits, prose has none — like Math.PI) — a tautology, the same class as x ≥ 0. Declared honesty proves nothing. Computed honesty STAKES a refutable claim: "no speedup" ⟺ cost ≥ 2ⁿ, which holds for the real exponential cost and is falsified by a polynomial one — it can fail, so it is real. The word "honest" is a crack; the refutable computation is not. The fix is to make every demarcation compute.`,
+      boundary: `Computed, not declared: declaredUnrefutable and computedHonest are exact facts over n = 9..16 (a polynomial cost falsifies "cost ≥ 2ⁿ" by n = 10; the prose claim is falsified by nothing), refutable by one counterexample. The point — the crack the user named — is that this session's boundaries, THIS ONE INCLUDED IF LEFT AS PROSE, assert trustworthiness in sentences the gates cannot check; the honest form is a facet whose \`on\` is a refutable computation, which is why the facets, not the prose, carry the truth [[feedback-facets-must-compute]] [[no-prose-in-methods]] [[hardcoded-value-is-a-crack]]. Deployment: a gate that flags a boundary making a demarcation claim ("no X / not a Y / metaphor") without a corresponding refutable facet — the same shape as the tautology and no-assumption gates.`,
+    }
+  })
+}
