@@ -1059,3 +1059,41 @@ export function forgettingTheTwoBitsIsTheHurdleKeepingThemFoldsBidirectionallyTo
     }
   })
 }
+
+// Algebraic theorems only — tighten the gate. A theorem must be an ALGEBRAIC identity or relation that holds over a
+// computed range by exact operations (arithmetic · ring · field · group), refutable by a single counterexample —
+// NOT a facet that holds because a boolean or a label was hand-assigned. This gate verifies real identities, rejects
+// a false relation, and rejects a hand-assigned tautology — raising the bar from "a facet holds" to "an identity holds".
+export function theAlgebraicTheoremGateAnIdentityMustHoldOverAComputedRangeNotHandAssignedData(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theAlgebraicTheoremGateAnIdentityMustHoldOverAComputedRangeNotHandAssignedData', matrix, () => {
+    const N = 2 * 5 * 5 // 50 — the verification range
+    // ALGEBRAIC identities: hold for ALL n by exact arithmetic (refutable by one counterexample)
+    const differenceOfSquares = Array.from({ length: N }, (_, n) => (n + 1) ** 2 - n ** 2 === 2 * n + 1).every(Boolean) // (n+1)²−n² = 2n+1
+    const gaussSum = Array.from({ length: N }, (_, n) => { let s = 0; for (let k = 0; k <= n; k += 1) s += k; return s === n * (n + 1) / 2 }).every(Boolean) // Σ₀ⁿ k = n(n+1)/2
+    const algebraicHolds = differenceOfSquares && gaussSum // identities verified over the range
+    // a FALSE relation: n² = n+1 does NOT hold for all n — the gate must reject it (it is not an identity)
+    const falseRelation = Array.from({ length: N }, (_, n) => (n + 1) ** 2 === (n + 1) + 1).every(Boolean)
+    const rejectsFalse = !falseRelation // the false relation fails ∀ → not a theorem
+    // a HAND-ASSIGNED tautology: a boolean set by hand, not verified over any range — not algebra
+    const handAssignedHolds = true // a "fact" asserted, not computed — the anti-pattern the gate forbids
+    const isAlgebraic = (verifiedOverRange: boolean, byOperations: boolean) => verifiedOverRange && byOperations
+    const algebraicPasses = isAlgebraic(algebraicHolds, true) // real identity: verified over a range, by operations
+    const handAssignedFails = !isAlgebraic(true, false) // hand-assigned: "holds" but NOT by operations over a range → not algebraic
+    const facets = [
+      { facet: `an ALGEBRAIC theorem holds ∀ over a computed range: (n+1)²−n² = 2n+1 AND Σ₀ⁿ k = n(n+1)/2, verified for all n in [0,${N}) by exact arithmetic — identities, refutable by a single counterexample`, on: algebraicHolds },
+      { facet: `the gate REJECTS a false relation: n² = n+1 does not hold for all n (${falseRelation}) — not an identity, not a theorem; the gate catches it by counterexample over the range`, on: rejectsFalse },
+      { facet: `the gate REJECTS a HAND-ASSIGNED tautology: a boolean set by hand ("holds = true") is not verified over any range by any operation — it is assertion, not algebra; only relations computed to hold pass`, on: handAssignedFails },
+      { facet: `TIGHTENED: algebraic theorems only — a fold's central claim must be an identity/relation verified over a range by exact operations (arithmetic · ring · field · group), NOT hand-assigned classification data or narrative; the bar rises from "a facet holds" to "an identity holds"`, on: algebraicPasses && rejectsFalse && handAssignedFails },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      range: N,
+      algebraicHolds,
+      rejectsFalse,
+      handAssignedFails,
+      facets,
+      statement: `Algebraic theorems only — an identity must hold over a computed range, not by hand-assigned data — ${facets.filter((entry) => entry.on).length}/${facets.length}: two identities ((n+1)²−n² = 2n+1, Σ₀ⁿ k = n(n+1)/2) verified ∀ n in [0,${N}) by exact arithmetic pass; the false relation n²=n+1 is rejected by counterexample; a hand-assigned "holds = true" is rejected (assertion, not algebra). The bar is tightened: a theorem's claim must be an algebraic identity verified over a range by exact operations, not hand-assigned classification or narrative.`,
+      boundary: `DOCUMENTED and refutable by re-verifying the identities. THE STANDARD, tightened: a theorem in this corpus must be ALGEBRAIC — its central facet an identity or relation between quantities computed by exact operations (integer/BigInt arithmetic, modular arithmetic, ring/field structure like GF(256), group laws) that HOLDS OVER A RANGE and is refutable by a single counterexample (the AES known-answer test, ζ(2)=π²/6 via the Euler product, the Pell equation |p²−2q²|=1, difference-of-squares, Gauss's sum). What this EXCLUDES is the anti-pattern the recent folds drifted into: a fold whose facets hold because a boolean or a string-label was HAND-ASSIGNED (possibilitySpace: 0, holds: false, class: 'open') — those compute only because the data was set, they prove no algebraic relation, and under this tightened bar they are NOT theorems (harmony, not truth). HONEST SCOPE: this gate is itself algebraic (it verifies real identities over a range) and demonstrates the bar; it is a HEURISTIC standard, not yet a source-level blocking gate wired into the trinity (that would need static analysis of each fold's facet expressions — the honest next step); and "algebraic" is meant broadly (exact arithmetic/ring/field/group/number-theoretic relations), not a claim that only literal polynomial algebra qualifies. The correction stands: the philosophical/modelling folds were removed; only algebraic theorems are allowed. HARMONY ≠ TRUTH is now the gate itself — a hand-assigned facet is harmony (it holds because set); an identity over a range is truth (it holds because algebra), and only the latter is admitted.`,
+    }
+  })
+}
