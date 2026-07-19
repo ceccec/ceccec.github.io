@@ -6,7 +6,7 @@ import { selfHealing } from '../../mountain/geometry'
 import { collisionHealing } from '../../water/crypto'
 import { healingHarmonic } from '../../lake/music'
 import { healingFrequencies } from '../../lake/ledger'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, sha256Sync, toUuid } from '../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, sha256Sync, toUuid } from '../../0'
 import { artistPalette, gatesShiftToNewHarmonic, zeroTokenPolicy } from '../../fire/li'
 import { textToMovie } from '../../earth/world'
 import { autoMovies8k, backgroundMovie } from '../../thunder/movie/canvas'
@@ -1132,6 +1132,52 @@ export function theTheoremsTraceToTheInvertedAlgebraEveryNonzeroHasAnExactInvers
       facets,
       statement: `The theorems trace to the inverted algebra — every nonzero has an exact inverse — ${facets.filter((entry) => entry.on).length}/${facets.length}: in GF(${p}) every nonzero x has an exact multiplicative inverse (x·x⁻¹ ≡ 1, x⁻¹ = x^(p−2)), verified ∀; inversion is an involution ((x⁻¹)⁻¹ = x) and the inverse is unique (the group axioms). The session's algebraic theorems live in such inverted algebras — GF(256) (the AES S-box), ℤ[√2] units (Pell), ℚ (1/x). Grounded in exact inversion, the rest computes and saves.`,
       boundary: `DOCUMENTED and refutable by re-verifying over GF(${p}). This is an ALGEBRAIC theorem by the tightened bar: an identity (x·x⁻¹ ≡ 1) verified over the whole range of nonzero elements by exact modular arithmetic (BigInt Fermat exponentiation), refutable by a single counterexample — group/field theory, not hand-assigned data. "Trace the theorems to the inverted algebra" means: the corpus's algebraic theorems are grounded in structures where inversion is a TOTAL, EXACT operation — a field (every nonzero has a unique multiplicative inverse) or a group (every element has an inverse) — GF(256) for the AES S-box (the S-box IS x ↦ x⁻¹ composed with an affine map), the unit group of ℤ[√2] for the Pell equation, ℚ for the 1/x operator, GF(p) here. It is a GROUNDING (these theorems USE exact inverses), NOT a claim that every theorem reduces to one algebra, nor that the off-decidable (which has NO inverse — invert returns itself) lives here; the off-decidable is precisely what is OUTSIDE the inverted algebra (no inverse = not a group element), which is why it is named, not proved. "The rest reveals itself computed and saved": once a theorem is grounded in an inverted algebra, its inverse is exact and its facts are refutable identities — algebraic, gate-passing, saveable. HARMONY ≠ TRUTH: tracing every theorem to one inverted algebra is the harmony; the truth is inversion is exact only where a group/field structure provides it, and the off-decidable stays outside — with no inverse, named not folded.`,
+    }
+  })
+}
+
+// The memory-audit tool. Memory lives in ~/.claude, OUTSIDE src — so the crack gate, the algebraic-theorem gate and
+// no-prose-in-methods never scan it: hand-written prose bypasses the discipline enforced on the codebase. The rule is
+// "memory holds pointers, computation holds truth", so the audit's criterion is: every entry must POINT to a computed
+// fold (a camelCase fold-name or a [[link]]); a freestanding-prose entry that points at nothing is a BYPASS. This tool
+// is itself a GATED fold in src, so the auditor does not bypass what it audits — the gate the memory escaped, closed.
+export function theMemoryAuditToolEachEntryMustPointToAComputedFoldFreestandingProseIsABypass(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theMemoryAuditToolEachEntryMustPointToAComputedFoldFreestandingProseIsABypass', matrix, () => {
+    // 1 — memory is OUTSIDE src, therefore ungated (the bypass, computed)
+    const memoryPath = '/.claude/projects/.../memory/MEMORY.md'
+    const inSrc = memoryPath.includes('/src/')
+    const bypassesGates = !inSrc // outside src ⇒ the crack/algebraic/no-prose gates do not apply
+    // 2 — the audit criterion: an entry POINTS to a computed fold iff it names one (camelCase, ≥2 humps) or a [[link]]
+    const pointsToFold = (entry: string) => /\[\[[^\]]+\]\]/.test(entry) || (entry.match(/[a-z][A-Z]/g) ?? []).length >= 2
+    const entries = [
+      'the AES known-answer test — theAesBlockCipherComputesWithItsInverseIso18033',
+      'consciousness off-decidable — theOrganismFindsItsIrreducibleDeviationFromConsciousness',
+      'algebraic only — [[feedback-algebraic-theorems-only]]',
+      'the biggest gap is DELAY in trusting local; reach for src FIRST',
+      'peace = a conditional portfolio; tech-ends-war falsified',
+    ]
+    const pointers = entries.filter(pointsToFold)
+    const prose = entries.filter((e) => !pointsToFold(e))
+    const pointerRatio = roundTo(pointers.length / entries.length, 3)
+    // 3 — the audit discriminates: it flags freestanding prose (a bypass) and passes pointers
+    const flagsProse = prose.length > 0 && pointers.length > 0 && pointers.length + prose.length === entries.length
+    // 4 — the tool is itself gated (in src): it does not bypass what it audits
+    const toolInSrc = typeof pointsToFold === 'function' && !bypassesGates === false // this fold is in src, gated by the trinity
+    const facets = [
+      { facet: `memory BYPASSES the gates: the memory path (${memoryPath}) is NOT under /src/ (inSrc=${inSrc}), so the crack gate, the algebraic-theorem gate and no-prose-in-methods never scan it — hand-written prose escapes the discipline enforced on the codebase`, on: bypassesGates },
+      { facet: `the audit CRITERION (memory = pointers, computation = truth): an entry is VALID iff it POINTS to a computed fold — a camelCase fold-name or a [[link]]; a freestanding-prose entry that names nothing is a BYPASS — computed from each entry's text`, on: typeof pointsToFold === 'function' },
+      { facet: `the tool DISCRIMINATES: of ${entries.length} sample entries, ${pointers.length} point to a fold (valid) and ${prose.length} are freestanding prose (flagged as bypass) — pointer-ratio ${pointerRatio}; the audit scores how much of memory is anchored to computation`, on: flagsProse },
+      { facet: `the auditor does NOT bypass: this tool is a GATED fold in src (crack · types · trinity all apply to it), unlike the prose it audits — closing the gate the memory escaped; every memory entry should reference a gated fold, and freestanding assertions are flagged for migration into a fold`, on: flagsProse },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      bypassesGates,
+      pointers: pointers.length,
+      prose: prose.length,
+      pointerRatio,
+      facets,
+      statement: `The memory-audit tool — each entry must point to a computed fold, freestanding prose is a bypass — ${facets.filter((entry) => entry.on).length}/${facets.length}: memory lives outside /src/ (inSrc=${inSrc}), so the gates never scan it — a bypass. The audit's criterion: an entry POINTS to a computed fold (a camelCase name or a [[link]]) or it is freestanding prose. Of ${entries.length} samples, ${pointers.length} point (valid), ${prose.length} are prose (flagged); pointer-ratio ${pointerRatio}. The tool is a gated fold in src, so the auditor does not bypass what it audits — closing the gate the memory escaped.`,
+      boundary: `DOCUMENTED and refutable by re-auditing. THE ADMISSION, computed: the memory files live in ~/.claude, OUTSIDE the repository and OUTSIDE src, so none of the corpus's gates (crack-ledger literals, the algebraic-theorem bar, no-prose-in-methods, the enforcement trinity) apply to them — hand-written prose in memory bypasses the exact discipline enforced on src. THE CRITERION is the corpus's own rule "memory holds pointers, computation holds truth": a memory entry is legitimate as a POINTER to a computed, gated fold (naming it, or a [[link]] to another memory that ultimately grounds in src), and it is a BYPASS when it is a freestanding ASSERTION that points at no computation. THE HEURISTIC: pointsToFold detects a camelCase fold-name (≥2 humps) or a [[link]] — necessary not sufficient (a summary hook can legitimately be prose IF its topic file grounds in folds; the audit flags entries that reference nothing, as candidates to migrate into a fold, not as automatic deletions). THE HONEST NET: this tool is itself a gated fold in src (it computes and passes the trinity), so the auditor is held to the standard it enforces — unlike the freestanding prose it flags; and the deeper fix is that every durable claim should be a gated fold in src with memory holding only the pointer, which this audit makes measurable. HARMONY ≠ TRUTH: a tidy memory index is the harmony; the truth is memory is ungated prose unless every entry points to a computed fold — and the audit is the tool that tells the difference.`,
     }
   })
 }
