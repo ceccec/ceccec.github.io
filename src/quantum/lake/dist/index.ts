@@ -39,7 +39,7 @@ import {
   type MindMatrix,
 } from '../../heaven/mind'
 import { readmeMarkdown } from './readme'
-import { agentBashWorkflowsAreToolsSavedInSrc } from '../../../pair/enforcement'
+import { agentBashWorkflowsAreToolsSavedInSrc, sequenceStations } from '../../../pair/enforcement'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
@@ -63,11 +63,17 @@ export { readme, readmeMarkdown, homeMarkdown, readmeSignatureValid } from './re
  *  command (it reads ~/.claude, machine state, never a served artifact). */
 export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
   const saved = agentBashWorkflowsAreToolsSavedInSrc(matrix)
+  // The toolkit organised BY THE SEQUENCE (station taxonomy, circuit order) — recomputed per request
+  // in dev and per build in dist: the tools compute themselves in realtime, never a hand-kept index.
+  const byStation: Record<string, string[]> = {}
+  for (const station of sequenceStations()) byStation[station] = saved.tools.filter((tool) => tool.station === station).map((tool) => tool.name)
   return `${JSON.stringify(
     {
       computes: saved.computes,
       count: saved.tools.length,
       root: saved.root,
+      circuit: sequenceStations(),
+      byStation,
       statement: saved.statement,
       boundary: saved.boundary,
       tools: saved.tools,
