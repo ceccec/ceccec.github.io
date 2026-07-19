@@ -132,6 +132,55 @@ export function vitepressAutomountPaths() { return []; }
 `
 }
 
+/**
+ * Computed node: builtin shim for the client bundle — INVERT the conflict, don't hand-exclude each module.
+ * A src module that imports node:crypto/child_process/fs/url is build/CLI-only; in the client vite externalises
+ * those builtins to a Proxy that THROWS on access, killing the whole Vue mount. Rather than name-listing every
+ * offending module (manual exclusion, forever chasing the next), we INCLUDE one browser-safe shim per node:
+ * builtin — benign no-ops (the client never calls these, they run only at build/CLI) — so ANY node-only module
+ * loads harmlessly and no future leak can conflict. Node/SSG keep the real builtins (ssrBuild → null).
+ */
+function nodeBuiltinBrowserShimPlugin(): import('vite').Plugin {
+  const shims: Record<string, string> = {
+    'node:crypto': `export function createHash(){return {update(){return this},digest(){return ''}}}
+export function randomUUID(){return '00000000-0000-4000-8000-000000000000'}
+export default { createHash, randomUUID }`,
+    'node:child_process': `export function spawnSync(){return {status:0,stdout:'',stderr:'',error:null}}
+export function spawn(){return {on(){return this},stdout:{on(){}},stderr:{on(){}},kill(){}}}
+export function execSync(){return ''}
+export default { spawnSync, spawn, execSync }`,
+    'node:module': `export function createRequire(){return ()=>({})}
+export default { createRequire }`,
+    'node:path': `const norm=(s)=>String(s).replace(/\\/+/g,'/')
+export function join(...a){return norm(a.filter(Boolean).join('/'))}
+export function resolve(...a){return norm('/'+a.filter(Boolean).join('/'))}
+export function relative(_f,t){return String(t)}
+export function dirname(p){const s=norm(p).replace(/\\/+$/,'');const i=s.lastIndexOf('/');return i<=0?'/':s.slice(0,i)}
+export function basename(p){return norm(p).split('/').filter(Boolean).pop()||''}
+export const sep='/'
+export default { join, resolve, relative, dirname, basename, sep }`,
+    'node:fs': `export function existsSync(){return false}
+export function readFileSync(){return ''}
+export function readdirSync(){return []}
+export function writeFileSync(){}
+export function mkdirSync(){}
+export function rmSync(){}
+export function statSync(){return {isDirectory(){return false},mtimeMs:0,size:0}}
+export default { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync, statSync }`,
+    'node:url': `export function pathToFileURL(p){return { href: 'file://' + String(p) }}
+export function fileURLToPath(u){return String(u)}
+export default { pathToFileURL, fileURLToPath }`,
+  }
+  let ssrBuild = false
+  return {
+    name: 'double-torus:node-builtin-browser-shim',
+    enforce: 'pre',
+    config(_config, env) { ssrBuild = Boolean(env.isSsrBuild) },
+    resolveId(id) { if (ssrBuild) return null; if (Object.prototype.hasOwnProperty.call(shims, id)) return `\0node-shim:${id}` },
+    load(id) { if (id.startsWith('\0node-shim:')) return shims[id.slice('\0node-shim:'.length)] },
+  }
+}
+
 /** Stub fs-walking modules in client bundle — automount/paths.ts are build-time Node only. */
 function nodeOnlyClientStubPlugin(): import('vite').Plugin {
   // The computational barrel statically imports node:fs/node:path (build-time gate scanners). In the
@@ -291,7 +340,7 @@ export default defineConfig({
         },
       },
     },
-    plugins: [nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), ...srcFolderPlugins(projectRoot)],
+    plugins: [nodeBuiltinBrowserShimPlugin(), nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), ...srcFolderPlugins(projectRoot)],
     // Imports are folders only, with NO file extensions (the strict barrel rule, enforced on all of src):
     // a specifier names the module by its folder path and the resolver finds the file. '.vue' is appended
     // so extensionless component imports (`./components/Foo`, never `./components/Foo.vue`) resolve too —
