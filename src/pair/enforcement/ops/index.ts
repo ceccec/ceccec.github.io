@@ -43,6 +43,8 @@ import {
   mathIsOneSource,
   foldersAreOneWordPerLevel,
   srcFilesAreIndexOnly,
+  scanHandLists,
+  handListMirrors,
 } from '../gates'
 import {
   CLI_ENTRY_REL,
@@ -61,6 +63,7 @@ import {
   foldQuantumCommandPairs,
   MISSION_COMMANDS,
   QUANTUM_COMMAND_PAIR_IDS,
+  shardOf,
   shardWork,
   splitQuantumCommandPair,
   type MissionCommand,
@@ -467,6 +470,39 @@ async function runRosettaExit(root: string, argv: readonly string[]) {
   return 0
 }
 
+/** `logic:hunt [top]` — the hardcoded-logic hunt: hand-typed string rosters and their cross-file
+ *  MIRRORS ranked by risk×reward (shared²), each finding assigned to a rosetta-ray trinity team
+ *  (research · edit · verify) for the surgical action. Scans src + .vitepress. Exit 0 always —
+ *  a worklist, not a gate (the ratchet is the falling top score). */
+function runLogicHuntExit(root: string, argv: readonly string[]): number {
+  const top = Math.max(1, Number(argv[0]) || (4 * 3))
+  const files: { rel: string; text: string }[] = []
+  const walk = (rel: string): void => {
+    let entries: { name: string; isDirectory: () => boolean }[]
+    try { entries = readdirSync(join(root, rel), { withFileTypes: true }) } catch { return }
+    for (const entry of entries) {
+      const name = String(entry.name)
+      if (name.startsWith('.') || name === 'node_modules' || name === 'cache' || name === 'dist') continue
+      const childRel = `${rel}/${name}`
+      if (entry.isDirectory()) walk(childRel)
+      else if (/\.(ts|mts)$/.test(name)) files.push({ rel: childRel, text: readFileSync(join(root, childRel), 'utf8') })
+    }
+  }
+  walk('src')
+  walk('.vitepress')
+  const lists = scanHandLists(files)
+  const mirrors = handListMirrors(lists)
+  const trinity = ['research', 'edit', 'verify'] as const
+  console.log(`logic:hunt — ${lists.length} hand-lists · ${mirrors.length} mirrors (risk×reward = shared²; the top is the next surgical action)`)
+  for (const [rank, mirror] of mirrors.slice(0, top).entries()) {
+    const ray = shardOf(`${mirror.a.name}:${mirror.b.name}`, 7)
+    console.log(`#${rank + 1} score ${mirror.score} · shared ${mirror.shared} · ray ✦${ray} team [${trinity.join(' · ')}]`)
+    console.log(`   A ${mirror.a.file}#${mirror.a.name} (${mirror.a.members.length})`)
+    console.log(`   B ${mirror.b.file}#${mirror.b.name} (${mirror.b.members.length})`)
+  }
+  return 0
+}
+
 /** `shard <index> <count> [dir]` — agent k of N prints its deterministic file shard (shardWork over
  *  the repo's index files under dir, default src): the swarm-partition CLI arm; exit 1 on bad args. */
 function runShardExit(root: string, argv: readonly string[]): number {
@@ -541,6 +577,7 @@ export async function runCliExit(root: string, argv: string[] = []) {
     }
     case 'surgical': return runSurgicalExit(root, rest)
     case 'shard': return runShardExit(root, rest)
+    case 'logic:hunt': return runLogicHuntExit(root, rest)
     case 'rosetta':
     case 'iching': return runRosettaExit(root, rest)
     case 'fold': return rest[0] ? runFoldExit(root, rest) : 1

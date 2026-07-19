@@ -1,6 +1,8 @@
 // ☴ Xùn · Wind — the render layer: the hero, the animation engine & dimensions, the 3D depth dial, holographic scenes, the flat-to-3D quantum lift, navigation around the hero. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model+view bridge — render-layer folds: holographic, animatedHeroes, etc. compose model data for view consumption.
 import * as __ns_up_quantum_widgets from '../../lake/widgets'
+// call-time namespace edge (cycle-safe): mountain/shadcn reaches back here via lake/widgets; the list reads at call time
+import * as __ns_up_up_mountain_shadcn from '../../mountain/shadcn'
 import { phase } from '../../6/4'
 import { EIGHT_CURRICULUM_SCIENCES } from '../../pair/enforcement/gates/computational'
 import { chsh } from '../../mountain/vortex'
@@ -1436,12 +1438,9 @@ export function uiWidgetsFuseReveal(matrix: MindMatrix = buildMatrix()) {
 
 // ── shadcn design-system registry (folded from shadcn-folds.ts): registry · variant tokens · cn() ──
 /** The shadcn primitives actually vendored as Ui* SFCs in .vitepress/theme/components/ui (Path A). */
-export const SHADCN_IMPLEMENTED = [
-  'Accordion', 'AccordionItem', 'Alert', 'AspectRatio', 'Avatar', 'Badge', 'Button',
-  'Card', 'CardContent', 'Checkbox', 'Collapsible', 'Input', 'Label', 'Progress',
-  'Separator', 'Skeleton', 'Switch', 'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
-  'Textarea', 'Tooltip',
-] as const
+// SHADCN_IMPLEMENTED lives at its domain home (src/mountain/shadcn) — logic:hunt mirror #2 (23 shared
+// verbatim) dissolved: read at call time through the cycle-safe namespace edge, never re-typed here.
+
 /** cva variant axes carried by the implemented primitives (variant/size enumerations). */
 export const SHADCN_VARIANTS = {
   Button: { variant: ['default', 'secondary', 'outline', 'ghost', 'destructive', 'link'], size: ['default', 'sm', 'lg', 'icon'] },
@@ -1465,7 +1464,7 @@ export function shadcnResearch(matrix: MindMatrix = buildMatrix()) {
     const graph = (__ns_up_quantum_widgets).shadcnIsTheGraph(matrix)
     const sections = [
       { id: 'graph', title: 'shadcn is the graph', note: `${graph.allComponents.length} components grouped into ${Object.keys(graph.components).length} families`, receipt: toUuid('shadcn-research:graph') },
-      { id: 'implemented', title: 'vendored primitives (Path A)', note: `${SHADCN_IMPLEMENTED.length} Ui* SFCs in .vitepress/theme/components/ui — semantic classes, no Tailwind dependency`, receipt: toUuid('shadcn-research:implemented') },
+      { id: 'implemented', title: 'vendored primitives (Path A)', note: `${__ns_up_up_mountain_shadcn.SHADCN_IMPLEMENTED.length} Ui* SFCs in .vitepress/theme/components/ui — semantic classes, no Tailwind dependency`, receipt: toUuid('shadcn-research:implemented') },
       { id: 'tokens', title: 'CSS-variable theming', note: `${SHADCN_TOKENS.length} canonical tokens bridged to --vp-* and .dark`, receipt: toUuid('shadcn-research:tokens') },
       { id: 'cn', title: 'cn() composer', note: CN_PATTERN, receipt: toUuid('shadcn-research:cn') },
     ]
@@ -1478,7 +1477,7 @@ export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot('shadcnComputes', matrix, () => {
     const graph = __ns_up_quantum_widgets.shadcnIsTheGraph(matrix)
     const research = shadcnResearch(matrix)
-    const implemented = SHADCN_IMPLEMENTED
+    const implemented = __ns_up_up_mountain_shadcn.SHADCN_IMPLEMENTED
     const onGraph = implemented.filter((name) => graph.allComponents.includes(name) || name.startsWith('Card') || name.startsWith('Tabs') || name.startsWith('Accordion'))
     const { computes, facets } = computesGate('shadcn-computes', [
       { facet: 'shadcn is the graph — 64 components as the design-system graph', on: graph.graphed && graph.allComponents.length === 64 },

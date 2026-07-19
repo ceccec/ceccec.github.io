@@ -49,6 +49,48 @@ export function stripComments(text: string): string {
   return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
 }
 
+// ── HARDCODED-LOGIC HUNT — hand-typed string ROSTERS and their cross-file MIRRORS. A hand-list is
+// logic frozen as data (a roster the code should derive); a MIRROR — two hand-lists sharing members
+// across files — is the drift surface that already cost two incidents (the /architecture MCP resource,
+// the 25 home placements). Risk×reward = shared² per mirror (quadratic: every shared member is a
+// double site). Each finding is assigned to a rosetta-ray trinity team for the surgical action.
+export type HandList = { readonly file: string; readonly name: string; readonly members: readonly string[] }
+export type HandListMirror = { readonly a: HandList; readonly b: HandList; readonly shared: number; readonly score: number; readonly receipt: string }
+
+/** Pure scanner: named const arrays whose body is ONLY string literals — the hand-typed rosters. */
+export function scanHandLists(files: readonly { rel: string; text: string }[], minSize = 4): HandList[] {
+  const out: HandList[] = []
+  const decl = /const ([A-Za-z_$][A-Za-z0-9_$]*)[^=\n]{0,160}= *\[([\s\S]*?)\](?: as const)?/g
+  for (const file of files) {
+    const text = stripComments(file.text)
+    for (const match of text.matchAll(decl)) {
+      const body = match[2]!.trim()
+      if (!body || !/^(?:'[^'\n]*'|"[^"\n]*")(?:\s*,\s*(?:'[^'\n]*'|"[^"\n]*"))*\s*,?$/.test(body)) continue
+      const members = [...body.matchAll(/'([^'\n]*)'|"([^"\n]*)"/g)].map((entry) => entry[1] ?? entry[2]!)
+      if (members.length >= minSize) out.push({ file: file.rel, name: match[1]!, members })
+    }
+  }
+  return out
+}
+
+/** Cross-file mirrors of hand-lists, ranked by risk×reward (shared² — every shared member is a double
+ *  site that can drift). The worklist for the trinity teams, highest score first. */
+export function handListMirrors(lists: readonly HandList[]): HandListMirror[] {
+  const mirrors: HandListMirror[] = []
+  for (let i = 0; i < lists.length; i += 1) {
+    for (let j = i + 1; j < lists.length; j += 1) {
+      const a = lists[i]!
+      const b = lists[j]!
+      if (a.file === b.file) continue
+      const setB = new Set(b.members)
+      const shared = a.members.filter((member) => setB.has(member)).length
+      if (shared < 3 || shared * 2 < Math.min(a.members.length, b.members.length)) continue
+      mirrors.push({ a, b, shared, score: shared * shared, receipt: toUuid(`hand-list-mirror:${a.file}#${a.name}:${b.file}#${b.name}:${shared}`) })
+    }
+  }
+  return mirrors.sort((x, y) => y.score - x.score)
+}
+
 export const ONE_MATH_LAW = 'one math — every derived constant/primitive (τ, φ, gcd, lcm, digital root, dim walk) is defined once at its home and imported everywhere else'
 
 export type OneMathOffender = { file: string; spec: string; reason: string }

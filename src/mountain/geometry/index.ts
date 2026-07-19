@@ -1,5 +1,7 @@
 // ☶ Gèn · Mountain — geometry, topology & colour folds (merkaba, double-torus, sacred geometry, the RGB/CMY/CMYK & hex-colour dualities, the 64=4³ cube, heart/proton, the genetic code, imperial fractions), dissolved out of the monolith. Independent; folds.ts back-imports the gate folds. Re-exported through the mind barrel.
 import { EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
+// call-time namespace edge (cycle-safe): water/digit imports this folder; the catalog reads back at call time
+import * as __ns_up_up_water_digit from '../../water/digit'
 import { bumpEvolve, bumpStep, hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2'
 import { rat, ratAdd, ratEq, ratMul, vortexHarmonicRatios } from '../../3/7'
 import { dopplerShift, frequencyOf, photonEnergyEv, schwarzschildRadius, seesawLightMassEv } from '../../3/7'
@@ -2177,32 +2179,10 @@ function bosnianPyramidNearPliskaRaw(matrix: MindMatrix = buildMatrix()) {
   const bearingDigitalRoot = digitalRoot(Math.round(bearingDeg))
 
   // ── three routers ──
-  // The corpus: the ZERO_EXPORT_CATALOG names — the same set dissolveExportsAtPiTrainStations routes.
-  // Imported indirectly via conceptCommands (already in scope via the barrel); for self-containment we
-  // use a representative sample of 100 export names from the sealed src/0 surface.
-  const corpus = [
-    'digitalRoot', 'foldPair', 'isUuid', 'merge', 'merkleFold', 'toUuid', 'seedFromText', 'memoByRoot',
-    'greatCircleKm', 'initialBearing', 'carnotEfficiency', 'unruhTemperature', 'tamperEvident',
-    'derivePublicKey', 'uuidDuality', 'setAzimuthDeg', 'riseAzimuthDeg', 'cantorDiagonal',
-    'congruence', 'humanEase', 'addressEntropyBits', 'blackHoleEntropyBits', 'frequencyOf',
-    'hawkingTemperature', 'helmholtzFreeEnergy', 'soundPressureLevelDb', 'cycleAdvance', 'groupOrbit',
-    'hexDigitSum', 'speedOfSoundAir', 'splitCamelSegment', 'isobaricCounterdiffusion',
-    'hardyWeinbergGenotypes', 'qieaRotate', 'resonancePeakGain', 'lunarStandstillDeclinationDeg',
-    'aksakRatioWalk', 'gasReserveHalfOnTop', 'equivalentAirDepthM', 'hubbleTensionSigma',
-    'rnot', 'rtoffoli', 'composeHazard', 'rotatingField', 'powerSpectrum', 'zeroPointEnergy',
-    'casimirPressure', 'wavelengthOf', 'larmorFrequency', 'rebreatherInertBar', 'rcnot',
-    'otuPerMin', 'radarRange', 'resonanceBandwidth', 'resonantAmplitude', 'bellPair', 'cnot',
-    'measure', 'qubits', 'sample', 'prng', 'phase', 'slip', 'fold', 'entry', 'bb84', 'chsh',
-    'grover', 'simon', 'ghzMermin', 'deutschJozsa', 'bernsteinVazirani', 'superdense',
-    'noCloningWitness', 'teleportQubit', 'entanglementSwap', 'quantumZeno', 'quantumBatteryAdvantage',
-    'interactionFreeMeasurement', 'hopfieldStore', 'hopfieldRecall', 'hopfieldEnergy',
-    'caStep', 'caEvolve', 'markovStep', 'markovEvolve', 'bumpStep', 'bumpEvolve',
-    'inductionStep', 'inductionEvolve', 'pmixStep', 'pmixEvolve', 'oscillatorBank',
-    'sha256', 'sha256Sync', 'sha256MerkleRoot', 'sha256MerkleProof', 'verifySha256Proof',
-    'ed25519Keypair', 'ed25519Sign', 'ed25519Verify', 'transparencyLogRoot', 'logConsistent',
-    'logInclusion', 'stationary', 'survive', 'dopplerShift', 'schwarzschildRadius',
-    'obliquityAtEpoch', 'photonEnergyEv', 'seesawLightMassEv', 'qcdMassFractionOfProton',
-  ]
+  // The corpus IS the ZERO_EXPORT_CATALOG — read at call time through the cycle-safe namespace edge
+  // (water/digit imports this folder), so the routers demo the REAL sealed src/0 surface. The former
+  // 112-name hand-copied sample was logic:hunt mirror #1 (score 12544); derived now, it cannot drift.
+  const corpus = __ns_up_up_water_digit.ZERO_EXPORT_CATALOG
 
   // Router 1: default stationOf (iching-era) — hex nibbles summed mod 10
   const digitOfDefault = (name: string) => toUuid(`code:${name}`).replace(/-/g, '').split('').reduce((s, ch) => s + Number.parseInt(ch, 16), 0) % (5 * 2)
