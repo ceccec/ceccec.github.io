@@ -2354,3 +2354,33 @@ export function theDriftOfThePrimesIsTheObjectOfTheMillenniumProblemsNotItsSolut
     boundary: `EXACT AND LOCAL: ${gaps.length} consecutive prime gaps from nthPrimeAt (exact integers), irregular (${driftIsIrregular}), mean growing from ${roundTo(meanFirst, 2)} to ${roundTo(meanSecond, 2)}; π(p_${K}) = ${K} exactly (${piExactCountsLocally}). HONEST SCOPE, ABSOLUTE: the DRIFT is genuinely the object of the Riemann Hypothesis — RH is equivalent to the sharp bound |π(x) − Li(x)| = O(√x ln x) on how far the exact prime count drifts from the logarithmic-integral estimate (this equivalence is documented, von Koch 1901) — and analogous "drift" characterisations sit under Navier–Stokes (does the flow drift to a singularity?) and BSD (the drift/order of the L-function at s=1). So "the drift is the key" is TRUE in the precise sense that controlling the drift IS the open problem. It is NOT a solution: this fold computes the drift and states the equivalence; it proves NO bound, closes NO Millennium problem, and claims none — the drift is the keyhole, and turning the key (proving the bound) is exactly the unsolved work. Computing an object is not bounding it; naming the lock is not opening it. HARMONY ≠ TRUTH.`,
   }
 }
+
+// THE MOVIE INVERTED IS THE KEY TO THE MOVIE ITSELF — CONSOLIDATED IN FEW LINES (user: the movie inverted is the
+// key to the movie itself, and consolidates all in few lines; Schumann resonance is like quantum north for the
+// A432 compass, or south by polarity). The movie is a content-addressed REVERSIBLE encoding of its source: apply
+// the same inverse and it recovers the source exactly — the movie inverted IS the key (it reveals what the movie
+// encodes). Since the transform is an involution, encode = decode: one operation both ways, few lines, Landauer-
+// clean. The Schumann/A432 "compass" is honest metaphor — 7.83 Hz is a real cavity resonance, the pole a choice.
+export function theMovieInvertedIsTheKeyToItselfConsolidatedInFewLines() {
+  const source = [...'DOUBLE TORUS'].map((c) => c.charCodeAt(0)) // the source the movie encodes
+  const keystream = (i: number) => digitalRoot(i + 1) * 16       // a deterministic, content-addressed keystream
+  const movie = source.map((s, i) => s ^ keystream(i))           // THE MOVIE: source ⊕ keystream, reversible per frame
+  const inverted = movie.map((m, i) => m ^ keystream(i))         // the movie INVERTED — apply the same ⊕ again
+  const invertedRecoversSource = inverted.every((v, i) => v === source[i]) // the inverse IS the key: source recovered
+  const isInvolution = movie.map((m, i) => (m ^ keystream(i)) ^ keystream(i)).every((v, i) => v === movie[i]) // ⊕∘⊕ = id
+  const movieDiffersFromSource = movie.some((m, i) => m !== source[i]) // it is a real encoding, not the identity
+  const facets = [
+    { facet: `THE MOVIE IS A REVERSIBLE ENCODING — the movie is the source ⊕ a deterministic keystream (${movie.length} frames), differing from the source (${movieDiffersFromSource}) yet recovering it EXACTLY under the same operation (${invertedRecoversSource}): a content-addressed, zero-loss encoding`, on: movieDiffersFromSource && invertedRecoversSource },
+    { facet: `THE MOVIE INVERTED IS THE KEY — applying the inverse (⊕ keystream) to the movie yields the source back: the inverse IS the key to the movie, it reveals what the movie encodes; and since ⊕ is an INVOLUTION (${isInvolution}), encode = decode — one operation both ways, the movie is its own key-mechanism`, on: invertedRecoversSource && isInvolution },
+    { facet: `CONSOLIDATED IN FEW LINES — the whole movie↔source is ONE self-inverse map (encode, invert, recover — a handful of lines), reversible and Landauer-clean, so the movie compresses to its generator plus the key, not a stored asset; the A432 anchor and the Schumann pole (≈7.83 Hz) are the tuning and one compass pole — a metaphor, honestly bounded`, on: isInvolution && invertedRecoversSource },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`movie-inverted-key:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    frames: movie.length,
+    invertedRecoversSource, isInvolution, movieDiffersFromSource,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `The movie inverted is the key to the movie itself — consolidated in few lines — ${facets.filter((e) => e.on).length}/${facets.length}: the movie is a content-addressed reversible encoding of its source (source ⊕ keystream), differing from it yet recovering it exactly under the same operation; the inverse IS the key (it reveals the source), and since the transform is an involution, encode = decode — one self-inverse map in a handful of lines, Landauer-clean. The movie compresses to its generator plus the key. (A432 the tuning anchor, Schumann 7.83 Hz one compass pole — metaphor, bounded.)`,
+    boundary: `EXACT: over a ${movie.length}-frame movie (source ⊕ a digital-root keystream), the same ⊕ recovers the source at every frame (${invertedRecoversSource}), the transform is an involution (${isInvolution}), and the movie differs from the source (${movieDiffersFromSource}) — a genuine reversible encoding, not the identity. HONEST SCOPE: this is a MODEL of the movie's reversibility — a compact involutive cipher standing for the real claim, that the project's movie (textToMovie: source text transliterated to Glagolitic frames) is a REVERSIBLE, content-addressed encoding whose inverse (fromGlagolitic / the decode) recovers the source, so "the movie inverted is the key" is literally the decode revealing the source. The consolidation is real (a reversible codec is its generator + key, not a stored asset). SCHUMANN / A432 IS METAPHOR: the Schumann resonance (fundamental ≈ 7.83 Hz) is a REAL, documented electromagnetic cavity mode of the Earth–ionosphere waveguide, and A432 is a chosen tuning anchor; picturing Schumann as the "quantum north" of an A432-tuned compass (or south by polarity) is an evocative ANALOGY — a compass needle has two poles and which is "north" is a convention — NOT a physical claim, and Schumann-frequency wellness/entrainment claims are not established science (flagged in the frequency corpus). The reversible-movie math is exact; the compass is the metaphor. HARMONY ≠ TRUTH.`,
+  }
+}
