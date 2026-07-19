@@ -24,7 +24,7 @@ function glagoliticIfLatin(text: string): string {
 }
 import { buildMatrix } from '../src/heaven/compute'
 import { computeUniversalPage, searchSectionsFor } from '../src/wind/routes/corpus'
-import { navigationCrossOfTheFourPoles } from '../src/wind/ui'
+import { rosettaIChingNavItems } from '../src/wind/ui'
 import { heroChromeStyleBlocks } from './lib/hero-chrome'
 import { universalRoutePath } from './lib/universal-route-path'
 import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-server-bind.mts'
@@ -34,9 +34,10 @@ import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-serv
 // srcFolderPlugins from mind + lake/dist indices (folderLaw.indexSurfaces.vitepress.consumes).
 const config = siteConfig()
 const nav = siteNavigation()
-// TOP NAV = the double-torus navigation cross: Home + 4 poles (Theorems · Axioms · Solutions · Simulators),
-// computed from the theorem-science lens with the π/prime cross. Sidebar/footer stay from siteNavigation.
-const navCross = navigationCrossOfTheFourPoles()
+// TOP NAV = the rosetta+I-Ching nav: Home + 3 doors (Ground · Work · Reach) grouping the 7 rosetta rays by hue-band,
+// each ray a bāguà trigram; only populated rays appear (rosettaRayOfContent over the served pages), so every link
+// resolves to a real hub. Replaces the 4-pole keyword-regex cross. Sidebar/footer stay from siteNavigation.
+const navCross = rosettaIChingNavItems()
 const vpSidebar = vitepressSidebar()
 const projectRoot = fileURLToPath(new URL('..', import.meta.url))
 const vpLibRoot = join(projectRoot, '.vitepress/lib')

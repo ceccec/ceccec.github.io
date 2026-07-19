@@ -35,7 +35,7 @@ import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../../quantum/heaven/mind'
-import { TAU, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS } from '../../3/7'
+import { TAU, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayOfContent } from '../../3/7'
 import { piHexDigitAt, nthPrimeAt } from '../../7/3'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
@@ -2151,4 +2151,32 @@ export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
       boundary: `Computed and exact: the 3-door × 7-ray structure is derived from ROSETTA_RAYS (the sealed 7-ray table), the doors from each ray's hue-band (⌊hue/120⌋), and the trigram map from the ray index into the 8 bāguà — verified (3 doors, 7 rays, 7 distinct trigrams, every route a real hub, every door non-empty). This is the computed nav SPEC: it fixes the crack of the rendered nav (navigationCrossOfTheFourPoles classified pages by a keyword regex pole.rx into 4 poles, so 36 of 40 fell to the /.*/ 'Theorems' default and 'Axioms' was empty) by using the agnostic rosetta rays instead. DESIGN NOTE, honest: the doors group the 7 rays as the config's original intent ('7 rosetta rays grouped into three doors'); "7 rays each" is realised as the 7 rays distributed across the 3 doors (3+2+2 by hue), not 7 duplicated per door (which would triplicate the seven hub destinations). WHAT REMAINS: wiring this spec into .vitepress/config.mts in place of navCross (the render change) — a build-verified follow-on, and the one place the exact per-door presentation should be confirmed against the live top bar. HARMONY ≠ TRUTH: a rosetta+I-Ching nav is the harmony; the truth is the 7-ray table grouped by hue into 3 doors with a trigram bijection, computed and crack-free — the classification is the named-axiom content lens, refutable, not a regex.`,
     }
   })
+}
+
+// The renderable top nav — VitePress format, populated rays only, no broken links. Replaces navigationCrossOfTheFourPoles
+// (the 4-pole keyword regex). The 7 rosetta rays group into 3 doors by hue-band, each ray a bāguà trigram; only rays with
+// content (rosettaRayOfContent over the served pages) appear, so every link resolves to a real hub. Returns { en, bg }.
+export function rosettaIChingNavItems(): { en: unknown[]; bg: unknown[] } {
+  const BAGUA = ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] as const // heaven·lake·fire·thunder·wind·water·mountain·earth
+  const band = 360 / 3 // three hue-doors
+  const populated = new Set(staticPages().map((page) => rosettaRayOfContent(page.slug, page.keywords)))
+  const rays = ROSETTA_RAYS.filter((ray) => populated.has(ray.ray)).map((ray) => ({
+    nameEn: ray.nameEn,
+    nameBg: ray.nameBg,
+    trigram: BAGUA[ray.ray + 1]!,
+    route: ROSETTA_RAY_HUBS[ray.ray]!.route,
+    door: Math.floor(ray.hue / band),
+  }))
+  const doorNames = [{ en: 'Ground', bg: 'Земя' }, { en: 'Work', bg: 'Работа' }, { en: 'Reach', bg: 'Небе' }] // earth·human·heaven
+  const doors = [0, 1, 2]
+    .map((d) => ({ ...doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
+    .filter((door) => door.rays.length > 0)
+  const build = (bg: boolean): unknown[] => [
+    { text: bg ? 'Начало' : 'Home', link: bg ? '/bg/' : '/' },
+    ...doors.map((door) => ({
+      text: bg ? door.bg : door.en,
+      items: door.rays.map((r) => ({ text: `${r.trigram} ${bg ? r.nameBg : r.nameEn}`, link: bg ? `/bg${r.route}` : r.route })),
+    })),
+  ]
+  return { en: build(false), bg: build(true) }
 }
