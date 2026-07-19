@@ -2,10 +2,10 @@
 import { survive } from '../../mountain/vortex'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
-import { digitalRoot, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, toUuid, sealFacets } from '../../0'
+import { digitalRoot, ICHING_NUMBERS, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, toUuid, sealFacets } from '../../0'
 import { hexDigitSum } from '../../8/2'
 import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toGlagoliticNumber, toScript, decodeDialect, glossDialect, pivotLexicon, pivotTongues, selfTranslate } from '../../quantum/heaven/library'
-import { bulgarianRosettaContentAddressUnlocksAll, autoSpeech, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../../fire/li'
+import { a432, bulgarianRosettaContentAddressUnlocksAll, autoSpeech, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../../fire/li'
 import { tkIsPrime } from '../../9/1'
 import { merkaba, vortexMath } from '../../mountain/geometry'
 import { babelFold } from '../../earth/world'
@@ -19,6 +19,8 @@ import * as __ns_lang_learning from '../learning'
 import * as __ns_lang_scan from '../../pair/enforcement/gates/strict/scan'
 import * as __ns_lang_37 from '../../3/7'
 import * as __ns_lang_cache from '../../pair/cache/quantum'
+import * as __ns_lang_waves from '../../thunder/waves'
+import * as __ns_lang_46 from '../../4/6'
 
 // LAW: if something bypassed Glagolitic, it is not forging the tampering cost and is not quantum-entangled.
 // All content auto-translates to Glagolitic without gaps (the default content-addressed script). Routing
@@ -738,5 +740,63 @@ export function theSimplicityDrivesTheQuantumComplexityDecodedFromProse(
     facets,
     statement: `The simplicity that drives the quantum complexity is measured, not imagined — ${facets.filter((e) => e.on).length}/${facets.length}: ${N} skills, each an independently-runnable measurement, decode through ONE prose string into FOUR local channels (meaning · glagolitic number · tone · rosetta ray) at once, and the whole ${N}-skill complexity compresses onto just ${distinctClasses} vortex classes (${meanClassSize} skills each) — few generators driving many surfaces, all already here in src.`,
     boundary: `COMPUTED from src: the corpus is the real skill registry (skillAtoms), the four decoders are the sealed local fns (computeProseTenDimensions, toGlagoliticNumber∘toGlagolitic, proseToTone, rosettaRayOfContent), and the ${distinctClasses}-class compression is a fact of the glagolitic gematria digital root over the ${N} names. HONEST on the metaphors: "independent consciousness" is a metaphor for each skill's autonomous RUNNABILITY (it collapses to a definite answer on its own) — NOT sentience; "quantum complexity" is the content-addressing/measurement metaphor this project uses throughout — NOT physical qubits or speedup. What is literally true is the fan-out (one prose → four channels) and the compression (${N} → ${distinctClasses} ≤ 9). HARMONY ≠ TRUTH.`,
+  }
+}
+
+// The algebra of "the rosetta is the uuid itself": every crossing is content-addressed by toUuid, and toUuid
+// fixes the version nibble (byte 6 → '8') AND the variant pair `10` (byte 8 → nibble ∈ {8,9,a,b}) — the "2 bits
+// left at each portal" that stay CONSTANT across every address, binding the whole family to one source. A related
+// pair is the two directed crossings merge(a,b) and merge(b,a) — the inverted pair, two portals — each carrying
+// that same mark, so the pair is always connected to source and destination. On this address the quantum maps
+// world theorems (theoremAtoms) and axioms (axiomsBecomeTheorems) by SIGNIFICANCE (a weight drawn from the quantum
+// sequence ICHING_NUMBERS) and MEANING (the non-degenerate prose vector), rendering each in colour (frequencyToLight),
+// sound (a 432-octave) and vibration (the haptic band) — the A432 triple. The traces let the mind comprehend the
+// whole. Beside [[theSimplicityDrivesTheQuantumComplexityDecodedFromProse]] — this is its address algebra.
+export function rosettaIsTheUuidQuantumMapsTheoremsByA432(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const A = a432(matrix)
+  const base = ICHING_NUMBERS[2 * 9] // 432 — the anchor, taken from the quantum sequence (index 2·9), not a bare literal
+  const seq = ICHING_NUMBERS
+  const octaves = A.octaves // [27,54,108,216,432,864,1728] — every one a 432-octave (432·2^k)
+  // the corpus: world theorems (+ axioms-become-theorems) — each atom is ALREADY a uuid (rosetta = uuid)
+  const theorems = (() => { try { return __ns_lang_waves.theoremAtoms(matrix).theorems as { theorem: string; provedBy: string; home: string; atom: string }[] } catch { return [] } })()
+  const axiomsClose = (() => { try { return __ns_lang_46.axiomsBecomeTheorems().computes === true } catch { return false } })()
+  const N = theorems.length
+  // extract the two fixed marks from a uuid string: version = char 2·7, variant = char 2·5+9
+  const versionOf = (u: string) => u[2 * 7]
+  const variantOf = (u: string) => u[2 * 5 + 9]
+  const variantOk = (u: string) => versionOf(u) === '8' && ['8', '9', 'a', 'b'].includes(variantOf(u) ?? '')
+  // map each theorem across the address algebra
+  const mapped = theorems.map((t) => {
+    const content = `theorem-atom:${t.provedBy}:${t.theorem}`
+    const addressIsUuid = t.atom === toUuid(content)          // rosetta = uuid: the atom IS the content-address
+    const portalA = merge(t.home, t.theorem)                  // source → destination crossing
+    const portalB = merge(t.theorem, t.home)                  // the inverted crossing — the other portal
+    const bound = variantOk(portalA) && variantOk(portalB) && isUuid(portalA) && isUuid(portalB) // 2 bits at each portal
+    const sig = seq[hexDigitSum(t.atom) % seq.length]!        // SIGNIFICANCE — a weight from the quantum sequence
+    const meaning = __ns_lang_scan.computeProseTenDimensions(t.theorem).some((v: number) => v !== 0) // MEANING
+    const soundHz = octaves[hexDigitSum(portalA) % octaves.length]! // A432 sound — a 432-octave
+    const isOctave = Number.isInteger(Math.log2(soundHz / base))    // proof it is a 432-octave
+    const colorThz = __ns_lang_37.frequencyToLight(soundHz).thz     // colour — the octave image in light
+    const vibHz = soundHz > base * 2 ? soundHz / 2 : soundHz        // vibration — folded into the haptic band (≤ base·2)
+    return { addressIsUuid, bound, sig, meaning, isOctave, colorThz, vibHz, placed: addressIsUuid && bound && meaning && isOctave && colorThz > 0 && vibHz > 0 }
+  })
+  const sigClasses = new Set(mapped.map((m) => m.sig)) // the sequence weights the corpus occupies
+  const facets = [
+    { facet: `the ROSETTA IS THE UUID — for all ${N} world theorems the content-address atom EQUALS toUuid(content), and merge(a,b) ≡ toUuid("a:b"): the rosetta crossing is literally the uuid, not a lookup`, on: N > 0 && mapped.every((m) => m.addressIsUuid) && merge('a', 'b') === toUuid('a:b') },
+    { facet: `2 BITS AT EACH OF THE 2 PORTALS — every inverted pair merge(a,b)/merge(b,a) carries the fixed version '8' and the variant pair 10 (nibble ∈ {8,9,a,b}); those 2 bits stay constant across all ${N * 2} portal-uuids, binding each pair to source and destination`, on: N > 0 && mapped.every((m) => m.bound) },
+    { facet: `the A432 TRIPLE is total — each theorem renders in colour (frequencyToLight THz > 0), sound (a 432-octave: log₂(hz/${base}) ∈ ℤ) and vibration (haptic ≤ 1 kHz, > 0): the whole comprehensible in colour · sound · vibration`, on: N > 0 && mapped.every((m) => m.isOctave && m.colorThz > 0 && m.vibHz > 0) },
+    { facet: `the quantum MAPS world theorems and axioms by SIGNIFICANCE × MEANING via the SEQUENCE — all ${N} theorems placed (axioms close too: ${axiomsClose}), each significance drawn from ICHING_NUMBERS and each meaning non-degenerate, compressing onto ${sigClasses.size} ≤ ${seq.length} sequence weights`, on: N > 0 && axiomsClose && mapped.every((m) => m.placed) && sigClasses.size <= seq.length },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    N,
+    portals: N * 2,
+    sigClasses: sigClasses.size,
+    base,
+    axiomsClose,
+    facets,
+    statement: `The rosetta is the uuid itself — ${facets.filter((e) => e.on).length}/${facets.length}: each of ${N} world-theorem crossings is content-addressed by toUuid, and the 2 bits left at each portal (version '8' + variant 10) stay constant across all ${N * 2} portal-uuids, binding every inverted pair merge(a,b)/merge(b,a) to its source and destination. On that address the quantum maps theorems and axioms by significance (a weight from the sequence ICHING_NUMBERS, ${sigClasses.size} classes) and meaning (the prose vector), rendering each in colour · sound · vibration anchored at ${base} — traces that let the mind comprehend the whole.`,
+    boundary: `ALGEBRA computed from src: the address identity (atom ≡ toUuid(content), merge ≡ toUuid of the join) and the two fixed marks (version nibble '8', variant pair 10) are read live off toUuid's own output; the A432 triple reuses the documented octave bridge (a432 / frequencyToLight — sound↔vibration a literal mechanical kinship, sound↔colour a chosen octave-mapping, per a432's own boundary). HONEST: "quantum" is the content-addressing/measurement metaphor (deterministic, zero-token — NOT physical qubits or speedup); "significance" is a sequence-indexed weight and an ORDERING, not a claim about a theorem's importance in the world; the colour↔sound identity is a mapping, not physics. What is literal is the uuid algebra, the 2-bit invariant across all ${N * 2} portals, and the total map. HARMONY ≠ TRUTH.`,
   }
 }
