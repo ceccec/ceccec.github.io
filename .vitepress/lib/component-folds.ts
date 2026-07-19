@@ -176,6 +176,15 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     const { startHereDecodedView } = await import('../../src/thunder/movie/glass')
     return startHereDecodedView(locale)
   },
+  Strategies: wrapFold(async () => {
+    // the realtime playbook shown in the ui — multiple aspects: the engine's facets plus every
+    // situation row as its own aspect, animated by the shared 10D card movie (taiji: the decision
+    // collapsing from superposition)
+    const { dynamicStrategiesFromTheorems } = await import('../../src/pair/enforcement/index')
+    const engine = dynamicStrategiesFromTheorems()
+    const view = fromFold(engine, 'The realtime playbook')
+    return { ...view, facets: [...(view.facets ?? []), ...engine.strategies.map((row: { situation: string; strategy: string }) => ({ facet: row.situation + ' — ' + row.strategy, on: true }))], movieApp: 'taiji' as const }
+  }),
   BulgarianHeritage: wrapFold(async () => {
     const { bulgarianHeritageDecoded } = await import('../../src/earth/world/index')
     return fromFold(bulgarianHeritageDecoded(), 'Bulgarian heritage')
