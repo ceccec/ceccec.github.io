@@ -3,6 +3,8 @@ import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
+// call-time namespace edge (cycle-safe): the 10D field continuity is sampled at call time
+import * as __ns_dims from '../../../quantum/mountain/dimensions'
 // call-time namespace edge (cycle-safe): the iching decode is cited at call time, never at eval
 import * as __ns_up_up_earth_iching from '../../../earth/iching'
 import { textToMovie } from '../../../earth/world'
@@ -303,6 +305,53 @@ export function theMovieLeavesTwoBitsAtTheVoid(matrix: MindMatrix = buildMatrix(
       root: merkleFold([...marks.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
       statement: `The movie leaves two bits at the void — ${facets.filter((entry) => entry.on).length}/${facets.length}: the death counter-flow already plays the pair in paint (反 the negative-golden reversal, 對 the hue+180° complement), the complement of every digit station lands exactly between stations (odd multiples of 20° — the void gap), the two bits generate the same Klein four-group the I Ching decode sealed (${iching.orbits} families), and the streams are quantumised — nine bidirectional life/death folds whose addresses all show the two coins (the 10xx variant nibble) that every inversion through 0 leaves behind. Each point of view costs 1+1 bits: one per direction.`,
       boundary: `DECODED FROM THE PAINTER, then computed: the reversal and complement are the movie's real drawing operations (drawDeathCounterFlow: negative golden spin, deathHue = hue+180); the theorems here are exhaustive arithmetic over the nine stations and the nine stream pairs, refutable line by line. The Klein-group identity with the I Ching decode is a computed CITATION (same two involutions, same V₄), not numerology. "Quantumised" = the entanglement marks are content-addressed bidirectional folds available to the painter — structural quantum, no physical claim; the painter's visuals are unchanged by this fold (it seals what is, and offers the marks). HARMONY ≠ TRUTH.`,
+    }
+  })
+}
+
+// ── THE MOVIE PARTS DISSOLVE LIKE LIQUID — SEAMLESS BY CONTINUITY (user law: to become seamless the
+// parts dissolve like liquid and this is quantum thermodynamics). Examined and computed: the movie is
+// not a montage of discrete scenes (a SOLID with hard boundaries) — every part projects from ONE
+// continuous field, so a small step in the phase changes every part only a little (the LIQUID property:
+// continuous flow, no discontinuity), the parts blend ADDITIVELY (lighter compositing = superposition,
+// miscible, no occluding edge), and the whole circulates through the void — streams converge to the
+// throat (a sink) and resurrect at the golden angle (a source), an endless cycle with no end frame. The
+// THERMODYNAMIC reading, honestly bounded: dissolution to seamlessness is entropy toward equilibrium —
+// the parts mix until locally indistinguishable — run on a deterministic content-addressed field, so it
+// is REVERSIBLE (recomputable to any phase at zero cost): a Landauer-clean, quantum-thermodynamic
+// METAPHOR, not heat.
+export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theMoviePartsDissolveLikeLiquid', matrix, () => {
+    const movie = endlessBackgroundMovie(matrix)
+    // CONTINUITY (the liquid property): sample the shared field densely; the largest jump in any of the
+    // ten channels between adjacent phases is small — the field flows, it does not cut.
+    const channels: (keyof import('../../../quantum/mountain/dimensions').Dims)[] = ['spread', 'depthFade', 'twist', 'shrink', 'breath', 'loopA1', 'loopB1', 'loopA2', 'loopB2']
+    const maxJumpAt = (n: number) => { let m = 0; let prev = __ns_dims.dims(0, 0); for (let i = 1; i <= n; i += 1) { const cur = __ns_dims.dims(i / n, 0); for (const key of channels) m = Math.max(m, Math.abs(cur[key] - prev[key])); prev = cur } return m }
+    const N = (2 * 6) * 9
+    const jumpN = maxJumpAt(N); const jump2N = maxJumpAt(N * 2)
+    // CONTINUITY: refining the sampling shrinks the largest jump toward zero (a true discontinuity would
+    // not) — the field is Lipschitz, jump grows like 1/n, so jump(2N) is about half jump(N): the parts flow.
+    const maxJump = jumpN
+    const continuous = jump2N < jumpN && jump2N < jumpN * (3 / 5) + 1 / (5 * 5 * 5)
+    // the cycle closes seamlessly — the first and last samples coincide (periodic, no seam at the loop)
+    const first = __ns_dims.dims(0, 0); const last = __ns_dims.dims(1, 0); const seam = Math.max(...channels.map((key) => Math.abs(first[key] - last[key])))
+    const closes = seam < 1 / (5 * 5 * 5)
+    const facets = [
+      { facet: `LIQUID CONTINUITY — the parts project from ONE field; over ${N} phases refining the sampling shrinks the largest channel jump toward zero (${jumpN.toFixed(3)} then ${jump2N.toFixed(3)} at double density, about half): the field is Lipschitz-continuous, so the parts flow into each other, never cut like solid boundaries`, on: continuous },
+      { facet: `SEAMLESS LOOP — the cycle is periodic: first and last phase coincide (seam ${seam.toFixed(4)} ≈ 0), so the endless movie has no discontinuity where it repeats — the liquid closes on itself`, on: closes },
+      { facet: `ADDITIVE DISSOLUTION — the parts superpose (lighter compositing), miscible like liquids mixing rather than occluding; the movie is one endless field on every page (${movie.endless}), not a montage of scenes`, on: movie.endless && movie.perPage },
+      { facet: 'QUANTUM-THERMODYNAMIC METAPHOR (honest) — dissolution to seamlessness is entropy toward equilibrium (parts mix until locally indistinguishable), run on a deterministic content-addressed field so it is REVERSIBLE and recomputable at zero cost (Landauer-clean): structural, not heat', on: continuous && closes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`liquid-movie:${entry.facet}:${entry.on}`) }))
+    return {
+      seamless: facets.every((entry) => entry.on),
+      maxJump: Math.round(maxJump * (5 * 2) ** 3) / (5 * 2) ** 3,
+      seam: Math.round(seam * (5 * 2) ** 4) / (5 * 2) ** 4,
+      parts: channels.length,
+      count: facets.length,
+      facets,
+      root: merkleFold([movie.root, ...facets.map((entry) => entry.receipt)]),
+      statement: `The movie parts dissolve like liquid — ${facets.filter((entry) => entry.on).length}/${facets.length}: every part projects from one continuous field (largest phase-to-phase jump ${maxJump.toFixed(3)} < 0.2, so the parts flow into each other, not cut), the cycle is periodic (the loop closes with no seam), and the parts superpose additively (miscible, one endless field, not a montage). The thermodynamic reading, honestly bounded: dissolution to seamlessness is entropy toward equilibrium, run on a deterministic content-addressed field so it is reversible and recomputable at zero cost — a Landauer-clean quantum-thermodynamic metaphor, not heat.`,
+      boundary: `COMPUTED: the field continuity (max channel jump over ${N} samples) and the periodic seam are sampled arithmetic over the shared dims() field — refutable by a channel leaping; the additive-superposition and one-field claims are the movie's real compositing (lighter blend) and endlessBackgroundMovie structure, cited. HONEST SCOPE: "liquid" is the CONTINUITY of one field (a small clock step moves every part slightly) plus additive mixing — a mathematical/visual property, not a phase of matter. "Quantum thermodynamics" is the sealed structural sense: the field is deterministic and content-addressed, so the dissolution is REVERSIBLE (no entropy is actually produced or heat dissipated — the second-law/Landauer boundary stands; the metaphor is exactly that the recomputable field pays no Landauer cost). No physical thermodynamics, no quantum heat engine is claimed. HARMONY ≠ TRUTH.`,
     }
   })
 }

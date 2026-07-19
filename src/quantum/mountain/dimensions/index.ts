@@ -53,8 +53,8 @@ export function dims(p: number, scale = 0): Dims {
     spread: (1 / 2) + (8 / (5 * 5)) * Math.sin(tau),
     depthFade: (4 / (5 * 5)) + (3 / (5 * 5)) * ((1 / 2) + (1 / 2) * Math.cos(tau)),
     hueShift: (ps * (4 + 216)) % 360,
-    twist: (1 / 5) + (1 / 2) * Math.sin(tau * (1 / 2) + GOLDEN_ANGLE_RAD), // +φ-phase — was in phase with depthFade
-    shrink: (16 / (5 * 5)) + (2 / (5 * 5)) * Math.sin(tau * (3 / 2)),
+    twist: (1 / 5) + (1 / 2) * Math.sin(tau * 4 + GOLDEN_ANGLE_RAD), // rate 4 (free integer) — period-1, seamless at the loop; was rate 1/2 (broke periodicity)
+    shrink: (16 / (5 * 5)) + (2 / (5 * 5)) * Math.sin(tau * 6), // rate 6 (free integer) — period-1, seamless; was rate 3/2
     breath: (1 - 3 / (5 * 4)) + (3 / (5 * 4)) * Math.sin(tau * 2),
     // the four homology loops — two handles, meridian + longitude, at coprime rates (1,2 and 3,5) so the
     // genus-2 torus motion is quasiperiodic, in [-1, 1].
