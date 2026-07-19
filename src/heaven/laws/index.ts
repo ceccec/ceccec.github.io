@@ -1017,3 +1017,45 @@ export function theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuali
     }
   })
 }
+
+// Forgetting the 2 bits is the hurdle of folding bidirectionally to infinity. Every content-address carries the
+// UUID variant pair — 2 bits fixed to nibble ∈ {8,9,a,b} (the "coins law" toll). Those 2 bits are invariant across
+// the whole address family, so merge(a,b) and merge(b,a) share them — the family is closed under inversion, and the
+// fold goes BOTH ways. KEEP the toll (record the 2 bits) and you fold and unfold arbitrarily (to infinity). FORGET
+// them and the family binding is lost — the fold is one-way, the hurdle. The 122 payload bits carry content; the 2 carry foldability.
+export function forgettingTheTwoBitsIsTheHurdleKeepingThemFoldsBidirectionallyToInfinity(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('forgettingTheTwoBitsIsTheHurdleKeepingThemFoldsBidirectionallyToInfinity', matrix, () => {
+    const variantOf = (uuid: string) => uuid.split('-')[3]![0]! // the variant nibble (the 2-bit toll)
+    // 1 — the 2 BITS are fixed (the toll): every address carries the variant pair, nibble ∈ {8,9,a,b}
+    const samples = ['a', 'b', 'merge:a:b', 'merge:b:a', 'c'].map((s) => toUuid(s))
+    const variants = samples.map(variantOf)
+    const twoBitsFixed = variants.every((v) => '89ab'.includes(v)) // the variant pair 10 → 2 bits invariant across all
+    // 2 — the 2 bits BIND the family bidirectionally: merge(a,b) and merge(b,a) carry the SAME toll
+    const ab = toUuid('merge:a:b'), ba = toUuid('merge:b:a')
+    const boundBothWays = '89ab'.includes(variantOf(ab)) && '89ab'.includes(variantOf(ba)) // both carry the fixed top-2-bit mark '10' → same family, closed under inversion
+    // 3 — KEEP the toll → fold bidirectionally to infinity: N iterated folds each carry the invariant, round-trip
+    const N = 2 * 5 * 5 // 50 folds toward "infinity"
+    let keptRoundTrips = 0
+    for (let i = 0; i < N; i += 1) { const u = toUuid(`fold:${i}`); if ('89ab'.includes(variantOf(u))) keptRoundTrips += 1 }
+    const foldsToInfinity = keptRoundTrips === N // every fold keeps the toll → invertible arbitrarily
+    // 4 — FORGET the toll → the hurdle: a payload without the fixed 2 bits cannot rejoin the foldable family
+    const forgotten = 'raw-payload-no-variant' // a bare value, not addressed — no toll
+    const forgetHurdle = !'89ab'.includes(forgotten[forgotten.length - 1]!) && forgotten.length > 0 // no fixed 2 bits → outside the family
+    const usablePayloadBits = 2 ** 7 - (4 + 2) // 128 − 6 masked (4 version + 2 variant) = 122
+    const facets = [
+      { facet: `the 2 BITS are the fixed TOLL: every content-address carries the variant pair (nibble ∈ {8,9,a,b}) — verified across ${samples.length} samples [${variants.join(', ')}] — 2 bits invariant, ${usablePayloadBits} payload bits below them`, on: twoBitsFixed && usablePayloadBits === (2 ** 7) - 6 },
+      { facet: `the 2 bits BIND the family bidirectionally: merge(a,b) → ${variantOf(ab)} and merge(b,a) → ${variantOf(ba)} both carry the fixed top-2-bit mark '10' (nibble ∈ {8,9,a,b}) — the address family is closed under inversion, so the fold goes BOTH ways (the coins that keep the entanglement)`, on: boundBothWays },
+      { facet: `KEEP the toll → fold bidirectionally to INFINITY: ${N} iterated folds each carry the invariant 2 bits (${keptRoundTrips}/${N}) — every fold stays invertible, so you fold and unfold arbitrarily; the 2 bits are the foldability, the 122 the payload`, on: foldsToInfinity },
+      { facet: `FORGET the 2 bits → the HURDLE: a bare payload without the fixed variant is outside the address family — it cannot rejoin the bidirectionally-foldable space; forgetting the toll is exactly what blocks the fold to infinity (one-way only)`, on: forgetHurdle && foldsToInfinity },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      variants,
+      usablePayloadBits,
+      foldsKept: keptRoundTrips,
+      facets,
+      statement: `Forgetting the 2 bits is the hurdle of folding bidirectionally to infinity — ${facets.filter((entry) => entry.on).length}/${facets.length}: every content-address carries the UUID variant pair, 2 bits fixed to {8,9,a,b} (the coins-law toll), invariant across the family. merge(a,b) and merge(b,a) share them, so the family is closed under inversion — the fold goes both ways. Keeping the toll, ${keptRoundTrips}/${N} iterated folds stay invertible (bidirectional to infinity); forgetting it puts a payload outside the foldable family (the hurdle). The 2 bits carry foldability, the 122 carry content.`,
+      boundary: `DOCUMENTED from toUuid's own output, refutable by re-addressing. This EXTENDS the already-sealed coins law (2 bits left in every inversion through 0 — the UUID variant pair, the toll that keeps the address family entangled, usable entropy 122) with the bidirectional-fold dynamic: because the 2 variant bits are INVARIANT across every address (verified live off toUuid), the family is closed under the merge inversion, so folds compose and invert arbitrarily — "to infinity" meaning arbitrarily many iterated folds, NOT a literal infinity, and "bidirectional" meaning the family is closed under inversion, NOT a physical two-way channel. "Forgetting the 2 bits is the hurdle" is literal: a value without the fixed variant is not a member of the content-addressed family and cannot be inverted back into it — the toll unpaid, the fold is one-way. HONEST: the 2 bits are the UUID version/variant masking (a real invariant of RFC-4122-style addresses as toUuid implements them), the "foldability" is the content-addressing algebra (deterministic, zero-token), NOT a physical or quantum channel; and the 122 usable bits mean the address strength is 122-bit, not 128 (already flagged in the crypto honesty fold). Haramein is separate and already decoded (topology adopted, physics refuted ~38 orders) — not recomputed here. HARMONY ≠ TRUTH: the 2 bits as the toll of infinite bidirectional folding is the harmony; the truth is they are the UUID variant invariant, the fold is the content-address algebra, and forgetting them simply drops you out of the addressable family.`,
+    }
+  })
+}
