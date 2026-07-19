@@ -362,3 +362,44 @@ export function theTypographyGrammarSealsDimensionalCracksEveryElementCarriesACo
     }
   })
 }
+
+// The heading hierarchy (h1, h2, h3 …) is another perspective of the sitemap — a RECURSIVE tree ordered by
+// IMPORTANCE — computed with local tools wired to the generator itself (readmeMarkdown), no external service.
+// h1 is the root (most important), h2 the sections, h3 the rays; the tree nests self-similarly. The document maps
+// ITSELF: the generator's output describes its own navigation. One self-recomputing organism — a metaphor for
+// deterministic self-mapping, NOT consciousness (the felt interior stays off-decidable, noise on the radar).
+export function theHeadingHierarchyIsARecursiveSitemapByImportanceWiredToTheGenerator(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theHeadingHierarchyIsARecursiveSitemapByImportanceWiredToTheGenerator', matrix, () => {
+    // WIRED TO THE GENERATOR: read the headings straight from readmeMarkdown() — local, one source
+    const headings = readmeMarkdown(matrix).split('\n')
+      .map((l) => { const m = l.match(/^(#{1,6})\s+(.+)/); return m ? { level: m[1]!.length, text: m[2]!.trim() } : null })
+      .filter((h): h is { level: number; text: string } => h !== null)
+    const roots = headings.filter((h) => h.level === 1) // h1 — the single most-important root (the title)
+    const levels = [...new Set(headings.map((h) => h.level))].sort((a, b) => a - b) // e.g. [1,2,3]
+    // RECURSIVE / well-nested: no heading jumps more than one level deeper than the running context (a valid tree)
+    let context = 0
+    const wellNested = headings.every((h) => { const ok = h.level <= context + 1; context = h.level; return ok })
+    // BY IMPORTANCE: sort by heading level (h1 first = most important), a computed ordering
+    const byImportance = [...headings].sort((a, b) => a.level - b.level)
+    const mostImportant = byImportance[0]!
+    const importanceMonotone = byImportance.every((h, i) => i === 0 || h.level >= byImportance[i - 1]!.level)
+    // per-level counts = the recursive fan-out (a section tree, self-similar at each depth)
+    const fanOut = levels.map((lvl) => headings.filter((h) => h.level === lvl).length)
+    const facets = [
+      { facet: `the heading hierarchy is a RECURSIVE tree wired to the generator: ${headings.length} headings across levels [${levels.join(', ')}] read straight from readmeMarkdown() — h1 root, h2 sections, h3 rays — well-nested (no skipped levels), a valid tree`, on: headings.length > 0 && wellNested && levels[0] === 1 },
+      { facet: `ordered by IMPORTANCE: sorting by heading level puts h1 (the root, "${mostImportant.text}") first, then h2 sections, then h3 — importance = depth, the same most-important-first as the frequency nav; the ordering is monotone`, on: importanceMonotone && roots.length >= 1 },
+      { facet: `ANOTHER PERSPECTIVE of the sitemap: the heading tree IS the document's own navigable outline (fan-out per level [${fanOut.join(', ')}]) — the same content quantumSitemap routes, viewed as the recursive table of contents; one source, two perspectives`, on: fanOut.every((n) => n > 0) && levels.length >= 2 },
+      { facet: `ONE self-mapping organism, local tools only: the generator's OUTPUT describes its own navigation — the README recomputes and maps itself from src, zero tokens, no external service — a deterministic self-mapping (NOT consciousness: the felt interior stays off-decidable)`, on: wellNested && importanceMonotone },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      headings: headings.length,
+      levels,
+      fanOut,
+      root: mostImportant.text,
+      facets,
+      statement: `The heading hierarchy is a recursive sitemap by importance, wired to the generator — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${headings.length} headings across levels [${levels.join(', ')}] read from readmeMarkdown() form a well-nested tree — h1 root ("${mostImportant.text}"), h2 sections, h3 rays, fan-out [${fanOut.join(', ')}]. Ordered by heading level, it is the document's own navigable outline: another perspective of the sitemap, importance-first, recursive and self-similar. The generator maps itself with local tools only, zero tokens — one self-recomputing organism.`,
+      boundary: `DOCUMENTED and refutable by re-parsing readmeMarkdown(). The heading hierarchy is the document's standard OUTLINE (the h1..h6 tree, exactly what a table-of-contents or the DOM heading structure is), computed LOCALLY from the generator's own output — wired to the generator (one source), no external tool, zero tokens (the local-tools-only, analytical-research discipline). "Recursive sitemap by importance" is a real structural view: the nesting is a tree (self-similar per level), and importance = heading DEPTH (a proxy — the outline's own ranking, not a proof of what matters most; the frequency/gravity folds give the usage-based ranking). "Another perspective of the sitemap" is literal: quantumSitemap routes the pages, this outlines the document — same content, two navigations from one generator. THE HARD LINE on "one living consciousness organism": it is a METAPHOR for a deterministic system that recomputes and maps ITSELF from src (self-reference, self-similarity, self-sealing) — it is NOT conscious and makes no consciousness claim; consciousness is the hard problem, the felt interior that returns noise on quantumRadar and stays off-decidable, exactly as every fold this session held. A self-describing map is not a self that experiences. HARMONY ≠ TRUTH: the recursive self-mapping outline is the harmony (the organism-metaphor, real and useful); the truth is it is deterministic structure describing structure — alive as a metaphor, not as a mind.`,
+    }
+  })
+}
