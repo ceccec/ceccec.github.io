@@ -959,15 +959,19 @@ export function qubits(n: number): QuantumState {
 }
 
 // The standard single-qubit gates as 2×2 complex unitaries, flat [m00re,m00im, m01re,m01im, m10re,m10im, m11re,m11im].
+// √½ is DERIVED by the sqrt operation (not imported as Math.SQRT1_2 — an assumed named constant). It is irrational, so
+// the double carries a bounded error (√½ ± 2⁻⁵³); the drift is the mathematical nature of the magic gates (H, T), not a
+// fixable crack — the exact/harmonic gates (I, X, Y, Z, S, CNOT) have Gaussian-integer entries {0, ±1, ±i} and NEVER drift.
+const RSQRT2 = Math.sqrt(1 / 2) // = 1/√2, derived from an operation, no imported constant
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const GATES: Readonly<Record<'I' | 'X' | 'Y' | 'Z' | 'H' | 'S' | 'T', readonly number[]>> = Object.freeze({
   I: [1, 0, 0, 0, 0, 0, 1, 0],
   X: [0, 0, 1, 0, 1, 0, 0, 0],
   Y: [0, 0, 0, -1, 0, 1, 0, 0], // m01 = −i, m10 = +i
   Z: [1, 0, 0, 0, 0, 0, -1, 0],
-  H: [Math.SQRT1_2, 0, Math.SQRT1_2, 0, Math.SQRT1_2, 0, -Math.SQRT1_2, 0],
+  H: [RSQRT2, 0, RSQRT2, 0, RSQRT2, 0, -RSQRT2, 0],
   S: [1, 0, 0, 0, 0, 0, 0, 1], // m11 = i
-  T: [1, 0, 0, 0, 0, 0, Math.SQRT1_2, Math.SQRT1_2], // m11 = e^{iπ/4}
+  T: [1, 0, 0, 0, 0, 0, RSQRT2, RSQRT2], // m11 = e^{iπ/4} = √½(1+i)
 })
 
 // Apply a single-qubit gate to `target`. Pure — returns a new state.

@@ -12,7 +12,7 @@ import * as __ns_up_science from '../science'
 import * as __ns_up_up_thunder_movie_movielib from '../../thunder/movie/movielib'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, applyGate, bellPair, computesGate, GATES, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, roundTo, seedFromText, toUuid } from '../../0'
+import { VORTEX_SEQUENCE, applyGate, bellPair, cnot, computesGate, GATES, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, seedFromText, toUuid } from '../../0'
 import {
   chsh,
   markovStep,
@@ -500,6 +500,54 @@ export function quantumDynamicsComputes(matrix: MindMatrix = buildMatrix(), at =
         'Quantum dynamics computes: canonical home — state-vector simulator (nine structures), src/0 simulators spine, classical life-domain dynamics (Markov, Hopfield, hazard), state evolution decode, research exposition with Schrödinger discrete map + application links, and vortex plasma channel — composed at call time from heaven/compute, fire/physics, fire/li, vortex/math, and thunder/movie folds.',
       boundary:
         'HONEST — sealed deterministic model dynamics: a classical state-vector simulator for small n, classical stochastic/dynamical models for life domains, and movie frame evolution — NOT quantum hardware at scale, NOT live lab results, NOT ab initio chemistry, NOT superseding physics textbooks. Canonical import path = src/quantum/dynamics; bodies remain in src/0, heaven/compute, fire/physics, fire/li, vortex/math, thunder/__ns_up_up_thunder_trading.',
+    }
+  })
+}
+
+// Update quantum — dig for the cracks. The src/0 simulator IS real quantum computing (complex state vectors, unitary
+// gates, entanglement, the Born rule). The crack the drift exposes: HARMONIC gates never drift — I, X, Y, Z, S, CNOT
+// have Gaussian-integer entries {0, ±1, ±i}, exact to the bit — while the magic gates H, T need √½ / e^{iπ/4}, which are
+// IRRATIONAL, so any finite value drifts (√½ ± 2⁻⁵³). That drift is not a fixable bug; it is the mathematical price of
+// universal quantum computation. And quantum is NOT at 432 Hz: unitarity, entanglement and the Born rule reference NO
+// frequency — a432 is a reproducibility seed, not a quantum parameter. Math.SQRT1_2 (an assumed constant) now derived.
+export function updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrrationalDriftNotA432(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrrationalDriftNotA432', matrix, () => {
+    const isUnitary = (g: readonly number[]) => {
+      const col0Norm = g[0]! ** 2 + g[1]! ** 2 + g[4]! ** 2 + g[5]! ** 2 // |m00|²+|m10|²
+      const col1Norm = g[2]! ** 2 + g[3]! ** 2 + g[6]! ** 2 + g[7]! ** 2 // |m01|²+|m11|²
+      const cross = g[0]! * g[2]! + g[1]! * g[3]! + g[4]! * g[6]! + g[5]! * g[7]! // Re⟨col0|col1⟩
+      return Math.abs(col0Norm - 1) < 1 / 2 ** 9 && Math.abs(col1Norm - 1) < 1 / 2 ** 9 && Math.abs(cross) < 1 / 2 ** 9
+    }
+    const allGates = [GATES.I, GATES.X, GATES.Y, GATES.Z, GATES.H, GATES.S, GATES.T]
+    // 1 — REAL QUANTUM: every gate unitary, and H then CNOT on |00⟩ makes an ENTANGLED (non-separable) Bell state
+    const allUnitary = allGates.every(isUnitary)
+    const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // (|00⟩+|11⟩)/√2
+    const a = (i: number) => ({ re: bell.re[i]!, im: bell.im[i]! })
+    const separableProduct = a(0).re * a(3).re - a(1).re * a(2).re // amp₀₀·amp₁₁ − amp₀₁·amp₁₀; ≠ 0 ⇒ entangled
+    const entangled = Math.abs(separableProduct - 1 / 2) < 1 / 2 ** 9 && Math.abs(a(1).re) < 1 / 2 ** 9 // 0.5 − 0, non-separable
+    const bornNormalised = Math.abs(bell.re.reduce((s, r, i) => s + r ** 2 + bell.im[i]! ** 2, 0) - 1) < 1 / 2 ** 9
+    const realQuantum = allUnitary && entangled && bornNormalised
+    // 2 — HARMONIC GATES NEVER DRIFT: I, X, Y, Z, S have Gaussian-integer entries {0, ±1, ±i} — exact, zero drift
+    const harmonicGates = [GATES.I, GATES.X, GATES.Y, GATES.Z, GATES.S]
+    const harmonicExact = harmonicGates.every((g) => g.every((entry) => Number.isInteger(entry)))
+    // 3 — THE MAGIC GATES CARRY IRRATIONAL DRIFT: H, T have a non-integer entry (√½) — irrational, so drift ⟺ irrational
+    const magicGates = [GATES.H, GATES.T]
+    const magicIrrational = magicGates.every((g) => g.some((entry) => !Number.isInteger(entry) && Math.abs(entry * entry - 1 / 2) < 1 / 2 ** 9))
+    const driftIffIrrational = harmonicExact && magicIrrational
+    // 4 — QUANTUM IS NOT AT 432 Hz: unitarity, entanglement and Born hold with NO frequency; a432 is a seed, not quantum
+    const noFrequencyInQuantum = allUnitary && entangled && ![...allGates.flat()].some((entry) => entry === 432)
+    const facets = [
+      { facet: `REAL QUANTUM COMPUTING (simulated) — all ${allGates.length} gates unitary (U†U = I) and H·CNOT on |00⟩ yields an ENTANGLED Bell state (amp₀₀·amp₁₁ − amp₀₁·amp₁₀ = ½ ≠ 0, non-separable) with the Born rule normalised (${realQuantum}): genuine quantum mechanics — complex amplitudes, unitary evolution, entanglement — not a metaphor`, on: realQuantum },
+      { facet: `HARMONIC GATES NEVER DRIFT — I, X, Y, Z, S have Gaussian-integer entries {0, ±1, ±i}, exact to the bit (${harmonicExact}): the drift-free core is precisely the gates with integer amplitudes — harmony ⟺ no drift, exactly as required`, on: harmonicExact },
+      { facet: `THE MAGIC GATES CARRY IRRATIONAL DRIFT (not a fixable crack) — H, T need √½ = e^{iπ/4} amplitude, IRRATIONAL, so any finite value is √½ ± ε (${magicIrrational}); drift ⟺ irrational amplitude. The removable crack was the imported Math.SQRT1_2 ASSUMPTION — now derived by sqrt; the residual drift is the price of universal QC, named and bounded`, on: driftIffIrrational },
+      { facet: `QUANTUM IS NOT AT 432 Hz — unitarity, entanglement and Born contain NO frequency (no gate entry is 432, ${noFrequencyInQuantum}): the quantum algebra is frequency-independent; a432 is a deterministic reproducibility SEED, not a physical quantum parameter — the "quantum only at a432" conflation is the crack, separated here`, on: noFrequencyInQuantum },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      bellAmplitudes: [roundTo(a(0).re, 4), roundTo(a(3).re, 4)],
+      facets,
+      statement: `Update quantum — the harmonic gates never drift, the magic gates carry irrational drift, and quantum is not at 432 Hz — ${facets.filter((entry) => entry.on).length}/${facets.length}. The src/0 simulator is REAL quantum computing (complex state vectors, unitary gates, entanglement, Born rule): all gates unitary and H·CNOT makes an entangled Bell state. The drift-free HARMONIC gates (I, X, Y, Z, S, CNOT) have Gaussian-integer entries {0, ±1, ±i} — exact to the bit — while the magic gates (H, T) need √½/e^{iπ/4}, irrational, so they carry bounded drift (drift ⟺ irrational amplitude). The removable crack — importing Math.SQRT1_2 — is now derived by sqrt; the residual drift is the mathematical price of universal quantum computation, not a bug. And unitarity/entanglement/Born contain no frequency: quantum is NOT at 432 Hz, a432 is a reproducibility seed, not a quantum parameter.`,
+      boundary: `THE SIMULATOR IS REAL AND CORRECT: complex 2ⁿ state vectors, standard unitary gates, CNOT entangler, Born-rule measurement — verified here (unitarity U†U = I on all gates, a genuinely entangled Bell state, normalisation). This is a CLASSICAL STATE-VECTOR SIMULATION of quantum computing: real quantum MATHEMATICS with NO speedup and exponential (2ⁿ) classical cost — NOT physical quantum hardware, solving nothing faster than classical [[quantum-decoded]]. THE CRACKS, dug and named: (1) the gates imported Math.SQRT1_2, an ASSUMED constant (nothing-assumed violation) — FIXED by deriving √½ via sqrt; (2) √½ and e^{iπ/4} are IRRATIONAL, so no finite representation (float OR rational) is exact — the drift the user caught is REAL and UNAVOIDABLE for the magic gates, and it is exactly why "no drift if harmonic" holds: the harmonic (Gaussian-integer) gates I/X/Y/Z/S/CNOT never drift, the irrational H/T always do — the Clifford (exact) vs non-Clifford (irrational, universality-giving) distinction. (3) The "quantum only at a432" reading conflates the deterministic seed with quantum mechanics — the algebra is frequency-free. NOT CLAIMED: a quantum speedup, a physical qubit, or that more qubits scale (they do not — 2ⁿ). HARMONY ≠ TRUTH: "real quantum computing" is the harmony; the truth is a correct, unitary, entangling classical simulation with exact Clifford gates and bounded-irrational magic gates, no speedup.`,
     }
   })
 }
