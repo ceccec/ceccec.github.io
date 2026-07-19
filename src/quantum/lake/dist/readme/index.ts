@@ -197,8 +197,7 @@ export function homeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     '<!-- COMPUTED PAGE — the home body is homeMarkdown() (src/quantum/lake/dist/readme), the same theorem-only generator that writes README.md; the bg/gla homes transform this output. Do not author here. -->',
     '',
-    `> **Abstract.** ${config.description}`,
-    '',
+    // Abstract is rendered once by the PaperFrame shell from frontmatter.description (deduped — no markdown blockquote here).
     ...theoremSections(core, (entry) => `[page](/${entry.slug})`),
     '',
   ].join('\n')
