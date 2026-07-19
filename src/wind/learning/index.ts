@@ -161,7 +161,7 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
     description:
       'Quantum-learning educational portal for language models, exposed as an MCP tool surface over a double-torus UUID stream.',
     instructions:
-      'tools/list returns every concept command as a tool; tools/call(name, arguments) maps to executeConceptCommand(name, arguments) and returns its receipt. DISCOVERY is the VitePress local search: every wired surface — all theorems, papers and pages — is in the search index, so an agent finds any content by querying the same search the site serves (no separate endpoint; the index ships with the static site).',
+      'tools/list returns every concept command as a tool; tools/call(name, arguments) maps to executeConceptCommand(name, arguments) and returns its receipt. THE TOPOGRAPHY IS THE ROSETTA: every part of the site is a theorem, navigation and sidebar are the rosetta of theorem categories, and DISCOVERY is the VitePress local search — every wired surface (all 432 theorems, the posts, the corpus indexes) is in the search index, so the MCP IS the search: an agent finds any content by querying the same search index the site ships (no separate endpoint, no second topology).',
     tools,
     root,
     statement: `${tools.length} concept commands published as MCP tools with name, description, and JSON-Schema inputSchema.`,
@@ -1863,18 +1863,34 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // 1 registry link + 4 corpus + 3 crowns = 8: the eight-fold law holds in the theorem dropdown too.
   const theoremGroup = (i: 0 | 1) => {
     const nav358 = __ns_thunder_waves.theoremNavigation(matrix)
-    const corpusLabels: readonly (readonly [string, string])[] = [['Theorem atlas', 'Теоремен атлас'], ['Papers', 'Статии'], ['References', 'Референции'], ['Diamonds', 'Диаманти']]
-    const crowns = ['STS(9) unique, |Aut| = 432', 'the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4)', '36 officers are impossible']
+    // NAVIGATION IS THE ROSETTA OF THEOREM CATEGORIES (user law — and the sidebar derives from this
+    // same tree): every registry theorem carries a computed domain category (the last word of its
+    // proving home); the categories shelve onto the seven rosetta rays, and the dropdown IS that
+    // shelving — one registry entry + the rays with their live category counts. Eight-fold holds.
+    const atoms = nav358.waves.flatMap((wave: { atoms: { home: string }[] }) => wave.atoms)
+    const categoryOf = (home: string) => { const last = home.replace(/^src\//, "").split("/").pop() || home; return /^\d+$/.test(last) ? home.replace(/^src\//, "") : last }
+    const rayBuckets = new Map<number, Map<string, number>>()
+    for (const atom of atoms) {
+      const category = categoryOf(atom.home)
+      const ray = rosettaRayOfContent(category, [])
+      if (!rayBuckets.has(ray)) rayBuckets.set(ray, new Map())
+      const bucket = rayBuckets.get(ray)!
+      bucket.set(category, (bucket.get(category) ?? 0) + 1)
+    }
+    const rayItems = ROSETTA_RAYS.filter((ray) => rayBuckets.has(ray.ray)).map((ray) => {
+      const bucket = rayBuckets.get(ray.ray)!
+      const total = [...bucket.values()].reduce((sum, n) => sum + n, 0)
+      const top = [...bucket.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([category]) => category).join(" · ")
+      return { text: (i === 1 ? ray.nameBg : ray.nameEn) + " — " + total + " (" + top + ")", link: link("/theorems", i) }
+    })
     return {
       text: i === 1 ? `⊢ Теореми — ${nav358.atomCount} доказани` : `⊢ Theorems — ${nav358.atomCount} proven`,
       items: [
-        { text: i === 1 ? 'Целият регистър' : 'The full registry', link: link('/frontiers', i) },
-        ...lens.corpusRoutes.map((route, index) => ({ text: corpusLabels[index]![i], link: link(route, i) })),
-        ...crowns.map((name) => ({ text: name, link: link('/frontiers', i) })),
+        { text: i === 1 ? "Целият регистър" : "The full registry", link: link("/frontiers", i) },
+        ...rayItems.slice(0, 7),
       ],
     }
-  }
-  // VITEPRESS SHOWS ONLY SCIENCE (user law) — the top nav IS the lens organised by the rosetta: Home (the
+  }  // VITEPRESS SHOWS ONLY SCIENCE (user law) — the top nav IS the lens organised by the rosetta: Home (the
   // bare link) + one dropdown per rosetta ray that holds lens survivors + the theorem dropdown (registry,
   // corpus surfaces, crowns). No hand-listed routes: every item is a lens page or a corpus surface.
   const buildNav = (i: 0 | 1) => [
