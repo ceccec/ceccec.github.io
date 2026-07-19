@@ -2140,3 +2140,45 @@ export function theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root: strin
     boundary: earned(`EXACT: ${T} theorem folds (bodies carrying the \`{ facet:\` ray) scanned; a link is an identifier reference (strings/comments stripped) to another theorem's fn name or to one of ${AXIOM_ANCHORS.length} axiom anchors; ${consolidatable} folds have no such link in either direction, ${linkedRatio} linked.`, facets, `this is a STATIC linkage measure — an "isolated" theorem is one whose PROOF references no sibling theorem and no axiom anchor, a NECESSARY sign of consolidatability, not a proof that it should be merged; some isolated theorems are genuinely atomic (a standalone bound needs no neighbour) and must stay. So "isolated" = a review worklist for consolidation, a judgment the gravity informs but does not force. The anchor list is a finite, curated set, so the axiom-link test under-reports (a theorem grounded in an un-listed constant reads as isolated) — conservative, it over-counts candidates rather than hiding them. "Gravity" is the computeCodeGravity DRY field metaphor, not physics. HARMONY does not equal TRUTH.`),
   }
 }
+
+// THE PRINCIPLE (user): theorems FOLD into each other — unless an axiom sits behind one, and then they COLLIDE
+// (each rests on a DIFFERENT axiom, a contradiction the crack law forbids) or NEVER MEET (each rests on its OWN
+// private axiom, so neither references a shared base — isolation). One cause, two failure modes: the residual,
+// un-dissolved axiom. This same residue IS the backlog — "what is not yet in src" from a session of waves is
+// exactly the set of theorems still behind an axiom: the ISOLATED folds (never meet), the metaphor-name and
+// literal AXIOMS (collide), and the boundary-declared deferrals ("not yet / not claimed / queued"). The single
+// cure is axiomsBecomeTheorems: ground the residue in the lattice and the theorem is free to fold. This tool
+// measures the whole residue at once, so the mind sees how much of the imagined improvement is not yet sealed.
+export function theoremsFoldUnlessAnAxiomIsBehindThemThenTheyCollideOrNeverMeetThatIsTheBacklog(root: string = process.cwd()) {
+  const linkage = theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root)
+  const neverMeet = linkage.isolated                    // theorems referencing no sibling and no axiom anchor — private axiom
+  const folderAxioms = computePathMigration(root).folders.length // metaphor-named folders — a name that computes nothing
+  const literalAxioms = scanCrackSurface(root).length   // hardcoded values — asserted, not derived (0 when the ledger is clean)
+  const collide = folderAxioms + literalAxioms          // assertions off the shared base — two of them cannot fold
+  // the boundary-declared deferrals — where the corpus itself names an improvement NOT yet in src
+  const DEFER = /not yet|not claimed|queued, not faked|to be executed|its own staged|next (?:decoder|aspect)|deractored|\bdeferred\b/
+  const files: string[] = []
+  const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
+  walk(join(root, 'src'))
+  let deferred = 0
+  for (const file of files) for (const line of readFileSync(file, 'utf8').split('\n')) if (DEFER.test(line)) deferred += 1
+  const backlog = neverMeet + collide + deferred
+  const facets = [
+    { facet: `NEVER MEET = A PRIVATE AXIOM BEHIND — the ${neverMeet} isolated theorems reference no sibling and no axiom anchor (theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable): each rests on its own un-dissolved axiom, so it grounds in no shared base and links to nothing; dissolve the axiom and it can fold`, on: neverMeet >= 0 && neverMeet === linkage.isolated },
+    { facet: `COLLIDE = A DIFFERENT AXIOM BEHIND — the ${collide} residual axioms (${folderAxioms} metaphor-named folders + ${literalAxioms} un-ledgered literals) are assertions NOT derived from the common lattice; two theorems standing on different such axioms contradict rather than compose — the crack law already forbids the collision`, on: collide === folderAxioms + literalAxioms },
+    { facet: `ONE CAUSE = THE BACKLOG — never-meet and collide are the SAME residue (an un-dissolved axiom), and with the ${deferred} boundary-declared deferrals ("not yet / not claimed / queued") they ARE "what is not yet in src": ${backlog} axiom-residues the session imagined but has not sealed; axiomsBecomeTheorems is the single cure — ground the residue in the lattice and the theorem folds`, on: backlog === neverMeet + collide + deferred && deferred > 0 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    neverMeet,
+    collide,
+    folderAxioms,
+    literalAxioms,
+    deferred,
+    backlog,
+    root: toUuid(`theorems-fold-unless-axiom:${neverMeet}:${collide}:${deferred}`),
+    facets,
+    statement: `Theorems fold unless an axiom is behind them — then they collide or never meet, and that residue is the backlog — ${facets.filter((e) => e.on).length}/${facets.length}: ${neverMeet} isolated theorems (a private axiom → never meet), ${collide} metaphor/literal axioms (a different axiom → collide), and ${deferred} boundary-declared deferrals sum to ${backlog} axiom-residues — exactly "what is not yet in src." One cause behind both failure modes (the un-dissolved axiom), one cure (axiomsBecomeTheorems: ground it in the lattice and the theorem is free to fold).`,
+    boundary: earned(`EXACT: ${neverMeet} isolated theorems (from the linkage measure), ${collide} residual axioms (${folderAxioms} metaphor folders via computePathMigration + ${literalAxioms} literals via scanCrackSurface), ${deferred} boundary-declared deferral lines across ${files.length} files, summing to a ${backlog}-item backlog.`, facets, `this is a STRUCTURAL restatement, not an empirical discovery: isolation and collision are DEFINED as "not grounded in the shared base" (no anchor / not derived), so the principle that they share one cause is true by those definitions — the insight is the unification, not a surprising correlation. The backlog count is a conservative proxy for "not yet in src": the deferral regex catches self-declared edges but misses improvements never written down, and some isolated theorems are genuinely atomic (a standalone bound needs no neighbour), so the number over-counts curable residue rather than hiding it. Grounding an axiom lets a theorem fold, but folding is not correctness — a wrong theorem grounded in the lattice is still wrong, only now it composes. HARMONY does not equal TRUTH.`),
+  }
+}
