@@ -45,7 +45,7 @@ import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
 import { SOURCE_REPO } from '../../../3/7'
 import { observingMovieRevealsQuantumModel } from '../../science'
-import { theoremPagePaths } from '../../../wind/routes/corpus'
+import { theoremPagePaths, theoremPageRows } from '../../../wind/routes/corpus'
 
 
 
@@ -213,11 +213,40 @@ function sitemapUrlset(blocks: readonly string[]): string {
 function sitemapUrlBlocks(siteUrl: string, matrix: MindMatrix, now: string) {
   const quantum = quantumSitemap(matrix)
   const alt = (a: readonly { hreflang: string; href: string }[]) => a.map((x) => `    <xhtml:link rel="alternate" hreflang="${x.hreflang}" href="${absCross(siteUrl, x.href)}" />`).join("\n")
-  const block = (loc: string, priority: number, alternates: readonly { hreflang: string; href: string }[]) => ["  <url>", `    <loc>${absCross(siteUrl, loc)}</loc>`, `    <lastmod>${now}</lastmod>`, "    <changefreq>weekly</changefreq>", `    <priority>${priority.toFixed(1)}</priority>`, alt(alternates), "  </url>"].join("\n")
+  const block = (loc: string, priority: number, alternates: readonly { hreflang: string; href: string }[]) => ["  <url>", `    <loc>${absCross(siteUrl, loc)}</loc>`, `    <lastmod>${now}</lastmod>`, "    <changefreq>weekly</changefreq>", `    <priority>${Number(priority.toFixed(4))}</priority>`, alt(alternates), "  </url>"].join("\n")
   const pages = quantum.urls.flatMap((url) => [block(url.gla, url.priority, url.alternates), block(url.en, url.priority, url.alternates), block(url.bg, url.priority * (4 / 5), url.alternates)])
-  const theorems = theoremPagePaths(matrix).map((p) => block(`/theorems/${p.params.slug}`, (4 / 5), [{ hreflang: "en", href: absCross(siteUrl, `/theorems/${p.params.slug}`) }]))
+  const priorities = theoremSitemapPriorities(matrix)
+  const theorems = theoremPagePaths(matrix).map((p) => block(`/theorems/${p.params.slug}`, priorities.get(p.params.slug) ?? (3 / 5), [{ hreflang: "en", href: absCross(siteUrl, `/theorems/${p.params.slug}`) }]))
   return { pages, theorems, root: quantum.root }
 }
+/** Sitemap <priority> COMPUTED from the internal citation graph (user law: priority computable from
+ *  analytics with exact precision accepted by Google). The site collects NO user analytics (sealed
+ *  no-tracking), so the honest signal is structural: each theorem's in-degree — how many OTHER
+ *  theorems' statements reference its prover or name — is its research-usage weight. Mapped to
+ *  [0.30, 1.00] at 4-decimal precision (Google accepts any 0.0–1.0; priority is a relative hint). */
+export function theoremSitemapPriorities(matrix: MindMatrix = buildMatrix()): Map<string, number> {
+  const rows = theoremPageRows(matrix)
+  const provers = rows.map((r) => r.provedBy)
+  const inDegree = rows.map((row) => {
+    const needleProver = row.provedBy
+    const needleName = row.theorem.split(' — ')[0]!.slice(0, 40)
+    let deg = 0
+    for (const other of rows) {
+      if (other.slug === row.slug) continue
+      if (other.proof.includes(needleProver) || (needleName.length > 8 && other.proof.includes(needleName))) deg += 1
+    }
+    return deg
+  })
+  const maxDeg = Math.max(1, ...inDegree)
+  const out = new Map()
+  rows.forEach((row, i) => {
+    const priority = Math.round((30 / 100 + (70 / 100) * (inDegree[i] / maxDeg)) * (5 * 2) ** 4) / (5 * 2) ** 4
+    out.set(row.slug, priority)
+  })
+  void provers
+  return out
+}
+
 /** The child sitemaps — pages + the theorem papers auto-chunked at the 50k cap (Google large-sitemap). */
 export function sitemapChildren(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()): readonly DistFile[] {
   const { pages, theorems } = sitemapUrlBlocks(siteUrl, matrix, now)
