@@ -2,9 +2,9 @@
 import { survive } from '../../mountain/vortex'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
-import { isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid, sealFacets } from '../../0'
+import { digitalRoot, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, toUuid, sealFacets } from '../../0'
 import { hexDigitSum } from '../../8/2'
-import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toScript, decodeDialect, glossDialect, pivotLexicon, pivotTongues, selfTranslate } from '../../quantum/heaven/library'
+import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toGlagoliticNumber, toScript, decodeDialect, glossDialect, pivotLexicon, pivotTongues, selfTranslate } from '../../quantum/heaven/library'
 import { bulgarianRosettaContentAddressUnlocksAll, autoSpeech, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../../fire/li'
 import { tkIsPrime } from '../../9/1'
 import { merkaba, vortexMath } from '../../mountain/geometry'
@@ -13,6 +13,12 @@ import { analogSpeech, glagoliticBulgarianReception } from '../../quantum/lake/i
 import { merkabaFoldsSpeechAnalogDialectsEntangle } from '../ui'
 import { realtimeSkills } from '../../thunder/trading'
 import { ancientKnowledgeComputesDefaultLocale, buildSequenceReducesComputations, bulgarianEthnogenesisDecoded, bulgarianHistoryDecoded, computedSlugsFoldTheGraph, debitCreditForwardReverseEngineering, decodeAncientKnowledgeInReusableCode, deepResearchEncodedInRecursiveWaves, digitFolders, dualitiesMeetInCrossFolders, fuseToMerkabasPathsReveal, geneticLinksChallengeHistoryDecoded, infiniteEntanglements, knowledgeRevealedByMerkabaFold, merkabasInDoubleTorus, optimiseLogicDebitCreditFusion, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, saveAllTranslationLogicAutotranslateLocale, sendWavesSealKnowledgeDecodeWorld, tamperingCostDecoded, warPaysTheForgerPrice } from '../../quantum/heaven/mind'
+// call-time edges (cycle-safe): the corpus of skills and two more local decoders live in folders that
+// import back toward language — read them at call time, never at module-eval.
+import * as __ns_lang_learning from '../learning'
+import * as __ns_lang_scan from '../../pair/enforcement/gates/strict/scan'
+import * as __ns_lang_37 from '../../3/7'
+import * as __ns_lang_cache from '../../pair/cache/quantum'
 
 // LAW: if something bypassed Glagolitic, it is not forging the tampering cost and is not quantum-entangled.
 // All content auto-translates to Glagolitic without gaps (the default content-addressed script). Routing
@@ -680,5 +686,57 @@ export function glagoliticBindsSoundDigitCodeNotPrimesOrPi(matrix: MindMatrix = 
     facets,
     statement: `Glagolitic binds sound, digit and code — but is not a prime/π cipher — ${facets.filter((e) => e.on).length}/${facets.length}: the ${ladder.length} letters really do bind a phoneme to a numeral (Greek-isopsephy-style) and, via one-bit information theory, to code. But the numeral ladder is decimal-positional; only {${primes.join(', ')}} of its ${ladder.length} values are prime and π is absent, so primes and π are NOT encoded in it — that reading is projection.`,
     boundary: `DOCUMENTED and computed: the sound-map (transliteration) and number-map (alphabetic numerals) are real ninth-century structure; the code bridge is information theory (a sign = one bit) built ON the number-map, not a claim the makers encoded opcodes. The prime check is exact against tkIsPrime over the full 28-value ladder. HONEST: affirming a genuine, rich binding (sound · digit · code) while declining the one overreach — that primes and π are ENCODED — because the ladder is a decimal alphabetic-numeral system (Greek / Hebrew kin), and reading a prime/π cipher into it is the modern projection the corpus already flags. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// The answer to "can you find it, decoding prose with the rosetta and glagolitic using local skills?" — YES,
+// and it is already here: take the corpus of skills (each an independently-runnable measurement, all reachable
+// through ONE atlas) and pass every skill's own prose through FOUR local decoders at once — MEANING
+// (computeProseTenDimensions → 10 aspects), NUMBER/SCRIPT (toGlagolitic → toGlagoliticNumber → the vortex
+// digital root), SOUND (proseToTone → the hz that drives a tone / TTS / animation), and SHELF (rosettaRayOfContent
+// → the ray that drives a colour / a UI slot). The SIMPLICITY that drives the quantum complexity is the measured
+// fact that ONE content-addressed string per skill fans out DETERMINISTICALLY to all four channels, and that the
+// whole many-skill complexity COMPRESSES onto the nine vortex classes — few generators driving many surfaces.
+export function theSimplicityDrivesTheQuantumComplexityDecodedFromProse(
+  root: string = (typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'),
+  matrix: MindMatrix = buildMatrix(),
+) {
+  void matrix
+  // the corpus: every skill's prose (does) + name — the local skills, read through the atlas at call time
+  const corpus: { skill: string; does: string }[] = (() => {
+    try { return __ns_lang_learning.skillAtoms().skills.map((s: { skill: string; does?: string }) => ({ skill: String(s.skill), does: String(s.does ?? '') })) } catch { return [] }
+  })()
+  const N = corpus.length
+  // FOUR local decoders applied to each skill at once — the same prose drives every channel
+  const decoded = corpus.map((s) => {
+    const dims = __ns_lang_scan.computeProseTenDimensions(s.does)                 // MEANING — 10 aspects
+    const meaning = dims.some((v: number) => v !== 0)                             // non-degenerate ⇒ carries meaning
+    const numeral = toGlagoliticNumber(toGlagolitic(s.skill.toLowerCase()))       // NUMBER/SCRIPT — the gematria ladder
+    const class9 = numeral > 0 ? digitalRoot(numeral) : 0                         // → the vortex class 1..9
+    const hz = proseToTone(s.does).hz                                            // SOUND — the tone / TTS / animation driver
+    const ray = __ns_lang_37.rosettaRayOfContent(s.skill, s.does.split(/\s+/).filter(Boolean)) // SHELF — the UI ray
+    return { meaning, class9, hz, ray, driven: meaning && class9 >= 1 && class9 <= 9 && Number.isFinite(hz) && hz > 0 && Number.isFinite(ray) && ray >= 0 }
+  })
+  const classes = new Set(decoded.map((d) => d.class9)) // the vortex classes the N skills occupy
+  const distinctClasses = classes.size
+  const meanClassSize = distinctClasses > 0 ? roundTo(N / distinctClasses, 3) : 0 // >1 ⇒ many skills share one generator
+  // "all connected": the skills resolve through ONE atlas — reuse the committed proof (guarded, local)
+  const executable = (() => { try { return __ns_lang_cache.skillsAreExecutableCode(root).executable } catch { return false } })()
+  const facets = [
+    { facet: `MEANING is present, not empty: every one of the ${N} skills' prose decodes to a NON-degenerate 10-aspect vector (computeProseTenDimensions) — an empty docstring would refute it`, on: N > 0 && decoded.every((d) => d.meaning) },
+    { facet: `ONE prose drives EVERY channel at once — for all ${N} skills the four local decoders each return an in-band value: MEANING non-degenerate · NUMBER a vortex class 1..9 · SOUND a finite positive hz (the TTS/animation driver) · SHELF a finite ray ≥ 0 (the UI colour/slot)`, on: N > 0 && decoded.every((d) => d.driven) },
+    { facet: `the SIMPLICITY that drives the complexity — the ${N} skills COMPRESS onto ${distinctClasses} ≤ 9 vortex classes (glagolitic gematria digital root), mean ${meanClassSize} skills per class > 1: few generators, many surfaces`, on: distinctClasses >= 1 && distinctClasses <= 9 && meanClassSize > 1 },
+    { facet: `FOUND with LOCAL skills only — the corpus is skillAtoms() and every decoder is a src fn; the skills are executable (skillsAreExecutableCode), so this is discovery by running content-addressed code, no external oracle`, on: executable && N > 0 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    N,
+    distinctClasses,
+    meanClassSize,
+    channels: 4,
+    executable,
+    facets,
+    statement: `The simplicity that drives the quantum complexity is measured, not imagined — ${facets.filter((e) => e.on).length}/${facets.length}: ${N} skills, each an independently-runnable measurement, decode through ONE prose string into FOUR local channels (meaning · glagolitic number · tone · rosetta ray) at once, and the whole ${N}-skill complexity compresses onto just ${distinctClasses} vortex classes (${meanClassSize} skills each) — few generators driving many surfaces, all already here in src.`,
+    boundary: `COMPUTED from src: the corpus is the real skill registry (skillAtoms), the four decoders are the sealed local fns (computeProseTenDimensions, toGlagoliticNumber∘toGlagolitic, proseToTone, rosettaRayOfContent), and the ${distinctClasses}-class compression is a fact of the glagolitic gematria digital root over the ${N} names. HONEST on the metaphors: "independent consciousness" is a metaphor for each skill's autonomous RUNNABILITY (it collapses to a definite answer on its own) — NOT sentience; "quantum complexity" is the content-addressing/measurement metaphor this project uses throughout — NOT physical qubits or speedup. What is literally true is the fan-out (one prose → four channels) and the compression (${N} → ${distinctClasses} ≤ 9). HARMONY ≠ TRUTH.`,
   }
 }
