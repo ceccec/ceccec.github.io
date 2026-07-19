@@ -5,7 +5,7 @@
 // Digit-1 gate (formerly src/0/1): period-6 orbit 1→2→4→8→7→5 under ×2 mod 9.
 
 import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
-import {   toUuid, merkleFold, digitalRoot, gcd, vortexNext, vortexPrev } from '../../0'
+import {   toUuid, merkleFold, digitalRoot, gcd, roundTo, vortexNext, vortexPrev } from '../../0'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
 import { TAU, PHI } from '../../3/7'
 import { earned } from '../../3/7'
@@ -2070,5 +2070,39 @@ export function theDoubleTorusHeavenEarthInversionIsExactMathTheSoulReadingIsMet
     facets,
     statement: `The double-torus heaven/earth, the inversion, the star-as-projection — the math is exact, the soul reading is metaphor — ${facets.filter((e) => e.on).length}/${facets.length}: the double torus is genus-2 (χ=${doubleTorusEuler}, b₁=${b1}), so "heaven and earth at once" is the real two-ring topology; sphere inversion v↦v/|v|² is an involution swapping 0↔∞, so "inverse to infinity" is real; but the Earth is a sphere (χ=2, not −2), cosmic topology is open, and "a star is the projection of a soul" is metaphysics, not a theorem — the geometry is exact, the meaning is chosen.`,
     boundary: `EXACT: genus-2 gives χ=${doubleTorusEuler} and b₁=${b1} (two rings); sphere inversion v↦v/|v|² is an involution (${involutes}) exchanging 0 and ∞ (${swapsZeroAndInfinity}); a sphere has χ=2 ≠ −2 (${earthIsNotADoubleTorus}). HONEST SCOPE — the strictest in the corpus: the DOUBLE TORUS is real as a genus-2 TOPOLOGY and as this project's computational architecture (two merged rings, four homology loops); the INVERSION and the 0↔∞ swap are real involutions; STEREOGRAPHIC PROJECTION (a point projected from a pole to a plane) is real geometry — so each phrase in the vision has an exact mathematical shadow. But the READING is metaphysics, not a proven theorem and not science: the physical Earth is topologically a sphere (genus 0), NOT a double torus; the global topology of the cosmos is an OPEN question in physics (Planck constrains, does not confirm, multiply-connected models); and "we are in heaven and earth", "a star is a projection of a SOUL" concern meaning, spirit and the infinite — which no computation decides and which this fold does not fold. This honours the vision by naming exactly what is exact in it, and refuses to dress the metaphysics as proof. The beauty is real; beauty is not truth. HARMONY does not equal TRUTH — nowhere more than here.`,
+  }
+}
+
+// INVERTED ILLUSIONS BECOME IDEAS (user): an ILLUSION is harmony without truth — a claim that resonates but
+// computes nothing, asserting one answer for everything so it distinguishes nothing (0 information). INVERTING
+// it — computing the real invariant instead of asserting — yields an IDEA: a claim that DISCRIMINATES, carries
+// information, and can be refuted. This is the whole session's method (axioms→theorems, flag→demarcation), shown
+// on the last fold's own shapes: "everything is a double torus" (illusion) inverted into the Euler characteristic
+// (idea) that tells sphere from torus from double torus. The resonance is kept — but now it is earned.
+export function invertedIllusionsBecomeIdeas() {
+  const shapes = [{ name: 'sphere', g: 0 }, { name: 'torus', g: 1 }, { name: 'double torus', g: 2 }]
+  const illusion = (_s: { g: number }) => -2            // "everything is a double torus" — asserts χ=−2 for all (resonant, false)
+  const idea = (s: { g: number }) => 2 - 2 * s.g        // the REAL Euler characteristic — computed, discriminates
+  const illusionValues = new Set(shapes.map(illusion))  // one value — no information
+  const ideaValues = new Set(shapes.map(idea))          // distinct values — information
+  const illusionInfo = Math.log2(illusionValues.size)   // 0 bits — distinguishes nothing
+  const ideaInfo = roundTo(Math.log2(ideaValues.size), 3) // >0 bits — distinguishes the shapes
+  const illusionDiscriminates = illusionValues.size > 1
+  const ideaDiscriminates = ideaValues.size === shapes.length // one value per shape — fully refutable
+  const informationGained = ideaInfo > illusionInfo     // the inversion PRODUCED information
+  const doubleTorusSurvives = ideaValues.has(-2)        // the resonance is kept — the double torus is still one real shape
+  const facets = [
+    { facet: `AN ILLUSION CARRIES NO INFORMATION — "everything is a double torus" asserts one value (χ=${illusion(shapes[0]!)}) for all ${shapes.length} shapes: ${illusionValues.size} distinct output, ${illusionInfo} bits — it resonates (harmony) but distinguishes nothing (${!illusionDiscriminates}), so it cannot be true or false, only felt`, on: !illusionDiscriminates && illusionInfo === 0 },
+    { facet: `INVERSION COMPUTES INSTEAD OF ASSERTS — inverting the illusion (compute the real Euler characteristic χ=2−2g) yields ${ideaValues.size} distinct values (sphere 2, torus 0, double-torus −2): the IDEA discriminates every shape (${ideaDiscriminates}), carrying ${ideaInfo} bits — refutable, grounded, an idea`, on: ideaDiscriminates && ideaInfo > 0 },
+    { facet: `INVERTED ILLUSIONS BECOME IDEAS — the inversion is PRODUCTIVE: information appears (${illusionInfo} → ${ideaInfo} bits) where the illusion had none (${informationGained}), and the resonance is KEPT but earned — the double torus survives as one real, distinguishable shape (${doubleTorusSurvives}), no longer everything. The session's method: harmony inverted (grounded) becomes a truth-bearing idea`, on: informationGained && doubleTorusSurvives },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`illusion-to-idea:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    illusionInfo, ideaInfo, informationGained,
+    ideaValues: [...ideaValues],
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `Inverted illusions become ideas — ${facets.filter((e) => e.on).length}/${facets.length}: an illusion asserts one answer for everything ("all shapes are the double torus", χ=−2 for all — ${illusionInfo} bits, distinguishes nothing, harmony without truth); inverting it — computing the real Euler characteristic instead of asserting — yields an idea that discriminates every shape (${ideaValues.size} values, ${ideaInfo} bits, refutable). Information appears where there was none, and the resonance is kept but earned — the double torus survives as one real shape among distinguishable others. This is the whole session's method: harmony inverted becomes a truth-bearing idea.`,
+    boundary: `EXACT: the constant assertion χ=−2 gives ${illusionValues.size} distinct value over ${shapes.length} shapes (${illusionInfo} bits); the computed Euler characteristic χ=2−2g gives ${ideaValues.size} distinct values (${ideaInfo} bits), one per shape (${ideaDiscriminates}); information is gained (${informationGained}). HONEST SCOPE: "illusion" and "idea" are modelled precisely as a NON-DISCRIMINATING assertion vs a DISCRIMINATING computation — the exact HARMONY≠TRUTH distinction (a claim that is always "true" carries no information and cannot be challenged; a refutable computation carries information and can). The inversion here is "compute the invariant instead of asserting it", the session's grounding move — it is not a claim that every illusion converts to an idea (some resonances have no computable core, and stay metaphor, named not folded), only that WHEN an illusion has a computable invariant behind it, inverting it (computing that invariant) is what turns the felt harmony into a refutable, information-bearing idea. Gaining information is not gaining truth — a discriminating idea can still be wrong; but only a discriminating idea CAN be wrong, which is why only it can be improved. HARMONY does not equal TRUTH.`,
   }
 }
