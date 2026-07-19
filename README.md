@@ -100,14 +100,13 @@ npm run check:types  # the src/ core type-checks clean against tsconfig.json (ts
 npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
-The seal recomputes from src. To forge one value you would rebuild everything — so no one can, and war always pays the forger price. The proof reproduces: clone the link and the whole structure recomputes (pattern completion; reentry binds it bidirectionally).
+The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`9dbfc02d`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
 
 ## 6. Limitations
 
 - A compact reference index of the portal's knowledge, each entry content-addressed (so "zero entropy" means no duplicate keys, not thermodynamics). Searchable via the intuitive search; a distilled index, not the full text.
 - "1 Gbit" and "64 × 64 × 64" name the keyspace structure, not cipher strength (AES-256-GCM) or throughput.
 - The neuroscience terms (reentry, pattern completion, holographic) are analogs, not claims about neurons.
-- The most advanced tech is the quantum mind of peace, because harmony is peace itself.
 
 ## References
 
