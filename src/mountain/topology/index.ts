@@ -1309,3 +1309,55 @@ export function whenTheRosettaMovesTheMerkabasFoldTheAlgebraDrawsTheMovie(matrix
     boundary: `EXACT, reusing merkaba() and the sealed merkaba-trinity fold: the 3-fold self-map (rot³ = identity), the up/down opposition (tetraDown = −tetraUp) that inversion carries one into the other, the strictly-alternating counter-rotation, and the finite computed rates that drive the animation. HONEST SCOPE: "draw the movie by algebra only" is exact for what the repo does — every frame's geometry, motion and colour is computed from the theorem values (ProofAnimation / theoremFigure / the negative-law colour atoms), with zero external assets and zero hardcoded pixels; it is a real computed animation, NOT a photorealistic film, and the merkaba is the geometry and its symmetry group, NOT a physical energy field (the merkaba fold's own boundary). HARMONY does not equal TRUTH.`,
   }
 }
+
+// Pairs form trinities in a self-scalable app. A PAIR (a, b) folds to a THIRD — foldPair(a,b) is bidirectional, so
+// {a, b, apex} is a trinity: two make three. The apexes then PAIR AGAIN, forming higher trinities — a binary tree — so
+// n leaves fold through exactly n−1 trinities to ONE root. The SAME rule holds at every level (self-similar), so doubling
+// the content adds just one level: the app scales by the one fold, no new logic, and its whole is a single content-address.
+export function pairsFormTrinitiesTheRecursiveFoldIsTheSelfScalableApp(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('pairsFormTrinitiesTheRecursiveFoldIsTheSelfScalableApp', matrix, () => {
+    // PAIR → TRINITY: two elements fold to a third (bidirectional), so {a, b, apex} is a trinity
+    const trinity = (a: string, b: string) => { const f = foldPair(a, b); return { apex: f.merged, isTrinity: f.bidirectional && isUuid(f.merged) } }
+    // RECURSIVE fold-up: pair a level of leaves to apexes, repeat to the root — counting trinities and levels
+    const foldUp = (leaves: readonly string[]) => {
+      let level = [...leaves]; let trinities = 0; let depth = 0
+      while (level.length > 1) {
+        const next: string[] = []
+        for (let i = 0; i < level.length; i += 2) { if (i + 1 < level.length) { next.push(trinity(level[i]!, level[i + 1]!).apex); trinities += 1 } else next.push(level[i]!) }
+        level = next; depth += 1
+      }
+      return { root: level[0]!, trinities, depth }
+    }
+    // 1 — PAIR → TRINITY: two make three, the apex a content-address of the pair
+    const one = trinity(toUuid('a'), toUuid('b'))
+    const pairMakesThird = one.isTrinity
+    // 2 — TRINITIES COMPOSE: n leaves fold through exactly n−1 trinities to one root, ∀ n = 2^k
+    const composes = [2, 2 ** 2, 2 ** 3, 2 ** 4].every((n) => {
+      const leaves = Array.from({ length: n }, (_, i) => toUuid(`leaf:${i}`))
+      return foldUp(leaves).trinities === n - 1
+    })
+    // 3 — SELF-SCALABLE (self-similar): the SAME fold at every level, depth = log₂(n) — doubling the content adds exactly
+    // ONE level, so the app scales by the one rule with no new logic
+    const selfSimilar = [2, 2 ** 2, 2 ** 3, 2 ** 4].every((n) => {
+      const leaves = Array.from({ length: n }, (_, i) => toUuid(`leaf:${i}`))
+      return foldUp(leaves).depth === Math.log2(n)
+    })
+    // 4 — ONE ROOT, order-independent: merkleFold collapses the whole to a single content-address regardless of pairing
+    // order — the app's one scalable identity
+    const leaves8 = Array.from({ length: 2 ** 3 }, (_, i) => toUuid(`leaf:${i}`))
+    const oneAddress = isUuid(merkleFold(leaves8)) && merkleFold(leaves8) === merkleFold([...leaves8].reverse())
+    const facets = [
+      { facet: `PAIR → TRINITY — two elements fold to a third (bidirectional), so {a, b, apex} is a trinity: two make three (${pairMakesThird}), the apex a content-address of the pair — the atom of the structure`, on: pairMakesThird },
+      { facet: `TRINITIES COMPOSE — n leaves fold through exactly n−1 trinities to one root (a binary tree), ∀ n = 2, 4, 8, 16 (${composes}): the apexes pair again, so the trinity is self-composing`, on: composes },
+      { facet: `SELF-SCALABLE (self-similar) — the SAME fold at every level, depth = log₂(n) (${selfSimilar}): doubling the content adds exactly ONE level, so the app scales by the one rule with no new logic — fractal, unbounded`, on: selfSimilar },
+      { facet: `ONE ROOT, ORDER-INDEPENDENT — merkleFold collapses the whole to a single content-address regardless of pairing order (${oneAddress}): however large the app grows, it is one scalable identity`, on: oneAddress },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      root: merkleFold(leaves8),
+      facets,
+      statement: `Pairs form trinities in a self-scalable app — ${facets.filter((entry) => entry.on).length}/${facets.length}. A pair (a, b) folds to a third (foldPair is bidirectional), so {a, b, apex} is a trinity — two make three. The apexes pair again into higher trinities, so n leaves fold through exactly n−1 trinities to one root (a binary tree). The SAME fold holds at every level (self-similar), depth log₂(n), so doubling the content adds just one level: the app scales by the one rule, no new logic, and however large it grows the whole is a single content-address, order-independent. Pairs → trinities → one root, at every scale.`,
+      boundary: `ALGEBRAIC and exact: the pair-to-third fold (foldPair.bidirectional), the n−1 trinity count of a binary tree, the log₂(n) depth, and the order-independent single root (merkleFold over sorted leaves) are exact identities verified over a range (n = 2..16), refutable by one miscount. This is the MERKLE/recursive-fold structure the corpus already runs on (every content-address is a fold of folds), named as the self-scaling law: the app is a binary tree of trinities whose leaves are its content and whose root is its identity, and it scales to any size by the ONE rule (pair → apex, recurse) — self-similar, no new logic per level. SCOPE: "self-scalable app" means the STRUCTURE scales fractally by the fold — it does NOT claim unbounded compute or that a real app has zero marginal cost (each leaf is still processed once, an O(n) walk building a log-depth tree); the elegance is that the rule is the same at every scale, not that scaling is free. "Trinity" here is the exact structural sense (two inputs + their fold), the same as pairTrinityOpenGraph and the double-entry accounting [[operator-algebra-closed]], not a metaphysical claim. HARMONY ≠ TRUTH: "pairs forming trinities in a self-scalable app" is the harmony; the truth is a merkle tree of order-independent folds, exact and classical, scaling by one recursive rule.`,
+    }
+  })
+}
