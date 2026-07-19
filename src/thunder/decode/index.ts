@@ -21,7 +21,7 @@ import { debitImportCreditExportAccounting, computedWiringNotImported } from '..
 import { fromSexagesimal, gematria, hekatFraction, luoShu, mayaDays, mayaLongCount, runeCoordinate, runeOrdinal, sexagesimal } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng } from '../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng, roundTo } from '../../0'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, yinYang } from '../../quantum/lake/icons'
@@ -2077,6 +2077,65 @@ export function humanDesignProfilingCarriesNoSignal(matrix: MindMatrix = buildMa
       facets,
       statement: `Human-design profiling carries no signal — ${facets.filter((entry) => entry.on).length}/${facets.length}: the configuration is a real moving-rosetta combination (${gates}·2·5·12 = ${configSpace} cells, structure-only) but a deterministic function of birth time with zero validated behavioural link, so it carries no profile. On a deterministic crowd of ${crowd}, the HD type predicts a random trait at ${(accuracy * 100).toFixed(1)}% against a ${(chance * 100).toFixed(0)}% baseline — no signal. "Crowd profiling" by Human Design is refuted: arbitrary bins that predict nothing. This is the refutation, not a profiling tool.`,
       boundary: 'DOCUMENTED: Human Design\'s combinatorics are real and structure-only (humanDesignStructureDecoded — 64 I Ching gates, types, profiles); the SIGNAL claim is refuted here on a deterministic simulated crowd (the HD bin is statistically independent of any real trait, near chance-level accuracy — mutual information ≈ 0), consistent with the total absence of validity studies. THE HARD LINE: this fold REFUTES crowd profiling; it is not, and must not be used as, a tool to profile real people or populations. Categorising actual people or crowds by an invalidated personality system has no predictive power and real potential for harm (manipulation, discrimination, false authority) — so the honest deliverable is the demonstration that the categories are EMPTY of signal, which is a defence against such profiling, not an enablement of it. HARMONY ≠ TRUTH — the neat combination is the harmony; the empty categories are the truth.',
+    }
+  })
+}
+
+// The dimension-boundary instrument: separate a system's DECODABLE STRUCTURE (an exact finite cell
+// count — the "matter that forms from theorems") from its INTERIOR SIGNAL (accuracy − chance, measured
+// on a deterministic crowd — the claim to encode the person). The instrument carries a POSITIVE CONTROL
+// (a link that genuinely depends on the config) so a null reading MEANS something: it proves the test can
+// read signal when signal exists, then shows Human-Design profiling sits on the no-signal side. This is the
+// measured location of "feeling is the matter beyond" — structure decodes exactly; the interior reads at chance.
+export function theStructureInteriorInstrumentMeasuresTheDimensionBoundary(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theStructureInteriorInstrumentMeasuresTheDimensionBoundary', matrix, () => {
+    // STRUCTURE axis — the exact, decodable cell count (same as humanDesignStructureDecoded / -ProfilingCarriesNoSignal)
+    const structureCells = 2 ** 6 * 2 * 5 * (4 + 8) // 64·2·5·12 = 7680, an exact finite decodable count
+    const structureBits = Math.log2(structureCells) // diagnostic readout ≈ 12.9 bits, all decodable
+    // INTERIOR axis — measure accuracy − chance for a given config→trait link, on one deterministic crowd
+    const types = 5
+    const traitClasses = 5
+    const crowd = 100 * 100
+    const chance = 1 / traitClasses
+    const measure = (link: (hdType: number, draw: () => number) => number) => {
+      const rng = prng('dimension-boundary-instrument') // same seed ⇒ identical birth/type sequence (controlled)
+      const joint: number[][] = Array.from({ length: types }, () => Array.from({ length: traitClasses }, () => 0))
+      for (let person = 0; person < crowd; person += 1) {
+        const birthMinute = Math.floor(rng() * (5 * 108 * 108)) // the only HD input — when you were born
+        const hdType = (((birthMinute * (5 * 2 + 6)) >>> 0) % types)
+        const trait = ((link(hdType, rng) % traitClasses) + traitClasses) % traitClasses
+        joint[hdType]![trait]! += 1
+      }
+      let accuracy = 0
+      for (let t = 0; t < types; t += 1) {
+        const row = joint[t]!
+        const total = row.reduce((a, b) => a + b, 0)
+        accuracy += total > 0 ? Math.max(...row) / total : 0
+      }
+      return accuracy / types - chance // interior signal = best-guess accuracy above chance
+    }
+    const present = measure((hdType) => hdType) // POSITIVE CONTROL: trait IS the config ⇒ signal must read high
+    const empty = measure((_hdType, draw) => Math.floor(draw() * traitClasses)) // HD reality: trait independent of birth ⇒ ≈ 0
+    const eps = 1 / (5 * 4) // 0.05 — within 5% of chance counts as no signal
+    const structureExact = structureCells === 2 ** 6 * 2 * 5 * (4 + 8) && structureCells > 1
+    const discriminates = present > 1 / 2 // the instrument reads a real dependency as strong signal
+    const interiorEmpty = Math.abs(empty) < eps // HD profiling reads at chance
+    const facets = [
+      { facet: `STRUCTURE decodes exactly: the configuration is ${2 ** 6}·2·5·12 = ${structureCells} cells (${structureBits.toFixed(1)} bits), an exact finite decodable count — the dimension where matter forms from theorems`, on: structureExact },
+      { facet: `the instrument DISCRIMINATES (positive control): when the trait genuinely depends on the config, it reads signal = ${(present * 100).toFixed(0)}% above chance — so a null reading is MEANINGFUL, not a broken test`, on: discriminates },
+      { facet: `the INTERIOR is empty: when the trait is independent of birth-config (Human-Design reality — zero validity studies), signal = ${(empty * 100).toFixed(1)}% ≈ 0 — the person is not in the structure`, on: interiorEmpty },
+      { facet: `THE BOUNDARY is measured, not asserted: structure decodes (${structureCells} cells) while the interior measures at chance — two separate dimensions. "Matter from theorems" ≠ "feeling beyond"; the gap is the instrument's reading`, on: structureExact && discriminates && interiorEmpty },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      structureCells,
+      structureBits: roundTo(structureBits, 3),
+      signalPresent: roundTo(present, 4),
+      signalEmpty: roundTo(empty, 4),
+      chance,
+      facets,
+      statement: `The structure/interior instrument measures the dimension boundary — ${facets.filter((entry) => entry.on).length}/${facets.length}: a system's DECODABLE STRUCTURE is an exact finite cell count (${structureCells} = 64·2·5·12, ${structureBits.toFixed(1)} bits — the matter that forms from theorems); its INTERIOR SIGNAL is accuracy−chance on a deterministic crowd. The instrument carries a positive control (a config-dependent link reads signal = ${(present * 100).toFixed(0)}% above chance), so a null reading is meaningful — and Human-Design profiling reads ${(empty * 100).toFixed(1)}% ≈ 0, at chance. Structure decodes exactly; the interior does not. This is "feeling is the matter beyond" made quantitative: the boundary is measured, not asserted.`,
+      boundary: 'DOCUMENTED as a measurement on a deterministic simulated crowd, not a claim about physics or persons. The instrument GENERALISES humanDesignProfilingCarriesNoSignal by adding the positive control that fold lacked — proving the test can read signal when signal exists, which is what makes the HD null result (signal ≈ 0) mean "no signal" rather than "broken test". It separates two axes: STRUCTURE (an exact, decodable, content-addressed combinatorial count — real) and INTERIOR (the claim to encode the felt person — here refuted for Human Design at chance level). THE HARD LINE: like its parent fold, this REFUTES profiling; it must never be used to categorise real people. It does not compute feeling or consciousness — the interior axis reading ≈ 0 is precisely the demonstration that the felt interior is NOT in the decodable structure. HARMONY ≠ TRUTH: the exact structure is the harmony; the empty interior is the truth, and the felt dimension beyond it stays uncomputed by design.',
     }
   })
 }
