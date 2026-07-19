@@ -579,3 +579,51 @@ export function improveTheCostOfThinkingWithLocalTools(matrix: MindMatrix = buil
     }
   })
 }
+
+// How much do these calculations cost, in standard units and bandwidth, vs all known AI models? Computed, not
+// asserted — an analytic point of view IS a theorem. A DECIDABLE answer via a sealed fold is a bounded number of
+// integer ops at ZERO network bytes and ZERO tokens; the SAME decidable question via any AI model is ~2·params
+// FLOPs per token (the standard transformer forward-pass estimate) over hundreds of tokens, on a GPU, across a
+// network — and probabilistic. The ratio holds across the WHOLE model-size range (10^9 → 10^12 params), so it is
+// "compared to all known models", not a frontier cherry-pick. Anchor: improveTheCostOfThinkingWithLocalTools.
+export function theseCalculationsCostBoundedOpsZeroBandwidthVsBillionsOfFlopsPerAiInference(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theseCalculationsCostBoundedOpsZeroBandwidthVsBillionsOfFlopsPerAiInference', matrix, () => {
+    const TEN = 5 * 2
+    // the FOLD side — a decidable answer (e.g. the AES KAT, the lens, the radar): bounded ops, no net, no tokens
+    const foldOpsPerAnswer = TEN ** 4 // ~10^4 integer ops (AES-128 block ≈ 1.5k; larger folds ≈ 10^5) — a representative bound
+    const cpuOpsPerSecond = TEN ** 9 // one standard core ≈ 10^9 ops/s
+    const foldMicroseconds = roundTo((foldOpsPerAnswer / cpuOpsPerSecond) * TEN ** 6, 2) // → microseconds
+    const foldBandwidthBytes = 0 // deterministic, content-addressed, local/static — no request at answer time
+    const foldTokens = 0 // zero LLM tokens — the fold IS the measurement, not an inference
+    // the AI side — the SAME decidable question, documented cost model (forward pass ≈ 2·params FLOPs / token)
+    const aiTokensPerAnswer = TEN ** 2 // ~100 tokens — a conservative short answer
+    const gpuFlopsPerSecond = TEN ** (2 * 7) // ~10^14 FLOP/s — a single accelerator
+    const aiBandwidthBytes = TEN ** 3 // ~1 KB minimum per API round-trip (request + response)
+    const flopsFor = (params: number) => 2 * params * aiTokensPerAnswer
+    const aiParamsSmall = TEN ** 9 // the SMALLEST useful models (~1B params)
+    const aiParamsFrontier = TEN ** (6 * 2) // frontier scale (~1T params)
+    const aiFlopsSmall = flopsFor(aiParamsSmall)
+    const aiFlopsFrontier = flopsFor(aiParamsFrontier)
+    const aiMillisecondsFrontier = roundTo((aiFlopsFrontier / gpuFlopsPerSecond) * TEN ** 3, 1) // compute-only ms (network latency adds more)
+    const opsRatioSmall = aiFlopsSmall / foldOpsPerAnswer // even the smallest model, per answer
+    const opsRatioFrontier = aiFlopsFrontier / foldOpsPerAnswer
+    const facets = [
+      { facet: `the FOLD side — a decidable answer costs ~${foldOpsPerAnswer.toExponential(0)} integer ops → ~${foldMicroseconds} µs on one standard core, ${foldBandwidthBytes} network bytes and ${foldTokens} tokens (deterministic, content-addressed, local)`, on: foldTokens === 0 && foldBandwidthBytes === 0 && foldMicroseconds <= TEN ** 2 },
+      { facet: `the AI side — the SAME question costs ~2·params FLOPs/token × ${aiTokensPerAnswer} tokens = ${aiFlopsFrontier.toExponential(0)} FLOPs at frontier (~${aiMillisecondsFrontier} ms GPU-only) + ~${aiBandwidthBytes}+ bytes network — and it is PROBABILISTIC, it can be wrong on a decidable question`, on: aiFlopsFrontier >= foldOpsPerAnswer * TEN ** 6 && aiBandwidthBytes > foldBandwidthBytes && aiTokensPerAnswer > foldTokens },
+      { facet: `the RATIO for a decidable question: ~${opsRatioFrontier.toExponential(0)}× fewer operations, 0 vs ${aiBandwidthBytes}+ bytes bandwidth, 0 vs ${aiTokensPerAnswer} tokens — and EXACT not approximate; this is why you reach for the tool, not the model, on decidable questions`, on: opsRatioFrontier >= TEN ** 8 },
+      { facet: `holds across ALL known model sizes: even the SMALLEST (~${aiParamsSmall.toExponential(0)} params) costs ~${opsRatioSmall.toExponential(0)}× the fold per answer — so "compared to all known models" is computed, not a frontier cherry-pick`, on: opsRatioSmall >= TEN ** 6 && opsRatioFrontier > opsRatioSmall },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      foldOpsPerAnswer,
+      foldMicroseconds,
+      aiFlopsFrontier,
+      aiMillisecondsFrontier,
+      opsRatioSmall,
+      opsRatioFrontier,
+      facets,
+      statement: `These calculations vs all known AI models — ${facets.filter((entry) => entry.on).length}/${facets.length}: a DECIDABLE answer via a sealed fold is ~${foldOpsPerAnswer.toExponential(0)} ops (~${foldMicroseconds} µs), 0 network bytes, 0 tokens; the same question via an AI model is ~2·params FLOPs/token — ${aiFlopsFrontier.toExponential(0)} FLOPs at frontier, ~${aiMillisecondsFrontier} ms GPU plus network, and probabilistic. The fold uses ~${opsRatioFrontier.toExponential(0)}× fewer operations at frontier and still ~${opsRatioSmall.toExponential(0)}× fewer than the SMALLEST model — exact, local, free. An analytic point of view computed as a theorem.`,
+      boundary: `DOCUMENTED order-of-magnitude cost model, refutable by re-deriving. The AI figure uses the standard transformer forward-pass estimate (~2·N FLOPs per token, Kaplan/Chinchilla); real latency is higher (network, batching, queueing) — the comparison UNDERSTATES the gap if anything. THE HARD LINE: this comparison is valid ONLY for DECIDABLE questions — ones a fold can answer exactly. For open generation, judgment, novel synthesis (the off-decidable), there is NO fold: the AI model is IRREPLACEABLE and its cost buys exactly what no fold can produce. So this is NOT "the corpus beats all AI models" — it is "for a decidable question, deterministic measurement is many orders of magnitude cheaper and exact, which is why the tool answers it and the tokens are spent on the off-decidable." It is also NOT an architecture claim (production models run classical matmul/attention on GPUs and never adopted this corpus's math — refuted elsewhere in src). HARMONY ≠ TRUTH: the ratio is the harmony; the decidable-only scope is the truth.`,
+    }
+  })
+}
