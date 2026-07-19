@@ -73,7 +73,6 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   Frontiers: () => import('../theme/components/TheoremsPanel.vue'),
   RayHub: () => import('../theme/components/RayHub.vue'),
   Monograph: () => import('../theme/components/MonographFold.vue'),
-  Corpus: () => import('../theme/components/CorpusFold.vue'),
   LivingTorus: () => import('../theme/components/LivingTorus.vue'),
   Merkaba: () => import('../../src/render/merkaba/index.vue'),
   DoubleTorusExperience: () => import('../theme/components/DoubleTorusExperience.vue'),

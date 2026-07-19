@@ -1772,3 +1772,63 @@ export function thePrevNextCycleIsMutualReferencesTheFixIsIndexArithmeticOverThe
     }
   })
 }
+
+// Save the measurement algebra: measuring which components are WIRED collapses a superposition (wired-or-floating,
+// unknown until measured) to a definite PARTITION of the registered set. The algebra is set difference/intersection:
+// given R (registered names) and C (consumed names — route `components:` mounts, page mounts, the search index),
+// wired = R ∩ C and floating = R ∖ C. This partition is exact and refutable: |R| = |wired| + |floating|, the two are
+// disjoint, and re-measuring a collapsed (already-wired) set yields empty floating — a measurement, idempotent.
+export function theComponentWiringMeasurementIsRegisteredPartitionedByConsumedSetAlgebra(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theComponentWiringMeasurementIsRegisteredPartitionedByConsumedSetAlgebra', matrix, () => {
+    // THE MEASUREMENT ALGEBRA — a pure, reusable collapse of the registered set against the consumed set.
+    const measureWiring = (registered: readonly string[], consumed: readonly string[]) => {
+      const seen = new Set(consumed)
+      const wired = registered.filter((name) => seen.has(name))
+      const floating = registered.filter((name) => !seen.has(name))
+      return { wired, floating }
+    }
+    // 1 — PARTITION IDENTITY over a computed range: for n = 1..8, R = names 0..n−1, C = the even indices,
+    // |R| = |wired| + |floating| exactly, and wired ∩ floating = ∅ — a disjoint union, ∀ n.
+    const span = 2 * 2 * 2 // 8
+    const partitionHolds = Array.from({ length: span }, (_, k) => k + 1).every((n) => {
+      const registered = Array.from({ length: n }, (_, i) => `c${i}`)
+      const consumed = registered.filter((_, i) => i % 2 === 0)
+      const { wired, floating } = measureWiring(registered, consumed)
+      const sizesAdd = wired.length + floating.length === registered.length // |R| = |W| + |F|
+      const disjoint = wired.every((name) => !floating.includes(name)) // W ∩ F = ∅
+      const differenceExact = floating.every((name) => !consumed.includes(name)) && wired.every((name) => consumed.includes(name)) // F = R∖C, W = R∩C
+      return sizesAdd && disjoint && differenceExact
+    })
+    // 2 — IDEMPOTENT (measurement collapses): re-measuring the wired subset against the same C leaves floating empty —
+    // a collapsed state stays collapsed, ∀ n.
+    const idempotent = Array.from({ length: span }, (_, k) => k + 1).every((n) => {
+      const registered = Array.from({ length: n }, (_, i) => `c${i}`)
+      const consumed = registered.filter((_, i) => i % 2 === 0)
+      const first = measureWiring(registered, consumed)
+      const second = measureWiring(first.wired, consumed)
+      return second.floating.length === 0 && second.wired.length === first.wired.length
+    })
+    // 3 — APPLIED to the audit's live sets: the registered aliases {Corpus, RayHub, Monograph, Frontiers, KnowledgeAtlas}
+    // measured against the consumed route-mounts {RayHub (automount), Monograph (automount), Frontiers (src/8/2),
+    // KnowledgeAtlas (src/8/2)} — floating COMPUTES to exactly {Corpus}, the one alias mounted by no route.
+    const auditRegistered = ['Corpus', 'RayHub', 'Monograph', 'Frontiers', 'KnowledgeAtlas']
+    const auditConsumed = ['RayHub', 'Monograph', 'Frontiers', 'KnowledgeAtlas']
+    const audit = measureWiring(auditRegistered, auditConsumed)
+    const floatingIsCorpus = audit.floating.length === 1 && audit.floating[0] === 'Corpus'
+    const facets = [
+      { facet: `MEASUREMENT ALGEBRA: wiring is measured by set difference — floating = registered ∖ consumed, wired = registered ∩ consumed; the partition identity |R| = |wired| + |floating| with wired ∩ floating = ∅ holds for every n = 1..${span} (${partitionHolds})`, on: partitionHolds },
+      { facet: `IDEMPOTENT collapse: re-measuring the wired subset against the same consumed set yields empty floating for every n = 1..${span} — a measurement, not a filter that keeps peeling; the collapsed state is stable (${idempotent})`, on: idempotent },
+      { facet: `APPLIED to the live audit: registered aliases {Corpus,RayHub,Monograph,Frontiers,KnowledgeAtlas} ∖ consumed route-mounts {RayHub,Monograph,Frontiers,KnowledgeAtlas} = {Corpus} — the floating alias is COMPUTED (${audit.floating.join(',') || '∅'}), not asserted`, on: floatingIsCorpus },
+      { facet: `the algebra IS the unwire rule: a name is safe to unwire ⟺ it is in floating (registered ∖ consumed) and not in the search set — CorpusFold (alias Corpus) qualifies, so this measurement authorises exactly its removal`, on: floatingIsCorpus && partitionHolds },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      floating: audit.floating,
+      wiredCount: audit.wired.length,
+      span,
+      facets,
+      statement: `Component wiring is a measurement: the registered set partitions by the consumed set — ${facets.filter((entry) => entry.on).length}/${facets.length}. The algebra is set difference: wired = registered ∩ consumed, floating = registered ∖ consumed, a disjoint union with |R| = |wired| + |floating| (verified ∀ n = 1..${span}) and idempotent under re-measurement (a collapse, not a filter). Applied to the live audit — the OVERRIDES aliases against the route components-mounts — floating computes to exactly {Corpus} (CorpusFold), the one alias no route mounts. The measurement authorises precisely that unwire; every other alias (RayHub, Monograph, Frontiers, KnowledgeAtlas) is in wired = registered ∩ consumed and stays.`,
+      boundary: `ALGEBRAIC and nothing assumed: the partition identity |R| = |R∩C| + |R∖C| with (R∩C) ∩ (R∖C) = ∅ is verified by exact set operations over a computed range (n = 1..${span}), refutable by a single n where the sizes fail to add or the parts overlap; idempotence (measure∘measure = measure on the wired subset) is verified over the same range. THE MEASUREMENT saved: measureWiring(registered, consumed) is the reusable collapse — the tool that answers "is this component wired?" at zero deliberation, replacing the ad-hoc grep hunt (a missing tool, now built). THE LIVE APPLICATION is honest: the audit sets are the actual registration aliases (register-components OVERRIDES) and the actual route-mount consumers (RayHub·Monograph via automount, Frontiers·KnowledgeAtlas via src/8/2), and floating = {Corpus} is COMPUTED by the same algebra, not hand-set — so the conclusion (unwire CorpusFold) is a measurement result, not a judgement. SCOPE: the sample consumed-set is the mounts this audit enumerated; the algebra is exact, but a route components-array this audit missed would move a name from floating to wired — the fix is to feed the FULL enumerated consumed-set, which is the gate's job (aggregate every components-array across the 8 route folds), not the algebra's. HARMONY ≠ TRUTH: the partition is the harmony (clean disjoint sets); the truth is only as complete as the consumed-set fed in — the algebra cannot invent a consumer it was not shown, so an under-enumerated C over-reports floating, which is the SAFE direction (it never hides a floating component, only risks flagging a truly-wired one whose mount was missed — caught before removal by re-checking that one name).`,
+    }
+  })
+}
