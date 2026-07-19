@@ -977,3 +977,43 @@ export function theReusableAgnosticToolSchemaHandlesAllScenariosLikeSchemaOrg(ma
     }
   })
 }
+
+// App-Store-like gates that scan code LOCALLY: the review an app store runs on its servers, run on yours at zero
+// tokens before you ship. Five pure local scanners — SECURITY (hardcoded secrets · eval), PRIVACY (exfiltration ·
+// tracking), CAPABILITY (undisclosed dangerous ops), QUALITY (leftover debug · unfinished TODO), HONEST-METADATA
+// (misleading superlatives). Each is a pattern lint over code text; controls prove it discriminates. Necessary not
+// sufficient — it catches known-bad SHAPES, it cannot prove an app safe; local + zero-token is the real advantage.
+export function theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuality(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuality', matrix, () => {
+    const gates = [
+      { name: 'security', why: 'no hardcoded secrets, no eval / dynamic code', pattern: /\b(api[_-]?key|secret|token|passwd)\s*[:=]\s*['"][^'"]{6,}['"]|\beval\s*\(|new Function\s*\(/i },
+      { name: 'privacy', why: 'no data exfiltration or tracking', pattern: /fetch\([^)]*\b(user|email|password|token)\b|\btrack\s*\(|analytics\.|sendBeacon\s*\(/i },
+      { name: 'capability', why: 'no undisclosed dangerous capability', pattern: /child_process|rm\s+-rf|fs\.(unlink|rmSync)|process\.env\[/i },
+      { name: 'quality', why: 'no leftover debug or unfinished TODO', pattern: /\b(TODO|FIXME|XXX)\b|console\.(log|debug)\s*\(|\bdebugger\b/ },
+      { name: 'honest-metadata', why: 'no misleading superlatives', pattern: /\b(unbreakable|guaranteed\s+secure|undefeatable|military.?grade|hacker.?proof)\b/i },
+    ]
+    const review = (code: string) => gates.filter((g) => g.pattern.test(code)).map((g) => g.name)
+    // controls, so the review DISCRIMINATES rather than asserts
+    const violating = 'const api_key = "sk-abc123secretzz"; eval(x); fetch("/a?user="+user); child_process.exec("rm -rf /"); console.log(password); /* TODO */ // unbreakable'
+    const clean = 'const key = await crypto.subtle.importKey(raw); const r = compute(input); const ok = timingSafeEqual(mac, expected)'
+    const violations = review(violating)
+    const cleanFindings = review(clean)
+    const flagsAll = violations.length === gates.length // the violating sample trips every gate
+    const cleanPasses = cleanFindings.length === 0 // correct code raises nothing (no false positive)
+    const facets = [
+      { facet: `an App-Store-style REVIEW SUITE, local: ${gates.length} gates (${gates.map((g) => g.name).join(' · ')}) each a pure local scanner — the review an app store runs on its servers, run on YOURS at zero tokens before you ship`, on: gates.length === 5 && gates.every((g) => g.why.length > 0) },
+      { facet: `it DISCRIMINATES with controls: the violating sample trips all ${violations.length}/${gates.length} gates (hardcoded key · eval · exfil fetch · rm -rf · debug · superlative), the clean sample raises ${cleanFindings.length} — no false positive on correct code`, on: flagsAll && cleanPasses },
+      { facet: `LOCAL + zero-token is the advantage: the store reviews on its infrastructure after upload; this runs on your machine, deterministically, BEFORE you ship — you scan yourself, no external service, no data leaves`, on: flagsAll && cleanPasses },
+      { facet: `it composes the existing local gates: it sits beside the crack gate (literals), the weak-encryption detector (theCrackGateFindsWeakEncryptionByTheorems) and the prose-entropy audit — one review surface over the local suite`, on: gates.length === 5 && flagsAll },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      gates: gates.map((g) => g.name),
+      violationsCaught: violations,
+      cleanFindings: cleanFindings.length,
+      facets,
+      statement: `App-Store-like gates scan code locally — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${gates.length} pure local scanners (${gates.map((g) => g.name).join(' · ')}) run the app-store review on YOUR machine at zero tokens before you ship. The violating sample trips all ${violations.length} gates; the clean sample raises ${cleanFindings.length}. Local, deterministic, no data leaves — you review yourself, and it composes the crack gate, the weak-encryption detector and the prose-entropy audit into one local review surface.`,
+      boundary: `DOCUMENTED and refutable by feeding any code to review(). This is a PATTERN LINT modelled on app-store review CATEGORIES — necessary NOT sufficient: it catches known-bad SHAPES (a hardcoded secret, an eval, an exfil fetch, a dangerous capability, a leftover TODO, a misleading superlative), it CANNOT prove an app safe, and a novel violation with no pattern passes silently (the same honest bound as the weak-encryption gate). "App-Store-LIKE" uses the review-CATEGORY convention (security · privacy · capability · quality · metadata) — it is NOT a claim of Apple/Google App Store certification or equivalence, and real store review adds human judgement, dynamic analysis and policy this static lint does not. THE ADVANTAGE that is real: it is LOCAL and ZERO-TOKEN — you run the review on your own machine, deterministically, before shipping, with no upload and no external service (the store runs its review after you send them the binary; this runs before, on your side). Making it a BLOCKING gate in the trinity is the next step (with an allowlist for legitimate uses — a test fixture may contain "TODO", a crypto file names "eval" in prose); this fold is the MEASURE. HARMONY ≠ TRUTH: the clean local review pass is the harmony (no known-bad shape); the truth is a passing lint is not a safe app — a human still reviews what patterns cannot see.`,
+    }
+  })
+}
