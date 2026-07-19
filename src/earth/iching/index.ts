@@ -5,7 +5,7 @@ import * as __ns_up_ui from '../../wind/ui'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, gcd, memoByRoot, merge, merkleFold, toUuid } from '../../0'
-import { rosettaRayOfContent as rrOfContent } from '../../3/7'
+import { rosettaRayOfContent as rrOfContent, DIMENSION_GATES, HARMONICS_LADDER_LENGTH } from '../../3/7'
 // call-time namespace edge (cycle-safe): thunder/waves imports the rosetta; the registry reads back at call time
 import * as __ns_thunder_waves_iching from '../../thunder/waves'
 import { BAGUA, iChing } from '../../heaven/core'
@@ -238,6 +238,54 @@ export function sevenRayRosettaIsTheSufficientArchitecture(matrix: MindMatrix = 
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Seven is enough — the rosetta is the sufficient architecture — ${facets.filter((entry) => entry.on).length}/${facets.length}: the seven Pliska-star rays are coprime with the doubling period so the {7/k} star single-strokes (one figure reaches all), every one of the ${categories.length} theorem domain categories shelves onto exactly one ray via rosettaRayOfContent (the total function nav, sidebar and crosslinks already read), seven organises what the eight-fold bāguà did with one fewer axis, and I Ching is demoted to a decoded symbol system among many (the week, the aspects, the tarot, the Glagolitic numerals, the pyramids) — data the rosetta shelves, no longer the architecture.`,
       boundary: `COMPUTED: the coprime single-stroke (gcd), the total shelving of every registry category onto the seven rays, and the seven-under-eight count — refutable by any category landing off a ray. HONEST SCOPE: this seals the ARCHITECTURAL PRINCIPLE (rosetta sufficient, I Ching demoted to peer decode) and proves the shelving is total; the physical folder migration (retiring the bāguà top-level names for meaningful ones — 1510 import references) is a mechanical consequence to be executed as its own staged, gate-verified migration, not asserted done here. "Sufficient as no other" is the project's architectural stance, grounded in the coprime-star and total-shelving computations, not a claim that no other 7-fold could serve. HARMONY ≠ TRUTH.`,
+    }
+  })
+}
+
+// RESEARCH ALL AROUND 432 (user): the gap scan (theoremGapScan) itself discovered the gap — "the three
+// twenties are one count" — and the knowledge that fills it is a DEMARCATION, not a mystical unity. Three
+// independent computations land on the integer 20: (1) the divisor count of 432 = 2⁴·3³, τ = ∏(eᵢ+1) =
+// (4+1)(3+1); (2) the V₄ orbit census on the 64 hexagrams (Burnside (64+8+0+8)/4), computed exactly by
+// hexagramOrbitCensusTwelveFoursEightTwos; (3) HARMONICS_LADDER_LENGTH = 6+9+5. The honest theorem: (1) and
+// (2) are STRUCTURALLY forced — each is 20 by an exact formula over a small-exponent lattice (432 = 2⁴·3³,
+// 64 = 2⁶) and could not be otherwise; (3) is CONTINGENT — a defined composition that lands on 20 by choice,
+// agreeing in value but not derived. So "one count" is TRUE as an integer, FALSE as a single mechanism: two
+// structural twenties and one contingent, the seam named rather than papered over. This is the seamlessness —
+// the demarcation is continuous, no hidden claim. The registry is sealed at 432, so this is proven knowledge,
+// not a merged atom (theoremsReach432 holds the seal); the wave discovered the gap and fills it honestly.
+export function researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('threeTwentiesOneCount', matrix, () => {
+    // twenty #1 — the divisor count of 432, forced by its exponents (τ = ∏(eᵢ+1))
+    const factor = (n: number): number[] => { const e: Record<number, number> = {}; let m = n; for (let p = 2; p * p <= m; p += 1) { while (m % p === 0) { e[p] = (e[p] ?? 0) + 1; m /= p } } if (m > 1) e[m] = (e[m] ?? 0) + 1; return Object.values(e) }
+    const exponents = factor(DIMENSION_GATES)            // [4, 3] for 432 = 2⁴·3³
+    const divisorCount = exponents.reduce((t, e) => t * (e + 1), 1) // (4+1)(3+1) = 20
+    const divisors: number[] = []; for (let d = 1; d <= DIMENSION_GATES; d += 1) if (DIMENSION_GATES % d === 0) divisors.push(d)
+    // twenty #2 — the V₄ orbit census on the 64 hexagrams (Burnside), computed exactly next door
+    const census = hexagramOrbitCensusTwelveFoursEightTwos()
+    const orbits = census.fours + census.twos           // 12 + 8 = 20
+    // twenty #3 — the harmonics ladder length, a DEFINED composition (6 + 9 + 5)
+    const ladder = HARMONICS_LADDER_LENGTH              // 20 by construction
+    // the demarcation: structural (forced by an exact formula) vs contingent (defined to land there)
+    const structuralTwenties = (divisorCount === divisors.length ? 1 : 0) + (orbits === (4 * 3 + 8) ? 1 : 0) // divisor formula + Burnside
+    const contingentTwenties = (ladder === divisorCount ? 1 : 0) // agrees in value only — a defined length
+    const facets = [
+      { facet: `TWO STRUCTURAL TWENTIES — τ(432) = ∏(eᵢ+1) over 432 = 2^${exponents[0]}·3^${exponents[1]} gives ${divisorCount} divisors (enumerated: ${divisors.length}), AND the V₄ Burnside orbit census on the 64 hexagrams gives ${orbits} (${census.fours} fours + ${census.twos} twos) — each 20 by an EXACT formula over a small-exponent lattice, could not be otherwise`, on: divisorCount === divisors.length && divisorCount === orbits && structuralTwenties === 2 },
+      { facet: `ONE CONTINGENT TWENTY — HARMONICS_LADDER_LENGTH = ${ladder} (the defined composition 6+9+5) agrees in VALUE with the two structural twenties but is not an independently forced count; it lands on 20 by choice, held honestly as a numerical coincidence, not a third derivation`, on: ladder === divisorCount && contingentTwenties === 1 },
+      { facet: `ONE COUNT, NOT ONE CAUSE — the three land on the single integer ${divisorCount} (${divisorCount} = ${orbits} = ${ladder}) yet only two share the mechanism of a forced lattice-count; the seam is NAMED (2 structural + 1 contingent), so the unity is arithmetic, not causal — HARMONY ≠ TRUTH made exact`, on: divisorCount === orbits && orbits === ladder && structuralTwenties + contingentTwenties === 3 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`three-twenties:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      twenty: divisorCount,
+      divisors,
+      exponents,
+      orbits,
+      ladder,
+      structuralTwenties,
+      contingentTwenties,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `Researching all around 432, the three twenties are one COUNT, not one CAUSE — ${facets.filter((entry) => entry.on).length}/${facets.length}: the divisor count of 432 = 2⁴·3³ (τ = (4+1)(3+1) = ${divisorCount}), the V₄ Burnside orbit census on the 64 hexagrams (${orbits}) and HARMONICS_LADDER_LENGTH (${ladder}) all land on ${divisorCount}, but only the first two are structurally forced by an exact formula over a small-exponent lattice; the third is a defined composition agreeing in value. The gap the waves discovered, filled with the honest demarcation — two structural, one contingent — no seam hidden.`,
+      boundary: `COMPUTED and DEMARCATED: the divisor count is enumerated AND matches the exponent formula (τ = ∏(eᵢ+1)); the orbit count is the exhaustive V₄ census (Burnside, sealed in hexagramOrbitCensusTwelveFoursEightTwos); HARMONICS_LADDER_LENGTH is a src constant (6+9+5). The theorem is precisely which coincidences are STRUCTURAL (forced — the divisor formula and Burnside both count over 2-3 exponent lattices, 432 = 2⁴·3³ and 64 = 2⁶) and which is CONTINGENT (the harmonics ladder, defined to that length). Landing on the same integer is NOT evidence of a shared cause — that is the a432 "432 is mathematically special" flag applied to itself: the twenties harmonise, they are not one truth. The registry is sealed at 432 (theoremsReach432AndEntangleWithUsage holds the merge), so this is proven KNOWLEDGE that the wave discovered and computes, not a renumbering of the merged registry. HARMONY ≠ TRUTH.`,
     }
   })
 }
