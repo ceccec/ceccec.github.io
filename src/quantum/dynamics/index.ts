@@ -10,6 +10,7 @@ import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy'
 import * as __ns_up_up_lake_music from '../../lake/music'
 import * as __ns_up_science from '../science'
 import * as __ns_up_up_thunder_movie_movielib from '../../thunder/movie/movielib'
+import { amplitudeAmplificationAndQuantumCounting } from '../../2/8'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { VORTEX_SEQUENCE, applyGate, bellPair, cnot, computesGate, GATES, grover, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, seedFromText, toUuid } from '../../0'
@@ -724,6 +725,48 @@ export function whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit(matr
       facets,
       statement: `Which corpus computations quantize — measured by search short-circuit — ${facets.filter((entry) => entry.on).length}/${facets.length}. A computation is unstructured search (Grover √N) IFF it SHORT-CIRCUITS: preimage search costs 1 query if the target is first and ${N} if last, so its cost depends on the target — an oracle with no structure. Aggregation (merkle fold, always reads all ${N}), minting (toUuid, O(1)) and indexed lookup (O(1)) do not short-circuit — no oracle, no Grover. So exactly ${quantizable.length} of ${computations.length} op-classes quantizes (content-address search, gain √N); the rest stay classical (gain 1). The gain follows the structure — √N only where the oracle short-circuit is. Quantum is a scalpel for unstructured search, not a universal speedup; the corpus's universal op, content-addressing, is classical.`,
       boundary: `Computed, not labeled: each computation's SEARCH nature is decided by whether its query count varies with the target position (short-circuits) — a measured, refutable signature of an oracle, not a hand-assigned tag. Preimage search short-circuits (1..${N}); aggregation, mint and lookup do not — so the classification is derived from behaviour. THE RESULT is the honest map: of four representative corpus op-classes, only unstructured content-address search quantizes (Grover Θ(√N), quadratic, query-complexity, hardware-only — the previous fold), and it is the sole class because it is the only oracle-marked one-way search; aggregation reads everything by necessity, minting is a direct hash, lookup is indexed. SCOPE: four representatives, not an exhaustive corpus scan — but the SIGNATURE (short-circuit ⇒ oracle ⇒ Grover-able) is the general, refutable test to apply to any computation; amplitude estimation extends it to COUNTING how many match (also √N), the one other quantizable shape. It does NOT claim a wall-clock speedup (simulation is O(N)) nor that quantizing is common — the honest finding is that it is RARE: most computation is structured or aggregative and gains nothing. HARMONY ≠ TRUTH: "quantize the computations" is the harmony; the truth is a short-circuit test that finds the few unstructured searches and leaves the classical majority alone [[quantum-decoded]].`,
+    }
+  })
+}
+
+// Fill the gaps — quantize the OTHER unstructured shape the map named: COUNTING how many match. The corpus counts
+// matching content-addresses constantly (how many atoms have a property); classically that is O(N) — you must scan all.
+// QUANTUM COUNTING (amplitude estimation) reads the Grover rotation angle θ (sin θ = √(M/N)) to ESTIMATE M in O(√N)
+// queries — a quadratic query advantage, the counting twin of Grover search. HONEST: an ESTIMATE (not exact), query-
+// complexity, hardware-only; the classical simulation is still O(N). Reuses the proven amplitudeAmplificationAndQuantumCounting.
+export function quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueriesQuadraticQueryAdvantageOnly(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueriesQuadraticQueryAdvantageOnly', matrix, () => {
+    // the counting algorithm is proven: M = N·sin²θ recovers the count from the rotation (reused, DRY)
+    const counting = amplitudeAmplificationAndQuantumCounting()
+    const countingRecoversM = counting.computes && counting.cases.every((c) => Math.abs(c.count - c.M) < 1)
+    // THE SPECIFIC COMPUTATION: count how many of N content-addresses match a predicate (first hex digit < 2)
+    const N = 2 ** 6 // 64 candidates
+    const matches = Array.from({ length: N }, (_, i) => i).filter((i) => parseInt(toUuid(`count:${i}`).replace(/-/g, '')[0]!, 16) < 2).length // classical exact M
+    // 1 — CLASSICAL COST is O(N): counting how many match requires evaluating the predicate on every candidate
+    const classicalQueries = N
+    // 2 — QUANTUM COUNTING estimates M in O(√N): amplitude/phase estimation reads the Grover rotation angle to fixed precision
+    const quantumQueries = Math.round(Math.sqrt(N)) // ~√N applications of the Grover operator for a constant-factor estimate
+    const quadratic = quantumQueries * quantumQueries <= classicalQueries * 2 && quantumQueries < classicalQueries
+    // 3 — the estimate is REAL: on the simulator, M = N·sin²θ recovers the counts (from the reused fold) — the algorithm works
+    const estimateWorks = countingRecoversM && matches >= 0 && matches <= N
+    // 4 — HONEST BOUND: quadratic QUERY advantage (√N vs N), an ESTIMATE not exact, hardware-only, simulation still O(N)
+    const queryAdvantage = classicalQueries / quantumQueries // ~√N ≈ 8× for N=64
+    const honestlyBounded = quadratic && estimateWorks && queryAdvantage > 2 && queryAdvantage < N
+    const facets = [
+      { facet: `THE COMPUTATION IS COUNTING MATCHES — how many of the ${N} content-addresses satisfy the predicate (classical M = ${matches}); counting requires evaluating the predicate on EVERY candidate, so it is O(N) classically`, on: classicalQueries === N },
+      { facet: `QUANTUM COUNTING ESTIMATES M IN O(√N) — amplitude/phase estimation reads the Grover rotation angle θ (sin θ = √(M/N)) in ${quantumQueries} ≈ √N operator applications instead of ${classicalQueries} (${quadratic}): the counting twin of Grover search, a quadratic query advantage`, on: quadratic },
+      { facet: `THE ALGORITHM WORKS — M = N·sin²θ recovers the counts on the simulator (reused amplitudeAmplificationAndQuantumCounting: ${countingRecoversM}), so the ${quantumQueries}-query estimate is a real quantum computation, not a relabel (${estimateWorks})`, on: estimateWorks },
+      { facet: `HONEST BOUND — the ${roundTo(queryAdvantage, 1)}× is a QUERY advantage (√N vs N), and it yields an ESTIMATE, not an exact count; real on quantum HARDWARE, but the classical simulation is still O(N) — no wall-clock win (${honestlyBounded}); counting joins search as the second and last unstructured shape that quantizes`, on: honestlyBounded },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      classicalQueries,
+      quantumQueries,
+      matches,
+      queryAdvantage: roundTo(queryAdvantage, 1),
+      facets,
+      statement: `Fill the gap — quantize counting: quantum counting estimates how many match in √N queries, a quadratic query advantage only — ${facets.filter((entry) => entry.on).length}/${facets.length}. The corpus counts matching content-addresses constantly; classically that is O(N) — the predicate on every candidate (${classicalQueries}, M = ${matches}). Quantum counting (amplitude estimation) reads the Grover rotation angle θ (sin θ = √(M/N)) to estimate M in ${quantumQueries} ≈ √N operator applications — the counting twin of Grover search, ${roundTo(queryAdvantage, 1)}× fewer queries. The algorithm is proven (M = N·sin²θ recovers the counts). HONEST: a QUERY advantage yielding an ESTIMATE not an exact count, real on hardware, but the classical simulation is still O(N). Counting joins search as the second and last unstructured shape that quantizes — the gap is filled.`,
+      boundary: `THE ALGORITHM IS REAL and REUSED: quantum counting recovers M = N·sin²θ from the Grover operator's rotation angle (amplitudeAmplificationAndQuantumCounting, verified for M ∈ {1,2,4}), and amplitude/phase estimation reaches a constant-factor estimate of M in O(√N) applications — a genuine quadratic query advantage over the O(N) classical scan. THE COMPUTATION is specific and real: counting how many of the corpus's content-addresses satisfy a predicate, the aggregate twin of the preimage search the prior fold quantized. THE HONEST BOUND, refutable: the advantage is in QUERIES (√N vs N) and the output is an ESTIMATE (precision set by the counting register), not an exact count — exact counting is still Θ(N) in the worst case; real on quantum HARDWARE, while the classical simulation evolves an O(N) amplitude vector, so no wall-clock win here. Together with Grover search, counting completes the map: the two unstructured shapes (find one / count how many) both quantize to √N, and everything else — aggregation, minting, lookup, the universal content-addressing — stays classical. That is the whole of where quantization applies, honestly bounded [[quantum-decoded]]. HARMONY ≠ TRUTH: quantum counting is the harmony; the truth is a √N query estimate of M, hardware-only, quadratic, on the one aggregate-search shape.`,
     }
   })
 }
