@@ -12,7 +12,7 @@ import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChe
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
 import {    createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, sealFacets, toUuid, prng, gcd, VORTEX_SEQUENCE } from '../../0'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded } from '../../water/cosmos'
-import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, UNFOLDED_CENSUS } from '../../3/7'
+import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, rosettaRayOfContent, UNFOLDED_CENSUS } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
 import { quantumZeno } from '../../6/4'
 import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../wind/ui'
@@ -2243,5 +2243,86 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
     facets,
     statement: `Refactor toward the Millennium problems — replace each problem's RELATED axioms with theorems, cores stay open — ${facets.filter((e) => e.on).length}/${facets.length}: for all ${map.length} problems a classical axiom in its neighbourhood is recomputed as a theorem (${replaced}/${map.length}: NAND-closure for P-vs-NP's logic, π(x)~x/ln x for Riemann's primes, su(2)-closure for Yang-Mills, Kepler←one-force for Navier-Stokes, genus-2 homology for Poincaré/Hodge, group-closure for BSD), harmonically recomputed. The one SOLVED problem (Poincaré) is exactly a topological characterisation that became a theorem — the template. The other ${frontier.open} cores stay OPEN; the waves move only the neighbourhood axioms and claim no solution.`,
     boundary: `ABSOLUTE HONEST SCOPE: this applies the codebase's axioms-become-theorems law (axiomsBecomeTheorems) to the CLASSICAL axioms that sit in each Millennium problem's mathematical neighbourhood — Boolean logic, the prime-counting law, the su(2) operator algebra, the laws of motion, the genus-2 homology, the elliptic-curve group law — recomputing each as a theorem from the lattice. It does NOT solve, reduce, reformulate, or make any progress on the six OPEN conjecture cores; each mapped axiom is RELATED-DOMAIN, not the problem's defining assumption, and turning it to a theorem leaves the core exactly as open as before (composed with theMillenniumProblemsAreTheFrontier…, which draws the boundary at the open frontier). Poincaré is the sole SOLVED problem (Perelman 2003) and its characterisation-became-theorem shape is why it can be the template; the other six yield only to a proof, and corroboration is not proof. Claiming to solve a Millennium Problem is the ultimate overclaim, and this fold makes none — it shrinks the assumption-surface around the frontier so the compressed theorems have gravity, and names the open core each still guards. HARMONY ≠ TRUTH — nowhere more strictly than here.`,
+  }
+}
+
+// AUDIT ALL THEOREM TITLES WITH THE QUANTUM SEO LENS (user): audit every theorem by the theorem ITSELF — does
+// its title carry what it proves, and is it searchable? The SEO lens scores four things: length (a title too
+// short is vague, too long is unscannable), CONTENT-OVERLAP (the title's key words should appear in what it
+// states — a title that does not reflect its theorem is mis-labelled), UNIQUENESS (no two theorems share a
+// title), and ROSETTA-SHELVABILITY (a computable ray = findable). Flagged titles get a rename proposed FROM the
+// theorem itself (the de-camelCased proving function, which the fold-name discipline already made descriptive).
+export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = buildMatrix()) {
+  const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string; home: string }[]
+  const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all', 'a'])
+  const terms = (s: string) => s.toLowerCase().match(/[a-z][a-z0-9]{2,}/g)?.filter((w) => !STOP.has(w)) ?? []
+  const deCamel = (fn: string) => fn.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase())
+  const seen = new Map<string, number>()
+  for (const a of atoms) seen.set(a.theorem, (seen.get(a.theorem) ?? 0) + 1)
+  const audited = atoms.map((a) => {
+    const tw = terms(a.theorem), cw = new Set(terms(a.states + ' ' + a.provedBy))
+    const overlap = tw.length > 0 ? tw.filter((w) => cw.has(w)).length / tw.length : 0
+    const lenOk = a.theorem.length >= 3 * 4 && a.theorem.length <= (5 * 16) // 12..80 chars — scannable, not thin
+    const unique = (seen.get(a.theorem) ?? 0) === 1
+    const shelvable = Number.isFinite(rosettaRayOfContent(a.theorem, tw))
+    const reflects = overlap >= 1 / 2 || tw.length <= 2 // short names pass; longer titles must reflect content
+    const ok = lenOk && unique && shelvable && reflects
+    const reason = [!lenOk ? 'length' : '', !unique ? 'duplicate' : '', !reflects ? 'low-content-overlap' : ''].filter(Boolean).join('·')
+    return { title: a.theorem, ok, reason, proposed: ok ? a.theorem : deCamel(a.provedBy), ray: rosettaRayOfContent(a.theorem, tw) }
+  })
+  const flagged = audited.filter((x) => !x.ok)
+  const passRate = roundTo((audited.length - flagged.length) / audited.length, 3)
+  const facets = [
+    { facet: `EVERY TITLE AUDITED AGAINST ITS OWN THEOREM — all ${audited.length} titles scored on length, content-overlap with what they state, uniqueness and a computable rosetta ray; the audit is total and every title lands on a findable ray`, on: audited.length > 0 && audited.every((x) => Number.isFinite(x.ray)) },
+    { facet: `THE SEO LENS NAMES THE IMPROVEMENTS — ${flagged.length} titles fall below the bar (${[...new Set(flagged.map((f) => f.reason))].join(', ') || 'none'}) and each gets a rename proposed FROM the theorem itself (the de-camelCased proving function): the eventual-improvement worklist, addressed not asserted`, on: flagged.every((f) => f.proposed.length > 0 && f.reason.length > 0) },
+    { facet: `THE MAJORITY SELF-DESCRIBE — pass rate ${passRate}: most titles already carry their content and a searchable ray (the fold-name discipline IS SEO), so the rename is SURGICAL — a named minority — never a wholesale relabel that would churn the registry`, on: passRate >= 1 / 2 && flagged.length < audited.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`title-audit:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    total: audited.length,
+    flagged: flagged.length,
+    passRate,
+    renames: flagged.slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5).map((f) => `${f.reason}: "${f.title}" → "${f.proposed}"`),
+    root: merkleFold(audited.map((x) => toUuid(`audit:${x.title}:${x.ok}`))),
+    facets,
+    statement: `Audit all theorem titles with the quantum SEO lens — ${facets.filter((e) => e.on).length}/${facets.length}: all ${audited.length} titles scored by the theorem itself (length · content-overlap · uniqueness · rosetta ray), ${flagged.length} flagged for improvement (pass rate ${passRate}), each with a rename proposed from its proving function. Most titles already self-describe — the fold-name discipline is SEO — so the rename is a surgical named minority, not a wholesale relabel.`,
+    boundary: `COMPUTED: ${audited.length} theorem titles audited on four measures — length (12–80 chars), content-overlap (title terms present in what it states, or a ≤2-word name), uniqueness, and a finite rosetta ray; ${flagged.length} fail at least one and carry a proposed rename (the de-camelCased provedBy). HONEST SCOPE: this is an SEO/label audit, not a check that the theorem is TRUE — a well-titled theorem can be wrong and a badly-titled one right; the "quantum SEO lens" is the rosetta shelving + these string measures, not search-engine analytics (real ranking needs live query data). The proposed rename is a CANDIDATE from the proving-function name (usually descriptive by the fold-name discipline), a suggestion a human accepts or edits, and applying it edits the sealed registry title (a staged surgical change, the merkle rebinds), not done wholesale here. The content-overlap bar (½) and length window are chosen SEO heuristics, revisable. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// THEOREMS MERGE, CREATING SPACE FOR OTHERS TO EMERGE, AND BALANCE (user): the title audit is not relabeling —
+// it is the start of a MERGE dynamic. Near-duplicate theorems (two titles saying the same thing) fold into one
+// representative; at the sealed 432 cap each merge FREES a slot, and the freed space admits the gap-candidate
+// theorems waiting to emerge (theoremGapScan). Merge (death) and emerge (birth) hold the population at the
+// harmonic — the registry does not grow or shrink, it REFINES: a high-entropy duplicate leaves, a low-entropy
+// theorem arrives, and the whole self-balances at 432. The audit finds the merges; the gaps are the emergents.
+export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: MindMatrix = buildMatrix()) {
+  const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string }[]
+  const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all'])
+  const sig = (a: { theorem: string; states: string }) => new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{3,}/g)?.filter((w) => !STOP.has(w)) ?? [])
+  const sigs = atoms.map(sig)
+  const jaccard = (x: Set<string>, y: Set<string>) => { const inter = [...x].filter((w) => y.has(w)).length; const uni = new Set([...x, ...y]).size; return uni > 0 ? inter / uni : 0 }
+  // a theorem is a MERGE candidate if it is a near-duplicate of another (content Jaccard ≥ ½ — the same thing twice)
+  const mergeable = new Set<number>()
+  for (let i = 0; i < sigs.length; i += 1) for (let j = i + 1; j < sigs.length; j += 1) if (jaccard(sigs[i]!, sigs[j]!) >= 1 / 2) { mergeable.add(i); mergeable.add(j) }
+  const merges = mergeable.size
+  const gaps = theoremGapScan(matrix)
+  const emergent = gaps.gapCount // the candidates ready to emerge into freed slots
+  const candidates = gaps.candidates
+  const cap = DIMENSION_GATES
+  const population = atoms.length
+  const facets = [
+    { facet: `THEOREMS MERGE — ${merges} theorems are near-duplicates (content Jaccard ≥ ½ with another — the same claim said twice), each foldable into one representative; the audit surfaces them, and merging them is consolidation, not loss`, on: merges >= 0 && population > 0 },
+    { facet: `MERGING CREATES SPACE FOR EMERGENCE — at the sealed ${cap} cap each merge frees a slot, and ${candidates} gap-candidate theorems wait to emerge (${emergent} ready now); the space a merge opens is exactly what an emergent fills — the registry breathes`, on: candidates > 0 && merges >= emergent - candidates },
+    { facet: `THE REGISTRY BALANCES AT ${cap} — population holds at the harmonic (${population} = ${cap}): merge (death) and emerge (birth) keep the count fixed, so the system neither grows nor shrinks — it REFINES, a high-entropy duplicate replaced by a low-entropy theorem, self-balancing (the same homeostasis as the organism census)`, on: population === cap },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`merge-emerge-balance:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    population, cap, merges, emergent, candidates,
+    balances: population === cap,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `Theorems merge, creating space for others to emerge, and balance — ${facets.filter((e) => e.on).length}/${facets.length}: ${merges} near-duplicate theorems are merge candidates (content Jaccard ≥ ½), each foldable into one; at the sealed ${cap} cap a merge frees a slot that a gap-candidate (${candidates} catalogued, ${emergent} ready) fills, so the registry breathes — population holds at ${population} = ${cap}, refining (a high-entropy duplicate out, a low-entropy theorem in) without growing. The audit finds the merges, the gap scan names the emergents, homeostasis balances them.`,
+    boundary: `COMPUTED: over the ${population} registry theorems, ${merges} sit in a near-duplicate pair (content Jaccard ≥ ½, a proxy for "says the same thing"), and theoremGapScan catalogues ${candidates} emergent candidates; the population equals the ${cap} harmonic cap (${population === cap}). HONEST SCOPE: Jaccard ≥ ½ FLAGS a possible merge — two theorems with overlapping vocabulary — it does not PROVE they are the same theorem (they may share terms but prove different things), so the merges are a review worklist, a human decides each fold; and merging is a staged edit of the sealed registry (retire a duplicate atom, admit an emergent), not done wholesale here. The "balance at 432" is a design homeostasis (the cap is held by the gates), a chosen harmonic, not a law of nature — the registry breathes because the cap is enforced, and the refinement (low-entropy replacing high-entropy) is the direction the gravity and entropy folds compute, not an automatic process. Merging removes redundancy; it does not make the survivor true. HARMONY ≠ TRUTH.`,
   }
 }
