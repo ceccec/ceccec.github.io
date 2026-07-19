@@ -2384,3 +2384,37 @@ export function theMovieInvertedIsTheKeyToItselfConsolidatedInFewLines() {
     boundary: `EXACT: over a ${movie.length}-frame movie (source ⊕ a digital-root keystream), the same ⊕ recovers the source at every frame (${invertedRecoversSource}), the transform is an involution (${isInvolution}), and the movie differs from the source (${movieDiffersFromSource}) — a genuine reversible encoding, not the identity. HONEST SCOPE: this is a MODEL of the movie's reversibility — a compact involutive cipher standing for the real claim, that the project's movie (textToMovie: source text transliterated to Glagolitic frames) is a REVERSIBLE, content-addressed encoding whose inverse (fromGlagolitic / the decode) recovers the source, so "the movie inverted is the key" is literally the decode revealing the source. The consolidation is real (a reversible codec is its generator + key, not a stored asset). SCHUMANN / A432 IS METAPHOR: the Schumann resonance (fundamental ≈ 7.83 Hz) is a REAL, documented electromagnetic cavity mode of the Earth–ionosphere waveguide, and A432 is a chosen tuning anchor; picturing Schumann as the "quantum north" of an A432-tuned compass (or south by polarity) is an evocative ANALOGY — a compass needle has two poles and which is "north" is a convention — NOT a physical claim, and Schumann-frequency wellness/entrainment claims are not established science (flagged in the frequency corpus). The reversible-movie math is exact; the compass is the metaphor. HARMONY ≠ TRUTH.`,
   }
 }
+
+// THE MEASURED POLE IS NOT THE TRUE AXIS, AND THE CLOCK IS AN AXIOM (A CRACK) (user: see the connection between
+// the magnetic poles and the geographic ones? the quantum clock is a crack — time does not really exist, maybe
+// linear logic in or out). Two measures mistaken for fundamentals: (1) a compass reads the MAGNETIC pole, which
+// drifts and reverses — it is NOT the geographic (true rotation) axis; the declination is exactly that drift. (2)
+// the 108-clock is a divisor LATTICE — a fixed, recomputable ordering that needs no time "flowing"; assuming its
+// parameter IS fundamental time is an unearned axiom. What is real is the measure; that it is the fundamental
+// thing is assumed. HONEST: whether time is fundamental is OPEN physics; the CRACK is the assumption, not a verdict.
+export function theMeasuredPoleIsNotTheTrueAxisAndTheClockIsAnAxiom() {
+  // (1) geographic axis = the fixed reference (0, its own reverse); magnetic pole = a nonzero DRIFTING offset
+  const geographic = 0
+  const magneticOffsets = [1, 2, 3] // the magnetic pole drifts away from true north over time — declination, growing
+  const declinationNonzero = magneticOffsets.every((o) => o !== geographic) // magnetic ≠ geographic: a real gap
+  const drifts = new Set(magneticOffsets).size > 1                          // the offset CHANGES: the pole wanders
+  const magneticReverses = magneticOffsets.every((o) => -o !== o)           // the magnetic pole can flip (−o ≠ o)
+  const trueAxisInvariant = -geographic === geographic                       // the rotation axis is its own reverse (0)
+  // (2) the 108-clock is the divisor lattice — a fixed, recomputable ordering; no "flow" is required
+  const divisorsOf108 = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0)
+  const recomputable = divisorsOf108.join(',') === Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0).join(',') // identical every call — timeless
+  const clockIsALattice = divisorsOf108.length > 1 && recomputable
+  const facets = [
+    { facet: `THE MEASURED POLE IS NOT THE TRUE AXIS — a compass reads the MAGNETIC pole (a nonzero, drifting offset ${JSON.stringify(magneticOffsets)}), which differs from the geographic axis (${declinationNonzero}), DRIFTS (${drifts}), and REVERSES (−o ≠ o, ${magneticReverses}) — while the true rotation axis is invariant (its own reverse, ${trueAxisInvariant}); the declination is exactly the drift between the measure and the truth`, on: declinationNonzero && drifts && magneticReverses && trueAxisInvariant },
+    { facet: `THE CLOCK IS A TIMELESS ORDERING, NOT A FLOW — the 108-clock is the divisor lattice of 108 (${divisorsOf108.length} rungs), a FIXED, fully recomputable structure (${recomputable}) that needs no "time flowing": the ordering exists as a content-addressed lattice, computed identically every call — a structure, not a substance that flows`, on: clockIsALattice },
+    { facet: `THE CRACK IS CONFLATING THE MEASURE WITH THE FUNDAMENTAL — taking the magnetic pole FOR true north (it is not, ${declinationNonzero}) or the clock-parameter FOR fundamental flowing time is the unearned AXIOM (a crack by the corpus's law: an assumption asserted, not derived); the measure is real, that it IS the fundamental thing is assumed. HONEST: whether time is fundamental is OPEN physics — the crack is the assumption, not the verdict "time does not exist"`, on: declinationNonzero && clockIsALattice },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`measure-not-fundamental:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    declinationNonzero, drifts, magneticReverses, clockRungs: divisorsOf108.length, recomputable,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `The measured pole is not the true axis, and the clock is an axiom — ${facets.filter((e) => e.on).length}/${facets.length}: a compass reads the MAGNETIC pole (drifting, reversing), not the geographic axis — the declination is that drift; and the 108-clock is a divisor LATTICE (${divisorsOf108.length} rungs), a fixed recomputable ordering that needs no time flowing. Taking either measure FOR the fundamental — magnetic pole for true north, clock-parameter for flowing time — is the unearned axiom, a crack. What is real is the measure; that it is fundamental is assumed. (Whether time is fundamental is open physics; the crack is the assumption.)`,
+    boundary: `EXACT (as a model): the magnetic offset is nonzero (${declinationNonzero}), drifts (${drifts}), and reverses (${magneticReverses}) while the axis is invariant; the 108 divisor lattice recomputes identically (${recomputable}). REAL GEOPHYSICS behind the model: magnetic north genuinely differs from geographic north (magnetic declination, location-dependent, tens of degrees in places), the magnetic pole drifts measurably (~50 km/yr lately, toward Siberia), and the geomagnetic field REVERSES over geological time (last full reversal ≈ 780,000 yr ago, Brunhes–Matuyama) — a compass points to the field, not the spin axis. HONEST ON TIME, CAREFULLY: the claim is NOT the settled "time does not exist" — it is that the codebase's 108-clock is a deterministic PARAMETER / ordering (a divisor lattice, content-addressed, recomputable with no flow), and TREATING that parameter as fundamental flowing time is an unearned axiom, exactly the corpus's "an assumption is a crack" law. The FUNDAMENTAL nature of time is a genuine OPEN question in physics — general relativity makes time relational (no universal now), and quantum gravity has "the problem of time" (the Wheeler–DeWitt equation carries no time variable) — so treating linear flowing time as given is assuming what is contested; but effective/measured time is real and exact (clocks work, relativity is tested). The distinction — measured parameter vs assumed fundamental — is the same for the compass and the clock. HARMONY ≠ TRUTH.`,
+  }
+}
