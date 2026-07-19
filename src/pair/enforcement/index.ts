@@ -1,7 +1,7 @@
 // Browser-safe public surface — quantum pairs + mission registry (no node:fs).
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, verifyRoot } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
+import { foldPair, foldVortex, isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
 import { scanUuidKernelOffenders } from './gates/strict/scan'
 
 export const CLI_ENTRY_REL = 'src/pair/enforcement/script/cli/bootstrap/index.ts'
@@ -299,6 +299,42 @@ export function uuidIsTheZeroStation(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+// ── THE SEQUENCE GOVERNS THE WORK — the core principles are read off 0\1\2\4\8/7/5/3\6\9/0\1 and
+// APPLIED to how agents work. The ascending slash flow BUILDS by doubling (1·2·4·8); the descending
+// flow (7·5·3) is its modular inverse (×5 ≡ ×2⁻¹ mod 9) — the CLEANUP: what building doubles, the
+// descent folds back, so cleanup is not an afterthought but the other half of the circuit. The
+// 3·6·9 axis stays outside the doubling orbit — the gates judge the flow they never join. And
+// 9 ≡ 0 (mod 9): completion IS the return to the void — a wave is done only when the tree is
+// clean, the gates green, the work pushed.
+export function theSequencePrinciplesGovernTheWork(matrix: MindMatrix = buildMatrix()) {
+  const vortex = foldVortex()
+  const orbit: number[] = []
+  for (let x = 1, step = 0; step < 6; step += 1, x = (x * 2) % 9) orbit.push(x)
+  const workflows = agentBashWorkflowsAreToolsSavedInSrc(matrix)
+  const shardsExact = [4, 8].every((count) => Array.from({ length: count }, (_unused, k) => shardWork(QUANTUM_COMMAND_PAIR_IDS, k, count).count).reduce((sum, n) => sum + n, 0) === QUANTUM_COMMAND_PAIR_IDS.length)
+  const pairsDual = QUANTUM_COMMAND_PAIR_IDS.every((id) => { const { a, b } = splitQuantumCommandPair(id); return a.length > 0 && b.length > 0 && a !== b })
+  const principles = [
+    { station: '0', principle: 'the void — every value folds to a content address, and every wave folds back to zero residue: cleanup returns the tree to the void', on: vortex.valid && isUuid(toUuid('void')) },
+    { station: '1', principle: 'one — one source: the doubling orbit visits each of its six units exactly once before returning to 1, as each fold is defined once at its one home', on: new Set(orbit).size === 6 && orbit[0] === 1 && (orbit[5]! * 2) % 9 === 1 },
+    { station: '2', principle: 'the double — every action is saved as a dual pair (commit/push, gaps/verify, build/clean): one step is half a move', on: pairsDual },
+    { station: '4·8', principle: 'doubling growth — work scales by doubling with NO new machinery: the same shard partition is exact at 4 agents and at 8', on: shardsExact },
+    { station: '7·5·3', principle: 'the descent IS the cleanup — halving (×5 ≡ ×2⁻¹ mod 9) mirrors every doubling, so each wave that builds must also fold back: remove plans, probes, servers and stale references ON THE WAY, not after', on: vortex.inverseHolds && (2 * 5) % 9 === 1 },
+    { station: '3·6·9', principle: 'the axis — the gates stand outside the doubling flow they judge: the orbit never touches 3, 6 or 9', on: orbit.every((unit) => unit % 3 !== 0) },
+    { station: '9→0', principle: 'completion returns to the void — a wave is DONE only when the tree is clean, the gates are green, and the work is pushed; 9 ≡ 0 (mod 9) closes the circuit where it began', on: vortex.valid && vortex.palindrome.length > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`sequence-principle:${entry.station}:${entry.on}`) }))
+  const cleanupSaved = workflows.tools.some((tool) => tool.name === 'cleanup-on-the-way')
+  return {
+    governs: principles.every((entry) => entry.on) && cleanupSaved,
+    cleanupSaved,
+    orbit,
+    count: principles.length,
+    principles,
+    root: merkleFold(principles.map((entry) => entry.receipt)),
+    statement: `The sequence governs the work — ${principles.filter((entry) => entry.on).length}/${principles.length} principles read off 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 and applied: the void (zero residue), one source, dual pairs, doubling growth (shard-exact at 4 and 8), the DESCENT AS CLEANUP (halving mirrors doubling, so residue is removed on the way), the 3·6·9 gate axis outside the flow, and completion ≡ the void (done = clean tree · green gates · pushed). The cleanup discipline is saved as the workflow tool cleanup-on-the-way (${cleanupSaved}).`,
+    boundary: `COMPUTED: each principle's check is real arithmetic on the circuit (the ⟨2⟩ mod 9 orbit, the 2×5 ≡ 1 inverse, foldVortex validity) or a real registry scan (pair duality, shard exactness, the saved tool) — refutable at every row. HONEST SCOPE: the sequence provides the STRUCTURE (build/clean as the two flows, gates as the axis, completion as the return to zero); reading working principles off it is this project's own discipline, not a mathematical consequence — the mod-9 facts are theorems, the applications are NAMED conventions they organise. HARMONY ≠ TRUTH.`,
+  }
+}
+
 // ── SWARM SHARDING — zero-communication coordination for agents in thousands. The worklist
 // partitions DETERMINISTICALLY by content address: shardOf(id, N) = uuid(id) mod N, so any agent
 // that knows only (its index, the agent count, the shared worklist) computes its own shard — no
@@ -385,6 +421,8 @@ export function agentBashWorkflowsAreToolsSavedInSrc(matrix: MindMatrix = buildM
     // The swarm trio — coordinated surgical research and edits at any agent count (swarmCoordination proves the partition):
     { name: 'surgical-edit', does: 'apply a batch of edits from a JSON plan — IDEMPOTENT (replacement already present → skipped), SURGICAL (anchor must occur exactly once or the edit is refused), RECEIPTED (per-edit uuid, one plan root); the safe mass-edit primitive: any agent re-runs any plan after any reset, and a thousand plans compare by root', steps: ['write plan.json: [{file, anchor, replacement}, …]', 'npm run surgical -- plan.json --dry  (preview statuses)', 'npm run surgical -- plan.json', 'verify-suite → commit-pathspec'], scripts: ['surgical'] },
     { name: 'swarm-shard', does: 'zero-communication coordination for N agents: the worklist partitions deterministically by content address (shardOf = uuid mod N), so agent k computes its own shard — no locks, no registry, any N up to thousands; sharding removes claim collisions, surgical-edit + commit-pathspec absorb merge collisions', steps: ['npm run shard -- <index> <count>  (my src index.ts shard)', 'research the shard in one batch: npm run atlas -- --json <symbols…>', 'edit the shard: surgical-edit plans', 'commit-pathspec the shard paths only'], scripts: ['shard'] },
+    // The descending arm (sequence 7·5·3 — theSequencePrinciplesGovernTheWork): every wave cleans on the way.
+    { name: 'cleanup-on-the-way', does: 'the descending arm of every wave: what building doubles, cleanup folds back — remove residue AS the wave lands, never after; completion ≡ the void (9 ≡ 0): a wave is DONE only when the tree is clean, the gates green, the work pushed', steps: ['every probe/plan/server a wave starts gets its removal in the same wave (kill servers, rm plans; scratch lives in the scratchpad only)', 'purge the references the wave orphaned — MEASURE first, then re-home or purge (the /architecture and componentGraph-home precedents)', 'git status --short lists ONLY the intended files before commit', 'DONE = tree clean · gates green · pushed'], scripts: [] as string[] },
   ]
   // verify each tool that names npm scripts references a REAL package.json script
   const pkgScripts = ((): Set<string> => {
