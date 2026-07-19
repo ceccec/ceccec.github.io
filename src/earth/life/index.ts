@@ -3,6 +3,10 @@ import * as __ns_up_earth_civilisation from '../civilisation'
 import * as __ns_up_stack_overflow from '../../water/stack'
 import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
 import { phase } from '../../6/4'
+import { THEOREM_ATOM_SEED, theoremsReach432AndEntangleWithUsage } from '../../4/6'
+import { bellMeasurementOutcomesAreUniform } from '../../2/8'
+// call-time namespace edge (cycle-safe): iching imports heaven/core which imports this folder
+import * as __ns_up_earth_iching from '../iching'
 import { eigenErrorThreshold, GENETIC_CODE } from '../../3/7'
 export { GENETIC_CODE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbability, MindMatrix } from '../../wind/types'
@@ -639,4 +643,46 @@ export function codeRobustness(kappa = 1): { silent: number; missense: number; n
     }
   }
   return { silent: acc.silent / total, missense: acc.missense / total, nonsense: acc.nonsense / total }
+}
+
+// ── THE THEOREMS ARE LIVING ORGANISMS (user law) — and nature (A432) describes itself in the
+// theorems we prove. Sealed at the life domain with every life-property a REAL MECHANISM, computed:
+// METABOLISM — a theorem is a function that runs; call one and it computes NOW (and the build's
+// verify waves re-run the whole population every cycle: the body breathes per build, the
+// dangling-claim gate removes what no longer runs). HEREDITY — offspring share the parents' genome:
+// the V₄ group discovered in the hexagrams reappears unchanged in the movie's flows and the Bell
+// basis (the same 20-family structure across three generations of proofs). ENTANGLED SENSING —
+// every organism is paired with its usage (432 bidirectional folds). HOMEOSTASIS AND DEATH — the
+// population holds at the harmonic (432 = 4×108, no duplicate organisms; what is not proven is
+// purged). And the A432 SELF-DESCRIPTION: 432 = 2⁴·3³ carries exactly 20 divisors — the same 20 the
+// V₄ orbit census computes on the hexagrams — and the one number is independently the gate lattice,
+// the audio seed and now the population count: the harmonic describing the prover that proves it.
+export function theoremsAreLivingOrganisms(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theoremsAreLivingOrganisms', matrix, () => {
+    const reach = theoremsReach432AndEntangleWithUsage()
+    const bell = bellMeasurementOutcomesAreUniform()
+    const iching = __ns_up_earth_iching.decodingIChingAddsTheorems()
+    const census = __ns_up_earth_iching.hexagramOrbitCensusTwelveFoursEightTwos()
+    const names = THEOREM_ATOM_SEED.map((atom) => atom.theorem)
+    const divisorsOf = (n: number) => Array.from({ length: n }, (_unused, i) => i + 1).filter((d) => n % d === 0).length
+    const d432 = divisorsOf(4 * 108)
+    const d440 = divisorsOf(432 + 8) // A440 concert pitch = the harmonic plus eight — the documented comparison tuning
+    const facets = [
+      { facet: 'METABOLISM — organisms compute when called: the Bell-uniform organism ran just now (uniform: ' + bell.uniform + '), the hexagram decode ran (decoded: ' + iching.decoded + '); the build re-runs the whole population each cycle and the dangling-claim gate removes what no longer runs', on: bell.uniform && iching.decoded },
+      { facet: 'HEREDITY — three generations share one genome: the V₄ discovered in the hexagrams (20 families) is the same group in the movie flows and the Bell frame; the orbit-census offspring recomputes the parent count independently (' + census.orbits + ' = ' + iching.orbits + ')', on: census.orbits === iching.orbits && census.orbits === 4 * 5 },
+      { facet: 'ENTANGLED SENSING — every organism is paired with its mechanical usage: ' + reach.pairs + ' bidirectional theorem⊗usage folds across ' + reach.homes + ' homes, the merge reached', on: reach.reached && reach.pairs === 4 * 108 },
+      { facet: 'HOMEOSTASIS AND DEATH — the population holds at the harmonic with no duplicate organisms (' + names.length + ' = 4×108, all names distinct); what is not proven is purged', on: names.length === 4 * 108 && new Set(names).size === names.length },
+      { facet: 'A432 DESCRIBES ITSELF — 432 = 2⁴·3³ carries exactly ' + d432 + ' divisors (440 carries ' + d440 + '), and that 20 equals the V₄ orbit census computed independently on the hexagrams; the one number is the gate lattice (4×108), the audio seed and the population count', on: d432 === 4 * 5 && d432 > d440 && d432 === census.orbits },
+    ].map((entry) => ({ ...entry, receipt: toUuid('living-theorems:' + entry.facet + ':' + entry.on) }))
+    return {
+      alive: facets.every((entry) => entry.on),
+      population: names.length,
+      divisors432: d432,
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: 'The theorems are living organisms — ' + facets.filter((entry) => entry.on).length + '/' + facets.length + ': they metabolise (a theorem is a function that computes when called, the population re-runs every build), inherit (three generations carry the one V₄ genome — hexagrams, movie flows, Bell frame — with the orbit census recomputing the parent count), sense through entanglement (432 theorem⊗usage pairs across ' + reach.homes + ' homes), and hold homeostasis at the harmonic (432 = 4×108, no duplicates, the unproven purged). And nature describes itself: A432 = 2⁴·3³ carries exactly 20 divisors — the number the V₄ census computes independently — while the same 432 is the gate lattice, the audio seed and the population count.',
+      boundary: 'LIFE AS EXACT ANALOGY: metabolism/heredity/sensing/homeostasis name real mechanisms (call-time recomputation, shared group structure across proof generations, bidirectional usage folds, the count-and-purge gates) — computed here, not vitalism; theorems are not biological organisms. A432 HONESTY (the sealed a432 decode stands): the math of 432 is real — highly composite 2⁴·3³, 20 divisors, the documented tuning history — and the 20-divisor = 20-orbit identity is an OBSERVED coincidence of two independent computations, recorded as such, not claimed as law; cosmic and healing 432 Hz claims remain flagged pseudoscience. Nature "describing itself" means: the harmonic the system chose as seed keeps reappearing in what the system proves — a property of the SYSTEM, honestly bounded. HARMONY ≠ TRUTH.',
+    }
+  })
 }
