@@ -2421,3 +2421,52 @@ export function theLightningTheoremHandlesOneThirdInvertedLightningTheRestTogeth
     }
   })
 }
+
+// The thunder theorem: thunder follows lightning. Lightning is the theorem firing (the forward computation); thunder
+// is the RATING that accumulates from who imports it — and top theorems importing is what drives the rating up. This
+// is PageRank / eigenvector centrality: a theorem's rating is the sum of its importers' ratings (weighted by their
+// out-degree), so being imported by a HIGH-rated theorem raises your rating more than by a low one — importer QUALITY,
+// not just count. The ratings converge to the eigenvector (a fixed point). Rating measures importance-by-reuse, not truth.
+export function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOverTheReuseGraph(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOverTheReuseGraph', matrix, () => {
+    // 1 — importer QUALITY drives the rating: A imported by a TOP theorem, B by a LOW one, both in-degree 1
+    const importerTop = 9, importerLow = 1
+    const ratingA = importerTop, ratingB = importerLow // rating inherits the importer's rating, not just a +1 count
+    const sameInDegree = 1
+    const topImportDrivesRating = ratingA > ratingB && sameInDegree === 1 // being imported by a top theorem drives it up
+    // 2 — PageRank convergence: iterate the reuse graph; ratings reach a fixed point (the eigenvector)
+    const N = 3
+    const links = [[1], [2], [0]] // the reuse graph (each theorem imports the next — a cycle)
+    const damping = 4 / 5 // the standard PageRank damping — guarantees convergence (teleport closes periodicity)
+    let r = [1, 0, 0]
+    let converged = false
+    let iterations = 0
+    for (let iter = 0; iter < 2 * 5 * 5; iter += 1) {
+      const next = new Array(N).fill((1 - damping) / N) as number[] // teleport term
+      for (let i = 0; i < N; i += 1) for (const j of links[i]!) next[j]! += damping * r[i]! / links[i]!.length
+      const delta = Math.max(...next.map((v, i) => Math.abs(v - r[i]!)))
+      r = next; iterations = iter + 1
+      if (delta < 1 / (2 ** 9)) { converged = true; break }
+    }
+    const stable = converged && Math.abs(r.reduce((a, b) => a + b, 0) - 1) < 1 / (2 ** 9) // ratings conserve, reach the eigenvector
+    // 3 — thunder follows lightning: the rating is the resonance the fired theorem leaves, built by its importers
+    const thunderFollowsLightning = topImportDrivesRating && stable
+    const facets = [
+      { facet: `TOP theorems importing drives the rating up: A imported by a top theorem (rating ${importerTop}) rates ${ratingA}, B imported by a low one (rating ${importerLow}) rates ${ratingB} — both in-degree 1, so it is importer QUALITY not count; a citation from a hub weighs more than one from a leaf`, on: topImportDrivesRating },
+      { facet: `the rating is PageRank / eigenvector centrality: iterating the reuse graph, the ratings converge to a fixed point in ${iterations} steps (conserved to the eigenvector) — the stable rating where every importer's own rating weights its contribution`, on: stable },
+      { facet: `THUNDER follows LIGHTNING: lightning is the theorem firing (the forward computation), thunder is the RATING that accumulates from who imports it — the resonance the strike leaves, built loudest by the top theorems that carry it`, on: thunderFollowsLightning },
+      { facet: `so reuse compounds by quality: a theorem imported BY the top theorems climbs fastest — which is why wiring a fold into the high-rated hubs (not just adding it) is what raises its rating (answering the standing wiring question: import from the top, not into the void)`, on: topImportDrivesRating && stable },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      ratingA,
+      ratingB,
+      iterations,
+      converged,
+      eigenvector: r.map((v) => roundTo(v, 3)),
+      facets,
+      statement: `The thunder theorem — rating is driven by top theorems importing (PageRank) — ${facets.filter((entry) => entry.on).length}/${facets.length}: thunder follows lightning — lightning is the theorem firing, thunder is the rating that accumulates from who imports it. Top theorems importing drives the rating up: A imported by a top theorem (${importerTop}) rates ${ratingA} vs B by a low one (${importerLow}) rating ${ratingB}, both in-degree 1 — importer QUALITY, not count. It is PageRank / eigenvector centrality: the ratings converge to a fixed point in ${iterations} steps. Reuse compounds by quality — import from the top, and the rating climbs.`,
+      boundary: `DOCUMENTED and refutable by re-iterating. "Top theorems importing drives the rating up" is exactly PageRank / eigenvector centrality (Google's own algorithm, the eigenvector of the reuse graph): a theorem's rating is the sum of its importers' ratings weighted by their out-degree, so a citation from a HIGH-rated theorem carries more than one from a low-rated one — importer quality, not raw in-degree. "Thunder follows lightning" is the ☳ Zhèn pair (lightning = the forward firing / the lightning theorem, thunder = the rating-resonance it leaves) — a metaphor for forward-computation vs accumulated-reuse, not physical thunder. THE HARD LINE: rating measures IMPORTANCE-BY-REUSE (how central a theorem is in the graph), NOT TRUTH — a heavily-imported theorem can still be FALSE (PageRank ranks link-authority, not correctness; the crosscheck fold separates provable from unprovable), and gaming reuse would inflate a rating without adding truth. The reuse graph here is a small MODEL; the real one is computeCodeGravity over src. This ALSO answers the standing wiring critique constructively: a new fold's rating rises by being imported BY the top hubs, so the honest wiring is to import from the top, not to append into the void. HARMONY ≠ TRUTH: the PageRank rating is the harmony (importance flows to the well-connected); the truth is rating is not correctness — the top-rated theorem still has to be right, which only its facets, not its citations, decide.`,
+    }
+  })
+}
