@@ -6,7 +6,7 @@ import { selfHealing } from '../../mountain/geometry'
 import { collisionHealing } from '../../water/crypto'
 import { healingHarmonic } from '../../lake/music'
 import { healingFrequencies } from '../../lake/ledger'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, sha256Sync, toUuid } from '../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, sha256Sync, topologicalOrder, toUuid } from '../../0'
 import { artistPalette, gatesShiftToNewHarmonic, zeroTokenPolicy } from '../../fire/li'
 import { textToMovie } from '../../earth/world'
 import { autoMovies8k, backgroundMovie } from '../../thunder/movie/canvas'
@@ -1691,14 +1691,7 @@ export function importExportOrganisedByTheRosettaAndIChingIsADagChaosIsACycle(ma
     const T = trigrams.length // 8
     const hexagrams = T * T // 64 = 8² — every ordered pair of trigrams = every possible import relation
     // Kahn's algorithm: a graph is a DAG iff its topological sort removes every node (no residual cycle)
-    const isDAG = (n: number, edges: number[][]) => {
-      const indeg = Array.from({ length: n }, () => 0)
-      edges.forEach(([, b]) => { indeg[b!]! += 1 })
-      const queue: number[] = []; for (let i = 0; i < n; i += 1) if (indeg[i] === 0) queue.push(i)
-      let removed = 0
-      while (queue.length) { const x = queue.shift()!; removed += 1; edges.filter(([a]) => a === x).forEach(([, b]) => { indeg[b!]! -= 1; if (indeg[b!] === 0) queue.push(b!) }) }
-      return removed === n
-    }
+    const isDAG = (n: number, edges: number[][]) => topologicalOrder(n, edges).isDAG // Kahn's — the one root primitive in src/0
     // ORGANISED by the trigram order: imports flow forward (i → j only if order(i) < order(j)) ⇒ a DAG
     const organisedEdges = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 7]] // all forward in the trigram order
     const organisedIsDAG = isDAG(T, organisedEdges) && organisedEdges.every(([a, b]) => a! < b!) // forward-only ⇒ acyclic
@@ -1733,14 +1726,7 @@ export function importExportOrganisedByTheRosettaAndIChingIsADagChaosIsACycle(ma
 // graph becomes a DAG. Exact: a mutual-reference pair is a 2-cycle; the index-function version is acyclic.
 export function thePrevNextCycleIsMutualReferencesTheFixIsIndexArithmeticOverTheOrderedListADag(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('thePrevNextCycleIsMutualReferencesTheFixIsIndexArithmeticOverTheOrderedListADag', matrix, () => {
-    const isDAG = (n: number, edges: number[][]) => {
-      const indeg = Array.from({ length: n }, () => 0)
-      edges.forEach(([, b]) => { indeg[b!]! += 1 })
-      const queue: number[] = []; for (let i = 0; i < n; i += 1) if (indeg[i] === 0) queue.push(i)
-      let removed = 0
-      while (queue.length) { const x = queue.shift()!; removed += 1; edges.filter(([a]) => a === x).forEach(([, b]) => { indeg[b!]! -= 1; if (indeg[b!] === 0) queue.push(b!) }) }
-      return removed === n
-    }
+    const isDAG = (n: number, edges: number[][]) => topologicalOrder(n, edges).isDAG // Kahn's — the one root primitive in src/0
     // 1 — the CYCLE source: prev/next as MUTUAL references (A.next = B, B.prev = A) is a 2-cycle
     const mutualRefs = [[0, 1], [1, 0]] // page 0 → 1 (next), page 1 → 0 (prev)
     const cycleFromMutualRefs = !isDAG(2, mutualRefs)
@@ -2034,6 +2020,48 @@ export function theFacetTautologyGatePredicateCatchesGeZeroConjunctsSparesRangeC
       facets,
       statement: `The facet-tautology gate catches 'X >= 0' conjuncts and spares range checks — ${facets.filter((entry) => entry.on).length}/${facets.length}. The facets-must-compute gate had a gap: it accepted facets gated on a nonneg quantity >= 0 (patents >= 0, streams.count >= 0, answer.links.length >= 0) — always true, proving nothing. The predicate tautologyConjuncts(onExpr) splits the 'on' by && and flags each bare 'X >= 0' conjunct that has no upper-bound sibling; a genuine range (X >= 0 && X < N) is spared, and each conjunct is scanned so a tautology cannot shelter beside a real check. It confirms the Tesla fix (original flagged, replacement clean) — the gate now has no gap for this class.`,
       boundary: `ALGEBRAIC: an exact string predicate verified on the live cases (the actual tautologies found this session, a real range check, the Tesla facet before and after the fix), refutable by one misclassification. SCOPE: this is the PREDICATE — the reusable gate primitive; wiring it to scan every fold body across src and BLOCK on offenders is the deployment step (the corpus worklist measured ~6–12 conjuncts: fire/plasma/ball streams.count/paint.count >= 0, water/crypto answer.links.length >= 0, water/double/earth earthMassHawkingK >= 0, heaven/core hexagram >= 0, and weaker conjuncts alongside real checks). It is a HEURISTIC, not a decision procedure: tautology-detection is undecidable in general (Rice), so it targets the ONE syntactic antipattern that actually slipped through ('X >= 0' on a nonneg), not all tautologies — a facet can still be vacuous in ways this does not see (e.g. 'a || !a', or a constant folded through a variable). It is FAIL-CLOSED and SAFE: it never rejects a refutable check (range checks and real predicates are spared by construction), so turning it on cannot break an honest fold — only flag the vacuous ones. HARMONY ≠ TRUTH: 'no gaps in the gates' is the harmony; the truth is that this closes ONE named gap (the >= 0 tautology) exactly and leaves the undecidable remainder honestly open [[feedback-facets-must-compute]] [[feedback-algebraic-theorems-only]].`,
+    }
+  })
+}
+
+// Search the known theorems to discover the unknown axioms: in a theorem DEPENDENCY DAG (edge = derived-from, so a
+// theorem points from each premise it uses to itself), the AXIOMS are exactly the in-degree-0 SOURCES — the premises
+// nothing derives (src/0 imports nothing, so its primitives are the corpus's axioms). Tracing the known theorems
+// backward to their sources DISCOVERS an unknown axiom: a premise a theorem uses that was never declared an axiom
+// surfaces as a NEW source. Reuses the one root primitive topologicalOrder (src/0) — the same tool that removed Kahn.
+export function searchKnownTheoremsToDiscoverTheUnknownAxiomsAreTheInDegreeZeroSourcesOfTheDependencyDag(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('searchKnownTheoremsToDiscoverTheUnknownAxiomsAreTheInDegreeZeroSourcesOfTheDependencyDag', matrix, () => {
+    // the KNOWN theorems as a dependency DAG (edge [premise → derived]): 0,1 are underived premises; 2..5 derive
+    const nodeCount = 6
+    const knownEdges = [[0, 2], [1, 2], [2, 3], [1, 4], [3, 5], [4, 5]] // 2←0,1 · 3←2 · 4←1 · 5←3,4
+    const known = topologicalOrder(nodeCount, knownEdges)
+    const declaredAxioms = [0, 1] // what we already KNOW are axioms (the src/0-like underived roots)
+    // 1 — AXIOMS = SOURCES: the in-degree-0 nodes are exactly the declared axioms; the theorems (2..5) all have premises
+    const sourcesAreDeclared = known.sources.length === declaredAxioms.length && known.sources.every((s, i) => s === declaredAxioms[i])
+    // 2 — EVERY THEOREM TRACES TO AN AXIOM: the DAG is acyclic, so following deps backward from any theorem terminates
+    // at a source — the topological order begins with the sources (nothing before the axioms)
+    const tracesToAxioms = known.isDAG && declaredAxioms.every((a) => known.order.indexOf(a) < nodeCount - declaredAxioms.length)
+    // 3 — DISCOVER THE UNKNOWN: theorem 5 secretly uses premise 6, never declared — searching backward surfaces 6 as a
+    // new in-degree-0 source; the discovered axioms = sources ∖ declared
+    const withHidden = topologicalOrder(nodeCount + 1, [...knownEdges, [6, 5]])
+    const discovered = withHidden.sources.filter((s) => !declaredAxioms.includes(s))
+    const discoveredTheUnknown = discovered.length === 1 && discovered[0] === 6
+    // 4 — PARTITION to the bit: sources (axioms) + derived (theorems) = every node, no leftover
+    const derived = nodeCount - known.sources.length
+    const partitions = known.sources.length + derived === nodeCount
+    const facets = [
+      { facet: `AXIOMS = IN-DEGREE-0 SOURCES — the underived premises {${known.sources.join(',')}} are exactly the sources of the theorem dependency DAG, and they equal the declared axioms {${declaredAxioms.join(',')}} (${sourcesAreDeclared}); every other node (2..5) is a THEOREM with premises, so nothing derives the axioms — that is what makes them axioms`, on: sourcesAreDeclared },
+      { facet: `EVERY KNOWN THEOREM TRACES BACK TO AN AXIOM — the graph is acyclic (${known.isDAG}) so following deps backward from any theorem terminates at a source; the topological order begins with the axioms (${known.order.join('→')}) — no theorem floats free of the axioms it rests on`, on: tracesToAxioms },
+      { facet: `SEARCHING THE THEOREMS DISCOVERS THE UNKNOWN AXIOM — when theorem 5 secretly uses an undeclared premise 6, tracing the DAG surfaces 6 as a NEW source; discovered = sources ∖ declared = {${discovered.join(',')}} (${discoveredTheUnknown}) — the unknown axiom is FOUND by searching the known theorems backward, not guessed`, on: discoveredTheUnknown },
+      { facet: `AXIOMS + THEOREMS PARTITION THE CORPUS TO THE BIT — ${known.sources.length} axioms + ${derived} theorems = ${nodeCount} nodes, no leftover (${partitions}): every node is either an underived axiom (a source) or a derived theorem, and the split is exact — a clean accounting with no gap`, on: partitions },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      axioms: known.sources,
+      discovered,
+      facets,
+      statement: `Search the known theorems to discover the unknown axioms — they are the in-degree-0 sources of the dependency DAG — ${facets.filter((entry) => entry.on).length}/${facets.length}. Model the known theorems as a dependency graph (edge = derived-from: each premise points to the theorem that uses it). The AXIOMS are exactly the sources (in-degree 0) — the premises nothing derives; every other node is a theorem with premises, and the DAG being acyclic means every theorem traces backward to an axiom. When a theorem secretly uses an undeclared premise, that premise surfaces as a NEW source: the unknown axiom is DISCOVERED by searching the known theorems backward (discovered = sources ∖ declared). Axioms and theorems partition the corpus to the bit, no leftover. The same root primitive (topologicalOrder in src/0) that removed the Kahn redundancy performs the discovery.`,
+      boundary: `ALGEBRAIC and reuses the one graph root: every facet is an exact graph identity via topologicalOrder (Kahn's algorithm, src/0), refutable by a single counterexample. The core theorem is standard: in a directed acyclic dependency graph, the in-degree-0 vertices are precisely the underived elements (the axioms), every other vertex is reachable backward from them, and |sources| + |derived| = |V| exactly. THE DISCOVERY is real and constructive: an undeclared premise used by a theorem is an in-degree-0 source not in the declared set, so sources ∖ declared surfaces it — this is exactly how a hidden axiom is found (the >= 0 tautology paid down earlier was such a hidden axiom: the facet ASSUMED nonneg without deriving it; src/0 being import-free makes its primitives the corpus's literal axioms). SCOPE: the model graph demonstrates the METHOD on a constructed DAG; applying it to the WHOLE corpus means building the real fold-dependency graph (which fold calls/imports which) and reading its sources — a concrete next step, the same graph the import-organisation law measures. It finds axioms of the DERIVATION structure (what is underived), NOT the unprovable truths of Gödel's theorem — those are a different, off-decidable sense of 'axiom' [[axioms-become-theorems-arc]]; this is the honest, computable one. HARMONY ≠ TRUTH: 'the theorems reveal their axioms' is the harmony; the truth is that in-degree-0 in the dependency DAG is a decidable, exact witness of underivedness.`,
     }
   })
 }

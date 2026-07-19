@@ -5,7 +5,7 @@
 // Digit-1 gate (formerly src/0/1): period-6 orbit 1→2→4→8→7→5 under ×2 mod 9.
 
 import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
-import {   toUuid, merkleFold, digitalRoot, gcd, isUuid, roundTo, vortexNext, vortexPrev } from '../../0'
+import {   toUuid, merkleFold, digitalRoot, gcd, isUuid, roundTo, topologicalOrder, vortexNext, vortexPrev } from '../../0'
 import { piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
 import { TAU, PHI } from '../../3/7'
@@ -1670,11 +1670,12 @@ export function savedThoughtsFormAContentAddressedDagEachCommittingToItsDependen
   const names = Object.keys(graph)
   const address = (name: string, memo: Map<string, string>): string => { const cached = memo.get(name); if (cached) return cached; const t = graph[name]!; const depAddrs = t.deps.map((d) => address(d, memo)); const a = toUuid(`${t.content}|${depAddrs.join(',')}`); memo.set(name, a); return a } // content-address = hash(content + premise addresses)
   const rootAddress = address('top', new Map())
-  // acyclic — Kahn's topological sort removes zero-in-degree nodes until none remain; if all are ordered, no cycle
-  const indeg = new Map(names.map((n) => [n, 0])); for (const n of names) for (const d of graph[n]!.deps) indeg.set(n, indeg.get(n)! + 1)
-  const order: string[] = []; let frontier = names.filter((n) => indeg.get(n) === 0)
-  while (frontier.length > 0) { const n = frontier.shift()!; order.push(n); for (const m of names) if (graph[m]!.deps.includes(n)) { indeg.set(m, indeg.get(m)! - 1); if (indeg.get(m) === 0) frontier.push(m) } }
-  const acyclic = order.length === names.length // every node ordered ⇒ a DAG, no cycle
+  // acyclic — Kahn's topological sort via the src/0 root primitive (topologicalOrder): edge dependency→dependent, so
+  // sources (in-degree 0) are the base premises = the axioms; every node ordered ⇒ a DAG, no cycle. names ↔ indices.
+  const nameIndex = (n: string) => names.indexOf(n)
+  const topo = topologicalOrder(names.length, names.flatMap((n) => graph[n]!.deps.map((d) => [nameIndex(d), nameIndex(n)])))
+  const order = topo.order.map((i) => names[i]!)
+  const acyclic = topo.isDAG // every node ordered ⇒ a DAG, no cycle
   const tampered: typeof graph = { ...graph, base: { content: 'TAMPERED base', deps: [] } } // change a premise
   const tamperedAddress = ((): string => { const memo = new Map<string, string>(); const addr = (name: string): string => { const cached = memo.get(name); if (cached) return cached; const t = tampered[name]!; const a = toUuid(`${t.content}|${t.deps.map(addr).join(',')}`); memo.set(name, a); return a }; return addr('top') })()
   const commitsToDependencies = tamperedAddress !== rootAddress // changing the base premise changes the conclusion's address

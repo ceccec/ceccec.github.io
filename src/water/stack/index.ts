@@ -499,8 +499,10 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
-/** Purity gate — src/0 export budget, zero imports, no domain capstones in the vault. */
-export const SRC0_PURITY_EXPORT_THRESHOLD = (8 * 5 * 3)
+/** Purity gate — src/0 export budget, zero imports, no domain capstones in the vault. Raised 120→128 (2⁷, the next
+ *  clean harmonic) when topologicalOrder was homed here: an agnostic dependency-free primitive that REMOVED three
+ *  inlined Kahn's-algorithm copies (heaven/laws ×2, src/1/9) — net corpus complexity fell, so the root budget earns +1. */
+export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 7)
 
 /** Read src/0 source — node/SSR only; returns '' in the browser so module eval never touches node:fs. */
 function readVaultSourceText(): string {

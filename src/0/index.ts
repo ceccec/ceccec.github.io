@@ -221,6 +221,28 @@ export function crossProduct(a: readonly number[], b: readonly number[]): [numbe
   return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
 }
 
+// Topological order of a directed graph by Kahn's algorithm — the one agnostic graph root. Nodes are 0..nodeCount−1,
+// edges are [from, to] index pairs. sources = the in-degree-0 nodes (nothing derives them — the AXIOMS of the graph);
+// order = the removal order; isDAG = every node ordered (⟺ no cycle). Dependency-free and pure — every fold that
+// needs acyclicity, a topological order, or the source/axiom set folds through this instead of re-inlining Kahn.
+export function topologicalOrder(
+  nodeCount: number,
+  edges: readonly (readonly number[])[],
+): { order: number[]; isDAG: boolean; sources: number[] } {
+  const indeg = Array.from({ length: nodeCount }, () => 0)
+  for (const edge of edges) indeg[edge[1]!] += 1
+  const sources = indeg.map((deg, node) => (deg === 0 ? node : -1)).filter((node) => node !== -1)
+  const remaining = indeg.slice()
+  const queue = [...sources]
+  const order: number[] = []
+  while (queue.length > 0) {
+    const node = queue.shift()!
+    order.push(node)
+    for (const edge of edges) if (edge[0] === node) { remaining[edge[1]!] -= 1; if (remaining[edge[1]!] === 0) queue.push(edge[1]!) }
+  }
+  return { order, isDAG: order.length === nodeCount, sources }
+}
+
 // Contraction: aggregator reports are pure functions of the matrix, so memoize them by matrix.root.
 // Within a build the heavy aggregators compute once and every later caller reuses the result. The
 // matrix is typed structurally ({ root }) so this station still imports nothing from the word core.
