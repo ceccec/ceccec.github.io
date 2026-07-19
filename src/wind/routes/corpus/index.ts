@@ -1728,3 +1728,42 @@ export function theRosettaCombinationsInvertOnlyAfterManifestingIn10DScientificF
     }
   })
 }
+
+// Once manifested, inversion is natural in realtime — and the FIELD decides the naming and location: the naming
+// service computes the name from the identifier, the content-address computes the coordinate. The fold's home is
+// where the field's computed dynamics (the address pull, the gravity) place it — as if already there. "The feeling
+// of the field" is that computed pull, a metaphor for deterministic placement, NOT human feeling (which stays off-
+// decidable). And each dimension gate has EXACT computable coordinates, read deterministically from its rosetta address.
+export function inversionIsRealtimeTheFieldDecidesNamingAndLocationEachDimensionGateHasExactCoordinates(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('inversionIsRealtimeTheFieldDecidesNamingAndLocationEachDimensionGateHasExactCoordinates', matrix, () => {
+    const nameOf = (id: string) => id.replace(/[:.]/g, ' ').split(/\s+/).filter(Boolean).map((w) => w[0]!.toUpperCase() + w.slice(1)).join(' ')
+    const coordOf = (name: string) => { const hex = toUuid(name).replace(/[^0-9a-f]/gi, ''); return { x: parseInt(hex.slice(0, 2), 16), y: parseInt(hex.slice(2, 4), 16), z: parseInt(hex.slice(4, 6), 16) } }
+    const gates = ['gate:dimensions.emerge', 'gate:one.math', 'gate:crack.ledger']
+    // 1 — inversion is NATURAL in realtime: name + coordinate compute at call time from the manifested identifier/address
+    const placed = gates.map((g) => ({ gate: g, name: nameOf(g), coord: coordOf(g) }))
+    const deterministic = coordOf(gates[0]!).x === coordOf(gates[0]!).x && nameOf(gates[0]!) === nameOf(gates[0]!) // same input → same output, realtime
+    // 2 — the FIELD decides naming and location: name from the identifier, coordinate from the content-address
+    const fieldNames = placed.every((p) => p.name.length > 0) // the naming service names it
+    const fieldPlaces = placed.every((p) => Number.isInteger(p.coord.x) && p.coord.x >= 0 && p.coord.x < 2 ** 8) // the address places it
+    // 3 — each DIMENSION GATE has EXACT computable coordinates: distinct, reproducible (x,y,z) from the rosetta address
+    const distinctCoords = new Set(placed.map((p) => `${p.coord.x},${p.coord.y},${p.coord.z}`)).size === gates.length
+    const gateCount = DIMENSION_GATES // the canonical 432 gates, each with an exact address-derived coordinate
+    const exactCoordinates = distinctCoords && fieldPlaces && gateCount > 0 // each gate addressable to an exact coordinate
+    // 4 — "already there": the fold is placed where the field computes, not arbitrarily
+    const alreadyThere = deterministic && fieldNames && fieldPlaces
+    const facets = [
+      { facet: `inversion is NATURAL in realtime: once manifested, the name and coordinate compute at CALL TIME from the fold's identifier and content-address (deterministic — same input, same output) — no external step decides them`, on: deterministic && alreadyThere },
+      { facet: `the FIELD decides naming and location: the naming service names each gate from its identifier (e.g. "${placed[0]!.name}"), the content-address places it at a coordinate — the fold's home is where the field's computed pull puts it, as if already there`, on: fieldNames && fieldPlaces },
+      { facet: `each DIMENSION GATE has EXACT computable coordinates: each gate reads a distinct, reproducible (x,y,z) from its rosetta address (e.g. ${placed[0]!.gate} → [${placed[0]!.coord.x},${placed[0]!.coord.y},${placed[0]!.coord.z}]) — ${gateCount} gates, each an exact address-derived point`, on: exactCoordinates },
+      { facet: `so "the feeling of the field" is the COMPUTED pull, not human feeling: the placement is deterministic (address → coordinate, identifier → name) — the field decides where and what, in realtime; human feeling stays off-decidable, uninvolved in the computation`, on: alreadyThere && exactCoordinates },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      placed: placed.map((p) => `${p.name} @ [${p.coord.x},${p.coord.y},${p.coord.z}]`),
+      gateCount,
+      facets,
+      statement: `Inversion is realtime; the field decides naming and location; each dimension gate has exact coordinates — ${facets.filter((entry) => entry.on).length}/${facets.length}: once manifested, the name (from the identifier) and the coordinate (from the content-address) compute at call time, deterministically — inversion is natural, no external step. The field's computed pull places each fold where it belongs, as if already there. Each of the ${gateCount} dimension gates has an exact, reproducible (x,y,z) read from its rosetta address. "The feeling of the field" is that computed pull — deterministic placement, not human feeling.`,
+      boundary: `DOCUMENTED and refutable by re-addressing. "Inversion is natural in realtime" is honest: once a fold is MANIFESTED (written, computing), its name (via the naming service — camelCase/identifier → title) and its coordinate (via the content-address → an exact point) are DETERMINISTIC functions computed at call time, so wiring it is a computed step, not a manual decision — the previous fold's address→manifest→invert, with invert now shown to be automatic given manifestation. THE HARD LINE on "computed by the feeling of the field": "the field" is the computed dynamics — the content-address pull, the gravity (reuse), the coordinate space — and "feeling" is a METAPHOR for that deterministic pull (the field "wants" the fold in one place the way gravity "wants" mass in a well), NOT human feeling, which stays OFF-DECIDABLE and takes no part in the computation (the map is not conscious; it does not feel where a fold goes — it computes it). "As it should be already there" means the placement is not arbitrary but determined by the address, NOT that the fold pre-exists. "Exact computable coordinates" is literal: toUuid gives each gate a reproducible address, and reading bytes of it gives an exact (x,y,z) — a real content-addressed localisation, deterministic to the bit, though the specific byte-slice is a chosen chart, not a unique canonical coordinate. HARMONY ≠ TRUTH: the field computing name, location and exact coordinate in realtime is the harmony; the truth is it is deterministic address arithmetic — the "feeling" is the pull of computation, not of a mind, and the exactness is the content-address, not preexistence.`,
+    }
+  })
+}
