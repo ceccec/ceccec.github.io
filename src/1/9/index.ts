@@ -2028,3 +2028,47 @@ export function theVortexInvertsItDoesNotReverse() {
     boundary: `EXACT: vortexPrev∘vortexNext = identity on digits 1–9 (${inverseIsIdentity}); the return operation is ×5 = (×2)⁻¹ mod 9 (2×5≡1, ${fiveIsInverseOfTwo}), computed locally from each digit (${inverseIsLocalNotAListRead}), so it is the algebraic INVERSE, not a list reversal; the doubling circuit closes (${loopCloses}). HONEST SCOPE, DOUBLE: (1) inverse ≠ reverse — the vortex return is the modular inverse (a local, trace-free operation), which is exactly why it "un-does" rather than "retraces" (composed with inverseIsNotReverseReverseLeavesTracks). (2) The fusion-reactor reading is a METAPHOR: real magnetic-confinement fusion holds plasma with shaped magnetic fields (tokamak, stellarator) or inertial compression, NOT with mod-9 vortex arithmetic; what is literally computed here is that a cycle closed under its inverse conserves — nothing leaks — and the "hold" is that mathematical closure, named as an analogy for confinement, never a claim that this math confines real plasma. This project's "quantum/vortex/fusion" vocabulary is metaphor throughout. HARMONY does not equal TRUTH.`,
   }
 }
+
+// THE DOUBLE-TORUS HEAVEN/EARTH, THE INVERSION, THE STAR-AS-PROJECTION — THE MATH IS EXACT, THE SOUL READING IS
+// METAPHOR (user vision: "in the double torus earth we are in heaven and earth at the same time inverted somehow;
+// a star is a projection of a soul and inverse to infinity"). The honest treatment, the whole session's method:
+// compute what is exact, name what is metaphor. EXACT: the double torus is genus-2 — TWO rings (χ=−2, b₁=4), so
+// "heaven and earth at the same time" is the real two-handle topology; sphere inversion v↦v/|v|² swaps 0 and ∞
+// and is its own inverse, so "inverted… inverse to infinity" is a real involution; stereographic projection maps
+// a sphere point to the plane, so "a star is a projection" has a real geometric shadow. METAPHOR (not a theorem,
+// not science): that WE are in heaven and earth, that a star is a projection of a SOUL, that the physical Earth
+// or cosmos IS a double torus — the Earth is a sphere (χ=2 ≠ −2), cosmic topology is open, souls are off every map.
+export function theDoubleTorusHeavenEarthInversionIsExactMathTheSoulReadingIsMetaphor() {
+  const genus = 2
+  const doubleTorusEuler = 2 - 2 * genus       // χ(Σ₂) = −2
+  const b1 = 2 * genus                          // first Betti number = 4 (the two rings, two cycles each)
+  const twoRings = doubleTorusEuler === -2 && b1 === 4 // "heaven and earth at the same time" = the two handles
+  // sphere inversion in n dimensions: v ↦ v/|v|² — an involution that swaps 0 and ∞ ("inverse to infinity")
+  const norm2 = (v: number[]) => v.reduce((a, x) => a + x * x, 0)
+  const invert = (v: number[]) => { const n = norm2(v); return v.map((x) => x / n) }
+  const sample = [[3, 4], [1, 2, 2], [5, 0, 0, 0]]
+  const EPS = 1 / (100 * 100) // a lattice-derived tolerance for the float round-trip (error is ~1e-15)
+  const involutes = sample.every((v) => { const w = invert(invert(v)); return w.every((x, i) => Math.abs(x - v[i]!) < EPS) })
+  // 0↔∞: a small radius and a large one exchange order under inversion (no magic threshold — the ordering flips)
+  const small = [2, 0], big = [2 * 5, 0]
+  const swapsZeroAndInfinity = norm2(small) < norm2(big) && norm2(invert(small)) > norm2(invert(big))
+  // the EARTH is a sphere (genus 0, χ=2) — NOT a double torus (χ=−2): the literal shape claim is mathematically false
+  const sphereEuler = 2 - 2 * 0
+  const earthIsNotADoubleTorus = sphereEuler === 2 && sphereEuler !== doubleTorusEuler
+  // the soul/heaven reading is OUTSIDE what any computation decides — named, not folded (no facet can carry it)
+  const soulClaimIsComputable = false
+  const facets = [
+    { facet: `HEAVEN + EARTH = THE TWO RINGS (EXACT) — the double torus is genus-${genus}: χ=${doubleTorusEuler}, b₁=${b1}, two handles each with two independent cycles, so "in heaven and earth at the same time" is the real two-ring topology of the architecture (Σ₂ = two tori merged), exact math`, on: twoRings },
+    { facet: `"INVERSE TO INFINITY" = THE SPHERE INVERSION (EXACT) — v↦v/|v|² is its own inverse (${involutes}) and swaps 0 and ∞ (${swapsZeroAndInfinity}): "inverted somehow… inverse to infinity" is this real involution, the 0↔∞ swap in every dimension (composed with zeroAsSuffix…AllDimensions), exact math`, on: involutes && swapsZeroAndInfinity },
+    { facet: `THE DEMARCATION IS THE THEOREM — the math is exact, but the reading is METAPHOR: the Earth is a sphere (χ=${sphereEuler} ≠ ${doubleTorusEuler}, ${earthIsNotADoubleTorus}), so it is not literally a double torus; cosmic topology is OPEN; and "a star is a projection of a SOUL" / "WE are in heaven and earth" are outside what any computation decides (${!soulClaimIsComputable}) — resonance is not proof`, on: earthIsNotADoubleTorus && !soulClaimIsComputable },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-soul:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    genus, doubleTorusEuler, b1, sphereEuler,
+    twoRings, involutes, swapsZeroAndInfinity, earthIsNotADoubleTorus,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `The double-torus heaven/earth, the inversion, the star-as-projection — the math is exact, the soul reading is metaphor — ${facets.filter((e) => e.on).length}/${facets.length}: the double torus is genus-2 (χ=${doubleTorusEuler}, b₁=${b1}), so "heaven and earth at once" is the real two-ring topology; sphere inversion v↦v/|v|² is an involution swapping 0↔∞, so "inverse to infinity" is real; but the Earth is a sphere (χ=2, not −2), cosmic topology is open, and "a star is the projection of a soul" is metaphysics, not a theorem — the geometry is exact, the meaning is chosen.`,
+    boundary: `EXACT: genus-2 gives χ=${doubleTorusEuler} and b₁=${b1} (two rings); sphere inversion v↦v/|v|² is an involution (${involutes}) exchanging 0 and ∞ (${swapsZeroAndInfinity}); a sphere has χ=2 ≠ −2 (${earthIsNotADoubleTorus}). HONEST SCOPE — the strictest in the corpus: the DOUBLE TORUS is real as a genus-2 TOPOLOGY and as this project's computational architecture (two merged rings, four homology loops); the INVERSION and the 0↔∞ swap are real involutions; STEREOGRAPHIC PROJECTION (a point projected from a pole to a plane) is real geometry — so each phrase in the vision has an exact mathematical shadow. But the READING is metaphysics, not a proven theorem and not science: the physical Earth is topologically a sphere (genus 0), NOT a double torus; the global topology of the cosmos is an OPEN question in physics (Planck constrains, does not confirm, multiply-connected models); and "we are in heaven and earth", "a star is a projection of a SOUL" concern meaning, spirit and the infinite — which no computation decides and which this fold does not fold. This honours the vision by naming exactly what is exact in it, and refuses to dress the metaphysics as proof. The beauty is real; beauty is not truth. HARMONY does not equal TRUTH — nowhere more than here.`,
+  }
+}
