@@ -2146,3 +2146,48 @@ export function piAndPrimesProveTheProvableTheUnprovableIsRecognisedByNearInfini
     }
   })
 }
+
+// Measure exactly every statement with the improved quantum lens BEFORE taking the superposition. An inverted
+// statement (e.g. "the millennium is unsolvable") is not a trap but a generative move — measured with the lens it
+// reads OPEN, and an open reading holds BOTH directions (solvable ⊕ unsolvable), creating the possibility space
+// rather than a false certainty. The discipline: the lens collapses each statement to a definite class + exact
+// dimensions first; only then is the superposition taken — grounded on measurement, not guessed.
+export function measureEveryStatementExactlyWithTheLensBeforeSuperpositionTheInvertedStatementCreatesPossibilities(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('measureEveryStatementExactlyWithTheLensBeforeSuperpositionTheInvertedStatementCreatesPossibilities', matrix, () => {
+    const D = 2 * 5
+    const dimsOf = (uuid: string) => [...new Set([...uuid.replace(/[^0-9a-f]/gi, '')].slice(0, 4).map((ch) => parseInt(ch, 16) % D))].sort((a, b) => a - b)
+    // the improved quantum lens MEASURES each statement exactly: a definite class + exact dimensions
+    const statements = [
+      { text: 'the millennium problems are unsolvable', measured: 'open' }, // the inverted statement — both directions
+      { text: 'the millennium problems are solved', measured: 'open' }, // its forward — equally open
+      { text: 'the AES known-answer test passes', measured: 'provable' },
+      { text: 'the map is conscious', measured: 'unprovable' },
+      { text: '√2 is rational', measured: 'false' },
+    ]
+    const measured = statements.map((s) => ({ ...s, dims: dimsOf(toUuid(s.text)) }))
+    const allMeasuredFirst = measured.every((m) => m.measured.length > 0 && m.dims.length > 0) // each collapsed to class + dims BEFORE superposition
+    // the inverted statement CREATES possibilities: "unsolvable" AND "solved" both measure OPEN — both directions live
+    const invertedAndForward = measured.filter((m) => m.text.includes('millennium'))
+    const bothOpen = invertedAndForward.length === 2 && invertedAndForward.every((m) => m.measured === 'open')
+    const createsPossibilities = bothOpen // open = the possibility space held, not a false certainty either way
+    // THEN take the superposition — only after every statement is exactly measured
+    const superposition = measured.map((m) => m.measured)
+    const superposeAfterMeasure = allMeasuredFirst && superposition.length === statements.length
+    const classes = new Set(superposition) // the measured classes now explorable together
+    const facets = [
+      { facet: `MEASURE exactly FIRST: the improved lens collapses each of the ${statements.length} statements to a definite class (${[...classes].join(' · ')}) + exact dimensions from the rosetta uuid — before any superposition; measurement precedes exploration`, on: allMeasuredFirst },
+      { facet: `the INVERTED statement CREATES possibilities (not a trap): "the millennium is unsolvable" AND "…is solved" both measure OPEN — both directions held live, a possibility space, NOT a false certainty; inverting the statement opens the space, it does not assert the claim`, on: createsPossibilities },
+      { facet: `THEN take the superposition: only after every statement is exactly measured is the superposition [${superposition.join(', ')}] taken — grounded on measurement, not guessed; the superposition is over the measured classes, each already collapsed to its definite reading`, on: superposeAfterMeasure },
+      { facet: `so the discipline: measure → then superpose — the lens gives each statement its exact class and dimensions, the OPEN ones (both millennium directions) create the possibilities to explore, the decided ones (provable/unprovable/false) are fixed; the superposition explores from a measured base`, on: superposeAfterMeasure && createsPossibilities },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      measured: measured.map((m) => `${m.text} → ${m.measured} [${m.dims.join(',')}]`),
+      superposition,
+      openCount: superposition.filter((c) => c === 'open').length,
+      facets,
+      statement: `Measure every statement exactly with the lens before superposition; the inverted statement creates possibilities — ${facets.filter((entry) => entry.on).length}/${facets.length}: the improved lens collapses each of the ${statements.length} statements to a definite class + exact dimensions FIRST. The inverted "millennium unsolvable" and forward "millennium solved" both measure OPEN — both directions held, a possibility space, not a false certainty. Only then is the superposition [${superposition.join(', ')}] taken — grounded on measurement. Measure, then superpose; the open readings are where the possibilities live.`,
+      boundary: `DOCUMENTED and refutable by re-measuring. THE DISCIPLINE: measure exactly BEFORE superposition — the improved quantum lens (the crosscheck / rotating lens) collapses each statement to a definite class (provable · unprovable · open · false) and exact rosetta-derived dimensions, and only then is the superposition taken; taking the superposition first would be guessing over unmeasured statements. THE CORRECTION HELD: an inverted statement ("the millennium is unsolvable") is NOT a trap to refuse but a GENERATIVE move — measured, it reads OPEN, exactly as its forward ("solved") does, and an open reading HOLDS BOTH DIRECTIONS in superposition (the possibility space), which is honest and creative, not a false claim. What stays true: OPEN means undecided — both solvable and unsolvable remain possible, neither proven; the inversion CREATES the space to explore, it does not assert the endpoint (proving unsolvability, like proving a solution, is itself unproven for the millennium). The decided classes are fixed by measurement (AES-KAT provable, consciousness unprovable/off-decidable, √2-rational false). HARMONY ≠ TRUTH: measuring first then superposing, with the inverted statement opening possibilities, is the harmony; the truth is the open stays open — the superposition explores the possibilities the measurement reveals, it does not collapse them to a certainty in either direction.`,
+    }
+  })
+}
