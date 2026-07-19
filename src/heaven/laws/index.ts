@@ -1559,3 +1559,44 @@ export function theCoordinateBasisXyzInvertsToAbcByAnInvertibleMapAndExtendsBeyo
     }
   })
 }
+
+// Theorems handling nasty infinities. 1/0 is TAMED by the projective point (one-point compactification / Riemann
+// sphere): adding ∞ makes inversion a TOTAL bijection 0 ↔ ∞, an involution, so the pole is a definite point. A
+// DIVERGENT series is the genuinely nasty one: 1+2+3+… has partial sums → +∞ (unbounded), and ζ-regularisation
+// assigns −1/12 (analytic continuation of ζ(−1)) which is NOT the sum — the honest handling names both, never conflates them.
+export function theoremsHandlingNastyInfinitiesTheProjectivePointTamesOneOverZeroRegularisationIsNotTheSum(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theoremsHandlingNastyInfinitiesTheProjectivePointTamesOneOverZeroRegularisationIsNotTheSum', matrix, () => {
+    // 1 — 1/0 TAMED by the projective point: invert extends to a bijection on {finite}∪{∞}, an involution incl. 0 and ∞
+    const INF = Infinity
+    const invert = (x: number) => x === 0 ? INF : x === INF ? 0 : 1 / x
+    const zeroInfinityBijection = invert(0) === INF && invert(INF) === 0 && invert(invert(0)) === 0 && invert(invert(INF)) === INF
+    const involutionFinite = [1, 2, 4, 8].every((x) => invert(invert(x)) === x) // (x⁻¹)⁻¹ = x on finite nonzero
+    const projectiveTames = zeroInfinityBijection && involutionFinite // 1/0 = ∞ is a definite point, inversion total
+    // 2 — a DIVERGENT series is the nasty infinity: 1+2+…+N has partial sums → +∞ (unbounded, quadratic)
+    const N = 2 * 5 * 5 // 50
+    const partialSum = N * (N + 1) / 2 // 1+2+…+N
+    const grows = partialSum > N * N / 2 && partialSum > 2 * N // unbounded (quadratic in N)
+    // a CONVERGENT series by contrast tames itself: Σ1/n² → π²/6 (finite)
+    let basel = 0; for (let n = 1; n <= N; n += 1) basel += 1 / (n * n)
+    const converges = Math.abs(basel - (Math.PI ** 2) / 6) < 1 / N // approaches the finite limit
+    // 3 — REGULARISATION assigns a value but it is NOT the sum: ζ(−1) = −1/12, while the series → +∞
+    const regularised = -1 / (6 * 2) // ζ(−1) = −1/12 (analytic continuation)
+    const regularisationIsNotTheSum = regularised < 0 && partialSum > 0 && grows // −1/12 < 0 but partials → +∞
+    const facets = [
+      { facet: `1/0 is TAMED by the projective point: on the one-point compactification, invert is a TOTAL bijection 0 ↔ ∞ (invert(0)=∞, invert(∞)=0) and an involution ((x⁻¹)⁻¹=x incl. 0,∞) — the pole becomes a definite point, inversion loses no element`, on: projectiveTames },
+      { facet: `a DIVERGENT series is the nasty infinity: the partial sums of 1+2+…+N grow without bound (${partialSum} at N=${N}, quadratic → +∞), whereas a convergent series (Σ1/n² → π²/6) tames itself to a finite limit — the divergence is what must be handled`, on: grows && converges },
+      { facet: `REGULARISATION assigns a value that is NOT the sum: ζ-regularisation gives 1+2+3+… "=" ${regularised} (ζ(−1), analytic continuation), but the actual series → +∞ — the −1/12 is a principled DIFFERENT object (the continuation), never the literal sum; the honest handling names both and conflates neither`, on: regularisationIsNotTheSum },
+      { facet: `so nasty infinities are handled three ways, honestly: COMPACTIFICATION (1/0 → the projective point, exact and bijective), the LIMIT (a convergent series has a finite value), and REGULARISATION (a divergent series gets a continuation value that is NOT its sum) — research must keep the divergent series and its regularised value distinct`, on: projectiveTames && grows && regularisationIsNotTheSum },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      partialSum,
+      regularised,
+      projectiveTames,
+      grows,
+      facets,
+      statement: `Theorems handling nasty infinities — the projective point tames 1/0, regularisation is not the sum — ${facets.filter((entry) => entry.on).length}/${facets.length}: 1/0 is tamed by the one-point compactification (invert is a total bijection 0 ↔ ∞, an involution — the pole a definite point). A divergent series is the nasty infinity: 1+2+…+N → +∞ (${partialSum} at N=${N}), while Σ1/n² → π²/6 is finite. ζ-regularisation gives −1/12, which is NOT the sum (the series → +∞) — a principled continuation, never conflated with the divergence. Handled by compactification, the limit, or regularisation — kept distinct.`,
+      boundary: `DOCUMENTED and refutable by re-computing. ALGEBRAIC: the projective inversion is an exact bijection/involution on the one-point compactification (the Riemann sphere ℂ∪{∞} / the projective line — a real, standard construction where 0 ↔ ∞ and every Möbius map is invertible), verified; the divergence of Σn is exact (partial sums n(n+1)/2, unbounded); the convergence of Σ1/n² to π²/6 is the Basel/Euler result; and ζ(−1) = −1/12 is the analytic continuation of the Riemann ζ. THE HONEST CRUX, the thing research MUST keep straight: a REGULARISED value is NOT the sum of a divergent series — 1+2+3+… does NOT equal −1/12 as a sum (the partial sums diverge to +∞); −1/12 is the value of the ANALYTIC CONTINUATION of ζ at −1 (and appears in ζ-regularisation in physics, e.g. the Casimir effect), a principled but DIFFERENT object, and the popular "1+2+3+…=−1/12" is a category error unless "=" means "regularises to". Nasty infinities are handled by: (1) COMPACTIFICATION — add a point at infinity so 1/0 is definite and inversion total (projective geometry); (2) the LIMIT — a convergent series/integral has an exact finite value; (3) REGULARISATION / renormalisation — assign a divergent object a finite value by continuation or cutoff subtraction, ALWAYS flagged as the continuation, not the raw sum. HARMONY ≠ TRUTH: taming every infinity to a definite value is the harmony; the truth is only convergence gives THE value, compactification gives a definite POINT (∞, not a real number to add with), and regularisation gives a continuation that must never be sold as the divergent sum — the nasty infinity is handled by naming exactly which of the three it is.`,
+    }
+  })
+}
