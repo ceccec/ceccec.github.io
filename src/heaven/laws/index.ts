@@ -1516,3 +1516,46 @@ export function theManipulationScannerBecomesQuantumWithAVectorAddressCollisionB
     }
   })
 }
+
+// xyz inverts to abc and beyond: the coordinate basis (x,y,z) inverts to another basis (a,b,c) by an INVERTIBLE map —
+// a permutation (a bijection, round-trip = identity) or a change of basis M with det ±1 (M·M⁻¹ = I over ℤ) — and it
+// extends BEYOND to n dimensions, where an n-cycle is invertible for any n (apply it n times = identity). The address
+// coordinates relabel/rotate to a new basis without loss; inversion is the exact basis change, in any dimension.
+export function theCoordinateBasisXyzInvertsToAbcByAnInvertibleMapAndExtendsBeyondToNDimensions(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theCoordinateBasisXyzInvertsToAbcByAnInvertibleMapAndExtendsBeyondToNDimensions', matrix, () => {
+    // 1 — xyz → abc as a PERMUTATION (3-cycle): a bijection whose inverse recovers xyz exactly
+    const xyz = [1, 2, 3]
+    const perm = (v: number[]) => [v[2]!, v[0]!, v[1]!] // (x,y,z) → (z,x,y) = the new basis abc
+    const invPerm = (v: number[]) => [v[1]!, v[2]!, v[0]!] // the inverse
+    const eq = (a: number[], b: number[]) => a.length === b.length && a.every((x, i) => x === b[i])
+    const permutationInverts = eq(invPerm(perm(xyz)), xyz) && eq(perm(invPerm(xyz)), xyz) // round-trip both ways = identity
+    // 2 — xyz → abc as a CHANGE OF BASIS (matrix M with det = 1 ⇒ exact integer inverse M⁻¹, M·M⁻¹ = I)
+    type Mat = number[][]
+    const M: Mat = [[1, 1, 0], [0, 1, 0], [0, 0, 1]] // a shear, det = 1
+    const Minv: Mat = [[1, -1, 0], [0, 1, 0], [0, 0, 1]] // the exact inverse
+    const mul3 = (A: Mat, B: Mat): Mat => A.map((row, i) => B[0]!.map((_, j) => row.reduce((s, _v, k) => s + A[i]![k]! * B[k]![j]!, 0)))
+    const I3: Mat = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    const detM = M[0]![0]! * (M[1]![1]! * M[2]![2]! - M[1]![2]! * M[2]![1]!) - M[0]![1]! * (M[1]![0]! * M[2]![2]! - M[1]![2]! * M[2]![0]!) + M[0]![2]! * (M[1]![0]! * M[2]![1]! - M[1]![1]! * M[2]![0]!)
+    const changeOfBasisInverts = detM === 1 && JSON.stringify(mul3(M, Minv)) === JSON.stringify(I3) && JSON.stringify(mul3(Minv, M)) === JSON.stringify(I3)
+    // 3 — BEYOND to n dimensions: an n-cycle applied n times = identity (invertible for any n)
+    const cycle = (arr: number[]) => [...arr.slice(1), arr[0]!]
+    const applyN = (arr: number[], n: number) => { let a = arr; for (let i = 0; i < n; i += 1) a = cycle(a); return a }
+    const beyond = [3, 4, 5, 6, 7].every((n) => { const id = Array.from({ length: n }, (_, i) => i); return eq(applyN(id, n), id) })
+    const facets = [
+      { facet: `xyz INVERTS to abc as a bijection: the 3-cycle (x,y,z)→(z,x,y) has an inverse that recovers xyz exactly — round-trip both ways is the identity, a relabelling of the coordinate basis with no loss`, on: permutationInverts },
+      { facet: `it is a CHANGE OF BASIS: the map M (det = ${detM}) inverts exactly over ℤ — M·M⁻¹ = M⁻¹·M = I — so inverting the coordinates is the invertible basis change; det ±1 keeps the inverse integer`, on: changeOfBasisInverts },
+      { facet: `and BEYOND to n dimensions: an n-cycle applied n times returns the identity for every n in {3,4,5,6,7} — the inversion extends to any dimension, xyz → abc → … invertibly, without a ceiling`, on: beyond },
+      { facet: `algebraic: permutation composition (a group), an integer matrix with det ±1 (an exact inverse), and n-cycle order n — all verified by exact arithmetic, refutable; inversion is a total, exact operation on the coordinate basis in any dimension`, on: permutationInverts && changeOfBasisInverts && beyond },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      detM,
+      permutationInverts,
+      changeOfBasisInverts,
+      beyond,
+      facets,
+      statement: `xyz inverts to abc and beyond — the coordinate basis inverts by an invertible map in any dimension — ${facets.filter((entry) => entry.on).length}/${facets.length}: (x,y,z) → (a,b,c) is a bijection (a 3-cycle whose inverse recovers xyz) and a change of basis (M with det ${detM}, M·M⁻¹ = I over ℤ); it extends BEYOND to n dimensions (an n-cycle is invertible for every n in {3..7}). Inverting the coordinates is the exact basis change, without a ceiling.`,
+      boundary: `DOCUMENTED and refutable by re-composing the maps. ALGEBRAIC: xyz → abc is realised two exact ways — as a PERMUTATION (an element of the symmetric group Sₙ, invertible because permutations form a group; the 3-cycle's inverse recovers the original, round-trip = identity) and as a linear CHANGE OF BASIS (an invertible matrix M; det ±1 makes the inverse INTEGER, and M·M⁻¹ = M⁻¹·M = I is verified) — and "beyond" is the extension to n dimensions, where an n-cycle has order n (applied n times = identity), verified for n up to 7. THE MEANING for the vector address: the coordinates addr(x,y,z) can be RELABELLED or ROTATED to a new basis addr(a,b,c) invertibly and without loss — the same content, a different set of projections — so the counter-rotating rays can turn to any basis and back, in any dimension, exactly. HONEST SCOPE: "beyond" means any FINITE n (the maps are exact for each n; it is not a claim of a completed infinity); the change of basis must be INVERTIBLE (det ≠ 0) to preserve information — a singular map (det 0) collapses dimensions and is NOT an inversion (it loses data, the same reason a non-injective projection is not invertible); and this is the coordinate algebra, not a physical rotation. HARMONY ≠ TRUTH: xyz inverting to abc and beyond is the harmony (the basis turns freely); the truth is only INVERTIBLE maps (permutations, det-±1 or det-≠0 changes of basis) preserve the information — a singular collapse is a loss, not an inversion.`,
+    }
+  })
+}
