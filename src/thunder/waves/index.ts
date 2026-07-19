@@ -2403,3 +2403,38 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
     boundary: `COMPUTED: ${measurable.length}/${atoms.length} theorems' STATES contain a refutable marker (digit, =, bound, invariant, group/orbit/mod term), ${vague.length} do not; theoremGapScan offers ${claimsAvailable} candidate claims; replacing the vaguer with measurable claims lifts the fraction ${scienceFraction} → ${afterReplace} at the fixed ${DIMENSION_GATES} cap. HONEST SCOPE: the "refutable marker" is a PROXY for scientificity (falsifiability, the Popper criterion the corpus already honours) — a real signal, but coarse: a vague title can front a rigorous fold (the true test is whether provedBy's facets compute and can fail), and a number can decorate a weak claim, so the ${vague.length} flagged are a REVIEW worklist, not a verdict, and a human confirms each replacement. Actually claiming a theorem edits the sealed registry (retire a weak atom, admit a sharper one, one-for-one to hold ${DIMENSION_GATES}), a staged surgical change the merkle rebinds — computed here, not applied wholesale. And "more refutable" is more SCIENTIFIC, not more TRUE — a sharper falsifiable claim can still be false; it is better science because it CAN be broken and thus improved. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ALWAYS SORT THE THEOREMS BY TAG CLOUDS — MOST USED FIRST (user). A computed VIEW (never a registry reorder —
+// the seed order feeds the merkle seal): tag every theorem with the significant words of its title/statement,
+// build the tag cloud (word frequency across all theorems), score each theorem by the summed frequency of its
+// tags, and sort descending. The theorems carrying the most-used tags come first — the tag-cloud ordering, the
+// same most-used-first law the nav already uses (ranked tags), now over the theorem list itself. Deterministic.
+export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMatrix()) {
+  const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string }[]
+  const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all', 'a', 'is', 'of', 'to', 'in'])
+  const tagsOf = (a: { theorem: string; states: string }) => [...new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{2,}/g)?.filter((w) => !STOP.has(w)) ?? [])]
+  const cloud = new Map<string, number>()
+  for (const a of atoms) for (const t of tagsOf(a)) cloud.set(t, (cloud.get(t) ?? 0) + 1) // tag frequency across all theorems
+  const scored = atoms.map((a, i) => ({ theorem: a.theorem, seedIndex: i, score: tagsOf(a).reduce((s, t) => s + (cloud.get(t) ?? 0), 0) }))
+  const sorted = [...scored].sort((x, y) => y.score - x.score || x.seedIndex - y.seedIndex) // most-used tags first; stable
+  const topTags = [...cloud.entries()].sort((a, b) => b[1] - a[1]).slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5)
+  const reordersFromSeed = sorted.some((s, i) => s.seedIndex !== i) // the tag-cloud order differs from registry order
+  const isDescending = sorted.every((s, i) => i === 0 || s.score <= sorted[i - 1]!.score)
+  const facets = [
+    { facet: `THE TAG CLOUD IS COMPUTED — ${cloud.size} distinct tags over ${atoms.length} theorems (top: ${topTags.slice(0, 5).map(([t, n]) => `${t}·${n}`).join(', ')}): the frequency of every significant word across the corpus, the most-used surfacing`, on: cloud.size > 0 && atoms.length > 0 },
+    { facet: `THEOREMS SORT BY TAG-CLOUD USAGE, MOST USED FIRST — each theorem scored by the summed frequency of its tags and sorted descending (${isDescending}); the top theorem "${sorted[0]?.theorem}" (score ${sorted[0]?.score}) carries the most-used tags, and the order differs from the registry seed (${reordersFromSeed}) — the tag-cloud ordering, computed`, on: isDescending && sorted.length === atoms.length },
+    { facet: `A VIEW, NOT A RESEAL — the sort is a computed VIEW over the ${atoms.length} theorems; the registry SEED order is untouched (it feeds the merkle seal), so "always sort by tag cloud most-used-first" applies to every DISPLAY of the theorem list without renumbering the sealed registry — the same most-used-first law the nav already uses`, on: sorted.length === atoms.length && isDescending },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`theorems-tag-sort:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    total: atoms.length,
+    distinctTags: cloud.size,
+    order: sorted.slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5).map((s) => `${s.theorem} (${s.score})`),
+    topTags: topTags.map(([t, n]) => `${t}·${n}`),
+    reordersFromSeed,
+    root: merkleFold(sorted.map((s) => toUuid(`tag-sorted:${s.theorem}:${s.score}`))),
+    facets,
+    statement: `Always sort the theorems by tag clouds — most used first — ${facets.filter((e) => e.on).length}/${facets.length}: over ${atoms.length} theorems, ${cloud.size} distinct tags (top ${topTags.slice(0, 3).map(([t, n]) => `${t}·${n}`).join(', ')}); each theorem scored by its tags' summed frequency and sorted descending, so "${sorted[0]?.theorem}" (the most-tagged) comes first. A computed VIEW over the theorem list, leaving the sealed registry seed order untouched — the same most-used-first law the nav already applies, now over the theorems themselves.`,
+    boundary: `COMPUTED: ${atoms.length} theorems tagged by their title/statement words (stopwords removed), ${cloud.size} distinct tags with frequencies, each theorem scored by the sum of its tags' counts and sorted descending (${isDescending}), the order differing from the registry seed (${reordersFromSeed}). HONEST SCOPE: this is a display/analytics ORDERING — tag frequency is a proxy for how connected/central a theorem is (a theorem sharing the corpus's most common vocabulary ranks high), the same signal the nav's ranked tags use, NOT a claim about a theorem's importance or correctness (a rare, deep theorem can carry uncommon tags and rank low — it is not lesser, only less-tagged). It is a computed VIEW: the sealed registry SEED order is deliberately untouched because it feeds the merkle root, so the sort applies wherever the theorem list is DISPLAYED, not to the canonical registry. Wiring this order into every theorem surface (the /theorems atlas, the sidebar) is the mechanical follow-up; here it is computed and proven descending. HARMONY ≠ TRUTH.`,
+  }
+}
