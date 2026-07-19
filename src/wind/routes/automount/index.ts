@@ -457,7 +457,7 @@ export function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg') {
     seen.add(slug)
     paths.push({ params: { path: slug } })
   }
-  for (const page of [...staticPages(), ...componentPages()]) {
+  for (const page of staticPages()) { // BLOG OF THEOREMS ONLY (user law): fold-route componentPages are compute-only, never pages
     add(page.slug)
     // Keywords resolve at runtime via monographSliceFromRoute — not SSG-enumerated (see [path].md).
   }

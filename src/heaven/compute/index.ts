@@ -1809,7 +1809,9 @@ export function discoveryPage(slug: string, matrix: MindMatrix = buildMatrix()):
 
 /** The computed route list — one dedicated page per card AND per discovery, dynamic-route params shape. */
 export function cardPagePaths(matrix: MindMatrix = buildMatrix()): { params: { card: string; title: string } }[] {
-  return [...cardPages(matrix).pages, ...discoveryPages(matrix).pages].map((page) => ({ params: { card: page.slug, title: page.title } }))
+  void matrix
+  // BLOG OF THEOREMS ONLY (user law): model cards are compute-only — zero card pages are generated; the cards stay computable at call time.
+  return []
 }
 
 /** The fold: every scientific discovery is encoded in the appropriate form with an animated proof. */

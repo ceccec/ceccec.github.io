@@ -45,6 +45,7 @@ import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
 import { SOURCE_REPO } from '../../../3/7'
 import { observingMovieRevealsQuantumModel } from '../../science'
+import { theoremPagePaths } from '../../../wind/routes/corpus'
 
 
 
@@ -204,8 +205,11 @@ export function sitemapXml(siteUrl: string, matrix: MindMatrix = buildMatrix(), 
   const quantum = quantumSitemap(matrix)
   const altLinks = (alternates: readonly { hreflang: string; href: string }[]) => alternates.map((alt) => `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${absCross(siteUrl, alt.href)}" />`).join('\n')
   const urlBlock = (loc: string, priority: number, alternates: readonly { hreflang: string; href: string }[]) => ['  <url>', `    <loc>${absCross(siteUrl, loc)}</loc>`, `    <lastmod>${now}</lastmod>`, '    <changefreq>weekly</changefreq>', `    <priority>${priority.toFixed(1)}</priority>`, altLinks(alternates), '  </url>'].join('\n')
-  const allUrls = [...quantum.urls, ...monographPageUrls(matrix), ...corpusDetailUrls('papers', papers(matrix).papers.map((p) => p.id), (3 / 5))]
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<!-- quantum sitemap root: ${quantum.root} -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${allUrls.flatMap((url) => [urlBlock(url.gla, url.priority, url.alternates), urlBlock(url.en, url.priority, url.alternates), urlBlock(url.bg, url.priority * (4 / 5), url.alternates)]).join('\n')}\n</urlset>\n`
+  // BLOG OF THEOREMS ONLY (user law): the sitemap is the home + the served posts (tri-locale) + the
+  // 432 theorem papers at /theorems — no fold routes, no compute-only corpus detail, no dead links.
+  const allUrls = [...quantum.urls]
+  const theoremBlocks = theoremPagePaths(matrix).map((p) => urlBlock('/theorems/' + p.params.slug, (4 / 5), [{ hreflang: 'en', href: absCross(siteUrl, '/theorems/' + p.params.slug) }])).join('\n')
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<!-- quantum sitemap root: ${quantum.root} -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${allUrls.flatMap((url) => [urlBlock(url.gla, url.priority, url.alternates), urlBlock(url.en, url.priority, url.alternates), urlBlock(url.bg, url.priority * (4 / 5), url.alternates)]).join('\n')}\n${theoremBlocks}\n</urlset>\n`
 }
 
 export function sitemapJson(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {

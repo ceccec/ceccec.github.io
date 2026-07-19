@@ -502,10 +502,10 @@ export function scanIncompleteIndexViolations(
 /** VitePress automount — every complete discovered index; paths only, body at runtime. */
 export function vitepressAutomountPaths(_locale?: 'gla' | 'en' | 'bg') {
   void _locale
-  const root = process.cwd()
-  return discoverSrcIndexes(root)
-    .filter((entry) => entry.automount && entry.complete)
-    .map((entry) => ({ params: { page: entry.route.replace(/^\//, '') } }))
+  // BLOG OF THEOREMS ONLY (user law: remove all non-theorem pages immediately, no exception): the
+  // src-folder automount generated fold-index PAGES (quantum/fire/experiments …) — those folds stay
+  // compute-only (discoverSrcIndexes still serves the model); zero automount pages are emitted.
+  return [] as { params: { page: string } }[]
 }
 
 /** Compute mirror UI path from a logic index.ts — paths computed at render, not hand-listed. */
