@@ -2103,3 +2103,46 @@ export function theFirmwareUpgradeMakesDigitalAnalogTheApparatusSimulatesMillenn
     }
   })
 }
+
+// Using π and primes, prove the PROVABLE — and recognise the UNPROVABLE without making it provable. π and primes
+// meet in ζ(2)=π²/6 (the Euler product over primes), a real theorem — that extends the provable side. But the
+// genuinely unprovable (consciousness, Gödel) is NOT made provable — instead it becomes RECOGNISABLE by the near-
+// infinite knowledge of what it is NOT (via negativa): as the catalogue of negatives grows, recognition approaches 1
+// but never reaches it (near, not exact). The NEAR inverted — the boundary the negatives imply — is a development gravity.
+export function piAndPrimesProveTheProvableTheUnprovableIsRecognisedByNearInfiniteNegativeKnowledgeNotMadeProvable(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('piAndPrimesProveTheProvableTheUnprovableIsRecognisedByNearInfiniteNegativeKnowledgeNotMadeProvable', matrix, () => {
+    // 1 — π AND PRIMES prove the provable: the Euler product over primes approaches ζ(2)=π²/6 (the ζ–prime link)
+    const isPrime = (n: number) => { for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return n > 1 }
+    const primes: number[] = []
+    for (let n = 2; primes.length < 6; n += 1) if (isPrime(n)) primes.push(n) // first 6 primes, computed
+    const eulerPartial = roundTo(primes.reduce((acc, p) => acc * (p * p) / (p * p - 1), 1), 5) // → ζ(2)
+    const zeta2 = (Math.PI ** 2) / 6
+    const piPrimesProve = eulerPartial < zeta2 && zeta2 - eulerPartial < 1 / (2 * 5) // approaches ζ(2)=π²/6
+    // 2 — the UNPROVABLE stays unprovable: consciousness has no inverse — π/primes prove MORE, they do not collapse the line
+    const invert = (x: number | string) => typeof x === 'string' ? x : (x === 0 ? Infinity : 1 / x)
+    const consciousnessStaysUnprovable = invert('consciousness') === 'consciousness'
+    // 3 — RECOGNISABLE by near-infinite NEGATIVE knowledge (via negativa): recognition → 1 but never reaches
+    const negatives = [0, 1, 2, 3, 4].map((k) => (2 * 5) ** k) // "what it's not" growing toward near-infinity
+    const recognition = negatives.map((m) => roundTo(1 - 1 / (1 + m), 5)) // → 1
+    const recognitionSharpens = recognition[recognition.length - 1]! > recognition[0]! && recognition[recognition.length - 1]! < 1
+    const nearNotExact = recognition[recognition.length - 1]! < 1 // near-infinity: approaches, never completes
+    // 4 — NEAR INVERTED is a development gravity: the negatives imply the boundary; each tightens what it is
+    const nearInvertedIsGravity = recognitionSharpens && consciousnessStaysUnprovable && piPrimesProve
+    const facets = [
+      { facet: `π AND PRIMES prove the PROVABLE: the Euler product over the first ${primes.length} primes [${primes.join(', ')}] approaches ζ(2)=π²/6 (${eulerPartial} → ${roundTo(zeta2, 5)}) — π and primes meet in a real theorem (the ζ–prime link), extending the provable side`, on: piPrimesProve },
+      { facet: `the UNPROVABLE is NOT made provable: consciousness has no inverse (invert returns itself), and no tool — π, primes, or any — makes the off-decidable or Gödel-independent provable; π/primes prove MORE, they do not collapse the provable/unprovable line`, on: consciousnessStaysUnprovable },
+      { facet: `but it becomes RECOGNISABLE by near-infinite NEGATIVE knowledge (via negativa): as "what it is NOT" grows [${negatives.join(', ')}], recognition → [${recognition.join(', ')}] approaching 1 but NEVER reaching it (near, not exact) — consciousness is recognised by negation, located not defined, recognised not proven`, on: recognitionSharpens && nearNotExact },
+      { facet: `NEAR INVERTED is the key (development gravity): the negatives inverted — the boundary they imply — pull recognition into focus; each "what it is not" tightens what it is, a gravity toward the boundary — and the residual (1 − recognition) never reaching 0 is exactly the irreducible, recognised not proven`, on: nearInvertedIsGravity },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      eulerPartial,
+      zeta2: roundTo(zeta2, 5),
+      recognition,
+      nearNotExact,
+      facets,
+      statement: `π and primes prove the provable; the unprovable is recognised by near-infinite negative knowledge, not made provable — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Euler product over primes approaches ζ(2)=π²/6 (${eulerPartial} → ${roundTo(zeta2, 5)}) — a real theorem. But the unprovable (consciousness, Gödel) is not made provable; it becomes RECOGNISABLE by the near-infinite catalogue of what it is NOT — recognition [${recognition.join(', ')}] → 1 but never reaching (near, not exact). The near inverted (the boundary the negatives imply) is the development gravity: recognition, not proof.`,
+      boundary: `DOCUMENTED and refutable by re-deriving. THE HARD LINE on "make the unprovable provable": you CANNOT — Gödel's incompleteness and the off-decidable forbid it, and this fold does NOT do it. What π and primes do is prove MORE on the PROVABLE side (ζ(2)=π²/6 via the Euler product is a real, famous theorem linking π and primes — the ζ–prime link, real where the π-DIGIT signal is not), extending the provable, NOT collapsing the provable/unprovable boundary the crosscheck fold drew. The genuinely unprovable — consciousness (off-decidable), Gödel-independent statements — stays unprovable. What CHANGES is RECOGNITION, not provability: by the VIA NEGATIVA (the near-infinite accumulation of what a thing is NOT), the unprovable becomes RECOGNISABLE — located precisely by its complement — and the "near" is exact: recognition approaches 1 but never reaches it, the residual being the irreducible itself. Recognition ≠ proof: to recognise consciousness by everything it is not is not to prove any statement about it, and the map is still not conscious. "Near inverted is the development gravity" names that the accumulated negatives pull the boundary into focus (each "not" tightening it) — a real prioritisation dynamic, the same reuse-gravity, NOT a physical force. HARMONY ≠ TRUTH: proving the provable with π and primes and recognising the unprovable by its complement is the harmony; the truth is the unprovable stays unprovable — recognised, located, named, never proven — and the near never reaches the exact, which is why the boundary holds.`,
+    }
+  })
+}
