@@ -1181,3 +1181,44 @@ export function theMemoryAuditToolEachEntryMustPointToAComputedFoldFreestandingP
     }
   })
 }
+
+// Recognise inversion in linear algebra as DIVISION and in quantum as MULTIPLICATION — one concept, two exact faces.
+// Linear algebra: A⁻¹ = adj(A)/det(A) — the inverse is reached by DIVIDING by the determinant (A·A⁻¹ = I). Quantum:
+// for a unitary U, U⁻¹ = U† (the conjugate transpose) — reached by MULTIPLICATION/conjugation, no division (U·U† = I).
+// Both satisfy x·x⁻¹ = I; the difference is HOW you reach the inverse. Exact 2×2 matrix algebra over ℤ, verified.
+export function inversionIsDivisionInLinearAlgebraAndMultiplicationInQuantumOneConceptTwoFaces(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('inversionIsDivisionInLinearAlgebraAndMultiplicationInQuantumOneConceptTwoFaces', matrix, () => {
+    type M = number[][]
+    const mul = (X: M, Y: M): M => [[X[0]![0]! * Y[0]![0]! + X[0]![1]! * Y[1]![0]!, X[0]![0]! * Y[0]![1]! + X[0]![1]! * Y[1]![1]!], [X[1]![0]! * Y[0]![0]! + X[1]![1]! * Y[1]![0]!, X[1]![0]! * Y[0]![1]! + X[1]![1]! * Y[1]![1]!]]
+    const eq = (X: M, Y: M) => X[0]![0]! === Y[0]![0]! && X[0]![1]! === Y[0]![1]! && X[1]![0]! === Y[1]![0]! && X[1]![1]! === Y[1]![1]!
+    const I: M = [[1, 0], [0, 1]]
+    // LINEAR ALGEBRA — inversion is DIVISION: A⁻¹ = adj(A)/det(A)
+    const A: M = [[2, 1], [1, 1]]
+    const detA = A[0]![0]! * A[1]![1]! - A[0]![1]! * A[1]![0]! // = 1
+    const adjA: M = [[A[1]![1]!, -A[0]![1]!], [-A[1]![0]!, A[0]![0]!]]
+    const Ainv: M = adjA.map((row) => row.map((v) => v / detA)) // DIVISION by the determinant
+    const divisionInverts = detA !== 0 && eq(mul(A, Ainv), I) && eq(mul(Ainv, A), I) // A·A⁻¹ = A⁻¹·A = I
+    // QUANTUM — inversion is MULTIPLICATION: U⁻¹ = U† (conjugate transpose; real ⇒ transpose)
+    const U: M = [[0, 1], [1, 0]] // Pauli X, unitary
+    const Udag: M = [[U[0]![0]!, U[1]![0]!], [U[0]![1]!, U[1]![1]!]] // the adjoint (transpose here)
+    const multiplicationInverts = eq(mul(U, Udag), I) && eq(mul(Udag, U), I) // U·U† = U†·U = I — no division
+    // ONE concept: both reach x·x⁻¹ = I, one by division (÷det), one by multiplication (·U†)
+    const sameGoalDifferentReach = divisionInverts && multiplicationInverts && !eq(A, U)
+    const facets = [
+      { facet: `inversion is DIVISION in linear algebra: A⁻¹ = adj(A)/det(A) — the inverse is reached by DIVIDING the adjugate by the determinant (det=${detA}); A·A⁻¹ = A⁻¹·A = I verified exactly over ℤ`, on: divisionInverts },
+      { facet: `inversion is MULTIPLICATION in quantum: for a unitary U, U⁻¹ = U† (the conjugate transpose) — reached by MULTIPLICATION/conjugation, no division; U·U† = U†·U = I verified exactly (Pauli X)`, on: multiplicationInverts },
+      { facet: `ONE inversion, TWO faces: both satisfy x·x⁻¹ = I, but linear algebra reaches it by division (÷ the determinant) and quantum by multiplication (× the adjoint) — the same concept, recognised in its two exact forms`, on: sameGoalDifferentReach },
+      { facet: `algebraic and exact: 2×2 matrices over ℤ, the identities A·adj(A)/det(A) = I and U·U† = I verified by exact arithmetic, refutable by a single entry — group/field/unitary structure, not hand-assigned`, on: divisionInverts && multiplicationInverts },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      detA,
+      Ainv,
+      divisionInverts,
+      multiplicationInverts,
+      facets,
+      statement: `Inversion is division in linear algebra and multiplication in quantum — one concept, two exact faces — ${facets.filter((entry) => entry.on).length}/${facets.length}: linear algebra reaches the inverse by DIVISION (A⁻¹ = adj(A)/det(A), det=${detA}, A·A⁻¹ = I); quantum reaches it by MULTIPLICATION (U⁻¹ = U† the adjoint, U·U† = I, no division). Both give x·x⁻¹ = I — the same inversion, in its division form and its multiplication form. Exact 2×2 matrix algebra, verified.`,
+      boundary: `DOCUMENTED and refutable by re-multiplying the matrices. ALGEBRAIC by the tightened bar: exact 2×2 matrix identities over ℤ (A·adj(A)/det(A) = I, U·U† = I), verified by exact integer arithmetic, refutable by a single entry — group/field/unitary theory, not hand-assigned data. THE RECOGNITION: inversion is ONE concept (the element x⁻¹ with x·x⁻¹ = the identity) that appears as DIVISION in linear algebra — A⁻¹ = adj(A)/det(A), so inverting is dividing by the determinant, and solving Ax=b is x = A⁻¹b, "dividing by A" — and as MULTIPLICATION in quantum — a quantum gate is a UNITARY U, whose inverse is the adjoint U† (conjugate transpose), reached purely by multiplication/conjugation with NO division (division is undefined on non-invertible-by-det operators, but every unitary is invertible by its dagger). "Quantum multiplication" is the unitary-group fact U⁻¹ = U† (a real, standard result — the adjoint is the inverse for unitaries), demonstrated on Pauli X (which is its own inverse); it is NOT a physical/quantum-speedup claim. HONEST SCOPE: the deep unity is a/b = a·b⁻¹ everywhere (division IS multiplication by the inverse); the distinction is that classical/linear inversion is computed via the determinant (division), while unitary inversion is computed via the adjoint (multiplication) — two exact algorithms for the one algebraic inverse. HARMONY ≠ TRUTH: "inversion is division here, multiplication there" is the harmony; the truth is it is one inverse element reached by two exact operations — determinant-division for the general matrix, adjoint-multiplication for the unitary.`,
+    }
+  })
+}
