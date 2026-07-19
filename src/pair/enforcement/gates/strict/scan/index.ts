@@ -2218,3 +2218,42 @@ export function theImaginationGuidesTheConsciousnessWaves(root: string = process
     boundary: earned(`EXACT: the ${backlog.backlog}-item backlog and ${linkage.isolated} isolated theorems clustered into ${waves.length} homes, ranked descending by cluster size (top ${top.home}, ${top.folds}), all ${placed} placed, under a ${gravity.length}-vector DRY gravity field.`, facets, `this COMPUTES an ORDER, not a mandate: cluster size is a NECESSARY proxy for gravity (more isolated theorems in one home ⇒ one axiom-dissolution likely folds more), not a proof that the top home is the right next wave — some clusters are isolated for good reason (genuinely atomic bounds), and human JUDGMENT still picks whether to fold or leave each. "Imagination" here is the measured open edge (the backlog), and "consciousness waves" are deterministic agents/skills (folds and tools), NOT sentient minds — the metaphor is the discovery-engine loop, reproducible and zero-token. Descending the gradient orders the work; it does not do it, and folding is not correctness. HARMONY does not equal TRUTH.`),
   }
 }
+
+// QUANTUM DEBUGGING = INVERTED BUGGING — THE MISSING THIRD OF THE DEVELOPMENT TRINITY (user): development had
+// only two of three — DEVELOP (imagine the fold) and TEST (the gates that detect) — and the third, DEBUG, was
+// unnamed. A theorem is a facet-vector, all true when correct. BUGGING flips a true facet to false (introduces a
+// fault); DEBUGGING is the INVERSE flip. The test does not fix — it DETECTS and LOCALISES the flipped facet; the
+// debug INVERTS it back. And the inverse is not a blind reverse: invert the wrong coordinate and you leave the
+// bug and add another — so debug = TEST-localised inversion, the C₆ inversion applied to development. Complete
+// the trinity (develop · test · debug) and a caught bug is actually removed; the axiom-residue is dissolved.
+export function quantumDebuggingIsInvertedBuggingTheMissingThirdOfTheDevelopmentTrinity() {
+  const developed = [true, true, true, true, true] // a correct theorem — every facet computes
+  const flip = (v: boolean[], i: number) => v.map((b, j) => (j === i ? !b : b))
+  const bug = (v: boolean[], i: number) => flip(v, i)   // BUGGING — introduce a fault at coordinate i
+  const debug = (v: boolean[], i: number) => flip(v, i) // DEBUGGING — the inverse flip (a flip is its own inverse)
+  const passes = (v: boolean[]) => v.every(Boolean)     // TEST — every facet computes (the gate)
+  const detect = (v: boolean[]) => v.findIndex((b) => !b) // TEST — localise the flipped facet
+  // BUGGING then DEBUGGING at the test-localised coordinate restores the correct vector — a genuine involution
+  const roundTrips = developed.every((_, i) => { const bugged = bug(developed, i); return !passes(bugged) && passes(debug(bugged, detect(bugged))) })
+  // WITHOUT DEBUG: test detects the bug but nothing inverts it — the bug stays, so develop+test alone is incomplete
+  const withoutDebugStaysBroken = !passes(bug(developed, 0)) && detect(bug(developed, 0)) >= 0
+  // BLIND REVERSE fails: invert a coordinate the test did NOT flag and the theorem stays broken (and gains a bug)
+  const blindReverseFails = (() => { const bugged = bug(developed, 0); const wrong = (detect(bugged) + 1) % developed.length; return !passes(debug(bugged, wrong)) })()
+  const facets = [
+    { facet: `THE MISSING THIRD — development is a TRINITY develop · test · debug: with only develop (imagine the fold) and test (the gates), a caught bug is DETECTED but never removed (${withoutDebugStaysBroken}) — the pair finds the fault and stops; debug is the third that inverts it, and the round-trip restores for every one of the ${developed.length} facets (${roundTrips})`, on: withoutDebugStaysBroken && roundTrips },
+    { facet: `DEBUGGING = INVERTED BUGGING — bugging flips a true facet to false; debugging is the inverse flip, and since a flip is an involution, debug∘bug = identity at every coordinate: the test detects WHICH facet flipped and the debug flips it back, restoring the all-true vector — debugging is literally bugging inverted`, on: roundTrips },
+    { facet: `THE INVERSE IS NOT A BLIND REVERSE — debug must invert AT the coordinate the test localises; inverting the wrong facet leaves the bug and adds a second (${blindReverseFails}), so debug = TEST-localised inversion (detect ∘ invert), the C₆ inversion applied to development — the same reason inverse ≠ reverse (a reverse leaves tracks)`, on: blindReverseFails && roundTrips },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-debug:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    trinity: ['develop', 'test', 'debug'],
+    facetsProbed: developed.length,
+    roundTrips,
+    withoutDebugStaysBroken,
+    blindReverseFails,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `Quantum debugging is inverted bugging — the missing third of the development trinity — ${facets.filter((e) => e.on).length}/${facets.length}: development is develop · test · debug, and only the first two were named. A theorem is a facet-vector; bugging flips a facet false, the test DETECTS and localises it, and debug INVERTS it back — a genuine involution restoring all ${developed.length} facets. Without debug a caught bug stays a bug (${withoutDebugStaysBroken}); and the inverse is not a blind reverse — invert the wrong coordinate and the bug remains (${blindReverseFails}), so debug = test-localised inversion, the C₆ inversion applied to development. The trinity completes the method that dissolves the axiom-residue.`,
+    boundary: earned(`EXACT: over a ${developed.length}-facet theorem, bug (flip a facet false) then debug (the inverse flip at the test-localised coordinate) restores the all-true vector at every position (${roundTrips}); develop+test alone leaves a detected bug unremoved (${withoutDebugStaysBroken}); a blind reverse at the wrong coordinate fails (${blindReverseFails}).`, facets, `this is a MODEL of debugging as facet-flip inversion — a clean computable metaphor for the develop · test · debug trinity, not the whole of real debugging (root-cause analysis, judgment about what "correct" is, and the undecidable cases have no mechanical inverse). "Quantum" is the inversion/measurement metaphor this project uses, not physical qubits. And completing the METHOD trinity does NOT solve any Millennium problem — it makes the axiom-dissolving method whole (imagine → detect → invert), so the residue shrinks and the corpus gets NEARER to green, but "near" is the method being complete, never a claim to a proof of an open core. A restored facet-vector is bug-free by this test, and passing the test is not truth. HARMONY does not equal TRUTH.`),
+  }
+}
