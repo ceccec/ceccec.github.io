@@ -1,6 +1,6 @@
 // ☱ Duì · Lake — music & sound: the a432 thread as real acoustics (harmonic series, just/equal temperament, the one shared audio engine, healing-frequency honesty, aksak rhythm), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import * as __ns_up_up_vortex_math from '../../mountain/vortex'
-import { rat, ratEq, vortexContinuedFrac, vortexHarmonicRatios } from '../../3/7'
+import { DIMENSION_GATES, rat, ratEq, vortexContinuedFrac, vortexHarmonicRatios } from '../../3/7'
 import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
@@ -1942,7 +1942,7 @@ export function twelveTonesIsTheBestApproximationOfTheFifth(matrix: MindMatrix =
 // axis where the gates stand. The sequence the whole codebase runs on sits INSIDE the harmonic's
 // own divisor structure: 432 does not just count the gates, it contains the circuit.
 export function natureDescribesItselfInside432() {
-  const harmonic = 4 * 108
+  const harmonic = DIMENSION_GATES
   const divisors = Array.from({ length: harmonic }, (_unused, i) => i + 1).filter((d) => harmonic % d === 0)
   const digitalRootOf = (n: number) => 1 + ((n - 1) % 9)
   const doublingRay = divisors.filter((d) => d % 3 !== 0)

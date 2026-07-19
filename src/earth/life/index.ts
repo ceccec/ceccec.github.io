@@ -7,7 +7,7 @@ import { THEOREM_ATOM_SEED, theoremsReach432AndEntangleWithUsage } from '../../4
 import { bellMeasurementOutcomesAreUniform } from '../../2/8'
 // call-time namespace edge (cycle-safe): iching imports heaven/core which imports this folder
 import * as __ns_up_earth_iching from '../iching'
-import { eigenErrorThreshold, GENETIC_CODE } from '../../3/7'
+import { DIMENSION_GATES, eigenErrorThreshold, GENETIC_CODE } from '../../3/7'
 export { GENETIC_CODE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbability, MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
@@ -665,13 +665,13 @@ export function theoremsAreLivingOrganisms(matrix: MindMatrix = buildMatrix()) {
     const census = __ns_up_earth_iching.hexagramOrbitCensusTwelveFoursEightTwos()
     const names = THEOREM_ATOM_SEED.map((atom) => atom.theorem)
     const divisorsOf = (n: number) => Array.from({ length: n }, (_unused, i) => i + 1).filter((d) => n % d === 0).length
-    const d432 = divisorsOf(4 * 108)
+    const d432 = divisorsOf(DIMENSION_GATES)
     const d440 = divisorsOf(432 + 8) // A440 concert pitch = the harmonic plus eight — the documented comparison tuning
     const facets = [
       { facet: 'METABOLISM — organisms compute when called: the Bell-uniform organism ran just now (uniform: ' + bell.uniform + '), the hexagram decode ran (decoded: ' + iching.decoded + '); the build re-runs the whole population each cycle and the dangling-claim gate removes what no longer runs', on: bell.uniform && iching.decoded },
       { facet: 'HEREDITY — three generations share one genome: the V₄ discovered in the hexagrams (20 families) is the same group in the movie flows and the Bell frame; the orbit-census offspring recomputes the parent count independently (' + census.orbits + ' = ' + iching.orbits + ')', on: census.orbits === iching.orbits && census.orbits === 4 * 5 },
-      { facet: 'ENTANGLED SENSING — every organism is paired with its mechanical usage: ' + reach.pairs + ' bidirectional theorem⊗usage folds across ' + reach.homes + ' homes, the merge reached', on: reach.reached && reach.pairs === 4 * 108 },
-      { facet: 'HOMEOSTASIS AND DEATH — the population holds at the harmonic with no duplicate organisms (' + names.length + ' = 4×108, all names distinct); what is not proven is purged', on: names.length === 4 * 108 && new Set(names).size === names.length },
+      { facet: 'ENTANGLED SENSING — every organism is paired with its mechanical usage: ' + reach.pairs + ' bidirectional theorem⊗usage folds across ' + reach.homes + ' homes, the merge reached', on: reach.reached && reach.pairs === DIMENSION_GATES },
+      { facet: 'HOMEOSTASIS AND DEATH — the population holds at the harmonic with no duplicate organisms (' + names.length + ' = 4×108, all names distinct); what is not proven is purged', on: names.length === DIMENSION_GATES && new Set(names).size === names.length },
       { facet: 'A432 DESCRIBES ITSELF — 432 = 2⁴·3³ carries exactly ' + d432 + ' divisors (440 carries ' + d440 + '), and that 20 equals the V₄ orbit census computed independently on the hexagrams; the one number is the gate lattice (4×108), the audio seed and the population count', on: d432 === 4 * 5 && d432 > d440 && d432 === census.orbits },
     ].map((entry) => ({ ...entry, receipt: toUuid('living-theorems:' + entry.facet + ':' + entry.on) }))
     return {

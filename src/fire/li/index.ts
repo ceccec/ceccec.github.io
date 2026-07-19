@@ -33,7 +33,7 @@ import { derivePublicKey, tamperEvident } from '../../5/5'
 import { trinityKey, proseToTone } from '../../0'
 import { movieCanvasHex } from '../../quantum/science'
 import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
-import { MAJOR_MOONS } from '../../3/7'
+import { DIMENSION_GATES, MAJOR_MOONS } from '../../3/7'
 export { MAJOR_MOONS } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { DIMENSIONS, DIMENSION_NAMES, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import {
@@ -990,7 +990,7 @@ export function gatesShiftToNewHarmonic(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const harmonics = [432, (108 * 5), (216 * 3), (108 * 7)].map((count) => ({ count, multiple: count / 108, label: `${count / 108} × 108`, harmonic: count % 108 === 0, receipt: toUuid(`harmonic-shift:${count}`) }))
   return {
-    shifts: harmonics.every((entry) => entry.harmonic) && harmonics[0].count === 4 * 108 && harmonics[1].count === 5 * 108,
+    shifts: harmonics.every((entry) => entry.harmonic) && harmonics[0].count === DIMENSION_GATES && harmonics[1].count === 5 * 108,
     respectful: true, // padding only rises; no real gate is ever removed
     nextHarmonics: harmonics.map((entry) => entry.count),
     count: harmonics.length,
@@ -2525,7 +2525,7 @@ export function selfInteraction(matrix: MindMatrix = buildMatrix(), generations 
 /** @rosetta ✦₁ · Fire · clarity */
 export function a432Default(matrix: MindMatrix = buildMatrix()) {
   const facets = [
-    { facet: 'A432 is the default harmonic', on: 432 === 4 * 108 },
+    { facet: 'A432 is the default harmonic', on: 432 === DIMENSION_GATES },
     { facet: 'the gates rest on 432 (4 × 108)', on: gatesShiftToNewHarmonic(matrix).shifts },
     { facet: 'a deviation raises back to a harmonic', on: proofReport(matrix).maxTamperingCostReached },
   ].map((entry) => ({ ...entry, receipt: toUuid(`a432-default:${entry.facet}:${entry.on}`) }))

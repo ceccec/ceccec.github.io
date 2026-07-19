@@ -143,6 +143,7 @@ const oneMathFormulas = (): readonly { name: string; pattern: RegExp; homes: rea
   return [
     { name: 'tau-inline', pattern: new RegExp(`${pi}\\s*\\*\\s*2(?![\\d.])|(?<![\\d.])2\\s*\\*\\s*${pi}`), homes: ['src/0/index.ts', 'src/3/7/index.ts'] },
     { name: 'phi-radical', pattern: new RegExp(`\\(1\\s*\\+\\s*${sqrt5}\\)\\s*/\\s*2`), homes: ['src/3/7/index.ts'] },
+    { name: 'gates-432-inline', pattern: new RegExp(['4', '108'].join('\\s*\\*\\s*') + '|' + ['108', '4'].join('\\s*\\*\\s*')), homes: ['src/3/7/index.ts'] }, // absolutely DRY 432: the harmonic derives ONCE (DIMENSION_GATES = HOMOLOGY_LOOPS × FOLDED_CENSUS); re-deriving 4·108 elsewhere is a second harmonic
     { name: 'gcd-definition', pattern: /(?:\bconst|\bfunction)\s+gcd\s*[=(]/, homes: ['src/0/index.ts'] },
     { name: 'lcm-definition', pattern: /(?:\bconst|\bfunction)\s+lcm\s*[=(]/, homes: ['src/0/index.ts'] },
     { name: 'dim-walk-pulse', pattern: new RegExp(`0\\.5\\s*-\\s*0\\.5\\s*\\*\\s*${cos}`), homes: ['src/quantum/mountain/dimensions/index.ts'] },

@@ -1,5 +1,6 @@
 // Site movie library — 64K · library · fullscreen sidebars.
 import * as __ns_up_up_up_plasma_ball from '../../../fire/plasma/ball'
+import { DIMENSION_GATES } from '../../../3/7'
 import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
@@ -65,7 +66,7 @@ export function video64kFree(matrix: MindMatrix = buildMatrix()) {
   ].map((entry) => ({ ...entry, scales: entry.width >= movies.targetWidth, receipt: toUuid(`resolution:${entry.label}:${entry.width}`) }))
   const gates = 432
   return {
-    supported: resolutions.length === 4 && resolutions.every((entry) => entry.scales) && movies.generating && fairTrade(matrix).individualCost === 0 && gates === 4 * 108,
+    supported: resolutions.length === 4 && resolutions.every((entry) => entry.scales) && movies.generating && fairTrade(matrix).individualCost === 0 && gates === DIMENSION_GATES,
     maxLabel: '64K',
     maxWidth: (64 * 64 * 5 * 3),
     free: true,

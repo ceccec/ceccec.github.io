@@ -1,5 +1,6 @@
 // ☴ Xùn · Wind — fusion: live-data fusions, reactor research in waves, dry plasma, endless fusion. Barrel-routed.
 import * as __ns_up_quantum_heaven_mind from '../../quantum/heaven/mind'
+import { DIMENSION_GATES } from '../../3/7'
 import * as __ns_up_thunder_movie_canvas from '../../thunder/movie/canvas'
 import * as __ns_up_mountain_source from '../../mountain/source'
 import * as __ns_up_heaven_laws from '../../heaven/laws'
@@ -619,7 +620,7 @@ function iChingFusionCompletesAllRaw(matrix: MindMatrix = buildMatrix()) {
 // the limit). Igniting the fusion; the waves do the dry-clean reconstruction against this spec.
 export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
   const HARMONIC = new Set([1, 2, 4, 8, 16, (16 * 2), (7 * 6), 64, 108, 216, 432]) // powers of two · the 42 areas/gates · the octave census 108→216→432
-  const target = 4 * 108 // 432 — the I Ching completion: the 4 homology loops × the 108 census
+  const target = DIMENSION_GATES // 432 — the I Ching completion: the 4 homology loops × the 108 census
   const units = iChingFusionCompletesAll(matrix).units // the addressable units (components + capability folders)
   const monitor = {
     units, // 492 currently

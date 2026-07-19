@@ -2,7 +2,7 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { phase, slip } from '../../6/4'
-import { A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import { DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
 import { foldPair, merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot, ICHING_NUMBERS, applyGate, GATES, probabilities, roundTo } from '../../0'
 import { sealFold } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
@@ -1936,7 +1936,7 @@ export function theBoundedWitnessCannotClaimTheUniversal() {
 export function theoremsReach432AndEntangleWithUsage() {
   {
     const count = THEOREM_ATOM_SEED.length
-    const target = 4 * 108
+    const target = DIMENSION_GATES
     const remaining = Math.max(0, target - count)
     const pairs = THEOREM_ATOM_SEED.map((atom) => {
       const pair = foldPair(toUuid(`theorem:${atom.theorem}`), toUuid(`usage:${atom.home}#${atom.provedBy}`))
@@ -2053,7 +2053,7 @@ export function theoremCube64DefinesTheNaturalLimits() {
   const collisions = world.length - distinct
   const expectedCollisions = (world.length * (world.length - 1)) / 2 / dim
   const saturation = Math.sqrt(2 * dim) // ≈ the count where one collision is expected — the collision-free growth limit
-  const capacityOver432 = dim / (4 * 108)
+  const capacityOver432 = dim / (DIMENSION_GATES)
   const facets = [
     { facet: `the cube DERIVES — 64 = 2⁶ (one hexagram) per axis, a cell is three hexagrams = 18 bits, ${dim} cells = 64³ = 2¹⁸`, on: axis === 2 ** 6 && dim === 2 ** (6 * 3) },
     { facet: `ADDRESSING is total and live — the ${world.length} distinct world theorems (${raw.length} rows; ${overlap} are the registry∩candidate overlap the gap law preserves) place into cells deterministically: ${distinct} distinct cells, ${collisions} true collisions (expected ${roundTo(expectedCollisions, 3)})`, on: cells.length === world.length && collisions <= Math.ceil(expectedCollisions) + 3 },
