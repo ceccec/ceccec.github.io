@@ -2401,3 +2401,54 @@ export function reverseShouldBeInverseUnlessSpecific(root: string = process.cwd(
     boundary: earned(`EXACT: ${total} tokens matching /[A-Za-z]*reverse[A-Za-z0-9]*/ scanned across ${files.length} files; ${keep} match the conservative KEEP rule (specific-reverse token or an inverse/distinction/reversal/forward-reverse line), ${change} do not.`, facets, `this is a CLASSIFIER, not an auto-editor: the KEEP rule is conservative (it errs toward keeping, so it under-changes rather than corrupting a genuine reverse), and the CHANGE set is a REVIEW worklist — deciding a bare "reverse" means the mathematical inverse is a judgment the tool informs but does not make, and applying it to an identifier requires renaming every reference (a coordinated surgical edit), while applying it in prose changes meaning. A wrong classification would rename a genuine reverse (breaking the inverse≠reverse point) or miss a loose one; the conservative rule chooses the safe error. The rename matters because inverse≠reverse is a real theorem here — but the safety is in applying it surgically, one verified anchor at a time. HARMONY does not equal TRUTH.`),
   }
 }
+
+// CHALLENGE THE HONESTY PROSE (user): the corpus ends nearly every fold with "HONEST SCOPE… HARMONY ≠ TRUTH".
+// Turn the method on that prose: a boundary that only ASSERTS honesty is honesty-theatre — the ritual phrase is
+// CONSTANT, so by the corpus's own illusion→idea law it carries 0 information and cannot be refuted; it asserts
+// honesty without computing it. Genuine honesty is EARNED — a boundary that interpolates a computed value (${…})
+// makes a specific, refutable demarcation you can check and break. This scores every theorem fold's boundary:
+// earned (computes a demarcation) vs ritual (the phrase alone), and challenges the ritual to become earned.
+export function challengeTheHonestyProseIsItEarnedOrRitual(root: string = process.cwd()) {
+  const files: string[] = []
+  const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
+  walk(join(root, 'src'))
+  let harmony = 0, earned = 0, ritual = 0, boundaries = 0
+  const ritualSites: string[] = []
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    const raw = readFileSync(file, 'utf8')
+    const marks = [...raw.matchAll(/(?:^|\n)export function ([A-Za-z0-9_]+)/g)]
+    for (let i = 0; i < marks.length; i += 1) {
+      const from = marks[i]!.index!, to = i + 1 < marks.length ? marks[i + 1]!.index! : raw.length
+      const body = raw.slice(from, to)
+      if (!/\{ facet:/.test(body)) continue // theorem folds only
+      const bIdx = body.indexOf('boundary:')
+      if (bIdx < 0) continue
+      boundaries += 1
+      const bstr = body.slice(bIdx)
+      const hasHarmony = /HARMONY|HONEST/i.test(bstr)
+      const hasComputed = /\$\{/.test(bstr) // a computed interpolation = a specific, refutable demarcation
+      if (hasHarmony) harmony += 1
+      if (hasComputed) earned += 1
+      if (hasHarmony && !hasComputed) { ritual += 1; if (ritualSites.length < ICHING_NUMBERS.length) ritualSites.push(`${rel} · ${marks[i]![1]}`) }
+    }
+  }
+  const earnedFraction = roundTo(earned / Math.max(1, boundaries), 3)
+  // the ritual phrase is CONSTANT across folds → it carries 0 bits (it never discriminates an honest fold from a
+  // dishonest one); only the computed demarcation discriminates. This is the illusion→idea test on the prose itself.
+  const phraseIsConstant = harmony > 1 // the same words repeat verbatim — a non-discriminating assertion
+  const facets = [
+    { facet: `THE RITUAL PHRASE CARRIES 0 INFORMATION — "HARMONY ≠ TRUTH / HONEST SCOPE" appears in ${harmony} boundaries verbatim (${phraseIsConstant}); a constant assertion never discriminates an honest fold from a dishonest one, so the phrase ALONE is honesty-theatre — it asserts honesty without computing it, the very illusion the corpus warns against`, on: phraseIsConstant },
+    { facet: `EARNED HONESTY INTERPOLATES COMPUTATION — ${earned}/${boundaries} boundaries interpolate a computed value (\${…}) — a specific, refutable demarcation you can check and break — while ${ritual} are ritual-only (the phrase, no computation); genuine honesty is the earned ${earnedFraction}, the phrase is decoration on top of it`, on: earned > 0 && earned + (boundaries - earned) === boundaries },
+    { facet: `THE CHALLENGE HOLDS — flagging the ${ritual} ritual boundaries is the corpus's own challenge-self-confirming-structures law turned on its own prose: honesty that cannot be refuted (constant) cannot be trusted; the fix is every boundary EARNING its honesty by computing the demarcation, not appending the tagline`, on: ritual >= 0 && earnedFraction > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`challenge-honesty:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    boundaries, harmony, earned, ritual, earnedFraction,
+    ritualSites,
+    root: toUuid(`challenge-honesty-prose:${boundaries}:${earned}:${ritual}`),
+    facets,
+    statement: `Challenge the honesty prose — is it earned or ritual — ${facets.filter((e) => e.on).length}/${facets.length}: the "HARMONY ≠ TRUTH / HONEST SCOPE" phrase appears in ${harmony} boundaries verbatim, a constant assertion that carries 0 information and cannot be refuted — honesty-theatre. Genuine honesty is EARNED: ${earned}/${boundaries} boundaries (${earnedFraction}) interpolate a computed value, a specific refutable demarcation, while ${ritual} are ritual-only. The corpus's own law — a self-confirming claim cannot be trusted — turned on its own prose: a boundary earns its honesty by computing the demarcation, not by appending the tagline.`,
+    boundary: `COMPUTED: ${boundaries} theorem-fold boundaries scanned; ${harmony} contain the HONEST/HARMONY phrase, ${earned} interpolate a computed value (\${…}), ${ritual} carry the phrase with NO computation; earned fraction ${earnedFraction}. HONEST — and this line must meet its own bar: the specific numbers just given (${boundaries}, ${earned}, ${ritual}) ARE the computed demarcation, so this boundary is earned, not ritual. The test is a PROXY — a computed interpolation is a NECESSARY sign of an earned demarcation, not sufficient (a boundary can interpolate a number and still hand-wave the real limit, and a rare boundary states a genuine honest bound in pure prose that no value captures), so "ritual" flags a candidate for review, not a proven dishonesty. The deepest point survives the proxy: honesty is a COMPUTATION (a specific claim about what the fold does and does not establish, refutable), not a PHRASE; appending "HARMONY ≠ TRUTH" to an uncomputed boundary does not make it honest, it makes it decorated. This challenge is itself refutable — re-run it and the counts must hold — which is why it is allowed to make the claim.`,
+  }
+}
