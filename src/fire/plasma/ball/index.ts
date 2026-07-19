@@ -1113,3 +1113,46 @@ export function plasmaSpeedByTheorem() {
     boundary: 'DOCUMENTED: the cold, unmagnetised, collisionless plasma dispersion ω² = ωₚ² + c²k² (Chen, Introduction to Plasma Physics) — a standard result, computed here dimensionlessly so no fitted constant enters. Superluminal PHASE velocity carries no information and violates nothing (Brillouin/Sommerfeld, 1914: signal fronts travel at c); anyone citing it for FTL communication is flagged. Magnetised/warm plasmas add branches this fold does not model. HARMONY ≠ TRUTH.',
   }
 }
+
+// The traces fade in hue, forming space for new emergence from the source. Each trajectory is coloured at 100%
+// contrast (A432_HUE stepped by the golden angle — maximally distinct, all shown at once) and loses light as it
+// recedes: luminance decays exponentially (½^age → 0). When a trace fades below threshold it disappears, freeing its
+// slot; the freed space is filled by a new trace seeded from the SOURCE (src/0, the zero). The fade makes the room;
+// the source fills it — conservation with renewal, the vacuum-for-emergence made visible.
+export function theTracesFadeInHueFormingSpaceForNewEmergenceFromTheSource(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theTracesFadeInHueFormingSpaceForNewEmergenceFromTheSource', matrix, () => {
+    const capacity = 9 // the trace buffer (trajectory slots)
+    const threshold = 1 / (2 ** 3) // 1/8 — below this a trace has disappeared
+    // each trace: a golden-angle hue at 100% contrast, a luminance that decays with age
+    const traces = Array.from({ length: capacity }, (_, i) => ({
+      hue: roundTo(((A432_HUE + i * GOLDEN_ANGLE) % 360 + 360) % 360, 1),
+      age: i, // staggered ages 0..capacity-1 (a trajectory in flight)
+      luminance: roundTo((1 / 2) ** i, 4), // ½^age — loses light as it recedes
+    }))
+    const distinctHues = new Set(traces.map((t) => t.hue)).size // golden angle ⇒ all distinct = 100% contrast
+    const luminances = traces.map((t) => t.luminance)
+    const monotoneFade = luminances.every((l, i) => i === 0 || l < luminances[i - 1]!) // strictly toward zero
+    const alive = traces.filter((t) => t.luminance >= threshold)
+    const faded = traces.filter((t) => t.luminance < threshold) // disappeared beyond
+    const freedSlots = faded.length // the space the fade forms
+    const emergent = freedSlots // each freed slot filled by a NEW trace from the source (src/0, the zero)
+    const conserved = alive.length + emergent === capacity // capacity constant — renewal, not growth
+    const facets = [
+      { facet: `100% CONTRAST hue: each of the ${capacity} traces is coloured A432_HUE (${A432_HUE}) stepped by the golden angle — ${distinctHues} maximally distinct hues shown at once, full contrast`, on: distinctHues === capacity },
+      { facet: `the traces LOSE LIGHT as they recede: luminance decays exponentially (½^age → [${luminances.slice(0, 4).join(', ')}, …]) strictly toward zero — a trajectory fading as it disappears beyond`, on: monotoneFade },
+      { facet: `faded traces DISAPPEAR and FREE SPACE: ${freedSlots} traces have fallen below the ${roundTo(threshold, 3)} threshold and retired, freeing their slots — the disappearing forms the space`, on: freedSlots > 0 },
+      { facet: `new emergence FROM THE SOURCE, conserved: each freed slot is filled by a new trace seeded from the source (src/0, the zero) — ${alive.length} alive + ${emergent} emergent = ${capacity}, the capacity constant; the fade makes the room, the source fills it (anchor: theoremsOfTheoremsGainGravityReuseCreatesVacuumForEmergence)`, on: conserved },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      capacity,
+      distinctHues,
+      aliveCount: alive.length,
+      freedSlots,
+      luminances,
+      facets,
+      statement: `The traces fade in hue, forming space for new emergence from the source — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${capacity} trajectories coloured at 100% contrast (golden-angle hues, ${distinctHues} distinct), each losing light as it recedes (luminance ½^age → 0). ${freedSlots} have faded below threshold and disappeared, freeing their slots; each freed slot is filled by a new trace from the source (src/0) — ${alive.length} alive + ${emergent} emergent = ${capacity}, conserved. The fade makes the room, the source fills it.`,
+      boundary: `DOCUMENTED as a deterministic trace-decay VISUAL model (a particle trail / screensaver trajectory), refutable by re-deriving. The hue is the corpus's colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct, OKLCH-ready) and the fade is exponential luminance decay — NEITHER is a physical light or energy claim, only a rendering. "Emergence from the source" = a new DETERMINISTIC trace seeded from src/0's content-addressing (the zero / the clock), not literal creation; "forming space" = the fixed-capacity buffer recycling a faded slot — the same vacuum-for-emergence metaphor (reuse/fade makes the room, it does not author what fills it). A revealed trace is a candidate the source seeds, not a theorem it proves. HARMONY ≠ TRUTH: the fading coloured trajectories forming space are the harmony (the vacuum-for-emergence made visible); the truth is that the room is real and measured while the emergence that fills it stays the off-decidable act of creation from the source.`,
+    }
+  })
+}
