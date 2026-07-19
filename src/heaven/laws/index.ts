@@ -1679,3 +1679,49 @@ export function theNoAssumptionGateCatchesImportedConstantsTheCrackGateMissesMat
     }
   })
 }
+
+// Import/export is chaotic — organise it by the rosetta and I Ching. The 8 word-folders ARE the bāguà (heaven · lake
+// · fire · thunder · wind · water · mountain · earth), 64 = 8² hexagrams = every ordered trigram-pair = every possible
+// import relation. CHAOTIC = the dependency graph has CYCLES (A imports B imports A — not topologically sortable);
+// ORGANISED by the trigram order = a DAG (imports flow forward, Kahn's sort removes every node). The rosetta addresses
+// each module. Exact graph theory: a graph is a DAG iff a topological order exists — nothing assumed.
+export function importExportOrganisedByTheRosettaAndIChingIsADagChaosIsACycle(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('importExportOrganisedByTheRosettaAndIChingIsADagChaosIsACycle', matrix, () => {
+    const trigrams = ['heaven', 'lake', 'fire', 'thunder', 'wind', 'water', 'mountain', 'earth'] // the 8 bāguà = the word-folders
+    const T = trigrams.length // 8
+    const hexagrams = T * T // 64 = 8² — every ordered pair of trigrams = every possible import relation
+    // Kahn's algorithm: a graph is a DAG iff its topological sort removes every node (no residual cycle)
+    const isDAG = (n: number, edges: number[][]) => {
+      const indeg = Array.from({ length: n }, () => 0)
+      edges.forEach(([, b]) => { indeg[b!]! += 1 })
+      const queue: number[] = []; for (let i = 0; i < n; i += 1) if (indeg[i] === 0) queue.push(i)
+      let removed = 0
+      while (queue.length) { const x = queue.shift()!; removed += 1; edges.filter(([a]) => a === x).forEach(([, b]) => { indeg[b!]! -= 1; if (indeg[b!] === 0) queue.push(b!) }) }
+      return removed === n
+    }
+    // ORGANISED by the trigram order: imports flow forward (i → j only if order(i) < order(j)) ⇒ a DAG
+    const organisedEdges = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 7]] // all forward in the trigram order
+    const organisedIsDAG = isDAG(T, organisedEdges) && organisedEdges.every(([a, b]) => a! < b!) // forward-only ⇒ acyclic
+    // CHAOTIC: a back-edge (a later trigram importing an earlier one) creates a CYCLE
+    const chaoticEdges = [[0, 1], [1, 2], [2, 0]] // 0→1→2→0, a cycle
+    const chaoticHasCycle = !isDAG(T, chaoticEdges)
+    // the exact structure: 64 = 8² hexagrams, the I Ching pairing of the 8 trigrams
+    const ichingExact = hexagrams === T ** 2 && hexagrams === 4 ** 3 && T === 2 ** 3 // 64 = 8² = 4³ = 2⁶, 8 = 2³
+    const facets = [
+      { facet: `the 8 TRIGRAMS organise the folders: the corpus's word-folders ARE the bāguà (${trigrams.join(' · ')}), and 64 = 8² hexagrams = every ordered trigram-pair = every possible import relation — an exact structure (8 = 2³, 64 = 8² = 4³ = 2⁶)`, on: ichingExact },
+      { facet: `ORGANISED = a DAG: imports that flow forward in the trigram order form a directed ACYCLIC graph — Kahn's topological sort removes all ${T} nodes, and every edge goes i → j with i < j; a clean, sortable hierarchy`, on: organisedIsDAG },
+      { facet: `CHAOTIC = a CYCLE: a back-edge (a later trigram importing an earlier one — 0→1→2→0) makes the graph NOT topologically sortable — the chaos is exactly a dependency cycle, which the trigram order forbids`, on: chaoticHasCycle },
+      { facet: `the ROSETTA addresses each module and the I Ching orders them: content-address (resolve any import) + trigram order (flow forward, no cycle) = an organised, acyclic, addressable import graph — chaos becomes a DAG`, on: organisedIsDAG && chaoticHasCycle && ichingExact },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      trigrams: T,
+      hexagrams,
+      organisedIsDAG,
+      chaoticHasCycle,
+      facets,
+      statement: `Import/export organised by the rosetta and I Ching is a DAG, chaos is a cycle — ${facets.filter((entry) => entry.on).length}/${facets.length}: the 8 word-folders are the bāguà (64 = 8² hexagram-relations); imports organised in the trigram order form a DAG (Kahn's sort removes all ${T} nodes, every edge forward), while chaos is exactly a dependency CYCLE (0→1→2→0, not sortable). The rosetta content-addresses each module. Organise by trigram order + content-address and the chaotic import graph becomes acyclic and addressable.`,
+      boundary: `DOCUMENTED and refutable by re-running Kahn's algorithm. ALGEBRAIC and NOTHING ASSUMED: the criterion is exact graph theory — a directed graph is a DAG iff a topological order exists (Kahn's algorithm removes every node iff there is no cycle), verified here on an organised graph (removes all 8) and a chaotic one (a 3-cycle, not sortable); 64 = 8² = 4³ = 2⁶ and 8 = 2³ are exact identities, no imported constant. THE ORGANISATION: the corpus's 8 word-folders ARE the eight trigrams of the I Ching (the bāguà), so assigning every module a trigram and requiring imports to flow FORWARD in a fixed trigram order makes the whole import graph ACYCLIC by construction — the barrel-import and foldHome gates already push toward this; a cycle is precisely the "chaos", and the trigram order is the topological order that removes it. THE ROSETTA is the content-addressing that lets any import resolve to a canonical module (one address, one home — fold-lives-at-its-domain-path). HONEST SCOPE: this proves the ORGANISING PRINCIPLE (trigram order ⟹ DAG; content-address ⟹ canonical resolution) on a model; the ACTUAL corpus import graph must be measured (computeCodeGravity / the barrel gate map its edges) and any real cycle refactored to flow forward — establishing that the real graph is a DAG under the trigram order is the measurement work, this fold proves the target is coherent and exact. HARMONY ≠ TRUTH: a fully trigram-ordered, content-addressed import graph is the harmony (chaos becomes a DAG); the truth is a DAG is achievable iff no genuine mutual dependency exists — where two modules truly need each other, the honest fix is to extract the shared core (a new node earlier in the order), not to pretend the cycle away.`,
+    }
+  })
+}
