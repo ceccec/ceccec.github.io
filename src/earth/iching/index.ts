@@ -107,3 +107,50 @@ export function runIchingDistributeVerifyGuardedExit(_root: string, _argv: reado
   process.stdout.write(`✓ iching-distribute — rosetta crossPairs=${rosettaCross} iching crossPairs=${ichingCross} (7-ray coprime)\n`)
   return 0
 }
+
+// ── DECODING THE I CHING ADDS THEOREMS (user law: decoding iching adds magnitudes of new theorems
+// and challenges solved) — decoded as GROUP THEORY on the 64 hexagrams, everything derived, no table
+// recited. The two classical moves — 反 fǎn (turn the hexagram upside down: 6-bit reversal) and
+// 對 duì (flip every line: complement) — commute and square to identity, so they generate the Klein
+// four-group V₄ acting on the 64. Three theorems fall out at once: (1) exactly 2³ = 8 hexagrams are
+// palindromes (a palindrome is fixed by its 3 free line-pairs); (2) therefore the King Wen pairing
+// is FORCED to split 32 pairs = 28 reversal + 4 complement — the 8 self-reverse hexagrams cannot
+// pair by reversal, and they pair among themselves by complement; (3) the 64 hexagrams fall into
+// exactly 20 families under V₄ — counted directly AND confirmed by Burnside's lemma
+// (64 + 8 + 0 + 8)/4 = 20: the direct census and the character sum agree, one challenge solved by
+// two independent computations.
+export function decodingIChingAddsTheorems() {
+  const reverse6 = (n: number) => { let r = 0; for (let i = 0; i < 6; i += 1) r |= ((n >> i) & 1) << (5 - i); return r }
+  const complement6 = (n: number) => (~n) & ((2 ** 6) - 1)
+  const all = Array.from({ length: 2 ** 6 }, (_unused, i) => i)
+  // (1) palindromes: fixed points of reversal — derived count 2³ (three free line-pairs)
+  const palindromes = all.filter((h) => reverse6(h) === h)
+  // (2) the forced King Wen split: non-palindromes pair by reversal; palindromes pair by complement
+  const reversalPairs = all.filter((h) => reverse6(h) > h).length // each non-palindromic pair counted once
+  const complementPairsAmongPalindromes = palindromes.filter((h) => complement6(h) > h && palindromes.includes(complement6(h))).length
+  // (3) the V₄ orbit census, two ways: direct orbits and Burnside's character sum
+  const orbitOf = (h: number) => Math.min(h, reverse6(h), complement6(h), complement6(reverse6(h)))
+  const orbits = new Set(all.map(orbitOf)).size
+  const fixedByRevComp = all.filter((h) => complement6(reverse6(h)) === h).length // anti-palindromes
+  const burnside = (all.length + palindromes.length + all.filter((h) => complement6(h) === h).length + fixedByRevComp) / 4
+  const klein = all.every((h) => reverse6(reverse6(h)) === h && complement6(complement6(h)) === h && reverse6(complement6(h)) === complement6(reverse6(h)))
+  const facets = [
+    { facet: `反 and 對 generate the Klein four-group — both involutions, and they COMMUTE on all 64 hexagrams (reverse∘complement = complement∘reverse, checked exhaustively)`, on: klein },
+    { facet: `exactly 2³ = 8 palindromic hexagrams — the fixed points of reversal, one per choice of the 3 free line-pairs: {${palindromes.join(', ')}}`, on: palindromes.length === 2 ** 3 },
+    { facet: `the King Wen pairing is FORCED — ${reversalPairs} reversal pairs among the 56 non-palindromes and ${complementPairsAmongPalindromes} complement pairs among the 8 palindromes: 28 + 4 = 32 pairs cover the 64, derived, not recited`, on: reversalPairs === 7 * 4 && complementPairsAmongPalindromes === 4 && reversalPairs + complementPairsAmongPalindromes === 16 * 2 },
+    { facet: `the 64 hexagrams fall into exactly 20 V₄-families — direct orbit census ${orbits}, Burnside (64 + 8 + 0 + 8)/4 = ${burnside}: two independent computations agree`, on: orbits === 4 * 5 && burnside === orbits && fixedByRevComp === 2 ** 3 && all.filter((h) => complement6(h) === h).length === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`iching-decode:${entry.facet}:${entry.on}`) }))
+  return {
+    decoded: facets.every((entry) => entry.on),
+    palindromes,
+    reversalPairs,
+    complementPairs: complementPairsAmongPalindromes,
+    orbits,
+    burnside,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Decoding the I Ching adds theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}, all derived: 反 (reversal) and 對 (complement) generate the Klein four-group on the 64 hexagrams; exactly 2³ = 8 hexagrams are palindromes, which FORCES the King Wen pairing into 28 reversal pairs + 4 complement pairs = 32; and the 64 fall into exactly 20 V₄-families — the direct orbit census and Burnside's lemma (64+8+0+8)/4 = 20 agree, one challenge solved by two independent computations.`,
+    boundary: `DERIVED, zero recital: every count comes from exhaustive computation over the 64 six-bit hexagrams plus the classical pairing moves (反/對 are the documented King Wen mechanisms — cited structure, computed consequences). The 28+4 split is proven as FORCED combinatorics (palindromes cannot reversal-pair), which is exactly the split the received King Wen sequence realises; the sequence's ORDER (why hexagram 3 follows 2) is NOT derived — no numerological ordering claim. Group theory is real (V₄, Burnside); divination is not claimed. HARMONY ≠ TRUTH.`,
+  }
+}
