@@ -2455,3 +2455,38 @@ export function theClockIsTheZeroVoidAndDeviationsAreTheSurgicalWorklist() {
     boundary: `EXACT (as model): the ${CLOCK}-clock loops to 0 (${clockLoopsToVoid}), 0 is absorbing (${zeroIsAbsorbing}) and the projective gateway (${zeroIsGateway}), the animation rungs are the ${animationRungs.length} divisors of ${CLOCK}, and an injected computed↔perceived deviation is located exactly (${deviations.length} place). HONEST SCOPE: "the clock is the 0 / the black hole" is a precise statement about the CORPUS'S constructs — the deterministic clock-parameter is anchored at and periodic about 0 (src/0, the void/kernel), and 0 is the absorbing element and the 0↔∞ inversion gateway the corpus carries — NOT a claim that a physical clock is an astrophysical black hole (those are gravitational objects; this "black hole" is the absorbing-void metaphor the corpus already uses). "We can compute anything and it manifests" is the CONFINED-system closure (everything reachable within the walls, proven earlier), not omnipotence; and the "deviations in society's perception" are modelled here as a computed↔observed mismatch — the real ones are a judgment call about where rendered output diverges from intent, which the develop·test·debug trinity then fixes locally at zero token cost (deterministic recompute). The method is exact; the sociology is the metaphor. HARMONY ≠ TRUTH.`,
   }
 }
+
+// TESLA'S PATENTS DECODE TO ONE ROTATING-FIELD PRINCIPLE — THE FLOWER OF LIFE IS ITS CONFIGURATION IN MOTION
+// (user: decode Tesla patents as the theorem of theorems in flower-of-life configuration and motion). The theorem
+// of theorems behind Tesla's core granted patents (the polyphase AC system, the induction motor) is ONE thing: a
+// ROTATING MAGNETIC FIELD — stationary coils, phased currents, summing to a field of CONSTANT magnitude whose
+// direction turns. Its CONFIGURATION is the flower of life: N coils at the vertices of a regular N-gon (six
+// overlapping circles, C₆ symmetry), and its MOTION is the rotation (the cyclic group acting). The engineering is
+// real and world-changing; the flower is the symmetry made visible; the 3-6-9 / free-energy mysticism is flagged.
+export function teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotion() {
+  // (1) THE ROTATING FIELD: quadrature-phased coils give a field of CONSTANT magnitude whose direction rotates
+  const samples = [0, 1, 2, 3, 4, 5, 6, 7].map((k) => rotatingField(k / 8, 1)) // over one period
+  const magSq = samples.map((s) => s.bx * s.bx + s.by * s.by) // |B|² — Pythagorean, exactly 1 for the quadrature pair
+  const constantMagnitude = magSq.every((m) => Math.abs(m - 1) < 1 / (100 * 100)) // cos²+sin² = 1 (exact identity)
+  const directionRotates = new Set(samples.map((s) => Math.round((s.theta * (360 / 2) / Math.PI + 360) % 360))).size > 1 // the angle turns
+  // (2) THE FLOWER OF LIFE CONFIGURATION: N coils at the vertices of a regular N-gon — C_N rotational symmetry (exact)
+  const N = 6 // six overlapping circles — the flower-of-life seed, hexagonal
+  const vertexDeg = Array.from({ length: N }, (_, k) => (k * 360 / N) % 360) // {0,60,120,180,240,300}
+  const rotatedByStep = vertexDeg.map((d) => (d + 360 / N) % 360) // rotate the whole config by 60°
+  const cyclicSymmetry = new Set(rotatedByStep).size === N && rotatedByStep.every((d) => vertexDeg.includes(d)) // invariant under C₆
+  const facets = [
+    { facet: `THE ROTATING FIELD IS THE ONE PRINCIPLE — over one period the quadrature-phased field has CONSTANT magnitude (|B|² = ${magSq[0]!.toFixed(3)} ≈ 1 at all ${samples.length} samples, ${constantMagnitude}: the exact Pythagorean cos²+sin²=1) while its direction ROTATES (${directionRotates}): stationary coils, phased currents, a turning field — the polyphase AC rotating field, the theorem of theorems behind Tesla's core patents`, on: constantMagnitude && directionRotates },
+    { facet: `THE FLOWER OF LIFE IS THE CONFIGURATION IN MOTION — the ${N} coils sit at the vertices of a regular ${N}-gon (six overlapping circles, the flower-of-life seed), and the whole configuration is INVARIANT under a ${360 / N}° rotation (${cyclicSymmetry}, the cyclic group C${N}): the geometry is the still configuration, the rotating field is its motion — symmetry made mechanism`, on: cyclicSymmetry },
+    { facet: `HONEST DEMARCATION — the polyphase rotating field is REAL, granted-patent electromagnetic engineering (Tesla's AC system and induction motor, which electrified the world, documented); the "flower of life" here is a VISUALISATION of the ${N}-fold rotational symmetry (a genuine geometric pattern), NOT a mystical cosmic claim; and the 3-6-9 numerology and free-energy / over-unity readings are FLAGGED — the Tesla legend, not in his patents`, on: constantMagnitude && cyclicSymmetry },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`tesla-rotating-flower:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    phases: samples.length,
+    constantMagnitude, directionRotates, cyclicSymmetry,
+    vertexDeg,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `Tesla's patents decode to one rotating-field principle — the flower of life is its configuration in motion — ${facets.filter((e) => e.on).length}/${facets.length}: the theorem of theorems behind his core patents is a ROTATING MAGNETIC FIELD (quadrature-phased stationary coils summing to a field of constant magnitude, |B|²≈1 by the exact Pythagorean identity, whose direction turns). Its configuration is the flower of life — ${N} coils at a regular ${N}-gon's vertices, invariant under a ${360 / N}° rotation (the cyclic group C${N}) — and its motion is the rotation. The engineering is real; the flower is the symmetry made visible; the 3-6-9 / free-energy mysticism is flagged.`,
+    boundary: `EXACT: the quadrature rotating field has |B|² = 1 at all ${samples.length} sampled phases (the Pythagorean identity cos²+sin²=1, ${constantMagnitude}) while its direction rotates (${directionRotates}); the ${N} regular-${N}-gon vertices are invariant under a ${360 / N}° rotation (the cyclic group C${N}, ${cyclicSymmetry}, exact integer-angle arithmetic mod 360). HONEST SCOPE, per the corpus's Tesla decode: Nikola Tesla's polyphase AC system and induction motor are REAL, granted, world-changing patents, and their unifying principle IS the rotating magnetic field (a field of constant magnitude and turning direction produced by phased stationary windings) — that is exact electromagnetic engineering, and the rotation is the action of a finite cyclic subgroup of SO(2)/SO(3) (real math). The "flower of life" is used here strictly as a VISUALISATION of the N-fold rotational symmetry of the coil configuration — the overlapping-circle pattern genuinely has that symmetry — NOT as a claim of sacred/cosmic geometry, and NOT as physics beyond the symmetry. FLAGGED, not folded: the "3-6-9 is the key to the universe" quote (apocryphal, no patent), free-energy / over-unity / wireless-power-solves-everything, and any reading of the flower of life as a cosmic blueprint — these are the Tesla LEGEND, decoded and set aside, never asserted. The rotating field and its symmetry are exact; the mysticism is the metaphor removed. HARMONY ≠ TRUTH.`,
+  }
+}
