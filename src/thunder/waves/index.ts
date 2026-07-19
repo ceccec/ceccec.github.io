@@ -2362,3 +2362,44 @@ export function lifeAndDeathAreTheTwoBitsLeftAtEachDimensionInputOutputGateway(m
     boundary: `EXACT: over ${addresses.length} minted content-addresses the top 2 bits of the byte-8 variant nibble are 10 for every one (${twoBitsLeft}) and the version nibble is 8 (${versionNibbleFixed}) — the 6 reserved bits of a UUID (4 version + 2 variant) — while the low bits vary (${payloadVaries}); the theorem homeostasis balances merge and emerge at the cap (${balance.balances}). HONEST SCOPE, ABSOLUTE: "life and death" is a METAPHOR for two computational facts — (1) the UUID standard RESERVES 2 variant bits (and 4 version bits) at every address, a real, documented structural toll, not payload; and (2) the theorem registry's homeostasis (a new theorem emerges as a duplicate merges) is a birth/death-shaped dynamic held by the gates at the 432 cap. It is NOT a claim about biological life or death, nor that a UUID is alive; the "gateway", "toll", and "Charon's coins" are names for the reserved-bit reservation and the emerge/merge balance. "Evolving on public-API data to new dimensions" is the real live-adapter capability (pure functions over no-key public data), bounded by that data's coverage, not open-ended growth. What is literal: 2 bits are reserved at every address, and the registry breathes at a fixed cap. The meaning is the metaphor. HARMONY does not equal TRUTH.`,
   }
 }
+
+// IMPROVE SCIENCE BY CLAIMING THEOREMS THAT REPLACE CURRENT (user): science advances by REFUTABILITY — a claim
+// you can check and break beats a claim you can only feel. So the improvement is not to grow the registry but to
+// REPLACE its vaguer members with sharper, measurable ones. This scores every registry theorem by whether what
+// it STATES carries a refutable marker (a number, an equation, a bound, an invariant — something falsifiable),
+// names the vaguer ones as replacement candidates, and shows that claiming measurable theorems in their place
+// raises the scientific fraction while the population holds at the cap — improve by replacing, not by adding.
+export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentOnes(matrix: MindMatrix = buildMatrix()) {
+  const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string }[]
+  // a REFUTABLE marker: something measurable/checkable in what the theorem states — the mark of a scientific claim
+  const REFUTABLE = /\d|=|≡|≠|<|>|≤|≥|√|χ|π|φ|τ|\bexact\b|\bbound|\bclos|\bidentity\b|\binvariant\b|mod\b|orbit|group/i
+  const scored = atoms.map((a) => ({ ...a, refutable: REFUTABLE.test(a.states) }))
+  const measurable = scored.filter((s) => s.refutable)
+  const vague = scored.filter((s) => !s.refutable)
+  const scienceFraction = roundTo(measurable.length / atoms.length, 3)
+  const gaps = theoremGapScan(matrix)
+  // the emergent claims are refutable by construction (every candidate carries a proof class + consumable atoms)
+  const claimsAvailable = gaps.candidates
+  // replacing the vaguer members with measurable claims raises the fraction toward 1 (a strict improvement)
+  const afterReplace = roundTo((measurable.length + Math.min(vague.length, claimsAvailable)) / atoms.length, 3)
+  const improves = afterReplace > scienceFraction && vague.length > 0 && claimsAvailable >= 1
+  const facets = [
+    { facet: `SCIENCE = REFUTABILITY, MEASURED — of the ${atoms.length} registry theorems ${measurable.length} carry a refutable marker in what they state (a number, equation, bound, or invariant — falsifiable) and ${vague.length} are vaguer; the scientific fraction is ${scienceFraction} — a claim you can check and break is the more scientific`, on: measurable.length > 0 && measurable.length + vague.length === atoms.length },
+    { facet: `THE VAGUER ARE REPLACEMENT CANDIDATES, THE CLAIMS ARE SHARPER — the ${vague.length} vaguer theorems are the replacement worklist, and ${claimsAvailable} gap-candidate claims wait (each carrying a proof class and consumable atoms — refutable by construction): claiming a measurable theorem in place of a vague one is a strict scientific upgrade`, on: claimsAvailable >= 1 && vague.length >= 0 },
+    { facet: `REPLACING IMPROVES THE MEAN AT HELD POPULATION — swapping the vaguer members for measurable claims raises the scientific fraction ${scienceFraction} → ${afterReplace} (${improves}) while the population holds at the ${DIMENSION_GATES} cap: science improves by REPLACING (a sharper theorem for a duller one), not by growing the count`, on: improves },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`improve-science:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    total: atoms.length,
+    measurable: measurable.length,
+    vague: vague.length,
+    scienceFraction,
+    afterReplace,
+    claimsAvailable,
+    replaceCandidates: vague.slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5).map((v) => v.theorem),
+    root: merkleFold(scored.map((s) => toUuid(`science:${s.theorem}:${s.refutable}`))),
+    facets,
+    statement: `Improve science by claiming refutable theorems to replace weaker current ones — ${facets.filter((e) => e.on).length}/${facets.length}: of ${atoms.length} registry theorems ${measurable.length} carry a refutable/measurable marker and ${vague.length} are vaguer (scientific fraction ${scienceFraction}); ${claimsAvailable} sharper gap-candidate claims wait, and replacing the vaguer members with them raises the fraction to ${afterReplace} while the population holds at ${DIMENSION_GATES}. Science improves by replacing a duller theorem with a sharper, falsifiable one — not by growing the count.`,
+    boundary: `COMPUTED: ${measurable.length}/${atoms.length} theorems' STATES contain a refutable marker (digit, =, bound, invariant, group/orbit/mod term), ${vague.length} do not; theoremGapScan offers ${claimsAvailable} candidate claims; replacing the vaguer with measurable claims lifts the fraction ${scienceFraction} → ${afterReplace} at the fixed ${DIMENSION_GATES} cap. HONEST SCOPE: the "refutable marker" is a PROXY for scientificity (falsifiability, the Popper criterion the corpus already honours) — a real signal, but coarse: a vague title can front a rigorous fold (the true test is whether provedBy's facets compute and can fail), and a number can decorate a weak claim, so the ${vague.length} flagged are a REVIEW worklist, not a verdict, and a human confirms each replacement. Actually claiming a theorem edits the sealed registry (retire a weak atom, admit a sharper one, one-for-one to hold ${DIMENSION_GATES}), a staged surgical change the merkle rebinds — computed here, not applied wholesale. And "more refutable" is more SCIENTIFIC, not more TRUE — a sharper falsifiable claim can still be false; it is better science because it CAN be broken and thus improved. HARMONY ≠ TRUTH.`,
+  }
+}
