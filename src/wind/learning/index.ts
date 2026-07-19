@@ -1867,14 +1867,11 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     // same tree): every registry theorem carries a computed domain category (the last word of its
     // proving home); the categories shelve onto the seven rosetta rays, and the dropdown IS that
     // shelving — one registry entry + the rays with their live category counts. Eight-fold holds.
-    const atoms = nav358.waves.flatMap((wave: { atoms: { home: string }[] }) => wave.atoms)
     const categoryOf = (home: string) => { const last = home.replace(/^src\//, "").split("/").pop() || home; return /^\d+$/.test(last) ? home.replace(/^src\//, "") : last }
     const rayBuckets = new Map<number, Map<string, number>>()
-    for (const atom of atoms) {
-      const category = categoryOf(atom.home)
-      const ray = rosettaRayOfContent(category, [])
-      if (!rayBuckets.has(ray)) rayBuckets.set(ray, new Map())
-      const bucket = rayBuckets.get(ray)!
+    for (const wave of nav358.waves) for (const atom of wave.atoms as { home: string }[]) {
+      const category = categoryOf(atom.home), ray = rosettaRayOfContent(category, [])
+      const bucket = rayBuckets.get(ray) ?? rayBuckets.set(ray, new Map()).get(ray)!
       bucket.set(category, (bucket.get(category) ?? 0) + 1)
     }
     const rayItems = ROSETTA_RAYS.filter((ray) => rayBuckets.has(ray.ray)).map((ray) => {
