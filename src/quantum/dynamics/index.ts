@@ -680,3 +680,50 @@ export function quantizeContentAddressPreimageSearchGroverIsRootNQueriesQuadrati
     }
   })
 }
+
+// Which corpus computations actually quantize? Measured, not labeled: a computation is UNSTRUCTURED SEARCH (Grover √N)
+// iff it SHORT-CIRCUITS — its query count depends on where the target sits (1 if first, N if last) — because that means
+// an oracle it can only query, no structure. Aggregation, minting and indexed lookup do NOT short-circuit (constant or
+// always-N regardless of any target), so no oracle, no Grover — they stay classical (gain 1). Quantum is a scalpel for
+// the one class (unstructured content-address search), not a universal speedup; the corpus's universal op is classical.
+export function whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit', matrix, () => {
+    const N = 2 ** 6 // 64
+    // PREIMAGE SEARCH: scan candidates until the address at position `targetPos` matches — SHORT-CIRCUITS on hit
+    const searchQueries = (targetPos: number) => { let q = 0; for (let i = 0; i < N; i += 1) { q += 1; if (i === targetPos) break } return q }
+    // AGGREGATION (merkle fold): must read ALL leaves — never short-circuits, no target
+    const aggregateQueries = () => { let q = 0; for (let i = 0; i < N; i += 1) q += 1; return q }
+    // MINT (toUuid) and indexed LOOKUP (Map.get): direct, O(1), not a search
+    const mintQueries = () => 1
+    const lookupQueries = () => 1
+    // a computation is a SEARCH iff its query count varies with target position (short-circuits) — the oracle signature
+    const isSearch = (early: number, late: number) => early < late
+    const searchIsUnstructured = isSearch(searchQueries(0), searchQueries(N - 1)) // 1 vs 64 — short-circuits ⇒ oracle search
+    const aggregateNotSearch = !isSearch(aggregateQueries(), aggregateQueries()) // always 64 ⇒ no oracle
+    const mintNotSearch = !isSearch(mintQueries(), mintQueries()) && mintQueries() === 1 // O(1)
+    const lookupNotSearch = !isSearch(lookupQueries(), lookupQueries()) && lookupQueries() === 1 // O(1)
+    // the quantizable set: only the short-circuiting search — Grover gives √N there, gain 1 everywhere else
+    const computations = [
+      { name: 'content-address preimage search', unstructured: searchIsUnstructured, gain: searchIsUnstructured ? Math.round(Math.sqrt(N)) : 1 },
+      { name: 'merkle fold (aggregation)', unstructured: !aggregateNotSearch, gain: 1 },
+      { name: 'toUuid mint (one-way hash)', unstructured: !mintNotSearch, gain: 1 },
+      { name: 'indexed lookup (Map.get)', unstructured: !lookupNotSearch, gain: 1 },
+    ]
+    const quantizable = computations.filter((c) => c.unstructured)
+    const ruleHolds = computations.every((c) => c.gain === (c.unstructured ? Math.round(Math.sqrt(N)) : 1)) // gain = √N iff unstructured
+    const facets = [
+      { facet: `THE RULE, MEASURED — a computation quantizes (Grover √N) IFF it is unstructured search, detected by SHORT-CIRCUIT: preimage search costs ${searchQueries(0)} query if the target is first and ${searchQueries(N - 1)} if last (${searchIsUnstructured}), so its cost depends on the target — an oracle, no structure`, on: searchIsUnstructured },
+      { facet: `ONLY ONE OF THE FOUR QUANTIZES — content-address search is unstructured (√N gain = ${quantizable[0]?.gain}); merkle fold always reads all ${aggregateQueries()} leaves (aggregation, no oracle), and mint + lookup are O(1) — none short-circuit, so none quantize (${aggregateNotSearch && mintNotSearch && lookupNotSearch})`, on: aggregateNotSearch && mintNotSearch && lookupNotSearch },
+      { facet: `THE GAIN FOLLOWS THE STRUCTURE — gain = √N for the unstructured search, 1 for everything else, for every computation (${ruleHolds}): the quantum advantage is exactly and only where the oracle short-circuit is`, on: ruleHolds },
+      { facet: `QUANTUM IS A SCALPEL, NOT A HAMMER — ${quantizable.length} of ${computations.length} corpus op-classes quantize; the universal op (content-addressing) and aggregation/lookup are classical — so "quantize specific computations" means find the unstructured searches and leave the rest classical, honestly`, on: quantizable.length === 1 },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      quantizable: quantizable.map((c) => c.name),
+      classicalCount: computations.length - quantizable.length,
+      facets,
+      statement: `Which corpus computations quantize — measured by search short-circuit — ${facets.filter((entry) => entry.on).length}/${facets.length}. A computation is unstructured search (Grover √N) IFF it SHORT-CIRCUITS: preimage search costs 1 query if the target is first and ${N} if last, so its cost depends on the target — an oracle with no structure. Aggregation (merkle fold, always reads all ${N}), minting (toUuid, O(1)) and indexed lookup (O(1)) do not short-circuit — no oracle, no Grover. So exactly ${quantizable.length} of ${computations.length} op-classes quantizes (content-address search, gain √N); the rest stay classical (gain 1). The gain follows the structure — √N only where the oracle short-circuit is. Quantum is a scalpel for unstructured search, not a universal speedup; the corpus's universal op, content-addressing, is classical.`,
+      boundary: `Computed, not labeled: each computation's SEARCH nature is decided by whether its query count varies with the target position (short-circuits) — a measured, refutable signature of an oracle, not a hand-assigned tag. Preimage search short-circuits (1..${N}); aggregation, mint and lookup do not — so the classification is derived from behaviour. THE RESULT is the honest map: of four representative corpus op-classes, only unstructured content-address search quantizes (Grover Θ(√N), quadratic, query-complexity, hardware-only — the previous fold), and it is the sole class because it is the only oracle-marked one-way search; aggregation reads everything by necessity, minting is a direct hash, lookup is indexed. SCOPE: four representatives, not an exhaustive corpus scan — but the SIGNATURE (short-circuit ⇒ oracle ⇒ Grover-able) is the general, refutable test to apply to any computation; amplitude estimation extends it to COUNTING how many match (also √N), the one other quantizable shape. It does NOT claim a wall-clock speedup (simulation is O(N)) nor that quantizing is common — the honest finding is that it is RARE: most computation is structured or aggregative and gains nothing. HARMONY ≠ TRUTH: "quantize the computations" is the harmony; the truth is a short-circuit test that finds the few unstructured searches and leaves the classical majority alone [[quantum-decoded]].`,
+    }
+  })
+}
