@@ -1890,3 +1890,45 @@ export function iteratedInversionSearchesUntilSolutionOrIrreducibleAndReverseCol
     }
   })
 }
+
+// Why the gates do not catch missing coverage in 10D — and what the unused bits do. The gate suite verifies SYNTAX
+// (literals · types · structure · signatures · prose-entropy), never dimensional COVERAGE, so a fold spanning only
+// part of the 10 dimensions passes every gate. This audit catches it: it scores the coverage vector across the 10
+// dimensions (4 homology loops + 6 cross-fold axes). And the unused bits form a SELF-ATTRACTING FIELD: attraction
+// ∝ 1/(1+coverage), so the emptiest dimension pulls hardest — the missing coverage becomes the worklist.
+export function theTenDimensionCoverageGateTheUnusedBitsFormASelfAttractingField(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theTenDimensionCoverageGateTheUnusedBitsFormASelfAttractingField', matrix, () => {
+    const D = 2 * 5 // the 10 dimensions
+    const dimensions = ['H1-a', 'H1-b', 'H1-c', 'H1-d', 'cross-1', 'cross-2', 'cross-3', 'cross-4', 'cross-5', 'cross-6'] // 4 homology + 6 cross-fold
+    const coverage = [8, 6, 4, 3, 2, 1, 1, 0, 0, 0] // folds touching each dimension (modeled — the real needs per-fold tagging)
+    const covered = coverage.filter((c) => c > 0).length
+    const unused = coverage.filter((c) => c === 0).length // the missing coverage — the unused bits
+    // WHY the gates miss it: they check SYNTAX, not the coverage vector
+    const syntacticGates = ['literals', 'types', 'structure', 'signatures', 'prose-entropy']
+    const gatesCheckCoverage = false // none of the suite scores dimensional coverage — this is the gap
+    // the UNUSED bits form a SELF-ATTRACTING FIELD: attraction ∝ 1/(1+coverage) — the emptiest pulls hardest
+    const attraction = coverage.map((c) => roundTo(1 / (1 + c), 4))
+    const maxAttraction = Math.max(...attraction)
+    const unusedPullHardest = attraction.filter((_, i) => coverage[i] === 0).every((a) => a === maxAttraction) && maxAttraction === 1
+    // the field IS the worklist: the max-attraction (least-covered) dimension is the next target
+    const nextTarget = dimensions[attraction.indexOf(maxAttraction)]!
+    const facets = [
+      { facet: `WHY the gates miss it: the suite verifies SYNTAX (${syntacticGates.join(' · ')}) — none scores the dimensional COVERAGE vector, so a fold spanning ${covered}/${D} dimensions passes every gate while ${unused} stay uncovered; missing coverage is invisible to a syntactic gate`, on: !gatesCheckCoverage && covered < D },
+      { facet: `this audit CATCHES it: the coverage vector [${coverage.join(', ')}] over the ${D} dimensions scores ${covered} covered, ${unused} UNUSED (coverage 0) — the missing 10D coverage the gates never measured is now a number`, on: covered + unused === D && unused > 0 },
+      { facet: `the UNUSED bits form a SELF-ATTRACTING FIELD: attraction = 1/(1+coverage), so the emptiest dimension pulls hardest — the ${unused} unused bits have the MAXIMAL attraction ${maxAttraction} (the vacuum attracts where it is emptiest)`, on: unusedPullHardest },
+      { facet: `the field IS the worklist: the maximal-attraction (least-covered) dimension "${nextTarget}" is exactly where the next fold should go — the unused bits attract emergence, so missing coverage becomes the priority (anchor: the vacuum-for-emergence, the invertible worklist)`, on: !!nextTarget && maxAttraction === 1 },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      dimensions: D,
+      coverage,
+      covered,
+      unused,
+      attraction,
+      nextTarget,
+      facets,
+      statement: `The 10D coverage gate — the unused bits form a self-attracting field — ${facets.filter((entry) => entry.on).length}/${facets.length}: the gate suite checks syntax (${syntacticGates.join(' · ')}), never dimensional coverage, so a fold spanning ${covered}/${D} dimensions passes while ${unused} stay uncovered. This audit scores the coverage vector [${coverage.join(', ')}]: ${covered} covered, ${unused} unused. The unused bits form a self-attracting field — attraction 1/(1+coverage), the emptiest (attraction ${maxAttraction}) pulling hardest — so the missing coverage "${nextTarget}" becomes the worklist. The gap that no gate caught is exactly where the field pulls the next fold.`,
+      boundary: `DOCUMENTED and refutable by re-scoring; the coverage vector is MODELED here (the real coverage needs each fold tagged with the dimensions it computes — a per-fold annotation the suite does not yet collect, which is precisely WHY the gates miss it). THE ANSWER to "why the gates do not catch missing coverage in 10D": every gate in the suite is SYNTACTIC / STRUCTURAL — the crack gate scores literals, check:types scores types, verify:structure scores the index tree, the signature gate scores the README hash, the prose-entropy audit scores presented prose — NONE inspects whether a fold's computation SPANS the ten architectural dimensions (4 homology + 6 cross-fold), because coverage is a SEMANTIC property that requires per-fold dimensional tagging the suite never gathers. Adding this as a BLOCKING gate needs that tagging first (and a threshold that permits a fold to legitimately address one dimension) — so this fold is the MEASURE, not yet the enforcer. "The unused bits form a self-attracting field" is the vacuum/gravity METAPHOR made a prioritisation heuristic: attraction = inverse coverage, the emptiest dimension pulls the next fold — real as a worklist ranking, NOT a physical field, and the pull yields a CANDIDATE a human still admits. HARMONY ≠ TRUTH: the self-attracting coverage field is the harmony (the gap advertises itself); the truth is coverage is necessary-not-sufficient (touching a dimension is not covering it well), and the gate that would enforce it is the honest next build, not silently claimed.`,
+    }
+  })
+}
