@@ -502,8 +502,9 @@ export function asVortex(f: Fold): {
 
 // The complete vortex sequence — local math only, no global lookup needed.
 // Forward (×2, with two step-offs): 1→2→4→8→7→5→[5→3]→3→6→[6→9]→9→0
-// Reverse (×5 = ÷2 mod 9, with two step-ons): 0←9←6←3←[3←5]←5←7←8←4←2←1
-// 2×5≡1 (mod 9): forward and reverse are modular inverses — fold the path, all balances.
+// Inverse (×5 = ÷2 mod 9, with two step-ons): 0←9←6←3←[3←5]←5←7←8←4←2←1
+// 2×5≡1 (mod 9): forward and inverse are modular inverses (the vortex INVERTS, it does not reverse — ×5 is
+// the multiplicative inverse (×2)⁻¹, not the printed orbit read backward) — fold the path, all balances.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const VORTEX_SEQUENCE = [1, 2, 4, 8, 7, 5, 3, 6, 9] as const
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -610,8 +611,8 @@ export function vortexPrev(d: number): number {
   // ×5 is the modular inverse of ×2 mod 9 (since 2×5=10≡1 mod 9)
   if (d === 0) return 9          // void←axis: sequence closes 9→0
   if (d === 1) return 0          // 1 opens the sequence; void precedes
-  if (d === 3) return 5          // cross-entry reversed: 5→3 so 3←5
-  if (d === 9) return 6          // axis-entry reversed: 6→9 so 9←6
+  if (d === 3) return 5          // cross-entry inverted: 5→3 so 3←5
+  if (d === 9) return 6          // axis-entry inverted: 6→9 so 9←6
   return digitalRoot(d * 5)
 }
 

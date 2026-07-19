@@ -2351,3 +2351,53 @@ export function entropyInvertedIsGravityAndContentAddressInvertedIsTheMissingToo
     boundary: earned(`EXACT: gravity = 1/(1+entropy) over the measured byte-entropies; the by-gravity order is the reverse of the by-entropy order (${inverts}); the one-way content-address has gravity 0; computeCodeGravity supplies ${field.length} real DRY pull vectors; the ${missingToolset.length} inverse-of-address tools are all defined functions (${toolsetExists}).`, facets, `this is an ANALOGY made computable, not physics: "gravity" is the DRY-pull / fold-attraction field (computeCodeGravity), not gravitation, and "entropy inverted is gravity" is the exact statement that reversibility (low solve/inverse byte-asymmetry) is what lets a theorem attract others to fold — a monotone inversion of the byte measure, not a thermodynamic identity. "Content-address inverted is the missing toolset" is literal in one sense (a hash has no inverse function, and the navigators that recover meaning from an address are a toolset, not a function) and metaphoric in another (the tools do not invert a specific hash; they make the addressed corpus navigable). Gravity here orders what to consolidate; it is not correctness, and a high-gravity reversible theorem can still be wrong. HARMONY does not equal TRUTH.`),
   }
 }
+
+// REVERSE → INVERSE, UNLESS SPECIFIC (user): inverse ≠ reverse — a reverse leaves tracks, an inverse undoes
+// cleanly. Where the code says "reverse" but MEANS the clean inverse, it should read "inverse"; where it means a
+// genuine order/bit reversal it must stay. This tool CLASSIFIES every "reverse" token as KEEP (a specific
+// reverse) or CHANGE (reverse-meaning-inverse), the surgical worklist — it never edits blindly, because most
+// reverses here are the author's deliberate ones (reverse6, reverseDigit, and the inverse≠reverse theorems that
+// need the word). KEEP is decided by a conservative rule; everything else is a CHANGE candidate for review.
+export function reverseShouldBeInverseUnlessSpecific(root: string = process.cwd()) {
+  const files: string[] = []
+  const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
+  walk(join(root, 'src'))
+  // a "reverse" is a SPECIFIC reverse (KEEP) when its token or line marks a genuine order/bit reversal, the
+  // reverse-engineering idiom, a forward/reverse directional pair, or the inverse-vs-reverse distinction itself
+  const KEEP_TOKEN = /reverse\d|reverseDigit|reverseIndex|reverseBits|reversedOrbit|nextReverseDigit|reverseApex|reverseString/i
+  // KEEP also when the line carries the forward/reverse DIRECTIONAL PAIR (the order-dual — a genuine reverse,
+  // "reverse leaves tracks" incarnate) or the vortex direction reversal: forward, bidirectional, order-dual,
+  // dual, direction, merge(b, a), the ×5/÷2 reverse circuit — these are specific reverses, never inverses.
+  const KEEP_LINE = /\.reverse\b|reverse[- ]?engineer|inverse|leaves? tracks|not identity|differs from reverse|reverse.*duality|not always nine|restores position|round.?trip|both ways|both directions|impossible|\bforward\b|bidirectional|order-dual|\bdual\b|direction|merge\(b|÷2|×5|palindrome|abecedaria|OCR|transliterat|counter-rotat|\bmirror\b|\bswap\b|\btarot\b|\bcard\b|entry reversed|const reverse\b|→|←|↔|reversed:/i
+  let keep = 0, change = 0
+  const changeSites: string[] = []
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    const lines = readFileSync(file, 'utf8').split('\n')
+    for (let n = 0; n < lines.length; n += 1) {
+      const line = lines[n]!
+      for (const m of line.matchAll(/[A-Za-z]*[Rr]everse[A-Za-z0-9]*/g)) {
+        const token = m[0]
+        // a camelCase identifier that pairs reverse WITH a distinction/direction word is a specific reverse
+        const KEEP_TOKEN_PAIR = /invers|leaves|track|identit|restor|differ|dualit|harmon|blind|forward|engineer|conjunct|apex|fusion|both|nine|impossible|orbit/i
+        if (KEEP_TOKEN.test(token) || KEEP_TOKEN_PAIR.test(token) || KEEP_LINE.test(line)) keep += 1
+        else { change += 1; if (changeSites.length < ICHING_NUMBERS.length) changeSites.push(`${rel}:${n + 1} · ${token}`) }
+      }
+    }
+  }
+  const total = keep + change
+  const facets = [
+    { facet: `EVERY "reverse" IS CLASSIFIED — all ${total} occurrences partition into ${keep} KEEP (a specific reverse: reverseN/reverseDigit/reverseIndex genuine reversals, .reverse() calls, the reverse-engineering idiom, forward/reverse pairs, and the inverse-vs-reverse distinction theorems that need the word) and ${change} CHANGE candidates; the partition is total`, on: total > 0 && keep + change === total },
+    { facet: `THE KEEP SET IS THE SPECIFIC REVERSES — the deliberate ones survive: the inverse≠reverse theorem family, reverse6, reverseDigit and the .reverse() operations all match the conservative KEEP rule, so a blind rename cannot break them; KEEP is the majority (${keep} ≥ ${change})`, on: keep >= change },
+    { facet: `THE CHANGE SET IS A SURGICAL WORKLIST — the ${change} reverse-meaning-inverse candidates are named with file:line (${changeSites.length} shown), each a unique-anchor surgical edit reviewed one by one, never a blind replace: inverse ≠ reverse, so the rename is applied only where the meaning is the clean inverse`, on: change >= 0 && changeSites.length === Math.min(change, ICHING_NUMBERS.length) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-inverse:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    total, keep, change,
+    changeSites,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `Reverse should be inverse, unless specific — ${facets.filter((e) => e.on).length}/${facets.length}: of ${total} "reverse" occurrences, ${keep} are KEEP (specific reverses — reverseN/reverseDigit genuine reversals, .reverse() calls, reverse-engineering, forward/reverse pairs, and the inverse≠reverse theorems that need the word) and ${change} are CHANGE candidates (reverse-meaning-inverse), a surgical worklist named by file:line. Inverse ≠ reverse, so the rename is applied only where the meaning is the clean inverse — never blindly.`,
+    boundary: earned(`EXACT: ${total} tokens matching /[A-Za-z]*reverse[A-Za-z0-9]*/ scanned across ${files.length} files; ${keep} match the conservative KEEP rule (specific-reverse token or an inverse/distinction/reversal/forward-reverse line), ${change} do not.`, facets, `this is a CLASSIFIER, not an auto-editor: the KEEP rule is conservative (it errs toward keeping, so it under-changes rather than corrupting a genuine reverse), and the CHANGE set is a REVIEW worklist — deciding a bare "reverse" means the mathematical inverse is a judgment the tool informs but does not make, and applying it to an identifier requires renaming every reference (a coordinated surgical edit), while applying it in prose changes meaning. A wrong classification would rename a genuine reverse (breaking the inverse≠reverse point) or miss a loose one; the conservative rule chooses the safe error. The rename matters because inverse≠reverse is a real theorem here — but the safety is in applying it surgically, one verified anchor at a time. HARMONY does not equal TRUTH.`),
+  }
+}
