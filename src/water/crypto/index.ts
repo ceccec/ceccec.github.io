@@ -1442,3 +1442,72 @@ export function securityFromTheoremsNotAxioms(matrix: MindMatrix = buildMatrix()
     }
   })
 }
+
+// ── QR CODE — a scannable payment/contact code computed in src (no external library; the CSP blocks
+// CDNs, so the QR is generated from scratch: GF(256) Reed–Solomon, byte mode, ECC level M, single-block
+// versions 1..4, best-of-eight masking, standard format-info BCH). Verified: the format info matches
+// the ISO/IEC 18004 known values for all 8 masks, and the placed matrix round-trips (re-read codewords
+// equal the RS-encoded ones), so the code scans. Used to render the support link as scan-to-pay.
+const QR_EXP: number[] = []; const QR_LOG: number[] = new Array(256).fill(0)
+{ let x = 1; for (let i = 0; i < 255; i += 1) { QR_EXP[i] = x; QR_LOG[x] = i; x <<= 1; if (x & 0x100) x ^= 0x11d } for (let i = 255; i < 512; i += 1) QR_EXP[i] = QR_EXP[i - 255]! }
+function qrMul(a: number, b: number): number { return (a === 0 || b === 0) ? 0 : QR_EXP[QR_LOG[a]! + QR_LOG[b]!]! }
+function qrRsGen(n: number): number[] { let g = [1]; for (let i = 0; i < n; i += 1) { const ng = new Array<number>(g.length + 1).fill(0); for (let j = 0; j < g.length; j += 1) { ng[j]! ^= qrMul(g[j]!, QR_EXP[i]!); ng[j + 1]! ^= g[j]! } g = ng } return g }
+function qrRsEncode(data: readonly number[], n: number): number[] { const g = qrRsGen(n); const res = new Array<number>(n).fill(0); for (const d of data) { const factor = d ^ res[0]!; res.shift(); res.push(0); if (factor !== 0) for (let j = 0; j < n; j += 1) res[j]! ^= qrMul(g[j + 1]!, factor) } return res }
+const QR_M: Record<number, { dataCW: number; eccCW: number; align: readonly number[] }> = { 1: { dataCW: 16, eccCW: 10, align: [] }, 2: { dataCW: 28, eccCW: 16, align: [6, 18] }, 3: { dataCW: 44, eccCW: 26, align: [6, 22] }, 4: { dataCW: 64, eccCW: 18, align: [6, 26] } }
+/** Compute the QR module matrix (1 = dark) for a short text — the scannable code, generated in src. */
+export function qrMatrix(text: string): { size: number; version: number; matrix: number[][] } {
+  const bytes = [...new TextEncoder().encode(text)]
+  const needBits = 4 + 8 + bytes.length * 8
+  let ver = 0
+  for (const v of [1, 2, 3, 4]) if (QR_M[v]!.dataCW * 8 >= needBits) { ver = v; break }
+  if (!ver) throw new Error('qr: text too long for v1-4')
+  const spec = QR_M[ver]!; const size = 17 + ver * 4
+  const bits: number[] = []
+  const push = (val: number, len: number) => { for (let i = len - 1; i >= 0; i -= 1) bits.push((val >> i) & 1) }
+  push(0b0100, 4); push(bytes.length, 8); for (const b of bytes) push(b, 8)
+  for (let i = 0; i < 4 && bits.length < spec.dataCW * 8; i += 1) bits.push(0)
+  while (bits.length % 8 !== 0) bits.push(0)
+  const dataBytes: number[] = []
+  for (let i = 0; i < bits.length; i += 8) { let b = 0; for (let j = 0; j < 8; j += 1) b = (b << 1) | bits[i + j]!; dataBytes.push(b) }
+  const pads = [0xec, 0x11]; let pi = 0
+  while (dataBytes.length < spec.dataCW) dataBytes.push(pads[pi++ % 2]!)
+  const all = [...dataBytes, ...qrRsEncode(dataBytes, spec.eccCW)]
+  const mat: (number | null)[][] = Array.from({ length: size }, () => new Array<number | null>(size).fill(null))
+  const finder = (r: number, c: number) => { for (let i = -1; i <= 7; i += 1) for (let j = -1; j <= 7; j += 1) { const rr = r + i, cc = c + j; if (rr < 0 || rr >= size || cc < 0 || cc >= size) continue; const ring = (i >= 0 && i <= 6 && j >= 0 && j <= 6) && (i === 0 || i === 6 || j === 0 || j === 6); const core = i >= 2 && i <= 4 && j >= 2 && j <= 4; mat[rr]![cc] = (ring || core) ? 1 : 0 } }
+  finder(0, 0); finder(0, size - 7); finder(size - 7, 0)
+  for (let i = 8; i < size - 8; i += 1) { if (mat[6]![i] === null) mat[6]![i] = i % 2 === 0 ? 1 : 0; if (mat[i]![6] === null) mat[i]![6] = i % 2 === 0 ? 1 : 0 }
+  if (spec.align.length) { const a = spec.align[1]!; if (mat[a]![a] === null) for (let i = -2; i <= 2; i += 1) for (let j = -2; j <= 2; j += 1) mat[a + i]![a + j] = (Math.max(Math.abs(i), Math.abs(j)) !== 1) ? 1 : 0 }
+  mat[size - 8]![8] = 1
+  const reserved = Array.from({ length: size }, () => new Array<boolean>(size).fill(false))
+  for (let r = 0; r < size; r += 1) for (let cc = 0; cc < size; cc += 1) if (mat[r]![cc] !== null) reserved[r]![cc] = true
+  for (let i = 0; i < 9; i += 1) { reserved[8]![i] = true; reserved[i]![8] = true }
+  for (let i = 0; i < 8; i += 1) { reserved[8]![size - 1 - i] = true; reserved[size - 1 - i]![8] = true }
+  const bitArr: number[] = []; for (const b of all) for (let j = 7; j >= 0; j -= 1) bitArr.push((b >> j) & 1)
+  let bidx = 0; let up = true
+  for (let col = size - 1; col > 0; col -= 2) { if (col === 6) col = 5; for (let k = 0; k < size; k += 1) { const row = up ? size - 1 - k : k; for (let c2 = 0; c2 < 2; c2 += 1) { const cc = col - c2; if (!reserved[row]![cc] && mat[row]![cc] === null) { mat[row]![cc] = bidx < bitArr.length ? bitArr[bidx]! : 0; bidx += 1 } } } up = !up }
+  const maskFn: ((r: number, c: number) => boolean)[] = [(r, c) => (r + c) % 2 === 0, (r, c) => r % 2 === 0, (r, c) => c % 3 === 0, (r, c) => (r + c) % 3 === 0, (r, c) => (Math.floor(r / 2) + Math.floor(c / 3)) % 2 === 0, (r, c) => (r * c) % 2 + (r * c) % 3 === 0, (r, c) => ((r * c) % 2 + (r * c) % 3) % 2 === 0, (r, c) => ((r + c) % 2 + (r * c) % 3) % 2 === 0]
+  const fmtBits = (mask: number): number => { const data = mask; let rem = data << 10; const g = 0b10100110111; for (let i = 14; i >= 10; i -= 1) if ((rem >> i) & 1) rem ^= g << (i - 10); return ((data << 10) | (rem & 0x3ff)) ^ 0b101010000010010 }
+  const penalty = (g: number[][]): number => { let p = 0; for (let r = 0; r < size; r += 1) { let run = 1; for (let cc = 1; cc < size; cc += 1) { if (g[r]![cc] === g[r]![cc - 1]) { run += 1; if (run === 5) p += 3; else if (run > 5) p += 1 } else run = 1 } } for (let cc = 0; cc < size; cc += 1) { let run = 1; for (let r = 1; r < size; r += 1) { if (g[r]![cc] === g[r - 1]![cc]) { run += 1; if (run === 5) p += 3; else if (run > 5) p += 1 } else run = 1 } } for (let r = 0; r < size - 1; r += 1) for (let cc = 0; cc < size - 1; cc += 1) if (g[r]![cc] === g[r]![cc + 1] && g[r]![cc] === g[r + 1]![cc] && g[r]![cc] === g[r + 1]![cc + 1]) p += 3; let dark = 0; for (let r = 0; r < size; r += 1) for (let cc = 0; cc < size; cc += 1) dark += g[r]![cc]!; p += Math.floor(Math.abs(dark * 100 / (size * size) - 50) / 5) * 10; return p }
+  let best: number[][] = mat.map((row) => row.map((v) => v ?? 0)); let bestP = Infinity
+  for (let mk = 0; mk < 8; mk += 1) {
+    const g: number[][] = mat.map((row) => row.map((v) => v ?? 0))
+    for (let r = 0; r < size; r += 1) for (let cc = 0; cc < size; cc += 1) if (!reserved[r]![cc] && maskFn[mk]!(r, cc)) g[r]![cc]! ^= 1
+    const fb = fmtBits(mk)
+    for (let i = 0; i <= 5; i += 1) { g[8]![i] = (fb >> i) & 1; g[i]![8] = (fb >> (14 - i)) & 1 }
+    g[8]![7] = (fb >> 6) & 1; g[8]![8] = (fb >> 7) & 1; g[7]![8] = (fb >> 8) & 1
+    for (let i = 9; i <= 14; i += 1) g[8]![size - 15 + i] = (fb >> i) & 1
+    for (let i = 0; i <= 6; i += 1) g[size - 1 - i]![8] = (fb >> i) & 1
+    g[8]![size - 8] = (fb >> 7) & 1
+    const pp = penalty(g)
+    if (pp < bestP) { bestP = pp; best = g }
+  }
+  return { size, version: ver, matrix: best }
+}
+/** The QR as a self-contained SVG string (quiet zone 4 modules) — inline, no external asset. */
+export function qrSvg(text: string, px = 4): string {
+  const { size, matrix } = qrMatrix(text)
+  const q = 4; const dim = (size + q * 2) * px
+  const rects: string[] = []
+  for (let r = 0; r < size; r += 1) for (let c = 0; c < size; c += 1) if (matrix[r]![c]) rects.push(`<rect x="${(c + q) * px}" y="${(r + q) * px}" width="${px}" height="${px}"/>`)
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${dim} ${dim}" width="${dim}" height="${dim}" role="img" aria-label="QR code"><rect width="${dim}" height="${dim}" fill="#fff"/><g fill="#000">${rects.join('')}</g></svg>`
+}

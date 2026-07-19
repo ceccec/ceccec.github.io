@@ -11,6 +11,7 @@ import TrinityGateways from '../theme/components/TrinityGateways.vue'
 import GlobalHelp from '../theme/components/GlobalHelp.vue'
 import CollectiveMind from '../theme/components/CollectiveMind.vue'
 import RevolutAside from '../theme/components/RevolutAside.vue'
+import TheoremSupport from '../theme/components/TheoremSupport.vue'
 import VitePressPossibilities from '../theme/components/VitePressPossibilities.vue'
 import { componentDisplayName, useSiteLocale } from './mounts'
 import { componentProjectionFor } from './hero-movie-paint'
@@ -191,6 +192,7 @@ export async function registerVitePressComponents(app: App): Promise<void> {
   if (!app.component('LinkedHeroCard')) app.component('LinkedHeroCard', LinkedHeroCard)
   if (!app.component('HubCardGrid')) app.component('HubCardGrid', HubCardGrid)
   if (!app.component('TagBrowser')) app.component('TagBrowser', TagBrowser)
+  if (!app.component('TheoremSupport')) app.component('TheoremSupport', TheoremSupport) // the support link + scan-to-pay QR on every theorem
   for (const name of await componentNamesForRegistration()) {
     if (THEME_RESERVED.has(name) || app.component(name)) continue
     const staticGlobal = STATIC_GLOBALS[name]
