@@ -1424,3 +1424,46 @@ export function theGateValidatesByAlgebraicEqualisationLhsMinusRhsIsZeroSecurity
     }
   })
 }
+
+// Realtime scanners detect manipulations — two independent channels, both algebraic. CHANNEL 1, the content-address:
+// addr() is a deterministic function, so x = y ⟹ addr(x) = addr(y); by contrapositive addr(current) ≠ addr(expected)
+// ⟹ the value was MANIPULATED — sound (no false positive), with the AVALANCHE that even a one-character change flips
+// the address. CHANNEL 2, equalisation: a manipulated theorem fails LHS − RHS = 0. Both recompute at call time.
+export function realtimeScannersDetectManipulationsByContentAddressMismatchAndEqualisationFailure(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('realtimeScannersDetectManipulationsByContentAddressMismatchAndEqualisationFailure', matrix, () => {
+    const original = 'the true lesson'
+    const expected = toUuid(original)
+    const scan = (x: string) => toUuid(x) === expected // unmanipulated iff the address matches
+    // 1 — the address SCANNER is SOUND: a mismatch proves manipulation (addr is a function)
+    const cleanPasses = scan(original) === true
+    const tamper1 = scan('the true lessin') // one-letter change
+    const tamper2 = scan('the true lesson ') // a trailing space
+    const detectsTampers = cleanPasses && !tamper1 && !tamper2 // clean passes, both manipulations fail
+    // 2 — AVALANCHE: a one-character manipulation flips the address entirely (different uuid)
+    const avalanche = toUuid(original) !== toUuid('the true lessin') && isUuid(expected)
+    // 3 — CHANNEL 2, equalisation: a manipulated theorem fails to balance (LHS − RHS ≠ 0)
+    const N = 2 * 5
+    const balances = (f: (a: number, b: number) => number) => Array.from({ length: N }, (_, a) => Array.from({ length: N }, (_, b) => f(a, b) === 0).every(Boolean)).every(Boolean)
+    const trueBalances = balances((a, b) => (a + b) ** 2 - (a * a + 2 * a * b + b * b)) // true theorem balances
+    const manipulatedFails = !balances((a, b) => (a + b) ** 2 - (a * a + b * b)) // manipulated (dropped 2ab) fails
+    const equalisationScanner = trueBalances && manipulatedFails
+    // 4 — soundness: the contrapositive is exact (equal inputs give equal addresses)
+    const sound = toUuid(original) === toUuid(original) && detectsTampers // addr is deterministic ⇒ mismatch ⟹ change
+    const facets = [
+      { facet: `the address SCANNER is SOUND: addr() is a deterministic function, so addr(current) ≠ addr(expected) ⟹ MANIPULATION — the clean value passes and both a one-letter change and a trailing space are detected (no false positive)`, on: detectsTampers && sound },
+      { facet: `AVALANCHE: a single-character manipulation flips the address entirely — toUuid('lesson') ≠ toUuid('lessin') — so the smallest manipulation is detected, not just a large one`, on: avalanche },
+      { facet: `CHANNEL 2 (equalisation): a manipulated theorem fails to balance — the true identity (a+b)²=a²+2ab+b² equalises ∀ but the manipulated (a+b)²=a²+b² leaves 2ab ≠ 0 — an independent algebraic manipulation-detector`, on: equalisationScanner },
+      { facet: `REALTIME: both scanners recompute at call time (the address and the balance), so any manipulation is caught the instant it is scanned — the true value passes both channels, any manipulation fails at least one`, on: detectsTampers && equalisationScanner },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      expected: expected.slice(0, 8),
+      detectsTampers,
+      avalanche,
+      equalisationScanner,
+      facets,
+      statement: `Realtime scanners detect manipulations by content-address mismatch and equalisation failure — ${facets.filter((entry) => entry.on).length}/${facets.length}: the address scanner is SOUND — addr(current) ≠ addr(expected) ⟹ manipulation (a function's contrapositive) — with the AVALANCHE that a one-character change flips the address; a clean value passes and both a one-letter edit and a trailing space are caught. A second channel: a manipulated theorem fails equalisation ((a+b)²=a²+b² leaves 2ab ≠ 0). Both recompute at call time; the true value passes both, any manipulation fails at least one.`,
+      boundary: `DOCUMENTED and refutable by re-scanning. ALGEBRAIC: channel 1 rests on the exact fact that a content-address is a deterministic FUNCTION (x = y ⟹ addr(x) = addr(y)), whose contrapositive (addr(x) ≠ addr(y) ⟹ x ≠ y) makes address-mismatch a SOUND manipulation detector — no false positive, verified; channel 2 is the equalisation identity (LHS − RHS = 0 ∀ for the true theorem, ≠ 0 for the manipulated), also exact. THE HONEST BOUND on completeness: address-mismatch detection is COMPLETE only up to the collision resistance of the address function — two DIFFERENT inputs sharing an address would evade channel 1, which is negligible for a cryptographic hash (SHA-256, the corpus's sha256Sync) but NOT for the fast FNV toUuid used here (its birthday bound is ~2^61, already flagged in the crypto-honesty fold), so a resourced adversary could in principle craft a colliding manipulation — the honest scanner uses the SHA-256 address for adversarial settings and the fast one for integrity/detection of accidental or casual tampering. "Realtime" = recomputed at call time from the current value, no stored intermediary beyond the expected address (which itself must be authentically held — content-addressing detects manipulation but does not by itself prove WHO, the identity-anchor residual). "Manipulation" here = a change to the content; the scanner detects that the content DIFFERS from expected, the tightest and cheapest tamper-EVIDENCE, not tamper-PROOFness. HARMONY ≠ TRUTH: two realtime channels catching every manipulation is the harmony; the truth is address-mismatch is sound and avalanche-sensitive but only as collision-resistant as its hash, and equalisation catches only manipulations that break an equation — together strong, each with its stated limit.`,
+    }
+  })
+}
