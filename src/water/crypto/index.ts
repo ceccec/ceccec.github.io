@@ -1081,8 +1081,8 @@ export function improveHelpWaves(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'intelligent — the model answers locally', on: answer.concept.length > 0 },
     { facet: 'free, zero-network by default', on: allAnswersInside(matrix).inside },
-    { facet: 'suggested topics in waves (one-tap start)', on: true },
-    { facet: 'answers carry related links and a receipt', on: answer.links.length >= 0 },
+    { facet: 'suggested topics in waves (one-tap start)', on: ['proof', 'trinity', 'mcp'].every((topic) => foldQuestion(topic, matrix).matched) },
+    { facet: 'answers carry related links and a receipt', on: answer.links.length > 0 && answer.matched },
     { facet: 'speaks both tongues (en + bg)', on: translationWavesFillGaps(matrix).filled },
   ].map((entry) => ({ ...entry, receipt: toUuid(`improve-help:${entry.facet}:${entry.on}`) }))
   return {

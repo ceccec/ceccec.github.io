@@ -883,7 +883,7 @@ export function plasmaClientWorkBoundedByPureMath(path = '/', matrix: MindMatrix
   const streams = plasmaMovieStreams(path, '', matrix)
   const sealed = clientMoviePaintPathSealed(path, matrix)
   const gate = computesGate('plasmaClientWorkBoundedByPureMath', [
-    { facet: 'movie streams computed without gate walk', on: streams.count >= 0 },
+    { facet: 'movie streams computed without gate walk', on: streams.count > 0 },
     { facet: 'client catalog page ops stay 0 on client', on: typeof window === 'undefined' ? true : plasmaClientCatalogPageOps() === 0 },
     { facet: 'work budget tiers are the vortex paint tiers', on: TIERS.length === 3 },
   ])
@@ -990,7 +990,7 @@ export function movieAsMostEfficientScreensaver(at: number = Date.now(), path = 
   const tier = screensaverTier()
   const paint = realtimeComputationsMoviePaint(at, path, matrix)
   const gate = computesGate('movieAsMostEfficientScreensaver', [
-    { facet: 'one RAF paint loop drives the whole screensaver', on: paint.count >= 0 },
+    { facet: 'one RAF paint loop drives the whole screensaver', on: paint.visible },
     { facet: 'idle threshold = hero cycle', on: SCREENSAVER_IDLE_MS === HERO_CYCLE_MS },
     { facet: 'tier is a capability label (NATIVE/FALLBACK/UNAVAILABLE)', on: tier === 'NATIVE' || tier === 'FALLBACK' || tier === 'UNAVAILABLE' },
   ])

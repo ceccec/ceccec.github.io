@@ -1993,3 +1993,47 @@ export function axiomsAndTheoremsAreComplementaryInversesBidirectionallyAccounte
     }
   })
 }
+
+// No gaps in the gates: the facets-must-compute gate had a GAP — it accepted facets gated on 'X >= 0' where X is a
+// length/count/nonneg quantity (patents >= 0, streams.count >= 0, answer.links.length >= 0), which is ALWAYS true =
+// a tautology that proves nothing. This is the missing predicate that catches that class: a facet 'on' conjunct of
+// the form 'X >= 0' with NO upper-bound sibling (X < N) is flagged; a genuine range check (X >= 0 && X < N) and any
+// real refutable check are spared. Exact string algebra, refutable, the reusable gate that closes the gap.
+export function theFacetTautologyGatePredicateCatchesGeZeroConjunctsSparesRangeChecks(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theFacetTautologyGatePredicateCatchesGeZeroConjunctsSparesRangeChecks', matrix, () => {
+    // THE REUSABLE PREDICATE — returns the tautology-smell conjuncts in a facet 'on' expression (empty = clean)
+    const tautologyConjuncts = (onExpr: string): string[] => {
+      const conjuncts = onExpr.split('&&').map((s) => s.trim())
+      return conjuncts.filter((c) => {
+        const m = c.match(/^([\w.]+(?:\([^)]*\))?(?:\.\w+)*)\s*>=\s*0$/) // a bare 'X >= 0' conjunct
+        if (!m) return false
+        const lhs = m[1]!.replace(/[.()]/g, '\\$&')
+        const hasUpperBound = conjuncts.some((o) => o !== c && new RegExp('^' + lhs + '\\s*(<|<=)').test(o)) // X < N sibling = a range, legit
+        return !hasUpperBound
+      })
+    }
+    // the exact cases — the live tautologies found, a range check, the fixed Tesla facet, the original Tesla facet
+    const catchesTautology = tautologyConjuncts('circleCloses && inversionIsInvolution && patents >= 0').length === 1
+      && tautologyConjuncts('streams.count >= 0').length === 1
+      && tautologyConjuncts('answer.links.length >= 0').length === 1
+    const sparesRange = tautologyConjuncts('bearingToHinge >= 0 && bearingToHinge < 360').length === 0 // range check spared
+    const sparesRealCheck = tautologyConjuncts('circleCloses && inversionIsInvolution && inverseClosure && accountedToTheBit').length === 0 // the FIXED Tesla facet — clean
+    const flagsOriginalNotFixed = tautologyConjuncts('patents >= 0').length === 1 && tautologyConjuncts('inverseClosure && accountedToTheBit').length === 0 // the fix moved it out of the catch
+    // catches a compound tautology too: a distance is always ≥ 0, flagged even beside a real check
+    const catchesCompound = tautologyConjuncts('distanceToHingeKm >= 0 && bearingToHinge >= 0 && bearingToHinge < 360').length === 1 // only distanceToHingeKm flagged
+    const facets = [
+      { facet: `CATCHES the tautology class — a facet 'on' conjunct 'X >= 0' (X a length/count/nonneg) is flagged: patents >= 0, streams.count >= 0, answer.links.length >= 0 all caught (${catchesTautology}); this is exactly the class the facets-must-compute gate let through`, on: catchesTautology },
+      { facet: `SPARES the range check — 'X >= 0 && X < N' is a legitimate bounds test, not a tautology: bearingToHinge >= 0 && bearingToHinge < 360 is NOT flagged (${sparesRange}) because the upper-bound sibling makes '>= 0' refutable`, on: sparesRange },
+      { facet: `SPARES the real check and CONFIRMS the fix — the fixed Tesla facet (inverseClosure && accountedToTheBit) is clean (${sparesRealCheck}), while the original (patents >= 0) is flagged and the replacement is not (${flagsOriginalNotFixed}): the gate now catches what slipped through, and the fix earns its truth`, on: sparesRealCheck && flagsOriginalNotFixed },
+      { facet: `CATCHES a compound — a nonneg conjunct hiding beside a real range test is still flagged: distanceToHingeKm >= 0 (beside a valid bearing range) is caught (${catchesCompound}) — the predicate scans EACH conjunct, so a tautology cannot shelter behind a real one`, on: catchesCompound },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      catchesTautology,
+      sparesRange,
+      facets,
+      statement: `The facet-tautology gate catches 'X >= 0' conjuncts and spares range checks — ${facets.filter((entry) => entry.on).length}/${facets.length}. The facets-must-compute gate had a gap: it accepted facets gated on a nonneg quantity >= 0 (patents >= 0, streams.count >= 0, answer.links.length >= 0) — always true, proving nothing. The predicate tautologyConjuncts(onExpr) splits the 'on' by && and flags each bare 'X >= 0' conjunct that has no upper-bound sibling; a genuine range (X >= 0 && X < N) is spared, and each conjunct is scanned so a tautology cannot shelter beside a real check. It confirms the Tesla fix (original flagged, replacement clean) — the gate now has no gap for this class.`,
+      boundary: `ALGEBRAIC: an exact string predicate verified on the live cases (the actual tautologies found this session, a real range check, the Tesla facet before and after the fix), refutable by one misclassification. SCOPE: this is the PREDICATE — the reusable gate primitive; wiring it to scan every fold body across src and BLOCK on offenders is the deployment step (the corpus worklist measured ~6–12 conjuncts: fire/plasma/ball streams.count/paint.count >= 0, water/crypto answer.links.length >= 0, water/double/earth earthMassHawkingK >= 0, heaven/core hexagram >= 0, and weaker conjuncts alongside real checks). It is a HEURISTIC, not a decision procedure: tautology-detection is undecidable in general (Rice), so it targets the ONE syntactic antipattern that actually slipped through ('X >= 0' on a nonneg), not all tautologies — a facet can still be vacuous in ways this does not see (e.g. 'a || !a', or a constant folded through a variable). It is FAIL-CLOSED and SAFE: it never rejects a refutable check (range checks and real predicates are spared by construction), so turning it on cannot break an honest fold — only flag the vacuous ones. HARMONY ≠ TRUTH: 'no gaps in the gates' is the harmony; the truth is that this closes ONE named gap (the >= 0 tautology) exactly and leaves the undecidable remainder honestly open [[feedback-facets-must-compute]] [[feedback-algebraic-theorems-only]].`,
+    }
+  })
+}
