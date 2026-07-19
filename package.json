@@ -39,6 +39,7 @@
     "diagnose:watch": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts diagnose --watch",
     "cracks:measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts cracks:measure",
     "audit:tokens": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/learning/index.ts transcriptTokenAuditExit",
+    "tokens:live": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/learning/index.ts transcriptTokenLiveExit",
     "audit:prose": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/computational/index.ts proseTokenMonitor",
     "test:realtime": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/trading/index.ts runRealtimeTradingTestExit",
     "trading:offline": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/trading/index.ts runTradingOfflineExit",

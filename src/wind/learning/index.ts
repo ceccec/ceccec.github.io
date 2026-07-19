@@ -341,6 +341,59 @@ export async function transcriptTokenAuditExit() {
   process.exit(audit.audited ? 0 : 1)
 }
 
+// ── REALTIME TOKEN IMPROVEMENT (user: always improve token usage realtime) — the audit turned into
+// an IN-SESSION meter: tokens:live reads the CURRENT session's transcript (the newest .jsonl), prints
+// the running ledger and, for each repeated Bash shape, the SAVED TOOL that replaces it — so the
+// course-correction happens while the session still runs, never only in the post-mortem.
+/** Pure advice map: a repeated Bash shape → the saved workflow tool that collapses it. */
+export function tokenAdviceForShapes(shapes: readonly (readonly [string, number])[]): { shape: string; count: number; advice: string }[] {
+  const table: readonly (readonly [RegExp, string])[] = [
+    [/^grep/, 'atlas-hunt — npm run atlas -- --json <symbols…> (one batch, no chains)'],
+    [/^(sed|cat|head|tail)/, 'Read tool with offset/limit, or run <file> <fn> --compact for fold values'],
+    [/^cd /, 'absolute paths — cwd persists; one cd per session'],
+    [/^python3/, 'surgical plans (npm run surgical) or a node -e probe — no ad-hoc heredocs'],
+    [/^node --experimental/, 'good — but add --compact: the probe output IS the token spend'],
+    [/^node -e/, 'good for monoliths (grep lies there); keep probes one-shot'],
+    [/^curl/, 'computed-page-verify / dist-serve-proof — transform-level checks, never SPA polling'],
+    [/^(sleep|SP=.*sleep)/, 'run_in_background + the completion notification — never poll with sleep'],
+    [/^npm run/, 'batch the gates: verify-suite runs types+cracks+verify as one wave'],
+    [/^git/, 'commit-pathspec / commit-isolated — the saved concurrency-safe frames'],
+  ]
+  return shapes
+    .filter(([, count]) => count >= 3)
+    .map(([shape, count]) => ({ shape, count, advice: table.find(([pattern]) => pattern.test(shape))?.[1] ?? 'save the repeating shape as a tool (unexpectedSituationsRefactorTools)' }))
+}
+
+/** tokens:live — the realtime meter: audit ONLY the newest transcript (the running session), print the
+ *  running ledger + per-shape saved-tool advice. Exit 0 always: a meter, not a gate. */
+export async function transcriptTokenLiveExit() {
+  const { readFileSync, readdirSync, statSync } = await import(/* @vite-ignore */ 'node' + ':fs')
+  const { join } = await import(/* @vite-ignore */ 'node' + ':path')
+  const root = join(process.env.HOME ?? '', '.claude', 'projects')
+  let newest = { path: '', mtime: 0 }
+  const walk = (dir: string) => {
+    for (const name of readdirSync(dir)) {
+      const p = join(dir, name)
+      const st = statSync(p)
+      if (st.isDirectory()) walk(p)
+      else if (name.endsWith('.jsonl') && st.mtimeMs > newest.mtime) newest = { path: p, mtime: st.mtimeMs }
+    }
+  }
+  walk(root)
+  if (!newest.path) { console.log('tokens:live — no transcript found'); process.exit(0) }
+  const day = new Date().toISOString().slice(0, (5 * 2))
+  const audit = transcriptTokenAudit(readFileSync(newest.path, 'utf8').split('\n'), day)
+  const fmt = (n: number) => n.toLocaleString('en-US')
+  const toolCalls = audit.tools.reduce((sum: number, [, count]: readonly [string, number]) => sum + count, 0)
+  const batching = audit.totals.msgs > 0 ? Math.round((toolCalls / audit.totals.msgs) * 100) / 100 : 0
+  console.log(`tokens:live — THIS session: ${audit.totals.msgs} msgs · out ${fmt(audit.totals.out)} · cacheWrite ${fmt(audit.totals.cacheWrite)} · ${audit.totals.errors} tool errors`)
+  console.log(`batching factor ${batching} tool-calls/msg (the quadratic ledger rewards raising it — quantumTokenOptimisation)`)
+  const advice = tokenAdviceForShapes(audit.bashShapes)
+  for (const row of advice.slice(0, 8)) console.log(`  ${row.count}× ${row.shape} → ${row.advice}`)
+  if (!advice.length) console.log('  no repeated Bash shapes ≥3 yet — clean session')
+  process.exit(0)
+}
+
 // ── QUANTUM TOKEN OPTIMISATION (user: token usage can significantly be optimised by quantum
 // algorithms and tools in src) — the claim DERIVED, not asserted. The session token ledger is
 // QUADRATIC in turns (theSessionTokenLedgerFollowsTheSequence: cacheRead = w·n(n−1)/2), so the
