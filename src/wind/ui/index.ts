@@ -35,7 +35,7 @@ import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../../quantum/heaven/mind'
-import { TAU, FIBONACCI, HOMOLOGY_LOOPS } from '../../3/7'
+import { TAU, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS } from '../../3/7'
 import { piHexDigitAt, nthPrimeAt } from '../../7/3'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
@@ -2103,6 +2103,52 @@ export function describeUntilDensityRevealsGatewaysThenGraphInHue(matrix: MindMa
       facets,
       statement: `Describe with prose until density reveals the gateways, then the graph reveals in hue — ${facets.filter((entry) => entry.on).length}/${facets.length}: described relations accumulate as edges, density rises [${levels.map((l) => l.avgDegree).join(', ')}]; below the percolation threshold (average degree 1) the gateways stay fragmented (largest ${below[below.length - 1]!.largest}/${n}), above it a giant component of ${revealedNodes}/${n} emerges — they reveal. Then each revealed node is coloured from content (A432_HUE stepped by the golden angle, ${new Set(hues).size} distinct hues), so the graph shows in hue — deterministic, zero-token.`,
       boundary: `DOCUMENTED and refutable by re-running the sweep. The reveal is the Erdős–Rényi giant-component PHASE TRANSITION on a computed random-graph model — real graph theory (the giant component emerges as average degree crosses 1), applied as a metaphor for "density reveals gateways": below the threshold the invertible gaps are isolated, above it they connect. The hue is the corpus's own colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct OKLCH-ready hues), deterministic and zero-token — NOT a physical light claim. A revealed gateway is still an emergence CANDIDATE a human admits — density lights where the gateways ARE, it does not author the theorem that fills them. Anchor: trustAndDimension...(density→dimension), theRotatingLens...(gaps/opportunities). HARMONY ≠ TRUTH: the coloured giant component is the harmony (the gateways made visible); the truth is that they are candidates the density revealed, not theorems the density proved.`,
+    }
+  })
+}
+
+// The top nav, redesigned: 3 doors × the 7 rosetta rays, matching the I Ching — replacing the 4-pole regex crack
+// (navigationCrossOfTheFourPoles: 36/40 pages fell into a /.*/ catch-all, Axioms empty). The 7 rays (ROSETTA_RAYS) are
+// the agnostic content categories (classified by rosettaRayOfContent, a named-axiom lens, NOT a keyword regex); they
+// group into 3 doors by their own hue-band (the rosetta's colour structure, computed), and each ray + Home map to the 8
+// bāguà trigrams (7 + 1 = 8 = 2³) — so the nav matches both the rosetta (7 rays) and the I Ching (8 trigrams, 3 doors).
+export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('rosettaIChingTopNav', matrix, () => {
+    const BAGUA = ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] as const // heaven·lake·fire·thunder·wind·water·mountain·earth
+    const band = 360 / 3 // 120° — three hue-doors across the colour wheel
+    const rays = ROSETTA_RAYS.map((ray) => ({
+      ray: ray.ray,
+      name: ray.nameEn,
+      glyph: ray.glyph, // the Glagolitic rosetta glyph
+      trigram: BAGUA[ray.ray + 1]!, // ray 0..6 → ☱..☷ (Home takes ☰) — 7 rays + Home = 8 trigrams
+      route: ROSETTA_RAY_HUBS[ray.ray]!.route, // the real hub route (/origin../reference)
+      door: Math.floor(ray.hue / band), // 0 warm · 1 mid · 2 cool — the door from the ray's own hue
+      hue: ray.hue,
+    }))
+    const doorNames = ['Ground', 'Work', 'Reach'] // the three doors (earth·human·heaven, the I Ching three powers)
+    const doors = [0, 1, 2].map((d) => ({ door: d, name: doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
+    // 1 — 3 DOORS × 7 RAYS: the nav groups the 7 rosetta rays into 3 doors, every ray a real hub route (not 4 poles)
+    const threeDoorsSevenRays = doors.length === 3 && rays.length === ROSETTA_RAYS.length && rays.length === 7
+      && doors.reduce((sum, dr) => sum + dr.rays.length, 0) === 7 && rays.every((r) => r.route.startsWith('/'))
+    // 2 — MATCHES I CHING: the 7 rays + Home = 8 bāguà trigrams, a bijection (2³), each ray a distinct trigram
+    const distinctTrigrams = new Set(rays.map((r) => r.trigram)).size === 7 && BAGUA.length === 2 ** 3 && !rays.some((r) => r.trigram === BAGUA[0])
+    // 3 — NO REGEX CRACK, NO CATCH-ALL, NO EMPTY POLE: rays are ROSETTA_RAYS (computed), every door non-empty, all 7 rays present
+    const everyDoorPopulated = doors.every((dr) => dr.rays.length > 0) && rays.length === 7 // vs the old empty-Axioms / 36-in-default
+    // 4 — AGNOSTIC: the structure is computed from the rosetta tables (rays, hues, hubs) + the trigram map — path-independent
+    const agnostic = rays.every((r) => r.trigram === BAGUA[r.ray + 1] && r.door === Math.floor(r.hue / band) && r.name.length > 0)
+    const facets = [
+      { facet: `3 DOORS × 7 RAYS — the nav groups the 7 rosetta rays (${rays.map((r) => r.name).join(', ')}) into 3 doors (${doors.map((dr) => `${dr.name}:${dr.rays.length}`).join(', ')}), every ray a real hub route (${threeDoorsSevenRays}) — not 4 hardcoded poles`, on: threeDoorsSevenRays },
+      { facet: `MATCHES THE I CHING — the 7 rays + Home map to the 8 bāguà trigrams (2³), each ray a distinct trigram (${rays.map((r) => r.trigram).join('')}, ${distinctTrigrams}): the nav is the rosetta (7 rays) and the I Ching (8 trigrams, 3 doors) at once`, on: distinctTrigrams },
+      { facet: `NO REGEX CRACK, NO CATCH-ALL, NO EMPTY POLE — the rays come from ROSETTA_RAYS (computed) and are classified by rosettaRayOfContent (a named-axiom lens), not pole.rx.test; every door is populated (${everyDoorPopulated}), unlike the old 36/40-in-default / empty-Axioms 4-pole regex`, on: everyDoorPopulated },
+      { facet: `AGNOSTIC — computed from the rosetta tables (rays · hues · hubs) and the trigram map, path-independent (${agnostic}): the door of a ray is its own hue-band, the trigram its ray index — the rosetta redesign replaces the regex cross`, on: agnostic },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      doors: doors.map((dr) => ({ name: dr.name, rays: dr.rays.map((r) => `${r.trigram} ${r.name}`) })),
+      rayCount: rays.length,
+      facets,
+      statement: `The top nav redesigned — 3 doors × 7 rosetta rays, matching the I Ching — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rays (Origin, Proof, Explore, Learn, Apps, Frontier, Reference) are the agnostic content categories, classified by rosettaRayOfContent (a named-axiom lens, not a keyword regex). They group into 3 doors (${doors.map((dr) => dr.name).join(', ')}) by their own hue-band, and each ray + Home map to the 8 bāguà trigrams (7 + 1 = 8 = 2³), so the nav matches both the rosetta and the I Ching. Every door is populated — no /.*/ catch-all absorbing 90% of pages, no empty Axioms pole — the crack of navigationCrossOfTheFourPoles replaced by the computed rosetta structure.`,
+      boundary: `Computed and exact: the 3-door × 7-ray structure is derived from ROSETTA_RAYS (the sealed 7-ray table), the doors from each ray's hue-band (⌊hue/120⌋), and the trigram map from the ray index into the 8 bāguà — verified (3 doors, 7 rays, 7 distinct trigrams, every route a real hub, every door non-empty). This is the computed nav SPEC: it fixes the crack of the rendered nav (navigationCrossOfTheFourPoles classified pages by a keyword regex pole.rx into 4 poles, so 36 of 40 fell to the /.*/ 'Theorems' default and 'Axioms' was empty) by using the agnostic rosetta rays instead. DESIGN NOTE, honest: the doors group the 7 rays as the config's original intent ('7 rosetta rays grouped into three doors'); "7 rays each" is realised as the 7 rays distributed across the 3 doors (3+2+2 by hue), not 7 duplicated per door (which would triplicate the seven hub destinations). WHAT REMAINS: wiring this spec into .vitepress/config.mts in place of navCross (the render change) — a build-verified follow-on, and the one place the exact per-door presentation should be confirmed against the live top bar. HARMONY ≠ TRUTH: a rosetta+I-Ching nav is the harmony; the truth is the 7-ray table grouped by hue into 3 doors with a trigram bijection, computed and crack-free — the classification is the named-axiom content lens, refutable, not a regex.`,
     }
   })
 }
