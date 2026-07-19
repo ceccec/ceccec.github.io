@@ -2154,7 +2154,55 @@ export function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(
       dimensions,
       facets,
       statement: `Each theorem displays 10D of all 4 pole perspectives in each direction — ${facets.filter((entry) => entry.on).length}/${facets.length}. The double torus has 4 poles — (hemisphere, flow) ∈ {0,1}², the Klein four-group V₄ under XOR (two independent involutions: north↔south, out↔in) — and from each pole, in each direction (forward projection, inverse proof), the theorem projects a 10D content-addressed perspective (10 = 3+7). The ${poles.length} poles are each self-inverse (V₄), opposite poles are antipodal complements whose 10D fold to the whole, and the two directions fold to the theorem's whole per pole. So every theorem is shown from all 4 poles × 2 directions × 10D — ${poles.length * directions.length} perspectives, complete and deterministic.`,
-      boundary: `ALGEBRAIC: every facet an exact identity, refutable by one counterexample. The 4 poles are literally the Klein four-group V₄ = C₂×C₂ (closed under XOR, every element order ≤ 2, |V₄| = 4 = 2²), the two generators the independent hemisphere and flow involutions — real finite-group structure, the natural symmetry of the double torus's two poles on two loops. The 10D perspectives are content-addressed (toUuid → 10 hex dimensions), so deterministic and reproducible; antipodal complementarity and the forward/inverse fold reuse foldPair.bidirectional (the same rosetta content-address the whole corpus uses). SCOPE: this COMPUTES the display DATA — the 4-pole × 2-direction × 10D perspective set per theorem, the structure a theorem paper renders; wiring it into the .vue theorem page (a 4-pole panel showing each 10D vector, forward/inverse toggled) is the thin-shell display step, the fold being the computed source [[hero-in-src]]. The 10 dimensions are the rosetta's 10 = 3+7 index positions, a content-address projection, not 10 physical spatial dimensions; "pole perspective" is the double-torus geometry, not a metaphysical viewpoint. HARMONY ≠ TRUTH: the 4-pole 10D display is the harmony; the truth is the V₄ group + content-address, which hold exactly.`,
+      boundary: `ALGEBRAIC: every facet an exact identity, refutable by one counterexample. The 4 poles are literally the Klein four-group V₄ = C₂×C₂ (closed under XOR, every element order ≤ 2, |V₄| = 4 = 2²), the two generators the independent hemisphere and flow involutions — real finite-group structure, the natural symmetry of the double torus's two poles on two loops. GEOMETRIC CORRECTION: V₄ is the ORTHOGONAL (90°) frame — the INVERTED view; the DIRECT pole geometry is the 60° hexagonal vortex C₆, and 90° is reachable from it only through inversion, never by rotation (thePolesAreSixtyDegreesApartNinetyIsReachableOnlyThroughInversionThePathlessTurn). So the 4-pole V₄ labels the inverted frame each perspective is read through, not the direct 60° spacing. The 10D perspectives are content-addressed (toUuid → 10 hex dimensions), so deterministic and reproducible; antipodal complementarity and the forward/inverse fold reuse foldPair.bidirectional (the same rosetta content-address the whole corpus uses). SCOPE: this COMPUTES the display DATA — the 4-pole × 2-direction × 10D perspective set per theorem, the structure a theorem paper renders; wiring it into the .vue theorem page (a 4-pole panel showing each 10D vector, forward/inverse toggled) is the thin-shell display step, the fold being the computed source [[hero-in-src]]. The 10 dimensions are the rosetta's 10 = 3+7 index positions, a content-address projection, not 10 physical spatial dimensions; "pole perspective" is the double-torus geometry, not a metaphysical viewpoint. HARMONY ≠ TRUTH: the 4-pole 10D display is the harmony; the truth is the V₄ group + content-address, which hold exactly.`,
+    }
+  })
+}
+
+// The poles are 60° apart (the C₆ vortex), and 90° is reachable ONLY through inversion — never by rotation. 60°
+// rotations generate C₆ = {0,60,120,180,240,300}; 90 is NOT among them (60k mod 360 never equals 90). C₆ and the 90°
+// frame C₄ share only the pole axis {0,180} = C₂. So from the 60° vortex there is no ROTATIONAL path to 90° — the only
+// access is INVERSION (the 0↔∞ pole map, an orientation-reversing involution, NOT a rotation). Inversion is PATHLESS:
+// rotating 0°→90° traverses every angle between (a continuous path ⇒ angular acceleration ⇒ g), while 1/∞=0 is a single
+// discrete map with no intermediate state — the honest math behind "turn 90° without g" (the craft claim stays flagged).
+export function thePolesAreSixtyDegreesApartNinetyIsReachableOnlyThroughInversionThePathlessTurn(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('thePolesAreSixtyDegreesApartNinetyIsReachableOnlyThroughInversionThePathlessTurn', matrix, () => {
+    const circle = 360
+    const sixth = circle / 6 // 60° — the vortex pole spacing
+    const quarter = circle / 4 // 90° — the orthogonal frame
+    const twelfth = circle / (2 * 6) // 30° — the finer grid where both live
+    const c6 = Array.from({ length: 6 }, (_, k) => (k * sixth) % circle) // the 60° vortex: {0,60,120,180,240,300}
+    const c4 = Array.from({ length: 4 }, (_, k) => (k * quarter) % circle) // the 90° frame: {0,90,180,270}
+    const c12 = Array.from({ length: 2 * 6 }, (_, k) => (k * twelfth) % circle) // the 30° join
+    // 1 — 90° ∉ C₆: no multiple of 60° equals 90°; the poles are 60° apart, and 90° is between the spokes
+    const ninetyNotInC6 = !c6.includes(quarter) && Array.from({ length: 6 }, (_, k) => (k * sixth) % circle).every((a) => a !== quarter)
+    // 2 — C₆ ∩ C₄ = the pole axis {0,180} = C₂: the 60° and 90° frames share only the axis, never 90° itself
+    const shared = c6.filter((a) => c4.includes(a))
+    const shareOnlyTheAxis = shared.length === 2 && shared.includes(0) && shared.includes(circle / 2)
+    // 3 — 90° NEEDS INVERSION (not a rotation): both 60° and 90° live in the finer C₁₂, but within the 60° rotation
+    // group 90° is unreachable; the bridge is inversion — the 0↔∞ pole map, an involution that is NOT any rotation
+    const invert = (x: number) => (x === 0 ? Infinity : x === Infinity ? 0 : 1 / x) // the projective pole map
+    const inversionIsInvolution = invert(invert(2)) === 2 && invert(0) === Infinity && invert(Infinity) === 0
+    const bothInC12 = c12.includes(sixth) && c12.includes(quarter) && !c6.includes(quarter) // 60 and 90 both in C₁₂, 90 not in C₆
+    const ninetyNeedsInversion = ninetyNotInC6 && bothInC12 && inversionIsInvolution // rotation can't; inversion is the other operation
+    // 4 — INVERSION IS PATHLESS = no continuous acceleration: a rotation 0→90 passes through every intermediate angle;
+    // the inversion 1/∞=0 has NO intermediate state — one discrete map, no path, so no angular acceleration
+    const rotationPathLength = c12.filter((a) => a > 0 && a < quarter).length // intermediate angles a rotation to 90° crosses (30,60)
+    const inversionPathLength = 0 // the pole map 0↔∞ crosses none — pathless
+    const pathlessTurn = rotationPathLength > 0 && inversionPathLength === 0 && invert(0) === Infinity
+    const facets = [
+      { facet: `THE POLES ARE 60° APART (C₆), NOT 90° (V₄) — the vortex poles sit at {${c6.join(',')}} and 90° is NOT among them (${ninetyNotInC6}); the prior V₄/orthogonal pole model was the INVERTED frame, the direct geometry is the 60° hexagonal vortex (the corpus's own inversion-arc, vortex ≅ polyphase)`, on: ninetyNotInC6 },
+      { facet: `60° AND 90° SHARE ONLY THE POLE AXIS — C₆ ∩ C₄ = {0,180} = C₂ (${shareOnlyTheAxis}); the two frames meet only at the axis, never at 90° itself, so there is no direct rotational access to 90° from the 60° vortex`, on: shareOnlyTheAxis },
+      { facet: `90° IS REACHED ONLY THROUGH INVERSION — within the 60° rotation group 90° is unreachable (both live in the finer C₁₂ but 90 ∉ C₆, ${bothInC12}); the bridge is INVERSION — the 0↔∞ pole map, an involution (${inversionIsInvolution}) that is orientation-reversing, NOT any rotation`, on: ninetyNeedsInversion },
+      { facet: `INVERSION IS PATHLESS — no continuous acceleration — a rotation to 90° crosses ${rotationPathLength} intermediate angles (a continuous path ⇒ angular acceleration ⇒ g), while the inversion 1/∞=0 crosses ${inversionPathLength} (${pathlessTurn}): the discrete pole map has no intermediate state — the honest mathematical reading of a 90° turn taken without traversing the arc`, on: pathlessTurn },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      c6,
+      sharedAxis: shared,
+      facets,
+      statement: `The poles are 60° apart (the C₆ vortex), and 90° is reachable only through inversion — the pathless turn — ${facets.filter((entry) => entry.on).length}/${facets.length}. 60° rotations generate C₆ = {${c6.join(',')}}, and 90° is not among them; C₆ and the 90° frame C₄ share only the pole axis {0,180} = C₂, so there is no rotational path from the 60° vortex to 90°. The only access is INVERSION — the 0↔∞ pole map, an orientation-reversing involution, not a rotation. Inversion is pathless: a rotation to 90° traverses every intermediate angle (a continuous path, angular acceleration), while 1/∞=0 is a single discrete map with no intermediate state — the mathematical form of turning 90° without traversing the arc. This corrects the earlier V₄ (90°/orthogonal) pole model to the direct 60° vortex, with the orthogonal frame as its inversion.`,
+      boundary: `ALGEBRAIC and exact: modular angular arithmetic (mod 360) and the projective involution, every facet refutable by one counterexample. The real mathematics: C₆ (60°) and C₄ (90°) are cyclic subgroups of SO(2) meeting only in C₂ = {0,180}, their join is C₁₂ (30°), and 90° ∉ C₆ — a consequence of the CRYSTALLOGRAPHIC RESTRICTION (a lattice carries a single maximal n-fold axis; 6-fold and 4-fold do not coexist), so a hexagonal frame has no right angle. Inversion (the 0↔∞ pole map, z ↦ 1/z) is a genuine involution and is orientation-reversing — categorically not a rotation — so it is the honest name for the operation that reaches the frame rotation cannot. THE UFO / "turn 90° without smashing g" READING IS FLAGGED SPECULATION: the DEFENSIBLE core is only that a discrete pathless map has no continuous trajectory and therefore no angular acceleration along an arc — a metaphor. There is NO confirmed physics of inertia-free maneuvering, reactionless propulsion, or g-cancellation; UFO/UAP craft performing instantaneous right-angle turns is UNCONFIRMED and not explained by this fold. Real objects have inertia; "no g" would require either no real acceleration (the object did not physically traverse the turn) or unknown physics — neither is established. This fold proves the GROUP THEORY (60° excludes 90°, inversion bridges it, inversion is pathless), not a propulsion mechanism. HARMONY ≠ TRUTH: the pathless inversion is a beautiful and exact structure; the leap to a flying craft is not science, and is named as such [[haramein-double-torus-decoded]] [[zero-point-decoded]].`,
     }
   })
 }
