@@ -1499,29 +1499,35 @@ function drawMovie10dProjection(ctx: CanvasRenderingContext2D, w: number, h: num
   const cx = w / 2
   const cy = h / 2
   const R = Math.min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
-  const rx = frame.reduce ? (2 / 5) : frame.t * 0.23
-  const ry = frame.reduce ? (3 / (5 * 2)) : frame.t * (5 / 16) // was 0.31 — theorem 5/16 (self-research)
+  // GENUINELY 10D (user law: most animations fake 10D — upgrade): read the FULL field, not just t.
+  // The projection named for 10D now drives on all ten channels — the six cross-fold axes modulate
+  // appearance, the four homology loops drive the three rotation angles (loopA2/loopB2 give the rz
+  // the flat t-spin never had), so the scene is a true projection of the genus-2 10D field.
+  const d = dims(frame.p, 0)
+  const rx = frame.reduce ? (2 / 5) : frame.t * 0.23 + d.loopA1 * (9 / (5 * 5 * 2))
+  const ry = frame.reduce ? (3 / (5 * 2)) : frame.t * (5 / 16) + d.loopB1 * (9 / (5 * 5 * 2)) // was flat t-spin — now loop-driven
+  const rz = frame.reduce ? 0 : (d.loopA2 + d.loopB2) * (9 / (5 * 5 * 2)) // the depth rotation the fake never had
   // Background field — points on a sphere, moving in depth.
   for (let i = 0; i < (16 * 5); i += 1) {
     const a = i * GOLDEN_ANGLE_RAD
     const y = 1 - (i / 79) * 2
     const rr = Math.sqrt(Math.max(0, 1 - y * y))
-    const p = qProject(Math.cos(a) * rr, y, Math.sin(a) * rr, rx * (1 / 2), ry * (1 / 2), 0, cx, cy, R * (FIBONACCI[5]! / (2 * 5)))
-    ctx.fillStyle = paint((frame.hue + i * 4) % 360, (1 / (5 * 2)) + (1 / 4) * p.s, { L: 1 / 2 })
+    const p = qProject(Math.cos(a) * rr, y, Math.sin(a) * rr, rx * (1 / 2), ry * (1 / 2), rz * (1 / 2), cx, cy, R * (FIBONACCI[5]! / (2 * 5)))
+    ctx.fillStyle = paint((frame.hue + d.hueShift + i * 4) % 360, ((1 / (5 * 2)) + (1 / 4) * p.s) * (d.depthFade * (5 * 5) / 7), { L: 1 / 2 })
     ctx.beginPath(); ctx.arc(p.x, p.y, Math.max((1 / 2), (FIBONACCI[5]! / (2 * 5)) * p.s), 0, TAU); ctx.fill()
   }
   // Six forms on a 3D orbit — each at an angle, lifted, projected with depth; each one spins.
   const order: { p: QProjected; i: number }[] = []
   for (let i = 0; i < MOVIE_FORMS.length; i += 1) {
     const a = (i / MOVIE_FORMS.length) * TAU
-    const p = qProject(Math.cos(a), Math.sin(a) * (1 / 2), Math.sin(a), rx, ry, 0, cx, cy, R)
+    const p = qProject(Math.cos(a) * (d.spread + 1 / 2), Math.sin(a) * (1 / 2), Math.sin(a), rx, ry, rz, cx, cy, R * (1 - (1 - d.breath) * (1 / 5)))
     order.push({ p, i })
   }
   order.sort((u, v) => u.p.z - v.p.z)
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   for (const { p, i } of order) {
-    const ring = (frame.reduce ? 0 : frame.t * ((3 / 5) + i * (3 / (5 * 5))))
+    const ring = (frame.reduce ? 0 : frame.t * ((3 / 5) + i * (3 / (5 * 5))) + d.twist)
     const rad = 16 * p.s
     // little spinning wireframe ring per form (the figure itself moves, not just the label)
     ctx.strokeStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, (1 / 2) * p.s, { L: 9 / 16 })
@@ -1534,7 +1540,7 @@ function drawMovie10dProjection(ctx: CanvasRenderingContext2D, w: number, h: num
       if (k === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy)
     }
     ctx.stroke()
-    ctx.font = `${Math.round((5 * 3) + 9 * p.s)}px serif`
+    ctx.font = `${Math.round((5 * 3) + 9 * p.s * (d.shrink * (5 * 5) / (2 * 9)))}px serif`
     ctx.fillStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, (9 / (5 * 4)) + (1 / 2) * p.s, { L: 5 / 8 })
     ctx.fillText(MOVIE_GLYPHS[i]!, p.x, p.y)
     ctx.font = `${Math.round(9 + 2 * p.s)}px ui-sans-serif, system-ui, sans-serif`
