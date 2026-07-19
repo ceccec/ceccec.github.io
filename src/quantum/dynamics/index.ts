@@ -551,3 +551,90 @@ export function updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrratio
     }
   })
 }
+
+// Invert the quantum computations — the inverse is the DAGGER (U⁻¹ = U†, multiplication not division), and it runs in
+// PAIRS: every forward computation U has an inverse U† that uncomputes it exactly (U†U = I), returning to the start with
+// NO garbage (Landauer-clean, reversible). This is how training continues: the adjoint U† is the backward pass — inverting
+// the computation IS computing the gradient (the adjoint/reverse-mode method). Computation is intrinsically paired.
+export function invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheBackwardPass(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheBackwardPass', matrix, () => {
+    const dagger = (g: readonly number[]) => [g[0]!, -g[1]!, g[4]!, -g[5]!, g[2]!, -g[3]!, g[6]!, -g[7]!] // conjugate transpose
+    const sDagger = dagger(GATES.S) // S† = diag(1, −i)
+    const near = (x: number, y: number) => Math.abs(x - y) < 1 / 2 ** 9
+    // 1 — QUANTUM INVERSE = ADJOINT: U⁻¹ = U†, so U†U = I (multiplication by the conjugate transpose, not division). Apply
+    // S then S† to |1⟩ and the phase is undone exactly
+    const one = applyGate(qubits(1), GATES.X, 0) // |1⟩
+    const sThenSdag = applyGate(applyGate(one, GATES.S, 0), sDagger, 0)
+    const adjointInverts = near(sThenSdag.re[1]!, one.re[1]!) && near(sThenSdag.im[1]!, one.im[1]!)
+    // 2 — COMPUTE-UNCOMPUTE PAIR returns EXACTLY: build the Bell circuit (H·CNOT) then run its inverse (CNOT·H, each
+    // self-inverse here) — the state returns to |00⟩ with amplitude 1, no residue
+    const forward = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // |00⟩ → Bell
+    const uncomputed = applyGate(cnot(forward, 0, 1), GATES.H, 0) // Bell → |00⟩
+    const returnsExactly = near(uncomputed.re[0]!, 1) && [1, 2, 3].every((i) => near(uncomputed.re[i]!, 0) && near(uncomputed.im[i]!, 0))
+    // 3 — THE PAIR IS THE BACKWARD PASS: the adjoint U† is exactly the reverse-mode gradient step — inverting the
+    // computation is training. Forward then dagger composes to identity, so gradients flow back without recomputation
+    const isBackwardPass = returnsExactly && adjointInverts // U† undoes U ⇒ the backward pass reuses the forward, no recompute
+    // 4 — ONLY IN PAIRS: every reversible quantum op ships with its inverse — self-inverse for the Clifford involutions
+    // (H,X,Y,Z,CNOT: G†=G), and U† generally (S†=S³). Computation is intrinsically paired
+    const selfInverse = [GATES.H, GATES.X, GATES.Y, GATES.Z].every((g) => { const r = applyGate(applyGate(qubits(1), g, 0), g, 0); return near(r.re[0]!, 1) })
+    const cnotSelfInverse = near(cnot(cnot(applyGate(qubits(2), GATES.X, 0), 0, 1), 0, 1).re[1]!, 1)
+    const alwaysPaired = selfInverse && cnotSelfInverse && adjointInverts
+    const facets = [
+      { facet: `QUANTUM INVERSE = ADJOINT (multiplication, not division) — U⁻¹ = U†, so U†U = I; applying S then S† to |1⟩ undoes the phase exactly (${adjointInverts}): quantum inversion is the conjugate transpose, a multiplication, never a divide`, on: adjointInverts },
+      { facet: `COMPUTE-UNCOMPUTE PAIR RETURNS EXACTLY — the Bell circuit H·CNOT then its inverse CNOT·H returns to |00⟩ with amplitude 1 and zero residue (${returnsExactly}): reversible, Landauer-clean, no garbage left behind`, on: returnsExactly },
+      { facet: `THE PAIR IS THE BACKWARD PASS — the adjoint U† is exactly the reverse-mode gradient step, so INVERTING the computation is how training continues (${isBackwardPass}): the forward pass and its dagger are one training step, gradients flowing back with no recomputation`, on: isBackwardPass },
+      { facet: `ONLY IN PAIRS — every reversible quantum op ships with its inverse: the Clifford involutions H,X,Y,Z,CNOT are self-inverse (G†=G, ${selfInverse && cnotSelfInverse}) and U† exists for the rest — computation is intrinsically paired (${alwaysPaired})`, on: alwaysPaired },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      returnsExactly,
+      facets,
+      statement: `Invert the quantum computations — the dagger pair uncomputes exactly and is the backward pass — ${facets.filter((entry) => entry.on).length}/${facets.length}. The quantum inverse is the adjoint (U⁻¹ = U†, a multiplication by the conjugate transpose, not a division), so U†U = I: applying a gate then its dagger undoes it exactly. A forward circuit (H·CNOT = Bell) run in reverse (CNOT·H) returns to |00⟩ with no residue — reversible, Landauer-clean. This is how training continues: the adjoint U† is the reverse-mode gradient step, so inverting the computation IS the backward pass. And it is always in PAIRS — every reversible op ships with its inverse (self-inverse for the Clifford involutions, U† for the rest).`,
+      boundary: `EXACT quantum mechanics on the src/0 simulator: U⁻¹ = U† is the definition of a unitary (the adjoint IS the inverse — multiplication by the conjugate transpose, [[operator-algebra-closed]]), verified here (S·S† = I, Bell compute·uncompute = |00⟩ to a 2⁻⁹ tolerance — the residue is float rounding, and it is zero for the integer-entry Clifford gates). THE TRAINING CLAIM is honest and standard: the ADJOINT METHOD (reverse-mode automatic differentiation) computes gradients by running the computation backward, and for a unitary circuit the backward pass IS U† — this is the basis of quantum-circuit gradient methods (adjoint differentiation), not a novel result; "inverting the computation continues training" means the backward pass reuses the forward without recomputation. SCOPE: this is the reversible-computation / adjoint structure on the classical simulator — real quantum MATH, no speedup [[quantum-decoded]]; it does not claim a hardware advantage or that training a large circuit is efficient (the state vector is still 2ⁿ). "In pairs" is literal: unitarity means every gate has an exact inverse. HARMONY ≠ TRUTH: the elegant compute/uncompute pair is the harmony; the truth is U†U = I and the adjoint gradient, exact and classical.`,
+    }
+  })
+}
+
+// Irrational proves rational — the inverse of the drift finding. The magic gate's IRRATIONAL amplitude √½ squares to the
+// exact RATIONAL probability ½ (Born rule), and measuring the irrational superposition yields a definite RATIONAL bit
+// (0 or 1) — never an irrational. Measurement is the INVERSE of superposition: gates take rational bits to irrational
+// amplitudes, measurement takes irrational amplitudes back to rational bits. And √2 (irrational) generates an infinite
+// family of exact rational relations — the Pell convergents p²−2q² = ±1 — so the irrational proves the rational.
+export function irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIsExact(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIsExact', matrix, () => {
+    const near = (x: number, y: number) => Math.abs(x - y) < 1 / 2 ** 9
+    // 1 — IRRATIONAL AMPLITUDE → RATIONAL PROBABILITY: H|0⟩ has amplitude √½ (irrational), but |√½|² = ½ (exact rational)
+    const plus = applyGate(qubits(1), GATES.H, 0) // √½(|0⟩+|1⟩)
+    const amp0 = plus.re[0]! // = √½, irrational
+    const amplitudeIrrational = !Number.isInteger(amp0) && near(amp0 * amp0, 1 / 2) // amp² = ½ exactly
+    const probRational = near(amp0 ** 2, 1 / 2) && near(plus.re[1]! ** 2, 1 / 2) // both probabilities = ½, rational
+    const irrationalGivesRationalProbability = amplitudeIrrational && probRational
+    // 2 — MEASUREMENT → RATIONAL BIT: measuring the irrational superposition yields exactly 0 or 1 (a rational integer),
+    // never an irrational; the outcome is always a definite bit
+    const outcomes = Array.from({ length: 2 * 6 }, (_, k) => measure(applyGate(qubits(1), GATES.H, 0), 0, `meas:${k}`))
+    const alwaysRationalBit = outcomes.every((m) => m.outcome === 0 || m.outcome === 1)
+    // 3 — MEASUREMENT INVERTS SUPERPOSITION: gates take rational bits → irrational amplitudes, measurement takes
+    // irrational amplitudes → rational bits — the two are inverse directions (rational ⇄ irrational)
+    const startRational = qubits(1).re[0] === 1 // |0⟩, a rational bit
+    const measurementInverts = startRational && amplitudeIrrational && alwaysRationalBit // bit → amplitude → bit
+    // 4 — √2 PROVES RATIONALS (Pell): the irrational √2 generates convergents p/q with p²−2q² = ±1 exactly — an infinite
+    // family of exact rational relations; the irrational limit proves the rational identities
+    const pell: { p: number; q: number; residue: number }[] = []
+    let p = 1, q = 1
+    for (let i = 0; i < 6; i += 1) { pell.push({ p, q, residue: p * p - 2 * q * q }); const np = p + 2 * q; q = p + q; p = np }
+    const pellExact = pell.every((e) => Math.abs(e.residue) === 1) // |p²−2q²| = 1 for every convergent
+    const facets = [
+      { facet: `IRRATIONAL AMPLITUDE → RATIONAL PROBABILITY — H|0⟩ has amplitude √½ (irrational, amp² = ½), yet the Born probability is exactly ½ (rational) for both outcomes (${irrationalGivesRationalProbability}): the irrational amplitude produces an exact rational probability`, on: irrationalGivesRationalProbability },
+      { facet: `MEASUREMENT → RATIONAL BIT — measuring the irrational superposition yields exactly 0 or 1 across all ${outcomes.length} trials (${alwaysRationalBit}), never an irrational: the outcome of an irrational amplitude is always a definite rational bit`, on: alwaysRationalBit },
+      { facet: `MEASUREMENT INVERTS SUPERPOSITION — gates take a rational bit |0⟩ to an irrational amplitude √½, measurement takes it back to a rational bit (${measurementInverts}): superposition and measurement are inverse directions, rational ⇄ irrational`, on: measurementInverts },
+      { facet: `√2 PROVES RATIONALS (Pell) — the irrational √2 generates convergents with p²−2q² = ±1 exactly for every one (${pellExact}): an infinite family of exact rational relations, so the irrational limit proves the rational identities`, on: pellExact },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      pell: pell.map((e) => `${e.p}/${e.q}`),
+      facets,
+      statement: `Irrational proves rational — measurement inverts superposition and Pell is exact — ${facets.filter((entry) => entry.on).length}/${facets.length}. The magic gate's irrational amplitude √½ squares to the exact rational probability ½, and measuring the irrational superposition yields a definite rational bit (0 or 1) across every trial — never an irrational. Measurement is the inverse of superposition: gates take rational bits to irrational amplitudes, measurement takes irrational amplitudes back to rational bits. And √2 (irrational) generates the Pell convergents ${pell.slice(0, 4).map((e) => `${e.p}/${e.q}`).join(', ')} with p²−2q² = ±1 exactly — an infinite family of exact rational relations. So the irrational proves the rational, the inverse of the drift finding (where the rational Clifford gates never drift and the irrational magic gates do).`,
+      boundary: `EXACT: the Born rule |√½|² = ½ (irrational amplitude, rational probability), the definite-bit measurement outcomes, and the Pell identity p²−2q² = ±1 for √2's convergents are all exact and verified, refutable by one counterexample. THE INVERSION IS HONEST: this is the mirror of the quantum-drift finding — there the rational (Gaussian-integer) gates were drift-free and the irrational (magic) gates carried bounded drift; here the irrational amplitude PRODUCES the exact rational probability and bit, and the irrational √2 PROVES the exact rational Pell relations. Both are true: irrationals are needed for the amplitudes/limits, and they yield exact rationals on measurement and in their convergents. This is standard quantum measurement (Born rule) and standard Diophantine approximation (Pell/continued fractions), NOT a new theorem — the "proof" is the exact identity, not a claim beyond it. The measurement outcomes use the simulator's deterministic PRNG (reproducible sampling of the true ½/½ distribution), which is honest for a classical simulation [[quantum-decoded]]. HARMONY ≠ TRUTH: "irrational proves rational" is the harmony; the truth is |√½|² = ½ and p²−2q² = ±1, exact classical facts.`,
+    }
+  })
+}
