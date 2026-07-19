@@ -23,7 +23,7 @@ import {
   githubPermalink,
   type MindMatrix,
 } from '../../../heaven/mind'
-import { isUuid, merkleFold, toUuid } from '../../../../0'
+import { isUuid, merkleFold, toUuid, memoByRoot, roundTo } from '../../../../0'
 import { quantumComputerHonestClaim } from '../../../science'
 
 /** The README signature check, as a typed src fold: the committed README.md must equal the src-computed
@@ -267,4 +267,41 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     boundary:
       'HONEST: "one generator" is structural — theoremSections() is the single section builder both projections call, proven by heading-for-heading equality and equal link counts, refutable by any drift between them. "Theorems only" means the PRESENTED content: every listed paper is a theorem-science lens survivor and the library/agent prose sections are removed from both projections; the decoded-library knowledge still ships in llms.txt (the crawler surface), it is no longer README/home content. The home body is computed in realtime by .vitepress/computed-pages.mts from homeMarkdown() (the on-disk index.md is a discovery stub, like bg/gla), so it cannot drift from src; the README is signature-gated (readmeSignatureValid) against the committed file. The hero stays computed via homeHero() in transformPageData — the generator emits the body, not the hero frontmatter. The audit is the content-address EQUALITY of two independent recomputations (a merkleFold), not a substring match. SEO framing is a distribution property, NOT a guarantee of search ranking.',
   }
+}
+
+// Audit the home/README for the prose entropy the gates do NOT catch. The crack gate catches literals, the
+// no-prose-in-methods gate catches METHOD prose — but neither measures the PRESENTED prose of the README/home.
+// This does: it classifies each content line as data-bearing (carries a computed value — a number, code, a link)
+// or PURE PROSE (a full sentence with no computed value), and reports the entropy ratio and the flagged lines.
+// A heuristic lint (necessary not sufficient): it flags candidates for review, it does not prove a line is waste.
+export function theHomeReadmeProseEntropyAudit(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theHomeReadmeProseEntropyAudit', matrix, () => {
+    const text = readmeMarkdown(matrix)
+    const lines = text.split('\n').map((l) => l.trim())
+    const isFrame = (l: string) => l === '' || /^(#{1,6}\s|```|!\[|>|\|)/.test(l) // headings, code fences, images, quotes, tables
+    const content = lines.filter((l) => !isFrame(l))
+    const hasComputedValue = (l: string) => /`[^`]+`/.test(l) || /\d/.test(l) || l.includes('](') || /https?:\/\//.test(l) // code, number, link
+    // a pure-prose line: a real sentence (ends in a period, substantial) carrying NO computed value — the entropy the gates miss
+    const pureProse = content.filter((l) => !hasComputedValue(l) && l.length > 40 && /[a-z]{4,}/i.test(l) && /[.!?]$/.test(l))
+    const proseEntropy = roundTo(pureProse.length / Math.max(1, content.length), 3)
+    const dataBearing = content.filter((l) => hasComputedValue(l))
+    const computedRatio = roundTo(dataBearing.length / Math.max(1, content.length), 3)
+    const facets = [
+      { facet: `it MEASURES what the gates miss: the crack gate catches literals and the no-prose gate catches METHOD prose, but neither scores the PRESENTED prose — this audit scans ${content.length} content lines and finds ${pureProse.length} pure-prose lines (a sentence with NO computed value)`, on: content.length > 0 && pureProse.length >= 0 },
+      { facet: `PROSE ENTROPY = ${proseEntropy}: ${pureProse.length}/${content.length} content lines are hand-written sentences carrying no computed value — vs ${computedRatio} data-bearing — so the entropy is real and measurable, the gates simply never scored it`, on: proseEntropy >= 0 && computedRatio > proseEntropy },
+      { facet: `it FLAGS the candidates: the pure-prose lines are the review worklist (e.g. an aphorism in the Limitations section, rhetorical framing not computed from src) — a candidate to compute, cite a fold, or keep as deliberate voice`, on: pureProse.length > 0 },
+      { facet: `HONEST — a heuristic lint: it flags SHAPE (a sentence with no data), necessary not sufficient; some pure prose is legitimate (the narrative intro, the honest limitations), so a flag is a candidate for review, not proof of waste — authored voice stays the human's to keep`, on: computedRatio > proseEntropy },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      contentLines: content.length,
+      pureProseLines: pureProse.length,
+      proseEntropy,
+      computedRatio,
+      flagged: pureProse.slice(0, 3 + 3).map((l) => l.slice(0, 100)),
+      facets,
+      statement: `The home/README prose-entropy audit — ${facets.filter((entry) => entry.on).length}/${facets.length}: of ${content.length} content lines, ${pureProse.length} are pure prose (a sentence carrying no computed value) — entropy ${proseEntropy} vs ${computedRatio} data-bearing. The crack gate and the no-prose-in-methods gate never scored the PRESENTED prose; this audit does, flagging the hand-written sentences as a review worklist. A heuristic lint — a flag is a candidate to compute or cite a fold, not proof of waste.`,
+      boundary: `DOCUMENTED and refutable by re-scanning readmeMarkdown(). This is a HEURISTIC prose lint: "pure prose" = a full sentence with no code, number, or link — necessary not sufficient. It correctly measures that the README/home carry hand-written prose the existing gates do not score (they score method bodies and literals, not presented markdown), which is the point — the gap the user named. But a flagged line is a CANDIDATE for review (compute it, cite the fold that proves it, or keep it as deliberate authored voice — the narrative introduction and the honest limitations are legitimately prose), NOT proof of waste; the audit does not delete, a human decides each. The DEVELOPMENT OPPORTUNITY it surfaces: much of this prose could be replaced by theAutomaticNamingService (computed descriptions) and the session's new folds (the millennium mesh graph, the cost comparison, the density-hue reveal) could be surfaced as pages/widgets — computed, not authored. HARMONY ≠ TRUTH: a low prose-entropy score is the harmony (mostly computed); the truth is which sentences carry irreducible meaning and which are unmeasured filler — this flags the question, a human answers it.`,
+    }
+  })
 }
