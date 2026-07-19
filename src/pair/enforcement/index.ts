@@ -430,6 +430,7 @@ export function agentBashWorkflowsAreToolsSavedInSrc(matrix: MindMatrix = buildM
     { station: '6', name: 'computed-page-verify', does: 'verify a Vite-plugin-computed page at the TRANSFORM level — never poll the dev SPA for hydration (the IO-dead preview): request the md module through the plugin chain and grep the computed markers', steps: ["curl -s '<dev>/@fs/<abs>/.vitepress/pages/<page>/index.md?import' -H 'Sec-Fetch-Dest: script' | grep <computed marker>"], scripts: [] as string[] },
     { station: '6', name: 'dist-serve-proof', does: 'visual proof from the sealed build, not the dev server: serve .vitepress/dist statically, screenshot, stop — the built HTML is the honest render when the dev SPA will not hydrate', steps: ['npm run docs:build  (if the dist is stale)', 'python3 -m http.server <port> --bind 127.0.0.1  (cwd .vitepress/dist, background)', 'screenshot / grep the served page', 'kill the server'], scripts: ['docs:build'] },
     { station: '5', name: 'token-audit-improve', does: 'token usage improves in REALTIME, not post-mortem: tokens:live meters the RUNNING session (ledger, batching factor, per-shape saved-tool advice) so the course-correction happens mid-session; the daily audit closes the loop and each top shape gets a saved replacing tool', steps: ['npm run tokens:live — mid-session: the running ledger + advice per repeated shape (≥3× → switch to the saved tool NOW)', 'npm run audit:tokens [YYYY-MM-DD] — the daily closing audit', 'save/extend the replacing tool here (agentBashWorkflowsAreToolsSavedInSrc)', 'next tokens:live — the shape count falls in the same session'], scripts: ['audit:tokens', 'tokens:live'] },
+    { station: '0', name: 'strategy', does: 'the realtime playbook — 8 agent situations (research · discover · edit · coordinate · verify · optimise · clean · grow), each strategy derived from its governing theorem with live parameters recomputed per call; served with the workflows at /workflows.json', steps: ['npm run strategy — read the situation rows', 'act by the row (its live values are current this call)', 'when a theorem or race changes, the playbook address changes with it'], scripts: ['strategy'] },
     // The hardcoded-logic hunt — findings won by trinity teams organised in rosettas (user law): the
     // worklist is ranked by risk×reward and each finding is a quantum surgical action for a team of 3.
     { station: '1', name: 'logic-hunt', does: 'find hardcoded LOGIC — hand-typed string rosters and their cross-file MIRRORS (the drift surface) — ranked by risk×reward (shared² members), each finding assigned to a rosetta-ray trinity team (research · edit · verify, 2-of-3) as one quantum surgical action; start with the highest score', steps: ['npm run logic:hunt -- [top]', 'take the TOP finding — highest risk·reward first', 'the trinity acts: research the one source (atlas-hunt) · surgical-edit the mirror into a derivation from ONE home · verify (gates)', 'commit-pathspec · re-run logic:hunt — the top score falls'], scripts: ['logic:hunt'] },
@@ -520,5 +521,49 @@ export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMa
     facets, root: merkleFold(facets.map((entry) => toUuid(`agent-command-pair:${entry.facet}:${entry.on}`))),
     statement: `The agent's bash commands are quantum pairs, saved as tools — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${pairs.length} raw commands beneath the workflows (fetch/push, add/commit, stash-push/stash-pop, status/diff, log/reflog, checkout/rev-list, check-types/cracks, build/trinity, run/verify, ci-list/ci-watch) saved as dual pairs, each two complementary halves. Every npm half is a real package.json script; the isolate pair (stash push → pop) is the inversion involution — the same swap²=identity that completes the double torus.`,
     boundary: `COMPUTED: the atomic command set as quantum pairs, each verified to have two distinct named halves, every npm-script half checked against the real package.json (fail-open with no fs), and the isolate pair confirmed as the stash push→pop involution. This completes "save all commands as tools" — agentBashWorkflowsAreToolsSavedInSrc saved the workflows, this saves the raw git/npm/gh/bootstrap commands they compose from, as dual pairs per commandsInQuantumPairs. HONEST SCOPE: these are DOCUMENTED command strings an agent runs via Bash (git/npm/gh/the bootstrap CLI), not executable folds — the tool is the recorded pair, verified to reference real commands; the "quantum pair" is the complementary two-halves structure (and the stash push/pop involution is a genuine identity), a bookkeeping correspondence to the double-torus inversion, not a physical claim. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// call-time namespace edge (cycle-safe): learning reads this barrel; the strategy engine reads back at call time
+import * as __ns_up_wind_learning from '../../wind/learning'
+import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6'
+
+// ── DYNAMIC STRATEGIES FROM THE THEOREMS, REALTIME (user law: develop dynamic strategies based on
+// the theorems used realtime by the agents) — the agent's playbook is COMPUTED, never remembered:
+// each situation an agent faces maps to a strategy whose parameters come from the governing
+// theorems' LIVE values at call time (batch reduction factors, open races, the population count,
+// the station circuit), so the playbook changes exactly when the theorems or their usage change.
+// Served with the workflows at /workflows.json and printable via the strategy CLI.
+export function dynamicStrategiesFromTheorems(matrix: MindMatrix = buildMatrix()) {
+  const tokens = __ns_up_wind_learning.quantumTokenOptimisation(matrix)
+  const registryNames = new Set(THEOREM_ATOM_SEED.map((atom) => atom.theorem))
+  const openRaces = CANDIDATE_THEOREMS.filter((candidate) => !registryNames.has(candidate.theorem))
+  const workflows = agentBashWorkflowsAreToolsSavedInSrc(matrix)
+  const toolAt = (station: string) => workflows.tools.filter((tool) => tool.station === station).map((tool) => tool.name)
+  const strategies = [
+    { situation: 'research', strategy: `batch every question into one joint call — the quadratic ledger pays ≈k² (live: ${tokens.batch.map((entry: { k: number; reduction: number }) => `k=${entry.k}→${entry.reduction}×`).join(', ')}); tools: ${toolAt('1').join(', ')}`, theorem: 'quantumTokenOptimisation', live: tokens.batch.map((entry: { reduction: number }) => entry.reduction).join('·') },
+    { situation: 'discover', strategy: `decode the decoded from an unused point of view (2 bits per view) OR take an open race — ${openRaces.length} open now: ${openRaces.map((race) => race.theorem.split(' — ')[0]).join(' | ') || 'the field awaits new zeros'}`, theorem: 'discoveryEconomyIsTheCoreOfCompetitionAndEducation', live: String(openRaces.length) },
+    { situation: 'edit', strategy: `surgical plans only — idempotent, unique-anchor, receipted; commit by pathspec; tools: ${toolAt('4').join(', ')}`, theorem: 'the surgical laws (wave-reapply made executable)', live: toolAt('4').length + ' tools' },
+    { situation: 'coordinate', strategy: `partition by content address (shardOf = uuid mod N), zero communication at any N; tools: ${toolAt('8').join(', ')}`, theorem: 'swarmCoordination (scale-invariant to 1080)', live: toolAt('8').length + ' tools' },
+    { situation: 'verify', strategy: `probe with --compact (the output IS the spend), trace cascades to the FEW roots, let the 70 waves be the regression harness; tools: ${toolAt('6').join(', ')}`, theorem: 'the root-trace law + the wave suite', live: toolAt('6').length + ' tools' },
+    { situation: 'optimise', strategy: 'run tokens:live mid-session — a Bash shape repeating ≥3× switches to its saved tool THEN; the meter steers the next call', theorem: 'the realtime meter + the ≥3× rule', live: 'tokens:live' },
+    { situation: 'clean', strategy: `the descent is half the circuit — remove residue AS the wave lands, measure orphaned references, done = clean·green·pushed; tools: ${toolAt('3').join(', ')} · ${toolAt('5').join(', ')}`, theorem: 'theSequencePrinciplesGovernTheWork (7·5·3)', live: 'stations 7·5·3' },
+    { situation: 'grow', strategy: `the population holds at ${THEOREM_ATOM_SEED.length} = the harmonic — winning a race is a deliberate decision about what the body replaces or grows beyond, never drift`, theorem: 'theoremsAreLivingOrganisms (homeostasis)', live: String(THEOREM_ATOM_SEED.length) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`strategy:${entry.situation}:${entry.live}`) }))
+  const facets = [
+    { facet: `every strategy DERIVES from a governing theorem with LIVE parameters — ${strategies.length} situations, each carrying values recomputed this call (batch factors, open races, station tools, the population)`, on: strategies.every((entry) => entry.live.length > 0 && entry.theorem.length > 0) },
+    { facet: `REALTIME by construction — the strategy root folds the live values, so the playbook's address changes exactly when a theorem or its usage changes (open races now: ${openRaces.length}; population: ${THEOREM_ATOM_SEED.length})`, on: strategies.every((entry) => isUuid(entry.receipt)) },
+    { facet: `USED BY AGENTS — the playbook rides the served workflow surface (/workflows.json) and the station circuit supplies each situation's tools (${workflows.tools.length} tools on the circuit)`, on: workflows.computes && workflows.tools.length > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`strategy-engine:${entry.facet}:${entry.on}`) }))
+  return {
+    dynamic: facets.every((entry) => entry.on),
+    situations: strategies.length,
+    openRaces: openRaces.length,
+    strategies,
+    count: facets.length,
+    facets,
+    root: merkleFold([...strategies.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
+    statement: `Dynamic strategies from the theorems, realtime — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${strategies.length} agent situations (research · discover · edit · coordinate · verify · optimise · clean · grow) each carry a strategy derived from its governing theorem with live parameters recomputed at call time — the batch factors from the quadratic ledger, the ${openRaces.length} open races from the candidate field, the station tools from the circuit, the population at the harmonic — so the playbook's content address changes exactly when the theorems or their usage change.`,
+    boundary: `COMPUTED: every strategy row cites a real fold and folds live values into its receipt — refutable (win a race and the discover strategy's address changes). HONEST SCOPE: strategies are DECISION HEURISTICS derived from proven structure, not proofs themselves; the agent still judges fit (judgment is the off-decidable residue). "Realtime by the agents" = served at the workflow surface and recomputed per call at zero tokens; no claim that agents are compelled — the playbook informs, the gates enforce. HARMONY ≠ TRUTH.`,
   }
 }

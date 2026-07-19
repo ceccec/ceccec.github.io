@@ -39,7 +39,7 @@ import {
   type MindMatrix,
 } from '../../heaven/mind'
 import { readmeMarkdown } from './readme'
-import { agentBashWorkflowsAreToolsSavedInSrc, sequenceStations } from '../../../pair/enforcement'
+import { agentBashWorkflowsAreToolsSavedInSrc, dynamicStrategiesFromTheorems, sequenceStations } from '../../../pair/enforcement'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
@@ -73,6 +73,7 @@ export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
       count: saved.tools.length,
       root: saved.root,
       circuit: sequenceStations(),
+      strategies: dynamicStrategiesFromTheorems(matrix).strategies,
       byStation,
       statement: saved.statement,
       boundary: saved.boundary,
