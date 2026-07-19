@@ -30,7 +30,7 @@ Concretely: a science portal — 432 computationally proven theorems and 20 rela
 
 - **18/20** monographs — content pages fold genus-2 −χ (20 surface → 18 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
 - **108/108** concept commands — MCP tool surface (4×27 = 432÷4)
-- **267/269** reference index entries — zero redundancy
+- **266/268** reference index entries — zero redundancy
 - **63/21** locale surfaces — 21 routes (home + every served science page) × 3 locales
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
@@ -100,7 +100,7 @@ npm run check:types  # the src/ core type-checks clean against tsconfig.json (ts
 npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
-The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`9dbfc02d`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
+The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`9d88546b`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
 
 ## 6. Limitations
 
@@ -110,11 +110,11 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `e705975f-ca43-8222-8a4d-0b01126956a6`. The monograph-index root: `2cf9832c-fd64-8940-80f6-a19ca267c22b`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `e705975f-ca43-8222-8a4d-0b01126956a6`. The monograph-index root: `caa650a5-4f62-8e34-aef1-7eb5cdd8f9c7`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `9dbfc02d-6294-8825-b02f-af8d6df91c40`
+- Receipt: `9d88546b-aac3-85e1-a2f1-ce686553348a`
