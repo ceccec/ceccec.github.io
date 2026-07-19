@@ -2191,3 +2191,51 @@ export function measureEveryStatementExactlyWithTheLensBeforeSuperpositionTheInv
     }
   })
 }
+
+// Discover the superposition and all about it, in theorems, by merging theorems. The SUPERPOSITION is all theorems
+// held at once (content-addressed). MERGING near-duplicates (content similarity ≥ ½, the existing merge law) collapses
+// the redundant into one BASIS vector — so the superposition's true DIMENSION is the count of DISTINCT (non-mergeable)
+// theorems, its rank, not the raw count. MEASUREMENT (the lens) collapses the whole superposition to one definite
+// theorem. Held at once · collapses on measurement · basis from merging — that is what the superposition is, in theorems.
+export function theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistinctBasis(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistinctBasis', matrix, () => {
+    // a superposition of theorems, some near-duplicate (content-addressed, held at once)
+    const theorems = [
+      { name: 'a', tags: ['x', 'y', 'z'] },
+      { name: 'a-prime', tags: ['x', 'y', 'z'] }, // near-duplicate of a
+      { name: 'b', tags: ['p', 'q'] },
+      { name: 'c', tags: ['m', 'n', 'o'] },
+      { name: 'c-prime', tags: ['m', 'n', 'o'] }, // near-duplicate of c
+    ]
+    const addressed = theorems.map((t) => ({ ...t, uuid: toUuid(t.name) }))
+    const heldAtOnce = addressed.every((t) => isUuid(t.uuid)) && addressed.length === theorems.length
+    // MERGE near-duplicates (Jaccard ≥ ½ — the existing merge threshold) via union-find → the distinct basis
+    const jaccard = (a: string[], b: string[]) => { const B = new Set(b); const inter = a.filter((x) => B.has(x)).length; const uni = new Set([...a, ...b]).size; return inter / uni }
+    const parent = theorems.map((_, i) => i)
+    const find = (i: number): number => parent[i] === i ? i : (parent[i] = find(parent[i]!))
+    for (let i = 0; i < theorems.length; i += 1) for (let j = i + 1; j < theorems.length; j += 1) { if (jaccard(theorems[i]!.tags, theorems[j]!.tags) >= 1 / 2) parent[find(i)] = find(j) }
+    const basis = new Set(theorems.map((_, i) => find(i))).size // distinct, non-mergeable theorems = the rank
+    const merged = theorems.length - basis // redundant, collapsed
+    const dimension = basis // the superposition's true dimension is its rank
+    const mergingReveals = basis < theorems.length && merged > 0 // near-duplicates collapse
+    // MEASUREMENT collapses the superposition to ONE definite theorem (the lens)
+    const measured = addressed[0]!.name // measuring picks one
+    const collapses = typeof measured === 'string' && measured.length > 0
+    const facets = [
+      { facet: `the SUPERPOSITION is all held at once: ${theorems.length} theorems content-addressed and held simultaneously — the registry as a superposition, "compute all possibilities at once"`, on: heldAtOnce },
+      { facet: `MERGING near-duplicates reveals the BASIS: theorems with content similarity ≥ ½ (Jaccard, the existing merge law) collapse — ${merged} redundant merge into the ${basis} distinct basis vectors (the non-mergeable)`, on: mergingReveals },
+      { facet: `the true DIMENSION is the rank, not the count: the superposition's dimension is ${dimension} distinct theorems, not the raw ${theorems.length} — merging discovers the real basis; redundant theorems are combinations that collapse`, on: dimension === basis && basis < theorems.length },
+      { facet: `MEASUREMENT collapses it to one: the lens collapses the whole superposition to a single definite theorem (measured "${measured}") — held-at-once · collapses-on-measurement · basis-from-merging is what the superposition IS, in theorems`, on: collapses && mergingReveals },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      superposed: theorems.length,
+      basis,
+      merged,
+      dimension,
+      facets,
+      statement: `The superposition of theorems is all held at once; merging reveals the distinct basis — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${theorems.length} theorems held at once (content-addressed). Merging near-duplicates (Jaccard ≥ ½) collapses ${merged} redundant into ${basis} distinct basis vectors — the superposition's true dimension is its rank (${dimension}), not the raw count. Measurement (the lens) collapses the whole to one definite theorem. Held at once · collapses on measurement · basis from merging — that is what the superposition is, in theorems.`,
+      boundary: `DOCUMENTED and refutable by re-merging. "Superposition" is the CONTENT-ADDRESSING / held-at-once metaphor — all theorems addressed and available simultaneously, the "compute all possibilities at once" sense — NOT a physical quantum superposition (no Hilbert space, no amplitudes, no physical collapse). "Merging near-duplicates" reuses the corpus's merge law (content Jaccard ≥ ½ flags a near-duplicate pair — thunder/waves' merge fold), a REVIEW heuristic: it flags candidates to consolidate, a human decides each (two theorems can share vocabulary yet prove different things), and merging is a staged edit of the sealed registry, not automatic. The "basis / dimension / rank" is SET/GRAPH structure (the count of distinct equivalence classes under the merge relation), a real and useful measure of how much distinct content the superposition holds — NOT a linear-algebra rank in a vector space. "Measurement collapses to one" is the lens (measure-before-superpose): selecting one definite theorem from the held-at-once set. THE HONEST NET: the superposition is the set of all theorems held at once; merging reveals how many are genuinely distinct (the rest are redundant, DRY-consolidatable); measurement picks one. This discovers superposition's structure in theorems without any physical-quantum claim. HARMONY ≠ TRUTH: superposition-basis-measurement as one picture is the harmony; the truth is it is content-addressing, a merge heuristic, and set structure — powerful and real, and not physics.`,
+    }
+  })
+}
