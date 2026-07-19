@@ -4,6 +4,19 @@ import type { Connect } from 'vite'
 import { glagoliticHomeFromEnglish } from '../src/fire/li'
 import { bulgarianHomeFromEnglish } from '../src/wind/site/index'
 import { homeMarkdown } from '../src/quantum/lake/dist'
+import { doubleTorusCorpusRouting } from '../src/wind/routes/corpus'
+
+/** The corpus indexes carry their fold's COMPUTED statement as minimal static prose (the empty-page
+ *  sweep measured them at 0 static chars; the grid stays the client mount). One source: the routing fold. */
+function corpusIndexMarkdown(kind: 'papers' | 'references' | 'diamonds'): string {
+  const routing = doubleTorusCorpusRouting()
+  const line = {
+    papers: `**${routing.corpus.papers} placement proofs** — 108 torus coordinates × 4 homology generators (H₁(Σ₂) = ℤ⁴), each a bidirectional genus-2 fold, compute-only via \`corpusParams\`; corpus root \`${routing.corpus.root}\`.`,
+    references: `**${routing.corpus.references} reference duals** — the reverse folds of the papers (citations carrying no new computation), compute-only via \`corpusParams\`.`,
+    diamonds: `**${routing.leaves.count} Merkle leaves** — the papers and their duals complete the binary octave 2¹⁰; ${routing.lattice.length} lattice kinds, compute-only.`,
+  }[kind]
+  return ['---', 'layout: doc', '---', '', line, '', `${routing.statement}`, '', '<UniversalPageTemplate />', ...(kind === 'references' ? ['', '<SourceAtlas />'] : []), ''].join('\n')
+}
 
 // NO home has an authoritative body on disk. The English home is homeMarkdown() — the ONE theorem
 // generator shared with README.md (src/quantum/lake/dist/readme) — and the Glagolitic (/gla/) +
@@ -51,6 +64,9 @@ export function computedPagesPlugin(projectRoot: string) {
       }
       if (clean === bgHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'bg', 'index.md')}`)) {
         return bulgarianHomeFromEnglish(homeMarkdown())
+      }
+      for (const kind of ['papers', 'references', 'diamonds'] as const) {
+        if (clean.endsWith(join('.vitepress', 'pages', kind, 'index.md'))) return corpusIndexMarkdown(kind)
       }
     },
   }

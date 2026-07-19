@@ -1,5 +1,7 @@
 // ☷ Kūn · Earth — the folder architecture: the folded census (χ=−2 accounting), the folder law, distributed compute, the repo structure. Barrel-routed; folds.ts back-imports the gate folds.
 import { phase } from '../../6/4'
+// call-time namespace edge (cycle-safe): thunder/waves reaches back here via the mind barrel; the registry reads at call time
+import * as __ns_thunder_waves from '../../thunder/waves'
 import { MONOLITH_FILE_BYTES } from '../../pair/enforcement/gates/strict/scan'
 import { fibonacci } from '../../3/7'
 import { CANONICAL_ROOT_FOLDERS, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
@@ -1083,27 +1085,31 @@ export function noSiteFolderVitepressPages(matrix: MindMatrix = buildMatrix()) {
 export function quantumConfigurableFoldersDisappear(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumConfigurableFoldersDisappear', matrix, () => {
     const routing = doubleTorusCorpusRouting(matrix)
-    const perLocale = routing.ssgPathCount('papers') + 2
-    const computedPages = perLocale * 2
+    // The corpus is COMPUTE-ONLY (empty shells purged — the 432 paper pages measured 0 static text
+    // chars each): the computable corpus stays 432 + 432 + 1024 leaves via corpusParams, and the
+    // SERVED page mass is the theorem registry — pages that carry meaning, computed from the few files.
+    const computable = routing.corpus.papers + routing.corpus.references + routing.leaves.count
+    const registry = __ns_thunder_waves.theoremNavigation(matrix)
     const routeFiles = 3
     const facets = [
       { facet: 'double torus routes the corpus', on: routing.routed && quantumDoubleTorus(matrix).is },
-      { facet: 'paths computed from matrix — papers SSG, refs/diamonds compute-only', on: routing.routed && computedPages >= 850 && routeFiles <= 3 },
-      { facet: 'per-locale page count derived at call time', on: perLocale >= 432 },
+      { facet: `paths computed from matrix — the WHOLE corpus compute-only (0 SSG shells; ${routing.corpus.papers}+${routing.corpus.references} items + ${routing.leaves.count} leaves resolve via corpusParams)`, on: routing.routed && routing.enumerated === 0 && computable >= 432 * 2 },
+      { facet: `the served page mass is MEANING — ${registry.atomCount} theorem papers computed from the few files, empty shells purged`, on: registry.atomCount >= 432 - (4 * 3) },
       { facet: 'route file count bounded — three [id].paths mounts', on: routeFiles === 3 },
       { facet: 'genus-2 machine sealed', on: quantumDoubleTorus(matrix).is },
     ].map((entry) => ({ ...entry, receipt: toUuid(`folders-disappear:${entry.facet}:${entry.on}`) }))
     return {
       fitsInFile: facets.every((entry) => entry.on),
-      computedPages,
+      computedPages: registry.atomCount,
+      computable,
       routeFiles,
       count: facets.length,
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement:
-        'If you do the math, the need of folders disappears — corpus pages are computed from doubleTorusCorpusRouting at call time; three route files, not thousands of folders.',
+        'If you do the math, the need of folders disappears — the corpus is compute-only (corpusParams resolves any of its 1888 computable items at call time; the empty static shells are purged), the served page mass is the theorem registry, and three route files replace thousands of folders.',
       boundary:
-        'Dry routing arithmetic only — no expansionContractionIsLife or allComputed wet chain. VitePress still renders from a file tree; intelligence is content-addressed in src/.',
+        'Dry routing arithmetic only. VitePress still renders from a file tree; intelligence is content-addressed in src/. The purge is MEASURED (0 static text chars per shell), and nothing left the MODEL — only the empty SSG enumeration.',
     }
   })
 }

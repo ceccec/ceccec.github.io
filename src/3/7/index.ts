@@ -976,7 +976,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/7/3/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/8/2/index.ts', literal: '*', count: 3, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/9/1/index.ts', literal: '*', count: 9, kind: 'data', source: 'attested residue — physics error-correction constants' },
-  { file: 'src/earth/architecture/index.ts', literal: '*', count: 9, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known (was 10; the line ceiling 2579 became a theorem, fibonacci(18))', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/earth/architecture/index.ts', literal: '*', count: 8, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known (was 9; the corpus purge retired the ≥850/≥432 SSG-page thresholds when quantumConfigurableFoldersDisappear became registry-mass arithmetic)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/earth/life/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — biology documented data' },
   { file: 'src/earth/nature/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — nature data' },
   { file: 'src/quantum/dynamics/index.ts', literal: '27.2114', count: 1, kind: 'data', source: 'Hartree energy in eV — CODATA 2018' },
