@@ -24,6 +24,7 @@ function glagoliticIfLatin(text: string): string {
 }
 import { buildMatrix } from '../src/heaven/compute'
 import { computeUniversalPage, searchSectionsFor } from '../src/wind/routes/corpus'
+import { navigationCrossOfTheFourPoles } from '../src/wind/ui'
 import { heroChromeStyleBlocks } from './lib/hero-chrome'
 import { universalRoutePath } from './lib/universal-route-path'
 import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-server-bind.mts'
@@ -33,6 +34,9 @@ import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-serv
 // srcFolderPlugins from mind + lake/dist indices (folderLaw.indexSurfaces.vitepress.consumes).
 const config = siteConfig()
 const nav = siteNavigation()
+// TOP NAV = the double-torus navigation cross: Home + 4 poles (Theorems · Axioms · Solutions · Simulators),
+// computed from the theorem-science lens with the π/prime cross. Sidebar/footer stay from siteNavigation.
+const navCross = navigationCrossOfTheFourPoles()
 const vpSidebar = vitepressSidebar()
 const projectRoot = fileURLToPath(new URL('..', import.meta.url))
 const vpLibRoot = join(projectRoot, '.vitepress/lib')
@@ -213,17 +217,17 @@ function vpLibNestedResolvePlugin(): import('vite').Plugin {
 // Navigation uses 7 rosetta rays (Ⰰ Alpha…Ⱄ Word) grouped into three doors — computed from rosettaRayOf.
 // /en/ and /bg/ locales: localeNavLinks + localeSidebarKeys prefix from SITE_LOCALES (VitePress useLangs twin).
 const glaNav = {
-  nav: localeNavLinks(nav.en.nav, 'gla', toGlagolitic),
+  nav: localeNavLinks(navCross.en, 'gla', toGlagolitic),
   sidebar: localeNavLinks(localeSidebarKeys(vpSidebar.en, 'gla'), 'gla', toGlagolitic),
   footer: localeNavLinks(nav.en.footer, 'gla', toGlagolitic),
 }
 const enNav = {
-  nav: localeNavLinks(nav.en.nav, 'en'),
+  nav: localeNavLinks(navCross.en, 'en'),
   sidebar: localeNavLinks(vpSidebar.en, 'en'),
   footer: localeNavLinks(nav.en.footer, 'en'),
 }
 const bgNav = {
-  nav: localeNavLinks(nav.bg.nav, 'bg'),
+  nav: localeNavLinks(navCross.bg, 'bg'),
   sidebar: localeNavLinks(localeSidebarKeys(vpSidebar.bg, 'bg'), 'bg'),
   footer: localeNavLinks(nav.bg.footer, 'bg'),
 }
