@@ -1607,6 +1607,16 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
     proofVerified: proof.verified,
     proofDepth: proof.path.length,
     leafCount: proof.leafCount,
+    // COMPUTE-ONLY IS NOT PURGE (user law): the combination FILLS computationally — the paper's
+    // monograph is generated here from its own values, so every runtime consumer (the universal
+    // page, the per-path .json API, dev middleware, MCP) receives the filled combination on demand
+    // with zero static shells.
+    monograph: [
+      `Proof paper ${paper.id} — the bidirectional genus-2 fold of torus coordinate ${paper.coordinateIndex} (π-digit ${paper.digit} · ${paper.glyph}) with homology generator ${paper.generator} (${paper.generatorName}; H₁(Σ₂) = ℤ⁴).`,
+      `Placement: θ = ${paper.theta}, φ = ${paper.phi} → (${paper.x}, ${paper.y}, ${paper.z}); harmonic ${paper.frequency} Hz on the A432 series; hue ${paper.hue}°.`,
+      `Proof: forward fold ${paper.forward} · reverse ${paper.reverse} — bidirectional ${paper.bidirectional}; paper root ${paper.root}; merkle audit verified ${proof.verified} at depth ${proof.path.length} over ${proof.leafCount} leaves.`,
+      `Context: paper ${paper.number} of ${corpus.count} (108 coordinates × 4 generators); dual reference /references/${paper.id}; the corpus completes the 1024-leaf binary octave.`,
+    ].join('\n'),
   }
 }
 

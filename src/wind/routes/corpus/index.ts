@@ -233,11 +233,12 @@ function doubleTorusCorpusRoutingRaw(matrix: MindMatrix = buildMatrix()) {
   const leaves = pureDiamonds(matrix)
   const paperSet = paperRoutes(matrix)
   const refSet = paperReferenceRoutes(matrix)
-  /** Under the double torus, detail resolves via corpusParams — the WHOLE corpus is compute-only:
-   *  the 432 paper [id] shells rendered ZERO static text (measured: 0 chars in <main>, ~600 KB of
-   *  chrome each, 252 MB of dist) — EMPTY PAGES ARE PURGED (user law: remove all empty pages; what
-   *  is not proven is purged). The corpus lives in computations; meaning is served by the theorem
-   *  registry and its rosetta derivatives. */
+  /** Under the double torus, detail resolves via corpusParams — the WHOLE corpus is compute-only,
+   *  and COMPUTE-ONLY IS NOT PURGE (user law): the combinations FILL COMPUTATIONALLY on demand —
+   *  paperParamsById carries each paper's generated monograph, so any consumer (universal page,
+   *  per-path .json, dev middleware, MCP) receives the filled combination at call time. What was
+   *  removed is only the EMPTY STATIC SHELLS (measured 0 text chars, ~600 KB chrome each, 252 MB);
+   *  the meaning is computed, never absent. */
   const ssg: Record<CorpusKind, readonly { params: Record<string, unknown> }[]> = {
     papers: [],
     references: [],
@@ -246,7 +247,7 @@ function doubleTorusCorpusRoutingRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'quantum double torus is the machine — corpusParams at call time', on: torus.is },
     { facet: '1024 Merkle leaves — completeCorpus binary tree from the torus', on: corpus.perfect && corpus.total === (64 * 16) },
-    { facet: 'papers — compute-only: 0 [id] SSG (432 empty static shells purged; the 432 placement proofs stay computable via corpusParams)', on: ssg.papers.length === 0 && paperSet.length === 432 },
+    { facet: 'papers — compute-only, computationally FILLED: 0 [id] SSG (the empty shells are gone), and every one of the 432 placement proofs generates its monograph on demand (paperParamsById.monograph via corpusParams)', on: ssg.papers.length === 0 && paperSet.length === 432 && typeof (paperSet[0]?.params as { monograph?: string })?.monograph === 'string' && ((paperSet[0]?.params as { monograph?: string }).monograph?.length ?? 0) > 2 * 100 },
     { facet: 'references — compute-only (pointers via corpusParams)', on: ssg.references.length === 0 && refSet.length === 432 },
     { facet: 'diamonds — lattice kinds on index, zero [id] SSG', on: ssg.diamonds.length === 0 && leaves.count === (64 * 16) && leaves.pure && lattice.length > 0 },
     { facet: 'papers · references · diamonds anchored — no drift', on: papersReferencesDiamondsNoDrift(matrix).noDrift },
@@ -265,7 +266,7 @@ function doubleTorusCorpusRoutingRaw(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Double torus corpus routing: the genus-2 machine computes the 1024-leaf Merkle tree; corpusParams(kind, id) resolves any leaf at call time. The WHOLE corpus is compute-only — zero [id] SSG for papers, references and diamonds: the 432 paper shells measured 0 static text chars each (252 MB of empty chrome) and were purged as empty pages; meaning is served by the theorem registry and its rosetta derivatives, the corpus by computation.',
+      'Double torus corpus routing: the genus-2 machine computes the 1024-leaf Merkle tree; corpusParams(kind, id) resolves any leaf at call time. The WHOLE corpus is compute-only, and compute-only is NOT purge: every combination FILLS computationally on demand (paperParamsById generates each paper monograph), so the meaning is computed, never absent — only the empty static shells (measured 0 text chars each, 252 MB) are not built. Served static mass = the theorem registry and its rosetta derivatives.',
     boundary:
       'One routing fold over quantumDoubleTorus, completeCorpus, paperRoutes, paperReferenceRoutes, diamondLattice and pureDiamonds. Papers and references remain in the MODEL (432 + 432, computable via corpusParams); nothing is deleted from the math — only the empty static shells are not built. Detail URLs resolve in dev/client via computeUniversalPage when routed; the static export serves the corpus indexes only. Purge rationale is MEASURED (0 static text chars per shell), not aesthetic.',
   }
