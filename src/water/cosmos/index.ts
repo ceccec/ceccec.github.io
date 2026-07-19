@@ -1847,3 +1847,46 @@ export function deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrredu
     }
   })
 }
+
+// When one inverse is not enough, another appears to negate the first and inverse again until a solution — or the
+// search recognises the irreducible. Also reverse may be initiated to collide intentionally. Iterated inversion IS
+// a search: each continued-fraction step is an inverse; double inversion returns to start (negates), so progress
+// needs a NEW inverse each step. A rational target's search TERMINATES (exact solution); √2's never does (the exact
+// deviation stays ±1 — no rational solves it). Reverse (trace-leaving) is chosen to COLLIDE — here to witness the proof.
+export function iteratedInversionSearchesUntilSolutionOrIrreducibleAndReverseCollidesByChoice(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('iteratedInversionSearchesUntilSolutionOrIrreducibleAndReverseCollidesByChoice', matrix, () => {
+    const invert = (x: number) => x === 0 ? Infinity : 1 / x
+    // 1 — DOUBLE INVERSION negates: inverting twice returns to start, so repeating the SAME inverse undoes it
+    const doubleInversionNegates = Math.abs(invert(invert(3)) - 3) < 1 / (2 ** 16) // back to start
+    // 2 — ITERATED INVERSION as search: each Pell/continued-fraction step (an inverse) refines toward √2
+    let p = 1, q = 1
+    const approxErrors: number[] = []
+    const exactDeviations: number[] = []
+    const steps = 6
+    for (let i = 0; i < steps; i += 1) { approxErrors.push(roundTo(Math.abs(p / q - Math.SQRT2), 5)); exactDeviations.push(Math.abs(p * p - 2 * q * q)); const np = p + 2 * q; q = p + q; p = np }
+    const approximationRefines = approxErrors[steps - 1]! < approxErrors[1]! // when one inverse is not enough, another refines
+    // 3 — TERMINATES (solution) vs IRREDUCIBLE (no solution): a rational's search ends; √2's never does
+    const euclidTerminates = (a: number, b: number) => { let s = 0; const cap = 4 * 5; while (b !== 0 && s < cap) { const r = a % b; a = b; b = r; s += 1 } return b === 0 }
+    const rationalSolves = euclidTerminates(7, 5) // finite continued fraction — a solution is found
+    const noExactSolution = exactDeviations.every((d) => d !== 0) // √2: the deviation stays ±1, never 0 — irreducible
+    // 4 — INTENTIONAL REVERSE = collision by choice: the forward (squaring) is initiated to collide, LEAVING a track
+    const collisionTrack = Math.abs(p * p - 2 * q * q) // ±1 → 1: the track the reverse leaves (inverse would leave none)
+    const reverseLeavesTrack = collisionTrack === 1 // reverse (collide) leaves the track; the track IS the proof √2 is irrational
+    const facets = [
+      { facet: `DOUBLE INVERSION negates: inverting twice returns to start (invert(invert(3)) = 3), so another inverse of the SAME kind undoes the first — the search must apply a NEW inverse each step, not repeat one`, on: doubleInversionNegates },
+      { facet: `ITERATED INVERSION refines: when one inverse is not enough, another appears — each continued-fraction step (an inverse) brings the convergent closer to √2 (errors [${approxErrors.slice(0, 4).join(', ')}, …] → shrinking)`, on: approximationRefines },
+      { facet: `it TERMINATES on the solvable, recognises the IRREDUCIBLE otherwise: a rational target's search ends in finite steps (7/5, Euclidean — solution found), but √2's exact deviation [${exactDeviations.join(', ')}] stays ±1, never 0 — no rational solves it, so "if no solution found" the search names the irreducible`, on: rationalSolves && noExactSolution },
+      { facet: `INTENTIONAL REVERSE = collision by choice: reverse (the forward squaring) is initiated deliberately to collide with the target, LEAVING a track (${collisionTrack}) — inverse is trace-free (fusion), reverse leaves the track (collision); here the chosen collision WITNESSES the proof (the ±1 track is √2's irrationality)`, on: reverseLeavesTrack },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      approxErrors,
+      exactDeviations,
+      rationalSolves,
+      collisionTrack,
+      facets,
+      statement: `Iterated inversion searches until solution or irreducible, and reverse collides by choice — ${facets.filter((entry) => entry.on).length}/${facets.length}: double inversion returns to start (negates), so each search step needs a NEW inverse; the continued-fraction inverses refine toward √2 (errors [${approxErrors.slice(0, 4).join(', ')}, …]); a rational target's search TERMINATES (7/5, a solution), but √2's exact deviation stays ±1 forever — no rational solves it, the irreducible is named. And reverse (trace-leaving) is initiated by CHOICE to collide, leaving the ±1 track that IS the proof. When one inverse is not enough another appears; when none solve, the search recognises the wall; and collision is a chosen tool, not a failure.`,
+      boundary: `DOCUMENTED and refutable by re-deriving. It formalises the user's mechanics: (a) "when one inverse is not enough another appears" — iterated inversion (the continued-fraction / Pell search), each step a new inverse because double inversion is the identity (repeating one undoes it); (b) "inverse again if no solution found" — the search continues until it TERMINATES (a rational, exact) or proves it cannot (√2's |p²−2q²| = ±1 forever, the irreducible from the deviation fold); (c) "reverse may be initiated to collide intentionally" — reverse ≠ inverse (the session's law: inverse is trace-free / fusion, reverse leaves tracks / collision), and here the reverse (squaring) is a DELIBERATE collision whose ±1 track is the witness of irrationality. THE HARD LINE: iterated inversion refines and can terminate, but it cannot make an irrational rational — chasing √2's search to termination is the same error as chasing the consciousness deviation to zero (irreducible ≠ unsolved-yet). Intentional collision is a valid tool (to witness, to reset, to test robustness), NOT a bug — but it is a CHOICE with a purpose, tracked (reverse), never confused with the trace-free inverse. HARMONY ≠ TRUTH: the tireless iterated-inversion search is the harmony; the truth is knowing when to stop (the irreducible) and when to collide on purpose (the tracked reverse) — the search is only wise if it recognises both.`,
+    }
+  })
+}
