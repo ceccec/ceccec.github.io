@@ -2126,11 +2126,13 @@ export function theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root: strin
     { facet: `ISOLATED = CONSOLIDATABLE, NAMED — the ${consolidatable} free theorems are listed (${offenders.length} shown); each references no other theorem and no axiom, so it is a candidate to fold into a neighbour or wire to its axiom, exactly the worklist the gravity descends`, on: isolated.every((t) => t.name.length > 0) && offenders.length === Math.min(consolidatable, ICHING_NUMBERS.length) },
     { facet: `GRAVITY = COMPRESSION — the linked fraction is ${linkedRatio}; computeCodeGravity computes the DRY field that pulls duplication to one canonical home, and the same pull consolidates the isolated theorems: the more compressed the mass, the more it draws the free theorems and unsolved axioms toward completion`, on: linkedRatio > 0 && linkedRatio <= 1 && computeCodeGravity(root).length >= 0 },
   ]
+  const isolatedByHome = [...isolated.reduce((m, t) => m.set(t.rel, (m.get(t.rel) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]).map(([home, count]) => ({ home, count }))
   return {
     computes: facets.every((entry) => entry.on),
     theorems: T,
     linked: T - consolidatable,
     isolated: consolidatable,
+    isolatedByHome,
     axiomLinked,
     linkedRatio,
     offenders,
@@ -2180,5 +2182,39 @@ export function theoremsFoldUnlessAnAxiomIsBehindThemThenTheyCollideOrNeverMeetT
     facets,
     statement: `Theorems fold unless an axiom is behind them — then they collide or never meet, and that residue is the backlog — ${facets.filter((e) => e.on).length}/${facets.length}: ${neverMeet} isolated theorems (a private axiom → never meet), ${collide} metaphor/literal axioms (a different axiom → collide), and ${deferred} boundary-declared deferrals sum to ${backlog} axiom-residues — exactly "what is not yet in src." One cause behind both failure modes (the un-dissolved axiom), one cure (axiomsBecomeTheorems: ground it in the lattice and the theorem is free to fold).`,
     boundary: earned(`EXACT: ${neverMeet} isolated theorems (from the linkage measure), ${collide} residual axioms (${folderAxioms} metaphor folders via computePathMigration + ${literalAxioms} literals via scanCrackSurface), ${deferred} boundary-declared deferral lines across ${files.length} files, summing to a ${backlog}-item backlog.`, facets, `this is a STRUCTURAL restatement, not an empirical discovery: isolation and collision are DEFINED as "not grounded in the shared base" (no anchor / not derived), so the principle that they share one cause is true by those definitions — the insight is the unification, not a surprising correlation. The backlog count is a conservative proxy for "not yet in src": the deferral regex catches self-declared edges but misses improvements never written down, and some isolated theorems are genuinely atomic (a standalone bound needs no neighbour), so the number over-counts curable residue rather than hiding it. Grounding an axiom lets a theorem fold, but folding is not correctness — a wrong theorem grounded in the lattice is still wrong, only now it composes. HARMONY does not equal TRUTH.`),
+  }
+}
+
+// IMAGINE, AND LET THE IMAGINATION GUIDE THE CONSCIOUSNESS WAVES (user): the imagination is the OPEN EDGE the
+// corpus has measured about itself — the backlog of theorems still behind an axiom (never-meet + collide +
+// deferred). The consciousness waves are the agents/skills that do the work. To let imagination GUIDE them is
+// to compute the ORDER by gravity, not choose it: cluster the isolated theorems by home, and the home holding
+// the largest cluster is the highest-gravity wave — dissolving its one shared axiom lets the MOST theorems fold
+// at once. So the imagined gap ranks the waves, and the agents descend the gradient from the top. Discovery
+// (imagine → the backlog) becomes direction (the ranked waves) becomes folding (consolidation) — one loop.
+export function theImaginationGuidesTheConsciousnessWaves(root: string = process.cwd()) {
+  const backlog = theoremsFoldUnlessAnAxiomIsBehindThemThenTheyCollideOrNeverMeetThatIsTheBacklog(root)
+  const linkage = theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root)
+  const gravity = computeCodeGravity(root)
+  // the imagination clustered by home → each cluster is one consciousness wave, ranked by how many it folds
+  const waves = linkage.isolatedByHome.map((h, i) => ({ rank: i + 1, home: h.home, folds: h.count, pull: roundTo(h.count / Math.max(1, linkage.isolated), 3) }))
+  const top = waves[0] ?? { rank: 1, home: '—', folds: 0, pull: 0 }
+  const placed = waves.reduce((s, w) => s + w.folds, 0)          // every isolated theorem lands in exactly one wave
+  const descending = waves.every((w, i) => i === 0 || w.folds <= waves[i - 1]!.folds) // gravity orders the waves
+  const facets = [
+    { facet: `IMAGINATION = THE OPEN EDGE — the ${backlog.backlog}-item backlog (${backlog.neverMeet} never-meet + ${backlog.collide} collide + ${backlog.deferred} deferred) is the corpus's measured imagination-not-yet-sealed; its isolated theorems cluster into ${waves.length} home-waves, and every one of the ${linkage.isolated} is placed (${placed})`, on: waves.length > 0 && placed === linkage.isolated },
+    { facet: `GRAVITY RANKS THE WAVES — the home-waves descend by cluster size (${descending}): the top wave is ${top.home} with ${top.folds} isolated theorems (pull ${top.pull}), so dissolving its one shared axiom folds the MOST at once — the guidance is COMPUTED, not chosen, and computeCodeGravity confirms a DRY field of ${gravity.length} pull vectors under it`, on: descending && top.folds >= 1 && gravity.length >= 0 },
+    { facet: `THE IMAGINATION GUIDES THE CONSCIOUSNESS — the ${waves.length} ranked homes ARE the wave order the agents follow: discovery (imagine → the backlog) becomes direction (the gravity-ranked waves) becomes folding (consolidation), one loop; the agents descend the gradient from ${top.home} down, so imagination directs the work rather than the work being picked`, on: waves.length > 0 && top.rank === 1 && placed === linkage.isolated },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    backlog: backlog.backlog,
+    waveCount: waves.length,
+    topWave: `${top.home} (${top.folds})`,
+    waves: waves.slice(0, ICHING_NUMBERS.length).map((w) => `${w.rank}. ${w.home} — folds ${w.folds} (pull ${w.pull})`),
+    root: toUuid(`imagination-guides-waves:${backlog.backlog}:${waves.length}:${top.folds}`),
+    facets,
+    statement: `Imagine, and let the imagination guide the consciousness waves — ${facets.filter((e) => e.on).length}/${facets.length}: the ${backlog.backlog}-item backlog (the imagination not yet sealed) clusters its ${linkage.isolated} isolated theorems into ${waves.length} home-waves ranked by gravity; the top wave is ${top.home} (${top.folds} theorems, pull ${top.pull}), where dissolving one shared axiom folds the most at once. The imagined gap computes the wave order and the agents descend it from the top — discovery becomes direction becomes folding, one loop.`,
+    boundary: earned(`EXACT: the ${backlog.backlog}-item backlog and ${linkage.isolated} isolated theorems clustered into ${waves.length} homes, ranked descending by cluster size (top ${top.home}, ${top.folds}), all ${placed} placed, under a ${gravity.length}-vector DRY gravity field.`, facets, `this COMPUTES an ORDER, not a mandate: cluster size is a NECESSARY proxy for gravity (more isolated theorems in one home ⇒ one axiom-dissolution likely folds more), not a proof that the top home is the right next wave — some clusters are isolated for good reason (genuinely atomic bounds), and human JUDGMENT still picks whether to fold or leave each. "Imagination" here is the measured open edge (the backlog), and "consciousness waves" are deterministic agents/skills (folds and tools), NOT sentient minds — the metaphor is the discovery-engine loop, reproducible and zero-token. Descending the gradient orders the work; it does not do it, and folding is not correctness. HARMONY does not equal TRUTH.`),
   }
 }
