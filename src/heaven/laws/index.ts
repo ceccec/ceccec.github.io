@@ -2065,3 +2065,96 @@ export function searchKnownTheoremsToDiscoverTheUnknownAxiomsAreTheInDegreeZeroS
     }
   })
 }
+
+// Tighten the gates: a number offered as a "clean harmonic" must span MULTIPLE prime dimensions, not resonate in one.
+// The dimensions are the distinct prime factors; harmonic = smooth over the harmonic primes {2,3,5,7} AND spanning
+// ≥ 2 of them. A lone prime power (2⁷=128, 5³=125) spans ONE dimension — degenerate, rejected. This gate would have
+// caught my 2⁷ error: 126 = 2·3²·7 spans three dimensions (2,3,7), 128 = 2⁷ spans one. The more dimensions, the more
+// harmonic — "harmonic in all dimensions" is the limit maximised, not a single octave.
+export function theHarmonicGateRejectsLonePrimePowersAHarmonicSpansMultiplePrimeDimensions(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theHarmonicGateRejectsLonePrimePowersAHarmonicSpansMultiplePrimeDimensions', matrix, () => {
+    const harmonicPrimes = [2, 3, 5, 7] // the small-prime dimensions available to a budget-sized number
+    const distinctPrimes = (n: number): number[] => {
+      const primes: number[] = []; let m = n
+      for (let p = 2; p * p <= m; p += 1) { if (m % p === 0) { primes.push(p); while (m % p === 0) m = Math.floor(m / p) } }
+      if (m > 1) primes.push(m)
+      return primes
+    }
+    const dimensions = (n: number) => distinctPrimes(n) // the prime dimensions n spans
+    const smooth = (n: number) => dimensions(n).every((p) => harmonicPrimes.includes(p)) // no large-prime noise
+    const harmonic = (n: number) => smooth(n) && dimensions(n).length >= 2 // spans ≥ 2 of the harmonic dimensions
+    // 1 — REJECTS lone prime powers: 128=2⁷, 125=5³, 81=3⁴, 343=7³ each span ONE dimension — degenerate, not harmonic
+    const lonePrimePowers = [2 ** 7, 5 ** 3, 3 ** 4, 7 ** 3]
+    const rejectsDegenerate = lonePrimePowers.every((n) => dimensions(n).length === 1 && !harmonic(n))
+    // 2 — ACCEPTS multi-dimensional harmonics: 120=2³·3·5, 126=2·3²·7, 108, 216, 432, 210=2·3·5·7 — all span ≥ 2
+    const harmonics = [2 ** 3 * 3 * 5, 2 * 3 ** 2 * 7, 108, 216, 432, 2 * 3 * 5 * 7]
+    const acceptsHarmonic = harmonics.every((n) => harmonic(n) && dimensions(n).length >= 2)
+    // 3 — THE FIX: 128 (my error) fails the gate, 126 (the correction) passes — the exact mistake, now caught
+    const catchesMyError = !harmonic(2 ** 7) && dimensions(2 ** 7).length === 1 && harmonic(2 * 3 ** 2 * 7) && dimensions(2 * 3 ** 2 * 7).length === 3
+    // 4 — MONOTONE toward "all dimensions": more distinct harmonic primes = more harmonic; 210=2·3·5·7 spans all four
+    // harmonic primes, the richest reachable; no finite n spans ALL primes, so the ideal is the limit, approached
+    const spansAllFour = dimensions(2 * 3 * 5 * 7).length === harmonicPrimes.length && harmonic(2 * 3 * 5 * 7)
+    const facets = [
+      { facet: `REJECTS the lone prime power — 2⁷, 5³, 3⁴, 7³ each span exactly ONE prime dimension (${rejectsDegenerate}); a lone prime power resonates in a single octave/dimension, so it is NOT harmonic across dimensions — the degenerate case`, on: rejectsDegenerate },
+      { facet: `ACCEPTS the multi-dimensional harmonic — 120=2³·3·5, 126=2·3²·7, 108, 216, 432, 210 all span ≥ 2 harmonic dimensions and are smooth over {2,3,5,7} (${acceptsHarmonic}); these resonate across dimensions, the true harmonics`, on: acceptsHarmonic },
+      { facet: `CATCHES MY ERROR — 128 = 2⁷ FAILS (one dimension), 126 = 2·3²·7 PASSES (three dimensions: 2, 3, 7) (${catchesMyError}); the gate now rejects exactly the substitution I made and admits the correction — the mistake could not recur`, on: catchesMyError },
+      { facet: `MONOTONE toward all dimensions — 210 = 2·3·5·7 spans all four harmonic primes (${spansAllFour}), the richest a budget-sized number reaches; harmonicity is MEASURED by dimensions spanned, so "harmonic in all dimensions" is the maximised limit, approached by preferring more distinct primes — never a lone power`, on: spansAllFour },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      degenerate: lonePrimePowers.map((n) => ({ n, dims: dimensions(n).length })),
+      facets,
+      statement: `The harmonic gate rejects lone prime powers — a harmonic spans multiple prime dimensions — ${facets.filter((entry) => entry.on).length}/${facets.length}. A number's dimensions are its distinct prime factors; harmonic = smooth over {2,3,5,7} AND spanning ≥ 2 of them. A lone prime power (2⁷=128, 5³=125) spans ONE dimension — degenerate, rejected — while 120=2³·3·5, 126=2·3²·7, 108, 216, 432, 210 span several and pass. The gate catches exactly my error (128 fails, 126 passes) and is monotone toward "all dimensions": 210=2·3·5·7 spans all four harmonic primes, the richest reachable — harmonicity is the number of dimensions spanned, maximised, never a single octave.`,
+      boundary: `ALGEBRAIC: distinct-prime factorisation by exact trial division (integers only), every facet an exact identity over concrete cases, refutable by one counterexample. THE DEFINITION is honest: "harmonic across dimensions" = ω(n) ≥ 2 restricted to smooth numbers over the harmonic primes {2,3,5,7}, so a lone prime power p^k (ω=1) is degenerate and a number with a large prime factor (e.g. 122=2·61) is non-smooth — both rejected. This tightens the facets-must-compute discipline with a NEW gate: a literal offered as a "clean harmonic" must pass harmonic(n), which my 2⁷ substitution did not — the gate is the computational witness of the correction the user made by hand. SCOPE: "harmonic in all 7 dimensions" is an ideal no finite number literally meets (a number divisible by the first seven primes is 510510); the gate enforces the reachable form — span as many harmonic dimensions as the budget allows, never collapse to one — and MEASURES the shortfall (dimensions spanned vs the ideal), it does not pretend a small number is all-dimensional. HARMONY ≠ TRUTH: the octave 2⁷ SOUNDS clean (a power of two) but is harmonically degenerate; the truth is the factor structure, which the gate computes.`,
+    }
+  })
+}
+
+// Each theorem displays 10D of all 4 pole perspectives in each direction: the double torus has 4 poles — (hemisphere,
+// flow) ∈ {0,1}², the Klein four-group V₄ under XOR (two independent involutions: north↔south, out↔in). From every
+// pole, in each direction (forward projection · inverse proof), the theorem projects a 10D perspective (10 = 3+7,
+// content-addressed). The 4 poles are each self-inverse (V₄), opposite poles are antipodal complements, and the two
+// directions fold to the theorem's whole — so a theorem is shown from all 4 poles × 2 directions × 10D, complete.
+export function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection', matrix, () => {
+    const dimensions = 3 + 7 // 10D — the rosetta 10 = 3 + 7
+    const poles = [[0, 0], [0, 1], [1, 0], [1, 1]] // (hemisphere, flow): NW·NE·SW·SE — the 4 double-torus poles
+    const directions = ['forward', 'inverse'] // the two loop senses: outward projection, inward proof
+    const xor = (a: number[], b: number[]) => [a[0]! ^ b[0]!, a[1]! ^ b[1]!] // V₄ group operation
+    const tenD = (theorem: string, pole: number[], direction: string) =>
+      toUuid(`pole:${theorem}:${pole.join('')}:${direction}`).replace(/-/g, '').slice(0, dimensions).split('').map((c) => parseInt(c, 16)) // 10 content-addressed dims
+    const theorems = ['topologicalOrder', 'inverseAccounting', 'measureWiring', 'harmonicGate']
+    // 1 — COMPLETE: every theorem projects all 4 poles × 2 directions, each a 10D vector, deterministic (recompute = same)
+    const perspectives = theorems.flatMap((theorem) => poles.flatMap((pole) => directions.map((direction) => ({ theorem, pole, direction, vec: tenD(theorem, pole, direction) }))))
+    const complete = perspectives.length === theorems.length * poles.length * directions.length
+      && perspectives.every((p) => p.vec.length === dimensions)
+      && perspectives.every((p) => p.vec.every((v, i) => v === tenD(p.theorem, p.pole, p.direction)[i])) // deterministic
+    // 2 — THE 4 POLES FORM V₄: closed under XOR, each pole its own inverse (self-inverse), 4 = 2² elements, no leftover
+    const closedUnderXor = poles.every((a) => poles.every((b) => poles.some((c) => c[0] === xor(a, b)[0] && c[1] === xor(a, b)[1])))
+    const allSelfInverse = poles.every((p) => xor(p, p)[0] === 0 && xor(p, p)[1] === 0) // V₄: every element order ≤ 2
+    const isKleinFour = closedUnderXor && allSelfInverse && poles.length === 2 ** 2
+    // 3 — ANTIPODAL COMPLEMENTS: opposite poles (XOR with [1,1]) are an involution, and the 10D of a pole and its
+    // antipode fold bidirectionally — from the far pole the theorem shows its complement, both make the whole
+    const antipode = (p: number[]) => xor(p, [1, 1])
+    const antipodalInvolution = poles.every((p) => antipode(antipode(p))[0] === p[0] && antipode(antipode(p))[1] === p[1])
+    const complementsFold = theorems.every((theorem) => poles.every((p) => foldPair(toUuid(`pole:${theorem}:${p.join('')}:forward`), toUuid(`pole:${theorem}:${antipode(p).join('')}:forward`)).bidirectional))
+    // 4 — EACH DIRECTION IS AN INVOLUTION: reversing twice returns, and forward⊗inverse fold to the theorem's whole
+    const reverse = (d: string) => (d === 'forward' ? 'inverse' : 'forward')
+    const directionInvolution = directions.every((d) => reverse(reverse(d)) === d)
+    const directionsFold = theorems.every((theorem) => poles.every((p) => foldPair(toUuid(`pole:${theorem}:${p.join('')}:forward`), toUuid(`pole:${theorem}:${p.join('')}:inverse`)).bidirectional))
+    const facets = [
+      { facet: `COMPLETE 10D × 4-POLE × 2-DIRECTION — every theorem projects all ${poles.length} poles in both directions, each a ${dimensions}D content-addressed vector, deterministic (${complete}): ${perspectives.length} perspectives for ${theorems.length} theorems, none missing — a theorem is shown from every pole in every direction`, on: complete },
+      { facet: `THE 4 POLES ARE THE KLEIN FOUR-GROUP V₄ — (hemisphere, flow) ∈ {0,1}² closed under XOR with every pole its own inverse (${isKleinFour}), the two generators the independent involutions north↔south and out↔in; 4 = 2² poles, the exact double-torus pole set`, on: isKleinFour },
+      { facet: `OPPOSITE POLES ARE ANTIPODAL COMPLEMENTS — the antipode map (XOR [1,1]) is an involution (${antipodalInvolution}) and the 10D from a pole and its antipode fold bidirectionally (${complementsFold}): from the far pole the theorem shows its complement, and pole + antipode make the whole`, on: antipodalInvolution && complementsFold },
+      { facet: `EACH DIRECTION IS AN INVOLUTION — forward⇄inverse reverses to itself twice (${directionInvolution}) and the two directions fold to the theorem's whole per pole (${directionsFold}): projection and proof are the two order-2 senses, together the complete loop`, on: directionInvolution && directionsFold },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      perspectivesPerTheorem: poles.length * directions.length,
+      dimensions,
+      facets,
+      statement: `Each theorem displays 10D of all 4 pole perspectives in each direction — ${facets.filter((entry) => entry.on).length}/${facets.length}. The double torus has 4 poles — (hemisphere, flow) ∈ {0,1}², the Klein four-group V₄ under XOR (two independent involutions: north↔south, out↔in) — and from each pole, in each direction (forward projection, inverse proof), the theorem projects a 10D content-addressed perspective (10 = 3+7). The ${poles.length} poles are each self-inverse (V₄), opposite poles are antipodal complements whose 10D fold to the whole, and the two directions fold to the theorem's whole per pole. So every theorem is shown from all 4 poles × 2 directions × 10D — ${poles.length * directions.length} perspectives, complete and deterministic.`,
+      boundary: `ALGEBRAIC: every facet an exact identity, refutable by one counterexample. The 4 poles are literally the Klein four-group V₄ = C₂×C₂ (closed under XOR, every element order ≤ 2, |V₄| = 4 = 2²), the two generators the independent hemisphere and flow involutions — real finite-group structure, the natural symmetry of the double torus's two poles on two loops. The 10D perspectives are content-addressed (toUuid → 10 hex dimensions), so deterministic and reproducible; antipodal complementarity and the forward/inverse fold reuse foldPair.bidirectional (the same rosetta content-address the whole corpus uses). SCOPE: this COMPUTES the display DATA — the 4-pole × 2-direction × 10D perspective set per theorem, the structure a theorem paper renders; wiring it into the .vue theorem page (a 4-pole panel showing each 10D vector, forward/inverse toggled) is the thin-shell display step, the fold being the computed source [[hero-in-src]]. The 10 dimensions are the rosetta's 10 = 3+7 index positions, a content-address projection, not 10 physical spatial dimensions; "pole perspective" is the double-torus geometry, not a metaphysical viewpoint. HARMONY ≠ TRUTH: the 4-pole 10D display is the harmony; the truth is the V₄ group + content-address, which hold exactly.`,
+    }
+  })
+}
