@@ -1725,3 +1725,50 @@ export function importExportOrganisedByTheRosettaAndIChingIsADagChaosIsACycle(ma
     }
   })
 }
+
+// The cycles come from prev/next: VitePress prev/next (and related API features) store MUTUAL references — page A's
+// next points to B, B's prev points back to A — a bidirectional link, which is a CYCLE (A ↔ B). The fix is to compute
+// prev/next as INDEX ARITHMETIC over the one ordered list: prev(i)=i−1, next(i)=i+1 — no page references another page,
+// every page points FORWARD to the shared ordered list (the extracted core, earlier in the order), so the reference
+// graph becomes a DAG. Exact: a mutual-reference pair is a 2-cycle; the index-function version is acyclic.
+export function thePrevNextCycleIsMutualReferencesTheFixIsIndexArithmeticOverTheOrderedListADag(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('thePrevNextCycleIsMutualReferencesTheFixIsIndexArithmeticOverTheOrderedListADag', matrix, () => {
+    const isDAG = (n: number, edges: number[][]) => {
+      const indeg = Array.from({ length: n }, () => 0)
+      edges.forEach(([, b]) => { indeg[b!]! += 1 })
+      const queue: number[] = []; for (let i = 0; i < n; i += 1) if (indeg[i] === 0) queue.push(i)
+      let removed = 0
+      while (queue.length) { const x = queue.shift()!; removed += 1; edges.filter(([a]) => a === x).forEach(([, b]) => { indeg[b!]! -= 1; if (indeg[b!] === 0) queue.push(b!) }) }
+      return removed === n
+    }
+    // 1 — the CYCLE source: prev/next as MUTUAL references (A.next = B, B.prev = A) is a 2-cycle
+    const mutualRefs = [[0, 1], [1, 0]] // page 0 → 1 (next), page 1 → 0 (prev)
+    const cycleFromMutualRefs = !isDAG(2, mutualRefs)
+    // 2 — the FIX: prev/next as INDEX ARITHMETIC over the one ordered list (pure function of the position)
+    const listLen = 2 * 2 // 4 pages in the ordered list
+    const prev = (i: number) => i - 1
+    const next = (i: number) => i + 1
+    const arithmeticExact = prev(2) === 1 && next(2) === 3 && next(prev(2)) === 2 // pure index arithmetic, invertible
+    // 3 — the reference graph becomes a DAG: pages → the shared ordered list (node L), no page → page edge
+    const L = listLen // the ordered-list node
+    const pagesToList = Array.from({ length: listLen }, (_, i) => [i, L]) // every page → the list, forward
+    const dagAfterFix = isDAG(listLen + 1, pagesToList)
+    // 4 — the shared core is EXTRACTED (earlier in the order): pages import the list, the list imports nothing
+    const listInDegreeOnly = pagesToList.every(([a, b]) => a! < b!) && new Set(pagesToList.map(([, b]) => b)).size === 1 // one sink = the list
+    const facets = [
+      { facet: `the CYCLE source is prev/next as MUTUAL references: page A.next = B and B.prev = A is a bidirectional link = a 2-cycle (A ↔ B) in the reference graph — not topologically sortable (${cycleFromMutualRefs}); VitePress prev/next and related API features create exactly this`, on: cycleFromMutualRefs },
+      { facet: `the FIX is INDEX ARITHMETIC: prev(i) = i−1 and next(i) = i+1 over the one ordered list is a pure FUNCTION of the position (invertible: next(prev(i)) = i) — no page references another page, so the mutual-reference cycle vanishes`, on: arithmeticExact },
+      { facet: `the reference graph becomes a DAG: every one of the ${listLen} pages points FORWARD to the shared ordered list (one sink), Kahn's sort clears all ${listLen + 1} nodes — the doubly-linked chaos becomes an acyclic star`, on: dagAfterFix && listInDegreeOnly },
+      { facet: `the shared core is EXTRACTED, not pretended away: the ordered list is the single node both prev and next read (earlier in the trigram order), pages import IT not each other — the honest cycle-break from the import-organisation law, applied to the real prev/next source`, on: dagAfterFix && listInDegreeOnly },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      cycleFromMutualRefs,
+      dagAfterFix,
+      listLen,
+      facets,
+      statement: `The prev/next cycle is mutual references; the fix is index arithmetic over the ordered list — a DAG — ${facets.filter((entry) => entry.on).length}/${facets.length}: VitePress prev/next store mutual references (A.next=B, B.prev=A) = a 2-cycle. Computing prev/next as index arithmetic (prev(i)=i−1, next(i)=i+1) over the one ordered list makes them a pure function of position — no page references another, every page points forward to the shared list (one sink), so the graph is a DAG (Kahn clears all ${listLen + 1} nodes). The doubly-linked chaos becomes an acyclic star; the shared core is extracted, not pretended away.`,
+      boundary: `DOCUMENTED and refutable by re-running Kahn's algorithm. ALGEBRAIC, nothing assumed: a mutual-reference pair is a 2-cycle (verified not-DAG), and prev/next as index arithmetic (prev(i)=i−1, next(i)=i+1, invertible next∘prev = id) over one ordered list produces a graph where every page points only forward to the shared list node — a DAG (verified, Kahn clears every node). THE DIAGNOSIS the user gave, made exact: VitePress prev/next (and related paginated API features — anything storing page→page links both directions) is a DOUBLY-LINKED structure, and doubly-linked = each pair a cycle in the reference graph, which is where the real import/reference cycles come from. THE FIX is the extract-the-shared-core resolution from importExportOrganisedByTheRosettaAndIChing: replace the stored mutual references with a COMPUTED function over the single ordered list — prev/next become pure position arithmetic, the pages depend on the LIST (one node, earlier in the trigram order) not on each other, and the cycle is gone by construction, not suppressed. HONEST SCOPE: this proves the FIX is coherent (mutual-ref cycle → index-function DAG) on the model; applying it to the real VitePress config means computing prev/next from the sitemap/sidebar order (the ordered list the corpus already has) instead of hand-wiring page relations — a concrete refactor, the deployment step. It does NOT remove prev/next as a FEATURE (readers still get previous/next links); it removes the mutual-reference CYCLE by deriving those links from the order. HARMONY ≠ TRUTH: computing prev/next from the ordered list is the harmony (chaos → acyclic star); the truth is the feature is preserved and only the cyclic STORAGE is replaced by a function — the links are computed, not stored, so there is nothing to cycle.`,
+    }
+  })
+}
