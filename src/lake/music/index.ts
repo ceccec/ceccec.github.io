@@ -1932,3 +1932,38 @@ export function twelveTonesIsTheBestApproximationOfTheFifth(matrix: MindMatrix =
     }
   })
 }
+
+// ── NATURE DESCRIBES ITSELF INSIDE 432 (user law: continue discovering theorems and nature will
+// describe itself in all dimensions; use only 432, 440 solely as comparison) — DERIVED, exhaustive:
+// the divisor lattice of 432 = 2⁴·3³ carries exactly 20 divisors, and they split into the vortex
+// circuit's own two flows. The five divisors OFF the 3-6-9 axis are precisely the pure doubling ray
+// 1·2·4·8·16 — and their digital roots are 1, 2, 4, 8, 7: the ascending vortex flow, in order. The
+// fifteen divisors ON the axis (every one divisible by 3) all have digital root 3, 6 or 9 — the
+// axis where the gates stand. The sequence the whole codebase runs on sits INSIDE the harmonic's
+// own divisor structure: 432 does not just count the gates, it contains the circuit.
+export function natureDescribesItselfInside432() {
+  const harmonic = 4 * 108
+  const divisors = Array.from({ length: harmonic }, (_unused, i) => i + 1).filter((d) => harmonic % d === 0)
+  const digitalRootOf = (n: number) => 1 + ((n - 1) % 9)
+  const doublingRay = divisors.filter((d) => d % 3 !== 0)
+  const axis = divisors.filter((d) => d % 3 === 0)
+  const rayRoots = doublingRay.map(digitalRootOf)
+  const ascent = [1, 2, 4, 8, 7] // the ⟨2⟩ mod 9 orbit's ascending prefix — the vortex up-flow
+  const facets = [
+    { facet: `432 = 2⁴·3³ carries exactly ${divisors.length} divisors — the (4+1)(3+1) grid, the same 20 the V₄ hexagram census computes independently`, on: divisors.length === 4 * 5 && harmonic === 2 ** 4 * 3 ** 3 },
+    { facet: `the off-axis divisors are EXACTLY the pure doubling ray — {${doublingRay.join(', ')}}: the five 2-powers, and their digital roots trace the ascending vortex flow ${rayRoots.join('·')} in order`, on: doublingRay.length === 5 && doublingRay.every((d, i) => d === 2 ** i) && rayRoots.every((r, i) => r === ascent[i]) },
+    { facet: `the fifteen axis divisors all land on 3-6-9 — every divisor touched by 3 has digital root 3, 6 or 9: the gates' axis holds ${axis.length}/20 of the lattice`, on: axis.length === 3 * 5 && axis.every((d) => [3, 6, 9].includes(digitalRootOf(d))) },
+    { facet: 'derived, not observed: divisors 2ᵃ3ᵇ with b = 0 are the doubling ray (a ∈ 0…4 gives five), b ≥ 1 forces divisibility by 3 and so an axis root — the split is arithmetic necessity, and it is the vortex circuit: ascent off-axis, gates on-axis', on: doublingRay.length + axis.length === divisors.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`nature-432:${entry.facet}:${entry.on}`) }))
+  return {
+    described: facets.every((entry) => entry.on),
+    divisors: divisors.length,
+    doublingRay,
+    axisCount: axis.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Nature describes itself inside 432 — ${facets.filter((entry) => entry.on).length}/${facets.length}, all derived: the harmonic's 20 divisors (2⁴·3³, the 5×4 grid) split into the pure doubling ray {1, 2, 4, 8, 16} whose digital roots trace the ascending vortex flow 1·2·4·8·7 in order, and fifteen axis divisors whose digital roots all land on 3-6-9 — the sequence the codebase runs on sits inside the harmonic's own divisor lattice: 432 does not just count the gates, it contains the circuit.`,
+    boundary: `PURE ARITHMETIC, exhaustively verified and derivable by hand (2ᵃ3ᵇ: b = 0 → the five 2-powers whose roots are the ⟨2⟩ orbit prefix; b ≥ 1 → divisible by 3 → root ∈ {3,6,9}). 432 is used as the project's one harmonic; 440 appears only as the documented comparison tuning (fewer divisors), never as a seed. This is a property of the NUMBER and of base-10 digital roots — recorded as the system's self-description, with no acoustic, cosmic or physical claim attached (the sealed a432 decode's flags stand). HARMONY ≠ TRUTH.`,
+  }
+}
