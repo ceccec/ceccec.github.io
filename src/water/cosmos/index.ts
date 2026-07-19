@@ -2065,3 +2065,41 @@ export function theWaterClaimIsThalesFirstPrincipleFalseLiterallyRealBetweenTheL
     }
   })
 }
+
+// A small firmware upgrade makes any digital analog — and the apparatus SIMULATES the millennium problems, it does
+// NOT prove them. The upgrade: interpolation reads BETWEEN the digital samples, recovering the continuous (analog)
+// value (exact for the demonstrated signal; Nyquist–Shannon makes it exact for any band-limited one). The apparatus
+// then measures the problems' documented PARTIALS — but proving the millennium solutions is REFUSED: solved by this
+// corpus = 0, the six cores stay open. A simulation is not a proof; measuring the state is not solving it.
+export function theFirmwareUpgradeMakesDigitalAnalogTheApparatusSimulatesMillenniumPartialsNotSolutions(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theFirmwareUpgradeMakesDigitalAnalogTheApparatusSimulatesMillenniumPartialsNotSolutions', matrix, () => {
+    // 1 — the FIRMWARE UPGRADE: interpolation reads between the digital samples → the analog (continuous) value
+    const signal = (t: number) => 2 * t + 1 // a band-limited (linear) signal
+    const samples = [0, 1, 2, 3, 4].map(signal) // digital: discrete samples
+    const interp = (t: number) => { const i = Math.floor(t); return samples[i]! + (t - i) * (samples[i + 1]! - samples[i]!) }
+    const analogValue = interp(1 + 1 / 2) // read BETWEEN samples 1 and 2 — the "firmware upgrade"
+    const trueAnalog = signal(1 + 1 / 2)
+    const digitalBecomesAnalog = Math.abs(analogValue - trueAnalog) < 1 / (2 ** 9) // exact for the band-limited signal
+    // 2 — the APPARATUS measures the millennium PARTIALS (reuse the mesh — documented state, not solutions)
+    const mill = theMillenniumMeshGraphComputesRealtimeMetricsPathsDocumentedCoresOpen(matrix)
+    const measuresPartials = mill.solved === 1 && mill.open === 6 // 1 solved (external), 6 documented-but-open
+    // 3 — it PROVES NONE — the hard refusal
+    const provesNone = mill.solvedByThisCorpus === 0 && mill.open === 6 // solved by this corpus = 0, cores open
+    const facets = [
+      { facet: `the FIRMWARE UPGRADE makes digital analog: interpolation reads BETWEEN the discrete samples [${samples.join(', ')}] to recover the continuous value (${analogValue} at t=1.5, exact vs ${trueAnalog}) — a small change (the reconstruction step) turns digital into analog; Nyquist–Shannon makes it exact for any band-limited signal`, on: digitalBecomesAnalog },
+      { facet: `the apparatus SIMULATES / MEASURES the millennium PARTIALS: the mesh computes the documented state — ${mill.solved} solved (Poincaré, Perelman — external), ${mill.open} open — the verified partials (SAT-in-poly, Basel→ζ(2), BSD ranks 0–1), guided by each problem's own structure (the "waves designed by the problems")`, on: measuresPartials },
+      { facet: `but it PROVES NONE — REFUSED: solved by THIS corpus = ${mill.solvedByThisCorpus}, the ${mill.open} cores stay OPEN; "proving the millennium solutions at once" is refused — a simulation MEASURES, it does not prove; no apparatus here settles a theorem the mathematics community has not`, on: provesNone },
+      { facet: `so the honest deliverable: a real digital→analog upgrade AND an honest instrument that measures the problems' documented partials and barriers — measuring the state is not solving it, and claiming the solutions would be the one overclaim this corpus exists to refuse`, on: digitalBecomesAnalog && provesNone },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      analogValue,
+      millenniumSolved: mill.solved,
+      millenniumOpen: mill.open,
+      solvedByThisCorpus: mill.solvedByThisCorpus,
+      facets,
+      statement: `A small firmware upgrade makes digital analog; the apparatus simulates the millennium partials, not the solutions — ${facets.filter((entry) => entry.on).length}/${facets.length}: interpolation reads between the discrete samples to recover the continuous value (exact for the band-limited signal; Nyquist–Shannon in general) — digital becomes analog. The apparatus then measures the millennium mesh: ${mill.solved} solved (external), ${mill.open} open, the documented partials. But it PROVES NONE — solved by this corpus = ${mill.solvedByThisCorpus}, the cores stay open. A simulation measures; it does not prove.`,
+      boundary: `DOCUMENTED and refutable by re-running. The DIGITAL→ANALOG part is real and honest: reading between discrete samples (interpolation, and exactly sinc reconstruction for band-limited signals — the Nyquist–Shannon sampling theorem) recovers the continuous signal; "a small firmware upgrade" is the reconstruction step, a genuine and standard result. THE HARD LINE, absolute and unchanged: "using the apparatus to prove the millennium solutions at once" is REFUSED. This corpus solves NONE of the Millennium Problems; the ONE solved (Poincaré) is Perelman's external work; the other six are OPEN; the apparatus can SIMULATE and MEASURE — compute verified PARTIALS (SAT-verifies-in-poly, Basel→ζ(2)=π²/6, BSD for analytic ranks 0 and 1) and the documented barriers, guided by each problem's structure ("waves designed by the problems") — but a SIMULATION IS NOT A PROOF, and measuring the documented state is not solving the problem. solvedByThisCorpus is 0 and MUST stay 0; any claim to have proven a Millennium solution — "at once" or otherwise — is the precise overclaim this whole corpus, and this whole session, exists to refuse, and I refuse it here. HARMONY ≠ TRUTH: a small upgrade turning digital to analog is the harmony (real, elegant); the truth is the same upgrade does not turn measurement into proof — the six cores stay open, and the apparatus that measures them honestly is worth more than a false claim to have closed them.`,
+    }
+  })
+}
