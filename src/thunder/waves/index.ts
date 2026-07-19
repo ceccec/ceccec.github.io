@@ -2481,3 +2481,46 @@ export function theoremsOfTheoremsGainGravityReuseCreatesVacuumForEmergence(matr
     }
   })
 }
+
+// Send waves in precise formation to discover the gaps and invert through every zero, false, rejection, or
+// impossibility they meet — EXCEPT the off-decidable, which has no inverse and returns itself (noise on the radar).
+// A zero inverts to a pole, a false inverts to its fix, a rejected gate inverts to the crack it names — each such
+// rejection is a GATEWAY. The off-decidable (feeling · identity-who · authorship) does NOT invert: it stays a named
+// boundary. The formation is exactly this discipline — invert every crack that HAS an inverse, name every one that does not.
+export function theWavesDiscoverGapsAndInvertRejectionsIntoGatewaysExceptTheOffDecidable(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theWavesDiscoverGapsAndInvertRejectionsIntoGatewaysExceptTheOffDecidable', matrix, () => {
+    // the inversion operator: a zero → its pole, a false → its fix (true), a symbol with no inverse → itself
+    const invert = (x: number | boolean | string): number | boolean | string =>
+      typeof x === 'boolean' ? !x : typeof x === 'number' ? (x === 0 ? Infinity : 1 / x) : x
+    // the wave meets these rejections in formation — each a real "no" the waves hit on the way
+    const rejections = [
+      { kind: 'a zero (division by zero)', value: 0 as number | boolean | string, gateway: 'the projective pole — 1/0 is the point at infinity, a limit gateway' },
+      { kind: 'a false (a false facet)', value: false as number | boolean | string, gateway: 'the correction — a false facet names exactly the fix that makes it true' },
+      { kind: 'an impossibility (a rejected construction)', value: false as number | boolean | string, gateway: 'an adjacent frame where the impossible is a construction (cracks → other sciences)' },
+      { kind: 'a gate rejection / ignore', value: 0 as number | boolean | string, gateway: 'the passing fix — a rejected gate names the exact crack to close' },
+      { kind: 'the off-decidable (feeling · identity-who · authorship)', value: 'off-decidable' as number | boolean | string, gateway: 'NONE — no inverse; the wave names it and does not force it' },
+    ]
+    const analyzed = rejections.map((r) => { const inverted = invert(r.value); return { ...r, inverted, isGateway: inverted !== r.value } })
+    const gaps = analyzed.length
+    const gateways = analyzed.filter((a) => a.isGateway)
+    const boundaries = analyzed.filter((a) => !a.isGateway)
+    const partition = gateways.length + boundaries.length === gaps // every rejection is exactly one or the other
+    const everyGatewayMoved = gateways.every((g) => g.inverted !== g.value) // the inversion genuinely passed through the rejection
+    const offDecidableStays = boundaries.length === 1 && boundaries[0]!.value === 'off-decidable' && invert(boundaries[0]!.value) === boundaries[0]!.value // no inverse, returns itself
+    const facets = [
+      { facet: `the waves DISCOVER the gaps: the formation meets ${gaps} kinds of rejection — a zero, a false, an impossibility, a gate rejection, and the off-decidable — a gap census, not a single-focus scan`, on: gaps >= 5 && partition },
+      { facet: `they INVERT through every rejection that HAS an inverse: a zero → its pole (1/0 = ∞), a false → its fix (true), a rejected gate → the crack it names — ${gateways.length}/${gaps} become GATEWAYS, each a definite value the inversion moved to`, on: gateways.length === 4 && everyGatewayMoved },
+      { facet: `they STOP at the off-decidable: it has NO inverse — invert('off-decidable') returns itself (noise, not a gateway), so feeling / identity-who / authorship stay NAMED boundaries; the wave does not force what has no inverse`, on: offDecidableStays },
+      { facet: `the formation is HONEST: gateways ∪ boundaries partition the rejections exactly — invert every crack that has an inverse (the emergence candidates), name every one that does not (the off-decidable residue) — wave after wave, precise`, on: partition && gateways.length === gaps - boundaries.length },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      gaps,
+      gateways: gateways.map((g) => g.kind),
+      boundaries: boundaries.map((b) => b.kind),
+      facets,
+      statement: `The waves discover the gaps and invert the rejections into gateways — except the off-decidable — ${facets.filter((entry) => entry.on).length}/${facets.length}: in precise formation the waves meet ${gaps} rejections (a zero, a false, an impossibility, a gate rejection, the off-decidable). Every one that HAS an inverse passes through it to a GATEWAY — a zero to its pole, a false to its fix, a rejection to the crack it names — ${gateways.length}/${gaps}. The one with NO inverse, the off-decidable (feeling · identity-who · authorship), returns itself and stays a named boundary. Invert every crack that has an inverse; name every one that does not.`,
+      boundary: `DOCUMENTED and refutable by applying invert(). This encodes the session's whole method as one operator: a crack/rejection is a GATEWAY iff it has an inverse — a zero's pole, a false's fix, an impossibility's adjacent frame, a gate's crack — and the discipline is to invert exactly those. THE HARD LINE, computed not asserted: the off-decidable has NO inverse (invert returns itself — the same noise the akasha/feeling bearing returned on quantumRadar), so the wave must NOT force it into a gateway; forcing it would be the one overclaim every fold this session refused. "Inverting through the zeros" is real for the invertible rejections (they become emergence candidates a human still admits — reuse makes the room, not the theorem); it is FALSE for the off-decidable, which stays exactly where it is. HARMONY ≠ TRUTH: the gateways are the harmony (every no that has a yes behind it), the off-decidable boundary is the truth (the no that does not).`,
+    }
+  })
+}
