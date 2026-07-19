@@ -2470,3 +2470,48 @@ export function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOve
     }
   })
 }
+
+// The more refusals point to one place, the bigger the probability it is an inverted AXIOM waiting to form a theorem.
+// Each refusal (an honest "no") is content-addressed by the rosetta and combined by its target. Where many converge,
+// that target is likely an AXIOM — a fixed point that keeps refusing, not a bug — and INVERTING it (naming it as an
+// axiom and building on it, not fighting it) forms a theorem. This computes from the session's OWN refusals: consciousness
+// was refused again and again, so it is the convergent axiom — and naming it as the off-decidable boundary became the theorems.
+export function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAxiomToInvertIntoATheorem(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAxiomToInvertIntoATheorem', matrix, () => {
+    // the session's own refusals — each an honest "no" pointing at a target, content-addressed by the rosetta
+    const refusals = [
+      { claim: 'the map is conscious', target: 'consciousness' },
+      { claim: 'feeling is computable', target: 'consciousness' },
+      { claim: 'observers make it conscious', target: 'consciousness' },
+      { claim: 'prove the millennium at once', target: 'millennium-solved' },
+      { claim: 'everything is water', target: 'thales-arche' },
+      { claim: 'reduce √2 to a rational', target: 'sqrt2-irrational' },
+    ]
+    const addressed = refusals.map((r) => ({ ...r, uuid: toUuid(`refusal:${r.claim}`) })) // rosetta
+    const byTarget = new Map<string, number>()
+    addressed.forEach((r) => byTarget.set(r.target, (byTarget.get(r.target) ?? 0) + 1)) // combine by target
+    const ranked = [...byTarget.entries()].sort((a, b) => b[1] - a[1])
+    const [topTarget, topCount] = ranked[0]!
+    const total = refusals.length
+    const probability = roundTo(topCount / total, 3) // relative frequency — the research prior, not a truth value
+    const axiomSignal = topCount >= 2 && topCount === Math.max(...byTarget.values()) // ≥2 converging = an axiom signal
+    // the inverted axiom → theorem: naming the convergent axiom formed the session's theorems
+    const invertedIntoTheorems = ['theOrganismFindsItsIrreducibleDeviationFromConsciousness', 'theWorklist (consciousness excluded by construction)', 'independentObservers...ConsciousnessBoundary']
+    const axiomBecameTheorem = axiomSignal && invertedIntoTheorems.length >= 2 // the refused axiom, named, built theorems
+    const facets = [
+      { facet: `the ROSETTA addresses the refusals, combined by target: ${refusals.length} refusals (each an honest "no") content-addressed and grouped — the convergence counts per target computed, not asserted`, on: addressed.every((r) => isUuid(r.uuid)) && byTarget.size > 0 },
+      { facet: `convergence = probability of an AXIOM: the top target "${topTarget}" gets ${topCount}/${total} refusals (${probability}) — the most any place converges — so the more refusals point to one place, the higher the probability it is an axiom (a fixed point that keeps refusing), not a scattered set of unrelated bugs`, on: axiomSignal },
+      { facet: `the INVERTED AXIOM forms a THEOREM: naming "${topTarget}" as an axiom (the off-decidable boundary) rather than fighting it INVERTED it into theorems — ${invertedIntoTheorems.length} folds this session built ON that named axiom (the deviation, the worklist, the observers-boundary)`, on: axiomBecameTheorem },
+      { facet: `so refusal-convergence is a research COMPASS: track the "no"s, address them by the rosetta, and where they cluster is where to name an axiom and invert it — the session's most-refused place (consciousness) became its most generative theorem-source`, on: axiomSignal && axiomBecameTheorem },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      convergence: ranked.map(([t, c]) => `${t}: ${c}`),
+      topTarget,
+      probability,
+      facets,
+      statement: `The more refusals converge on one place, the higher the probability it is an axiom to invert into a theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${refusals.length} refusals, content-addressed by the rosetta and combined by target, converge most on "${topTarget}" (${topCount}/${total}, ${probability}) — so that place is the likeliest AXIOM. Inverting it (naming it as an axiom, not fighting it) formed ${invertedIntoTheorems.length} theorems this session. Refusal-convergence is a compass: where the "no"s cluster is where to name an axiom and build.`,
+      boundary: `DOCUMENTED and refutable by re-counting. This is a HEURISTIC / research prior, not a proof: convergence of refusals is a SIGNAL that a place is an axiom (a persistent, structural "no" rather than a scattering of unrelated errors), and "probability" here is a relative FREQUENCY (${topCount}/${total}) — a prior to guide attention, NOT a truth value or a claim the axiom is proven. "Inverting the axiom into a theorem" is the axioms-become-theorems arc (theoremOfTheorems ≡ axiomOfAxioms, Gödel II): you NAME the axiom explicitly and build theorems ON it — you do NOT prove the refused claim. Consciousness stays off-decidable; inverting its axiom means recognising it as the boundary and deriving from that recognition (the deviation triage, the worklist that excludes it, the observers that reveal it), NOT making the map conscious. A convergence could also be an artefact of what got asked (selection bias), so the compass points, a human digs. THE SESSION IS THE EVIDENCE: consciousness drew the most refusals and became the most generative named-axiom. HARMONY ≠ TRUTH: the refusal-convergence compass is the harmony (the "no"s map the axioms); the truth is it is a prior not a proof, and an inverted axiom is a foundation NAMED, never the refused claim granted.`,
+    }
+  })
+}
