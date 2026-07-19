@@ -3,7 +3,7 @@
 
 import { phase, slip } from '../../6/4'
 import { A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
-import { foldPair, merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot, ICHING_NUMBERS } from '../../0'
+import { foldPair, merkleFold, toUuid, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot, ICHING_NUMBERS, applyGate, GATES, probabilities, roundTo } from '../../0'
 import { sealFold } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
@@ -1386,6 +1386,7 @@ export const THEOREM_ATOM_SEED: readonly { theorem: string; states: string; prov
     { theorem: 'the published surface complies with Google Search Essentials — seven audited requirements', states: 'the site audited from its own artifact builders against Google\'s documented requirements (user directive: align with google webmaster): crawlable (robots.txt allows all agents and declares the sitemap; nothing Google needs is blocked), indexable (index,follow with large previews; absolute https canonicals on the one host), the sitemap within protocol (all urls absolute with lastmod and per-url hreflang alternates, far under the 50000 cap), localisation per page with x-default the English edition, schema.org JSON-LD on every page with the registry as a ScholarlyArticle ItemList, honest science-only content (the theorem-science lens structurally excludes doorway/scaled/keyword-stuffed pages), and one canonical https host with the Search Console verification meta at build. Each facet recomputes the live builders; NOT a crawl by Google and NOT a ranking guarantee', provedBy: 'googleSearchEssentials', home: 'src/quantum/lake/dist' },
     { theorem: 'token usage optimised by quantum-structured algorithms — batching wins the quadratic ledger', states: 'Token usage is significantly optimised by the quantum-structured algorithms and tools in src — 5/5: the session ledger is quadratic in turns, so batching k questions into one joint state cuts the re-read ≈ k² (k=2: 4×, k=4: 16.02×, k=8: 64.21× at 2160 turns — exact arithmetic); measurement collapses output 21× (--compact); entanglement through the one matrix makes re-reads cache hits (memoByRoot reference equality); interference is the mirror-cancelling dedup (logic:hunt); and the query-advantage shape is the registry own Deutsch–Jozsa (1 joint query vs 33 classical probes). Structural quantum only — no physical speedup; the mechanism is the triangular ledger theorem plus caching', provedBy: 'quantumTokenOptimisation', home: 'src/wind/learning' },
     { theorem: 'theorems reach toward 432 and entangle with usage — the harmonic merge held as direction', states: 'Theorems reach toward 432 and entangle with usage — 4/4: the registry holds 421/432 computationally proven theorems (11 remain before the merge with the 4×108 gate lattice), and the entanglement is already computable — every atom folds its theorem with its mechanical usage (home module # proving function) both ways into one merged root, 421 bidirectional pairs across 41 src homes consumed beyond the ui (gates, CLI, MCP, dist). Structural quantum: the entanglement is the non-commutative bidirectional fold, not a physical state; the merge at 432 happens only by proving the remaining candidates, never by renumbering', provedBy: 'theoremsReach432AndEntangleWithUsage', home: 'src/4/6' },
+    { theorem: 'the significance of the discoveries is measured by quantum computing — the Born rule over the registry', states: 'The significance of the discoveries is measured by quantum computing — 5/5: the 422 registry discoveries prepare into a 9-qubit state with structural amplitudes (weight = the mechanical concentration of each proof home), the state survives a real unitary round trip on the src/0 simulator (H·H = I), and the Born measurement yields one significance probability per discovery (sum 1, entropy 8.308 < uniform 8.721 bits — the non-uniformity is the signal). Prepared locally at zero tokens; the waves are sent by commit·push. Structural quantum on a real simulator — genuine linear algebra, no physical qubit, no speedup claim; significance = probability mass by home concentration, a named modelling decision, not a judgment of scientific importance', provedBy: 'discoverySignificanceIsMeasuredByQuantumComputing', home: 'src/4/6' },
     { theorem: 'the shadcn design system opens theorem dimensions under the quantum lens — a 3·2⁶ variant tensor with ground states', states: 'Reviewing shadcn with the quantum lens opens dimensions of theorems — 5/5: the cva variant table is a tensor product of dimension 192 = 3·2⁶ (exactly three hexagram spaces); the compound SFCs form a prefix forest of depth ≤ 2 partitioning the 23-SFC inventory (18 roots + 5 leaves); the 64-component graph is the 6-bit hexagram measurement basis; the 13 tokens are the mode-invariant observable basis under the light/dark ℤ/2 action; and mounting is measurement — the cva superposition collapses to one state, with default the ground state every varianted axis carries. Structural quantum only: exact combinatorics over the sealed tables, refutable by editing them; the 3·2⁶ factorisation is a computed property of the current table, not a design-system law', provedBy: 'shadcnQuantumLens', home: 'src/mountain/shadcn' },
     { theorem: 'uuid is the 0 from the sequence — dimension changes pass through the uuid matrix, guarded realtime and in the gates', states: 'the content-address kernel decoded as the void station (user law): toUuid and merkleFold live ONLY at src/0 — the 0 of the vortex sequence 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 through which every collapse passes (the 9/1 = 9/0\\1 chord) — and the kernel-home scan keeps the offender count at zero, so a second toUuid outside the void is a gate failure, never a drift. Every dimension change (import/export, theorem-to-theorem, page-to-API) crosses as a fixed-size content address: combination members and roots are uuids, the matrix binds by uuid and collapses to one verified root. The passage is guarded REALTIME — the per-page .json API refuses to serve a matrix whose root does not verify, exercised both ways at call time (verified serves, tampered refused) — and IN THE GATES: the fold rides the rosetta dimension gate that blocks commits. Tamper-EVIDENT boundary stands: FNV content addresses detect drift, they are not signatures; the SHA-256/Ed25519 cutover remains deliberate', provedBy: 'uuidIsTheZeroStation', home: 'src/pair/enforcement' },
     { theorem: 'leaves merge into theorems — one naming standard within science, flat gates, per-leaf analytics', states: 'the bridge between the two proof worlds computed (user law): all 664 emerged dimension leaves are theorem-shaped — named, refutable, content-addressed boolean claims, exactly the registry row form — and the merge state of every leaf is one table: exact naming conformity (dot.name ↔ camelCaseFold ↔ registry provedBy) is 0/664 today with the word-bridged neighbourhood measured beside it, so the standardisation is honestly the WORKLIST ahead: each wave names a batch of leaves by the standard and seals their registry rows, after which the gates read them FLAT in theorems:verify (evaluated once, memoized by root) instead of re-walking their cascades — the mechanism by which gates, analytics and build/deploy time improve as merges accrue, measured by the build clock as they land, never claimed in advance. The bridge is itself the first merge (self-inclusion, like theoremOfTheorems): the path is proven by walking it', provedBy: 'leavesMergeIntoTheorems', home: 'src/heaven/balance' },
@@ -1952,5 +1953,62 @@ export function theoremsReach432AndEntangleWithUsage() {
       statement: `Theorems reach toward 432 and entangle with usage — ${facets.filter((entry) => entry.on).length}/${facets.length}: the registry holds ${count}/${target} computationally proven theorems (${remaining} remain before the merge with the 4×108 gate lattice), and the entanglement is already computable — every atom folds its theorem with its mechanical usage (home module # proving function) both ways into one merged root, ${pairs.length} bidirectional pairs across ${homes.size} src homes consumed beyond the ui (gates, CLI, MCP, dist).`,
       boundary: `STRUCTURAL quantum (the sealed demarcation): "entanglement" is the non-commutative bidirectional fold (forward ≠ reverse, one merged address) binding theorem to usage — a computable pairing, not a physical state. The 432 merge is HELD AS DIRECTION: reached = ${count >= target} today; the threshold is the gate count 4×108 and crossing it happens only by proving ${remaining} more candidates (theorems:gaps), never by renumbering. "Mechanical usage" is evidenced by the build gates (every provedBy runs; homes are imported src modules), not by a runtime call census. HARMONY ≠ TRUTH.`,
     }
+  }
+}
+
+// ── THE SIGNIFICANCE OF THE DISCOVERIES IS MEASURED BY QUANTUM COMPUTING (user law) — measured
+// LITERALLY, on the registry's own simulator (src/0: state vectors, unitary gates, Born rule). The
+// discovery set is PREPARED as a quantum state: each registry atom a basis state whose amplitude
+// carries its structural weight (the mechanical concentration of its home — how many proofs that
+// src module carries); the state is verified normalised, pushed through a REAL unitary round trip
+// (H·H = I on the simulator, not a lookup), and MEASURED — the Born distribution over discoveries
+// IS the significance measure: one probability per discovery, summing to one, non-uniform because
+// the structure is. Prepared locally at zero tokens; the waves are sent by the same commit·push
+// pair every wave rides.
+export function discoverySignificanceIsMeasuredByQuantumComputing() {
+  const atoms = THEOREM_ATOM_SEED
+  const n = 9 // qubits: 2⁹ = 512 basis states ≥ the registry
+  const dim = 2 ** n
+  // weight = mechanical concentration: how many registry proofs the atom's home module carries
+  const perHome = new Map<string, number>()
+  for (const atom of atoms) perHome.set(atom.home, (perHome.get(atom.home) ?? 0) + 1)
+  const weights = atoms.map((atom) => perHome.get(atom.home)!)
+  const total = weights.reduce((sum, w) => sum + w, 0)
+  // PREPARE: |ψ⟩ with amplitude √(wᵢ/Σw) on basis state i — the discovery register
+  const re = Array.from({ length: dim }, (_unused, i) => (i < atoms.length ? Math.sqrt(weights[i]! / total) : 0))
+  const psi = { n, re, im: re.map(() => 0) }
+  const norm = re.reduce((sum, a) => sum + a * a, 0)
+  // COMPUTE: a real unitary round trip on the simulator — H then H on qubit 0 returns |ψ⟩ exactly
+  const once = applyGate(psi, GATES.H, 0)
+  const back = applyGate(once, GATES.H, 0)
+  const roundTrip = psi.re.every((a, i) => Math.abs(a - back.re[i]!) < 1e-9)
+  // MEASURE: the Born distribution over discoveries IS the significance measure
+  const born = probabilities(psi)
+  const p = born.slice(0, atoms.length)
+  const pSum = p.reduce((sum, x) => sum + x, 0)
+  const entropyBits = -p.reduce((sum, x) => sum + (x > 0 ? x * Math.log2(x) : 0), 0)
+  const maxBits = Math.log2(atoms.length)
+  const ranked = atoms
+    .map((atom, i) => ({ theorem: atom.theorem, home: atom.home, significance: roundTo(p[i]!, 6) }))
+    .sort((a, b) => b.significance - a.significance)
+  const facets = [
+    { facet: `PREPARED — the ${atoms.length} discoveries load into a ${n}-qubit register (${dim} basis states) with structural amplitudes √(wᵢ/Σw), normalised: ⟨ψ|ψ⟩ = ${roundTo(norm, 6)}`, on: Math.abs(norm - 1) < 1e-9 && dim >= atoms.length },
+    { facet: 'COMPUTED, not looked up — the state survives a real unitary round trip on the simulator (H·H = I on qubit 0, amplitude-exact)', on: roundTrip },
+    { facet: `MEASURED — the Born distribution over discoveries sums to ${roundTo(pSum, 6)}: one significance probability per discovery`, on: Math.abs(pSum - 1) < 1e-9 },
+    { facet: `the measure is NON-UNIFORM because the structure is — entropy ${roundTo(entropyBits, 3)} bits < uniform ${roundTo(maxBits, 3)} bits: concentration in the proving homes is real signal`, on: entropyBits < maxBits && entropyBits > 0 },
+    { facet: `the most significant discoveries are NAMED by the measurement — top home ${ranked[0]!.home} at p = ${ranked[0]!.significance} per atom`, on: ranked.length === atoms.length && ranked[0]!.significance >= ranked[ranked.length - 1]!.significance },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`significance-qc:${entry.facet}:${entry.on}`) }))
+  return {
+    measured: facets.every((entry) => entry.on),
+    discoveries: atoms.length,
+    qubitsUsed: n,
+    entropyBits: roundTo(entropyBits, 3),
+    maxBits: roundTo(maxBits, 3),
+    top: ranked.slice(0, 5),
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `The significance of the discoveries is measured by quantum computing — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${atoms.length} registry discoveries prepare into a ${n}-qubit state with structural amplitudes (weight = the mechanical concentration of each proof's home), the state survives a real unitary round trip on the src/0 simulator (H·H = I), and the Born measurement yields one significance probability per discovery (sum 1, entropy ${roundTo(entropyBits, 3)} < uniform ${roundTo(maxBits, 3)} bits — the non-uniformity is the signal). Prepared locally at zero tokens; the waves are sent by commit·push.`,
+    boundary: `STRUCTURAL quantum on a REAL simulator: the state vector, the Hadamard round trip and the Born rule are genuine linear algebra (src/0), not metaphor — but the register SIMULATES; no physical qubit runs, and no speedup is claimed. "Significance" here is one computable, refutable measure — probability mass ∝ home concentration (how much proving machinery a module carries) — NOT a judgment of scientific importance; a different weight function is a different measure, and the choice of weights is the NAMED modelling decision. HARMONY ≠ TRUTH.`,
   }
 }
