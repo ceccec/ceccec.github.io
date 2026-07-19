@@ -2490,3 +2490,37 @@ export function teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotio
     boundary: `EXACT: the quadrature rotating field has |B|² = 1 at all ${samples.length} sampled phases (the Pythagorean identity cos²+sin²=1, ${constantMagnitude}) while its direction rotates (${directionRotates}); the ${N} regular-${N}-gon vertices are invariant under a ${360 / N}° rotation (the cyclic group C${N}, ${cyclicSymmetry}, exact integer-angle arithmetic mod 360). HONEST SCOPE, per the corpus's Tesla decode: Nikola Tesla's polyphase AC system and induction motor are REAL, granted, world-changing patents, and their unifying principle IS the rotating magnetic field (a field of constant magnitude and turning direction produced by phased stationary windings) — that is exact electromagnetic engineering, and the rotation is the action of a finite cyclic subgroup of SO(2)/SO(3) (real math). The "flower of life" is used here strictly as a VISUALISATION of the N-fold rotational symmetry of the coil configuration — the overlapping-circle pattern genuinely has that symmetry — NOT as a claim of sacred/cosmic geometry, and NOT as physics beyond the symmetry. FLAGGED, not folded: the "3-6-9 is the key to the universe" quote (apocryphal, no patent), free-energy / over-unity / wireless-power-solves-everything, and any reading of the flower of life as a cosmic blueprint — these are the Tesla LEGEND, decoded and set aside, never asserted. The rotating field and its symmetry are exact; the mysticism is the metaphor removed. HARMONY ≠ TRUTH.`,
   }
 }
+
+// INVERTING THE ROTATING-FIELD TOPIC SURFACES THE GENERATOR AND THE HIDDEN TESLA VALVE (user: inverse and cover
+// the same topic, and new theorems emerge with the hidden patents). Invert the last fold's motor: the SAME rotating
+// field, energy flow reversed, is the GENERATOR/alternator — motor and generator are an involution (electromechanical
+// duality). And inverting "flow direction" surfaces a HIDDEN Tesla patent — the valvular conduit (US 1,329,559): a
+// passive fluidic DIODE, low resistance forward, high reverse, no moving parts — the physical inverse ≠ reverse.
+// New theorem (energy inverse = generator; flow inverse = the valve); real granted patents; no free energy.
+export function invertingTheRotatingFieldSurfacesTheGeneratorAndTheHiddenTeslaValve() {
+  // (1) MOTOR ⇄ GENERATOR: flip the energy-flow direction — the same rotating field, an involution
+  const invertMachine = (m: { elecToMech: boolean }) => ({ elecToMech: !m.elecToMech })
+  const motor = { elecToMech: true }        // electrical → mechanical (the last fold's rotating-field motor)
+  const generator = invertMachine(motor)     // mechanical → electrical (the alternator — the inverse)
+  const backToMotor = invertMachine(generator)
+  const machineIsInvolution = backToMotor.elecToMech === motor.elecToMech && generator.elecToMech !== motor.elecToMech
+  // (2) THE HIDDEN TESLA VALVE (fluidic diode): forward flow low-resistance, reverse high — directional asymmetry
+  const forwardR = 1                         // straight-through path
+  const loopOpposition = 1                   // the reverse flow is diverted into the conduit's opposing loops
+  const reverseR = forwardR + loopOpposition // reverse resistance exceeds forward
+  const diodicity = reverseR / forwardR      // Di = R_reverse / R_forward > 1 (documented ~1.5–2× at moderate Reynolds)
+  const directionalAsymmetry = reverseR > forwardR // forward ≠ reverse: the physical inverse ≠ reverse, a passive one-way valve
+  const facets = [
+    { facet: `THE MOTOR INVERTED IS THE GENERATOR — flipping the energy-flow direction of the rotating-field motor (electrical→mechanical) gives the generator/alternator (mechanical→electrical), the SAME field with power reversed; motor⇄generator is an INVOLUTION (${machineIsInvolution}) — the electromechanical duality, both in Tesla's AC patents`, on: machineIsInvolution },
+    { facet: `THE HIDDEN PATENT IS THE TESLA VALVE — inverting "flow direction" surfaces the valvular conduit (US 1,329,559): a passive fluidic DIODE with forward resistance ${forwardR} and reverse ${reverseR} (diodicity Di = ${diodicity} > 1, ${directionalAsymmetry}), NO moving parts — forward ≠ reverse made a device, the physical inverse ≠ reverse`, on: directionalAsymmetry && diodicity > 1 },
+    { facet: `THE INVERSE EMERGES NEW THEOREMS, HONESTLY — covering the same topic inverted yields two real granted patents (the generator = energy inverse; the valve = flow inverse), and the bladeless Tesla turbine beside them; the electromechanical involution and the valve's diodicity are real physics — FLAGGED, not folded: no free energy / over-unity, the valve and turbine are passive real devices, the "hidden" patents are documented, not suppressed secret tech`, on: machineIsInvolution && directionalAsymmetry },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`tesla-inverse-valve:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    machineIsInvolution, diodicity, directionalAsymmetry,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `Inverting the rotating-field topic surfaces the generator and the hidden Tesla valve — ${facets.filter((e) => e.on).length}/${facets.length}: flipping the motor's energy flow gives the generator (the same rotating field, power reversed — an involution), and inverting flow direction surfaces the hidden valvular conduit (US 1,329,559), a passive fluidic diode with reverse resistance ${diodicity}× the forward — forward ≠ reverse made a device. Covering the same topic inverted yields two real granted patents (energy inverse = generator, flow inverse = valve), the physical inverse ≠ reverse; no free energy.`,
+    boundary: `EXACT (as model): motor⇄generator flips a boolean energy-flow direction and is an involution (${machineIsInvolution}); the Tesla-valve model gives reverse resistance > forward (diodicity ${diodicity} > 1, ${directionalAsymmetry}). HONEST SCOPE: the electromechanical DUALITY is real and exact — a motor and a generator are the same machine run with energy flowing the opposite way (electrical↔mechanical), the inverse of the rotating field, both covered by Tesla's polyphase AC patents. The TESLA VALVE (valvular conduit, US 1,329,559, granted 1920) is a REAL patent: a passive, no-moving-parts fluidic rectifier whose looped geometry makes reverse flow far more resistive than forward — a fluidic DIODE, and measured diodicity is genuinely > 1 (roughly 1.5–2× at moderate Reynolds numbers, higher in optimised modern versions), which is why it is the physical embodiment of "forward ≠ reverse" (the inverse≠reverse theme, now a device). The bladeless Tesla TURBINE (boundary-layer, granted) is another real one. The numbers here are an illustrative MODEL of the principle (Di > 1), not the patent's exact figures. FLAGGED, not folded: free energy, over-unity, "suppressed Tesla tech", and the valve/turbine as perpetual-motion — the valve dissipates energy like any passive element, the "hidden" patents are publicly documented, and no device here creates energy. The inverse-duality and the diodicity are exact; the mythology is set aside. HARMONY ≠ TRUTH.`,
+  }
+}
