@@ -61,9 +61,11 @@ import {
   foldQuantumCommandPairs,
   MISSION_COMMANDS,
   QUANTUM_COMMAND_PAIR_IDS,
+  shardWork,
   splitQuantumCommandPair,
   type MissionCommand,
 } from '..'
+import { runSurgicalExit } from '../../cache/quantum'
 
 export {
   agentSubmissionProtocol,
@@ -465,6 +467,36 @@ async function runRosettaExit(root: string, argv: readonly string[]) {
   return 0
 }
 
+/** `shard <index> <count> [dir]` — agent k of N prints its deterministic file shard (shardWork over
+ *  the repo's index files under dir, default src): the swarm-partition CLI arm; exit 1 on bad args. */
+function runShardExit(root: string, argv: readonly string[]): number {
+  const [indexArg, countArg, dirArg] = argv
+  const agentIndex = Number(indexArg)
+  const agentCount = Number(countArg)
+  if (!Number.isInteger(agentIndex) || !Number.isInteger(agentCount) || agentCount < 1 || agentIndex < 0 || agentIndex >= agentCount) {
+    process.stderr.write('usage: shard <index> <count> [dir] — 0 ≤ index < count; prints the deterministic file shard for agent index of count\n')
+    return 1
+  }
+  const dir = dirArg || 'src'
+  const files: string[] = []
+  const walk = (rel: string): void => {
+    let entries: { name: string; isDirectory: () => boolean }[]
+    try { entries = readdirSync(join(root, rel), { withFileTypes: true }) } catch { return }
+    for (const entry of entries) {
+      const name = String(entry.name)
+      if (name.startsWith('.') || name === 'node_modules') continue
+      const childRel = `${rel}/${name}`
+      if (entry.isDirectory()) walk(childRel)
+      else if (/^index\.(ts|mts|md)$/.test(name)) files.push(childRel)
+    }
+  }
+  walk(dir)
+  const shard = shardWork(files.sort(), agentIndex, agentCount)
+  for (const file of shard.mine) console.log(file)
+  console.log(`shard ${shard.agentIndex}/${shard.agentCount}: ${shard.count}/${shard.total} files · root ${shard.root}`)
+  return 0
+}
+
 async function runFoldExit(root: string, argv: readonly string[]) {
   const mod = await importQuantumBundle('src/quantum/heaven/mind/index.ts', root)
   const name = argv[0]
@@ -507,6 +539,8 @@ export async function runCliExit(root: string, argv: string[] = []) {
       if (!entryRel || !exportName) return 1
       return runThinMount(entryRel, exportName, root, runArgv)
     }
+    case 'surgical': return runSurgicalExit(root, rest)
+    case 'shard': return runShardExit(root, rest)
     case 'rosetta':
     case 'iching': return runRosettaExit(root, rest)
     case 'fold': return rest[0] ? runFoldExit(root, rest) : 1

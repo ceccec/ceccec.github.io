@@ -339,24 +339,121 @@ export function runSourceAtlasExit(root: string, argv: readonly string[] = []): 
   }
   walk(join(root, 'src'))
   const atlas = sourceAtlas(files)
-  const [mode, target] = argv
+  // BATCH + --json: one atlas build answers ANY number of questions in one call — a coordinated
+  // swarm asks its whole research list together (machine-readable), never one grep per question.
+  const json = argv.includes('--json')
+  const args = argv.filter((arg) => arg !== '--json')
+  const [mode, ...targets] = args
   const print = (line: string) => process.stdout.write(`${line}\n`)
   if (!mode) {
-    print(`source atlas — ${atlas.files} files · ${atlas.symbols} symbols · ${atlas.folders} folders`)
+    print(json ? JSON.stringify({ files: atlas.files, symbols: atlas.symbols, folders: atlas.folders, root: atlas.root }) : `source atlas — ${atlas.files} files · ${atlas.symbols} symbols · ${atlas.folders} folders`)
     return 0
   }
-  if ((mode === 'importers' || mode === 'imports') && target) {
-    const key = target.startsWith('src/') ? target : `src/${target}`
-    const set = (mode === 'importers' ? atlas.importersOf : atlas.importsOf).get(key)
-    if (!set || set.size === 0) { print(`${mode} ${key}: none found`); return 1 }
-    for (const folder of [...set].sort()) print(folder)
-    return 0
+  if ((mode === 'importers' || mode === 'imports') && targets[0]) {
+    const out: Record<string, string[]> = {}
+    for (const target of targets) {
+      const key = target.startsWith('src/') ? target : `src/${target}`
+      const set = (mode === 'importers' ? atlas.importersOf : atlas.importsOf).get(key)
+      out[key] = set ? [...set].sort() : []
+    }
+    if (json) { print(JSON.stringify(out)); return Object.values(out).every((edges) => edges.length > 0) ? 0 : 1 }
+    for (const [key, edges] of Object.entries(out)) {
+      if (edges.length === 0) print(`${mode} ${key}: none found`)
+      else if (targets.length === 1) { for (const folder of edges) print(folder) }
+      else print(`${key}: ${edges.join(' ')}`)
+    }
+    return Object.values(out).every((edges) => edges.length > 0) ? 0 : 1
   }
-  const homes = atlas.symbolHomes.get(mode)
-  if (homes) { for (const home of [...new Set(homes)]) print(home); return 0 }
-  const near = [...atlas.symbolHomes.keys()].filter((name) => name.toLowerCase().includes(mode.toLowerCase())).slice(0, (5 * 2))
-  print(`symbol ${mode}: not found${near.length ? ` — near: ${near.join(', ')}` : ''}`)
-  return 1
+  const symbols = [mode, ...targets]
+  const resolved = symbols.map((symbol) => ({ symbol, homes: [...new Set(atlas.symbolHomes.get(symbol) ?? [])] }))
+  if (json) { print(JSON.stringify(Object.fromEntries(resolved.map((entry) => [entry.symbol, entry.homes])))); return resolved.every((entry) => entry.homes.length > 0) ? 0 : 1 }
+  let missing = 0
+  for (const { symbol, homes } of resolved) {
+    if (homes.length > 0) { for (const home of homes) print(symbols.length === 1 ? home : `${symbol}: ${home}`) }
+    else {
+      missing += 1
+      const near = [...atlas.symbolHomes.keys()].filter((name) => name.toLowerCase().includes(symbol.toLowerCase())).slice(0, (5 * 2))
+      print(`symbol ${symbol}: not found${near.length ? ` — near: ${near.join(', ')}` : ''}`)
+    }
+  }
+  return missing === 0 ? 0 : 1
+}
+
+// ── THE SURGICAL EDIT ENGINE — coordinated edits in thousands. A plan is data ({file, anchor,
+// replacement} rows); applying it is PURE (applySurgicalEdits) and the disk shell is thin
+// (runSurgicalExit). The three laws that make mass edits safe: IDEMPOTENT (replacement already
+// present → skipped, so any agent may re-run any plan after any reset), SURGICAL (the anchor must
+// occur EXACTLY ONCE in the file or the edit is refused — an ambiguous anchor is a wrong edit
+// waiting to happen), and RECEIPTED (every edit folds to a content address; a plan's outcomes fold
+// to one root, so a thousand agents can compare results by uuid, never by diff-reading).
+export type SurgicalEdit = { readonly file: string; readonly anchor: string; readonly replacement: string }
+export type SurgicalStatus = 'applied' | 'skipped' | 'refused-missing-file' | 'refused-missing-anchor' | 'refused-ambiguous-anchor'
+export type SurgicalOutcome = { readonly file: string; readonly status: SurgicalStatus; readonly occurrences: number; readonly receipt: string }
+
+function countOccurrences(text: string, needle: string): number {
+  if (!needle) return 0
+  let found = 0
+  for (let at = text.indexOf(needle); at !== -1; at = text.indexOf(needle, at + needle.length)) found += 1
+  return found
+}
+
+/** Pure plan application: texts in → texts out + per-edit outcomes + one fold root. Edits compose
+ *  sequentially against the evolving texts, so several edits to one file are one plan. */
+export function applySurgicalEdits(texts: ReadonlyMap<string, string | null>, edits: readonly SurgicalEdit[]) {
+  const out = new Map<string, string>()
+  for (const [file, text] of texts) if (text != null) out.set(file, text)
+  const changed = new Set<string>()
+  const outcomes: SurgicalOutcome[] = edits.map((edit) => {
+    const receipt = toUuid(`surgical:${edit.file}:${edit.anchor}:${edit.replacement}`)
+    const text = out.get(edit.file)
+    if (text == null) return { file: edit.file, status: 'refused-missing-file' as const, occurrences: 0, receipt }
+    if (text.includes(edit.replacement)) return { file: edit.file, status: 'skipped' as const, occurrences: countOccurrences(text, edit.anchor), receipt }
+    const occurrences = countOccurrences(text, edit.anchor)
+    if (occurrences === 0) return { file: edit.file, status: 'refused-missing-anchor' as const, occurrences, receipt }
+    if (occurrences > 1) return { file: edit.file, status: 'refused-ambiguous-anchor' as const, occurrences, receipt }
+    out.set(edit.file, text.replace(edit.anchor, edit.replacement))
+    changed.add(edit.file)
+    return { file: edit.file, status: 'applied' as const, occurrences, receipt }
+  })
+  const applied = outcomes.filter((entry) => entry.status === 'applied').length
+  const skipped = outcomes.filter((entry) => entry.status === 'skipped').length
+  const refused = outcomes.length - applied - skipped
+  return {
+    texts: out,
+    outcomes,
+    applied,
+    skipped,
+    refused,
+    changedFiles: [...changed].sort(),
+    root: merkleFold(outcomes.map((entry) => toUuid(`${entry.receipt}:${entry.status}`))),
+  }
+}
+
+/** Disk shell for the surgical engine: `surgical <plan.json> [--dry]`. The plan is a JSON array of
+ *  {file, anchor, replacement} (or {edits: [...]}); paths repo-relative. Exit 1 iff any edit refused. */
+export function runSurgicalExit(root: string, argv: readonly string[] = []): number {
+  const dry = argv.includes('--dry')
+  const planPath = argv.filter((arg) => arg !== '--dry')[0]
+  const print = (line: string) => process.stdout.write(`${line}\n`)
+  if (!planPath) { process.stderr.write('usage: surgical <plan.json> [--dry] — plan: [{file, anchor, replacement}, …]\n'); return 1 }
+  const raw = JSON.parse(readFileSync(join(root, planPath), 'utf8')) as SurgicalEdit[] | { edits: SurgicalEdit[] }
+  const edits = Array.isArray(raw) ? raw : raw.edits
+  if (!Array.isArray(edits) || edits.some((edit) => typeof edit?.file !== 'string' || typeof edit?.anchor !== 'string' || typeof edit?.replacement !== 'string')) {
+    process.stderr.write('surgical: every edit needs string file/anchor/replacement\n')
+    return 1
+  }
+  const texts = new Map<string, string | null>()
+  for (const file of new Set(edits.map((edit) => edit.file))) {
+    try { texts.set(file, readFileSync(join(root, file), 'utf8')) } catch { texts.set(file, null) }
+  }
+  const result = applySurgicalEdits(texts, edits)
+  for (const outcome of result.outcomes) {
+    const mark = outcome.status === 'applied' ? '✓' : outcome.status === 'skipped' ? '∅' : '✗'
+    print(`${mark} ${outcome.status} ${outcome.file} (${outcome.receipt.slice(0, 8)})`)
+  }
+  if (!dry) for (const file of result.changedFiles) writeFileSync(join(root, file), result.texts.get(file)!)
+  print(`surgical${dry ? ' --dry' : ''}: ${result.applied} applied · ${result.skipped} skipped · ${result.refused} refused · root ${result.root}`)
+  return result.refused > 0 ? 1 : 0
 }
 
 /** Fold verdicts in one screenful — booleans/scalars, facet tally, OFF facets only. The probe

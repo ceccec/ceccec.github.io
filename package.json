@@ -30,6 +30,8 @@
     "docs:preview": "NODE_OPTIONS=--max-old-space-size=2048 vitepress preview",
     "gen": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts rosetta",
     "atlas": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/cache/quantum/index.ts runSourceAtlasExit",
+    "surgical": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts surgical",
+    "shard": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts shard",
     "theorems:gaps": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts theoremGapScan --compact",
     "theorems:verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/verify/index.ts theoremWavesVerify --compact",
     "diagnose": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts diagnose",
