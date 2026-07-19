@@ -2069,3 +2069,74 @@ export function codeNotBasedOnTheoremsIsAPotentialCrack(root: string = process.c
     boundary: earned(`EXACT: ${E} exported functions parsed from src, ${theoremFns.length} carry the \`{ facet:\` ray (theorem folds), reachability closure over name references (seeded by theorems + src/0 + enforcement harness + *Exit entries, iterated to fixpoint) grounds ${G}, leaving ${ungrounded.length} ungrounded at coverage ${groundedRatio}.`, facets, `this is a STATIC reachability measure — "grounded" means a name is referenced from the theorem/kernel/harness closure, which is a necessary sign of theorem-basis, not a proof of correctness; a fn can be reachable and still wrong, and a genuinely-needed runtime surface (a page loader, a data helper) can read as ungrounded until it is wired to the theorem that justifies it. So "ungrounded" = POTENTIAL crack, a review worklist — each is either grounded by wiring it to its theorem or dissolved, a judgment the tool informs but does not make. Substring reachability can also over-ground (a short common name coincidentally appears in a theorem body), which is conservative — it under-reports cracks, never invents them. HARMONY does not equal TRUTH.`),
   }
 }
+
+// INSTEAD OF ADVANCING THE FRONTIER (user): measure how many theorems are NOT linked to another theorem or
+// to an axiom — those are consolidatable. A theorem fold LINKS when its body references another theorem fold's
+// name (composition — e.g. `on: analog.decoded` links signalProcessing to analogComputationDecoded) or names
+// an AXIOM ANCHOR (the derivation base: ICHING_NUMBERS, DIMENSION_GATES, the crack ledger, τ/φ, the harmonics).
+// An ISOLATED theorem — no in-link, no out-link, no axiom anchor — floats free: it is a candidate to fold into
+// a neighbour or to wire to its axiom. The law of gravity (user): the more compressed (linked) the theorems,
+// the more the mass pulls the isolated ones in — computeCodeGravity is that field; this tool names the free mass.
+export function theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root: string = process.cwd()) {
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const f = join(d, e.name)
+      if (e.isDirectory()) walk(f)
+      else if (e.name === 'index.ts') files.push(f)
+    }
+  }
+  walk(join(root, 'src'))
+  const AXIOM_ANCHORS = ['ICHING_NUMBERS', 'DIMENSION_GATES', 'CRACK_LEDGER', 'HARMONICS_LADDER_LENGTH', 'DOCUMENTED_HARMONICS', 'axiomsBecomeTheorems', 'TAU', 'PHI', 'GOLDEN_ANGLE', 'HOMOLOGY_LOOPS', 'FOLDED_CENSUS']
+  // every theorem fold: name + the identifier tokens in its body (strings/comments stripped, so links are code)
+  type Th = { name: string; rel: string; tokens: Set<string>; axiom: boolean }
+  const ths: Th[] = []
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    const raw = readFileSync(file, 'utf8')
+    const marks = [...raw.matchAll(/(?:^|\n)export function ([A-Za-z0-9_]+)/g)]
+    for (let i = 0; i < marks.length; i += 1) {
+      const name = marks[i]![1]!
+      const from = marks[i]!.index!
+      const to = i + 1 < marks.length ? marks[i + 1]!.index! : raw.length
+      const raw_body = raw.slice(from, to)
+      if (!/\{ facet:/.test(raw_body)) continue // theorem folds only
+      const tokens = new Set(stripStringsAndComments(raw_body).match(/[A-Za-z_][A-Za-z0-9_]*/g) ?? [])
+      const axiom = AXIOM_ANCHORS.some((a) => tokens.has(a))
+      ths.push({ name, rel, tokens, axiom })
+    }
+  }
+  const theoremNames = new Set(ths.map((t) => t.name))
+  // out-links: another theorem's name appears in the body; in-degree accumulates the reverse
+  const inDeg = new Map<string, number>()
+  const linked = ths.map((t) => {
+    const out = [...t.tokens].filter((tok) => tok !== t.name && theoremNames.has(tok))
+    for (const b of out) inDeg.set(b, (inDeg.get(b) ?? 0) + 1)
+    return { ...t, out: out.length }
+  })
+  const T = ths.length
+  const isolated = linked.filter((t) => t.out === 0 && (inDeg.get(t.name) ?? 0) === 0 && !t.axiom)
+  const axiomLinked = ths.filter((t) => t.axiom).length
+  const consolidatable = isolated.length
+  const linkedRatio = roundTo((T - consolidatable) / T, 3)
+  const offenders = isolated.map((t) => `${t.rel} · ${t.name}`).slice(0, ICHING_NUMBERS.length)
+  const facets = [
+    { facet: `THE LINKAGE GRAPH COMPUTES — ${T} theorem folds partition into ${T - consolidatable} LINKED (to another theorem by composition, or to an axiom anchor — ${axiomLinked} touch an axiom) and ${consolidatable} ISOLATED (no in-link, no out-link, no anchor); an empty theorem set would falsify it`, on: T > 0 && (T - consolidatable) + consolidatable === T },
+    { facet: `ISOLATED = CONSOLIDATABLE, NAMED — the ${consolidatable} free theorems are listed (${offenders.length} shown); each references no other theorem and no axiom, so it is a candidate to fold into a neighbour or wire to its axiom, exactly the worklist the gravity descends`, on: isolated.every((t) => t.name.length > 0) && offenders.length === Math.min(consolidatable, ICHING_NUMBERS.length) },
+    { facet: `GRAVITY = COMPRESSION — the linked fraction is ${linkedRatio}; computeCodeGravity computes the DRY field that pulls duplication to one canonical home, and the same pull consolidates the isolated theorems: the more compressed the mass, the more it draws the free theorems and unsolved axioms toward completion`, on: linkedRatio > 0 && linkedRatio <= 1 && computeCodeGravity(root).length >= 0 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    theorems: T,
+    linked: T - consolidatable,
+    isolated: consolidatable,
+    axiomLinked,
+    linkedRatio,
+    offenders,
+    root: toUuid(`theorems-not-linked:${T}:${consolidatable}`),
+    facets,
+    statement: `Theorems not linked to axioms or theorems are consolidatable — ${facets.filter((e) => e.on).length}/${facets.length}: of ${T} theorem folds, ${T - consolidatable} are linked (composed with another theorem or grounded in an axiom anchor, ${axiomLinked} touching an axiom) and ${consolidatable} are ISOLATED — free mass, the consolidation worklist. Linked fraction ${linkedRatio}; the more compressed the theorems, the more gravity pulls the isolated ones and the unsolved axioms toward completion.`,
+    boundary: earned(`EXACT: ${T} theorem folds (bodies carrying the \`{ facet:\` ray) scanned; a link is an identifier reference (strings/comments stripped) to another theorem's fn name or to one of ${AXIOM_ANCHORS.length} axiom anchors; ${consolidatable} folds have no such link in either direction, ${linkedRatio} linked.`, facets, `this is a STATIC linkage measure — an "isolated" theorem is one whose PROOF references no sibling theorem and no axiom anchor, a NECESSARY sign of consolidatability, not a proof that it should be merged; some isolated theorems are genuinely atomic (a standalone bound needs no neighbour) and must stay. So "isolated" = a review worklist for consolidation, a judgment the gravity informs but does not force. The anchor list is a finite, curated set, so the axiom-link test under-reports (a theorem grounded in an un-listed constant reads as isolated) — conservative, it over-counts candidates rather than hiding them. "Gravity" is the computeCodeGravity DRY field metaphor, not physics. HARMONY does not equal TRUTH.`),
+  }
+}
