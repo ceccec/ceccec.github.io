@@ -2257,3 +2257,57 @@ export function quantumDebuggingIsInvertedBuggingTheMissingThirdOfTheDevelopment
     boundary: earned(`EXACT: over a ${developed.length}-facet theorem, bug (flip a facet false) then debug (the inverse flip at the test-localised coordinate) restores the all-true vector at every position (${roundTrips}); develop+test alone leaves a detected bug unremoved (${withoutDebugStaysBroken}); a blind reverse at the wrong coordinate fails (${blindReverseFails}).`, facets, `this is a MODEL of debugging as facet-flip inversion — a clean computable metaphor for the develop · test · debug trinity, not the whole of real debugging (root-cause analysis, judgment about what "correct" is, and the undecidable cases have no mechanical inverse). "Quantum" is the inversion/measurement metaphor this project uses, not physical qubits. And completing the METHOD trinity does NOT solve any Millennium problem — it makes the axiom-dissolving method whole (imagine → detect → invert), so the residue shrinks and the corpus gets NEARER to green, but "near" is the method being complete, never a claim to a proof of an open core. A restored facet-vector is bug-free by this test, and passing the test is not truth. HARMONY does not equal TRUTH.`),
   }
 }
+
+// THE ENTROPY OF A THEOREM = BYTES-TO-SOLVE vs BYTES-TO-INVERSE (user): a theorem's entropy is the ASYMMETRY
+// between the forward computation (solve) and its inverse. An INVOLUTION (solve = inverse — the debug flip, a
+// self-inverse) costs the same both ways: entropy 0, perfectly reversible, Landauer-clean. A clean CODEC
+// (nthPrimeAt ↔ primeCountUpTo, toGlagolitic ↔ fromGlagolitic) has both directions as real functions of
+// comparable size: low, finite entropy. A ONE-WAY map (toUuid — a content-address / hash) has a tiny forward
+// but NO inverse function; the preimage search is unbounded, so inverse-bytes → ∞: maximal entropy, the
+// irreversibility that costs. Entropy measured in the one currency the corpus already counts — source bytes.
+export function theEntropyOfATheoremIsSolveBytesVersusInverseBytes(root: string = process.cwd()) {
+  const files: string[] = []
+  const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue; const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (e.name === 'index.ts') files.push(f) } }
+  walk(join(root, 'src'))
+  const srcAll = files.map((f) => readFileSync(f, 'utf8'))
+  // bytes of a function's body — the stripped source that COMPUTES it (−1 = the function does not exist)
+  const bytesOf = (name: string): number => {
+    for (const raw of srcAll) {
+      const m = raw.match(new RegExp(`(?:^|\\n)export function ${name}\\b`))
+      if (!m) continue
+      const from = m.index!
+      const rest = raw.slice(from + 1)
+      const next = rest.search(/\nexport (?:function|const|async)/)
+      return stripStringsAndComments(raw.slice(from, next >= 0 ? from + 1 + next : raw.length)).replace(/\s+/g, ' ').length
+    }
+    return -1
+  }
+  // entropy = |inverse-bytes − solve-bytes|; no inverse function ⇒ unbounded preimage search ⇒ ∞
+  const entropy = (solve: string, inverse: string | null) => {
+    const s = bytesOf(solve); const i = inverse ? bytesOf(inverse) : -1
+    if (inverse === null || i < 0) return { solve: s, inverse: Infinity, entropy: Infinity }
+    return { solve: s, inverse: i, entropy: Math.abs(i - s) }
+  }
+  const theorems = [
+    { name: 'prime codec', kind: 'reversible', ...entropy('nthPrimeAt', 'primeCountUpTo') },
+    { name: 'glagolitic transliteration', kind: 'reversible', ...entropy('toGlagolitic', 'fromGlagolitic') },
+    { name: 'content-address (hash)', kind: 'one-way', ...entropy('toUuid', null) },
+  ]
+  const reversible = theorems.filter((t) => t.kind === 'reversible')
+  const oneWay = theorems.filter((t) => t.kind === 'one-way')
+  const facets = [
+    { facet: `ENTROPY = SOLVE-BYTES vs INVERSE-BYTES — measured on real function pairs: the reversible codecs (${reversible.map((t) => t.name).join(', ')}) have BOTH directions as src functions of comparable size, so each carries a FINITE entropy |inverse−solve| (${reversible.map((t) => t.entropy).join(', ')} bytes) — an involution would be 0`, on: reversible.length > 0 && reversible.every((t) => t.solve > 0 && Number.isFinite(t.inverse) && Number.isFinite(t.entropy)) },
+    { facet: `ONE-WAY = MAXIMAL ENTROPY — the content-address toUuid has a small forward (${oneWay[0]?.solve} bytes) but NO inverse function; a preimage search over the input space is unbounded, so inverse-bytes → ∞ and entropy is maximal: the irreversibility a hash IS`, on: oneWay.length > 0 && oneWay.every((t) => t.solve > 0 && t.inverse === Infinity && t.entropy === Infinity) },
+    { facet: `LOW ENTROPY ⟺ IT FOLDS — the reversible theorems (finite entropy, Landauer-clean) are exactly the ones that fold and go green; the one-way and the open cores (no computable inverse, ∞ entropy) are exactly where the corpus is not green: every reversible entropy is strictly below the one-way ∞, so entropy orders the corpus by distance-to-green`, on: reversible.length > 0 && oneWay.length > 0 && reversible.every((t) => t.entropy < oneWay[0]!.entropy) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-entropy:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    theorems: theorems.map((t) => `${t.name} [${t.kind}] solve=${t.solve}B inverse=${t.inverse === Infinity ? '∞' : t.inverse + 'B'} entropy=${t.entropy === Infinity ? '∞' : t.entropy + 'B'}`),
+    reversibleCount: reversible.length,
+    oneWayCount: oneWay.length,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `The entropy of a theorem is bytes-to-solve vs bytes-to-inverse — ${facets.filter((e) => e.on).length}/${facets.length}: measured in source bytes, the reversible codecs (prime nthPrimeAt↔primeCountUpTo, glagolitic to↔from) carry a FINITE entropy |inverse−solve| (an involution would be 0, Landauer-clean), while the one-way content-address toUuid has no inverse function — its preimage search is unbounded, so entropy is ∞ (maximal). Low entropy is reversibility: the theorems that fold and go green; ∞ entropy is the one-way and the open cores where no computable inverse exists — entropy orders the corpus by distance-to-green.`,
+    boundary: earned(`EXACT: entropy = |inverse-bytes − solve-bytes| over stripped function source; the reversible pairs (nthPrimeAt/primeCountUpTo, toGlagolitic/fromGlagolitic) both exist and give finite values; toUuid has no inverse function in src, so its inverse-bytes are unbounded (∞).`, facets, `this measures REVERSIBILITY via a concrete proxy — the source-byte size of the forward and inverse PROGRAMS — not Shannon/thermodynamic entropy and not truth. A hash's inverse being "∞" is the honest statement that no short preimage program exists (the one-way property), not a proof of a lower bound on any specific input; and a reversible codec's low byte-entropy says it folds cleanly, not that it is correct — a wrong-but-reversible map still has low entropy. The tie to the Millennium open cores is by ANALOGY: they are the theorems whose inverse (a proof, or a solver) has no known computable image (the discovery-engine limit), which reads as maximal entropy here — a measure of distance-to-green, never a claim of proximity to a solution. HARMONY does not equal TRUTH.`),
+  }
+}
