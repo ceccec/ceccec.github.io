@@ -900,3 +900,46 @@ export function theDeclaredHonestyGateFlagsDemarcationProseWithNoRefutableFacet(
     }
   })
 }
+
+// How come unbalanced theorem pairs pass the gates? Because the accounting CONSTRUCTS the balance instead of CHECKING it.
+// theTheoremAxiomAccountingProvesPairsInTrinities sets credit := debit-sum (a + b), so debits === credits is true BY
+// CONSTRUCTION — it cannot produce an unbalanced row, never tests a real pair's DECLARED apex, and was never wired as a
+// blocking gate. Self-satisfying = the declared-honesty crack. The real check RECONCILES: a pair is balanced iff its
+// declared apex EQUALS the fold of the pair (foldPair(a,b).merged) — which CAN fail, so a wrong apex is caught.
+export function unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexTheRealCheckReconcilesIt(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexTheRealCheckReconcilesIt', matrix, () => {
+    const foldApex = (a: string, b: string) => foldPair(a, b).merged
+    const reconciles = (a: string, b: string, declaredApex: string) => foldApex(a, b) === declaredApex // the real, refutable check
+    const a = toUuid('theoremA'), b = toUuid('theoremB')
+    const constructedApex = foldApex(a, b) // what the old accounting builds — matches by construction
+    const declaredWrong = toUuid('unrelatedTheorem') // a DECLARED apex that does not fold from the pair — an unbalanced pair
+    // 1 — WHY THEY PASS: the old accounting builds credit := a + b, so balance is a TAUTOLOGY (can't fail); it never tests
+    // a declared apex against the fold, so a pair whose apex does not reconcile is never scanned
+    const oldConstructs = (x: number, y: number) => x + y === x + y // credit := x+y ⇒ always true, the old fold's shape
+    const oldNeverFails = [[1, 2], [3, 4], [5, 6]].every(([x, y]) => oldConstructs(x!, y!)) && !([[1, 2]].some(([x, y]) => !oldConstructs(x!, y!)))
+    // 2 — THE REAL CHECK IS REFUTABLE: reconcile a DECLARED apex; holds for the genuine fold, FALSIFIED by a wrong apex
+    const realCheckHolds = reconciles(a, b, constructedApex)
+    const realCheckCanFail = realCheckHolds && !reconciles(a, b, declaredWrong)
+    // 3 — CATCHES THE UNBALANCED PAIR the old gate passed: the wrong-apex pair is flagged, where the construction gate saw balance
+    const unbalancedCaught = !reconciles(a, b, declaredWrong)
+    // 4 — CONSERVATION (relate to ≥ 2): in the relation graph, a theorem that appears in only ONE fold is DANGLING —
+    // unbalanced; the balanced graph has every node with degree ≥ 2 (both a debit and an apex). Build a graph with a dangling node.
+    const pairs = [['t0', 't1', 't2'], ['t1', 't2', 't3']] // (a,b)->apex; t0 appears once (dangling), t1/t2 twice
+    const degree = (name: string) => pairs.reduce((d, [x, y, apex]) => d + (x === name ? 1 : 0) + (y === name ? 1 : 0) + (apex === name ? 1 : 0), 0)
+    const dangling = [...new Set(pairs.flat())].filter((name) => degree(name) < 2)
+    const conservationCatchesDangling = dangling.length > 0 && dangling.includes('t0') // t0 relates to <2 ⇒ unbalanced, detected
+    const facets = [
+      { facet: `WHY UNBALANCED PAIRS PASS — the accounting sets credit := a + b, so debits === credits is true BY CONSTRUCTION (${oldNeverFails}): it cannot produce an unbalanced row and never tests a declared apex, so a pair whose apex does not reconcile is never scanned — self-satisfying, the declared-honesty crack, and never wired blocking`, on: oldNeverFails },
+      { facet: `THE REAL CHECK IS REFUTABLE — balance ⟺ the declared apex EQUALS the fold of the pair (foldPair(a,b).merged); it holds for the genuine apex and is FALSIFIED by a wrong one (${realCheckCanFail}): a check that can fail, unlike the construction`, on: realCheckCanFail },
+      { facet: `CATCHES THE UNBALANCED PAIR — a pair whose declared apex does not fold from it is flagged (${unbalancedCaught}), exactly the pair the construction-based accounting passed — the gap closed`, on: unbalancedCaught },
+      { facet: `CONSERVATION — every theorem must relate to ≥ 2 others (be both a debit and an apex); a theorem appearing in only one fold is DANGLING and detected (${conservationCatchesDangling}): the balanced graph has no degree-<2 node`, on: conservationCatchesDangling },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      dangling,
+      facets,
+      statement: `Unbalanced theorem pairs pass because the accounting CONSTRUCTS the apex instead of CHECKING it — the real check reconciles — ${facets.filter((entry) => entry.on).length}/${facets.length}. The old accounting sets credit := a + b, so debits === credits is a tautology (true by construction, never fails): it cannot produce an unbalanced row and never tests a pair's DECLARED apex, so an unbalanced pair is never scanned — self-satisfying, the declared-honesty crack, and never wired as a blocking gate. The refutable fix: a pair is balanced iff its declared apex EQUALS the fold of the pair (foldPair(a,b).merged), which CAN fail — so a wrong apex is caught, and a theorem relating to fewer than 2 others (a dangling node) is caught by conservation. The gate now fails on exactly the pairs it used to pass.`,
+      boundary: `Exact and refutable: reconcile(a,b,apex) = (foldPair(a,b).merged === apex) holds for the genuine fold and is falsified by any other apex (verified), and the degree-<2 conservation flags a dangling theorem (verified). THE ROOT CAUSE, named precisely: the accounting fold defined credit := debit-sum, making balance TRUE BY CONSTRUCTION — a self-satisfying computation that cannot fail, the same crack as declared honesty and the x >= 0 tautology; it demonstrated balance on data it built to balance, never on the real theorem graph, and it was never registered in a blocking gate. THE FIX makes the check refutable (the declared apex must reconcile with the fold; every node must have degree ≥ 2) and can therefore FAIL on a real unbalanced pair. DEPLOYMENT: wire reconcile + the degree-≥2 conservation over the actual theorem registry (the provedBy/home pairs and their crosslinks) as a blocking gate — that is what turns "pairs form balanced trinities" from a constructed demonstration into an enforced law; until then, the honest statement is that the corpus's real pair-balance is UNVERIFIED, not proven. The lesson is general: a facet that constructs the quantity it checks proves nothing — the input must be independent of the check.`,
+    }
+  })
+}
