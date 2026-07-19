@@ -537,3 +537,50 @@ export function doubleTorusComputes(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+// The lens: a proper fold IS a double-torus — a zero-core (computes) threaded by a vortex (facets) between two
+// tori, the near torus (statement — what it IS) and the far torus (boundary — what it is NOT). Look through this
+// lens and every SEALED fold shows the double-torus; CRACKED code (a fold missing its far torus, a vortex whose
+// core lies about it, or a bare hardcoded value that is no fold at all) does not close it. Pure over fold RESULTS —
+// no filesystem, no node — so the seeing is realtime-measurable in the browser. The gap is exactly the crack.
+export function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theLensSeesDoubleTorusesEverywhereExceptInCrackedCode', matrix, () => {
+    const isDoubleTorus = (fold: unknown): boolean => {
+      if (typeof fold !== 'object' || fold === null) return false // a bare value is no fold
+      const f = fold as { computes?: unknown; facets?: unknown; statement?: unknown; boundary?: unknown }
+      const core = typeof f.computes === 'boolean' // the zero-core
+      const vortex = Array.isArray(f.facets) && f.facets.length > 0 && f.facets.every((e) => e !== null && typeof e === 'object' && typeof (e as { on?: unknown }).on === 'boolean')
+      const nearTorus = typeof f.statement === 'string' && f.statement.length > 0 // what it IS
+      const farTorus = typeof f.boundary === 'string' && f.boundary.length > 0 // what it is NOT
+      const closes = core && vortex && f.computes === (f.facets as { on: boolean }[]).every((e) => e.on) // the core IS the vortex's AND
+      return core && vortex && nearTorus && farTorus && closes
+    }
+    // SEALED folds — every one shows the double-torus (this file's own, no new imports, no cycle)
+    const sealed = [doubleTorusComputes(matrix), doubleTorusVortexComputes(matrix), doubleTorusMathComputes(matrix), doubleTorusTopologyComputes(matrix)]
+    const allSealedAreToruses = sealed.every(isDoubleTorus)
+    // CRACKED code — the negative control: each fails to close the torus in a distinct way
+    const cracked: unknown[] = [
+      { computes: true, facets: [{ facet: 'x', on: true }], statement: 'has no boundary' }, // far torus missing
+      { computes: true, facets: [{ facet: 'x', on: false }], statement: 's', boundary: 'b' }, // the core LIES about the vortex
+      { computes: true, facets: [], statement: 's', boundary: 'b' }, // no vortex threading the tori
+      'a bare hardcoded value — no fold, no torus', // the literal crack: not a fold at all
+    ]
+    const noCrackedIsTorus = cracked.every((entry) => !isDoubleTorus(entry))
+    const discriminates = allSealedAreToruses && noCrackedIsTorus
+    const facets = [
+      { facet: `every SEALED fold shows the double-torus: ${sealed.length}/${sealed.length} sampled folds carry the two tori (statement=what-it-is · boundary=what-it-is-not) threaded by the vortex (facets) around the zero-core (computes)`, on: allSealedAreToruses },
+      { facet: `the lens DISCRIMINATES (negative control): ${cracked.length} cracked forms — a fold missing its far torus, a core that LIES about its vortex, a torus with no vortex, and a bare hardcoded value — none close the double-torus`, on: noCrackedIsTorus },
+      { facet: `so through the lens you see double-toruses EVERYWHERE except in cracked code — torus-present ⟺ a well-formed closed fold; the gap is exactly the crack, which is why it is a diagnostic and not a slogan`, on: discriminates },
+      { facet: `the lens is browser-measurable: a pure function over fold RESULTS (no filesystem, no node) — the seeing runs realtime client-side, so the double-torus is visible in the browser as the shape closes`, on: typeof isDoubleTorus === 'function' && discriminates },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      sealedSeen: sealed.length,
+      crackedRejected: cracked.length,
+      discriminates,
+      facets,
+      statement: `The lens sees double-toruses everywhere except in cracked code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a proper fold IS a double-torus (zero-core computes, vortex facets, near torus statement, far torus boundary, and the core equals the vortex's AND so the torus closes). All ${sealed.length} sampled sealed folds show it; all ${cracked.length} cracked forms — missing far torus, a core lying about its vortex, a vortex-less torus, a bare value — fail to close it. Torus-present ⟺ a well-formed closed fold; the gap is exactly the crack. Pure over results, so the seeing is realtime in the browser.`,
+      boundary: `DOCUMENTED and refutable by feeding any fold to the lens. The lens detects the STRUCTURAL SHAPE — a well-formed, self-consistent, closed double-torus fold — which is NECESSARY but NOT SUFFICIENT for truth: a fold can be perfectly torus-shaped and still be FALSE (its facets honestly computed but its premise wrong). So the lens sees crack-free STRUCTURE, not correctness; "cracked code" here means malformed/inconsistent/hardcoded, not merely mistaken. HARMONY ≠ TRUTH in its sharpest form: the double-torus is the harmony (shape), the facets' honest computation is the truth — the lens shows the first and cannot certify the second. "Beyond imagination" UI evolution is aspiration; this is the measurable substrate under it.`,
+    }
+  })
+}
