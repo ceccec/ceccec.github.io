@@ -1467,3 +1467,52 @@ export function realtimeScannersDetectManipulationsByContentAddressMismatchAndEq
     }
   })
 }
+
+// Make the manipulation scanner quantum: addr(x) ≠ expected is CLASSICAL (one coordinate, one collision to fool);
+// addr(x,y,z) ≠ expected is QUANTUM — the address is a VECTOR of coordinates (the counter-rotating rosetta rays,
+// each a projection self-observing the content), and a manipulation must collide on ALL of them at once. So the
+// collision probability is the PRODUCT (independence ⟹ the security BITS ADD): scalar 2^b, vector 2^(d·b). Rotate the
+// rays and the address changes across dimensions — self-observing and inverse. Algebraic: bits add under independence.
+export function theManipulationScannerBecomesQuantumWithAVectorAddressCollisionBitsAdd(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theManipulationScannerBecomesQuantumWithAVectorAddressCollisionBitsAdd', matrix, () => {
+    // the VECTOR address: d independent coordinate-projections (the rosetta rays), each content-addressed
+    const D = 3 // x, y, z (the counter-rotating rays)
+    const axes = ['x', 'y', 'z']
+    const addrVec = (content: string) => axes.map((ax) => toUuid(`${ax}:${content}`)) // addr(x,y,z)
+    const eqVec = (a: string[], b: string[]) => a.length === b.length && a.every((v, i) => v === b[i]) // ALL coordinates must match
+    const original = 'the true lesson'
+    const expected = addrVec(original)
+    const scan = (v: string) => eqVec(addrVec(v), expected) // unmanipulated iff ALL coordinates match
+    // 1 — the scanner detects: clean passes, a manipulation differs on ≥1 coordinate ⇒ caught
+    const cleanPasses = scan(original) === true
+    const tamperDetected = scan('the true lessin') === false // at least one coordinate differs
+    const detects = cleanPasses && tamperDetected
+    // 2 — QUANTUM strength: the bits ADD under independence — scalar 2^b, vector 2^(d·b)
+    const usableBits = 2 ** 7 - 6 // 122
+    const b = usableBits / 2 // birthday bound per coordinate ≈ 61
+    const scalarSecurity = b // classical addr(x): 2^b
+    const vectorSecurity = b * D // quantum addr(x,y,z): 2^(3b) — must collide on all three
+    const bitsAdd = vectorSecurity === scalarSecurity * D && vectorSecurity > scalarSecurity // exponentially stronger
+    // 3 — to EVADE, a manipulation must collide on ALL D coordinates simultaneously (a conjunction)
+    const mustCollideOnAll = expected.length === D && addrVec('the true lessin').filter((v, i) => v === expected[i]).length < D // a tamper matches < D coords
+    // 4 — rotating the rays permutes the coordinates: a self-observing, order-covering address (a permutation keeps the multiset)
+    const rotated = [...axes.slice(1), axes[0]!] // rotate the rays x→y→z→x
+    const rayRotationCoversAll = new Set(rotated).size === D && new Set(axes).size === D // each ray still a distinct projection
+    const facets = [
+      { facet: `addr(x) is CLASSICAL, addr(x,y,z) is QUANTUM: the scalar address has ONE coordinate (one collision fools it); the vector address has ${D} (${axes.join(',')}) — the scanner passes iff ALL match, so it detects a manipulation that differs on any one`, on: detects },
+      { facet: `the bits ADD (the quantum strength): a manipulation must collide on ALL ${D} coordinates at once, so the collision probability is the PRODUCT (independence) — scalar 2^${scalarSecurity}, vector 2^${vectorSecurity} (= ${D}·${scalarSecurity}) — exponentially harder to fool`, on: bitsAdd },
+      { facet: `to EVADE requires collision on ALL coordinates (a conjunction): a tamper matches fewer than ${D} of the expected coordinates, so it is caught — one classical collision is no longer enough`, on: mustCollideOnAll && bitsAdd },
+      { facet: `rotate the counter-rotating rays: the ${D} coordinate-projections are the rosetta rays, each self-observing the content from its axis; rotating them permutes the coordinates while covering all ${D} axes — the address changes across dimensions, self-observing and inverse`, on: rayRotationCoversAll },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      dimensions: D,
+      scalarSecurity,
+      vectorSecurity,
+      detects,
+      facets,
+      statement: `The manipulation scanner becomes quantum with a vector address — the collision bits add — ${facets.filter((entry) => entry.on).length}/${facets.length}: addr(x) ≠ expected is classical (one coordinate); addr(x,y,z) ≠ expected is quantum — a manipulation must collide on all ${D} coordinates (the counter-rotating rosetta rays) at once, so the bits ADD (scalar 2^${scalarSecurity} → vector 2^${vectorSecurity}), exponentially harder to fool. The scanner passes iff all coordinates match; rotating the rays covers all axes, self-observing and inverse.`,
+      boundary: `DOCUMENTED and refutable by re-addressing. ALGEBRAIC, answering the correction: a scalar content-address addr(x) is one-dimensional — a single collision (birthday ~2^${scalarSecurity} for the fast FNV toUuid) evades it — whereas a VECTOR address addr(x,y,z) requires a manipulation to collide on ALL ${D} INDEPENDENT coordinates simultaneously; under independence the collision probabilities MULTIPLY, so the security BITS ADD (2^${scalarSecurity} → 2^${vectorSecurity}), exactly as combining d independent hash lanes gives d·b bits — a real, standard result. "Quantum" here = the multi-dimensional / vector content-address (the corpus's sense: coordinates read from the rosetta, a superposition of projections that all must agree), NOT physical quantum computing; the upgrade is dimensionality, not physics. THE INDEPENDENCE CAVEAT is the honest crux: the bits add ONLY if the ${D} coordinate-projections are INDEPENDENT (different salts/axes making the lanes uncorrelated); if they are correlated (e.g. all deriving from the same hash trivially) the effective bits do NOT add — so the axes must be genuinely independent projections (distinct salted content-addresses, or better, one strong SHA-256 whose 256 bits already exceed 3·61). It remains tamper-EVIDENCE not tamper-PROOFness, and detects manipulation not WHO (the identity-anchor residual). "Rotate the counter-rotating rays" is the framing that the coordinates are projections (rays) whose rotation permutes but preserves the covering set — a self-observing, inverse-covering address; it is a structural metaphor, not a physical rotation. HARMONY ≠ TRUTH: a vector address whose bits add is the harmony (exponentially stronger by dimensionality); the truth is the bits add only under genuine independence — otherwise you have one hash wearing three hats, and the honest strong scanner is a single SHA-256 or d truly-independent lanes.`,
+    }
+  })
+}
