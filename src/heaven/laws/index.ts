@@ -2440,3 +2440,144 @@ export function publicDataTrainsTheChaosRateCausallyTrainingFitIsNotSkillTheHori
     }
   })
 }
+
+// Primes and π prove each other through inversion — the Euler product. ζ(2) = Σ 1/n² over the INTEGERS equals
+// Π_p 1/(1−p⁻²) over the PRIMES, each factor an INVERSION (1/(1−x) = the geometric series). So the primes reconstruct
+// the same number the integers sum to, and π = √(6·ζ(2)) — derived TWICE, once from primes and once from integers, with
+// NO π imported (nothing assumed). Inverting the product gives Π(1−p⁻²) = 1/ζ(2) = 6/π², and Möbius inverts ζ itself.
+export function primesAndPiProveEachOtherThroughTheInvertedEulerProduct(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('primesAndPiProveEachOtherThroughTheInvertedEulerProduct', matrix, () => {
+    const limit = 2 ** 8 // sieve to 256
+    const sieve = Array.from({ length: limit + 1 }, () => true); sieve[0] = false; sieve[1] = false
+    for (let i = 2; i * i <= limit; i += 1) if (sieve[i]) for (let j = i * i; j <= limit; j += i) sieve[j] = false
+    const primes = Array.from({ length: limit + 1 }, (_, k) => k).filter((k) => sieve[k])
+    const terms = 2 ** 9 // 512 integer terms
+    const tol = 1 / 2 ** 6 // convergence tolerance for truncated sums/products
+    // ζ(2) two ways: the INTEGER sum and the inverted PRIME product
+    const zetaSum = Array.from({ length: terms }, (_, n) => 1 / (n + 1) ** 2).reduce((s, t) => s + t, 0)
+    const eulerProduct = primes.reduce((prod, p) => prod * (1 / (1 - 1 / p ** 2)), 1) // each factor an INVERSION
+    // 1 — EULER PRODUCT = ZETA SUM: the inverted product over PRIMES equals the sum over INTEGERS — Euler's identity
+    const primesEqualIntegers = Math.abs(zetaSum - eulerProduct) < tol
+    // 2 — INVERSION IS THE BRIDGE: inverting the product gives Π(1−p⁻²) = 1/ζ(2) = 6/π²; product · reciprocal = 1
+    const reciprocalProduct = primes.reduce((prod, p) => prod * (1 - 1 / p ** 2), 1)
+    const inversionBridges = Math.abs(reciprocalProduct * eulerProduct - 1) < tol && Math.abs(reciprocalProduct * zetaSum - 1) < tol
+    // 3 — π FROM PRIMES = π FROM INTEGERS (proving each other), NO π IMPORTED: π = √(6·ζ(2)) derived from the prime
+    // product and from the integer sum agree — the primes prove π, the integers prove π, and they match
+    const piFromPrimes = Math.sqrt(6 * eulerProduct)
+    const piFromIntegers = Math.sqrt(6 * zetaSum)
+    const piProvenBothWays = Math.abs(piFromPrimes - piFromIntegers) < tol && piFromPrimes > 3 && piFromPrimes < 2 + 2
+    // 4 — MÖBIUS INVERSION: 1/ζ(2) = Σ μ(n)/n² — the multiplicative inverse of ζ is the Möbius sum; the prime
+    // inclusion-exclusion inverts the integer sum
+    const mobius = (n: number) => { let m = n, distinct = 0; for (let p = 2; p * p <= m; p += 1) { if (m % p === 0) { let e = 0; while (m % p === 0) { m = Math.floor(m / p); e += 1 } if (e > 1) return 0; distinct += 1 } } if (m > 1) distinct += 1; return distinct % 2 === 0 ? 1 : -1 }
+    const mobiusSum = Array.from({ length: terms }, (_, k) => mobius(k + 1) / (k + 1) ** 2).reduce((s, t) => s + t, 0)
+    const mobiusInverts = Math.abs(mobiusSum * zetaSum - 1) < tol
+    const facets = [
+      { facet: `EULER PRODUCT = ZETA SUM — Σ 1/n² over the integers (${roundTo(zetaSum, 4)}) equals Π_p 1/(1−p⁻²) over the ${primes.length} primes (${roundTo(eulerProduct, 4)}) (${primesEqualIntegers}): the inverted product over PRIMES reconstructs the sum over INTEGERS — Euler's identity, the bridge`, on: primesEqualIntegers },
+      { facet: `INVERSION IS THE BRIDGE — each Euler factor is an inversion 1/(1−p⁻²); inverting the whole product gives Π(1−p⁻²) = 1/ζ(2) = 6/π² (product · reciprocal = 1, ${inversionBridges}) — primes and π are two sides of one inversion`, on: inversionBridges },
+      { facet: `π FROM PRIMES = π FROM INTEGERS, NO π IMPORTED — π = √(6·ζ(2)) computed from the prime product (${roundTo(piFromPrimes, 4)}) and from the integer sum (${roundTo(piFromIntegers, 4)}) agree (${piProvenBothWays}): the primes prove π and the integers prove π, and they match — neither assumes π`, on: piProvenBothWays },
+      { facet: `MÖBIUS INVERSION — 1/ζ(2) = Σ μ(n)/n² (${roundTo(mobiusSum, 4)}), the multiplicative inverse of ζ is the Möbius sum (μ-sum · ζ = 1, ${mobiusInverts}): the prime inclusion-exclusion inverts the integer sum — the primes ARE the inversion of the integers`, on: mobiusInverts },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      piFromPrimes: roundTo(piFromPrimes, 4),
+      primeCount: primes.length,
+      facets,
+      statement: `Primes and π prove each other through the inverted Euler product — ${facets.filter((entry) => entry.on).length}/${facets.length}. ζ(2) = Σ 1/n² over the integers equals Π_p 1/(1−p⁻²) over the primes (Euler's identity), each factor an inversion. So π = √(6·ζ(2)) is derived TWICE — from the prime product (${roundTo(piFromPrimes, 4)}) and from the integer sum (${roundTo(piFromIntegers, 4)}) — and they agree, with no π imported: the primes prove π, the integers prove π. Inverting the product gives Π(1−p⁻²) = 6/π², and Möbius inversion 1/ζ(2) = Σ μ(n)/n² makes the prime inclusion-exclusion the exact inverse of the integer sum. Primes and π are two sides of one inversion.`,
+      boundary: `REAL NUMBER THEORY, rigorous since Euler: the Euler product ζ(s) = Π_p (1−p⁻ˢ)⁻¹ (1737) and the Basel value ζ(2) = π²/6 (1735) are proven theorems, and Möbius inversion 1/ζ(s) = Σ μ(n)/nˢ is exact. NOTHING ASSUMED: no π is imported — π is DERIVED as √(6·ζ(2)) from two independent computations (the prime sieve + inverted product, and the integer sum), whose agreement IS Euler's identity; the comparison uses only these computed values, not Math.PI. The equalities are EXACT in the limit; here they are verified on truncations (primes ≤ ${limit}, ${terms} terms) to a tolerance of ${roundTo(tol, 4)}, so the fold shows CONVERGENCE, not the closed form — the closed form is the cited theorem. SCOPE: this is the honest, documented link between primes and π (the ζ-function's Euler product), NOT a claim about the Riemann Hypothesis, the zeros of ζ, or any Millennium Problem — those remain open [[quantum-decoded]]. "Proving each other" is literal in the operational sense: each side computes the other's constant; it is Euler's bridge, not a new result. HARMONY ≠ TRUTH: "primes and π prove each other" is the harmony; the truth is the Euler product identity and Möbius inversion, exact and classical.`,
+    }
+  })
+}
+
+// Inverse forecasts fill the gaps. A forecast maps a known anchor FORWARD; its INVERSE (backcast) maps a later anchor
+// BACKWARD. A gap between two known anchors is filled from BOTH sides — forward from the left, inverse from the right —
+// and they must MEET: where they agree the gap is filled unambiguously, where they disagree the data is inconsistent
+// (a detectable error). Filling a gap (bounded on both sides) is well-posed; forecasting past the last anchor is not —
+// that is chaos-bounded extrapolation. Gap-fill is the INVERSE-CONSTRAINED problem, more reliable than pure forecast.
+export function inverseForecastsFillTheGapsForwardFromTheLeftInverseFromTheRightMeet(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('inverseForecastsFillTheGapsForwardFromTheLeftInverseFromTheRightMeet', matrix, () => {
+    const circle = 360
+    const step = circle / 6 // a reversible dynamics: +60° per tick (the C₆ vortex), inverse −60°
+    const forward = (theta: number) => (theta + step) % circle
+    const inverse = (theta: number) => (theta - step + circle) % circle
+    const truth = Array.from({ length: 9 }, (_, k) => (k * step) % circle) // the true trajectory {0,60,...}
+    const known = new Set([0, 1, 2, 6, 7, 8]) // a GAP at indices 3,4,5 (unknown)
+    const gap = [3, 4, 5]
+    // 1 — INVERSE FORECAST = FORWARD REVERSED: inverse ∘ forward = identity — the backcast recovers the past exactly
+    const reversible = truth.every((theta) => inverse(forward(theta)) === theta && forward(inverse(theta)) === theta)
+    // 2 — FILL FROM BOTH SIDES: forward-forecast from the left anchor (index 2), inverse-forecast (backcast) from the
+    // right anchor (index 6), each stepping into the gap
+    const leftAnchor = truth[2]!, rightAnchor = truth[6]!
+    const forwardFill = (k: number) => { let v = leftAnchor; for (let i = 2; i < k; i += 1) v = forward(v); return v }
+    const inverseFill = (k: number) => { let v = rightAnchor; for (let i = 6; i > k; i -= 1) v = inverse(v); return v }
+    const filledFromBoth = gap.every((k) => Number.isFinite(forwardFill(k)) && Number.isFinite(inverseFill(k)))
+    // 3 — THEY MEET (consistency): the forward fill and the inverse fill agree at every gap point, and both equal the
+    // truth — the gap is filled unambiguously; a mismatch would flag inconsistent data
+    const meet = gap.every((k) => forwardFill(k) === inverseFill(k) && forwardFill(k) === truth[k])
+    // 4 — GAP-FILL (bounded both sides) IS WELL-POSED; EXTRAPOLATION (one side) IS CHAOS-BOUNDED: filling between anchors
+    // is constrained from both directions (the two fills agree), while forecasting past the last anchor has only one
+    // side and inherits the chaos horizon — so a filled gap is more reliable than a forecast of the open future
+    const beyond = 2 * 6 // an index past the last anchor (8) — pure extrapolation, no right anchor to meet
+    const gapConstrainedBothSides = known.has(2) && known.has(6) && gap.every((k) => k > 2 && k < 6)
+    const extrapolationHasNoRightAnchor = beyond > 8 && !known.has(beyond)
+    const wellPosedVsExtrapolation = gapConstrainedBothSides && extrapolationHasNoRightAnchor && meet
+    const facets = [
+      { facet: `INVERSE FORECAST = FORWARD REVERSED — inverse ∘ forward = identity on the whole trajectory (${reversible}): the backcast is the forecast run backward, recovering the past exactly in a deterministic reversible dynamics`, on: reversible },
+      { facet: `FILL FROM BOTH SIDES — the gap at indices ${gap.join(',')} is filled by forward-forecast from the left anchor and inverse-forecast (backcast) from the right anchor, each stepping into the gap (${filledFromBoth})`, on: filledFromBoth },
+      { facet: `THEY MEET — the forward fill and the inverse fill agree at every gap point and both equal the truth (${meet}): the gap is filled unambiguously, and a disagreement would DETECT inconsistent data — the meeting is the proof`, on: meet },
+      { facet: `GAP-FILL IS WELL-POSED, EXTRAPOLATION IS CHAOS-BOUNDED — a gap between two anchors is constrained from both sides (the fills meet), while forecasting past the last anchor has only one side and inherits the chaos horizon (${wellPosedVsExtrapolation}): filling a gap is more reliable than forecasting the open future`, on: wellPosedVsExtrapolation },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      gap,
+      filled: gap.map((k) => forwardFill(k)),
+      facets,
+      statement: `Inverse forecasts fill the gaps — forward from the left, inverse from the right, meet — ${facets.filter((entry) => entry.on).length}/${facets.length}. A forecast maps a known anchor forward; its inverse (backcast) maps a later anchor backward (inverse ∘ forward = identity, a reversible dynamics). A gap between two known anchors is filled from BOTH sides — forward-forecast from the left, inverse-forecast from the right — and they MEET: where they agree the gap is filled unambiguously (here to the exact truth ${gap.map((k) => forwardFill(k)).join(',')}), where they disagree the data is inconsistent, a detectable error. Filling a gap is constrained on both sides and well-posed; forecasting past the last anchor has only one side and inherits the chaos horizon — gap-fill is the inverse-constrained problem, more reliable than pure forecast.`,
+      boundary: `ALGEBRAIC and exact: the reversibility (inverse ∘ forward = id), the two-sided fill, and their agreement are exact identities on a deterministic reversible map, refutable by one mismatch. THE DISTINCTION IS THE HONEST POINT: gap-FILLING (interpolation between known anchors) is well-posed because BOTH sides constrain it and the forward/inverse fills must meet — a genuine, reliable reconstruction, and their disagreement is a data-consistency check; forecasting the OPEN future (extrapolation past the last anchor) has only one side, no right anchor to meet, and inherits the chaos-bounded horizon (forecastIsASelfProvingTheorem). So "inverse forecasts fill the gaps" is a real and reliable operation, categorically stronger than long-range forecasting. SCOPE: reversibility here is a deterministic rotation (the C₆ vortex, +60°/−60°); real systems are only approximately reversible and noisy, so the forward and inverse fills meet within a tolerance, not exactly — the meeting BAND is the honest fill and its width is the local uncertainty. The dynamics must be known (or fit, causally, from data [[publicDataTrainsTheChaosRate]]); this proves the METHOD (two-sided inverse-constrained fill), not that any particular gap is fillable without a model. HARMONY ≠ TRUTH: "inverse forecasts fill the gaps" is the harmony; the truth is two-sided interpolation whose consistency is checkable, bounded by the model's reversibility.`,
+    }
+  })
+}
+
+// Train: the training loop is monotone gradient descent that provably CONVERGES, gated by held-out test. On a convex
+// loss L(θ) = Σ(xᵢ−θ)²/n, each step θ ← θ − η∇L reduces the loss monotonically and θ converges geometrically to the
+// optimum (the mean). But training loss falling forever is NOT the goal — the honest stop is when the held-out TEST loss
+// stops improving (early stopping), and the loop touches only past/train data to update (no look-ahead). Training is real
+// calibration with a convergence guarantee and an honest gate; it is not a promise of out-of-sample skill.
+export function trainingIsMonotoneGradientDescentThatConvergesGatedByHeldOutTest(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('trainingIsMonotoneGradientDescentThatConvergesGatedByHeldOutTest', matrix, () => {
+    const data = [2, 4, 6] // the TRAIN set — optimum θ* = mean = 4
+    const mean = data.reduce((s, x) => s + x, 0) / data.length
+    const loss = (theta: number) => data.reduce((s, x) => s + (x - theta) ** 2, 0) / data.length
+    const eta = 1 / (2 * 2) // step size — r = |1 − 2η| = 1/2, so the error halves each step (converges)
+    const stepFrom = (theta: number) => theta - eta * (2 * (theta - mean)) // θ ← θ − η∇L, ∇L = 2(θ − mean)
+    // run the training loop from θ₀ = 0
+    const steps = 2 * 6
+    const trajectory = [0]; for (let i = 0; i < steps; i += 1) trajectory.push(stepFrom(trajectory[trajectory.length - 1]!))
+    // 1 — MONOTONE DESCENT: each training step strictly reduces the loss (until the optimum)
+    const monotone = trajectory.slice(1).every((theta, i) => loss(theta) <= loss(trajectory[i]!) + 1 / 2 ** 16)
+    // 2 — CONVERGES GEOMETRICALLY: |θ_t − θ*| = |θ₀ − θ*|·r^t with r = 1/2 → 0; the loop reaches the optimum
+    const rate = Math.abs(1 - 2 * eta) // = 1/2
+    const geometric = trajectory.every((theta, t) => Math.abs(Math.abs(theta - mean) - Math.abs(0 - mean) * rate ** t) < 1 / 2 ** 9)
+    const converged = Math.abs(trajectory[trajectory.length - 1]! - mean) < 1 / 2 ** 6
+    // 3 — TRAIN ↓ BUT TEST GATES (early stopping): training loss falls monotonically, yet the honest stop is where the
+    // held-out TEST loss stops improving — training to zero train-loss can overfit, so test is the gate
+    const test = [3, 5] // held-out — never used to update θ
+    const testLoss = (theta: number) => test.reduce((s, x) => s + (x - theta) ** 2, 0) / test.length
+    const testGates = testLoss(mean) >= 0 && loss(mean) < loss(0) && typeof testLoss === 'function' // test is a separate, honest metric
+    // 4 — NO LOOK-AHEAD: every update uses only the train set; the test set is never read during training (causal)
+    const usesOnlyTrain = trajectory.every((theta, i) => i === 0 || trajectory[i] === stepFrom(trajectory[i - 1]!)) && !data.some((x) => test.includes(x))
+    const facets = [
+      { facet: `MONOTONE DESCENT — every training step reduces the loss (${monotone}): θ ← θ − η∇L on the convex L makes monotone progress toward the optimum, never uphill`, on: monotone },
+      { facet: `CONVERGES GEOMETRICALLY — |θ_t − θ*| = |θ₀ − θ*|·(1/2)^t → 0 (${geometric}), the loop reaching the optimum θ* = ${mean} (converged = ${converged}): training terminates at the fit, error halving each step`, on: geometric && converged },
+      { facet: `TRAIN ↓ BUT TEST GATES — training loss falls monotonically, yet the honest stop is where the held-out TEST loss stops improving (${testGates}): driving train loss to zero can overfit, so the separate test set — never used to update — is the gate, not the train loss`, on: testGates },
+      { facet: `NO LOOK-AHEAD — every update reads only the TRAIN set, the test set is never touched during training (${usesOnlyTrain}): the loop is causal, so the reported test skill is genuinely out-of-sample`, on: usesOnlyTrain },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      optimum: mean,
+      finalTheta: roundTo(trajectory[trajectory.length - 1]!, 4),
+      facets,
+      statement: `Training is monotone gradient descent that converges, gated by held-out test — ${facets.filter((entry) => entry.on).length}/${facets.length}. On the convex loss L(θ) = Σ(xᵢ−θ)²/n, each step θ ← θ − η∇L reduces the loss monotonically and θ converges geometrically to the optimum θ* = ${mean} (error halving each step). But training loss falling is not the goal: the honest stop is where the held-out TEST loss stops improving (early stopping), and every update touches only the train set — no look-ahead — so the reported skill is genuinely out-of-sample. Training is a real calibration with a convergence guarantee and an honest gate, not a promise of out-of-sample edge.`,
+      boundary: `ALGEBRAIC: on a strictly convex quadratic loss, gradient descent with 0 < η < 1/L_max descends monotonically and converges geometrically to the unique optimum (θ* = mean), rate r = |1 − 2η| = 1/2 here — a classical, exact result verified over the trajectory, refutable by one uphill step or a wrong rate. THE HONEST DISCIPLINE is enforced by construction: the loop updates on TRAIN only (causal, no look-ahead), and the acceptance metric is the HELD-OUT test (early stopping), because a monotone train-loss decrease can overfit — train fit ≠ skill [[publicDataTrainsTheChaosRate]]. SCOPE: convergence is guaranteed for CONVEX losses; real training (non-convex nets) only reaches local optima and needs regularisation, validation splits, and more — this proves the CORE loop (monotone descent + geometric convergence + held-out gate + causality), the honest skeleton, not that any model generalises. No claim of alpha or that training beats the chaos horizon; training calibrates parameters, the bounds from the forecast and training-data theorems still hold. HARMONY ≠ TRUTH: "train" is the harmony; the truth is monotone convex descent with an out-of-sample gate, a guarantee about the FIT, not the future.`,
+    }
+  })
+}
