@@ -1701,3 +1701,112 @@ export function theSignatureIsForgeableTheTrinityTimestampIsTheInverseBoundary(m
     }
   })
 }
+
+// AES-128 (FIPS-197 / ISO-IEC 18033-3) from scratch — the S-box is COMPUTED (GF(2^8) inverse + affine, no
+// 256 hardcoded bytes, honouring the no-hardcode law), encryption AND its inverse, KAT-verified. A reference
+// implementation in the same key as the from-scratch SHA-256 and Reed-Solomon; real encryption stays Web-Crypto AES-256-GCM.
+const AES_POLY = 0x11b // AES reduction polynomial x^8+x^4+x^3+x+1 (spec data)
+const AES_AFFINE = 0x63 // S-box affine constant (spec data)
+const AES_EXP = new Uint8Array(256)
+const AES_LOG = new Uint8Array(256)
+{ let x = 1; for (let i = 0; i < 255; i += 1) { AES_EXP[i] = x; AES_LOG[x] = i; let n = x << 1; if (n & 0x100) n ^= AES_POLY; x = n ^ x } AES_EXP[255] = AES_EXP[0]! }
+const aesMul = (a: number, b: number): number => (a === 0 || b === 0) ? 0 : AES_EXP[(AES_LOG[a]! + AES_LOG[b]!) % 255]!
+const aesInv = (a: number): number => a === 0 ? 0 : AES_EXP[(255 - AES_LOG[a]!) % 255]!
+const aesRotl = (b: number, n: number) => ((b << n) | (b >>> (8 - n))) & 0xff
+const AES_SBOX = new Uint8Array(256)
+const AES_INV_SBOX = new Uint8Array(256)
+for (let i = 0; i < 256; i += 1) { const v = aesInv(i); const s = v ^ aesRotl(v, 1) ^ aesRotl(v, 2) ^ aesRotl(v, 3) ^ aesRotl(v, 4) ^ AES_AFFINE; AES_SBOX[i] = s; AES_INV_SBOX[s] = i }
+const aesXtime = (a: number) => ((a << 1) ^ ((a & 0x80) ? AES_POLY : 0)) & 0xff
+
+/** AES-128 key schedule — 11 round keys (44 words), Rcon computed by xtime */
+export function aesKeyExpansion(key: readonly number[]): number[][] {
+  const Nk = 4, Nr = 10
+  const w: number[][] = []
+  for (let i = 0; i < Nk; i += 1) w.push(key.slice(i * 4, i * 4 + 4))
+  let rcon = 1
+  for (let i = Nk; i < 4 * (Nr + 1); i += 1) {
+    let t = [...w[i - 1]!]
+    if (i % Nk === 0) { t = [t[1]!, t[2]!, t[3]!, t[0]!].map((b) => AES_SBOX[b]!); t[0]! ^= rcon; rcon = aesXtime(rcon) }
+    w.push(w[i - Nk]!.map((b, j) => b ^ t[j]!))
+  }
+  return w
+}
+const aesToState = (b: readonly number[]) => { const s: number[] = new Array(16); for (let i = 0; i < 16; i += 1) s[(i % 4) * 4 + Math.floor(i / 4)] = b[i]!; return s }
+const aesFromState = (s: readonly number[]) => { const b: number[] = new Array(16); for (let i = 0; i < 16; i += 1) b[i] = s[(i % 4) * 4 + Math.floor(i / 4)]!; return b }
+const aesAddRoundKey = (s: number[], w: number[][], round: number) => { for (let c = 0; c < 4; c += 1) for (let r = 0; r < 4; r += 1) s[r * 4 + c]! ^= w[round * 4 + c]![r]! }
+const aesShiftRows = (s: number[]) => { for (let r = 1; r < 4; r += 1) { const row = [s[r * 4]!, s[r * 4 + 1]!, s[r * 4 + 2]!, s[r * 4 + 3]!]; for (let c = 0; c < 4; c += 1) s[r * 4 + c] = row[(c + r) % 4]! } }
+const aesInvShiftRows = (s: number[]) => { for (let r = 1; r < 4; r += 1) { const row = [s[r * 4]!, s[r * 4 + 1]!, s[r * 4 + 2]!, s[r * 4 + 3]!]; for (let c = 0; c < 4; c += 1) s[r * 4 + c] = row[(c - r + 4) % 4]! } }
+const aesMixColumns = (s: number[]) => { for (let c = 0; c < 4; c += 1) { const a = [s[c]!, s[4 + c]!, s[8 + c]!, s[12 + c]!]; s[c] = aesMul(a[0]!, 2) ^ aesMul(a[1]!, 3) ^ a[2]! ^ a[3]!; s[4 + c] = a[0]! ^ aesMul(a[1]!, 2) ^ aesMul(a[2]!, 3) ^ a[3]!; s[8 + c] = a[0]! ^ a[1]! ^ aesMul(a[2]!, 2) ^ aesMul(a[3]!, 3); s[12 + c] = aesMul(a[0]!, 3) ^ a[1]! ^ a[2]! ^ aesMul(a[3]!, 2) } }
+const aesInvMixColumns = (s: number[]) => { for (let c = 0; c < 4; c += 1) { const a = [s[c]!, s[4 + c]!, s[8 + c]!, s[12 + c]!]; s[c] = aesMul(a[0]!, 14) ^ aesMul(a[1]!, 11) ^ aesMul(a[2]!, 13) ^ aesMul(a[3]!, 9); s[4 + c] = aesMul(a[0]!, 9) ^ aesMul(a[1]!, 14) ^ aesMul(a[2]!, 11) ^ aesMul(a[3]!, 13); s[8 + c] = aesMul(a[0]!, 13) ^ aesMul(a[1]!, 9) ^ aesMul(a[2]!, 14) ^ aesMul(a[3]!, 11); s[12 + c] = aesMul(a[0]!, 11) ^ aesMul(a[1]!, 13) ^ aesMul(a[2]!, 9) ^ aesMul(a[3]!, 14) } }
+
+/** AES-128 encrypt one 16-byte block (FIPS-197) */
+export function aesEncryptBlock(block: readonly number[], w: number[][]): number[] {
+  const s = aesToState(block); aesAddRoundKey(s, w, 0)
+  for (let round = 1; round < 10; round += 1) { s.forEach((b, i) => { s[i] = AES_SBOX[b]! }); aesShiftRows(s); aesMixColumns(s); aesAddRoundKey(s, w, round) }
+  s.forEach((b, i) => { s[i] = AES_SBOX[b]! }); aesShiftRows(s); aesAddRoundKey(s, w, 10)
+  return aesFromState(s)
+}
+/** AES-128 decrypt one 16-byte block — the exact inverse of aesEncryptBlock */
+export function aesDecryptBlock(block: readonly number[], w: number[][]): number[] {
+  const s = aesToState(block); aesAddRoundKey(s, w, 10)
+  for (let round = 9; round >= 1; round -= 1) { aesInvShiftRows(s); s.forEach((b, i) => { s[i] = AES_INV_SBOX[b]! }); aesAddRoundKey(s, w, round); aesInvMixColumns(s) }
+  aesInvShiftRows(s); s.forEach((b, i) => { s[i] = AES_INV_SBOX[b]! }); aesAddRoundKey(s, w, 0)
+  return aesFromState(s)
+}
+/** AES-128 in CTR mode (ISO-IEC 10116) — a keystream cipher that is its OWN inverse: ctr(ctr(m)) = m */
+export function aesCtr(bytes: readonly number[], w: number[][], nonce: readonly number[]): number[] {
+  const out: number[] = []
+  for (let block = 0; block * 16 < bytes.length; block += 1) {
+    const counter = [...nonce.slice(0, 12), (block >>> 24) & 0xff, (block >>> 16) & 0xff, (block >>> 8) & 0xff, block & 0xff]
+    const ks = aesEncryptBlock(counter, w)
+    for (let i = 0; i < 16 && block * 16 + i < bytes.length; i += 1) out.push(bytes[block * 16 + i]! ^ ks[i]!)
+  }
+  return out
+}
+
+export function theAesBlockCipherComputesWithItsInverseIso18033(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theAesBlockCipherComputesWithItsInverseIso18033', matrix, () => {
+    const hex = (h: string) => h.match(/../g)!.map((x) => parseInt(x, 16))
+    const toHex = (b: readonly number[]) => b.map((x) => x.toString(16).padStart(2, '0')).join('')
+    // 1 — the FIPS-197 known-answer test: the canonical key/plaintext must give the canonical ciphertext
+    const key = hex('000102030405060708090a0b0c0d0e0f')
+    const pt = hex('00112233445566778899aabbccddeeff')
+    const w = aesKeyExpansion(key)
+    const ct = toHex(aesEncryptBlock(pt, w))
+    const katPasses = ct === '69c4e0d86a7b0430d8cdb78070b4c55a'
+    // 2 — the inverse: decrypt(ct) = pt, and over a deterministic sweep decrypt∘encrypt = identity
+    const inverseKat = toHex(aesDecryptBlock(hex(ct), w)) === toHex(pt)
+    const rng = prng('aes-inverse-sweep')
+    let roundTrips = 0
+    const trials = 32
+    for (let t = 0; t < trials; t += 1) {
+      const k = Array.from({ length: 16 }, () => Math.floor(rng() * 256))
+      const m = Array.from({ length: 16 }, () => Math.floor(rng() * 256))
+      const ww = aesKeyExpansion(k)
+      if (toHex(aesDecryptBlock(aesEncryptBlock(m, ww), ww)) === toHex(m)) roundTrips += 1
+    }
+    const inverseExact = inverseKat && roundTrips === trials
+    // 3 — the S-box is COMPUTED, not hardcoded: it is a bijection and SBOX[0]=0x63 by the affine
+    const sboxBijection = new Set(AES_SBOX).size === 256 && AES_SBOX[0] === AES_AFFINE && Array.from({ length: 256 }, (_, i) => AES_INV_SBOX[AES_SBOX[i]!] === i).every(Boolean)
+    // 4 — CTR mode (ISO-IEC 10116) is its own inverse
+    const nonce = Array.from({ length: 12 }, (_, i) => i)
+    const msg = Array.from({ length: 40 }, (_, i) => (i * 7) & 0xff)
+    const enc = aesCtr(msg, w, nonce)
+    const ctrIsInvolution = toHex(aesCtr(enc, w, nonce)) === toHex(msg) && toHex(enc) !== toHex(msg)
+    const facets = [
+      { facet: `FIPS-197 / ISO-IEC 18033-3 known-answer test PASSES: the canonical key+plaintext encrypt to the canonical ciphertext 69c4e0d8… — spec-correct, verified not asserted`, on: katPasses },
+      { facet: `the INVERSE is exact: decrypt(ciphertext)=plaintext, and over ${trials} random key+block trials decrypt∘encrypt = identity ${roundTrips}/${trials} — full coverage of the inverse`, on: inverseExact },
+      { facet: `the 256-byte S-box is COMPUTED (GF(2^8) multiplicative inverse + affine), not 256 hardcoded bytes: it is a bijection, its own inverse table round-trips 256/256, and SBOX[0]=0x63 — the no-hardcode law honoured`, on: sboxBijection },
+      { facet: `CTR mode (ISO-IEC 10116) turns the block cipher into a stream that is its OWN inverse — ctr(ctr(m))=m over ${msg.length} bytes — realtime both ways, the encryption inverted IS the decryption`, on: ctrIsInvolution },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      ciphertext: ct,
+      inverseRoundTrips: roundTrips,
+      trials,
+      facets,
+      statement: `AES-128 computes with its inverse (FIPS-197 / ISO-IEC 18033-3) — ${facets.filter((entry) => entry.on).length}/${facets.length}: from scratch with a COMPUTED S-box (GF(2^8) inverse + affine, no hardcoded table), the known-answer test passes to the canonical ciphertext, the inverse is exact (decrypt∘encrypt = identity ${roundTrips}/${trials}), and CTR mode (ISO-IEC 10116) is its own inverse. A KAT-verified reference in the same key as the from-scratch SHA-256 and Reed-Solomon.`,
+      boundary: `DOCUMENTED and refutable by re-running the KAT. This is a SPEC-CORRECT REFERENCE implementation (verified against the FIPS-197 vector), NOT a production cipher: the table-lookup S-box and GF multiply are NOT constant-time, so this code is vulnerable to timing/cache side-channels and must NOT be used for real secrets — real encryption stays on Web-Crypto AES-256-GCM (constant-time, hardware-accelerated), exactly as the crypto roadmap states. COVERAGE: AES-128 block encrypt + decrypt (the inverse) + CTR mode, KAT-verified; AES-192/256, authenticated modes (GCM/CCM — ISO-IEC 19772), and key management (ISO-IEC 11770) are named residuals, not silently claimed. HARMONY ≠ TRUTH: the KAT passing is real correctness; constant-time hardening is the residual that keeps this a reference, not a product.`,
+    }
+  })
+}
