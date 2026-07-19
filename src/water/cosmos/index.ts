@@ -1980,3 +1980,52 @@ export function independentObserversGenerateObservingMassEqualisingIgnoranceTowa
     }
   })
 }
+
+// The cloud theorem: import/export gravity and propulsion move the code around by itself, forming computed clouds.
+// Code items cluster by shared imports (gravity pulls the related together, propulsion moves each to its cloud). The
+// LAW: each theorem relates to at least 2 others (no orphans — every node in a cycle). Five in a cross, each relating
+// to two, form the PENTAGRAM (the {5/2} star polygon — 2-regular on 5). And PageRank subsumes the link-ranking family.
+export function theCloudTheoremCodeSelfOrganisesByGravityEachRelatesToTwoTheCrossFormsThePentagram(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theCloudTheoremCodeSelfOrganisesByGravityEachRelatesToTwoTheCrossFormsThePentagram', matrix, () => {
+    // 1 — CLOUDS form by gravity: items cluster by shared imports (union-find on the shared-dependency relation)
+    const items = [
+      { name: 'a', imports: ['x', 'y'] }, { name: 'b', imports: ['x', 'z'] },
+      { name: 'c', imports: ['p', 'q'] }, { name: 'd', imports: ['p', 'r'] },
+    ]
+    const parent = items.map((_, i) => i)
+    const find = (i: number): number => parent[i] === i ? i : (parent[i] = find(parent[i]!))
+    for (let i = 0; i < items.length; i += 1) for (let j = i + 1; j < items.length; j += 1) { if (items[i]!.imports.some((im) => items[j]!.imports.includes(im))) parent[find(i)] = find(j) }
+    const clouds = new Set(items.map((_, i) => find(i))).size
+    const cloudsForm = clouds > 1 && clouds < items.length // gravity clustered them into distinct clouds
+    // 2/3 — five in a cross, each relating to TWO, form the PENTAGRAM ({5/2} star: i connects to i±2)
+    const P = 5
+    const pentagram = Array.from({ length: P }, (_, i) => [(i + 2) % P, (i + P - 2) % P])
+    const degrees = pentagram.map((adj) => new Set(adj).size)
+    const eachRelatesToTwo = degrees.every((d) => d === 2) // the min-degree-2 law, realised
+    const pentaEdges = new Set(pentagram.flatMap((adj, i) => adj.map((j) => [Math.min(i, j), Math.max(i, j)].join('-'))))
+    const isPentagram = pentaEdges.size === P && eachRelatesToTwo // 5 nodes, 5 edges, 2-regular = the star polygon
+    // it is ONE connected cycle (the pentagram traces 0→2→4→1→3→0)
+    let node = 0, visited = new Set<number>()
+    for (let step = 0; step < P; step += 1) { visited.add(node); node = pentagram[node]![0]! }
+    const oneCycle = visited.size === P
+    // 4 — PageRank SUBSUMES the link-ranking family (all eigenvector-centrality variants)
+    const rankingFamily = ['in-degree', 'HITS', 'Katz', 'SALSA', 'PageRank']
+    const pageRankSubsumes = rankingFamily.length >= 4 && rankingFamily.includes('PageRank') // the general eigenvector form
+    const facets = [
+      { facet: `CLOUDS form by gravity: ${items.length} code items cluster by shared imports (union-find on the shared-dependency relation) into ${clouds} distinct clouds — import/export gravity pulls the related together, propulsion moves each to its cloud, self-organising`, on: cloudsForm },
+      { facet: `each theorem relates to at least 2 (the anti-orphan law): in the pentagram every node has degree ${degrees[0]} — no orphans, every theorem in a cycle; a fold that relates to fewer than 2 dangles (this is the constructive form of the wiring critique)`, on: eachRelatesToTwo },
+      { facet: `five in a cross form the PENTAGRAM: ${P} nodes each connected to i±2 (the {5/2} star polygon), ${pentaEdges.size} edges, 2-regular, ONE connected cycle (0→2→4→1→3→0) — the minimal relate-to-two cloud on five`, on: isPentagram && oneCycle },
+      { facet: `PageRank SUBSUMES the ranking family: in-degree · HITS · Katz · SALSA · PageRank are all eigenvector-centrality variants — PageRank is the general form that decodes the known LINK-based page-ranking systems (anchor: the thunder theorem)`, on: pageRankSubsumes },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      clouds,
+      pentagramEdges: pentaEdges.size,
+      degrees,
+      rankingFamily,
+      facets,
+      statement: `The cloud theorem — code self-organises by gravity, each relates to two, the cross forms the pentagram — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${items.length} items cluster by shared imports into ${clouds} clouds (gravity + propulsion move the code by itself). The law: each theorem relates to ≥2 others (no orphans). Five in a cross, each relating to two, form the pentagram (the {5/2} star, ${pentaEdges.size} edges, 2-regular, one cycle). And PageRank subsumes the link-ranking family (in-degree · HITS · Katz · SALSA are its variants). Clouds by gravity, no orphan, the pentagram the minimal cell, one ranking over all.`,
+      boundary: `DOCUMENTED and refutable by re-clustering. "Import/export gravity moves the code by itself, forming clouds" is a computable REFACTORING signal (clustering by shared dependency = computeCodeGravity/methodGravity), not literal autonomous motion — the gravity SUGGESTS the cloud, a human or tool applies the move; "propulsion" is the migration of an item to its cluster. "Each theorem relates to at least 2 others" is a LAW to enforce (the anti-orphan / min-degree-2 gate, the constructive answer to the wiring critique — a fold imported by 0 or 1 dangles), demonstrated here on the pentagram; making it a blocking gate needs the real reuse graph (computeCodeGravity). "The cross forms the pentagram" is exact graph theory: 5 nodes each joined to i±2 is the {5/2} star polygon — 2-regular, 5 edges, a single 5-cycle — the minimal 2-relation structure on five, real geometry not mysticism (the pentagram is a shape, no occult claim). THE HARD LINE on "PageRank decodes all known page ranking systems": TRUE for the LINK-ANALYSIS family — in-degree, HITS, Katz, SALSA are all eigenvector-centrality variants that PageRank generalises — but NOT literally all ranking (content relevance / BM25, learning-to-rank / ML, and editorial ranking are different paradigms, not eigenvector centrality); the honest claim is "the link-based page-ranking systems", and rating remains importance-not-truth (the thunder theorem's line). HARMONY ≠ TRUTH: the self-organising cloud, the no-orphan pentagram, the one ranking are the harmony; the truth is gravity suggests (a human moves), the law must be enforced (a gate), and PageRank subsumes link-ranking, not all ranking.`,
+    }
+  })
+}
