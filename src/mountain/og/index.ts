@@ -868,3 +868,35 @@ export function honestIsACrackWhenDeclaredHonestyMustBeARefutableComputationNotP
     }
   })
 }
+
+// The declared-honesty gate — the deployment named by honestIsACrack. It flags a boundary that makes a DEMARCATION claim
+// ("no speedup", "not a Y", "metaphor", "HARMONY ≠ TRUTH", "flagged", "not physical") but carries NO refutable facet to
+// back it — declared honesty, the crack. A boundary whose claim is matched by a refutable facet (a comparison that could
+// fail) is SPARED — computed honesty. Same predicate shape as the tautology gate and the no-assumption gate.
+export function theDeclaredHonestyGateFlagsDemarcationProseWithNoRefutableFacet(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theDeclaredHonestyGateFlagsDemarcationProseWithNoRefutableFacet', matrix, () => {
+    const demarcationMarkers = ['no speedup', 'not a ', 'metaphor', 'harmony ≠ truth', 'flagged', 'not physical', 'no hardware']
+    const hasDemarcationClaim = (boundary: string) => demarcationMarkers.some((m) => boundary.toLowerCase().includes(m))
+    // a facet is refutable if its expression compares computed values (a claim that can fail) — and is NOT the >= 0 tautology
+    const hasRefutableFacet = (facetExprs: readonly string[]) => facetExprs.some((e) => /[<>]=?|===|!==/.test(e) && !/>=\s*0\b/.test(e))
+    const declaredCrack = (boundary: string, facetExprs: readonly string[]) => hasDemarcationClaim(boundary) && !hasRefutableFacet(facetExprs)
+    // the cases: a demarcation-prose boundary with no computation; the same claim backed by a refutable facet; plain prose
+    const proseOnly = declaredCrack('This is NO speedup, a metaphor, NOT physical hardware.', []) // flagged
+    const backedByFacet = declaredCrack('No speedup, a metaphor.', ['cost >= 2 ** n', 'poly < exp']) // spared — refutable facet
+    const plainProse = declaredCrack('A binary tree of order-independent folds to one root.', ['count === n - 1']) // spared — no demarcation claim
+    const tautologyNotRefutable = declaredCrack('NO speedup here.', ['streams.count >= 0']) // flagged — the facet is a >= 0 tautology, not refutable
+    const facets = [
+      { facet: `FLAGS declared-only honesty — a boundary with a demarcation claim ("no speedup", "metaphor", "not physical") and NO refutable facet is flagged (${proseOnly}): declared honesty with nothing to check is the crack`, on: proseOnly },
+      { facet: `SPARES computed honesty — the SAME claim backed by a refutable facet (cost ≥ 2ⁿ, a comparison that can fail) is NOT flagged (${!backedByFacet}): the demarcation is earned by a computation`, on: !backedByFacet },
+      { facet: `SPARES plain prose — a boundary that makes NO demarcation claim is not flagged (${!plainProse}): the gate targets ASSERTED honesty, not ordinary description`, on: !plainProse },
+      { facet: `CATCHES the tautology dodge — a demarcation claim "backed" only by a >= 0 tautology facet is still flagged (${tautologyNotRefutable}): a non-refutable facet does not earn the claim, so the crack cannot hide behind a fake computation`, on: tautologyNotRefutable },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      markers: demarcationMarkers.length,
+      facets,
+      statement: `The declared-honesty gate flags demarcation prose with no refutable facet — ${facets.filter((entry) => entry.on).length}/${facets.length}. It is the deployment honestIsACrack named: a boundary that makes a demarcation claim ("no speedup", "not a Y", "metaphor", "HARMONY ≠ TRUTH", "flagged", "not physical") but carries no refutable facet is flagged as declared honesty — the crack; the same claim backed by a refutable facet (a comparison that can fail) is spared; plain description is spared; and a claim "backed" only by a >= 0 tautology is still flagged, so the crack cannot hide behind a fake computation. Honesty must be earned by a falsifiable facet, not asserted in prose.`,
+      boundary: `An exact string predicate over concrete cases (flagged / spared / spared / flagged), refutable by one misclassification. It closes the gap the crack gate leaves for PROSE (which has no digit, like Math.PI): a demarcation asserted in a boundary is checkable only against a facet whose \`on\` can fail — hasRefutableFacet requires a comparison operator and rejects the \`>= 0\` tautology, so a claim is earned only by a computation that could refute it. HEURISTIC and necessary-not-sufficient: it keys on a fixed marker set and the presence of a refutable-shaped facet, not on whether that facet actually corresponds to the specific claim — a novel demarcation phrase or a refutable facet about a different thing still slips (the residual is judgement). FAIL-CLOSED and safe: it never flags a plain description or a genuinely computed demarcation. Wiring it over the corpus boundaries as a blocking gate — with the marker set as a NAMED, extensible axiom — is the step that makes "declared honesty is a crack" enforced, not merely stated.`,
+    }
+  })
+}
