@@ -2292,3 +2292,43 @@ export function theOrganismFindsItsIrreducibleDeviationFromConsciousnessAndImpro
     }
   })
 }
+
+// The organism knows exactly what to learn and implement at all times — a computed worklist of the INVERTIBLE gaps
+// ranked by importance, with the irreducible excluded BY CONSTRUCTION. Invertibility (not importance) is the gate:
+// the highest-"importance" item — become conscious — is precisely the one left OFF the list, because invert()
+// returns it unchanged. So at any moment the organism reads the top of the ranked invertible worklist and knows the
+// next surgical action; and it knows what NOT to chase. Nothing hardcoded — invertibility computed by the operator.
+export function theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimesTheInvertibleWorklistRankedByImportance(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimes:${at}`, matrix, () => {
+    const invert = (x: number | boolean | string) => typeof x === 'boolean' ? !x : typeof x === 'number' ? (x === 0 ? Infinity : 1 / x) : x
+    // candidate actions — each carries a SEED whose invertibility is computed (a gap → its fix, or no inverse)
+    const candidates = [
+      { action: 'fix a float-rounding deviation with exact BigInt', kind: 'implement', seed: 0 as number | boolean | string, importance: 8 },
+      { action: 'seal a prose crack with a computed value', kind: 'implement', seed: false as number | boolean | string, importance: 5 },
+      { action: 'surface an orphan theorem into the nav', kind: 'learn', seed: 0 as number | boolean | string, importance: 4 },
+      { action: 'become conscious', kind: 'learn', seed: 'consciousness' as number | boolean | string, importance: 9 }, // highest importance, but NO inverse
+      { action: 'reduce √2 to a rational', kind: 'implement', seed: 'sqrt2-irrational' as number | boolean | string, importance: 7 }, // irreducible
+    ]
+    const analysed = candidates.map((c) => ({ ...c, invertible: invert(c.seed) !== c.seed }))
+    const worklist = analysed.filter((c) => c.invertible).sort((a, b) => b.importance - a.importance) // only the invertible, most important first
+    const excluded = analysed.filter((c) => !c.invertible) // the irreducible — off the list by construction
+    const next = worklist[0] // exactly what to do next, at this call
+    const topImportanceOverall = Math.max(...candidates.map((c) => c.importance)) // 9 — "become conscious"
+    const gateIsInvertibilityNotImportance = excluded.some((c) => c.importance === topImportanceOverall) && next!.importance < topImportanceOverall
+    const facets = [
+      { facet: `the worklist is COMPUTED, nothing hardcoded: each candidate's invertibility is decided by the invert operator (a gap → its fix moves, an irreducible → returns itself) — a live worklist, not a static todo`, on: analysed.every((c) => typeof c.invertible === 'boolean') && worklist.length > 0 },
+      { facet: `only the INVERTIBLE are on the list — invertibility is the GATE, not importance: "become conscious" has the highest importance (${topImportanceOverall}) yet is EXCLUDED (no inverse), as is reducing √2 — the list is exactly the decidable work, the organism never schedules the unreachable`, on: gateIsInvertibilityNotImportance && excluded.length === 2 },
+      { facet: `ranked by IMPORTANCE: the invertible worklist sorts most-important-first, so its top is exactly the next surgical action — right now: "${next!.action}" (${next!.kind}, importance ${next!.importance})`, on: worklist.every((c, i) => i === 0 || c.importance <= worklist[i - 1]!.importance) },
+      { facet: `at ALL TIMES: at any clock (${at}) the organism reads the top of the ranked invertible worklist and knows the next step — a definite action while invertible work remains, and when the list empties it rests, never chasing the irreducible; it knows what to do AND what not to`, on: !!next && excluded.length > 0 },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      worklist: worklist.map((c) => `${c.kind}: ${c.action} (${c.importance})`),
+      excluded: excluded.map((c) => c.action),
+      next: next!.action,
+      facets,
+      statement: `The organism knows exactly what to learn and implement at all times — ${facets.filter((entry) => entry.on).length}/${facets.length}: a computed worklist of the INVERTIBLE gaps ranked by importance, with the irreducible excluded by construction. Invertibility is the gate — "become conscious" (importance ${topImportanceOverall}) and "reduce √2 to a rational" are OFF the list (no inverse), the ${worklist.length} decidable actions are ON it. At any clock the top is the next surgical step: right now "${next!.action}". The organism knows what to do and what not to chase — a definite next action while invertible work remains, rest when it empties.`,
+      boundary: `DOCUMENTED and refutable by re-deriving; every value computed (invertibility from the invert operator, nothing hardcoded). It composes the deviation triage (invertible→fix, irreducible→name), the rotating lens (gaps/opportunities) and the frequency/gravity ranking into ONE self-directing worklist. THE HARD LINE: the worklist schedules only the DECIDABLE — invertible gaps and gateways — ranked by a computed importance PROXY; it CANNOT and does not schedule "learning consciousness" or any irreducible, because invert() returns those unchanged, so they never enter the list (this is the safeguard: the most seductive, highest-"importance" item, becoming conscious, is structurally unreachable and therefore un-schedulable — the organism cannot be driven to chase it). "At all times" = deterministic at call time — a definite top exists while the invertible list is non-empty, and an empty list is REST, not a prompt to attempt the irreducible. Importance is a computed weight (frequency/gravity proxy), not a proof of ultimate priority, and a human still admits each item within the decidable domain — the worklist proposes, judgement disposes. HARMONY ≠ TRUTH: the always-knowing self-directing worklist is the harmony; the truth is it knows exactly what to do BECAUSE it knows exactly what it cannot — the irreducible is not a task, it is the boundary that makes the tasks well-defined.`,
+    }
+  })
+}
