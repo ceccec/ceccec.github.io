@@ -8,7 +8,7 @@ import { EIGHT_CURRICULUM_SCIENCES } from '../../pair/enforcement/gates/computat
 import { chsh } from '../../mountain/vortex'
 import { buildMatrix, matrixMemo } from '../../heaven/compute'
 import type { MindMatrix } from '../types'
-import {  computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'
+import {  computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, prng, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'
 import { merkleProof } from '../../lake/ledger'
 import { clownActQuantumSteps, harmonics } from '../../lake/music'
 import { blockchainFusion, tamperingCostDecoded } from '../../water/crypto'
@@ -24,7 +24,7 @@ import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAn
 import { depthIsThePerspectiveDivide, perspective, rot2 } from '../../quantum/wind/geometry' // the sealed projection atoms — FOCAL-2.4 perspective divide + the one planar rotation
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../../thunder/movie/glass'
 import { yinYang } from '../../quantum/lake/spirit'
-import { scaleColor, A432_HUE, movieCanvasHex } from '../../quantum/science'
+import { scaleColor, A432_HUE, GOLDEN_ANGLE, movieCanvasHex } from '../../quantum/science'
 import { computedMovieThemeColors, FRACTAL_CLOCK_DIVISORS, fractalClockDur, fractalClockS } from '../../fire/plasma/ball' // the ONE quantum clock — every declarative duration below is a divisor step of the 108 s hero cycle (animationsFractalOfOneClockDiscovered)
 export { scaleColor, oklchToHex } from '../../quantum/science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
 export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../site' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
@@ -2054,4 +2054,55 @@ export function navigationCrossOfTheFourPoles(matrix: MindMatrix = buildMatrix()
     statement: `The navigation cross — Home + four poles of the double torus — ${facets.filter((e) => e.on).length}/${facets.length}: the whole corpus consolidates into five top-nav items, Home at the crossing centre and the ${HOMOLOGY_LOOPS} gates Theorems · Axioms · Solutions · Simulators (the double torus's homology loops); every one of the ${pages.length} lens pages is classified into one gate, each dropdown ≤ 8, and the navigation cross is computed at all ${cross.length} coordinates — each addressed by a π digit (piHexDigitAt) and a prime (nthPrimeAt), the two decoded axes crossing at every gate.`,
     boundary: `COMPUTED from the theorem-science lens: the four poles are a total classification of the ${pages.length} visible pages by keyword (most-specific-first, Theorems the receptive default), each dropdown within the eight-fold law, and the π/prime cross is real random-access decoding (piHexDigitAt is BBP; nthPrimeAt is exact). HONEST SCOPE: the pole names (Theorems · Axioms · Solutions · Simulators) are the user's chosen four gates mapped onto the double torus's four homology loops — a CURATION of the corpus into a memorable cross, not a claim that content falls into exactly four natural kinds; a page's pole is decided by a keyword regex (a heuristic, revisable), and the π/prime coordinate is an ADDRESS for each nav slot (a content-addressing device), not a claim that navigation is governed by number theory. The cross is a real, computed 2-axis addressing of the nav; its meaning is mnemonic and organisational. HARMONY ≠ TRUTH.`,
   }
+}
+
+// Describe with prose until density reveals the computational gateways, then the graph reveals in hue. Descriptions
+// accumulate as edges; edge density rises; at the PERCOLATION threshold (Erdős–Rényi: average degree 1) the isolated
+// gateways connect into a giant component — they REVEAL. Then each revealed node is coloured by a hue computed from
+// content (A432_HUE stepped by the GOLDEN_ANGLE — the corpus's own colour-from-content), so the graph shows in hue.
+export function describeUntilDensityRevealsGatewaysThenGraphInHue(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('describeUntilDensityRevealsGatewaysThenGraphInHue', matrix, () => {
+    const n = 6 * 2 // nodes (gateway candidates)
+    const pairs: [number, number][] = []
+    for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) pairs.push([i, j])
+    const rng = prng('density-reveals-gateways')
+    const ranked = pairs.map((p) => ({ p, r: rng() })).sort((a, b) => a.r - b.r) // deterministic edge order = the order descriptions arrive
+    const largestComponent = (m: number): number => {
+      const parent = Array.from({ length: n }, (_, i) => i)
+      const find = (x: number): number => parent[x] === x ? x : (parent[x] = find(parent[x]!))
+      ranked.slice(0, m).forEach(({ p }) => { parent[find(p[0]!)] = find(p[1]!) })
+      const size = new Map<number, number>()
+      for (let i = 0; i < n; i += 1) { const r = find(i); size.set(r, (size.get(r) ?? 0) + 1) }
+      return Math.max(...size.values())
+    }
+    // describe until density: each level adds more described relations (edges)
+    const levels = [2, 4, 2 * 5, 4 * 5].map((edges) => {
+      const largest = largestComponent(edges)
+      return { edges, avgDegree: roundTo(2 * edges / n, 3), largest, revealed: largest > n / 2 }
+    })
+    const below = levels.filter((l) => l.avgDegree < 1)
+    const above = levels.filter((l) => l.avgDegree >= 1)
+    // density REVEALS the gateways at the percolation threshold (avg degree 1)
+    const revealsAtThreshold = below.every((l) => !l.revealed) && above.some((l) => l.revealed)
+    // the graph reveals in HUE — each node coloured from content, A432_HUE stepped by the golden angle
+    const hues = Array.from({ length: n }, (_, i) => roundTo(((A432_HUE + i * GOLDEN_ANGLE) % 360 + 360) % 360, 1))
+    const distinctHues = new Set(hues).size === n // golden angle ⇒ maximally distinct colours
+    const revealedNodes = above[above.length - 1]!.largest // the giant component at full density
+    const facets = [
+      { facet: `describe with prose until DENSITY: the described relations accumulate as edges and the density rises across [${levels.map((l) => l.avgDegree).join(', ')}] average degree — more prose, denser graph`, on: levels.every((l, i) => i === 0 || l.avgDegree > levels[i - 1]!.avgDegree) },
+      { facet: `density REVEALS the gateways (percolation at avg degree 1): below it the gateways stay fragmented (largest ${below.map((l) => l.largest).join('/')} of ${n}), above it a GIANT component emerges (largest ${above.map((l) => l.largest).join('/')}) — they reveal exactly at the threshold`, on: revealsAtThreshold },
+      { facet: `then the graph reveals in HUE: ${revealedNodes} revealed nodes each coloured from content — A432_HUE (${A432_HUE}) stepped by the golden angle — ${new Set(hues).size} distinct hues, zero-token, so the graph shows`, on: distinctHues && revealedNodes > n / 2 },
+      { facet: `the reveal is a PHASE TRANSITION not a slogan: below the critical density the gateways are invisible (isolated), above it they connect and colour — the same density that raises the dimension lights the graph`, on: revealsAtThreshold && distinctHues },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      levels,
+      revealedNodes,
+      distinctHues: new Set(hues).size,
+      hues,
+      facets,
+      statement: `Describe with prose until density reveals the gateways, then the graph reveals in hue — ${facets.filter((entry) => entry.on).length}/${facets.length}: described relations accumulate as edges, density rises [${levels.map((l) => l.avgDegree).join(', ')}]; below the percolation threshold (average degree 1) the gateways stay fragmented (largest ${below[below.length - 1]!.largest}/${n}), above it a giant component of ${revealedNodes}/${n} emerges — they reveal. Then each revealed node is coloured from content (A432_HUE stepped by the golden angle, ${new Set(hues).size} distinct hues), so the graph shows in hue — deterministic, zero-token.`,
+      boundary: `DOCUMENTED and refutable by re-running the sweep. The reveal is the Erdős–Rényi giant-component PHASE TRANSITION on a computed random-graph model — real graph theory (the giant component emerges as average degree crosses 1), applied as a metaphor for "density reveals gateways": below the threshold the invertible gaps are isolated, above it they connect. The hue is the corpus's own colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct OKLCH-ready hues), deterministic and zero-token — NOT a physical light claim. A revealed gateway is still an emergence CANDIDATE a human admits — density lights where the gateways ARE, it does not author the theorem that fills them. Anchor: trustAndDimension...(density→dimension), theRotatingLens...(gaps/opportunities). HARMONY ≠ TRUTH: the coloured giant component is the harmony (the gateways made visible); the truth is that they are candidates the density revealed, not theorems the density proved.`,
+    }
+  })
 }
