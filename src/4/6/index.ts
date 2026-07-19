@@ -1519,6 +1519,7 @@ export function axiomsBecomeTheorems() {
   }
 }
 
+
 /** THE THEOREM OF THEOREMS (user realization, 2026-07-16: "all will become theorem of theorems —
  * no hardcoded anything is needed anymore"). The fixed point of the whole arc: values carry
  * provenance (crack ledger), assumptions carry derivations or independence (axiom ledger), proofs
