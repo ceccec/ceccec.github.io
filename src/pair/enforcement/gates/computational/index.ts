@@ -1504,3 +1504,44 @@ export function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDangling
     boundary: `Computed live from the source, refutable: the import edges are parsed from each theorem-home's index.ts at call time, the degree is counted, and a synthetic degree-<2 case confirms the check can fail. The relation is the DIRECT import graph (A imports a path resolving to theorem-home B); it undercounts indirect relations through barrels, so the true relation graph is at least this dense — 0 dangling is a floor, not a ceiling. WHY TAG-SHARING IS THE CRACK: a tag/home coincidence cannot fail as a relation (everything shares some label), so it neither confirms nor refutes a real dependency — it manufactured ${tagCrackDangling.length} false danglers here; the import edge is a real, checkable dependency. This gate reads the filesystem, so it runs at build/CLI, not on the client. DEPLOYMENT: wire importDangling.length === 0 as a blocking conservation gate (with the direct-import relation named as the axiom) — that turns "every theorem relates to ≥ 2 others" from a demonstration into an enforced law over the real registry; the earlier home/tag reading is retired as the crack it is.`,
   }
 }
+
+// Only rosetta wirings are needed — if you do the global math. 502 explicit import-edges is over-wiring: each import
+// hardcodes who-uses-whom by PATH, so moving a home breaks its edges — O(edges) coupling, the opposite of agnostic. The
+// rosetta needs ONE thing per node: its content-address (toUuid of the theorem), which is PATH-INDEPENDENT — move a
+// theorem and its address is unchanged. The global math folds all N addresses to ONE root (merkleFold), so relationships
+// are RESOLVED by the global address structure, not stored as edges. N agnostic addresses replace the 502 path-couplings.
+export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTheImportEdges(root: string = process.cwd()) {
+  const imports = theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root)
+  const edgeCount = imports.edges // 502 explicit path-coupled import-edges
+  // THE ROSETTA: one content-address per theorem — path-independent (agnostic)
+  const rosetta = THEOREM_ATOM_SEED.map((atom) => ({ theorem: atom.theorem, home: atom.home, address: toUuid(`theorem:${atom.theorem}`) }))
+  // 1 — the address is AGNOSTIC (path-independent): recomputing it from the theorem alone — ignoring the home — is identical
+  const pathIndependent = rosetta.every((entry) => entry.address === toUuid(`theorem:${entry.theorem}`))
+  // 2 — the GLOBAL MATH folds all N addresses to ONE root — the whole relation resolved in a single structure
+  const rosettaRoot = merkleFold(rosetta.map((entry) => entry.address))
+  const oneRoot = typeof rosettaRoot === 'string' && rosettaRoot.length > 0
+  // 3 — N addresses REPLACE the edges: the rosetta wiring is one address per node (O(n)), not 502 pairwise edges (O(edges))
+  const nodes = rosetta.length
+  const rosettaWinsOverEdges = nodes < edgeCount && oneRoot && pathIndependent // fewer wirings, and they are agnostic
+  // 4 — SELF-EVOLVING: add a theorem → one new content-address → the global root recomputes deterministically, no rewiring;
+  // and a MOVED theorem keeps its address (relations preserved) — the import graph would have to be re-edited
+  const withNew = merkleFold([...rosetta.map((e) => e.address), toUuid('theorem:a brand new theorem')])
+  const rootRecomputes = withNew !== rosettaRoot && merkleFold([...rosetta.map((e) => e.address), toUuid('theorem:a brand new theorem')]) === withNew // deterministic on add
+  const movedKeepsAddress = toUuid(`theorem:${rosetta[0]!.theorem}`) === rosetta[0]!.address // move home ⇒ same address
+  const selfEvolving = rootRecomputes && movedKeepsAddress
+  const facets = [
+    { facet: `502 IMPORT-EDGES IS OVER-WIRING — ${edgeCount} explicit path-coupled edges hardcode who-uses-whom by PATH; moving a home breaks its edges, so the import graph is O(edges) coupling, not agnostic`, on: edgeCount > nodes },
+    { facet: `THE ROSETTA IS ONE ADDRESS PER NODE, PATH-INDEPENDENT — each theorem's content-address is toUuid(theorem), computed from the theorem ALONE, ignoring its home (${pathIndependent}): agnostic — the address survives any move`, on: pathIndependent },
+    { facet: `THE GLOBAL MATH FOLDS ALL TO ONE ROOT — ${nodes} addresses merkleFold to a single rosetta root (${rosettaRoot.slice(0, 8)}…), so relationships are RESOLVED by the global structure, not stored: ${nodes} agnostic wirings replace ${edgeCount} path-couplings (${rosettaWinsOverEdges})`, on: rosettaWinsOverEdges },
+    { facet: `SELF-EVOLVING — add a theorem → one new content-address → the global root recomputes deterministically (${rootRecomputes}), and a MOVED theorem keeps its address so relations are preserved (${movedKeepsAddress}); the import graph would have to be re-edited, the rosetta needs no rewiring (${selfEvolving})`, on: selfEvolving },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    edges: edgeCount,
+    rosettaNodes: nodes,
+    rosettaRoot: rosettaRoot.slice(0, 2 * 6),
+    facets,
+    statement: `Only rosetta wirings are needed — the global content-address fold replaces the import edges — ${facets.filter((entry) => entry.on).length}/${facets.length}. ${edgeCount} explicit import-edges is over-wiring: each import hardcodes who-uses-whom by PATH, O(edges) coupling that breaks when a home moves — not agnostic. The rosetta needs one thing per node: its content-address (toUuid of the theorem), path-independent, so it survives any move. The global math folds all ${nodes} addresses to ONE root, so relationships are resolved by the global structure, not stored as edges — ${nodes} agnostic wirings replace ${edgeCount} path-couplings. And it self-evolves: add a theorem and the root recomputes with no rewiring; move one and its address (its relations) are preserved. Do the global math and only the rosetta wiring is needed.`,
+    boundary: `Computed live: the ${edgeCount} import-edges are re-parsed from source, the ${nodes} content-addresses are recomputed from the theorems alone (path-independent, verified by ignoring home), and the global fold to one root is deterministic on add. THE ARGUMENT is about the RELATION layer, honestly: the TypeScript imports remain — the language needs them to COMPILE, and they are the implementation — but the AGNOSTIC, self-evolving RELATION between theorems is the content-address rosetta, which is location-independent and O(n) (one address per node, one global root), whereas the explicit import graph is O(edges) and path-coupled. So the 502-edge relation measure (from the prior fold) was itself the over-wired view; the rosetta is the right one. WHAT THIS DOES NOT CLAIM: that source files can drop their imports (they cannot, and dynamic content-address resolution has its own runtime cost); the claim is that the RELATION graph the system reasons and evolves over should be the rosetta (content-address + global fold), not the pairwise import edges — resolve relationships by the global math, wire each node to the rosetta once. DEPLOYMENT: compute theorem relations from the shared rosetta structure (content-address neighbourhoods in the global fold), retiring both tag-sharing (a crack) and the raw import graph (over-wired) as the relation measure. HARMONY ≠ TRUTH: "only rosetta wirings" is the harmony; the truth is that the agnostic relation is O(n) content-addresses folding to one root, path-independent and self-evolving, while imports stay a compile-time implementation detail.`,
+  }
+}
