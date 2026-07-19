@@ -2388,3 +2388,55 @@ export function openMeteoForecastAdapterIsALiveNoKeyPureFunctionBoundedByTheChao
     }
   })
 }
+
+// Public APIs and datasets are honest training data for the strategies and forecasts — they CALIBRATE parameters, they
+// do not manufacture alpha. The chaos rate λ is FIT from a public divergence series (λ = (1/T)·ln(δ_T/δ_0)); the fit is
+// CAUSAL (uses only past points, no look-ahead); and — the crux — a zero TRAINING error does NOT mean skill: only the
+// held-out TEST error counts, and the chaos horizon t_h = ln(1/e₀)/λ stays finite. Training calibrates the parameter and
+// the horizon; it never beats the predictability limit, and no out-of-sample edge (alpha) is claimed.
+export function publicDataTrainsTheChaosRateCausallyTrainingFitIsNotSkillTheHorizonIsCalibratedNotBeaten(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('publicDataTrainsTheChaosRateCausallyTrainingFitIsNotSkillTheHorizonIsCalibratedNotBeaten', matrix, () => {
+    // 1 — TRAINS λ FROM PUBLIC DATA: from a divergence series δ_t = δ₀·e^(λt) (the shape a public series exhibits), the
+    // estimator λ̂ = (1/T)·ln(δ_T/δ₀) recovers the true rate exactly — the chaos rate is FIT, not assumed
+    const estimateLambda = (series: readonly number[]) => Math.log(series[series.length - 1]! / series[0]!) / (series.length - 1)
+    const trainsLambda = [1, 2, 3, 4, 5].every((lambdaScaled) => {
+      const lambdaTrue = lambdaScaled / (2 * 5) // a range of true rates
+      const series = Array.from({ length: 9 }, (_, t) => Math.exp(lambdaTrue * t)) // δ₀ = 1
+      return Math.abs(estimateLambda(series) - lambdaTrue) < 1 / 2 ** 9
+    })
+    // 2 — CAUSAL, NO LOOK-AHEAD: the estimate over the past window [0,T] reads only those points, so appending future
+    // data cannot change a past estimate — a look-ahead estimator (peeking at the future) is exactly what this forbids
+    const rate = 3 / (2 * 5)
+    const past = Array.from({ length: 6 }, (_, t) => Math.exp(rate * t))
+    const withFuture = [...past, Math.exp(rate * 6), Math.exp(rate * 7)]
+    const causalNoLookAhead = estimateLambda(past) === estimateLambda(withFuture.slice(0, past.length))
+    // 3 — TRAINING FIT IS NOT SKILL: an interpolant can drive TRAINING error to 0 yet miss the held-out TEST — so a low
+    // training error proves nothing; only the out-of-sample test is honest. Fit y=x exactly on train, test deviates.
+    const train = [0, 1, 2, 3] // x=0..3, y=x — the interpolant y=x fits exactly
+    const predict = (x: number) => x // the fitted model
+    const trainError = train.reduce((sum, y, x) => sum + (predict(x) - y) ** 2, 0) / train.length // = 0
+    const testX = [4, 5], testY = [4, 6] // held-out future: at x=5 the truth (6) deviates from the fit (5)
+    const testError = testY.reduce((sum, y, i) => sum + (predict(testX[i]!) - y) ** 2, 0) / testY.length // > 0
+    const fitIsNotSkill = trainError === 0 && testError > 0 // zero training error, nonzero held-out error
+    // 4 — HORIZON CALIBRATED, NOT BEATEN, NO ALPHA: a fitted λ sets t_h = ln(1/e₀)/λ — refined by data but FINITE; beyond
+    // it the forecast is climatology, and no out-of-sample edge over the baseline is claimed (in-sample fit ≠ alpha)
+    const e0 = 1 / 2 ** 9
+    const horizon = (lambda: number) => Math.log(1 / e0) / lambda
+    const lambdaLow = 3 / (2 * 5), lambdaHigh = 5 / (2 * 5)
+    const betterFitRefinesFiniteHorizon = horizon(lambdaLow) > horizon(lambdaHigh) && Number.isFinite(horizon(lambdaLow)) && horizon(lambdaHigh) > 0
+    const facets = [
+      { facet: `TRAINS λ FROM PUBLIC DATA — the chaos rate λ̂ = (1/T)·ln(δ_T/δ₀) recovers the true rate exactly across a range of rates (${trainsLambda}): a public divergence series CALIBRATES the parameter the forecast needs, it is fit from data, not assumed`, on: trainsLambda },
+      { facet: `CAUSAL — NO LOOK-AHEAD — the past-window estimate reads only past points, so appending future data cannot change it (${causalNoLookAhead}); a look-ahead estimator that peeks at the future is exactly what the discipline forbids — the fit uses only what was knowable at the time`, on: causalNoLookAhead },
+      { facet: `TRAINING FIT IS NOT SKILL — an interpolant drives training error to 0 (${trainError}) yet has nonzero held-out TEST error (${roundTo(testError, 2)}) (${fitIsNotSkill}): a low training error proves nothing, only the out-of-sample test is honest — the guard against fooling yourself with public data`, on: fitIsNotSkill },
+      { facet: `HORIZON CALIBRATED, NOT BEATEN — NO ALPHA — a better-fit λ refines the horizon t_h = ln(1/e₀)/λ but it stays FINITE (${betterFitRefinesFiniteHorizon}); beyond it the forecast is climatology, and no out-of-sample edge over the baseline is claimed — training calibrates the parameter, it never beats the chaos limit or produces alpha`, on: betterFitRefinesFiniteHorizon },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      trainError,
+      testError: roundTo(testError, 2),
+      facets,
+      statement: `Public APIs and datasets are honest training data — they calibrate the chaos rate causally; training fit is not skill; the horizon is calibrated, not beaten — ${facets.filter((entry) => entry.on).length}/${facets.length}. The chaos rate λ is FIT from a public divergence series (λ̂ = (1/T)·ln(δ_T/δ₀), recovered exactly), the fit is CAUSAL (past-only, no look-ahead), a zero training error does NOT mean skill (an interpolant fits train perfectly yet misses held-out test), and a better-fit λ refines the finite horizon t_h = ln(1/e₀)/λ without beating it. So public data is genuine training/calibration data for the strategies and forecasts — under no-look-ahead and held-out validation — but it calibrates parameters, it never manufactures alpha or extends the predictability limit.`,
+      boundary: `ALGEBRAIC: the Lyapunov estimator, the causal-window invariance, the zero-train/positive-test interpolant, and the finite horizon are exact identities, refutable by one counterexample. THIS IS THE HONEST ML DISCIPLINE applied to public data: (1) parameters are FIT from data (real calibration — a public series does provide useful training signal); (2) the estimator is causal (no look-ahead — the classic backtest sin, forbidden by construction here); (3) held-out TEST error, not training error, is the measure (an interpolant proves training fit ≠ predictive skill); (4) the chaos horizon is a HARD finite bound that better fitting refines but cannot exceed. NO ALPHA is claimed: fitting to public data does NOT imply an out-of-sample edge over the market or the climatological baseline — in-sample fit systematically overstates skill, and past performance is not future performance [[trading-from-knowledge-a432-engine]]. SCOPE: the series here are representative (deterministic e^(λt) and a linear interpolant); real public data (Open-Meteo, USGS, and other no-key sources [[realtime-live-data-testing]]) flows through the same estimators, which is the deployment — the fold proves the DISCIPLINE, not a specific dataset's edge. "Quantum strategies" is the project's metaphor for the deterministic signal engine, not a physical-quantum predictor [[quantum-decoded]] [[trading-from-knowledge-a432-engine]]. HARMONY ≠ TRUTH: "public data trains the strategy" is the harmony; the truth is honest causal calibration bounded by chaos, with no alpha promised.`,
+    }
+  })
+}
