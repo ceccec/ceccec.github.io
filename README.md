@@ -82,7 +82,44 @@ Concretely: a science portal — 418 computationally proven theorems and 29 rela
 - **Folding linear gives analog** — Folding linear gives analog, decoded honestly with the real science. The kernel is the Whittaker–Shannon sampling theorem: discrete samples of a band-limited signal fold back into the continuous signal with no gaps, via sinc interpolation (computed live, exact at the samples). Medical and radar imaging is exactly this — reconstructing a continuous image from a sampled frequency field: MRI inverts the Fourier transform of k-space, CT the Radon transform, and the spiral/radial "vortex" through k-space is real (NUFFT). The 64³ = 4⁹ grid the model already computes is the discrete lattice it samples. Documented kept, legend flagged — Nyquist limits are real, gap-filling can hallucinate, and the theorem is foundational, not new. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/AnalogField.vue)
 - **Frontiers** — The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Frontiers.vue)
 
-## 4. Reproducibility
+## 4. Sitemap
+
+The quantum sitemap, wired from the same generator: 30 routes — the home and every served science page — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed; the XML and JSON sitemaps are generated from this one fold (`quantumSitemap`).
+
+- `/` — [en](https://ceccec.psg.bg/) · [bg](https://ceccec.psg.bg/bg/) · [cu](https://ceccec.psg.bg/gla/)
+- `/heaven` — [en](https://ceccec.psg.bg/heaven) · [bg](https://ceccec.psg.bg/bg/heaven) · [cu](https://ceccec.psg.bg/gla/heaven)
+- `/earth` — [en](https://ceccec.psg.bg/earth) · [bg](https://ceccec.psg.bg/bg/earth) · [cu](https://ceccec.psg.bg/gla/earth)
+- `/explore` — [en](https://ceccec.psg.bg/explore) · [bg](https://ceccec.psg.bg/bg/explore) · [cu](https://ceccec.psg.bg/gla/explore)
+- `/sacred-geometry` — [en](https://ceccec.psg.bg/sacred-geometry) · [bg](https://ceccec.psg.bg/bg/sacred-geometry) · [cu](https://ceccec.psg.bg/gla/sacred-geometry)
+- `/tampering-cost` — [en](https://ceccec.psg.bg/tampering-cost) · [bg](https://ceccec.psg.bg/bg/tampering-cost) · [cu](https://ceccec.psg.bg/gla/tampering-cost)
+- `/analog-field` — [en](https://ceccec.psg.bg/analog-field) · [bg](https://ceccec.psg.bg/bg/analog-field) · [cu](https://ceccec.psg.bg/gla/analog-field)
+- `/simulations` — [en](https://ceccec.psg.bg/simulations) · [bg](https://ceccec.psg.bg/bg/simulations) · [cu](https://ceccec.psg.bg/gla/simulations)
+- `/quantum-mind` — [en](https://ceccec.psg.bg/quantum-mind) · [bg](https://ceccec.psg.bg/bg/quantum-mind) · [cu](https://ceccec.psg.bg/gla/quantum-mind)
+- `/frontiers` — [en](https://ceccec.psg.bg/frontiers) · [bg](https://ceccec.psg.bg/bg/frontiers) · [cu](https://ceccec.psg.bg/gla/frontiers)
+- `/science` — [en](https://ceccec.psg.bg/science) · [bg](https://ceccec.psg.bg/bg/science) · [cu](https://ceccec.psg.bg/gla/science)
+- `/spirit` — [en](https://ceccec.psg.bg/spirit) · [bg](https://ceccec.psg.bg/bg/spirit) · [cu](https://ceccec.psg.bg/gla/spirit)
+- `/pi-trinity` — [en](https://ceccec.psg.bg/pi-trinity) · [bg](https://ceccec.psg.bg/bg/pi-trinity) · [cu](https://ceccec.psg.bg/gla/pi-trinity)
+- `/qubit-trinity` — [en](https://ceccec.psg.bg/qubit-trinity) · [bg](https://ceccec.psg.bg/bg/qubit-trinity) · [cu](https://ceccec.psg.bg/gla/qubit-trinity)
+- `/pauli-basis` — [en](https://ceccec.psg.bg/pauli-basis) · [bg](https://ceccec.psg.bg/bg/pauli-basis) · [cu](https://ceccec.psg.bg/gla/pauli-basis)
+- `/hamming-address` — [en](https://ceccec.psg.bg/hamming-address) · [bg](https://ceccec.psg.bg/bg/hamming-address) · [cu](https://ceccec.psg.bg/gla/hamming-address)
+- `/content-addressing` — [en](https://ceccec.psg.bg/content-addressing) · [bg](https://ceccec.psg.bg/bg/content-addressing) · [cu](https://ceccec.psg.bg/gla/content-addressing)
+- `/genetic-code` — [en](https://ceccec.psg.bg/genetic-code) · [bg](https://ceccec.psg.bg/bg/genetic-code) · [cu](https://ceccec.psg.bg/gla/genetic-code)
+- `/three-not-one` — [en](https://ceccec.psg.bg/three-not-one) · [bg](https://ceccec.psg.bg/bg/three-not-one) · [cu](https://ceccec.psg.bg/gla/three-not-one)
+- `/hexagram-colour` — [en](https://ceccec.psg.bg/hexagram-colour) · [bg](https://ceccec.psg.bg/bg/hexagram-colour) · [cu](https://ceccec.psg.bg/gla/hexagram-colour)
+- `/sixty-four` — [en](https://ceccec.psg.bg/sixty-four) · [bg](https://ceccec.psg.bg/bg/sixty-four) · [cu](https://ceccec.psg.bg/gla/sixty-four)
+- `/rgb-cmyk` — [en](https://ceccec.psg.bg/rgb-cmyk) · [bg](https://ceccec.psg.bg/bg/rgb-cmyk) · [cu](https://ceccec.psg.bg/gla/rgb-cmyk)
+- `/trinity-rgb` — [en](https://ceccec.psg.bg/trinity-rgb) · [bg](https://ceccec.psg.bg/bg/trinity-rgb) · [cu](https://ceccec.psg.bg/gla/trinity-rgb)
+- `/proven-or-purged` — [en](https://ceccec.psg.bg/proven-or-purged) · [bg](https://ceccec.psg.bg/bg/proven-or-purged) · [cu](https://ceccec.psg.bg/gla/proven-or-purged)
+- `/kernel-zero` — [en](https://ceccec.psg.bg/kernel-zero) · [bg](https://ceccec.psg.bg/bg/kernel-zero) · [cu](https://ceccec.psg.bg/gla/kernel-zero)
+- `/vortex` — [en](https://ceccec.psg.bg/vortex) · [bg](https://ceccec.psg.bg/bg/vortex) · [cu](https://ceccec.psg.bg/gla/vortex)
+- `/zero-division` — [en](https://ceccec.psg.bg/zero-division) · [bg](https://ceccec.psg.bg/bg/zero-division) · [cu](https://ceccec.psg.bg/gla/zero-division)
+- `/digit-folders` — [en](https://ceccec.psg.bg/digit-folders) · [bg](https://ceccec.psg.bg/bg/digit-folders) · [cu](https://ceccec.psg.bg/gla/digit-folders)
+- `/dot-cube` — [en](https://ceccec.psg.bg/dot-cube) · [bg](https://ceccec.psg.bg/bg/dot-cube) · [cu](https://ceccec.psg.bg/gla/dot-cube)
+- `/seven-star-rosetta` — [en](https://ceccec.psg.bg/seven-star-rosetta) · [bg](https://ceccec.psg.bg/bg/seven-star-rosetta) · [cu](https://ceccec.psg.bg/gla/seven-star-rosetta)
+
+- Sitemap root: `b8b73504-bf0b-8ca8-8173-377302684d52`
+
+## 5. Reproducibility
 
 ```sh
 npm install
@@ -92,7 +129,7 @@ npm run docs:build   # build, then seal: enforcement trinity (cross · fold · w
 
 The seal recomputes from src. To forge one value you would rebuild everything — so no one can, and war always pays the forger price. The proof reproduces: clone the link and the whole structure recomputes (pattern completion; reentry binds it bidirectionally).
 
-## 5. Limitations
+## 6. Limitations
 
 - A compact reference index of the portal's knowledge, each entry content-addressed (so "zero entropy" means no duplicate keys, not thermodynamics). Searchable via the intuitive search; a distilled index, not the full text.
 - "1 Gbit" and "64 × 64 × 64" name the keyspace structure, not cipher strength (AES-256-GCM) or throughput.

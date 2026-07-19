@@ -6,6 +6,7 @@
 // home body in realtime (the on-disk index.md is a discovery stub; bg/gla homes transform this
 // output), and the cross wave writes readmeMarkdown() as README.md.
 import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
+import { CANONICAL_HOST } from '../../../../3/7'
 import {
   buildMatrix,
   conceptCommands,
@@ -77,9 +78,10 @@ function theoremMonographCore(matrix: MindMatrix) {
 type TheoremCore = ReturnType<typeof theoremMonographCore>
 type RayPaper = TheoremCore['rays'][number]['papers'][number]
 
-/** The theorem-only sections BOTH projections render, heading for heading; the per-paper trailing link is
- *  the only mode difference (README → `[source](github permalink)`, home → `[page](/slug)`). */
-function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => string): string[] {
+/** The theorem-only sections BOTH projections render, heading for heading; the mode differences are the
+ *  per-paper trailing link (README → `[source](github permalink)`, home → `[page](/slug)`) and the sitemap
+ *  link base (README → absolute canonical URLs for GitHub/crawlers, home → site-internal paths). */
+function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => string, linkBase = ''): string[] {
   const { lens, census, paperList, math, efficiency, qc, sitemap, mono, template } = core
   const { labels } = math
   return [
@@ -122,7 +124,15 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
       ...group.papers.map((entry) => `- **${entry.paper.title}** — ${entry.paper.abstract} · ${paperLink(entry)}`),
     ]),
     '',
-    '## 4. Reproducibility',
+    '## 4. Sitemap',
+    '',
+    `The quantum sitemap, wired from the same generator: ${sitemap.urls.length} routes — the home and every served science page — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed; the XML and JSON sitemaps are generated from this one fold (\`quantumSitemap\`).`,
+    '',
+    ...sitemap.urls.map((url) => `- \`${url.route}\` — [en](${linkBase}${url.en}) · [bg](${linkBase}${url.bg}) · [cu](${linkBase}${url.gla})`),
+    '',
+    `- Sitemap root: \`${sitemap.root}\``,
+    '',
+    '## 5. Reproducibility',
     '',
     '```sh',
     'npm install',
@@ -132,7 +142,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     'The seal recomputes from src. To forge one value you would rebuild everything — so no one can, and war always pays the forger price. The proof reproduces: clone the link and the whole structure recomputes (pattern completion; reentry binds it bidirectionally).',
     '',
-    '## 5. Limitations',
+    '## 6. Limitations',
     '',
     `- ${mono.boundary}`,
     '- "1 Gbit" and "64 × 64 × 64" name the keyspace structure, not cipher strength (AES-256-GCM) or throughput.',
@@ -166,7 +176,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     '![Double Torus — the ten-dimensional hero, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)',
     '',
-    ...theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`),
+    ...theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`, CANONICAL_HOST),
     '',
   ].join('\n')
 }
@@ -233,6 +243,7 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     { facet: 'theorems only — every presented page is a theorem-science lens survivor; the non-theorem sections (the library digest, the agent prose) are gone from both projections', on: sourceLinks === lens.visibleCount && md.includes('## 3. Results') && !md.includes('The Library') },
     { facet: 'references all — every presented paper links to its SOURCE in the README (the [source] permalinks) and to its own ROUTE on the home (the [page] links)', on: sourceLinks === lens.visibleCount && routeLinks === lens.visibleCount },
     { facet: 'complete + compact — the surface pages fold to the harmonic monograph count, the reference index carries zero redundancy, one receipt seals both projections', on: census.folded > 0 && md.includes('zero redundancy') && md.includes('## Receipt') && home.includes('## Receipt') },
+    { facet: 'the sitemap is wired in the generator — both projections render every quantumSitemap route (three locale editions each): absolute canonical URLs in the README, site-internal paths on the home, and the XML/JSON sitemaps generate from the same fold', on: (md.match(/ · \[bg\]\(/g) ?? []).length === quantumSitemap(matrix).urls.length && (home.match(/ · \[bg\]\(/g) ?? []).length === quantumSitemap(matrix).urls.length && md.includes('## 4. Sitemap') },
     { facet: 'the 2D-plane projection — the README is the markdown the model computes from src, and the whole folds to one content-address; the home is the same markdown behind computed frontmatter', on: md.startsWith('#') && home.startsWith('---') && md.length > 0 },
     { facet: 'audits its own statements TRULY COMPUTATIONALLY — every reported value is recomputed from its own source and the audit is the content-address EQUALITY of two independent fusions (no text-scrape)', on: audited && audits.length === 5 },
     { facet: 'FUSION from all points of view — the census, commands, monograph, sitemap and lens roster fold into one receipt; if any point of view drifts, the two fusions diverge', on: audited && isUuid(fused) },
