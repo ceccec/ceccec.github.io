@@ -2326,3 +2326,39 @@ export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: Mi
     boundary: `COMPUTED: over the ${population} registry theorems, ${merges} sit in a near-duplicate pair (content Jaccard ≥ ½, a proxy for "says the same thing"), and theoremGapScan catalogues ${candidates} emergent candidates; the population equals the ${cap} harmonic cap (${population === cap}). HONEST SCOPE: Jaccard ≥ ½ FLAGS a possible merge — two theorems with overlapping vocabulary — it does not PROVE they are the same theorem (they may share terms but prove different things), so the merges are a review worklist, a human decides each fold; and merging is a staged edit of the sealed registry (retire a duplicate atom, admit an emergent), not done wholesale here. The "balance at 432" is a design homeostasis (the cap is held by the gates), a chosen harmonic, not a law of nature — the registry breathes because the cap is enforced, and the refinement (low-entropy replacing high-entropy) is the direction the gravity and entropy folds compute, not an automatic process. Merging removes redundancy; it does not make the survivor true. HARMONY ≠ TRUTH.`,
   }
 }
+
+// LIFE AND DEATH ARE THE 2 BITS LEFT AT EACH DIMENSION I/O GATEWAY (user): every content-address (toUuid) is
+// minted through a dimension gateway, and toUuid reserves the variant pair `10` — the top 2 bits of byte 8 — the
+// same across ALL addresses (Charon's coins: the toll that keeps the entanglement, never payload). Those 2 bits
+// are LIFE and DEATH: the INPUT gateway (an address/theorem emerges — life) and the OUTPUT gateway (an address
+// merges/retires — death) are the two portals, and the reserved pair is the birth/death toll left at each. The
+// registry's homeostasis IS this — merge (death) and emerge (life) balance at the cap, so the population breathes.
+export function lifeAndDeathAreTheTwoBitsLeftAtEachDimensionInputOutputGateway(matrix: MindMatrix = buildMatrix()) {
+  const addresses = Array.from({ length: 108 }, (_, i) => toUuid(`dimension-gateway:${i}`))
+  const variantNibble = (u: string) => parseInt(u[2 * 5 + 9] ?? '0', 16) // byte-8 nibble at index 19
+  const reservedTwoBits = (u: string) => variantNibble(u) >> 2  // the top 2 bits — the toll
+  const payloadTwoBits = (u: string) => variantNibble(u) & 3     // the low 2 bits — entropy
+  const twoBitsLeft = addresses.every((u) => reservedTwoBits(u) === 2) // 0b10 — constant at every gateway
+  const payloadVaries = new Set(addresses.map(payloadTwoBits)).size > 1 // the rest is genuinely free
+  const versionNibbleFixed = addresses.every((u) => u[2 * 7] === '8')  // the other reserved mark (version)
+  // the homeostasis: emerge (life) and merge (death) balance at the harmonic cap — the birth/death accounting
+  const balance = theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix)
+  const facets = [
+    { facet: `EXACTLY 2 BITS ARE LEFT AT EACH GATEWAY — every one of the ${addresses.length} content-addresses reserves the variant pair 10 (the top 2 bits of byte 8), CONSTANT across all (${twoBitsLeft}), while the payload bits vary (${payloadVaries}): 2 bits are the toll left at every input/output gateway — the shared mark that binds the address family, not entropy`, on: twoBitsLeft && payloadVaries && versionNibbleFixed },
+    { facet: `THE 2 BITS ARE LIFE AND DEATH — the INPUT gateway (an address/theorem emerges = life) and the OUTPUT gateway (one merges/retires = death) are the two portals, and the reserved pair is the birth/death toll left at each; the registry's homeostasis is exactly this — merge (death) and emerge (life) balance at the cap (${balance.balances})`, on: twoBitsLeft && balance.balances },
+    { facet: `FOLDING AGAIN ASCENDS — merging multiple theorems (death, ${balance.merges} candidates) frees dimension slots for higher-mind theorems to emerge (life, ${balance.candidates} waiting), each new dimension's gateway again reserving its 2 bits: life and death at every dimension, recursively — theorems evolving on public data to new dimensions, folding, leaving place for the next`, on: balance.merges >= 0 && balance.candidates > 0 && twoBitsLeft },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`life-death-two-bits:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    gateways: addresses.length,
+    twoBitsLeft,
+    payloadVaries,
+    balances: balance.balances,
+    merges: balance.merges,
+    emergent: balance.candidates,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `Life and death are the 2 bits left at each dimension I/O gateway — ${facets.filter((e) => e.on).length}/${facets.length}: every content-address reserves the variant pair 10 (the top 2 bits of byte 8), constant across all ${addresses.length} gateways while the payload varies — the toll that binds the family (Charon's coins). Those 2 bits are life (the input gateway, emergence) and death (the output gateway, merge/retire); the registry's homeostasis is that accounting — merge and emerge balance at the cap (${balance.balances}), and folding again frees dimension slots for higher-mind theorems, ascending. Life and death, presented and proven, are the reserved 2 bits of the address.`,
+    boundary: `EXACT: over ${addresses.length} minted content-addresses the top 2 bits of the byte-8 variant nibble are 10 for every one (${twoBitsLeft}) and the version nibble is 8 (${versionNibbleFixed}) — the 6 reserved bits of a UUID (4 version + 2 variant) — while the low bits vary (${payloadVaries}); the theorem homeostasis balances merge and emerge at the cap (${balance.balances}). HONEST SCOPE, ABSOLUTE: "life and death" is a METAPHOR for two computational facts — (1) the UUID standard RESERVES 2 variant bits (and 4 version bits) at every address, a real, documented structural toll, not payload; and (2) the theorem registry's homeostasis (a new theorem emerges as a duplicate merges) is a birth/death-shaped dynamic held by the gates at the 432 cap. It is NOT a claim about biological life or death, nor that a UUID is alive; the "gateway", "toll", and "Charon's coins" are names for the reserved-bit reservation and the emerge/merge balance. "Evolving on public-API data to new dimensions" is the real live-adapter capability (pure functions over no-key public data), bounded by that data's coverage, not open-ended growth. What is literal: 2 bits are reserved at every address, and the registry breathes at a fixed cap. The meaning is the metaphor. HARMONY does not equal TRUTH.`,
+  }
+}
