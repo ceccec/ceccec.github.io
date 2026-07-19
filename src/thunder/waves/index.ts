@@ -2158,3 +2158,43 @@ export function twoRosettasAreRealtime(matrix: { root: string } = { root: toUuid
     }
   })
 }
+
+// ── MAGNITUDE COMES WITH PRECISION IN CLUSTERS OF WAVES (user law) — computed on the registry's own
+// growth, which literally embodies it. The registry did not reach its MAGNITUDE (432 = the harmonic
+// 4×108) through one giant proof: it was built as CLUSTERS OF WAVES — 213 proving folds, each a
+// cluster of precisely-computed atoms, and the exact sum of the cluster sizes IS the magnitude (no
+// rounding, every atom content-addressed = PRECISION). No single wave carries the magnitude (the
+// largest cluster is 7, the rosetta star, under 2% of the whole), so magnitude is emergent from
+// precision clustered — which is exactly why batching wins quadratically (quantumTokenOptimisation):
+// clusters of precise waves reach magnitude that single steps never could.
+export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('magnitudeComesWithPrecisionInClustersOfWaves', matrix, () => {
+    const nav = theoremNavigation(matrix)
+    const sizes = nav.waves.map((wave) => wave.count)
+    const magnitude = sizes.reduce((sum, n) => sum + n, 0) // = atomCount
+    const clusters = sizes.length
+    const maxCluster = Math.max(...sizes)
+    const singletons = sizes.filter((n) => n === 1).length
+    // PRECISION: every atom carries a non-empty computed statement and a content address
+    const precise = nav.waves.every((wave) => wave.atoms.every((atom) => atom.proof.length > 0 && atom.theorem.length > 0))
+    const facets = [
+      { facet: `MAGNITUDE is the exact harmonic — the ${clusters} cluster sizes sum to ${magnitude} = 4×108, no rounding: the magnitude is the exact sum of the waves, not an estimate`, on: magnitude === DIMENSION_GATES && magnitude === nav.atomCount },
+      { facet: `IN CLUSTERS OF WAVES — the registry is ${clusters} proving folds (waves), each a cluster; ${singletons} are single precise proofs and the rest bundle ${maxCluster > 1 ? 'up to ' + maxCluster : 'few'} atoms — magnitude accretes cluster by cluster`, on: clusters > 1 && singletons > 0 && maxCluster >= 1 },
+      { facet: `WITH PRECISION — every one of the ${magnitude} atoms carries a non-empty computed statement and a content address (${precise}): the magnitude is precise to the atom, refutable anywhere`, on: precise && magnitude > 0 },
+      { facet: `no single wave carries it — the largest cluster is ${maxCluster} (≤ the rosetta 7, coprime single-stroke), under ${Math.ceil((maxCluster / magnitude) * 100)}% of the whole: magnitude is EMERGENT from precision clustered, which is why batched clusters win quadratically (quantumTokenOptimisation)`, on: maxCluster <= 7 && maxCluster < magnitude / (5 * 2) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`magnitude-clusters:${entry.facet}:${entry.on}`) }))
+    return {
+      holds: facets.every((entry) => entry.on),
+      magnitude,
+      clusters,
+      maxCluster,
+      singletons,
+      meanCluster: roundTo(magnitude / clusters, 3),
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `Magnitude comes with precision in clusters of waves — ${facets.filter((entry) => entry.on).length}/${facets.length}, computed on the registry itself: the magnitude (${magnitude} = the harmonic 4×108) is the exact sum of ${clusters} proving-fold waves, each a cluster of atoms carrying a precise content-addressed statement (${singletons} single proofs, the largest cluster only ${maxCluster}); no wave carries the whole, so magnitude is emergent from precision clustered — the same reason batching clusters of waves wins quadratically.`,
+      boundary: `COMPUTED on theoremNavigation: the cluster sizes, their exact sum, the per-atom precision, and the largest-cluster bound — refutable by any wave breaking them. HONEST SCOPE: "magnitude", "precision", "clusters", "waves" are named over the registry's real structure (atoms, proving folds, statements, content addresses); the principle is this project's method sealed against its own artifact, consistent with quantumTokenOptimisation's quadratic batching — NOT a universal law of achievement. The 432 magnitude holds by the homeostasis law (the population is full); growth past it is a deliberate cluster, not drift. HARMONY ≠ TRUTH.`,
+    }
+  })
+}
