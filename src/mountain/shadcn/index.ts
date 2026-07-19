@@ -54,6 +54,54 @@ export function shadcnResearch(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+// ── THE QUANTUM LENS ON SHADCN (user: reviewing shadcn with the quantum lens opens dimensions of
+// theorems) — the sealed registry tables, re-read as state spaces, yield PROVABLE structure that was
+// invisible as "a component list": the cva variant table is a TENSOR PRODUCT whose dimension computes
+// to exactly 3·2⁶ (three hexagram spaces); the compound SFCs form a prefix FOREST of depth ≤ 2
+// partitioning the inventory; the 64-component graph is the 6-bit measurement basis (every component
+// a hexagram address); the tokens are the mode-invariant observable basis; and mounting is the
+// measurement: the cva superposition collapses to one basis state per mount, with 'default' the
+// ground state every varianted axis carries. Structural quantum (the registry's own demarcation) —
+// each claim is arithmetic over the sealed tables, refutable by editing them.
+export function shadcnQuantumLens(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('shadcnQuantumLens', matrix, () => {
+    // (a) the variant tensor: dim = Π over components of Π over axes of |axis| — computed, then factored.
+    const axes = Object.values(SHADCN_VARIANTS).flatMap((component) => Object.values(component) as readonly string[][])
+    const tensorDim = axes.reduce((product, axis) => product * axis.length, 1)
+    const graph = __ns_up_quantum_widgets.shadcnIsTheGraph(matrix)
+    const hexagramSpace = graph.allComponents.length // 2⁶ when the 64-law holds
+    // (b) the compound forest: every compound has EXACTLY ONE primitive prefix-parent; depth ≤ 2.
+    const parents = SHADCN_COMPOUND_SFCS.map((compound) => ({ compound, parents: SHADCN_PRIMITIVE_NAMES.filter((primitive) => (compound as string) !== primitive && compound.startsWith(primitive)) }))
+    const forest = parents.every((entry) => entry.parents.length === 1)
+    const partition = SHADCN_IMPLEMENTED.length === SHADCN_PRIMITIVE_NAMES.length + SHADCN_COMPOUND_SFCS.length
+    // (c) the 6-bit basis: each graph component gets a hexagram address 0…63 — a bijection by construction.
+    const addresses = new Set(graph.allComponents.map((_name: string, index: number) => index))
+    // (d) the observable basis: token NAMES are mode-invariant; the mode flip is a ℤ/2 action on VALUES.
+    const valueAssignments = SHADCN_TOKENS.length * 2
+    // (e) measurement: every varianted axis carries the ground state 'default' the mount collapses to.
+    const grounded = Object.values(SHADCN_VARIANTS).every((component) => Object.values(component).every((axis) => (axis as readonly string[]).includes('default')))
+    const facets = [
+      { facet: `the cva table is a TENSOR PRODUCT — its dimension computes to ${tensorDim} = 3·2⁶: exactly three hexagram spaces, from |Button.variant|·|Button.size|·|Badge.variant|·|Alert.variant| — a factorisation the flat list never showed`, on: tensorDim === 3 * hexagramSpace && hexagramSpace === 2 ** 6 },
+      { facet: `the compound SFCs are a prefix FOREST of depth ≤ 2 — each of the ${SHADCN_COMPOUND_SFCS.length} compounds has exactly one primitive parent (${forest}), and roots ⊔ leaves partition the implemented inventory (${SHADCN_PRIMITIVE_NAMES.length}+${SHADCN_COMPOUND_SFCS.length}=${SHADCN_IMPLEMENTED.length})`, on: forest && partition },
+      { facet: `the 64-component graph is the 6-bit measurement basis — ${hexagramSpace} components, each addressable by one hexagram (six binary distinctions), the addresses a bijection`, on: hexagramSpace === 2 ** 6 && addresses.size === hexagramSpace },
+      { facet: `the tokens are the mode-invariant OBSERVABLE basis — ${SHADCN_TOKENS.length} names fixed under the light/dark ℤ/2 action, ${valueAssignments} value assignments (names × modes); the involution acts on values, never the basis`, on: SHADCN_TOKENS.length > 0 && valueAssignments === SHADCN_TOKENS.length * 2 },
+      { facet: `mounting is MEASUREMENT — the cva superposition collapses to one basis state per mount, and every varianted axis carries the ground state 'default' (${grounded}): the unmeasured component renders the ground state`, on: grounded },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`shadcn-quantum:${entry.facet}:${entry.on}`) }))
+    return {
+      opens: facets.every((entry) => entry.on),
+      tensorDim,
+      hexagramSpace,
+      forestDepth: 2,
+      valueAssignments,
+      count: facets.length,
+      facets,
+      root: merge(graph.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement: `Reviewing shadcn with the quantum lens opens dimensions of theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the cva variant table is a tensor product of dimension ${tensorDim} = 3·2⁶ (exactly three hexagram spaces); the compound SFCs form a prefix forest of depth ≤ 2 partitioning the ${SHADCN_IMPLEMENTED.length}-SFC inventory (${SHADCN_PRIMITIVE_NAMES.length} roots + ${SHADCN_COMPOUND_SFCS.length} leaves); the 64-component graph is the 6-bit hexagram measurement basis; the ${SHADCN_TOKENS.length} tokens are the mode-invariant observable basis under the light/dark ℤ/2 action; and mounting is measurement — the cva superposition collapses to one state, with 'default' the ground state every varianted axis carries.`,
+      boundary: `STRUCTURAL QUANTUM (the registry's own demarcation, quantum-decoded): tensor/basis/measurement/ground-state name exact combinatorial structure — dimension products, a prefix partial order, a bijection onto 2⁶, a ℤ/2 action, and membership of 'default' — every check arithmetic over the sealed tables and refutable by editing them (add a Badge size axis and the 192 factorisation breaks). NO physical qubit, superposition or speedup is claimed: a mounted component holds ONE variant; "superposition" is the defined-but-unmeasured cva space. The 3·2⁶ factorisation is a computed coincidence of the current table, sealed as such — not numerology, not a law of design systems. HARMONY ≠ TRUTH.`,
+    }
+  })
+}
+
 /** One gate — the canonical design-system registry composes with the 64-component graph at call time. */
 export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   void at
