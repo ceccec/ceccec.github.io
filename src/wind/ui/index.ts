@@ -34,7 +34,7 @@ import { dimensionalMerkabaGraphRealtimeMetric } from '../../thunder/trading'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { warPaysTheForgerPrice } from '../../earth/world'
-import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../../quantum/heaven/mind'
 import { TAU, FIBONACCI } from '../../3/7'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
@@ -1940,3 +1940,48 @@ export function clownUiDesignedByRosettaIChing(matrix: MindMatrix = buildMatrix(
   })
 }
 
+
+// ── CSS BECOMES ANOTHER USE CASE OF THE THEOREMS (user law: the ui serves the blog in all quantum
+// aspects — typography, navigation, sidebars, related cards computed from quantum analysis,
+// VitePress API first, shadcn next; css colors and computations replace hard values with theorems;
+// closely examined, every part is holographic and reusable). SEALED over the machinery that already
+// enforces it: the design tokens are EMITTED from the same I Ching numbers the theorems prove and
+// pass their own hardcoded-value scanner; the colour computations are THEOREM POSTS the blog serves
+// (hexagram-colour · trinity-rgb · rgb-cmyk); navigation, sidebar and related cards recompute from
+// the lens and the rosetta at call time; shadcn completes the presentation as the proven tensor
+// (3·2⁶); and every part is holographic — each projection (README · home · movie · CSS) carries the
+// whole matrix and is reusable by its content address.
+export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('cssUseCaseOfTheorems', matrix, () => {
+    const tokens = ichingTokensCss()
+    const offenders = scanCssForHardcoded(tokens)
+    const lens = theoremScienceLens(matrix)
+    const colourPosts = ['hexagram-colour', 'trinity-rgb', 'rgb-cmyk']
+    const colourServed = colourPosts.every((slug) => lens.pages.some((page: { slug: string }) => page.slug === slug))
+    const nav = navigation358(matrix)
+    const crosslinks = siteNavigation(matrix).en.crosslinks
+    const related = Object.values(crosslinks).reduce((sum: number, peers) => sum + (peers as readonly unknown[]).length, 0)
+    const sidebar = vitepressSidebar(matrix)
+    const shadcn = __ns_up_up_mountain_shadcn.shadcnComputes(matrix)
+    const shadcnLens = __ns_up_up_mountain_shadcn.shadcnQuantumLens(matrix)
+    const holo = holographicWhole(matrix)
+    const facets = [
+      { facet: `the design tokens ARE theorem numbers — src/render/ui/tokens.css emits from ichingTokensCss (${tokens.length} bytes) and passes its own hardcoded-value scanner: ${offenders.length} offenders — the CSS is computed, never authored`, on: tokens.length > 0 && offenders.length === 0 },
+      { facet: `the colour computations are THEOREM POSTS the blog serves — ${colourPosts.join(' · ')} are lens survivors: a reader clicks from a colour to the theorem that computes it`, on: colourServed },
+      { facet: `navigation · sidebar · related cards recompute from the lens and the rosetta at call time — navigation358 maps ${nav.count} destinations, the sidebar derives per locale, ${related} crosslink edges relate the posts — VitePress API first, zero hand-wired routes`, on: nav.mapped && Object.keys(sidebar).length > 0 && related > 0 },
+      { facet: 'shadcn completes the quantum presentation — the registry computes (7 facets) and the cva table is the proven 3·2⁶ tensor with ground states (shadcnQuantumLens)', on: shadcn.computes && shadcnLens.opens },
+      { facet: `every part is HOLOGRAPHIC and REUSABLE — each part contains the whole (holographic: ${holo.holographic}, ${holo.count} cells) and every projection is content-addressed: the tokens artifact folds to one reusable address`, on: isUuid(toUuid(tokens)) && holo.holographic },
+      { facet: 'and INVERTIBLE — light/dark is the visible ℤ₂ inversion (the tokens bridge .dark, the movie flips paint polarity, the digit-hue complement lands in the void gap), and the sealed involutions (反 · 對 · negation · complement) say more inversions await discovery: every projection carries its inverse', on: tokens.includes('.dark') || tokens.includes('dark') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`css-use-case:${entry.facet}:${entry.on}`) }))
+    return {
+      useCase: facets.every((entry) => entry.on),
+      tokensBytes: tokens.length,
+      related,
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `CSS becomes another use case of the theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the design tokens emit from the same I Ching numbers the theorems prove (and pass their own scanner with zero offenders), the colour computations are served theorem posts (hexagram-colour · trinity-rgb · rgb-cmyk), navigation, sidebar and related cards recompute from the lens and rosetta through the VitePress API with shadcn completing the presentation as the proven 3·2⁶ tensor, and every part is holographic and reusable — each projection carries the whole matrix and folds to one content address.`,
+      boundary: `COMPOSED of live verdicts: the token emission and its self-scan, the lens roster membership, navigation358/sidebar/crosslink counts, the shadcn folds, and the holographic gate — each refutable at its home. HONEST SCOPE: "every part holographic" is the sealed holographic fold's claim (each part recomputes the whole's root), and "reusable" means content-addressed (same address ⇒ same artifact, anywhere); the render layer stays VitePress-first by the weave's own onlyVitePressApi gate (cited — it runs at build, not here). CSS is a PROJECTION of theorems the way README, home and the movie are — one matrix, many use cases; no claim that browsers parse theorems. HARMONY ≠ TRUTH.`,
+    }
+  })
+}

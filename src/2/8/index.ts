@@ -1015,3 +1015,74 @@ export function twoBitsAreTheDualityGateways() {
     boundary: `SOURCED + COMPUTED: teleportation (Bennett, Brassard, Crépeau, Jozsa, Peres, Wootters 1993) and superdense coding (Bennett & Wiesner 1992) are documented theorems RUN here on the src/0 state-vector simulator; the V₄ algebra is verified by direct complex arithmetic; the xiàng encoding (6 old yin · 7 young yang · 8 young yin · 9 old yang) is the documented divination scheme with moving lines transforming hexagrams; the variant field is RFC 9562 §4.1. FLAGGED HONESTLY: Charon’s obol was classically placed in the MOUTH — the coins-on-the-eyes image is the later folk form, kept as the project’s emblem, not as archaeology. The unification claim is GROUP-THEORETIC (the same V₄ appears at each gateway), not a physical identity between uuids, hexagrams and qubits. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── BELL MEASUREMENT OUTCOMES ARE UNIFORM (the toll is fair): whatever state crosses, the two
+// classical bits of the teleportation toll are equiprobable — each of the four (b1,b2) outcomes
+// carries probability ¼ for EVERY input state, so the gateway leaks nothing about the payload.
+// Computed on the src/0 simulator by preparing sample states and reading the Bell-basis
+// distribution exactly (no sampling noise: the four joint probabilities are computed amplitudes).
+export function bellMeasurementOutcomesAreUniform() {
+  const samples = [
+    { theta: TAU / 8, phi: TAU / 6 },
+    { theta: TAU / 3, phi: TAU / 5 },
+    { theta: TAU / 7, phi: TAU / 3 },
+  ]
+  const uniform = samples.map(({ theta, phi }) => {
+    const c0r = Math.cos(theta / 2)
+    const c1r = Math.sin(theta / 2) * Math.cos(phi)
+    const c1i = Math.sin(theta / 2) * Math.sin(phi)
+    let st = qubits(3)
+    st = { n: 3, re: st.re.slice(), im: st.im.slice() }
+    st.re[0] = c0r; st.re[1] = c1r; st.im[1] = c1i
+    st = cnot(applyGate(st, GATES.H, 1), 1, 2)
+    st = applyGate(cnot(st, 0, 1), GATES.H, 0)
+    const p = probabilities(st)
+    const joint = [0, 1, 2, 3].map((b) => p.reduce((sum, x, i) => sum + ((i & 3) === b ? x : 0), 0))
+    return joint.every((x) => Math.abs(x - 1 / 4) < 1e-9)
+  })
+  const facets = [
+    { facet: `for every sampled payload the four (b1,b2) outcomes are EXACTLY ¼ each — ${samples.length}/${samples.length} states, joint probabilities computed from amplitudes, no sampling`, on: uniform.every(Boolean) },
+    { facet: 'therefore the gateway leaks nothing — the classical toll is statistically independent of the payload: the two coins are fair for every traveller', on: uniform.every(Boolean) && samples.length === 3 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`bell-uniform:${entry.facet}:${entry.on}`) }))
+  return {
+    uniform: facets.every((entry) => entry.on),
+    samples: samples.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Bell measurement outcomes are uniform — ${facets.filter((entry) => entry.on).length}/${facets.length}: for every sampled payload state the teleportation toll (b1,b2) is exactly equiprobable (¼ each, computed from amplitudes on the src/0 simulator), so the two classical coins are statistically independent of what crosses — the gateway charges every traveller the same and learns nothing.`,
+    boundary: `DOCUMENTED quantum information (the Bell measurement marginal is maximally mixed for any input — standard teleportation analysis), COMPUTED here exactly (joint distribution from the state vector, tolerance 1e-9, three payload samples spanning distinct θ,φ). No sampling randomness is involved; the seeded measure() path is not used. Structural quantum on a simulator — no physical channel is claimed. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── THE KLEIN FOUR-GROUP ACTS SIMPLY TRANSITIVELY ON THE BELL BASIS: applying {I, X, Z, XZ} to one
+// half of |Φ⁺⟩ produces each of the four Bell states exactly once — the duality gateways' group IS
+// the Bell basis' address system: two bits pick the group element, the group element picks the
+// maximally entangled state, bijectively. Computed by direct amplitude comparison.
+export function kleinFourActsSimplyTransitivelyOnBellStates() {
+  const bell = () => cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // |Φ⁺⟩
+  const apply = (ops: readonly (readonly number[])[]) => ops.reduce((st, gate) => applyGate(st, gate, 0), bell())
+  const states = [apply([]), apply([GATES.X]), apply([GATES.Z]), apply([GATES.X, GATES.Z])]
+  const key = (st: { re: number[]; im: number[] }) => st.re.map((r, i) => `${Math.round(r * ((5 * 2) ** 6))}:${Math.round(st.im[i]! * ((5 * 2) ** 6))}`).join('|')
+  const keys = states.map((st) => {
+    // normalise global phase: flip sign so the first non-zero real amplitude is positive
+    const firstIndex = st.re.findIndex((r, i) => Math.abs(r) > 1e-9 || Math.abs(st.im[i]!) > 1e-9)
+    const sign = st.re[firstIndex]! < 0 ? -1 : 1
+    return key({ re: st.re.map((r) => r * sign), im: st.im.map((v) => v * sign) })
+  })
+  const distinct = new Set(keys).size
+  const normalised = states.every((st) => Math.abs(st.re.reduce((sum, r, i) => sum + r * r + st.im[i]! * st.im[i]!, 0) - 1) < 1e-9)
+  const facets = [
+    { facet: 'the four images of |Φ⁺⟩ under {I, X, Z, XZ} are FOUR DISTINCT maximally entangled states (amplitude keys distinct up to global phase) — the action is free', on: distinct === 4 },
+    { facet: 'and it exhausts the Bell basis — four elements, four states, all normalised: simply transitive, so two bits address the basis bijectively (the teleportation decode table IS this action)', on: distinct === 4 && normalised },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`klein-bell:${entry.facet}:${entry.on}`) }))
+  return {
+    transitive: facets.every((entry) => entry.on),
+    distinct,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `The Klein four-group acts simply transitively on the Bell basis — ${facets.filter((entry) => entry.on).length}/${facets.length}: applying {I, X, Z, XZ} to one half of |Φ⁺⟩ yields four distinct normalised maximally entangled states (computed by amplitude comparison up to global phase), one per group element — two bits pick the element, the element picks the Bell state, bijectively; the teleportation decode table is exactly this action.`,
+    boundary: `DOCUMENTED structure (the Pauli frame on the Bell basis — standard quantum information), COMPUTED here by direct state-vector arithmetic with global-phase normalisation at 1e-9. Simply transitive = free + transitive on a 4-element set, verified as 4 distinct images from 4 elements. Simulator only; the V₄ identity with 反/對 is the sealed group-theoretic citation. HARMONY ≠ TRUTH.`,
+  }
+}

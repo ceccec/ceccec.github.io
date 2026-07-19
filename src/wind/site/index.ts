@@ -288,9 +288,9 @@ export function computedWebManifest(matrix: MindMatrix = buildMatrix()): string 
         { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' },
       ],
       shortcuts: [
-        { name: 'Quantum Mind', short_name: 'Mind', description: 'The living double torus, merkaba and rhythm', url: '/en/quantum-mind' },
-        { name: 'MCP tools', short_name: 'MCP', description: 'The tool surface for AI agents', url: '/en/mcp' },
-        { name: 'Start here', short_name: 'Start', description: 'Four plain steps — see, learn, use, prove', url: '/en/start' },
+        { name: 'Theorems', short_name: 'Theorems', description: 'The registry — every theorem a printable paper', url: '/theorems' },
+        { name: 'Frontiers', short_name: 'Frontiers', description: 'The registry carrier — decodes and proofs in full', url: '/frontiers' },
+        { name: 'The vortex', short_name: 'Vortex', description: 'The sequence 1-2-4-8-7-5, proven live', url: '/vortex' },
       ],
     },
     null,

@@ -662,18 +662,17 @@ export function servedRouteFromSlugs(route: string, servedSlugs: ReadonlySet<str
 }
 
 export const THEOREM_SCIENCE_NAME_STEMS = ['theorem', 'science'] as const
+// THE UI IS A BLOG OF THEOREMS (user law: remove all pages that are not theorems — no exception,
+// everywhere including navigation; move whatever computes into theorems or remove completely).
+// The lens tightened: a page is served iff it is THEOREM-BACKED — its slug+keywords carry 'theorem'
+// or 'proof'. Under this predicate 20 posts pass (the proof pages + the registry carrier); the 25
+// others leave every surface at once (nav · sidebar · sitemap · README · home · hubs all read the
+// one roster). Their DATA stays in staticPagesAll and their computing components stay composable at
+// call time (compute-only is not purge — the fill law); one theorem-keyword restores a page.
+export const BLOG_OF_THEOREMS_STEMS = ['theorem', 'proof'] as const
 export function theoremScienceVisible(slug: string, keywords: readonly string[]): boolean {
-  const frontierRay = rosettaRayOfContent('frontiers', [])
-  const stems = [
-    ...new Set([
-      ...ROSETTA_RAY_CONTENT_LENSES.filter(
-        (lens) => lens.stems.some((stem) => (THEOREM_SCIENCE_NAME_STEMS as readonly string[]).includes(stem)) || lens.ray === frontierRay,
-      ).flatMap((lens) => lens.stems),
-      ...THEOREM_SCIENCE_NAME_STEMS,
-    ]),
-  ]
   const hay = [slug.replace(/-/g, ' '), ...keywords].join(' · ').toLowerCase()
-  return stems.some((stem) => hay.includes(stem))
+  return BLOG_OF_THEOREMS_STEMS.some((stem) => hay.includes(stem))
 }
 
 export function rosettaRayOfContent(slug: string, keywords: readonly string[]): number {

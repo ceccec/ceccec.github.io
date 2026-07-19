@@ -10,9 +10,9 @@
 
 ## 1. Introduction
 
-**It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the 427 computationally proven theorems in this registry. It is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; base-10 / `mod 9` specific, not a claim that the digits are physical qubits. The `src/<digit>` folders are the stations of this circuit — quantum by structure, linear only at measurement.
+**It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the 432 computationally proven theorems in this registry. It is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; base-10 / `mod 9` specific, not a claim that the digits are physical qubits. The `src/<digit>` folders are the stations of this circuit — quantum by structure, linear only at measurement.
 
-Concretely: a science portal — 427 computationally proven theorems and 29 related science pages, organised by the rosetta into 5 rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).
+Concretely: a science portal — 432 computationally proven theorems and 20 related science pages, organised by the rosetta into 2 rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).
 
 ## 2. Model
 
@@ -28,21 +28,15 @@ Concretely: a science portal — 427 computationally proven theorems and 29 rela
 
 ## 3. Results
 
-- **27/29** monographs — content pages fold genus-2 −χ (29 surface → 27 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
+- **18/20** monographs — content pages fold genus-2 −χ (20 surface → 18 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
 - **108/108** concept commands — MCP tool surface (4×27 = 432÷4)
 - **267/269** reference index entries — zero redundancy
-- **90/30** locale surfaces — 30 routes (home + every served science page) × 3 locales
+- **63/21** locale surfaces — 21 routes (home + every served science page) × 3 locales
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
 
-**The theorem-science lens** — 29/45 curated pages pass (16 removed from VitePress completely — data preserved in the catalog), presented beside the 427-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
+**The theorem-science lens** — 20/45 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 432-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
-
-### Origin — 3 pages
-
-- **Heaven** — Heaven (天), the first of the I Ching Three Powers (三才): the creative and cosmic realm — mind, science and computation. Its eight-fold gathers the abstract and computational domains; the complete triad with Human and Earth forms the 64³ content cube. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/PowerLanding.vue)
-- **Earth** — Earth (地), the ground of the I Ching Three Powers (三才): the material and natural realm — form and nature. Its eight-fold is the semantic domain map; with Heaven and Human it completes the triad that covers all and forms the 64³ content-address cube. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/PowerLanding.vue)
-- **Quantum Mind** — Mathematical model of Sigma_2, UUID streams, diamonds, waves, gates, and maxComputedBuild. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/QuantumMind.vue)
 
 ### Proof — 18 pages
 
@@ -65,39 +59,18 @@ Concretely: a science portal — 427 computationally proven theorems and 29 rela
 - **The dot is the cube** — A UUID, like CMYK, gives extent without limit: 64×64×64 is itself one dot, and the dot is the cube is the dot — content-addressing folds the whole into a point and back. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
 - **Seven Star Rosetta** — The 7-star Pliska rosetta in coprime natural motion with 28 Glagolitic letters. Visual proof that gcd(7,6)=1, gcd(7,9)=1, gcd(7,10)=1 prevents aliasing in the digit distribution. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/DigitMotion.vue)
 
-### Explore — 3 pages
+### Frontier — 2 pages
 
-- **Explore** — Explore the whole portal multidimensionally: eight dimensions of experience — see, hear, ask, prove, learn, pattern, sense, create — each browsable. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Multidimensional.vue)
-- **Science** — Science decoded honestly: electromagnetic radiation, Tesla's five verified patents, public frequency data APIs (FCC, USGS, Schumann 7.83 Hz, Web Audio), and the ionising threshold (~10 eV). Documented physics first; wellness claims flagged. Every result a client-side computation from the src/0 spectrum primitives. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ElectromagneticRadiation.vue)
-- **Spirit** — Spirit decoded honestly: the seven chakras and aura fields as a documented energy model, human design as a structural archetype system, yin-yang and dualities across sixteen pairs in three tiers, and the portal's eight experience dimensions. Each a deterministic computation; spiritual interpretations flagged. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Dualities.vue)
-
-### Apps — 1 page
-
-- **Simulations** — Not prose about quantum and dynamics, but models you run. Every decoded aspect of life is a runnable model on the src/0 spine: a deterministic classical simulator of a quantum computer (state-vector, Born-rule readout, Bell, Grover), then 18 domains across four families — 10 probabilistic (genetic drift, language contact, war recurrence, inheritance), 3 dynamical (coupled calendar cycles, the Tesla induction ODE, resonant modes + FFT), 2 network + the brain (colony diffusion, three-channel  Hopfield recall), and 1 genuinely quantum. Honest, and the whole point: "a quantum simulator of everything" resolves truthfully to a MOSTLY-CLASSICAL simulator — most of these dynamics are classical stochastic/dynamical processes, not superposition; forced "quantum" is refused at every domain. The primitives live in src/0, pure and mass-conserving, read out through one analog→digital sampler. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/QuantumCircuit.vue)
-
-### Frontier — 4 pages
-
-- **Sacred geometry** — Sacred geometry, decoded honestly: the five Platonic solids (a theorem — Euler V−E+F=2, the dual pairs), the golden ratio φ where it genuinely lives (the pentagon, the dodecahedron, phyllotaxis), the Flower of Life as a real compass construction, and the forms walked through dimensions. Documented kept, legend flagged — the maths and history are real; the cosmic-blueprint, golden-ratio-everywhere and ascension claims are not. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/SacredGeometry.vue)
-- **Tampering cost** — Tampering cost ↔ encryption ↔ blockchains, audited honestly with quantum comparisons. The site claims "maximum tampering cost"; this scrutinises that claim. Tamper-EVIDENT is not tamper-PROOF: content-addressing detects change, cryptographic security (SHA-256: 2^128/2^256) resists forgery. FNV toUuid is non-cryptographic — the fix (SHA-256 content-address, Ed25519 signing) is already built. Blockchains make tampering costly, not impossible. Quantum: Grover weakens hashes, Shor breaks signatures; NIST post-quantum standards (ML-KEM, ML-DSA, SLH-DSA). Documented kept, legend flagged. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/TamperingCost.vue)
 - **Folding linear gives analog** — Folding linear gives analog, decoded honestly with the real science. The kernel is the Whittaker–Shannon sampling theorem: discrete samples of a band-limited signal fold back into the continuous signal with no gaps, via sinc interpolation (computed live, exact at the samples). Medical and radar imaging is exactly this — reconstructing a continuous image from a sampled frequency field: MRI inverts the Fourier transform of k-space, CT the Radon transform, and the spiral/radial "vortex" through k-space is real (NUFFT). The 64³ = 4⁹ grid the model already computes is the discrete lattice it samples. Documented kept, legend flagged — Nyquist limits are real, gap-filling can hallucinate, and the theorem is foundational, not new. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/AnalogField.vue)
 - **Frontiers** — The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Frontiers.vue)
 
 ## 4. Sitemap
 
-The quantum sitemap, wired from the same generator: 30 routes — the home and every served science page — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed; the XML and JSON sitemaps are generated from this one fold (`quantumSitemap`).
+The quantum sitemap, wired from the same generator: 21 routes — the home and every served science page — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed; the XML and JSON sitemaps are generated from this one fold (`quantumSitemap`).
 
 - `/` — [en](https://ceccec.psg.bg/) · [bg](https://ceccec.psg.bg/bg/) · [cu](https://ceccec.psg.bg/gla/)
-- `/heaven` — [en](https://ceccec.psg.bg/heaven) · [bg](https://ceccec.psg.bg/bg/heaven) · [cu](https://ceccec.psg.bg/gla/heaven)
-- `/earth` — [en](https://ceccec.psg.bg/earth) · [bg](https://ceccec.psg.bg/bg/earth) · [cu](https://ceccec.psg.bg/gla/earth)
-- `/explore` — [en](https://ceccec.psg.bg/explore) · [bg](https://ceccec.psg.bg/bg/explore) · [cu](https://ceccec.psg.bg/gla/explore)
-- `/sacred-geometry` — [en](https://ceccec.psg.bg/sacred-geometry) · [bg](https://ceccec.psg.bg/bg/sacred-geometry) · [cu](https://ceccec.psg.bg/gla/sacred-geometry)
-- `/tampering-cost` — [en](https://ceccec.psg.bg/tampering-cost) · [bg](https://ceccec.psg.bg/bg/tampering-cost) · [cu](https://ceccec.psg.bg/gla/tampering-cost)
 - `/analog-field` — [en](https://ceccec.psg.bg/analog-field) · [bg](https://ceccec.psg.bg/bg/analog-field) · [cu](https://ceccec.psg.bg/gla/analog-field)
-- `/simulations` — [en](https://ceccec.psg.bg/simulations) · [bg](https://ceccec.psg.bg/bg/simulations) · [cu](https://ceccec.psg.bg/gla/simulations)
-- `/quantum-mind` — [en](https://ceccec.psg.bg/quantum-mind) · [bg](https://ceccec.psg.bg/bg/quantum-mind) · [cu](https://ceccec.psg.bg/gla/quantum-mind)
 - `/frontiers` — [en](https://ceccec.psg.bg/frontiers) · [bg](https://ceccec.psg.bg/bg/frontiers) · [cu](https://ceccec.psg.bg/gla/frontiers)
-- `/science` — [en](https://ceccec.psg.bg/science) · [bg](https://ceccec.psg.bg/bg/science) · [cu](https://ceccec.psg.bg/gla/science)
-- `/spirit` — [en](https://ceccec.psg.bg/spirit) · [bg](https://ceccec.psg.bg/bg/spirit) · [cu](https://ceccec.psg.bg/gla/spirit)
 - `/pi-trinity` — [en](https://ceccec.psg.bg/pi-trinity) · [bg](https://ceccec.psg.bg/bg/pi-trinity) · [cu](https://ceccec.psg.bg/gla/pi-trinity)
 - `/qubit-trinity` — [en](https://ceccec.psg.bg/qubit-trinity) · [bg](https://ceccec.psg.bg/bg/qubit-trinity) · [cu](https://ceccec.psg.bg/gla/qubit-trinity)
 - `/pauli-basis` — [en](https://ceccec.psg.bg/pauli-basis) · [bg](https://ceccec.psg.bg/bg/pauli-basis) · [cu](https://ceccec.psg.bg/gla/pauli-basis)
@@ -117,7 +90,7 @@ The quantum sitemap, wired from the same generator: 30 routes — the home and e
 - `/dot-cube` — [en](https://ceccec.psg.bg/dot-cube) · [bg](https://ceccec.psg.bg/bg/dot-cube) · [cu](https://ceccec.psg.bg/gla/dot-cube)
 - `/seven-star-rosetta` — [en](https://ceccec.psg.bg/seven-star-rosetta) · [bg](https://ceccec.psg.bg/bg/seven-star-rosetta) · [cu](https://ceccec.psg.bg/gla/seven-star-rosetta)
 
-- Sitemap root: `b8b73504-bf0b-8ca8-8173-377302684d52`
+- Sitemap root: `e705975f-ca43-8222-8a4d-0b01126956a6`
 
 ## 5. Reproducibility
 
@@ -138,11 +111,11 @@ The seal recomputes from src. To forge one value you would rebuild everything �
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `b8b73504-bf0b-8ca8-8173-377302684d52`. The monograph-index root: `2cf9832c-fd64-8940-80f6-a19ca267c22b`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `e705975f-ca43-8222-8a4d-0b01126956a6`. The monograph-index root: `2cf9832c-fd64-8940-80f6-a19ca267c22b`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `5d06fcf6-6f88-8906-ac63-4bd92b80b57e`
+- Receipt: `9dbfc02d-6294-8825-b02f-af8d6df91c40`

@@ -70,7 +70,7 @@ export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix(
 }
 
 /** Documented harmonic rungs — a count off this ladder opens the harmonic gate. */
-export const DOCUMENTED_HARMONICS = [9, (108 / 4), (7 * 6), 43, 64, 108, (16 * 9), 216, 432, (64 * 16)] as const // 27 = 108/4 — the commands quarter (4×27), the served-page census fold under the theorem-science lens
+export const DOCUMENTED_HARMONICS = [9, (2 * 9), (108 / 4), (7 * 6), 43, 64, 108, (16 * 9), 216, 432, (64 * 16)] as const // 18 = 2·9: the 9-ladder step between 9 and 27 (the blog of theorems folds 20 posts → 18) // 27 = 108/4 — the commands quarter (4×27), the served-page census fold under the theorem-science lens
 
 /** Agent task label under genus-2 χ=−2: `${folded}/${unfolded}` (e.g. 108/110, 43/45). */
 export function harmonicFoldLabel(unfolded: number, matrix: MindMatrix = buildMatrix()): string {

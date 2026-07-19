@@ -154,3 +154,42 @@ export function decodingIChingAddsTheorems() {
     boundary: `DERIVED, zero recital: every count comes from exhaustive computation over the 64 six-bit hexagrams plus the classical pairing moves (反/對 are the documented King Wen mechanisms — cited structure, computed consequences). The 28+4 split is proven as FORCED combinatorics (palindromes cannot reversal-pair), which is exactly the split the received King Wen sequence realises; the sequence's ORDER (why hexagram 3 follows 2) is NOT derived — no numerological ordering claim. Group theory is real (V₄, Burnside); divination is not claimed. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── THE HEXAGRAM ORBIT CENSUS: under the Klein four-group of 反 (reversal) and 對 (complement) the
+// 64 hexagrams fall into exactly 12 orbits of size 4 and 8 orbits of size 2 — no fixed points of
+// the whole group, sizes summing 12·4 + 8·2 = 64, orbit count 20 (matching Burnside). The size-2
+// orbits are exactly where an involution coincides with another's image: the 8 palindromes pair by
+// complement, the 8 anti-palindromes pair by reversal∘complement.
+export function hexagramOrbitCensusTwelveFoursEightTwos() {
+  const reverse6 = (n: number) => { let r = 0; for (let i = 0; i < 6; i += 1) r |= ((n >> i) & 1) << (5 - i); return r }
+  const complement6 = (n: number) => (~n) & ((2 ** 6) - 1)
+  const all = Array.from({ length: 2 ** 6 }, (_unused, i) => i)
+  const orbitOf = (h: number) => [h, reverse6(h), complement6(h), complement6(reverse6(h))]
+  const seen = new Set<number>()
+  const sizes: number[] = []
+  for (const h of all) {
+    if (seen.has(h)) continue
+    const orbit = new Set(orbitOf(h))
+    for (const member of orbit) seen.add(member)
+    sizes.push(orbit.size)
+  }
+  const fours = sizes.filter((s) => s === 4).length
+  const twos = sizes.filter((s) => s === 2).length
+  const ones = sizes.filter((s) => s === 1).length
+  const facets = [
+    { facet: `the census is exact — ${fours} orbits of size 4 and ${twos} of size 2 (${ones} fixed points): 12·4 + 8·2 = 64, orbit count ${sizes.length} = the Burnside 20`, on: fours === 4 * 3 && twos === 8 && ones === 0 && fours * 4 + twos * 2 === 64 && sizes.length === 4 * 5 },
+    { facet: 'the size-2 orbits are the symmetric hexagrams — palindromes pair by 對 and anti-palindromes by 反對: the small orbits sit exactly where one involution degenerates', on: twos === 8 && all.filter((h) => reverse6(h) === h).length + all.filter((h) => complement6(reverse6(h)) === h).length === 16 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`orbit-census:${entry.facet}:${entry.on}`) }))
+  return {
+    census: facets.every((entry) => entry.on),
+    fours,
+    twos,
+    ones,
+    orbits: sizes.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `The hexagram orbit census — ${facets.filter((entry) => entry.on).length}/${facets.length}: under the Klein four-group of 反 and 對 the 64 hexagrams decompose into exactly 12 orbits of size 4 and 8 orbits of size 2, no fixed points (12·4 + 8·2 = 64; 20 orbits, matching Burnside), and the small orbits sit exactly on the 16 symmetric hexagrams — palindromes pairing by complement, anti-palindromes by the composite.`,
+    boundary: `Exhaustive computation over the 64 six-bit hexagrams — every count refutable by re-enumeration; the 20 agrees independently with the Burnside average sealed in decodingIChingAddsTheorems. Group theory on the classical pairing moves; no divination claim. HARMONY ≠ TRUTH.`,
+  }
+}

@@ -86,12 +86,15 @@ export function trinityGatewayDefs(matrix: MindMatrix = buildMatrix()): readonly
   // can never point at a removed page; the old hand list carried /architecture and /show.
   const lens = theoremScienceLens(matrix)
   const topRays = [...lens.rays].sort((a, b) => b.pages.length - a.pages.length || a.ray - b.ray).slice(0, 3)
+  // BLOG OF THEOREMS: with fewer than 3 populated rays the remaining gateways are the theorem corpus
+  // surfaces themselves (lens.corpusRoutes, in the lens by construction) — computed, never pinned.
+  const gatewaySlugs = Array.from({ length: 3 }, (_unused, index) => topRays[index]?.pages[0]?.slug ?? lens.corpusRoutes[index - topRays.filter((ray) => ray.pages.length > 0).length]?.replace(/\//g, '') ?? 'theorems')
   const legs = [
     { realm: 'proven' as const, trinityLeg: 'cross' as const, glyph: '✛' },
     { realm: 'animated' as const, trinityLeg: 'fold' as const, glyph: '○' },
     { realm: 'presented' as const, trinityLeg: 'weave' as const, glyph: '⬡' },
   ]
-  const defs = legs.map((leg, index) => ({ slug: topRays[index]?.pages[0]?.slug ?? '', ...leg }))
+  const defs = legs.map((leg, index) => ({ slug: gatewaySlugs[index]!, ...leg }))
   return defs.slice(0, caps.gateways).map((entry) => ({
     ...entry,
     receipt: toUuid(`trinity-gateway:${entry.slug}:${entry.realm}:${entry.trinityLeg}`),
@@ -544,7 +547,8 @@ export function trinityGatewaysNeverMissProvenByMath(
     // first served member each) — the identity proves defs and wiring derive from the same law; the
     // old pinned hand list (architecture · quantum-mind · show) carried removed pages.
     const wiringLens = theoremScienceLens(matrix)
-    const wiringSlugs = [...wiringLens.rays].sort((a, b) => b.pages.length - a.pages.length || a.ray - b.ray).slice(0, 3).map((ray) => ray.pages[0]?.slug ?? '')
+    const wiringTop = [...wiringLens.rays].sort((a, b) => b.pages.length - a.pages.length || a.ray - b.ray).slice(0, 3)
+    const wiringSlugs = Array.from({ length: 3 }, (_unused, index) => wiringTop[index]?.pages[0]?.slug ?? wiringLens.corpusRoutes[index - wiringTop.filter((ray) => ray.pages.length > 0).length]?.replace(/\//g, '') ?? 'theorems')
     const gatewayDefs = trinityGatewayDefs(matrix)
     const slugsMatchWiring = gatewayDefs.every((gateway, index) => gateway.slug === wiringSlugs[index])
     const gatewayCircuit = gatewayDefs.map((gateway, index) => ({

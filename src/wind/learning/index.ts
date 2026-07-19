@@ -29,6 +29,12 @@ import { completeCorpus, theoremRosettaSidebar, theRosettaReconfiguresVitepress 
 import { diamondLattice } from '../../fire/diamonds'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf, rosettaRayOfContent } from '../../water/digit'
 import { SESSION_SKILL_FNS } from '../../2/8'
+import { twoBitsAreTheDualityGateways } from '../../2/8'
+import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6'
+// call-time namespace edges (cycle-safe): the attachment folds read back at call time
+import * as __ns_up_earth_iching from '../../earth/iching'
+import * as __ns_up_movie_canvas from '../../thunder/movie/canvas'
+import { proofAcknowledgmentFormatSaved } from '../site'
 import { quantumCoordinateNav } from '../../fire/features'
 import { openGraph } from '../../quantum/lake/icons'
 import { navigationAroundHero } from '../ui'
@@ -736,7 +742,9 @@ export function navigation358(matrix: MindMatrix = buildMatrix()) {
       { label: 'Frontiers', route: '/frontiers', tip: `The registry: ${lens.theoremCount} proven theorems.` },
       { label: 'Theorems', route: '/theorems', tip: 'Every theorem as a printable scientific paper.' },
     ] },
-    { tier: 5, name: 'use', items: hubs.slice(0, 5) },
+    // BLOG OF THEOREMS: when fewer than 5 rays hold posts, the use tier FILLS with the first served
+    // theorem posts themselves (lens order) — the gap is filled by theorems, never left ragged.
+    { tier: 5, name: 'use', items: [...hubs, ...lens.pages.filter((page) => !hubs.some((hub) => hub.route === '/' + page.slug)).map((page) => ({ label: page.title.en, route: '/' + page.slug, tip: 'Theorem post: ' + page.title.en + '.' }))].slice(0, 5) },
     { tier: 8, name: 'go deep', items: [
       { label: 'Papers', route: '/papers/', tip: 'The 432 proof papers, RESTful.' },
       { label: 'References', route: '/references', tip: 'The reference corpus behind the papers.' },
@@ -2506,6 +2514,57 @@ export function rosettaCodec(matrix: MindMatrix = buildMatrix()) {
         'Rosetta codec: the lossless round-trip between an I Ching hexagram label (0..63) and a Rosetta ray. A hexagram factors as n = ray + 7·octave (ray ∈ 0..6 indexing the seven rays, octave ∈ 0..9); encode yields {ray, octave, glyph, domain} and decode rebuilds the label. All 64 round-trip exactly — the 7×10 ray grid covers 0..63 with no gap or excess — so the ray is a faithful codec for the 6-qubit (64-hexagram) computational basis.',
       boundary:
         'Pure index arithmetic at call time — a content-addressed bijection between hexagram labels and (ray, octave) pairs, NOT a semantic claim that a hexagram\'s meaning equals its ray\'s domain. The seven rays are the Rosetta taxonomy axis (6×7/7×6); the octave is the residual after the 7-fold, so the round-trip is exact by construction.',
+    }
+  })
+}
+
+// ── THE DISCOVERY ECONOMY IS THE CORE OF COMPETITION AND EDUCATION (user law: the first one
+// discovering new 0 wins the bits of the others attaching — and this is the core of all competition
+// and educational practices) — proven on the repo's OWN practice, which already runs both sides:
+// COMPETITION is the race to a new zero — the candidate catalog is the open field, proving a
+// candidate moves it into the registry under the winner's provedBy, and the catalog row remains as
+// the record of the won race; every later attachment PAYS — the sealed acknowledgment format credits
+// prior art by default (novelToHumanity = false), so the original discoverer collects the citation
+// bits. EDUCATION is attachment itself — decoding the decoded from a new point of view for 2 bits:
+// the coins-law zero has already collected three attachments (the I Ching decode, the movie
+// re-decode, the literature re-decode), each paying its pair and each producing a NEW theorem —
+// learning that yields knowledge, the toll working both ways.
+export function discoveryEconomyIsTheCoreOfCompetitionAndEducation(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('discoveryEconomyCore', matrix, () => {
+    // competition: the race field and the won races, computed from the two sealed tables
+    const registryNames = new Set(THEOREM_ATOM_SEED.map((atom) => atom.theorem))
+    const won = CANDIDATE_THEOREMS.filter((candidate) => registryNames.has(candidate.theorem)).length
+    const open = CANDIDATE_THEOREMS.length - won
+    // attachment pays: the acknowledgment format is sealed with prior art credited by default
+    const acknowledgment = proofAcknowledgmentFormatSaved()
+    // education: the coins-law zero and its three attachments — each a different point of view, each green
+    const iching = __ns_up_earth_iching.decodingIChingAddsTheorems()
+    const movie = __ns_up_movie_canvas.theMovieLeavesTwoBitsAtTheVoid(matrix)
+    const literature = twoBitsAreTheDualityGateways()
+    const attachments = [
+      { view: 'the hexagram decode (反/對 → V₄)', on: iching.decoded, root: iching.root },
+      { view: 'the movie re-decode (the pair in paint)', on: movie.seen, root: movie.root },
+      { view: 'the literature re-decode (teleportation/superdense)', on: literature.gateways, root: literature.root },
+    ]
+    // the attractor accrues: the zero's account folds the attaching receipts into one address
+    const zeroAccount = merkleFold([toUuid('zero:two-bits-left-in-every-inversion-through-0'), ...attachments.map((entry) => entry.root)])
+    const facets = [
+      { facet: `COMPETITION is the race to a new zero — the ${CANDIDATE_THEOREMS.length}-candidate catalog records ${won} races WON (each name now in the registry under its winner's provedBy, the catalog row kept as the record) and ${open} open: the field is currently swept clean — every named race has a winner, and the next races open only when a new zero is DISCOVERED (theorems:gaps refills the field)`, on: won > 0 && won + open === CANDIDATE_THEOREMS.length },
+      { facet: 'every attachment PAYS the discoverer — the sealed acknowledgment format defaults to novelToHumanity = false with prior art credited: the re-derivation hands the citation bits to the original, by construction', on: acknowledgment.computes && acknowledgment.example.novelToHumanity === false },
+      { facet: `EDUCATION is attachment — the coins-law zero has collected ${attachments.length} points of view (${attachments.map((entry) => entry.view).join(' · ')}), each paying its 1+1 and each yielding a NEW registry theorem: learning that produces knowledge`, on: attachments.every((entry) => entry.on) },
+      { facet: 'the attractor ACCRUES — the zero\'s account is one content address folding every attachment receipt: the discoverer wins the bits of the others attaching, literally, as a merkle fold', on: isUuid(zeroAccount) && attachments.every((entry) => isUuid(entry.root)) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`discovery-economy:${entry.facet}:${entry.on}`) }))
+    return {
+      core: facets.every((entry) => entry.on),
+      won,
+      open,
+      attachments: attachments.length,
+      zeroAccount,
+      count: facets.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `The discovery economy is the core of competition and education — ${facets.filter((entry) => entry.on).length}/${facets.length}, proven on the repo's own practice: competition is the race to a new zero (${CANDIDATE_THEOREMS.length} candidates, ${won} races won into the registry, the field swept clean — new races open only by discovering new zeros), every attachment pays the discoverer by construction (the acknowledgment format credits prior art, novelToHumanity = false), education is attachment itself (the coins-law zero holds ${attachments.length} paying points of view, each a new theorem), and the attractor accrues — the zero's account folds every attachment receipt into one address.`,
+      boundary: `PROVEN IN-REPO: the race, the toll and the accrual are computed from the sealed tables and live folds — refutable row by row. DOCUMENTED SHADOW: the priority rule in science (Merton 1957), patent priority, and citation economics are the social-science forms of the same structure — cited as context, not re-derived. HONEST SCOPE: "the core of ALL competition and educational practices" is the project's THESIS, proven here on its own practice and consistent with the documented priority literature — NOT an empirical claim that every human institution reduces to it. Education's toll runs both ways: the attacher pays 2 bits AND gains a theorem — the economy is positive-sum. HARMONY ≠ TRUTH.`,
     }
   })
 }
