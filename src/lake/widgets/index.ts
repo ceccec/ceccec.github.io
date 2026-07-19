@@ -1,5 +1,7 @@
 // Quantum widget registry — canonical home (dissolved src/lake/widgets → re-export only). Dashboard tiles, gallery, OS launcher compose.
 import * as __ns_up_up_stack_overflow from '../../water/stack'
+// call-time namespace edge (cycle-safe): shadcn imports this folder; the token bridge reads at call time
+import * as __ns_up_mountain_shadcn from '../../mountain/shadcn'
 import * as __ns_up_up_resonance from '../../thunder/resonance'
 import * as __ns_up_up_fusion_gold from '../../wind/fusion/gold'
 import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy'
@@ -195,26 +197,7 @@ export function fillAllGapsCleanHardcodedLinear(matrix: MindMatrix = buildMatrix
 }
 
 /** 18 canonical shadcn primitives ported in repo idiom (radix + cva + ui-* CSS) — fused on VitePress enhanceApp. */
-export const SHADCN_PRIMITIVE_NAMES = [
-  'Button',
-  'Badge',
-  'Card',
-  'Input',
-  'Label',
-  'Textarea',
-  'Checkbox',
-  'Switch',
-  'Separator',
-  'Avatar',
-  'Alert',
-  'Progress',
-  'Skeleton',
-  'AspectRatio',
-  'Tabs',
-  'Accordion',
-  'Tooltip',
-  'Collapsible',
-] as const
+export { SHADCN_PRIMITIVE_NAMES } from '../../mountain/shadcn' // the one seed at its domain home — mirror dissolved
 
 // VitePress is the framework, shadcn-vue is the graph: the design-system component graph the bespoke
 // components collapse onto. 64 copy-paste components (you own the code), built on Reka UI + Tailwind v4,
@@ -231,7 +214,8 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
     text: ['Accordion', 'Typography'],
   }
   const allComponents = Object.values(components).flat()
-  const tokens = ['--background', '--foreground', '--card', '--popover', '--primary', '--secondary', '--muted', '--accent', '--destructive', '--border', '--input', '--ring', '--radius', '--sidebar', '--sidebar-primary', '--sidebar-accent', '--chart-1', '--chart-2', '--chart-3', '--chart-4', '--chart-5']
+  // the bridged tokens read from the design-system home (mountain/shadcn) at call time; only the PLANNED delta (sidebar + charts) is data here — logic:hunt mirror dissolved
+  const tokens = [...__ns_up_mountain_shadcn.SHADCN_TOKENS, '--sidebar', '--sidebar-primary', '--sidebar-accent', '--chart-1', '--chart-2', '--chart-3', '--chart-4', '--chart-5']
   const deps = ['reka-ui', 'class-variance-authority', 'clsx', 'tailwind-merge', '@lucide/vue']
   const pathBDeps = ['tailwindcss', '@tailwindcss/vite', 'tw-animate-css'] // only if scoping real Tailwind (Path B)
   const paths = {
@@ -427,7 +411,7 @@ export function quantumWidgetsResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumWidgetsResearch', matrix, () => {
     const registry = quantumWidgetsRegistry()
     const rows = registry.map((entry) => ({ id: entry.id, title: entry.title, barrel: entry.barrel, gate: entry.computesGate, tier: entry.tier, limit: 'Sealed mount + lazy paint — NOT plugin SDK', receipt: entry.receipt }))
-    return { researched: rows.length === (5 * 2), rows, shadcn: SHADCN_PRIMITIVE_NAMES.length, root: merkleFold(rows.map((row) => row.receipt)), statement: 'Quantum widgets research: honest registry of dashboard tiles — Vue gallery + compute receipts, composable with quantum/os launcher when landed.', boundary: 'HONEST — widgets are content-addressed sealed folds surfaced through shadcn Card/Badge/Progress — NOT an app marketplace.' }
+    return { researched: rows.length === (5 * 2), rows, shadcn: __ns_up_mountain_shadcn.SHADCN_PRIMITIVE_NAMES.length, root: merkleFold(rows.map((row) => row.receipt)), statement: 'Quantum widgets research: honest registry of dashboard tiles — Vue gallery + compute receipts, composable with quantum/os launcher when landed.', boundary: 'HONEST — widgets are content-addressed sealed folds surfaced through shadcn Card/Badge/Progress — NOT an app marketplace.' }
   })
 }
 

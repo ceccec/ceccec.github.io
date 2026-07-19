@@ -8,12 +8,16 @@ import { buildMatrix } from '../../heaven/compute'
 import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 
 /** The shadcn primitives actually vendored as Ui* SFCs in .vitepress/theme/components/ui (Path A). */
-export const SHADCN_IMPLEMENTED = [
-  'Accordion', 'AccordionItem', 'Alert', 'AspectRatio', 'Avatar', 'Badge', 'Button',
-  'Card', 'CardContent', 'Checkbox', 'Collapsible', 'Input', 'Label', 'Progress',
-  'Separator', 'Skeleton', 'Switch', 'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
-  'Textarea', 'Tooltip',
+// DERIVED, not mirrored (logic:hunt mirrors #2–#5): the implemented SFC inventory = the canonical
+// primitives (the ONE seed, below at its domain home) plus their compound sub-SFCs — the roster can
+// never drift from the seed, and every other surface reads or re-exports from here.
+export const SHADCN_COMPOUND_SFCS = ['AccordionItem', 'CardContent', 'TabsContent', 'TabsList', 'TabsTrigger'] as const
+/** The 18 canonical primitives — the ONE seed, at its domain home; lake/widgets re-exports it. */
+export const SHADCN_PRIMITIVE_NAMES = [
+  'Button', 'Badge', 'Card', 'Input', 'Label', 'Textarea', 'Checkbox', 'Switch', 'Separator',
+  'Avatar', 'Alert', 'Progress', 'Skeleton', 'AspectRatio', 'Tabs', 'Accordion', 'Tooltip', 'Collapsible',
 ] as const
+export const SHADCN_IMPLEMENTED: readonly string[] = [...SHADCN_PRIMITIVE_NAMES, ...SHADCN_COMPOUND_SFCS].sort()
 
 /** cva variant axes carried by the implemented primitives (variant/size enumerations). */
 export const SHADCN_VARIANTS = {

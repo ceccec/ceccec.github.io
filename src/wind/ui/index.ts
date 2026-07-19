@@ -1448,10 +1448,7 @@ export const SHADCN_VARIANTS = {
   Alert: { variant: ['default', 'destructive'] },
 } as const
 /** Design-system CSS-variable tokens (oklch new-york), bridged to VitePress --vp-* and .dark. */
-export const SHADCN_TOKENS = [
-  '--background', '--foreground', '--card', '--popover', '--primary', '--secondary',
-  '--muted', '--accent', '--destructive', '--border', '--input', '--ring', '--radius',
-] as const
+// SHADCN_TOKENS lives at its domain home (src/mountain/shadcn) — verbatim mirror dissolved; call-time edge reads.
 /** The cn() pattern the theme mount re-exports — tailwind-merge over clsx, the one class composer. */
 export const CN_PATTERN = 'cn(...inputs) = twMerge(clsx(inputs)) — single class-name composer; theme re-exports from .vitepress/lib/cn.ts' as const
 /** Pure, dependency-free class join — the deterministic shadow of cn() for sealed callers (no twMerge dedupe). */
@@ -1465,7 +1462,7 @@ export function shadcnResearch(matrix: MindMatrix = buildMatrix()) {
     const sections = [
       { id: 'graph', title: 'shadcn is the graph', note: `${graph.allComponents.length} components grouped into ${Object.keys(graph.components).length} families`, receipt: toUuid('shadcn-research:graph') },
       { id: 'implemented', title: 'vendored primitives (Path A)', note: `${__ns_up_up_mountain_shadcn.SHADCN_IMPLEMENTED.length} Ui* SFCs in .vitepress/theme/components/ui — semantic classes, no Tailwind dependency`, receipt: toUuid('shadcn-research:implemented') },
-      { id: 'tokens', title: 'CSS-variable theming', note: `${SHADCN_TOKENS.length} canonical tokens bridged to --vp-* and .dark`, receipt: toUuid('shadcn-research:tokens') },
+      { id: 'tokens', title: 'CSS-variable theming', note: `${__ns_up_up_mountain_shadcn.SHADCN_TOKENS.length} canonical tokens bridged to --vp-* and .dark`, receipt: toUuid('shadcn-research:tokens') },
       { id: 'cn', title: 'cn() composer', note: CN_PATTERN, receipt: toUuid('shadcn-research:cn') },
     ]
     return { researched: true, sections, root: merkleFold(sections.map((section) => section.receipt)), boundary: 'Registry/tokens sealed here; Vue SFCs stay in the VitePress theme (framework requirement).' }
@@ -1484,7 +1481,7 @@ export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'vendored primitives (Path A) implemented as Ui* SFCs — no Tailwind dependency', on: implemented.length >= 22 },
       { facet: 'every implemented primitive folds onto the graph or its sub-parts', on: onGraph.length === implemented.length },
       { facet: 'variant axes (cva) enumerated for the styled primitives', on: SHADCN_VARIANTS.Button.variant.length >= 6 && SHADCN_VARIANTS.Button.size.length >= 4 },
-      { facet: 'CSS-variable tokens bridged to VitePress --vp-* and .dark', on: SHADCN_TOKENS.length >= 13 },
+      { facet: 'CSS-variable tokens bridged to VitePress --vp-* and .dark', on: __ns_up_up_mountain_shadcn.SHADCN_TOKENS.length >= 13 },
       { facet: 'cn() pattern sealed — one class composer, theme re-exports it', on: cn('a', false, 'b') === 'a b' },
       { facet: 'research folded — sources, paths and implemented-vs-graph delta sealed', on: research.researched },
     ])
@@ -1493,7 +1490,7 @@ export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       graph,
       research,
       implemented,
-      tokens: SHADCN_TOKENS,
+      tokens: __ns_up_up_mountain_shadcn.SHADCN_TOKENS,
       variants: SHADCN_VARIANTS,
       facets,
       root: merge(graph.root, merkleFold(facets.map((entry) => toUuid(`shadcn-computes:${entry.facet}:${entry.on}`)))),

@@ -2,6 +2,8 @@
 // the quantum vacuum (zero-point, QCD, electroweak), the origin of mass and matter, neutrino mass, the dark sector,
 // and the ΛCDM tensions. Pure domain folds — composed here, re-exported by ./index.ts so importers resolve unchanged.
 import { phase } from '../../6/4'
+// call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
+import * as __ns_up_lake_widgets from '../../lake/widgets'
 import { rat, ratEq, ratAdd, ratMul, ratSub, ratDiv, ratToFloat, cfEval } from '../../3/7'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7'
 import { survive } from '../../mountain/vortex'
@@ -669,7 +671,8 @@ export function deviceSensorsWiredAtAllDimensions(matrix: MindMatrix = buildMatr
 // "complete without gaps" means porting the canonical primitive SET in THIS zero-hardcoded idiom, each with its
 // computed-token CSS and its registration — and honestly bounding completion at the layer this environment can verify.
 export function shadcnGraphCompletionInRepoIdiom(matrix: MindMatrix = buildMatrix()) {
-  const canonical = ['Button', 'Badge', 'Card', 'Input', 'Label', 'Textarea', 'Checkbox', 'Switch', 'Separator', 'Avatar', 'Alert', 'Progress', 'Skeleton', 'AspectRatio', 'Tabs', 'Accordion', 'Tooltip', 'Collapsible']
+  // the canonical primitives read from the ONE seed (lake/widgets) at call time — logic:hunt mirror dissolved
+  const canonical = [...__ns_up_lake_widgets.SHADCN_PRIMITIVE_NAMES]
   const present = canonical.slice() // ALL ported: Button/Badge/Card pre-existing + 15 written by the shadcn-port wave
   const gaps = canonical.filter((c) => !present.includes(c))
   const facets = [
