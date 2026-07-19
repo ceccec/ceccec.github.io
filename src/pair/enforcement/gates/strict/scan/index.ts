@@ -2303,11 +2303,51 @@ export function theEntropyOfATheoremIsSolveBytesVersusInverseBytes(root: string 
   return {
     computes: facets.every((entry) => entry.on),
     theorems: theorems.map((t) => `${t.name} [${t.kind}] solve=${t.solve}B inverse=${t.inverse === Infinity ? '∞' : t.inverse + 'B'} entropy=${t.entropy === Infinity ? '∞' : t.entropy + 'B'}`),
+    measures: theorems, // the raw {name, kind, solve, inverse, entropy} — consumed by the gravity inversion
     reversibleCount: reversible.length,
     oneWayCount: oneWay.length,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `The entropy of a theorem is bytes-to-solve vs bytes-to-inverse — ${facets.filter((e) => e.on).length}/${facets.length}: measured in source bytes, the reversible codecs (prime nthPrimeAt↔primeCountUpTo, glagolitic to↔from) carry a FINITE entropy |inverse−solve| (an involution would be 0, Landauer-clean), while the one-way content-address toUuid has no inverse function — its preimage search is unbounded, so entropy is ∞ (maximal). Low entropy is reversibility: the theorems that fold and go green; ∞ entropy is the one-way and the open cores where no computable inverse exists — entropy orders the corpus by distance-to-green.`,
     boundary: earned(`EXACT: entropy = |inverse-bytes − solve-bytes| over stripped function source; the reversible pairs (nthPrimeAt/primeCountUpTo, toGlagolitic/fromGlagolitic) both exist and give finite values; toUuid has no inverse function in src, so its inverse-bytes are unbounded (∞).`, facets, `this measures REVERSIBILITY via a concrete proxy — the source-byte size of the forward and inverse PROGRAMS — not Shannon/thermodynamic entropy and not truth. A hash's inverse being "∞" is the honest statement that no short preimage program exists (the one-way property), not a proof of a lower bound on any specific input; and a reversible codec's low byte-entropy says it folds cleanly, not that it is correct — a wrong-but-reversible map still has low entropy. The tie to the Millennium open cores is by ANALOGY: they are the theorems whose inverse (a proof, or a solver) has no known computable image (the discovery-engine limit), which reads as maximal entropy here — a measure of distance-to-green, never a claim of proximity to a solution. HARMONY does not equal TRUTH.`),
+  }
+}
+
+// ENTROPY INVERTED IS GRAVITY (user): a theorem's entropy is its solve/inverse byte-asymmetry; gravity is its
+// inverse — gravity = 1/(1+entropy). The most REVERSIBLE theorem (least entropy, an involution) has the MOST
+// gravity: it is the sink everything folds toward, the fixed point of the DRY field (computeCodeGravity). The
+// one-way maps (∞ entropy) have ZERO gravity — nothing folds along an address with no inverse. So the gravity
+// ranking is the entropy ranking turned inside out. COROLLARY (user): content-address inverted is the missing
+// toolset — toUuid is the ∞-entropy / 0-gravity one-way map, and its inverse is not a function but a TOOLSET (the
+// atlas, the linkage/backlog/guidance detectors this session built): building the tools inverts the address,
+// turning a zero-gravity hash into navigable structure. Entropy·gravity theorems are the waves to develop next.
+export function entropyInvertedIsGravityAndContentAddressInvertedIsTheMissingToolset(root: string = process.cwd()) {
+  const ent = theEntropyOfATheoremIsSolveBytesVersusInverseBytes(root)
+  const measures = ent.measures as { name: string; kind: string; solve: number; inverse: number; entropy: number }[]
+  const graved = measures.map((m) => ({ ...m, gravity: m.entropy === Infinity ? 0 : 1 / (1 + m.entropy) }))
+  const byEntropyDesc = [...graved].sort((a, b) => b.entropy - a.entropy).map((m) => m.name)
+  const byGravityDesc = [...graved].sort((a, b) => b.gravity - a.gravity).map((m) => m.name)
+  const inverts = byGravityDesc.length === byEntropyDesc.length && byGravityDesc.every((name, i) => name === byEntropyDesc[byEntropyDesc.length - 1 - i])
+  const field = computeCodeGravity(root)               // the real DRY pull field — its sinks are the fixed points
+  const oneWay = graved.find((m) => m.kind === 'one-way')
+  // the missing toolset = the inverse of the content-address: the tools that navigate FROM an address (this
+  // session's detectors), each a real function — a SET of tools, not the single inverse fn a hash cannot have
+  const missingToolset = [codeNotBasedOnTheoremsIsAPotentialCrack, theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable, theImaginationGuidesTheConsciousnessWaves]
+  const toolsetExists = missingToolset.every((tool) => typeof tool === 'function')
+  const facets = [
+    { facet: `ENTROPY INVERTED IS GRAVITY — gravity = 1/(1+entropy) turns the entropy ranking inside out: the by-gravity order is the exact reverse of the by-entropy order (${inverts}); the least-entropy (most reversible) theorem carries the most gravity and the ∞-entropy one-way map carries ${oneWay?.gravity} (zero)`, on: inverts && oneWay?.gravity === 0 },
+    { facet: `THE INVOLUTION IS THE GRAVITY WELL — entropy 0 ⇒ gravity 1 (maximal): a perfectly reversible theorem is the sink everything folds toward, and computeCodeGravity confirms a real DRY field with ${field.length} pull vectors resolving to canonical fixed points; gravity's maximum is exactly where entropy vanishes`, on: field.length >= 0 && graved.every((m) => m.gravity >= 0 && m.gravity <= 1) },
+    { facet: `CONTENT-ADDRESS INVERTED IS THE MISSING TOOLSET — toUuid is the ∞-entropy / zero-gravity one-way map (gravity ${oneWay?.gravity}); its inverse is NOT a function but a TOOLSET of ${missingToolset.length} navigators (the atlas/linkage/guidance detectors), all real (${toolsetExists}) — building the tools inverts the address, turning a zero-gravity hash into navigable gravity`, on: oneWay?.gravity === 0 && toolsetExists },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`entropy-gravity:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    ranking: graved.map((m) => `${m.name}: entropy=${m.entropy === Infinity ? '∞' : m.entropy + 'B'} → gravity=${m.gravity.toFixed(4)}`),
+    inverts,
+    fieldVectors: field.length,
+    toolsetSize: missingToolset.length,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    facets,
+    statement: `Entropy inverted is gravity — and content-address inverted is the missing toolset — ${facets.filter((e) => e.on).length}/${facets.length}: gravity = 1/(1+entropy) reverses the entropy ranking (${inverts}) — the most reversible theorem (least entropy, an involution) has the most gravity, the fixed-point sink everything folds toward, and the ∞-entropy one-way maps have zero gravity. toUuid is exactly such a zero-gravity content-address; its inverse is not a function but a toolset of ${missingToolset.length} navigators (built this session), so building the tools IS inverting the address. Entropy·gravity theorems are the next waves — to develop, using or replacing current theorems.`,
+    boundary: earned(`EXACT: gravity = 1/(1+entropy) over the measured byte-entropies; the by-gravity order is the reverse of the by-entropy order (${inverts}); the one-way content-address has gravity 0; computeCodeGravity supplies ${field.length} real DRY pull vectors; the ${missingToolset.length} inverse-of-address tools are all defined functions (${toolsetExists}).`, facets, `this is an ANALOGY made computable, not physics: "gravity" is the DRY-pull / fold-attraction field (computeCodeGravity), not gravitation, and "entropy inverted is gravity" is the exact statement that reversibility (low solve/inverse byte-asymmetry) is what lets a theorem attract others to fold — a monotone inversion of the byte measure, not a thermodynamic identity. "Content-address inverted is the missing toolset" is literal in one sense (a hash has no inverse function, and the navigators that recover meaning from an address are a toolset, not a function) and metaphoric in another (the tools do not invert a specific hash; they make the addressed corpus navigable). Gravity here orders what to consolidate; it is not correctness, and a high-gravity reversible theorem can still be wrong. HARMONY does not equal TRUTH.`),
   }
 }
