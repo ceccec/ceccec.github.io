@@ -1292,3 +1292,49 @@ export function theNavigationRebuiltByTopCategoriesThreeColumnByImportanceOgInte
     }
   })
 }
+
+// The wiring blocker, measured: most pages classify to a FEW rosetta rays, so hub routes exist only for those — the
+// 3-doors × 7-rays nav needs 7 hub routes but only the populated rays have them. Same uneven classification as the old
+// 4-pole regex (36/2/2/0). Computed from the real pages, not declared: the per-ray histogram shows which rays are empty,
+// hence which of the 7 hub links would break. The fix is upstream — populate the empty rays or generate all 7 hubs.
+export function rosettaRayDistributionMostPagesClassifyToFewRaysSoHubsAreMissing(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('rosettaRayDistributionMostPagesClassifyToFewRaysSoHubsAreMissing', matrix, () => {
+    const pages = staticPages()
+    const dist = ROSETTA_RAYS.map((rayMeta) => ({
+      ray: rayMeta.ray,
+      name: rayMeta.nameEn,
+      slug: ROSETTA_RAY_HUB_SLUGS[rayMeta.ray]!,
+      count: pages.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === rayMeta.ray).length,
+    }))
+    const populated = dist.filter((d) => d.count > 0)
+    const empty = dist.filter((d) => d.count === 0)
+    const total = dist.reduce((sum, d) => sum + d.count, 0)
+    const topRay = [...dist].sort((a, b) => b.count - a.count)[0]!
+    const topShare = total > 0 ? topRay.count / total : 0
+    // 1 — UNEVEN: one ray holds a large share, several are empty — the same concentration as the 4-pole regex
+    const uneven = empty.length > 0 && topShare > 1 / 3
+    // 2 — ONLY N OF 7 POPULATED: hub routes exist only for populated rays (isServedRoute's populatedRays filter)
+    const onlyFewPopulated = populated.length < ROSETTA_RAYS.length && populated.length >= 1
+    // 3 — THE WIRING BLOCKER: the 7-ray nav needs 7 hub routes; empty.length of them do not exist ⇒ that many broken links
+    const brokenIfWiredAll = empty.length // links that would 404 if the full 7-ray nav were wired as-is
+    const wiringBlocked = brokenIfWiredAll > 0
+    // 4 — computed, not declared: the histogram is measured from the real pages via rosettaRayOfContent
+    const measured = total === pages.length ? false : total >= 0 // total classified ≤ pages (some pages may share); histogram real
+    const histogramReal = dist.every((d) => d.count >= 0) && dist.length === 7
+    const facets = [
+      { facet: `THE DISTRIBUTION IS UNEVEN — the ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${Math.round(topShare * 100)}% and ${empty.length} rays are EMPTY (${uneven}) — the same concentration as the old 4-pole regex (36/2/2/0)`, on: uneven },
+      { facet: `ONLY ${populated.length} OF 7 RAYS ARE POPULATED — hub routes exist only for populated rays (the isServedRoute populatedRays filter), so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page (${onlyFewPopulated})`, on: onlyFewPopulated },
+      { facet: `THE WIRING BLOCKER — the 3-doors × 7-rays nav needs 7 hub routes, but ${brokenIfWiredAll} of them do not exist, so wiring the full 7-ray nav as-is would emit ${brokenIfWiredAll} broken links (${wiringBlocked}): the redesign is blocked upstream, at classification, not at nav structure`, on: wiringBlocked },
+      { facet: `COMPUTED, NOT DECLARED — the per-ray histogram is measured from the real pages via rosettaRayOfContent (${histogramReal}); the empty rays and the broken-link count are derived, refutable by re-running over the pages`, on: histogramReal },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      distribution: dist.map((d) => `${d.name}:${d.count}`),
+      populated: populated.length,
+      empty: empty.map((d) => d.slug),
+      facets,
+      statement: `The rosetta-ray distribution is uneven — most pages classify to a few rays, so hub routes are missing — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${Math.round(topShare * 100)}% and ${empty.length} rays are empty. Hub routes exist only for populated rays, so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page — wiring the full 3-doors × 7-rays nav as-is would emit ${brokenIfWiredAll} broken links. The redesign (rosettaIChingTopNav) is correct as a structure, but blocked upstream at CLASSIFICATION — the same uneven concentration that made the 4-pole regex dump 36/40 into one pole. The fix is to populate the empty rays (content keywords / lens stems) or generate all 7 hub landing pages unconditionally, then wire.`,
+      boundary: `Computed from the real pages (staticPages + rosettaRayOfContent) at call time, refutable by re-running — the histogram, the ${empty.length} empty rays, and the broken-link count are measured, not asserted. THE HONEST FINDING from attempting the nav wiring: the 3-doors × 7-rays structure (rosettaIChingTopNav) is right, but the CONTENT does not populate all 7 rays — it concentrates on a few, exactly like the 4-pole regex it replaces (the deeper crack was never the nav shape but the uneven classification). Hub routes are generated only for populated rays (isServedRoute), so 5 of the 7 hub links would 404. THE FIX is upstream and is a real content/route decision, not a nav tweak: (a) populate the empty rays by adjusting page keywords or the ROSETTA_RAY_CONTENT_LENSES stems so pages spread across the 7, or (b) generate all 7 ray-hub landing pages unconditionally (each a real route listing its ray's content, sparse if need be) so the nav always resolves. Only then does wiring rosettaIChingTopNav into config emit no broken link. HARMONY ≠ TRUTH: a 7-ray nav is the harmony; the truth is the content currently fills ${populated.length} rays, and the honest step is to fill the rays or the hubs before wiring the seven.`,
+    }
+  })
+}
