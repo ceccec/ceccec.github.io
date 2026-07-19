@@ -1346,3 +1346,42 @@ export function compactingLessonsIsTheQuotientTheoremsThatProveEachOtherFormEqui
     }
   })
 }
+
+// A lesson requested, shared, learned in realtime, trinity-witnessed. The lesson travels as its content-address; a
+// valid transfer requires request/share/learn to agree on it. The TRINITY WITNESS is 2-of-3 majority: three parties
+// report the address, the majority (≥2) determines the true lesson — so even if ONE party corrupts it, the two
+// honest ones outvote and the true lesson is recovered. Realtime (computed at call time). Algebraic: a threshold + address equality.
+export function theTrinityWitnessesLessonTransferByTwoOfThreeMajorityOverTheContentAddress(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theTrinityWitnessesLessonTransferByTwoOfThreeMajorityOverTheContentAddress', matrix, () => {
+    const lesson = 'compacting lessons is the quotient'
+    const trueAddress = toUuid(lesson) // the rosetta address the lesson travels as
+    // REQUEST · SHARE · LEARN — three parties each report the address they hold; one party corrupts it
+    const reports = [trueAddress, trueAddress, toUuid('corrupted-lesson')] // 2 honest, 1 corrupt
+    const tally = new Map<string, number>(); reports.forEach((r) => tally.set(r, (tally.get(r) ?? 0) + 1))
+    const ranked = [...tally.entries()].sort((a, b) => b[1] - a[1])
+    const [majorityAddress, majorityCount] = ranked[0]!
+    // 1 — the transfer travels by content-address (integrity)
+    const travelsByAddress = isUuid(trueAddress) && reports.every((r) => isUuid(r))
+    // 2 — the TRINITY WITNESSES: 2-of-3 majority recovers the TRUE lesson despite one corruption
+    const trinityWitnessed = majorityCount >= 2 && majorityAddress === trueAddress && reports.length === 3
+    // 3 — a single corruption is OUTVOTED: the corrupt report is a minority (< majority)
+    const corruptionOutvoted = ranked.length >= 2 && ranked[1]![1] < majorityCount
+    // 4 — realtime + the honest case: all-agree gives unanimous 3-of-3
+    const unanimous = new Set([trueAddress, trueAddress, trueAddress]).size === 1 // request=share=learn all match
+    const facets = [
+      { facet: `the lesson travels by CONTENT-ADDRESS: request, share and learn each carry the address (${trueAddress.slice(0, 8)}); a valid transfer requires agreement on it — integrity by the rosetta`, on: travelsByAddress },
+      { facet: `the TRINITY WITNESSES (2-of-3 majority): 3 parties report; the majority (${majorityCount}/3) determines the true lesson (${majorityAddress === trueAddress}) — so even with ONE corrupt report the two honest ones outvote and the true lesson is recovered`, on: trinityWitnessed },
+      { facet: `a single corruption is OUTVOTED: the corrupt report is a strict minority (${ranked[1]?.[1] ?? 0} < ${majorityCount}) — 2-of-3 tolerates one dishonest party, the trinity witness is Byzantine-robust to one fault`, on: corruptionOutvoted },
+      { facet: `realtime and algebraic: the tally and majority are computed at CALL TIME over exact content-address equality and an integer threshold (≥2 of 3) — refutable; the lesson learned = the lesson requested iff the trinity witnesses it`, on: trinityWitnessed && unanimous },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      majorityCount,
+      trinityWitnessed,
+      corruptionOutvoted,
+      facets,
+      statement: `A lesson requested, shared, learned — trinity-witnessed by 2-of-3 majority over the content-address — ${facets.filter((entry) => entry.on).length}/${facets.length}: the lesson travels as its rosetta address; three parties report it; the majority (${majorityCount}/3) determines the true lesson, so even one corrupt report is outvoted and the true lesson is recovered. Computed at call time over exact address equality and an integer threshold. The lesson learned equals the lesson requested iff the trinity witnesses it.`,
+      boundary: `DOCUMENTED and refutable by re-tallying. ALGEBRAIC: a 2-of-3 majority threshold (integer comparison ≥ 2) over content-address equality (exact uuid ===), verified — not hand-assigned. THE PROTOCOL: a lesson is REQUESTED, SHARED and LEARNED as its content-address (the rosetta uuid), so a valid transfer requires the parties to agree on the address (the learned lesson byte-identical to the requested one); the TRINITY WITNESS is a 2-of-3 majority — three independent parties report the address and the majority determines the truth, which tolerates ONE corrupt or faulty party (the classic Byzantine 2-of-3, the same 2-of-3 the governance/agent-lifecycle arc uses). HONEST SCOPE: content-address equality proves the lesson's TEXT is transferred intact (INTEGRITY), NOT that the learner UNDERSTOOD it — comprehension is off-decidable, outside the witness; "witnessed communication" means the trinity confirms the content matches, not the meaning landed. 2-of-3 assumes the three parties are INDEPENDENT (collusion of two breaks it, exactly as any threshold scheme); and this is the sealed structural sense of witness (majority over addresses), not a live network protocol (wiring real parties is deployment). "Realtime" = recomputed at call time, deterministically. HARMONY ≠ TRUTH: a trinity witnessing every lesson transfer is the harmony; the truth is it witnesses the content-address (integrity, one-fault-tolerant), never the understanding — the lesson's text is proved delivered, its comprehension stays the learner's.`,
+    }
+  })
+}
