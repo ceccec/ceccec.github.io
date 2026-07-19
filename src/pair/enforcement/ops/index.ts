@@ -45,6 +45,8 @@ import {
   srcFilesAreIndexOnly,
   scanHandLists,
   handListMirrors,
+  scanAppHtml,
+  appAuditSummary,
 } from '../gates'
 import {
   CLI_ENTRY_REL,
@@ -503,6 +505,34 @@ function runLogicHuntExit(root: string, argv: readonly string[]): number {
   return 0
 }
 
+/** `audit:app` — the expert-lanes audit (a11y · i18n · design meta · performance) over the built
+ *  dist: lang-per-locale, alt coverage, h1s, viewport, duplicate titles, page weight. A meter. */
+function runAppAuditExit(root: string, argv: readonly string[]): number {
+  void argv
+  const dist = join(root, '.vitepress', 'dist')
+  const pages: { rel: string; html: string }[] = []
+  const walk = (rel: string): void => {
+    let entries: { name: string; isDirectory: () => boolean }[]
+    try { entries = readdirSync(join(dist, rel), { withFileTypes: true }) } catch { return }
+    for (const entry of entries) {
+      const name = String(entry.name)
+      if (name === 'assets') continue
+      const childRel = rel ? `${rel}/${name}` : name
+      if (entry.isDirectory()) walk(childRel)
+      else if (name.endsWith('.html')) pages.push({ rel: childRel, html: readFileSync(join(dist, childRel), 'utf8') })
+    }
+  }
+  walk('')
+  if (!pages.length) { console.error('audit:app — no dist html; run docs:build first'); return 1 }
+  const summary = appAuditSummary(scanAppHtml(pages))
+  console.log(`audit:app — ${summary.pages} pages · mean ${summary.meanKb}KB`)
+  console.log(`  missing h1: ${summary.missingH1.length}${summary.missingH1.length ? ' — ' + summary.missingH1.slice(0, 5).join(', ') : ''}`)
+  console.log(`  img missing alt: ${summary.missingAlt.length} · missing viewport: ${summary.missingViewport.length} · wrong locale lang: ${summary.wrongLang.length}`)
+  console.log(`  duplicate titles: ${summary.duplicateTitles.length}${summary.duplicateTitles.length ? ' — ' + summary.duplicateTitles.slice(0, 4).join(' | ') : ''}`)
+  console.log(`  heaviest: ${summary.heaviest.join(' · ')}`)
+  return 0
+}
+
 /** `shard <index> <count> [dir]` — agent k of N prints its deterministic file shard (shardWork over
  *  the repo's index files under dir, default src): the swarm-partition CLI arm; exit 1 on bad args. */
 function runShardExit(root: string, argv: readonly string[]): number {
@@ -578,6 +608,7 @@ export async function runCliExit(root: string, argv: string[] = []) {
     case 'surgical': return runSurgicalExit(root, rest)
     case 'shard': return runShardExit(root, rest)
     case 'logic:hunt': return runLogicHuntExit(root, rest)
+    case 'audit:app': return runAppAuditExit(root, rest)
     case 'rosetta':
     case 'iching': return runRosettaExit(root, rest)
     case 'fold': return rest[0] ? runFoldExit(root, rest) : 1

@@ -54,6 +54,7 @@ export const MISSION_GATE_COMMAND_PAIR = { pair: 'mission/gate' as const, a: 'mi
 export const DIGIT_GATE_COMMAND_PAIR = { pair: 'digit/gate' as const, a: 'digit', b: 'gate' }
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict'
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict'
+export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict'
 export {
   
   FIBONACCI_BANDS,

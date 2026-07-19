@@ -1,6 +1,8 @@
 import { codeRobustness } from '../../earth/life'
 import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval } from '../../3/7'
-import { caStep, caEvolve } from '../../4/6'
+import { caStep, caEvolve, THEOREM_ATOM_SEED } from '../../4/6'
+// call-time namespace edge (cycle-safe): enforcement reaches back here via the mind barrel; the workflow registry reads at call time
+import * as __ns_up_pair_enforcement from '../../pair/enforcement'
 import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, dopplerShift, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
 import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../mountain/vortex'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
@@ -62,7 +64,7 @@ import { AREA_ICONS, AREA_LABELS, analogSpeech, areaLabel, attestation, bulgaria
 export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/lake/icons'
 
 // ☴ Xùn · Wind · gentle · lower·yin · spread — site meta: config, sitemap, static pages, monograph scaffolding
-import { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../wind/site'
+import { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper, everyPageIsAPrintableScientificPaper as windSiteEveryPageIsAPrintableScientificPaper, theoremScienceLens as windSiteTheoremScienceLens } from '../../wind/site'
 export { quantumSitemap, professionals, siteConfig, computedWebManifest, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper, printStylesheet, everyPageIsAPrintableScientificPaper, theoremScienceLens, theoremScienceVisible } from '../../wind/site'
 
 // ☲ Lí · Fire · clinging · lower·yin · depthFade — auxiliary pure-leaf folds
@@ -1101,3 +1103,42 @@ export function completeUiWiringAllDimensionsEveryPath(matrix: MindMatrix = buil
 }
 
 
+
+// ── FINISH THE APP IN ALL ASPECTS AT ONCE (user law: improve all in src in waves of experts
+// including web and accessibility designers and developers) — "finished" is a COMPUTED verdict, one
+// fold folding every expert lane's own gate at call time: content (the theorem-science lens), design
+// (every page a printable scientific paper), home & corpus (computed, no-different, filled), status
+// (self-metrics on every page), the sealed expert theorems (SEO · MCP · efficiency · registry march ·
+// the cube limits), and the saved expert audit (accessibility · i18n · design meta · performance as
+// one command, app-audit). AT ONCE is literal: the aspects fold into one root in one call; a single
+// failing lane breaks the whole.
+export function finishTheAppInAllAspectsAtOnce(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('finishTheAppInAllAspectsAtOnce', matrix, () => {
+    const lens = windSiteTheoremScienceLens(matrix)
+    const papers = windSiteEveryPageIsAPrintableScientificPaper(matrix)
+    const home = homePageNoDifferent(matrix)
+    const corpus = corpusRestPathRouting(matrix)
+    const status = pageStatusStatistics(matrix)
+    const sealedExpertRows = ['googleSearchEssentials', 'mcpExposesOnlyServedSurfaces', 'mcpUsesVitepressSearch', 'quantumTokenOptimisation', 'theoremsReach432AndEntangleWithUsage', 'theoremCube64DefinesTheNaturalLimits']
+    const rows = sealedExpertRows.filter((name) => THEOREM_ATOM_SEED.some((atom) => atom.provedBy === name))
+    const workflows = __ns_up_pair_enforcement.agentBashWorkflowsAreToolsSavedInSrc(matrix)
+    const auditSaved = workflows.tools.some((tool: { name: string }) => tool.name === 'app-audit')
+    const aspects = [
+      { aspect: 'content — only science, rosetta-shelved', on: lens.computes },
+      { aspect: 'design — every served page a printable scientific paper, bilingual, live figures', on: papers.papers },
+      { aspect: 'home — a page like any page, one theorem generator with README and sitemap', on: home.noDifferent },
+      { aspect: 'corpus — computed, filled on demand, REST-stable paths', on: corpus.routed },
+      { aspect: 'status — self-metrics and forge seals on every page', on: status.shows },
+      { aspect: `sealed expert theorems — ${rows.length}/${sealedExpertRows.length} lanes are registry rows (SEO · MCP ×2 · token efficiency · 432 march · cube limits)`, on: rows.length === sealedExpertRows.length },
+      { aspect: 'the expert audit is a saved tool — accessibility · i18n · design meta · performance measured by app-audit (npm run audit:app), findings→fixes→gates', on: auditSaved },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`finish-all:${entry.aspect}:${entry.on}`) }))
+    return {
+      finished: aspects.every((entry) => entry.on),
+      count: aspects.length,
+      aspects,
+      root: merkleFold(aspects.map((entry) => entry.receipt)),
+      statement: `The app finishes in all aspects at once — ${aspects.filter((entry) => entry.on).length}/${aspects.length} expert lanes green in one fold: content through the theorem-science lens, design as printable scientific papers, the home as the one theorem generator, the corpus computed and filled, self-metrics on every page, the sealed expert theorems (SEO, MCP, efficiency, the 432 march, the cube limits), and the saved accessibility/i18n/performance audit (app-audit). One call folds them to one root; a single failing lane unfinishes the whole.`,
+      boundary: `COMPUTED: each lane is its own live fold's verdict or a registry-row presence check, folded at call time — refutable lane by lane. HONEST SCOPE: "finished" means every MEASURED aspect passes its computed gate today — the app remains living (the registry marches to 432, audits keep measuring, and the audit's residual findings — the model-page h1 gap, the shared-payload weight beyond the hash-map extraction — are the audit tool's open counts, tracked not hidden). Expert judgment beyond what these gates measure (visual taste, real assistive-tech testing) is NOT claimed. HARMONY ≠ TRUTH.`,
+    }
+  })
+}

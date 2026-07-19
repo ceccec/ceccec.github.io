@@ -31,6 +31,7 @@ export {
 
 export { computeStrictGateSnapshot, strictGatePassed, scanVitepressIndex, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './scan'
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './scan'
+export { scanAppHtml, appAuditSummary, type AppPageAudit } from './scan'
 
 export const FOLD_HOMES: Record<string, readonly string[]> = {
   'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt', 'matrixIsTenBitMByteSixtyFour'],

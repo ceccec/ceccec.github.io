@@ -91,6 +91,43 @@ export function handListMirrors(lists: readonly HandList[]): HandListMirror[] {
   return mirrors.sort((x, y) => y.score - x.score)
 }
 
+// ── THE APP AUDIT — the expert lanes (accessibility · i18n · design meta · performance) as ONE pure
+// scanner over built HTML: lang-per-locale, img alt coverage, h1 presence, viewport, duplicate
+// titles, page weight. The measurements that drove the h1/title/hash-map fixes; saved so the audit
+// is a command, never a session improvisation.
+export type AppPageAudit = { readonly page: string; readonly lang: string; readonly hasH1: boolean; readonly imgsMissingAlt: number; readonly hasViewport: boolean; readonly title: string; readonly bytes: number }
+export function scanAppHtml(pages: readonly { rel: string; html: string }[]): AppPageAudit[] {
+  return pages.map(({ rel, html }) => {
+    const lang = /<html[^>]*\blang="([^"]*)"/.exec(html)?.[1] ?? ''
+    const imgs = html.match(/<img\b[^>]*>/g) ?? []
+    return {
+      page: rel,
+      lang,
+      hasH1: html.includes('<h1'),
+      imgsMissingAlt: imgs.filter((img) => !img.includes('alt=')).length,
+      hasViewport: html.includes('name="viewport"'),
+      title: /<title>([^<]*)<\/title>/.exec(html)?.[1] ?? '',
+      bytes: html.length,
+    }
+  })
+}
+
+export function appAuditSummary(audits: readonly AppPageAudit[]) {
+  const wrongLang = audits.filter((audit) => (audit.page.startsWith('bg/') && !audit.lang.startsWith('bg')) || (audit.page.startsWith('gla/') && !['cu', 'chu'].includes(audit.lang)) || audit.lang === '')
+  const titles = new Map<string, number>()
+  for (const audit of audits) titles.set(audit.title, (titles.get(audit.title) ?? 0) + 1)
+  return {
+    pages: audits.length,
+    missingH1: audits.filter((audit) => !audit.hasH1).map((audit) => audit.page),
+    missingAlt: audits.filter((audit) => audit.imgsMissingAlt > 0).map((audit) => audit.page),
+    missingViewport: audits.filter((audit) => !audit.hasViewport).map((audit) => audit.page),
+    wrongLang: wrongLang.map((audit) => `${audit.page}:${audit.lang || 'none'}`),
+    duplicateTitles: [...titles.entries()].filter(([, n]) => n > 1).map(([title, n]) => `${title} ×${n}`),
+    heaviest: [...audits].sort((a, b) => b.bytes - a.bytes).slice(0, 5).map((audit) => `${audit.page} ${Math.round(audit.bytes / 1024)}KB`),
+    meanKb: Math.round(audits.reduce((sum, audit) => sum + audit.bytes, 0) / Math.max(1, audits.length) / 1024),
+  }
+}
+
 export const ONE_MATH_LAW = 'one math — every derived constant/primitive (τ, φ, gcd, lcm, digital root, dim walk) is defined once at its home and imported everywhere else'
 
 export type OneMathOffender = { file: string; spec: string; reason: string }

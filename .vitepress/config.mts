@@ -1,5 +1,7 @@
 // @mvc controller — VitePress config: transformPageData (route → model → view head/meta), locale wiring, plugin composition.
 import { join } from 'node:path'
+import { createHash } from 'node:crypto'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { CANONICAL_HOST } from '../src/3/7'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
@@ -502,7 +504,24 @@ export default defineConfig({
     })
     const scripts = blocks.map((block) => `<script type="application/ld+json">${JSON.stringify(block)}</script>`).join('')
     const heroStyle = `<style id="vp-hero-chrome">${heroChromeStyleBlocks(path, buildMatrix())}</style>`
-    return html.replace('</head>', `${heroStyle}${scripts}</head>`)
+    // PERFORMANCE (the app audit measured it): VitePress inlines the IDENTICAL __VP_HASH_MAP__
+    // (~418 KB) into every page — ~260 MB of duplication across the build. Extract it ONCE to a
+    // content-hashed shared asset; every page then references the same cached file. Sync external
+    // script preserves execution order; dev mode is untouched (transformHtml is build-only).
+    const out = html.replace('</head>', `${heroStyle}${scripts}</head>`)
+    const hashMap = out.match(/<script>(window\.__VP_HASH_MAP__=[\s\S]*?)<\/script>/)
+    if (hashMap) {
+      const body = hashMap[1]!
+      const digest = createHash('sha256').update(body).digest('hex').slice(0, 8)
+      const assetRel = `assets/vp-shared-map.${digest}.js`
+      const assetAbs = join(fileURLToPath(new URL('.', import.meta.url)), 'dist', assetRel)
+      if (!existsSync(assetAbs)) {
+        mkdirSync(join(fileURLToPath(new URL('.', import.meta.url)), 'dist', 'assets'), { recursive: true })
+        writeFileSync(assetAbs, body)
+      }
+      return out.replace(hashMap[0]!, `<script src="/${assetRel}"></script>`)
+    }
+    return out
   },
   themeConfig: {
     aside: true,

@@ -10,12 +10,19 @@ import { doubleTorusCorpusRouting } from '../src/wind/routes/corpus'
  *  sweep measured them at 0 static chars; the grid stays the client mount). One source: the routing fold. */
 function corpusIndexMarkdown(kind: 'papers' | 'references' | 'diamonds'): string {
   const routing = doubleTorusCorpusRouting()
+  // Distinct computed title + h1 per index (the a11y/SEO audit measured: bare shared '<title>Double
+  // Torus</title>' and no h1 on all three corpus indexes — duplicate titles and heading gaps).
+  const heading = {
+    papers: `Papers — ${routing.corpus.papers} placement proofs`,
+    references: `References — ${routing.corpus.references} reverse folds`,
+    diamonds: `Diamonds — ${routing.leaves.count} Merkle leaves`,
+  }[kind]
   const line = {
     papers: `**${routing.corpus.papers} placement proofs** — 108 torus coordinates × 4 homology generators (H₁(Σ₂) = ℤ⁴), each a bidirectional genus-2 fold, compute-only via \`corpusParams\`; corpus root \`${routing.corpus.root}\`.`,
     references: `**${routing.corpus.references} reference duals** — the reverse folds of the papers (citations carrying no new computation), compute-only via \`corpusParams\`.`,
     diamonds: `**${routing.leaves.count} Merkle leaves** — the papers and their duals complete the binary octave 2¹⁰; ${routing.lattice.length} lattice kinds, compute-only.`,
   }[kind]
-  return ['---', 'layout: doc', '---', '', line, '', `${routing.statement}`, '', '<UniversalPageTemplate />', ...(kind === 'references' ? ['', '<SourceAtlas />'] : []), ''].join('\n')
+  return ['---', 'layout: doc', `title: ${heading}`, '---', '', `# ${heading}`, '', line, '', `${routing.statement}`, '', '<UniversalPageTemplate />', ...(kind === 'references' ? ['', '<SourceAtlas />'] : []), ''].join('\n')
 }
 
 // NO home has an authoritative body on disk. The English home is homeMarkdown() — the ONE theorem
