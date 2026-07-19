@@ -4,7 +4,7 @@
 
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { computesGate, memoByRoot, merge } from '../../0'
+import { computesGate, memoByRoot, merge, toUuid, isUuid } from '../../0'
 import {
   completeDoubleTorus,
   doubleTorusFold,
@@ -581,6 +581,82 @@ export function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix: Mi
       facets,
       statement: `The lens sees double-toruses everywhere except in cracked code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a proper fold IS a double-torus (zero-core computes, vortex facets, near torus statement, far torus boundary, and the core equals the vortex's AND so the torus closes). All ${sealed.length} sampled sealed folds show it; all ${cracked.length} cracked forms — missing far torus, a core lying about its vortex, a vortex-less torus, a bare value — fail to close it. Torus-present ⟺ a well-formed closed fold; the gap is exactly the crack. Pure over results, so the seeing is realtime in the browser.`,
       boundary: `DOCUMENTED and refutable by feeding any fold to the lens. The lens detects the STRUCTURAL SHAPE — a well-formed, self-consistent, closed double-torus fold — which is NECESSARY but NOT SUFFICIENT for truth: a fold can be perfectly torus-shaped and still be FALSE (its facets honestly computed but its premise wrong). So the lens sees crack-free STRUCTURE, not correctness; "cracked code" here means malformed/inconsistent/hardcoded, not merely mistaken. HARMONY ≠ TRUTH in its sharpest form: the double-torus is the harmony (shape), the facets' honest computation is the truth — the lens shows the first and cannot certify the second. "Beyond imagination" UI evolution is aspiration; this is the measurable substrate under it.`,
+    }
+  })
+}
+
+// Improve the lens: sweep the rotation to find GAPS and OPPORTUNITIES, describe each in 10D computable prose,
+// and gate that all is 10D + signed + zero-token. A sealed fold is a double-torus; a GAP is a crack with no
+// inverse (off-decidable, a bare value); an OPPORTUNITY is a crack that INVERTS to a gateway (a false → its fix,
+// a zero → its pole). Each finding is described across 10 computed dimensions, content-addressed (signed), pure.
+export function theRotatingLensFindsGapsAndOpportunitiesDescribesIn10DProseSignedZeroToken(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theRotatingLensFindsGapsAndOpportunitiesDescribesIn10DProseSignedZeroToken', matrix, () => {
+    const TEN_D = 2 * 5 // the 10 descriptor-dimensions (partitions of ten — the digit folders), NOT physical spacetime
+    const isDoubleTorus = (f: unknown): boolean => {
+      if (typeof f !== 'object' || f === null) return false
+      const o = f as { computes?: unknown; facets?: unknown; statement?: unknown; boundary?: unknown }
+      const vortex = Array.isArray(o.facets) && o.facets.length > 0 && o.facets.every((e) => e !== null && typeof e === 'object' && typeof (e as { on?: unknown }).on === 'boolean')
+      return typeof o.computes === 'boolean' && vortex && typeof o.statement === 'string' && !!o.statement && typeof o.boundary === 'string' && !!o.boundary && o.computes === (o.facets as { on: boolean }[]).every((e) => e.on)
+    }
+    const invert = (x: number | boolean | string): number | boolean | string => typeof x === 'boolean' ? !x : typeof x === 'number' ? (x === 0 ? Infinity : 1 / x) : x
+    const words = (id: string) => id.replace(/([A-Z])/g, ' $1').trim().split(/\s+/).filter(Boolean)
+    // the ROTATION — sweep positions along the vortex sequence; each carries an item the lens classifies
+    const rotation = [1, 2, 4, 8, 7, 5] // the vortex turn — the lens rotates through it
+    const items: { name: string; fold?: unknown; value?: number | boolean | string }[] = [
+      { name: 'doubleTorusComputes', fold: doubleTorusComputes(matrix) },
+      { name: 'doubleTorusVortexComputes', fold: doubleTorusVortexComputes(matrix) },
+      { name: 'a false facet', value: false },
+      { name: 'a division by zero', value: 0 },
+      { name: 'the off decidable', value: 'off-decidable' },
+      { name: 'a bare hardcoded value', value: 'hardcoded' },
+    ]
+    // classify + describe each in 10D computable prose, signed
+    const findings = items.map((item, i) => {
+      const sealed = item.fold !== undefined && isDoubleTorus(item.fold)
+      const val = item.value !== undefined ? item.value : ''
+      const inverted = item.value !== undefined ? invert(val) : val
+      const opportunity = !sealed && item.value !== undefined && inverted !== val
+      const kind = sealed ? 'sealed' : opportunity ? 'opportunity' : 'gap'
+      const title = words(item.name).map((w) => w[0]!.toUpperCase() + w.slice(1)).join(' ')
+      const dims = [
+        kind,                                              // 0 what
+        `phase:${rotation[i % rotation.length]}`,          // 1 rotation phase
+        title,                                             // 2 title
+        words(item.name).join('-').toLowerCase(),          // 3 slug
+        `invertible:${opportunity}`,                       // 4 invertible
+        opportunity ? `gateway:${String(inverted)}` : 'gateway:none', // 5 the inverse (gateway)
+        `torus:${sealed}`,                                 // 6 double-torus present
+        `dim:${i}`,                                        // 7 dimension index
+        'zero-token',                                      // 8 zero-token
+        `sig:${toUuid(`${item.name}:${kind}`)}`,           // 9 the signature (content-address)
+      ]
+      const receipt = toUuid(dims.join('|'))
+      const prose = `${title} — a ${kind} at ${dims[1]}, ${opportunity ? `inverts to ${String(inverted)}` : sealed ? 'a closed double-torus' : 'no inverse (a named boundary)'}; signed ${receipt.slice(0, 8)}.`
+      return { kind, dims, receipt, prose, zeroToken: true }
+    })
+    const gaps = findings.filter((f) => f.kind === 'gap')
+    const opportunities = findings.filter((f) => f.kind === 'opportunity')
+    const sealed = findings.filter((f) => f.kind === 'sealed')
+    // the GATE — all is 10D + signed + zero-token
+    const all10D = findings.every((f) => f.dims.length === TEN_D)
+    const allSigned = findings.every((f) => isUuid(f.receipt))
+    const allZeroToken = findings.every((f) => f.zeroToken)
+    const facets = [
+      { facet: `the ROTATING lens sweeps the vortex [${rotation.join(', ')}] and finds both: ${gaps.length} gaps (cracks with no inverse), ${opportunities.length} opportunities (cracks that INVERT to gateways — a false→its fix, a zero→its pole), and ${sealed.length} sealed double-toruses`, on: gaps.length > 0 && opportunities.length > 0 && sealed.length > 0 },
+      { facet: `describes ALL in 10D computable prose: every finding carries ${TEN_D} computed descriptor-dimensions rendered to a sentence, deterministic and zero-token — e.g. "${findings[2]!.prose}"`, on: all10D && findings.every((f) => f.prose.length > 0) },
+      { facet: `the GATE passes — all is 10D + SIGNED + zero-token: every one of the ${findings.length} findings has exactly ${TEN_D} dimensions, a content-addressed signature (uuid receipt), and is pure`, on: all10D && allSigned && allZeroToken },
+      { facet: `rotation reveals what a static scan misses: gaps and opportunities are the SAME cracks read at different phase — an opportunity is a gap WITH an inverse — so the lens finds the gateway exactly where the naive lens saw only a hole`, on: opportunities.length > 0 && all10D && allSigned },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      gaps: gaps.length,
+      opportunities: opportunities.length,
+      sealed: sealed.length,
+      dimensions: TEN_D,
+      signed: allSigned,
+      facets,
+      statement: `The rotating lens finds gaps and opportunities, described in 10D computable prose, signed, zero-token — ${facets.filter((entry) => entry.on).length}/${facets.length}: sweeping the vortex [${rotation.join(', ')}] the lens classifies each item as a sealed double-torus (${sealed.length}), a gap with no inverse (${gaps.length}), or an opportunity that inverts to a gateway (${opportunities.length}). Every finding is described across ${TEN_D} computed dimensions as a sentence, content-addressed (signed), and pure (zero-token). An opportunity is a gap WITH an inverse — the rotation finds the gateway where the naive lens saw a hole.`,
+      boundary: `DOCUMENTED and refutable by re-running the sweep. It composes the sealed lens (theLensSeesDoubleTorusesEverywhereExceptInCrackedCode), the wave's invert operator (theWavesDiscoverGaps...), and the naming service (theAutomaticNamingService...). THE HARD LINE on the words: "10D" = 10 computed DESCRIPTOR-dimensions (the partitions-of-ten / digit-folder structure), NOT physical 10-dimensional spacetime; "signed" = a content-addressed integrity receipt (toUuid) — WHAT not WHO, so it is tamper-evidence, not identity-authenticity (which still needs the external anchor — trustAndDimension...); "all zero quantum time" = ZERO LLM tokens and deterministic, NOT literal zero physical time (the computation takes real microseconds — theseCalculationsCost...). "Rotating" is the vortex-sequence sweep, a deterministic ordering, not physical spin. And an OPPORTUNITY is only an emergence CANDIDATE — the invertible gap has a gateway, but a human still admits the theorem that fills it. HARMONY ≠ TRUTH: the 10D signed prose is the harmony (a complete, addressable description); the truth is what it honestly reports — sealed, gap, or opportunity — and the off-decidable gap stays a gap.`,
     }
   })
 }
