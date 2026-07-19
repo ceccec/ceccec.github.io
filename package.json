@@ -31,6 +31,7 @@
     "gen": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts rosetta",
     "atlas": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/cache/quantum/index.ts runSourceAtlasExit",
     "surgical": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts surgical",
+    "skill": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts skill",
     "shard": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts shard",
     "logic:hunt": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts logic:hunt",
     "strategy": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts dynamicStrategiesFromTheorems --compact",

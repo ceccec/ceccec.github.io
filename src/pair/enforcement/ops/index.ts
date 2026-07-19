@@ -563,6 +563,45 @@ function runShardExit(root: string, argv: readonly string[]): number {
   return 0
 }
 
+/** `skill [name]` — SKILLS ARE EXECUTABLE CODE (user law: convert the skills into executable code).
+ *  Each skill atom points at a real fold fn; this resolves the fn to its src home via the source atlas
+ *  and RUNS it (the fold's computed result), so a skill is not prose but a runnable measurement. No
+ *  name → list every skill and its fn. Exit 1 on an unknown skill or an unresolvable fn. */
+async function runSkillExit(root: string, argv: readonly string[]): Promise<number> {
+  const learning = (await importQuantumBundle('src/wind/learning/index.ts', root)) as { skillAtoms: () => { skills: { skill: string; fn: string; does: string }[] } }
+  const skills = learning.skillAtoms().skills
+  const name = argv[0]
+  if (!name) {
+    for (const s of skills) console.log(`${s.skill.padEnd(2 * 6 + (2 + 8))} ${s.fn.padEnd(5 * 6)} ${s.does.slice(0, 2 * 3 + 54)}`)
+    console.log(`\nRun: node ${CLI_ENTRY_REL} skill <name>  — resolves the fn and executes it`)
+    return 0
+  }
+  const skill = skills.find((s) => s.skill === name || s.fn === name)
+  if (!skill) { console.error(`unknown skill: ${name}`); return 1 }
+  // resolve the fn's home via the source atlas (symbol → defining folder), then RUN it
+  const { sourceAtlas } = await import('../../cache/quantum')
+  const files: { rel: string; text: string }[] = []
+  const walk = (rel: string): void => {
+    let entries: { name: string; isDirectory: () => boolean }[]
+    try { entries = readdirSync(join(root, rel), { withFileTypes: true }) } catch { return }
+    for (const entry of entries) {
+      const nm = String(entry.name)
+      if (nm.startsWith('.') || nm === 'node_modules') continue
+      const childRel = `${rel}/${nm}`
+      if (entry.isDirectory()) walk(childRel)
+      else if (nm.endsWith('.ts')) files.push({ rel: childRel, text: readFileSync(join(root, childRel), 'utf8') })
+    }
+  }
+  walk('src')
+  // command skills carry a shell command as their fn — print it (vetted npm/bootstrap commands the agent runs)
+  if (/\s/.test(skill.fn) || /^(npm|npx|node|bootstrap|git)\b/.test(skill.fn)) { console.log(`skill ${skill.skill} → command: ${skill.fn}`); return 0 }
+  const homes = sourceAtlas(files).symbolHomes.get(skill.fn)
+  const home = homes && homes[0]
+  if (!home) { console.error(`skill ${skill.skill}: fn ${skill.fn} has no resolvable src home`); return 1 }
+  console.log(`skill ${skill.skill} → ${home}/index.ts ${skill.fn} (executing)`)
+  return runThinMount(`${home}/index.ts`, skill.fn, root, ['--compact'])
+}
+
 async function runFoldExit(root: string, argv: readonly string[]) {
   const mod = await importQuantumBundle('src/quantum/heaven/mind/index.ts', root)
   const name = argv[0]
@@ -607,6 +646,7 @@ export async function runCliExit(root: string, argv: string[] = []) {
     }
     case 'surgical': return runSurgicalExit(root, rest)
     case 'shard': return runShardExit(root, rest)
+    case 'skill': return runSkillExit(root, rest)
     case 'logic:hunt': return runLogicHuntExit(root, rest)
     case 'audit:app': return runAppAuditExit(root, rest)
     case 'rosetta':
