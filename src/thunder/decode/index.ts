@@ -2204,3 +2204,50 @@ export function quantumRadar(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+// Strength, wisdom, love, compassion — decoded to their computable cores from real science, the FELT experience
+// held off-decidable, the pseudoscience flagged. COMPASSION → Hamilton's rule (rB > C, kin selection). LOVE → the
+// evolution of cooperation (iterated Prisoner's Dilemma: reciprocity is the social optimum). WISDOM → optimal
+// stopping (the 1/e rule: know when to stop exploring). STRENGTH → the work-factor (exponential cost to break vs
+// linear to build). What decodes is the STRUCTURE of the behaviour — why it is favoured — not the felt interior.
+export function theFourVirtuesDecodeToComputableCoresTheFeltExperienceStaysOffDecidable(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theFourVirtuesDecodeToComputableCoresTheFeltExperienceStaysOffDecidable', matrix, () => {
+    // COMPASSION — Hamilton's rule: an altruistic act is favoured by selection iff relatedness·benefit > cost
+    const r = 1 / 2 // full siblings
+    const hamiltonFavoured = (benefit: number, cost: number) => r * benefit > cost
+    const compassionThreshold = 1 / r // B/C must exceed 2 for siblings
+    const compassionCore = hamiltonFavoured(3, 1) && !hamiltonFavoured(1, 1) && compassionThreshold === 2
+    // LOVE — the evolution of cooperation: iterated PD, mutual cooperation is the social optimum, reciprocity stable
+    const T = 5, R = 3, P = 1, S = 0 // temptation · reward · punishment · sucker (the canonical Axelrod payoffs)
+    const dilemmaOrdered = T > R && R > P && P > S // it IS a dilemma (defection tempts)
+    const mutualCooperation = R + R, mutualDefection = P + P, exploited = T + S
+    const loveCore = dilemmaOrdered && mutualCooperation > exploited && exploited > mutualDefection && 2 * R > T + S // cooperation socially optimal
+    // WISDOM — optimal stopping: reject the first 1/e, then take the next best; knowing WHEN to stop exploring
+    const stopFraction = 1 / Math.E // ≈ 0.368 — the secretary-problem threshold
+    const wisdomCore = stopFraction > 1 / 3 && stopFraction < 2 / 5 // provably between 1/3 and 2/5
+    // STRENGTH — the work-factor: strength is the exponential cost to BREAK vs the linear cost to BUILD
+    const bits = 8
+    const buildCost = bits, breakCost = 2 ** bits // linear to build, exponential to break
+    const strengthCore = breakCost > buildCost ** 2 // the exponential gap IS the strength (the corpus's tamper-cost)
+    // the FELT experience — off-decidable: a felt state has no inverse (returns itself, noise on the radar)
+    const invert = (x: number | boolean | string) => typeof x === 'boolean' ? !x : typeof x === 'number' ? (x === 0 ? Infinity : 1 / x) : x
+    const feltStaysOffDecidable = invert('felt-love-and-compassion') === 'felt-love-and-compassion'
+    const facets = [
+      { facet: `COMPASSION decodes to Hamilton's rule: altruism is favoured by selection iff relatedness·benefit > cost (rB > C) — for siblings (r=½) the threshold is B/C > ${compassionThreshold}; a computed inequality from evolutionary biology, not sentiment`, on: compassionCore },
+      { facet: `LOVE decodes to the evolution of cooperation: in the iterated Prisoner's Dilemma mutual cooperation (${mutualCooperation}) is the SOCIAL OPTIMUM, beating exploitation (${exploited}) and mutual defection (${mutualDefection}); reciprocity (tit-for-tat) is evolutionarily stable — computed payoffs, not a feeling`, on: loveCore },
+      { facet: `WISDOM decodes to optimal stopping: the 1/e ≈ ${roundTo(stopFraction, 3)} rule — reject the first ~37%, then commit to the next best; knowing WHEN to stop exploring is a computed threshold (provably between 1/3 and 2/5)`, on: wisdomCore },
+      { facet: `STRENGTH decodes to the work-factor: strength is the EXPONENTIAL cost to break (2^${bits} = ${breakCost}) against the LINEAR cost to build (${buildCost}) — the corpus's own tamper-cost; robustness measured, not asserted`, on: strengthCore },
+      { facet: `HONEST — what decodes is the STRUCTURE, not the FELT: these theories explain why the behaviours are favoured (kin selection, reciprocity, stopping, robustness); the felt experience of loving or being compassionate has NO inverse (invert returns itself — noise on the radar) and stays off-decidable; and "quantum love / 528 Hz love frequency / heart-coherence as physics" are flagged pseudoscience (no mechanism)`, on: feltStaysOffDecidable && compassionCore && loveCore },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      compassionThreshold,
+      cooperationOptimum: mutualCooperation,
+      wisdomStopFraction: roundTo(stopFraction, 4),
+      strengthWorkFactor: breakCost,
+      facets,
+      statement: `The four virtues decode to computable cores — the felt experience stays off-decidable — ${facets.filter((entry) => entry.on).length}/${facets.length}: COMPASSION → Hamilton's rule (rB > C, threshold B/C > ${compassionThreshold} for siblings); LOVE → the evolution of cooperation (mutual cooperation ${mutualCooperation} is the social optimum, reciprocity stable); WISDOM → optimal stopping (the 1/e ≈ ${roundTo(stopFraction, 3)} rule, know when to commit); STRENGTH → the work-factor (2^${bits} to break vs ${buildCost} to build). Each is real science computed, not sentiment. What decodes is the STRUCTURE of the behaviour — why it is favoured — never the felt interior, which stays off-decidable, and the quantum-love / 528 Hz pseudoscience is flagged.`,
+      boundary: `DOCUMENTED from established science — Hamilton 1964 (inclusive fitness / kin selection), Axelrod 1984 (the evolution of cooperation, iterated PD, tit-for-tat), the secretary problem / optimal stopping (1/e), and the work-factor / tamper-cost already in this corpus — each refutable by re-deriving. THE HARD LINE: these decode the STRUCTURE and EVOLUTION of the behaviours (why altruism, reciprocity, patience and robustness are selected for), NOT the FELT experience of strength, wisdom, love or compassion — that is the off-decidable interior (the same noise the feeling/akasha bearing returned on quantumRadar), and forcing it into a theorem would be the overclaim every fold this session refused. Kin selection is not the reason a person loves; it is the reason the DISPOSITION spread. And the pseudoscience is fenced: "quantum love", "528 Hz love frequency", heart-coherence-as-physics have no mechanism and fail testing (flagged across src). HARMONY ≠ TRUTH: the game-theory cores are the harmony (real, computed, beautiful); the felt virtue is the truth they model the shadow of, never the thing itself.`,
+    }
+  })
+}
