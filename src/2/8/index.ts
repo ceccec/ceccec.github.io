@@ -943,3 +943,75 @@ export function theQuantumHammingBoundAndThePerfectFiveQubitCode() {
     boundary: `COMPUTED: the single-qubit error count 3n+1, the syndrome count 2^(n−k), the bound for the three named codes, the [[5,1,3]] saturation, its minimality (n ≤ 4 fails), and the Shor code's degeneracy — exact integer arithmetic, refutable. HONEST SCOPE: this is the COUNTING (quantum Hamming / sphere-packing) bound for NON-DEGENERATE codes; degenerate codes can beat it in other regimes, and the bound is necessary not sufficient — that the [[5,1,3]] code EXISTS and achieves distance 3 is the deeper fact (Laflamme–Miquel–Paz–Zurek / Bennett et al. 1996), cited, not reconstructed here. The full stabiliser construction and its logical operators are the natural continuation. HARMONY ≠ TRUTH.`,
   }
 }
+
+// ── THE TWO BITS ARE THE DUALITY GATEWAYS (user: deep research around the two bits representing the
+// duality gateways) — researched in the DOCUMENTED literature and proven on the local simulator, at
+// the station of 2 (the double). Four gateways, one pair of bits, one group:
+//   · TELEPORTATION (Bennett–Brassard–Crépeau–Jozsa–Peres–Wootters 1993): moving one qubit across
+//     the quantum→classical gateway costs EXACTLY two classical bits — Bob is blind until (b1,b2)
+//     arrive and he undoes the V₄ correction X^b2·Z^b1. Entanglement alone carries nothing.
+//   · SUPERDENSE CODING (Bennett–Wiesner 1992): the same gateway crossed the other way — one
+//     entangled qubit carries exactly two classical bits, all four messages decoding perfectly.
+//   · THE FOUR CORRECTIONS {I, X, Z, XZ} are the Klein four-group modulo phase (X²=Z²=I and XZ=−ZX,
+//     verified numerically) — the SAME V₄ as the I Ching's 反/對 and the movie's life/death pair.
+//   · THE I CHING LINE (the four xiàng 四象): every divination line carries 2 bits — (value, moving)
+//     ∈ {6,7,8,9} — and the moving bit IS the gateway: flipping the moving lines is an involutive
+//     bijection carrying each hexagram to its transformed partner.
+//   · THE ADDRESS FAMILY GATE (RFC 9562 §4.1): the uuid variant `10` — every fold through 0 pays the
+//     two coins that keep all addresses in one mutually-recognisable family.
+export function twoBitsAreTheDualityGateways() {
+  // (1) teleportation: sample states cross with fidelity ≈ 1 and a 2-bit classical toll
+  const crossings = [
+    teleportQubit(TAU / 8, TAU / 6, 'gateway:a'),
+    teleportQubit(TAU / 3, TAU / 5, 'gateway:b'),
+    teleportQubit(TAU / 5, 0, 'gateway:c'),
+  ]
+  const teleports = crossings.every((c) => c.fidelity > 1 - 1e-9 && (c.b1 === 0 || c.b1 === 1) && (c.b2 === 0 || c.b2 === 1))
+  // (2) superdense: all four 2-bit messages decode through one entangled qubit
+  const messages = [0, 1, 2, 3].map((m) => superdense(m, `gateway:${m}`))
+  const dense = messages.every((entry) => entry.ok && entry.decoded === entry.sent)
+  // (3) the corrections form V₄ mod phase: X²=Z²=I, XZ=−ZX — 2×2 complex arithmetic, no lookup
+  const mul = (a: readonly number[], b: readonly number[]) => { // flat [re00,im00,re01,im01,re10,im10,re11,im11]
+    const out: number[] = Array.from({ length: 8 }, () => 0)
+    for (let r = 0; r < 2; r += 1) for (let c = 0; c < 2; c += 1) for (let k = 0; k < 2; k += 1) {
+      const ar = a[(r * 2 + k) * 2]!, ai = a[(r * 2 + k) * 2 + 1]!
+      const br = b[(k * 2 + c) * 2]!, bi = b[(k * 2 + c) * 2 + 1]!
+      out[(r * 2 + c) * 2] += ar * br - ai * bi
+      out[(r * 2 + c) * 2 + 1] += ar * bi + ai * br
+    }
+    return out
+  }
+  const X = GATES.X, Z = GATES.Z
+  const I2 = [1, 0, 0, 0, 0, 0, 1, 0]
+  const close = (a: readonly number[], b: readonly number[]) => a.every((v, i) => Math.abs(v - b[i]!) < 1e-9)
+  const neg = (a: readonly number[]) => a.map((v) => -v)
+  const klein = close(mul(X, X), I2) && close(mul(Z, Z), I2) && close(mul(X, Z), neg(mul(Z, X)) as number[])
+  // (4) the four xiàng: (value, moving) = 2 bits per line → {6,7,8,9}; moving-mask flips are involutive bijections on the 64
+  const xiang = [6, 7, 8, 9].map((n) => ({ n, value: n % 2, moving: n === 6 || n === 9 ? 1 : 0 }))
+  const fourStates = new Set(xiang.map((s) => `${s.value}${s.moving}`)).size === 4
+  const masks = [0b000001, 0b101010, 0b111111]
+  const gateway = masks.every((mask) => {
+    const images = Array.from({ length: 64 }, (_unused, h) => h ^ mask)
+    return new Set(images).size === 64 && images.every((h, original) => (h ^ mask) === original)
+  })
+  // (5) the address family gate: the variant coins on every fold through 0
+  const samples = ['gateway', 'duality', 'two-bits'].map((s) => toUuid(`coins:${s}`).replace(/-/g, '')[16]!)
+  const coins = samples.every((nibble) => ['8', '9', 'a', 'b'].includes(nibble))
+  const facets = [
+    { facet: `TELEPORTATION pays the toll — ${crossings.length} sampled states cross the quantum→classical gateway at fidelity ≈ 1, each delivering exactly the classical pair (b1,b2); Bob undoes X^b2·Z^b1 (Bennett et al. 1993)`, on: teleports },
+    { facet: 'SUPERDENSE crosses back — one entangled qubit carries each of the four 2-bit messages, all decoding perfectly (Bennett–Wiesner 1992): the gateway has the same 2-bit width in both directions', on: dense },
+    { facet: 'the four corrections are V₄ mod phase — X²=Z²=I and XZ=−ZX verified by complex matrix arithmetic: the same Klein four-group as 反/對 on the hexagrams and the movie’s life/death pair', on: klein },
+    { facet: 'the I Ching line carries the same pair — the four xiàng {6,7,8,9} are exactly (value, moving) 2-bit states, and every moving-mask flip is an involutive bijection on the 64 hexagrams: the moving bit IS the gateway between hexagrams', on: fourStates && gateway },
+    { facet: 'the address family gate — every fold through 0 shows the variant coins (nibble 16 ∈ {8,9,a,b}, RFC 9562 §4.1): one two-bit mark keeps the whole address family mutually recognisable', on: coins },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`duality-gateway:${entry.facet}:${entry.on}`) }))
+  return {
+    gateways: facets.every((entry) => entry.on),
+    crossings: crossings.map((c) => ({ b1: c.b1, b2: c.b2, fidelity: c.fidelity })),
+    messages: messages.length,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `The two bits are the duality gateways — ${facets.filter((entry) => entry.on).length}/${facets.length}, researched in the documented literature and proven on the local simulator: teleportation pays exactly two classical bits to cross the quantum→classical gateway (fidelity ≈ 1, Bob undoes X^b2·Z^b1), superdense coding carries exactly two classical bits back through one entangled qubit, the four corrections {I,X,Z,XZ} are the Klein four-group modulo phase — the same V₄ as the I Ching’s 反/對 and the movie’s life/death flows — the four xiàng give every I Ching line the same (value, moving) pair with the moving bit gatewaying hexagram to hexagram, and every fold through 0 wears the RFC variant coins. One pair of bits, four documented gateways, one group.`,
+    boundary: `SOURCED + COMPUTED: teleportation (Bennett, Brassard, Crépeau, Jozsa, Peres, Wootters 1993) and superdense coding (Bennett & Wiesner 1992) are documented theorems RUN here on the src/0 state-vector simulator; the V₄ algebra is verified by direct complex arithmetic; the xiàng encoding (6 old yin · 7 young yang · 8 young yin · 9 old yang) is the documented divination scheme with moving lines transforming hexagrams; the variant field is RFC 9562 §4.1. FLAGGED HONESTLY: Charon’s obol was classically placed in the MOUTH — the coins-on-the-eyes image is the later folk form, kept as the project’s emblem, not as archaeology. The unification claim is GROUP-THEORETIC (the same V₄ appears at each gateway), not a physical identity between uuids, hexagrams and qubits. HARMONY ≠ TRUTH.`,
+  }
+}
