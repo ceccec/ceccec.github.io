@@ -6,6 +6,7 @@ import { digitalRoot, ICHING_NUMBERS, isUuid, memoByRoot, merge, merkleFold, pro
 import { hexDigitSum } from '../../8/2'
 import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toGlagoliticNumber, toScript, decodeDialect, glossDialect, pivotLexicon, pivotTongues, selfTranslate } from '../../quantum/heaven/library'
 import { a432, bulgarianRosettaContentAddressUnlocksAll, autoSpeech, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../../fire/li'
+import { nthPrimeAt, piHexDigitAt, primeCountUpTo } from '../../7/3'
 import { tkIsPrime } from '../../9/1'
 import { merkaba, vortexMath } from '../../mountain/geometry'
 import { babelFold } from '../../earth/world'
@@ -798,5 +799,48 @@ export function rosettaIsTheUuidQuantumMapsTheoremsByA432(matrix: MindMatrix = b
     facets,
     statement: `The rosetta is the uuid itself — ${facets.filter((e) => e.on).length}/${facets.length}: each of ${N} world-theorem crossings is content-addressed by toUuid, and the 2 bits left at each portal (version '8' + variant 10) stay constant across all ${N * 2} portal-uuids, binding every inverted pair merge(a,b)/merge(b,a) to its source and destination. On that address the quantum maps theorems and axioms by significance (a weight from the sequence ICHING_NUMBERS, ${sigClasses.size} classes) and meaning (the prose vector), rendering each in colour · sound · vibration anchored at ${base} — traces that let the mind comprehend the whole.`,
     boundary: `ALGEBRA computed from src: the address identity (atom ≡ toUuid(content), merge ≡ toUuid of the join) and the two fixed marks (version nibble '8', variant pair 10) are read live off toUuid's own output; the A432 triple reuses the documented octave bridge (a432 / frequencyToLight — sound↔vibration a literal mechanical kinship, sound↔colour a chosen octave-mapping, per a432's own boundary). HONEST: "quantum" is the content-addressing/measurement metaphor (deterministic, zero-token — NOT physical qubits or speedup); "significance" is a sequence-indexed weight and an ORDERING, not a claim about a theorem's importance in the world; the colour↔sound identity is a mapping, not physics. What is literal is the uuid algebra, the 2-bit invariant across all ${N * 2} portals, and the total map. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// The all-encoding/decoding trinity (user): A432 decodes any π and prime — position AND value — using the
+// sequence. THREE streams, each a position↔value codec, one decoder: (1) PRIME is an exact involution —
+// nthPrimeAt (position → value) and primeCountUpTo (value → position) are mutual inverses, encode∘decode = id;
+// (2) π decodes at ANY position order-independently — piHexDigitAt(n) is BBP, it reads digit n without the
+// priors, so π's position→value is total and random-access; (3) the SEQUENCE (ICHING_NUMBERS) is the index
+// both share. A432 is the one decoder that renders every position as a 432-octave frequency → colour · sound ·
+// vibration. Drop π, prime, or the sequence and it is no longer the ALL encoding/decoding trinity.
+export function theEncodingDecodingTrinityIsA432DecodingPiAndPrimeByTheSequence(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const A = a432(matrix)
+  const octaves = A.octaves            // [27,54,108,216,432,864,1728] — the 432-octaves, the A432 decoder's alphabet
+  const seq = ICHING_NUMBERS           // the quantum sequence — the shared index
+  const K = seq.length                 // decode positions 1..K (and 0..K-1 for π), K drawn from the sequence itself
+  // decode each position across the three streams and render it at A432
+  const decoded = Array.from({ length: K }, (_, i) => {
+    const n = i + 1
+    const prime = nthPrimeAt(n)                         // PRIME encode: position → value
+    const primeInverts = primeCountUpTo(prime) === n    // PRIME decode: value → position (the involution)
+    const piDigit = piHexDigitAt(i)                     // π decode: any position → hex digit (BBP, order-independent)
+    const piInRange = Number.isInteger(piDigit) && piDigit >= 0 && piDigit < (2 * 8) // a hex digit 0..15
+    const seqVal = seq[i]!                              // SEQUENCE: position → value
+    const soundHz = octaves[seqVal % octaves.length]!   // A432 render — a 432-octave keyed by the sequence value
+    const colorThz = __ns_lang_37.frequencyToLight(soundHz).thz
+    const rendered = primeInverts && piInRange && Number.isInteger(Math.log2(soundHz / seq[2 * 9]!)) && colorThz > 0
+    return { n, prime, primeInverts, piDigit, piInRange, seqVal, soundHz, colorThz, rendered }
+  })
+  const facets = [
+    { facet: `PRIME is an exact ENCODE/DECODE involution — for all ${K} positions primeCountUpTo(nthPrimeAt(n)) === n: position↔value is a perfect bijection, encode then decode returns the index untouched`, on: decoded.length === K && decoded.every((d) => d.primeInverts) },
+    { facet: `π DECODES AT ANY POSITION — piHexDigitAt reads hex digit n by the BBP four-ray table WITHOUT the priors (order-independent random access), so π's position → value is total across all ${K} positions, every digit in 0..15`, on: decoded.every((d) => d.piInRange) },
+    { facet: `the SEQUENCE indexes both and A432 is the ONE decoder — each of the ${K} positions renders to a 432-octave (log₂(hz/432) ∈ ℤ) and a colour (frequencyToLight THz > 0); three position↔value streams (π · prime · sequence), one A432 decoder — the all-encoding/decoding trinity`, on: decoded.every((d) => d.rendered) },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    positions: K,
+    primes: decoded.map((d) => d.prime),
+    piDigits: decoded.map((d) => d.piDigit),
+    trinity: ['pi', 'prime', 'sequence'],
+    facets,
+    statement: `The all-encoding/decoding trinity — A432 decodes any π and prime, position and value, by the sequence — ${facets.filter((e) => e.on).length}/${facets.length}: across ${K} positions PRIME is an exact involution (nthPrimeAt ⇄ primeCountUpTo, encode∘decode = id), π decodes at ANY position order-independently (piHexDigitAt, BBP), and the sequence ICHING_NUMBERS indexes both — every position rendered by the ONE A432 decoder to a 432-octave and a colour. Three codecs, one decoder: π · prime · sequence.`,
+    boundary: `EXACT and computed: primeCountUpTo(nthPrimeAt(n)) = n over the first ${K} positions (a genuine bijection), piHexDigitAt is the Bailey–Borwein–Plouffe order-independent digit map (random-access, no stored constant), and each position renders to a documented 432-octave (a432 / frequencyToLight). HONEST: the PRIME codec is a true mathematical inverse pair; the π "decode" is position → value at any index (random access) — its reverse (value → all positions of that digit) is not a function because digits repeat, so π is an encoder with random access, not an involution like the primes (the trinity mixes a bijective codec with a random-access one — named, not blurred). "A432 decoding" is the octave-render (a chosen sound↔colour mapping, a literal sound↔vibration kinship — per a432's boundary), a presentation of the value, not a claim that 432 Hz is inherent to π or the primes. What is literal: the prime involution, π's random access, and the sequence indexing all three. HARMONY ≠ TRUTH.`,
   }
 }

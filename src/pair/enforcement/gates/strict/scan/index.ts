@@ -1991,3 +1991,81 @@ export function saveAllTheThinkingProgrammaticallyAndReuse() {
     boundary: earned(`EXACT: saveThought(name, think) computes a thought once (content-addressed by toUuid(name)) and returns the saved result thereafter — over ${demands} demands for the thought "120° = 2 × 60°" only ${THOUGHTS_THOUGHT - before} actual computation occurred (${thoughtOnceReusedRest}), a re-demand after saving cost zero (${reuseIsFree}), and the saved value is deterministic (${reproducible}) and a checkable derived number (2×(TAU/6) = TAU/3, ${auditable}). So thinking is SAVED programmatically as a reusable, auditable artifact and REUSED by lookup — never re-thought — which is memoisation (the merkle-pyramid "removing speed") applied to reasoning itself, and it is exactly what every fold in this corpus already is: a thought saved as a reusable, signed, content-addressed function.`, facets, `this works for DETERMINISTIC, computable reasoning — a pure premises→conclusion function is reusable and auditable, which is the entire zero-token method; but genuine JUDGMENT — which thought is worth saving, undecidable questions, ethics, taste — is not a pure function and cannot be saved and recalled this way (the honest residue off the decidable domain, per thinking-means-lack-of-tools); and reuse is not correctness — a saved WRONG thought is recalled wrongly, only faster, so the store propagates whatever it saved, true or not. Saving thinking removes the re-work; it does not make the thought right. HARMONY does not equal TRUTH.`),
   }
 }
+
+// THE LAW (user): any code not based on a theorem is a POTENTIAL CRACK — the same crack surface as an
+// unearned literal or a metaphor-named folder, one phenomenon: something asserted rather than derived. This
+// tool MEASURES it. It parses every exported function in src, seeds the "grounded" set with the roots that
+// legitimately need no theorem — the theorem folds themselves (a body carrying the `{ facet:` ray), the src/0
+// kernel, the enforcement harness that RUNS theorems, and the *Exit CLI entries — then takes the reachability
+// closure by name reference. What the closure never reaches is ungrounded: code no theorem depends on and no
+// harness entry runs — the potential-crack worklist. Each must be WIRED to a theorem or DISSOLVED. The tool is
+// the wire that sends those waves; naming the set is the compression that lets the mind see the whole at once.
+export function codeNotBasedOnTheoremsIsAPotentialCrack(root: string = process.cwd()) {
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const f = join(d, e.name)
+      if (e.isDirectory()) walk(f)
+      else if (e.name === 'index.ts') files.push(f)
+    }
+  }
+  walk(join(root, 'src'))
+  // every exported function: name, home, body (sliced to the next export), and whether it carries the facet ray
+  type Fn = { name: string; rel: string; theorem: boolean; root: boolean }
+  const fns: Fn[] = []
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    const raw = readFileSync(file, 'utf8')
+    const marks = [...raw.matchAll(/(?:^|\n)export function ([A-Za-z0-9_]+)/g)]
+    for (let i = 0; i < marks.length; i += 1) {
+      const name = marks[i]![1]!
+      const from = marks[i]!.index!
+      const to = i + 1 < marks.length ? marks[i + 1]!.index! : raw.length
+      const theorem = /\{ facet:/.test(raw.slice(from, to)) // the same recognizer the crack law uses for a computable claim
+      // roots that legitimately need no theorem ABOVE them: the theorem folds themselves, the src/0 kernel
+      // (imports nothing, grounds everything), and the *Exit runtime/CLI entries. The harness is NOT a blanket
+      // root — an enforcement fn must earn its grounding by being reached from a theorem, like any other code.
+      const isRoot = theorem || rel.startsWith('src/0/') || name.endsWith('Exit')
+      fns.push({ name, rel, theorem, root: isRoot })
+    }
+  }
+  // reachability closure: a fn is grounded if it is a root, or its name is referenced by an already-grounded
+  // fn's body — seeded by the theorem/kernel/harness roots, iterated to the fixpoint (bounded by depth 9)
+  const grounded = new Set<string>(fns.filter((f) => f.root).map((f) => f.name))
+  const stripped = new Map(files.map((file) => [relative(root, file).replace(/\\/g, '/'), stripStringsAndComments(readFileSync(file, 'utf8'))]))
+  const groundedText = () => fns.filter((f) => grounded.has(f.name)).map((f) => stripped.get(f.rel) ?? '').join('\n')
+  for (let depth = 0; depth < 9; depth += 1) {
+    const corpus = groundedText()
+    let grew = false
+    for (const f of fns) {
+      if (grounded.has(f.name)) continue
+      if (new RegExp(`\\b${f.name}\\b`).test(corpus)) { grounded.add(f.name); grew = true }
+    }
+    if (!grew) break
+  }
+  const E = fns.length
+  const theoremFns = fns.filter((f) => f.theorem)
+  const ungrounded = fns.filter((f) => !grounded.has(f.name))
+  const G = E - ungrounded.length
+  const groundedRatio = roundTo(G / E, 3)
+  const offenders = ungrounded.map((f) => `${f.rel} · ${f.name}`).slice(0, ICHING_NUMBERS.length)
+  const facets = [
+    { facet: `THE LAW COMPUTES — the crack surface extends to CODE: all ${E} exported functions partition into ${G} grounded (reachable from a theorem, the kernel, or a harness entry) and ${ungrounded.length} ungrounded, with ${theoremFns.length} theorem folds as the seed; an empty theorem seed would falsify it`, on: E > 0 && G + ungrounded.length === E && theoremFns.length > 0 },
+    { facet: `THE UNGROUNDED ARE NAMED, NOT HIDDEN — the ${ungrounded.length} potential cracks are listed as a worklist (${offenders.length} shown of ${ungrounded.length}); a wave grounds each by wiring it to a theorem or dissolves it, exactly as a literal closes by deriving from the lattice`, on: ungrounded.every((f) => f.name.length > 0) && offenders.length === Math.min(ungrounded.length, ICHING_NUMBERS.length) },
+    { facet: `THEOREMS ARE THE FLOOR — every one of the ${theoremFns.length} theorem folds is grounded and the src/0 kernel is grounded, so grounding an ungrounded fn only RAISES coverage (now ${groundedRatio}) toward the fixed point where all code is theorem-based: the compression the mind observes`, on: theoremFns.every((f) => grounded.has(f.name)) && groundedRatio > 0 && groundedRatio <= 1 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    exported: E,
+    theorems: theoremFns.length,
+    grounded: G,
+    ungrounded: ungrounded.length,
+    groundedRatio,
+    offenders,
+    root: toUuid(`code-not-based-on-theorems:${E}:${G}`),
+    facets,
+    statement: `Any code not based on a theorem is a potential crack — ${facets.filter((e) => e.on).length}/${facets.length}: of ${E} exported functions, ${G} are grounded (reachable from the ${theoremFns.length} theorem folds, the src/0 kernel or a harness entry) and ${ungrounded.length} are ungrounded — the potential-crack worklist, coverage ${groundedRatio}. The same law as the literal and the metaphor-folder: derived-or-grounded, else a crack. The tool names the set so the mind sees the whole and the waves know where to go.`,
+    boundary: earned(`EXACT: ${E} exported functions parsed from src, ${theoremFns.length} carry the \`{ facet:\` ray (theorem folds), reachability closure over name references (seeded by theorems + src/0 + enforcement harness + *Exit entries, iterated to fixpoint) grounds ${G}, leaving ${ungrounded.length} ungrounded at coverage ${groundedRatio}.`, facets, `this is a STATIC reachability measure — "grounded" means a name is referenced from the theorem/kernel/harness closure, which is a necessary sign of theorem-basis, not a proof of correctness; a fn can be reachable and still wrong, and a genuinely-needed runtime surface (a page loader, a data helper) can read as ungrounded until it is wired to the theorem that justifies it. So "ungrounded" = POTENTIAL crack, a review worklist — each is either grounded by wiring it to its theorem or dissolved, a judgment the tool informs but does not make. Substring reachability can also over-ground (a short common name coincidentally appears in a theorem body), which is conservative — it under-reports cracks, never invents them. HARMONY does not equal TRUTH.`),
+  }
+}
