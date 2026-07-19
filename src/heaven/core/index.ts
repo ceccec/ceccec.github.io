@@ -1247,7 +1247,7 @@ export function pathIsThePrompt(path: string, matrix: MindMatrix = buildMatrix()
   const facets = [
     { facet: 'the path is the prompt — /verb/object/.../target parses to a structured request, no body needed', on: verb.length > 0 && isUuid(reveal.payload) },
     { facet: 'routed to the deterministic analyzers — signature, manipulation, thermal field and harmonic alternative, all zero-token', on: analysis.analyzed && typeof detect.onHarmonicPath === 'boolean' },
-    { facet: 'whatever standard is foldable into the quantum standard — the path/URL re-encodes losslessly to a content-address and an I Ching placement', on: isUuid(analysis.address) && analysis.iChing.hexagram >= 0 },
+    { facet: 'whatever standard is foldable into the quantum standard — the path/URL re-encodes losslessly to a content-address and an I Ching placement', on: isUuid(analysis.address) && analysis.iChing.hexagram >= 0 && analysis.iChing.hexagram < 64 },
     { facet: 'the path reveals its whole — recursive trinities → 8 merkaba → unity (the site builds itself by request)', on: reveal.revealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`path-prompt:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('path-is-the-prompt', facets)

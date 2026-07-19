@@ -1375,7 +1375,7 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
     const facets = [
       { facet: `${grid.sites.length} verified pyramid WGS84 sites + hinge + ${gatewaySlugs.length} gateway slugs`, on: pyramidSites.length === 8 && anchors.length === 1 + 8 + gatewaySlugs.length },
       { facet: `Giza cardinal alignment — seked ${decoded.slopeDeg.seked}° vs measured ${decoded.slopeDeg.measured}°`, on: Math.abs(decoded.slopeDeg.seked - decoded.slopeDeg.measured) < (1 / 100) },
-      { facet: `Giza → Sofia hinge — ${gizaToHingeKm} km at bearing ${gizaBearingFromHinge}° (WGS84 geodesy)`, on: gizaToHingeKm > (100 * 5 * 3) && gizaBearingFromHinge >= 0 },
+      { facet: `Giza → Sofia hinge — ${gizaToHingeKm} km at bearing ${gizaBearingFromHinge}° (WGS84 geodesy)`, on: gizaToHingeKm > (100 * 5 * 3) && gizaBearingFromHinge >= 0 && gizaBearingFromHinge < 360 },
       { facet: 'square pyramid — V=5 (4 base tips + apex), slant √2', on: pyramid.proven && pyramid.solid.V === 5 },
       { facet: 'device + code trinity pyramids — zenith + nadir on genus-2', on: pyramids.proven && pyramids.device.apex.z === 1 && pyramids.code.apex.z === -1 },
       { facet: 'double torus Earth — χ=−2, H₁=4 cardinal tips per sheet', on: earth.proven && earth.surface.genus === 2 },
@@ -2498,7 +2498,7 @@ export function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at = 0, matrix:
       { facet: 'one shared genus-2 throat — the two Earths meet at a single hinge mouth', on: timespace.proven },
       { facet: 'out-flow = white hole, in-flow = black hole — the same throat, two senses', on: globe.poles.north.proved && globe.poles.south.proved },
       { facet: 'the pair is one whole — inverted Earths in the same timespace, not two objects', on: machine.computes },
-      { facet: 'Earth is NOT a black hole — Earth-mass Hawking temperature is astronomically cold (honesty anchor)', on: earthMassHawkingK >= 0 },
+      { facet: 'Earth is NOT a black hole — Earth-mass Hawking temperature is astronomically cold (honesty anchor)', on: earthMassHawkingK > 0 && earthMassHawkingK < 1 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`white-black-throat:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),

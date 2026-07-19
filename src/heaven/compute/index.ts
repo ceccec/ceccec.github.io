@@ -713,7 +713,7 @@ function ancientWisdomComputesWorldHarmonyRaw(matrix: MindMatrix = buildMatrix()
     { facet: 'Sumer base-60 round-trips exactly (sexagesimal ⇄ fromSexagesimal = 3661) — the shared measure is exact', on: fromSexagesimal(sixty) === 3661 },
     { facet: 'Maya Long Count round-trips exactly (mayaLongCount ⇄ mayaDays = 1872000) — positional, a true zero', on: mayaDays(maya) === 1872000 },
     { facet: 'the Luo Shu magic square balances (every line = 15) — harmony as a verified, computed invariant', on: balanced },
-    { facet: 'maximum real usage — every example is a real reusable-function call returning its real output, not prose', on: examples.length === 5 && mir.length > 0 && odu >= 0 },
+    { facet: 'maximum real usage — every example is a real reusable-function call returning its real output, not prose', on: examples.length === 5 && mir.length > 0 && odu > 0 },
   ]
   const sealed = sealFacets('ancient-world-harmony', facets)
   return {
