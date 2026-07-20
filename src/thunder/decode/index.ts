@@ -24,7 +24,7 @@ import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/comp
 import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng, roundTo } from '../../0'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
-import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, yinYang } from '../../quantum/lake/icons'
+import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignVerifiedWheel, yinYang } from '../../quantum/lake/icons'
 import { decodeKnowledge, skillAtoms } from '../../wind/learning'
 import { conceptCommands } from '../../heaven/atoms'
 import { ancientTech, calligraphyStroke, chess358, glagolitic, goldenRatio, metatronsCube, tightenProse, universalLanguage } from '../../fire/li'
@@ -1632,6 +1632,7 @@ export function humanDesignStructureDecoded(matrix: MindMatrix = buildMatrix()) 
       { facet: `profiles ${profiles} of ${lines}×${lines} = ${lines * lines} line pairs — the system keeps ⅓ of its own grid`, on: profiles * 3 === lines * lines },
       { facet: `centers ${centers} — a rewiring of the older 7-chakra ladder (documented departure, 2 added)`, on: centers === 7 + 2 },
       { facet: `types ${types} partition all charts — a total function from definition to type (documented rule set)`, on: types === 5 },
+      { facet: 'verified Rave Mandala wheel (Gate 41 @ 302°, 360/64°, Design Sun −88°, 13 bodies)', on: humanDesignVerifiedWheel().verified },
     ]
     const flagged = [
       'neutrino imprinting at birth: neutrinos interact ~never with matter (σ ≈ 10⁻³⁸ cm²) — physically baseless, flagged pseudoscience',

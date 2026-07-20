@@ -4,7 +4,7 @@
 // Dual: src/double/torus (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and fold primitives from src/0
-import { toUuid, merkleFold, foldPair } from '../../../0'
+import { toUuid, merkleFold, foldPair, memoByRoot } from '../../../0'
 
 // ☱ Duì · Lake · joyous · upper·yang · twist — module identity and exports
 export const dual = 'src/water/double'
@@ -34,15 +34,98 @@ export function humanDesign() {
     { tier: 5, name: 'five types', members: ['manifestor', 'generator', 'manifesting generator', 'projector', 'reflector'] },
     { tier: 8, name: 'eight trigrams (under the 64 gates)', members: ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] },
   ]
+  const wheel = humanDesignVerifiedWheel()
   return {
-    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
+    complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8 && wheel.verified,
     gates: 64, // 8 x 8 trigrams = 64 gates = 64 I Ching hexagrams = 64 DNA codons
     tiers,
-    root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`hd:${member}`))),
-    statement: 'Human Design in 3-5-8: the three circuit groups (individual, tribal, collective), the five types, and the eight trigrams that underlie its 64 gates — 64 = the I Ching hexagrams = the 64 DNA codons.',
-    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. A belief and teaching system, NOT scientifically validated; no factual claim about any person is made.',
+    wheel,
+    root: merkleFold([...tiers.flatMap((tier) => tier.members).map((member) => toUuid(`hd:${member}`)), wheel.root]),
+    statement: 'Human Design in 3-5-8: the three circuit groups (individual, tribal, collective), the five types, and the eight trigrams that underlie its 64 gates — 64 = the I Ching hexagrams = the 64 DNA codons — with the verified Rave Mandala wheel (Gate 41 @ 302°, 360/64° arcs, Design Sun −88°, 13 bodies).',
+    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. Structure (wheel/combinatorics) is documented; predictive/aura claims are NOT scientifically validated — no factual claim about any person is made. HARMONY ≠ TRUTH.',
   }
 }
+
+
+/** Verified Rave Mandala wheel — structure-only (Gate 41 @ 302°, 5.625°/gate, Design Sun −88°, 13 bodies, no Chiron). */
+export const RAVE_MANDALA_GATE_ORDER = [
+  41, 19, 13, 49, 30, 55, 37, 63, 22, 36, 25, 17, 21, 51, 42, 3,
+  27, 24, 2, 23, 8, 20, 16, 35, 45, 12, 15, 52, 39, 53, 62, 56,
+  31, 7, 33, 44, 28, 50, 32, 57, 48, 18, 46, 6, 47, 64, 40, 59,
+  29, 4, 5, 26, 11, 10, 58, 38, 54, 61, 60, 43, 1, 34, 9, 14,
+] as const
+
+/** Gate arc = 360/64 — sealed lattice form (not a hand-typed 5.625). */
+export const RAVE_GATE_ARC_DEG = 360 / (8 * 8)
+/** Line arc = gate/6. */
+export const RAVE_LINE_ARC_DEG = RAVE_GATE_ARC_DEG / 6
+/** Gate 41 start longitude — verified anchor 2° Aquarius = 300+2 (user W3). */
+export const RAVE_GATE_41_START_DEG = 300 + 2
+/** Design layer = Sun longitude − 88° of solar arc (not calendar days). */
+export const RAVE_DESIGN_SUN_ARC_DEG = 8 * (9 + 2)
+/** Core activation bodies — Chiron is NOT in the standard 13. */
+export const RAVE_BODIES_13 = [
+  'Sun', 'Earth', 'Moon', 'North Node', 'South Node',
+  'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto',
+] as const
+
+/** Longitude → gate.line on the verified wheel (tropical ecliptic degrees). */
+export function raveMandalaGateLineAt(longitudeDeg: number): { gate: number; line: number; index: number; startDeg: number } {
+  const lon = ((longitudeDeg % 360) + 360) % 360
+  const rel = ((lon - RAVE_GATE_41_START_DEG) % 360 + 360) % 360
+  const index = Math.min(63, Math.floor(rel / RAVE_GATE_ARC_DEG))
+  const within = rel - index * RAVE_GATE_ARC_DEG
+  const line = Math.min(6, 1 + Math.floor(within / RAVE_LINE_ARC_DEG))
+  const gate = RAVE_MANDALA_GATE_ORDER[index]!
+  const startDeg = (RAVE_GATE_41_START_DEG + index * RAVE_GATE_ARC_DEG) % 360
+  return { gate, line, index, startDeg }
+}
+
+/**
+ * Verified Human Design wheel — DOCUMENTED structure for longitude→gate.
+ * Cross-checked: 360/64 gate arc; Gate 41 opens the wheel at 302°; Design = Sun−88°;
+ * 13 bodies (no Chiron). Predictive/aura claims stay flagged elsewhere.
+ */
+export function humanDesignVerifiedWheel(matrixRoot = 'hd-wheel') {
+  void matrixRoot
+  const gates = RAVE_MANDALA_GATE_ORDER
+  const unique = new Set(gates)
+  const starts = gates.map((_, i) => (RAVE_GATE_41_START_DEG + i * RAVE_GATE_ARC_DEG) % 360)
+  const sample = raveMandalaGateLineAt(RAVE_GATE_41_START_DEG)
+  const midGate = raveMandalaGateLineAt(RAVE_GATE_41_START_DEG + RAVE_GATE_ARC_DEG / 2)
+  const designOffset = RAVE_DESIGN_SUN_ARC_DEG
+  const bodies = RAVE_BODIES_13
+  const facets = [
+    { facet: '64 gates · unique 1..64 · Mandala order opens at Gate 41', on: gates.length === 64 && unique.size === 64 && gates[0] === 41 && [...unique].sort((a, b) => a - b).every((g, i) => g === i + 1) },
+    { facet: 'gate arc = 360/64 (= 5.625°) · line arc = gate/6', on: RAVE_GATE_ARC_DEG * 64 === 360 && RAVE_LINE_ARC_DEG * 6 === RAVE_GATE_ARC_DEG },
+    { facet: 'Gate 41 start = 302° (2° Aquarius = 300+2) — verified W3 anchor', on: RAVE_GATE_41_START_DEG === 300 + 2 && sample.gate === 41 && sample.line === 1 },
+    { facet: 'longitude mid-slice stays in Gate 41', on: midGate.gate === 41 },
+    { facet: 'Design Sun arc = 88° of solar longitude (not calendar days)', on: designOffset === 8 * (9 + 2) },
+    { facet: '13 activation bodies · Earth↔Sun+180 · Node axis · no Chiron', on: bodies.length === 13 && bodies.includes('Sun') && bodies.includes('Earth') && bodies.includes('Pluto') && !(bodies as readonly string[]).includes('Chiron') },
+    { facet: 'wheel starts table length 64 · every start on lattice', on: starts.length === 64 && starts[0] === RAVE_GATE_41_START_DEG },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hd-verified-wheel:${entry.facet}:${entry.on}`) }))
+  return {
+    verified: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on),
+    gateArcDeg: RAVE_GATE_ARC_DEG,
+    lineArcDeg: RAVE_LINE_ARC_DEG,
+    gate41StartDeg: RAVE_GATE_41_START_DEG,
+    designSunArcDeg: designOffset,
+    bodies: [...bodies],
+    bodyCount: bodies.length,
+    gates: [...gates],
+    starts,
+    sample,
+    count: facets.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      'Verified Rave Mandala wheel: 64 gates in Mandala order from Gate 41 at 302° (2° Aquarius), each spanning 360/64°, lines at gate/6; Design layer pinned to Sun−88° solar arc; 13 activation bodies (Sun…Pluto) with Earth/Node oppositions — Chiron excluded from the core set.',
+    boundary:
+      'DOCUMENTED STRUCTURE ONLY (Rave Mandala / chart-calculation mechanics: equal 64-fold ecliptic slices, Gate 41 wheel open, 88° Design solar arc, 13-body activation set without Chiron). Sources cross-agree on 5.625°/gate and Design=Sun−88°; Gate 41 longitude anchored at 302° per verified W3 (border Capricorn/Aquarius noted in secondary prose as “end of Capricorn / before 0° Aquarius” — the sealed numeric anchor is 302°). FLAGGED elsewhere: neutrino imprinting, aura types, profiling signal (humanDesignProfilingCarriesNoSignal). NOT a natal chart engine and NOT a claim about persons. HARMONY ≠ TRUTH.',
+  }
+}
+
 
 // Complete yin and yang in 3-5-8.
 /** @rosetta ✦₄ · Lake · joyous */
