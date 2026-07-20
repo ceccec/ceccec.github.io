@@ -595,3 +595,46 @@ export function harmonicWeatherTradingOffline(at = 0, matrix: MindMatrix = build
     }
   })
 }
+
+// Invert the strategies to fill the gaps. Momentum (trend-following) and mean-reversion (fading) are INVERSE strategies:
+// in a trend momentum longs and mean-reversion shorts. Each is FLAT (position 0) in the regime it does not fit — a
+// coverage GAP — and precisely there its inverse is active, so the union covers bars neither misses. Inverting the
+// strategy fills the gap. On synthetic a432 prices, structural coverage only — NOT profitability. [[feedback-inverted-statements-are-generative]]
+export function invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInversesCoveringEachOthersRegimes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInversesCoveringEachOthersRegimes', matrix, () => {
+    const prices = priceFromA432('invert-gaps', (9 * 7 * 4)) // 252 bars
+    const momentum = crossoverPositions(prices, 8, (7 * 3), -1) // trend-following long/short
+    const reversion = meanReversionPositions(prices, (5 * 4), 1) // mean-reverting fade
+    const bars = prices.length
+    // 1 — INVERSE: on bars where both are active they take OPPOSITE positions more often than the same
+    const both = prices.map((_, t) => momentum[t] !== 0 && reversion[t] !== 0)
+    const opposite = prices.filter((_, t) => both[t] && Math.sign(momentum[t]!) !== Math.sign(reversion[t]!)).length
+    const same = prices.filter((_, t) => both[t] && Math.sign(momentum[t]!) === Math.sign(reversion[t]!)).length
+    const areInverse = opposite > same // trend-following vs fading — they oppose more than they agree
+    // 2 — GAPS: each strategy is flat (0) on some bars — its coverage gap
+    const momentumActive = momentum.filter((p) => p !== 0).length
+    const reversionActive = reversion.filter((p) => p !== 0).length
+    const eachHasGaps = momentumActive < bars && reversionActive < bars // both go flat somewhere
+    // 3 — THE INVERSE FILLS THE GAP: the union of active bars exceeds either alone
+    const unionActive = prices.filter((_, t) => momentum[t] !== 0 || reversion[t] !== 0).length
+    const inverseFillsGap = unionActive > momentumActive && unionActive > reversionActive // where one is flat, its inverse covers
+    // 4 — COVER THE REGIMES: inverting adds coverage neither had alone
+    const coverGain = unionActive - Math.max(momentumActive, reversionActive)
+    const coversRegimes = coverGain > 0 && areInverse
+    const facets = [
+      { facet: `MOMENTUM AND MEAN-REVERSION ARE INVERSE — on the ${opposite + same} bars where both are active they take OPPOSITE positions more often than the same (${opposite} vs ${same}, ${areInverse}): trend-following and fading are inverse strategies`, on: areInverse },
+      { facet: `EACH STRATEGY HAS GAPS — momentum is flat on ${bars - momentumActive} bars and mean-reversion on ${bars - reversionActive} of ${bars} (${eachHasGaps}): the flat bars are each strategy's coverage gap, the regime it does not fit`, on: eachHasGaps },
+      { facet: `THE INVERSE FILLS THE GAP — the union of active bars (${unionActive}) exceeds either alone (${momentumActive}, ${reversionActive}) (${inverseFillsGap}): where one strategy is flat, its inverse is active, filling the gap`, on: inverseFillsGap },
+      { facet: `TOGETHER THEY COVER THE REGIMES — inverting adds ${coverGain} bars of coverage neither had alone (${coversRegimes}): the inverse strategy fills the gaps the original misses`, on: coversRegimes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`invert-strategy-gap:${entry.facet}:${entry.on}`) }))
+    return {
+      fills: facets.every((entry) => entry.on),
+      bars,
+      coverage: { momentum: momentumActive, reversion: reversionActive, union: unionActive, gainByInverting: coverGain },
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `Invert the strategies to fill the gaps — momentum and mean-reversion are inverses covering each other's regimes — ${facets.filter((entry) => entry.on).length}/${facets.length}. Momentum follows trends and mean-reversion fades them, so on shared-active bars they oppose more than they agree (${opposite} vs ${same}). Each is flat in the regime it does not fit — a coverage gap — and there its inverse is active: the union of active bars (${unionActive}) exceeds either alone (${momentumActive}, ${reversionActive}), so inverting the strategy adds ${coverGain} bars of coverage. The inverse fills the gap.`,
+      boundary: `EXACT and computed live over ${bars} synthetic a432 bars: momentum (crossover, trend-following) and mean-reversion (z-score, fading) take OPPOSITE positions on ${opposite} of their ${opposite + same} shared-active bars vs ${same} agreeing (${areInverse}) — structurally inverse; each is FLAT (position 0) on the bars of the regime it does not fit (momentum ${bars - momentumActive}, mean-reversion ${bars - reversionActive}), its coverage GAP; and the union of their active bars (${unionActive}) strictly exceeds either alone (${inverseFillsGap}), so inverting the strategy fills ${coverGain} bars neither covered alone. THE HONEST BOUND: this is COVERAGE (which bars carry a position), NOT PROFITABILITY — covering more regimes does not make money, and momentum + its inverse mean-reversion are STRUCTURALLY opposite (follow vs fade), not exact sign-negatives; the prices are SYNTHETIC (priceFromA432, deterministic, no look-ahead but backtest≠live and synthetic≠alpha [[trading-from-knowledge-a432-engine]]); "fill the gap" means the regime-coverage gap of one strategy is where its inverse is active, a real structural complementarity, not a guarantee of returns. HARMONY ≠ TRUTH: "invert the strategies to fill the gaps" is the harmony; the truth is that trend-following and mean-reversion are inverse and their active bars complement, the union covering more than either — computed and refutable.`,
+    }
+  })
+}
