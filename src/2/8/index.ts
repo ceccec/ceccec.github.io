@@ -5,6 +5,9 @@ import { equivalentNarcoticDepthM, TAU } from '../../3/7'
 import {  humanBreath, seedFromText, applyGate, cnot, cz, GATES, isUuid, measure, probabilities, qubits, grover, gcd, merkleFold, toffoli, toUuid } from '../../0'
 import type { QuantumState } from '../../0'
 import { innerProduct, pauliAlgebraCloses, noCloningWitness, deutschJozsa, bernsteinVazirani, simon, ghzMermin, entanglementSwap, bb84, teleportQubit, superdense } from '../../9/1'
+
+/** Two quantum states are equal when their amplitude vectors agree within tolerance 1e-9. */
+const equalStates = (a: QuantumState, b: QuantumState): boolean => a.re.length === b.re.length && a.re.every((r, i) => Math.abs(r - b.re[i]!) < 1e-9 && Math.abs(a.im[i]! - b.im[i]!) < 1e-9)
 /** NuFit-6.0 atmospheric neutrino mass-squared splitting |Δm²₃ₗ|, eV². */
 export const NEUTRINO_DM2_ATM_EV2 = 2.513e-3
 
@@ -1092,7 +1095,6 @@ export function kleinFourActsSimplyTransitivelyOnBellStates() {
 // coefficients; entanglement binds it to a theorem; and because every gate is invertible (U†U=I), the THEOREM is the
 // PRESENT INVERTED — run the present backwards and the axiom returns. [[operator-algebra-closed]] [[quantum-decoded]]
 export function quantumIsLinearSuperpositionsAreLinearCombinationsEntangledToTheoremsWhichArethePresentInverted() {
-  const equalStates = (a: QuantumState, b: QuantumState): boolean => a.re.length === b.re.length && a.re.every((r, i) => Math.abs(r - b.re[i]!) < 1e-9 && Math.abs(a.im[i]! - b.im[i]!) < 1e-9)
   const half = 1 / 2
   const rsqrt2 = Math.sqrt(half) // 1/√2, derived not assumed
   // 1 — QUANTUM IS LINEAR: a gate on a superposition equals the linear combination of the gate on the components
@@ -1178,7 +1180,6 @@ export function theQuantumTheoremBehindAllComputingIsReversibilityToffolisThirdB
 // constructive peak. And the ALGEBRAIC theorems — linearity U(aψ+bφ)=aUψ+bUφ, the involution H²=I, unitarity U†U=I —
 // are what FUSE collisions, interference, harmony and reverse into one. [[operator-algebra-closed]] [[quantum-decoded]]
 export function reverseEnablesCollisionsCollidingPathsInterfereToHarmonyTheAlgebraicTheoremsFuseAll() {
-  const equalStates = (a: QuantumState, b: QuantumState): boolean => a.re.length === b.re.length && a.re.every((r, i) => Math.abs(r - b.re[i]!) < 1e-9 && Math.abs(a.im[i]! - b.im[i]!) < 1e-9)
   const half = 1 / 2
   const rsqrt2 = Math.sqrt(half)
   // 1 — REVERSE ENABLES COLLISIONS: a compressing map sends more inputs than slots, so an address has several preimages
