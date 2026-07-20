@@ -738,3 +738,49 @@ export function quantumResearchAndDevelopmentApiFromProseToSolutionInversionAndL
     boundary: `EXACT and computed live: research(prose) is a pure function — (1) it content-addresses the lowercased prose to a stable, distinct UUID TYPE (${proseMapsToAType}), the input's quantum tag (same prose → same type, idempotent; distinct prose → distinct); (2) demarcate() DECODES its tier, and over the ${corpus.length}-prose corpus it spans ${new Set(solutions.map((entry) => entry.tier)).size} tiers at once (${typeDecodesTheScience}) — life (evolution, abiogenesis) and physics (homeopathy, astrology, perpetual motion) decoded together from prose alone; (3) a FLAGGED prose returns its PROVING theorem (the inversion, ${flaggedInvertsToItsTheorem}), and because the flagged life-claim creationism inverts to the documented life theorem evolution (${inversionAndLifeProveEachOther}), the inversion engine and the living-organism theorems PROVE EACH OTHER — a trinity (inversion · life · the API that binds them). THE API: prose in, solution out — documented → "build on it", contested → "hold and measure", flagged → the refuting theorem — one composed, content-addressed function. THE HONEST BOUND: the decoder is the demarcation trinity's REGISTRY (a curated, revisable classification, not a general NLP parser) and the inversion table is a small map of established refuting theorems (cited, not novel), so the API resolves prose whose KEYWORDS match the registry/table — it is a computed research index over the decoded corpus, NOT an open-domain question-answerer or a generator of new science; "all sciences at once" means the decoded corpus spans the tiers in one call, not that every possible claim is covered. HARMONY ≠ TRUTH: "a quantum R&D API from prose to solution" is the harmony; the truth is a pure function that content-addresses prose to a type, decodes its tier by the demarcation trinity, and inverts a flag to its proving theorem — computed and refutable.`,
   }
 }
+
+// Quantum-dissolve the prose to code: a claim's SOLUTION is not a prose description but a content-addressed CODE
+// reference — the fold.method that COMPUTES its refutation, tagged to a UUID. dissolve(prose) returns only typed
+// fields (tier enum · code identifier · uuid address), no free-text sentence — the prose has dissolved into the
+// computation that any party can run. This is [[no-prose-in-methods]] carried into the R&D API: the description
+// evaporates, the code that proves it remains, content-addressed. [[content-address-dry-clean-crack-detection]]
+export function quantumDissolveProseToCodeTheSolutionIsAContentAddressedCodeReferenceNotAProseString() {
+  // each flagged claim's proving theorem AS CODE — the fold.method that computes it (a real export, not a sentence)
+  const CODE: Record<string, string> = {
+    'homeopathy': 'everyFlaggedClaimInvertsToItsProvenRefutingTheoremInTrinitiesTheInverseDerivesTheFlag.dilutedToNothing',
+    'quantum consciousness': 'everyFlaggedClaimInvertsToItsProvenRefutingTheoremInTrinitiesTheInverseDerivesTheFlag.decoheresBeforeComputing',
+    'perpetual motion': 'everyFlaggedClaimInvertsToItsProvenRefutingTheoremInTrinitiesTheInverseDerivesTheFlag.energyConserves',
+    'astrology': 'theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRandomAlignmentsFlatEarthToCurvature.planetInfluenceNegligible',
+    'ley lines': 'theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRandomAlignmentsFlatEarthToCurvature.alignmentsGrowWithSites',
+    'flat earth': 'theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRandomAlignmentsFlatEarthToCurvature.horizonHidesTheBase',
+  }
+  const identifier = /^[a-zA-Z][a-zA-Z0-9]*\.[a-zA-Z][a-zA-Z0-9]*$/ // fold.method — a code reference, no spaces, no prose
+  // dissolve(prose) → only TYPED fields: tier (enum) · code (identifier) · address (uuid). No prose sentence.
+  const dissolve = (prose: string): { tier: string; code: string; address: string } => {
+    const tier = demarcate(prose)
+    const key = Object.keys(CODE).find((entry) => prose.toLowerCase().includes(entry))
+    const code = key ? CODE[key]! : 'demarcate.tier' // documented/contested resolve to the classifier itself — still code
+    return { tier, code, address: toUuid(`code:${code}`) }
+  }
+  const corpus = ['homeopathy heals', 'quantum consciousness', 'perpetual motion', 'astrology', 'ley lines', 'flat earth']
+  const dissolved = corpus.map(dissolve)
+  const proseDissolvesToCode = dissolved.every((entry) => identifier.test(entry.code)) // every solution is a fold.method reference, not a sentence
+  const codeIsContentAddressed = dissolved.every((entry) => isUuid(entry.address)) && new Set(dissolved.map((entry) => entry.address)).size === corpus.length // each dissolves to a distinct quantum tag
+  const noProseRemains = dissolved.every((entry) => !entry.code.includes(' ') && !entry.tier.includes(' ')) // no field is a free-text sentence
+  const quantumDissolve = proseDissolvesToCode && codeIsContentAddressed && noProseRemains && dissolved.every((entry) => entry.tier === 'flagged') // the flagged corpus dissolves fully to code
+  const facets = [
+    { facet: `PROSE DISSOLVES TO A CODE REFERENCE — every flagged claim's solution is a fold.method identifier (${proseDissolvesToCode}), not a prose description: the refutation is the CODE that computes it, not a sentence about it`, on: proseDissolvesToCode },
+    { facet: `THE CODE IS CONTENT-ADDRESSED (QUANTUM) — each dissolved solution tags to a distinct UUID (${codeIsContentAddressed}): the dissolved prose is a quantum-addressed code artifact, recomputable by any party`, on: codeIsContentAddressed },
+    { facet: `NO PROSE REMAINS IN THE SOLUTION — every field is typed (tier enum · code identifier · uuid), none a free-text sentence (${noProseRemains}): the description has evaporated, only the computation is left`, on: noProseRemains },
+    { facet: `QUANTUM DISSOLVE — prose in, code out: the flagged corpus dissolves fully to (tier · code · address), all computed and addressed (${quantumDissolve}): the R&D solution is code, the prose gone`, on: quantumDissolve },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`dissolve:${entry.facet}:${entry.on}`) }))
+  return {
+    dissolves: facets.every((entry) => entry.on),
+    corpusSize: corpus.length,
+    dissolved,
+    facets,
+    root: merkleFold(dissolved.map((entry) => toUuid(entry.address))),
+    statement: `Quantum-dissolve the prose to code — the solution is a content-addressed code reference, not a prose string — ${facets.filter((entry) => entry.on).length}/${facets.length}. dissolve(prose) returns only typed fields: the demarcation tier (an enum), the proving theorem AS the fold.method that computes it (a code identifier), and a UUID address — no free-text sentence. Each of the ${corpus.length} flagged claims dissolves to a distinct quantum-addressed code artifact any party can run. The description evaporates; the code that proves it remains, content-addressed.`,
+    boundary: `EXACT and computed live: dissolve(prose) is a pure function returning { tier, code, address } — the tier is demarcate()'s enum, the code is a fold.method IDENTIFIER matching /^ident\\.ident$/ (a real export that computes the refutation, ${proseDissolvesToCode}), and the address content-addresses that code to a distinct UUID (${codeIsContentAddressed}); no field is a free-text sentence (${noProseRemains}). THE DISSOLVE: the R&D API's earlier solution was a PROSE description ("Avogadro — beyond the dilution limit …"); here that prose evaporates and the solution is the CODE that proves it (everyFlaggedClaimInverts….dilutedToNothing) plus its content-address — carrying [[no-prose-in-methods]] into the API output. THE HONEST BOUND: the code strings are REFERENCES (fold-name.method) to real inversion folds in src/fire/physics, verified here as well-formed identifiers and content-addressed, NOT dynamically executed from this leaf (cross-domain call would couple earth/life to fire/physics) — the dissolve maps prose to the code POINTER, and the pointed-to fold is what runs at its own gate; "no prose remains" is about the SOLUTION fields, while human-readable labels are regenerated on demand from the code (the prose is a view, not the source). HARMONY ≠ TRUTH: "dissolve the prose to code" is the harmony; the truth is a function that returns a typed (tier · code identifier · uuid) solution with no free-text sentence, the description replaced by a content-addressed reference to the computing fold — refutable by one prose field.`,
+  }
+}
