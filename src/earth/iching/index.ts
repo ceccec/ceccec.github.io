@@ -95,19 +95,38 @@ export function ichingComputes(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
-/** npm run quantum:iching-distribute-verify — rosetta 7-ray coprimality vs I Ching 8-fold aliasing. */
-export function runIchingDistributeVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {
+/** Browser-safe I Ching / rosetta distribute verify — pure fold, no process I/O. */
+export function ichingDistributeVerify() {
   const ICHING_TRIGRAMS = 8
   const ROSETTA_RAYS = 7
   const rosettaCoprime = gcd(ROSETTA_RAYS, 6) === 1 && gcd(ROSETTA_RAYS, 9) === 1 && gcd(ROSETTA_RAYS, (5 * 2)) === 1
   const ichingAliases = gcd(ICHING_TRIGRAMS, 6) === 2 && gcd(ICHING_TRIGRAMS, (5 * 2)) === 2
   const rosettaCross = ROSETTA_RAYS * (5 * 2)
   const ichingCross = (ICHING_TRIGRAMS * (5 * 2)) / gcd(ICHING_TRIGRAMS, (5 * 2))
-  if (!rosettaCoprime || !ichingAliases || rosettaCross <= ichingCross) {
+  const computes = rosettaCoprime && ichingAliases && rosettaCross > ichingCross
+  return {
+    computes,
+    rosettaCross,
+    ichingCross,
+    root: toUuid(`iching-distribute:${rosettaCross}:${ichingCross}:${computes}`),
+    statement: `I Ching / rosetta distribute — rosetta crossPairs=${rosettaCross} · iching crossPairs=${ichingCross} (7-ray coprime).`,
+    boundary: 'Coprimality arithmetic only — NOT divination.',
+    facets: [
+      { facet: 'rosetta 7-ray coprime to 6·9·10', on: rosettaCoprime },
+      { facet: 'I Ching 8-fold aliases 6 and 10', on: ichingAliases },
+      { facet: 'rosetta cross-pair coverage exceeds I Ching', on: rosettaCross > ichingCross },
+    ],
+  }
+}
+
+/** npm run quantum:iching-distribute-verify — rosetta 7-ray coprimality vs I Ching 8-fold aliasing. */
+export function runIchingDistributeVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {
+  const report = ichingDistributeVerify()
+  if (!report.computes) {
     process.stderr.write('✗ iching-distribute — coprimality or cross-pair coverage failed\n')
     return 1
   }
-  process.stdout.write(`✓ iching-distribute — rosetta crossPairs=${rosettaCross} iching crossPairs=${ichingCross} (7-ray coprime)\n`)
+  process.stdout.write(`✓ iching-distribute — rosetta crossPairs=${report.rosettaCross} iching crossPairs=${report.ichingCross} (7-ray coprime)\n`)
   return 0
 }
 

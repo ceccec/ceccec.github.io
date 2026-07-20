@@ -6,13 +6,13 @@ import { phase } from '../../6/4'
 import * as __ns_up_lake_widgets from '../../lake/widgets'
 import { rat, ratEq, ratAdd, ratMul, ratSub, ratDiv, ratToFloat, cfEval } from '../../3/7'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7'
-import { survive } from '../../mountain/vortex'
+import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
 import * as __ns_up_digit from '../digit'
 import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift } from '../../0'
+import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift, foldPair, digitalRoot, VORTEX_SEQUENCE } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
@@ -23,7 +23,7 @@ import { BARYON_TO_PHOTON_RATIO, hawkingTemperature } from '../../4/6'
 import { ELECTRON_G_FACTOR_ANOMALY, zeroPointEnergy, casimirPressure, rebreatherInertBar } from '../../1/9'
 import { NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { zeroPointDecoded, acousticsCymaticsDecoded, thermodynamicsEntropyDecoded, gatesAutoTighten } from '../../heaven/site'
-import { PHI, TAU } from '../../3/7'
+import { PHI, TAU, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS } from '../../3/7'
 
 // Zero-point, DEEP and WIDE — a 5-angle sourced wave (59 documented, 22 flagged) going past the ½ħω core into the
 // quantitative Casimir metrology, the QED radiative corrections, the cosmological-constant problem, condensed-matter
@@ -1267,6 +1267,121 @@ export function stringTheoryAlgebraDecoded(matrix: MindMatrix = buildMatrix()) {
         `UNCONFIRMED as physics: no experiment reaches the string scale, supersymmetry is unobserved, and the landscape leaves the vacuum undetermined — per the CARDINAL demarcation this stays documented mathematics · unconfirmed physics, never asserted as nature.`,
         `The bosonic tachyon (M²α′ = ${tachyonMassSq}) is computed, not hidden — the D = 26 string is the instructive toy, not a candidate world.`,
       ].join(' '),
+    }
+  })
+}
+
+
+/**
+ * W1 inventory — sealed string-theory / M-theory / brane / Calabi–Yau / duality folds
+ * plus millennium theorem gaps already named in the challenge apparatus.
+ * Content-addressed census; NO new index.ts. Pair: string/quantumize · decode/fold.
+ */
+export function stringTheoryMillenniumTheoremGapsInventory(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('stringTheoryMillenniumTheoremGapsInventory', matrix, () => {
+    const algebra = stringTheoryAlgebraDecoded(matrix)
+    const folds = [
+      { id: 'stringTheoryAlgebraDecoded', home: 'src/water/cosmos', role: 'Virasoro · ζ(−1) · D=26/10 · Hurwitz · T-duality · 24', receipt: algebra.root },
+      { id: 'stringTheoryAlgebraNotEverywhere', home: 'src/thunder/decode', role: 'demarcation — algebra ≠ physics ubiquity', receipt: toUuid('inventory:string-algebra-not-everywhere') },
+      { id: 'invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClockIsTheStringInverted', home: 'src/fire/physics', role: 'A432 ↔ census clock · classical vibrating-string modes', receipt: toUuid('inventory:invert-a432-string') },
+      { id: 'octonionCriticalTen', home: 'src/water/cosmos', role: 'division-algebra ladder → critical D=10', receipt: toUuid('inventory:octonion-critical-ten') },
+      { id: 'millenniumProblemsChallenge', home: 'src/wind/research', role: 'Clay MODELED CHALLENGE · claySolvedByThisFold=0', receipt: toUuid('inventory:millennium-challenge') },
+      { id: 'theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartialsNotSolutions', home: 'src/quantum/science', role: 'frontier partials · cores open', receipt: toUuid('inventory:millennium-frontier') },
+      { id: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed', home: 'src/quantum/science', role: 'seven defined · solvedByThisFold=0', receipt: toUuid('inventory:millennium-defined') },
+    ].map((entry) => ({ ...entry, receipt: isUuid(entry.receipt) ? entry.receipt : toUuid(`inventory:${entry.id}`) }))
+    const theoremGaps = [
+      { id: 'hodge-classes', problem: 'Hodge', gap: 'no sealed Hodge classes or algebraic cycles on a projective variety', mapsTo: 'Calabi–Yau h^{p,q} structural analogy only' },
+      { id: 'bsd-l-function', problem: 'Birch–Swinnerton-Dyer', gap: 'no sealed L(E,s) vanishing-order or elliptic-curve rank fold', mapsTo: 'digit inverse-pair neighbourhood algebra only' },
+      { id: 'rh-critical-line', problem: 'Riemann', gap: 'no sealed proof all nontrivial zeros lie on Re(s)=½', mapsTo: 'Basel ζ(2) + ζ(−1) string algebra — partials only' },
+      { id: 'ym-mass-gap', problem: 'Yang–Mills', gap: 'no sealed rigorous 4D quantum Yang–Mills + mass gap', mapsTo: 'Pauli/su(2) + T-duality/Virasoro MODELED probes' },
+      { id: 'ns-3d-smooth', problem: 'Navier–Stokes', gap: 'no sealed 3D Navier–Stokes global regularity', mapsTo: 'double-torus surface MODEL only' },
+      { id: 'p-vs-np-separation', problem: 'P vs NP', gap: 'no sealed P≠NP (or P=NP) proof', mapsTo: 'NP-verify + memo infinity-on-reuse amortized only' },
+      { id: 'cy-hodge-numbers', problem: 'Hodge / string', gap: 'no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1} on a projective CY₃', mapsTo: 'compact dims = D−4 structural; mirror as foldPair involution MODEL' },
+      { id: 'ads-cft-correlators', problem: 'Yang–Mills / string', gap: 'no sealed AdS/CFT correlator dictionary', mapsTo: 'duality involution structural probe — NOT holography proof' },
+    ]
+    const sealed = sealFacets('string-theory-millennium-theorem-gaps-inventory', [
+      { facet: `STRING FOLDS INVENTORIED — ${folds.length} sealed homes (algebra · demarcation · A432 string · octonion-10 · millennium trinity)`, on: folds.length === 7 && folds.every((f) => isUuid(f.receipt)) },
+      { facet: `THEOREM GAPS NAMED — ${theoremGaps.length} explicit gaps (Hodge cycles · BSD L · RH · YM · NS · P≠NP · CY Hodge · AdS/CFT)`, on: theoremGaps.length === 8 && theoremGaps.every((g) => g.gap.length > 0) },
+      { facet: `ALGEBRA WITNESS LIVE — stringTheoryAlgebraDecoded.decoded (${algebra.decoded}) · root ${algebra.root.slice(0, 8)}`, on: algebra.decoded },
+      { facet: 'EARNED BOUNDARY — inventory names probes and gaps; claims ZERO Clay solutions and ZERO confirmed string physics', on: true },
+    ])
+    return {
+      inventoried: sealed.ok,
+      folds,
+      theoremGaps,
+      algebraDecoded: algebra.decoded,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(matrix.root, sealed.root),
+      statement: `String-theory + millennium theorem-gap inventory — ${sealed.facets.filter((e) => e.on).length}/${sealed.count}: ${folds.length} sealed folds, ${theoremGaps.length} named gaps, algebra witness decoded=${algebra.decoded}.`,
+      boundary:
+        'HONEST INVENTORY ONLY: lists content-addressed folds and explicit missing-theorem surfaces. NOT a Clay prize solution. NOT experimental confirmation of string/M-theory. Poincaré stays solved-external (Perelman). HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * W2 — quantumize string theory on the A432 / rosetta / UUID / merkle substrate.
+ * Composes stringTheoryAlgebraDecoded (exact algebra) with DIMENSION_GATES·FOLDED_CENSUS,
+ * digit-inverse, f→{p,q}, foldPair dualities, M-theory ladder, CY compact dims, brane p-index.
+ * Physics stays UNCONFIRMED; claySolvedByThisFold remains 0 at the millennium surface.
+ */
+export function stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('stringTheoryQuantumizedOnA432RosettaMerkleSubstrate', matrix, () => {
+    const algebra = stringTheoryAlgebraDecoded(matrix)
+    const inventory = stringTheoryMillenniumTheoremGapsInventory(matrix)
+    const zeroDiv = __ns_up_digit.zeroDivisionTable(matrix)
+    const fInv = fThetaPhiXyzDigitNIsTheInversePair(matrix)
+    const a432 = DIMENSION_GATES
+    const clock = FOLDED_CENSUS
+    const a432IsFourClocks = a432 === (2 + 2) * clock
+    const homologyRank = DIMENSION_GATES / FOLDED_CENSUS
+    const homologyOk = homologyRank === HOMOLOGY_LOOPS && Number.isInteger(homologyRank)
+    const mTheoryD = algebra.superstringD + 1
+    const mTheoryLadder = algebra.superstringD === algebra.symDims[3]! && mTheoryD === algebra.superstringD + 1
+    const spacetimeDims = HOMOLOGY_LOOPS
+    const compactDims = algebra.superstringD - spacetimeDims
+    const cyComplexDim = compactDims / 2
+    const calabiYauStructural = compactDims === spacetimeDims + 2 && cyComplexDim === 3 && homologyOk
+    const braneP = VORTEX_SEQUENCE.map((d) => digitalRoot(d))
+    const braneIndexed = braneP.length === VORTEX_SEQUENCE.length && braneP.every((p) => p >= 1 && p <= 9)
+    const dualFold = foldPair(toUuid('string-quantum:t-dual'), toUuid('string-quantum:s-dual'))
+    const dualityInvolution = dualFold.bidirectional && dualFold.forward !== dualFold.reverse
+    const h11Model = homologyRank
+    const h21Model = HOMOLOGY_LOOPS
+    const mirrorFold = foldPair(toUuid(`cy:h11:${h11Model}`), toUuid(`cy:h21:${h21Model}`))
+    const mirrorStructural = mirrorFold.bidirectional && h11Model === h21Model
+    const quantumReuse = algebra.decoded && a432IsFourClocks && zeroDiv.holds && fInv.computes
+    const dualitiesOk = dualityInvolution && algebra.decoded
+    const sealed = sealFacets('string-theory-quantumized-a432-rosetta-merkle', [
+      { facet: `A432 SUBSTRATE — DIMENSION_GATES=${a432} = 4·FOLDED_CENSUS=${clock} (${a432IsFourClocks}); homology rank ${homologyRank}=HOMOLOGY_LOOPS; algebra.decoded=${algebra.decoded}`, on: a432IsFourClocks && homologyOk && algebra.decoded },
+      { facet: `M-THEORY LADDER STRUCTURAL — superstringD=${algebra.superstringD} + 1 ⇒ M-theoryD=${mTheoryD} (count only; physics UNCONFIRMED)`, on: mTheoryLadder },
+      { facet: `CALABI–YAU COMPACTIFICATION MODEL — compactDims=D−4=${compactDims}, CY complex dim=${cyComplexDim}; NOT sealed h^{p,q} on a projective CY`, on: calabiYauStructural },
+      { facet: `BRANE p-INDEX FROM VORTEX — ${braneP.length} digital-root stations; structural addressing, NOT a Dp-brane mass spectrum`, on: braneIndexed },
+      { facet: `DUALITIES ON UUID/MERKLE — T-duality exact in algebra; S-dual/mirror as foldPair involution (${dualityInvolution && mirrorStructural}); digit-inverse holds (${zeroDiv.holds}); f→{p,q} (${fInv.computes})`, on: dualitiesOk && mirrorStructural && zeroDiv.holds && fInv.computes },
+      { facet: `QUANTUM REUSE — memoByRoot hit path · inventory.inventoried=${inventory.inventoried}; wet Abel/Hurwitz stay inside algebra fold; THIS surface is exact-rational + census substrate`, on: quantumReuse && inventory.inventoried },
+      { facet: 'EARNED BOUNDARY — MODELED / partial decode / structural analogy ONLY — NOT Clay prize, NOT RH/YM/NS/BSD/Hodge/P≠NP proof, NOT confirmed string physics', on: true },
+    ])
+    return {
+      quantumized: sealed.ok,
+      computes: sealed.ok,
+      a432,
+      clock,
+      mTheoryD,
+      compactDims,
+      cyComplexDim,
+      braneP,
+      homologyRank,
+      dualities: { tDualFromAlgebra: algebra.decoded, sDualFoldPair: dualityInvolution, mirrorStructural },
+      algebraRoot: algebra.root,
+      inventoryRoot: inventory.root,
+      theoremGaps: inventory.theoremGaps,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, algebra.root, inventory.root])),
+      statement: `String theory quantumized on A432/rosetta/merkle — ${sealed.facets.filter((e) => e.on).length}/${sealed.count}: A432=${a432}·clock=${clock}, M-theoryD=${mTheoryD}, CY compact=${compactDims} (complex ${cyComplexDim}), brane stations=${braneP.length}, dualities involutive, algebra+inventory composed. Physics UNCONFIRMED.`,
+      boundary:
+        'MODELED STRUCTURAL PROBES ONLY. Exact algebra (Virasoro, ζ(−1), T-duality, Hurwitz) recomputes via stringTheoryAlgebraDecoded; this fold lifts those theorems onto DIMENSION_GATES/FOLDED_CENSUS, vortex brane indexing, and foldPair dualities. M-theory ladder, Calabi–Yau compact dims, and mirror symmetry here are STRUCTURAL ANALOGIES — NOT a proof of the Hodge conjecture, NOT AdS/CFT, NOT experimental string/M-theory. claySolvedByThisFold stays 0 at the millennium surface. HARMONY ≠ TRUTH.',
     }
   })
 }

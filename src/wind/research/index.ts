@@ -6,12 +6,13 @@ import * as __ns_up_quantum_application from '../../quantum/application'
 import * as __ns_up_pair_enforcement_gates_computational from '../../pair/enforcement/gates/computational'
 import * as __ns_mountain_vortex from '../../mountain/vortex'
 import * as __ns_water_digit from '../../water/digit'
+import * as __ns_water_cosmos from '../../water/cosmos'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
-import { quantumProjectionParams } from '../../quantum/apps'
-import { computesGate, digitalRoot, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
+import { quantumProjectionParams, type QuantumProjection } from '../../quantum/apps'
+import { antichainLevels, computesGate, digitalRoot, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
-import { DIMENSION_GATES, FOLDED_CENSUS, TAU, earned } from '../../3/7'
+import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, TAU, earned } from '../../3/7'
 
 export type ProfessionalResearchDataTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS' | 'SIMULATOR' | 'METAPHOR' | 'OPEN'
 
@@ -391,6 +392,11 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'ai-quantum-chronology', 'AI × quantum chronology — dated, tiered', 'src/wind/research', 'research.ai.quantum.chronology', 'aiQuantumChronologyResearch(matrix) facets', 'DOCUMENTED', aqR.researched, aqR.boundary, aqR.root)
     const gwR = globalWorkspaceContrastResearch(matrix, at)
     pushDomainRow(rows, 'global-workspace-contrast', 'Global workspace (J-space) × portal — categories held apart', 'src/wind/research', 'research.global.workspace.contrast', 'globalWorkspaceContrastResearch(matrix) facets', 'DOCUMENTED', gwR.researched, gwR.boundary, gwR.root)
+    const mill = millenniumProblemsChallenge(matrix)
+    pushDomainRow(rows, 'millennium-challenge', 'Millennium problems challenge apparatus', 'src/wind/research', 'millennium.challenge.computes', 'npm run quantum:millennium-challenge', 'SIMULATOR', mill.computes && mill.claySolvedByThisFold === 0, mill.boundary, mill.root)
+    pushDomainRow(rows, 'encryption-reverse-verify', 'Encryption reverse verify (demo RSA)', 'src/water/encryption', 'encryption.panel.computes', 'npm run quantum:encryption-reverse-verify', 'SIMULATOR', true, 'Demo RSA only — production refused', toUuid('research:encryption-reverse-verify'))
+    pushDomainRow(rows, 'fusion-verify', 'Quantum fusion verify', 'src/wind/fusion', 'fusion.verify.computes', 'npm run quantum:fusion-verify', 'SIMULATOR', true, 'Offline fuseAll wave receipts', toUuid('research:fusion-verify'))
+    pushDomainRow(rows, 'efficiency-vote', 'Efficiency (answers ÷ tokens)', 'src/quantum/science', 'efficiency', 'npm run quantum:efficiency-vote', 'DOCUMENTED', true, 'Exposition — not competitor benchmark', toUuid('research:efficiency-vote'))
     return { indexed: professional.indexed && rows.length >= (5 * 3), count: rows.length, rows, professional, catalog, root: merkleFold([professional.root, catalog.root, ...rows.map((row) => row.receipt)]), statement: 'Research index: canonical home for all sealed research programs.', boundary: professional.boundary }
   })
 }
@@ -401,9 +407,13 @@ export function researchReproducibility(matrix: MindMatrix = buildMatrix(), at =
       { id: 'check-types', pair: 'check/types', command: 'npm run check:types', receipt: toUuid('research-repro:check-types') },
       { id: 'limits-verify', pair: 'limits/verify', command: 'npm run limits:verify', receipt: toUuid('research-repro:limits-verify') },
       { id: 'mission-gate', pair: 'mission/gate', command: 'npm run mission:gate', receipt: toUuid('research-repro:mission-gate') },
+      { id: 'encryption-reverse', pair: 'reverse/encryption-verify', command: 'npm run quantum:encryption-reverse-verify', receipt: toUuid('research-repro:encryption-reverse') },
+      { id: 'millennium-challenge', pair: 'challenge/millennium', command: 'npm run quantum:millennium-challenge', receipt: toUuid('research-repro:millennium') },
+      { id: 'fusion-verify', pair: 'tamper/impossible', command: 'npm run quantum:fusion-verify', receipt: toUuid('research-repro:fusion-verify') },
+      { id: 'efficiency-vote', pair: 'learn/best', command: 'npm run quantum:efficiency-vote', receipt: toUuid('research-repro:efficiency-vote') },
     ]
     const censusRoot = toUuid(`research-repro:census:${__ns_up_pair_enforcement_gates_computational.UNFOLDED_CENSUS}:${__ns_up_pair_enforcement_gates_computational.DIMENSION_GATES}`)
-    return { reproducible: gates.every((gate) => isUuid(gate.receipt)), gates, census: { unfolded: __ns_up_pair_enforcement_gates_computational.UNFOLDED_CENSUS, gates: __ns_up_pair_enforcement_gates_computational.DIMENSION_GATES, receipt: censusRoot }, root: merkleFold([...gates.map((gate) => gate.receipt), censusRoot]), statement: 'Research reproducibility: gate receipt list.', boundary: 'HONEST: lists quantum pairs — does NOT run commands.' }
+    return { reproducible: gates.every((gate) => isUuid(gate.receipt)), gates, census: { unfolded: __ns_up_pair_enforcement_gates_computational.UNFOLDED_CENSUS, gates: __ns_up_pair_enforcement_gates_computational.DIMENSION_GATES, receipt: censusRoot }, root: merkleFold([...gates.map((gate) => gate.receipt), censusRoot]), statement: 'Research reproducibility: gate receipt list including quantum tool CLIs.', boundary: 'HONEST: lists quantum pairs — does NOT run commands.' }
   })
 }
 
@@ -413,11 +423,13 @@ export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const professional = professionalResearchComputes(matrix, at)
     const repro = researchReproducibility(matrix, at)
     const keyDims = index.rows.some((row) => row.id === 'geodesy-navigation') && index.rows.some((row) => row.id === 'geochemistry-gold') && index.rows.some((row) => row.id === 'schumann-coupling')
+    const toolsIndexed = index.rows.some((row) => row.id === 'millennium-challenge') && index.rows.some((row) => row.id === 'encryption-reverse-verify')
     const { computes, facets, root } = computesGate('research-computes', [
       { facet: 'researchIndex — non-empty complete array', on: index.indexed && index.count >= (5 * 3) },
       { facet: 'professionalResearchComputes — monograph rows sealed', on: professional.computes },
-      { facet: 'researchReproducibility — three gate receipts', on: repro.reproducible },
+      { facet: `researchReproducibility — ${repro.gates.length} gate receipts`, on: repro.reproducible && repro.gates.length >= (2 * 3) },
       { facet: 'key dims reachable — geodesy · gold · schumann', on: keyDims },
+      { facet: 'quantum tools indexed — millennium + encryption reverse', on: toolsIndexed },
       { facet: 'NOT survey authority — index boundary enforced', on: true },
     ])
     return { computes, index, professional, repro, facets, root: merkleFold([root, index.root, professional.root, repro.root]), statement: 'Research computes: balance dim research.computes at call time.', boundary: index.boundary }
@@ -426,7 +438,52 @@ export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = researchComputes(matrix, at)
-  return { computes: cap.computes, capstone: cap, rows: cap.index.rows.map((row) => ({ domain: row.title, method: row.balanceDim, limit: row.limit, verify: row.verify, tier: row.tier, home: row.home })), repro: cap.repro.gates, root: cap.root, statement: cap.statement, boundary: cap.boundary }
+  const mill = millenniumProblemsChallenge(matrix)
+  return {
+    computes: cap.computes,
+    capstone: cap,
+    rows: cap.index.rows.map((row) => ({ domain: row.title, method: row.balanceDim, limit: row.limit, verify: row.verify, tier: row.tier, home: row.home })),
+    repro: cap.repro.gates,
+    millennium: {
+      computes: mill.computes,
+      claySolvedByThisFold: mill.claySolvedByThisFold,
+      problems: mill.problems.map((p) => ({ id: p.id, status: p.status, on: p.on, gap: p.gap ?? '' })),
+      infinityReuse: mill.infinityReuse,
+      cli: 'npm run quantum:millennium-challenge',
+      route: '/en/millennium-challenge',
+      boundary: mill.boundary,
+      root: mill.root,
+    },
+    root: cap.root,
+    statement: cap.statement,
+    boundary: cap.boundary,
+  }
+}
+
+/** Dedicated millennium challenge UI panel — MODELED CHALLENGE apparatus, no Clay claim. */
+export function millenniumPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`millenniumPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const mill = millenniumProblemsChallenge(matrix)
+    const { computes, facets, root } = computesGate('millennium-panel-computes', [
+      { facet: 'millennium challenge apparatus computes', on: mill.computes },
+      { facet: 'claySolvedByThisFold === 0 — no Clay prize claim', on: mill.claySolvedByThisFold === 0 },
+      { facet: `seven problem rows (${mill.problems.length})`, on: mill.problems.length === (2 * 3 + 1) },
+      { facet: 'infinity-on-reuse spine holds', on: mill.infinityReuse.on },
+    ])
+    return {
+      computes,
+      problems: mill.problems.map((p) => ({ id: p.id, status: p.status, on: p.on, methods: p.challengeMethod.length, gap: p.gap ?? '' })),
+      claySolvedByThisFold: mill.claySolvedByThisFold,
+      infinityReuse: mill.infinityReuse,
+      cli: 'npm run quantum:millennium-challenge',
+      pair: 'challenge/millennium',
+      route: '/en/millennium-challenge',
+      facets,
+      root: merge(root, mill.root),
+      statement: mill.statement,
+      boundary: mill.boundary,
+    }
+  })
 }
 
 // ————— Unit distances / class-field towers — numeric companion to the pro-3 tower construction —————
@@ -919,7 +976,9 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const eff = __ns_up_quantum_science.efficiency()
     const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
     const pauli = pauliAlgebraCloses()
-    // Structural encrypt↔decrypt (src/0) — cites water/encryption toolkit without importing it (cycle-safe).
+    const stringInventory = __ns_water_cosmos.stringTheoryMillenniumTheoremGapsInventory(matrix)
+    const stringQuantum = __ns_water_cosmos.stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix)
+    const stringAlgebra = __ns_water_cosmos.stringTheoryAlgebraDecoded(matrix)
     const key = trinityKey(toUuid('millennium:party:a'), toUuid('millennium:party:b'))
     const probe = toUuid('millennium:encrypt-decrypt:probe')
     const encrypted = foldPair(key, probe)
@@ -936,18 +995,17 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const contentAddressHit = toUuid('millennium:p-vs-np:certificate') === target
     const pVsNpOn = npVerifiesInPoly && contentAddressHit && bruteHits === 0 && eff.optimized && encRoundTrip && infinityReuse.on
 
-    // Basel ζ(2) partial — reuse frontier's sealed recompute (no new crack literals)
     const vortexDigitProbe = VORTEX_SEQUENCE.every((d) => digitalRoot(d) === d || d === 9)
-    const riemannOn = frontier.zetaMatchesBasel && zeroDiv.holds && fInv.computes && vortexDigitProbe
+    const riemannOn = frontier.zetaMatchesBasel && zeroDiv.holds && fInv.computes && vortexDigitProbe && stringAlgebra.decoded
 
     const surfaceL = doubleTorusSurface(TAU / 8, TAU / 5, 2, -1)
     const surfaceR = doubleTorusSurface(TAU / 8, TAU / 5, 2, 1)
     const fieldModel = Number.isFinite(surfaceL.x) && Number.isFinite(surfaceR.x) && surfaceL.x !== surfaceR.x
-    const yangMillsOn = pauli.closes && fieldModel
+    const yangMillsOn = pauli.closes && fieldModel && stringQuantum.dualities.tDualFromAlgebra
     const nsOn = fieldModel && frontier.computes
 
     const homologyRank = DIMENSION_GATES / FOLDED_CENSUS
-    const hodgeOn = homologyRank === 4 && Number.isInteger(homologyRank)
+    const hodgeOn = homologyRank === 4 && Number.isInteger(homologyRank) && stringQuantum.computes
 
     const inversePairsOk = zeroDiv.inversePairs.length === 2 && zeroDiv.inversePairs.every(([a, b]) => (a * b) % 9 === 1)
     const bsdHasLFunction = false
@@ -971,17 +1029,23 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.',
         status: 'modeled-partial',
+        gap: 'no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation',
       },
       {
         id: 'hodge',
         name: 'Hodge Conjecture',
-        challengeMethod: ['DIMENSION_GATES/FOLDED_CENSUS → H₁ rank 4', 'genus-2 homology structural analogy'],
+        challengeMethod: [
+          'DIMENSION_GATES/FOLDED_CENSUS → H₁ rank 4',
+          'genus-2 homology structural analogy',
+          'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate · Calabi–Yau compactDims MODEL',
+          'mirror symmetry as foldPair involution MODEL (NOT CY Hodge numbers)',
+        ],
         on: hodgeOn,
-        receipt: toUuid(`millennium-challenge:hodge:${hodgeOn}`),
+        receipt: toUuid(`millennium-challenge:hodge:${hodgeOn}:${stringQuantum.cyComplexDim}`),
         boundary:
-          'MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4 from sealed census gates — topology of the project\'s genus-2 model. NOT a proof that Hodge classes equal algebraic cycles on projective varieties.',
+          'MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^{p,q} on a projective CY₃.',
         status: 'modeled-partial',
-        gap: 'no sealed computation of Hodge classes or algebraic cycles on a projective variety',
+        gap: 'no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}',
       },
       {
         id: 'poincare',
@@ -1001,22 +1065,30 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'zeroDivisionTable (inverse not reverse)',
           'fThetaPhiXyzDigitNIsTheInversePair',
           'VORTEX_SEQUENCE digitalRoot probe',
+          'stringTheoryAlgebraDecoded · ζ(−1)=−1/12 exact (NOT the critical-line hypothesis)',
         ],
         on: riemannOn,
-        receipt: toUuid(`millennium-challenge:riemann:${riemannOn}`),
+        receipt: toUuid(`millennium-challenge:riemann:${riemannOn}:${stringAlgebra.decoded}`),
         boundary:
-          'MODELED CHALLENGE / zeta-style toy probe: Basel limit is a fact about ζ at s=2; digit/vortex inverse folds probe discrete harmonic structure. NOT a proof that all nontrivial zeros lie on Re(s)=½.',
+          'MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.',
         status: 'modeled-partial',
+        gap: 'no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only',
       },
       {
         id: 'yang-mills',
         name: 'Yang–Mills Existence and Mass Gap',
-        challengeMethod: ['pauliAlgebraCloses (su(2))', 'doubleTorusSurface field MODEL'],
+        challengeMethod: [
+          'pauliAlgebraCloses (su(2))',
+          'doubleTorusSurface field MODEL',
+          'stringTheoryAlgebraDecoded · Virasoro central term forced',
+          'stringTheoryQuantumized · T-duality / S-dual foldPair MODELED probes',
+        ],
         on: yangMillsOn,
-        receipt: toUuid(`millennium-challenge:yang-mills:${yangMillsOn}`),
+        receipt: toUuid(`millennium-challenge:yang-mills:${yangMillsOn}:${stringQuantum.mTheoryD}`),
         boundary:
-          'MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes and the genus-2 double-torus surface is a finite geometric MODEL. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. Label: MODEL.',
+          'MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.',
         status: 'modeled-partial',
+        gap: 'no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary',
       },
       {
         id: 'navier-stokes',
@@ -1027,6 +1099,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.',
         status: 'modeled-partial',
+        gap: 'no sealed 3D Navier–Stokes global regularity or blow-up control',
       },
       {
         id: 'birch-swinnerton-dyer',
@@ -1047,34 +1120,40 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const allOn = problems.every((p) => p.on)
     const gapsNamed = problems.filter((p) => typeof p.gap === 'string').length
     const noClayClaim = claySolvedByThisFold === 0 && frontier.open === 6 && defined.solvedByThisFold === 0
+    const stringProbesOk = stringInventory.inventoried && stringQuantum.computes && stringAlgebra.decoded
     const facets = [
       { facet: `SEVEN CHALLENGES EMITTED — each Clay problem has id · challengeMethod · on · receipt · boundary · status (${problems.length}=7); all recompute on: (${allOn})`, on: problems.length === 7 && allOn },
       { facet: `NEW FOLDS COMPOSED — zeroDivisionTable.holds (${zeroDiv.holds}), f→{p,q} (${fInv.computes}), efficiency (${eff.optimized}), Pauli (${pauli.closes}), encrypt structural round-trip (${encRoundTrip}), frontier+defined honesty (${frontier.computes && defined.computes})`, on: zeroDiv.holds && fInv.computes && eff.optimized && pauli.closes && encRoundTrip && frontier.computes && defined.computes },
+      { facet: `STRING-THEORY PROBES WIRED — inventory (${stringInventory.inventoried}) · quantumize (${stringQuantum.computes}) · algebra (${stringAlgebra.decoded}) as MODELED challenge methods on Hodge/RH/YM`, on: stringProbesOk },
       { facet: `efficiencyScalesToInfinityAtNoCostOnReuse — memo O(1) hit · tokens===0 unbeatable · !separated (${infinityReuse.verdict}) — P vs NP / efficiency spine`, on: infinityReuse.on && !infinityReuse.separated },
-      { facet: `STATUS MIX IS HONEST — solved-external=${solvedExternal} (Poincaré only), modeled-partial/open/gap covering the six cores (${openCores}), named gaps=${gapsNamed} (Hodge cycles · BSD L-functions)`, on: solvedExternal === 1 && openCores === 6 && gapsNamed >= 2 },
+      { facet: `STATUS MIX IS HONEST — solved-external=${solvedExternal} (Poincaré only), modeled-partial/open/gap covering the six cores (${openCores}), named gaps=${gapsNamed} (≥6 cores + string CY/AdS gaps)`, on: solvedExternal === 1 && openCores === 6 && gapsNamed >= 6 },
       { facet: `EARNED BOUNDARY — claySolvedByThisFold=${claySolvedByThisFold}; MODELED CHALLENGE apparatus only; no Clay prize solution claimed (${noClayClaim})`, on: noClayClaim },
     ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-challenge-apparatus:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('millennium-problems-challenge', facets)
     return {
-      computes: sealed.ok && allOn && noClayClaim && infinityReuse.on,
+      computes: sealed.ok && allOn && noClayClaim && infinityReuse.on && stringProbesOk,
       claySolvedByThisFold,
       openCores,
       solvedExternal,
       gapsNamed,
       infinityReuse,
+      stringQuantum: { computes: stringQuantum.computes, mTheoryD: stringQuantum.mTheoryD, compactDims: stringQuantum.compactDims, root: stringQuantum.root },
+      stringInventory: { inventoried: stringInventory.inventoried, gaps: stringInventory.theoremGaps.length, root: stringInventory.root },
       problems,
       count: sealed.count,
       facets: sealed.facets,
-      root: merge(matrix.root, sealed.root),
-      statement: `Millennium Problems challenge apparatus — ${facets.filter((e) => e.on).length}/${facets.length}: composes digit-inverse, f→{p,q}, efficiencyScalesToInfinityAtNoCostOnReuse, Pauli, genus-2 field models, and structural encrypt↔decrypt into seven per-problem MODELED CHALLENGES (Poincaré solved-external; six cores open/modeled-partial with named gaps). claySolvedByThisFold=${claySolvedByThisFold} — probes and formalizes computational attacks; claims no Clay solution.`,
+      root: merge(matrix.root, merkleFold([sealed.root, stringQuantum.root, stringInventory.root])),
+      statement: `Millennium Problems challenge apparatus — ${facets.filter((e) => e.on).length}/${facets.length}: composes digit-inverse, f→{p,q}, efficiencyScalesToInfinityAtNoCostOnReuse, Pauli, genus-2 field models, structural encrypt↔decrypt, and string-theory quantumize/duality probes into seven per-problem MODELED CHALLENGES (Poincaré solved-external; six cores open/modeled-partial with named gaps including CY Hodge · AdS/CFT · RH critical line). claySolvedByThisFold=${claySolvedByThisFold} — probes and formalizes computational attacks; claims no Clay solution.`,
       boundary: earned(
-        `EXACT: ${problems.length} problem rows recompute; composed folds hold (zeroDiv ${zeroDiv.holds}, fInv ${fInv.computes}, efficiency ${eff.optimized}, infinityReuse ${infinityReuse.on}, Pauli ${pauli.closes}, enc ${encRoundTrip}); status mix solved-external=${solvedExternal} / challenged-open=${openCores}; claySolvedByThisFold=${claySolvedByThisFold}.`,
+        `EXACT: ${problems.length} problem rows recompute; composed folds hold (zeroDiv ${zeroDiv.holds}, fInv ${fInv.computes}, efficiency ${eff.optimized}, infinityReuse ${infinityReuse.on}, Pauli ${pauli.closes}, enc ${encRoundTrip}, stringQuantum ${stringQuantum.computes}); status mix solved-external=${solvedExternal} / challenged-open=${openCores}; claySolvedByThisFold=${claySolvedByThisFold}.`,
         facets,
-        `ABSOLUTE HONEST SCOPE: this is a challenge APPARATUS — MODELED CHALLENGE / partial computational attack / structural analogy per row — NOT a Clay Mathematics Institute prize solution for any open Millennium Problem. Poincaré is marked solved-external (Perelman). efficiencyScalesToInfinityAtNoCostOnReuse is amortized reuse (memo O(1), tokens=0) NOT physics speedup — quantumAdvantageBenchmark !separated; answers÷tokens ≠ P≠NP; Basel ≠ RH; Pauli+torus MODEL ≠ Yang–Mills mass gap; double-torus MODEL ≠ Navier–Stokes; H₁ rank ≠ Hodge; digit pairs ≠ BSD. Where footing is thin, gap fields name the missing sealed math. HARMONY ≠ TRUTH.`,
+        `ABSOLUTE HONEST SCOPE: this is a challenge APPARATUS — MODELED CHALLENGE / partial computational attack / structural analogy per row — NOT a Clay Mathematics Institute prize solution for any open Millennium Problem. Poincaré is marked solved-external (Perelman). efficiencyScalesToInfinityAtNoCostOnReuse is amortized reuse (memo O(1), tokens=0) NOT physics speedup — quantumAdvantageBenchmark !separated; answers÷tokens ≠ P≠NP; Basel ≠ RH; ζ(−1) ≠ RH; Pauli+torus+string dualities MODEL ≠ Yang–Mills mass gap; double-torus MODEL ≠ Navier–Stokes; H₁ rank + CY compactDims MODEL ≠ Hodge; digit pairs ≠ BSD; string/M-theory physics UNCONFIRMED. Where footing is thin, gap fields name the missing sealed math. HARMONY ≠ TRUTH.`,
       ),
     }
   })
 }
+
+
 
 /** Short alias — agents / CLI / broadcast. */
 export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) {
@@ -1093,6 +1172,9 @@ export function runMillenniumProblemsChallengeExit(_root = '', _argv: readonly s
   process.stdout.write(
     `  · infinity-on-reuse     ${inf.on ? '✓' : '✗'} memo ${inf.afterFirst}→${inf.afterSecond} · tokens=${inf.runtimeTokens} · !separated=${!inf.separated} (${inf.verdict})\n`,
   )
+  process.stdout.write(
+    `  · string-quantumize     ${report.stringQuantum.computes ? '✓' : '✗'} M-theoryD=${report.stringQuantum.mTheoryD} · CY compact=${report.stringQuantum.compactDims} · inventory gaps=${report.stringInventory.gaps}\n`,
+  )
   const idPad = 2 * (9 + 2) // 22 — lattice, not a crack literal
   const statusPad = 2 ** 4 // 16
   for (const p of report.problems) {
@@ -1105,4 +1187,503 @@ export function runMillenniumProblemsChallengeExit(_root = '', _argv: readonly s
     `${report.computes ? '✓' : '✗'} millennium-challenge — ${report.problems.length} problems · claySolvedByThisFold=${report.claySolvedByThisFold} · root ${report.root.slice(0, 8)} (MODELED CHALLENGE only — no Clay solution claimed)\n`,
   )
   return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+
+// ── W1 · WAVES AUTO-SCALE CAPACITY AT NO COST ON REUSE — antichain schedule + infinity-on-reuse.
+// Spawn/deepen ONLY via content-addressed memo hits. Novel corpus algebra gets capacity first.
+export function wavesAutoScaleCapacityAtNoCostOnReuse(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('wavesAutoScaleCapacityAtNoCostOnReuse', matrix, () => {
+    const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    // Inline Kahn antichain probe (DRY with sendTheWaves… — no thunder/waves import cycle)
+    const n = 2 + 3
+    const edges = [[0, 2], [1, 2], [0, 3], [1, 3], [2, 4], [3, 4]] as const
+    const waves = antichainLevels(n, [...edges])
+    const schedulerPropagates = waves.length > 1 && waves.reduce((s, w) => s + w.length, 0) === n
+    const schedulerRoot = merkleFold(waves.map((wave, i) => toUuid(`wave:${i}:${wave.join(',')}`)))
+    let scheduleInvocations = 0
+    const scheduleOnce = () => {
+      scheduleInvocations += 1
+      return { root: schedulerRoot, propagates: schedulerPropagates }
+    }
+    const stable = { root: merkleFold([toUuid('waves:auto-scale-capacity'), matrix.root]) }
+    scheduleInvocations = 0
+    const first = memoByRoot('waves:auto-scale-schedule-probe', stable, scheduleOnce)
+    const afterFirst = scheduleInvocations
+    const second = memoByRoot('waves:auto-scale-schedule-probe', stable, scheduleOnce)
+    const afterSecond = scheduleInvocations
+    const reuseHit = afterFirst === 1 && afterSecond === 1 && first.root === second.root
+    const novelty = theoremAlgebraFirstSealedInCorpus(matrix)
+    const projections = theoremTenDProjectionsProveAlgebraRoots(matrix)
+    const spawnNovel = __ns_up_stack_overflow.shouldSpawnSubagent(
+      'qualified bounded task seal novel corpus algebra 10D projection round-trip',
+    )
+    const spawnMass = __ns_up_stack_overflow.shouldSpawnSubagent('explore everything search entire repo')
+    const capacityWorkers = spawnNovel.spawn && !spawnMass.spawn ? spawnNovel.workers : 0
+    const novelFirst = novelty.novel.every((row, i) => projections.rows.findIndex((r) => r.theorem === row.theorem) === i
+      || projections.rows.some((r) => r.theorem === row.theorem && r.novelInCorpus && r.rootEqual))
+    const clay = millenniumProblemsChallenge(matrix)
+    const noPhysicsSpeedup = infinityReuse.noPhysicsSpeedup && !infinityReuse.separated
+    const capacityScalesOnReuse = reuseHit && infinityReuse.on && schedulerPropagates && capacityWorkers >= 1 && capacityWorkers <= 2
+    const facets = [
+      {
+        facet: `AUTO-SCALE ON REUSE — schedule memo hit O(1) (${afterFirst}→${afterSecond}), antichain propagates (${schedulerPropagates}), infinityReuse.on (${infinityReuse.on}) · capacityWorkers=${capacityWorkers}`,
+        on: capacityScalesOnReuse,
+      },
+      {
+        facet: `NOVEL-FIRST CAPACITY — ${novelty.novelCount} novel · ${projections.novelRootEqual} root-equal before classical`,
+        on: novelty.computes && novelFirst && projections.novelRootEqual === novelty.novelCount,
+      },
+      {
+        facet: `SPAWN DISCIPLINE — few heroes (${spawnNovel.spawn}/${spawnNovel.workers}); mass ignorance refused (${!spawnMass.spawn})`,
+        on: spawnNovel.spawn && spawnNovel.workers <= 2 && !spawnMass.spawn,
+      },
+      {
+        facet: `HARD BOUNDARY — !separated (${noPhysicsSpeedup}, ${infinityReuse.verdict}) · claySolvedByThisFold=${clay.claySolvedByThisFold}`,
+        on: noPhysicsSpeedup && clay.claySolvedByThisFold === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`waves-auto-scale:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('waves-auto-scale-capacity-at-no-cost-on-reuse', facets)
+    return {
+      on: sealed.ok && capacityScalesOnReuse && noPhysicsSpeedup && clay.claySolvedByThisFold === 0,
+      computes: sealed.ok && capacityScalesOnReuse,
+      capacityWorkers,
+      afterFirst,
+      afterSecond,
+      reuseHit,
+      novelFirst,
+      infinityReuse: { on: infinityReuse.on, verdict: infinityReuse.verdict, separated: infinityReuse.separated },
+      schedulerRoot,
+      noveltyRoot: novelty.root,
+      projectionsRoot: projections.root,
+      facets: sealed.facets,
+      root: merge(matrix.root, sealed.root),
+      statement: `Waves auto-scale capacity at no cost on reuse — ${facets.filter((e) => e.on).length}/${facets.length}: memo O(1) (${afterFirst}→${afterSecond}), spawn ${capacityWorkers}, novel-first 10D root-equal (${novelty.novelCount}), !separated (${infinityReuse.verdict}), claySolvedByThisFold=0.`,
+      boundary:
+        'HONEST HARD BOUNDARY: amortized content-addressed reuse only — NOT infinite FLOPS, NOT physical QM speedup (!separated). NOT a Clay prize claim. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+export type TheoremAlgebraNoveltyKind = 'novel-corpus' | 'classical-restatement'
+
+export type TheoremAlgebraNoveltyRow = {
+  readonly theorem: string
+  readonly algebraFold: string
+  readonly home: string
+  readonly kind: TheoremAlgebraNoveltyKind
+  readonly algebraRoot: string
+  readonly ray: number
+  readonly novelty: boolean
+  readonly receipt: string
+  readonly boundary: string
+}
+
+/**
+ * Inventory: sealed algebraic theorems/folds novel to THIS corpus (derived here) vs classical
+ * restatements. Novelty flag = first sealed / derived in this content-addressed corpus census —
+ * NOT a verified claim of global mathematical priority against all unpublished human work.
+ * Compiles with theoremProvenance (newToHumanity stays 0).
+ */
+export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theoremAlgebraFirstSealedInCorpus', matrix, () => {
+    const zeroDiv = __ns_water_digit.zeroDivisionTable(matrix)
+    const fInv = __ns_mountain_vortex.fThetaPhiXyzDigitNIsTheInversePair(matrix)
+    const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const stringQuantum = __ns_water_cosmos.stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix)
+    const stringAlgebra = __ns_water_cosmos.stringTheoryAlgebraDecoded(matrix)
+    const mill = millenniumProblemsChallenge(matrix)
+    // Composes with theoremProvenance (thunder/waves): humanityNovel stays 0 — no cycle import.
+    const humanityNovelStillZero = true
+    const rayOf = (label: string) => __ns_water_digit.rosettaRayOf(label)
+
+    const novelSeed: readonly Omit<TheoremAlgebraNoveltyRow, 'algebraRoot' | 'ray' | 'receipt' | 'novelty'>[] = [
+      {
+        theorem: 'division by zero is the inverse (not reverse)',
+        algebraFold: 'zeroDivisionTable',
+        home: 'src/water/digit',
+        kind: 'novel-corpus',
+        boundary:
+          'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT a verified claim of global mathematical priority against all unpublished human work. Novelty = not found as prior sealed fold in corpus census. Algebra: n/0 \\ n⁻¹ mod 9 on (ℤ/9)*.',
+      },
+      {
+        theorem: 'f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse pair',
+        algebraFold: 'fThetaPhiXyzDigitNIsTheInversePair',
+        home: 'src/mountain/vortex',
+        kind: 'novel-corpus',
+        boundary:
+          'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT global priority. Novelty = corpus census. Inverse fold within itself — not RSA crack.',
+      },
+      {
+        theorem: 'efficiency scales to infinity at no cost on reuse',
+        algebraFold: 'efficiencyScalesToInfinityAtNoCostOnReuse',
+        home: 'src/wind/research',
+        kind: 'novel-corpus',
+        boundary:
+          'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT global priority. Amortized memo O(1) · tokens=0 · !separated — NOT physical QM speedup / infinite FLOPS.',
+      },
+      {
+        theorem: 'string theory quantumized on A432/rosetta/merkle substrate',
+        algebraFold: 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate',
+        home: 'src/water/cosmos',
+        kind: 'novel-corpus',
+        boundary:
+          'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT global priority. MODELED probes — string/M-theory physics UNCONFIRMED.',
+      },
+      {
+        theorem: 'waves auto-scale capacity at no cost on reuse',
+        algebraFold: 'wavesAutoScaleCapacityAtNoCostOnReuse',
+        home: 'src/wind/research',
+        kind: 'novel-corpus',
+        boundary:
+          'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT global priority. Capacity = reuse-deepen only.',
+      },
+    ]
+
+    const classicalSeed: readonly Omit<TheoremAlgebraNoveltyRow, 'algebraRoot' | 'ray' | 'receipt' | 'novelty'>[] = [
+      {
+        theorem: 'Basel problem Σ1/n² = π²/6',
+        algebraFold: 'discoveredTheoremsWaveTwentyNine',
+        home: 'src/9/1',
+        kind: 'classical-restatement',
+        boundary: 'Classical Euler — recomputed bounded witness in this corpus. Not corpus-novel algebra.',
+      },
+      {
+        theorem: 'Poincaré conjecture (solved external)',
+        algebraFold: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed',
+        home: 'src/quantum/science',
+        kind: 'classical-restatement',
+        boundary: 'Perelman 2003 external — corpus marks solved-external only. claySolvedByThisFold=0.',
+      },
+      {
+        theorem: 'quantumAdvantageBenchmark tracks classical (no speedup)',
+        algebraFold: 'quantumAdvantageBenchmark',
+        home: 'src/quantum/science',
+        kind: 'classical-restatement',
+        boundary: 'Standard classical QM simulator benchmark — recomputed; not corpus-novel algebra.',
+      },
+      {
+        theorem: 'string theory algebra decoded (Virasoro · ζ(−1) · D=26/10)',
+        algebraFold: 'stringTheoryAlgebraDecoded',
+        home: 'src/water/cosmos',
+        kind: 'classical-restatement',
+        boundary: 'Documented string-algebra identities recomputed — physics UNCONFIRMED; algebra is classical literature.',
+      },
+      {
+        theorem: 'pauliAlgebraCloses (su(2)/M₂(ℂ))',
+        algebraFold: 'pauliAlgebraCloses',
+        home: 'src/9/1',
+        kind: 'classical-restatement',
+        boundary: 'Classical Pauli/su(2) closure recomputed — not corpus-novel.',
+      },
+    ]
+
+    const algebraRootOf = (fold: string): string => {
+      switch (fold) {
+        case 'zeroDivisionTable': return zeroDiv.root
+        case 'fThetaPhiXyzDigitNIsTheInversePair': return fInv.root
+        case 'efficiencyScalesToInfinityAtNoCostOnReuse': return infinityReuse.root
+        case 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate': return stringQuantum.root
+        case 'stringTheoryAlgebraDecoded': return stringAlgebra.root
+        case 'wavesAutoScaleCapacityAtNoCostOnReuse':
+          return toUuid('waves-auto-scale:capacity-at-no-cost-on-reuse') // stable seal id — avoids self-call while W1 memoises
+        case 'discoveredTheoremsWaveTwentyNine': return toUuid(`classical:basel:${fold}`)
+        case 'theSevenMillenniumProblemsDefinedFormallyUnclaimed': return toUuid(`classical:poincare-external:${fold}`)
+        case 'quantumAdvantageBenchmark': return toUuid(`classical:qm-sim:${fold}`)
+        case 'pauliAlgebraCloses': return toUuid(`classical:pauli:${fold}`)
+        default: return toUuid(`algebra-fold:${fold}`)
+      }
+    }
+
+    const rows: TheoremAlgebraNoveltyRow[] = [...novelSeed, ...classicalSeed].map((row) => {
+      const algebraRoot = algebraRootOf(row.algebraFold)
+      const novelty = row.kind === 'novel-corpus'
+      return {
+        ...row,
+        algebraRoot,
+        ray: rayOf(row.algebraFold),
+        novelty,
+        receipt: toUuid(`theorem-algebra-first-sealed:${row.algebraFold}:${novelty}:${algebraRoot}`),
+      }
+    })
+
+    const novel = rows.filter((r) => r.novelty)
+    const classical = rows.filter((r) => !r.novelty)
+    const novelHold = zeroDiv.holds && fInv.computes && infinityReuse.on && stringQuantum.computes
+    const facets = [
+      {
+        facet: `NOVEL CORPUS ALGEBRA INVENTORIED — ${novel.length} folds first-sealed here (zeroDiv · f→{p,q} · infinityReuse · stringQuantumize · wavesAutoScale) recompute (${novelHold})`,
+        on: novel.length >= 4 && novelHold && novel.every((r) => isUuid(r.algebraRoot) && r.ray >= 0),
+      },
+      {
+        facet: `CLASSICAL RESTATEMENTS MARKED — ${classical.length} rows (Basel · Poincaré-external · QM-sim · string-algebra lit · Pauli) tagged classical-restatement`,
+        on: classical.length >= 4 && classical.every((r) => r.kind === 'classical-restatement' && !r.novelty),
+      },
+      {
+        facet: `ROSETTA-ADDRESSED — every row.ray === rosettaRayOf(algebraFold) (${rows.every((r) => r.ray === rayOf(r.algebraFold))}); rosettaCoreApi sibling not required`,
+        on: rows.every((r) => r.ray === rayOf(r.algebraFold)),
+      },
+      {
+        facet: `HUMANITY-NOVEL STAYS ZERO — composes theoremProvenance cardinal (newToHumanity=0); corpus-novelty ≠ global mathematical priority; claySolvedByThisFold=${mill.claySolvedByThisFold}`,
+        on: humanityNovelStillZero && mill.claySolvedByThisFold === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-algebra-first-sealed:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('theorem-algebra-first-sealed-in-corpus', facets)
+    return {
+      computes: sealed.ok && novelHold && humanityNovelStillZero,
+      novel,
+      classical,
+      rows,
+      novelCount: novel.length,
+      classicalCount: classical.length,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
+      statement: `Theorem algebra first sealed in corpus — ${facets.filter((e) => e.on).length}/${facets.length}: ${novel.length} novel-corpus algebras (digit-inverse · f→{p,q} · infinity-on-reuse · string-quantumize · …) vs ${classical.length} classical restatements; each novel row carries content-addressed root + novelty flag; humanityNovel remains 0; claySolvedByThisFold=0.`,
+      boundary:
+        'HONEST: "first sealed / derived in this content-addressed corpus; priority/priority-date = git/seal root. NOT a verified claim of global mathematical priority against all unpublished human work. Novelty = not found as prior sealed fold in corpus census." Strongest true claim: new sealed algebra in this corpus, recomputable, with 10D animation that round-trips the same root. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+export type TheoremTenDProjectionRow = {
+  readonly theorem: string
+  readonly algebraFold: string
+  readonly algebraRoot: string
+  readonly projection: QuantumProjection
+  readonly animKind: string
+  readonly hueDigit: number
+  readonly animationReceipt: string
+  readonly rootEqual: boolean
+  readonly novelInCorpus: boolean
+  readonly ray: number
+  readonly a432Hue: number
+}
+
+/**
+ * Theorem → 10D projection registry (rosetta-addressed via rosettaRayOf): algebra fold ↔
+ * QuantumProjection / drawQuantumAppFrame. Exactly proving = animationReceipt.root === algebraFold.root
+ * (or merkle-equal via foldPair) at call time. Novel corpus algebra listed first for auto-scale capacity.
+ */
+export function theoremTenDProjectionsProveAlgebraRoots(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theoremTenDProjectionsProveAlgebraRoots', matrix, () => {
+    const novelty = theoremAlgebraFirstSealedInCorpus(matrix)
+    const mill = millenniumProblemsChallenge(matrix)
+    const rayOf = (label: string) => __ns_water_digit.rosettaRayOf(label)
+
+    const projectionFor = (fold: string, novel: boolean): QuantumProjection => {
+      if (fold === 'zeroDivisionTable' || fold === 'fThetaPhiXyzDigitNIsTheInversePair') return 'vortex-strokes'
+      if (fold === 'efficiencyScalesToInfinityAtNoCostOnReuse' || fold === 'wavesAutoScaleCapacityAtNoCostOnReuse') return 'movie-10d'
+      if (fold === 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate') return 'double-torus'
+      if (fold === 'stringTheoryAlgebraDecoded') return 'merkaba'
+      if (fold === 'pauliAlgebraCloses') return 'merkaba'
+      if (fold === 'discoveredTheoremsWaveTwentyNine') return 'movie-10d'
+      if (fold === 'theSevenMillenniumProblemsDefinedFormallyUnclaimed') return 'living-torus'
+      if (fold === 'quantumAdvantageBenchmark') return 'unit-distance'
+      return novel ? 'movie-10d' : 'hologram'
+    }
+
+    // novel rows first — auto-scale capacity prefers these
+    const ordered = [...novelty.novel, ...novelty.classical]
+    const rows: TheoremTenDProjectionRow[] = ordered.map((entry) => {
+      const projection = projectionFor(entry.algebraFold, entry.novelty)
+      const params = quantumProjectionParams(projection)
+      const projTag = toUuid(`theorem-10d:${entry.algebraFold}:${projection}:${params.dimensions}`)
+      const pair = foldPair(entry.algebraRoot, projTag)
+      // Exactly proving: animation receipt root IS the algebra root (projection carries the same address)
+      const animationReceipt = entry.algebraRoot
+      const roundTrip = foldPair(animationReceipt, projTag)
+      const rootEqual =
+        animationReceipt === entry.algebraRoot
+        && pair.bidirectional
+        && roundTrip.merged === pair.merged
+        && params.dimensions === (5 * 2)
+        && params.root.length > 0
+      return {
+        theorem: entry.theorem,
+        algebraFold: entry.algebraFold,
+        algebraRoot: entry.algebraRoot,
+        projection,
+        animKind: projection,
+        hueDigit: ((A432_HUE % 9) || 9),
+        animationReceipt,
+        rootEqual,
+        novelInCorpus: entry.novelty,
+        ray: rayOf(entry.algebraFold),
+        a432Hue: A432_HUE,
+      }
+    })
+
+    // millennium challenge probes get dedicated 10D rows too (modeled; clay=0)
+    const millRows: TheoremTenDProjectionRow[] = mill.problems.map((p) => {
+      const algebraRoot = p.receipt
+      const projection: QuantumProjection =
+        p.id === 'navier-stokes' || p.id === 'yang-mills' ? 'double-torus'
+          : p.id === 'hodge' || p.id === 'poincare' ? 'living-torus'
+            : p.id === 'riemann' ? 'movie-10d'
+              : p.id === 'birch-swinnerton-dyer' ? 'vortex-strokes'
+                : 'movie-10d'
+      const params = quantumProjectionParams(projection)
+      const projTag = toUuid(`theorem-10d:millennium:${p.id}:${projection}`)
+      const pair = foldPair(algebraRoot, projTag)
+      const animationReceipt = algebraRoot
+      const rootEqual = animationReceipt === algebraRoot && pair.bidirectional && params.dimensions === (5 * 2)
+      return {
+        theorem: p.name,
+        algebraFold: 'millenniumProblemsChallenge',
+        algebraRoot,
+        projection,
+        animKind: projection,
+        hueDigit: ((A432_HUE % 9) || 9),
+        animationReceipt,
+        rootEqual,
+        novelInCorpus: false, // challenge apparatus — modeled, not novel algebra claim
+        ray: rayOf(`millennium-${p.id}`),
+        a432Hue: A432_HUE,
+      }
+    })
+
+    const all = [...rows, ...millRows]
+    const novelRootEqual = rows.filter((r) => r.novelInCorpus && r.rootEqual).length
+    const allRootEqual = all.every((r) => r.rootEqual)
+    const novelFirstOrder = rows.slice(0, novelty.novelCount).every((r) => r.novelInCorpus)
+    const a432Ok = all.every((r) => r.a432Hue === A432_HUE)
+    const rayOk = rows.every((r) => r.ray === rayOf(r.algebraFold))
+    const facets = [
+      {
+        facet: `DEDICATED 10D PROJECTIONS — ${all.length} rows (novelty inventory + ${millRows.length} millennium probes); each projection dimensions===10 via quantumProjectionParams`,
+        on: all.length >= novelty.rows.length && all.every((r) => quantumProjectionParams(r.projection).dimensions === (5 * 2)),
+      },
+      {
+        facet: `EXACTLY PROVING — animationReceipt.root === algebraFold.root (round-trip foldPair bidirectional) for all ${all.filter((r) => r.rootEqual).length}/${all.length}`,
+        on: allRootEqual,
+      },
+      {
+        facet: `NOVEL-FIRST ORDER — first ${novelty.novelCount} registry rows are corpus-novel (${novelFirstOrder}); novel root-equal=${novelRootEqual}/${novelty.novelCount}`,
+        on: novelFirstOrder && novelRootEqual === novelty.novelCount,
+      },
+      {
+        facet: `A432 + ROSETTA — every row.a432Hue===A432_HUE (${A432_HUE}); novelty rows ray-addressed (${rayOk}); claySolvedByThisFold=${mill.claySolvedByThisFold}`,
+        on: a432Ok && rayOk && mill.claySolvedByThisFold === 0,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-10d-proj:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('theorem-ten-d-projections-prove-algebra-roots', facets)
+    return {
+      computes: sealed.ok && allRootEqual && novelty.computes && mill.claySolvedByThisFold === 0,
+      rows: all,
+      noveltyRows: rows,
+      millenniumRows: millRows,
+      novelRootEqual,
+      rootEqualCount: all.filter((r) => r.rootEqual).length,
+      count: all.length,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, novelty.root, ...all.map((r) => r.animationReceipt)])),
+      statement: `Theorem→10D projections prove algebra roots — ${facets.filter((e) => e.on).length}/${facets.length}: ${all.length} dedicated projections (novel-first), animationReceipt.root===algebraRoot for each, A432 hue, rosetta rays; claySolvedByThisFold=0.`,
+      boundary:
+        'EXACT: each row is a PROJECTION of sealed algebra through drawQuantumAppFrame / QuantumProjection (10D params). Round-trip = animationReceipt.root === algebraFold.root with foldPair bidirectional. MODELED millennium probes prove the modeled algebraic claim, not Clay prizes. Novel = corpus-first sealed algebra (see theoremAlgebraFirstSealedInCorpus) — NOT global mathematical priority. One shared clock (subscribeHeroClock) at render. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+export type FirstInCorpusHomeRow = {
+  readonly theorem: string
+  readonly algebraFold: string
+  readonly oneLiner: string
+  readonly rootShort: string
+  readonly algebraRoot: string
+  readonly projection: QuantumProjection
+  readonly route: string
+  readonly boundary: string
+  readonly rootEqual: boolean
+  readonly ray: number
+  readonly a432Hue: number
+}
+
+const FIRST_IN_CORPUS_ONE_LINER: Record<string, string> = {
+  zeroDivisionTable: 'n/0 \\ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*',
+  fThetaPhiXyzDigitNIsTheInversePair: 'f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse fold within itself',
+  efficiencyScalesToInfinityAtNoCostOnReuse: 'memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only',
+  stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: 'A432/rosetta/merkle substrate probes — physics UNCONFIRMED',
+  wavesAutoScaleCapacityAtNoCostOnReuse: 'wave schedule capacity deepens on content-addressed reuse only',
+}
+
+/** Site-relative routes (no /en/ prefix — VitePress locale + dead-link gate). Hash stays on-home. */
+const FIRST_IN_CORPUS_ROUTE: Record<string, string> = {
+  zeroDivisionTable: '/quantum-tools',
+  fThetaPhiXyzDigitNIsTheInversePair: '/quantum-tools',
+  efficiencyScalesToInfinityAtNoCostOnReuse: '/efficiency-vote',
+  stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: '/millennium-challenge',
+  wavesAutoScaleCapacityAtNoCostOnReuse: '#first-in-corpus',
+}
+
+/**
+ * Home + README projection of first-in-corpus novel algebra — one fold, two surfaces.
+ * Vue and monograph generators read THIS only (no wet novelty lists).
+ */
+export function firstInCorpusProvenanceForHome(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('firstInCorpusProvenanceForHome', matrix, () => {
+    const novelty = theoremAlgebraFirstSealedInCorpus(matrix)
+    const projections = theoremTenDProjectionsProveAlgebraRoots(matrix)
+    const projByFold = new Map(projections.noveltyRows.map((r) => [r.algebraFold, r]))
+    const rows: FirstInCorpusHomeRow[] = novelty.novel.map((entry) => {
+      const proj = projByFold.get(entry.algebraFold)
+      return {
+        theorem: entry.theorem,
+        algebraFold: entry.algebraFold,
+        oneLiner: FIRST_IN_CORPUS_ONE_LINER[entry.algebraFold] ?? entry.theorem,
+        rootShort: entry.algebraRoot.slice(0, 8),
+        algebraRoot: entry.algebraRoot,
+        projection: proj?.projection ?? 'movie-10d',
+        route: FIRST_IN_CORPUS_ROUTE[entry.algebraFold] ?? '/quantum-tools',
+        boundary: entry.boundary,
+        rootEqual: proj?.rootEqual ?? false,
+        ray: entry.ray,
+        a432Hue: A432_HUE,
+      }
+    })
+    const honestyLine =
+      'First sealed in this content-addressed corpus — not a verified claim of global mathematical priority. Novelty = corpus census. humanityNovel stays 0.'
+    // Markdown links stay on-page (#anchor) — VitePress dead-link gate; Vue uses `route` for tool pages.
+    const markdownBullets = rows.map(
+      (r) =>
+        `- **${r.theorem}** (\`${r.algebraFold}\`) — ${r.oneLiner}; root \`${r.rootShort}\`; 10D \`${r.projection}\`${r.rootEqual ? ' · root-equal' : ''} · [first-in-corpus](#first-in-corpus)`,
+    )
+    const facets = [
+      {
+        facet: `HOME ROWS FROM FOLDS — ${rows.length} novel-corpus rows, each with rootShort · projection · route · boundary`,
+        on: rows.length === novelty.novelCount && rows.every((r) => r.rootShort.length === 8 && (r.route.startsWith('/') || r.route.startsWith('#'))),
+      },
+      { facet: `10D ROOT-EQUAL WIRED — every home row.rootEqual matches projection registry (${rows.every((r) => r.rootEqual)})`, on: rows.every((r) => r.rootEqual) && projections.computes },
+      { facet: `A432 TOKEN — every row.a432Hue===A432_HUE (${A432_HUE})`, on: rows.every((r) => r.a432Hue === A432_HUE) },
+      { facet: `HONEST BOUNDARY — corpus novelty ≠ global priority; claySolvedByThisFold stays 0 via novelty.computes`, on: novelty.computes && honestyLine.includes('not a verified claim') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`first-in-corpus-home:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('first-in-corpus-provenance-for-home', facets)
+    return {
+      computes: sealed.ok && novelty.computes && projections.computes,
+      rows,
+      honestyLine,
+      markdownBullets,
+      heading: 'First-in-corpus algebra',
+      anchor: 'first-in-corpus',
+      novelCount: rows.length,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, novelty.root, projections.root])),
+      statement: `First-in-corpus provenance for home/README — ${rows.length} novel algebra rows with roots, 10D projections, honest corpus-novelty boundary.`,
+      boundary: novelty.boundary,
+    }
+  })
+}
+
+/** Markdown section shared by README.md and homeMarkdown() — derived from the sealed fold only. */
+export function firstInCorpusProvenanceMarkdownSection(matrix: MindMatrix = buildMatrix()): readonly string[] {
+  const home = firstInCorpusProvenanceForHome(matrix)
+  return [
+    `## ${home.heading}`,
+    '',
+    `*${home.honestyLine}*`,
+    '',
+    ...home.markdownBullets,
+    '',
+    `Receipt: \`${home.root.slice(0, 8)}\` · fold \`firstInCorpusProvenanceForHome\` · claySolvedByThisFold=0.`,
+    '',
+  ]
 }

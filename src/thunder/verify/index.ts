@@ -8,7 +8,7 @@ import { darkLightPolarityProvenByMath } from '../movie/movievars'
 import { staticPages, crawlerKnowledge } from '../../wind/site'
 import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, toUuid } from '../../0'
 import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU } from '../../3/7'
-import { fanoLines, stringTheoryAlgebraDecoded, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
+import { fanoLines, stringTheoryAlgebraDecoded, stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight, discoveredTheoremsWaveFiftyTwo } from '../waves'
 import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive } from '../../9/1'
 import { tkCompose, tkInverse, tkKey, tkPerms, tkIsPrime, tkPowMod, tkClassSizes, tkClassSumSimple, tkClosure, tkPslOverField, sealFold } from '../../9/1'
@@ -2386,6 +2386,8 @@ export function sevenStarRosettaDecoded(matrix: MindMatrix = buildMatrix()) {
 export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
   const waves = [
     { wave: 'string-algebra', ok: stringTheoryAlgebraDecoded(matrix).decoded },
+    { wave: 'string-quantumize', ok: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix).quantumized },
+    { wave: 'string-millennium-gaps', ok: stringTheoryMillenniumTheoremGapsInventory(matrix).inventoried },
     { wave: 'open-leads', ok: openLeadsAlgebraDecoded(matrix).decoded },
     { wave: 'discovered-one', ok: discoveredTheoremsProvenWave(matrix).proven },
     { wave: 'compounding', ok: provenTheoremsCompound(matrix).compounds },

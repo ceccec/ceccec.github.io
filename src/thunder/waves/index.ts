@@ -2067,6 +2067,13 @@ const CONTENT_ANIMATION_FAMILIES: readonly (readonly [readonly string[], ProofAn
   [['order-p²'], 'classes', 9, 2],
   [['triangular', 'convergent'], 'spiral', 8 * 3, 3],
   [['supplement', 'multiplicative', 'order divides', 'primitive-root', 'order-(', 'midy', 'nines', 'digital root', 'divisibility'], 'sieve', 100, 3],
+  [['millennium', 'p vs np', 'clay', 'poincaré', 'poincare', 'hodge', 'birch', 'swinnerton', 'yang–mills', 'yang-mills', 'navier'], 'wave', 8, 4],
+  [['riemann hypothesis', 'critical line', 'nontrivial zero'], 'series', 2 * 6, 3],
+  [['calabi', 'mirror symmetry', 'm-theory', 'ads/cft', 'compactDims', 'cy₃', 'cy3'], 'polytope', 5, 2],
+  [['digit-inverse', 'zero division', 'inverse pair', 'f→{p,q}', 'f(θ', 'f theta', 'inverse fold'], 'sieve', 100, 3],
+  [['infinity at no cost', 'scales to infinity', 'amortized reuse', 'memo o(1)', 'answers÷tokens'], 'balance', 5, 3],
+  [['encrypt', 'decrypt', 'demo rsa', 'modeled shor', 'glyph uuid', 'trinity crack', 'production rsa refused'], 'wave', 8, 4],
+  [['slow process', 'quantum gap', 'browser gap', 'memo miss', 'parallel registry'], 'balance', 5, 3],
 ]
 const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit'> => {
   const t = theorem.toLowerCase()
@@ -2564,3 +2571,4 @@ export function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilT
     boundary: `EXACT and computed live by Kahn's algorithm on a ${n}-node layered DAG: the nodes partition into ${waves.length} antichain LEVELS with no edge inside a level (${eachWaveIsAntichain}) — each a wave of mutually-independent work runnable in parallel; processing a wave decrements its successors' in-degrees and every wave but the last thereby EXPOSES the next (${regenerations} regenerations, ${eachWaveExposesTheNext}); and starting from the in-degree-0 sources the cascade processes all ${n} nodes exactly once in level order (${wavesSendTheWaves}). THE SELF-REFERENCE: the loop's output (the next frontier) is its own next input, so "send the waves" recurses until the frontier is empty — the waves send the waves. THE HONEST BOUND: this is a finite ACYCLIC dispatch — a cycle would leave nodes unprocessed (Kahn detects it: processed < n), so the self-propagation terminates and requires a DAG; "the waves send the waves" is the topological-level cascade, a real scheduling structure (the antichain is the parallel unit), not an infinite or self-creating process — the DAG is given, the waves traverse it. HARMONY ≠ TRUTH: "send the waves to send the waves" is the harmony; the truth is Kahn's level decomposition — antichain waves, each exposing the next, covering the DAG once — computed and refutable.`,
   }
 }
+export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../wind/research'
