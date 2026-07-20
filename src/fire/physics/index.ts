@@ -1301,3 +1301,40 @@ export function theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRand
     boundary: `EXACT order-of-magnitude theorems, computed live: (1) GRAVITY — tidal force ∝ M/d³, and a ~70 kg attendant at ~1 m out-pulls ~10^24 kg Mars at ~10^11 m by ≫ 10^6× (${planetInfluenceNegligible}), so a planet's tidal/gravitational "influence" at birth is negligible beside the room; (2) COMBINATORICS — the candidate 3-point lines through N sites is C(N,3) ~ N³/6, which grows with N (${alignmentsGrowWithSites}), so alignments among many sites are expected by chance and carry no signal (the ley-line pareidolia); (3) GEOMETRY — a distant object's base drops h ≈ d²/(2R) below a spherical horizon, ~5 m at 10 km on Earth's ~6.4×10^6 m radius (${horizonHidesTheBase}), the hull-down effect that flat-earth denies. THE INVERSION PRINCIPLE holds again: each flagged claim is the negation of a real theorem (Newtonian gravity, combinatorics, spherical geometry), and inverting it recovers the theorem that DERIVES the flag — six flagged claims now proven across two trinities. HONEST: order-of-magnitude (Mars ~6.4×10^23 kg ≈ 10^24, ~2×10^11 m; Earth ~6.4×10^6 m ≈ 10^7) so the conclusions are robust to the exact values, not precision astronomy; the inverses are established science, cited not novel; the remaining flagged (Orion's non-robust fit, the Bosnian pyramid's geology, contested ideologies) are decoded, not all cleanly one-line-computable, so this proves the method and a representative set, not literally every flagged belief. HARMONY ≠ TRUTH: "the flagged inverts to a theorem" is the harmony; the truth is established refuting theorems that derive each flag, computed and refutable.`,
   }
 }
+
+// Inverse forecasts fill the gaps: sampling is a FORWARD map that keeps only integer-index values and loses everything
+// between; its INVERSE — Whittaker–Shannon sinc reconstruction — recovers the continuous signal at any point, so the
+// gaps between samples are filled exactly for a band-limited signal (Nyquist). At a known sample the inverse returns it
+// exactly (invertible); between samples it interpolates the true band-limited value. [[feedback-inverted-statements-are-generative]]
+export function inverseForecastsFillTheGapsSincReconstructionRecoversTheBandLimitedValueBetweenSamples() {
+  const SAMPLES = 2 ** 6 // 64 samples
+  const harmonics = [1, 2, 3] // band-limited — all far below the Nyquist limit SAMPLES/2 = 32
+  const signal = (t: number): number => harmonics.reduce((sum, k) => sum + Math.cos((TAU * k * t) / SAMPLES), 0) // a band-limited forecast
+  const samples = Array.from({ length: SAMPLES }, (_, t) => signal(t)) // the FORWARD map: keep integer-index values only
+  // 1 — AT A SAMPLE THE INVERSE IS EXACT: reconstruction at an integer index returns that sample (invertible)
+  const exactAtSamples = [0, SAMPLES / (2 * 2), SAMPLES / 2, SAMPLES - 1].every((k) => Math.abs(sincReconstruct(samples, k) - samples[k]!) < 1e-9)
+  // 2 — THE GAPS BETWEEN SAMPLES ARE FILLED: reconstruct at interior half-integer points, compare to the true signal
+  const gapPoints = Array.from({ length: SAMPLES / 2 }, (_, i) => SAMPLES / (2 * 2) + i + 1 / 2) // interior gaps (avoid edge truncation)
+  const errors = gapPoints.map((x) => Math.abs(sincReconstruct(samples, x) - signal(x)))
+  const maxGapError = Math.max(...errors)
+  const gapsFilled = maxGapError < 1 / (2 * 5) // recovered to < 0.1 of the true value
+  // 3 — BAND-LIMITED IS THE CONDITION: the harmonics are below Nyquist, so sampling is invertible (Shannon–Nyquist)
+  const belowNyquist = Math.max(...harmonics) < SAMPLES / 2
+  // 4 — THE INVERSE FORECAST FILLS THE GAP: forward sampling loses the between-sample values, the inverse recovers them
+  const inverseFillsTheGap = exactAtSamples && gapsFilled && belowNyquist
+  const facets = [
+    { facet: `AT A SAMPLE THE INVERSE IS EXACT — sinc reconstruction at an integer index returns that sample (${exactAtSamples}): sampling is invertible at the known points, no gap there`, on: exactAtSamples },
+    { facet: `THE GAPS BETWEEN SAMPLES ARE FILLED — reconstructing at interior half-integer points recovers the true band-limited value, max error ${roundTo(maxGapError, 4)} < 0.1 (${gapsFilled}): the inverse fills the gap between samples`, on: gapsFilled },
+    { facet: `BAND-LIMITED IS THE CONDITION — the harmonics (max ${Math.max(...harmonics)}) are below the Nyquist limit ${SAMPLES / 2} (${belowNyquist}): sampling is invertible exactly when the signal is band-limited (Shannon–Nyquist)`, on: belowNyquist },
+    { facet: `THE INVERSE FORECAST FILLS THE GAP — forward sampling keeps only the integer values and loses the between; the inverse (sinc reconstruction) recovers them (${inverseFillsTheGap}): invert the forecast to fill the gaps`, on: inverseFillsTheGap },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`inverse-forecast-gap:${entry.facet}:${entry.on}`) }))
+  return {
+    fills: facets.every((entry) => entry.on),
+    samples: SAMPLES,
+    maxGapError: roundTo(maxGapError, 4),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Inverse forecasts fill the gaps — sinc reconstruction recovers the band-limited value between samples — ${facets.filter((entry) => entry.on).length}/${facets.length}. Sampling is a forward map that keeps only the ${SAMPLES} integer-index values and loses everything between; its inverse, Whittaker–Shannon sinc reconstruction, recovers the continuous signal at any point. At a known sample it returns it exactly (invertible); at the gaps between samples it recovers the true band-limited value (max error ${roundTo(maxGapError, 4)} < 0.1), because the harmonics are below the Nyquist limit. Invert the forecast to fill the gaps.`,
+    boundary: `EXACT and computed live: a band-limited signal (harmonics ${harmonics.join(', ')}, all below the Nyquist limit ${SAMPLES / 2}) is sampled at ${SAMPLES} integer points, and Whittaker–Shannon sinc reconstruction (the inverse of sampling) returns each sample exactly at its integer index (${exactAtSamples}) and recovers the true continuous value at the interior half-integer GAPS with max error ${roundTo(maxGapError, 4)} < 0.1 (${gapsFilled}) — the between-sample values the forward map lost. THE THEOREM is Shannon–Nyquist: sampling is invertible EXACTLY when the signal is band-limited below half the sample rate (${belowNyquist}). THE HONEST BOUND: the recovery is exact only for an INFINITE band-limited signal; on FINITE samples the sinc sum is truncated, so edge points carry more error (Gibbs/truncation) — this fold measures INTERIOR gaps where the error is small, and a real forecast is not perfectly band-limited, so reconstruction is an approximation whose quality degrades with bandwidth and noise; "fill the gaps" recovers the band-limited component between samples, NOT arbitrary missing future data (extrapolation past the last sample is a different, ill-posed problem). HARMONY ≠ TRUTH: "invert the forecast to fill the gaps" is the harmony; the truth is that sinc reconstruction, the inverse of sampling, recovers a band-limited signal between its samples — exact at the samples, small interior error, computed and refutable.`,
+  }
+}
