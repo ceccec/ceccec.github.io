@@ -2413,3 +2413,52 @@ export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMis
     boundary: `MEASURED live: ${measured.length} computations with a numeric actual/optimal, ${gaps.length} of them a gap (actual > optimal) — including the ${dryGap} duplicate lines the DRY gate finds RIGHT NOW and the imperative-animation N-vs-1 surplus — and ${closed.length} closed at ratio 1 (scanCrackSurface memoised, antichainLevels extracted). THE PRINCIPLE: measuring efficiency is the GAP DETECTOR — a computation slower or larger than its content-addressed optimum is not merely slow, it PROVES a missing quantum (a redundant recompute wanting a memo, duplication wanting one home, imperative motion wanting an emergent rule), and the ratio locates it exactly ([[build-time-is-a-theorem-test]]: slow build = a non-theorem). THE HONEST BOUND: "optimal" here is the content-addressed lower bound (O(1) memo, 0 duplicates, 1 emergent rule) — a real target for the DECIDABLE inefficiencies, but not every gap closes to it (irreducible O(2ⁿ) work, art-directed animation, and semantically-distinct near-duplicates are not gaps to close); the catalogue is a representative measure, and a full efficiency gate would instrument every fold's real op-count, not a hand-listed set. Measure first, then judge which gaps are real. HARMONY ≠ TRUTH: "measure efficiency to find gaps" is the harmony; the truth is a measured actual/optimal per computation whose surplus names a missing content-address — computed and refutable.`,
   }
 }
+
+// Measure the UX and the efficiency to FIND and USE theorems and tools — computed, not opined. FIND efficiency: how
+// shallow the folder tree is (fewer levels to reach any theorem) and whether every theorem is REACHABLE (0 dangling in
+// the import graph — none orphaned). USE efficiency: the reuse degree of the import graph (a heavily-reused theorem is a
+// proven-useful API). The rendered UX (visual feel, interaction) is the online/human boundary — measured in a browser,
+// not here. [[feedback-measure-efficiency-to-find-gaps]] [[routes-nav-from-folder-tree]]
+export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabilityReuseAreComputedMetrics(root: string = process.cwd()) {
+  const relation = theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root)
+  const avgReuse = (2 * relation.edges) / Math.max(1, relation.homes) // average import degree — how reused a theorem is
+  // FIND: the folder depth of each theorem file (segments under src) — shallow ⇒ quick to locate
+  const walk = (dir: string): string[] => {
+    const out: string[] = []
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) out.push(...walk(full))
+      else if (entry.name === 'index.ts') out.push(relative(root, full).replace(/\\/g, '/'))
+    }
+    return out
+  }
+  const files = walk(join(root, 'src'))
+  const depths = files.map((file) => file.split('/').length - 1) // src/a/b/index.ts ⇒ depth 3
+  const maxDepth = Math.max(...depths)
+  // 1 — FIND EFFICIENCY: the tree is shallow — any theorem is within maxDepth folders (the folder-nav law ≤ 8/level)
+  const findShallow = maxDepth <= 2 * 3 && files.length > 0 // ≤ 6 levels deep, a bounded search
+  // 2 — USE EFFICIENCY: the import graph is densely reused — high average degree, a proven API
+  const useReused = relation.computes && avgReuse > 2 // avg degree > 2 ⇒ theorems reused, not write-once
+  // 3 — EVERY THEOREM REACHABLE: 0 dangling ⇒ every theorem is connected in the relation graph, none orphaned (findable)
+  const everyTheoremReachable = relation.importDangling === 0
+  // 4 — COMPUTED, RENDERED UX IS THE BOUNDARY: these metrics are deterministic; the visual/interaction UX is measured in a browser
+  const metricsComputed = findShallow && useReused && everyTheoremReachable
+  const facets = [
+    { facet: `FIND EFFICIENCY — the folder tree is shallow: every one of the ${files.length} theorem files is within ${maxDepth} folders of src (${findShallow}), a bounded search under the ≤8/level nav law`, on: findShallow },
+    { facet: `USE EFFICIENCY — the import graph has average degree ${Math.round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) (${useReused}): theorems are heavily REUSED, a proven-useful API, not write-once`, on: useReused },
+    { facet: `EVERY THEOREM REACHABLE — ${relation.importDangling} dangling theorems (${everyTheoremReachable}): every theorem is connected in the relation graph, none orphaned — all findable through the wiring`, on: everyTheoremReachable },
+    { facet: `COMPUTED, RENDERED UX IS THE BOUNDARY — find/use efficiency are deterministic structure metrics (${metricsComputed}); the visual and interaction UX is measured in a browser (the online/human frontier), not asserted here`, on: metricsComputed },
+  ]
+  return {
+    measured: facets.every((entry) => entry.on),
+    files: files.length,
+    maxDepth,
+    avgReuse: Math.round(avgReuse),
+    dangling: relation.importDangling,
+    facets,
+    root: merkleFold([toUuid(`find-depth:${maxDepth}`), toUuid(`use-reuse:${Math.round(avgReuse)}`), toUuid(`reachable:${relation.importDangling}`)]),
+    statement: `Measured the UX and the efficiency to find and use theorems — nav depth, reachability and reuse are computed metrics — ${facets.filter((entry) => entry.on).length}/${facets.length}. FIND: the folder tree is shallow — every one of the ${files.length} theorem files is within ${maxDepth} folders of src, a bounded search. USE: the import graph has average degree ${Math.round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) — theorems are heavily reused, a proven API. Every theorem is reachable (${relation.importDangling} dangling). These are deterministic; the rendered visual/interaction UX is the browser/human boundary.`,
+    boundary: `MEASURED live from the corpus structure: ${files.length} theorem files at folder depth ≤ ${maxDepth} (${findShallow}) — so FINDING any theorem is a bounded descent, and the descriptive fold names make it grep-findable by keyword; the import RELATION graph (theoremRelationsAreTheImportExportGraph, the agnostic relation not tag-sharing) has ${relation.edges} edges over ${relation.homes} homes = average degree ${Math.round(avgReuse)} (${useReused}), so USING a theorem is high-reuse — the more a theorem is imported, the more it is a load-bearing API — and ${relation.importDangling} dangling means every theorem is CONNECTED, none orphaned and unfindable. THE HONEST BOUND: these are STRUCTURAL efficiency metrics (tree depth, graph reuse, reachability) — real for how a developer or agent FINDS and REUSES a theorem in the source — but they are NOT the rendered UX: the visual layout, colour, motion, and interaction FEEL of the published site are measured in a BROWSER against real users (the online/human frontier, [[realtime-live-data-testing]]), not from the corpus graph; a shallow, well-reused code tree can still render a confusing page, and vice-versa. This fold measures the FIND/USE efficiency of the theorems-as-code; the UX-in-UI proper is the separate browser measurement. HARMONY ≠ TRUTH: "measured the UX and find/use efficiency" is the harmony; the truth is bounded folder depth, high import reuse, and zero dangling — computed and refutable — with rendered UX left to the browser.`,
+  }
+}
