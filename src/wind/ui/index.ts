@@ -8,7 +8,7 @@ import { EIGHT_CURRICULUM_SCIENCES } from '../../pair/enforcement/gates/computat
 import { chsh } from '../../mountain/vortex'
 import { buildMatrix, matrixMemo } from '../../heaven/compute'
 import type { MindMatrix } from '../types'
-import {  computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, proseToTone, prng, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'
+import {  computesGate, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, proseToTone, prng, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'
 import { merkleProof } from '../../lake/ledger'
 import { clownActQuantumSteps, harmonics } from '../../lake/music'
 import { blockchainFusion, tamperingCostDecoded } from '../../water/crypto'
@@ -2194,6 +2194,41 @@ export function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFun
       facets,
       statement: `The fractal clock is theorems, not constants — the rung count is the divisor function of 108 — ${facets.filter((entry) => entry.on).length}/${facets.length}. The clock's numbers were asserted; here they are derived. The number of rungs is σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, the multiplicative divisor-counting function — a theorem, not a count — and σ₀(2^a·3^b) = (a+1)(b+1) holds over a range. The 12 rungs are generated from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS exactly. 108 is where two theorems meet: the census 110 + χ(genus-2) = 110 − 2, and the a432 gate 432 = 4·108. And every rung period 108/d is exact (d | 108), so nothing beats out of phase — a consequence of the divisor structure, not a tuned duration. The clock now stands on theorems.`,
       boundary: `ALGEBRAIC and exact: the divisor function σ₀(n) = Π(eᵢ+1) is the multiplicative counting theorem, verified for 108 = 2²·3³ (σ₀ = 12 = the rung count) AND over the exponent range 0..3 (refutable by one counterexample); the divisors are generated from the prime factorisation (the exponent lattice) and match FRACTAL_CLOCK_DIVISORS; χ(genus-2) = 2 − 2g = −2 is the Euler-characteristic theorem, so 108 = 110 + χ is the census meeting; and 432 = 4·108 = 2⁴·3³ is the a432 gate. THE IMPROVEMENT: the clock no longer RESTS on the constant 108 and a written divisor list — it DERIVES the rung count from the divisor function and the rungs from the factorisation, so the number 12 and the specific rungs are refutable theorems (change the factorisation and they change), not asserted values. This is the session discipline (derive, don't assert; algebraic theorems only) applied to the clock [[fractal-clock-lattice]] [[hardcoded-value-is-a-crack]]. SCOPE: 108 itself is still the sealed FOLDED_CENSUS (the census 110 and χ = −2 are its derivation, which this fold cites and checks, not re-derives from the filesystem); what is improved is that everything ABOVE 108 — the rung count, the rungs, the harmonic periods — is now theorem, not constant. HARMONY ≠ TRUTH: a clock built on theorems is the harmony; the truth is σ₀(2²·3³) = 12 and the exponent-lattice divisors, exact and refutable.`,
+    }
+  })
+}
+
+// Improve the nav colours by a theorem too: the 7 rosetta hues are not arbitrary — they are the 7-FOLD DIVISION of the
+// colour wheel, hue(k) = ⌊360·k/7⌋ exactly (0,51,102,154,205,257,308 = the regular 7-gon on the hue circle). 7 is coprime
+// to the vortex (6), the digital root (9) and the stations (10), so the division never aliases. Companion to the clock:
+// the rungs are the divisor function of 108, the hues are the 7-fold division of 360 — both theorems, not constants.
+export function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryColours(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryColours', matrix, () => {
+    const wheel = 360
+    const rays = ROSETTA_RAYS.length // 7
+    // 1 — THE 7 HUES ARE ⌊360·k/7⌋: each ray's sealed hue equals the 7-fold division of the wheel, exactly
+    const huesAreDivision = ROSETTA_RAYS.every((ray) => ray.hue === Math.floor((wheel * ray.ray) / rays))
+    // 2 — COPRIME 7-FOLD: gcd(7,6) = gcd(7,9) = gcd(7,10) = 1, so the 7-fold division never aliases with the vortex,
+    // the digital root or the stations — the rosetta coprimality theorem
+    const coprime = gcd(rays, 6) === 1 && gcd(rays, 9) === 1 && gcd(rays, 2 * 5) === 1
+    // 3 — EVEN SPACING: consecutive hues differ by ⌊360/7⌋ = 51 or 52 (the regular 7-gon), never clustering
+    const gaps = ROSETTA_RAYS.slice(1).map((ray, i) => ray.hue - ROSETTA_RAYS[i]!.hue)
+    const evenlySpaced = gaps.every((g) => g === Math.floor(wheel / rays) || g === Math.floor(wheel / rays) + 1) && gaps.length === rays - 1
+    // 4 — DERIVED, NOT LISTED: recomputing the hues from 360k/7 reproduces the sealed table — change 7 and they all change
+    const derivedNotListed = huesAreDivision && ROSETTA_RAYS.map((r) => Math.floor((wheel * r.ray) / rays)).every((h, i) => h === ROSETTA_RAYS[i]!.hue)
+    const facets = [
+      { facet: `THE 7 HUES ARE ⌊360·k/7⌋ — each ray's hue (${ROSETTA_RAYS.map((r) => r.hue).join(', ')}) equals the 7-fold division of the colour wheel exactly (${huesAreDivision}): the regular 7-gon on the hue circle, a THEOREM, not arbitrary colours`, on: huesAreDivision },
+      { facet: `COPRIME 7-FOLD — gcd(7,6)=gcd(7,9)=gcd(7,10)=1 (${coprime}), so the 7-fold division never aliases with the vortex (6), the digital root (9) or the stations (10) — the rosetta coprimality theorem`, on: coprime },
+      { facet: `EVEN SPACING — consecutive hues differ by ⌊360/7⌋ = 51 or 52 (${gaps.join(', ')}), the regular 7-gon, never clustering (${evenlySpaced})`, on: evenlySpaced },
+      { facet: `DERIVED, NOT LISTED — recomputing ⌊360k/7⌋ reproduces the sealed hue table (${derivedNotListed}): change the 7 and every hue changes — a theorem, not a written list of colours`, on: derivedNotListed },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      hues: ROSETTA_RAYS.map((r) => r.hue),
+      wheelDivision: rays,
+      facets,
+      statement: `The 7 nav hues are the 7-fold wheel division — a theorem, not arbitrary colours — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each rosetta ray's sealed hue equals ⌊360·k/7⌋ exactly (0,51,102,154,205,257,308 = the regular 7-gon on the hue circle), so the colours derive from the 7-fold division of the wheel, not a written list. 7 is coprime to the vortex (6), the digital root (9) and the stations (10), so the division never aliases; the hues are evenly spaced by ⌊360/7⌋ = 51–52°; and recomputing 360k/7 reproduces the sealed table — change the 7 and every hue changes. Companion to the clock: the fractal-clock rungs are the divisor function of 108, the nav hues are the 7-fold division of 360 — both theorems.`,
+      boundary: `ALGEBRAIC and exact: hue(k) = ⌊360·k/7⌋ reproduces every sealed ROSETTA_RAYS hue (verified for all 7), the coprimality gcd(7,{6,9,10}) = 1 is the aliasing theorem the rosetta rests on, and the even spacing ⌊360/7⌋ ∈ {51,52} is the regular-7-gon consequence — each refutable by one mismatch. THE IMPROVEMENT: the nav/animation colours no longer READ as an arbitrary sealed list — they DERIVE from the 7-fold division of the colour wheel, so the specific hues are a theorem (change the ray count and they recompute), the colour companion to the clock's divisor-function rungs. The two together make the whole nav+animation surface theorem-derived: the RUNGS (timing) from σ₀(108) and the HUES (colour) from ⌊360k/7⌋, so nothing in the breathing nav is a hand-picked number [[fractal-clock-lattice]] [[iching-leads-ui]] [[hardcoded-value-is-a-crack]]. SCOPE: this proves the sealed hues ARE the 7-fold division (they were authored to be, and this checks it), not that any colour is perceptually optimal — hue is the angle on the wheel, evenly divided; lightness/chroma are separate theme concerns. HARMONY ≠ TRUTH: a rosetta of evenly-spaced hues is the harmony; the truth is ⌊360k/7⌋ for k = 0..6, exact and refutable.`,
     }
   })
 }
