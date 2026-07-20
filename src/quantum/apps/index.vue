@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from 'vue'
 import { quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap } from './index.ts'
-import { runEncryptionToolInBrowser } from '../../water/encryption/index.ts'
+import {
+  runEncryptionToolInBrowser,
+  runPqcStandardsToolInBrowser,
+  runQuantumStandardsAuditInBrowser,
+} from '../../water/encryption/index.ts'
 import { millenniumPanelComputes, unitDistanceResearch } from '../../wind/research/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
-import { efficiency } from '../../quantum/science/index.ts'
+import { oneQuantumModelFasterThanAll, compareCeccecEfficiencyByVote, directionalTrinityForwardInverseReverse } from '../../water/stack/index.ts'
+import { sciencesTrinitiesPanelComputes } from '../../wind/research/index.ts'
+import { animationsDrivenByRosetta } from '../../wind/ui/index.ts'
+import { tradingRosettaTrainPanelComputes } from '../../thunder/trading/index.ts'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
 import { localMathComputes, namingEntropy, shouldSpawnSubagent, simplicityIntelligenceMeasure } from '../../water/stack/index.ts'
 import { teamCooperationScenarios } from '../../pair/enforcement/ops/index.ts'
@@ -64,6 +71,27 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets
+    } else if (toolId === 'iso-pqc-catalog') {
+      const r = runPqcStandardsToolInBrowser('auto')
+      ok = r.ok
+      summary = `${r.standardsCount} standards · selected=${r.family.selected.name} · certified=${r.certified}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.necessity.facets?.map((f) => ({ facet: f.facet, on: f.on })) ?? [{ facet: 'catalog', on: r.ok }]
+    } else if (toolId === 'standards-audit') {
+      const r = runQuantumStandardsAuditInBrowser()
+      ok = r.ok
+      summary = `pass=${r.passCount} gap=${r.gapCount} dims=${r.dimensions.coveredCount}/10 · clay=${r.claySolvedByThisFold}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'directional-trinity') {
+      const r = directionalTrinityForwardInverseReverse()
+      ok = r.computes
+      summary = `digits=${r.digits.length} · pair=${r.pair} · clay=${r.claySolvedByThisFold}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'millennium-challenge') {
       const r = millenniumPanelComputes()
       ok = r.computes
@@ -79,12 +107,34 @@ function runTool(toolId: string) {
       boundary = r.boundary
       facets = r.facets
     } else if (toolId === 'efficiency-vote') {
-      const r = efficiency()
-      ok = r.optimized
-      summary = `${r.optimizations.length} optimisations`
+      const vote = compareCeccecEfficiencyByVote()
+      const r = oneQuantumModelFasterThanAll()
+      ok = r.computes && vote.decided
+      summary = `decided=${vote.decided} winner=${vote.winner} · voters=${vote.voters.filter((v) => v.on).length}/${vote.voters.length}`
       root = r.root
       boundary = r.boundary
-      facets = r.optimizations.map((o) => ({ facet: `${o.technique} — ${o.how}`, on: true }))
+      facets = vote.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'sciences-trinities') {
+      const r = sciencesTrinitiesPanelComputes()
+      ok = r.computes
+      summary = `domains=${r.trinities.count} meanSig=${r.significance.meanScore} gaps=${r.solutions.gapCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.trinities.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'animations-rosetta') {
+      const r = animationsDrivenByRosetta()
+      ok = r.computes
+      summary = `taijiRay=${r.taijiRay} · linearOpen=${r.offenders.openCount} · yinYang=${r.yinYang.computes ? '✓' : '—'}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'trading-rosetta-train') {
+      const r = tradingRosettaTrainPanelComputes()
+      ok = r.computes
+      summary = `top=${r.topStrategy} · trainedEnough=${r.trainedEnough} · paper=${r.paperSimOnly}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'f-inverse-pair') {
       const r = fThetaPhiXyzDigitNIsTheInversePair()
       ok = r.computes

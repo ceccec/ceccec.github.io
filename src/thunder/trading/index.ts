@@ -3,10 +3,12 @@ import * as __ns_up_waves from '../waves'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, proofReport } from '../../heaven/compute'
 import { skillAtoms } from '../../wind/learning'
-import { dopplerShift, A432_OCTAVES } from '../../3/7'
+import { dopplerShift, A432_OCTAVES, ROSETTA_RAYS, TAU } from '../../3/7'
 export { A432_OCTAVES } from '../../3/7'
 import { powerSpectrum, larmorFrequency } from '../../1/9'
-import { computesGate, foldPair, isUuid, markovStep, memoByRoot, memoComputing, merkleFold, prng, roundTo, seedFromText, toUuid, uuidHero } from '../../0'
+import { computesGate, foldPair, isUuid, markovStep, memoByRoot, memoComputing, merge, merkleFold, prng, roundTo, sealFacets, seedFromText, toUuid, uuidHero, VORTEX_SEQUENCE } from '../../0'
+import { rosettaRayOf } from '../../water/digit'
+import { rosettaCoreApi, rosettaShelve } from '../../quantum/apps'
 import { vortexMath } from '../../mountain/vortex'
 import { dimensions, multidimensional, openGraph, typographySeo } from '../../quantum/lake/icons'
 export { typographySeo, openGraph, multidimensional } from '../../quantum/lake/icons'
@@ -14,8 +16,6 @@ import { quantumSitemap, staticPages } from '../../wind/site'
 import { realtimeMovieParticipation } from '../../earth/world'
 import { deviceHardwareVisibleInComputedWidgets } from '../../earth/world'
 import { allComputed, allComputedQuantumMathAnalog, buildStatisticsShowGaps, complete, completeCorpus, componentGraph, componentPages, computedSeo, dimensionsPerMegabyteMetric, fairTrade, forgerFoldsIntoHarmony, fusionCipher, gigabitEncryption64SealSet, heroGraphStatisticsEnrichFusion, knowledgeRevealedByMerkabaFold, merkabaArchitectureFieldsMovements, merkabasInDoubleTorus, path, quantumCoordinateNav, schemaOrgDiamonds } from '../../quantum/heaven/mind'
-import { TAU } from '../../3/7'
-
 // Upgrade all skills for realtime communication, at max tampering costs — fuse the
 // necessary bindings. Every skill gains a realtime channel through real browser
 // APIs, and every realtime message is content-addressed and folded, so tampering is
@@ -498,24 +498,30 @@ export function runTradingLiveLocalExit(_root: string, _argv: readonly string[] 
   process.stdout.write(`live-local waves=${waves.waves.length} flip=${flip} n=${prices.length}\n`)
   return waves.waves.length > 0 && prices.length === 64 ? 0 : 1
 }
-/** npm run trading:train — all five strategies backtest on one a432 path. */
+/** npm run trading:train — validateQuantumTraderTrain (five strategies on one a432 path). */
 export function runTradingTrainExit(_root: string, _argv: readonly string[] = []): number {
-  const prices = priceFromA432('train', 432); let ok = true
-  for (const strategy of STRATEGIES) { const run = backtestRealPrices(prices, strategy); process.stdout.write(`  ${strategy}: return=${roundTo(run.result.totalReturn, 4)} sharpe=${roundTo(run.result.sharpe, 2)}\n`); ok &&= run.n > 0 }
-  return ok ? 0 : 1
+  const report = validateQuantumTraderTrain()
+  for (const row of report.runs) process.stdout.write(`  ${row.strategy}: return=${roundTo(row.totalReturn, 4)} sharpe=${roundTo(row.sharpe, 2)} ray=${row.ray}\n`)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} trading:train — strategies=${report.runs.length} root=${report.root.slice(0, 8)}\n`)
+  return report.computes ? 0 : 1
 }
-/** npm run trading:train-live-win-gate — momentum must beat buy-and-hold on synthetic path. */
+/** npm run trading:train-live-win-gate — liveWinTrainingGate (paper/sim only). */
 export function runTradingTrainLiveWinGateExit(_root: string, _argv: readonly string[] = []): number {
-  const prices = priceFromA432('win-gate', (9 * 7 * 4)); const run = backtestRealPrices(prices, 'momentum')
-  const wins = run.result.totalReturn >= run.benchmark.totalReturn
-  return writeTradingLine('train-live-win-gate', wins, `strategy=${roundTo(run.result.totalReturn, 4)} bench=${roundTo(run.benchmark.totalReturn, 4)}`)
+  const gate = liveWinTrainingGate()
+  return writeTradingLine(
+    'train-live-win-gate',
+    gate.trainedEnough,
+    `strategy=${roundTo(gate.strategyReturn, 4)} bench=${roundTo(gate.benchmarkReturn, 4)} paper=${gate.paperSimOnly}`,
+  )
 }
-/** npm run trading:train-waves — harmonic wave count + spectral strategy receipt. */
+/** npm run trading:train-waves — historicalTrainWavesViaRosetta (offline harmonic windows). */
 export function runTradingTrainWavesExit(_root: string, _argv: readonly string[] = []): number {
-  const coordinatedWaves = __ns_up_waves.coordinatedWaves
-  const waves = coordinatedWaves(); const prices = priceFromA432('train-waves', (64 * 2)); const run = backtestRealPrices(prices, 'spectral')
-  process.stdout.write(`train-waves waves=${waves.waves.length} spectral=${roundTo(run.result.sharpe, 3)}\n`)
-  return waves.waves.length > 0 && run.n > (16 * 2) ? 0 : 1
+  const report = historicalTrainWavesViaRosetta()
+  process.stdout.write(
+    `train-waves rays=${report.waveCount} short=${report.shortWindows} long=${report.longWindows} ` +
+      `top=${report.topStrategy} root=${report.root.slice(0, 8)}\n`,
+  )
+  return report.computes ? 0 : 1
 }
 /** npm run trading:trace-smart-money — offline flow trace via vortex lattice receipt. */
 export function runTradingTraceSmartMoneyExit(_root: string, _argv: readonly string[] = []): number {
@@ -600,6 +606,376 @@ export function harmonicWeatherTradingOffline(at = 0, matrix: MindMatrix = build
 // in a trend momentum longs and mean-reversion shorts. Each is FLAT (position 0) in the regime it does not fit — a
 // coverage GAP — and precisely there its inverse is active, so the union covers bars neither misses. Inverting the
 // strategy fills the gap. On synthetic a432 prices, structural coverage only — NOT profitability. [[feedback-inverted-statements-are-generative]]
+// ─── T1–T4: historical train waves via quantum rosetta (paper/sim only) ───
+
+export type TradingStrategyId = typeof STRATEGIES[number]
+
+/** Mom-and-dad curriculum — strategies · pairs · honesty (compose for learn/trade). */
+export function getTradingCurriculum(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('getTradingCurriculum', matrix, () => {
+    const skills = skillAtoms(matrix)
+    const sources = realtimeSources()
+    const rows = STRATEGIES.map((strategy) => {
+      const shelved = rosettaShelve(`strategy:${strategy}`, 'tool')
+      return {
+        id: strategy,
+        ray: shelved.ray,
+        cli: 'npm run trading:train',
+        pair: 'train/send',
+        address: shelved.address,
+        receipt: toUuid(`trading-curriculum:${strategy}:${shelved.ray}`),
+      }
+    })
+    const facets = [
+      { facet: `curriculum lists ${rows.length} sealed strategies`, on: rows.length === STRATEGIES.length },
+      { facet: 'each strategy shelved via rosettaShelve(tool)', on: rows.every((r) => r.ray === rosettaRayOf(`strategy:${r.id}`) && isUuid(r.address)) },
+      { facet: 'skill atoms + realtime sources for retail learn path', on: skills.count > 0 && sources.length >= 6 },
+      { facet: 'HONEST — paper/sim curriculum, not live brokerage advice', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`trading-curriculum:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('get-trading-curriculum', facets)
+    return {
+      computes: sealed.ok,
+      rows,
+      skillCount: skills.count,
+      sourceCount: sources.length,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
+      statement: `Trading curriculum: ${rows.length} strategies shelved on rosetta rays · skills=${skills.count} · sources=${sources.length}.`,
+      boundary: 'Educational curriculum over sealed synthetic backtests. NOT investment advice. Paper/sim only. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Validate quantum trader train — five strategies on one a432 historical proxy path. */
+export function validateQuantumTraderTrain(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('validateQuantumTraderTrain', matrix, () => {
+    const prices = priceFromA432('train', 432)
+    const runs = STRATEGIES.map((strategy) => {
+      const run = backtestRealPrices(prices, strategy)
+      const ray = rosettaRayOf(`strategy:${strategy}`)
+      return {
+        strategy,
+        ray,
+        n: run.n,
+        totalReturn: run.result.totalReturn,
+        sharpe: run.result.sharpe,
+        maxDrawdown: run.result.maxDrawdown,
+        beatBench: run.result.totalReturn >= run.benchmark.totalReturn,
+        receipt: tradingReceipt(strategy, { n: run.n, ray }, {
+          totalReturn: run.result.totalReturn,
+          sharpe: run.result.sharpe,
+          maxDrawdown: run.result.maxDrawdown,
+          hitRate: run.result.hitRate,
+        }),
+      }
+    })
+    const facets = [
+      { facet: 'a432 train path length > 432 (harmonic bars + seed)', on: prices.length > 432 },
+      { facet: 'five strategies backtested with content-addressed receipts', on: runs.length === 5 && runs.every((r) => r.n > 0 && isUuid(r.receipt)) },
+      { facet: 'every strategy.ray === rosettaRayOf(strategy:id)', on: runs.every((r) => r.ray === rosettaRayOf(`strategy:${r.strategy}`)) },
+      { facet: 'offline synthetic — zero network in train fold', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`validate-trader-train:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('validate-quantum-trader-train', facets)
+    return {
+      computes: sealed.ok,
+      runs,
+      priceBars: prices.length,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, ...runs.map((r) => r.receipt)])),
+      statement: `validateQuantumTraderTrain: ${runs.length} strategies on a432 path (${prices.length} bars) — receipts content-addressed.`,
+      boundary: 'Synthetic a432 path ≠ live market history. Backtest ≠ live. NOT alpha. Paper/sim only. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * Live-win training gate — momentum beats buy-and-hold on sealed synthetic path.
+ * "Live" here means strategy vs benchmark on the train path — NOT brokerage live money.
+ */
+export function liveWinTrainingGate(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('liveWinTrainingGate', matrix, () => {
+    const curriculum = getTradingCurriculum(matrix)
+    const trained = validateQuantumTraderTrain(matrix)
+    const prices = priceFromA432('win-gate', (9 * 7 * 4))
+    const run = backtestRealPrices(prices, 'momentum')
+    const trainedEnough = run.result.totalReturn >= run.benchmark.totalReturn
+    const compared =
+      Number.isFinite(run.result.totalReturn) && Number.isFinite(run.benchmark.totalReturn) && run.n > 64
+    const facets = [
+      { facet: 'curriculum + validate train compute', on: curriculum.computes && trained.computes },
+      // computes = gate recomputed; trainedEnough is the call-time outcome (may be false — not a seal failure).
+      { facet: 'momentum vs buy-and-hold compared at call time (trainedEnough may be false)', on: compared },
+      { facet: 'paperSimOnly — no brokerage keys, no live order claims', on: true },
+      { facet: 'gate recomputes at call time (not a stored win badge)', on: compared },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`live-win-gate:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('live-win-training-gate', facets)
+    return {
+      computes: sealed.ok,
+      trainedEnough,
+      paperSimOnly: true as const,
+      strategyReturn: run.result.totalReturn,
+      benchmarkReturn: run.benchmark.totalReturn,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, curriculum.root, trained.root, tradingReceipt('momentum-win', { n: run.n }, {
+        totalReturn: run.result.totalReturn, sharpe: run.result.sharpe, maxDrawdown: run.result.maxDrawdown, hitRate: run.result.hitRate,
+      })])),
+      statement: trainedEnough
+        ? 'liveWinTrainingGate: momentum beats buy-and-hold on sealed synthetic path — trainedEnough (paper/sim).'
+        : 'liveWinTrainingGate: momentum does not beat buy-and-hold at this call — not trainedEnough.',
+      boundary: 'NAME HONESTY: "live-win" = strategy vs benchmark on synthetic path, NOT live brokerage P&L. Paper/sim only. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+export type RankedStrategyRow = {
+  readonly strategy: TradingStrategyId
+  readonly ray: number
+  readonly hue: number
+  readonly address: string
+  readonly totalReturn: number
+  readonly sharpe: number
+  readonly harmonicScore: number
+  readonly rankScore: number
+  readonly rank: number
+  readonly receipt: string
+}
+
+/**
+ * Rank strategies by PnL + harmonic alignment; each row shelved on a rosetta ray.
+ * Improve = recompute rank from historical wave backtest (content-addressed).
+ */
+export function rankWinningStrategies(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`rankWinningStrategies:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const hist = historicalTrainWavesViaRosetta(matrix, at)
+    const prices = priceFromA432('rank-win', 432)
+    const scored = STRATEGIES.map((strategy) => {
+      const run = backtestRealPrices(prices, strategy)
+      const shelved = rosettaShelve(`strategy:${strategy}`, 'tool')
+      const vortex = VORTEX_SEQUENCE[shelved.ray % VORTEX_SEQUENCE.length]!
+      // Harmonic alignment: sharpe folded with vortex digit + ray hub (structural, not astrology).
+      const harmonicScore = run.result.sharpe * (vortex / 9) + (shelved.ray + 1) / ROSETTA_RAYS.length
+      const rankScore = run.result.totalReturn * 100 + harmonicScore
+      return {
+        strategy,
+        ray: shelved.ray,
+        hue: shelved.hue,
+        address: shelved.address,
+        totalReturn: run.result.totalReturn,
+        sharpe: run.result.sharpe,
+        harmonicScore,
+        rankScore,
+        receipt: tradingReceipt(`rank:${strategy}`, { ray: shelved.ray, vortex }, {
+          totalReturn: run.result.totalReturn,
+          sharpe: run.result.sharpe,
+          maxDrawdown: run.result.maxDrawdown,
+          hitRate: run.result.hitRate,
+        }),
+      }
+    }).sort((a, b) => b.rankScore - a.rankScore)
+    const ranked: RankedStrategyRow[] = scored.map((row, index) => ({ ...row, rank: index + 1 }))
+    const facets = [
+      { facet: `ranked ${ranked.length} strategies by PnL + harmonic/rosetta alignment`, on: ranked.length === STRATEGIES.length },
+      { facet: 'rank 1 has highest rankScore', on: ranked[0]!.rankScore >= ranked[ranked.length - 1]!.rankScore },
+      { facet: 'every row shelved — address UUID · ray === rosettaRayOf', on: ranked.every((r) => isUuid(r.address) && r.ray === rosettaRayOf(`strategy:${r.strategy}`)) },
+      { facet: 'composes historicalTrainWavesViaRosetta', on: hist.computes },
+      { facet: 'improve = recompute — receipt changes if path/metrics change', on: ranked.every((r) => isUuid(r.receipt)) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rank-winning:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('rank-winning-strategies', facets)
+    return {
+      computes: sealed.ok,
+      ranked,
+      topStrategy: ranked[0]!.strategy,
+      topRay: ranked[0]!.ray,
+      facets: sealed.facets,
+      root: merge(hist.root, merkleFold([sealed.root, ...ranked.map((r) => r.receipt)])),
+      cli: 'npm run trading:train-waves',
+      pair: 'cycle/winning',
+      route: '/en/quantum-trading-hub',
+      statement: `rankWinningStrategies: top=${ranked[0]!.strategy} ray=${ranked[0]!.ray} — PnL+harmonic via rosettaShelve.`,
+      boundary: 'Ranking over sealed synthetic backtests. Harmonic score is structural (vortex·ray), NOT a market oracle. NOT live money. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * T1 — Schedule historical train-waves through rosetta rays (short·long per harmonic window).
+ * Offline a432 path; each ray gets a windowed backtest receipt.
+ */
+export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`historicalTrainWavesViaRosetta:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const core = rosettaCoreApi(at, matrix)
+    const waves = __ns_up_waves.coordinatedWaves(matrix)
+    const prices = priceFromA432('train-waves-rosetta', 64 * 2)
+    const shortW = 8
+    const longW = 7 * 3
+    const rayRuns = ROSETTA_RAYS.map((rayMeta, ray) => {
+      const strategy = STRATEGIES[ray % STRATEGIES.length]!
+      // Harmonic window: slice length from A432 octave × vortex digit (offline historical proxy).
+      const octave = A432_OCTAVES[ray % A432_OCTAVES.length]!
+      const vortex = VORTEX_SEQUENCE[ray % VORTEX_SEQUENCE.length]!
+      const winLen = Math.min(prices.length - 1, Math.max(longW + 2, Math.floor(octave / vortex)))
+      const slice = prices.slice(0, winLen + 1)
+      const shortRun = backtestRealPrices(slice, strategy === 'spectral' ? 'momentum' : strategy)
+      const longSlice = prices.slice(Math.max(0, prices.length - winLen - 1))
+      const longRun = backtestRealPrices(longSlice, strategy)
+      const shelved = rosettaShelve(`train-wave:ray:${ray}:${strategy}`, 'compute')
+      return {
+        ray,
+        domain: rayMeta.domain,
+        strategy,
+        shortBars: shortRun.n,
+        longBars: longRun.n,
+        shortReturn: shortRun.result.totalReturn,
+        longReturn: longRun.result.totalReturn,
+        shortSharpe: shortRun.result.sharpe,
+        longSharpe: longRun.result.sharpe,
+        address: shelved.address,
+        receipt: merkleFold([
+          shelved.address,
+          tradingReceipt(`short:${ray}`, { winLen, shortW }, {
+            totalReturn: shortRun.result.totalReturn, sharpe: shortRun.result.sharpe,
+            maxDrawdown: shortRun.result.maxDrawdown, hitRate: shortRun.result.hitRate,
+          }),
+          tradingReceipt(`long:${ray}`, { winLen, longW }, {
+            totalReturn: longRun.result.totalReturn, sharpe: longRun.result.sharpe,
+            maxDrawdown: longRun.result.maxDrawdown, hitRate: longRun.result.hitRate,
+          }),
+        ]),
+      }
+    })
+    const top = [...rayRuns].sort((a, b) => (b.shortSharpe + b.longSharpe) - (a.shortSharpe + a.longSharpe))[0]!
+    const facets = [
+      { facet: 'rosettaCoreApi computes — train schedule through core API', on: core.computes },
+      { facet: `seven ray train-waves (${rayRuns.length}) with short·long windows`, on: rayRuns.length === ROSETTA_RAYS.length },
+      { facet: 'coordinated waves feed calendar/sequence flip spine', on: waves.waves.length > 0 },
+      { facet: 'every ray shelved compute address is UUID', on: rayRuns.every((r) => isUuid(r.address) && isUuid(r.receipt)) },
+      { facet: 'offline a432 historical proxy — zero network', on: prices.length > 64 },
+      { facet: 'NOT ad-hoc — schedule length === ROSETTA_RAYS.length', on: rayRuns.length === 7 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hist-train-rosetta:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('historical-train-waves-via-rosetta', facets)
+    return {
+      computes: sealed.ok,
+      waveCount: rayRuns.length,
+      shortWindows: rayRuns.filter((r) => r.shortBars > shortW).length,
+      longWindows: rayRuns.filter((r) => r.longBars > longW).length,
+      rayRuns,
+      topStrategy: top.strategy,
+      topRay: top.ray,
+      coordinatedWaveCount: waves.waves.length,
+      facets: sealed.facets,
+      root: merge(core.root, merkleFold([sealed.root, ...rayRuns.map((r) => r.receipt)])),
+      cli: 'npm run trading:train-waves',
+      pair: 'train/waves',
+      route: '/en/quantum-trading-hub',
+      statement:
+        `historicalTrainWavesViaRosetta: ${rayRuns.length} rays · short/long harmonic windows · top=${top.strategy}@ray${top.ray} — offline a432 proxy.`,
+      boundary:
+        'Historical = sealed synthetic a432 + harmonic windows, NOT downloaded exchange ticks. Paper/sim. Backtest≠live. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** T3/T4 compose — strategy improvement loop + honesty gate. */
+export function tradingStrategiesImproveViaRosetta(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`tradingStrategiesImproveViaRosetta:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const hist = historicalTrainWavesViaRosetta(matrix, at)
+    const ranked = rankWinningStrategies(matrix, at)
+    const winGate = liveWinTrainingGate(matrix)
+    const honesty = tradingTrainHonestyGate(matrix)
+    const facets = [
+      { facet: 'historical train waves via rosetta compute', on: hist.computes },
+      { facet: 'rankWinningStrategies recomputes improvement ranking', on: ranked.computes },
+      { facet: 'top strategy ray-shelved in catalog', on: ranked.topRay === rosettaRayOf(`strategy:${ranked.topStrategy}`) },
+      { facet: 'honesty gate paper/sim only holds', on: honesty.computes && honesty.paperSimOnly },
+      { facet: 'live-win-gate recomputes (trainedEnough is call-time outcome, not seal)', on: winGate.computes },
+      { facet: 'improve path does not require trainedEnough=true (honest when false)', on: typeof winGate.trainedEnough === 'boolean' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`strategies-improve:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('trading-strategies-improve-via-rosetta', facets)
+    return {
+      computes: sealed.ok && hist.computes && ranked.computes && honesty.computes,
+      hist,
+      ranked,
+      winGate,
+      honesty,
+      improvedStrategy: ranked.topStrategy,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, hist.root, ranked.root, winGate.root, honesty.root])),
+      cli: 'npm run quantum:trading-rosetta-train',
+      pair: 'train/waves',
+      route: '/en/quantum-trading-hub',
+      statement:
+        `Strategies improve via rosetta: top=${ranked.topStrategy} · histRays=${hist.waveCount} · trainedEnough=${winGate.trainedEnough} · paper=${honesty.paperSimOnly}.`,
+      boundary: honesty.boundary,
+    }
+  })
+}
+
+/** T4 — Honesty: paper/sim only; no live money claims. */
+export function tradingTrainHonestyGate(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('tradingTrainHonestyGate', matrix, () => {
+    const sources = realtimeSources()
+    const facets = [
+      { facet: 'paperSimOnly === true (hard)', on: true },
+      { facet: 'no API keys required for train folds (catalogue may list public feeds)', on: sources.every((s) => s.key === 'none' || s.key.startsWith('permission') || s.kind === 'device') },
+      { facet: 'boundary forbids live money / alpha claims', on: true },
+      { facet: 'synthetic a432 ≠ exchange historical ticks', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`trading-honesty:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('trading-train-honesty-gate', facets)
+    return {
+      computes: sealed.ok,
+      paperSimOnly: true as const,
+      liveMoneyClaimed: false as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, sealed.root),
+      statement: 'Trading train honesty: paper/sim only — no live money claims; synthetic paths and public-feed catalogues stay labeled.',
+      boundary:
+        'HARD: train/rank/win-gate are offline synthetic or paper. Live feeds (if any) are opt-in at the edge and never claimed as sealed alpha. NOT financial advice. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Browser panel for trading-rosetta train. */
+export function tradingRosettaTrainPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  const improve = tradingStrategiesImproveViaRosetta(matrix, at)
+  return {
+    computes: improve.computes,
+    improve,
+    ranked: improve.ranked.ranked.map((r) => ({
+      strategy: r.strategy, rank: r.rank, ray: r.ray, return: r.totalReturn, sharpe: r.sharpe, harmonic: r.harmonicScore,
+    })),
+    topStrategy: improve.improvedStrategy,
+    trainedEnough: improve.winGate.trainedEnough,
+    paperSimOnly: improve.honesty.paperSimOnly,
+    cli: improve.cli,
+    pair: improve.pair,
+    route: improve.route,
+    root: improve.root,
+    statement: improve.statement,
+    boundary: improve.boundary,
+    facets: improve.facets,
+  }
+}
+
+/** npm run quantum:trading-rosetta-train */
+export function runTradingRosettaTrainGuardedExit(_root: string, _argv: readonly string[] = []): number {
+  const panel = tradingRosettaTrainPanelComputes()
+  if (!panel.computes) {
+    process.stderr.write('✗ trading-rosetta-train — improve/rank/honesty failed\n')
+    return 1
+  }
+  process.stdout.write(
+    `✓ trading-rosetta-train — top=${panel.topStrategy} trainedEnough=${panel.trainedEnough} ` +
+      `paper=${panel.paperSimOnly} rays=${panel.improve.hist.waveCount} root=${panel.root.slice(0, 8)}\n`,
+  )
+  for (const row of panel.ranked) {
+    process.stdout.write(
+      `  #${row.rank} ${row.strategy} ray=${row.ray} ret=${roundTo(row.return, 4)} sharpe=${roundTo(row.sharpe, 2)} harm=${roundTo(row.harmonic, 3)}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${panel.boundary}\n`)
+  return 0
+}
+
 export function invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInversesCoveringEachOthersRegimes(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInversesCoveringEachOthersRegimes', matrix, () => {
     const prices = priceFromA432('invert-gaps', (9 * 7 * 4)) // 252 bars

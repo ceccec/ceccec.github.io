@@ -634,9 +634,9 @@ export function quantumThreat(matrix: MindMatrix = buildMatrix()) {
     { what: 'Proof-of-Work hashing', effect: 'Grover-weakened (NOT broken)', detail: 'at most a quadratic mining edge; ASIC speed + Grover\'s poor parallelism keep it minor' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`q-chain:${entry.what}`) }))
   const postQuantum = [
-    { fips: 'FIPS 203', name: 'ML-KEM', from: 'CRYSTALS-Kyber', kind: 'lattice key-encapsulation', replaces: 'RSA/ECDH key exchange' },
-    { fips: 'FIPS 204', name: 'ML-DSA', from: 'CRYSTALS-Dilithium', kind: 'lattice signatures', replaces: 'RSA/ECDSA signatures (primary)' },
-    { fips: 'FIPS 205', name: 'SLH-DSA', from: 'SPHINCS+', kind: 'hash-based signatures', replaces: 'signatures (conservative backup)' },
+    { fips: 'FIPS 203', name: 'ML-KEM', from: 'CRYSTALS-Kyber', kind: 'lattice key-encapsulation', replaces: 'RSA/ECDH key exchange', iso: 'ISO/IEC 18033-2 Amd 2:2026' },
+    { fips: 'FIPS 204', name: 'ML-DSA', from: 'CRYSTALS-Dilithium', kind: 'lattice signatures', replaces: 'RSA/ECDSA signatures (primary)', iso: 'ISO/IEC 14888 PQC uptake' },
+    { fips: 'FIPS 205', name: 'SLH-DSA', from: 'SPHINCS+', kind: 'hash-based signatures', replaces: 'signatures (conservative backup)', iso: 'ISO/IEC 14888-4:2024 sibling' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pqc:${entry.fips}`) }))
   const hardware = {
     today: 'NISQ — hundreds of noisy physical qubits, no large-scale error correction',
@@ -647,7 +647,7 @@ export function quantumThreat(matrix: MindMatrix = buildMatrix()) {
   const documented = [
     'Grover WEAKENS, Shor BREAKS — the asymmetry to remember. Grover\'s quadratic search halves symmetric/hash security (SHA-256 → ~2^128 work), fixed by doubling sizes. Shor\'s polynomial-time factoring + discrete-log BREAKS RSA, Diffie-Hellman and elliptic-curve crypto (ECDSA) — the public-key layer behind TLS, signatures and blockchain wallets.',
     'On a blockchain the two effects differ sharply: ECDSA signatures are Shor-vulnerable (a BREAK — an exposed public key lets an attacker forge the key and steal funds; ~6.7M BTC, ~34% of supply, sit in addresses with exposed pubkeys), while PoW hashing is only Grover-weakened (a minor mining edge, not a forgery).',
-    'The post-quantum response is standardized: NIST published FIPS 203 (ML-KEM / Kyber, lattice key-encapsulation), FIPS 204 (ML-DSA / Dilithium, lattice signatures) and FIPS 205 (SLH-DSA / SPHINCS+, hash-based signatures) on 13 August 2024.',
+    'The post-quantum response is standardized: NIST published FIPS 203 (ML-KEM / Kyber), FIPS 204 (ML-DSA / Dilithium) and FIPS 205 (SLH-DSA / SPHINCS+) on 13 August 2024. As of July 2026, ISO/IEC 18033-2:2006/Amd 2:2026 is published (ML-KEM · Classic McEliece · FrodoKEM). This site catalogs alignment — NOT ISO certified or FIPS validated.',
     '"Harvest now, decrypt later": an adversary can record encrypted traffic today and decrypt it once a quantum computer exists — so long-lived secrets and signatures should migrate now, even though the machine is not here yet (NSA CNSA 2.0 / NIST: deprecate by 2030, disallow by 2035).',
     'The hardware is far off: today\'s machines are NISQ (hundreds of noisy qubits). Breaking RSA-2048 needs millions of error-corrected-grade qubits — Gidney–Ekerå estimated ~20M noisy qubits / 8 hours (2019, Quantum 2021), since reduced to <1M qubits / <1 week (Gidney 2025). The target is moving closer, but the gap is still enormous.',
     'This site\'s "quantum" is a COMPUTATIONAL metaphor (the structural fold, superposition-as-content-addressing), not post-quantum cryptography or a physical quantum channel. Its AES-256-GCM is Grover-weakened to ~128-bit like everyone\'s; its FNV/SHA content-addresses are hashes (Grover-weakened, never Shor-broken — there is no public-key/signature to break in the fold itself).',

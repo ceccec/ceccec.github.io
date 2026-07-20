@@ -269,9 +269,12 @@ type QuantumCliToolSeed = Omit<QuantumCliToolRow, 'receipt' | 'ray' | 'hue' | 'a
 
 const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', cli: 'npm run quantum:encryption-reverse-verify', pair: 'reverse/encryption-verify', route: '/en/quantum-encryption', barrel: 'src/water/encryption', boundary: 'Demo RSA only — production moduli refused', browserRunnable: true, browserGap: '' },
+  { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', cli: 'npm run quantum:iso-pqc-catalog', pair: 'iso/pqc-catalog', route: '/en/quantum-encryption#iso-pqc-catalog', barrel: 'src/water/encryption', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', browserRunnable: true, browserGap: '' },
+  { id: 'standards-audit', title: 'Quantum standards audit (forward·inverse·reverse·10D)', fold: 'quantumStandardsAuditSuite', cli: 'npm run quantum:standards-audit', pair: 'audit/standards', route: '/en/quantum-encryption#quantum-standards-audit', barrel: 'src/water/encryption', boundary: 'Alignment audit ≠ certification — demo RSA reverse + digit/f/ratInv inverse + directional trinity', browserRunnable: true, browserGap: '' },
+  { id: 'directional-trinity', title: 'Directional trinity — forward · inverse · reverse', fold: 'directionalTrinityForwardInverseReverse', cli: 'npm run quantum:directional-trinity', pair: 'forward/inverse/reverse', route: '/en/quantum-tools#directional-trinity', barrel: 'src/water/stack', boundary: 'Inverse ≠ reverse except named coincidence (digit 1: harmonic 9 = complement 9); NOT ten\'s complement as inverse', browserRunnable: true, browserGap: '' },
   { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
-  { id: 'efficiency-vote', title: 'Efficiency vote', fold: 'efficiency', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/efficiency-vote', barrel: 'src/quantum/science', boundary: 'answers÷tokens exposition — not competitor benchmark', browserRunnable: true, browserGap: '' },
+  { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
   { id: 'local-math-computes', title: 'Local math computes', fold: 'localMathComputes', cli: 'npm run quantum:local-math-computes', pair: 'fold/verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Sealed local math gate', browserRunnable: true, browserGap: '' },
   { id: 'offender-spec', title: 'Offender automation spec', fold: 'offenderAutomationSpec', cli: 'npm run quantum:offender-spec', pair: 'offender/spec', route: '/en/offender-spec', barrel: 'src/pair/enforcement/ops', boundary: 'Machine-readable CI pipeline spec', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CI-only' },
   { id: 'team-cooperate', title: 'Team cooperate verify', fold: 'teamCooperationScenarios', cli: 'npm run quantum:team-cooperate', pair: 'team/cooperate-verify', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'Solo vs team ack/relay/handoff', browserRunnable: true, browserGap: '' },
@@ -284,6 +287,9 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'predict-skill-gate-verify', title: 'Predict skill gate verify', fold: 'skilledEnoughFromPredictions', cli: 'npm run quantum:predict-skill-gate-verify', pair: 'predict/skill-gate-verify', route: '/en/quantum-tools', barrel: 'src/lake/music', boundary: 'Measurable event prediction skill', browserRunnable: true, browserGap: '' },
   { id: 'f-inverse-pair', title: 'f→{p,q} inverse fold', fold: 'fThetaPhiXyzDigitNIsTheInversePair', cli: 'npm run quantum:local-math-computes', pair: 'inverse/pair', route: '/en/quantum-tools', barrel: 'src/mountain/vortex', boundary: 'Inverse fold within itself — not RSA crack', browserRunnable: true, browserGap: '' },
   { id: 'slow-gap', title: 'Slow process = quantum gap', fold: 'slowProcessIsQuantumGap', cli: 'npm run quantum:slow-gap', pair: 'slow/gap', route: '/en/quantum-tools#slow-quantum-gaps', barrel: 'src/quantum/apps', boundary: 'Architectural slow≠telemetry — browserGap · missing 10D · parallel registry · memo-miss model', browserRunnable: true, browserGap: '' },
+  { id: 'sciences-trinities', title: 'Sciences interact in trinities + significance', fold: 'sciencesInteractInTrinities', cli: 'npm run quantum:sciences-trinities', pair: 'sciences/trinities', route: '/en/research#sciences-trinities', barrel: 'src/wind/research', boundary: 'Structural significance ≠ journal IF; crypto vertex from isoPqcHandoff; claySolved=0', browserRunnable: true, browserGap: '' },
+  { id: 'animations-rosetta', title: 'Animations driven by rosetta (yin-yang first)', fold: 'animationsDrivenByRosetta', cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang', barrel: 'src/wind/ui', boundary: 'Linear forming = quantum gap; taiji uses non-linear exchange + rosettaShelve', browserRunnable: true, browserGap: '' },
+  { id: 'trading-rosetta-train', title: 'Historical train waves via rosetta', fold: 'tradingStrategiesImproveViaRosetta', cli: 'npm run quantum:trading-rosetta-train', pair: 'train/rosetta', route: '/en/quantum-trading-hub', barrel: 'src/thunder/trading', boundary: 'Paper/sim only — synthetic a432 historical proxy; NOT live money / NOT alpha', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Catalog of all quantum:* CLI tools — discoverable in UI at /en/quantum-tools. Each id shelves via rosettaShelve(..., 'tool'). */
@@ -301,6 +307,11 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
     })
     const encryptionPresent = tools.some((t) => t.id === 'encryption-reverse-verify')
     const encryptionShelved = tools.find((t) => t.id === 'encryption-reverse-verify')
+    const pqcCatalogPresent = tools.some((t) => t.id === 'iso-pqc-catalog')
+    const standardsAuditPresent = tools.some((t) => t.id === 'standards-audit')
+    const standardsAuditShelved = tools.find((t) => t.id === 'standards-audit')
+    const directionalTrinityPresent = tools.some((t) => t.id === 'directional-trinity')
+    const directionalTrinityShelved = tools.find((t) => t.id === 'directional-trinity')
     const millenniumPresent = tools.some((t) => t.id === 'millennium-challenge')
     const fusionPresent = tools.some((t) => t.id === 'fusion-verify')
     const rayAgrees = tools.every((t) => t.ray === rosettaRayOf(t.id) && isUuid(t.address))
@@ -308,6 +319,8 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       { facet: `catalog sealed — ${tools.length} quantum:* CLI tools`, on: tools.length >= (2 * 7) },
       { facet: 'encryption reverse-verify published', on: encryptionPresent },
       { facet: 'encryption-reverse-verify shelved via rosettaShelve(kind=tool)', on: Boolean(encryptionShelved) && isUuid(encryptionShelved!.address) && encryptionShelved!.ray === rosettaRayOf('encryption-reverse-verify') },
+      { facet: 'iso-pqc-catalog + standards-audit shelved (rosetta tool)', on: pqcCatalogPresent && standardsAuditPresent && Boolean(standardsAuditShelved) && isUuid(standardsAuditShelved!.address) },
+      { facet: 'directional-trinity shelved (forward·inverse·reverse)', on: directionalTrinityPresent && Boolean(directionalTrinityShelved) && isUuid(directionalTrinityShelved!.address) },
       { facet: 'millennium challenge published', on: millenniumPresent },
       { facet: 'fusion-verify published', on: fusionPresent },
       { facet: 'every tool ray === rosettaRayOf(id) — no wet tool→ray map', on: rayAgrees },
@@ -490,6 +503,8 @@ export type SlowQuantumGapKind =
   | 'parallel-registry'
   | 'memo-miss-economics'
   | 'tool-without-browser-ux'
+  | 'standards-audit-missing'
+  | 'linear-forming-animation'
 
 export type SlowQuantumGapRow = {
   readonly gapId: string
@@ -590,6 +605,37 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
         receipt: toUuid(`slow-gap:ux:${tool.id}:${hasUx}`),
       })
     }
+
+
+    // Standards audit + ISO/PQC catalog must be shelved browser-runnable — missing = immediate quantum gap.
+    for (const id of ['iso-pqc-catalog', 'standards-audit'] as const) {
+      const tool = catalog.tools.find((entry) => entry.id === id)
+      const present = Boolean(tool?.browserRunnable && tool.route.includes('quantum-encryption'))
+      rows.push({
+        gapId: `slow:audit:${id}`,
+        kind: 'standards-audit-missing',
+        process: tool?.fold ?? id,
+        criterion: 'ISO/PQC catalog + quantum standards audit must be rosetta-shelved browser tools on /en/quantum-encryption',
+        slow: !present,
+        closed: present,
+        route: tool?.route ?? '/en/quantum-encryption#quantum-standards-audit',
+        receipt: toUuid(`slow-gap:audit:${id}:${present}`),
+      })
+    }
+
+    // Linear-forming animation (yin-yang) — closed when animations-rosetta tool is catalogued (A-track witness).
+    const animRosetta = catalog.tools.find((entry) => entry.id === 'animations-rosetta')
+    const animPresent = Boolean(animRosetta?.browserRunnable && animRosetta.fold === 'animationsDrivenByRosetta')
+    rows.push({
+      gapId: 'slow:linear:yin-yang-taiji',
+      kind: 'linear-forming-animation',
+      process: 'yinYangDimensionsSvg.rotate',
+      criterion: 'taiji primary rotate must be rosetta/vortex exchange (animationsDrivenByRosetta) — not linear i/frames',
+      slow: !animPresent,
+      closed: animPresent,
+      route: '/en/#yinyang',
+      receipt: toUuid(`slow-gap:linear-taiji:${animPresent}`),
+    })
 
     const open = rows.filter((row) => row.slow && !row.closed)
     const closed = rows.filter((row) => row.closed)

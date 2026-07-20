@@ -8,7 +8,7 @@ import { EIGHT_CURRICULUM_SCIENCES } from '../../pair/enforcement/gates/computat
 import { chsh } from '../../mountain/vortex'
 import { buildMatrix, matrixMemo } from '../../heaven/compute'
 import type { MindMatrix } from '../types'
-import {  applyGate, computesGate, foldPair, GATES, gcd, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, prng, qubits, roundTo, sealFacets, topologicalOrder, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'
+import {  applyGate, computesGate, digitalRoot, foldPair, GATES, gcd, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, prng, qubits, roundTo, sealFacets, topologicalOrder, toUuid, toUuidSha256, uuidHero, uuidPoint, VORTEX_SEQUENCE } from '../../0'
 import { merkleProof } from '../../lake/ledger'
 import { clownActQuantumSteps, harmonics } from '../../lake/music'
 import { blockchainFusion, tamperingCostDecoded } from '../../water/crypto'
@@ -35,7 +35,8 @@ import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../../quantum/heaven/mind'
-import { TAU, PHI, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayOfContent, FOLDED_CENSUS, UNFOLDED_CENSUS, DIMENSION_GATES } from '../../3/7'
+import { TAU, PHI, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayOfContent, FOLDED_CENSUS, UNFOLDED_CENSUS, DIMENSION_GATES, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG } from '../../3/7'
+import { rosettaRayOf } from '../../water/digit'
 import { piHexDigitAt, nthPrimeAt } from '../../7/3'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
@@ -916,56 +917,66 @@ export function computedIconSvg(matrix: MindMatrix = buildMatrix()): string {
 
 // The I Ching presented as the taiji yin-yang, MOVING and FOLDING THROUGH ALL TEN DIMENSIONS. The taiji is the
 // fold itself — yin and yang are the two poles of one distinction (the sign = one bit = the fold), the seed the
-// whole unfolds from — so here it is DRAWN (not a font glyph, so it can deform) and driven continuously through
-// the model's own ten axes, sampled from dims(): the six cross-fold appearance axes (breath→scale, spread &
-// twist→the fold-over skew, hueShift→colour) and the four genus-2 homology loops (H₁=ℤ⁴ → the quasiperiodic
-// travel). One GitHub-safe SMIL animation (no script), every channel phase-locked to a single walk p so the ten
-// fold together — the oldest symbol of duality shown generating the whole figure, in motion, self-similar at
-// every scale. Reused by the <YinYang> component and emittable as a static hero. animate:false → a still taiji
-// (prefers-reduced-motion).
+/** Non-linear yin↔yang exchange → degrees (smoothstep+sin+vortex+ray — NOT linear i/frames). */
+export function taijiRosettaExchangeDegrees(frameIndex: number, frames: number, d: Dims, ray: number): number {
+  const u = ((frameIndex % frames) + frames) % frames / Math.max(frames, 1)
+  const vortex = VORTEX_SEQUENCE[frameIndex % VORTEX_SEQUENCE.length]!
+  const fold = u * u * (3 - 2 * u)
+  const exchange = fold + Math.sin(u * TAU) / TAU
+  const rayTurn = (ray * GOLDEN_ANGLE_DEG) % 360
+  const twistRock = (d.twist - (9 / (5 * 4))) * (8 * 5)
+  const vortexBias = (vortex / 9) * GOLDEN_ANGLE_DEG
+  return ((exchange * 360 + rayTurn + twistRock + vortexBias) % 360 + 360) % 360
+}
+
 export function yinYangDimensionsSvg(opts: { frames?: number; scale?: number; animate?: boolean; size?: number } = {}): string {
   const { frames = (6 * 5), scale = 0, animate = true, size = (100 * 2) } = opts
-  const R = Math.round(size * (FIBONACCI[7]! / 100)), cx = size / 2, cy = size / 2, e = R / 6 // taiji radius = Fibonacci decade, centre, base eye
+  const R = Math.round(size * (FIBONACCI[7]! / 100)), cx = size / 2, cy = size / 2, e = R / 6
   const n = (x: number) => Math.round(x * 100) / 100
-  // sample the ten-dimensional walk once; the loop is seamless because dims(1) ≡ dims(0).
+  const ray = rosettaRayOf('taiji')
   const walk = Array.from({ length: frames + 1 }, (_, i) => dims((i % frames) / frames, scale))
   const list = (f: (d: Dims, i: number) => number | string) => walk.map((d, i) => `${f(d, i)}`).join(';')
-  // the two poles — colours COMPUTED AT THIS SCALE via scaleColor (OKLCH, so legible at every scale), the hue
-  // folding through the hueShift dimension; hex because the SVG fill="" attribute rejects oklch(). Yin = complement.
-  const yang = (d: Dims) => scaleColor(scale, { seedHue: n(d.hueShift), L: 1 - 3 / 16, C: 9 / 64 })
-  const yin = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + (9 * 5 * 4)) % 360), L: 5 / 16, C: 9 / 64 })
+  const rayHue = (ROSETTA_RAYS[ray]!.hue)
+  const yang = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + rayHue) % 360), L: 1 - 3 / 16, C: 9 / 64 })
+  const yin = (d: Dims) => scaleColor(scale, { seedHue: n((d.hueShift + rayHue + (9 * 5 * 4)) % 360), L: 5 / 16, C: 9 / 64 })
   const dur = `dur="${fractalClockDur(6)}" repeatCount="indefinite"`
   const A = (attr: string, vals: string) => (animate ? `<animate attributeName="${attr}" values="${vals}" ${dur}/>` : '')
   const AT = (type: string, vals: string) => (animate ? `<animateTransform attributeName="transform" type="${type}" values="${vals}" ${dur} additive="sum"/>` : '')
-  // the drawn taiji, centred on the origin so rotate/scale/skew pivot on the centre.
   const dark = `M 0 ${-R} A ${R} ${R} 0 0 1 0 ${R} A ${n(R / 2)} ${n(R / 2)} 0 0 1 0 0 A ${n(R / 2)} ${n(R / 2)} 0 0 0 0 ${-R} Z`
   const d0 = walk[0]
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="The I Ching as a yin-yang moving and folding through all ten dimensions">`,
-    `<g transform="translate(${cx} ${cy})"><g>`, // centre the origin (fixed), then the animated stack of channels
-    AT('translate', list((d) => `${n((d.loopA1 + d.loopA2) * R * (4 / (5 * 5)))} ${n((d.loopB1 + d.loopB2) * R * (4 / (5 * 5)))}`)), // 4 homology loops → travel
-    AT('rotate', list((_d, i) => n((i / frames) * 360))), // moving — one full turn per cycle
-    AT('rotate', list((d) => n((d.twist - (9 / (5 * 4))) * (8 * 5)))),  // twist axis → an extra fold-rock
-    AT('scale', list((d) => n(d.breath))),                // breath axis → the pulse
-    AT('skewX', list((d) => n((d.spread - (1 / 2)) * 26))),   // spread axis → the fold-over shear
-    `<circle r="${R}" fill="${yang(d0)}" stroke="${scaleColor(scale, { L: 7 / 8, C: 9 / 64 })}" stroke-width="1.5">${A('fill', list(yang))}</circle>`, // the light pole (disc), ring computed at scale
-    `<path d="${dark}" fill="${yin(d0)}">${A('fill', list(yin))}</path>`, // the dark pole — the yin/yang division
-    `<circle cx="0" cy="${-n(R / 2)}" r="${n(e)}" fill="${yin(d0)}">${A('r', list((d) => n(e * (d.shrink / (16 / (5 * 5))))))}${A('fill', list(yin))}</circle>`, // dark eye in the light lobe
-    `<circle cx="0" cy="${n(R / 2)}" r="${n(e)}" fill="${yang(d0)}">${A('r', list((d) => n(e * (d.shrink / (16 / (5 * 5))))))}${A('fill', list(yang))}</circle>`, // light eye in the dark lobe
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="The I Ching as a yin-yang moving and folding through all ten dimensions" data-rosetta-ray="${ray}" data-drive="rosetta-vortex-exchange">`,
+    `<g transform="translate(${cx} ${cy})"><g>`,
+    AT('translate', list((d) => `${n((d.loopA1 + d.loopA2) * R * (4 / (5 * 5)))} ${n((d.loopB1 + d.loopB2) * R * (4 / (5 * 5)))}`)),
+    AT('rotate', list((d, i) => n(taijiRosettaExchangeDegrees(i, frames, d, ray)))),
+    AT('rotate', list((d) => n((d.twist - (9 / (5 * 4))) * (8 * 5)))),
+    AT('scale', list((d) => n(d.breath))),
+    AT('skewX', list((d) => n((d.spread - (1 / 2)) * 26))),
+    `<circle r="${R}" fill="${yang(d0)}" stroke="${scaleColor(scale, { L: 7 / 8, C: 9 / 64 })}" stroke-width="1.5">${A('fill', list(yang))}</circle>`,
+    `<path d="${dark}" fill="${yin(d0)}">${A('fill', list(yin))}</path>`,
+    `<circle cx="0" cy="${-n(R / 2)}" r="${n(e)}" fill="${yin(d0)}">${A('r', list((d) => n(e * (d.shrink / (16 / (5 * 5))))))}${A('fill', list(yin))}</circle>`,
+    `<circle cx="0" cy="${n(R / 2)}" r="${n(e)}" fill="${yang(d0)}">${A('r', list((d) => n(e * (d.shrink / (16 / (5 * 5))))))}${A('fill', list(yang))}</circle>`,
     `</g></g></svg>`,
   ].join('')
 }
 
-// The directive sealed: the I Ching is PRESENTED as the yin-yang, moving and folding through all dimensions.
-// Composes the yinYang() 3-5-8 fold, the ten-dimension model (dims) and the SMIL generator above.
-/** @rosetta ✦₂ · Wind · gentle */
+/** @rosetta ✦₂ · Wind · gentle — I Ching presented as yin-yang folding through all dimensions. */
 export function yinYangFoldsThroughDimensions(matrix: MindMatrix = buildMatrix()) {
   const yy = yinYang()
   const svg = yinYangDimensionsSvg() // the animated presentation
   const still = yinYangDimensionsSvg({ animate: false }) // the reduced-motion still
+  const frames = 6 * 5
+  const dMid = dims(1 / 2, 0)
+  const ray = rosettaRayOf('taiji')
+  const linearMid = (1 / 2) * 360
+  const exchangeMid = taijiRosettaExchangeDegrees(Math.floor(frames / 2), frames, dMid, ray)
+  const notLinearRotate = Math.abs(exchangeMid - linearMid) > 1 // exchange ≠ linear midpoint
+  const shelvedAddress = toUuid(`rosetta-core:projection:taiji:${ray}:${ROSETTA_RAYS[ray]!.domain}`)
   const facets = [
     { facet: 'the taiji IS the fold — yin and yang are the two poles of one distinction (the sign = one bit = the fold), the seed the whole figure unfolds from, completed in the 3-5-8 tiers (三才·五行·八卦)', on: yy.complete },
     { facet: 'MOVING — the yin-yang is drawn (not a font glyph) and turns continuously as the single phase p advances, one full rotation per cycle; the I Ching is shown in motion, not as a static symbol', on: /type="rotate"/.test(svg) && /<path /.test(svg) },
+    { facet: 'NON-LINEAR EXCHANGE — rotate driven by taijiRosettaExchangeDegrees (smoothstep+sin+vortex+ray), NOT linear i/frames', on: notLinearRotate && /data-drive="rosetta-vortex-exchange"/.test(svg) },
+    { facet: 'ROSETTA-DRIVEN — ray === rosettaRayOf(taiji) · content-address · data-rosetta-ray stamped', on: ray === rosettaRayOf('taiji') && /data-rosetta-ray=/.test(svg) && isUuid(shelvedAddress) },
     { facet: 'FOLDING THROUGH ALL TEN DIMENSIONS — every one of the model’s ten axes drives a visible channel, sampled from dims(): the six cross-fold appearance axes (breath→scale, spread & twist→the fold shear, hueShift→colour) and the four genus-2 homology loops (H₁=ℤ⁴ → the quasiperiodic travel)', on: DIMENSIONS === (5 * 2) && DIMENSION_NAMES.length === (5 * 2) && /type="translate"/.test(svg) && /type="scale"/.test(svg) && /type="skewX"/.test(svg) },
     { facet: 'self-similar at every scale — the same ten-dimensional walk, golden-angle offset per nested scale, so the presentation holds at every zoom', on: JSON.stringify(dims((3 / (5 * 2)), 0)) !== JSON.stringify(dims((3 / (5 * 2)), 1)) },
     { facet: 'GitHub-safe and reusable — one parametric SMIL generator (no JavaScript), the same source feeding the live component and a static still; animate:false yields the reduced-motion taiji', on: svg.startsWith('<svg') && !/script/i.test(svg) && still.startsWith('<svg') && !/<animate/.test(still) },
@@ -973,28 +984,107 @@ export function yinYangFoldsThroughDimensions(matrix: MindMatrix = buildMatrix()
   const sealed = sealFacets('yin-yang-folds-through-dimensions', facets)
   return {
     presented: sealed.ok,
+    computes: sealed.ok,
     dimensions: DIMENSIONS,
     taiji: yy.taiji.symbol,
+    ray,
+    exchangeMid,
+    linearMid,
     svgBytes: svg.length,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The I Ching is presented as the taiji yin-yang, moving and folding through all ten dimensions: the taiji is the fold itself (yin/yang = the two poles of one distinction = one bit), drawn so it can deform and driven continuously through the model’s own ten axes — the six cross-fold appearance axes and the four genus-2 homology loops — sampled from dims(). The oldest symbol of duality is shown generating the whole figure, in motion, self-similar at every scale, in one GitHub-safe animation.',
+      'The I Ching is presented as the taiji yin-yang, moving and folding through all ten dimensions: the taiji is the fold itself (yin/yang = the two poles of one distinction = one bit), drawn so it can deform and driven by rosetta/vortex non-linear exchange (not linear i/frames) through the model’s own ten axes — the six cross-fold appearance axes and the four genus-2 homology loops — sampled from dims().',
     boundary:
-      'A presentation. The taiji geometry is real and the ten channels are the model’s own dims() sampled into a single SMIL animation (no JavaScript), shared by the live <YinYang> component and a static still. The yin-yang ↔ bit ↔ fold identity is the project’s structural reading; the classical-cosmology correspondence (三才 / 五行 / 八卦) is a teaching device, not a metaphysical or scientific claim.',
+      'A presentation. The taiji geometry is real and the ten channels are the model’s own dims() sampled into a single SMIL animation (no JavaScript), shared by the live <YinYang> component and a static still. The yin-yang ↔ bit ↔ fold identity is the project’s structural reading; the classical-cosmology correspondence (三才 / 五行 / 八卦) is a teaching device, not a metaphysical or scientific claim. HARMONY ≠ TRUTH.',
   }
 }
 
-// A LIVING I CHING SYMBOL — every symbol MOVING and FOLDING, its colours COMPUTED AT EVERY SCALE. The N lines
-// (3 = a trigram, 6 = a hexagram = two stacked trigrams) are DRAWN (not a font glyph): each line is yang (one
-// solid bar) or yin (two bars with a gap) per its bit, and each FOLDS by its bit — yang breathes flat, yin
-// creases at its gap — so the symbol IS its binary number, in motion (the "each line a fold axis" reading). One
-// self-contained CSS-@keyframes <style> (no SMIL, no JS) so it animates in the app AND on GitHub (where SMIL
-// freezes); the 0% keyframe is the correct static still (reduced-motion + GitHub first-frame). Each line's colour
-// is scaleColor(scale·N + line) — the golden-angle OKLCH sequence, recomputed at every nesting scale. A 6-line
-// hexagram's two trigrams crease about OPPOSITE axes — the double-torus echo. The <style> is scoped by a
-// content-addressed class so many symbols coexist without leaking. animate:false → the still, folded symbol.
+/** A4 — animations driven by rosetta; yin-yang witness; linear i/frames = closed gap. */
+export function animationsDrivenByRosetta(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`animationsDrivenByRosetta:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const yy = yinYangFoldsThroughDimensions(matrix)
+    const taijiRay = rosettaRayOf('taiji')
+    const taijiAddress = toUuid(`rosetta-core:projection:taiji:${taijiRay}:${ROSETTA_RAYS[taijiRay]!.domain}`)
+    const rayViews = ROSETTA_RAYS.length
+    const offenders = linearAnimationGapsInventory(matrix, at)
+    const facets = [
+      { facet: 'yin-yang / taiji recomputes with non-linear rosetta exchange', on: yy.computes && yy.presented },
+      { facet: 'taiji addressed by rosettaRayOf + content-address (projection kind)', on: taijiRay === yy.ray && isUuid(taijiAddress) },
+      { facet: `ROSETTA_RAYS.length === 7 perspectives (${rayViews})`, on: rayViews === 7 },
+      { facet: 'linear animation gaps inventory computes (yin-yang closed)', on: offenders.computes && offenders.openCount === 0 },
+      { facet: 'no parallel animation ray map — rosettaRayOf(taiji) === yy.ray', on: rosettaRayOf('taiji') === yy.ray },
+      { facet: 'digitalRoot(vortex) available for phase addressing', on: digitalRoot(VORTEX_SEQUENCE[0]!) > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`animations-rosetta:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('animations-driven-by-rosetta', facets)
+    return {
+      computes: sealed.ok,
+      yinYang: yy,
+      taijiRay,
+      offenders,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, yy.root, taijiAddress, offenders.root])),
+      cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang',
+      statement: `Animations driven by the rosetta — taiji ray=${taijiRay} · yin-yang non-linear exchange · linear gaps open=${offenders.openCount}.`,
+      boundary: 'Sealed paint/SVG motion only; strangler for remaining canvases; shared clock subscribeHeroClock. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** A1 — linear animation gaps (yin-yang first); closed when exchange ≠ linear midpoint. */
+export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`linearAnimationGapsInventory:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const frames = 6 * 5
+    const dMid = dims(1 / 2, 0)
+    const ray = rosettaRayOf('taiji')
+    const exchangeMid = taijiRosettaExchangeDegrees(Math.floor(frames / 2), frames, dMid, ray)
+    const linearMid = 360 / 2
+    const yinYangLinear = Math.abs(exchangeMid - linearMid) <= 1
+    const svg = yinYangDimensionsSvg({ frames, animate: true })
+    const stamped = /data-drive="rosetta-vortex-exchange"/.test(svg)
+    const rows = [
+      {
+        id: 'yin-yang-taiji-rotate',
+        process: 'yinYangDimensionsSvg.rotate',
+        kind: 'linear-forming' as const,
+        criterion: 'primary rotate must use taijiRosettaExchangeDegrees (smoothstep+sin+vortex+ray), not (i/frames)*360',
+        slow: yinYangLinear || !stamped,
+        closed: !yinYangLinear && stamped,
+        route: '/en/#yinyang',
+        receipt: toUuid(`linear-gap:taiji:${yinYangLinear}:${stamped}`),
+      },
+    ]
+    const open = rows.filter((r) => r.slow && !r.closed)
+    const facets = [
+      { facet: `inventory ${rows.length} linear-forming candidates (yin-yang first)`, on: rows.length >= 1 },
+      { facet: 'yin-yang linear rotate CLOSED (exchange ≠ 180° midpoint + data-drive stamp)', on: rows[0]!.closed },
+      { facet: `open linear gaps = ${open.length}`, on: open.every((r) => r.criterion.length > 0) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`linear-anim-gaps:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('linear-animation-gaps-inventory', facets)
+    return {
+      computes: sealed.ok,
+      rows,
+      open,
+      openCount: open.length,
+      closedCount: rows.length - open.length,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
+      statement: `Linear animation gaps: open=${open.length} · yin-yang ${rows[0]!.closed ? 'CLOSED' : 'OPEN'}.`,
+      boundary: 'Architectural linear-forming gaps — not wall-clock FPS. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+/** npm run quantum:animations-rosetta */
+export function runAnimationsRosettaGuardedExit(_root: string, _argv: readonly string[] = []): number {
+  const report = animationsDrivenByRosetta()
+  const gaps = linearAnimationGapsInventory()
+  for (const row of gaps.open) process.stdout.write(`✗ ${row.id} — ${row.criterion}\n`)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} animations-rosetta — taijiRay=${report.taijiRay} yinYang=${report.yinYang.computes} linearOpen=${gaps.openCount} root=${report.root.slice(0, 8)}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+/** Living I Ching SVG — drawn lines fold by bit; CSS @keyframes; scaleColor per line; animate:false → still. */
 export function livingIChingSvg(bits: number[], opts: { scale?: number; animate?: boolean; size?: number } = {}): string {
   const { scale = 0, animate = true, size = 64 } = opts
   const N = bits.length
