@@ -1,11 +1,133 @@
 // Quantum apps — route-mounted compute barrels (registry only; no per-app census slots).
-// Every home-page animation is ALSO a registered quantum app: a pure PROJECTION of the one
-// shared field (the MindMatrix from buildMatrix — sequence/φ/A432/genus-2 homology). The OS
-// computes the field + design tokens once (quantumMathDesignsTheUi, memoByRoot); each app is a
-// projection config drawn through the single drawQuantumAppFrame kernel in src/quantum.
+// Rosetta core API sealed here (water/digit at compression limit; census forbids flat siblings).
+// Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { computesGate, digitalRoot, memoByRoot, merkleFold, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, digitalRoot, isUuid, memoByRoot, merkleFold, toUuid, VORTEX_SEQUENCE } from '../../0'
+import {
+  ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, type RosettaComputationType,
+} from '../../3/7'
+import {
+  rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion,
+} from '../../water/digit'
+
+export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
+export type RosettaCoreSurface = {
+  readonly label: string
+  readonly kind: RosettaCoreSurfaceKind
+  readonly ray: number
+  readonly pageKind: RosettaComputationType
+  readonly hue: number
+  readonly glyph: string
+  readonly domain: string
+  readonly address: string
+}
+
+const ROSETTA_CORE_API_LABELS = [
+  'rosettaCoreApi', 'rosettaCoreApiSelfWires', 'rosettaShelve', 'rosettaRayOf', 'rosettaComputesAll',
+  'rosettaDecodesUrlPath', 'rosettaComputesItself', 'rosettaReuse', 'ROSETTA_RAYS', 'ROSETTA_COMPUTATION_TYPES',
+  'ROSETTA_RAY_HUBS', 'ROSETTA_CORE_KINDS', 'sevenStarRosettaNaturalMotion', 'VORTEX_SEQUENCE',
+  'navigation358', 'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sharedHeroAt', 'computeUniversalPage',
+] as const
+
+const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
+  rosettaComputesAll: 'compute', rosettaDecodesUrlPath: 'route', VORTEX_SEQUENCE: 'compute',
+  ROSETTA_RAY_HUBS: 'nav', navigation358: 'nav', sevenStarRosettaNaturalMotion: 'projection',
+  sharedHeroAt: 'projection', computeUniversalPage: 'route', quantumAppsRegistry: 'app',
+  quantumCliToolsCatalog: 'tool',
+}
+
+const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [
+  'APP_ROWS→shelve(app|projection)', 'QUANTUM_CLI_TOOL_ROWS(PR#11)→shelve(tool)',
+  'ROSETTA_RAY_VIEWS duplicate', 'PROJECTION_SEGMENT/FORMS→VORTEX', 'rosettaClaim/Owner(heaven/core)',
+  'rosettaCodec(learning)', 'HD post-W3', 'string/millennium(PR#12)',
+] as const
+
+/** Shelve any label onto a rosetta ray — the one registration primitive. */
+export function rosettaShelve(label: string, kind: RosettaCoreSurfaceKind = 'api'): RosettaCoreSurface {
+  const ray = rosettaRayOf(label)
+  const rayMeta = ROSETTA_RAYS[ray]!
+  return {
+    label, kind, ray, pageKind: ROSETTA_COMPUTATION_TYPES[ray]!, hue: rayMeta.hue,
+    glyph: rayMeta.glyph, domain: rayMeta.domain,
+    address: toUuid(`rosetta-core:${kind}:${label}:${ray}:${ROSETTA_COMPUTATION_TYPES[ray]}`),
+  }
+}
+
+/** Single quantum core API — resolve/shelve/byRay/resolveRoute/resolveProjection; surface self-enumerates. */
+export function rosettaCoreApi(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`rosettaCoreApi:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const surfaces = ROSETTA_CORE_API_LABELS.map((label) => rosettaShelve(label, ROSETTA_CORE_LABEL_KIND[label] ?? 'api'))
+    const resolve = (label: string, kind: RosettaCoreSurfaceKind = 'api') =>
+      surfaces.find((s) => s.label === label) ?? rosettaShelve(label, kind)
+    const resolveRoute = (route: string) => {
+      const all = rosettaComputesAll(route, at, matrix)
+      const surface = rosettaShelve(all.slug, 'route')
+      return { ...all, surface, address: surface.address }
+    }
+    const inventory = {
+      core: surfaces.map((s) => ({ label: s.label, kind: s.kind, ray: s.ray, address: s.address })),
+      parallel: ROSETTA_PARALLEL_REGISTRY_BACKLOG,
+      hubs: ROSETTA_RAY_HUBS.map((h) => ({ slug: h.slug, ray: h.ray, route: h.route, hue: h.hue })),
+    }
+    const facets = [
+      { facet: 'self-host — rosettaCoreApi in enumerated surface', on: surfaces.some((s) => s.label === 'rosettaCoreApi') },
+      { facet: 'label↔ray — surface.ray === rosettaRayOf(label)', on: surfaces.every((s) => s.ray === rosettaRayOf(s.label)) },
+      { facet: 'hubs index=ray from ROSETTA_RAYS + COMPUTATION_TYPES', on: ROSETTA_RAY_HUBS.every((h, i) => h.ray === i && h.pageKind === ROSETTA_COMPUTATION_TYPES[i]) },
+      { facet: 'ROSETTA_CORE_KINDS.length === ROSETTA_RAYS.length', on: ROSETTA_CORE_KINDS.length === ROSETTA_RAYS.length },
+      { facet: 'parallel strangler backlog named', on: inventory.parallel.length >= 4 },
+      { facet: 'resolve(rosettaComputesAll).kind === compute', on: resolve('rosettaComputesAll').kind === 'compute' },
+      { facet: 'resolveRoute(/en/) computes', on: resolveRoute('/en/').computed === true && isUuid(resolveRoute('/en/').sharedRoot) },
+      { facet: 'tool+app labels shelved', on: resolve('quantumCliToolsCatalog', 'tool').kind === 'tool' && resolve('quantumAppsRegistry', 'app').kind === 'app' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-core-api:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((e) => e.on), at, surfaces, inventory, hubs: ROSETTA_RAY_HUBS,
+      raysUsed: new Set(surfaces.map((s) => s.ray)).size, kinds: ROSETTA_CORE_KINDS,
+      resolve, shelve: rosettaShelve,
+      byRay: (ray: number) => surfaces.filter((s) => s.ray === ray),
+      resolveRoute,
+      resolveProjection: (label: string) => {
+        const surface = resolve(label, 'projection')
+        return { surface, phase: (surface.ray * 360) / ROSETTA_RAYS.length, hue: surface.hue, motion: sevenStarRosettaNaturalMotion(at) }
+      },
+      facets, root: merkleFold([...surfaces.map((s) => s.address), ...facets.map((e) => e.receipt)]),
+      statement: `rosettaCoreApi: ${surfaces.length} labels shelved by rosettaRayOf — self-host dispatch, no wet registry.`,
+      boundary: 'Derived from ROSETTA_RAYS · COMPUTATION_TYPES · rosettaRayOf. Parallel APP_ROWS/TOOL_ROWS/PR#11/#12 named in inventory. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Gate: rosetta enumerates its own API (kind×ray + self-host) — on: recomputes. */
+export function rosettaCoreApiSelfWires(at = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`rosettaCoreApiSelfWires:${at}`, matrix, () => {
+    const core = rosettaCoreApi(at, matrix)
+    const slots = ROSETTA_RAYS.map((_, ray) => ({
+      ray, kind: ROSETTA_CORE_KINDS[ray]!, pageKind: ROSETTA_COMPUTATION_TYPES[ray]!,
+      vortexDigit: VORTEX_SEQUENCE[ray % VORTEX_SEQUENCE.length]!,
+      receipt: toUuid(`rosetta-core-slot:${ray}:${at}`),
+    }))
+    const surfaceOk = slots.length === ROSETTA_RAYS.length && ROSETTA_CORE_KINDS.length === ROSETTA_RAYS.length
+      && slots.every((s) => s.vortexDigit > 0 && s.pageKind === ROSETTA_COMPUTATION_TYPES[s.ray])
+    const kinds: readonly RosettaCoreSurfaceKind[] = ['compute', 'tool', 'route', 'projection', 'nav', 'api', 'app']
+    const facets = [
+      { facet: 'rosettaCoreApi computes', on: core.computes },
+      { facet: 'kind×ray census from sealed tables', on: surfaceOk },
+      { facet: 'rosettaComputesItself holds', on: rosettaComputesItself(at, matrix).computed },
+      { facet: 'shelve preserves kind', on: kinds.every((k) => rosettaShelve(`probe-${k}`, k).kind === k) },
+      { facet: 'inventory names parallel backlog', on: core.inventory.parallel.length >= 4 },
+      { facet: 'VORTEX_SEQUENCE ≥ ray count', on: VORTEX_SEQUENCE.length >= ROSETTA_RAYS.length },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-core-self-wires:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((e) => e.on), at, core, slots, count: slots.length, facets,
+      root: merkleFold([core.root, ...slots.map((s) => s.receipt), ...facets.map((e) => e.receipt)]),
+      statement: `rosettaCoreApiSelfWires: ${core.surfaces.length} labels · ${slots.length} kind×ray slots — wire-all-there via the rosetta.`,
+      boundary: 'Structural codec closure. Strangler backlog in core.inventory. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Alias — kind×ray census lives inside rosettaCoreApiSelfWires.slots. */
+export const rosettaCoreApiSurface = rosettaCoreApiSelfWires
 
 /** The shared draw kernel's projection ids — every animation reduces to ONE of these views of the field. */
 export type QuantumProjection =
@@ -29,6 +151,12 @@ export type QuantumAppEntry = {
   readonly icon: string
   readonly computesGate: string
   readonly receipt: string
+  /** Rosetta ray — derived via rosettaShelve(id), never hand-assigned. */
+  readonly ray: number
+  /** A432-family hue from ROSETTA_RAYS[ray]. */
+  readonly hue: number
+  /** Content address from rosettaShelve. */
+  readonly address: string
   /** Home-page Vue component this app backs (animation apps only). */
   readonly homeComponent?: string
   /** Projection of the shared field the drawQuantumAppFrame kernel renders for this app. */
@@ -96,7 +224,9 @@ export type QuantumAppLaunchReceipt = {
   readonly boundary: string
 }
 
-const APP_ROWS: readonly Omit<QuantumAppEntry, 'receipt'>[] = [
+type QuantumAppRow = Omit<QuantumAppEntry, 'receipt' | 'ray' | 'hue' | 'address'>
+
+const APP_ROWS: readonly QuantumAppRow[] = [
   { id: 'astronomy', title: 'Astronomy', route: '/en/astronomy', barrel: 'src/astronomy', icon: '☉', computesGate: 'astronomy.computes' },
   { id: 'resonance', title: 'Resonance', route: '/en/resonance', barrel: 'src/thunder/resonance', icon: '〰', computesGate: 'resonance.computes' },
   { id: 'quantum-dynamics', title: 'Quantum dynamics', route: '/en/quantum/dynamics', barrel: 'src/quantum/dynamics', icon: 'Ψ', computesGate: 'quantum.dynamics.computes' },
@@ -117,7 +247,7 @@ const APP_ROWS: readonly Omit<QuantumAppEntry, 'receipt'>[] = [
  * field through the single drawQuantumAppFrame kernel. `homeComponent` is the Vue mount; `projection`
  * is the view of the matrix. No per-card math — the kernel + projection params (sequence-derived) cover all.
  */
-const ANIMATION_APP_ROWS: readonly Omit<QuantumAppEntry, 'receipt'>[] = [
+const ANIMATION_APP_ROWS: readonly QuantumAppRow[] = [
   { id: 'taiji', title: 'Yin · yang taiji', route: '/en/#yinyang', barrel: 'src/quantum/lake/spirit', icon: '☯', computesGate: 'yin.yang.complete', homeComponent: 'YinYang', projection: 'taiji' },
   { id: 'sacred-morph', title: 'Sacred geometry morph', route: '/en/#sacredgeometry', barrel: 'src/mountain/geometry', icon: '✺', computesGate: 'sacred.geometry.decoded', homeComponent: 'SacredGeometry', projection: 'sacred-morph' },
   { id: 'hologram', title: 'Hologram point cloud', route: '/en/#hologram', barrel: 'src/thunder/movie/glass', icon: '◉', computesGate: 'hologram.to.the.bit', homeComponent: 'Hologram', projection: 'hologram' },
@@ -130,19 +260,50 @@ const ANIMATION_APP_ROWS: readonly Omit<QuantumAppEntry, 'receipt'>[] = [
 
 export function quantumAppsRegistry(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumAppsRegistry:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const core = rosettaCoreApi(at, matrix)
     const rows = [...APP_ROWS, ...ANIMATION_APP_ROWS]
-    const apps: QuantumAppEntry[] = rows.map((row) => ({ ...row, receipt: toUuid(`quantum-app:${row.id}`) }))
+    const apps: QuantumAppEntry[] = rows.map((row) => {
+      const kind = row.projection ? 'projection' : 'app'
+      const shelved: RosettaCoreSurface = core.shelve(row.id, kind)
+      return {
+        ...row,
+        ray: shelved.ray,
+        hue: shelved.hue,
+        address: shelved.address,
+        receipt: shelved.address,
+      }
+    })
     const animationApps = apps.filter((app) => app.projection)
+    const rayAgrees = apps.every((app) => app.ray === rosettaRayOf(app.id))
     return {
-      registered: apps.length >= (5 * 2),
+      registered: apps.length >= (5 * 2) && rayAgrees && core.computes,
       count: apps.length,
       apps,
       animationApps,
-      root: merkleFold(apps.map((app) => app.receipt)),
-      statement: 'Quantum apps registry — route barrels plus every home animation as a field projection.',
-      boundary: 'Routes to sealed compute barrels and projection configs — NOT installable binaries.',
+      core,
+      root: merkleFold([core.root, ...apps.map((app) => app.receipt)]),
+      statement: 'Quantum apps registry — route barrels plus every home animation as a field projection; each id shelves through rosettaCoreApi.',
+      boundary: 'Routes to sealed compute barrels and projection configs — NOT installable binaries. Ray/hue/address from rosettaShelve, not a parallel app→ray map.',
     }
   })
+}
+
+/** Resolve an app (or any label) through the rosetta core API — strangler entry for tools/nav. */
+export function quantumAppResolve(label: string, matrix: MindMatrix = buildMatrix(), at = 0) {
+  const core = rosettaCoreApi(at, matrix)
+  const registry = quantumAppsRegistry(matrix, at)
+  const app = registry.apps.find((row) => row.id === label)
+  const surface = app
+    ? rosettaShelve(app.id, app.projection ? 'projection' : 'app')
+    : core.resolve(label, 'app')
+  return {
+    found: Boolean(app),
+    label,
+    app,
+    surface,
+    route: app?.route ?? core.resolveRoute(`/${label}`).route,
+    root: surface.address,
+  }
 }
 
 /** Resolve the quantum app backing a home-page Vue component (animation apps only). */
@@ -201,13 +362,18 @@ export function quantumAppLaunch(appId: string, at = 0, matrix: MindMatrix = bui
 export function quantumAppsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumAppsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumAppsRegistry(matrix, at)
+    const core = registry.core
     const launches = registry.apps.slice(0, 4).map((app) => quantumAppLaunch(app.id, at, matrix))
+    const probe = quantumAppResolve(registry.apps[0]!.id, matrix, at)
     const { computes, facets, root } = computesGate('quantum-apps-computes', [
       { facet: 'quantum.apps.registry sealed', on: registry.registered },
       { facet: 'every launch receipt at call', on: launches.every((launch) => launch.launched) },
+      { facet: 'rosettaCoreApi computes — apps dispatch through the core API', on: core.computes },
+      { facet: 'every app.ray === rosettaRayOf(id) — no wet ray map', on: registry.apps.every((app) => app.ray === rosettaRayOf(app.id)) },
+      { facet: 'quantumAppResolve finds first app via rosetta shelve', on: probe.found && probe.surface.ray === registry.apps[0]!.ray },
       { facet: 'NOT app store plugins', on: true },
     ])
-    return { computes, registry, launches, facets, root: merkleFold([registry.root, root]), statement: 'Quantum apps computes.', boundary: registry.boundary }
+    return { computes, registry, core, launches, facets, root: merkleFold([registry.root, core.root, root]), statement: 'Quantum apps computes — registry shelved through rosettaCoreApi.', boundary: registry.boundary }
   })
 }
 
