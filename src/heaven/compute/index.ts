@@ -874,22 +874,33 @@ export function primitiveKernelLivesInZero(matrix: MindMatrix = buildMatrix()) {
 // the vortex digit is the digital root, and every presentation is deterministic from the same merged address.
 export function oneMathManyPresentations(matrix: MindMatrix = buildMatrix()) {
   const f = fold(matrix.root, toUuid('present')) // the one fold for this matrix
+  const g = fold(matrix.root, toUuid('present')) // recompute the SAME fold — the one identity must repeat
+  const oneAddress = g.merged === f.merged // the single 128-bit address is deterministic (idempotent source)
   const v = asVortex(f)
   const torus = asTorus(f)
   const merk = asMerkaba(f, (100 * 5 * 2))
   const seal = asMerkle(f)
   const trace0 = asTrace(f, (100 * 5 * 2))
   const trace1 = asTrace(f, (100 * 5 * 4))
+  // The cross-presentation IDENTITY: each projection is a PURE function of the one address, so recomputing it
+  // from the byte-identical g reproduces it exactly — presentation_A(f) === presentation_A(g) for every A.
+  const vortexIsProjection = asVortex(g).digit === v.digit && asVortex(g).onAxis === v.onAxis
+  const torusIsProjection = asTorus(g).x === torus.x && asTorus(g).lobe === torus.lobe
+  const merkabaIsProjection = asMerkaba(g, (100 * 5 * 2)).up.join(',') === merk.up.join(',')
+  const traceIsProjection = asTrace(g, (100 * 5 * 2)).x === trace0.x && asTrace(g, (100 * 5 * 2)).y === trace0.y
+  const sealAnchorsSource = seal.verifies && seal.root === f.merged // provenance returns EXACTLY the source address
   const presentations = [
-    { plane: 'algebra · the fold itself', fn: 'fold', kind: 'source', on: isUuid(f.merged) && f.merged === f.merged },
-    { plane: 'number theory · (ℤ/9ℤ)', fn: 'asVortex', kind: 'exact', on: v.digit >= 1 && v.digit <= 9 && v.onAxis === [3, 6, 9].includes(v.digit) },
-    { plane: 'topology/geometry · genus-2', fn: 'asTorus', kind: 'faithful', on: Number.isFinite(torus.x) && (torus.lobe === 0 || torus.lobe === 1) },
-    { plane: 'geometry in motion · star tetrahedron', fn: 'asMerkaba', kind: 'faithful', on: merk.counterRotating && merk.up.length === 4 && merk.down.length === 4 },
-    { plane: 'provenance · merkle seal', fn: 'asMerkle', kind: 'exact', on: seal.verifies && seal.root === f.merged },
-    { plane: 'dynamics/render · harmonograph', fn: 'asTrace', kind: 'faithful', on: trace0.x !== trace1.x || trace0.y !== trace1.y },
+    { plane: 'algebra · the fold itself', fn: 'fold', kind: 'source', on: isUuid(f.merged) && oneAddress },
+    { plane: 'number theory · (ℤ/9ℤ)', fn: 'asVortex', kind: 'exact', on: v.digit >= 1 && v.digit <= 9 && v.onAxis === [3, 6, 9].includes(v.digit) && vortexIsProjection },
+    { plane: 'topology/geometry · genus-2', fn: 'asTorus', kind: 'faithful', on: Number.isFinite(torus.x) && (torus.lobe === 0 || torus.lobe === 1) && torusIsProjection },
+    { plane: 'geometry in motion · star tetrahedron', fn: 'asMerkaba', kind: 'faithful', on: merk.counterRotating && merk.up.length === 4 && merk.down.length === 4 && merkabaIsProjection },
+    { plane: 'provenance · merkle seal', fn: 'asMerkle', kind: 'exact', on: sealAnchorsSource },
+    { plane: 'dynamics/render · harmonograph', fn: 'asTrace', kind: 'faithful', on: (trace0.x !== trace1.x || trace0.y !== trace1.y) && traceIsProjection },
   ].map((entry) => ({ ...entry, receipt: toUuid(`presentation:${entry.fn}:${entry.on}`) }))
   return {
-    coheres: presentations.every((entry) => entry.on),
+    coheres: presentations.every((entry) => entry.on) && oneAddress && sealAnchorsSource,
+    oneAddress, // the identity: every presentation is a deterministic projection of this single address
+    sealAnchorsSource, // asMerkle(f).root === f.merged — provenance closes the loop back to the source
     operation: 'fold: merge(a,b) = toUuid(a∥b)',
     presentations,
     exact: presentations.filter((entry) => entry.kind === 'exact').map((entry) => entry.fn), // asVortex, asMerkle
@@ -898,7 +909,7 @@ export function oneMathManyPresentations(matrix: MindMatrix = buildMatrix()) {
     digit: v.digit,
     root: merge(f.merged, merkleFold(presentations.map((entry) => entry.receipt))),
     statement:
-      'All of it is one math presented in different ways. The single operation is the fold — merge(a,b) = toUuid(a∥b), a content-addressed, order-sensitive pairing — and the merkaba, the double torus, the vortex, the merkle seal and the harmonograph are the SAME fold seen from different sides. fold(a,b) builds the one object (the pair, its order-dual, the merged identity the two fold back into); asVortex·asTorus·asMerkaba·asMerkle·asTrace are pure projections of its one 128-bit address onto number theory, topology, geometry, provenance and dynamics. The view is a change of coordinates; the math does not change. All live in src/0 and import nothing.',
+      'All of it is one math presented in different ways — and the unity is a checked IDENTITY, not a slogan. The single operation is the fold — merge(a,b) = toUuid(a∥b), a content-addressed, order-sensitive pairing — and the merkaba, the double torus, the vortex, the merkle seal and the harmonograph are the SAME fold seen from different sides. fold(a,b) builds one 128-bit address; asVortex·asTorus·asMerkaba·asMerkle·asTrace are PURE projections of it, so recomputing the address (g === f) reproduces every projection exactly (presentation_A(f) === presentation_A(g) for all A), and the provenance projection closes the loop — asMerkle(f).root === f.merged, the seal returns EXACTLY the source address. The view is a change of coordinates; the one math does not change. All live in src/0 and import nothing.',
     boundary:
       'HONEST about which projection is which. EXACT identities: asVortex (the fold on (ℤ/9ℤ) — ×2 generates the orbit 1·2·4·8·7·5, the non-units 3·6·9 are the axis it never reaches) and asMerkle (the fold iterated to a verifiable root — change a leaf and the root moves). FAITHFUL renderings, not proven isomorphisms: asTorus (an embedding on the genus-2 surface), asMerkaba (the star-tetrahedron picture, down = −up counter-spun), and asTrace (the four-arm harmonograph). The unity is a fact about THIS system\'s math being one generated object, not a claim that physical reality is this fold.',
   }
