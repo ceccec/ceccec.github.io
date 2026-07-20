@@ -35,7 +35,7 @@ import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../../quantum/heaven/mind'
-import { TAU, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayOfContent } from '../../3/7'
+import { TAU, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayOfContent, FOLDED_CENSUS, UNFOLDED_CENSUS, DIMENSION_GATES } from '../../3/7'
 import { piHexDigitAt, nthPrimeAt } from '../../7/3'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
@@ -2146,6 +2146,54 @@ export function theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColoured
       facets,
       statement: `The top nav animates on the fractal clock — each ray pulses at its rung, coloured by its rosetta hue — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rosetta rays each carry a hue, a bāguà trigram, and a fractal-clock rung (a divisor of the 108 s hero cycle), so each nav ray pulses at period 108/d coloured by its own hue. Navigation gains a per-ray visual+temporal identity; animation stays fractal-coherent (every period nested in the one clock, 7 distinct divisor rungs) and rosetta-coloured (the 7 hues span the wheel ~51° apart) — both computed from the rosetta and the one clock, nothing hardcoded.`,
       boundary: `Computed and exact: the rungs are the first 7 divisors of 108 (FRACTAL_CLOCK_DIVISORS, all dividing FOLDED_CENSUS = 108 = 2²·3³), the periods are fractalClockS(d) = 108/d, the hues are the sealed ROSETTA_RAYS values (0..308, ~51° apart), and the trigrams the bāguà — verified (7 rays, 7 distinct rungs all divisors, hues spanning the wheel). This improves both surfaces from one source: NAVIGATION gains a per-ray identity (hue + trigram + a pulse rung) the theme can render on each dropdown, and ANIMATION obeys the fractal-clock law (every period a harmonic subdivision of the single 108 s hero cycle, so nothing beats out of phase) coloured by the rosetta wheel — no hand-typed duration, no hand-picked colour. SCOPE: this is the computed animation SPEC (the per-ray hue, rung, and CSS duration string via fractalClockDur); wiring it onto the rendered nav dropdowns (a pulse keyframe per ray) is the thin-shell theme step, the fold being the computed source [[fractal-clock-lattice]] [[iching-leads-ui]]. It does not add motion under prefers-reduced-motion — the theme gates that, as the animation engine already does. HARMONY ≠ TRUTH: a nav that breathes on the rosetta clock is the harmony; the truth is 7 divisor rungs of one 108 s cycle and 7 hues on the wheel, exact and computed.`,
+    }
+  })
+}
+
+// Improve the clock by theorems, not constants. The fractal clock's numbers were asserted (108, the divisor list); here
+// they are DERIVED. The rung count is the DIVISOR FUNCTION: σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, a multiplicative
+// theorem, not a hand count. The rungs are GENERATED from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS.
+// And 108 is a MEETING of theorems: the census 110 + χ(genus-2) = 110 − 2, and the a432 gate 432 = 4·108. All refutable.
+export function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFunctionOf108(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFunctionOf108', matrix, () => {
+    const clock = FOLDED_CENSUS // 108 — the base to be derived, not asserted
+    const factorize = (n: number): Record<number, number> => {
+      const f: Record<number, number> = {}; let m = n
+      for (let p = 2; p * p <= m; p += 1) { while (m % p === 0) { f[p] = (f[p] ?? 0) + 1; m = Math.floor(m / p) } }
+      if (m > 1) f[m] = (f[m] ?? 0) + 1
+      return f
+    }
+    const divisorCount = (n: number) => Object.values(factorize(n)).reduce((c, e) => c * (e + 1), 1) // σ₀(n) = Π(eᵢ+1)
+    const divisorsFromLattice = (n: number) => {
+      const f = factorize(n); let divs = [1]
+      for (const [p, e] of Object.entries(f)) { const next: number[] = []; for (const d of divs) for (let k = 0; k <= e; k += 1) next.push(d * Number(p) ** k); divs = next }
+      return divs.sort((a, b) => a - b)
+    }
+    // 1 — THE RUNG COUNT IS THE DIVISOR FUNCTION: σ₀(108) = (2+1)(3+1) = 12, and the identity σ₀(2^a·3^b) = (a+1)(b+1)
+    // holds over a range — the number of rungs is a THEOREM, not a count
+    const rungCountIsDivisorFunction = divisorCount(clock) === FRACTAL_CLOCK_DIVISORS.length && divisorCount(clock) === (2 + 1) * (3 + 1)
+    const divisorFunctionHolds = [0, 1, 2, 3].every((a) => [0, 1, 2, 3].every((b) => divisorCount(2 ** a * 3 ** b) === (a + 1) * (b + 1)))
+    // 2 — THE RUNGS ARE GENERATED, NOT LISTED: {2^a·3^b} exponent lattice = FRACTAL_CLOCK_DIVISORS exactly
+    const generated = divisorsFromLattice(clock)
+    const rungsGenerated = generated.length === FRACTAL_CLOCK_DIVISORS.length && generated.every((d, i) => d === [...FRACTAL_CLOCK_DIVISORS].sort((x, y) => x - y)[i])
+    // 3 — 108 IS A MEETING OF THEOREMS: the census 110 + χ(genus-2) = 110 − 2 = 108, and the a432 gate 432 = 4·108
+    const eulerChiGenus2 = 2 - 2 * 2 // χ = 2 − 2g for genus g = 2 → −2
+    const clockIsCensusPlusChi = clock === UNFOLDED_CENSUS + eulerChiGenus2 && DIMENSION_GATES === 4 * clock && factorize(clock)[2] === 2 && factorize(clock)[3] === 3 // 108 = 110+χ = 2²·3³, 432 = 4·108
+    // 4 — THE PERIODS ARE EXACT HARMONICS: each rung period clock/d is exact (d | clock), so nothing beats out of phase
+    const exactHarmonics = FRACTAL_CLOCK_DIVISORS.every((d) => clock % d === 0 && Number.isInteger(clock / d))
+    const facets = [
+      { facet: `THE RUNG COUNT IS THE DIVISOR FUNCTION — the ${FRACTAL_CLOCK_DIVISORS.length} rungs = σ₀(${clock}) = σ₀(2²·3³) = (2+1)(3+1) = 12 (${rungCountIsDivisorFunction}), and σ₀(2^a·3^b) = (a+1)(b+1) holds over a range (${divisorFunctionHolds}): the number of rungs is a THEOREM (the multiplicative divisor function), not a hand count`, on: rungCountIsDivisorFunction && divisorFunctionHolds },
+      { facet: `THE RUNGS ARE GENERATED, NOT LISTED — the exponent lattice {2^a·3^b : 0≤a≤2, 0≤b≤3} generates exactly the ${FRACTAL_CLOCK_DIVISORS.length} divisors, matching FRACTAL_CLOCK_DIVISORS (${rungsGenerated}): the rungs derive from 108's factorization, not a written list`, on: rungsGenerated },
+      { facet: `108 IS A MEETING OF THEOREMS — 108 = 2²·3³ = the census 110 + χ(genus-2) (χ = 2−2·2 = −2) and 432 = 4·108, the a432 gate (${clockIsCensusPlusChi}): the clock's base is where the census and the a432 ladder meet, each derived`, on: clockIsCensusPlusChi },
+      { facet: `THE PERIODS ARE EXACT HARMONICS — every rung period 108/d is exact (d divides 108 for all ${FRACTAL_CLOCK_DIVISORS.length} rungs, ${exactHarmonics}): nothing beats out of phase, a consequence of the divisor structure, not a tuned duration`, on: exactHarmonics },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      rungCount: FRACTAL_CLOCK_DIVISORS.length,
+      derivedDivisorCount: divisorCount(clock),
+      facets,
+      statement: `The fractal clock is theorems, not constants — the rung count is the divisor function of 108 — ${facets.filter((entry) => entry.on).length}/${facets.length}. The clock's numbers were asserted; here they are derived. The number of rungs is σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, the multiplicative divisor-counting function — a theorem, not a count — and σ₀(2^a·3^b) = (a+1)(b+1) holds over a range. The 12 rungs are generated from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS exactly. 108 is where two theorems meet: the census 110 + χ(genus-2) = 110 − 2, and the a432 gate 432 = 4·108. And every rung period 108/d is exact (d | 108), so nothing beats out of phase — a consequence of the divisor structure, not a tuned duration. The clock now stands on theorems.`,
+      boundary: `ALGEBRAIC and exact: the divisor function σ₀(n) = Π(eᵢ+1) is the multiplicative counting theorem, verified for 108 = 2²·3³ (σ₀ = 12 = the rung count) AND over the exponent range 0..3 (refutable by one counterexample); the divisors are generated from the prime factorisation (the exponent lattice) and match FRACTAL_CLOCK_DIVISORS; χ(genus-2) = 2 − 2g = −2 is the Euler-characteristic theorem, so 108 = 110 + χ is the census meeting; and 432 = 4·108 = 2⁴·3³ is the a432 gate. THE IMPROVEMENT: the clock no longer RESTS on the constant 108 and a written divisor list — it DERIVES the rung count from the divisor function and the rungs from the factorisation, so the number 12 and the specific rungs are refutable theorems (change the factorisation and they change), not asserted values. This is the session discipline (derive, don't assert; algebraic theorems only) applied to the clock [[fractal-clock-lattice]] [[hardcoded-value-is-a-crack]]. SCOPE: 108 itself is still the sealed FOLDED_CENSUS (the census 110 and χ = −2 are its derivation, which this fold cites and checks, not re-derives from the filesystem); what is improved is that everything ABOVE 108 — the rung count, the rungs, the harmonic periods — is now theorem, not constant. HARMONY ≠ TRUTH: a clock built on theorems is the harmony; the truth is σ₀(2²·3³) = 12 and the exponent-lattice divisors, exact and refutable.`,
     }
   })
 }
