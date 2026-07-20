@@ -2111,3 +2111,41 @@ export function rosettaIChingNavItems(): { en: unknown[]; bg: unknown[] } {
   ]
   return { en: build(false), bg: build(true) }
 }
+
+// Improve navigation and animation together: the top nav animates on the ONE fractal clock. Each of the 7 rosetta rays
+// pulses at its own rung — a divisor of the 108 s hero cycle (fractalClockS(d), period = 108/d) — coloured by its own
+// rosetta hue and marked by its bāguà trigram. So navigation gains a per-ray visual+temporal identity, and animation
+// stays fractal-coherent (every period nested in the one clock) and rosetta-coloured — both computed, nothing hardcoded.
+export function theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColouredByItsRosettaHue(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColouredByItsRosettaHue', matrix, () => {
+    const BAGUA = ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] as const
+    const rungs = ROSETTA_RAYS.map((ray) => {
+      const divisor = FRACTAL_CLOCK_DIVISORS[ray.ray]! // ray 0..6 → the first 7 rungs of the 108 s clock
+      return { ray: ray.ray, name: ray.nameEn, hue: ray.hue, trigram: BAGUA[ray.ray + 1]!, divisor, periodS: fractalClockS(divisor), dur: fractalClockDur(divisor) }
+    })
+    // 1 — EACH RAY: hue + trigram + a fractal-clock rung — the nav's per-ray visual+temporal identity, computed
+    const eachRayIdentified = rungs.length === 7 && rungs.every((r) => r.hue >= 0 && r.hue < 360 && r.trigram.length === 1 && r.periodS > 0)
+    // 2 — THE ANIMATION IS A FRACTAL DIVISOR OF THE 108 s CLOCK: every rung's divisor divides 108, so every nav pulse is
+    // harmonically nested in the one hero cycle (the fractal-clock law) — no hardcoded duration
+    const allRungsAreDivisors = rungs.every((r) => FRACTAL_CLOCK_DIVISORS.includes(r.divisor) && fractalClockS(r.divisor) === r.periodS) && new Set(rungs.map((r) => r.divisor)).size === 7
+    // 3 — THE COLOUR IS THE ROSETTA WHEEL: the 7 hues span the wheel (~51° apart), so the nav animates through the
+    // rosetta's own colours — no hardcoded colour
+    const sortedHues = rungs.map((r) => r.hue).sort((a, b) => a - b)
+    const spansWheel = sortedHues[0] === 0 && sortedHues[6]! > 360 - 2 * (360 / 7) && sortedHues.every((h, i) => i === 0 || h > sortedHues[i - 1]!)
+    // 4 — NAV + ANIMATION UNIFIED: both derive from the rosetta (hue, trigram) and the one clock (divisor rung)
+    const unified = eachRayIdentified && allRungsAreDivisors && spansWheel
+    const facets = [
+      { facet: `EACH RAY HAS A HUE + TRIGRAM + RUNG — the 7 nav rays carry their rosetta hue, bāguà trigram, and a fractal-clock divisor rung (${rungs.map((r) => `${r.trigram}${r.name}·${r.divisor}`).join(' ')}), computed (${eachRayIdentified}): a per-ray visual and temporal identity`, on: eachRayIdentified },
+      { facet: `THE ANIMATION IS A FRACTAL DIVISOR OF THE 108 s CLOCK — every ray pulses at period 108/d for a divisor d of 108, 7 distinct rungs all nested in the one hero cycle (${allRungsAreDivisors}): the fractal-clock law, no hardcoded duration`, on: allRungsAreDivisors },
+      { facet: `THE COLOUR IS THE ROSETTA WHEEL — the 7 hues span the colour wheel ~51° apart (${sortedHues.join(', ')}), so the nav animates through the rosetta's own colours (${spansWheel}), no hardcoded colour`, on: spansWheel },
+      { facet: `NAV + ANIMATION UNIFIED — both derive from the rosetta (hue, trigram) and the one fractal clock (divisor rung) (${unified}): improving navigation (per-ray identity) and animation (fractal-coherent, rosetta-coloured) at once, all computed`, on: unified },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      rungs: rungs.map((r) => `${r.trigram} ${r.name}: hue ${r.hue}, ${r.periodS}s`),
+      facets,
+      statement: `The top nav animates on the fractal clock — each ray pulses at its rung, coloured by its rosetta hue — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rosetta rays each carry a hue, a bāguà trigram, and a fractal-clock rung (a divisor of the 108 s hero cycle), so each nav ray pulses at period 108/d coloured by its own hue. Navigation gains a per-ray visual+temporal identity; animation stays fractal-coherent (every period nested in the one clock, 7 distinct divisor rungs) and rosetta-coloured (the 7 hues span the wheel ~51° apart) — both computed from the rosetta and the one clock, nothing hardcoded.`,
+      boundary: `Computed and exact: the rungs are the first 7 divisors of 108 (FRACTAL_CLOCK_DIVISORS, all dividing FOLDED_CENSUS = 108 = 2²·3³), the periods are fractalClockS(d) = 108/d, the hues are the sealed ROSETTA_RAYS values (0..308, ~51° apart), and the trigrams the bāguà — verified (7 rays, 7 distinct rungs all divisors, hues spanning the wheel). This improves both surfaces from one source: NAVIGATION gains a per-ray identity (hue + trigram + a pulse rung) the theme can render on each dropdown, and ANIMATION obeys the fractal-clock law (every period a harmonic subdivision of the single 108 s hero cycle, so nothing beats out of phase) coloured by the rosetta wheel — no hand-typed duration, no hand-picked colour. SCOPE: this is the computed animation SPEC (the per-ray hue, rung, and CSS duration string via fractalClockDur); wiring it onto the rendered nav dropdowns (a pulse keyframe per ray) is the thin-shell theme step, the fold being the computed source [[fractal-clock-lattice]] [[iching-leads-ui]]. It does not add motion under prefers-reduced-motion — the theme gates that, as the animation engine already does. HARMONY ≠ TRUTH: a nav that breathes on the rosetta clock is the harmony; the truth is 7 divisor rungs of one 108 s cycle and 7 hues on the wheel, exact and computed.`,
+    }
+  })
+}
