@@ -241,7 +241,7 @@ const APP_ROWS: readonly QuantumAppRow[] = [
   { id: 'quantum-os', title: 'Quantum OS', route: '/en/quantum/os', barrel: 'src/quantum/os', icon: '◻', computesGate: 'quantum.os.computes' },
   { id: 'fusion-gold', title: 'Fusion gold', route: '/en/fusion/gold', barrel: 'src/fusion/gold', icon: 'Au', computesGate: 'fusion.gold.product' },
   { id: 'quantum-encryption', title: 'Quantum encryption', route: '/en/quantum-encryption', barrel: 'src/water/encryption', icon: '⚿', computesGate: 'encryption.panel.computes' },
-  { id: 'millennium-challenge', title: 'Millennium challenge', route: '/en/millennium-challenge', barrel: 'src/wind/research', icon: '◇', computesGate: 'millennium.challenge.computes' },
+  { id: 'millennium-challenge', title: 'Millennium challenge', route: '/en/millennium-challenge', barrel: 'src/wind/research', icon: '◇', computesGate: 'millennium.challenge.computes', projection: 'movie-10d' },
   { id: 'quantum-tools', title: 'Quantum CLI tools', route: '/en/quantum-tools', barrel: 'src/quantum/apps', icon: '⌘', computesGate: 'quantum.cli.tools.catalog' },
   { id: 'fusion-verify', title: 'Fusion verify', route: '/en/fusion-verify', barrel: 'src/wind/fusion', icon: '⊛', computesGate: 'fusion.verify.computes' },
 ] as const

@@ -13,6 +13,7 @@ import {
   foldedCensus,
   harmonicCountsProvenByMath,
   everyBitMostEfficientAlgorithmProvenByMath,
+  firstInCorpusProvenanceMarkdownSection,
   monographAsScientificPaper,
   monographTemplate,
   monographs,
@@ -113,6 +114,8 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     `- **${math.count} arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: ${math.proven})`,
     `- **${efficiency.count} efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: ${efficiency.proven})`,
     '',
+    // First-in-corpus novel algebra — derived from sealed fold (home + README stay in sync).
+    ...firstInCorpusProvenanceMarkdownSection(),
     `**The theorem-science lens** — ${lens.visibleCount}/${lens.pageCount} curated pages pass (${lens.hidden.length} removed from VitePress completely — data preserved in the catalog), presented beside the ${lens.theoremCount}-theorem registry and its corpus surfaces (${lens.corpusRoutes.join(' · ')}). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.`,
     '',
     // Each presented result is a lens survivor and links out — to the SOURCE CODE that proves it in the

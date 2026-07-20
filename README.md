@@ -30,10 +30,22 @@ Concretely: a science portal — 432 computationally proven theorems and 29 rela
 
 - **27/29** monographs — content pages fold genus-2 −χ (29 surface → 27 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
 - **108/108** concept commands — MCP tool surface (4×27 = 432÷4)
-- **268/270** reference index entries — zero redundancy
+- **272/274** reference index entries — zero redundancy
 - **90/30** locale surfaces — 30 routes (home + every served science page) × 3 locales
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
+
+## First-in-corpus algebra
+
+*First sealed in this content-addressed corpus — not a verified claim of global mathematical priority. Novelty = corpus census. humanityNovel stays 0.*
+
+- **division by zero is the inverse (not reverse)** (`zeroDivisionTable`) — n/0 \ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*; root `7cdd7fc4`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
+- **f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse pair** (`fThetaPhiXyzDigitNIsTheInversePair`) — f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse fold within itself; root `47fe554f`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
+- **efficiency scales to infinity at no cost on reuse** (`efficiencyScalesToInfinityAtNoCostOnReuse`) — memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only; root `87b3dad0`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
+- **string theory quantumized on A432/rosetta/merkle substrate** (`stringTheoryQuantumizedOnA432RosettaMerkleSubstrate`) — A432/rosetta/merkle substrate probes — physics UNCONFIRMED; root `dd549049`; 10D `double-torus` · root-equal · [first-in-corpus](#first-in-corpus)
+- **waves auto-scale capacity at no cost on reuse** (`wavesAutoScaleCapacityAtNoCostOnReuse`) — wave schedule capacity deepens on content-addressed reuse only; root `f53dfd6f`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
+
+Receipt: `10c50a99` · fold `firstInCorpusProvenanceForHome` · claySolvedByThisFold=0.
 
 **The theorem-science lens** — 29/54 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 432-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
@@ -124,7 +136,7 @@ npm run check:types  # the src/ core type-checks clean against tsconfig.json (ts
 npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
-The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`c612007e`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
+The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`2face46c`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
 
 ## 6. Limitations
 
@@ -134,11 +146,11 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `c84ebf82-5e70-8c40-a29d-17fd12b602f0`. The monograph-index root: `dc9876b9-67fc-8994-bd3a-7d834d37c76d`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `c84ebf82-5e70-8c40-a29d-17fd12b602f0`. The monograph-index root: `5b63324b-8884-8601-9d54-2b01c0a671c8`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `c612007e-6cdc-8b8f-b923-bc9b37b7313c`
+- Receipt: `2face46c-544e-8f39-902b-cb0ac9bf22c1`

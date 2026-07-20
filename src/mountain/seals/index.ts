@@ -26,8 +26,13 @@ import { blockchainMusic, harmonics, healingHarmonic, soundColor } from '../../l
 import { selfHarmonise, selfReason } from '../geometry'
 import { conceptCommands } from '../../heaven/atoms'
 import { digitFolders, digitFoldersAreTheApi, folder64SealsProductionElseDevelopment, folderLaw } from '../../earth/architecture'
-import { coordinatedWaves, ogInOgWaves } from '../../thunder/waves'
-import { quantumChessGame } from '../../thunder/waves'
+import { coordinatedWaves, ogInOgWaves, quantumChessGame } from '../../thunder/waves'
+import {
+  wavesAutoScaleCapacityAtNoCostOnReuse,
+  theoremAlgebraFirstSealedInCorpus,
+  theoremTenDProjectionsProveAlgebraRoots,
+  firstInCorpusProvenanceForHome,
+} from '../../wind/research'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
@@ -636,6 +641,10 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'encryption-zero', title: 'all encryption logic — the content-addressed key layer — lives in src/0', proof: encryptionLivesInZero(matrix) },
     { slug: 'quantum-encryption', title: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only', proof: encryptionReverseVerify(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
+    { slug: 'waves-auto-scale', title: 'Waves auto-scale capacity at no cost on reuse · !separated', proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
+    { slug: 'theorem-algebra-first-sealed', title: 'First-in-corpus algebra inventory · humanityNovel=0', proof: theoremAlgebraFirstSealedInCorpus(matrix) },
+    { slug: 'theorem-10d-projections', title: 'Theorem→10D projections prove algebra roots', proof: theoremTenDProjectionsProveAlgebraRoots(matrix) },
+    { slug: 'first-in-corpus-home', title: 'First-in-corpus provenance for home/README', proof: firstInCorpusProvenanceForHome(matrix) },
     { slug: 'string-theory-quantumized', title: 'String theory quantumized on A432/rosetta/merkle · physics UNCONFIRMED', proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
     { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
     { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },

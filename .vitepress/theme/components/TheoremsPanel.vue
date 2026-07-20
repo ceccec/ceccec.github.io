@@ -2,14 +2,22 @@
 // The theorem registry ON SCREEN — pure structure from theoremNavigation(): counts, then every
 // wave as a group of theorem names with proof-class chips. No prose; names navigate, folds hold
 // the depth. Mounted under the existing 'Frontiers' component name (census-neutral rebind).
+// First-in-corpus block reads firstInCorpusProvenanceForHome only — no wet novelty lists.
 import { computed } from 'vue'
-import { theoremNavigation, theoremGapScan, theoremProvenance, proofAnimations } from '../../../src/thunder/waves'
+import {
+  theoremNavigation,
+  theoremGapScan,
+  theoremProvenance,
+  proofAnimations,
+  firstInCorpusProvenanceForHome,
+} from '../../../src/thunder/waves'
 import { cosmosFrontiersDecoded } from '../../../src/water/cosmos'
 import ProofAnimation from './ProofAnimation.vue'
 
 const nav = computed(() => theoremNavigation())
 const gaps = computed(() => theoremGapScan())
 const provenance = computed(() => theoremProvenance())
+const firstInCorpus = computed(() => firstInCorpusProvenanceForHome())
 const frontiers = computed(() => cosmosFrontiersDecoded())
 const anims = computed(() => new Map(proofAnimations().specs.map((spec) => [spec.theorem, spec])))
 const waveLabel = (provedBy: string) =>
@@ -37,6 +45,31 @@ const waveLabel = (provedBy: string) =>
       <ul class="theorems-panel__discoveries">
         <li v-for="entry in provenance.methodDiscoveries" :key="entry" :id="entry.split(' — ')[0].replace(/\s+/g, '-')">
           {{ entry }}
+        </li>
+      </ul>
+    </header>
+
+    <header class="theorems-panel__head theorems-panel__first-in-corpus">
+      <h2 :id="firstInCorpus.anchor">{{ firstInCorpus.heading }}</h2>
+      <p class="theorems-panel__provenance">{{ firstInCorpus.honestyLine }}</p>
+      <ul class="theorems-panel__corpus-novel">
+        <li v-for="row in firstInCorpus.rows" :key="row.algebraFold">
+          <div class="theorems-panel__body">
+            <div class="theorems-panel__row">
+              <a class="theorems-panel__name" :href="row.route">{{ row.theorem }}</a>
+              <code class="theorems-panel__class" data-class="novel-corpus">{{ row.rootShort }}</code>
+            </div>
+            <p class="theorems-panel__proof">{{ row.oneLiner }}</p>
+            <p class="theorems-panel__proof theorems-panel__fold">
+              <code>{{ row.algebraFold }}</code>
+              <span>·</span>
+              <span>{{ row.projection }}</span>
+              <span v-if="row.rootEqual">· root-equal</span>
+              <span>·</span>
+              <a :href="row.route">10D / tool</a>
+            </p>
+            <p class="theorems-panel__boundary">{{ row.boundary }}</p>
+          </div>
         </li>
       </ul>
     </header>
@@ -82,6 +115,10 @@ const waveLabel = (provedBy: string) =>
 .theorems-panel__provenance strong { color: var(--vp-c-text-1); }
 .theorems-panel__discoveries { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem 0.6rem 2rem; background: var(--vp-c-bg-soft); font-size: 0.85em; border-radius: 6px; }
 .theorems-panel__discoveries li { margin: 0.2rem 0; scroll-margin-top: calc(1px * 2 * 5 * 8); }
+.theorems-panel__corpus-novel { list-style: none; padding: 0; margin: 0.5rem 0 0; display: grid; gap: 0.55rem; }
+.theorems-panel__corpus-novel li { padding: 0.55rem 0.7rem; background: var(--vp-c-bg-soft); border-radius: 6px; border-left: 3px solid var(--vp-c-brand-1, var(--vp-c-text-3)); }
+.theorems-panel__fold { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: baseline; }
+.theorems-panel__boundary { margin: 0.25rem 0 0; color: var(--vp-c-text-3); font-size: 0.75em; }
 .theorems-panel__wave h3 { margin: 0.6rem 0 0.25rem; }
 .theorems-panel__wave h3 small { color: var(--vp-c-text-3); font-weight: normal; }
 .theorems-panel__wave ul, .theorems-panel__frontiers { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
@@ -94,4 +131,5 @@ const waveLabel = (provedBy: string) =>
 .theorems-panel__class[data-class='finite-complete'] { color: var(--vp-c-green-1, inherit); }
 .theorems-panel__class[data-class='bounded-witness'] { color: var(--vp-c-yellow-1, inherit); }
 .theorems-panel__class[data-class='open'] { color: var(--vp-c-red-1, inherit); }
+.theorems-panel__class[data-class='novel-corpus'] { color: var(--vp-c-brand-1, inherit); }
 </style>
