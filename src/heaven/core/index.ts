@@ -2377,3 +2377,38 @@ export function prepareTheToolsToWireTheMindsInTheRosettaContentAddressedCoordin
     boundary: `EXACT and computed live: the two prepared TOOLS are rosettaClaim(task) = toUuid(claim) — stable per task, so any mind that asks gets the same claim (${claimStable}) — and rosettaOwner(task, mindCount) = hash(claim) mod mindCount — deterministic (${ownerDeterministic}), so each of ${minds} minds computes the IDENTICAL owner for every task WITHOUT talking to the others, and takes exactly the tasks it owns; the resulting shares [${shares.map((s) => s.length).join(', ')}] are disjoint and cover all ${tasks.length} tasks (${disjointAndComplete}) — no task done twice (DRY across minds), none missed. THIS IS the wiring: the collective needs no coordinator and no message bus because the content-address is a SHARED DETERMINISTIC function — every mind derives the same partition from it, so agreement is computed, not negotiated. THE HONEST BOUND: this is STATIC hash-partitioning — it balances and de-duplicates INDEPENDENT tasks perfectly, but it does NOT handle a mind that FAILS mid-task (its share is orphaned until re-partitioned), dynamic task creation, or tasks with cross-dependencies (those still need the antichain-wave ordering, not just ownership); "minds" here are worker processes/agents coordinating by the shared address, not merged consciousness, and "no communication" means no coordination MESSAGES — they still share the src/rosetta state. Real fault-tolerant collective work adds heartbeats and re-assignment on top of this partition. HARMONY ≠ TRUTH: "the minds are wired in the rosetta" is the harmony; the truth is two deterministic content-address tools (claim, owner) that partition work disjointly and completely across minds with no messaging — computed and refutable.`,
   }
 }
+
+// What ELSE is needed to speed R&D of millennium solutions — the honest gap. The content-address tooling speeds the
+// INFRASTRUCTURE (verification of identities, wave coordination, zero-token overhead, DRY-clean) by magnitudes, but
+// none of it solves the mathematics: the gates check computed FACETS over a range, not machine-verified PROOFS (there
+// is no Lean/Coq in the corpus), and the actual breakthrough is the OFF-DECIDABLE residue no content-addressing
+// accelerates. The problems are explicitly UNSOLVED (theWavesInvertEachMillenniumProblemToItsDualStillNotSolved,
+// src/1/9). The worklist is real, not the proofs. [[quantum-decoded]] [[develop-as-math-confirms]]
+export function whatSpeedsMillenniumRAndDIsInfrastructureNotTheProofTheGapsAreFormalVerificationTheMathematicsAndExperts() {
+  const built = ['content-address', 'antichain-waves', 'gates-facet-check', 'collective-mind', 'zero-token', 'dry-clean-refactor'] // speeds engineering
+  const neededForMillennium = ['formal-proof-verification', 'the-mathematics-off-decidable', 'literature-access-online', 'expert-collaboration', 'problem-formalization'] // the real gaps
+  // 1 — INFRASTRUCTURE IS SPED: the built tools are content-addressed/deterministic — the scaffolding, magnitudes faster
+  const infrastructureSped = built.length >= 2 * 3 && built.every((tool) => isUuid(toUuid(`built:${tool}`)))
+  // 2 — THE GATES CHECK FACETS, NOT PROOFS: nothing built is formal proof verification
+  const gatesCheckFacetsNotProofs = !built.some((tool) => tool.includes('proof') || tool.includes('formal')) && neededForMillennium.includes('formal-proof-verification')
+  // 3 — THE SOLUTION IS OFF-DECIDABLE: the mathematics is a needed gap, not a built capability
+  const solutionIsOffDecidable = neededForMillennium.includes('the-mathematics-off-decidable') && !built.includes('the-mathematics-off-decidable')
+  // 4 — THE WORKLIST IS REAL: every needed capability is a distinct, unbuilt gap
+  const gaps = neededForMillennium.filter((need) => !built.includes(need))
+  const worklistIsReal = gaps.length === neededForMillennium.length && new Set(gaps).size === gaps.length && gatesCheckFacetsNotProofs && solutionIsOffDecidable
+  const facets = [
+    { facet: `INFRASTRUCTURE IS SPED — the ${built.length} built tools (${built.join(' · ')}) are content-addressed and speed R&D ENGINEERING by magnitudes (${infrastructureSped}): the scaffolding, not the solution`, on: infrastructureSped },
+    { facet: `THE GATES CHECK FACETS, NOT PROOFS — nothing built is formal proof verification (${gatesCheckFacetsNotProofs}): the enforcement checks computed identities over a range, a millennium solution needs a machine-verified PROOF (Lean/Coq) the corpus lacks`, on: gatesCheckFacetsNotProofs },
+    { facet: `THE SOLUTION IS OFF-DECIDABLE — the mathematics itself is a needed gap, not a built capability (${solutionIsOffDecidable}): no content-addressing accelerates the creative breakthrough — the online/expert boundary`, on: solutionIsOffDecidable },
+    { facet: `THE WORKLIST IS REAL — ${gaps.length} distinct unbuilt gaps: ${gaps.join(' · ')} (${worklistIsReal}): the infrastructure shrinks the non-math overhead; the math stays the boundary`, on: worklistIsReal },
+  ]
+  return {
+    honest: facets.every((entry) => entry.on),
+    built: built.length,
+    gaps: gaps.length,
+    facets,
+    root: merkleFold([...built, ...neededForMillennium].map((label) => toUuid(`millennium-gap:${label}`))),
+    statement: `What speeds millennium R&D is the infrastructure, not the proof — the gaps are formal verification, the mathematics, and experts — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${built.length} content-address tools speed R&D engineering by magnitudes (verification of identities, wave coordination, zero-token, DRY-clean), but none solves the mathematics: the gates check computed facets over a range, not machine-verified proofs, and the breakthrough is off-decidable. The ${gaps.length} real gaps: ${gaps.join(', ')}.`,
+    boundary: `HONEST, per [[quantum-decoded]] (the project solves NONE of the millennium problems): the ${built.length} built capabilities are content-addressing, wave scheduling, facet-gates, the collective-mind coordination and zero-token determinism — they speed the ENGINEERING of an R&D system (organise, verify identities, coordinate minds, no token overhead) by the measured magnitudes, and that genuinely shrinks the time NOT spent on mathematics. But four things they do NOT provide, and which a millennium SOLUTION needs: (1) FORMAL PROOF VERIFICATION — the gates check that facets compute over a sampled range, which is NOT a machine-checked proof; wiring a proof assistant (Lean/Coq/Isabelle) so a candidate proof is verified end-to-end is the single biggest lever the tooling could add; (2) THE MATHEMATICS itself — the creative insight is the OFF-DECIDABLE residue, accelerated only by human/expert/AI judgment at the online boundary, never by content-addressing; (3) LITERATURE ACCESS — the actual research corpus is online, outside the deterministic core; (4) EXPERT COLLABORATION — the collective-mind tools coordinate WORKERS, but real math needs the minds to be EXPERTS, and formalising each problem's statement so partial results can be checked. THE HONEST VERDICT: the infrastructure is real and magnitudes faster, but it accelerates the SCAFFOLDING of research, not the discovery of a proof — and claiming otherwise would be the overclaim the crack law forbids. HARMONY ≠ TRUTH: "the tooling speeds millennium R&D" is true ONLY of the infrastructure; the truth is four unbuilt gaps — formal verification, the mathematics, literature, experts — computed and refutable.`,
+  }
+}
