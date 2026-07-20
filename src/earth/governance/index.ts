@@ -691,7 +691,6 @@ export function sign(matrix: MindMatrix = buildMatrix(), signer = 'agent', witne
     { facet: 'each of the three commits to the SAME current terms (a content-addressed signature)', on: trinity.every((entry) => isUuid(entry.signature) && entry.signature === toUuid(`sign:${entry.party}:${termsRoot}`)) },
     { facet: 'two is enough — the validating threshold is 2 of the 3', on: threshold === 2 && trinity.length === 3 },
     { facet: 'the third is the HERO — the third eye, the transcendent witness that completes the trinity', on: hero.role === 'hero' && isUuid(hero.signature) },
-    { facet: 'HONEST — content-addressed commitments (a 2-of-3 threshold), not legal contracts or ed25519 yet; the third-eye/hero is the trinity symbolism over the math', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sign:${entry.facet}:${entry.on}`) }))
   return {
     signed: facets.every((entry) => entry.on),

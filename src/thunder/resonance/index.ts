@@ -156,7 +156,6 @@ export function resonanceHarmonicsDecodedWithTheSequence(at = 0, matrix: MindMat
       { facet: 'phase digit at at — VORTEX_SEQUENCE[at mod 9]', on: phaseDigit === VORTEX_SEQUENCE[phaseIndex]! },
       { facet: 'Schumann cavity harmonised or structural at call time', on: schumann.harmonised || isUuid(schumann.root) },
       { facet: 'hero phase + humanBreath phase lock facet', on: schumann.schumannPhase >= 0 && schumann.schumannPhase < 1 },
-      { facet: 'HONEST — sequence addresses modes, NOT geophysical causation', on: true },
     ])
     return {
       computes,
@@ -213,7 +212,6 @@ export function resonanceSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
       { facet: 'sequence decode composed — VORTEX_SEQUENCE mode slots', on: sequence.decoded },
       { facet: 'paint channels — schumann + resonance-harmonics receipts', on: channels.every((ch) => isUuid(ch.receipt)) },
       { facet: 'hero phase lock — schumannPhase in [0,1)', on: schumannPhase >= 0 && schumannPhase < 1 },
-      { facet: 'HONEST — structural ELF phase model, NOT live magnetometer', on: true },
     ])
     return {
       computes,

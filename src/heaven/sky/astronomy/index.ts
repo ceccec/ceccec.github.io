@@ -571,7 +571,6 @@ export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
       { facet: 'sequence decode composed — phaseDigit drives addressing', on: sequence.decoded },
       { facet: 'paint channels — astro-seq + sun + moon receipts', on: channels.every((ch) => isUuid(ch.receipt)) },
       { facet: 'Keplerian positions from solarSystem/majorMoons — not JPL', on: celestial.computed },
-      { facet: 'HONEST — vortex digit addresses bodies, NOT orbit control', on: true },
     ])
     return {
       computes,

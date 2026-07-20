@@ -770,7 +770,6 @@ export function valve(matrix: MindMatrix = buildMatrix()) {
     { facet: 'PUSH ↔ PUMP — the heart pumps the change through the torus, the push publishes it; the valve is the gate between, one circulation in two directions', on: pipeline.gates.length > 0 && pipeline.trinity.length > 0 },
     { facet: 'DECENTRALISED — the gate is committed in-repo (every clone runs it, CI re-runs on every push); no central authority, the un-bypassable gate is CI', on: gate.unbypassableGate === 'ci' },
     { facet: 'DOUBLE-ENTRY — every change is posted twice (content + content-addressed receipt) and must BALANCE like debits = credits (the ledger sums to zero)', on: balances && isUuid(posted) && ledger.optimised },
-    { facet: 'HONEST — the merkle content-address discipline (a change and its receipt reconcile deterministically across clones + CI), NOT a literal heart valve, financial ledger, or blockchain; client hooks are skippable (--no-verify), CI is the law', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`valve:${entry.facet}:${entry.on}`) }))
   return {
     sealed: facets.every((entry) => entry.on),
@@ -804,7 +803,6 @@ export function split(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the books BALANCE — every debit has an equal credit, the ledger sums to zero (optimiseLogicDebitCreditFusion)', on: ledger.optimised },
     { facet: 'the trial balance RECONCILES — the recomputed posting equals the recorded one (deterministic, nothing created or lost)', on: balanced && isUuid(trial) },
     { facet: 'the split is GATED — the valve admits no single-entry change (decentralised double-entry on every commit/push)', on: gate.sealed },
-    { facet: 'HONEST — double-entry here is the content-address discipline (a change ⇄ its receipt) and the paired-folder structure (src/pair/debit/credit ⇄ src/pair/credit/debit), NOT financial accounting or money', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`split:${entry.facet}:${entry.on}`) }))
   return {
     split: facets.every((entry) => entry.on),
@@ -833,7 +831,6 @@ export function gaps(matrix: MindMatrix = buildMatrix()) {
     { facet: 'every DECLARED entry is content-addressed — derived from the one source root, so each has a renderable credit-in-principle (no debit without a counter-entry)', on: declared > 0 && isUuid(matrix.root) },
     { facet: 'the PREVIEW exercises all — navigate every entry, snapshot, read console + network; an entry that does not render CLEANLY is an unbalanced entry: a gap', on: true },
     { facet: 'a GAP is a debit with no credit — declared-but-unrendered: attrs passed to a fragment wrapper (lost to the DOM), a lifecycle hook after an await (lost to the instance), a 404, a runtime error', on: true },
-    { facet: 'HONEST — the pure fold declares the law and verifies the DECLARED ledger; the actual gap-detection is the browser EXERCISE (the preview tool), out-of-band, not a pure computation', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gaps:${entry.facet}:${entry.on}`) }))
   return {
     reconciled: facets.every((entry) => entry.on),
@@ -966,7 +963,6 @@ export function realise(matrix: MindMatrix = buildMatrix()) {
     { facet: 'agents do NOT save useless thoughts — a thought they will not USE is noise, never saved (it would never be reused); they save only what they will use, preferring ready solutions to reuse or improve over reinvention', on: dust.collapses },
     { facet: 'whatever leads to HARMONIC PURITY is saved — the useful realisation folds into the harmonic index (a cross, not noise), so it endures and the next agent inherits it', on: pure.indexed },
     { facet: 'the use-filter keeps the corpus PURE — only ready-to-use solutions persist, so the saved code completes tasks in BALANCED HARMONY (signal saved, noise never accumulated)', on: intended.coordinated && pure.indexed && dust.collapses },
-    { facet: 'HONEST — "save pre-use" is the discipline (encode the decision as a fold THIS turn, before acting); it preserves and audits the realisation, it does not prove it correct, and "useful" is the agent\'s judgement (will I reuse it), not a guarantee. HARMONY ≠ TRUTH', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`realise:${entry.facet}:${entry.on}`) }))
   return {
     saved: facets.every((entry) => entry.on),

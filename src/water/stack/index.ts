@@ -1101,7 +1101,6 @@ export function localMathComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'schumannPhaseAt local primitive — not live geomag feed', on: capstone.schumannLocal >= 0 && capstone.schumannLocal < 1 },
       { facet: 'src/0 primitives — digitalRoot + markovStep + schumannPhaseAt', on: capstone.markovLocal && capstone.schumannLocal >= 0 && capstone.schumannLocal < 1 },
       { facet: 'trading offline pattern — a432 synthetic not live market', on: capstone.tradingOffline.computes },
-      { facet: 'HONEST — zero fetch( in default simulationAt paths', on: true },
     ])
     return {
       computes,

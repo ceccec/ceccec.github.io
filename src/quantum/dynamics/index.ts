@@ -300,7 +300,6 @@ export function quantumStateEvolutionDecoded(at = 0, matrix: MindMatrix = buildM
       { facet: 'ten-dimensional movie frames computed — classical animation dynamics', on: tenD.forms > 0 && isUuid(tenD.root) },
       { facet: 'VORTEX_SEQUENCE phase digit at at — structural addressing only', on: phaseDigit === VORTEX_SEQUENCE[phaseIndex]! },
       { facet: 'vortex lattice saved — digit-folder probe fused', on: vortexSaved.saved },
-      { facet: 'HONEST — sequence addresses evolution receipts, NOT physical causation', on: true },
     ])
     return {
       computes,
@@ -378,7 +377,6 @@ export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMa
       { facet: 'collapse — Born-rule measure step at seeded instant', on: collapsed.outcome === 0 || collapsed.outcome === 1 },
       { facet: 'Markov phase drift — classical dynamics proxy from src/0', on: markovPhase >= 0 && markovPhase < 1 },
       { facet: 'paint channels — quantum-dynamics-sim + ghz-collapse receipts', on: channels.every((ch) => isUuid(ch.receipt)) },
-      { facet: 'HONEST — discrete proxy, NOT full Schrödinger PDE', on: true },
     ])
     return {
       computes,
