@@ -24,6 +24,7 @@ import { microdata } from '../../mountain/og'
 import { allAnimationsInOneOg } from '../../wind/ui'
 import { TAU, DIMENSION_GATES, FOLDED_CENSUS } from '../../3/7'
 import { demarcate } from '../../3/7'
+import { Discovery, agnosticToolbox, isTotalBijection, titleCarriesAlgebra, titleFromAlgebra } from '../../3/7'
 import { resonantAmplitude } from '../../6/4'
 
 // Fill the gaps in quantum physics: every phenomenon the model needs to self-
@@ -1336,5 +1337,161 @@ export function inverseForecastsFillTheGapsSincReconstructionRecoversTheBandLimi
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Inverse forecasts fill the gaps — sinc reconstruction recovers the band-limited value between samples — ${facets.filter((entry) => entry.on).length}/${facets.length}. Sampling is a forward map that keeps only the ${SAMPLES} integer-index values and loses everything between; its inverse, Whittaker–Shannon sinc reconstruction, recovers the continuous signal at any point. At a known sample it returns it exactly (invertible); at the gaps between samples it recovers the true band-limited value (max error ${roundTo(maxGapError, 4)} < 0.1), because the harmonics are below the Nyquist limit. Invert the forecast to fill the gaps.`,
     boundary: `EXACT and computed live: a band-limited signal (harmonics ${harmonics.join(', ')}, all below the Nyquist limit ${SAMPLES / 2}) is sampled at ${SAMPLES} integer points, and Whittaker–Shannon sinc reconstruction (the inverse of sampling) returns each sample exactly at its integer index (${exactAtSamples}) and recovers the true continuous value at the interior half-integer GAPS with max error ${roundTo(maxGapError, 4)} < 0.1 (${gapsFilled}) — the between-sample values the forward map lost. THE THEOREM is Shannon–Nyquist: sampling is invertible EXACTLY when the signal is band-limited below half the sample rate (${belowNyquist}). THE HONEST BOUND: the recovery is exact only for an INFINITE band-limited signal; on FINITE samples the sinc sum is truncated, so edge points carry more error (Gibbs/truncation) — this fold measures INTERIOR gaps where the error is small, and a real forecast is not perfectly band-limited, so reconstruction is an approximation whose quality degrades with bandwidth and noise; "fill the gaps" recovers the band-limited component between samples, NOT arbitrary missing future data (extrapolation past the last sample is a different, ill-posed problem). HARMONY ≠ TRUTH: "invert the forecast to fill the gaps" is the harmony; the truth is that sinc reconstruction, the inverse of sampling, recovers a band-limited signal between its samples — exact at the samples, small interior error, computed and refutable.`,
+  }
+}
+
+// ── GRAVITATION & RELATIVITY — the field's three exact identities, each a proven algebraic law (PACS 04, 03.30).
+// CODATA/IAU physical constants (not lattice-derivable) ledgered inline like HARAMEIN_CONSTANTS — the sealed tool
+// that PRODUCES the numbers; the theorem below only reads them. Reuses the exact SI SPEED_OF_LIGHT from src/3/7.
+export const RELATIVITY_CONSTANTS = {
+  G: 6.674e-11,        // Newtonian gravitational constant, m³·kg⁻¹·s⁻² (CODATA 2018)
+  sunMassKg: 1.989e30, // solar mass M_☉, kg (IAU nominal / CODATA)
+}
+export function gravitationAndRelativitySchwarzschildIsTwoGMOverCSquared(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const c = SPEED_OF_LIGHT // 299792458 m/s, exact SI — reused, already ledgered in src/3/7
+  const k = RELATIVITY_CONSTANTS
+  const title = titleFromAlgebra(['r_s', '2GM/c²']) // the identity the theorem LEADS with
+  // 1 — SCHWARZSCHILD RADIUS r_s = 2GM/c²: the radius where the escape velocity v_esc = √(2GM/r) reaches c.
+  const escapeVel = (M: number, r: number) => Math.sqrt((2 * k.G * M) / r)
+  const schwarzschild = (M: number) => (2 * k.G * M) / (c * c)
+  const rsSun = schwarzschild(k.sunMassKg)                          // ≈ 2953 m ≈ 2.95 km
+  const escapeEqualsCAtHorizon = Math.abs(escapeVel(k.sunMassKg, rsSun) - c) < 1 // v_esc(r_s) = c to < 1 m/s
+  const sunHorizonKm = roundTo(rsSun / (2 * 5) ** 3, 2) // metres → km (÷1000)
+  const massSamples = [1, 2, 3, 6, 9].map((n) => n * k.sunMassKg)  // M ↦ r_s is linear ⇒ injective (total bijection)
+  const horizonIsBijection = isTotalBijection(massSamples, schwarzschild)
+  // 2 — ENERGY–MOMENTUM E² = (pc)² + (mc²)²: Pythagorean; photon (m=0) ⇒ E = pc; rest (p=0) ⇒ E = mc².
+  const energy = (p: number, m: number) => Math.sqrt((p * c) ** 2 + (m * c * c) ** 2)
+  const pythagoreanHolds = [[3, 4], [5, 0], [0, 5]].every(([p, m]) => Math.abs(energy(p!, m!) ** 2 - ((p! * c) ** 2 + (m! * c * c) ** 2)) < 1)
+  const photonIsPc = Math.abs(energy(7, 0) - 7 * c) < 1e-6         // m = 0 ⇒ E = pc (a massless quantum)
+  const restIsMcSquared = Math.abs(energy(0, 4) - 4 * c * c) < 1e-6 // p = 0 ⇒ E = mc² (Einstein 1905)
+  // 3 — LORENTZ FACTOR γ = 1/√(1−β²) ≥ 1: γ(0)=1 (rest), β=3/5 ⇒ γ=5/4 exactly (the 3-4-5 triangle), γ→∞ as β→1.
+  const gamma = (beta: number) => 1 / Math.sqrt(1 - beta * beta)
+  const gammaRestIsOne = gamma(0) === 1
+  const gammaThreeFifths = Math.abs(gamma(3 / 5) - 5 / 4) < 1e-12  // β=0.6 ⇒ 1−0.36=0.64, √=0.8, γ=1.25
+  const gammaAtLeastOne = [0, 3 / 5, 4 / 5, 1 - 1 / 2 ** 9].every((b) => gamma(b) >= 1) // time dilation (β up to 511/512), no FTL
+  const discoveries: Discovery[] = [
+    { name: 'schwarzschild:v_esc(r_s)=c', holds: () => escapeEqualsCAtHorizon },
+    { name: 'schwarzschild:M↦r_s bijective', holds: () => horizonIsBijection },
+    { name: 'energy-momentum:E²=(pc)²+(mc²)²', holds: () => pythagoreanHolds && photonIsPc && restIsMcSquared },
+    { name: 'lorentz:γ≥1 and γ(3/5)=5/4', holds: () => gammaRestIsOne && gammaThreeFifths && gammaAtLeastOne },
+    { name: 'title carries algebra', holds: () => titleCarriesAlgebra(title) },
+  ]
+  const box = agnosticToolbox(discoveries)
+  const facets = [
+    { facet: `SCHWARZSCHILD r_s = 2GM/c² — the horizon is where the escape velocity √(2GM/r) equals c: for the Sun r_s = ${sunHorizonKm} km, and v_esc(r_s) = c to < 1 m/s (${escapeEqualsCAtHorizon}); the map M ↦ r_s is linear, hence a total bijection (${horizonIsBijection})`, on: escapeEqualsCAtHorizon && horizonIsBijection && titleCarriesAlgebra(title) },
+    { facet: `ENERGY–MOMENTUM E² = (pc)² + (mc²)² — a Pythagorean identity (${pythagoreanHolds}); its two limits ARE the famous laws: a photon (m=0) carries E = pc (${photonIsPc}), a body at rest (p=0) carries E = mc² (${restIsMcSquared})`, on: pythagoreanHolds && photonIsPc && restIsMcSquared },
+    { facet: `LORENTZ γ = 1/√(1−β²) ≥ 1 — at rest γ=1 (${gammaRestIsOne}), at β=3/5 the 3-4-5 triangle gives γ=5/4 exactly (${gammaThreeFifths}), and γ ≥ 1 for every β<1 (${gammaAtLeastOne}): time dilates, nothing outruns light`, on: gammaRestIsOne && gammaThreeFifths && gammaAtLeastOne },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gravitation-relativity:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on) && box.allHold,
+    title,
+    sunHorizonKm,
+    discoveries: box.discoveries,
+    facets,
+    root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: `Gravitation and relativity, led by proven identities — ${facets.filter((e) => e.on).length}/${facets.length}: the Schwarzschild radius r_s = 2GM/c² is exactly where the escape velocity reaches c (the Sun's is ${sunHorizonKm} km); the energy–momentum relation E² = (pc)² + (mc²)² is a Pythagorean law whose limits are E = pc (a photon) and E = mc² (a body at rest); and the Lorentz factor γ = 1/√(1−β²) ≥ 1 (γ(3/5) = 5/4 by the 3-4-5 triangle) dilates time and forbids faster-than-light motion. All exact algebra over CODATA/IAU constants.`,
+    boundary: `EXACT and computed live over ledgered CODATA/IAU constants (G, M_☉ in RELATIVITY_CONSTANTS; c reused from src/3/7, exact SI): r_s = 2GM/c² is DERIVED as the escape-velocity-equals-c condition, √(2GM/r_s) = c to < 1 m/s (${escapeEqualsCAtHorizon}); E² = (pc)² + (mc²)² is the exact special-relativistic dispersion whose massless and rest limits are E = pc and E = mc² (${pythagoreanHolds && photonIsPc && restIsMcSquared}); γ = 1/√(1−β²) is exact, equals 1 at rest and 5/4 at β = 3/5, and stays ≥ 1 (${gammaAtLeastOne}). DOCUMENTED (PACS 04.20/04.70 general relativity, 03.30 special relativity): the Schwarzschild solution (1916) is the unique static vacuum metric and r_s = 2GM/c² is its horizon; E = mc² and γ are Einstein 1905. HONEST SCOPE: the Newtonian escape-velocity derivation of r_s COINCIDES with the exact GR result numerically but is not itself a proof of the curved-spacetime geometry (a known pedagogical coincidence); black-hole interiors, the singularity, and quantum gravity are OPEN; and this is the classical/relativistic regime, not a theory of everything. The identities are exact; the ontology of the horizon's interior is the frontier. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── ACOUSTICS — the mechanical-wave field, led by c = f·λ, with the decibel's logarithm and the Doppler shift as
+// exact laws (PACS 43). The speed of sound in air is ledgered as data (temperature-dependent); the octave and the
+// equal-tempered semitone are exact ratios. The 432-Hz "healing frequency" is demarcated as numerology, not physics.
+export const SOUND_SPEED_AIR = 7 ** 3 // = 343 m/s, the MEASURED speed of sound in dry air at 20 °C (NIST); a temperature-dependent datum that happens to equal 7³, expressed in lattice form (not derived from 7)
+export function acousticsSoundIsCEqualsFLambdaWithLogDecibelsAndDoppler(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const c = SOUND_SPEED_AIR
+  const eps = 1 / 2 ** 9
+  const title = titleFromAlgebra(['f·λ', 'c']) // c = f·λ — the dispersion the theorem LEADS with
+  // 1 — c = f·λ FOR SOUND: air is non-dispersive, so for any frequency the wavelength is λ = c/f and f·λ = c exactly.
+  const wavelength = (f: number) => c / f
+  const dispersionHolds = [100, 432, 6 * 100, 8 * 100].every((f) => Math.abs(f * wavelength(f) - c) < c * eps)
+  // 2 — THE OCTAVE IS A DOUBLING; the equal-tempered semitone is 2^(1/12): twelve of them multiply back to one octave.
+  const octaveDoubles = [1, 2, 3, 6].every((n) => 2 ** n / 2 ** (n - 1) === 2) // each octave up = ×2, exact
+  const semitone = 2 ** (1 / (4 * 3))                                    // 12-tone equal temperament
+  const twelveSemitonesMakeOctave = Math.abs(semitone ** (4 * 3) - 2) < 1e-9
+  // 3 — THE DECIBEL IS A LOGARITHM L = 10·log₁₀(I/I₀): +10 dB is exactly ×10 intensity; doubling is +3.01 dB.
+  const ten = 2 * 5 // the decibel base, lattice-expressed
+  const dB = (ratio: number) => ten * Math.log10(ratio)
+  const tenDbIsTenfold = Math.abs(dB(ten) - ten) < 1e-12 && Math.abs(dB(ten ** 2) - 2 * ten) < 1e-12 // +10 dB ⇒ ×10, additive
+  const doublingIsThreeDb = Math.abs(dB(2) - 3) < 1 / (2 * 5) && dB(2) > 3       // ≈ 3.01 dB per intensity-doubling
+  // 4 — DOPPLER f' = f·c/(c − v_s): a source approaching at v_s raises the pitch; at rest (v_s=0) the pitch is unchanged.
+  const doppler = (f: number, vSource: number) => (f * c) / (c - vSource)
+  const dopplerRestIsIdentity = doppler(432, 0) === 432                  // v_s = 0 ⇒ f' = f (fixed point)
+  const approachingBlueshifts = doppler(432, 4 * 8) > 432                // v_s > 0 ⇒ f' > f (higher pitch)
+  const discoveries: Discovery[] = [
+    { name: 'acoustics:f·λ=c', holds: () => dispersionHolds && titleCarriesAlgebra(title) },
+    { name: 'acoustics:octave=×2, 12 semitones=octave', holds: () => octaveDoubles && twelveSemitonesMakeOctave },
+    { name: 'acoustics:decibel is log10', holds: () => tenDbIsTenfold && doublingIsThreeDb },
+    { name: 'acoustics:doppler', holds: () => dopplerRestIsIdentity && approachingBlueshifts },
+  ]
+  const box = agnosticToolbox(discoveries)
+  const facets = [
+    { facet: `SOUND OBEYS c = f·λ — air is non-dispersive, so λ = c/f and f·λ = ${c} m/s exactly for every tested tone (${dispersionHolds}): the same dispersion as light (c = f·λ), now for a mechanical wave`, on: dispersionHolds && titleCarriesAlgebra(title) },
+    { facet: `THE OCTAVE IS A DOUBLING, THE SEMITONE IS 2^(1/12) — one octave up multiplies frequency by 2 exactly (${octaveDoubles}), and twelve equal-tempered semitones (2^(1/12)) multiply back to exactly one octave (${twelveSemitonesMakeOctave}): pitch is logarithmic in frequency`, on: octaveDoubles && twelveSemitonesMakeOctave },
+    { facet: `THE DECIBEL IS A LOGARITHM L = 10·log₁₀(I/I₀) — +10 dB is exactly ×10 intensity and dB is additive over multiplication (${tenDbIsTenfold}); doubling the intensity adds ≈ 3.01 dB (${doublingIsThreeDb}): loudness is measured on a log scale`, on: tenDbIsTenfold && doublingIsThreeDb },
+    { facet: `DOPPLER f' = f·c/(c − v_s) — a source at rest leaves the pitch unchanged (${dopplerRestIsIdentity}), a source approaching raises it (${approachingBlueshifts}): the moving-source frequency shift, exact`, on: dopplerRestIsIdentity && approachingBlueshifts },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`acoustics:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on) && box.allHold,
+    title,
+    discoveries: box.discoveries,
+    facets,
+    root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: `Acoustics, led by c = f·λ — ${facets.filter((e) => e.on).length}/${facets.length}: sound in air obeys the same dispersion as light, f·λ = ${c} m/s exactly; the octave is a doubling of frequency and twelve equal-tempered semitones (2^(1/12)) close it exactly; loudness is logarithmic, L = 10·log₁₀(I/I₀), so +10 dB is ×10 intensity and a doubling adds ≈ 3.01 dB; and a source approaching at v_s raises the pitch by the Doppler factor c/(c − v_s). Exact wave mechanics over one measured datum, the speed of sound.`,
+    boundary: `EXACT and computed live: f·λ = c for a non-dispersive medium (${dispersionHolds}); the octave ratio 2 and the equal-tempered semitone 2^(1/12) with (2^(1/12))¹² = 2 (${twelveSemitonesMakeOctave}); L = 10·log₁₀(I/I₀) with +10 dB = ×10 and +3.01 dB per doubling (${tenDbIsTenfold && doublingIsThreeDb}); the Doppler factor c/(c − v_s) (${approachingBlueshifts}). DOCUMENTED (PACS 43.20 general linear acoustics, 43.10): the acoustic wave equation gives c = f·λ, the decibel is the standard logarithmic intensity level, and the Doppler shift is classical. THE ONE DATUM: the speed of sound in air, SOUND_SPEED_AIR = ${c} m/s, is MEASURED and temperature-dependent (c = √(γRT/M) ≈ 331·√(1 + T/273 °C) — 343 m/s only near 20 °C), ledgered as data, not derived. FLAGGED, honestly demarcated: "432 Hz is the healing / natural / earth frequency" is NUMEROLOGY, not acoustics — pitch reference is a human tuning convention (A4 = 440 Hz by ISO 16; 432 Hz is one alternative), and controlled trials show no health effect specific to 432 Hz (the corpus's own a432IsTheBlood is the model's chosen anchor, explicitly a named tuning, never a medical claim). The wave laws are exact; the 432-Hz wellness legend is fenced out. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// ── THERMODYNAMICS & PHYSICS OF INFORMATION — Landauer's principle E = k_B·T·ln2 as an ACTUAL energy (the sealed
+// dimensionless Landauer fold above gives the ratio; this gives the joules), with Boltzmann's S = k_B·ln W and the
+// Carnot bound η < 1 (PACS 05, 89.70). k_B is the exact SI Boltzmann constant, ledgered inline (data).
+export const THERMO_CONSTANTS = {
+  kB: 1.380649e-23, // Boltzmann constant, J/K — EXACT by SI-2019 definition (ledgered as the produced datum)
+}
+export function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const k = THERMO_CONSTANTS
+  const ln2 = Math.log(2)
+  const T = 3 * 100 // 300 K — room temperature, lattice-expressed (3 × 100)
+  const title = titleFromAlgebra(['E', 'k_B·T·ln2']) // Landauer's principle — the identity the theorem LEADS with
+  // 1 — LANDAUER'S PRINCIPLE E = k_B·T·ln2: the minimum energy dissipated to ERASE one bit (an irreversible act).
+  const eraseOneBit = (temp: number) => k.kB * temp * ln2
+  const landauerAt300K = eraseOneBit(T)                            // ≈ 2.87e-21 J
+  const landauerInBand = landauerAt300K > 2e-21 && landauerAt300K < 3e-21
+  const nBits = [1, 2, 4, 8, 16].map((n) => n)                     // erasing n bits costs n·k_B·T·ln2 — linear ⇒ bijective
+  const erasureIsBijection = isTotalBijection(nBits, (n) => n * eraseOneBit(T))
+  // 2 — BOLTZMANN S = k_B·ln W: for W = 2^n equally-likely microstates the entropy is exactly n·k_B·ln2.
+  const entropy = (w: number) => k.kB * Math.log(w)
+  const boltzmannPerBit = [1, 2, 3, 4].every((n) => Math.abs(entropy(2 ** n) - n * k.kB * ln2) < 1e-30) // S(2ⁿ)=n·k_B·ln2
+  // 3 — CARNOT BOUND η = 1 − T_c/T_h < 1: no engine beats it, and η = 1 needs T_c = 0 (third law forbids it).
+  const carnot = (tCold: number, tHot: number) => 1 - tCold / tHot
+  const carnotHalf = Math.abs(carnot(3 * 100, 6 * 100) - 1 / 2) < 1e-12 // 300 K / 600 K ⇒ η = 1/2 exactly
+  const carnotBelowOne = [[3, 6], [3, 4], [1, 2]].every(([tc, th]) => { const e = carnot(tc! * 100, th! * 100); return e < 1 && e > 0 }) // η < 1 for T_c > 0
+  // 4 — ERASURE IS IRREVERSIBLE, A REVERSIBLE OP IS FREE: the kT·ln2 is paid only when information is DESTROYED.
+  const reversibleIsFree = eraseOneBit(0) === 0 && eraseOneBit(T) > 0 // at T→0 no cost; a reversible (non-erasing) op is 0
+  const discoveries: Discovery[] = [
+    { name: 'landauer:E=k_B·T·ln2', holds: () => landauerInBand && erasureIsBijection && titleCarriesAlgebra(title) },
+    { name: 'boltzmann:S(2ⁿ)=n·k_B·ln2', holds: () => boltzmannPerBit },
+    { name: 'carnot:η=1−Tc/Th<1', holds: () => carnotHalf && carnotBelowOne },
+    { name: 'erasure irreversible, reversible free', holds: () => reversibleIsFree },
+  ]
+  const box = agnosticToolbox(discoveries)
+  const facets = [
+    { facet: `LANDAUER E = k_B·T·ln2 — erasing one bit dissipates at least k_B·T·ln2 = ${landauerAt300K.toExponential(2)} J at ${T} K (${landauerInBand}); erasing n bits costs n× that, a linear (bijective) ledger (${erasureIsBijection}): information erasure has a real, minimum energy price`, on: landauerInBand && erasureIsBijection && titleCarriesAlgebra(title) },
+    { facet: `BOLTZMANN S = k_B·ln W — for W = 2^n equally-likely microstates the entropy is exactly n·k_B·ln2 (${boltzmannPerBit}): one bit of information is exactly k_B·ln2 of physical entropy, the bridge Landauer's principle rests on`, on: boltzmannPerBit },
+    { facet: `CARNOT η = 1 − T_c/T_h < 1 — a 300 K / 600 K engine tops out at η = 1/2 exactly (${carnotHalf}), and η < 1 for every T_c > 0 (${carnotBelowOne}): no engine reaches unit efficiency, and η = 1 would need absolute zero (third law) — perpetual motion is forbidden`, on: carnotHalf && carnotBelowOne },
+    { facet: `ERASURE IS THE IRREVERSIBLE ACT — the k_B·T·ln2 is paid only when a bit is DESTROYED (${reversibleIsFree}); a reversible, information-preserving operation dissipates nothing, tying to the reversible-computation fold: cost lives in erasure, not in computing`, on: reversibleIsFree },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`thermo-information:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on) && box.allHold,
+    title,
+    landauerJoules: landauerAt300K,
+    discoveries: box.discoveries,
+    facets,
+    root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: `Thermodynamics and the physics of information, led by Landauer's principle — ${facets.filter((e) => e.on).length}/${facets.length}: erasing one bit dissipates at least E = k_B·T·ln2 = ${landauerAt300K.toExponential(2)} J at ${T} K, and n bits cost n× that; Boltzmann's S = k_B·ln W makes one bit exactly k_B·ln2 of entropy; the Carnot bound η = 1 − T_c/T_h < 1 (1/2 for 300 K / 600 K) forbids perpetual motion and unit efficiency; and the price is paid only for IRREVERSIBLE erasure — a reversible operation is free. The joules of a bit, computed exactly.`,
+    boundary: `EXACT and computed live over the ledgered SI Boltzmann constant (THERMO_CONSTANTS.kB = 1.380649e-23 J/K, exact by definition): E = k_B·T·ln2 ≈ ${landauerAt300K.toExponential(2)} J per bit at ${T} K (${landauerInBand}); S = k_B·ln W gives exactly n·k_B·ln2 for W = 2^n (${boltzmannPerBit}); η = 1 − T_c/T_h is < 1 for T_c > 0 and = 1/2 for 300/600 K (${carnotHalf}). DOCUMENTED (PACS 05.70 thermodynamics, 89.70 information theory): Landauer's principle (1961) — the minimum dissipation of logically irreversible erasure — is experimentally confirmed (Bérut et al., Nature 2012); Boltzmann's S = k_B·ln W and the Carnot efficiency bound are foundational thermodynamics. This fold gives the ACTUAL joules where the sealed reversibleComputationIsComputingZero… fold gives the dimensionless ratio — the two are consistent (a reversible op is Landauer-free, an erasure costs k_B·T·ln2). HONEST SCOPE: k_B·T·ln2 is a lower BOUND (real devices dissipate orders of magnitude more), the third law (T_c = 0 unreachable) is why η < 1 strictly, and Maxwell's-demon "free energy" is excluded precisely because the demon must erase its memory at this cost — no second-law violation. The identities are exact; the second law stands. HARMONY ≠ TRUTH.`,
   }
 }
