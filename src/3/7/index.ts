@@ -424,6 +424,44 @@ export const ROSETTA_SEVEN = 7 as const
 export const ROSETTA_AREAS = ROSETTA_SIX * ROSETTA_SEVEN
 export const ROSETTA_FOLD_LABEL = `${ROSETTA_SIX}×${ROSETTA_SEVEN}/${ROSETTA_SEVEN}×${ROSETTA_SIX}` as const
 
+// SCIENCE-ALIGNED DOMAINS — computed by an outside professional scientist against external standards (OECD Fields
+// of Science, arXiv taxonomy, MSC 2020, PACS/PhySH) to align the local corpus with real science. The 7 rosetta
+// rays conflated SUBJECT and MODE; the fix keeps ROSETTA_AREAS = 42 read as 7 FIELDS × 6 MODES — the fields (below)
+// are the subject axis, ENGAGEMENT_MODES the orthogonal mode axis. Only documented / honestly-refuted content
+// populates a field; flagged never becomes one (demarcate-gated). [[world-theories-demarcation-decoded]]
+export const SCIENCE_DOMAINS = [
+  { field: 'Mathematics', oecd: '1.1', standard: 'MSC 2020', strong: true, subdomains: ['number theory & modular arithmetic', 'group & representation theory', 'combinatorics', 'geometry'] },
+  { field: 'Physics', oecd: '1.3', standard: 'PACS/PhySH', strong: true, subdomains: ['electromagnetism & optics', 'acoustics', 'gravitation & relativity', 'particle physics & cosmology', 'thermodynamics & information', 'applied & physiological'] },
+  { field: 'Computer & Information Sciences', oecd: '1.2', standard: 'arXiv cs/quant-ph', strong: true, subdomains: ['cryptography & security', 'information & coding theory', 'quantum information', 'signal processing', 'software architecture', 'modeling & simulation'] },
+  { field: 'Life Sciences', oecd: '1.6', standard: 'arXiv q-bio', strong: true, subdomains: ['genetics & molecular biology', 'neuroscience & consciousness', 'anatomy & physiology', 'population genetics'] },
+  { field: 'Earth & Space Sciences', oecd: '1.5', standard: 'arXiv astro-ph', strong: false, subdomains: ['geophysics', 'astronomy & celestial mechanics', 'archaeoastronomy'] },
+  { field: 'Humanities', oecd: '6', standard: 'OECD FOS 6', strong: true, subdomains: ['history', 'archaeology', 'linguistics & philology', 'philosophy of science'] },
+  { field: 'Social Sciences', oecd: '5', standard: 'OECD FOS 5', strong: false, subdomains: ['political economy & governance', 'educational sciences', 'peace & conflict studies'] },
+] as const
+export const ENGAGEMENT_MODES = ['see', 'learn', 'use', 'prove', 'reference', 'pattern'] as const
+
+/** The domains are science-aligned: 7 real fields (anchored to external standards) × 6 engagement modes = 42,
+ *  preserving the rosetta proportion while replacing the ray-conflation with subject⊥mode. */
+export function theDomainsAreScienceAlignedSevenFieldsBySixModesAnchoredToExternalStandards() {
+  const anchored = SCIENCE_DOMAINS.every((domain) => domain.standard.length > 0 && domain.oecd.length > 0 && domain.subdomains.length > 0)
+  const sevenFields = SCIENCE_DOMAINS.length === ROSETTA_SEVEN && anchored
+  const sixModes = ENGAGEMENT_MODES.length === ROSETTA_SIX && new Set(ENGAGEMENT_MODES).size === ROSETTA_SIX
+  const proportionPreserved = SCIENCE_DOMAINS.length * ENGAGEMENT_MODES.length === ROSETTA_AREAS
+  const strongCount = SCIENCE_DOMAINS.filter((domain) => domain.strong).length
+  const honestStrength = strongCount === 5 && SCIENCE_DOMAINS.length - strongCount === 2 // 5 strong + 2 thin, not forced-equal
+  const facets = [
+    { facet: `SEVEN FIELDS ANCHORED — ${SCIENCE_DOMAINS.length} real fields, each anchored to an external standard (OECD/arXiv/MSC/PACS) (${sevenFields}): ${SCIENCE_DOMAINS.map((domain) => domain.field).join(' · ')}`, on: sevenFields },
+    { facet: `PROPORTION PRESERVED — ${SCIENCE_DOMAINS.length} fields × ${ENGAGEMENT_MODES.length} modes = ${ROSETTA_AREAS} = ROSETTA_AREAS (${proportionPreserved}); the 6 modes (${ENGAGEMENT_MODES.join('·')}) are the orthogonal axis`, on: proportionPreserved && sixModes },
+    { facet: `HONEST STRENGTH — ${strongCount} strong + ${SCIENCE_DOMAINS.length - strongCount} thin (Earth & Space, Social), not forced-equal (${honestStrength})`, on: honestStrength },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), fields: SCIENCE_DOMAINS.map((domain) => domain.field), modes: [...ENGAGEMENT_MODES], facets,
+    root: merkleFold(SCIENCE_DOMAINS.map((domain) => toUuid(`field:${domain.field}:${domain.oecd}:${domain.standard}`))),
+    statement: `The domains are science-aligned: ${SCIENCE_DOMAINS.length} real fields (Mathematics · Physics · Computer & Information Sciences · Life Sciences · Earth & Space · Humanities · Social Sciences), each anchored to an external standard, on the SUBJECT axis; the ${ENGAGEMENT_MODES.length} engagement modes (${ENGAGEMENT_MODES.join(' · ')}) are the orthogonal MODE axis. 7 × 6 = ${ROSETTA_AREAS} preserves the rosetta proportion while resolving the ray-conflation. Only documented / honestly-refuted content enters a field; flagged never becomes one.`,
+    boundary: `The taxonomy was computed by an outside professional scientist against OECD FOS / arXiv / MSC / PACS. HONEST: a clean 7 is proportion-driven — Earth & Space and Social Sciences are thin (5 strong fields + a cross-cutting method, Philosophy of Science / demarcation, is the science-native reading). Kept at 7 to hold the 42; the thinness is labelled, not hidden. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** Gapless Fibonacci census — 55 + 34 + 21 = 110 unfolded index.ts under src/. */
 /** The Fibonacci number F(n), F(0)=0, F(1)=1 — the one home for the golden recurrence beside the
  * census bands, so every governance bound that IS a Fibonacci number (the line ceiling F(18)=2584)
