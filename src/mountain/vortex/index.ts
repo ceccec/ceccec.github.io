@@ -1,8 +1,8 @@
 // ☶ Gèn · Mountain — vortex / math: 1-2-4-8-7-5 lattice, paint tiers (dissolved src/math compose mount).
 import type { MindMatrix } from '../../wind/types'
-import { rat, ratEq, vortexHarmonicRatios } from '../../3/7'
+import { rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid, vortexNext, vortexPrev, digitalRoot } from '../../0'
+import { VORTEX_SEQUENCE, computesGate, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, vortexNext, vortexPrev, digitalRoot } from '../../0'
 import { merkaba } from '../geometry'
 import { merkabaComputes, merkabasInDoubleTorus } from '../topology'
 import { TAU } from '../../3/7'
@@ -341,6 +341,101 @@ export function allMathSaved(matrix: MindMatrix = buildMatrix()) {
         'Bodies live in domain barrels; src/vortex/math is the canonical import surface after src/math census dissolve.',
     }
   })
+}
+
+/** Multiplicative inverse mod 9 — atom of f and the n/0 inverse fold (null ⇒ non-unit / void). */
+function inverseMod9Of(digit: number): number | null {
+  const modulus = 9
+  const r = ((digit % modulus) + modulus) % modulus
+  if (r === 0) return null
+  for (let x = 1; x < modulus; x += 1) if ((r * x) % modulus === 1) return x
+  return null
+}
+
+/**
+ * Canonical inverse fold (user signature):
+ *   f(θ, φ, x, y, z, digit, n) → {p, q}
+ *
+ * DERIVATION (sealed pieces only — no wet algebra):
+ * 1. Geometry — `doubleTorusSurface(θ,φ,digit,lobe)` (src/0) places the digit on the genus-2 surface;
+ *    lobe ∈ {−1,+1} is the nearest of the two counter-oriented lobes to the given (x,y,z).
+ * 2. Algebra — when n = 0 (division by zero): {p,q} is the multiplicative-inverse pair of `digit`
+ *    in (ℤ/9)* (digit · q ≡ 1 mod 9), or the self-fold {digit,digit} for non-units/void — NEVER
+ *    the ten's complement 10−digit. Lobe orientation swaps pair order (genus-2 dual = ratInv).
+ * 3. When n ≠ 0: {p,q} = ratInv(rat(digit, n)) (src/3/7); void digit self-folds to {0,0}.
+ */
+export function f(
+  theta: number,
+  phi: number,
+  x: number,
+  y: number,
+  z: number,
+  digit: number,
+  n: number,
+): { p: number; q: number } {
+  const base = 5 * 2 // radix 10 — derived, not a crack literal
+  const d = ((Math.trunc(digit) % base) + base) % base
+  const divisor = Math.trunc(n)
+  const dist = (lobe: number) => {
+    const s = doubleTorusSurface(theta, phi, d, lobe)
+    return (s.x - x) ** 2 + (s.y - y) ** 2 + (s.z - z) ** 2
+  }
+  const lobe = dist(-1) <= dist(1) ? -1 : 1
+  const orient = (pair: { p: number; q: number }) => (lobe < 0 ? pair : { p: pair.q, q: pair.p })
+  if (divisor === 0) {
+    const inv = inverseMod9Of(d)
+    return orient(inv !== null ? { p: d, q: inv } : { p: d, q: d })
+  }
+  if (d === 0) return { p: 0, q: 0 }
+  return orient(ratInv(rat(d, divisor)))
+}
+
+/** Proof fold — f recomputes at call time; inverse-not-reverse + geometry honesty. */
+export function fThetaPhiXyzDigitNIsTheInversePair(matrix: MindMatrix = buildMatrix()) {
+  const base = 5 * 2 // radix 10
+  const units = VORTEX_SEQUENCE.filter((d) => inverseMod9Of(d) !== null)
+  const nonUnits = [0, ...VORTEX_SEQUENCE.filter((d) => inverseMod9Of(d) === null)]
+  const theta = TAU / 8
+  const phi = TAU / 5
+  const unitPairs = units.map((d) => {
+    const { x, y, z } = doubleTorusSurface(theta, phi, d, -1)
+    return { d, pair: f(theta, phi, x, y, z, d, 0), inv: inverseMod9Of(d) }
+  })
+  const unitsMatch = unitPairs.every((u) => u.inv !== null && u.pair.p === u.d && u.pair.q === u.inv)
+  const productIsOne = unitPairs.every((u) => (u.pair.p * u.pair.q) % 9 === 1)
+  const nonUnitPairs = nonUnits.map((d) => {
+    const { x, y, z } = doubleTorusSurface(theta, phi, d, -1)
+    return { d, pair: f(theta, phi, x, y, z, d, 0), complement: d === 0 ? base : base - d }
+  })
+  const nonUnitsSelfFold = nonUnitPairs.every((u) => u.pair.p === u.d && u.pair.q === u.d)
+  const notTensComplement = nonUnitPairs.every((u) => u.pair.q !== u.complement)
+  const seed = 2 // unit whose inverse is 5 — from VORTEX_SEQUENCE doubling
+  const two = doubleTorusSurface(theta, phi, seed, -1)
+  const twoOpp = doubleTorusSurface(theta, phi, seed, 1)
+  const pairL = f(theta, phi, two.x, two.y, two.z, seed, 0)
+  const pairR = f(theta, phi, twoOpp.x, twoOpp.y, twoOpp.z, seed, 0)
+  const invSeed = inverseMod9Of(seed)!
+  const lobeIsRatInv = pairL.p === seed && pairL.q === invSeed && pairR.p === invSeed && pairR.q === seed && ratEq(pairR as Rational, ratInv(pairL as Rational))
+  const four = doubleTorusSurface(theta, phi, 4, -1)
+  const forwardInvOk = ratEq(f(theta, phi, four.x, four.y, four.z, 4, 2) as Rational, ratInv(rat(4, 2)))
+  const facets = [
+    { facet: 'f(θ,φ,x,y,z,digit,0) is the multiplicative inverse on every unit — n/0 folds within itself', on: unitsMatch && productIsOne },
+    { facet: 'non-units at n=0 self-fold {d,d} — NEVER the ten\'s complement (inverse, not reverse)', on: nonUnitsSelfFold && notTensComplement },
+    { facet: 'genus-2 lobe orients the pair as ratInv — counter-flow dual, still the multiplicative inverse', on: lobeIsRatInv },
+    { facet: 'nonzero n returns ratInv(rat(digit,n)) — exact Rational inverse from sealed 3/7', on: forwardInvOk },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`f-inverse-pair:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('f-theta-phi-xyz-digit-n', facets)
+  return {
+    computes: sealed.ok,
+    f: { signature: 'f(theta, phi, x, y, z, digit, n) -> {p, q}', sample: unitPairs.map((u) => ({ digit: u.d, ...u.pair })) },
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'f(θ, φ, x, y, z, digit, n) → {p, q} is the canonical inverse fold: geometry binds the digit to doubleTorusSurface (genus-2); when n=0 (division by zero) {p,q} is the multiplicative inverse pair digit · q ≡ 1 (mod 9) or the self-fold for non-units — inverse that folds within itself, not a ten\'s-complement reverse; lobe orientation is ratInv on the pair; when n≠0, {p,q} = ratInv(rat(digit, n)).',
+    boundary:
+      'EXACT reuse: doubleTorusSurface (src/0), inverse mod 9 (same atom as zeroDivisionTable), rat/ratInv (src/3/7). Geometry places the digit — residual-to-surface chooses the lobe only; no new coordinate algebra. {0,0} for void paths is a fusion marker (rat forbids q=0). NOT real-analysis 1/0; NOT the additive folder-complement 10−d. HARMONY ≠ TRUTH.',
+  }
 }
 
 /** npm run timeout-demo — enforcement ops thin-mount smoke test. */

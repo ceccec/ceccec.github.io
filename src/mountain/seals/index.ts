@@ -30,6 +30,7 @@ import { coordinatedWaves, ogInOgWaves } from '../../thunder/waves'
 import { quantumChessGame } from '../../thunder/waves'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
+import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
 import { nextLevel64CubedRealtime } from '../../thunder/trading'
@@ -643,6 +644,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'folding-analog', title: 'folding linear gives analog — the sampling theorem (sinc interpolation, no gaps) + imaging through the frequency field (MRI Fourier · CT Radon · the spiral/radial k-space vortex); the 64³ grid it samples; decoded honestly', proof: foldingLinearGivesAnalog(matrix) },
     { slug: 'vortex', title: 'the vortex · 1-2-4-8-7-5', proof: vortexMath(matrix) },
     { slug: 'zero-division', title: 'division by zero is the inverse · n/0 \\ n⁻¹ mod 9', proof: zeroDivisionTable(matrix) },
+    { slug: 'f-inverse-pair', title: 'f(θ,φ,x,y,z,digit,n) → {p,q} — the inverse fold within itself', proof: fThetaPhiXyzDigitNIsTheInversePair(matrix) },
     { slug: 'digit-folders', title: 'the digit folders are the API', proof: digitFoldersAreTheApi(matrix) },
     { slug: 'dot-cube', title: 'the dot is the cube is the dot · 64³', proof: dotIsCubeIsDot(matrix) },
   ]
@@ -657,7 +659,7 @@ const THEOREM_ROOTS = [
   { root: 'content-address — name = payload', stems: ['content-address', 'hamming', 'one-math', 'tamper', 'dot-cube', 'realtime', 'encryption'] },
   { root: 'agnostic completeness — any discovery plugs in', stems: ['digit-folders', 'simulator', 'every-domain', 'mostly-classical'] },
   { root: 'honest demarcation — only proven', stems: ['proven', 'a432', 'sacred', 'quantum-threat', 'crypto'] },
-  { root: 'waves — fold, do not accumulate', stems: ['kernel', 'engine', 'origin', 'ten-d', 'redesign', 'movie', 'animation', 'folding', 'zero-division'] },
+  { root: 'waves — fold, do not accumulate', stems: ['kernel', 'engine', 'origin', 'ten-d', 'redesign', 'movie', 'animation', 'folding', 'zero-division', 'f-inverse'] },
 ] as const
 export function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix: MindMatrix = buildMatrix()) {
   const theorems = proofRegistry(matrix)

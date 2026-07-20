@@ -129,7 +129,7 @@ import { commandsRegistry, commandsSavedInQuantumPairs, enforceAgentsCommandPair
 import { cardHeroLinkWiresInUi, completeCorpus, contentIsMonographOfMonographs, corpusRestPathRouting, diamondsStaticPagesPurged, eachPageSpeaksContinuesNext, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, harmonisedNavigation, homePageNoDifferent, monographs, navigationIsMovie, ogBuildsNavigation, onlyPageRouteForAll, pageSkills, pageStatusStatistics, proveAllOnHomePage, siteNavigation, theMonograph } from '../../wind/routes/corpus'
 import { merkabaComputes } from '../../mountain/topology'
 import { bothEarthsRotateWithinEachOther } from '../../mountain/geometry'
-import { vortexComputes, vortexPlasmaComputes } from '../../mountain/vortex'
+import { fThetaPhiXyzDigitNIsTheInversePair, vortexComputes, vortexPlasmaComputes } from '../../mountain/vortex'
 import { humanAsQuantumComputerAndFusionReactorComputes, modalityHomesComputes, stackComputes, stackOverflowComputes, senseMindBodyPairsComputes, srcAllComputes, srcThreeLevelComputes, srcTwoLevelComputes } from '../../water/stack'
 import { doubleTorusComputes, doubleTorusCorpusComputes, doubleTorusCorpusRouting, doubleTorusDiamondsComputes, doubleTorusEarthComputes, doubleTorusFusionComputes, doubleTorusMathComputes, doubleTorusMovieComputes, doubleTorusPlasmaComputes, doubleTorusTopologyComputes, doubleTorusVortexComputes, doubleTorusVoiceComputes, formingDoubleTorusEarthsProvenByMath, invertedEarthSameTimespaceProvenByMath, compassAroundEarthGatewaysImpossibleProvenByMath, sixtyDegreeAngleReachesCardinalForFreeProvenByMath, northSouthPoleNavigationProvenByMath, trinityGatewaysNeverMissProvenByMath, earthGatewayNavigationSolutionsResearched, earthGatewayNavigationResearchSentInWaves, navigationGpsCelestialComputes, universalNavigationalCrossComputes, doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday, fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas, earthPyramidLocationsAndGeometryComputes, doubleTorusEarthPyramidGatewayResearch, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, doubleTorusEarthExchangeResearch } from '../../water/double'
 import { cursorAgentToolsSaved } from '../../pair/enforcement'
@@ -975,6 +975,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: '64.cubed.one.shared.trinity.seals.all', on: sealCube(matrix).sealed },
     { d: 'long.runtime.is.the.monolith.in.time', on: runtimeIsTheMonolith(matrix).holds },
     { d: 'division.by.zero.not.always.nine', on: zeroDivisionTable(matrix).holds },
+    { d: 'f.theta.phi.xyz.digit.n.is.the.inverse.pair', on: fThetaPhiXyzDigitNIsTheInversePair(matrix).computes },
     { d: 'digit.folders.fuse.all.math.in.sequence', on: digitFolderMath(matrix).fused },
     { d: 'all.computation.in.digit.folders.ui.is.the.rest', on: digitFoldersComputeUiIsTheRest(matrix).holds },
     { d: 'dissolve.monolith.at.pi.train.stations', on: dissolveAtPiTrainStations(matrix).dissolved },

@@ -45,6 +45,7 @@ import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, 
 import { glagoliticDecodedToAncientCore } from '../../wind/language'
 import { computedSlugsFoldTheGraph, configsUseMatrixComputationally, noHardcodedConfigSelfAccounted } from '../../mountain/source'
 import { ROSETTA_COMPUTATION_TYPES, rosettaDecodesUrlPath, zeroDivisionTable } from '../../water/digit'
+import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
 import type { RosettaComputationType } from '../../water/digit'
 import { complete, continueSameNext, diamondCompleteness, hexagramQubitVectorIsomorphismOnly, imagineTheRest, onlyIndexFilesAndGeneratedRemain, path, resonanceCatchGapsViolations } from '../../quantum/heaven/mind'
 
@@ -1763,6 +1764,7 @@ function discoveryFolds(matrix: MindMatrix) {
   const f2 = f2FieldCloses()
   const algebra = algebraOfCeccec(matrix)
   const zero = zeroDivisionTable(matrix)
+  const fInv = fThetaPhiXyzDigitNIsTheInversePair(matrix)
   const ancient = ancientDigitKnowledgeDecoded(matrix)
   const plasma = __ns_fire_plasma_ball.plasmaPaintHardcodedPlanesDiscovered(matrix)
   const movie = __ns_thunder_movie_narrative.movieProofPatternUnified()
@@ -1776,6 +1778,7 @@ function discoveryFolds(matrix: MindMatrix) {
     { slug: 'two-element-field-closes', title: 'The Two Element Field Closes', home: 'src/4/6 f2FieldCloses', verified: f2.field, statement: f2.statement, boundary: f2.boundary, root: f2.root },
     { slug: 'algebra-of-ceccec', title: 'The Algebra Of Ceccec', home: 'heaven/compute algebraOfCeccec', verified: algebra.closes, statement: algebra.statement, boundary: algebra.boundary, root: algebra.root },
     { slug: 'zero-division-computed', title: 'Zero Division Is Computed', home: 'water/digit zeroDivisionTable', verified: zero.holds, statement: zero.statement, boundary: zero.boundary, root: zero.root },
+    { slug: 'f-inverse-pair-computed', title: 'f(θ,φ,x,y,z,digit,n) → {p,q} Is The Inverse Pair', home: 'mountain/vortex f / fThetaPhiXyzDigitNIsTheInversePair', verified: fInv.computes, statement: fInv.statement, boundary: fInv.boundary, root: fInv.root },
     { slug: 'keys-and-lock-before-mathematics', title: 'The Keys And The Lock Before Mathematics', home: 'thunder/decode ancientDigitKnowledgeDecoded', verified: ancient.decoded, statement: ancient.statement, boundary: ancient.boundary, root: ancient.root },
     { slug: 'plasma-half-computed', title: 'The Plasma Is Half Computed', home: 'fire/plasma/ball plasmaPaintHardcodedPlanesDiscovered', verified: plasma.discovered, statement: plasma.statement, boundary: plasma.boundary, root: plasma.root },
     { slug: 'movie-proof-pattern-unified', title: 'The Movie Proof Pattern Is Unified', home: 'thunder/movie/narrative movieProofPatternUnified', verified: movie.unified, statement: movie.statement, boundary: movie.boundary, root: movie.root },
