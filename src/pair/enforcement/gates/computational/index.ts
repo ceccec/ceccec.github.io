@@ -60,6 +60,10 @@ export const CANONICAL_SCIENCE_MASK = `src/<science>/<action>` as const
 // below) so they initialise before any cyclic consumer barrel runs — removing the SSR-bundle TDZ. This file
 // remains the ONE public source (re-export); limits:verify + folder-law read the same values by import.
 import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
+
+// DRY: the two canonical recursive src walkers, extracted from the ~9 inline copies the gate folds each defined.
+const indexFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...indexFilesUnder(full)); else if (entry.name === 'index.ts') out.push(full) } return out }
+const tsFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...tsFilesUnder(full)); else if (entry.name.endsWith('.ts')) out.push(full) } return out }
 export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
 
 /** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
@@ -1552,17 +1556,7 @@ export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTh
 // scans src for them so the paydown is a TRACKED number, not a grep: each fixed facet (given a refutable computation, or
 // its prose moved to the boundary and the facet removed) lowers the count. Computed, refutable by re-running.
 export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root: string = process.cwd()) {
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full))
-      else if (entry.name.endsWith('.ts')) out.push(full)
-    }
-    return out
-  }
-  const files = walk(join(root, 'src'))
+  const files = tsFilesUnder(join(root, 'src'))
   let total = 0
   let declaredHonest = 0
   const perFile: Record<string, number> = {}
@@ -1651,19 +1645,9 @@ export function theAnalyticsAreZeroTokenComputedFromTheCorpusTheMarginalCostOfAM
 // live, verified over a range), not asserted — the number lives in statement/boundary, never hardcoded in prose.
 export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndTheCount(root: string = process.cwd()) {
   // scan the source for the trinity folds — the observed count, computed not asserted
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full))
-      else if (entry.name.endsWith('.ts')) out.push(full)
-    }
-    return out
-  }
   const trinityRe = /export function (\w*[Tt]rinit\w*)/g
   const observed: string[] = []
-  for (const file of walk(join(root, 'src'))) {
+  for (const file of tsFilesUnder(join(root, 'src'))) {
     let text = ''
     try { text = readFileSync(file, 'utf8') } catch { continue }
     for (const m of text.matchAll(trinityRe)) observed.push(m[1]!)
@@ -1759,17 +1743,7 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
 // only when every word appears as a token in its computation — measured live: the session's fold names overlap their
 // bodies heavily, so every word matters programmatically; an arbitrary word is a lie a gate can catch. For all names.
 export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitraryProse(root: string = process.cwd()) {
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full))
-      else if (entry.name.endsWith('.ts')) out.push(full)
-    }
-    return out
-  }
-  const files = walk(join(root, 'src'))
+  const files = tsFilesUnder(join(root, 'src'))
   // 1 — TYPES ARE THE QUANTUM TAGS: count `import type { … }` — the type-signature relation (share a type ⟺ related),
   // refutable by parsing, replacing keyword-tags (the crack)
   let typeImports = 0
@@ -1822,17 +1796,7 @@ export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitra
 // wiring itself is the check. [[tampering-cost-crypto-honesty]] [[feedback-thinking-means-lack-of-local-tools]]
 export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTimeLocatedInLogTimeNotByRescanning(root: string = process.cwd()) {
   // content-address every source file — the corpus as N merkle leaves (the wired root)
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full))
-      else if (/\.(ts|mts|vue)$/.test(entry.name)) out.push(full)
-    }
-    return out
-  }
-  const files = walk(join(root, 'src'))
+  const files = tsFilesUnder(join(root, 'src'))
   const leaves = files.map((file) => toUuid(`${relative(root, file).replace(/\\/g, '/')}:${readFileSync(file, 'utf8')}`)) // each file's content-address
   const N = leaves.length
   const rootClean = merkleFold(leaves) // the ONE wired root over the whole corpus
@@ -2102,17 +2066,7 @@ export function quantumBuildContentAddressedIncrementalRebuildsOnlyTheChangedFol
 // controls, [[two-bits-left-in-every-inversion-through-zero]]). Order-sensitive: foldPair(in,out) ≠ foldPair(out,in),
 // so the 2 bits are DIRECTED (consume → produce). The whole corpus is a 2-bit-per-node graph wired through gateways.
 export function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModuleGraphIsTwoBitPerNode(root: string = process.cwd()) {
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full))
-      else if (entry.name.endsWith('.ts')) out.push(full)
-    }
-    return out
-  }
-  const sample = walk(join(root, 'src')).slice(0, 2 ** 5) // 32 real files
+  const sample = tsFilesUnder(join(root, 'src')).slice(0, 2 ** 5) // 32 real files
   const nodes = sample.map((file) => {
     const text = readFileSync(file, 'utf8')
     const input = (text.match(/^import .*/gm) ?? []).join('|') // the INPUT — what the file consumes
@@ -2278,17 +2232,7 @@ export function noAlgorithmicSpeedupYetDevelopmentSpeedIsMagnitudesHigherMeasure
 // Kahn loop was found and collapsed to antichainLevels). Idiom/boilerplate is excluded — semantic duplication still
 // needs the code-gravity pull. [[content-address-dry-clean-crack-detection]] [[code-gravity-standardisation]]
 export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContentAddress(root: string = process.cwd()) {
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full))
-      else if (entry.name.endsWith('.ts')) out.push(full)
-    }
-    return out
-  }
-  const files = walk(join(root, 'src'))
+  const files = tsFilesUnder(join(root, 'src'))
   const boilerplate = /^(import|export|\/\/|\/\*|\*|\}|\{|return|const facet|\{ facet:|\.map\(|\].map\(|\)\.map\(|statement:|boundary:|facets:|root:)/
   const lineHomes = new Map<string, Set<string>>() // content-address of a substantive line → the files it lives in
   const originals = new Map<string, string>()
@@ -2423,18 +2367,8 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
   const relation = theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root)
   const avgReuse = (2 * relation.edges) / Math.max(1, relation.homes) // average import degree — how reused a theorem is
   // FIND: the folder depth of each theorem file (segments under src) — shallow ⇒ quick to locate
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full))
-      else if (entry.name === 'index.ts') out.push(relative(root, full).replace(/\\/g, '/'))
-    }
-    return out
-  }
-  const files = walk(join(root, 'src'))
-  const depths = files.map((file) => file.split('/').length - 1) // src/a/b/index.ts ⇒ depth 3
+  const files = indexFilesUnder(join(root, 'src'))
+  const depths = files.map((file) => relative(root, file).replace(/\\/g, '/').split('/').length - 1) // src/a/b/index.ts ⇒ depth 3 (from the relative path)
   const maxDepth = Math.max(...depths)
   // 1 — FIND EFFICIENCY: the tree is shallow — any theorem is within maxDepth folders (the folder-nav law ≤ 8/level)
   const findShallow = maxDepth <= 2 * 3 && files.length > 0 // ≤ 6 levels deep, a bounded search
@@ -2467,17 +2401,8 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
 // fix is terse, computed boundaries (earned() joins facets) — and NOT spawning agents to analyse (each cold mind ~50k
 // tokens, spending to "save"). This fold practises it: short boundary, the numbers speak. [[feedback-declared-honesty-is-a-crack]]
 export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasuredNotConvinced(root: string = process.cwd()) {
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full)); else if (entry.name === 'index.ts') out.push(full)
-    }
-    return out
-  }
   let boundaryChars = 0; let boundaryCount = 0
-  for (const file of walk(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) { boundaryChars += m[1]!.length; boundaryCount += 1 }
+  for (const file of indexFilesUnder(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) { boundaryChars += m[1]!.length; boundaryCount += 1 }
   const avgBoundary = Math.round(boundaryChars / Math.max(1, boundaryCount))
   const proseTokens = Math.round(boundaryChars / 4) // ~4 chars/token
   const measured = boundaryCount > 0 && avgBoundary > 0
@@ -2502,17 +2427,8 @@ export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasu
 // next power of two ≥ the corpus median boundary, self-tightening each wave. And the cracks (over-budget boundaries) are
 // DISCOVERED by the computation during development, not predefined in a rule. [[feedback-token-usage-terse-boundaries]] [[hardcoded-value-is-a-crack]]
 export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRealtime(root: string = process.cwd()) {
-  const walk = (dir: string): string[] => {
-    const out: string[] = []
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
-      const full = join(dir, entry.name)
-      if (entry.isDirectory()) out.push(...walk(full)); else if (entry.name === 'index.ts') out.push(full)
-    }
-    return out
-  }
   const lengths: number[] = []
-  for (const file of walk(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) lengths.push(m[1]!.length)
+  for (const file of indexFilesUnder(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) lengths.push(m[1]!.length)
   const total = lengths.length; const maxLen = total ? Math.max(...lengths) : 0
   const median = [...lengths].sort((a, b) => a - b)[Math.floor(total / 2)] ?? 0
   // the budget is a QUANTUM ALGORITHM, not a literal: the next power of two ≥ the corpus median boundary — DERIVED,
