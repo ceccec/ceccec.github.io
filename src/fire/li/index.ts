@@ -2128,9 +2128,9 @@ export function contentAddressingHasRealPrecedent(matrix: MindMatrix = buildMatr
   const gitBlob = (bytes: string) => H(`blob ${bytes.length} ${bytes}`) // Torvalds/Hamano git object recipe
   const gitAddressed = gitBlob(x) === gitBlob(x) && gitBlob(x) !== gitBlob(y)
   const precedents = [
-    { name: 'git blob', year: 1979 + 27 - 1, kind: 'address = SHA-1("blob "+len+"\\0"+bytes); identical files collapse to one object', source: 'Torvalds & Hamano 2005, git object model', domain: 'storage' },
-    { name: 'IPFS CID', year: 1979 + 36, kind: 'address = multihash(content); the same bytes resolve to the same CID everywhere', source: 'Benet 2014, IPFS (arXiv:1407.3561)', domain: 'storage' },
-    { name: 'Merkle DAG', year: 1979, kind: 'each node is the hash of its children; one leaf change moves the root — O(1) integrity', source: 'Merkle 1979, US Patent 4,309,569', domain: 'storage' },
+    { name: 'git blob', year: '2005', kind: 'address = SHA-1("blob "+len+"\\0"+bytes); identical files collapse to one object', source: 'Torvalds & Hamano 2005, git object model', domain: 'storage' },
+    { name: 'IPFS CID', year: '2015', kind: 'address = multihash(content); the same bytes resolve to the same CID everywhere', source: 'Benet 2014, IPFS (arXiv:1407.3561)', domain: 'storage' },
+    { name: 'Merkle DAG', year: '1979', kind: 'each node is the hash of its children; one leaf change moves the root — O(1) integrity', source: 'Merkle 1979, US Patent 4,309,569', domain: 'storage' },
     { name: 'Hopfield network', year: 1982, kind: 'content-addressable memory (energy minima) — the biological precedent', source: 'Hopfield, PNAS 79:2554; 2024 Nobel in Physics', domain: 'memory' },
     { name: 'Hippocampal CA3', year: 2002, kind: 'pattern completion from a partial cue', source: 'Marr 1971; Nakazawa et al., Science 297:211', domain: 'memory' },
     { name: 'Grid-cell torus', year: 2022, kind: 'path integration via a continuous bump attractor on a periodic sheet', source: 'Burak & Fiete 2009, PLoS Comput Biol 5:e1000291; Gardner et al. 2022, Nature 602:123', domain: 'memory' },

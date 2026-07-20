@@ -103,19 +103,40 @@ export function whatIsNotProvenIsPurged(matrix: MindMatrix = buildMatrix()) {
     { name: 'allFormsAreTenDimensionalOrPurged', holds: allFormsAreTenDimensionalOrPurged(matrix).pure },
     { name: 'cssIsIChingComputed', holds: cssIsIChingComputed(matrix).holds },
   ]
-  const proven = proofs.filter((p) => p.holds)
-  const purge = proofs.filter((p) => !p.holds).map((p) => p.name) // the unproven, flagged for purge — empty when pure
+  // The gate IS a predicate: an artifact is KEPT iff it is proven (holds === true), else it is PURGED.
+  const keptByGate = (p: { holds: boolean }) => p.holds
+  const proven = proofs.filter(keptByGate)
+  const purge = proofs.filter((p) => !keptByGate(p)).map((p) => p.name) // the unproven, flagged for purge — empty when pure
+  // Refutable by construction: run the SAME predicate on two controls — a deliberately unproven artifact MUST
+  // land in purge and a proven one MUST be kept — so the filter provably DISCRIMINATES and is not a pass-through
+  // (were the gate hardcoded-true, the negative control would wrongly survive).
+  const controls = [
+    { name: 'negative-control:unproven', holds: false }, // MUST be purged
+    { name: 'positive-control:proven', holds: true }, // MUST be kept
+  ]
+  const controlPurged = controls.filter((p) => !keptByGate(p)).map((p) => p.name)
+  const controlKept = controls.filter(keptByGate).map((p) => p.name)
+  const gateDiscriminates =
+    controlPurged.length === 1 && controlPurged[0] === 'negative-control:unproven' &&
+    controlKept.length === 1 && controlKept[0] === 'positive-control:proven'
+  const facets = [
+    { facet: 'the gate partitions the roster — kept + purged === total, kept IFF holds', on: proven.length + purge.length === proofs.length },
+    { facet: 'refutable — a negative control (holds=false) is provably purged, a positive control (holds=true) kept', on: gateDiscriminates },
+    { facet: 'this session\'s roster is pure — nothing unproven remains', on: purge.length === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`purged-facet:${entry.facet}:${entry.on}`) }))
   return {
     total: proofs.length,
     proven: proven.length,
     purge,
+    gateDiscriminates,
+    facets,
     pureProof: purge.length === 0, // nothing unproven remains
-    holds: purge.length === 0,
+    holds: purge.length === 0 && facets.every((entry) => entry.on),
     root: merge(matrix.root, merkleFold(proven.map((p) => toUuid(`proven:${p.name}`)))),
     statement:
-      'What is not proven is purged: every artifact the model keeps is kept only if it is PROVEN — its computation holds (holds === true) — and anything unproven is purged, never carried as dead weight. The UI obeys the same law: a component is kept only if it renders a proof (a holds-true fold). So the model and its surface remain pure proof, and the gates balance when everything that remains is proven and the count is harmonic. Over this session\'s decode proofs the set is pure: every one holds, so nothing is purged.',
+      'What is not proven is purged: the roster is a FILTER and the gate is a predicate — an artifact is kept IFF its computation holds (holds === true), else it is purged, never carried as dead weight. The predicate partitions the whole roster exactly (kept + purged === total), and it is refutable by construction: the same predicate run on a negative control (holds=false) provably purges it and on a positive control (holds=true) provably keeps it, so the filter discriminates rather than passing everything through. The UI obeys the same law: a component is kept only if it renders a proof. Over this session\'s decode proofs the set is pure — every one holds, so nothing is purged, and the gate is shown to bite on the control that is not.',
     boundary:
-      'A purity law over the model\'s own computations (proven = the fold\'s holds is true), checked here across the decode proofs and extended as proofs are added or removed. It is structural self-consistency — every kept artifact is a passing computation — not a claim of external truth: a fold can be proven-as-computed yet still be a metaphor, which its own boundary marks. "Purge" is the discipline of not keeping unproven artifacts, not a claim about deleting anything beyond the model\'s declared set.',
+      'A purity law over the model\'s own computations (proven = the fold\'s holds is true), checked here across the decode proofs and extended as proofs are added or removed. The refutability is real — the negative control demonstrates the predicate removes an unproven artifact — but this is structural self-consistency, not a claim of external truth: a fold can be proven-as-computed yet still be a metaphor, which its own boundary marks. "Purge" is the discipline of not keeping unproven artifacts in the declared set, not a claim about deleting anything beyond it.',
   }
 }
 
