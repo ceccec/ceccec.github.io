@@ -1089,10 +1089,11 @@ export function drawBothEarthsMerkabaFrame(
   const cx = w / 2
   const cy = h / 2
   const scale = Math.min(w, h) / (7 * 6 * 5 * 2)
-  const phase = reduce ? 0 : at / (100 * 5 * 2)
+  // Breath on the one hero clock — not a private atMs divisor / 1.15 rate.
+  const p = reduce ? 0 : heroPhaseAt(at)
   const innerR = (9 * 8) * scale
   const outerR = 108 * scale
-  const breath = 1 + Math.sin(phase * 1.15) * (1 / (5 * 5))
+  const breath = 1 + Math.sin(p * TAU) * (1 / (5 * 5))
 
   const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * (1 - 9 / (5 * 4)))
   bg.addColorStop(0, paint((100 * 2), (3 / (5 * 5)), { L: 1 / 4 }))
