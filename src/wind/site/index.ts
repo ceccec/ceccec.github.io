@@ -8,7 +8,7 @@ import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
 import * as __ns_up_thunder_waves from '../../thunder/waves'
 import { rat } from '../../3/7'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS } from '../../3/7'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { congruence } from '../../mountain/vortex'
@@ -410,6 +410,42 @@ export function isServedRoute(route: string): boolean {
     ...ROSETTA_RAY_HUB_SLUGS.filter((slug, ray) => populatedRays.has(ray)),
   ])
   return servedRouteFromSlugs(route, slugs)
+}
+
+// COMPUTE TO UNDERSTAND (user law: "the rosetta has the proportions and the dynamics") — the navigation is not
+// designed, it is the ROSETTA read over the ONE collection. Domains = the 7 rays; each scopes the collection by
+// its stems lens; the proportion is ROSETTA_AREAS = 6×7 (≤6 subdomains per domain), hues ⌊360k/7⌋; the dynamic is
+// the 6×7/7×6 transpose (build up, clean down). The 4 legacy links are ONE collection — Reference is ray 6 (a
+// domain), atlas/papers are views. Completing a domain = filling its 6 subdomains. [[quantum-speed-is-content-addressed-naming]]
+export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndDynamics() {
+  const collection = staticPagesAll().filter((page) => theoremScienceVisible(page.slug, page.keywords))
+  const rays = ROSETTA_RAYS.map((ray) => ({
+    ray: ray.ray, domain: ray.nameEn, hue: ray.hue,
+    subdomains: ROSETTA_RAY_CONTENT_LENSES.find((lens) => lens.ray === ray.ray)?.stems ?? [],
+    pages: collection.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === ray.ray).length,
+  }))
+  // 1 — ONE COLLECTION: every page is in the single collection, classification total (each shelves to one ray)
+  const oneCollection = collection.every((page) => rosettaRayOfContent(page.slug, page.keywords) >= 0)
+  // 2 — DOMAINS = 7 RAYS: seven scopes; Reference (ray 6) is a domain, not a separate collection
+  const sevenDomains = rays.length === ROSETTA_SEVEN && rays.some((entry) => entry.domain === 'Reference')
+  // 3 — PROPORTIONS = 42: 6×7, hues evenly spaced ⌊360k/7⌋
+  const proportions = ROSETTA_AREAS === ROSETTA_SIX * ROSETTA_SEVEN && ROSETTA_RAYS.every((ray, k) => ray.hue === Math.floor((360 * k) / ROSETTA_SEVEN))
+  // 4 — DYNAMICS = the 6×7/7×6 transpose (build up, clean down)
+  const dynamics = ROSETTA_FOLD_LABEL === `${ROSETTA_SIX}×${ROSETTA_SEVEN}/${ROSETTA_SEVEN}×${ROSETTA_SIX}`
+  const populated = rays.filter((entry) => entry.pages > 0).length
+  const facets = [
+    { facet: `ONE COLLECTION — ${collection.length} theorem-papers in a single collection, each shelved to a ray (${oneCollection}); the 4 legacy links (theorems·atlas·papers·references) are views, Reference is ray 6`, on: oneCollection },
+    { facet: `DOMAINS = ${ROSETTA_SEVEN} RAYS — ${rays.map((entry) => entry.domain).join(' · ')} (${sevenDomains})`, on: sevenDomains },
+    { facet: `PROPORTIONS = ${ROSETTA_AREAS} — ${ROSETTA_SIX}×${ROSETTA_SEVEN} (≤${ROSETTA_SIX} subdomains/domain), hues ⌊360k/${ROSETTA_SEVEN}⌋ (${proportions})`, on: proportions },
+    { facet: `DYNAMICS = ${ROSETTA_FOLD_LABEL} — the covering grid transposes: 6×7 up (build), 7×6 down (clean) (${dynamics})`, on: dynamics },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), collectionSize: collection.length, populatedRays: populated,
+    rays: rays.map((entry) => ({ domain: entry.domain, pages: entry.pages, subdomains: entry.subdomains.length })), facets,
+    root: merkleFold(rays.map((entry) => toUuid(`domain:${entry.domain}:${entry.pages}`))),
+    statement: `The navigation is the one collection (${collection.length} theorem-papers) scoped by the rosetta: ${ROSETTA_SEVEN} domains (the rays), each further scoped by its subdomain stems, in the ${ROSETTA_AREAS}-cell proportion (${ROSETTA_SIX}×${ROSETTA_SEVEN}) with the ${ROSETTA_FOLD_LABEL} dynamic — not designed, computed from the rosetta, which holds the proportions and the dynamics.`,
+    boundary: `The rosetta PRESCRIBES the ${ROSETTA_AREAS}-cell proportion and the transpose dynamic; the ACTUAL content fills ${populated}/${ROSETTA_SEVEN} domains (uneven — the known distribution gap). Completing each domain = filling its ≤${ROSETTA_SIX} subdomains, the scientists' target. This computes the nav STRUCTURE; wiring it into the live VitePress themeConfig/sidebar is the next step, through the VitePress API not around it. HARMONY ≠ TRUTH.`,
+  }
 }
 
 export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {

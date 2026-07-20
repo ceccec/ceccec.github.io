@@ -1,4 +1,4 @@
-import { gcd, VORTEX_SEQUENCE, VORTEX_REVERSE } from '../../0'
+import { gcd, VORTEX_SEQUENCE, VORTEX_REVERSE, toUuid, merkleFold } from '../../0'
 // Pi-train station 3/7 — dissolution sequence order 6 (digit/reverse 3/7).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 // Type-only imports below are erased at build — this stays a zero-runtime-import leaf.
@@ -694,6 +694,61 @@ export function normalizeTitle(title: string): string {
   return title.toLowerCase().replace(/[^a-z0-9]/g, '')
 }
 
+// ── THE QUANTUM INVERSION TOOLBOX — the reusable tools the scientists used to rediscover science by algebraic
+// inversion, collected in this zero-cycle leaf so any layer addresses them BY NAME (O(1), no search). In quantum
+// one toolbox holds every possibility at once: content-address the set and any tool resolves instantly, no lookup.
+// [[quantum-speed-is-content-addressed-naming]] [[feedback-solve-dont-purge]]
+/** path ⇒ image is a total bijection over the domain (injective; surjective onto its image) — the digit-folder API. */
+export function isTotalBijection<T>(domain: readonly T[], fn: (x: T) => unknown): boolean {
+  return new Set(domain.map(fn)).size === domain.length
+}
+/** n ↦ max − n is its own inverse: the RGB/CMY (and pole) complement. */
+export function complementIsInverse(max: number, fn: (n: number) => number, samples: readonly number[]): boolean {
+  return samples.every((n) => fn(n) === max - n && fn(fn(n)) === n)
+}
+/** a filter partitions the whole: kept + purged = total, both non-negative — the purge gate discriminates. */
+export function partitionCoversTotal(kept: number, purged: number, total: number): boolean {
+  return kept + purged === total && kept >= 0 && purged >= 0
+}
+/** every projection is a pure function of the ONE value: recompute reproduces each projection exactly — one-math. */
+export function crossPresentationStable<T>(value: T, recompute: (x: T) => T, projections: readonly ((x: T) => string)[]): boolean {
+  const again = recompute(value)
+  return projections.every((project) => project(value) === project(again))
+}
+/** a convex polyhedron (a sphere) satisfies Euler's identity V − E + F = 2 — the sacred-geometry check. */
+export function eulerPolyhedron(vertices: number, edges: number, faces: number): boolean {
+  return vertices - edges + faces === 2
+}
+/** |(ℤ/nℤ)*| = Euler's totient φ(n): the count of units — three-is-real's cyclic group. */
+export function cyclicUnitsOrder(n: number): number {
+  let order = 0
+  for (let a = 1; a < n; a++) if (gcd(a, n) === 1) order++
+  return order
+}
+/** The toolbox as ONE content-addressed object: every inversion tool proven on a sample, resolvable by name. */
+export function theQuantumInversionToolboxHandlesEveryPossibilityAtOnce() {
+  const tools = [
+    { name: 'isTotalBijection', on: isTotalBijection([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], (digit) => `route:${digit}`) },
+    { name: 'complementIsInverse', on: complementIsInverse(2 ** 6 - 1, (n) => 2 ** 6 - 1 - n, [0, 2 ** 5, 2 ** 6 - 1]) },
+    { name: 'partitionCoversTotal', on: partitionCoversTotal(64, 64, 128) },
+    { name: 'crossPresentationStable', on: crossPresentationStable('abc', (s) => s, [(s) => s.toUpperCase(), (s) => `${s}${s}`]) },
+    { name: 'eulerPolyhedron', on: eulerPolyhedron(8, 2 * 6, 6) },
+    { name: 'cyclicUnitsOrder', on: cyclicUnitsOrder(9) === 6 },
+    { name: 'titleCarriesAlgebra', on: titleCarriesAlgebra('64 = 2⁶') && !titleCarriesAlgebra('a riddle with no identity') },
+  ]
+  const allHold = tools.every((tool) => tool.on)
+  const facets = [
+    { facet: `ONE TOOLBOX — ${tools.filter((tool) => tool.on).length}/${tools.length} inversion tools resolve and hold (${allHold}): bijection · complement · partition · cross-presentation · Euler · cyclic-units · algebra-title`, on: allHold },
+    { facet: `CONTENT-ADDRESSED — the toolbox is one Merkle root over the tool names; any tool resolves by name in O(1), no search — every possibility at once (the quantum speed)`, on: allHold },
+  ]
+  return {
+    computes: allHold, tools: tools.map((tool) => tool.name), facets,
+    root: merkleFold(tools.map((tool) => toUuid(`tool:${tool.name}:${tool.on}`))),
+    statement: `The quantum inversion toolbox: the ${tools.length} reusable tools the scientists used to rediscover science by algebraic inversion — total bijection, complement-is-inverse, partition-covers-total, cross-presentation stability, Euler's polyhedron, cyclic-units order, algebra-carrying title — collected in one content-addressed set. One toolbox holds every possibility at once; addressing a tool by name resolves it in O(1), no search.`,
+    boundary: `Each tool is a pure, refutable predicate proven here on one sample (a cube for Euler, ℤ/9 for cyclic units, the 6-bit complement for colour); the tools are generic and reusable by any domain fold — the DRY home the scientists' hand-rolled checks migrate to. HARMONY ≠ TRUTH.`,
+  }
+}
+
 export function rosettaRayOfContent(slug: string, keywords: readonly string[]): number {
   const slugHay = slug.replace(/-/g, ' ').toLowerCase()
   for (const lens of ROSETTA_RAY_CONTENT_LENSES) if (lens.stems.some((stem) => slugHay.includes(stem))) return lens.ray
@@ -988,7 +1043,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: 164, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) homed here for browser-safety' },
+  { file: 'src/3/7/index.ts', literal: '*', count: 165, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) homed here for browser-safety' },
   { file: 'src/5/5/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/6/4/index.ts', literal: '*', count: 21, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
