@@ -9,7 +9,9 @@ import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { VORTEX_SEQUENCE, computesGate, digitalRoot, isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../0'
-import { TAU } from '../../3/7'
+import { A432_HUE, TAU } from '../../3/7'
+import { movieCanvasPolarity } from '../../quantum/science'
+import { heroPhaseAt } from '../../fire/plasma/ball'
 
 /** One paint-ready harmonic mode at instant `at`. */
 export type ResonanceSimulationMode = {
@@ -287,6 +289,56 @@ export function resonanceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
         'Resonance computes: canonical home — Schumann ELF cavity, human harmonic prediction, VORTEX_SEQUENCE mode decode, research exposition, and plasma movie resonance senses — thin compose from lake/music and plasma/ball at call time.',
       boundary:
         'HONEST — STRUCTURAL HARMONIC PHASE MODEL ONLY. Schumann modes are documented literature values phase-locking compute receipts — NOT live ionosphere sensors unless user opts into publicFrequencyApis. Human resonance = offline harmonic windows + animation math — NOT medical treatment. Movie alive/healing = computational metaphor — NOT sentience or energy healing as physics.',
+    }
+  })
+}
+
+/**
+ * Field projection — Schumann mode radial paint. Geometry/scale ride heroPhaseAt + cssWidth;
+ * hues from the sealed sim (A432-bridged). Vue mounts only call this — no inline canvas math.
+ * HONEST: structural harmonic visualization, not live magnetometer or medical entrainment.
+ */
+export function drawResonanceProjection(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  sim: ResonanceSimulationPaint,
+  opts: { dark?: boolean; reduce?: boolean } = {},
+): void {
+  const dark = opts.dark !== false
+  const reduce = opts.reduce === true
+  const paint = movieCanvasPolarity(dark)
+  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
+  const p = heroPhaseAt(sim.at)
+  ctx.clearRect(0, 0, w, h)
+  const labelPx = Math.max(9, Math.round(h / 27))
+  const cx = w / 2
+  const cy = h * (1 - 9 / (5 * 4))
+  // Scale from field phase + css width — breath on the one clock, not a private rate.
+  const baseR = Math.min(w, h) * (8 / (5 * 5)) * ((1 - 1 / (5 * 5)) + (1 / (5 * 5)) * Math.sin(p * TAU))
+  ctx.strokeStyle = ink(2 / (5 * 5))
+  ctx.beginPath()
+  ctx.arc(cx, cy, baseR, 0, TAU)
+  ctx.stroke()
+  sim.modes.forEach((mode, index) => {
+    const angle = mode.phase * TAU + index * (2 / 5)
+    const r = baseR * ((1 - 9 / (5 * 4)) + mode.amplitude * (9 / (5 * 4)))
+    const x = cx + Math.cos(angle) * r
+    const y = cy + Math.sin(angle) * r
+    ctx.fillStyle = paint(mode.hue, (7 / (5 * 4)) + mode.amplitude * (1 - 9 / (5 * 4)))
+    ctx.beginPath()
+    ctx.arc(x, y, 6 + mode.amplitude * (5 * 2), 0, TAU)
+    ctx.fill()
+    ctx.strokeStyle = paint(mode.hue, 1 / 2, { L: 13 / 16 })
+    ctx.lineWidth = 1
+    ctx.beginPath()
+    ctx.moveTo(cx, cy)
+    ctx.lineTo(x, y)
+    ctx.stroke()
+    if (!reduce) {
+      ctx.font = `${labelPx}px sans-serif`
+      ctx.fillStyle = ink(3 / 4)
+      ctx.fillText(`${mode.hz} Hz`, x + 8, y - 4)
     }
   })
 }

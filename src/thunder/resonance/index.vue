@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
-import { resonanceSimulationPanelComputes } from './index.ts'
-import { A432_HUE, movieCanvasHex, movieCanvasRgba } from '../../../.vitepress/lib/hero-movie-paint'
+import { drawResonanceProjection, resonanceSimulationPanelComputes } from './index.ts'
+import { movieCanvasHex } from '../../../.vitepress/lib/hero-movie-paint'
 import { useData } from 'vitepress'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../.vitepress/lib/mounts'
@@ -9,7 +9,6 @@ import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiAlert from '../../../.vitepress/theme/components/ui/Alert.vue'
-import { TAU } from '../../3/7'
 
 const panel = shallowRef(resonanceSimulationPanelComputes())
 const { pick } = useSiteLocale()
@@ -22,42 +21,9 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 
 const modes = computed(() => panel.value.sim.modes)
 
-// Near-white label ink from the A432 palette (high lightness, near-zero chroma) — no rgba literal.
-const ink = (alpha: number) => movieCanvasRgba(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64, dark: isDark.value })
-
 function paintResonance(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = resonanceSimulationPanelComputes(undefined, at)
-  const sim = panel.value.sim
-  ctx.clearRect(0, 0, w, h)
-  const labelPx = Math.max(9, Math.round(h / 27))
-  const cx = w / 2
-  const cy = h * (1 - 9 / (5 * 4))
-  const baseR = Math.min(w, h) * (8 / (5 * 5))
-  ctx.strokeStyle = ink((2 / (5 * 5)))
-  ctx.beginPath()
-  ctx.arc(cx, cy, baseR, 0, TAU)
-  ctx.stroke()
-  sim.modes.forEach((mode, index) => {
-    const angle = mode.phase * TAU + index * (2 / 5)
-    const r = baseR * ((1 - 9 / (5 * 4)) + mode.amplitude * (9 / (5 * 4)))
-    const x = cx + Math.cos(angle) * r
-    const y = cy + Math.sin(angle) * r
-    ctx.fillStyle = movieCanvasRgba(mode.hue, (7 / (5 * 4)) + mode.amplitude * (1 - 9 / (5 * 4)), { dark: isDark.value })
-    ctx.beginPath()
-    ctx.arc(x, y, 6 + mode.amplitude * (5 * 2), 0, TAU)
-    ctx.fill()
-    ctx.strokeStyle = movieCanvasRgba(mode.hue, (1 / 2), { L: 13 / 16, dark: isDark.value })
-    ctx.lineWidth = 1
-    ctx.beginPath()
-    ctx.moveTo(cx, cy)
-    ctx.lineTo(x, y)
-    ctx.stroke()
-    if (!reduce) {
-      ctx.font = `${labelPx}px sans-serif`
-      ctx.fillStyle = ink((3 / 4))
-      ctx.fillText(`${mode.hz} Hz`, x + 8, y - 4)
-    }
-  })
+  drawResonanceProjection(ctx, w, h, panel.value.sim, { dark: isDark.value, reduce })
 }
 
 const { at, repaint } = useVisibleMovieCanvas({
