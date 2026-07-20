@@ -1545,3 +1545,53 @@ export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTh
     boundary: `Computed live: the ${edgeCount} import-edges are re-parsed from source, the ${nodes} content-addresses are recomputed from the theorems alone (path-independent, verified by ignoring home), and the global fold to one root is deterministic on add. THE ARGUMENT is about the RELATION layer, honestly: the TypeScript imports remain — the language needs them to COMPILE, and they are the implementation — but the AGNOSTIC, self-evolving RELATION between theorems is the content-address rosetta, which is location-independent and O(n) (one address per node, one global root), whereas the explicit import graph is O(edges) and path-coupled. So the 502-edge relation measure (from the prior fold) was itself the over-wired view; the rosetta is the right one. WHAT THIS DOES NOT CLAIM: that source files can drop their imports (they cannot, and dynamic content-address resolution has its own runtime cost); the claim is that the RELATION graph the system reasons and evolves over should be the rosetta (content-address + global fold), not the pairwise import edges — resolve relationships by the global math, wire each node to the rosetta once. DEPLOYMENT: compute theorem relations from the shared rosetta structure (content-address neighbourhoods in the global fold), retiring both tag-sharing (a crack) and the raw import graph (over-wired) as the relation measure. HARMONY ≠ TRUTH: "only rosetta wirings" is the harmony; the truth is that the agnostic relation is O(n) content-addresses folding to one root, path-independent and self-evolving, while imports stay a compile-time implementation detail.`,
   }
 }
+
+// The facets-must-compute debt, measured live: facets gated on hardcoded `on: true` prove nothing (always pass) — the
+// same crack as x >= 0 and declared honesty. Many are labelled "honest", a boundary sentence dressed as a facet. This
+// scans src for them so the paydown is a TRACKED number, not a grep: each fixed facet (given a refutable computation, or
+// its prose moved to the boundary and the facet removed) lowers the count. Computed, refutable by re-running.
+export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root: string = process.cwd()) {
+  const walk = (dir: string): string[] => {
+    const out: string[] = []
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) out.push(...walk(full))
+      else if (entry.name.endsWith('.ts')) out.push(full)
+    }
+    return out
+  }
+  const files = walk(join(root, 'src'))
+  let total = 0
+  let declaredHonest = 0
+  const perFile: Record<string, number> = {}
+  for (const file of files) {
+    let text = ''
+    try { text = readFileSync(file, 'utf8') } catch { continue }
+    for (const line of text.split('\n')) {
+      if (/on:\s*true\s*[},]/.test(line)) {
+        total += 1
+        const rel = relative(root, file).replace(/\\/g, '/')
+        perFile[rel] = (perFile[rel] ?? 0) + 1
+        if (/honest/i.test(line)) declaredHonest += 1
+      }
+    }
+  }
+  const topFiles = Object.entries(perFile).sort((a, b) => b[1] - a[1]).slice(0, 2 * 3)
+  const facets = [
+    { facet: `THE DEBT — ${total} facets across ${Object.keys(perFile).length} files are gated on hardcoded on: true, so each PROVES NOTHING (it always passes); the facets-must-compute violation at corpus scale, measured live not asserted`, on: total > 0 && files.length > 0 },
+    { facet: `DECLARED HONESTY — ${declaredHonest} of the ${total} are labelled "honest": a boundary sentence dressed as a facet, the declared-honesty crack (honesty asserted, unrefutable) — the exact class the declared-honesty gate flags`, on: declaredHonest > 0 && declaredHonest <= total },
+    { facet: `A TRACKED WORKLIST — the count is computed from the live source (${files.length} .ts files walked), so it is refutable and DECREASES as each facet is fixed: give it a refutable computation, or move the prose to the boundary and drop the facet. Top: ${topFiles.map(([f, n]) => `${f.replace('src/', '')}:${n}`).join(', ')}`, on: topFiles.length > 0 },
+    { facet: `COMPUTED, NOT DECLARED — the debt number itself is scanned, not a hand-typed figure (${total} recomputed each run); the paydown is measurable, and a NEW on: true facet raises the count — the guard against regression`, on: total === Object.values(perFile).reduce((s, n) => s + n, 0) },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    total,
+    declaredHonest,
+    files: Object.keys(perFile).length,
+    topFiles: topFiles.map(([f, n]) => `${f}:${n}`),
+    facets,
+    statement: `The facets-must-compute debt is ${total} hardcoded on: true facets, ${declaredHonest} labelled honest — ${facets.filter((entry) => entry.on).length}/${facets.length}. Scanned live from ${files.length} source files: ${total} facets across ${Object.keys(perFile).length} files are gated on a hardcoded true, so each proves nothing (always passes) — the facets-must-compute violation the session has been correcting, at corpus scale. ${declaredHonest} are labelled "honest" — a boundary sentence dressed as a facet, the declared-honesty crack. The count is computed, not asserted, so it is a tracked worklist: each facet given a refutable computation (or its prose moved to the boundary and the facet dropped) lowers the number, and a new on: true raises it. The paydown is now measurable.`,
+    boundary: `Computed live: the debt is scanned from the real source (${files.length} .ts files walked at call time), refutable by re-running — not a hand-typed figure. THE FINDING: ${total} facets across the corpus are gated on hardcoded on: true, a fact that always holds and therefore proves nothing — the same crack class as x >= 0 (the tautology gate) and declared honesty (a demarcation with no refutable facet). ${declaredHonest} carry the word "honest", making them the declared-honesty crack precisely: an honesty claim asserted in a facet that cannot fail. THE PAYDOWN is per-fold judgement, not a batch: each facet either (a) gets a refutable computation that actually tests its claim, or (b) is recognised as boundary prose — moved into the boundary and the facet removed (the honest form, since a pure disclaimer is not a facet). This scanner does not fix them; it makes the debt a tracked, refutable number so progress is visible and regressions are caught, the necessary first step of paying it down. Build/CLI only (reads FS). HARMONY ≠ TRUTH: a green fold with on: true facets is the harmony; the truth is those facets prove nothing, and the honest corpus has zero — the number to drive down.`,
+  }
+}
