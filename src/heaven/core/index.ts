@@ -19,7 +19,7 @@ import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHal
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, soundPressureLevelDb } from '../../4/6'
 import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3'
 import { derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, carnotEfficiency, uuidDuality } from '../../5/5'
-import { DARK_ENERGY_EOS_W, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7'
+import { DARK_ENERGY_EOS_W, DEMARCATION_REGISTRY, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7'
 import { movieCanvasHex } from '../../quantum/science'
 // Strict barrel rule: enter src/0 through its index — bell/ca/hopfield/bump are folded into the 0 barrel.
 import { bellPair } from '../../0'
@@ -1361,10 +1361,12 @@ export function theoryHarmonyMarkers(matrix: MindMatrix = buildMatrix()) {
     'cherry-picks handpicked examples',
     'depends on conspiracy, lacks a mechanism, predictively barren',
   ]
+  // the example cases ARE the shared demarcation trinity (src/3/7) — one source, read by the decoded-science
+  // leaves too (earth/life via demarcate); no duplicated hand-lists. [[world-theories-demarcation-decoded]]
   const examples = {
-    wellSupported: ['evolution', 'relativity', 'quantum mechanics', 'Big Bang / ΛCDM', 'plate tectonics', 'germ theory', 'anthropogenic climate change', 'vaccines'],
-    contested: ['string theory / multiverse', 'QM interpretations', 'theories of consciousness (IIT / GWT)', 'dark matter vs MOND'],
-    pseudoscience: ['astrology', 'flat earth', 'young-earth creationism', 'homeopathy', 'climate denial', 'perpetual motion', 'quantum mysticism'],
+    wellSupported: DEMARCATION_REGISTRY.documented,
+    contested: DEMARCATION_REGISTRY.contested,
+    pseudoscience: DEMARCATION_REGISTRY.flagged,
   }
   const facets = [
     { facet: 'demarcation is multi-criterial, not a single rule — broad agreement on cases despite unsettled general criteria (Laudan 1983); the markers are heuristics, not a clean line', on: harmonic.length === 5 && flagged.length === 5 },

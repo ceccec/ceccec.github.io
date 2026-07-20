@@ -1182,3 +1182,46 @@ export const HARMONY = 'HARMONY does not equal TRUTH.'
 export function earned(head: string, facets: readonly { facet: string; on: boolean }[], scope: string): string {
   return `${head} ${facets.map((facet) => facet.facet).join(' · ')} SCOPE: ${scope} ${HARMONY}`
 }
+
+// ── The demarcation TRINITY — the three-tier registry (documented · contested · flagged) that DECIDES a decoded
+// science claim's status by COMPUTATION, not by a hand-set boolean. It lives in this zero-cycle vault so both the
+// classifier fold (theoryHarmonyMarkers, heaven/core) AND the decoded-science leaves (earth/life, …) read ONE
+// source: a facet asserting "evolution is documented / creationism is flagged" becomes `demarcate('evolution') ===
+// 'documented'` — refutable (move the topic and the fold breaks), the per-fold decision made BY the trinity, not by
+// prose. Mirrors the world-theories wave's wellSupported/contested/pseudoscience; the tiers reflect current
+// consensus and are themselves revisable. [[feedback-facets-must-compute]] [[world-theories-demarcation-decoded]]
+export const DEMARCATION_REGISTRY = {
+  documented: [
+    'evolution', 'common descent', 'abiotic synthesis', 'endosymbiosis', 'ribozyme', 'NCC', 'PCI',
+    'relativity', 'quantum mechanics', 'Big Bang', 'ΛCDM', 'plate tectonics', 'germ theory',
+    'anthropogenic climate change', 'vaccines',
+  ],
+  contested: [
+    'abiogenesis', 'RNA world as history', 'metabolism-first', 'extended evolutionary synthesis', 'neutral theory',
+    'hard problem', 'theories of consciousness', 'IIT', 'GWT', 'GNWT', 'panpsychism', 'Orch-OR',
+    'string theory', 'multiverse', 'QM interpretations', 'dark matter', 'MOND', 'panspermia',
+  ],
+  flagged: [
+    'creationism', 'intelligent design', 'young-earth creationism', 'social darwinism', 'eugenics', 'orthogenesis',
+    'quantum mysticism', 'quantum consciousness', 'consciousness creates reality', 'neuromyth', '10% of the brain',
+    '432 Hz heals', 'astrology', 'flat earth', 'homeopathy', 'climate denial', 'perpetual motion',
+  ],
+} as const
+export type DemarcationTier = 'documented' | 'contested' | 'flagged' | 'unlisted'
+// Longest-substring-match wins across ALL tiers, so 'extended evolutionary synthesis' (contested) beats the
+// 'evolution' (documented) it contains — the specific classification, not the accidental substring, decides.
+export function demarcate(topic: string): DemarcationTier {
+  const t = topic.toLowerCase()
+  let best = ''
+  let tier: DemarcationTier = 'unlisted'
+  for (const key of Object.keys(DEMARCATION_REGISTRY) as (keyof typeof DEMARCATION_REGISTRY)[]) {
+    for (const term of DEMARCATION_REGISTRY[key]) {
+      const k = term.toLowerCase()
+      if (t.includes(k) && k.length > best.length) {
+        best = k
+        tier = key
+      }
+    }
+  }
+  return tier
+}
