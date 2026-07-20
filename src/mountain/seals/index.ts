@@ -35,6 +35,7 @@ import {
 } from '../../wind/research'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
+import { stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
@@ -691,6 +692,8 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'ten-dimensional', title: 'ten dimensions, at every scale — 4 genus-2 homology loops (H₁ = Z⁴) + 6 cross-fold axes, self-similar', proof: tenDimensionalAnimation(matrix) },
     { slug: 'trinity-first-redesign', title: 'the trinity-first redesign — folded as a wave plan, sealed wave by wave', proof: trinityFirstRedesign(matrix) },
     { slug: 'ten-d-movie', title: 'the 10D movie — path-UUID background, entangled sacred-geometry foreground, one field (audio · video · vibration)', proof: tenDimensionalMovie(matrix) },
+    { slug: 'string-theory-quantumized', title: 'String theory quantumized on A432/rosetta/merkle · physics UNCONFIRMED', proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
+    { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
     { slug: 'a432', title: 'A432 — colour · audio · video · vibration, decoded honestly (documented kept, legend flagged)', proof: a432(matrix) },
     { slug: 'sacred-geometry', title: 'sacred geometry — the five Platonic solids, φ, the Flower of Life, decoded honestly (documented kept, legend flagged)', proof: sacredGeometry(matrix) },
     { slug: 'tampering-cost', title: 'tampering cost ↔ encryption ↔ blockchains — the site\'s own "max tampering cost" claim audited honestly (tamper-evident, not yet cryptographic; the SHA-256/Ed25519 fix is built)', proof: tamperingCostDecoded(matrix) },
