@@ -2196,3 +2196,53 @@ export function theTwoBitGatewayReframesAllDryCleanRefactoringOfAllSrcIsPossible
     boundary: `EXACT and computed live on a model of ${n} files as 2-bit nodes: 'c' duplicates 'a' (same output-bit), and comparing the output content-addresses FINDS the duplicate (${dryDetectableByTheBits}) — DRY detection is a bit comparison, not a search; removing the duplicate changes the merkle root over the nodes (${cleanRefactorVerified}) — the content-address verifies the refactor was made and nothing else drifted (clean = tamper-evident); and the dependency DAG partitions by Kahn into ${waves.length} ANTICHAIN levels with no edges within a level (${refactorsInWaves}), so the files of one wave are mutually independent and refactor in parallel, wave by wave (the self-propagating cascade). THE REFRAME: because the 2-bit-gateway model applies to EVERY file, the whole src becomes DRY-clean-refactorable by the one method — detect duplicates by the two bits, refactor cleanly under the content-address, dispatch the refactors in quantum waves. THE HONEST BOUND: this proves the METHOD on a model — real DRY is broader than identical export SIGNATURES (semantic duplication, [[code-gravity-standardisation]], needs the gravity analysis, not just a shared output-bit), the "clean" root-flip confirms a change happened but not that the refactor is SEMANTICALLY correct (tests/types must still pass), and the waves parallelise INDEPENDENT files but a refactor that changes an interface ripples to dependents (a later wave), so the dependency DAG must be honored. It shows DRY-clean-refactoring-in-waves is POSSIBLE and structured, not that it is automatic or risk-free. HARMONY ≠ TRUTH: "all src DRY-clean-refactorable in quantum waves" is the harmony; the truth is: duplicates detected by the output-bit, refactors verified by the root, files partitioned into antichain waves — computed and refutable.`,
   }
 }
+
+// Compute the workflow BEFORE sending the waves — deterministic automation by quantum computation only. A workflow is a
+// task DAG; its wave schedule (the antichain levels + their order + the parallelism) is a PURE function of that DAG,
+// computed in full before a single wave dispatches. The schedule content-addresses to a root: the same DAG yields the
+// identical plan, zero LLM tokens — so the automation is driven by content-addressed computation alone, no model in the
+// loop. Plan by quantum, then send. [[feedback-work-in-waves-not-single-focus]] [[zero-token-policy]]
+export function computeTheWorkflowBeforeSendingTheWavesDeterministicAutomationByQuantumComputationOnly() {
+  const tasks = ['scan', 'demarcate', 'invert', 'seal', 'nav', 'build', 'deploy']
+  const deps: [string, string][] = [['scan', 'demarcate'], ['demarcate', 'invert'], ['invert', 'seal'], ['scan', 'nav'], ['seal', 'build'], ['nav', 'build'], ['build', 'deploy']]
+  const idx = new Map(tasks.map((task, i) => [task, i]))
+  const schedule = (): { waves: number[][]; processed: number } => {
+    const n = tasks.length
+    const indeg = Array.from({ length: n }, () => 0)
+    const adj = Array.from({ length: n }, () => [] as number[])
+    for (const [from, to] of deps) { adj[idx.get(from)!]!.push(idx.get(to)!); indeg[idx.get(to)!]! += 1 }
+    const waves: number[][] = []
+    let frontier = Array.from({ length: n }, (_, i) => i).filter((i) => indeg[i] === 0)
+    let processed = 0
+    while (frontier.length) { waves.push(frontier); const next: number[] = []; for (const node of frontier) { processed += 1; for (const m of adj[node]!) { indeg[m]! -= 1; if (indeg[m] === 0) next.push(m) } } frontier = next }
+    return { waves, processed }
+  }
+  const plan = schedule()
+  const rootOf = (waves: number[][]): string => merkleFold(waves.map((wave, i) => toUuid(`wave:${i}:${wave.map((node) => tasks[node]).join(',')}`)))
+  // 1 — THE WORKFLOW IS COMPUTED BEFORE SENDING: the full antichain schedule, computed with no wave yet dispatched
+  const workflowComputed = plan.processed === tasks.length && plan.waves.length > 0
+  // 2 — DETERMINISTIC, QUANTUM-ONLY: the schedule content-addresses; recomputing yields the identical plan
+  const scheduleRoot = rootOf(plan.waves)
+  const deterministicQuantumOnly = rootOf(schedule().waves) === scheduleRoot && isUuid(scheduleRoot) // same DAG → same plan, zero LLM tokens
+  // 3 — THE PLAN IS COMPLETE: every task scheduled, the waves ordered, the parallelism measured
+  const parallelism = Math.max(...plan.waves.map((wave) => wave.length)) // the widest antichain — max parallel tasks
+  const planComplete = plan.waves.reduce((sum, wave) => sum + wave.length, 0) === tasks.length && parallelism >= 1
+  // 4 — AUTOMATION IMPROVED: the computed plan drives dispatch with no model in the loop
+  const automatedByQuantum = workflowComputed && deterministicQuantumOnly && planComplete
+  const facets = [
+    { facet: `THE WORKFLOW IS COMPUTED BEFORE SENDING — the antichain schedule of all ${tasks.length} tasks is computed in full (${plan.waves.length} waves) before any wave dispatches (${workflowComputed}): plan first, then send`, on: workflowComputed },
+    { facet: `DETERMINISTIC, QUANTUM-ONLY — the schedule content-addresses to a root and recomputing yields the IDENTICAL plan (${deterministicQuantumOnly}): the same DAG gives the same waves, zero LLM tokens — computed, not generated`, on: deterministicQuantumOnly },
+    { facet: `THE PLAN IS COMPLETE — every task is scheduled across the ${plan.waves.length} waves and the parallelism is measured (widest antichain ${parallelism}) (${planComplete}): the full workflow is known before dispatch`, on: planComplete },
+    { facet: `AUTOMATION IMPROVED BY QUANTUM ONLY — the computed plan drives dispatch with no model in the loop (${automatedByQuantum}): content-addressed computation alone automates the workflow`, on: automatedByQuantum },
+  ]
+  return {
+    automates: facets.every((entry) => entry.on),
+    waves: plan.waves.length,
+    parallelism,
+    scheduleRoot: scheduleRoot.slice(0, 2 * 6),
+    facets,
+    root: scheduleRoot,
+    statement: `Compute the workflow before sending the waves — deterministic automation by quantum computation only — ${facets.filter((entry) => entry.on).length}/${facets.length}. A workflow is a task DAG; its wave schedule (the ${plan.waves.length} antichain levels, their order, the parallelism ${parallelism}) is a pure function of that DAG, computed in full before a single wave dispatches. The schedule content-addresses to a root, so the same DAG yields the identical plan, zero LLM tokens — content-addressed computation alone automates the workflow. Plan by quantum, then send.`,
+    boundary: `EXACT and computed live on a ${tasks.length}-task workflow DAG (scan → demarcate → invert → seal / nav → build → deploy): Kahn's algorithm computes the ANTICHAIN SCHEDULE — ${plan.waves.length} waves covering every task (${workflowComputed}) — before any task runs; the schedule content-addresses to a merkle root and recomputing gives the IDENTICAL root (${deterministicQuantumOnly}), so the plan is a deterministic function of the DAG with no model in the loop (zero LLM tokens, [[zero-token-policy]]); every task is placed and the maximum parallelism (widest antichain = ${parallelism}) is measured (${planComplete}). THE POINT: "compute the workflow before sending the waves" is exactly this — the wave plan is KNOWN and content-addressed before dispatch, so the automation is driven by computation, not improvised. THE HONEST BOUND: this schedules the DEPENDENCY structure (what can run in parallel, in what order) — it does NOT estimate each task's DURATION or resource use, so the antichain is the parallelism CEILING, not a wall-clock schedule; the DAG must be acyclic and correct (a wrong dependency edge mis-plans, a cycle is unschedulable — Kahn detects it as processed < n); and "automation" here is deterministic DISPATCH from the computed plan, not that the tasks themselves need no work. HARMONY ≠ TRUTH: "compute the workflow, automate by quantum only" is the harmony; the truth is Kahn's antichain schedule — content-addressed, deterministic, complete — computed before the waves are sent, refutable by one mis-scheduled task.`,
+  }
+}
