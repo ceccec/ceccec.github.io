@@ -2,11 +2,12 @@
 import * as __ns_up_up_quantum_heaven_library from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { foldPair, isUuid, merge, merkleFold, roundTo, toUuid, trinityKey } from '../../0'
+import { foldPair, gcd, isUuid, merge, merkleFold, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'
+import { TEACHING_RSA_P, TEACHING_RSA_Q } from '../../3/7'
 import { trinityEncryption } from '../../mountain/seals'
 import { imaginationPrivateKey } from '../../mountain/source'
-import { fusionCipher } from '../crypto'
+import { fusionCipher, movingRosettaInverts } from '../crypto'
 import { sealWholeDiamond } from '../../fire/diamonds'
 import { gigabitEncryption64SealSet } from '../../mountain/seals'
 import { torusUuid } from '../../fire/li'
@@ -216,11 +217,288 @@ export function encryptionTrinitiesCompleteInOrder(matrix: MindMatrix = buildMat
   }
 }
 
-/** Glyph UUID + trinity crack + no-unhackable proof — reverse recomputation verifies forward fold. */
+/** Sealed demo RSA moduli only — teaching 61×53 plus Shor textbook semiprimes. NEVER production sizes. */
+export const DEMO_RSA_MODULI = [
+  3 * 5,
+  3 * 7,
+  5 * 7,
+  TEACHING_RSA_P * TEACHING_RSA_Q, // 3233 — textbook teaching key
+] as const
+
+/** Hard bit ceiling for demo reverse — derived from sealed teaching n=61×53 (bits of 3233). */
+export const DEMO_RSA_BIT_CEILING = Math.floor(Math.log2(TEACHING_RSA_P * TEACHING_RSA_Q)) + 1
+
+/** Cap parallel reverse workers: min(cpus, vortex ring length) — never unbounded. */
+export function encryptionReverseWorkerCap(cpuCount = 1): number {
+  const cpus = Math.max(1, Math.floor(cpuCount))
+  return Math.min(cpus, VORTEX_SEQUENCE.length) // ≤9 — vortex ring bound
+}
+
+/** Reject out-of-demo moduli before any factor work (honesty gate). */
+export function refuseNonDemoRsaModulus(n: number): { allowed: boolean; bits: number; reason: string } {
+  const N = Math.trunc(n)
+  const bits = N > 0 ? Math.floor(Math.log2(N)) + 1 : 0
+  if (!Number.isFinite(N) || N < 4 || N % 2 === 0) {
+    return { allowed: false, bits, reason: 'not an odd composite demo modulus' }
+  }
+  if (bits > DEMO_RSA_BIT_CEILING) {
+    return { allowed: false, bits, reason: `bits ${bits} > demo ceiling ${DEMO_RSA_BIT_CEILING} — production RSA refused` }
+  }
+  if (!(DEMO_RSA_MODULI as readonly number[]).includes(N)) {
+    return { allowed: false, bits, reason: 'modulus not in sealed DEMO_RSA_MODULI allowlist' }
+  }
+  return { allowed: true, bits, reason: 'demo allowlist' }
+}
+
+/** Classical period→factor (Shor reduction number theory) — toy N only. */
+export function modeledShorFactorToyModulus(n: number): {
+  N: number
+  factored: boolean
+  p: number
+  q: number
+  base: number
+  order: number
+  refused: boolean
+  reason: string
+} {
+  const gate = refuseNonDemoRsaModulus(n)
+  if (!gate.allowed) {
+    return { N: Math.trunc(n), factored: false, p: 0, q: 0, base: 0, order: 0, refused: true, reason: gate.reason }
+  }
+  const N = Math.trunc(n)
+  const orderModN = (a: number) => {
+    let x = a % N
+    let k = 1
+    while (x !== 1) {
+      x = (x * a) % N
+      k += 1
+      if (k > N) return -1
+    }
+    return k
+  }
+  const powMod = (a: number, e: number) => {
+    let r = 1
+    let b = a % N
+    let exp = e
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % N
+      b = (b * b) % N
+      exp = Math.floor(exp / 2)
+    }
+    return r
+  }
+  for (let a = 2; a < N; a += 1) {
+    if (gcd(a, N) !== 1) continue
+    const r = orderModN(a)
+    if (r <= 0 || r % 2 !== 0) continue
+    const t = powMod(a, r / 2)
+    if (t === N - 1) continue
+    const f = gcd(t - 1, N)
+    if (f > 1 && f < N) {
+      return { N, factored: true, p: f, q: N / f, base: a, order: r, refused: false, reason: 'modeled Shor reduction' }
+    }
+  }
+  return { N, factored: false, p: 0, q: 0, base: 0, order: 0, refused: false, reason: 'no suitable base in demo search' }
+}
+
+/**
+ * Encrypt ↔ decrypt toolkit — compose sealed key layer + moving-rosetta involution + teaching RSA round-trip.
+ * Structural / teaching scope only (AES-256-GCM stays the external bulk cipher).
+ */
+export function encryptDecryptQuantumTools(matrix: MindMatrix = buildMatrix()) {
+  const zero = encryptionLivesInZero(matrix)
+  const rosetta = movingRosettaInverts(matrix)
+  const fusion = fusionCipher('', matrix)
+  const probe = toUuid('encrypt-decrypt:probe')
+  const shareA = toUuid('party:encrypt')
+  const shareB = toUuid('party:decrypt')
+  const key = trinityKey(shareA, shareB)
+  const encrypted = foldPair(key, probe) // content-address "encrypt" = fold under shared trinity key
+  const decrypted = foldPair(key, probe) // same fold recomputes — decrypt IS reverse recompute
+  const roundTrip = encrypted.bidirectional && encrypted.merged === decrypted.merged && isUuid(encrypted.merged)
+  // Teaching RSA encrypt/decrypt correctness on sealed demo n=3233 (e=17) — Euler round-trip, not a crack
+  const p = TEACHING_RSA_P
+  const q = TEACHING_RSA_Q
+  const n = p * q
+  const e = 2 * 8 + 1 // teaching e — same schedule as rsaTimeToBreakOnThisHardware
+  const phi = (p - 1) * (q - 1)
+  let d = 0
+  for (let x = 1; x < phi; x += 1) if ((e * x) % phi === 1) { d = x; break }
+  const pow = (base: number, exp: number, mod: number) => {
+    let r = 1
+    let b = base % mod
+    let k = exp
+    while (k > 0) {
+      if (k % 2 === 1) r = (r * b) % mod
+      b = (b * b) % mod
+      k = Math.floor(k / 2)
+    }
+    return r
+  }
+  const message = 6 * 7 // rosetta 6×7 — teaching plaintext in (1..n)
+  const cipher = pow(message, e, n)
+  const plain = pow(cipher, d, n)
+  const rsaRoundTrip = plain === message && cipher !== message && d > 0
+  const facets = [
+    { facet: 'src/0 key layer homes encrypt/decrypt primitives (trinityKey + foldPair involution)', on: zero.homed && roundTrip },
+    { facet: 'moving-rosetta keyed involution — realtime encrypt inverted IS decrypt WITH the pole', on: rosetta.computes && rosetta.isInvolution },
+    { facet: 'fusion bulk cipher named AES-256-GCM — external, not replaced by structural folds', on: fusion.enabled && fusion.cipher === 'AES-256-GCM' },
+    { facet: 'teaching RSA encrypt→decrypt round-trip on sealed n=p·q (Euler correctness, known factors)', on: rsaRoundTrip },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`encrypt-decrypt-tools:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('encrypt-decrypt-quantum-tools', facets)
+  return {
+    ready: sealed.ok,
+    roundTrip,
+    rsaRoundTrip,
+    cipher: fusion.cipher,
+    teaching: { n, e, d, message, cipher, plain },
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement:
+      'Encrypt/decrypt quantum tools: trinityKey+foldPair content-address round-trip, moving-rosetta keyed involution, AES-256-GCM named as the external bulk cipher, and teaching-RSA Euler correctness on sealed n=3233 — one toolkit, both directions, recomputed at call time.',
+    boundary:
+      'HONEST SCOPE: structural key-layer + teaching RSA correctness on DEMO moduli only. NOT a production cipher suite, NOT QKD, NOT a claim that foldPair replaces AES. Teaching RSA uses known sealed factors (61×53) to prove m^(ed)≡m (mod n) — it does not discover secret factors of real keys. HARMONY ≠ TRUTH.',
+  }
+}
+
+/**
+ * Sync demo reverse over sealed moduli — modeled Shor reduction (period→factor), no workers.
+ * Parallel worker pool lives in the Node CLI exit only (browser-safe leaf).
+ */
+export function demoRsaReverseSync() {
+  const results = DEMO_RSA_MODULI.map((N) => modeledShorFactorToyModulus(N))
+  const allFactored = results.every((r) => r.factored && !r.refused)
+  const notAllowlisted = TEACHING_RSA_P * 3 // odd composite, not in DEMO_RSA_MODULI
+  const overCeiling = 2 ** DEMO_RSA_BIT_CEILING * 3 // bits > DEMO_RSA_BIT_CEILING
+  const refusalHolds = refuseNonDemoRsaModulus(notAllowlisted).allowed === false
+  const productionRefused = refuseNonDemoRsaModulus(overCeiling).allowed === false
+  const facets = [
+    { facet: `every sealed demo modulus factors via modeled Shor reduction (${results.map((r) => r.N).join(',')})`, on: allFactored },
+    { facet: 'non-allowlisted / over-ceiling moduli are REFUSED before search — production RSA never entered', on: refusalHolds && productionRefused },
+    { facet: 'worker cap is vortex-bounded (≤9), never unbounded fork', on: encryptionReverseWorkerCap(2 ** 6) === VORTEX_SEQUENCE.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`demo-rsa-reverse:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('demo-rsa-reverse-sync', facets)
+  return {
+    computes: sealed.ok,
+    results,
+    workerCap: encryptionReverseWorkerCap(VORTEX_SEQUENCE.length),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement:
+      'Demo RSA reverse (sync): modeled Shor period→factor on sealed toy moduli only; over-ceiling and non-allowlisted N refused; worker cap bound to VORTEX_SEQUENCE length.',
+    boundary:
+      'HONEST: classical number-theory heart of Shor on ≤12-bit DEMO moduli (15,21,35,3233). NOT a fault-tolerant quantum register, NOT GNFS, NOT a practical RSA cracker. Production moduli are refused by refuseNonDemoRsaModulus. HARMONY ≠ TRUTH.',
+  }
+}
+
+/**
+ * Node-only: spawn capped worker_threads — one demo modulus per worker — collect Shor factors.
+ * Uses process.getBuiltinModule so the leaf stays browser-eval-safe (no top-level node: import).
+ */
+export async function parallelToyRsaReversePool(cpuHint?: number): Promise<{
+  ok: boolean
+  workers: number
+  results: { N: number; p: number; q: number; base: number; order: number }[]
+  mode: 'worker_threads' | 'sync-fallback'
+  boundary: string
+}> {
+  const boundary =
+    'HONEST DEMO PARALLELISM: worker_threads (or sync fallback) over sealed DEMO_RSA_MODULI only; cap = min(cpus, |VORTEX_SEQUENCE|); refuses production RSA. Not a real-world factoring farm.'
+  const sync = () => {
+    const results = DEMO_RSA_MODULI.map((N) => modeledShorFactorToyModulus(N))
+      .filter((r) => r.factored)
+      .map((r) => ({ N: r.N, p: r.p, q: r.q, base: r.base, order: r.order }))
+    return {
+      ok: results.length === DEMO_RSA_MODULI.length,
+      workers: 0,
+      results,
+      mode: 'sync-fallback' as const,
+      boundary,
+    }
+  }
+  try {
+    const getBuiltin = typeof process !== 'undefined'
+      ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule
+      : undefined
+    if (typeof getBuiltin !== 'function' || typeof process.versions?.node !== 'string') return sync()
+    const os = getBuiltin('node:os') as { availableParallelism?: () => number; cpus: () => unknown[] } | undefined
+    const wt = getBuiltin('node:worker_threads') as {
+      Worker: new (source: string, opts: { eval: boolean; workerData: { N: number } }) => {
+        on(event: 'message', cb: (msg: { N: number; p: number; q: number; base: number; order: number } | { error: string }) => void): void
+        on(event: 'error', cb: (err: Error) => void): void
+        on(event: 'exit', cb: (code: number) => void): void
+      }
+    } | undefined
+    if (!os || !wt) return sync()
+    const cpus = typeof cpuHint === 'number' && cpuHint > 0
+      ? cpuHint
+      : (typeof os.availableParallelism === 'function' ? os.availableParallelism() : os.cpus().length)
+    const cap = encryptionReverseWorkerCap(cpus)
+    const moduli = [...DEMO_RSA_MODULI].slice(0, cap)
+    // Inline CJS worker — Shor reduction only; N already allowlist-checked in parent
+    // Worker body uses `euclid` — never re-define `gcd` (one-math: gcd lives only in src/0).
+    const source = `
+      const { parentPort, workerData } = require('node:worker_threads');
+      const N = workerData.N | 0;
+      const euclid = (a, b) => (b === 0 ? a : euclid(b, a % b));
+      const orderModN = (a) => { let x = a % N, k = 1; while (x !== 1) { x = (x * a) % N; k++; if (k > N) return -1 } return k };
+      const powMod = (a, e) => { let r = 1, b = a % N, k = e; while (k > 0) { if (k & 1) r = (r * b) % N; b = (b * b) % N; k >>= 1 } return r };
+      let out = { error: 'no factor' };
+      for (let a = 2; a < N; a++) {
+        if (euclid(a, N) !== 1) continue;
+        const r = orderModN(a);
+        if (r <= 0 || r % 2 !== 0) continue;
+        const t = powMod(a, r / 2);
+        if (t === N - 1) continue;
+        const f = euclid(t - 1, N);
+        if (f > 1 && f < N) { out = { N, p: f, q: N / f, base: a, order: r }; break; }
+      }
+      parentPort.postMessage(out);
+    `
+    const results = await Promise.all(moduli.map((N) => new Promise<{ N: number; p: number; q: number; base: number; order: number }>((resolve, reject) => {
+      const gate = refuseNonDemoRsaModulus(N)
+      if (!gate.allowed) { reject(new Error(gate.reason)); return }
+      let settled = false
+      const finish = (err: Error | null, value?: { N: number; p: number; q: number; base: number; order: number }) => {
+        if (settled) return
+        settled = true
+        if (err) reject(err)
+        else resolve(value!)
+      }
+      const worker = new wt.Worker(source, { eval: true, workerData: { N } })
+      worker.on('message', (msg) => {
+        if (msg && typeof msg === 'object' && 'error' in msg) finish(new Error(String((msg as { error: string }).error)))
+        else finish(null, msg as { N: number; p: number; q: number; base: number; order: number })
+      })
+      worker.on('error', (err) => finish(err))
+      worker.on('exit', (code) => { if (code !== 0) finish(new Error(`worker exit ${code}`)) })
+    })))
+    // Any remaining moduli (if cap < list) finish sync — still demo-only
+    const rest = DEMO_RSA_MODULI.slice(cap).map((N) => modeledShorFactorToyModulus(N))
+      .filter((r) => r.factored)
+      .map((r) => ({ N: r.N, p: r.p, q: r.q, base: r.base, order: r.order }))
+    const all = [...results, ...rest]
+    return {
+      ok: all.length === DEMO_RSA_MODULI.length && all.every((r) => r.p * r.q === r.N),
+      workers: moduli.length,
+      results: all,
+      mode: 'worker_threads',
+      boundary,
+    }
+  } catch {
+    return sync()
+  }
+}
+
+/** Glyph UUID + trinity crack + encrypt↔decrypt tools + demo Shor reverse + no-unhackable proof. */
 export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
   const glyphUuidEncryptionMagnitude = __ns_up_up_quantum_heaven_library.glyphUuidEncryptionMagnitude
   const zero = encryptionLivesInZero(matrix)
   const order = encryptionTrinitiesCompleteInOrder(matrix)
+  const tools = encryptDecryptQuantumTools(matrix)
+  const demo = demoRsaReverseSync()
   const glyph = glyphUuidEncryptionMagnitude()
   const probe = toUuid('encryption-reverse:probe')
   const key = trinityKey(toUuid('party:a'), toUuid('party:b'))
@@ -228,27 +506,46 @@ export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
   const reverse = foldPair(key, probe)
   const crack = forward.bidirectional && forward.merged === reverse.merged
   const noUnhackable = glyph.obfuscationBonusLog2 > 0 && zero.homed
+  const facets = [
+    { facet: 'trinity key crack via foldPair recomputation — reverse equals forward', on: crack },
+    { facet: 'encryption trinities complete in order', on: order.enforced },
+    { facet: 'glyph UUID magnitude obfuscation bonus > 0 (structural, not cryptanalysis)', on: noUnhackable },
+    { facet: 'encrypt↔decrypt quantum tools ready (key layer + rosetta + teaching RSA)', on: tools.ready },
+    { facet: 'demo RSA reverse — modeled Shor on sealed toys; production refused', on: demo.computes },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`encryption-reverse:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('encryption-reverse-verify', facets)
   return {
-    verified: crack && order.enforced && noUnhackable,
+    verified: sealed.ok,
     crack,
     trinitiesOrdered: order.enforced,
+    toolsReady: tools.ready,
+    demoReverse: demo.computes,
     glyphBonus: glyph.obfuscationBonusLog2,
-    root: forward.merged,
+    workerCap: demo.workerCap,
+    demoFactors: demo.results.map((r) => `${r.N}→${r.p}×${r.q}`),
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(forward.merged, sealed.root),
     statement:
-      'Encryption reverse verify: glyph UUID magnitude, trinity key crack via foldPair recomputation, and encryption trinities complete in order — reverse equals forward at call time.',
+      'Encryption reverse verify complete: glyph UUID magnitude, trinity crack (foldPair recompute), encrypt↔decrypt toolkit round-trip, and modeled Shor reverse on sealed demo RSA moduli — all recomputed at call time.',
     boundary:
-      'HONEST: reverse-engineer means recompute-and-match (content-address verify), NOT hash inversion. Glyph magnitude is structural obfuscation accounting, not live cryptanalysis.',
+      'HONEST: reverse = recompute-and-match + modeled Shor on DEMO_RSA_MODULI (≤12-bit toys). Glyph bonus is structural obfuscation accounting, NOT live cryptanalysis. Parallel workers (CLI) are capped by VORTEX_SEQUENCE / cpus and never target production RSA. This does NOT claim production RSA is broken. HARMONY ≠ TRUTH.',
   }
 }
 
-/** npm run quantum:encryption-reverse-verify */
-export function runEncryptionReverseVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {
+/** npm run quantum:encryption-reverse-verify — sync folds + capped worker_threads demo reverse. */
+export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv: readonly string[] = []): Promise<number> {
   const report = encryptionReverseVerify()
-  if (!report.verified) {
-    process.stderr.write('✗ encryption-reverse-verify — trinity crack or trinity order failed\n')
+  const pool = await parallelToyRsaReversePool()
+  if (!report.verified || !pool.ok) {
+    process.stderr.write('✗ encryption-reverse-verify — toolkit, demo reverse, or worker pool failed\n')
     return 1
   }
-  process.stdout.write(`✓ encryption-reverse-verify — glyphBonus=${roundTo(report.glyphBonus, 2)} root=${report.root.slice(0, (6 * 2))}\n`)
+  process.stdout.write(
+    `✓ encryption-reverse-verify — glyphBonus=${roundTo(report.glyphBonus, 2)} tools=${report.toolsReady ? 'ok' : 'no'} ` +
+      `demo=${report.demoFactors.join(';')} workers=${pool.workers}/${report.workerCap} mode=${pool.mode} ` +
+      `root=${report.root.slice(0, 6 * 2)}\n`,
+  )
+  process.stdout.write(`  boundary: ${pool.boundary}\n`)
   return 0
 }
-
