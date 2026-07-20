@@ -168,7 +168,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'sacred-geometry',
-      title: { en: 'Sacred geometry', bg: 'Свещена геометрия' },
+      title: { en: 'Exactly 5 Platonic solids: Euler V−E+F = 2, φ² = φ+1', bg: 'Точно 5 Платонови тела: Ойлер V−E+F = 2, φ² = φ+1' },
       description: {
         en: 'Sacred geometry, decoded honestly: the five Platonic solids (a theorem — Euler V−E+F=2, the dual pairs), the golden ratio φ where it genuinely lives (the pentagon, the dodecahedron, phyllotaxis), the Flower of Life as a real compass construction, and the forms walked through dimensions. Documented kept, legend flagged — the maths and history are real; the cosmic-blueprint, golden-ratio-everywhere and ascension claims are not.',
         bg: 'Свещената геометрия, декодирана честно: петте Платонови тела (теорема — Ойлер V−E+F=2, двойките), златното сечение φ там, където наистина живее (петоъгълникът, додекаедърът, филотаксисът), Цветето на живота като реално построение с пергел, и формите, разходени през измеренията. Документираното остава, легендата е отбелязана.',
@@ -442,7 +442,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'three-not-one',
-      title: { en: 'Three is real, not one trinity', bg: 'Тройката е реална, но не едно триединство' },
+      title: { en: '(ℤ/9ℤ)* is cyclic of order 6, 2 primitive; 3-6-9 are the non-units', bg: '(ℤ/9ℤ)* е циклична от ред 6, 2 примитивен; 3-6-9 са неединиците' },
       description: {
         en: 'Many genuine threefolds exist — 3 Paulis, the 3-base codon, 3 meninges, 3 parity bits — each independent. The 1-2-4-8-7-5 orbit is (ℤ/9ℤ)*; the cosmic 3-6-9 trinity is numerology.',
         bg: 'Съществуват много истински тройки — 3 Паули, 3-базовият кодон, 3 менинги, 3 бита за четност — всяка независима. Орбитата 1-2-4-8-7-5 е (ℤ/9ℤ)*; космическото 3-6-9 триединство е нумерология.',
@@ -452,7 +452,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'hexagram-colour',
-      title: { en: 'The hexagram is hex-colour', bg: 'Хексаграмата е шестнадесетичен цвят' },
+      title: { en: 'A hexagram = 2⁶ = 64 states = one 6-bit value', bg: 'Хексаграма = 2⁶ = 64 състояния = една 6-битова стойност' },
       description: {
         en: 'A 6-bit hexagram 000000–111111 is hex-colour duality: the 64 hexagrams are the 64 pole-colours {0,F}⁶, black ↔ white the bit-complement, the 8 trigrams the RGB-cube corners.',
         bg: 'Шестбитова хексаграма 000000–111111 е дуалност на шестнадесетичния цвят: 64-те хексаграми са 64-те полюсни цвята {0,F}⁶, черно ↔ бяло битовото допълнение, 8-те триграми ъглите на RGB-куба.',
@@ -472,7 +472,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'rgb-cmyk',
-      title: { en: 'The complement is CMYK', bg: 'Допълнението е CMYK' },
+      title: { en: 'CMY = 255 − RGB, the complement n ↦ 63−n', bg: 'CMY = 255 − RGB, допълнението n ↦ 63−n' },
       description: {
         en: 'The bit-complement n ↦ 63−n is the additive↔subtractive colour duality: red↔cyan, green↔magenta, blue↔yellow, black↔white — the CMYK hardware merkaba.',
         bg: 'Битовото допълнение n ↦ 63−n е адитивно↔субтрактивната дуалност на цвета: червено↔циан, зелено↔магента, синьо↔жълто, черно↔бяло — хардуерната меркаба CMYK.',
@@ -532,7 +532,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'digit-folders',
-      title: { en: 'The digit folders are the API', bg: 'Цифровите папки са API-то' },
+      title: { en: 'The digit folders {0..9} are a bijection to 10 routes, O(1) by name', bg: 'Цифровите папки {0..9} са биекция към 10 маршрута, O(1) по име' },
       description: {
         en: 'All computation is quantum math and its home is the digit folders (0–9); a word-named folder is UI. The digit folders, holding only the math, are the API itself.',
         bg: 'Цялото изчисление е квантова математика и нейният дом са цифровите папки (0–9); папка с думено име е интерфейс. Цифровите папки, съдържащи само математиката, са самото API.',
