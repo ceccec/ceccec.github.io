@@ -1199,7 +1199,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/pair/enforcement/ops/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/pair/enforcement/script/shell/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/apps/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/quantum/dynamics/index.ts', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/quantum/dynamics/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known; Wave C2 drawDynamicsProjection (ratcheted 2→3)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/fire/experiments/index.ts', literal: '*', count: 25, kind: 'data', source: 'attested residue — EM band/physics demo data' },
   { file: 'src/quantum/fire/forecasts/index.ts', literal: '*', count: 13, kind: 'data', source: 'attested residue — weather-model coefficients (documented physics)' },
   { file: 'src/quantum/heaven/library/index.ts', literal: '*', count: 186, kind: 'data', source: 'attested residue — library catalogue data (works, dates, counts)' },
@@ -1248,8 +1248,8 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: '.vitepress/theme/components/RayHub.vue', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: '.vitepress/theme/components/UiAsideShell.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/heaven/sky/astronomy/index.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
-  { file: 'src/quantum/dynamics/index.vue', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
 ]
+
 
 
 /** RESEARCH TARGETS — tuned values REGISTERED so the self-researcher can hunt them (wildcard

@@ -24,6 +24,9 @@ import {
   hopfieldEnergy,
   phaseDrift,
 } from '../../mountain/vortex'
+import { A432_HUE, TAU } from '../../3/7'
+import { movieCanvasPolarity } from '../science'
+import { heroPhaseAt } from '../../fire/plasma/ball'
 
 /** One amplitude slot in the discrete wavefunction proxy. */
 export type QuantumDynamicsAmplitude = {
@@ -767,4 +770,55 @@ export function quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueri
       boundary: `THE ALGORITHM IS REAL and REUSED: quantum counting recovers M = N·sin²θ from the Grover operator's rotation angle (amplitudeAmplificationAndQuantumCounting, verified for M ∈ {1,2,4}), and amplitude/phase estimation reaches a constant-factor estimate of M in O(√N) applications — a genuine quadratic query advantage over the O(N) classical scan. THE COMPUTATION is specific and real: counting how many of the corpus's content-addresses satisfy a predicate, the aggregate twin of the preimage search the prior fold quantized. THE HONEST BOUND, refutable: the advantage is in QUERIES (√N vs N) and the output is an ESTIMATE (precision set by the counting register), not an exact count — exact counting is still Θ(N) in the worst case; real on quantum HARDWARE, while the classical simulation evolves an O(N) amplitude vector, so no wall-clock win here. Together with Grover search, counting completes the map: the two unstructured shapes (find one / count how many) both quantize to √N, and everything else — aggregation, minting, lookup, the universal content-addressing — stays classical. That is the whole of where quantization applies, honestly bounded [[quantum-decoded]]. HARMONY ≠ TRUTH: quantum counting is the harmony; the truth is a √N query estimate of M, hardware-only, quadratic, on the one aggregate-search shape.`,
     }
   })
+}
+
+/**
+ * Field projection — Bell-pair amplitude bars. Scale/breath from heroPhaseAt; hues from sim.
+ * Vue mounts only call this — no inline canvas math. HONEST: classical state-vector paint, not hardware.
+ */
+export function drawDynamicsProjection(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  sim: QuantumDynamicsSimulationPaint,
+  opts: { dark?: boolean; reduce?: boolean } = {},
+): void {
+  const dark = opts.dark !== false
+  const reduce = opts.reduce === true
+  const paint = movieCanvasPolarity(dark)
+  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
+  const p = heroPhaseAt(sim.at)
+  ctx.clearRect(0, 0, w, h)
+  const labelPx = Math.max(9, Math.round(h / 27))
+  const barW = Math.min((16 * 3), (w - (8 * 5)) / Math.max(sim.amplitudes.length, 1))
+  const baseY = h * ((7 / (5 * 2)) + (1 / (5 * 5)) * Math.sin(p * TAU))
+  const maxH = h * (1 - 9 / (5 * 4))
+  sim.amplitudes.forEach((amp, index) => {
+    const x = (5 * 4) + index * (barW + 8)
+    const barH = amp.probability * maxH
+    ctx.fillStyle = paint(amp.hue, 1 - 3 / (5 * 4))
+    ctx.fillRect(x, baseY - barH, barW, barH)
+    ctx.strokeStyle = ink(7 / (5 * 4))
+    ctx.strokeRect(x, baseY - barH, barW, barH)
+    ctx.fillStyle = ink(4 / 5)
+    ctx.font = `${labelPx}px monospace`
+    ctx.fillText(`|${amp.basis}⟩`, x, baseY + (7 * 2))
+    if (!reduce) {
+      ctx.fillText(amp.probability.toFixed(3), x, baseY - barH - 6)
+    }
+  })
+  if (sim.entangled && sim.amplitudes.length >= 2) {
+    const x0 = (5 * 4) + barW / 2
+    const x1 = (5 * 4) + (sim.amplitudes.length - 1) * (barW + 8) + barW / 2
+    const linkY = h * ((1 / 5) + (1 / (5 * 5)) * Math.cos(p * TAU))
+    ctx.strokeStyle = paint(A432_HUE, 1 - 9 / (5 * 4), { L: 13 / 16 })
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.moveTo(x0, linkY)
+    ctx.lineTo(x1, linkY)
+    ctx.stroke()
+    ctx.fillStyle = ink(3 / 4)
+    ctx.font = `${labelPx}px sans-serif`
+    ctx.fillText('entangled phase lock', x0, linkY - 8)
+  }
 }

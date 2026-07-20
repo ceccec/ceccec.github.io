@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
-import { quantumDynamicsSimulationPanelComputes } from './index.ts'
-import { A432_HUE, movieCanvasRgba } from '../../.vitepress/lib/hero-movie-paint'
+import { drawDynamicsProjection, quantumDynamicsSimulationPanelComputes } from './index.ts'
 import { useData } from 'vitepress'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../.vitepress/lib/mounts'
@@ -21,45 +20,9 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 
 const amplitudes = computed(() => panel.value.sim.amplitudes)
 
-// Near-white label ink from the A432 palette (high lightness, near-zero chroma) — no rgba literal.
-const ink = (alpha: number) => movieCanvasRgba(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64, dark: isDark.value })
-
 function paintQuantum(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = quantumDynamicsSimulationPanelComputes(undefined, at)
-  const sim = panel.value.sim
-  ctx.clearRect(0, 0, w, h)
-  const labelPx = Math.max(9, Math.round(h / 27))
-  const barW = Math.min((16 * 3), (w - (8 * 5)) / Math.max(sim.amplitudes.length, 1))
-  const baseY = h * 0.78
-  const maxH = h * (1 - 9 / (5 * 4))
-  sim.amplitudes.forEach((amp, index) => {
-    const x = (5 * 4) + index * (barW + 8)
-    const barH = amp.probability * maxH
-    ctx.fillStyle = movieCanvasRgba(amp.hue, (1 - 3 / (5 * 4)), { dark: isDark.value })
-    ctx.fillRect(x, baseY - barH, barW, barH)
-    ctx.strokeStyle = ink((7 / (5 * 4)))
-    ctx.strokeRect(x, baseY - barH, barW, barH)
-    ctx.fillStyle = ink((4 / 5))
-    ctx.font = `${labelPx}px monospace`
-    ctx.fillText(`|${amp.basis}⟩`, x, baseY + (7 * 2))
-    if (!reduce) {
-      ctx.fillText(amp.probability.toFixed(3), x, baseY - barH - 6)
-    }
-  })
-  if (sim.entangled && sim.amplitudes.length >= 2) {
-    const x0 = (5 * 4) + barW / 2
-    const x1 = (5 * 4) + (sim.amplitudes.length - 1) * (barW + 8) + barW / 2
-    const linkY = h * 0.22
-    ctx.strokeStyle = movieCanvasRgba(A432_HUE, (1 - 9 / (5 * 4)), { L: 13 / 16, dark: isDark.value })
-    ctx.lineWidth = 2
-    ctx.beginPath()
-    ctx.moveTo(x0, linkY)
-    ctx.lineTo(x1, linkY)
-    ctx.stroke()
-    ctx.fillStyle = ink((3 / 4))
-    ctx.font = `${labelPx}px sans-serif`
-    ctx.fillText('entangled phase lock', x0, linkY - 8)
-  }
+  drawDynamicsProjection(ctx, w, h, panel.value.sim, { dark: isDark.value, reduce })
 }
 
 const { at, repaint } = useVisibleMovieCanvas({
