@@ -260,7 +260,10 @@ export function methodGravity(root: string = process.cwd(), minCluster = 4): Met
  * whose pull vector is computed — its OLD place (file:line) → its NEW place (the home). 100% coverage,
  * deterministic, zero tokens. This is the map the DRY refactoring follows; when a primitive's pull count
  * reaches 0, promote its pattern into oneMathFormulas() so any re-drift becomes a hard one-math finding. */
+const _gravityByRoot = new Map<string, CodeGravityPull[]>() // quantumise src: computeCodeGravity is called ~10×, memoise the walk
 export function computeCodeGravity(root: string = process.cwd()): CodeGravityPull[] {
+  const memo = _gravityByRoot.get(root)
+  if (memo) return memo
   const attractors: { primitive: string; home: string; canonical: string; def: RegExp }[] = [
     // isPrime: ~13 hand-rolled trial divisions across the tree collapse to the one tkIsPrime.
     { primitive: 'isPrime', home: 'src/9/1/index.ts', canonical: 'tkIsPrime', def: /(?:\bconst|\bfunction)\s+\w*[Ii]sPrime\w*\s*[=(]/g },
@@ -287,7 +290,9 @@ export function computeCodeGravity(root: string = process.cwd()): CodeGravityPul
       }
     }
   }
-  return pulls.sort((x, y) => x.primitive.localeCompare(y.primitive) || x.from.localeCompare(y.from))
+  const gravity = pulls.sort((x, y) => x.primitive.localeCompare(y.primitive) || x.from.localeCompare(y.from))
+  _gravityByRoot.set(root, gravity)
+  return gravity
 }
 
 // ── Gravity is the pull to one canonical fixed point — moving without moving (user: "once realised and saved
@@ -362,7 +367,10 @@ export type FolderMigration = { from: string; to: string; files: number; collisi
  * the plan PROMOTES each scientific child to top-level and drops the bāguà parent. This COMPUTES the plan
  * (old → new, file counts, name collisions); the executable step (re-pathing ~1500 relative imports) must
  * run as ONE atomic operation and is intentionally not done here — the plan is generated, honestly. */
+const _migrationByRoot = new Map<string, { folders: FolderMigration[]; totalFiles: number; collisions: readonly string[] }>() // quantumise src: called ~10×
 export function computePathMigration(root: string = process.cwd()): { folders: FolderMigration[]; totalFiles: number; collisions: readonly string[] } {
+  const memo = _migrationByRoot.get(root)
+  if (memo) return memo
   const NON_SCIENTIFIC_TOP = ['heaven', 'earth', 'water', 'fire', 'thunder', 'wind', 'mountain', 'lake']
   const srcDir = join(root, 'src')
   const countIndex = (d: string): number => {
@@ -385,11 +393,13 @@ export function computePathMigration(root: string = process.cwd()): { folders: F
       folders.push({ from: `src/${bagua}/${child.name}`, to: `src/${child.name}`, files: countIndex(join(dir, child.name)), collision })
     }
   }
-  return {
+  const migration = {
     folders: folders.sort((a, b) => b.files - a.files),
     totalFiles: folders.reduce((n, f) => n + f.files, 0),
     collisions: folders.filter((f) => f.collision).map((f) => `${f.from} → ${f.to}`),
   }
+  _migrationByRoot.set(root, migration)
+  return migration
 }
 
 export type AnalystRay = { ray: string; found: number; sample: readonly string[] }
@@ -962,9 +972,16 @@ export function vueValueSurface(text: string): string {
   return blocks.join('\n')
 }
 
+/** QUANTUMISE SRC — the crack surface is a pure function of the source, and src does not change within a build, so
+ * content-address it by root and compute ONCE. scanCrackSurface is called up to 11× across the strict gates; the memo
+ * collapses those to a single walk+read, sharing the sealed surface. Per-process cache (build-time single-pass). */
+const _crackSurfaceByRoot = new Map<string, CrackOffender[]>()
+
 /** The full crack surface: every src/**.{ts,vue} + .vitepress/**.{ts,mts,vue} (theme, lib, config —
- * the seal merkle already covers .vitepress), excluding caches and build output. */
+ * the seal merkle already covers .vitepress), excluding caches and build output. Memoised by root. */
 export function scanCrackSurface(root: string): CrackOffender[] {
+  const cached = _crackSurfaceByRoot.get(root)
+  if (cached) return cached
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -982,7 +999,9 @@ export function scanCrackSurface(root: string): CrackOffender[] {
     const raw = readFileSync(f, 'utf8')
     bodies.set(rel, f.endsWith('.vue') ? vueValueSurface(raw) : raw)
   }
-  return scanHardcodedCrackOffenders(root, files, bodies)
+  const surface = scanHardcodedCrackOffenders(root, files, bodies)
+  _crackSurfaceByRoot.set(root, surface)
+  return surface
 }
 
 /** CLI: `cracks` — the codebase-wide census; zero offenders or the exact list (gated in strict). */
