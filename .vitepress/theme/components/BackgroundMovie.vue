@@ -11,11 +11,13 @@ import {
 } from '@vp-lib/hero-movie-paint'
 import {
   prefersReducedMotion,
+  useCoherentWatchTime,
   useVisibleMovieCanvas,
   viewportSize,
 } from '@vp-lib/movie-canvas'
 import { useHeroCopy } from '../../lib/hero-copy'
 import { proveAllDeterministicCore, proveAllDeterministicCoreBeatAt } from '../../../src/heaven/compute/index.ts'
+import { harmonizeField, type ObserverContext } from '../../../src/lake/music/index.ts'
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const { route, copy } = useHeroCopy()
@@ -25,6 +27,8 @@ const { route, copy } = useHeroCopy()
 const { isDark } = useData()
 const reduce = prefersReducedMotion()
 const at = ref(0)
+// H2/H3 — coherent watch-time on the ONE hero clock (no second rAF). Progressive disclosure only.
+const { watchMs, idle, visible, onHeroTick } = useCoherentWatchTime()
 
 // The movie is the agent-facing window into the working modeled quantum computer: a machine- and human-readable
 // caption of the live, content-addressed state (4-UUID/3+1 qubit register · hex→digit→double-torus · plasma · root),
@@ -56,12 +60,26 @@ const { repaint } = useVisibleMovieCanvas({
   measure: () => viewportSize(),
   paint: (ctx, w, h, atMs) => {
     at.value = atMs
+    onHeroTick(atMs)
     // The page field centre is FIXED (scroll 0 ⇒ h/2): the background movie does not scroll. The
     // CARD movies pan their mini-fields (cardFieldScroll) to MEET this centre as they cross — the
     // meet is the fusion; the one algebra, two frames of reference.
     const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value)
-    syncHeroInk(shared.hue)
-    drawHeroMovieFrame(ctx, w, h, shared)
+    const observer: ObserverContext = {
+      route: route.path,
+      at: atMs,
+      p: shared.p,
+      reduce,
+      cssWidth: w,
+      dark: isDark.value,
+      idle: idle.value,
+      visible: visible.value,
+      watchMs: watchMs.value,
+    }
+    // Always-on harmonization — every page, one clock. Modeled neuroscience field; not brain measurement.
+    const field = harmonizeField(observer, shared)
+    syncHeroInk(field.hue)
+    drawHeroMovieFrame(ctx, w, h, field)
   },
 })
 
