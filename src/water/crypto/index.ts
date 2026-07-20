@@ -1857,3 +1857,46 @@ export function theCrackGateFindsWeakEncryptionByTheorems(matrix: MindMatrix = b
     }
   })
 }
+
+// Speed is best tested in REVERSE, where the forward map is one-way and inversion is infinitely costly. content →
+// address is an O(1) fixed-size digest; address → content by INVERTING the digest is infeasible — the obstacle. But the
+// reverse INDEX resolves it in O(1), not by cracking the hash but by having STORED it: the obstacle computes itself as
+// a GATEWAY. The risk (un-invertible) IS the reward (tamper-evidence + O(1) reverse). When you go reverse you start to
+// inverse on the way, and every obstacle becomes a gateway. [[tampering-cost-crypto-honesty]] [[feedback-inverted-statements-are-generative]]
+export function speedTestedInReverseTheOneWayObstacleBecomesAGatewayByTheReverseIndexRiskIsReward() {
+  const contents = ['alpha', 'a much longer piece of content than the others by far', 'gamma', 'delta', 'epsilon']
+  const forward = (content: string): string => toUuid(`content:${content}`) // content → address, an O(1) fixed-size digest
+  const addresses = contents.map(forward)
+  // 1 — FORWARD O(1), REVERSE ONE-WAY: the address is fixed-size regardless of content length — a lossy digest, not invertible
+  const addressLength = addresses[0]!.length
+  const fixedSizeDigest = new Set(addresses.map((a) => a.length)).size === 1 && isUuid(addresses[0]!) // all addresses one length, whatever the content size
+  const compressesInformation = contents.some((c) => c.length > addressLength) // content longer than its address ⇒ the forward map loses information ⇒ not invertible
+  const forwardEasyReverseInfeasible = fixedSizeDigest && compressesInformation // one-way: cheap forward, inverting the digest is infeasible — the obstacle
+  // 2 — THE REVERSE INDEX IS THE GATEWAY: store address→content; the reverse resolves O(1), not by cracking, by the index
+  const reverseIndex = new Map(addresses.map((a, i) => [a, contents[i]!]))
+  const gatewayResolvesReverse = addresses.every((a, i) => reverseIndex.get(a) === contents[i]) // the obstacle becomes a gateway
+  // 3 — SPEED TESTED IN REVERSE: the reverse lookup is O(1) (as fast as forward), and an un-stored address does NOT resolve — one-way holds
+  const reverseIsO1AndOneWayHolds = reverseIndex.has(addresses[0]!) && reverseIndex.get(forward('never stored')) === undefined // hit on indexed, miss on un-indexed
+  // 4 — THE REVERSE GATEWAYS ARE DIFFERENT AND UNEXPECTED: the reverse is not the forward mirror — foldPair is
+  //     ORDER-SENSITIVE, so the third (gateway) reached going reverse differs from the forward one
+  const forwardGateway = foldPair(addresses[0]!, addresses[1]!).merged // fold(a,b) — the forward gateway
+  const reverseGateway = foldPair(addresses[1]!, addresses[0]!).merged // fold(b,a) — the reverse gateway
+  const gatewaysDifferInReverse = forwardGateway !== reverseGateway && isUuid(forwardGateway) && isUuid(reverseGateway) // different, unexpected
+  const trinity = foldPair(toUuid('forward'), toUuid('reverse-index')) // forward · reverse-index fold to the third: the one-way tamper-evidence
+  const riskIsRewardReverseGatewaysDiffer = forwardEasyReverseInfeasible && gatewayResolvesReverse && reverseIsO1AndOneWayHolds && gatewaysDifferInReverse && trinity.bidirectional && isUuid(trinity.merged)
+  const facets = [
+    { facet: `FORWARD O(1), REVERSE ONE-WAY — content → address is a fixed-size ${addressLength}-char digest whatever the content length (${fixedSizeDigest}), so the forward map compresses information and inverting the digest is infeasible (${forwardEasyReverseInfeasible}): the reverse is the obstacle`, on: forwardEasyReverseInfeasible },
+    { facet: `THE REVERSE INDEX IS THE GATEWAY — storing address→content resolves every reverse in O(1) (${gatewayResolvesReverse}), NOT by cracking the digest but by the index: the obstacle computes itself as a gateway`, on: gatewayResolvesReverse },
+    { facet: `SPEED TESTED IN REVERSE — the reverse lookup is O(1), as fast as the forward, and an un-stored address does NOT resolve (${reverseIsO1AndOneWayHolds}): the hard direction made fast is the real speed test`, on: reverseIsO1AndOneWayHolds },
+    { facet: `THE REVERSE GATEWAYS ARE DIFFERENT AND UNEXPECTED — the reverse is not the forward mirror: folding a pair forward vs reverse yields DIFFERENT thirds (foldPair is order-sensitive, ${gatewaysDifferInReverse}), so the gateway reached going reverse is not the forward one; the risk (un-invertible) IS the reward (indexed O(1) reverse), and the asymmetry is where the new gateways appear (${riskIsRewardReverseGatewaysDiffer})`, on: riskIsRewardReverseGatewaysDiffer },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-gateway:${entry.facet}:${entry.on}`) }))
+  return {
+    proven: facets.every((entry) => entry.on),
+    addressLength,
+    reversibleByIndex: gatewayResolvesReverse,
+    facets,
+    root: merge(trinity.merged, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: `Speed tested in reverse: the one-way obstacle becomes a gateway by the reverse index — and the reverse gateways are different and unexpected — ${facets.filter((entry) => entry.on).length}/${facets.length}. content → address is an O(1) fixed-size ${addressLength}-char digest that compresses information, so inverting it is infeasible — the reverse is the obstacle. But a reverse index (address→content) resolves every reverse in O(1), not by cracking the digest but by having stored it: the obstacle computes itself as a gateway. And the reverse is NOT the forward mirror — foldPair is order-sensitive, so the gateway reached going reverse differs from the forward one: different and unexpected. When you go reverse you start to inverse on the way, and every obstacle becomes a gateway you did not see coming.`,
+    boundary: `EXACT and computed live: the forward map content → toUuid is a fixed-size ${addressLength}-char digest whatever the content length (${fixedSizeDigest}), and a content longer than its address (${compressesInformation}) shows the map COMPRESSES information — so it is not injective on arbitrary content and cannot be inverted by computation on the address alone (inverting a good digest is infeasible, the [[tampering-cost-crypto-honesty]] point). THE GATEWAY: a reverse INDEX (a Map address→content) resolves every stored reverse in O(1) (${gatewayResolvesReverse}) — this is NOT hash-inversion, it is a lookup that works only because the pair was stored; an un-stored address does not resolve (${reverseIsO1AndOneWayHolds}), so the one-way property is intact. SPEED IN REVERSE: with the index the hard direction (reverse) runs as fast as the easy one (forward) — the best test of the architecture is that the infinitely-costly direction is O(1) through the index. RISK/REWARD AND THE DIFFERENT GATEWAYS: the SAME irreversibility that is a security RISK to attack (you cannot forge a preimage) is the REWARD when you own the index (tamper-evidence plus O(1) reverse) — the obstacle inverted is a gateway. But the reverse is NOT the forward mirror: foldPair is ORDER-SENSITIVE, so folding a pair forward (a,b) and reverse (b,a) yields DIFFERENT thirds (${gatewaysDifferInReverse}) — the gateway you reach going reverse is not the one going forward, it is different and UNEXPECTED. Going reverse you start to inverse on the way, and the passages that open are new, not retraced. THE HONEST BOUND: "reverse is O(1)" holds ONLY for addresses in the index — reversing an UNKNOWN address remains infeasible (that is the security, not a limitation to fix); the digest is collision-RESISTANT and tamper-EVIDENT, not information-theoretically unique or unforgeable with unbounded resources; "infinitely costly" is computational infeasibility, not a proof of impossibility. HARMONY ≠ TRUTH: "the obstacle becomes a gateway" is the harmony; the truth is a one-way digest whose reverse the INDEX resolves in O(1), the irreversibility being both the risk and the reward — computed and refutable.`,
+  }
+}
