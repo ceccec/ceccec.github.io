@@ -63,6 +63,7 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `card/hero-link` — `heroPreviewForRoute(route)` (linked page hero → card background via LinkedHeroCard.vue), then `npm run docs:dev` (hub + tag browser cards)
   - `tamper/impossible` — `npm run quantum:fusion-verify` (offline recompute fused stack receipts), then `npm run docs:build` (seal `/quantum-fusion.json`)
   - `reverse/encryption-verify` — `npm run quantum:encryption-reverse-verify` (glyph UUID + trinity crack + encrypt↔decrypt tools + modeled Shor on sealed demo RSA + capped worker_threads; production RSA refused), then `npm run docs:build` (broadcast `/agents.json`)
+  - `challenge/millennium` — `npm run quantum:millennium-challenge` (`millenniumProblemsChallenge()` in `src/wind/research` — MODELED CHALLENGE apparatus vs Clay Millennium Problems using digit-inverse · f→{p,q} · efficiency · Pauli · genus-2; claySolvedByThisFold=0; Poincaré solved-external only), then `npm run docs:build` (broadcast `/agents.json`)
   - `offender/spec` — `npm run quantum:offender-spec` (`offenderAutomationSpec()` — machine-readable offender pipeline for CI/automation builders), then `npm run docs:build` (broadcast `/agents.json`, `/agent-compliance.json`, `/llms.txt`)
   - `team/cooperate-verify` — `npm run quantum:team-cooperate` (`teamCooperationScenarios()` — solo vs team ack/relay/handoff validation), then `npm run docs:build`
   - `vote/build` — `agentBuildInvokedWhenAllInvolvedVote()` (all involved agents vote), then `npm run docs:build` once (no parallel builds)

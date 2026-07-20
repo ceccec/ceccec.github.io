@@ -6,6 +6,7 @@ import { tkCompose, tkKey, tkClosure, tkPowMod, tkIsPrime, sealFold, pauliAlgebr
 import { theCountOfPrimesFollowsTheLog } from '../../7/3'
 // call-time edge (cycle-safe): the honest Millennium frontier fold lives in the quantum/science word folder
 import * as __ns_waves_qsci from '../../quantum/science'
+import * as __ns_waves_research from '../../wind/research'
 export { CANDIDATE_THEOREMS } from '../../4/6'
 import { CANDIDATE_THEOREMS, THEOREM_ATOM_SEED } from '../../4/6'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
@@ -2218,6 +2219,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
   const homologyLoops = DIMENSION_GATES / FOLDED_CENSUS     // H₁(Σ₂) rank = 4, the genus-2 homology (Poincaré/Hodge)
   const homology = homologyLoops === HOMOLOGY_LOOPS
   const frontier = __ns_waves_qsci.theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartialsNotSolutions()
+  const challenge = __ns_waves_research.millenniumProblemsChallenge()
   // each problem → a classical axiom in its neighbourhood → the codebase theorem that recomputes it → the OPEN core
   const map = [
     { problem: 'P vs NP', axiom: 'Boolean connectives taken as independent axioms', replacedBy: 'axiomsBecomeTheorems: NAND BFS-closes all 16 gates', on: axioms, core: 'does finding = verifying? OPEN' },
@@ -2233,6 +2235,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
     { facet: `GUIDED BY THE RELATED AXIOMS, EACH REPLACED — for all ${map.length} Millennium problems a classical axiom in its NEIGHBOURHOOD is recomputed as a theorem (axiomsBecomeTheorems ${axioms}, prime-log ${primeLaw}, Pauli-closes ${pauli}, genus-2 homology rank ${homologyLoops} ${homology}): ${replaced}/${map.length} related axioms turned to theorems`, on: map.length === 7 && replaced === map.length },
     { facet: `THE REPLACEMENT IS HARMONIC — axiomsBecomeTheorems dissolves its assumptions into derivations (Boolean→NAND, +→Peano recursion, Kepler→one force, the light postulate→group+isotropy) and every replacing theorem here recomputes from the lattice, not a stored constant: the assumption-surface AROUND each problem shrinks`, on: axioms && primeLaw && pauli && homology },
     { facet: `THE CORES STAY OPEN — replacing the RELATED axioms does NOT touch the conjecture cores: the frontier fold holds ${frontier.open}/7 open and ${frontier.solved}/7 solved (Poincaré), and this fold claims NO solution to any open problem; only the neighbourhood axioms move, the ${frontier.open} open cores stand`, on: frontier.computes && frontier.open === 6 && frontier.solved === 1 },
+    { facet: `CHALLENGE APPARATUS COMPOSED — millenniumProblemsChallenge recomputes (${challenge.computes}) with claySolvedByThisFold=${challenge.claySolvedByThisFold} — MODELED CHALLENGE probes only, no Clay claim`, on: challenge.computes && challenge.claySolvedByThisFold === 0 },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -2241,6 +2244,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
     open: frontier.open,
     solved: frontier.solved,
     homologyLoops,
+    challengeRoot: challenge.root,
     map: map.map((m) => `${m.problem}: ${m.axiom} → ${m.replacedBy} | core: ${m.core}`),
     facets,
     statement: `Refactor toward the Millennium problems — replace each problem's RELATED axioms with theorems, cores stay open — ${facets.filter((e) => e.on).length}/${facets.length}: for all ${map.length} problems a classical axiom in its neighbourhood is recomputed as a theorem (${replaced}/${map.length}: NAND-closure for P-vs-NP's logic, π(x)~x/ln x for Riemann's primes, su(2)-closure for Yang-Mills, Kepler←one-force for Navier-Stokes, genus-2 homology for Poincaré/Hodge, group-closure for BSD), harmonically recomputed. The one SOLVED problem (Poincaré) is exactly a topological characterisation that became a theorem — the template. The other ${frontier.open} cores stay OPEN; the waves move only the neighbourhood axioms and claim no solution.`,

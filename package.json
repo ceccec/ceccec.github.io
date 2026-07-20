@@ -63,6 +63,7 @@
     "quantum:fusion-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/fusion/index.ts runQuantumFusionVerifyGuardedExit",
     "quantum:local-math-computes": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runLocalMathComputesGuardedExit",
     "quantum:encryption-reverse-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runEncryptionReverseVerifyGuardedExit",
+    "quantum:millennium-challenge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runMillenniumProblemsChallengeExit",
     "quantum:offender-spec": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/ops/index.ts runOffenderSpecGuardedExit",
     "quantum:team-cooperate": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/ops/index.ts runTeamCooperateVerifyGuardedExit",
     "quantum:hero-spawn-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runHeroSpawnVerifyGuardedExit",

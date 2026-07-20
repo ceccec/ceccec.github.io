@@ -59,6 +59,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'card/hero-link',
   'tamper/impossible',
   'reverse/encryption-verify',
+  'challenge/millennium',
   'offender/spec',
   'team/cooperate-verify',
   'vote/build',
