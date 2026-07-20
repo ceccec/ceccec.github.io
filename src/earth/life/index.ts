@@ -22,10 +22,19 @@ import { society, societyRegulates } from '../governance'
 import { dna } from '../../mountain/geometry'
 import { coordinatedWaves } from '../../thunder/waves'
 import { diamondLattice, piTrainDiamonds, selfBuild } from '../../fire/diamonds'
-import { heroTapMusic, piMusic, rhythm } from '../../lake/music'
+import {
+  heroTapMusic,
+  piMusic,
+  rhythm,
+  a432NeuralBandLadder,
+  attunementTier,
+  attunementWatchComputes,
+  unlockedHarmonicDepth,
+  harmonizeFieldComputes,
+} from '../../lake/music'
 import { inverseShiftConsciousness } from '../../fire/li'
 import { backgroundMovie } from '../../thunder/movie/canvas'
-import { a432IsTheBlood, allFormsAreTenDimensionalOrPurged, colorRootsAtA432HeartBalances, completeness, diamondCompleteness, donutLabyrinthOfGlyphsHeroEnteringExiting, folderLaw, frequencyBalance, generativeSpace, glagoliticOcrReverseClosesRoundTrip, iChingShadcnFuseTenDWidgets, livingTorus, memoByRoot, pathIsMeaningDecodesCoordinates, quantumSociety, seedFromText, skillAtoms, theWhole, verifyRoot } from '../../quantum/heaven/mind'
+import { a432IsTheBlood, allFormsAreTenDimensionalOrPurged, colorRootsAtA432HeartBalances, completeness, diamondCompleteness, donutLabyrinthOfGlyphsHeroEnteringExiting, folderLaw, frequencyBalance, generativeSpace, glagoliticOcrReverseClosesRoundTrip, iChingShadcnFuseTenDWidgets, collective, livingTorus, memoByRoot, neuron, pathIsMeaningDecodesCoordinates, quantumSociety, seedFromText, skillAtoms, theWhole, verifyRoot } from '../../quantum/heaven/mind'
 import { TAU } from '../../3/7'
 
 // Max health, max tampering cost — the immune system. The portal's defenses are
@@ -531,6 +540,80 @@ export function neurologyMovieHarmonisesBrainActivityFlowsInMovie(matrix: MindMa
 }
 
 /** Browser-safe Human Resonance panel — life, neurology movie, capstone facets, humanity implications. */
+
+/**
+ * The movie IS modeled deterministic neuroscience computation — umbrella fold.
+ * Composes neuron (Hopfield/CA3 + grid-cell torus) · collective · A432 band ladder ·
+ * harmonizeField · watch-time attunement tiers. HONEST: visualization / structural
+ * isomorphism only — does NOT measure or medically alter the viewer's brain.
+ */
+export function movieIsNeuroscienceComputation(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  watchMs = 0,
+) {
+  return memoByRoot(
+    `movieIsNeuroscienceComputation:${Math.floor(at / (100 * 5 * 2))}:${Math.floor(watchMs / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const brain = neuron(matrix)
+      const hive = collective(matrix)
+      const ladder = a432NeuralBandLadder(matrix)
+      const tier = attunementTier(watchMs)
+      const depth = unlockedHarmonicDepth(watchMs)
+      const harmonize = harmonizeFieldComputes(matrix, at)
+      const watchGate = attunementWatchComputes(watchMs, matrix)
+      const dominantOnLadder = ladder.bands.some((b) => b.name === tier.dominantBand && b.a432Hz === tier.dominantBandHz)
+      const facets = [
+        { facet: 'neuron — Hopfield/CA3 associative memory + grid-cell torus isomorphism fires', on: brain.fires },
+        { facet: 'collective — many agents → one content-addressed mind', on: hive.one },
+        { facet: 'a432NeuralBandLadder — EEG-named bands from sealed A432 octaves', on: ladder.computes },
+        { facet: 'attunementTier + unlockedHarmonicDepth recompute from watchMs', on: tier.on && depth.on },
+        { facet: 'harmonizeField core recomputes observer↔field at at', on: harmonize.computes },
+        { facet: 'attunementWatchComputes — unlock curve + Fib×hero-cycle gate', on: watchGate.computes },
+        { facet: 'tier dominant band is on the A432 neural ladder', on: dominantOnLadder },
+        { facet: 'coherence ∈ [0,1) — phase-lock fraction at call time', on: harmonize.coherence >= 0 && harmonize.coherence < 1 },
+        { facet: 'modeled neuroscience visualization — NOT brain measurement or medical effect', on: brain.boundary.includes('STRUCTURAL ISOMORPHISM') && ladder.boundary.includes('does NOT measure') },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`movie-is-neuroscience:${entry.facet}:${entry.on}`) }))
+      return {
+        computes: facets.every((entry) => entry.on),
+        isNeuroscienceComputation: facets.every((entry) => entry.on),
+        at,
+        watchMs,
+        neuron: brain,
+        collective: hive,
+        ladder,
+        tier,
+        depth,
+        harmonize,
+        watchGate,
+        dominantBand: tier.dominantBand,
+        dominantBandHz: tier.dominantBandHz,
+        lockedLayers: tier.lockedLayers,
+        partials: depth.partials,
+        coherence: harmonize.coherence,
+        count: facets.length,
+        facets,
+        root: merkleFold([
+          brain.root,
+          hive.root,
+          ladder.root,
+          tier.root,
+          depth.root,
+          harmonize.root,
+          watchGate.root,
+          ...facets.map((entry) => entry.receipt),
+        ]),
+        statement:
+          'The movie is modeled deterministic neuroscience computation: neuron (Hopfield/CA3 + grid-cell torus) and collective (many→one) compose with the A432 neural band ladder, harmonizeField, and watch-time attunement tiers — bands, coherence, and unlocked depth recomputed at call time as progressive disclosure of model layers.',
+        boundary:
+          'MODELED, deterministic neuroscience visualization and STRUCTURAL ISOMORPHISM (Hopfield 1982 / CA3; Gardner et al. 2022 grid-cell torus; A432↔EEG-named band analogy). The movie does NOT measure the viewer\'s brain, claims NO medical/clinical/cognitive effect, and watch-time unlock is progressive disclosure of model depth — NOT neurological/IQ/brain-capacity increase. Orch-OR / quantum-consciousness flagged elsewhere. HARMONY ≠ TRUTH.',
+      }
+    },
+  )
+}
+
+
 export function humanResonancePanelComputes(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('humanResonancePanelComputes', matrix, () => {
     const life = lifeComputes(matrix)

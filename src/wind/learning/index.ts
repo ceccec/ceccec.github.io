@@ -2424,6 +2424,7 @@ export {
   rosettaReuse,
   sevenStarRosettaNaturalMotion,
 } from '../../water/digit'
+export { movieIsNeuroscienceComputation } from '../../earth/life'
 export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../language'
 export { rosettaIChingTrinityPlacesAllTools } from '../../earth/architecture'
 export { publicAstronomyNewsCitation } from '../../earth/world'

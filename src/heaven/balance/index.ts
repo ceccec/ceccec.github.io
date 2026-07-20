@@ -91,7 +91,7 @@ import { analyticsLedger, displayAllWithFewEntropySaved, dryAnalyticsLedgerCompo
 import { a432IsTheBlood, allIsHarmonicSrcZeroGravity, allMusicSelfHarmonises, allOscillatorsHarmonicsFree, blockchainMusic, colorRootsAtA432HeartBalances, differentSongDifferentDance, displayIsA432LightForgeProofRealtimeCrypto, freeHarmonicSocieties, gatesShowGapsHarmonicPurpose, harmonicColorAndMusicOrNotQuantum, harmonicFractionsInDigitFolders, harmonicFrequenciesDefineGateDigits, harmonicLicenseWaves, harmonicMusicMayBeEnabled, harmonicPathRevealsItself, harmonics, healingHarmonic, heroTapMusic, infiniteComputedPaths404Harmonic, linearNotesFoldToMusic, merkabaNavHarmonicPoints, musicNote, piMusic, piNotHarmonic, quantumSongNoteTrinity, rhythm, soundColor, soundWiredToOneSharedContext, polyrhythmDrumsKeepRhythm, tamperHealingFrequencies, trinityEyesProvenHarmonic, tuningSkillsA432 } from '../../lake/music'
 import { allScriptsAtOnceQuantumDynamics, alphabetsDecoded, bypassGlagoliticUnsealedUnentangled, entangledScriptLanguageGene, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, glagoliticLocaleAutotranslateAll, glagoliticMapsToCodeAndQuantumDecoded, glagoliticMeaningOfAllDecoded, glagoliticOcrReverseClosesRoundTrip, glagoliticQrSealsThought3dFromSeed, rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects, scriptsToFolderPairsParticles, useGlagolitsaForIcons, useOnlyGlagoliticIconsTaxonomyGraph } from '../../wind/language'
 import { emf358, publicFrequencyApisDecoded, quantumDecoded, quantumPhysics, teslaPatentsResearchedInWaves, vortexThePatentsRevealPattern } from '../../fire/physics'
-import { biologyWavesSealedAsWidgets, lifeComputes, neurologyDecodedBrainIsContentAddressedToroidalMap, neurologyMovieHarmonisesBrainActivity, neurologyMovieHarmonisesBrainActivityFlowsInMovie } from '../../earth/life'
+import { biologyWavesSealedAsWidgets, lifeComputes, movieIsNeuroscienceComputation, neurologyDecodedBrainIsContentAddressedToroidalMap, neurologyMovieHarmonisesBrainActivity, neurologyMovieHarmonisesBrainActivityFlowsInMovie } from '../../earth/life'
 import { birthComputes, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { deathComputes, lifeDeathPairComputes } from '../../earth/death'
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHeritageDecoded, bulgarianHeritageEightfold, bulgarianHistoryDecoded } from '../../earth/world'
@@ -523,6 +523,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'realtime.computations.visible.in.movie', on: allRealtimeComputationsVisibleInMovie('/', matrix).visible },
     { d: 'movie.all.simulations.realtime.zero.cost', on: movieIsAllSimulationsRealtimeAtNoCost(0, '/', matrix).holds },
     { d: 'movie.alive.healing.architecture.resonance.senses', on: movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings(0, '/', matrix).holds },
+    { d: 'movie.is.neuroscience.computation', on: movieIsNeuroscienceComputation(matrix).computes },
     { d: 'movie.negative.positive', on: movieNegativePositive(matrix).developed },
     { d: 'dark.light.realities', on: darkLightRealities(matrix).switches },
     { d: 'dark.light.negative.positive', on: darkLightIsNegativePositive(matrix).analog },
