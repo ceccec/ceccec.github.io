@@ -537,4 +537,76 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       ok: fold.alive,
     }
   },
+  EncryptionTools: async () => {
+    const { encryptionPanelComputes } = await import('../../src/water/encryption/index')
+    const fold = encryptionPanelComputes()
+    return {
+      title: 'Quantum encryption tools',
+      statement: fold.statement,
+      boundary: fold.boundary,
+      facets: fold.facets.map((entry) => ({ facet: entry.facet, on: entry.on })),
+      crosslinks: [
+        { text: 'Encryption page', link: '/quantum-encryption', kind: 'topic' },
+        { text: 'Quantum tools', link: '/quantum-tools', kind: 'detail' },
+      ],
+      ok: fold.computes,
+    }
+  },
+  FusionVerify: async () => {
+    const { fusionVerifyPanelComputes } = await import('../../src/wind/fusion/index')
+    const fold = fusionVerifyPanelComputes()
+    return {
+      title: 'Fusion verify',
+      statement: fold.statement,
+      boundary: fold.boundary,
+      facets: fold.facets.map((entry) => ({ facet: entry.facet, on: entry.on })),
+      crosslinks: [{ text: 'Fusion verify page', link: '/fusion-verify', kind: 'topic' }],
+      ok: fold.computes,
+    }
+  },
+  QuantumTools: async () => {
+    const { quantumCliToolsCatalog } = await import('../../src/quantum/apps/index')
+    const fold = quantumCliToolsCatalog()
+    return {
+      title: 'Quantum CLI tools',
+      statement: fold.statement,
+      boundary: fold.boundary,
+      facets: fold.tools.slice(0, (6 * 2)).map((tool) => ({
+        facet: `${tool.title} — ${tool.cli}`,
+        on: true,
+        link: tool.route,
+      })),
+      crosslinks: [
+        { text: 'Tools catalog', link: '/quantum-tools', kind: 'topic' },
+        { text: 'Encryption', link: '/quantum-encryption', kind: 'detail' },
+        { text: 'Millennium', link: '/millennium-challenge', kind: 'detail' },
+      ],
+      ok: fold.computes,
+    }
+  },
+  MillenniumChallenge: async () => {
+    const { millenniumPanelComputes } = await import('../../src/wind/research/index')
+    const fold = millenniumPanelComputes()
+    return {
+      title: 'Millennium challenge',
+      statement: fold.statement,
+      boundary: fold.boundary,
+      facets: fold.problems.map((p) => ({ facet: `${p.id}: ${p.status}`, on: p.on })),
+      crosslinks: [{ text: 'Millennium page', link: '/millennium-challenge', kind: 'topic' }],
+      ok: fold.computes,
+    }
+  },
+  ResearchIndex: async () => {
+    const { researchPanelComputes } = await import('../../src/wind/research/index')
+    const fold = researchPanelComputes()
+    return {
+      title: 'Research index',
+      statement: fold.statement,
+      boundary: fold.boundary,
+      facets: fold.rows.slice(0, (6 * 2)).map((row) => ({ facet: row.domain, on: true })),
+      crosslinks: [{ text: 'Research page', link: '/research', kind: 'topic' }],
+      ok: fold.computes,
+    }
+  },
+
 }

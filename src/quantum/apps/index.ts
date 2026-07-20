@@ -240,7 +240,73 @@ const APP_ROWS: readonly QuantumAppRow[] = [
   { id: 'quantum-computer', title: 'Quantum computer', route: '/en/quantum/os', barrel: 'src/quantum/computer', icon: '⌨', computesGate: 'quantum.computer.computes' },
   { id: 'quantum-os', title: 'Quantum OS', route: '/en/quantum/os', barrel: 'src/quantum/os', icon: '◻', computesGate: 'quantum.os.computes' },
   { id: 'fusion-gold', title: 'Fusion gold', route: '/en/fusion/gold', barrel: 'src/fusion/gold', icon: 'Au', computesGate: 'fusion.gold.product' },
+  { id: 'quantum-encryption', title: 'Quantum encryption', route: '/en/quantum-encryption', barrel: 'src/water/encryption', icon: '⚿', computesGate: 'encryption.panel.computes' },
+  { id: 'millennium-challenge', title: 'Millennium challenge', route: '/en/millennium-challenge', barrel: 'src/wind/research', icon: '◇', computesGate: 'millennium.challenge.computes' },
+  { id: 'quantum-tools', title: 'Quantum CLI tools', route: '/en/quantum-tools', barrel: 'src/quantum/apps', icon: '⌘', computesGate: 'quantum.cli.tools.catalog' },
+  { id: 'fusion-verify', title: 'Fusion verify', route: '/en/fusion-verify', barrel: 'src/wind/fusion', icon: '⊛', computesGate: 'fusion.verify.computes' },
 ] as const
+
+/** Sealed quantum:* CLI inventory — fold · CLI · UI route · honesty boundary. Census-110: lives in apps barrel. */
+export type QuantumCliToolRow = {
+  readonly id: string
+  readonly title: string
+  readonly fold: string
+  readonly cli: string
+  readonly pair: string
+  readonly route: string
+  readonly barrel: string
+  readonly boundary: string
+  readonly browserRunnable: boolean
+  readonly browserGap: string
+  readonly receipt: string
+}
+
+const QUANTUM_CLI_TOOL_ROWS: readonly Omit<QuantumCliToolRow, 'receipt'>[] = [
+  { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', cli: 'npm run quantum:encryption-reverse-verify', pair: 'reverse/encryption-verify', route: '/en/quantum-encryption', barrel: 'src/water/encryption', boundary: 'Demo RSA only — production moduli refused', browserRunnable: true, browserGap: '' },
+  { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
+  { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
+  { id: 'efficiency-vote', title: 'Efficiency vote', fold: 'efficiency', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/efficiency-vote', barrel: 'src/quantum/science', boundary: 'answers÷tokens exposition — not competitor benchmark', browserRunnable: true, browserGap: '' },
+  { id: 'local-math-computes', title: 'Local math computes', fold: 'localMathComputes', cli: 'npm run quantum:local-math-computes', pair: 'fold/verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Sealed local math gate', browserRunnable: true, browserGap: '' },
+  { id: 'offender-spec', title: 'Offender automation spec', fold: 'offenderAutomationSpec', cli: 'npm run quantum:offender-spec', pair: 'offender/spec', route: '/en/offender-spec', barrel: 'src/pair/enforcement/ops', boundary: 'Machine-readable CI pipeline spec', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CI-only' },
+  { id: 'team-cooperate', title: 'Team cooperate verify', fold: 'teamCooperationScenarios', cli: 'npm run quantum:team-cooperate', pair: 'team/cooperate-verify', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'Solo vs team ack/relay/handoff', browserRunnable: true, browserGap: '' },
+  { id: 'hero-spawn-verify', title: 'Hero spawn verify', fold: 'shouldSpawnSubagent', cli: 'npm run quantum:hero-spawn-verify', pair: 'hero/spawn-verify', route: '/en/hero-spawn-verify', barrel: 'src/water/stack', boundary: 'Few heroes > mass ignorance', browserRunnable: true, browserGap: '' },
+  { id: 'name-entropy-verify', title: 'Name entropy verify', fold: 'namingEntropy', cli: 'npm run quantum:name-entropy-verify', pair: 'name/entropy-verify', route: '/en/name-entropy-verify', barrel: 'src/water/stack', boundary: 'Words compile from sealed src', browserRunnable: true, browserGap: '' },
+  { id: 'simplicity-measure-verify', title: 'Simplicity measure verify', fold: 'simplicityIntelligenceMeasure', cli: 'npm run quantum:simplicity-measure-verify', pair: 'simplicity/measure-verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Simplicity → intelligence yield', browserRunnable: true, browserGap: '' },
+  { id: 'educational-gaps-audit', title: 'Educational gaps audit', fold: 'educationalGapsFromIncompleteApis', cli: 'npm run quantum:educational-gaps-audit', pair: 'educational/gaps-audit', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'API gap → educational impact', browserRunnable: false, browserGap: 'educationalGapsFromIncompleteApis scans repo via process.cwd — CI-only' },
+  { id: 'unit-distance-verify', title: 'Unit-distance research verify', fold: 'unitDistanceResearch', cli: 'npm run quantum:unit-distance-verify', pair: 'research/society', route: '/en/research', barrel: 'src/wind/research', boundary: 'Numeric companion — MODEL_FIT', browserRunnable: true, browserGap: '' },
+  { id: 'iching-distribute-verify', title: 'I Ching / rosetta distribute', fold: 'ichingDistributeVerify', cli: 'npm run quantum:iching-distribute-verify', pair: 'rosetta/batch', route: '/en/quantum-tools', barrel: 'src/earth/iching', boundary: 'Rosetta 7-ray vs I Ching 8-fold', browserRunnable: true, browserGap: '' },
+  { id: 'predict-skill-gate-verify', title: 'Predict skill gate verify', fold: 'skilledEnoughFromPredictions', cli: 'npm run quantum:predict-skill-gate-verify', pair: 'predict/skill-gate-verify', route: '/en/quantum-tools', barrel: 'src/lake/music', boundary: 'Measurable event prediction skill', browserRunnable: true, browserGap: '' },
+  { id: 'f-inverse-pair', title: 'f→{p,q} inverse fold', fold: 'fThetaPhiXyzDigitNIsTheInversePair', cli: 'npm run quantum:local-math-computes', pair: 'inverse/pair', route: '/en/quantum-tools', barrel: 'src/mountain/vortex', boundary: 'Inverse fold within itself — not RSA crack', browserRunnable: true, browserGap: '' },
+] as const
+
+/** Catalog of all quantum:* CLI tools — discoverable in UI at /en/quantum-tools. */
+export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`quantumCliToolsCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const tools: QuantumCliToolRow[] = QUANTUM_CLI_TOOL_ROWS.map((row) => ({
+      ...row,
+      receipt: toUuid(`quantum-cli-tool:${row.id}`),
+    }))
+    const encryptionPresent = tools.some((t) => t.id === 'encryption-reverse-verify')
+    const millenniumPresent = tools.some((t) => t.id === 'millennium-challenge')
+    const fusionPresent = tools.some((t) => t.id === 'fusion-verify')
+    const { computes, facets, root } = computesGate('quantum-cli-tools-catalog', [
+      { facet: `catalog sealed — ${tools.length} quantum:* CLI tools`, on: tools.length >= (2 * 7) },
+      { facet: 'encryption reverse-verify published', on: encryptionPresent },
+      { facet: 'millennium challenge published', on: millenniumPresent },
+      { facet: 'fusion-verify published', on: fusionPresent },
+      { facet: 'every row has fold · cli · route · honest boundary', on: tools.every((t) => t.fold.length > 0 && t.cli.startsWith('npm run quantum:') && t.route.startsWith('/en/') && t.boundary.length > 0) },
+    ])
+    return {
+      computes,
+      count: tools.length,
+      tools,
+      facets,
+      root: merkleFold([root, ...tools.map((t) => t.receipt)]),
+      statement: 'Quantum CLI tools catalog — every sealed quantum:* script discoverable with fold, CLI, UI route, and honesty boundary.',
+      boundary: 'Catalog of sealed CLI exits and UI routes — NOT a remote execution surface; users run npm locally; UI observes recomputed folds.',
+    }
+  })
+}
 
 /**
  * Animation apps — every flagged home-page card is a quantum app: one projection of the shared
@@ -363,21 +429,51 @@ export function quantumAppsComputes(matrix: MindMatrix = buildMatrix(), at = 0) 
   return memoByRoot(`quantumAppsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumAppsRegistry(matrix, at)
     const core = registry.core
+    const catalog = quantumCliToolsCatalog(matrix, at)
     const launches = registry.apps.slice(0, 4).map((app) => quantumAppLaunch(app.id, at, matrix))
     const probe = quantumAppResolve(registry.apps[0]!.id, matrix, at)
+    const toolApps = ['quantum-encryption', 'millennium-challenge', 'quantum-tools', 'fusion-verify'] as const
+    const toolAppsRegistered = toolApps.every((id) => registry.apps.some((app) => app.id === id))
+    const encryptionShelved = quantumAppResolve('quantum-encryption', matrix, at)
     const { computes, facets, root } = computesGate('quantum-apps-computes', [
       { facet: 'quantum.apps.registry sealed', on: registry.registered },
       { facet: 'every launch receipt at call', on: launches.every((launch) => launch.launched) },
       { facet: 'rosettaCoreApi computes — apps dispatch through the core API', on: core.computes },
       { facet: 'every app.ray === rosettaRayOf(id) — no wet ray map', on: registry.apps.every((app) => app.ray === rosettaRayOf(app.id)) },
       { facet: 'quantumAppResolve finds first app via rosetta shelve', on: probe.found && probe.surface.ray === registry.apps[0]!.ray },
+      { facet: 'encryption · millennium · tools · fusion-verify apps registered', on: toolAppsRegistered },
+      { facet: 'quantum-encryption shelved via rosettaShelve (tool/app surface)', on: encryptionShelved.found && isUuid(encryptionShelved.surface.address) },
+      { facet: 'quantum CLI tools catalog computes (tools shelved)', on: catalog.computes },
       { facet: 'NOT app store plugins', on: true },
     ])
-    return { computes, registry, core, launches, facets, root: merkleFold([registry.root, core.root, root]), statement: 'Quantum apps computes — registry shelved through rosettaCoreApi.', boundary: registry.boundary }
+    return {
+      computes,
+      registry,
+      core,
+      catalog,
+      launches,
+      facets,
+      root: merkleFold([registry.root, core.root, catalog.root, root]),
+      statement: 'Quantum apps computes — registry + CLI catalog shelved through rosettaCoreApi.',
+      boundary: registry.boundary,
+    }
   })
 }
 
 export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = quantumAppsComputes(matrix, at)
-  return { computes: cap.computes, capstone: cap, apps: cap.registry.apps, root: cap.root, statement: cap.statement, boundary: cap.boundary }
+  const browserGaps = cap.catalog.tools.filter((t) => !t.browserRunnable)
+  const browserReady = cap.catalog.tools.filter((t) => t.browserRunnable).length
+  return {
+    computes: cap.computes,
+    capstone: cap,
+    apps: cap.registry.apps,
+    tools: cap.catalog.tools,
+    toolCount: cap.catalog.count,
+    browserReady,
+    browserGaps,
+    root: cap.root,
+    statement: cap.statement,
+    boundary: cap.boundary,
+  }
 }

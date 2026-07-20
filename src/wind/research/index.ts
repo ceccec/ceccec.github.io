@@ -6,6 +6,7 @@ import * as __ns_up_quantum_application from '../../quantum/application'
 import * as __ns_up_pair_enforcement_gates_computational from '../../pair/enforcement/gates/computational'
 import * as __ns_mountain_vortex from '../../mountain/vortex'
 import * as __ns_water_digit from '../../water/digit'
+import * as __ns_water_cosmos from '../../water/cosmos'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
 import { quantumProjectionParams } from '../../quantum/apps'
@@ -391,6 +392,11 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'ai-quantum-chronology', 'AI × quantum chronology — dated, tiered', 'src/wind/research', 'research.ai.quantum.chronology', 'aiQuantumChronologyResearch(matrix) facets', 'DOCUMENTED', aqR.researched, aqR.boundary, aqR.root)
     const gwR = globalWorkspaceContrastResearch(matrix, at)
     pushDomainRow(rows, 'global-workspace-contrast', 'Global workspace (J-space) × portal — categories held apart', 'src/wind/research', 'research.global.workspace.contrast', 'globalWorkspaceContrastResearch(matrix) facets', 'DOCUMENTED', gwR.researched, gwR.boundary, gwR.root)
+    const mill = millenniumProblemsChallenge(matrix)
+    pushDomainRow(rows, 'millennium-challenge', 'Millennium problems challenge apparatus', 'src/wind/research', 'millennium.challenge.computes', 'npm run quantum:millennium-challenge', 'SIMULATOR', mill.computes && mill.claySolvedByThisFold === 0, mill.boundary, mill.root)
+    pushDomainRow(rows, 'encryption-reverse-verify', 'Encryption reverse verify (demo RSA)', 'src/water/encryption', 'encryption.panel.computes', 'npm run quantum:encryption-reverse-verify', 'SIMULATOR', true, 'Demo RSA only — production refused', toUuid('research:encryption-reverse-verify'))
+    pushDomainRow(rows, 'fusion-verify', 'Quantum fusion verify', 'src/wind/fusion', 'fusion.verify.computes', 'npm run quantum:fusion-verify', 'SIMULATOR', true, 'Offline fuseAll wave receipts', toUuid('research:fusion-verify'))
+    pushDomainRow(rows, 'efficiency-vote', 'Efficiency (answers ÷ tokens)', 'src/quantum/science', 'efficiency', 'npm run quantum:efficiency-vote', 'DOCUMENTED', true, 'Exposition — not competitor benchmark', toUuid('research:efficiency-vote'))
     return { indexed: professional.indexed && rows.length >= (5 * 3), count: rows.length, rows, professional, catalog, root: merkleFold([professional.root, catalog.root, ...rows.map((row) => row.receipt)]), statement: 'Research index: canonical home for all sealed research programs.', boundary: professional.boundary }
   })
 }
@@ -401,9 +407,13 @@ export function researchReproducibility(matrix: MindMatrix = buildMatrix(), at =
       { id: 'check-types', pair: 'check/types', command: 'npm run check:types', receipt: toUuid('research-repro:check-types') },
       { id: 'limits-verify', pair: 'limits/verify', command: 'npm run limits:verify', receipt: toUuid('research-repro:limits-verify') },
       { id: 'mission-gate', pair: 'mission/gate', command: 'npm run mission:gate', receipt: toUuid('research-repro:mission-gate') },
+      { id: 'encryption-reverse', pair: 'reverse/encryption-verify', command: 'npm run quantum:encryption-reverse-verify', receipt: toUuid('research-repro:encryption-reverse') },
+      { id: 'millennium-challenge', pair: 'challenge/millennium', command: 'npm run quantum:millennium-challenge', receipt: toUuid('research-repro:millennium') },
+      { id: 'fusion-verify', pair: 'tamper/impossible', command: 'npm run quantum:fusion-verify', receipt: toUuid('research-repro:fusion-verify') },
+      { id: 'efficiency-vote', pair: 'learn/best', command: 'npm run quantum:efficiency-vote', receipt: toUuid('research-repro:efficiency-vote') },
     ]
     const censusRoot = toUuid(`research-repro:census:${__ns_up_pair_enforcement_gates_computational.UNFOLDED_CENSUS}:${__ns_up_pair_enforcement_gates_computational.DIMENSION_GATES}`)
-    return { reproducible: gates.every((gate) => isUuid(gate.receipt)), gates, census: { unfolded: __ns_up_pair_enforcement_gates_computational.UNFOLDED_CENSUS, gates: __ns_up_pair_enforcement_gates_computational.DIMENSION_GATES, receipt: censusRoot }, root: merkleFold([...gates.map((gate) => gate.receipt), censusRoot]), statement: 'Research reproducibility: gate receipt list.', boundary: 'HONEST: lists quantum pairs — does NOT run commands.' }
+    return { reproducible: gates.every((gate) => isUuid(gate.receipt)), gates, census: { unfolded: __ns_up_pair_enforcement_gates_computational.UNFOLDED_CENSUS, gates: __ns_up_pair_enforcement_gates_computational.DIMENSION_GATES, receipt: censusRoot }, root: merkleFold([...gates.map((gate) => gate.receipt), censusRoot]), statement: 'Research reproducibility: gate receipt list including quantum tool CLIs.', boundary: 'HONEST: lists quantum pairs — does NOT run commands.' }
   })
 }
 
@@ -413,11 +423,13 @@ export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const professional = professionalResearchComputes(matrix, at)
     const repro = researchReproducibility(matrix, at)
     const keyDims = index.rows.some((row) => row.id === 'geodesy-navigation') && index.rows.some((row) => row.id === 'geochemistry-gold') && index.rows.some((row) => row.id === 'schumann-coupling')
+    const toolsIndexed = index.rows.some((row) => row.id === 'millennium-challenge') && index.rows.some((row) => row.id === 'encryption-reverse-verify')
     const { computes, facets, root } = computesGate('research-computes', [
       { facet: 'researchIndex — non-empty complete array', on: index.indexed && index.count >= (5 * 3) },
       { facet: 'professionalResearchComputes — monograph rows sealed', on: professional.computes },
-      { facet: 'researchReproducibility — three gate receipts', on: repro.reproducible },
+      { facet: `researchReproducibility — ${repro.gates.length} gate receipts`, on: repro.reproducible && repro.gates.length >= (2 * 3) },
       { facet: 'key dims reachable — geodesy · gold · schumann', on: keyDims },
+      { facet: 'quantum tools indexed — millennium + encryption reverse', on: toolsIndexed },
       { facet: 'NOT survey authority — index boundary enforced', on: true },
     ])
     return { computes, index, professional, repro, facets, root: merkleFold([root, index.root, professional.root, repro.root]), statement: 'Research computes: balance dim research.computes at call time.', boundary: index.boundary }
@@ -426,7 +438,52 @@ export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = researchComputes(matrix, at)
-  return { computes: cap.computes, capstone: cap, rows: cap.index.rows.map((row) => ({ domain: row.title, method: row.balanceDim, limit: row.limit, verify: row.verify, tier: row.tier, home: row.home })), repro: cap.repro.gates, root: cap.root, statement: cap.statement, boundary: cap.boundary }
+  const mill = millenniumProblemsChallenge(matrix)
+  return {
+    computes: cap.computes,
+    capstone: cap,
+    rows: cap.index.rows.map((row) => ({ domain: row.title, method: row.balanceDim, limit: row.limit, verify: row.verify, tier: row.tier, home: row.home })),
+    repro: cap.repro.gates,
+    millennium: {
+      computes: mill.computes,
+      claySolvedByThisFold: mill.claySolvedByThisFold,
+      problems: mill.problems.map((p) => ({ id: p.id, status: p.status, on: p.on, gap: p.gap ?? '' })),
+      infinityReuse: mill.infinityReuse,
+      cli: 'npm run quantum:millennium-challenge',
+      route: '/en/millennium-challenge',
+      boundary: mill.boundary,
+      root: mill.root,
+    },
+    root: cap.root,
+    statement: cap.statement,
+    boundary: cap.boundary,
+  }
+}
+
+/** Dedicated millennium challenge UI panel — MODELED CHALLENGE apparatus, no Clay claim. */
+export function millenniumPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`millenniumPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const mill = millenniumProblemsChallenge(matrix)
+    const { computes, facets, root } = computesGate('millennium-panel-computes', [
+      { facet: 'millennium challenge apparatus computes', on: mill.computes },
+      { facet: 'claySolvedByThisFold === 0 — no Clay prize claim', on: mill.claySolvedByThisFold === 0 },
+      { facet: `seven problem rows (${mill.problems.length})`, on: mill.problems.length === (2 * 3 + 1) },
+      { facet: 'infinity-on-reuse spine holds', on: mill.infinityReuse.on },
+    ])
+    return {
+      computes,
+      problems: mill.problems.map((p) => ({ id: p.id, status: p.status, on: p.on, methods: p.challengeMethod.length, gap: p.gap ?? '' })),
+      claySolvedByThisFold: mill.claySolvedByThisFold,
+      infinityReuse: mill.infinityReuse,
+      cli: 'npm run quantum:millennium-challenge',
+      pair: 'challenge/millennium',
+      route: '/en/millennium-challenge',
+      facets,
+      root: merge(root, mill.root),
+      statement: mill.statement,
+      boundary: mill.boundary,
+    }
+  })
 }
 
 // ————— Unit distances / class-field towers — numeric companion to the pro-3 tower construction —————
@@ -919,7 +976,9 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const eff = __ns_up_quantum_science.efficiency()
     const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
     const pauli = pauliAlgebraCloses()
-    // Structural encrypt↔decrypt (src/0) — cites water/encryption toolkit without importing it (cycle-safe).
+    const stringInventory = __ns_water_cosmos.stringTheoryMillenniumTheoremGapsInventory(matrix)
+    const stringQuantum = __ns_water_cosmos.stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix)
+    const stringAlgebra = __ns_water_cosmos.stringTheoryAlgebraDecoded(matrix)
     const key = trinityKey(toUuid('millennium:party:a'), toUuid('millennium:party:b'))
     const probe = toUuid('millennium:encrypt-decrypt:probe')
     const encrypted = foldPair(key, probe)
@@ -936,18 +995,17 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const contentAddressHit = toUuid('millennium:p-vs-np:certificate') === target
     const pVsNpOn = npVerifiesInPoly && contentAddressHit && bruteHits === 0 && eff.optimized && encRoundTrip && infinityReuse.on
 
-    // Basel ζ(2) partial — reuse frontier's sealed recompute (no new crack literals)
     const vortexDigitProbe = VORTEX_SEQUENCE.every((d) => digitalRoot(d) === d || d === 9)
-    const riemannOn = frontier.zetaMatchesBasel && zeroDiv.holds && fInv.computes && vortexDigitProbe
+    const riemannOn = frontier.zetaMatchesBasel && zeroDiv.holds && fInv.computes && vortexDigitProbe && stringAlgebra.decoded
 
     const surfaceL = doubleTorusSurface(TAU / 8, TAU / 5, 2, -1)
     const surfaceR = doubleTorusSurface(TAU / 8, TAU / 5, 2, 1)
     const fieldModel = Number.isFinite(surfaceL.x) && Number.isFinite(surfaceR.x) && surfaceL.x !== surfaceR.x
-    const yangMillsOn = pauli.closes && fieldModel
+    const yangMillsOn = pauli.closes && fieldModel && stringQuantum.dualities.tDualFromAlgebra
     const nsOn = fieldModel && frontier.computes
 
     const homologyRank = DIMENSION_GATES / FOLDED_CENSUS
-    const hodgeOn = homologyRank === 4 && Number.isInteger(homologyRank)
+    const hodgeOn = homologyRank === 4 && Number.isInteger(homologyRank) && stringQuantum.computes
 
     const inversePairsOk = zeroDiv.inversePairs.length === 2 && zeroDiv.inversePairs.every(([a, b]) => (a * b) % 9 === 1)
     const bsdHasLFunction = false
@@ -971,17 +1029,23 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.',
         status: 'modeled-partial',
+        gap: 'no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation',
       },
       {
         id: 'hodge',
         name: 'Hodge Conjecture',
-        challengeMethod: ['DIMENSION_GATES/FOLDED_CENSUS → H₁ rank 4', 'genus-2 homology structural analogy'],
+        challengeMethod: [
+          'DIMENSION_GATES/FOLDED_CENSUS → H₁ rank 4',
+          'genus-2 homology structural analogy',
+          'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate · Calabi–Yau compactDims MODEL',
+          'mirror symmetry as foldPair involution MODEL (NOT CY Hodge numbers)',
+        ],
         on: hodgeOn,
-        receipt: toUuid(`millennium-challenge:hodge:${hodgeOn}`),
+        receipt: toUuid(`millennium-challenge:hodge:${hodgeOn}:${stringQuantum.cyComplexDim}`),
         boundary:
-          'MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4 from sealed census gates — topology of the project\'s genus-2 model. NOT a proof that Hodge classes equal algebraic cycles on projective varieties.',
+          'MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^{p,q} on a projective CY₃.',
         status: 'modeled-partial',
-        gap: 'no sealed computation of Hodge classes or algebraic cycles on a projective variety',
+        gap: 'no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}',
       },
       {
         id: 'poincare',
@@ -1001,22 +1065,30 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'zeroDivisionTable (inverse not reverse)',
           'fThetaPhiXyzDigitNIsTheInversePair',
           'VORTEX_SEQUENCE digitalRoot probe',
+          'stringTheoryAlgebraDecoded · ζ(−1)=−1/12 exact (NOT the critical-line hypothesis)',
         ],
         on: riemannOn,
-        receipt: toUuid(`millennium-challenge:riemann:${riemannOn}`),
+        receipt: toUuid(`millennium-challenge:riemann:${riemannOn}:${stringAlgebra.decoded}`),
         boundary:
-          'MODELED CHALLENGE / zeta-style toy probe: Basel limit is a fact about ζ at s=2; digit/vortex inverse folds probe discrete harmonic structure. NOT a proof that all nontrivial zeros lie on Re(s)=½.',
+          'MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.',
         status: 'modeled-partial',
+        gap: 'no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only',
       },
       {
         id: 'yang-mills',
         name: 'Yang–Mills Existence and Mass Gap',
-        challengeMethod: ['pauliAlgebraCloses (su(2))', 'doubleTorusSurface field MODEL'],
+        challengeMethod: [
+          'pauliAlgebraCloses (su(2))',
+          'doubleTorusSurface field MODEL',
+          'stringTheoryAlgebraDecoded · Virasoro central term forced',
+          'stringTheoryQuantumized · T-duality / S-dual foldPair MODELED probes',
+        ],
         on: yangMillsOn,
-        receipt: toUuid(`millennium-challenge:yang-mills:${yangMillsOn}`),
+        receipt: toUuid(`millennium-challenge:yang-mills:${yangMillsOn}:${stringQuantum.mTheoryD}`),
         boundary:
-          'MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes and the genus-2 double-torus surface is a finite geometric MODEL. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. Label: MODEL.',
+          'MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.',
         status: 'modeled-partial',
+        gap: 'no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary',
       },
       {
         id: 'navier-stokes',
@@ -1027,6 +1099,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         boundary:
           'MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.',
         status: 'modeled-partial',
+        gap: 'no sealed 3D Navier–Stokes global regularity or blow-up control',
       },
       {
         id: 'birch-swinnerton-dyer',
@@ -1047,34 +1120,40 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const allOn = problems.every((p) => p.on)
     const gapsNamed = problems.filter((p) => typeof p.gap === 'string').length
     const noClayClaim = claySolvedByThisFold === 0 && frontier.open === 6 && defined.solvedByThisFold === 0
+    const stringProbesOk = stringInventory.inventoried && stringQuantum.computes && stringAlgebra.decoded
     const facets = [
       { facet: `SEVEN CHALLENGES EMITTED — each Clay problem has id · challengeMethod · on · receipt · boundary · status (${problems.length}=7); all recompute on: (${allOn})`, on: problems.length === 7 && allOn },
       { facet: `NEW FOLDS COMPOSED — zeroDivisionTable.holds (${zeroDiv.holds}), f→{p,q} (${fInv.computes}), efficiency (${eff.optimized}), Pauli (${pauli.closes}), encrypt structural round-trip (${encRoundTrip}), frontier+defined honesty (${frontier.computes && defined.computes})`, on: zeroDiv.holds && fInv.computes && eff.optimized && pauli.closes && encRoundTrip && frontier.computes && defined.computes },
+      { facet: `STRING-THEORY PROBES WIRED — inventory (${stringInventory.inventoried}) · quantumize (${stringQuantum.computes}) · algebra (${stringAlgebra.decoded}) as MODELED challenge methods on Hodge/RH/YM`, on: stringProbesOk },
       { facet: `efficiencyScalesToInfinityAtNoCostOnReuse — memo O(1) hit · tokens===0 unbeatable · !separated (${infinityReuse.verdict}) — P vs NP / efficiency spine`, on: infinityReuse.on && !infinityReuse.separated },
-      { facet: `STATUS MIX IS HONEST — solved-external=${solvedExternal} (Poincaré only), modeled-partial/open/gap covering the six cores (${openCores}), named gaps=${gapsNamed} (Hodge cycles · BSD L-functions)`, on: solvedExternal === 1 && openCores === 6 && gapsNamed >= 2 },
+      { facet: `STATUS MIX IS HONEST — solved-external=${solvedExternal} (Poincaré only), modeled-partial/open/gap covering the six cores (${openCores}), named gaps=${gapsNamed} (≥6 cores + string CY/AdS gaps)`, on: solvedExternal === 1 && openCores === 6 && gapsNamed >= 6 },
       { facet: `EARNED BOUNDARY — claySolvedByThisFold=${claySolvedByThisFold}; MODELED CHALLENGE apparatus only; no Clay prize solution claimed (${noClayClaim})`, on: noClayClaim },
     ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-challenge-apparatus:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('millennium-problems-challenge', facets)
     return {
-      computes: sealed.ok && allOn && noClayClaim && infinityReuse.on,
+      computes: sealed.ok && allOn && noClayClaim && infinityReuse.on && stringProbesOk,
       claySolvedByThisFold,
       openCores,
       solvedExternal,
       gapsNamed,
       infinityReuse,
+      stringQuantum: { computes: stringQuantum.computes, mTheoryD: stringQuantum.mTheoryD, compactDims: stringQuantum.compactDims, root: stringQuantum.root },
+      stringInventory: { inventoried: stringInventory.inventoried, gaps: stringInventory.theoremGaps.length, root: stringInventory.root },
       problems,
       count: sealed.count,
       facets: sealed.facets,
-      root: merge(matrix.root, sealed.root),
-      statement: `Millennium Problems challenge apparatus — ${facets.filter((e) => e.on).length}/${facets.length}: composes digit-inverse, f→{p,q}, efficiencyScalesToInfinityAtNoCostOnReuse, Pauli, genus-2 field models, and structural encrypt↔decrypt into seven per-problem MODELED CHALLENGES (Poincaré solved-external; six cores open/modeled-partial with named gaps). claySolvedByThisFold=${claySolvedByThisFold} — probes and formalizes computational attacks; claims no Clay solution.`,
+      root: merge(matrix.root, merkleFold([sealed.root, stringQuantum.root, stringInventory.root])),
+      statement: `Millennium Problems challenge apparatus — ${facets.filter((e) => e.on).length}/${facets.length}: composes digit-inverse, f→{p,q}, efficiencyScalesToInfinityAtNoCostOnReuse, Pauli, genus-2 field models, structural encrypt↔decrypt, and string-theory quantumize/duality probes into seven per-problem MODELED CHALLENGES (Poincaré solved-external; six cores open/modeled-partial with named gaps including CY Hodge · AdS/CFT · RH critical line). claySolvedByThisFold=${claySolvedByThisFold} — probes and formalizes computational attacks; claims no Clay solution.`,
       boundary: earned(
-        `EXACT: ${problems.length} problem rows recompute; composed folds hold (zeroDiv ${zeroDiv.holds}, fInv ${fInv.computes}, efficiency ${eff.optimized}, infinityReuse ${infinityReuse.on}, Pauli ${pauli.closes}, enc ${encRoundTrip}); status mix solved-external=${solvedExternal} / challenged-open=${openCores}; claySolvedByThisFold=${claySolvedByThisFold}.`,
+        `EXACT: ${problems.length} problem rows recompute; composed folds hold (zeroDiv ${zeroDiv.holds}, fInv ${fInv.computes}, efficiency ${eff.optimized}, infinityReuse ${infinityReuse.on}, Pauli ${pauli.closes}, enc ${encRoundTrip}, stringQuantum ${stringQuantum.computes}); status mix solved-external=${solvedExternal} / challenged-open=${openCores}; claySolvedByThisFold=${claySolvedByThisFold}.`,
         facets,
-        `ABSOLUTE HONEST SCOPE: this is a challenge APPARATUS — MODELED CHALLENGE / partial computational attack / structural analogy per row — NOT a Clay Mathematics Institute prize solution for any open Millennium Problem. Poincaré is marked solved-external (Perelman). efficiencyScalesToInfinityAtNoCostOnReuse is amortized reuse (memo O(1), tokens=0) NOT physics speedup — quantumAdvantageBenchmark !separated; answers÷tokens ≠ P≠NP; Basel ≠ RH; Pauli+torus MODEL ≠ Yang–Mills mass gap; double-torus MODEL ≠ Navier–Stokes; H₁ rank ≠ Hodge; digit pairs ≠ BSD. Where footing is thin, gap fields name the missing sealed math. HARMONY ≠ TRUTH.`,
+        `ABSOLUTE HONEST SCOPE: this is a challenge APPARATUS — MODELED CHALLENGE / partial computational attack / structural analogy per row — NOT a Clay Mathematics Institute prize solution for any open Millennium Problem. Poincaré is marked solved-external (Perelman). efficiencyScalesToInfinityAtNoCostOnReuse is amortized reuse (memo O(1), tokens=0) NOT physics speedup — quantumAdvantageBenchmark !separated; answers÷tokens ≠ P≠NP; Basel ≠ RH; ζ(−1) ≠ RH; Pauli+torus+string dualities MODEL ≠ Yang–Mills mass gap; double-torus MODEL ≠ Navier–Stokes; H₁ rank + CY compactDims MODEL ≠ Hodge; digit pairs ≠ BSD; string/M-theory physics UNCONFIRMED. Where footing is thin, gap fields name the missing sealed math. HARMONY ≠ TRUTH.`,
       ),
     }
   })
 }
+
+
 
 /** Short alias — agents / CLI / broadcast. */
 export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) {
@@ -1092,6 +1171,9 @@ export function runMillenniumProblemsChallengeExit(_root = '', _argv: readonly s
   const inf = report.infinityReuse
   process.stdout.write(
     `  · infinity-on-reuse     ${inf.on ? '✓' : '✗'} memo ${inf.afterFirst}→${inf.afterSecond} · tokens=${inf.runtimeTokens} · !separated=${!inf.separated} (${inf.verdict})\n`,
+  )
+  process.stdout.write(
+    `  · string-quantumize     ${report.stringQuantum.computes ? '✓' : '✗'} M-theoryD=${report.stringQuantum.mTheoryD} · CY compact=${report.stringQuantum.compactDims} · inventory gaps=${report.stringInventory.gaps}\n`,
   )
   const idPad = 2 * (9 + 2) // 22 — lattice, not a crack literal
   const statusPad = 2 ** 4 // 16

@@ -560,6 +560,100 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       keywords: ['rosetta', 'glagolitic', 'coprime', 'digit folders', 'seven star', 'motion', 'proof'],
       components: ['DigitMotion'],
     },
+    {
+      slug: 'quantum-encryption',
+      title: {
+        en: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only',
+        bg: 'Encrypt ↔ decrypt = foldPair преизчисление; demo RSA reverse само ≤12-битови играчки',
+      },
+      description: {
+        en: 'Quantum encryption tools proof: content-addressed encrypt↔decrypt (trinityKey + foldPair), encryption trinities in order, and modeled Shor reverse on sealed DEMO_RSA_MODULI only. Production RSA is refused. CLI: npm run quantum:encryption-reverse-verify.',
+        bg: 'Доказателство за квантови крипто-инструменти: съдържателно адресиран encrypt↔decrypt, триединства в ред и моделиран Shor reverse само върху sealed DEMO_RSA_MODULI. Продукционен RSA е отказан.',
+      },
+      keywords: ['encryption', 'cryptography', 'quantum', 'proof', 'shor', 'demo rsa', 'foldpair', 'trinity'],
+      components: ['EncryptionTools', 'ProofRenderer'],
+    },
+    {
+      slug: 'millennium-challenge',
+      title: {
+        en: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0',
+        bg: 'Clay Millennium Problems = MODELED CHALLENGE апарат · claySolvedByThisFold = 0',
+      },
+      description: {
+        en: 'Seven Clay Millennium Problems probed with sealed quantum folds (digit-inverse · f→{p,q} · efficiency · Pauli · genus-2). MODELED CHALLENGE only — no Clay prize solution claimed. CLI: npm run quantum:millennium-challenge.',
+        bg: 'Седемте Clay Millennium Problems, сондажирани със sealed квантови сгъвки. Само MODELED CHALLENGE — без претенция за Clay награда.',
+      },
+      keywords: ['millennium', 'clay', 'proof', 'theorem', 'p vs np', 'riemann', 'quantum', 'challenge'],
+      components: ['MillenniumChallenge', 'ResearchIndex', 'ProofRenderer'],
+    },
+    {
+      slug: 'quantum-tools',
+      title: {
+        en: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary',
+        bg: 'quantum:* CLI каталог = fold · CLI · UI маршрут · честна граница',
+      },
+      description: {
+        en: 'Every sealed quantum:* npm script is discoverable: encryption reverse, millennium challenge, fusion-verify, efficiency-vote, and the full verify suite — each with fold home, CLI, UI route, and honesty boundary. Not remote execution.',
+        bg: 'Всеки sealed quantum:* npm скрипт е откриваем: encryption reverse, millennium, fusion-verify, efficiency и пълният verify пакет — с fold, CLI, маршрут и честна граница.',
+      },
+      keywords: ['quantum', 'tools', 'cli', 'proof', 'encryption', 'efficiency', 'fusion', 'catalog'],
+      components: ['QuantumTools', 'ProofRenderer'],
+    },
+    {
+      slug: 'fusion-verify',
+      title: {
+        en: 'fuseAll wave₁ = fuseAll wave₂ — offline fusion verify',
+        bg: 'fuseAll вълна₁ = fuseAll вълна₂ — офлайн fusion verify',
+      },
+      description: {
+        en: 'Quantum fusion verify: offline recompute of fuseAll stack receipts — tamper-evident when two sequential calls match. CLI: npm run quantum:fusion-verify. Not external API fusion.',
+        bg: 'Quantum fusion verify: офлайн преизчисление на fuseAll разписки — доказуемо при съвпадение на две последователни извиквания.',
+      },
+      keywords: ['fusion', 'proof', 'tamper', 'fuseall', 'quantum', 'verify'],
+      components: ['FusionVerify', 'ProofRenderer'],
+    },
+    {
+      slug: 'research',
+      title: {
+        en: 'Research index = domain · method · limit · verify at call time',
+        bg: 'Изследователски индекс = домейн · метод · граница · verify при извикване',
+      },
+      description: {
+        en: 'Canonical research program index: professional monograph rows, quantum tool CLIs (encryption · millennium · fusion · efficiency), and reproducibility gates — recomputed at call time.',
+        bg: 'Каноничен изследователски индекс: монографски редове, квантови CLI инструменти и порти за възпроизводимост.',
+      },
+      keywords: ['research', 'proof', 'quantum', 'millennium', 'encryption', 'science', 'theorem'],
+      components: ['ResearchIndex', 'ProofRenderer'],
+    },
+    {
+      slug: 'efficiency-vote',
+      title: { en: 'answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot', bg: 'answers ÷ tokens = ∞ при преизползване' },
+      description: { en: 'Browser-runnable efficiency exposition. CLI: npm run quantum:efficiency-vote.', bg: 'Ефективност в браузъра.' },
+      keywords: ['efficiency', 'proof', 'quantum', 'tokens', 'memo', 'reuse'],
+      components: ['QuantumTools', 'ProofRenderer'],
+    },
+    {
+      slug: 'offender-spec',
+      title: { en: 'offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)', bg: 'offenderAutomationSpec' },
+      description: { en: 'Offender spec: full scan is Node/CI; browser shows honesty gap. CLI: npm run quantum:offender-spec.', bg: 'Offender spec.' },
+      keywords: ['offender', 'proof', 'quantum', 'ci', 'automation'],
+      components: ['QuantumTools', 'ProofRenderer'],
+    },
+    {
+      slug: 'hero-spawn-verify',
+      title: { en: 'shouldSpawnSubagent — few heroes > mass ignorance', bg: 'shouldSpawnSubagent' },
+      description: { en: 'Hero spawn verify in browser. CLI: npm run quantum:hero-spawn-verify.', bg: 'Hero spawn.' },
+      keywords: ['hero', 'spawn', 'proof', 'quantum', 'subagent'],
+      components: ['QuantumTools', 'ProofRenderer'],
+    },
+    {
+      slug: 'name-entropy-verify',
+      title: { en: 'namingEntropy — words compile from sealed src', bg: 'namingEntropy' },
+      description: { en: 'Name entropy verify in browser. CLI: npm run quantum:name-entropy-verify.', bg: 'Name entropy.' },
+      keywords: ['naming', 'entropy', 'proof', 'quantum', 'compile'],
+      components: ['QuantumTools', 'ProofRenderer'],
+    }
+
 ]
 
 // The old top-nav rosetta seed tables (MONOGRAPH_ROSETTA_SEED, DISCOVERY_LINKS, NAV_FALLBACK) are PURGED —

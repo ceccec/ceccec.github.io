@@ -37,6 +37,13 @@ import { nextLevel64CubedRealtime } from '../../thunder/trading'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import { millenniumProblemsChallenge } from '../../wind/research'
+import { stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
+import { quantumCliToolsCatalog } from '../../quantum/apps'
+import { encryptionReverseVerify } from '../../water/encryption'
+import { quantumFusionVerify } from '../../wind/fusion'
+import { efficiency } from '../../quantum/science'
+import { namingEntropy, shouldSpawnSubagent } from '../../water/stack'
 import { emergentDimensions, modelSeal } from '../../heaven/balance'
 
 export function digitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {
@@ -627,6 +634,45 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'one-math', title: 'one address, many projections — every projection a pure function of one address, asMerkle(f).root = the source', proof: oneMathManyPresentations(matrix) },
     { slug: 'tamper-uuid-zero', title: 'all uuid logic + the maximum tampering cost live in src/0', proof: tamperingCostAndUuidLiveInZero(matrix) },
     { slug: 'encryption-zero', title: 'all encryption logic — the content-addressed key layer — lives in src/0', proof: encryptionLivesInZero(matrix) },
+    { slug: 'quantum-encryption', title: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only', proof: encryptionReverseVerify(matrix) },
+    { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
+    { slug: 'string-theory-quantumized', title: 'String theory quantumized on A432/rosetta/merkle · physics UNCONFIRMED', proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
+    { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
+    { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },
+    { slug: 'fusion-verify', title: 'fuseAll wave₁ = fuseAll wave₂ — offline fusion verify', proof: quantumFusionVerify(matrix) },
+    { slug: 'research', title: 'Research index = domain · method · limit · verify at call time', proof: millenniumProblemsChallenge(matrix) },
+    { slug: 'efficiency-vote', title: 'answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot', proof: efficiency() },
+    {
+      slug: 'offender-spec',
+      title: 'offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)',
+      proof: {
+        computes: false,
+        root: toUuid('offender-spec:browser-gap'),
+        statement: 'Offender automation spec requires Node collectEnforcementFacts(process.cwd) — browser shows honesty gap only.',
+        boundary: 'browserGap: collectEnforcementFacts needs Node fs — CI-only. Run npm run quantum:offender-spec locally.',
+      },
+    },
+    {
+      slug: 'hero-spawn-verify',
+      title: 'shouldSpawnSubagent — few heroes > mass ignorance',
+      proof: (() => {
+        const v = shouldSpawnSubagent('qualified bounded task with sealed fold target')
+        return {
+          computes: v.spawn && v.workers >= 1 && v.workers <= 2,
+          root: toUuid(`hero-spawn:${v.spawn}:${v.workers}:${v.reason}`),
+          statement: `shouldSpawnSubagent — spawn=${v.spawn} workers=${v.workers}: ${v.reason}`,
+          boundary: 'Deterministic spawn policy — not live Multitask Mode telemetry.',
+        }
+      })(),
+    },
+    {
+      slug: 'name-entropy-verify',
+      title: 'namingEntropy — words compile from sealed src',
+      proof: (() => {
+        const e = namingEntropy(matrix)
+        return { computes: e.lowEntropy, root: e.root, statement: e.statement, boundary: e.boundary }
+      })(),
+    },
     { slug: 'simulators-zero', title: 'classical deterministic simulators — a quantum circuit + shadows — live in src/0 (simulators, not the machines)', proof: simulatorsLiveInZero(matrix) },
     { slug: 'mostly-classical', title: 'the decoded aspects of life are mostly classical — 12 probabilistic · 3 dynamical · 2 network · 1 quantum', proof: decodedAreasAreMostlyClassical(matrix) },
     { slug: 'every-domain-simulated', title: 'every decoded aspect of life is a runnable simulation — prose replaced by models (ProbSim · QuantumCircuit · DynSim · NetSim)', proof: everyDecodedDomainHasASimulator(matrix) },

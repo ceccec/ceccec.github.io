@@ -2024,6 +2024,31 @@ export function runQuantumFusionVerifyGuardedExit(_root: string, _argv: readonly
   return 0
 }
 
+/** UI panel — offline fuseAll wave verify for /en/fusion-verify. Pair: tamper/impossible */
+export function fusionVerifyPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`fusionVerifyPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const report = quantumFusionVerify(matrix)
+    const { computes, facets, root } = computesGate('fusion-verify-panel', [
+      { facet: 'fuseAll wave verified on replay', on: report.verified },
+      { facet: 'fused stack non-empty', on: report.fused && report.partCount > 0 },
+      { facet: 'wave root is UUID', on: isUuid(report.root) },
+    ])
+    return {
+      computes,
+      verified: report.verified,
+      partCount: report.partCount,
+      waveRoot: report.root,
+      cli: 'npm run quantum:fusion-verify',
+      pair: 'tamper/impossible',
+      route: '/en/fusion-verify',
+      facets,
+      root: merge(root, report.root),
+      statement: report.statement,
+      boundary: report.boundary,
+    }
+  })
+}
+
 // ── Alchemy (folded from alchemy-folds.ts): process→product compose (symbolic MODEL · NOT lab chemistry) ──
 export function alchemyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`alchemyResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {

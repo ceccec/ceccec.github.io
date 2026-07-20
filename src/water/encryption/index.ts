@@ -2,7 +2,7 @@
 import * as __ns_up_up_quantum_heaven_library from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { foldPair, gcd, isUuid, merge, merkleFold, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'
 import { TEACHING_RSA_P, TEACHING_RSA_Q } from '../../3/7'
 import { trinityEncryption } from '../../mountain/seals'
@@ -548,4 +548,81 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
   )
   process.stdout.write(`  boundary: ${pool.boundary}\n`)
   return 0
+}
+
+/**
+ * UI panel — compose encrypt↔decrypt toolkit + reverse-verify + demo moduli honesty for the published page.
+ * Pair: reverse/encryption-verify · route /en/quantum-encryption · CLI npm run quantum:encryption-reverse-verify
+ */
+export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const tools = encryptDecryptQuantumTools(matrix)
+    const reverse = encryptionReverseVerify(matrix)
+    const demo = demoRsaReverseSync()
+    const zero = encryptionLivesInZero(matrix)
+    const order = encryptionTrinitiesCompleteInOrder(matrix)
+    const { computes, facets, root } = computesGate('encryption-panel-computes', [
+      { facet: 'encrypt↔decrypt quantum tools ready', on: tools.ready },
+      { facet: 'encryption reverse verify sealed', on: reverse.verified },
+      { facet: 'demo RSA reverse — production refused', on: demo.computes },
+      { facet: 'encryption lives in src/0 key layer', on: zero.homed },
+      { facet: 'encryption trinities complete in order', on: order.enforced },
+    ])
+    return {
+      computes,
+      tools,
+      reverse,
+      demo,
+      zero,
+      order,
+      demoModuli: [...DEMO_RSA_MODULI] as number[],
+      cli: 'npm run quantum:encryption-reverse-verify',
+      pair: 'reverse/encryption-verify',
+      route: '/en/quantum-encryption',
+      teaching: tools.teaching,
+      demoFactors: reverse.demoFactors,
+      workerCap: reverse.workerCap,
+      glyphBonus: reverse.glyphBonus,
+      facets,
+      root: merge(root, reverse.root),
+      statement:
+        'Encryption tools panel: content-addressed encrypt↔decrypt toolkit, modeled Shor reverse on sealed demo moduli, trinities-in-order — recomputed at call time for the published UI.',
+      boundary: reverse.boundary,
+    }
+  })
+}
+
+/**
+ * Browser-runnable encryption tool — sync only (demoRsaReverseSync / modeledShorFactorToyModulus).
+ * HONEST: never uses worker_threads; production moduli refused via refuseNonDemoRsaModulus.
+ */
+export function runEncryptionToolInBrowser(
+  modulus: number | null = null,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  const panel = encryptionPanelComputes(matrix)
+  const N = modulus === null || !Number.isFinite(modulus) ? DEMO_RSA_MODULI[DEMO_RSA_MODULI.length - 1]! : Math.trunc(modulus)
+  const gate = refuseNonDemoRsaModulus(N)
+  const factor = gate.allowed ? modeledShorFactorToyModulus(N) : null
+  const tools = encryptDecryptQuantumTools(matrix)
+  return {
+    ok: panel.computes && tools.ready && (gate.allowed ? Boolean(factor?.factored) : true),
+    refused: !gate.allowed,
+    refuseReason: gate.reason,
+    bits: gate.bits,
+    modulus: N,
+    demoModuli: [...DEMO_RSA_MODULI] as number[],
+    factor: factor
+      ? { N: factor.N, p: factor.p, q: factor.q, base: factor.base, order: factor.order, factored: factor.factored, reason: factor.reason }
+      : null,
+    teaching: tools.teaching,
+    roundTrip: tools.roundTrip,
+    rsaRoundTrip: tools.rsaRoundTrip,
+    glyphBonus: panel.glyphBonus,
+    facets: panel.facets,
+    root: panel.root,
+    statement: panel.statement,
+    boundary: panel.boundary,
+    mode: 'browser-sync' as const,
+  }
 }

@@ -225,6 +225,8 @@ export const SESSION_SKILL_FNS: readonly string[] = [
   'sevenStarRosettaDecoded',
   'solarSystemDimensionsDecoded',
   'stringTheoryAlgebraDecoded',
+  'stringTheoryMillenniumTheoremGapsInventory',
+  'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate',
   'theMonograph',
   'theoremGapScan',
   'theoremNavigation',

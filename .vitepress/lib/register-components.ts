@@ -76,6 +76,11 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   LivingTorus: () => import('../theme/components/LivingTorus.vue'),
   Merkaba: () => import('../../src/render/merkaba/index.vue'),
   DoubleTorusExperience: () => import('../theme/components/DoubleTorusExperience.vue'),
+  EncryptionTools: () => import('../../src/water/encryption/index.vue'),
+  MillenniumChallenge: () => import('../../src/wind/research/index.vue'),
+  ResearchIndex: () => import('../../src/wind/research/index.vue'),
+  QuantumTools: () => import('../../src/quantum/apps/index.vue'),
+  FusionVerify: () => import('../../src/wind/fusion/index.vue'),
 }
 
 // Layout.vue mounts these on every page, so they live in the theme entry chunk already —
@@ -106,6 +111,7 @@ function browserComponentNames(): readonly string[] {
     'BulgarianHistory', 'BulgarianEthnogenesis', 'SacredGeometry', 'Society', 'PlayLearn', 'Multidimensional',
     'QuantumConsole', 'McpTools', 'YinYang', 'ChakrasAura', 'TaxonomyIcons', 'HarmonicMap', 'TamperingCost',
     'BoundaryAudit', 'A432', 'QuantumCircuit', 'CryptoChallenges', 'BlockchainCompare', 'ElectromagneticRadiation',
+    'EncryptionTools', 'MillenniumChallenge', 'ResearchIndex', 'QuantumTools', 'FusionVerify',
   ] as const
   return [...new Set([
     ...globals,

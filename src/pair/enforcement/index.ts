@@ -60,6 +60,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'tamper/impossible',
   'reverse/encryption-verify',
   'challenge/millennium',
+  'string/quantumize',
   'offender/spec',
   'team/cooperate-verify',
   'vote/build',
