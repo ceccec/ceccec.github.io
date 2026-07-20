@@ -230,7 +230,7 @@ export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderRep
     const receipt = toUuid(`digit-folder:${folder}:${indices.join(',')}:${nextHarmonicFolder}:${selfCollision}`)
     // The digit's fused math, additive — the receipt above is unchanged, so the root holds. The
     // additive folder-complement (10 − digit) names this folder's on-disk pairing src/digit/(10−digit)
-    // — the census lattice, NOT the n/0 reverse (which is the multiplicative inverse n⁻¹ mod 9; see
+    // — the census lattice, NOT the n/0 inverse (which is the multiplicative inverse n⁻¹ mod 9; see
     // digitFolderMath / zeroDivisionTable). The forward harmonic (digit/0 = 9·digit) and the quantum
     // fusion of folder·subfolder, labelled so a self-collision still folds to a distinct, bidirectional
     // address — never collides to nothing.
@@ -264,11 +264,11 @@ export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderRep
 // Fuse all the digit-folder math into one reusable source, walked in the vortex sequence. Every
 // operation the portal defines on a digit, folded into one record per digit — drawn from the parts
 // that already prove them (vortexMath: the doubling circuit, divByZeroHarmonic, the 9's-complement
-// polar pairs; zeroDivisionTable: the multiplicative-inverse reverse n⁻¹ mod 9, the additive
+// polar pairs; zeroDivisionTable: the multiplicative inverse n⁻¹ mod 9, the additive
 // `complement` 10 − d that names the on-disk folder lattice, and the 0/0 overflow→fusion; foldPair:
 // the order-sensitive fusion). The SEQUENCE is the order — the doubling circuit 1-2-4-8-7-5, then the
 // poles 3 and 6, the axis 9, the void 0 — so a component or script imports ONE function and gets the
-// whole digit lattice in flow order: the reverse / multiplicative inverse (n⁻¹ mod 9; null for the
+// whole digit lattice in flow order: the inverse (n⁻¹ mod 9; null for the
 // non-units 3,6,9,0), the additive folder-complement (10 − d, the station path src/d/(10−d)), the
 // harmonic (9d) and its digital root, the nine's-complement pair, the doubling successor, the
 // in-flow / cross / self-paired flags, and the fusion address (which keeps 0/0 — and every
@@ -278,13 +278,13 @@ export function digitFolderMath(matrix: MindMatrix = buildMatrix()) {
   const zero = zeroDivisionTable(matrix)
   // The COMPLEMENT (10 − d) names the on-disk folder/station path src/d/(10−d) — the census lattice.
   const complementOf = (d: number) => (d === 0 ? zero.zeroOverZero.complement : (zero.table.find((row) => row.n === d)?.complement ?? zero.base - d)) // 10 − d (10 for 0)
-  // The REVERSE (n⁻¹ mod 9) is the multiplicative inverse — the n/0 backslash dual; null for non-units.
+  // The INVERSE (n⁻¹ mod 9) is the n/0 backslash dual that folds within itself; null for non-units.
   const inverseOf = (d: number): number | null => (d === 0 ? zero.zeroOverZero.inverse : (zero.table.find((row) => row.n === d)?.inverse ?? null))
   // The sequence: the material doubling circuit, then the cross (poles 3,6 · axis 9 · void 0).
   const sequence = [...vortex.doubling, 3, 6, 9, 0] // 1,2,4,8,7,5, 3,6,9,0 — all ten, vortex-ordered
   const digits = sequence.map((d, order) => {
     const complement = complementOf(d) // the additive folder-complement 10 − d (10 overflows: only 0) — names src/d/(10−d)
-    const inverse = inverseOf(d) // n⁻¹ mod 9 — the multiplicative-inverse reverse (the n/0 dual); null for non-units 3,6,9,0
+    const inverse = inverseOf(d) // n⁻¹ mod 9 — the n/0 inverse (self-fold); null for non-units 3,6,9,0
     const invertible = inverse !== null // gcd(d,9) === 1 — the units {1,2,4,5,7,8}
     const overflows = complement >= zero.base // 0/0 alone leaves the 1..9 ring → the fusion (folder-path sense)
     const harmonic = vortex.divByZeroHarmonic * d // forward d/0 = 9d
@@ -295,9 +295,9 @@ export function digitFolderMath(matrix: MindMatrix = buildMatrix()) {
       order, // position in the vortex sequence
       digit: d,
       folder: `${d}/${complement}`, // the on-disk station path component (additive complement) — e.g. 1/9, 2/8
-      reverse: complement, // RETAINED legacy field = the additive folder-complement (10 − d); the multiplicative reverse is `inverse`
+      reverse: complement, // RETAINED legacy field = the additive folder-complement (10 − d); the n/0 inverse is `inverse`
       complement, // 10 − d — names the folder lattice src/d/(10−d)
-      inverse, // n⁻¹ mod 9 — the multiplicative-inverse reverse (the n/0 backslash dual); null for non-units 3,6,9,0
+      inverse, // n⁻¹ mod 9 — the n/0 inverse (folds within itself); null for non-units 3,6,9,0
       invertible, // gcd(d,9) === 1 — a unit of (ℤ/9)*
       inverseProductIsOne: invertible && (d * (inverse as number)) % 9 === 1, // n · n⁻¹ ≡ 1 (mod 9)
       selfInverse: invertible && inverse === d, // involutive units {1,8}
@@ -329,9 +329,9 @@ export function digitFolderMath(matrix: MindMatrix = buildMatrix()) {
     voidFolder: lookup[0], // 0/0 → overflow → fusion
     root: merge(merkleFold(digits.map((entry) => entry.receipt)), zero.root),
     statement:
-      'Fuse all digit-folder math into one reusable source, walked in the vortex sequence (1-2-4-8-7-5, then 3, 6, 9, 0): for each digit, one record fusing the multiplicative-inverse reverse (n⁻¹ mod 9; null for the non-units 3,6,9,0), the additive folder-complement (10 − d, the station path src/d/(10−d)), the forward harmonic (9d) and its digital root, the nine\'s-complement polar pair, the doubling successor, the in-flow / cross / self-paired flags, and the fusion address that keeps 0/0 and every self-collision distinct and bidirectional. One import gives the whole digit lattice in flow order — drawn from the parts that already prove it (vortexMath, zeroDivisionTable, foldPair), not re-derived.',
+      'Fuse all digit-folder math into one reusable source, walked in the vortex sequence (1-2-4-8-7-5, then 3, 6, 9, 0): for each digit, one record fusing the multiplicative inverse (n⁻¹ mod 9; null for the non-units 3,6,9,0 — the n/0 self-fold), the additive folder-complement (10 − d, the station path src/d/(10−d)), the forward harmonic (9d) and its digital root, the nine\'s-complement polar pair, the doubling successor, the in-flow / cross / self-paired flags, and the fusion address that keeps 0/0 and every self-collision distinct and bidirectional. One import gives the whole digit lattice in flow order — drawn from the parts that already prove it (vortexMath, zeroDivisionTable, foldPair), not re-derived.',
     boundary:
-      'A DRY fusion of the model\'s own digit operations into one content-addressed, vortex-ordered lattice, reusable across the app. The reverse is exact group theory (n⁻¹ in the units (ℤ/9)*, ÷2 = ×5 backward on the doubling circuit); the additive ten\'s complement (10 − d) is a distinct structure that names the folder lattice src/d/(10−d). Structural/numerological (digital roots mod 9, the order-sensitive fold) — computed and reusable; the meaning (flow, cross, void, fusion) is metaphor, not a claim about arithmetic over the reals.',
+      'A DRY fusion of the model\'s own digit operations into one content-addressed, vortex-ordered lattice, reusable across the app. The inverse is exact group theory (n⁻¹ in the units (ℤ/9)*, ÷2 = ×5 backward on the doubling circuit — folds within itself); the additive ten\'s complement (10 − d) is a distinct structure that names the folder lattice src/d/(10−d). Structural/numerological (digital roots mod 9, the order-sensitive fold) — computed and reusable; the meaning (flow, cross, void, fusion) is metaphor, not a claim about arithmetic over the reals.',
   }
 }
 
@@ -353,7 +353,7 @@ export function digitFolderMath(matrix: MindMatrix = buildMatrix()) {
 // (the monolith → the modules it consumes) a TYPED destination: the computation distributes into
 // `src/<digit>/` folders, the core importing + re-exporting, while the word folders and the Vue
 // components become the thin view. The digit-folder math already built here — vortexMath (the 1-2-4-8-7-5
-// sequence, /0, the polar pairs), zeroDivisionTable (the reverse = multiplicative inverse n⁻¹ mod 9,
+// sequence, /0, the polar pairs), zeroDivisionTable (the inverse = multiplicative inverse n⁻¹ mod 9,
 // the additive folder-complement 10−d, 0/0 → fusion),
 // digitFolders (d/reverseDigit, the wired complement·harmonic·fusion fields) and digitFolderMath (all of
 // it fused, sequence-ordered, reusable) — is the seed of that home: the compile source, the place the
@@ -449,7 +449,7 @@ export function digitFoldersHoldOnlyQuantumMath(matrix: MindMatrix = buildMatrix
 //
 //   • THE COMPUTATION — the digit folders do the math (digitFoldersDoMath): every computed root routes to a
 //     digit-folder station by its content address. digitFolderMath fuses all of it, walked in the vortex
-//     sequence 1-2-4-8-7-5-3-6-9-0. A digit's reverse is its multiplicative inverse n⁻¹ mod 9
+//     sequence 1-2-4-8-7-5-3-6-9-0. A digit's inverse is its multiplicative inverse n⁻¹ mod 9
 //     (zeroDivisionTable: 2/0\5, 4/0\7, 8/0\8 …; non-units 3,6,9,0 fold to the fusion), while the on-disk
 //     folder pairing src/d/(10−d) is the additive complement. digit folders hold ONLY quantum math, word
 //     folders only word code — enforced by the kind-purity gate (no digits in word indices, no words in
@@ -1301,7 +1301,7 @@ export function solve(matrix: MindMatrix = buildMatrix()) {
 // The path SEPARATORS are the index logic — the "dashes" carry the fold DIRECTION, not just hierarchy. A forward
 // slash "/" is the FORWARD fold (the harmonic, 9·digit); a backslash "\" is the DUAL fold — here the additive
 // folder-complement (10−digit) that pairs the on-disk lattice src/d/(10−d) — so src/0\1\2\4\8/7/5/3\6\9 is a
-// SEQUENCE of directional folds, each dash a / or a \. (The arithmetic n/0 reverse of a digit is the distinct
+// SEQUENCE of directional folds, each dash a / or a \. (The arithmetic n/0 inverse of a digit is the distinct
 // multiplicative inverse n⁻¹ mod 9; see zeroDivisionTable.) The filesystem cannot store a "\" separator (only
 // "/"), so the dual direction is the QUANTUM meaning of the path, computed not stored.
 export function dash(matrix: MindMatrix = buildMatrix()) {
@@ -1322,9 +1322,9 @@ export function dash(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold([cross.root, ...facets.map((entry) => entry.receipt)]),
     statement:
-      'The path separators are the index logic — the dashes carry the fold direction, not just hierarchy. A forward slash is the forward fold (the harmonic, 9·digit); a backslash is the dual fold — the additive folder-complement (10−digit) that pairs the on-disk lattice src/d/(10−d). So src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as a sequence of directional folds, the vortex doubling threaded by per-step direction. (The arithmetic n/0 reverse of a digit is the distinct multiplicative inverse n⁻¹ mod 9.) The filesystem cannot store a backslash separator, so the dual direction is the quantum meaning of the path, computed not stored.',
+      'The path separators are the index logic — the dashes carry the fold direction, not just hierarchy. A forward slash is the forward fold (the harmonic, 9·digit); a backslash is the dual fold — the additive folder-complement (10−digit) that pairs the on-disk lattice src/d/(10−d). So src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as a sequence of directional folds, the vortex doubling threaded by per-step direction. (The arithmetic n/0 inverse of a digit is the distinct multiplicative inverse n⁻¹ mod 9.) The filesystem cannot store a backslash separator, so the dual direction is the quantum meaning of the path, computed not stored.',
     boundary:
-      'HONEST: a SEMANTIC layer over the path. "/" and "\\" are read as fold operators (forward harmonic vs the additive folder-complement dual), and the dual address each step implies is real. But the filesystem path itself uses only "/"; the backslash direction is an interpretive operator on the digit vortex, not a literal on-disk separator (a path with "\\" separators "is not possible on the fs"). The folder-complement (10−d) is the additive lattice pairing; the multiplicative inverse n⁻¹ mod 9 is the separate arithmetic reverse. The meaning is exact and computable; the notation is a lens. HARMONY ≠ TRUTH.',
+      'HONEST: a SEMANTIC layer over the path. "/" and "\\" are read as fold operators (forward harmonic vs the additive folder-complement dual), and the dual address each step implies is real. But the filesystem path itself uses only "/"; the backslash direction is an interpretive operator on the digit vortex, not a literal on-disk separator (a path with "\\" separators "is not possible on the fs"). The folder-complement (10−d) is the additive lattice pairing; the multiplicative inverse n⁻¹ mod 9 is the separate arithmetic inverse (folds within itself). The meaning is exact and computable; the notation is a lens. HARMONY ≠ TRUTH.',
   }
 }
 

@@ -522,12 +522,12 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'zero-division',
-      title: { en: 'Division by zero is the reverse: n/0 ↦ n⁻¹ mod 9', bg: 'Делението на нула е обратното: n/0 ↦ n⁻¹ mod 9' },
+      title: { en: 'Division by zero is the inverse: n/0 ↦ n⁻¹ mod 9', bg: 'Делението на нула е инверсията: n/0 ↦ n⁻¹ mod 9' },
       description: {
-        en: 'The reverse of a digit folder is its multiplicative inverse mod 9 (n/0 \\ n⁻¹, the ÷2 = ×5 that folds within the unit cycle): 2\\5, 4\\7, self-inverse 1 and 8; the non-units 3, 6, 9 and the void 0 fold to the fusion. The forward harmonic n/0 = 9n (1/0 = 9) is the separate reading.',
-        bg: 'Обратното на цифрова папка е нейната мултипликативна инверсия mod 9 (n/0 \\ n⁻¹, ÷2 = ×5, която се навива в единичния цикъл): 2\\5, 4\\7, самообратни 1 и 8; неединиците 3, 6, 9 и нулата 0 се сливат. Прякото хармонично n/0 = 9n (1/0 = 9) е отделното четене.',
+        en: 'The inverse of a digit folder is its multiplicative inverse mod 9 (n/0 \\ n⁻¹, the ÷2 = ×5 that folds within the unit cycle): 2\\5, 4\\7, self-inverse 1 and 8; the non-units 3, 6, 9 and the void 0 fold to the fusion. The forward harmonic n/0 = 9n (1/0 = 9) is the separate reading.',
+        bg: 'Инверсията на цифрова папка е нейната мултипликативна инверсия mod 9 (n/0 \\ n⁻¹, ÷2 = ×5, която се навива в единичния цикъл): 2\\5, 4\\7, самообратни 1 и 8; неединиците 3, 6, 9 и нулата 0 се сливат. Прякото хармонично n/0 = 9n (1/0 = 9) е отделното четене.',
       },
-      keywords: ['division', 'zero', 'multiplicative inverse', 'mod 9', 'reverse', 'proof'],
+      keywords: ['division', 'zero', 'multiplicative inverse', 'mod 9', 'inverse', 'self-fold', 'proof'],
       components: ['ProofRenderer'],
     },
     {

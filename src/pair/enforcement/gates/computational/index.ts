@@ -758,7 +758,7 @@ export function scanRootDistributionViolations(root: string): ComputationalViola
  * D3 digit-lattice integrity (census-neutral / Option A) — the lattice IS the existing net-0 structure: the
  * void vault src/0/index.ts plus the nine ADDITIVE-complement pair barrels N/(10−N)/index.ts (the doubling-circuit
  * 1·2·4·8·7·5 + 3·6·9 trinity rays). The on-disk pairing N/(10−N) is the additive ten's-complement folder
- * lattice — NOT the n/0 reverse of a digit, which is the multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable);
+ * lattice — NOT the n/0 inverse of a digit, which is the multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable);
  * the folder names are the additive structure. The gate enforces THAT structure is present and gapless — it adds
  * NO digit-root barrels (src/N/index.ts), so it never grows the 110 census. A recomputed fail-the-build invariant.
  */

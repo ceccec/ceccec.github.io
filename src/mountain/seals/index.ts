@@ -642,7 +642,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'animations-strict-science', title: 'animations are strict science — every animation derives from the one field (3D spin atoms + the genus-2 fold + dims), DRY and realtime; the foundation is wired, the per-component sweep tracked honestly', proof: animationsRespectTheField(matrix) },
     { slug: 'folding-analog', title: 'folding linear gives analog — the sampling theorem (sinc interpolation, no gaps) + imaging through the frequency field (MRI Fourier · CT Radon · the spiral/radial k-space vortex); the 64³ grid it samples; decoded honestly', proof: foldingLinearGivesAnalog(matrix) },
     { slug: 'vortex', title: 'the vortex · 1-2-4-8-7-5', proof: vortexMath(matrix) },
-    { slug: 'zero-division', title: 'division by zero is the reverse · n/0 \\ n⁻¹ mod 9', proof: zeroDivisionTable(matrix) },
+    { slug: 'zero-division', title: 'division by zero is the inverse · n/0 \\ n⁻¹ mod 9', proof: zeroDivisionTable(matrix) },
     { slug: 'digit-folders', title: 'the digit folders are the API', proof: digitFoldersAreTheApi(matrix) },
     { slug: 'dot-cube', title: 'the dot is the cube is the dot · 64³', proof: dotIsCubeIsDot(matrix) },
   ]

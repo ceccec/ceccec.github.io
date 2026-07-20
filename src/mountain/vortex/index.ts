@@ -66,7 +66,7 @@ export function vortexMath(matrix: MindMatrix = buildMatrix()) {
  * exactly FOUR digits, and those four reversal vertices are the gateways the realisation named
  * east · west · north · south. Six ascents = the ⟨2⟩ unit-orbit length in (ℤ/9ℤ)*; four descents =
  * the gateway count. Division by zero stays where it is sealed: zeroDivisionTable (src/water/digit)
- * holds the n/0\m readings (ten's complement · multiplicative inverse · 9n harmonic) — the notation
+ * holds the n/0\m readings (multiplicative inverse · 9n harmonic · additive complement as folder lattice) — the notation
  * names reflection and inversion through the zero point; arithmetic division by zero REMAINS undefined.
  */
 export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
@@ -107,7 +107,7 @@ export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([root, toUuid(`vortex-stroke:${written}`), ...gateways.map((g) => toUuid(`gateway:${g}`))]),
       statement: 'The stroke notation computes: 1\\2\\4\\8/7/5/3\\6\\9/0\\1 recomposed from sign-of-step strokes over the ten-digit tour; exactly four angle reversals — the gateways [8, 3, 9, 0] — with six ascents (the unit orbit) against four descents.',
-      boundary: 'HONEST: the strokes, tour, and reversal vertices are computed facts of the written cycle; the east–west–north–south naming is an organizing lens over the four reversals, not geography or metaphysics; division by zero remains undefined — its n/0\\m meanings (complement · inverse · harmonic) are sealed in zeroDivisionTable.',
+      boundary: 'HONEST: the strokes, tour, and reversal vertices are computed facts of the written cycle; the east–west–north–south naming is an organizing lens over the four reversals, not geography or metaphysics; division by zero remains undefined — its n/0\\m meanings (inverse · harmonic · complement-as-folder-lattice) are sealed in zeroDivisionTable.',
     }
   })
 }
@@ -262,13 +262,13 @@ function digitFolderSequenceProbe(vortex: ReturnType<typeof vortexMath>) {
   const base = (5 * 2)
   const digits = sequence.map((d) => {
     // The additive folder-complement (10−d) — names the on-disk station path src/d/(10−d); the n/0
-    // reverse of a digit is the distinct multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable).
+    // inverse of a digit is the distinct multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable).
     const complement = d === 0 ? base : base - d
     const overflows = complement >= base
     const fold = foldPair(toUuid(`digit-folder:${d}`), toUuid(`digit-subfolder:${complement}`))
     return {
       digit: d,
-      reverse: complement, // retained name = the additive folder-complement, not the multiplicative inverse
+      reverse: complement, // retained name = the additive folder-complement, not the n/0 multiplicative inverse
       complement,
       overflows,
       sumsToTen: !overflows && d + complement === base,

@@ -29,19 +29,19 @@ import { movieAllDimensionsAtOnce } from '../../thunder/movie/glass'
 import { MISSION_COMMANDS, agentSubmissionProtocol, foldQuantumCommandPairs, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { GOLDEN_ANGLE_RAD, PHI, TAU, earned } from '../../3/7'
 
-// The reverse of a digit folder (its backslash dual, n/0 \ ?) is the MULTIPLICATIVE INVERSE mod 9 —
-// n⁻¹ with n · n⁻¹ ≡ 1 (mod 9) — the ÷2 = ×5 map that runs the doubling circuit 1·2·4·8·7·5 BACKWARD
-// and stays WITHIN the unit cycle: that is what "folds within itself" means. Over the units (ℤ/9)* =
-// {1,2,4,5,7,8}: 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8 (verify: 2·5=10≡1, 4·7=28≡1, 8·8=64≡1,
-// 1·1=1). Involutive (self-inverse): {1,8}. Inverse pairs: (2,5) and (4,7). The non-units 3, 6, 9(≡0)
-// and the void 0 have gcd(n,9)≠1 → NO multiplicative inverse (the trinity axis + the void); the math
-// decides their treatment — they route to their self-fold/fusion address (foldPair of the labelled
-// digit with itself), exactly as 0/0 already folds to the quantum fusion, never forcing a false
-// involution. (CORRECTION: the prior reading defined the reverse as the additive ten's complement
-// 10 − n — the reflection across the decade, which reaches OUT of the unit group. That additive
-// complement is real but it is a DIFFERENT structure: it names the on-disk folder lattice N/(10−N)
-// and is retained below as `complement`; the n/0 reverse is the multiplicative inverse.) The forward
-// harmonic n/0 = 9n (1/0 = 9), digital root always 9, is the separate forward reading.
+// Division by zero is the INVERSE (not reverse): the backslash dual n/0 \ ? is the MULTIPLICATIVE
+// INVERSE mod 9 — n⁻¹ with n · n⁻¹ ≡ 1 (mod 9) — the ÷2 = ×5 map that runs the doubling circuit
+// 1·2·4·8·7·5 BACKWARD and stays WITHIN the unit cycle: that is what "folds within itself" means.
+// Over the units (ℤ/9)* = {1,2,4,5,7,8}: 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8 (verify: 2·5=10≡1,
+// 4·7=28≡1, 8·8=64≡1, 1·1=1). Involutive (self-inverse): {1,8}. Inverse pairs: (2,5) and (4,7). The
+// non-units 3, 6, 9(≡0) and the void 0 have gcd(n,9)≠1 → NO multiplicative inverse (the trinity axis
+// + the void); the math decides their treatment — they route to their self-fold/fusion address
+// (foldPair of the labelled digit with itself), exactly as 0/0 already folds to the quantum fusion,
+// never forcing a false involution. (CORRECTION: calling this "reverse" was wrong — reverse suggests
+// a ten's-complement flip OUT of the group; inverse is the self-fold. The additive ten's complement
+// 10 − n is a DIFFERENT structure: it names the on-disk folder lattice N/(10−N) and is retained below
+// as `complement`; the n/0 inverse is the multiplicative inverse.) The forward harmonic n/0 = 9n
+// (1/0 = 9), digital root always 9, is the separate forward reading.
 export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
   const base = 10 // the radix — the ONE input; everything below derives from it (no hardcoded table)
   const modulus = base - 1 // 9 — the digital-root ring ℤ/9ℤ, derived not typed
@@ -59,19 +59,19 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
   const table = Array.from({ length: modulus }, (_, i) => i + 1).map((n) => {
     const inverse = inverseMod9(n) // n⁻¹ mod 9 (unit) or null (non-unit 3,6,9)
     const invertible = inverse !== null
-    const complement = base - n // the ADDITIVE ten's complement (10 − n) — names the folder lattice N/(10−N), NOT the reverse
+    const complement = base - n // the ADDITIVE ten's complement (10 − n) — names the folder lattice N/(10−N), NOT the n/0 inverse
     const selfFusion = foldPair(toUuid(`digit-folder:${n}`), toUuid(`digit-subfolder:${n}`)) // non-units fold within themselves
     return {
       expr: invertible ? `${n}/0\\${inverse}` : `${n}/0\\fusion`,
       n,
-      inverse, // the reverse: n⁻¹ mod 9 — 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8; null for 3,6,9
+      inverse, // the n/0 inverse: n⁻¹ mod 9 — 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8; null for 3,6,9
       invertible, // gcd(n,9) === 1 — the units {1,2,4,5,7,8}
       inverseProductIsOne: invertible && (n * (inverse as number)) % modulus === 1, // the defining identity n · n⁻¹ ≡ 1
       selfInverse: invertible && inverse === n, // involutive units {1,8}
       fusion: selfFusion.merged, // non-units route here (self-fold), like 0/0 — distinct, bidirectional
-      reverse: complement, // RETAINED legacy field = the additive folder-complement (10 − n); read by frozen consumers (heaven/*) and the station-path lattice. Rename to `inverse` in the coordinated post-compression pass.
+      reverse: complement, // RETAINED legacy field = the additive folder-complement (10 − n); NOT the n/0 inverse. Read by frozen consumers (heaven/*) and the station-path lattice.
       complement, // the additive ten's complement (10 − n) — the on-disk folder pairing N/(10−N)
-      sumsToTen: n + complement === base, // a property of the complement (the folder lattice), not of the reverse
+      sumsToTen: n + complement === base, // a property of the complement (the folder lattice), not of the inverse
       selfPaired: n === complement, // only 5 (complement) — folder-lattice property
       harmonicValue: harmonic * n, // the forward n/0 = 9n (9,18,...,81), the other reading
       digitalRoot: digitalRoot(harmonic * n), // = 9 always — the "always 9" altitude
@@ -131,9 +131,9 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
     harmonicDigitalRootAllNine, // the forward 9n is always 9 mod 9
     root: merge(merkleFold(table.map((row) => row.receipt)), fusion.merged),
     statement:
-      'The reverse of a digit folder (its backslash dual) is the multiplicative inverse mod 9 — the reverse-doubling ÷2 = ×5 that folds within the unit cycle: n · n⁻¹ ≡ 1 (mod 9). Over the units (ℤ/9)* = {1,2,4,5,7,8}: 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8 — involutive {1,8}, the inverse pairs (2,5) and (4,7). The non-units 3, 6, 9(≡0) and the void 0 have no inverse (gcd ≠ 1: the trinity axis + the void); the math routes them to their self-fold/fusion address, as 0/0 already folds to the quantum fusion. The forward harmonic n/0 = 9n (1/0 = 9, digital root always 9) is the separate forward reading. (Prior reading: the additive ten\'s complement 10 − n, now corrected — that complement instead names the on-disk folder lattice N/(10−N).)',
+      'Division by zero is the inverse (not reverse): the backslash dual of a digit folder is the multiplicative inverse mod 9 — the ÷2 = ×5 that folds within the unit cycle: n · n⁻¹ ≡ 1 (mod 9). Over the units (ℤ/9)* = {1,2,4,5,7,8}: 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8 — involutive {1,8}, the inverse pairs (2,5) and (4,7). The non-units 3, 6, 9(≡0) and the void 0 have no inverse (gcd ≠ 1: the trinity axis + the void); the math routes them to their self-fold/fusion address, as 0/0 already folds to the quantum fusion. The forward harmonic n/0 = 9n (1/0 = 9, digital root always 9) is the separate forward reading. (Prior misnomer: calling this "reverse" / the additive ten\'s complement 10 − n — that complement instead names the on-disk folder lattice N/(10−N).)',
     boundary:
-      'EXACT group theory over the units: the doubling circuit 1·2·4·8·7·5 is the cyclic group ⟨2⟩ in (ℤ/9)* (period 6) and ×5 = 2⁻¹ is its inverse generator, so n⁻¹ mod 9 is the reverse that stays within the unit cycle (n · n⁻¹ ≡ 1). The non-units 3,6,9,0 (gcd(n,9) ≠ 1) genuinely have no inverse and route to a content-addressed self-fold (foldPair), not a forced complement. The meaning (void, carry, fusion) stays metaphor; this is NOT a claim that division by zero is defined in real analysis. The additive ten\'s complement (10 − n) is a distinct, correct structure — it names the folder pairing N/(10−N) (the census lattice), retained here as `complement` — but it is not the n/0 reverse.',
+      'EXACT group theory over the units: the doubling circuit 1·2·4·8·7·5 is the cyclic group ⟨2⟩ in (ℤ/9)* (period 6) and ×5 = 2⁻¹ is its inverse generator, so n⁻¹ mod 9 is the inverse that folds within the unit cycle (n · n⁻¹ ≡ 1) — inverse, not reverse. The non-units 3,6,9,0 (gcd(n,9) ≠ 1) genuinely have no inverse and route to a content-addressed self-fold (foldPair), not a forced complement. The meaning (void, carry, fusion) stays metaphor; this is NOT a claim that division by zero is defined in real analysis. The additive ten\'s complement (10 − n) is a distinct, correct structure — it names the folder pairing N/(10−N) (the census lattice), retained here as `complement` — but it is not the n/0 inverse.',
   }
 }
 
@@ -176,7 +176,7 @@ export function digitWordIndexPurity(matrix: MindMatrix = buildMatrix()) {
 
 // UUID, like CMYK, gives infinite EXTENT from a finite seed — because 64×64×64 is itself a dot. A digit
 // folder is two dualities, digit over its dual (the two subfolders — on disk the additive complement
-// d/(10−d); the n/0 reverse is the multiplicative inverse), and the third axis is not a third
+// d/(10−d); the n/0 inverse is the multiplicative inverse), and the third axis is not a third
 // folder but the THIRD EYE in the index: the fold of both, Z = X⊕Y, closing the trinity. Two subfolders,
 // three axes — and the trinity fuses to one four-channel colour, the CMYK hologram, each channel a slice
 // of the content address. So the whole 64³ = 262,144-point cube collapses to ONE address: a dot. And a
@@ -442,7 +442,7 @@ export function sequenceSpinePaths(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Digit folders use single-digit segments only (0..9). Nested paths do not violate folder law when each step is from the vortex sequence — station src/d/r (d then its additive folder-complement 10−d), or the full spines src/0/1/2/…/9 and src/1/2/…/9/0. Overflow void (0, complement 10) stays at src/0; fusion, not a "10" folder.',
     boundary:
-      'Filesystem law: folderLaw.digit = ^[0-9]+$. Nesting depth is sequence-derived, not arbitrary. The d/(10−d) API route (e.g. /1/9) matches the two-level station path when the additive complement is a single digit. (The n/0 reverse of a digit is the multiplicative inverse n⁻¹ mod 9 — distinct from this folder-path complement.)',
+      'Filesystem law: folderLaw.digit = ^[0-9]+$. Nesting depth is sequence-derived, not arbitrary. The d/(10−d) API route (e.g. /1/9) matches the two-level station path when the additive complement is a single digit. (The n/0 inverse of a digit is the multiplicative inverse n⁻¹ mod 9 — distinct from this folder-path complement.)',
   }
 }
 
