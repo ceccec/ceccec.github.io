@@ -33,7 +33,7 @@ import { derivePublicKey, tamperEvident } from '../../5/5'
 import { trinityKey, proseToTone } from '../../0'
 import { movieCanvasHex } from '../../quantum/science'
 import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
-import { DIMENSION_GATES, MAJOR_MOONS } from '../../3/7'
+import { DIMENSION_GATES, MAJOR_MOONS, TAU } from '../../3/7'
 export { MAJOR_MOONS } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { DIMENSIONS, DIMENSION_NAMES, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import {
@@ -2339,8 +2339,8 @@ export function calligraphyStroke(seed: string, samples = (16 * 3)) {
     const ty = bez(Math.min(1, t + (1 / (100 * 5 * 2))), cy) - bez(Math.max(0, t - (1 / (100 * 5 * 2))), cy)
     const theta = Math.atan2(ty, tx)
     const half = (nib / 2) * (minRatio + (1 - minRatio) * Math.abs(Math.sin(theta - penAngle)))
-    const nx = Math.cos(theta + Math.PI / 2)
-    const ny = Math.sin(theta + Math.PI / 2)
+    const nx = Math.cos(theta + TAU / 4)
+    const ny = Math.sin(theta + TAU / 4)
     left.push(`${Math.round((x + nx * half) * (5 * 2)) / (5 * 2)} ${Math.round((y + ny * half) * (5 * 2)) / (5 * 2)}`)
     right.push(`${Math.round((x - nx * half) * (5 * 2)) / (5 * 2)} ${Math.round((y - ny * half) * (5 * 2)) / (5 * 2)}`)
   }

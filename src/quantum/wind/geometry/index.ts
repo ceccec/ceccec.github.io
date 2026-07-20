@@ -169,7 +169,8 @@ export function drawCalendars(
   dark = true,
 ): void {
   const paint = movieCanvasPolarity(dark)
-  const days = Date.now() / (864 * 100 * 100 * 5 * 2)
+  // Shared hero phase `t` is the clock — deterministic offline paint, not wall-clock Date.now().
+  const days = t / TAU
   const base = Math.min(w, h)
   ctx.save()
   for (let i = 0; i < CAL_CYCLES.length; i += 1) {
@@ -182,7 +183,7 @@ export function drawCalendars(
     ctx.beginPath()
     ctx.arc(cx, cy, radius, 0, TAU)
     ctx.stroke()
-    const ang = phase * TAU - Math.PI / 2 + (reduce ? 0 : t * (1 / (5 * 4)) * (i % 2 === 0 ? 1 : -1))
+    const ang = phase * TAU - TAU / 4 + (reduce ? 0 : t * (1 / (5 * 4)) * (i % 2 === 0 ? 1 : -1))
     ctx.fillStyle = paint(hueC, (7 / (5 * 2)), { L: 1 - 3 / 16 })
     ctx.beginPath()
     ctx.arc(cx + Math.cos(ang) * radius, cy + Math.sin(ang) * radius, Math.max(1, base * (3 / (100 * 5))), 0, TAU)

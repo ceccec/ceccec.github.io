@@ -323,9 +323,9 @@ export function decodedAreasAreMostlyClassical(matrix: MindMatrix = buildMatrix(
 export function everyDecodedDomainHasASimulator(matrix: MindMatrix = buildMatrix()) {
   const families = [
     { family: 'probabilistic', component: 'ProbSim', domains: ['peace', 'genetics', 'ethnogenesis', 'ancient', 'alphabets', 'ifa', 'music', 'ai-movies', 'history', 'glagolitic', 'trinity-sciences'], check: composeHazard((1 / (5 * 4)), [(2 / 5)]) > 0 && composeHazard((1 / (5 * 4)), [(2 / 5)]) < 1 && codeRobustness().silent > (1 / 5) && codeRobustness().silent < (3 / (5 * 2)) },
-    { family: 'quantum', component: 'QuantumCircuit', domains: ['quantum'], check: Math.abs(chsh(0, Math.PI / 2, Math.PI / 4, 3 * Math.PI / 4) - 2 * Math.SQRT2) < 1e-9 },
+    { family: 'quantum', component: 'QuantumCircuit', domains: ['quantum'], check: Math.abs(chsh(0, TAU / 4, TAU / 8, 3 * TAU / 8) - 2 * Math.SQRT2) < 1e-9 },
     { family: 'dynamical', component: 'DynSim', domains: ['calendars', 'tesla', 'frequency-apis'], check: realign(260, 365).lcm === 18980 && phaseDrift(365, 365.25, 1461) >= 0 },
-    { family: 'network', component: 'NetSim', domains: ['greek-colonies', 'script-language-gene', 'neurology'], check: congruence([1, 2, 3], [2, 4, 6]) > (1 - 1 / 100) && hopfieldRecall(hopfieldStore([[1, 1, -1, -1]]), [1, 1, 1, -1]).state.length === 4 && pmixEvolve([1, 0], [[0, 1]], (1 / 2), (5 * 5 * 2))[0] < (3 / 5) && bumpEvolve(0, Array.from({ length: 8 }, () => Math.PI / 4))[8]! < 1e-9 },
+    { family: 'network', component: 'NetSim', domains: ['greek-colonies', 'script-language-gene', 'neurology'], check: congruence([1, 2, 3], [2, 4, 6]) > (1 - 1 / 100) && hopfieldRecall(hopfieldStore([[1, 1, -1, -1]]), [1, 1, 1, -1]).state.length === 4 && pmixEvolve([1, 0], [[0, 1]], (1 / 2), (5 * 5 * 2))[0] < (3 / 5) && bumpEvolve(0, Array.from({ length: 8 }, () => TAU / 8))[8]! < 1e-9 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sim-family:${entry.family}:${entry.check}`) }))
   const covered = families.reduce((n, f) => n + f.domains.length, 0)
   const deferred: string[] = [] // none — trinity-sciences (the 64-codon model) landed with the verified standard genetic-code table
@@ -789,7 +789,7 @@ export function theProbabilityCoincidenceStaysCoincidenceAfterEveryInversionWith
   const decaysButPositive = posteriorCoincidence < 1 / 9 && posteriorCoincidence > 0 // → 0, never 0 (HARMONY ≠ TRUTH)
   // Tesla's quantum pair: the polyphase rotating field (cos ωt, sin ωt) — 90° apart, constant magnitude
   const teslaPhase = (t: number): [number, number] => [Math.cos(t), Math.sin(t)]
-  const quarter = Math.PI / 2
+  const quarter = TAU / 4
   const rotatingFieldConstant = [0, 1, 2, 3].every((q) => Math.abs(Math.hypot(...teslaPhase(q * quarter)) - 1) < 1e-9)
   const rotate = (v: [number, number], t: number): [number, number] => { const c = Math.cos(t), s = Math.sin(t); return [c * v[0] - s * v[1], s * v[0] + c * v[1]] }
   let u: [number, number] = [1, 0]

@@ -374,7 +374,7 @@ export function quantumImpossibleMadePossible(matrix: MindMatrix = buildMatrix()
 }
 function quantumImpossibleMadePossibleRaw(matrix: MindMatrix = buildMatrix()) {
   // (1) TELEPORTATION — move an unknown state exactly; test several |ψ⟩ across measurement outcomes.
-  const states: [number, number][] = [[Math.PI / 3, Math.PI / 4], [Math.PI / 2, 0], [TAU / 5, Math.PI / 3]]
+  const states: [number, number][] = [[TAU / 6, TAU / 8], [TAU / 4, 0], [TAU / 5, TAU / 6]]
   const teleTests = states.flatMap(([th, ph], i) => [0, 1, 2, 3].map((s) => teleportQubit(th, ph, `tele:${i}:${s}`)))
   const teleportPerfect = teleTests.every((t) => t.fidelity > (1 - 1 / (100 * 100 * 100))) // fidelity 1 for every Bell-measurement outcome
   const outcomesSeen = new Set(teleTests.map((t) => `${t.b1}${t.b2}`)).size // all four corrections exercised

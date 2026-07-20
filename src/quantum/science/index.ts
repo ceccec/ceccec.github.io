@@ -29,7 +29,7 @@ export function quantumScienceResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumScienceResearch', matrix, () => {
     const qdyn = __ns_up_dynamics.quantumDynamicsResearch(matrix)
     const qPhysics = __ns_up_up_fire_physics.quantumPhysics(matrix)
-    const tsirelson = chsh(0, Math.PI / 2, Math.PI / 4, (3 * Math.PI) / 4)
+    const tsirelson = chsh(0, TAU / 4, TAU / 8, (3 * TAU) / 8)
     return { researched: qdyn.researched && qPhysics.present >= 6 && Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6, mappings: [], root: toUuid('qsci-research'), boundary: 'HONEST: pedagogical models — NOT hardware QC.' }
   })
 }
@@ -38,7 +38,7 @@ export function quantumScienceComputes(matrix: MindMatrix = buildMatrix(), at = 
     const research = quantumScienceResearch(matrix)
     const dyn = __ns_up_dynamics.quantumDynamicsComputes(matrix, at)
     const simulators = __ns_up_up_fire_physics.simulatorsLiveInZero(matrix)
-    const tsirelson = chsh(0, Math.PI / 2, Math.PI / 4, (3 * Math.PI) / 4)
+    const tsirelson = chsh(0, TAU / 4, TAU / 8, (3 * TAU) / 8)
     const { computes, facets, root } = computesGate('quantum-science-computes', [
       { facet: 'research', on: research.researched },
       { facet: 'dynamics', on: dyn.computes },
@@ -417,7 +417,7 @@ export function quantumComputerResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumComputerResearch', matrix, () => {
     const solutions = completeQuantumSolutionsImplemented(matrix)
     const pair = bellPair()
-    const tsirelson = chsh(0, Math.PI / 2, Math.PI / 4, (3 * Math.PI) / 4)
+    const tsirelson = chsh(0, TAU / 4, TAU / 8, (3 * TAU) / 8)
     const state = applyGate(qubits(1), GATES.H, 0)
     const counts = sample(state, 2 * 64, 'qc') // 128 shots — H|0⟩ → measure: definite 0/1 outcomes, ~50/50
     const outcomes = Object.keys(counts)
@@ -430,7 +430,7 @@ export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at =
     const research = quantumComputerResearch(matrix)
     const solutions = completeQuantumSolutionsImplemented(matrix)
     const entangled = applyGate(cnot(bellPair(), 0, 1), GATES.H, 0)
-    const tsirelson = chsh(0, Math.PI / 2, Math.PI / 4, (3 * Math.PI) / 4)
+    const tsirelson = chsh(0, TAU / 4, TAU / 8, (3 * TAU) / 8)
     const ic = iChing(matrix) // 64 hexagrams = the 6-qubit computational basis
     const rosetta = rosettaComputes(matrix) // the state/result codec for that basis
     const parts = quantumComputerPartsComposed(matrix) // the nine physical parts as computed models
@@ -485,7 +485,7 @@ export function quantumComputerPartsComposed(matrix: MindMatrix = buildMatrix())
     const collapse = measure(bellPair(), 0, 'qc-readout')
     const histogram = sample(bellPair(), 4 * 4 * 64, 'qc-readout')
     const measureProved = (collapse.outcome === 0 || collapse.outcome === 1) && Object.keys(histogram).every((k) => k === '00' || k === '11')
-    const pulse = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }, { gate: 'RZ', targets: [0], theta: Math.PI / 2 }] })
+    const pulse = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }, { gate: 'RZ', targets: [0], theta: TAU / 4 }] })
     const controlProved = pulse.amplitudes.length === 2 && pulse.amplitudes.every((a) => a.probability >= 0)
     const thermalNoise = roundTo(repetitionLogicalError(3, 1 / (4 * 5)), 6)
     const cryostatProved = thermalNoise >= 0 && thermalNoise < 1
@@ -603,8 +603,8 @@ export function blochGate(qubit: BlochQubit, gate: 'I' | 'X' | 'Y' | 'Z' | 'H' |
     Y: [-x, y, -z],
     Z: [-x, -y, z],
     H: [z, -y, x],
-    S: zrot(Math.PI / 2),
-    T: zrot(Math.PI / 4),
+    S: zrot(TAU / 4),
+    T: zrot(TAU / 8),
   }
   const v = map[gate]
   return blochQubit(v[0], v[1], v[2])
@@ -935,7 +935,7 @@ export function quantumComputerLabComputes(matrix: MindMatrix = buildMatrix(), a
 export function dimensionCostCeilingAtScale(matrix: MindMatrix = buildMatrix(), maxN = 16) {
   return memoByRoot(`dimensionCostCeilingAtScale:${maxN}`, matrix, () => {
     const cost = quantumDimensionCost(matrix, maxN)
-    const tsirelson = chsh(0, Math.PI / 2, Math.PI / 4, (3 * Math.PI) / 4) // 2√2 — the quantum (Tsirelson) ceiling
+    const tsirelson = chsh(0, TAU / 4, TAU / 8, (3 * TAU) / 8) // 2√2 — the quantum (Tsirelson) ceiling
     const classicalBound = 2 // local-hidden-variable CHSH ceiling
     const bytesPerAmplitude = 16 // one complex128 amplitude (two float64)
     const tiers = [
@@ -1938,7 +1938,7 @@ function qcScore(b: string, m: QChessMove, white: boolean): number {
 }
 function qcAmplify(size: number, marked: readonly number[]): number[] {
   let re = Array.from({ length: size }, () => 1 / Math.sqrt(size)) // uniform superposition over the moves
-  const iterations = Math.max(1, Math.round((Math.PI / 4) * Math.sqrt(size / Math.max(1, marked.length))))
+  const iterations = Math.max(1, Math.round((TAU / 8) * Math.sqrt(size / Math.max(1, marked.length))))
   const mk = new Set(marked)
   for (let it = 0; it < iterations; it++) {
     re = re.map((v, i) => (mk.has(i) ? -v : v)) // oracle: phase-flip the best moves
@@ -2028,7 +2028,7 @@ export function measureArgumentRigor(text: string) {
 }
 function argAmplify(size: number, marked: readonly number[]): number[] {
   let re = Array.from({ length: size }, () => 1 / Math.sqrt(size))
-  const iterations = Math.max(1, Math.round((Math.PI / 4) * Math.sqrt(size / Math.max(1, marked.length))))
+  const iterations = Math.max(1, Math.round((TAU / 8) * Math.sqrt(size / Math.max(1, marked.length))))
   const mk = new Set(marked)
   for (let it = 0; it < iterations; it++) { re = re.map((v, i) => (mk.has(i) ? -v : v)); const m = re.reduce((a, b) => a + b, 0) / size; re = re.map((v) => 2 * m - v) }
   return re.map((v) => v * v)

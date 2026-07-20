@@ -1811,12 +1811,11 @@ export function sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix: MindMa
   const STATION_COUNT = 10 // the ten pi-train stations
 
   // Coprimality — the mathematical heart of harmonisation
-  const gcdFn = (a: number, b: number): number => { let x = a; let y = b; while (y) { const t = y; y = x % y; x = t } return x }
-  const ichingAliasesDoubling = gcdFn(ICHING_TRIGRAMS, DOUBLING_PERIOD) // 2 — shares a factor
-  const ichingAliasesStations = gcdFn(ICHING_TRIGRAMS, STATION_COUNT) // 2 — shares a factor
-  const rosettaCoprime6 = gcdFn(ROSETTA_RAYS, DOUBLING_PERIOD) // 1 — coprime
-  const rosettaCoprime9 = gcdFn(ROSETTA_RAYS, DIGITAL_ROOT_MODULUS) // 1 — coprime
-  const rosettaCoprime10 = gcdFn(ROSETTA_RAYS, STATION_COUNT) // 1 — coprime
+  const ichingAliasesDoubling = gcd(ICHING_TRIGRAMS, DOUBLING_PERIOD) // 2 — shares a factor
+  const ichingAliasesStations = gcd(ICHING_TRIGRAMS, STATION_COUNT) // 2 — shares a factor
+  const rosettaCoprime6 = gcd(ROSETTA_RAYS, DOUBLING_PERIOD) // 1 — coprime
+  const rosettaCoprime9 = gcd(ROSETTA_RAYS, DIGITAL_ROOT_MODULUS) // 1 — coprime
+  const rosettaCoprime10 = gcd(ROSETTA_RAYS, STATION_COUNT) // 1 — coprime
 
   // The Glagolitic bridge: 28 letters = 4×7 (a perfect number)
   const GLAGOLITIC_LETTER_COUNT = 28
@@ -1834,7 +1833,7 @@ export function sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix: MindMa
   const allRaysDistinct = rays.every((r) => new Set(r.digitalRoots).size === lettersPerRay)
 
   // Cross-distribution: reachable (category, station) pairs without aliasing
-  const ichingCrossPairs = (ICHING_TRIGRAMS * STATION_COUNT) / gcdFn(ICHING_TRIGRAMS, STATION_COUNT) // 40
+  const ichingCrossPairs = (ICHING_TRIGRAMS * STATION_COUNT) / gcd(ICHING_TRIGRAMS, STATION_COUNT) // 40
   const rosettaCrossPairs = ROSETTA_RAYS * STATION_COUNT // 70 (gcd=1 → all reachable)
 
   // Route the export catalog through both systems and measure uniformity
@@ -1949,11 +1948,10 @@ export function sevenStarRosettaNaturalMotion(at: number) {
     return { ray, baseAngle, currentAngle, angularVelocity, vortexRate, radius, letters }
   })
 
-  // The proof at call time: coprimality still holds (pure math, recomputed)
-  const gcdFn = (a: number, b: number): number => { let x = a; let y = b; while (y) { const t = y; y = x % y; x = t } return x }
-  const coprime7_6 = gcdFn(RAYS, DOUBLING_PERIOD) === 1
-  const coprime7_9 = gcdFn(RAYS, DR_MODULUS) === 1
-  const coprime7_10 = gcdFn(RAYS, STATION_COUNT) === 1
+  // The proof at call time: coprimality still holds (pure math, recomputed via sealed gcd)
+  const coprime7_6 = gcd(RAYS, DOUBLING_PERIOD) === 1
+  const coprime7_9 = gcd(RAYS, DR_MODULUS) === 1
+  const coprime7_10 = gcd(RAYS, STATION_COUNT) === 1
 
   return {
     at,
