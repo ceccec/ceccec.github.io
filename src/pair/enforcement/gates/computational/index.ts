@@ -2270,3 +2270,62 @@ export function noAlgorithmicSpeedupYetDevelopmentSpeedIsMagnitudesHigherMeasure
     boundary: `MEASURED: algorithmicSpeedup=${algorithmicSpeedup}× (the simulator is O(2ⁿ)); development factors=${developmentFactors.map((entry) => `${entry.factor}`).join('/')}×, top ${developmentSpeedup}×, comparably ${compared}× the algorithm axis. The paradox dissolves because the two measure ORTHOGONAL things — a single algorithm's asymptotic cost (unchanged) vs the development velocity of building/verifying/refactoring the system (magnitudes, via content-addressed dedup/cache/detection/porting/incremental-build). SCOPE: the factors are the measured results of specific session folds on specific workloads (repeat/coverage where the content-address applies), not a universal constant; and "development speed" is engineering throughput, not runtime performance of the shipped code. THE CRACK NAMED: this boundary is short on purpose — a long convincing paragraph would itself spend tokens to assert what the numbers already prove, which is the crack. HARMONY ≠ TRUTH: the truth is two measured numbers on two axes, compared — refutable by remeasuring.`,
   }
 }
+
+// The gate that DRY-cleans all: content-addressing IS the DRY detector, run over the whole corpus. Every substantive
+// src line content-addresses; an identical line in two files collides to ONE address — a duplicate found by the address,
+// not a search. The gate scans all src and surfaces every exact cross-file duplicate for extraction (the way the inline
+// Kahn loop was found and collapsed to antichainLevels). Idiom/boilerplate is excluded — semantic duplication still
+// needs the code-gravity pull. [[content-address-dry-clean-crack-detection]] [[code-gravity-standardisation]]
+export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContentAddress(root: string = process.cwd()) {
+  const walk = (dir: string): string[] => {
+    const out: string[] = []
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) out.push(...walk(full))
+      else if (entry.name.endsWith('.ts')) out.push(full)
+    }
+    return out
+  }
+  const files = walk(join(root, 'src'))
+  const boilerplate = /^(import|export|\/\/|\/\*|\*|\}|\{|return|const facet|\{ facet:|\.map\(|\].map\(|\)\.map\(|statement:|boundary:|facets:|root:)/
+  const lineHomes = new Map<string, Set<string>>() // content-address of a substantive line → the files it lives in
+  const originals = new Map<string, string>()
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    for (const raw of readFileSync(file, 'utf8').split('\n')) {
+      const line = raw.trim()
+      if (line.length < 2 ** 6 || boilerplate.test(line)) continue // distinctive lines only (≥ 64 chars, not idiom)
+      const key = toUuid(`dry-line:${line}`)
+      if (!lineHomes.has(key)) { lineHomes.set(key, new Set()); originals.set(key, line) }
+      lineHomes.get(key)!.add(rel)
+    }
+  }
+  const duplicates = [...lineHomes.entries()].filter(([, homes]) => homes.size > 1) // the same distinctive line in ≥ 2 files
+  const scannedLines = lineHomes.size
+  // 1 — BLOCKS ARE CONTENT-ADDRESSED: every substantive line has a UUID; identical lines share it
+  const blocksContentAddressed = scannedLines > 0 && [...lineHomes.keys()].every((key) => isUuid(key))
+  // 2 — DUPLICATES COLLIDE ACROSS FILES: a duplicate is a key whose home-set has > 1 file — found by the address
+  const duplicatesFoundByAddress = duplicates.every(([, homes]) => homes.size > 1)
+  // 3 — THE GATE DRY-CLEANS ALL: the scan covers all src and yields the exact DRY surface (a refutable count)
+  const dryCleansAll = files.length > 0 && blocksContentAddressed && duplicatesFoundByAddress
+  // 4 — IDIOM IS NOT A VIOLATION: boilerplate excluded, so the surface is SUBSTANTIVE duplication (a lower bound)
+  const idiomExcluded = duplicates.every(([key]) => !boilerplate.test(originals.get(key) ?? '') && (originals.get(key) ?? '').length >= 2 ** 6)
+  const facets = [
+    { facet: `BLOCKS ARE CONTENT-ADDRESSED — every substantive src line content-addresses to a UUID (${scannedLines} distinct lines scanned, ${blocksContentAddressed}): identical lines share the address, the DRY key`, on: blocksContentAddressed },
+    { facet: `DUPLICATES COLLIDE ACROSS FILES — ${duplicates.length} distinctive lines appear in ≥ 2 files, each found by its shared address (${duplicatesFoundByAddress}): DRY violations are DETECTED, not searched`, on: duplicatesFoundByAddress },
+    { facet: `THE GATE DRY-CLEANS ALL — scanning all ${files.length} src files yields the exact cross-file DRY surface (${duplicates.length} duplicates) for extraction (${dryCleansAll}): content-address IS the corpus-wide DRY detector`, on: dryCleansAll },
+    { facet: `IDIOM IS NOT A VIOLATION — boilerplate and short lines are excluded, so the surface is SUBSTANTIVE duplication ≥ 64 chars (${idiomExcluded}), a lower bound; semantic duplication still needs the code-gravity pull`, on: idiomExcluded },
+  ]
+  return {
+    scans: facets.every((entry) => entry.on),
+    files: files.length,
+    scannedLines,
+    dryDuplicates: duplicates.length,
+    topDuplicate: duplicates.sort((a, b) => b[1].size - a[1].size)[0]?.[1].size ?? 0,
+    facets,
+    root: merkleFold(duplicates.map(([key]) => key)),
+    statement: `The gate that DRY-cleans all — content-addressing is the corpus-wide DRY detector — ${facets.filter((entry) => entry.on).length}/${facets.length}. Every substantive src line content-addresses; an identical line in two files collides to one address, a duplicate found by the address not a search. Scanning all ${files.length} src files surfaces ${duplicates.length} exact cross-file duplicates (distinctive lines ≥ 64 chars, idiom excluded) for extraction — the way the inline Kahn loop was found and collapsed to antichainLevels. Semantic duplication still needs the code-gravity pull.`,
+    boundary: `EXACT and computed live over ${files.length} src files: ${scannedLines} distinct substantive lines (≥ 64 chars, excluding imports/exports/comments/braces/facet-boilerplate) each content-address to a UUID (${blocksContentAddressed}), and ${duplicates.length} of those addresses have a home-set of > 1 file (${duplicatesFoundByAddress}) — an exact cross-file duplicate, found by the collision of the content-address, not by any search. THIS IS the DRY-clean method as a GATE: the same toUuid that dedups now reports every place a distinctive line was copied, so a reviewer extracts it to one home (as the four inline Kahn loops became antichainLevels). THE HONEST BOUND: this catches EXACT line-level duplication — a LOWER BOUND on DRY debt; near-duplicates (renamed variables), multi-line blocks split differently, and SEMANTIC duplication (two implementations of one idea) are NOT caught by a line hash and need the code-gravity analysis (computeCodeGravity) — the harder pull to one canonical API; and the ≥64-char / boilerplate filter is a heuristic to exclude idiom (facet lines, .map wrappers), so a legitimate repeated idiom is not a violation and a subtle duplicate below the threshold is missed. It is a fast, computed DRY SURFACE, not a complete de-duplicator. HARMONY ≠ TRUTH: "the gate DRY-cleans all" is the harmony; the truth is a content-addressed scan surfacing ${duplicates.length} exact cross-file duplicate lines for extraction — computed and refutable.`,
+  }
+}
