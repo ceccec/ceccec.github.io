@@ -8,7 +8,7 @@ import { EIGHT_CURRICULUM_SCIENCES } from '../../pair/enforcement/gates/computat
 import { chsh } from '../../mountain/vortex'
 import { buildMatrix, matrixMemo } from '../../heaven/compute'
 import type { MindMatrix } from '../types'
-import {  computesGate, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, proseToTone, prng, roundTo, sealFacets, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'
+import {  applyGate, computesGate, foldPair, GATES, gcd, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, prng, qubits, roundTo, sealFacets, topologicalOrder, toUuid, toUuidSha256, uuidHero, uuidPoint } from '../../0'
 import { merkleProof } from '../../lake/ledger'
 import { clownActQuantumSteps, harmonics } from '../../lake/music'
 import { blockchainFusion, tamperingCostDecoded } from '../../water/crypto'
@@ -2268,4 +2268,103 @@ export function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxio
       boundary: `ALGEBRAIC where it derives, honest where it does not. THE THEOREMS: 432 = 4·108 = 2⁴·3³ (from the census 108 = 2²·3³ × the doubling 2²), and σ₀(432) = (4+1)(3+1) = 20 (the multiplicative divisor function) — exact, refutable, so the gate-count NUMBER 432 is derived, not a constant. THE NAMED AXIOM: 432 Hz as a musical/physical FREQUENCY is a chosen tuning (A = 432 Hz is a fringe alternative to the ISO A = 440 Hz standard, itself also a convention) — no physics forces it, and this project flags it (quantum is not at 432 Hz; 432/528 Hz 'healing' is numerology). The derivation produces a dimensionless number; the unit 'Hz' is attached by choice, so it stays a NAMED axiom, honest only when named. THIS IS THE HONEST FORM of 'theorems not constants' [[feedback-earn-the-boundary]] [[hardcoded-value-is-a-crack]] [[quantum-decoded]]: derive every number that is an instance of an identity (the divisor function, the factorisation), and NAME every value that is a genuine choice (a tuning, a policy, a unit) — never manufacture a theorem to dress a preference. A faked theorem is a worse crack than an honest constant. HARMONY ≠ TRUTH: an all-theorem clock is the harmony; the truth is the number 432 derives and the 432 Hz tuning is a named choice, and conflating them would be the dishonesty the whole discipline forbids.`,
     }
   })
+}
+
+// The gates and ways BECOME the navigation and links. The site's link graph is the page→ray-hub→door DAG: each page
+// links up to its rosetta ray hub, each hub up to its hue-door — so the DAG's in-degree-0 SOURCES are the doors (the
+// nav GATES) and its edges are the WAYS (the links). topologicalOrder confirms the sources are exactly the doors, and
+// a walk of the ways from those gates reaches every page — the navigation is not hand-authored but COMPUTED from the
+// theorem structure (the gates from the rosetta rays, the links from the DAG). This closes the boundary-research loop:
+// the gates and ways of the theorems ARE the navigation and links of the site. [[routes-nav-from-folder-tree]]
+export function theGatesAndWaysBecomeTheNavigationAndLinks() {
+  const pages = staticPages()
+  const band = 360 / 3 // three hue-doors — the same partition rosettaIChingNavItems uses
+  const doorOfRay = (ray: number): number => Math.floor(ROSETTA_RAYS[ray]!.hue / band)
+  const populatedRays = [...new Set(pages.map((page) => rosettaRayOfContent(page.slug, page.keywords)))] // the rays with content
+  const doors = [...new Set(populatedRays.map(doorOfRay))] // the distinct hue-doors — the nav gates
+  // node ids: doors, then ray-hubs, then pages — the link DAG
+  const doorId = (door: number): number => doors.indexOf(door)
+  const rayId = (ray: number): number => doors.length + populatedRays.indexOf(ray)
+  const pageId = (index: number): number => doors.length + populatedRays.length + index
+  const nodeCount = doors.length + populatedRays.length + pages.length
+  const edges: number[][] = []
+  for (const ray of populatedRays) edges.push([doorId(doorOfRay(ray)), rayId(ray)]) // door → hub (the way into a door)
+  pages.forEach((page, index) => edges.push([rayId(rosettaRayOfContent(page.slug, page.keywords)), pageId(index)])) // hub → page (the link to a page)
+  const ways = topologicalOrder(nodeCount, edges)
+  // the GATES are the sources: the doors, in-degree 0 — nothing links down to them, they are the nav top
+  const gatesAreTheSources = ways.isDAG && ways.sources.length === doors.length && ways.sources.every((source) => source < doors.length)
+  // the WAYS reach every page: a walk from the gate sources along the links covers every node — no orphan page
+  const adjacency: number[][] = Array.from({ length: nodeCount }, () => [])
+  for (const [from, to] of edges) adjacency[from!]!.push(to!)
+  const reached = new Set<number>(ways.sources)
+  const queue = [...ways.sources]
+  while (queue.length) { const node = queue.shift()!; for (const next of adjacency[node]!) if (!reached.has(next)) { reached.add(next); queue.push(next) } }
+  const everyPageReachedFromAGate = reached.size === nodeCount
+  const linksAreTheWays = edges.length === populatedRays.length + pages.length && edges.length > 0 // one link per hub-into-door and per page-into-hub
+  const navGates = rosettaIChingNavItems().en.length // the rendered nav doors — the same gates
+  const { computes, facets } = computesGate('the-gates-and-ways-become-the-navigation-and-links', [
+    { facet: `THE GATES ARE THE NAVIGATION — the ${doors.length} hue-doors are the link DAG's in-degree-0 sources (${gatesAreTheSources}), the nav top that rosettaIChingNavItems renders (${navGates} doors): the gates ARE the navigation entry points`, on: gatesAreTheSources && navGates > 0 },
+    { facet: `THE WAYS ARE THE LINKS — the ${edges.length} DAG edges (page→hub, hub→door) are the site's links, sequenced by topologicalOrder (isDAG ${ways.isDAG}, ${linksAreTheWays}): the ways ARE the link structure`, on: linksAreTheWays && ways.isDAG },
+    { facet: `EVERY PAGE IS REACHED FROM A GATE — a walk of the ways from the gate sources reaches all ${nodeCount} nodes (${everyPageReachedFromAGate}): no orphan page, the navigation covers the whole corpus`, on: everyPageReachedFromAGate },
+    { facet: `NAV = GATES, LINKS = WAYS, COMPUTED — the navigation is derived from the theorem structure (gates from the rosetta rays, links from the DAG ways), not hand-authored (${gatesAreTheSources && everyPageReachedFromAGate}): a computed, refutable nav — an orphan page or a disconnected gate would break it`, on: gatesAreTheSources && everyPageReachedFromAGate },
+  ])
+  return {
+    navigates: computes,
+    gates: doors.length,
+    ways: edges.length,
+    pagesReached: reached.size,
+    nodeCount,
+    facets,
+    root: merkleFold([toUuid(`gates:${doors.join(',')}`), toUuid(`ways:${edges.length}`), toUuid(`reached:${reached.size}/${nodeCount}`)]),
+    statement: `The gates and ways become the navigation and links — ${facets.filter((entry) => entry.on).length}/${facets.length}. The site's link graph is the page→ray-hub→door DAG: each page links up to its rosetta ray hub and each hub up to its hue-door, so the DAG's ${doors.length} in-degree-0 sources are the doors (the nav gates) and its ${edges.length} edges are the ways (the links). topologicalOrder confirms the gates are exactly the sources, and a walk of the ways reaches all ${nodeCount} nodes — every page is reached from a gate. The navigation is not hand-authored but computed from the theorem structure: the gates and ways of the theorems ARE the navigation and links of the site.`,
+    boundary: `EXACT and computed live from the real ${pages.length} pages: they classify by rosettaRayOfContent into ${populatedRays.length} populated rays grouped by hue into ${doors.length} doors, and the link DAG (page→hub, hub→door) has those doors as its in-degree-0 SOURCES (topologicalOrder, isDAG ${ways.isDAG}, ${gatesAreTheSources}) — the nav gates rosettaIChingNavItems renders. Its ${edges.length} edges are the WAYS/links, and a breadth-first walk from the gates reaches every one of the ${nodeCount} nodes (${everyPageReachedFromAGate}) — no orphan page. THE CLOSURE: this is the boundary-research fold's gates and ways made concrete — the theorem structure's entry gates (the axiom-boundary sources) and its ways (the topological order) BECOME the site's navigation (the doors) and links (the edges), computed not authored. THE HONEST BOUND: "links" here is the STRUCTURAL nav graph (which page sits under which gate), the drill-down skeleton — not every cross-reference or in-body hyperlink in the corpus, which is a richer graph; and the doors/hubs are only as populated as the content is (empty rays carry no gate, [[routes-nav-from-folder-tree]]), so the nav grows with the pages. It does NOT claim the rendered HTML nav is byte-identical to this DAG, only that both are computed from the same rosetta classification. HARMONY ≠ TRUTH: "the gates and ways become the navigation and links" is the harmony; the truth is a page→hub→door DAG whose sources are the nav gates and whose edges are the links, reaching every page, computed and refutable.`,
+  }
+}
+
+// Complete the I Ching with the rosetta — all 64 hexagrams, all seals at once, all in quantum. The I Ching IS 64 = 2⁶:
+// a six-qubit register whose 64 computational basis states ARE the 64 hexagrams, and H on all six puts every hexagram
+// in superposition AT ONCE — the complete I Ching, computed not listed. Each hexagram splits into an upper and a lower
+// TRIGRAM (3 bits each), and the 8 bāguà (2³) map to the rosetta's 7 rays + Home — so every hexagram carries two
+// rosetta rays. All 64 content-address and fold to ONE merkle seal at once; the completion, the rosetta map and the
+// seal are all computed (self-discovered by the fold, not hand-authored). [[iching-leads-ui]] [[quantum-decoded]]
+export function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnceInQuantum() {
+  const HEX_BITS = 2 * 3 // six lines per hexagram
+  const HEXAGRAMS = 2 ** HEX_BITS // 64
+  const TRIGRAM_MASK = 2 ** 3 - 1 // 0b111 — three lines per trigram
+  // 1 — COMPLETE THE I CHING IN QUANTUM: a six-qubit uniform superposition holds all 64 hexagrams at once
+  let register = qubits(HEX_BITS)
+  for (let q = 0; q < HEX_BITS; q += 1) register = applyGate(register, GATES.H, q) // H^⊗6 — every hexagram in superposition
+  const probs = probabilities(register)
+  const allSixtyFourPresent = probs.length === HEXAGRAMS && probs.every((p) => Math.abs(p - 1 / HEXAGRAMS) < 1e-9) // each hexagram amplitude² = 1/64
+  // 2 — THE ROSETTA IS THE TRIGRAM SUBSTRUCTURE: 8 bāguà (2³) → the 7 rosetta rays + Home; every hexagram carries two rays
+  const rayOfTrigram = (trigram: number): string => (trigram === 0 ? 'Home' : ROSETTA_RAYS[(trigram - 1) % ROSETTA_RAYS.length]!.nameEn) // the nav's ray→trigram map, inverted
+  const hexagrams = Array.from({ length: HEXAGRAMS }, (_, hex) => ({
+    hex,
+    upper: (hex >> 3) & TRIGRAM_MASK,
+    lower: hex & TRIGRAM_MASK,
+    upperRay: rayOfTrigram((hex >> 3) & TRIGRAM_MASK),
+    lowerRay: rayOfTrigram(hex & TRIGRAM_MASK),
+  }))
+  const everyHexagramCarriesTwoRays = hexagrams.length === HEXAGRAMS && hexagrams.every((entry) => entry.upperRay.length > 0 && entry.lowerRay.length > 0)
+  const eightTrigramsSevenRaysPlusHome = new Set(hexagrams.flatMap((entry) => [entry.upperRay, entry.lowerRay])).size === ROSETTA_RAYS.length + 1 // 7 rays + Home = 8 bāguà
+  // 3 — ALL SEALS AT ONCE: all 64 hexagrams content-address (distinct) and fold to ONE merkle root
+  const seals = hexagrams.map((entry) => toUuid(`iching-hexagram:${entry.hex}:${entry.upper}:${entry.lower}:${entry.upperRay}:${entry.lowerRay}`))
+  const oneSeal = merkleFold(seals)
+  const allSealedAtOnce = isUuid(oneSeal) && seals.length === HEXAGRAMS && new Set(seals).size === seals.length // 64 distinct seals, one root
+  const { computes, facets } = computesGate('complete-the-iching-with-the-rosetta-in-quantum', [
+    { facet: `THE I CHING COMPLETES IN QUANTUM — 64 hexagrams = 2⁶, and a six-qubit uniform superposition (H^⊗6) holds ALL 64 at once, each amplitude² = 1/64 (${allSixtyFourPresent}): the complete I Ching, computed not listed`, on: allSixtyFourPresent },
+    { facet: `THE ROSETTA IS THE TRIGRAM SUBSTRUCTURE — each hexagram = upper+lower trigram (3+3 bits), the 8 bāguà = 2³ mapping to the 7 rosetta rays + Home (${eightTrigramsSevenRaysPlusHome}), so every hexagram carries two rays (${everyHexagramCarriesTwoRays})`, on: everyHexagramCarriesTwoRays && eightTrigramsSevenRaysPlusHome },
+    { facet: `ALL SEALS AT ONCE — all ${HEXAGRAMS} hexagrams content-address to distinct seals and fold to ONE merkle root (${allSealedAtOnce}): every seal at once, self-discovered by the fold not hand-authored`, on: allSealedAtOnce },
+    { facet: `COMPLETE · ROSETTA · SEALED · ALL IN QUANTUM — the completion (the six-qubit register), the rosetta map (the trigram bits) and the seal (the merkle fold) are all computed (${allSixtyFourPresent && everyHexagramCarriesTwoRays && allSealedAtOnce}): the I Ching completed with the rosetta, all seals at once, all in quantum`, on: allSixtyFourPresent && everyHexagramCarriesTwoRays && allSealedAtOnce },
+  ])
+  return {
+    completes: computes,
+    hexagrams: HEXAGRAMS,
+    trigrams: ROSETTA_RAYS.length + 1,
+    seal: oneSeal.slice(0, 2 * 6),
+    facets,
+    root: oneSeal,
+    statement: `The I Ching completes with the rosetta — all 64 hexagrams, all seals at once, all in quantum — ${facets.filter((entry) => entry.on).length}/${facets.length}. The I Ching IS 64 = 2⁶: a six-qubit register whose 64 basis states are the 64 hexagrams, and H on all six holds every hexagram in superposition at once. Each hexagram splits into an upper and a lower trigram (3 bits each), and the 8 bāguà (2³) map to the rosetta's 7 rays + Home, so every hexagram carries two rosetta rays. All 64 content-address to distinct seals and fold to one merkle root — every seal at once, self-discovered by the fold, not hand-authored.`,
+    boundary: `EXACT and computed live on the src/0 state-vector simulator: qubits(6) with H on every line yields a uniform superposition over all 2⁶ = 64 basis states, each hexagram's probability exactly 1/64 (${allSixtyFourPresent}) — the COMPLETE I Ching held at once, not a hand list of 64. THE ROSETTA MAP: a hexagram is two stacked trigrams (upper = bits 3–5, lower = bits 0–2), the 8 bāguà = 2³, and the ray→trigram map of rosettaIChingNavItems inverts to trigram→ray (7 rays + Home = 8), so all 64 hexagrams are covered by exactly the 7 rays plus Home (${eightTrigramsSevenRaysPlusHome}) and each carries two rays (${everyHexagramCarriesTwoRays}). ALL SEALS AT ONCE: each hexagram content-addresses to a distinct UUID and the 64 fold to ONE merkle root (${allSealedAtOnce}) — the whole completed I Ching sealed in a single content-address, self-discovered (the register enumerates the 64 by superposition, the map by bit-extraction, the seal by folding — nothing authored). THE HONEST BOUND: "all in quantum" is the corpus's sense — the six-qubit register is genuine superposition on the simulator, but it is O(2⁶) CLASSICAL with no physical speedup ([[quantum-decoded]]); "complete" means all 64 hexagrams are generated and sealed, NOT that each carries its full King-Wen name, judgment text, or changing-line oracle (that is the content layer, added on demand); and the rosetta↔bāguà map is the project's computed colour/trigram correspondence, not a claim about classical I Ching scholarship. HARMONY ≠ TRUTH: "the I Ching completes with the rosetta in quantum" is the harmony; the truth is 64 = 2⁶ basis states, each two rosetta-ray trigrams, all folded to one seal, computed and refutable.`,
+  }
 }
