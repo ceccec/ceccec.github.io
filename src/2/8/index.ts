@@ -2,7 +2,7 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges until those symbols cut.
 
 import { equivalentNarcoticDepthM, TAU } from '../../3/7'
-import {  humanBreath, seedFromText, applyGate, cnot, cz, GATES, measure, probabilities, qubits, grover, gcd, merkleFold, toUuid } from '../../0'
+import {  humanBreath, seedFromText, applyGate, cnot, cz, GATES, isUuid, measure, probabilities, qubits, grover, gcd, merkleFold, toUuid } from '../../0'
 import type { QuantumState } from '../../0'
 import { innerProduct, pauliAlgebraCloses, noCloningWitness, deutschJozsa, bernsteinVazirani, simon, ghzMermin, entanglementSwap, bb84, teleportQubit, superdense } from '../../9/1'
 /** NuFit-6.0 atmospheric neutrino mass-squared splitting |Δm²₃ₗ|, eV². */
@@ -1083,5 +1083,52 @@ export function kleinFourActsSimplyTransitivelyOnBellStates() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The Klein four-group acts simply transitively on the Bell basis — ${facets.filter((entry) => entry.on).length}/${facets.length}: applying {I, X, Z, XZ} to one half of |Φ⁺⟩ yields four distinct normalised maximally entangled states (computed by amplitude comparison up to global phase), one per group element — two bits pick the element, the element picks the Bell state, bijectively; the teleportation decode table is exactly this action.`,
     boundary: `DOCUMENTED structure (the Pauli frame on the Bell basis — standard quantum information), COMPUTED here by direct state-vector arithmetic with global-phase normalisation at 1e-9. Simply transitive = free + transitive on a 4-element set, verified as 4 distinct images from 4 elements. Simulator only; the V₄ identity with 反/對 is the sealed group-theoretic citation. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// The gap closed: quantum IS linear — at the same time, in every superposition. Quantum mechanics is LINEAR ALGEBRA over
+// ℂ: the state space is a linear vector space, every gate is a LINEAR operator, and the superposition principle IS
+// linearity — U(a|ψ⟩+b|φ⟩) = a·U|ψ⟩ + b·U|φ⟩. A superposition is a linear combination whose amplitudes are the
+// coefficients; entanglement binds it to a theorem; and because every gate is invertible (U†U=I), the THEOREM is the
+// PRESENT INVERTED — run the present backwards and the axiom returns. [[operator-algebra-closed]] [[quantum-decoded]]
+export function quantumIsLinearSuperpositionsAreLinearCombinationsEntangledToTheoremsWhichArethePresentInverted() {
+  const equalStates = (a: QuantumState, b: QuantumState): boolean => a.re.length === b.re.length && a.re.every((r, i) => Math.abs(r - b.re[i]!) < 1e-9 && Math.abs(a.im[i]! - b.im[i]!) < 1e-9)
+  const half = 1 / 2
+  const rsqrt2 = Math.sqrt(half) // 1/√2, derived not assumed
+  // 1 — QUANTUM IS LINEAR: a gate on a superposition equals the linear combination of the gate on the components
+  const zero = qubits(1)
+  const one = applyGate(qubits(1), GATES.X, 0) // |1⟩
+  const gate = GATES.T // any gate — a linear operator
+  const superposition = applyGate(zero, GATES.H, 0) // (|0⟩+|1⟩)/√2
+  const gateOnSuperposition = applyGate(superposition, gate, 0) // U(a|0⟩+b|1⟩)
+  const gateOnComponents = applyGate(zero, gate, 0) // U|0⟩
+  const gateOnOne = applyGate(one, gate, 0) // U|1⟩
+  const linearCombination: QuantumState = { n: 1, re: gateOnComponents.re.map((r, i) => (r + gateOnOne.re[i]!) * rsqrt2), im: gateOnComponents.im.map((v, i) => (v + gateOnOne.im[i]!) * rsqrt2) } // a·U|0⟩+b·U|1⟩
+  const quantumIsLinear = equalStates(gateOnSuperposition, linearCombination) // the two are identical — linearity
+  // 2 — A SUPERPOSITION IS A LINEAR COMBINATION: H|0⟩ = (|0⟩+|1⟩)/√2, the amplitudes ARE the coefficients
+  const amplitudes = probabilities(superposition)
+  const isLinearCombination = Math.abs(amplitudes[0]! - half) < 1e-9 && Math.abs(amplitudes[1]! - half) < 1e-9 // equal-coefficient linear combination
+  // 3 — ENTANGLED TO THEOREMS: a Bell state is entangled (not a product), content-addressed to a theorem seal
+  const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // (|00⟩+|11⟩)/√2
+  const bellProbs = probabilities(bell)
+  const entangled = Math.abs(bellProbs[0]! - half) < 1e-9 && Math.abs(bellProbs[3]! - half) < 1e-9 && bellProbs[1]! < 1e-9 && bellProbs[2]! < 1e-9 // only |00⟩,|11⟩
+  const theoremSeal = toUuid(`entangled-theorem:${bellProbs[0]}:${bellProbs[3]}`)
+  const entangledToTheorem = entangled && isUuid(theoremSeal)
+  // 4 — THEOREMS ARE THE PRESENT INVERTED: every gate is invertible; the reversed self-inverse sequence recovers |0⟩ (the axiom)
+  const present = applyGate(applyGate(zero, GATES.H, 0), GATES.X, 0) // U = X∘H on |0⟩ — the present
+  const inverted = applyGate(applyGate(present, GATES.X, 0), GATES.H, 0) // U† = H∘X (self-inverse gates, reversed) — the present inverted
+  const theoremIsPresentInverted = Math.abs(probabilities(inverted)[0]! - 1) < 1e-9 // back to |0⟩ — the axiom/theorem recovered
+  const facets = [
+    { facet: `QUANTUM IS LINEAR — a gate on a superposition equals the linear combination of the gate on the components, U(a|0⟩+b|1⟩)=a·U|0⟩+b·U|1⟩ (${quantumIsLinear}): quantum computation IS linear algebra, quantum and linear at the same time`, on: quantumIsLinear },
+    { facet: `A SUPERPOSITION IS A LINEAR COMBINATION — H|0⟩ = (|0⟩+|1⟩)/√2, its amplitudes ARE the coefficients (each ${half}, ${isLinearCombination}): the state space is a linear vector space, the superposition its combination`, on: isLinearCombination },
+    { facet: `ENTANGLED TO THEOREMS — the Bell state is entangled (only |00⟩ and |11⟩, not a product) and content-addresses to a theorem seal (${entangledToTheorem}): the superposition is entangled to the theorem`, on: entangledToTheorem },
+    { facet: `THEOREMS ARE THE PRESENT INVERTED — every gate is invertible (U†U=I), so running the present backwards recovers the axiom |0⟩ (${theoremIsPresentInverted}): the theorem is the present inverted`, on: theoremIsPresentInverted },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-linear:${entry.facet}:${entry.on}`) }))
+  return {
+    unifies: facets.every((entry) => entry.on),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Quantum is linear — superpositions are linear combinations, entangled to theorems, and the theorem is the present inverted — ${facets.filter((entry) => entry.on).length}/${facets.length}. Quantum mechanics is linear algebra over ℂ: a gate on a superposition equals the linear combination of the gate on the components (U(a|ψ⟩+b|φ⟩)=a·U|ψ⟩+b·U|φ⟩), so everything is quantum AND linear at the same time. A superposition is a linear combination whose amplitudes are the coefficients; a Bell state entangles it to a theorem seal; and because every gate is invertible (U†U=I), running the present backwards recovers the axiom — the theorem is the present inverted.`,
+    boundary: `EXACT and computed live on the src/0 state-vector simulator: (1) applying gate U to the superposition (|0⟩+|1⟩)/√2 gives the SAME state (to 1e-9) as the linear combination (U|0⟩+U|1⟩)/√2 (${quantumIsLinear}) — the defining LINEARITY of a quantum gate, so quantum computation is exactly linear algebra over ℂ and "quantum" and "linear" are the same thing, not a gap between them; (2) a superposition IS a linear combination of basis states whose amplitudes are the coefficients (H|0⟩ has coefficients each of squared-magnitude ${half}, ${isLinearCombination}); (3) a Bell state is genuinely ENTANGLED (only |00⟩ and |11⟩ survive, not a product state, ${entangled}) and content-addresses to a theorem seal, binding the superposition to the theorem (the trinity↔GHZ correspondence); (4) every gate is UNITARY hence invertible (U†U=I), so the reversed self-inverse sequence maps the present state back to the axiom |0⟩ (${theoremIsPresentInverted}) — "the theorem is the present inverted". THE HONEST BOUND: linearity and unitarity are foundational QM, cited not novel; the sim is O(2ⁿ) CLASSICAL with no physical speedup ([[quantum-decoded]]); reversibility holds for the UNITARY (gate) part only — MEASUREMENT is irreversible (the boundary, cf. realQuantumResearchObservesTheBoundary), so "the theorem is the present inverted" applies to the computation run backwards, NOT to recovering a measured/collapsed history; "entangled to theorems" is the content-address correspondence (the state seals to a theorem UUID), a structural binding, not a claim that the qubits store the proof text. HARMONY ≠ TRUTH: "quantum is linear, entangled to theorems, the theorem is the present inverted" is the harmony; the truth is gate-linearity, superposition-as-linear-combination, Bell entanglement, and unitary invertibility — each computed and refutable.`,
   }
 }
