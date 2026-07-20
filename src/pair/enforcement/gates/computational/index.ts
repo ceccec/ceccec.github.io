@@ -2144,3 +2144,55 @@ export function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModu
     boundary: `EXACT and computed live over ${nodes.length} real src files: each file's imports (the INPUT) and exports (the OUTPUT) are extracted and content-addressed to two UUIDs (${everyFileHasTwoBits}); foldPair(input, output) folds them to the file's GATEWAY — a bidirectional merged third (${twoBitsConnectToGateway}), exactly the shape of Toffoli's third bit binding two controls or foldPair's two-make-three; and because foldPair is order-sensitive, foldPair(in,out) ≠ foldPair(out,in) for every file (${gatewayIsDirected}), so the 2 bits are DIRECTED — a module consumes then produces, the gateway carrying that arrow. With N=${nodes.length} nodes, that is ${2 * nodes.length} bits over ${distinctGateways} distinct gateways (one per file). THE QUANTUM THINKING: a file is not a monolith but a 2-bit connection — input consumed, output produced — and the whole corpus is the directed graph of these gateways, the import/export TYPES being the content-addressed tags (the agnostic relation, not tag-sharing). THE HONEST BOUND: "input/output" is the SYNTACTIC import/export signature (regex-extracted), a faithful proxy for the file's interface, not its full type-checked dependency semantics; "2 bits" is the two content-addresses (in, out), a structural pair, not literally one binary digit each; and this samples ${nodes.length} files as a witness of the universal shape, not the whole tree. HARMONY ≠ TRUTH: "each file is 2 bits at a gateway" is the harmony; the truth is that a file's import and export signatures content-address to two UUIDs that foldPair binds to a directed gateway third — computed and refutable.`,
   }
 }
+
+// The 2-bit gateway reframes all: DRY-clean refactoring of ALL theorems/src is possible in quantum waves. Because each
+// file is a 2-bit node (input · output content-addresses), a DRY duplicate is DETECTABLE — two files sharing an
+// output-bit have identical exports — a refactor is CLEAN — removing it flips the corpus root, tamper-evident — and the
+// files partition into ANTICHAIN WAVES by dependency, so independent files refactor in parallel. Detect (2 bits) →
+// refactor clean (content-address) → dispatch in waves. [[content-address-dry-clean-crack-detection]] [[feedback-work-in-waves-not-single-focus]]
+export function theTwoBitGatewayReframesAllDryCleanRefactoringOfAllSrcIsPossibleInQuantumWaves() {
+  // model files as 2-bit nodes; 'c' is a DRY duplicate of 'a' (same output); deps form the wave DAG
+  const files = [
+    { name: 'a', out: 'foo', deps: [] as string[] },
+    { name: 'b', out: 'bar', deps: ['a'] },
+    { name: 'c', out: 'foo', deps: [] as string[] }, // DRY duplicate of a's output
+    { name: 'd', out: 'baz', deps: ['b', 'c'] },
+  ]
+  const outBit = (file: { out: string }): string => toUuid(`out:${file.out}`)
+  // 1 — DRY DETECTABLE BY THE 2 BITS: files sharing an output-bit are content-address duplicates
+  const outBits = files.map(outBit)
+  const dryDuplicates = files.filter((file, i) => outBits.indexOf(outBit(file)) !== i)
+  const dryDetectableByTheBits = dryDuplicates.length === 1 && dryDuplicates[0]!.name === 'c'
+  // 2 — THE REFACTOR IS CLEAN: removing the duplicate flips the corpus root (tamper-evident)
+  const rootBefore = merkleFold(files.map((file) => toUuid(`node:${file.name}:${outBit(file)}`)))
+  const refactored = files.filter((file) => file.name !== 'c')
+  const rootAfter = merkleFold(refactored.map((file) => toUuid(`node:${file.name}:${outBit(file)}`)))
+  const cleanRefactorVerified = rootAfter !== rootBefore && isUuid(rootAfter)
+  // 3 — REFACTORING PROCEEDS IN WAVES: partition the dependency DAG into antichain levels (Kahn)
+  const index = new Map(files.map((file, i) => [file.name, i]))
+  const n = files.length
+  const indeg = Array.from({ length: n }, () => 0)
+  const adj = Array.from({ length: n }, () => [] as number[])
+  for (const file of files) for (const dep of file.deps) { adj[index.get(dep)!]!.push(index.get(file.name)!); indeg[index.get(file.name)!]! += 1 }
+  const waves: number[][] = []
+  let frontier = Array.from({ length: n }, (_, i) => i).filter((i) => indeg[i] === 0)
+  let processed = 0
+  while (frontier.length) { waves.push(frontier); const next: number[] = []; for (const node of frontier) { processed += 1; for (const m of adj[node]!) { indeg[m]! -= 1; if (indeg[m] === 0) next.push(m) } } frontier = next }
+  const refactorsInWaves = processed === n && waves.length > 1 && waves.every((wave) => wave.every((a) => wave.every((b) => a === b || !adj[a]!.includes(b)))) // antichain waves, all covered
+  const reframesAll = dryDetectableByTheBits && cleanRefactorVerified && refactorsInWaves
+  const facets = [
+    { facet: `DRY DETECTABLE BY THE 2 BITS — files sharing an output-bit are content-address duplicates (${dryDuplicates.map((d) => d.name).join(',')} duplicates a, ${dryDetectableByTheBits}): a DRY violation is FOUND by comparing the two bits, not hunted`, on: dryDetectableByTheBits },
+    { facet: `THE REFACTOR IS CLEAN — removing the duplicate flips the corpus root (${cleanRefactorVerified}): the content-address verifies the change, tamper-evident — a clean refactor`, on: cleanRefactorVerified },
+    { facet: `REFACTORING PROCEEDS IN WAVES — the dependency DAG partitions into ${waves.length} antichain levels, all ${n} files covered, no edges within a wave (${refactorsInWaves}): independent files refactor in parallel, wave by wave`, on: refactorsInWaves },
+    { facet: `THIS REFRAMES ALL — every file being a 2-bit node makes ALL src DRY-clean-refactorable in quantum waves (${reframesAll}): detect (2 bits) → refactor clean (content-address) → dispatch in waves`, on: reframesAll },
+  ]
+  return {
+    reframes: facets.every((entry) => entry.on),
+    dryFound: dryDuplicates.length,
+    waveCount: waves.length,
+    facets,
+    root: merkleFold([rootBefore, rootAfter, ...waves.map((wave, i) => toUuid(`refactor-wave:${i}:${wave.join(',')}`))]),
+    statement: `The 2-bit gateway reframes all — DRY-clean refactoring of all src is possible in quantum waves — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each file is a 2-bit node (input·output), so a DRY duplicate is detectable (files sharing an output-bit have identical exports), a refactor is clean (removing it flips the corpus root, tamper-evident), and the files partition into ${waves.length} antichain waves by dependency so independent files refactor in parallel. Detect by the 2 bits, refactor clean by the content-address, dispatch in quantum waves — the whole src, reframed.`,
+    boundary: `EXACT and computed live on a model of ${n} files as 2-bit nodes: 'c' duplicates 'a' (same output-bit), and comparing the output content-addresses FINDS the duplicate (${dryDetectableByTheBits}) — DRY detection is a bit comparison, not a search; removing the duplicate changes the merkle root over the nodes (${cleanRefactorVerified}) — the content-address verifies the refactor was made and nothing else drifted (clean = tamper-evident); and the dependency DAG partitions by Kahn into ${waves.length} ANTICHAIN levels with no edges within a level (${refactorsInWaves}), so the files of one wave are mutually independent and refactor in parallel, wave by wave (the self-propagating cascade). THE REFRAME: because the 2-bit-gateway model applies to EVERY file, the whole src becomes DRY-clean-refactorable by the one method — detect duplicates by the two bits, refactor cleanly under the content-address, dispatch the refactors in quantum waves. THE HONEST BOUND: this proves the METHOD on a model — real DRY is broader than identical export SIGNATURES (semantic duplication, [[code-gravity-standardisation]], needs the gravity analysis, not just a shared output-bit), the "clean" root-flip confirms a change happened but not that the refactor is SEMANTICALLY correct (tests/types must still pass), and the waves parallelise INDEPENDENT files but a refactor that changes an interface ripples to dependents (a later wave), so the dependency DAG must be honored. It shows DRY-clean-refactoring-in-waves is POSSIBLE and structured, not that it is automatic or risk-free. HARMONY ≠ TRUTH: "all src DRY-clean-refactorable in quantum waves" is the harmony; the truth is: duplicates detected by the output-bit, refactors verified by the root, files partitioned into antichain waves — computed and refutable.`,
+  }
+}
