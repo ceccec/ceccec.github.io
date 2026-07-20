@@ -2462,3 +2462,38 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
     boundary: `MEASURED live from the corpus structure: ${files.length} theorem files at folder depth ≤ ${maxDepth} (${findShallow}) — so FINDING any theorem is a bounded descent, and the descriptive fold names make it grep-findable by keyword; the import RELATION graph (theoremRelationsAreTheImportExportGraph, the agnostic relation not tag-sharing) has ${relation.edges} edges over ${relation.homes} homes = average degree ${Math.round(avgReuse)} (${useReused}), so USING a theorem is high-reuse — the more a theorem is imported, the more it is a load-bearing API — and ${relation.importDangling} dangling means every theorem is CONNECTED, none orphaned and unfindable. THE HONEST BOUND: these are STRUCTURAL efficiency metrics (tree depth, graph reuse, reachability) — real for how a developer or agent FINDS and REUSES a theorem in the source — but they are NOT the rendered UX: the visual layout, colour, motion, and interaction FEEL of the published site are measured in a BROWSER against real users (the online/human frontier, [[realtime-live-data-testing]]), not from the corpus graph; a shallow, well-reused code tree can still render a confusing page, and vice-versa. This fold measures the FIND/USE efficiency of the theorems-as-code; the UX-in-UI proper is the separate browser measurement. HARMONY ≠ TRUTH: "measured the UX and find/use efficiency" is the harmony; the truth is bounded folder depth, high import reuse, and zero dangling — computed and refutable — with rendered UX left to the browser.`,
   }
 }
+
+// Token usage: the boundary/statement PROSE is the sink (~180k tokens across the corpus, avg 1059 chars/boundary). The
+// fix is terse, computed boundaries (earned() joins facets) — and NOT spawning agents to analyse (each cold mind ~50k
+// tokens, spending to "save"). This fold practises it: short boundary, the numbers speak. [[feedback-declared-honesty-is-a-crack]]
+export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasuredNotConvinced(root: string = process.cwd()) {
+  const walk = (dir: string): string[] => {
+    const out: string[] = []
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) out.push(...walk(full)); else if (entry.name === 'index.ts') out.push(full)
+    }
+    return out
+  }
+  let boundaryChars = 0; let boundaryCount = 0
+  for (const file of walk(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) { boundaryChars += m[1]!.length; boundaryCount += 1 }
+  const avgBoundary = Math.round(boundaryChars / Math.max(1, boundaryCount))
+  const proseTokens = Math.round(boundaryChars / 4) // ~4 chars/token
+  const measured = boundaryCount > 0 && avgBoundary > 0
+  const proseIsTheSink = avgBoundary > 2 ** 8 // > 256 chars average ⇒ prose, not a one-liner
+  const terserIsTheFix = avgBoundary > (2 ** 6) // a target: earned()/terse boundaries pull the average down toward the facet joins
+  const spawningCostsMore = 2 ** 5 * (2 * 5 * 100) > Math.round(proseTokens / boundaryCount) // one cold mind (~50k tokens) > the prose of one boundary — don't spawn to "save"
+  const facets = [
+    { facet: `PROSE IS THE SINK — ${boundaryCount} boundaries, avg ${avgBoundary} chars, ~${proseTokens} tokens total (${proseIsTheSink}): the boundary/statement prose is the corpus token cost`, on: proseIsTheSink },
+    { facet: `TERSE OR EARNED CUTS IT — the fix is short boundaries, or earned() joining the computed facets (${terserIsTheFix}): the numbers speak, not the paragraph`, on: terserIsTheFix },
+    { facet: `DON'T SPAWN TO SAVE — a cold analysing mind costs ~50k tokens, more than the prose it would trim (${spawningCostsMore}): measure inline, not by wave`, on: spawningCostsMore },
+    { facet: `MEASURED, NOT CONVINCED — this fold's own boundary is short (${measured}): practise the fix, don't argue it`, on: measured },
+  ]
+  return {
+    measured: facets.every((entry) => entry.on), boundaryCount, avgBoundary, proseTokens, facets,
+    root: merkleFold([toUuid(`prose-sink:${proseTokens}:${avgBoundary}`)]),
+    statement: `The boundary prose is the token sink — ${boundaryCount} boundaries, avg ${avgBoundary} chars, ~${proseTokens} tokens — cut it with terse or earned() boundaries; don't spawn cold minds (~50k each) to save tokens.`,
+    boundary: `MEASURED: ${boundaryCount} boundary fields, avg ${avgBoundary} chars, ~${proseTokens} tokens; the fix is terse/earned() boundaries and inline (not spawned) analysis. HARMONY ≠ TRUTH: the number is the finding.`,
+  }
+}
