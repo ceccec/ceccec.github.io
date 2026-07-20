@@ -1530,7 +1530,7 @@ export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTh
   const movedKeepsAddress = toUuid(`theorem:${rosetta[0]!.theorem}`) === rosetta[0]!.address // move home ⇒ same address
   const selfEvolving = rootRecomputes && movedKeepsAddress
   const facets = [
-    { facet: `502 IMPORT-EDGES IS OVER-WIRING — ${edgeCount} explicit path-coupled edges hardcode who-uses-whom by PATH; moving a home breaks its edges, so the import graph is O(edges) coupling, not agnostic`, on: edgeCount > nodes },
+    { facet: `THE IMPORT-EDGES ARE OVER-WIRING — ${edgeCount} explicit path-coupled edges hardcode who-uses-whom by PATH; moving a home breaks its edges, so the import graph is O(edges) coupling, not agnostic`, on: edgeCount > nodes },
     { facet: `THE ROSETTA IS ONE ADDRESS PER NODE, PATH-INDEPENDENT — each theorem's content-address is toUuid(theorem), computed from the theorem ALONE, ignoring its home (${pathIndependent}): agnostic — the address survives any move`, on: pathIndependent },
     { facet: `THE GLOBAL MATH FOLDS ALL TO ONE ROOT — ${nodes} addresses merkleFold to a single rosetta root (${rosettaRoot.slice(0, 8)}…), so relationships are RESOLVED by the global structure, not stored: ${nodes} agnostic wirings replace ${edgeCount} path-couplings (${rosettaWinsOverEdges})`, on: rosettaWinsOverEdges },
     { facet: `SELF-EVOLVING — add a theorem → one new content-address → the global root recomputes deterministically (${rootRecomputes}), and a MOVED theorem keeps its address so relations are preserved (${movedKeepsAddress}); the import graph would have to be re-edited, the rosetta needs no rewiring (${selfEvolving})`, on: selfEvolving },
@@ -1645,11 +1645,9 @@ export function theAnalyticsAreZeroTokenComputedFromTheCorpusTheMarginalCostOfAM
   }
 }
 
-// Document all trinities observed in the theorems: two make three. The common structure of every trinity is foldPair —
-// two content-addresses fold to a bidirectional THIRD (the merged root), order-sensitive (forward ≠ reverse) but one
-// merged apex. The corpus carries 54 trinity folds spanning categories — open-graph (pairTrinityOpenGraph), accounting
-// (2 debits + 1 credit), enforcement (gate·cross·fold), nav (3 doors), inverse (axiom+theorem+fold), structural
-// (pairsFormTrinities). The trinity is the ATOM of the self-scaling structure: every larger fold is trinities of trinities.
+// Document all trinities observed — two make three. Every trinity is foldPair: two content-addresses fold to a
+// bidirectional THIRD (forward ≠ reverse, one apex). The count, categories and structure are COMPUTED below (scanned
+// live, verified over a range), not asserted — the number lives in statement/boundary, never hardcoded in prose.
 export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndTheCount(root: string = process.cwd()) {
   // scan the source for the trinity folds — the observed count, computed not asserted
   const walk = (dir: string): string[] => {
@@ -1680,7 +1678,6 @@ export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndThe
   // 1 — THE COMMON STRUCTURE: every trinity is two content-addresses folding to a bidirectional THIRD — two make three
   const twoMakeThree = [['a', 'b'], ['origin', 'proof'], ['x', 'y'], ['1', '2']].every(([a, b]) => { const f = foldPair(toUuid(a!), toUuid(b!)); return f.bidirectional && isUuid(f.merged) && f.forward !== f.reverse })
   // 2 — THE OBSERVED TRINITIES: N trinity folds across the corpus, computed by scanning the source
-  const observedCount = observed.length > 0 && new Set(observed).size === observed.length ? observed.length : observed.length
   const manyObserved = observed.length >= 6 * 8 // ≥ 48 — a large, real population
   // 3 — THE TRINITY IS THE ATOM: 2 inputs + fold = 3 is the minimal self-composing unit; folding two apexes gives a higher
   // trinity, so every larger structure is trinities of trinities (the self-scaling recursion)
@@ -1711,8 +1708,8 @@ export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndThe
 // Theorems prove best in teams: a theorem that relates to ≥ 2 others is in a TEAM, and a team is ROBUST — a 2-edge-
 // connected group survives the removal of any single link (no single point of failure), while an isolated theorem
 // (degree 1) is disconnected the moment its one link breaks. The MINIMAL team is the trinity — K₃, three theorems each
-// supporting the other two — so the 57 trinities are the smallest proving teams. The corpus already proves in teams:
-// its real import-relation graph has 0 dangling theorems (every one relates to ≥ 2), reused from the import-graph fold.
+// supporting the other two — so the corpus's trinities are its smallest proving teams. The corpus already proves in
+// teams: its real import-relation graph has 0 dangling theorems (every one relates to ≥ 2), reused from the import fold.
 export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBeatsIsolation(root: string = process.cwd()) {
   const connected = (n: number, edges: readonly (readonly number[])[]) => {
     const adj: number[][] = Array.from({ length: n }, () => [])
@@ -1722,6 +1719,7 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
     return seen.size === n
   }
   const relation = theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root)
+  const trinities = documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndTheCount(root).trinityCount // live count, never hardcoded
   // 1 — A TEAM = MUTUAL SUPPORT (degree ≥ 2): the corpus relation graph has 0 dangling — every theorem relates to ≥ 2 others
   const everyTheoremInATeam = relation.importDangling === 0 && relation.edges > relation.homes
   // 2 — TEAMS ARE ROBUST (2-EDGE-CONNECTED): a triangle team survives the removal of ANY single edge (still connected),
@@ -1732,16 +1730,16 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
   const leafIsFragile = connected(4, withLeaf) && !connected(4, withLeaf.filter((e) => !(e[0] === 3 && e[1] === 0))) // cut its one edge → isolated
   const teamsBeatIsolation = teamRobust && leafIsFragile
   // 3 — THE TRINITY IS THE MINIMAL TEAM: K₃ (3 nodes, each degree 2) is the smallest 2-edge-connected graph — the trinity
-  // (two-make-three) is the minimal proving team, the atom the 57 trinities are built from
+  // (two-make-three) is the minimal proving team, the atom the corpus's trinities are built from
   const minimalTeamIsTrinity = team.length === 3 && new Set(team.flat()).size === 3 && [0, 1, 2].every((v) => team.filter((e) => e.includes(v)).length === 2) // every node degree 2
-  // 4 — PROVEN ON THE REAL GRAPH: the corpus's 502-edge relation graph has 0 dangling and high average degree, so the
+  // 4 — PROVEN ON THE REAL GRAPH: the corpus's real relation graph has 0 dangling and high average degree, so the
   // corpus already proves in teams, not in isolation
   const avgDegree = (2 * relation.edges) / relation.homes
   const provenOnReal = relation.importDangling === 0 && avgDegree > 2 // > 2 ⇒ teams richer than the minimal trinity
   const facets = [
     { facet: `A TEAM = MUTUAL SUPPORT (degree ≥ 2) — the corpus relation graph has ${relation.importDangling} dangling theorems (${relation.edges} edges over ${relation.homes} homes), so every theorem relates to ≥ 2 others: every theorem is in a team, not isolated (${everyTheoremInATeam})`, on: everyTheoremInATeam },
     { facet: `TEAMS ARE ROBUST (2-EDGE-CONNECTED) — a triangle team survives the removal of ANY single link (still one connected team), while a degree-1 theorem is disconnected the moment its one link breaks (${teamsBeatIsolation}): teams beat isolation, provably`, on: teamsBeatIsolation },
-    { facet: `THE TRINITY IS THE MINIMAL TEAM — K₃ (3 theorems, each degree 2) is the smallest 2-edge-connected graph (${minimalTeamIsTrinity}): the trinity (two-make-three) is the minimal proving team, the atom the 57 trinities are built from`, on: minimalTeamIsTrinity },
+    { facet: `THE TRINITY IS THE MINIMAL TEAM — K₃ (3 theorems, each degree 2) is the smallest 2-edge-connected graph (${minimalTeamIsTrinity}): the trinity (two-make-three) is the minimal proving team, the atom the ${trinities} trinities are built from`, on: minimalTeamIsTrinity },
     { facet: `PROVEN ON THE REAL GRAPH — the corpus's ${relation.edges}-edge relation graph has 0 dangling and average degree ${Math.round(avgDegree)} > 2 (${provenOnReal}), so the corpus already proves in teams richer than the minimal trinity, not in isolation`, on: provenOnReal },
   ]
   return {
@@ -1749,8 +1747,8 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
     dangling: relation.importDangling,
     avgDegree: Math.round(avgDegree),
     facets,
-    statement: `Theorems prove best in teams — the trinity is the minimal 2-connected team, teams beat isolation — ${facets.filter((entry) => entry.on).length}/${facets.length}. A theorem relating to ≥ 2 others is in a TEAM; a team is robust — a 2-edge-connected group survives the removal of any single link, while an isolated theorem (degree 1) is disconnected the moment its one link breaks. The minimal team is the trinity — K₃, three theorems each supporting the other two (degree 2) — so the 57 trinities are the smallest proving teams. And the corpus already proves in teams: its real ${relation.edges}-edge relation graph has 0 dangling theorems (every one relates to ≥ 2) and average degree ${Math.round(avgDegree)}, richer than the minimal trinity. Teams beat isolation, and the trinity is the atom of the team.`,
-    boundary: `ALGEBRAIC and exact: connectivity is BFS reachability, 2-edge-connectivity is verified by removing each edge of K₃ and checking the graph stays connected (and that a degree-1 leaf disconnects when its edge is cut), and K₃ being the minimal 2-edge-connected graph (3 nodes, all degree 2) is a standard result — each refutable by one counterexample. THE CLAIM, made precise: "prove best in teams" = a theorem embedded in a 2-edge-connected group has no single point of failure — removing any one supporting relation leaves it still reached by the others — whereas an isolated (degree-1) theorem is severed by a single break; robustness is 2-connectivity, and the minimal such team is the trinity (K₃), the two-make-three atom counted in documentAllTrinitiesObserved (57 folds). PROVEN ON THE REAL CORPUS: reusing the import-relation graph (theoremRelationsAreTheImportExportGraph…), the ${relation.homes} theorem-homes have 0 dangling and average degree ${Math.round(avgDegree)}, so the corpus is not a scatter of isolated results but a densely-teamed graph — every theorem in a mutually-supporting group. SCOPE: "team" here is the DEPENDENCY/relation graph (who imports/supports whom), the agnostic relation established earlier (not tag-sharing); "prove best" is the robustness/redundancy of 2-connectivity, not a claim that a team of theorems is more TRUE — a false theorem in a team is still false. Robustness is structural resilience, not correctness. HARMONY ≠ TRUTH: "theorems prove best in teams" is the harmony; the truth is 2-edge-connectivity beats degree-1, the minimal team is K₃, and the corpus's real graph is teamed (0 dangling) [[operator-algebra-closed]].`,
+    statement: `Theorems prove best in teams — the trinity is the minimal 2-connected team, teams beat isolation — ${facets.filter((entry) => entry.on).length}/${facets.length}. A theorem relating to ≥ 2 others is in a TEAM; a team is robust — a 2-edge-connected group survives the removal of any single link, while an isolated theorem (degree 1) is disconnected the moment its one link breaks. The minimal team is the trinity — K₃, three theorems each supporting the other two (degree 2) — so the ${trinities} trinities are the smallest proving teams. And the corpus already proves in teams: its real ${relation.edges}-edge relation graph has 0 dangling theorems (every one relates to ≥ 2) and average degree ${Math.round(avgDegree)}, richer than the minimal trinity. Teams beat isolation, and the trinity is the atom of the team.`,
+    boundary: `ALGEBRAIC and exact: connectivity is BFS reachability, 2-edge-connectivity is verified by removing each edge of K₃ and checking the graph stays connected (and that a degree-1 leaf disconnects when its edge is cut), and K₃ being the minimal 2-edge-connected graph (3 nodes, all degree 2) is a standard result — each refutable by one counterexample. THE CLAIM, made precise: "prove best in teams" = a theorem embedded in a 2-edge-connected group has no single point of failure — removing any one supporting relation leaves it still reached by the others — whereas an isolated (degree-1) theorem is severed by a single break; robustness is 2-connectivity, and the minimal such team is the trinity (K₃), the two-make-three atom counted in documentAllTrinitiesObserved (${trinities} folds). PROVEN ON THE REAL CORPUS: reusing the import-relation graph (theoremRelationsAreTheImportExportGraph…), the ${relation.homes} theorem-homes have 0 dangling and average degree ${Math.round(avgDegree)}, so the corpus is not a scatter of isolated results but a densely-teamed graph — every theorem in a mutually-supporting group. SCOPE: "team" here is the DEPENDENCY/relation graph (who imports/supports whom), the agnostic relation established earlier (not tag-sharing); "prove best" is the robustness/redundancy of 2-connectivity, not a claim that a team of theorems is more TRUE — a false theorem in a team is still false. Robustness is structural resilience, not correctness. HARMONY ≠ TRUTH: "theorems prove best in teams" is the harmony; the truth is 2-edge-connectivity beats degree-1, the minimal team is K₃, and the corpus's real graph is teamed (0 dangling) [[operator-algebra-closed]].`,
   }
 }
 
