@@ -57,7 +57,7 @@ export {
   fieldLayers, rosettaPerspectiveFold,
   backgroundSceneFromShared, heroSceneFromShared,
   movieTextFromCopy, realtimeSubtitleAt,
-  drawLivingTorusFrame, drawBothEarthsMerkabaFrame, drawDoubleTorusEarthHingeFrame,
+  drawLivingTorusFrame, drawBothEarthsMerkabaFrame,
   HERO_CYCLE_MS,
 } from '../../../src/quantum/index.ts'
 export type {

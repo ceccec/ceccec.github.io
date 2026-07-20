@@ -23,8 +23,8 @@ import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CY
 import { livingTorus } from '../fire/diamonds'
 import { merkleFold, prng, seedFromText, toUuid, VORTEX_SEQUENCE } from '../0'
 import type { MindMatrix } from '../wind/types'
-import { doubleTorusEarthHingeComputesAll, hingeMoviePaintLayers, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath, type EarthHingePaintLayer } from '../water/double/earth'
-import { bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../mountain/geometry'
+import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
+import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'
 import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, TAU } from '../3/7'
 
@@ -1817,233 +1817,7 @@ function drawTorusFieldProjection(ctx: CanvasRenderingContext2D, w: number, h: n
   }
 }
 
-export type { EarthHingePaintLayer } from '../water/double/earth'
-
-export type EarthHingePaintGateway = {
-  readonly earth: 'device' | 'inverted'
-  readonly angleDeg: number
-  readonly hue: number
-  readonly ring: 1 | 2
-}
-
-export type EarthHingePaintVortexStep = {
-  readonly digit: number
-  readonly dash: '/' | '\\'
-  readonly angleDelta: number
-  readonly bearing: number
-  readonly fusion: boolean
-}
-
-function hingePolar(angleDeg: number, radius: number, cx: number, cy: number) {
-  const rad = ((angleDeg - (9 * 5 * 2)) * Math.PI) / (9 * 5 * 4)
-  return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) }
-}
-
-function withHingePaintLayer(
-  ctx: CanvasRenderingContext2D,
-  layer: EarthHingePaintLayer,
-  phase: number,
-  draw: () => void,
-): void {
-  const pulse = (1 - 3 / (5 * 5)) + (3 / (5 * 5)) * Math.sin(phase * (layer.tier / 3))
-  ctx.save()
-  ctx.globalCompositeOperation = layer.blend
-  ctx.globalAlpha = layer.alpha * pulse
-  draw()
-  ctx.restore()
-}
-
-let hingeLayersFallback: readonly EarthHingePaintLayer[] | undefined
-
-function resolveHingePaintLayers(layers: readonly EarthHingePaintLayer[] | undefined): readonly EarthHingePaintLayer[] {
-  if (layers && layers.length >= 4) return layers
-  hingeLayersFallback ??= hingeMoviePaintLayers().layers
-  return hingeLayersFallback
-}
-
-/** Sofia hinge movie — four vortex tiers composited in harmonic layers. */
-export function drawDoubleTorusEarthHingeFrame(
-  ctx: CanvasRenderingContext2D,
-  w: number,
-  h: number,
-  at: number,
-  gateways: readonly EarthHingePaintGateway[],
-  vortexSteps: readonly EarthHingePaintVortexStep[],
-  reduce = false,
-  cycleMs = 12_000,
-  layers?: readonly EarthHingePaintLayer[],
-  dark = true,
-): void {
-  const paint = movieCanvasPolarity(dark)
-  ctx.clearRect(0, 0, w, h)
-  if (gateways.length === 0) return
-  const stack = resolveHingePaintLayers(layers)
-  const fieldLayer = stack[0]!
-  const ringsLayer = stack[1]!
-  const structureLayer = stack[2]!
-  const fusionLayer = stack[3]!
-  const cx = w / 2
-  const cy = h / 2
-  const scale = Math.min(w, h) / (100 * 4)
-  const phase = reduce ? 0 : at / (100 * 5 * 2)
-  const breath = 1 + Math.sin(phase * 1.1) * (1 / (5 * 4))
-  const deviceR = 88 * scale * breath
-  const invertedR = 118 * scale * breath
-  const stepCount = Math.max(vortexSteps.length, 1)
-  const cycle = Math.max(cycleMs, 1)
-  const stepMs = cycle / stepCount
-  const stepIndex = reduce ? 0 : Math.floor((at % cycle) / stepMs) % stepCount
-  const stepT = reduce ? 0 : ((at % stepMs) / stepMs)
-  const current = vortexSteps[stepIndex]
-
-  withHingePaintLayer(ctx, fieldLayer, phase, () => {
-    const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.58)
-    bg.addColorStop(0, paint(fieldLayer.voidHue, (7 / (5 * 5 * 2)), { L: 5 / 16 }))
-    bg.addColorStop((1 - 9 / (5 * 4)), paint(fieldLayer.voidHue + (16 * 5), (3 / (5 * 5 * 2)), { L: 1 / 4 }))
-    bg.addColorStop(1, paint(fieldLayer.voidHue, 0, { L: 1 / 8 }))
-    ctx.fillStyle = bg
-    ctx.fillRect(0, 0, w, h)
-    for (let i = 0; i < 6; i += 1) {
-      const tip = hingePolar(i * (6 * 5 * 2), invertedR * ((7 * 4) / (5 * 5)), cx, cy)
-      ctx.strokeStyle = paint(fieldLayer.voidHue, (7 / 100), { L: 1 / 2 })
-      ctx.lineWidth = 1
-      ctx.beginPath()
-      ctx.moveTo(cx, cy)
-      ctx.lineTo(tip.x, tip.y)
-      ctx.stroke()
-    }
-  })
-
-  withHingePaintLayer(ctx, ringsLayer, phase, () => {
-    const earthSpin = bothEarthsRotateWithinEachOther(at, buildMatrix())
-    const drawRing = (radius: number, hue: number, spin: number, dashed: boolean) => {
-      ctx.save()
-      ctx.translate(cx, cy)
-      ctx.rotate(phase * spin)
-      ctx.strokeStyle = paint(hue, (8 / (5 * 5)), { L: 7 / 8 })
-      ctx.lineWidth = (3 / 2) * scale
-      if (dashed) ctx.setLineDash([6 * scale, 8 * scale])
-      ctx.beginPath()
-      ctx.arc(0, 0, radius, 0, TAU)
-      ctx.stroke()
-      ctx.restore()
-    }
-    drawRing(invertedR, ringsLayer.nadirHue, earthSpin.outerPhase * (9 / (5 * 5 * 2)), true)
-    drawRing(deviceR, ringsLayer.zenithHue, earthSpin.innerPhase * (9 / (5 * 5 * 2)), false)
-  })
-
-  withHingePaintLayer(ctx, structureLayer, phase, () => {
-    const zenithPulse = (3 / 4) + (1 / 4) * Math.sin(phase * (7 / 5))
-    const nadirPulse = (3 / 4) + (1 / 4) * Math.sin(phase * (7 / 5) + Math.PI)
-    const zenithY = cy - deviceR - (7 * 4) * scale
-    const nadirY = cy + deviceR + (7 * 4) * scale
-    const pyramidW = 34 * scale
-
-    ctx.fillStyle = paint(structureLayer.zenithHue, 0.22 * zenithPulse, { L: 7 / 16 })
-    ctx.strokeStyle = paint(structureLayer.zenithHue, (1 - 9 / (5 * 4)) * zenithPulse, { L: 7 / 8 })
-    ctx.lineWidth = (3 / 2) * scale
-    ctx.beginPath()
-    ctx.moveTo(cx, zenithY - (9 * 2) * scale)
-    ctx.lineTo(cx - pyramidW, zenithY + (7 * 2) * scale)
-    ctx.lineTo(cx + pyramidW, zenithY + (7 * 2) * scale)
-    ctx.closePath()
-    ctx.fill()
-    ctx.stroke()
-
-    ctx.fillStyle = paint(structureLayer.nadirHue, 0.22 * nadirPulse, { L: 7 / 16 })
-    ctx.strokeStyle = paint(structureLayer.nadirHue, (1 - 9 / (5 * 4)) * nadirPulse, { L: 7 / 8 })
-    ctx.beginPath()
-    ctx.moveTo(cx, nadirY + (9 * 2) * scale)
-    ctx.lineTo(cx - pyramidW, nadirY - (7 * 2) * scale)
-    ctx.lineTo(cx + pyramidW, nadirY - (7 * 2) * scale)
-    ctx.closePath()
-    ctx.fill()
-    ctx.stroke()
-
-    for (let i = 1; i <= stepIndex; i += 1) {
-      const prev = vortexSteps[i - 1]
-      const next = vortexSteps[i]
-      if (!prev || !next) continue
-      const p0 = hingePolar(prev.bearing, deviceR * ((9 * 2) / (5 * 5)), cx, cy)
-      const p1 = hingePolar(next.bearing, deviceR * ((9 * 2) / (5 * 5)), cx, cy)
-      ctx.strokeStyle = paint(next.fusion ? fusionLayer.voidHue : structureLayer.voidHue, (7 / (5 * 4)), { L: 3 / 4 })
-      ctx.lineWidth = 2 * scale
-      ctx.beginPath()
-      ctx.moveTo(p0.x, p0.y)
-      ctx.lineTo(p1.x, p1.y)
-      ctx.stroke()
-    }
-
-    for (const gateway of gateways) {
-      const radius = gateway.ring === 1 ? deviceR : invertedR
-      const point = hingePolar(gateway.angleDeg, radius, cx, cy)
-      const pulse = (1 / 2) + (1 / 2) * Math.sin(phase * 2.2 + gateway.angleDeg * (1 / (5 * 5)))
-      const bearingGap = current
-        ? Math.abs(((current.bearing - gateway.angleDeg + (108 * 5)) % 360) - (9 * 5 * 4))
-        : (9 * 5 * 4)
-      const near = bearingGap < (7 * 5)
-      ctx.strokeStyle = paint(
-        gateway.hue,
-        gateway.earth === 'inverted' ? 0.22 : (7 / (5 * 5 * 2)),
-        { L: 1 / 2 },
-      )
-      ctx.lineWidth = 1 * scale
-      if (gateway.earth === 'inverted') ctx.setLineDash([3 * scale, 5 * scale])
-      else ctx.setLineDash([])
-      ctx.beginPath()
-      ctx.moveTo(cx, cy)
-      ctx.lineTo(point.x, point.y)
-      ctx.stroke()
-      ctx.setLineDash([])
-      ctx.fillStyle = paint(gateway.hue, (near ? ((9 * 2) / (5 * 5)) : (8 / (5 * 5))) * pulse, { L: 7 / 8 })
-      ctx.strokeStyle = paint(gateway.hue, near ? (1 - 1 / (5 * 4)) : (1 - 9 / (5 * 4)), { L: 13 / 16 })
-      ctx.lineWidth = (3 / 2) * scale
-      ctx.beginPath()
-      ctx.arc(point.x, point.y, (11 + (near ? 5 : 0)) * scale, 0, TAU)
-      ctx.fill()
-      ctx.stroke()
-    }
-  })
-
-  withHingePaintLayer(ctx, fusionLayer, phase, () => {
-    if (current?.fusion) {
-      const flash = (1 / 4) + (7 / (5 * 4)) * Math.sin(phase * 9)
-      ctx.fillStyle = paint(fusionLayer.voidHue, flash, { L: 13 / 16 })
-      ctx.beginPath()
-      ctx.arc(cx, cy, deviceR * (1 - 9 / (5 * 4)), 0, TAU)
-      ctx.fill()
-    }
-
-    if (current) {
-      const walkerR = deviceR * (PHI - 1 + stepT * (9 / (5 * 5 * 2)))
-      const bearing = current.bearing + current.angleDelta * stepT * (1 - 3 / (5 * 4))
-      const walker = hingePolar(bearing, walkerR, cx, cy)
-      ctx.fillStyle = paint(current.fusion ? fusionLayer.voidHue : fusionLayer.voidHue + (7 * 5 * 4), (1 - 1 / (5 * 4)), { L: 5 / 6 })
-      ctx.beginPath()
-      ctx.arc(walker.x, walker.y, ((7 / 2) + stepT * 4) * scale, 0, TAU)
-      ctx.fill()
-      ctx.strokeStyle = paint(current.fusion ? fusionLayer.voidHue : fusionLayer.voidHue + (7 * 5 * 4), (9 / (5 * 4)), { L: 7 / 8 })
-      ctx.lineWidth = 2 * scale
-      ctx.beginPath()
-      ctx.arc(walker.x, walker.y, (8 + stepT * 6) * scale, 0, TAU)
-      ctx.stroke()
-    }
-
-    ctx.fillStyle = paint(fusionLayer.voidHue + (7 * 5 * 4), (2 / (5 * 5)), { L: 1 / 2 })
-    ctx.beginPath()
-    ctx.arc(cx, cy, (7 * 4) * scale, 0, TAU)
-    ctx.fill()
-    ctx.fillStyle = paint(fusionLayer.voidHue + (7 * 5 * 4), (7 / (5 * 2)), { L: 13 / 16 })
-    ctx.strokeStyle = paint(fusionLayer.voidHue + (7 * 5 * 4), (9 / (5 * 2)), { L: 5 / 6 })
-    ctx.lineWidth = (3 / 2) * scale
-    ctx.beginPath()
-    ctx.arc(cx, cy, 11 * scale, 0, TAU)
-    ctx.fill()
-    ctx.stroke()
-  })
-}
-
-/** Gate: hinge canvas paint path completes under simulated browser — non-zero alpha. */
+/** Gate: hinge path paints via the live hero movie (drawHeroMovieFrame) — orphan bespoke hinge renderer retired. */
 export function clientDoubleTorusEarthHingePaintSealed(path = '/', matrix: MindMatrix = buildMatrix()) {
   const all = doubleTorusEarthHingeComputesAll(path, undefined, matrix)
   let paintAlpha = 0
@@ -2056,17 +1830,9 @@ export function clientDoubleTorusEarthHingePaintSealed(path = '/', matrix: MindM
         canvas.height = 64
         const ctx = canvas.getContext('2d')
         if (ctx) {
-          drawDoubleTorusEarthHingeFrame(
-            ctx,
-            64,
-            64,
-            0,
-            all.paintGateways,
-            all.paintSteps,
-            false,
-            all.hinge.movie.cycleMs,
-            all.paintLayers,
-          )
+          // Same paint path DoubleTorusExperience mounts — sharedHeroAt + drawHeroMovieFrame.
+          const shared = sharedHeroAt(path, { title: 'earth-hinge', tagline: all.root.slice(0, 8) }, 0, 64, false, true)
+          drawHeroMovieFrame(ctx, 64, 64, shared)
           paintAlpha = ctx.getImageData((16 * 2), (16 * 2), 1, 1).data[3]!
         }
       }
@@ -2077,7 +1843,7 @@ export function clientDoubleTorusEarthHingePaintSealed(path = '/', matrix: MindM
   const facets = [
     { facet: 'hinge movie flows sealed in src', on: all.movieFlows },
     { facet: 'movie layers fused in harmony — four vortex tiers', on: all.paintLayers.length === 4 },
-    { facet: 'drawDoubleTorusEarthHingeFrame paints non-transparent pixels', on: paintAlpha > 0 || typeof document === 'undefined' },
+    { facet: 'drawHeroMovieFrame paints non-transparent pixels for the hinge path', on: paintAlpha > 0 || typeof document === 'undefined' },
     { facet: 'no stack overflow in simulated browser hinge paint', on: paintError === '' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`client-hinge-paint-sealed:${entry.facet}:${entry.on}`) }))
   return {
@@ -2088,9 +1854,9 @@ export function clientDoubleTorusEarthHingePaintSealed(path = '/', matrix: MindM
     facets,
     root: merkleFold([all.root, ...facets.map((entry) => entry.receipt)]),
     statement:
-      'Client double torus Earth hinge paint path is sealed: doubleTorusEarthHingeComputesAll feeds drawDoubleTorusEarthHingeFrame with computed gateways, vortex steps, and vortexPaintTiers cycle ms — zero static logic in Vue.',
+      'Client double torus Earth hinge paint path is sealed: doubleTorusEarthHingeComputesAll still seals hinge flows/layers; the live canvas paints via sharedHeroAt + drawHeroMovieFrame (the DoubleTorusExperience path) — the orphan drawDoubleTorusEarthHingeFrame renderer is retired.',
     boundary:
-      'Simulated typeof window in Node; optional off-DOM canvas when document exists. Hinge movie timing from vortexPaintTiers, not hardcoded in the component.',
+      'Simulated typeof window in Node; optional off-DOM canvas when document exists. Paint geometry is the one AnimationField movie, not a second bespoke hinge renderer. Hinge compute (gateways/vortex/layers) remains in water/double/earth for non-paint surfaces.',
   }
 }
 
