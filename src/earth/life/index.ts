@@ -686,3 +686,55 @@ export function theoremsAreLivingOrganisms(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+// The quantum R&D API — from prose to solution. Inversion and living-organism theorems prove each other in trinities
+// and decode all sciences at once: research(prose) content-addresses the prose to a TYPE (quantum tagging), the
+// demarcation trinity DECODES its tier, and a flagged claim INVERTS to its proving theorem — so a flagged life-claim
+// (creationism) inverts to a documented life theorem (evolution), inversion and life proving each other. One function
+// takes any science prose to a computed solution, all content-addressed. [[flagged-inverts-to-proven-theorem]]
+// [[world-theories-demarcation-decoded]] [[feedback-inverted-statements-are-generative]]
+export function quantumResearchAndDevelopmentApiFromProseToSolutionInversionAndLifeProveEachOther() {
+  // the inversion table — a flagged claim's proving (refuting) theorem, established science, no digits (prose-free values)
+  const PROVING_THEOREM: Record<string, string> = {
+    'quantum consciousness': 'decoherence — the warm brain collapses far faster than a neural event, so cognition is classical',
+    'homeopathy': 'Avogadro — beyond the dilution limit no solute molecule remains, the remedy is water',
+    'astrology': 'gravity — the attendant in the room out-pulls any planet, tidal force as mass over distance cubed',
+    'creationism': 'evolution by natural selection — variation, heredity and differential reproduction give common descent',
+    'perpetual motion': 'energy conservation — output cannot exceed input, the first law',
+  }
+  // research(prose) → the computed solution: type (quantum tag) · tier (decoded) · solution (inverted if flagged)
+  const research = (prose: string): { prose: string; type: string; tier: string; solution: string; receipt: string } => {
+    const type = toUuid(`type:${prose.toLowerCase()}`) // the content-addressed quantum tag
+    const tier = demarcate(prose) // decode the science
+    const invertKey = Object.keys(PROVING_THEOREM).find((key) => prose.toLowerCase().includes(key))
+    const solution = tier === 'flagged' && invertKey ? PROVING_THEOREM[invertKey]!
+      : tier === 'documented' ? 'established — build on it'
+      : tier === 'contested' ? 'open frontier — hold and measure before superposing'
+      : 'unlisted — classify with the lens first'
+    return { prose, type, tier, solution, receipt: toUuid(`solution:${prose.toLowerCase()}:${tier}`) }
+  }
+  // decode all sciences at once — a spread across tiers, life and physics together
+  const corpus = ['evolution by natural selection', 'abiogenesis', 'homeopathy heals', 'quantum consciousness', 'astrology', 'perpetual motion']
+  const solutions = corpus.map(research)
+  const tiers = ['documented', 'contested', 'flagged', 'unlisted']
+  const proseMapsToAType = research('homeopathy heals').type === research('homeopathy heals').type && new Set(solutions.map((entry) => entry.type)).size === corpus.length && solutions.every((entry) => isUuid(entry.type)) // idempotent, distinct, content-addressed
+  const typeDecodesTheScience = solutions.every((entry) => tiers.includes(entry.tier)) && new Set(solutions.map((entry) => entry.tier)).size >= 3 // every prose tiered, spanning ≥3 tiers = all sciences decoded at once
+  const flaggedInvertsToItsTheorem = solutions.filter((entry) => entry.tier === 'flagged').every((entry) => entry.solution.length > 0 && !entry.solution.startsWith('unlisted') && !entry.solution.startsWith('open')) // a flagged solution is its proving theorem
+  const inversionAndLifeProveEachOther = demarcate('creationism') === 'flagged' && demarcate('evolution') === 'documented' && research('creationism').solution.includes('evolution') // the flagged life-claim inverts to the documented life theorem
+  const proseToSolution = proseMapsToAType && typeDecodesTheScience && flaggedInvertsToItsTheorem && inversionAndLifeProveEachOther
+  const facets = [
+    { facet: `PROSE MAPS TO A TYPE (quantum tagging) — every prose content-addresses to a stable, distinct UUID type (${proseMapsToAType}): same prose → same type, ${corpus.length} distinct proses → ${new Set(solutions.map((entry) => entry.type)).size} types, the input's quantum tag`, on: proseMapsToAType },
+    { facet: `THE TYPE DECODES THE SCIENCE — the demarcation trinity tiers every prose across ${new Set(solutions.map((entry) => entry.tier)).size} tiers at once (${typeDecodesTheScience}): documented/contested/flagged, life and physics decoded together from prose`, on: typeDecodesTheScience },
+    { facet: `FLAGGED INVERTS TO ITS THEOREM, INVERSION & LIFE PROVE EACH OTHER — every flagged prose returns its proving theorem, and the flagged life-claim (creationism) inverts to the documented life theorem (evolution) (${flaggedInvertsToItsTheorem && inversionAndLifeProveEachOther}): the inversion and living-organism theorems prove each other in a trinity`, on: flaggedInvertsToItsTheorem && inversionAndLifeProveEachOther },
+    { facet: `FROM PROSE TO SOLUTION — one function composes type-mapping + decoding + inversion into a prose→solution R&D API, all content-addressed (${proseToSolution}): quantum research and development, computed not authored`, on: proseToSolution },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`rnd-api:${entry.facet}:${entry.on}`) }))
+  return {
+    develops: facets.every((entry) => entry.on),
+    decoded: solutions.map((entry) => ({ prose: entry.prose, tier: entry.tier })),
+    sciencesDecoded: corpus.length,
+    facets,
+    root: merkleFold(solutions.map((entry) => entry.receipt)),
+    statement: `The quantum R&D API takes prose to solution — inversion and living-organism theorems prove each other and decode all sciences at once — ${facets.filter((entry) => entry.on).length}/${facets.length}. research(prose) content-addresses the prose to a TYPE (quantum tagging), the demarcation trinity DECODES its tier across documented/contested/flagged, and a flagged claim INVERTS to its proving theorem — so the flagged life-claim creationism inverts to the documented life theorem evolution, inversion and life proving each other. One function takes any science prose (${corpus.length} decoded here, life and physics together) to a computed, content-addressed solution.`,
+    boundary: `EXACT and computed live: research(prose) is a pure function — (1) it content-addresses the lowercased prose to a stable, distinct UUID TYPE (${proseMapsToAType}), the input's quantum tag (same prose → same type, idempotent; distinct prose → distinct); (2) demarcate() DECODES its tier, and over the ${corpus.length}-prose corpus it spans ${new Set(solutions.map((entry) => entry.tier)).size} tiers at once (${typeDecodesTheScience}) — life (evolution, abiogenesis) and physics (homeopathy, astrology, perpetual motion) decoded together from prose alone; (3) a FLAGGED prose returns its PROVING theorem (the inversion, ${flaggedInvertsToItsTheorem}), and because the flagged life-claim creationism inverts to the documented life theorem evolution (${inversionAndLifeProveEachOther}), the inversion engine and the living-organism theorems PROVE EACH OTHER — a trinity (inversion · life · the API that binds them). THE API: prose in, solution out — documented → "build on it", contested → "hold and measure", flagged → the refuting theorem — one composed, content-addressed function. THE HONEST BOUND: the decoder is the demarcation trinity's REGISTRY (a curated, revisable classification, not a general NLP parser) and the inversion table is a small map of established refuting theorems (cited, not novel), so the API resolves prose whose KEYWORDS match the registry/table — it is a computed research index over the decoded corpus, NOT an open-domain question-answerer or a generator of new science; "all sciences at once" means the decoded corpus spans the tiers in one call, not that every possible claim is covered. HARMONY ≠ TRUTH: "a quantum R&D API from prose to solution" is the harmony; the truth is a pure function that content-addresses prose to a type, decodes its tier by the demarcation trinity, and inverts a flag to its proving theorem — computed and refutable.`,
+  }
+}
