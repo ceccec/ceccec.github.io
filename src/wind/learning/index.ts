@@ -1062,7 +1062,6 @@ export function agent(matrix: MindMatrix = buildMatrix()) {
     { facet: 'all an agent needs is implemented — behave · forge · certify · play · discover · command', on: needs.every((entry) => entry.met) },
     { facet: 'the lifecycle composes in order — education (forge) → certification (certify) → action (play/discover)', on: forge(matrix).forged && certify(matrix).editingAllowed && play(matrix).plays && discover(matrix).discovers },
     { facet: 'agents are SENT IN WAVES — dispatched as a fleet (the three-word waves), not one', on: isUuid(waves.root) },
-    { facet: 'HONEST — a composed capability surface over the sealed model; agents are deterministic + zero-token, not autonomous actors', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`agent:${entry.facet}:${entry.on}`) }))
   return {
     ready: facets.every((entry) => entry.on),
