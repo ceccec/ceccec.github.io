@@ -1,7 +1,7 @@
 // ONE source for computational limit constants and checks — gate · weave · verify · folderLaw read here only.
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
-import { applyGate, cnot, foldPair, GATES, isUuid, merkleFold, probabilities, type QuantumState, qubits, toUuid } from '../../../../0'
+import { antichainLevels, applyGate, cnot, foldPair, GATES, isUuid, merkleFold, probabilities, type QuantumState, qubits, toUuid } from '../../../../0'
 import { stringMass } from '../strict/scan'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2'
@@ -2171,14 +2171,11 @@ export function theTwoBitGatewayReframesAllDryCleanRefactoringOfAllSrcIsPossible
   // 3 — REFACTORING PROCEEDS IN WAVES: partition the dependency DAG into antichain levels (Kahn)
   const index = new Map(files.map((file, i) => [file.name, i]))
   const n = files.length
-  const indeg = Array.from({ length: n }, () => 0)
-  const adj = Array.from({ length: n }, () => [] as number[])
-  for (const file of files) for (const dep of file.deps) { adj[index.get(dep)!]!.push(index.get(file.name)!); indeg[index.get(file.name)!]! += 1 }
-  const waves: number[][] = []
-  let frontier = Array.from({ length: n }, (_, i) => i).filter((i) => indeg[i] === 0)
-  let processed = 0
-  while (frontier.length) { waves.push(frontier); const next: number[] = []; for (const node of frontier) { processed += 1; for (const m of adj[node]!) { indeg[m]! -= 1; if (indeg[m] === 0) next.push(m) } } frontier = next }
-  const refactorsInWaves = processed === n && waves.length > 1 && waves.every((wave) => wave.every((a) => wave.every((b) => a === b || !adj[a]!.includes(b)))) // antichain waves, all covered
+  const edges = files.flatMap((file) => file.deps.map((dep) => [index.get(dep)!, index.get(file.name)!]))
+  const waves = antichainLevels(n, edges) // the canonical Kahn level partition (src/0) — DRY
+  const processed = waves.reduce((sum, wave) => sum + wave.length, 0)
+  const edgeSet = new Set(edges.map(([a, b]) => `${a}->${b}`))
+  const refactorsInWaves = processed === n && waves.length > 1 && waves.every((wave) => wave.every((a) => wave.every((b) => a === b || !edgeSet.has(`${a}->${b}`)))) // antichain waves, all covered
   const reframesAll = dryDetectableByTheBits && cleanRefactorVerified && refactorsInWaves
   const facets = [
     { facet: `DRY DETECTABLE BY THE 2 BITS — files sharing an output-bit are content-address duplicates (${dryDuplicates.map((d) => d.name).join(',')} duplicates a, ${dryDetectableByTheBits}): a DRY violation is FOUND by comparing the two bits, not hunted`, on: dryDetectableByTheBits },
@@ -2207,15 +2204,8 @@ export function computeTheWorkflowBeforeSendingTheWavesDeterministicAutomationBy
   const deps: [string, string][] = [['scan', 'demarcate'], ['demarcate', 'invert'], ['invert', 'seal'], ['scan', 'nav'], ['seal', 'build'], ['nav', 'build'], ['build', 'deploy']]
   const idx = new Map(tasks.map((task, i) => [task, i]))
   const schedule = (): { waves: number[][]; processed: number } => {
-    const n = tasks.length
-    const indeg = Array.from({ length: n }, () => 0)
-    const adj = Array.from({ length: n }, () => [] as number[])
-    for (const [from, to] of deps) { adj[idx.get(from)!]!.push(idx.get(to)!); indeg[idx.get(to)!]! += 1 }
-    const waves: number[][] = []
-    let frontier = Array.from({ length: n }, (_, i) => i).filter((i) => indeg[i] === 0)
-    let processed = 0
-    while (frontier.length) { waves.push(frontier); const next: number[] = []; for (const node of frontier) { processed += 1; for (const m of adj[node]!) { indeg[m]! -= 1; if (indeg[m] === 0) next.push(m) } } frontier = next }
-    return { waves, processed }
+    const waves = antichainLevels(tasks.length, deps.map(([from, to]) => [idx.get(from)!, idx.get(to)!])) // canonical Kahn levels (src/0) — DRY
+    return { waves, processed: waves.reduce((sum, wave) => sum + wave.length, 0) }
   }
   const plan = schedule()
   const rootOf = (waves: number[][]): string => merkleFold(waves.map((wave, i) => toUuid(`wave:${i}:${wave.map((node) => tasks[node]).join(',')}`)))

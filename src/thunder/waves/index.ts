@@ -10,7 +10,7 @@ export { CANDIDATE_THEOREMS } from '../../4/6'
 import { CANDIDATE_THEOREMS, THEOREM_ATOM_SEED } from '../../4/6'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
-import {    createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, sealFacets, toUuid, prng, gcd, VORTEX_SEQUENCE } from '../../0'
+import {    antichainLevels, createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, sealFacets, toUuid, prng, gcd, VORTEX_SEQUENCE } from '../../0'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded } from '../../water/cosmos'
 import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, rosettaRayOfContent, UNFOLDED_CENSUS } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
@@ -2533,20 +2533,9 @@ export function theWavesDiscoverGapsAndInvertRejectionsIntoGatewaysExceptTheOffD
 export function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilTheDagIsExhausted() {
   const n = 2 + 3 // five nodes
   const edges = [[0, 2], [1, 2], [0, 3], [1, 3], [2, 4], [3, 4]] // 0,1 → 2,3 → 4 (a layered DAG)
-  const indeg = Array.from({ length: n }, () => 0)
-  const adj = Array.from({ length: n }, () => [] as number[])
-  for (const [a, b] of edges) { adj[a!]!.push(b!); indeg[b!]! += 1 }
-  const waves: number[][] = []
-  let frontier = Array.from({ length: n }, (_, i) => i).filter((i) => indeg[i] === 0) // wave 0 = the sources
-  let processed = 0
-  let regenerations = 0
-  while (frontier.length) {
-    waves.push(frontier)
-    const next: number[] = []
-    for (const node of frontier) { processed += 1; for (const m of adj[node]!) { indeg[m]! -= 1; if (indeg[m] === 0) next.push(m) } }
-    if (next.length) regenerations += 1 // the wave produced the next wave
-    frontier = next
-  }
+  const waves = antichainLevels(n, edges) // the canonical Kahn level partition (src/0) — DRY, one implementation
+  const processed = waves.reduce((sum, wave) => sum + wave.length, 0)
+  const regenerations = waves.length - 1 // every wave but the last exposed the next
   const inEdge = new Set(edges.map(([a, b]) => `${a}->${b}`))
   const eachWaveIsAntichain = waves.every((wave) => wave.every((a) => wave.every((b) => a === b || (!inEdge.has(`${a}->${b}`) && !inEdge.has(`${b}->${a}`))))) // no edges within a level ⇒ parallel
   const eachWaveExposesTheNext = regenerations === waves.length - 1 && waves.length > 1 // every wave but the last produced the next

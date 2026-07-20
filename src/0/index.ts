@@ -243,6 +243,23 @@ export function topologicalOrder(
   return { order, isDAG: order.length === nodeCount, sources }
 }
 
+// The antichain LEVELS of a DAG — Kahn by level: each level a set of mutually-independent nodes (a wave), every node
+// but the last exposing the next. The canonical wave partition, extracted so the wave folds share one implementation.
+export function antichainLevels(nodeCount: number, edges: readonly (readonly number[])[]): number[][] {
+  const indeg = Array.from({ length: nodeCount }, () => 0)
+  const adj: number[][] = Array.from({ length: nodeCount }, () => [])
+  for (const edge of edges) { adj[edge[0]!]!.push(edge[1]!); indeg[edge[1]!]! += 1 }
+  const levels: number[][] = []
+  let frontier = Array.from({ length: nodeCount }, (_, i) => i).filter((i) => indeg[i] === 0)
+  while (frontier.length > 0) {
+    levels.push(frontier)
+    const next: number[] = []
+    for (const node of frontier) for (const m of adj[node]!) { indeg[m]! -= 1; if (indeg[m] === 0) next.push(m) }
+    frontier = next
+  }
+  return levels
+}
+
 // Contraction: aggregator reports are pure functions of the matrix, so memoize them by matrix.root.
 // Within a build the heavy aggregators compute once and every later caller reuses the result. The
 // matrix is typed structurally ({ root }) so this station still imports nothing from the word core.
