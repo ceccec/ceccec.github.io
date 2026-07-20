@@ -493,9 +493,16 @@ export function digitFoldersAreTheApi(matrix: MindMatrix = buildMatrix()) {
     response: digit.fusion, // the computed math at that address (a content-address, zero-token)
     digit: digit.digit,
   }))
+  // INVERT — the API surface is a total BIJECTION {0..9} ↔ routes, resolved O(1) by name:
+  const routes = endpoints.map((entry) => entry.route) // the on-disk address of each endpoint
+  const distinctRoutes = new Set(routes) // injective — no two folders share a path
+  const digitsCovered = new Set(endpoints.map((entry) => entry.digit)) // surjective — every digit 0..9 has one endpoint
+  const table = new Map<string, string>(endpoints.map((entry) => [entry.route, entry.response])) // route ⇒ math, an O(1) content-address
   const facets = [
     { facet: 'the digit folders do the math — the compute IS the server', on: doMath.always },
     { facet: 'every digit folder is an addressable endpoint (route → math)', on: endpoints.length === (5 * 2) && endpoints.every((entry) => isUuid(entry.response)) },
+    { facet: 'path ⇒ fold is a total bijection {0..9} ↔ routes (injective + surjective onto the digits)', on: distinctRoutes.size === endpoints.length && digitsCovered.size === (5 * 2) && endpoints.length === (5 * 2) },
+    { facet: 'resolution is O(1) by name — the route Map returns its math with no collision', on: table.size === endpoints.length && endpoints.every((entry) => table.get(entry.route) === entry.response) },
     { facet: 'the response is computed, content-addressed, zero-token (no host, no state)', on: math.fused },
     { facet: 'digit = the API (compute), word = the client (UI)', on: digitFoldersComputeUiIsTheRest(matrix).holds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`digit-api:${entry.facet}:${entry.on}`) }))
@@ -506,7 +513,7 @@ export function digitFoldersAreTheApi(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merge(math.root, doMath.root),
     statement:
-      'As all the math is in the digit folders, they are the API itself: each digit-folder path is an endpoint and the response is the computed math at that address — deterministic, content-addressed, zero-token. No separate server; the math-folders are the routes (GET a path, get its math). The digit folders are the API (compute), the word folders the client (UI), and the REST/MCP/public-API surfaces are projections of this one digit-folder API.',
+      'As all the math is in the digit folders, they are the API itself: each digit-folder path is an endpoint and the response is the computed math at that address. The map path ⇒ fold is a total bijection {0..9} ↔ 10 routes (injective: distinct paths; surjective: every digit covered), resolved O(1) by name through the route Map — deterministic, content-addressed, zero-token. No separate server; the math-folders are the routes (GET a path, get its math). The digit folders are the API (compute), the word folders the client (UI), and the REST/MCP/public-API surfaces are projections of this one digit-folder API.',
     boundary:
       'The digit folders ARE the API in the content-addressed, static, zero-token sense: each path computes its math deterministically (the path is the call, the fold the response). HONEST: not a hosted, stateful HTTP server — a computable route surface where the math is the response; restfulFormats, mcpToolManifest and publicApiFusion project it into REST/MCP/HTTP shapes. The compute/client split is the kind-purity law (digit = compute, word = UI).',
   }
