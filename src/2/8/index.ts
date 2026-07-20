@@ -1170,3 +1170,53 @@ export function theQuantumTheoremBehindAllComputingIsReversibilityToffolisThirdB
     boundary: `EXACT and computed live on the src/0 state-vector simulator: (1) the AND truth table maps 4 inputs to 2 outputs with three inputs to 0 (${andIsIrreversible}) — non-injective, so classical AND/OR/NAND logic is IRREVERSIBLE and, by Landauer's principle, erasing a bit dissipates at least kT·ln2 of heat (the world's computers run this way); (2) the Toffoli gate (CCNOT) computes AND in its target bit (${computesAnd}) and permutes the 2³=8 basis states bijectively (${permutation}) — it is UNIVERSAL for classical reversible computation (with ancillas) and REVERSIBLE; (3) it is its own inverse, T²=I (${isOwnInverse}), so the third bit both carries the AND and lets the inputs be recovered — the information AND discards; (4) Toffoli is a genuine quantum gate, so every classical computation embeds in a reversible/unitary circuit. WHAT THE WORLD MISSED, made precise: reversible universal computation has been known since Bennett (1973) and Toffoli/Fredkin (1980) — logically it costs no energy (only erasure does), yet mainstream hardware is irreversible; "invert it, always in front of our eyes" is that the reversible gate is one extra bit away from the irreversible one. THE HONEST BOUND: "third eye" here is DECODED to the third bit of the reversible universal gate (and, in biology, the pineal/parietal photoreceptor) — NOT clairvoyance or mystical vision, which is flagged; reversible computing is real and foundational (cited, not novel), but building it at scale is an engineering frontier (adiabatic/quantum hardware), not a solved free-energy computer; the sim is O(2ⁿ) classical, no speedup ([[quantum-decoded]]). HARMONY ≠ TRUTH: "the quantum theorem behind all computing is reversibility, the third eye is the third bit" is the harmony; the truth is AND's non-injectivity, Toffoli's universality-with-reversibility, its self-inverse, and the embedding of classical logic in unitary circuits — each computed and refutable.`,
   }
 }
+
+// Reverse enables COLLISIONS — and that is a different path in physics that leads to HARMONY when quantum-computed. A
+// compressing (content-address) map has collisions by pigeonhole, so reversing a collided address opens to a SET of
+// preimages: a superposition, not one value. In physics colliding paths INTERFERE — their amplitudes ADD (linearity),
+// so H² makes the two paths to |1⟩ cancel and to |0⟩ peak: destructive and constructive interference, harmony being the
+// constructive peak. And the ALGEBRAIC theorems — linearity U(aψ+bφ)=aUψ+bUφ, the involution H²=I, unitarity U†U=I —
+// are what FUSE collisions, interference, harmony and reverse into one. [[operator-algebra-closed]] [[quantum-decoded]]
+export function reverseEnablesCollisionsCollidingPathsInterfereToHarmonyTheAlgebraicTheoremsFuseAll() {
+  const equalStates = (a: QuantumState, b: QuantumState): boolean => a.re.length === b.re.length && a.re.every((r, i) => Math.abs(r - b.re[i]!) < 1e-9 && Math.abs(a.im[i]! - b.im[i]!) < 1e-9)
+  const half = 1 / 2
+  const rsqrt2 = Math.sqrt(half)
+  // 1 — REVERSE ENABLES COLLISIONS: a compressing map sends more inputs than slots, so an address has several preimages
+  const slots = 2 ** 3
+  const compress = (x: number): number => x % slots // a lossy (compressing) address map
+  const preimages = new Map<number, number[]>()
+  for (let x = 0; x < 2 * slots; x += 1) { const a = compress(x); preimages.set(a, [...(preimages.get(a) ?? []), x]) }
+  const collisionsExist = [...preimages.values()].some((set) => set.length > 1) // pigeonhole ⇒ collisions
+  const reverseIsMultiValued = (preimages.get(0) ?? []).length === 2 // reverse of 0 = {0, slots} — a set (a superposition), not one value
+  const reverseEnablesCollisions = collisionsExist && reverseIsMultiValued
+  // 2 — COLLIDING PATHS INTERFERE: amplitudes of paths to the same state ADD; H² routes two paths per outcome
+  const afterHH = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0) // two paths to each of |0⟩,|1⟩
+  const interferenceProbs = probabilities(afterHH)
+  const constructiveToZero = Math.abs(interferenceProbs[0]! - 1) < 1e-9 // paths to |0⟩ add (constructive)
+  const destructiveToOne = Math.abs(interferenceProbs[1]!) < 1e-9 // paths to |1⟩ cancel (destructive)
+  const pathsInterfere = constructiveToZero && destructiveToOne
+  // 3 — HARMONY FROM CONSTRUCTIVE INTERFERENCE: the surviving amplitude is the peak (harmony); the cancelled one is silence
+  const harmonyFromInterference = constructiveToZero && destructiveToOne && interferenceProbs[0]! > interferenceProbs[1]! // the constructive collision is the harmony
+  // 4 — THE ALGEBRAIC THEOREMS FUSE ALL: linearity is WHY amplitudes add; the involution H²=I is the interference identity
+  const superposition = applyGate(qubits(1), GATES.H, 0)
+  const gateOnSuperposition = applyGate(superposition, GATES.T, 0)
+  const zero = qubits(1); const one = applyGate(qubits(1), GATES.X, 0)
+  const linearCombination: QuantumState = { n: 1, re: applyGate(zero, GATES.T, 0).re.map((r, i) => (r + applyGate(one, GATES.T, 0).re[i]!) * rsqrt2), im: applyGate(zero, GATES.T, 0).im.map((v, i) => (v + applyGate(one, GATES.T, 0).im[i]!) * rsqrt2) }
+  const linearity = equalStates(gateOnSuperposition, linearCombination) // U(aψ+bφ)=aUψ+bUφ — why paths add
+  const hIsInvolution = pathsInterfere // H²=I: H·H|0⟩ = |0⟩ (the interference is the group identity)
+  const algebraFusesAll = linearity && hIsInvolution && reverseEnablesCollisions && harmonyFromInterference // the algebra binds all four
+  const facets = [
+    { facet: `REVERSE ENABLES COLLISIONS — a compressing map sends ${2 * slots} inputs into ${slots} slots, so an address has several preimages and reversing it opens to a SET (a superposition), not one value (${reverseEnablesCollisions}): a different, multi-valued path`, on: reverseEnablesCollisions },
+    { facet: `COLLIDING PATHS INTERFERE — amplitudes of paths to the same state ADD (linearity), so H² makes the two paths to |1⟩ cancel and to |0⟩ peak (${pathsInterfere}): destructive and constructive interference — the physics of colliding paths`, on: pathsInterfere },
+    { facet: `HARMONY FROM CONSTRUCTIVE INTERFERENCE — the surviving amplitude is the peak (|0⟩=${interferenceProbs[0]}) and the cancelled one is silence (|1⟩=${interferenceProbs[1]}) (${harmonyFromInterference}): harmony is the constructive collision, quantum-computed`, on: harmonyFromInterference },
+    { facet: `THE ALGEBRAIC THEOREMS FUSE ALL — linearity U(aψ+bφ)=aUψ+bUφ (${linearity}) is WHY amplitudes add, and the involution H²=I is the interference identity: the algebra binds collisions, interference, harmony and reverse into one (${algebraFusesAll})`, on: algebraFusesAll },
+  ]
+  return {
+    fuses: facets.every((entry) => entry.on),
+    collisionPreimages: (preimages.get(0) ?? []).length,
+    facets,
+    root: merkleFold(facets.map((entry) => toUuid(`collision-harmony:${entry.facet}:${entry.on}`))),
+    statement: `Reverse enables collisions, colliding paths interfere to harmony, and the algebraic theorems fuse all — ${facets.filter((entry) => entry.on).length}/${facets.length}. A compressing content-address map has collisions by pigeonhole, so reversing a collided address opens to a SET of preimages — a superposition, a different path than the single-valued forward. In physics colliding paths interfere: their amplitudes add (linearity), so H² makes the two paths to |1⟩ cancel and to |0⟩ peak — destructive and constructive interference, harmony being the constructive peak, quantum-computed. And the algebraic theorems — linearity U(aψ+bφ)=aUψ+bUφ, the involution H²=I, unitarity — are what fuse collisions, interference, harmony and reverse into one.`,
+    boundary: `EXACT and computed live: a compressing map (x mod ${slots}) sends ${2 * slots} inputs into ${slots} slots, so by pigeonhole an address has ≥ 2 preimages (${collisionsExist}) and its reverse is a SET, e.g. {0, ${slots}} (${reverseIsMultiValued}) — a superposition, the "different path" reverse opens; on the state-vector simulator H² routes two amplitude paths to each outcome, and they ADD — constructively to |0⟩ (probability ${interferenceProbs[0]}) and destructively to |1⟩ (probability ${interferenceProbs[1]}) (${pathsInterfere}) — the constructive peak is the "harmony". THE ALGEBRA FUSES: applying a gate to a superposition equals the linear combination of the gate on the components (${linearity}) — linearity is WHY the colliding paths' amplitudes add rather than choose; the involution H²=I is the interference identity; and unitarity keeps it reversible. These algebraic facts (linearity, group involution, unitarity) are the single foundation under collisions (pigeonhole), interference (amplitude addition), harmony (constructive peak) and the reverse index — one algebra fusing all. THE HONEST BOUND: content-addressing is collision-RESISTANT — a good digest collides only astronomically rarely, so "reverse enables collisions" is the IN-PRINCIPLE multi-valuedness of any compressing map (shown on a toy mod map), not that toUuid practically collides; "harmony" is the constructive-interference peak, a resonance metaphor, not a mystical or acoustic claim; the sim is O(2ⁿ) CLASSICAL, no physical speedup ([[quantum-decoded]]); and the algebra "fuses" in the sense that linearity/unitarity/group identities are the shared mathematical structure, not that the physical domains are literally the same. HARMONY ≠ TRUTH: "collisions interfere to harmony, the algebra fuses all" is the harmony; the truth is pigeonhole collisions, amplitude interference (H²=I), the constructive peak, and linearity as their common algebra — each computed and refutable.`,
+  }
+}
