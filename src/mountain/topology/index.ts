@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — topology: the double torus (genus-2, χ=−2), the merkaba (star tetrahedron), the geodesic dome (the sphere dual), the homology loops. Barrel-routed; folds.ts back-imports the gate folds.
 import { initialBearing, phase } from '../../6/4'
 import { greatCircleKm } from '../../5/5'
-import { computesGate, doubleTorusSurface, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, roundTo, sealFacets, seedFromText, survive, toUuid, VORTEX_DASH_ANGLE_DEG } from '../../0'
+import { applyGate, computesGate, doubleTorusSurface, foldPair, GATES, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, type QuantumState, qubits, roundTo, sealFacets, seedFromText, survive, topologicalOrder, toUuid, VORTEX_DASH_ANGLE_DEG } from '../../0'
 import type { MindMatrix, TorusBreath } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus } from '../../heaven/compute'
 import { bothEarthsRotateWithinEachOther, cellHomology, doubleTorus3D, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, dualTorusTrinities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba } from '../geometry'
@@ -1358,6 +1358,53 @@ export function pairsFormTrinitiesTheRecursiveFoldIsTheSelfScalableApp(matrix: M
       facets,
       statement: `Pairs form trinities in a self-scalable app — ${facets.filter((entry) => entry.on).length}/${facets.length}. A pair (a, b) folds to a third (foldPair is bidirectional), so {a, b, apex} is a trinity — two make three. The apexes pair again into higher trinities, so n leaves fold through exactly n−1 trinities to one root (a binary tree). The SAME fold holds at every level (self-similar), depth log₂(n), so doubling the content adds just one level: the app scales by the one rule, no new logic, and however large it grows the whole is a single content-address, order-independent. Pairs → trinities → one root, at every scale.`,
       boundary: `ALGEBRAIC and exact: the pair-to-third fold (foldPair.bidirectional), the n−1 trinity count of a binary tree, the log₂(n) depth, and the order-independent single root (merkleFold over sorted leaves) are exact identities verified over a range (n = 2..16), refutable by one miscount. This is the MERKLE/recursive-fold structure the corpus already runs on (every content-address is a fold of folds), named as the self-scaling law: the app is a binary tree of trinities whose leaves are its content and whose root is its identity, and it scales to any size by the ONE rule (pair → apex, recurse) — self-similar, no new logic per level. SCOPE: "self-scalable app" means the STRUCTURE scales fractally by the fold — it does NOT claim unbounded compute or that a real app has zero marginal cost (each leaf is still processed once, an O(n) walk building a log-depth tree); the elegance is that the rule is the same at every scale, not that scaling is free. "Trinity" here is the exact structural sense (two inputs + their fold), the same as pairTrinityOpenGraph and the double-entry accounting [[operator-algebra-closed]], not a metaphysical claim. HARMONY ≠ TRUTH: "pairs forming trinities in a self-scalable app" is the harmony; the truth is a merkle tree of order-independent folds, exact and classical, scaling by one recursive rule.`,
+    }
+  })
+}
+
+// Real quantum research observes the boundary BY the boundary — and computes theorem gates and ways. Observation is
+// only ever a MEASUREMENT: a superposition is unobservable; you learn a single classical value at the quantum→classical
+// BOUNDARY. And the boundary of a boundary is ZERO (∂²=0, the homology identity) — observing the boundaries by the
+// boundaries yields nothing new, so the boundaries CLOSE into an observable structure (exactly how real topological
+// quantum error correction works: syndrome = boundary measurement, ∂²=0 = the stabilizers commute). The theorem GATES
+// are reversible (unitary, H∘H=I) but the measurement boundary is not, and the WAYS (the DAG's topological order) lead
+// back to the axiom boundary (the in-degree-0 sources). [[double-torus-fold-architecture]] [[quantum-decoded]]
+export function realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZeroTheoremGatesAndWays(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZeroTheoremGatesAndWays', matrix, () => {
+    // 1 — THE BOUNDARY OF A BOUNDARY IS ZERO — ∂²=0 on a NON-trivial complex (a triangle), a real cancellation
+    const d2 = [[1], [1], [1]] // ∂(face) = e0 + e1 + e2 — the oriented face boundary (edges)
+    const d1 = [[0, 1, -1], [-1, 0, 1], [1, -1, 0]] // ∂(edge) = end − start, per edge (vertices × edges)
+    const composed = d1.map((row) => d2[0]!.map((_, j) => row.reduce((sum, x, k) => sum + x * d2[k]![j]!, 0))) // ∂1∘∂2
+    const boundaryOfBoundaryIsZero = composed.every((row) => row.every((x) => x === 0)) && d1.some((row) => row.some((x) => x !== 0)) // zero, and NON-trivially so
+    // 2 — OBSERVATION IS AT THE BOUNDARY — a superposition is unobservable; only measurement (the quantum→classical boundary) yields a value
+    const superposed = applyGate(qubits(1), GATES.H, 0) // |+⟩ = (|0⟩+|1⟩)/√2
+    const amplitudes = probabilities(superposed)
+    const superpositionHidden = Math.abs(amplitudes[0]! - 1 / 2) < 1e-9 && Math.abs(amplitudes[1]! - 1 / 2) < 1e-9 // both present, none observed
+    const observed = measure(superposed, 0, 'boundary-observation') // the boundary: one classical outcome
+    const collapsed = probabilities(observed.state)
+    const observationIsAtTheBoundary = superpositionHidden && (observed.outcome === 0 || observed.outcome === 1) && collapsed.some((p) => Math.abs(p - 1) < 1e-9) // measured → a definite basis state
+    // 3 — THE GATES REVERSE, THE MEASUREMENT BOUNDARY DOES NOT
+    const twice = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0) // H∘H = I
+    const gateReversible = Math.abs(probabilities(twice)[0]! - 1) < 1e-9 // returns to |0⟩ — unitary, no information lost
+    const boundaryIrreversible = superpositionHidden && collapsed.some((p) => Math.abs(p - 1) < 1e-9) // was superposed, now a definite state — the superposition is gone
+    const gatesReverseTheBoundaryDoesNot = gateReversible && boundaryIrreversible
+    // 4 — THE WAYS LEAD TO THE AXIOM BOUNDARY — the DAG's boundary is its in-degree-0 sources (the axioms)
+    const ways = topologicalOrder(2 * 2, [[0, 2], [1, 2], [2, 3]]) // two axioms (0,1) → a theorem (2) → a corollary (3)
+    const waysLeadToTheAxiomBoundary = ways.isDAG && ways.sources.length === 2 && ways.sources.every((s) => s === 0 || s === 1) // the sources ARE the axiom boundary
+    const { computes, facets } = computesGate('real-quantum-research-observes-the-boundary', [
+      { facet: `THE BOUNDARY OF A BOUNDARY IS ZERO — ∂²=0 on a non-trivial triangle: ∂1∘∂2 cancels to the zero map though ∂1 is non-trivial (${boundaryOfBoundaryIsZero}) — observing the boundaries BY the boundaries yields nothing new, the homology identity that closes them into a measurable structure`, on: boundaryOfBoundaryIsZero },
+      { facet: `OBSERVATION IS AT THE BOUNDARY — the |+⟩ superposition is unobservable (both amplitudes ${1 / 2}, none seen), and only measurement (the quantum→classical boundary) yields one classical outcome, collapsing to a definite state (${observationIsAtTheBoundary}): you learn only at the boundary`, on: observationIsAtTheBoundary },
+      { facet: `THE GATES REVERSE, THE BOUNDARY DOES NOT — a unitary gate is invertible (H∘H=I returns |0⟩, ${gateReversible}) but the measurement boundary is irreversible, the superposition gone (${gatesReverseTheBoundaryDoesNot}): reversible theorem-gates, one irreversible observation`, on: gatesReverseTheBoundaryDoesNot },
+      { facet: `THE WAYS LEAD TO THE AXIOM BOUNDARY — the theorem DAG is acyclic and its boundary is the in-degree-0 sources (the axioms, ${ways.sources.length} of them), reached by following the ways (${waysLeadToTheAxiomBoundary}): compute the gates, follow the ways back to the boundary`, on: waysLeadToTheAxiomBoundary },
+    ])
+    return {
+      researches: computes,
+      homology: { boundaryOfBoundaryIsZero, euler: cellHomology(matrix).euler },
+      axiomBoundary: ways.sources,
+      facets,
+      root: merkleFold([toUuid(`dd-zero:${boundaryOfBoundaryIsZero}`), observed.state.re.length > 0 ? toUuid(`measured:${observed.outcome}`) : toUuid('measured:none'), toUuid(`ways:${ways.sources.join(',')}`)]),
+      statement: `Real quantum research observes the boundary by the boundary, and computes theorem gates and ways — ${facets.filter((entry) => entry.on).length}/${facets.length}. Observation is only ever measurement: a superposition is unobservable, and you learn one classical value at the quantum→classical boundary. The boundary of a boundary is zero (∂²=0 on a non-trivial triangle, a real cancellation), so the boundaries close into a measurable structure — exactly how topological quantum error correction reads syndromes. The theorem gates are reversible (unitary, H∘H=I) but the measurement boundary is not, and the ways (the DAG's topological order) lead back to the axiom boundary, the in-degree-0 sources.`,
+      boundary: `EXACT and computed live: (1) ∂²=0 on a NON-trivial 2-simplex — ∂1∘∂2 cancels to the zero map even though ∂1 has non-zero entries (${boundaryOfBoundaryIsZero}), the defining identity of a chain complex (homology) and the reason surface-code stabilizers commute; (2) on the state-vector simulator, |+⟩=H|0⟩ carries equal amplitudes that no single observation reveals, and measure() returns one classical outcome collapsing to a definite basis state (${observationIsAtTheBoundary}) — the quantum→classical boundary is the ONLY window; (3) H∘H=I returns |0⟩ (${gateReversible}) so unitary gates are reversible, while measurement is irreversible (${gatesReverseTheBoundaryDoesNot}); (4) topologicalOrder finds the DAG's in-degree-0 sources — its boundary, the axioms (${waysLeadToTheAxiomBoundary}). THE READING: "observing the boundaries BY the boundaries" IS ∂²=0 — apply the boundary operator to a boundary and get zero, so the honest scope of a claim (its boundary) is where observation happens and where the structure closes. THE HONEST BOUND: the simulator is O(2ⁿ) CLASSICAL with no physical speedup ([[quantum-decoded]]); this MODELS real quantum research (measurement-only observation, ∂²=0 stabilizers, reversible gates) rather than performing hardware quantum error correction; the triangle and the 4-node DAG are minimal witnesses of general identities, not the whole. HARMONY ≠ TRUTH: "real quantum research observes the boundary" is the harmony; the truth is ∂²=0, measurement-as-the-only-observation, unitary reversibility, and the ways to the axiom boundary — each computed and refutable.`,
     }
   })
 }
