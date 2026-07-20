@@ -1,5 +1,5 @@
 import { codeRobustness } from '../../earth/life'
-import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, type Discovery, verifyDiscovery, fieldOfContent } from '../../3/7'
+import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, type Discovery, verifyDiscovery, fieldOfContent, cyclicUnitsOrder } from '../../3/7'
 import { caStep, caEvolve } from '../../4/6'
 import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, dopplerShift, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
 import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../mountain/vortex'
@@ -2388,6 +2388,33 @@ export function theTrinityOfMindsIsQuantumOneMindIsLinearThreeSpanWithoutGaps() 
     root: merkleFold(axes.map((axis) => toUuid(`axis:${axis.join(',')}`))),
     statement: `A single mind is LINEAR: it measures one axis and leaves ${oneMindGaps} of the ${dimSu2} observables uncovered — gaps. The trinity of minds is QUANTUM: three axes equal dim su(2) = ${dimSu2} and span the whole matrix without gaps, and any two determine the third (the cross-product / Pauli-commutator closure, 2-of-3). This is why a mind always needs at least 2 more to complete its trinity and shift from linear to quantum — and wired to the rosetta, rosettaOwner over ${dimSu2} partitions every field disjointly with no gap.`,
     boundary: `Exact algebra: dim su(2) = 2²−1 = ${dimSu2}, and eᵢ = eⱼ × eₖ cyclically (the trinity is closed under cross product). The "mind" reading maps the project's collective-mind onto this real basis fact — 1 or 2 minds leave a gap, 3 span — it is not a claim that a person is a Pauli matrix. HARMONY ≠ TRUTH.`,
+  }
+}
+// FOLDING ONE DISCOVERS OTHERS (user law) — the fold is GENERATIVE: apply the operation from a single seed and it
+// discovers the rest. The same map that COMPACTS the many theorems to a few roots, run forward, UNFOLDS one into
+// many — discovery is folding forward. [[flagged-inverts-to-proven-theorem]] [[quantum-speed-is-content-addressed-naming]]
+export function foldingOneDiscoversOthers() {
+  // 1 — ONE SEED DISCOVERS THE WHOLE GROUP: fold 2 under ×2 mod 9 → {2,4,8,7,5,1} = all its units (2 is a primitive root)
+  const orbit: number[] = []
+  let x = 2
+  for (let step = 0; step < cyclicUnitsOrder(9); step++) { orbit.push(x); x = (x * 2) % 9 }
+  const seedDiscoversGroup = new Set(orbit).size === cyclicUnitsOrder(9) // one generator, the whole (ℤ/9)*
+  // 2 — TWO DISCOVER THE THIRD: fold two axes by cross product → the third (the trinity closes from any two)
+  const axes = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+  const cross = (a: number[], b: number[]) => [a[1]! * b[2]! - a[2]! * b[1]!, a[2]! * b[0]! - a[0]! * b[2]!, a[0]! * b[1]! - a[1]! * b[0]!]
+  const twoDiscoverThird = cross(axes[0]!, axes[1]!).every((value, i) => value === axes[2]![i])
+  // 3 — THE FOLD IS GENERATIVE: the operation that compacts many→root, run forward, unfolds root→many
+  const generative = seedDiscoversGroup && twoDiscoverThird
+  const facets = [
+    { facet: `ONE SEED DISCOVERS THE GROUP — folding 2 under ×2 mod 9 discovers {${orbit.join(',')}} = all ${cyclicUnitsOrder(9)} units (${seedDiscoversGroup}): a primitive root generates the others`, on: seedDiscoversGroup },
+    { facet: `TWO DISCOVER THE THIRD — folding two axes (cross product) discovers the third (${twoDiscoverThird}): the trinity closes from any two`, on: twoDiscoverThird },
+    { facet: `THE FOLD IS GENERATIVE — the same operation compacts many→root and unfolds root→many; discovery is the fold run forward (${generative})`, on: generative },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), orbit, facets,
+    root: merkleFold(orbit.map((n) => toUuid(`orbit:${n}`))),
+    statement: `Folding one discovers others: the fold is generative. Fold 2 under ×2 mod 9 and it discovers the whole group {${orbit.join(',')}} — a single primitive root generates every other unit; fold two axes by cross product and discover the third — the trinity closes from any two. The map that compacts the many theorems onto a few roots, run forward, unfolds one root into many. Discovery is folding forward.`,
+    boundary: `Exact for a cyclic group (a primitive root generates it) and a 3-basis (two vectors fix the third). "Discovers others" is this generative property — the orbit under the operation, the closure of the basis — not unbounded creation; a non-generator (e.g. 3 mod 9) folds to a sub-orbit, not the whole. HARMONY ≠ TRUTH.`,
   }
 }
 export function theRosettaApiIsTheOneChannelClaimRegisterIntegrate(mindCount = 3) {
