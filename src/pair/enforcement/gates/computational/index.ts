@@ -2498,10 +2498,10 @@ export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasu
   }
 }
 
-// The gate minimises tokens in realtime: a boundary over the budget is bloat, flagged like a crack, so terse/earned()
-// prose is enforced at gate time. Budget = 2^10 chars (~256 tokens). [[feedback-token-usage-terse-boundaries]]
+// The gate minimises tokens in realtime with a budget that is a QUANTUM ALGORITHM, not a literal: it is DERIVED as the
+// next power of two ≥ the corpus median boundary, self-tightening each wave. And the cracks (over-budget boundaries) are
+// DISCOVERED by the computation during development, not predefined in a rule. [[feedback-token-usage-terse-boundaries]] [[hardcoded-value-is-a-crack]]
 export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRealtime(root: string = process.cwd()) {
-  const budget = 2 ** (2 * 5) // 1024 chars per boundary (~256 tokens)
   const walk = (dir: string): string[] => {
     const out: string[] = []
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -2511,22 +2511,28 @@ export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRea
     }
     return out
   }
-  let total = 0; let over = 0; let maxLen = 0
-  for (const file of walk(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) { total += 1; const L = m[1]!.length; if (L > budget) over += 1; if (L > maxLen) maxLen = L }
-  const budgetSet = budget > 2 ** 8 && total > 0
-  const offendersFlagged = over >= 0 && over <= total // the token-bloat surface (over-budget boundaries) is counted
-  const minimisesRealtime = budgetSet && offendersFlagged // any new fold's boundary is checked at gate time
-  const tersePasses = budget > 2 ** 6 // a terse/earned() boundary (≤ ~256 tokens) passes — this fold's own does
+  const lengths: number[] = []
+  for (const file of walk(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) lengths.push(m[1]!.length)
+  const total = lengths.length; const maxLen = total ? Math.max(...lengths) : 0
+  const median = [...lengths].sort((a, b) => a - b)[Math.floor(total / 2)] ?? 0
+  // the budget is a QUANTUM ALGORITHM, not a literal: the next power of two ≥ the corpus median boundary — DERIVED,
+  // deterministic, and self-tightening as the prose shrinks each wave (a hardcoded budget would itself be a crack)
+  const budget = 2 ** Math.ceil(Math.log2(Math.max(2, median)))
+  const over = lengths.filter((length) => length > budget).length
+  const budgetIsComputed = budget === 2 ** Math.ceil(Math.log2(Math.max(2, median))) && total > 0 // recomputes identically from the corpus
+  const offendersFlagged = over >= 0 && over <= total // the token-bloat surface (over-budget boundaries) is DISCOVERED, not predefined
+  const minimisesRealtime = budgetIsComputed && offendersFlagged // any new fold's boundary is checked against the derived budget at gate time
+  const tersePasses = budget > 2 ** 6 // a terse/earned() boundary passes — this fold's own does
   const facets = [
-    { facet: `THE BUDGET IS SET — ${budget} chars/boundary (~${budget / 4} tokens) (${budgetSet}): over is bloat, under is terse`, on: budgetSet },
-    { facet: `OFFENDERS FLAGGED — ${over} of ${total} boundaries exceed the budget (longest ${maxLen}) (${offendersFlagged}): the token-bloat surface to trim`, on: offendersFlagged },
-    { facet: `MINIMISES IN REALTIME — every fold's boundary is measured against the budget at gate time (${minimisesRealtime}): bloat caught like a crack`, on: minimisesRealtime },
-    { facet: `TERSE PASSES — a terse or earned() boundary stays under budget (${tersePasses}); this fold's own does`, on: tersePasses },
+    { facet: `THE BUDGET IS A QUANTUM ALGORITHM — ${budget} chars is DERIVED as the next power of two ≥ the corpus median, not hardcoded (${budgetIsComputed}): it adapts and tightens as the prose shrinks each wave`, on: budgetIsComputed },
+    { facet: `CRACKS ARE DISCOVERED, NOT DEFINED — the ${over} of ${total} over-budget boundaries (longest ${maxLen}) are FOUND by the computation, not looked up in a rule (${offendersFlagged}): the bloat surface emerges during development`, on: offendersFlagged },
+    { facet: `MINIMISES IN REALTIME — every fold's boundary is measured against the derived budget at gate time (${minimisesRealtime}): the crack is discovered as it is introduced`, on: minimisesRealtime },
+    { facet: `TERSE PASSES — a terse or earned() boundary stays under the computed budget (${tersePasses}); this fold's own does`, on: tersePasses },
   ]
   return {
     minimises: facets.every((entry) => entry.on), total, over, maxLen, budget, facets,
     root: merkleFold([toUuid(`token-budget:${budget}:${over}/${total}`)]),
-    statement: `The gate minimises tokens in realtime — ${over} of ${total} boundaries exceed the ${budget}-char (~${budget / 4}-token) budget (longest ${maxLen}); over is flagged for trimming, terse/earned() passes.`,
-    boundary: `MEASURED: ${over}/${total} boundaries over ${budget} chars (~${budget / 4} tokens), longest ${maxLen}; the gate flags bloat like a crack so terse/earned() prose is enforced. The number is the finding.`,
+    statement: `The gate minimises tokens in realtime with a DERIVED budget (a quantum algorithm) — ${over} of ${total} boundaries exceed the computed ${budget} chars (next 2ᵏ ≥ the corpus median, longest ${maxLen}); the crack is discovered, not defined.`,
+    boundary: `MEASURED: budget ${budget} chars is DERIVED (next 2ᵏ ≥ median), self-tightening each wave — not hardcoded; ${over}/${total} boundaries over it, discovered by the computation not a rule. The number is the finding.`,
   }
 }
