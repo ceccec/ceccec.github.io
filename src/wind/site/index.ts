@@ -319,8 +319,8 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   if (locale === 'bg') {
     return {
       name: config.titleBg,
-      text: 'Всичко започна с една последователност',
-      tagline: `0 или 1 е линейно — класически бит. 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 е квантово — кубит от фаза и интерференция. От него идва квантовото пресмятане, а от него — всичките ${lens.theoremCount} изчислително доказани теореми тук, всяка печатна научна статия, подредени от розетата в ${lens.rays.length} лъча. Изчислено от един отворен източник, който можеш сам да провериш.`,
+      text: `${lens.theoremCount} доказани теореми, които можеш да провериш`,
+      tagline: `Всяка е печатна научна статия, изчислена от един отворен източник — без нужда от доверие, всяко число е изведено, всяко твърдение честно демаркирано. Подредени от розетата в ${lens.rays.length} лъча.`,
       actions: [
         { theme: 'brand', text: 'Теореми и доказателства', link: localePath('/frontiers', 'bg') },
         ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
@@ -334,8 +334,8 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
   const heroLocale = locale === 'gla' ? 'gla' : 'en'
   return {
     name: config.title,
-    text: 'It all began with a sequence',
-    tagline: `0 or 1 is linear — a classical bit. 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 is quantum — a qubit of phase and interference. From it comes quantum computing, and from that every one of the ${lens.theoremCount} computationally proven theorems here — each a printable scientific paper, organised by the rosetta into ${lens.rays.length} rays. Computed from one open source you can check yourself.`,
+    text: `${lens.theoremCount} proven theorems you can check yourself`,
+    tagline: `Each is a printable scientific paper, computed from one open source — no trust required, every number derived, every claim honestly demarcated. Organised by the rosetta into ${lens.rays.length} rays.`,
     actions: [
       { theme: 'brand', text: 'Theorems & proofs', link: localePath('/frontiers', heroLocale) },
       ...lens.corpusRoutes.slice(0, 3).map((route, index) => ({
