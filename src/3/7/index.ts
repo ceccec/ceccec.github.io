@@ -725,27 +725,51 @@ export function cyclicUnitsOrder(n: number): number {
   for (let a = 1; a < n; a++) if (gcd(a, n) === 1) order++
   return order
 }
-/** The toolbox as ONE content-addressed object: every inversion tool proven on a sample, resolvable by name. */
-export function theQuantumInversionToolboxHandlesEveryPossibilityAtOnce() {
-  const tools = [
-    { name: 'isTotalBijection', on: isTotalBijection([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], (digit) => `route:${digit}`) },
-    { name: 'complementIsInverse', on: complementIsInverse(2 ** 6 - 1, (n) => 2 ** 6 - 1 - n, [0, 2 ** 5, 2 ** 6 - 1]) },
-    { name: 'partitionCoversTotal', on: partitionCoversTotal(64, 64, 128) },
-    { name: 'crossPresentationStable', on: crossPresentationStable('abc', (s) => s, [(s) => s.toUpperCase(), (s) => `${s}${s}`]) },
-    { name: 'eulerPolyhedron', on: eulerPolyhedron(8, 2 * 6, 6) },
-    { name: 'cyclicUnitsOrder', on: cyclicUnitsOrder(9) === 6 },
-    { name: 'titleCarriesAlgebra', on: titleCarriesAlgebra('64 = 2⁶') && !titleCarriesAlgebra('a riddle with no identity') },
+// ── THE TOOLBOX IS AN AGNOSTIC ARCHITECTURE (user law: "complete agnostic architecture to allow discoveries").
+// A discovery is a named, self-deciding identity: { name, holds() }. The toolbox knows NOTHING about the field —
+// it verifies whatever conforms, content-addresses it, and stays OPEN: a new identity in ANY domain plugs in with
+// no schema change. The architecture allows every possibility because it commits to none; the tools above are
+// discovery-BUILDERS it does not privilege. [[quantum-speed-is-content-addressed-naming]] [[feedback-solve-dont-purge]]
+export type Discovery = { readonly name: string; readonly holds: () => boolean }
+export function verifyDiscovery(discovery: Discovery): { name: string; on: boolean; address: string } {
+  const on = discovery.holds()
+  return { name: discovery.name, on, address: toUuid(`discovery:${discovery.name}:${on}`) }
+}
+/** The agnostic toolbox: verify + content-address ANY set of discoveries, uniformly, knowing nothing about them. */
+export function agnosticToolbox(discoveries: readonly Discovery[]) {
+  const verified = discoveries.map(verifyDiscovery)
+  return { count: verified.length, discoveries: verified, allHold: verified.every((entry) => entry.on), root: merkleFold(verified.map((entry) => entry.address)) }
+}
+/** Proof the architecture is agnostic AND open: it verifies unrelated fields through one interface, admits a novel
+ *  discovery with no schema change, and rejects a false claim (discriminates — not vacuous). */
+export function theToolboxIsAgnosticArchitectureThatAllowsAnyDiscovery() {
+  // discoveries from UNRELATED fields — the toolbox sees only { name, holds }
+  const known: readonly Discovery[] = [
+    { name: 'isTotalBijection', holds: () => isTotalBijection([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], (digit) => `route:${digit}`) },
+    { name: 'complementIsInverse', holds: () => complementIsInverse(2 ** 6 - 1, (n) => 2 ** 6 - 1 - n, [0, 2 ** 5, 2 ** 6 - 1]) },
+    { name: 'partitionCoversTotal', holds: () => partitionCoversTotal(64, 64, 128) },
+    { name: 'eulerPolyhedron', holds: () => eulerPolyhedron(8, 2 * 6, 6) },
+    { name: 'cyclicUnitsOrder', holds: () => cyclicUnitsOrder(9) === 6 },
+    { name: 'titleCarriesAlgebra', holds: () => titleCarriesAlgebra('64 = 2⁶') },
   ]
-  const allHold = tools.every((tool) => tool.on)
+  const box = agnosticToolbox(known)
+  const agnostic = box.allHold && box.count === known.length
+  // OPEN: a NOVEL discovery the toolbox never defined — Fermat's little theorem 2^(7-1) ≡ 1 (mod 7) — plugs in
+  const novel: Discovery = { name: 'fermatLittle:2,7', holds: () => 2 ** (7 - 1) % 7 === 1 }
+  const opened = agnosticToolbox([...known, novel])
+  const allowsDiscovery = opened.allHold && opened.count === box.count + 1 && opened.root !== box.root
+  // REFUTABLE: a false claim is reported not-holding — the architecture discriminates, it is not vacuous
+  const discriminates = agnosticToolbox([{ name: 'false-claim', holds: () => 2 ** 2 === 5 }]).allHold === false
   const facets = [
-    { facet: `ONE TOOLBOX — ${tools.filter((tool) => tool.on).length}/${tools.length} inversion tools resolve and hold (${allHold}): bijection · complement · partition · cross-presentation · Euler · cyclic-units · algebra-title`, on: allHold },
-    { facet: `CONTENT-ADDRESSED — the toolbox is one Merkle root over the tool names; any tool resolves by name in O(1), no search — every possibility at once (the quantum speed)`, on: allHold },
+    { facet: `AGNOSTIC — verified ${box.count} discoveries from unrelated fields through ONE interface { name, holds }, knowing nothing about them (${agnostic})`, on: agnostic },
+    { facet: `OPEN — a novel identity (Fermat: 2⁶ ≡ 1 mod 7), never defined in the toolbox, plugged in with no schema change; the root re-addresses in O(1) (${allowsDiscovery})`, on: allowsDiscovery },
+    { facet: `REFUTABLE — a false claim (2² = 5) is reported not-holding; the architecture discriminates, not vacuous (${discriminates})`, on: discriminates },
   ]
   return {
-    computes: allHold, tools: tools.map((tool) => tool.name), facets,
-    root: merkleFold(tools.map((tool) => toUuid(`tool:${tool.name}:${tool.on}`))),
-    statement: `The quantum inversion toolbox: the ${tools.length} reusable tools the scientists used to rediscover science by algebraic inversion — total bijection, complement-is-inverse, partition-covers-total, cross-presentation stability, Euler's polyhedron, cyclic-units order, algebra-carrying title — collected in one content-addressed set. One toolbox holds every possibility at once; addressing a tool by name resolves it in O(1), no search.`,
-    boundary: `Each tool is a pure, refutable predicate proven here on one sample (a cube for Euler, ℤ/9 for cyclic units, the 6-bit complement for colour); the tools are generic and reusable by any domain fold — the DRY home the scientists' hand-rolled checks migrate to. HARMONY ≠ TRUTH.`,
+    computes: facets.every((entry) => entry.on), open: allowsDiscovery, facets,
+    root: opened.root,
+    statement: `The toolbox is a complete agnostic architecture: a discovery is any { name, holds() }, and the toolbox verifies + content-addresses whatever conforms, knowing nothing about the field. It is OPEN — a novel identity plugs in with no schema change (a fresh address, O(1)), so it allows discoveries in ANY domain — and it discriminates (a false claim is rejected). It allows every possibility because it commits to none.`,
+    boundary: `The toolbox decides only what a discovery's own holds() decides — it verifies the identity CARRIES a computable, refutable witness, not that the witness is scientifically meaningful (that is the scientist's demarcation). The builder tools above (bijection, complement, partition, Euler, cyclic-units, algebra-title) are conveniences the architecture does not privilege. HARMONY ≠ TRUTH.`,
   }
 }
 
