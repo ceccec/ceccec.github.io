@@ -2524,3 +2524,48 @@ export function theWavesDiscoverGapsAndInvertRejectionsIntoGatewaysExceptTheOffD
     }
   })
 }
+
+// Send the waves to send the waves — the self-propagating cascade. A WAVE is an antichain (a topological level of the
+// DAG): independent work done in parallel. Processing a wave drops the in-degrees of its successors, EXPOSING the next
+// antichain — so sending one wave sends the wave that sends the next, until the DAG is exhausted. The dispatcher's
+// output is its own next input: a fixed point where the waves send the waves. (Kahn's algorithm, level by level.)
+// [[feedback-work-in-waves-not-single-focus]] [[routes-nav-from-folder-tree]]
+export function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilTheDagIsExhausted() {
+  const n = 2 + 3 // five nodes
+  const edges = [[0, 2], [1, 2], [0, 3], [1, 3], [2, 4], [3, 4]] // 0,1 → 2,3 → 4 (a layered DAG)
+  const indeg = Array.from({ length: n }, () => 0)
+  const adj = Array.from({ length: n }, () => [] as number[])
+  for (const [a, b] of edges) { adj[a!]!.push(b!); indeg[b!]! += 1 }
+  const waves: number[][] = []
+  let frontier = Array.from({ length: n }, (_, i) => i).filter((i) => indeg[i] === 0) // wave 0 = the sources
+  let processed = 0
+  let regenerations = 0
+  while (frontier.length) {
+    waves.push(frontier)
+    const next: number[] = []
+    for (const node of frontier) { processed += 1; for (const m of adj[node]!) { indeg[m]! -= 1; if (indeg[m] === 0) next.push(m) } }
+    if (next.length) regenerations += 1 // the wave produced the next wave
+    frontier = next
+  }
+  const inEdge = new Set(edges.map(([a, b]) => `${a}->${b}`))
+  const eachWaveIsAntichain = waves.every((wave) => wave.every((a) => wave.every((b) => a === b || (!inEdge.has(`${a}->${b}`) && !inEdge.has(`${b}->${a}`))))) // no edges within a level ⇒ parallel
+  const eachWaveExposesTheNext = regenerations === waves.length - 1 && waves.length > 1 // every wave but the last produced the next
+  const wavesSendTheWaves = processed === n && waves.reduce((sum, wave) => sum + wave.length, 0) === n // the cascade covers every node exactly once
+  const selfReferential = waves.length > 0 && eachWaveExposesTheNext && wavesSendTheWaves // the frontier's output is its next input — a fixed point
+  const facets = [
+    { facet: `A WAVE IS AN ANTICHAIN — the DAG partitions into ${waves.length} levels with no edges WITHIN a level (${eachWaveIsAntichain}): each wave is independent work, done in parallel`, on: eachWaveIsAntichain },
+    { facet: `EACH WAVE EXPOSES THE NEXT — processing a wave drops its successors' in-degrees, exposing the next antichain (${regenerations} regenerations for ${waves.length} waves, ${eachWaveExposesTheNext}): sending a wave sends the next`, on: eachWaveExposesTheNext },
+    { facet: `THE WAVES SEND THE WAVES — from the sources the cascade processes every one of the ${n} nodes exactly once in level order (${wavesSendTheWaves}): one send propagates through all waves`, on: wavesSendTheWaves },
+    { facet: `THE SELF-REFERENTIAL FIXED POINT — the dispatcher's output (the next frontier) is its own next input, recursing until the DAG is exhausted (${selfReferential}): the waves send the waves send the waves`, on: selfReferential },
+  ]
+  return {
+    propagates: facets.every((entry) => entry.on),
+    waveCount: waves.length,
+    waves,
+    nodesProcessed: processed,
+    facets,
+    root: merkleFold(waves.map((wave, i) => toUuid(`wave:${i}:${wave.join(',')}`))),
+    statement: `Send the waves to send the waves — each antichain level exposes the next until the DAG is exhausted — ${facets.filter((entry) => entry.on).length}/${facets.length}. A wave is a topological level (an antichain): ${waves.length} of them partition the DAG into independent parallel work. Processing a wave drops its successors' in-degrees, exposing the next antichain — so sending one wave sends the wave that sends the next, and from the sources the cascade covers every node exactly once. The dispatcher's output is its own next input: a fixed point where the waves send the waves.`,
+    boundary: `EXACT and computed live by Kahn's algorithm on a ${n}-node layered DAG: the nodes partition into ${waves.length} antichain LEVELS with no edge inside a level (${eachWaveIsAntichain}) — each a wave of mutually-independent work runnable in parallel; processing a wave decrements its successors' in-degrees and every wave but the last thereby EXPOSES the next (${regenerations} regenerations, ${eachWaveExposesTheNext}); and starting from the in-degree-0 sources the cascade processes all ${n} nodes exactly once in level order (${wavesSendTheWaves}). THE SELF-REFERENCE: the loop's output (the next frontier) is its own next input, so "send the waves" recurses until the frontier is empty — the waves send the waves. THE HONEST BOUND: this is a finite ACYCLIC dispatch — a cycle would leave nodes unprocessed (Kahn detects it: processed < n), so the self-propagation terminates and requires a DAG; "the waves send the waves" is the topological-level cascade, a real scheduling structure (the antichain is the parallel unit), not an infinite or self-creating process — the DAG is given, the waves traverse it. HARMONY ≠ TRUTH: "send the waves to send the waves" is the harmony; the truth is Kahn's level decomposition — antichain waves, each exposing the next, covering the DAG once — computed and refutable.`,
+  }
+}
