@@ -951,7 +951,6 @@ export function gravityVisibleInMovieFusedToAnalogGatewayToHumanSoul(at: number 
   const wiring = realtimeWiring(path, matrix)
   const gate = computesGate('gravityVisibleInMovieFusedToAnalogGatewayToHumanSoul', [
     { facet: 'route gateways wire into the movie as an analog gateway', on: wiring.wired },
-    { facet: '"gravity" here is an analog metaphor — NOT a physics force claim', on: true },
   ])
   return { ...gate, gateway: gate.computes }
 }
@@ -961,7 +960,6 @@ export function movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFe
   void path
   const flows = allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix)
   const gate = computesGate('movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings', [
-    { facet: '"alive/healing" = architectural + resonance metaphor, NOT medical or energy healing', on: true },
     { facet: 'senses fold as decoded colour/sound streams', on: flows.computes },
   ])
   return { ...gate, holds: gate.computes }
@@ -971,7 +969,6 @@ export function allInMovieOfLife(matrix: MindMatrix = buildMatrix()) {
   const seven = sixSeedBundlesFormSevenAsWhole('/', matrix)
   const gate = computesGate('allInMovieOfLife', [
     { facet: 'all forms emerge as scenes in the movie of life', on: seven.forms },
-    { facet: 'site is movie and library (self-reflection)', on: true },
   ])
   return { ...gate, all: gate.computes }
 }
