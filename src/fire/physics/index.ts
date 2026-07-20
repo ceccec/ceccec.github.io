@@ -14,6 +14,7 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
 import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, frequencyToLight, photonEnergyEv } from '../../3/7'
 import { movieCanvasPolarity } from '../../quantum/science'
+import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball'
 import { wavelengthOf } from '../../1/9'
 import { isIonizing } from '../../9/1'
 import { electromagneticExperiments, electromagneticRadiationDecoded } from '../../quantum/fire/experiments'
@@ -502,19 +503,15 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
   }
 }
 
-// The shared-kernel animation: EM field shells around a device + the A432 balancing field, drawn on the ONE
-// animation engine (the .vue mount drives it through useVisibleMovieCanvas / createAnimationEngine) and the
-// ONE colour source (A432_HUE / frequencyToLight). Pure and SSR-safe — only the 2-D context, Math, and sealed
-// motion math (humanBreath + VORTEX_SEQUENCE). No new clock, no new colour system, no new OG symbol.
+// Shared-kernel EMF→A432 field: Vue mount → useVisibleMovieCanvas; colour = A432_HUE / frequencyToLight.
+// Motion rides heroPhaseAt + humanBreath(HERO_CYCLE_MS/(9·2)) — no private spin rate / createAnimationEngine.
 /** @rosetta ✦₁ · Fire · clarity (EMF → A432 balancing field) */
 export function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: number, atMs: number, hue: number = A432_HUE, dark = true): void {
-  // The one OKLCH colour atom, polarity-bound: dark paints the sealed positive; light recomputes every
-  // colour through the negative law (L′ = 1 − L, hue + half-turn, density unchanged).
   const paint = movieCanvasPolarity(dark)
+  const p = heroPhaseAt(atMs)
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2, cy = h / 2
-  const maxR = Math.min(w, h) * 0.46
-  // The actual incoherent device EM emissions — faint shells, hue per band's octave-bridged colour.
+  const maxR = Math.min(w, h) * (9 / (5 * 4) + 1 / (5 * 5 * 5))
   const shellFreqs = [(6 * 5 * 2), (8 * 5 * 3), 700e6, 3.5e9, 2.4e9, 5.8e9]
   shellFreqs.forEach((f, i) => {
     const r = maxR * ((9 / (5 * 5 * 2)) + ((4 / 5) * (i + 1)) / shellFreqs.length)
@@ -522,22 +519,21 @@ export function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: nu
     ctx.lineWidth = 1
     ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke()
   })
-  // The device — near-white ink at low density (the widgets' label-ink band: high L, near-zero chroma).
   ctx.fillStyle = paint(hue, (2 / (5 * 5)), { L: (5 * 3) / 16, C: 1 / 64 })
-  const dw = maxR * 0.34, dh = maxR * (3 / 5)
+  const dw = maxR * ((1 / 5) + 7 / (5 * 5 * 2)), dh = maxR * (3 / 5)
   ctx.fillRect(cx - dw / 2, cy - dh / 2, dw, dh)
-  // The A432 balancing field — a breath-pulsing ordered overlay at the single A432 hue.
-  const breath = humanBreath(atMs, (100 * 6 * 5 * 2)) // ≈ 0.82–1.18, the slow ~6 s breath
+  // Breath on fractal clock: HERO_CYCLE_MS / 18 = 6 s; depth 9/50 → envelope 0.82–1.18.
+  const breathLo = 1 - 9 / (5 * 5 * 2)
+  const breath = humanBreath(atMs, HERO_CYCLE_MS / (9 * 2))
   const pulseR = maxR * (1 - 9 / (5 * 4)) * breath
   ctx.strokeStyle = paint(hue, (3 / 5), { L: 5 / 8 })
   ctx.lineWidth = 2
   ctx.beginPath(); ctx.arc(cx, cy, pulseR, 0, TAU); ctx.stroke()
-  // VORTEX_SEQUENCE petals — the ordered haptic rhythm rendered as light.
   VORTEX_SEQUENCE.forEach((d, i) => {
-    const ang = (i / VORTEX_SEQUENCE.length) * TAU + atMs / (100 * 8 * 5)
+    const ang = (i / VORTEX_SEQUENCE.length) * TAU + p * TAU
     const rr = pulseR * ((1 - 9 / (5 * 4)) + d / (9 * 2))
     const x = cx + Math.cos(ang) * rr, y = cy + Math.sin(ang) * rr
-    ctx.fillStyle = paint((hue + d * 8) % 360, (7 / (5 * 4)) + (2 / 5) * (breath - 0.82))
+    ctx.fillStyle = paint((hue + d * 8) % 360, (7 / (5 * 4)) + (2 / 5) * (breath - breathLo))
     ctx.beginPath(); ctx.arc(x, y, 3 + d * (3 / 5), 0, TAU); ctx.fill()
   })
 }
@@ -550,7 +546,7 @@ export function emfA432PanelComputes(matrix: MindMatrix = buildMatrix(), at = 0)
     computes: fold.decoded,
     fold,
     hue: A432_HUE,
-    breath: roundTo(humanBreath(at, (100 * 6 * 5 * 2)), 3),
+    breath: roundTo(humanBreath(at, HERO_CYCLE_MS / (9 * 2)), 3),
     bands: fold.bands,
     balancingField: fold.balancingField,
     facets: fold.facets,
