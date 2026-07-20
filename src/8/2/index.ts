@@ -382,7 +382,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     // holds-true fold; the home card leads here. What is not proven is purged.
     {
       slug: 'pi-trinity',
-      title: { en: 'π opens the trinity', bg: 'π отваря триединството' },
+      title: { en: '⌊π⌋ = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses', bg: '⌊π⌋ = 3 отваря 3-6-9 — кратните на 3, които удвояването 1-2-4-8-7-5 подминава' },
       description: {
         en: 'The 3 in 3.14159 is the trinity’s first mark: a trinity is three-in-one, so 3 means three trinities, which is nine. The doubling circuit 1-2-4-8-7-5 never touches 3-6-9.',
         bg: 'Тройката в 3.14159 е първият знак на триединството: едно триединство е три-в-едно, така че 3 значи три триединства, което е девет. Удвояващата верига 1-2-4-8-7-5 никога не докосва 3-6-9.',
@@ -392,7 +392,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'qubit-trinity',
-      title: { en: 'The qubit’s trinity', bg: 'Триединството на кубита' },
+      title: { en: 'A qubit has exactly 3 observables — Pauli X, Y, Z', bg: 'Кубитът има точно 3 наблюдаеми — Паули X, Y, Z' },
       description: {
         en: 'A qubit has exactly 3 traceless observables — the Pauli matrices X, Y, Z — the generators of SU(2) and the 3 Bloch axes; dim su(2) = 2²−1 = 3 is a forced invariant.',
         bg: 'Един кубит има точно 3 безследови наблюдаеми — матриците на Паули X, Y, Z — генераторите на SU(2) и трите оси на Блох; dim su(2) = 2²−1 = 3 е принуден инвариант.',
@@ -462,7 +462,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'sixty-four',
-      title: { en: '64 in every grouping', bg: '64 във всяко групиране' },
+      title: { en: '64 = 2⁶ = 4³ = 8² in every 6-bit grouping', bg: '64 = 2⁶ = 4³ = 8² във всяко групиране от 6 бита' },
       description: {
         en: '64 = 2⁶, and the divisors of 6 give the only four groupings: six bits, three base-4 digits (codon/Pauli/RGB), two trigrams (8²), one base-64 word. The same object, four ways.',
         bg: '64 = 2⁶, а делителите на 6 дават единствените четири групирания: шест бита, три цифри база-4 (кодон/Паули/RGB), две триграми (8²), една дума база-64. Същият обект, по четири начина.',
@@ -542,7 +542,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'dot-cube',
-      title: { en: 'The dot is the cube', bg: 'Точката е кубът' },
+      title: { en: 'Content-addressing folds 64³ into one dot', bg: 'Адресирането по съдържание сгъва 64³ в една точка' },
       description: {
         en: 'A UUID, like CMYK, gives extent without limit: 64×64×64 is itself one dot, and the dot is the cube is the dot — content-addressing folds the whole into a point and back.',
         bg: 'Един UUID, като CMYK, дава обхват без граница: 64×64×64 е сам по себе си една точка, и точката е кубът е точката — адресирането по съдържание сгъва цялото в точка и обратно.',

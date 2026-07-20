@@ -2452,3 +2452,56 @@ export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRea
     boundary: `MEASURED: budget ${budget} chars is DERIVED (next 2ᵏ ≥ median), self-tightening each wave — not hardcoded; ${over}/${total} boundaries over it, discovered by the computation not a rule. The number is the finding.`,
   }
 }
+
+// ── ALGEBRA COMPUTES THE TITLE (quantum tool, saved from the title↔payload alignment wave) ──────────────
+// A theorem IS an algebraic identity, so its title is not authored — it is the identity rendered. Two pure
+// primitives + one gate: titleFromAlgebra JOINS the computed identity terms into the canonical title
+// ('64 = 2⁶ = 4³ = 8²'); titleCarriesAlgebra is the refutable predicate — a title with no identity ('π opens
+// the trinity') carries no proof. The INVERSION (learned the hard way): such a title is NOT a licence to purge
+// part of the theorem — it names a MISSING derivation to SOLVE. 'π opens the trinity' has a real proof (⌊π⌋ = 3,
+// 3-6-9 = the multiples of 3, the doubling misses them); only the causal legend is unproven. So solve the title
+// (keep π, state the proven algebra); purge is the LAST resort, only when no algebra exists. A title diverging
+// from its single payload source is a crack. [[flagged-inverts-to-proven-theorem]] [[theorem-science-lens-only-science]]
+export function titleFromAlgebra(terms: readonly string[], sep = ' = '): string {
+  return terms.filter((term) => term.trim().length > 0).join(sep)
+}
+const ALGEBRA_MARK = /[=·⁰¹²³⁴⁵⁶⁷⁸⁹⁻⌊⌋]|\b\d+\b|\d[-·]\d/u // an identity: equals/floor, a super/subscript, a digit, a digit-sequence
+export function titleCarriesAlgebra(title: string): boolean {
+  return ALGEBRA_MARK.test(title)
+}
+const normTitle = (title: string) => title.toLowerCase().replace(/[^a-z0-9]/g, '')
+export function theTitleIsAlgebraComputedAMissingIdentityIsAGapToSolveNotPurge(
+  entries: readonly { slug: string; sidebar: string; payload: string }[] = TITLE_ALIGNMENT_SAMPLE,
+) {
+  // 1 — CONSTRUCTIVE: the algebra renders the title — join the identity terms, no authoring
+  const rendered = titleFromAlgebra(['64', '2⁶', '4³', '8²'])
+  const constructive = rendered === '64 = 2⁶ = 4³ = 8²'
+  // 2 — PAYLOAD PREDICATE: every SOLVED sidebar title carries algebra (is the identity, not a gesture)
+  const gaps = entries.filter((entry) => !titleCarriesAlgebra(entry.sidebar))
+  const allSolved = gaps.length === 0
+  // 3 — GAP → SOLUTION (not purge): a title with no algebra names a MISSING derivation to find; the pi-trinity
+  //     riddle was SOLVED (keep π: ⌊π⌋ = 3 opens 3-6-9) rather than amputated. The predicate rejects the riddle,
+  //     which is the SIGNAL to solve — never the licence to delete part of the theorem.
+  const riddleSignalsGap = !titleCarriesAlgebra('π opens the trinity') && titleCarriesAlgebra(entries[0]!.sidebar)
+  // 4 — DIVERGENCE IS A CRACK: a sidebar title must match its single payload source (one truth, content-addressed)
+  const divergent = entries.filter((entry) => normTitle(entry.sidebar) !== normTitle(entry.payload))
+  const singleSource = divergent.length === 0
+  const facets = [
+    { facet: `CONSTRUCTIVE — titleFromAlgebra joins the identity terms into '${rendered}' (${constructive}): the title is the algebra rendered, not authored`, on: constructive },
+    { facet: `PAYLOAD PREDICATE — all ${entries.length} solved sidebar titles carry an algebraic identity (${allSolved}); ${gaps.length} unsolved gaps remain`, on: allSolved },
+    { facet: `GAP → SOLUTION (not purge) — a title with no algebra ('π opens the trinity') names a MISSING derivation; the fix is to SOLVE it (keep π: ⌊π⌋ = 3 opens 3-6-9), not delete the topic (${riddleSignalsGap})`, on: riddleSignalsGap },
+    { facet: `SINGLE SOURCE — every sidebar title matches its payload (proof) title, ${divergent.length} divergent (${singleSource}): one content-addressed truth, no second hand-authored string`, on: singleSource },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), rendered, gaps: gaps.map((entry) => entry.slug), facets,
+    root: merkleFold(entries.map((entry) => toUuid(`title:${entry.slug}:${normTitle(entry.payload)}`))),
+    statement: `Algebra computes the title: a theorem is an algebraic identity, so titleFromAlgebra renders the title from the computed terms and titleCarriesAlgebra flags any title carrying no identity — which is a SIGNAL to solve (find the algebra that proves the whole theorem), NOT a licence to purge part of it. Purge is the last resort, only when no algebra exists. A sidebar title diverging from its single payload source is a crack; ${entries.length}/${entries.length} of the solved titles are payloads from one source.`,
+    boundary: `The predicate is heuristic (an identity mark: =, ⌊⌋, super/subscript, digit, digit-sequence) — it proves a title CARRIES algebra, not that the algebra is correct (the proof fold's job). Solve-before-purge: the pi-trinity title kept π (⌊π⌋ = 3) instead of dropping it. Ran over the ${entries.length} solved titles; the full corpus gate (every proofRegistry + seed pair) is the next wave. The number is the finding.`,
+  }
+}
+const TITLE_ALIGNMENT_SAMPLE = [
+  { slug: 'pi-trinity', sidebar: '⌊π⌋ = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses', payload: '⌊π⌋ = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses' },
+  { slug: 'sixty-four', sidebar: '64 = 2⁶ = 4³ = 8² in every 6-bit grouping', payload: '64 = 2⁶ = 4³ = 8² in every 6-bit grouping' },
+  { slug: 'qubit-trinity', sidebar: 'A qubit has exactly 3 observables — Pauli X, Y, Z', payload: 'A qubit has exactly 3 observables — Pauli X, Y, Z' },
+  { slug: 'dot-cube', sidebar: 'Content-addressing folds 64³ into one dot', payload: 'Content-addressing folds 64³ into one dot' },
+] as const

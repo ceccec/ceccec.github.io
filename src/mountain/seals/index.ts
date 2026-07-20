@@ -603,7 +603,7 @@ export function holyBooksGeometry64SealedDiamonds(matrix: MindMatrix = buildMatr
 // byte) does not reward the file count anyway.
 export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
   return [
-    { slug: 'pi-trinity', title: 'π opens the trinity', proof: piThreeOpensTheTrinity(matrix) },
+    { slug: 'pi-trinity', title: '⌊π⌋ = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses', proof: piThreeOpensTheTrinity(matrix) },
     { slug: 'qubit-trinity', title: 'the qubit\'s trinity · X Y Z', proof: qubitTrinityPauliBloch(matrix) },
     { slug: 'pauli-basis', title: '64 = the 3-qubit Pauli basis · 4³', proof: sixtyFourThreeQubitPauliBasis(matrix) },
     { slug: 'hamming-address', title: 'Hamming\'s 3 parity bits = the address', proof: hammingThreeParityAddressesError(matrix) },
