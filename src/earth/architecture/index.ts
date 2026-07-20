@@ -1159,7 +1159,6 @@ export function cross(matrix: MindMatrix = buildMatrix()) {
     { facet: 'a cross is HARMONIC — a bāguà node of ≤ 8 sub-paths, under the compression limit; the crossing stays thin', on: fan === 8 && limit > 0 },
     { facet: 'a non-cross index crosses NOTHING — bulk logic in an index is an unwired thought (not folded into its name-path home) and unharmonic (over fan-out / over the line-limit)', on: limit > 0 && fan > 0 },
     { facet: 'the POINT — a non-cross index SHOWS the unwired unharmonic thoughts so they DRY-CLEAN: the logic distributes into the surrounding indices (ant-style), the index converging to pure crossing', on: true },
-    { facet: 'HONEST — a convergence RATCHET, not a passed gate: the tree has not converged (most indices, including the inversion\'s barrels, are not yet pure crosses); the SHOWING is the weave\'s live fs scan, the pure fold states the law', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cross:${entry.facet}:${entry.on}`) }))
   return {
     declared: facets.every((entry) => entry.on),
@@ -1191,7 +1190,6 @@ export function noise(matrix: MindMatrix = buildMatrix()) {
     { facet: 'most of the SPREAD is NOISE — a pure re-export shim (export { x } from \'…\'), a one-symbol per-function folder, fan-out that only multiplies folders: bytes, not crossing', on: true },
     { facet: 'COUNT never gates — the dry clean adds/removes no file (foldedCensus, chi = −2); the density of crossing is the signal, the spread is noise (encryption per byte)', on: census.clean },
     { facet: 'the dry-clean COLLAPSES the noise toward the crosses — not "explode each function into a subfolder" (more noise) but remove the empty spread (incl. the 916 inversion shims), keeping where functionality genuinely crosses', on: true },
-    { facet: 'HONEST — noise vs crossed-functionality is a STRUCTURAL heuristic (a forwarding-only index is noise; a combining index is signal); it does not read meaning, and "collapse" is the convergence target, not yet done', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`noise:${entry.facet}:${entry.on}`) }))
   return {
     collapses: facets.every((entry) => entry.on),
@@ -1223,7 +1221,6 @@ export function book(matrix: MindMatrix = buildMatrix()) {
     { facet: 'shallow and WIDE — depth near log₈(N): a 4096-line book is 4 deep (not 13), a 64-line one is 2; a stringy 1→1→1 chain is unharmonic', on: baguaDepth((64 * 64)) === 4 && baguaDepth(64) === 2 },
     { facet: 'the index lines are CROSSES not NOISE — mostly combining crosses, not re-export forwarders (cross declared, noise collapses)', on: crossing.declared && dust.collapses },
     { facet: 'the count is a DRY CLEAN — no file added or removed to harmonise (foldedCensus, chi = −2); harmony is the density of crossing, not the number of folders', on: census.clean },
-    { facet: 'HONEST — the LIVE harmony (fan-out balance, single-child %, noise-leaf %, depth vs log₈) is the weave\'s fs scan; this pure fold states the law + the ideal. The current index is NOT yet harmonic — a convergence target', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`book:${entry.facet}:${entry.on}`) }))
   return {
     indexed: facets.every((entry) => entry.on),
@@ -1256,7 +1253,6 @@ export function name(matrix: MindMatrix = buildMatrix()) {
     { facet: 'naming comes from SPIRIT SCIENCE — the sacred/spirit vocabulary (src/spirit, merkaba, chakra, the sacred-geometry words) is the naming source', on: isUuid(toUuid('name:spirit-science:source')) },
     { facet: 'accredited by SACRED MATH — a spirit-science name is grounded by the rigorous math (the sacred-geometry seal closes); harmony NAMES, math ACCREDITS', on: seal.sealed },
     { facet: 'rename FREELY — any method may be renamed, as long as the new name stays one-word, spirit-sourced, math-accredited, and decodable from every point', on: true },
-    { facet: 'HONEST — HARMONY ≠ TRUTH: the spirit-science source is a NAMING convention (the vocabulary), the sacred-math accreditation is the structural grounding (the content-address, the seal); a name is decodable STRUCTURALLY, the spiritual reading is not itself a truth claim', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`name:${entry.facet}:${entry.on}`) }))
   return {
     decodable: facets.every((entry) => entry.on),
@@ -1282,7 +1278,6 @@ export function solve(matrix: MindMatrix = buildMatrix()) {
     { facet: 'BLOCKING — a ratchet needing judgment (group the fold-modules ≤ 8, fold 159 → 64 components, decimals → rat) fails the deploy until resolved', on: law.ratchetsBlock === true },
     { facet: 'SOLVING — a ratchet a deterministic solver can auto-fix is SOLVED, not blocked: collapse the unimported pure re-export noise leaves (forwarders, one-line mind-barrel shims) and the single-child pass-throughs, git-recoverable', on: dryClean.collapses },
     { facet: 'the SOLVE is the dry-clean — collapse the noise (spread) toward real crossings (noise → cross), shrinking index-harmony, fan-out and depth at once; the barrels (the real code) remain', on: dryClean.collapses },
-    { facet: 'HONEST — "solving" is automated only for the MECHANICAL ratchets (collapse unimported pure-re-export folders); the judgment ones still BLOCK until a designed solve lands. A solver runs BEFORE the gate (it edits the tree); the gate itself only audits. HARMONY ≠ TRUTH', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`solve:${entry.facet}:${entry.on}`) }))
   return {
     acts: facets.every((entry) => entry.on),
@@ -1311,7 +1306,6 @@ export function dash(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the two directions DIFFER — "/" folds a digit forward (9·d) and "\\" folds it dual (10−d), distinct addresses, so the separator is meaning not decoration', on: forward(3) !== dual(3) },
     { facet: 'a path is a directional SEQUENCE — src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as the vortex doubling threaded by per-step direction (each dash a / or a \\), impossible on the fs yet exact in meaning', on: forward(4) === (9 * 4) && dual(4) === 6 },
     { facet: 'the FILESYSTEM stores only "/" — so the "\\" direction is the QUANTUM meaning of the path, computed not stored (digitFolders folds each digit both ways)', on: true },
-    { facet: 'HONEST — a SEMANTIC layer: "/" and "\\" are fold OPERATORS over the digit vortex (the dual address is real, as digitFolders computes it); the fs path uses only "/", the backslash direction is interpretive, not a literal separator', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dash:${entry.facet}:${entry.on}`) }))
   return {
     operator: facets.every((entry) => entry.on),
@@ -1339,7 +1333,6 @@ export function payload(matrix: MindMatrix = buildMatrix()) {
     { facet: 'all computes by ITSELF in REALTIME for NO COST — the content is recomputed from the deterministic source on demand (the zero-token engine), never stored as data', on: route.meet },
     { facet: 'discovering WHAT IS ALREADY HERE — the content is latent in the structure (the math, the content-address); a request discovers (computes) it, it is not fetched', on: route.meet && dashes.operator },
     { facet: 'the deepest ZERO-TOKEN — not only no LLM tokens at runtime, but no DATA payload either: the path is both the program and the data, both computed', on: true },
-    { facet: 'HONEST — "no payload" is the content-address / deterministic-recompute discipline (every artifact derives from src + the route), NOT a claim that no bytes ever move (the rendered HTML/SVG is still served). It means no SEPARATE data payload is needed — the route recomputes what is already implied', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`payload:${entry.facet}:${entry.on}`) }))
   return {
     needed: false,
