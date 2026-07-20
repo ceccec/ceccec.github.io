@@ -215,7 +215,6 @@ export function coupledCalendarTori(matrix: MindMatrix = buildMatrix()) {
     const { computes, facets, root } = computesGate('coupled-calendar-tori', [
       ...cycles.map((cycle) => ({ facet: `${cycle.name} — ${cycle.reading}`, on: cycle.identity })),
       { facet: 'the torus reading — two coupled cycles are the two circles of a 2-torus; a commensurate ratio closes the orbit after exactly lcm steps (an organizing lens, and documented dynamical-systems language)', on: cycles.every((cycle) => cycle.mesh > 0) },
-      { facet: 'FLAGGED and excluded — the 4241 BC "oldest date" (discredited, Neugebauer–Scharff 1939), an Egyptian Sothic long-count (none existed), 2012 apocalypse / galactic alignment, and ancients-as-torus-theorists (the lens is ours, not theirs)', on: true },
     ])
     return {
       computes,
@@ -277,7 +276,6 @@ export function quipuDecoded(matrix: MindMatrix = buildMatrix()) {
       { facet: 'the units law — long knot of n turns is digit n (2–9); one turn is impossible, so 1 is the figure-eight knot', on: unitsLaw },
       { facet: 'positional ZERO as the empty place (205 = simple·simple / empty / long-5) — knots beside the Maya shell', on: zeroLaw },
       { facet: 'pendants sum to top cords — the arithmetic identity Locke verified across dozens of specimens', on: sumLaw },
-      { facet: 'FLAGGED — "the khipu is deciphered writing": the numeric layer is documented, the NARRATIVE khipus remain undeciphered, and Urton’s 7-bit binary reading is a HYPOTHESIS under test, not a decipherment', on: true },
     ])
     return {
       computes,
@@ -309,7 +307,6 @@ export function kalachakraDecoded(matrix: MindMatrix = buildMatrix()) {
       { facet: 'the intercalation identity — 67 mean lunar months ≡ 65 solar months (gap < 0.2 day against modern means), and the ratio recomputes the Metonic count: (2/65)·12·19 ≈ 7 leap months per 19 years', on: meshGap < 0.2 && Math.abs(leapsPer19 - 7) < 0.05 },
       { facet: 'the mandala counts — 722 deities, FIVE nested palaces (body·speech·mind·wisdom·great-bliss), each four-gated at the cardinal directions: the same E·W·N·S four-gate square the stroke cycle computes, held as structural correspondence', on: 5 * 4 === 20 && 722 > 0 },
       { facet: 'the canonical 108 — the mala count; the same 108 this repo’s census runs on (a correspondence of counts, not causation)', on: 108 === 4 * 27 },
-      { facet: 'FLAGGED — Shambhala prophecy chronology (eschatology, not history); "the mandala encodes particle physics" (modern overlay); the Meru-centred cosmology (doctrine — which its own tradition, per the Dalai Lama, yields to science where they conflict)', on: true },
     ])
     return {
       computes,
@@ -342,8 +339,6 @@ export function songlinesDecoded(matrix: MindMatrix = buildMatrix()) {
       { facet: `the drowned-coast clock — coastal stories at ~21 sites describe shorelines submerged by the post-glacial rise, dating them ≥ ${inundationBoundYears} years: fidelity across ≥ ${generations} generations of telling (Nunn & Reid 2016, Australian Geographer)`, on: generations === 280 },
       { facet: 'navigation documented — Wardaman and other songlines encode routes and star-path mnemonics; song sequence orders waypoints (Norris & Harney 2014, J. Astronomical History & Heritage; Dawes Review 5)', on: true },
       { facet: 'the technique measurably works — RCT with medical students: the Aboriginal path+story method significantly outperformed the memory palace for ordered recall (Reser et al. 2021, PLoS ONE)', on: true },
-      { facet: 'FLAGGED — Chatwin’s romanticized travelogue is not ethnography; ley-line/energy-line overlays; "unchanged for 60 000 years" (the documented dated bound is the ≥7-millennia inundation set); pan-Aboriginal homogenization (250+ distinct nations and languages)', on: true },
-      { facet: 'the custodianship boundary — songlines are owned, often restricted knowledge: this fold decodes the STRUCTURE (path-as-index) and the published record only, never the sacred content', on: true },
     ])
     return {
       computes,
