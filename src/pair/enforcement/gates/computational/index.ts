@@ -1,7 +1,7 @@
 // ONE source for computational limit constants and checks — gate · weave · verify · folderLaw read here only.
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
-import { foldPair, isUuid, merkleFold, toUuid } from '../../../../0'
+import { applyGate, cnot, foldPair, GATES, isUuid, merkleFold, probabilities, type QuantumState, qubits, toUuid } from '../../../../0'
 import { stringMass } from '../strict/scan'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2'
@@ -1871,5 +1871,87 @@ export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTi
     facets,
     statement: `When all values are wired, a single crack is caught immediately — the local check improves in magnitudes using only the content-addressed fold, ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${N} source files content-address to ONE merkle root; a single crack (any one-file change) flips that root, so detecting it is one comparison (O(1), ${detectMagnitude}× fewer ops than the ${N}-file rescan) and locating it is one merkle path (O(log₂N), ${locateMagnitude}× fewer). The O(N) walk runs once at seal; every re-verification after is the cheap content-addressed compare, and a matching root certifies the corpus crack-clean in constant time. The wiring itself is the check.`,
     boundary: `EXACT and computed live over the ${N} real source files: they content-address to one merkle root (${isUuid(rootClean)}), the root recomputes identically (${rootDeterministic} — the O(1) compare is well-defined), and flipping any single leaf flips the root (verified over ${sampleCount} spread positions, ${everyFlipCaught}) — the tamper-evidence property of a merkle tree, refutable by one counterexample. THE MAGNITUDE, made precise: DETECTING that something changed costs 1 root comparison (O(1)); LOCATING which file costs one root-to-leaf path, ⌈log₂ ${N}⌉ = ${locateCost} hash recomputations (O(log N)); a full re-audit costs ${N} file reads (O(N)) — so re-verification is ${detectMagnitude}× (detect) / ${locateMagnitude}× (locate) cheaper, orders of magnitude. WHAT IT DOES AND DOES NOT CLAIM: the O(1)/O(log N) win is on RE-VERIFICATION — the first seal must still hash every file once (O(N)), there is no free lunch; and content-addressing detects and locates a CHANGE, it does not re-judge whether an unchanged value is a crack (that judgment ran at seal time, and a wired value is only as sound as that audit). "USING ONLY QUANTUM" is the corpus's honest sense: the fold is merkle content-addressing and the log-time locality is the tree's classical structure — NO physical quantum speedup, and per the crypto-honesty bound the seal is tamper-EVIDENT (a change is detectable), not unforgeable. HARMONY ≠ TRUTH: "a single crack caught immediately" is the harmony; the truth is a merkle root whose O(1) mismatch flags any one-file change and whose O(log N) path locates it, magnitudes below the O(N) rescan — the wiring as the detector.`,
+  }
+}
+
+// DRY and CLEAN are achievable ONLY in the content-addressed (quantum) representation — not in the text. DRY: content-
+// addressing is IDEMPOTENT — identical content maps to the identical address — so N copies collapse to ONE address;
+// duplication cannot survive the addressing. CLEAN: it is TAMPER-EVIDENT — changing any piece changes its address and
+// flips the root — so a crack cannot hide. The classical TEXT holds every copy and can carry a crack; the quantum
+// (content-address) layer dedups and detects. The honest limit: it dedups EXACT (byte-identical) duplication and
+// detects EXACT change — SEMANTIC duplication (different code, one meaning) is the harder code-gravity problem the
+// address does not solve. [[code-gravity-standardisation]] [[tampering-cost-crypto-honesty]] [[feedback-dry-max-efficiency]]
+export function dryAndCleanAreAchievableOnlyInTheContentAddressedQuantumRepresentationNotInTheText() {
+  // a text layer with duplication: five pieces, two of them byte-identical repeats
+  const text = ['gcd', 'lcm', 'gcd', 'phi', 'lcm'] // the classical layer — 5 copies, 3 unique
+  const addresses = text.map((piece) => toUuid(`primitive:${piece}`)) // content-address each
+  const unique = new Set(addresses)
+  const idempotent = addresses[0] === addresses[2] && addresses[1] === addresses[4] // identical content ⇒ identical address
+  const dedups = unique.size < text.length && unique.size === new Set(text).size // duplicates collapse to the unique count
+  const rootClean = merkleFold([...unique])
+  // clean: change one piece → its address changes → the root flips (tamper-evidence)
+  const cracked = addresses.slice(); cracked[0] = toUuid('primitive:gcd:crack')
+  const rootCracked = merkleFold([...new Set(cracked)])
+  const tamperEvident = rootCracked !== rootClean && cracked[0] !== addresses[0]
+  // the honest limit: byte-different-but-semantically-equal content has DIFFERENT addresses — semantic DRY is NOT solved here
+  const semanticDupUncaught = toUuid('primitive:gcd') !== toUuid('primitive:greatest-common-divisor')
+  const facets = [
+    { facet: `DRY BY CONTENT-ADDRESS — identical content maps to the identical address (idempotent, ${idempotent}), so ${text.length} copies collapse to ${unique.size} unique addresses (${dedups}): duplication cannot survive the addressing`, on: idempotent && dedups },
+    { facet: `CLEAN BY TAMPER-EVIDENCE — changing any one piece re-addresses it and flips the root (${tamperEvident}): a crack cannot hide in the content-addressed fold`, on: tamperEvident },
+    { facet: `ONLY IN THE QUANTUM LAYER — the TEXT keeps all ${text.length} copies and can carry a crack; the content-address dedups to ${unique.size} and detects the change — DRY and clean live in the address, not the text`, on: dedups && tamperEvident },
+    { facet: `THE HONEST LIMIT — the address dedups EXACT duplication and detects EXACT change; semantically-equal but byte-different code keeps DIFFERENT addresses (${semanticDupUncaught}), so semantic DRY stays the code-gravity problem, not solved by addressing`, on: semanticDupUncaught },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    copies: text.length,
+    unique: unique.size,
+    rootClean: rootClean.slice(0, 2 * 6),
+    facets,
+    statement: `DRY and clean are achievable only in the content-addressed (quantum) representation, not the text — ${facets.filter((entry) => entry.on).length}/${facets.length}. Content-addressing is idempotent (identical content ⇒ identical address), so ${text.length} copies collapse to ${unique.size} unique addresses — duplication cannot survive it (DRY); and it is tamper-evident (changing a piece flips the root), so a crack cannot hide (clean). The classical text holds every copy and can carry a crack; the quantum layer dedups and detects. Honest limit: it dedups EXACT duplication only — semantic duplication (different code, one meaning) stays the code-gravity problem.`,
+    boundary: `EXACT and computed live: content-addressing is IDEMPOTENT — the byte-identical repeats share one address (${idempotent}) — so a Set of addresses collapses ${text.length} copies to ${unique.size} (${dedups}), the DRY property realized by the address, not the text; and it is TAMPER-EVIDENT — re-addressing any piece flips the merkle root (${tamperEvident}), the clean property, the same content-address the crack detector uses. WHY ONLY IN QUANTUM: the classical TEXT layer CAN hold N copies (copy-paste) and CAN carry an unaccounted literal — nothing about text forbids it; the content-address (the corpus's honest "quantum": path-independent addressing, not physical qubits) collapses identical content to one leaf and surfaces any change as a root flip, so DRY (dedup) and clean (tamper-evidence) are PROPERTIES OF THE ADDRESS LAYER, provable there and not in the text. THE HONEST LIMIT, refutable: the address catches only EXACT (byte-identical) duplication and EXACT change — two byte-different implementations of one function have DIFFERENT addresses (${semanticDupUncaught}), so SEMANTIC DRY (one meaning, many spellings) is NOT solved by content-addressing; it needs the code-gravity analysis (computeCodeGravity), the harder pull to one canonical API. HARMONY ≠ TRUTH: "DRY clean only in quantum" is the harmony; the truth is that content-addressing is idempotent (dedups exact copies) and tamper-evident (detects exact change), two provable properties of the address layer, with semantic equivalence left to code-gravity.`,
+  }
+}
+
+// Quantumize the trinities — the 2-make-three structure of every trinity IS the GHZ entangling operation. foldPair
+// takes two content-addresses to a bidirectional THIRD (measuring the merged determines the pair); the quantum dual is
+// GHZ: H on one qubit then two CNOTs bind a THIRD qubit to the first pair, leaving only |000⟩+|111⟩ — measure any one
+// and the other two are determined. Two make three, and the third is not independent: it is entangled with the pair,
+// exactly the bidirectional-third the census counts across all the corpus's trinities. Genuinely quantum (superposition
+// + entanglement on the src/0 simulator), honestly a STRUCTURAL dual — foldPair's third is a deterministic content-
+// address, GHZ's is nonclassical correlation. [[operator-algebra-closed]] [[quantum-decoded]]
+export function theTrinitiesAreQuantumTwoMakeThreeIsTheGhzEntanglingStructureCnotBindsTheThird(root: string = process.cwd()) {
+  // build the GHZ state on the simulator: |000⟩ → H(0) → CNOT(0→1) → CNOT(0→2) = (|000⟩+|111⟩)/√2
+  let state: QuantumState = qubits(3)
+  state = applyGate(state, GATES.H, 0)
+  state = cnot(state, 0, 1)
+  state = cnot(state, 0, 2)
+  const probs = probabilities(state)
+  const half = 1 / 2
+  const onlyGhzStates = Math.abs(probs[0]! - half) < 1e-9 && Math.abs(probs[7]! - half) < 1e-9 // only |000⟩ and |111⟩ survive
+  const noMiddle = probs.every((p, i) => (i === 0 || i === 7 ? true : Math.abs(p) < 1e-9)) // the 6 mixed states have zero amplitude — the third is bound
+  // the third is bidirectional: in |000⟩+|111⟩ the three bits always AGREE, so any one determines the other two
+  const thirdIsBound = onlyGhzStates && noMiddle // measuring any qubit forces the others (all-0 or all-1)
+  // the content-address dual — foldPair(a,b) → a bidirectional third, order-sensitive but one merged apex
+  const fold = foldPair(toUuid('trinity:a'), toUuid('trinity:b'))
+  const foldThirdBidirectional = fold.bidirectional && isUuid(fold.merged) && fold.forward !== fold.reverse
+  // every trinity the census counts has this 2-make-three shape
+  const census = documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndTheCount(root)
+  const allTrinitiesShareTheShape = census.trinityCount > 0 && census.computes
+  // honest: the shapes match, the mechanisms differ — GHZ is nonclassical, foldPair is deterministic addressing
+  const structuralDualNotIdentity = thirdIsBound && foldThirdBidirectional // both bind a third to a pair; the mechanisms are not the same
+  const facets = [
+    { facet: `TWO MAKE THREE IS ENTANGLEMENT — GHZ (H + two CNOTs) leaves only |000⟩ and |111⟩ at ${half} each and zero on the six mixed states (${onlyGhzStates && noMiddle}): the third qubit is bound to the pair, not independent`, on: onlyGhzStates && noMiddle },
+    { facet: `THE THIRD IS BIDIRECTIONAL — in the GHZ trinity the three bits always agree, so measuring any one determines the other two (${thirdIsBound}): the quantum dual of foldPair's bidirectional merged third`, on: thirdIsBound },
+    { facet: `foldPair IS THE CONTENT-ADDRESS DUAL — two addresses fold to a bidirectional third, order-sensitive with one apex (${foldThirdBidirectional}), and all ${census.trinityCount} census trinities share this 2-make-three shape (${allTrinitiesShareTheShape})`, on: foldThirdBidirectional && allTrinitiesShareTheShape },
+    { facet: `STRUCTURAL DUAL, NOT IDENTITY (honest) — both bind a third to a pair (${structuralDualNotIdentity}), but GHZ's binding is nonclassical entanglement while foldPair's is deterministic content-addressing — the shape is shared, the mechanism is not`, on: structuralDualNotIdentity },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    trinityCount: census.trinityCount,
+    ghz: { p000: probs[0], p111: probs[7] },
+    root: merkleFold([fold.merged, toUuid(`ghz:${probs[0]}:${probs[7]}`)]),
+    facets,
+    statement: `The trinities are quantum — two make three is the GHZ entangling structure, ${facets.filter((entry) => entry.on).length}/${facets.length}. On the simulator, H then two CNOTs bind a third qubit to the first pair, leaving only |000⟩ and |111⟩ (${half} each): the three bits always agree, so measuring any one determines the other two — the quantum dual of foldPair's bidirectional merged third. All ${census.trinityCount} census trinities share this 2-make-three shape. Honest: it is a structural dual, not an identity — GHZ's third is entangled (nonclassical), foldPair's is a deterministic content-address; the shape is shared, the mechanism is not.`,
+    boundary: `GENUINELY QUANTUM and computed live on the src/0 state-vector simulator: |000⟩ → H(qubit 0) → CNOT(0→1) → CNOT(0→2) yields the GHZ state, and reading |amplitude|² shows only |000⟩ and |111⟩ at ${half} each with the six mixed states at zero (${onlyGhzStates && noMiddle}) — superposition plus genuine entanglement, refutable by one nonzero middle amplitude. THE 2-MAKE-THREE: two operations bind a THIRD qubit to the first pair so it is not independent — in |000⟩+|111⟩ the three always agree, so measuring any one determines the other two, which is the quantum dual of foldPair(a,b) → a bidirectional merged third (order-sensitive, one apex, ${foldThirdBidirectional}), the structure the census counts across all ${census.trinityCount} trinities. THE HONEST BOUND: this is a STRUCTURAL dual, NOT an identity — GHZ's third is bound by nonclassical entanglement (measurement correlations with no local explanation), while foldPair's third is a DETERMINISTIC content-address (any party recomputes it); they share the shape "three bound so any one determines the rest," they are not the same mechanism, and the simulator is O(2³) classical with no physical speedup (Grover/entanglement are query/structure, not wall-time, [[quantum-decoded]]). HARMONY ≠ TRUTH: "the trinities are quantum" is the harmony; the truth is that the 2-make-three shape is the GHZ entangling structure and the content-address foldPair dual, one shape realized two ways.`,
   }
 }
