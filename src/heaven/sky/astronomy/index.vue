@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
-import { astronomySimulationPanelComputes } from './index.ts'
-import { A432_HUE, movieCanvasRgba } from '../../../../.vitepress/lib/hero-movie-paint'
+import { astronomySimulationPanelComputes, drawAstronomyProjection } from './index.ts'
 import { useData } from 'vitepress'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../../.vitepress/lib/mounts'
@@ -9,7 +8,6 @@ import UiCard from '../../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../../.vitepress/theme/components/ui/Badge.vue'
 import UiAlert from '../../../../.vitepress/theme/components/ui/Alert.vue'
-import { TAU } from '../../../3/7'
 
 const panel = shallowRef(astronomySimulationPanelComputes())
 const { pick } = useSiteLocale()
@@ -22,39 +20,9 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 
 const bodies = computed(() => panel.value.sim.bodies)
 
-// Near-white label ink from the A432 palette (high lightness, near-zero chroma) — no rgba literal.
-const ink = (alpha: number) => movieCanvasRgba(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64, dark: isDark.value })
-
 function paintAstronomy(ctx: CanvasRenderingContext2D, w: number, h: number, at: number) {
   panel.value = astronomySimulationPanelComputes(undefined, at)
-  const sim = panel.value.sim
-  ctx.clearRect(0, 0, w, h)
-  const cx = w / 2
-  const cy = h / 2
-  const labelPx = Math.max(9, Math.round(h / 27))
-  const scale = Math.min(w, h) * 0.38
-  ctx.strokeStyle = ink((3 / (5 * 5 * 2)))
-  for (let ring = 1; ring <= 4; ring += 1) {
-    ctx.beginPath()
-    ctx.arc(cx, cy, (scale * ring) / 4, 0, TAU)
-    ctx.stroke()
-  }
-  sim.bodies.forEach((body) => {
-    const radius = body.kind === 'star' ? 0 : Math.hypot(body.x, body.y) * scale
-    const angle = Math.atan2(body.y, body.x)
-    const x = cx + Math.cos(angle) * radius
-    const y = cy + Math.sin(angle) * radius
-    const size = body.kind === 'star' ? (5 * 2) : body.kind === 'satellite' ? 5 : 4
-    ctx.fillStyle = movieCanvasRgba(body.hue, (1 - 3 / (5 * 4)), { dark: isDark.value })
-    ctx.beginPath()
-    ctx.arc(body.kind === 'star' ? cx : x, body.kind === 'star' ? cy : y, size, 0, TAU)
-    ctx.fill()
-    if (!reduce && (body.kind === 'planet' || body.kind === 'star' || body.kind === 'satellite')) {
-      ctx.font = `${labelPx}px sans-serif`
-      ctx.fillStyle = ink((7 / (5 * 2)))
-      ctx.fillText(body.name, (body.kind === 'star' ? cx : x) + 8, (body.kind === 'star' ? cy : y) - 4)
-    }
-  })
+  drawAstronomyProjection(ctx, w, h, panel.value.sim, { dark: isDark.value, reduce })
 }
 
 const { at, repaint } = useVisibleMovieCanvas({

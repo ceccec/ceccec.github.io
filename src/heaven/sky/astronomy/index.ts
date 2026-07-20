@@ -22,7 +22,9 @@ import { allComputedNoFiles } from '../../../wind/fusion'
 import { animatedHeroes, freeAnimations } from '../../../wind/ui'
 import { atoms } from '../../atoms'
 import { atomInclusionProof } from '../../../lake/ledger'
-import { TAU } from '../../../3/7'
+import { A432_HUE, TAU } from '../../../3/7'
+import { movieCanvasPolarity } from '../../../quantum/science'
+import { heroPhaseAt } from '../../../fire/plasma/ball'
 
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
@@ -676,6 +678,52 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
         'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, and research exposition — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
       boundary:
         'HONEST — circular Keplerian catalog, NOT live JPL ephemeris; VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
+    }
+  })
+}
+
+/**
+ * Field projection — Keplerian orbit rings + bodies. Scale/breath from heroPhaseAt; hues from sim.
+ * Vue mounts only call this — no inline canvas math. HONEST: circular Keplerian paint, not JPL ephemeris.
+ */
+export function drawAstronomyProjection(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  sim: AstronomySimulationPaint,
+  opts: { dark?: boolean; reduce?: boolean } = {},
+): void {
+  const dark = opts.dark !== false
+  const reduce = opts.reduce === true
+  const paint = movieCanvasPolarity(dark)
+  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
+  const p = heroPhaseAt(sim.at)
+  ctx.clearRect(0, 0, w, h)
+  const cx = w / 2
+  const cy = h / 2
+  const labelPx = Math.max(9, Math.round(h / 27))
+  // Scale breathes on the one clock — not a private rate.
+  const scale = Math.min(w, h) * ((2 / 5) - (1 / (5 * 5))) * ((1 - 1 / (5 * 5)) + (1 / (5 * 5)) * Math.sin(p * TAU))
+  ctx.strokeStyle = ink(3 / (5 * 5 * 2))
+  for (let ring = 1; ring <= 4; ring += 1) {
+    ctx.beginPath()
+    ctx.arc(cx, cy, (scale * ring) / 4, 0, TAU)
+    ctx.stroke()
+  }
+  sim.bodies.forEach((body) => {
+    const radius = body.kind === 'star' ? 0 : Math.hypot(body.x, body.y) * scale
+    const angle = Math.atan2(body.y, body.x)
+    const x = cx + Math.cos(angle) * radius
+    const y = cy + Math.sin(angle) * radius
+    const size = body.kind === 'star' ? (5 * 2) : body.kind === 'satellite' ? 5 : 4
+    ctx.fillStyle = paint(body.hue, 1 - 3 / (5 * 4))
+    ctx.beginPath()
+    ctx.arc(body.kind === 'star' ? cx : x, body.kind === 'star' ? cy : y, size, 0, TAU)
+    ctx.fill()
+    if (!reduce && (body.kind === 'planet' || body.kind === 'star' || body.kind === 'satellite')) {
+      ctx.font = `${labelPx}px sans-serif`
+      ctx.fillStyle = ink(7 / (5 * 2))
+      ctx.fillText(body.name, (body.kind === 'star' ? cx : x) + 8, (body.kind === 'star' ? cy : y) - 4)
     }
   })
 }

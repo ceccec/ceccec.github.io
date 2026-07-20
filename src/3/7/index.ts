@@ -1247,8 +1247,8 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: '.vitepress/theme/components/ModelCardPages.vue', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: '.vitepress/theme/components/RayHub.vue', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: '.vitepress/theme/components/UiAsideShell.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
-  { file: 'src/heaven/sky/astronomy/index.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
 ]
+
 
 
 
