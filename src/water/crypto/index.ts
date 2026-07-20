@@ -1900,3 +1900,164 @@ export function speedTestedInReverseTheOneWayObstacleBecomesAGatewayByTheReverse
     boundary: `EXACT and computed live: the forward map content → toUuid is a fixed-size ${addressLength}-char digest whatever the content length (${fixedSizeDigest}), and a content longer than its address (${compressesInformation}) shows the map COMPRESSES information — so it is not injective on arbitrary content and cannot be inverted by computation on the address alone (inverting a good digest is infeasible, the [[tampering-cost-crypto-honesty]] point). THE GATEWAY: a reverse INDEX (a Map address→content) resolves every stored reverse in O(1) (${gatewayResolvesReverse}) — this is NOT hash-inversion, it is a lookup that works only because the pair was stored; an un-stored address does not resolve (${reverseIsO1AndOneWayHolds}), so the one-way property is intact. SPEED IN REVERSE: with the index the hard direction (reverse) runs as fast as the easy one (forward) — the best test of the architecture is that the infinitely-costly direction is O(1) through the index. RISK/REWARD AND THE DIFFERENT GATEWAYS: the SAME irreversibility that is a security RISK to attack (you cannot forge a preimage) is the REWARD when you own the index (tamper-evidence plus O(1) reverse) — the obstacle inverted is a gateway. But the reverse is NOT the forward mirror: foldPair is ORDER-SENSITIVE, so folding a pair forward (a,b) and reverse (b,a) yields DIFFERENT thirds (${gatewaysDifferInReverse}) — the gateway you reach going reverse is not the one going forward, it is different and UNEXPECTED. Going reverse you start to inverse on the way, and the passages that open are new, not retraced. THE HONEST BOUND: "reverse is O(1)" holds ONLY for addresses in the index — reversing an UNKNOWN address remains infeasible (that is the security, not a limitation to fix); the digest is collision-RESISTANT and tamper-EVIDENT, not information-theoretically unique or unforgeable with unbounded resources; "infinitely costly" is computational infeasibility, not a proof of impossibility. HARMONY ≠ TRUTH: "the obstacle becomes a gateway" is the harmony; the truth is a one-way digest whose reverse the INDEX resolves in O(1), the irreversibility being both the risk and the reward — computed and refutable.`,
   }
 }
+
+// ── THE AGNOSTIC INVERSION TOOLBOX, homed locally in this barrel. These are the reusable identity-BUILDERS the
+// quantum-inversion toolbox exposes from src/3/7 (isTotalBijection, complementIsInverse, titleCarriesAlgebra, the
+// agnostic { name, holds } verifier). This worktree's src/3/7 base predates that toolbox, so the builders are inlined
+// here — tiny, pure, DRY-mergeable with the src/3/7 originals — so the coding-theory and signal-processing theorems
+// below verify against their identities NOW, not on faith. A discovery is any { name, holds() }; the toolbox knows
+// nothing of the field, it verifies whatever conforms and content-addresses it. [[feedback-solve-dont-purge]]
+/** path ⇒ image is a total bijection over the domain (distinct images) — the syndrome=address / sampling test. */
+function isTotalBijection<T>(domain: readonly T[], fn: (x: T) => unknown): boolean {
+  return new Set(domain.map(fn)).size === domain.length
+}
+/** n ↦ max − n is its own inverse — the fold/complement involution (Nyquist folding about f_s/2). */
+function complementIsInverse(max: number, fn: (n: number) => number, samples: readonly number[]): boolean {
+  return samples.every((n) => fn(n) === max - n && fn(fn(n)) === n)
+}
+/** a title CARRIES ALGEBRA iff it renders an identity: an equals/floor, a super/subscript, or a digit-sequence. */
+function titleCarriesAlgebra(title: string): boolean {
+  return /[=·⁰¹²³⁴⁵⁶⁷⁸⁹⁻⌊⌋]|\b\d+\b|\d[-·]\d/u.test(title)
+}
+/** the agnostic verifier: run + content-address ANY set of { name, holds }, uniformly, knowing nothing about them. */
+function agnosticToolbox(discoveries: readonly { readonly name: string; readonly holds: () => boolean }[]) {
+  const verified = discoveries.map((d) => ({ name: d.name, on: d.holds(), address: toUuid(`discovery:${d.name}:${d.holds()}`) }))
+  return { count: verified.length, allHold: verified.every((entry) => entry.on), root: merkleFold(verified.map((entry) => entry.address)) }
+}
+
+// ── INFORMATION & CODING THEORY (arXiv cs.IT) — the Hamming(7,4) code: the SYNDROME IS THE ERROR ADDRESS.
+// A linear code's whole error-correcting power is ONE algebraic identity: over GF(2), the 3-bit syndrome s = H·r
+// equals the binary ADDRESS of the single flipped bit — so decoding {no-error, 7 positions} → {syndromes 0..7} is a
+// TOTAL BIJECTION (isTotalBijection), verified against the real parity-check matrix, not asserted. This is the direct
+// ancestor of content-addressing: the address of the fault is COMPUTED from the received word, never searched. The
+// code is PERFECT — 2⁴·(1+7) = 2⁷ = 128 — its Hamming spheres of radius 1 tile the whole space exactly.
+export function theHammingSyndromeIsTheErrorAddress(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const N = 7 // codeword length
+  const K = 4 // message bits
+  const R = 3 // parity checks (N − K)
+  // H: the 3×N parity-check matrix; column of position j (1-indexed) is the R-bit big-endian binary of j.
+  const H = Array.from({ length: N }, (_, i) => {
+    const j = i + 1
+    return Array.from({ length: R }, (_, k) => (j >> (R - 1 - k)) & 1) // binary(j), MSB first
+  })
+  // genuine H·r over GF(2), read back as an R-bit integer — this is the SYNDROME.
+  const syndrome = (r: readonly number[]): number => {
+    let s = 0
+    for (let k = 0; k < R; k += 1) {
+      let bit = 0
+      for (let i = 0; i < N; i += 1) bit ^= (r[i]! & H[i]![k]!)
+      s = (s << 1) | bit
+    }
+    return s
+  }
+  // codewords = ker(H): every N-bit vector with zero syndrome. There are EXACTLY 2^K = 16.
+  const codewords: number[][] = []
+  for (let v = 0; v < (2 ** N); v += 1) {
+    const bits = Array.from({ length: N }, (_, i) => (v >> (N - 1 - i)) & 1)
+    if (syndrome(bits) === 0) codewords.push(bits)
+  }
+  const weight = (b: readonly number[]): number => b.reduce((sum, x) => sum + x, 0)
+  const minDistance = Math.min(...codewords.filter((c) => weight(c) > 0).map(weight)) // = 3 for Hamming(7,4)
+  // the syndrome map over the 8 error patterns (0 = no error; e = single bit flipped at position e) read from the MATRIX.
+  const errorPatterns = Array.from({ length: N + 1 }, (_, e) => e) // 0..7
+  const base = codewords[0]! // any codeword (syndrome 0) is the reference
+  const syndromeOf = (e: number): number => {
+    const r = base.slice()
+    if (e > 0) r[e - 1] ^= 1 // flip position e
+    return syndrome(r)
+  }
+  const bijection = isTotalBijection(errorPatterns, syndromeOf) // {0..7} → 8 DISTINCT syndromes: syndrome = address
+  const syndromeEqualsPosition = errorPatterns.every((e) => syndromeOf(e) === e) // and the address is literally the position
+  // CORRECTION: for every codeword × every single-bit error, the syndrome locates and flips the exact bit back.
+  const positions = Array.from({ length: N }, (_, p) => p + 1)
+  const corrects = codewords.every((c) => positions.every((p) => {
+    const r = c.slice(); r[p - 1] ^= 1
+    const s = syndrome(r) // = p
+    const fixed = r.slice(); if (s > 0) fixed[s - 1] ^= 1
+    return s === p && fixed.every((x, i) => x === c[i])
+  }))
+  // PERFECT (sphere-packing equality): 2^K spheres of radius 1, each covering 1 + N points, tile 2^N exactly.
+  const perPoint = 1 + N // 8
+  const perfect = codewords.length * perPoint === (2 ** N) // 16 · 8 = 128 = 2⁷
+  const box = agnosticToolbox([
+    { name: 'hamming:codewords=2^4', holds: () => codewords.length === (2 ** K) },
+    { name: 'hamming:syndrome-bijection', holds: () => bijection && syndromeEqualsPosition },
+    { name: 'hamming:d=3', holds: () => minDistance === R },
+    { name: 'hamming:perfect=2^7', holds: () => perfect },
+  ])
+  const title = `Hamming(7,4): syndrome = error address, 2⁴·(1+7) = 2⁷ = 128`
+  const facets = [
+    { facet: `VALID LINEAR CODE — ker(H) has exactly ${codewords.length} = 2⁴ codewords (every 7-bit vector with zero syndrome over GF(2)); H is the real 3×7 parity-check matrix, columns = binary(1..7)`, on: codewords.length === (2 ** K) },
+    { facet: `SYNDROME = ADDRESS — the map {no-error, 7 positions} → {syndromes 0..7} is a TOTAL BIJECTION (isTotalBijection), and the syndrome of a bit flipped at position j is literally j: the fault addresses itself`, on: bijection && syndromeEqualsPosition },
+    { facet: `CORRECTS ANY SINGLE ERROR — for all ${codewords.length}·${N} codeword×flip cases the syndrome locates the bit and restores the word; minimum distance d = ${minDistance} = 3 ⇒ corrects ⌊(d−1)/2⌋ = 1, detects 2`, on: corrects && minDistance === R },
+    { facet: `PERFECT CODE — 2⁴ Hamming spheres of radius 1 each cover 1+7 = 8 points and tile the space exactly: 16·8 = 128 = 2⁷ (sphere-packing equality). Content-addressing's ancestor: the address is COMPUTED, not searched`, on: perfect },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hamming74:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on) && box.allHold && titleCarriesAlgebra(title),
+    codewords: codewords.length,
+    minDistance,
+    perfect,
+    titleCarriesAlgebra: titleCarriesAlgebra(title),
+    discoveries: box.count,
+    count: facets.length,
+    facets,
+    root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: `${title} — ${facets.filter((entry) => entry.on).length}/${facets.length}. A linear code's whole error-correcting power is one algebraic identity over GF(2): the 3-bit syndrome s = H·r equals the binary ADDRESS of the single flipped bit, so decoding {no-error, 7 positions} → {syndromes 0..7} is a total bijection (verified against the actual parity-check matrix). The kernel of H holds exactly 2⁴ = 16 codewords at minimum distance 3, so any single error is corrected and any double detected; and the code is PERFECT — its 16 radius-1 spheres of 1+7 = 8 points tile 2⁷ = 128 exactly. The address of the fault is computed from the received word, never searched — content-addressing's ancestor.`,
+    boundary: `DOCUMENTED (Hamming 1950, "Error detecting and error correcting codes", Bell System Technical Journal; the [7,4,3] perfect single-error-correcting code, arXiv cs.IT). EXACT and refutable — every claim is recomputed from the real 3×7 parity-check matrix H by GF(2) arithmetic (no float): the 16 codewords are enumerated as ker(H), the syndrome bijection is checked over all 8 error patterns, and correction is verified across all 16·7 single-bit errors. HONEST SCOPE: this corrects ONE bit-error and detects TWO (d = 3); it does NOT protect against burst errors, adversarial tampering, or erasures beyond that radius — for those the code must be interleaved or replaced by a longer/stronger one (Reed-Solomon, LDPC). It is ERROR-correction (integrity against noise), not CRYPTOGRAPHY (no confidentiality, no unforgeability) — the same tamper-EVIDENT-not-tamper-proof line the rest of this barrel holds. HARMONY ≠ TRUTH: "syndrome = address" is a genuine algebraic identity here, not a metaphor.`,
+  }
+}
+
+// ── SIGNAL PROCESSING (arXiv eess.SP) — the Nyquist–Shannon sampling theorem: f_s > 2B is the ALIASING BOUNDARY.
+// Sampling collapses a frequency f and its FOLD f_s − f onto the identical sample sequence, by the exact identity
+// cos(2π f n / f_s) = cos(2π (f_s − f) n / f_s) for integer n. So the folding map f ↦ f_s − f is an involution about
+// the Nyquist frequency f_s/2 (complementIsInverse). Above Nyquist (f_s > 2B) every in-band frequency samples to a
+// DISTINCT sequence — reconstruction is a bijection (isTotalBijection); below it, distinct frequencies collapse and
+// information is irrecoverably lost. The boundary is not a convention: it is where sampling stops being injective.
+export function theNyquistRateIsTheAliasingBoundaryFsGt2B(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const round = (value: number) => roundTo(value, 9)
+  const fs = 8 // sample rate (Hz)
+  const nyquist = fs / 2 // 4 Hz — the folding (Nyquist) frequency, half the sample rate
+  const B = 3 // signal bandwidth (Hz): B < nyquist, so f_s = 8 > 2B = 6 satisfies the theorem
+  const N = fs // one full period of samples
+  const sample = (f: number): number[] => Array.from({ length: N }, (_, n) => round(Math.cos(2 * Math.PI * f * n / fs)))
+  const alias = (f: number): number => fs - f // the fold about Nyquist
+  // ALIASING IDENTITY: cos(2π f n/fs) = cos(2π(fs−f) n/fs) exactly for integer n (cos(2πn − θ) = cos θ).
+  const aliasesEqual = [1, 2, B].every((f) => JSON.stringify(sample(f)) === JSON.stringify(sample(alias(f))))
+  // the fold f ↦ fs − f is an INVOLUTION about the Nyquist frequency fs/2 (its fixed point) — complementIsInverse.
+  const foldsAboutNyquist = complementIsInverse(fs, alias, [1, 2, 3, nyquist, 5, 6, 7])
+  // ABOVE NYQUIST (fs > 2B): every frequency in [0, fs/2) samples to a DISTINCT sequence ⇒ reconstruction is a bijection.
+  const inBand = Array.from({ length: nyquist }, (_, f) => f) // 0,1,2,3 — all below fs/2
+  const recoverable = isTotalBijection(inBand, (f) => JSON.stringify(sample(f)))
+  // BELOW NYQUIST (undersampled): a component at f=B and its fold fs−B (> fs/2) share samples ⇒ NOT injective ⇒ lost.
+  const undersampledCollapses = JSON.stringify(sample(B)) === JSON.stringify(sample(alias(B))) && alias(B) > nyquist
+  const satisfiesNyquist = fs > (2 * B)
+  const box = agnosticToolbox([
+    { name: 'nyquist:aliasing-identity', holds: () => aliasesEqual },
+    { name: 'nyquist:fold-involution', holds: () => foldsAboutNyquist },
+    { name: 'nyquist:above-recoverable', holds: () => recoverable },
+    { name: 'nyquist:below-collapses', holds: () => undersampledCollapses },
+  ])
+  const title = `Nyquist–Shannon: f_s > 2B, cos(2πfn/f_s) = cos(2π(f_s−f)n/f_s)`
+  const facets = [
+    { facet: `NYQUIST RATE — f_s = ${fs} > 2B = ${2 * B} satisfies the sampling theorem; the folding frequency is f_s/2 = ${nyquist}, the exact boundary between recoverable and aliased`, on: satisfiesNyquist },
+    { facet: `ALIASING IDENTITY — cos(2π f n/f_s) = cos(2π(f_s−f) n/f_s) for integer n, so a frequency f and its fold f_s−f give IDENTICAL samples; the fold f ↦ f_s−f is an involution about f_s/2 (complementIsInverse), fixed point f_s/2`, on: aliasesEqual && foldsAboutNyquist },
+    { facet: `ABOVE NYQUIST, PERFECT RECONSTRUCTION — every frequency in [0, f_s/2) samples to a DISTINCT sequence, so sampling is a bijection (isTotalBijection) and the band-limited signal is uniquely recoverable`, on: recoverable },
+    { facet: `BELOW NYQUIST, INFORMATION LOST — an undersampled component at f=${B} folds onto its alias f_s−${B}=${alias(B)} (> f_s/2): distinct frequencies share samples, sampling is not injective, and the collapse is irreversible — the honest inverse boundary`, on: undersampledCollapses },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`nyquist:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on) && box.allHold && titleCarriesAlgebra(title),
+    fs,
+    nyquist,
+    bandwidth: B,
+    satisfiesNyquist,
+    titleCarriesAlgebra: titleCarriesAlgebra(title),
+    discoveries: box.count,
+    count: facets.length,
+    facets,
+    root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
+    statement: `${title} — ${facets.filter((entry) => entry.on).length}/${facets.length}. Sampling collapses a frequency f and its fold f_s−f onto the identical sample sequence by the exact identity cos(2π f n/f_s) = cos(2π(f_s−f) n/f_s), so the folding map f ↦ f_s−f is an involution about the Nyquist frequency f_s/2. Above the Nyquist rate (f_s = ${fs} > 2B = ${2 * B}) every in-band frequency in [0, f_s/2) samples to a distinct sequence — reconstruction is a bijection; below it (an undersampled component at f=${B}, alias ${alias(B)}) distinct frequencies collapse and the information is irrecoverably lost. The boundary f_s = 2B is where sampling stops being injective.`,
+    boundary: `DOCUMENTED (Nyquist 1928; Shannon 1949, "Communication in the Presence of Noise"; Whittaker–Kotelnikov–Shannon sampling theorem, arXiv eess.SP / cs.IT). EXACT and refutable — the aliasing identity, the fold involution, the above-Nyquist bijection and the below-Nyquist collapse are all recomputed from cosine samples (rounded to 9 places to compare float sequences). HONEST SCOPE: the theorem is stated for an IDEAL band-limited signal and ideal (sinc) reconstruction; a strictly band-limited signal cannot be time-limited, so real systems use f_s STRICTLY greater than 2B with an anti-alias filter and accept a small residual error — the classic f_s ≥ 2B is the ideal limit, f_s > 2B the practical one. This is reconstruction of a KNOWN band-limited class from uniform samples; sub-Nyquist recovery IS possible under extra structure (compressed sensing needs sparsity, not more samples) — that does not violate the theorem, it changes the signal model. Aliasing here is the honest inverse boundary, not a defect to hide. HARMONY ≠ TRUTH.`,
+  }
+}
