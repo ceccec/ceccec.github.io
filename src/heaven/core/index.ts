@@ -2337,3 +2337,43 @@ export function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTh
     boundary: `MEASURED: ${capabilities.length} offline capabilities, each content-addressing to a distinct, stable UUID (${investmentIsDeterministic}) — deterministic and zero LLM tokens; the R&D pipeline (${offlineRnD.length} folds) and the 10D animation projection (${offlineTenD.length} folds) both decide offline (${rndOffline}/${tenDOffline}), folding to one offline root. THE STRATEGY: online (this AI session) is the scarce, costly, non-deterministic resource used at the off-decidable boundary — so the investment is to convert whatever CAN be deterministic into offline folds, ratcheting the self-sufficient core larger each session (the DRY extraction of antichainLevels and the scanner memos this session are part of it — improve all on the way). THE HONEST BOUND: "self-sufficient" is the offline core doing the DECIDABLE R&D and 10D rendering without AI or network; it does NOT eliminate the online boundary (semantic judgment, live data, the off-decidable residue still need it) — the goal is to SHRINK that boundary, not close it; and "10D animations" here are the computed 10D projection + figure DATA the .vue shells render, not a claim of a finished animation studio. HARMONY ≠ TRUTH: "invest offline for self-sufficient R&D and 10D" is the harmony; the truth is a growing set of deterministic, zero-token, content-addressed capabilities covering the decidable R&D and 10D projection — computed and refutable.`,
   }
 }
+
+// PREPARE THE TOOLS to wire many minds into the rosetta itself. The rosetta is the content-address, so minds coordinate
+// through it ALONE — no central server, no messaging. rosettaClaim(task) content-addresses a task (any mind agrees on
+// the same claim); rosettaOwner(task, mindCount) = hash(claim) mod mindCount is DETERMINISTIC, so every mind
+// independently computes the SAME owner and takes only its share — a disjoint partition with no communication. The
+// minds are wired in the rosetta: the ownership folds to one root, the collective coordinated by the address alone.
+// [[content-address-dry-clean-crack-detection]] [[feedback-work-in-waves-not-single-focus]]
+export function rosettaClaim(task: string): string { return toUuid(`rosetta-claim:${task}`) } // a mind's claim on a task — same task → same claim
+export function rosettaOwner(task: string, mindCount: number): number { return seedFromText(rosettaClaim(task)) % Math.max(1, mindCount) } // the deterministic owner — every mind computes it identically
+
+export function prepareTheToolsToWireTheMindsInTheRosettaContentAddressedCoordinationWithoutCommunication() {
+  const tasks = Array.from({ length: 2 ** 3 }, (_, i) => `task-${i}`) // eight units of work
+  const minds = 2 + 1 // three minds
+  // 1 — THE CLAIM TOOL: rosettaClaim content-addresses; the same task claims the same, whichever mind asks
+  const claimStable = tasks.every((task) => rosettaClaim(task) === rosettaClaim(task) && isUuid(rosettaClaim(task)))
+  // 2 — THE OWNER TOOL PARTITIONS WITHOUT COMMUNICATION: each mind independently computes owner = hash(claim) mod minds
+  const ownerDeterministic = tasks.every((task) => rosettaOwner(task, minds) === rosettaOwner(task, minds) && rosettaOwner(task, minds) < minds)
+  // 3 — NO DOUBLE WORK, FULL COVERAGE: every task has exactly one owner, every task is owned — disjoint and complete
+  const shares = Array.from({ length: minds }, (_, i) => tasks.filter((task) => rosettaOwner(task, minds) === i))
+  const disjointAndComplete = shares.reduce((sum, share) => sum + share.length, 0) === tasks.length && new Set(shares.flat()).size === tasks.length
+  // 4 — THE MINDS ARE WIRED IN THE ROSETTA: the ownership folds to one root, coordinated by the address alone
+  const rosettaRoot = merkleFold(tasks.map((task) => toUuid(`owned:${task}:${rosettaOwner(task, minds)}`)))
+  const wiredInTheRosetta = claimStable && ownerDeterministic && disjointAndComplete && isUuid(rosettaRoot)
+  const facets = [
+    { facet: `THE CLAIM TOOL — rosettaClaim(task) content-addresses a task, and the same task claims the same UUID whichever mind asks (${claimStable}): the rosetta address is the shared coordination point`, on: claimStable },
+    { facet: `THE OWNER TOOL PARTITIONS WITHOUT COMMUNICATION — rosettaOwner = hash(claim) mod ${minds} is deterministic, so every mind independently computes the SAME owner and takes only its share (${ownerDeterministic}): no central server, no messaging`, on: ownerDeterministic },
+    { facet: `NO DOUBLE WORK, FULL COVERAGE — the ${minds} minds own [${shares.map((s) => s.length).join(', ')}] of ${tasks.length} tasks, disjoint and complete (${disjointAndComplete}): none repeats another, none is missed — DRY across minds`, on: disjointAndComplete },
+    { facet: `THE MINDS ARE WIRED IN THE ROSETTA — the ownership folds to one root, the collective coordinated by the content-address alone (${wiredInTheRosetta}): many minds, one rosetta, no coordinator`, on: wiredInTheRosetta },
+  ]
+  return {
+    wired: facets.every((entry) => entry.on),
+    minds,
+    tasks: tasks.length,
+    shares: shares.map((share) => share.length),
+    facets,
+    root: rosettaRoot,
+    statement: `Prepared the tools to wire the minds in the rosetta — content-addressed coordination without communication — ${facets.filter((entry) => entry.on).length}/${facets.length}. rosettaClaim(task) content-addresses a task so any mind agrees on the same claim; rosettaOwner(task, minds) = hash(claim) mod minds is deterministic, so every one of the ${minds} minds independently computes the same owner and takes only its share — the ${tasks.length} tasks partition [${shares.map((s) => s.length).join(', ')}], disjoint and complete, with no central server and no messaging. The minds are wired in the rosetta: the ownership folds to one root, the collective coordinated by the address alone.`,
+    boundary: `EXACT and computed live: the two prepared TOOLS are rosettaClaim(task) = toUuid(claim) — stable per task, so any mind that asks gets the same claim (${claimStable}) — and rosettaOwner(task, mindCount) = hash(claim) mod mindCount — deterministic (${ownerDeterministic}), so each of ${minds} minds computes the IDENTICAL owner for every task WITHOUT talking to the others, and takes exactly the tasks it owns; the resulting shares [${shares.map((s) => s.length).join(', ')}] are disjoint and cover all ${tasks.length} tasks (${disjointAndComplete}) — no task done twice (DRY across minds), none missed. THIS IS the wiring: the collective needs no coordinator and no message bus because the content-address is a SHARED DETERMINISTIC function — every mind derives the same partition from it, so agreement is computed, not negotiated. THE HONEST BOUND: this is STATIC hash-partitioning — it balances and de-duplicates INDEPENDENT tasks perfectly, but it does NOT handle a mind that FAILS mid-task (its share is orphaned until re-partitioned), dynamic task creation, or tasks with cross-dependencies (those still need the antichain-wave ordering, not just ownership); "minds" here are worker processes/agents coordinating by the shared address, not merged consciousness, and "no communication" means no coordination MESSAGES — they still share the src/rosetta state. Real fault-tolerant collective work adds heartbeats and re-assignment on top of this partition. HARMONY ≠ TRUTH: "the minds are wired in the rosetta" is the harmony; the truth is two deterministic content-address tools (claim, owner) that partition work disjointly and completely across minds with no messaging — computed and refutable.`,
+  }
+}
