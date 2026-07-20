@@ -21,7 +21,7 @@ import type { Dims } from './mountain/dimensions'
 import { buildMatrix } from '../heaven/compute'
 import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball'
 import { livingTorus } from '../fire/diamonds'
-import { merkleFold, toUuid, VORTEX_SEQUENCE } from '../0'
+import { merkleFold, prng, seedFromText, toUuid, VORTEX_SEQUENCE } from '../0'
 import type { MindMatrix } from '../wind/types'
 import { doubleTorusEarthHingeComputesAll, hingeMoviePaintLayers, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath, type EarthHingePaintLayer } from '../water/double/earth'
 import { bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../mountain/geometry'
@@ -92,13 +92,9 @@ export function drawArchitecture(
   }
 }
 
+/** Deterministic seed from sealed content-address — routes through seedFromText (toUuid), not a private FNV. */
 export function seedOf(text: string): number {
-  let h = 0x811c9dc5
-  for (let i = 0; i < text.length; i += 1) {
-    h ^= text.charCodeAt(i)
-    h = Math.imul(h, 0x01000193) >>> 0
-  }
-  return h >>> 0
+  return (seedFromText(text, 8) >>> 0) || 1
 }
 
 export function hueOf(seed: number): number {
@@ -242,17 +238,9 @@ export interface BackgroundScene {
 
 const BG_TRAIL_LEN = 5
 
-function bgPrng(seed: number): () => number {
-  let s = (seed >>> 0) || 1
-  return () => {
-    s = (s * 1664525 + 1013904223) >>> 0
-    return s / 0xffffffff
-  }
-}
-
-/** Stable per-stream parameters — seeded once from stream index, not re-keyed every second. */
+/** Stable per-stream parameters — seeded once from stream index via sealed prng, not re-keyed every second. */
 function bgStreamParams(seed: number, stream: number): { angle: number; dist: number; speed: number; size: number } {
-  const rand = bgPrng((seed + stream * 7919) >>> 0)
+  const rand = prng(`bg:${seed}:${stream}`)
   return {
     angle: rand() * TAU,
     dist: (9 / (5 * 5)) + (4 / (5 * 5)) * rand(),

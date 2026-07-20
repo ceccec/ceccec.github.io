@@ -13,43 +13,22 @@ import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import { dash, folderLaw, payload } from '../../../earth/architecture'
 import { textToMovie } from '../../../earth/world'
-import { foldPair, isUuid, merkleFold, seedFromText, toUuid, uuidPoint } from '../../../0'
+import { foldPair, isUuid, merge, merkleFold, seedFromText, toUuid, uuidPoint } from '../../../0'
 import { DIMENSIONS } from '../../mountain/dimensions'
 
 export type Uuid = string
 
-// FNV-1a expanded to a 32-hex, UUIDv8-shaped content address. Same input → same UUID, so a path
-// always computes the same key. Pure and dependency-free, matching the portal's content-address
-// shape (8-4-4-4-12, version nibble 8).
-function hash(input: string): Uuid {
-  let h = 0x811c9dc5
-  for (let i = 0; i < input.length; i += 1) {
-    h ^= input.charCodeAt(i)
-    h = Math.imul(h, 0x01000193) >>> 0
-  }
-  let hex = ''
-  for (let k = 0; k < 4; k += 1) {
-    let g = (h ^ Math.imul(k + 1, 0x9e3779b9)) >>> 0
-    for (let i = 0; i < 8; i += 1) {
-      g = Math.imul(g ^ (g >>> (5 * 3)), 0x2c1b3c6d) >>> 0
-      hex += ((g >>> ((i % 7) * 4)) & 0xf).toString(16)
-    }
-  }
-  hex = hex.slice(0, (16 * 2))
-  return `${hex.slice(0, 8)}-${hex.slice(8, (6 * 2))}-8${hex.slice(13, 16)}-${hex.slice(16, (5 * 4))}-${hex.slice((5 * 4), (16 * 2))}`
-}
-
-// Compute the UUID a path needs: fold its word-steps in order from a fixed root.
+// Compute the UUID a path needs: fold its word-steps in order from a fixed root via sealed toUuid/merge.
 export function uuidForPath(path: string): Uuid {
   const steps = path.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean)
-  let acc = hash('quantum:cache:root')
-  for (const step of steps) acc = hash(`${acc}/${step}`) // order-sensitive fold — the path is the key
+  let acc = toUuid('quantum:cache:root')
+  for (const step of steps) acc = merge(acc, step) // order-sensitive fold — the path is the key
   return acc
 }
 
 // Fold two addresses, order-sensitively — the pair operation the cache shares with the model.
 export function foldUuids(a: Uuid, b: Uuid): Uuid {
-  return hash(`${a}:${b}`)
+  return merge(a, b)
 }
 
 export const dual = 'src/pair/cache/quantum'

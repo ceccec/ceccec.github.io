@@ -2,7 +2,7 @@
 // Domain cuts only — vault primitives import from src/0 at call sites.
 
 import { NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, ALVEOLAR_H2O_BAR, ALVEOLAR_CO2_BAR } from '../../3/7'
-import { seedFromText, toUuid, merkleFold } from '../../0'
+import { prng, toUuid, merkleFold } from '../../0'
 import { greatCircleKm } from '../../5/5'
 import { TAU } from '../../3/7'
 import { PHI } from '../../3/7'
@@ -37,7 +37,7 @@ export function resonantAmplitude(omega: number, omega0: number, q: number): num
 
 /** Multi-mode resonant oscillator bank driven by stochastic kicks. */
 export function oscillatorBank(seed: string, modes: readonly { freq: number; q: number }[], samples: number, dt = (1 / (5 * 5 * 2))): number[] {
-  const rng = ((s: string) => { let x = (seedFromText(s, 8) >>> 0) || 1; return () => { x = (Math.imul(x, 1664525) + 1013904223) >>> 0; return x / 0x100000000 } })(seed)
+  const rng = prng(seed)
   const xs = modes.map(() => 0)
   const vs = modes.map(() => 0)
   const out: number[] = []

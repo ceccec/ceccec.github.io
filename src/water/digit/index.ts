@@ -1826,7 +1826,7 @@ export function sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix: MindMa
   // Digital root uniformity under rosetta grouping: group the 28 positions into 7 rays of 4
   const rays = Array.from({ length: ROSETTA_RAYS }, (_, ray) => {
     const positions = Array.from({ length: lettersPerRay }, (__, k) => ray + k * ROSETTA_RAYS + 1)
-    const digitalRoots = positions.map((pos) => ((pos - 1) % 9) + 1) // the ladder's dr cycle
+    const digitalRoots = positions.map((pos) => digitalRoot(pos)) // sealed digitalRoot — same as ((pos-1)%9)+1 for pos>0
     return { ray, positions, digitalRoots, sum: digitalRoots.reduce((s, d) => s + d, 0) }
   })
   // Each ray spans 4 DISTINCT digital roots from 1-9 — no ray has duplicates (because 4 < 9 and

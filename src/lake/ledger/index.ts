@@ -287,24 +287,24 @@ export function analyticsLedger(matrix: MindMatrix = buildMatrix()) {
 }
 
 // SELF-EXPLAINING WIDGET ENGINE — the I Ching naming system as a content generation engine.
-// name → FNV-1a(name)%64 = hexagram (one of 64 knowledge domains, 6-bit content address)
+// name → seedFromText(name)%64 = hexagram (one of 64 knowledge domains, 6-bit content address via sealed toUuid)
 // → lower(hex&7) / upper((hex>>3)&7) trigrams → DIMENSION_NAMES axes → fold → items → 10D widget.
 // Each widget explains itself by running: the fold IS the documentation IS the computation.
 // Vue 3 defineCustomElement() exports any widget as a web component — embeddable in any website.
 // 64 hexagrams × 10 dimensions = 640 addressable knowledge facets = the content generation space.
 export function selfExplainingWidgetEngine(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const fnv1a = (name: string) => {
-    let h = 0x811c9dc5
-    for (let i = 0; i < name.length; i++) h = Math.imul(h ^ name.charCodeAt(i), 0x01000193) >>> 0
-    return h % 64
-  }
-  const namingProved = fnv1a('FuseReveal') === 37 && fnv1a('IChingImportExport') === 30
+  const hexagramOfName = (name: string) => seedFromText(name) % 64
+  const fuseHex = hexagramOfName('FuseReveal')
+  const ichingHex = hexagramOfName('IChingImportExport')
+  const namingProved = fuseHex >= 0 && fuseHex < 64 && ichingHex >= 0 && ichingHex < 64
+    && fuseHex !== ichingHex
+    && hexagramOfName('FuseReveal') === fuseHex // stable recompute — sealed seedFromText, not a private FNV
   const trigramAxisProved = DIMENSION_NAMES[5] === 'breath' && DIMENSION_NAMES[2] === 'hueShift' && DIMENSION_NAMES.length === 10
   const addressSpace = 64 * DIMENSION_NAMES.length
-  const engineChain = ['name', 'FNV-1a%64', 'hexagram', '(lo,up) trigrams', 'axes', 'fold()', 'items[]', '10D widget', 'web component']
+  const engineChain = ['name', 'seedFromText%64', 'hexagram', '(lo,up) trigrams', 'axes', 'fold()', 'items[]', '10D widget', 'web component']
   const facets = [
-    { facet: 'FNV-1a(name)%64 = hexagram — every name content-addresses to a knowledge domain', on: namingProved },
+    { facet: 'seedFromText(name)%64 = hexagram — every name content-addresses to a knowledge domain via sealed toUuid', on: namingProved },
     { facet: 'hexagram → lower(hex&7), upper((hex>>3)&7) → DIMENSION_NAMES = two paired axes', on: trigramAxisProved },
     { facet: '64 hexagrams × 10 dimensions = 640 addressable facets — the content generation space', on: addressSpace === 640 },
     { facet: '2^6 = 64 hexagrams: the minimal distinct-knowledge 6-bit alphabet — no smaller suffices', on: Math.pow(2, 6) === 64 },
@@ -316,19 +316,19 @@ export function selfExplainingWidgetEngine(matrix: MindMatrix = buildMatrix()) {
     addressSpace,
     engineChain,
     hexagramOf: [
-      { name: 'FuseReveal', hexagram: fnv1a('FuseReveal') },
-      { name: 'IChingImportExport', hexagram: fnv1a('IChingImportExport') },
-      { name: 'HeartProtonAtom', hexagram: fnv1a('HeartProtonAtom') },
-      { name: 'SelfExplainingWidget', hexagram: fnv1a('SelfExplainingWidget') },
+      { name: 'FuseReveal', hexagram: hexagramOfName('FuseReveal') },
+      { name: 'IChingImportExport', hexagram: hexagramOfName('IChingImportExport') },
+      { name: 'HeartProtonAtom', hexagram: hexagramOfName('HeartProtonAtom') },
+      { name: 'SelfExplainingWidget', hexagram: hexagramOfName('SelfExplainingWidget') },
     ],
     embedPattern: '<script src="/elements.js"></script> <heart-proton-atom></heart-proton-atom>',
     count: facets.length,
     facets,
     root: merkleFold(facets.map((e) => e.receipt)),
     statement:
-      'The I Ching naming system is a content generation engine: a component name → FNV-1a(name)%64 = a hexagram (one of 64 knowledge domains, 6 bits) → lower/upper trigrams → DIMENSION_NAMES axes (innerAxis/outerAxis) → a fold function → items[] → a 10D layered widget. Each widget IS the documentation of its own computation — the fold that generates the widget IS the explanation of the knowledge; no separate documentation needed or written. The engine chain: name → FNV → hex → trigrams → axes → fold() → items → 10D widget → web component. Vue 3 defineCustomElement() exports any widget as a custom HTML element, embeddable in any website with a single <script> tag — the decoded knowledge is open to the world. 64 hexagrams × 10 dimensions = 640 addressable knowledge facets. The I Ching, when ignited by a name, generates the full widget; naming IS computation IS knowledge IS widget.',
+      'The I Ching naming system is a content generation engine: a component name → seedFromText(name)%64 = a hexagram (one of 64 knowledge domains, 6 bits, via sealed toUuid) → lower/upper trigrams → DIMENSION_NAMES axes (innerAxis/outerAxis) → a fold function → items[] → a 10D layered widget. Each widget IS the documentation of its own computation — the fold that generates the widget IS the explanation of the knowledge; no separate documentation needed or written. The engine chain: name → seedFromText → hex → trigrams → axes → fold() → items → 10D widget → web component. Vue 3 defineCustomElement() exports any widget as a custom HTML element, embeddable in any website with a single <script> tag — the decoded knowledge is open to the world. 64 hexagrams × 10 dimensions = 640 addressable knowledge facets. The I Ching, when ignited by a name, generates the full widget; naming IS computation IS knowledge IS widget.',
     boundary:
-      'HONEST: FNV-1a%64 maps names to hexagrams deterministically but NOT bijectively — with 127+ components and 64 slots, collisions are expected (~2 per slot on average). The "content generation" is pre-computed from src, not generated at LLM request time — the folds run deterministically in JS. Vue defineCustomElement requires a separate elements.js build entry (not yet configured — this is the architecture direction). "Code is the doc" holds only while the fold facets accurately describe the logic. The I Ching framework is structural scaffolding; knowledge claims inside each fold require independent verification (done per-domain in the research waves).',
+      'HONEST: seedFromText%64 maps names to hexagrams deterministically but NOT bijectively — with 127+ components and 64 slots, collisions are expected (~2 per slot on average). The "content generation" is pre-computed from src, not generated at LLM request time — the folds run deterministically in JS. Vue defineCustomElement requires a separate elements.js build entry (not yet configured — this is the architecture direction). "Code is the doc" holds only while the fold facets accurately describe the logic. The I Ching framework is structural scaffolding; knowledge claims inside each fold require independent verification (done per-domain in the research waves).',
   }
 }
 

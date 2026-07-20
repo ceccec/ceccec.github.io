@@ -163,10 +163,9 @@ export function computedDistRoute(pathname: string, siteUrl: string, matrix: Min
   return hit ?? pathJson(pathname, matrix)
 }
 
+/** Content-addressed digit-index receipt — routes through sealed toUuid; keeps `idx-` prefix for API stability. */
 export function idxUuid(seed: string): string {
-  let h = 0x811c9dc5
-  for (let i = 0; i < seed.length; i += 1) h ^= seed.charCodeAt(i), h = Math.imul(h, 0x01000193) >>> 0
-  return `idx-${h.toString(16).padStart(8, '0')}`
+  return `idx-${toUuid(seed).replace(/-/g, '').slice(0, 8)}`
 }
 
 export function digitIndexJson(matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {

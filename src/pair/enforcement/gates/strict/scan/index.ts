@@ -1237,9 +1237,10 @@ export const SESSION_USEFUL_FILES: readonly string[] = [
 export type ParsedExport = { name: string; file: string; kind: 'tool' | 'fold' }
 
 // real amplitude amplification over a plain amplitude array — marks a SET, iterates oracle + diffusion (as grover)
+/** Multi-mark amplitude amplification (classical model of Grover) — iteration angle from sealed TAU/8. */
 function amplifyMarked(size: number, marked: readonly number[]): number[] {
   let re = Array.from({ length: size }, () => 1 / Math.sqrt(size)) // uniform superposition — every candidate at once
-  const iterations = Math.max(1, Math.round((Math.PI / 4) * Math.sqrt(size / Math.max(1, marked.length))))
+  const iterations = Math.max(1, Math.round((TAU / 8) * Math.sqrt(size / Math.max(1, marked.length))))
   const markset = new Set(marked)
   for (let it = 0; it < iterations; it++) {
     re = re.map((v, i) => (markset.has(i) ? -v : v)) // oracle: phase-flip the useful (marked) amplitudes

@@ -1028,26 +1028,28 @@ export function theoremGapScan(matrix: MindMatrix = buildMatrix()) {
  * waves in proof order, each atom carrying name · prover · class · home; flat searchLines for any
  * index (tags, minisearch, llms.txt). The screen renders THIS; meaning is the structure itself. */
 export function theoremNavigation(matrix: MindMatrix = buildMatrix()) {
-  const registry = theoremAtoms(matrix)
-  const classOf = new Map(CANDIDATE_THEOREMS.map((entry) => [entry.theorem, entry.class]))
-  const byWave = new Map<string, { theorem: string; proof: string; proofClass: string; home: string }[]>()
-  for (const entry of registry.theorems) {
-    const atom = { theorem: entry.theorem, proof: entry.states, proofClass: classOf.get(entry.theorem) ?? 'finite-complete', home: entry.home }
-    byWave.set(entry.provedBy, [...(byWave.get(entry.provedBy) ?? []), atom])
-  }
-  const waves = [...byWave.entries()].map(([provedBy, atoms]) => ({ provedBy, count: atoms.length, atoms }))
-  const searchLines = registry.theorems.map((entry) => `${entry.theorem} · ${entry.states} · ${entry.provedBy} · ${entry.home}`)
-  return {
-    navigable: waves.length > 0 && searchLines.length === registry.count,
-    waves,
-    waveCount: waves.length,
-    atomCount: registry.count,
-    searchLines,
-    keywords: registry.theorems.map((entry) => entry.theorem),
-    root: merkleFold([registry.root, toUuid(`theorem-navigation:${registry.count}:${waves.length}`)]),
-    statement: `Theorem navigation: ${registry.count} atoms across ${waves.length} proving folds, every entry a structured row (name · proof · prover · class · home) and a search line — the proof itself rides the row, visible and searchable, not only claimed.`,
-    boundary: `A projection of the registry into navigation/search DATA — names, the computed proof line (witness counts, exact values, what is cited vs computed), classes, homes, groupings. The proof lines are the registry's own 'states' fields — concatenations of computed outputs, shown verbatim on screen and indexed for search. Re-derivation stays in the sealed proving folds.`,
-  }
+  return memoByRoot('theoremNavigation', matrix, () => {
+    const registry = theoremAtoms(matrix)
+    const classOf = new Map(CANDIDATE_THEOREMS.map((entry) => [entry.theorem, entry.class]))
+    const byWave = new Map<string, { theorem: string; proof: string; proofClass: string; home: string }[]>()
+    for (const entry of registry.theorems) {
+      const atom = { theorem: entry.theorem, proof: entry.states, proofClass: classOf.get(entry.theorem) ?? 'finite-complete', home: entry.home }
+      byWave.set(entry.provedBy, [...(byWave.get(entry.provedBy) ?? []), atom])
+    }
+    const waves = [...byWave.entries()].map(([provedBy, atoms]) => ({ provedBy, count: atoms.length, atoms }))
+    const searchLines = registry.theorems.map((entry) => `${entry.theorem} · ${entry.states} · ${entry.provedBy} · ${entry.home}`)
+    return {
+      navigable: waves.length > 0 && searchLines.length === registry.count,
+      waves,
+      waveCount: waves.length,
+      atomCount: registry.count,
+      searchLines,
+      keywords: registry.theorems.map((entry) => entry.theorem),
+      root: merkleFold([registry.root, toUuid(`theorem-navigation:${registry.count}:${waves.length}`)]),
+      statement: `Theorem navigation: ${registry.count} atoms across ${waves.length} proving folds, every entry a structured row (name · proof · prover · class · home) and a search line — the proof itself rides the row, visible and searchable, not only claimed.`,
+      boundary: `A projection of the registry into navigation/search DATA — names, the computed proof line (witness counts, exact values, what is cited vs computed), classes, homes, groupings. The proof lines are the registry's own 'states' fields — concatenations of computed outputs, shown verbatim on screen and indexed for search. Re-derivation stays in the sealed proving folds.`,
+    }
+  })
 }
 
 // ── Discovered theorems, wave forty-two — algorithms and integer sequences: the Josephus survivor,
