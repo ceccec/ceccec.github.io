@@ -603,7 +603,12 @@ export function holyBooksGeometry64SealedDiamonds(matrix: MindMatrix = buildMatr
 // files; to add a proof, add a fold and one line here — no new component, and the census (encryption per
 // byte) does not reward the file count anyway.
 export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
-  return [
+  // ONE title home (the naming matrix): the sidebar can only address the SEED (wind/site → seals would cycle),
+  // so the canonical title lives in STATIC_PAGE_SEED and BOTH the sidebar and this proof registry address it by
+  // slug — no second string, no divergence by construction. The registry's own strings below are the fallback
+  // for slugs with no seed page. [[title-is-algebra-computed-payload]]
+  const seedTitleEn = new Map(STATIC_PAGE_SEED.map((page) => [page.slug, page.title.en]))
+  const entries = [
     { slug: 'pi-trinity', title: '⌊π⌋ = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses', proof: piThreeOpensTheTrinity(matrix) },
     { slug: 'qubit-trinity', title: 'the qubit\'s trinity · X Y Z', proof: qubitTrinityPauliBloch(matrix) },
     { slug: 'pauli-basis', title: '64 = the 3-qubit Pauli basis · 4³', proof: sixtyFourThreeQubitPauliBasis(matrix) },
@@ -641,6 +646,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'digit-folders', title: 'the digit folders are the API', proof: digitFoldersAreTheApi(matrix) },
     { slug: 'dot-cube', title: 'the dot is the cube is the dot · 64³', proof: dotIsCubeIsDot(matrix) },
   ]
+  return entries.map((entry) => ({ ...entry, title: seedTitleEn.get(entry.slug) ?? entry.title }))
 }
 
 // The corpus title gate (improve-local from the alignment wave): run the algebra predicate over EVERY proof
