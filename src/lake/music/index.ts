@@ -1444,7 +1444,7 @@ export function observerObservationCoherenceAt(o: ObserverContext, field: Harmon
     if (wrap <= tol) locked += 1
   }
   const base = locked / layers
-  const watchLift = Math.min(1, o.watchMs / HERO_CYCLE_MS) * (1 / (5 * 5))
+  const watchLift = attunementTier(o.watchMs).unlock * (1 / (5 * 5))
   const idleGate = o.idle || !o.visible || o.reduce ? 0 : 1
   return roundTo(Math.min(1 - 1 / (5 * 5 * 5), (base + watchLift) * idleGate), 6)
 }
@@ -1504,6 +1504,122 @@ export function harmonizeFieldComputes(matrix: MindMatrix = buildMatrix(), at = 
       statement:
         'Harmonize H1 core: A432 neural band ladder + breath coherence cadence + observer↔field coherence + harmonizeField — pure folds for always-on movie harmonization; consumer wires in H3.',
       boundary: NEUROSCIENCE_HONEST_BOUNDARY,
+    }
+  })
+}
+
+
+
+// ── Harmonize H2 — watch-time unlock + attunement tiers (progressive disclosure of model depth) ──
+/** Fibonacci hero-cycle thresholds (census 55+34+21 spine) — tier = count crossed. */
+export const ATTUNEMENT_TIER_CYCLES = [1, 2, 3, 5, 8, 13, 21] as const
+/** Half-saturation of unlock curve — 8 = iching fan-out on the hero clock (~16 min). */
+export const ATTUNEMENT_T_HALF_MS = HERO_CYCLE_MS * 8
+/** Browser persistence key — content-addressed `{ ms, root }`. */
+export const WATCH_MS_STORAGE_KEY = 'ceccec:watch-ms'
+
+const ATTUNEMENT_WATCH_BOUNDARY =
+  NEUROSCIENCE_HONEST_BOUNDARY +
+  ' Watch-time unlock = progressive disclosure of neuroscience-model layers in the movie — NOT literal cognitive capacity increase, and NOT a measurement or alteration of the viewer\'s brain.'
+
+/** Parse persisted watch-ms (SSR-safe). */
+export function parseWatchMsPersist(raw: string | null | undefined): number {
+  if (!raw) return 0
+  try {
+    const parsed = JSON.parse(raw) as { ms?: unknown }
+    return typeof parsed.ms === 'number' && Number.isFinite(parsed.ms) && parsed.ms >= 0 ? parsed.ms : 0
+  } catch {
+    return 0
+  }
+}
+
+/** Encode watch-ms with content-address root. */
+export function encodeWatchMsPersist(ms: number): string {
+  const safe = Math.max(0, Math.floor(ms))
+  return JSON.stringify({ ms: safe, root: toUuid(`watch:${safe}`) })
+}
+
+/** Saturating unlock ∈ [0,1) — monotonic in watchMs. */
+export function unlock(watchMs: number): number {
+  const w = Math.max(0, watchMs)
+  const u = 1 - 2 ** (-w / ATTUNEMENT_T_HALF_MS)
+  return roundTo(Math.min(1 - 1 / (5 * 5 * 5 * 5), Math.max(0, u)), 6)
+}
+
+/**
+ * Attunement tier from coherent watch-time — Fib×HERO_CYCLE_MS thresholds.
+ * HONEST: progressive disclosure of modeled layers, not brain-capacity.
+ */
+export function attunementTier(watchMs: number) {
+  const w = Math.max(0, watchMs)
+  const thresholdsMs = ATTUNEMENT_TIER_CYCLES.map((c) => c * HERO_CYCLE_MS)
+  const tier = ATTUNEMENT_TIER_CYCLES.filter((c) => w >= c * HERO_CYCLE_MS).length // 0..7
+  const u = unlock(w)
+  const ladder = a432NeuralBandLadder()
+  const band = ladder.bands[Math.min(tier, ladder.bands.length - 1)]!
+  const lockedLayers = 1 + tier
+  const partials = 1 + tier
+  const on = tier >= 0 && tier <= ATTUNEMENT_TIER_CYCLES.length && u >= 0 && u < 1 && ladder.computes
+  return {
+    tier,
+    unlock: u,
+    thresholdsMs,
+    dominantBandHz: band.a432Hz,
+    dominantBand: band.name,
+    lockedLayers,
+    partials,
+    root: toUuid(`attunement-tier:${tier}:${Math.floor(w)}:${band.name}`),
+    on,
+    boundary: ATTUNEMENT_WATCH_BOUNDARY,
+  }
+}
+
+/** Harmonic depth unlocked at this watchMs — band names + partial count. */
+export function unlockedHarmonicDepth(watchMs: number) {
+  const t = attunementTier(watchMs)
+  const ladder = a432NeuralBandLadder()
+  const bands = ladder.bands.slice(0, Math.min(ladder.bands.length, t.partials)).map((b) => b.name)
+  return {
+    partials: t.partials,
+    bands,
+    tier: t.tier,
+    unlock: t.unlock,
+    root: toUuid(`unlocked-harmonic-depth:${t.tier}:${t.partials}:${bands.join(',')}`),
+    on: t.on && bands.length === Math.min(ladder.bands.length, t.partials),
+    boundary: ATTUNEMENT_WATCH_BOUNDARY,
+  }
+}
+
+/** Gate — H2 watch-time math recomputes at call time (no browser storage in the fold). */
+export function attunementWatchComputes(watchMs = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`attunementWatchComputes:${Math.floor(watchMs / (100 * 5 * 2))}`, matrix, () => {
+    void matrix
+    const u0 = unlock(0)
+    const uHalf = unlock(ATTUNEMENT_T_HALF_MS)
+    const tier0 = attunementTier(0)
+    const tier3 = attunementTier(ATTUNEMENT_TIER_CYCLES[2]! * HERO_CYCLE_MS) // 3 cycles
+    const depth = unlockedHarmonicDepth(ATTUNEMENT_TIER_CYCLES[4]! * HERO_CYCLE_MS) // 8 cycles
+    const encoded = encodeWatchMsPersist(HERO_CYCLE_MS)
+    const parsed = parseWatchMsPersist(encoded)
+    const facets = [
+      { facet: 'unlock(0) ≈ 0 and unlock(T_HALF) ≈ 1/2', on: u0 < 1 / (5 * 5) && Math.abs(uHalf - (1 / 2)) < 1 / (5 * 5) },
+      { facet: 'attunementTier(0) = 0; tier grows on Fib×HERO_CYCLE_MS', on: tier0.tier === 0 && tier3.tier === 3 },
+      { facet: 'unlockedHarmonicDepth partials = 1+tier; bands capped by ladder length', on: depth.partials === 1 + 5 && depth.bands.length === Math.min(5, depth.partials) },
+      { facet: 'encode/parseWatchMsPersist round-trip', on: parsed === HERO_CYCLE_MS },
+      { facet: 'tier on: recompute holds; boundary names progressive disclosure', on: tier0.on && tier0.boundary.includes('progressive disclosure') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`attunement-watch-computes:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      unlock0: u0,
+      unlockHalf: uHalf,
+      tier0,
+      tier3,
+      depth,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement:
+        'Harmonize H2: unlock curve + Fib×HERO_CYCLE_MS attunement tiers + unlockedHarmonicDepth — watch-time progressive disclosure of the modeled neuroscience ladder; persistence helpers are content-addressed.',
+      boundary: ATTUNEMENT_WATCH_BOUNDARY,
     }
   })
 }

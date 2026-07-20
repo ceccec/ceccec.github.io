@@ -1,6 +1,12 @@
 // One hero clock + canvas resize/paint — background movie, card movies, subtitles (DRY mount).
 import { nextTick, onMounted, onUnmounted, ref, shallowRef, type Ref } from 'vue'
-import { HERO_CYCLE_MS, pointerInteraction, subscribeHeroClock, type PointerInteraction } from './hero-movie-paint'
+import { HERO_CYCLE_MS, SCREENSAVER_IDLE_MS, pointerInteraction, subscribeHeroClock, type PointerInteraction } from './hero-movie-paint'
+import {
+  WATCH_MS_STORAGE_KEY,
+  encodeWatchMsPersist,
+  parseWatchMsPersist,
+  attunementTier,
+} from '../../src/lake/music/index'
 
 export type MovieIntensity = 'full' | 'soft' | 'whisper'
 
@@ -248,6 +254,101 @@ export function useVisibleMovieCanvas(options: VisibleMovieCanvasOptions) {
 
   return { at, cssWidth, repaint }
 }
+
+
+/** Coherent watch-time — accumulates on the EXISTING hero-clock tick (call `onHeroTick` from paint).
+ *  Gates: document visible · not idle (screensaver / SCREENSAVER_IDLE_MS) · not reduce-motion.
+ *  Persist key `ceccec:watch-ms` as `{ ms, root }`. Tier = attunementTier(watchMs) at call time.
+ *  HONEST: progressive disclosure of model depth — not cognitive capacity / brain measurement.
+ */
+export function useCoherentWatchTime() {
+  const watchMs = ref(0)
+  const idle = ref(false)
+  const visible = ref(true)
+  let persistedBase = 0
+  let sessionDelta = 0
+  let lastAt: number | null = null
+  let lastPersistAt = 0
+  let lastActivityAt = typeof performance !== 'undefined' ? performance.now() : 0
+  const reduce = prefersReducedMotion()
+  let detachActivity: (() => void) | null = null
+
+  function loadPersisted(): number {
+    if (typeof localStorage === 'undefined') return 0
+    return parseWatchMsPersist(localStorage.getItem(WATCH_MS_STORAGE_KEY))
+  }
+
+  function persist(ms: number): void {
+    if (typeof localStorage === 'undefined') return
+    try {
+      localStorage.setItem(WATCH_MS_STORAGE_KEY, encodeWatchMsPersist(ms))
+    } catch {
+      /* quota / private mode — keep session-only */
+    }
+  }
+
+  function noteActivity(): void {
+    lastActivityAt = typeof performance !== 'undefined' ? performance.now() : Date.now()
+  }
+
+  function computeIdle(now: number): boolean {
+    if (typeof document !== 'undefined' && document.documentElement.classList.contains('vp-hero-screensaver')) {
+      return true
+    }
+    return now - lastActivityAt >= SCREENSAVER_IDLE_MS
+  }
+
+  function computeVisible(): boolean {
+    return typeof document === 'undefined' ? false : !document.hidden
+  }
+
+  /** Call from the one hero-clock paint path — no second rAF. */
+  function onHeroTick(at: number): void {
+    const vis = computeVisible()
+    const idl = computeIdle(at)
+    visible.value = vis
+    idle.value = idl
+    if (vis && !idl && !reduce && lastAt !== null) {
+      const d = Math.max(0, Math.min(at - lastAt, HERO_CYCLE_MS / (9 * 2)))
+      sessionDelta += d
+      watchMs.value = persistedBase + sessionDelta
+    }
+    lastAt = at
+    // Throttle persist ~6 s (hero fractal breath step)
+    if (at - lastPersistAt >= HERO_CYCLE_MS / (9 * 2)) {
+      lastPersistAt = at
+      persist(watchMs.value)
+      persistedBase = watchMs.value
+      sessionDelta = 0
+    }
+  }
+
+  onMounted(() => {
+    persistedBase = loadPersisted()
+    sessionDelta = 0
+    watchMs.value = persistedBase
+    noteActivity()
+    if (typeof window === 'undefined') return
+    const events = ['pointerdown', 'pointermove', 'keydown', 'scroll', 'touchstart'] as const
+    for (const ev of events) window.addEventListener(ev, noteActivity, { passive: true })
+    detachActivity = (): void => {
+      for (const ev of events) window.removeEventListener(ev, noteActivity)
+    }
+  })
+
+  onUnmounted(() => {
+    persist(watchMs.value)
+    detachActivity?.()
+    detachActivity = null
+  })
+
+  function tierAt() {
+    return attunementTier(watchMs.value)
+  }
+
+  return { watchMs, idle, visible, onHeroTick, tierAt, reduce }
+}
+
 
 export function viewportSize(): { w: number; h: number } {
   if (typeof window === 'undefined') return { w: (64 * 16), h: (64 * 6 * 2) }
