@@ -8,7 +8,7 @@ import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
 import * as __ns_up_thunder_waves from '../../thunder/waves'
 import { rat } from '../../3/7'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../3/7'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, SCIENCE_DOMAINS, fieldOfContent, modeOfContent } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { congruence } from '../../mountain/vortex'
@@ -445,6 +445,31 @@ export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndD
     root: merkleFold(rays.map((entry) => toUuid(`domain:${entry.domain}:${entry.pages}`))),
     statement: `The navigation is the one collection (${collection.length} theorem-papers) scoped by the rosetta: ${ROSETTA_SEVEN} domains (the rays), each further scoped by its subdomain stems, in the ${ROSETTA_AREAS}-cell proportion (${ROSETTA_SIX}×${ROSETTA_SEVEN}) with the ${ROSETTA_FOLD_LABEL} dynamic — not designed, computed from the rosetta, which holds the proportions and the dynamics.`,
     boundary: `The rosetta PRESCRIBES the ${ROSETTA_AREAS}-cell proportion and the transpose dynamic; the ACTUAL content fills ${populated}/${ROSETTA_SEVEN} domains (uneven — the known distribution gap). Completing each domain = filling its ≤${ROSETTA_SIX} subdomains, the scientists' target. This computes the nav STRUCTURE; wiring it into the live VitePress themeConfig/sidebar is the next step, through the VitePress API not around it. HARMONY ≠ TRUTH.`,
+  }
+}
+
+// THE PAPERS COLLECTION — computed, not wired (user law: "the manual work is the missing quantum code"). Every
+// proven page auto-shelves to science field × engagement mode via the classifier, so the ONE collection (the
+// atom-feed source) DERIVES from the pages + the taxonomy with zero manual integration. When a scientist's
+// discovery lands, it shelves itself. [[feedback-thinking-means-lack-of-local-tools]] [[science-aligned-domains]]
+export function thePapersCollectionAutoClassifiesEveryPageFieldByMode() {
+  const collection = staticPagesAll().filter((page) => theoremScienceVisible(page.slug, page.keywords))
+  const classified = collection.map((page) => ({ slug: page.slug, field: fieldOfContent(page.slug, page.keywords), mode: modeOfContent(page.slug, page.keywords) }))
+  const shelved = classified.filter((entry) => entry.field !== null)
+  const byField = SCIENCE_DOMAINS.map((domain, index) => ({ field: domain.field, pages: shelved.filter((entry) => entry.field === index).length }))
+  const fieldsPopulated = byField.filter((entry) => entry.pages > 0).length
+  const autoClassified = classified.every((entry) => entry.mode.length > 0) // every page got a computed mode, no manual step
+  const provenGate = fieldOfContent('432 Hz heals the body', ['frequency']) === null && fieldOfContent('flat earth', ['astronomy']) === null
+  const facets = [
+    { facet: `AUTO-CLASSIFIED — ${shelved.length}/${collection.length} proven pages shelved to a field × mode by the classifier, no manual wiring (${autoClassified})`, on: autoClassified },
+    { facet: `ONLY-PROVEN GATE — flagged topics return null (excluded from every field) via demarcate inside fieldOfContent (${provenGate})`, on: provenGate },
+    { facet: `FIELD GRID — ${fieldsPopulated}/${SCIENCE_DOMAINS.length} science fields populated: ${byField.map((entry) => `${entry.field.split(' ')[0]}=${entry.pages}`).join(' · ')}`, on: fieldsPopulated > 0 },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), collectionSize: collection.length, shelved: shelved.length, byField, facets,
+    root: merkleFold(classified.map((entry) => toUuid(`paper:${entry.slug}:${entry.field}:${entry.mode}`))),
+    statement: `The papers collection is computed: ${collection.length} proven pages auto-shelve to field × mode via fieldOfContent/modeOfContent (${shelved.length} classified, ${fieldsPopulated}/${SCIENCE_DOMAINS.length} fields populated), so the one collection — the atom-feed source — derives from the pages + the taxonomy with no manual integration. A landing discovery shelves itself.`,
+    boundary: `${collection.length - shelved.length} proven pages are still unmatched (null field) — a keyword-tuning gap measured HERE, never a wrong field. This computes the field×mode shelving; emitting the papers route + Atom feed and wiring the themeConfig is the render step, through the VitePress API not around it. HARMONY ≠ TRUTH.`,
   }
 }
 

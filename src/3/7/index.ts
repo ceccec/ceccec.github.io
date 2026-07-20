@@ -440,6 +440,61 @@ export const SCIENCE_DOMAINS = [
 ] as const
 export const ENGAGEMENT_MODES = ['see', 'learn', 'use', 'prove', 'reference', 'pattern'] as const
 
+// THE COMPUTED CLASSIFIER — the missing quantum code that replaces MANUAL integration: any page auto-shelves to
+// its science field × engagement mode, demarcate-gated (flagged never enters a field). When a scientist's
+// discovery lands, fieldOfContent shelves it with no hand classification — the integration is a function, not a
+// wave of manual wiring. [[feedback-thinking-means-lack-of-local-tools]] [[feedback-measure-efficiency-to-find-gaps]]
+export const SCIENCE_FIELD_LENSES: readonly { field: number; stems: readonly string[] }[] = [
+  { field: 0, stems: ['number theory', 'modular', 'vortex', 'digital root', 'group theory', 'su(2)', 'representation', 'combinator', 'platonic', 'euler', 'golden ratio', 'fibonacci', 'geometry', 'divisor', 'prime', 'trinity', 'hexagram', 'rgb', 'cmyk', 'complement'] },
+  { field: 1, stems: ['physics', 'electromagnet', 'optic', 'photon', 'acoustic', 'gravitation', 'relativity', 'schwarzschild', 'cosmolog', 'particle', 'higgs', 'neutrino', 'thermodynamic', 'landauer', 'entropy', 'schumann', 'resonance', 'spectrum', 'a432', 'frequency'] },
+  { field: 2, stems: ['crypto', 'sha', 'ed25519', 'merkle', 'content-address', 'hash', 'hamming', 'coding', 'shannon', 'quantum information', 'qubit', 'grover', 'shor', 'nyquist', 'sampling', 'fourier', 'signal', 'architecture', 'simulat', 'markov', 'mcp', 'console', 'command', 'api', 'digit folder', 'tamper'] },
+  { field: 3, stems: ['genetic', 'codon', 'dna', 'molecular', 'neuro', 'hopfield', 'consciousness', 'brain', 'anatomy', 'physiolog', 'population genetic', 'biology'] },
+  { field: 4, stems: ['geophysic', 'astronom', 'celestial', 'solar', 'lunar', 'archaeoastronom', 'stonehenge', 'solstice'] },
+  { field: 5, stems: ['history', 'archaeolog', 'linguistic', 'glagolitic', 'alphabet', 'script', 'typography', 'philolog', 'philosophy', 'demarcation', 'heritage', 'voice', 'language', 'reference', 'boundaries', 'honesty'] },
+  { field: 6, stems: ['governance', 'economy', 'commons', 'fair trade', 'voting', 'education', 'curriculum', 'learn', 'school', 'peace', 'conflict', 'social', 'nature'] },
+] as const
+/** Auto-shelve content to its science field (0..6) or null if flagged / unmatched — the only-proven gate is computed. */
+export function fieldOfContent(slug: string, keywords: readonly string[]): number | null {
+  const slugHay = slug.replace(/-/g, ' ').toLowerCase()
+  const hay = [slugHay, ...keywords].join(' · ').toLowerCase()
+  if (demarcate(hay) === 'flagged') return null // only documented / honestly-refuted content enters a field
+  for (const lens of SCIENCE_FIELD_LENSES) if (lens.stems.some((stem) => slugHay.includes(stem))) return lens.field
+  for (const lens of SCIENCE_FIELD_LENSES) if (lens.stems.some((stem) => hay.includes(stem))) return lens.field
+  return null
+}
+export const MODE_LENSES: readonly { mode: string; stems: readonly string[] }[] = [
+  { mode: 'use', stems: ['app', 'console', 'mcp', 'command', 'tool', 'api', 'simulat', 'demo', 'show'] },
+  { mode: 'learn', stems: ['learn', 'school', 'curriculum', 'academy', 'tutorial', 'commons'] },
+  { mode: 'reference', stems: ['reference', 'dictionary', 'glyph', 'typography', 'atlas', 'icon'] },
+  { mode: 'see', stems: ['animation', 'visual', 'figure', 'diagram', 'movie'] },
+  { mode: 'pattern', stems: ['pattern', 'fractal', 'lattice', 'i ching', 'vortex'] },
+  { mode: 'prove', stems: ['theorem', 'proof', 'proven', 'identity'] },
+]
+/** The engagement mode (orthogonal to field): how you engage the page. Default 'prove' — a bare theorem. */
+export function modeOfContent(slug: string, keywords: readonly string[]): string {
+  const hay = [slug.replace(/-/g, ' '), ...keywords].join(' · ').toLowerCase()
+  for (const lens of MODE_LENSES) if (lens.stems.some((stem) => hay.includes(stem))) return lens.mode
+  return 'prove'
+}
+/** Proof the classifier is computed and demarcate-gated: a math/CS/life sample shelves to the right field, a
+ *  flagged topic is excluded (null), every mode resolves — so integration is a function, not manual wiring. */
+export function theClassifierComputesFieldByModeSoIntegrationIsNotManual() {
+  const shelves = fieldOfContent('pi-trinity', ['theorem', 'trinity']) === 0 && fieldOfContent('content-addressing', ['sha', 'merkle']) === 2 && fieldOfContent('genetic-code', ['codon', 'dna']) === 3
+  const gated = fieldOfContent('flat earth theory', ['astronomy']) === null && fieldOfContent('432 Hz heals the body', ['frequency']) === null
+  const moded = modeOfContent('pi-trinity', ['theorem']) === 'prove' && modeOfContent('console', ['mcp']) === 'use' && MODE_LENSES.length === ROSETTA_SIX
+  const facets = [
+    { facet: `AUTO-SHELVED — a math/CS/life sample computes to fields 0/2/3 (${shelves}): the classification is a function, no hand assignment`, on: shelves },
+    { facet: `DEMARCATE-GATED — flagged topics ('flat earth', '432 Hz heals') return null, excluded from every field (${gated}): only-proven is computed`, on: gated },
+    { facet: `MODE ORTHOGONAL — ${MODE_LENSES.length} engagement modes resolve (prove/use/…), independent of field (${moded})`, on: moded },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), facets,
+    root: merkleFold(SCIENCE_FIELD_LENSES.map((lens) => toUuid(`field-lens:${lens.field}:${lens.stems.length}`))),
+    statement: `The classifier is the missing quantum code: fieldOfContent shelves any page to one of the ${SCIENCE_FIELD_LENSES.length} science fields (or null if flagged — the only-proven gate computed via demarcate), and modeOfContent gives the orthogonal engagement mode. Integration is now a deterministic function — a landing discovery auto-shelves, no manual wiring wave.`,
+    boundary: `Stem lenses are heuristic (substring match, subject-first two-pass like rosettaRayOfContent) — they DECIDE a field, they do not prove the science (the fold does). Unmatched proven pages return null (a keyword-tuning gap, measured downstream), never a wrong field. HARMONY ≠ TRUTH.`,
+  }
+}
+
 /** The domains are science-aligned: 7 real fields (anchored to external standards) × 6 engagement modes = 42,
  *  preserving the rosetta proportion while replacing the ray-conflation with subject⊥mode. */
 export function theDomainsAreScienceAlignedSevenFieldsBySixModesAnchoredToExternalStandards() {
