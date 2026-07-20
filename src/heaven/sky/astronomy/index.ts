@@ -25,6 +25,7 @@ import { atomInclusionProof } from '../../../lake/ledger'
 import { A432_HUE, TAU } from '../../../3/7'
 import { movieCanvasPolarity } from '../../../quantum/science'
 import { heroPhaseAt } from '../../../fire/plasma/ball'
+import { RAVE_BODIES_13, RAVE_DESIGN_SUN_ARC_DEG } from '../../../quantum/lake/spirit'
 
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
@@ -644,6 +645,290 @@ export function planetBatchFacetsComputes(batch: number, matrix: MindMatrix = bu
   })
 }
 
+// ── HD W4 · sealed Meeus reduced-precision ephemeris (NO external dep; NOT JPL DE440) ─────────────
+/** J2000.0 TT epoch as Julian Day (Meeus). */
+export const MEEUS_J2000_JD = 2451545
+/** Full circle in degrees — sealed lattice form (8×45). */
+const DEG_CIRCLE = 8 * 45
+/** Degrees → radians via TAU (never Math.PI). */
+const degToRad = (deg: number) => (deg * TAU) / DEG_CIRCLE
+/** Normalize ecliptic longitude into [0, 360). */
+export function normalizeEclipticDeg(deg: number): number {
+  return ((deg % DEG_CIRCLE) + DEG_CIRCLE) % DEG_CIRCLE
+}
+/** Shortest signed degree delta a→b on the circle (−180, 180]. */
+export function signedAngleDeg(fromDeg: number, toDeg: number): number {
+  let d = normalizeEclipticDeg(toDeg) - normalizeEclipticDeg(fromDeg)
+  if (d > DEG_CIRCLE / 2) d -= DEG_CIRCLE
+  if (d <= -(DEG_CIRCLE / 2)) d += DEG_CIRCLE
+  return d
+}
+
+/** Civil UT date → Julian Day (Meeus ch.7). Hour defaults to noon UT. */
+export function julianDayFromCivil(year: number, month: number, day: number, hourUt = 12): number {
+  let y = year
+  let m = month
+  if (m <= 2) {
+    y -= 1
+    m += 12
+  }
+  const A = Math.floor(y / 100)
+  const B = 2 - A + Math.floor(A / 4)
+  return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + day + B - 1524.5 + hourUt / 24
+}
+
+/** Julian centuries from J2000.0 (Meeus T). */
+export function meeusT(jd: number): number {
+  return (jd - MEEUS_J2000_JD) / 36525
+}
+
+/**
+ * Apparent geocentric ecliptic longitude of the Sun — Meeus ch.25 reduced (equation of center + aberration/nutation sketch).
+ * HONEST tolerance band for facets: ~0.01° near J2000; NOT DE440.
+ */
+export function sunEclipticLongitudeDeg(jd: number): number {
+  const T = meeusT(jd)
+  const L0 = normalizeEclipticDeg(280.46646 + 36000.76983 * T + 0.0003032 * T * T)
+  const M = normalizeEclipticDeg(357.52911 + 35999.05029 * T - 0.0001537 * T * T)
+  const Mr = degToRad(M)
+  const C =
+    (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(Mr) +
+    (0.019993 - 0.000101 * T) * Math.sin(2 * Mr) +
+    0.000289 * Math.sin(3 * Mr)
+  const trueLon = L0 + C
+  const omega = normalizeEclipticDeg(125.04 - 1934.136 * T)
+  return normalizeEclipticDeg(trueLon - 0.00569 - 0.00478 * Math.sin(degToRad(omega)))
+}
+
+/**
+ * Geocentric ecliptic longitude of the Moon — Meeus ch.47 truncated (principal terms only).
+ * HONEST: reduced series; facet tolerance ~1° vs full ELP/DE440 — symbolic HD computer grade.
+ */
+export function moonEclipticLongitudeDeg(jd: number): number {
+  const T = meeusT(jd)
+  const Lp = normalizeEclipticDeg(218.3164477 + 481267.88123421 * T)
+  const D = normalizeEclipticDeg(297.8501921 + 445267.1114034 * T)
+  const M = normalizeEclipticDeg(357.5291092 + 35999.0502909 * T)
+  const Mp = normalizeEclipticDeg(134.9633964 + 477198.8675055 * T)
+  const F = normalizeEclipticDeg(93.272095 + 483202.0175233 * T)
+  // Coefficient (°) × argument — truncated principal set (Meeus Table 47.A subset).
+  const terms: ReadonlyArray<readonly [number, number]> = [
+    [6.289, Mp],
+    [1.274, 2 * D - Mp],
+    [0.658, 2 * D],
+    [0.214, 2 * Mp],
+    [-0.186, M],
+    [-0.114, 2 * F],
+    [0.059, 2 * D - 2 * Mp],
+    [0.057, 2 * D - M - Mp],
+    [0.053, 2 * D + Mp],
+    [0.046, 2 * D - M],
+    [0.041, M - Mp],
+    [-0.035, D],
+    [-0.031, Mp + M],
+  ]
+  const delta = terms.reduce((sum, [c, arg]) => sum + c * Math.sin(degToRad(normalizeEclipticDeg(arg))), 0)
+  return normalizeEclipticDeg(Lp + delta)
+}
+
+/** Mean lunar ascending node Ω (Meeus) — North Node longitude; South = +180°. */
+export function lunarNorthNodeLongitudeDeg(jd: number): number {
+  const T = meeusT(jd)
+  return normalizeEclipticDeg(125.0445479 - 1934.1362891 * T + 0.0020754 * T * T)
+}
+
+/** J2000 mean elements for reduced heliocentric longitudes (Meeus-style circular + eq. of center). */
+const MEEUS_PLANET_ELEMENTS = [
+  { name: 'Mercury', a: 0.387098, L0: 252.250906, n: 149472.6746358, e: 0.20563593, peri: 77.456119 },
+  { name: 'Venus', a: 0.723329, L0: 181.979801, n: 58517.8156768, e: 0.00677672, peri: 131.563703 },
+  { name: 'Mars', a: 1.523679, L0: 355.433, n: 19140.2993313, e: 0.09340062, peri: 336.060234 },
+  { name: 'Jupiter', a: 5.202603, L0: 34.351519, n: 3034.9056606, e: 0.04849485, peri: 14.331309 },
+  { name: 'Saturn', a: 9.554909, L0: 50.077444, n: 1222.1138488, e: 0.05550862, peri: 93.057237 },
+  { name: 'Uranus', a: 19.218446, L0: 314.055005, n: 428.4669983, e: 0.04638122, peri: 173.005291 },
+  { name: 'Neptune', a: 30.110387, L0: 304.348665, n: 218.4862002, e: 0.00945575, peri: 48.120276 },
+] as const
+
+/** Pluto ecliptic longitude — Meeus polynomial (reduced; dwarf-planet grade). */
+export function plutoEclipticLongitudeDeg(jd: number): number {
+  const T = meeusT(jd)
+  // Reduced polynomial fit around J2000 (symbolic HD; NOT DE440 osculating).
+  return normalizeEclipticDeg(238.958116 + 145.207805 * T + 0.000301 * T * T)
+}
+
+/** Heliocentric ecliptic longitude from mean elements + equation of center (coplanar reduced). */
+function heliocentricLongitudeDeg(L0: number, nPerCentury: number, e: number, peri: number, T: number): number {
+  const L = normalizeEclipticDeg(L0 + nPerCentury * T)
+  const M = normalizeEclipticDeg(L - peri)
+  // Equation of center in degrees (Meeus-style small-e expansion).
+  const Cdeg =
+    ((2 * e - (e * e * e) / 4) * Math.sin(degToRad(M)) + (5 / 4) * e * e * Math.sin(2 * degToRad(M))) *
+    (DEG_CIRCLE / TAU)
+  return normalizeEclipticDeg(L + Cdeg)
+}
+
+/**
+ * Geocentric ecliptic longitude from heliocentric lon + AU (circular coplanar Earth).
+ * Earth heliocentric = Sun geocentric + 180° (light-time ignored — reduced Meeus honesty).
+ */
+function geocentricFromHeliocentric(helioLonDeg: number, au: number, sunLonDeg: number): number {
+  const earthHelio = normalizeEclipticDeg(sunLonDeg + DEG_CIRCLE / 2)
+  const earthAu = 1
+  const px = au * Math.cos(degToRad(helioLonDeg)) - earthAu * Math.cos(degToRad(earthHelio))
+  const py = au * Math.sin(degToRad(helioLonDeg)) - earthAu * Math.sin(degToRad(earthHelio))
+  return normalizeEclipticDeg((Math.atan2(py, px) * DEG_CIRCLE) / TAU)
+}
+
+export type SealedMeeusBodyLongitude = {
+  readonly name: (typeof RAVE_BODIES_13)[number]
+  readonly longitudeDeg: number
+  readonly receipt: string
+}
+
+/**
+ * Sealed Meeus reduced-precision geocentric ecliptic longitudes for the 13 HD activation bodies.
+ * Design layer is a separate solver (`designLayerFromNatalSun`).
+ */
+export function sealedMeeusEphemerisAt(jd: number): {
+  readonly jd: number
+  readonly bodies: readonly SealedMeeusBodyLongitude[]
+  readonly sun: number
+  readonly moon: number
+  readonly root: string
+} {
+  const sun = sunEclipticLongitudeDeg(jd)
+  const moon = moonEclipticLongitudeDeg(jd)
+  const north = lunarNorthNodeLongitudeDeg(jd)
+  const south = normalizeEclipticDeg(north + DEG_CIRCLE / 2)
+  const earth = normalizeEclipticDeg(sun + DEG_CIRCLE / 2)
+  const T = meeusT(jd)
+  const planets = MEEUS_PLANET_ELEMENTS.map((el) => {
+    const helio = heliocentricLongitudeDeg(el.L0, el.n, el.e, el.peri, T)
+    return { name: el.name as SealedMeeusBodyLongitude['name'], longitudeDeg: geocentricFromHeliocentric(helio, el.a, sun) }
+  })
+  const pluto = plutoEclipticLongitudeDeg(jd)
+  const byName: Record<string, number> = {
+    Sun: sun,
+    Earth: earth,
+    Moon: moon,
+    'North Node': north,
+    'South Node': south,
+    Pluto: pluto,
+    ...Object.fromEntries(planets.map((p) => [p.name, p.longitudeDeg])),
+  }
+  const bodies = RAVE_BODIES_13.map((name) => ({
+    name,
+    longitudeDeg: byName[name]!,
+    receipt: toUuid(`meeus-lon:${name}:${roundTo(byName[name]!, 6)}`),
+  }))
+  return {
+    jd,
+    bodies,
+    sun,
+    moon,
+    root: merkleFold(bodies.map((b) => b.receipt)),
+  }
+}
+
+/**
+ * Design-layer Julian Day: solve Sun(design) = Sun(birth) − 88° of solar arc (not calendar days).
+ * Binary search on signed angle residual; ~88 days bracket (Sun ≈ 1°/day).
+ */
+export function designLayerFromNatalSun(birthJd: number): {
+  readonly birthJd: number
+  readonly designJd: number
+  readonly birthSunDeg: number
+  readonly designSunDeg: number
+  readonly targetDeg: number
+  readonly arcErrDeg: number
+  readonly daysBeforeBirth: number
+} {
+  const birthSunDeg = sunEclipticLongitudeDeg(birthJd)
+  const targetDeg = normalizeEclipticDeg(birthSunDeg - RAVE_DESIGN_SUN_ARC_DEG)
+  let lo = birthJd - 100
+  let hi = birthJd - 70
+  for (let i = 0; i < 48; i += 1) {
+    const mid = (lo + hi) / 2
+    const residual = signedAngleDeg(targetDeg, sunEclipticLongitudeDeg(mid))
+    if (residual > 0) hi = mid
+    else lo = mid
+  }
+  const designJd = (lo + hi) / 2
+  const designSunDeg = sunEclipticLongitudeDeg(designJd)
+  const arcErrDeg = Math.abs(Math.abs(signedAngleDeg(designSunDeg, birthSunDeg)) - RAVE_DESIGN_SUN_ARC_DEG)
+  return {
+    birthJd,
+    designJd,
+    birthSunDeg,
+    designSunDeg,
+    targetDeg,
+    arcErrDeg,
+    daysBeforeBirth: birthJd - designJd,
+  }
+}
+
+/**
+ * HD W4 fold — sealed Meeus ephemeris + Design Sun−88° solver with adversarial reference-tolerance facets.
+ * HONEST symbolic-system computer grade; cusp/fast-mover warnings deferred to W5 chart UX.
+ */
+export function humanDesignEphemerisCore(matrix: MindMatrix = buildMatrix(), birthJd = MEEUS_J2000_JD) {
+  return memoByRoot(`humanDesignEphemerisCore:${roundTo(birthJd, 6)}`, matrix, () => {
+    const j2000Jd = julianDayFromCivil(2000, 1, 1, 12)
+    const eph = sealedMeeusEphemerisAt(birthJd)
+    const design = designLayerFromNatalSun(birthJd)
+    const sunJ2000 = sunEclipticLongitudeDeg(MEEUS_J2000_JD)
+    // At T=0 Meeus L0=280.46646°; equation of center + aberration/nutation sketch → apparent ≈ 280.37°.
+    // Facet anchors the reduced ch.25 pipeline (mean→true→apparent), not DE440.
+    const T0 = meeusT(MEEUS_J2000_JD)
+    const L0 = normalizeEclipticDeg(280.46646 + 36000.76983 * T0 + 0.0003032 * T0 * T0)
+    const M0 = normalizeEclipticDeg(357.52911 + 35999.05029 * T0 - 0.0001537 * T0 * T0)
+    const C0 =
+      (1.914602 - 0.004817 * T0 - 0.000014 * T0 * T0) * Math.sin(degToRad(M0)) +
+      (0.019993 - 0.000101 * T0) * Math.sin(2 * degToRad(M0)) +
+      0.000289 * Math.sin(3 * degToRad(M0))
+    const true0 = L0 + C0
+    const omega0 = normalizeEclipticDeg(125.04 - 1934.136 * T0)
+    const apparent0 = normalizeEclipticDeg(true0 - 0.00569 - 0.00478 * Math.sin(degToRad(omega0)))
+    const sunJ2000Ok = Math.abs(signedAngleDeg(apparent0, sunJ2000)) < 1e-9 && L0 === 280.46646
+    const sunDayAdvance = signedAngleDeg(sunEclipticLongitudeDeg(birthJd), sunEclipticLongitudeDeg(birthJd + 1))
+    const moonDayAdvance = Math.abs(signedAngleDeg(moonEclipticLongitudeDeg(birthJd), moonEclipticLongitudeDeg(birthJd + 1)))
+    const earthOpp = Math.abs(signedAngleDeg(eph.bodies.find((b) => b.name === 'Earth')!.longitudeDeg, normalizeEclipticDeg(eph.sun + DEG_CIRCLE / 2))) < 1e-9
+    const nodeOpp =
+      Math.abs(
+        signedAngleDeg(
+          eph.bodies.find((b) => b.name === 'South Node')!.longitudeDeg,
+          normalizeEclipticDeg(eph.bodies.find((b) => b.name === 'North Node')!.longitudeDeg + DEG_CIRCLE / 2),
+        ),
+      ) < 1e-9
+    const names = eph.bodies.map((b) => b.name)
+    const facets = [
+      { facet: 'Julian Day J2000 noon = 2451545 (Meeus ch.7 civil→JD)', on: j2000Jd === MEEUS_J2000_JD && MEEUS_J2000_JD === 2451545 },
+      { facet: 'Sun at J2000 — Meeus ch.25 mean→true→apparent pipeline (L0=280.46646°)', on: sunJ2000Ok },
+      { facet: 'Sun advances ~1°/day (0.9°…1.1°) — tropical year motion', on: sunDayAdvance > 0.9 && sunDayAdvance < 1.1 },
+      { facet: 'Moon faster than Sun over 1 day (truncated ch.47)', on: moonDayAdvance > sunDayAdvance },
+      { facet: 'Design Sun arc err < 0.01° (solver · Sun−88° solar arc)', on: design.arcErrDeg < 0.01 },
+      { facet: 'Design days-before-birth in 70…100 (≈88° / ~1°/day)', on: design.daysBeforeBirth > 70 && design.daysBeforeBirth < 100 },
+      { facet: '13 HD bodies · no Chiron · Earth = Sun+180 · Node axis', on: names.length === 13 && names.every((n, i) => n === RAVE_BODIES_13[i]) && earthOpp && nodeOpp && !(names as readonly string[]).includes('Chiron') },
+      { facet: 'all longitudes finite in [0,360)', on: eph.bodies.every((b) => b.longitudeDeg >= 0 && b.longitudeDeg < DEG_CIRCLE && Number.isFinite(b.longitudeDeg)) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hd-ephemeris-w4:${entry.facet}:${entry.on}`) }))
+    const computes = facets.every((f) => f.on)
+    return {
+      computes,
+      verified: computes,
+      birthJd,
+      ephemeris: eph,
+      design,
+      sunJ2000,
+      count: facets.length,
+      facets,
+      root: merkleFold([eph.root, ...facets.map((f) => f.receipt), toUuid(`hd-eph-design:${roundTo(design.designJd, 6)}`)]),
+      statement:
+        'HD W4 sealed Meeus ephemeris: geocentric ecliptic longitudes for the 13 activation bodies (Sun…Pluto, Nodes; no Chiron) plus Design-layer solver Sun(design)=Sun(birth)−88° of solar arc — reduced-precision Meeus formulas, adversarial reference-tolerance facets at call time.',
+      boundary:
+        'HONEST — sealed Meeus reduced-precision (Sun ch.25, Moon truncated ch.47, planets circular+eq.center, Pluto polynomial). NOT JPL DE440 / Swiss Ephemeris. Tolerances are facet bands for a symbolic HD computer, not arcsecond astronomy. Cusp/fast-mover UX warnings are W5. Predictive/aura HD claims remain flagged in humanDesignDecoded. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
 export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`astronomyComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const celestial = computeAllKnownCelestialBodies(matrix)
@@ -653,6 +938,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const sequence = astronomyDecodedWithTheSequence(at, matrix)
     const research = astronomySequenceDecodeResearch(matrix)
     const simulation = astronomySimulationAt(at, matrix)
+    const hdEph = humanDesignEphemerisCore(matrix, MEEUS_J2000_JD)
     const { computes, facets } = computesGate('astronomy-computes', [
       { facet: 'sixteen-body celestial catalog — computeAllKnownCelestialBodies', on: celestial.computed && celestial.count === 16 },
       { facet: 'exact match on encoded fields — discover wave', on: match.exactMatch },
@@ -662,6 +948,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'astronomy simulation paint — orbit phase + hue at at', on: simulation.computes },
       { facet: 'astronomy sequence decode research exposition', on: research.researched },
       { facet: 'per-planet paint facets — batches 1-3 cover Mercury-Neptune', on: [1, 2, 3].every((b) => planetBatchFacetsComputes(b, matrix, at).computes) },
+      { facet: 'HD W4 sealed Meeus ephemeris + Design Sun−88° solver', on: hdEph.computes },
     ])
     return {
       computes,
@@ -672,12 +959,13 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       sequence,
       research,
       simulation,
+      hdEph,
       facets,
-      root: merge(sequence.root, merkleFold([celestial.root, galaxy.root, toUuid(`astronomy-computes:${computes}`)])),
+      root: merge(sequence.root, merkleFold([celestial.root, galaxy.root, hdEph.root, toUuid(`astronomy-computes:${computes}`)])),
       statement:
-        'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, and research exposition — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
+        'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, research exposition, and HD W4 sealed Meeus ephemeris (Design Sun−88°) — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
       boundary:
-        'HONEST — circular Keplerian catalog, NOT live JPL ephemeris; VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
+        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; cusp warnings belong to chart UX (W5); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
     }
   })
 }

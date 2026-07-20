@@ -1184,7 +1184,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/heaven/essence/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/heaven/laws/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/heaven/site/index.ts', literal: '*', count: 22, kind: 'data', source: 'attested residue — site metadata/config values' },
-  { file: 'src/heaven/sky/astronomy/index.ts', literal: '*', count: 11, kind: 'data', source: 'attested residue — astronomical constants (periods, distances)' },
+  { file: 'src/heaven/sky/astronomy/index.ts', literal: '*', count: 128, kind: 'data', source: 'attested residue — astronomical constants (periods, distances) + HD W4 sealed Meeus reduced-precision coefficients (Jean Meeus, Astronomical Algorithms; NOT JPL DE440)' },
   { file: 'src/heaven/sky/moon/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — lunar constants' },
   { file: 'src/heaven/sky/sun/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — solar constants' },
   { file: 'src/lake/clean/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
