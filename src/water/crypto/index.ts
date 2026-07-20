@@ -1,7 +1,7 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
 import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational'
 import { rat, ratMul, ratToFloat, JULIAN_YEAR_SECONDS, UNIVERSE_AGE_YEARS, TEACHING_RSA_P, TEACHING_RSA_Q } from '../../3/7'
-import { conditionalEntropyBits, landauerLimit } from '../../3/7'
+import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { prng } from '../../0'
@@ -2021,7 +2021,7 @@ export function theNyquistRateIsTheAliasingBoundaryFsGt2B(matrix: MindMatrix = b
   const nyquist = fs / 2 // 4 Hz — the folding (Nyquist) frequency, half the sample rate
   const B = 3 // signal bandwidth (Hz): B < nyquist, so f_s = 8 > 2B = 6 satisfies the theorem
   const N = fs // one full period of samples
-  const sample = (f: number): number[] => Array.from({ length: N }, (_, n) => round(Math.cos(2 * Math.PI * f * n / fs)))
+  const sample = (f: number): number[] => Array.from({ length: N }, (_, n) => round(Math.cos(TAU * f * n / fs)))
   const alias = (f: number): number => fs - f // the fold about Nyquist
   // ALIASING IDENTITY: cos(2π f n/fs) = cos(2π(fs−f) n/fs) exactly for integer n (cos(2πn − θ) = cos θ).
   const aliasesEqual = [1, 2, B].every((f) => JSON.stringify(sample(f)) === JSON.stringify(sample(alias(f))))
