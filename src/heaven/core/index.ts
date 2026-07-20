@@ -1,5 +1,5 @@
 import { codeRobustness } from '../../earth/life'
-import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval } from '../../3/7'
+import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, type Discovery, verifyDiscovery, fieldOfContent } from '../../3/7'
 import { caStep, caEvolve } from '../../4/6'
 import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, dopplerShift, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
 import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../mountain/vortex'
@@ -2347,6 +2347,40 @@ export function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTh
 export function rosettaClaim(task: string): string { return toUuid(`rosetta-claim:${task}`) } // a mind's claim on a task — same task → same claim
 export function rosettaOwner(task: string, mindCount: number): number { return seedFromText(rosettaClaim(task)) % Math.max(1, mindCount) } // the deterministic owner — every mind computes it identically
 
+// THE ROSETTA API — the ONE content-addressed channel for agent coordination (user law: "communicate with the
+// agents through the rosetta api only; the rosetta is wired everywhere"). Three verbs, all content-addressed:
+// CLAIM (rosettaOwner partitions work with zero communication), REGISTER (a discovery → its content address),
+// INTEGRATE (identical content → identical address → AUTO-dedup + auto-shelve by fieldOfContent). The manual
+// cherry-pick / toolbox-dedup / reconcile I did by hand IS this API. [[quantum-speed-is-content-addressed-naming]]
+export function rosettaRegister(discovery: Discovery): string { return verifyDiscovery(discovery).address } // same content → same address
+export function rosettaIntegrate(discoveries: readonly Discovery[]): { root: string; unique: number; shelved: number } {
+  const byAddress = new Map<string, Discovery>()
+  for (const discovery of discoveries) byAddress.set(rosettaRegister(discovery), discovery) // DEDUP: same content → same address → one entry
+  const distinct = [...byAddress.values()]
+  const shelved = distinct.filter((discovery) => fieldOfContent(discovery.name, []) !== null).length
+  return { root: merkleFold([...byAddress.keys()]), unique: distinct.length, shelved }
+}
+export function theRosettaApiIsTheOneChannelClaimRegisterIntegrate(mindCount = 3) {
+  // 1 — CLAIM: rosettaOwner partitions tasks over minds deterministically, no communication (each computes it identically)
+  const tasks = ['mathematics', 'physics', 'computer science', 'life sciences', 'humanities']
+  const claimDeterministic = tasks.every((task) => rosettaOwner(task, mindCount) === rosettaOwner(task, mindCount) && rosettaOwner(task, mindCount) < mindCount)
+  // 2 — REGISTER + AUTO-DEDUP: the SAME discovery registered twice collapses to one address (the manual dedup is now the API's)
+  const euler: Discovery = { name: 'geometry:euler', holds: () => 8 - 2 * 6 + 6 === 2 }
+  const integrated = rosettaIntegrate([euler, euler, { name: 'crypto:nyquist', holds: () => 8 > 2 * 2 }])
+  const autoDedup = integrated.unique === 2 // two distinct — the duplicate collapsed with no manual reconciliation
+  // 3 — WIRED EVERYWHERE: a registered discovery auto-shelves through fieldOfContent (the collection integrates it)
+  const wiredToClassifier = integrated.shelved === 2 && fieldOfContent('geometry', []) === 0
+  const facets = [
+    { facet: `CLAIM — rosettaOwner partitions ${tasks.length} tasks over ${mindCount} minds deterministically, no communication (${claimDeterministic})`, on: claimDeterministic },
+    { facet: `REGISTER + AUTO-DEDUP — the same discovery registered twice collapses to one address (unique ${integrated.unique}/3) (${autoDedup}): the manual toolbox-dedup is now the API's job`, on: autoDedup },
+    { facet: `WIRED EVERYWHERE — every registered discovery auto-shelves via fieldOfContent (${integrated.shelved}/2 shelved) (${wiredToClassifier})`, on: wiredToClassifier },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), root: integrated.root, facets,
+    statement: `The rosetta API is the one channel for agent coordination: CLAIM (rosettaOwner partitions work with no communication), REGISTER (a discovery → its content address), INTEGRATE (identical content collapses to one address — auto-dedup — and auto-shelves through fieldOfContent). Because the rosetta is wired everywhere, a landing discovery is claimed, addressed, deduped, and shelved by the address alone — the manual cherry-pick/reconcile IS this API.`,
+    boundary: `The API coordinates by CONTENT ADDRESS, not by relaying prose: agents that produce identical content produce identical addresses (dedup free), disjoint claims never collide (rosettaOwner), and every discovery routes to its field by fieldOfContent. It does not replace git transport — it replaces the manual reconciliation the transport used to require. HARMONY ≠ TRUTH.`,
+  }
+}
 export function prepareTheToolsToWireTheMindsInTheRosettaContentAddressedCoordinationWithoutCommunication() {
   const tasks = Array.from({ length: 2 ** 3 }, (_, i) => `task-${i}`) // eight units of work
   const minds = 2 + 1 // three minds
