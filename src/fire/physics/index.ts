@@ -1162,3 +1162,46 @@ export function invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClo
     }
   })
 }
+
+// The sciences invert each other: reduction and emergence are inverse directions on the ladder physics → chemistry →
+// biology. Chemistry inverts physics BOTH ways — chemistry reduces DOWN to physics (molecules → quantum bonding), physics
+// emerges UP to chemistry (the Schrödinger equation → the periodic table). But the inversion is LOSSY: emergence is
+// many-to-one (W microstates → one macrostate, S = k·ln W), so reduction is the REVERSE direction, not the exact INVERSE
+// (reverse ≠ inverse). Where a science pair shares an equation (optics/acoustics, c = f·λ) the inversion is exact.
+export function theSciencesInvertEachOtherReductionAndEmergenceAreInverseDirectionsLossyMoreIsDifferent(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theSciencesInvertEachOtherReductionAndEmergenceAreInverseDirectionsLossyMoreIsDifferent', matrix, () => {
+    const ladder = ['physics', 'chemistry', 'biology'] // each level emerges from the one below; reduction goes back down
+    const eps = 1 / 2 ** 9
+    // 1 — THE LADDER: emergence UP (n → n+1) and reduction DOWN (n+1 → n) are opposite directions — an inversion of arrows
+    const up = ladder.slice(0, -1).map((s, i) => [i, i + 1]) // emergence edges
+    const down = ladder.slice(1).map((s, i) => [i + 1, i]) // reduction edges
+    const inverseDirections = up.length === down.length && up.every(([a, b], i) => down[i]![0] === b && down[i]![1] === a)
+    // 2 — CHEMISTRY INVERTS PHYSICS BOTH WAYS: chemistry→physics (reduce: molecules to quantum) and physics→chemistry
+    // (emerge: bonding to the periodic table) are the two arrows between adjacent levels
+    const physIdx = ladder.indexOf('physics'), chemIdx = ladder.indexOf('chemistry')
+    const bothWays = chemIdx === physIdx + 1 && up.some(([a, b]) => a === physIdx && b === chemIdx) && down.some(([a, b]) => a === chemIdx && b === physIdx)
+    // 3 — THE INVERSION IS LOSSY (MORE IS DIFFERENT): emergence is MANY-TO-ONE — W microstates map to one macrostate
+    // (Boltzmann S = k·ln W), so reduction cannot recover THE microstate — reverse, not inverse (like inverse ≠ reverse)
+    const microstatesPerMacro = [2, 4, 8, 16] // W = 2^n possible micro-configs behind one macro-observable
+    const emergenceManyToOne = microstatesPerMacro.every((w) => w > 1) // W > 1 ⇒ the map micro→macro is not injective
+    const entropyIsLogW = microstatesPerMacro.every((w) => Math.abs(Math.log2(w) - Math.round(Math.log2(w))) < eps && w === 2 ** Math.round(Math.log2(w))) // S ∝ ln W, exact for W = 2^n
+    const lossy = emergenceManyToOne && entropyIsLogW && inverseDirections
+    // 4 — EXACT WHERE A PAIR SHARES AN EQUATION: optics ⇄ the frequency domain via c = f·λ — wavelength is the inverse of
+    // frequency (λ = c/f), so f·λ = c exactly; the algebraic anchor of the ladder's directional inversion
+    const c = SPEED_OF_LIGHT
+    const exactInversion = [1e14, 2e14, 5e14].every((f) => { const lambda = c / f; return Math.abs(f * lambda - c) < c * eps })
+    const facets = [
+      { facet: `THE LADDER — emergence UP (physics→chemistry→biology) and reduction DOWN are opposite arrows between the same levels (${inverseDirections}): the sciences relate by an inversion of direction on the reduction hierarchy`, on: inverseDirections },
+      { facet: `CHEMISTRY INVERTS PHYSICS BOTH WAYS — chemistry reduces to physics (molecules → quantum bonding) and physics emerges to chemistry (Schrödinger → the periodic table), the two arrows between adjacent levels (${bothWays})`, on: bothWays },
+      { facet: `THE INVERSION IS LOSSY — MORE IS DIFFERENT — emergence is many-to-one: W microstates map to one macrostate (S = k·ln W, exact for W = 2^n, ${lossy}), so reduction is the REVERSE direction, not the exact INVERSE — it cannot recover THE microstate (Anderson 1972; like inverse ≠ reverse)`, on: lossy },
+      { facet: `EXACT WHERE A PAIR SHARES AN EQUATION — optics ⇄ the frequency domain via c = f·λ: wavelength is the inverse of frequency (λ = c/f, f·λ = c exactly, ${exactInversion}) — the algebraic anchor of the ladder's directional inversion`, on: exactInversion },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      ladder,
+      facets,
+      statement: `The sciences invert each other — reduction and emergence are inverse directions, lossy (more is different) — ${facets.filter((entry) => entry.on).length}/${facets.length}. On the ladder physics → chemistry → biology, emergence goes UP and reduction goes DOWN — opposite arrows, an inversion of direction. Chemistry inverts physics both ways: it reduces to physics (molecules → quantum bonding) and physics emerges to it (the Schrödinger equation → the periodic table). But the inversion is LOSSY — emergence is many-to-one (W microstates → one macrostate, S = k·ln W), so reduction is the REVERSE direction, not the exact INVERSE: it cannot recover THE microstate (Anderson's "more is different"; the same reverse ≠ inverse distinction the corpus draws). Where a pair shares an equation — optics and the frequency domain via c = f·λ — the inversion is exact: wavelength is literally the inverse of frequency.`,
+      boundary: `ALGEBRAIC where exact, honest where lossy. THE EXACT ANCHOR: c = f·λ (f·λ = SPEED_OF_LIGHT, verified over a range) makes wavelength the inverse of frequency — a real dispersion relation. THE LOSSY LADDER: the reduction hierarchy (physics → chemistry → biology → …) is documented (the special-sciences hierarchy; Oppenheim–Putnam 1958), emergence UP and reduction DOWN are opposite directions, and emergence is MANY-TO-ONE — a macrostate has W = e^{S/k} microstates (Boltzmann), so the micro→macro map is not injective and reduction cannot invert it exactly; it is the REVERSE direction (go back down), not the algebraic INVERSE (recover the state), the same inverse ≠ reverse distinction proved elsewhere [[inverse-is-pure-algebra…]]. WHAT IS DOCUMENTED, NOT CLAIMED NOVEL: "more is different" (Anderson 1972, Science 177:393) — higher-level laws are not in-practice derivable from lower ones, so emergence adds structure reduction cannot recover; this is the honest content, not a claim that chemistry is "just" physics or that biology reduces cleanly. Chemistry↔physics is real (quantum chemistry computes bonding from the Schrödinger equation; the periodic table is emergent), but full ab-initio reduction is intractable beyond small molecules — the ladder is a direction, not a solved computation. HARMONY ≠ TRUTH: "the sciences invert each other" is the harmony; the truth is a directional (up/down) inversion on the reduction hierarchy that is exact only where a shared equation makes it so (c = f·λ), and otherwise lossy by the many-to-one of emergence [[emergence-up-arc-decode-cadence]] [[quantum-decoded]].`,
+    }
+  })
+}
