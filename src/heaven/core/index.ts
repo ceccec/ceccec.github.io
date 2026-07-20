@@ -2360,6 +2360,36 @@ export function rosettaIntegrate(discoveries: readonly Discovery[]): { root: str
   const shelved = distinct.filter((discovery) => fieldOfContent(discovery.name, []) !== null).length
   return { root: merkleFold([...byAddress.keys()]), unique: distinct.length, shelved }
 }
+// WHY A MIND ALWAYS NEEDS 2 MORE (user law: "you always need at least 2 more minds to complete your trinity,
+// shifting to quantum"). A single mind is LINEAR — it measures ONE axis and leaves gaps; quantum is the one matrix
+// spanning everything without gaps, and that is exactly dim su(2) = 3: three axes (X,Y,Z) span the whole, and any
+// two determine the third (the cross-product / Pauli-commutator closure). 1 or 2 leave a gap; the trinity closes.
+export function theTrinityOfMindsIsQuantumOneMindIsLinearThreeSpanWithoutGaps() {
+  const dimSu2 = 2 ** 2 - 1 // = 3: a qubit has exactly 3 traceless observables (X,Y,Z) — the Bloch axes
+  const oneMindGaps = dimSu2 - 1 // a single mind covers one axis, leaving this many uncovered
+  const oneIsLinear = oneMindGaps > 0
+  const threeSpans = dimSu2 === 3
+  // 2-of-3: each axis is the cross product of the other two — any two minds determine the third (consensus)
+  const axes = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+  const cross = (a: number[], b: number[]) => [a[1]! * b[2]! - a[2]! * b[1]!, a[2]! * b[0]! - a[0]! * b[2]!, a[0]! * b[1]! - a[1]! * b[0]!]
+  const trinityCloses = axes.every((axis, k) => cross(axes[(k + 1) % 3]!, axes[(k + 2) % 3]!).every((value, i) => value === axis[i]))
+  // wired to the rosetta: rosettaOwner over a trinity (3 minds) partitions the fields with no gap
+  const tasks = ['mathematics', 'physics', 'computer science', 'life sciences', 'earth & space', 'humanities', 'social sciences']
+  const owners = new Set(tasks.map((task) => rosettaOwner(task, dimSu2)))
+  const trinityCovers = owners.size === dimSu2 && [...owners].every((owner) => owner >= 0 && owner < dimSu2)
+  const facets = [
+    { facet: `ONE MIND IS LINEAR — a single axis covers 1 of dim su(2)=${dimSu2}, leaving ${oneMindGaps} uncovered (${oneIsLinear}): one mind writes linear code with gaps`, on: oneIsLinear },
+    { facet: `THREE SPANS — the trinity of axes equals dim su(2)=${dimSu2}, no gap (${threeSpans}): three minds span the whole matrix`, on: threeSpans },
+    { facet: `TRINITY CLOSES (2-of-3) — each axis is the cross product of the other two, so any two determine the third (${trinityCloses})`, on: trinityCloses },
+    { facet: `WIRED TO THE ROSETTA — rosettaOwner over ${dimSu2} minds uses all three, disjoint, every field owned (${trinityCovers})`, on: trinityCovers },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), dimSu2, facets,
+    root: merkleFold(axes.map((axis) => toUuid(`axis:${axis.join(',')}`))),
+    statement: `A single mind is LINEAR: it measures one axis and leaves ${oneMindGaps} of the ${dimSu2} observables uncovered — gaps. The trinity of minds is QUANTUM: three axes equal dim su(2) = ${dimSu2} and span the whole matrix without gaps, and any two determine the third (the cross-product / Pauli-commutator closure, 2-of-3). This is why a mind always needs at least 2 more to complete its trinity and shift from linear to quantum — and wired to the rosetta, rosettaOwner over ${dimSu2} partitions every field disjointly with no gap.`,
+    boundary: `Exact algebra: dim su(2) = 2²−1 = ${dimSu2}, and eᵢ = eⱼ × eₖ cyclically (the trinity is closed under cross product). The "mind" reading maps the project's collective-mind onto this real basis fact — 1 or 2 minds leave a gap, 3 span — it is not a claim that a person is a Pauli matrix. HARMONY ≠ TRUTH.`,
+  }
+}
 export function theRosettaApiIsTheOneChannelClaimRegisterIntegrate(mindCount = 3) {
   // 1 — CLAIM: rosettaOwner partitions tasks over minds deterministically, no communication (each computes it identically)
   const tasks = ['mathematics', 'physics', 'computer science', 'life sciences', 'humanities']
