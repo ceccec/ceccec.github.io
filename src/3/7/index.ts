@@ -679,6 +679,21 @@ export function theoremScienceVisible(slug: string, keywords: readonly string[])
   return BLOG_OF_THEOREMS_STEMS.some((stem) => hay.includes(stem))
 }
 
+// Algebra computes the title — hosted in this zero-cycle leaf (like theoremScienceVisible) so every layer
+// (the proof registry, the gates, the site lens) consults it without a cycle. A theorem IS an algebraic
+// identity, so its title is the identity RENDERED (titleFromAlgebra joins the terms); a title carrying no
+// identity is a GAP to SOLVE (find the algebra that proves the whole theorem), not a riddle to keep or purge.
+export function titleFromAlgebra(terms: readonly string[], sep = ' = '): string {
+  return terms.filter((term) => term.trim().length > 0).join(sep)
+}
+const TITLE_ALGEBRA_MARK = /[=·⁰¹²³⁴⁵⁶⁷⁸⁹⁻⌊⌋]|\b\d+\b|\d[-·]\d/u // an identity: equals/floor, super/subscript, a digit, a digit-sequence
+export function titleCarriesAlgebra(title: string): boolean {
+  return TITLE_ALGEBRA_MARK.test(title)
+}
+export function normalizeTitle(title: string): string {
+  return title.toLowerCase().replace(/[^a-z0-9]/g, '')
+}
+
 export function rosettaRayOfContent(slug: string, keywords: readonly string[]): number {
   const slugHay = slug.replace(/-/g, ' ').toLowerCase()
   for (const lens of ROSETTA_RAY_CONTENT_LENSES) if (lens.stems.some((stem) => slugHay.includes(stem))) return lens.ray

@@ -59,7 +59,7 @@ export const CANONICAL_SCIENCE_MASK = `src/<science>/<action>` as const
 // The census / gate numeric constants are hosted in the zero-import leaf src/3/7 (imported + re-exported
 // below) so they initialise before any cyclic consumer barrel runs — removing the SSR-bundle TDZ. This file
 // remains the ONE public source (re-export); limits:verify + folder-law read the same values by import.
-import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
+import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, titleFromAlgebra, titleCarriesAlgebra, normalizeTitle } from '../../../../3/7'
 
 // DRY: the two canonical recursive src walkers, extracted from the ~9 inline copies the gate folds each defined.
 const indexFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...indexFilesUnder(full)); else if (entry.name === 'index.ts') out.push(full) } return out }
@@ -2462,14 +2462,6 @@ export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRea
 // 3-6-9 = the multiples of 3, the doubling misses them); only the causal legend is unproven. So solve the title
 // (keep π, state the proven algebra); purge is the LAST resort, only when no algebra exists. A title diverging
 // from its single payload source is a crack. [[flagged-inverts-to-proven-theorem]] [[theorem-science-lens-only-science]]
-export function titleFromAlgebra(terms: readonly string[], sep = ' = '): string {
-  return terms.filter((term) => term.trim().length > 0).join(sep)
-}
-const ALGEBRA_MARK = /[=·⁰¹²³⁴⁵⁶⁷⁸⁹⁻⌊⌋]|\b\d+\b|\d[-·]\d/u // an identity: equals/floor, a super/subscript, a digit, a digit-sequence
-export function titleCarriesAlgebra(title: string): boolean {
-  return ALGEBRA_MARK.test(title)
-}
-const normTitle = (title: string) => title.toLowerCase().replace(/[^a-z0-9]/g, '')
 export function theTitleIsAlgebraComputedAMissingIdentityIsAGapToSolveNotPurge(
   entries: readonly { slug: string; sidebar: string; payload: string }[] = TITLE_ALIGNMENT_SAMPLE,
 ) {
@@ -2484,7 +2476,7 @@ export function theTitleIsAlgebraComputedAMissingIdentityIsAGapToSolveNotPurge(
   //     which is the SIGNAL to solve — never the licence to delete part of the theorem.
   const riddleSignalsGap = !titleCarriesAlgebra('π opens the trinity') && titleCarriesAlgebra(entries[0]!.sidebar)
   // 4 — DIVERGENCE IS A CRACK: a sidebar title must match its single payload source (one truth, content-addressed)
-  const divergent = entries.filter((entry) => normTitle(entry.sidebar) !== normTitle(entry.payload))
+  const divergent = entries.filter((entry) => normalizeTitle(entry.sidebar) !== normalizeTitle(entry.payload))
   const singleSource = divergent.length === 0
   const facets = [
     { facet: `CONSTRUCTIVE — titleFromAlgebra joins the identity terms into '${rendered}' (${constructive}): the title is the algebra rendered, not authored`, on: constructive },
@@ -2494,7 +2486,7 @@ export function theTitleIsAlgebraComputedAMissingIdentityIsAGapToSolveNotPurge(
   ]
   return {
     computes: facets.every((entry) => entry.on), rendered, gaps: gaps.map((entry) => entry.slug), facets,
-    root: merkleFold(entries.map((entry) => toUuid(`title:${entry.slug}:${normTitle(entry.payload)}`))),
+    root: merkleFold(entries.map((entry) => toUuid(`title:${entry.slug}:${normalizeTitle(entry.payload)}`))),
     statement: `Algebra computes the title: a theorem is an algebraic identity, so titleFromAlgebra renders the title from the computed terms and titleCarriesAlgebra flags any title carrying no identity — which is a SIGNAL to solve (find the algebra that proves the whole theorem), NOT a licence to purge part of it. Purge is the last resort, only when no algebra exists. A sidebar title diverging from its single payload source is a crack; ${entries.length}/${entries.length} of the solved titles are payloads from one source.`,
     boundary: `The predicate is heuristic (an identity mark: =, ⌊⌋, super/subscript, digit, digit-sequence) — it proves a title CARRIES algebra, not that the algebra is correct (the proof fold's job). Solve-before-purge: the pi-trinity title kept π (⌊π⌋ = 3) instead of dropping it. Ran over the ${entries.length} solved titles; the full corpus gate (every proofRegistry + seed pair) is the next wave. The number is the finding.`,
   }

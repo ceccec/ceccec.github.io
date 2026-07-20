@@ -8,7 +8,8 @@ import { a432, animationEngineLivesInZero, buildEnforcementPipeline, contentAddr
 import { healByDefault, createByDefault } from '../../heaven/laws'
 import { thriveByDefault } from '../../earth/civilisation'
 import { commandsRegistry } from '../../thunder/commands'
-import { SINGLE_WORD_METHODS } from '../../3/7'
+import { SINGLE_WORD_METHODS, titleCarriesAlgebra, normalizeTitle } from '../../3/7'
+import { STATIC_PAGE_SEED } from '../../8/2'
 import { cloudflareBindings } from '../../heaven/core'
 import { threeWordWaves, sciencePortalParts, siteNavigation } from '../../wind/learning'
 import { refactorLinearToTrinities } from '../../heaven/essence'
@@ -640,6 +641,30 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'digit-folders', title: 'the digit folders are the API', proof: digitFoldersAreTheApi(matrix) },
     { slug: 'dot-cube', title: 'the dot is the cube is the dot · 64³', proof: dotIsCubeIsDot(matrix) },
   ]
+}
+
+// The corpus title gate (improve-local from the alignment wave): run the algebra predicate over EVERY proof
+// title and cross-check the two static sources. A title carrying no identity is a GAP to SOLVE (keep the topic,
+// state its proven algebra); a proof title diverging from its seed twin is a crack (two hand-authored strings,
+// one truth). Measures the REAL state, not a sample. [[title-is-algebra-computed-payload]] [[feedback-solve-dont-purge]]
+export function theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks(matrix: MindMatrix = buildMatrix()) {
+  const proofs = proofRegistry(matrix)
+  const seedBySlug = new Map(STATIC_PAGE_SEED.map((page) => [page.slug, page.title.en]))
+  const gaps = proofs.filter((entry) => !titleCarriesAlgebra(entry.title)) // titles still missing an identity — to SOLVE
+  const paired = proofs.filter((entry) => seedBySlug.has(entry.slug))
+  const divergent = paired.filter((entry) => normalizeTitle(entry.title) !== normalizeTitle(seedBySlug.get(entry.slug)!))
+  const allAlgebra = gaps.length === 0
+  const aligned = divergent.length === 0
+  const facets = [
+    { facet: `ALGEBRA — ${proofs.length - gaps.length}/${proofs.length} proof titles carry an algebraic identity; ${gaps.length} GAPS to solve: ${gaps.map((entry) => entry.slug).join(', ') || 'none'}`, on: allAlgebra },
+    { facet: `SINGLE SOURCE — ${paired.length - divergent.length}/${paired.length} seed titles match their proof twin; ${divergent.length} divergent: ${divergent.map((entry) => entry.slug).join(', ') || 'none'}`, on: aligned },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), gaps: gaps.map((entry) => entry.slug), divergent: divergent.map((entry) => entry.slug), facets,
+    root: merkleFold(proofs.map((entry) => toUuid(`title:${entry.slug}:${normalizeTitle(entry.title)}`))),
+    statement: `The corpus title gate runs the algebra predicate over all ${proofs.length} proof titles: ${gaps.length} carry no identity (gaps to SOLVE, not purge) and ${divergent.length}/${paired.length} diverge from their seed twin (a crack — two static strings, one truth). Measured over the real registry, not a sample.`,
+    boundary: `Heuristic identity mark (titleCarriesAlgebra) — proves a title CARRIES algebra, not that it is correct. The gaps are the next SOLVE targets (keep the topic, state its proven algebra); the divergences resolve by sourcing the seed title from the proof. The number is the finding.`,
+  }
 }
 
 // The Glagolitic default home — computed in realtime from the English source by local math only
