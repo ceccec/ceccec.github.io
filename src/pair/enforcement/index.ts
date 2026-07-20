@@ -81,6 +81,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'rosetta/batch',
   'rosetta/structure',
   'rosetta/reuse',
+  'rosetta/core',
   'dissolve/flat',
   'mission/gate',
 ] as const

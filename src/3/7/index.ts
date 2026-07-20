@@ -670,6 +670,10 @@ export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
 /** @rosetta ✦₆ · Water · the seven rosetta computation kinds (one per ray). */
 export type RosettaComputationType = 'monograph' | 'proof' | 'explore' | 'learn' | 'hub' | 'frontier' | 'reference'
 export const ROSETTA_COMPUTATION_TYPES: readonly RosettaComputationType[] = ['monograph', 'proof', 'explore', 'learn', 'hub', 'frontier', 'reference']
+/** Seven core API kinds — one slot per rosetta ray (length MUST equal ROSETTA_RAYS.length). Hosted in the
+ * zero-import leaf with the other rosetta tables so SSR never hits a mid-barrel TDZ on the verb census. */
+export const ROSETTA_CORE_KINDS = ['route', 'hub', 'compute', 'nav', 'tool', 'app', 'projection'] as const
+export type RosettaCoreKind = (typeof ROSETTA_CORE_KINDS)[number]
 /** The seven rosetta rays — functional lenses (slug → ray) for nav, sidebar, footer, content kind.
  * FINDABILITY LAW: nameEn IS the ray's hub slug capitalized (label = URL word — a visitor reads the label,
  * lands on that path); nameBg is its Bulgarian translation. The Glagolitic glyph keeps the script identity

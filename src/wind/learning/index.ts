@@ -1,5 +1,6 @@
 // ☴ Xùn · Wind — learning, agents & knowledge folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
 import * as __ns_up_water_digit from '../../water/digit'
+import * as __ns_up_quantum_apps from '../../quantum/apps'
 // call-time namespace edge (cycle-safe): enforcement reaches back here via the mind barrel; the workflow registry reads at call time
 import * as __ns_up_pair_enforcement from '../../pair/enforcement'
 import { deutschJozsa } from '../../9/1'
@@ -734,6 +735,7 @@ export function navigation358(matrix: MindMatrix = buildMatrix()) {
   // COMPUTED 3-5-8 (user law: purge old links; pages are rosetta combinations of theorems) — no hand
   // list survives: arrive = home + the two theorem surfaces, use = the populated ray hubs (the lens
   // decides which rays hold served pages), deep = the corpus REST + the machine artifacts. 3 + 5 = 8.
+  // Each destination shelves through rosettaShelve(kind=nav) — addresses via the core API, not a wet map.
   const lens = theoremScienceLens(matrix)
   const hubs = lens.rays.map((ray) => ({ label: ray.labelEn, route: `/${ray.slug}`, tip: `${ray.labelEn}: ${ray.pages.length} served science ${ray.pages.length === 1 ? 'paper' : 'papers'}.` }))
   const tiers = [
@@ -756,22 +758,31 @@ export function navigation358(matrix: MindMatrix = buildMatrix()) {
       { label: 'site.webmanifest', route: '/site.webmanifest', tip: 'The installable PWA manifest.' },
     ] },
   ]
-  const items = tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })))
+  const items = tiers.flatMap((tier) => tier.items.map((item) => {
+    const slug = item.route.replace(/^\/+/, '').split('/').filter(Boolean)[0] || 'home'
+    const shelved = __ns_up_quantum_apps.rosettaShelve(slug, 'nav')
+    return { ...item, tier: tier.tier, ray: shelved.ray, hue: shelved.hue, address: shelved.address }
+  }))
   const unresolved = items.filter((item) => !isServedRoute(item.route))
+  const core = __ns_up_quantum_apps.rosettaCoreApi(0, matrix)
   const facets = [
     { facet: 'every nav route is a SERVED surface (isServedRoute — the purge law): no removed page can appear', on: unresolved.length === 0 },
     { facet: '3-5-8 shape holds — the deep tier equals arrive + use', on: tiers[2]!.items.length === tiers[1]!.items.length + tiers[0]!.items.length },
+    { facet: 'every nav item shelved through rosettaShelve(kind=nav)', on: items.every((item) => item.ray >= 0 && item.ray < 7 && item.address.length === 36) },
+    { facet: 'rosettaCoreApi computes — nav dispatches through the core API', on: core.computes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`nav358-facet:${entry.facet}:${entry.on}`) }))
   return {
     mapped: items.length === (8 * 2) && facets.every((entry) => entry.on),
     tiers,
     count: items.length,
+    items,
+    core,
     facets,
     routesResolve: facets[0]!.on,
     unresolved: unresolved.map((item) => item.route),
-    root: merkleFold(items.map((item) => toUuid(`nav358:${item.tier}:${item.label}`))),
-    statement: `Navigation in 3-5-8, computed: three ways to arrive (home · frontiers · theorems), five to use (the populated ray hubs: ${hubs.map((hub) => hub.label).join(' · ')}), eight to go deep (the corpus REST + the machine artifacts) — every destination a served surface with a tooltip, no hand-typed route list left to rot.`,
-    boundary: 'The 3-5-8 map derives at call time from the theorem-science lens (hubs of populated rays), the corpus REST trio and the real dist artifacts; isServedRoute gates every item, so a removed page flips the facet. The tier shape 3 + 5 = 8 is the Fibonacci law the map keeps.',
+    root: merkleFold([core.root, ...items.map((item) => item.address)]),
+    statement: `Navigation in 3-5-8, computed via rosettaCoreApi: three ways to arrive (home · frontiers · theorems), five to use (the populated ray hubs: ${hubs.map((hub) => hub.label).join(' · ')}), eight to go deep — every destination shelved on a rosetta ray.`,
+    boundary: 'The 3-5-8 map derives at call time from the theorem-science lens + rosettaShelve; isServedRoute gates every item. Addresses via the core API, not a parallel nav registry. HARMONY ≠ TRUTH.',
   }
 }
 
@@ -2414,16 +2425,10 @@ import { ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../pair/enforcement/gates/
 import { computesGate as rosettaComputesGate, isUuid as rosettaIsUuid, memoByRoot as rosettaMemoByRoot, merge as rosettaMerge, merkleFold as rosettaMerkleFold, toUuid as rosettaToUuid } from '../../0'
 
 export {
-  ROSETTA_RAYS,
-  ROSETTA_COMPUTATION_TYPES,
-  rosettaComputesAll,
-  rosettaComputesCensusDissolve,
-  rosettaComputesItself,
-  rosettaDecodesUrlPath,
-  rosettaRayOf,
-  rosettaReuse,
-  sevenStarRosettaNaturalMotion,
+  ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, rosettaComputesAll, rosettaComputesCensusDissolve,
+  rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion,
 } from '../../water/digit'
+export { rosettaCoreApi, rosettaCoreApiSelfWires, rosettaShelve, rosettaCoreApiSurface } from '../../quantum/apps'
 export { movieIsNeuroscienceComputation } from '../../earth/life'
 export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../language'
 export { rosettaIChingTrinityPlacesAllTools } from '../../earth/architecture'
@@ -2433,6 +2438,7 @@ export { publicAstronomyNewsCitation } from '../../earth/world'
 export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/') {
   return rosettaMemoByRoot(`rosettaComputes:${path}`, matrix, () => {
     const itself = __ns_up_water_digit.rosettaComputesItself(0, matrix)
+    const core = __ns_up_quantum_apps.rosettaCoreApiSelfWires(0, matrix)
     const motion = __ns_up_water_digit.sevenStarRosettaNaturalMotion(0)
     const glagolitic = __ns_up_language.rosettaGlagoliticGlobalKeyDecodeAll(matrix)
     const dictation = __ns_up_language.rosettaImprovesDictationAndDialects(matrix)
@@ -2445,6 +2451,7 @@ export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/
       { facet: 'seven Rosetta rays — 7×6 / 6×7 taxonomy (42 areas)', on: __ns_up_water_digit.ROSETTA_RAYS.length === 7 && ROSETTA_AREAS === (7 * 6) },
       { facet: 'seven-star natural motion coprimality holds', on: motion.proof.holds },
       { facet: 'rosettaComputesItself — registry derives canonical barrel homes', on: itself.computed },
+      { facet: 'rosettaCoreApiSelfWires — self-host surface; label↔ray dispatch at call time', on: core.computes },
       { facet: 'Glagolitic global key decodes Latin · Cyrillic · Glagolitic', on: glagolitic.decodes },
       { facet: 'dictation and dialect surfaces improved by Rosetta pivot', on: dictation.improves },
       { facet: 'rosettaComputesNavigationAndContent — nav+content from one receipt', on: nav.computes && rosettaIsUuid(nav.root) },
@@ -2454,28 +2461,11 @@ export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/
       { facet: 'decode-all chain bounded — trained on known universe fold', on: decodeAll.decodes },
     ])
     return {
-      computes,
-      itself,
-      motion,
-      glagolitic,
-      dictation,
-      nav,
-      all,
-      trinity,
-      decodeAll,
-      foldLabel: ROSETTA_FOLD_LABEL,
-      facets,
-      root: rosettaMerge(
-        rosettaMerge(itself.root, glagolitic.root),
-        rosettaMerge(
-          nav.root,
-          rosettaMerkleFold(facets.map((entry) => rosettaToUuid(`rosetta-computes:${entry.facet}:${entry.on}`))),
-        ),
-      ),
-      statement:
-        `Rosetta computes (${ROSETTA_FOLD_LABEL}): the canonical decode chain — seven rays, Glagolitic global key, path→computationType math, navigation+content from one receipt, and Rosetta·I Ching trinity placement — sealed at call time (home src/learning after src/rosetta dissolve).`,
-      boundary:
-        'Composition via lazy require (cycle-safe with mind barrel). "Decode" is transliteration + content-addressing + deterministic path math — NOT cryptographic decryption of arbitrary ciphertext.',
+      computes, itself, core, motion, glagolitic, dictation, nav, all, trinity, decodeAll,
+      foldLabel: ROSETTA_FOLD_LABEL, facets,
+      root: rosettaMerge(rosettaMerge(itself.root, core.root), rosettaMerge(nav.root, rosettaMerkleFold(facets.map((e) => rosettaToUuid(`rosetta-computes:${e.facet}:${e.on}`))))),
+      statement: `Rosetta computes (${ROSETTA_FOLD_LABEL}): seven rays, rosettaCoreApi self-host, Glagolitic key, path→type, nav+content, Rosetta·I Ching — sealed at call time.`,
+      boundary: 'Lazy composition (cycle-safe). Decode = transliteration + content-address + path math — NOT crypto decryption. Parallel registries = strangler backlog in core.inventory.',
     }
   })
 }

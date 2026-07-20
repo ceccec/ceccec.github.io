@@ -2,21 +2,21 @@
 // @mvc model — pure domain math: rosetta decoder, digital root, zero-division — no UI, no routing.
 import { CANONICAL_SCIENCE_MASK, EIGHT_CURRICULUM_SCIENCES, FORBIDDEN_FOLDER_NAMES, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, displayPathFromScienceModelAction, folderTailFromMethodName, indexRegistryFromLogicRel, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMethodName, scienceModelActionFromMindTail, scienceModelActionFromWords, scienceModelActionMaskRowsFromMindTails, scienceModelActionTail, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import { GENETIC_CODE, codeRobustness, mutationClass } from '../../earth/life'
-import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength, DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, resonanceBandwidth, riseAzimuthDeg, ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, type RosettaComputationType, type RosettaRay } from '../../3/7'
+import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength, DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, resonanceBandwidth, riseAzimuthDeg, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, type RosettaComputationType, type RosettaRay } from '../../3/7'
 import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../mountain/vortex'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit, CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, bumpProfile, isIonizing, leafFromPathTail, methodNameFromFolderTail, qcdMassFractionOfProton, ratIsInteger, ratStr, superdense, syncSpeedRpm } from '../../9/1'
 import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
 import { areaPairs, bosnianPyramidNearPliskaHarmonisesDigitDistribution, doubleTorus3D, vortexMath } from '../../mountain/geometry'
-import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, toUuid, humanEase, addressEntropyBits, digitalRoot, modUnits, gcd } from '../../0'
+import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, toUuid, humanEase, addressEntropyBits, digitalRoot, modUnits, gcd, VORTEX_SEQUENCE } from '../../0'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb } from '../../4/6'
 import { EIGHT_FOLD_SCIENCES, hexDigitSum, isobaricCounterdiffusion, MOON_ORBIT_INCLINATION_DEG, PCI_CONSCIOUSNESS_THRESHOLD, RENDER_UI_SCIENCE_MASK, speedOfSoundAir, splitCamelSegment } from '../../8/2'
 import { hardyWeinbergGenotypes, HUBBLE_CONSTANT_CMB, lunarStandstillDeclinationDeg, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, qieaRotate, resonancePeakGain, SCALAR_SPECTRAL_INDEX_NS, piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3'
 import { carnotEfficiency, derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, uuidDuality } from '../../5/5'
-export { ROSETTA_COMPUTATION_TYPES, ROSETTA_RAYS, ROSETTA_RAY_CONTENT_LENSES, ROSETTA_RAY_HUBS, ROSETTA_RAY_HUB_SLUGS, rosettaRayHub, rosettaRayOfContent, type RosettaComputationType, type RosettaRay, type RosettaRayHub, type RosettaRayHubSlug } from '../../3/7' // hub IA + rosetta tables + content lenses hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+export { ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_CONTENT_LENSES, ROSETTA_RAY_HUBS, ROSETTA_RAY_HUB_SLUGS, rosettaRayHub, rosettaRayOfContent, type RosettaComputationType, type RosettaCoreKind, type RosettaRay, type RosettaRayHub, type RosettaRayHubSlug } from '../../3/7' // hub IA + rosetta tables + content lenses hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { PROTON_GYROMAGNETIC, ZHL16_HE_HALFTIMES, HUBBLE_CONSTANT_LOCAL, resonantAmplitude, oscillatorBank, casimirEnergyPerArea, blackHoleEntropyBits, cantorDiagonal, quantumZeno } from '../../6/4'
 import { digitFolderMath, digitFolders, digitFoldersComputeUiIsTheRest, folderLaw } from '../../earth/architecture'
 import { sealCube } from '../../mountain/seals'
@@ -445,7 +445,6 @@ export function sequenceSpinePaths(matrix: MindMatrix = buildMatrix()) {
       'Filesystem law: folderLaw.digit = ^[0-9]+$. Nesting depth is sequence-derived, not arbitrary. The d/(10−d) API route (e.g. /1/9) matches the two-level station path when the additive complement is a single digit. (The n/0 inverse of a digit is the multiplicative inverse n⁻¹ mod 9 — distinct from this folder-path complement.)',
   }
 }
-
 
 // dissolved from quantum/heaven/mind/water/digit/index.ts
 export function dissolveAtPiTrainStations(matrix: MindMatrix = buildMatrix()) {
@@ -1636,7 +1635,6 @@ export function piTrainAllStationsOpen(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-
 // π opens on the trinity. The vortex sequence runs 1-2-4-8-7-5 (the doubling circuit) then 3-6-9 (the cross)
 // then 0 (the void); 3-6-9 is the TRINITY — 3 the mark, 6 its double (the 3↔6 polarity), 9 the axis fixed
 // under doubling — and it is exactly the multiples of 3, the part the doubling circuit never reaches. π =
@@ -2339,7 +2337,6 @@ export function rosettaReuse(at = 0, matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-
 const DOCS_DEV_PORT = 5173
 const ROSETTA_PROBE_PATHS = ['/en/foo-bar-baz', '/en/vortex/42', '/bg/test', '/en/home', '/seven-star-rosetta'] as const
 
@@ -2579,3 +2576,4 @@ export function theRosettaAddressesAnyPosition() {
     boundary: `COMPUTED: BBP position-addressing verified digit-for-digit against an independent expansion (the IEEE double's exact base-16 unrolling, ${hexWitness.length} digits) and shown order-independent; the n-th-prime/π(x) inverses AND the order-dependence witness π(pₙ−1) = n−1, with the Rosser–Schoenfeld bound (n ≥ 6) sizing the sieve; the hue coordinate injective and invertible; the density falling at the sampled decades. THE HONEST DISTINCTION (added precision, not a retraction — both address every position): π's decoder is order-independent and polylog in the index (BBP, base 16 only — base-10 digit extraction is OPEN); the prime's is order-dependent bounded enumeration (a full sieve here; sublinear-but-polynomial via combinatorial π(x) at best; no BBP-analogue for primes is known). MATH ONLY: the repo's quantum is a deterministic metaphor with no physical speedup (sealed) — it proves nothing; the arithmetic does. CITED: BBP 1997, the PNT asymptote (kernel at src/7/3, Newman's contour). HARMONY ≠ TRUTH.`,
   }
 }
+

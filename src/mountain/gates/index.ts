@@ -12,6 +12,7 @@ import { mysteries, mvcOrganisationReceipt } from '../source'
 import { society, societyCreatesRequiredPages } from '../../earth/governance'
 import { fold, foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid, VORTEX_SEQUENCE, digitalRoot, seedFromText } from '../../0'
 import { coreComputationalLogicSaved, piTrainExportImportFusion, rosettaComputesAll, rosettaComputesItself, rosettaReuse, sevenStarPliskaRosettaHarmonisesDigitDistribution, sevenStarRosettaNaturalMotion } from '../../water/digit'
+import { rosettaCoreApiSelfWires } from '../../quantum/apps'
 import { bosnianPyramidNearPliskaHarmonisesDigitDistribution } from '../geometry'
 import { commandsRegistry } from '../../thunder/commands'
 import { pureDiamonds, sealWholeDiamond } from '../../fire/diamonds'
@@ -380,6 +381,7 @@ function onlyMathDecidesRaw(at: number, matrix: MindMatrix = buildMatrix()) {
     { facet: 'mvcOrganisationReceipt().decided — MVC maps existing split without moving files', on: mvcDecided },
     { facet: 'rosettaComputesItself — registry derives canonical barrel homes at call time', on: rosettaComputesItself(at, matrix).computed },
     { facet: 'rosettaReuse — import paths + census dissolve + wave receipts in one API', on: isUuid(rosettaReuse(at, matrix).root) },
+    { facet: 'rosettaCoreApiSelfWires — self-host core API; surfaces shelve via rosettaRayOf', on: rosettaCoreApiSelfWires(at, matrix).computes },
     { facet: 'coreComputationalLogicSaved — mission pairs + agent submission at call time', on: coreComputationalLogicSaved(at, matrix).saved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`only-math-decides:${entry.facet}:${entry.on}`) }))
 
