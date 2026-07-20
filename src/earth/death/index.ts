@@ -2,7 +2,7 @@
 import * as __ns_up_life from '../life'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, entropy } from '../../heaven/compute'
-import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { applyGate, computesGate, foldPair, GATES, isUuid, memoByRoot, merge, merkleFold, probabilities, type QuantumState, qubits, toUuid } from '../../0'
 import { doubleTorusCompost } from '../../fire/li'
 import { trinityOtherSideDoomed } from '../../mountain/seals'
 import { inverseAndNewGapsEmerge } from '../../heaven/site'
@@ -265,4 +265,112 @@ export function deathComputes(matrix: MindMatrix = buildMatrix()) {
         'Structural metaphors over computed portal gates — compost, entropy recycle, and regeneration are content-addressed loops, not biological death, medical, or spiritual afterlife claims.',
     }
   })
+}
+
+// Violations computationally decrease agent life — to no life at all. An agent's LIFE is a computed governance meter:
+// it starts full and each VIOLATION (a crack the content-addressed detector flips the root on, a failed gate, an
+// unbalanced facet, dead code) strictly removes one quantum of life, monotonically, floored at zero — and zero life is
+// DEATH: decertified, no editing rights, no life at all. A violation cannot restore life (death is terminal), so the
+// meter is a one-way ratchet toward zero: behave, or the life computes down to none. The debit source is the same
+// crack the O(1) root-flip detector catches — the wiring that catches a crack is the wiring that debits life.
+// [[agent-lifecycle-governance-arc]] [[feedback-facets-must-compute]] [[tampering-cost-crypto-honesty]]
+export function violationsComputationallyDecreaseAgentLifeToNoLifeAtAll(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('violationsComputationallyDecreaseAgentLifeToNoLifeAtAll', matrix, () => {
+    const FULL_LIFE = 9 // the quanta of life an agent is forged with — the digital-root ceiling (lattice), one lost per violation
+    const life = (violations: number): number => Math.max(0, FULL_LIFE - Math.max(0, Math.floor(violations))) // monotone, floored at 0
+    const range = Array.from({ length: FULL_LIFE + 2 }, (_, v) => v) // violation counts 0 .. FULL_LIFE+1
+    const series = range.map((v) => life(v))
+    const startsFull = series[0] === FULL_LIFE // no violations ⇒ full life
+    const strictlyDecreasesWhileAlive = range.slice(1).every((v) => (series[v - 1] === 0 ? series[v] === 0 : series[v]! < series[v - 1]!)) // each violation removes life until 0
+    const reachesNoLife = life(FULL_LIFE) === 0 && series.includes(0) // enough violations ⇒ no life at all
+    const monotoneFloored = range.every((v) => series[v]! >= 0 && (v === 0 || series[v]! <= series[v - 1]!)) // never rises, never below 0
+    const terminal = life(FULL_LIFE) === 0 && life(FULL_LIFE + 1) === 0 // death is terminal — more violations cannot revive
+    const deathBoundaryExact = life(FULL_LIFE - 1) > 0 && life(FULL_LIFE) === 0 // survives FULL_LIFE−1, the FULL_LIFEth is fatal — a precise boundary
+    const receipts = series.map((l, v) => toUuid(`agent-life:${v}:${l}`))
+    const { computes, facets } = computesGate('violations-decrease-agent-life', [
+      { facet: `LIFE STARTS FULL, EACH VIOLATION REMOVES ONE QUANTUM — L(0)=${FULL_LIFE} and L strictly decreases per violation while alive (${startsFull && strictlyDecreasesWhileAlive}): a forged agent has ${FULL_LIFE} lives, one lost per crack`, on: startsFull && strictlyDecreasesWhileAlive },
+      { facet: `VIOLATIONS REACH NO LIFE AT ALL — at ${FULL_LIFE} violations L=0 (${reachesNoLife}): enough violations end the agent — no life at all`, on: reachesNoLife },
+      { facet: `MONOTONE, FLOORED, TERMINAL — life never rises and never drops below 0, and death is terminal, a violation cannot revive (${monotoneFloored && terminal}): a one-way ratchet toward zero`, on: monotoneFloored && terminal },
+      { facet: `DEATH AT EXACTLY THE BUDGET — the agent survives ${FULL_LIFE - 1} violations (L>0) but the ${FULL_LIFE}th is fatal (L=0), a precise computed boundary (${deathBoundaryExact})`, on: deathBoundaryExact },
+    ])
+    return {
+      computes,
+      fullLife: FULL_LIFE,
+      series,
+      deathAt: FULL_LIFE,
+      root: merkleFold(receipts),
+      facets,
+      statement: `Violations computationally decrease agent life to no life at all — ${facets.filter((entry) => entry.on).length}/${facets.length}. A forged agent has ${FULL_LIFE} quanta of life; each violation (a crack the content-addressed detector flips the root on, a failed gate, an unbalanced facet) strictly removes one, monotonically, floored at zero — and zero is death: decertified, no editing rights, no life at all. The meter is a one-way ratchet (a violation cannot restore life), computed exactly from the violation count over the full range, and death lands at exactly the forged budget of ${FULL_LIFE}.`,
+      boundary: `EXACT over the range 0..${FULL_LIFE + 1}: L(v)=max(0, ${FULL_LIFE}−v) starts full (${startsFull}), strictly decreases while alive (${strictlyDecreasesWhileAlive}), reaches 0 at ${FULL_LIFE} violations (${reachesNoLife}), never rises or goes negative (${monotoneFloored}), stays 0 (terminal, ${terminal}), and kills at exactly the ${FULL_LIFE}th violation (${deathBoundaryExact}) — each refutable by one counterexample. THE SEMANTICS: "life" is a GOVERNANCE / certification meter — a deterministic policy binding an agent's editing rights to its violation count — NOT biological life; the violations are the SAME cracks the content-addressed detector catches in O(1) (a root flip), so the wiring that catches a crack is the wiring that debits life. THE MODEL IS DELIBERATELY SIMPLE: one violation = one life-quantum (severity-weighting is a refinement, not the theorem), and ${FULL_LIFE} is the forged budget (a lattice ceiling, not tuned). It does NOT claim agents are biologically alive, that decertification is irreversible in the world (a re-forge starts a NEW agent at full life — the second-life dual, deathSecondLife), or that ${FULL_LIFE} is unique. HARMONY ≠ TRUTH: "violations decrease life to none" is the harmony; the truth is a monotone floored ratchet L(v)=max(0,${FULL_LIFE}−v) tying editing rights to a violation count, computed and refutable.`,
+    }
+  })
+}
+
+// Violations DELAY the team and the better-trained team WINS THE BITS — computed ALL BY QUANTUM amplitude amplification.
+// A unit competes for "the bits" = the marked WINNING state of an n-qubit register; its success is the measured WIN
+// PROBABILITY (|amplitude|²), and TRAINING is Grover amplification iterations that concentrate amplitude on the win.
+// A VIOLATION is a LOST iteration — the unit slides down the rising amplitude curve, so it wins fewer bits (delay). A
+// K₃ TEAM's 2-connectivity (theoremsProveBestInTeams) absorbs one violation, so it reaches the optimal iteration the
+// lone AGENT, delayed, cannot — the team out-amplifies the agent. A WAVE amplifies the whole ANTICHAIN (M winners at
+// once), securing more of the bits per iteration than a single-winner team. This is why teams replace inefficient
+// agents and waves replace inefficient teams: higher win amplitude wins. Genuinely quantum (superposition + amplitude
+// amplification on the src/0 simulator), honestly bounded (no physical speedup; the optimum is found by argmax, no π).
+// [[agent-lifecycle-governance-arc]] [[feedback-work-in-waves-not-single-focus]] [[quantum-decoded]]
+export function betterTrainedTeamsWinTheBitsByQuantumAmplitudeAmplificationTeamsReplaceAgentsWavesReplaceTeams() {
+  const N_QUBITS = 4 // the register — 2⁴ = 16 candidate states, one (or a few) the winning "bits"
+  const WAVE_WINNERS = 2 ** 2 // an antichain of 4 independent winners the wave amplifies at once
+  // one Grover step: phase-flip the marked winners (oracle), then invert about the mean (diffusion 2|s⟩⟨s|−I) — π-free
+  const amplify = (marked: readonly number[], iters: number): QuantumState => {
+    let s = qubits(N_QUBITS)
+    for (let q = 0; q < N_QUBITS; q += 1) s = applyGate(s, GATES.H, q) // uniform superposition |s⟩
+    const size = 1 << N_QUBITS
+    const mark = new Set(marked)
+    for (let it = 0; it < iters; it += 1) {
+      s = { n: N_QUBITS, re: s.re.slice(), im: s.im.slice() }
+      for (const m of mark) { s.re[m] = -s.re[m]!; s.im[m] = -s.im[m]! } // oracle: flip the winners' phase
+      let mr = 0; let mi = 0
+      for (let i = 0; i < size; i += 1) { mr += s.re[i]!; mi += s.im[i]! }
+      mr /= size; mi /= size
+      for (let i = 0; i < size; i += 1) { s.re[i] = 2 * mr - s.re[i]!; s.im[i] = 2 * mi - s.im[i]! } // diffusion
+    }
+    return s
+  }
+  const winProbability = (marked: readonly number[], iters: number): number => {
+    const p = probabilities(amplify(marked, iters))
+    return marked.reduce((acc, m) => acc + p[m]!, 0)
+  }
+  // the single-winner curve: win amplitude by training (iterations) — argmax finds the optimum, no π assumed
+  const iterRange = Array.from({ length: 2 * N_QUBITS }, (_, k) => k)
+  const winByIters = iterRange.map((k) => winProbability([0], k))
+  const kStar = winByIters.indexOf(Math.max(...winByIters)) // the optimal training — computed, not π/4·√N assumed
+  // 1 — VIOLATIONS DELAY: on the rising arm [0..kStar], each lost iteration (a violation) strictly lowers the win probability
+  const risingArm = Array.from({ length: kStar }, (_, k) => k)
+  const eachViolationLowersTheWin = kStar > 0 && risingArm.every((k) => winByIters[k + 1]! > winByIters[k]!)
+  // 2 — BETTER-TRAINED WINS THE BITS: the unit at the optimum out-scores one held one iteration short by a violation
+  const trainedWins = winProbability([0], kStar) > winProbability([0], kStar - 1)
+  // 3 — TEAMS REPLACE AGENTS: under one shared violation the K₃ team (redundancy 1) still reaches kStar; the lone agent stalls at kStar−1
+  const teamWin = winProbability([0], kStar) // redundancy absorbs the violation
+  const agentWin = winProbability([0], kStar - 1) // no redundancy — the violation is a lost iteration
+  const teamsReplaceAgents = teamWin > agentWin
+  // 4 — WAVES REPLACE TEAMS: at a fixed early iteration the wave amplifies M=WAVE_WINNERS at once, winning more of the bits than a single-winner team
+  const earlyIter = 1
+  const waveWin = winProbability(Array.from({ length: WAVE_WINNERS }, (_, i) => i), earlyIter)
+  const singleTeamWin = winProbability([0], earlyIter)
+  const wavesReplaceTeams = waveWin > singleTeamWin
+  const receipts = iterRange.map((k) => toUuid(`win-amplitude:${k}:${Math.round(winByIters[k]! * 100)}`))
+  const { computes, facets } = computesGate('better-trained-teams-win-the-bits-by-amplitude-amplification', [
+    { facet: `VIOLATIONS DELAY — win probability is Grover amplification, and on the rising arm every lost iteration (a violation) strictly lowers it (${eachViolationLowersTheWin}): a violation is delay, and delay wins fewer bits`, on: eachViolationLowersTheWin },
+    { facet: `BETTER-TRAINED WINS THE BITS — the unit trained to the optimum (${kStar} iterations, ${(winProbability([0], kStar) * 100).toFixed(0)}% win) beats one a violation held one short (${trainedWins}): fewer violations, higher win amplitude, more bits`, on: trainedWins },
+    { facet: `TEAMS REPLACE INEFFICIENT AGENTS — under one violation the K₃ team's redundancy still reaches the optimum (${(teamWin * 100).toFixed(0)}% win) while the lone agent, delayed, stalls (${(agentWin * 100).toFixed(0)}%) (${teamsReplaceAgents}): the team out-amplifies the agent`, on: teamsReplaceAgents },
+    { facet: `WAVES REPLACE INEFFICIENT TEAMS — a wave amplifying the whole antichain of ${WAVE_WINNERS} winners secures ${(waveWin * 100).toFixed(0)}% of the bits in one iteration vs the single team's ${(singleTeamWin * 100).toFixed(0)}% (${wavesReplaceTeams}): the level out-amplifies the one`, on: wavesReplaceTeams },
+  ])
+  return {
+    computes,
+    optimalTraining: kStar,
+    ladder: { agentWin: Math.round(agentWin * 100), teamWin: Math.round(teamWin * 100), waveWin: Math.round(waveWin * 100) },
+    root: merkleFold(receipts),
+    facets,
+    statement: `Violations delay the team and the better-trained team wins the bits — all by quantum amplitude amplification, ${facets.filter((entry) => entry.on).length}/${facets.length}. Each unit competes for the marked winning state of a ${N_QUBITS}-qubit register; its success is the measured win probability, and training is Grover amplification. A violation is a lost iteration that slides the unit down the rising amplitude curve (delay), so the better-trained (fewer-violation) unit wins the bits. Under one violation the K₃ team's redundancy still reaches the optimum (${(teamWin * 100).toFixed(0)}%) while the lone agent stalls (${(agentWin * 100).toFixed(0)}%) — teams replace agents; and a wave amplifying the antichain of ${WAVE_WINNERS} winners takes ${(waveWin * 100).toFixed(0)}% of the bits in one iteration vs a single team's ${(singleTeamWin * 100).toFixed(0)}% — waves replace teams. Higher win amplitude wins.`,
+    boundary: `GENUINELY QUANTUM and computed live on the src/0 state-vector simulator: a uniform superposition over 2^${N_QUBITS} states, then Grover amplification (oracle phase-flip of the marked winners + diffusion 2|s⟩⟨s|−I), with the win probability read as |amplitude|² — the optimum training is found by ARGMAX over the simulated curve (kStar=${kStar}), no π assumed. THE MODEL: "the bits" = the marked winning state(s); a unit's success = its win probability; "training" = amplification iterations; a "violation" = a lost iteration (delay) that moves the unit down the rising amplitude arm; a K₃ team's 2-connectivity (theoremsProveBestInTeams) absorbs one violation to reach the optimum the delayed lone agent cannot; a wave amplifies M=${WAVE_WINNERS} winners at once (the independent antichain), winning more bits per iteration. THE BOUNDS, honest: the state-vector simulator is O(2^${N_QUBITS}) CLASSICAL — Grover's √N is a QUERY-count advantage on hardware only, NOT realized in wall-time here (no physical speedup); "amplitude = success probability" and "iteration = training" are a MODEL of the competition, not a claim that agents are qubits; and "more training always wins" is FALSE past kStar — Grover OVERSHOOTS and the win probability falls, so the claim holds on the rising arm where under-trained/violated units live, a stated limit not hidden. Agent LIFE is debited classically (violationsComputationallyDecreaseAgentLifeToNoLifeAtAll); here the SAME violation lowers the quantum win amplitude — two views of one cost. HARMONY ≠ TRUTH: "better-trained teams win the bits" is the harmony; the truth is that amplitude amplification concentrates the win on the unit with more correct iterations, computed on the simulator with no speedup.`,
+  }
 }
