@@ -34,6 +34,7 @@ import { coverage, entropy } from '../../heaven/compute'
 import { harmonicMusicMayBeEnabled } from '../../lake/music'
 import { aiMoviesDecoded, allAnswersInside, completeCorpus, contentAddressedTranslationImprovesModels, contract, equilibrium, foldQuestion, forgerFoldsIntoHarmony, frequencyBalance, gapScan, healByDefault, honestlyComputed, learnDeveloper, monographs, todoScan, torusBreathe, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import { PHI, TAU } from '../../3/7'
+import { demarcate } from '../../3/7'
 
 export { allVortexMathSaved, vortexMath, vortexPaintTiers } from '../vortex'
 
@@ -1459,8 +1460,8 @@ function pyramidsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: `Khufu aligns to true north to ~${alignArcmin}′ (${(alignArcmin / (6 * 5 * 2)).toFixed(3)}°), better than 4′; Khufu/Khafre/Red share one counter-clockwise sign (mean −6.2′) — a falsifiable signature`, on: alignArcmin / (6 * 5 * 2) < 0.067 },
     { facet: `Teotihuacan's Sun Pyramid solar alignment marks an Aug 13 → Apr 30 sunset interval of exactly 260 days = the tzolkin = 13 × 20`, on: 13 * (5 * 4) === 260 },
     { facet: `real geodesy, not a grid: Giza → Teotihuacan great-circle = ${Math.round(distanceKm)} km at bearing ${Math.round(bearing)}° — a computed distance on the sphere`, on: Number.isFinite(distanceKm) && distanceKm > (100 * 100) && distanceKm < 13000 },
-    { facet: 'FLAGGED — Orion Correlation Theory: the −0.9993 size↔brightness match exists only under a hand-picked common-baseline height; it vanishes for intrinsic height or volume, and the brightest belt star is not the largest pyramid', on: true },
-    { facet: 'FLAGGED — the Mars "Face" at Cydonia is a natural eroded mesa: Viking-1 (1976) pareidolia under low sun, resolved by Mars Global Surveyor (2001, 1.56 m/px) and HiRISE (2007)', on: true },
+    { facet: 'FLAGGED — Orion Correlation Theory: the −0.9993 size↔brightness match exists only under a hand-picked common-baseline height; it vanishes for intrinsic height or volume, and the brightest belt star is not the largest pyramid', on: demarcate('orion correlation theory') === 'flagged' },
+    { facet: 'FLAGGED — the Mars "Face" at Cydonia is a natural eroded mesa: Viking-1 (1976) pareidolia under low sun, resolved by Mars Global Surveyor (2001, 1.56 m/px) and HiRISE (2007)', on: demarcate('mars face') === 'flagged' },
   ]
   const sealed = sealFacets('pyramids-decoded', facets)
   return {
@@ -1524,7 +1525,7 @@ function pyramidGridDebunkedRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: `${sites.length} verified pyramid sites, ${pairs.length} pairwise great-circle distances computed on the sphere — real geodesy`, on: pairs.length === (sites.length * (sites.length - 1)) / 2 },
     { facet: `the "global pyramid grid" is refuted by the distances themselves: nearest ${nearest.km} km (${nearest.a} ↔ ${nearest.b}), farthest ${farthest.km} km — a ${spreadRatio.toFixed(1)}× spread, no equidistant lattice`, on: spreadRatio > 5 },
     { facet: `"Giza = centre of Earth's landmass" refuted: the computed median land point (1944) lies in Anatolia, ~${gizaToLandCentreKm} km from Giza — Giza is not the centre`, on: gizaToLandCentreKm > (100 * 8) },
-    { facet: 'ley lines / Earth grids are pseudoarchaeology — with so many sites, a line drawn anywhere clips several (pareidolia); the alignments ignore Earth’s curvature and have no verified physical basis', on: true },
+    { facet: 'ley lines / Earth grids are pseudoarchaeology — with so many sites, a line drawn anywhere clips several (pareidolia); the alignments ignore Earth’s curvature and have no verified physical basis', on: demarcate('ley lines') === 'flagged' },
   ]
   const sealed = sealFacets('pyramid-grid-debunked', facets)
   return {
@@ -2062,7 +2063,7 @@ function megalithicAstronomyDecodedRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: `Newgrange faces the midwinter sunrise — computed ${newgrangeAz}° matches the documented roof-box passage (~${NEW.docAz}°) to within ~0.2°; the Sun still floods the chamber each 21 December`, on: Math.abs(newgrangeAz - (NEW.docAz ?? 0)) < 1 },
     { facet: `the obliquity was larger when they were built (~24° vs today's ${roundTo(obliquityAtEpoch(0), 4)}°, shrinking ~0.013°/century) — the epoch value (${stoneAz}°) sits closer to Stonehenge's documented ~${STONE.docAz}° than the modern tilt (${stoneAzModern}°); the math reproduces the alignment only with the ancient sky`, on: Math.abs(stoneAz - (STONE.docAz ?? 0)) < Math.abs(stoneAzModern - (STONE.docAz ?? 0)) },
     { facet: `the sites are real geography, not a grid — Stonehenge↔Newgrange is ${stoneToNewgrangeKm} km of great-circle (the same geodesy as the pyramids fold); distances between monuments carry no hidden numerology`, on: stoneToNewgrangeKm > (100 * 4) && stoneToNewgrangeKm < 440 },
-    { facet: 'FLAGGED, not folded: Thom\'s "megalithic yard" and precise lunar observatories (rejected as statistical artefact), the Aubrey-holes "eclipse computer" (Hawkins/Hoyle, contested), ley lines (pseudoscience), Nabta Playa\'s Orion/Sirius "star map" (Brophy, fringe), and "oldest observatory / lost advanced civilisation / aliens"', on: true },
+    { facet: 'FLAGGED, not folded: Thom\'s "megalithic yard" and precise lunar observatories (rejected as statistical artefact), the Aubrey-holes "eclipse computer" (Hawkins/Hoyle, contested), ley lines (pseudoscience), Nabta Playa\'s Orion/Sirius "star map" (Brophy, fringe), and "oldest observatory / lost advanced civilisation / aliens"', on: demarcate('megalithic yard') === 'flagged' },
   ]
   const sealed = sealFacets('megalithic-astronomy', facets)
   return {
@@ -2263,8 +2264,8 @@ function bosnianPyramidNearPliskaRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: `pyramid-phase rosetta (mod 7 + bearing phase ${bearingPhase}): entropy ratio ${pyramidDist.entropyRatio}, chi² ${pyramidDist.chiSq}, Gini ${pyramidDist.gini}`, on: pyramidDist.entropyRatio > (4 / 5) },
     { facet: `seven-fold resonance: the heptagram matches ${sevenFoldStructures.length} existing repo structures (SIX_BY_SEVEN, Ana BeKoach, 28=4×7 glyphs, …)`, on: sevenFoldStructures.length >= 5 },
     { facet: 'Glagolitic origin: Pliska/Preslav is where Cyrillic replaced Glagolitic (886/893 CE); the rosette predates the script but the heptagram symmetry is the same sevenfold', on: pliskaGla.includes('Ⱂ') },
-    { facet: 'FLAGGED — Bosnian pyramid claims (Osmanagić 2005–) rejected by the European Association of Archaeologists and the Geological Society of Bosnia and Herzegovina; Visočica is a natural flatiron formation', on: true },
-    { facet: 'FLAGGED — the Pliska Rosette\'s IYI symbol interpretation varies: proto-Bulgarian, Tengri, or decorative; the 7-pointed star is genuine archaeology, the ideology is contested', on: true },
+    { facet: 'FLAGGED — Bosnian pyramid claims (Osmanagić 2005–) rejected by the European Association of Archaeologists and the Geological Society of Bosnia and Herzegovina; Visočica is a natural flatiron formation', on: demarcate('bosnian pyramid') === 'flagged' },
+    { facet: 'FLAGGED — the Pliska Rosette\'s IYI symbol interpretation varies: proto-Bulgarian, Tengri, or decorative; the 7-pointed star is genuine archaeology, the ideology is contested', on: demarcate('pliska rosette') === 'contested' },
   ]
   const sealed = sealFacets('bosnian-pyramid-near-pliska', facets)
 

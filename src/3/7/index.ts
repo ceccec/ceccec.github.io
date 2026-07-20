@@ -1199,12 +1199,13 @@ export const DEMARCATION_REGISTRY = {
   contested: [
     'abiogenesis', 'RNA world as history', 'metabolism-first', 'extended evolutionary synthesis', 'neutral theory',
     'hard problem', 'theories of consciousness', 'IIT', 'GWT', 'GNWT', 'panpsychism', 'Orch-OR',
-    'string theory', 'multiverse', 'QM interpretations', 'dark matter', 'MOND', 'panspermia',
+    'string theory', 'multiverse', 'QM interpretations', 'dark matter', 'MOND', 'panspermia', 'pliska rosette',
   ],
   flagged: [
     'creationism', 'intelligent design', 'young-earth creationism', 'social darwinism', 'eugenics', 'orthogenesis',
     'quantum mysticism', 'quantum consciousness', 'consciousness creates reality', 'neuromyth', '10% of the brain',
     '432 Hz heals', 'astrology', 'flat earth', 'homeopathy', 'climate denial', 'perpetual motion',
+    'orion correlation theory', 'mars face', 'ley lines', 'megalithic yard', 'bosnian pyramid',
   ],
 } as const
 export type DemarcationTier = 'documented' | 'contested' | 'flagged' | 'unlisted'
