@@ -30,7 +30,7 @@ Concretely: a science portal — 432 computationally proven theorems and 29 rela
 
 - **27/29** monographs — content pages fold genus-2 −χ (29 surface → 27 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
 - **108/108** concept commands — MCP tool surface (4×27 = 432÷4)
-- **272/274** reference index entries — zero redundancy
+- **273/275** reference index entries — zero redundancy
 - **90/30** locale surfaces — 30 routes (home + every served science page) × 3 locales
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
@@ -81,15 +81,15 @@ Receipt: `10c50a99` · fold `firstInCorpusProvenanceForHome` · claySolvedByThis
 - **Folding linear gives analog** — Folding linear gives analog, decoded honestly with the real science. The kernel is the Whittaker–Shannon sampling theorem: discrete samples of a band-limited signal fold back into the continuous signal with no gaps, via sinc interpolation (computed live, exact at the samples). Medical and radar imaging is exactly this — reconstructing a continuous image from a sampled frequency field: MRI inverts the Fourier transform of k-space, CT the Radon transform, and the spiral/radial "vortex" through k-space is real (NUFFT). The 64³ = 4⁹ grid the model already computes is the discrete lattice it samples. Documented kept, legend flagged — Nyquist limits are real, gap-filling can hallucinate, and the theorem is foundational, not new. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/AnalogField.vue)
 - **Frontiers** — The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Frontiers.vue)
 - **64 = the 3-qubit Pauli basis** — The 3-qubit phaseless Pauli basis {I,X,Y,Z}³ has exactly 4³ = 64 operators — the same 4³ = 8² = 2⁶ = 64 as the genetic code and the double-torus vocabulary. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
-- **Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only** — Quantum encryption tools proof: content-addressed encrypt↔decrypt (trinityKey + foldPair), encryption trinities in order, and modeled Shor reverse on sealed DEMO_RSA_MODULI only. Production RSA is refused. CLI: npm run quantum:encryption-reverse-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/EncryptionTools.vue)
+- **Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only** — Quantum encryption tools proof: content-addressed encrypt↔decrypt (trinityKey + foldPair), encryption trinities in order, and modeled Shor reverse on sealed DEMO_RSA_MODULI only. Production RSA is refused. CLI: npm run quantum:encryption-reverse-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/water/encryption/index.vue)
 - **Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0** — Seven Clay Millennium Problems probed with sealed quantum folds (digit-inverse · f→{p,q} · efficiency · Pauli · genus-2). MODELED CHALLENGE only — no Clay prize solution claimed. CLI: npm run quantum:millennium-challenge. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/MillenniumChallenge.vue)
-- **quantum:* CLI catalog = fold · CLI · UI route · honesty boundary** — Every sealed quantum:* npm script is discoverable: encryption reverse, millennium challenge, fusion-verify, efficiency-vote, and the full verify suite — each with fold home, CLI, UI route, and honesty boundary. Not remote execution. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/QuantumTools.vue)
+- **quantum:* CLI catalog = fold · CLI · UI route · honesty boundary** — Every sealed quantum:* npm script is discoverable: encryption reverse, millennium challenge, fusion-verify, efficiency-vote, and the full verify suite — each with fold home, CLI, UI route, and honesty boundary. Not remote execution. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
 - **fuseAll wave₁ = fuseAll wave₂ — offline fusion verify** — Quantum fusion verify: offline recompute of fuseAll stack receipts — tamper-evident when two sequential calls match. CLI: npm run quantum:fusion-verify. Not external API fusion. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/FusionVerify.vue)
 - **Research index = domain · method · limit · verify at call time** — Canonical research program index: professional monograph rows, quantum tool CLIs (encryption · millennium · fusion · efficiency), and reproducibility gates — recomputed at call time. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ResearchIndex.vue)
-- **answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot** — Browser-runnable efficiency exposition. CLI: npm run quantum:efficiency-vote. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/QuantumTools.vue)
-- **offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)** — Offender spec: full scan is Node/CI; browser shows honesty gap. CLI: npm run quantum:offender-spec. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/QuantumTools.vue)
-- **shouldSpawnSubagent — few heroes > mass ignorance** — Hero spawn verify in browser. CLI: npm run quantum:hero-spawn-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/QuantumTools.vue)
-- **namingEntropy — words compile from sealed src** — Name entropy verify in browser. CLI: npm run quantum:name-entropy-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/QuantumTools.vue)
+- **answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot** — Browser-runnable efficiency exposition. CLI: npm run quantum:efficiency-vote. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)** — Offender spec: full scan is Node/CI; browser shows honesty gap. CLI: npm run quantum:offender-spec. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **shouldSpawnSubagent — few heroes > mass ignorance** — Hero spawn verify in browser. CLI: npm run quantum:hero-spawn-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **namingEntropy — words compile from sealed src** — Name entropy verify in browser. CLI: npm run quantum:name-entropy-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
 
 ## 4. Sitemap
 
@@ -136,7 +136,7 @@ npm run check:types  # the src/ core type-checks clean against tsconfig.json (ts
 npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
-The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`2face46c`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
+The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`87554605`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
 
 ## 6. Limitations
 
@@ -146,11 +146,11 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `c84ebf82-5e70-8c40-a29d-17fd12b602f0`. The monograph-index root: `5b63324b-8884-8601-9d54-2b01c0a671c8`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `c84ebf82-5e70-8c40-a29d-17fd12b602f0`. The monograph-index root: `c689ddf8-4931-8a38-acd2-cbadbe0e4362`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `2face46c-544e-8f39-902b-cb0ac9bf22c1`
+- Receipt: `87554605-9884-87f9-80b2-a471138d7ee1`

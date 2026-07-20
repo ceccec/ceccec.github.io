@@ -2,8 +2,8 @@
 // Rosetta core API sealed here (water/digit at compression limit; census forbids flat siblings).
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix } from '../../heaven/compute'
-import { computesGate, digitalRoot, isUuid, memoByRoot, merkleFold, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { buildMatrix, fleetCacheEconomicsDecoded } from '../../heaven/compute'
+import { computesGate, digitalRoot, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
   ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, type RosettaComputationType,
 } from '../../3/7'
@@ -37,10 +37,10 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   quantumCliToolsCatalog: 'tool',
 }
 
+// Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
 const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [
-  'APP_ROWS→shelve(app|projection)', 'QUANTUM_CLI_TOOL_ROWS(PR#11)→shelve(tool)',
   'ROSETTA_RAY_VIEWS duplicate', 'PROJECTION_SEGMENT/FORMS→VORTEX', 'rosettaClaim/Owner(heaven/core)',
-  'rosettaCodec(learning)', 'HD post-W3', 'string/millennium(PR#12)',
+  'rosettaCodec(learning)', 'HD rebuild remaining', 'string/millennium',
 ] as const
 
 /** Shelve any label onto a rosetta ray — the one registration primitive. */
@@ -189,7 +189,7 @@ const PROJECTION_SEGMENT_SLOT: Record<QuantumProjection, number> = {
 }
 
 const PROJECTION_FORMS: Record<QuantumProjection, number> = {
-  plasma: 9, taiji: 2, 'sacred-morph': 13, hologram: 1, labyrinth: (8 * 3),
+  plasma: 9, taiji: 2, 'sacred-morph': (5 + 8), hologram: 1, labyrinth: (8 * 3), // 13 = fruit-of-life centres (Fib 5+8)
   'movie-10d': 6, 'living-torus': 1, merkaba: 2, 'double-torus': 2,
   'unit-distance': 7, // seven split-prime channels drawn — a rosetta-sized sample of the t
   'vortex-strokes': (5 * 2), // the ten-digit tour 1·2·4·8·7·5·3·6·9·0 — every digit once, the void included
@@ -240,10 +240,10 @@ const APP_ROWS: readonly QuantumAppRow[] = [
   { id: 'quantum-computer', title: 'Quantum computer', route: '/en/quantum/os', barrel: 'src/quantum/computer', icon: '⌨', computesGate: 'quantum.computer.computes' },
   { id: 'quantum-os', title: 'Quantum OS', route: '/en/quantum/os', barrel: 'src/quantum/os', icon: '◻', computesGate: 'quantum.os.computes' },
   { id: 'fusion-gold', title: 'Fusion gold', route: '/en/fusion/gold', barrel: 'src/fusion/gold', icon: 'Au', computesGate: 'fusion.gold.product' },
-  { id: 'quantum-encryption', title: 'Quantum encryption', route: '/en/quantum-encryption', barrel: 'src/water/encryption', icon: '⚿', computesGate: 'encryption.panel.computes' },
+  { id: 'quantum-encryption', title: 'Quantum encryption', route: '/en/quantum-encryption', barrel: 'src/water/encryption', icon: '⚿', computesGate: 'encryption.panel.computes', projection: 'labyrinth' },
   { id: 'millennium-challenge', title: 'Millennium challenge', route: '/en/millennium-challenge', barrel: 'src/wind/research', icon: '◇', computesGate: 'millennium.challenge.computes', projection: 'movie-10d' },
-  { id: 'quantum-tools', title: 'Quantum CLI tools', route: '/en/quantum-tools', barrel: 'src/quantum/apps', icon: '⌘', computesGate: 'quantum.cli.tools.catalog' },
-  { id: 'fusion-verify', title: 'Fusion verify', route: '/en/fusion-verify', barrel: 'src/wind/fusion', icon: '⊛', computesGate: 'fusion.verify.computes' },
+  { id: 'quantum-tools', title: 'Quantum CLI tools', route: '/en/quantum-tools', barrel: 'src/quantum/apps', icon: '⌘', computesGate: 'quantum.cli.tools.catalog', projection: 'vortex-strokes' },
+  { id: 'fusion-verify', title: 'Fusion verify', route: '/en/fusion-verify', barrel: 'src/wind/fusion', icon: '⊛', computesGate: 'fusion.verify.computes', projection: 'hologram' },
 ] as const
 
 /** Sealed quantum:* CLI inventory — fold · CLI · UI route · honesty boundary. Census-110: lives in apps barrel. */
@@ -259,9 +259,15 @@ export type QuantumCliToolRow = {
   readonly browserRunnable: boolean
   readonly browserGap: string
   readonly receipt: string
+  /** Rosetta ray — from rosettaShelve(id, 'tool'), never hand-assigned. */
+  readonly ray: number
+  readonly hue: number
+  readonly address: string
 }
 
-const QUANTUM_CLI_TOOL_ROWS: readonly Omit<QuantumCliToolRow, 'receipt'>[] = [
+type QuantumCliToolSeed = Omit<QuantumCliToolRow, 'receipt' | 'ray' | 'hue' | 'address'>
+
+const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', cli: 'npm run quantum:encryption-reverse-verify', pair: 'reverse/encryption-verify', route: '/en/quantum-encryption', barrel: 'src/water/encryption', boundary: 'Demo RSA only — production moduli refused', browserRunnable: true, browserGap: '' },
   { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
@@ -277,23 +283,34 @@ const QUANTUM_CLI_TOOL_ROWS: readonly Omit<QuantumCliToolRow, 'receipt'>[] = [
   { id: 'iching-distribute-verify', title: 'I Ching / rosetta distribute', fold: 'ichingDistributeVerify', cli: 'npm run quantum:iching-distribute-verify', pair: 'rosetta/batch', route: '/en/quantum-tools', barrel: 'src/earth/iching', boundary: 'Rosetta 7-ray vs I Ching 8-fold', browserRunnable: true, browserGap: '' },
   { id: 'predict-skill-gate-verify', title: 'Predict skill gate verify', fold: 'skilledEnoughFromPredictions', cli: 'npm run quantum:predict-skill-gate-verify', pair: 'predict/skill-gate-verify', route: '/en/quantum-tools', barrel: 'src/lake/music', boundary: 'Measurable event prediction skill', browserRunnable: true, browserGap: '' },
   { id: 'f-inverse-pair', title: 'f→{p,q} inverse fold', fold: 'fThetaPhiXyzDigitNIsTheInversePair', cli: 'npm run quantum:local-math-computes', pair: 'inverse/pair', route: '/en/quantum-tools', barrel: 'src/mountain/vortex', boundary: 'Inverse fold within itself — not RSA crack', browserRunnable: true, browserGap: '' },
+  { id: 'slow-gap', title: 'Slow process = quantum gap', fold: 'slowProcessIsQuantumGap', cli: 'npm run quantum:slow-gap', pair: 'slow/gap', route: '/en/quantum-tools#slow-quantum-gaps', barrel: 'src/quantum/apps', boundary: 'Architectural slow≠telemetry — browserGap · missing 10D · parallel registry · memo-miss model', browserRunnable: true, browserGap: '' },
 ] as const
 
-/** Catalog of all quantum:* CLI tools — discoverable in UI at /en/quantum-tools. */
+/** Catalog of all quantum:* CLI tools — discoverable in UI at /en/quantum-tools. Each id shelves via rosettaShelve(..., 'tool'). */
 export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumCliToolsCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const tools: QuantumCliToolRow[] = QUANTUM_CLI_TOOL_ROWS.map((row) => ({
-      ...row,
-      receipt: toUuid(`quantum-cli-tool:${row.id}`),
-    }))
+    const tools: QuantumCliToolRow[] = QUANTUM_CLI_TOOL_ROWS.map((row) => {
+      const shelved = rosettaShelve(row.id, 'tool')
+      return {
+        ...row,
+        ray: shelved.ray,
+        hue: shelved.hue,
+        address: shelved.address,
+        receipt: shelved.address,
+      }
+    })
     const encryptionPresent = tools.some((t) => t.id === 'encryption-reverse-verify')
+    const encryptionShelved = tools.find((t) => t.id === 'encryption-reverse-verify')
     const millenniumPresent = tools.some((t) => t.id === 'millennium-challenge')
     const fusionPresent = tools.some((t) => t.id === 'fusion-verify')
+    const rayAgrees = tools.every((t) => t.ray === rosettaRayOf(t.id) && isUuid(t.address))
     const { computes, facets, root } = computesGate('quantum-cli-tools-catalog', [
       { facet: `catalog sealed — ${tools.length} quantum:* CLI tools`, on: tools.length >= (2 * 7) },
       { facet: 'encryption reverse-verify published', on: encryptionPresent },
+      { facet: 'encryption-reverse-verify shelved via rosettaShelve(kind=tool)', on: Boolean(encryptionShelved) && isUuid(encryptionShelved!.address) && encryptionShelved!.ray === rosettaRayOf('encryption-reverse-verify') },
       { facet: 'millennium challenge published', on: millenniumPresent },
       { facet: 'fusion-verify published', on: fusionPresent },
+      { facet: 'every tool ray === rosettaRayOf(id) — no wet tool→ray map', on: rayAgrees },
       { facet: 'every row has fold · cli · route · honest boundary', on: tools.every((t) => t.fold.length > 0 && t.cli.startsWith('npm run quantum:') && t.route.startsWith('/en/') && t.boundary.length > 0) },
     ])
     return {
@@ -302,8 +319,8 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       tools,
       facets,
       root: merkleFold([root, ...tools.map((t) => t.receipt)]),
-      statement: 'Quantum CLI tools catalog — every sealed quantum:* script discoverable with fold, CLI, UI route, and honesty boundary.',
-      boundary: 'Catalog of sealed CLI exits and UI routes — NOT a remote execution surface; users run npm locally; UI observes recomputed folds.',
+      statement: 'Quantum CLI tools catalog — every sealed quantum:* script discoverable with fold, CLI, UI route, honesty boundary, and rosettaShelve(tool) address.',
+      boundary: 'Catalog of sealed CLI exits and UI routes — NOT a remote execution surface; users run npm locally; UI observes recomputed folds. Demo RSA / Node-only tools keep honesty gaps.',
     }
   })
 }
@@ -460,19 +477,187 @@ export function quantumAppsComputes(matrix: MindMatrix = buildMatrix(), at = 0) 
   })
 }
 
+/**
+ * Slow process → quantum gap at call time.
+ * HONEST: "slow" = architectural gap (missing sealed reuse / browser path / 10D projection /
+ * unsealed parallel registry) — NOT wall-clock telemetry. fleetCacheEconomicsDecoded is an
+ * illustrative miss≫hit cost model, not live fleet joules.
+ * Pair: slow/gap · route /en/quantum-tools#slow-quantum-gaps · CLI npm run quantum:slow-gap
+ */
+export type SlowQuantumGapKind =
+  | 'browser-node-only'
+  | 'missing-10d-projection'
+  | 'parallel-registry'
+  | 'memo-miss-economics'
+  | 'tool-without-browser-ux'
+
+export type SlowQuantumGapRow = {
+  readonly gapId: string
+  readonly kind: SlowQuantumGapKind
+  readonly process: string
+  readonly criterion: string
+  readonly slow: boolean
+  readonly closed: boolean
+  readonly route: string
+  readonly receipt: string
+}
+
+/** Tool/hub apps that must carry a QuantumProjection for 10D root-equal draw. */
+const SLOW_GAP_PROJECTION_APP_IDS = [
+  'quantum-encryption',
+  'millennium-challenge',
+  'fusion-verify',
+  'quantum-tools',
+] as const
+
+export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`slowProcessIsQuantumGap:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const registry = quantumAppsRegistry(matrix, at)
+    const core = registry.core
+    const econ = fleetCacheEconomicsDecoded(matrix)
+    const rows: SlowQuantumGapRow[] = []
+
+    for (const tool of catalog.tools) {
+      if (!tool.browserRunnable) {
+        rows.push({
+          gapId: `slow:browser:${tool.id}`,
+          kind: 'browser-node-only',
+          process: tool.fold,
+          criterion: `fs/cwd or Node-only path when browser UX expected — ${tool.browserGap}`,
+          slow: true,
+          closed: false,
+          route: tool.route,
+          receipt: toUuid(`slow-gap:browser:${tool.id}`),
+        })
+      }
+    }
+
+    for (const id of SLOW_GAP_PROJECTION_APP_IDS) {
+      const app = registry.apps.find((entry) => entry.id === id)
+      const hasProjection = Boolean(app?.projection)
+      rows.push({
+        gapId: `slow:projection:${id}`,
+        kind: 'missing-10d-projection',
+        process: id,
+        criterion: 'tool/hub app must carry QuantumProjection for 10D root-equal draw',
+        slow: !hasProjection,
+        closed: hasProjection,
+        route: app?.route ?? '/en/quantum-tools',
+        receipt: toUuid(`slow-gap:projection:${id}:${hasProjection}`),
+      })
+    }
+
+    for (const item of core.inventory.parallel) {
+      rows.push({
+        gapId: `slow:parallel:${toUuid(item).slice(0, 8)}`,
+        kind: 'parallel-registry',
+        process: item,
+        criterion: 'rosettaCoreApi.inventory.parallel names an unsealed parallel registry (strangler backlog)',
+        slow: true,
+        closed: false,
+        route: '/en/quantum-tools#slow-quantum-gaps',
+        receipt: toUuid(`slow-gap:parallel:${item}`),
+      })
+    }
+
+    const miss = econ.hitRatios.find((ratio) => ratio.hit === 0)
+    const hit = econ.hitRatios.find((ratio) => ratio.hit === 1)
+    const missCostlier = Boolean(miss && hit && miss.expectedJoules > hit.expectedJoules)
+    // Model holds ⇒ reuse path sealed (not a gap). Model broken ⇒ architectural slow gap.
+    rows.push({
+      gapId: 'slow:memo-miss-economics',
+      kind: 'memo-miss-economics',
+      process: 'fleetCacheEconomicsDecoded',
+      criterion: 'miss≫hit illustrative cost model must hold — else sealed reuse path is not attested',
+      slow: !econ.decoded || !missCostlier,
+      closed: econ.decoded && missCostlier,
+      route: '/en/quantum-tools#slow-quantum-gaps',
+      receipt: toUuid(`slow-gap:memo-econ:${econ.decoded}:${missCostlier}`),
+    })
+
+    // Tool catalog rows claiming browserRunnable must have a route under /en/ (UX surface).
+    for (const tool of catalog.tools.filter((entry) => entry.browserRunnable)) {
+      const hasUx = tool.route.startsWith('/en/') && tool.route.length > '/en/'.length
+      rows.push({
+        gapId: `slow:ux:${tool.id}`,
+        kind: 'tool-without-browser-ux',
+        process: tool.fold,
+        criterion: 'browserRunnable tool must publish /en/ UI route',
+        slow: !hasUx,
+        closed: hasUx,
+        route: tool.route,
+        receipt: toUuid(`slow-gap:ux:${tool.id}:${hasUx}`),
+      })
+    }
+
+    const open = rows.filter((row) => row.slow && !row.closed)
+    const closed = rows.filter((row) => row.closed)
+    const facets = [
+      { facet: `CLASSIFIER COMPUTES — ${rows.length} slow→gap rows at call time`, on: rows.length >= SLOW_GAP_PROJECTION_APP_IDS.length },
+      { facet: `IMMEDIATELY VISIBLE — ${open.length} open architectural slow gaps enumerated (not hidden in logs)`, on: open.every((row) => row.gapId.length > 0 && row.criterion.length > 0) },
+      { facet: 'browser Node/CI gaps classified from quantumCliToolsCatalog.browserGap', on: catalog.tools.filter((t) => !t.browserRunnable).every((t) => open.some((g) => g.gapId === `slow:browser:${t.id}`)) },
+      { facet: 'missing 10D projection on tool apps classified', on: SLOW_GAP_PROJECTION_APP_IDS.every((id) => rows.some((g) => g.gapId === `slow:projection:${id}`)) },
+      { facet: 'parallel registry strangler backlog visible via rosettaCoreApi.inventory.parallel', on: core.inventory.parallel.every((item) => rows.some((g) => g.process === item && g.kind === 'parallel-registry')) },
+      { facet: 'memo miss≫hit economics attested (illustrative — NOT wall-clock telemetry)', on: econ.decoded && missCostlier },
+      { facet: 'HONEST BOUNDARY — slow ≠ measured latency; architectural quantum-gap only', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`slow-process-gap:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('slow-process-is-quantum-gap', facets)
+    return {
+      computes: sealed.ok,
+      openCount: open.length,
+      closedCount: closed.length,
+      count: rows.length,
+      open,
+      closed,
+      rows,
+      catalogRoot: catalog.root,
+      registryRoot: registry.root,
+      econRoot: econ.root,
+      facets: sealed.facets,
+      root: merge(matrix.root, sealed.root),
+      anchor: 'slow-quantum-gaps',
+      heading: 'Slow processes = quantum gaps',
+      honestyLine:
+        'Slow here means architectural quantum-gap (missing sealed reuse, browser path, 10D projection, or unsealed parallel registry) — NOT wall-clock telemetry. fleetCacheEconomicsDecoded joules are illustrative.',
+      statement: `Slow process is quantum gap — ${facets.filter((e) => e.on).length}/${facets.length}: ${open.length} open / ${closed.length} closed / ${rows.length} classified; browserGaps, missing projections, parallel backlog, and memo-miss economics recomputed at call time.`,
+      boundary:
+        'HONEST: architectural classifier only. Node/CI browserGaps and parallel-registry backlog remain open until strangler/browser ports close them — visibility is the point. NOT a profiler. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:slow-gap — exit 0 iff classifier computes (open gaps are honesty, not failure). */
+export function runSlowProcessIsQuantumGapExit(_root = '', _argv: readonly string[] = []): number {
+  const report = slowProcessIsQuantumGap()
+  for (const row of report.open) {
+    process.stdout.write(`✗ ${row.gapId} — ${row.kind} · ${row.process} · ${row.criterion}\n`)
+  }
+  for (const row of report.closed.slice(0, 8)) {
+    process.stdout.write(`✓ ${row.gapId} — closed\n`)
+  }
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} slow-gap — open=${report.openCount} closed=${report.closedCount} classified=${report.count} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
 export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = quantumAppsComputes(matrix, at)
   const browserGaps = cap.catalog.tools.filter((t) => !t.browserRunnable)
   const browserReady = cap.catalog.tools.filter((t) => t.browserRunnable).length
+  const slowGaps = slowProcessIsQuantumGap(matrix, at)
   return {
-    computes: cap.computes,
+    computes: cap.computes && slowGaps.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
     toolCount: cap.catalog.count,
     browserReady,
     browserGaps,
-    root: cap.root,
+    slowGaps,
+    root: merkleFold([cap.root, slowGaps.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }

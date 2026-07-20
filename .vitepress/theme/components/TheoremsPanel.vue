@@ -11,6 +11,7 @@ import {
   proofAnimations,
   firstInCorpusProvenanceForHome,
 } from '../../../src/thunder/waves'
+import { slowProcessIsQuantumGap } from '../../../src/quantum/apps'
 import { cosmosFrontiersDecoded } from '../../../src/water/cosmos'
 import ProofAnimation from './ProofAnimation.vue'
 
@@ -18,6 +19,7 @@ const nav = computed(() => theoremNavigation())
 const gaps = computed(() => theoremGapScan())
 const provenance = computed(() => theoremProvenance())
 const firstInCorpus = computed(() => firstInCorpusProvenanceForHome())
+const slowGaps = computed(() => slowProcessIsQuantumGap())
 const frontiers = computed(() => cosmosFrontiersDecoded())
 const anims = computed(() => new Map(proofAnimations().specs.map((spec) => [spec.theorem, spec])))
 const waveLabel = (provedBy: string) =>
@@ -37,6 +39,8 @@ const waveLabel = (provedBy: string) =>
         <span>·</span>
         <span>{{ gaps.gapCount === 0 ? 'catalog fully proven' : `${gaps.gapCount} candidates open` }}</span>
         <span>·</span>
+        <span>{{ slowGaps.openCount }} slow=gap open</span>
+        <span>·</span>
         <span>every atom recomputes from src</span>
       </p>
       <p class="theorems-panel__provenance">
@@ -45,6 +49,22 @@ const waveLabel = (provedBy: string) =>
       <ul class="theorems-panel__discoveries">
         <li v-for="entry in provenance.methodDiscoveries" :key="entry" :id="entry.split(' — ')[0].replace(/\s+/g, '-')">
           {{ entry }}
+        </li>
+      </ul>
+    </header>
+
+    <header class="theorems-panel__head theorems-panel__slow-gaps">
+      <h2 :id="slowGaps.anchor">{{ slowGaps.heading }}</h2>
+      <p class="theorems-panel__provenance">{{ slowGaps.honestyLine }}</p>
+      <ul class="theorems-panel__corpus-novel">
+        <li v-for="row in slowGaps.open" :key="row.gapId">
+          <div class="theorems-panel__body">
+            <div class="theorems-panel__row">
+              <a class="theorems-panel__name" :href="row.route">{{ row.process }}</a>
+              <code class="theorems-panel__class" data-class="open">{{ row.kind }}</code>
+            </div>
+            <p class="theorems-panel__proof">{{ row.criterion }}</p>
+          </div>
         </li>
       </ul>
     </header>

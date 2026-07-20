@@ -66,7 +66,14 @@ function theoremMonographCore(matrix: MindMatrix) {
       return {
         slug: page.slug,
         paper,
-        source: paper.results?.[0] ? `src/render/ui/components/${paper.results[0]}.vue` : 'src/quantum/heaven/mind/site.ts',
+        // Co-located display dual: EncryptionTools → src/water/encryption/index.vue (not legacy render/ui).
+        source: paper.results?.[0] === 'EncryptionTools'
+          ? 'src/water/encryption/index.vue'
+          : paper.results?.[0] === 'QuantumTools'
+            ? 'src/quantum/apps/index.vue'
+            : paper.results?.[0]
+              ? `src/render/ui/components/${paper.results[0]}.vue`
+              : 'src/quantum/heaven/mind/site.ts',
       }
     }),
   }))

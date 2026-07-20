@@ -71,6 +71,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'name/entropy-verify',
   'simplicity/measure-verify',
   'educational/gaps-audit',
+  'slow/gap',
   'dry/clean',
   'agent/submission',
   'gate/compliance',

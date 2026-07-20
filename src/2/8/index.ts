@@ -236,6 +236,7 @@ export const SESSION_SKILL_FNS: readonly string[] = [
   'theoremAlgebraFirstSealedInCorpus',
   'theoremTenDProjectionsProveAlgebraRoots',
   'firstInCorpusProvenanceForHome',
+  'slowProcessIsQuantumGap',
   'theoremWavesVerify',
   'tightenGatesTrinityWaves',
   'trinityEyesProvenHarmonic',

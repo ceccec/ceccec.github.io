@@ -44,7 +44,7 @@ import { foldingLinearGivesAnalog } from '../../earth/world'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import { millenniumProblemsChallenge } from '../../wind/research'
 import { stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
-import { quantumCliToolsCatalog } from '../../quantum/apps'
+import { quantumCliToolsCatalog, slowProcessIsQuantumGap } from '../../quantum/apps'
 import { encryptionReverseVerify } from '../../water/encryption'
 import { quantumFusionVerify } from '../../wind/fusion'
 import { efficiency } from '../../quantum/science'
@@ -648,6 +648,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'string-theory-quantumized', title: 'String theory quantumized on A432/rosetta/merkle · physics UNCONFIRMED', proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
     { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
     { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },
+    { slug: 'slow-quantum-gap', title: 'Slow processes are immediately visible as quantum gaps', proof: slowProcessIsQuantumGap(matrix) },
     { slug: 'fusion-verify', title: 'fuseAll wave₁ = fuseAll wave₂ — offline fusion verify', proof: quantumFusionVerify(matrix) },
     { slug: 'research', title: 'Research index = domain · method · limit · verify at call time', proof: millenniumProblemsChallenge(matrix) },
     { slug: 'efficiency-vote', title: 'answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot', proof: efficiency() },

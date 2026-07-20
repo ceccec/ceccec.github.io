@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from 'vue'
-import { quantumAppsPanelComputes, quantumAppLaunch } from './index.ts'
+import { quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap } from './index.ts'
 import { runEncryptionToolInBrowser } from '../../water/encryption/index.ts'
 import { millenniumPanelComputes, unitDistanceResearch } from '../../wind/research/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
@@ -155,6 +155,13 @@ function runTool(toolId: string) {
         { facet: `windows ${r.windowCount}`, on: r.windowCount > 0 },
         { facet: 'trainedEnough proxy', on: r.trainedEnough },
       ]
+    } else if (toolId === 'slow-gap') {
+      const r = slowProcessIsQuantumGap()
+      ok = r.computes
+      summary = `open=${r.openCount} · closed=${r.closedCount} · classified=${r.count}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else {
       ok = false
       summary = `unknown tool ${toolId}`
@@ -179,12 +186,28 @@ function runTool(toolId: string) {
       <header>
         <h2>Quantum tools hub</h2>
         <p class="quantum-apps__lede">
-          Run sealed folds in the browser — {{ panel.browserReady }} browser-ready · {{ panel.browserGaps.length }} Node/CI gaps.
+          Run sealed folds in the browser — {{ panel.browserReady }} browser-ready · {{ panel.browserGaps.length }} Node/CI gaps · {{ panel.slowGaps.openCount }} slow=gap open.
         </p>
         <UiBadge :variant="panel.computes ? 'default' : 'outline'">
           quantum.apps · {{ panel.computes ? '✓' : '—' }} · {{ panel.toolCount }} tools
         </UiBadge>
       </header>
+      <UiSeparator />
+      <section id="slow-quantum-gaps" aria-label="Slow processes as quantum gaps">
+        <h3>{{ panel.slowGaps.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.slowGaps.honestyLine }}</p>
+        <UiBadge :variant="panel.slowGaps.openCount === 0 ? 'default' : 'outline'">
+          open {{ panel.slowGaps.openCount }} · closed {{ panel.slowGaps.closedCount }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="gap in panel.slowGaps.open" :key="gap.gapId">
+            <UiBadge variant="outline">{{ gap.kind }}</UiBadge>
+            <strong>{{ gap.process }}</strong>
+            — {{ gap.criterion }}
+            <a class="quantum-apps__meta" :href="gap.route">{{ gap.route }}</a>
+          </li>
+        </ul>
+      </section>
       <UiSeparator />
       <section>
         <h3>Browser-runnable tools</h3>

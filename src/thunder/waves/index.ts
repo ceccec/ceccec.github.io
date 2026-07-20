@@ -2072,6 +2072,8 @@ const CONTENT_ANIMATION_FAMILIES: readonly (readonly [readonly string[], ProofAn
   [['calabi', 'mirror symmetry', 'm-theory', 'ads/cft', 'compactDims', 'cy₃', 'cy3'], 'polytope', 5, 2],
   [['digit-inverse', 'zero division', 'inverse pair', 'f→{p,q}', 'f(θ', 'f theta', 'inverse fold'], 'sieve', 100, 3],
   [['infinity at no cost', 'scales to infinity', 'amortized reuse', 'memo o(1)', 'answers÷tokens'], 'balance', 5, 3],
+  [['encrypt', 'decrypt', 'demo rsa', 'modeled shor', 'glyph uuid', 'trinity crack', 'production rsa refused'], 'wave', 8, 4],
+  [['slow process', 'quantum gap', 'browser gap', 'memo miss', 'parallel registry'], 'balance', 5, 3],
 ]
 const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit'> => {
   const t = theorem.toLowerCase()
