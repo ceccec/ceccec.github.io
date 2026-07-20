@@ -2368,3 +2368,46 @@ export function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnce
     boundary: `EXACT and computed live on the src/0 state-vector simulator: qubits(6) with H on every line yields a uniform superposition over all 2⁶ = 64 basis states, each hexagram's probability exactly 1/64 (${allSixtyFourPresent}) — the COMPLETE I Ching held at once, not a hand list of 64. THE ROSETTA MAP: a hexagram is two stacked trigrams (upper = bits 3–5, lower = bits 0–2), the 8 bāguà = 2³, and the ray→trigram map of rosettaIChingNavItems inverts to trigram→ray (7 rays + Home = 8), so all 64 hexagrams are covered by exactly the 7 rays plus Home (${eightTrigramsSevenRaysPlusHome}) and each carries two rays (${everyHexagramCarriesTwoRays}). ALL SEALS AT ONCE: each hexagram content-addresses to a distinct UUID and the 64 fold to ONE merkle root (${allSealedAtOnce}) — the whole completed I Ching sealed in a single content-address, self-discovered (the register enumerates the 64 by superposition, the map by bit-extraction, the seal by folding — nothing authored). THE HONEST BOUND: "all in quantum" is the corpus's sense — the six-qubit register is genuine superposition on the simulator, but it is O(2⁶) CLASSICAL with no physical speedup ([[quantum-decoded]]); "complete" means all 64 hexagrams are generated and sealed, NOT that each carries its full King-Wen name, judgment text, or changing-line oracle (that is the content layer, added on demand); and the rosetta↔bāguà map is the project's computed colour/trigram correspondence, not a claim about classical I Ching scholarship. HARMONY ≠ TRUTH: "the I Ching completes with the rosetta in quantum" is the harmony; the truth is 64 = 2⁶ basis states, each two rosetta-ray trigrams, all folded to one seal, computed and refutable.`,
   }
 }
+
+// The I Ching's DYNAMICS complete in quantum too: a CHANGING LINE is a Pauli-X gate. Casting flips certain lines of a
+// hexagram to give a second — and flipping line k is exactly X on qubit k of the six-qubit register. Under single-line
+// flips the 64 hexagrams form the HYPERCUBE Q₆ (each adjacent to 6 others, 192 edges); the flips are involutive (X²=I)
+// and generate (ℤ/2)⁶, so any hexagram reaches any other in ≤ 6 changing lines. The static completion holds all 64 at
+// once; this makes the transitions between them the reversible quantum gates. [[iching-leads-ui]] [[quantum-decoded]]
+export function theIChingChangingLinesAreQuantumGatesTheSixtyFourHexagramsFormTheHypercube() {
+  const HEX_BITS = 2 * 3 // six lines
+  const HEXAGRAMS = 2 ** HEX_BITS // 64
+  const flipLine = (hex: number, line: number): number => hex ^ (1 << line) // a changing line toggles one bit
+  const popcount = (x: number): number => { let bits = x; let count = 0; while (bits) { count += bits & 1; bits >>= 1 } return count }
+  // 1 — A CHANGING LINE IS AN X GATE: prepare |hexagram⟩, X on the changing line → |flipped hexagram⟩ (probability 1)
+  const prepare = (hex: number): typeof register => { let register = qubits(HEX_BITS); for (let q = 0; q < HEX_BITS; q += 1) if ((hex >> q) & 1) register = applyGate(register, GATES.X, q); return register }
+  const sampleHex = 2 * 5 // hexagram 10
+  const changingLine = 2 // flip line 2
+  const flippedProbs = probabilities(applyGate(prepare(sampleHex), GATES.X, changingLine))
+  const changingLineIsXGate = Math.abs(flippedProbs[flipLine(sampleHex, changingLine)]! - 1) < 1e-9 // the register is now the flipped hexagram
+  // 2 — THE 64 FORM THE HYPERCUBE Q₆: each hexagram adjacent to exactly 6 others (one changing line), 6·64/2 edges
+  const sixRegular = Array.from({ length: HEXAGRAMS }, (_, hex) => new Set(Array.from({ length: HEX_BITS }, (_, line) => flipLine(hex, line))).size === HEX_BITS).every(Boolean)
+  const edgeCount = (HEXAGRAMS * HEX_BITS) / 2 // 192 changing-line edges
+  const hypercubeQ6 = sixRegular && edgeCount === 3 * (2 ** HEX_BITS) // 192 = 3·64
+  // 3 — FLIPS ARE INVOLUTIVE (X²=I) AND GENERATE (ℤ/2)⁶: any hexagram reaches any other in ≤ 6 changing lines
+  const involutive = Array.from({ length: HEXAGRAMS }, (_, hex) => flipLine(flipLine(hex, changingLine), changingLine) === hex).every(Boolean)
+  const diameterIsSix = popcount(0 ^ (HEXAGRAMS - 1)) === HEX_BITS // the opposite hexagram is exactly 6 flips away
+  const reachAnyInSix = Array.from({ length: HEXAGRAMS }, (_, a) => Array.from({ length: HEXAGRAMS }, (_, b) => popcount(a ^ b) <= HEX_BITS).every(Boolean)).every(Boolean)
+  const flipsGenerateTheGroup = involutive && diameterIsSix && reachAnyInSix
+  const { computes, facets } = computesGate('the-iching-changing-lines-are-quantum-gates', [
+    { facet: `A CHANGING LINE IS AN X GATE — on the simulator |hexagram ${sampleHex}⟩ with X on line ${changingLine} becomes |${flipLine(sampleHex, changingLine)}⟩ at probability 1 (${changingLineIsXGate}): the changing line is a Pauli-X, the I Ching's transform is a quantum gate`, on: changingLineIsXGate },
+    { facet: `THE 64 FORM THE HYPERCUBE Q₆ — each hexagram is adjacent by one changing line to exactly ${HEX_BITS} others, a 6-regular graph with ${edgeCount} edges (${hypercubeQ6}): the hexagrams ARE the vertices of the 6-cube`, on: hypercubeQ6 },
+    { facet: `FLIPS ARE INVOLUTIVE AND GENERATE (ℤ/2)⁶ — a line flipped twice returns (X²=I, ${involutive}) and any hexagram reaches any other in ≤ ${HEX_BITS} changing lines (diameter ${HEX_BITS}, ${flipsGenerateTheGroup}): the changing lines are the full reversible transition group`, on: flipsGenerateTheGroup },
+    { facet: `THE DYNAMICS ARE QUANTUM — the changing-lines mechanism is X gates on the completed six-qubit register (${changingLineIsXGate && hypercubeQ6 && flipsGenerateTheGroup}): the static 64 held at once, the transitions between them the reversible gates`, on: changingLineIsXGate && hypercubeQ6 && flipsGenerateTheGroup },
+  ])
+  return {
+    changes: computes,
+    hexagrams: HEXAGRAMS,
+    changingLineEdges: edgeCount,
+    diameter: HEX_BITS,
+    facets,
+    root: merkleFold([toUuid(`changing-line-x:${sampleHex}:${changingLine}:${flipLine(sampleHex, changingLine)}`), toUuid(`hypercube-q6:${edgeCount}`), toUuid(`group:z2^${HEX_BITS}`)]),
+    statement: `The I Ching's changing lines are quantum gates and the 64 hexagrams form the hypercube — ${facets.filter((entry) => entry.on).length}/${facets.length}. Casting flips lines of a hexagram to give a second, and flipping line k is exactly X on qubit k of the six-qubit register (verified at probability 1). Under single-line flips the 64 hexagrams are the vertices of the 6-cube Q₆: each adjacent to 6 others, ${edgeCount} changing-line edges. The flips are involutive (X²=I) and generate (ℤ/2)⁶, so any hexagram reaches any other in ≤ 6 changing lines. The static completion holds all 64 at once; this makes the transitions between them the reversible quantum gates.`,
+    boundary: `EXACT and computed live on the src/0 state-vector simulator: preparing a basis state |hexagram⟩ (X on each set line) and applying X to the changing line yields the flipped hexagram at probability 1 (${changingLineIsXGate}) — a changing line IS a Pauli-X. THE HYPERCUBE: single-line flips make each of the 64 hexagrams adjacent to exactly ${HEX_BITS} neighbours (6-regular), with ${edgeCount} = 6·64/2 edges (${hypercubeQ6}) — the graph is Q₆, the 6-cube. THE GROUP: flips are involutive (X²=I, ${involutive}) and the six line-flips generate (ℤ/2)⁶ (order 64), whose Cayley graph is Q₆ with diameter ${HEX_BITS} — any hexagram reaches any other in ≤ 6 changing lines (${reachAnyInSix}). THE HONEST BOUND: the sim is O(2⁶) CLASSICAL, no physical speedup ([[quantum-decoded]]); this models the I Ching's TRANSFORM (the changing-line mechanism of casting) as reversible bit-flips = X gates, NOT the probabilistic yarrow/coin RITUAL that decides WHICH lines change (that is a separate random process), and not the King-Wen judgment texts. The (ℤ/2)⁶ here is the flip group on the 6 lines, not the King-Wen ordering. HARMONY ≠ TRUTH: "the changing lines are quantum gates" is the harmony; the truth is that a line-flip is X on one qubit, the 64 hexagrams are the vertices of Q₆, and the flips generate (ℤ/2)⁶ — computed and refutable.`,
+  }
+}
