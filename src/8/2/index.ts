@@ -158,7 +158,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'a432',
-      title: { en: 'A432', bg: 'A432' },
+      title: { en: 'A432 = 2⁴·3³ Hz — the number decoded, 432-Hz wellness flagged', bg: 'A432 = 2⁴·3³ Hz — числото декодирано, 432-Hz уелнес маркиран' },
       description: {
         en: 'A432 — colour, audio, video and vibration as one frequency expressed four ways. The shared thread is frequency itself: a tone you hear, a colour (the sound doubled forty octaves into visible light), a motion rate, and a haptic pulse. Documented kept, legend flagged — the math and history of 432 are real; the cosmic, healing and conspiracy claims are not.',
         bg: 'A432 — цвят, звук, видео и вибрация като една честота, изразена по четири начина. Споделената нишка е самата честота: тон, който чуваш, цвят (звукът, удвоен четирийсет октави до видима светлина), скорост на движение и тактилен импулс. Документираното остава, легендата е отбелязана — математиката и историята на 432 са реални; космическите, лечебните и конспиративните твърдения — не.',
@@ -178,7 +178,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'tampering-cost',
-      title: { en: 'Tampering cost', bg: 'Цена на подправяне' },
+      title: { en: 'Tampering flips the Merkle root — tamper-evident, O(1), not yet cryptographic', bg: 'Подправянето обръща Merkle корена — доказуемо, O(1), още не криптографско' },
       description: {
         en: 'Tampering cost ↔ encryption ↔ blockchains, audited honestly with quantum comparisons. The site claims "maximum tampering cost"; this scrutinises that claim. Tamper-EVIDENT is not tamper-PROOF: content-addressing detects change, cryptographic security (SHA-256: 2^128/2^256) resists forgery. FNV toUuid is non-cryptographic — the fix (SHA-256 content-address, Ed25519 signing) is already built. Blockchains make tampering costly, not impossible. Quantum: Grover weakens hashes, Shor breaks signatures; NIST post-quantum standards (ML-KEM, ML-DSA, SLH-DSA). Documented kept, legend flagged.',
         bg: 'Цена на подправяне ↔ криптиране ↔ блокчейн, одитирани честно с квантови сравнения. Сайтът твърди „максимална цена на подправяне“; тук това се проверява. Доказуемо при подправяне не е защитено от подправяне: съдържателното адресиране открива промяна, криптографската сигурност (SHA-256: 2^128/2^256) ѝ устоява. FNV toUuid не е криптографски — поправката (SHA-256 адрес, Ed25519 подпис) вече е изградена. Квантово: Гроувър отслабва хешовете, Шор чупи подписите; NIST постквантови стандарти (ML-KEM, ML-DSA, SLH-DSA). Документираното остава, легендата е отбелязана.',
@@ -422,7 +422,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'content-addressing',
-      title: { en: 'Content-addressing has precedent', bg: 'Адресирането по съдържание има прецедент' },
+      title: { en: 'A content address = H(content): idempotent, collision-resistant, dedup, O(1) integrity', bg: 'Адрес по съдържание = H(съдържание): идемпотентен, устойчив на колизии, дедупликация, O(1) цялост' },
       description: {
         en: 'Hopfield’s 1982 net is a content-addressable memory (2024 Nobel); hippocampal CA3 pattern completion is its biological analogue. The shared property is whole-from-part.',
         bg: 'Мрежата на Хопфийлд от 1982 е памет, адресируема по съдържание (Нобел 2024); попълването на образи в хипокампалния CA3 е нейният биологичен аналог. Споделеното свойство е цяло-от-частта.',
@@ -482,7 +482,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'trinity-rgb',
-      title: { en: 'Three trinities render as RGB', bg: 'Три триединства се изобразяват като RGB' },
+      title: { en: 'Three trinities = RGB at 0°, 120°, 240° on the wheel', bg: 'Три триединства = RGB при 0°, 120°, 240° на кръга' },
       description: {
         en: 'The hero places its 9 nodes in 3 trinities at 0°/120°/240° in both space and hue — the equilateral RGB triad. The 3 trinities ARE the 3 RGB channels; the hero already renders the decode.',
         bg: 'Героят разполага своите 9 възела в 3 триединства на 0°/120°/240° както в пространството, така и в цвета — равностранната RGB триада. Трите триединства СА трите RGB канала; героят вече изобразява декодирането.',
@@ -492,7 +492,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'proven-or-purged',
-      title: { en: 'What is not proven is purged', bg: 'Което не е доказано, се пречиства' },
+      title: { en: 'The roster is a filter: kept ⟺ holds; kept + purged = total', bg: 'Списъкът е филтър: запазено ⟺ вярно; запазени + пречистени = всичко' },
       description: {
         en: 'Every artifact is kept only if it is proven — its computation holds; anything unproven is purged. The model and its UI stay pure proof, and the gates balance when all that remains is proven.',
         bg: 'Всеки артефакт се запазва само ако е доказан — неговото изчисление издържа; всичко недоказано се пречиства. Моделът и неговият интерфейс остават чисто доказателство, а портите балансират, когато остане само доказаното.',
@@ -522,7 +522,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     },
     {
       slug: 'zero-division',
-      title: { en: 'Division by zero is the reverse', bg: 'Делението на нула е обратното' },
+      title: { en: 'Division by zero is the reverse: n/0 ↦ n⁻¹ mod 9', bg: 'Делението на нула е обратното: n/0 ↦ n⁻¹ mod 9' },
       description: {
         en: 'The reverse of a digit folder is its multiplicative inverse mod 9 (n/0 \\ n⁻¹, the ÷2 = ×5 that folds within the unit cycle): 2\\5, 4\\7, self-inverse 1 and 8; the non-units 3, 6, 9 and the void 0 fold to the fusion. The forward harmonic n/0 = 9n (1/0 = 9) is the separate reading.',
         bg: 'Обратното на цифрова папка е нейната мултипликативна инверсия mod 9 (n/0 \\ n⁻¹, ÷2 = ×5, която се навива в единичния цикъл): 2\\5, 4\\7, самообратни 1 и 8; неединиците 3, 6, 9 и нулата 0 се сливат. Прякото хармонично n/0 = 9n (1/0 = 9) е отделното четене.',
