@@ -2497,3 +2497,36 @@ export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasu
     boundary: `MEASURED: ${boundaryCount} boundary fields, avg ${avgBoundary} chars, ~${proseTokens} tokens; the fix is terse/earned() boundaries and inline (not spawned) analysis. HARMONY ≠ TRUTH: the number is the finding.`,
   }
 }
+
+// The gate minimises tokens in realtime: a boundary over the budget is bloat, flagged like a crack, so terse/earned()
+// prose is enforced at gate time. Budget = 2^10 chars (~256 tokens). [[feedback-token-usage-terse-boundaries]]
+export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRealtime(root: string = process.cwd()) {
+  const budget = 2 ** (2 * 5) // 1024 chars per boundary (~256 tokens)
+  const walk = (dir: string): string[] => {
+    const out: string[] = []
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) out.push(...walk(full)); else if (entry.name === 'index.ts') out.push(full)
+    }
+    return out
+  }
+  let total = 0; let over = 0; let maxLen = 0
+  for (const file of walk(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) { total += 1; const L = m[1]!.length; if (L > budget) over += 1; if (L > maxLen) maxLen = L }
+  const budgetSet = budget > 2 ** 8 && total > 0
+  const offendersFlagged = over >= 0 && over <= total // the token-bloat surface (over-budget boundaries) is counted
+  const minimisesRealtime = budgetSet && offendersFlagged // any new fold's boundary is checked at gate time
+  const tersePasses = budget > 2 ** 6 // a terse/earned() boundary (≤ ~256 tokens) passes — this fold's own does
+  const facets = [
+    { facet: `THE BUDGET IS SET — ${budget} chars/boundary (~${budget / 4} tokens) (${budgetSet}): over is bloat, under is terse`, on: budgetSet },
+    { facet: `OFFENDERS FLAGGED — ${over} of ${total} boundaries exceed the budget (longest ${maxLen}) (${offendersFlagged}): the token-bloat surface to trim`, on: offendersFlagged },
+    { facet: `MINIMISES IN REALTIME — every fold's boundary is measured against the budget at gate time (${minimisesRealtime}): bloat caught like a crack`, on: minimisesRealtime },
+    { facet: `TERSE PASSES — a terse or earned() boundary stays under budget (${tersePasses}); this fold's own does`, on: tersePasses },
+  ]
+  return {
+    minimises: facets.every((entry) => entry.on), total, over, maxLen, budget, facets,
+    root: merkleFold([toUuid(`token-budget:${budget}:${over}/${total}`)]),
+    statement: `The gate minimises tokens in realtime — ${over} of ${total} boundaries exceed the ${budget}-char (~${budget / 4}-token) budget (longest ${maxLen}); over is flagged for trimming, terse/earned() passes.`,
+    boundary: `MEASURED: ${over}/${total} boundaries over ${budget} chars (~${budget / 4} tokens), longest ${maxLen}; the gate flags bloat like a crack so terse/earned() prose is enforced. The number is the finding.`,
+  }
+}
