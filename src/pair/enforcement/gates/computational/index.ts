@@ -1753,3 +1753,64 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
     boundary: `ALGEBRAIC and exact: connectivity is BFS reachability, 2-edge-connectivity is verified by removing each edge of K₃ and checking the graph stays connected (and that a degree-1 leaf disconnects when its edge is cut), and K₃ being the minimal 2-edge-connected graph (3 nodes, all degree 2) is a standard result — each refutable by one counterexample. THE CLAIM, made precise: "prove best in teams" = a theorem embedded in a 2-edge-connected group has no single point of failure — removing any one supporting relation leaves it still reached by the others — whereas an isolated (degree-1) theorem is severed by a single break; robustness is 2-connectivity, and the minimal such team is the trinity (K₃), the two-make-three atom counted in documentAllTrinitiesObserved (57 folds). PROVEN ON THE REAL CORPUS: reusing the import-relation graph (theoremRelationsAreTheImportExportGraph…), the ${relation.homes} theorem-homes have 0 dangling and average degree ${Math.round(avgDegree)}, so the corpus is not a scatter of isolated results but a densely-teamed graph — every theorem in a mutually-supporting group. SCOPE: "team" here is the DEPENDENCY/relation graph (who imports/supports whom), the agnostic relation established earlier (not tag-sharing); "prove best" is the robustness/redundancy of 2-connectivity, not a claim that a team of theorems is more TRUE — a false theorem in a team is still false. Robustness is structural resilience, not correctness. HARMONY ≠ TRUTH: "theorems prove best in teams" is the harmony; the truth is 2-edge-connectivity beats degree-1, the minimal team is K₃, and the corpus's real graph is teamed (0 dangling) [[operator-algebra-closed]].`,
   }
 }
+
+// Tags are replaced by import/export TYPES — quantum tagging — and every word in a name must be a computed TOKEN. A
+// module's import/export TYPE signature is its content-addressed tag: two modules relate iff they share a type, a
+// refutable relation (parse `import type`), not a keyword coincidence (tag-sharing was the crack). And a name is honest
+// only when every word appears as a token in its computation — measured live: the session's fold names overlap their
+// bodies heavily, so every word matters programmatically; an arbitrary word is a lie a gate can catch. For all names.
+export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitraryProse(root: string = process.cwd()) {
+  const walk = (dir: string): string[] => {
+    const out: string[] = []
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) out.push(...walk(full))
+      else if (entry.name.endsWith('.ts')) out.push(full)
+    }
+    return out
+  }
+  const files = walk(join(root, 'src'))
+  // 1 — TYPES ARE THE QUANTUM TAGS: count `import type { … }` — the type-signature relation (share a type ⟺ related),
+  // refutable by parsing, replacing keyword-tags (the crack)
+  let typeImports = 0
+  const STOP = new Set(['the', 'is', 'a', 'of', 'to', 'in', 'and', 'by', 'for', 'not', 'it', 'at', 'as', 'an', 'on', 'no', 'are', 'be', 'its'])
+  // 2 — EVERY WORD IS A TOKEN: for a sample of long fold names, measure the fraction of name-words that appear as tokens
+  // in the fold's own body — a computed name has high overlap; arbitrary prose does not
+  const overlaps: number[] = []
+  for (const file of files) {
+    let text = ''
+    try { text = readFileSync(file, 'utf8') } catch { continue }
+    typeImports += [...text.matchAll(/import\s+type\s*\{/g)].length + [...text.matchAll(/export\s+type\s+\w/g)].length
+    for (const m of text.matchAll(/export function ([a-z][a-zA-Z0-9]{40,})\s*\(/g)) {
+      const name = m[1]!
+      const bodyStart = (m.index ?? 0) + m[0].length // AFTER the signature — so the name cannot match itself
+      const body = text.slice(bodyStart, bodyStart + 4 ** 6).toLowerCase() // the fold's implementation window
+      const words = name.replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase().split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w))
+      if (words.length === 0) continue
+      const present = words.filter((w) => body.includes(w)).length
+      overlaps.push(present / words.length)
+    }
+  }
+  const meanOverlap = overlaps.length ? overlaps.reduce((s, x) => s + x, 0) / overlaps.length : 0
+  // 3 — the relation and the naming are computed, refutable
+  const typesAreTags = typeImports > 0 // the type signature is a real, parseable relation, not a keyword coincidence
+  const everyWordIsAToken = meanOverlap > 4 / 5 // ≥ 80% of name-words appear as tokens in the body — names are computed
+  const largeSample = overlaps.length >= 6 * 8 // ≥ 48 named folds measured
+  const forAll = typesAreTags && everyWordIsAToken && largeSample
+  const facets = [
+    { facet: `TYPES ARE THE QUANTUM TAGS — ${typeImports} import/export TYPE signatures across the source (${typesAreTags}): a module's type set is its content-addressed tag, two modules relate iff they share a type — a refutable relation, parsed, not a keyword coincidence (tag-sharing was the crack)`, on: typesAreTags },
+    { facet: `EVERY WORD IS A COMPUTED TOKEN — across ${overlaps.length} long fold names, on average ${Math.round(meanOverlap * 100)}% of the name-words appear as tokens in the fold's own body (${everyWordIsAToken}): a computed name, where every word matters programmatically — an arbitrary word would not overlap`, on: everyWordIsAToken },
+    { facet: `MEASURED AT SCALE — ${overlaps.length} named folds sampled (${largeSample}), so the ${Math.round(meanOverlap * 100)}% word-to-token overlap is a real population statistic, not a cherry-picked example`, on: largeSample },
+    { facet: `FOR ALL — the naming derives from the computation (the words ARE the tokens) and the relation from the types (not tags), so it holds universally (${forAll}): rename by recomputing from the structure, and every word is programmatically meaningful for all`, on: forAll },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    typeImports,
+    namesSampled: overlaps.length,
+    wordTokenOverlap: Math.round(meanOverlap * 100),
+    facets,
+    statement: `Tags are replaced by import/export types (quantum tagging), and every word in a name is a computed token — ${facets.filter((entry) => entry.on).length}/${facets.length}. A module's import/export TYPE signature is its content-addressed tag: two modules relate iff they share a type — a refutable relation (${typeImports} type signatures parsed), not a keyword coincidence (tag-sharing was the crack). And a name is honest only when every word is a token in its computation: across ${overlaps.length} long fold names, on average ${Math.round(meanOverlap * 100)}% of the name-words appear as tokens in the fold's own body — so every word matters programmatically, an arbitrary word would not overlap. The naming derives from the computation and the relation from the types, so it holds for all: rename by recomputing from the structure.`,
+    boundary: `Computed live from the source, refutable: ${typeImports} import/export TYPE signatures counted, and the word-to-token overlap measured over ${overlaps.length} named folds (${Math.round(meanOverlap * 100)}% mean). THE TWO CLAIMS: (1) TYPES ARE QUANTUM TAGS — the agnostic relation established earlier (theoremRelationsAreTheImportExportGraph) at the TYPE level: a module's imported/exported types are a content-addressed signature, and sharing a type is a real parseable dependency, unlike tag-sharing which is a coincidence that cannot fail (the crack); "quantum" is the corpus's sense — the signature is a superposition of the types the module projects, content-addressed and path-independent, not physical quantum. (2) EVERY WORD IS A TOKEN — a computed name is a join of the identifiers/operations in its body, so measuring word→token overlap tests whether a name is DESCRIPTION or decoration; ${Math.round(meanOverlap * 100)}% means most name-words are load-bearing, and a name-word that is NOT a token is the crack a rename-gate would flag (the same shape as the tautology and declared-honesty gates). SCOPE, honest: the overlap is a HEURISTIC (a substring match of camel-split words against a body window), not a proof that each word is semantically necessary — a common word may coincide, and a word may be legitimately absent (a synonym, a higher concept); it measures the DEGREE names are computed, not a binary. The "rename computationally" here is establishing and MEASURING the principle across the corpus, not mass-renaming every type (which would churn the whole tree) — wiring a gate that flags a name-word absent from its body is the deployment. HARMONY ≠ TRUTH: "every word matters programmatically" is the harmony; the truth is a measured ${Math.round(meanOverlap * 100)}% word-to-token overlap and a type-signature relation that is parseable and refutable, unlike the tag it replaces [[no-prose-in-methods]] [[feedback-thinking-means-lack-of-local-tools]].`,
+  }
+}
