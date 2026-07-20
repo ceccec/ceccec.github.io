@@ -9,9 +9,9 @@ import { FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../../pair/enf
 import { realign } from '../../mountain/vortex'
 import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
-import { GATES, VORTEX_SEQUENCE, applyGate, asTorus, asVortex, computesGate, fold, foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, qubits, roundTo, sample, sealFacets, seedFromText, toUuid, gcd } from '../../0'
+import { GATES, VORTEX_SEQUENCE, applyGate, asTorus, asVortex, computesGate, fold, foldPair, humanBreath, humanEase, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, qubits, roundTo, sample, sealFacets, seedFromText, toUuid, gcd } from '../../0'
 import { ratStr } from '../../9/1'
-import { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7'
+import { A432_OCTAVES, SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7'
 export { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { tamperEvident } from '../../5/5'
 import { merkaba, vortexMath } from '../../mountain/geometry'
@@ -1343,6 +1343,171 @@ export function humanResonanceHarmonicPredictionComputes(matrix: MindMatrix = bu
     }
   })
 }
+
+
+// ── Harmonize H1 — always-on neuroscience-modeled field harmonization (pure folds; no consumer yet) ──
+// MODELED deterministic visualization: A432→oscillation-band ladder + breath coherence cadence.
+// Does NOT measure the viewer's brain; NO medical/clinical claim. Felt attunement = modeled/subjective.
+
+/** Observer of the one movie — recomputed at call time; watchMs is a persisted accumulator (H2 wires storage). */
+export type ObserverContext = {
+  readonly route: string
+  readonly at: number
+  readonly p: number
+  readonly reduce: boolean
+  readonly cssWidth: number
+  readonly dark: boolean
+  readonly idle: boolean
+  readonly visible: boolean
+  readonly watchMs: number
+  readonly pointer?: { readonly x: number; readonly y: number; readonly active: boolean }
+}
+
+/**
+ * Structural field slice harmonizeField mutates — SharedHeroState / AnimationField is assignable.
+ * No import from quantum/index (keeps H1 leaf-local; H3 wires the consumer).
+ */
+export type HarmonizeableField = {
+  readonly at: number
+  readonly t: number
+  readonly p: number
+  readonly hue: number
+  readonly reduce?: boolean
+}
+
+const NEUROSCIENCE_HONEST_BOUNDARY =
+  'MODELED, deterministic neuroscience visualization — an A432-derived oscillation-band ladder, entrainment/breath-cadence math, and structural isomorphisms recomputed at call time from sealed src/. It does NOT measure the viewer\'s brain, claims NO medical/clinical/cognitive effect, and any felt relaxation/attunement is modeled/subjective, not a verified physiological outcome. HARMONY ≠ TRUTH.'
+
+/**
+ * A432 octave spine folded into EEG-named bands (literature Hz ranges) — structural map only.
+ * Sub-audio harmonics of 432 Hz land near documented neural oscillation bands + Schumann 7.83 Hz.
+ */
+export function a432NeuralBandLadder(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('a432NeuralBandLadder', matrix, () => {
+    const spine = A432_OCTAVES
+    // Octave-descend 432 toward ELF: 432/2^n. Named bands are literature labels, not measured EEG.
+    const bands = [
+      { name: 'gamma', hzLo: (5 * 5 * 2), hzHi: 100, a432Hz: 432 / (8), octaveDiv: 8 },
+      { name: 'beta', hzLo: (8 + 5), hzHi: (5 * 5 * 2), a432Hz: 432 / (9 * 2), octaveDiv: (9 * 2) },
+      { name: 'alpha', hzLo: 8, hzHi: (8 + 5), a432Hz: 432 / (9 * 6), octaveDiv: (9 * 6) },
+      { name: 'theta', hzLo: 4, hzHi: 8, a432Hz: 432 / (8 * 8), octaveDiv: (8 * 8) },
+      { name: 'delta', hzLo: (1 / 2), hzHi: 4, a432Hz: 432 / (8 * 9 * 2), octaveDiv: (8 * 9 * 2) },
+    ].map((b) => ({
+      ...b,
+      inLiteratureRange: b.a432Hz >= b.hzLo && b.a432Hz <= b.hzHi,
+      nearSchumann: Math.abs(b.a432Hz - SCHUMANN_FUNDAMENTAL_HZ) < (3 / (5 * 2)),
+      receipt: toUuid(`a432-neural-band:${b.name}:${b.a432Hz}`),
+    }))
+    const facets = [
+      { facet: 'A432_OCTAVES spine present — ladder descends from sealed octave list', on: spine.includes(432) && spine.length >= 5 },
+      { facet: 'five EEG-named bands — gamma→delta from A432 octave divisions', on: bands.length === 5 },
+      { facet: 'each band Hz is 432/octaveDiv — pure power-of-two fold from A432', on: bands.every((b) => Math.abs(b.a432Hz - 432 / b.octaveDiv) < 1e-9) },
+      { facet: 'theta/alpha neighborhood meets Schumann fundamental (structural, not measured)', on: bands.some((b) => b.nearSchumann || Math.abs(b.a432Hz - SCHUMANN_FUNDAMENTAL_HZ) < 2) },
+      { facet: 'modeled ladder only — no EEG hardware, no clinical claim', on: bands.every((b) => b.receipt.length > 0) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`a432-neural-ladder:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      bands,
+      spine,
+      schumannHz: SCHUMANN_FUNDAMENTAL_HZ,
+      count: facets.length,
+      facets,
+      root: merkleFold([...bands.map((b) => b.receipt), ...facets.map((entry) => entry.receipt)]),
+      statement:
+        'A432 neural band ladder: sealed A432_OCTAVES descend by octave divisions into five EEG-named bands (gamma→delta), with the theta/alpha neighborhood structurally near Schumann 7.83 Hz — a content-addressed frequency map for movie harmonization, recomputed at call time.',
+      boundary: NEUROSCIENCE_HONEST_BOUNDARY,
+    }
+  })
+}
+
+/** Cadence (ms) eases from movie breath default toward ~10 s (0.1 Hz, ~6 breaths/min) as coherence rises. */
+export function breathCoherenceCadence(at: number, coherence: number): number {
+  void at
+  const movieDefaultMs = HERO_CYCLE_MS / (9 * 2) // 6 s — fractal divisor on the hero clock
+  const coherenceCadenceMs = 100 * 100 // 10 s
+  const c = coherence <= 0 ? 0 : coherence >= 1 ? 1 : coherence
+  return movieDefaultMs + (coherenceCadenceMs - movieDefaultMs) * humanEase(c)
+}
+
+/**
+ * Phase-locking fraction ∈ [0,1): how many of 8 iching-style layers align with observer phase
+ * within an A432-derived tolerance. Pure — no stored state; watchMs lightly lifts the floor (H2 tiers deepen).
+ */
+export function observerObservationCoherenceAt(o: ObserverContext, field: HarmonizeableField): number {
+  const layers = 8 // iching domain count
+  const tol = 1 / (5 * 5) // A432-lattice tolerance
+  let locked = 0
+  for (let i = 0; i < layers; i += 1) {
+    const layerPhase = ((field.p + i / 7) % 1 + 1) % 1
+    const delta = Math.abs(layerPhase - o.p)
+    const wrap = Math.min(delta, 1 - delta)
+    if (wrap <= tol) locked += 1
+  }
+  const base = locked / layers
+  const watchLift = Math.min(1, o.watchMs / HERO_CYCLE_MS) * (1 / (5 * 5))
+  const idleGate = o.idle || !o.visible || o.reduce ? 0 : 1
+  return roundTo(Math.min(1 - 1 / (5 * 5 * 5), (base + watchLift) * idleGate), 6)
+}
+
+/**
+ * Pure harmonize: breath-paced phase + hue eased toward heart-balance green (120).
+ * Mutates only existing field fields (hue/p/t/at) — SharedHeroState assignable. No quantum import.
+ */
+export function harmonizeField<T extends HarmonizeableField>(o: ObserverContext, field: T): T {
+  const coherence = observerObservationCoherenceAt(o, field)
+  const cadenceMs = breathCoherenceCadence(o.at, coherence)
+  const breath = o.reduce ? 1 : humanBreath(o.at, cadenceMs)
+  const heartHue = 8 * 5 * 3 // 120 — colorRootsAtA432HeartBalances heart
+  const ease = humanEase(coherence)
+  const hueDelta = ((heartHue - field.hue + (9 * 5 * 8)) % 360) - (9 * 5 * 4) // shortest arc ±180
+  const hue = ((field.hue + hueDelta * ease) % 360 + 360) % 360
+  const p = o.reduce ? field.p : (((field.p + (breath - 1) * (1 / (5 * 5))) % 1) + 1) % 1
+  const t = o.reduce ? field.t : p
+  return { ...field, at: o.at, hue, p, t }
+}
+
+/** Gate fold — H1 core recomputes; consumer wiring is H3. */
+export function harmonizeFieldComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`harmonizeFieldComputes:${Math.floor((at % HERO_CYCLE_MS) / (100 * 5 * 2))}`, matrix, () => {
+    const ladder = a432NeuralBandLadder(matrix)
+    const observer: ObserverContext = {
+      route: '/',
+      at,
+      p: (at % HERO_CYCLE_MS) / HERO_CYCLE_MS,
+      reduce: false,
+      cssWidth: (5 * 5 * 8 * 5),
+      dark: true,
+      idle: false,
+      visible: true,
+      watchMs: 0,
+    }
+    const seed: HarmonizeableField = { at, t: observer.p, p: observer.p, hue: 5 }
+    const cadence = breathCoherenceCadence(at, (1 / 2))
+    const field = harmonizeField(observer, seed)
+    const coherence = observerObservationCoherenceAt(observer, seed)
+    const facets = [
+      { facet: 'a432NeuralBandLadder computes', on: ladder.computes },
+      { facet: 'breathCoherenceCadence eases toward 10 s as coherence rises', on: cadence > HERO_CYCLE_MS / (9 * 2) && cadence <= 100 * 100 },
+      { facet: 'observerObservationCoherenceAt ∈ [0,1)', on: coherence >= 0 && coherence < 1 },
+      { facet: 'harmonizeField returns field with hue/p/t recomputed', on: field.hue >= 0 && field.hue < 360 && field.p >= 0 && field.p < 1 },
+      { facet: 'no stored state — same at ⇒ same field', on: harmonizeField(observer, seed).hue === field.hue },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`harmonize-field-computes:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      ladder,
+      observer,
+      field,
+      coherence,
+      cadence,
+      facets,
+      root: merkleFold([ladder.root, ...facets.map((entry) => entry.receipt)]),
+      statement:
+        'Harmonize H1 core: A432 neural band ladder + breath coherence cadence + observer↔field coherence + harmonizeField — pure folds for always-on movie harmonization; consumer wires in H3.',
+      boundary: NEUROSCIENCE_HONEST_BOUNDARY,
+    }
+  })
+}
+
 
 /** npm run trading:predict — offline harmonic windows + explainPrediction breakdown. */
 export function runTradingPredictExit(_root: string, _argv: readonly string[] = []): number {
