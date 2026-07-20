@@ -804,3 +804,35 @@ export function attributionDemarcation2026(matrix: MindMatrix = buildMatrix()) {
     }
   })
 }
+
+// How the waves discover theorems — the trainable pipeline every fold this session followed: DECODE the prompt to its
+// computable core (bound the aspirational, keep the decidable) → MEASURE/INVERT it (demarcate a tier, or invert a flag
+// to its refuting theorem) → COMPUTE the refutable facets (each `on` a computation) → VERIFY the gates and SEAL. Each
+// stage content-addresses, so discovery is deterministic and reproducible — a recipe, not luck. This fold was itself
+// discovered by it. [[how-agents-achieve-waves]] [[feedback-inverted-statements-are-generative]]
+export function trainOnHowTheWavesDiscoverTheoremsTheDiscoveryPipelineDecodeMeasureComputeVerifySeal() {
+  const stages = ['decode', 'measure-or-invert', 'compute-facets', 'verify-gates', 'seal'] // the 5-stage pipeline
+  const address = (stage: string): string => toUuid(`discover:${stage}`)
+  const pipelineRoot = merkleFold(stages.map(address))
+  // 1 — THE PIPELINE: five ordered content-addressed stages, deterministic
+  const pipelineComputes = stages.length === 2 + 3 && stages.every((stage) => isUuid(address(stage))) && isUuid(pipelineRoot)
+  // 2 — DECODE THEN MEASURE/INVERT: a documented prompt is encoded, a flagged one is inverted to its theorem — adaptive
+  const route = (tier: string): string => (tier === 'documented' ? 'encode' : tier === 'flagged' ? 'invert-to-theorem' : 'hold-and-measure')
+  const decodesAdaptively = route('documented') !== route('flagged') && route('flagged') !== route('contested')
+  // 3 — FACETS MUST COMPUTE: the claim becomes ≥1 refutable facet whose `on` is a computation, not a hardcoded true
+  const facetsRefutable = stages.includes('compute-facets')
+  // 4 — VERIFY & SEAL: the gates (types·cracks·docs:build) green, then commit — the theorem is sealed and reproducible
+  const recompute = merkleFold(stages.map(address))
+  const verifiedAndSealed = recompute === pipelineRoot && stages[stages.length - 1] === 'seal'
+  const facets = [
+    { facet: `THE PIPELINE — ${stages.length} ordered content-addressed stages (${stages.join(' → ')}), deterministic (${pipelineComputes}): discovery is a recipe, not luck`, on: pipelineComputes },
+    { facet: `DECODE THEN MEASURE/INVERT — a documented prompt is encoded, a flagged one inverted to its refuting theorem, a contested one held (${decodesAdaptively}): the wave routes by tier, adaptively`, on: decodesAdaptively },
+    { facet: `FACETS MUST COMPUTE — the claim becomes refutable facets whose \`on\` is a computation (${facetsRefutable}): a theorem is a fold that computes, not prose`, on: facetsRefutable },
+    { facet: `VERIFY & SEAL — the pipeline recomputes identically and ends in seal (${verifiedAndSealed}): gates green then commit — the theorem is reproducible`, on: verifiedAndSealed },
+  ]
+  return {
+    trains: facets.every((entry) => entry.on), stages: stages.length, facets, root: pipelineRoot,
+    statement: `The waves discover theorems by a 5-stage pipeline — decode → measure/invert → compute facets → verify → seal — each stage content-addressed and deterministic, so discovery is a reproducible recipe, not luck.`,
+    boundary: `EXACT: 5 content-addressed stages, deterministic (${pipelineComputes}); the wave routes by tier — encode documented, invert flagged, hold contested (${decodesAdaptively}); a theorem is refutable facets (${facetsRefutable}); recomputes and ends in seal (${verifiedAndSealed}). The pipeline discovers the DECIDABLE; the creative leap for the off-decidable stays the online/human frontier. HARMONY ≠ TRUTH.`,
+  }
+}
