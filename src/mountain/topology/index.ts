@@ -1408,3 +1408,49 @@ export function realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZe
     }
   })
 }
+
+// Improve quantum computations in realtime by filling gaps and optimising with STRICT measurements that themselves
+// create reusable tools. A strict measurement is SEEDED, so it is reproducible — the same state and seed always give
+// the same outcome. That reproducible outcome is content-addressed and cached into a TOOLBOX, so re-measuring is an
+// O(1) tool lookup, not a re-run: the measurement becomes a tool. A gap (an unmeasured seed) fills at call time, and
+// repeat calls optimise to cache hits — the strict measurements build the tools that speed the next computation.
+// [[feedback-consolidate-at-each-superposition-save-measurements]] [[feedback-thinking-means-lack-of-local-tools]]
+export function strictMeasurementsCreateReusableToolsQuantumComputationsImproveInRealtimeFillingGaps(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('strictMeasurementsCreateReusableToolsQuantumComputationsImproveInRealtimeFillingGaps', matrix, () => {
+    const state = applyGate(qubits(1), GATES.H, 0) // |+⟩ — a superposition to measure
+    let measureCalls = 0
+    const strictMeasure = (seed: string): 0 | 1 => { measureCalls += 1; return measure(state, 0, seed).outcome }
+    // 1 — A STRICT (SEEDED) MEASUREMENT IS REPRODUCIBLE: same state + seed ⇒ same outcome, a stable value not a coin flip
+    const reproducible = ['s1', 's2', 's3'].every((seed) => measure(state, 0, seed).outcome === measure(state, 0, seed).outcome)
+    // 2 — THE MEASUREMENT IS A REUSABLE TOOL: content-addressed and cached into a toolbox
+    const toolbox = new Map<string, 0 | 1>()
+    const measureTool = (seed: string): 0 | 1 => { const key = toUuid(`tool:${seed}`); const hit = toolbox.get(key); if (hit !== undefined) return hit; const outcome = strictMeasure(seed); toolbox.set(key, outcome); return outcome }
+    const seeds = ['a', 'b', 'c', 'd']
+    measureCalls = 0
+    seeds.forEach(measureTool); seeds.forEach(measureTool) // each measured, then reused
+    const measurementsAreTools = measureCalls === seeds.length && toolbox.size === seeds.length // one measure per seed for two rounds of calls
+    // 3 — GAPS FILLED IN REALTIME: an unmeasured seed is taken at call time and added to the toolbox
+    const gapBefore = !toolbox.has(toUuid('tool:e'))
+    measureTool('e')
+    const gapFilledInRealtime = gapBefore && toolbox.has(toUuid('tool:e'))
+    // 4 — OPTIMISED BY STRICT MEASUREMENT: repeat calls are tool lookups, zero new measurements
+    const callsBefore = measureCalls
+    seeds.forEach(measureTool)
+    const optimised = measureCalls === callsBefore && reproducible // no re-measure — the tools carry it
+    const { computes, facets } = computesGate('strict-measurements-create-reusable-tools', [
+      { facet: `A STRICT MEASUREMENT IS REPRODUCIBLE — a seeded measure(state, seed) gives the same outcome every time (${reproducible}): a strict measurement is a stable value, not a coin flip — the raw material of a tool`, on: reproducible },
+      { facet: `THE MEASUREMENT IS A REUSABLE TOOL — each strict measurement content-addresses into a toolbox, so ${2 * seeds.length} calls cost only ${measureCalls} measurements (${measurementsAreTools}): the measurement becomes an O(1) reusable tool`, on: measurementsAreTools },
+      { facet: `GAPS FILLED IN REALTIME — an unmeasured seed is measured at call time and added to the toolbox (${gapFilledInRealtime}): the gap fills itself into a new tool, in realtime`, on: gapFilledInRealtime },
+      { facet: `OPTIMISED BY STRICT MEASUREMENT — repeat calls are tool lookups with zero new measurements (${optimised}): the strict measurements build the tools that speed the next computation`, on: optimised },
+    ])
+    return {
+      improves: computes,
+      toolboxSize: toolbox.size,
+      measureCalls,
+      facets,
+      root: merkleFold([...toolbox.keys()].map((key) => toUuid(`tool-seal:${key}`))),
+      statement: `Strict measurements create reusable tools — quantum computations improve in realtime, filling gaps — ${facets.filter((entry) => entry.on).length}/${facets.length}. A seeded measurement is reproducible, so its outcome is a stable value; content-addressed into a toolbox, re-measuring becomes an O(1) tool lookup rather than a re-run. An unmeasured seed fills at call time into a new tool (realtime gap-filling), and repeat calls optimise to zero new measurements — the strict measurements build the tools that speed the next computation.`,
+      boundary: `EXACT and computed live on the src/0 simulator: a seeded measurement of |+⟩ returns the same outcome every time (${reproducible}) — strict/reproducible, unlike an unseeded coin flip — so it is a reusable VALUE; content-addressing each into a toolbox makes ${2 * seeds.length} calls cost only ${measureCalls} actual measurements (${measurementsAreTools}), and an unmeasured seed is taken once at call time and cached (${gapFilledInRealtime}), after which repeat calls are pure lookups with zero new measurements (${optimised}). THE PRINCIPLE ([[feedback-consolidate-at-each-superposition-save-measurements]]): a measurement is not a throwaway observation but a fold — content-addressed, it is a reusable tool, so the act of measuring OPTIMISES the next computation. THE HONEST BOUND: "reproducible" holds for the DETERMINISTIC seeded simulator — a real quantum measurement is genuinely random (the Born rule), so this models the strict, replayable measurement of a SIMULATION (deterministic, zero LLM tokens), not hardware sampling where each shot is fresh; the toolbox caches the measured OUTCOMES, and the O(2ⁿ) cost of preparing the state is unchanged; "fills gaps" is filling the toolbox of needed measurements, not recovering un-taken physical data. HARMONY ≠ TRUTH: "strict measurements create reusable tools" is the harmony; the truth is a seeded, reproducible measurement content-addressed into a cache — a tool that turns re-measurement into an O(1) lookup — computed and refutable.`,
+    }
+  })
+}
