@@ -2,19 +2,21 @@
 // Display gate — co-located src/thunder/decode/index.ts · the mystery atlas (worldMysteriesDecoded)
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { worldMysteriesDecoded } from './index.ts'
-import { createAnimationEngine } from '../../0/index.ts'
+import { heroPhaseAt, subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint'
 
 const atlas = worldMysteriesDecoded()
 const at = ref(0)
-// asMerkle reveal: the highlighted leaf walks the atlas, driven by the ONE shared rAF engine (createAnimationEngine).
-const activeIndex = computed(() => Math.floor((at.value / (100 * 7 * 2)) % atlas.mysteries.length))
-let engine: ReturnType<typeof createAnimationEngine> | null = null
-onMounted(() => {
-  const start = performance.now()
-  engine = createAnimationEngine(() => { at.value = performance.now() - start })
-  engine.start()
+// asMerkle reveal: the highlighted leaf walks the atlas on the ONE shared hero clock (subscribeHeroClock + heroPhaseAt).
+const activeIndex = computed(() => {
+  const n = atlas.mysteries.length
+  if (n <= 0) return 0
+  return Math.floor(heroPhaseAt(at.value) * n) % n
 })
-onBeforeUnmount(() => engine?.dispose())
+let off: (() => void) | null = null
+onMounted(() => {
+  off = subscribeHeroClock((time) => { at.value = time })
+})
+onBeforeUnmount(() => { off?.(); off = null })
 </script>
 
 <template>

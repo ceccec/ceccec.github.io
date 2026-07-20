@@ -48,6 +48,7 @@ export {
   screensaverMovieResearch,
   SCREENSAVER_IDLE_MS,
   SCREENSAVER_MOVIE_CHANNEL_IDS,
+  heroPhaseAt,
   type RealtimeComputationsMoviePaint,
   type RealtimeComputeMovieChannel,
   type MovieScreensaverEfficiencyReceipt,

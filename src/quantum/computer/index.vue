@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import { quantumComputerLabComputes, QC_GATE_PALETTE } from '../science/index.ts'
-import { createAnimationEngine, runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
+import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
 import { siliconFabricationPlanFromModel, siliconFabricationStageAt } from '../../heaven/compute/computer/index.ts'
+import { subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
@@ -70,17 +71,15 @@ function loadPreset(kind: 'bell' | 'ghz' | 'grover') {
   else { n.value = 3; ops.value = [{ gate: 'H', targets: [0] }, { gate: 'H', targets: [1] }, { gate: 'H', targets: [2] }, { gate: 'CZ', targets: [0, 2] }, { gate: 'H', targets: [0] }, { gate: 'H', targets: [1] }, { gate: 'H', targets: [2] }] }
 }
 
-// The chip fabricating itself — the RTL→GDSII stage cursor driven by the ONE shared rAF engine (createAnimationEngine).
+// The chip fabricating itself — RTL→GDSII stage cursor on the ONE shared hero clock (subscribeHeroClock → siliconFabricationStageAt → heroPhaseAt).
 const fabPlan = siliconFabricationPlanFromModel()
 const fabAt = ref(0)
 const fabStage = computed(() => siliconFabricationStageAt(fabAt.value))
-let fabEngine: ReturnType<typeof createAnimationEngine> | null = null
+let fabOff: (() => void) | null = null
 onMounted(() => {
-  const start = performance.now()
-  fabEngine = createAnimationEngine(() => { fabAt.value = performance.now() - start })
-  fabEngine.start()
+  fabOff = subscribeHeroClock((time) => { fabAt.value = time })
 })
-onBeforeUnmount(() => fabEngine?.dispose())
+onBeforeUnmount(() => { fabOff?.(); fabOff = null })
 </script>
 
 <template>
