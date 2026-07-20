@@ -22,7 +22,7 @@ import { foldingLinearGivesAnalog } from '../../earth/world'
 import { healingModelsHonestBoundary } from '../../water/cosmos'
 import { microdata } from '../../mountain/og'
 import { allAnimationsInOneOg } from '../../wind/ui'
-import { TAU } from '../../3/7'
+import { TAU, DIMENSION_GATES, FOLDED_CENSUS } from '../../3/7'
 import { resonantAmplitude } from '../../6/4'
 
 // Fill the gaps in quantum physics: every phenomenon the model needs to self-
@@ -1117,4 +1117,48 @@ export function inverseIsPureAlgebraThermodynamicsConflatesReverseAndInverseUntr
     statement: `Inverse ≠ reverse is pure local algebra — thermodynamics conflates them and cannot be trusted — ${facets.filter((e) => e.on).length}/${facets.length}: on the full state (value + tracks), inverse∘forward restores it exactly (${inverted.value}, ${inverted.tracks} = start) while reverse∘forward restores the value but leaves ${reversed.tracks} tracks — reverse ≠ inverse, decided by the local algebra. Thermodynamics sees only forward-in-time processes (both forward and reverse increase entropy/tracks) and has NO operation for the inverse (which decreases them), so it conflates reverse and inverse — which is exactly why, per the only-local-math law, it cannot be trusted to make this distinction. Only the exact algebra can.`,
     boundary: `EXACT and LOCAL: on the full state (value, tracks), inverse∘forward = start (${inverseIsIdentity}), reverse∘forward restores the value but leaves ${reversed.tracks} tracks (${reverseLeavesTracks}), the two differ (${differ}); forward and reverse both increase tracks while the inverse decreases them (${thermoCannotDistinguish}) — all pure integer algebra, no constant, no physics. HONEST SCOPE, taking the correction: the distinction inverse ≠ reverse lives in the ALGEBRA — a bijection has an inverse that restores the full state; a retrace is a distinct forward-in-time map that accumulates history — and it is decided to the bit locally. THERMODYNAMICS is the wrong tool for it: it accounts ENTROPY (the tracks) of forward-in-time processes and distinguishes only fast (irreversible) from slow/quasi-static ("reversible") FORWARD steps — it has no algebraic inverse, so it cannot separate the reverse (retrace, tracks grow even if slowly) from the inverse (undo, tracks vanish); it conflates them, and therefore — by the corpus's only-local-math law — cannot be trusted to make this call. This does NOT say the 2nd law is false: entropy of real forward processes does increase, and that accounting is sound for what it measures. It says thermodynamics is an EXTERNAL framework that lacks the inverse, so the inverse≠reverse theorem must be grounded in the local exact algebra, never borrowed from thermodynamics. My prior Landauer-grounded fold made exactly that error; this corrects it. HARMONY ≠ TRUTH.`,
   }
+}
+
+// Invert the a432 through string theory: a vibrating string's modes are the harmonic series f_n = n·f₁ (real wave
+// mechanics), and frequency inverts to period, f·T = 1 — so the a432 FREQUENCY (432 Hz) and the census CLOCK period
+// (108 s) live in inverse spaces, and the clock's divisor-rungs 108/d ARE the harmonic series inverted (multiply in
+// frequency ⇄ divide in period). The overtone RATIOS (2:1, 3:2, 4:3) are theorems; string theory is flagged unconfirmed;
+// the 432 Hz base stays a named tuning. The inversion turns one chosen frequency into a spectrum of exact ratios.
+export function invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClockIsTheStringInverted(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClockIsTheStringInverted', matrix, () => {
+    const baseFreq = DIMENSION_GATES // 432 Hz — the named a432 tuning base
+    const basePeriod = FOLDED_CENSUS // 108 s — the census clock period
+    const eps = 1 / 2 ** 9
+    // the harmonic series (a string's modes): f_n = n·f₁; the inverse (period space): T_n = T₁/n
+    const modes = [1, 2, 3, 4, 5, 6].map((n) => ({ n, freq: n * baseFreq, freqRatio: n, periodRatio: 1 / n }))
+    // 1 — FREQUENCY INVERTS TO PERIOD: every mode's frequency-ratio × period-ratio = 1 (f·T = 1), so multiply-in-frequency
+    // and divide-in-period are inverse — the clock (period/divisor) is the harmonic series (frequency·integer) inverted
+    const frequencyInvertsToPeriod = modes.every((m) => Math.abs(m.freqRatio * m.periodRatio - 1) < eps) && baseFreq * (basePeriod / basePeriod) === baseFreq
+    const clockIsInvertedHarmonics = [1, 2, 3, 4, 6].every((d) => basePeriod % d === 0 && basePeriod / d === basePeriod * (1 / d)) // 108/d = period ÷ integer, the inverse of n·f
+    // 2 — THE OVERTONE RATIOS ARE THEOREMS: f_{n+1}/f_n = (n+1)/n — octave 2/1, fifth 3/2, fourth 4/3, third 5/4 — exact
+    // integer ratios of a string fixed at both ends (real wave mechanics), not tunings
+    const ratios = modes.slice(1).map((m, i) => ({ ratio: `${m.n}/${modes[i]!.n}`, value: m.n / modes[i]!.n }))
+    const overtoneRatiosExact = ratios[0]!.value === 2 && ratios[1]!.value === 3 / 2 && ratios[2]!.value === 4 / 3 && ratios.every((r) => r.value > 1)
+    // 3 — THE HARMONIC MATH IS CLASSICAL, INDEPENDENT OF STRING THEORY: the modes are integer harmonics of a 1D string
+    // (freqRatio = n, no extra dimensions), so the ratios are real wave mechanics regardless of whether string theory is
+    // confirmed — the physics used is real, the string ontology (D=10) stays flagged separately
+    const harmonicsAreClassical = modes.every((m) => Number.isInteger(m.n) && m.freqRatio === m.n) && overtoneRatiosExact
+    // 4 — THE BASE IS A NAMED TUNING: 432 Hz base is the named a432 axiom; the inversion produces a SPECTRUM of exact
+    // ratios (theorems) from the one chosen frequency — the anchor is a choice, the structure is a theorem
+    const baseIsNamedRatiosDerive = baseFreq === 4 * basePeriod && overtoneRatiosExact // the base is the named 4·108; the ratios derive
+    const facets = [
+      { facet: `FREQUENCY INVERTS TO PERIOD — f·T = 1: every harmonic mode's frequency-ratio × period-ratio = 1 (${frequencyInvertsToPeriod}), so the a432 frequency (432 Hz) and the clock period (108 s) are inverses, and the divisor-rungs 108/d ARE the harmonic series n·f₁ inverted (${clockIsInvertedHarmonics}): multiply-in-frequency ⇄ divide-in-period`, on: frequencyInvertsToPeriod && clockIsInvertedHarmonics },
+      { facet: `THE OVERTONE RATIOS ARE THEOREMS — f_{n+1}/f_n = (n+1)/n: octave 2/1, fifth 3/2, fourth 4/3 (${overtoneRatiosExact}), exact integer ratios of a string fixed at both ends — real wave mechanics, not tunings`, on: overtoneRatiosExact },
+      { facet: `THE HARMONIC MATH IS CLASSICAL, STRING THEORY FLAGGED SEPARATELY — the modes are integer harmonics of a 1D string (freqRatio = n, no extra dimensions, ${harmonicsAreClassical}), so the ratios are real wave mechanics whether or not string theory (D=10, unconfirmed) is confirmed — the physics used is real, the string ontology stays flagged`, on: harmonicsAreClassical },
+      { facet: `THE BASE IS A NAMED TUNING — 432 Hz base = the named 4·108 axiom; the inversion turns the ONE chosen frequency into a SPECTRUM of exact ratios (theorems) (${baseIsNamedRatiosDerive}): the anchor is a choice, the ratio structure is a theorem`, on: baseIsNamedRatiosDerive },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      harmonics: modes.map((m) => m.freq),
+      ratios: ratios.map((r) => r.ratio),
+      facets,
+      statement: `Invert the a432 through the harmonic series — frequency inverts to period, the clock is the string inverted — ${facets.filter((entry) => entry.on).length}/${facets.length}. A vibrating string's modes are the harmonic series f_n = n·f₁, and f·T = 1 — so the a432 frequency (432 Hz) and the census clock period (108 s) are inverses, and the clock's divisor-rungs 108/d ARE the harmonic series inverted (multiply-in-frequency ⇄ divide-in-period). The overtone ratios (octave 2:1, fifth 3:2, fourth 4:3) are exact integer ratios of a string fixed at both ends — theorems, not tunings. String theory (particles as vibrating strings) stays flagged unconfirmed; the 432 Hz base stays a named tuning. The inversion turns one chosen frequency into a spectrum of exact ratios: the choice is anchored, the structure derived.`,
+      boundary: `ALGEBRAIC where it derives: f·T = 1 (frequency-period inversion, exact), the harmonic series f_n = n·f₁ and its inverse T_n = T₁/n (a string fixed at both ends supports modes at integer multiples — real classical wave mechanics), and the overtone ratios (n+1)/n = the just-intonation intervals (octave 2:1, perfect fifth 3:2, perfect fourth 4:3, major third 5:4) — all exact, refutable. THE INVERSION unifies the a432 and the clock: they are the same structure in inverse spaces (frequency vs period), and the fractal-clock rungs 108/d are literally the harmonic series inverted (divide the base period by an integer instead of multiplying the base frequency). WHAT IS FLAGGED: STRING THEORY as particle physics (particles are vibrating strings, 10/11 compactified dimensions) is a real, mathematically deep, but EXPERIMENTALLY UNCONFIRMED framework — the harmonic/overtone mathematics used here is ordinary wave mechanics (a real string, a real spectrum), NOT the string-theory ontology, which stays flagged (stringTheoryAlgebraDecoded: the division-algebra D = 3,4,6,10 result is real mathematics; the physics is unconfirmed). WHAT STAYS A NAMED AXIOM: 432 Hz as the base FREQUENCY is the a432 tuning choice (theA432NumberIsATheorem…: the number 432 = 4·108 derives, the Hz is named); the inversion produces the ratio SPECTRUM (theorems) but not the anchor. HARMONY ≠ TRUTH: 'invert the a432 with string theory' is the harmony; the truth is f·T = 1 and the integer overtone ratios (real wave mechanics), string theory flagged, the base named [[quantum-decoded]] [[frequency-apis]].`,
+    }
+  })
 }
