@@ -25,7 +25,11 @@ import { atomInclusionProof } from '../../../lake/ledger'
 import { A432_HUE, TAU } from '../../../3/7'
 import { movieCanvasPolarity } from '../../../quantum/science'
 import { heroPhaseAt } from '../../../fire/plasma/ball'
-import { RAVE_BODIES_13, RAVE_DESIGN_SUN_ARC_DEG } from '../../../quantum/lake/spirit'
+import {
+  RAVE_BODIES_13, RAVE_DESIGN_SUN_ARC_DEG, RAVE_GATE_ARC_DEG, RAVE_LINE_ARC_DEG,
+  humanDesignChannelsAndCenters, humanDesignVerifiedWheel,
+  raveDefinedChannels, raveMandalaGateLineAt,
+} from '../../../quantum/lake/spirit'
 
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
@@ -868,7 +872,7 @@ export function designLayerFromNatalSun(birthJd: number): {
 
 /**
  * HD W4 fold — sealed Meeus ephemeris + Design Sun−88° solver with adversarial reference-tolerance facets.
- * HONEST symbolic-system computer grade; cusp/fast-mover warnings deferred to W5 chart UX.
+ * HONEST symbolic-system computer grade; cusp/fast-mover warnings live in W5 `humanDesignChartStructureAt`.
  */
 export function humanDesignEphemerisCore(matrix: MindMatrix = buildMatrix(), birthJd = MEEUS_J2000_JD) {
   return memoByRoot(`humanDesignEphemerisCore:${roundTo(birthJd, 6)}`, matrix, () => {
@@ -924,7 +928,77 @@ export function humanDesignEphemerisCore(matrix: MindMatrix = buildMatrix(), bir
       statement:
         'HD W4 sealed Meeus ephemeris: geocentric ecliptic longitudes for the 13 activation bodies (Sun…Pluto, Nodes; no Chiron) plus Design-layer solver Sun(design)=Sun(birth)−88° of solar arc — reduced-precision Meeus formulas, adversarial reference-tolerance facets at call time.',
       boundary:
-        'HONEST — sealed Meeus reduced-precision (Sun ch.25, Moon truncated ch.47, planets circular+eq.center, Pluto polynomial). NOT JPL DE440 / Swiss Ephemeris. Tolerances are facet bands for a symbolic HD computer, not arcsecond astronomy. Cusp/fast-mover UX warnings are W5. Predictive/aura HD claims remain flagged in humanDesignDecoded. HARMONY ≠ TRUTH.',
+        'HONEST — sealed Meeus reduced-precision (Sun ch.25, Moon truncated ch.47, planets circular+eq.center, Pluto polynomial). NOT JPL DE440 / Swiss Ephemeris. Tolerances are facet bands for a symbolic HD computer, not arcsecond astronomy. Cusp/fast-mover UX warnings compose in humanDesignChartStructureAt (W5). Predictive/aura HD claims remain flagged in humanDesignDecoded. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * HD W5 chart structure — compose wheel W3 + channels/centers tables + Meeus W4 activations.
+ * Cusp warning when a body sits within one line-arc of a gate boundary (fast movers flagged).
+ * STRUCTURE ONLY — not a personality / aura / type engine.
+ */
+export function humanDesignChartStructureAt(matrix: MindMatrix = buildMatrix(), birthJd = MEEUS_J2000_JD) {
+  return memoByRoot(`humanDesignChartStructureAt:${roundTo(birthJd, 6)}`, matrix, () => {
+    const wheel = humanDesignVerifiedWheel()
+    const lattice = humanDesignChannelsAndCenters()
+    const ephCore = humanDesignEphemerisCore(matrix, birthJd)
+    const personalityEph = sealedMeeusEphemerisAt(birthJd)
+    const designEph = sealedMeeusEphemerisAt(ephCore.design.designJd)
+    const cuspBandDeg = RAVE_LINE_ARC_DEG
+    const activationOf = (bodies: typeof personalityEph.bodies, layer: 'personality' | 'design') =>
+      bodies.map((body) => {
+        const gl = raveMandalaGateLineAt(body.longitudeDeg)
+        const within = ((body.longitudeDeg - gl.startDeg) % 360 + 360) % 360
+        const distToEdge = Math.min(within, RAVE_GATE_ARC_DEG - within)
+        const cusp = distToEdge < cuspBandDeg
+        const fastMover = body.name === 'Moon' || body.name === 'Mercury'
+        return {
+          layer, body: body.name, longitudeDeg: body.longitudeDeg,
+          gate: gl.gate, line: gl.line, cusp, fastMoverCusp: cusp && fastMover,
+          receipt: toUuid(`hd-chart-act:${layer}:${body.name}:${gl.gate}.${gl.line}:${cusp}`),
+        }
+      })
+    const personality = activationOf(personalityEph.bodies, 'personality')
+    const design = activationOf(designEph.bodies, 'design')
+    const activatedGates = [...new Set([...personality, ...design].map((a) => a.gate))].sort((a, b) => a - b)
+    const defined = raveDefinedChannels(activatedGates)
+    const cuspWarnings = [...personality, ...design].filter((a) => a.cusp)
+    const facets = [
+      { facet: 'wheel W3 verifies', on: wheel.verified },
+      { facet: 'channels/centers W5 tables verify', on: lattice.verified },
+      { facet: 'Meeus W4 ephemeris + Design Sun−88° computes', on: ephCore.computes },
+      { facet: '13 personality + 13 design activations', on: personality.length === 13 && design.length === 13 },
+      { facet: 'defined channels ⊆ sealed 36-pair table', on: defined.every((ch) => lattice.channels.some((row) => row.key === ch.key)) },
+      { facet: 'cusp band = one line arc (gate/6); Moon/Mercury tagged when cusp', on: cuspBandDeg * 6 === RAVE_GATE_ARC_DEG && cuspWarnings.every((w) => w.cusp) },
+      { facet: 'NOT personality science — structure receipt only', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`hd-chart-w5:${entry.facet}:${entry.on}`) }))
+    const computes = facets.every((f) => f.on)
+    return {
+      computes,
+      verified: computes,
+      birthJd,
+      designJd: ephCore.design.designJd,
+      personality,
+      design,
+      activatedGates,
+      definedChannels: defined,
+      cuspWarnings,
+      cuspBandDeg,
+      wheel,
+      lattice,
+      ephCore,
+      count: facets.length,
+      facets,
+      root: merkleFold([
+        wheel.root, lattice.root, ephCore.root,
+        ...facets.map((f) => f.receipt),
+        toUuid(`hd-chart-defined:${defined.map((c) => c.key).join(',')}`),
+      ]),
+      statement:
+        'HD W5 chart structure: Meeus W4 longitudes → wheel W3 gate.line for personality + Design layers; sealed 36-channel table yields defined channels; cusp warnings when a body sits within one line-arc of a gate edge (Moon/Mercury tagged).',
+      boundary:
+        'HONEST STRUCTURE COMPUTER — reduced Meeus + verified wheel + sealed channel lattice. NOT JPL DE440. NOT Swiss Ephemeris. NOT aura/type/authority/strategy claims (flagged elsewhere). Cusp band is a UX caution for symbolic charts, not an arcsecond astronomy product. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -939,6 +1013,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const research = astronomySequenceDecodeResearch(matrix)
     const simulation = astronomySimulationAt(at, matrix)
     const hdEph = humanDesignEphemerisCore(matrix, MEEUS_J2000_JD)
+    const hdChart = humanDesignChartStructureAt(matrix, MEEUS_J2000_JD)
     const { computes, facets } = computesGate('astronomy-computes', [
       { facet: 'sixteen-body celestial catalog — computeAllKnownCelestialBodies', on: celestial.computed && celestial.count === 16 },
       { facet: 'exact match on encoded fields — discover wave', on: match.exactMatch },
@@ -949,6 +1024,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'astronomy sequence decode research exposition', on: research.researched },
       { facet: 'per-planet paint facets — batches 1-3 cover Mercury-Neptune', on: [1, 2, 3].every((b) => planetBatchFacetsComputes(b, matrix, at).computes) },
       { facet: 'HD W4 sealed Meeus ephemeris + Design Sun−88° solver', on: hdEph.computes },
+      { facet: 'HD W5 chart structure — wheel + channels + cusp band', on: hdChart.computes },
     ])
     return {
       computes,
@@ -960,12 +1036,13 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       research,
       simulation,
       hdEph,
+      hdChart,
       facets,
-      root: merge(sequence.root, merkleFold([celestial.root, galaxy.root, hdEph.root, toUuid(`astronomy-computes:${computes}`)])),
+      root: merge(sequence.root, merkleFold([celestial.root, galaxy.root, hdEph.root, hdChart.root, toUuid(`astronomy-computes:${computes}`)])),
       statement:
-        'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, research exposition, and HD W4 sealed Meeus ephemeris (Design Sun−88°) — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
+        'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, research exposition, HD W4 sealed Meeus ephemeris (Design Sun−88°), and HD W5 chart structure (channels + cusp band) — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
       boundary:
-        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; cusp warnings belong to chart UX (W5); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
+        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; cusp warnings compose in humanDesignChartStructureAt (W5); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
     }
   })
 }

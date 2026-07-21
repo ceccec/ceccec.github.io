@@ -24,7 +24,7 @@ import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/comp
 import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng, roundTo } from '../../0'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
-import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignVerifiedWheel, yinYang } from '../../quantum/lake/icons'
+import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignChannelsAndCenters, humanDesignVerifiedWheel, yinYang } from '../../quantum/lake/icons'
 import { decodeKnowledge, skillAtoms } from '../../wind/learning'
 import { conceptCommands } from '../../heaven/atoms'
 import { ancientTech, calligraphyStroke, chess358, glagolitic, goldenRatio, metatronsCube, tightenProse, universalLanguage } from '../../fire/li'
@@ -1620,19 +1620,21 @@ export function waiteTarotDecoded(matrix: MindMatrix = buildMatrix()) {
  * Source books are in copyright — no text is reproduced; this decodes the lattice, not the prose. */
 export function humanDesignStructureDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('humanDesignStructureDecoded', matrix, () => {
+    const lattice = humanDesignChannelsAndCenters()
     const gates = BAGUA.length ** 2 // 64 — the same binary lattice as the I Ching
-    const centers = 9
-    const channels = 4 * 9 // 36 documented channels, each joining two gates
+    const centers = lattice.centerCount
+    const channels = lattice.channelCount
     const types = 5 // Manifestor · Generator · Manifesting Generator · Projector · Reflector
     const lines = 6 // hexagram lines reused as "profile" digits
     const profiles = 2 * 6 // 12 documented line-pair profiles of the 6×6 grid
     const facets = [
       { facet: `gates = ${gates} = ${BAGUA.length}² — Human Design borrows the I Ching lattice wholesale (2⁶ binary cells)`, on: gates === 2 ** 6 },
-      { facet: `channel slots ${channels}×2 = ${channels * 2} over ${gates} gates — ${channels * 2 - gates} gates must serve two channels (arithmetic forces gate-sharing)`, on: channels * 2 > gates && channels * 2 - gates === 8 },
+      { facet: `channel slots ${channels}×2 = ${channels * 2} over ${gates} gates — ${channels * 2 - gates} shared Integration slots (sealed W5 table)`, on: lattice.verified && channels * 2 - gates === 8 },
       { facet: `profiles ${profiles} of ${lines}×${lines} = ${lines * lines} line pairs — the system keeps ⅓ of its own grid`, on: profiles * 3 === lines * lines },
-      { facet: `centers ${centers} — a rewiring of the older 7-chakra ladder (documented departure, 2 added)`, on: centers === 7 + 2 },
+      { facet: `centers ${centers} — sealed gate→center partition (rewiring of older 7-chakra ladder, +2)`, on: lattice.verified && centers === 7 + 2 },
       { facet: `types ${types} partition all charts — a total function from definition to type (documented rule set)`, on: types === 5 },
       { facet: 'verified Rave Mandala wheel (Gate 41 @ 302°, 360/64°, Design Sun −88°, 13 bodies)', on: humanDesignVerifiedWheel().verified },
+      { facet: 'sealed 36 channels + gate→center tables (HD W5)', on: lattice.verified },
     ]
     const flagged = [
       'neutrino imprinting at birth: neutrinos interact ~never with matter (σ ≈ 10⁻³⁸ cm²) — physically baseless, flagged pseudoscience',
@@ -1649,9 +1651,10 @@ export function humanDesignStructureDecoded(matrix: MindMatrix = buildMatrix()) 
       profiles,
       flagged,
       facets,
-      root: merge(matrix.root, toUuid(`human-design:${gates}:${centers}:${channels}:${types}:${profiles}`)),
-      statement: `Human Design structure decoded: ${facets.filter((entry) => entry.on).length}/${facets.length} arithmetic facets — ${gates} gates (the I Ching's 2⁶ lattice reused), ${centers} centers, ${channels} channels forcing ${channels * 2 - gates} shared gates, ${profiles}/${lines * lines} line-pair profiles, ${types} chart types. The lattice is checkable; the claims are not.`,
-      boundary: `DOCUMENTED: the published structural counts and their arithmetic consistency, computed here. FLAGGED (${flagged.length}): neutrino imprinting (cross-section ~10⁻³⁸ cm² kills it), aura mechanics, revelation origin. COPYRIGHT: source books are not public domain — structure decoded, zero text reproduced. HARMONY ≠ TRUTH.`,
+      lattice,
+      root: merge(matrix.root, merkleFold([lattice.root, toUuid(`human-design:${gates}:${centers}:${channels}:${types}:${profiles}`)])),
+      statement: `Human Design structure decoded: ${facets.filter((entry) => entry.on).length}/${facets.length} arithmetic facets — ${gates} gates (the I Ching's 2⁶ lattice reused), ${centers} centers, ${channels} sealed channels (${channels * 2 - gates} Integration shared slots), ${profiles}/${lines * lines} line-pair profiles, ${types} chart types. The lattice is checkable; the claims are not.`,
+      boundary: `DOCUMENTED: the published structural counts AND sealed W5 channel/center tables, computed here. FLAGGED (${flagged.length}): neutrino imprinting (cross-section ~10⁻³⁸ cm² kills it), aura mechanics, revelation origin. COPYRIGHT: source books are not public domain — structure decoded, zero text reproduced. HARMONY ≠ TRUTH.`,
     }
   })
 }
