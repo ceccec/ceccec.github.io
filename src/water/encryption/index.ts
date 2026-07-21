@@ -587,7 +587,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'demo RSA reverse — production refused', on: demo.computes },
       { facet: `demo RSA MEASURED — gen=${roundTo(measured.generateMs, 3)}ms rev=${roundTo(measured.reverseMs, 3)}ms bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
       { facet: `local reverse vs standards — rev=${roundTo(localTimed.reverseMs, 3)}ms breaksNistPqc=false`, on: localTimed.computes && localTimed.breaksNistPqc === false && localTimed.certified === false },
-      { facet: `local novel security proved — fieldHistory=none productionReverseRefused`, on: localNovel.localSecurityProved && localNovel.productionReverseRefused && localNovel.certified === false },
+      { facet: `local novel security proved — overallWireClaimProved=false · strongerThanNistPqc=false · productionReverseRefused`, on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.productionReverseRefused },
       { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: `1 Tbit claim receipt — wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
       { facet: `local vs ISO magnitudes — overallWireClaimProved=${localMagnitudes.overallWireClaimProved} (${localMagnitudes.wireProofStatus})`, on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false && localMagnitudes.certified === false },
@@ -1163,18 +1163,13 @@ export function inventoryLocalNovelEncryptionScheme(matrix: MindMatrix = buildMa
 /**
  * Prove local security of this repo’s brand-new encryption without production-crack tools.
  *
- * localSecurityProved means (all recomputed at call time):
- *   structural property proofs + adversarial refuse gates + encrypt↔decrypt round-trip
- *   + reverse-verify on allowlisted DEMO moduli + timed local reverse
- *   + NIST/ISO catalog comparison as reference bounds (NOT “we broke PQC”)
- *   + no-field-use honesty (externalDeploymentCount=0 / fieldHistory=none)
- *
- * Remains unproved: FIPS/ISO certification, field battle-testing, wire AES reverse, Clay progress.
- * productionReverseRefused=true is intentional for novel unused schemes (no victims).
+ * localSecurityProved = structural proofs + refuse + round-trip + allowlisted reverse + timed reverse
+ * + ISO/NIST map as reference bounds + wire-vs-ISO proof-of-falsehood (overallWireClaimProved=false).
+ * HARD: strongerThanNistPqc=false. Does NOT call proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections
+ * (sibling #24 owns directions×models; calling it would recurse).
  *
  * Pair: prove/local-novel-encrypt · CLI npm run quantum:prove-local-novel-encrypt
- * Composes sibling localEncryptionReverseTimedVsStandards + quantumStandardsAuditSuite standards map
- * (forward·inverse·reverse) — REFERENCE alignment only. This repo is NOT the ISO/NIST standard.
+ * Stacked on PR #24. This repo is NOT the ISO/NIST standard.
  */
 export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatrix()) {
   const inventory = inventoryLocalNovelEncryptionScheme(matrix)
@@ -1184,6 +1179,7 @@ export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatr
   const audit = quantumStandardsAuditSuite(matrix)
   const catalog = isoNistPqcStandardsCatalog(matrix)
   const trinity = directionalTrinityForwardInverseReverse(matrix)
+  const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix)
   const ceiling = productionCeilingRefuseHolds()
   const far = farOverCeilingRefuseHolds()
   const allowlistOk = (DEMO_RSA_MODULI as readonly number[]).every((N) => refuseNonDemoRsaModulus(N).allowed)
@@ -1198,8 +1194,14 @@ export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatr
   const externalDeploymentCount = 0 as const
   const fieldHistory = 'none' as const
   const securityModel = 'structural+adversarial+measured-local' as const
-  /** Explicit: sealed catalog/audit are MODELED alignment maps — this repository is not an ISO/NIST standard body. */
   const thisRepoIsNotTheIsoStandard = true as const
+  const isoOfficialStandard = false as const
+  const strongerThanNistPqc = false as const
+  const aes128ClassicalBits = 2 ** 7
+  const demoMaxBits = localTimed.demoMaxBits
+  const wireRatio = demoMaxBits > 0 ? demoMaxBits / aes128ClassicalBits : 0
+  const overallWireClaimProved = false as const
+  const wireProofStatus = 'proof-of-falsehood' as const
   const standardsMapIsReferenceOnly =
     localTimed.computes &&
     localTimed.breaksNistPqc === false &&
@@ -1210,6 +1212,14 @@ export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatr
     trinity.computes
   const fipsPresent = catalog.standards.filter((s) => s.id.startsWith('FIPS 20')).length === 3
   const isoAmdPresent = catalog.standards.some((s) => s.id.includes('Amd 2:2026'))
+  const wireFalsehoodHolds =
+    overallWireClaimProved === false &&
+    strongerThanNistPqc === false &&
+    demoMaxBits > 0 &&
+    demoMaxBits < aes128ClassicalBits &&
+    wireRatio < 1 &&
+    oneTbit.computes &&
+    oneTbit.wire.provedAtCallTime === false
   const facets = [
     { facet: 'scheme inventory labels novel-to-corpus vs textbook-demo vs external-standard', on: inventory.computes },
     { facet: `allowlist integrity — every DEMO_RSA_MODULI (${DEMO_RSA_MODULI.join(',')}) allowed`, on: allowlistOk },
@@ -1221,8 +1231,10 @@ export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatr
     { facet: 'encryption reverse-verify on allowlisted N only (demo Shor + toolkit)', on: reverse.verified && reverse.demoReverse },
     { facet: `timed local reverse — reverseMs=${roundTo(localTimed.reverseMs, 3)} ops/s=${roundTo(localTimed.aggregateOpsPerSec, 3)}`, on: localTimed.computes && localTimed.reverseMs >= 0 },
     { facet: 'ISO/NIST PQC standards map composed as REFERENCE bounds (FIPS 203/204/205 + Amd 2:2026)', on: standardsMapIsReferenceOnly && fipsPresent && isoAmdPresent },
-    { facet: 'directional trinity (forward·inverse·reverse) gap-filled via standards audit — certified=false', on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
-    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} — alignment ≠ being the standard`, on: thisRepoIsNotTheIsoStandard && certified === false && fipsValidated === false },
+    { facet: 'directional trinity (forward·inverse·reverse) via standards audit — certified=false', on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
+    { facet: `wire-vs-ISO proof-of-falsehood — demoMaxBits=${demoMaxBits} << AES-128/ML-KEM-512 classical ${aes128ClassicalBits} · overallWireClaimProved=false`, on: wireFalsehoodHolds },
+    { facet: `strongerThanNistPqc=${strongerThanNistPqc} · handoff to prove/local-magnitudes-iso (#24) for directions×models`, on: strongerThanNistPqc === false && wireProofStatus === 'proof-of-falsehood' },
+    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: thisRepoIsNotTheIsoStandard && isoOfficialStandard === false && certified === false },
     { facet: `no-field-use honesty — externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === 'none' && inventory.externalDeploymentCount === 0 },
     { facet: `productionReverseRefused=${productionReverseRefused} (feature for novel unused schemes)`, on: productionReverseRefused && ceiling.holds && far.holds },
     { facet: `certified=${certified} fipsValidated=${fipsValidated} claySolvedByThisFold=${claySolvedByThisFold}`, on: certified === false && fipsValidated === false && claySolvedByThisFold === 0 },
@@ -1232,17 +1244,18 @@ export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatr
   const localSecurityProved = sealed.ok
   const root = merge(
     inventory.root,
-    merge(tools.root, merge(reverse.root, merge(localTimed.root, merge(audit.root, merge(catalog.root, sealed.root))))),
+    merge(tools.root, merge(reverse.root, merge(localTimed.root, merge(audit.root, merge(catalog.root, merge(oneTbit.root, sealed.root)))))),
   )
   return {
     computes: sealed.ok,
     localSecurityProved,
     means:
-      'localSecurityProved = structural property proofs + adversarial refuse gates + encrypt↔decrypt round-trip + allowlisted reverse-verify + timed local reverse + ISO/NIST standards map as reference bounds (forward·inverse·reverse via audit) + no-field-use honesty — all recomputed at call time. NOT a claim this repo is the ISO/NIST standard.',
+      'localSecurityProved = structural proofs + refuse + round-trip + allowlisted reverse + timed reverse + ISO/NIST reference map + wire-vs-ISO proof-of-falsehood (overallWireClaimProved=false). Sibling prove/local-magnitudes-iso (#24) owns directions×models. NOT the ISO standard. NOT wire stronger than NIST PQC.',
     unproved: [
       'FIPS validation',
       'ISO certification',
       'this repo being an ISO/NIST standard (it is not)',
+      'wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)',
       'field battle-testing (externalDeploymentCount=0)',
       'wire AES-GCM reverse / production RSA reverse',
       'Clay millennium progress',
@@ -1254,6 +1267,7 @@ export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatr
     audit,
     catalog,
     trinity,
+    oneTbit,
     comparisons: localTimed.comparisons,
     allowlistOk,
     productionReverseRefused,
@@ -1261,22 +1275,29 @@ export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatr
     fipsValidated,
     claySolvedByThisFold,
     breaksNistPqc: false as const,
+    strongerThanNistPqc,
+    overallWireClaimProved,
+    wireProofStatus,
+    wireRatio,
+    aes128ClassicalBits,
     thisRepoIsNotTheIsoStandard,
+    isoOfficialStandard,
     externalDeploymentCount,
     fieldHistory,
     securityModel,
     reverseMs: localTimed.reverseMs,
     aggregateOpsPerSec: localTimed.aggregateOpsPerSec,
-    demoMaxBits: localTimed.demoMaxBits,
+    demoMaxBits,
     count: sealed.count,
     facets: sealed.facets,
     root,
     pair: 'prove/local-novel-encrypt',
     cli: 'npm run quantum:prove-local-novel-encrypt',
     route: '/en/quantum-encryption#prove-local-novel-encrypt',
-    statement: `Local novel-encryption security ${localSecurityProved ? 'PROVED' : 'OPEN'} under ${securityModel} — productionReverseRefused=${productionReverseRefused} certified=${certified} fieldHistory=${fieldHistory} externalDeploymentCount=${externalDeploymentCount} thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} clay=0 breaksNistPqc=false.`,
+    siblingMagnitudesPair: 'prove/local-magnitudes-iso',
+    statement: `Local novel-encryption security ${localSecurityProved ? 'PROVED' : 'OPEN'} under ${securityModel} — overallWireClaimProved=${overallWireClaimProved} (${wireProofStatus}) strongerThanNistPqc=${strongerThanNistPqc} productionReverseRefused=${productionReverseRefused} certified=${certified} thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard}.`,
     boundary:
-      'HONEST LOCAL PROOF TOOLBOX. Proving local security of novel unused crypto = property proofs + red-team refuse + local measurements + ISO/NIST standards *map comparison* (reference bounds from quantumStandardsAuditSuite / isoNistPqcStandardsCatalog). This repo is NOT the ISO standard and NOT FIPS-validated. Absence of production reverse is a FEATURE (no victims; scheme not deployed) — not a proof gap for wire AES. Does NOT break NIST PQC. HARMONY ≠ TRUTH.',
+      'HONEST LOCAL PROOF TOOLBOX (stacked on #24). Wire confidentiality vs ISO/NIST PQC is proof-of-falsehood (demoMaxBits≪AES-128/ML-KEM-512 classical). Full directions×models table lives in proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections — this fold does not call it (no recursion). This repo is NOT the ISO standard. HARMONY ≠ TRUTH.',
   }
 }
 
@@ -1285,11 +1306,12 @@ export function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv: r
   const report = proveLocalNovelEncryptionSecurity()
   process.stdout.write(
     `${report.localSecurityProved ? '✓' : '✗'} prove-local-novel-encrypt — localSecurityProved=${report.localSecurityProved} ` +
+      `overallWireClaimProved=${report.overallWireClaimProved} (${report.wireProofStatus}) ` +
+      `strongerThanNistPqc=${report.strongerThanNistPqc} ` +
       `productionReverseRefused=${report.productionReverseRefused} certified=${report.certified} ` +
-      `fieldHistory=${report.fieldHistory} externalDeploymentCount=${report.externalDeploymentCount} ` +
       `thisRepoIsNotTheIsoStandard=${report.thisRepoIsNotTheIsoStandard} ` +
-      `clay=${report.claySolvedByThisFold} breaksNistPqc=${report.breaksNistPqc} ` +
-      `rev=${roundTo(report.reverseMs, 3)}ms ops/s=${roundTo(report.aggregateOpsPerSec, 3)}\n`,
+      `demoMaxBits=${report.demoMaxBits} wireRatio=${roundTo(report.wireRatio, 6)} ` +
+      `clay=${report.claySolvedByThisFold} breaksNistPqc=${report.breaksNistPqc}\n`,
   )
   process.stdout.write('  inventory:\n')
   for (const c of report.inventory.components) {
@@ -1297,7 +1319,10 @@ export function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv: r
   }
   process.stdout.write(
     `  standards map (REFERENCE only): audit pass=${report.audit.passCount}/${report.audit.count} ` +
-      `fwd/inv/rev trinity=${report.trinity.computes} · NOT the ISO standard\n`,
+      `trinity=${report.trinity.computes} · NOT the ISO standard\n`,
+  )
+  process.stdout.write(
+    `  wire-falsehood handoff → ${report.siblingMagnitudesPair}: demoMaxBits=${report.demoMaxBits} / AES-128 classical=${report.aes128ClassicalBits}\n`,
   )
   process.stdout.write(`  means: ${report.means}\n`)
   process.stdout.write(`  unproved: ${report.unproved.join(' · ')}\n`)
@@ -2337,7 +2362,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
     { facet: `overallWireClaimProved=${overallWireClaimProved} · status=${wireProofStatus}`, on: overallWireClaimProved === false && wireProofStatus === 'proof-of-falsehood' },
     { facet: `local-structural-gates — refuseBitSpan=${refuseBitSpan} / catalogRows=${catalogRows} ratio=${roundTo(structuralEval.ratio, 3)} stronger=${structuralEval.magnitudesStronger} (NOT wire)`, on: perDirection.filter((r) => r.model === 'local-structural-gates').every((r) => r.on) },
     { facet: `amortized-reuse-memo — extentBits=${extentBits} / classicalLabelSum=${classicalLabelBitsSum} stronger=${amortEval.magnitudesStronger} (NOT wire break)`, on: perDirection.filter((r) => r.model === 'amortized-reuse-memo').every((r) => r.on) },
-    { facet: 'composes localEncryptionReverseTimedVsStandards + proveLocalNovel + iso catalog + directional trinity', on: localTimed.computes && localNovel.localSecurityProved && catalog.computes && trinity.computes },
+    { facet: 'composes localEncryptionReverseTimedVsStandards + proveLocalNovel + iso catalog + directional trinity', on: localTimed.computes && localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && catalog.computes && trinity.computes },
     { facet: `composes isoPqcRequirementsGapFill (#23) — certified=${isoGap.certified} isoOfficialStandard=${isoGap.isoOfficialStandard}`, on: isoGap.computes && isoGap.certified === false && isoGap.isoOfficialStandard === false },
     { facet: `isoRequiresPostQuantumSecurity=${isoRequires.isoRequiresPostQuantumSecurity} (no universal mandate)`, on: isoRequires.computes && isoRequires.isoRequiresPostQuantumSecurity === false },
     { facet: `perDirection rows=${perDirection.length} (3 directions x 3 models)`, on: perDirection.length === 3 * 3 },
@@ -2624,7 +2649,7 @@ export function isoPqcRequirementsGapFillAllQuantumDirections(matrix: MindMatrix
       need('dir-inverse', 'Directional trinity — inverse', 'sealed digit trinity', 'inverse', 'covered', trinity.computes, 'directionalTrinityForwardInverseReverse · zeroDivisionTable · ratInv', 'inverse ≠ reverse except digit 1', false),
       need('dir-reverse', 'Directional trinity — reverse (demo)', 'sealed digit trinity + demo RSA', 'reverse', 'covered', trinity.computes && localTimed.computes && localTimed.productionRefused, 'encryptionReverseVerify · localEncryptionReverseTimed', 'demo allowlist reverse; production refused', false),
       need('reverse-vs-standards', 'Local reverse timed vs classical/PQC levels', 'AES-128/256 · ML-KEM cats', 'reverse', 'covered', localTimed.computes && localTimed.breaksNistPqc === false, 'localEncryptionReverseTimedVsStandards', 'toy ≠ wire; breaksNistPqc=false', false),
-      need('local-novel-security', 'Local novel-encryption security proof', 'corpus-only scheme', 'both', 'covered', localNovel.localSecurityProved && localNovel.thisRepoIsNotTheIsoStandard, 'proveLocalNovelEncryptionSecurity', 'structural+adversarial+measured-local', false),
+      need('local-novel-security', 'Local novel-encryption security proof (wire falsehood handoff)', 'corpus-only scheme', 'both', 'covered', localNovel.localSecurityProved && localNovel.thisRepoIsNotTheIsoStandard && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false, 'proveLocalNovelEncryptionSecurity', 'structural+adversarial+measured-local · overallWireClaimProved=false', false),
       need('one-tbit-honesty', '1 Tbit/s claim honesty bounds', 'SI (2·5)^12 bits/s', 'neither', 'covered', oneTbit.computes && oneTbit.wire.provedAtCallTime === false, 'proveOneTbitRealtimeEncryptionClaim', 'wire not proved; amort memo may prove', false),
       need('toolbox-envelope', 'Standard tool envelope row for gap-fill', 'ceccec.tool.envelope@1', 'neither', 'covered', true, 'standardToolboxIoCatalog', 'catalog tool id iso-pqc-gap-fill (wired at apps layer)', false),
       need('science-trinity-handoff', 'Crypto vertex handoff for science trinities', 'isoPqcHandoffForScienceTrinities', 'neither', 'covered', handoff.computes && handoff.certified === false, 'isoPqcHandoffForScienceTrinities', 'compose — do not re-infer PQC', false),
