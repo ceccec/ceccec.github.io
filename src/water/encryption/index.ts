@@ -619,22 +619,24 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'poles→cross PQC · crossIsPartOfMerkabaRosetta · angle90ReachableThrough60 · certified=false', on: polesCross.computes && polesCross.crossIsPartOfMerkabaRosetta && polesCross.angle90ReachableThrough60 && polesCross.certified === false },
       { facet: `secp256k1 field prime seal·invert·decode — bits=${secp256k1PrimeFold.bitLength} ownership=false clay=0`, on: secp256k1PrimeFold.computes && secp256k1PrimeFold.bitcoinOwnershipClaimed === false && secp256k1PrimeFold.claySolvedByThisFold === 0 },
     ])
-    const sections = [
-      { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', route: '/en/quantum-encryption#demo-rsa-measure', pair: 'measure/demo-rsa', cli: 'npm run quantum:demo-rsa-measure', on: measured.computes },
-      { id: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards', route: '/en/quantum-encryption#local-reverse-timed-vs-standards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', on: localTimed.computes },
-      { id: 'prove-local-novel-encrypt', title: 'Local novel-encryption security proof (no production reverse)', route: '/en/quantum-encryption#prove-local-novel-encrypt', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', on: localNovel.localSecurityProved },
-      { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', route: '/en/quantum-encryption#local-audit-quantum', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', on: localAudit.computes && localAudit.memoHits },
-      { id: 'crypto-beyond-rsa', title: 'PQC families · Shor/ECC · hash taxonomy · directional trinity', route: '/en/quantum-encryption#crypto-beyond-rsa', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', on: beyond.computes },
-      { id: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim (honest receipt)', route: '/en/quantum-encryption#prove-1tbit', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', on: oneTbit.computes },
-      { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', route: '/en/quantum-encryption#max-bits-crypto', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', on: maxBits.computes },
-      { id: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes (honest multi-model)', route: '/en/quantum-encryption#prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false },
-      { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', route: '/en/quantum-encryption#iso-pqc-catalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', on: pqc.computes },
-      { id: 'poles-cross-pqc', title: 'Poles form cross signatures for PQC including certificates', route: '/en/quantum-encryption#poles-cross-pqc', pair: 'poles/cross-pqc', cli: 'npm run quantum:poles-cross-pqc', on: polesCross.computes },
-      { id: 'secp256k1-prime', title: 'secp256k1 field prime — seal · invert · decode', route: '/en/quantum-encryption#secp256k1-prime', pair: 'secp256k1/invert-decode', cli: 'npm run quantum:secp256k1-prime-invert-decode', on: secp256k1PrimeFold.computes },
-      { id: 'quantum-standards-audit', title: 'Standards audit (forward·inverse·reverse·10D)', route: '/en/quantum-encryption#quantum-standards-audit', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', on: audit.computes },
-    ] as const
+    // Panel section metadata DRY from CRYPTO_COMPARISON_MESH — live `on` from fold recomputes only.
+    const sections = cryptoComparisonMeshPanelSections({
+      'demo-rsa-measure': measured.computes,
+      'local-reverse-timed-vs-standards': localTimed.computes,
+      'prove-local-novel-encrypt': localNovel.localSecurityProved,
+      'local-audit-quantum': localAudit.computes && localAudit.memoHits,
+      'crypto-beyond-measure': beyond.computes,
+      'prove-1tbit-encrypt': oneTbit.computes,
+      'max-bits-crypto': maxBits.computes,
+      'prove-local-magnitudes-iso': localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false,
+      'iso-pqc-catalog': pqc.computes,
+      'poles-cross-pqc': polesCross.computes,
+      'secp256k1-prime-invert-decode': secp256k1PrimeFold.computes,
+      'standards-audit': audit.computes,
+    })
+    const meshDry = cryptoComparisonMeshIsDry(matrix)
     return {
-      computes,
+      computes: computes && meshDry.computes,
       tools,
       reverse,
       demo,
@@ -653,6 +655,8 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       pqc,
       migrate,
       audit,
+      mesh: meshDry.mesh,
+      meshDry,
       sections,
       timings: beyond.timings,
       mlKemParams: beyond.mlKemParams,
@@ -3938,4 +3942,273 @@ export function runProductionRsaRefuseCompletesQuantumViaRosettaExit(
   }
   process.stdout.write(`  boundary: ${r.boundary}\n`)
   return r.computes && r.incompleteOpen === 0 && r.claySolvedByThisFold === 0 && !r.productionBreakEnabled ? 0 : 1
+}
+
+// ─── Crypto comparison mesh — single sealed source for comparison nodes/edges ───
+// DRY: UI · CLI · MCP · toolbox · session experiments · proofs recompute from this catalog.
+// Pair: crypto/comparison-mesh · CLI npm run quantum:crypto-comparison-mesh-dry
+
+export type CryptoComparisonMeshKind =
+  | 'comparison'
+  | 'catalog'
+  | 'ceiling'
+  | 'refuse'
+  | 'audit'
+  | 'proof'
+  | 'toolkit'
+  | 'novel'
+  | 'measure'
+
+export type CryptoComparisonMeshRelation =
+  | 'compares-against'
+  | 'composes'
+  | 'handoff'
+  | 'proves-as'
+  | 'refuses-beyond'
+  | 'catalogues'
+  | 'audits'
+
+export type CryptoComparisonMeshNode = {
+  readonly id: string
+  readonly title: string
+  readonly fold: string
+  readonly pair: string
+  readonly cli: string
+  readonly route: string
+  readonly proofRoute: string
+  readonly kind: CryptoComparisonMeshKind
+  readonly boundary: string
+  readonly inPanel: boolean
+  readonly toolId: string
+}
+
+export type CryptoComparisonMeshEdge = {
+  readonly id: string
+  readonly from: string
+  readonly to: string
+  readonly relation: CryptoComparisonMeshRelation
+}
+
+/** Single sealed catalog — comparison edges/nodes. Do not wet-copy into UI/MCP/proofs. */
+export const CRYPTO_COMPARISON_MESH_NODES: readonly CryptoComparisonMeshNode[] = [
+  { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', fold: 'demoRsaGenerateAndReverseMeasured', pair: 'measure/demo-rsa', cli: 'npm run quantum:demo-rsa-measure', route: '/en/quantum-encryption#demo-rsa-measure', proofRoute: '', kind: 'measure', boundary: 'Wall-clock ms on DEMO_RSA_MODULI only — NOT production RSA / NOT Bitcoin / NOT an SLA', inPanel: true, toolId: 'demo-rsa-measure' },
+  { id: 'local-reverse-timed', title: 'Local encryption reverse timed', fold: 'localEncryptionReverseTimed', pair: 'reverse/local-timed', cli: 'npm run quantum:local-reverse-timed', route: '/en/quantum-encryption#local-reverse-timed', proofRoute: '', kind: 'measure', boundary: 'Per-modulus generateMs/reverseMs/bits/ops/s — DEMO_RSA_MODULI toy wall-clock only', inPanel: false, toolId: 'local-reverse-timed' },
+  { id: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards', fold: 'localEncryptionReverseTimedVsStandards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', route: '/en/quantum-encryption#local-reverse-timed-vs-standards', proofRoute: '/proofs/encryption-honesty', kind: 'comparison', boundary: 'Demo reverse vs AES-128/256 · ML-KEM classical bits — certified=false; does NOT break NIST PQC', inPanel: true, toolId: 'local-reverse-timed-vs-standards' },
+  { id: 'prove-local-novel-encrypt', title: 'Prove local novel-encryption security', fold: 'proveLocalNovelEncryptionSecurity', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', route: '/en/quantum-encryption#prove-local-novel-encrypt', proofRoute: '', kind: 'novel', boundary: 'overallWireClaimProved=false proof-of-falsehood · strongerThanNistPqc=false · handoff to prove/local-magnitudes-iso · certified=false', inPanel: true, toolId: 'prove-local-novel-encrypt' },
+  { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/en/quantum-encryption#local-audit-quantum', proofRoute: '', kind: 'audit', boundary: 'memoByRoot cold/warm · answers÷tokens · compose no-QPU/64bit honesty · NOT physical qubit FLOPS · certified=false · production reverse refused', inPanel: true, toolId: 'local-audit-quantum' },
+  { id: 'crypto-beyond-measure', title: 'Crypto toolkit beyond RSA measured', fold: 'cryptoToolkitBeyondRsaMeasured', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', route: '/en/quantum-encryption#crypto-beyond-rsa', proofRoute: '', kind: 'toolkit', boundary: 'Timed PQC catalogs + Shor/ECC map + hash taxonomy + directional trinity — NOT FIPS/ISO certified / NOT production KEM', inPanel: true, toolId: 'crypto-beyond-measure' },
+  { id: 'prove-1tbit-encrypt', title: 'Prove 1 Tbit/s realtime encryption claim', fold: 'proveOneTbitRealtimeEncryptionClaim', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', route: '/en/quantum-encryption#prove-1tbit', proofRoute: '', kind: 'measure', boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo may prove extent÷memo — NOT wire AES-GCM / NOT FIPS', inPanel: true, toolId: 'prove-1tbit-encrypt' },
+  { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', fold: 'maximumBitsEncryptDecryptInverseReverse', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', route: '/en/quantum-encryption#max-bits-crypto', proofRoute: '', kind: 'ceiling', boundary: 'encrypt/decrypt=256 AES-256 named · inverse=4 digit mod-9 · reverse=12 DEMO_RSA_BIT_CEILING · refuseBeyond · demoOnly · wire 1Tbit false · clay=0 · certified=false', inPanel: true, toolId: 'max-bits-crypto' },
+  { id: 'prove-local-magnitudes-iso', title: 'Prove local vs ISO magnitudes all directions', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', route: '/en/quantum-encryption#prove-local-magnitudes-iso', proofRoute: '/proofs/encryption-honesty', kind: 'comparison', boundary: 'wire-crypto-security-bits proof-of-falsehood (demo<<ML-KEM); structural/amort may prove >=100x non-wire only · certified=false · NOT ISO certified', inPanel: true, toolId: 'prove-local-magnitudes-iso' },
+  { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', pair: 'reverse/encryption-verify', cli: 'npm run quantum:encryption-reverse-verify', route: '/en/quantum-encryption', proofRoute: '', kind: 'toolkit', boundary: 'Demo RSA only — production moduli refused', inPanel: false, toolId: 'encryption-reverse-verify' },
+  { id: 'production-rsa-refuse-rosetta', title: 'Production RSA refuse completes quantum via rosetta', fold: 'productionRsaRefuseCompletesQuantumViaRosetta', pair: 'refuse/rosetta', cli: 'npm run quantum:production-rsa-refuse-rosetta', route: '/en/quantum-encryption#production-rsa-refuse-rosetta', proofRoute: '', kind: 'refuse', boundary: 'Sealed refuse receipts · incompleteOpen=0 · refuseBeyond stays · NOT production RSA break · clay=0 · certified=false', inPanel: false, toolId: 'production-rsa-refuse-rosetta' },
+  { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', route: '/en/quantum-encryption#iso-pqc-catalog', proofRoute: '/proofs/encryption-honesty', kind: 'catalog', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', inPanel: true, toolId: 'iso-pqc-catalog' },
+  { id: 'poles-cross-pqc', title: 'Poles → cross signatures → PQC certificate structures', fold: 'polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates', pair: 'poles/cross-pqc', cli: 'npm run quantum:poles-cross-pqc', route: '/en/quantum-encryption#poles-cross-pqc', proofRoute: '', kind: 'toolkit', boundary: 'Cross ∈ merkaba∩rosetta · 60→90 · all-dir · sealed cert structures — NOT CA/PKI · certified=false · clay=0 · physicalFtl=0', inPanel: true, toolId: 'poles-cross-pqc' },
+  { id: 'secp256k1-prime-invert-decode', title: 'secp256k1 field prime — seal · invert · decode', fold: 'secp256k1FieldPrimeInvertAndDecode', pair: 'secp256k1/invert-decode', cli: 'npm run quantum:secp256k1-prime-invert-decode', route: '/en/quantum-encryption#secp256k1-prime', proofRoute: '/proofs/secp256k1-field-prime', kind: 'catalog', boundary: 'Known SECG p from powers of two · construction invert + mod-p units · NOT Bitcoin ownership · clay=0 · certified=false', inPanel: true, toolId: 'secp256k1-prime-invert-decode' },
+  { id: 'iso-pqc-gap-fill', title: 'ISO/NIST PQC gap-fill all quantum directions', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', pair: 'iso/pqc-gap-fill', cli: 'npm run quantum:iso-pqc-gap-fill', route: '/en/quantum-encryption#iso-pqc-gap-fill', proofRoute: '/proofs/encryption-honesty', kind: 'audit', boundary: 'covered|partial|gap toward ISO/NIST needs — isoOfficialStandard=false · certified=false · lab gaps unclosable', inPanel: false, toolId: 'iso-pqc-gap-fill' },
+  { id: 'standards-audit', title: 'Quantum standards audit (forward·inverse·reverse·10D)', fold: 'quantumStandardsAuditSuite', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', route: '/en/quantum-encryption#quantum-standards-audit', proofRoute: '/proofs/encryption-honesty', kind: 'audit', boundary: 'Alignment audit ≠ certification — covered|partial|gap · demo RSA reverse + digit/f/ratInv inverse + directional trinity', inPanel: true, toolId: 'standards-audit' },
+  { id: 'encryption-honesty', title: 'Encryption honesty — wire ≠ ISO · demo RSA · PQC alignment', fold: 'quantumStandardsAuditSuite', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', route: '/en/quantum-encryption#quantum-standards-audit', proofRoute: '/proofs/encryption-honesty', kind: 'proof', boundary: 'Structural/demo receipts may hold; wire/FIPS/ISO claims stay false where sealed · clay=0 · certified=false', inPanel: false, toolId: 'standards-audit' },
+  { id: 'secp256k1-field-prime', title: 'secp256k1 field prime — seal · invert · decode (proof)', fold: 'secp256k1FieldPrimeInvertAndDecode', pair: 'secp256k1/invert-decode', cli: 'npm run quantum:secp256k1-prime-invert-decode', route: '/en/quantum-encryption#secp256k1-prime', proofRoute: '/proofs/secp256k1-field-prime', kind: 'proof', boundary: 'Structure of known SECG prime — NOT Bitcoin ownership · clay=0 · certified=false', inPanel: false, toolId: 'secp256k1-prime-invert-decode' },
+] as const
+
+/** Comparison edges — one sealed relation per edge id. */
+export const CRYPTO_COMPARISON_MESH_EDGES: readonly CryptoComparisonMeshEdge[] = [
+  { id: 'local-timed→iso-catalog', from: 'local-reverse-timed-vs-standards', to: 'iso-pqc-catalog', relation: 'compares-against' },
+  { id: 'local-vs-iso→local-timed', from: 'prove-local-magnitudes-iso', to: 'local-reverse-timed-vs-standards', relation: 'composes' },
+  { id: 'local-vs-iso→iso-catalog', from: 'prove-local-magnitudes-iso', to: 'iso-pqc-catalog', relation: 'composes' },
+  { id: 'local-vs-iso→iso-gap', from: 'prove-local-magnitudes-iso', to: 'iso-pqc-gap-fill', relation: 'composes' },
+  { id: 'local-novel→local-vs-iso', from: 'prove-local-novel-encrypt', to: 'prove-local-magnitudes-iso', relation: 'handoff' },
+  { id: 'iso-gap→iso-catalog', from: 'iso-pqc-gap-fill', to: 'iso-pqc-catalog', relation: 'catalogues' },
+  { id: 'standards-audit→iso-catalog', from: 'standards-audit', to: 'iso-pqc-catalog', relation: 'audits' },
+  { id: 'honesty→standards-audit', from: 'encryption-honesty', to: 'standards-audit', relation: 'proves-as' },
+  { id: 'secp-proof→secp-fold', from: 'secp256k1-field-prime', to: 'secp256k1-prime-invert-decode', relation: 'proves-as' },
+  { id: 'max-bits→refuse-rosetta', from: 'max-bits-crypto', to: 'production-rsa-refuse-rosetta', relation: 'refuses-beyond' },
+  { id: 'local-audit→local-timed', from: 'local-audit-quantum', to: 'local-reverse-timed-vs-standards', relation: 'composes' },
+  { id: 'local-audit→local-novel', from: 'local-audit-quantum', to: 'prove-local-novel-encrypt', relation: 'composes' },
+  { id: 'beyond→iso-catalog', from: 'crypto-beyond-measure', to: 'iso-pqc-catalog', relation: 'composes' },
+  { id: 'local-timed→local-reverse', from: 'local-reverse-timed-vs-standards', to: 'local-reverse-timed', relation: 'composes' },
+] as const
+
+export function cryptoComparisonMeshNode(id: string): CryptoComparisonMeshNode | undefined {
+  return CRYPTO_COMPARISON_MESH_NODES.find((n) => n.id === id)
+}
+
+/** Toolbox / CLI seed rows derived from mesh (excludes proof-only aliases). */
+export function cryptoComparisonMeshToolSeeds(): readonly {
+  readonly id: string
+  readonly title: string
+  readonly fold: string
+  readonly cli: string
+  readonly pair: string
+  readonly route: string
+  readonly barrel: string
+  readonly boundary: string
+  readonly browserRunnable: boolean
+  readonly browserGap: string
+}[] {
+  const seen = new Set<string>()
+  const rows: {
+    id: string
+    title: string
+    fold: string
+    cli: string
+    pair: string
+    route: string
+    barrel: string
+    boundary: string
+    browserRunnable: boolean
+    browserGap: string
+  }[] = []
+  for (const n of CRYPTO_COMPARISON_MESH_NODES) {
+    if (n.kind === 'proof') continue
+    if (seen.has(n.toolId)) continue
+    seen.add(n.toolId)
+    rows.push({
+      id: n.toolId,
+      title: n.title,
+      fold: n.fold,
+      cli: n.cli,
+      pair: n.pair,
+      route: n.route,
+      barrel: 'src/water/encryption',
+      boundary: n.boundary,
+      browserRunnable: true,
+      browserGap: '',
+    })
+  }
+  return rows
+}
+
+/** VitePress hash from a mesh route — UI section id / deep-link target. */
+export function cryptoComparisonMeshPanelId(route: string, fallbackId: string): string {
+  const hash = route.includes('#') ? route.slice(route.indexOf('#') + 1) : ''
+  return hash.length > 0 ? hash : fallbackId
+}
+
+/** Panel section rows — single source for encryptionPanelComputes.sections metadata. */
+export function cryptoComparisonMeshPanelSections(
+  onByNodeId: Readonly<Record<string, boolean>>,
+): readonly { id: string; nodeId: string; title: string; route: string; pair: string; cli: string; on: boolean }[] {
+  return CRYPTO_COMPARISON_MESH_NODES.filter((n) => n.inPanel).map((n) => {
+    const panelId = cryptoComparisonMeshPanelId(n.route, n.id)
+    return {
+      id: panelId,
+      nodeId: n.id,
+      title: n.title,
+      route: n.route,
+      pair: n.pair,
+      cli: n.cli,
+      on: Boolean(onByNodeId[n.id]),
+    }
+  })
+}
+
+/**
+ * Compute the crypto comparison mesh from the sealed catalog.
+ * Pair: crypto/comparison-mesh
+ */
+export function cryptoComparisonMesh(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('cryptoComparisonMesh', matrix, () => {
+    const nodeIds = new Set(CRYPTO_COMPARISON_MESH_NODES.map((n) => n.id))
+    const edgeEndsOk = CRYPTO_COMPARISON_MESH_EDGES.every((e) => nodeIds.has(e.from) && nodeIds.has(e.to))
+    const uniqueNodeIds = nodeIds.size === CRYPTO_COMPARISON_MESH_NODES.length
+    const uniqueEdgeIds = new Set(CRYPTO_COMPARISON_MESH_EDGES.map((e) => e.id)).size === CRYPTO_COMPARISON_MESH_EDGES.length
+    const panelCount = CRYPTO_COMPARISON_MESH_NODES.filter((n) => n.inPanel).length
+    const proofCount = CRYPTO_COMPARISON_MESH_NODES.filter((n) => n.kind === 'proof' && n.proofRoute.startsWith('/proofs/')).length
+    const comparisonCount = CRYPTO_COMPARISON_MESH_NODES.filter((n) => n.kind === 'comparison').length
+    const root = merkleFold([
+      toUuid(`crypto-mesh:nodes:${CRYPTO_COMPARISON_MESH_NODES.length}`),
+      toUuid(`crypto-mesh:edges:${CRYPTO_COMPARISON_MESH_EDGES.length}`),
+      ...CRYPTO_COMPARISON_MESH_NODES.map((n) => toUuid(`crypto-mesh-node:${n.id}:${n.fold}:${n.pair}`)),
+      ...CRYPTO_COMPARISON_MESH_EDGES.map((e) => toUuid(`crypto-mesh-edge:${e.id}:${e.from}->${e.to}:${e.relation}`)),
+    ])
+    return {
+      computes: uniqueNodeIds && uniqueEdgeIds && edgeEndsOk && comparisonCount >= 2 && proofCount >= 2,
+      nodes: CRYPTO_COMPARISON_MESH_NODES,
+      edges: CRYPTO_COMPARISON_MESH_EDGES,
+      nodeCount: CRYPTO_COMPARISON_MESH_NODES.length,
+      edgeCount: CRYPTO_COMPARISON_MESH_EDGES.length,
+      panelCount,
+      proofCount,
+      comparisonCount,
+      claySolvedByThisFold: 0 as const,
+      certified: false as const,
+      refuseBeyond: true as const,
+      root,
+      pair: 'crypto/comparison-mesh' as const,
+      cli: 'npm run quantum:crypto-comparison-mesh-dry',
+      route: '/en/quantum-encryption#crypto-comparison-mesh',
+      statement: `Crypto comparison mesh — nodes=${CRYPTO_COMPARISON_MESH_NODES.length} edges=${CRYPTO_COMPARISON_MESH_EDGES.length} panel=${panelCount} proofs=${proofCount} comparisons=${comparisonCount}.`,
+      boundary:
+        'SINGLE SEALED SOURCE for crypto comparison nodes/edges. UI/CLI/MCP/toolbox/proofs recompute from CRYPTO_COMPARISON_MESH_*. ' +
+        'certified=false · clay=0 · refuseBeyond stays · NOT production RSA break · NOT ISO/FIPS certified. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * Receipt: crypto comparison mesh is DRY — one sealed source, no wet duplicate catalogs inside the mesh.
+ * Facet: cryptoComparisonMeshIsDry
+ */
+export function cryptoComparisonMeshIsDry(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('cryptoComparisonMeshIsDry', matrix, () => {
+    const mesh = cryptoComparisonMesh(matrix)
+    const foldPairKeys = CRYPTO_COMPARISON_MESH_NODES.filter((n) => n.kind !== 'proof').map((n) => `${n.fold}|${n.pair}|${n.cli}|${n.route}`)
+    const uniqueFoldPairs = new Set(foldPairKeys).size === foldPairKeys.length
+    const panelSections = cryptoComparisonMeshPanelSections(Object.fromEntries(mesh.nodes.map((n) => [n.id, true])))
+    const panelMetaOk = panelSections.length === mesh.panelCount
+      && panelSections.every((s) => {
+        const n = cryptoComparisonMeshNode(s.nodeId)
+        return Boolean(n) && n!.inPanel
+          && s.id === cryptoComparisonMeshPanelId(n!.route, n!.id)
+          && s.title === n!.title && s.cli === n!.cli && s.route === n!.route && s.pair === n!.pair
+      })
+    const toolSeeds = cryptoComparisonMeshToolSeeds()
+    const toolSeedIdsUnique = new Set(toolSeeds.map((t) => t.id)).size === toolSeeds.length
+    const cryptoComparisonMeshIsDryOn =
+      mesh.computes && uniqueFoldPairs && panelMetaOk && toolSeedIdsUnique
+      && mesh.claySolvedByThisFold === 0 && mesh.certified === false && mesh.refuseBeyond === true
+
+    const facets = [
+      { facet: 'cryptoComparisonMeshIsDry', on: cryptoComparisonMeshIsDryOn },
+      { facet: `mesh computes — nodes=${mesh.nodeCount} edges=${mesh.edgeCount}`, on: mesh.computes },
+      { facet: 'unique fold|pair|cli|route among non-proof nodes (no wet twin inside mesh)', on: uniqueFoldPairs },
+      { facet: 'panel sections derive 1:1 from mesh.inPanel', on: panelMetaOk },
+      { facet: 'tool seeds unique by toolId (proof aliases collapsed)', on: toolSeedIdsUnique },
+      { facet: 'clay=0 · certified=false · refuseBeyond stays', on: mesh.claySolvedByThisFold === 0 && mesh.certified === false && mesh.refuseBeyond === true },
+    ]
+    const sealed = sealFacets('crypto-comparison-mesh-is-dry', facets)
+    return {
+      computes: sealed.ok && cryptoComparisonMeshIsDryOn,
+      cryptoComparisonMeshIsDry: cryptoComparisonMeshIsDryOn,
+      mesh,
+      panelSections,
+      toolSeeds,
+      claySolvedByThisFold: 0 as const,
+      certified: false as const,
+      refuseBeyond: true as const,
+      facets: sealed.facets,
+      root: merge(mesh.root, sealed.root),
+      pair: 'crypto/comparison-mesh' as const,
+      cli: 'npm run quantum:crypto-comparison-mesh-dry',
+      route: '/en/quantum-encryption#crypto-comparison-mesh',
+      statement: `cryptoComparisonMeshIsDry=${cryptoComparisonMeshIsDryOn} — single sealed mesh source · panel=${panelSections.length} tools=${toolSeeds.length}.`,
+      boundary: mesh.boundary,
+    }
+  })
+}
+
+/** npm run quantum:crypto-comparison-mesh-dry — mesh dry + related-surfaces handoff note */
+export function runCryptoComparisonMeshIsDryExit(_root: string, _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const r = cryptoComparisonMeshIsDry()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} crypto-comparison-mesh-dry — cryptoComparisonMeshIsDry=${r.cryptoComparisonMeshIsDry} ` +
+      `nodes=${r.mesh.nodeCount} edges=${r.mesh.edgeCount} panel=${r.panelSections.length} tools=${r.toolSeeds.length} ` +
+      `clay=${r.claySolvedByThisFold} refuseBeyond=${r.refuseBeyond} root=${r.root.slice(0, 2 ** 3)}\n`,
+  )
+  process.stdout.write(`  compose cryptoRelatedSurfacesAreDry in src/quantum/apps for UI/MCP/toolbox/proofs audit\n`)
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.cryptoComparisonMeshIsDry && r.claySolvedByThisFold === 0 ? 0 : 1
 }

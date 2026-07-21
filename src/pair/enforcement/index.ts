@@ -76,6 +76,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'prove/1tbit-encrypt',
   'max-bits/crypto',
   'prove/local-magnitudes-iso',
+  'crypto/comparison-mesh',
   'iso/pqc-catalog',
   'poles/cross-pqc',
   'secp256k1/invert-decode',

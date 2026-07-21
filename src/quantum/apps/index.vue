@@ -16,6 +16,7 @@ import {
   upgradeLocalFromOptimisedManualWorkExperience,
   uiProseDuplicationRemoved,
   rosettaSecurityGapsWired,
+  cryptoRelatedSurfacesAreDry,
 } from './index.ts'
 import { translationGapsGate } from '../../mountain/source/index.ts'
 import {
@@ -37,6 +38,7 @@ import {
   proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
   encryptionPanelComputes,
   productionRsaRefuseCompletesQuantumViaRosetta,
+  cryptoComparisonMeshIsDry,
 } from '../../water/encryption/index.ts'
 import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mountain/og/index.ts'
 import {
@@ -92,6 +94,7 @@ type RunReceipt = {
 
 const panel = shallowRef(quantumAppsPanelComputes())
 const encryption = shallowRef(encryptionPanelComputes())
+const cryptoMeshDry = shallowRef(cryptoRelatedSurfacesAreDry())
 const activeId = ref<string | null>(null)
 const runningId = ref<string | null>(null)
 const error = ref('')
@@ -344,6 +347,16 @@ function runTool(toolId: string) {
         ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
         { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
       ]
+    } else if (toolId === 'crypto-comparison-mesh-dry') {
+      const r = cryptoRelatedSurfacesAreDry()
+      const meshOnly = cryptoComparisonMeshIsDry()
+      cryptoMeshDry.value = r
+      encryption.value = encryptionPanelComputes()
+      ok = r.computes && r.cryptoRelatedSurfacesAreDry && meshOnly.cryptoComparisonMeshIsDry
+      summary = `relatedDry=${r.cryptoRelatedSurfacesAreDry} meshIsDry=${r.cryptoComparisonMeshIsDry} nodes=${r.mesh.nodeCount} edges=${r.mesh.edgeCount} residuals=${r.residuals.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'og-limits-measure') {
       const limits = platformOgLimitsMeasured()
       const honesty = honestyInProseChallenged()
@@ -882,24 +895,51 @@ function runTool(toolId: string) {
         </p>
       </section>
       <UiSeparator />
+      <section id="crypto-comparison-mesh">
+        <h3>Crypto comparison mesh</h3>
+        <p class="quantum-apps__meta">{{ cryptoMeshDry.mesh.boundary }}</p>
+        <UiBadge :variant="cryptoMeshDry.cryptoRelatedSurfacesAreDry ? 'default' : 'outline'">
+          relatedDry={{ cryptoMeshDry.cryptoRelatedSurfacesAreDry }}
+          · meshIsDry={{ cryptoMeshDry.cryptoComparisonMeshIsDry }}
+          · nodes={{ cryptoMeshDry.mesh.nodeCount }}
+          · edges={{ cryptoMeshDry.mesh.edgeCount }}
+          · residuals={{ cryptoMeshDry.residuals.length }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="node in cryptoMeshDry.mesh.nodes" :key="node.id">
+            <UiBadge variant="outline">{{ node.kind }}</UiBadge>
+            <strong>{{ node.id }}</strong>
+            — <a :href="node.route">{{ node.route }}</a>
+            <template v-if="node.proofRoute">
+              · <a :href="node.proofRoute">{{ node.proofRoute }}</a>
+            </template>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          Edges:
+          <span v-for="(e, i) in cryptoMeshDry.mesh.edges" :key="e.id">
+            {{ i ? ' · ' : '' }}{{ e.from }}—{{ e.relation }}→{{ e.to }}
+          </span>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'crypto-comparison-mesh-dry'" @click="runTool('crypto-comparison-mesh-dry')">
+          {{ runningId === 'crypto-comparison-mesh-dry' ? '…' : 'Run crypto-comparison-mesh-dry' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
       <section id="crypto-beyond-rsa">
         <h3>Beyond RSA — PQC · Shor/ECC · trinity</h3>
         <p class="quantum-apps__meta">
-          Timed structural/demo suite — NOT FIPS/ISO certified · NOT production KEM · demo RSA allowlist only.
+          Mesh catalog · <a href="#crypto-comparison-mesh">#crypto-comparison-mesh</a> · live badges below.
         </p>
         <UiBadge :variant="encryption.computes ? 'default' : 'outline'">
           encryption.panel · {{ encryption.computes ? '✓' : '—' }} · eccShor={{ encryption.eccShorBreaks }}
         </UiBadge>
         <p class="quantum-apps__meta">{{ encryptionTimedLine }}</p>
-        <p class="quantum-apps__meta">
-          ML-KEM {{ encryption.mlKemParams.join(' · ') }} · ML-DSA {{ encryption.mlDsaParams.join(' · ') }} · SLH-DSA {{ encryption.slhDsaParams.join(' · ') }}
-        </p>
         <ul class="quantum-apps__facets">
-          <li v-for="section in encryption.sections" :key="section.id" :id="section.id">
+          <li v-for="section in encryption.sections" :key="section.nodeId ?? section.id">
             <UiBadge :variant="section.on ? 'default' : 'outline'">{{ section.on ? '✓' : '—' }}</UiBadge>
             <strong>{{ section.title }}</strong>
-            — <code>{{ section.cli }}</code>
-            <a class="quantum-apps__meta" :href="section.route">{{ section.route }}</a>
+            — <a class="quantum-apps__meta" :href="section.route">{{ section.route }}</a>
           </li>
         </ul>
         <UiButton size="sm" :disabled="runningId === 'crypto-beyond-measure'" @click="runTool('crypto-beyond-measure')">
@@ -916,7 +956,7 @@ function runTool(toolId: string) {
       <section id="local-reverse-timed-vs-standards">
         <h3>Local reverse timed vs ISO/NIST standards</h3>
         <p class="quantum-apps__meta">
-          Toy DEMO_RSA_MODULI wall-clock vs estimated classical 2^bits work (AES-128/256 · ML-KEM cats). certified=false · does NOT break NIST PQC · production/Bitcoin refused · reference bounds only (this repo is not the ISO standard).
+          Live fold · <a href="#crypto-comparison-mesh">mesh</a> · <a href="/proofs/encryption-honesty">proof</a>
         </p>
         <UiBadge :variant="encryption.localTimed?.computes && !encryption.localTimed?.breaksNistPqc ? 'default' : 'outline'">
           rev={{ encryption.localTimed?.reverseMs?.toFixed?.(3) ?? '—' }}ms
@@ -924,20 +964,6 @@ function runTool(toolId: string) {
           · demoMaxBits={{ encryption.localTimed?.demoMaxBits ?? '—' }}
           · breaksNistPqc={{ encryption.localTimed?.breaksNistPqc ?? '—' }}
         </UiBadge>
-        <table v-if="encryption.localTimed?.comparisons?.length" class="quantum-apps__table">
-          <thead>
-            <tr><th>Standard</th><th>Classical bits</th><th>log₂(est sec)</th><th>Gap log₂</th><th>Breaks?</th></tr>
-          </thead>
-          <tbody>
-            <tr v-for="c in encryption.localTimed.comparisons" :key="c.id">
-              <td><code>{{ c.id }}</code></td>
-              <td>{{ c.classicalSecurityBits }}</td>
-              <td>{{ c.estimatedClassicalLog2Sec.toFixed(1) }}</td>
-              <td>{{ c.demoOrdersOfMagnitudeFasterLog2.toFixed(1) }}</td>
-              <td>{{ c.breaksStandard }}</td>
-            </tr>
-          </tbody>
-        </table>
         <UiButton size="sm" :disabled="runningId === 'local-reverse-timed'" @click="runTool('local-reverse-timed')">
           {{ runningId === 'local-reverse-timed' ? '…' : 'Run local-reverse-timed' }}
         </UiButton>
@@ -946,21 +972,13 @@ function runTool(toolId: string) {
       <section id="prove-local-novel-encrypt">
         <h3>Local novel-encryption security proof</h3>
         <p class="quantum-apps__meta">
-          Structural local security (local-novel) · overallWireClaimProved=false · strongerThanNistPqc=false · wire/FIPS/field unproved. Directions×models: prove/local-magnitudes-iso.
-          productionReverseRefused=true · strongerThanNistPqc=false · certified=false · this repo is NOT the ISO standard.
+          Live fold · <a href="#crypto-comparison-mesh">mesh</a> · handoff <a href="#prove-local-magnitudes-iso">#prove-local-magnitudes-iso</a>
         </p>
         <UiBadge :variant="encryption.localNovel?.localSecurityProved && encryption.localNovel?.overallWireClaimProved === false ? 'default' : 'outline'">
           localSecurityProved={{ encryption.localNovel?.localSecurityProved ?? '—' }}
           · overallWireClaimProved={{ encryption.localNovel?.overallWireClaimProved ?? false }}
           · strongerThanNistPqc={{ encryption.localNovel?.strongerThanNistPqc ?? false }}
-          · thisRepoIsNotTheIsoStandard={{ encryption.localNovel?.thisRepoIsNotTheIsoStandard ?? true }}
         </UiBadge>
-        <ul class="quantum-apps__facets">
-          <li v-for="c in (encryption.localNovel?.inventory?.components ?? [])" :key="c.id">
-            <UiBadge variant="outline">{{ c.kind }}</UiBadge>
-            <strong>{{ c.id }}</strong> — {{ c.fold }}
-          </li>
-        </ul>
         <UiButton size="sm" :disabled="runningId === 'prove-local-novel-encrypt'" @click="runTool('prove-local-novel-encrypt')">
           {{ runningId === 'prove-local-novel-encrypt' ? '…' : 'Run prove-local-novel-encrypt' }}
         </UiButton>
@@ -969,7 +987,7 @@ function runTool(toolId: string) {
       <section id="prove-1tbit">
         <h3>1 Tbit/s realtime encryption — honest claim receipt</h3>
         <p class="quantum-apps__meta">
-          SI target 1e12 bits/s. wire-crypto is NOT proved (no AES bench). amortized-reuse-memo may prove holographic extent÷memoByRoot — NOT wire AES-GCM · NOT FIPS.
+          Live fold · <a href="#crypto-comparison-mesh">mesh</a>
         </p>
         <UiBadge :variant="encryption.oneTbit?.computes && !encryption.oneTbit?.wire?.provedAtCallTime ? 'default' : 'outline'">
           wire.proved={{ encryption.oneTbit?.wire?.provedAtCallTime ?? '—' }}
@@ -980,10 +998,10 @@ function runTool(toolId: string) {
           {{ runningId === 'prove-1tbit-encrypt' ? '…' : 'Run prove-1tbit-encrypt' }}
         </UiButton>
       </section>
-            <section id="prove-local-magnitudes-iso">
+      <section id="prove-local-magnitudes-iso">
         <h3>Local vs ISO magnitudes — honest multi-model receipt</h3>
         <p class="quantum-apps__meta">
-          Wire-crypto-security-bits is proof-of-falsehood (demo ≪ ML-KEM). Structural/amortized may prove ≥100× under named non-wire metrics only. certified=false · NOT ISO certified.
+          Live fold · <a href="#crypto-comparison-mesh">mesh</a> · <a href="/proofs/encryption-honesty">proof</a>
         </p>
         <UiBadge :variant="encryption.localMagnitudes?.overallWireClaimProved === false ? 'default' : 'outline'">
           overallWireClaimProved={{ encryption.localMagnitudes?.overallWireClaimProved ?? '—' }}
@@ -991,20 +1009,6 @@ function runTool(toolId: string) {
           · structural={{ encryption.localMagnitudes?.structuralMayProve ?? '—' }}
           · amort={{ encryption.localMagnitudes?.amortMayProve ?? '—' }}
         </UiBadge>
-        <table v-if="encryption.localMagnitudes?.perDirection?.length" class="quantum-apps__table">
-          <thead>
-            <tr><th>Direction</th><th>Model</th><th>Ratio</th><th>≥100×</th><th>on</th></tr>
-          </thead>
-          <tbody>
-            <tr v-for="(row, i) in encryption.localMagnitudes.perDirection" :key="i">
-              <td>{{ row.direction }}</td>
-              <td><code>{{ row.model }}</code></td>
-              <td>{{ Number(row.ratio).toExponential(3) }}</td>
-              <td>{{ row.magnitudesStronger }}</td>
-              <td>{{ row.on }}</td>
-            </tr>
-          </tbody>
-        </table>
         <UiButton size="sm" :disabled="runningId === 'prove-local-magnitudes-iso'" @click="runTool('prove-local-magnitudes-iso')">
           {{ runningId === 'prove-local-magnitudes-iso' ? '…' : 'Run prove-local-magnitudes-iso' }}
         </UiButton>
