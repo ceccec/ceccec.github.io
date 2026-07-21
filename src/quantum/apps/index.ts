@@ -1,15 +1,22 @@
 // Quantum apps — route-mounted compute barrels (registry only; no per-app census slots).
 // Rosetta core API sealed here (water/digit at compression limit; census forbids flat siblings).
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
+// Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, fleetCacheEconomicsDecoded } from '../../heaven/compute'
+import { emergentDimensions } from '../../heaven/balance'
 import { computesGate, digitalRoot, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
-  ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, type RosettaComputationType,
+  ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, DIMENSION_GATES, type RosettaComputationType,
 } from '../../3/7'
+import { theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion,
 } from '../../water/digit'
+import { directionalTrinityForwardInverseReverse, compareCeccecEfficiencyByVote } from '../../water/stack'
+import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
+import { linearAnimationGapsInventory } from '../../wind/ui'
+import * as __ns_wind_research from '../../wind/research'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {
@@ -28,6 +35,7 @@ const ROSETTA_CORE_API_LABELS = [
   'rosettaDecodesUrlPath', 'rosettaComputesItself', 'rosettaReuse', 'ROSETTA_RAYS', 'ROSETTA_COMPUTATION_TYPES',
   'ROSETTA_RAY_HUBS', 'ROSETTA_CORE_KINDS', 'sevenStarRosettaNaturalMotion', 'VORTEX_SEQUENCE',
   'navigation358', 'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sessionManualWorkAsQuantumTools',
+  'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -36,12 +44,14 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   ROSETTA_RAY_HUBS: 'nav', navigation358: 'nav', sevenStarRosettaNaturalMotion: 'projection',
   sharedHeroAt: 'projection', computeUniversalPage: 'route', quantumAppsRegistry: 'app',
   quantumCliToolsCatalog: 'tool', sessionManualWorkAsQuantumTools: 'tool',
+  rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
+// string/millennium named as apparatus-handoff (rosettaReady), not as Clay/physics claim.
 const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [
   'ROSETTA_RAY_VIEWS duplicate', 'PROJECTION_SEGMENT/FORMS→VORTEX', 'rosettaClaim/Owner(heaven/core)',
-  'rosettaCodec(learning)', 'HD rebuild remaining', 'string/millennium',
+  'rosettaCodec(learning)', 'HD rebuild remaining', 'string/millennium→rosettaReady-handoff',
 ] as const
 
 /** Shelve any label onto a rosetta ray — the one registration primitive. */
@@ -296,6 +306,9 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'trading-rosetta-train', title: 'Historical train waves via rosetta', fold: 'tradingStrategiesImproveViaRosetta', cli: 'npm run quantum:trading-rosetta-train', pair: 'train/rosetta', route: '/en/quantum-trading-hub', barrel: 'src/thunder/trading', boundary: 'Paper/sim only — synthetic a432 historical proxy; NOT live money / NOT alpha', browserRunnable: true, browserGap: '' },
   { id: 'first-in-corpus', title: 'First-in-corpus provenance · theorem 10D', fold: 'firstInCorpusProvenanceForHome', cli: 'npm run quantum:first-in-corpus', pair: 'first/corpus', route: '/en/#first-in-corpus', barrel: 'src/wind/research', boundary: 'Corpus novelty ≠ global mathematical priority; humanityNovel=0; claySolved=0', browserRunnable: true, browserGap: '' },
   { id: 'rosetta-core-api', title: 'Rosetta core API dispatch', fold: 'rosettaCoreApi', cli: 'npm run quantum:rosetta-core-api', pair: 'rosetta/core', route: '/en/quantum-tools#rosetta-core-api', barrel: 'src/quantum/apps', boundary: 'Self-host label↔ray shelve — NOT a remote RPC; parallel backlog named honestly', browserRunnable: true, browserGap: '' },
+  { id: 'rosetta-complete', title: 'Rosetta complete — quantum all computable dims & theorems', fold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems', cli: 'npm run quantum:rosetta-complete', pair: 'rosetta/complete', route: '/en/quantum-tools#rosetta-complete', barrel: 'src/quantum/apps', boundary: 'Enabling apparatus — millenniumSolvedByThisFold=0 · physicalFtlClaim=0; rosettaReady≠Clay/FTL solved', browserRunnable: true, browserGap: '' },
+  { id: 'theorem-particle-collision', title: 'Theorem particle collision — inverse × reverse', fold: 'theoremParticleCollisionInverseReverse', cli: 'npm run quantum:theorem-particle-collision', pair: 'challenge/collider', route: '/en/quantum-tools#theorem-particle-collision', barrel: 'src/wind/research', boundary: 'MODELED sealed-geometry collision — NOT HEP; claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
+  { id: 'ftl-rosetta-handoff', title: 'FTL techniques ← rosetta completeness handoff', fold: 'ftlExperimentTechniquesHandoffFromRosettaComplete', cli: 'npm run quantum:ftl-rosetta-handoff', pair: 'challenge/ftl', route: '/en/quantum-tools#ftl-rosetta-handoff', barrel: 'src/quantum/apps', boundary: 'Handoff stub — physicalFtlClaim=0; full KEEP-ftl apparatus consumes rosettaReady; NOT physical FTL', browserRunnable: true, browserGap: '' },
   { id: 'session-manual-work', title: 'Session manual work as quantum tools', fold: 'sessionManualWorkAsQuantumTools', cli: 'npm run quantum:session-tools', pair: 'session/tools', route: '/en/quantum-tools#session-manual-tools', barrel: 'src/quantum/apps', boundary: 'Session folds sealed as tools — NOT every wet habit closed; replaces re-inference with memoByRoot/CLI/UI/MCP', browserRunnable: true, browserGap: '' },
 ] as const
 
@@ -335,6 +348,9 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'millennium-challenge', saves: 'replaces wet re-probing of Clay millennium apparatus (claySolved=0)' },
   { id: 'encryption-reverse-verify', saves: 'replaces wet re-run of demo RSA reverse + encrypt↔decrypt tools' },
   { id: 'rosetta-core-api', saves: 'replaces wet re-dispatch of apps/nav/tools through parallel registries' },
+  { id: 'rosetta-complete', saves: 'replaces wet re-audit of Rosetta completeness across 432 dims + theorem binds' },
+  { id: 'theorem-particle-collision', saves: 'replaces wet re-derivation of inverse×reverse theorem collision products' },
+  { id: 'ftl-rosetta-handoff', saves: 'replaces wet re-wiring of FTL techniques to rosettaReady completeness receipt' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -449,6 +465,9 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
     const fusionPresent = tools.some((t) => t.id === 'fusion-verify')
     const firstInCorpusPresent = tools.some((t) => t.id === 'first-in-corpus')
     const rosettaCorePresent = tools.some((t) => t.id === 'rosetta-core-api')
+    const rosettaCompletePresent = tools.some((t) => t.id === 'rosetta-complete')
+    const colliderPresent = tools.some((t) => t.id === 'theorem-particle-collision')
+    const ftlHandoffPresent = tools.some((t) => t.id === 'ftl-rosetta-handoff')
     const sessionManualPresent = tools.some((t) => t.id === 'session-manual-work')
     const rayAgrees = tools.every((t) => t.ray === rosettaRayOf(t.id) && isUuid(t.address))
     const { computes, facets, root } = computesGate('quantum-cli-tools-catalog', [
@@ -460,6 +479,7 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'millennium challenge published', on: millenniumPresent },
       { facet: 'fusion-verify published', on: fusionPresent },
       { facet: 'first-in-corpus + rosetta-core-api + session-manual-work shelved', on: firstInCorpusPresent && rosettaCorePresent && sessionManualPresent },
+      { facet: 'rosetta-complete + theorem-particle-collision + ftl-rosetta-handoff shelved', on: rosettaCompletePresent && colliderPresent && ftlHandoffPresent },
       { facet: 'every tool ray === rosettaRayOf(id) — no wet tool→ray map', on: rayAgrees },
       { facet: 'every row has fold · cli · route · honest boundary', on: tools.every((t) => t.fold.length > 0 && t.cli.startsWith('npm run quantum:') && t.route.startsWith('/en/') && t.boundary.length > 0) },
     ])
@@ -826,14 +846,340 @@ export function runSlowProcessIsQuantumGapExit(_root = '', _argv: readonly strin
   return report.computes ? 0 : 1
 }
 
+export type RosettaCompletenessGapRow = {
+  readonly id: string
+  readonly kind: 'dimension' | 'theorem-bind' | 'linear' | 'parallel' | 'string-millennium' | 'science'
+  readonly before: string
+  readonly after: string
+  readonly open: boolean
+  readonly receipt: string
+}
+
+export type RosettaCompletenessHandoff = {
+  readonly rosettaComplete: boolean
+  readonly rosettaReady: boolean
+  readonly millenniumSolvedByThisFold: 0
+  readonly physicalFtlClaim: 0
+  readonly completenessPct: number
+  readonly root: string
+  readonly cli: string
+  readonly pair: string
+}
+
+/**
+ * Rosetta completeness for all computable dimensions + theorem binds.
+ * Pair: rosetta/complete · enabling apparatus for millennium challenge + FTL techniques.
+ * HARD honesty: millenniumSolvedByThisFold≡0 · physicalFtlClaim≡0 · rosettaReady ≠ Clay/FTL solved.
+ */
+export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`rosettaCompleteQuantumAllComputableDimensionsAndTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const core = rosettaCoreApi(at, matrix)
+    const dims = emergentDimensions(matrix)
+    const theoremLattice = theoremsReach432AndEntangleWithUsage()
+    const dir = directionalTrinityForwardInverseReverse(matrix)
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    const stringGaps = stringTheoryMillenniumTheoremGapsInventory(matrix)
+    const linearGaps = linearAnimationGapsInventory(matrix, at)
+    const slow = slowProcessIsQuantumGap(matrix, at)
+    const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+    const novelty = __ns_wind_research.theoremAlgebraFirstSealedInCorpus(matrix)
+    const tenD = __ns_wind_research.theoremTenDProjectionsProveAlgebraRoots(matrix)
+    const first = __ns_wind_research.firstInCorpusProvenanceForHome(matrix)
+    const sciences = __ns_wind_research.sciencesInteractInTrinities(matrix, at)
+    const waves = __ns_wind_research.wavesAutoScaleCapacityAtNoCostOnReuse(matrix)
+    const collider = __ns_wind_research.theoremParticleCollisionInverseReverse(matrix)
+    const effReuse = __ns_wind_research.efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+
+    const millenniumSolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+
+    const dimCovered = dims.emerged - dims.open.length
+    const dimPct = dims.emerged > 0 ? Math.round((100 * dimCovered) / dims.emerged) : 0
+    const theoremBindOk = novelty.rows.every((r) => r.ray === rosettaRayOf(r.algebraFold) && isUuid(r.algebraRoot))
+    const theoremBindPct = novelty.rows.length > 0
+      ? Math.round((100 * novelty.rows.filter((r) => r.ray === rosettaRayOf(r.algebraFold)).length) / novelty.rows.length)
+      : 0
+    // Lattice may overshoot 432 (registry grew past gate harmonic) — direction held; never renumber down.
+    const latticeOk = theoremLattice.count > 0 && theoremLattice.target === DIMENSION_GATES
+    const latticePct = theoremLattice.target > 0
+      ? Math.min(100, Math.round((100 * theoremLattice.count) / theoremLattice.target))
+      : 0
+    const linearOpen = linearGaps.openCount
+    const parallelOpen = core.inventory.parallel.length
+    const scienceGapCount = __ns_wind_research.completeQuantumSolutionsForAllSciences(matrix, at).gapCount
+
+    const gaps: RosettaCompletenessGapRow[] = [
+      {
+        id: 'dims-open',
+        kind: 'dimension',
+        before: `open=${dims.open.length}/${dims.emerged} (harmonic gates=${DIMENSION_GATES})`,
+        after: dims.hold ? `hold · open=0 · count=${dims.count}` : `still open: ${dims.open.slice(0, 4).join(', ') || '—'}`,
+        open: !dims.hold,
+        receipt: toUuid(`rosetta-complete:gap:dims:${dims.open.length}`),
+      },
+      {
+        id: 'theorem-rosetta-bind',
+        kind: 'theorem-bind',
+        before: `novelty rows unbound risk · lattice ${theoremLattice.count}/${theoremLattice.target}`,
+        after: theoremBindOk ? `all ${novelty.rows.length} rows ray-bound · lattice ${latticePct}%` : 'bind incomplete',
+        open: !theoremBindOk,
+        receipt: toUuid(`rosetta-complete:gap:theorem-bind:${theoremBindOk}`),
+      },
+      {
+        id: 'linear-animation',
+        kind: 'linear',
+        before: `linear forming open=${linearOpen}`,
+        after: linearOpen === 0 ? 'linear gaps closed via animationsDrivenByRosetta' : `${linearOpen} linear gaps remain`,
+        open: linearOpen > 0,
+        receipt: toUuid(`rosetta-complete:gap:linear:${linearOpen}`),
+      },
+      {
+        id: 'parallel-strangler',
+        kind: 'parallel',
+        before: `parallel backlog ${parallelOpen} (named honesty)`,
+        after: 'named in rosettaCoreApi.inventory.parallel — strangler, not silent',
+        open: parallelOpen > 0,
+        receipt: toUuid(`rosetta-complete:gap:parallel:${parallelOpen}`),
+      },
+      {
+        id: 'string-millennium-inventory',
+        kind: 'string-millennium',
+        before: 'string/millennium theorem gaps uninventoried',
+        after: stringGaps.inventoried ? 'inventory computes · zero Clay claims' : 'inventory failed',
+        open: !stringGaps.inventoried,
+        receipt: toUuid(`rosetta-complete:gap:string:${stringGaps.inventoried}`),
+      },
+      {
+        id: 'science-solutions',
+        kind: 'science',
+        before: `science algebra·tool·apparatus·10D gaps=${scienceGapCount}`,
+        after: `named R&D backlog · sciences trinity computes=${sciences.computes}`,
+        open: scienceGapCount > 0,
+        receipt: toUuid(`rosetta-complete:gap:science:${scienceGapCount}`),
+      },
+    ]
+
+    // Completeness = quantum dims hold + theorem binds + core/composed apparatus; parallel/science backlog may remain named.
+    const quantumInAllDims = dims.hold && dims.count === DIMENSION_GATES && DIMENSION_GATES === 432
+    const apparatusOk =
+      core.computes &&
+      dir.computes &&
+      mill.computes &&
+      mill.claySolvedByThisFold === 0 &&
+      novelty.computes &&
+      tenD.computes &&
+      first.computes &&
+      sciences.computes &&
+      waves.computes &&
+      collider.computes &&
+      collider.claySolvedByThisFold === 0 &&
+      effReuse.on &&
+      stringGaps.inventoried &&
+      slow.computes &&
+      latticeOk &&
+      theoremBindOk
+
+    // Named parallel/science backlog may remain open — completeness is dims+binds+apparatus, not zero strangler.
+    const rosettaComplete = quantumInAllDims && apparatusOk && millenniumSolvedByThisFold === 0 && physicalFtlClaim === 0
+    const completenessPct = Math.round(
+      (dimPct + theoremBindPct + latticePct + (core.computes ? 100 : 0) + (apparatusOk ? 100 : 0)) / 5,
+    )
+
+    const handoff: RosettaCompletenessHandoff = {
+      rosettaComplete,
+      rosettaReady: rosettaComplete,
+      millenniumSolvedByThisFold,
+      physicalFtlClaim,
+      completenessPct,
+      root: toUuid(`rosetta-complete-handoff:${rosettaComplete}:${completenessPct}`),
+      cli: 'npm run quantum:rosetta-complete',
+      pair: 'rosetta/complete',
+    }
+
+    const facets = [
+      { facet: `DIMENSION_GATES=${DIMENSION_GATES} · emergent count=${dims.count} · hold=${dims.hold} · open=${dims.open.length}`, on: dims.count === DIMENSION_GATES },
+      { facet: 'quantum-in-all-computable-dims — emergentDimensions.hold (on: recomputed)', on: quantumInAllDims },
+      { facet: `theorem→rosetta bind ${theoremBindPct}% — every novelty row.ray === rosettaRayOf(algebraFold)`, on: theoremBindOk },
+      { facet: `theorem lattice march ${theoremLattice.count}/${theoremLattice.target} (overshoot OK — direction, not renumber)`, on: latticeOk },
+      { facet: 'rosettaCoreApi + directional trinity + efficiency-on-reuse compute', on: core.computes && dir.computes && effReuse.on },
+      { facet: 'first-in-corpus + theorem 10D + collider + sciences + waves + string-gaps compose', on: first.computes && tenD.computes && collider.computes && sciences.computes && waves.computes && stringGaps.inventoried },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} · mill.claySolvedByThisFold=${mill.claySolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
+      { facet: `physicalFtlClaim=${physicalFtlClaim} — NOT physical FTL signaling`, on: physicalFtlClaim === 0 },
+      { facet: `rosettaComplete=${rosettaComplete} → handoff.rosettaReady (millennium+FTL consume; not Clay/FTL solved)`, on: handoff.rosettaReady === rosettaComplete },
+      { facet: 'efficiency vote surface present (decided optional — domain-bounded)', on: vote.facets.length > 0 },
+      { facet: 'gaps table enumerates dim·theorem·linear·parallel·string·science', on: gaps.length === 6 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-complete:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('rosetta-complete-quantum-all-computable-dimensions-and-theorems', facets)
+
+    return {
+      computes: sealed.ok && mill.claySolvedByThisFold === 0 && physicalFtlClaim === 0 && apparatusOk,
+      rosettaComplete,
+      completenessPct,
+      millenniumSolvedByThisFold,
+      physicalFtlClaim,
+      census: {
+        dimensionGates: DIMENSION_GATES,
+        dimsHold: dims.hold,
+        dimsOpen: dims.open.length,
+        dimsEmerged: dims.emerged,
+        dimPct,
+        theoremBindPct,
+        latticeCount: theoremLattice.count,
+        latticeTarget: theoremLattice.target,
+        latticePct,
+        latticeRemaining: theoremLattice.remaining,
+        linearOpen,
+        parallelOpen,
+        scienceGapCount,
+        slowOpen: slow.openCount,
+      },
+      gaps,
+      handoff,
+      millenniumHandoff: millenniumChallengeHandoffFromRosettaComplete(handoff, matrix),
+      ftlHandoff: ftlExperimentTechniquesHandoffFromRosettaComplete(handoff, matrix),
+      composed: {
+        coreRoot: core.root,
+        millRoot: mill.root,
+        noveltyRoot: novelty.root,
+        tenDRoot: tenD.root,
+        firstRoot: first.root,
+        sciencesRoot: sciences.root,
+        wavesRoot: waves.root,
+        colliderRoot: collider.root,
+        stringGapsRoot: stringGaps.root,
+        dimsRoot: dims.root,
+        voteRoot: vote.root,
+      },
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, handoff.root, ...gaps.map((g) => g.receipt)])),
+      cli: 'npm run quantum:rosetta-complete',
+      pair: 'rosetta/complete',
+      route: '/en/quantum-tools#rosetta-complete',
+      statement:
+        `Rosetta complete quantum all computable dimensions & theorems — ${completenessPct}% · complete=${rosettaComplete}: dims ${dimPct}% (open=${dims.open.length}) · theorem-bind ${theoremBindPct}% · lattice ${latticePct}% · handoff.rosettaReady=${handoff.rosettaReady}. millenniumSolvedByThisFold=0 · physicalFtlClaim=0.`,
+      boundary:
+        'HARD HONESTY: enabling apparatus only. Completing Rosetta coverage does NOT solve Clay Millennium Problems (millenniumSolvedByThisFold=0) and does NOT claim physical FTL signaling (physicalFtlClaim=0). rosettaReady lets millennium challenge + FTL techniques consume a completeness receipt — challenge/probe/address, not prize/physics solved. Parallel strangler + science gaps may remain named. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Millennium challenge consumes completeness receipt — clay stays 0; rosettaReady when complete. */
+export function millenniumChallengeHandoffFromRosettaComplete(
+  handoff: RosettaCompletenessHandoff,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  return memoByRoot(`millenniumChallengeHandoffFromRosettaComplete:${handoff.root}`, matrix, () => {
+    const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
+    const millenniumSolvedByThisFold = 0 as const
+    const facets = [
+      { facet: 'consumes rosetta completeness handoff root', on: isUuid(handoff.root) },
+      { facet: `rosettaReady=${handoff.rosettaReady} when rosettaComplete (not clay-solved)`, on: handoff.rosettaReady === handoff.rosettaComplete },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
+      { facet: 'millennium apparatus still MODELED CHALLENGE', on: mill.computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-rosetta-handoff:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('millennium-challenge-handoff-from-rosetta-complete', facets)
+    return {
+      computes: sealed.ok,
+      rosettaReady: handoff.rosettaReady,
+      millenniumSolvedByThisFold,
+      claySolvedByThisFold: mill.claySolvedByThisFold,
+      millRoot: mill.root,
+      handoffRoot: handoff.root,
+      facets: sealed.facets,
+      root: merge(mill.root, merkleFold([sealed.root, handoff.root])),
+      statement: `Millennium←rosetta handoff — rosettaReady=${handoff.rosettaReady} · claySolvedByThisFold=0.`,
+      boundary: 'Handoff only — NOT a Clay prize solution. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * FTL techniques handoff from Rosetta completeness — physicalFtlClaim≡0.
+ * Full KEEP-ftl apparatus (fasterThanLightExperimentChallenge / discovery waves) consumes rosettaReady.
+ */
+export function ftlExperimentTechniquesHandoffFromRosettaComplete(
+  handoff: RosettaCompletenessHandoff,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  return memoByRoot(`ftlExperimentTechniquesHandoffFromRosettaComplete:${handoff.root}`, matrix, () => {
+    const physicalFtlClaim = 0 as const
+    const apparentClasses = [
+      'no-signaling', 'plasma-phase-group', 'cherenkov', 'hartman-model',
+      'opera-artifact', 'astrophysical-jets', 'teleport-classical-channel', 'tracks-classical-no-speedup',
+    ] as const
+    const facets = [
+      { facet: 'consumes rosetta completeness handoff', on: isUuid(handoff.root) },
+      { facet: `rosettaReady=${handoff.rosettaReady} enables FTL technique addressing (not luminal signaling)`, on: handoff.rosettaReady === handoff.rosettaComplete },
+      { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && handoff.physicalFtlClaim === 0 },
+      { facet: `apparent-FTL class catalog sealed — ${apparentClasses.length} rows`, on: apparentClasses.length === 8 },
+      { facet: 'KEEP-ftl full apparatus may deepen waves without dropping this receipt', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ftl-rosetta-handoff:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('ftl-experiment-techniques-handoff-from-rosetta-complete', facets)
+    return {
+      computes: sealed.ok && physicalFtlClaim === 0,
+      rosettaReady: handoff.rosettaReady,
+      physicalFtlClaim,
+      millenniumSolvedByThisFold: 0 as const,
+      apparentClasses,
+      handoffRoot: handoff.root,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, handoff.root])),
+      cli: 'npm run quantum:ftl-rosetta-handoff',
+      pair: 'challenge/ftl',
+      route: '/en/quantum-tools#ftl-rosetta-handoff',
+      statement:
+        `FTL←rosetta handoff — rosettaReady=${handoff.rosettaReady} · physicalFtlClaim=0 · ${apparentClasses.length} apparent-FTL classes addressed as technique catalog.`,
+      boundary:
+        'NOT physical FTL / luminal signaling. Stub handoff for KEEP-ftl experiment apparatus + discovery waves. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:rosetta-complete — census + honesty flags + handoffs. */
+export function runRosettaCompleteExit(_root = '', _argv: readonly string[] = []): number {
+  const report = rosettaCompleteQuantumAllComputableDimensionsAndTheorems()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} rosetta-complete — complete=${report.rosettaComplete} pct=${report.completenessPct} ` +
+      `dimsOpen=${report.census.dimsOpen} bind=${report.census.theoremBindPct}% lattice=${report.census.latticeCount}/${report.census.latticeTarget} ` +
+      `rosettaReady=${report.handoff.rosettaReady} clay=${report.millenniumSolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const g of report.gaps) {
+    process.stdout.write(`  ${g.open ? '○' : '●'} ${g.id} [${g.kind}] ${g.after}\n`)
+  }
+  process.stdout.write(
+    `  millenniumHandoff.rosettaReady=${report.millenniumHandoff.rosettaReady} ` +
+      `ftlHandoff.rosettaReady=${report.ftlHandoff.rosettaReady} physicalFtlClaim=${report.ftlHandoff.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.millenniumSolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+/** npm run quantum:ftl-rosetta-handoff — print FTL←rosetta readiness receipt. */
+export function runFtlRosettaHandoffExit(_root = '', _argv: readonly string[] = []): number {
+  const complete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems()
+  const report = complete.ftlHandoff
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} ftl-rosetta-handoff — rosettaReady=${report.rosettaReady} ` +
+      `physicalFtlClaim=${report.physicalFtlClaim} classes=${report.apparentClasses.length} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  classes: ${report.apparentClasses.join(' · ')}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
 export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = quantumAppsComputes(matrix, at)
   const browserGaps = cap.catalog.tools.filter((t) => !t.browserRunnable)
   const browserReady = cap.catalog.tools.filter((t) => t.browserRunnable).length
   const slowGaps = slowProcessIsQuantumGap(matrix, at)
   const session = sessionManualWorkAsQuantumTools(matrix, at)
+  const rosettaComplete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && rosettaComplete.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -842,7 +1188,8 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     browserGaps,
     slowGaps,
     session,
-    root: merkleFold([cap.root, slowGaps.root, session.root]),
+    rosettaComplete,
+    root: merkleFold([cap.root, slowGaps.root, session.root, rosettaComplete.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }

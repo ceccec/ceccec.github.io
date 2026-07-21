@@ -36,6 +36,7 @@ import {
   completeQuantumSolutionsForAllSciences,
   scienceToolsApparatusTrinity,
   sciencesInteractInTrinities,
+  theoremParticleCollisionInverseReverse,
 } from '../../wind/research'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
@@ -53,7 +54,11 @@ import { realtimeWiring } from '../../fire/plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import { millenniumProblemsChallenge } from '../../wind/research'
-import { quantumCliToolsCatalog, slowProcessIsQuantumGap, sessionManualWorkAsQuantumTools, rosettaCoreApi } from '../../quantum/apps'
+import {
+  quantumCliToolsCatalog, slowProcessIsQuantumGap, sessionManualWorkAsQuantumTools, rosettaCoreApi,
+  rosettaCompleteQuantumAllComputableDimensionsAndTheorems,
+  ftlExperimentTechniquesHandoffFromRosettaComplete,
+} from '../../quantum/apps'
 import {
   encryptionReverseVerify,
   isoNistPqcStandardsCatalog,
@@ -682,6 +687,9 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },
     { slug: 'session-manual-tools', title: 'Session manual work as quantum tools — zero-token reuse catalog', proof: sessionManualWorkAsQuantumTools(matrix) },
     { slug: 'rosetta-core-api', title: 'Rosetta core API — self-host label↔ray dispatch', proof: rosettaCoreApi(0, matrix) },
+    { slug: 'rosetta-complete', title: 'Rosetta complete — quantum all computable dims & theorems · clay=0 · physicalFtl=0', proof: rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix) },
+    { slug: 'theorem-particle-collision', title: 'Theorem particle collision inverse×reverse · claySolvedByThisFold=0', proof: theoremParticleCollisionInverseReverse(matrix) },
+    { slug: 'ftl-rosetta-handoff', title: 'FTL techniques ← rosettaReady handoff · physicalFtlClaim=0', proof: ftlExperimentTechniquesHandoffFromRosettaComplete(rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix).handoff, matrix) },
     { slug: 'slow-quantum-gap', title: 'Slow processes are immediately visible as quantum gaps', proof: slowProcessIsQuantumGap(matrix) },
     { slug: 'fusion-verify', title: 'fuseAll wave₁ = fuseAll wave₂ — offline fusion verify', proof: quantumFusionVerify(matrix) },
     { slug: 'research', title: 'Research index = domain · method · limit · verify at call time', proof: millenniumProblemsChallenge(matrix) },

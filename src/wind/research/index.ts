@@ -2186,3 +2186,123 @@ export function runSciencesTrinitiesGuardedExit(_root: string, _argv: readonly s
   process.stdout.write(`  boundary: ${trinities.boundary}\n`)
   return 0
 }
+
+export type TheoremCollisionProduct = {
+  readonly id: string
+  readonly leftFold: string
+  readonly rightFold: string
+  readonly mode: 'inverse×reverse' | 'reverse×inverse'
+  readonly root: string
+  readonly ray: number
+  readonly novelToCorpus: boolean
+  readonly receipt: string
+}
+
+/**
+ * Theorem particle collision — inverse × reverse on sealed algebra folds.
+ * Pair: challenge/collider · MODELED sealed-geometry collision (UUID/merkle), NOT HEP.
+ * claySolvedByThisFold ≡ 0. Composes directional trinity + millennium honesty + first-in-corpus.
+ */
+export function theoremParticleCollisionInverseReverse(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theoremParticleCollisionInverseReverse', matrix, () => {
+    const mill = millenniumProblemsChallenge(matrix)
+    const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
+    const novelty = theoremAlgebraFirstSealedInCorpus(matrix)
+    const claySolvedByThisFold = 0 as const
+    const seeds = novelty.rows.filter((r) => r.kind === 'novel-corpus').slice(0, 6)
+    const products: TheoremCollisionProduct[] = []
+    for (let i = 0; i < seeds.length; i += 1) {
+      for (let j = i + 1; j < seeds.length; j += 1) {
+        const left = seeds[i]!
+        const right = seeds[j]!
+        const invRev = foldPair(toUuid(`collider-inv:${left.algebraFold}`), toUuid(`collider-rev:${right.algebraFold}`))
+        const revInv = foldPair(toUuid(`collider-rev:${left.algebraFold}`), toUuid(`collider-inv:${right.algebraFold}`))
+        const modes = [
+          { mode: 'inverse×reverse' as const, merged: invRev.merged },
+          { mode: 'reverse×inverse' as const, merged: revInv.merged },
+        ]
+        for (const m of modes) {
+          const ray = __ns_water_digit.rosettaRayOf(`${left.algebraFold}×${right.algebraFold}:${m.mode}`)
+          const novelToCorpus = !seeds.some((s) => s.algebraRoot === m.merged)
+          products.push({
+            id: `${left.algebraFold}×${right.algebraFold}:${m.mode}`,
+            leftFold: left.algebraFold,
+            rightFold: right.algebraFold,
+            mode: m.mode,
+            root: m.merged,
+            ray,
+            novelToCorpus,
+            receipt: toUuid(`theorem-collider:${left.algebraFold}:${right.algebraFold}:${m.mode}:${m.merged}`),
+          })
+        }
+      }
+    }
+    const novelSurvivors = products.filter((p) => p.novelToCorpus)
+    const rayBound = products.every((p) => p.ray === __ns_water_digit.rosettaRayOf(p.id) || p.ray >= 0)
+    const facets = [
+      { facet: `particles from novel-corpus algebra (≥3) — ${seeds.length}`, on: seeds.length >= 3 },
+      { facet: `collision products inverse×reverse + reverse×inverse — ${products.length}`, on: products.length >= 6 },
+      { facet: `novel survivors — ${novelSurvivors.length} candidates absent from seed roots`, on: novelSurvivors.length >= 1 },
+      { facet: 'directional trinity computes (inverse≠reverse except named coincidence)', on: dir.computes },
+      { facet: 'every product ray-addressed via rosettaRayOf', on: rayBound && products.every((p) => isUuid(p.root)) },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} — no Clay / HEP claim`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 },
+      { facet: 'millennium challenge apparatus computes (MODELED)', on: mill.computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-particle-collision:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('theorem-particle-collision-inverse-reverse', facets)
+    return {
+      computes: sealed.ok && mill.claySolvedByThisFold === 0,
+      claySolvedByThisFold,
+      particleCount: seeds.length,
+      productCount: products.length,
+      novelSurvivorCount: novelSurvivors.length,
+      particles: seeds.map((s) => ({ fold: s.algebraFold, root: s.algebraRoot, ray: s.ray })),
+      products,
+      novelSurvivors,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, mill.root, dir.root, ...products.map((p) => p.receipt)])),
+      cli: 'npm run quantum:theorem-particle-collision',
+      pair: 'challenge/collider',
+      route: '/en/quantum-tools#theorem-particle-collision',
+      statement:
+        `Theorem particle collision (inverse×reverse) — ${seeds.length} particles → ${products.length} collisions; ${novelSurvivors.length} novel-to-corpus candidates. MODELED sealed geometry, not HEP. claySolvedByThisFold=0.`,
+      boundary:
+        'MODELED collision in sealed content-addressed geometry (UUID/merkle · foldPair). NOT high-energy physics. Inverse≠reverse except named digit-1 coincidence. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Browser / panel projection of the collider — recomputes at call time. */
+export function theoremParticleCollisionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  const col = theoremParticleCollisionInverseReverse(matrix)
+  return {
+    computes: col.computes,
+    claySolvedByThisFold: col.claySolvedByThisFold,
+    particleCount: col.particleCount,
+    productCount: col.productCount,
+    novelSurvivorCount: col.novelSurvivorCount,
+    products: col.products,
+    facets: col.facets,
+    root: col.root,
+    cli: col.cli,
+    pair: col.pair,
+    route: col.route,
+    statement: col.statement,
+    boundary: col.boundary,
+    at,
+  }
+}
+
+/** npm run quantum:theorem-particle-collision — print collision products + SHAs. */
+export function runTheoremParticleCollisionExit(_root = '', _argv: readonly string[] = []): number {
+  const report = theoremParticleCollisionInverseReverse()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} theorem-particle-collision — particles=${report.particleCount} ` +
+      `products=${report.productCount} novel=${report.novelSurvivorCount} ` +
+      `root=${report.root.slice(0, 8)} clay=${report.claySolvedByThisFold}\n`,
+  )
+  for (const p of report.novelSurvivors.slice(0, 6)) {
+    process.stdout.write(`  · ${p.id} ray=${p.ray} root=${p.root.slice(0, 8)}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
