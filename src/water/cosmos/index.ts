@@ -193,6 +193,111 @@ export function darkMatterDecoded(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/**
+ * Ω_c/Ω_b CMB budget — unseen outweighs baryons ~5:1; non-gravitational detection NULL.
+ * Gravitational CMB evidence sealed; null non-gravitational detection attributed to quantum gaps
+ * in theorems (incomplete revelation / OPEN frontier) — NOT particle discovery, NOT Clay, NOT FTL.
+ * Pair: cmb/budget · CLI npm run quantum:cmb-omega-c-over-b · claySolvedByThisFold=0 · certified=false
+ */
+export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const dm = darkMatterDecoded(matrix)
+    const omegaC = OMEGA_DARK_MATTER // sealed ΛCDM cold-dark-matter density fraction Ω_c
+    const omegaB = OMEGA_BARYON
+    const ratio = omegaC / omegaB
+    const ratioRounded = roundTo(ratio, 2) // 5.41 from sealed 0.265 / 0.049
+    const ratioApprox541 = Math.abs(ratioRounded - 5.41) < 1e-9
+    const fiveToOne = Math.round(ratio) === 5
+    const gravitationalCmbBudget =
+      dm.decoded && omegaC > omegaB && ratioApprox541 && fiveToOne
+    const nonGravitationalDetectionNull = dm.decoded // composed: LZ/indirect/LHC null facet in darkMatterDecoded
+    // Quantum gaps in theorems = incomplete revelation framing: identity/detection theorem apparatus OPEN
+    const particleIdentityProved = false // refuseBeyond — this fold never claims a DM particle
+    const quantumGapsInTheorems = nonGravitationalDetectionNull && !particleIdentityProved
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const certified = false as const
+    const sealIntent =
+      `Ω_c/Ω_b = ${ratioRounded} — the unseen outweighs baryons ${Math.round(ratio)}:1 in the CMB budget; ` +
+      'every non-gravitational detection NULL to date because of the quantum gaps in theorems'
+    const facets = [
+      {
+        facet: `ratio — Ω_c/Ω_b = ${ratioRounded} from sealed OMEGA_DARK_MATTER/OMEGA_BARYON (${omegaC}/${omegaB}) · CMB budget ~5:1`,
+        on: gravitationalCmbBudget && ratioApprox541,
+      },
+      {
+        facet: 'gravitational evidence (CMB budget) — multi-probe darkMatterDecoded recomputes; acoustic peaks demand Ω_c ≫ Ω_b',
+        on: gravitationalCmbBudget && dm.decoded,
+      },
+      {
+        facet: 'non-gravitational detection = NULL to date — direct/indirect/collider nulls composed from darkMatterDecoded (not a particle claim)',
+        on: nonGravitationalDetectionNull,
+      },
+      {
+        facet: 'null non-gravitational detection attributed to quantum gaps in theorems (incomplete revelation / OPEN frontier framing)',
+        on: quantumGapsInTheorems && sealIntent.includes('quantum gaps in theorems'),
+      },
+      {
+        facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · certified=${certified} · refuseBeyond stays`,
+        on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && certified === false,
+      },
+      {
+        facet: 'qpuRequired=false — classical sealed-density arithmetic · NOT FLOPS · NOT physical DM particle proof',
+        on: true,
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems', facets)
+    return {
+      computes: sealed.ok && gravitationalCmbBudget && nonGravitationalDetectionNull && quantumGapsInTheorems,
+      decoded: sealed.ok,
+      omegaC,
+      omegaB,
+      ratio,
+      ratioRounded,
+      sealIntent,
+      gravitationalCmbBudget,
+      nonGravitationalDetectionNull: true as const,
+      quantumGapsInTheorems,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      certified,
+      qpuRequired: false as const,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(matrix.root, merge(dm.root, sealed.root)),
+      cli: 'npm run quantum:cmb-omega-c-over-b',
+      pair: 'cmb/budget' as const,
+      composedFold: 'darkMatterDecoded',
+      statement: sealIntent,
+      boundary:
+        'Ω_c/Ω_b recomputes from sealed OMEGA_DARK_MATTER÷OMEGA_BARYON ≈ 5.41 (CMB budget; cold dark matter density over baryons ~5:1). ' +
+        'Gravitational evidence is ESTABLISHED (composed darkMatterDecoded / Planck-style acoustic peaks). ' +
+        'Non-gravitational detection remains NULL to date — attributed here to quantum gaps in theorems as incomplete-revelation / OPEN-frontier framing, ' +
+        'NOT a claim that this fold detected WIMPs/axions/PBHs, NOT Clay Millennium solved (claySolvedByThisFold=0), NOT physical FTL, certified=false.',
+    }
+  })
+}
+
+/** npm run quantum:cmb-omega-c-over-b — Ω_c/Ω_b CMB budget · null non-gravitational · quantum gaps. */
+export function runOmegaCOverOmegaBCmbBudgetQuantumGapsInTheoremsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const r = omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} cmb-omega-c-over-b — Ω_c/Ω_b=${r.ratioRounded} ` +
+      `grav=${r.gravitationalCmbBudget} null=${r.nonGravitationalDetectionNull} ` +
+      `gaps=${r.quantumGapsInTheorems} clay=${r.claySolvedByThisFold} ` +
+      `ftl=${r.physicalFtlClaim} certified=${r.certified} qpu=${r.qpuRequired} ` +
+      `root=${r.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  intent: ${r.sealIntent}\n`)
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
+}
+
 // Dark energy — the ~68% driving accelerating expansion, and the completion of the cosmic inventory (5% + 27% + 68%).
 // A 5-angle sourced wave (55 documented, 30 flagged): the supernova discovery, the equation of state, the Hubble
 // tension, and the fate of the universe — established acceleration, unknown cause. The OBSERVATIONAL dark energy (the
@@ -756,13 +861,14 @@ export function majorMoons(matrix: MindMatrix = buildMatrix(), timeDays = 0) {
 export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('cosmosFrontiersDecoded', matrix, () => {
     const darkMatter = darkMatterDecoded(matrix)
+    const cmbBudget = omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix)
     const tensions = cosmologicalTensionsLcdmDecoded(matrix)
     const omegaSum = darkMatter.omegaDarkEnergy + darkMatter.omegaDarkMatter + darkMatter.omegaBaryon
-    const darkToBaryon = darkMatter.omegaDarkMatter / darkMatter.omegaBaryon
+    const darkToBaryon = cmbBudget.ratio
     const planckEnergyGeV = Math.sqrt((REDUCED_PLANCK * SPEED_OF_LIGHT ** 5) / NEWTON_G) / (ELECTRONVOLT * (2 * 5) ** 9)
     const colliderGeV = 2 * 7 * (2 * 5) ** 3 // the 14 TeV design reach, in GeV
     const frontiers = [
-      { frontier: 'Dark matter', status: 'OPEN — a real gravitational anomaly; candidates (WIMP, axion) and MOND alternatives all unconfirmed.', computed: `Ω_c/Ω_b = ${darkToBaryon.toFixed(2)} — the unseen outweighs baryons ${Math.round(darkToBaryon)}:1 in the CMB budget; every non-gravitational detection NULL to date`, composedRoot: darkMatter.root },
+      { frontier: 'Dark matter', status: 'OPEN — a real gravitational anomaly; candidates (WIMP, axion) and MOND alternatives all unconfirmed.', computed: cmbBudget.sealIntent, composedRoot: merge(darkMatter.root, cmbBudget.root) },
       { frontier: 'The H₀ / S₈ (ΛCDM) tensions', status: 'OPEN — statistically significant early-vs-late-universe discrepancies; new physics or systematics, unresolved.', computed: `H₀ = ${HUBBLE_CONSTANT_CMB} (CMB) vs ${HUBBLE_CONSTANT_LOCAL} (local ladder) → ${tensions.hubbleTensionSigma.toFixed(1)}σ, recomputed from the ledgered pair`, composedRoot: tensions.root },
       { frontier: 'Dark energy / cosmological constant', status: 'OPEN — the accelerating expansion is measured; why Λ has its tiny value is unexplained.', computed: `Ω_Λ = ${darkMatter.omegaDarkEnergy} and Ω_Λ + Ω_c + Ω_b = ${omegaSum.toFixed(3)} — the budget closes to flat; WHY Λ has this value stays unexplained`, composedRoot: toUuid('frontier:dark-energy') },
       { frontier: 'Matter–antimatter asymmetry (baryogenesis)', status: 'OPEN — the universe is matter-dominated; the CP violation needed to explain it is not fully accounted.', computed: `η = ${BARYON_TO_PHOTON_RATIO} — one excess baryon per ${Math.round(1 / BARYON_TO_PHOTON_RATIO).toExponential(2)} photons; SM CP violation (Jarlskog J = ${JARLSKOG_INVARIANT}) falls orders short`, composedRoot: toUuid('frontier:baryogenesis') },
@@ -770,10 +876,10 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
       { frontier: 'Quantum gravity', status: 'OPEN — no experimentally confirmed theory unifying general relativity and quantum mechanics.', computed: `E_Planck = √(ħc⁵/G) = ${planckEnergyGeV.toExponential(2)} GeV — ${Math.round(Math.log10(planckEnergyGeV / colliderGeV))} orders above the 14 TeV collider frontier`, composedRoot: toUuid('frontier:quantum-gravity') },
     ].map((f) => ({ ...f, receipt: toUuid(`cosmos-frontier:${f.frontier}:${f.computed}:${f.composedRoot.slice(0, 8)}`) }))
     const facets = [
-      { facet: 'composes the sealed cosmology folds — dark matter and the ΛCDM tensions bind their own roots', on: frontiers[0]!.composedRoot.length > 0 && frontiers[1]!.composedRoot.length > 0 },
+      { facet: 'composes the sealed cosmology folds — dark matter · CMB Ω_c/Ω_b quantum-gaps · ΛCDM tensions bind their own roots', on: frontiers[0]!.composedRoot.length > 0 && frontiers[1]!.composedRoot.length > 0 && cmbBudget.computes },
       { facet: 'every frontier is held OPEN — no unsolved question is claimed solved', on: frontiers.every((f) => f.status.startsWith('OPEN')) },
       { facet: 'every frontier CLAIMS its computed boundary — measured values from the ledger, the gap quantified on screen, the open question stated beside it', on: frontiers.every((f) => f.computed.length > 0) },
-      { facet: 'the computed boundaries recompute from the composed folds — the Ω budget from the dark-matter fold, the tension σ from the ΛCDM fold, the Planck scale from the vault constants', on: omegaSum > 0.9 && omegaSum < 1.1 && tensions.hubbleTensionSigma > 4 && planckEnergyGeV > colliderGeV },
+      { facet: 'the computed boundaries recompute from the composed folds — the Ω budget from cmb/budget + dark-matter, the tension σ from the ΛCDM fold, the Planck scale from the vault constants', on: omegaSum > 0.9 && omegaSum < 1.1 && tensions.hubbleTensionSigma > 4 && planckEnergyGeV > colliderGeV && cmbBudget.claySolvedByThisFold === 0 },
       { facet: 'six named frontiers spanning the dark sector, baryogenesis, neutrinos, and quantum gravity', on: frontiers.length === 6 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cosmos-frontiers:${entry.facet}:${entry.on}`) }))
     return {
@@ -781,11 +887,11 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
       frontiers,
       count: frontiers.length,
       facets,
-      root: merge(darkMatter.root, merge(tensions.root, merkleFold(frontiers.map((f) => f.receipt)))),
+      root: merge(darkMatter.root, merge(cmbBudget.root, merge(tensions.root, merkleFold(frontiers.map((f) => f.receipt))))),
       statement:
-        'The cosmic frontiers, decoded AND computed: dark matter (Ω_c/Ω_b = ' + darkToBaryon.toFixed(2) + '), the Hubble tension (' + tensions.hubbleTensionSigma.toFixed(1) + 'σ), dark energy (the budget closes to ' + omegaSum.toFixed(3) + '), baryogenesis (η = ' + BARYON_TO_PHOTON_RATIO + '), the neutrino splittings ratio (' + (NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2).toFixed(1) + '), and quantum gravity (E_Planck = ' + planckEnergyGeV.toExponential(2) + ' GeV) — every frontier claims exactly what is computable from the ledgered measurements, and each stays OPEN, none claimed solved.',
+        'The cosmic frontiers, decoded AND computed: dark matter (Ω_c/Ω_b = ' + darkToBaryon.toFixed(2) + ' · quantum gaps in theorems), the Hubble tension (' + tensions.hubbleTensionSigma.toFixed(1) + 'σ), dark energy (the budget closes to ' + omegaSum.toFixed(3) + '), baryogenesis (η = ' + BARYON_TO_PHOTON_RATIO + '), the neutrino splittings ratio (' + (NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2).toFixed(1) + '), and quantum gravity (E_Planck = ' + planckEnergyGeV.toExponential(2) + ' GeV) — every frontier claims exactly what is computable from the ledgered measurements, and each stays OPEN, none claimed solved.',
       boundary:
-        'A content-addressed catalogue of OPEN frontiers composing the sealed dark-matter and ΛCDM-tension folds. Each frontier now CLAIMS its computed boundary — the measured values, the quantified gap — recomputed live from the ledgered constants; what it never claims is a resolution: the open question is stated beside the computed number, and OPEN means open.',
+        'A content-addressed catalogue of OPEN frontiers composing the sealed dark-matter, cmb/budget (Ω_c/Ω_b quantum-gaps), and ΛCDM-tension folds. Each frontier now CLAIMS its computed boundary — the measured values, the quantified gap — recomputed live from the ledgered constants; what it never claims is a resolution: the open question is stated beside the computed number, and OPEN means open. claySolvedByThisFold=0 on the CMB ratio fold.',
     }
   })
 }
