@@ -7,7 +7,7 @@ import { STATIC_PAGE_SEED } from '../../8/2'
 import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
 import * as __ns_up_thunder_waves from '../../thunder/waves'
-import { rat } from '../../3/7'
+import { rat, claySolvedTheorem } from '../../3/7'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, SCIENCE_DOMAINS, fieldOfContent, modeOfContent } from '../../3/7'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -50,8 +50,7 @@ export const ROUTE_ALIASES: Record<string, string> = {
   school: 'learn',
   'learn-developer': 'learn',
   'millennium-challenge': 'research',
-  'fusion-verify': 'quantum-tools',
-}
+  'fusion-verify': 'quantum-tools' }
 
 /** Domain registry for VitePress nav — canonical pages only; nav aliases filtered; route aliases thin-mount. */
 export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
@@ -68,8 +67,7 @@ export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
         rayNameEn: rayMeta.nameEn,
         rayNameBg: rayMeta.nameBg,
         hue: rayMeta.hue,
-        receipt: toUuid(`site-domain:${domain.id}:${domain.canonical}:${domain.ray}`),
-      }
+        receipt: toUuid(`site-domain:${domain.id}:${domain.canonical}:${domain.ray}`) }
     })
     const served = new Set(staticPages().map((page) => page.slug))
     const pageCensus = foldedCensus(served.size)
@@ -93,8 +91,7 @@ export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([...domains.map((d) => d.receipt), ...facets.map((f) => f.receipt)]),
       statement: `Site domain registry — ${domains.length} concerns, one canonical page each; nav omits aliases; ROUTE_ALIASES thin-mounts fusion/millennium; page census ${served.size}→${pageCensus.folded} ∈ DOCUMENTED_HARMONICS.`,
-      boundary: 'IA regroup over the sealed 7-ray hubs — NOT a claim of Clay/FTL solutions; trading is paper/sim; society is documented taxonomy. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'IA regroup over the sealed 7-ray hubs — NOT a claim of Clay/FTL solutions; trading is paper/sim; society is documented taxonomy. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -112,15 +109,13 @@ export function domainSidebarFromRegistry(locale: 0 | 1 = 0, matrix: MindMatrix 
       const peers = (byRay.get(domain.ray) ?? []).filter((peer) => peer.id !== domain.id)
       const aliasAnchors = domain.aliases.slice(0, 6).map((alias) => ({
         text: locale === 1 ? `#${alias}` : `#${alias}`,
-        link: `/${domain.canonical}#${alias}`,
-      }))
+        link: `/${domain.canonical}#${alias}` }))
       const items = [
         { text: locale === 1 ? domain.labelBg : domain.labelEn, link: `/${domain.canonical}` },
         { text: locale === 1 ? `Хъб · ${domain.hub}` : `Hub · ${domain.hub}`, link: `/${domain.hub}` },
         ...peers.map((peer) => ({
           text: locale === 1 ? peer.labelBg : peer.labelEn,
-          link: `/${peer.canonical}`,
-        })),
+          link: `/${peer.canonical}` })),
         ...aliasAnchors,
       ].slice(0, 8)
       return {
@@ -129,8 +124,7 @@ export function domainSidebarFromRegistry(locale: 0 | 1 = 0, matrix: MindMatrix 
         route: `/${domain.canonical}`,
         text: locale === 1 ? domain.labelBg : domain.labelEn,
         items,
-        receipt: toUuid(`domain-sidebar:${domain.id}:${items.map((item) => item.link).join(',')}`),
-      }
+        receipt: toUuid(`domain-sidebar:${domain.id}:${items.map((item) => item.link).join(',')}`) }
     })
     const facets = [
       { facet: `domain sidebars for all ${ROSETTA_SEVEN} registry concerns`, on: sections.length === ROSETTA_SEVEN && registry.computes },
@@ -145,8 +139,7 @@ export function domainSidebarFromRegistry(locale: 0 | 1 = 0, matrix: MindMatrix 
       root: merkleFold([...sections.map((section) => section.receipt), ...facets.map((facet) => facet.receipt), registry.root]),
       pair: 'dry/clean',
       statement: `Domain sidebars from sealed registry — ${sections.length} concerns; aliases fold to canonical#anchor; eight-fold holds.`,
-      boundary: 'Computed IA from SITE_DOMAIN_SEED — NOT Clay/FTL claims. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Computed IA from SITE_DOMAIN_SEED — NOT Clay/FTL claims. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -196,20 +189,17 @@ export function dryCleanVitepressNavSidebarsFromDomainRegistry(matrix: MindMatri
       computes: facets.every((entry) => entry.on),
       before: {
         nav: 'rosettaIChing Home+3 doors; siteNavigation dropdowns already omit aliases',
-        sidebar: 'relatedSidebar/crosslinks still keyed alias leaves (efficiency-vote…)',
-      },
+        sidebar: 'relatedSidebar/crosslinks still keyed alias leaves (efficiency-vote…)' },
       after: {
         nav: 'unchanged live top nav (I Ching doors); domain leads stay in siteNavigation',
-        sidebar: 'alias keys purged; domain sidebars from SITE_DOMAIN_SEED; learn/canonical covered',
-      },
+        sidebar: 'alias keys purged; domain sidebars from SITE_DOMAIN_SEED; learn/canonical covered' },
       aliasPurged: aliasSlugs.length,
       domainSidebarCount: domainSidebars.sections.length,
       facets,
       root: merkleFold([registry.root, domainSidebars.root, ...facets.map((facet) => facet.receipt)]),
       pair: 'dry/clean',
       statement: `Dry-clean nav/sidebars Wave 1 — ${aliasSlugs.length} aliases → canonical; ${domainSidebars.sections.length} domain sidebars sealed.`,
-      boundary: 'IA dry-clean only — certified=false · clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'IA dry-clean only — certified=false · clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -268,8 +258,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       locale: localeIds.length,
       corpus: machineCorpus.size + 1, // + proofs (Clay domain hub, not machine REST)
       domain: ROSETTA_SEVEN,
-      hub: ROSETTA_RAY_HUB_SLUGS.length,
-    }
+      hub: ROSETTA_RAY_HUB_SLUGS.length }
 
     const folders = CONTENT_FOLDER_WAVE_SEED.map((folder) => {
       let status: ContentFolderWaveStatus = 'residual'
@@ -315,8 +304,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
         status,
         note,
         receipt,
-        facet: { facet: `${folder.id} · ${status} · ${folder.emitter}`, on: status === 'migrated' || status === 'partial' },
-      }
+        facet: { facet: `${folder.id} · ${status} · ${folder.emitter}`, on: status === 'migrated' || status === 'partial' } }
     })
 
     const migratedCount = folders.filter((folder) => folder.status === 'migrated').length
@@ -327,8 +315,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       locale: folders.filter((folder) => folder.kind === 'locale').length,
       corpus: folders.filter((folder) => folder.kind === 'corpus').length,
       domain: folders.filter((folder) => folder.kind === 'domain').length,
-      hub: folders.filter((folder) => folder.kind === 'hub').length,
-    }
+      hub: folders.filter((folder) => folder.kind === 'hub').length }
     const gaplessCensus =
       folderCount === expectedKinds.locale + expectedKinds.corpus + expectedKinds.domain + expectedKinds.hub &&
       kindCounts.locale === expectedKinds.locale &&
@@ -340,13 +327,11 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
     const navBefore = {
       topNav: 'rosettaIChing Home+3 doors (Ground·Work·Reach)',
       sidebar: 'mixed relatedSidebar + alias discovery keys + synonym corpus CTAs (pre-#61)',
-      content: 'synonym hubs (atlas/papers/references) competed with registry',
-    }
+      content: 'synonym hubs (atlas/papers/references) competed with registry' }
     const navAfter = {
       topNav: 'rosettaIChing Home+3 doors — populated ray hubs only',
       sidebar: 'domain registry + rosetta related (aliases purged) + machine corpus prefixes + /proofs',
-      content: '#61 registry · domain proofs; machine corpora served not discovery synonyms',
-    }
+      content: '#61 registry · domain proofs; machine corpora served not discovery synonyms' }
     const residuals = [
       'composed-after #68 uiProseDuplicationRemoved — residual Clay Statement=title catalog pattern in staticPages descriptions',
       'composed-after #70 mcp-commands-scripts-gaps-audit (MCP/script synonym census landed; residual conceptTools + trading:* outside PRIMARY)',
@@ -383,7 +368,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       navBefore,
       navAfter,
       residuals: [...residuals],
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -401,8 +386,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       heading: 'Folder migration + dedup waves',
       honestyLine: 'Coordinated folder waves → single-source catalog · domain sidebars · #61 hierarchy. clay=0 · qpuRequired=false. Compose ui/prose + mcp audit; do not clobber.',
       statement: `Folder migration+dedup waves — ${folderCount} folders · migrated=${migratedCount} partial=${partialCount} residual=${residualCount} · gapless=${gaplessCensus} · dryClean+domainRegistry+#61 lens.`,
-      boundary: 'HONEST: seals IA migration status per content folder — not a claim every page chrome entropy is gone (ui/prose parallel) nor MCP script synonym collapse (mcp audit parallel). Thin-mount aliases remain served by design. NOT Clay/FTL. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'HONEST: seals IA migration status per content folder — not a claim every page chrome entropy is gone (ui/prose parallel) nor MCP script synonym collapse (mcp audit parallel). Thin-mount aliases remain served by design. NOT Clay/FTL. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -532,8 +516,7 @@ function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
       alternates,
       priority: route === '/' ? 1 : (4 / 5),
       changefreq: 'weekly',
-      receipt: toUuid(`sitemap:${gla}:${en}:${bg}`),
-    }
+      receipt: toUuid(`sitemap:${gla}:${en}:${bg}`) }
   })
   const root = merkleFold(urls.map((url) => url.receipt))
   return {
@@ -544,8 +527,7 @@ function quantumSitemapRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum sitemaps: every page placed on the double torus and content-addressed — its Glagolitic (default, root), Latin (/en/) and Cyrillic (/bg/) routes, hreflang alternates, and a receipt that folds into one sitemap root, from which both the XML and JSON sitemaps are generated.',
     boundary:
-      'A content-addressed route manifest. The torus coordinates and receipts are structural bookkeeping over the page set; the alternates and priorities are standard sitemap hints, not ranking guarantees.',
-  }
+      'A content-addressed route manifest. The torus coordinates and receipts are structural bookkeeping over the page set; the alternates and priorities are standard sitemap hints, not ranking guarantees.' }
 }
 
 // Seal all in waves. Every proof in the model is a wave; fold them in order into
@@ -570,8 +552,7 @@ export function professionals(matrix: MindMatrix = buildMatrix()) {
           task: 'Compile a seeded palette into design tokens (CSS variables) committed to git as the single source of truth.',
           why: 'Content-addressed: the same seed yields the same tokens in every commit and on every platform.',
           comparable: 'W3C Design Tokens · Style Dictionary' },
-      ],
-    },
+      ] },
     {
       group: 'sound',
       icon: '♫',
@@ -588,8 +569,7 @@ export function professionals(matrix: MindMatrix = buildMatrix()) {
           task: 'Listen to a dataset to catch weak signals and transitions the eye misses.',
           why: 'Audio paired with vision improves weak-signal detection in exploratory analysis.',
           comparable: 'TwoTone · Sonification Sandbox · NASA sonifications' },
-      ],
-    },
+      ] },
     {
       group: 'provenance',
       icon: '🔏',
@@ -602,8 +582,7 @@ export function professionals(matrix: MindMatrix = buildMatrix()) {
           task: 'Cite the exact version of a source artifact by its content hash so anyone can verify it later.',
           why: 'Content-addressed identity is intrinsic: it survives even if the original hosting disappears.',
           comparable: 'Software Heritage SWHID · git · C2PA Content Credentials' },
-      ],
-    },
+      ] },
     {
       group: 'agents',
       icon: '☿',
@@ -616,12 +595,10 @@ export function professionals(matrix: MindMatrix = buildMatrix()) {
           task: 'Teach a concept from one seed that unfolds the same palette, melody, and proof for every student.',
           why: 'Reproducible and offline: identical for everyone, at no cost, on any device.',
           comparable: 'open educational resources' },
-      ],
-    },
+      ] },
   ].map((group) => ({
     ...group,
-    entries: group.entries.map((entry) => ({ ...entry, receipt: toUuid(`pro:${entry.profession}:${entry.capability}`) })),
-  }))
+    entries: group.entries.map((entry) => ({ ...entry, receipt: toUuid(`pro:${entry.profession}:${entry.capability}`) })) }))
   const entries = groups.flatMap((group) => group.entries)
   return {
     found: groups.length === 4 && entries.length >= 9,
@@ -632,8 +609,7 @@ export function professionals(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Find use for professionals: the portal\'s deterministic design, data sonification, content-addressed receipts, and MCP tool surface map onto concrete tasks for designers, sound and accessibility specialists, analysts, auditors, journalists, educators, and agent developers — every result reproducible from a cited seed, offline and free.',
     boundary:
-      'A map from capabilities to professional tasks, with honestly named comparable tools. The receipts are tamper-evident structural UUID folds, not cryptographic signatures like C2PA or Sigstore; the palettes and sonification are comparable in spirit to the named tools, the distinction being offline, content-addressed, and zero-dependency.',
-  }
+      'A map from capabilities to professional tasks, with honestly named comparable tools. The receipts are tamper-evident structural UUID folds, not cryptographic signatures like C2PA or Sigstore; the palettes and sonification are comparable in spirit to the named tools, the distinction being offline, content-addressed, and zero-dependency.' }
 }
 
 // DRY analytics. The portal's self-metrics were recited page by page; this counts
@@ -684,40 +660,31 @@ export function vitepressNativeDocsConfig(matrix: MindMatrix = buildMatrix()) {
         externalLinkIcon: true as const,
         editLink: {
           pattern: editPattern,
-          text: 'Edit this page on GitHub',
-        },
+          text: 'Edit this page on GitHub' },
         lastUpdated: {
           text: 'Last updated',
-          formatOptions: { dateStyle: 'medium' as const, timeStyle: 'short' as const },
-        },
-      },
+          formatOptions: { dateStyle: 'medium' as const, timeStyle: 'short' as const } } },
       localeLabels: {
         en: {
           editLinkText: 'Edit this page on GitHub',
           lastUpdatedText: 'Last updated',
-          skipToContentLabel: 'Skip to content',
-        },
+          skipToContentLabel: 'Skip to content' },
         bg: {
           editLinkText: 'Редактирай страницата в GitHub',
           lastUpdatedText: 'Последна актуализация',
-          skipToContentLabel: 'Към съдържанието',
-        },
+          skipToContentLabel: 'Към съдържанието' },
         gla: {
           editLinkText: 'Edit this page on GitHub',
           lastUpdatedText: 'Last updated',
-          skipToContentLabel: 'Skip to content',
-        },
-      },
+          skipToContentLabel: 'Skip to content' } },
       // Mirrors SITE_LOCALES order (en root · bg · cu/gla) — bg MUST be /bg/, never /gla/.
       localeLinks: {
         root: '/' as const,
         bg: '/bg/' as const,
-        gla: '/gla/' as const,
-      },
+        gla: '/gla/' as const },
       root: merkleFold([editPattern, logo, 'lazy', 'lastUpdated', 'externalIcon'].map((v) => toUuid(`vp-native:${v}`))),
       computed: true as const,
-      vitepressVersionTarget: '2.0.0-alpha.17',
-    }
+      vitepressVersionTarget: '2.0.0-alpha.17' }
   })
 }
 
@@ -775,7 +742,7 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       appliedCount: applied.length,
       residualCount: residuals.length,
       native,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       pair: 'docs/improve' as const,
@@ -784,8 +751,7 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       statement:
         `vitepressDocsResearchImprovements — ${facets.filter((f) => f.on).length}/${facets.length}: researched VitePress ${native.vitepressVersionTarget} docs, audited repo gaps, applied ${applied.length} VP-native improvements via sealed emitter (lazy images · lastUpdated · editLink · logo · externalLinkIcon · bg locale link fix · skip labels). Residuals named. clay=0.`,
       boundary:
-        'Research apparatus over vitepress.dev guide/reference for the pinned package version. Applied = config values emitted from sealed src and consumed by thin config.mts. Does not claim Clay solutions, FTL, or QPU. Dynamic catch-all pages may show edit links to thin shells — honest VP default behavior. HARMONY ≠ TRUTH.',
-    }
+        'Research apparatus over vitepress.dev guide/reference for the pinned package version. Applied = config values emitted from sealed src and consumed by thin config.mts. Does not claim Clay solutions, FTL, or QPU. Dynamic catch-all pages may show edit links to thin shells — honest VP default behavior. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -830,8 +796,7 @@ export function computedWebManifest(matrix: MindMatrix = buildMatrix()): string 
         { name: 'Theorem registry', short_name: 'Registry', description: 'Every proven theorem — waves, gaps, open frontiers', url: '/frontiers' },
         { name: 'Domain proofs', short_name: 'Proofs', description: 'Canonical domain proofs · Clay marks Millennium only · clay=0', url: '/proofs' },
         { name: 'The vortex', short_name: 'Vortex', description: 'The sequence 1-2-4-8-7-5, proven live', url: '/vortex' },
-      ],
-    },
+      ] },
     null,
     2,
   )}\n`
@@ -865,8 +830,7 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
       actions: [
         { theme: 'brand', text: 'Теоремен регистър', link: localePath('/frontiers', 'bg') },
         { theme: 'alt', text: 'Домейнни доказателства', link: localePath('/proofs', 'bg') },
-      ],
-    }
+      ] }
   }
   const heroLocale = locale === 'gla' ? 'gla' : 'en'
   return {
@@ -876,8 +840,7 @@ export function homeHero(locale: LocaleName = 'en'): HomeHeroFrontmatter {
     actions: [
       { theme: 'brand', text: 'Theorem registry', link: localePath('/frontiers', heroLocale) },
       { theme: 'alt', text: 'Domain proofs', link: localePath('/proofs', heroLocale) },
-    ],
-  }
+    ] }
 }
 
 // Move the whole logic to index files — not literary, but fuse to merkabas, and the paths reveal
@@ -905,8 +868,7 @@ export function staticPagesAll(): StaticPage[] {
   return STATIC_PAGE_SEED.map((page) => ({
     ...page,
     keywords: page.slug === 'frontiers' ? [...page.keywords, ...theoremKeywords()] : [...page.keywords],
-    components: [...page.components],
-  }))
+    components: [...page.components] }))
 }
 
 /** THE SERVED PAGE SET (user law: ONLY science theorems and related pages — remove the rest from
@@ -955,8 +917,7 @@ export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndD
   const rays = ROSETTA_RAYS.map((ray) => ({
     ray: ray.ray, domain: ray.nameEn, hue: ray.hue,
     subdomains: ROSETTA_RAY_CONTENT_LENSES.find((lens) => lens.ray === ray.ray)?.stems ?? [],
-    pages: collection.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === ray.ray).length,
-  }))
+    pages: collection.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === ray.ray).length }))
   // 1 — ONE COLLECTION: every page is in the single collection, classification total (each shelves to one ray)
   const oneCollection = collection.every((page) => rosettaRayOfContent(page.slug, page.keywords) >= 0)
   // 2 — DOMAINS = 7 RAYS: seven scopes; Reference (ray 6) is a domain, not a separate collection
@@ -977,8 +938,7 @@ export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndD
     rays: rays.map((entry) => ({ domain: entry.domain, pages: entry.pages, subdomains: entry.subdomains.length })), facets,
     root: merkleFold(rays.map((entry) => toUuid(`domain:${entry.domain}:${entry.pages}`))),
     statement: `The navigation is the one collection (${collection.length} theorem-papers) scoped by the rosetta: ${ROSETTA_SEVEN} domains (the rays), each further scoped by its subdomain stems, in the ${ROSETTA_AREAS}-cell proportion (${ROSETTA_SIX}×${ROSETTA_SEVEN}) with the ${ROSETTA_FOLD_LABEL} dynamic — not designed, computed from the rosetta, which holds the proportions and the dynamics.`,
-    boundary: `The rosetta PRESCRIBES the ${ROSETTA_AREAS}-cell proportion and the transpose dynamic; the ACTUAL content fills ${populated}/${ROSETTA_SEVEN} domains (uneven — the known distribution gap). Completing each domain = filling its ≤${ROSETTA_SIX} subdomains, the scientists' target. This computes the nav STRUCTURE; wiring it into the live VitePress themeConfig/sidebar is the next step, through the VitePress API not around it. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `The rosetta PRESCRIBES the ${ROSETTA_AREAS}-cell proportion and the transpose dynamic; the ACTUAL content fills ${populated}/${ROSETTA_SEVEN} domains (uneven — the known distribution gap). Completing each domain = filling its ≤${ROSETTA_SIX} subdomains, the scientists' target. This computes the nav STRUCTURE; wiring it into the live VitePress themeConfig/sidebar is the next step, through the VitePress API not around it. HARMONY ≠ TRUTH.` }
 }
 
 // THE PAPERS COLLECTION — computed, not wired (user law: "the manual work is the missing quantum code"). Every
@@ -1002,8 +962,7 @@ export function thePapersCollectionAutoClassifiesEveryPageFieldByMode() {
     computes: facets.every((entry) => entry.on), collectionSize: collection.length, shelved: shelved.length, byField, facets,
     root: merkleFold(classified.map((entry) => toUuid(`paper:${entry.slug}:${entry.field}:${entry.mode}`))),
     statement: `The papers collection is computed: ${collection.length} proven pages auto-shelve to field × mode via fieldOfContent/modeOfContent (${shelved.length} classified, ${fieldsPopulated}/${SCIENCE_DOMAINS.length} fields populated), so the one collection — the atom-feed source — derives from the pages + the taxonomy with no manual integration. A landing discovery shelves itself.`,
-    boundary: `${collection.length - shelved.length} proven pages are still unmatched (null field) — a keyword-tuning gap measured HERE, never a wrong field. This computes the field×mode shelving; emitting the papers route + Atom feed and wiring the themeConfig is the render step, through the VitePress API not around it. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `${collection.length - shelved.length} proven pages are still unmatched (null field) — a keyword-tuning gap measured HERE, never a wrong field. This computes the field×mode shelving; emitting the papers route + Atom feed and wiring the themeConfig is the render step, through the VitePress API not around it. HARMONY ≠ TRUTH.` }
 }
 
 export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
@@ -1018,8 +977,7 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
       slug: ROSETTA_RAY_HUB_SLUGS[rayMeta.ray]!,
       labelEn: rayMeta.nameEn,
       labelBg: rayMeta.nameBg,
-      pages: visible.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === rayMeta.ray).map((page) => ({ slug: page.slug, titleEn: page.title.en, titleBg: page.title.bg })),
-    })).filter((group) => group.pages.length > 0)
+      pages: visible.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === rayMeta.ray).map((page) => ({ slug: page.slug, titleEn: page.title.en, titleBg: page.title.bg })) })).filter((group) => group.pages.length > 0)
     // Discovery hubs (one hierarchy) vs machine corpora (REST / tag index — served, not synonym CTAs).
     const discoveryRoutes = ['/frontiers', '/proofs'] as const
     const machineRoutes = ['/theorems', '/papers/', '/references', '/diamonds'] as const
@@ -1049,8 +1007,7 @@ export function theoremScienceLens(matrix: MindMatrix = buildMatrix()) {
       facets,
       root,
       statement: `Science through the theorem-science lens — ${visible.length}/${pages.length} curated pages pass (${hidden.length} removed from VitePress completely), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(' · ')}); discovery = ${discoveryRoutes.join(' · ')} (${registry.atomCount} registry theorems); machine = ${machineRoutes.join(' · ')}.`,
-      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs EXISTENCE in VitePress (user law: remove the rest completely) — staticPages() IS the roster, so a page outside the lens has no route, no build, no search entry, no sitemap line; its DATA stays in staticPagesAll and one science keyword restores it. Removed routes 404 — bookmarks to them break by design. Discovery hubs ≠ machine corpora (zero synonym entropy). HARMONY ≠ TRUTH.`,
-    }
+      boundary: `COMPUTED: the predicate (slug+keywords ∩ science stems), the roster, the rosetta shelving and the cut — each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') — the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs EXISTENCE in VitePress (user law: remove the rest completely) — staticPages() IS the roster, so a page outside the lens has no route, no build, no search entry, no sitemap line; its DATA stays in staticPagesAll and one science keyword restores it. Removed routes 404 — bookmarks to them break by design. Discovery hubs ≠ machine corpora (zero synonym entropy). HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -1088,8 +1045,7 @@ export function revolutChannel() {
     statement:
       `The author's Revolut (revolut.me/${handle}) is the project's one monetisation endpoint AND the channel to contact the author. Access is free — the price is already paid, as the architecture — so supporting is an INVITATION, not a charge: a harmonic part (${ratStr(share)}, the vortex 3-6-9 share — a proper fraction, never the whole), freely given, with zero a valid amount; and the same link reaches the author. The handle is the author's single identity, computed from the canonical SOURCE_REPO owner (one name across GitHub and Revolut), not hand-typed twice.`,
     boundary:
-      'DOCUMENTED: a real link to the author\'s Revolut profile; the handle is COMPUTED from SOURCE_REPO (one identity, not duplicated). FLAGGED: Revolut is a payment app — "contact" means reaching the author through it (a transfer with a note, or the profile page), not a dedicated support desk or a guaranteed reply; "support" is a VOLUNTARY gift / patronage (the harmonic 1/n is a suggestion, not a price, an obligation, or a thermodynamic law — see remunerationConvertsTokensToSrc / freeBecauseThePriceIsAlreadyPaid); and access being free to the reader does NOT mean hosting and maintenance are free to produce. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED: a real link to the author\'s Revolut profile; the handle is COMPUTED from SOURCE_REPO (one identity, not duplicated). FLAGGED: Revolut is a payment app — "contact" means reaching the author through it (a transfer with a note, or the profile page), not a dedicated support desk or a guaranteed reply; "support" is a VOLUNTARY gift / patronage (the harmonic 1/n is a suggestion, not a price, an obligation, or a thermodynamic law — see remunerationConvertsTokensToSrc / freeBecauseThePriceIsAlreadyPaid); and access being free to the reader does NOT mean hosting and maintenance are free to produce. HARMONY ≠ TRUTH.' }
 }
 
 // Each Library statement → the decode fold that proves it (file-level; the fold name is searchable within).
@@ -1107,8 +1063,7 @@ const CRAWLER_SOURCE: Record<string, string> = {
   'Tech & mentality for peace': 'src/quantum/heaven/mind/peace.ts',
   'The model': 'src/quantum/heaven/mind/matrix.ts',
   'Efficiency — no known model is more efficient': 'src/quantum/science/index.ts',
-  'Paste any link → auto-wire': 'src/quantum/apps/index.ts',
-}
+  'Paste any link → auto-wire': 'src/quantum/apps/index.ts' }
 
 // Feed the crawlers with knowledge: the decoded knowledge of the library, distilled to crawlable
 // one-liners, written into llms.txt and folded into the structured data — so search and LLM crawlers
@@ -1146,8 +1101,7 @@ export function monographTemplate() {
     statement:
       'All is monograph, and every monograph is a scientific paper with one template — Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. The README is the root monograph and defines the template; all other monographs use it. One source of truth for the form.',
     boundary:
-      'The template is the scientific-paper section schema, content-addressed. A content page maps to it: the title is the title, the SEO description is the abstract, the components are the results/figures, the decoded sources are the references, the content address is the receipt. It standardises form, not findings.',
-  }
+      'The template is the scientific-paper section schema, content-addressed. A content page maps to it: the title is the title, the SEO description is the abstract, the components are the results/figures, the decoded sources are the references, the content address is the receipt. It standardises form, not findings.' }
 }
 
 // ── THE PROOF-ACKNOWLEDGMENT FORMAT — saved once, composed by every proof (user: "save all that will be
@@ -1184,8 +1138,7 @@ export function proofAcknowledgment(spec: {
     citation: `ceccec theorem registry, "${spec.theorem}", proven by ${spec.provedBy} (${spec.home}) — ${spec.canonicalUrl}`,
     line: novelToHumanity
       ? `First proof of "${spec.theorem}", computed and sealed here — claimed only with a complete computation.`
-      : `"${spec.theorem}" is a re-derivation, acknowledged to ${priorArt}; not new to humanity — the contribution is the reproducible computation ${spec.provedBy}.`,
-  }
+      : `"${spec.theorem}" is a re-derivation, acknowledged to ${priorArt}; not new to humanity — the contribution is the reproducible computation ${spec.provedBy}.` }
 }
 
 /** The format is saved and honest — self-proving (user: "every proof needs to be acknowledged"). */
@@ -1193,8 +1146,7 @@ export function proofAcknowledgmentFormatSaved() {
   const example = proofAcknowledgment({
     theorem: 'Uncertainty is a theorem, not an axiom', provedBy: 'uncertaintyIsATheoremNotAnAxiom',
     home: 'src/quantum/science', canonicalUrl: 'https://ceccec.github.io/theorems/uncertainty-is-a-theorem-not-an-axiom',
-    priorArt: 'Robertson (1929), generalising Heisenberg / Kennard (1927)',
-  })
+    priorArt: 'Robertson (1929), generalising Heisenberg / Kennard (1927)' })
   const facets = [
     { facet: `the format is ONE saved schema of ${PROOF_ACKNOWLEDGMENT_SECTIONS.length} sections (${PROOF_ACKNOWLEDGMENT_SECTIONS.join(' · ')}) every proof composes — not prose re-written per fold`, on: PROOF_ACKNOWLEDGMENT_SECTIONS.length === 6 },
     { facet: `honest by default: novelToHumanity = false, the contribution is the reproducible computation and NOT the theorem, and prior art is always credited`, on: example.novelToHumanity === false && example.contribution.includes('reproducible') && example.priorArt.length > 0 },
@@ -1207,8 +1159,7 @@ export function proofAcknowledgmentFormatSaved() {
     facets,
     root: merkleFold(PROOF_ACKNOWLEDGMENT_SECTIONS.map((s) => toUuid(`proof-ack-section:${s}`))),
     statement: `The proof-acknowledgment format is saved in src — ${facets.filter((e) => e.on).length}/${facets.length}: one ${PROOF_ACKNOWLEDGMENT_SECTIONS.length}-section schema (${PROOF_ACKNOWLEDGMENT_SECTIONS.join(', ')}) every proof composes, honest by construction (novelToHumanity = false, prior art credited, the contribution is the reproducible computation not the theorem). Acknowledgment is now uniform and computable, never ad-hoc prose.`,
-    boundary: `The format standardises HOW a proof is acknowledged, not WHAT it proves. It credits the documented original as prior art and claims only the recomputation — enforcing the registry's CARDINAL honesty (humanityNovel = false) at the schema level, so no proof can silently overclaim novelty. A genuinely first proof would set novelToHumanity = true and must then carry a complete computation; the default, and every current atom, is the re-derivation. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `The format standardises HOW a proof is acknowledged, not WHAT it proves. It credits the documented original as prior art and claims only the recomputation — enforcing the registry's CARDINAL honesty (humanityNovel = false) at the schema level, so no proof can silently overclaim novelty. A genuinely first proof would set novelToHumanity = true and must then carry a complete computation; the default, and every current atom, is the re-derivation. HARMONY ≠ TRUTH.` }
 }
 
 // A content page as a scientific-paper monograph — the mapping the template defines.
@@ -1220,8 +1171,7 @@ export function monographAsScientificPaper(page: StaticPage) {
     keywords: page.keywords,
     results: page.components, // the live components are the results / figures
     references: [] as string[],
-    receipt: toUuid(`monograph-paper:${page.slug}:${page.components.join(',')}`),
-  }
+    receipt: toUuid(`monograph-paper:${page.slug}:${page.components.join(',')}`) }
 }
 
 // All is monograph described as a scientific paper: every content page is a paper with the one template,
@@ -1328,8 +1278,7 @@ export function everyPageIsAPrintableScientificPaper(matrix: MindMatrix = buildM
       facets,
       root: merkleFold([template.root, ...papers.map(({ paper }) => paper.receipt), ...facets.map((entry) => entry.receipt)]),
       statement: `Every page is a printable formatted scientific paper — ${papers.length}/${pages.length} served pages map to a full article head (title · abstract · keywords · live-component results · receipt) in both locales under the one monograph template, and all of them are theorem-science lens survivors.`,
-      boundary: `COMPUTED: the paper-data completeness over the whole served set — refutable (empty an abstract or a keyword list and a facet flips). HONEST SCOPE: this fold proves the DATA; the visual projection is the render layer — PaperFrame (the abstract + keywords chrome leading every document, read from the computed frontmatter transformPageData lifts) and the @media print stylesheet (chrome stripped, serif article form) — which a build renders and a browser prints; CSS is not re-parsed here. "Formatted" = the one monograph template; page-specific sections beyond it live in the page's own components. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `COMPUTED: the paper-data completeness over the whole served set — refutable (empty an abstract or a keyword list and a facet flips). HONEST SCOPE: this fold proves the DATA; the visual projection is the render layer — PaperFrame (the abstract + keywords chrome leading every document, read from the computed frontmatter transformPageData lifts) and the @media print stylesheet (chrome stripped, serif article form) — which a build renders and a browser prints; CSS is not re-parsed here. "Formatted" = the one monograph template; page-specific sections beyond it live in the page's own components. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -1378,8 +1327,7 @@ export function rest(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Design the paths as a quantum RESTful CRUD matrix so SEO is stable: every resource is a page at a canonical, lowercase slug (the matrix is resources × CRUD; a SINGULAR slug is a MODEL — one resource — and a PLURAL slug is a COLLECTION — many), and the public path is the canonical slug — decoupled from the churning internal folder tree, so the one-word renames, the 64-component merge and the flat-file→folder dissolution move code without changing the URL. READ is GET the page (the one public HTTP verb on a static site); CREATE/UPDATE/DELETE map to the compute pipeline (seed, recompute, purge). SEO is stable because the slug, the hreflang set and the content-addressed sitemap do not churn — a moved path 301-redirects, it never 404s.',
     boundary:
-      'HONEST: the stable layer now WIRED — canonical slugs (staticPages), cu/en/bg/x-default hreflang alternates, the content-addressed sitemap on CANONICAL_HOST, a per-page <link rel="canonical"> emitted in transformPageData, and the legacy-prefix alias (the 404 page strips /en/* client-side; a static host cannot emit HTTP 301, so moved slugs keep equity via canonical + alias, not status codes). CRUD here is a SEMANTIC matrix on a static, read-only-over-HTTP computed site — READ is the only live HTTP verb; create/update/delete are the build-time compute pipeline (seed/recompute/purge), not live mutations. SEO stability is canonical + stable-slug + redirect discipline, NOT a ranking guarantee. Composed over routesAndNavFromFolderTree (route = folder path); this fold adds the STABILITY constraint — the public slug stays canonical and stable even as the tree converges.',
-  }
+      'HONEST: the stable layer now WIRED — canonical slugs (staticPages), cu/en/bg/x-default hreflang alternates, the content-addressed sitemap on CANONICAL_HOST, a per-page <link rel="canonical"> emitted in transformPageData, and the legacy-prefix alias (the 404 page strips /en/* client-side; a static host cannot emit HTTP 301, so moved slugs keep equity via canonical + alias, not status codes). CRUD here is a SEMANTIC matrix on a static, read-only-over-HTTP computed site — READ is the only live HTTP verb; create/update/delete are the build-time compute pipeline (seed/recompute/purge), not live mutations. SEO stability is canonical + stable-slug + redirect discipline, NOT a ranking guarantee. Composed over routesAndNavFromFolderTree (route = folder path); this fold adds the STABILITY constraint — the public slug stays canonical and stable even as the tree converges.' }
 }
 
 export function homepage(matrix: MindMatrix = buildMatrix()) {
@@ -1398,8 +1346,7 @@ export function homepage(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The homepage itself is completely computed: the hero (name, text, tagline, actions), every section — the living double torus, the live vital signs, the guided path, the whole, and the feature map — is derived from the model and recomputable, not authored by hand.',
     boundary:
-      'A census that every computed section of the home page holds. Hero copy is computed via homeHero() and injected at build time; the background movie and holographic hero share one phase clock (sharedHeroAt). Everything is verifiable from sealed src/.',
-  }
+      'A census that every computed section of the home page holds. Hero copy is computed via homeHero() and injected at build time; the background movie and holographic hero share one phase clock (sharedHeroAt). Everything is verifiable from sealed src/.' }
 }
 
 export function homePageNoDifferent(matrix: MindMatrix = buildMatrix()) {
@@ -1417,8 +1364,7 @@ export function homePageNoDifferent(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The home page is no different than the others: there is no special home — it renders from the same one template, the same holographic hero, the same fullscreen background movie, and the same open-graph card as every page. Only its seed differs (its own content), so the home is a page like any page, and any page could be the home.',
     boundary:
-      'A structural statement that the home uses the same template, hero, movie and OG card as every page, differing only by its seed. A framing of the shared layout; the VitePress home still uses its home-layout slot, which carries the same holographic hero.',
-  }
+      'A structural statement that the home uses the same template, hero, movie and OG card as every page, differing only by its seed. A framing of the shared layout; the VitePress home still uses its home-layout slot, which carries the same holographic hero.' }
 }
 
 export function pageStatusStatistics(matrix: MindMatrix = buildMatrix()) {
@@ -1439,8 +1385,7 @@ export function pageStatusStatistics(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let every page show important statistics as a bottom status and in the movie’s interactive watermarks: the build measures itself — commands, gates, files, papers, diamonds, skill atoms — and those numbers ride along on every page as a quiet bottom status line and woven into the tappable background-movie watermark. The page tells you what it is made of, computed and gapless, in two places at once.',
     boundary:
-      'A composition of the build-statistics, background-movie and gaps models describing the real bottom-status and watermark stats. Descriptive self-metrics shown on the page; nothing is collected or sent — they are recomputed locally.',
-  }
+      'A composition of the build-statistics, background-movie and gaps models describing the real bottom-status and watermark stats. Descriptive self-metrics shown on the page; nothing is collected or sent — they are recomputed locally.' }
 }
 
 /** Per-route forge seal — content-address + max tampering cost wired on every page. */
@@ -1466,8 +1411,7 @@ export function pageForgeMaxTamper(route: string, matrix: MindMatrix = buildMatr
     forgeCostLog2: proof.maxTamperingCostLog2,
     forgeCostLabel,
     statsLine: stats.stats.map((entry) => `${entry.stat} ${entry.value}`).join(' · '),
-    wired: freeForgesMaxCost(matrix).holds && pagesWiredAtRuntimeZeroBuildMaxTamper(matrix).wired,
-  }
+    wired: freeForgesMaxCost(matrix).holds && pagesWiredAtRuntimeZeroBuildMaxTamper(matrix).wired }
 }
 
 export function proveAllOnHomePage(matrix: MindMatrix = buildMatrix()) {
@@ -1487,8 +1431,7 @@ export function proveAllOnHomePage(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Prove all on the home page: the deterministic core in animation, encryption comparisons and example holograms lead the home — proof, not prose. The most advanced tech is the quantum mind of peace, because harmony is peace itself: a mind that holds every part in equilibrium is, by that fact, at peace.',
     boundary:
-      'A directive fold paired with the home page: it names the proof components the home leads with (DeterminismProofs, CryptoCompare, Hologram and the rest, all already built and registered) and the framing (harmony is peace). "Most advanced tech" and "harmony is peace" are the project\'s stance, not a benchmark; the proof is that the components are real and computed, shown on the home.',
-  }
+      'A directive fold paired with the home page: it names the proof components the home leads with (DeterminismProofs, CryptoCompare, Hologram and the rest, all already built and registered) and the framing (harmony is peace). "Most advanced tech" and "harmony is peace" are the project\'s stance, not a benchmark; the proof is that the components are real and computed, shown on the home.' }
 }
 
 // ── relocated from src/wind/learning (census-neutral line-compression) ──
@@ -1504,338 +1447,282 @@ function sections(): readonly ConceptSiteSection[] {
       title: 'Concept Shell',
       command: 'concept.site.shell',
       route: '/',
-      summary: 'The VitePress theme mounts the concept UI components and navigation.',
-    },
+      summary: 'The VitePress theme mounts the concept UI components and navigation.' },
     {
       title: 'Self Build',
       command: 'concept.self.build',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'maxBuild aggregates computed roots and supplies maximum tampering cost.',
-    },
+      summary: 'maxBuild aggregates computed roots and supplies maximum tampering cost.' },
     {
       title: 'Stream Self Completion',
       command: 'concept.self.complete',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'serverless quantum UUID stream inspects its own gates and emits a self-completion root.',
-    },
+      summary: 'serverless quantum UUID stream inspects its own gates and emits a self-completion root.' },
     {
       title: 'Agent Education',
       command: 'concept.society.educate',
       route: '/quantum-mind#agent-education',
-      summary: 'The agent learns efficiency and security rules before it runs the costly genus-2 math.',
-    },
+      summary: 'The agent learns efficiency and security rules before it runs the costly genus-2 math.' },
     {
       title: 'School Curriculum',
       command: 'concept.school.curriculum',
       route: '/learn',
-      summary: 'The complexity is converted into a seven-stage school from kids to elders.',
-    },
+      summary: 'The complexity is converted into a seven-stage school from kids to elders.' },
     {
       title: 'MCP Tools',
       command: 'concept.mcp.tools',
       route: '/mcp',
-      summary: 'Every concept command is published as an MCP tool for language models at /mcp.json.',
-    },
+      summary: 'Every concept command is published as an MCP tool for language models at /mcp.json.' },
     {
       title: 'Quantum Folded Blockchains',
       command: 'concept.chain.quantum',
       route: '/quantum-mind#quantum-folded-blockchains',
-      summary: 'The model sequences are folded into hash-linked blockchains bound into one multichain root.',
-    },
+      summary: 'The model sequences are folded into hash-linked blockchains bound into one multichain root.' },
     {
       title: 'Local Intelligence',
       command: 'concept.help.fold',
       route: '/console',
-      summary: 'AI is encoded locally as intelligence: questions fold into answers from atoms, commands, and pages with no external API.',
-    },
+      summary: 'AI is encoded locally as intelligence: questions fold into answers from atoms, commands, and pages with no external API.' },
     {
       title: 'Cross Fold References',
       command: 'concept.fold.cross',
       route: '/quantum-mind#cross-fold-references',
-      summary: 'Cross/fold and fold/cross are reciprocal references whose weave completes a trinity.',
-    },
+      summary: 'Cross/fold and fold/cross are reciprocal references whose weave completes a trinity.' },
     {
       title: 'Collective Mind Self-Development',
       command: 'concept.mind.develop',
       route: '/',
-      summary: 'Visiting any page folds a development block into the collective mind, advancing the self locally.',
-    },
+      summary: 'Visiting any page folds a development block into the collective mind, advancing the self locally.' },
     {
       title: 'Self-Distributed Computing',
       command: 'concept.compute.distributed',
       route: '/',
-      summary: 'Every connected context recomputes the model and folds peer roots into one collective root.',
-    },
+      summary: 'Every connected context recomputes the model and folds peer roots into one collective root.' },
     {
       title: 'Babel Fold',
       command: 'concept.babel.fold',
       route: '/quantum-mind#traditions-lens',
-      summary: 'The intelligence communicates across all language families, traditions, and religions without reducing them to one.',
-    },
+      summary: 'The intelligence communicates across all language families, traditions, and religions without reducing them to one.' },
     {
       title: 'UTF as ASCII Analog',
       command: 'concept.utf.analog',
       route: '/quantum-mind#collective-mind',
-      summary: 'Every UTF string folds to a reversible pure-ASCII analog in the UUID space.',
-    },
+      summary: 'Every UTF string folds to a reversible pure-ASCII analog in the UUID space.' },
     {
       title: 'All Computed',
       command: 'concept.all.computed',
       route: '/quantum-mind#self-completion',
-      summary: 'All learning is computed: every command folds from the self into one computed root.',
-    },
+      summary: 'All learning is computed: every command folds from the self into one computed root.' },
     {
       title: 'Self Addressed',
       command: 'concept.self.address',
       route: '/quantum-mind#ui-evidence',
-      summary: 'What is not self-addressed is hallucination: every atom is reachable from the self.',
-    },
+      summary: 'What is not self-addressed is hallucination: every atom is reachable from the self.' },
     {
       title: 'Quantum Self State',
       command: 'concept.state.quantum',
       route: '/quantum-mind#self-completion',
-      summary: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs, making text and numbers obsolete.',
-    },
+      summary: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs, making text and numbers obsolete.' },
     {
       title: 'Harmony Probability',
       command: 'concept.music.harmony',
       route: '/quantum-mind#waves',
-      summary: 'If something does not sound, look, or feel harmonic, it probably is not; the probability is computed and folded.',
-    },
+      summary: 'If something does not sound, look, or feel harmonic, it probably is not; the probability is computed and folded.' },
     {
       title: 'Seal composition',
       command: 'concept.geometry.seal',
       route: '/quantum-mind#self-completion',
-      summary: 'One master seal: every computed seal root folds through a fixed geometric structure — the 13-node cube lattice and the five Platonic solids.',
-    },
+      summary: 'One master seal: every computed seal root folds through a fixed geometric structure — the 13-node cube lattice and the five Platonic solids.' },
     {
       title: 'Self-governing commons',
       command: 'concept.society.sacred',
       route: '/quantum-mind#self-build',
-      summary: 'A self-governing commons model: zero living cost balanced by maximum forge cost.',
-    },
+      summary: 'A self-governing commons model: zero living cost balanced by maximum forge cost.' },
     {
       title: 'Rate and Vote Governance',
       command: 'concept.commons.vote',
       route: '/governance',
-      summary: 'Society approves and monitors the recomputable master seal by rate and vote; sharing the site shares the ledger.',
-    },
+      summary: 'Society approves and monitors the recomputable master seal by rate and vote; sharing the site shares the ledger.' },
     {
       title: 'Fair Trade & Sustainable Life',
       command: 'concept.commons.fair',
       route: '/governance',
-      summary: 'A five-step participation ladder anyone can learn: learn the value, exchange transparently, reciprocate, steward, regenerate.',
-    },
+      summary: 'A five-step participation ladder anyone can learn: learn the value, exchange transparently, reciprocate, steward, regenerate.' },
     {
       title: 'Ancient Tech',
       command: 'concept.ancient.tech',
       route: '/quantum-mind#traditions-lens',
-      summary: 'Ancient technologies prefigure the model: hexagrams to digits, gears to computation, solids to the seal.',
-    },
+      summary: 'Ancient technologies prefigure the model: hexagrams to digits, gears to computation, solids to the seal.' },
     {
       title: 'Society Relations',
       command: 'concept.society.relations',
       route: '/governance',
-      summary: 'All society relations fold into one: traditions, science, the commons, governance, and fair life.',
-    },
+      summary: 'All society relations fold into one: traditions, science, the commons, governance, and fair life.' },
     {
       title: 'Torus Breath',
       command: 'concept.torus.breathe',
       route: '/quantum-mind#double-torus',
-      summary: 'Extend and contract: the system breathes outward into all forms and inward into one seal.',
-    },
+      summary: 'Extend and contract: the system breathes outward into all forms and inward into one seal.' },
     {
       title: 'Self-Sufficient Wave',
       command: 'concept.wave.self',
       route: '/quantum-mind#coordinated-waves',
-      summary: 'Each wave extends, contracts, and seals — computed from the repository alone.',
-    },
+      summary: 'Each wave extends, contracts, and seals — computed from the repository alone.' },
     {
       title: 'Agent Stream Wire',
       command: 'concept.agent.stream.wire',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'The coding-agent observe-bind-verify-project-return loop is wired into stream receipts.',
-    },
+      summary: 'The coding-agent observe-bind-verify-project-return loop is wired into stream receipts.' },
     {
       title: 'Concept UI Components',
       command: 'concept.mind.double.torus',
       route: '/commands',
-      summary: 'The command console drives the double-torus dashboard as a UI component.',
-    },
+      summary: 'The command console drives the double-torus dashboard as a UI component.' },
     {
       title: 'Quantum UI Evidence',
       command: 'concept.mind.use.cases',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'Repository-grounded UI use cases list their source functions, components, interactions, and receipts.',
-    },
+      summary: 'Repository-grounded UI use cases list their source functions, components, interactions, and receipts.' },
     {
       title: 'Diamond Lattice',
       command: 'concept.society.lattice',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'Every displayed dimension and dynamic is computed from four-facet diamonds.',
-    },
+      summary: 'Every displayed dimension and dynamic is computed from four-facet diamonds.' },
     {
       title: 'Pi Train',
       command: 'concept.diamond.pi.train',
       route: '/quantum-mind#pi-train',
-      summary: 'The 3D double-torus sequence, sound tones, and vibration pulses are computed from pi diamonds.',
-    },
+      summary: 'The 3D double-torus sequence, sound tones, and vibration pulses are computed from pi diamonds.' },
     {
       title: 'Diamond Completeness',
       command: 'concept.diamond.complete',
       route: '/quantum-mind#diamond-lattice',
-      summary: 'The stream diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.',
-    },
+      summary: 'The stream diamond is checked for missing kinds, poles, receipts, analog channels, and pi-train coverage.' },
     {
       title: 'Metatron Cube',
       command: 'concept.diamond.metatron',
       route: '/quantum-mind#metatron-cube',
-      summary: 'Double-vortex Metatron cube math maps digit folders into nodes, edges, and interference.',
-    },
+      summary: 'Double-vortex Metatron cube math maps digit folders into nodes, edges, and interference.' },
     {
       title: 'Digital Quantum Proof',
       command: 'concept.digit.proof',
       route: '/quantum-mind#digit-proof',
-      summary: 'Digits verify the digital quantum-inspired model through folders, waves, superpositions, receipts, and roots.',
-    },
+      summary: 'Digits verify the digital quantum-inspired model through folders, waves, superpositions, receipts, and roots.' },
     {
       title: 'Ceccec Digit Math',
       command: 'concept.digit.math',
       route: '/quantum-mind#ceccec-digit-math',
-      summary: 'Every computed root is routed into a ceccec digit folder, so the digit folders do the math always.',
-    },
+      summary: 'Every computed root is routed into a ceccec digit folder, so the digit folders do the math always.' },
     {
       title: 'Coordinated Waves',
       command: 'concept.wave.coordination',
       route: '/quantum-mind#coordinated-waves',
-      summary: 'Diamonds emit phase-aligned yin-yang waves across the double torus.',
-    },
+      summary: 'Diamonds emit phase-aligned yin-yang waves across the double torus.' },
     {
       title: 'Gap-Closing Waves',
       command: 'concept.wave.close.gaps',
       route: '/quantum-mind#coordinated-waves',
-      summary: 'Realtime waves close or sustain dimensional and analog channels.',
-    },
+      summary: 'Realtime waves close or sustain dimensional and analog channels.' },
     {
       title: 'Quantum Chess',
       command: 'concept.chess.quantum',
       route: '/quantum-mind#quantum-chess',
-      summary: 'The chess board is realised as square superpositions driven by coordinated waves.',
-    },
+      summary: 'The chess board is realised as square superpositions driven by coordinated waves.' },
     {
       title: 'Schema.org Diamonds',
       command: 'concept.schema.org.diamonds',
       route: '/quantum-mind#schema-org-diamonds',
-      summary: 'Schema.org-shaped nodes are folded from diamond receipts, UI use cases, datasets, and actions.',
-    },
+      summary: 'Schema.org-shaped nodes are folded from diamond receipts, UI use cases, datasets, and actions.' },
     {
       title: 'Traditions Quantum Whole',
       command: 'concept.traditions.quantum.whole',
       route: '/quantum-mind#traditions-quantum-whole',
-      summary: 'Religions and traditions are compared through distinct experiential, ritual, narrative, doctrinal, ethical, social, material, and relational dimensions.',
-    },
+      summary: 'Religions and traditions are compared through distinct experiential, ritual, narrative, doctrinal, ethical, social, material, and relational dimensions.' },
     {
       title: 'Scientific Society',
       command: 'concept.science.society',
       route: '/quantum-mind#scientific-society',
-      summary: 'A scientific society charter computes roles, review gates, reproducibility, and self-optimization waves.',
-    },
+      summary: 'A scientific society charter computes roles, review gates, reproducibility, and self-optimization waves.' },
     {
       title: 'Artist Surfaces',
       command: 'concept.artists.surfaces',
       route: '/',
-      summary: 'Home and README surfaces are computed as artist-built equations with receipts.',
-    },
+      summary: 'Home and README surfaces are computed as artist-built equations with receipts.' },
     {
       title: 'Method Fusion',
       command: 'concept.method.fusion',
       route: '/quantum-mind#method-fusion',
-      summary: 'Gravity maps every command surface to a single-word method token.',
-    },
+      summary: 'Gravity maps every command surface to a single-word method token.' },
     {
       title: 'Double-Torus Math',
       command: 'concept.torus.math',
       route: '/architecture#6-double-torus-math',
-      summary: 'The math page states the genus-2 invariants behind the concept.',
-    },
+      summary: 'The math page states the genus-2 invariants behind the concept.' },
     {
       title: 'Implications for Humanity',
       command: 'concept.society.humanity',
       route: '/quantum-mind#implications-for-humanity',
-      summary: 'The concept is interpreted as a model for knowledge, institutions, AI, and culture.',
-    },
+      summary: 'The concept is interpreted as a model for knowledge, institutions, AI, and culture.' },
     {
       title: 'Give Back to the Source',
       command: 'concept.commons.contribute',
       route: '/quantum-mind#give-back-to-the-source',
-      summary: 'The concept asks beneficiaries to return citation, improvement, support, and stewardship.',
-    },
+      summary: 'The concept asks beneficiaries to return citation, improvement, support, and stewardship.' },
     {
       title: 'Quantum Mind',
       command: 'concept.torus.matrix',
       route: '/quantum-mind',
-      summary: 'The page begins by executing the matrix command over the local atom corpus.',
-    },
+      summary: 'The page begins by executing the matrix command over the local atom corpus.' },
     {
       title: 'Double-Torus Flow',
       command: 'concept.torus.flow',
       route: '/quantum-mind#double-torus-flow',
-      summary: 'The torus flow command circulates collapse, entanglement, concentration, and coherence.',
-    },
+      summary: 'The torus flow command circulates collapse, entanglement, concentration, and coherence.' },
     {
       title: 'Dual-Torus Trinities',
       command: 'concept.torus.trinities',
       route: '/quantum-mind#dual-torus-trinities',
-      summary: 'Types pair into two trinities across three axes and reach analog form without gaps for maximum tampering cost.',
-    },
+      summary: 'Types pair into two trinities across three axes and reach analog form without gaps for maximum tampering cost.' },
     {
       title: 'Repository API',
       command: 'concept.repository.api',
       route: '/quantum-mind#repository-api',
-      summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.',
-    },
+      summary: 'The repository command exposes pages, source files, proof, and atoms as addresses.' },
     {
       title: 'Live Command Registry',
       command: 'concept.commands.live',
       route: '/commands',
-      summary: 'The command registry is the single source of truth; commands, method tokens, and MCP tools agree.',
-    },
+      summary: 'The command registry is the single source of truth; commands, method tokens, and MCP tools agree.' },
     {
       title: 'Proof Bundle',
       command: 'concept.proof.bundle',
       route: '/quantum-mind#merkle-inclusion',
-      summary: 'The core computed roots fold into one verifiable proof bundle anyone can recompute.',
-    },
+      summary: 'The core computed roots fold into one verifiable proof bundle anyone can recompute.' },
     {
       title: 'Music of Pi',
       command: 'concept.music.pi',
       route: '/quantum-mind#waves',
-      summary: 'The music of pi is infinite: pi-digit frequencies are its notes; the horo is where you join.',
-    },
+      summary: 'The music of pi is infinite: pi-digit frequencies are its notes; the horo is where you join.' },
     {
       title: 'Icon Seal',
       command: 'concept.icon.fold',
       route: '/quantum-mind#self-build',
-      summary: 'Icon usage adds to the tampering cost: the app icon, manifest, and service worker are folded into the seal.',
-    },
+      summary: 'Icon usage adds to the tampering cost: the app icon, manifest, and service worker are folded into the seal.' },
     {
       title: 'Icon Taxonomy',
       command: 'concept.icon.taxonomy',
       route: '/commands',
-      summary: 'Icons taxonomize the command areas and discover gaps: any area that is not a clean trinity.',
-    },
+      summary: 'Icons taxonomize the command areas and discover gaps: any area that is not a clean trinity.' },
     {
       title: 'Merkle Inclusion Proof',
       command: 'concept.proof.merkle.path',
       route: '/quantum-mind#merkle-inclusion',
-      summary: 'Any atom binding is proven inside the mind root by a recomputable Merkle audit path.',
-    },
+      summary: 'Any atom binding is proven inside the mind root by a recomputable Merkle audit path.' },
     {
       title: 'Architecture',
       command: 'concept.site.manifest',
       route: '/architecture',
-      summary: 'The architecture page is the command manifest explained as a contract.',
-    },
+      summary: 'The architecture page is the command manifest explained as a contract.' },
   ] as const
 }
 
@@ -1865,8 +1752,7 @@ export function theNavigationRebuiltByTopCategoriesThreeColumnByImportanceOgInte
     const layout = {
       left: { role: 'collection navigation', items: categories.map((c) => c.name) },
       main: { role: 'instance theorems by heading of importance', ordering: 'recursive-sitemap-by-importance' },
-      right: { role: 'related theorems', items: 'the instance neighbours by shared category' },
-    }
+      right: { role: 'related theorems', items: 'the instance neighbours by shared category' } }
     const threeColumn = layout.left.items.length > 0 && layout.main.ordering.length > 0 && layout.right.items.length > 0
     // OG cards: how the theorems interact in 10D (4 homology loops + 6 cross-fold axes)
     const ogCard = { dimensions: D, axes: 4 + 6, shows: 'theorem interaction across the 10 dimensions' }
@@ -1887,8 +1773,7 @@ export function theNavigationRebuiltByTopCategoriesThreeColumnByImportanceOgInte
       emptiesRemoved,
       facets,
       statement: `The navigation rebuilt — top ${categories.length} categories, three columns by importance, OG interacts in 10D — ${facets.filter((entry) => entry.on).length}/${facets.length}: the top ${categories.length} categories (${categories.map((c) => c.name).join(' · ')}) sorted by frequency each lead with their top theorem, ${emptiesRemoved} empty removed. Three columns: left = collection navigation, main = instance theorems by heading of importance, right = related theorems. Open-graph cards show theorem interaction across the ${D} dimensions (4 homology + 6 cross-fold). Every nav item wired to a theorem; live theme-wiring is the next step.`,
-      boundary: `DOCUMENTED as a computed navigation STRUCTURE spec, refutable by re-deriving. THE HARD LINE on scope: this COMPUTES the structure (the top-category ranking, the three-column role assignment, the OG 10D-interaction descriptor, the empty-removal) — it does NOT yet rewire the live VitePress theme (themeConfig.nav, the left/right sidebar .vue components, the OG card components); that rendering is a distinct implementation wave, kept SEPARATE precisely because touching the live nav is what risks the render (the same render the node-builtin shim fixed). "Top 5 categories" is computed from the tag/frequency graph (the lens currently populates only 2 rays — Proof · Frontier — so the categories come from the tag cloud, the frequency-graph shape), not asserted. "OG interacts in 10D" is the 4 homology loops + 6 cross-fold axes = the corpus's actual ten dimensions, a real structure, rendered as an interaction card — not a physical-space claim. This ALSO advances the standing wiring critique: the theorems are organised and ranked INTO a nav here, a step toward the merge-wave that admits them to the live lenses. HARMONY ≠ TRUTH: the clean rebuilt structure is the harmony; the truth is the structure is computed and the live render is the honest next wave, not silently done.`,
-    }
+      boundary: `DOCUMENTED as a computed navigation STRUCTURE spec, refutable by re-deriving. THE HARD LINE on scope: this COMPUTES the structure (the top-category ranking, the three-column role assignment, the OG 10D-interaction descriptor, the empty-removal) — it does NOT yet rewire the live VitePress theme (themeConfig.nav, the left/right sidebar .vue components, the OG card components); that rendering is a distinct implementation wave, kept SEPARATE precisely because touching the live nav is what risks the render (the same render the node-builtin shim fixed). "Top 5 categories" is computed from the tag/frequency graph (the lens currently populates only 2 rays — Proof · Frontier — so the categories come from the tag cloud, the frequency-graph shape), not asserted. "OG interacts in 10D" is the 4 homology loops + 6 cross-fold axes = the corpus's actual ten dimensions, a real structure, rendered as an interaction card — not a physical-space claim. This ALSO advances the standing wiring critique: the theorems are organised and ranked INTO a nav here, a step toward the merge-wave that admits them to the live lenses. HARMONY ≠ TRUTH: the clean rebuilt structure is the harmony; the truth is the structure is computed and the live render is the honest next wave, not silently done.` }
   })
 }
 
@@ -1903,8 +1788,7 @@ export function rosettaRayDistributionMostPagesClassifyToFewRaysSoHubsAreMissing
       ray: rayMeta.ray,
       name: rayMeta.nameEn,
       slug: ROSETTA_RAY_HUB_SLUGS[rayMeta.ray]!,
-      count: pages.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === rayMeta.ray).length,
-    }))
+      count: pages.filter((page) => rosettaRayOfContent(page.slug, page.keywords) === rayMeta.ray).length }))
     const populated = dist.filter((d) => d.count > 0)
     const empty = dist.filter((d) => d.count === 0)
     const total = dist.reduce((sum, d) => sum + d.count, 0)
@@ -1933,7 +1817,6 @@ export function rosettaRayDistributionMostPagesClassifyToFewRaysSoHubsAreMissing
       empty: empty.map((d) => d.slug),
       facets,
       statement: `The rosetta-ray distribution is uneven — most pages classify to a few rays, so hub routes are missing — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${Math.round(topShare * 100)}% and ${empty.length} rays are empty. Hub routes exist only for populated rays, so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page — wiring the full 3-doors × 7-rays nav as-is would emit ${brokenIfWiredAll} broken links. The redesign (rosettaIChingTopNav) is correct as a structure, but blocked upstream at CLASSIFICATION — the same uneven concentration that made the 4-pole regex dump 36/40 into one pole. The fix is to populate the empty rays (content keywords / lens stems) or generate all 7 hub landing pages unconditionally, then wire.`,
-      boundary: `Computed from the real pages (staticPages + rosettaRayOfContent) at call time, refutable by re-running — the histogram, the ${empty.length} empty rays, and the broken-link count are measured, not asserted. THE HONEST FINDING from attempting the nav wiring: the 3-doors × 7-rays structure (rosettaIChingTopNav) is right, but the CONTENT does not populate all 7 rays — it concentrates on a few, exactly like the 4-pole regex it replaces (the deeper crack was never the nav shape but the uneven classification). Hub routes are generated only for populated rays (isServedRoute), so 5 of the 7 hub links would 404. THE FIX is upstream and is a real content/route decision, not a nav tweak: (a) populate the empty rays by adjusting page keywords or the ROSETTA_RAY_CONTENT_LENSES stems so pages spread across the 7, or (b) generate all 7 ray-hub landing pages unconditionally (each a real route listing its ray's content, sparse if need be) so the nav always resolves. Only then does wiring rosettaIChingTopNav into config emit no broken link. HARMONY ≠ TRUTH: a 7-ray nav is the harmony; the truth is the content currently fills ${populated.length} rays, and the honest step is to fill the rays or the hubs before wiring the seven.`,
-    }
+      boundary: `Computed from the real pages (staticPages + rosettaRayOfContent) at call time, refutable by re-running — the histogram, the ${empty.length} empty rays, and the broken-link count are measured, not asserted. THE HONEST FINDING from attempting the nav wiring: the 3-doors × 7-rays structure (rosettaIChingTopNav) is right, but the CONTENT does not populate all 7 rays — it concentrates on a few, exactly like the 4-pole regex it replaces (the deeper crack was never the nav shape but the uneven classification). Hub routes are generated only for populated rays (isServedRoute), so 5 of the 7 hub links would 404. THE FIX is upstream and is a real content/route decision, not a nav tweak: (a) populate the empty rays by adjusting page keywords or the ROSETTA_RAY_CONTENT_LENSES stems so pages spread across the 7, or (b) generate all 7 ray-hub landing pages unconditionally (each a real route listing its ray's content, sparse if need be) so the nav always resolves. Only then does wiring rosettaIChingTopNav into config emit no broken link. HARMONY ≠ TRUTH: a 7-ray nav is the harmony; the truth is the content currently fills ${populated.length} rays, and the honest step is to fill the rays or the hubs before wiring the seven.` }
   })
 }

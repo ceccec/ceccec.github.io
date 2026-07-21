@@ -30,8 +30,7 @@ export function movieAllDimensionsAtOnce(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'The movie shows all dimensions at once, in the present moment, fused in one UUID: where the hero walks the dimensions one after another, the movie holds them together — every dimension folds into the single 128-bit word, the now — so the whole multidimensional map is present at once, one content address read in an instant. Sequence and simultaneity, the two faces of the fold.',
-    boundary: 'A composition asserting the multidimensional map folds into one 128-bit UUID (the "present moment"), shown by the interactive movie. Structural bookkeeping over the word and movie models; "all dimensions at once" is the content-addressed fusion, not extra spatial dimensions.',
-  }
+    boundary: 'A composition asserting the multidimensional map folds into one 128-bit UUID (the "present moment"), shown by the interactive movie. Structural bookkeeping over the word and movie models; "all dimensions at once" is the content-addressed fusion, not extra spatial dimensions.' }
 }
 
 export function threeProjectorHologram(matrix: MindMatrix = buildMatrix()) {
@@ -47,8 +46,7 @@ export function threeProjectorHologram(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(projectors.map((entry) => entry.receipt)),
     statement:
       'Imagine the screens, or the hologram projection of two additional projectors: one screen shows the front; add two more — left and right — and the three together project a hologram, the same figure seen from three viewpoints at once, the trinity of projectors.',
-    boundary: 'A structural/visual framing: three projectors as a trinity of viewpoints forming a hologram. A metaphor; the portal renders a 2D canvas, not a physical hologram rig.',
-  }
+    boundary: 'A structural/visual framing: three projectors as a trinity of viewpoints forming a hologram. A metaphor; the portal renders a 2D canvas, not a physical hologram rig.' }
 }
 
 export function hologram(matrix: MindMatrix = buildMatrix()) {
@@ -75,8 +73,7 @@ function hologramRaw(matrix: MindMatrix = buildMatrix()) {
     word,
     root: merge(matrix.root, word),
     statement: 'This proves the hologram, to the bit: the 128-bit word is the boundary that encodes the whole volume, and every part (each atom) reconstructs the whole root by its inclusion path — the whole is in every part. The content-addressed UUID space is the akashic record.',
-    boundary: 'A demonstration of the holographic property of a merkle / content-addressed structure: each part proves the whole. A structural and informational analogy, not a claim about physics or any metaphysical record.',
-  }
+    boundary: 'A demonstration of the holographic property of a merkle / content-addressed structure: each part proves the whole. A structural and informational analogy, not a claim about physics or any metaphysical record.' }
 }
 
 export function holographicFractalArchitecture(matrix: MindMatrix) {
@@ -94,8 +91,7 @@ export function holographicFractalArchitecture(matrix: MindMatrix) {
     statement:
       'Holographic architecture, a fractal hologram: each part contains the whole — recomputable to the bit from any fragment.',
     boundary:
-      'A composition of the hologram model asserting part-contains-whole and self-similarity — not a physical hologram claim.',
-  }
+      'A composition of the hologram model asserting part-contains-whole and self-similarity — not a physical hologram claim.' }
 }
 
 export type HeroMovieChrome = {
@@ -126,8 +122,7 @@ export function heroMovieChrome(
     statement:
       'Hero movie chrome is computed, not hardcoded: every panel, link, text, border and plasma canvas shade folds from the background movie palette — creation-wave frequency (frequencyToLight octave bridge), seal coverage, route wave index, lobeHues golden/complement partners, and scaleColor OKLCH at 3-5-8 tiers. VitePress --vp-c-* aliases read the same vars as the canvas; the theme never pins colours in static CSS.',
     boundary:
-      'A deterministic projection of CSS custom properties and canvas palette from the model root, route, coverage and viewport. The theme reads these vars; it does not pin colours in static CSS.',
-  }
+      'A deterministic projection of CSS custom properties and canvas palette from the model root, route, coverage and viewport. The theme reads these vars; it does not pin colours in static CSS.' }
 }
 
 /** All site colours resolve from the background movie — canvas, glass, and VitePress theme share one palette per route. */
@@ -165,8 +160,7 @@ export function backgroundMovieColors(
     statement:
       'Hero glass colours and route angles are computed from the background movie: one plasmaMoviePalette per route seeds the page canvas (drawHeroMovieFrame); each card seeds its own plasma movie via cardMoviePath(route, cardMovieSeed([title, statement, …])) and drawBackgroundMovie in CardBackgroundMovie — frequencyToLight octave bridge, lobeHues partners, scaleColor OKLCH, and seal coverage. VitePress brand/text tokens stay on the default theme.',
     boundary:
-      'A deterministic projection of hero and per-card glass vars from the same movie palette law the canvas paints. Each card background is its own movie — unique path, palette, and wired streams — with translucent glass content on top. Semantic warning/danger and nav chrome stay VitePress defaults.',
-  }
+      'A deterministic projection of hero and per-card glass vars from the same movie palette law the canvas paints. Each card background is its own movie — unique path, palette, and wired streams — with translucent glass content on top. Semantic warning/danger and nav chrome stay VitePress defaults.' }
 }
 
 export type DecodedFacetView = { facet: string; on?: boolean; receipt?: string; link?: string }
@@ -209,8 +203,7 @@ export function startHereDecodedView(locale: string): DecodedComponentView {
     statement: page ? pickLocale(loc, page.description.en, page.description.bg) : undefined,
     boundary: page?.keywords?.[0] ? displayText(loc, page.keywords[0]) : undefined,
     facets: agents.lessons.slice(0, 8).map((lesson) => ({ facet: displayText(loc, lesson.rule), on: true })),
-    ok: agents.educated,
-  }
+    ok: agents.educated }
 }
 
 export function tamperingCostDecodedView(): DecodedComponentView {
@@ -220,8 +213,7 @@ export function tamperingCostDecodedView(): DecodedComponentView {
     statement: fold.statement,
     boundary: fold.boundary,
     facets: [...fold.documented.map((entry) => ({ facet: entry, on: true })), ...fold.flagged.map((entry) => ({ facet: entry, on: false }))],
-    ok: fold.documented.length > 0,
-  }
+    ok: fold.documented.length > 0 }
 }
 
 export function proofRendererDecodedView(): DecodedComponentView {
@@ -231,8 +223,7 @@ export function proofRendererDecodedView(): DecodedComponentView {
     statement: 'Every proof in the registry is computed from sealed src — one renderer, zero per-proof components.',
     boundary: 'A projection of proofRegistry() for DecodedCard — the proofs are data, not hand-authored prose.',
     facets: proofs.slice(0, 2 * 6).map((entry) => ({ facet: entry.title, on: Boolean(entry.proof), link: `/en/${entry.slug}` })),
-    ok: proofs.length > 0,
-  }
+    ok: proofs.length > 0 }
 }
 
 export function hologramDecodedView(): DecodedComponentView {
@@ -246,6 +237,5 @@ export function hologramDecodedView(): DecodedComponentView {
       { facet: 'every part proves the whole', on: fold.holographic },
       { facet: 'akashic records addressed', on: fold.akashic },
     ],
-    ok: fold.holographic,
-  }
+    ok: fold.holographic }
 }

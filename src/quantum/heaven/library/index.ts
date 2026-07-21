@@ -34,8 +34,7 @@ export const GLAGOLITIC_MAP: Record<string, string> = {
   // Latin → Glagolitic by sound (approximate, so English pages transliterate too)
   a: 'Ⰰ', b: 'Ⰱ', v: 'Ⰲ', w: 'Ⰲ', g: 'Ⰳ', d: 'Ⰴ', e: 'Ⰵ', z: 'Ⰸ', i: 'Ⰻ', j: 'Ⰹ',
   y: 'Ⰹ', k: 'Ⰽ', q: 'Ⰽ', l: 'Ⰾ', m: 'Ⰿ', n: 'Ⱀ', o: 'Ⱁ', p: 'Ⱂ', r: 'Ⱃ', s: 'Ⱄ',
-  t: 'Ⱅ', u: 'Ⱆ', f: 'Ⱇ', h: 'Ⱈ', x: 'Ⱈ', c: 'Ⱌ',
-}
+  t: 'Ⱅ', u: 'Ⱆ', f: 'Ⱇ', h: 'Ⱈ', x: 'Ⱈ', c: 'Ⱌ' }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function toGlagolitic(text: string): string {
   return [...text].map((char) => GLAGOLITIC_MAP[char.toLowerCase()] ?? char).join('')
@@ -63,8 +62,7 @@ export function fromGlagolitic(text: string): string {
 const SCRIPT_ALPHABETS: Record<string, Record<string, string>> = {
   greek: { a: 'α', b: 'β', c: 'κ', d: 'δ', e: 'ε', f: 'φ', g: 'γ', h: 'η', i: 'ι', j: 'ι', k: 'κ', l: 'λ', m: 'μ', n: 'ν', o: 'ο', p: 'π', q: 'κ', r: 'ρ', s: 'σ', t: 'τ', u: 'υ', v: 'β', w: 'ω', x: 'ξ', y: 'υ', z: 'ζ' },
   runic: { a: 'ᚨ', b: 'ᛒ', c: 'ᚲ', d: 'ᛞ', e: 'ᛖ', f: 'ᚠ', g: 'ᚷ', h: 'ᚺ', i: 'ᛁ', j: 'ᛃ', k: 'ᚲ', l: 'ᛚ', m: 'ᛗ', n: 'ᚾ', o: 'ᛟ', p: 'ᛈ', q: 'ᚲ', r: 'ᚱ', s: 'ᛊ', t: 'ᛏ', u: 'ᚢ', v: 'ᚹ', w: 'ᚹ', x: 'ᚲ', y: 'ᛁ', z: 'ᛉ' },
-  hebrew: { a: 'א', b: 'ב', c: 'כ', d: 'ד', e: 'ע', f: 'פ', g: 'ג', h: 'ה', i: 'י', j: 'י', k: 'כ', l: 'ל', m: 'מ', n: 'נ', o: 'ו', p: 'פ', q: 'ק', r: 'ר', s: 'ס', t: 'ת', u: 'ו', v: 'ו', w: 'ו', x: 'כ', y: 'י', z: 'ז' },
-}
+  hebrew: { a: 'א', b: 'ב', c: 'כ', d: 'ד', e: 'ע', f: 'פ', g: 'ג', h: 'ה', i: 'י', j: 'י', k: 'כ', l: 'ל', m: 'מ', n: 'נ', o: 'ו', p: 'פ', q: 'ק', r: 'ר', s: 'ס', t: 'ת', u: 'ו', v: 'ו', w: 'ו', x: 'כ', y: 'י', z: 'ז' } }
 // Transliterate text into any decoded script. Glagolitic reuses the decoded core (toGlagolitic); the rest
 // map by sound from the shared lineage. Deterministic, zero tokens.
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
@@ -88,8 +86,7 @@ export const GEMATRIA_MAPS: Record<string, Record<string, number>> = {
   // Greek Milesian (27 signs: three enneads of 9, with stigma/digamma ϛ=6, koppa ϟ=90, sampi ϡ=900)
   greek: { 'α': 1, 'β': 2, 'γ': 3, 'δ': 4, 'ε': 5, 'ϛ': 6, 'ζ': 7, 'η': 8, 'θ': 9, 'ι': 10, 'κ': 20, 'λ': 30, 'μ': 40, 'ν': 50, 'ξ': 60, 'ο': 70, 'π': 80, 'ϟ': 90, 'ρ': 100, 'σ': 200, 'ς': 200, 'τ': 300, 'υ': 400, 'φ': 500, 'χ': 600, 'ψ': 700, 'ω': 800, 'ϡ': 900 },
   // Arabic abjad (28 letters, eastern/Mashriqi order; 1-9 / 10-90 / 100-1000)
-  arabic: { 'ا': 1, 'ب': 2, 'ج': 3, 'د': 4, 'ه': 5, 'و': 6, 'ز': 7, 'ح': 8, 'ط': 9, 'ي': 10, 'ك': 20, 'ل': 30, 'م': 40, 'ن': 50, 'س': 60, 'ع': 70, 'ف': 80, 'ص': 90, 'ق': 100, 'ر': 200, 'ش': 300, 'ت': 400, 'ث': 500, 'خ': 600, 'ذ': 700, 'ض': 800, 'ظ': 900, 'غ': 1000 },
-}
+  arabic: { 'ا': 1, 'ب': 2, 'ج': 3, 'د': 4, 'ه': 5, 'و': 6, 'ز': 7, 'ح': 8, 'ط': 9, 'ي': 10, 'ك': 20, 'ل': 30, 'م': 40, 'ن': 50, 'س': 60, 'ع': 70, 'ف': 80, 'ص': 90, 'ق': 100, 'ر': 200, 'ش': 300, 'ت': 400, 'ث': 500, 'خ': 600, 'ذ': 700, 'ض': 800, 'ظ': 900, 'غ': 1000 } }
 // Sum a word to its number — the gematria/isopsephy/abjad fold. A word collapsed to a content-address,
 // the same merkleFold pattern over the ancient number=letter systems. Verified fixed points:
 // gematria('χξϛ','greek')=666, gematria('φμε','greek')=545, gematria('الله','arabic')=66.
@@ -413,8 +410,7 @@ export const GLAGOLITIC_MEANINGS: Record<string, { gloss: string; word: boolean;
   otъ: { gloss: '"from / of" — preposition (отъ); one of the two /o/ letters', word: true, secure: false },
   ci: { gloss: 'opaque sound-name for /ts/; NOT a word — "worm/red" belongs to the neighbouring črьvь', word: false, secure: false },
   črьvь: { gloss: '"worm" — noun (čьrvь), one etymological family with "red" (čьrvenъ → scarlet dye)', word: true, secure: false },
-  ša: { gloss: 'opaque sound-name for /š/; NOT a word — the "silence" gloss is an undocumented back-formation', word: false, secure: false },
-}
+  ša: { gloss: 'opaque sound-name for /š/; NOT a word — the "silence" gloss is an undocumented back-formation', word: false, secure: false } }
 // Look up a letter's MEANING by glyph (upper or lower) or name, joined with its sound (GLAGOLITIC_LETTERS) and
 // number (the ladder, glagoliticValue). Returns undefined for an unknown key.
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
@@ -439,8 +435,7 @@ export function glagoliticAcrosticMessage(): { secure: string; secureEnglish: st
     reconstructed: '… kako ljudije myslite? Našь onъ pokojь. Rьci slovo tvrьdo …',
     english: '… how do you, people, think? He is our peace. Speak the word firmly … — the standard devotional rendering.',
     honest:
-      'Only the first nine names (azъ–zemlja) uncontroversially cohere; the middle triads are real but progressively MODERN RECONSTRUCTION (the abecedaria evidence is inconsistent and self-contradictory, the strings re-segmentable, so there is no single fixed encoded message). The one genuinely composed 9th-c. alphabet acrostic is the SEPARATE Azbučna molitva of Constantine of Preslav (c. 893). Five names — ǵervь, frьtъ, xěrъ, ci, ša — are opaque labels for loan-phonemes, not words.',
-  }
+      'Only the first nine names (azъ–zemlja) uncontroversially cohere; the middle triads are real but progressively MODERN RECONSTRUCTION (the abecedaria evidence is inconsistent and self-contradictory, the strings re-segmentable, so there is no single fixed encoded message). The one genuinely composed 9th-c. alphabet acrostic is the SEPARATE Azbučna molitva of Constantine of Preslav (c. 893). Five names — ǵervь, frьtъ, xěrъ, ci, ša — are opaque labels for loan-phonemes, not words.' }
 }
 
 // Babylonian sexagesimal (base-60 place-value). Bijective: encode any non-negative integer to base-60
@@ -601,8 +596,7 @@ export function bibleParallel(): readonly {
 }[] {
   return CHURCH_SLAVONIC_SCRIPTURE.map((v) => ({
     ref: v.ref, ocs: v.ocs, bg: v.bg, en: v.en,
-    glagoliticOcs: toGlagoliticOCS(v.ocs), glagoliticBg: toGlagoliticOCS(v.bg),
-  }))
+    glagoliticOcs: toGlagoliticOCS(v.ocs), glagoliticBg: toGlagoliticOCS(v.bg) }))
 }
 // Render the founding canon's OCS original into Glagolitic — the historical artifact (Cyril's Slavonic in
 // the round script). The deterministic half is EXACT; the OCS a normalization; the English a meaning-gloss.
@@ -643,8 +637,7 @@ export const MULTILINGUAL_SCRIPTURE: Record<string, Record<string, string>> = {
   'John 3:16': { grc: 'Οὕτω γὰρ ἠγάπησεν ὁ Θεὸς τὸν κόσμον, ὥστε τὸν υἱὸν αὐτοῦ τὸν μονογενῆ ἔδωκεν, ἵνα πᾶς ὁ πιστεύων εἰς αὐτὸν μὴ ἀπόληται, ἀλλ᾿ ἔχῃ ζωὴν αἰώνιον.', la: 'Sic enim Deus dilexit mundum, ut Filium suum unigenitum daret : ut omnis qui credit in eum, non pereat, sed habeat vitam aeternam.', hbo: 'כִּי־אַהֲבָה רַבָּה אָהַב הָאֱלֹהִים אֶת־הָעוֹלָם עַד־אֲשֶׁר נָתַן אֶת־בְּנוֹ אֶת־יְחִידוֹ לְמַעַן אֲשֶׁר לֹא־יֹאבַד כָּל־הַמַּאֲמִין בּוֹ כִּי אִם־יִחְיֶה חַיֵּי עוֹלָם', de: 'Also hat Gott die Welt geliebt, daß er seinen eingeborenen Sohn gab, auf daß alle, die an ihn glauben, nicht verloren werden, sondern das ewige Leben haben.', nl: 'Want alzo lief heeft God de wereld gehad, dat Hij Zijn eniggeboren Zoon gegeven heeft, opdat een iegelijk die in Hem gelooft, niet verderve, maar het eeuwige leven hebbe.', sv: 'Ty så älskade Gud världen, att han utgav sin enfödde Son, på det att var och en som tror på honom skall icke förgås, utan hava evigt liv.', da: 'Thi således elskede Gud Verden, at han gav sin Søn den enbårne, for at hver den, som tror på ham, ikke skal fortabes, men have et evigt Liv.', no: 'For så har Gud elsket verden at han gav sin Sønn, den enbårne, forat hver den som tror på ham, ikke skal fortapes, men ha evig liv;', es: 'Porque de tal manera amó Dios al mundo, que ha dado á su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.', fr: 'Car Dieu a tant aimé le monde qu\'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais qu\'il ait la vie éternelle.', it: 'Perciocchè Iddio ha tanto amato il mondo, ch\'egli ha dato il suo unigenito Figliuolo, acciocchè chiunque crede in lui non perisca, ma abbia vita eterna.', pt: 'Porque Deus amou o mundo, de tal maneira, que deu o seu Filho unigénito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.', ro: 'Fiindcă atît de mult a iubit Dumnezeu lumea, că a dat pe singurul Lui Fiu, pentruca oricine crede în El, să nu piară, ci să aibă viaţa vecinică.', ru: 'Ибо так возлюбил Бог мир, что отдал Сына Своего Единородного, дабы всякий, верующий в Него, не погиб, но имел жизнь вечную.', uk: 'Так бо полюбив Бог сьвіт, що Сина свого єдинородного дав, щоб кожен, віруючий в Него, не погиб, а мав життє вічнє.', pl: 'Albowiem tak Bóg umiłował świat, że Syna swego jednorodzonego dał, aby każdy, kto weń wierzy, nie zginął, ale miał żywot wieczny.', cs: 'Nebo tak Bůh miloval svět, že Syna svého jednorozeného dal, aby každý, kdož věří v něho, nezahynul, ale měl život věčný.', sr: 'Јер Богу тако омиље свијет да је и сина својега јединороднога дао, да ни један који га вјерује не погине, него да има живот вјечни.', zh: '「神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不致滅亡，反得永生。', ja: 'それ神はその獨子を賜ふほどに世を愛し給へり、すべて彼を信ずる者の亡びずして、永遠の生命を得んためなり。', ko: '하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 저를 믿는 자마다 멸망치 않고 영생을 얻게 하려 하심이니라', hi: 'क्योंकि परमेश्वर ने जगत से ऐसा प्रेम रखा कि उस ने अपना एकलौता पुत्र दे दिया, ताकि जो कोई उस पर विश्वास करे, वह नाश न हो, परन्तु अनन्त जीवन पाए।', vi: 'Vì Đức Chúa Trời yêu thương thế gian, đến nỗi đã ban Con một của Ngài, hầu cho hễ ai tin Con ấy không bị hư mất mà được sự sống đời đời.', ar: 'لانه هكذا احب الله العالم حتى بذل ابنه الوحيد لكي لا يهلك كل من يؤمن به بل تكون له الحياة الابدية.', tr: 'Zira Allah dünyayı öyle sevdi ki, biricik Oğlunu verdi; ta ki, ona iman eden her adam helâk olmasın, ancak ebedî hayatı olsun.', sw: 'Kwa maana jinsi hii Mungu aliupenda ulimwengu, hata akamtoa Mwanawe pekee, ili kila mtu amwaminiye asipotee, bali awe na uzima wa milele.', fi: 'Sillä niin on Jumala maailmaa rakastanut, että hän antoi ainokaisen Poikansa, ettei yksikään, joka häneen uskoo, hukkuisi, vaan hänellä olisi iankaikkinen elämä.', hu: 'Mert úgy szerette Isten e világot, hogy az ő egyszülött Fiát adta, hogy valaki hiszen ő benne, el ne vesszen, hanem örök élete legyen.' },
   'Psalm 22:1 (KJV 23:1)': { grc: 'Ψαλμὸς τῷ Δαυίδ. Κύριος ποιμαίνει με, καὶ οὐδέν με ὑστερήσει.', la: 'Psalmus David. Dominus regit me, et nihil mihi deerit.', hbo: 'מִזְמ֥וֹר לְדָוִ֑ד יְהוָ֥ה רֹ֝עִ֗י לֹ֣א אֶחְסָֽר׃', de: 'Ein Psalm Davids. Der HERR ist mein Hirte; mir wird nichts mangeln.', nl: 'Een psalm van David. De HEERE is mijn Herder, mij zal niets ontbreken.', sv: 'En psalm av David. HERREN är min herde, mig skall intet fattas,', da: 'HERREN er min Hyrde, mig skal intet fattes,', no: 'En salme av David. Herren er min hyrde, mig fattes intet.', es: 'Jehová es mi pastor; nada me faltará.', fr: 'L\'Éternel est mon berger: je ne manquerai de rien.', it: 'IL Signore è il mio pastore: nulla mi mancherà.', pt: 'O Senhor é o meu pastor: nada me faltará.', ro: 'Domnul este Păstorul meu: nu voi duce lipsă de nimic.', ru: 'Господь - Пастырь мой; я ни в чем не буду нуждаться:', uk: 'Псальма Давидова. Господь пастирь мій, не мати му недостатку.', pl: 'Psalm Dawidowy. Pan jest pasterzem moim, na niczem mi nie zejdzie.', cs: 'Žalm Davidův. Hospodin jest můj pastýř, nebudu míti nedostatku.', sr: 'Господ је пастир мој, ништа ми неће недостајати.', zh: '（大衛的詩。）耶和華是我的牧者，我必不致缺乏。', ja: 'ヱホバは我が牧者なり われ乏しきことあらじ', ko: '여호와는 나의 목자시니 내가 부족함이 없으리로다', hi: 'यहोवा मेरा चरवाहा है, मुझे कुछ घटी न होगी।', vi: 'Đức Giê-hô-va là Đấng chăn giữ tôi: tôi sẽ chẳng thiếu thốn gì.', ar: 'مزمور لداود. الرب راعيّ فلا يعوزني شيء.', tr: 'RAB çobanımdır; benim eksiğim olmaz.', sw: 'Bwana ndiye mchungaji wangu, Sitapungukiwa na kitu.', fi: 'Herra on minun paimeneni, ei minulta mitään puutu.', hu: 'Az Úr az én pásztorom; nem szűkölködöm.' },
   'Genesis 1:1': { grc: 'ἘΝ ἀρχῇ ἐποίησεν ὁ Θεὸς τὸν οὐρανὸν καὶ τὴν γῆν.', la: 'In principio creavit Deus caelum et terram.', hbo: 'בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃', de: 'Am Anfang schuf Gott Himmel und Erde.', nl: 'In den beginne schiep God den hemel en de aarde.', sv: 'I begynnelsen skapade Gud himmel och jord.', da: 'I Begyndelsen skabte Gud Himmelen og Jorden.', no: 'I begynnelsen skapte Gud himmelen og jorden.', es: 'En el principio creó Dios los cielos y la tierra.', fr: 'Au commencement, Dieu créa les cieux et la terre.', it: 'NEL principio Iddio creò il cielo e la terra.', pt: 'NO princípio, criou Deus os céus e a terra.', ro: 'La început, Dumnezeu a făcut cerurile şi pămîntul.', ru: 'В начале сотворил Бог небо и землю.', uk: 'У початку сотворив Бог небо та землю.', pl: 'Na początku stworzył Bóg niebo i ziemię.', cs: 'Na počátku stvořil Bůh nebe a zemi.', sr: 'У почетку створи Бог небо и земљу.', zh: '起初，　神創造天地。', ja: '元始に神天地を創造たまへり', ko: '태초에 하나님이 천지를 창조하시니라', hi: 'आदि में परमेश्वर ने आकाश और पृथ्वी की सृष्टि की।', vi: 'Ban đầu Đức Chúa Trời dựng nên trời đất.', ar: 'في البدء خلق الله السموات والارض.', tr: 'BAŞLANGIÇTA Allah gökleri ve yeri yarattı.', sw: 'Hapo mwanzo Mungu aliziumba mbingu na nchi.', fi: 'Alussa loi Jumala taivaan ja maan.', hu: 'Kezdetben teremté Isten az eget és a földet.' },
-  'Genesis 1:3': { grc: 'Καὶ εἶπεν ὁ Θεὸς, γενηθήτω φῶς· καὶ ἐγένετο φῶς.', la: 'Dixitque Deus : Fiat lux. Et facta est lux.', hbo: 'וַיֹּ֥אמֶר אֱלֹהִ֖ים יְהִ֣י א֑וֹר וַֽיְהִי־אֽוֹר׃', de: 'Und Gott sprach: Es werde Licht! und es ward Licht.', nl: 'En God zeide: Daar zij licht! en daar werd licht.', sv: 'Och Gud sade: »Varde ljus»; och det vart ljus.', da: 'Og Gud sagde: "Der blive Lys!" Og der blev Lys.', no: 'Da sa Gud: Det bli lys! Og det blev lys.', es: 'Y dijo Dios: Sea la luz: y fué la luz.', fr: 'Dieu dit: Que la lumière soit! Et la lumière fut.', it: 'E Iddio disse: Sia la luce. E la luce fu.', pt: 'E disse Deus: Haja luz. E houve luz.', ro: 'Dumnezeu a zis: „Să fie lumină!" Şi a fost lumină.', ru: 'И сказал Бог: да будет свет. И стал свет.', uk: 'І рече Бог: Настань, сьвіте! І настав сьвіт.', pl: 'I rzekł Bóg: Niech będzie światłość; i stała się światłość.', cs: 'I řekl Bůh: Buď světlo! I bylo světlo.', sr: 'И рече Бог: нека буде свјетлост. И би свјетлост.', zh: '　神說：要有光，就有了光。', ja: '神光あれと言たまひければ光ありき', ko: '하나님이 가라사대 빛이 있으라 하시매 빛이 있었고', hi: 'तब परमेश्वर ने कहा, उजियाला हो: तो उजियाला हो गया।', vi: 'Đức Chúa Trời phán rằng: Phải có sự sáng; thì có sự sáng.', ar: 'وقال الله ليكن نور فكان نور.', tr: 'Ve Allah dedi: Işık olsun; ve ışık oldu.', sw: 'Mungu akasema, Iwe nuru; ikawa nuru.', fi: 'Ja Jumala sanoi: \'Tulkoon valkeus\'. Ja valkeus tuli.', hu: 'És monda Isten: Legyen világosság: és lőn világosság.' },
-}
+  'Genesis 1:3': { grc: 'Καὶ εἶπεν ὁ Θεὸς, γενηθήτω φῶς· καὶ ἐγένετο φῶς.', la: 'Dixitque Deus : Fiat lux. Et facta est lux.', hbo: 'וַיֹּ֥אמֶר אֱלֹהִ֖ים יְהִ֣י א֑וֹר וַֽיְהִי־אֽוֹר׃', de: 'Und Gott sprach: Es werde Licht! und es ward Licht.', nl: 'En God zeide: Daar zij licht! en daar werd licht.', sv: 'Och Gud sade: »Varde ljus»; och det vart ljus.', da: 'Og Gud sagde: "Der blive Lys!" Og der blev Lys.', no: 'Da sa Gud: Det bli lys! Og det blev lys.', es: 'Y dijo Dios: Sea la luz: y fué la luz.', fr: 'Dieu dit: Que la lumière soit! Et la lumière fut.', it: 'E Iddio disse: Sia la luce. E la luce fu.', pt: 'E disse Deus: Haja luz. E houve luz.', ro: 'Dumnezeu a zis: „Să fie lumină!" Şi a fost lumină.', ru: 'И сказал Бог: да будет свет. И стал свет.', uk: 'І рече Бог: Настань, сьвіте! І настав сьвіт.', pl: 'I rzekł Bóg: Niech będzie światłość; i stała się światłość.', cs: 'I řekl Bůh: Buď světlo! I bylo světlo.', sr: 'И рече Бог: нека буде свјетлост. И би свјетлост.', zh: '　神說：要有光，就有了光。', ja: '神光あれと言たまひければ光ありき', ko: '하나님이 가라사대 빛이 있으라 하시매 빛이 있었고', hi: 'तब परमेश्वर ने कहा, उजियाला हो: तो उजियाला हो गया।', vi: 'Đức Chúa Trời phán rằng: Phải có sự sáng; thì có sự sáng.', ar: 'وقال الله ليكن نور فكان نور.', tr: 'Ve Allah dedi: Işık olsun; ve ışık oldu.', sw: 'Mungu akasema, Iwe nuru; ikawa nuru.', fi: 'Ja Jumala sanoi: \'Tulkoon valkeus\'. Ja valkeus tuli.', hu: 'És monda Isten: Legyen világosság: és lőn világosság.' } }
 
 
 
@@ -1144,8 +1137,7 @@ export const DIALECT_GLOSSARY: Record<string, string> = {
   'шуми': 'гори', 'щиш да': 'ще', 'що те нема': 'защо те няма',
   'я': 'Аз', 'ябанджия': 'другоселец, преселник', 'яз': 'аз',
   'язка': 'аз искам', 'ял': 'или', 'ямурлук': 'мъжка горна дреха от дебел плат с форма на наметало с процепи за ръцете и с качулка',
-  'яхая': 'яхвам, яздя', 'яхъри': 'обори',
-}
+  'яхая': 'яхвам, яздя', 'яхъри': 'обори' }
 
 // Decode a dialect line to standard Bulgarian: each word whose lowercase form is glossed is replaced by
 // the FIRST sense of its gloss (a concise normalization; the full gloss is available via glossDialect).
@@ -1317,8 +1309,7 @@ export const PROVENANCE: Record<number, Provenance> = {
   73: { kind: 'traditional', region: 'Македония (Шар)', note: 'ядрото е „Распукала/Навали се Шар планина“; модерно „Шар планина“ може да е авторска адаптация — провери първия стих' },
   77: { kind: 'traditional', region: 'Шоплук', note: 'БНТ т. XIII с.448; прославена от Гюрга Пинджурова (Трън/Шоп)' },
   86: { kind: 'uncertain', genre: 'любовна', note: 'вероятно традиционна любовна; точният текст непотвърден' },
-  91: { kind: 'traditional', region: 'Родопи/Тракия', genre: 'сватбарска', note: 'обредна сватбена — сбогуването на невестата' },
-}
+  91: { kind: 'traditional', region: 'Родопи/Тракия', genre: 'сватбарска', note: 'обредна сватбена — сбогуването на невестата' } }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function provenance(n: number): Provenance {
   return PROVENANCE[n] ?? { kind: 'traditional', note: 'анонимна народна, неатрибутирана тук (непроверена индивидуално, не твърдение за анонимност)' }
@@ -1377,8 +1368,7 @@ export function decodeSong(song: Song): {
     verses: verses(song.lyrics), refrain: refrains(song.lyrics),
     glossed: glossDialect(text),
     standardTitle: decodeDialect(song.title), standardLyrics: decodeDialect(song.lyrics),
-    provenance: provenance(song.n), genre: classifyGenre(song.title, song.lyrics), scores: song.scores,
-  }
+    provenance: provenance(song.n), genre: classifyGenre(song.title, song.lyrics), scores: song.scores }
 }
 
 // DECODE ALL — the whole songbook decoded, plus a deterministic summary: the genre and provenance
@@ -1399,8 +1389,7 @@ export function pesnopoika(): {
   }
   return {
     source: entry(PESNOPOIKA_SOURCE), count: PESNOPOIKA.length,
-    dictionarySize: Object.keys(DIALECT_GLOSSARY).length, songs, byGenre, byProvenance,
-  }
+    dictionarySize: Object.keys(DIALECT_GLOSSARY).length, songs, byGenre, byProvenance }
 }
 
 // IN THIS CODEBASE, MATH PROVES. The decode does not rest on "I ran it and it looked right" — it carries
@@ -1443,8 +1432,7 @@ export function provePesnopoika(): {
   return {
     proven: Object.values(gates).every(Boolean), gates, count: PESNOPOIKA.length, root,
     statement: 'Self-verifying decode: songs gaplessly numbered, each folded to a unique content-address; the dialect dictionary is a fold of the corpus’s own footnotes; every song decodes totally; the whole recomputes to one stable root. Math proves the fold.',
-    boundary: 'Proven by math: structure (count, addressing, derivation from source, totality, determinism). NOT computed, kept sourced: the truth of a gloss (the collector’s attestation) and authored-song provenance (research) — documented-vs-legend, the one boundary the fold does not cross.',
-  }
+    boundary: 'Proven by math: structure (count, addressing, derivation from source, totality, determinism). NOT computed, kept sourced: the truth of a gloss (the collector’s attestation) and authored-song provenance (research) — documented-vs-legend, the one boundary the fold does not cross.' }
 }
 
 // UUID → sealed Glagolitic glyph string — bijective per position; alphabet order is content-addressed (64! permutations).
@@ -1542,8 +1530,7 @@ export function glyphUuidEncryptionMagnitude() {
     glyphWithoutFoldLog2,
     obfuscationBonusLog2,
     magnitudeOrdersVsHex,
-    label: `~10^${Math.round(magnitudeOrdersVsHex)}× vs hex`,
-  }
+    label: `~10^${Math.round(magnitudeOrdersVsHex)}× vs hex` }
 }
 
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */

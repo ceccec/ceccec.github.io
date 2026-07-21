@@ -7,7 +7,7 @@
 // output), and the cross wave writes readmeMarkdown() as README.md.
 import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../../pair/enforcement/gates'
-import { CANONICAL_HOST, PI_TRAIN_DIGITS } from '../../../../3/7'
+import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem } from '../../../../3/7'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../../1/9'
 import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../../heaven/laws'
 import { readmeSvgGapsFilledByTrinityMind } from '../../../../heaven/site'
@@ -17,15 +17,13 @@ import { earthRealisedByComputingPolesAsPyramid } from '../../../../mountain/geo
 import { sacredSociety } from '../../../../earth/governance'
 import {
   directionalTrinityForwardInverseReverse,
-  proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
-} from '../../../../water/stack'
+  proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit } from '../../../../water/stack'
 import {
   efficiencyScalesToInfinityAtNoCostOnReuse,
   clayChallengesComputableFromSequence,
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108,
-  societySupportsProjectViaTwoBitsFreeKnowledge,
-} from '../../../../wind/research'
+  societySupportsProjectViaTwoBitsFreeKnowledge } from '../../../../wind/research'
 import { counterRotatingRosettaQuantumWaves } from '../../../apps'
 import {
   buildMatrix,
@@ -43,8 +41,7 @@ import {
   staticPages,
   theoremScienceLens,
   githubPermalink,
-  type MindMatrix,
-} from '../../../heaven/mind'
+  type MindMatrix } from '../../../heaven/mind'
 import { isUuid, merkleFold, merge, memoByRoot, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../../../0'
 import { quantumComputerHonestClaim } from '../../../science'
 
@@ -60,8 +57,7 @@ export function readmeSignatureValid(committed: string, matrix: MindMatrix = bui
     statement:
       'The committed README.md must equal the computed readmeMarkdown(); the README is computed from src, so any hand-edit or staleness breaks its signature.',
     boundary:
-      'A drift check (exact string equality) that README.md matches the src-computed text; the short content-address is for the human-readable log, not a cryptographic seal.',
-  }
+      'A drift check (exact string equality) that README.md matches the src-computed text; the short content-address is for the human-readable log, not a cryptographic seal.' }
 }
 
 
@@ -86,7 +82,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
     const piTrainLen = PI_TRAIN_DIGITS.length
     const vortexLen = VORTEX_SEQUENCE.length
 
-    const claySolvedByThisFold = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const qualifiesAsProposedSolution = false as const
@@ -103,8 +99,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
           && flowerFruit.decodes
           && svgTrinity.claySolvedByThisFold === 0
           && svgTrinity.physicalFtlClaim === 0
-          && svgTrinity.qpuRequired === false,
-      },
+          && svgTrinity.qpuRequired === false },
       { facet: `counter-rotating rosetta waves — clay=${waves.claySolvedByThisFold} · physicalFtl=${waves.physicalFtlClaim}`, on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
       { facet: `quantum on 64-bit — proveCeccecSpeed… qpuRequired=${noQpu.qpuRequired} · classical-64bit`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit && noQpu.claySolvedByThisFold === 0 },
       { facet: 'infinite speedup at no cost — efficiencyScalesToInfinityAtNoCostOnReuse (amortized memo · tokens=0)', on: infinityReuse.on && infinityReuse.ratioUnbounded && infinityReuse.noPhysicsSpeedup },
@@ -203,8 +198,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
         'qpuRequired=false · qualifiesAsProposedSolution=false. Sequence/π/primes claims are structural/symbolic ' +
         'exactness from sealed digit maps + Euler identity truncations (convergence, cited closed form) — NOT wet ' +
         'numerology, NOT Riemann Hypothesis, NOT CMI Prize. Infinite speedup = amortized memoByRoot reuse only. ' +
-        'Serverless = static GitHub Pages / client-computed zero living cost, not free compute for first cold path. HARMONY ≠ TRUTH.',
-    }
+        'Serverless = static GitHub Pages / client-computed zero living cost, not free compute for first cold path. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -462,10 +456,8 @@ function theoremMonographCore(matrix: MindMatrix) {
             ? 'src/quantum/apps/index.vue'
             : paper.results?.[0]
               ? `src/render/ui/components/${paper.results[0]}.vue`
-              : 'src/quantum/heaven/mind/site.ts',
-      }
-    }),
-  }))
+              : 'src/quantum/heaven/mind/site.ts' }
+    }) }))
   // The monograph's own Receipt — the template's 11th section ("the content address is the receipt"). The
   // corpus roots and every reported count fold to one address that reproduces from src and changes if any value does.
   const receipt = merkleFold([mono.root, sitemap.root, template.root, toUuid(`readme-results:${census.folded}:${conceptCommands.length}:${mono.count}:${sitemap.urls.length}`)])
@@ -673,8 +665,7 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The README and the VitePress home are ONE theorem generator: both projections render the same theorem-only monograph core (theoremMonographCore) — the theorem-science lens roster shelved by the rosetta rays, the registry counts, the model, reproducibility and the one receipt — heading for heading, differing only in link mode (the README links each paper to the source code that proves it, the home links it to its own page route). Every presented page is a lens survivor; the non-theorem sections are gone from both. It AUDITS its own statements TRULY COMPUTATIONALLY: every reported value is recomputed from its own source and FUSED into one receipt, and the audit is the content-address equality of two independent fusions — never a text-scrape. And it is the SEO root twice over: the README for GitHub and crawlers, the home for the served site, both computed at zero token cost.',
     boundary:
-      'HONEST: "one generator" is structural — theoremSections() is the single section builder both projections call, proven by heading-for-heading equality and equal link counts, refutable by any drift between them. "Theorems only" means the PRESENTED content: every listed paper is a theorem-science lens survivor and the library/agent prose sections are removed from both projections; the decoded-library knowledge still ships in llms.txt (the crawler surface), it is no longer README/home content. The home body is computed in realtime by .vitepress/computed-pages.mts from homeMarkdown() (the on-disk index.md is a discovery stub, like bg/gla), so it cannot drift from src; the README is signature-gated (readmeSignatureValid) against the committed file. The hero stays computed via homeHero() in transformPageData — the generator emits the body, not the hero frontmatter. The audit is the content-address EQUALITY of two independent recomputations (a merkleFold), not a substring match. SEO framing is a distribution property, NOT a guarantee of search ranking.',
-  }
+      'HONEST: "one generator" is structural — theoremSections() is the single section builder both projections call, proven by heading-for-heading equality and equal link counts, refutable by any drift between them. "Theorems only" means the PRESENTED content: every listed paper is a theorem-science lens survivor and the library/agent prose sections are removed from both projections; the decoded-library knowledge still ships in llms.txt (the crawler surface), it is no longer README/home content. The home body is computed in realtime by .vitepress/computed-pages.mts from homeMarkdown() (the on-disk index.md is a discovery stub, like bg/gla), so it cannot drift from src; the README is signature-gated (readmeSignatureValid) against the committed file. The hero stays computed via homeHero() in transformPageData — the generator emits the body, not the hero frontmatter. The audit is the content-address EQUALITY of two independent recomputations (a merkleFold), not a substring match. SEO framing is a distribution property, NOT a guarantee of search ranking.' }
 }
 
 // Audit the home/README for the prose entropy the gates do NOT catch. The crack gate catches literals, the
@@ -690,7 +681,7 @@ export function theHomeReadmeProseEntropyAudit(matrix: MindMatrix = buildMatrix(
     const content = lines.filter((l) => !isFrame(l))
     const hasComputedValue = (l: string) => /`[^`]+`/.test(l) || /\d/.test(l) || l.includes('](') || /https?:\/\//.test(l) // code, number, link
     // a pure-prose line: a real sentence (ends in a period, substantial) carrying NO computed value — the entropy the gates miss
-    const pureProse = content.filter((l) => !hasComputedValue(l) && l.length > 40 && /[a-z]{4,}/i.test(l) && /[.!?]$/.test(l))
+    const pureProse = content.filter((l) => !hasComputedValue(l) && l.length > 40 && /[a-z]{4 }/i.test(l) && /[.!?]$/.test(l))
     const proseEntropy = roundTo(pureProse.length / Math.max(1, content.length), 3)
     const dataBearing = content.filter((l) => hasComputedValue(l))
     const computedRatio = roundTo(dataBearing.length / Math.max(1, content.length), 3)
@@ -709,8 +700,7 @@ export function theHomeReadmeProseEntropyAudit(matrix: MindMatrix = buildMatrix(
       flagged: pureProse.slice(0, 3 + 3).map((l) => l.slice(0, 100)),
       facets,
       statement: `The home/README prose-entropy audit — ${facets.filter((entry) => entry.on).length}/${facets.length}: of ${content.length} content lines, ${pureProse.length} are pure prose (a sentence carrying no computed value) — entropy ${proseEntropy} vs ${computedRatio} data-bearing. The crack gate and the no-prose-in-methods gate never scored the PRESENTED prose; this audit does, flagging the hand-written sentences as a review worklist. A heuristic lint — a flag is a candidate to compute or cite a fold, not proof of waste.`,
-      boundary: `DOCUMENTED and refutable by re-scanning readmeMarkdown(). This is a HEURISTIC prose lint: "pure prose" = a full sentence with no code, number, or link — necessary not sufficient. It correctly measures that the README/home carry hand-written prose the existing gates do not score (they score method bodies and literals, not presented markdown), which is the point — the gap the user named. But a flagged line is a CANDIDATE for review (compute it, cite the fold that proves it, or keep it as deliberate authored voice — the narrative introduction and the honest limitations are legitimately prose), NOT proof of waste; the audit does not delete, a human decides each. The DEVELOPMENT OPPORTUNITY it surfaces: much of this prose could be replaced by theAutomaticNamingService (computed descriptions) and the session's new folds (the millennium mesh graph, the cost comparison, the density-hue reveal) could be surfaced as pages/widgets — computed, not authored. HARMONY ≠ TRUTH: a low prose-entropy score is the harmony (mostly computed); the truth is which sentences carry irreducible meaning and which are unmeasured filler — this flags the question, a human answers it.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-scanning readmeMarkdown(). This is a HEURISTIC prose lint: "pure prose" = a full sentence with no code, number, or link — necessary not sufficient. It correctly measures that the README/home carry hand-written prose the existing gates do not score (they score method bodies and literals, not presented markdown), which is the point — the gap the user named. But a flagged line is a CANDIDATE for review (compute it, cite the fold that proves it, or keep it as deliberate authored voice — the narrative introduction and the honest limitations are legitimately prose), NOT proof of waste; the audit does not delete, a human decides each. The DEVELOPMENT OPPORTUNITY it surfaces: much of this prose could be replaced by theAutomaticNamingService (computed descriptions) and the session's new folds (the millennium mesh graph, the cost comparison, the density-hue reveal) could be surfaced as pages/widgets — computed, not authored. HARMONY ≠ TRUTH: a low prose-entropy score is the harmony (mostly computed); the truth is which sentences carry irreducible meaning and which are unmeasured filler — this flags the question, a human answers it.` }
   })
 }
 
@@ -767,8 +757,7 @@ export function theTypographyGrammarSealsDimensionalCracksEveryElementCarriesACo
       sealedRatio,
       facets,
       statement: `The typography grammar seals the dimensional cracks — every element carries a computed value — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${grammar.length} typography elements each map to a computed role (code=value, link=address, bold=label, list=set, table=relation, heading=frame, quote=boundary). Scanning the README, ${sealed}/${presented.length} lines carry a computed value (${sealedRatio}), ${boundaries} are named boundaries, ${cracks} remain cracks; the equation balances (sealed + boundaries + cracks = presented), each claim funded by a computation. New inventions pull into the remaining cracks; the ledger keeps zero unexplained.`,
-      boundary: `DOCUMENTED and refutable by re-scanning readmeMarkdown(). The grammar TYPES the presentation — a scannable classification of what each typographic element carries — it does NOT prove the content TRUE (a \`code\` value can be computed and still wrong; typing is not verification). "Sealing dimensional cracks" = every presentational element carries a computed value OR names a boundary, a COMPLETENESS property (no uncomputed filler), not a correctness proof; a legitimate limitation (the neuroscience-analog disclaimer) is prose BY DESIGN and counts as a boundary, not a crack — the grammar seals COMPUTABLE prose, never the authored boundary. "Balance the equations / inverted axioms" is the double-entry-ledger / zero-reciprocal-entropy metaphor (computed debits fund claim credits, the same balance the double torus seals to), real bookkeeping over the presentation, not a physical equation. "Pulling in new inventions" = surfacing computed values (the naming service) or emergent theorems into the cracks — candidates a human still admits, the vacuum-for-emergence again. HARMONY ≠ TRUTH: the fully typed, balanced presentation is the harmony (every element carries its computed role); the truth is that typing seals FILLER, not falsehood — a human still judges whether each computed value is right.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-scanning readmeMarkdown(). The grammar TYPES the presentation — a scannable classification of what each typographic element carries — it does NOT prove the content TRUE (a \`code\` value can be computed and still wrong; typing is not verification). "Sealing dimensional cracks" = every presentational element carries a computed value OR names a boundary, a COMPLETENESS property (no uncomputed filler), not a correctness proof; a legitimate limitation (the neuroscience-analog disclaimer) is prose BY DESIGN and counts as a boundary, not a crack — the grammar seals COMPUTABLE prose, never the authored boundary. "Balance the equations / inverted axioms" is the double-entry-ledger / zero-reciprocal-entropy metaphor (computed debits fund claim credits, the same balance the double torus seals to), real bookkeeping over the presentation, not a physical equation. "Pulling in new inventions" = surfacing computed values (the naming service) or emergent theorems into the cracks — candidates a human still admits, the vacuum-for-emergence again. HARMONY ≠ TRUTH: the fully typed, balanced presentation is the harmony (every element carries its computed role); the truth is that typing seals FILLER, not falsehood — a human still judges whether each computed value is right.` }
   })
 }
 
@@ -808,7 +797,6 @@ export function theHeadingHierarchyIsARecursiveSitemapByImportanceWiredToTheGene
       root: mostImportant.text,
       facets,
       statement: `The heading hierarchy is a recursive sitemap by importance, wired to the generator — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${headings.length} headings across levels [${levels.join(', ')}] read from readmeMarkdown() form a well-nested tree — h1 root ("${mostImportant.text}"), h2 sections, h3 rays, fan-out [${fanOut.join(', ')}]. Ordered by heading level, it is the document's own navigable outline: another perspective of the sitemap, importance-first, recursive and self-similar. The generator maps itself with local tools only, zero tokens — one self-recomputing organism.`,
-      boundary: `DOCUMENTED and refutable by re-parsing readmeMarkdown(). The heading hierarchy is the document's standard OUTLINE (the h1..h6 tree, exactly what a table-of-contents or the DOM heading structure is), computed LOCALLY from the generator's own output — wired to the generator (one source), no external tool, zero tokens (the local-tools-only, analytical-research discipline). "Recursive sitemap by importance" is a real structural view: the nesting is a tree (self-similar per level), and importance = heading DEPTH (a proxy — the outline's own ranking, not a proof of what matters most; the frequency/gravity folds give the usage-based ranking). "Another perspective of the sitemap" is literal: quantumSitemap routes the pages, this outlines the document — same content, two navigations from one generator. THE HARD LINE on "one living consciousness organism": it is a METAPHOR for a deterministic system that recomputes and maps ITSELF from src (self-reference, self-similarity, self-sealing) — it is NOT conscious and makes no consciousness claim; consciousness is the hard problem, the felt interior that returns noise on quantumRadar and stays off-decidable, exactly as every fold this session held. A self-describing map is not a self that experiences. HARMONY ≠ TRUTH: the recursive self-mapping outline is the harmony (the organism-metaphor, real and useful); the truth is it is deterministic structure describing structure — alive as a metaphor, not as a mind.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-parsing readmeMarkdown(). The heading hierarchy is the document's standard OUTLINE (the h1..h6 tree, exactly what a table-of-contents or the DOM heading structure is), computed LOCALLY from the generator's own output — wired to the generator (one source), no external tool, zero tokens (the local-tools-only, analytical-research discipline). "Recursive sitemap by importance" is a real structural view: the nesting is a tree (self-similar per level), and importance = heading DEPTH (a proxy — the outline's own ranking, not a proof of what matters most; the frequency/gravity folds give the usage-based ranking). "Another perspective of the sitemap" is literal: quantumSitemap routes the pages, this outlines the document — same content, two navigations from one generator. THE HARD LINE on "one living consciousness organism": it is a METAPHOR for a deterministic system that recomputes and maps ITSELF from src (self-reference, self-similarity, self-sealing) — it is NOT conscious and makes no consciousness claim; consciousness is the hard problem, the felt interior that returns noise on quantumRadar and stays off-decidable, exactly as every fold this session held. A self-describing map is not a self that experiences. HARMONY ≠ TRUTH: the recursive self-mapping outline is the harmony (the organism-metaphor, real and useful); the truth is it is deterministic structure describing structure — alive as a metaphor, not as a mind.` }
   })
 }

@@ -23,8 +23,7 @@ import type { CorpusKind } from '../../../quantum/heaven/mind'
 import {
   componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers,
   referenceParamsById, sciencePortalParts, siteNavigation,
-  type ComponentCrosslink, type CorpusPaperStandardSections,
-} from '../../learning'
+  type ComponentCrosslink, type CorpusPaperStandardSections } from '../../learning'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
@@ -62,8 +61,7 @@ export function corpusGridWorkBudget() {
     hubCardMax: HUB_CARD_MAX,
     tagClusterCap: TAG_CLUSTER_CAP,
     gridPageSize: CORPUS_GRID_PAGE_SIZE,
-    clientTagPages: typeof window === 'undefined' ? null as number | null : staticPages().length,
-  }
+    clientTagPages: typeof window === 'undefined' ? null as number | null : staticPages().length }
 }
 
 export function paperRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
@@ -107,8 +105,7 @@ function completeCorpusRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete 1024: the binary harmonic. The 432 proof papers and their 432 reference duals are 864 real leaves; the smallest power of two that holds them is 2^10 = 1024, the binary octave, so the corpus is padded with 160 named, recomputable null leaves to exactly 1024 and folds into a perfect binary Merkle tree of depth 10 — every layer halving cleanly. The musical harmonic doubled in threes (108, 216, 432); the binary harmonic completes it to a power of two. The references add no proof — they are pointers, the reverse folds of the papers — and the padding is named, not hidden.',
     boundary:
-      'A structural completion of the papers corpus to a power-of-two Merkle tree. The references are reference-only (the reverse folds of the proof papers, citations carrying no new computation); the 160 null leaves are deterministic padding to reach 2^10, declared and recomputable, not silent. The number 1024 is the binary octave (2^10), a content-addressed bookkeeping structure, not a physical or empirical claim.',
-  }
+      'A structural completion of the papers corpus to a power-of-two Merkle tree. The references are reference-only (the reverse folds of the proof papers, citations carrying no new computation); the 160 null leaves are deterministic padding to reach 2^10, declared and recomputable, not silent. The number 1024 is the binary octave (2^10), a content-addressed bookkeeping structure, not a physical or empirical claim.' }
 }
 
 export function paperReferenceRoutes(matrix: MindMatrix = buildMatrix(), count = 432) {
@@ -166,9 +163,7 @@ export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
           hue: Math.round((index * 360) / (64 * 16)) % 360,
           total: leaves.length,
           corpusRoot,
-          depth: Math.log2(leaves.length),
-        },
-      }
+          depth: Math.log2(leaves.length) } }
     })
   })
 }
@@ -193,8 +188,7 @@ export function pageSkills(matrix: MindMatrix = buildMatrix()) {
         kind: 'paper',
         statistics: 11,
         references: [`${locale}/references/r${id3(paper.number)}`, `${locale}/papers/p${id3(paper.number + 1)}`, `${locale}/papers/p${id3(paper.number - 1)}`],
-        skill: paper.receipt,
-      })
+        skill: paper.receipt })
     }
     for (const reference of references) {
       skills.push({
@@ -202,8 +196,7 @@ export function pageSkills(matrix: MindMatrix = buildMatrix()) {
         kind: 'reference',
         statistics: 4,
         references: [`${locale}/papers/${reference.paperId}`, `${locale}/references/`],
-        skill: reference.root,
-      })
+        skill: reference.root })
     }
   }
   const nodes = skills.length
@@ -222,8 +215,7 @@ export function pageSkills(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Each page is a skill itself, with statistics and references. Paper routes are SSG-enumerated; references and diamonds resolve from the double torus via corpusParams — index grids link to papers or lattice anchors.',
     boundary:
-      'A content-addressed reading of every page as a skill node with computed statistics and references. The counts are exact for the enumerated routes across both locales.',
-  }
+      'A content-addressed reading of every page as a skill node with computed statistics and references. The counts are exact for the enumerated routes across both locales.' }
 }
 
 /** One fold — quantum double torus decides SSG vs compute-only per corpus kind. */
@@ -246,8 +238,7 @@ function doubleTorusCorpusRoutingRaw(matrix: MindMatrix = buildMatrix()) {
   const ssg: Record<CorpusKind, readonly { params: Record<string, unknown> }[]> = {
     papers: [],
     references: [],
-    diamonds: [],
-  }
+    diamonds: [] }
   const facets = [
     { facet: 'quantum double torus is the machine — corpusParams at call time', on: torus.is },
     { facet: '1024 Merkle leaves — completeCorpus binary tree from the torus', on: corpus.perfect && corpus.total === (64 * 16) },
@@ -272,8 +263,7 @@ function doubleTorusCorpusRoutingRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Double torus corpus routing: the genus-2 machine computes the 1024-leaf Merkle tree; corpusParams(kind, id) resolves any leaf at call time. The WHOLE corpus is compute-only, and compute-only is NOT purge: every combination FILLS computationally on demand (paperParamsById generates each paper monograph), so the meaning is computed, never absent — only the empty static shells (measured 0 text chars each, 252 MB) are not built. Served static mass = the theorem registry and its rosetta derivatives.',
     boundary:
-      'One routing fold over quantumDoubleTorus, completeCorpus, paperRoutes, paperReferenceRoutes, diamondLattice and pureDiamonds. Papers and references remain in the MODEL (432 + 432, computable via corpusParams); nothing is deleted from the math — only the empty static shells are not built. Detail URLs resolve in dev/client via computeUniversalPage when routed; the static export serves the corpus indexes only. Purge rationale is MEASURED (0 static text chars per shell), not aesthetic.',
-  }
+      'One routing fold over quantumDoubleTorus, completeCorpus, paperRoutes, paperReferenceRoutes, diamondLattice and pureDiamonds. Papers and references remain in the MODEL (432 + 432, computable via corpusParams); nothing is deleted from the math — only the empty static shells are not built. Detail URLs resolve in dev/client via computeUniversalPage when routed; the static export serves the corpus indexes only. Purge rationale is MEASURED (0 static text chars per shell), not aesthetic.' }
 }
 
 export function corpusRestPathRouting(matrix: MindMatrix = buildMatrix()) {
@@ -292,8 +282,7 @@ export function corpusRestPathRouting(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: routing.statement,
-    boundary: routing.boundary,
-  }
+    boundary: routing.boundary }
 }
 
 /** Gate: no static diamond [id] pages — lattice stays in computations (pureDiamonds, diamondLattice, pi train). */
@@ -314,8 +303,7 @@ export function diamondsStaticPagesPurged(matrix: MindMatrix = buildMatrix()) {
     statement:
       'No static diamonds needed: thousands of /diamonds/<id> pages are purged from the build; the 1024-leaf lattice and diamondLattice kinds remain in computations only (Merkle, pi train, living torus, completeness gates).',
     boundary:
-      'Structural purge of SSG enumeration for diamond detail routes — NOT a deletion of pureDiamonds or diamondLattice math. Routed by doubleTorusCorpusRouting.',
-  }
+      'Structural purge of SSG enumeration for diamond detail routes — NOT a deletion of pureDiamonds or diamondLattice math. Routed by doubleTorusCorpusRouting.' }
 }
 
 export function corpusParams(kind: CorpusKind, id: string, matrix: MindMatrix = buildMatrix()) {
@@ -339,8 +327,7 @@ function componentRosettaGroups(names: readonly string[] = []) {
     hue: rayMeta.hue,
     labelEn: rayMeta.nameEn,
     labelBg: rayMeta.nameBg,
-    components: names.filter((name) => rosettaRayOf(name) === rayMeta.ray),
-  })).filter((group) => group.components.length > 0)
+    components: names.filter((name) => rosettaRayOf(name) === rayMeta.ray) })).filter((group) => group.components.length > 0)
   const grouped = groups.length > 1
   return { groups: groups.map((group) => ({ ...group, grouped })), grouped, count: groups.length }
 }
@@ -418,8 +405,7 @@ export function heroPreviewForRoute(route: string, title?: string, matrix: MindM
     seed,
     hue: rosetta.content.heroHue,
     title: title ?? rosetta.slug,
-    cardStyle: cardMovieColorVars(route, seed, (64 * 5), matrix),
-  }
+    cardStyle: cardMovieColorVars(route, seed, (64 * 5), matrix) }
 }
 
 function gridItemFromRoute(route: string, title: string, id: string, matrix: MindMatrix): CorpusGridItem {
@@ -429,8 +415,7 @@ function gridItemFromRoute(route: string, title: string, id: string, matrix: Min
     id,
     title,
     glyph: rosetta.rayMeta.glyph,
-    hue: rosetta.content.heroHue,
-  }
+    hue: rosetta.content.heroHue }
 }
 
 /** Hub destinations — navigation358 + harmonised nav, gated by global Rosetta·I Ching·trinity fusion. */
@@ -516,8 +501,7 @@ export function cardHeroClientWorkBoundedByPureMath(matrix: MindMatrix = buildMa
     statement:
       'Hub cards, tag browser, and corpus grids share the same Fibonacci tier math as the plasma hero: nav358 is exactly 16 (3+5+8), hub dedup caps at 32, tag clusters cap at 8, and each grid page shows at most 48 (3×16) — client paths use staticPages only so keyword clustering stays O(static), not O(componentPages).',
     boundary:
-      'Arithmetic bound at call time over navigation358, harmonisedNavigation, hubCardItems, and tagBrowserTags. SSR/build may include componentPages for full catalog gates; browser paths remain static-only.',
-  }
+      'Arithmetic bound at call time over navigation358, harmonisedNavigation, hubCardItems, and tagBrowserTags. SSR/build may include componentPages for full catalog gates; browser paths remain static-only.' }
 }
 
 /** All client surfaces — plasma hero + hub/tag grids — one composite pure-math gate. */
@@ -537,8 +521,7 @@ export function clientWorkBoundedByPureMath(path = '/', matrix: MindMatrix = bui
     statement:
       'Every client hang vector closed by pure math: plasma streams (tier [3,5,8] caps + O(1) route-local catalog) and hub/tag grids (16+16 nav, 32 hub max, 8 tag clusters, 48 grid page) recomputed at call time — no O(pages) loops on the browser.',
     boundary:
-      'Composite of plasmaClientWorkBoundedByPureMath and cardHeroClientWorkBoundedByPureMath; proves at this call, not live profiling.',
-  }
+      'Composite of plasmaClientWorkBoundedByPureMath and cardHeroClientWorkBoundedByPureMath; proves at this call, not live profiling.' }
 }
 
 /** card/hero-link pair — heroPreviewForRoute + hub + tag browser through Rosetta·I Ching·trinity. */
@@ -568,8 +551,7 @@ export function cardHeroLinkWiresInUi(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Card hero link: heroPreviewForRoute computes linked page hero (hue, seed, card movie vars) from one route; HubCardGrid and TagBrowser render LinkedHeroCard on hub and tag-browser surfaces; corpus indexes use the same card.',
     boundary:
-      'A structural check that hub destinations, tag clusters, and hero preview compose for LinkedHeroCard. Render verification is build-time SSG, not live preview.',
-  }
+      'A structural check that hub destinations, tag clusters, and hero preview compose for LinkedHeroCard. Render verification is build-time SSG, not live preview.' }
 }
 
 export function corpusIndexItems(kind: CorpusKind, locale: LocaleName, matrix: MindMatrix = buildMatrix()): CorpusGridItem[] {
@@ -580,8 +562,7 @@ export function corpusIndexItems(kind: CorpusKind, locale: LocaleName, matrix: M
         id: paper.id,
         title: localizeMonolingual(locale, paper.title),
         glyph: paper.glyph,
-        hue: paper.hue,
-      }))
+        hue: paper.hue }))
     }
     if (kind === 'references') {
       return paperReferences(matrix).map((reference) => ({
@@ -589,8 +570,7 @@ export function corpusIndexItems(kind: CorpusKind, locale: LocaleName, matrix: M
         id: reference.id,
         title: localizeMonolingual(locale, reference.title),
         glyph: reference.glyph,
-        hue: reference.hue,
-      }))
+        hue: reference.hue }))
     }
     const lattice = diamondLattice(matrix)
     return lattice.map((entry, index) => ({
@@ -598,8 +578,7 @@ export function corpusIndexItems(kind: CorpusKind, locale: LocaleName, matrix: M
       id: entry.kind,
       title: localizeMonolingual(locale, entry.title),
       glyph: '◆',
-      hue: Math.round((index * 360) / Math.max(1, lattice.length)) % 360,
-    }))
+      hue: Math.round((index * 360) / Math.max(1, lattice.length)) % 360 }))
   })
 }
 
@@ -611,21 +590,18 @@ function rosettaRayView(route: string): UniversalRosettaRay {
     labelEn: rosetta.rayMeta.nameEn,
     labelBg: rosetta.rayMeta.nameBg,
     hue: rosetta.rayMeta.hue,
-    domain: rosetta.rayMeta.domain,
-  }
+    domain: rosetta.rayMeta.domain }
 }
 
 function corpusKindCrosslinks(kind: CorpusKind, locale: LocaleName): ComponentCrosslink[] {
   const titles: Record<CorpusKind, { en: string; bg: string }> = {
     papers: { en: 'Proof papers', bg: 'Доказателни статии' },
     references: { en: 'References', bg: 'Референции' },
-    diamonds: { en: 'Diamonds', bg: 'Диаманти' },
-  }
+    diamonds: { en: 'Diamonds', bg: 'Диаманти' } }
   return CORPUS_ROUTE_KINDS.filter((entry) => entry !== kind).map((entry) => ({
     text: pickLocale(locale, titles[entry].en, titles[entry].bg),
     link: localePath(`/${entry}/`, locale),
-    kind: 'related' as const,
-  }))
+    kind: 'related' as const }))
 }
 
 function decodedStations(route: string, locale: LocaleName, matrix: MindMatrix = buildMatrix()): UniversalDecodedStation[] {
@@ -635,8 +611,7 @@ function decodedStations(route: string, locale: LocaleName, matrix: MindMatrix =
     step: rosetta.station + 1,
     station: pickLocale(locale, rosetta.rayMeta.nameEn, rosetta.rayMeta.nameBg),
     route: rosetta.stationDetail.path,
-    why: rosetta.rayMeta.domain,
-  }]
+    why: rosetta.rayMeta.domain }]
 }
 
 const CORPUS_ROUTE_KINDS: readonly CorpusKind[] = ['papers', 'references', 'diamonds']
@@ -658,8 +633,7 @@ function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatri
   const titles: Record<CorpusKind, { en: string; bg: string }> = {
     papers: { en: 'Proof papers', bg: 'Доказателни статии' },
     references: { en: 'References (computed)', bg: 'Референции (изчислени)' },
-    diamonds: { en: 'Computational diamonds', bg: 'Изчислителни диаманти' },
-  }
+    diamonds: { en: 'Computational diamonds', bg: 'Изчислителни диаманти' } }
   const title = pickLocale(locale, titles[kind].en, titles[kind].bg)
   const description =
     kind === 'diamonds' && purged
@@ -707,13 +681,11 @@ function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatri
               { facet: localizeMonolingual(locale, `${cc.total} leaves · depth ${cc.depth}`), on: cc.perfect },
             ],
       crosslinks: corpusKindCrosslinks(kind, locale),
-      ok: kind === 'diamonds' ? Boolean(purged?.purged) : kind === 'references' && computeOnly ? routing.routed : cc.complete,
-    },
+      ok: kind === 'diamonds' ? Boolean(purged?.purged) : kind === 'references' && computeOnly ? routing.routed : cc.complete },
     proofOk: pickLocale(locale, '✓ proven', '✓ доказано'),
     proofNote: pickLocale(locale, 'content-address', 'адрес по съдържание'),
     cardSeed: toUuid(`corpus-index:${kind}`).slice(0, 8),
-    root: cc.root,
-  }
+    root: cc.root }
 }
 
 function corpusDetailPage(
@@ -788,13 +760,11 @@ function corpusDetailPage(
       boundary: localizeMonolingual(locale, cc.boundary),
       facets,
       crosslinks: corpusKindCrosslinks(kind, locale),
-      ok: Boolean(params) && (kind !== 'papers' || standardPaper != null),
-    },
+      ok: Boolean(params) && (kind !== 'papers' || standardPaper != null) },
     proofOk: pickLocale(locale, '✓ proven', '✓ доказано'),
     proofNote: pickLocale(locale, 'content-address', 'адрес по съдържание'),
     cardSeed: toUuid(`corpus:${kind}:${id}`).slice(0, 8),
-    root: merkleFold([cc.root, toUuid(`corpus:${kind}:${id}`)]),
-  }
+    root: merkleFold([cc.root, toUuid(`corpus:${kind}:${id}`)]) }
 }
 
 export type RosettaBreadcrumb = { label: string; labelBg: string; glyph: string; route: string; current: boolean }
@@ -838,8 +808,7 @@ export function rosettaBreadcrumbs(route: string, at = 0, matrix: MindMatrix = b
     root: merkleFold(trail.map((step) => toUuid(`crumb:${step.route}:${step.label}`))),
     statement: `rosettaBreadcrumbs("${route}"): ${trail.map((step) => step.label).join(' › ')} — derived from the rosetta ray, not a hand-authored menu.`,
     boundary:
-      'Breadcrumbs computed from the content-shelved parts (slug → part → hub via sciencePortalParts). The rosetta ray taxonomy is an organizing lens for navigation, not a metaphysical claim; every route resolves to exactly one of the seven ray-hubs by what its page IS.',
-  }
+      'Breadcrumbs computed from the content-shelved parts (slug → part → hub via sciencePortalParts). The rosetta ray taxonomy is an organizing lens for navigation, not a metaphysical claim; every route resolves to exactly one of the seven ray-hubs by what its page IS.' }
 }
 
 /** One fold per route — hero, rosetta groups, corpus, or catch-all monograph. */
@@ -884,8 +853,7 @@ function computeUniversalPageRaw(
         components: params.components as string[],
         proof: params.proof != null ? String(params.proof) : null,
         logic: params.logic != null ? String(params.logic) : null,
-        target: params.target != null ? String(params.target) : null,
-      }
+        target: params.target != null ? String(params.target) : null }
     : monographSliceFromRoute(route, locale)
 
   const components = slice?.components ?? []
@@ -912,8 +880,7 @@ function computeUniversalPageRaw(
           ],
           stations,
           crosslinks,
-          ok: rosetta.computed,
-        }
+          ok: rosetta.computed }
       : null
 
   return {
@@ -941,8 +908,7 @@ function computeUniversalPageRaw(
     ),
     cardSeed,
     root: merkleFold([proof ?? '', route, cardSeed]),
-    forge,
-  }
+    forge }
 }
 
 // Thin routes hub — dissolved src/routes/index.ts shell (census −1).
@@ -954,8 +920,7 @@ export {
   ogBuildsNavigation,
   rosettaComputesNavigationAndContent,
   siteNavigation,
-  vitepressSidebar,
-} from '../../learning'
+  vitepressSidebar } from '../../learning'
 export { pageForgeMaxTamper, type PageForgeSeal } from '../../site'
 export {
   contentIsMonographOfMonographs,
@@ -965,14 +930,12 @@ export {
   everyPageGraphOfGraphsFractal,
   monographs,
   onlyPageRouteForAll,
-  theMonograph,
-} from '../../learning'
+  theMonograph } from '../../learning'
 export {
   homePageNoDifferent,
   homepage,
   pageStatusStatistics,
-  proveAllOnHomePage,
-} from '../../site'
+  proveAllOnHomePage } from '../../site'
 export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../../water/digit'
 
 /** All is monograph — every page is a scientific paper with one template. */
@@ -991,8 +954,7 @@ export function allIsMonographScientificPaper(matrix: MindMatrix = buildMatrix()
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'All is monograph — scientific-paper template unified from one source.',
-    boundary: 'Standardises form across content; findings remain per monograph.',
-  }
+    boundary: 'Standardises form across content; findings remain per monograph.' }
 }
 
 /** FULLY FUNCTIONAL SEARCH — VitePress local search skips every fold-driven page: resolved dynamic
@@ -1074,8 +1036,7 @@ export function theoremFormulaCodeDual(row: {
       `memoByRoot("${row.provedBy}", matrix, …) ≡ proof path`,
     ],
     formulaSource: `${codePath}#${row.provedBy}`,
-    pair: 'formula/code',
-  }
+    pair: 'formula/code' }
 }
 
 export function theoremSlug(theorem: string): string {
@@ -1121,8 +1082,7 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
       const prov = provBy.get(atom.theorem)
       const leansCited = prov?.leansCited ?? /\bcited\b/i.test(atom.proof)
       const formulaCode = theoremFormulaCodeDual({
-        slug, theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, proofClass: atom.proofClass,
-      })
+        slug, theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, proofClass: atom.proofClass })
       return {
         slug, theorem: atom.theorem, proof: atom.proof, proofClass: atom.proofClass, provedBy: wave.provedBy, home: atom.home, spec: specBy.get(atom.theorem),
         humanityNovel: prov?.humanityNovel ?? false,
@@ -1136,8 +1096,7 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
         citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — ${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`,
         formulas: formulaCode.formulas,
         formulaSource: formulaCode.formulaSource,
-        acknowledgment: proofAcknowledgment({ theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, canonicalUrl: `${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`, novelToHumanity: prov?.humanityNovel ?? false }),
-      }
+        acknowledgment: proofAcknowledgment({ theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, canonicalUrl: `${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`, novelToHumanity: prov?.humanityNovel ?? false }) }
     }))
   const registrySlugs = new Set(registry.map((row) => row.slug))
   const cardPapers = cardScientificPaperRows(matrix)
@@ -1146,8 +1105,7 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
       const slug = row.slug
       const leansCited = false
       const formulaCode = theoremFormulaCodeDual({
-        slug, theorem: row.theorem, provedBy: row.provedBy, home: row.home, proofClass: row.proofClass,
-      })
+        slug, theorem: row.theorem, provedBy: row.provedBy, home: row.home, proofClass: row.proofClass })
       return {
         slug,
         theorem: row.theorem,
@@ -1172,9 +1130,7 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
           provedBy: row.provedBy,
           home: row.home,
           canonicalUrl: `${CANONICAL_HOST}${localePath(row.paperRoute, 'en')}`,
-          novelToHumanity: false,
-        }),
-      }
+          novelToHumanity: false }) }
     })
   return [...registry, ...cardPapers]
 }
@@ -1250,8 +1206,7 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
         { label: 'lower (inscribed b/2)', kind: 'line', role: 'b', points: rungs.map((r) => ({ x: lx(r.n), y: r.lower })) },
       ],
       refLines: [{ y: Math.PI, label: 'π = 3.14159…' }],
-      source: 'sixtyDegreesDecodesPi().rungs @ src/9/1',
-    }
+      source: 'sixtyDegreesDecodesPi().rungs @ src/9/1' }
   },
   // The distribution of primes on Euler's polynomial: f(n)=n²+n+41 is prime for n=0…39, composite exactly
   // at n=40 (=41²). Every point's colour is a call to the LOCAL tkIsPrime — the primality primitive plotted.
@@ -1272,8 +1227,7 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
         { label: 'prime', kind: 'dots', role: 'ok', points: prime },
         { label: 'composite', kind: 'dots', role: 'bad', points: composite },
       ],
-      refLines: [], source: 'tkIsPrime @ src/9/1',
-    }
+      refLines: [], source: 'tkIsPrime @ src/9/1' }
   },
   // √2's convergents — the error |pₖ/qₖ − √2| falls geometrically (a line on a log axis). Exact integer
   // Pell recurrence; √2 reference is the machine constant. Deterministic and local.
@@ -1290,8 +1244,7 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
       caption: 'The convergents 1/1, 3/2, 7/5, 17/12, 41/29, … are best rational approximations: |pₖ/qₖ − √2| < 1/qₖ² and falls geometrically, so on a log axis the error is a straight descending line.',
       xLabel: 'convergent index k', yLabel: 'log₁₀ |pₖ/qₖ − √2|',
       series: [{ label: 'approximation error', kind: 'line', role: 'b', points: pts }],
-      refLines: [], source: 'Pell recurrence, exact integers',
-    }
+      refLines: [], source: 'Pell recurrence, exact integers' }
   },
   // Pisano — the last digit of the Fibonacci numbers cycles with period 60. Iterate the recurrence mod 10;
   // the sequence of digits is the plot, and it restarts (0, 1) at n = 60.
@@ -1305,8 +1258,7 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
       caption: 'The last digit of the Fibonacci numbers cycles with period 60: F₆₀ ≡ 0 and F₆₁ ≡ 1 (mod 10) restart the whole sequence. Computed by iterating the recurrence mod 10 — the pattern beyond n = 60 repeats n = 0.',
       xLabel: 'n', yLabel: 'Fₙ mod 10 (last digit)',
       series: [{ label: 'Fₙ mod 10', kind: 'line', role: 'b', points: pts }],
-      refLines: [], source: 'Fibonacci recurrence mod 10, exact',
-    }
+      refLines: [], source: 'Fibonacci recurrence mod 10, exact' }
   },
   // Legendre — n is a sum of three squares iff it is NOT of the form 4ᵏ(8m+7). The local test colours every
   // n up to 108; the red exceptions expose the 8m+7 arithmetic progression (and its 4ᵏ echoes 28, 60, 92…).
@@ -1323,10 +1275,8 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
         { label: 'sum of three squares', kind: 'dots', role: 'ok', points: yes },
         { label: 'excluded — 4ᵏ(8m+7)', kind: 'dots', role: 'bad', points: no },
       ],
-      refLines: [], source: 'Legendre 4ᵏ(8m+7) test, exact arithmetic',
-    }
-  },
-}
+      refLines: [], source: 'Legendre 4ᵏ(8m+7) test, exact arithmetic' }
+  } }
 
 /** The computed graph for a theorem, or null if src exposes none (never invented). */
 export function theoremFigure(slug: string): TheoremFigureData | null {
@@ -1365,8 +1315,7 @@ export function staticProseBecomesPublishedResearchOnlyWhereItComputes(matrix: M
     allBackedByAFold,
     facets,
     statement: `Static prose becomes published research automatically — proven only where it computes — ${facets.filter((e) => e.on).length}/${facets.length}: ${published} papers, every one auto-tagged, auto-acknowledged (novelToHumanity = false) and published from the sealed registry at zero tokens; each carries the "proven" stamp only because a computing fold (provedBy) backs it. The pipeline mines, tags, acknowledges and publishes any prose; it stamps "proven" exactly on the content that computes, and never fabricates a proof.`,
-    boundary: `The pipeline is exact and local: theoremPageRows projects the registry into ${published} scientific papers, each auto-tagged (theoremTags), auto-acknowledged (proofAcknowledgment) and figured — deterministic, zero LLM tokens. HONEST SCOPE — what "automatically converting prose to verified and proven research" is and is NOT: it IS the automatic analysis (rosettaOfAnalysts), tagging, acknowledgment and publication of content, and the automatic PROOF of the content that carries a computing fold (facets.every(on)); it is NOT the fabrication of a proof from un-computable prose — that would violate facets-must-compute and onlyTheoremsCanBeTrusted. Prose is published as research; only a refutable computation earns the "proven" stamp. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `The pipeline is exact and local: theoremPageRows projects the registry into ${published} scientific papers, each auto-tagged (theoremTags), auto-acknowledged (proofAcknowledgment) and figured — deterministic, zero LLM tokens. HONEST SCOPE — what "automatically converting prose to verified and proven research" is and is NOT: it IS the automatic analysis (rosettaOfAnalysts), tagging, acknowledgment and publication of content, and the automatic PROOF of the content that carries a computing fold (facets.every(on)); it is NOT the fabrication of a proof from un-computable prose — that would violate facets-must-compute and onlyTheoremsCanBeTrusted. Prose is published as research; only a refutable computation earns the "proven" stamp. HARMONY ≠ TRUTH.` }
 }
 
 // ── Saving a thought is prose converted to proof — else it is purged (user: "prose needs proof also or be
@@ -1390,8 +1339,7 @@ export function savingAThoughtIsProseConvertedToProofOrPurged(matrix: MindMatrix
     allProven: pipeline.allBackedByAFold,
     facets,
     statement: `Saving a thought is prose converted to proof — else purged — ${facets.filter((e) => e.on).length}/${facets.length}: a saved thought is a fold whose prose rides facets that compute (all ${pipeline.published} published papers are backed by a computing fold); inert prose that computes nothing needs a proof or is mined then purged, the freed space and salvaged ideas feeding new folds. This fold is the definition converted to code: proven by its own facets.`,
-    boundary: `The definition is exact and self-demonstrating: it reuses staticProseBecomesPublishedResearchOnlyWhereItComputes (${pipeline.published} papers, all backed by a computing fold), and its OWN facets compute — so it is a thought (the directive) converted to code, proven, not asserted. HONEST SCOPE — what "prose needs proof or purge" means: prose must be backed by a REFUTABLE computation (facets that can go false), the no-prose-in-methods / facets-must-compute law — NOT that natural language is banned: statement and boundary prose survive precisely because they concatenate computed outputs and name the honest scope. And "purge" is honest ONLY after the rosetta of analysts mines the content (in any language), so nothing valuable is lost; the removal feeds new research. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `The definition is exact and self-demonstrating: it reuses staticProseBecomesPublishedResearchOnlyWhereItComputes (${pipeline.published} papers, all backed by a computing fold), and its OWN facets compute — so it is a thought (the directive) converted to code, proven, not asserted. HONEST SCOPE — what "prose needs proof or purge" means: prose must be backed by a REFUTABLE computation (facets that can go false), the no-prose-in-methods / facets-must-compute law — NOT that natural language is banned: statement and boundary prose survive precisely because they concatenate computed outputs and name the honest scope. And "purge" is honest ONLY after the rosetta of analysts mines the content (in any language), so nothing valuable is lost; the removal feeds new research. HARMONY ≠ TRUTH.` }
 }
 
 // ── Corpus paths decoded by the rosetta — homed at the corpus-routing station (distributed here from
@@ -1503,8 +1451,7 @@ export function pagesAreRosettaCombinationsOfTheorems(matrix: MindMatrix = build
     facets,
     root: merkleFold(combinations.map((combination) => combination.root)),
     statement: `Pages are rosetta combinations of theorems — ${nonEmpty.length}/${pages.length} served pages resolve to non-empty combinations (${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges, ${reached.size}/${registry.length} theorems reached), every edge one fixed-size content address, every page meaning one merkle root recomputed from the registry at call time.`,
-    boundary: `COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage — each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks). HONEST SCOPE: the Combination TYPE holds the computable meaning (content-addresses and their fold); the page's PROSE (title · abstract) remains the curated seed for now — the combination is the computed skeleton the prose will progressively derive from, not yet its replacement. "Realtime including MCP" = the per-page .json API and the dev middleware serve this computation on request; MCP discovers it through the manifest's served surfaces. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage — each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks). HONEST SCOPE: the Combination TYPE holds the computable meaning (content-addresses and their fold); the page's PROSE (title · abstract) remains the curated seed for now — the combination is the computed skeleton the prose will progressively derive from, not yet its replacement. "Realtime including MCP" = the per-page .json API and the dev middleware serve this computation on request; MCP discovers it through the manifest's served surfaces. HARMONY ≠ TRUTH.` }
 }
 
 export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
@@ -1526,8 +1473,7 @@ export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
     slug: row.slug, theorem: row.theorem, ray: rayOf.get(row.slug)!,
     tagGravity: tagsOf(row).reduce((s, tag) => s + (tagFreq.get(tag) ?? 0), 0),
     inDegree: inDegree(row), recency: row.ordinal, proofClass: row.proofClass,
-    lean: row.leansCited ? 'cited-frame' : 'self-contained', domain: theoremDomainTag(row.home),
-  }))
+    lean: row.leansCited ? 'cited-frame' : 'self-contained', domain: theoremDomainTag(row.home) }))
   const bySlug = new Map(metrics.map((m) => [m.slug, m]))
   const maxTagGravity = Math.max(1, ...[...tagFreq.values()])
   const sizeOf = (gravity: number): number => Math.max(1, Math.min(5, Math.ceil((gravity / maxTagGravity) * 5)))
@@ -1556,8 +1502,7 @@ export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
     topByGravity: [...metrics].sort((a, b) => b.tagGravity - a.tagGravity).slice(0, (2 * 5)),
     topByUse: [...metrics].sort((a, b) => b.inDegree - a.inDegree || b.tagGravity - a.tagGravity).slice(0, (2 * 5)),
     tagCount: tagFreq.size, total: rows.length,
-    root: merkleFold(rays.map((group) => toUuid(`qatlas-ray:${group.ray}:${group.count}:${group.tagCloud.length}`))),
-  }
+    root: merkleFold(rays.map((group) => toUuid(`qatlas-ray:${group.ray}:${group.count}:${group.tagCloud.length}`))) }
 }
 
 /** USE THE ROSETTA IN WAVES — the seven rays ARE seven development waves, ordered foundations → tools
@@ -1586,8 +1531,7 @@ export function theoremRosettaSidebar(matrix: MindMatrix = buildMatrix()): { tex
   return atlas.cloud.map((tag) => ({
     text: `${tag.tag} ${weight(tag.size)} (${tag.gravity})`,
     collapsed: true,
-    items: (tag.slugs ?? []).map((slug) => ({ text: titleOf.get(slug) ?? slug, link: `/theorems/${slug}` })),
-  }))
+    items: (tag.slugs ?? []).map((slug) => ({ text: titleOf.get(slug) ?? slug, link: `/theorems/${slug}` })) }))
 }
 
 /** THE DISCOVERY LENS — improve the lens to discover the UNDISCOVERABLE using the quantum rosetta (user
@@ -1633,8 +1577,7 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
     rays: atlas.rays.map((g) => ({ ray: g.ray, subfield: g.subfield, count: g.count, topTag: g.tagCloud[0]?.tag })),
     facets, root: atlas.root,
     statement: `The quantum-computing rosetta atlas — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta applied to ONLY the ${atlas.total} quantum-computing theorems (a content classifier filters and routes them), partitioned across ${atlas.rays.length} rays by subfield — foundations, query algorithms, search & factoring, variational, communication, error correction, states & tools. Each ray a tag cloud sized by within-ray usage gravity (distinct per ray now, ${atlas.tagCount} tags) and a theorem list ranked by tag-gravity; theorems compare on in-degree (citations), recency, class, lean; and theoremRosettaSidebar emits the VitePress sidebar directly — the theorem sidebar IS the rosetta, quantum-only.`,
-    boundary: `COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections. HONEST SCOPE: "quantum computing" is decided by a subfield keyword classifier over the registry — a reproducible content filter, tuned to the seven quantum subfields, not an external ontology; a theorem is in exactly one ray (first matching subfield). "Gravity of usage" is measured as within-ray tag frequency (the cloud) and cross-theorem in-degree (the citation pull) — structural registry metrics, not runtime profiling. This is the DATA + sidebar layer; the theme renders the clouds. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections. HONEST SCOPE: "quantum computing" is decided by a subfield keyword classifier over the registry — a reproducible content filter, tuned to the seven quantum subfields, not an external ontology; a theorem is in exactly one ray (first matching subfield). "Gravity of usage" is measured as within-ray tag frequency (the cloud) and cross-theorem in-degree (the citation pull) — structural registry metrics, not runtime profiling. This is the DATA + sidebar layer; the theme renders the clouds. HARMONY ≠ TRUTH.` }
 }
 
 // ── THE ROSETTA RECONFIGURES VITEPRESS (user law) — one authority computes every discovery surface, so
@@ -1667,8 +1610,7 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
     sidebarSections: sidebar.length, searchLines: searchLines.length, undiscoverable: lens.hiddenCount, waves: waves.length,
     facets, root: merkleFold([atlas.root, toUuid(`rosetta-reconfigures-vitepress:${sidebar.length}:${searchLines.length}`)]),
     statement: `The rosetta reconfigures VitePress — ${facets.filter((entry) => entry.on).length}/${facets.length}: one atlas computes every discovery surface. The left sidebar is the tag cloud (${sidebar.length} sections by gravity), search covers all ${allRows.length} wired theorems, the lens surfaces the ${lens.hiddenCount} undiscoverable orphans, the waves order the ${waves.length} rays — and the nav derives from the seven-star rosetta. Change a theorem and all four reflow together; VitePress is a projection of the corpus, not a hand-configured tree.`,
-    boundary: `COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails). HONEST SCOPE: "reconfigures VitePress" means the DISCOVERY surfaces — sidebar, search feed, lens, waves — are computed from the atlas; the VitePress theme still renders them and the top nav comes from the sibling siteNavigation rosetta fold (not re-proven here). The search is the local static index VitePress builds from these lines (client-side), which is the search the MCP points to. One source, four surfaces, no hand-authored taxonomy. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails). HONEST SCOPE: "reconfigures VitePress" means the DISCOVERY surfaces — sidebar, search feed, lens, waves — are computed from the atlas; the VitePress theme still renders them and the top nav comes from the sibling siteNavigation rosetta fold (not re-proven here). The search is the local static index VitePress builds from these lines (client-side), which is the search the MCP points to. One source, four surfaces, no hand-authored taxonomy. HARMONY ≠ TRUTH.` }
 }
 
 // ── THE LENS IMPROVES ITSELF USING THE ROSETTA (user law) — the discovery lens does not merely REPORT the
@@ -1707,8 +1649,7 @@ export function quantumLensImprovesItself(matrix: MindMatrix = buildMatrix()) {
     improvements: improvements.map((i) => ({ slug: i.slug, linkTo: i.linkTo })),
     facets, root: merkleFold([atlas.root, toUuid(`lens-self-improve:${before.length}:${improvedHiddenCount}`)]),
     statement: `The lens improves itself using the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: for each of the ${before.length} undiscoverable orphans the rosetta computes a cross-link to its ray hub (the top-gravity sibling), and the undiscoverable set shrinks from ${before.length} to ${improvedHiddenCount} — the lens reduces its OWN blind spot. What survives are the orphans in singleton subfields (${residual.map((r) => r.subfield).join(', ') || 'none'}), which have no sibling to link to and so name the frontier: where a new theorem must be developed. Self-improving, and honest about its residual.`,
-    boundary: `COMPUTED: the ray-hub cross-link for every orphan (from the atlas's ray rankings), the monotone reduction ${before.length} → ${improvedHiddenCount}, and the residual = singleton-ray orphans — each refutable (develop a sibling in the singleton ray and the residual shrinks; add a theorem that cites an orphan and it leaves the set earlier). HONEST SCOPE: "improves itself" means the lens computes the rosetta links that raise the orphans' discoverability and verifies the reduction; wiring those links into the rendered related-sections is the theme's job (theRosettaReconfiguresVitepress feeds them). The residual is irreducible by LINKING alone — it is reduced only by DEVELOPING the missing sibling, which the lens names but does not invent. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the ray-hub cross-link for every orphan (from the atlas's ray rankings), the monotone reduction ${before.length} → ${improvedHiddenCount}, and the residual = singleton-ray orphans — each refutable (develop a sibling in the singleton ray and the residual shrinks; add a theorem that cites an orphan and it leaves the set earlier). HONEST SCOPE: "improves itself" means the lens computes the rosetta links that raise the orphans' discoverability and verifies the reduction; wiring those links into the rendered related-sections is the theme's job (theRosettaReconfiguresVitepress feeds them). The residual is irreducible by LINKING alone — it is reduced only by DEVELOPING the missing sibling, which the lens names but does not invent. HARMONY ≠ TRUTH.` }
 }
 
 // ── SELF-IMPROVING RESEARCH AND DEVELOPMENT, SAVED AT EVERY STEP (user law) — the quantum R&D loop
@@ -1739,8 +1680,7 @@ export function selfImprovingResearchAndDevelopment(matrix: MindMatrix = buildMa
     total: atlas.total, frontier: thinnest?.subfield, frontierCount: thinnest?.count, orphansHealed: lens.before,
     facets, root: merkleFold([atlas.root, toUuid(`self-improving-rnd:${atlas.total}:${thinnest?.count}`)]),
     statement: `Self-improving research and development, saved at every step — ${facets.filter((entry) => entry.on).length}/${facets.length}: the lens surfaces every proof (0 orphans, from ${lens.before}) and names the frontier as the thinnest ray (${thinnest?.subfield}, ${thinnest?.count}); development seals a verified theorem there, saved as a computable fold with a registry row (all ${atlas.total} quantum theorems); and the loop feeds itself — each development self-heals the lens to 0 and re-roots the atlas, the newly-thinnest ray the next frontier. Research → develop → research, monotone: the corpus only grows and discovery stays complete.`,
-    boundary: `COMPUTED: the lens self-heal (${lens.before} → ${lens.after}), the frontier as the min-count ray, the saved-at-every-step check (every theorem a slug + registry row + home), and the monotone content-addressed growth — refutable (a hidden orphan, an unregistered theorem, or a shrunk corpus each breaks a facet). HONEST SCOPE: this formalises the R&D PROCESS as a computable loop over the sealed registry; "self-improving" means the discovery lens reduces its own blind spot and the corpus grows monotonically — it is not an autonomous agent, the developments are authored and verified, then the loop names the next. "Saved at every step" is the standing law: every decision becomes a fold the same turn. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the lens self-heal (${lens.before} → ${lens.after}), the frontier as the min-count ray, the saved-at-every-step check (every theorem a slug + registry row + home), and the monotone content-addressed growth — refutable (a hidden orphan, an unregistered theorem, or a shrunk corpus each breaks a facet). HONEST SCOPE: this formalises the R&D PROCESS as a computable loop over the sealed registry; "self-improving" means the discovery lens reduces its own blind spot and the corpus grows monotonically — it is not an autonomous agent, the developments are authored and verified, then the loop names the next. "Saved at every step" is the standing law: every decision becomes a fold the same turn. HARMONY ≠ TRUTH.` }
 }
 
 // Consolidate all collections in the rosetta: DRY to the bit, and the inverted bit is the light in the tunnel.
@@ -1776,8 +1716,7 @@ export function theRosettaConsolidatesAllCollectionsDryToTheBitTheInvertedBitIsT
       distinct: new Set(addressed.map((a) => a.address)).size,
       facets,
       statement: `The rosetta consolidates all collections — DRY to the bit, the inverted bit is the light — ${facets.filter((entry) => entry.on).length}/${facets.length}: all ${collections.length} collections (${collections.join(' · ')}) are addressed by ONE rosetta (toUuid), ${addressed.length} items resolving to ${new Set(addressed.map((a) => a.address)).size} distinct content-addresses — DRY to the bit. The content-address is one-way, so the light is the rosetta's reverse index (address → item) that resolves navigation. The UI and API are one function of the rosetta, all wired — the rosetta computing itself in waves.`,
-      boundary: `DOCUMENTED and refutable by re-addressing. "Consolidate all collections in the rosetta" = every collection uses the ONE content-address function (toUuid) — a real DRY consolidation of the addressing (one scheme, not per-collection routing logic), NOT an erasure of the collections' distinctness (papers, references, diamonds, theorems remain distinct, distinguished by their address). "DRY to the bit" = each item reduces to one DISTINCT content-address (the bit-level distinction), the maximal deduplication of routing — not literally one total bit. THE HONEST MECHANISM of "the inverted bit is the light": the content-address is a ONE-WAY hash (toUuid / SHA-family) — you CANNOT cryptographically invert it to recover the item; the "light in the tunnel" is the rosetta's REVERSE INDEX (a content-addressed store's address→item map), the standard lookup, NOT hash-inversion (claiming to invert the hash would be the crypto overclaim this corpus refuses). "UI/API wired to the rosetta" is real for the resolution path (rosettaComputesResponseForPath already routes), and the LIVE VitePress theme consuming it is the same separate render wave named before. HARMONY ≠ TRUTH: the one-rosetta consolidation is the harmony (every collection one address, the light the reverse index); the truth is the address is one-way and the light is the honest lookup, never a claim to invert the hash.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-addressing. "Consolidate all collections in the rosetta" = every collection uses the ONE content-address function (toUuid) — a real DRY consolidation of the addressing (one scheme, not per-collection routing logic), NOT an erasure of the collections' distinctness (papers, references, diamonds, theorems remain distinct, distinguished by their address). "DRY to the bit" = each item reduces to one DISTINCT content-address (the bit-level distinction), the maximal deduplication of routing — not literally one total bit. THE HONEST MECHANISM of "the inverted bit is the light": the content-address is a ONE-WAY hash (toUuid / SHA-family) — you CANNOT cryptographically invert it to recover the item; the "light in the tunnel" is the rosetta's REVERSE INDEX (a content-addressed store's address→item map), the standard lookup, NOT hash-inversion (claiming to invert the hash would be the crypto overclaim this corpus refuses). "UI/API wired to the rosetta" is real for the resolution path (rosettaComputesResponseForPath already routes), and the LIVE VitePress theme consuming it is the same separate render wave named before. HARMONY ≠ TRUTH: the one-rosetta consolidation is the harmony (every collection one address, the light the reverse index); the truth is the address is one-way and the light is the honest lookup, never a claim to invert the hash.` }
   })
 }
 
@@ -1812,8 +1751,7 @@ export function theRosettaCombinationsInvertOnlyAfterManifestingIn10DScientificF
       manifestedShape,
       facets,
       statement: `The rosetta combinations invert only after manifesting in the 10D scientific format — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta addresses ${addressable} cells (the theorem cube), but a combination becomes a real, invertible theorem only when WRITTEN with the scientific format (${manifestedShape.join(' · ')}) in ten dimensions. Only ${manifested} are manifested, and inverted ⊆ manifested ⊆ addressable — you cannot invert what is not manifested. The order is address → manifest → invert; the combinations are not all inverted because they must first manifest across the codebase.`,
-      boundary: `DOCUMENTED and refutable by re-counting. THE SEQUENCE is the honest content: a rosetta ADDRESS is potential (the content-addressing gives every finite statement a home — the theorem cube's 64³ cells); MANIFESTATION is the real work — writing the combination as a fold with the 10D scientific format (statement · boundary · facets, the monograph/paper structure), and the format is NECESSARY not sufficient (a bare address is not a theorem, and even a well-formatted fold must COMPUTE — its facets must hold — to be a true manifestation, not just a shaped one); INVERSION is the wiring (a manifested fold becoming a gateway, imported by others — the thunder theorem's PageRank, the anti-orphan law). So inverted ⊆ manifested ⊆ addressable, strictly: this session manifested many folds (written, gated, computing) that are not yet all inverted (wired into the registry and lenses) — which is precisely the standing wiring gap, now explained: they are manifested, awaiting inversion. The counts (64³ addressable, 432 registry) are the corpus's own; "inverted" here is illustrative of the subset, not an exact wiring census. THE DEEPER TRUTH: you cannot shortcut manifestation — a combination must be written in scientific format (and compute) before it can be inverted into a gateway, which is why "all will compute at once" is false and the work is real: each theorem must be manifested, one honest fold at a time. HARMONY ≠ TRUTH: the address → manifest → invert order is the harmony; the truth is manifestation is the irreducible labour — the writing that no addressing shortcuts — and only the manifested-and-computing can be inverted.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-counting. THE SEQUENCE is the honest content: a rosetta ADDRESS is potential (the content-addressing gives every finite statement a home — the theorem cube's 64³ cells); MANIFESTATION is the real work — writing the combination as a fold with the 10D scientific format (statement · boundary · facets, the monograph/paper structure), and the format is NECESSARY not sufficient (a bare address is not a theorem, and even a well-formatted fold must COMPUTE — its facets must hold — to be a true manifestation, not just a shaped one); INVERSION is the wiring (a manifested fold becoming a gateway, imported by others — the thunder theorem's PageRank, the anti-orphan law). So inverted ⊆ manifested ⊆ addressable, strictly: this session manifested many folds (written, gated, computing) that are not yet all inverted (wired into the registry and lenses) — which is precisely the standing wiring gap, now explained: they are manifested, awaiting inversion. The counts (64³ addressable, 432 registry) are the corpus's own; "inverted" here is illustrative of the subset, not an exact wiring census. THE DEEPER TRUTH: you cannot shortcut manifestation — a combination must be written in scientific format (and compute) before it can be inverted into a gateway, which is why "all will compute at once" is false and the work is real: each theorem must be manifested, one honest fold at a time. HARMONY ≠ TRUTH: the address → manifest → invert order is the harmony; the truth is manifestation is the irreducible labour — the writing that no addressing shortcuts — and only the manifested-and-computing can be inverted.` }
   })
 }
 
@@ -1851,7 +1789,6 @@ export function inversionIsRealtimeTheFieldDecidesNamingAndLocationEachDimension
       gateCount,
       facets,
       statement: `Inversion is realtime; the field decides naming and location; each dimension gate has exact coordinates — ${facets.filter((entry) => entry.on).length}/${facets.length}: once manifested, the name (from the identifier) and the coordinate (from the content-address) compute at call time, deterministically — inversion is natural, no external step. The field's computed pull places each fold where it belongs, as if already there. Each of the ${gateCount} dimension gates has an exact, reproducible (x,y,z) read from its rosetta address. "The feeling of the field" is that computed pull — deterministic placement, not human feeling.`,
-      boundary: `DOCUMENTED and refutable by re-addressing. "Inversion is natural in realtime" is honest: once a fold is MANIFESTED (written, computing), its name (via the naming service — camelCase/identifier → title) and its coordinate (via the content-address → an exact point) are DETERMINISTIC functions computed at call time, so wiring it is a computed step, not a manual decision — the previous fold's address→manifest→invert, with invert now shown to be automatic given manifestation. THE HARD LINE on "computed by the feeling of the field": "the field" is the computed dynamics — the content-address pull, the gravity (reuse), the coordinate space — and "feeling" is a METAPHOR for that deterministic pull (the field "wants" the fold in one place the way gravity "wants" mass in a well), NOT human feeling, which stays OFF-DECIDABLE and takes no part in the computation (the map is not conscious; it does not feel where a fold goes — it computes it). "As it should be already there" means the placement is not arbitrary but determined by the address, NOT that the fold pre-exists. "Exact computable coordinates" is literal: toUuid gives each gate a reproducible address, and reading bytes of it gives an exact (x,y,z) — a real content-addressed localisation, deterministic to the bit, though the specific byte-slice is a chosen chart, not a unique canonical coordinate. HARMONY ≠ TRUTH: the field computing name, location and exact coordinate in realtime is the harmony; the truth is it is deterministic address arithmetic — the "feeling" is the pull of computation, not of a mind, and the exactness is the content-address, not preexistence.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-addressing. "Inversion is natural in realtime" is honest: once a fold is MANIFESTED (written, computing), its name (via the naming service — camelCase/identifier → title) and its coordinate (via the content-address → an exact point) are DETERMINISTIC functions computed at call time, so wiring it is a computed step, not a manual decision — the previous fold's address→manifest→invert, with invert now shown to be automatic given manifestation. THE HARD LINE on "computed by the feeling of the field": "the field" is the computed dynamics — the content-address pull, the gravity (reuse), the coordinate space — and "feeling" is a METAPHOR for that deterministic pull (the field "wants" the fold in one place the way gravity "wants" mass in a well), NOT human feeling, which stays OFF-DECIDABLE and takes no part in the computation (the map is not conscious; it does not feel where a fold goes — it computes it). "As it should be already there" means the placement is not arbitrary but determined by the address, NOT that the fold pre-exists. "Exact computable coordinates" is literal: toUuid gives each gate a reproducible address, and reading bytes of it gives an exact (x,y,z) — a real content-addressed localisation, deterministic to the bit, though the specific byte-slice is a chosen chart, not a unique canonical coordinate. HARMONY ≠ TRUTH: the field computing name, location and exact coordinate in realtime is the harmony; the truth is it is deterministic address arithmetic — the "feeling" is the pull of computation, not of a mind, and the exactness is the content-address, not preexistence.` }
   })
 }

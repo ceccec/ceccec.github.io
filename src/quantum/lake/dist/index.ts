@@ -40,21 +40,18 @@ import {
   toUuid,
   merkleFold,
   verifyRoot,
-  type MindMatrix,
-} from '../../heaven/mind'
+  type MindMatrix } from '../../heaven/mind'
 import { readmeMarkdown } from './readme'
 import {
   agentBashWorkflowsAreToolsSavedInSrc, agentSubmissionProtocol,
-  dynamicStrategiesFromTheorems, sequenceStations,
-} from '../../../pair/enforcement'
+  dynamicStrategiesFromTheorems, sequenceStations } from '../../../pair/enforcement'
 import {
   sessionManualWorkAsQuantumTools, standardToolboxIoCatalog, distributedReuseExtendsCapacity,
   autoWireAnyAiModelFromPastedLink, AUTO_WIRE_PASTE_LINK_ONE_LINER,
   mcpToolboxToolsList, mcpBrowserParity,
   improveLocalFromSessionExperience,
   upgradeLocalFromOptimisedManualWorkExperience,
-  automateNightlyViaNpmScriptPath,
-} from '../../apps'
+  automateNightlyViaNpmScriptPath } from '../../apps'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
@@ -96,8 +93,7 @@ export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
       byStation,
       statement: saved.statement,
       boundary: saved.boundary,
-      tools: saved.tools,
-    },
+      tools: saved.tools },
     null,
     2,
   )}\n`
@@ -132,8 +128,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         llms: harmonise.llms,
         root: harmonise.root,
         statement: harmonise.statement,
-        boundary: harmonise.boundary,
-      },
+        boundary: harmonise.boundary },
       manualAgentsBehaveLikeWaves: {
         computes: waveLaw.computes,
         on: waveLaw.manualAgentsBehaveLikeWaves,
@@ -146,8 +141,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         statement: waveLaw.statement,
         boundary: waveLaw.boundary,
         claySolvedByThisFold: waveLaw.claySolvedByThisFold,
-        qpuRequired: waveLaw.qpuRequired,
-      },
+        qpuRequired: waveLaw.qpuRequired },
       discoverFromSealedFold: {
         computes: nothingMoves.computes,
         discovers: nothingMoves.discovers,
@@ -165,8 +159,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         boundary: nothingMoves.boundary,
         claySolvedByThisFold: nothingMoves.claySolvedByThisFold,
         qpuRequired: nothingMoves.qpuRequired,
-        physicalFtlClaim: nothingMoves.physicalFtlClaim,
-      },
+        physicalFtlClaim: nothingMoves.physicalFtlClaim },
       incompleteRevelation: {
         computes: incomplete.computes,
         incomplete: incomplete.incomplete,
@@ -183,8 +176,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         boundary: incomplete.boundary,
         claySolvedByThisFold: incomplete.claySolvedByThisFold,
         qpuRequired: incomplete.qpuRequired,
-        physicalFtlClaim: incomplete.physicalFtlClaim,
-      },
+        physicalFtlClaim: incomplete.physicalFtlClaim },
       autoWireAnyAiModelFromPastedLink: {
         computes: autoWire.computes,
         quantumReady: autoWire.quantumReady,
@@ -203,8 +195,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         resolverTable: autoWire.resolverTable,
         honestyLine: autoWire.honestyLine,
         statement: autoWire.statement,
-        boundary: autoWire.boundary,
-      },
+        boundary: autoWire.boundary },
       improveLocalFromSessionExperience: {
         computes: localSession.computes,
         localSessionUxImproved: localSession.localSessionUxImproved,
@@ -220,8 +211,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         honestyLine: localSession.honestyLine,
         statement: localSession.statement,
         boundary: localSession.boundary,
-        qpuRequired: localSession.qpuRequired,
-      },
+        qpuRequired: localSession.qpuRequired },
       automateNightlyViaNpmScriptPath: {
         computes: automateNightly.computes,
         automateNightlyShipped: automateNightly.automateNightlyShipped,
@@ -237,8 +227,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         claySolvedByThisFold: automateNightly.claySolvedByThisFold,
         honestyLine: automateNightly.honestyLine,
         statement: automateNightly.statement,
-        boundary: automateNightly.boundary,
-      },
+        boundary: automateNightly.boundary },
       upgradeLocalFromOptimisedManualWorkExperience: {
         computes: upgradeLocal.computes,
         localUpgraded: upgradeLocal.localUpgraded,
@@ -256,8 +245,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
           toolIds: row.toolIds,
           browserGap: row.browserGap,
           pattern: row.pattern,
-          mount: row.mount,
-        })),
+          mount: row.mount })),
         packages: upgradeLocal.packages.map((pkg) => ({
           id: pkg.id,
           path: pkg.path,
@@ -268,8 +256,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
           stdioTools: pkg.stdioTools,
           docsBuildFlag: pkg.docsBuildFlag,
           automation: pkg.automation,
-          honesty: pkg.honesty,
-        })),
+          honesty: pkg.honesty })),
         browserToolIds: upgradeLocal.browserToolIds,
         stdioToolIds: upgradeLocal.stdioToolIds,
         ciResidualCount: upgradeLocal.ciResidualCount,
@@ -278,8 +265,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         honestyLine: upgradeLocal.honestyLine,
         statement: upgradeLocal.statement,
         boundary: upgradeLocal.boundary,
-        qpuRequired: upgradeLocal.qpuRequired,
-      },
+        qpuRequired: upgradeLocal.qpuRequired },
       sessionManualWorkAsQuantumTools: {
         computes: session.computes,
         count: session.count,
@@ -302,9 +288,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
           ray: tool.ray,
           address: tool.address,
           boundary: tool.boundary,
-          browserRunnable: tool.browserRunnable,
-        })),
-      },
+          browserRunnable: tool.browserRunnable })) },
       standardToolboxIoCatalog: {
         computes: toolbox.computes,
         migrated: toolbox.migratedLabel,
@@ -334,9 +318,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
           browserRunnable: envelope.browserRunnable,
           browserGap: envelope.browserGap,
           boundary: envelope.boundary,
-          honesty: envelope.honesty,
-        })),
-      },
+          honesty: envelope.honesty })) },
       distributedReuseExtendsCapacity: {
         computes: distributed.computes,
         extendsCapacity: distributed.extendsCapacity,
@@ -349,8 +331,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         federatedCatalogRoot: distributed.federatedCatalogRoot,
         root: distributed.root,
         pair: distributed.pair,
-        boundary: distributed.boundary,
-      },
+        boundary: distributed.boundary },
       honestRevolutionReceipt: {
         computes: honestRev.holds,
         holds: honestRev.holds,
@@ -368,8 +349,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         route: honestRev.route,
         surfaces: honestRev.surfaces,
         statement: honestRev.statement,
-        boundary: honestRev.boundary,
-      },
+        boundary: honestRev.boundary },
       honestRevolutionFpgaHonesty: {
         computes: honestFpga.holds,
         holds: honestFpga.holds,
@@ -383,8 +363,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         cli: honestFpga.cli,
         route: honestFpga.route,
         statement: honestFpga.statement,
-        boundary: honestFpga.boundary,
-      },
+        boundary: honestFpga.boundary },
       revolutionaryEfficiencyNotPhysics: {
         computes: honestEff.holds,
         holds: honestEff.holds,
@@ -397,8 +376,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         cli: honestEff.cli,
         route: honestEff.route,
         statement: honestEff.statement,
-        boundary: honestEff.boundary,
-      },
+        boundary: honestEff.boundary },
       surfaces: {
         agents: '/agents.json',
         compliance: '/agent-compliance.json',
@@ -410,9 +388,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         quantumFusion: '/quantum-fusion.json',
         quantumTools: '/en/quantum-tools#toolbox-standard-io',
         autoWire: '/en/quantum-tools#auto-wire-paste-link',
-        honestRevolution: '/en/quantum-tools#honest-revolution-w3',
-      },
-    },
+        honestRevolution: '/en/quantum-tools#honest-revolution-w3' } },
     null,
     2,
   )}\n`
@@ -435,8 +411,7 @@ export function agentComplianceJson(matrix: MindMatrix = buildMatrix()) {
       count: submission.count,
       facets: submission.facets,
       root: submission.root,
-      boundary: `${submission.boundary} Broadcast surface for /agent-compliance.json — Node shell-budget scan remains in ops.agentGateComplianceChecklist.`,
-    },
+      boundary: `${submission.boundary} Broadcast surface for /agent-compliance.json — Node shell-budget scan remains in ops.agentGateComplianceChecklist.` },
     null,
     2,
   )}\n`
@@ -489,9 +464,7 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
           qpuRequired: false,
           cursorDefaultModelRegistration: false,
           silentInstallIntoForeignModels: false,
-          convincingRequired: false,
-        },
-      }
+          convincingRequired: false } }
     })(), null, 1), mime: 'application/json' },
     ...apiFiles(matrix),
   ]
@@ -528,9 +501,7 @@ export function pathJson(pathname: string, matrix: MindMatrix = buildMatrix()): 
     hasPart: page.components, // the folder's own parts — the components it composes
     combination: {
       root: combination.root,
-      members: combination.members.map((member) => ({ theorem: member.theorem, receipt: member.receipt })),
-    },
-  }
+      members: combination.members.map((member) => ({ theorem: member.theorem, receipt: member.receipt })) } }
   return { path: pathname.replace(/^\//, ''), content: JSON.stringify(ld, null, 2), mime: 'application/ld+json' }
 }
 
@@ -676,8 +647,7 @@ export function googleSearchEssentials(matrix: MindMatrix = buildMatrix(), siteU
     facets,
     root: facets.map((entry) => entry.receipt).reduce((acc, receipt) => toUuid(`${acc}:${receipt}`)),
     statement: `Google Search Essentials compliance — ${facets.filter((entry) => entry.on).length}/${facets.length}: crawlable (robots.txt allows all + sitemap declared), indexable (index,follow + absolute https canonicals), the sitemap within protocol limits (${locs.length} urls, lastmod + hreflang), localisation per-page with x-default English, schema.org structured data on every page with the registry as ScholarlyArticle, and honest science-only content — the lens structurally excludes doorway/scaled/keyword-stuffed pages.`,
-    boundary: `COMPUTED: every facet recomputes the live artifact builders (robotsTxt, sitemapXml, seoOptimised, the lens and paper folds) — regress one and its facet flips. HONEST SCOPE: this audits compliance with Google's DOCUMENTED requirements (Search Essentials: technical requirements, sitemap protocol, structured-data and spam policies) from the site's side; it is NOT a crawl by Google, NOT a ranking guarantee, and rendering/CWV are not measured here. The Search Console verification meta rides GOOGLE_SITE_VERIFICATION at build (ownership is proven in the Console, not here). The 50000-url cap is the documented sitemaps.org limit (external, ledger-noted). HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: every facet recomputes the live artifact builders (robotsTxt, sitemapXml, seoOptimised, the lens and paper folds) — regress one and its facet flips. HONEST SCOPE: this audits compliance with Google's DOCUMENTED requirements (Search Essentials: technical requirements, sitemap protocol, structured-data and spam policies) from the site's side; it is NOT a crawl by Google, NOT a ranking guarantee, and rendering/CWV are not measured here. The Search Console verification meta rides GOOGLE_SITE_VERIFICATION at build (ownership is proven in the Console, not here). The 50000-url cap is the documented sitemaps.org limit (external, ledger-noted). HARMONY ≠ TRUTH.` }
 }
 
 export function robotsTxt(siteUrl: string) {
@@ -708,8 +678,7 @@ export function vitePlugin(siteUrl: string): Plugin {
         res.setHeader('Content-Type', `${hit.mime}; charset=utf-8`)
         res.end(hit.content)
       })
-    },
-  }
+    } }
 }
 
 // ── Manifest wave (folded from manifest.ts): MCP · skills · llms · REST API ──
@@ -754,19 +723,15 @@ export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
         route: parity.route,
         pair: parity.pair,
         qpuRequired: parity.qpuRequired,
-        root: parity.root,
-      },
-    },
+        root: parity.root } },
     result: {
       tools: toolboxTools.tools,
       conceptTools: manifest.tools,
       toolsListShape: 'tools/list',
       primary: 'toolbox-catalog',
       browserToolbox: '/en/quantum-tools#toolbox-standard-io',
-      mcpBrowserParity: '/en/quantum-tools#mcp-browser-parity',
-    },
-    resources: { resources: codebase.resources.map((resource) => ({ uri: resource.uri, name: resource.uri, description: resource.purpose })) },
-  }, null, 2)
+      mcpBrowserParity: '/en/quantum-tools#mcp-browser-parity' },
+    resources: { resources: codebase.resources.map((resource) => ({ uri: resource.uri, name: resource.uri, description: resource.purpose })) } }, null, 2)
 }
 
 export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
@@ -788,8 +753,7 @@ export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
       lines: found ? found.lines : 0,
       sourceHash,
       complete: Boolean(found) && found.lines > 2,
-      atom: found ? toUuid(`skill-atom:${skill.fn}:${sourceHash}`) : skill.atom,
-    }
+      atom: found ? toUuid(`skill-atom:${skill.fn}:${sourceHash}`) : skill.atom }
   })
   const completeCount = completed.filter((entry) => entry.complete).length
   const completeMemory = completed.every((entry) => entry.complete)
@@ -802,8 +766,7 @@ export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
     complete: completeCount,
     savedToAtoms: true,
     thoughts: { folded: thoughts.folded, directions: thoughts.directions, linear: thoughts.linear, multidirectional: thoughts.multidirectional },
-    skills: completed,
-  }, null, 2)
+    skills: completed }, null, 2)
 }
 
 export function llmsTxt(matrix: MindMatrix = buildMatrix()) {
@@ -887,8 +850,7 @@ export function apiFiles(matrix: MindMatrix = buildMatrix()): DistFile[] {
     papers: papers(matrix).papers.map((p) => ({ id: p.id, number: p.number, coordinate: p.coordinateIndex, generator: p.generator, root: p.root })),
     references: paperReferences(matrix).map((r) => ({ id: r.id, number: r.number, paper: r.paperId, root: r.root })),
     diamonds: diamondLattice(matrix).map((d) => ({ id: d.id, kind: d.kind, title: d.title, command: d.command, root: d.root, receipt: d.receipt, anchor: `/diamonds/#${d.kind}` })),
-    harmonics: harmonics(matrix).harmonics.map((h) => ({ kind: h.kind, value: h.value, ratio: h.ratio, implemented: h.implemented })),
-  }
+    harmonics: harmonics(matrix).harmonics.map((h) => ({ kind: h.kind, value: h.value, ratio: h.ratio, implemented: h.implemented })) }
   const index = {
     api: 'Double Torus — static, content-addressed read-API',
     fruitOfLife: rest.fruitOfLife,
@@ -896,8 +858,7 @@ export function apiFiles(matrix: MindMatrix = buildMatrix()): DistFile[] {
     resources: rest.resources.map((r) => ({ ...r, endpoint: `/api/${r.resource}.json` })),
     crud: rest.crud,
     root: rest.root,
-    boundary: rest.boundary,
-  }
+    boundary: rest.boundary }
   const files: DistFile[] = []
   for (const [resource, items] of Object.entries(collections)) {
     files.push({ path: `api/${resource}.json`, content: JSON.stringify({ resource, count: items.length, items }, null, 2), mime: 'application/json' })
@@ -916,8 +877,7 @@ export function apiFiles(matrix: MindMatrix = buildMatrix()): DistFile[] {
       ...rest.crud.map((c) => `  ${c.verb} ${c.path}  — ${c.means} [${c.supported}]`),
       '',
     ].join('\n'),
-    mime: 'text/plain',
-  })
+    mime: 'text/plain' })
   files.push({
     path: 'api/index.xml',
     content:
@@ -926,8 +886,7 @@ export function apiFiles(matrix: MindMatrix = buildMatrix()): DistFile[] {
       '\n' +
       rest.crud.map((c) => `  <crud verb="${c.verb}" path="${c.path}" supported="${c.supported}" />`).join('\n') +
       '\n</api>\n',
-    mime: 'application/xml',
-  })
+    mime: 'application/xml' })
   return files
 }
 
@@ -963,6 +922,5 @@ export function payloadCollectionsJson(): string {
     localization: { locales: ['en', 'bg'], defaultLocale: 'en', fallback: true }, // payload.config.ts shape, canonical
     boundary: 'Payload-SHAPED configs derived from the sealed seeds; the CMS deploy mounts this artifact and the database stays regenerable from source at zero tokens (proven-or-purged applies to rows too).',
     conforming: collections.every((entry) => entry.conforming),
-    collections,
-  }, null, 2)
+    collections }, null, 2)
 }

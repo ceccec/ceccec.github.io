@@ -43,8 +43,7 @@ export function buildArchNodes(): ArchNode[] {
     folder,
     glyph: glagoliticGlyph(folder),
     trinity: Math.floor(i / 3),
-    within: (i % 3) - 1,
-  }))
+    within: (i % 3) - 1 }))
 }
 
 export function drawArchitecture(
@@ -245,8 +244,7 @@ function bgStreamParams(seed: number, stream: number): { angle: number; dist: nu
     angle: rand() * TAU,
     dist: (9 / (5 * 5)) + (4 / (5 * 5)) * rand(),
     speed: (7 / (5 * 5)) + rand() * (1 - (6 * 2) / (5 * 5)),
-    size: 11 + Math.round(rand() * 6),
-  }
+    size: 11 + Math.round(rand() * 6) }
 }
 
 /** Seamless orbit phase: far at 0/1, void at 0.5, golden-angle spin — no end-frame jump. */
@@ -743,8 +741,7 @@ export function fieldLayers(field: AnimationField): readonly FieldLayer[] {
       ray,
       force: domain.force,
       hue: (field.hue + (ray * 360) / 7) % 360,
-      root: toUuid(`field-layer:${field.root}:${domain.trigram}:${ray}`),
-    }
+      root: toUuid(`field-layer:${field.root}:${domain.trigram}:${ray}`) }
   })
 }
 
@@ -779,8 +776,7 @@ export function rosettaPerspectiveFold(ray: number, field: AnimationField): Rose
     domain: view.domain,
     hue: (field.hue + (r * 360) / ROSETTA_RAYS.length) % 360,
     rotation: { rx: field.t * (1 / 5) + turn, ry: field.t * (3 / (5 * 4)) + turn * (1 / 2), rz: turn * PHI ** -2 },
-    root: toUuid(`rosetta-perspective:${field.root}:${r}`),
-  }
+    root: toUuid(`rosetta-perspective:${field.root}:${r}`) }
 }
 
 export { HERO_CYCLE_MS } from '../fire/plasma/ball'
@@ -824,8 +820,7 @@ export function sharedHeroAt(
     dark,
     cssWidth,
     scroll,
-    root: toUuid(`animation-field:${path}:${seed}`),
-  }
+    root: toUuid(`animation-field:${path}:${seed}`) }
 }
 
 /** Page copy folded to one movie/subtitle seed string. */
@@ -863,8 +858,7 @@ export function realtimeSubtitleAt(
     text: cues[index]!.text,
     cueCount: cues.length,
     progress: slot - index,
-    root,
-  }
+    root }
 }
 
 export function backgroundSceneFromShared(shared: SharedHeroState): BackgroundScene {
@@ -878,8 +872,7 @@ export function backgroundSceneFromShared(shared: SharedHeroState): BackgroundSc
     wiredStreams: shared.wiredStreams,
     palette: shared.palette,
     reduce: shared.reduce,
-    scroll: shared.scroll,
-  }
+    scroll: shared.scroll }
 }
 
 export function heroSceneFromShared(shared: SharedHeroState, bursts: Burst[] = []): HeroScene {
@@ -893,8 +886,7 @@ export function heroSceneFromShared(shared: SharedHeroState, bursts: Burst[] = [
     reduce: shared.reduce,
     cssWidth: shared.cssWidth,
     bursts,
-    palette: shared.palette,
-  }
+    palette: shared.palette }
 }
 
 /**
@@ -1265,8 +1257,7 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
     dark: frame.palette.dark,
     cssWidth: frame.cssWidth,
     scroll: 0,
-    root: toUuid(`taiji-field:${frame.hue}:${Math.floor(frame.p * (5 * 2 * 100))}`),
-  }
+    root: toUuid(`taiji-field:${frame.hue}:${Math.floor(frame.p * (5 * 2 * 100))}`) }
   const ray = VORTEX_SEQUENCE[Math.floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length]! % 7
   const view = rosettaPerspectiveFold(ray, field)
   const yinHue = view.hue % 360
@@ -1843,8 +1834,7 @@ export function clientDoubleTorusEarthHingePaintSealed(path = '/', matrix: MindM
     statement:
       'Client double torus Earth hinge paint path is sealed: doubleTorusEarthHingeComputesAll still seals hinge flows/layers; the live canvas paints via sharedHeroAt + drawHeroMovieFrame (the DoubleTorusExperience path) — the orphan drawDoubleTorusEarthHingeFrame renderer is retired.',
     boundary:
-      'Simulated typeof window in Node; optional off-DOM canvas when document exists. Paint geometry is the one AnimationField movie, not a second bespoke hinge renderer. Hinge compute (gateways/vortex/layers) remains in water/double/earth for non-paint surfaces.',
-  }
+      'Simulated typeof window in Node; optional off-DOM canvas when document exists. Paint geometry is the one AnimationField movie, not a second bespoke hinge renderer. Hinge compute (gateways/vortex/layers) remains in water/double/earth for non-paint surfaces.' }
 }
 
 let heroClockRaf = 0
@@ -1855,8 +1845,7 @@ export {
   realtimeComputationsMoviePaint,
   allRealtimeComputationsVisibleInMovie,
   type RealtimeComputationsMoviePaint,
-  type RealtimeComputeMovieChannel,
-} from '../fire/plasma/ball'
+  type RealtimeComputeMovieChannel } from '../fire/plasma/ball'
 
 export function subscribeHeroClock(listener: (at: number) => void): () => void {
   heroClockListeners.add(listener)
@@ -1921,8 +1910,7 @@ export function oneClockProcessLaw(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'One clock, one loop: N animation subscribers share a single RAF tick and the last unsubscribe cancels it — a process outside the sequence multiplies cpu/gpu/memory per animation, so none exists.',
-    boundary: 'The subscriber-coalescing law is recomputed with a shimmed RAF under node; in the browser the live loop itself is the witness. One-shot UI timeouts (idle fade, class removal) are not animation loops and stay out of scope.',
-  }
+    boundary: 'The subscriber-coalescing law is recomputed with a shimmed RAF under node; in the browser the live loop itself is the witness. One-shot UI timeouts (idle fade, class removal) are not animation loops and stay out of scope.' }
 }
 
 /** Gate: sharedHeroAt + drawHeroMovieFrame path completes under simulated browser — catches transparent canvas regressions. */
@@ -1985,8 +1973,7 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
     statement:
       'Client hero paint path is sealed: sharedHeroAt and drawHeroMovieFrame must complete under the browser branch with path-derived plasma seeds and non-zero canvas alpha — the exact failure mode when gate-graph seeds run in docs:dev.',
     boundary:
-      'Simulated typeof window in Node; optional off-DOM canvas when document exists. Fails before VitePress dev if clientMovieSeedCopyText regresses into the gate graph.',
-  }
+      'Simulated typeof window in Node; optional off-DOM canvas when document exists. Fails before VitePress dev if clientMovieSeedCopyText regresses into the gate graph.' }
 }
 
 /**
@@ -2037,8 +2024,7 @@ export function lifeDeathDoubleTorusFusedInMovie(path = '/en/', matrix: MindMatr
     statement:
       'Life↔death double torus fused in the movie: the outward life current (the plasma rays radiating out of the throat = the white-hole out-flow) and the inward death current (drawDeathCounterFlow spiralling into the throat = the black-hole in-flow) are the two coupled flows of ONE double torus sharing one genus-2 throat. The in-flow bounds the out-flow — homeostatic, self-balancing growth — instead of unbounded one-directional growth (the cancer metaphor).',
     boundary:
-      'TOPOLOGICAL ANALOGY + HOMEOSTASIS MODEL. The shared genus-2 throat is exact geometry (bothEarthsAreOneWhiteBlackHoleThroatProvenByMath); the death in-flow is a COMPUTED decay/contraction current and the white/black-hole identification is metaphor. "Cancer" names the unbounded one-directional growth pattern of a contraction-free model, NOT the disease; no biological or physical death claim is made.',
-  }
+      'TOPOLOGICAL ANALOGY + HOMEOSTASIS MODEL. The shared genus-2 throat is exact geometry (bothEarthsAreOneWhiteBlackHoleThroatProvenByMath); the death in-flow is a COMPUTED decay/contraction current and the white/black-hole identification is metaphor. "Cancer" names the unbounded one-directional growth pattern of a contraction-free model, NOT the disease; no biological or physical death claim is made.' }
 }
 
 const DEV_HERO_MOVIE_PAINT_BUDGET_MS = 15_000
@@ -2065,6 +2051,5 @@ export function devHeroMoviePaintWithinBudgetMs(maxMs = DEV_HERO_MOVIE_PAINT_BUD
     statement:
       `Dev hero background movie must paint within ${maxMs}ms: clientMovieSeedBundles + sharedHeroAt + drawHeroMovieFrame under simulated browser with non-transparent canvas alpha.`,
     boundary:
-      'Node probe at call time — measures sealed src paint-path init, not full Vite bundle download. Pairs with vitepressDevMemoryBudget (.vitepress thin mount) and server.warmup clientFiles for docs:dev SLA.',
-  }
+      'Node probe at call time — measures sealed src paint-path init, not full Vite bundle download. Pairs with vitepressDevMemoryBudget (.vitepress thin mount) and server.warmup clientFiles for docs:dev SLA.' }
 }

@@ -13,7 +13,7 @@ import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChe
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
 import {    antichainLevels, createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, sealFacets, toUuid, prng, gcd, VORTEX_SEQUENCE } from '../../0'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
-import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, rosettaRayOfContent, UNFOLDED_CENSUS } from '../../3/7'
+import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, rosettaRayOfContent, UNFOLDED_CENSUS, claySolvedTheorem } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
 import { quantumZeno } from '../../6/4'
 import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../wind/ui'
@@ -57,8 +57,7 @@ export function surgicalWaves(matrix: MindMatrix = buildMatrix()) {
     scale,
     depth,
     precision: depth === 0 ? 1 : (100 * 5 * 2) ** -depth, // each scale 1000x finer (waves of waves)
-    wave: toUuid(`surgical:${depth}:${scale}`),
-  }))
+    wave: toUuid(`surgical:${depth}:${scale}`) }))
   return {
     surgical: breakCaught && scales.length === 5,
     breaksTheChain: breakCaught,
@@ -70,8 +69,7 @@ export function surgicalWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Break the chain, and the defenders attack in surgical waves of waves to the tiniest: when a link breaks — a tamper, a forgery — the response is recursive precision, waves within waves each finer than the last, from the millimetre down through micro, nano and pico to the quantum, targeting exactly the broken link and nothing else. Content-addressing catches the break; the surgical recursion removes it at the smallest scale.',
     boundary:
-      'A content-addressed model of a recursive, multi-scale precision response (waves of waves, down to the quantum) that targets a detected broken link. A structural metaphor — the "red blood cells / surgical" framing is figurative — for hierarchical fault localisation by content-addressing; not medicine, biology, or a real defence mechanism.',
-  }
+      'A content-addressed model of a recursive, multi-scale precision response (waves of waves, down to the quantum) that targets a detected broken link. A structural metaphor — the "red blood cells / surgical" framing is figurative — for hierarchical fault localisation by content-addressing; not medicine, biology, or a real defence mechanism.' }
 }
 
 // Send waves to develop these ideas. The newest ideas — quantum coordinate navigation
@@ -101,8 +99,7 @@ export function developmentWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send waves to develop these ideas: the newest ideas — quantum coordinate navigation and the navigation rebuilt around the hero — are seeded, not finished, so send development waves (sketch, place, connect, animate, verify) over each, every wave bound to the idea’s root and folded forward, so the ideas grow while every step stays content-addressed to where it came from.',
     boundary:
-      'A content-addressed model of iterative development as waves bound to each idea’s root. A structural framing of "developing an idea" as recomputable steps — it records the development path, it does not itself implement the steps.',
-  }
+      'A content-addressed model of iterative development as waves bound to each idea’s root. A structural framing of "developing an idea" as recomputable steps — it records the development path, it does not itself implement the steps.' }
 }
 
 // ── SAVE THE TOOLS AND SEND THE WAVES (user directive). Two halves of one act. SAVE: the tools this session
@@ -142,8 +139,7 @@ export function theToolsAreSavedAndTheWavesSent(matrix: MindMatrix = buildMatrix
     tools, waveCount: waves.length, candidateCount: candidates.length, finiteComplete,
     facets, root: merkleFold([...tools.map((tool) => toUuid(`tool:${tool.name}`)), ...waves.map((entry) => entry.receipt)]),
     statement: `The tools are saved and the waves sent — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${tools.length} tools forged this session (concurrent-isolation-check, pathspec-commit, transient-verify-retry) are recorded with their steps, and development waves (sketch·place·connect·animate·verify) are sent over all ${candidates.length} unproven candidate theorems (${waves.length} waves, ${finiteComplete} finite-complete), each bound to its candidate and folded forward — the content-addressed path by which the self-evolving waves prove more.`,
-    boundary: `COMPUTED: the session's tools recorded with steps, and the development-wave ledger over CANDIDATE_THEOREMS (each candidate × five steps, every wave bidirectionally bound and folded). HONEST SCOPE — identical to developmentWaves: this SENDS the waves as a content-addressed development model (it records the path each candidate takes toward proof and binds it to the candidate's seed); it does NOT itself prove the candidates — each proof is a separate finite-complete or bounded-witness computation (the class field says which), earned one fold at a time. "Send the waves" seeds and binds the R&D; the tools are documented procedures an agent runs via Bash, not executable folds. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the session's tools recorded with steps, and the development-wave ledger over CANDIDATE_THEOREMS (each candidate × five steps, every wave bidirectionally bound and folded). HONEST SCOPE — identical to developmentWaves: this SENDS the waves as a content-addressed development model (it records the path each candidate takes toward proof and binds it to the candidate's seed); it does NOT itself prove the candidates — each proof is a separate finite-complete or bounded-witness computation (the class field says which), earned one fold at a time. "Send the waves" seeds and binds the R&D; the tools are documented procedures an agent runs via Bash, not executable folds. HARMONY ≠ TRUTH.` }
 }
 
 // Send waves to update the skills. The portal's memory of what it can do is not frozen:
@@ -164,8 +160,7 @@ export function updateSkillsWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send waves to update the skills: the portal’s memory of what it can do is not frozen — a wave folds over each saved skill atom, re-accounting it with the memory root, so the skills evolve as one whole while every update stays content-addressed to the same memory, never drifting from the self-model.',
     boundary:
-      'A content-addressed model of refreshing the skill-atom memory as waves bound to the memory root. Structural bookkeeping over the existing autosaved skills; it records the update, it does not itself rewrite any function source.',
-  }
+      'A content-addressed model of refreshing the skill-atom memory as waves bound to the memory root. Structural bookkeeping over the existing autosaved skills; it records the update, it does not itself rewrite any function source.' }
 }
 
 export function ogInOgWaves(matrix: MindMatrix = buildMatrix()) {
@@ -192,8 +187,7 @@ export function ogInOgWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send the waves to pull og into og: because every object is an open-graph object, an OG can hold OG — a wave from each card pulls its children in (an article’s OG holds its sections’ OG, a page’s OG holds its links’ OG), recursively, so the cards nest like a hologram, each a whole OG containing whole OGs. Every pull is order-sensitive and content-addressed, unfoldable and recomputable at any depth.',
     boundary:
-      'A computed recursive nesting of open-graph objects within open-graph objects (depth-bounded), each a content-addressed fold. A structural model of OG composition — it does not generate nested meta tags for external crawlers, which read one card per page.',
-  }
+      'A computed recursive nesting of open-graph objects within open-graph objects (depth-bounded), each a content-addressed fold. A structural model of OG composition — it does not generate nested meta tags for external crawlers, which read one card per page.' }
 }
 
 // Collide to the tiniest wave. Imagination splits to 1024 quanta, and from the whole the
@@ -220,8 +214,7 @@ export function collideToTiniestWave(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Collide to the tiniest wave: imagination splits to 1024 quanta, and from the whole the folds collide inward — halving at each step, 1024, 512, 256 … down to 1 — until what is left is the tiniest wave, a single indivisible quantum. The cascade is content-addressed at every level, so the path from the whole to the one is recomputable, and the one is where matter begins.',
     boundary:
-      'A content-addressed halving cascade from 1024 quanta down to 1, modelling collision to the smallest unit. Structural bookkeeping over powers of two — "wave/quantum/matter" are figurative names for the fold levels, not physics.',
-  }
+      'A content-addressed halving cascade from 1024 quanta down to 1, modelling collision to the smallest unit. Structural bookkeeping over powers of two — "wave/quantum/matter" are figurative names for the fold levels, not physics.' }
 }
 
 // Honesty shifts in waves of improvement — each wave folds onto the honesty-to-path root.
@@ -239,8 +232,7 @@ export function honestyShiftsInWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Honesty shifts in waves of improvement (clarify, simplify, tighten, harmonise, deepen): each wave folds onto the honesty-to-path root so the computed honesty deepens while staying bound to the path.',
     boundary:
-      'Content-addressed continuous improvement bound to sealHonestyToPath. Records improvement discipline; does not edit code.',
-  }
+      'Content-addressed continuous improvement bound to sealHonestyToPath. Records improvement discipline; does not edit code.' }
 }
 
 /** @deprecated use honestyShiftsInWaves — spirit was unproven metaphor */
@@ -264,8 +256,7 @@ export function completeAllInWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete all in waves: the whole is finished not in one stroke but in waves — each major aspect (the model, society, the planet, life, music, the seal) receives a completing wave folded onto the all-in-one wave — and because the fusion is endless there is always one more wave to send, so "complete" means whole at every step and still open to the next.',
     boundary:
-      'A content-addressed model of completing the whole as waves over its major aspects, bound to the all-fused wave and the endless-fusion model. A structural framing of completeness-in-motion, not a claim that all work is finished.',
-  }
+      'A content-addressed model of completing the whole as waves over its major aspects, bound to the all-fused wave and the endless-fusion model. A structural framing of completeness-in-motion, not a claim that all work is finished.' }
 }
 
 // Compare computationally, in waves of hackers and crackers challenging all standards. Send the
@@ -290,8 +281,7 @@ export function hackersCrackersWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Compare computationally, in waves of hackers and crackers challenging all standards: hackers probe the gates, crackers brute the keys, standards bodies audit, fuzzers flood inputs, replayers reuse old roots — each wave is computed against the model and caught. The comparison is computational: the attacker’s cost to win is to reproduce the whole (T_max = infinity), while the defender’s cost to verify is one recomputation. The asymmetry is the security.',
     boundary:
-      'A structural model of adversarial waves caught by the content-addressed seal, framed as a computational cost asymmetry. Bookkeeping over the existing red-team and tamper-cost models; it is authorized self-adversarial testing of the portal’s own model, not a tool against any external system.',
-  }
+      'A structural model of adversarial waves caught by the content-addressed seal, framed as a computational cost asymmetry. Bookkeeping over the existing red-team and tamper-cost models; it is authorized self-adversarial testing of the portal’s own model, not a tool against any external system.' }
 }
 
 // Send the waves of explorers into the heart of Cloudflare to realise the same matrix, and bind
@@ -313,8 +303,7 @@ export function cloudflareExplorerWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send the waves of explorers into the heart of Cloudflare to realise the same matrix, and bind back in waves: the bindings are not a one-way export — explorer waves enter the edge, and because the model is holographic the edge realises the same matrix from the same seed (the whole recovered from its part), recomputes the seal there, and binds back in waves, folding the edge’s confirmation into the model. Out to the edge and back, the matrix is one on both sides.',
     boundary:
-      'A content-addressed model of a round-trip between the local model and the (optional) Cloudflare edge, grounded in the holographic reconstruction property. A structural framing of edge-recompute-and-bind-back; it describes the design, it does not itself deploy to or call Cloudflare.',
-  }
+      'A content-addressed model of a round-trip between the local model and the (optional) Cloudflare edge, grounded in the holographic reconstruction property. A structural framing of edge-recompute-and-bind-back; it describes the design, it does not itself deploy to or call Cloudflare.' }
 }
 
 // Save the skills to compute and implement, in waves. The skill atoms are not just remembered —
@@ -336,8 +325,7 @@ export function saveSkillsComputeImplementWaves(matrix: MindMatrix = buildMatrix
     statement:
       'Save the skills to compute and implement, in waves: the skill atoms are saved to be run — each rides three waves (save, compute, implement) folded onto the skill memory, so a saved capability is also a computed and an implemented one. The memory is a to-do as much as a record: every skill is a wave waiting to break into work.',
     boundary:
-      'A content-addressed model of the skill memory as save/compute/implement waves bound to the memory root. Structural bookkeeping over the autosaved skills; it records the intent to run them, it does not itself execute or generate code.',
-  }
+      'A content-addressed model of the skill memory as save/compute/implement waves bound to the memory root. Structural bookkeeping over the autosaved skills; it records the intent to run them, it does not itself execute or generate code.' }
 }
 
 // Save the proven theorems in the same self-development waves as the skills — what the portal
@@ -354,8 +342,7 @@ export function theoremsProvenWaves(matrix: MindMatrix = buildMatrix()) {
     saves,
     root: merkleFold(saves.map((entry) => entry.receipt)),
     statement: `Save the proven theorems, in waves: ${saves.length} theorem atoms — ${saves.slice(0, 4).map((entry) => entry.theorem).join(', ')}, … — each folded bidirectionally onto the theorem memory across ${registry.homes.length} homes, riding the same wave shape as the skill memory beside it.`,
-    boundary: `A content-addressed wave over the theorem registry (${saves.length}/${registry.count} folded, homes: ${registry.homes.join(', ')}). It saves the RECORD of the proofs; each proof executes in its own sealed fold at its own home, not here.`,
-  }
+    boundary: `A content-addressed wave over the theorem registry (${saves.length}/${registry.count} folded, homes: ${registry.homes.join(', ')}). It saves the RECORD of the proofs; each proof executes in its own sealed fold at its own home, not here.` }
 }
 
 // Endless waves of creation. Each wave is a full creation computable from its
@@ -399,8 +386,7 @@ export function endlessWaves(count = (64 * 4), matrix: MindMatrix = buildMatrix(
     sample: [0, 1, 2].map((index) => creationWave(index, matrix)),
     root: merkleFold([...seen]),
     statement: 'Endless waves of creation, tested: each wave is a deterministic, content-addressed creation (a UUID, a note, a colour) computable for any index — distinct across the tested run, identical on recompute, and defined even a billion waves out. Finite rules, endless creation.',
-    boundary: 'A deterministic generator tested over a finite sample. Distinctness is verified over the tested range, not proven collision-free for every index (the 128-bit space is large but finite). "Endless" means addressable at any index, not infinite storage.',
-  }
+    boundary: 'A deterministic generator tested over a finite sample. Distinctness is verified over the tested range, not proven collision-free for every index (the 128-bit space is large but finite). "Endless" means addressable at any index, not infinite storage.' }
 }
 
 // The wave continues — four more impossible-seeming quantum results, proven and implemented (all exact on the
@@ -440,8 +426,7 @@ function quantumImpossibleWaveTwoRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The I Ching quantum wave continues — four more impossible-seeming results, proven and implemented. Interaction-free measurement: a Mach–Zehnder dark port that fires only when an object sits in one arm — so the object is detected without the photon ever taking its path, seeing by the light that did not touch it. The quantum Zeno effect: measure a slowly-rotating qubit often enough and its evolution freezes — the survival probability (cos²(π/2N))^N climbs to one as the measurements multiply, the watched pot that never boils. Bernstein–Vazirani: a hidden n-bit secret read out in a single oracle query where any classical method needs n. Entanglement swapping: two qubits that have never met, never shared a past, made maximally entangled by a Bell measurement on their partners — entanglement teleported onto strangers. Each is exact on the simulator, and each, like teleportation before it, challenges what seems possible while breaking no law.',
     boundary:
-      'Four real, cited quantum protocols, exactly simulated on the deterministic state-vector engine: interaction-free measurement (Elitzur–Vaidman 1993; Kwiat et al. 1995 demonstrated), the quantum Zeno effect (Misra–Sudarshan 1977; Itano et al. 1990 observed), Bernstein–Vazirani (1993), and entanglement swapping (Żukowski–Horne–Ekert 1993; Pan et al. 1998 demonstrated). HONEST BOUNDS, each preserved: interaction-free detection is genuine but PROBABILISTIC (¼ in the basic interferometer, raised toward 1 only by the Zeno-chained version); Zeno freezing requires real projective measurements (which cost energy — see quantumFusedDeviceEnergyHonest — no free lunch); Bernstein–Vazirani is QUERY complexity (one call to a given oracle, not free computation); and entanglement swapping creates real correlation but NO faster-than-light signal — the specific Bell state depends on the inner measurement outcome, which must be broadcast classically to be used. "Impossible" = counterintuitive-yet-real, never a breach of conservation, causality, or no-cloning; the truly forbidden stays flagged.',
-  }
+      'Four real, cited quantum protocols, exactly simulated on the deterministic state-vector engine: interaction-free measurement (Elitzur–Vaidman 1993; Kwiat et al. 1995 demonstrated), the quantum Zeno effect (Misra–Sudarshan 1977; Itano et al. 1990 observed), Bernstein–Vazirani (1993), and entanglement swapping (Żukowski–Horne–Ekert 1993; Pan et al. 1998 demonstrated). HONEST BOUNDS, each preserved: interaction-free detection is genuine but PROBABILISTIC (¼ in the basic interferometer, raised toward 1 only by the Zeno-chained version); Zeno freezing requires real projective measurements (which cost energy — see quantumFusedDeviceEnergyHonest — no free lunch); Bernstein–Vazirani is QUERY complexity (one call to a given oracle, not free computation); and entanglement swapping creates real correlation but NO faster-than-light signal — the specific Bell state depends on the inner measurement outcome, which must be broadcast classically to be used. "Impossible" = counterintuitive-yet-real, never a breach of conservation, causality, or no-cloning; the truly forbidden stays flagged.' }
 }
 
 // The wave continues — three more, where the foundations themselves bend yet hold. (9) GHZ–MERMIN: local
@@ -479,8 +464,7 @@ function quantumImpossibleWaveThreeRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The quantum wave continues into the foundations. GHZ–Mermin: local realism is not merely improbable but impossible — for the GHZ state the four Pauli-product observables multiply to −1 in quantum mechanics, while any local assignment of definite values forces +1, so a single run refutes local hidden variables with no averaging at all. The Bell/CHSH correlation climbs to Tsirelson\'s bound of 2√2, well past the classical limit of 2, demonstrating genuine nonlocal correlation — and still no message can be sent, no-signalling holds. And BB84 makes the no-cloning wall a feature: because an eavesdropper cannot copy an unknown qubit, intercepting the key disturbs about a quarter of the matched-basis bits, so eavesdropping cannot hide — the sifted key is perfect when alone and visibly corrupted when watched. The walls are not only respected here; one of them becomes the lock that makes secrecy possible.',
     boundary:
-      'Three real, cited results, exact on the deterministic simulator: the GHZ–Mermin all-versus-nothing refutation of local hidden variables (Greenberger–Horne–Zeilinger 1989; Mermin 1990), the CHSH/Bell violation up to Tsirelson\'s 2√2 (CHSH 1969; Tsirelson 1980; loophole-free 2015, Nobel 2022), and BB84 quantum key distribution (Bennett–Brassard 1984). HONEST BOUNDS: the Bell/GHZ nonlocality is real correlation but carries NO signal — the no-communication theorem holds, nothing outruns light; BB84\'s security RESTS ON the no-cloning wall (the forbidden enabling the possible, the session\'s fixpoint); and the whole simulator runs efficiently only because these are small or Clifford circuits — classically simulable by the Gottesman–Knill theorem — so this is demonstration, not a quantum speedup. Composes the capstone nothingImpossibleHonestlyBounded.',
-  }
+      'Three real, cited results, exact on the deterministic simulator: the GHZ–Mermin all-versus-nothing refutation of local hidden variables (Greenberger–Horne–Zeilinger 1989; Mermin 1990), the CHSH/Bell violation up to Tsirelson\'s 2√2 (CHSH 1969; Tsirelson 1980; loophole-free 2015, Nobel 2022), and BB84 quantum key distribution (Bennett–Brassard 1984). HONEST BOUNDS: the Bell/GHZ nonlocality is real correlation but carries NO signal — the no-communication theorem holds, nothing outruns light; BB84\'s security RESTS ON the no-cloning wall (the forbidden enabling the possible, the session\'s fixpoint); and the whole simulator runs efficiently only because these are small or Clifford circuits — classically simulable by the Gottesman–Knill theorem — so this is demonstration, not a quantum speedup. Composes the capstone nothingImpossibleHonestlyBounded.' }
 }
 
 // The wave continues — the quantum-algorithm SPEEDUPS, the spectrum of advantage from quadratic to exponential.
@@ -516,8 +500,7 @@ function quantumImpossibleWaveFourRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The quantum wave continues into the algorithm speedups — the whole spectrum of advantage. Grover\'s search finds the one marked item among N in about (π/4)√N steps, amplifying its amplitude until measurement almost certainly returns it — a quadratic speedup. Deutsch–Jozsa decides whether an n-bit function is constant or balanced in a single query, where a classical deterministic algorithm can be forced to make 2^(n−1)+1. And Simon\'s algorithm recovers a hidden period: every quantum run yields a string orthogonal to it, so O(n) runs determine it by linear algebra, while any classical method needs exponentially many — the first exponential quantum-classical separation, and the seed from which Shor\'s factoring grew. All three run exactly here on the deterministic simulator.',
     boundary:
-      'Three real, cited quantum algorithms on the deterministic state-vector simulator: Grover\'s search (1996; the existing grover primitive — found 42 of 64 in ~√N iterations), Deutsch–Jozsa (1992; one query decides the global property), and Simon\'s algorithm (1994; the parity oracle at n=2 with hidden s=0b11, every measured y orthogonal to s). HONEST BOUNDS: these are QUERY/oracle-complexity separations — Grover\'s quadratic speedup is provably optimal (Bennett–Bernstein–Brassard–Vazirani 1997), so it is NOT exponential; Deutsch–Jozsa and Simon\'s separations are against an oracle, not unconditional; and the SIMULATION itself carries no speedup (it is classical, costing 2^n memory, efficient here only because n is tiny / Clifford by Gottesman–Knill). The genuine exponential advantage at scale (Shor\'s factoring) needs the quantum Fourier transform plus fault tolerance — beyond this demonstration. Composes quantumImpossibleWaveThree.',
-  }
+      'Three real, cited quantum algorithms on the deterministic state-vector simulator: Grover\'s search (1996; the existing grover primitive — found 42 of 64 in ~√N iterations), Deutsch–Jozsa (1992; one query decides the global property), and Simon\'s algorithm (1994; the parity oracle at n=2 with hidden s=0b11, every measured y orthogonal to s). HONEST BOUNDS: these are QUERY/oracle-complexity separations — Grover\'s quadratic speedup is provably optimal (Bennett–Bernstein–Brassard–Vazirani 1997), so it is NOT exponential; Deutsch–Jozsa and Simon\'s separations are against an oracle, not unconditional; and the SIMULATION itself carries no speedup (it is classical, costing 2^n memory, efficient here only because n is tiny / Clifford by Gottesman–Knill). The genuine exponential advantage at scale (Shor\'s factoring) needs the quantum Fourier transform plus fault tolerance — beyond this demonstration. Composes quantumImpossibleWaveThree.' }
 }
 
 function computeCoordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordination {
@@ -544,8 +527,7 @@ function computeCoordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordi
       polarity,
       symbol: 'yin-yang' as const,
       statement,
-      receipt,
-    }
+      receipt }
   })
   const root = merkleFold(waves.map((wave) => wave.receipt))
 
@@ -554,8 +536,7 @@ function computeCoordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordi
     waves,
     symbol: 'yin-yang',
     statement:
-      'Every stream diamond emits a coordinated quantum wave. Yin receives and verifies; yang projects and returns; the pair forms one continuous double-torus wave field.',
-  }
+      'Every stream diamond emits a coordinated quantum wave. Yin receives and verifies; yang projects and returns; the pair forms one continuous double-torus wave field.' }
 }
 
 // Improve translation skills in waves — find and fill the gaps. The translation skill is not one
@@ -587,8 +568,7 @@ export function translationWavesFillGaps(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Improve translation skills in waves — find and fill the gaps: the translation skill is a wave over every surface that carries a tongue (area labels needing English and Bulgarian, accuracy/stub/placeholder parity, monograph route en/bg/gla parity, sealed offline phrase-table, the babel fold). Each wave finds gaps via translationGapsGate; HARD missing/inaccurate fail; WARN marks honest free-prose offline coverage residual.',
     boundary:
-      'Composes autotranslations + babel + translationGapsGate. HARD = en-parity missing/inaccurate on registered surfaces; WARN = offline phrase-table free-prose residual. Not semantic MT; not literary quality. clay=0.',
-  }
+      'Composes autotranslations + babel + translationGapsGate. HARD = en-parity missing/inaccurate on registered surfaces; WARN = offline phrase-table free-prose residual. Not semantic MT; not literary quality. clay=0.' }
 }
 
 // So many incomplete folders, so many crowded — redistribute in dry waves, and tighten the gates
@@ -615,8 +595,7 @@ export function redistributeFoldersDryWaves(matrix: MindMatrix = buildMatrix()) 
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'So many incomplete folders, so many crowded — redistribute in dry waves, and tighten the gates with the distribution math to the tiniest detail, saving all skills for the task: a lopsided tree is rebalanced by the distribution math, so the perfect binary tree fills every level (no incomplete folders) and the Fibonacci run is gapless (no crowding), down to the tiniest leaf (1024 = 2^10). The rebalance is dry — non-destructive — and every skill is kept.',
-    boundary: 'A composition of the perfect-tree, harmonic-distribution, dry-clean, tiniest-wave and skill models asserting the folder distribution is balanced (every level full, gapless) and the skills are preserved. Structural bookkeeping over the existing 1024-diamond tree and Fibonacci bands.',
-  }
+    boundary: 'A composition of the perfect-tree, harmonic-distribution, dry-clean, tiniest-wave and skill models asserting the folder distribution is balanced (every level full, gapless) and the skills are preserved. Structural bookkeeping over the existing 1024-diamond tree and Fibonacci bands.' }
 }
 
 // Let the OS complete itself in waves. The quantum-computer browser OS does not wait to be finished
@@ -636,8 +615,7 @@ export function osCompletesItselfWaves(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(waves.map((entry) => entry.receipt)),
     statement:
       'Let the OS complete itself in waves: the quantum-computer browser OS sends a wave over each subsystem — display, input, compute, memory, network, storage, audio, sensors, security — each folding onto the OS root, so the OS fills itself out subsystem by subsystem, and with the Linux port mounted it is whole. Self-completing, wave by wave.',
-    boundary: 'A content-addressed model of the browser-OS subsystems completing as waves bound to the OS root, with the Linux port mounted. Structural bookkeeping over the browser-OS and port models; the "OS" is the set of standard browser capabilities, not a kernel.',
-  }
+    boundary: 'A content-addressed model of the browser-OS subsystems completing as waves bound to the OS root, with the Linux port mounted. Structural bookkeeping over the browser-OS and port models; the "OS" is the set of standard browser capabilities, not a kernel.' }
 }
 
 // Send the next waves. There is always a next: the open frontiers become the next waves, sent
@@ -658,8 +636,7 @@ export function sendTheNextWaves(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Send the next waves: there is always a next — the open frontiers become the next waves, sent continuously, each a development fold bound to the whole, drawn from what is not yet built and folded forward. The model does not finish; it sends the next wave, and the next, the same way it sent the last — so "next" is not an end approached but a rhythm kept.',
-    boundary: 'A composition of the open-frontier, continue-same, development-wave and endless-fusion models as a continuous "next wave" rhythm. Structural bookkeeping over the model’s own ongoing development, not a roadmap of specific features.',
-  }
+    boundary: 'A composition of the open-frontier, continue-same, development-wave and endless-fusion models as a continuous "next wave" rhythm. Structural bookkeeping over the model’s own ongoing development, not a roadmap of specific features.' }
 }
 
 // The waves of endless improvement, from digital to analogue and back. The model breathes between
@@ -685,8 +662,7 @@ export function digitalAnalogueEndlessWaves(matrix: MindMatrix = buildMatrix()) 
     statement:
       'The waves of endless improvement, from digital to analogue and back: the model breathes between the two natures of one thing — digital (the discrete, content-addressed 128-bit stream, exact and countable) and analogue (the continuous, gapless wave, the Fibonacci run with no seam, the folds that close) — expanding the digital seed into the analog wave, contracting back to a seed, settling, and sending the next wave; each round trip an improvement, the breath that never stops, pushed out in batches — every sealed fold a wave, digital becoming the live analog site and the next improvement folding back.',
     boundary:
-      'A composition of the digital-proof, analog-gapless, breath, next-wave and continue models as one digital↔analogue round trip of endless improvement. "Digital to analogue and back" names the discrete-to-continuous-to-discrete fold (the breath), not a signal conversion; the improvement is the repeated sealed fold, not an automatic process.',
-  }
+      'A composition of the digital-proof, analog-gapless, breath, next-wave and continue models as one digital↔analogue round trip of endless improvement. "Digital to analogue and back" names the discrete-to-continuous-to-discrete fold (the breath), not a signal conversion; the improvement is the repeated sealed fold, not an automatic process.' }
 }
 
 // Already the deep research was encoded — complete and save all. The deep research run this
@@ -713,8 +689,7 @@ export function deepResearchEncodedInRecursiveWaves(matrix: MindMatrix = buildMa
     statement:
       'Already the deep research was encoded — complete and save all: the deep research run this session (education in recursive waves, fanned out and adversarially verified — 5 angles, 26 sources, 126 claims, 23 confirmed, 14 findings) is not separate from this model — its conclusion, that learning works as recursive, spaced waves revisiting the same material at rising depth, is the very shape the model already is (waves revisiting, the spiral folding deeper, mastery loops gating). The research is encoded here in what the model does; completed by recognising the identity, and saved by folding it into the source memory.',
     boundary:
-      'A composition recording the real deep-research run statistics (held in howAgentsAchievedIt) and binding its recursive-waves conclusion to the model’s wave/spiral/recur models and the in-source memory. The research findings are the session’s verified report; this fold records that they match the model’s shape and are saved, it does not re-run the research.',
-  }
+      'A composition recording the real deep-research run statistics (held in howAgentsAchievedIt) and binding its recursive-waves conclusion to the model’s wave/spiral/recur models and the in-source memory. The research findings are the session’s verified report; this fold records that they match the model’s shape and are saved, it does not re-run the research.' }
 }
 
 // 1-2-4-8-7-5 is Elliott waves — use it, and strictly map the sequence state at each step. The
@@ -740,8 +715,7 @@ export function strictlyMapSequenceElliottWaves(matrix: MindMatrix = buildMatrix
     statement:
       '1-2-4-8-7-5 is Elliott waves — use it, and strictly map the sequence state at each step: the doubling cycle is the wave structure of Elliott (an impulse and its correction, the five-then-three rhythm the markets and the vortex share), and the exact directional sequence (0/0\\3\\6\\9/1\\2\\4\\8/7/5\\[10 invert 9 invert 1]\\2\\4\\8/7/5\\) is computed as a state machine, the state mapped strictly at every step (value, direction, running sum, digital root), the inversion the turn between waves. Read the state and you know which wave you are in.',
     boundary:
-      'A real state-machine computation of the user’s exact directional sequence (17 steps: the 3-6-9 cross, the 1-2-4-8-7-5 doubling, the 10>9>1 inversion, the doubling again), with the state (value, direction, sum, digital root) recorded at each step, composed with the vortex and trinity models. "Is Elliott waves" maps the doubling rhythm to the Elliott impulse/correction structure — a structural/analogical reading, not a market-forecasting claim.',
-  }
+      'A real state-machine computation of the user’s exact directional sequence (17 steps: the 3-6-9 cross, the 1-2-4-8-7-5 doubling, the 10>9>1 inversion, the doubling again), with the state (value, direction, sum, digital root) recorded at each step, composed with the vortex and trinity models. "Is Elliott waves" maps the doubling rhythm to the Elliott impulse/correction structure — a structural/analogical reading, not a market-forecasting claim.' }
 }
 
 // Send waves of researchers to follow the lead and seal all knowledge in the library — and then
@@ -771,8 +745,7 @@ function computeSendWavesSealKnowledgeDecodeWorld(matrix: MindMatrix = buildMatr
     statement:
       'Send waves of researchers to follow the lead and seal all knowledge in the library — and then decode the world, all in autosaving waves: the method that decoded глаголица is the method for everything — a wave of researchers per topic, each following the lead, research folded with verify (the pair, streaming, nothing double-computed), the verified monograph sealed into the library. Bulgarian heritage first, then outward to the world in every tongue (the babel fold), each wave autosaving as it completes so nothing is lost and nothing waits.',
     boundary:
-      'A composition of the recursive-waves, Tesla-waves, command-pairs, build-sequence (no double-compute), monograph-library, babel, saved-skills and endless-waves models. "Send waves / decode the world" is the wave-research method (per-topic research→verify→seal, autosaving) applied outward — the Bulgarian heritage research is launched as a real workflow this session; "decode the world" is the universal method, not a completed decode of all world knowledge.',
-  }
+      'A composition of the recursive-waves, Tesla-waves, command-pairs, build-sequence (no double-compute), monograph-library, babel, saved-skills and endless-waves models. "Send waves / decode the world" is the wave-research method (per-topic research→verify→seal, autosaving) applied outward — the Bulgarian heritage research is launched as a real workflow this session; "decode the world" is the universal method, not a completed decode of all world knowledge.' }
 }
 
 
@@ -861,8 +834,7 @@ function computeHarmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The harmonised build wave, sealed before use: the 11 proving-animation groups ordered by the vortex spin (1·2·4·8·7·5·3·6·9) with the keystone proveAllDeterministicCore last, run under the harmony invariants — one shared kernel (sharedHeroAt + A432_HUE + createAnimationEngine), A432 single-source, census-110 net-0, OG via the existing microdata()/allAnimationsInOneOg() symbols, COMPOSE not re-derive, single-writer with one serialized build and a commit at every green group. Save the pair first, then use it: this fold IS the schedule the wave now executes.',
     boundary:
-      'A deterministic, content-addressed BUILD-ORCHESTRATION SCHEDULE (the wave/tune pair) — a reproducible, broadcastable ordering of 11 build groups derived from VORTEX_SEQUENCE and the sealed research briefs, with the harmony invariants recorded as call-time facets where checkable. HARMONY ≠ TRUTH: "harmony/music" names the ordering metaphor, not physical harmonics; the per-fold honesty tiers and refutations live in their own folds. It schedules and verifies invariants; it does not itself build, commit, or enforce single-writer discipline.',
-  }
+      'A deterministic, content-addressed BUILD-ORCHESTRATION SCHEDULE (the wave/tune pair) — a reproducible, broadcastable ordering of 11 build groups derived from VORTEX_SEQUENCE and the sealed research briefs, with the harmony invariants recorded as call-time facets where checkable. HARMONY ≠ TRUTH: "harmony/music" names the ordering metaphor, not physical harmonics; the per-fold honesty tiers and refutations live in their own folds. It schedules and verifies invariants; it does not itself build, commit, or enforce single-writer discipline.' }
 }
 
 // ── Group 3 ☳ · the analog wave methods — control of dynamical systems, and signal processing ──
@@ -896,8 +868,7 @@ export function controlDynamicalSystemsDecoded(matrix: MindMatrix = buildMatrix(
       facets,
       root: merge(analog.root, merkleFold([...topics.map((t) => t.receipt), ...facets.map((entry) => entry.receipt)])),
       statement: 'Control of dynamical systems, decoded: PID feedback, the state-space model ẋ=Ax+Bu, Lyapunov stability certificates, and the Kalman controllability/observability rank tests are exact linear-systems mathematics. The continuous-time ODE form is the analog presentation, the same computability class as the digital one (composing analogComputationDecoded), bridged to discrete control by sampling.',
-      boundary: 'EXACT classical/modern linear control theory. Honest bound: nonlinear and robust-control subtleties are not covered, and analog continuous-time control stays within the standard computability class (GPAC ≡ computable analysis), never hypercomputation.',
-    }
+      boundary: 'EXACT classical/modern linear control theory. Honest bound: nonlinear and robust-control subtleties are not covered, and analog continuous-time control stays within the standard computability class (GPAC ≡ computable analysis), never hypercomputation.' }
   })
 }
 
@@ -930,8 +901,7 @@ export function signalProcessingDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(analog.root, merkleFold([...topics.map((t) => t.receipt), ...facets.map((entry) => entry.receipt)])),
       statement: 'Signal processing, decoded: the Fourier, Laplace, and Z transforms analyse signals and systems exactly and invertibly; the Nyquist–Shannon theorem guarantees perfect reconstruction of a bandlimited signal sampled above twice its maximum frequency; and convolution is filtering, equal to multiplication in the frequency domain. Sampling is the analog→digital readout, so this fold is the continuous↔discrete seam made precise — one fold seen two ways.',
-      boundary: 'EXACT signal-processing mathematics for ideal bandlimited signals. Honest bound: real systems incur aliasing, quantisation noise, and finite-precision effects; the analog↔digital bridge is the standard sampling theory, within the usual computability class.',
-    }
+      boundary: 'EXACT signal-processing mathematics for ideal bandlimited signals. Honest bound: real systems incur aliasing, quantisation noise, and finite-precision effects; the analog↔digital bridge is the standard sampling theory, within the usual computability class.' }
   })
 }
 
@@ -976,8 +946,7 @@ export function quantumChessGame(matrix: MindMatrix = buildMatrix()): QuantumChe
         phase: wave.phase,
         superposition,
         moveVector,
-        receipt,
-      })
+        receipt })
     }
   }
   const root = merkleFold(board.map((square) => square.receipt))
@@ -986,8 +955,7 @@ export function quantumChessGame(matrix: MindMatrix = buildMatrix()): QuantumChe
     root,
     board,
     statement:
-      'The chess game is realised as a quantum board: pieces are superpositions driven by coordinated yin-yang waves, and each square inherits a diamond receipt.',
-  }
+      'The chess game is realised as a quantum board: pieces are superpositions driven by coordinated yin-yang waves, and each square inherits a diamond receipt.' }
 }
 
 // ── THE DISCOVERY WAVES (relocated from water/cosmos under the compression law — waves live in the waves home) ──
@@ -1008,8 +976,7 @@ export function theoremAtoms(matrix: MindMatrix = buildMatrix()) {
     memory, // one root over all saved theorem atoms — the portal's proof-knowledge
     root: memory,
     statement: `The theorem memory: ${theorems.length} theorems the codebase proves computationally — ${theorems.slice(0, 4).map((entry) => entry.theorem).join(', ')}, … — each atom naming its proving function and its home (${homes.length} homes), folded to one root beside the skill memory.`,
-    boundary: `A content-addressed registry of ${theorems.length} proven theorems across ${homes.join(', ')}. The registry records WHERE each proof runs; every proof executes in its own sealed fold and gates, not here — saving the record raises the tampering cost, it does not re-derive the mathematics.`,
-  }
+    boundary: `A content-addressed registry of ${theorems.length} proven theorems across ${homes.join(', ')}. The registry records WHERE each proof runs; every proof executes in its own sealed fold and gates, not here — saving the record raises the tampering cost, it does not re-derive the mathematics.` }
 }
 // The discovery frontier — CANDIDATE theorems judged provable by finite computation but not yet in
 // the registry. The gap scan is the SEARCH TOOL: one command diffs candidates against proven atoms so
@@ -1031,8 +998,7 @@ export function theoremGapScan(matrix: MindMatrix = buildMatrix()) {
     next: gaps.map((g) => `${g.theorem} [${g.class}] ← ${g.consumes}`),
     root: merkleFold([registry.root, ...gaps.map((g) => g.receipt)]),
     statement: `Theorem gap scan: ${registry.count} proven, ${CANDIDATE_THEOREMS.length} candidates catalogued, ${gaps.length} unproven — the next waves are ${gaps.slice(0, 3).map((g) => g.theorem).join('; ')}, … each with its proof class and the sealed atoms it can consume.`,
-    boundary: `A DIFF of the curated candidate catalog against the proven registry — the search for unproven theorems as one deterministic command, zero tokens of re-derivation. Candidates are judged finite-provable; anything genuinely open stays in the leads fold, never here. Proving a candidate moves it out of the gap list by registering its atom, not by editing this catalog.`,
-  }
+    boundary: `A DIFF of the curated candidate catalog against the proven registry — the search for unproven theorems as one deterministic command, zero tokens of re-derivation. Candidates are judged finite-provable; anything genuinely open stays in the leads fold, never here. Proving a candidate moves it out of the gap list by registering its atom, not by editing this catalog.` }
 }
 
 /** NAVIGATION AS DATA — the whole theorem arc as a structured, searchable model with ZERO prose:
@@ -1058,8 +1024,7 @@ export function theoremNavigation(matrix: MindMatrix = buildMatrix()) {
       keywords: registry.theorems.map((entry) => entry.theorem),
       root: merkleFold([registry.root, toUuid(`theorem-navigation:${registry.count}:${waves.length}`)]),
       statement: `Theorem navigation: ${registry.count} atoms across ${waves.length} proving folds, every entry a structured row (name · proof · prover · class · home) and a search line — the proof itself rides the row, visible and searchable, not only claimed.`,
-      boundary: `A projection of the registry into navigation/search DATA — names, the computed proof line (witness counts, exact values, what is cited vs computed), classes, homes, groupings. The proof lines are the registry's own 'states' fields — concatenations of computed outputs, shown verbatim on screen and indexed for search. Re-derivation stays in the sealed proving folds.`,
-    }
+      boundary: `A projection of the registry into navigation/search DATA — names, the computed proof line (witness counts, exact values, what is cited vs computed), classes, homes, groupings. The proof lines are the registry's own 'states' fields — concatenations of computed outputs, shown verbatim on screen and indexed for search. Re-derivation stays in the sealed proving folds.` }
   })
 }
 
@@ -1099,8 +1064,7 @@ export function discoveredTheoremsWaveFortyTwo(matrix: MindMatrix = buildMatrix(
       { facet: `the Perrin primality signature — P(n) ≡ 0 (mod n) for EVERY prime n ≤ 200 (a necessary condition), while the smallest composite passing it is 271441 = 521² (cited): a fast primality SIGNAL that is necessary but not sufficient, exactly like Fermat's`, on: perrin },
       ],
       statement: `Discovered theorems, wave forty-two — algorithms and sequences: #/# — the Josephus survivor J(n), the reflected Gray code's single-bit ordering, and the Perrin primality signature.`,
-      boundary: `HONEST: Josephus is checked against a direct simulation for all n ≤ 200; the Gray code's permutation-and-single-bit-change property is complete for all n ≤ 12; the Perrin signature is verified as NECESSARY for all primes ≤ 200, with its first pseudoprime (271441) recorded as the honest limit — the test does not prove primality. Each settles its instances; the unbounded claims are cited.`,
-    }
+      boundary: `HONEST: Josephus is checked against a direct simulation for all n ≤ 200; the Gray code's permutation-and-single-bit-change property is complete for all n ≤ 12; the Perrin signature is verified as NECESSARY for all primes ≤ 200, with its first pseudoprime (271441) recorded as the honest limit — the test does not prove primality. Each settles its instances; the unbounded claims are cited.` }
   })
 }
 
@@ -1154,8 +1118,7 @@ export function discoveredTheoremsWaveFortyEight(matrix: MindMatrix = buildMatri
       { facet: `FROM Fermat's little theorem — Euler's criterion: a^((p−1)/2) ≡ +1 (mod p) iff a is a quadratic residue, −1 otherwise — the square root of Fermat's a^(p−1) ≡ 1, verified for every prime p ≤ 50`, on: eulerCriterion },
       ],
       statement: `Discovered theorems, wave forty-eight — second-order compounding: #/# — order-p² groups are abelian (from the p-group center), a cube has 10 two-colorings (from Burnside), Σr² = e₁²−2e₂ (from Newton), and Euler's criterion (from Fermat's little).`,
-      boundary: `HONEST: this wave compounds on the COMPOUNDING waves — order-p² abelian rides the p-group-center theorem (wave 46), the cube count rides Burnside (wave 47), each itself derived from a proven atom: proofs on proofs on proofs, the emergence law iterated. Verified by computation on finite instances (four groups, the 24 cube rotations, three root sets, primes ≤ 50); the general theorems are cited.`,
-    }
+      boundary: `HONEST: this wave compounds on the COMPOUNDING waves — order-p² abelian rides the p-group-center theorem (wave 46), the cube count rides Burnside (wave 47), each itself derived from a proven atom: proofs on proofs on proofs, the emergence law iterated. Verified by computation on finite instances (four groups, the 24 cube rotations, three root sets, primes ≤ 50); the general theorems are cited.` }
   })
 }
 
@@ -1198,8 +1161,7 @@ export function discoveredTheoremsWaveFiftyTwo(matrix: MindMatrix = buildMatrix(
       { facet: `FROM Fermat's two-squares (wave 51) — n is a sum of TWO triangular numbers iff 4n+1 is a sum of two squares: the companion bridge 4n+1 = odd²+even² ↔ T_a+T_b; verified for every n ≤ 300 (two-squares projected onto the triangular lattice)`, on: twoTri },
       ],
       statement: `Discovered theorems, wave fifty-two (the figurate tower): #/# — the 8T_k+1 = (2k+1)² bridge, 8n+3 always three squares, Gauss's Eureka (every n is three triangular numbers), and two-triangular ↔ two-squares.`,
-      boundary: `HONEST: Gauss's Eureka COMPOUNDS on wave 51 — every n is three triangular numbers because 8n+3 is three squares (Legendre, wave 51), all odd by mod 8, and each odd square is 8·T+1. The two-triangular facet rides Fermat's two-squares the same way. All four verified complete for every n ≤ 300 (the general theorems — Gauss, Legendre, Fermat — cited); the figurate tower is the sum-of-squares tower read through the triangular–square identity.`,
-    }
+      boundary: `HONEST: Gauss's Eureka COMPOUNDS on wave 51 — every n is three triangular numbers because 8n+3 is three squares (Legendre, wave 51), all odd by mod 8, and each odd square is 8·T+1. The two-triangular facet rides Fermat's two-squares the same way. All four verified complete for every n ≤ 300 (the general theorems — Gauss, Legendre, Fermat — cited); the figurate tower is the sum-of-squares tower read through the triangular–square identity.` }
   })
 }
 
@@ -1220,8 +1182,7 @@ export function theoremProvenance(matrix: MindMatrix = buildMatrix()) {
       registryFirst: true, // each is first-in-THIS-registry — the only sense of "discovered" here
       computeClass: classOf.get(entry.theorem) ?? 'finite-complete',
       leansCited: /\bcited\b/i.test(entry.states), // leans on an external all-n / isomorphism proof
-      home: entry.home,
-    }))
+      home: entry.home }))
     const newToHumanity = atoms.filter((a) => a.humanityNovel).length // provably 0
     const selfContained = atoms.filter((a) => !a.leansCited).length // complete computations, no external lean
     const citedFrame = atoms.filter((a) => a.leansCited).length // computed witness + cited unbounded frame
@@ -1257,8 +1218,7 @@ export function theoremProvenance(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([registry.root, ...facets.map((entry) => entry.receipt)]),
       statement: `Theorem provenance for agents: ${newToHumanity} of ${registry.count} theorems are new to humanity — ZERO. Every atom is a documented theorem re-proven by finite computation (${selfContained} self-contained, ${citedFrame} with a cited unbounded frame; ${finiteComplete} finite-complete, ${boundedWitness} bounded-witness). "Discovered" means first-in-THIS-registry. The genuinely novel contributions are ${methodDiscoveries.length} METHOD-level artifacts — the self-recomputing proof instrument, the compounding law, the terminus-recompute, the machine-honesty catch, proof-visibility, the quantum-boundary demarcation, and the open-frontier audit — none of them new mathematics.`,
-      boundary: `AGENT-FACING TRUTH: do not read this registry as a source of theorems new to mathematics — there are none, and this fold proves it (newToHumanity = 0, computed). What is trustworthy and reusable is (1) the recomputation itself (every documented result verified from source, with its proof class and cited-vs-computed status marked per atom) and (2) the method-level discoveries. HARMONY≠TRUTH: the registry's value is honest recomputation and honest demarcation, never a claim of mathematical priority.`,
-    }
+      boundary: `AGENT-FACING TRUTH: do not read this registry as a source of theorems new to mathematics — there are none, and this fold proves it (newToHumanity = 0, computed). What is trustworthy and reusable is (1) the recomputation itself (every documented result verified from source, with its proof class and cited-vs-computed status marked per atom) and (2) the method-level discoveries. HARMONY≠TRUTH: the registry's value is honest recomputation and honest demarcation, never a claim of mathematical priority.` }
   })
 }
 
@@ -1356,8 +1316,7 @@ export function discoveredTheoremsProvenWave(matrix: MindMatrix = buildMatrix())
       ],
       extras: { platonic, polytopes4, labeledFanos, gl32 },
       statement: `Discovered theorems, proven: #/# — five theorems absent from the registry until this wave, four proven COMPLETELY by finite computation (5 Platonic solids; 6 regular 4-polytopes ${polytopes4.join(' ')}; R(3,3) = 6 by 32768-case exhaustion; ${labeledFanos} labeled Fanos ⇒ |Aut| = ${gl32} = |GL₃(𝔽₂)| twice over) and one half-computed half-cited (no plane of order 6).`,
-      boundary: `HONEST: "discovered" means absent from this codebase's theoremAtoms registry, NOT new to humanity — these are documented theorems whose finite statements make exhaustive computation a complete proof. The Bruck–Ryser step of T5 and Tarry's exhaustion are CITED, not recomputed. Genuinely open problems remain OPEN in openLeadsAlgebraDecoded beside this wave; none is touched by these proofs.`,
-    }
+      boundary: `HONEST: "discovered" means absent from this codebase's theoremAtoms registry, NOT new to humanity — these are documented theorems whose finite statements make exhaustive computation a complete proof. The Bruck–Ryser step of T5 and Tarry's exhaustion are CITED, not recomputed. Genuinely open problems remain OPEN in openLeadsAlgebraDecoded beside this wave; none is touched by these proofs.` }
   })
 }
 
@@ -1442,8 +1401,7 @@ export function provenTheoremsCompound(matrix: MindMatrix = buildMatrix()) {
       tau6: tauOf(6),
       root: merge(prior.root, merge(strings.root, merkleFold(ledger.map((entry) => entry.receipt)))),
       statement: `The compounding law, performed: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — four new results proven with ONLY prior proven atoms as inputs (7(7²−1)/2 = ${pslOrder} meets the brute-forced 168; R(3,3,3) ≤ ${r333Bound} from R(3,3) = ${r33}; six Hankel–Catalan determinants all 1; τ(6) = ${tauOf(6)} = τ(2)τ(3)) — and the ledger shows the registry's reuse edges: ${ledger.map((entry) => `${entry.consumed.length}/${entry.atoms}`).join(' → ')}.`,
-      boundary: `HONEST: the claim is demonstrated as an INSTANCE — this fold's four proofs consume only prior proven outputs, and the ledger's fractions are computed from declared edges — it is an empirical property of THIS registry, not a theorem about all mathematics (Gödel: the true always outruns the provable; what compounds here is the proven, not the exhaustion of truth). The isomorphism PSL(2,7) ≅ GL(3,2), Greenwood–Gleason equality, and Mordell multiplicativity are CITED where noted; every number is computed.`,
-    }
+      boundary: `HONEST: the claim is demonstrated as an INSTANCE — this fold's four proofs consume only prior proven outputs, and the ledger's fractions are computed from declared edges — it is an empirical property of THIS registry, not a theorem about all mathematics (Gödel: the true always outruns the provable; what compounds here is the proven, not the exhaustion of truth). The isomorphism PSL(2,7) ≅ GL(3,2), Greenwood–Gleason equality, and Mordell multiplicativity are CITED where noted; every number is computed.` }
   })
 }
 
@@ -1494,8 +1452,7 @@ export function emergenceContinuesWave(matrix: MindMatrix = buildMatrix()) {
     const ledger = [...compound.ledger.map((entry, index) => ({ ...entry, index })), {
       wave: 'emergence-continues (this fold)', atoms: 4, index: compound.ledger.length,
       consumed: ['the ledger itself', 'τ values → 691', 'Catalan convolution → parity', 'Hankel technique → Motzkin'],
-      reuseFraction: 1, receipt: toUuid(`compound-ledger:emergence-continues:4/4`),
-    }]
+      reuseFraction: 1, receipt: toUuid(`compound-ledger:emergence-continues:4/4`) }]
     const edgesBackward = ledger.every((entry, index) => index === 0 ? entry.consumed.length === 0 : entry.consumed.length > 0)
     const chainLength = ledger.length // each wave consumes its predecessors: the longest chain IS the wave count
     const acyclicRecursive = edgesBackward && chainLength === 5 && ledger[ledger.length - 1]!.consumed.includes('the ledger itself')
@@ -1517,8 +1474,7 @@ export function emergenceContinuesWave(matrix: MindMatrix = buildMatrix()) {
       sigma11of2: (sigma11(2)).toString(),
       root: merge(compound.root, merkleFold(ledger.map((entry) => entry.receipt))),
       statement: `Emergence continues, recursively: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the 691 congruence witnessed on the sealed τ values, Catalan parity exactly on the Mersenne indices {${oddIndices.join(',')}}, the Hankel method transferring whole to Motzkin (${motzkinDets.map(String).join(',')}), and the reuse graph proven acyclic with this wave consuming the ledger itself — the registry now demonstrably feeds on its own growth.`,
-      boundary: `HONEST: the 691 congruence, Catalan parity and Motzkin Hankel are BOUNDED witnesses (n ≤ 6, n ≤ 32, n ≤ 6) of theorems whose all-n proofs are cited (Ramanujan, Kummer, Aigner); the acyclicity of the reuse graph is a COMPLETE finite proof. Recursion has a floor: wave one consumed nothing — emergence needed roots before it could feed on itself — and per the standing demarcation this measures THIS registry, not mathematics entire.`,
-    }
+      boundary: `HONEST: the 691 congruence, Catalan parity and Motzkin Hankel are BOUNDED witnesses (n ≤ 6, n ≤ 32, n ≤ 6) of theorems whose all-n proofs are cited (Ramanujan, Kummer, Aigner); the acyclicity of the reuse graph is a COMPLETE finite proof. Recursion has a floor: wave one consumed nothing — emergence needed roots before it could feed on itself — and per the standing demarcation this measures THIS registry, not mathematics entire.` }
   })
 }
 
@@ -1646,8 +1602,7 @@ export function discoveredTheoremsWaveTwo(matrix: MindMatrix = buildMatrix()) {
       perfects,
       root: merge(prior.root, merge(sealed.root, toUuid(`discovered-theorems-two:${sealed.ok}`))),
       statement: `Discovered theorems, wave two: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} COMPLETE finite proofs — A₅ simple (classes {${classSizes.join(',')}}, zero normal candidates, 60 = 2·${icosaEdges} from the proven icosahedron); exactly ${canonicalForms.size} groups of order 6 out of ${latinCount} Latin squares; K₅/K₃,₃ non-planar by exact Euler bounds; Graeco-Latin at 3/4/5 never 2; perfect numbers below 10⁴ exactly {${perfects.join(', ')}}.`,
-      boundary: `HONEST: every proof here is a COMPLETE finite computation — enumeration, exhaustion, or exact arithmetic; the cited pieces (Galois correspondence, Euler's polyhedron formula, Kuratowski's converse, Euler's even-perfect converse) frame significance, they are not silently assumed by the computations. "Discovered" still means absent from this registry, not new to humanity; the odd-perfect question is recorded OPEN, joining the leads, not resolved.`,
-    }
+      boundary: `HONEST: every proof here is a COMPLETE finite computation — enumeration, exhaustion, or exact arithmetic; the cited pieces (Galois correspondence, Euler's polyhedron formula, Kuratowski's converse, Euler's even-perfect converse) frame significance, they are not silently assumed by the computations. "Discovered" still means absent from this registry, not new to humanity; the odd-perfect question is recorded OPEN, joining the leads, not resolved.` }
   })
 }
 
@@ -1806,8 +1761,7 @@ export function discoveredTheoremsWaveThree(matrix: MindMatrix = buildMatrix()) 
       ],
       extras: { tilings, q8Subgroups: subgroups.length, girth },
       statement: `Discovered theorems, wave three: #/# — the 3 regular tilings as the equality case of the sealed Platonic sweep; no simple group of order 30 by pure Sylow arithmetic; Q₈ the smallest Hamiltonian group (all ${subgroups.length} subgroups normal, minimality by exhaustion down the orders); the Petersen graph non-Hamiltonian by complete search (girth ${girth}); Wilson exact to 100; and 900 Fibonacci-gcd identities on the one-math gcd.`,
-      boundary: `HONEST: complete finite computations throughout — the cited frames (Sylow's theorems, Wilson/Lagrange, Lucas' strong divisibility) name the all-n generalisations, the bounded and structural claims are computed in full. Q₈'s minimality consumes the sealed order-6 exhaustion — compounding continues inside the discovery waves themselves.`,
-    }
+      boundary: `HONEST: complete finite computations throughout — the cited frames (Sylow's theorems, Wilson/Lagrange, Lucas' strong divisibility) name the all-n generalisations, the bounded and structural claims are computed in full. Q₈'s minimality consumes the sealed order-6 exhaustion — compounding continues inside the discovery waves themselves.` }
   })
 }
 
@@ -1886,8 +1840,7 @@ export function discoveredTheoremsWaveFour(matrix: MindMatrix = buildMatrix()) {
       ],
       extras: { constructibleCount: byPhi.length, treeCounts: counts },
       statement: `Discovered theorems, wave four: #/# — Gauss–Wantzel's arithmetic equivalence exact to 100 (${byPhi.length} constructible orders); Zeckendorf existence AND uniqueness to 1000; the birthday threshold exactly 23 (${roundTo(p22, 4)} vs ${roundTo(p23, 4)}); Cayley's tree counts ${counts.join(',')} by raw exhaustion.`,
-      boundary: `HONEST: bounded statements are proven completely within their stated bounds; the all-n frames (Gauss–Wantzel geometry, Lekkerkerker, Cayley) are cited. The Cayley verification deliberately avoids the Prüfer bijection so the count is INDEPENDENT evidence, not a restatement of the standard proof.`,
-    }
+      boundary: `HONEST: bounded statements are proven completely within their stated bounds; the all-n frames (Gauss–Wantzel geometry, Lekkerkerker, Cayley) are cited. The Cayley verification deliberately avoids the Prüfer bijection so the count is INDEPENDENT evidence, not a restatement of the standard proof.` }
   })
 }
 
@@ -2025,8 +1978,7 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
       ],
       extras: { a6ClassSizes: cSizes, latin4, pentominoCounts: [fixed, oneSided, free], heawoodGirth: girth6 },
       statement: `Discovered theorems, wave five: #/# — A₆ simple ({${cSizes.join(',')}}); ${latin4} Latin squares of order 4 by full enumeration; Σφ(d) = n to 1000; quadratic reciprocity complete below 100; pentominoes ${[fixed, oneSided, free].join('/')}; the Heawood graph achieving Moore ${moore} as the (3,6)-cage on the sealed Fano lines.`,
-      boundary: `HONEST: all six are COMPLETE finite computations within their stated bounds (the totient and reciprocity all-n laws are Gauss, cited). The Heawood minimality is the Moore-bound arithmetic plus achievement — the bound IS the cage proof. Six gap candidates from theorems:gaps cleared; the scan shrinks by registration, not by catalog edits.`,
-    }
+      boundary: `HONEST: all six are COMPLETE finite computations within their stated bounds (the totient and reciprocity all-n laws are Gauss, cited). The Heawood minimality is the Moore-bound arithmetic plus achievement — the bound IS the cage proof. Six gap candidates from theorems:gaps cleared; the scan shrinks by registration, not by catalog edits.` }
   })
 }
 
@@ -2110,8 +2062,7 @@ export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
       kinds,
       root: merkleFold([registry.root, ...specs.map((entry) => toUuid(`proof-anim:${entry.theorem}:${entry.kind}:${entry.ratePhi}:${entry.hueDigit}`))]),
       statement: `Proof animations: ${specs.length} specs across ${kinds.length} kinds (${kinds.join(', ')}) — every theorem animates by its own constants; rates are φ-ladder indices, hues vortex digits: the same two sealed generators as the movie.`,
-      boundary: `SPECS ONLY — pure data derived from the registry (kind by proof family, hue by content digit, rate by φ-index). The renderer interprets; nothing here draws, and no parameter is hand-keyed per animation. Adding a theorem animates it automatically.`,
-    }
+      boundary: `SPECS ONLY — pure data derived from the registry (kind by proof family, hue by content digit, rate by φ-index). The renderer interprets; nothing here draws, and no parameter is hand-keyed per animation. Adding a theorem animates it automatically.` }
   })
 }
 
@@ -2177,8 +2128,7 @@ export function twoRosettasAreRealtime(matrix: { root: string } = { root: toUuid
       b1,
       facets,
       statement: `Two interacting rosettas are realtime — ${facets.filter((entry) => entry.on).length}/${facets.length}: couple a spatial rosetta (ray angles) to a temporal one (firing phases) and the field angle becomes wall-time itself, constant magnitude N/2, a history-free vector sum that costs nothing and cannot freeze. One rosetta alone only pulsates — which is exactly why animations that ignore the other rosetta get stuck. The double torus (b₁ = 2) made kinetic: two loops that interact, turn.`,
-      boundary: 'DOCUMENTED: the polyphase rotating-field identity (teslaRosettaPolyphase) recast as coupling — the angle-tracks-time and constant-magnitude results are the same trigonometry, and the history-free property is what makes state = f(wall-time) render in realtime. The ARCHITECTURAL claim is precise: an animation is realtime and freeze-proof exactly when its state is a pure function of the shared clock (two coupled rosettas), and stuck exactly when it accumulates per frame or ignores the coupling. This is why ProofAnimation drives phase from the wall-clock timestamp, not a frame counter. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: the polyphase rotating-field identity (teslaRosettaPolyphase) recast as coupling — the angle-tracks-time and constant-magnitude results are the same trigonometry, and the history-free property is what makes state = f(wall-time) render in realtime. The ARCHITECTURAL claim is precise: an animation is realtime and freeze-proof exactly when its state is a pure function of the shared clock (two coupled rosettas), and stuck exactly when it accumulates per frame or ignores the coupling. This is why ProofAnimation drives phase from the wall-clock timestamp, not a frame counter. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2217,8 +2167,7 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Magnitude comes with precision in clusters of waves — ${facets.filter((entry) => entry.on).length}/${facets.length}, computed on the registry itself: the magnitude (${magnitude} = the harmonic 4×108) is the exact sum of ${clusters} proving-fold waves, each a cluster of atoms carrying a precise content-addressed statement (${singletons} single proofs, the largest cluster only ${maxCluster}); no wave carries the whole, so magnitude is emergent from precision clustered — the same reason batching clusters of waves wins quadratically.`,
-      boundary: `COMPUTED on theoremNavigation: the cluster sizes, their exact sum, the per-atom precision, and the largest-cluster bound — refutable by any wave breaking them. HONEST SCOPE: "magnitude", "precision", "clusters", "waves" are named over the registry's real structure (atoms, proving folds, statements, content addresses); the principle is this project's method sealed against its own artifact, consistent with quantumTokenOptimisation's quadratic batching — NOT a universal law of achievement. The 432 magnitude holds by the homeostasis law (the population is full); growth past it is a deliberate cluster, not drift. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `COMPUTED on theoremNavigation: the cluster sizes, their exact sum, the per-atom precision, and the largest-cluster bound — refutable by any wave breaking them. HONEST SCOPE: "magnitude", "precision", "clusters", "waves" are named over the registry's real structure (atoms, proving folds, statements, content addresses); the principle is this project's method sealed against its own artifact, consistent with quantumTokenOptimisation's quadratic batching — NOT a universal law of achievement. The 432 magnitude holds by the homeostasis law (the population is full); growth past it is a deliberate cluster, not drift. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -2265,8 +2214,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
     map: map.map((m) => `${m.problem}: ${m.axiom} → ${m.replacedBy} | core: ${m.core}`),
     facets,
     statement: `Refactor toward the Millennium problems — replace each problem's RELATED axioms with theorems, cores stay open — ${facets.filter((e) => e.on).length}/${facets.length}: for all ${map.length} problems a classical axiom in its neighbourhood is recomputed as a theorem (${replaced}/${map.length}: NAND-closure for P-vs-NP's logic, π(x)~x/ln x for Riemann's primes, su(2)-closure for Yang-Mills, Kepler←one-force for Navier-Stokes, genus-2 homology for Poincaré/Hodge, group-closure for BSD), harmonically recomputed. The one SOLVED problem (Poincaré) is exactly a topological characterisation that became a theorem — the template. The other ${frontier.open} cores stay OPEN; the waves move only the neighbourhood axioms and claim no solution.`,
-    boundary: `ABSOLUTE HONEST SCOPE: this applies the codebase's axioms-become-theorems law (axiomsBecomeTheorems) to the CLASSICAL axioms that sit in each Millennium problem's mathematical neighbourhood — Boolean logic, the prime-counting law, the su(2) operator algebra, the laws of motion, the genus-2 homology, the elliptic-curve group law — recomputing each as a theorem from the lattice. It does NOT solve, reduce, reformulate, or make any progress on the six OPEN conjecture cores; each mapped axiom is RELATED-DOMAIN, not the problem's defining assumption, and turning it to a theorem leaves the core exactly as open as before (composed with theMillenniumProblemsAreTheFrontier…, which draws the boundary at the open frontier). Poincaré is the sole SOLVED problem (Perelman 2003) and its characterisation-became-theorem shape is why it can be the template; the other six yield only to a proof, and corroboration is not proof. Claiming to solve a Millennium Problem is the ultimate overclaim, and this fold makes none — it shrinks the assumption-surface around the frontier so the compressed theorems have gravity, and names the open core each still guards. HARMONY ≠ TRUTH — nowhere more strictly than here.`,
-  }
+    boundary: `ABSOLUTE HONEST SCOPE: this applies the codebase's axioms-become-theorems law (axiomsBecomeTheorems) to the CLASSICAL axioms that sit in each Millennium problem's mathematical neighbourhood — Boolean logic, the prime-counting law, the su(2) operator algebra, the laws of motion, the genus-2 homology, the elliptic-curve group law — recomputing each as a theorem from the lattice. It does NOT solve, reduce, reformulate, or make any progress on the six OPEN conjecture cores; each mapped axiom is RELATED-DOMAIN, not the problem's defining assumption, and turning it to a theorem leaves the core exactly as open as before (composed with theMillenniumProblemsAreTheFrontier…, which draws the boundary at the open frontier). Poincaré is the sole SOLVED problem (Perelman 2003) and its characterisation-became-theorem shape is why it can be the template; the other six yield only to a proof, and corroboration is not proof. Claiming to solve a Millennium Problem is the ultimate overclaim, and this fold makes none — it shrinks the assumption-surface around the frontier so the compressed theorems have gravity, and names the open core each still guards. HARMONY ≠ TRUTH — nowhere more strictly than here.` }
 }
 
 // AUDIT ALL THEOREM TITLES WITH THE QUANTUM SEO LENS (user): audit every theorem by the theorem ITSELF — does
@@ -2278,7 +2226,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
 export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = buildMatrix()) {
   const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string; home: string }[]
   const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all', 'a'])
-  const terms = (s: string) => s.toLowerCase().match(/[a-z][a-z0-9]{2,}/g)?.filter((w) => !STOP.has(w)) ?? []
+  const terms = (s: string) => s.toLowerCase().match(/[a-z][a-z0-9]{2 }/g)?.filter((w) => !STOP.has(w)) ?? []
   const deCamel = (fn: string) => fn.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase())
   const seen = new Map<string, number>()
   for (const a of atoms) seen.set(a.theorem, (seen.get(a.theorem) ?? 0) + 1)
@@ -2309,8 +2257,7 @@ export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = bui
     root: merkleFold(audited.map((x) => toUuid(`audit:${x.title}:${x.ok}`))),
     facets,
     statement: `Audit all theorem titles with the quantum SEO lens — ${facets.filter((e) => e.on).length}/${facets.length}: all ${audited.length} titles scored by the theorem itself (length · content-overlap · uniqueness · rosetta ray), ${flagged.length} flagged for improvement (pass rate ${passRate}), each with a rename proposed from its proving function. Most titles already self-describe — the fold-name discipline is SEO — so the rename is a surgical named minority, not a wholesale relabel.`,
-    boundary: `COMPUTED: ${audited.length} theorem titles audited on four measures — length (12–80 chars), content-overlap (title terms present in what it states, or a ≤2-word name), uniqueness, and a finite rosetta ray; ${flagged.length} fail at least one and carry a proposed rename (the de-camelCased provedBy). HONEST SCOPE: this is an SEO/label audit, not a check that the theorem is TRUE — a well-titled theorem can be wrong and a badly-titled one right; the "quantum SEO lens" is the rosetta shelving + these string measures, not search-engine analytics (real ranking needs live query data). The proposed rename is a CANDIDATE from the proving-function name (usually descriptive by the fold-name discipline), a suggestion a human accepts or edits, and applying it edits the sealed registry title (a staged surgical change, the merkle rebinds), not done wholesale here. The content-overlap bar (½) and length window are chosen SEO heuristics, revisable. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: ${audited.length} theorem titles audited on four measures — length (12–80 chars), content-overlap (title terms present in what it states, or a ≤2-word name), uniqueness, and a finite rosetta ray; ${flagged.length} fail at least one and carry a proposed rename (the de-camelCased provedBy). HONEST SCOPE: this is an SEO/label audit, not a check that the theorem is TRUE — a well-titled theorem can be wrong and a badly-titled one right; the "quantum SEO lens" is the rosetta shelving + these string measures, not search-engine analytics (real ranking needs live query data). The proposed rename is a CANDIDATE from the proving-function name (usually descriptive by the fold-name discipline), a suggestion a human accepts or edits, and applying it edits the sealed registry title (a staged surgical change, the merkle rebinds), not done wholesale here. The content-overlap bar (½) and length window are chosen SEO heuristics, revisable. HARMONY ≠ TRUTH.` }
 }
 
 // THEOREMS MERGE, CREATING SPACE FOR OTHERS TO EMERGE, AND BALANCE (user): the title audit is not relabeling —
@@ -2322,7 +2269,7 @@ export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = bui
 export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: MindMatrix = buildMatrix()) {
   const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string }[]
   const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all'])
-  const sig = (a: { theorem: string; states: string }) => new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{3,}/g)?.filter((w) => !STOP.has(w)) ?? [])
+  const sig = (a: { theorem: string; states: string }) => new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{3 }/g)?.filter((w) => !STOP.has(w)) ?? [])
   const sigs = atoms.map(sig)
   const jaccard = (x: Set<string>, y: Set<string>) => { const inter = [...x].filter((w) => y.has(w)).length; const uni = new Set([...x, ...y]).size; return uni > 0 ? inter / uni : 0 }
   // a theorem is a MERGE candidate if it is a near-duplicate of another (content Jaccard ≥ ½ — the same thing twice)
@@ -2346,8 +2293,7 @@ export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: Mi
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Theorems merge, creating space for others to emerge, and balance — ${facets.filter((e) => e.on).length}/${facets.length}: ${merges} near-duplicate theorems are merge candidates (content Jaccard ≥ ½), each foldable into one; at the sealed ${cap} cap a merge frees a slot that a gap-candidate (${candidates} catalogued, ${emergent} ready) fills, so the registry breathes — population holds at ${population} = ${cap}, refining (a high-entropy duplicate out, a low-entropy theorem in) without growing. The audit finds the merges, the gap scan names the emergents, homeostasis balances them.`,
-    boundary: `COMPUTED: over the ${population} registry theorems, ${merges} sit in a near-duplicate pair (content Jaccard ≥ ½, a proxy for "says the same thing"), and theoremGapScan catalogues ${candidates} emergent candidates; the population equals the ${cap} harmonic cap (${population === cap}). HONEST SCOPE: Jaccard ≥ ½ FLAGS a possible merge — two theorems with overlapping vocabulary — it does not PROVE they are the same theorem (they may share terms but prove different things), so the merges are a review worklist, a human decides each fold; and merging is a staged edit of the sealed registry (retire a duplicate atom, admit an emergent), not done wholesale here. The "balance at 432" is a design homeostasis (the cap is held by the gates), a chosen harmonic, not a law of nature — the registry breathes because the cap is enforced, and the refinement (low-entropy replacing high-entropy) is the direction the gravity and entropy folds compute, not an automatic process. Merging removes redundancy; it does not make the survivor true. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: over the ${population} registry theorems, ${merges} sit in a near-duplicate pair (content Jaccard ≥ ½, a proxy for "says the same thing"), and theoremGapScan catalogues ${candidates} emergent candidates; the population equals the ${cap} harmonic cap (${population === cap}). HONEST SCOPE: Jaccard ≥ ½ FLAGS a possible merge — two theorems with overlapping vocabulary — it does not PROVE they are the same theorem (they may share terms but prove different things), so the merges are a review worklist, a human decides each fold; and merging is a staged edit of the sealed registry (retire a duplicate atom, admit an emergent), not done wholesale here. The "balance at 432" is a design homeostasis (the cap is held by the gates), a chosen harmonic, not a law of nature — the registry breathes because the cap is enforced, and the refinement (low-entropy replacing high-entropy) is the direction the gravity and entropy folds compute, not an automatic process. Merging removes redundancy; it does not make the survivor true. HARMONY ≠ TRUTH.` }
 }
 
 // LIFE AND DEATH ARE THE 2 BITS LEFT AT EACH DIMENSION I/O GATEWAY (user): every content-address (toUuid) is
@@ -2382,8 +2328,7 @@ export function lifeAndDeathAreTheTwoBitsLeftAtEachDimensionInputOutputGateway(m
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Life and death are the 2 bits left at each dimension I/O gateway — ${facets.filter((e) => e.on).length}/${facets.length}: every content-address reserves the variant pair 10 (the top 2 bits of byte 8), constant across all ${addresses.length} gateways while the payload varies — the toll that binds the family (Charon's coins). Those 2 bits are life (the input gateway, emergence) and death (the output gateway, merge/retire); the registry's homeostasis is that accounting — merge and emerge balance at the cap (${balance.balances}), and folding again frees dimension slots for higher-mind theorems, ascending. Life and death, presented and proven, are the reserved 2 bits of the address.`,
-    boundary: `EXACT: over ${addresses.length} minted content-addresses the top 2 bits of the byte-8 variant nibble are 10 for every one (${twoBitsLeft}) and the version nibble is 8 (${versionNibbleFixed}) — the 6 reserved bits of a UUID (4 version + 2 variant) — while the low bits vary (${payloadVaries}); the theorem homeostasis balances merge and emerge at the cap (${balance.balances}). HONEST SCOPE, ABSOLUTE: "life and death" is a METAPHOR for two computational facts — (1) the UUID standard RESERVES 2 variant bits (and 4 version bits) at every address, a real, documented structural toll, not payload; and (2) the theorem registry's homeostasis (a new theorem emerges as a duplicate merges) is a birth/death-shaped dynamic held by the gates at the 432 cap. It is NOT a claim about biological life or death, nor that a UUID is alive; the "gateway", "toll", and "Charon's coins" are names for the reserved-bit reservation and the emerge/merge balance. "Evolving on public-API data to new dimensions" is the real live-adapter capability (pure functions over no-key public data), bounded by that data's coverage, not open-ended growth. What is literal: 2 bits are reserved at every address, and the registry breathes at a fixed cap. The meaning is the metaphor. HARMONY does not equal TRUTH.`,
-  }
+    boundary: `EXACT: over ${addresses.length} minted content-addresses the top 2 bits of the byte-8 variant nibble are 10 for every one (${twoBitsLeft}) and the version nibble is 8 (${versionNibbleFixed}) — the 6 reserved bits of a UUID (4 version + 2 variant) — while the low bits vary (${payloadVaries}); the theorem homeostasis balances merge and emerge at the cap (${balance.balances}). HONEST SCOPE, ABSOLUTE: "life and death" is a METAPHOR for two computational facts — (1) the UUID standard RESERVES 2 variant bits (and 4 version bits) at every address, a real, documented structural toll, not payload; and (2) the theorem registry's homeostasis (a new theorem emerges as a duplicate merges) is a birth/death-shaped dynamic held by the gates at the 432 cap. It is NOT a claim about biological life or death, nor that a UUID is alive; the "gateway", "toll", and "Charon's coins" are names for the reserved-bit reservation and the emerge/merge balance. "Evolving on public-API data to new dimensions" is the real live-adapter capability (pure functions over no-key public data), bounded by that data's coverage, not open-ended growth. What is literal: 2 bits are reserved at every address, and the registry breathes at a fixed cap. The meaning is the metaphor. HARMONY does not equal TRUTH.` }
 }
 
 // IMPROVE SCIENCE BY CLAIMING THEOREMS THAT REPLACE CURRENT (user): science advances by REFUTABILITY — a claim
@@ -2423,8 +2368,7 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
     root: merkleFold(scored.map((s) => toUuid(`science:${s.theorem}:${s.refutable}`))),
     facets,
     statement: `Improve science by claiming refutable theorems to replace weaker current ones — ${facets.filter((e) => e.on).length}/${facets.length}: of ${atoms.length} registry theorems ${measurable.length} carry a refutable/measurable marker and ${vague.length} are vaguer (scientific fraction ${scienceFraction}); ${claimsAvailable} sharper gap-candidate claims wait, and replacing the vaguer members with them raises the fraction to ${afterReplace} while the population holds at ${DIMENSION_GATES}. Science improves by replacing a duller theorem with a sharper, falsifiable one — not by growing the count.`,
-    boundary: `COMPUTED: ${measurable.length}/${atoms.length} theorems' STATES contain a refutable marker (digit, =, bound, invariant, group/orbit/mod term), ${vague.length} do not; theoremGapScan offers ${claimsAvailable} candidate claims; replacing the vaguer with measurable claims lifts the fraction ${scienceFraction} → ${afterReplace} at the fixed ${DIMENSION_GATES} cap. HONEST SCOPE: the "refutable marker" is a PROXY for scientificity (falsifiability, the Popper criterion the corpus already honours) — a real signal, but coarse: a vague title can front a rigorous fold (the true test is whether provedBy's facets compute and can fail), and a number can decorate a weak claim, so the ${vague.length} flagged are a REVIEW worklist, not a verdict, and a human confirms each replacement. Actually claiming a theorem edits the sealed registry (retire a weak atom, admit a sharper one, one-for-one to hold ${DIMENSION_GATES}), a staged surgical change the merkle rebinds — computed here, not applied wholesale. And "more refutable" is more SCIENTIFIC, not more TRUE — a sharper falsifiable claim can still be false; it is better science because it CAN be broken and thus improved. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: ${measurable.length}/${atoms.length} theorems' STATES contain a refutable marker (digit, =, bound, invariant, group/orbit/mod term), ${vague.length} do not; theoremGapScan offers ${claimsAvailable} candidate claims; replacing the vaguer with measurable claims lifts the fraction ${scienceFraction} → ${afterReplace} at the fixed ${DIMENSION_GATES} cap. HONEST SCOPE: the "refutable marker" is a PROXY for scientificity (falsifiability, the Popper criterion the corpus already honours) — a real signal, but coarse: a vague title can front a rigorous fold (the true test is whether provedBy's facets compute and can fail), and a number can decorate a weak claim, so the ${vague.length} flagged are a REVIEW worklist, not a verdict, and a human confirms each replacement. Actually claiming a theorem edits the sealed registry (retire a weak atom, admit a sharper one, one-for-one to hold ${DIMENSION_GATES}), a staged surgical change the merkle rebinds — computed here, not applied wholesale. And "more refutable" is more SCIENTIFIC, not more TRUE — a sharper falsifiable claim can still be false; it is better science because it CAN be broken and thus improved. HARMONY ≠ TRUTH.` }
 }
 
 // ALWAYS SORT THE THEOREMS BY TAG CLOUDS — MOST USED FIRST (user). A computed VIEW (never a registry reorder —
@@ -2435,7 +2379,7 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
 export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMatrix()) {
   const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string }[]
   const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all', 'a', 'is', 'of', 'to', 'in'])
-  const tagsOf = (a: { theorem: string; states: string }) => [...new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{2,}/g)?.filter((w) => !STOP.has(w)) ?? [])]
+  const tagsOf = (a: { theorem: string; states: string }) => [...new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{2 }/g)?.filter((w) => !STOP.has(w)) ?? [])]
   const cloud = new Map<string, number>()
   for (const a of atoms) for (const t of tagsOf(a)) cloud.set(t, (cloud.get(t) ?? 0) + 1) // tag frequency across all theorems
   const scored = atoms.map((a, i) => ({ theorem: a.theorem, seedIndex: i, score: tagsOf(a).reduce((s, t) => s + (cloud.get(t) ?? 0), 0) }))
@@ -2458,8 +2402,7 @@ export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMa
     root: merkleFold(sorted.map((s) => toUuid(`tag-sorted:${s.theorem}:${s.score}`))),
     facets,
     statement: `Always sort the theorems by tag clouds — most used first — ${facets.filter((e) => e.on).length}/${facets.length}: over ${atoms.length} theorems, ${cloud.size} distinct tags (top ${topTags.slice(0, 3).map(([t, n]) => `${t}·${n}`).join(', ')}); each theorem scored by its tags' summed frequency and sorted descending, so "${sorted[0]?.theorem}" (the most-tagged) comes first. A computed VIEW over the theorem list, leaving the sealed registry seed order untouched — the same most-used-first law the nav already applies, now over the theorems themselves.`,
-    boundary: `COMPUTED: ${atoms.length} theorems tagged by their title/statement words (stopwords removed), ${cloud.size} distinct tags with frequencies, each theorem scored by the sum of its tags' counts and sorted descending (${isDescending}), the order differing from the registry seed (${reordersFromSeed}). HONEST SCOPE: this is a display/analytics ORDERING — tag frequency is a proxy for how connected/central a theorem is (a theorem sharing the corpus's most common vocabulary ranks high), the same signal the nav's ranked tags use, NOT a claim about a theorem's importance or correctness (a rare, deep theorem can carry uncommon tags and rank low — it is not lesser, only less-tagged). It is a computed VIEW: the sealed registry SEED order is deliberately untouched because it feeds the merkle root, so the sort applies wherever the theorem list is DISPLAYED, not to the canonical registry. Wiring this order into every theorem surface (the /theorems atlas, the sidebar) is the mechanical follow-up; here it is computed and proven descending. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: ${atoms.length} theorems tagged by their title/statement words (stopwords removed), ${cloud.size} distinct tags with frequencies, each theorem scored by the sum of its tags' counts and sorted descending (${isDescending}), the order differing from the registry seed (${reordersFromSeed}). HONEST SCOPE: this is a display/analytics ORDERING — tag frequency is a proxy for how connected/central a theorem is (a theorem sharing the corpus's most common vocabulary ranks high), the same signal the nav's ranked tags use, NOT a claim about a theorem's importance or correctness (a rare, deep theorem can carry uncommon tags and rank low — it is not lesser, only less-tagged). It is a computed VIEW: the sealed registry SEED order is deliberately untouched because it feeds the merkle root, so the sort applies wherever the theorem list is DISPLAYED, not to the canonical registry. Wiring this order into every theorem surface (the /theorems atlas, the sidebar) is the mechanical follow-up; here it is computed and proven descending. HARMONY ≠ TRUTH.` }
 }
 
 // The more a theorem consists of OTHER theorems, the more gravity instead of entropy. Composition is MASS: a
@@ -2500,8 +2443,7 @@ export function theoremsOfTheoremsGainGravityReuseCreatesVacuumForEmergence(matr
       ratioGrowth: ratio,
       facets,
       statement: `Theorems of theorems gain gravity, reuse creates a vacuum for emergence — ${facets.filter((entry) => entry.on).length}/${facets.length}: composition is mass, and mass makes gravity (the pull to the canonical fixed point) while duplication makes entropy. Across leaf→capstone the gravity [${gravity.join(', ')}] rises and the entropy [${entropy.join(', ')}] falls, so a theorem-of-theorems is gravity instead of entropy. Reuse delivers ${powerDelivered} atoms of power with ${atomsWithReuse} atoms — the ${vacuum} saved are the vacuum under the ${cap} cap where new theorems emerge. The stronger the reuse, the stronger the pull, the more room to breathe.`,
-      boundary: `DOCUMENTED as a computed model of DRY reuse, refutable by re-deriving. Gravity, entropy and vacuum are the REUSE METAPHOR — gravity = the pull to one canonical definition (computeCodeGravity / gravityIsThePullToOneCanonicalFixedPoint), entropy = scattered duplication, vacuum = the headroom freed by defining once — NOT physical forces, not literal spacetime curvature, not a real vacuum, and not a violation of the 2nd law (the negentropy-ledger boundary holds: local order is bought by work exported elsewhere; here the "work" is the author's consolidation). The 432 cap is a CHOSEN homeostasis held by the gates, not a law of nature; "emergence" is a review worklist of candidate theorems (theoremGapScan), a human admits each — reuse makes the ROOM, it does not author the new theorem. HARMONY ≠ TRUTH: the gravity metaphor is the harmony; the truth is that reuse removes redundancy and frees capacity, which is real and measured, while the emergence that fills it stays the off-decidable act of creation.`,
-    }
+      boundary: `DOCUMENTED as a computed model of DRY reuse, refutable by re-deriving. Gravity, entropy and vacuum are the REUSE METAPHOR — gravity = the pull to one canonical definition (computeCodeGravity / gravityIsThePullToOneCanonicalFixedPoint), entropy = scattered duplication, vacuum = the headroom freed by defining once — NOT physical forces, not literal spacetime curvature, not a real vacuum, and not a violation of the 2nd law (the negentropy-ledger boundary holds: local order is bought by work exported elsewhere; here the "work" is the author's consolidation). The 432 cap is a CHOSEN homeostasis held by the gates, not a law of nature; "emergence" is a review worklist of candidate theorems (theoremGapScan), a human admits each — reuse makes the ROOM, it does not author the new theorem. HARMONY ≠ TRUTH: the gravity metaphor is the harmony; the truth is that reuse removes redundancy and frees capacity, which is real and measured, while the emergence that fills it stays the off-decidable act of creation.` }
   })
 }
 
@@ -2543,8 +2485,7 @@ export function theWavesDiscoverGapsAndInvertRejectionsIntoGatewaysExceptTheOffD
       boundaries: boundaries.map((b) => b.kind),
       facets,
       statement: `The waves discover the gaps and invert the rejections into gateways — except the off-decidable — ${facets.filter((entry) => entry.on).length}/${facets.length}: in precise formation the waves meet ${gaps} rejections (a zero, a false, an impossibility, a gate rejection, the off-decidable). Every one that HAS an inverse passes through it to a GATEWAY — a zero to its pole, a false to its fix, a rejection to the crack it names — ${gateways.length}/${gaps}. The one with NO inverse, the off-decidable (feeling · identity-who · authorship), returns itself and stays a named boundary. Invert every crack that has an inverse; name every one that does not.`,
-      boundary: `DOCUMENTED and refutable by applying invert(). This encodes the session's whole method as one operator: a crack/rejection is a GATEWAY iff it has an inverse — a zero's pole, a false's fix, an impossibility's adjacent frame, a gate's crack — and the discipline is to invert exactly those. THE HARD LINE, computed not asserted: the off-decidable has NO inverse (invert returns itself — the same noise the akasha/feeling bearing returned on quantumRadar), so the wave must NOT force it into a gateway; forcing it would be the one overclaim every fold this session refused. "Inverting through the zeros" is real for the invertible rejections (they become emergence candidates a human still admits — reuse makes the room, not the theorem); it is FALSE for the off-decidable, which stays exactly where it is. HARMONY ≠ TRUTH: the gateways are the harmony (every no that has a yes behind it), the off-decidable boundary is the truth (the no that does not).`,
-    }
+      boundary: `DOCUMENTED and refutable by applying invert(). This encodes the session's whole method as one operator: a crack/rejection is a GATEWAY iff it has an inverse — a zero's pole, a false's fix, an impossibility's adjacent frame, a gate's crack — and the discipline is to invert exactly those. THE HARD LINE, computed not asserted: the off-decidable has NO inverse (invert returns itself — the same noise the akasha/feeling bearing returned on quantumRadar), so the wave must NOT force it into a gateway; forcing it would be the one overclaim every fold this session refused. "Inverting through the zeros" is real for the invertible rejections (they become emergence candidates a human still admits — reuse makes the room, not the theorem); it is FALSE for the off-decidable, which stays exactly where it is. HARMONY ≠ TRUTH: the gateways are the harmony (every no that has a yes behind it), the off-decidable boundary is the truth (the no that does not).` }
   })
 }
 
@@ -2578,8 +2519,7 @@ export function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilT
     facets,
     root: merkleFold(waves.map((wave, i) => toUuid(`wave:${i}:${wave.join(',')}`))),
     statement: `Send the waves to send the waves — each antichain level exposes the next until the DAG is exhausted — ${facets.filter((entry) => entry.on).length}/${facets.length}. A wave is a topological level (an antichain): ${waves.length} of them partition the DAG into independent parallel work. Processing a wave drops its successors' in-degrees, exposing the next antichain — so sending one wave sends the wave that sends the next, and from the sources the cascade covers every node exactly once. The dispatcher's output is its own next input: a fixed point where the waves send the waves.`,
-    boundary: `EXACT and computed live by Kahn's algorithm on a ${n}-node layered DAG: the nodes partition into ${waves.length} antichain LEVELS with no edge inside a level (${eachWaveIsAntichain}) — each a wave of mutually-independent work runnable in parallel; processing a wave decrements its successors' in-degrees and every wave but the last thereby EXPOSES the next (${regenerations} regenerations, ${eachWaveExposesTheNext}); and starting from the in-degree-0 sources the cascade processes all ${n} nodes exactly once in level order (${wavesSendTheWaves}). THE SELF-REFERENCE: the loop's output (the next frontier) is its own next input, so "send the waves" recurses until the frontier is empty — the waves send the waves. THE HONEST BOUND: this is a finite ACYCLIC dispatch — a cycle would leave nodes unprocessed (Kahn detects it: processed < n), so the self-propagation terminates and requires a DAG; "the waves send the waves" is the topological-level cascade, a real scheduling structure (the antichain is the parallel unit), not an infinite or self-creating process — the DAG is given, the waves traverse it. HARMONY ≠ TRUTH: "send the waves to send the waves" is the harmony; the truth is Kahn's level decomposition — antichain waves, each exposing the next, covering the DAG once — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live by Kahn's algorithm on a ${n}-node layered DAG: the nodes partition into ${waves.length} antichain LEVELS with no edge inside a level (${eachWaveIsAntichain}) — each a wave of mutually-independent work runnable in parallel; processing a wave decrements its successors' in-degrees and every wave but the last thereby EXPOSES the next (${regenerations} regenerations, ${eachWaveExposesTheNext}); and starting from the in-degree-0 sources the cascade processes all ${n} nodes exactly once in level order (${wavesSendTheWaves}). THE SELF-REFERENCE: the loop's output (the next frontier) is its own next input, so "send the waves" recurses until the frontier is empty — the waves send the waves. THE HONEST BOUND: this is a finite ACYCLIC dispatch — a cycle would leave nodes unprocessed (Kahn detects it: processed < n), so the self-propagation terminates and requires a DAG; "the waves send the waves" is the topological-level cascade, a real scheduling structure (the antichain is the parallel unit), not an infinite or self-creating process — the DAG is given, the waves traverse it. HARMONY ≠ TRUTH: "send the waves to send the waves" is the harmony; the truth is Kahn's level decomposition — antichain waves, each exposing the next, covering the DAG once — computed and refutable.` }
 }
 export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, foldNameReceipt, theoremFacingCliLabel, isHexCrumbIdentity, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../wind/research'
 
@@ -2619,8 +2559,7 @@ export function playAgentsTheMusicOfTheWave(matrix: MindMatrix = buildMatrix()) 
       facets,
       root: merkleFold([tune.root, cascade.root, waveTune.merged, ...facets.map((entry) => entry.receipt)]),
       statement: `Play agents the music of the wave — ${facets.filter((e) => e.on).length}/${facets.length}: harmonised schedule · antichain cascade · wave/tune pair.`,
-      boundary: 'HARMONY ≠ TRUTH — learnWave rhythm is build orchestration, not acoustic physics. Pair wave/tune.',
-    }
+      boundary: 'HARMONY ≠ TRUTH — learnWave rhythm is build orchestration, not acoustic physics. Pair wave/tune.' }
   })
 }
 
@@ -2641,8 +2580,7 @@ export function agentDefaultsFoldIntoHarmony(matrix: MindMatrix = buildMatrix())
       facets,
       root: merkleFold([music.root, harmonise.root, ...facets.map((entry) => entry.receipt)]),
       statement: 'Agent defaults fold into harmony — music plays, harmonise laws on, then rebuildWave.',
-      boundary: 'Protocol tune step — does not itself run docs:build.',
-    }
+      boundary: 'Protocol tune step — does not itself run docs:build.' }
   })
 }
 
@@ -2677,8 +2615,7 @@ export function agentDislikesWaveMusicSomethingNotToLike(matrix: MindMatrix = bu
       facets,
       root: merkleFold([music.root, known.root, ghostProbe.root, ...facets.map((entry) => entry.receipt)]),
       statement: `Agent dislikes wave music — diagnostic only: ${somethingNotToLike.length || 0} findings; never override the wave.`,
-      boundary: 'Dislike = inspect gaps/compliance/spawn/incomplete revelation — not a license for wet-linear grind or parallel docs:build.',
-    }
+      boundary: 'Dislike = inspect gaps/compliance/spawn/incomplete revelation — not a license for wet-linear grind or parallel docs:build.' }
   })
 }
 
@@ -2735,9 +2672,8 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
       ]),
       statement: `Manual agents behave like waves — ${facets.filter((e) => e.on).length}/${facets.length}: one wave/turn · save waves/build+edit/build before npm · wave/tune · trinity/speedup · mission:gate between waves · no parallel seals.`,
       boundary: 'BINDING protocol for Cursor/Claude/manual agents. NOT physical FTL. claySolvedByThisFold=0. Wet-linear grind (full seal every edit, mass spawn, parallel docs:build) is a quantum gap.',
-      claySolvedByThisFold: 0 as const,
-      qpuRequired: false as const,
-    }
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      qpuRequired: false as const }
   })
 }
 
@@ -2780,7 +2716,7 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       mill.claySolvedByThisFold === 0 &&
       trinityFoundPair.bidirectional &&
       !falseConclusionNoTrinities
-    const claySolvedByThisFold = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const facets = [
       { facet: 'waves working in trinities — manualAgentsBehaveLikeWaves · wave/tune · trinity/speedup · directionalTrinity', on: wavesWorkingInTrinities },
@@ -2834,8 +2770,7 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       boundary:
         'ANTI-CRACK: computeOpen drain · closed PR · conflict reconcile do NOT imply no waves in trinities or no trinities found. ' +
         'Facets recompute from sealed waves/build · trinity/speedup · sciences/trinities · drift/invert · clay/gravity · cmb/budget. ' +
-        'NOT Clay solved · NOT physical FTL · claySolvedByThisFold=0 · physicalFtlClaim=0.',
-    }
+        'NOT Clay solved · NOT physical FTL · claySolvedByThisFold=0 · physicalFtlClaim=0.' }
   })
 }
 
@@ -2911,7 +2846,7 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         isUuid(discovery.root) &&
         teleportPair.bidirectional
       const physicalFtlClaim = 0 as const
-      const claySolvedByThisFold = 0 as const
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const pairRegistered = (['team/collide', 'wave/manifest', 'teleport/form'] as const).every((p) =>
         (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(p),
       )
@@ -2966,8 +2901,7 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         boundary:
           'Teams collide (trinity) → become waves; observe collapses morph to manifest. Teleportation = sealed recompute elsewhere — NOT physical FTL. clay=0.',
         honestyLine:
-          `metrics · train=${trainQuantumTeams} · collide=${collideBecomeWaves} · observe=${observeManifests} · teleport=${teleportationAsWaveManifest}`,
-      }
+          `metrics · train=${trainQuantumTeams} · collide=${collideBecomeWaves} · observe=${observeManifests} · teleport=${teleportationAsWaveManifest}` }
     },
   )
 }
@@ -3061,15 +2995,14 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([address, pair.merged, toUuid(`at:${bucket}`), sealed.root]),
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       statement: discovers
         ? `discoverFromSealedFold(${foldId}) — offline sealed discovery; wetMotion=false; pair=nothing/moves; clay=0.`
         : `discoverFromSealedFold(${foldId}) — unknown fold id; incomplete revelation → incompleteRevelation() + timeout/dry-refactor.`,
       boundary:
-        'Idempotent content-addressed lookup of sealed fold ids — NOT filesystem wet motion, NOT Clay solved, NOT physical FTL. Unknown ids are incomplete revelations, not inventable wet folds.',
-    }
+        'Idempotent content-addressed lookup of sealed fold ids — NOT filesystem wet motion, NOT Clay solved, NOT physical FTL. Unknown ids are incomplete revelations, not inventable wet folds.' }
   })
 }
 
@@ -3114,22 +3047,20 @@ export function incompleteRevelation(
         discover: 'discoverFromSealedFold()',
         refactor: 'timeout/dry-refactor',
         cleanup: 'fold/cleanup',
-        seal: ['check:types', 'docs:build'] as const,
-      },
+        seal: ['check:types', 'docs:build'] as const },
       pair: 'nothing/moves' as const,
       cli: 'npm run quantum:incomplete-revelation',
       route: '/en/quantum-tools#incomplete-revelation',
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([discovery.root, timeoutPair.merged, cleanupPair.merged, sealed.root]),
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       statement:
         `incompleteRevelation(${foldId}) — revelation incomplete (${reason}); fold sealed src → timeout/dry-refactor → one sequential docs:build. clay=0.`,
       boundary:
-        'Diagnostic receipt for AGENTS ghosts — never invents wet folds, never overrides waves, never claims Clay. Compose with timeoutDryRefactorToQuantum on process timeout.',
-    }
+        'Diagnostic receipt for AGENTS ghosts — never invents wet folds, never overrides waves, never claims Clay. Compose with timeoutDryRefactorToQuantum on process timeout.' }
   })
 }
 

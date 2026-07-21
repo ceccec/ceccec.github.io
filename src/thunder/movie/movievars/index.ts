@@ -6,8 +6,7 @@ import { lobeHues, scaleColor, scaleColorAlpha, GOLDEN_ANGLE } from '../../../qu
 import {
   computedMovieThemeColors,
   movieRouteKey,
-  plasmaMoviePalette,
-} from '../../../fire/plasma/ball'
+  plasmaMoviePalette } from '../../../fire/plasma/ball'
 import { PLANE_VIS, HERO_CYCLE_MS, REALTIME_COMPUTE_MOVIE_CAP } from '../../../fire/plasma/ball'
 import { hingeMoviePaintLayers } from '../../../water/double/earth'
 import { vortexPaintTiers } from '../../../mountain/vortex'
@@ -36,8 +35,7 @@ export function chromeLightnessBand(mode: 'light' | 'dark') {
         card: HERO_INK_L, // 15/16 — tool/card surfaces stay readable over the movie
         glow: 3 / 8, // deepen brand accents on the light field (contrast)
         chroma: CHROMA * (1 + 1 / (4 * 5)),
-        dark: false,
-      }
+        dark: false }
 }
 
 /** Mode-aware halo — soft field-matched shadow so hero/body ink stays legible on the live movie. */
@@ -64,8 +62,7 @@ export function heroInkColor(hue: number, dark: boolean): string {
     L: dark ? HERO_INK_L : 1 - HERO_INK_L,
     C: 9 / 64 / 2,
     css: true,
-    dark,
-  })
+    dark })
 }
 
 function chromeCoupling(c: number, tierNumerator: number, endless: boolean, glassReveal: number): number {
@@ -172,8 +169,7 @@ function backgroundMovieColorVarsRaw(
     '--vp-c-bg-alt': 'transparent',
     '--vp-backdrop-bg-color': scaleColorAlpha(waveIndex + 6, roundTo(ghostAlpha * (band.dark ? 7 / (4 * 5) : 1 / 2), 2), { seedHue, L: band.back, C: band.chroma * (7 / (4 * 5)), dark: band.dark }),
     '--vp-code-block-bg': scaleColorAlpha(waveIndex + 7, codeBlockAlpha, { seedHue, L: band.back, C: band.chroma * (1 - 7 / (4 * 5)), dark: band.dark }),
-    '--vp-code-bg': scaleColorAlpha(waveIndex + 8, codeBgAlpha, { seedHue, L: band.shell, C: band.chroma * (1 / 2), dark: band.dark }),
-  }
+    '--vp-code-bg': scaleColorAlpha(waveIndex + 8, codeBgAlpha, { seedHue, L: band.shell, C: band.chroma * (1 / 2), dark: band.dark }) }
 }
 
 export function cardMovieSeed(parts: readonly (string | undefined)[]): string {
@@ -212,8 +208,7 @@ export function darkLightPolarityProvenByMath(matrix: MindMatrix = buildMatrix()
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`polarity-math:${task}:${computed}:${expected}`),
-  })
+    receipt: toUuid(`polarity-math:${task}:${computed}:${expected}`) })
   // The develop law — the light print is the photographic negative of the sealed dark positive.
   const positive = plasmaMoviePalette(matrix, path, true, true)
   const negative = plasmaMoviePalette(matrix, path, true, false)
@@ -256,8 +251,7 @@ export function darkLightPolarityProvenByMath(matrix: MindMatrix = buildMatrix()
     statement:
       'Dark/light is polarity in the math — one bit (dark=1, light=0) flips the OKLCH band while hue and waveIndex stay fixed; light chrome lifts toward near-white (back=24/25) for panel legibility while accent glow deepens; chrome/theme inversion and mode-aware text-shadow recompute at call time, 100% computed. The movie canvas shows it as analog photography: dark paints the sealed POSITIVE; light recomputes every colour through the NEGATIVE law (L′ = 1 − L, hue + half-turn, density unchanged) in the same paint path — an involution. Type follows the same law: heroInkColor puts the ink at the pole opposite the field (15/16 ↔ 1/16) tinted by the LIVE field hue, with a soft mode-aware halo so body/hero stay readable on the movie.',
     boundary:
-      'Arithmetic over canonical I Ching fractions in chromeLightnessBand and scaleColor — not physical dark matter. Same content-addressed palette; only the polarity pole changes the perceptual band. The negative law lives in the colour atoms (rgbaAt, movieCanvasRgba) — an OKLCH recomputation per colour, no pixel post-processing; standalone widget figures without a palette stay positive prints. Text-shadow is a computed assist, not a hardcoded rgba literal.',
-  }
+      'Arithmetic over canonical I Ching fractions in chromeLightnessBand and scaleColor — not physical dark matter. Same content-addressed palette; only the polarity pole changes the perceptual band. The negative law lives in the colour atoms (rgbaAt, movieCanvasRgba) — an OKLCH recomputation per colour, no pixel post-processing; standalone widget figures without a palette stay positive prints. Text-shadow is a computed assist, not a hardcoded rgba literal.' }
 }
 
 /** Polarity proofs → plasma stream tokens and movie copy. */
@@ -278,11 +272,9 @@ export function darkLightPolarityMovieSeeds(matrix: MindMatrix = buildMatrix(), 
       expr: proof.expr,
       expected: proof.expected,
       // Content-addressed hue seed (was two arbitrary mixing primes — a crack; the receipt IS the mix).
-      hueSeed: seedFromText(proof.receipt) % 360,
-    })),
+      hueSeed: seedFromText(proof.receipt) % 360 })),
     count: math.proofs.length,
-    root: math.root,
-  }
+    root: math.root }
 }
 
 // ── The movie is the result of pure algebra — no hardcoded boundaries. Every layer field must trace
@@ -295,8 +287,7 @@ export function movieIsPureAlgebra(matrix: MindMatrix = buildMatrix()) {
     const [crossPole, circuitHeart, circuitEight] = caps.tiers
     const digitHue = (d: number) => (d * (360 / 9)) % 360
     const expectedDigits: Record<string, number> = {
-      field: crossPole!, rings: circuitHeart!, structure: circuitEight!, fusion: digitalRoot(crossPole! * circuitHeart!),
-    }
+      field: crossPole!, rings: circuitHeart!, structure: circuitEight!, fusion: digitalRoot(crossPole! * circuitHeart!) }
     const hinge = hingeMoviePaintLayers(matrix)
     const layersDerived = hinge.layers.every((layer: { id: string; zenithHue: number; nadirHue: number; voidHue: number; order: number }, index: number) => {
       const d = expectedDigits[layer.id]!
@@ -320,8 +311,7 @@ export function movieIsPureAlgebra(matrix: MindMatrix = buildMatrix()) {
       frontierRatios: visEntries.length,
       root: merkleFold([hinge.root ?? toUuid('hinge-layers'), sealed.root]),
       statement: `The movie is pure algebra: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the hinge paint stack derives every hue from the vortex walk (verified field-for-field), the clock and cap derive from the census and the areas, and the ${visEntries.length} PLANE_VIS ratios are measured as the remaining hand-picked frontier.`,
-      boundary: `HONEST: "computed" is VERIFIED here by independent recomputation, not by reading the same expression twice. PLANE_VIS passes the crack lattice yet remains hand-picked — this fold counts it as frontier rather than blessing it; deriving those numerators from a generator law (as the hinge hues now are) is the named next step. Aesthetic choice is not eliminated — it is relocated into WHICH sealed generator each surface reads, stated in code, never in numerals.`,
-    }
+      boundary: `HONEST: "computed" is VERIFIED here by independent recomputation, not by reading the same expression twice. PLANE_VIS passes the crack lattice yet remains hand-picked — this fold counts it as frontier rather than blessing it; deriving those numerators from a generator law (as the hinge hues now are) is the named next step. Aesthetic choice is not eliminated — it is relocated into WHICH sealed generator each surface reads, stated in code, never in numerals.` }
   })
 }
 
@@ -359,7 +349,6 @@ export function animationsPureAlgebra(matrix: MindMatrix = buildMatrix()) {
       cf: cfTerms,
       root: merkleFold([toUuid(`animations-pure-algebra:${sealed.ok}`), sealed.root]),
       statement: `Animations are pure algebra: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — motion rides exactly two sealed generators: the canonical lattice (commensurate, dims provably closes after 2π) and the φ-ladder ${ladder.slice(0, 4).map((v) => roundTo(v, 3)).join(', ')}… whose all-ones continued fraction makes non-repetition a theorem.`,
-      boundary: `HONEST: the dichotomy is verified (CF of φ computed, closure of dims computed), the Hurwitz extremality is cited, and the conversion is PARTIAL by attestation — the tuned residue in quantum/index (87 uses) remains the measured frontier under the epistemic law, shrinking only by derivation, exactly as PLANE_VIS beside it.`,
-    }
+      boundary: `HONEST: the dichotomy is verified (CF of φ computed, closure of dims computed), the Hurwitz extremality is cited, and the conversion is PARTIAL by attestation — the tuned residue in quantum/index (87 uses) remains the measured frontier under the epistemic law, shrinking only by derivation, exactly as PLANE_VIS beside it.` }
   })
 }

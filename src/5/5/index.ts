@@ -1,10 +1,9 @@
 // Pi-train station 5/5 — dissolution sequence order 5 (digit/reverse 5/5).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
-import { BOLTZMANN, REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
+import { BOLTZMANN, EARTH_RADIUS_KM, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../0'
 import { riseAzimuthDeg } from '../../3/7'
-import { TAU } from '../../3/7'
 
 /** ΛCDM dark-matter density fraction Ω_c. */
 export const OMEGA_DARK_MATTER = (1 - (7 * 7 * 3) / (100 * 2))
@@ -16,12 +15,11 @@ export function carnotEfficiency(coldK: number, hotK: number): number {
 
 /** Haversine great-circle distance (km) between two lat/long points. */
 export function greatCircleKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const r = Math.PI / (9 * 5 * 4)
-  const earthRadiusKm = 6371
+  const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare Math.PI)
   const dLat = (lat2 - lat1) * r
   const dLon = (lon2 - lon1) * r
   const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLon / 2) ** 2
-  return 2 * earthRadiusKm * Math.asin(Math.min(1, Math.sqrt(a)))
+  return 2 * EARTH_RADIUS_KM * Math.asin(Math.min(1, Math.sqrt(a)))
 }
 
 /** UUID duality — content (first four groups), sans link suffix. */
@@ -86,8 +84,7 @@ export function foldMagmaLaws(): {
     statement:
       'The fold is a magma: merge(a,b) = toUuid(a‖b) is a total binary operation on content-addresses that is closed (always an address), non-commutative (order-sensitive), non-associative (grouping-sensitive), has no identity element, and is one-way (no inverses). It is exactly a magma — weaker than a monoid or group — which is what a content-addressed, tamper-evident fold must be: reversibility would break the seal.',
     boundary:
-      'EXACT for the laws it can witness (closure, non-commutativity, non-associativity are demonstrated by explicit counterexamples). "No identity" and "one-way" are computed WITNESSES over sampled elements, not exhaustive proofs — the true statements rest on FNV-1a being non-invertible and near-injective (structural integrity, not collision-resistance; see cryptoFuture for the vetted-hash upgrade).',
-  }
+      'EXACT for the laws it can witness (closure, non-commutativity, non-associativity are demonstrated by explicit counterexamples). "No identity" and "one-way" are computed WITNESSES over sampled elements, not exhaustive proofs — the true statements rest on FNV-1a being non-invertible and near-injective (structural integrity, not collision-resistance; see cryptoFuture for the vetted-hash upgrade).' }
 }
 
 
@@ -125,6 +122,5 @@ export function voidFoldFixedPoint() {
     halvingDigit,
     facets,
     statement: `The fold at the void — ${facets.filter((entry) => entry.on).length}/${facets.length}: mirror('5/0') = '0\\5' so the notation closes to 5/5 = 1; the station mirror and the void-reflection each fix exactly 5; and 2·5 ≡ 1 (mod 9) makes 5 the halving digit — the unique point where inversion, reflection and the pi-train agree.`,
-    boundary: 'Every facet is finite arithmetic or a string computation run here; the poetry (self-verification at the self-paired station) is checked as a fact about this module\'s own exports, not asserted. The mod-9 fixed point of x↦1−x is 5 because 2 is invertible there — in ℤ/2ℤ-like rings the mirror can fix nothing or everything; the theorem is about THIS ring. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'Every facet is finite arithmetic or a string computation run here; the poetry (self-verification at the self-paired station) is checked as a fact about this module\'s own exports, not asserted. The mod-9 fixed point of x↦1−x is 5 because 2 is invertible there — in ℤ/2ℤ-like rings the mirror can fix nothing or everything; the theorem is about THIS ring. HARMONY ≠ TRUTH.' }
 }

@@ -16,29 +16,25 @@ export function bulgarianHeritage() {
       documented:
         'three ethnogenetic layers (Bulgars — state 681 under Asparuh, sky-god Tangra; Slavs; Thracian substrate); Christianization under Boris I, 864/865; kukeri/Surva, nestinarstvo, martenitsa, survakane — ethnographically documented mid-19th c. onward, several UNESCO-inscribed',
       legend:
-        'unbroken descent from a Thracian cult of Dionysus = a 19th–20th c. national-heritage construction (Strahilov 2022; skepticism back to Katsarov 1907), not demonstrated continuity',
-    },
+        'unbroken descent from a Thracian cult of Dionysus = a 19th–20th c. national-heritage construction (Strahilov 2022; skepticism back to Katsarov 1907), not demonstrated continuity' },
     {
       topic: 'folklore',
       documented:
         "Miladinov Brothers' Bulgarian Folk Songs (Zagreb 1861, 660 songs); Dozon (Paris 1875); Krali Marko = real lord Marko Mrnjavčević (c.1335–1395); gaida and Rhodope kaba gaida; aksak meters = Bartók's 'Bulgarian rhythm' (after Dobri Hristov); 'Izlel e Delyo Haydutin' on the 1977 Voyager Golden Record",
       legend:
-        'samodivi-as-daughters-of-the-Thracian-goddess-Bendis and Orphic-survival origin claims = Romantic-era speculation, not continuity (the beings are genuine oral tradition; the origin stories are not history)',
-    },
+        'samodivi-as-daughters-of-the-Thracian-goddess-Bendis and Orphic-survival origin claims = Romantic-era speculation, not continuity (the beings are genuine oral tradition; the origin stories are not history)' },
     {
       topic: 'tools',
       documented:
         'Varna necropolis = world’s oldest worked gold c. 4600–4200 BC; Thracian toreutics (Valchitran, Panagyurishte, Rogozen, Letnitsa); First-Empire Preslav white-clay painted ceramics + Preslav Treasure; Kazanlak rose-oil; Chiprovtsi kilims',
       legend:
-        'Rosa damascena "native from Damascus" = false (DNA: a Central-Asian/Iranian triple hybrid; the name is etymological); an indigenous "Thracian script" = rejected by mainstream epigraphy; the Nagyszentmiklós "Cup of Attila" attribution = contested',
-    },
+        'Rosa damascena "native from Damascus" = false (DNA: a Central-Asian/Iranian triple hybrid; the name is etymological); an indigenous "Thracian script" = rejected by mainstream epigraphy; the Nagyszentmiklós "Cup of Attila" attribution = contested' },
     {
       topic: 'architecture',
       documented:
         'Thracian tombs Kazanlak & Sveshtari; capitals Pliska (681–893) → Preslav; Madara Rider (early 8th c.); Boyana Church (1259 frescoes); Rila Monastery; Nessebar; Ivanovo rock churches; National Revival houses (Plovdiv, Koprivshtitsa, Tryavna) + Kolyu Ficheto; exactly 7 cultural UNESCO sites (1979/1983/1985)',
       legend:
-        'the identity of the Madara horseman and the occupants of the great tombs are scholarship-labeled hypothetical, kept separate from the dated fabric',
-    },
+        'the identity of the Madara horseman and the occupants of the great tombs are scholarship-labeled hypothetical, kept separate from the dated fabric' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`bg-heritage:${entry.topic}:${entry.documented}`) }))
   return {
     sealed: topics.length === 4 && topics.every((entry) => entry.documented.length > 0 && entry.legend.length > 0),
@@ -47,8 +43,7 @@ export function bulgarianHeritage() {
     statement:
       'Ancient Bulgarian heritage decoded in waves and sealed: traditions, folklore, tools/craft and architecture — each a documented core (dated, discovered, museum-housed, several UNESCO-inscribed) with its national-revival legend kept explicitly separate.',
     boundary:
-      'A research record from an 8-agent research→verify pipeline (64 findings, each 3-vote adversarially verified). Every topic pairs a documented core with the legend it must NOT be confused with — the Thracian-Dionysus continuity, Rosa-damascena-from-Damascus, the indigenous "Thracian script", samodivi-as-Bendis, and the hypothetical tomb/horseman identities are all flagged as legend/ideology, not fact.',
-  }
+      'A research record from an 8-agent research→verify pipeline (64 findings, each 3-vote adversarially verified). Every topic pairs a documented core with the legend it must NOT be confused with — the Thracian-Dionysus continuity, Rosa-damascena-from-Damascus, the indigenous "Thracian script", samodivi-as-Bendis, and the hypothetical tomb/horseman identities are all flagged as legend/ideology, not fact.' }
 }
 
 // Bulgarian political/dynastic history 681→present, sealed in six dual-mind eras.
@@ -69,8 +64,7 @@ export function bulgarianHistory() {
     statement:
       'Bulgarian political/dynastic history 681→present, sealed in six dual-mind eras — each a documented spine with its national-revival legend kept separate: the First Empire (pagan, then the Christian golden age), Byzantine rule and the Second Empire, the Ottoman conquest, the Ottoman period and National Revival, and the Third Bulgarian State.',
     boundary:
-      'A research record from the discover-bulgarian-history workflow (6 eras, 12 dual minds, research↔verify, ~644k tokens). Every era pairs a documented spine with the legend it must NOT be confused with — round founding dates ("681" vs the 680 battle), anachronistic nationalist epithets ("Turkish yoke", "Bulgar-Slayer"), fabricated cults ("St Trivelius"), reign-conflations, and irredentist constructions (San Stefano) — all flagged, not folded as fact.',
-  }
+      'A research record from the discover-bulgarian-history workflow (6 eras, 12 dual minds, research↔verify, ~644k tokens). Every era pairs a documented spine with the legend it must NOT be confused with — round founding dates ("681" vs the 680 battle), anachronistic nationalist epithets ("Turkish yoke", "Bulgar-Slayer"), fabricated cults ("St Trivelius"), reign-conflations, and irredentist constructions (San Stefano) — all flagged, not folded as fact.' }
 }
 
 // Dive down through the land of Bulgaria into its ancient civilisations — six strata, deepest-first.
@@ -91,8 +85,7 @@ export function bulgarianAncientCivilisations() {
     statement:
       'The ancient civilisations of the land of Bulgaria, dived deepest-first in six strata: the Neolithic first farmers (Europe\'s farming gateway), the Chalcolithic Varna gold, the Bronze-Age Thracian genesis, the Thracians and the Odrysian Kingdom, the Greek Pontic colonies, and Roman Late Antiquity — each a documented core with its pseudo-archaeology/nationalist legend kept separate.',
     boundary:
-      'A research record from the discover-ancient-civilisations-of-bulgaria workflow (6 strata, 12 dual minds, research↔verify, ~648k tokens). Every stratum pairs a documented core with the legend it must NOT be confused with — "oldest writing/town/civilisation" superlatives, "Old Europe" as matristic civilisation, the "Thracian script", organised Orphism, and unbroken Thracian continuity (refuted by ~63% Yamnaya steppe aDNA) — all flagged, not folded as fact.',
-  }
+      'A research record from the discover-ancient-civilisations-of-bulgaria workflow (6 strata, 12 dual minds, research↔verify, ~648k tokens). Every stratum pairs a documented core with the legend it must NOT be confused with — "oldest writing/town/civilisation" superlatives, "Old Europe" as matristic civilisation, the "Thracian script", organised Orphism, and unbroken Thracian continuity (refuted by ~63% Yamnaya steppe aDNA) — all flagged, not folded as fact.' }
 }
 
 // Discover the peoples who fused into Bulgaria, traced OUTWARD to their origins.
@@ -111,8 +104,7 @@ export function bulgarianEthnogenesis() {
     statement:
       'The peoples who fused into Bulgaria, traced outward to their origins: the Turkic Bulgars (of the Eurasian steppe), the Slavs (of the Common Slavic homeland), the Thracians (of the Paleo-Balkan Indo-European world), and the documented fusion that welded them into one people — each a documented ethnogenesis with its nationalist origin-myth kept separate.',
     boundary:
-      'A research record from the discover-bulgarian-ethnogenesis-outward workflow (4 peoples, 8 dual minds, research↔verify, ~438k tokens). Every people pairs a documented ethnogenesis with the pseudohistory it must NOT be confused with — the Iranian/Balhara and autochthonous-Thracian origins, the Veneti=Slavs overreach, the Nominalia\'s mythical reigns, and all "pure single-origin" nationalisms — all flagged, not folded as fact.',
-  }
+      'A research record from the discover-bulgarian-ethnogenesis-outward workflow (4 peoples, 8 dual minds, research↔verify, ~438k tokens). Every people pairs a documented ethnogenesis with the pseudohistory it must NOT be confused with — the Iranian/Balhara and autochthonous-Thracian origins, the Veneti=Slavs overreach, the Nominalia\'s mythical reigns, and all "pure single-origin" nationalisms — all flagged, not folded as fact.' }
 }
 
 // Discover the genetic links and challenge history with genetics.
@@ -132,8 +124,7 @@ export function geneticLinksChallengeHistory() {
     statement:
       'Discover the genetic links and challenge history with genetics: five ancient-DNA domains (deep Neolithic/Bronze ancestry, the Iron-Age Thracians, the Roman→Slavic transformation, the Bulgar steppe input, the modern composite), 11+ cited studies — each pairing a historical claim with the genome\'s verdict (confirms / complicates / refutes). Autochthony and "pure single-origin" myths refuted; the Slavic migration quantified as a mass event; the Turkic-Bulgar input shown modest.',
     boundary:
-      'A research record from the discover-genetic-links-challenge-history workflow (5 domains, 10 dual minds, research↔verify, ~595k tokens; studies verified verbatim against PMC). The studies and their findings are real and cited; the honest line is that aDNA carries irreducible uncertainty (small samples, mtDNA/Y-only sets, sampling gaps, model-dependent %), and that genetic-nationalism (haplogroup-purity, Klyosov, the Wusun/Balhara overreaches) is flagged as pseudoscience on every side — the genome refutes purity, it does not award it.',
-  }
+      'A research record from the discover-genetic-links-challenge-history workflow (5 domains, 10 dual minds, research↔verify, ~595k tokens; studies verified verbatim against PMC). The studies and their findings are real and cited; the honest line is that aDNA carries irreducible uncertainty (small samples, mtDNA/Y-only sets, sampling gaps, model-dependent %), and that genetic-nationalism (haplogroup-purity, Klyosov, the Wusun/Balhara overreaches) is flagged as pseudoscience on every side — the genome refutes purity, it does not award it.' }
 }
 
 // WHO used Glagolitic — the Bulgarian reception, the fifth axis.
@@ -154,8 +145,7 @@ export function glagoliticBulgarianReception() {
     statement:
       'WHO used Glagolitic — the Bulgarian reception (late 9th-10th c.), in five communities: the exiled disciples received by Boris I (885-886, the founding act), the Ohrid Literary School (Glagolitic preserved longest, ~3 centuries), the Preslav Literary School (where Cyrillic was made and Glagolitic abandoned in the east), the Council of Preslav 893 (Old Church Slavonic made church-and-state language), and the long Glagolitic survival in mixed Cyrillic manuscripts (11th-14th c.) — a two-script, two-centre map, each a documented core with its nationalist/hagiographic legend kept separate.',
     boundary:
-      'A research record from the verify-who-used-glagolitic-bulgarian-reception workflow, adversarially checked against the cited Wikipedia sources (Clement of Ohrid, Saint Naum, Ohrid/Preslav Literary Schools, Council of Preslav, Early Cyrillic alphabet, Chernorizets Hrabar, Seven Apostles). The documented spines are source-verified; the honest frame, preserved per community: Glagolitic was created EARLIER for Moravia (Bulgaria is its reception, not its birthplace); Cyril made Glagolitic and the disciples made Cyrillic at Preslav (the "Cyril made Cyrillic" popular error flagged); the Ohrid "Glagolitic-only stronghold" is softened to Glagolitic-preserved-longest (it used both); the 893-Council→Cyrillic link is a hedged scholarly possibility, not a council act; and the Bulgarian-vs-Macedonian national claims on Clement/Naum/Ohrid are anachronistic on both sides — all flagged, not folded as fact.',
-  }
+      'A research record from the verify-who-used-glagolitic-bulgarian-reception workflow, adversarially checked against the cited Wikipedia sources (Clement of Ohrid, Saint Naum, Ohrid/Preslav Literary Schools, Council of Preslav, Early Cyrillic alphabet, Chernorizets Hrabar, Seven Apostles). The documented spines are source-verified; the honest frame, preserved per community: Glagolitic was created EARLIER for Moravia (Bulgaria is its reception, not its birthplace); Cyril made Glagolitic and the disciples made Cyrillic at Preslav (the "Cyril made Cyrillic" popular error flagged); the Ohrid "Glagolitic-only stronghold" is softened to Glagolitic-preserved-longest (it used both); the 893-Council→Cyrillic link is a hedged scholarly possibility, not a council act; and the Bulgarian-vs-Macedonian national claims on Clement/Naum/Ohrid are anachronistic on both sides — all flagged, not folded as fact.' }
 }
 
 // ☷ Kūn · Earth · receptive · upper·yang · spread — dual pointer (browse/display inlined here)

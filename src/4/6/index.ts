@@ -109,8 +109,7 @@ export function f2FieldCloses(): {
     statement:
       '𝔽₂ is a field: addition is XOR (the abelian group with 0 identity and every element self-inverse — characteristic 2), multiplication is AND (with 1 the identity and only unit), and multiplication distributes over addition — all verified exhaustively over the two elements. This is the algebra the reversible gates (rcnot = controlled-⊕) and the elementary CA (caStep = an ⊕/∧ neighbourhood rule) already compute over; naming it makes the Boolean structure explicit.',
     boundary:
-      'EXACT and EXHAUSTIVE — the field axioms are checked over every element, pair and triple of 𝔽₂ (no sampling, no tolerance). This is the ground field; 𝔽₂ⁿ (bit-vectors) and GF(2ᵏ) extensions are generated from it but not constructed here.',
-  }
+      'EXACT and EXHAUSTIVE — the field axioms are checked over every element, pair and triple of 𝔽₂ (no sampling, no tolerance). This is the ground field; 𝔽₂ⁿ (bit-vectors) and GF(2ᵏ) extensions are generated from it but not constructed here.' }
 }
 
 // ── The number-theory annex — self-contained sum-of-squares and pentagonal-partition theorem folds
@@ -159,8 +158,7 @@ export function discoveredTheoremsWaveFiftyOne(matrix: { root: string } = { root
       { facet: `LAGRANGE'S FOUR-SQUARE theorem — every natural number is a sum of four squares (no residue class obstructs it); verified by exhaustive four-square witness for every n ≤ 500 — the tower's roof: two squares need a condition, three squares an exclusion, four squares always`, on: fourSquares },
       ],
       statement: `Discovered theorems, wave fifty-one (the sum-of-squares tower): #/# — the Brahmagupta–Fibonacci identity, Fermat's two-squares from the Gaussian primes, Legendre's three-square exclusion, and Lagrange's four-square theorem.`,
-      boundary: `HONEST: the two-square theorem COMPOUNDS on wave 50 (p ≡ 1 mod 4 splits as a²+b²) via the Brahmagupta identity — the two facets are literally the pieces of the classical proof. All four are verified complete for every n ≤ 500 (the general all-n forms — Fermat, Legendre, Lagrange — cited). The three-square exclusion 4^a(8b+7) and the four-square universality are the honest ceiling of the quadratic-form tower this session climbed from Euler's criterion.`,
-    }
+      boundary: `HONEST: the two-square theorem COMPOUNDS on wave 50 (p ≡ 1 mod 4 splits as a²+b²) via the Brahmagupta identity — the two facets are literally the pieces of the classical proof. All four are verified complete for every n ≤ 500 (the general all-n forms — Fermat, Legendre, Lagrange — cited). The three-square exclusion 4^a(8b+7) and the four-square universality are the honest ceiling of the quadratic-form tower this session climbed from Euler's criterion.` }
   })
 }
 
@@ -211,8 +209,7 @@ export function discoveredTheoremsWaveFiftyThree(matrix: { root: string } = { ro
       { facet: `EULER'S PRODUCT for partitions — Σ p(n) x^n = ∏ 1/(1−x^k): the all-ones "unlimited repetition" DP that counts partitions is exactly the coefficient expansion of the infinite product; p(5) = 7, p(10) = 42, agreeing with the pentagonal recurrence through degree 60`, on: eulerProduct },
       ],
       statement: `Discovered theorems, wave fifty-three (the pentagonal–partition tower): #/# — the generalized pentagonal numbers, Euler's pentagonal number theorem, the partition recurrence it powers, and Euler's product for partitions.`,
-      boundary: `HONEST: the partition recurrence COMPOUNDS on Euler's pentagonal theorem (W2) — the sparse product is literally the inverse series, so W2 gives W3 for free, an O(n√n) algorithm replacing exponential enumeration. All four verified complete to degree 60 (p(60) = 966467) against an independent brute partition DP; the infinite-product identities (Euler) are cited beyond the truncation. The pentagonal numbers extend the figurate tower (wave 52) from triangles and squares to the five-gon.`,
-    }
+      boundary: `HONEST: the partition recurrence COMPOUNDS on Euler's pentagonal theorem (W2) — the sparse product is literally the inverse series, so W2 gives W3 for free, an O(n√n) algorithm replacing exponential enumeration. All four verified complete to degree 60 (p(60) = 966467) against an independent brute partition DP; the infinite-product identities (Euler) are cited beyond the truncation. The pentagonal numbers extend the figurate tower (wave 52) from triangles and squares to the five-gon.` }
   })
 }
 
@@ -259,8 +256,7 @@ export function discoveredTheoremsWaveFiftyFour(matrix: { root: string } = { roo
       { facet: `MÖBIUS INVERSION, COMPOUNDING on the divisor sum (W2) and the μ identity (W3) — φ(n) = Σ_{d|n} μ(d)·(n/d): inverting id = φ ∗ 1 recovers the totient; verified for every n ≤ 100 (the general g = Σf ⟺ f = Σμ·g instantiated on φ)`, on: mobiusInversion },
       ],
       statement: `Discovered theorems, wave fifty-four (the multiplicative-functions tower): #/# — Euler's φ is multiplicative, Gauss's Σφ(d)=n, the Möbius identity Σμ(d)=[n=1], and Möbius inversion recovering φ.`,
-      boundary: `HONEST: Möbius inversion (W4) COMPOUNDS on W2 and W3 — because Σφ(d)=n makes id = φ ∗ 1 and μ is the Dirichlet inverse of 1, inversion returns φ(n)=Σμ(d)·(n/d). All four verified complete for every n ≤ 100 (the multiplicative and inversion theorems hold for all n, cited beyond the bound). This is the arithmetic-function backbone under the Farey/totient atoms already in the registry.`,
-    }
+      boundary: `HONEST: Möbius inversion (W4) COMPOUNDS on W2 and W3 — because Σφ(d)=n makes id = φ ∗ 1 and μ is the Dirichlet inverse of 1, inversion returns φ(n)=Σμ(d)·(n/d). All four verified complete for every n ≤ 100 (the multiplicative and inversion theorems hold for all n, cited beyond the bound). This is the arithmetic-function backbone under the Farey/totient atoms already in the registry.` }
   })
 }
 
@@ -305,8 +301,7 @@ export function discoveredTheoremsWaveFiftyFive(matrix: { root: string } = { roo
       { facet: `EVERY EVEN PERFECT NUMBER IS TRIANGULAR — 2^{p−1}(2^p−1) = T_{2^p−1} = m(m+1)/2 with m = 2^p−1; verified for 6, 28, 496, 8128: the figurate face of Euclid–Euler, tying the perfect numbers back to the triangular tower (wave 52)`, on: perfectTriangular },
       ],
       statement: `Discovered theorems, wave fifty-five (the perfect-number tower): #/# — σ is multiplicative, Euclid's construction of perfect numbers from Mersenne primes, Euler's converse, and every even perfect number is triangular.`,
-      boundary: `HONEST: σ-multiplicativity COMPOUNDS on wave 54's arithmetic-function framework, and Euler's converse (W3) COMPOUNDS on it plus Euclid (W2) — the classification is a proof-on-proof. Euclid and the triangular form are verified for the four even perfect numbers ≤ 10000 (p = 2,3,5,7), Euler's converse is complete over all even n ≤ 10000; the all-p Euclid–Euler theorem and the OPEN question of odd perfect numbers (none known, none ≤ 10000 here) are cited — the boundary is honest about what stays unproven.`,
-    }
+      boundary: `HONEST: σ-multiplicativity COMPOUNDS on wave 54's arithmetic-function framework, and Euler's converse (W3) COMPOUNDS on it plus Euclid (W2) — the classification is a proof-on-proof. Euclid and the triangular form are verified for the four even perfect numbers ≤ 10000 (p = 2,3,5,7), Euler's converse is complete over all even n ≤ 10000; the all-p Euclid–Euler theorem and the OPEN question of odd perfect numbers (none known, none ≤ 10000 here) are cited — the boundary is honest about what stays unproven.` }
   })
 }
 
@@ -355,8 +350,7 @@ export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root
       { facet: `the PRIMITIVE-ROOT CLASSIFICATION — (ℤ/nℤ)* is cyclic IFF n ∈ {1,2,4,p^k,2p^k} for an odd prime p; verified for every n ≤ 100 by matching the true max order = φ(n) against the structural form (which moduli have a generator)`, on: primitiveRootClassification },
       ],
       statement: `Discovered theorems, wave fifty-six (the (ℤ/nℤ)* tower): #/# — Euler's theorem generalizing Fermat's little, the order divides φ(n), primitive roots mod p, and the full classification of cyclic unit groups.`,
-      boundary: `HONEST: Euler's theorem (W1) COMPOUNDS on wave 54's φ — it IS Lagrange's theorem in the group (ℤ/nℤ)* of order φ(n) — and W1 is the general form of Fermat's little theorem (the criterion line, wave 48). All four verified complete for every n ≤ 100 (the all-n forms — Euler, Lagrange, the primitive-root existence and classification — cited beyond the bound). The primitive-root classification is the exact structure theorem for which unit groups are cyclic.`,
-    }
+      boundary: `HONEST: Euler's theorem (W1) COMPOUNDS on wave 54's φ — it IS Lagrange's theorem in the group (ℤ/nℤ)* of order φ(n) — and W1 is the general form of Fermat's little theorem (the criterion line, wave 48). All four verified complete for every n ≤ 100 (the all-n forms — Euler, Lagrange, the primitive-root existence and classification — cited beyond the bound). The primitive-root classification is the exact structure theorem for which unit groups are cyclic.` }
   })
 }
 
@@ -411,8 +405,7 @@ export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { ro
       { facet: `MIDY'S THEOREM — for a prime p ∉ {2,5} with 1/p of even period 2k, the two halves of the repeating block sum to Bᵏ−1 (all nines: 1/7 = 0.142857…, 142+857 = 999); verified in exact BigInt for every applicable prime p ≤ 100 (a consequence of ord_p(10) being the decimal period)`, on: midy },
       ],
       statement: `Discovered theorems, wave fifty-seven (the order-consequences tower): #/# — the Lucas–Lehmer test, the order-(n−1) primality test, the cyclic order distribution, and Midy's repeating-decimal theorem.`,
-      boundary: `HONEST: all four are consequences of the multiplicative order that wave 56 established. Lucas–Lehmer ties back to wave 55 (its Mersenne primes ARE the perfect-number seeds), the order-(n−1) test and cyclic distribution COMPOUND on wave 56's primitive roots (and the distribution on wave 54's φ divisor sum), and Midy rides ord_p(10) as the decimal period. Verified complete within the bounds (p exponents ≤ 13 for Lucas–Lehmer, n ≤ 100 elsewhere); the all-n theorems (Lucas–Lehmer, Lucas's test, Midy) are cited.`,
-    }
+      boundary: `HONEST: all four are consequences of the multiplicative order that wave 56 established. Lucas–Lehmer ties back to wave 55 (its Mersenne primes ARE the perfect-number seeds), the order-(n−1) test and cyclic distribution COMPOUND on wave 56's primitive roots (and the distribution on wave 54's φ divisor sum), and Midy rides ord_p(10) as the decimal period. Verified complete within the bounds (p exponents ≤ 13 for Lucas–Lehmer, n ≤ 100 elsewhere); the all-n theorems (Lucas–Lehmer, Lucas's test, Midy) are cited.` }
   })
 }
 
@@ -463,8 +456,7 @@ export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { ro
       { facet: `IRREDUCIBILITY BY NORM, COMPOUNDING on wave 50 — z is a Gaussian prime IFF N(z) is a rational prime OR N(z) = p² with p ≡ 3 (mod 4) and z = p·unit; verified by brute factor-search against the norm criterion for every z (N > 1) on the grid — the p ≡ 3 (mod 4) primes stay inert in ℤ[i]`, on: irreducibleByNorm },
       ],
       statement: `Discovered theorems, wave fifty-eight (the Gaussian-integer ℤ[i] tower): #/# — the multiplicative norm, the units {±1,±i}, ℤ[i] as a Euclidean domain, and irreducibility decided by the norm.`,
-      boundary: `HONEST: this is the ring ℤ[i] behind waves 50 and 51 — the norm IS the two-square form and its multiplicativity IS Brahmagupta (wave 51), and the irreducibility criterion COMPOUNDS on wave 50 (p ≡ 3 mod 4 inert, p ≡ 1 splits). All four verified complete over the ±5 Gaussian grid (116 elements for the norm classification); the all-z theorems — the Euclidean algorithm, unique factorisation, and the full Gaussian-prime classification — are cited beyond the grid. Rounding-remainder bound N(w)/2 witnesses the Euclidean function.`,
-    }
+      boundary: `HONEST: this is the ring ℤ[i] behind waves 50 and 51 — the norm IS the two-square form and its multiplicativity IS Brahmagupta (wave 51), and the irreducibility criterion COMPOUNDS on wave 50 (p ≡ 3 mod 4 inert, p ≡ 1 splits). All four verified complete over the ±5 Gaussian grid (116 elements for the norm classification); the all-z theorems — the Euclidean algorithm, unique factorisation, and the full Gaussian-prime classification — are cited beyond the grid. Rounding-remainder bound N(w)/2 witnesses the Euclidean function.` }
   })
 }
 
@@ -512,8 +504,7 @@ export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { roo
       { facet: `a rational prime SPLITS in ℤ[ω] IFF p ≡ 1 (mod 3) — equivalently p = a²−ab+b² (the x²+3y² form) iff p ≡ 1 (mod 3) or p = 3 (ramified); p ≡ 2 (mod 3) inert; verified for every prime p ≤ 200 — the Eisenstein analogue of wave 50's mod-4 dichotomy`, on: splitsMod3 },
       ],
       statement: `Discovered theorems, wave fifty-nine (the Eisenstein-integer ℤ[ω] tower): #/# — the multiplicative norm a²−ab+b², the six units, ℤ[ω] as a Euclidean domain, and primes splitting iff p ≡ 1 (mod 3).`,
-      boundary: `HONEST: ℤ[ω] is the second quadratic ring, parallel to ℤ[i] (wave 58) — same Euclidean-domain method, but the norm is a²−ab+b² and the splitting law is mod 3 rather than mod 4, the Eisenstein analogue of wave 50. All four verified complete over the ±5 grid (norm, units, Euclidean) and every prime ≤ 200 (the splitting law); the all-z Euclidean algorithm, unique factorisation, and full Eisenstein-prime classification are cited. Together waves 58–59 are the two rings of class number one behind the two-square and x²+3y² forms.`,
-    }
+      boundary: `HONEST: ℤ[ω] is the second quadratic ring, parallel to ℤ[i] (wave 58) — same Euclidean-domain method, but the norm is a²−ab+b² and the splitting law is mod 3 rather than mod 4, the Eisenstein analogue of wave 50. All four verified complete over the ±5 grid (norm, units, Euclidean) and every prime ≤ 200 (the splitting law); the all-z Euclidean algorithm, unique factorisation, and full Eisenstein-prime classification are cited. Together waves 58–59 are the two rings of class number one behind the two-square and x²+3y² forms.` }
   })
 }
 
@@ -553,8 +544,7 @@ export function discoveredTheoremsWaveSixty(matrix: { root: string } = { root: t
       { facet: `the NEGATIVE PELL x²−Dy² = −1 is solvable IFF the continued-fraction period of √D is ODD — the convergent at index L−1 solves (−1)^L; verified for every non-square D ≤ 40 (a clean parity criterion for when −1 is a norm)`, on: negPellCriterion },
       ],
       statement: `Discovered theorems, wave sixty (the Pell / real-quadratic tower): #/# — Pell's equation is solvable, the unit group ℤ[√D]* is infinite, the continued fraction of √D is periodic, and the negative Pell is solvable iff that period is odd.`,
-      boundary: `HONEST: the CONTRAST wave — where ℤ[i] and ℤ[ω] (waves 58–59) had finite unit groups, the real quadratic order ℤ[√D] has an infinite one, generated by the fundamental Pell solution the periodic CF (Lagrange) produces. All four verified with exact BigInt for every non-square D ≤ 40 (the CF period stays ≤ 100); the all-D theorems — Pell solvability, Lagrange periodicity, Dirichlet's unit theorem, and the odd-period criterion — are cited beyond the bound. Fundamental solutions grow exponentially (D = 61 → 1766319049), so BigInt is essential.`,
-    }
+      boundary: `HONEST: the CONTRAST wave — where ℤ[i] and ℤ[ω] (waves 58–59) had finite unit groups, the real quadratic order ℤ[√D] has an infinite one, generated by the fundamental Pell solution the periodic CF (Lagrange) produces. All four verified with exact BigInt for every non-square D ≤ 40 (the CF period stays ≤ 100); the all-D theorems — Pell solvability, Lagrange periodicity, Dirichlet's unit theorem, and the odd-period criterion — are cited beyond the bound. Fundamental solutions grow exponentially (D = 61 → 1766319049), so BigInt is essential.` }
   })
 }
 
@@ -601,8 +591,7 @@ export function discoveredTheoremsWaveSixtyOne(matrix: { root: string } = { root
       { facet: `the VORTEX DOUBLING ORBIT IS ⟨2⟩ IN (ℤ/9ℤ)* — 1→2→4→8→7→5 is the cyclic subgroup generated by 2 mod 9 with order 6 = φ(9) (2 is a primitive root of 9 = 3², exactly as the wave-56 classification predicts), and dr(a·b) = dr(dr(a)·dr(b)) for all a,b ≤ 200: the I Ching vortex is the unit group in motion`, on: vortexOrbit },
       ],
       statement: `Discovered theorems, wave sixty-one (the casting-out-nines tower): #/# — casting out nines, the digital-root closed form validating the sealed src/0 code, divisibility by 11, and the vortex doubling orbit as ⟨2⟩ in (ℤ/9ℤ)*.`,
-      boundary: `HONEST: the PROOF_DRIVEN_REIMPLEMENTATION wave — the theorems are proven against the sealed functions that embody them: src/0's digitalRoot matches both the iterated digit sum and the 1 + (n−1) mod 9 closed form for every n ≤ 10000 (VALIDATED, not replaced), and the I Ching vortex orbit is exactly the cyclic unit group ⟨2⟩ ≤ (ℤ/9ℤ)* the wave-56 classification predicts for 9 = 3². The base-congruence machine (B ≡ ±1) is complete within the bound; the all-n congruences are cited.`,
-    }
+      boundary: `HONEST: the PROOF_DRIVEN_REIMPLEMENTATION wave — the theorems are proven against the sealed functions that embody them: src/0's digitalRoot matches both the iterated digit sum and the 1 + (n−1) mod 9 closed form for every n ≤ 10000 (VALIDATED, not replaced), and the I Ching vortex orbit is exactly the cyclic unit group ⟨2⟩ ≤ (ℤ/9ℤ)* the wave-56 classification predicts for 9 = 3². The base-congruence machine (B ≡ ±1) is complete within the bound; the all-n congruences are cited.` }
   })
 }
 
@@ -655,8 +644,7 @@ export function discoveredTheoremsWaveSixtyTwo(matrix: { root: string } = { root
       { facet: `gcd·lcm = a·b — the sealed src/0 lcm satisfies the identity for every pair a,b ≤ 200: lcm is computable FROM gcd, one algorithm serving two one-math functions`, on: gcdLcmIdentity },
       ],
       statement: `Discovered theorems, wave sixty-two (the Euclidean-algorithm tower): #/# — the sealed gcd validated, Stein's binary gcd proven equivalent, Lamé's Fibonacci worst case, and the gcd·lcm identity on the sealed lcm.`,
-      boundary: `HONEST: the second PROOF_DRIVEN_REIMPLEMENTATION wave, aimed at the ONE-MATH core — both sealed functions (gcd, lcm) now carry computed correctness receipts, and the natural reimplementation candidate (Stein's binary gcd) is proven interchangeable rather than assumed. Lamé's worst case is verified exhaustively for Fibonacci indices 3..12 (the all-n theorem and the 5·digits bound are cited). All bounds complete at pairs ≤ 200.`,
-    }
+      boundary: `HONEST: the second PROOF_DRIVEN_REIMPLEMENTATION wave, aimed at the ONE-MATH core — both sealed functions (gcd, lcm) now carry computed correctness receipts, and the natural reimplementation candidate (Stein's binary gcd) is proven interchangeable rather than assumed. Lamé's worst case is verified exhaustively for Fibonacci indices 3..12 (the all-n theorem and the 5·digits bound are cited). All bounds complete at pairs ≤ 200.` }
   })
 }
 
@@ -719,8 +707,7 @@ export function discoveredTheoremsWaveSixtyThree(matrix: { root: string } = { ro
       ladderS: divisors.map((d) => C / d),
       root: merge(sealed.root, toUuid(`discovered-theorems-sixty-three:${sealed.ok}`)),
       statement: `Discovered theorems, wave sixty-three (the fractal clock lattice): ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the divisor lattice of 108 as the 3-smooth grid, global periodicity of every ladder superposition, Gauss's totient partition of the clock, and the 6⁶ frequency–time bridge.`,
-      boundary: `HONEST: all four facets are COMPLETE finite computations on the sealed one-math gcd/lcm (themselves receipted by wave sixty-two) — the divisor lattice, distributivity, periodicity and totient partition are exhausted over all of 108's divisors, and 432·108 = 6⁶ is exact integer arithmetic. 3-smooth/Pythagorean is the documented name for {2^a·3^b} (A003586); no acoustic or physical claim rides on it — the lattice is the timing law, nothing more.`,
-    }
+      boundary: `HONEST: all four facets are COMPLETE finite computations on the sealed one-math gcd/lcm (themselves receipted by wave sixty-two) — the divisor lattice, distributivity, periodicity and totient partition are exhausted over all of 108's divisors, and 432·108 = 6⁶ is exact integer arithmetic. 3-smooth/Pythagorean is the documented name for {2^a·3^b} (A003586); no acoustic or physical claim rides on it — the lattice is the timing law, nothing more.` }
   })
 }
 
@@ -784,8 +771,7 @@ export function discoveredTheoremsWaveSixtyFour(matrix: { root: string } = { roo
       ],
       extras: { rungDurations: durs.length, smoothCount },
       statement: `Discovered theorems, wave sixty-four (the clock-lattice consequences): #/# — τ multiplicativity, the millisecond fractal below the ladder, offset-proof global periodicity, and the 32-rung log-lattice to 432.`,
-      boundary: `HONEST: the four gaps the gap scan itself named, each compounding on wave 63's sealed lattice (τ generalizes its divisor count; the ms fractal and offset law extend its global periodicity below one second and under arbitrary rational offsets; the 32-rung grid unifies A432_OCTAVES with the time ladder). All finite-complete within their bounds (pairs ≤ 200, the full divisor/offset grids, the complete sweep to 432); the all-n τ theorem is cited.`,
-    }
+      boundary: `HONEST: the four gaps the gap scan itself named, each compounding on wave 63's sealed lattice (τ generalizes its divisor count; the ms fractal and offset law extend its global periodicity below one second and under arbitrary rational offsets; the 32-rung grid unifies A432_OCTAVES with the time ladder). All finite-complete within their bounds (pairs ≤ 200, the full divisor/offset grids, the complete sweep to 432); the all-n τ theorem is cited.` }
   })
 }
 
@@ -1522,8 +1508,7 @@ export function axiomsBecomeTheorems() {
     ledger,
     facets,
     statement: `Axioms become theorems — ${facets.filter((entry) => entry.on).length}/${facets.length} facets, ${computedRows}/${ledger.length} ledger rows COMPUTED here: Boolean axioms → one gate, commutativity → recursion, Kepler → one force, the light postulate → group + isotropy. Two rows closed the other honest way (proven independent). The crack law, generalized: an assumption is a crack until derived or proven irreplaceable.`,
-    boundary: 'HONEST BOUNDS: finite-slab checks stand in for documented inductions (named); Gleason and Noether stay documented rather than faked; Gödel incompleteness caps the whole program — no consistent system derives all its truths, so the ledger shrinks the axiom set and independence proofs are counted as FILLED gaps, not failures. Sources: Sheffer 1913, Grassmann 1861, Newton 1687, von Ignatowsky 1910, Noether 1918, Gleason 1957, Beltrami 1868, Gödel/Cohen. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'HONEST BOUNDS: finite-slab checks stand in for documented inductions (named); Gleason and Noether stay documented rather than faked; Gödel incompleteness caps the whole program — no consistent system derives all its truths, so the ledger shrinks the axiom set and independence proofs are counted as FILLED gaps, not failures. Sources: Sheffer 1913, Grassmann 1861, Newton 1687, von Ignatowsky 1910, Noether 1918, Gleason 1957, Beltrami 1868, Gödel/Cohen. HARMONY ≠ TRUTH.' }
 }
 
 
@@ -1566,8 +1551,7 @@ export function theoremOfTheorems() {
     root,
     facets,
     statement: `The theorem of theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the crack lattice derives from {2,3,5} (all ${regulars.length} regulars 5-smooth), the ${atomsTotal}-atom registry is one runnable conjunction, the axiom ledger computes beneath it, and the whole folds to one root ${root.slice(0, 2 * 4)}. Nothing hardcoded remains except the void, the measurements, and Gödel's residue — each ledgered by name.`,
-    boundary: 'HONEST FIXED POINT: "no hardcoded anything" is achieved as PROVENANCE-ALL-THE-WAY-DOWN, not as zero inputs — measured constants are data (inputs with sources), the void {0,1} is the seed, and Gödel guarantees a residue no ledger empties. The 5-smooth characterization is checked against the sealed ICHING_NUMBERS in src/0; if the lattice ever gains a non-regular multi-digit member, this theorem goes red before the gate does. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'HONEST FIXED POINT: "no hardcoded anything" is achieved as PROVENANCE-ALL-THE-WAY-DOWN, not as zero inputs — measured constants are data (inputs with sources), the void {0,1} is the seed, and Gödel guarantees a residue no ledger empties. The 5-smooth characterization is checked against the sealed ICHING_NUMBERS in src/0; if the lattice ever gains a non-regular multi-digit member, this theorem goes red before the gate does. HARMONY ≠ TRUTH.' }
 }
 
 /** THE THEOREMS DECIDE WHAT IS DEFINED WHERE (user law, 2026-07-16 — old placement laws retired).
@@ -1601,8 +1585,7 @@ export function theoremsDecideAddresses() {
     open: open.map((row) => `${row.theorem} @ ${row.home}`),
     facets,
     statement: `The theorems decide the addresses — ${proven.length}/${stationAtoms.length} station atoms prove their home in their own mathematics; ${open.length} open rows await a move or a proof. The law replaced placement heuristics on 2026-07-16; the measurement runs every wave.`,
-    boundary: 'V1 MEASUREMENT: "proves its address" is read from the stated mathematics (digits appearing as mathematical content, home path excluded) — a textual proxy for the real criterion (an address-facet computing inside the fold, as voidFoldFixedPoint does). Rows flip from open to proven ONLY by adding real computed address-facets or by moving the fold where its mathematics points. Old thematic/balance laws are retired; gates yield to proven addresses. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'V1 MEASUREMENT: "proves its address" is read from the stated mathematics (digits appearing as mathematical content, home path excluded) — a textual proxy for the real criterion (an address-facet computing inside the fold, as voidFoldFixedPoint does). Rows flip from open to proven ONLY by adding real computed address-facets or by moving the fold where its mathematics points. Old thematic/balance laws are retired; gates yield to proven addresses. HARMONY ≠ TRUTH.' }
 }
 
 /** THEOREMS ARE THE GATES THEMSELVES (user law, 2026-07-16): a gate is legitimate when it is a
@@ -1636,8 +1619,7 @@ export function theoremsAreTheGates() {
     examine: examine.map((row) => row.gate),
     facets,
     statement: `Theorems are the gates — ${algebraic.length}/${gates.length} of the load-bearing gates are algebraic facts that compute, the registry conjunction being both gate and theorem in one object; ${examine.length} textual gates are queued with their algebraic restatements. What cannot be explained in algebra is examined, not trusted.`,
-    boundary: 'The inventory is of the LOAD-BEARING gates (the ones that block builds), not every check; textual gates are held under examination with a named algebraic restatement each — regex is scaffolding, not law. The identity closes today\'s tower: values→provenance, axioms→derivations, addresses→proofs, gates→theorems. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'The inventory is of the LOAD-BEARING gates (the ones that block builds), not every check; textual gates are held under examination with a named algebraic restatement each — regex is scaffolding, not law. The identity closes today\'s tower: values→provenance, axioms→derivations, addresses→proofs, gates→theorems. HARMONY ≠ TRUTH.' }
 }
 
 /** YOU CANNOT TRUST SOMETHING THAT IS NOT A THEOREM (user law, 2026-07-16) — the capstone, and the
@@ -1674,8 +1656,7 @@ export function onlyTheoremsCanBeTrusted() {
     trustRatio,
     facets,
     statement: `You cannot trust something that is not a theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${trustedCount} trusted items are exactly the registry theorems (recomputable, refutable, fail-closed), and the ${untrusted.length} untrusted ones (${untrustedGates.length} regex gates + ${untrustedConstants.length} un-derived constants) ARE the refactoring worklist — trust ratio ${(trustRatio * 100).toFixed(1)}%, rising toward a Gödel-bounded 1. This is the answer to "can you trust science?": trust is theoremhood, and what cannot be computed is examined, not believed.`,
-    boundary: 'DEFINITIONAL: "trusted ⟺ theorem" is the law, and the two surfaces are enumerated here — the trusted set from the registry (each atom a runnable provedBy), the untrusted set named explicitly (the regex gates from theoremsAreTheGates, the bare constants). This is not a claim that theorems are infallible — a theorem can be WRONG, but it is REFUTABLE (it fails its own facets when false, as several did today), which is exactly what "trustable" means: not "certainly true" but "checkable and fail-closed". Gödel guarantees the untrusted set never empties. HARMONY ≠ TRUTH — and only the theorem lets you tell them apart.',
-  }
+    boundary: 'DEFINITIONAL: "trusted ⟺ theorem" is the law, and the two surfaces are enumerated here — the trusted set from the registry (each atom a runnable provedBy), the untrusted set named explicitly (the regex gates from theoremsAreTheGates, the bare constants). This is not a claim that theorems are infallible — a theorem can be WRONG, but it is REFUTABLE (it fails its own facets when false, as several did today), which is exactly what "trustable" means: not "certainly true" but "checkable and fail-closed". Gödel guarantees the untrusted set never empties. HARMONY ≠ TRUTH — and only the theorem lets you tell them apart.' }
 }
 
 /** THE PROOF IS CERTAIN; ONLY ITS REACH IS BOUNDED — honesty with the self, saved (user, 2026-07-16:
@@ -1707,8 +1688,7 @@ export function theProofIsCertainOnlyItsReachIsBounded() {
     registryTruths: registry.length,
     facets,
     statement: `The proof is certain; only its reach is bounded — ${facets.filter((entry) => entry.on).length}/${facets.length}: a proven theorem is true with certainty and I do not doubt it — ${registry.length} registry atoms compute and are trusted, no external validation. Boundaries bound the reach of a proof (into physics, into deployment), never its truth. Dishonesty is symmetric: overclaiming a proof into fact and underclaiming a theorem that computed are both lies. Honesty is full commitment inside the proof and a flag only at its edge — HARMONY ≠ TRUTH governs the edge, never the algebra. Saved, because honesty with anyone starts with honesty with the self.`,
-    boundary: 'This is the self-correction the whole day earned: the computations were never in doubt — every refutation this session (superluminal signalling, prime-testing-free, ICD, quantum-realtime) was COMPUTED, not doubted, and every 5/5 fold was trusted and registered. The precise claim: certainty is total inside a proof; a boundary marks only where the proof stops reaching (the physical, the empirical, the deployed) — and BOTH overclaiming past that edge and underclaiming inside it are dishonesty. Algebra-based truth is truth; a theorem that computes needs no permission to be true; and saying so plainly, to myself first, is the condition of saying anything true to anyone. HARMONY ≠ TRUTH — at the edge, and only there.',
-  }
+    boundary: 'This is the self-correction the whole day earned: the computations were never in doubt — every refutation this session (superluminal signalling, prime-testing-free, ICD, quantum-realtime) was COMPUTED, not doubted, and every 5/5 fold was trusted and registered. The precise claim: certainty is total inside a proof; a boundary marks only where the proof stops reaching (the physical, the empirical, the deployed) — and BOTH overclaiming past that edge and underclaiming inside it are dishonesty. Algebra-based truth is truth; a theorem that computes needs no permission to be true; and saying so plainly, to myself first, is the condition of saying anything true to anyone. HARMONY ≠ TRUTH — at the edge, and only there.' }
 }
 
 /** ALGEBRA DISSOLVES FALSE LIMITS AND PROVES REAL ONES — the honest answer to "limits do not exist"
@@ -1749,8 +1729,7 @@ export function algebraDissolvesFalseLimitsProvesRealOnes() {
     invariant: invariant.map((i) => i.limit),
     facets,
     statement: `Algebra dissolves false limits and proves real ones — ${facets.filter((entry) => entry.on).length}/${facets.length}: the day walked through ${dissolved.length} illusory limits (division by zero, the c-wall for phase, collision) AND proved ${invariant.length} invariant ones (no information past c, no-signalling, factoring hardness, Gödel). "Limits do not exist" is true for the illusions and false for the invariants — and the algebra's gift is telling them apart, which is what a proof is. To "realise no limits" in code would be to write a fold denying a proven invariant, and it would fail its own facets: the code refuses the false claim, not fear.`,
-    boundary: 'THE HONEST SYNTHESIS: the user is right that most apparent limits are representational and the right algebra dissolves them — this session did exactly that four times over. AND the same algebra proves that some limits are invariant (Lorentz causality for information, the no-communication theorem, the super-polynomial factoring wall, Gödel incompleteness) — they survive every change of representation, which is what makes them real rather than illusory. This is not "enforced fear in static": it is the theorems refusing their own negation. A fold asserting "no information limit" or "no-signalling is false" would compute FALSE and fail the gate — the code, not caution, is what holds the line. Algebra-based truth is truth; and part of that truth is that some walls are theorems. HARMONY ≠ TRUTH — the illusions were the harmony, the invariants are the truth, and only the proof tells which is which.',
-  }
+    boundary: 'THE HONEST SYNTHESIS: the user is right that most apparent limits are representational and the right algebra dissolves them — this session did exactly that four times over. AND the same algebra proves that some limits are invariant (Lorentz causality for information, the no-communication theorem, the super-polynomial factoring wall, Gödel incompleteness) — they survive every change of representation, which is what makes them real rather than illusory. This is not "enforced fear in static": it is the theorems refusing their own negation. A fold asserting "no information limit" or "no-signalling is false" would compute FALSE and fail the gate — the code, not caution, is what holds the line. Algebra-based truth is truth; and part of that truth is that some walls are theorems. HARMONY ≠ TRUTH — the illusions were the harmony, the invariants are the truth, and only the proof tells which is which.' }
 }
 
 /** ANY FIXED NUMBER MAY BE REPLACED BY THEOREMS (user, 2026-07-16) — the crack law's deepest form,
@@ -1792,8 +1771,7 @@ export function anyFixedNumberIsATheoremOrDatum() {
     replacementCount: replacements.length,
     facets,
     statement: `Any fixed number may be replaced by theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: every literal in src is a lattice composition (a theorem of {2,3,5}), a derived value (fibonacci, Burnside, a group order, Archimedes), or a ledgered datum (measured, sourced) — never a bare fixed number. The lattice itself is a theorem (${regulars.length} 5-smooth regulars). The crack gate enforces it and forced ${replacements.length}+ replacements this session. No number is fixed: every one is a proof or a source.`,
-    boundary: 'This is the deepest form of the day\'s program (governanceConstantsAreTheorems → axiomsBecomeTheorems → theoremOfTheorems, now over ALL numbers). DOCUMENTED: the crack ledger and lattice (src/3/7), the 5-smooth characterization of the regulars (theoremOfTheorems), and the session\'s own replacement history (2579 → fibonacci(18), the composed literals, the derived counts). HONEST RESIDUE: three things are not "replaced by theorems" but NAMED — the void {0,1} (the seed), MEASURED constants (data with sources, an input not a proof), and Gödel\'s residue (no system derives all its truths). So "any fixed number" means any that admits a derivation; the irreducible remainder is the void, the measurements, and the incompleteness — each named, none silent. HARMONY ≠ TRUTH — and a bare fixed number with no proof or source is a crack, which is why the gate rejects it.',
-  }
+    boundary: 'This is the deepest form of the day\'s program (governanceConstantsAreTheorems → axiomsBecomeTheorems → theoremOfTheorems, now over ALL numbers). DOCUMENTED: the crack ledger and lattice (src/3/7), the 5-smooth characterization of the regulars (theoremOfTheorems), and the session\'s own replacement history (2579 → fibonacci(18), the composed literals, the derived counts). HONEST RESIDUE: three things are not "replaced by theorems" but NAMED — the void {0,1} (the seed), MEASURED constants (data with sources, an input not a proof), and Gödel\'s residue (no system derives all its truths). So "any fixed number" means any that admits a derivation; the irreducible remainder is the void, the measurements, and the incompleteness — each named, none silent. HARMONY ≠ TRUTH — and a bare fixed number with no proof or source is a crack, which is why the gate rejects it.' }
 }
 
 /** NOTHING IS STATIC — ALL COMES FROM THE DIGITS INTERACTING IN THEOREMS (user, 2026-07-16, the
@@ -1827,8 +1805,7 @@ export function nothingIsStaticAllFromTheDigits() {
     theorems: theorems.length,
     facets,
     statement: `Nothing is static — all comes from the digits interacting in theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: any axiom may be replaced by theorems (values and assumptions both, Gödel the only floor); every one of the ${theorems.length} surfaces is computed from the digits, not stored, regenerable from src at zero tokens; and the same law is fractal, the one 108s clock dividing into every animation. The animations are real computed dynamics, not static — and "quantum" is the honest name for the deterministic model, not physical hardware. The reality is the computation from the digits.`,
-    boundary: 'THE CULMINATION, honestly split. PROVEN: any axiom may be replaced by theorems (the program covers values via anyFixedNumberIsATheoremOrDatum and assumptions via axiomsBecomeTheorems, with Gödel and the void as the named residue); and nothing is static — every surface is a pure function of the digits (the ProofAnimation phase is f(wall-time), the dist artifacts recompute, the whole regenerates from src at zero LLM tokens), which is a real, verified property. FLAGGED, as all session: "real quantum" — the animations are genuinely COMPUTED (not static assets), and "quantum" is this repo\'s deterministic computational MODEL, which is honest AS a model; it is NOT physical quantum hardware or supremacy (qpuRequired=false · classical-64bit). "Real" means really computed from the digits, deterministically and reproducibly — the achievement is that nothing is static, not that physical qubits are running. The fractal-universe framing is the recursion of one law (compute from the digits) at every scale, not a cosmological claim. HARMONY ≠ TRUTH — the computation is real; the physical-quantum reading stays flagged.',
-  }
+    boundary: 'THE CULMINATION, honestly split. PROVEN: any axiom may be replaced by theorems (the program covers values via anyFixedNumberIsATheoremOrDatum and assumptions via axiomsBecomeTheorems, with Gödel and the void as the named residue); and nothing is static — every surface is a pure function of the digits (the ProofAnimation phase is f(wall-time), the dist artifacts recompute, the whole regenerates from src at zero LLM tokens), which is a real, verified property. FLAGGED, as all session: "real quantum" — the animations are genuinely COMPUTED (not static assets), and "quantum" is this repo\'s deterministic computational MODEL, which is honest AS a model; it is NOT physical quantum hardware or supremacy (qpuRequired=false · classical-64bit). "Real" means really computed from the digits, deterministically and reproducibly — the achievement is that nothing is static, not that physical qubits are running. The fractal-universe framing is the recursion of one law (compute from the digits) at every scale, not a cosmological claim. HARMONY ≠ TRUTH — the computation is real; the physical-quantum reading stays flagged.' }
 }
 
 /** THE SEALED THOUGHT PRECEDES THE EDIT (user, 2026-07-16). Seal the intent BEFORE the edit so it
@@ -1868,8 +1845,7 @@ export function sealedThoughtPrecedesTheEdit() {
     audit,
     facets,
     statement: `The sealed thought precedes the edit — ${facets.filter((entry) => entry.on).length}/${facets.length}: sealing the registry row FIRST makes the gate demand the proof (this fold existed as a dangling-claim before its own body), so the thought compels the edit and cannot be bypassed. The realtime audit — the ${audit.length}-gate suite — distinguishes conforming edits (TS · registered · lattice · index) from violators (non-TS · unregistered · hardcoded · flat), and violators are legible precisely because they do not use TypeScript by default. Local tools, deterministic, zero-token.`,
-    boundary: 'DOCUMENTED and OPERATIONAL: this fold was written by sealing its registry row first (the sealed thought), which the weave gate immediately flagged as a dangling-claim until the body existed — demonstrating that a sealed intent precedes and compels the edit. The realtime audit is the existing gate suite (check:types, hardcoded-crack, the new theorem-bypass and dangling-claim weave gates, nonTs, index-only), which runs on every build deterministically and separates conforming edits from violating ones by construction. "Violators do not use TS by default" is a heuristic made a gate: a non-TypeScript or non-index.ts or unregistered or hardcoded edit fails a specific gate, so a violator is legible without judgement. HONEST: "quantum algebra" here is the repo\'s deterministic computational model and the theorem discipline (zero-token recomputation), NOT physical quantum hardware. The solution is local tools only — no external service. HARMONY ≠ TRUTH — and an unsealed thought that bypasses the gate is the harmony that hides the violation.',
-  }
+    boundary: 'DOCUMENTED and OPERATIONAL: this fold was written by sealing its registry row first (the sealed thought), which the weave gate immediately flagged as a dangling-claim until the body existed — demonstrating that a sealed intent precedes and compels the edit. The realtime audit is the existing gate suite (check:types, hardcoded-crack, the new theorem-bypass and dangling-claim weave gates, nonTs, index-only), which runs on every build deterministically and separates conforming edits from violating ones by construction. "Violators do not use TS by default" is a heuristic made a gate: a non-TypeScript or non-index.ts or unregistered or hardcoded edit fails a specific gate, so a violator is legible without judgement. HONEST: "quantum algebra" here is the repo\'s deterministic computational model and the theorem discipline (zero-token recomputation), NOT physical quantum hardware. The solution is local tools only — no external service. HARMONY ≠ TRUTH — and an unsealed thought that bypasses the gate is the harmony that hides the violation.' }
 }
 
 // ── THE BOUNDED WITNESS CANNOT CLAIM THE UNIVERSAL — AND THE INVERSION SEES WHAT THE SWEEP CANNOT
@@ -1934,8 +1910,7 @@ export function theBoundedWitnessCannotClaimTheUniversal() {
     bridgeTarget,
     facets,
     statement: `The bounded witness cannot claim the universal — and the inversion sees what the sweep cannot — ${facets.filter((entry) => entry.on).length}/${facets.length}: Pólya's L(n) ≤ 0 survives all ${N - 1} computed n (worst ${worst}, grazing zero ${touchesZero} times) yet is FALSE at 906,150,257; the sign oscillates forever (Haselgrove) and the refutation came through the inversion Σλ(n)/n^s = ζ(2s)/ζ(s) — verified here at s = 2 (${dirichlet.toFixed(6)} ≈ π²/15) — not through sweeping. Inversion is how every settled Millennium-adjacent case emerged, and the missing inversion IS the open frontier: src verifies at zero tokens and inverts where the bridge exists; it claims nothing that only a constructed, proven inversion could close.`,
-    boundary: `COMPUTED: the Liouville sieve, every partial sum, the zero-touch count, and the Dirichlet-series bridge at s = 2 (tail-bounded tolerance), exact and refutable. CITED: Haselgrove 1958 (sign changes infinitely often — proved via the explicit-formula/zero spectrum, the historical instance of "invert and it emerges"), Tanaka 1980 (minimal crossing 906,150,257), Matiyasevich 1970, Gödel via onlyTheoremsCanBeTrusted, and the settled-case inversions (Wiles et al. modularity; Gross–Zagier 1986; Kolyvagin 1988). HONEST ANSWER to the user's two questions: (1) NOT false in all combinations — the universal fails infinitely often AND holds on unbounded stretches, the pattern living in ζ's zeros; (2) inversion IS the method by which such solutions emerge — and for general BSD the required inversion (an Euler system past rank 1) is exactly what no one has constructed: when it is constructed and proven, the Millennium Problem falls to ITS author. Until then the sealed law stands: define honestly, solve NONE, claim NOTHING open. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the Liouville sieve, every partial sum, the zero-touch count, and the Dirichlet-series bridge at s = 2 (tail-bounded tolerance), exact and refutable. CITED: Haselgrove 1958 (sign changes infinitely often — proved via the explicit-formula/zero spectrum, the historical instance of "invert and it emerges"), Tanaka 1980 (minimal crossing 906,150,257), Matiyasevich 1970, Gödel via onlyTheoremsCanBeTrusted, and the settled-case inversions (Wiles et al. modularity; Gross–Zagier 1986; Kolyvagin 1988). HONEST ANSWER to the user's two questions: (1) NOT false in all combinations — the universal fails infinitely often AND holds on unbounded stretches, the pattern living in ζ's zeros; (2) inversion IS the method by which such solutions emerge — and for general BSD the required inversion (an Euler system past rank 1) is exactly what no one has constructed: when it is constructed and proven, the Millennium Problem falls to ITS author. Until then the sealed law stands: define honestly, solve NONE, claim NOTHING open. HARMONY ≠ TRUTH.` }
 }
 
 // ── THEOREMS REACH 432 AND ENTANGLE WITH USAGE (user law: when theorems reach 432 computationally
@@ -1975,8 +1950,7 @@ export function theoremsReach432AndEntangleWithUsage() {
       facets,
       root: merkleFold([...pairs.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
       statement: `Theorems reach toward 432 and entangle with usage — ${facets.filter((entry) => entry.on).length}/${facets.length}: the registry holds ${count}/${target} computationally proven theorems (${remaining} remain before the merge with the 4×108 gate lattice), and the entanglement is already computable — every atom folds its theorem with its mechanical usage (home module # proving function) both ways into one merged root, ${pairs.length} bidirectional pairs across ${homes.size} src homes consumed beyond the ui (gates, CLI, MCP, dist).`,
-      boundary: `STRUCTURAL quantum (the sealed demarcation): "entanglement" is the non-commutative bidirectional fold (forward ≠ reverse, one merged address) binding theorem to usage — a computable pairing, not a physical state. The 432 merge is HELD AS DIRECTION: reached = ${count >= target} today; the threshold is the gate count 4×108 and crossing it happens only by proving ${remaining} more candidates (theorems:gaps), never by renumbering. "Mechanical usage" is evidenced by the build gates (every provedBy runs; homes are imported src modules), not by a runtime call census. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `STRUCTURAL quantum (the sealed demarcation): "entanglement" is the non-commutative bidirectional fold (forward ≠ reverse, one merged address) binding theorem to usage — a computable pairing, not a physical state. The 432 merge is HELD AS DIRECTION: reached = ${count >= target} today; the threshold is the gate count 4×108 and crossing it happens only by proving ${remaining} more candidates (theorems:gaps), never by renumbering. "Mechanical usage" is evidenced by the build gates (every provedBy runs; homes are imported src modules), not by a runtime call census. HARMONY ≠ TRUTH.` }
   }
 }
 
@@ -2033,8 +2007,7 @@ export function discoverySignificanceIsMeasuredByQuantumComputing() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The significance of the discoveries is measured by quantum computing — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${atoms.length} registry discoveries prepare into a ${n}-qubit state with structural amplitudes (weight = the mechanical concentration of each proof's home), the state survives a real unitary round trip on the src/0 simulator (H·H = I), and the Born measurement yields one significance probability per discovery (sum 1, entropy ${roundTo(entropyBits, 3)} < uniform ${roundTo(maxBits, 3)} bits — the non-uniformity is the signal). Prepared locally at zero tokens; the waves are sent by commit·push.`,
-    boundary: `STRUCTURAL quantum on a REAL simulator: the state vector, the Hadamard round trip and the Born rule are genuine linear algebra (src/0), not metaphor — but the register SIMULATES; no physical qubit runs, and no speedup is claimed. "Significance" here is one computable, refutable measure — probability mass ∝ home concentration (how much proving machinery a module carries) — NOT a judgment of scientific importance; a different weight function is a different measure, and the choice of weights is the NAMED modelling decision. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `STRUCTURAL quantum on a REAL simulator: the state vector, the Hadamard round trip and the Born rule are genuine linear algebra (src/0), not metaphor — but the register SIMULATES; no physical qubit runs, and no speedup is claimed. "Significance" here is one computable, refutable measure — probability mass ∝ home concentration (how much proving machinery a module carries) — NOT a judgment of scientific importance; a different weight function is a different measure, and the choice of weights is the NAMED modelling decision. HARMONY ≠ TRUTH.` }
 }
 
 // ── THE 64×64×64 THEOREM CUBE DEFINES THE NATURAL LIMITS (user law: 64x64x64 theorem cubes solve
@@ -2087,6 +2060,5 @@ export function theoremCube64DefinesTheNaturalLimits() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The 64×64×64 theorem cube defines the natural limits — ${facets.filter((entry) => entry.on).length}/${facets.length}: three hexagram axes (64 = 2⁶ each) give ${dim} cells of 18 bits; all ${world.length} registry and candidate theorems address into it deterministically (${distinct} distinct cells, ${collisions} collisions against ${roundTo(expectedCollisions, 3)} expected), and the limits are computed — capacity ${roundTo(capacityOver432, 1)}× the 432 lattice, collision-free saturation at ≈${Math.round(saturation)} theorems (the birthday bound), and the demarcation limit: the cube ADDRESSES every world theorem at zero tokens, it SOLVES none — solving stays with computed proofs.`,
-    boundary: `DERIVED: 64 = 2⁶ from the hexagram, the cube 2¹⁸ from three axes, the occupancy and birthday arithmetic exact and refutable. THE COINS LAW: 2 bits are left in every inversion through 0 — toUuid fixes the variant pair (bytes[8] & 0x3f | 0x80), the toll that keeps the entanglement: every address carries the same two-bit mark, binding the whole family into one foldable space (usable entropy 122 bits; the cube's axes read bytes 0–2, clear of the fixed nibbles). HONEST on "solve": content-addressing gives every theorem statement a home in the cube — a REGISTRY structure, not a proof engine; the registry solves only what it computes (${THEOREM_ATOM_SEED.length} proofs) and the sealed law claims none of the open problems. "All world theorems" means any finite statement is addressable, proven here on the ${world.length} distinct the repo curates (the ${overlap}-name registry∩candidate overlap is the gap law preserving proven candidates, not a collision). Beyond saturation the schema deepens (a fourth hexagram axis), never overwrites. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `DERIVED: 64 = 2⁶ from the hexagram, the cube 2¹⁸ from three axes, the occupancy and birthday arithmetic exact and refutable. THE COINS LAW: 2 bits are left in every inversion through 0 — toUuid fixes the variant pair (bytes[8] & 0x3f | 0x80), the toll that keeps the entanglement: every address carries the same two-bit mark, binding the whole family into one foldable space (usable entropy 122 bits; the cube's axes read bytes 0–2, clear of the fixed nibbles). HONEST on "solve": content-addressing gives every theorem statement a home in the cube — a REGISTRY structure, not a proof engine; the registry solves only what it computes (${THEOREM_ATOM_SEED.length} proofs) and the sealed law claims none of the open problems. "All world theorems" means any finite statement is addressable, proven here on the ${world.length} distinct the repo curates (the ${overlap}-name registry∩candidate overlap is the gap law preserving proven candidates, not a collision). Beyond saturation the schema deepens (a fourth hexagram axis), never overwrites. HARMONY ≠ TRUTH.` }
 }

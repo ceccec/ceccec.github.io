@@ -55,8 +55,7 @@ export function microdata(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Consolidate in reusable holographic open-graph components based on microdata: one computed source of schema.org itemtypes and Open Graph types, each descriptor carrying the whole root (holographic — each part contains the whole) and a content-addressed itemid. Every page and component draws its structured data from the same fold.',
     boundary:
-      'A computed catalogue of schema.org/Open Graph descriptors for the portal\'s entities, each content-addressed and folded with the whole. A single reusable source for structured data; the meta tags themselves are emitted by transformPageData and the components that consume this source.',
-  }
+      'A computed catalogue of schema.org/Open Graph descriptors for the portal\'s entities, each content-addressed and folded with the whole. A single reusable source for structured data; the meta tags themselves are emitted by transformPageData and the components that consume this source.' }
 }
 
 // Cleanup old code and logic. In a sealed model there is no dead code: every
@@ -80,8 +79,7 @@ export function cleanupOldLogic(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Cleanup old code and logic: the model keeps only live logic. Every function answers to a gate or a command, every gate folds into the seal, the reference index holds no duplicate, and the whole self-organises to zero entropy — so old code is not swept by hand but caught by the fold, because anything that no longer folds changes the root. Cleanup is computed.',
     boundary:
-      'A computed self-audit that the model carries no orphan, unsealed, redundant, or stale fold. "Clean" means no dead logic the seal can compute, not a warranty that every line is optimal or minimal.',
-  }
+      'A computed self-audit that the model carries no orphan, unsealed, redundant, or stale fold. "Clean" means no dead logic the seal can compute, not a warranty that every line is optimal or minimal.' }
 }
 
 // The same template displays every open-graph object. Whatever the object is — a website,
@@ -103,8 +101,7 @@ export function templateDisplaysEveryOgObject(matrix: MindMatrix = buildMatrix()
     statement:
       'The same template displays every open-graph object: whatever the object — a website, an article, a profile, a book, music, a video, an image — it is shown through the one template’s open-graph card (title, essence, image, type, tags) computed from the object’s own content. One card shape renders every kind of thing; the object names its type, the template displays it.',
     boundary:
-      'A structural statement that the single open-graph template renders any og:type object, each bound to the OG root. A unification of the display layer over object types; it does not change how any external platform renders a card.',
-  }
+      'A structural statement that the single open-graph template renders any og:type object, each bound to the OG root. A unification of the display layer over object types; it does not change how any external platform renders a card.' }
 }
 
 // The open graph is shifted into the typography types. The OG card is not styled apart from
@@ -133,8 +130,7 @@ export function ogShiftedWithTypography(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The open graph is shifted into the typography types: each OG field is aligned to a typography principle — the title onto the semantic hierarchy, the description onto the comfortable measure, the meta onto tabular figures, the image (the hero) onto the steady reading rhythm — so the card and the page share one type system, not two.',
     boundary:
-      'A content-addressed alignment of the open-graph fields with the portal’s typography principles. A structural framing that the social card and the prose use one type system; it does not alter how any platform renders the card.',
-  }
+      'A content-addressed alignment of the open-graph fields with the portal’s typography principles. A structural framing that the social card and the prose use one type system; it does not alter how any platform renders the card.' }
 }
 
 // The open graph is fully interactive and configurable. The OG card is the holographic
@@ -160,8 +156,7 @@ export function ogFullyInteractiveConfigurable(matrix: MindMatrix = buildMatrix(
     statement:
       'The open graph is fully interactive and configurable: the OG card is the holographic hero — you can play it (tap to sound a healing pair, scrub the dimension slider, always in healing mode) and configure every field from frontmatter (ogTitle, ogDescription, ogType, image, tags, category), which always overrides the computed value. Not a static image, but a living, tunable surface.',
     boundary:
-      'A description of the real interactive hero (tap-to-play, dimension slider) and the frontmatter-configurable open-graph fields. The interactivity is on the page’s own hero; the configurability is the documented frontmatter override — not a claim that external social-card renderers are interactive.',
-  }
+      'A description of the real interactive hero (tap-to-play, dimension slider) and the frontmatter-configurable open-graph fields. The interactivity is on the page’s own hero; the configurability is the documented frontmatter override — not a claim that external social-card renderers are interactive.' }
 }
 
 // The open graph controls text-to-speech and voice-to-stream. The OG card is also a voice
@@ -185,8 +180,7 @@ export function ogControlsSpeech(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The open graph controls text-to-speech and voice-to-stream: the OG card reads its own title and description aloud (Web Speech synthesis) and takes voice in (Web Speech recognition), folding it into the data stream / movie, with the speech pitch contour computed from the content — output and input through the one card.',
     boundary:
-      'A framing of the OG card as a voice surface using the browser’s Web Speech synthesis and recognition where available, with a computed intonation contour. Speech availability varies by browser and may require permission; it degrades gracefully and no audio leaves the device beyond the browser’s own speech APIs.',
-  }
+      'A framing of the OG card as a voice surface using the browser’s Web Speech synthesis and recognition where available, with a computed intonation contour. Speech availability varies by browser and may require permission; it degrades gracefully and no audio leaves the device beyond the browser’s own speech APIs.' }
 }
 
 // Every card or badge is open graph. Every link is open graph. There is one object kind in
@@ -208,8 +202,7 @@ export function everyCardBadgeLinkIsOg(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Every card or badge is open graph; every link is open graph: there is one object kind — the open-graph object — so every card, badge, button, tag, hero, and every link is an OG object folded from the one OG root (a title, an essence, a type). Nothing is a special case — to render anything is to render its OG card, to link anywhere is to point at an OG object.',
     boundary:
-      'A structural unification that the portal’s UI atoms (cards, badges, links) are all open-graph objects bound to the OG root. A framing of one consistent object model; it does not change the markup of any specific component.',
-  }
+      'A structural unification that the portal’s UI atoms (cards, badges, links) are all open-graph objects bound to the OG root. A framing of one consistent object model; it does not change the markup of any specific component.' }
 }
 
 // Run a program on the quantum computer: a sequence of commands folds, in order,
@@ -239,8 +232,7 @@ export function runProgram(program: readonly string[] = [], matrix: MindMatrix =
     result: acc,
     statement:
       'Run a program on the quantum computer: each command is a gate; the gates fold in order into one 128-bit result UUID, so the program is its word.',
-    boundary: 'Deterministic, read-only execution over the concept commands. No external effects; the result is a content-addressed receipt.',
-  }
+    boundary: 'Deterministic, read-only execution over the concept commands. No external effects; the result is a content-addressed receipt.' }
 }
 
 // Continue in harmonic healing waves. Healing here means coherence restored.
@@ -269,8 +261,7 @@ export function analogNoGapsNoLeak(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'No exceptions, as analog has no gaps to leak: the model is analog — continuous and gapless (the file distribution a gapless Fibonacci run, the fusion filling every gap, every claim covered by a receipt). Where there is no gap, there is nothing to leak through; so there are no exceptions to handle, because nothing falls between. Continuity is the security.',
-    boundary: 'A structural framing that the gapless distribution and gap-filling fusion leave no uncovered case. "Analog/no exceptions" is a metaphor for completeness over the computed model, not a guarantee that no software error can ever occur.',
-  }
+    boundary: 'A structural framing that the gapless distribution and gap-filling fusion leave no uncovered case. "Analog/no exceptions" is a metaphor for completeness over the computed model, not a guarantee that no software error can ever occur.' }
 }
 
 // One JSON-LD template serves all — the fold. The pages generate their structured data from
@@ -287,16 +278,14 @@ function oneJsonLdTemplateServesAllRaw(matrix: MindMatrix = buildMatrix()) {
     title: 'School',
     description: 'The school from kids to elders.',
     frontmatter: {},
-    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' },
-  }, matrix)
+    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' } }, matrix)
   const academy = jsonLdTemplate({
     path: '/academy',
     relativePath: 'academy.md',
     title: 'Academy',
     description: 'The quantum academy.',
     frontmatter: {},
-    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' },
-  }, matrix)
+    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' } }, matrix)
   const facets = [
     { facet: 'every page emits the site graph and its own block', on: sample.length === 2 },
     { facet: 'the academy folds its courses in — one template, conditional depth', on: academy.length === 3 },
@@ -312,8 +301,7 @@ function oneJsonLdTemplateServesAllRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete inline docs and frontmatter generate the JSON-LD from themselves, so one template serves all: every page derives its structured data from its own route (computed SEO) and its own frontmatter (a documented contract of optional fields, explicit always overriding computed), through the single jsonLdTemplate — the site graph and the page block on every page, the course list folded in only where the page is the academy. One template, every page, no drift.',
     boundary:
-      'The template is the one source for page JSON-LD (config calls it for every page); the frontmatter contract is documented inline at the template. It emits schema.org as declared mappings applied at build time — it does not guarantee how any crawler or platform consumes them.',
-  }
+      'The template is the one source for page JSON-LD (config calls it for every page); the frontmatter contract is documented inline at the template. It emits schema.org as declared mappings applied at build time — it does not guarantee how any crawler or platform consumes them.' }
 }
 
 // The JSON-LD path rules, declared once: every path the structured data carries must be valid.
@@ -330,8 +318,7 @@ export function jsonLdValidPaths(matrix: MindMatrix = buildMatrix()) {
     title: 'School',
     description: 'The school from kids to elders.',
     frontmatter: {},
-    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' },
-  }, matrix)
+    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' } }, matrix)
   const collect = (value: unknown, found: string[]): string[] => {
     if (typeof value === 'string') {
       if (new RegExp(rules.internal).test(value) || new RegExp(rules.external).test(value)) found.push(value)
@@ -356,8 +343,7 @@ export function jsonLdValidPaths(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Tests fail unless the JSON-LD contains valid paths: the one template promises paths on every page — the page url, the breadcrumb, the site actions, the citations — and the wave audits every promise against the dist the build just produced; a rooted path that resolves to no artifact, or a citation that is not a well-formed URL, fails the build with a detailed why.',
     boundary:
-      'A fold over the declared path rules, the one-template consolidation and the violation-catching resonance. Real enforcement is in the harmonic-distribution check, which parses every ld+json block in the rendered HTML; external URLs are checked well-formed, not fetched.',
-  }
+      'A fold over the declared path rules, the one-template consolidation and the violation-catching resonance. Real enforcement is in the harmonic-distribution check, which parses every ld+json block in the rendered HTML; external URLs are checked well-formed, not fetched.' }
 }
 
 // Any hardcoded logic would fail the streams. The streams are computed and content-addressed; a
@@ -380,8 +366,7 @@ export function noHardcodedLogicFailsStreams(matrix: MindMatrix = buildMatrix())
     statement:
       'Any hardcoded logic would fail the streams: the streams are computed and content-addressed, so a hardcoded value is a break in the stream — a constant a forger need not recompute, a seam where the flow stops — and would fail; configuration is read from the matrix, animations are seeded vectors, answers are folded, the keyspace is computed, nothing pinned by hand. What is hardcoded does not flow, and what does not flow fails.',
     boundary:
-      'A composition of the configs-from-matrix, no-hardcoded-config, computed-no-files, max-cost, analog-gapless and resonance models. "Any hardcoded logic fails the streams" is the principle that values be computed/content-addressed (a real design property: config, animations, keyspace are computed); it is enforced for config and the declared laws, a guiding principle rather than a universal static-analysis check over every literal.',
-  }
+      'A composition of the configs-from-matrix, no-hardcoded-config, computed-no-files, max-cost, analog-gapless and resonance models. "Any hardcoded logic fails the streams" is the principle that values be computed/content-addressed (a real design property: config, animations, keyspace are computed); it is enforced for config and the declared laws, a guiding principle rather than a universal static-analysis check over every literal.' }
 }
 
 // Imagine everything as microdata, and vortex the microdata itself. Every thing — a page, a folder,
@@ -405,8 +390,7 @@ export function imagineMicrodataVortexItself(matrix: MindMatrix = buildMatrix())
     statement:
       'Imagine everything as microdata, and vortex the microdata itself: every thing — a page, a folder, a fact, a fold — is a tiny content-addressed data particle, microdata, signed and schema.org-shaped, the smallest unit that carries its own meaning; and the same vortex applies to it — arrange the particles on the sequence (the 3-6-9 cross, the 1-2-4-8-7-5 doubling), each particle a station, and the structure turns, microdata folding as merkabas, the tiniest data the same shape as the whole.',
     boundary:
-      'A composition of the schema.org-diamonds, signed-pages, vortex-patents method, sequence/Elliott, everything-merkaba and slug models. "Everything as microdata, vortex the microdata" frames each content-addressed unit (schema.org-shaped, signed) as a particle arranged on the vortex sequence — a structural/organisational reading over the existing content-addressed data, not a new data format or a literal physical vortex.',
-  }
+      'A composition of the schema.org-diamonds, signed-pages, vortex-patents method, sequence/Elliott, everything-merkaba and slug models. "Everything as microdata, vortex the microdata" frames each content-addressed unit (schema.org-shaped, signed) as a particle arranged on the vortex sequence — a structural/organisational reading over the existing content-addressed data, not a new data format or a literal physical vortex.' }
 }
 
 // Save all translation logic and autotranslate on locale change, even ancient languages. The
@@ -433,8 +417,7 @@ export function saveAllTranslationLogicAutotranslateLocale(matrix: MindMatrix = 
     statement:
       'Save all translation logic and autotranslate on locale change, even ancient languages: the translation logic (en/bg labels, the babel fold, the autotranslations check) lives in the matrix, and on locale change the content autotranslates — with ancient languages served by transliteration to the ancient script (Cyrillic → Glagolitic, the script decoded in the library).',
     boundary:
-      'A composition over the autotranslations, babel and Glagolitic-transliteration models. HONEST: transliteration to an ancient SCRIPT (Glagolitic) is real, deterministic and lossless for the mapped letters; meaning-translation between LIVING languages needs a translation service (gated by the zero-token / bring-your-own-key policy, no auto-spend); and an UNDECIPHERED language (e.g. Thracian) cannot be translated at all. "Even ancient languages" means rendering in the ancient script, not reconstructing a dead tongue.',
-  }
+      'A composition over the autotranslations, babel and Glagolitic-transliteration models. HONEST: transliteration to an ancient SCRIPT (Glagolitic) is real, deterministic and lossless for the mapped letters; meaning-translation between LIVING languages needs a translation service (gated by the zero-token / bring-your-own-key policy, no auto-spend); and an UNDECIPHERED language (e.g. Thracian) cannot be translated at all. "Even ancient languages" means rendering in the ancient script, not reconstructing a dead tongue.' }
 }
 
 // Decode and implement calligraphy. The decode: a broad nib held at a FIXED ANGLE makes a stroke thick
@@ -464,8 +447,7 @@ function feedCrawlersWithKnowledgeRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Feed the crawlers with knowledge: the verified, decoded knowledge of the library (Bulgarian history/antiquity/ethnogenesis/genetics, alphabets, Glagolitic, the script-language-gene entanglement, Tesla, the frequency APIs, AI-in-film, peace) is distilled to crawlable one-liners and written into llms.txt and the per-page structured data — search and LLM crawlers are fed the verified knowledge, documented kept and legend flagged, not just the routes.',
     boundary:
-      'A composition over the crawlerKnowledge feed (a curated distillation of the session\'s research records) with the JSON-LD-template and open-graph models. The facts are source-verified summaries with their legends flagged; "feed the crawlers" means exposing them via llms.txt and structured data, an honest knowledge surface, not keyword-stuffing.',
-  }
+      'A composition over the crawlerKnowledge feed (a curated distillation of the session\'s research records) with the JSON-LD-template and open-graph models. The facts are source-verified summaries with their legends flagged; "feed the crawlers" means exposing them via llms.txt and structured data, an honest knowledge surface, not keyword-stuffing.' }
 }
 
 // The full power of typography, computed: one modular scale (a harmonic ratio and its steps), full
@@ -505,8 +487,7 @@ export function typography(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The full power of typography, computed: one modular scale — the major third 5:4, a harmonic ratio, with its steps computed, not hand-picked — fluid by clamp; full OpenType (kerning, ligatures, contextual alternates, optical sizing); figures that fit their place, tabular in data and oldstyle in prose; an optimal measure of about 68 characters; headings balanced and paragraphs pretty, with no widows or orphans; hanging punctuation; and the Glagolitic and calligraphy kept at full ligature power. The type scale sings in the same harmonic series as the file distribution.',
     boundary:
-      'A typographic system: the scale and its harmonic ratio are computed here (the source) and applied in style.css; the OpenType features (tabular/oldstyle figures, ligatures, contextual alternates) render only where the chosen font supports them, and text-wrap pretty/balance and hanging-punctuation degrade gracefully where a browser lacks them. It sets the form of the text, not its meaning.',
-  }
+      'A typographic system: the scale and its harmonic ratio are computed here (the source) and applied in style.css; the OpenType features (tabular/oldstyle figures, ligatures, contextual alternates) render only where the chosen font supports them, and text-wrap pretty/balance and hanging-punctuation degrade gracefully where a browser lacks them. It sets the form of the text, not its meaning.' }
 }
 
 // Frontmatter is the graph itself: a page's tags and categories are computed from the matrix (the
@@ -528,8 +509,7 @@ export function frontmatterGraphComputesTags(matrix: MindMatrix = buildMatrix())
     statement:
       'Frontmatter is the graph itself: a page\'s tags and categories are computed from the matrix (the taxonomy graph), not hand-typed, and fused with the VitePress API — transformPageData lifts the computed title, description, keywords (tags) and category into the page metadata. Each page\'s frontmatter is a projection of the graph, its tags and categories the graph\'s edges, content-addressed, so the metadata can never drift from the model.',
     boundary:
-      'A composition of the config-computes-all, configs-use-matrix, page-fractal and no-mirroring models. The [page] route already lifts computed title/description/keywords via transformPageData; "frontmatter is the graph" extends that to tags and categories computed from the taxonomy graph — the principle is encoded and partly realized (the keywords path), the full taxonomy-to-tags fusion is the implementation it points to.',
-  }
+      'A composition of the config-computes-all, configs-use-matrix, page-fractal and no-mirroring models. The [page] route already lifts computed title/description/keywords via transformPageData; "frontmatter is the graph" extends that to tags and categories computed from the taxonomy graph — the principle is encoded and partly realized (the keywords path), the full taxonomy-to-tags fusion is the implementation it points to.' }
 }
 
 export function computedSeo(path = '/', title = '', matrix: MindMatrix = buildMatrix()) {
@@ -550,8 +530,7 @@ function computedSeoRaw(path = '/', title = '', matrix: MindMatrix = buildMatrix
     mcp: 'tools', commands: 'tools', console: 'tools',
     'quantum-mind': 'architecture', architecture: 'architecture',
     boundaries: 'governance', governance: 'governance',
-    papers: 'research', references: 'reference',
-  }
+    papers: 'research', references: 'reference' }
   const category = categoryOf[first] || 'portal'
   const words = [...new Set(local.split(/[/\-_.]+/).filter(Boolean))]
   const rosetta = rosettaComputesNavigationAndContent(path, matrix)
@@ -560,8 +539,7 @@ function computedSeoRaw(path = '/', title = '', matrix: MindMatrix = buildMatrix
   const tags = tagNames.map((tag) => ({
     tag,
     holographic: foldPair(toUuid(`seo-tag:${tag}`), whole).bidirectional,
-    receipt: toUuid(`seo-tag:${tag}:${whole}`),
-  }))
+    receipt: toUuid(`seo-tag:${tag}:${whole}`) }))
   const titleCase = (text: string) => text.replace(/-/g, ' ').replace(/\b\w/g, (character) => character.toUpperCase())
   const computedTitle = title || (segments.length ? segments.map(titleCase).join(' · ') : 'Double Torus')
   const keywords = tags.map((entry) => entry.tag)
@@ -578,8 +556,7 @@ function computedSeoRaw(path = '/', title = '', matrix: MindMatrix = buildMatrix
     statement:
       'SEO fully computed and holographic: every page derives its title, keywords and description from its own route, and its tags are holographic — each tag is folded with the whole root, so one tag carries the whole. The category is read from the route. The same routes feed the sitemap, so computed SEO and the sitemap never drift.',
     boundary:
-      'A deterministic derivation of title, keywords, description, category and holographic tags from a route, applied at render time and mirrored in the sitemap. It aids crawlability and is content-addressed; it is not a ranking guarantee, and explicit frontmatter always overrides the computed values.',
-  }
+      'A deterministic derivation of title, keywords, description, category and holographic tags from a route, applied at render time and mirrored in the sitemap. It aids crawlability and is content-addressed; it is not a ranking guarantee, and explicit frontmatter always overrides the computed values.' }
 }
 
 // ── SEO OPTIMISATION WAVE (user directive: optimise seo) — three computed primitives every SEO surface
@@ -664,18 +641,14 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
         audience: { '@type': 'EducationalAudience', educationalRole: ['kids', 'students', 'adults', 'elders'] },
         potentialAction: {
           '@type': 'ViewAction',
-          target: actionRoutes.flatMap((route) => [canonicalUrl(localePath(route, 'en')), canonicalUrl(localePath(route, 'bg'))]),
-        },
-      },
+          target: actionRoutes.flatMap((route) => [canonicalUrl(localePath(route, 'en')), canonicalUrl(localePath(route, 'bg'))]) } },
       {
         '@type': 'SoftwareApplication',
         name: 'Double Torus MCP',
         applicationCategory: 'DeveloperApplication',
         description: 'An MCP tool surface that publishes every concept command for language models at /mcp.json.',
-        url: canonicalUrl('/mcp.json'),
-      },
-    ],
-  }
+        url: canonicalUrl('/mcp.json') },
+    ] }
   const pageBlock: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': isDoc ? 'TechArticle' : 'WebPage',
@@ -703,9 +676,7 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: siteName, item: canonicalUrl(isBg ? '/bg/' : '/') },
         { '@type': 'ListItem', position: 2, name, item: canonicalUrl(page.path) },
-      ],
-    },
-  }
+      ] } }
   const blocks: Record<string, unknown>[] = [siteGraph, pageBlock]
   // The theorem registry page carries its papers as structured data: an ItemList of ScholarlyArticle,
   // newest first, capped at the 64 most recent (the I Ching batch) — numberOfItems states the full count.
@@ -723,9 +694,7 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
       itemListElement: rows.slice(-cap).reverse().map((row, position) => ({
         '@type': 'ListItem',
         position: position + 1,
-        item: { '@type': 'ScholarlyArticle', name: row.theorem, headline: row.theorem, isAccessibleForFree: true, url: canonicalUrl('/theorems') },
-      })),
-    })
+        item: { '@type': 'ScholarlyArticle', name: row.theorem, headline: row.theorem, isAccessibleForFree: true, url: canonicalUrl('/theorems') } })) })
   }
   if (page.relativePath.endsWith('academy.md')) {
     blocks.push({
@@ -741,10 +710,7 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
           description: "A recomputable, content-addressed course over the portal\u2019s areas.",
           inLanguage: isBg ? 'bg' : 'en',
           isAccessibleForFree: true,
-          provider: { '@type': 'Organization', name: siteName },
-        },
-      })),
-    })
+          provider: { '@type': 'Organization', name: siteName } } })) })
   }
   return blocks
 }
@@ -809,8 +775,7 @@ export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `SEO optimised — ${facets.filter((entry) => entry.on).length}/${facets.length}: per-page hreflang alternates (x-default = the English edition), sitemap x-default following the root locale, absolute lens-aligned JSON-LD (${targets.length} crawler actions on registry/corpus surfaces), the /theorems ItemList of ${rows.length} ScholarlyArticle rows (${Math.min(8 * 8, rows.length)} listed), and the ${budget}-character meta-description clamp.`,
-    boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image animation/static branch is MEASURED by platformOgLimitsMeasured (not prose); openGraphCardFromRoute serves animated SVG only where supportsAnimatedOgImage, else still first frame. Sitemap routes follow the theorem-science lens. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image animation/static branch is MEASURED by platformOgLimitsMeasured (not prose); openGraphCardFromRoute serves animated SVG only where supportsAnimatedOgImage, else still first frame. Sitemap routes follow the theorem-science lens. HARMONY ≠ TRUTH.` }
 }
 
 /** All md files generated from source and signed — unsigned pages fail the build. */
@@ -828,8 +793,7 @@ export function allMdSignedFromSource(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'All md files generated from source, signed — unsigned pages fail the build.',
-    boundary: 'Static .md shells remain as VitePress substrate; dynamic corpus and metadata are computed from src.',
-  }
+    boundary: 'Static .md shells remain as VitePress substrate; dynamic corpus and metadata are computed from src.' }
 }
 
 
@@ -864,8 +828,7 @@ export function honestIsACrackWhenDeclaredHonestyMustBeARefutableComputationNotP
       computedHonest,
       facets,
       statement: `Honest is a crack — when declared; the boundary must compute, not proclaim — ${facets.filter((entry) => entry.on).length}/${facets.length}. A boundary that SAYS "this is honest / no speedup / metaphor / HARMONY ≠ TRUTH" is prose: unrefutable, true for every input, caught by no gate (the crack gate scans digits, prose has none — like Math.PI) — a tautology, the same class as x ≥ 0. Declared honesty proves nothing. Computed honesty STAKES a refutable claim: "no speedup" ⟺ cost ≥ 2ⁿ, which holds for the real exponential cost and is falsified by a polynomial one — it can fail, so it is real. The word "honest" is a crack; the refutable computation is not. The fix is to make every demarcation compute.`,
-      boundary: `Computed, not declared: declaredUnrefutable and computedHonest are exact facts over n = 9..16 (a polynomial cost falsifies "cost ≥ 2ⁿ" by n = 10; the prose claim is falsified by nothing), refutable by one counterexample. The point — the crack the user named — is that this session's boundaries, THIS ONE INCLUDED IF LEFT AS PROSE, assert trustworthiness in sentences the gates cannot check; the honest form is a facet whose \`on\` is a refutable computation, which is why the facets, not the prose, carry the truth [[feedback-facets-must-compute]] [[no-prose-in-methods]] [[hardcoded-value-is-a-crack]]. Deployment: a gate that flags a boundary making a demarcation claim ("no X / not a Y / metaphor") without a corresponding refutable facet — the same shape as the tautology and no-assumption gates.`,
-    }
+      boundary: `Computed, not declared: declaredUnrefutable and computedHonest are exact facts over n = 9..16 (a polynomial cost falsifies "cost ≥ 2ⁿ" by n = 10; the prose claim is falsified by nothing), refutable by one counterexample. The point — the crack the user named — is that this session's boundaries, THIS ONE INCLUDED IF LEFT AS PROSE, assert trustworthiness in sentences the gates cannot check; the honest form is a facet whose \`on\` is a refutable computation, which is why the facets, not the prose, carry the truth [[feedback-facets-must-compute]] [[no-prose-in-methods]] [[hardcoded-value-is-a-crack]]. Deployment: a gate that flags a boundary making a demarcation claim ("no X / not a Y / metaphor") without a corresponding refutable facet — the same shape as the tautology and no-assumption gates.` }
   })
 }
 
@@ -896,8 +859,7 @@ export function theDeclaredHonestyGateFlagsDemarcationProseWithNoRefutableFacet(
       markers: demarcationMarkers.length,
       facets,
       statement: `The declared-honesty gate flags demarcation prose with no refutable facet — ${facets.filter((entry) => entry.on).length}/${facets.length}. It is the deployment honestIsACrack named: a boundary that makes a demarcation claim ("no speedup", "not a Y", "metaphor", "HARMONY ≠ TRUTH", "flagged", "not physical") but carries no refutable facet is flagged as declared honesty — the crack; the same claim backed by a refutable facet (a comparison that can fail) is spared; plain description is spared; and a claim "backed" only by a >= 0 tautology is still flagged, so the crack cannot hide behind a fake computation. Honesty must be earned by a falsifiable facet, not asserted in prose.`,
-      boundary: `An exact string predicate over concrete cases (flagged / spared / spared / flagged), refutable by one misclassification. It closes the gap the crack gate leaves for PROSE (which has no digit, like Math.PI): a demarcation asserted in a boundary is checkable only against a facet whose \`on\` can fail — hasRefutableFacet requires a comparison operator and rejects the \`>= 0\` tautology, so a claim is earned only by a computation that could refute it. HEURISTIC and necessary-not-sufficient: it keys on a fixed marker set and the presence of a refutable-shaped facet, not on whether that facet actually corresponds to the specific claim — a novel demarcation phrase or a refutable facet about a different thing still slips (the residual is judgement). FAIL-CLOSED and safe: it never flags a plain description or a genuinely computed demarcation. Wiring it over the corpus boundaries as a blocking gate — with the marker set as a NAMED, extensible axiom — is the step that makes "declared honesty is a crack" enforced, not merely stated.`,
-    }
+      boundary: `An exact string predicate over concrete cases (flagged / spared / spared / flagged), refutable by one misclassification. It closes the gap the crack gate leaves for PROSE (which has no digit, like Math.PI): a demarcation asserted in a boundary is checkable only against a facet whose \`on\` can fail — hasRefutableFacet requires a comparison operator and rejects the \`>= 0\` tautology, so a claim is earned only by a computation that could refute it. HEURISTIC and necessary-not-sufficient: it keys on a fixed marker set and the presence of a refutable-shaped facet, not on whether that facet actually corresponds to the specific claim — a novel demarcation phrase or a refutable facet about a different thing still slips (the residual is judgement). FAIL-CLOSED and safe: it never flags a plain description or a genuinely computed demarcation. Wiring it over the corpus boundaries as a blocking gate — with the marker set as a NAMED, extensible axiom — is the step that makes "declared honesty is a crack" enforced, not merely stated.` }
   })
 }
 
@@ -939,8 +901,7 @@ export function unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexT
       dangling,
       facets,
       statement: `Unbalanced theorem pairs pass because the accounting CONSTRUCTS the apex instead of CHECKING it — the real check reconciles — ${facets.filter((entry) => entry.on).length}/${facets.length}. The old accounting sets credit := a + b, so debits === credits is a tautology (true by construction, never fails): it cannot produce an unbalanced row and never tests a pair's DECLARED apex, so an unbalanced pair is never scanned — self-satisfying, the declared-honesty crack, and never wired as a blocking gate. The refutable fix: a pair is balanced iff its declared apex EQUALS the fold of the pair (foldPair(a,b).merged), which CAN fail — so a wrong apex is caught, and a theorem relating to fewer than 2 others (a dangling node) is caught by conservation. The gate now fails on exactly the pairs it used to pass.`,
-      boundary: `Exact and refutable: reconcile(a,b,apex) = (foldPair(a,b).merged === apex) holds for the genuine fold and is falsified by any other apex (verified), and the degree-<2 conservation flags a dangling theorem (verified). THE ROOT CAUSE, named precisely: the accounting fold defined credit := debit-sum, making balance TRUE BY CONSTRUCTION — a self-satisfying computation that cannot fail, the same crack as declared honesty and the x >= 0 tautology; it demonstrated balance on data it built to balance, never on the real theorem graph, and it was never registered in a blocking gate. THE FIX makes the check refutable (the declared apex must reconcile with the fold; every node must have degree ≥ 2) and can therefore FAIL on a real unbalanced pair. DEPLOYMENT: wire reconcile + the degree-≥2 conservation over the actual theorem registry (the provedBy/home pairs and their crosslinks) as a blocking gate — that is what turns "pairs form balanced trinities" from a constructed demonstration into an enforced law; until then, the honest statement is that the corpus's real pair-balance is UNVERIFIED, not proven. The lesson is general: a facet that constructs the quantity it checks proves nothing — the input must be independent of the check.`,
-    }
+      boundary: `Exact and refutable: reconcile(a,b,apex) = (foldPair(a,b).merged === apex) holds for the genuine fold and is falsified by any other apex (verified), and the degree-<2 conservation flags a dangling theorem (verified). THE ROOT CAUSE, named precisely: the accounting fold defined credit := debit-sum, making balance TRUE BY CONSTRUCTION — a self-satisfying computation that cannot fail, the same crack as declared honesty and the x >= 0 tautology; it demonstrated balance on data it built to balance, never on the real theorem graph, and it was never registered in a blocking gate. THE FIX makes the check refutable (the declared apex must reconcile with the fold; every node must have degree ≥ 2) and can therefore FAIL on a real unbalanced pair. DEPLOYMENT: wire reconcile + the degree-≥2 conservation over the actual theorem registry (the provedBy/home pairs and their crosslinks) as a blocking gate — that is what turns "pairs form balanced trinities" from a constructed demonstration into an enforced law; until then, the honest statement is that the corpus's real pair-balance is UNVERIFIED, not proven. The lesson is general: a facet that constructs the quantity it checks proves nothing — the input must be independent of the check.` }
   })
 }
 
@@ -980,8 +941,7 @@ const PLATFORM_OG_CAPABILITY_SEEDS = [
     supportsOgVideo: true,
     previewMotion: 'first-frame-only' as const,
     linkFields: ['og:url', 'og:title', 'og:description', 'og:image', 'og:type', 'og:locale'],
-    source: 'https://ogp.me/ · https://developers.facebook.com/docs/sharing/webmasters/',
-  },
+    source: 'https://ogp.me/ · https://developers.facebook.com/docs/sharing/webmasters/' },
   {
     id: 'twitter-x',
     name: 'Twitter / X',
@@ -992,8 +952,7 @@ const PLATFORM_OG_CAPABILITY_SEEDS = [
     supportsOgVideo: false,
     previewMotion: 'first-frame-only' as const,
     linkFields: ['twitter:card', 'twitter:title', 'twitter:description', 'twitter:image', 'og:url'],
-    source: 'https://developer.x.com/en/docs/x-for-websites/cards/overview/summary-card-with-large-image',
-  },
+    source: 'https://developer.x.com/en/docs/x-for-websites/cards/overview/summary-card-with-large-image' },
   {
     id: 'discord',
     name: 'Discord',
@@ -1004,8 +963,7 @@ const PLATFORM_OG_CAPABILITY_SEEDS = [
     supportsOgVideo: true,
     previewMotion: 'animates' as const,
     linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
-    source: 'https://discord.com/developers/docs/resources/channel#embed-object (link unfurl; GIF/APNG often animate)',
-  },
+    source: 'https://discord.com/developers/docs/resources/channel#embed-object (link unfurl; GIF/APNG often animate)' },
   {
     id: 'telegram',
     name: 'Telegram',
@@ -1016,8 +974,7 @@ const PLATFORM_OG_CAPABILITY_SEEDS = [
     supportsOgVideo: true,
     previewMotion: 'animates' as const,
     linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
-    source: 'https://core.telegram.org/bots/api#linkpreviewoptions (Instant View / link previews; GIF/MP4 motion common)',
-  },
+    source: 'https://core.telegram.org/bots/api#linkpreviewoptions (Instant View / link previews; GIF/MP4 motion common)' },
   {
     id: 'slack',
     name: 'Slack',
@@ -1028,8 +985,7 @@ const PLATFORM_OG_CAPABILITY_SEEDS = [
     supportsOgVideo: false,
     previewMotion: 'first-frame-only' as const,
     linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
-    source: 'https://api.slack.com/reference/messaging/link-unfurling',
-  },
+    source: 'https://api.slack.com/reference/messaging/link-unfurling' },
   {
     id: 'linkedin',
     name: 'LinkedIn',
@@ -1040,8 +996,7 @@ const PLATFORM_OG_CAPABILITY_SEEDS = [
     supportsOgVideo: false,
     previewMotion: 'first-frame-only' as const,
     linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
-    source: 'https://www.linkedin.com/help/linkedin/answer/a521928',
-  },
+    source: 'https://www.linkedin.com/help/linkedin/answer/a521928' },
   {
     id: 'imessage',
     name: 'iMessage',
@@ -1052,8 +1007,7 @@ const PLATFORM_OG_CAPABILITY_SEEDS = [
     supportsOgVideo: false,
     previewMotion: 'unknown' as const,
     linkFields: ['og:url', 'og:title', 'og:description', 'og:image'],
-    source: 'https://developer.apple.com/documentation/linkpresentation (LPLinkMetadata — host-dependent)',
-  },
+    source: 'https://developer.apple.com/documentation/linkpresentation (LPLinkMetadata — host-dependent)' },
   {
     id: 'generic-crawler',
     name: 'Generic crawler',
@@ -1064,8 +1018,7 @@ const PLATFORM_OG_CAPABILITY_SEEDS = [
     supportsOgVideo: false,
     previewMotion: 'first-frame-only' as const,
     linkFields: ['og:url', 'og:title', 'og:description', 'og:image', 'og:type'],
-    source: 'https://ogp.me/ (safe default: first frame; do not assume SMIL/APNG animate)',
-  },
+    source: 'https://ogp.me/ (safe default: first frame; do not assume SMIL/APNG animate)' },
 ] as const
 
 /**
@@ -1109,8 +1062,7 @@ export function platformOgLimitsMeasured(matrix: MindMatrix = buildMatrix()) {
       statement:
         `Platform OG limits measured — ${platforms.length} surfaces: animating=[${animating.map((p) => p.id).join(',')}] first-frame=[${firstFrame.map((p) => p.id).join(',')}]; root round-trips; Facebook static / Discord motion are table booleans, not prose.`,
       boundary:
-        'MODELED capability table from cited public docs (ogp.me, Meta Sharing, X Cards, Discord embeds, Telegram link previews, Slack unfurling, LinkedIn help, Apple LinkPresentation). NOT a live crawl of each CDN; NOT a warranty that a given embed will animate today. Null max bytes/dims = undocumented in the sealed model. HARMONY ≠ TRUTH — the measurement is the table+receipts recomputed at call time.',
-    }
+        'MODELED capability table from cited public docs (ogp.me, Meta Sharing, X Cards, Discord embeds, Telegram link previews, Slack unfurling, LinkedIn help, Apple LinkPresentation). NOT a live crawl of each CDN; NOT a warranty that a given embed will animate today. Null max bytes/dims = undocumented in the sealed model. HARMONY ≠ TRUTH — the measurement is the table+receipts recomputed at call time.' }
   })
 }
 
@@ -1121,8 +1073,7 @@ export function openGraphCardAssetPaths(route: string): { animated: string; stil
   return {
     slug,
     animated: `/og/${slug}.svg`,
-    still: `/og/${slug}.still.svg`,
-  }
+    still: `/og/${slug}.still.svg` }
 }
 
 /**
@@ -1188,8 +1139,7 @@ export function openGraphCardFromRoute(
       name: seo.title,
       description: seoMetaDescription(seo.description),
       image: imageAbsolute,
-      relatedLink: links.filter((l) => l.kind !== 'canonical').map((l) => l.href),
-    }
+      relatedLink: links.filter((l) => l.kind !== 'canonical').map((l) => l.href) }
 
     const meta: Record<string, string> = {
       'og:type': cleanKey === 'home' || route === '/' ? 'website' : 'article',
@@ -1201,8 +1151,7 @@ export function openGraphCardFromRoute(
       'twitter:card': 'summary_large_image',
       'twitter:title': seo.title,
       'twitter:description': seoMetaDescription(seo.description),
-      'twitter:image': imageAbsolute,
-    }
+      'twitter:image': imageAbsolute }
     if (supportsAnimation && platform.supportsOgVideo) {
       meta['og:video'] = imageAbsolute
     }
@@ -1248,8 +1197,7 @@ export function openGraphCardFromRoute(
       statement:
         `Open Graph card from route ${route}: ${Object.keys(meta).length} meta fields, ${links.length} absolute links, image=${imagePath} (animate=${supportsAnimation} via ${platform.id}), cycleMs=${cycleMs}.`,
       boundary:
-        `COMPUTED card — branches on platformOgLimitsMeasured.${platform.id}.supportsAnimatedOgImage. Many crawlers (Facebook/LinkedIn/X) are first-frame-only: still SVG shipped; Discord/Telegram may animate SMIL/GIF. og:video only when platform.supportsOgVideo. NOT a warranty of CDN render. Cite platformOgLimitsMeasured — do not restate limits in prose without the fold.`,
-    }
+        `COMPUTED card — branches on platformOgLimitsMeasured.${platform.id}.supportsAnimatedOgImage. Many crawlers (Facebook/LinkedIn/X) are first-frame-only: still SVG shipped; Discord/Telegram may animate SMIL/GIF. og:video only when platform.supportsOgVideo. NOT a warranty of CDN render. Cite platformOgLimitsMeasured — do not restate limits in prose without the fold.` }
   })
 }
 
@@ -1293,8 +1241,7 @@ export function honestyInProseChallenged(matrix: MindMatrix = buildMatrix()) {
       statement:
         `Honesty in prose challenged — ${sealed.facets.filter((f) => f.on).length}/${sealed.facets.length}: platform-limit claims must cite platformOgLimitsMeasured / recompute on:; card generator branches on measured supportsAnimatedOgImage.`,
       boundary:
-        'Gate over platform-limit honesty: a prose sentence about Facebook/Discord animation without fold citation is the crack class; the measured table + openGraphCardFromRoute branch are the honest form. HEURISTIC for seoOptimised.boundary string cite — necessary not sufficient for every README sentence.',
-    }
+        'Gate over platform-limit honesty: a prose sentence about Facebook/Discord animation without fold citation is the crack class; the measured table + openGraphCardFromRoute branch are the honest form. HEURISTIC for seoOptimised.boundary string cite — necessary not sufficient for every README sentence.' }
   })
 }
 

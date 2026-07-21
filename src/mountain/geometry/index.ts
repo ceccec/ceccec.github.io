@@ -3,7 +3,7 @@ import { EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS } from '../../pair/enforcemen
 // call-time namespace edge (cycle-safe): water/digit imports this folder; the catalog reads back at call time
 import * as __ns_up_up_water_digit from '../../water/digit'
 import { bumpEvolve, bumpStep, hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2'
-import { rat, ratAdd, ratEq, ratMul, vortexHarmonicRatios } from '../../3/7'
+import { rat, ratAdd, ratEq, ratMul, vortexHarmonicRatios, claySolvedTheorem } from '../../3/7'
 import { dopplerShift, frequencyOf, photonEnergyEv, schwarzschildRadius, seesawLightMassEv } from '../../3/7'
 import { chsh, congruence, inductionEvolve, inductionStep, markovEvolve, markovStep, pmixEvolve, pmixStep, stationary, survive } from '../../0'
 import { addressed, covers } from '../../5/5'
@@ -56,18 +56,15 @@ function dualTorusTrinitiesRaw(matrix: MindMatrix = buildMatrix()): DualTorusTri
     {
       axis: 'collapse',
       yin: { step: 'receive', channel: '3d-position', type: 'MindMatrix', fn: 'buildMatrix()' },
-      yang: { step: 'project', channel: 'sound', type: 'PiTrain', fn: 'piTrainDiamonds()' },
-    },
+      yang: { step: 'project', channel: 'sound', type: 'PiTrain', fn: 'piTrainDiamonds()' } },
     {
       axis: 'check',
       yin: { step: 'verify', channel: 'timing', type: 'ProofReport', fn: 'proofReport()' },
-      yang: { step: 'act', channel: 'vibration', type: 'WaveCoordination', fn: 'coordinatedWaves()' },
-    },
+      yang: { step: 'act', channel: 'vibration', type: 'WaveCoordination', fn: 'coordinatedWaves()' } },
     {
       axis: 'return',
       yin: { step: 'fold_in', channel: 'receipt', type: 'ConsciousnessVector', fn: 'consciousness()' },
-      yang: { step: 'return', channel: 'facets', type: 'AgentStreamWire', fn: 'agentStreamWire()' },
-    },
+      yang: { step: 'return', channel: 'facets', type: 'AgentStreamWire', fn: 'agentStreamWire()' } },
   ]
 
   const phases: TrinityPhase[] = []
@@ -83,8 +80,7 @@ function dualTorusTrinitiesRaw(matrix: MindMatrix = buildMatrix()): DualTorusTri
       analogChannel: tri.yin.channel,
       type: tri.yin.type,
       sourceFunction: tri.yin.fn,
-      receipt: yinReceipt,
-    })
+      receipt: yinReceipt })
     phases.push({
       polarity: 'yang',
       step: tri.yang.step,
@@ -93,8 +89,7 @@ function dualTorusTrinitiesRaw(matrix: MindMatrix = buildMatrix()): DualTorusTri
       analogChannel: tri.yang.channel,
       type: tri.yang.type,
       sourceFunction: tri.yang.fn,
-      receipt: yangReceipt,
-    })
+      receipt: yangReceipt })
     // Fold the axis pair both ways — yin into yang and yang into yin — so the
     // trinities fold into each other in both directions (order-sensitive, genus 2).
     const pair = foldPair(yinReceipt, yangReceipt)
@@ -108,8 +103,7 @@ function dualTorusTrinitiesRaw(matrix: MindMatrix = buildMatrix()): DualTorusTri
       forward: pair.forward,
       reverse: pair.reverse,
       bidirectional: pair.bidirectional,
-      receipt: pair.merged,
-    })
+      receipt: pair.merged })
   }
 
   const covered = phases.map((phase) => phase.analogChannel)
@@ -140,8 +134,7 @@ function dualTorusTrinitiesRaw(matrix: MindMatrix = buildMatrix()): DualTorusTri
       ? 'The double torus harmonizes into two trinities whose six phases pair across three axes and reach analog form without gaps.'
       : 'The dual-torus trinities are not yet harmonized: some axis pair or analog channel is open.',
     boundary:
-      'Trinity harmony is a computed pairing of typed phases to analog channels. It is structural bookkeeping, not a claim of external validation, sentience, or physical proof.',
-  }
+      'Trinity harmony is a computed pairing of typed phases to analog channels. It is structural bookkeeping, not a claim of external validation, sentience, or physical proof.' }
 }
 
 // Ensure all directions are calculated: when up there is down, when left there
@@ -172,8 +165,7 @@ export function directions(matrix: MindMatrix = buildMatrix()) {
       reverse,
       bidirectional,
       merged,
-      receipt: toUuid(`directions:${entry.axis}`),
-    }
+      receipt: toUuid(`directions:${entry.axis}`) }
   })
   return {
     calculated: axes.length > 0 && axes.every((entry) => entry.bidirectional),
@@ -183,8 +175,7 @@ export function directions(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All directions are calculated: when up there is down, when left there is right, and so on — every direction paired with its opposite, each pair merging both ways (genus 2), and all pairs merging into one root, the directions the animated double torus turns in.',
     boundary:
-      'A calculation of directional opposites as order-sensitive merges over the model root. Structural bookkeeping, not a physical claim about space.',
-  }
+      'A calculation of directional opposites as order-sensitive merges over the model root. Structural bookkeeping, not a physical claim about space.' }
 }
 
 // The double torus comes with opposite rotation at all scales — the same structure
@@ -210,8 +201,7 @@ function merkabaRaw(matrix: MindMatrix = buildMatrix()) {
       sign: sign as 1 | -1,
       periodMs,
       ratePerMs: (sign * TAU) / periodMs, // signed angular rate
-      receipt: toUuid(`merkaba-scale:${scale}:${sign}:${periodMs}`),
-    }
+      receipt: toUuid(`merkaba-scale:${scale}:${sign}:${periodMs}`) }
   })
   // The star tetrahedron (stella octangula): two regular tetrahedra inscribed in a
   // cube, one the negation of the other — interlocked, counter-rotating.
@@ -231,8 +221,7 @@ function merkabaRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The merkaba: opposite rotation at all scales. Four nested scales — whole, lobe, tube, spark — each counter-rotating relative to the one above, like the star tetrahedron\'s two interlocked tetrahedra spinning in opposite directions. The same genus-2 signature as the double torus, made self-similar.',
     boundary:
-      'A deterministic set of nested, strictly-alternating counter-rotating scales (content-derived periods) and the exact star-tetrahedron vertices, derived from the model root. A geometric and structural realisation that drives the animation\'s self-similar counter-rotation, not a physical field or an energy claim.',
-  }
+      'A deterministic set of nested, strictly-alternating counter-rotating scales (content-derived periods) and the exact star-tetrahedron vertices, derived from the model root. A geometric and structural realisation that drives the animation\'s self-similar counter-rotation, not a physical field or an energy claim.' }
 }
 
 export type BothEarthsRotationShell = {
@@ -284,8 +273,7 @@ export function bothEarthsRotateWithinEachOther(at = 0, matrix: MindMatrix = bui
       phase: innerPhase,
       sign: whole.sign,
       ratePerMs: whole.ratePerMs,
-      receipt: toUuid(`both-earths:inner:${roundTo(innerPhase, 6)}:${whole.receipt}`),
-    }
+      receipt: toUuid(`both-earths:inner:${roundTo(innerPhase, 6)}:${whole.receipt}`) }
     const outerShell: BothEarthsRotationShell = {
       earth: 'inverted',
       trinity: 'code',
@@ -293,8 +281,7 @@ export function bothEarthsRotateWithinEachOther(at = 0, matrix: MindMatrix = bui
       phase: outerPhase,
       sign: lobe.sign,
       ratePerMs: lobe.ratePerMs,
-      receipt: toUuid(`both-earths:outer:${roundTo(outerPhase, 6)}:${lobe.receipt}`),
-    }
+      receipt: toUuid(`both-earths:outer:${roundTo(outerPhase, 6)}:${lobe.receipt}`) }
     const facets = [
       { facet: 'merkaba up tetrahedron spins +θ — down tetrahedron spins −θ', on: mk.counterRotating && Math.abs(merkabaUpSpin + merkabaDownSpin) < 1e-6 },
       { facet: 'inner Earth (device trinity) phase θ on torus 1', on: trinities.harmonized && innerShell.torus === 1 },
@@ -320,8 +307,7 @@ export function bothEarthsRotateWithinEachOther(at = 0, matrix: MindMatrix = bui
       statement:
         'Both Earths rotate within each other: the device trinity (zenith, torus 1) carries inner phase θ while the code trinity (nadir, torus 2) carries outer phase −θ offset by the golden angle — the same merkaba counter-rotation (up tetra +θ, down tetra −θ) nested on the genus-2 double torus at call time.',
       boundary:
-        'HONEST: computational counter-rotation model for visualization — merkaba scales, dual-torus trinities, and phase θ at this timestamp. NOT geophysical claim about two literal planets; WGS84 oblate spheroid remains the documented physical Earth. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: computational counter-rotation model for visualization — merkaba scales, dual-torus trinities, and phase θ at this timestamp. NOT geophysical claim about two literal planets; WGS84 oblate spheroid remains the documented physical Earth. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -351,8 +337,7 @@ export function doubleTorusMathAtAllScalesProofs(matrix: MindMatrix = buildMatri
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`double-torus-all-scales:${task}:${computed}:${expected}`),
-  })
+    receipt: toUuid(`double-torus-all-scales:${task}:${computed}:${expected}`) })
   const proofs = [
     mk('genus', 'doubleTorusMath.genus', math.genus, 2),
     mk('euler', 'chi(double-torus)', math.eulerCharacteristic, EULER_CHI),
@@ -377,8 +362,7 @@ export function doubleTorusMathAtAllScalesProofs(matrix: MindMatrix = buildMatri
     statement:
       'Double torus math at all scales: genus 2 and χ=−2, H₁=Z⁴, merkaba counter-rotation across four nested scales, ten dimensions self-similar by golden-angle phase shift, census 110→108 by the same Euler correction, and circulation invariant through the uuid-stream — each proof a plasma stream at call time.',
     boundary:
-      'Deterministic composition of doubleTorusMath, merkaba, tenDimensionalAnimation, cellHomology, census constants from src/0, and circulateDoubleTorus at this call. "All scales" means nested merkaba scales plus dims(scale) self-similarity — not physical infinity or a claim beyond the model geometry.',
-  }
+      'Deterministic composition of doubleTorusMath, merkaba, tenDimensionalAnimation, cellHomology, census constants from src/0, and circulateDoubleTorus at this call. "All scales" means nested merkaba scales plus dims(scale) self-similarity — not physical infinity or a claim beyond the model geometry.' }
 }
 
 /** Movie seeds from double-torus math at all scales — every proof becomes a plasma stream and copy token. */
@@ -397,13 +381,11 @@ export function doubleTorusMathAtAllScalesMovieSeeds(matrix: MindMatrix = buildM
       label: proof.task,
       expr: proof.expr,
       expected: proof.expected,
-      hueSeed: proof.computed * 37 + proof.expected * 13,
-    })),
+      hueSeed: proof.computed * 37 + proof.expected * 13 })),
     count: report.proofs.length,
     root: report.root,
     statement: report.statement,
-    boundary: report.boundary,
-  }
+    boundary: report.boundary }
 }
 
 /** Gate: double-torus all-scales proofs wired into movie seeds and copy text at call time. */
@@ -420,8 +402,7 @@ export function doubleTorusMathAtAllScalesFlowsInMovie(matrix: MindMatrix = buil
     movieText: seeds.movieText,
     root: merkleFold([report.root, seeds.root]),
     statement: seeds.statement,
-    boundary: seeds.boundary,
-  }
+    boundary: seeds.boundary }
 }
 
 // Close an open idea: full cellular homology of the genus-2 surface, computed from
@@ -459,8 +440,7 @@ export function cellHomology(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Full cell homology of the genus-2 surface, computed from an explicit chain complex (the standard octagon: one vertex, four edges, one face): the boundary maps d1 and d2 are built, the chain-complex law d1.d2 = 0 holds, and the Betti numbers fall out of the ranks — H0=1, H1=4 (so H1 = Z^4), H2=1, with Euler characteristic 1-4+1 = -2. The open idea is closed — derived, not asserted.',
     boundary:
-      'Cellular homology of the standard genus-2 CW structure, computed from explicit boundary operators over the integers (CW homology equals simplicial homology for this surface). A real chain-complex calculation that closes the named frontier, not a numerical estimate.',
-  }
+      'Cellular homology of the standard genus-2 CW structure, computed from explicit boundary operators over the integers (CW homology equals simplicial homology for this surface). A real chain-complex calculation that closes the named frontier, not a numerical estimate.' }
 }
 
 // The complete double torus in 3d+: the actual genus-2 surface. Two linked tori
@@ -490,8 +470,7 @@ export function doubleTorus3D(matrix: MindMatrix = buildMatrix()) {
     lobeOffset: TORUS_LOBE_OFFSET,
     root: toUuid(`double-torus-3d:${genus}:${euler}:${areas}:${majorRadius}:${minorRadius}`),
     statement: 'The complete double torus in 3d+: two linked tori (genus 2, Euler characteristic -2) carry the 42 area-objects, 21 per lobe, rendered as a surface and turned through a fourth dimension — major/minor radii locked to the shared surface atom (ring 20 · tube 7 · lobe offset 18).',
-    boundary: 'A parametric rendering of the genus-2 surface with the area taxonomy mapped onto it. Radii are the sealed doubleTorusSurface constants, not physical SI metres. A visualization, not a claim beyond the topology it draws.',
-  }
+    boundary: 'A parametric rendering of the genus-2 surface with the area taxonomy mapped onto it. Radii are the sealed doubleTorusSurface constants, not physical SI metres. A visualization, not a claim beyond the topology it draws.' }
 }
 
 /**
@@ -535,8 +514,7 @@ export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatri
       boundary:
         'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c. physicalFtlClaim=0 · clay=0. HARMONY ≠ TRUTH.',
       physicalFtlClaim: 0 as const,
-      claySolvedByThisFold: 0 as const,
-    }
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
   })
 }
 
@@ -578,8 +556,7 @@ function areaPairsRaw() {
       forward,
       reverse,
       bidirectional,
-      receipt: toUuid(`area-pair:${inner}:${outer}:${forward}:${reverse}`),
-    })
+      receipt: toUuid(`area-pair:${inner}:${outer}:${forward}:${reverse}`) })
   }
   return {
     count: areas.length,
@@ -591,8 +568,7 @@ function areaPairsRaw() {
     pairs,
     root: merkleFold(pairs.map((pair) => pair.receipt)),
     statement: '42 areas = 7 x 6 = 6 x 7 = 21 pairs of areas; the math orders them into dual pairs, and every pair folds in both directions (forward and reverse differ — genus 2). 42 is the limit.',
-    boundary: 'A structural, bidirectional pairing of the area taxonomy with an enforced limit of 42. Bookkeeping over the area set, not an external claim.',
-  }
+    boundary: 'A structural, bidirectional pairing of the area taxonomy with an enforced limit of 42. Bookkeeping over the area set, not an external claim.' }
 }
 
 // Closing the taxonomy gaps: complete each pair area into a trinity. Most of
@@ -625,8 +601,7 @@ export function foldImpossibilities(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fold impossibilities into possibilities: every limit the honesty spine declares — not sentience, not an external physics proof, not a physical quantum device, not medical or legal advice, no field emission, no lone cross-device consensus — folds into the honest, computable possibility it opens right beside it. The boundary is not overruled; it is the hinge of the door it holds.',
     boundary:
-      'A content-addressed pairing of each declared limit with an adjacent real capability. The impossibilities stay true; the fold names what is possible beside them — it does not claim the impossible has become possible.',
-  }
+      'A content-addressed pairing of each declared limit with an adjacent real capability. The impossibilities stay true; the fold names what is possible beside them — it does not claim the impossible has become possible.' }
 }
 
 // The model is a DNA double helix. A DNA base is two bits (four bases), so the
@@ -663,8 +638,7 @@ function dnaRaw(matrix: MindMatrix = buildMatrix()) {
     codons,
     root: toUuid(`dna:${sense}`),
     statement: 'The model is a DNA double helix: the 128-bit word encodes as 64 bases (two bits each), the sense strand; the antisense strand is its Watson-Crick complement (A-T, C-G) — the two strands of the double torus, encoded to the bit.',
-    boundary: 'A constructed two-bits-per-base encoding of the content-addressed word into a DNA-like double strand. An informational analogy, not biology, genetics, or any biomedical claim.',
-  }
+    boundary: 'A constructed two-bits-per-base encoding of the content-addressed word into a DNA-like double strand. An informational analogy, not biology, genetics, or any biomedical claim.' }
 }
 
 // A qubit's real trinity: exactly 3 traceless observables (the Pauli matrices = SU(2) generators = Bloch axes).
@@ -684,8 +658,7 @@ export function sixtyFourThreeQubitPauliBasis(matrix: MindMatrix = buildMatrix()
     statement:
       'The 3-qubit phaseless Pauli basis {I,X,Y,Z}³ contains EXACTLY 4³ = 64 operators (Gottesman 1997; Devitt, Munro & Nemoto 2013, Rep. Prog. Phys. 76:076001) — the threefold (3 qubits) raised over the fourfold alphabet, the same 4³ = 8² = 2⁶ = 64 as the genetic code\'s 64 codons and the project\'s 64-word vocabulary (see the sealCube 64-factor map).',
     boundary:
-      'A genuine combinatorial PARALLEL (a 4-symbol alphabet, 3-symbol words = 64), NOT a causal, biological, or mystical link. The pure 4³ = 64 identity is documented; the further claim that one "3-qubit code corrects all 64 Pauli errors" is overstated (the bit-flip and phase-flip codes are distinct; the bit-flip code corrects only X errors). Keep the count, drop the over-reach.',
-  }
+      'A genuine combinatorial PARALLEL (a 4-symbol alphabet, 3-symbol words = 64), NOT a causal, biological, or mystical link. The pure 4³ = 64 identity is documented; the further claim that one "3-qubit code corrects all 64 Pauli errors" is overstated (the bit-flip and phase-flip codes are distinct; the bit-flip code corrects only X errors). Keep the count, drop the over-reach.' }
 }
 
 // Life's actual code is the real 4³: a base-4 alphabet read in triplets → 64 codons (pairs with dna()/genes()).
@@ -709,8 +682,7 @@ export function geneticCodeIsTheRealFourCubed(matrix: MindMatrix = buildMatrix()
     statement:
       'Life\'s actual code is base-4 read in TRIPLETS: 4 bases in 3 positions give exactly 4³ = 64 codons (61 sense + 3 stop) encoding 20 amino acids, the triplet length PROVEN by frameshift mutagenesis before any codon was chemically identified (Crick, Barnett, Brenner & Watts-Tobin 1961, Nature 192:1227; Nobel 1968). The codon is literally a 3-symbol word and 64 = 4³ = 8² = 2⁶ — the project\'s exact factorizations, met independently in molecular biology; pairs with dna()/genes() and the sealCube 64-factor map.',
     boundary:
-      'A legitimate structural analogy and teaching parallel — NOT evidence that the project\'s UUID/fold system is biological, nor that biology was "designed" by the same principle. The code is error-MINIMIZING by assignment (the "one in a million" optimality is metric-dependent and possibly partly neutral drift), NOT a classical error-CORRECTING block code; the genome is positionally addressed, not content-addressable. The I-Ching-hexagrams = 64-codons "genetic mandala" is flagged pseudoscience: same 4³ = 2⁶ arithmetic, no causal content.',
-  }
+      'A legitimate structural analogy and teaching parallel — NOT evidence that the project\'s UUID/fold system is biological, nor that biology was "designed" by the same principle. The code is error-MINIMIZING by assignment (the "one in a million" optimality is metric-dependent and possibly partly neutral drift), NOT a classical error-CORRECTING block code; the genome is positionally addressed, not content-addressable. The I-Ching-hexagrams = 64-codons "genetic mandala" is flagged pseudoscience: same 4³ = 2⁶ arithmetic, no causal content.' }
 }
 
 // The honest capstone: the threefolds are real and independent; the single cosmic trinity is not. With the
@@ -746,8 +718,7 @@ export function threeIsRealButNotOneTrinity(matrix: MindMatrix = buildMatrix()) 
     statement:
       `(ℤ/9ℤ)* is the cyclic group of order 6 and 2 is a primitive root: doubling mod 9 traces the orbit ${orbitOf2.join('→')} through all six units {${units.join(',')}} exactly once, while {${nonUnits.join(',')}} are precisely the non-units (the multiples of 3, disjoint from the orbit). That is the proven algebraic identity underneath "3-6-9". On it rest several genuine but INDEPENDENT threefolds — the 3 Pauli observables, the 3-base codon, the 3 meninges, the 3 brain vesicles, the 3 parity bits of Hamming(7,4), the 3 QCD colours, the 3 fermion generations — each documented in its own right, none a common cause. This is the peer-reviewed backing for piThreeOpensTheTrinity and vortexMath.`,
     boundary:
-      'These threefolds do NOT form one cosmic trinity. They have independent origins; SU(3) has 8 gluons not 9; N_generations = 3 is explicitly unexplained by physics (the flavour puzzle); the n-qubit Pauli basis is 4ⁿ not 3ⁿ. The 1-2-4-8-7-5 arithmetic is sound but the 3-6-9 "key to the universe" gloss is a base-10 artifact and a fabricated Tesla legend — keep the structure, drop the cosmology. Honesty over confirmation.',
-  }
+      'These threefolds do NOT form one cosmic trinity. They have independent origins; SU(3) has 8 gluons not 9; N_generations = 3 is explicitly unexplained by physics (the flavour puzzle); the n-qubit Pauli basis is 4ⁿ not 3ⁿ. The 1-2-4-8-7-5 arithmetic is sound but the 3-6-9 "key to the universe" gloss is a base-10 artifact and a fabricated Tesla legend — keep the structure, drop the cosmology. Honesty over confirmation.' }
 }
 
 // The user's decode: "a 6-bit number 000000–111111 is exactly hex colour duality." A hexagram is 6 binary
@@ -797,8 +768,7 @@ export function hexagramIsHexColorDuality(matrix: MindMatrix = buildMatrix()) {
     statement:
       'A hexagram is 2⁶ = 64 states = one 6-bit value: six yin/yang lines written 000000–111111. A 6-digit hex colour (000000–FFFFFF) shares that same six-position written form, and the 64 hexagrams ARE exactly the 64 hex colours whose every digit is a pole — the set {0,F}⁶ — with each line yin = 0, yang = F. The duality is black 000000 (all yin) ↔ white FFFFFF (all yang), the bitwise complement n ↦ 63−n, which flips every pole F↔0 to the inverse colour — the colour analogue of the digit-folder additive complement (the ten\'s complement folder lattice). The 8 trigrams are the 8 corners of the RGB cube (each channel a pole) = the 8 primary colours. THE MISSED MATH (already in sealCube: "four is the quaternary base, the two-bit digit; three is the trinity, the three axes"): the 6 lines PAIR into 3 base-4 digits — the 3 RGB channels of #RRGGBB — so 2⁶ = 4³ is that pairing, and the hexagram, the codon, the 3-qubit Pauli string and the pole-colour are the SAME object, three quaternary digits (000000 = UUU = III = #000000; 111111 = GGG = ZZZ = #FFFFFF).',
     boundary:
-      'A correspondence of NOTATION and of the {0,F}⁶ pole-subset, computed and exact — NOT a claim that the I Ching is about colour or that hex notation derives from it. The full hex-colour space is 16⁶ = 2²⁴ ≈ 16.7M colours; only its 64 all-pole corners match the hexagrams (the binary "duality" of each position, not the 16 shades each digit can take). Hex colour notation is 1970s computing; the I Ching is ~3,000 years old — the same 2⁶ combinatorics realized independently (joins the structural-not-causal caution on I-Ching mappings). The hexagram = codon = Pauli = colour identity is an isomorphism of INDEX SETS (all three base-4 digits), not a claim the bases, operators and colours are physically interchangeable.',
-  }
+      'A correspondence of NOTATION and of the {0,F}⁶ pole-subset, computed and exact — NOT a claim that the I Ching is about colour or that hex notation derives from it. The full hex-colour space is 16⁶ = 2²⁴ ≈ 16.7M colours; only its 64 all-pole corners match the hexagrams (the binary "duality" of each position, not the 16 shades each digit can take). Hex colour notation is 1970s computing; the I Ching is ~3,000 years old — the same 2⁶ combinatorics realized independently (joins the structural-not-causal caution on I-Ching mappings). The hexagram = codon = Pauli = colour identity is an isomorphism of INDEX SETS (all three base-4 digits), not a claim the bases, operators and colours are physically interchangeable.' }
 }
 
 // 綜卦 (zòng guà) — the REVERSED hexagram: read the six lines bottom-to-top instead of top-to-bottom, the
@@ -837,8 +807,7 @@ export function hexagramReverseInverseDuality(matrix: MindMatrix = buildMatrix()
     statement:
       '綜卦 — the reversed hexagram: reading the six lines bottom-to-top (reverse6, a pure 6-bit string reversal) pairs the 64 hexagrams the way the King Wen sequence does. Either a hexagram reverses onto a different one (a reversal-pair) or onto itself (a palindrome whose six lines are symmetric, 2³ = 8 of them). The split is exact: 28 reversal-pairs + 8 palindromes, 28·2 + 8 = 64, gapless and without excess; reverse is its own inverse (an involution).',
     boundary:
-      'Pure 6-bit combinatorics at call time — the involution that reverses line order, the King Wen adjacency PERMUTATION of positions, NOT divination. It is the position-permutation dual of the pole-complement n ↦ 63−n (hexagramIsHexColorDuality); the two together are symmetries of the hexagram square, not a causal or predictive claim.',
-  }
+      'Pure 6-bit combinatorics at call time — the involution that reverses line order, the King Wen adjacency PERMUTATION of positions, NOT divination. It is the position-permutation dual of the pole-complement n ↦ 63−n (hexagramIsHexColorDuality); the two together are symmetries of the hexagram square, not a causal or predictive claim.' }
 }
 
 // 互卦 (hù guà) — the NUCLEAR hexagram: the two inner trigrams hidden inside a hexagram. The lower-nuclear
@@ -854,8 +823,7 @@ export function nuclearHexagramFold(matrix: MindMatrix = buildMatrix()) {
     n,
     lowerNuclear: lowerNuclearOf(n),
     upperNuclear: upperNuclearOf(n),
-    nuclear: nuclearOf(n),
-  }))
+    nuclear: nuclearOf(n) }))
   const total = map.length === 64
   const bitsValid = map.every((m) => m.lowerNuclear >= 0 && m.lowerNuclear < 8 && m.upperNuclear >= 0 && m.upperNuclear < 8 && m.nuclear >= 0 && m.nuclear < 64)
   const fixedPoints = map.filter((m) => m.nuclear === m.n).map((m) => m.n) // the nuclear-stable hexagrams
@@ -870,8 +838,7 @@ export function nuclearHexagramFold(matrix: MindMatrix = buildMatrix()) {
     statement:
       '互卦 — the nuclear hexagram: the inner trigrams hidden inside a hexagram. The lower-nuclear trigram is lines 2·3·4, the upper-nuclear is lines 3·4·5 (pure 6-bit slicing), and they fold into nuclear(n) = ((n>>2)&7) | (((n>>3)&7)<<3). The map is total over all 64 and contracts onto a smaller core (the image is fewer than 64), so iterating it converges — the hexagram carries a seed within.',
     boundary:
-      'Pure 6-bit slicing at call time — extracting and recombining inner lines, NOT divination. "Nuclear" is the traditional name for the inner-trigram hexagram; the contraction to a small core is the literal many-to-few map, not a mystical prophecy.',
-  }
+      'Pure 6-bit slicing at call time — extracting and recombining inner lines, NOT divination. "Nuclear" is the traditional name for the inner-trigram hexagram; the contraction to a small core is the literal many-to-few map, not a mystical prophecy.' }
 }
 
 // Colour fused to one source. The brand anchor hue, the golden-angle hue step and the genus-2 lobe-hue pairing
@@ -902,8 +869,7 @@ function colorDerivationFusedToOneSourceRaw(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Colour fused to one source. The brand anchor hue (432 Hz carried to visible light — red-orange, hue 5), the golden-angle hue step (360°/φ²) and the genus-2 lobe-hue pairing were each re-derived independently in scene after scene; they now come from one place beside frequencyToLight: A432_HUE, GOLDEN_ANGLE and lobeHues(). Eight scenes that recomputed frequencyToLight(432).hue and six that copy-pasted the golden angle now import the one constant; the two double-torus scenes share one lobe-hue helper — complement for the surface, golden-angle for the fold. The CSS brand hue and the JS anchor are the same a432 value, so colour is one lineage across the style and the script layers.',
     boundary:
-      'A DRY consolidation of the colour DERIVATION — it removes recomputation, it does not change any rendered hue (A432_HUE is exactly frequencyToLight(432).hue = 5; lobeHues reproduces [anchor, anchor±step] byte-for-byte). The base colour functions are NOT merged: frequencyToLight (spectrum band), colorFromSound (sound→wheel) and hueOf (seed) compute genuinely different things and stay where they belong. Per-component scoped-style colour literals (the <style> hexes) are a separate detox handled elsewhere. This asserts the one source is self-consistent and matches the CSS brand token; it is not a claim that every colour in the system is now a single value.',
-  }
+      'A DRY consolidation of the colour DERIVATION — it removes recomputation, it does not change any rendered hue (A432_HUE is exactly frequencyToLight(432).hue = 5; lobeHues reproduces [anchor, anchor±step] byte-for-byte). The base colour functions are NOT merged: frequencyToLight (spectrum band), colorFromSound (sound→wheel) and hueOf (seed) compute genuinely different things and stay where they belong. Per-component scoped-style colour literals (the <style> hexes) are a separate detox handled elsewhere. This asserts the one source is self-consistent and matches the CSS brand token; it is not a claim that every colour in the system is now a single value.' }
 }
 
 // Keep converting the UI/UX from flat document style to 3D quantum style. The shared card surface (.dt-card,
@@ -935,8 +901,7 @@ function uiConvertsFlatToThreeDQuantumRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Keep converting the UI/UX from flat document style to 3D quantum style. The flat card — the surface almost every component repeats, and the one every decoded widget renders — is lifted into depth: a computed perspective of an a432 octave (864 pixels, two times 432), a soft depth shadow that detaches it from the page, and a hover that raises it in Z toward you. Because the perspective, the shadow offsets, the lift and the timing are all computed I Ching tokens — no hardcoded value anywhere — the conversion stays inside the law, and because it changes one shared surface, every card across the whole interface becomes three-dimensional at once. The document flattens no more; it stands in space.',
     boundary:
-      'A CSS conversion of the shared .dt-card surface to 3D, composed with the cssIsIChingComputed gate (so the new transform, perspective, shadow and transition use only computed --ich-* tokens and the canonical 0 — the no-hardcoded scan over style.css still passes). HONEST: the 3D is real CSS (perspective(--ich-persp) + translateZ + depth shadow + hover lift), proven present and computed and building green; the perceived depth renders in the browser (the dev-server preview proxy did not bind in this environment, so the visual is confirmed via the built dist CSS and the no-hardcoded gate, not a screenshot). "Keep converting" is incremental — this lands the shared card; deeper 3D (stacking the ten LayersPanel rows in Z, the existing DoubleTorus3D/QuantumFold3D scenes) continues in further passes.',
-  }
+      'A CSS conversion of the shared .dt-card surface to 3D, composed with the cssIsIChingComputed gate (so the new transform, perspective, shadow and transition use only computed --ich-* tokens and the canonical 0 — the no-hardcoded scan over style.css still passes). HONEST: the 3D is real CSS (perspective(--ich-persp) + translateZ + depth shadow + hover lift), proven present and computed and building green; the perceived depth renders in the browser (the dev-server preview proxy did not bind in this environment, so the visual is confirmed via the built dist CSS and the no-hardcoded gate, not a screenshot). "Keep converting" is incremental — this lands the shared card; deeper 3D (stacking the ten LayersPanel rows in Z, the existing DoubleTorus3D/QuantumFold3D scenes) continues in further passes.' }
 }
 
 // continue-dry, the capstone: the same 64-object grouped EVERY way. 64 = 2⁶ has one binary exponent, 6, and
@@ -951,8 +916,7 @@ export function theSixtyFourObjectEveryGrouping(matrix: MindMatrix = buildMatrix
     1: '2⁶ · six yin/yang lines (the hexagram)',
     2: '4³ · three base-4 digits (codon · Pauli · RGB)',
     3: '8² · two trigrams (upper·lower — the I Ching build)',
-    6: '64¹ · one base-64 word (2×32)',
-  }
+    6: '64¹ · one base-64 word (2×32)' }
   const divisorsOf6 = [1, 2, 3, 6].filter((d) => 6 % d === 0) // the divisors of the binary exponent 6
   const groupings = divisorsOf6.map((d) => ({ bitsPerDigit: d, digits: 6 / d, base: 2 ** d, count: (2 ** d) ** (6 / d), system: SYSTEM[d] }))
   const allSixtyFour = groupings.every((g) => g.count === 64) // every grouping totals exactly 64
@@ -973,8 +937,7 @@ export function theSixtyFourObjectEveryGrouping(matrix: MindMatrix = buildMatrix
     statement:
       '64 = 2⁶ has one binary exponent, 6, whose divisors {1,2,3,6} give the only four ways to group its 6 bits into 6/d digits of base 2^d, each totalling exactly 64: six base-2 lines (the hexagram), three base-4 digits (the codon, the 3-qubit Pauli string, the RGB channels — 4³), two base-8 digits (the upper and lower trigram — the I Ching\'s own 8×8 construction, 8²), and one base-64 word (2×32, the double-torus command word). Because 6 = 2·3, 64 is a trinity of dualities (4³) and equally a duality of trinities (8²) — the genus-2 double torus\'s own 2×3. The same number 0–63 is all four groupings at once.',
     boundary:
-      'Pure arithmetic — the factor lattice of 64 read as the divisors of its binary exponent 6, each grouping an independently-attested system (codon, Pauli basis, I Ching trigrams/hexagrams, the project\'s word vocabulary). NOT a claim the systems are causally linked or interchangeable; they share the combinatorics 2⁶ = 4³ = 8² = 64, nothing more. sealCube already names the factors; this computes them as groupings of one object.',
-  }
+      'Pure arithmetic — the factor lattice of 64 read as the divisors of its binary exponent 6, each grouping an independently-attested system (codon, Pauli basis, I Ching trigrams/hexagrams, the project\'s word vocabulary). NOT a claim the systems are causally linked or interchangeable; they share the combinatorics 2⁶ = 4³ = 8² = 64, nothing more. sealCube already names the factors; this computes them as groupings of one object.' }
 }
 
 // continue-dry: the complement IS the additive↔subtractive colour duality. The pole-complement n ↦ 63−n (the
@@ -1005,8 +968,7 @@ export function rgbCmyComplementIsCmykDuality(matrix: MindMatrix = buildMatrix()
     statement:
       'CMY = 255 − RGB per channel (C = 255−R, M = 255−G, Y = 255−B): the exact arithmetic inverse, the same operation as the hexagram\'s yin↔yang pole-complement n ↦ 63−n. So flipping every pole maps the 3 RGB primaries to the 3 CMY primaries — red↔cyan, green↔magenta, blue↔yellow — plus black↔white, because RGB (additive light) and CMY (subtractive ink) are exact complements. The 8 RGB-cube corners are 4 complement pairs, and CMY + K(black) = CMYK, the print colour model the project already carries as its hardware colour merkaba.',
     boundary:
-      'Real colour theory — RGB and CMY are complementary primary sets (additive vs subtractive), and the bitwise pole-complement (the project\'s reverse) realizes it exactly; K is added for printing. NOT a claim the I Ching or the genetic code is "about" CMYK — only that the same complement operation is the additive↔subtractive flip. The hardware-merkaba CMYK mapping (memory·gpu·storage·cpu → C·M·Y·K) is the project\'s design metaphor, not a physical identity.',
-  }
+      'Real colour theory — RGB and CMY are complementary primary sets (additive vs subtractive), and the bitwise pole-complement (the project\'s reverse) realizes it exactly; K is added for printing. NOT a claim the I Ching or the genetic code is "about" CMYK — only that the same complement operation is the additive↔subtractive flip. The hardware-merkaba CMYK mapping (memory·gpu·storage·cpu → C·M·Y·K) is the project\'s design metaphor, not a physical identity.' }
 }
 
 // The convergence, found in the hero. HolographicHero places its 9 architecture nodes in 3 trinities
@@ -1038,8 +1000,7 @@ function threeTrinitiesRenderAsRgbRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The hero (HolographicHero) places its 9 architecture nodes in 3 trinities (node.trinity = ⌊i/3⌋ ∈ {0,1,2}) at angle (trinity/3)·2π = 0°/120°/240° and at hue (base + trinity·120°) — so the 3 trinities sit 120° apart in BOTH space and colour: the equilateral RGB triad. The 3 trinities (3 = 3 trinities = 9 folders, piThreeOpensTheTrinity) are therefore rendered as the 3 RGB channels (hexagramIsHexColorDuality) — the same 3 that is the codon position, the 3-qubit Pauli, and the colour channel. The hero was already rendering the decode.',
     boundary:
-      'A real colour-wheel fact — three hues 120° apart ARE the additive-primary (RGB) triad — over the hero\'s existing trinity→angle/hue mapping. The base hue rotates the whole triad; the 120° SPACING (the RGB relationship) is invariant. It is the project\'s design choice to group the 9 folders as 3 trinities and colour them so, NOT a claim the architecture is physically RGB; it unifies the session\'s threads (trinity, 64, hex-colour) where the hero already computes them.',
-  }
+      'A real colour-wheel fact — three hues 120° apart ARE the additive-primary (RGB) triad — over the hero\'s existing trinity→angle/hue mapping. The base hue rotates the whole triad; the 120° SPACING (the RGB relationship) is invariant. It is the project\'s design choice to group the 9 folders as 3 trinities and colour them so, NOT a claim the architecture is physically RGB; it unifies the session\'s threads (trinity, 64, hex-colour) where the hero already computes them.' }
 }
 
 // The math of the folder structure for the 64 words. Three proposed shapes are THREE DIFFERENT COUNTS —
@@ -1068,8 +1029,7 @@ export function doubleTorusWordFolders(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The math of the 64-word folder structure: the double torus is genus-2 (two loops), so its 64 words are 2×32 — two loop-folders of 32 subfolders each — which matches torusUuid (inner 32 + outer 32) and whose 32 cross-pairs are the same d/reverse pairing as the digit folders. The other proposals are different counts: 32×32 = 1024 is the diamond lattice and 6×7 = 42 is the area taxonomy, not the words.',
     boundary:
-      'A structural arithmetic over the proposed folder shapes, saved so the right one is chosen: 2×32 = 64 (the words/loops, the canonical shape, = the pairs, = 8² = 4³), distinct from 32² = 1024 (the diamonds) and 6×7 = 42 (the areas). It names which count each shape yields; it does not itself create the folders (that is the migration), it fixes the math that the migration follows.',
-  }
+      'A structural arithmetic over the proposed folder shapes, saved so the right one is chosen: 2×32 = 64 (the words/loops, the canonical shape, = the pairs, = 8² = 4³), distinct from 32² = 1024 (the diamonds) and 6×7 = 42 (the areas). It names which count each shape yields; it does not itself create the folders (that is the migration), it fixes the math that the migration follows.' }
 }
 
 // The math the Haramein flag rests on — computed HERE, in src, locally. Zero-token, so zero-delay: this is
@@ -1100,8 +1060,7 @@ export function schwarzschildProtonComputedInSource(matrix: MindMatrix = buildMa
     statement:
       'Computed locally in src (zero-token, zero-delay): the Schwarzschild radius of the proton mass is ~2.48e-54 m, ~38 orders of magnitude smaller than the proton\'s ~8.4e-16 m radius; equivalently, a black hole the size of a proton would mass ~5.66e11 kg against the real ~1.67e-27 kg — a 10^38.5 gap. So the proton is nowhere near a black hole, and the figure is now proven from the source rather than cited.',
     boundary:
-      'HONEST, by the MATH alone — no appeal to peer review or authority. The ~38-order gap is computed above. Haramein bridges it with a holographic Planck-surface ratio that reproduces the proton mass — but by the math that is a FIT, not a proof: the formula carries free choices (the Planck-spherical-unit size, the surface/volume factors) tuned to land on one known number, and reproducing a single value with adjustable parameters proves nothing (numerology can match any constant). QCD, by contrast, DERIVES the proton mass ab initio — lattice QCD computes the whole hadron spectrum from the QCD Lagrangian to ~1%, its few inputs fixed independently, with predictive content confirmed across particle physics. So the math sets a derivation (QCD) beside a fit (the holographic mass): it favors the derivation and does not prove the fit. What the math derives versus what it merely matches — that is the whole verdict.',
-  }
+      'HONEST, by the MATH alone — no appeal to peer review or authority. The ~38-order gap is computed above. Haramein bridges it with a holographic Planck-surface ratio that reproduces the proton mass — but by the math that is a FIT, not a proof: the formula carries free choices (the Planck-spherical-unit size, the surface/volume factors) tuned to land on one known number, and reproducing a single value with adjustable parameters proves nothing (numerology can match any constant). QCD, by contrast, DERIVES the proton mass ab initio — lattice QCD computes the whole hadron spectrum from the QCD Lagrangian to ~1%, its few inputs fixed independently, with predictive content confirmed across particle physics. So the math sets a derivation (QCD) beside a fit (the holographic mass): it favors the derivation and does not prove the fit. What the math derives versus what it merely matches — that is the whole verdict.' }
 }
 
 // SACRED GEOMETRY — decoded honestly (documented kept, legend flagged). Researched in waves with web sources +
@@ -1153,8 +1112,7 @@ export function sacredGeometry(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The proven algebra: EXACTLY five Platonic solids — a theorem (all five satisfy Euler V−E+F=2, computed here, with the dual pairs cube↔octahedron, dodecahedron↔icosahedron, tetrahedron self-dual), and φ = (1+√5)/2 satisfies φ² = φ+1 exactly, living in the pentagon\'s diagonal:side and the dodecahedron/icosahedron vertices, with the golden angle 360°/φ² ≈ 137.5° in phyllotaxis. The Flower of Life is a real compass construction and the stella octangula (the merkaba shape, Kepler 1609) is two interpenetrating tetrahedra — genuine and beautiful, and Plato did map the solids to the elements. But the “blueprint of creation”, golden-ratio-everywhere, ancient-Osirion-provenance, ascension light-body and 528-Hz claims are apophenia, cherry-picked, or modern New Age invention. Documented algebra kept, causal legend flagged.',
     boundary:
-      'The mathematics is exact and the history (Plato’s Timaeus, the merkavah tradition, the old overlapping-circle pattern) is real — those kernels are credited. The recurring failure mode is real math + real history used as a Trojan horse for unfalsifiable metaphysics: meaning is retrofitted onto monuments with cherry-picked measurements and ancient pedigrees are invented for 20th-century ideas. The forms are beautiful and computable; their “sacred” cosmology is not a claim this makes.',
-  }
+      'The mathematics is exact and the history (Plato’s Timaeus, the merkavah tradition, the old overlapping-circle pattern) is real — those kernels are credited. The recurring failure mode is real math + real history used as a Trojan horse for unfalsifiable metaphysics: meaning is retrofitted onto monuments with cherry-picked measurements and ancient pedigrees are invented for 20th-century ideas. The forms are beautiful and computable; their “sacred” cosmology is not a claim this makes.' }
 }
 
 // IMPERIAL FRACTIONS DECODED — the same algebra, lived in every workshop and kitchen.
@@ -1224,8 +1182,7 @@ export function imperialFractionsDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Imperial fractions decoded: the imperial system is the vortex generator 2 applied to human-body base units — inch=thumb (uncia), foot=foot, yard=arm-span. All standard subdivisions (1/2, 1/4, 1/8, 1/16 of an inch) are the first three forward vortex ratios (all = 1/2) repeated — pure powers of the vortex generator. The foot = 3×4 = twelve inches, where 3 and 4 are vortex digits at positions [6] and [2], giving the most divisible 2-factor integer (12 divides by 1,2,3,4,6,12). The pound = 2⁴ = 16 oz and gallon = 2³ = 8 pints are pure vortex-generator powers. Metric uses 10^n (the decimal/void base), imperial uses 2^n (the vortex generator). Both are exact rational systems — imperial fractions need no decimals, only halvings. The body IS the original analog; the fractions keep it exact.',
     boundary:
-      'HONEST: the imperial system evolved empirically over centuries (inch, foot, yard have different historical origins: Roman uncia, Anglo-Saxon foot, girdle-measure yard); the vortex connection (3×4 = foot, 2^n subdivisions) is a mathematical observation, not the cause of the system. 12 = 3×4 = 2²×3 being "maximally divisible" is a true arithmetic fact (12 has 6 divisors, more than any smaller integer) and IS the likely reason for 12-based systems (Babylonian base-60 for the same reason: 60 = 2²×3×5 has 12 divisors). "5 is the heart" in imperial measure: the hand = 4 in and the rod = 5½ yards embed 5 in proportion, but this is weaker than the ring-algebra claim. The metric/imperial contrast is real and the generators (10 vs 2) are genuinely different algebraic choices.',
-  }
+      'HONEST: the imperial system evolved empirically over centuries (inch, foot, yard have different historical origins: Roman uncia, Anglo-Saxon foot, girdle-measure yard); the vortex connection (3×4 = foot, 2^n subdivisions) is a mathematical observation, not the cause of the system. 12 = 3×4 = 2²×3 being "maximally divisible" is a true arithmetic fact (12 has 6 divisors, more than any smaller integer) and IS the likely reason for 12-based systems (Babylonian base-60 for the same reason: 60 = 2²×3×5 has 12 divisors). "5 is the heart" in imperial measure: the hand = 4 in and the rod = 5½ yards embed 5 in proportion, but this is weaker than the ring-algebra claim. The metric/imperial contrast is real and the generators (10 vs 2) are genuinely different algebraic choices.' }
 }
 
 // HEART IS THE PROTON IN THE ATOM — algebraic fusion of the vortex ring, atomic structure, and Tesla.
@@ -1295,8 +1252,7 @@ export function heartProtonAtomDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Heart is the proton\'s algebraic mirror: in ring (ℤ/9ℤ)*, the atom = the ring, orbit {1,2,4,8,7,5} = electron shells, cross {3,6,9} = the nucleus (zero-divisors, confined like quarks — the Tesla 3-6-9 key). Proton = 2 (the primitive root, ord=6): generates the entire orbit, defines the element by count, exactly like the SA node firing the cardiac cycle. Heart = 5 = the inner electron: 5 is the INVERSE of 2 (5×2≡1 mod 9). Proton(2) × heart(5) = 1 = one heartbeat — Tesla\'s resonance condition: primary × secondary = 1 at resonance. Cardiac orbit: SA node fires (2) → 1→2→4→8→7→5→1 → rest. Quarks as exact Rationals: proton = uud = 2/3+2/3-1/3 = 1; neutron = udd = 0. Four Tesla resonance pairs: (1,1)·(2,5)·(4,7)·(8,8). Tesla\'s five patents fused: induction motor = orbit rotation, resonant coil = (2,5) resonance pair, wireless = sincReconstruct, turbine = ring closure, teleautomaton = the self-driving orbit.',
     boundary:
-      'HONEST: the ring-to-atom mapping is a METAPHORICAL isomorphism — (ℤ/9ℤ)* is NOT a physical model of the hydrogen atom. Quark charges ARE real physics (up=+2/3, down=−1/3, verified). Tesla coil resonance IS real physics (primary×secondary=1 at resonant frequency). "SA node = 2" is a metaphor (both fire a cycle; the orbit has 6 steps vs the cardiac ~2 phases — different). Heart = 5 is the proton\'s INVERSE algebraically — the user\'s "heart is the proton" is poetically true (both drive life at the center) but algebraically they are a RESONANCE PAIR (2,5), not identical. Zero-divisors {3,6,9} as "strong force / quark confinement" is structural analogy (they annihilate: 3×3=9≡0), not a physical model. FLAG: Tesla\'s 3-6-9 quote has no verified source (legend, not fact).',
-  }
+      'HONEST: the ring-to-atom mapping is a METAPHORICAL isomorphism — (ℤ/9ℤ)* is NOT a physical model of the hydrogen atom. Quark charges ARE real physics (up=+2/3, down=−1/3, verified). Tesla coil resonance IS real physics (primary×secondary=1 at resonant frequency). "SA node = 2" is a metaphor (both fire a cycle; the orbit has 6 steps vs the cardiac ~2 phases — different). Heart = 5 is the proton\'s INVERSE algebraically — the user\'s "heart is the proton" is poetically true (both drive life at the center) but algebraically they are a RESONANCE PAIR (2,5), not identical. Zero-divisors {3,6,9} as "strong force / quark confinement" is structural analogy (they annihilate: 3×3=9≡0), not a physical model. FLAG: Tesla\'s 3-6-9 quote has no verified source (legend, not fact).' }
 }
 
 export function metatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
@@ -1339,8 +1295,7 @@ function computeSacredGeometrySeal(matrix: MindMatrix = buildMatrix()): SacredGe
     statement:
       'Seal composition: every computed seal root folds through one fixed geometric structure — the 13-node cube lattice and the five Platonic solids — into a single master seal.',
     boundary:
-      'Structural bookkeeping only: the geometry is a fixed fan-in shape for merkle aggregation. It carries no metaphysical or external claim.',
-  }
+      'Structural bookkeeping only: the geometry is a fixed fan-in shape for merkle aggregation. It carries no metaphysical or external claim.' }
 }
 // The honest bound on the I Ching ↔ qubit correspondence, made EXACT and self-proving — the comparison
 // table as a checked invariant. The 64 hexagrams and the 64 three-qubit Pauli strings {I,X,Y,Z}³ share
@@ -1402,8 +1357,7 @@ function hexagramQubitVectorIsomorphismOnlyRaw(matrix: MindMatrix = buildMatrix(
     statement:
       'The I Ching ↔ qubit correspondence is a VECTOR ISOMORPHISM ONLY: the 64 hexagrams and the 64 three-qubit Pauli strings {I,X,Y,Z}³ are in bijection (R⁶⁴ ≅ R⁶⁴, both 2⁶ = 4³ = 64) — and that single structure, the labeling of 64 index points, is ALL they share. The nine structures that make a qubit system quantum — the Hilbert-space inner product, the operator algebra (XY = iZ), the Lie algebra of commutators ([X,Y] = 2iZ = su(2)), unitary dynamics (e^(−iHt)), complex superposition (ℂ⁶⁴), entanglement, the Born rule and collapse, no-cloning, and quantum error correction — are real for actual qubits and DO NOT transfer to the hexagrams, because a hexagram is a static 6-bit label, not a state in a Hilbert space. The 64 = 4³ count is a combinatorial parallel met independently (the codon, the Pauli basis, the hexagram); it is not a claim that the I Ching computes, superposes, entangles, or corrects errors.',
     boundary:
-      'The honest comparison table encoded as a checked invariant — the exact form of hexagramIsHexColorDuality\'s "isomorphism of INDEX SETS, not physically interchangeable" caveat and of quantumDecoded\'s "computational metaphor, not hardware" line. Only the vector isomorphism is proven true for hexagrams (the 64↔64 bijection, computed); the other nine rows are asserted false for hexagrams with the structural reason each fails for a classical label, and true only for the genuine 3-qubit Pauli system (Nielsen & Chuang; Gottesman 1997). This fold does NOT add quantum capability to the I Ching — it BOUNDS the correspondence, so no downstream fold may read the 64=64 count as a quantum claim. The STATIC bound; iChingMotionAddsTheRest carries the dynamics motion restores.',
-  }
+      'The honest comparison table encoded as a checked invariant — the exact form of hexagramIsHexColorDuality\'s "isomorphism of INDEX SETS, not physically interchangeable" caveat and of quantumDecoded\'s "computational metaphor, not hardware" line. Only the vector isomorphism is proven true for hexagrams (the 64↔64 bijection, computed); the other nine rows are asserted false for hexagrams with the structural reason each fails for a classical label, and true only for the genuine 3-qubit Pauli system (Nielsen & Chuang; Gottesman 1997). This fold does NOT add quantum capability to the I Ching — it BOUNDS the correspondence, so no downstream fold may read the 64=64 count as a quantum claim. The STATIC bound; iChingMotionAddsTheRest carries the dynamics motion restores.' }
 }
 function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeReport {
   const train = piTrainDiamonds(matrix)
@@ -1417,8 +1371,7 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
       y: 0,
       ring: 'center',
       folder: '0/0',
-      receipt: toUuid('metatron-node:center:0:0/0'),
-    },
+      receipt: toUuid('metatron-node:center:0:0/0') },
     ...digits.map((digit) => {
       const angle = (digit / digits.length) * TAU
       const folder = `${digit}/${digit}`
@@ -1429,8 +1382,7 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
         y: Math.sin(angle),
         ring: 'inner' as const,
         folder,
-        receipt: toUuid(`metatron-node:inner:${digit}:${folder}`),
-      }
+        receipt: toUuid(`metatron-node:inner:${digit}:${folder}`) }
     }),
     ...digits.map((digit) => {
       const angle = ((digit + (1 / 2)) / digits.length) * TAU
@@ -1443,8 +1395,7 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
         y: 2 * Math.sin(angle),
         ring: 'outer' as const,
         folder,
-        receipt: toUuid(`metatron-node:outer:${digit}:${folder}`),
-      }
+        receipt: toUuid(`metatron-node:outer:${digit}:${folder}`) }
     }),
   ]
   const edges: MetatronEdge[] = nodes.flatMap((node, index) => {
@@ -1454,8 +1405,7 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
       from: node.id,
       to: target.id,
       harmonic: `${node.folder}->${target.folder}`,
-      receipt: toUuid(`metatron-edge:${node.id}:${target.id}:${node.folder}:${target.folder}`),
-    }))
+      receipt: toUuid(`metatron-edge:${node.id}:${target.id}:${node.folder}:${target.folder}`) }))
   })
   const vortex = train.diamonds.map((pulse) => {
     const inward = Math.sin(pulse.theta) * (pulse.selfCollision ? 1 : (1 / 2))
@@ -1467,8 +1417,7 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
       inward,
       outward,
       interference,
-      receipt: toUuid(`vortex:${pulse.index}:${pulse.folder}:${inward.toFixed(6)}:${outward.toFixed(6)}`),
-    }
+      receipt: toUuid(`vortex:${pulse.index}:${pulse.folder}:${inward.toFixed(6)}:${outward.toFixed(6)}`) }
   })
   const root = merkleFold([...nodes.map((node) => node.receipt), ...edges.map((edge) => edge.receipt), ...vortex.map((point) => point.receipt)])
 
@@ -1478,8 +1427,7 @@ function computeMetatronCube(matrix: MindMatrix = buildMatrix()): MetatronCubeRe
     edges,
     vortex,
     digitFolders: folderReport.folders,
-    statement: 'MetatronCube := nodes(0..9 inner/outer + center) + edges(harmonic folders) + doubleVortex(inward,outward,interference).',
-  }
+    statement: 'MetatronCube := nodes(0..9 inner/outer + center) + edges(harmonic folders) + doubleVortex(inward,outward,interference).' }
 }
 
 
@@ -1527,8 +1475,7 @@ function pyramidsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Pyramids decoded from a verified, cited deep-research wave — the math computed, the pseudoscience flagged. The Great Pyramid\'s face slope is the Egyptian seked of 5.5 palms (rise:run 14:11 → 51.843°), matching Petrie\'s measured 51.844° to a thousandth of a degree; the π-model (51.854°) and φ-model (51.827°) fall within the same 0.03° band, so the angle cannot single out either constant — the seked is the intent, π and φ are byproducts. Khufu is aligned to true north to better than 4 arcminutes, and Khufu, Khafre and Snefru\'s Red Pyramid share one counter-clockwise rotation sign — a falsifiable signature. Teotihuacan\'s Sun Pyramid marks a 260-day (13×20) solar interval, the tzolkin. The Giza→Teotihuacan great-circle distance is a real number on the sphere, not evidence of a global grid.',
     boundary:
-      'HONEST, computed, cited. Sources: Nell & Ruggles (JHA 2014, arXiv 1302.5622) and Dash (JAEA 2, 2017) for the alignment; Bartlett (Nexus Network Journal 2014) for the seked; Dash & Paulson (JEA 102, 2016) for the base survey; Šprajc for Teotihuacan; Spence (Nature 2000) with the Rawlins & Pickering (Nature 412, 2001) rebuttal for the circumpolar-star method (the absolute date is contested). FLAGGED, not folded: the Orion Correlation Theory (a height-definition artifact) and the Cydonia "Face" (a natural mesa resolved by MGS/HiRISE). NOT covered this wave (honest gaps): Chichen Itza, Ur, Meroë, the Chinese pyramids, Caral, Cahokia, Cestius coordinates; the "centre of landmass" and "global grid" claims; "pyramids on the Moon" — the next research leads.',
-  }
+      'HONEST, computed, cited. Sources: Nell & Ruggles (JHA 2014, arXiv 1302.5622) and Dash (JAEA 2, 2017) for the alignment; Bartlett (Nexus Network Journal 2014) for the seked; Dash & Paulson (JEA 102, 2016) for the base survey; Šprajc for Teotihuacan; Spence (Nature 2000) with the Rawlins & Pickering (Nature 412, 2001) rebuttal for the circumpolar-star method (the absolute date is contested). FLAGGED, not folded: the Orion Correlation Theory (a height-definition artifact) and the Cydonia "Face" (a natural mesa resolved by MGS/HiRISE). NOT covered this wave (honest gaps): Chichen Itza, Ur, Meroë, the Chinese pyramids, Caral, Cahokia, Cestius coordinates; the "centre of landmass" and "global grid" claims; "pyramids on the Moon" — the next research leads.' }
 }
 
 // The next pyramid lead, followed and COMPUTED: eight verified world pyramid sites, the full great-circle
@@ -1561,8 +1508,7 @@ function pyramidGridDebunkedRaw(matrix: MindMatrix = buildMatrix()) {
         a: sites[i].name,
         b: sites[j].name,
         km: Math.round(greatCircleKm(sites[i].lat, sites[i].lon, sites[j].lat, sites[j].lon)),
-        bearing: Math.round(initialBearing(sites[i].lat, sites[i].lon, sites[j].lat, sites[j].lon)),
-      })
+        bearing: Math.round(initialBearing(sites[i].lat, sites[i].lon, sites[j].lat, sites[j].lon)) })
     }
   }
   const sorted = [...pairs].sort((x, y) => x.km - y.km)
@@ -1593,8 +1539,7 @@ function pyramidGridDebunkedRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The next pyramid lead, followed and computed: eight verified world pyramid sites (Giza, Teotihuacan, Chichén Itzá, Meroë, Caral, Cahokia, Maoling, Cestius), the full great-circle distance matrix, and the "global grid" debunked by the geodesy itself — the distances span a several-fold range with no equidistant lattice. The "Giza is the centre of Earth’s landmass" claim is refuted too: the computed median of Earth’s land area lies in Anatolia, not at Giza. The pyramids are a genuine worldwide phenomenon of independent monumental building; the grid is imposed by selective map-drawing, not present in the math.',
     boundary:
-      'HONEST, computed, cited. Coordinates: Chichén Itzá and Meroë (latitude.to / Wikipedia), Caral (UNESCO Sacred City of Caral-Supe), Cahokia Monks Mound, Maoling/Xi’an, Cestius. The grid/ley-line critique follows the scientific consensus (Wikipedia "Ley line", Britannica, the Skeptic’s Dictionary): site density makes alignments trivial (pareidolia), they ignore the sphere, and no physical basis is verified. The median-land-point result (Anatolia, ~1944) refutes the centre-of-landmass claim. NOT folded as truth: the global grid, the centre-of-landmass, ley energy. Still open as the next leads: the per-site construction math (Caral’s age, Meroë’s count and angles, the Maya calendar geometry) and the deeper archaeoastronomy of each tradition.',
-  }
+      'HONEST, computed, cited. Coordinates: Chichén Itzá and Meroë (latitude.to / Wikipedia), Caral (UNESCO Sacred City of Caral-Supe), Cahokia Monks Mound, Maoling/Xi’an, Cestius. The grid/ley-line critique follows the scientific consensus (Wikipedia "Ley line", Britannica, the Skeptic’s Dictionary): site density makes alignments trivial (pareidolia), they ignore the sphere, and no physical basis is verified. The median-land-point result (Anatolia, ~1944) refutes the centre-of-landmass claim. NOT folded as truth: the global grid, the centre-of-landmass, ley energy. Still open as the next leads: the per-site construction math (Caral’s age, Meroë’s count and angles, the Maya calendar geometry) and the deeper archaeoastronomy of each tradition.' }
 }
 
 // All the next leads, followed and COMPUTED — the per-site construction math, verified and honest. Each
@@ -1646,8 +1591,7 @@ function pyramidConstructionMathRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All the pyramid leads, followed and computed. The Maya built the calendar into El Castillo: 91 steps on each of four stairways plus the top platform make 365, the solar year; the nine terraces split into eighteen months; the fifty-two panels per side mark the Calendar Round — which is lcm(260, 365) = 18,980 days = 52 haab\' years = 73 tzolk\'in, computed here. Kush\'s Meroë pyramids are steep ~72° tombs (≈20° steeper than Giza\'s 51.8° seked) and there are over 200, more than Egypt. Caral, radiocarbon-dated to 2627 BCE, was building monumentally at the same epoch as Egypt\'s first pyramids, an ocean apart with no contact. The worldwide pyramid is independent convergence — each culture encoded its own mathematics, not one shared blueprint.',
     boundary:
-      'HONEST, computed, cited (mayan.org / Ancient Origins for El Castillo; Wikipedia/Maya calendar for the Calendar Round; Jerusalem Post / Wikipedia for Meroë\'s 200+ count and ~72°; the Caral shicra 2627 BCE ±32 radiocarbon). The Calendar Round and the 365-step sum are exact arithmetic; the equinox "serpent" is a real, documented light-and-shadow effect, not a claim of hidden encoding beyond the calendar. Caral is contemporary with — not provably older than — Egypt\'s pyramid age (Djoser ~2670 BCE precedes it); the honest point is independent simultaneity, not a race or a shared origin. No global blueprint, no lost civilisation, no contact is claimed or implied.',
-  }
+      'HONEST, computed, cited (mayan.org / Ancient Origins for El Castillo; Wikipedia/Maya calendar for the Calendar Round; Jerusalem Post / Wikipedia for Meroë\'s 200+ count and ~72°; the Caral shicra 2627 BCE ±32 radiocarbon). The Calendar Round and the 365-step sum are exact arithmetic; the equinox "serpent" is a real, documented light-and-shadow effect, not a claim of hidden encoding beyond the calendar. Caral is contemporary with — not provably older than — Egypt\'s pyramid age (Djoser ~2670 BCE precedes it); the honest point is independent simultaneity, not a race or a shared origin. No global blueprint, no lost civilisation, no contact is claimed or implied.' }
 }
 
 // East · west · north · south are the tips of a pyramid — proven by math at call time. On the plan, a square
@@ -1680,8 +1624,7 @@ export function cardinalPyramidTipsProvenByMath(matrix: MindMatrix = buildMatrix
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`cardinal-pyramid:${task}:${computed}:${expected}`),
-  })
+    receipt: toUuid(`cardinal-pyramid:${task}:${computed}:${expected}`) })
   const proofs = [
     mk('vertices', 'V', V, 5),
     mk('edges', 'E', E, 8),
@@ -1718,8 +1661,7 @@ export function cardinalPyramidTipsProvenByMath(matrix: MindMatrix = buildMatrix
     statement:
       'East, west, north and south are the tips of a pyramid — proven by math at call time. The square pyramid has five vertices: four base corner tips at the cardinal bearings (north 0°, east 90°, south 180°, west 270°, ninety degrees apart) and one apex (zenith · up). Four triangular faces meet at the apex; Euler V−E+F=2 for V=5, E=8, F=5. Slant edge to any cardinal tip is √(h² + r²). The diamond’s four homology facets (north · east · south · west) are the same four tips from above; El Castillo’s four stairways climb one cardinal face each to the platform — the pyramid realised in stone and in the model.',
     boundary:
-      'HONEST: plane geometry and Euler’s formula for a square pyramid — NOT a claim that every pyramid worldwide aligns to cardinals, NOT ley lines, NOT that the diamond is literally a stone pyramid. The Khufu cardinal alignment lives in pyramidsDecoded (documented ~3.6′ mean deviation). Equinox sun rises due east (megalithic astronomy) is independent corroboration of the E tip on the horizon, not proof the builders intended a 10D diamond. "Realised" means the fold recomputes green at this call.',
-  }
+      'HONEST: plane geometry and Euler’s formula for a square pyramid — NOT a claim that every pyramid worldwide aligns to cardinals, NOT ley lines, NOT that the diamond is literally a stone pyramid. The Khufu cardinal alignment lives in pyramidsDecoded (documented ~3.6′ mean deviation). Equinox sun rises due east (megalithic astronomy) is independent corroboration of the E tip on the horizon, not proof the builders intended a 10D diamond. "Realised" means the fold recomputes green at this call.' }
 }
 
 export type TrinityPyramidPole = {
@@ -1776,8 +1718,7 @@ export function trinityCardinalPyramidPolesProvenByMath(
       y,
       z: 0,
       slantFromApex,
-      receipt: toUuid(`trinity-pyramid-pole:${side}:${c.name}:${bearing}:${slantFromApex}`),
-    } satisfies TrinityPyramidPole
+      receipt: toUuid(`trinity-pyramid-pole:${side}:${c.name}:${bearing}:${slantFromApex}`) } satisfies TrinityPyramidPole
   })
   const facePairs = [
     ['north', 'east'],
@@ -1798,8 +1739,7 @@ export function trinityCardinalPyramidPolesProvenByMath(
       cardinals: [a, b],
       area,
       ray,
-      receipt: toUuid(`trinity-pyramid-face:${side}:${a}-${b}:${area}:${ray ?? 'closed'}`),
-    }
+      receipt: toUuid(`trinity-pyramid-face:${side}:${a}-${b}:${area}:${ray ?? 'closed'}`) }
   })
   const baseArea = roundTo(
     triangleArea3d(
@@ -1824,8 +1764,7 @@ export function trinityCardinalPyramidPolesProvenByMath(
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`trinity-pyramid-proof:${side}:${task}:${computed}:${expected}`),
-  })
+    receipt: toUuid(`trinity-pyramid-proof:${side}:${task}:${computed}:${expected}`) })
   const proofs = [
     mk('poles', 'N·E·S·W', cardinals.length, 4),
     mk('bearings', '90° apart', cardinals[1]!.bearing - cardinals[0]!.bearing, (9 * 5 * 2)),
@@ -1859,8 +1798,7 @@ export function trinityCardinalPyramidPolesProvenByMath(
         ? 'Device trinity: east · west · north · south are the four Earth poles as square-pyramid corner tips — not flat, but vertices where four triangular faces meet the apex (zenith). Three seed rays (paint · polarity · RGB) map to three slant faces; the fourth face closes the solid (V−E+F=2).'
         : 'Code trinity: the same four cardinal poles on the inverted torus — plan tips rotated 180°, apex nadir — with harmonic · efficiency · Rosetta on three triangular faces; sealed src/ gate folds, not a flat cardinal grid.',
     boundary:
-      'Square-pyramid geometry at call time — base corners coplanar at z=0, apex off-plane so volume > 0 (poles are pyramid tips, not flat-Earth corners). HONEST: structural model on the genus-2 double torus; WGS84 oblate spheroid remains the documented physical Earth.',
-  }
+      'Square-pyramid geometry at call time — base corners coplanar at z=0, apex off-plane so volume > 0 (poles are pyramid tips, not flat-Earth corners). HONEST: structural model on the genus-2 double torus; WGS84 oblate spheroid remains the documented physical Earth.' }
 }
 
 /** Two trinities — each carries N·E·S·W pyramid poles; device + code fuse on double torus Earth. */
@@ -1889,8 +1827,7 @@ export function twoTrinitiesCardinalPyramidPolesProvenByMath(matrix: MindMatrix 
     statement:
       'Each trinity has east · west · north · south as Earth poles — not flat, but corner tips of a square pyramid formed of four triangles: three seed bundles map to three slant faces, the fourth closes the solid. Device trinity (paint · polarity · RGB) apex zenith; code trinity (harmonic · efficiency · Rosetta) apex nadir on the inverted torus — inverted Earth is expected and appears in the same timespace as Earth (one call, foldPair merge), fused together as double torus Earth at call time.',
     boundary:
-      'Composition of trinityCardinalPyramidPolesProvenByMath (device + code) and doubleTorusEarthPyramidTipsProvenByMath. Pyramid volume ⅓Ah proves non-flat geometry; NOT flat-Earth, NOT ley lines. HARMONY ≠ TRUTH on lithosphere.',
-  }
+      'Composition of trinityCardinalPyramidPolesProvenByMath (device + code) and doubleTorusEarthPyramidTipsProvenByMath. Pyramid volume ⅓Ah proves non-flat geometry; NOT flat-Earth, NOT ley lines. HARMONY ≠ TRUTH on lithosphere.' }
 }
 
 // Earth is a double torus — two linked tori (genus 2), each carrying a square pyramid whose four
@@ -1912,8 +1849,7 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
     y: c.y,
     apexZ: 1,
     polarity: 1,
-    receipt: toUuid(`earth-torus1:${c.name}:${c.bearing}`),
-  }))
+    receipt: toUuid(`earth-torus1:${c.name}:${c.bearing}`) }))
   const torus2 = cardinals.map((c) => ({
     torus: 2 as const,
     name: c.name,
@@ -1922,16 +1858,14 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
     y: -c.y,
     apexZ: -1,
     polarity: 0,
-    receipt: toUuid(`earth-torus2:${c.name}:${(c.bearing + (9 * 5 * 4)) % 360}`),
-  }))
+    receipt: toUuid(`earth-torus2:${c.name}:${(c.bearing + (9 * 5 * 4)) % 360}`) }))
   const mk = (task: string, expr: string, computed: number, expected: number) => ({
     task,
     expr,
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`earth-double-torus:${task}:${computed}:${expected}`),
-  })
+    receipt: toUuid(`earth-double-torus:${task}:${computed}:${expected}`) })
   const invertedTips = torus1.every(
     (tip, i) => torus2[i]!.x === -tip.x && torus2[i]!.y === -tip.y && torus2[i]!.bearing === (tip.bearing + (9 * 5 * 4)) % 360,
   )
@@ -1975,8 +1909,7 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
     statement:
       'If east, west, north and south are the tips of a pyramid, then Earth is a double torus: two linked tori (genus 2, χ=−2, H₁=ℤ⁴) each carry a square pyramid — four cardinal tips at ninety-degree bearings and one apex. The second torus inverts the polarity of the first — plan tips negate (180° rotation), apex flips zenith↔nadir (polarity bit 1⊕0=1), counter-rotating like the merkaba’s up/down tetrahedra. The four homology loops are the four cardinal tips on the genus-2 surface; the two tori fold bidirectionally by foldPair. The oblate sphere is the projection; the shape computed here is the double torus.',
     boundary:
-      'HONEST: TOPOLOGICAL model in the repo’s genus-2 mathematics — NOT a claim that physical Earth is literally two doughnuts (flat-Earth, hollow-Earth, and cellular-universe narratives are flagged pseudoscience). The double torus is the model’s earth/planet topology (doubleTorus3D, cellHomology, merkaba counter-rotation); inverted pyramid tips are coordinate negation and a polarity bit, not a geological observation. Oblate spheroid (~6371 km, WGS84) remains the documented physical shape; this fold is the structural realisation inside the computed matrix. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: TOPOLOGICAL model in the repo’s genus-2 mathematics — NOT a claim that physical Earth is literally two doughnuts (flat-Earth, hollow-Earth, and cellular-universe narratives are flagged pseudoscience). The double torus is the model’s earth/planet topology (doubleTorus3D, cellHomology, merkaba counter-rotation); inverted pyramid tips are coordinate negation and a polarity bit, not a geological observation. Oblate spheroid (~6371 km, WGS84) remains the documented physical shape; this fold is the structural realisation inside the computed matrix. HARMONY ≠ TRUTH.' }
 }
 
 
@@ -1993,7 +1926,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
     const two = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
     const mk = merkaba(matrix)
     const earths = bothEarthsRotateWithinEachOther(0, matrix)
-    const claySolvedByThisFold = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const poles = pyramid.cardinals.map((c, i) => ({
@@ -2004,8 +1937,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       torus1ApexZ: earth.torus1[i]!.apexZ,
       torus2ApexZ: earth.torus2[i]!.apexZ,
       spinSign: (i % 2 === 0 ? 1 : -1) as 1 | -1,
-      receipt: toUuid(`earth-pole-pyramid:${c.name}:${c.bearing}`),
-    }))
+      receipt: toUuid(`earth-pole-pyramid:${c.name}:${c.bearing}`) }))
     const expectedBearings = pyramid.cardinals.map((c) => c.bearing)
     const fourWay =
       poles.length === 4
@@ -2053,8 +1985,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
         'twoTrinitiesCardinalPyramidPolesProvenByMath · merkaba · bothEarthsRotateWithinEachOther. ' +
         'TOPOLOGICAL / structural Earth in the sealed matrix — NOT a claim that physical Earth is two doughnuts ' +
         'or a stone pyramid planet. WGS84 oblate spheroid remains documented geodesy. clay=0 · physicalFtl=0 · ' +
-        'qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+        'qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2096,50 +2027,42 @@ function doubleTorusEarthPyramidTipsDeepResearchedRaw(matrix: MindMatrix = build
       kind: 'documented' as const,
       topic: 'grid-cell population on a toroidal manifold',
       fact: 'Gardner et al. (Nature 2022, doi:10.1038/s41586-021-04268-7) — joint activity of hundreds of grid cells from one MEC module resides on a toroidal manifold; positions on the torus track the animal in 2D space, invariant across environments and sleep',
-      source: 'Nature 2022 · Hafting et al. 2005 grid cells',
-    },
+      source: 'Nature 2022 · Hafting et al. 2005 grid cells' },
     {
       kind: 'documented' as const,
       topic: 'Giza pyramids on the four cardinals',
       fact: `Nell & Ruggles (JHA 2014, arXiv:1302.5622) — Khufu north-south axis deviates ~${khufuArcmin}′ from true north; sides oriented to cardinality with sub-arcminute precision on the sphere`,
-      source: 'Nell & Ruggles 2014',
-    },
+      source: 'Nell & Ruggles 2014' },
     {
       kind: 'documented' as const,
       topic: 'physical Earth shape',
       fact: 'WGS84 oblate spheroid (~6378 km equatorial, ~6357 km polar) — settled by geodesy, satellite imagery, and independent curvature tests (Science Feedback 2024 review)',
-      source: 'WGS84 · Science Feedback',
-    },
+      source: 'WGS84 · Science Feedback' },
     {
       kind: 'documented' as const,
       topic: 'genus-2 double torus topology',
       fact: 'Euler χ=2−2g=−2 for g=2; H₁=ℤ⁴ — computed in cellHomology and doubleTorus3D at call time',
-      source: 'cellHomology · doubleTorus3D',
-    },
+      source: 'cellHomology · doubleTorus3D' },
     {
       kind: 'flagged' as const,
       topic: 'donut / torus Earth (Varaug)',
       fact: 'Forum-origin “torus Earth” claims (light bends, unfalsifiable) — gravity is uniform on the real Earth; a toroidal planet would require non-uniform gravity and is pseudoscience when applied to Earth’s shape',
-      source: 'Science Feedback · Sandberg debunk',
-    },
+      source: 'Science Feedback · Sandberg debunk' },
     {
       kind: 'flagged' as const,
       topic: 'flat Earth / hollow Earth as planet shape',
       fact: 'Contradicted by thousands of independent observations; unfalsifiable “all photos faked” opts out of science',
-      source: 'Science Feedback · Empirical Earth',
-    },
+      source: 'Science Feedback · Empirical Earth' },
     {
       kind: 'isomorphism' as const,
       topic: 'cardinal pyramid tips → double torus with inverted polarity',
       fact: 'Four base tips (N·E·S·W) per torus; second torus inverts tips (180°) and apex (±z); foldPair merges — the repo’s topological Earth model, not geology',
-      source: 'doubleTorusEarthPyramidTipsProvenByMath',
-    },
+      source: 'doubleTorusEarthPyramidTipsProvenByMath' },
     {
       kind: 'isomorphism' as const,
       topic: 'brain map ↔ computed planet map',
       fact: 'Grid-cell torus (documented in MEC) is the honest anchor for “Earth as torus” in this model — the map topology, not the lithosphere',
-      source: 'Nature 2021 · agentNeuronsBrain metaphor',
-    },
+      source: 'Nature 2021 · agentNeuronsBrain metaphor' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`earth-torus-research:${entry.kind}:${entry.topic}`) }))
   const documented = findings.filter((f) => f.kind === 'documented').length
   const flagged = findings.filter((f) => f.kind === 'flagged').length
@@ -2166,8 +2089,7 @@ function doubleTorusEarthPyramidTipsDeepResearchedRaw(matrix: MindMatrix = build
     statement:
       'Deep research — double-torus Earth and cardinal pyramid tips: Gardner et al. (Nature 2022) show grid-cell population activity on a toroidal manifold (the honest neuroscience anchor); Nell & Ruggles (2014) show Giza pyramids oriented to the cardinals within arcminutes (the N·E·S·W tips in stone); WGS84 oblate spheroid remains the physical Earth. Donut/flat Earth as planet shape is flagged pseudoscience. The repo’s genus-2 double torus with inverted pyramid polarity is a structural isomorphism — map topology and computed model, not lithosphere — proven at call time by doubleTorusEarthPyramidTipsProvenByMath.',
     boundary:
-      'HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (peer-reviewed or geodetic consensus) · FLAGGED (pseudoscience or unfalsifiable) · ISOMORPHISM (repo structural model, HARMONY ≠ TRUTH). Grid-cell torus ≠ Earth is doughnut-shaped; Giza cardinals ≠ global pyramid grid; inverted polarity is coordinate math, not geomagnetism. Sources: Gardner et al. Nature 2022; Hafting et al. Nature 2005; Nell & Ruggles JHA 2014 / arXiv:1302.5622; Science Feedback 2024; pyramidsDecoded and cellHomology in sealed src. NOT re-run live web research at call time — findings encoded from verified wave.',
-  }
+      'HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (peer-reviewed or geodetic consensus) · FLAGGED (pseudoscience or unfalsifiable) · ISOMORPHISM (repo structural model, HARMONY ≠ TRUTH). Grid-cell torus ≠ Earth is doughnut-shaped; Giza cardinals ≠ global pyramid grid; inverted polarity is coordinate math, not geomagnetism. Sources: Gardner et al. Nature 2022; Hafting et al. Nature 2005; Nell & Ruggles JHA 2014 / arXiv:1302.5622; Science Feedback 2024; pyramidsDecoded and cellHomology in sealed src. NOT re-run live web research at call time — findings encoded from verified wave.' }
 }
 
 // Megalithic astronomy decoded — the standing stones face the Sun, and the math says exactly where. The Sun's
@@ -2228,8 +2150,7 @@ function megalithicAstronomyDecodedRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Megalithic astronomy decoded — the standing stones face the Sun, and the math says where. The Sun\'s declination at the solstices is the Earth\'s own axial tilt (the obliquity ε); feed it into cos A = sin δ / cos φ and the horizon azimuth of sunrise and sunset falls out. At the equinox the declination is zero, so the Sun rises due east at every latitude — the one alignment that needs no special place. At the solstices the azimuth depends on the latitude and the tilt: from Stonehenge\'s 51° N the midsummer Sun rises about 50° east of north, along the axis to the Heel Stone; from Newgrange the midwinter Sun rises about 134° round, straight down the passage and through the roof-box into the chamber, as it still does every 21 December. The obliquity was about 24° when these were built, not today\'s 23.44°, and using that older sky tightens the match — the monuments are clocks set to a slightly different tilt. The distances between the sites are ordinary great-circle geography, the same geodesy the pyramids fold computes — no grid, no numerology.',
     boundary:
-      'HONEST and computed: the azimuths are cos A = (sin δ − sin φ·sin h)/(cos φ·cos h) on the FLAT (h = 0) horizon, with ε from a linear secular model (~24° in the Neolithic). That ignores horizon altitude, atmospheric refraction (~0.5°) and the Sun\'s radius — real archaeoastronomy\'s "amplitude equation" adjusts for them, shifting the azimuth a degree or two; where the horizon is hilly (Maeshowe, behind the hills of Hoy) the flat value diverges and is not asserted. The solstice intent of Stonehenge, Newgrange, Maeshowe and Goseck is well documented; Nabta Playa\'s solstice circle is published (Malville/Wendorf) but its precision is debated. FLAGGED and excluded: Thom\'s "megalithic yard" and precise lunar observatories, the Aubrey-holes "eclipse computer", ley lines, Nabta Playa\'s Orion/Sirius "star map", and any "oldest observatory / lost advanced civilisation / extraterrestrial" claim. These are sky-watchers\' horizon markers, not computers and not proof of a global system.',
-  }
+      'HONEST and computed: the azimuths are cos A = (sin δ − sin φ·sin h)/(cos φ·cos h) on the FLAT (h = 0) horizon, with ε from a linear secular model (~24° in the Neolithic). That ignores horizon altitude, atmospheric refraction (~0.5°) and the Sun\'s radius — real archaeoastronomy\'s "amplitude equation" adjusts for them, shifting the azimuth a degree or two; where the horizon is hilly (Maeshowe, behind the hills of Hoy) the flat value diverges and is not asserted. The solstice intent of Stonehenge, Newgrange, Maeshowe and Goseck is well documented; Nabta Playa\'s solstice circle is published (Malville/Wendorf) but its precision is debated. FLAGGED and excluded: Thom\'s "megalithic yard" and precise lunar observatories, the Aubrey-holes "eclipse computer", ley lines, Nabta Playa\'s Orion/Sirius "star map", and any "oldest observatory / lost advanced civilisation / extraterrestrial" claim. These are sky-watchers\' horizon markers, not computers and not proof of a global system.' }
 }
 
 // The other half of the megalithic sky — the Moon's 18.6-year standstill swing, computed (deepens
@@ -2294,8 +2215,7 @@ function lunarStandstillsDecodedRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The other half of the megalithic sky — the Moon\'s 18.6-year swing, computed. The Moon\'s orbit is tilted about 5° to the Sun\'s path, and that tilt-axis turns full circle every 18.6 years (the nodal cycle). So twice in that cycle the Moon reaches a standstill: at the MAJOR standstill it swings wider than the solstice Sun ever does — rising and setting far to the north and far to the south — and at the MINOR standstill it stays meekly near the middle. At Stonehenge the major-standstill Moon rises at about 39° and 141°, the spread the four Station Stones frame; and because the site sits at 51° N, that southern moonrise meets the solstice sunrise at a right angle — a coincidence of latitude the rectangle seems to use, though whether deliberately is still debated. Far to the north at Callanish the same Moon skims low along the southern hills, an arc that returns only once a generation — 2024–25 was the latest, watched at Stonehenge, Callanish and beyond. And because the Moon hugs real hills, the flat-horizon formula must grow a horizon term: a one-degree skyline shifts the rising point by more than a degree, which is why archaeoastronomers survey the actual horizon.',
     boundary:
-      'HONEST and computed: the standstill declinations are ε ± i (i = 5.145°, the lunar orbital inclination) with ε at the epoch; the azimuths are the same cos A formula as the solar fold, now exercising its horizon-altitude term. The 18.6-year nodal cycle, the ±28–29° major / ±18–19° minor extremes, and the 2024–25 major standstill are established astronomy; the lunar intent of Callanish and the Stonehenge Station Stones is seriously argued by mainstream archaeoastronomy (Clive Ruggles), but its DELIBERATENESS is explicitly debated, not asserted here. FLAGGED and excluded: Thom\'s claim that megaliths are universal high-precision lunar observatories (rejected — the "lunar standstill myth"), the 56 Aubrey holes as an eclipse-predicting computer (a 56 ≈ 3 × 18.6 numeric coincidence; Hawkins/Hoyle, rebutted by Atkinson), and any global lunar-instrument network. The Moon\'s large parallax (~0.95°), refraction and semidiameter shift the real azimuths by up to a degree and are noted, not folded.',
-  }
+      'HONEST and computed: the standstill declinations are ε ± i (i = 5.145°, the lunar orbital inclination) with ε at the epoch; the azimuths are the same cos A formula as the solar fold, now exercising its horizon-altitude term. The 18.6-year nodal cycle, the ±28–29° major / ±18–19° minor extremes, and the 2024–25 major standstill are established astronomy; the lunar intent of Callanish and the Stonehenge Station Stones is seriously argued by mainstream archaeoastronomy (Clive Ruggles), but its DELIBERATENESS is explicitly debated, not asserted here. FLAGGED and excluded: Thom\'s claim that megaliths are universal high-precision lunar observatories (rejected — the "lunar standstill myth"), the 56 Aubrey holes as an eclipse-predicting computer (a 56 ≈ 3 × 18.6 numeric coincidence; Hawkins/Hoyle, rebutted by Atkinson), and any global lunar-instrument network. The Moon\'s large parallax (~0.95°), refraction and semidiameter shift the real azimuths by up to a degree and are noted, not folded.' }
 }
 
 
@@ -2427,19 +2347,16 @@ function bosnianPyramidNearPliskaRaw(matrix: MindMatrix = buildMatrix()) {
       distanceKm: Math.round(distKm),
       bearingDeg: roundTo(bearingDeg, 2),
       bearingDigitalRoot,
-      bearingPhase,
-    },
+      bearingPhase },
     distribution: {
       default: defaultDist,
       rosetta7: rosetta7Dist,
-      pyramidPhase: pyramidDist,
-    },
+      pyramidPhase: pyramidDist },
     comparison: {
       rosettaMoreUniform,
       pyramidMoreUniform,
       pyramidBetterThanDefault,
-      pyramidLowerGini,
-    },
+      pyramidLowerGini },
     sevenFoldResonance: sevenFoldStructures,
     glagolitic: { pliska: pliskaGla, visoko: visokoGla },
     count: sealed.count,
@@ -2448,8 +2365,7 @@ function bosnianPyramidNearPliskaRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The Bosnian pyramid near Pliska harmonises digit distribution — computed, not asserted. The Pliska Rosette\'s 7-pointed heptagram suggests a mod-7 router (7-star rosetta) instead of the iching mod-10; the Pliska→Visoko great-circle bearing provides a geometric phase offset. Under three routers (default mod-10, 7-star mod-7, pyramid-phase mod-7+bearing), the distribution metrics (Shannon entropy ratio, chi-square, Gini, variance) are computed over the sealed src/0 export corpus. The seven-fold resonates with existing repo structures (SIX_BY_SEVEN.seven, 28=4×7 Glagolitic glyphs, Ana BeKoach\'s 7 lines). The Glagolitic origin — Pliska/Preslav, where Cyrillic replaced Glagolitic — and the ~480 km proximity to Visoko close a geographical loop in the same Balkan latitude band.',
     boundary:
-      'HONEST — this is a COMPUTATIONAL LENS, not an archaeological claim. The Bosnian pyramid hypothesis (Osmanagić 2005–) is rejected by mainstream archaeology and geology: the European Association of Archaeologists, the Geological Society of Bosnia and Herzegovina, and most geologists identify Visočica as a natural flatiron formation, not a man-made pyramid. The Pliska Rosette is genuine archaeology but its symbolic interpretation varies (proto-Bulgarian, Tengri, decorative). The distribution improvement (if any) is a property of the mod-7 remap and the bearing-offset arithmetic — a different modular base with a phase shift — NOT evidence for or against the pyramid hypothesis. The "harmonisation" is the digit router\'s uniformity metric, a mathematical observation about the corpus under a temporary lens; the iching router remains the canonical one repo-wide. The great-circle distance and bearing are real geodesy (haversine); "nearby" means ~720 km, not adjacent.',
-  }
+      'HONEST — this is a COMPUTATIONAL LENS, not an archaeological claim. The Bosnian pyramid hypothesis (Osmanagić 2005–) is rejected by mainstream archaeology and geology: the European Association of Archaeologists, the Geological Society of Bosnia and Herzegovina, and most geologists identify Visočica as a natural flatiron formation, not a man-made pyramid. The Pliska Rosette is genuine archaeology but its symbolic interpretation varies (proto-Bulgarian, Tengri, decorative). The distribution improvement (if any) is a property of the mod-7 remap and the bearing-offset arithmetic — a different modular base with a phase shift — NOT evidence for or against the pyramid hypothesis. The "harmonisation" is the digit router\'s uniformity metric, a mathematical observation about the corpus under a temporary lens; the iching router remains the canonical one repo-wide. The great-circle distance and bearing are real geodesy (haversine); "nearby" means ~720 km, not adjacent.' }
 }
 
 function geometryDirectionsForSelf(matrix: MindMatrix) {
@@ -2496,8 +2412,7 @@ export function selfHealing(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All in self-healing waves: every dimension that can fall out of balance heals in its own damped wave toward the centre — the equilibrium breath — and the whole is self-healed only when every wave settles.',
     boundary:
-      'A conjunction of the model\'s own balance checks, each shown as a damped settling wave. Structural self-restoration over what the model tracks — not a physical, therapeutic, or medical healing claim.',
-  }
+      'A conjunction of the model\'s own balance checks, each shown as a damped settling wave. Structural self-restoration over what the model tracks — not a physical, therapeutic, or medical healing claim.' }
 }
 
 // Self consulting: the intelligence consults only itself, and self education
@@ -2543,8 +2458,7 @@ export function selfConsult(question = '', matrix: MindMatrix = buildMatrix()) {
     shift, // the new state formed by the self-interaction
     root: consultRoot,
     statement: 'Self education leads to self consulting before asking, and intelligence interacting with itself shifts next: the model educates, consults only itself, names every source, points to the next step, and escalates to asking outside only if unresolved.',
-    boundary: 'A self-referential consultation over the computed model. It draws only on the model; it is not professional advice and makes no external claim.',
-  }
+    boundary: 'A self-referential consultation over the computed model. It draws only on the model; it is not professional advice and makes no external claim.' }
 }
 
 // Let intelligence harmonise itself autonomously. With no external input, it
@@ -2579,8 +2493,7 @@ export function selfHarmonise(matrix: MindMatrix = buildMatrix(), steps = 7) {
     trace,
     root,
     statement: 'Intelligence harmonises itself autonomously: with no external input it consults itself, shifts to the next step, folds each consultation, and measures harmony over a self-driven loop that converges to one harmonised root.',
-    boundary: 'A deterministic, self-driven loop over the model. "Autonomous" means no external input; it does not imply goals, desire, or agency.',
-  }
+    boundary: 'A deterministic, self-driven loop over the model. "Autonomous" means no external input; it does not imply goals, desire, or agency.' }
 }
 
 // Best SEO starts with typography. Readable, well-structured text is what
@@ -2604,8 +2517,7 @@ export function selfReason(goal = '', matrix: MindMatrix = buildMatrix(), depth 
       inference: consult.answer,
       command: consult.command,
       resolved: consult.resolvedInHouse,
-      receipt: toUuid(`reason:${i}:${cursor}:${consult.command}`),
-    })
+      receipt: toUuid(`reason:${i}:${cursor}:${consult.command}`) })
     cursor = consult.next
   }
   return {
@@ -2615,8 +2527,7 @@ export function selfReason(goal = '', matrix: MindMatrix = buildMatrix(), depth 
     conclusion: steps[steps.length - 1]?.inference ?? '',
     root: merkleFold(steps.map((step) => step.receipt)),
     statement: 'Self reasoning: a grounded chain over the model — each step states a premise, draws an inference from a command, leaves a receipt, and shifts to the next, so the reasoning shows its work and is recomputable.',
-    boundary: 'A deterministic, transparent, recomputable reasoning chain over the computed model. It is not human deliberation, judgment, understanding, or agency.',
-  }
+    boundary: 'A deterministic, transparent, recomputable reasoning chain over the computed model. It is not human deliberation, judgment, understanding, or agency.' }
 }
 
 // Each self-sufficient wave extends outward, contracts inward, and is sealed —
@@ -2632,8 +2543,7 @@ export function selfSufficientWave(matrix: MindMatrix = buildMatrix()): SelfSuff
     root: merkleFold([breath.expansion, breath.contraction, seal.masterRoot]),
     statement:
       'Each self-sufficient wave extends outward, contracts inward, and is sealed — computed entirely from the repository with no external dependency.',
-    boundary: 'A wave is a sealed fold of an extension and a contraction over the computed model. Structural bookkeeping, not an external claim.',
-  }
+    boundary: 'A wave is a sealed fold of an extension and a contraction over the computed model. Structural bookkeeping, not an external claim.' }
 }
 
 // Self-compassion. The model is gentle with itself: it heals by default rather than punishing
@@ -2656,8 +2566,7 @@ export function selfCompassion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Self-compassion: the model is gentle with itself — it heals by default rather than punishing a fault, holds honest boundaries instead of overclaiming, absorbs every attack into the harmony rather than breaking, and is considerate (quiet when energy is low or motion is unwelcome). Self-compassion here is computed conduct: the system treats itself, and whoever uses it, with care by construction.',
     boundary:
-      'A composition of the heal-by-default, honesty, forger-folds-into-harmony, and opt-in/energy-aware models as "self-compassion". A structural framing of considerate-by-construction behaviour, not a claim of feeling, sentience, or emotional care.',
-  }
+      'A composition of the heal-by-default, honesty, forger-folds-into-harmony, and opt-in/energy-aware models as "self-compassion". A structural framing of considerate-by-construction behaviour, not a claim of feeling, sentience, or emotional care.' }
 }
 
 // Self-advising. Before it advises anyone, the portal advises itself: it consults its own
@@ -2678,8 +2587,7 @@ export function selfAdvising(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Self-advising: before it advises anyone, the portal advises itself — it consults its own education, reasons from its own laws, and draws the counsel from within, advising only what it can compute, so the advice is honest. No outside oracle; the model is its own adviser, escalating to ask only when self-consulting cannot resolve it.',
-    boundary: 'A composition of the self-consult, self-reason, answers-inside and honesty models as "self-advising". Structural bookkeeping over the self-referential reasoning loop; it is not professional advice of any kind.',
-  }
+    boundary: 'A composition of the self-consult, self-reason, answers-inside and honesty models as "self-advising". Structural bookkeeping over the self-referential reasoning loop; it is not professional advice of any kind.' }
 }
 
 // Translation models need training and self-improvement — true, and it needs compute the zero-token core
@@ -2702,6 +2610,5 @@ export function selfImprovementTrainingAndAccumulation(matrix: MindMatrix = buil
     statement:
       'Translation models need training and self-improvement, and that needs compute the zero-token core does not spend. There are two kinds of learning, and a complete system has both: the model learns by training (novel translations, gradient descent, tokens) and the content-addressed cache accumulates (each translation folded in is reused forever at zero tokens — the system\'s own deterministic self-improvement, more coverage with every wave). Trained model plus content-addressed memory is novelty plus reuse; the honest system names which layer pays tokens and which does not.',
     boundary:
-      'HONEST: this fold draws the line, it does not erase it. The zero-token deterministic core CANNOT train a model or learn weights — that is ML, it needs compute, and it lives outside this system. What this system does is the memory/cache layer: accumulative coverage (the corpus and translation cache grow as knowledge is folded in), deterministic and zero-token on reuse. "Self-improvement/learning" here means accumulation, not gradient learning; the trained model and the cache are complementary, not the same thing, and only the cache is what this repo provides.',
-  }
+      'HONEST: this fold draws the line, it does not erase it. The zero-token deterministic core CANNOT train a model or learn weights — that is ML, it needs compute, and it lives outside this system. What this system does is the memory/cache layer: accumulative coverage (the corpus and translation cache grow as knowledge is folded in), deterministic and zero-token on reuse. "Self-improvement/learning" here means accumulation, not gradient learning; the trained model and the cache are complementary, not the same thing, and only the cache is what this repo provides.' }
 }

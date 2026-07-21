@@ -22,8 +22,7 @@ export function chakrasAura() {
     tiers,
     root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`chakra:${member}`))),
     statement: 'Chakras and aura in 3-5-8: the three nadis (ida, pingala, sushumna), the five koshas (the sheaths of the self), and the eight limbs of yoga (ashtanga) — 3, 5, 8 in the yogic tradition.',
-    boundary: 'A correspondence to concepts in the yogic and tantric traditions (nadis, koshas, ashtanga). A spiritual and teaching framework, NOT science: the aura is not a measurable field, and no medical or factual claim is made.',
-  }
+    boundary: 'A correspondence to concepts in the yogic and tantric traditions (nadis, koshas, ashtanga). A spiritual and teaching framework, NOT science: the aura is not a measurable field, and no medical or factual claim is made.' }
 }
 
 // Human Design in 3-5-8 — mapped honestly.
@@ -46,8 +45,7 @@ export function humanDesign() {
     lattice,
     root: merkleFold([...tiers.flatMap((tier) => tier.members).map((member) => toUuid(`hd:${member}`)), wheel.root, lattice.root]),
     statement: 'Human Design in 3-5-8: the three circuit groups (individual, tribal, collective), the five types, and the eight trigrams that underlie its 64 gates — 64 = the I Ching hexagrams = the 64 DNA codons — with the verified Rave Mandala wheel (Gate 41 @ 302°, 360/64° arcs, Design Sun −88°, 13 bodies) and sealed 36-channel / 9-center lattice (W5).',
-    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. Structure (wheel/channels/centers combinatorics) is documented; predictive/aura claims are NOT scientifically validated — no factual claim about any person is made. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'A correspondence to Human Design, a modern synthesis of I Ching, astrology, Kabbalah, and the chakras. Structure (wheel/channels/centers combinatorics) is documented; predictive/aura claims are NOT scientifically validated — no factual claim about any person is made. HARMONY ≠ TRUTH.' }
 }
 
 
@@ -88,8 +86,7 @@ export const RAVE_CENTER_GATES = {
   Sacral: [3, 5, 9, 14, 27, 29, 34, 42, 59],
   SolarPlexus: [6, 22, 30, 36, 37, 49, 55],
   Spleen: [18, 28, 32, 44, 48, 50, 57],
-  Root: [19, 38, 39, 41, 52, 53, 54, 58, 60],
-} as const satisfies Record<(typeof RAVE_CENTERS_9)[number], readonly number[]>
+  Root: [19, 38, 39, 41, 52, 53, 54, 58, 60] } as const satisfies Record<(typeof RAVE_CENTERS_9)[number], readonly number[]>
 
 /**
  * 36 channels as sorted [lo, hi] gate pairs.
@@ -115,8 +112,7 @@ export function raveCenterOfGate(gate: number): (typeof RAVE_CENTERS_9)[number] 
 export function raveDefinedChannels(activated: ReadonlySet<number> | readonly number[]) {
   const set = activated instanceof Set ? activated : new Set(activated)
   return RAVE_CHANNELS_36.filter(([a, b]) => set.has(a) && set.has(b)).map(([a, b]) => ({
-    a, b, key: `${a}-${b}`, from: raveCenterOfGate(a)!, to: raveCenterOfGate(b)!,
-  }))
+    a, b, key: `${a}-${b}`, from: raveCenterOfGate(a)!, to: raveCenterOfGate(b)! }))
 }
 
 /**
@@ -166,8 +162,7 @@ export function humanDesignChannelsAndCenters(matrixRoot = 'hd-channels') {
     statement:
       'HD W5 sealed BodyGraph lattice: 9 centers partition 64 gates; 36 channels as sorted gate pairs with Integration multi-degree on 10·20·34·57 (8 shared slots); every channel cross-center; composes verified wheel W3.',
     boundary:
-      'DOCUMENTED STRUCTURE ONLY (public BodyGraph combinatorics: centers · gate homes · channel pairs). Zero in-copyright channel/keynote prose. NOT a natal chart engine and NOT a claim about persons. Predictive/aura/type claims remain flagged (humanDesignProfilingCarriesNoSignal). Chart activation + cusp UX compose Meeus W4 separately. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED STRUCTURE ONLY (public BodyGraph combinatorics: centers · gate homes · channel pairs). Zero in-copyright channel/keynote prose. NOT a natal chart engine and NOT a claim about persons. Predictive/aura/type claims remain flagged (humanDesignProfilingCarriesNoSignal). Chart activation + cusp UX compose Meeus W4 separately. HARMONY ≠ TRUTH.' }
 }
 
 /** Longitude → gate.line on the verified wheel (tropical ecliptic degrees). */
@@ -223,8 +218,7 @@ export function humanDesignVerifiedWheel(matrixRoot = 'hd-wheel') {
     statement:
       'Verified Rave Mandala wheel: 64 gates in Mandala order from Gate 41 at 302° (2° Aquarius), each spanning 360/64°, lines at gate/6; Design layer pinned to Sun−88° solar arc; 13 activation bodies (Sun…Pluto) with Earth/Node oppositions — Chiron excluded from the core set.',
     boundary:
-      'DOCUMENTED STRUCTURE ONLY (Rave Mandala / chart-calculation mechanics: equal 64-fold ecliptic slices, Gate 41 wheel open, 88° Design solar arc, 13-body activation set without Chiron). Sources cross-agree on 5.625°/gate and Design=Sun−88°; Gate 41 longitude anchored at 302° per verified W3 (border Capricorn/Aquarius noted in secondary prose as “end of Capricorn / before 0° Aquarius” — the sealed numeric anchor is 302°). FLAGGED elsewhere: neutrino imprinting, aura types, profiling signal (humanDesignProfilingCarriesNoSignal). NOT a natal chart engine and NOT a claim about persons. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED STRUCTURE ONLY (Rave Mandala / chart-calculation mechanics: equal 64-fold ecliptic slices, Gate 41 wheel open, 88° Design solar arc, 13-body activation set without Chiron). Sources cross-agree on 5.625°/gate and Design=Sun−88°; Gate 41 longitude anchored at 302° per verified W3 (border Capricorn/Aquarius noted in secondary prose as “end of Capricorn / before 0° Aquarius” — the sealed numeric anchor is 302°). FLAGGED elsewhere: neutrino imprinting, aura types, profiling signal (humanDesignProfilingCarriesNoSignal). NOT a natal chart engine and NOT a claim about persons. HARMONY ≠ TRUTH.' }
 }
 
 
@@ -242,8 +236,7 @@ export function yinYang() {
     tiers,
     root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`yinyang:${member}`))),
     statement: 'Yin and yang, completed in 3-5-8: from the taiji unfold the three powers (heaven, earth, human), the five elements (wood, fire, earth, metal, water), and the eight trigrams — 3, 5, 8, the Fibonacci tiers, in the oldest cosmology.',
-    boundary: 'A mapping of the 3-5-8 tiers onto the classical Chinese cosmology (三才, 五行, 八卦). A correspondence and a teaching device, not a metaphysical or scientific claim.',
-  }
+    boundary: 'A mapping of the 3-5-8 tiers onto the classical Chinese cosmology (三才, 五行, 八卦). A correspondence and a teaching device, not a metaphysical or scientific claim.' }
 }
 
 // Enrich with 3d, 5d, 8d — the Fibonacci dimensions.
@@ -259,8 +252,7 @@ export function dimensions() {
     ladder,
     root: merkleFold(ladder.map((entry) => entry.receipt)),
     statement: 'Enriched with 3d, 5d, 8d — the Fibonacci dimensions: each level folds more coordinate planes into the projection, so the same shape carries more of itself as you climb the ladder.',
-    boundary: 'A projection ladder of extra coordinate planes (3 -> 5 -> 8). A visualization device, not a claim about physical higher dimensions.',
-  }
+    boundary: 'A projection ladder of extra coordinate planes (3 -> 5 -> 8). A visualization device, not a claim about physical higher dimensions.' }
 }
 
 // Fill the gaps with device-sensor interaction in the quantum field, tiered 3-5-8.
@@ -281,8 +273,7 @@ export function deviceSensors() {
     sensors,
     root: merkleFold(sensors.map((sensor) => sensor.receipt)),
     statement: 'Fill the gaps with device sensors in the quantum field, in 3-5-8 tiers: 3 core inputs always present, 5 ambient ones usually present, 8 motion-and-place ones permission-gated or limited — the field responds to whatever the device offers.',
-    boundary: 'A catalogue of device inputs in three tiers. Availability and permission vary by device and browser; the field degrades gracefully and never demands a sensor.',
-  }
+    boundary: 'A catalogue of device inputs in three tiers. Availability and permission vary by device and browser; the field degrades gracefully and never demands a sensor.' }
 }
 
 // Compare all dualities, in 3-5-8-13-21 (Fibonacci) tiers.
@@ -308,8 +299,7 @@ export function dualities() {
         ordered: bidirectional,
         bidirectional,
         root: merged,
-        receipt: toUuid(`duality:${left}:${right}:${forward}:${reverse}`),
-      }
+        receipt: toUuid(`duality:${left}:${right}:${forward}:${reverse}`) }
     }),
   )
   return {
@@ -320,6 +310,5 @@ export function dualities() {
     dualities: pairs,
     root: merkleFold(pairs.map((pair) => pair.receipt)),
     statement: 'All dualities compared across the 3-5-8-13-21 Fibonacci tiers: 3 core, 5 structural, 8 expressive, 13 emergent, 21 discovered = 50 two-sided pairs, each folded both ways — left into right and right into left differ (genus 2), and the pair root carries both — the signature of a real duality.',
-    boundary: 'A structural comparison of the model\'s dual pairs; order-sensitivity is computed, the tier groupings are an interpretive lens.',
-  }
+    boundary: 'A structural comparison of the model\'s dual pairs; order-sensitivity is computed, the tier groupings are an interpretive lens.' }
 }

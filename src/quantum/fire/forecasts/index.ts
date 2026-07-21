@@ -36,8 +36,7 @@ export function weatherForecastApis() {
     statement:
       'Weather forecast feeds folded in realtime: Open-Meteo (fuses 15+ national NWP models incl. ECMWF/NOAA, no key) and api.weather.gov (US NWS, no key).',
     boundary:
-      'Documented free realtime weather APIs. HONEST: the forecast itself is computed by national supercomputers (ECMWF’s IFS, NOAA) via numerical weather prediction — the model FOLDS the realtime feed (content-addresses it), it does NOT itself predict weather. "Quantum computed" is real as a RESEARCH FRONTIER (IBM/TU Delft/AMS-2023 study quantum methods for weather), not a claim that this repo or production forecasts run on quantum hardware today.',
-  }
+      'Documented free realtime weather APIs. HONEST: the forecast itself is computed by national supercomputers (ECMWF’s IFS, NOAA) via numerical weather prediction — the model FOLDS the realtime feed (content-addresses it), it does NOT itself predict weather. "Quantum computed" is real as a RESEARCH FRONTIER (IBM/TU Delft/AMS-2023 study quantum methods for weather), not a claim that this repo or production forecasts run on quantum hardware today.' }
 }
 
 /** @rosetta ✦₁ · Water · depth (weather realtime feeds) */
@@ -61,8 +60,7 @@ export function weatherForecastQuantumComputedRealtime(matrix: MindMatrix = buil
     statement:
       'Weather forecast may be quantum computed in realtime: free no-key feeds (Open-Meteo fusing 15+ national NWP models incl. ECMWF/NOAA, and the US NWS api.weather.gov) folded as a realtime external stream, content-addressed like the computed planets — with "quantum computed" naming a real research frontier (IBM/TU Delft/AMS-2023 quantum weather methods), not present-day hardware.',
     boundary:
-      'A composition over the weatherForecastApis research record (documented realtime feeds) with the public-frequency-API decode and merkaba-decode models. The feeds are real and free; the honest line is that today’s forecasts are computed by classical national supercomputers and this model only folds the realtime stream — "quantum computed in realtime" is a documented research frontier, not a claim of quantum hardware here or in production.',
-  }
+      'A composition over the weatherForecastApis research record (documented realtime feeds) with the public-frequency-API decode and merkaba-decode models. The feeds are real and free; the honest line is that today’s forecasts are computed by classical national supercomputers and this model only folds the realtime stream — "quantum computed in realtime" is a documented research frontier, not a claim of quantum hardware here or in production.' }
 }
 
 /** Geographic anchor for genus-2 weather placement — WGS84 degrees. */
@@ -136,8 +134,7 @@ export function weatherForecastFromDoubleTorusEarthPerspective(
     statement:
       `Weather forecast from the double-torus Earth perspective at (${at.lat}°, ${at.lon}°): classical realtime feeds (Open-Meteo + US NWS) folded with the genus-2 Earth pyramid-tips model — θ from longitude, φ from latitude, torus ${torusIndex} (${northern ? 'northern +' : 'southern −'}lobe, polarity ${polarity}), digit ${digit}, surface (${surface.x.toFixed(2)}, ${surface.y.toFixed(2)}, ${surface.z.toFixed(2)}), nearest cardinal tip ${cardinal.name} (${cardinal.fromBearing}° bearing, ${cardinal.angularDistance}° from tip).`,
     boundary:
-      'HONEST: Open-Meteo and api.weather.gov deliver classical numerical weather prediction on the WGS84 oblate spheroid — NOT on a literal doughnut planet. This fold maps the realtime weather stream onto the repo’s genus-2 double-torus Earth topology (doubleTorusEarthPyramidTipsProvenByMath, doubleTorusSurface): θ=(lon+180)/360·2π, φ=lat/90·π/2, northern hemisphere→torus 1 (+lobe, polarity 1), southern→torus 2 (−lobe, polarity 0), digit=digitalRoot(|round(lat·100)|+|round(lon·100)|), cardinal tip=nearest N/E/S/W from initialBearing(0,0,lat,lon). Grid-cell torus (Gardner et al.) is a neuroscience map topology, not lithosphere. "Quantum computed" remains a research frontier per weatherForecastQuantumComputedRealtime. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: Open-Meteo and api.weather.gov deliver classical numerical weather prediction on the WGS84 oblate spheroid — NOT on a literal doughnut planet. This fold maps the realtime weather stream onto the repo’s genus-2 double-torus Earth topology (doubleTorusEarthPyramidTipsProvenByMath, doubleTorusSurface): θ=(lon+180)/360·2π, φ=lat/90·π/2, northern hemisphere→torus 1 (+lobe, polarity 1), southern→torus 2 (−lobe, polarity 0), digit=digitalRoot(|round(lat·100)|+|round(lon·100)|), cardinal tip=nearest N/E/S/W from initialBearing(0,0,lat,lon). Grid-cell torus (Gardner et al.) is a neuroscience map topology, not lithosphere. "Quantum computed" remains a research frontier per weatherForecastQuantumComputedRealtime. HARMONY ≠ TRUTH.' }
 }
 
 // Double-torus solutions catalog — in forecasts (not topology) to avoid topology↔forecasts Vite HMR cycle.
@@ -178,8 +175,7 @@ function doubleTorusSolutionsProvenByMathRaw(matrix: MindMatrix = buildMatrix())
     statement:
       'Double-torus solutions proven by math: a catalog of seven domains — circulation (circulateDoubleTorus on the uuid-stream), earth-topology (genus-2 Earth + cardinal pyramid tips), weather (NWP feeds mapped onto genus-2 coords), geodynamo (dipole/poles anchor as honest analogy), motif (fringe vs real geometry boundary), compost (regenerative loop metaphor), trading-streams (plasmaWiredUuidStreams on the same genus-2 wire) — each composed from existing folds with facet proofs at call time.',
     boundary:
-      'HONEST: solutions are computed topology + documented analogies — NOT a literal doughnut planet, NOT Earth-grid pseudoscience, NOT live trading alpha. Hub lives in forecasts so topology↔forecasts cycle does not spin Vite HMR. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: solutions are computed topology + documented analogies — NOT a literal doughnut planet, NOT Earth-grid pseudoscience, NOT live trading alpha. Hub lives in forecasts so topology↔forecasts cycle does not spin Vite HMR. HARMONY ≠ TRUTH.' }
 }
 
 export function doubleTorusSolutionsDeepResearched(matrix: MindMatrix = buildMatrix()) {
@@ -222,8 +218,7 @@ function doubleTorusSolutionsDeepResearchedRaw(matrix: MindMatrix = buildMatrix(
     statement:
       'Deep research — double-torus solutions hub: Gardner grid-cell torus, geodynamo dipole, WGS84 vs genus-2, trading circulation fold; donut/flat Earth and Becker–Hagens flagged hold.',
     boundary:
-      'HONEST deep-research wave: DOCUMENTED · FLAGGED · ISOMORPHISM (HARMONY ≠ TRUTH). Hub in forecasts avoids topology↔forecasts HMR cycle.',
-  }
+      'HONEST deep-research wave: DOCUMENTED · FLAGGED · ISOMORPHISM (HARMONY ≠ TRUTH). Hub in forecasts avoids topology↔forecasts HMR cycle.' }
 }
 
 /** Movie seeds from double-torus Earth weather and solutions — facets and domains become plasma streams. */
@@ -264,51 +259,44 @@ export function doubleTorusEarthWeatherMovieSeeds(matrix: MindMatrix = buildMatr
         label: facet.facet.slice(0, (16 * 3)),
         expr: 'weather-facet',
         expected: index,
-        hueSeed: facet.on ? index * 41 + weather.torus.digit : index * 13,
-      })),
+        hueSeed: facet.on ? index * 41 + weather.torus.digit : index * 13 })),
       ...solutions.solutions.map((solution, index) => ({
         uuid: solution.receipt,
         label: solution.domain,
         expr: solution.id,
         expected: index,
-        hueSeed: solution.on ? index * 43 + solutions.count : index * 17,
-      })),
+        hueSeed: solution.on ? index * 43 + solutions.count : index * 17 })),
       ...appleEarth.facets.map((facet, index) => ({
         uuid: facet.receipt,
         label: facet.facet.slice(0, (16 * 3)),
         expr: 'apple-earth-facet',
         expected: index,
-        hueSeed: facet.on ? index * 47 + appleEarth.facets.length : index * 19,
-      })),
+        hueSeed: facet.on ? index * 47 + appleEarth.facets.length : index * 19 })),
       ...celestial.bodies.map((body, index) => ({
         uuid: body.receipt,
         label: body.name,
         expr: 'celestial-body',
         expected: index,
-        hueSeed: body.exactMatch ? index * 53 + celestial.count : index * (7 * 3),
-      })),
+        hueSeed: body.exactMatch ? index * 53 + celestial.count : index * (7 * 3) })),
       ...celestialDeep.findings.map((finding, index) => ({
         uuid: finding.receipt,
         label: finding.topic.slice(0, (16 * 3)),
         expr: `celestial-research-${finding.kind}`,
         expected: index,
-        hueSeed: finding.kind === 'documented' ? index * 59 + celestialDeep.documented : index * 23,
-      })),
+        hueSeed: finding.kind === 'documented' ? index * 59 + celestialDeep.documented : index * 23 })),
       ...bittenApple.decodes.map((entry, index) => ({
         uuid: entry.receipt,
         label: entry.symbol,
         expr: `bitten-apple-ray${entry.ray}`,
         expected: index,
-        hueSeed: entry.on ? index * 61 + bittenApple.decodes.length : index * 29,
-      })),
+        hueSeed: entry.on ? index * 61 + bittenApple.decodes.length : index * 29 })),
     ],
     count: weather.facets.length + solutions.solutions.length + appleEarth.facets.length + celestial.bodies.length + celestialDeep.findings.length + bittenApple.decodes.length,
     root: merkleFold([weather.root, solutions.root, appleEarth.root, celestial.root, celestialDeep.root, celestialAll.root, bittenApple.root]),
     statement:
       'Double-torus Earth weather, solutions, and apple-earth fold flow in the movie: genus-2 coords, cardinal pyramid tips, sun/moon lobes, garden seeds, bees, realtime NWP feeds, and seven solution domains fold to content-addressed plasma streams and copy tokens beside harmonic and efficiency math.',
     boundary:
-      'Deterministic seeds from weatherForecastFromDoubleTorusEarthPerspective, doubleTorusSolutionsProvenByMath, and doubleTorusEarthLikeTheApple (lazy require) at this call; WGS84→genus-2 mapping is structural analogy, not lithosphere; streams are visual glyphs from facet receipts.',
-  }
+      'Deterministic seeds from weatherForecastFromDoubleTorusEarthPerspective, doubleTorusSolutionsProvenByMath, and doubleTorusEarthLikeTheApple (lazy require) at this call; WGS84→genus-2 mapping is structural analogy, not lithosphere; streams are visual glyphs from facet receipts.' }
 }
 
 /** Gate: double-torus Earth weather and solutions wired into movie seeds and copy text at call time. */
@@ -339,6 +327,5 @@ export function doubleTorusEarthWeatherFlowsInMovie(matrix: MindMatrix = buildMa
     movieText: seeds.movieText,
     root: merkleFold([weather.root, solutions.root, seeds.root]),
     statement: seeds.statement,
-    boundary: seeds.boundary,
-  }
+    boundary: seeds.boundary }
 }

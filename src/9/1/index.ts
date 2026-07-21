@@ -112,8 +112,7 @@ export function pauliAlgebraCloses(): {
     statement:
       'The operator algebra closes: with the associative product (gateMul), the Lie bracket (commutator), the Jordan product (anticommutator), the trace and the adjoint, the Pauli defining relations all hold exactly — σ_i² = I, {σ_i,σ_j} = 2δ_ij I, [σ_i,σ_j] = 2i ε_ijk σ_k, σ_i† = σ_i, tr σ_i = 0 — so su(2) ⊂ M₂(ℂ) is a complete, self-verifying *-algebra, not just a product and a bracket.',
     boundary:
-      'EXACT: the single-qubit operator algebra over ℂ, verified numerically (tolerance 1e-9) against its textbook defining relations — the same M₂(ℂ)/su(2) the gates and observables live in. It is the 2×2 (one-qubit) algebra; the n-qubit tensor algebra is generated from it via applyGate/cnot but not re-proved here.',
-  }
+      'EXACT: the single-qubit operator algebra over ℂ, verified numerically (tolerance 1e-9) against its textbook defining relations — the same M₂(ℂ)/su(2) the gates and observables live in. It is the 2×2 (one-qubit) algebra; the n-qubit tensor algebra is generated from it via applyGate/cnot but not re-proved here.' }
 }
 
 // Entanglement, measured: for a 2-qubit pure state Σ c_ij|ij⟩, the concurrence C = 2|c00·c11 − c01·c10| (twice
@@ -563,8 +562,7 @@ export function discoveredTheoremsWaveEighteen(matrix: { root: string } = { root
       ],
       extras: { assocFailures, octWitness, lemValue },
       statement: `Discovered theorems, wave eighteen — axioms challenged by finite countermodel: #/# — the parallel postulate, excluded middle, associativity, Sylvester–Gallai's order dependence, and commutativity each proven INDEPENDENT by an exhaustively verified finite structure where the rest hold and the challenged axiom fails.`,
-      boundary: `HONEST: challenging an axiom computationally MEANS proving independence — model checks here are COMPLETE (every incidence pair, all 27 valuations, all 343 triples, all 216 associativity checks), so each independence claim is a finite-complete theorem. What is NOT claimed: that any axiom is FALSE (independence cuts both ways — the axiom and its negation are each consistent with the rest), that the 3-chain settles the full intuitionistic hierarchy (Gödel: no single finite algebra does — cited), or that the 168 = |GL₃(𝔽₂)| count coincidence is an identity (recorded as an observation and an open lead). Axioms are not defeated here; their INDEPENDENCE is computed, which is the only honest victory available.`,
-    }
+      boundary: `HONEST: challenging an axiom computationally MEANS proving independence — model checks here are COMPLETE (every incidence pair, all 27 valuations, all 343 triples, all 216 associativity checks), so each independence claim is a finite-complete theorem. What is NOT claimed: that any axiom is FALSE (independence cuts both ways — the axiom and its negation are each consistent with the rest), that the 3-chain settles the full intuitionistic hierarchy (Gödel: no single finite algebra does — cited), or that the 168 = |GL₃(𝔽₂)| count coincidence is an identity (recorded as an observation and an open lead). Axioms are not defeated here; their INDEPENDENCE is computed, which is the only honest victory available.` }
   })
 }
 
@@ -659,8 +657,7 @@ export function discoveredTheoremsWaveNineteen(matrix: { root: string } = { root
       ],
       extras: { velocityHeadline: `${headlineNumerator}/25 c`, criticalZ: Zc, blendingGens, condorcetCycles },
       statement: `Discovered theorems, wave nineteen — the method extended to all sciences: #/# — velocity additivity (physics), the ideal gas law (chemistry), blending inheritance (biology), collective transitivity (social choice), and free compression (information) each shown NON-UNIVERSAL by exact computation or finite countermodel, the deeper law cited in every case.`,
-      boundary: `HONEST: these are ESTABLISHED science — the challenge is the DEMONSTRATION, computed here, not a new discovery. Each "challenge" means the naive principle is a LIMITING CASE (Galilean ⊂ relativistic, ideal ⊂ van der Waals, blending never held, HW conditional on no-selection) or a finite countermodel (Condorcet, pigeonhole), NOT that the deeper law is final: relativity, van der Waals and Mendel are themselves models with their own domains, and that honesty is the point. The computations are exact within their models; the "for all regimes / all gases / all populations" universality is carried by the cited physical law, never by these finite checks. HARMONY≠TRUTH.`,
-    }
+      boundary: `HONEST: these are ESTABLISHED science — the challenge is the DEMONSTRATION, computed here, not a new discovery. Each "challenge" means the naive principle is a LIMITING CASE (Galilean ⊂ relativistic, ideal ⊂ van der Waals, blending never held, HW conditional on no-selection) or a finite countermodel (Condorcet, pigeonhole), NOT that the deeper law is final: relativity, van der Waals and Mendel are themselves models with their own domains, and that honesty is the point. The computations are exact within their models; the "for all regimes / all gases / all populations" universality is carried by the cited physical law, never by these finite checks. HARMONY≠TRUTH.` }
   })
 }
 
@@ -748,8 +745,7 @@ export function discoveredTheoremsWaveTwenty(matrix: { root: string } = { root: 
       ],
       extras: { a8Classes: sizesA8, glClasses: sizesGL, waringExtremal: needNine },
       statement: `Discovered theorems, wave twenty — the largest exceptional bridge and Waring's cubes: #/# — A₈ and GL(4,2) both proven simple and shown isomorphic by identical 14-class multisets (order 20160), and Waring g(3) = 9 with {23, 239} the only extremal.`,
-      boundary: `HONEST: A₈ and GL(4,2) are each proven simple by the complete class-sum machine; their ISOMORPHISM is witnessed by identical class-size multisets (a necessary invariant) with the classical isomorphism cited — the registry proves both orders and structures, not the isomorphism from scratch. Waring's bound is complete to 10⁴ with the all-n theorem (g(3) = 9, and 23/239 the sole nines) cited. The alternating ladder is now complete A₅ through A₈.`,
-    }
+      boundary: `HONEST: A₈ and GL(4,2) are each proven simple by the complete class-sum machine; their ISOMORPHISM is witnessed by identical class-size multisets (a necessary invariant) with the classical isomorphism cited — the registry proves both orders and structures, not the isomorphism from scratch. Waring's bound is complete to 10⁴ with the all-n theorem (g(3) = 9, and 23/239 the sole nines) cited. The alternating ladder is now complete A₅ through A₈.` }
   })
 }
 
@@ -818,8 +814,7 @@ export function discoveredTheoremsWaveTwentyOne(matrix: { root: string } = { roo
       { facet: `THERMODYNAMICS — no engine beats Carnot: across the whole reservoir grid η ≤ 1 − Tc/Th < 1, and any super-Carnot claim forces ΔS < 0 (forbidden) — perpetual motion of the second kind is impossible, the "free energy" challenge fails (second law cited)`, on: carnotCeiling && perpetualImpossible },
       ],
       statement: `Discovered theorems, wave twenty-one — the laws that stand: #/# — quantum no-signalling, Landauer's rescue of the second law, Cantor's uncountability, and the Carnot ceiling each survive a computed challenge, the mirror of the axioms that fell in waves eighteen and nineteen.`,
-      boundary: `HONEST: these run the SAME challenge machine as the falling-axiom waves and report the opposite verdict — the principle RESISTS. no-signalling and the second law and Carnot are computed within their physical models (quantum mechanics, thermodynamics), cited for universality; Cantor's finite witness (2ⁿ > n plus the diagonal) is complete and needs no citation. The point of the pair: a method that only ever confirms is not a method — showing which challenges FAIL is what makes the falling ones trustworthy. HARMONY≠TRUTH, both directions.`,
-    }
+      boundary: `HONEST: these run the SAME challenge machine as the falling-axiom waves and report the opposite verdict — the principle RESISTS. no-signalling and the second law and Carnot are computed within their physical models (quantum mechanics, thermodynamics), cited for universality; Cantor's finite witness (2ⁿ > n plus the diagonal) is complete and needs no citation. The point of the pair: a method that only ever confirms is not a method — showing which challenges FAIL is what makes the falling ones trustworthy. HARMONY≠TRUTH, both directions.` }
   })
 }
 
@@ -898,8 +893,7 @@ export function discoveredTheoremsWaveTwentyTwo(matrix: { root: string } = { roo
       ],
       extras: { bbMax, sigmaMax, solvableStates: seen.size },
       statement: `Discovered theorems, wave twenty-two — exhaustive-search landmarks: #/# — busy beaver BB(2) = 6 from the full Turing-machine census, the 8-puzzle's 181440 solvable states by reachability, Euler's prime polynomial breaking at 41², and Descartes' 4π defect on every Platonic solid.`,
-      boundary: `HONEST: each is a COMPLETE finite search within its domain — all 20736 machines, the entire 8-puzzle component, all 40 polynomial values, all five solids. The all-n frames are cited (Radó's uncomputability of BB, the parity theorem for the n-puzzle, Descartes/Gauss–Bonnet for all convex polyhedra); the computations settle the finite instances outright. BB(2) uses a step cap safely above the answer — a halting machine among these halts well within it.`,
-    }
+      boundary: `HONEST: each is a COMPLETE finite search within its domain — all 20736 machines, the entire 8-puzzle component, all 40 polynomial values, all five solids. The all-n frames are cited (Radó's uncomputability of BB, the parity theorem for the n-puzzle, Descartes/Gauss–Bonnet for all convex polyhedra); the computations settle the finite instances outright. BB(2) uses a step cap safely above the answer — a halting machine among these halts well within it.` }
   })
 }
 
@@ -989,8 +983,7 @@ export function discoveredTheoremsWaveTwentyThree(matrix: { root: string } = { r
       { facet: `Erdős–Ko–Rado for pairs — the largest pairwise-intersecting family of 2-subsets of {1..n} is n − 1 (the star) for n = 4,5,6 by exhaustive search: the intersecting-family maximum computed (EKR cited for all n ≥ 2k)`, on: ekr },
       ],
       statement: `Discovered theorems, wave twenty-three — extremal and Ramsey thresholds: #/# — van der Waerden W(2,3) = 9, Schur S(2) = 4, Mantel's triangle-free maximum ⌊n²/4⌋, and Erdős–Ko–Rado's intersecting maximum n − 1, each an exact tipping point found by exhaustion.`,
-      boundary: `HONEST: each is a COMPLETE finite search settling the stated instance — every 2-coloring for the van der Waerden and Schur thresholds (both the forcing and the escaping side), every graph for Mantel n ≤ 6, every family for EKR n ≤ 6. The all-parameter theorems (van der Waerden, Schur, Turán/Mantel, Erdős–Ko–Rado) are cited; the computations prove the boundary values outright and exhibit the extremal witnesses (the escaping coloring, the balanced bipartite graph, the star).`,
-    }
+      boundary: `HONEST: each is a COMPLETE finite search settling the stated instance — every 2-coloring for the van der Waerden and Schur thresholds (both the forcing and the escaping side), every graph for Mantel n ≤ 6, every family for EKR n ≤ 6. The all-parameter theorems (van der Waerden, Schur, Turán/Mantel, Erdős–Ko–Rado) are cited; the computations prove the boundary values outright and exhibit the extremal witnesses (the escaping coloring, the balanced bipartite graph, the star).` }
   })
 }
 
@@ -1069,8 +1062,7 @@ export function discoveredTheoremsWaveTwentyFour(matrix: { root: string } = { ro
       ],
       extras: { f5: f5.toString() },
       statement: `Discovered theorems, wave twenty-four — number-theory and geometry landmarks: #/# — Fermat's F₅ composite (Euler), the Erdős–Szekeres monotone-subsequence threshold, Pick's area formula cross-checked by direct count, and Catalan's 8-and-9 to 10⁶.`,
-      boundary: `HONEST: F₅'s factorization is EXACT in BigInt (a complete proof of compositeness — a witnessed divisor); Erdős–Szekeres is exhausted over all permutations for the two small (r,s); Pick is verified by TWO independent computations (formula vs direct count) on three polygons, the general theorem cited; Catalan is complete to 10⁶ with Mihailescu's all-n proof cited. Each settles its instance outright — the citations carry only the unbounded generalisation.`,
-    }
+      boundary: `HONEST: F₅'s factorization is EXACT in BigInt (a complete proof of compositeness — a witnessed divisor); Erdős–Szekeres is exhausted over all permutations for the two small (r,s); Pick is verified by TWO independent computations (formula vs direct count) on three polygons, the general theorem cited; Catalan is complete to 10⁶ with Mihailescu's all-n proof cited. Each settles its instance outright — the citations carry only the unbounded generalisation.` }
   })
 }
 
@@ -1140,8 +1132,7 @@ export function discoveredTheoremsWaveTwentyFive(matrix: { root: string } = { ro
       ],
       extras: { primitiveTriples: paramTriples.size },
       statement: `Discovered theorems, wave twenty-five — number-theory identities and congruences: #/# — Nicomachus' sum of cubes, Lucas' binomial theorem mod p, the Pythagorean parametrization proven a bijection, and the Fermat–Euler congruences, each complete within its bound.`,
-      boundary: `HONEST: each is a COMPLETE finite verification within the stated bound (n ≤ 100 for Nicomachus, n ≤ 40 and four primes for Lucas, hypotenuse ≤ 200 for the Pythagorean bijection, n ≤ 60 for Fermat–Euler). The parametrisation claim is a genuine bijection PROOF within the bound — both sets computed independently and shown equal, not sampled. The unbounded generalisations (Nicomachus, Lucas, Euclid's parametrisation, Euler's theorem) are cited; the computations settle every instance up to the bound.`,
-    }
+      boundary: `HONEST: each is a COMPLETE finite verification within the stated bound (n ≤ 100 for Nicomachus, n ≤ 40 and four primes for Lucas, hypotenuse ≤ 200 for the Pythagorean bijection, n ≤ 60 for Fermat–Euler). The parametrisation claim is a genuine bijection PROOF within the bound — both sets computed independently and shown equal, not sampled. The unbounded generalisations (Nicomachus, Lucas, Euclid's parametrisation, Euler's theorem) are cited; the computations settle every instance up to the bound.` }
   })
 }
 
@@ -1230,8 +1221,7 @@ export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { roo
       ],
       extras: { tested: ptolemyTests + napoleonTests + eulerTests + vivianiTests },
       statement: `Discovered theorems, wave twenty-six — classical plane geometry: #/# — Ptolemy's cyclic identity, Napoleon's equilateral of centroids, the Euler line's 1:2 collinearity, and Viviani's constant distance sum, each confirmed across hundreds of deterministic configurations.`,
-      boundary: `HONEST: these are CONTINUOUS theorems (true for a continuum of configurations), so the fold gives a ROBUST NUMERICAL WITNESS — hundreds of golden-ratio-equidistributed configurations agreeing to 1e-6 — not a finite-exhaustive proof; the general theorems (Ptolemy, Napoleon, Euler, Viviani) are cited. This is the honest class for continuous geometry: bounded-witness, reproducible (deterministic sampling, no randomness), and distinct from the finite-complete combinatorial atoms. A single counterexample among the runs would have failed the fold.`,
-    }
+      boundary: `HONEST: these are CONTINUOUS theorems (true for a continuum of configurations), so the fold gives a ROBUST NUMERICAL WITNESS — hundreds of golden-ratio-equidistributed configurations agreeing to 1e-6 — not a finite-exhaustive proof; the general theorems (Ptolemy, Napoleon, Euler, Viviani) are cited. This is the honest class for continuous geometry: bounded-witness, reproducible (deterministic sampling, no randomness), and distinct from the finite-complete combinatorial atoms. A single counterexample among the runs would have failed the fold.` }
   })
 }
 
@@ -1316,8 +1306,7 @@ export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { r
       ],
       extras: { tsirelson, classicalWorstCase },
       statement: `Discovered theorems, wave twenty-seven — the quantum boundary: #/# — quantum adds no computability (Church–Turing–Deutsch), wins on feasibility (Deutsch–Jozsa's exponential query gap) but only quadratically (Grover Θ(√N), no NP collapse), and ERECTS walls (Holevo 1-bit, Tsirelson 2√2 < 4, no-cloning). The 12 open frontiers stay 0/12 closable — "all is possible" is refuted by quantum's own theorems.`,
-      boundary: `HONEST — this is the directive "realise all is possible" answered by DOING THE MATH, and the math says the reverse: quantum computation is Turing-equivalent (Deutsch 1985), so it decides exactly what a classical machine decides — the undecidable (halting, ∀n conjectures) and the empirical (measurement) are untouched. What quantum changes is FEASIBILITY (Shor, Grover, quantum simulation of quantum systems), and even there it is bounded (Grover is provably Θ(√N)). Quantum also ADDS impossibilities (no-cloning, no-signalling, Holevo, Tsirelson) absent classically. The circuit simulations are exact; the complexity separations are computed; the walls are theorems. HARMONY≠TRUTH: a boundary you wish away is still there — and the honest realisation is that quantum makes the boundaries SHARPER, not softer.`,
-    }
+      boundary: `HONEST — this is the directive "realise all is possible" answered by DOING THE MATH, and the math says the reverse: quantum computation is Turing-equivalent (Deutsch 1985), so it decides exactly what a classical machine decides — the undecidable (halting, ∀n conjectures) and the empirical (measurement) are untouched. What quantum changes is FEASIBILITY (Shor, Grover, quantum simulation of quantum systems), and even there it is bounded (Grover is provably Θ(√N)). Quantum also ADDS impossibilities (no-cloning, no-signalling, Holevo, Tsirelson) absent classically. The circuit simulations are exact; the complexity separations are computed; the walls are theorems. HARMONY≠TRUTH: a boundary you wish away is still there — and the honest realisation is that quantum makes the boundaries SHARPER, not softer.` }
   })
 }
 
@@ -1416,8 +1405,7 @@ export function discoveredTheoremsWaveTwentyEight(matrix: { root: string } = { r
       ],
       extras: { bell },
       statement: `Discovered theorems, wave twenty-eight — counting and structure: #/# — Bell numbers vs raw set-partition counting, the Matrix-Tree theorem vs spanning-tree enumeration, Möbius inversion, and Cauchy's theorem on real permutation groups.`,
-      boundary: `HONEST: each formula is checked against an INDEPENDENT brute-force ground truth — Bell against raw partition counting, Kirchhoff's cofactor against union-find tree enumeration, so the identities are not assumed but confirmed. All complete within bound (n ≤ 8 for Bell, three named graphs for Matrix-Tree, n ≤ 100 for Möbius, four groups for Cauchy); the general theorems are cited, the computations settle every tested instance.`,
-    }
+      boundary: `HONEST: each formula is checked against an INDEPENDENT brute-force ground truth — Bell against raw partition counting, Kirchhoff's cofactor against union-find tree enumeration, so the identities are not assumed but confirmed. All complete within bound (n ≤ 8 for Bell, three named graphs for Matrix-Tree, n ≤ 100 for Möbius, four groups for Cauchy); the general theorems are cited, the computations settle every tested instance.` }
   })
 }
 
@@ -1474,8 +1462,7 @@ export function discoveredTheoremsWaveTwentyNine(matrix: { root: string } = { ro
       ],
       extras: { basel },
       statement: `Discovered theorems, wave twenty-nine — series and probability: #/# — Basel's π²/6, the Leibniz and Wallis π forms, the coupon-collector n·H_n expectation, and the ballot problem's (a−b)/(a+b) by exhaustive counting.`,
-      boundary: `HONEST: Basel and the two π series are CONVERGENT-SERIES witnesses — partial sums approaching the limit within a computed tail bound, the closed forms (Euler, Leibniz, Wallis) cited; the coupon-collector identity and the ballot formula are EXACT and finite-complete within their bounds (n ≤ 50, a ≤ 10), the ballot case confirmed by complete enumeration against the closed form, not sampled. The series atoms are honestly bounded-witness; the two counting atoms are finite-complete.`,
-    }
+      boundary: `HONEST: Basel and the two π series are CONVERGENT-SERIES witnesses — partial sums approaching the limit within a computed tail bound, the closed forms (Euler, Leibniz, Wallis) cited; the coupon-collector identity and the ballot formula are EXACT and finite-complete within their bounds (n ≤ 50, a ≤ 10), the ballot case confirmed by complete enumeration against the closed form, not sampled. The series atoms are honestly bounded-witness; the two counting atoms are finite-complete.` }
   })
 }
 
@@ -1541,8 +1528,7 @@ export function discoveredTheoremsWaveThirty(matrix: { root: string } = { root: 
       { facet: `the Chinese Remainder Theorem — pairwise-coprime moduli give a UNIQUE solution mod Π m_i, constructed via modular inverses and verified to reconstruct every residue class exactly for three moduli sets: the isomorphism ℤ/Π ≅ ∏ ℤ/m_i`, on: crtOK },
       ],
       statement: `Discovered theorems, wave thirty — linear algebra and number theory: #/# — determinant multiplicativity over 𝔽₃ (all 81² pairs), the Vandermonde factorisation, Cassini's Fibonacci identity in BigInt, and the Chinese Remainder Theorem reconstructing every residue.`,
-      boundary: `HONEST: determinant multiplicativity is FINITE-COMPLETE over 𝔽₃ (the whole field exhausted, 6561 pairs); Vandermonde is verified against the product on four node sets (the identity is exact for those, general form cited); Cassini is exact in BigInt to n = 40; the CRT is constructed and verified to reconstruct every residue in the tested moduli sets. All finite-complete within their bounds, the general theorems cited for the unbounded cases.`,
-    }
+      boundary: `HONEST: determinant multiplicativity is FINITE-COMPLETE over 𝔽₃ (the whole field exhausted, 6561 pairs); Vandermonde is verified against the product on four node sets (the identity is exact for those, general form cited); Cassini is exact in BigInt to n = 40; the CRT is constructed and verified to reconstruct every residue in the tested moduli sets. All finite-complete within their bounds, the general theorems cited for the unbounded cases.` }
   })
 }
 
@@ -1597,8 +1583,7 @@ export function discoveredTheoremsWaveThirtyOne(matrix: { root: string } = { roo
       { facet: `the Sheffer stroke (NAND) is FUNCTIONALLY COMPLETE — the closure of NAND alone generates all 16 boolean functions of two variables: a single gate suffices for all of logic (the basis of CMOS)`, on: sheffer },
       ],
       statement: `Discovered theorems, wave thirty-one: #/# — 561 the smallest Carmichael number, the Catalan bijection (Dyck = trees = formula), Stirling numbers against a brute partition count, and the functional completeness of NAND.`,
-      boundary: `HONEST: Carmichael 561 is FINITE-COMPLETE (every coprime base checked, minimality by full sweep); the Catalan bijection is three independent computations agreeing for n ≤ 8; Stirling is checked against the raw partition count and the Bell sum; NAND completeness is the COMPLETE closure over all 16 two-variable functions. Each settles its instance outright; the unbounded generalisations are cited.`,
-    }
+      boundary: `HONEST: Carmichael 561 is FINITE-COMPLETE (every coprime base checked, minimality by full sweep); the Catalan bijection is three independent computations agreeing for n ≤ 8; Stirling is checked against the raw partition count and the Bell sum; NAND completeness is the COMPLETE closure over all 16 two-variable functions. Each settles its instance outright; the unbounded generalisations are cited.` }
   })
 }
 
@@ -1648,8 +1633,7 @@ export function discoveredTheoremsWaveThirtyTwo(matrix: { root: string } = { roo
       ],
       extras: { armstrong, subgroupOrders: [...subgroupOrders].sort((a, b) => a - b) },
       statement: `Discovered theorems, wave thirty-two: #/# — the amicable pair 220/284, the four 3-digit Armstrong numbers, the √2 continued-fraction convergents, and Lagrange's theorem across every subgroup of S₄.`,
-      boundary: `HONEST: the amicable pair and the Armstrong numbers are FINITE-COMPLETE sweeps (smallest pair by search, all 900 three-digit numbers); the √2 convergents are exact for the first 17 (the recurrence and the general best-approximation theorem cited); Lagrange is verified over the enumerated subgroups of S₄, the general theorem cited for all finite groups. Each settles its instance outright.`,
-    }
+      boundary: `HONEST: the amicable pair and the Armstrong numbers are FINITE-COMPLETE sweeps (smallest pair by search, all 900 three-digit numbers); the √2 convergents are exact for the first 17 (the recurrence and the general best-approximation theorem cited); Lagrange is verified over the enumerated subgroups of S₄, the general theorem cited for all finite groups. Each settles its instance outright.` }
   })
 }
 
@@ -1742,8 +1726,7 @@ export function discoveredTheoremsWaveThirtyThree(matrix: { root: string } = { r
       ],
       extras: { pi10 },
       statement: `Discovered theorems, wave thirty-three — graphs and sequences: #/# — Havel–Hakimi vs brute realizability, Dirac's Hamiltonicity, De Bruijn sequences with the exact-window property, and Pisano periods of Fibonacci mod m.`,
-      boundary: `HONEST: Havel–Hakimi is checked against an INDEPENDENT construction on both graphical and non-graphical sequences; Dirac is confirmed on the near-complete circulants n ≤ 8 (the theorem cited for all such graphs); De Bruijn sequences are constructed and their exact-window property verified completely for n ≤ 6; Pisano π(10) = 60 and evenness are checked to m ≤ 50. Each settles its instances outright, the general theorems cited.`,
-    }
+      boundary: `HONEST: Havel–Hakimi is checked against an INDEPENDENT construction on both graphical and non-graphical sequences; Dirac is confirmed on the near-complete circulants n ≤ 8 (the theorem cited for all such graphs); De Bruijn sequences are constructed and their exact-window property verified completely for n ≤ 6; Pisano π(10) = 60 and evenness are checked to m ≤ 50. Each settles its instances outright, the general theorems cited.` }
   })
 }
 
@@ -1803,8 +1786,7 @@ export function discoveredTheoremsWaveThirtyFour(matrix: { root: string } = { ro
       { facet: `quadratic residues — mod an odd prime p there are EXACTLY (p−1)/2 nonzero QRs and the Legendre symbol is multiplicative (the QRs are an index-2 subgroup of (ℤ/p)*), for every prime p ≤ 50: the structure behind reciprocity`, on: quadRes },
       ],
       statement: `Discovered theorems, wave thirty-four — binomial identities and quadratic residues: #/# — Vandermonde's convolution, the hockey-stick identity, the surjection count three ways, and the index-2 structure of the quadratic residues.`,
-      boundary: `HONEST: the three binomial results are FINITE-COMPLETE over their ranges (all m,n ≤ 12 for Vandermonde, all r ≤ 10 for hockey-stick, all n ≤ 7 for surjections with three agreeing computations including brute force); the quadratic-residue structure is verified completely for every prime p ≤ 50 (count and full multiplicativity table). Each settles its instances outright, the general identities cited.`,
-    }
+      boundary: `HONEST: the three binomial results are FINITE-COMPLETE over their ranges (all m,n ≤ 12 for Vandermonde, all r ≤ 10 for hockey-stick, all n ≤ 7 for surjections with three agreeing computations including brute force); the quadratic-residue structure is verified completely for every prime p ≤ 50 (count and full multiplicativity table). Each settles its instances outright, the general identities cited.` }
   })
 }
 
@@ -1855,8 +1837,7 @@ export function discoveredTheoremsWaveThirtyFive(matrix: { root: string } = { ro
       ],
       extras: { s4Classes: tkClassSizes(s4).sort((a, b) => a - b) },
       statement: `Discovered theorems, wave thirty-five — group actions and arithmetic functions: #/# — the orbit-stabilizer theorem, the class equation on S₄ and A₅, the multiplicativity of σ and τ, and Heron's formula cross-checked against coordinates.`,
-      boundary: `HONEST: orbit-stabilizer and the class equation are verified COMPLETELY on the named groups (every point, every conjugacy class), the general theorems cited; σ/τ multiplicativity is checked over all coprime pairs ≤ 60; Heron is cross-checked against an INDEPENDENT coordinate area for every integer triangle with sides ≤ 20 (two computations agreeing), the general formula cited. Each settles its instances outright.`,
-    }
+      boundary: `HONEST: orbit-stabilizer and the class equation are verified COMPLETELY on the named groups (every point, every conjugacy class), the general theorems cited; σ/τ multiplicativity is checked over all coprime pairs ≤ 60; Heron is cross-checked against an INDEPENDENT coordinate area for every integer triangle with sides ≤ 20 (two computations agreeing), the general formula cited. Each settles its instances outright.` }
   })
 }
 
@@ -1899,8 +1880,7 @@ export function discoveredTheoremsWaveThirtySix(matrix: { root: string } = { roo
       { facet: `Stirling numbers of the first kind — the unsigned |s(n,k)| sum to n! (they count permutations by number of cycles) and the signed row sums to 0 for n ≥ 2, via the recurrence for all n ≤ 10: the cycle-structure companion to the second-kind block count`, on: stirling1 },
       ],
       statement: `Discovered theorems, wave thirty-six — the arithmetic foundations: #/# — Bézout's identity, Euclid's lemma, Legendre's prime-power formula, and the Stirling numbers of the first kind.`,
-      boundary: `HONEST: each is FINITE-COMPLETE within its bound — Bézout with both coefficients checked for all a,b ≤ 60, Euclid's lemma over all a,b ≤ 50 and every prime, Legendre matched against direct factorization for all n ≤ 60, Stirling first-kind row identities for all n ≤ 10. The general theorems are cited; the computations settle every instance in range, several against an independent ground truth.`,
-    }
+      boundary: `HONEST: each is FINITE-COMPLETE within its bound — Bézout with both coefficients checked for all a,b ≤ 60, Euclid's lemma over all a,b ≤ 50 and every prime, Legendre matched against direct factorization for all n ≤ 60, Stirling first-kind row identities for all n ≤ 10. The general theorems are cited; the computations settle every instance in range, several against an independent ground truth.` }
   })
 }
 
@@ -1984,8 +1964,7 @@ export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { r
       ],
       extras: { tested: cevaTests + menelausTests + ninePointTests + thalesTests },
       statement: `Discovered theorems, wave thirty-seven — triangle and circle: #/# — Ceva, Menelaus, the nine-point circle, and Thales' right angle, each confirmed across hundreds of configurations sampled by independent irrational rotations.`,
-      boundary: `HONEST: CONTINUOUS theorems given a robust numerical witness — hundreds of configurations agreeing to 1e-6, the general theorems cited (bounded-witness, like the earlier geometry wave). The sampling uses SIX linearly-independent irrational multipliers (φ, √2, √3, √5, √7, √11) so coordinates never coincide — a deliberate fix for the φ² = φ+1 collapse that would make two golden-ratio coordinates identical. Deterministic and reproducible; a single counterexample among the runs would have failed the fold.`,
-    }
+      boundary: `HONEST: CONTINUOUS theorems given a robust numerical witness — hundreds of configurations agreeing to 1e-6, the general theorems cited (bounded-witness, like the earlier geometry wave). The sampling uses SIX linearly-independent irrational multipliers (φ, √2, √3, √5, √7, √11) so coordinates never coincide — a deliberate fix for the φ² = φ+1 collapse that would make two golden-ratio coordinates identical. Deterministic and reproducible; a single counterexample among the runs would have failed the fold.` }
   })
 }
 
@@ -2054,8 +2033,7 @@ export function discoveredTheoremsWaveThirtyEight(matrix: { root: string } = { r
       { facet: `the entropy bound — Shannon's H(X) = −Σ p log2 p is MAXIMISED by the uniform distribution (= log2 n), is always ≥ 0, and is 0 exactly for a deterministic source: verified over many distributions on n ≤ 8 symbols (maximum uncertainty is uniform)`, on: entropy },
       ],
       statement: `Discovered theorems, wave thirty-eight — probability and information: #/# — the Monty Hall 2/3, Kraft's inequality, the gambler's-ruin i/N, and the entropy bound that uniform is maximally uncertain.`,
-      boundary: `HONEST: Monty Hall is FINITE-COMPLETE (exhaustive over all 9 equally-weighted cases, with the correct probability model — the host's two-choice case does not double-count); Kraft is verified both directions by explicit code construction on six length sets; the gambler's-ruin i/N is checked to satisfy the harmonic recurrence and boundary for all N ≤ 20; the entropy maximum, non-negativity and determinism-zero are checked over many distributions per n ≤ 8. The general theorems are cited; each instance is settled.`,
-    }
+      boundary: `HONEST: Monty Hall is FINITE-COMPLETE (exhaustive over all 9 equally-weighted cases, with the correct probability model — the host's two-choice case does not double-count); Kraft is verified both directions by explicit code construction on six length sets; the gambler's-ruin i/N is checked to satisfy the harmonic recurrence and boundary for all N ≤ 20; the entropy maximum, non-negativity and determinism-zero are checked over many distributions per n ≤ 8. The general theorems are cited; each instance is settled.` }
   })
 }
 
@@ -2119,8 +2097,7 @@ export function discoveredTheoremsWaveThirtyNine(matrix: { root: string } = { ro
       { facet: `the rearrangement inequality — for sorted a and any permutation of b, Σ a_i b_σ(i) is MAXIMISED with b sorted the same way and MINIMISED opposite, by exhaustive permutation for n ≤ 6: similarly-ordered sequences pair for the largest sum`, on: rearrange },
       ],
       statement: `Discovered theorems, wave thirty-nine — inequalities and the totient product: #/# — AM-GM, Cauchy-Schwarz, Euler's φ product formula, and the rearrangement inequality by exhaustive permutation.`,
-      boundary: `HONEST: AM-GM and Cauchy-Schwarz are bounded-witness (checked over many tuples per n with the equality cases verified exactly, the general inequalities cited); Euler's φ product is FINITE-COMPLETE against the direct coprime count for all n ≤ 1000; the rearrangement inequality is FINITE-COMPLETE by exhaustive permutation for n ≤ 6. Each settles its instances; the unbounded forms are cited.`,
-    }
+      boundary: `HONEST: AM-GM and Cauchy-Schwarz are bounded-witness (checked over many tuples per n with the equality cases verified exactly, the general inequalities cited); Euler's φ product is FINITE-COMPLETE against the direct coprime count for all n ≤ 1000; the rearrangement inequality is FINITE-COMPLETE by exhaustive permutation for n ≤ 6. Each settles its instances; the unbounded forms are cited.` }
   })
 }
 
@@ -2162,8 +2139,7 @@ export function discoveredTheoremsWaveForty(matrix: { root: string } = { root: t
       { facet: `the Fibonacci partial sum — Σ_{k=1}^{n} F_k = F_{n+2} − 1, exact in BigInt to n = 80 (Σ_{1..10} = 143 = F₁₂ − 1): the running total is always one short of a later Fibonacci number`, on: fibSum },
       ],
       statement: `Discovered theorems, wave forty — series and closed-form sums: #/# — the geometric series, a telescoping sum, the three power-sum formulas, and the Fibonacci partial sum F_{n+2} − 1.`,
-      boundary: `HONEST: the finite geometric-series identity, the telescoping sum, the power-sum formulas and the Fibonacci partial sum are FINITE-COMPLETE within their bounds (exact equality checked for all n ≤ 1000, the Fibonacci case in exact BigInt to n = 80); the geometric convergence to 1/(1−r) is a bounded-witness of the limit (cited). Each settles its instances outright.`,
-    }
+      boundary: `HONEST: the finite geometric-series identity, the telescoping sum, the power-sum formulas and the Fibonacci partial sum are FINITE-COMPLETE within their bounds (exact equality checked for all n ≤ 1000, the Fibonacci case in exact BigInt to n = 80); the geometric convergence to 1/(1−r) is a bounded-witness of the limit (cited). Each settles its instances outright.` }
   })
 }
 
@@ -2208,8 +2184,7 @@ export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { ro
       { facet: `the Chebyshev identity — the recurrence T_n = 2x·T_{n−1} − T_{n−2} satisfies T_n(cos θ) = cos(nθ) for all n ≤ 10 across a grid of angles: the polynomials that linearise multiple-angle cosines`, on: chebyshev },
       ],
       statement: `Discovered theorems, wave forty-three — polynomials: #/# — Vieta's formulas, the rational root theorem, and the Chebyshev cos(nθ) identity.`,
-      boundary: `HONEST: Vieta is verified by exact coefficient expansion on four root sets; the rational root theorem is confirmed by finding the actual rational roots and checking the divisibility for four polynomials; the Chebyshev identity is checked to 1e-9 over n ≤ 10 and an angle grid. Each settles its instances; the general theorems are cited.`,
-    }
+      boundary: `HONEST: Vieta is verified by exact coefficient expansion on four root sets; the rational root theorem is confirmed by finding the actual rational roots and checking the divisibility for four polynomials; the Chebyshev identity is checked to 1e-9 over n ≤ 10 and an angle grid. Each settles its instances; the general theorems are cited.` }
   })
 }
 
@@ -2284,8 +2259,7 @@ export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { roo
       { facet: `Bernstein–Vazirani — a hidden n-bit string is recovered in ONE quantum query (H^n, phase oracle, H^n) where classical needs n, for all n ≤ 8 and every string: a proven query-complexity separation, computed`, on: bvTech },
       ],
       statement: `Discovered theorems, wave forty-four — quantum technologies: #/# — teleportation (fidelity 1), superdense coding (2 bits per qubit), BB84 key distribution (eavesdropping detectable), and Bernstein–Vazirani (one-query string recovery).`,
-      boundary: `HONEST: these are REAL, experimentally-realised quantum protocols, each proven CORRECT by exact state-vector simulation (a complete finite proof of the protocol's logic) — teleportation reusing the sealed teleportQubit, superdense/BB84/BV computed here; the physical realisation (photons, ions, superconducting qubits) is cited, not simulated. BB84's security rests on no-cloning (sealed); the eavesdropper model is intercept-resend (the honest ~25% floor), not a full security proof against all attacks. Quantum SPEEDS UP and SECURES within its laws — the same laws that (wave twenty-seven) forbid it new computability.`,
-    }
+      boundary: `HONEST: these are REAL, experimentally-realised quantum protocols, each proven CORRECT by exact state-vector simulation (a complete finite proof of the protocol's logic) — teleportation reusing the sealed teleportQubit, superdense/BB84/BV computed here; the physical realisation (photons, ions, superconducting qubits) is cited, not simulated. BB84's security rests on no-cloning (sealed); the eavesdropper model is intercept-resend (the honest ~25% floor), not a full security proof against all attacks. Quantum SPEEDS UP and SECURES within its laws — the same laws that (wave twenty-seven) forbid it new computability.` }
   })
 }
 
@@ -2333,8 +2307,7 @@ export function discoveredTheoremsWaveFortyFive(matrix: { root: string } = { roo
       { facet: `the Quantum Fourier Transform is UNITARY — Q[j][k] = ω^{jk}/√N (ω = e^{2πi/N}) satisfies Q†Q = I for N = 2,4,8,16 exactly: the reversible transform at the heart of Shor's factoring algorithm, proven a valid quantum operation`, on: qft },
       ],
       statement: `Discovered theorems, wave forty-five — quantum algorithms: #/# — interaction-free measurement, entanglement swapping, Simon's exponential separation, and the Quantum Fourier Transform proven unitary.`,
-      boundary: `HONEST: three facets COMPOUND on sealed protocol folds (interactionFreeMeasurement, entanglementSwap, simon) — the registry feeds on its own proven quantum machinery; the QFT unitarity is computed fresh (a complete finite matrix proof for N ≤ 16). Simon's exponential separation is a QUERY-complexity result (oracle model), the honest home of quantum speedup; the physical realisations are cited. Quantum's power is real and bounded — the same laws throughout (wave twenty-seven).`,
-    }
+      boundary: `HONEST: three facets COMPOUND on sealed protocol folds (interactionFreeMeasurement, entanglementSwap, simon) — the registry feeds on its own proven quantum machinery; the QFT unitarity is computed fresh (a complete finite matrix proof for N ≤ 16). Simon's exponential separation is a QUERY-complexity result (oracle model), the honest home of quantum speedup; the physical realisations are cited. Quantum's power is real and bounded — the same laws throughout (wave twenty-seven).` }
   })
 }
 
@@ -2377,8 +2350,7 @@ export function discoveredTheoremsWaveFortyNine(matrix: { root: string } = { roo
       { facet: `FROM Wilson's theorem — ((p−1)/2)! is a SQUARE ROOT of −1 mod p when p ≡ 1 (mod 4): Wilson's (p−1)! ≡ −1 factors through the half-factorial, giving √−1 explicitly; verified for every prime p ≡ 1 (mod 4), p ≤ 200`, on: wilsonRoot },
       ],
       statement: `Discovered theorems, wave forty-nine — the quadratic-residue tower: #/# — the two supplements to reciprocity (−1 is a QR iff p ≡ 1 mod 4, 2 iff p ≡ ±1 mod 8), exactly two groups of order p², and ((p−1)/2)! as a square root of −1 from Wilson.`,
-      boundary: `HONEST: the two supplements and the Wilson square-root are verified for every prime p ≤ 200 (complete within the bound, the all-p forms cited); the first supplement and the order-p² classification COMPOUND on wave 48 (Euler's criterion and order-p²-abelian, both themselves compounded) — the emergence law three layers deep. The order-p² count uses the fundamental theorem of finite abelian groups (cited) to name the two abelian groups.`,
-    }
+      boundary: `HONEST: the two supplements and the Wilson square-root are verified for every prime p ≤ 200 (complete within the bound, the all-p forms cited); the first supplement and the order-p² classification COMPOUND on wave 48 (Euler's criterion and order-p²-abelian, both themselves compounded) — the emergence law three layers deep. The order-p² count uses the fundamental theorem of finite abelian groups (cited) to name the two abelian groups.` }
   })
 }
 
@@ -2403,8 +2375,7 @@ export function sealFold<F extends { facet: string; on: boolean }, X extends Rec
       count: sealed.count,
       root: merge(sealed.root, toUuid(`${tag}:${sealed.ok}`)),
       statement: body.statement.replace('#/#', `${okCount}/${sealed.count}`),
-      boundary: body.boundary,
-    }
+      boundary: body.boundary }
   })
 }
 
@@ -2452,8 +2423,7 @@ export function divisionByZeroComputes() {
     ieee,
     facets,
     statement: `Division by zero decoded in three regimes, ${facets.filter((entry) => entry.on).length}/${facets.length} computed: forbidden in every ring with 1≠0 (swept), self-inverting only in the zero ring, TOTAL on the projective line ([z:w]↦[w:z], 0↔∞), and answered by IEEE 754 (∞, NaN, round trip) on the running machine.`,
-    boundary: 'DOCUMENTED, all three: field axioms (0·a=0 kills any inverse), projective geometry (the Riemann sphere makes inversion total — standard since Möbius), IEEE 754 (the engineering contract every float obeys). FLAGGED: pop claims that 1/0 "equals infinity" in plain ℝ — it is UNDEFINED there; ∞ is honest only after you say which completion you bought. Wheel theory exists as a documented total-division algebra; rarely used. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'DOCUMENTED, all three: field axioms (0·a=0 kills any inverse), projective geometry (the Riemann sphere makes inversion total — standard since Möbius), IEEE 754 (the engineering contract every float obeys). FLAGGED: pop claims that 1/0 "equals infinity" in plain ℝ — it is UNDEFINED there; ∞ is honest only after you say which completion you bought. Wheel theory exists as a documented total-division algebra; rarely used. HARMONY ≠ TRUTH.' }
 }
 
 /** Inversion also changes the ANGLE (user realization): the reciprocal is not just r→1/r — the
@@ -2511,8 +2481,7 @@ export function inverseNegatesAngle() {
     orbit,
     facets,
     statement: `Inversion negates the angle — ${facets.filter((entry) => entry.on).length}/${facets.length} guises computed: complex arg(1/z)=−arg(z), rotation R(θ)⁻¹=R(−θ), vortex 2^k↦2^{−k} on the 6-cycle; geometric v/|v|² keeps the coordinate (the gap is one conjugation) and intersection angles survive (conformal).`,
-    boundary: 'All five facets are numerical verifications of standard results (complex reciprocal, SO(2) inverses, anti-conformal vs conformal inversion, unit group of ℤ/9ℤ, conformality of 1/z). The realization unifies them: INVERSE = REFLECTION IN THE ANGLE, whether the circle is continuous (U(1)) or the digit vortex (order 6). No completion games needed — zero stays excluded here; its story is divisionByZeroComputes.',
-  }
+    boundary: 'All five facets are numerical verifications of standard results (complex reciprocal, SO(2) inverses, anti-conformal vs conformal inversion, unit group of ℤ/9ℤ, conformality of 1/z). The realization unifies them: INVERSE = REFLECTION IN THE ANGLE, whether the circle is continuous (U(1)) or the digit vortex (order 6). No completion games needed — zero stays excluded here; its story is divisionByZeroComputes.' }
 }
 
 /** Sixty degrees each — and this decodes π (user realization, with a cross-check learned from
@@ -2573,6 +2542,5 @@ export function sixtyDegreesDecodesPi() {
     groupOrder,
     facets,
     statement: `Sixty degrees each decodes π — ${facets.filter((entry) => entry.on).length}/${facets.length} computed: the vortex step is π/3 with cos = ½ exact, three steps realize e^{iπ} = −1 as 2³ ≡ −1 (mod 9), Archimedes' hexagon-seeded doubling brackets π to ${last.lower.toFixed(4)}…${last.upper.toFixed(4)} at the ${last.n}-gon, and doubling + void-reflection generate the full 54-element affine symmetry of the digit ring.`,
-    boundary: 'DOCUMENTED throughout: τ/6 and cos 60° = ½ are exact identities; 2³ ≡ −1 (mod 9) is arithmetic; the polygon recurrence is Archimedes (Measurement of a Circle, ~250 BC) run to his historical 96-gon; the AGL(1,ℤ/9) closure is verified by breadth-first composition, cross-pollinated from erpax the day it was found there. π is DECODED (computed from the 60° seed), not encoded mystically in it. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'DOCUMENTED throughout: τ/6 and cos 60° = ½ are exact identities; 2³ ≡ −1 (mod 9) is arithmetic; the polygon recurrence is Archimedes (Measurement of a Circle, ~250 BC) run to his historical 96-gon; the AGL(1,ℤ/9) closure is verified by breadth-first composition, cross-pollinated from erpax the day it was found there. π is DECODED (computed from the 60° seed), not encoded mystically in it. HARMONY ≠ TRUTH.' }
 }

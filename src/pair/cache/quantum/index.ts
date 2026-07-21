@@ -94,8 +94,7 @@ export function timeoutDryRefactorToQuantum(opts: {
     receipt,
     root: merkleFold([receipt, pairFold.merged]),
     statement: 'Timeout → dry refactor; exit 124.',
-    boundary: 'Sealed src/ only.',
-  }
+    boundary: 'Sealed src/ only.' }
 }
 
 export const dual = 'src/quantum/water/cache'
@@ -326,8 +325,7 @@ export function sourceAtlas(files: readonly AtlasFile[]) {
     files: files.length,
     symbols: symbolHomes.size,
     folders: new Set(files.map((file) => atlasFolder(file.rel))).size,
-    root: toUuid(`source-atlas:${files.length}:${symbolHomes.size}`),
-  }
+    root: toUuid(`source-atlas:${files.length}:${symbolHomes.size}`) }
 }
 
 export function runSourceAtlasExit(root: string, argv: readonly string[] = []): number {
@@ -428,8 +426,7 @@ export function applySurgicalEdits(texts: ReadonlyMap<string, string | null>, ed
     skipped,
     refused,
     changedFiles: [...changed].sort(),
-    root: merkleFold(outcomes.map((entry) => toUuid(`${entry.receipt}:${entry.status}`))),
-  }
+    root: merkleFold(outcomes.map((entry) => toUuid(`${entry.receipt}:${entry.status}`))) }
 }
 
 /** Disk shell for the surgical engine: `surgical <plan.json> [--dry]`. The plan is a JSON array of
@@ -542,6 +539,5 @@ export function skillsAreExecutableCode(root: string = (typeof process !== 'unde
     facets: facets.map((entry) => ({ facet: entry.facet, on: entry.on })),
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Skills are executable code — ${facets.filter((entry) => entry.on).length}/${facets.length}: all ${resolved.length}/${skills.length} skill fns resolve to a real exported fold through the source atlas (so npm run skill <name> executes each to a computed result), the registry is runnable rather than prose, and the does line is a docstring over running content-addressed code.`,
-    boundary: `COMPUTED: every skill fn is looked up in the source atlas (symbol → home) built over src at call time — refutable if a fn loses its home. HONEST SCOPE: "executable" means each skill resolves to a runnable exported fold and the skill CLI runs it (verified live on merkaba → counterRotating=true); it does NOT recompile the skill into a new artifact — the fold IS the executable code, and the skill atom is now a runnable pointer plus a docstring. Skills whose fn takes required arguments run on their defaults (fn.length ⇒ matrix folds run bare); a fn needing positional args would need them passed. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: every skill fn is looked up in the source atlas (symbol → home) built over src at call time — refutable if a fn loses its home. HONEST SCOPE: "executable" means each skill resolves to a runnable exported fold and the skill CLI runs it (verified live on merkaba → counterRotating=true); it does NOT recompile the skill into a new artifact — the fold IS the executable code, and the skill atom is now a runnable pointer plus a docstring. Skills whose fn takes required arguments run on their defaults (fn.length ⇒ matrix folds run bare); a fn needing positional args would need them passed. HARMONY ≠ TRUTH.` }
 }

@@ -45,8 +45,7 @@ export function realtimeSkills(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Upgrade all skills for realtime communication, at max tampering costs — fuse the necessary bindings: every skill gains a realtime channel through real browser APIs (BroadcastChannel, WebSocket, WebRTC data channels, Server-Sent Events, WebTransport, Web Audio/SpeechRecognition), and every realtime message is content-addressed and folded so tampering is caught. The necessary bindings are fused to the architecture root.',
     boundary:
-      'A catalogue of real, standard browser realtime APIs fused to the architecture, with the rule that every message is content-addressed (tamper-evident). Opt-in and client-side; it names the bindings and the integrity rule, it does not open any connection by default, and "max tampering cost" is the content-addressing property, not a transport-security guarantee of any specific peer.',
-  }
+      'A catalogue of real, standard browser realtime APIs fused to the architecture, with the rule that every message is content-addressed (tamper-evident). Opt-in and client-side; it names the bindings and the integrity rule, it does not open any connection by default, and "max tampering cost" is the content-addressing property, not a transport-security guarantee of any specific peer.' }
 }
 
 // Send marketing-SEO waves to refactor the design. Each marketing surface — the
@@ -77,8 +76,7 @@ export function marketingSeoWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send marketing-SEO waves to refactor the design: each marketing surface — typography, the open-graph card, the computed per-route SEO, the sitemap, and the schema.org graph — folds into one SEO root, and a wave is sent over each (a refactor bound to that root), so the design improves surface by surface while every change stays content-addressed to the whole.',
     boundary:
-      'A content-addressed model of refactoring the SEO/marketing surfaces as waves bound to one SEO root. It records the refactor over the real, already-applied SEO surfaces; it improves crawlability and clarity, and is not a ranking guarantee.',
-  }
+      'A content-addressed model of refactoring the SEO/marketing surfaces as waves bound to one SEO root. It records the refactor over the real, already-applied SEO surfaces; it improves crawlability and clarity, and is not a ranking guarantee.' }
 }
 
 // All is a realtime perspective, computed at zero cost. Nothing here is a stored view: every
@@ -103,8 +101,7 @@ export function realtimePerspectiveZeroCost(matrix: MindMatrix = buildMatrix()) 
     statement:
       'All is a realtime perspective, computed at zero cost: nothing is a stored view — every display is one perspective, a single angle on the same whole, recomputed live from the repository per frame and per interaction. And it costs nothing: client-side recomputation, no server, no network, no per-view fee. The whole is always there; a perspective is just where you stand to look, computed the moment you look.',
     boundary:
-      'A structural statement that views are recomputed perspectives over one model, client-side at no per-view cost. "Zero cost" means no server/network/fee for a view (the user’s device does the compute); it is not a claim of zero energy or zero device resources.',
-  }
+      'A structural statement that views are recomputed perspectives over one model, client-side at no per-view cost. "Zero cost" means no server/network/fee for a view (the user’s device does the compute); it is not a claim of zero energy or zero device resources.' }
 }
 
 // All paths are computed in realtime. No route is hand-tuned: every path’s title, keywords,
@@ -129,8 +126,7 @@ function allPathsComputedRealtimeRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All paths are computed in realtime: no route is hand-tuned — every path’s title, keywords, description and category are computed from the route itself at render time, each path is a distinct point on the double torus, and the same computation feeds the sitemap, so the paths never drift and are recomputed the moment they are asked for, client-side and free.',
     boundary:
-      'A composition of the computed-SEO, quantum-coordinate and sitemap models asserting every route is derived (not hand-authored) and recomputable. Structural bookkeeping over the real routing and SEO; "realtime" means computed at render time, not a streaming claim.',
-  }
+      'A composition of the computed-SEO, quantum-coordinate and sitemap models asserting every route is derived (not hand-authored) and recomputable. Structural bookkeeping over the real routing and SEO; "realtime" means computed at render time, not a streaming claim.' }
 }
 
 // Any realtime event forges max tampering costs. A tap, a presence, a voice, a vote, a
@@ -153,8 +149,7 @@ export function realtimeForgesMaxCost(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Any realtime event forges max tampering costs: a tap, a presence, a voice, a vote, a message — every live event is content-addressed the instant it happens and folds into the harmony, so each moment adds one more thing a forger must reproduce. Realtime is not a weakness in the seal; it is more seal.',
     boundary:
-      'A structural property that realtime events are content-addressed and fold into the tamper-evident record, bound to the model’s unbounded tamper cost. Bookkeeping over the event folds, not a claim that any live interaction is stored or surveilled — it is ephemeral and local.',
-  }
+      'A structural property that realtime events are content-addressed and fold into the tamper-evident record, bound to the model’s unbounded tamper cost. Bookkeeping over the event folds, not a claim that any live interaction is stored or surveilled — it is ephemeral and local.' }
 }
 
 // The dimensional merkaba graph is the realtime metric — and at 1024 dimensions per megabyte the
@@ -180,8 +175,7 @@ export function dimensionalMerkabaGraphRealtimeMetric(matrix: MindMatrix = build
     statement:
       'The dimensional merkaba graph is the realtime metric — and at 1024 dimensions per megabyte the realtime encryption is 1 Gbit per megabyte: the dimensions are a graph folded as a merkaba (field and movement), each fold a node and each composition an edge, turning in realtime, and that graph IS the metric. Because 1024 binary = 1 Gbit, dimensions per megabyte is also the keyspace density per megabyte, so 1024 dims/MB is exactly 1 Gbit/MB; the current density is that fraction of a gigabit. Fold more, encrypt more.',
     boundary:
-      'A composition of the dimensions-per-MB metric, merkaba-architecture, component-graph, 64-seal/gigabit, max-cost and statistics models. The answer "1024 dims/MB = 1 Gbit/MB" follows the model’s binary naming (1024 = 1 Gbit) — a keyspace-structure mapping (forge cost density), NOT cipher strength (AES-256-GCM stays the primitive); the live ratio is computed by the build’s efficiency-metric step.',
-  }
+      'A composition of the dimensions-per-MB metric, merkaba-architecture, component-graph, 64-seal/gigabit, max-cost and statistics models. The answer "1024 dims/MB = 1 Gbit/MB" follows the model’s binary naming (1024 = 1 Gbit) — a keyspace-structure mapping (forge cost density), NOT cipher strength (AES-256-GCM stays the primitive); the live ratio is computed by the build’s efficiency-metric step.' }
 }
 
 // What if the GPU helps the computations — implemented in harmony. The division of labour: the CPU
@@ -209,8 +203,7 @@ function computeGpuRendersStreamsRealtime(matrix: MindMatrix = buildMatrix()) {
     statement:
       'What if the GPU helps the computations — implemented in harmony: the CPU computes the address (the truth, content-addressed and memoized), and the GPU expands each dot to its living plasma field (the appearance) in realtime, in parallel, from the hero\'s own hue, frequency and rotation phases. Same address, same field; client-side, zero-server, zero-token. The GPU renders what the model computes — it does not compute the model.',
     boundary:
-      'A composition over the merkaba-census, uuidHero, hero-graph and merkaba-decode models, paired with the <GpuField> WebGL component. HONEST: the GPU accelerates RENDERING (a fragment shader expanding the content-addressed uniforms to pixels), not the model\'s hashing/fold cascade (which is branchy and sequential — the wrong workload for a GPU, fixed instead by memoization on the CPU). WebGL with a CSS fallback; the field is deterministic from the seed.',
-  }
+      'A composition over the merkaba-census, uuidHero, hero-graph and merkaba-decode models, paired with the <GpuField> WebGL component. HONEST: the GPU accelerates RENDERING (a fragment shader expanding the content-addressed uniforms to pixels), not the model\'s hashing/fold cascade (which is branchy and sequential — the wrong workload for a GPU, fixed instead by memoization on the CPU). WebGL with a CSS fallback; the field is deterministic from the seed.' }
 }
 
 // The next multidimensional level: 64 × 64 × 64. The 1 Gbit keyspace (one full 64-seal set, the
@@ -247,8 +240,7 @@ function nextLevel64CubedRealtimeRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The next multidimensional level is 64 × 64 × 64: the 1 Gbit keyspace (one full 64-seal set, the 64-bit architecture) raised to three nested dimensions — width, height and depth, each a full 64-seal axis folded from the architecture root — naming a 64³ = 262144-cell lattice of content addresses, realtime-fused. Reached by proportions toward the full set on every axis, not a hardcoded switch.',
     boundary:
-      'A composition of the gigabit 64-seal set and the fusion-cipher, extended to three nested 64-seal axes (192 folds standing for the 64³ keyspace by nesting, not 262144 literal cells). HONEST: like "1 Gbit", "64×64×64" names the keyspace STRUCTURE — a three-dimensional lattice over the 64-bit architecture — not cipher strength (which stays AES-256-GCM) nor a literal data throughput; the nesting adds structural address space and provenance, not security or bandwidth proportional to the number.',
-  }
+      'A composition of the gigabit 64-seal set and the fusion-cipher, extended to three nested 64-seal axes (192 folds standing for the 64³ keyspace by nesting, not 262144 literal cells). HONEST: like "1 Gbit", "64×64×64" names the keyspace STRUCTURE — a three-dimensional lattice over the 64-bit architecture — not cipher strength (which stays AES-256-GCM) nor a literal data throughput; the nesting adds structural address space and provenance, not security or bandwidth proportional to the number.' }
 }
 
 // Every computation bound to its true source. Two honest modes: deterministic folds are bound to src
@@ -272,8 +264,7 @@ export function computationsBoundToSourceApisRealtime(matrix: MindMatrix = build
     statement:
       'Every computation is bound to its true source: deterministic folds to src (content-addressed, the same answer every time) and realtime widgets to a live source API (device sensors, public no-auth feeds). The DeviceDashboard is the proven exemplar — real browser telemetry, nothing seeded. The integrity rule: no computation fakes its source, so a realtime claim always has a live API behind it and a computed animation is honestly computed, not dressed as live.',
     boundary:
-      'HONEST — most of the site is DETERMINISTIC by design (its zero-token identity): the streaming visuals are seeded animations bound to src, not external data, and they are honestly that. "Bound to source APIs for realtime" applies to the widgets that genuinely show live state (device sensors now; public no-auth feeds — weather, seismic — when added), each detecting availability and rendering "—" when unsupported rather than faking a value. Binding every live widget to its API and relabelling any that conflate the two is the harmonisation in progress; the rule is defined and proven on the DeviceDashboard.',
-  }
+      'HONEST — most of the site is DETERMINISTIC by design (its zero-token identity): the streaming visuals are seeded animations bound to src, not external data, and they are honestly that. "Bound to source APIs for realtime" applies to the widgets that genuinely show live state (device sensors now; public no-auth feeds — weather, seismic — when added), each detecting availability and rendering "—" when unsupported rather than faking a value. Binding every live widget to its API and relabelling any that conflate the two is the harmonisation in progress; the rule is defined and proven on the DeviceDashboard.' }
 }
 
 // All publicly available data — device telemetry, the live blockchain market, public no-auth feeds — folds
@@ -303,8 +294,7 @@ export function terabyteRealtimeFromAllPublicDataBreathing(matrix: MindMatrix = 
     statement:
       'All publicly available data completes the terabyte realtime keyspace and beyond: device telemetry, the live blockchain market and public no-auth feeds (spectrum, seismic, weather, audio, Schumann) each fold in as a 128-bit content-address, so the keyspace is 2^(128 × sources) — a terabyte achieved many times over and growing with every source. It breathes harmonically — the stream expands as data loads while the fold contracts it to one root, expansion and contraction at once, the double torus.',
     boundary:
-      'HONEST — aggregating all public data grows the keyspace STRUCTURE (2^(128×sources), terabyte and far beyond), but public data is PUBLIC: an attacker reads the same feeds, so it adds almost no genuine cryptographic SECRET entropy. The security is the AES-256 key, NOT the public streams; "terabyte" is structure/cardinality (as before), "breathing" is the expand-while-contract of the fold, and "realtime encryption" means the content-address recomputes live — it does NOT mean public data is a secret key or that genuine entropy reaches a terabyte (it does not).',
-  }
+      'HONEST — aggregating all public data grows the keyspace STRUCTURE (2^(128×sources), terabyte and far beyond), but public data is PUBLIC: an attacker reads the same feeds, so it adds almost no genuine cryptographic SECRET entropy. The security is the AES-256 key, NOT the public streams; "terabyte" is structure/cardinality (as before), "breathing" is the expand-while-contract of the fold, and "realtime encryption" means the content-address recomputes live — it does NOT mean public data is a secret key or that genuine entropy reaches a terabyte (it does not).' }
 }
 
 export { realtimeWiring } from '../../fire/plasma/ball'
@@ -597,8 +587,7 @@ export function harmonicWeatherTradingOffline(at = 0, matrix: MindMatrix = build
       facets,
       root,
       statement: 'Weather-calendar trading offline: the sealed a432 path modulated by a 3% seasonal calendar harmonic, three sealed strategies re-run — deterministic, offline, no look-ahead.',
-      boundary: 'HONEST: the weather term is a CALENDAR PROXY (one seasonal sine) — NOT a forecast, NOT NWP, NOT a live feed; the whole composition is offline synthetic (see tradingSimulationComputes) and is NOT financial advice or alpha.',
-    }
+      boundary: 'HONEST: the weather term is a CALENDAR PROXY (one seasonal sine) — NOT a forecast, NOT NWP, NOT a live feed; the whole composition is offline synthetic (see tradingSimulationComputes) and is NOT financial advice or alpha.' }
   })
 }
 
@@ -623,8 +612,7 @@ export function getTradingCurriculum(matrix: MindMatrix = buildMatrix()) {
         cli: 'npm run trading:train',
         pair: 'train/send',
         address: shelved.address,
-        receipt: toUuid(`trading-curriculum:${strategy}:${shelved.ray}`),
-      }
+        receipt: toUuid(`trading-curriculum:${strategy}:${shelved.ray}`) }
     })
     const facets = [
       { facet: `curriculum lists ${rows.length} sealed strategies`, on: rows.length === STRATEGIES.length },
@@ -641,8 +629,7 @@ export function getTradingCurriculum(matrix: MindMatrix = buildMatrix()) {
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
       statement: `Trading curriculum: ${rows.length} strategies shelved on rosetta rays · skills=${skills.count} · sources=${sources.length}.`,
-      boundary: 'Educational curriculum over sealed synthetic backtests. NOT investment advice. Paper/sim only. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Educational curriculum over sealed synthetic backtests. NOT investment advice. Paper/sim only. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -665,9 +652,7 @@ export function validateQuantumTraderTrain(matrix: MindMatrix = buildMatrix()) {
           totalReturn: run.result.totalReturn,
           sharpe: run.result.sharpe,
           maxDrawdown: run.result.maxDrawdown,
-          hitRate: run.result.hitRate,
-        }),
-      }
+          hitRate: run.result.hitRate }) }
     })
     const facets = [
       { facet: 'a432 train path length > 432 (harmonic bars + seed)', on: prices.length > 432 },
@@ -683,8 +668,7 @@ export function validateQuantumTraderTrain(matrix: MindMatrix = buildMatrix()) {
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...runs.map((r) => r.receipt)])),
       statement: `validateQuantumTraderTrain: ${runs.length} strategies on a432 path (${prices.length} bars) — receipts content-addressed.`,
-      boundary: 'Synthetic a432 path ≠ live market history. Backtest ≠ live. NOT alpha. Paper/sim only. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Synthetic a432 path ≠ live market history. Backtest ≠ live. NOT alpha. Paper/sim only. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -717,13 +701,11 @@ export function liveWinTrainingGate(matrix: MindMatrix = buildMatrix()) {
       benchmarkReturn: run.benchmark.totalReturn,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, curriculum.root, trained.root, tradingReceipt('momentum-win', { n: run.n }, {
-        totalReturn: run.result.totalReturn, sharpe: run.result.sharpe, maxDrawdown: run.result.maxDrawdown, hitRate: run.result.hitRate,
-      })])),
+        totalReturn: run.result.totalReturn, sharpe: run.result.sharpe, maxDrawdown: run.result.maxDrawdown, hitRate: run.result.hitRate })])),
       statement: trainedEnough
         ? 'liveWinTrainingGate: momentum beats buy-and-hold on sealed synthetic path — trainedEnough (paper/sim).'
         : 'liveWinTrainingGate: momentum does not beat buy-and-hold at this call — not trainedEnough.',
-      boundary: 'NAME HONESTY: "live-win" = strategy vs benchmark on synthetic path, NOT live brokerage P&L. Paper/sim only. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'NAME HONESTY: "live-win" = strategy vs benchmark on synthetic path, NOT live brokerage P&L. Paper/sim only. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -768,9 +750,7 @@ export function rankWinningStrategies(matrix: MindMatrix = buildMatrix(), at = 0
           totalReturn: run.result.totalReturn,
           sharpe: run.result.sharpe,
           maxDrawdown: run.result.maxDrawdown,
-          hitRate: run.result.hitRate,
-        }),
-      }
+          hitRate: run.result.hitRate }) }
     }).sort((a, b) => b.rankScore - a.rankScore)
     const ranked: RankedStrategyRow[] = scored.map((row, index) => ({ ...row, rank: index + 1 }))
     const facets = [
@@ -792,8 +772,7 @@ export function rankWinningStrategies(matrix: MindMatrix = buildMatrix(), at = 0
       pair: 'cycle/winning',
       route: '/en/quantum-trading-hub',
       statement: `rankWinningStrategies: top=${ranked[0]!.strategy} ray=${ranked[0]!.ray} — PnL+harmonic via rosettaShelve.`,
-      boundary: 'Ranking over sealed synthetic backtests. Harmonic score is structural (vortex·ray), NOT a market oracle. NOT live money. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Ranking over sealed synthetic backtests. Harmonic score is structural (vortex·ray), NOT a market oracle. NOT live money. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -834,14 +813,11 @@ export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(
           shelved.address,
           tradingReceipt(`short:${ray}`, { winLen, shortW }, {
             totalReturn: shortRun.result.totalReturn, sharpe: shortRun.result.sharpe,
-            maxDrawdown: shortRun.result.maxDrawdown, hitRate: shortRun.result.hitRate,
-          }),
+            maxDrawdown: shortRun.result.maxDrawdown, hitRate: shortRun.result.hitRate }),
           tradingReceipt(`long:${ray}`, { winLen, longW }, {
             totalReturn: longRun.result.totalReturn, sharpe: longRun.result.sharpe,
-            maxDrawdown: longRun.result.maxDrawdown, hitRate: longRun.result.hitRate,
-          }),
-        ]),
-      }
+            maxDrawdown: longRun.result.maxDrawdown, hitRate: longRun.result.hitRate }),
+        ]) }
     })
     const top = [...rayRuns].sort((a, b) => (b.shortSharpe + b.longSharpe) - (a.shortSharpe + a.longSharpe))[0]!
     const facets = [
@@ -870,8 +846,7 @@ export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(
       statement:
         `historicalTrainWavesViaRosetta: ${rayRuns.length} rays · short/long harmonic windows · top=${top.strategy}@ray${top.ray} — offline a432 proxy.`,
       boundary:
-        'Historical = sealed synthetic a432 + harmonic windows, NOT downloaded exchange ticks. Paper/sim. Backtest≠live. HARMONY ≠ TRUTH.',
-    }
+        'Historical = sealed synthetic a432 + harmonic windows, NOT downloaded exchange ticks. Paper/sim. Backtest≠live. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -905,8 +880,7 @@ export function tradingStrategiesImproveViaRosetta(matrix: MindMatrix = buildMat
       route: '/en/quantum-trading-hub',
       statement:
         `Strategies improve via rosetta: top=${ranked.topStrategy} · histRays=${hist.waveCount} · trainedEnough=${winGate.trainedEnough} · paper=${honesty.paperSimOnly}.`,
-      boundary: honesty.boundary,
-    }
+      boundary: honesty.boundary }
   })
 }
 
@@ -929,8 +903,7 @@ export function tradingTrainHonestyGate(matrix: MindMatrix = buildMatrix()) {
       root: merge(matrix.root, sealed.root),
       statement: 'Trading train honesty: paper/sim only — no live money claims; synthetic paths and public-feed catalogues stay labeled.',
       boundary:
-        'HARD: train/rank/win-gate are offline synthetic or paper. Live feeds (if any) are opt-in at the edge and never claimed as sealed alpha. NOT financial advice. HARMONY ≠ TRUTH.',
-    }
+        'HARD: train/rank/win-gate are offline synthetic or paper. Live feeds (if any) are opt-in at the edge and never claimed as sealed alpha. NOT financial advice. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -941,8 +914,7 @@ export function tradingRosettaTrainPanelComputes(matrix: MindMatrix = buildMatri
     computes: improve.computes,
     improve,
     ranked: improve.ranked.ranked.map((r) => ({
-      strategy: r.strategy, rank: r.rank, ray: r.ray, return: r.totalReturn, sharpe: r.sharpe, harmonic: r.harmonicScore,
-    })),
+      strategy: r.strategy, rank: r.rank, ray: r.ray, return: r.totalReturn, sharpe: r.sharpe, harmonic: r.harmonicScore })),
     topStrategy: improve.improvedStrategy,
     trainedEnough: improve.winGate.trainedEnough,
     paperSimOnly: improve.honesty.paperSimOnly,
@@ -952,8 +924,7 @@ export function tradingRosettaTrainPanelComputes(matrix: MindMatrix = buildMatri
     root: improve.root,
     statement: improve.statement,
     boundary: improve.boundary,
-    facets: improve.facets,
-  }
+    facets: improve.facets }
 }
 
 /** npm run quantum:trading-rosetta-train */
@@ -1010,7 +981,6 @@ export function invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInver
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Invert the strategies to fill the gaps — momentum and mean-reversion are inverses covering each other's regimes — ${facets.filter((entry) => entry.on).length}/${facets.length}. Momentum follows trends and mean-reversion fades them, so on shared-active bars they oppose more than they agree (${opposite} vs ${same}). Each is flat in the regime it does not fit — a coverage gap — and there its inverse is active: the union of active bars (${unionActive}) exceeds either alone (${momentumActive}, ${reversionActive}), so inverting the strategy adds ${coverGain} bars of coverage. The inverse fills the gap.`,
-      boundary: `EXACT and computed live over ${bars} synthetic a432 bars: momentum (crossover, trend-following) and mean-reversion (z-score, fading) take OPPOSITE positions on ${opposite} of their ${opposite + same} shared-active bars vs ${same} agreeing (${areInverse}) — structurally inverse; each is FLAT (position 0) on the bars of the regime it does not fit (momentum ${bars - momentumActive}, mean-reversion ${bars - reversionActive}), its coverage GAP; and the union of their active bars (${unionActive}) strictly exceeds either alone (${inverseFillsGap}), so inverting the strategy fills ${coverGain} bars neither covered alone. THE HONEST BOUND: this is COVERAGE (which bars carry a position), NOT PROFITABILITY — covering more regimes does not make money, and momentum + its inverse mean-reversion are STRUCTURALLY opposite (follow vs fade), not exact sign-negatives; the prices are SYNTHETIC (priceFromA432, deterministic, no look-ahead but backtest≠live and synthetic≠alpha [[trading-from-knowledge-a432-engine]]); "fill the gap" means the regime-coverage gap of one strategy is where its inverse is active, a real structural complementarity, not a guarantee of returns. HARMONY ≠ TRUTH: "invert the strategies to fill the gaps" is the harmony; the truth is that trend-following and mean-reversion are inverse and their active bars complement, the union covering more than either — computed and refutable.`,
-    }
+      boundary: `EXACT and computed live over ${bars} synthetic a432 bars: momentum (crossover, trend-following) and mean-reversion (z-score, fading) take OPPOSITE positions on ${opposite} of their ${opposite + same} shared-active bars vs ${same} agreeing (${areInverse}) — structurally inverse; each is FLAT (position 0) on the bars of the regime it does not fit (momentum ${bars - momentumActive}, mean-reversion ${bars - reversionActive}), its coverage GAP; and the union of their active bars (${unionActive}) strictly exceeds either alone (${inverseFillsGap}), so inverting the strategy fills ${coverGain} bars neither covered alone. THE HONEST BOUND: this is COVERAGE (which bars carry a position), NOT PROFITABILITY — covering more regimes does not make money, and momentum + its inverse mean-reversion are STRUCTURALLY opposite (follow vs fade), not exact sign-negatives; the prices are SYNTHETIC (priceFromA432, deterministic, no look-ahead but backtest≠live and synthetic≠alpha [[trading-from-knowledge-a432-engine]]); "fill the gap" means the regime-coverage gap of one strategy is where its inverse is active, a real structural complementarity, not a guarantee of returns. HARMONY ≠ TRUTH: "invert the strategies to fill the gaps" is the harmony; the truth is that trend-following and mean-reversion are inverse and their active bars complement, the union covering more than either — computed and refutable.` }
   })
 }

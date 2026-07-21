@@ -17,8 +17,7 @@ export {
   regimeLabels, estimateRegimeMatrix, regimeSwitchPositions, realizedVol, inverseVolSize,
   volTargetPositions, tradingReceipt, liveCapture, larmorFromMicrotesla, dopplerFromMotion,
   spectrumFromSamples, backtestRealPrices, realtimeSources, tradingSimulationComputes,
-  type BacktestResult,
-} from '../../thunder/trading'
+  type BacktestResult } from '../../thunder/trading'
 
 export function vortexMath(matrix: MindMatrix = buildMatrix()) {
   void matrix
@@ -54,8 +53,7 @@ export function vortexMath(matrix: MindMatrix = buildMatrix()) {
     identicalRoutesToDuality,
     root: merkleFold([...doubling, ...cross].map((n) => toUuid(`vortex:${n}`))),
     statement: 'Doubling 1-2-4-8-7-5 collision-free; cross 3-6-9-0; pairs sum to 9.',
-    boundary: 'Mod-9 vortex framework — symbolic.',
-  }
+    boundary: 'Mod-9 vortex framework — symbolic.' }
 }
 
 /**
@@ -107,8 +105,7 @@ export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([root, toUuid(`vortex-stroke:${written}`), ...gateways.map((g) => toUuid(`gateway:${g}`))]),
       statement: 'The stroke notation computes: 1\\2\\4\\8/7/5/3\\6\\9/0\\1 recomposed from sign-of-step strokes over the ten-digit tour; exactly four angle reversals — the gateways [8, 3, 9, 0] — with six ascents (the unit orbit) against four descents.',
-      boundary: 'HONEST: the strokes, tour, and reversal vertices are computed facts of the written cycle; the east–west–north–south naming is an organizing lens over the four reversals, not geography or metaphysics; division by zero remains undefined — its n/0\\m meanings (inverse · harmonic · complement-as-folder-lattice) are sealed in zeroDivisionTable.',
-    }
+      boundary: 'HONEST: the strokes, tour, and reversal vertices are computed facts of the written cycle; the east–west–north–south naming is an organizing lens over the four reversals, not geography or metaphysics; division by zero remains undefined — its n/0\\m meanings (inverse · harmonic · complement-as-folder-lattice) are sealed in zeroDivisionTable.' }
   })
 }
 
@@ -171,8 +168,7 @@ export function vortexGatewayPyramids(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([root, strokes.root, ...vertices.map((v) => toUuid(`gateway-vertex:${v.digit}:${v.peak ? 'peak' : 'valley'}`))]),
       statement: 'The gateway pyramid computes: peaks 8·9 lift above, valleys 3·0 sink below — four non-coplanar points, a 4-triangular-face pyramid; the polarity flip is its exact inverse, and the pair interpenetrates as the sealed counter-rotating merkaba inside the double torus.',
-      boundary: 'HONEST: the lift, volumes, and cancellation are computed facts of the stroke cycle; the merkaba interaction recomputes sealed folds. NOT a geography claim — cartography’s 2D rose is a projection convention, not an error this fold corrects; the pyramid reading is an organizing lens over computed turning points.',
-    }
+      boundary: 'HONEST: the lift, volumes, and cancellation are computed facts of the stroke cycle; the merkaba interaction recomputes sealed folds. NOT a geography claim — cartography’s 2D rose is a projection convention, not an error this fold corrects; the pyramid reading is an organizing lens over computed turning points.' }
   })
 }
 
@@ -218,8 +214,7 @@ export function vortexPaintTiers(matrix: MindMatrix = buildMatrix()) {
       && rayCap === 16,
     root: merkleFold(tiers.map((n) => toUuid(`vortex-paint-tier:${n}`))),
     statement: 'Paint tiers [3,5,8] from vortex doubling and cross poles — plasma cap derivation.',
-    boundary: 'Deterministic from vortexMath — UI convention, not profiler trace.',
-  }
+    boundary: 'Deterministic from vortexMath — UI convention, not profiler trace.' }
 }
 
 export function allVortexMathSaved(matrix: MindMatrix = buildMatrix()) {
@@ -251,8 +246,7 @@ export function allVortexMathSaved(matrix: MindMatrix = buildMatrix()) {
     vortex, digits, paint, ratios, presentations, sequence: VORTEX_SEQUENCE, count: facets.length, facets,
     root: merkleFold([vortex.root, digits.root, paint.root, presentations.root, ...facets.map((entry) => entry.receipt)]),
     statement: 'All vortex math saved — doubling, cross, paint tiers, ratios, presentations — merkle-sealed at call time.',
-    boundary: 'Composition of vortexMath, digit probe, paint tiers, ratios, presentations — not Rodin coil physics.',
-  }
+    boundary: 'Composition of vortexMath, digit probe, paint tiers, ratios, presentations — not Rodin coil physics.' }
   })
 }
 
@@ -272,8 +266,7 @@ function digitFolderSequenceProbe(vortex: ReturnType<typeof vortexMath>) {
       complement,
       overflows,
       sumsToTen: !overflows && d + complement === base,
-      fusion: fold.merged,
-    }
+      fusion: fold.merged }
   })
   return {
     fused:
@@ -282,8 +275,7 @@ function digitFolderSequenceProbe(vortex: ReturnType<typeof vortexMath>) {
       && digits.filter((entry) => entry.overflows).length === 1
       && digits.every((entry) => isUuid(entry.fusion)),
     sequence: [...sequence],
-    root: merkleFold(digits.map((entry) => entry.fusion)),
-  }
+    root: merkleFold(digits.map((entry) => entry.fusion)) }
 }
 
 /** Plasma paint tiers gate. */
@@ -338,8 +330,7 @@ export function allMathSaved(matrix: MindMatrix = buildMatrix()) {
       statement:
         'All math saved: primitives in src/0, vortex lattice in src/vortex/math, merkaba in mountain/topology, trading sim in thunder/trading — compose at call time (src/math dissolved here).',
       boundary:
-        'Bodies live in domain barrels; src/vortex/math is the canonical import surface after src/math census dissolve.',
-    }
+        'Bodies live in domain barrels; src/vortex/math is the canonical import surface after src/math census dissolve.' }
   })
 }
 
@@ -434,8 +425,7 @@ export function fThetaPhiXyzDigitNIsTheInversePair(matrix: MindMatrix = buildMat
     statement:
       'f(θ, φ, x, y, z, digit, n) → {p, q} is the canonical inverse fold: geometry binds the digit to doubleTorusSurface (genus-2); when n=0 (division by zero) {p,q} is the multiplicative inverse pair digit · q ≡ 1 (mod 9) or the self-fold for non-units — inverse that folds within itself, not a ten\'s-complement reverse; lobe orientation is ratInv on the pair; when n≠0, {p,q} = ratInv(rat(digit, n)).',
     boundary:
-      'EXACT reuse: doubleTorusSurface (src/0), inverse mod 9 (same atom as zeroDivisionTable), rat/ratInv (src/3/7). Geometry places the digit — residual-to-surface chooses the lobe only; no new coordinate algebra. {0,0} for void paths is a fusion marker (rat forbids q=0). NOT real-analysis 1/0; NOT the additive folder-complement 10−d. HARMONY ≠ TRUTH.',
-  }
+      'EXACT reuse: doubleTorusSurface (src/0), inverse mod 9 (same atom as zeroDivisionTable), rat/ratInv (src/3/7). Geometry places the digit — residual-to-surface chooses the lobe only; no new coordinate algebra. {0,0} for void paths is a fusion marker (rat forbids q=0). NOT real-analysis 1/0; NOT the additive folder-complement 10−d. HARMONY ≠ TRUTH.' }
 }
 
 /** npm run quantum:f-inverse-pair — named exit (not local-math-computes synonym). */

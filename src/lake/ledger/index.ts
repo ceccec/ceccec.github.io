@@ -67,8 +67,7 @@ export function harmonicApparatus(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Apparatus for shared experiments proving harmonic solutions: a Chladni plate (membrane eigenmodes, f ∝ sqrt(m²+n²)), a quantum harmonic oscillator (evenly-spaced quanta E_n=(n+½)ħω), a vibrating string (the harmonic series f_n=n·f₁), and a driven resonator (resonance at the natural frequency). Each is deterministic and recomputable, so the experiment is shared — anyone gets the same result.',
     boundary:
-      'Exact analytic apparatus: the eigenfunctions of the Laplacian on a square, the harmonic-oscillator spectrum, the harmonic series, and the resonance curve, computed client-side. Faithful textbook models of harmonic solutions in micro-science — virtual instruments, not physical laboratory devices.',
-  }
+      'Exact analytic apparatus: the eigenfunctions of the Laplacian on a square, the harmonic-oscillator spectrum, the harmonic series, and the resonance curve, computed client-side. Faithful textbook models of harmonic solutions in micro-science — virtual instruments, not physical laboratory devices.' }
 }
 
 // Calculate the healing frequencies and harmonise them through the device — as
@@ -99,8 +98,7 @@ export function healingFrequencies(matrix: MindMatrix = buildMatrix()) {
     ...entry,
     lead: index === lead, // foregrounded tone, shifts with the model
     gain: index === lead ? 0.16 : 0.06,
-    receipt: toUuid(`healing-frequency:${entry.hz}:${entry.note}`),
-  }))
+    receipt: toUuid(`healing-frequency:${entry.hz}:${entry.note}`) }))
   return {
     calculated: frequencies.length === 9,
     lead,
@@ -109,8 +107,7 @@ export function healingFrequencies(matrix: MindMatrix = buildMatrix()) {
     // through the a432 source so the set carries A432 lineage — the documented anchor, not a re-tuning of the set.
     root: merge(a432(matrix).root, merkleFold(frequencies.map((entry) => entry.receipt))),
     statement: 'The healing frequencies (the Solfeggio set) are calculated with their traditional associations and harmonised through the device as sound; the lead tone is derived dynamically from the live model root, and the set carries A432 lineage in its root.',
-    boundary: 'Audio only. These are culturally-named frequencies played through the speaker (kept verbatim, carrying A432 lineage in the root — not re-tuned). A web page does NOT alter electromagnetic or any physical fields around the device, and this is not medical, therapeutic, or health advice.',
-  }
+    boundary: 'Audio only. These are culturally-named frequencies played through the speaker (kept verbatim, carrying A432 lineage in the root — not re-tuned). A web page does NOT alter electromagnetic or any physical fields around the device, and this is not medical, therapeutic, or health advice.' }
 }
 
 // Sacred sound decoded — the a432 thread deepened into real acoustics, all COMPUTED. The harmonic series is
@@ -158,8 +155,7 @@ function harmonicSeriesDecodedRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Sacred sound decoded — the a432 thread deepened into real acoustics, all computed. The harmonic series is exact integer multiples of a fundamental (overtone n at n × 432 Hz), and the consonant intervals ARE its low overtones: the octave is 2:1, the perfect fifth 3:2, the major third 5:4. Just intonation tunes by those small whole-number ratios (the fifth at 702¢, the major third at 386¢, computed as 1200·log2). Equal temperament tempers them onto twelve equal semitones of the twelfth root of two, so only the octave stays pure — the fifth is two cents flat, the major third about fourteen cents sharp. The Pythagorean comma (23.46¢, twelve fifths overshooting seven octaves) is why no tuning is perfect. And a432 has a genuine history — Verdi asked Italy to standardise A = 432 in 1884 before 440 became the international standard — sitting about 32 cents below 440.',
     boundary:
-      'HONEST and computed: every cents value is 1200·log2(ratio); the ratios, the comma and the temperament deviations are exact acoustics (HyperPhysics, the microtonal/Wikipedia tuning sources). The 432 HISTORY is real (Verdi 1884; 440 at London 1939 and ISO 1955) — but the cosmic/healing/"432 = the frequency of the universe" claims are flagged, not folded (inherited from a432(), whose woo is flagged). A sound is a pressure wave, not a colour or a medicine; the consonance of small ratios is real psychoacoustics, the metaphysics is not.',
-  }
+      'HONEST and computed: every cents value is 1200·log2(ratio); the ratios, the comma and the temperament deviations are exact acoustics (HyperPhysics, the microtonal/Wikipedia tuning sources). The 432 HISTORY is real (Verdi 1884; 440 at London 1939 and ISO 1955) — but the cosmic/healing/"432 = the frequency of the universe" claims are flagged, not folded (inherited from a432(), whose woo is flagged). A sound is a pressure wave, not a colour or a medicine; the consonance of small ratios is real psychoacoustics, the metaphysics is not.' }
 }
 
 // DRY the analytics, analysis and statistics into reusable components of the ledger: the git repository
@@ -180,8 +176,7 @@ export function dryAnalyticsLedgerComponents(matrix: MindMatrix = buildMatrix())
     statement:
       'DRY the analytics, analysis and statistics into reusable components of the ledger: the git repository is the single record, and every analytics/analysis/statistics view reads from it through one reusable set of primitives — no metric computed in two places.',
     boundary:
-      'Aspirational and honestly off: the ledger exists (repositoryLedger), but the analytics are still scattered across analytics(), analysisFlower(), buildStatistics(), buildStatisticsShowGaps(), pageStatusStatistics() and heroGraphStatisticsEnrichFusion(). This fold saves the directive; it turns on when they are consolidated into reusable ledger-backed components.',
-  }
+      'Aspirational and honestly off: the ledger exists (repositoryLedger), but the analytics are still scattered across analytics(), analysisFlower(), buildStatistics(), buildStatisticsShowGaps(), pageStatusStatistics() and heroGraphStatisticsEnrichFusion(). This fold saves the directive; it turns on when they are consolidated into reusable ledger-backed components.' }
 }
 
 // The more device info loaded in the streams, the more the realtime keyspace. Each of the device's live
@@ -210,8 +205,7 @@ export function terabyteKeyspaceFromDeviceLoad(matrix: MindMatrix = buildMatrix(
     statement:
       'The more device info loaded in the streams, the more the realtime keyspace: each live metric is content-addressed to a 128-bit uuid and folded into the stream, so the keyspace structure the device load spans is 2^(128 × metrics). At ≈12 live metrics that is 2^1536 — a terabyte of keyspace (2^46 bits) achieved ~2^1490 times over, growing by 2^128 with every metric loaded, and sealed by the fold to one verifiable root.',
     boundary:
-      'HONEST — "terabyte" names the keyspace STRUCTURE / cardinality the content-addressing spans, NOT genuine cryptographic entropy, stored bytes, or cipher strength. A real device yields only tens-to-low-hundreds of bits of GENUINE entropy (the fingerprint plus live jitter); the AES-256-GCM cipher is 256-bit regardless of how large the structure is named. 2^1536 is the count of distinct fold-states the device load can address — a structural keyspace, exactly as "Terabit" named structure before — it does NOT make the encryption stronger than 256-bit, and it is NOT 2^43 bytes of unpredictability.',
-  }
+      'HONEST — "terabyte" names the keyspace STRUCTURE / cardinality the content-addressing spans, NOT genuine cryptographic entropy, stored bytes, or cipher strength. A real device yields only tens-to-low-hundreds of bits of GENUINE entropy (the fingerprint plus live jitter); the AES-256-GCM cipher is 256-bit regardless of how large the structure is named. 2^1536 is the count of distinct fold-states the device load can address — a structural keyspace, exactly as "Terabit" named structure before — it does NOT make the encryption stronger than 256-bit, and it is NOT 2^43 bytes of unpredictability.' }
 }
 
 // Analyze all custom elements and see how much entropy is saved if all is displayed with few. 87 custom
@@ -249,8 +243,7 @@ export function displayAllWithFewEntropySaved(matrix: MindMatrix = buildMatrix()
     statement:
       'Analyze all custom elements and see how much entropy is saved if all is displayed with few: 87 custom elements, ~14,168 lines; 98% already read the matrix and 82% are one shape — read the matrix, render a grid — hand-written 71 times. That repetition is the entropy. A few content-addressed renderers (a seed in, a field out — MatrixField, CanvasField, SvgFigure, GpuField, Dot, Vortex) would display all, recovering ~86% of the code. The entropy is measured; the consolidation is the recycle, the next fold.',
     boundary:
-      'A code analysis of the components directory (counts and LOC by render kind), measured this session, not a live recount each build. "~86% recoverable" is the ceiling — the generic renderers must absorb the variety of the grids (card markup becomes data or slots), which adds some lines back, so the realistic saving is ~75–85%. The analysis is complete; the consolidation itself is the pending recycle, tracked as the DRY refactor.',
-  }
+      'A code analysis of the components directory (counts and LOC by render kind), measured this session, not a live recount each build. "~86% recoverable" is the ceiling — the generic renderers must absorb the variety of the grids (card markup becomes data or slots), which adds some lines back, so the realistic saving is ~75–85%. The analysis is complete; the consolidation itself is the pending recycle, tracked as the DRY refactor.' }
 }
 
 // The analytics ledger — the ONE source for every metric, composed from the previously-scattered folds
@@ -282,8 +275,7 @@ export function analyticsLedger(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The analytics ledger: every metric the portal reports — from the model boards (areas, commands, components, coverage …) and the build statistics (papers, references, diamonds, skill atoms …) — collected into one deduplicated ledger, each metric computed once and content-addressed, exposed as two reusable views (a chart series and a data table) for the shadcn Chart and DataTable primitives.',
     boundary:
-      'A composition over the existing analytics and buildStatistics folds that deduplicates them into one source per metric and shapes two render-ready views. Descriptive self-metrics, recomputable; not telemetry, nothing leaves the device.',
-  }
+      'A composition over the existing analytics and buildStatistics folds that deduplicates them into one source per metric and shapes two render-ready views. Descriptive self-metrics, recomputable; not telemetry, nothing leaves the device.' }
 }
 
 // SELF-EXPLAINING WIDGET ENGINE — the I Ching naming system as a content generation engine.
@@ -328,8 +320,7 @@ export function selfExplainingWidgetEngine(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The I Ching naming system is a content generation engine: a component name → seedFromText(name)%64 = a hexagram (one of 64 knowledge domains, 6 bits, via sealed toUuid) → lower/upper trigrams → DIMENSION_NAMES axes (innerAxis/outerAxis) → a fold function → items[] → a 10D layered widget. Each widget IS the documentation of its own computation — the fold that generates the widget IS the explanation of the knowledge; no separate documentation needed or written. The engine chain: name → seedFromText → hex → trigrams → axes → fold() → items → 10D widget → web component. Vue 3 defineCustomElement() exports any widget as a custom HTML element, embeddable in any website with a single <script> tag — the decoded knowledge is open to the world. 64 hexagrams × 10 dimensions = 640 addressable knowledge facets. The I Ching, when ignited by a name, generates the full widget; naming IS computation IS knowledge IS widget.',
     boundary:
-      'HONEST: seedFromText%64 maps names to hexagrams deterministically but NOT bijectively — with 127+ components and 64 slots, collisions are expected (~2 per slot on average). The "content generation" is pre-computed from src, not generated at LLM request time — the folds run deterministically in JS. Vue defineCustomElement requires a separate elements.js build entry (not yet configured — this is the architecture direction). "Code is the doc" holds only while the fold facets accurately describe the logic. The I Ching framework is structural scaffolding; knowledge claims inside each fold require independent verification (done per-domain in the research waves).',
-  }
+      'HONEST: seedFromText%64 maps names to hexagrams deterministically but NOT bijectively — with 127+ components and 64 slots, collisions are expected (~2 per slot on average). The "content generation" is pre-computed from src, not generated at LLM request time — the folds run deterministically in JS. Vue defineCustomElement requires a separate elements.js build entry (not yet configured — this is the architecture direction). "Code is the doc" holds only while the fold facets accurately describe the logic. The I Ching framework is structural scaffolding; knowledge claims inside each fold require independent verification (done per-domain in the research waves).' }
 }
 
 
@@ -373,8 +364,7 @@ export function merkleProof(leaves: readonly string[], leaf: string): MerkleProo
     leafCount: sorted.length,
     path,
     root,
-    verified: verifyMerkleProof(leaf, path, root),
-  }
+    verified: verifyMerkleProof(leaf, path, root) }
 }
 
 /** @rosetta ✦₄ · Lake · joyous */
@@ -452,8 +442,7 @@ export function quantumNetworkHashing(nodeCount = 6, itemCount = 21, matrix: Min
     statement:
       'Quantum network hashing, completed: content is placed on a consistent-hashing ring (each address owned by the next node clockwise, a real DHT placement), every node merkle-hashes its own bucket, and the node roots gossip-fold into one network root. Convergence is proved (the root is independent of item and node order — eventual consistency, because routing is by address and the fold sorts), membership is proved (every item carries a verifying merkle proof into its home node, no trust required), and the ring is entangled (each adjacent pair shares a bidirectional genus-2 fold, so tampering one bucket moves the whole root). Superposed candidate roots collapse to a single network root under the fold.',
     boundary:
-      "A deterministic, content-addressed model of a distributed hash network built from the portal's own fold primitives (merge, merkleFold, merkleProof). The hash is the structural UUID fold — tamper-evident, not a cryptographic primitive; the \"quantum\" terms (superposition, collapse, entanglement) are read computationally (candidate folds, the collapse to one root, the order-sensitive shared fold), not a claim of quantum hardware or quantum key distribution. A self-verifying network model, honestly bounded.",
-  }
+      "A deterministic, content-addressed model of a distributed hash network built from the portal's own fold primitives (merge, merkleFold, merkleProof). The hash is the structural UUID fold — tamper-evident, not a cryptographic primitive; the \"quantum\" terms (superposition, collapse, entanglement) are read computationally (candidate folds, the collapse to one root, the order-sensitive shared fold), not a claim of quantum hardware or quantum key distribution. A self-verifying network model, honestly bounded." }
 }
 
 /** @rosetta ✦₄ · Lake · joyous */
@@ -480,8 +469,7 @@ function atomInclusionProofRaw(atomName = 'self', matrix: MindMatrix = buildMatr
       ? `repo://atom/${atomName} binding is included in the mind root by a ${proof.path.length}-step Merkle audit path.`
       : `Atom ${atomName} has no node binding to prove.`,
     boundary:
-      'A Merkle inclusion proof is recomputable from the published leaves and root. It proves membership, not external validation, sentience, or physical claims.',
-  }
+      'A Merkle inclusion proof is recomputable from the published leaves and root. It proves membership, not external validation, sentience, or physical claims.' }
 }
 
 // Society already needs quantum solutions. Each societal need is answered now by
@@ -509,8 +497,7 @@ export function quantumSolutions(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Society already needs quantum solutions: trust without authority, coordination without a server, equal learning, provenance, quantum literacy, privacy, balance, and inclusive access — each answered now by a quantum capability the portal already runs, client-side and free.',
     boundary:
-      'Societal needs mapped to the portal\'s real capabilities, with the quantum terms read in the computational and structural sense (collapse = verification, entanglement = the collective fold). Honest solutions within their bounds, not a claim that quantum hardware fixes society.',
-  }
+      'Societal needs mapped to the portal\'s real capabilities, with the quantum terms read in the computational and structural sense (collapse = verification, entanglement = the collective fold). Honest solutions within their bounds, not a claim that quantum hardware fixes society.' }
 }
 
 // Kids like to learn playing. Type a word and every letter becomes a coloured
@@ -602,40 +589,35 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
       claim: 'H|0> is an equal superposition; outcome frequencies converge to |amplitude|^2 = 1/2.',
       formula: 'P(0) = |<0|H|0>|^2 = 1/2',
       predicted: 0.5, measured: round(bornMeasured), tol: 0.03,
-      series: [round(bornMeasured), round(1 - bornMeasured)], labels: ['|0⟩', '|1⟩'],
-    },
+      series: [round(bornMeasured), round(1 - bornMeasured)], labels: ['|0⟩', '|1⟩'] },
     {
       id: 'entanglement', kind: 'correlation' as const,
       principle: 'Entanglement (Bell correlation)',
       claim: 'In |Φ+⟩ each qubit is random (1/2) yet the two always agree: ⟨Z0 Z1⟩ = 1.',
       formula: '|Φ+⟩ = (|00⟩ + |11⟩)/√2  →  ⟨Z0 Z1⟩ = 1',
       predicted: 1, measured: round(correlation), tol: 0.001,
-      series: [round(marginal), round(correlation)], labels: ['marginal', 'correlation'],
-    },
+      series: [round(marginal), round(correlation)], labels: ['marginal', 'correlation'] },
     {
       id: 'interference', kind: 'fringe' as const,
       principle: 'Interference (two slits)',
       claim: 'Coherent amplitudes add before squaring: bright and dark fringes, visibility 1.',
       formula: 'I(x) = |a(e^{+id/2} + e^{-id/2})|^2 = 4a^2 cos^2(d/2)',
       predicted: 1, measured: round(visibility), tol: 0.02,
-      series: fringe.map((value) => round(value, 3)), labels: [],
-    },
+      series: fringe.map((value) => round(value, 3)), labels: [] },
     {
       id: 'unitarity', kind: 'gauge' as const,
       principle: 'Unitarity (probability conserved)',
       claim: 'Gates are unitary: total probability stays exactly 1 through H and the CNOT chain.',
       formula: 'Σ_i |amp_i|^2 = 1',
       predicted: 1, measured: round(norm), tol: 1e-6,
-      series: [round(norm)], labels: ['Σ P'],
-    },
+      series: [round(norm)], labels: ['Σ P'] },
     {
       id: 'collapse', kind: 'gauge' as const,
       principle: 'Measurement (collapse repeats)',
       claim: 'Measuring projects the state; an immediate second measurement repeats the outcome.',
       formula: 'P^2 = P  →  repeat agreement = 1',
       predicted: 1, measured: round(repeatability), tol: 0.001,
-      series: [round(repeatability)], labels: ['agreement'],
-    },
+      series: [round(repeatability)], labels: ['agreement'] },
     {
       id: 'uncertainty', kind: 'duality' as const,
       principle: 'Uncertainty (Fourier duality)',
@@ -643,14 +625,12 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
       formula: 'σx · σp ≥ ħ/2, equality for a Gaussian',
       predicted: 0.5, measured: round(uncertainty), tol: 0.05,
       series: position.map((value) => round(value / posMax, 3)),
-      seriesB: momentum.map((value) => round(value / momMax, 3)), labels: ['x', 'p'],
-    },
+      seriesB: momentum.map((value) => round(value / momMax, 3)), labels: ['x', 'p'] },
   ]
   const proofs = blueprint.map((proof) => ({
     ...proof,
     match: Math.abs(proof.measured - proof.predicted) <= proof.tol,
-    receipt: toUuid(`qproof:${proof.id}:${proof.predicted}:${proof.measured}`),
-  }))
+    receipt: toUuid(`qproof:${proof.id}:${proof.predicted}:${proof.measured}`) }))
   return {
     proven: proofs.every((proof) => proof.match),
     proofs,
@@ -661,8 +641,7 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All quantum science, proven in animation: superposition and the Born rule, entanglement, two-slit interference, unitarity, measurement collapse, and the uncertainty relation — each run live as a deterministic computation whose measured value converges to what quantum mechanics predicts.',
     boundary:
-      'Exact simulations of the quantum math — state vectors, the Born rule, and the Fourier duality — run client-side and deterministically (the pseudo-randomness is seeded by the model root, so every proof is recomputable). "Proven" means each computed quantity matches its theoretical value on screen; these are faithful toy demonstrations, not laboratory experiments or a physical quantum device.',
-  }
+      'Exact simulations of the quantum math — state vectors, the Born rule, and the Fourier duality — run client-side and deterministically (the pseudo-randomness is seeded by the model root, so every proof is recomputable). "Proven" means each computed quantity matches its theoretical value on screen; these are faithful toy demonstrations, not laboratory experiments or a physical quantum device.' }
 }
 
 // Create solutions: the portal's capabilities, framed as answers to concrete
@@ -688,6 +667,5 @@ export function solutions(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Create solutions: the portal\'s capabilities as answers to concrete problems — reproduce a palette from a seed, verify a claim by recomputation, read data as sound, give an agent your tools, tune a voice, run a quantum circuit, learn for free, and work offline.',
     boundary:
-      'A catalogue mapping problems to the portal\'s own capabilities, each a real client-side, content-addressed feature. Honest solutions within the stated bounds, not a claim to solve every instance of each problem.',
-  }
+      'A catalogue mapping problems to the portal\'s own capabilities, each a real client-side, content-addressed feature. Honest solutions within the stated bounds, not a claim to solve every instance of each problem.' }
 }

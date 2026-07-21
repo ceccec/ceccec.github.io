@@ -13,8 +13,7 @@ import {
   ICHING_NUMBERS,
   cssIsIChingComputed,
   iChingFusionCompletesFolders,
-  rosettaIChingTrinityPlacesAllTools,
-} from '../architecture'
+  rosettaIChingTrinityPlacesAllTools } from '../architecture'
 import { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete } from '../../thunder/decode'
 import { startIChingDoubleTorus } from '../../mountain/topology'
 import { hexagramReverseInverseDuality, nuclearHexagramFold } from '../../mountain/geometry'
@@ -28,8 +27,7 @@ export {
   ichingTokens,
   ichingTokensCss,
   iChingFusionCompletesFolders,
-  rosettaIChingTrinityPlacesAllTools,
-} from '../architecture'
+  rosettaIChingTrinityPlacesAllTools } from '../architecture'
 export { iChingFusionCompletesAll } from '../../wind/fusion'
 export { startIChingDoubleTorus } from '../../mountain/topology'
 export { pagesRenderInBaguaSets } from '../../wind/ui'
@@ -90,8 +88,7 @@ export function ichingComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'I Ching computes: the canonical hexagram/trigram/bāguà home — 64 hexagrams, eight trigrams, seven doubling scales, folder fusion, Rosetta·I Ching trinity placement, motion, and 10D import/export — sealed at call time without duplicate logic.',
       boundary:
-        'Composition via lazy require for balance/fusion/ui (cycle-safe with mind barrel). Content-addressed PLACEMENT — NOT divination or prophecy.',
-    }
+        'Composition via lazy require for balance/fusion/ui (cycle-safe with mind barrel). Content-addressed PLACEMENT — NOT divination or prophecy.' }
   })
 }
 
@@ -115,8 +112,7 @@ export function ichingDistributeVerify() {
       { facet: 'rosetta 7-ray coprime to 6·9·10', on: rosettaCoprime },
       { facet: 'I Ching 8-fold aliases 6 and 10', on: ichingAliases },
       { facet: 'rosetta cross-pair coverage exceeds I Ching', on: rosettaCross > ichingCross },
-    ],
-  }
+    ] }
 }
 
 /** npm run quantum:iching-distribute-verify — rosetta 7-ray coprimality vs I Ching 8-fold aliasing. */
@@ -173,8 +169,7 @@ export function decodingIChingAddsTheorems() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Decoding the I Ching adds theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}, all derived: 反 (reversal) and 對 (complement) generate the Klein four-group on the 64 hexagrams; exactly 2³ = 8 hexagrams are palindromes, which FORCES the King Wen pairing into 28 reversal pairs + 4 complement pairs = 32; and the 64 fall into exactly 20 V₄-families — the direct orbit census and Burnside's lemma (64+8+0+8)/4 = 20 agree, one challenge solved by two independent computations.`,
-    boundary: `DERIVED, zero recital: every count comes from exhaustive computation over the 64 six-bit hexagrams plus the classical pairing moves (反/對 are the documented King Wen mechanisms — cited structure, computed consequences). The 28+4 split is proven as FORCED combinatorics (palindromes cannot reversal-pair), which is exactly the split the received King Wen sequence realises; the sequence's ORDER (why hexagram 3 follows 2) is NOT derived — no numerological ordering claim. Group theory is real (V₄, Burnside); divination is not claimed. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `DERIVED, zero recital: every count comes from exhaustive computation over the 64 six-bit hexagrams plus the classical pairing moves (反/對 are the documented King Wen mechanisms — cited structure, computed consequences). The 28+4 split is proven as FORCED combinatorics (palindromes cannot reversal-pair), which is exactly the split the received King Wen sequence realises; the sequence's ORDER (why hexagram 3 follows 2) is NOT derived — no numerological ordering claim. Group theory is real (V₄, Burnside); divination is not claimed. HARMONY ≠ TRUTH.` }
 }
 
 // ── THE HEXAGRAM ORBIT CENSUS: under the Klein four-group of 反 (reversal) and 對 (complement) the
@@ -212,8 +207,7 @@ export function hexagramOrbitCensusTwelveFoursEightTwos() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The hexagram orbit census — ${facets.filter((entry) => entry.on).length}/${facets.length}: under the Klein four-group of 反 and 對 the 64 hexagrams decompose into exactly 12 orbits of size 4 and 8 orbits of size 2, no fixed points (12·4 + 8·2 = 64; 20 orbits, matching Burnside), and the small orbits sit exactly on the 16 symmetric hexagrams — palindromes pairing by complement, anti-palindromes by the composite.`,
-    boundary: `Exhaustive computation over the 64 six-bit hexagrams — every count refutable by re-enumeration; the 20 agrees independently with the Burnside average sealed in decodingIChingAddsTheorems. Group theory on the classical pairing moves; no divination claim. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `Exhaustive computation over the 64 six-bit hexagrams — every count refutable by re-enumeration; the 20 agrees independently with the Burnside average sealed in decodingIChingAddsTheorems. Group theory on the classical pairing moves; no divination claim. HARMONY ≠ TRUTH.` }
 }
 
 
@@ -256,8 +250,7 @@ export function sevenRayRosettaIsTheSufficientArchitecture(matrix: MindMatrix = 
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Seven is enough — the rosetta is the sufficient architecture — ${facets.filter((entry) => entry.on).length}/${facets.length}: the seven Pliska-star rays are coprime with the doubling period so the {7/k} star single-strokes (one figure reaches all), every one of the ${categories.length} theorem domain categories shelves onto exactly one ray via rosettaRayOfContent (the total function nav, sidebar and crosslinks already read), seven organises what the eight-fold bāguà did with one fewer axis, and I Ching is demoted to a decoded symbol system among many (the week, the aspects, the tarot, the Glagolitic numerals, the pyramids) — data the rosetta shelves, no longer the architecture.`,
-      boundary: `COMPUTED: the coprime single-stroke (gcd), the total shelving of every registry category onto the seven rays, and the seven-under-eight count — refutable by any category landing off a ray. HONEST SCOPE: this seals the ARCHITECTURAL PRINCIPLE (rosetta sufficient, I Ching demoted to peer decode) and proves the shelving is total; the physical folder migration (retiring the bāguà top-level names for meaningful ones — 1510 import references) is a mechanical consequence to be executed as its own staged, gate-verified migration, not asserted done here. "Sufficient as no other" is the project's architectural stance, grounded in the coprime-star and total-shelving computations, not a claim that no other 7-fold could serve. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `COMPUTED: the coprime single-stroke (gcd), the total shelving of every registry category onto the seven rays, and the seven-under-eight count — refutable by any category landing off a ray. HONEST SCOPE: this seals the ARCHITECTURAL PRINCIPLE (rosetta sufficient, I Ching demoted to peer decode) and proves the shelving is total; the physical folder migration (retiring the bāguà top-level names for meaningful ones — 1510 import references) is a mechanical consequence to be executed as its own staged, gate-verified migration, not asserted done here. "Sufficient as no other" is the project's architectural stance, grounded in the coprime-star and total-shelving computations, not a claim that no other 7-fold could serve. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -304,7 +297,6 @@ export function researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCaus
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Researching all around 432, the three twenties are one COUNT, not one CAUSE — ${facets.filter((entry) => entry.on).length}/${facets.length}: the divisor count of 432 = 2⁴·3³ (τ = (4+1)(3+1) = ${divisorCount}), the V₄ Burnside orbit census on the 64 hexagrams (${orbits}) and HARMONICS_LADDER_LENGTH (${ladder}) all land on ${divisorCount}, but only the first two are structurally forced by an exact formula over a small-exponent lattice; the third is a defined composition agreeing in value. The gap the waves discovered, filled with the honest demarcation — two structural, one contingent — no seam hidden.`,
-      boundary: `COMPUTED and DEMARCATED: the divisor count is enumerated AND matches the exponent formula (τ = ∏(eᵢ+1)); the orbit count is the exhaustive V₄ census (Burnside, sealed in hexagramOrbitCensusTwelveFoursEightTwos); HARMONICS_LADDER_LENGTH is a src constant (6+9+5). The theorem is precisely which coincidences are STRUCTURAL (forced — the divisor formula and Burnside both count over 2-3 exponent lattices, 432 = 2⁴·3³ and 64 = 2⁶) and which is CONTINGENT (the harmonics ladder, defined to that length). Landing on the same integer is NOT evidence of a shared cause — that is the a432 "432 is mathematically special" flag applied to itself: the twenties harmonise, they are not one truth. The registry is sealed at 432 (theoremsReach432AndEntangleWithUsage holds the merge), so this is proven KNOWLEDGE that the wave discovered and computes, not a renumbering of the merged registry. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `COMPUTED and DEMARCATED: the divisor count is enumerated AND matches the exponent formula (τ = ∏(eᵢ+1)); the orbit count is the exhaustive V₄ census (Burnside, sealed in hexagramOrbitCensusTwelveFoursEightTwos); HARMONICS_LADDER_LENGTH is a src constant (6+9+5). The theorem is precisely which coincidences are STRUCTURAL (forced — the divisor formula and Burnside both count over 2-3 exponent lattices, 432 = 2⁴·3³ and 64 = 2⁶) and which is CONTINGENT (the harmonics ladder, defined to that length). Landing on the same integer is NOT evidence of a shared cause — that is the a432 "432 is mathematically special" flag applied to itself: the twenties harmonise, they are not one truth. The registry is sealed at 432 (theoremsReach432AndEntangleWithUsage holds the merge), so this is proven KNOWLEDGE that the wave discovered and computes, not a renumbering of the merged registry. HARMONY ≠ TRUTH.` }
   })
 }

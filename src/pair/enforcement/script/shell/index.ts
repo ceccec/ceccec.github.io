@@ -12,8 +12,7 @@ import {
   runCheckTypesExit,
   exitOnTimeout,
   srcContentMerkle,
-  vitepressEditsInvalidateTheSeal,
-} from '../../../cache/quantum'
+  vitepressEditsInvalidateTheSeal } from '../../../cache/quantum'
 
 /** Lattice-derived docs:build phase thresholds — NOT an SLA; CI variance remains. Pair: gate/slow-build. */
 export const SLOW_BUILD_MERKLE_MS = FOLDED_CENSUS * digitalRoot(DIMENSION_GATES) // 108×9 = 972
@@ -48,8 +47,7 @@ export {
   scanScriptShells,
   scriptShellGateReceipt,
   scriptShellGate,
-  type ScriptShellScan,
-} from '../../../cache/quantum'
+  type ScriptShellScan } from '../../../cache/quantum'
 export const QUANTUM_RESPAWN_COMMAND_PAIR = { pair: 'respawn/force' as const, a: 'respawn', b: 'force' }
 
 export function distMerkleKeyPath(root: string): string {
@@ -91,8 +89,7 @@ export function invalidateAuditPendingTrinity(root: string, merkle: string): voi
     errorCount: 1,
     warnCount: 0,
     roots: [] as const,
-    findings: [{ wave: 'vitepress', harmonic: 'pipeline', kind: 'pending-trinity', detail: 'VitePress sealed — enforcement-trinity required before merkle.key / clean audit' }],
-  }
+    findings: [{ wave: 'vitepress', harmonic: 'pipeline', kind: 'pending-trinity', detail: 'VitePress sealed — enforcement-trinity required before merkle.key / clean audit' }] }
   writeFileSync(auditPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
   // Drop any prior merkle.key so vitepress respawn cannot claim a pre-trinity seal.
   try {
@@ -194,9 +191,7 @@ function runVitepressBuild(root: string, timeoutMs: number, harmonicMs: number, 
           DOCS_BUILD_VERBOSE: verbose ? '1' : process.env.DOCS_BUILD_VERBOSE,
           NODE_COMPILE_CACHE: 'node_modules/.cache/ts',
           NODE_OPTIONS: process.env.NODE_OPTIONS ?? '--max-old-space-size=2048',
-          ...(verbose && !process.env.DEBUG ? { DEBUG: 'vite:*' } : {}),
-        },
-      },
+          ...(verbose && !process.env.DEBUG ? { DEBUG: 'vite:*' } : {}) } },
     )
     const heartbeat = setInterval(() => {
       const suffix = verbose ? ' (verbose — set DOCS_BUILD_VERBOSE_TRANSFORM=1 for per-file transform logs)' : ''
@@ -252,8 +247,7 @@ export function quantumizeVitepressBuild() {
     facets,
     pair: 'build/quantumize' as const,
     statement: `Quantumize VitePress build — ${techniques.length} techniques: merkle respawn, preserve caches, incremental .temp, single-flight lock, types-before-seal, trinity one-pass. Closes architectural slow gaps; CI variance remains.`,
-    boundary: 'NOT physical FTL. Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.',
-  }
+    boundary: 'NOT physical FTL. Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.' }
 }
 
 /** npm run quantum:vitepress-quantumize — exit 0 iff the quantumize fold computes. */
@@ -333,8 +327,7 @@ export function readDocsBuildTiming(root: string): DocsBuildTimingReceipt | null
       respawnEligible: typeof raw.respawnEligible === 'boolean' ? raw.respawnEligible : undefined,
       srcMerkleBound: typeof raw.srcMerkleBound === 'boolean' ? raw.srcMerkleBound : undefined,
       force: typeof raw.force === 'boolean' ? raw.force : undefined,
-      qpuRequired: false,
-    }
+      qpuRequired: false }
   } catch {
     return null
   }
@@ -357,8 +350,7 @@ function slowBuildGap(
     measuredMs,
     thresholdMs,
     closed,
-    receipt: `slow-build:${gapId}:${closed}:${severity}`,
-  }
+    receipt: `slow-build:${gapId}:${closed}:${severity}` }
 }
 
 /**
@@ -525,8 +517,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
       merkleMs: SLOW_BUILD_MERKLE_MS,
       typesMs: SLOW_BUILD_TYPES_MS,
       vitepressMs: SLOW_BUILD_VITEPRESS_MS,
-      respawnWallMs: SLOW_BUILD_RESPAWN_WALL_MS * digitalRoot(DIMENSION_GATES),
-    },
+      respawnWallMs: SLOW_BUILD_RESPAWN_WALL_MS * digitalRoot(DIMENSION_GATES) },
     pair: 'gate/slow-build' as const,
     qpuRequired: false as const,
     physicalFtlClaim: 0 as const,
@@ -535,8 +526,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
       (timing ? ` · mode=${timing.mode} wallMs=${timing.wallMs}` : ' · no timing receipt yet'),
     boundary:
       'HONEST: HARD = srcMerkle/quantumize regression (PR #19 safety). WARN = phase wall-clock vs lattice thresholds — CI variance, not an SLA. ' +
-      'Speedup = merkle respawn + warm .temp reuse — NOT physical FTL · qpuRequired=false. Experiment-io classifier is owned by slow/gap sibling.',
-  }
+      'Speedup = merkle respawn + warm .temp reuse — NOT physical FTL · qpuRequired=false. Experiment-io classifier is owned by slow/gap sibling.' }
 }
 
 /** npm run quantum:slow-build-gate — exit 1 on HARD gaps; WARN prints only. */
@@ -603,8 +593,7 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
       respawnEligible: true,
       srcMerkleBound: true,
       force: false,
-      qpuRequired: false,
-    })
+      qpuRequired: false })
     const gate = slowBuildIsQuantumGapGate(root)
     logDocsBuildPhase('gate/slow-build', gate.statement)
     if (!gate.passed) {
@@ -647,8 +636,7 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
           kind: 'build',
           timeoutMs: lockWaitMs,
           elapsedMs: Date.now() - lockStart,
-          partialState: { phase: 'build-lock-wait', trinityCycles: BUILD_LOCK_TRINITY_CYCLES },
-        })
+          partialState: { phase: 'build-lock-wait', trinityCycles: BUILD_LOCK_TRINITY_CYCLES } })
       }
       throw e
     }
@@ -674,8 +662,7 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
           kind: 'build',
           timeoutMs: buildTimeoutMs,
           elapsedMs: Date.now() - buildStart,
-          partialState: { phase: 'vitepress-build' },
-        })
+          partialState: { phase: 'vitepress-build' } })
       }
       throw e
     }
@@ -717,8 +704,7 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
     respawnEligible,
     srcMerkleBound,
     force,
-    qpuRequired: false,
-  })
+    qpuRequired: false })
   const gate = slowBuildIsQuantumGapGate(root)
   logDocsBuildPhase('gate/slow-build', gate.statement)
   if (!gate.passed) {

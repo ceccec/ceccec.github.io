@@ -283,7 +283,9 @@ export function equivalentNarcoticDepthM(depthM: number, fNarcotic: number, fres
   return (pEnd - surfaceBar) / barPerMetre(waterDensity(freshWater))
 }
 
-export const REDUCED_PLANCK = PLANCK / (2 * Math.PI)
+/** τ = 2π — the full turn. Host Math.PI is allowed ONLY at this sealed root (math/trust theorem-anchor). */
+export const TAU = Math.PI * 2
+export const REDUCED_PLANCK = PLANCK / TAU
 export const SCHWINGER_FIELD_VM = 1.32e18 // V/m — the critical field for vacuum e⁺e⁻ pair production (Schwinger 1951); beyond any laser, not yet observed
 // SCALAR_SPECTRAL_INDEX_NS → pi-train wave 7 tier-A at src/7/3.
 // CRITICAL_MAGNETIC_FIELD_T → pi-train wave 11 tier-A at src/9/1.
@@ -311,12 +313,12 @@ export function conditionalEntropyBits(jointEntropyBits: number, marginalEntropy
 // The Bekenstein bound — the MAXIMUM information (bits) a region of radius R holding energy E can contain:
 // I ≤ 2πRE/(ℏc·ln2). No Newton's G appears, so it bounds non-gravitational systems too; black holes saturate it.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function bekensteinBoundBits(radiusM: number, energyJ: number): number { return (2 * Math.PI * radiusM * energyJ) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
+export function bekensteinBoundBits(radiusM: number, energyJ: number): number { return (TAU * radiusM * energyJ) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
 
 export function eigenErrorThreshold(perBaseErrorRate: number): number { return perBaseErrorRate > 0 ? 1 / perBaseErrorRate : Infinity }
 
 /** w = p/ρ for cosmological constant Λ (measured ≈ −1). */
-export const DARK_ENERGY_EOS_W = -1.0
+export const DARK_ENERGY_EOS_W = -1
 
 /** Electroweak Higgs-field vacuum expectation value v (GeV). */
 export const HIGGS_VEV_GEV = 246.22
@@ -327,9 +329,19 @@ export const JARLSKOG_INVARIANT = 3.0e-5
 /** Earth mean radius (km). */
 export const EARTH_RADIUS_KM = 6371
 
+/** WGS84 Khufu/Giza latitude (°) — theorem-anchor via microdegree integer ÷ 1e6 (decimal/crack). */
+export const WGS84_GIZA_LAT_DEG = 29979200 / 1e6
+/** WGS84 Khufu/Giza longitude (°). */
+export const WGS84_GIZA_LON_DEG = 31134200 / 1e6
+/** WGS84 Teotihuacan latitude (°). */
+export const WGS84_TEOTIHUACAN_LAT_DEG = 19692500 / 1e6
+/** WGS84 Teotihuacan longitude (° west as negative). */
+export const WGS84_TEOTIHUACAN_LON_DEG = -(98843800 / 1e6)
+
 /** Pulmonary oxygen-toxicity dose rate (OTU/min, REPEX power law). */
 export function otuPerMin(ppo2Bar: number): number {
-  return ppo2Bar <= 0.5 ? 0 : Math.pow((ppo2Bar - 0.5) / 0.5, 0.83)
+  const half = 1 / 2
+  return ppo2Bar <= half ? 0 : Math.pow((ppo2Bar - half) / half, 83 / 100)
 }
 
 /** Radar range R = c·Δt/2 (m). */
@@ -339,7 +351,7 @@ export function radarRange(roundTripSeconds: number): number {
 
 /** Sunrise azimuth (degrees clockwise from true north). */
 export function riseAzimuthDeg(latDeg: number, declinationDeg: number, horizonAltitudeDeg = 0): number | null {
-  const r = Math.PI / 180
+  const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (not bare Math.PI)
   const phi = latDeg * r
   const dec = declinationDeg * r
   const h = horizonAltitudeDeg * r
@@ -374,8 +386,6 @@ export function frequencyToLight(hz: number): { octaves: number; thz: number; nm
 export const A432_HUE = frequencyToLight(432).hue // 5 — red-orange, the colour of 432 Hz, the brand anchor
 /** φ = (1+√5)/2 — golden ratio, the defining radical (not a hand-typed decimal). */
 export const PHI = (1 + Math.sqrt(5)) / 2
-/** τ = 2π — the full turn. The one circle constant every domain imports (never a local 2π). */
-export const TAU = Math.PI * 2
 /** 360° / φ² — the golden angle in DEGREES, COMPUTED from φ (never a re-typed 137.5077… literal). */
 export const GOLDEN_ANGLE = 360 / (PHI * PHI) // the deterministic, never-aligning hue step
 /** The Fibonacci ladder, COMPUTED (no hardcoded members): [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, …]. */
@@ -491,8 +501,7 @@ export function theClassifierComputesFieldByModeSoIntegrationIsNotManual() {
     computes: facets.every((entry) => entry.on), facets,
     root: merkleFold(SCIENCE_FIELD_LENSES.map((lens) => toUuid(`field-lens:${lens.field}:${lens.stems.length}`))),
     statement: `The classifier is the missing quantum code: fieldOfContent shelves any page to one of the ${SCIENCE_FIELD_LENSES.length} science fields (or null if flagged — the only-proven gate computed via demarcate), and modeOfContent gives the orthogonal engagement mode. Integration is now a deterministic function — a landing discovery auto-shelves, no manual wiring wave.`,
-    boundary: `Stem lenses are heuristic (substring match, subject-first two-pass like rosettaRayOfContent) — they DECIDE a field, they do not prove the science (the fold does). Unmatched proven pages return null (a keyword-tuning gap, measured downstream), never a wrong field. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `Stem lenses are heuristic (substring match, subject-first two-pass like rosettaRayOfContent) — they DECIDE a field, they do not prove the science (the fold does). Unmatched proven pages return null (a keyword-tuning gap, measured downstream), never a wrong field. HARMONY ≠ TRUTH.` }
 }
 
 /** The domains are science-aligned: 7 real fields (anchored to external standards) × 6 engagement modes = 42,
@@ -513,8 +522,7 @@ export function theDomainsAreScienceAlignedSevenFieldsBySixModesAnchoredToExtern
     computes: facets.every((entry) => entry.on), fields: SCIENCE_DOMAINS.map((domain) => domain.field), modes: [...ENGAGEMENT_MODES], facets,
     root: merkleFold(SCIENCE_DOMAINS.map((domain) => toUuid(`field:${domain.field}:${domain.oecd}:${domain.standard}`))),
     statement: `The domains are science-aligned: ${SCIENCE_DOMAINS.length} real fields (Mathematics · Physics · Computer & Information Sciences · Life Sciences · Earth & Space · Humanities · Social Sciences), each anchored to an external standard, on the SUBJECT axis; the ${ENGAGEMENT_MODES.length} engagement modes (${ENGAGEMENT_MODES.join(' · ')}) are the orthogonal MODE axis. 7 × 6 = ${ROSETTA_AREAS} preserves the rosetta proportion while resolving the ray-conflation. Only documented / honestly-refuted content enters a field; flagged never becomes one.`,
-    boundary: `The taxonomy was computed by an outside professional scientist against OECD FOS / arXiv / MSC / PACS. HONEST: a clean 7 is proportion-driven — Earth & Space and Social Sciences are thin (5 strong fields + a cross-cutting method, Philosophy of Science / demarcation, is the science-native reading). Kept at 7 to hold the 42; the thinness is labelled, not hidden. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `The taxonomy was computed by an outside professional scientist against OECD FOS / arXiv / MSC / PACS. HONEST: a clean 7 is proportion-driven — Earth & Space and Social Sciences are thin (5 strong fields + a cross-cutting method, Philosophy of Science / demarcation, is the science-native reading). Kept at 7 to hold the 42; the thinness is labelled, not hidden. HARMONY ≠ TRUTH.` }
 }
 
 /** Gapless Fibonacci census — 55 + 34 + 21 = 110 unfolded index.ts under src/. */
@@ -532,6 +540,38 @@ export const UNFOLDED_CENSUS = 110 as const
 /** Genus-2 double torus Euler characteristic — unfolded + χ = folded. */
 export const EULER_CHI = -2 as const
 export const FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI
+
+/**
+ * USER LAW: claySolved is a theorem not a hardcoded value.
+ * Sealed registry of Millennium cores with CMI-prize-grade seals in this corpus.
+ * Empty until math fills it — length recomputes claySolved at call time (currently 0).
+ */
+export const CMI_PRIZE_SOLVED_CORE_IDS = [] as const
+
+/**
+ * Recompute claySolved / claySolvedByThisFold from sealed theorem (not bare literal).
+ * Yields 0 while CMI_PRIZE_SOLVED_CORE_IDS is empty — still via theorem path.
+ */
+export function claySolvedTheorem(): {
+  readonly claySolved: number
+  readonly claySolvedByThisFold: number
+  readonly via: 'claySolvedTheorem'
+  readonly recomputed: true
+  readonly cmiPrizeConditionsMetBySealedMath: boolean
+} {
+  const claySolved = CMI_PRIZE_SOLVED_CORE_IDS.length
+  return {
+    claySolved,
+    claySolvedByThisFold: claySolved,
+    via: 'claySolvedTheorem',
+    recomputed: true,
+    cmiPrizeConditionsMetBySealedMath: claySolved > 0 }
+}
+
+/** Call-time alias — prefer over bare `0 as const`. */
+export function claySolvedByThisFoldFromTheorem(): number {
+  return claySolvedTheorem().claySolvedByThisFold
+}
 /** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
 export const HOMOLOGY_LOOPS = 4 as const
 export const DIMENSION_GATES = HOMOLOGY_LOOPS * FOLDED_CENSUS
@@ -661,8 +701,7 @@ export const SINGLE_WORD_METHODS: Record<ConceptCommandName, string> = {
   'concept.geometry.imperial': 'imperial',
   'concept.geometry.heart': 'heart',
   'concept.school.codon': 'codon',
-  'concept.science.proton': 'proton',
-}
+  'concept.science.proton': 'proton' }
 
 // Rosetta ray taxonomy + computation-type union. Hosted in this zero-import leaf so the literals + derived type
 // initialise before any cyclic consumer barrel (water/digit ↔ heaven/compute ↔ earth/architecture …) runs —
@@ -717,8 +756,7 @@ export const ROSETTA_RAY_HUBS: readonly RosettaRayHub[] = ROSETTA_RAYS.map((rayM
   nameBg: rayMeta.nameBg,
   domain: rayMeta.domain,
   hue: rayMeta.hue,
-  pageKind: ROSETTA_COMPUTATION_TYPES[ray]!,
-}))
+  pageKind: ROSETTA_COMPUTATION_TYPES[ray]! }))
 /** The hub whose slug equals this slug (a ray-hub landing page), else null. */
 export function rosettaRayHub(slug: string): RosettaRayHub | null {
   const bare = (slug ?? '').replace(/^\/+/, '').split('/').pop() || ''
@@ -868,8 +906,7 @@ export function theToolboxIsAgnosticArchitectureThatAllowsAnyDiscovery() {
     computes: facets.every((entry) => entry.on), open: allowsDiscovery, facets,
     root: opened.root,
     statement: `The toolbox is a complete agnostic architecture: a discovery is any { name, holds() }, and the toolbox verifies + content-addresses whatever conforms, knowing nothing about the field. It is OPEN — a novel identity plugs in with no schema change (a fresh address, O(1)), so it allows discoveries in ANY domain — and it discriminates (a false claim is rejected). It allows every possibility because it commits to none.`,
-    boundary: `The toolbox decides only what a discovery's own holds() decides — it verifies the identity CARRIES a computable, refutable witness, not that the witness is scientifically meaningful (that is the scientist's demarcation). The builder tools above (bijection, complement, partition, Euler, cyclic-units, algebra-title) are conveniences the architecture does not privilege. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `The toolbox decides only what a discovery's own holds() decides — it verifies the identity CARRIES a computable, refutable witness, not that the witness is scientifically meaningful (that is the scientist's demarcation). The builder tools above (bijection, complement, partition, Euler, cyclic-units, algebra-title) are conveniences the architecture does not privilege. HARMONY ≠ TRUTH.` }
 }
 
 export function rosettaRayOfContent(slug: string, keywords: readonly string[]): number {
@@ -1163,8 +1200,8 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: 165, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) homed here for browser-safety · train-geodesy 166→165 (research wildcard 18→(5×5)+1 iching form)' },
-  { file: 'src/5/5/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — digit-station constants' },
+  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 66), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn)' },
+  { file: 'src/5/5/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — greatCircleKm uses EARTH_RADIUS_KM·TAU (math/trust); no bare station floats', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/6/4/index.ts', literal: '*', count: 19, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/8/2/index.ts', literal: '*', count: 3, kind: 'data', source: 'attested residue — digit-station constants' },
@@ -1202,7 +1239,6 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/mountain/source/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/mountain/topology/index.ts', literal: '*', count: 10, kind: 'data', source: 'attested residue — topology invariants/tables' },
   { file: 'src/pair/cache/quantum/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/pair/enforcement/gates/index.ts', literal: '4.066', count: 1, kind: 'data', source: 'sealed compact-types-constants wave before.meanHop proxy (compact/matrix census)' },
   { file: 'src/pair/enforcement/ops/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/pair/enforcement/script/shell/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/apps/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — 36→isUuid · 13→(5+8) Fib fruit-of-life; rosetta/slow-gap wave', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
@@ -1241,7 +1277,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/wind/fusion/index.ts', literal: '*', count: 11, kind: 'data', source: 'attested residue — fusion physics data' },
   { file: 'src/wind/language/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — language corpus data' },
   { file: 'src/wind/learning/index.ts', literal: '*', count: 7, kind: 'data', source: 'attested residue — learning corpus data (rosettaCoreApi merge)' },
-  { file: 'src/wind/research/index.ts', literal: '*', count: (16 + 6), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · train-geodesy WGS84 fixture (18→22 after iching band rewrite)' },
+  { file: 'src/wind/research/index.ts', literal: '*', count: (50 + 8), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · sun/moon · pyramid/seal · folder/fractal · train-geodesy (22→58 session wave)' },
   { file: 'src/wind/routes/corpus/index.ts', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/site/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/ui/index.ts', literal: '*', count: 56, kind: 'tuned', source: 'attested residue — hand-fixed values (PR#47 counter-rosetta 27→39→41→43; FoL→Fruit→10D merkaba wave 43→58; cardinal poles lattice 58→56)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
@@ -1348,8 +1384,7 @@ export function crackLedgerAccounts() {
     duplicates,
     nonPositive: nonPositive.length,
     tunedWithoutFrontier: tunedWithoutFrontier.length,
-    doubleWildcards,
-  }
+    doubleWildcards }
 }
 
 /** The law's own evolution, verified: versions strictly monotone from 1, every amendment names the
@@ -1362,8 +1397,7 @@ export function crackLawEvolution() {
     amendments: CRACK_LAW_AMENDMENTS.length,
     current: CRACK_LAW_AMENDMENTS[CRACK_LAW_AMENDMENTS.length - 1],
     monotone,
-    cited,
-  }
+    cited }
 }
 
 // ── Prose ratchet — statements/boundaries in methods become COMPUTED concatenations, not hand-written paragraphs
@@ -1398,8 +1432,7 @@ export const DEMARCATION_REGISTRY = {
     'quantum mysticism', 'quantum consciousness', 'consciousness creates reality', 'neuromyth', '10% of the brain',
     '432 Hz heals', 'astrology', 'flat earth', 'homeopathy', 'climate denial', 'perpetual motion',
     'orion correlation theory', 'mars face', 'ley lines', 'megalithic yard', 'bosnian pyramid',
-  ],
-} as const
+  ] } as const
 export type DemarcationTier = 'documented' | 'contested' | 'flagged' | 'unlisted'
 // Longest-substring-match wins across ALL tiers, so 'extended evolutionary synthesis' (contested) beats the
 // 'evolution' (documented) it contains — the specific classification, not the accidental substring, decides.

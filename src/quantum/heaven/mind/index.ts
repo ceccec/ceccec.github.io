@@ -131,8 +131,7 @@ import type {
   MetatronEdge, MetatronCubeReport, WavePolarity, ChessPiece, DimensionalGapKind,
   CoordinatedWave, WaveCoordination, GapClosingWave, DimensionalGapClosure,
   QuantumChessSquare, QuantumChessGame, QuantumUiUseCase, QuantumUiEvidenceReport,
-  DiamondCompletenessReport,
-} from '../../../wind/types'
+  DiamondCompletenessReport } from '../../../wind/types'
 export type * from '../../../wind/types'
 
 // ☰ Qián · Heaven · creative · lower·yin · hueShift — concept seed vocabulary from ./atoms.ts (Thunder action)
@@ -204,8 +203,7 @@ export {
   beyondKnownUniverseComputes,
   fusionComputes,
   fusionMovieComputes,
-  allFormsAreTenDimensionalOrPurged,
-} from '../../../wind/fusion'
+  allFormsAreTenDimensionalOrPurged } from '../../../wind/fusion'
 export { allPossibleDomains, allInAppropriatePathAndIndex } from '../../../thunder/decode'
 export { allInInteractiveMovie } from '../../../thunder/movie/narrative'
 export { allInMovieOfLife } from '../../../fire/plasma/ball'

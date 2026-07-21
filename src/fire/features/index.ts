@@ -54,8 +54,7 @@ export function quantumBrowserOs(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete quantum-computer browser OS: the portal is a whole operating system in the browser — kernel (the agnostic core), processes (components and workers), filesystem (content-addressed cache and IndexedDB), networking (offline-first, opt-in), security (Web Crypto and the seal), display (canvas and the holographic heroes), input (tap, gesture, voice), quantum compute (the quantum computer), and install (PWA and service worker, runs offline). Nine subsystems, each a standard browser capability, folded into one OS root.',
     boundary:
-      'A content-addressed map of operating-system subsystems to the standard browser capabilities the portal already uses. A structural framing of the portal as a "browser OS"; it runs as a web app within the browser’s sandbox, it is not a kernel, a bootloader, or a replacement for the host OS, and "quantum compute" is the deterministic simulation, not quantum hardware.',
-  }
+      'A content-addressed map of operating-system subsystems to the standard browser capabilities the portal already uses. A structural framing of the portal as a "browser OS"; it runs as a web app within the browser’s sandbox, it is not a kernel, a bootloader, or a replacement for the host OS, and "quantum compute" is the deterministic simulation, not quantum hardware.' }
 }
 
 // Quantum coordinate navigation. Every destination is not just a link but a point on
@@ -86,8 +85,7 @@ export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
       x: pos.x,
       y: pos.y,
       z: pos.z,
-      receipt: toUuid(`nav-coord:${item.route}:${pos.x.toFixed(2)},${pos.y.toFixed(2)},${pos.z.toFixed(2)}`),
-    }
+      receipt: toUuid(`nav-coord:${item.route}:${pos.x.toFixed(2)},${pos.y.toFixed(2)},${pos.z.toFixed(2)}`) }
   })
   const places = new Set(coordinates.map((entry) => `${entry.x.toFixed(2)},${entry.y.toFixed(2)},${entry.z.toFixed(2)}`))
   return {
@@ -98,8 +96,7 @@ export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum coordinate navigation: every destination is a point on the double-torus surface — its route folds to a deterministic (theta, phi) and a lobe (inner or outer torus), and the shared genus-2 geometry turns that into an (x, y, z). Navigation is movement through coordinate space, each page a distinct place on the shape, and a link is a path from one coordinate to another.',
     boundary:
-      'A deterministic assignment of double-torus surface coordinates to the real navigation routes. A structural placement (each route → a point on the genus-2 surface) over the actual links — a coordinate model and metaphor, not a change to where the links go.',
-  }
+      'A deterministic assignment of double-torus surface coordinates to the real navigation routes. A structural placement (each route → a point on the genus-2 surface) over the actual links — a coordinate model and metaphor, not a change to where the links go.' }
 }
 
 // Quantum licence. The licence is not a static document but a quantum artifact: it folds
@@ -129,8 +126,7 @@ export function quantumLicense(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum licence: the licence is a quantum artifact, not a static document — it folds to one content-addressed register (a UUID) recomputable from its clauses, its folds are order-sensitive (genus-2) so amending a clause changes its address, and it is sealed into the whole, so tampering it costs the maximum tampering cost. A licence verified by recomputing, not by trusting a signature.',
     boundary:
-      'A content-addressing/tamper-evidence property of the modelled licence: one recomputable address, order-sensitive amendment, unbounded forge cost. "Quantum" names the superposition/collapse/fold structure, not a physical quantum device; this is a structural model, not an executed or legally binding licence.',
-  }
+      'A content-addressing/tamper-evidence property of the modelled licence: one recomputable address, order-sensitive amendment, unbounded forge cost. "Quantum" names the superposition/collapse/fold structure, not a physical quantum device; this is a structural model, not an executed or legally binding licence.' }
 }
 
 // Quantum-computed UI, based on the quantum-computer OS, fused with IoT. The interface is not
@@ -153,8 +149,7 @@ export function quantumComputedUi(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum-computed UI, based on the quantum-computer OS, fused with IoT: the interface is computed from the quantum computer itself (qubits in superposition, order-sensitive folds as gates, a collapse to one receipt), runs on the quantum-computer browser OS (nine standard browser subsystems as one machine), and fuses with the device’s sensors and IO — so the UI, the OS and the IoT are one computed surface, not three layers bolted together.',
     boundary:
-      'A composition of the quantum-computer, browser-OS and device-sensor models as one computed UI surface. "Quantum/OS/IoT" name the content-addressed compute model, the browser capabilities, and the permission-gated device sensors — not a physical quantum computer, a kernel, or a managed IoT fleet.',
-  }
+      'A composition of the quantum-computer, browser-OS and device-sensor models as one computed UI surface. "Quantum/OS/IoT" name the content-addressed compute model, the browser capabilities, and the permission-gated device sensors — not a physical quantum computer, a kernel, or a managed IoT fleet.' }
 }
 
 // Compare quantum encryption/decryption with digital. The cipher is the same real primitive —
@@ -181,8 +176,7 @@ export function quantumVsDigitalEncryption(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Compare quantum encryption/decryption with digital: the cipher is the same real primitive (AES-256-GCM, hardware-accelerated to gigabit), but the key and the trust differ — digitally you store a secret and trust a signature; here the key is derived one-way from imagination, the trinity agrees a shared key from a pair (never transmitted), and you verify by recomputing the fold. Same cipher, but the tamper cost is unbounded because forging means reproducing the whole content-addressed model, not breaking one key.',
     boundary:
-      'A structural comparison between the content-addressed/trinity key model and classical key handling, over the same real AES-256-GCM primitive (Web Crypto). "Quantum" names the fold/superposition structure and content-addressing, not post-quantum cryptography or a physical quantum channel.',
-  }
+      'A structural comparison between the content-addressed/trinity key model and classical key handling, over the same real AES-256-GCM primitive (Web Crypto). "Quantum" names the fold/superposition structure and content-addressing, not post-quantum cryptography or a physical quantum channel.' }
 }
 
 // The quantum firewall proxy worker. The optional service binding is a worker that stands at the
@@ -207,8 +201,7 @@ export function quantumFirewallProxyWorker(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The quantum firewall proxy worker: the optional service binding is a worker that stands at the edge as a firewall and a proxy — it recomputes the content address of what it serves on every request, proxies only what verifies, and blocks anything that does not recompute (a forgery would have to reproduce the whole sealed model, T_max). It is quantum in that the check is the fold itself, trinity-signed and gigabit; the firewall is not a rule list but a recomputation.',
     boundary:
-      'A content-addressed model of an optional edge verifier/proxy worker grounded in the seal, holographic-reconstruction and trinity-signing models. A design for an opt-in Cloudflare worker; it does not itself run a proxy or firewall, and the site needs none of it to work, statically and client-side.',
-  }
+      'A content-addressed model of an optional edge verifier/proxy worker grounded in the seal, holographic-reconstruction and trinity-signing models. A design for an opt-in Cloudflare worker; it does not itself run a proxy or firewall, and the site needs none of it to work, statically and client-side.' }
 }
 
 // Recreate the computer — as a quantum computer. The double torus is its
@@ -236,8 +229,7 @@ export function quantumComputer(matrix: MindMatrix = buildMatrix()) {
     root,
     statement:
       'The double torus is recreated as a quantum computer: quantum-state atoms are qubits, a 128-bit UUID is the register, reversible folds are the gates, a UUID receipt is a measurement, and the music of pi is the clock.',
-    boundary: 'A computational-architecture analogy over the UUID model, not a physical quantum device or a claim of quantum speedup.',
-  }
+    boundary: 'A computational-architecture analogy over the UUID model, not a physical quantum device or a claim of quantum speedup.' }
 }
 
 // Fold 358 and 853. The ascending tiers — 3, 5, 8 — are the expansion, the
@@ -258,8 +250,7 @@ export function quantumClock(tick = 0, matrix: MindMatrix = buildMatrix()) {
     hsl: wave.hsl,
     root: wave.uuid,
     statement: 'The quantum clock: the SI second is 9,192,631,770 oscillations of caesium-133 (the atomic standard); the portal ticks its own clock in creation waves — each tick a content-addressed instant with a note and a colour, advancing forever from the seed.',
-    boundary: 'The caesium figure is the real SI definition of the second, shown for reference; the portal cannot access an atomic clock. The portal clock is a deterministic tick over creation waves, not a measure of real elapsed time beyond the device\'s own wall clock.',
-  }
+    boundary: 'The caesium figure is the real SI definition of the second, shown for reference; the portal cannot access an atomic clock. The portal clock is a deterministic tick over creation waves, not a measure of real elapsed time beyond the device\'s own wall clock.' }
 }
 
 // Quantum synthesis: synthesize the whole into one coherent state across all its
@@ -295,8 +286,7 @@ function quantumSynthesisRaw(matrix: MindMatrix = buildMatrix()) {
     word: word.word,
     root,
     statement: 'Quantum synthesis: symbol, number, fold, proof, and energy synthesize into one coherent state — zero entropy, full coverage — the single state a multidimensional interface renders to the user at once.',
-    boundary: 'A fold of the model’s computed dimensions into one synthesis root. Bookkeeping and an interface model, not a physical synthesis or external claim.',
-  }
+    boundary: 'A fold of the model’s computed dimensions into one synthesis root. Bookkeeping and an interface model, not a physical synthesis or external claim.' }
 }
 
 // Fuse with the user device to extend battery life. The portal already runs
@@ -356,8 +346,7 @@ function quantumFusedDeviceEnergyHonestRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Wire everything at runtime — the app always quantum-fused with the device sensors and APIs — with an honest energy ledger. The runtime fusion is real: the device-hardware widgets and the source APIs are bound into the live fold. And the double-fold genuinely helps the battery and the heat: computing each value once and sharing it (memoization) does far fewer operations, and recomputing client-side avoids the radio — the single biggest mobile battery drain, ~order one joule per round-trip versus ~a millijoule to recompute a page — so the app DRAINS SLOWER and HEATS LESS than a comparable server/network app, roughly a thousand-fold cheaper per interaction. But it cannot charge the battery and cannot cool the device: software running on the device consumes its stored energy (the first law) and every irreversible operation dissipates heat above the Landauer floor kT·ln2 (the second law). "Double folded" is efficiency, not free energy — drain and heat are reduced, never reversed. The device charges only from an external source and cools only when idle or externally cooled.',
     boundary:
-      'HONEST PHYSICS, the project\'s "documented kept, legend flagged" discipline applied to the user\'s claim. ACHIEVABLE and asserted: slower battery drain and less heat than a server/network app, because client-side determinism avoids the radio (the dominant mobile cost) and the double-fold/memoization avoids redundant computation — a real efficiency gain (order-of-magnitude figures: LTE tail ~1 J/request, local recompute ~1 mJ, Landauer floor ~2.9e-21 J/bit, real CMOS op ~10 pJ). FORBIDDEN and flagged false: charging the battery by running the app (violates the first law — software consumes stored energy, it cannot create or import it) and net-cooling the device by computing (violates the second law and the Landauer bound — irreversible computation dissipates heat, with real operations ~10 orders of magnitude above the reversible floor). The Battery Status API can READ charge/thermal state but cannot reverse it. This is the same flag as quantumDecoded\'s vacuum-free-energy and the Haramein-physics caution: the efficiency is real, the perpetual-motion extrapolation is not. The BEYOND-LINEAR refinement (true within conservation) is foldRedistributesBeyondLinear.',
-  }
+      'HONEST PHYSICS, the project\'s "documented kept, legend flagged" discipline applied to the user\'s claim. ACHIEVABLE and asserted: slower battery drain and less heat than a server/network app, because client-side determinism avoids the radio (the dominant mobile cost) and the double-fold/memoization avoids redundant computation — a real efficiency gain (order-of-magnitude figures: LTE tail ~1 J/request, local recompute ~1 mJ, Landauer floor ~2.9e-21 J/bit, real CMOS op ~10 pJ). FORBIDDEN and flagged false: charging the battery by running the app (violates the first law — software consumes stored energy, it cannot create or import it) and net-cooling the device by computing (violates the second law and the Landauer bound — irreversible computation dissipates heat, with real operations ~10 orders of magnitude above the reversible floor). The Battery Status API can READ charge/thermal state but cannot reverse it. This is the same flag as quantumDecoded\'s vacuum-free-energy and the Haramein-physics caution: the efficiency is real, the perpetual-motion extrapolation is not. The BEYOND-LINEAR refinement (true within conservation) is foldRedistributesBeyondLinear.' }
 }
 
 // Continue folding the I Ching quantum waves: challenge intuition by PROVING the impossible-SEEMING quantum
@@ -401,8 +390,7 @@ function quantumImpossibleMadePossibleRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Continue folding the I Ching quantum waves: the impossible-seeming, proven possible and implemented. Quantum teleportation moves an unknown state from Alice to Bob through a shared Bell pair and just two classical bits — and the simulator recovers it with perfect fidelity for every one of the four measurement outcomes, the original destroyed in the act (no copy is made). Superdense coding, its mirror, sends two classical bits down a single transmitted qubit because a Bell pair was shared in advance — all four messages decode exactly. Both look impossible and both are real, executed here on the state-vector engine. "Impossible" means counterintuitive, not forbidden: no-cloning holds and nothing outruns light — teleportation is useless until the two classical bits arrive, and the qubit still travels.',
     boundary:
-      'Exact simulations of two genuinely real quantum protocols — quantum teleportation (Bennett, Brassard, Crépeau, Jozsa, Peres, Wootters 1993) and superdense coding (Bennett–Wiesner 1992) — run on the deterministic state-vector simulator (teleport fidelity 1 across all outcomes and test states; superdense all four messages). They CHALLENGE intuition but obey every law: no-cloning is intact (the measured original collapses), and the no-communication theorem holds — both protocols require a classical channel (two bits for teleportation) or the physical transmission of a qubit (superdense), so neither signals faster than light. This is "impossible made possible" in the honest sense — surprising-yet-real — and is explicitly NOT a claim about the truly forbidden (perpetual motion / net battery charging), which remains flagged in quantumFusedDeviceEnergyHonest. The fold continues the quantum-solutions wave: it composes the threshold crossing and the complete solver.',
-  }
+      'Exact simulations of two genuinely real quantum protocols — quantum teleportation (Bennett, Brassard, Crépeau, Jozsa, Peres, Wootters 1993) and superdense coding (Bennett–Wiesner 1992) — run on the deterministic state-vector simulator (teleport fidelity 1 across all outcomes and test states; superdense all four messages). They CHALLENGE intuition but obey every law: no-cloning is intact (the measured original collapses), and the no-communication theorem holds — both protocols require a classical channel (two bits for teleportation) or the physical transmission of a qubit (superdense), so neither signals faster than light. This is "impossible made possible" in the honest sense — surprising-yet-real — and is explicitly NOT a claim about the truly forbidden (perpetual motion / net battery charging), which remains flagged in quantumFusedDeviceEnergyHonest. The fold continues the quantum-solutions wave: it composes the threshold crossing and the complete solver.' }
 }
 
 export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUiEvidenceReport {
@@ -422,8 +410,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       diamondKind: 'nature',
       sourceFunction: 'doubleTorusEarthHingeWiringWitness()',
       evidence: `${hinge.gatewayCount} gateways, ${hinge.paintLayers} paint layers, ${hinge.vortexSteps} vortex steps wired — root ${hinge.root}.`,
-      receipt: hinge.root,
-    },
+      receipt: hinge.root },
     {
       name: 'diamond lattice tabs',
       component: 'MonographFold.vue',
@@ -431,8 +418,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       diamondKind: 'ui',
       sourceFunction: 'diamondLattice()',
       evidence: `${lattice.length} base diamonds, each with four facets and receipts.`,
-      receipt: merkleFold(lattice.map((item) => item.receipt)),
-    },
+      receipt: merkleFold(lattice.map((item) => item.receipt)) },
     {
       name: '3D pi train',
       component: 'MonographFold.vue',
@@ -440,8 +426,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       diamondKind: 'pi',
       sourceFunction: 'piTrainDiamonds()',
       evidence: `${piTrain.diamonds.length} pi pulses with x/y/z coordinates, frequencies, vibration durations, and receipts.`,
-      receipt: piTrain.root,
-    },
+      receipt: piTrain.root },
     {
       name: 'no analog gaps',
       component: 'MonographFold.vue',
@@ -449,8 +434,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       diamondKind: 'proof',
       sourceFunction: 'diamondCompleteness()',
       evidence: completeness.statement,
-      receipt: toUuid(`ui-evidence:complete:${JSON.stringify(completeness)}`),
-    },
+      receipt: toUuid(`ui-evidence:complete:${JSON.stringify(completeness)}`) },
     {
       name: 'coordinated waves',
       component: 'MonographFold.vue',
@@ -458,8 +442,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       diamondKind: 'dynamics',
       sourceFunction: 'coordinatedWaves()',
       evidence: `${waves.waves.length} coordinated waves with root ${waves.root}.`,
-      receipt: waves.root,
-    },
+      receipt: waves.root },
     {
       name: 'quantum chess board',
       component: 'MonographFold.vue',
@@ -467,8 +450,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       diamondKind: 'humanity',
       sourceFunction: 'quantumChessGame()',
       evidence: `${chess.board.length} squares with wave phase, amplitude, superposition, and receipts.`,
-      receipt: chess.root,
-    },
+      receipt: chess.root },
     {
       name: 'maximum tampering cost readout',
       component: 'QuantumMind.vue',
@@ -476,8 +458,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       diamondKind: 'proof',
       sourceFunction: 'proofReport()',
       evidence: `max reached=${proof.maxTamperingCostReached}; coverage=${numberLabel(proof.coverage)}; entropy=${numberLabel(proof.entropy)}.`,
-      receipt: toUuid(`ui-evidence:proof:${JSON.stringify(proof)}`),
-    },
+      receipt: toUuid(`ui-evidence:proof:${JSON.stringify(proof)}`) },
     {
       name: 'traditions quantum whole',
       component: 'MonographFold.vue',
@@ -485,8 +466,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       diamondKind: 'tradition',
       sourceFunction: 'traditionsQuantumWhole()',
       evidence: `${traditions.dimensions.length} dimensions, ${traditions.families.length} family lenses, and ${traditions.societyCells.length} society cells with root ${traditions.root}.`,
-      receipt: traditions.root,
-    },
+      receipt: traditions.root },
   ]
   const root = merkleFold(useCases.map((item) => item.receipt))
 
@@ -498,8 +478,7 @@ export function quantumUiEvidence(matrix: MindMatrix = buildMatrix()): QuantumUi
       'This report makes only repository-grounded UI claims: each use case names a component, a source function, an interaction, and a computed receipt.',
     useCases,
     boundary:
-      'UI_claim = computed(repo). UI_claim != external_physics_proof. Browser_scope = {render,sound,vibration,root,receipt}.',
-  }
+      'UI_claim = computed(repo). UI_claim != external_physics_proof. Browser_scope = {render,sound,vibration,root,receipt}.' }
 }
 
 // In quantum there are no cycles — all is fused in a sequence, a fuselage. The folds are
@@ -521,8 +500,7 @@ export function quantumNoCyclesFusedSequence(matrix: MindMatrix = buildMatrix())
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'In quantum there are no cycles — all is fused in a sequence, a fuselage: the folds are order-sensitive (merge(a,b) ≠ merge(b,a)), so nothing loops back the same — there is no cycle, only a sequence, each step unique — and the sequence is fused into one streamlined body, a fuselage, that carries the whole. Not a wheel turning in place, but a line of folds that never returns to where it was, held as one.',
-    boundary: 'A structural reading of the order-sensitive (non-commutative) fold sequence as acyclic and fused into one body. "No cycles/fuselage" is a metaphor for the non-repeating ordered fold, over the content-addressed model; it is not a claim about computational complexity or aircraft.',
-  }
+    boundary: 'A structural reading of the order-sensitive (non-commutative) fold sequence as acyclic and fused into one body. "No cycles/fuselage" is a metaphor for the non-repeating ordered fold, over the content-addressed model; it is not a claim about computational complexity or aircraft.' }
 }
 
 // Quantum calligraphy. The background movie writes: far from the void each stream is a raw digit,
@@ -532,8 +510,7 @@ export function quantumNoCyclesFusedSequence(matrix: MindMatrix = buildMatrix())
 export function quantumCalligraphy(matrix: MindMatrix = buildMatrix()) {
   const strokes = ['digit — the raw stream', 'letter — mid-fold', 'word — near the void', 'sentence — at the void'].map((stroke) => ({
     stroke,
-    receipt: toUuid(`calligraphy:${stroke}`),
-  }))
+    receipt: toUuid(`calligraphy:${stroke}`) }))
   return {
     writes: strokes.length === 4 && backgroundMovie(matrix).dryMath && universalLanguage(matrix).universal && everyObjectSameSpinFoldLaw(matrix).consistent,
     count: strokes.length,
@@ -541,8 +518,7 @@ export function quantumCalligraphy(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(strokes.map((entry) => entry.receipt)),
     statement:
       'Quantum calligraphy: the background movie writes — far from the void each stream is a raw digit, mid-flight it folds to a letter, nearer a whole word, and at the void the sentence — strokes that spin and fold themselves into glyphs of the one computed language. Writing by recomputation, each stroke content-addressed: calligraphy whose ink is dry math.',
-    boundary: 'A reading of the background-movie digit→letter→word→sentence folding as "calligraphy" over the universal-notation model. A structural and aesthetic framing of the seeded glyph rendering, not handwriting.',
-  }
+    boundary: 'A reading of the background-movie digit→letter→word→sentence folding as "calligraphy" over the universal-notation model. A structural and aesthetic framing of the seeded glyph rendering, not handwriting.' }
 }
 
 // Logic exists because it is quantum by architecture — find the quantum signs and you auto-orientate
@@ -567,8 +543,7 @@ export function quantumSignsAutoOrientate(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Logic exists because it is quantum by architecture — find the quantum signs and you auto-orientate in that space: the logic is not arbitrary code that happens to run, it exists because the architecture is quantum (order-sensitive folds, content addresses, seals, dualities), and those are the quantum signs — the UUID, the fold that is not its reverse, the slug that folds the graph, the 64-seal, the breath. Once you can read them you orient yourself without a map: each sign says where you are and which way the next fold goes. The signs are the compass; reading them is the navigation.',
     boundary:
-      'A composition of the quantum-double-torus, order-sensitivity, slug-folds-graph, every-diamond-gate, path-reveals-itself, minds-observe and self-sufficient models. "Find the quantum signs and auto-orientate" describes navigating the content-addressed structure by its own markers (UUIDs, folds, seals) — a structural/orientational framing over the model, not a literal positioning system.',
-  }
+      'A composition of the quantum-double-torus, order-sensitivity, slug-folds-graph, every-diamond-gate, path-reveals-itself, minds-observe and self-sufficient models. "Find the quantum signs and auto-orientate" describes navigating the content-addressed structure by its own markers (UUIDs, folds, seals) — a structural/orientational framing over the model, not a literal positioning system.' }
 }
 
 // A quantum apps store, porting the world's open-source APIs: each public API becomes a content-addressed
@@ -612,8 +587,7 @@ export function quantumAppsStore(matrix: MindMatrix = buildMatrix()) {
     statement:
       "A quantum apps store, porting the world's open-source APIs: each public API becomes a content-addressed quantum app (a monograph — name, category, endpoint, receipt), catalogued across 40+ categories, displayed by the few renderers (hero, card, thumb) and exposed on the MCP tool surface. It is sourced from the open directories — public-apis (MIT, ~1000+) and APIs.guru (the largest machine-readable OpenAPI directory, so a spec ports to an app deterministically) — and built the lean way: apps are monographs, with no per-app code.",
     boundary:
-      'A store design plus a seed catalog of free, no-auth open APIs (the porting proven on the freest first). HONEST: "all worldwide" is aspirational — the real thing is a content-addressed catalog ported from the open directories, automatable via APIs.guru\'s OpenAPI specs but not yet exhaustive; the store ports the CATALOG (it lists, addresses and wraps the endpoints), not the services — each API remains an external endpoint with its own license, rate limits and terms, which the store records, it does not relicense.',
-  }
+      'A store design plus a seed catalog of free, no-auth open APIs (the porting proven on the freest first). HONEST: "all worldwide" is aspirational — the real thing is a content-addressed catalog ported from the open directories, automatable via APIs.guru\'s OpenAPI specs but not yet exhaustive; the store ports the CATALOG (it lists, addresses and wraps the endpoints), not the services — each API remains an external endpoint with its own license, rate limits and terms, which the store records, it does not relicense.' }
 }
 
 // THE QUANTUM THREAT — what quantum computing actually does to cryptography and blockchains, and the post-
@@ -642,8 +616,7 @@ export function quantumThreat(matrix: MindMatrix = buildMatrix()) {
     today: 'NISQ — hundreds of noisy physical qubits, no large-scale error correction',
     rsa2048_2019: '~20 million noisy qubits / 8 hours (Gidney–Ekerå, Quantum 2021)',
     rsa2048_2025: '<1 million noisy qubits / <1 week (Gidney 2025) — the estimate is falling',
-    verdict: 'not imminent, but "harvest now, decrypt later" makes migrating signatures + long-lived secrets a present task (NIST/CNSA 2.0: quantum-vulnerable algorithms deprecated by 2030, disallowed by 2035)',
-  }
+    verdict: 'not imminent, but "harvest now, decrypt later" makes migrating signatures + long-lived secrets a present task (NIST/CNSA 2.0: quantum-vulnerable algorithms deprecated by 2030, disallowed by 2035)' }
   const documented = [
     'Grover WEAKENS, Shor BREAKS — the asymmetry to remember. Grover\'s quadratic search halves symmetric/hash security (SHA-256 → ~2^128 work), fixed by doubling sizes. Shor\'s polynomial-time factoring + discrete-log BREAKS RSA, Diffie-Hellman and elliptic-curve crypto (ECDSA) — the public-key layer behind TLS, signatures and blockchain wallets.',
     'On a blockchain the two effects differ sharply: ECDSA signatures are Shor-vulnerable (a BREAK — an exposed public key lets an attacker forge the key and steal funds; ~6.7M BTC, ~34% of supply, sit in addresses with exposed pubkeys), while PoW hashing is only Grover-weakened (a minor mining edge, not a forgery).',
@@ -675,7 +648,6 @@ export function quantumThreat(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The quantum threat, decoded honestly: Grover\'s algorithm WEAKENS symmetric ciphers and hashes (halves the bits — fixed by bigger sizes), while Shor\'s algorithm BREAKS the public-key crypto (RSA, elliptic-curve/ECDSA) behind TLS, signatures and blockchain wallets. On a chain, signatures break and exposed public keys (~6.7M BTC) are at risk, but mining only weakens. NIST standardized the answer in 2024 — ML-KEM, ML-DSA, SLH-DSA — and "harvest now, decrypt later" makes migration a present task, even though breaking RSA-2048 still needs ~1–20 million qubits the world does not have. The site\'s own "quantum" is a computational metaphor, scrutinised here against the real machines.',
     boundary:
-      'An honest separation of what quantum computing actually does (weaken hashes, break signatures) from the hype ("breaks everything", "Q-Day is here"). It is the missing real-machine dimension beside the site\'s structural quantumVsDigitalEncryption; it names the post-quantum standards and the falling-but-enormous qubit gap, and is clear that the site is NOT post-quantum — its honest upgrade is the (still classical) SHA-256/Ed25519 roadmap.',
-  }
+      'An honest separation of what quantum computing actually does (weaken hashes, break signatures) from the hype ("breaks everything", "Q-Day is here"). It is the missing real-machine dimension beside the site\'s structural quantumVsDigitalEncryption; it names the post-quantum standards and the falling-but-enormous qubit gap, and is clear that the site is NOT post-quantum — its honest upgrade is the (still classical) SHA-256/Ed25519 roadmap.' }
 }
 

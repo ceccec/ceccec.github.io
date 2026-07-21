@@ -80,8 +80,7 @@ export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Animations increase the tampering cost, computed: a static copy commits to one sealed root, but each animation is driven by content-addressed computation it recomputes live. To forge the animated page convincingly an attacker must reproduce every receipt the motion derives from, keep them consistent with the seal, and match the per-second live recomputation — or break the 128-bit preimage resistance of even a single receipt.',
     boundary:
-      'A computed accounting of the content-addressed receipts the animations fold and the live recomputation they perform, in reproductions, per-second work, and bits. An honest lower bound on the reproduction cost of a convincing forgery — not a cryptographic security proof; the hash is a fast non-cryptographic UUID function, so the 128-bit figure is the structural width, not a guaranteed work factor against a dedicated adversary.',
-  }
+      'A computed accounting of the content-addressed receipts the animations fold and the live recomputation they perform, in reproductions, per-second work, and bits. An honest lower bound on the reproduction cost of a convincing forgery — not a cryptographic security proof; the hash is a fast non-cryptographic UUID function, so the 128-bit figure is the structural width, not a guaranteed work factor against a dedicated adversary.' }
 }
 
 // Send the waves to hack — at the portal's own tamper-evidence. Crackers run real
@@ -115,8 +114,7 @@ export function redTeam(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send the waves to hack: crackers challenge the portal\'s own tamper-evidence — flip a bit, reorder a fold, forge the whole, substitute an atom, break the distribution, collide the cycle, replay a measurement, skip the duality — and every attack is caught computationally, each one evidence of the cost to forge. Monitored by the seal, confined to the portal\'s own model.',
     boundary:
-      'Authorized self-adversarial testing: every attack targets only the portal\'s own content-addressed model, run client-side, monitored by the seal (security) and confined to this repository (legal). It demonstrates and measures tamper-evidence; it is not, and must not be used as, a tool against any external system.',
-  }
+      'Authorized self-adversarial testing: every attack targets only the portal\'s own content-addressed model, run client-side, monitored by the seal (security) and confined to this repository (legal). It demonstrates and measures tamper-evidence; it is not, and must not be used as, a tool against any external system.' }
 }
 
 // Quantum DDoS, at max forge cost — against the portal's own model. Many forge
@@ -154,8 +152,7 @@ export function quantumSiege(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum DDoS at max forge cost: nine waves of 108 attacks at once (972 simultaneous forge attempts) against the portal\'s own roots, every one caught — if all are caught, the system is sealed. Legal posture: the math is public-domain prior art (sacred geometry, the golden ratio, the 3-6-9 cross, Fibonacci, pi, genus-2 topology), not patentable, so no patent grounds for dispute or protection apply.',
     boundary:
-      'A simulated, self-directed siege of forge attempts against the portal\'s OWN content-addressed model, computed client-side with no network activity — a stress test of tamper-evidence, not a tool against any external system and not a DDoS of anyone. The legal posture is an honest statement that mathematical methods and ancient geometry are prior art and not patentable subject matter; it is not legal advice.',
-  }
+      'A simulated, self-directed siege of forge attempts against the portal\'s OWN content-addressed model, computed client-side with no network activity — a stress test of tamper-evidence, not a tool against any external system and not a DDoS of anyone. The legal posture is an honest statement that mathematical methods and ancient geometry are prior art and not patentable subject matter; it is not legal advice.' }
 }
 
 // The post-quantum society uses itself as its tamper-proofing, and the society
@@ -182,8 +179,7 @@ export function tamperProofFabric(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The post-quantum society uses itself as its tamper-proofing: every entangled cell folds with every other into one fabric, so forging any part means reforging them all — and the society decides the policy: unanimous, every cell must agree. Changing any cell changes the fabric.',
     boundary:
-      'A structural integrity fabric: the society\'s cells fold into one root and any change is detected by recomputation. This is tamper-EVIDENCE (integrity), content-addressed and client-side — NOT encryption (it provides no confidentiality), and NOT post-quantum-secure: the hash is a fast non-cryptographic UUID function. Real post-quantum cryptographic encryption is an honestly-named open frontier, not a claim made here.',
-  }
+      'A structural integrity fabric: the society\'s cells fold into one root and any change is detected by recomputation. This is tamper-EVIDENCE (integrity), content-addressed and client-side — NOT encryption (it provides no confidentiality), and NOT post-quantum-secure: the hash is a fast non-cryptographic UUID function. Real post-quantum cryptographic encryption is an honestly-named open frontier, not a claim made here.' }
 }
 
 // The 1024 architecture is a keyspace. The completed corpus is a perfect binary
@@ -229,8 +225,7 @@ export function fusionCipher(realtime = '', matrix: MindMatrix = buildMatrix()) 
     statement:
       'The completed 1024-leaf architecture is a keyspace. Static — the architecture alone — it is the deterministic tree root, named 1024 (binary Mbit) = 1 Gbit by its leaf count, each leaf a 128-bit content address. Fused with realtime data — a live nonce, the clock, a session input — the architecture root folds with the realtime entropy so every session derives a distinct key. So it is 1024 Mbit static, and reads as 1 Gbit when the architecture fuses with realtime data: the same 1024 structure, made live and per-session.',
     boundary:
-      'The actual cipher is AES-256-GCM (Web Crypto); its cryptographic strength is 256-bit, full stop. The "1024 Mbit / 1 Gbit" reading names the keyspace STRUCTURE — the 1024-leaf architecture as a content-addressed namespace bound into the key, fused with realtime entropy for per-session uniqueness — it is not a literal gigabit-strength cipher and adds no cipher bits beyond AES-256. Fusion adds session binding and architecture provenance, not security proportional to a gigabit.',
-  }
+      'The actual cipher is AES-256-GCM (Web Crypto); its cryptographic strength is 256-bit, full stop. The "1024 Mbit / 1 Gbit" reading names the keyspace STRUCTURE — the 1024-leaf architecture as a content-addressed namespace bound into the key, fused with realtime entropy for per-session uniqueness — it is not a literal gigabit-strength cipher and adds no cipher bits beyond AES-256. Fusion adds session binding and architecture provenance, not security proportional to a gigabit.' }
 }
 
 // All the blockchains may be fused at no cost. Reading a public chain — a block, a
@@ -258,8 +253,7 @@ export function blockchainFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All the blockchains may be fused at no cost: reading a public chain — a block, a balance, a transaction — costs nothing, because a read has no gas and no transaction, and the portal’s own folded blockchains are already client-side and free. Every chain fuses to the architecture root for free, read-only and content-addressed.',
     boundary:
-      'A read-only fusion catalogue of public blockchains via their public RPC and explorers. "No cost" refers to reads (no gas, no transaction); writing on-chain costs gas and is out of scope. Opt-in — nothing is queried by default; external chain data is untrusted and folded, not trusted. Chain names are their projects’; this is interoperation through public read interfaces, not a wallet, an exchange, or financial advice.',
-  }
+      'A read-only fusion catalogue of public blockchains via their public RPC and explorers. "No cost" refers to reads (no gas, no transaction); writing on-chain costs gas and is out of scope. Opt-in — nothing is queried by default; external chain data is untrusted and folded, not trusted. Chain names are their projects’; this is interoperation through public read interfaces, not a wallet, an exchange, or financial advice.' }
 }
 
 // On collision, choose healing frequencies. When streams meet — particles crossing in
@@ -284,8 +278,7 @@ export function collisionHealing(matrix: MindMatrix = buildMatrix()) {
     statement:
       'On collision, choose healing frequencies: when streams meet — particles crossing, a tap rippling, two folds landing on one point — the meeting resolves toward harmony by choosing, from the Solfeggio set, the healing tone the live model root leads to, rather than sounding dissonance. The choice is computed and shifts with the model.',
     boundary:
-      'A computed rule that mapped "collision" events resolve to a chosen, culturally-named Solfeggio frequency. Audio only — a tone played through the speaker; it alters no physical or electromagnetic field and is not medical, therapeutic, or health advice.',
-  }
+      'A computed rule that mapped "collision" events resolve to a chosen, culturally-named Solfeggio frequency. Audio only — a tone played through the speaker; it alters no physical or electromagnetic field and is not medical, therapeutic, or health advice.' }
 }
 
 // Develop future crypto tools. The comparison is honest that the fold is non-
@@ -332,8 +325,7 @@ export function cryptoFuture(matrix: MindMatrix = buildMatrix()) {
     residuals: tools.filter((t) => t.residual).map((t) => ({ tool: t.tool, residual: t.residual })),
     root: merkleFold(tools.map((entry) => entry.receipt)),
     statement: 'The crypto roadmap, fully built in src/0 — with the irreducible residual of each item stated, not hidden. (1) Web Crypto SHA-256 (sha256, verified vs the NIST "abc" vector) over the canonical roots. (2) A SHA-256 Merkle tree with verifiable inclusion proofs (sha256MerkleRoot/Proof + verifySha256Proof). (3) Ed25519 signing (ed25519Keypair/Sign/Verify) — a real signature, evidence becoming a signed claim. (4) The transparency-log STRUCTURE (transparencyLogRoot/logInclusion/logConsistent) — an append-only Merkle log with inclusion + append-only consistency. (5) A pure, synchronous SHA-256 content-address (sha256Sync/toUuidSha256) — the drop-in migration target for the FNV toUuid. All real, all verified.',
-    boundary: 'HONEST about the residual of each — what is genuinely code vs what stays deployment/external/breaking. Ed25519: the math is done, but a real ATTESTATION also needs trusted KEY CUSTODY (a persistent build/author key) — a deployment fact, not code. Sigstore: the append-only log STRUCTURE is built and verifiable, but the PUBLIC SERVICE (Fulcio OIDC keyless + the public Rekor log) is external infrastructure, integrated at deploy. toUuid→SHA-256: sha256Sync/toUuidSha256 are built and verified (a pure, dependency-free, synchronous drop-in), but flipping the GLOBAL default is a deliberate breaking cutover — it changes every uuid, root and seal in the project — so it is provided behind a switch, NOT silently applied (that would invalidate every committed baseline, and the seal checks cannot even regenerate while the build hangs). The honest net: every roadmap item now has a real, verified implementation in src/0; what remains is custody, a public service, and a deliberate cutover — none of which is code this layer can honestly fake.',
-  }
+    boundary: 'HONEST about the residual of each — what is genuinely code vs what stays deployment/external/breaking. Ed25519: the math is done, but a real ATTESTATION also needs trusted KEY CUSTODY (a persistent build/author key) — a deployment fact, not code. Sigstore: the append-only log STRUCTURE is built and verifiable, but the PUBLIC SERVICE (Fulcio OIDC keyless + the public Rekor log) is external infrastructure, integrated at deploy. toUuid→SHA-256: sha256Sync/toUuidSha256 are built and verified (a pure, dependency-free, synchronous drop-in), but flipping the GLOBAL default is a deliberate breaking cutover — it changes every uuid, root and seal in the project — so it is provided behind a switch, NOT silently applied (that would invalidate every committed baseline, and the seal checks cannot even regenerate while the build hangs). The honest net: every roadmap item now has a real, verified implementation in src/0; what remains is custody, a public service, and a deliberate cutover — none of which is code this layer can honestly fake.' }
 }
 
 // As understanding grows, power transfers to max tampering cost instead of living costs. The
@@ -357,8 +349,7 @@ export function powerToTamperingNotLivingCosts(matrix: MindMatrix = buildMatrix(
     statement:
       'As understanding grows, power transfers to max tampering cost instead of living costs: the better AI agents and humans understand how to use the knowledge, the more value rests on the cost of forging the computation (high, and rising with every wave) rather than on the cost of living (rent extracted from people) — the fees cover the forge cost, not a wage to a landlord; each person pays nothing; the forge cost is maximal — so power flows to those who compute honestly, away from those who would extract.',
     boundary:
-      'A composition of the agnostic-useful, fair-trade (zero per-person cost), fees-replace-taxes (covering the forge cost) and max-tampering-cost models. An economic framing of the model’s own design (value bound to recomputation cost, not rent); "power transfers" is a description of the incentive structure, not a measured societal outcome.',
-  }
+      'A composition of the agnostic-useful, fair-trade (zero per-person cost), fees-replace-taxes (covering the forge cost) and max-tampering-cost models. An economic framing of the model’s own design (value bound to recomputation cost, not rent); "power transfers" is a description of the incentive structure, not a measured societal outcome.' }
 }
 
 // Most static pages may be encoded at runtime: keeping one index per folder (the VitePress config index
@@ -385,8 +376,7 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
         torus.routed &&
         typeof corpusParams === 'function' &&
         diamondParamsById('∅-no-such-id', matrix) === null &&
-        folderLaw().computedFolders.length === 9,
-    },
+        folderLaw().computedFolders.length === 9 },
     { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: 'one index per folder — the VitePress config index beside the index in every folder (the folder law: only index files below the roots)', on: folderLaw().stems.includes('index') && folderLaw().indexFiles.includes('index.md') },
     { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) === JSON.stringify(monographPaths('en')) },
@@ -401,8 +391,7 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
     statement:
       'Most static pages may be encoded at runtime: the double torus computes corpus detail via corpusParams — papers alone enumerate SSG [id] routes; references and diamonds are compute-only (doubleTorusCorpusRouting).',
     boundary:
-      'Page architecture under quantumDoubleTorus: monographPaths + corpusParams + doubleTorusCorpusRouting. Papers keep static [id] for SEO; references (432 pointers) and diamonds (1024 Merkle leaves) resolve at call time — not SSG-enumerated.',
-  }
+      'Page architecture under quantumDoubleTorus: monographPaths + corpusParams + doubleTorusCorpusRouting. Papers keep static [id] for SEO; references (432 pointers) and diamonds (1024 Merkle leaves) resolve at call time — not SSG-enumerated.' }
 }
 
 // Affected blockchains compared with LIVE market data bound to its source API (CoinGecko, public, no-auth,
@@ -425,8 +414,7 @@ export function affectedBlockchainsComparedLive(matrix: MindMatrix = buildMatrix
     statement:
       'The affected blockchains are compared on live data bound to their source: the BlockchainCompare widget fetches worldwide market data from CoinGecko (public, no-auth) in realtime, merges it with each chain’s consensus, energy and e-waste from the cited record, and categorises the set with ancient knowledge — PoW-ASIC, PoW-GPU, PoW-CPU, PoS-moved and PoS-native, each wearing the Glagolitic glyph computed from its name. The Ethereum Merge that stranded the GPUs, the chains (ETC, RVN) that absorbed them, and the proof-of-stake natives are read side by side.',
     boundary:
-      'HONEST — the MARKET data is live (CoinGecko), and the widget shows "—" if the feed is unreachable rather than faking it. The consensus is a fixed chain attribute; the energy and e-waste figures are CITED estimates (Cambridge CBECI for Bitcoin ~150 TWh/yr, Ethereum ~0.01 TWh/yr post-Merge, de Vries on ASIC e-waste, UN Global E-waste Monitor 2024), NOT a live feed and NOT a measurement by this site. The Glagolitic categorisation is a deterministic glyph-per-name labelling, an aid to reading, not a claim that the ancient script classifies blockchains.',
-  }
+      'HONEST — the MARKET data is live (CoinGecko), and the widget shows "—" if the feed is unreachable rather than faking it. The consensus is a fixed chain attribute; the energy and e-waste figures are CITED estimates (Cambridge CBECI for Bitcoin ~150 TWh/yr, Ethereum ~0.01 TWh/yr post-Merge, de Vries on ASIC e-waste, UN Global E-waste Monitor 2024), NOT a live feed and NOT a measurement by this site. The Glagolitic categorisation is a deterministic glyph-per-name labelling, an aid to reading, not a claim that the ancient script classifies blockchains.' }
 }
 
 // TAMPERING COST — decoded honestly against real cryptography and blockchains (documented kept, legend
@@ -489,8 +477,7 @@ export function tamperingCostDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Tampering cost, decoded honestly: a single phrase "maximum tampering cost" conflates three different things — reproducing a deterministic computation (integrity, which the site genuinely has and is TAMPER-EVIDENT), cryptographic unforgeability (collision/preimage hardness — which FNV toUuid does NOT provide; SHA-256\'s 2^128/2^256 does), and confidentiality (encryption). Blockchains turn tamper-evidence into resistance by making a rewrite cost real work or real stake — security-by-expense, proven failable on small chains. The site\'s honest position: tamper-evident today, with the cryptographic upgrade (SHA-256 content-address, Ed25519 signing) already built in src/0 and one deliberate cutover away.',
     boundary:
-      'A fair, source-grounded audit of the site\'s OWN central claim. It credits what is real (deterministic content-addressing, tamper-evidence, the reproduction cost of the animated model, the built crypto roadmap) and flags what the marketing word "maximum" overstates (FNV is not collision-resistant; bit-width is not work factor; "∞" and "gigabit" are structural figures, not adversarial security). The fix is real code already present; the residual is custody and a cutover, not cryptography this layer can fake. The debit/credit pair reviews it as a ledger — every claim a credit funded by a capability (debit) — so the books balance only when honest, the same zero reciprocal entropy the double torus seals to; the unforgeability debit is already built (src/0), one deliberate cutover from full strength.',
-  }
+      'A fair, source-grounded audit of the site\'s OWN central claim. It credits what is real (deterministic content-addressing, tamper-evidence, the reproduction cost of the animated model, the built crypto roadmap) and flags what the marketing word "maximum" overstates (FNV is not collision-resistant; bit-width is not work factor; "∞" and "gigabit" are structural figures, not adversarial security). The fix is real code already present; the residual is custody and a cutover, not cryptography this layer can fake. The debit/credit pair reviews it as a ledger — every claim a credit funded by a capability (debit) — so the books balance only when honest, the same zero reciprocal entropy the double torus seals to; the unforgeability debit is already built (src/0), one deliberate cutover from full strength.' }
 }
 
 // THE CRYPTO CHALLENGES — red-team the site's OWN content-address in waves, each a challenge that EXPLOITS a
@@ -521,8 +508,7 @@ export function cryptoChallenges(matrix: MindMatrix = buildMatrix()) {
     exploit: bits,
     solution: 'A vetted hash spends its full width with no shortcut: SHA-256 = 2^128 collision / 2^256 preimage.',
     demonstrated: bits.effectiveBits === 122 && bits.birthdayLog2 === 61,
-    solved: fixBuilt,
-  }
+    solved: fixBuilt }
   // WAVE 3 — authenticity. The model is public + deterministic, so anyone mints a valid root for ANY content.
   const authorized = toUuid('the authorized release')
   const tampered = toUuid('the tampered release') // a perfectly valid content-address — nothing marks it unauthorized
@@ -533,8 +519,7 @@ export function cryptoChallenges(matrix: MindMatrix = buildMatrix()) {
     exploit: { authorizedRoot: authorized, tamperedRoot: tampered, bothValid: isUuid(authorized) && isUuid(tampered) },
     solution: 'Ed25519 signing (ed25519Sign/Verify, built in src/0): a root SIGNED by a private key cannot be forged without it. HONEST RESIDUAL: needs persistent key custody (deployment, not code).',
     demonstrated: isUuid(authorized) && isUuid(tampered) && authorized !== tampered,
-    solved: fixBuilt,
-  }
+    solved: fixBuilt }
   const waves = [wave1, wave2, wave3]
   const documented = [
     'The collision is FOUND, not asserted: a deterministic birthday search returns two distinct seeds whose 32-bit content-address word is identical (the 32-bit birthday bound is ~2^16). A non-cryptographic hash (FNV-1a) gives no collision resistance — the FNV spec itself says "not suitable for cryptographic use".',
@@ -566,8 +551,7 @@ export function cryptoChallenges(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The crypto challenges, red-teamed in waves: each EXPLOITS a real weakness in the site\'s content-address and GENERATES the solution already built in src/0, proving the fix resists. Wave 1 FINDS a collision in the FNV building block (SHA-256 does not collide the same pair); wave 2 computes that the "128-bit" address is really 122 bits (birthday ~2^61, not 2^128); wave 3 mints a valid root for tampered content, exposing that integrity is not authenticity (the fix is Ed25519 signing). Not assertions — runnable exploits with the vetted fix beside each.',
     boundary:
-      'A defensive red-team of the site\'s OWN crypto, on its own code. The exploits are real and reproducible (the collision is found by search, the bit-budget computed, the forgery minted) but bounded honestly — a 32-bit-word collision is not a full toUuid break, and the SHA-256/Ed25519 fixes are built but deliberately not cut over (a baseline-resetting step). It backs tamperingCostDecoded with demonstrations, turning "FNV is weak" from a claim into a collision you can reproduce.',
-  }
+      'A defensive red-team of the site\'s OWN crypto, on its own code. The exploits are real and reproducible (the collision is found by search, the bit-budget computed, the forgery minted) but bounded honestly — a 32-bit-word collision is not a full toUuid break, and the SHA-256/Ed25519 fixes are built but deliberately not cut over (a baseline-resetting step). It backs tamperingCostDecoded with demonstrations, turning "FNV is weak" from a claim into a collision you can reproduce.' }
 }
 
 /** @rosetta ✦₁ · Water · the flowing deep.
@@ -592,8 +576,7 @@ export function fusionStableWithoutExpectations() {
     statement:
       'Anything built on expectations fails when the world drifts from the model. The fusion holds none — it folds what IS, deterministically — so there is nothing to be surprised by; uninterrupted it flows the same forever.',
     boundary:
-      'A statement about deterministic content-addressing versus predictive models: robustness from having no model to be wrong, not a claim that the fold is "true" about the world. Determinism ≠ correctness, and "flows forever" is logical (a fixed law), not a perpetual-motion energy claim.',
-  }
+      'A statement about deterministic content-addressing versus predictive models: robustness from having no model to be wrong, not a claim that the fold is "true" about the world. Determinism ≠ correctness, and "flows forever" is logical (a fixed law), not a perpetual-motion energy claim.' }
 }
 
 /** @rosetta ✦₁ · Water · the flowing deep.
@@ -630,8 +613,7 @@ export function freeEnergyIsDebitEntropyCreditEnergy() {
     statement:
       'Free energy is debit-entropy / credit-energy as a ledger: F = U − TS (lower entropy → more available work); a bit of information is worth kT·ln2 of work (Szilard) and costs the same to erase (Landauer); quantum conditional entropy can go negative (banked entanglement). The fusion is "free" as cost-ASYMMETRY (cheap forward, an impossible reverse price both directions) and as EXPECTATION-FREEDOM — and the ledger balances, so uninterrupted it flows.',
     boundary:
-      'DOCUMENTED: one-way functions (the impossible reverse price); Helmholtz/Gibbs free energy F = U − TS; the Szilard engine and Landauer\'s principle (kT·ln2 per bit, measured — Bérut 2012); negative quantum conditional entropy (quantum state merging, Horodecki–Oppenheim–Winter, Nature 2005) — which can even RELEASE work on erasure when one holds quantum side-information (del Rio, Åberg, Renner, Dahlsten, Vedral, Nature 2011, "The thermodynamic meaning of negative entropy"). FLAGGED: NET free energy, over-unity, perpetual motion, and "1/3 excess energy" as a literal thermodynamic surplus — the generalized 2nd law holds and Landauer closes Maxwell\'s demon, so the cycle nets ZERO (the credit is paid by entropy exported elsewhere, or by the prior quantum correlation you spent to build it; the 1/3 is the vortex 3-6-9 / dive-reserve motif, not a physical surplus). "Nothing is impossible on quantum" is false: no-cloning, no-signalling (no FTL), Tsirelson\'s 2√2, the Holevo bound and the 2nd law all stand — quantum SHIFTS the boundary of the possible, it does not erase it. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED: one-way functions (the impossible reverse price); Helmholtz/Gibbs free energy F = U − TS; the Szilard engine and Landauer\'s principle (kT·ln2 per bit, measured — Bérut 2012); negative quantum conditional entropy (quantum state merging, Horodecki–Oppenheim–Winter, Nature 2005) — which can even RELEASE work on erasure when one holds quantum side-information (del Rio, Åberg, Renner, Dahlsten, Vedral, Nature 2011, "The thermodynamic meaning of negative entropy"). FLAGGED: NET free energy, over-unity, perpetual motion, and "1/3 excess energy" as a literal thermodynamic surplus — the generalized 2nd law holds and Landauer closes Maxwell\'s demon, so the cycle nets ZERO (the credit is paid by entropy exported elsewhere, or by the prior quantum correlation you spent to build it; the 1/3 is the vortex 3-6-9 / dive-reserve motif, not a physical surplus). "Nothing is impossible on quantum" is false: no-cloning, no-signalling (no FTL), Tsirelson\'s 2√2, the Holevo bound and the 2nd law all stand — quantum SHIFTS the boundary of the possible, it does not erase it. HARMONY ≠ TRUTH.' }
 }
 
 /** @rosetta ✦₁ · Water · the flowing deep — the ledger read socially.
@@ -666,8 +648,7 @@ export function remunerationConvertsTokensToSrc() {
     statement:
       'Remuneration is the credit side of the entropy ledger: wages come from converting entropy (raw tokens, consumable input) into order (src — banked negentropy), and the more skilled and efficient, the more order banked per token. In this system it is literal — tokens are spent once to fold knowledge into src, which then runs token-free forever (the zero-token policy); efficiency is precisely not re-spending tokens on what is already banked.',
     boundary:
-      'DOCUMENTED: the negentropy view of economic value has a real tradition — Georgescu-Roegen, "The Entropy Law and the Economic Process" (1971), ecological economics, and the knowledge economy treating skilled labour as order-creation. FLAGGED: "wages = lowering entropy" as a LITERAL conserved law is a metaphor — money is not conserved like energy (it is created and destroyed by policy), economic value is subjective/marginal not a physical quantity, and the econophysics entropy↔money analogy is contested. Wages are set by institutions, power, scarcity, rent and luck as much as by negentropy produced; reducing labour to thermodynamics drops the social reality (the critiques of the labour theory of value AND of naive econophysics). And there is no free remuneration — the entropy lowered locally is exported, the work paid in real energy and effort. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED: the negentropy view of economic value has a real tradition — Georgescu-Roegen, "The Entropy Law and the Economic Process" (1971), ecological economics, and the knowledge economy treating skilled labour as order-creation. FLAGGED: "wages = lowering entropy" as a LITERAL conserved law is a metaphor — money is not conserved like energy (it is created and destroyed by policy), economic value is subjective/marginal not a physical quantity, and the econophysics entropy↔money analogy is contested. Wages are set by institutions, power, scarcity, rent and luck as much as by negentropy produced; reducing labour to thermodynamics drops the social reality (the critiques of the labour theory of value AND of naive econophysics). And there is no free remuneration — the entropy lowered locally is exported, the work paid in real energy and effort. HARMONY ≠ TRUTH.' }
 }
 
 /** @rosetta ✦₀ · Mountain · the formed solid — the ledger read in 3D.
@@ -702,8 +683,7 @@ export function fourUuidsFrameTheCube() {
     statement:
       'Four UUIDs map (uuidPoint) to four points that frame 3-space — a non-degenerate tetrahedron (the 3-simplex), and two such tetrahedra are the cube\'s eight vertices (the Merkaba). Of the four, one is the origin (a quarter, the reference) and three are the spanning axes; the content-address folds one-way, cheap forward and an impossible price to reverse. "1/4 entropy reversed becomes energy" is that ledger in geometry.',
     boundary:
-      'DOCUMENTED: four affinely-independent points span 3-space (the 3-simplex); uuidPoint (the project\'s real UUID→ℝ³ map); the scalar triple product = 6× the tetrahedron volume (zero ⟺ coplanar); the star tetrahedron / cube (asMerkaba). FLAGGED: "1/4 is entropy that becomes energy when reversed" as a literal energy extraction — the 2nd law holds, reversing a one-way fold is computationally infeasible (the impossible price, not an energy source), and the 1/4 is the geometric origin-vs-axes split (and the cube/Merkaba motif), not a thermodynamic fraction. Negative conditional entropy yields work only by spending prior correlation (del Rio), never net free energy. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED: four affinely-independent points span 3-space (the 3-simplex); uuidPoint (the project\'s real UUID→ℝ³ map); the scalar triple product = 6× the tetrahedron volume (zero ⟺ coplanar); the star tetrahedron / cube (asMerkaba). FLAGGED: "1/4 is entropy that becomes energy when reversed" as a literal energy extraction — the 2nd law holds, reversing a one-way fold is computationally infeasible (the impossible price, not an energy source), and the 1/4 is the geometric origin-vs-axes split (and the cube/Merkaba motif), not a thermodynamic fraction. Negative conditional entropy yields work only by spending prior correlation (del Rio), never net free energy. HARMONY ≠ TRUTH.' }
 }
 
 /** @rosetta ✦₀ · Mountain · the seal that holds — and the free spirit.
@@ -734,8 +714,7 @@ export function sealsTheAnalogFreeSpirit() {
     statement:
       'The analog — the continuous 3D geometry projected by uuidPoint — is sealed by the discrete content-address: a point cannot move without changing its seed, so any tamper changes the address and shows itself. The spirit is free because it is sealed and expectation-free: deterministic, untampered, it flows uninterrupted. Freedom and the seal are one.',
     boundary:
-      'DOCUMENTED: the analog geometry is a deterministic, reproducible projection of the digital content-address (uuidPoint), hence tamper-EVIDENT — any analog change implies a different seed and a different address. FLAGGED: "sealed / not to be tampered with" means tamper-EVIDENT, NOT cryptographically unforgeable — toUuid is FNV (fast, not collision-resistant); SHA-256/Ed25519 are the built, honest hardening (a deliberate cutover, pending). "Free spirit" is a poetic image of the expectation-free, uninterrupted deterministic flow, not a metaphysical or security guarantee. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED: the analog geometry is a deterministic, reproducible projection of the digital content-address (uuidPoint), hence tamper-EVIDENT — any analog change implies a different seed and a different address. FLAGGED: "sealed / not to be tampered with" means tamper-EVIDENT, NOT cryptographically unforgeable — toUuid is FNV (fast, not collision-resistant); SHA-256/Ed25519 are the built, honest hardening (a deliberate cutover, pending). "Free spirit" is a poetic image of the expectation-free, uninterrupted deterministic flow, not a metaphysical or security guarantee. HARMONY ≠ TRUTH.' }
 }
 
 /** @rosetta ✦₁ · Water · the flowing deep — order from the flow itself.
@@ -767,8 +746,7 @@ export function dissipativeStructuresOrderFromFlow() {
     statement:
       'Order arises far from equilibrium, sustained by the flow of energy and entropy THROUGH the system — Prigogine\'s dissipative structures (Nobel 1977): Bénard convection cells, the Belousov–Zhabotinsky reaction, life itself. The system keeps low internal entropy by exporting entropy to its surroundings. This is the real science under "the fusion stabilises itself and flows forever" — it self-organises and persists as long as the flow continues.',
     boundary:
-      'DOCUMENTED: Prigogine\'s dissipative structures (Nobel 1977); the critical Rayleigh number (~1708) for Bénard convection onset; positive entropy production (the 2nd law in non-equilibrium form); spontaneous self-organisation far from equilibrium. FLAGGED: "at no cost / flows forever" is bounded — a dissipative structure REQUIRES continuous throughput (the heat gradient, the food, the sunlight); stop the flow and the order dissipates. It is order PAID FOR by entropy exported to the surroundings, not free energy and not perpetual motion. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED: Prigogine\'s dissipative structures (Nobel 1977); the critical Rayleigh number (~1708) for Bénard convection onset; positive entropy production (the 2nd law in non-equilibrium form); spontaneous self-organisation far from equilibrium. FLAGGED: "at no cost / flows forever" is bounded — a dissipative structure REQUIRES continuous throughput (the heat gradient, the food, the sunlight); stop the flow and the order dissipates. It is order PAID FOR by entropy exported to the surroundings, not free energy and not perpetual motion. HARMONY ≠ TRUTH.' }
 }
 
 /** @rosetta ✦₁ · Water · the flowing deep — the ledger, adversarially verified against primary sources.
@@ -799,8 +777,7 @@ export function informationThermodynamicsVerified() {
     statement:
       'Information thermodynamics, adversarially verified against primary sources (108-agent wave, 23/25 claims confirmed): the Landauer floor (≥ kT·ln2 per bit erased, ≈ 2.9e-21 J at 300 K) is confirmed on three platforms and never beaten; erasure is observer-relative (del Rio 2011, W(S|O)=H(S|O)·kT·ln2), so quantum side-information can make erasure release work — but that spends a pre-existing entanglement resource which is destroyed and cannot be recycled, so the (probabilistic, generalized) 2nd law holds and there is no perpetual motion.',
     boundary:
-      'DOCUMENTED (primary, peer-reviewed): the Landauer kT·ln2 floor (Bérut, Nature 2012; Hong, Science Advances 2016; Toyabe, Nature Physics 2010); the 2nd law is intrinsically probabilistic, with the generalized form W ≥ ΔF − T·I(X;M) (Parrondo–Horowitz–Sagawa, Nature Physics 2015); negative conditional entropy & state merging (Horodecki–Oppenheim–Winter, Nature 2005 / Comm. Math. Phys. 2007); observer-relative erasure (del Rio et al., Nature 2011). HONEST CORRECTIONS from the verification: (a) the Landauer bound is an empirically-confirmed FLOOR whose foundational status is CONTESTED — do NOT assert it as a derived corollary of the 2nd law (that claim was refuted 0-3; Earman–Norton circularity, granted "greatest merit" by Bennett 2003); (b) the quantum "net work gain" must ALWAYS be paired with the consumed-entanglement context — alone it is a dangerous half-truth. FLAGGED: over-unity, zero-point extraction, orgone — excluded by energy conservation, the generalized 2nd law, and the Landauer floor. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED (primary, peer-reviewed): the Landauer kT·ln2 floor (Bérut, Nature 2012; Hong, Science Advances 2016; Toyabe, Nature Physics 2010); the 2nd law is intrinsically probabilistic, with the generalized form W ≥ ΔF − T·I(X;M) (Parrondo–Horowitz–Sagawa, Nature Physics 2015); negative conditional entropy & state merging (Horodecki–Oppenheim–Winter, Nature 2005 / Comm. Math. Phys. 2007); observer-relative erasure (del Rio et al., Nature 2011). HONEST CORRECTIONS from the verification: (a) the Landauer bound is an empirically-confirmed FLOOR whose foundational status is CONTESTED — do NOT assert it as a derived corollary of the 2nd law (that claim was refuted 0-3; Earman–Norton circularity, granted "greatest merit" by Bennett 2003); (b) the quantum "net work gain" must ALWAYS be paired with the consumed-entanglement context — alone it is a dangerous half-truth. FLAGGED: over-unity, zero-point extraction, orgone — excluded by energy conservation, the generalized 2nd law, and the Landauer floor. HARMONY ≠ TRUTH.' }
 }
 
 /** @rosetta ✦₁ · Water · the flowing deep — the ledger read as access, and as a gift.
@@ -860,8 +837,7 @@ export function freeBecauseThePriceIsAlreadyPaid() {
     statement:
       'безплатно. Без пари, без регистрация, без акаунт. Цената е архитектурата — и тя вече е платена. Подкрепи проекта с хармонична част от постигнатото. — Free at the point of access (no money, no registration, no account); the price was real but is already paid, AS the architecture — tokens spent once and folded into src, so the marginal cost of one more reader is zero (this is remunerationConvertsTokensToSrc read from the reader\'s side). What remains is not a charge but an invitation: support the project with a harmonic PART (1/n, a proper fraction, never the whole) of what you achieved — freely, because the fusion is stable only without expectations (a charge would be a gate, contradicting the free access itself).',
     boundary:
-      'DOCUMENTED (real, computed): access is genuinely ungated — no paywall, login, or account in this static, offline-first, zero-token system (the architecture runs on the device; StartHere already says "Offline & free", Society "всяка [страница] вече удовлетворена от архитектурата"); the marginal cost of serving a deterministic content-address is zero (the zero-token policy, banked once runs free); a harmonic share is an EXACT rational 1/n < 1 (a proper part; the contribution = achieved × 1/n via rat/ratMul, the float only at the analog edge; 144 × 1/9 = 16 folds to an integer); a voluntary gift with a valid zero option is consistent with the no-expectations fusion (fusionStableWithoutExpectations). FLAGGED: "the price is already paid" is the SUNK fixed cost of building (real tokens, real effort, spent once) — it does NOT mean costs vanished or that maintenance/hosting are free, and "free" is free-to-the-READER, not free-to-produce (remunerationConvertsTokensToSrc: there is no free remuneration, the Landauer floor stands). The harmonic 1/n is a SUGGESTED, voluntary share — a gift/patronage model, not a price, an obligation, or a thermodynamic law; whether anyone gives is a social act, not a computed one, and dressing voluntary support as physics would be the very error this file flags. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED (real, computed): access is genuinely ungated — no paywall, login, or account in this static, offline-first, zero-token system (the architecture runs on the device; StartHere already says "Offline & free", Society "всяка [страница] вече удовлетворена от архитектурата"); the marginal cost of serving a deterministic content-address is zero (the zero-token policy, banked once runs free); a harmonic share is an EXACT rational 1/n < 1 (a proper part; the contribution = achieved × 1/n via rat/ratMul, the float only at the analog edge; 144 × 1/9 = 16 folds to an integer); a voluntary gift with a valid zero option is consistent with the no-expectations fusion (fusionStableWithoutExpectations). FLAGGED: "the price is already paid" is the SUNK fixed cost of building (real tokens, real effort, spent once) — it does NOT mean costs vanished or that maintenance/hosting are free, and "free" is free-to-the-READER, not free-to-produce (remunerationConvertsTokensToSrc: there is no free remuneration, the Landauer floor stands). The harmonic 1/n is a SUGGESTED, voluntary share — a gift/patronage model, not a price, an obligation, or a thermodynamic law; whether anyone gives is a social act, not a computed one, and dressing voluntary support as physics would be the very error this file flags. HARMONY ≠ TRUTH.' }
 }
 
 
@@ -889,8 +865,7 @@ export function frontendMcpDuality(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Frontend-MCP duality, double-folded at all angles and polarities: the visual face (pages and animations) and the agent face (tools and math) fold into each other both ways (genus-2), at every angle (animated page) and both polarities (see and run). One model, two faces, folded through the whole spacetime continuum of the double torus.',
     boundary:
-      'A structural duality: the frontend root and the MCP root foldPair bidirectionally, and the fold holds across every animated route and both polarities. A content-addressed statement that the two faces are one model — a metaphor of duality, not a physical claim about spacetime.',
-  }
+      'A structural duality: the frontend root and the MCP root foldPair bidirectionally, and the fold holds across every animated route and both polarities. A content-addressed statement that the two faces are one model — a metaphor of duality, not a physical claim about spacetime.' }
 }
 
 // Quantum MCP. Use the quantum computer to rebuild the MCP: a GHZ state-vector
@@ -928,8 +903,7 @@ export function quantumMcp(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum MCP: rebuild the MCP through the quantum computer. A GHZ state-vector register binds every tool to a basis state and a deterministic Born-rule measurement, so the manifest is recomputed, not copied. Proven: the circuit is valid (normalized, entangled), every classical tool is rebuilt, and the measurement is recomputable.',
     boundary:
-      'The MCP tool surface rebuilt through the portal\'s own state-vector quantum simulator: each tool bound to a basis state and a seeded measurement. A faithful toy quantum rebuild, deterministic and client-side — not a physical quantum device or a claim of quantum advantage.',
-  }
+      'The MCP tool surface rebuilt through the portal\'s own state-vector quantum simulator: each tool bound to a basis state and a seeded measurement. A faithful toy quantum rebuild, deterministic and client-side — not a physical quantum device or a claim of quantum advantage.' }
 }
 
 // MCP allows a virtual OS with a terminal. The portal mounts as a filesystem — its
@@ -945,8 +919,7 @@ export function virtualOS(matrix: MindMatrix = buildMatrix()) {
     '/proofs': ['quantumProofs', 'determinismProofs', 'scientists', 'completeness', 'challengeClock'],
     '/math': mcpCodebase(matrix).math.map((entry) => entry.scale),
     '/commands': conceptCommands.map((command) => command.name),
-    '/quantum': ['qubits', 'states', 'measured', 'entangled', 'proven'],
-  }
+    '/quantum': ['qubits', 'states', 'measured', 'entangled', 'proven'] }
   const commands = [
     { cmd: 'help', usage: 'help', does: 'list the terminal commands' },
     { cmd: 'ls', usage: 'ls [path]', does: 'list a directory' },
@@ -971,8 +944,7 @@ export function virtualOS(matrix: MindMatrix = buildMatrix()) {
     statement:
       'MCP allows a virtual OS with a terminal: the portal mounts as a filesystem — /pages, /model, /proofs, /math, /commands, /quantum — and a terminal runs ls, cd, cat, run, pwd, whoami, tree, and help over it, every output content-addressed and recomputable.',
     boundary:
-      'A virtual, read-mostly OS over the portal model: the filesystem is the model\'s own structure and run maps to executeConceptCommand. Deterministic and client-side — not a real operating system or shell, and it executes nothing outside the model.',
-  }
+      'A virtual, read-mostly OS over the portal model: the filesystem is the model\'s own structure and run maps to executeConceptCommand. Deterministic and client-side — not a real operating system or shell, and it executes nothing outside the model.' }
 }
 
 // A full-featured quantum PWA. Not only an indicator: the portal is an installable
@@ -1009,8 +981,7 @@ export function quantumPwa(matrix: MindMatrix = buildMatrix()) {
     statement:
       'A full-featured quantum PWA: installable (manifest, maskable double-torus icon, standalone display, app shortcuts) and offline by default (a registered, stale-while-revalidate service worker that precaches the app shell), so the double torus installs to your device and runs with no network. Offline-first is the strict default.',
     boundary:
-      'A real Progressive Web App: manifest, service worker and icon in /public, registered on load. Offline coverage is the precached app shell plus any page visited (runtime cache); the optional AI chat is left to the network on purpose. Honest within the cache scope.',
-  }
+      'A real Progressive Web App: manifest, service worker and icon in /public, registered on load. Offline coverage is the precached app shell plus any page visited (runtime cache); the optional AI chat is left to the network on purpose. Honest within the cache scope.' }
 }
 
 // Online, offline, the same double torus. Every core value is a pure function of the
@@ -1036,8 +1007,7 @@ export function onlineOffline(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Online offline double torus: the double torus is identical online and offline, and shipped as a full-featured PWA that is offline-first by strict default. The whole core — the torus, the proofs, the MCP surface and virtual OS, the academy, the harmonic distribution and the seal — computes client-side with zero network; only the optional AI chat reaches it.',
     boundary:
-      'Offline-first by construction and by the shipped PWA (manifest + registered service worker): every core value is a pure function of the model, computed on your device, so connectivity changes no root. Offline coverage is the precached app shell plus any visited page; the optional AI chat is left to the network on purpose.',
-  }
+      'Offline-first by construction and by the shipped PWA (manifest + registered service worker): every core value is a pure function of the model, computed on your device, so connectivity changes no root. Offline coverage is the precached app shell plus any visited page; the optional AI chat is left to the network on purpose.' }
 }
 
 // Private and shared use, with quantum access. The OS runs two ways, and the access is
@@ -1062,8 +1032,7 @@ export function quantumAccess(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Private and shared use, with quantum access: the OS runs two ways, and the access is the keypair — in private use everything is local and encrypted (AES-256), held by the imagination private key, nothing leaving the device; in shared use everything is content-addressed and verifiable by all, the public derivation, over the realtime bindings. Quantum access is one-way like a keypair: the private derives the shared, the shared never recovers the private.',
     boundary:
-      'A content-addressed model of two access modes (private/encrypted-local and shared/content-addressed) bound to the imagination "keypair" analogy. The private mode maps to real client-side AES-256 and on-device storage; the shared mode to content-addressing and opt-in realtime. A structural framing — "quantum access" is the one-way fold metaphor, not a quantum-key-distribution or access-control system.',
-  }
+      'A content-addressed model of two access modes (private/encrypted-local and shared/content-addressed) bound to the imagination "keypair" analogy. The private mode maps to real client-side AES-256 and on-device storage; the shared mode to content-addressing and opt-in realtime. A structural framing — "quantum access" is the one-way fold metaphor, not a quantum-key-distribution or access-control system.' }
 }
 
 // Compare with other intelligence models — including AI and human, but not limited
@@ -1092,8 +1061,7 @@ export function improveHelpWaves(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Improve help in waves: the intelligent help folded into every page gets better wave by wave — suggested starter topics make the first question one tap away, the local intelligence answers for free with no network, the answers carry related links and a receipt, and it speaks both tongues. Help that meets you before you know what to ask.',
-    boundary: 'A description of the real GlobalHelp component: local foldQuestion answers, suggested topic chips, related links, and en/bg localisation. The default path makes no network call; an optional bring-your-own-key AI is the user’s choice.',
-  }
+    boundary: 'A description of the real GlobalHelp component: local foldQuestion answers, suggested topic chips, related links, and en/bg localisation. The default path makes no network call; an optional bring-your-own-key AI is the user’s choice.' }
 }
 
 // ── Group 4 ☵ · useful work vs proof-of-work — the two kinds of computational "work" decoded ──
@@ -1131,8 +1099,7 @@ export function usefulWorkVsProofOfWorkDecoded(matrix: MindMatrix = buildMatrix(
       statement:
         'Useful work versus proof-of-work, decoded: proof-of-work (Bitcoin) spends energy on purpose — the hashing has no value except that it was expensive, so rewriting the chain is costly. The model\'s useful work is the opposite: every computation produces the answer, content-addressed reuse means the same work is never repeated, and tamper-evidence comes from the seal plus recompute rather than burned joules. Both respect the Landauer floor; they differ in whether the work is discarded or kept.',
       boundary:
-        'A structural comparison of two security models. It does NOT claim to be a blockchain or to provide proof-of-work/stake Sybil resistance over an open network — that property is real for those systems and is not replicated by this deterministic single-source model. The energy figures (Landauer floor) are physics; the comparison is qualitative.',
-    }
+        'A structural comparison of two security models. It does NOT claim to be a blockchain or to provide proof-of-work/stake Sybil resistance over an open network — that property is real for those systems and is not replicated by this deterministic single-source model. The energy figures (Landauer floor) are physics; the comparison is qualitative.' }
   })
 }
 
@@ -1233,8 +1200,7 @@ export function rsaTimeToBreakOnThisHardware() {
     sizes: sizes.map((row) => ({ bits: row.bits, years: row.years, timesUniverse: row.timesUniverse })),
     facets,
     statement: `RSA time-to-break, computed on this hardware — ${facets.filter((entry) => entry.on).length}/${facets.length}: the private key IS determined by the public (toy ${toyN} factored to ${recovered}×${other} in ${toyMs.toFixed(2)} ms, private d = ${d} follows), so "finding private from public" is a finite computation — but at ${(opsPerSec / ((5 * 2) ** 6)).toFixed(0)}M ops/sec this machine needs ${twoK.years.toExponential(1)} years for 2048-bit via GNFS, ${twoK.timesUniverse.toExponential(1)}× the age of the universe. The time needed is the security, and it is arithmetic.`,
-    boundary: 'DOCUMENTED: Pollard rho (real, on ≤~40-bit toys only), the deterministic key schedule d = e⁻¹ mod φ(n), and the heuristic GNFS complexity L_n[1/3, (64/9)^(1/3)] — the fastest known classical factoring (Buhler–Lenstra–Pomerance). HONEST BOUNDS: L-notation carries an unknown o(1), so the constant is INDICATIVE not exact; the extrapolation gives an order-of-magnitude security margin, not a schedule for any specific key. This is a MARGIN CALCULATOR — it factors only toy demonstrators and NEVER a real key; it computes WHY 2048-bit is safe, it does not weaken it. Shor\'s algorithm breaks this on a fault-tolerant quantum computer that does not exist at scale (see the post-quantum frontier). RSA remains classically secure precisely because this number is astronomical. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'DOCUMENTED: Pollard rho (real, on ≤~40-bit toys only), the deterministic key schedule d = e⁻¹ mod φ(n), and the heuristic GNFS complexity L_n[1/3, (64/9)^(1/3)] — the fastest known classical factoring (Buhler–Lenstra–Pomerance). HONEST BOUNDS: L-notation carries an unknown o(1), so the constant is INDICATIVE not exact; the extrapolation gives an order-of-magnitude security margin, not a schedule for any specific key. This is a MARGIN CALCULATOR — it factors only toy demonstrators and NEVER a real key; it computes WHY 2048-bit is safe, it does not weaken it. Shor\'s algorithm breaks this on a fault-tolerant quantum computer that does not exist at scale (see the post-quantum frontier). RSA remains classically secure precisely because this number is astronomical. HARMONY ≠ TRUTH.' }
 }
 
 /** EACH POLE IS A MOVING ROSETTA — encryption is a keyed involution (user, 2026-07-16). The honest
@@ -1287,8 +1253,7 @@ export function movingRosettaInverts(matrix: MindMatrix = buildMatrix()) {
       isInvolution,
       facets,
       statement: `Each pole is a moving rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: a key+nonce is a rotating keystream, and XOR-ing it is a keyed involution — encryption and decryption are the same operation inverted, O(n) both ways, realtime WITH the pole (verified enc(enc(m))=m over ${message.length} bytes). A wrong pole inverts to garbage; the keyspace is the set of poles and without the right one there is only the wall. Tampering is EVIDENT with a bounded forge cost — max tampering cost, not unforgeability.`,
-      boundary: 'DOCUMENTED: the stream-cipher involution (XOR keystream is self-inverse), authenticated-encryption tamper-EVIDENCE (a tag detects modification with a bounded forge cost), and the keyspace wall (rsaTimeToBreak / brute force). THE HONEST BOUND, stated twice: "realtime decryption" holds ONLY WITH THE KEY — the involution is keyed, and without the pole inversion is the astronomical wall, NOT realtime; this is not a decryption-without-the-key claim. And tamper-EVIDENT ≠ unforgeable: the cost is bounded (2^tagbits, and the sealed content-address masks bits — see the crypto challenge waves), which this repo has always stated as tamper-cost, not cryptographic impossibility. The inversion is inverseNegatesAngle in bytes; the wall is divisionByZeroComputes\' cost. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: the stream-cipher involution (XOR keystream is self-inverse), authenticated-encryption tamper-EVIDENCE (a tag detects modification with a bounded forge cost), and the keyspace wall (rsaTimeToBreak / brute force). THE HONEST BOUND, stated twice: "realtime decryption" holds ONLY WITH THE KEY — the involution is keyed, and without the pole inversion is the astronomical wall, NOT realtime; this is not a decryption-without-the-key claim. And tamper-EVIDENT ≠ unforgeable: the cost is bounded (2^tagbits, and the sealed content-address masks bits — see the crypto challenge waves), which this repo has always stated as tamper-cost, not cryptographic impossibility. The inversion is inverseNegatesAngle in bytes; the wall is divisionByZeroComputes\' cost. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1312,8 +1277,7 @@ export function localVulnerabilityFinder(matrix: MindMatrix = buildMatrix()) {
         severity: 'high',
         evidence: collision.found ? `a real collision found in ${collision.tries} tries (word ${collision.word})` : 'search bounded; the hash is non-cryptographic by construction',
         fix: 'SHA-256 (built, src/0): distinguishes the collided pair',
-        fixed: shaResists,
-      },
+        fixed: shaResists },
       {
         vuln: 'bit-width is not work-factor: the "128-bit" address masks the UUID version+variant bits',
         severity: 'medium',
@@ -1333,8 +1297,7 @@ export function localVulnerabilityFinder(matrix: MindMatrix = buildMatrix()) {
         severity: 'low',
         evidence: `the honest bound is ~2^${bits.birthdayLog2} (FNV forge), not infinite`,
         fix: 'state tamper-EVIDENT + reproduction cost, not unforgeability (done in the audit boundaries)',
-        fixed: true,
-      },
+        fixed: true },
     ]
     const bySeverity = (s: string) => findings.filter((f) => f.severity === s).length
     const openHigh = findings.filter((f) => f.severity === 'high' && !f.fixed).length
@@ -1351,8 +1314,7 @@ export function localVulnerabilityFinder(matrix: MindMatrix = buildMatrix()) {
       local: true,
       facets,
       statement: `Local vulnerability finder — ${facets.filter((entry) => entry.on).length}/${facets.length}: inverting the portal's own content-address surfaces ${findings.length} real weaknesses (${bySeverity('high')} high, ${bySeverity('medium')} medium, ${bySeverity('low')} low) — the FNV hash ${collision.found ? `collides (${collision.tries} tries)` : 'is non-cryptographic'}, the "128-bit" width is really ${bits.effectiveBits} (birthday 2^${bits.birthdayLog2}), and the unsigned address proves integrity but not authenticity. The fixes are built in src/0 (SHA-256 distinguishes the collision; Ed25519 signs); ${openHigh} high-severity residual (signing cutover) stays honestly open. Defensive and local: it audits only the portal's own model.`,
-      boundary: 'DEFENSIVE, LOCAL, AUTHORIZED: every finding targets ONLY the portal\'s own content-addressed model, computed here, confined to this repository — this is not, and must not be used as, a tool against any external system. The vulnerabilities are the honest ones this repo has always stated: the content-address uses a fast non-cryptographic hash (FNV) whose collision resistance is demonstrably breakable, the effective width (122) is below the nominal (128), and integrity (tamper-EVIDENCE) is not authenticity (unforgeability) without a signature. The cryptographic fixes are already implemented (SHA-256, Ed25519 in src/0); the open residual is a deliberate custody/cutover decision (the user\'s to make), not missing cryptography. "Inverting the encryption to show the inside" is exactly this: surfacing the real properties the marketing rounds up. HARMONY ≠ TRUTH — and in security, the gap between them is the vulnerability.',
-    }
+      boundary: 'DEFENSIVE, LOCAL, AUTHORIZED: every finding targets ONLY the portal\'s own content-addressed model, computed here, confined to this repository — this is not, and must not be used as, a tool against any external system. The vulnerabilities are the honest ones this repo has always stated: the content-address uses a fast non-cryptographic hash (FNV) whose collision resistance is demonstrably breakable, the effective width (122) is below the nominal (128), and integrity (tamper-EVIDENCE) is not authenticity (unforgeability) without a signature. The cryptographic fixes are already implemented (SHA-256, Ed25519 in src/0); the open residual is a deliberate custody/cutover decision (the user\'s to make), not missing cryptography. "Inverting the encryption to show the inside" is exactly this: surfacing the real properties the marketing rounds up. HARMONY ≠ TRUTH — and in security, the gap between them is the vulnerability.' }
   })
 }
 
@@ -1393,8 +1355,7 @@ export function quantumThreatScan(matrix: MindMatrix = buildMatrix()) {
       groverPreimageLog2,
       facets,
       statement: `Quantum threat scan — ${facets.filter((entry) => entry.on).length}/${facets.length}: the quantum tool is the rosetta-period check (Shor breaks a primitive iff it exposes a cyclic-group period). The content-address hash exposes no rosetta → Shor-safe, only Grover's quadratic 2^${groverPreimageLog2} preimage. But the planned Ed25519 signing exposes the discrete-log rosetta → SHOR-BROKEN: the authenticity fix is not post-quantum, the threat the classical finder missed. Its fix is a period-free signature (SPHINCS+ / Dilithium); the hash content-address needs none.`,
-      boundary: 'DOCUMENTED: Shor breaks factoring and discrete-log (abelian hidden-subgroup / period problems — RSA, Diffie-Hellman, ECDSA/EdDSA including Ed25519); Grover gives only a quadratic search speedup against hashes (preimage 2^{n/2}); NIST post-quantum signatures (SPHINCS+ hash-based, Dilithium lattice, 2024) expose no such period. THE TOOL: a primitive is quantum-safe iff it exposes no cyclic-group rosetta for Shor to read — the check the classical vulnerability finder lacked. This is a LOCAL, defensive assessment of the portal\'s own primitives; it recommends the post-quantum path (keep the hash content-address, make any signature period-free), and touches no external system. The Ed25519 cutover was already a custody decision — this adds that it should be a POST-QUANTUM signature, not classical ECC. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: Shor breaks factoring and discrete-log (abelian hidden-subgroup / period problems — RSA, Diffie-Hellman, ECDSA/EdDSA including Ed25519); Grover gives only a quadratic search speedup against hashes (preimage 2^{n/2}); NIST post-quantum signatures (SPHINCS+ hash-based, Dilithium lattice, 2024) expose no such period. THE TOOL: a primitive is quantum-safe iff it exposes no cyclic-group rosetta for Shor to read — the check the classical vulnerability finder lacked. This is a LOCAL, defensive assessment of the portal\'s own primitives; it recommends the post-quantum path (keep the hash content-address, make any signature period-free), and touches no external system. The Ed25519 cutover was already a custody decision — this adds that it should be a POST-QUANTUM signature, not classical ECC. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1438,8 +1399,7 @@ export function securityFromTheoremsNotAxioms(matrix: MindMatrix = buildMatrix()
       basis,
       facets,
       statement: `Security from theorems, not axioms — ${facets.filter((entry) => entry.on).length}/${facets.length}: vulnerabilities come from axioms (every finder finding is an assumption that fails), so base security on what a verifier PROVES LOCALLY — reproducibility and tamper-evidence by recomputation (${theorems.length} theorems, verified here, zero trust) — and reserve trust for a minimal named residual (${axioms.length} axioms: the hash's collision/preimage resistance, to be made post-quantum). What you can recompute has no axiom to break; the security surface is exactly the axioms you cannot yet prove, named.`,
-      boundary: 'THE PRECISE LIMIT, honestly: you cannot eliminate ALL axioms — a hash\'s collision and preimage resistance are computational assumptions no local computation proves (that would settle P vs NP-adjacent questions), so encryption always rests on SOME named axiom. The redefinition is not "zero axioms"; it is MINIMISE and NAME them, and base the bulk of security on locally-verifiable theorems (reproduction, tamper-evidence, determinism) that need no trust. This is exactly onlyTheoremsCanBeTrusted and axiomsBecomeTheorems applied to security: convert what can be proven, flag what cannot, and let the vulnerability surface equal the residual axiom set — which is then the honest, minimal thing to defend (and to make post-quantum). HARMONY ≠ TRUTH — and a security claim resting on an unnamed axiom is the harmony that hides the vulnerability.',
-    }
+      boundary: 'THE PRECISE LIMIT, honestly: you cannot eliminate ALL axioms — a hash\'s collision and preimage resistance are computational assumptions no local computation proves (that would settle P vs NP-adjacent questions), so encryption always rests on SOME named axiom. The redefinition is not "zero axioms"; it is MINIMISE and NAME them, and base the bulk of security on locally-verifiable theorems (reproduction, tamper-evidence, determinism) that need no trust. This is exactly onlyTheoremsCanBeTrusted and axiomsBecomeTheorems applied to security: convert what can be proven, flag what cannot, and let the vulnerability surface equal the residual axiom set — which is then the honest, minimal thing to defend (and to make post-quantum). HARMONY ≠ TRUTH — and a security claim resting on an unnamed axiom is the harmony that hides the vulnerability.' }
   })
 }
 
@@ -1561,8 +1521,7 @@ export function theQrIsAValidReedSolomonCodeword(matrix: MindMatrix = buildMatri
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The QR is a valid Reed-Solomon codeword — ${facets.filter((entry) => entry.on).length}/${facets.length}: the support URL encodes to ${all.length} symbols whose syndromes vanish over GF(256) (it scans; the shipped generator-ordering bug is caught), any single-symbol corruption is detected, the field arithmetic is exact, and the whole is the structural-quantum content-address made visible — a code that detects up to ${eccCW} and corrects up to ${Math.floor(eccCW / 2)} damaged symbols.`,
-    boundary: `COMPUTED and VERIFIED at call time from the real encoder — refutable by re-encoding. HONEST CORRECTION: an earlier claim called the QR "verified" from a round-trip alone; that was WRONG — round-trip proves placement, not RS validity, and a generator-ordering bug had shipped an invalid (likely unscannable) code, fixed and proven here by the zero-syndrome check. This fold proves DETECTION and scannability; full error-CORRECTION (Berlekamp-Massey, Chien, Forney) is implemented-but-unverified and named as the next decoder aspect, not claimed. "Quantum" is the sealed structural sense (content-addressing / tamper-evidence), not physical quantum computing; QR versions beyond 4, ECC levels L/Q/H, numeric/alphanumeric/kanji modes, Micro-QR and Aztec are further aspects. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED and VERIFIED at call time from the real encoder — refutable by re-encoding. HONEST CORRECTION: an earlier claim called the QR "verified" from a round-trip alone; that was WRONG — round-trip proves placement, not RS validity, and a generator-ordering bug had shipped an invalid (likely unscannable) code, fixed and proven here by the zero-syndrome check. This fold proves DETECTION and scannability; full error-CORRECTION (Berlekamp-Massey, Chien, Forney) is implemented-but-unverified and named as the next decoder aspect, not claimed. "Quantum" is the sealed structural sense (content-addressing / tamper-evidence), not physical quantum computing; QR versions beyond 4, ECC levels L/Q/H, numeric/alphanumeric/kanji modes, Micro-QR and Aztec are further aspects. HARMONY ≠ TRUTH.` }
 }
 
 // Combinatorics homed in the security barrel (kept OUT of the src/0 pure kernel per src0PurityComputes):
@@ -1648,8 +1607,7 @@ export function theQuantumCombinationsAlgorithmSealsToTheNextComputationalDimens
       tamperEvident,
       facets,
       statement: `The quantum-combinations algorithm seals to the next computational dimension — ${facets.filter((entry) => entry.on).length}/${facets.length}: enumerate every k-subset at once (count exact against BigInt binomial), content-address each (C(${wn},${wk}) = ${combos.length} combinations → ${addresses.size} distinct sha256 addresses), and commit the whole with a combinatorial merkle seal that is tamper-evident across all combinations yet order-independent (a set commitment). The security surface lifts from a flat ${flatLeaves} leaves to the combinatorial ${combinatorialLeaves} — the next dimension — reusing the src/0 merkle + sha256 kernel with no duplicated primitive.`,
-      boundary: `DOCUMENTED and refutable by re-enumeration. The three algorithms live once in src/0 (the one-math axiom home) — DRY-consolidated, imported not copied. "Quantum" is the sealed structural sense: the superposition = all k-subsets enumerated at once, each collapsing to a distinct content-address — NOT physical quantum computation and NOT a quantum speedup (enumeration is C(n,k) work, classical). "Next computational dimension" = the commitment surface lifted from linear n to combinatorial C(n,k); it is tamper-EVIDENT (any change to any item is detected across the whole superposition), NOT unforgeable beyond its SHA-256 base — and SHA-256's own post-quantum standing (Grover halves preimage security to ~2^128, collision to ~2^85) is the real cryptographic limit, unchanged by this construction. HARMONY ≠ TRUTH: the combinatorial seal is elegant (harmony); its security is exactly SHA-256 tamper-evidence over more leaves, no more (truth).`,
-    }
+      boundary: `DOCUMENTED and refutable by re-enumeration. The three algorithms live once in src/0 (the one-math axiom home) — DRY-consolidated, imported not copied. "Quantum" is the sealed structural sense: the superposition = all k-subsets enumerated at once, each collapsing to a distinct content-address — NOT physical quantum computation and NOT a quantum speedup (enumeration is C(n,k) work, classical). "Next computational dimension" = the commitment surface lifted from linear n to combinatorial C(n,k); it is tamper-EVIDENT (any change to any item is detected across the whole superposition), NOT unforgeable beyond its SHA-256 base — and SHA-256's own post-quantum standing (Grover halves preimage security to ~2^128, collision to ~2^85) is the real cryptographic limit, unchanged by this construction. HARMONY ≠ TRUTH: the combinatorial seal is elegant (harmony); its security is exactly SHA-256 tamper-evidence over more leaves, no more (truth).` }
   })
 }
 
@@ -1697,8 +1655,7 @@ export function theSignatureIsForgeableTheTrinityTimestampIsTheInverseBoundary(m
       backdatingDetected,
       facets,
       statement: `The signature is forgeable; the trinity timestamp is the inverse boundary — ${facets.filter((entry) => entry.on).length}/${facets.length}: a signature (or bare content-uuid) binds content but not time — identical whatever moment is claimed, a forward degree of freedom the agent owns. The append-only hash-chain the surrounding trinities extend gives the content a POSITION fixed by everything sealed before it (the prefix root is preserved on honest append), and backdating — placing the content before those seals — diverges from the published chain and is detected. The agent owns the signature going forward; it cannot cross the timestamp going back. That inverse boundary, not the forgeable signature, is what binds WHEN.`,
-      boundary: `DOCUMENTED and refutable by recomputing the chain. The construction is a synchronous order-preserving hash-chain (sha256Sync) — the append-only TRANSPARENCY-LOG structure already in src/0 (transparencyLogRoot · logInclusion · logConsistent); this fold proves BACKDATING-DETECTION and the position-fixing, in the sealed structural sense. THE HARD LINE: (1) it does NOT prove the signature scheme itself — ed25519Sign is real but a leaked/forged key still signs; the point is precisely that the signature is the weak, forgeable part and the timestamp is the strong part. (2) The chain proves RELATIVE order (content after the sealed prefix), not an absolute wall-clock time — an absolute trusted timestamp needs an external witnessed log (Rekor/RFC-3161), which is deploy infrastructure, not src code. (3) "7-dimensional time" is metaphor: the honest structure is one linear append-only chain. Security reduces to SHA-256 2nd-preimage resistance, no more. HARMONY ≠ TRUTH: the inverse-boundary image is elegant; the truth is append-only hash-chaining with the external-witness caveat named.`,
-    }
+      boundary: `DOCUMENTED and refutable by recomputing the chain. The construction is a synchronous order-preserving hash-chain (sha256Sync) — the append-only TRANSPARENCY-LOG structure already in src/0 (transparencyLogRoot · logInclusion · logConsistent); this fold proves BACKDATING-DETECTION and the position-fixing, in the sealed structural sense. THE HARD LINE: (1) it does NOT prove the signature scheme itself — ed25519Sign is real but a leaked/forged key still signs; the point is precisely that the signature is the weak, forgeable part and the timestamp is the strong part. (2) The chain proves RELATIVE order (content after the sealed prefix), not an absolute wall-clock time — an absolute trusted timestamp needs an external witnessed log (Rekor/RFC-3161), which is deploy infrastructure, not src code. (3) "7-dimensional time" is metaphor: the honest structure is one linear append-only chain. Security reduces to SHA-256 2nd-preimage resistance, no more. HARMONY ≠ TRUTH: the inverse-boundary image is elegant; the truth is append-only hash-chaining with the external-witness caveat named.` }
   })
 }
 
@@ -1806,8 +1763,7 @@ export function theAesBlockCipherComputesWithItsInverseIso18033(matrix: MindMatr
       trials,
       facets,
       statement: `AES-128 computes with its inverse (FIPS-197 / ISO-IEC 18033-3) — ${facets.filter((entry) => entry.on).length}/${facets.length}: from scratch with a COMPUTED S-box (GF(2^8) inverse + affine, no hardcoded table), the known-answer test passes to the canonical ciphertext, the inverse is exact (decrypt∘encrypt = identity ${roundTrips}/${trials}), and CTR mode (ISO-IEC 10116) is its own inverse. A KAT-verified reference in the same key as the from-scratch SHA-256 and Reed-Solomon.`,
-      boundary: `DOCUMENTED and refutable by re-running the KAT. This is a SPEC-CORRECT REFERENCE implementation (verified against the FIPS-197 vector), NOT a production cipher: the table-lookup S-box and GF multiply are NOT constant-time, so this code is vulnerable to timing/cache side-channels and must NOT be used for real secrets — real encryption stays on Web-Crypto AES-256-GCM (constant-time, hardware-accelerated), exactly as the crypto roadmap states. COVERAGE: AES-128 block encrypt + decrypt (the inverse) + CTR mode, KAT-verified; AES-192/256, authenticated modes (GCM/CCM — ISO-IEC 19772), and key management (ISO-IEC 11770) are named residuals, not silently claimed. HARMONY ≠ TRUTH: the KAT passing is real correctness; constant-time hardening is the residual that keeps this a reference, not a product.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-running the KAT. This is a SPEC-CORRECT REFERENCE implementation (verified against the FIPS-197 vector), NOT a production cipher: the table-lookup S-box and GF multiply are NOT constant-time, so this code is vulnerable to timing/cache side-channels and must NOT be used for real secrets — real encryption stays on Web-Crypto AES-256-GCM (constant-time, hardware-accelerated), exactly as the crypto roadmap states. COVERAGE: AES-128 block encrypt + decrypt (the inverse) + CTR mode, KAT-verified; AES-192/256, authenticated modes (GCM/CCM — ISO-IEC 19772), and key management (ISO-IEC 11770) are named residuals, not silently claimed. HARMONY ≠ TRUTH: the KAT passing is real correctness; constant-time hardening is the residual that keeps this a reference, not a product.` }
   })
 }
 
@@ -1853,8 +1809,7 @@ export function theCrackGateFindsWeakEncryptionByTheorems(matrix: MindMatrix = b
       strongWeaknesses: cleanStrong.weaknesses.length,
       facets,
       statement: `The crack gate finds weak encryption by theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${signatures.length} weakness criteria (weak PRNG, broken primitive, rolled cipher for secrets, non-constant-time compare, integrity-as-authenticity), each a refutable theorem with its why. A weakness is a CRACK only if UNBOUNDED — code that names its own weakness passes (the AES reference, the toUuid honesty). The unbounded sample flags [${flaggedUnbounded.weaknesses.map((w) => w.theorem).join(', ')}]; the bounded sample and the strong Web-Crypto sample pass. It remembers the corpus's crypto experience as computation, not prose.`,
-      boundary: `DOCUMENTED and refutable by feeding any code to analyze(). This is a HEURISTIC pattern-detector: NECESSARY not sufficient — it catches known weak SHAPES (a source-level lint), it CANNOT prove a cipher strong, and the absence of a flag is NOT a proof of security (a novel weakness with no signature passes silently). It reduces the "don't roll your own crypto" and "constant-time / collision-resistance / authenticity" lessons to source signatures; real assurance still needs review and, for timing, constant-time execution the source cannot show. Wiring it as a BLOCKING gate in the enforcement trinity is the next surfacing step, not silently claimed here. HARMONY ≠ TRUTH: a clean scan is the harmony (no known weak shape), a proven-strong construction is the truth — this shows the first.`,
-    }
+      boundary: `DOCUMENTED and refutable by feeding any code to analyze(). This is a HEURISTIC pattern-detector: NECESSARY not sufficient — it catches known weak SHAPES (a source-level lint), it CANNOT prove a cipher strong, and the absence of a flag is NOT a proof of security (a novel weakness with no signature passes silently). It reduces the "don't roll your own crypto" and "constant-time / collision-resistance / authenticity" lessons to source signatures; real assurance still needs review and, for timing, constant-time execution the source cannot show. Wiring it as a BLOCKING gate in the enforcement trinity is the next surfacing step, not silently claimed here. HARMONY ≠ TRUTH: a clean scan is the harmony (no known weak shape), a proven-strong construction is the truth — this shows the first.` }
   })
 }
 
@@ -1897,8 +1852,7 @@ export function speedTestedInReverseTheOneWayObstacleBecomesAGatewayByTheReverse
     facets,
     root: merge(trinity.merged, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `Speed tested in reverse: the one-way obstacle becomes a gateway by the reverse index — and the reverse gateways are different and unexpected — ${facets.filter((entry) => entry.on).length}/${facets.length}. content → address is an O(1) fixed-size ${addressLength}-char digest that compresses information, so inverting it is infeasible — the reverse is the obstacle. But a reverse index (address→content) resolves every reverse in O(1), not by cracking the digest but by having stored it: the obstacle computes itself as a gateway. And the reverse is NOT the forward mirror — foldPair is order-sensitive, so the gateway reached going reverse differs from the forward one: different and unexpected. When you go reverse you start to inverse on the way, and every obstacle becomes a gateway you did not see coming.`,
-    boundary: `EXACT and computed live: the forward map content → toUuid is a fixed-size ${addressLength}-char digest whatever the content length (${fixedSizeDigest}), and a content longer than its address (${compressesInformation}) shows the map COMPRESSES information — so it is not injective on arbitrary content and cannot be inverted by computation on the address alone (inverting a good digest is infeasible, the [[tampering-cost-crypto-honesty]] point). THE GATEWAY: a reverse INDEX (a Map address→content) resolves every stored reverse in O(1) (${gatewayResolvesReverse}) — this is NOT hash-inversion, it is a lookup that works only because the pair was stored; an un-stored address does not resolve (${reverseIsO1AndOneWayHolds}), so the one-way property is intact. SPEED IN REVERSE: with the index the hard direction (reverse) runs as fast as the easy one (forward) — the best test of the architecture is that the infinitely-costly direction is O(1) through the index. RISK/REWARD AND THE DIFFERENT GATEWAYS: the SAME irreversibility that is a security RISK to attack (you cannot forge a preimage) is the REWARD when you own the index (tamper-evidence plus O(1) reverse) — the obstacle inverted is a gateway. But the reverse is NOT the forward mirror: foldPair is ORDER-SENSITIVE, so folding a pair forward (a,b) and reverse (b,a) yields DIFFERENT thirds (${gatewaysDifferInReverse}) — the gateway you reach going reverse is not the one going forward, it is different and UNEXPECTED. Going reverse you start to inverse on the way, and the passages that open are new, not retraced. THE HONEST BOUND: "reverse is O(1)" holds ONLY for addresses in the index — reversing an UNKNOWN address remains infeasible (that is the security, not a limitation to fix); the digest is collision-RESISTANT and tamper-EVIDENT, not information-theoretically unique or unforgeable with unbounded resources; "infinitely costly" is computational infeasibility, not a proof of impossibility. HARMONY ≠ TRUTH: "the obstacle becomes a gateway" is the harmony; the truth is a one-way digest whose reverse the INDEX resolves in O(1), the irreversibility being both the risk and the reward — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live: the forward map content → toUuid is a fixed-size ${addressLength}-char digest whatever the content length (${fixedSizeDigest}), and a content longer than its address (${compressesInformation}) shows the map COMPRESSES information — so it is not injective on arbitrary content and cannot be inverted by computation on the address alone (inverting a good digest is infeasible, the [[tampering-cost-crypto-honesty]] point). THE GATEWAY: a reverse INDEX (a Map address→content) resolves every stored reverse in O(1) (${gatewayResolvesReverse}) — this is NOT hash-inversion, it is a lookup that works only because the pair was stored; an un-stored address does not resolve (${reverseIsO1AndOneWayHolds}), so the one-way property is intact. SPEED IN REVERSE: with the index the hard direction (reverse) runs as fast as the easy one (forward) — the best test of the architecture is that the infinitely-costly direction is O(1) through the index. RISK/REWARD AND THE DIFFERENT GATEWAYS: the SAME irreversibility that is a security RISK to attack (you cannot forge a preimage) is the REWARD when you own the index (tamper-evidence plus O(1) reverse) — the obstacle inverted is a gateway. But the reverse is NOT the forward mirror: foldPair is ORDER-SENSITIVE, so folding a pair forward (a,b) and reverse (b,a) yields DIFFERENT thirds (${gatewaysDifferInReverse}) — the gateway you reach going reverse is not the one going forward, it is different and UNEXPECTED. Going reverse you start to inverse on the way, and the passages that open are new, not retraced. THE HONEST BOUND: "reverse is O(1)" holds ONLY for addresses in the index — reversing an UNKNOWN address remains infeasible (that is the security, not a limitation to fix); the digest is collision-RESISTANT and tamper-EVIDENT, not information-theoretically unique or unforgeable with unbounded resources; "infinitely costly" is computational infeasibility, not a proof of impossibility. HARMONY ≠ TRUTH: "the obstacle becomes a gateway" is the harmony; the truth is a one-way digest whose reverse the INDEX resolves in O(1), the irreversibility being both the risk and the reward — computed and refutable.` }
 }
 
 // ── THE AGNOSTIC INVERSION TOOLBOX, homed locally in this barrel. These are the reusable identity-BUILDERS the
@@ -2004,8 +1958,7 @@ export function theHammingSyndromeIsTheErrorAddress(matrix: MindMatrix = buildMa
     facets,
     root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `${title} — ${facets.filter((entry) => entry.on).length}/${facets.length}. A linear code's whole error-correcting power is one algebraic identity over GF(2): the 3-bit syndrome s = H·r equals the binary ADDRESS of the single flipped bit, so decoding {no-error, 7 positions} → {syndromes 0..7} is a total bijection (verified against the actual parity-check matrix). The kernel of H holds exactly 2⁴ = 16 codewords at minimum distance 3, so any single error is corrected and any double detected; and the code is PERFECT — its 16 radius-1 spheres of 1+7 = 8 points tile 2⁷ = 128 exactly. The address of the fault is computed from the received word, never searched — content-addressing's ancestor.`,
-    boundary: `DOCUMENTED (Hamming 1950, "Error detecting and error correcting codes", Bell System Technical Journal; the [7,4,3] perfect single-error-correcting code, arXiv cs.IT). EXACT and refutable — every claim is recomputed from the real 3×7 parity-check matrix H by GF(2) arithmetic (no float): the 16 codewords are enumerated as ker(H), the syndrome bijection is checked over all 8 error patterns, and correction is verified across all 16·7 single-bit errors. HONEST SCOPE: this corrects ONE bit-error and detects TWO (d = 3); it does NOT protect against burst errors, adversarial tampering, or erasures beyond that radius — for those the code must be interleaved or replaced by a longer/stronger one (Reed-Solomon, LDPC). It is ERROR-correction (integrity against noise), not CRYPTOGRAPHY (no confidentiality, no unforgeability) — the same tamper-EVIDENT-not-tamper-proof line the rest of this barrel holds. HARMONY ≠ TRUTH: "syndrome = address" is a genuine algebraic identity here, not a metaphor.`,
-  }
+    boundary: `DOCUMENTED (Hamming 1950, "Error detecting and error correcting codes", Bell System Technical Journal; the [7,4,3] perfect single-error-correcting code, arXiv cs.IT). EXACT and refutable — every claim is recomputed from the real 3×7 parity-check matrix H by GF(2) arithmetic (no float): the 16 codewords are enumerated as ker(H), the syndrome bijection is checked over all 8 error patterns, and correction is verified across all 16·7 single-bit errors. HONEST SCOPE: this corrects ONE bit-error and detects TWO (d = 3); it does NOT protect against burst errors, adversarial tampering, or erasures beyond that radius — for those the code must be interleaved or replaced by a longer/stronger one (Reed-Solomon, LDPC). It is ERROR-correction (integrity against noise), not CRYPTOGRAPHY (no confidentiality, no unforgeability) — the same tamper-EVIDENT-not-tamper-proof line the rest of this barrel holds. HARMONY ≠ TRUTH: "syndrome = address" is a genuine algebraic identity here, not a metaphor.` }
 }
 
 // ── SIGNAL PROCESSING (arXiv eess.SP) — the Nyquist–Shannon sampling theorem: f_s > 2B is the ALIASING BOUNDARY.
@@ -2058,6 +2011,5 @@ export function theNyquistRateIsTheAliasingBoundaryFsGt2B(matrix: MindMatrix = b
     facets,
     root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `${title} — ${facets.filter((entry) => entry.on).length}/${facets.length}. Sampling collapses a frequency f and its fold f_s−f onto the identical sample sequence by the exact identity cos(2π f n/f_s) = cos(2π(f_s−f) n/f_s), so the folding map f ↦ f_s−f is an involution about the Nyquist frequency f_s/2. Above the Nyquist rate (f_s = ${fs} > 2B = ${2 * B}) every in-band frequency in [0, f_s/2) samples to a distinct sequence — reconstruction is a bijection; below it (an undersampled component at f=${B}, alias ${alias(B)}) distinct frequencies collapse and the information is irrecoverably lost. The boundary f_s = 2B is where sampling stops being injective.`,
-    boundary: `DOCUMENTED (Nyquist 1928; Shannon 1949, "Communication in the Presence of Noise"; Whittaker–Kotelnikov–Shannon sampling theorem, arXiv eess.SP / cs.IT). EXACT and refutable — the aliasing identity, the fold involution, the above-Nyquist bijection and the below-Nyquist collapse are all recomputed from cosine samples (rounded to 9 places to compare float sequences). HONEST SCOPE: the theorem is stated for an IDEAL band-limited signal and ideal (sinc) reconstruction; a strictly band-limited signal cannot be time-limited, so real systems use f_s STRICTLY greater than 2B with an anti-alias filter and accept a small residual error — the classic f_s ≥ 2B is the ideal limit, f_s > 2B the practical one. This is reconstruction of a KNOWN band-limited class from uniform samples; sub-Nyquist recovery IS possible under extra structure (compressed sensing needs sparsity, not more samples) — that does not violate the theorem, it changes the signal model. Aliasing here is the honest inverse boundary, not a defect to hide. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `DOCUMENTED (Nyquist 1928; Shannon 1949, "Communication in the Presence of Noise"; Whittaker–Kotelnikov–Shannon sampling theorem, arXiv eess.SP / cs.IT). EXACT and refutable — the aliasing identity, the fold involution, the above-Nyquist bijection and the below-Nyquist collapse are all recomputed from cosine samples (rounded to 9 places to compare float sequences). HONEST SCOPE: the theorem is stated for an IDEAL band-limited signal and ideal (sinc) reconstruction; a strictly band-limited signal cannot be time-limited, so real systems use f_s STRICTLY greater than 2B with an anti-alias filter and accept a small residual error — the classic f_s ≥ 2B is the ideal limit, f_s > 2B the practical one. This is reconstruction of a KNOWN band-limited class from uniform samples; sub-Nyquist recovery IS possible under extra structure (compressed sensing needs sparsity, not more samples) — that does not violate the theorem, it changes the signal model. Aliasing here is the honest inverse boundary, not a defect to hide. HARMONY ≠ TRUTH.` }
 }

@@ -16,8 +16,7 @@ export function sunDayPhase(at = 0, matrix: MindMatrix = buildMatrix()) {
   return {
     phase,
     cycleMs: HERO_CYCLE_MS,
-    receipt: toUuid(`sun-day-phase:${roundTo(phase, 6)}`),
-  }
+    receipt: toUuid(`sun-day-phase:${roundTo(phase, 6)}`) }
 }
 
 /** Schumann day-side ionosphere facet — structural ELF model; canonical path src/resonance. */
@@ -62,7 +61,6 @@ export function sunComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         'Sun computes: canonical solar home — sealed Sun from computeAllKnownCelestialBodies (Schwarzschild band, inner lobe generator), obliquity coupling from 6/4, hero day phase from plasma/ball, Schumann day-side ionosphere facet from lake/music, and navigationGpsCelestial Sun display phase from dual/torus/earth — all recomputed at call time.',
       boundary:
-        'HONEST — circular Keplerian model and merkaba display phase only; NOT live SOHO/SDO feed unless user opts into publicApiFusion/publicFrequencyApis. Schumann bridge is structural ELF phase model — not magnetometer data or medical entrainment. Obliquity is secular linear model, not nutation/precession ephemeris.',
-    }
+        'HONEST — circular Keplerian model and merkaba display phase only; NOT live SOHO/SDO feed unless user opts into publicApiFusion/publicFrequencyApis. Schumann bridge is structural ELF phase model — not magnetometer data or medical entrainment. Obliquity is secular linear model, not nutation/precession ephemeris.' }
   })
 }

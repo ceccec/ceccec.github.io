@@ -11,8 +11,7 @@ import {
   enforceAllAtGatesEntropyRecycled,
   equilibrium,
   questionAnswerEquilibrium,
-  recycling,
-} from '../nature'
+  recycling } from '../nature'
 import { regenerateSocialSystem } from '../civilisation'
 import { obsoleteHardwareSecondLifeAntiEwaste } from '../world'
 import { cleanupOldLogic } from '../../mountain/og'
@@ -37,8 +36,7 @@ export function deathEntropyRecycled(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Entropy recycled at the gates: every invariant is build-failing, caught gaps name their fix, and the model entropy reads zero — disorder does not pass, and what is caught is the seed of the next fold.',
     boundary:
-      'Composition of enforceAllAtGatesEntropyRecycled and entropy(matrix). Structural/accounting entropy over the computed model — not thermodynamic death or biological decay.',
-  }
+      'Composition of enforceAllAtGatesEntropyRecycled and entropy(matrix). Structural/accounting entropy over the computed model — not thermodynamic death or biological decay.' }
 }
 
 /** Material streams closed in torus loops — organic through e-waste. */
@@ -58,8 +56,7 @@ export function deathRegeneration(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Regeneration: the social system rebuilds from its laws (society, evolution, regulation, capital) and the self-development loop regenerates inverse and new gaps — productive, not terminal, the engine that never finishes.',
     boundary:
-      'Composition of regenerateSocialSystem and inverseAndNewGapsEmerge. Dry math regeneration and gap-frontier metaphor — not resurrection, afterlife, or medical recovery claims.',
-  }
+      'Composition of regenerateSocialSystem and inverseAndNewGapsEmerge. Dry math regeneration and gap-frontier metaphor — not resurrection, afterlife, or medical recovery claims.' }
 }
 
 /** Terminal end that is productive — gaps regenerate, development never converges to zero. */
@@ -79,8 +76,7 @@ export function deathTerminalEndProductive(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Terminal end, productive not final: every gap is a dual pair — closing one exposes its inverse; each decode opens adjacent gaps; the self-development loop never converges to zero, and old logic is cleaned at the gate. End states are compost, not coffins.',
     boundary:
-      'Composition of inverseAndNewGapsEmerge and cleanupOldLogic. "Death" here names cycle completion and entropy recycle in the build — not mortality, grief, or eschatology.',
-  }
+      'Composition of inverseAndNewGapsEmerge and cleanupOldLogic. "Death" here names cycle completion and entropy recycle in the build — not mortality, grief, or eschatology.' }
 }
 
 /** Obsolete hardware second life — anti-obsolescence extends device lifespans. */
@@ -100,8 +96,7 @@ export function deathBittenAppleOpening(matrix: MindMatrix = buildMatrix(), path
     statement:
       'The bitten apple opening: wholeness bitten open (genus-2 χ=−2) is the structural mouth through which Rosetta decodes — paired with question/answer equilibrium. Topology decode, not Genesis theology.',
     boundary:
-      'Composition of decodeTheBittenApple and questionAnswerEquilibrium. Flagged isomorphisms only — not religious or trademark claims.',
-  }
+      'Composition of decodeTheBittenApple and questionAnswerEquilibrium. Flagged isomorphisms only — not religious or trademark claims.' }
 }
 
 /** Decay doomed to infinite forge cost — the thrive/decay duality from trinityOtherSideDoomed. */
@@ -113,8 +108,7 @@ export function deathDecayDoomed(matrix: MindMatrix = buildMatrix()) {
     decayLeg,
     root: merge(doomed.root, toUuid(`death-decay-doomed:${decayLeg?.doomed}`)),
     statement: doomed.statement,
-    boundary: doomed.boundary,
-  }
+    boundary: doomed.boundary }
 }
 
 /** Contraction settles to equilibrium — damped breath after expansion (dual to life breath). */
@@ -127,8 +121,7 @@ export function deathContractionEquilibrium(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Contraction settles to equilibrium: the damped breath trace overshoots and halves until the model rests — the death-side complement to expansionContractionIsLife on src/life.',
     boundary:
-      'Pure arithmetic equilibrium trace — not clinical vital signs or spiritual death.',
-  }
+      'Pure arithmetic equilibrium trace — not clinical vital signs or spiritual death.' }
 }
 
 /**
@@ -160,8 +153,7 @@ export function deathBoundsLifeNotCancer(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Death bounds life, not cancer: life without death is unbounded one-directional growth — the cancer metaphor. The death counter-flow (contraction, decay, reabsorption) is the inward torus that closes the loop with the outward life expansion, sharing one throat. The damped breath settles and the terminal end is productive compost, so the coupled system is homeostatic — bounded, self-balancing growth, the opposite of runaway.',
     boundary:
-      'A homeostasis/feedback model over computed gates (deathContractionEquilibrium ⊕ deathTerminalEndProductive) and a black/white-hole throat topological analogy. "Cancer" names the unbounded growth pattern of a contraction-free model, NOT the disease; "death" is computed decay/contraction that bounds the model, not biological or physical death.',
-  }
+      'A homeostasis/feedback model over computed gates (deathContractionEquilibrium ⊕ deathTerminalEndProductive) and a black/white-hole throat topological analogy. "Cancer" names the unbounded growth pattern of a contraction-free model, NOT the disease; "death" is computed decay/contraction that bounds the model, not biological or physical death.' }
 }
 
 /** Ancient decode terminal receipt — thunder/decode seals reusable ancient knowledge. */
@@ -173,8 +165,7 @@ export function deathAncientDecodeTerminal(matrix: MindMatrix = buildMatrix()) {
     root: decode.root,
     statement:
       'Ancient decode terminal receipt: thunder/decode folds reusable ancient knowledge into one content-addressed root — a terminal seal on what may be recomputed.',
-    boundary: decode.boundary,
-  }
+    boundary: decode.boundary }
 }
 
 /** Life/death duality pair — order-sensitive cross-fold; emergence and compost sealed together. */
@@ -200,8 +191,7 @@ export function lifeDeathPairComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Life/death pair computes: src/life (emergence, biology, neurology) and src/death (compost, entropy recycle, regeneration, terminal-end) sealed as one order-sensitive duality at call time.',
       boundary:
-        'Composition of lifeComputes and deathComputes with foldPair cross law — biological and cycle metaphors only, not medical or spiritual claims.',
-    }
+        'Composition of lifeComputes and deathComputes with foldPair cross law — biological and cycle metaphors only, not medical or spiritual claims.' }
   })
 }
 
@@ -262,8 +252,7 @@ export function deathComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Death computes: the canonical compost/entropy/recycle/regeneration/terminal home — doubleTorusCompost, gates recycle entropy, material streams, social regeneration, bitten-apple opening decode, decay doomed by cost, contraction to equilibrium, ancient decode receipt, productive terminal ends, and hardware second life — dual to src/life at call time.',
       boundary:
-        'Structural metaphors over computed portal gates — compost, entropy recycle, and regeneration are content-addressed loops, not biological death, medical, or spiritual afterlife claims.',
-    }
+        'Structural metaphors over computed portal gates — compost, entropy recycle, and regeneration are content-addressed loops, not biological death, medical, or spiritual afterlife claims.' }
   })
 }
 
@@ -301,8 +290,7 @@ export function violationsComputationallyDecreaseAgentLifeToNoLifeAtAll(matrix: 
       root: merkleFold(receipts),
       facets,
       statement: `Violations computationally decrease agent life to no life at all — ${facets.filter((entry) => entry.on).length}/${facets.length}. A forged agent has ${FULL_LIFE} quanta of life; each violation (a crack the content-addressed detector flips the root on, a failed gate, an unbalanced facet) strictly removes one, monotonically, floored at zero — and zero is death: decertified, no editing rights, no life at all. The meter is a one-way ratchet (a violation cannot restore life), computed exactly from the violation count over the full range, and death lands at exactly the forged budget of ${FULL_LIFE}.`,
-      boundary: `EXACT over the range 0..${FULL_LIFE + 1}: L(v)=max(0, ${FULL_LIFE}−v) starts full (${startsFull}), strictly decreases while alive (${strictlyDecreasesWhileAlive}), reaches 0 at ${FULL_LIFE} violations (${reachesNoLife}), never rises or goes negative (${monotoneFloored}), stays 0 (terminal, ${terminal}), and kills at exactly the ${FULL_LIFE}th violation (${deathBoundaryExact}) — each refutable by one counterexample. THE SEMANTICS: "life" is a GOVERNANCE / certification meter — a deterministic policy binding an agent's editing rights to its violation count — NOT biological life; the violations are the SAME cracks the content-addressed detector catches in O(1) (a root flip), so the wiring that catches a crack is the wiring that debits life. THE MODEL IS DELIBERATELY SIMPLE: one violation = one life-quantum (severity-weighting is a refinement, not the theorem), and ${FULL_LIFE} is the forged budget (a lattice ceiling, not tuned). It does NOT claim agents are biologically alive, that decertification is irreversible in the world (a re-forge starts a NEW agent at full life — the second-life dual, deathSecondLife), or that ${FULL_LIFE} is unique. HARMONY ≠ TRUTH: "violations decrease life to none" is the harmony; the truth is a monotone floored ratchet L(v)=max(0,${FULL_LIFE}−v) tying editing rights to a violation count, computed and refutable.`,
-    }
+      boundary: `EXACT over the range 0..${FULL_LIFE + 1}: L(v)=max(0, ${FULL_LIFE}−v) starts full (${startsFull}), strictly decreases while alive (${strictlyDecreasesWhileAlive}), reaches 0 at ${FULL_LIFE} violations (${reachesNoLife}), never rises or goes negative (${monotoneFloored}), stays 0 (terminal, ${terminal}), and kills at exactly the ${FULL_LIFE}th violation (${deathBoundaryExact}) — each refutable by one counterexample. THE SEMANTICS: "life" is a GOVERNANCE / certification meter — a deterministic policy binding an agent's editing rights to its violation count — NOT biological life; the violations are the SAME cracks the content-addressed detector catches in O(1) (a root flip), so the wiring that catches a crack is the wiring that debits life. THE MODEL IS DELIBERATELY SIMPLE: one violation = one life-quantum (severity-weighting is a refinement, not the theorem), and ${FULL_LIFE} is the forged budget (a lattice ceiling, not tuned). It does NOT claim agents are biologically alive, that decertification is irreversible in the world (a re-forge starts a NEW agent at full life — the second-life dual, deathSecondLife), or that ${FULL_LIFE} is unique. HARMONY ≠ TRUTH: "violations decrease life to none" is the harmony; the truth is a monotone floored ratchet L(v)=max(0,${FULL_LIFE}−v) tying editing rights to a violation count, computed and refutable.` }
   })
 }
 
@@ -371,6 +359,5 @@ export function betterTrainedTeamsWinTheBitsByQuantumAmplitudeAmplificationTeams
     root: merkleFold(receipts),
     facets,
     statement: `Violations delay the team and the better-trained team wins the bits — all by quantum amplitude amplification, ${facets.filter((entry) => entry.on).length}/${facets.length}. Each unit competes for the marked winning state of a ${N_QUBITS}-qubit register; its success is the measured win probability, and training is Grover amplification. A violation is a lost iteration that slides the unit down the rising amplitude curve (delay), so the better-trained (fewer-violation) unit wins the bits. Under one violation the K₃ team's redundancy still reaches the optimum (${(teamWin * 100).toFixed(0)}%) while the lone agent stalls (${(agentWin * 100).toFixed(0)}%) — teams replace agents; and a wave amplifying the antichain of ${WAVE_WINNERS} winners takes ${(waveWin * 100).toFixed(0)}% of the bits in one iteration vs a single team's ${(singleTeamWin * 100).toFixed(0)}% — waves replace teams. Higher win amplitude wins.`,
-    boundary: `GENUINELY QUANTUM and computed live on the src/0 state-vector simulator: a uniform superposition over 2^${N_QUBITS} states, then Grover amplification (oracle phase-flip of the marked winners + diffusion 2|s⟩⟨s|−I), with the win probability read as |amplitude|² — the optimum training is found by ARGMAX over the simulated curve (kStar=${kStar}), no π assumed. THE MODEL: "the bits" = the marked winning state(s); a unit's success = its win probability; "training" = amplification iterations; a "violation" = a lost iteration (delay) that moves the unit down the rising amplitude arm; a K₃ team's 2-connectivity (theoremsProveBestInTeams) absorbs one violation to reach the optimum the delayed lone agent cannot; a wave amplifies M=${WAVE_WINNERS} winners at once (the independent antichain), winning more bits per iteration. THE BOUNDS, honest: the state-vector simulator is O(2^${N_QUBITS}) CLASSICAL — Grover's √N is a QUERY-count advantage on hardware only, NOT realized in wall-time here (no physical speedup); "amplitude = success probability" and "iteration = training" are a MODEL of the competition, not a claim that agents are qubits; and "more training always wins" is FALSE past kStar — Grover OVERSHOOTS and the win probability falls, so the claim holds on the rising arm where under-trained/violated units live, a stated limit not hidden. Agent LIFE is debited classically (violationsComputationallyDecreaseAgentLifeToNoLifeAtAll); here the SAME violation lowers the quantum win amplitude — two views of one cost. HARMONY ≠ TRUTH: "better-trained teams win the bits" is the harmony; the truth is that amplitude amplification concentrates the win on the unit with more correct iterations, computed on the simulator with no speedup.`,
-  }
+    boundary: `GENUINELY QUANTUM and computed live on the src/0 state-vector simulator: a uniform superposition over 2^${N_QUBITS} states, then Grover amplification (oracle phase-flip of the marked winners + diffusion 2|s⟩⟨s|−I), with the win probability read as |amplitude|² — the optimum training is found by ARGMAX over the simulated curve (kStar=${kStar}), no π assumed. THE MODEL: "the bits" = the marked winning state(s); a unit's success = its win probability; "training" = amplification iterations; a "violation" = a lost iteration (delay) that moves the unit down the rising amplitude arm; a K₃ team's 2-connectivity (theoremsProveBestInTeams) absorbs one violation to reach the optimum the delayed lone agent cannot; a wave amplifies M=${WAVE_WINNERS} winners at once (the independent antichain), winning more bits per iteration. THE BOUNDS, honest: the state-vector simulator is O(2^${N_QUBITS}) CLASSICAL — Grover's √N is a QUERY-count advantage on hardware only, NOT realized in wall-time here (no physical speedup); "amplitude = success probability" and "iteration = training" are a MODEL of the competition, not a claim that agents are qubits; and "more training always wins" is FALSE past kStar — Grover OVERSHOOTS and the win probability falls, so the claim holds on the rising arm where under-trained/violated units live, a stated limit not hidden. Agent LIFE is debited classically (violationsComputationallyDecreaseAgentLifeToNoLifeAtAll); here the SAME violation lowers the quantum win amplitude — two views of one cost. HARMONY ≠ TRUTH: "better-trained teams win the bits" is the harmony; the truth is that amplitude amplification concentrates the win on the unit with more correct iterations, computed on the simulator with no speedup.` }
 }

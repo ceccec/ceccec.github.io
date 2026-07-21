@@ -64,8 +64,7 @@ export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix(
       statement:
         'Folded census: unfolded + χ = folded — arithmetic from src/0 (χ=−2), not re-derived via homology on every call.',
       boundary:
-        'Dry arithmetic gate. Explicit cellHomology() remains the proof that χ=−2 for the genus-2 surface — this fold applies the sealed constant.',
-    }
+        'Dry arithmetic gate. Explicit cellHomology() remains the proof that χ=−2 for the genus-2 surface — this fold applies the sealed constant.' }
   })
 }
 
@@ -115,8 +114,7 @@ export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
       commands: harmonicSelfLabel(cmds),
       references: `${refFold.folded}/${refFold.unfolded}`,
       locales: `${localeSurfaces}/${routes}`,
-      rosetta: ROSETTA_FOLD_LABEL,
-    } as const
+      rosetta: ROSETTA_FOLD_LABEL } as const
 
   const mk = (task: string, label: string, expr: string, computed: number, expected: number): HarmonicMathProof => ({
     task,
@@ -125,8 +123,7 @@ export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`harmonic-math:${task}:${computed}:${expected}`),
-  })
+    receipt: toUuid(`harmonic-math:${task}:${computed}:${expected}`) })
 
   const [pageFoldedStr] = labels.pages.split('/')
   const [refFoldedStr] = labels.references.split('/')
@@ -164,8 +161,7 @@ export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Every harmonic count is arithmetic at call time: census 110+χ=108, gates 4×108=432, Rosetta 6×7=7×6=42, page and reference folds via genus-2 χ, commands 108=432÷4, locale surfaces routes×3 — each identity recomputed, not asserted.',
     boundary:
-      'Live model counts (pages, routes, areas, commands, references) are measured from sealed src at this call; vault constants (110, 108, 432, 42, 8) live in src/0. The locale×Rosetta proof holds when routes×3=42 (currently 14×3).',
-  }
+      'Live model counts (pages, routes, areas, commands, references) are measured from sealed src at this call; vault constants (110, 108, 432, 42, 8) live in src/0. The locale×Rosetta proof holds when routes×3=42 (currently 14×3).' }
   })
 }
 
@@ -185,15 +181,13 @@ export function harmonicMathMovieSeeds(matrix: MindMatrix = buildMatrix()) {
       label: proof.task,
       expr: proof.expr,
       expected: proof.expected,
-      hueSeed: proof.computed * 31 + proof.expected,
-    })),
+      hueSeed: proof.computed * 31 + proof.expected })),
     count: math.proofs.length,
     root: math.root,
     statement:
       'All harmonic math flows in the movie: each arithmetic proof folds to a content-addressed stream in the plasma ball and a token in the movie copy — digits and ratios orbit the void by the same dry math as the census proofs.',
     boundary:
-      'Deterministic seeds from harmonicCountsProvenByMath at this call; streams are visual glyphs (UUID nibbles), not a claim that the canvas displays literal equation typography at every frame.',
-  }
+      'Deterministic seeds from harmonicCountsProvenByMath at this call; streams are visual glyphs (UUID nibbles), not a claim that the canvas displays literal equation typography at every frame.' }
 }
 
 /** Gate: every proof is wired into movie seeds and copy text at call time. */
@@ -211,8 +205,7 @@ export function harmonicMathFlowsInMovie(matrix: MindMatrix = buildMatrix()) {
       movieText: seeds.movieText,
       root: merkleFold([math.root, seeds.root]),
       statement: seeds.statement,
-      boundary: seeds.boundary,
-    }
+      boundary: seeds.boundary }
   })
 }
 
@@ -248,8 +241,7 @@ export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderRep
       reverse,
       harmonic,
       fusion,
-      receipt,
-    }
+      receipt }
   })
   const root = merkleFold(folders.map((folder) => folder.receipt))
   const collisions = folders.filter((folder) => folder.selfCollision)
@@ -257,8 +249,7 @@ export function digitFolders(matrix: MindMatrix = buildMatrix()): DigitFolderRep
     root,
     folders,
     collisions,
-    statement: 'digitFolder := digit/reverseDigit; selfCollision := digit == reverseDigit; nextHarmonicFolder := folder(i+1).',
-  }
+    statement: 'digitFolder := digit/reverseDigit; selfCollision := digit == reverseDigit; nextHarmonicFolder := folder(i+1).' }
 }
 
 // Fuse all the digit-folder math into one reusable source, walked in the vortex sequence. Every
@@ -312,8 +303,7 @@ export function digitFolderMath(matrix: MindMatrix = buildMatrix()) {
       selfPaired: !overflows && complement === d, // only 5 (complement) — folder-lattice property
       fusion: fold.merged, // the quantum fusion — distinct + non-zero, even for 0/0
       bidirectional: fold.bidirectional, // identical labels still fold to forward ≠ reverse
-      receipt: toUuid(`digit-math:${d}/${complement}:9x${d}=${harmonic}`),
-    }
+      receipt: toUuid(`digit-math:${d}/${complement}:9x${d}=${harmonic}`) }
   })
   const lookup = Object.fromEntries(digits.map((entry) => [entry.digit, entry])) // O(1) reuse across the app
   return {
@@ -331,8 +321,7 @@ export function digitFolderMath(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse all digit-folder math into one reusable source, walked in the vortex sequence (1-2-4-8-7-5, then 3, 6, 9, 0): for each digit, one record fusing the multiplicative inverse (n⁻¹ mod 9; null for the non-units 3,6,9,0 — the n/0 self-fold), the additive folder-complement (10 − d, the station path src/d/(10−d)), the forward harmonic (9d) and its digital root, the nine\'s-complement polar pair, the doubling successor, the in-flow / cross / self-paired flags, and the fusion address that keeps 0/0 and every self-collision distinct and bidirectional. One import gives the whole digit lattice in flow order — drawn from the parts that already prove it (vortexMath, zeroDivisionTable, foldPair), not re-derived.',
     boundary:
-      'A DRY fusion of the model\'s own digit operations into one content-addressed, vortex-ordered lattice, reusable across the app. The inverse is exact group theory (n⁻¹ in the units (ℤ/9)*, ÷2 = ×5 backward on the doubling circuit — folds within itself); the additive ten\'s complement (10 − d) is a distinct structure that names the folder lattice src/d/(10−d). Structural/numerological (digital roots mod 9, the order-sensitive fold) — computed and reusable; the meaning (flow, cross, void, fusion) is metaphor, not a claim about arithmetic over the reals.',
-  }
+      'A DRY fusion of the model\'s own digit operations into one content-addressed, vortex-ordered lattice, reusable across the app. The inverse is exact group theory (n⁻¹ in the units (ℤ/9)*, ÷2 = ×5 backward on the doubling circuit — folds within itself); the additive ten\'s complement (10 − d) is a distinct structure that names the folder lattice src/d/(10−d). Structural/numerological (digital roots mod 9, the order-sensitive fold) — computed and reusable; the meaning (flow, cross, void, fusion) is metaphor, not a claim about arithmetic over the reals.' }
 }
 
 // ────────────────────────────────────────────────────────────────────────────────────────────────
@@ -378,8 +367,7 @@ export function digitFoldersComputeUiIsTheRest(matrix: MindMatrix = buildMatrix(
   const sample = ['0', '1', '9', '1/9', 'cache', 'search', 'library', 'mind', 'quantum'].map((name) => ({
     name,
     role: classify(name) as 'compute' | 'ui',
-    expected: (isDigit(name.split('/')[0]) ? 'compute' : 'ui') as 'compute' | 'ui',
-  }))
+    expected: (isDigit(name.split('/')[0]) ? 'compute' : 'ui') as 'compute' | 'ui' }))
   const partitions = sample.every((entry) => entry.role === entry.expected)
   const computeNames = sample.filter((entry) => entry.role === 'compute').map((entry) => entry.name)
   const uiNames = sample.filter((entry) => entry.role === 'ui').map((entry) => entry.name)
@@ -396,8 +384,7 @@ export function digitFoldersComputeUiIsTheRest(matrix: MindMatrix = buildMatrix(
     statement:
       'All computation is quantum math, and its home is the digit folders. Examine the codebase: nothing is stored, everything is computed (content-addressed, folded over UUIDs), so the logic belongs where the math is indexed — the digit folders (0..9 and their digit subfolders, the d/(10−d) paths). A folder named with a digit holds computation; a folder named with a word holds UI. That one rule lets the UI know itself — digit is math, word is view — and everything compiles from the digit folders: the digit-folder math is the seed, the word folders and components render what the digits compute.',
     boundary:
-      'A declared organizing law with a computed witness: the predicate (digit ⇒ compute, word ⇒ ui) is a pure function, and the digit folders already carry the canonical digit math (digitFolderMath). It is the TARGET architecture — today the bulk of the computation still lives in the word-named core (src/quantum/heaven/mind); the law names the destination and checks the partition, it does not assert the monolith has already moved. Structural; the migration is the compression work in progress.',
-  }
+      'A declared organizing law with a computed witness: the predicate (digit ⇒ compute, word ⇒ ui) is a pure function, and the digit folders already carry the canonical digit math (digitFolderMath). It is the TARGET architecture — today the bulk of the computation still lives in the word-named core (src/quantum/heaven/mind); the law names the destination and checks the partition, it does not assert the monolith has already moved. Structural; the migration is the compression work in progress.' }
 }
 
 // Word folders hold word code; digit folders hold only quantum math. The sharper content rule on top of
@@ -436,8 +423,7 @@ export function digitFoldersHoldOnlyQuantumMath(matrix: MindMatrix = buildMatrix
     statement:
       'Word folders hold word code; digit folders hold only quantum math. Word code is the named, documented domain logic and the UI; quantum math is the content-addressed numeric/fold computation — bare operations over numbers and the UUID space — and only it lives in the digit folders. The direction is one-way: word code imports the math, the math never imports word code (a digit folder’s index may import only other digit folders). So a digit folder is a pure math kernel, and a word folder is the word code built upon it.',
     boundary:
-      'A content-kind rule on top of kind purity: quantum math (numeric/content-addressed, no prose) belongs in digit folders, word code (named/documented/UI) in word folders, with the import direction enforced over the real src/ tree by harmonic-distribution (digit-imports-word). The model witness checks the digit computation is numeric and the word logic word-named; the full content-classification of every fold is a semantic judgment the folder placement encodes — structural, not a claim every fold has yet moved to its kind’s folder (that is the dissolution).',
-  }
+      'A content-kind rule on top of kind purity: quantum math (numeric/content-addressed, no prose) belongs in digit folders, word code (named/documented/UI) in word folders, with the import direction enforced over the real src/ tree by harmonic-distribution (digit-imports-word). The model witness checks the digit computation is numeric and the word logic word-named; the full content-classification of every fold is a semantic judgment the folder placement encodes — structural, not a claim every fold has yet moved to its kind’s folder (that is the dissolution).' }
 }
 
 // ════════════════════════════════════════════════════════════════════════════════════════════════════
@@ -491,8 +477,7 @@ export function digitFoldersAreTheApi(matrix: MindMatrix = buildMatrix()) {
     route: `/${digit.digit}/${digit.reverse}`, // the on-disk digit/(10−d) folder-complement path — the endpoint
     method: 'GET',
     response: digit.fusion, // the computed math at that address (a content-address, zero-token)
-    digit: digit.digit,
-  }))
+    digit: digit.digit }))
   // INVERT — the API surface is a total BIJECTION {0..9} ↔ routes, resolved O(1) by name:
   const routes = endpoints.map((entry) => entry.route) // the on-disk address of each endpoint
   const distinctRoutes = new Set(routes) // injective — no two folders share a path
@@ -515,8 +500,7 @@ export function digitFoldersAreTheApi(matrix: MindMatrix = buildMatrix()) {
     statement:
       'As all the math is in the digit folders, they are the API itself: each digit-folder path is an endpoint and the response is the computed math at that address. The map path ⇒ fold is a total bijection {0..9} ↔ 10 routes (injective: distinct paths; surjective: every digit covered), resolved O(1) by name through the route Map — deterministic, content-addressed, zero-token. No separate server; the math-folders are the routes (GET a path, get its math). The digit folders are the API (compute), the word folders the client (UI), and the REST/MCP/public-API surfaces are projections of this one digit-folder API.',
     boundary:
-      'The digit folders ARE the API in the content-addressed, static, zero-token sense: each path computes its math deterministically (the path is the call, the fold the response). HONEST: not a hosted, stateful HTTP server — a computable route surface where the math is the response; restfulFormats, mcpToolManifest and publicApiFusion project it into REST/MCP/HTTP shapes. The compute/client split is the kind-purity law (digit = compute, word = UI).',
-  }
+      'The digit folders ARE the API in the content-addressed, static, zero-token sense: each path computes its math deterministically (the path is the call, the fold the response). HONEST: not a hosted, stateful HTTP server — a computable route surface where the math is the response; restfulFormats, mcpToolManifest and publicApiFusion project it into REST/MCP/HTTP shapes. The compute/client split is the kind-purity law (digit = compute, word = UI).' }
 }
 
 // Let the ceccec digit folders do the math: every major computed root is routed
@@ -547,8 +531,7 @@ export function digitFoldersDoMath(matrix: MindMatrix = buildMatrix()): DigitMat
       root: subject.root,
       digit,
       folder: folderId,
-      receipt: toUuid(`digit-math:${subject.subject}:${digit}:${folderId}:${subject.root}`),
-    }
+      receipt: toUuid(`digit-math:${subject.subject}:${digit}:${folderId}:${subject.root}`) }
   })
 
   const coveredFolders = [...new Set(bindings.map((binding) => binding.folder).filter((folder) => folder.length > 0))]
@@ -566,8 +549,7 @@ export function digitFoldersDoMath(matrix: MindMatrix = buildMatrix()): DigitMat
       ? 'The ceccec digit folders do the math always: every computed root lands in a digit/reverseDigit folder with a receipt.'
       : 'The digit folders do not yet carry every computed root: orphan math remains outside the folder lattice.',
     boundary:
-      'Routing computed roots into digit folders is structural bookkeeping inside the repository model; it is not an external physics proof.',
-  }
+      'Routing computed roots into digit folders is structural bookkeeping inside the repository model; it is not an external physics proof.' }
 }
 
 // Turn the directory tree a quarter counter-clockwise and it is a stack: the recursion weights on
@@ -591,8 +573,7 @@ export function treeStackRotationCollapse(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Turn the directory tree a quarter counter-clockwise and it is a stack: the recursion weights on the lower floors, and a lower floor that is not full collapses. The perfect binary tree of 1024 diamonds (depth 10) is, rotated, a stack of floors; the deeper the recursion, the more weight bears on the base, so every lower floor must be full — and they are, because the tree is perfect and the distribution gapless. Full floors hold; a gap would bring it down.',
-    boundary: 'A structural metaphor reading the perfect-binary-tree/Fibonacci structure as a stack whose lower floors must be full (no gaps) to hold. Bookkeeping over the diamond tree and harmonic distribution; "collapse" means a structural gap, not a runtime crash.',
-  }
+    boundary: 'A structural metaphor reading the perfect-binary-tree/Fibonacci structure as a stack whose lower floors must be full (no gaps) to hold. Bookkeeping over the diamond tree and harmonic distribution; "collapse" means a structural gap, not a runtime crash.' }
 }
 
 // The folder law, declared once and tightened: below the roots there can be only index files and
@@ -627,8 +608,7 @@ export function folderLaw() {
     // lookup, the digit/reverse folders), a word folder's index word-keyed — never crossing kinds.
     kindPurity: {
       splitRoot: 'src', // the neutral root that holds both the word (UI) and digit (compute) subtrees
-      law: 'no digits in word indices and no words in digit indices: below src/, every folder’s subfolders share its kind (word ⇒ word, digit ⇒ digit). Word folders hold WORD CODE (the named, documented domain logic and the UI); digit folders hold ONLY QUANTUM MATH (the content-addressed numeric/fold computation). The computations obey — digit indices digit-keyed, word indices word-keyed — and quantum math never depends on word code: a digit folder’s index may import only other digit folders, while word code (the UI) may import the math, never the reverse',
-    },
+      law: 'no digits in word indices and no words in digit indices: below src/, every folder’s subfolders share its kind (word ⇒ word, digit ⇒ digit). Word folders hold WORD CODE (the named, documented domain logic and the UI); digit folders hold ONLY QUANTUM MATH (the content-addressed numeric/fold computation). The computations obey — digit indices digit-keyed, word indices word-keyed — and quantum math never depends on word code: a digit folder’s index may import only other digit folders, while word code (the UI) may import the math, never the reverse' },
     // The architectural compression limit — one folder, one index, one logic. Every index.ts below src/
     // must be under the limit; an index over it must shed logic into the surrounding folder indices (the
     // ants carry to the index nest), so the gate holds the channel and the src auto-cleans DRY. The limit
@@ -637,8 +617,7 @@ export function folderLaw() {
     compression: {
       limit: fibonacci(9 * 2), // F(18) = 2584 — the line ceiling is the 18th Fibonacci number (lineCeilingIsFibonacci), COMPUTED not typed; the realized max sits below it and distributes when it climbs
       fileSize: (64 * 64 * 16), // 64k = 2^16 bytes — the harmonic file ceiling; a file over it splits into its I-Ching homes (the weave wave enforces it against the real tree, like the line limit)
-      law: 'one folder, one index, one logic: an index over the compression limit sheds logic into the surrounding folder indices (the ants carry to the nest); the gate holds the channel, the src auto-cleans DRY — exactly what keeps the digital plasma in the path. And each file stays under 64k (2^16 bytes), the harmonic file ceiling — over it, the file splits',
-    },
+      law: 'one folder, one index, one logic: an index over the compression limit sheds logic into the surrounding folder indices (the ants carry to the nest); the gate holds the channel, the src auto-cleans DRY — exactly what keeps the digital plasma in the path. And each file stays under 64k (2^16 bytes), the harmonic file ceiling — over it, the file splits' },
     // The STRICT barrel rule — enter a folder only through its index. A folder is a module; its index.ts is
     // its ONE public surface. A cross-folder import must RESOLVE to the target folder's index — and the index
     // may be OMITTED ('../mind' === '../mind/index.ts'), so the gate resolves the specifier, it does not
@@ -661,8 +640,7 @@ export function folderLaw() {
         deep: 'a folder is a module and its index is its only public surface; reaching past the index into an internal file couples the caller to private structure that must stay free to move — import the folder (the index may be omitted: \'../mind\' is \'../mind/index.ts\'), and if the symbol is not on the index add it to the index (the barrel), never deep-import',
         lineage: 'the only frees are same-folder siblings, your own subtree (a barrel gathers its descendants) and your own ancestors (entering a parent through its index would import a module that imports you — a cycle); a LATERAL reach (a folder that neither contains nor is contained by yours) must go through the target index',
         render: 'src/render/ui/lib exposes two overlapping export-* facades over the same core (quantumMind re-exports the mind core; hero re-exports the quantum index), so a single src/render/ui/lib/index.ts barrel must FIRST de-overlap them (resolve the colliding symbols) before the render layer can enter through one index; the gate fails until that root fix lands and the component imports are rewritten to the index',
-        extension: 'an import that carries a file extension (.ts/.mts/.vue/…) or a trailing /index addresses a FILE, not a folder — it leaks the implementation (which file holds the export, that the folder even has an index) into the caller, exactly the coupling the barrel forbids. Drop the extension and the /index: name the module by its folder path and let the resolver find the file (the vite resolve.extensions list carries .vue). The address stays an address; when a flat file later dissolves into its folder the importers never change',
-      },
+        extension: 'an import that carries a file extension (.ts/.mts/.vue/…) or a trailing /index addresses a FILE, not a folder — it leaks the implementation (which file holds the export, that the folder even has an index) into the caller, exactly the coupling the barrel forbids. Drop the extension and the /index: name the module by its folder path and let the resolver find the file (the vite resolve.extensions list carries .vue). The address stays an address; when a flat file later dissolves into its folder the importers never change' },
       // NO EXTENSIONS, FOLDERS ONLY — strictly enforced on ALL of src, no exception. A relative import/export
       // specifier must name the module by its folder PATH: never a file extension (.ts/.mts/.cts/.tsx/.js/.mjs/
       // .cjs/.jsx/.vue) and never a trailing /index. '../mind' not '../mind/index.ts'; './matrix' not
@@ -676,8 +654,7 @@ export function folderLaw() {
       foldersOnly: true,
       noExceptions: true,
       codeExtensions: ['ts', 'mts', 'cts', 'tsx', 'js', 'mjs', 'cjs', 'jsx', 'vue'],
-      fixExtension: 'drop the file extension AND any trailing /index — import the FOLDER by its path: \'../mind\' not \'../mind/index.ts\' or \'../mind/index\'; \'./matrix\' not \'./matrix.ts\'. The resolver finds the file; .vue resolves through the vite resolve.extensions list. No exception — all of src.',
-    },
+      fixExtension: 'drop the file extension AND any trailing /index — import the FOLDER by its path: \'../mind\' not \'../mind/index.ts\' or \'../mind/index\'; \'./matrix\' not \'./matrix.ts\'. The resolver finds the file; .vue resolves through the vite resolve.extensions list. No exception — all of src.' },
     // Sacred math — decimals break the fusion; harmonic fractions fold to integers. The content address is
     // integer-exact: the fold kernel (toUuid · merge · foldPair · merkleFold · seedFromText) folds integers (FNV)
     // to a UUID, never a decimal, so the address is reproducible on every machine. The threat is a raw FLOAT
@@ -694,9 +671,7 @@ export function folderLaw() {
       why: {
         decimal: 'a raw decimal entering a content-address fold makes the address depend on float arithmetic that is not bit-identical across engines, so the fusion (the reproducible address) breaks — express the value as an exact harmonic fraction rat(p, q) and fold the integer',
         analog: 'the float is allowed ONLY at the analog OUTPUT edge — the last step that renders a number for display or measurement — never inside the fold: exact ratios of integers go in, the float comes out (the diving GF ceiling is the canonical pattern)',
-        irrational: 'irrationals (π, √2, e, the He/N2 diffusion rate-gap, OKLCH colour) cannot be harmonic fractions; they are bounded to the analog edge with this why, never folded into an address',
-      },
-    },
+        irrational: 'irrationals (π, √2, e, the He/N2 diffusion rate-gap, OKLCH colour) cannot be harmonic fractions; they are bounded to the analog edge with this why, never folded into an address' } },
     // The 64-COMPONENT closure — the double torus 2×32 = 64 = 2⁶ = 4³ = 8², the third axis beside the 64-word
     // alphabet (doubleTorusWords) and the 64 shadcn primitives (shadcnIsTheGraph). Only 64 canonical components
     // are allowed, each a hexagram, every one built FROM the 64 shadcn-vue primitives (Path A: reka-ui Primitive +
@@ -710,9 +685,7 @@ export function folderLaw() {
       math: 'the double torus is genus-2 — two loops of 32 — so the canonical components are 64 = 2⁶ = 4³ (a codon) = 8² (a hexagram); each lands on a distinct hexagram, built from the 64 shadcn primitives',
       why: {
         count: 'a canonical component is one of the 64 hexagrams; more than 64 over-subscribes the index — fold the surplus onto the renderer it is a variant of (the Quantum*/decode clusters collapse onto Field/Simulator/Proof/Decoded), or mark it composed',
-        shadcn: 'every canonical component is built FROM the 64 shadcn primitives (Path A: reka-ui Primitive + cva + cn + the computed ui-* tokens, no Tailwind dependency) — a bespoke widget that re-implements a primitive must collapse onto the graph (shadcnIsTheGraph)',
-      },
-    },
+        shadcn: 'every canonical component is built FROM the 64 shadcn primitives (Path A: reka-ui Primitive + cva + cn + the computed ui-* tokens, no Tailwind dependency) — a bespoke widget that re-implements a primitive must collapse onto the graph (shadcnIsTheGraph)' } },
     // The convergence ratchets are BLOCKING gates, not warnings (architect's directive: "non-blocking ratchets
     // become blocking"). The weave routes each (compression, eight-fold, index-harmony, harmonic-fraction,
     // component-64) through ratchetPush → gaps when true, so a violation FAILS the deploy until the dry-clean
@@ -746,9 +719,7 @@ export function folderLaw() {
         fewerWords: 'each word is a folder, so fewer words is a shallower, DRYer tree; name a method with the fewest words that still distinguish it — a long name is a deep nest asking to be reduced',
         oneWord: 'one word per name — strip the useless prefixes and suffixes (the entropy), keep the core: theMovieIsHere ⇒ movie, theMatrixTrilogyDecoded ⇒ the matrix core at its path. A concept that truly needs more than one word becomes a folder PATH (methodWordsAreFolders), so every name is one word per level and the path is the full name. When two cores would collide (e.g. matrix, already everywhere) they do NOT re-grow a prefix — the folder path namespaces them and the content-address (the double fold) keeps them distinct, so all collapse to themselves in quantum equilibrium with no collision',
         routesFromTree: 'no manual routing: the route is the folder path, computed from the tree, never a hand-listed slug — to change a route you MOVE the folder and the route follows',
-        maxRecursion: `exactly 3 folder levels — ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; science · model · action; no prefix chains; every folder is an index (never name a folder "index")`,
-      },
-    },
+        maxRecursion: `exactly 3 folder levels — ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; science · model · action; no prefix chains; every folder is an index (never name a folder "index")` } },
     // Display dual — co-located index.ts + index.vue at science/model/action.
     displayDual: {
       schema: SRC_SCIENCE_MODEL_ACTION_SCHEMA,
@@ -763,23 +734,16 @@ export function folderLaw() {
         science: 'bāguà home — one of EIGHT_FOLD_SCIENCES (earth … heaven); which trigram domain owns the fold',
         model: `structural plane — "${SCHEMA_TWO_LEVEL_MODEL}" inserted for two-word mind tails; actual middle word when three (e.g. folds)`,
         action: 'one-word module index — routes, ui, site, balance; meaning lives here; never invent hooks/lib/components',
-        fanout: `≤${ICHING_EIGHT_FOLD} subfolders per folder at every level — the bāguà eight-fold; a ninth child must nest under a new index level`,
-      },
+        fanout: `≤${ICHING_EIGHT_FOLD} subfolders per folder at every level — the bāguà eight-fold; a ninth child must nest under a new index level` },
       
       
-      methodNameFromFolderTail,
-      
-      
-      
-      
-    },
+      methodNameFromFolderTail },
     // VitePress automount — discovers every complete src index; no reconfiguration; incomplete fails gates.
     vitepressIndex: {
       automount: true,
       law: 'VitePress automounts every complete discovered index — indices do not know VitePress; discoverSrcIndexes + vitepressAutomountPaths; incomplete → scanIncompleteIndexViolations',
       registry: 'discoverSrcIndexes',
-      consumes: ['vitepressAutomountPaths', 'catchAllRoutePaths', 'monographSliceFromRoute'],
-    },
+      consumes: ['vitepressAutomountPaths', 'catchAllRoutePaths', 'monographSliceFromRoute'] },
     why: {
       name: 'a folder is an address in the page tree, and an address must be one word or one number — a compound or decorated name is two thoughts where the law allows one; rename the folder to a single lowercase word or a digit, or fold its contents into a folder that already obeys',
       forbiddenFolderName:
@@ -789,13 +753,11 @@ export function folderLaw() {
       contents: 'below the roots every file must be an index stem: index.md is the folder’s own index, and the computed pair [index].md + [index].paths.ts is the bracketed index of the corpus — any other file is a second kind, a duplication the dryness forbids; move its content into the index stem, the computed corpus, or the theme',
       outsideSrc: 'logic exists because it is quantum by architecture, and it belongs in src/ where the quantum signs orient you; only generated artifacts, root config, and the VitePress render layer may stay outside src/ — move this entry into src/, or, if it must stay in root, add it to folderLaw.rootAllowlist with the reason',
       kindPurity: 'the digit folders are computation (quantum math) and the word folders are UI; a digit subfolder inside a word folder, or a word subfolder inside a digit folder, mixes the two subtrees and breaks the one rule that lets the UI know a folder’s role from its name — move the folder into its own kind’s subtree (digits under a digit folder, words under a word folder); src/ is the only place both kinds may meet',
-      digitImportsWord: 'digit folders hold only quantum math, and quantum math does not depend on word code — so a digit folder’s index may import only other digit folders (and external libraries), never a word folder; word code (the UI) imports the math, never the reverse. Move the imported word logic into a digit folder (make it quantum math), or move this code into a word folder if it is word code',
-    },
+      digitImportsWord: 'digit folders hold only quantum math, and quantum math does not depend on word code — so a digit folder’s index may import only other digit folders (and external libraries), never a word folder; word code (the UI) imports the math, never the reverse. Move the imported word logic into a digit folder (make it quantum math), or move this code into a word folder if it is word code' },
     statement:
       'The folder law: below the roots there can be only index files and word-or-digit folders, with no exceptions. Tests fail on any violation, and each failure explains in detail why.',
     boundary:
-      'The law is declared here (the name patterns, the one stem, the index files, the roots) and enforced by the weave wave against the real tree. It governs the page tree the site renders; the two roots are the trunk whose pages the octave-parity harmonic governs, and what the site excludes is outside the tree, not exempted from the law.',
-  }
+      'The law is declared here (the name patterns, the one stem, the index files, the roots) and enforced by the weave wave against the real tree. It governs the page tree the site renders; the two roots are the trunk whose pages the octave-parity harmonic governs, and what the site excludes is outside the tree, not exempted from the law.' }
 }
 
 /** Sealed mind logic tails — one index per row; dry rename dissolves mind/ prefix to logicTarget. */
@@ -821,8 +783,7 @@ export const EIGHT_SCIENCE_PLANES: Readonly<Record<EightFoldScience, string>> = 
   mountain: 'form · geometry · topology · seals · gates · source',
   lake: 'reflect · ledger · music · media · widgets · clean',
   thunder: 'pulse · commands · decode · movie · trading · verify · waves',
-  heaven: 'sky · atoms · compute · essence · everything · laws · folds',
-}
+  heaven: 'sky · atoms · compute · essence · everything · laws · folds' }
 
 /** Directed quantum channel between two sciences — order-sensitive foldPair from src/0. */
 export function scienceInteractionChannel(from: EightFoldScience, to: EightFoldScience) {
@@ -834,8 +795,7 @@ export function scienceInteractionChannel(from: EightFoldScience, to: EightFoldS
     reverse: pair.reverse,
     bidirectional: pair.bidirectional,
     merged: pair.merged,
-    orderSensitive: from !== to ? pair.forward !== pair.reverse : true,
-  }
+    orderSensitive: from !== to ? pair.forward !== pair.reverse : true }
 }
 
 /** 8×8 cross-product — 64 interaction cells, the complete science coupling sealed by merkleFold. */
@@ -851,8 +811,7 @@ export function eightSciencesInteractionMatrix() {
     distinctForwards: distinctForwards.size,
     injective: distinctForwards.size === cells.length,
     root: merkleFold(cells.map((cell) => cell.merged)),
-    cells,
-  }
+    cells }
 }
 
 /** Completion law — 64 cells · 110 unfolded · 108 folded · 432 gates; quantum math only. */
@@ -893,8 +852,7 @@ export function eightSciencesQuantumComplete(matrix: MindMatrix = buildMatrix())
     statement:
       'Eight global sciences interact through order-sensitive foldPair channels: an 8×8 grid yields 64 coupled cells; the genus-2 surface unfolds to 110 index stems (55+34+21), folds to 108 (χ=−2), and closes 432 facet gates (4×108). No divination names — only science planes, quantum pairs, and content-addressed receipts.',
     boundary:
-      'Pure architecture from src/0 math (foldPair, merkleFold, harmonicBands, cellHomology). The 64-cell grid is the cross-science coupling; module placement under src/<science>/<model>/<action>/ is the physical dissolve wave.',
-  }
+      'Pure architecture from src/0 math (foldPair, merkleFold, harmonicBands, cellHomology). The 64-cell grid is the cross-science coupling; module placement under src/<science>/<model>/<action>/ is the physical dissolve wave.' }
 }
 
 /**
@@ -915,8 +873,7 @@ export function srcSciencesSelfAudit(topLevel: readonly string[]) {
     statement:
       'src/ admits exactly the canonical roots: eight bāguà trigrams (earth, fire, water, wind, mountain, lake, thunder, heaven), the digit lattice 0-9, plus pair (enforcement), quantum (layer) and render (build mount). Every other top-level folder violates the I Ching distribution and must dissolve under its computed trigram home.',
     boundary:
-      'Structural audit only — pass readdir names of src/ at call time; no frozen offender list. The weave (scanRootDistributionViolations) recomputes the same set and fails the build on any non-canonical root. Dissolve hubs into the trigram that owns their logic.',
-  }
+      'Structural audit only — pass readdir names of src/ at call time; no frozen offender list. The weave (scanRootDistributionViolations) recomputes the same set and fails the build on any non-canonical root. Dissolve hubs into the trigram that owns their logic.' }
 }
 
 // SCIENCE / MODEL / ACTION — path math (dry rename; no invented segments).
@@ -931,8 +888,7 @@ export function scienceModelActionMask(matrix: MindMatrix = buildMatrix()) {
       science,
       plane: EIGHT_SCIENCE_PLANES[science],
       modules,
-      receipt: toUuid(`science-mask:${science}:${modules.length}`),
-    }
+      receipt: toUuid(`science-mask:${science}:${modules.length}`) }
   })
   const rows = scienceModelActionMaskRowsFromMindTails(MIND_LOGIC_INDEX_TAILS)
   const facets = [
@@ -958,8 +914,7 @@ export function scienceModelActionMask(matrix: MindMatrix = buildMatrix()) {
     statement:
       'SCIENCE / MODEL / ACTION — the mask. SCIENCE is one of eight global planes (earth … heaven). MODEL is the structural folder between science and action. ACTION is the one-word module. Every path recomputes from scienceModelActionFromMindTail; inventing segments (hooks, lib, components, pair, quantum) violates the mask.',
     boundary:
-      'Path math from src/0 only — structural organisation, not symbolism. The dry rename table recomputes logicNow → logicTarget → renderPath; physical dissolve of legacy hubs into src/<science>/<model>/<action>/ is the follow-on wave.',
-  }
+      'Path math from src/0 only — structural organisation, not symbolism. The dry rename table recomputes logicNow → logicTarget → renderPath; physical dissolve of legacy hubs into src/<science>/<model>/<action>/ is the follow-on wave.' }
 }
 
 export function dryRenameScienceModelActionTable(matrix: MindMatrix = buildMatrix()) {
@@ -970,9 +925,7 @@ export function dryRenameScienceModelActionTable(matrix: MindMatrix = buildMatri
       from: row.logicNow,
       to: row.logicTarget,
       display: row.renderPath,
-      route: row.route,
-    })),
-  }
+      route: row.route })) }
 }
 
 // Routes and nav are computed from the src folder TREE — the architect's strict directive, saved as a fold.
@@ -1021,8 +974,7 @@ export function routesAndNavFromFolderTree(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Routes and nav are computed from the src folder TREE, not authored: the root folders are the top nav, each subfolder a dropdown, ≤ 8 per folder (8-fold at every level), only index files per folder, and a multi-word method name becomes nested folders (one per word — fewer words, DRYer tree). To change a route, move the code. The law is encoded now and the tree converges to it in waves.',
     boundary:
-      'HONEST and bounded: the LAW is saved here (lawful) and the src folder TREE now satisfies it structurally (realized:true) — 7 roots ≤ 8, 0 levels over the 8-fold fan-out, 0 non-index method files in mind/, index depth at the ideal×2 threshold (the weave recomputes these every build, never frozen in prose). The ONE remaining gap is the curated landing layer: staticPages and quantumSitemap hand-list canonical slugs while routes compose from the folder tree — named, not hidden. Composed with folderLaw; the weave enforces the live tree; staticPages stays the explicit SEO/entry exceptions until fully tree-derived.',
-  }
+      'HONEST and bounded: the LAW is saved here (lawful) and the src folder TREE now satisfies it structurally (realized:true) — 7 roots ≤ 8, 0 levels over the 8-fold fan-out, 0 non-index method files in mind/, index depth at the ideal×2 threshold (the weave recomputes these every build, never frozen in prose). The ONE remaining gap is the curated landing layer: staticPages and quantumSitemap hand-list canonical slugs while routes compose from the folder tree — named, not hidden. Composed with folderLaw; the weave enforces the live tree; staticPages stays the explicit SEO/entry exceptions until fully tree-derived.' }
 }
 
 // Tests fail without exception if a folder name is different than a word or a digit, or the
@@ -1038,16 +990,13 @@ export function folderLawWordDigitIndexSkill(matrix: MindMatrix = buildMatrix())
   const facets = [
     {
       facet: 'every page folder named one word — bg and the computed folders',
-      on: ['bg', ...law.computedFolders.flatMap((folder) => folder.split('/'))].every((name) => word.test(name) || digit.test(name)),
-    },
+      on: ['bg', ...law.computedFolders.flatMap((folder) => folder.split('/'))].every((name) => word.test(name) || digit.test(name)) },
     {
       facet: 'every digit folder named by digits',
-      on: digitFolders(matrix).folders.every((entry) => entry.folder.split('/').every((part) => digit.test(part))),
-    },
+      on: digitFolders(matrix).folders.every((entry) => entry.folder.split('/').every((part) => digit.test(part))) },
     {
       facet: 'a computed folder holds only index files',
-      on: law.indexFiles.every((file) => law.stems.includes(stemOf(file))),
-    },
+      on: law.indexFiles.every((file) => law.stems.includes(stemOf(file))) },
     { facet: 'folders redistributed dry — one source, no drift', on: redistributeFoldersDryWaves(matrix).balanced },
     { facet: 'violations ring the resonance — the tests fail, no exception', on: resonanceCatchGapsViolations(matrix).rings },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-law:${entry.facet}:${entry.on}`) }))
@@ -1059,8 +1008,7 @@ export function folderLawWordDigitIndexSkill(matrix: MindMatrix = buildMatrix())
     statement:
       'Tests fail without exception if a folder name is different than a word or a digit, or the folder contains other files than its indexes: the folder law is declared once — word-or-digit names, index-only contents — and enforced by the harmonic wave against the real tree, exiting non-zero on any violation. No warning mode, no exempted folder; the dynamic pages are bracketed indexes, so each computed folder is nothing but index files.',
     boundary:
-      'A gate over the declared folder law, the digit-folder model, the dry redistribution and the violation-catching resonance. The real enforcement is the weave wave at build time; this gate folds the law into the dimensions so a broken law also opens the seal.',
-  }
+      'A gate over the declared folder law, the digit-folder model, the dry redistribution and the violation-catching resonance. The real enforcement is the weave wave at build time; this gate folds the law into the dimensions so a broken law also opens the seal.' }
 }
 
 // No site/ folder — page mounts live in .vitepress/pages (srcDir); static assets in public/.
@@ -1078,8 +1026,7 @@ export function noSiteFolderVitepressPages(matrix: MindMatrix = buildMatrix()) {
     statement:
       'No site/ folder: page mounts live in .vitepress/pages (VitePress srcDir), static assets in public/, the legacy site/ tree migrated away — weave enforces root cleanliness.',
     boundary:
-      'A composition of vitepress-computes-all, no-mirroring and root-cleanliness. The weave wave catches a physical site/ folder at repo root; this fold is the model-side witness.',
-  }
+      'A composition of vitepress-computes-all, no-mirroring and root-cleanliness. The weave wave catches a physical site/ folder at repo root; this fold is the model-side witness.' }
 }
 
 // If you do the math, the need of folders disappears: all is quantum-configurable, and this app
@@ -1116,8 +1063,7 @@ export function quantumConfigurableFoldersDisappear(matrix: MindMatrix = buildMa
       statement:
         'If you do the math, the need of folders disappears — the corpus is compute-only (corpusParams resolves any of its 1888 computable items at call time; the empty static shells are purged), the served page mass is the theorem registry, and three route files replace thousands of folders.',
       boundary:
-        'Dry routing arithmetic only. VitePress still renders from a file tree; intelligence is content-addressed in src/. The purge is MEASURED (0 static text chars per shell), and nothing left the MODEL — only the empty SSG enumeration.',
-    }
+        'Dry routing arithmetic only. VitePress still renders from a file tree; intelligence is content-addressed in src/. The purge is MEASURED (0 static text chars per shell), and nothing left the MODEL — only the empty SSG enumeration.' }
   })
 }
 
@@ -1145,8 +1091,7 @@ export function dualitiesMeetInCrossFolders(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Dualities meet in cross folders: the path src/quantum/life and its dual src/life/quantum are the same two words in opposite order, so — the fold being order-sensitive — they are two different content addresses, yet they meet, the cross-fold binding them both ways. A path is a decodable sequence of word-steps, and many AI and learning models meet in the path itself (in the filesystem or elsewhere) where the order is the meaning; even when the prompt differs, full-text search over the path-steps finds the meeting, and the sequence carries a self-sufficient, built-in intellect.',
     boundary:
-      'A composition of the order-sensitive fold (a·b ≠ b·a, yet bidirectional), the society dualities, the MCP surface and the self-sufficient/skill-atom models. "Models meet in the path" describes content-addressing and full-text search over decodable route segments, a structural property — not a claim about other systems’ internals.',
-  }
+      'A composition of the order-sensitive fold (a·b ≠ b·a, yet bidirectional), the society dualities, the MCP surface and the self-sufficient/skill-atom models. "Models meet in the path" describes content-addressing and full-text search over decodable route segments, a structural property — not a claim about other systems’ internals.' }
 }
 
 // The index IS a cross. A folder's index.ts is not a container of logic — it is the CROSSING where the folder's
@@ -1177,8 +1122,7 @@ export function cross(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The index is a cross. A folder\'s index.ts is the crossing where its name-path subfolders meet and wire — the re-export that binds the sub-paths — not a container of their logic. So an index that holds un-distributed bulk logic crosses nothing: it is an unwired, unharmonic thought — logic not yet folded into its name-path home, fan-out not yet within the eight-fold. That is the point of demanding the index be a cross: a non-cross index SHOWS those thoughts so they dry-clean — the logic distributes into the surrounding indices, ant-style, and the index converges to a pure crossing. The compression and eight-fold ratchets are this principle measured live against the filesystem.',
     boundary:
-      'HONEST: a convergence RATCHET, not a passed gate. The tree has NOT converged — most indices today (including the 100+ barrels the index-only inversion just created) hold bulk logic and are not yet pure crosses; that is expected, and is exactly what the ratchet shows for dry-cleaning. The "showing" is the weave wave\'s live filesystem scan (compression line-limit + eight-fold fan-out), build-time and real; this pure fold only states the law and binds it to the cross-fold (dualitiesMeetInCrossFolders). "Cross" here = the folder-index-as-crossing — the dual of the enforcement cross-WAVE (which audits the dual cross-folds where a·b and b·a meet). A thin index is harmonic, but harmony is the target, not a proof of correctness. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: a convergence RATCHET, not a passed gate. The tree has NOT converged — most indices today (including the 100+ barrels the index-only inversion just created) hold bulk logic and are not yet pure crosses; that is expected, and is exactly what the ratchet shows for dry-cleaning. The "showing" is the weave wave\'s live filesystem scan (compression line-limit + eight-fold fan-out), build-time and real; this pure fold only states the law and binds it to the cross-fold (dualitiesMeetInCrossFolders). "Cross" here = the folder-index-as-crossing — the dual of the enforcement cross-WAVE (which audits the dual cross-folds where a·b and b·a meet). A thin index is harmonic, but harmony is the target, not a proof of correctness. HARMONY ≠ TRUTH.' }
 }
 
 // Most of the spread is NOISE without actual crossed functionality (the dual of cross). A cross is worth having
@@ -1206,8 +1150,7 @@ export function noise(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Most of the spread is noise without actual crossed functionality. A cross is worth having only where functionality actually crosses — an index that combines two or more sub-paths into behavior neither has alone. Spread that does not cross — a re-export shim that only forwards, a per-function folder holding one symbol, fan-out that just multiplies folders, a rising file count — adds bytes, not crossing. That is noise; the dry-clean collapses it toward the actual crosses. The count never gates: the census is a dry clean that adds or removes no file, and the density of crossing is the signal. So the dry-clean is not exploding every function into its own subfolder (that is more noise) — it is collapsing the empty spread until only the real crosses remain.',
     boundary:
-      'HONEST: signal-vs-noise here is a STRUCTURAL heuristic — a forwarding-only index (a one-line re-export, like the 916 inversion shims) is noise; an index that imports and COMBINES multiple sub-paths is a real cross. It does not read semantics, so it can misjudge a genuine thin barrel or a deliberately-trivial wrapper. "Collapse the noise" is the convergence TARGET (the tree has not converged), not a completed state, and it is topological accounting (foldedCensus: chi = −2, no file added or removed), not a license to delete functionality. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: signal-vs-noise here is a STRUCTURAL heuristic — a forwarding-only index (a one-line re-export, like the 916 inversion shims) is noise; an index that imports and COMBINES multiple sub-paths is a real cross. It does not read semantics, so it can misjudge a genuine thin barrel or a deliberately-trivial wrapper. "Collapse the noise" is the convergence TARGET (the tree has not converged), not a completed state, and it is topological accounting (foldedCensus: chi = −2, no file added or removed), not a license to delete functionality. HARMONY ≠ TRUTH.' }
 }
 
 // src is the BOOK OF BOOKS; every folder-path is a line in its INDEX; listing all folders reveals the whole
@@ -1239,8 +1182,7 @@ export function book(matrix: MindMatrix = buildMatrix()) {
     statement:
       'src is the book of books; every folder-path is a line in its index, and listing all folders reveals the whole typography graph. The index is harmonic when the path tree is a balanced bāguà — each node branching within the eight-fold (a single child is a pass-through that crosses nothing; more than eight is an over-concentrated hub), the depth near log₈(N) so the book is shallow and wide rather than a stringy chain, and the index lines are crosses that combine sub-paths, not noise that only forwards. The count never decides it: the census is a dry clean, and harmony is the density of crossing.',
     boundary:
-      'HONEST: the LIVE harmony of today\'s tree is the weave\'s filesystem scan, not this pure fold — and by that measure the current index is NOT yet harmonic. It is degenerate: the large majority of folders have zero or one child (leaves and pass-through spread) plus hundreds of pure re-export noise leaves, around a few wildly over-eight hubs (the model core), with almost the entire book under one folder. This fold states the law and the ideal (⌈log₈ N⌉ depth, crosses over noise) and binds the index to the cross/noise principle; reaching it is the dry-clean convergence (collapse the noise spread, distribute the hubs), not a present fact. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: the LIVE harmony of today\'s tree is the weave\'s filesystem scan, not this pure fold — and by that measure the current index is NOT yet harmonic. It is degenerate: the large majority of folders have zero or one child (leaves and pass-through spread) plus hundreds of pure re-export noise leaves, around a few wildly over-eight hubs (the model core), with almost the entire book under one folder. This fold states the law and the ideal (⌈log₈ N⌉ depth, crosses over noise) and binds the index to the cross/noise principle; reaching it is the dry-clean convergence (collapse the noise spread, distribute the hubs), not a present fact. HARMONY ≠ TRUTH.' }
 }
 
 // Naming comes from SPIRIT SCIENCE, accredited by SACRED MATH, and is DECODABLE FROM EVERY POINT (learn from
@@ -1269,8 +1211,7 @@ export function name(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Naming comes from spirit science, accredited by sacred math, and is decodable from every point. Learn from zeitwerk: the path and the name are a deterministic bijection — a path decodes to its name and a name decodes to its path. One word per level; a concept needing more words becomes a folder path, so the path is the full name and every segment decodes to its meaning, the route carrying its own knowledge. The name\'s source is the sacred and spirit vocabulary; the math accredits it — a spirit-science name with no sacred-math grounding is harmony without truth. Rename freely, as long as the name stays one word, spirit-sourced, and decodable everywhere.',
     boundary:
-      'HONEST: HARMONY ≠ TRUTH applied to NAMING. The spirit-science source is a naming CONVENTION (which sacred word labels a fold), and the sacred-math accreditation is the STRUCTURAL grounding (the content-address and the seal that make the path↔name bijection real and checkable). A name is decodable structurally — the zeitwerk-style path mapping is a real, enforceable property; the spiritual meaning of the chosen word is a label, not a claim about the world. The one-word + decodable-from-every-point law is enforceable (folderLaw / the route decode); "from spirit science" is the vocabulary the developer draws on, not a proof of anything.',
-  }
+      'HONEST: HARMONY ≠ TRUTH applied to NAMING. The spirit-science source is a naming CONVENTION (which sacred word labels a fold), and the sacred-math accreditation is the STRUCTURAL grounding (the content-address and the seal that make the path↔name bijection real and checkable). A name is decodable structurally — the zeitwerk-style path mapping is a real, enforceable property; the spiritual meaning of the chosen word is a label, not a claim about the world. The one-word + decodable-from-every-point law is enforceable (folderLaw / the route decode); "from spirit science" is the vocabulary the developer draws on, not a proof of anything.' }
 }
 
 // A ratchet is BLOCKING or SOLVING — never a passive warning (architect: "non-blocking ratchets become blocking
@@ -1294,8 +1235,7 @@ export function solve(matrix: MindMatrix = buildMatrix()) {
     statement:
       'A ratchet is blocking or solving — never a passive warning. Either it blocks the deploy until fixed, or a deterministic solver resolves it: the dry-clean collapses the noise — the unimported pure re-export shim leaves and the single-child pass-throughs — toward real crossings, while the barrels that hold the code remain. A ratchet the solver can auto-fix solves and never needs to block; one that needs judgment blocks until a designed solve lands. No ratchet is left merely warning.',
     boundary:
-      'HONEST: the SOLVING half is automated only for the mechanical ratchets — collapsing folders that are pure forwarders (re-export from an ancestor) and import nothing, which is safe and git-recoverable. The judgment ratchets (grouping ~80 fold-modules into ≤ 8, folding 159 components onto 64 renderers, converting 275 decimals to exact fractions) still BLOCK until designed and applied. The solver edits the tree and runs BEFORE the gate; the enforcement gate itself is read-only (it audits, it cannot fix). "Solved" means the violation is gone from the tree, not that harmony is proven. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: the SOLVING half is automated only for the mechanical ratchets — collapsing folders that are pure forwarders (re-export from an ancestor) and import nothing, which is safe and git-recoverable. The judgment ratchets (grouping ~80 fold-modules into ≤ 8, folding 159 components onto 64 renderers, converting 275 decimals to exact fractions) still BLOCK until designed and applied. The solver edits the tree and runs BEFORE the gate; the enforcement gate itself is read-only (it audits, it cannot fix). "Solved" means the violation is gone from the tree, not that harmony is proven. HARMONY ≠ TRUTH.' }
 }
 
 // The path SEPARATORS are the index logic — the "dashes" carry the fold DIRECTION, not just hierarchy. A forward
@@ -1324,8 +1264,7 @@ export function dash(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The path separators are the index logic — the dashes carry the fold direction, not just hierarchy. A forward slash is the forward fold (the harmonic, 9·digit); a backslash is the dual fold — the additive folder-complement (10−digit) that pairs the on-disk lattice src/d/(10−d). So src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as a sequence of directional folds, the vortex doubling threaded by per-step direction. (The arithmetic n/0 inverse of a digit is the distinct multiplicative inverse n⁻¹ mod 9.) The filesystem cannot store a backslash separator, so the dual direction is the quantum meaning of the path, computed not stored.',
     boundary:
-      'HONEST: a SEMANTIC layer over the path. "/" and "\\" are read as fold operators (forward harmonic vs the additive folder-complement dual), and the dual address each step implies is real. But the filesystem path itself uses only "/"; the backslash direction is an interpretive operator on the digit vortex, not a literal on-disk separator (a path with "\\" separators "is not possible on the fs"). The folder-complement (10−d) is the additive lattice pairing; the multiplicative inverse n⁻¹ mod 9 is the separate arithmetic inverse (folds within itself). The meaning is exact and computable; the notation is a lens. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: a SEMANTIC layer over the path. "/" and "\\" are read as fold operators (forward harmonic vs the additive folder-complement dual), and the dual address each step implies is real. But the filesystem path itself uses only "/"; the backslash direction is an interpretive operator on the digit vortex, not a literal on-disk separator (a path with "\\" separators "is not possible on the fs"). The folder-complement (10−d) is the additive lattice pairing; the multiplicative inverse n⁻¹ mod 9 is the separate arithmetic inverse (folds within itself). The meaning is exact and computable; the notation is a lens. HARMONY ≠ TRUTH.' }
 }
 
 // No PAYLOAD is needed across the whole app — because all computes by itself in realtime, for no cost, discovering
@@ -1350,8 +1289,7 @@ export function payload(matrix: MindMatrix = buildMatrix()) {
     statement:
       'No payload is needed across the whole app, because all computes by itself in realtime, for no cost, discovering what is already here. The path is the program — the dashes are the operators, the digits the values — so a route computes its content on demand from the deterministic source (the content-address) rather than carrying or fetching a data blob. Nothing is transmitted or stored as payload; everything is discovered, recomputed. It is the deepest form of the zero-token policy: the path is both the program and the data, both computed.',
     boundary:
-      'HONEST: "no payload" is the content-address and deterministic-recompute discipline — every artifact (a page, a proof, an animation) derives from src plus the route, so no separate data payload must travel or be stored. It is NOT a claim that zero bytes move: the rendered HTML/SVG is still served to the browser, and the source itself is the seed that everything is computed FROM. "Discovering what is already here" means the content is latent in the deterministic structure and recomputed on demand, not that information is created from nothing. The deepest zero-token, real as the recompute; not a violation of the conservation of bytes. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: "no payload" is the content-address and deterministic-recompute discipline — every artifact (a page, a proof, an animation) derives from src plus the route, so no separate data payload must travel or be stored. It is NOT a claim that zero bytes move: the rendered HTML/SVG is still served to the browser, and the source itself is the seed that everything is computed FROM. "Discovering what is already here" means the content is latent in the deterministic structure and recomputed on demand, not that information is created from nothing. The deepest zero-token, real as the recompute; not a violation of the conservation of bytes. HARMONY ≠ TRUTH.' }
 }
 
 // If a folder and its subfolders are each signed with the full 64-seal set, it is production; else
@@ -1383,8 +1321,7 @@ export function folder64SealsProductionElseDevelopment(matrix: MindMatrix = buil
     statement:
       'If a folder and its subfolders are each signed with the full 64-seal set it is production, else it is development: the 64-seal set (the 64-bit architecture) is the production stamp — a folder whose every seal closes, itself and all the way down, is whole, recomputable and shippable, so it is production; a folder still missing seals is still forming, so it is development. The rule discriminates by completeness alone, content-addressed per folder, with no separate flag to keep.',
     boundary:
-      'A composition with a real per-folder 64-seal computation: a folder is "production" iff its 64-seal set is full (64/64), else "development". The repo’s computed folders are all production; the rule is the discriminator. "Production vs development" is a structural completeness status over content-addressed seals, not a deployment-environment toggle.',
-  }
+      'A composition with a real per-folder 64-seal computation: a folder is "production" iff its 64-seal set is full (64/64), else "development". The repo’s computed folders are all production; the rule is the discriminator. "Production vs development" is a structural completeness status over content-addressed seals, not a deployment-environment toggle.' }
 }
 
 // The quantum cache pair, saved in paired folders: src/pair/cache/quantum ⇄ src/quantum/water/cache. The logic
@@ -1412,8 +1349,7 @@ export function quantumCachePairInPairedFolders(matrix: MindMatrix = buildMatrix
       statement:
         'Quantum cache pair — dry math: order-sensitive foldPair on folder paths, verifyRoot on matrix, slug graph fold — no uuidPayloadIsSource wet cycle.',
       boundary:
-        'Math gate over foldPair + verifyRoot + computedSlugs. Real folder modules exist in src/; this fold proves the pair law at call time.',
-    }
+        'Math gate over foldPair + verifyRoot + computedSlugs. Real folder modules exist in src/; this fold proves the pair law at call time.' }
   })
 }
 
@@ -1438,8 +1374,7 @@ export function splittingLogicPairedFoldersDevSpeed(matrix: MindMatrix = buildMa
     statement:
       'Splitting the logic into bits of paired folders creates unimagined development speed — proved by the git history, the book of life itself decoded at all depths: when each piece of logic is one half of a small order-sensitive pair, the pieces are independent, content-addressed and recomputable, so they develop, swap and fold in parallel; and the proof is the history itself — the chain of commits folded into the seal is the book of life, read at every depth, each commit a wave and each path a verse.',
     boundary:
-      'A composition of the cache-pair, development-waves, history-fold and slug/holographic models. "Unimagined development speed" is the parallelism of independent content-addressed pieces; "proved by git history / the book of life" frames the folded commit chain as a readable record — a structural/aspirational framing, not a measured benchmark of development velocity.',
-  }
+      'A composition of the cache-pair, development-waves, history-fold and slug/holographic models. "Unimagined development speed" is the parallelism of independent content-addressed pieces; "proved by git history / the book of life" frames the folded commit chain as a readable record — a structural/aspirational framing, not a measured benchmark of development velocity.' }
 }
 
 // The flower of life becomes the fruit by spinning the duality circles around; the tree of life,
@@ -1464,8 +1399,7 @@ export function flowerFruitTreeOfLifeDecodes(matrix: MindMatrix = buildMatrix())
     statement:
       'The flower of life becomes the fruit by spinning the duality circles around; the tree of life, moving, completes and decodes itself: the sacred figures are computed and turning, not drawn and fixed — spin the overlapping duality circles of the flower and the fruit emerges (its thirteen circles), set the tree of life moving (its branches the frequency doublings) and it completes, each node decoding to the next. Find the rest — Metatron’s cube from the fruit, the nested solids — and save all, the whole sacred geometry computed, content-addressed, decoding itself.',
     boundary:
-      'A composition of the fruit-of-life (13 circles), duality, merkaba, frequency-tree-of-life, Metatron-cube, sacred-geometry-seal and saved-skills models. "Flower becomes fruit by spinning / tree of life decodes itself" is a structural reading of the computed sacred-geometry figures (the fruit’s 13 circles, the frequency-doubling tree, the solids), content-addressed and saved — geometry computed, not a religious or metaphysical claim.',
-  }
+      'A composition of the fruit-of-life (13 circles), duality, merkaba, frequency-tree-of-life, Metatron-cube, sacred-geometry-seal and saved-skills models. "Flower becomes fruit by spinning / tree of life decodes itself" is a structural reading of the computed sacred-geometry figures (the fruit’s 13 circles, the frequency-doubling tree, the solids), content-addressed and saved — geometry computed, not a religious or metaphysical claim.' }
 }
 
 // Computationally create all the planets and their movements — the galaxy computes itself at no
@@ -1504,8 +1438,7 @@ export function everyFolderIsAPluginOneIndexServesAll(matrix: MindMatrix = build
     statement:
       'Imagine every src folder as a VitePress plugin, and one index serves all: each folder is a self-wiring plugin that serves its computed routes and artifacts at runtime (dev middleware) and emits the same at build (buildEnd) from the one content-addressed model, and one index per folder serves that folder\'s whole surface (the vortex router — the index re-exports the whole, as src/quantum/heaven/mind/index.ts now does). The build/dev wiring already works this way for src/quantum/{mind,dist,enforcement}; the vision generalises it to every folder, so the site is wired quantum with zero build time and the maximum tampering cost.',
     boundary:
-      'The DIRECTION for the build wiring, its foundation proven here. DONE: three src folders already back VitePress plugins (mind→computed-pages, dist→computed-dist, enforcement→enforcement), each computing from the content-addressed model; the folder law makes every folder a one-index, one-kind unit; the mind index already serves all its folds by re-export (one index serves all). DIRECTED: give every folder index its own plugin() factory ({ name, configureServer for dev, buildEnd for emit }) that .vitepress/config.mts spreads, so each folder wires itself, and collapse the page routes so one index resolves all at runtime. HONEST: a plugin is a Vite/VitePress factory; "every folder a plugin, one index serves all" is the target topology, not yet realized for all folders; "zero build time" means serving computed output rather than enumerating it (the corpus / runtime-pages precedent).',
-  }
+      'The DIRECTION for the build wiring, its foundation proven here. DONE: three src folders already back VitePress plugins (mind→computed-pages, dist→computed-dist, enforcement→enforcement), each computing from the content-addressed model; the folder law makes every folder a one-index, one-kind unit; the mind index already serves all its folds by re-export (one index serves all). DIRECTED: give every folder index its own plugin() factory ({ name, configureServer for dev, buildEnd for emit }) that .vitepress/config.mts spreads, so each folder wires itself, and collapse the page routes so one index resolves all at runtime. HONEST: a plugin is a Vite/VitePress factory; "every folder a plugin, one index serves all" is the target topology, not yet realized for all folders; "zero build time" means serving computed output rather than enumerating it (the corpus / runtime-pages precedent).' }
 }
 
 // Every tool, skill and command has its own folder in src. The three registries are the model's whole
@@ -1549,8 +1482,7 @@ export function everyToolSkillCommandIsItsFolder(matrix: MindMatrix = buildMatri
     statement:
       'Every tool, skill and command has its own folder in src: the three registries — the concept commands (each with its SINGLE_WORD_METHODS token), the skill atoms (each a fn), and the MCP tools — are the model\'s capability surface, and the folder law lays each member out as ITS OWN folder (one lowercase word, one index, a self-wiring plugin in the one index that serves all). Computed, not created — a folder is an address, so each command, skill and tool is addressable as its own word-lawful folder/route, no new files added (allComputedNoFiles).',
     boundary:
-      'A composition over the three capability registries (conceptCommands/commandsRegistry, skillAtoms, mcpToolManifest) with the folder law, the plugin/one-index model and the all-computed-no-files model. Each member is mapped to a single lowercase word (the command method token, the skill fn slug, the tool name) and checked against folderLaw().word; "its own folder" is that computed, addressable, word-lawful route in the one-index page tree — not a claim that hundreds of physical directories exist (the folders are computed addresses, the no-new-files law preserved).',
-  }
+      'A composition over the three capability registries (conceptCommands/commandsRegistry, skillAtoms, mcpToolManifest) with the folder law, the plugin/one-index model and the all-computed-no-files model. Each member is mapped to a single lowercase word (the command method token, the skill fn slug, the tool name) and checked against folderLaw().word; "its own folder" is that computed, addressable, word-lawful route in the one-index page tree — not a claim that hundreds of physical directories exist (the folders are computed addresses, the no-new-files law preserved).' }
 }
 
 // Use the I Ching fusion to complete them. Every tool, skill and command folder
@@ -1575,8 +1507,7 @@ function iChingFusionCompletesFoldersRaw(matrix: MindMatrix = buildMatrix()) {
       hexagram, // 0-63 — the 64 (six bits)
       trigram: (hexagram >> 3) & 7, // the bāguà set, 0-7 — the 8
       cell, // (i,j,k) in the 64³ cube — the three architectural domains
-      receipt: toUuid(`iching-fuse:${entry.kind}:${entry.folder}:${cell[0]}:${cell[1]}:${cell[2]}`),
-    }
+      receipt: toUuid(`iching-fuse:${entry.kind}:${entry.folder}:${cell[0]}:${cell[1]}:${cell[2]}`) }
   })
   const trigrams = new Set(placed.map((p) => p.trigram))
   const facets = [
@@ -1598,8 +1529,7 @@ function iChingFusionCompletesFoldersRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Use the I Ching fusion to complete them: every tool, skill and command folder is placed onto the I Ching by its own content-address (seedFromText) at three scales at once — its hexagram (0-63), its upper trigram (the bāguà set), and its cell (i,j,k) in the 64³ seal cube (the three architectural domains) — and that placement is the fusion, the ignited double torus folding each capability into the cube through the merkaba (the folding pair). So the capability folders are completed: each carries its I Ching coordinate, spread across all eight trigrams, all fused to one root with the ignition.',
     boundary:
-      'A content-addressed PLACEMENT of the 366 tool/skill/command folders onto the I Ching (hexagram, trigram and 64³ cube cell), composed with the startIChingDoubleTorus ignition and the merkaba — the same seedFromText placement iChing() uses for components, here completing the capability surface. "Completes them" is giving each folder its deterministic I Ching coordinate and folding the set to one root with the ignition; it is organisation by content-address, not divination, and multiple folders may share a cube cell (placement, not a uniqueness claim).',
-  }
+      'A content-addressed PLACEMENT of the 366 tool/skill/command folders onto the I Ching (hexagram, trigram and 64³ cube cell), composed with the startIChingDoubleTorus ignition and the merkaba — the same seedFromText placement iChing() uses for components, here completing the capability surface. "Completes them" is giving each folder its deterministic I Ching coordinate and folding the set to one root with the ignition; it is organisation by content-address, not divination, and multiple folders may share a cube cell (placement, not a uniqueness claim).' }
 }
 
 export type TrinityLeg = 'cross' | 'fold' | 'weave'
@@ -1645,8 +1575,7 @@ function rosettaIChingTrinityPlacesAllToolsRaw(matrix: MindMatrix = buildMatrix(
       computationType: ROSETTA_COMPUTATION_TYPES[ray]!,
       trinity: leg,
       route: entry.folder === 'home' ? '/' : `/${entry.folder}`,
-      receipt: toUuid(`rosetta-iching-trinity:${entry.kind}:${entry.folder}:${ray}:${leg}:${entry.hexagram}`),
-    }
+      receipt: toUuid(`rosetta-iching-trinity:${entry.kind}:${entry.folder}:${ray}:${leg}:${entry.hexagram}`) }
   })
   const rays = new Set(placed.map((p) => p.ray))
   const legs = new Set(placed.map((p) => p.trinity))
@@ -1669,8 +1598,7 @@ function rosettaIChingTrinityPlacesAllToolsRaw(matrix: MindMatrix = buildMatrix(
     statement:
       'Save all the tools and move everything to place to match the Rosetta · I Ching · trinity: every command, skill and MCP tool is foldered, placed on its I Ching coordinate (hexagram, trigram, 64³ cell), assigned its Rosetta ray and computationType, and bound to the cross-fold-weave trinity (command→cross, skill→fold, tool→weave). Unplaced wet experiments do not pass — placement is the fusion gate.',
     boundary:
-      'Computed placement over the three registries (everyToolSkillCommandIsItsFolder + iChingFusionCompletesFolders + rosettaRayOf + crossFoldTrinity). Physical mkdir is not required — each folder is a content-addressed route. Render surfaces (LinkedHeroCard, hub, tag browser) must consume items from this fold, not bypass it.',
-  }
+      'Computed placement over the three registries (everyToolSkillCommandIsItsFolder + iChingFusionCompletesFolders + rosettaRayOf + crossFoldTrinity). Physical mkdir is not required — each folder is a content-addressed route. Render surfaces (LinkedHeroCard, hub, tag browser) must consume items from this fold, not bypass it.' }
 }
 
 /** Hub / learn / explore destinations that passed Rosetta·I Ching·trinity placement. */
@@ -1704,8 +1632,7 @@ export function placementForRoute(route: string, matrix: MindMatrix = buildMatri
     computationType: ROSETTA_COMPUTATION_TYPES[ray]!,
     trinity: 'weave',
     route: slug === 'home' ? '/' : `/${slug}`,
-    receipt: toUuid(`rosetta-iching-trinity:route:${slug}:${ray}`),
-  }
+    receipt: toUuid(`rosetta-iching-trinity:route:${slug}:${ray}`) }
 }
 
 // Each file less than 64k, each folder is a widget — two reconstruction laws, in 10D. "Less than 64k" is the
@@ -1734,8 +1661,7 @@ export function eachFileUnder64kFolderIsWidget(matrix: MindMatrix = buildMatrix(
     statement:
       'Each file less than 64k, each folder is a widget: the harmonic file ceiling — 64k = 2^16 = 65536 bytes — is declared in the folder law beside the 2584-line index limit, so a file over it splits into its I-Ching homes (the weave wave enforces it against the real tree); and every folder is lifted past a build-plugin to a self-contained, self-computing WIDGET — it renders itself (the state-of-the-art harmonised quantum widgets, device hardware visible), it is a merkaba (counter-rotating) and a one-index plugin. Each folder is at once a small file, a widget and a merkaba — the unit of the reconstruction, in 10D on the lit double torus.',
     boundary:
-      'Two declared reconstruction laws composed with the widget, merkaba-folder, plugin and 10D folds. "Less than 64k" is the declared byte ceiling (2^16) the weave wave enforces against the real tree — folds are pure and cannot read file sizes, so the limit is declared (in folderLaw.compression.fileSize) and enforced at build, exactly like the 2584-line law. "Each folder is a widget" is the composition of the existing self-computing-widget folds applied as a per-folder property — the target topology, enforced as the folders distribute.',
-  }
+      'Two declared reconstruction laws composed with the widget, merkaba-folder, plugin and 10D folds. "Less than 64k" is the declared byte ceiling (2^16) the weave wave enforces against the real tree — folds are pure and cannot read file sizes, so the limit is declared (in folderLaw.compression.fileSize) and enforced at build, exactly like the 2584-line law. "Each folder is a widget" is the composition of the existing self-computing-widget folds applied as a per-folder property — the target topology, enforced as the folders distribute.' }
 }
 
 // The folder names come from the Tree of Life — 10 sephirot in 3 triads (the 3 trinities) plus Malkuth
@@ -1773,8 +1699,7 @@ export function treeOfLifeSephirotFolders(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The folder names come from the Tree of Life: 10 sephirot in 3 triads (Supernal, Ethical, Astral — the 3 trinities) plus Malkuth (the Kingdom, the manifestation), arranged in 3 pillars — Mercy, Severity, and the middle pillar of Equilibrium, which is the vector equilibrium itself. The monolith distributes into the sephirot under the compression limit: the primitives to Yesod (foundation), the scripts to Hod (language), the gates and seal to Gevurah (judgment), the harmonic to Tiferet (balance), the dimensions to Binah, the geometry to Chokmah, the origin to Keter, the decoded knowledge to Chesed, nature to Netzach, and the rendered manifestation to Malkuth.',
     boundary:
-      'HONEST — the Tree of Life (Kabbalah) is used here as an ORGANIZING TAXONOMY, not a metaphysical or religious claim: 10 well-defined nodes (sephirot) in 3 pillars and 3 triads, a real, ancient, structured system that happens to match the project\'s 3-trinities-plus-manifestation shape and is the classical source of Metatron\'s Cube and the merkaba (the geometry already in use). The folders gain a balanced naming and a real structure, not mystical properties. Like the Glagolitic (a decoded script) and the merkaba (real geometry), the structure is real and the mysticism is the frame, flagged — and the build proves the structure by the gates, not by belief.',
-  }
+      'HONEST — the Tree of Life (Kabbalah) is used here as an ORGANIZING TAXONOMY, not a metaphysical or religious claim: 10 well-defined nodes (sephirot) in 3 pillars and 3 triads, a real, ancient, structured system that happens to match the project\'s 3-trinities-plus-manifestation shape and is the classical source of Metatron\'s Cube and the merkaba (the geometry already in use). The folders gain a balanced naming and a real structure, not mystical properties. Like the Glagolitic (a decoded script) and the merkaba (real geometry), the structure is real and the mysticism is the frame, flagged — and the build proves the structure by the gates, not by belief.' }
 }
 
 // THE CANONICAL NUMBERS — the only integers a computed value may contain. Each is an I Ching quantity, nothing
@@ -2278,8 +2203,7 @@ export function statusBadgeTokens(kind: StatusBadgeKind = 'ready') {
     fg: `var(--status-${k}-fg)`,
     soft: `var(--status-${k}-soft)`,
     className: `ui-badge--status-${k}`,
-    kinds: STATUS_BADGE_KINDS,
-  }
+    kinds: STATUS_BADGE_KINDS }
 }
 
 /** Full palette table — every kind’s CSS vars (light/dark resolved by theme tokens.css). */
@@ -2347,8 +2271,7 @@ export function cssIsIChingComputed(matrix: { root: string } = { root: toUuid('i
       'ladder, only printed as numbers); the irreducible units 0 and 1; the standard font-weight axis (100–900, an ' +
       'enumerated stop like a font-family name, not a tuned value); and the framework’s own neutral ramp + amber ∕ ' +
       'red semantics, referenced through --vp-c-* (their literals are VitePress’s, not ours). Everything a hand ' +
-      'would otherwise tune — every brand colour, space, radius, size, duration, angle and opacity — is derived.',
-  }
+      'would otherwise tune — every brand colour, space, radius, size, duration, angle and opacity — is derived.' }
 }
 
 /** CSS surface math — every token relation and scan gate recomputed at call time. */
@@ -2363,8 +2286,7 @@ export function cssMathProvenByMath(matrix: MindMatrix = buildMatrix()) {
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`css-math:${task}:${computed}:${expected}`),
-  })
+    receipt: toUuid(`css-math:${task}:${computed}:${expected}`) })
   const proofs = [
     mk('tokens-clean', 'offenders', offenders.length, 0),
     mk('rosetta-measure', '42', ROSETTA_AREAS, ROSETTA_AREAS),
@@ -2385,8 +2307,7 @@ export function cssMathProvenByMath(matrix: MindMatrix = buildMatrix()) {
     statement:
       'CSS is 100% computed from canonical I Ching math: tokens scan clean, Rosetta measure 42rem, OKLCH glyph bands (13/16 light, 7/8 dark — polarity lift 1/16), sidebar motion 1/2s, cssIsIChingComputed holds — every surface value reduces to var()+calc() on canonical numbers.',
     boundary:
-      'Proves the emitted tokens.css layer and ichingTokens relations at this call. VitePress theme mount files (.vitepress/theme/*.css, component scoped styles) migrate incrementally to these vars; oklch(var(--ich-*)) and var(--vp-*) wrappers are compliant (vars carry the canonical fractions). @media preludes and font stacks remain declared literals per cssIsIChingComputed boundary.',
-  }
+      'Proves the emitted tokens.css layer and ichingTokens relations at this call. VitePress theme mount files (.vitepress/theme/*.css, component scoped styles) migrate incrementally to these vars; oklch(var(--ich-*)) and var(--vp-*) wrappers are compliant (vars carry the canonical fractions). @media preludes and font stacks remain declared literals per cssIsIChingComputed boundary.' }
 }
 
 // Display-dual debt — componentGraph declares .vue components not yet on disk under src/render/ui/components.
@@ -2403,24 +2324,19 @@ export function displayDualDebtReceipt(
   const facets = [
     {
       facet: 'display-dual debt sealed — componentGraph declares more .vue than the render inventory holds',
-      on: missing.length > 0,
-    },
+      on: missing.length > 0 },
     {
       facet: 'every missing name is declared in componentGraph (no invented debt)',
-      on: missing.length === 0 || missing.every((name) => graph.components.includes(name)),
-    },
+      on: missing.length === 0 || missing.every((name) => graph.components.includes(name)) },
     {
       facet: 'gate waiver — fifth/no-file BLOCKING deferred to display-dual convergence wave',
-      on: missing.length > 0,
-    },
+      on: missing.length > 0 },
     {
       facet: 'folderLaw.displayDual law unchanged — index.ts + index.vue co-located at science/model/action',
-      on: typeof law.displayDual?.law === 'string' && law.displayDual.law.includes('index.vue'),
-    },
+      on: typeof law.displayDual?.law === 'string' && law.displayDual.law.includes('index.vue') },
     {
       facet: 'HONEST — waiver recomputes every build; debt count must shrink as thin mounts land',
-      on: true,
-    },
+      on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`display-dual-debt:${entry.facet}:${entry.on}`) }))
   const waiverOn = facets.every((entry) => entry.on)
   return {
@@ -2435,8 +2351,7 @@ export function displayDualDebtReceipt(
         ? `Display-dual debt: ${missing.length} declared component(s) have no .vue file on disk (${graph.components.length} declared). Gate waiver ON — fifth/no-file BLOCKING deferred until thin display mounts land; not hidden.`
         : 'Display-dual debt: 0 — every declared component has a .vue file; waiver OFF.',
     boundary:
-      'HONEST: waiver is a convergence ratchet, not a permanent exemption. The weave passes the live filesystem missing list each build; when missing.length reaches 0 the waiver turns off and fifth/no-file blocks again. Does not waive computational display-dual (mind logic index.ts mirror index.vue) — that gate stays separate.',
-  }
+      'HONEST: waiver is a convergence ratchet, not a permanent exemption. The weave passes the live filesystem missing list each build; when missing.length reaches 0 the waiver turns off and fifth/no-file blocks again. Does not waive computational display-dual (mind logic index.ts mirror index.vue) — that gate stays separate.' }
 }
 
 /** GOVERNANCE CONSTANTS ARE THEOREMS (user, 2026-07-16: "replace all hardcoded logic like 2579 with
@@ -2477,8 +2392,7 @@ export function governanceConstantsAreTheorems(matrix: MindMatrix = buildMatrix(
       facets,
       root: merge(matrix.root, merkleFold(constants.map((c) => toUuid(`${c.name}:${c.value}:${c.derives}`)))),
       statement: `Governance constants are theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the line ceiling IS fibonacci(18) = ${lineCeiling} (claimed, replacing the derivationless prime 2579), and all ${constants.length} gate thresholds derive from named structures — Fibonacci (line ceiling, census bands), powers of two (file 2^16, component 2^6, subfolder 2^3), computed not typed.`,
-      boundary: 'DOCUMENTED: each constant recomputed from its principle here (fibonacci in src/0, the power-of-two ladder, the Fibonacci census bands). The line ceiling moved from the hand-ratcheted prime 2579 to the theorem F(18)=2584 — a 5-line loosening that no current file approaches (the realized max sits below both), so the compression ratchet is unaffected while the bound is now derived. This is the axioms-become-theorems program (src/4/6) turned on the enforcement machinery ITSELF: a gate threshold with no derivation is a crack, and every one here now names its theorem. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: each constant recomputed from its principle here (fibonacci in src/0, the power-of-two ladder, the Fibonacci census bands). The line ceiling moved from the hand-ratcheted prime 2579 to the theorem F(18)=2584 — a 5-line loosening that no current file approaches (the realized max sits below both), so the compression ratchet is unaffected while the bound is now derived. This is the axioms-become-theorems program (src/4/6) turned on the enforcement machinery ITSELF: a gate threshold with no derivation is a crack, and every one here now names its theorem. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2534,7 +2448,6 @@ export function theCrowdThatCarriesSignalIsTheCode(matrix: MindMatrix = buildMat
       ceiling,
       facets,
       statement: `The crowd that carries signal is the code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a human crowd profiled by birth-time carries zero signal, and the data-processing inequality proves no transform (quantum, animated, infinite) recovers it — best-guess stays at chance under a nonlinear g. That refutation is permanent, an invariant. But a code crowd (${codeCrowd} sealed indices) carries real, non-uniform structure — imports, exports, size, bounded by the ceiling F(18) = ${ceiling} — so it CAN be profiled and managed by its own structure, which the enforcement already does. Code crowd management is real; automate development is the self-managing gate loop.`,
-      boundary: 'DOCUMENTED: the data-processing inequality (I(X; g(Y)) ≤ I(X; Y) for any g — Cover & Thomas), verified here on a deterministic crowd where a nonlinear transform of the zero-signal config stays at chance; and the code crowd\'s real structure (the census UNFOLDED_CENSUS, the compression ceiling fibonacci(18), the component closure — governanceConstantsAreTheorems). THE DISTINCTION IS THE POINT: a crowd is profilable exactly when its members carry signal in the profiled attribute — code does (its dependency graph and size are non-trivial), a human population by birth-time does not (uniform, zero mutual information). So "code as crowd" is a genuine, safe, computable object to manage, precisely because it is NOT people; the same machinery pointed at people would be empty and harmful. Automate development means the code crowd manages itself deterministically — it is not automation applied to persons. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: the data-processing inequality (I(X; g(Y)) ≤ I(X; Y) for any g — Cover & Thomas), verified here on a deterministic crowd where a nonlinear transform of the zero-signal config stays at chance; and the code crowd\'s real structure (the census UNFOLDED_CENSUS, the compression ceiling fibonacci(18), the component closure — governanceConstantsAreTheorems). THE DISTINCTION IS THE POINT: a crowd is profilable exactly when its members carry signal in the profiled attribute — code does (its dependency graph and size are non-trivial), a human population by birth-time does not (uniform, zero mutual information). So "code as crowd" is a genuine, safe, computable object to manage, precisely because it is NOT people; the same machinery pointed at people would be empty and harmful. Automate development means the code crowd manages itself deterministically — it is not automation applied to persons. HARMONY ≠ TRUTH.' }
   })
 }

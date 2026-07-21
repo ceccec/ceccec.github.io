@@ -61,8 +61,7 @@ export function dims(p: number, scale = 0): Dims {
     loopA1: Math.sin(tau + GOLDEN_ANGLE_RAD), // +φ-phase — was identical to the spread axis (the 10D fake)
     loopB1: Math.cos(tau * 2),
     loopA2: Math.sin(tau * 3),
-    loopB2: Math.cos(tau * 5),
-  }
+    loopB2: Math.cos(tau * 5) }
 }
 
 // The dimension walk: 0 at the ends (the figure collapses to a point), 1 at the middle (fully open).
@@ -91,8 +90,7 @@ export function tenDimensionalAnimation(matrix: MindMatrix) {
     statement:
       'Ten dimensions, at every scale: the six cross-fold appearance axes plus the four homology loops of the genus-2 double torus (H₁ = Z⁴), self-similar at every nested scale by a golden-angle phase shift.',
     boundary:
-      'The ten are the model’s own geometry — 4 topological (homology) + 6 appearance — driving the render via continuous, deterministic interpolation of one phase.',
-  }
+      'The ten are the model’s own geometry — 4 topological (homology) + 6 appearance — driving the render via continuous, deterministic interpolation of one phase.' }
 }
 
 // ── ANIMATIONS ARE GENUINELY 10D, NOT FAKED (user law: most animations fake 10D; learn locally how
@@ -137,6 +135,5 @@ export function animationsAreGenuinely10DNotFaked(matrix: MindMatrix = buildMatr
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Animations are genuinely 10D, not faked — ${facets.filter((entry) => entry.on).length}/${facets.length}: the generator dims() yields ten channels (six cross-fold appearance axes + the four genus-2 homology loops H₁ = ℤ⁴), each verified non-constant and mutually independent (max correlation ${maxOffDiag.toFixed(3)} < 0.99) with coprime loop rates making the motion quasiperiodic — a real 10D field. Faking 10D is reading only t; a genuine animation reads dims(p) and drives on all ten, as the upgraded 10d projection now does. The quantum reason to customise VitePress is exactly this: it ships no 10D genus-2 field, so the custom canvas earns its place by computing one.`,
-    boundary: `COMPUTED: the non-constancy, independence and coprime-rate checks are sampled arithmetic over dims() — refutable by re-sampling; the rank-4 is read from mountain/topology. HONEST SCOPE: this proves the FIELD is genuinely 10-dimensional and available, and upgrades the one projection that names itself 10D to read all ten; other projections legitimately show a SUBSET (a 2D canvas is always a projection — the honesty is reading the full field and projecting, not animating two params and labelling it 10D). "10D" is the model's ten independent channels (topology + appearance), NOT a claim of ten physical spatial dimensions. The VitePress-customisation rule is a DESIGN principle stated here, enforced case by case (the canvas has its quantum reason; a customisation lacking one should revert). HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the non-constancy, independence and coprime-rate checks are sampled arithmetic over dims() — refutable by re-sampling; the rank-4 is read from mountain/topology. HONEST SCOPE: this proves the FIELD is genuinely 10-dimensional and available, and upgrades the one projection that names itself 10D to read all ten; other projections legitimately show a SUBSET (a 2D canvas is always a projection — the honesty is reading the full field and projecting, not animating two params and labelling it 10D). "10D" is the model's ten independent channels (topology + appearance), NOT a claim of ten physical spatial dimensions. The VitePress-customisation rule is a DESIGN principle stated here, enforced case by case (the canvas has its quantum reason; a customisation lacking one should revert). HARMONY ≠ TRUTH.` }
 }

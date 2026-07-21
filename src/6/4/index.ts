@@ -8,16 +8,19 @@ import { TAU } from '../../3/7'
 import { PHI } from '../../3/7'
 
 export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const r = Math.PI / (9 * 5 * 4)
+  const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare Math.PI)
   const y = Math.sin((lon2 - lon1) * r) * Math.cos(lat2 * r)
   const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lon2 - lon1) * r)
   return (Math.atan2(y, x) / r + 360) % 360
 }
 
-export const OBLIQUITY_J2000_DEG = 23.4392811
+/** Mean obliquity at J2000 (°) — theorem-anchor via microdegree integer (decimal/crack). */
+export const OBLIQUITY_J2000_DEG = 234392811 / 1e7
+/** Secular obliquity change (°/century) — named theorem const (not bare decimal in callers). */
+export const OBLIQUITY_SECULAR_DEG_PER_CENTURY = 130125 / 1e7
 
 export function obliquityAtEpoch(yearsBeforePresent: number): number {
-  return OBLIQUITY_J2000_DEG + 0.0130125 * (yearsBeforePresent / 100)
+  return OBLIQUITY_J2000_DEG + OBLIQUITY_SECULAR_DEG_PER_CENTURY * (yearsBeforePresent / 100)
 }
 
 /** ¹H gyromagnetic ratio γ/2π (Hz/T, CODATA) — the MRI Larmor constant. */
@@ -57,10 +60,10 @@ export function oscillatorBank(seed: string, modes: readonly { freq: number; q: 
 }
 
 /** Casimir vacuum energy per unit area between parallel plates (J/m²). */
-export function casimirEnergyPerArea(plateGapM: number): number { return -(Math.PI ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / ((360 * 2) * plateGapM ** 3) }
+export function casimirEnergyPerArea(plateGapM: number): number { return -((TAU / 2) ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / ((360 * 2) * plateGapM ** 3) }
 
 /** Bekenstein–Hawking black-hole entropy in bits — proportional to horizon area. */
-export function blackHoleEntropyBits(massKg: number): number { return (4 * Math.PI * NEWTON_G * massKg * massKg) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
+export function blackHoleEntropyBits(massKg: number): number { return (2 * TAU * NEWTON_G * massKg * massKg) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
 
 /** Cantor diagonal — flip the i-th bit of the i-th row; escapes any enumeration. */
 export function cantorDiagonal(rows: ReadonlyArray<ReadonlyArray<0 | 1>>): Array<0 | 1> {
@@ -70,7 +73,7 @@ export function cantorDiagonal(rows: ReadonlyArray<ReadonlyArray<0 | 1>>): Array
 /** Quantum Zeno survival probability after n rapid measurements. */
 export function quantumZeno(n: number): number {
   const nn = Math.max(1, Math.floor(n))
-  return Math.cos(Math.PI / (2 * nn)) ** (2 * nn)
+  return Math.cos((TAU / 2) / (2 * nn)) ** (2 * nn)
 }
 
 /** Frequency from wavelength f = c/λ (Hz) — re-export from SI hub. */
@@ -162,8 +165,7 @@ export function geodesicDomeComputes(frequency = 3) {
       const [a, b] = entry.split('|').map((k2) => points.get(k2)!)
       const top = Math.max(a![2], b![2]).toFixed(6)
       return top === z && Math.min(a![2], b![2]) > -1e-6
-    }).length,
-  }))
+    }).length }))
   const facets = [
     { facet: `the mesh is DISCOVERED, not listed: ${base.length} φ-vertices → ${faces.length} faces by mutual minimal distance, Euler V−E+F = ${V}−${E}+${F} = ${V - E + F}`, on: V - E + F === 2 && base.length === 3 * 4 && faces.length === 4 * 5 },
     { facet: `frequency ν=${nu} closes the counting laws: V = 10ν²+2 = ${V}, E = 30ν² = ${E}, F = 20ν² = ${F}`, on: V === 5 * 2 * nu * nu + 2 && E === 5 * 6 * nu * nu && F === 4 * 5 * nu * nu },
@@ -179,8 +181,7 @@ export function geodesicDomeComputes(frequency = 3) {
       const [a, b] = entry.split('|').map((k2) => points.get(k2)!)
       if (Math.min(a![2], b![2]) < -1e-6) return []
       return [{ a: a!, b: b!, ring: zIdx.get(Math.max(a![2], b![2]).toFixed(6)) ?? 0 }]
-    }),
-  }
+    }) }
   return {
     computes: facets.every((entry) => entry.on),
     frequency: nu,
@@ -193,8 +194,7 @@ export function geodesicDomeComputes(frequency = 3) {
     rings,
     facets,
     statement: `Geodesic dome ν=${nu} computed from φ alone: ${V} vertices · ${E} struts in ${classes} classes · ${F} faces (Euler ${V - E + F}); the hologram (one chord law, error ${chordLawMaxError.toExponential(1)}) and the fractal (one subdivision law, F×4 per doubling) verified; assembly = ${rings.length} animated rings.`,
-    boundary: 'Pure geometry, zero tabulated data: the icosahedron generated from φ, adjacency discovered by distance, counts proven by Euler and the 10ν²+2 laws. The animation plan is the CONSTRUCTION SEQUENCE (rings base-up), not decoration. Fuller\'s engineering practice (chord-factor tables) is the same chord law precomputed — documented, no mysticism attached.',
-  }
+    boundary: 'Pure geometry, zero tabulated data: the icosahedron generated from φ, adjacency discovered by distance, counts proven by Euler and the 10ν²+2 laws. The animation plan is the CONSTRUCTION SEQUENCE (rings base-up), not decoration. Fuller\'s engineering practice (chord-factor tables) is the same chord law precomputed — documented, no mysticism attached.' }
 }
 
 /** COUNTERDIFFUSION ON THE DOUBLE TORUS — the claim tested, not assumed (user, 2026-07-16:
@@ -244,8 +244,7 @@ export function counterdiffusionOnTheDoubleTorus() {
     supersaturation,
     facets,
     statement: `Counterdiffusion on the double torus — the topology is right (genus ${genus}: pulmonary + systemic), the conclusion is REFUTED: an N₂→He switch at constant ${depthM} m computes +${supersaturation.toFixed(3)} bar of supersaturation at ${tPeak} min, and ICD is documented in the very bodies that have this topology. The torus does not forbid counterdiffusion; it exposes the coupling that the parallel-compartment axiom denies — the axiom whose fine-tuning was paid for in the DCS record.`,
-    boundary: 'SAFETY, FIRST AND LAST: this is a critique of models, NOT a model. Nothing here plans a dive — not this fold, not any fold in this repository. DOCUMENTED: circulation topology (two cycles); the Haldane-exponential ICD spike (a standard result, computed from the ledgered halftimes via Graham); the ICD literature (Lambertsen & Idicula 1975 · Doolette & Mitchell 2003); the correction history (ZHL-16A→B/C · Baker 1998 gradient factors · NEDU 2011 deep-stop reversal). REFUTED: that any topology forbids ICD — the body is the counterexample. HARMONY ≠ TRUTH, and here it is literal: an elegant claim that says a documented injury cannot happen is the most dangerous kind of harmony.',
-  }
+    boundary: 'SAFETY, FIRST AND LAST: this is a critique of models, NOT a model. Nothing here plans a dive — not this fold, not any fold in this repository. DOCUMENTED: circulation topology (two cycles); the Haldane-exponential ICD spike (a standard result, computed from the ledgered halftimes via Graham); the ICD literature (Lambertsen & Idicula 1975 · Doolette & Mitchell 2003); the correction history (ZHL-16A→B/C · Baker 1998 gradient factors · NEDU 2011 deep-stop reversal). REFUTED: that any topology forbids ICD — the body is the counterexample. HARMONY ≠ TRUTH, and here it is literal: an elegant claim that says a documented injury cannot happen is the most dangerous kind of harmony.' }
 }
 
 /** ONE EXPONENTIAL LAW — decompression developed in detail, and it is the same math as everything
@@ -316,8 +315,7 @@ export function oneExponentialLaw() {
     approach,
     facets,
     statement: `One exponential law — ${facets.filter((entry) => entry.on).length}/${facets.length}: washout, RC, decay, cooling and easing are the same ODE (verified against numerical integration); the halftime ladder is an octave ladder at heart (middle ratio ${middleMean.toFixed(4)} ≈ √2, ${perOctave.toFixed(2)} compartments per doubling) whose ends drift (${headDrift.toFixed(3)} → ${tailDrift.toFixed(3)}) where the fitting shows; and the identical kernel eases every animation — gas loading and a fade are one curve.`,
-    boundary: 'DOCUMENTED: the first-order ODE and its closed form (Haldane 1908 · Bühlmann 1990 for the halftimes, which are MEASUREMENTS — derived here from the ledgered He table via Graham, never re-typed). The √2 middle rung is an OBSERVATION about the published ladder, not a claim that Bühlmann intended it — the drift at both ends is the evidence he fitted rather than derived. THIS IS MATHEMATICS AND ANIMATION, NOT A DIVE TOOL: no fold in this repository plans a dive (see counterdiffusionOnTheDoubleTorus). HARMONY ≠ TRUTH.',
-  }
+    boundary: 'DOCUMENTED: the first-order ODE and its closed form (Haldane 1908 · Bühlmann 1990 for the halftimes, which are MEASUREMENTS — derived here from the ledgered He table via Graham, never re-typed). The √2 middle rung is an OBSERVATION about the published ladder, not a claim that Bühlmann intended it — the drift at both ends is the evidence he fitted rather than derived. THIS IS MATHEMATICS AND ANIMATION, NOT A DIVE TOOL: no fold in this repository plans a dive (see counterdiffusionOnTheDoubleTorus). HARMONY ≠ TRUTH.' }
 }
 
 // ── THE PYRAMIDS DECODE INTO THEOREMS (user law: decode the known pyramid locations and geometry
@@ -374,6 +372,5 @@ export function pyramidsDecodeIntoTheorems() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The pyramids decode into theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Great Pyramid's slope is integer masonry (seked 5½ → arctan(14/11) matching the surveyed 72²/100 degrees), and BOTH famous ratios fall out of that one choice — perimeter/(2·height) = 22/7 exactly and slant/half-base within 0.05% of φ; the ${sites.length} documented sites span a computed latitude band covering ${(bandFraction * 100).toFixed(1)}% of Earth, so all possible locations, computed honestly, is the civilisation band — and the pairwise distances (${(dMax / dMin).toFixed(0)}× spread) refute the secret-grid myth by direct computation.`,
-    boundary: `DOCUMENTED KEPT, LEGEND FLAGGED: the seked construction, the surveyed slope, the site coordinates and the π/φ resolutions are documented Egyptology and geography, computed exactly here (coordinates in exponent form, the measured-data home); the Bosnian "pyramid" is EXCLUDED as flagged pseudoarchaeology, and the speed-of-light latitude coincidence (29.9792° vs c's digits) is numerology of modern units — noted only to flag it. "All possible locations" is a MODEL (the latitude band the documented sites span — a prediction of where civilisations could build), not a claim that pyramids exist everywhere in it; the grid refutation is the computed distance spread. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `DOCUMENTED KEPT, LEGEND FLAGGED: the seked construction, the surveyed slope, the site coordinates and the π/φ resolutions are documented Egyptology and geography, computed exactly here (coordinates in exponent form, the measured-data home); the Bosnian "pyramid" is EXCLUDED as flagged pseudoarchaeology, and the speed-of-light latitude coincidence (29.9792° vs c's digits) is numerology of modern units — noted only to flag it. "All possible locations" is a MODEL (the latitude band the documented sites span — a prediction of where civilisations could build), not a claim that pyramids exist everywhere in it; the grid refutation is the computed distance spread. HARMONY ≠ TRUTH.` }
 }

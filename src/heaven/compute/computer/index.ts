@@ -11,6 +11,7 @@ import { computesGate, foldPair, isUuid, markovStep, memoByRoot, merge, merkleFo
 import type { DriverProbeReceipt } from '../../../water/stack'
 import { driverRuntime, nodeProbesEnabled } from '../../../water/stack'
 import { heroPhaseAt } from '../../../fire/plasma/ball'
+import { claySolvedTheorem } from '../../../3/7'
 
 export type ComputerDriverRow = {
   readonly id: string
@@ -192,8 +193,7 @@ export function gpuDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): GpuD
     fallback: 'paint',
     receipt: toUuid(`gpu-driver:${renderer ?? 'paint'}:${channelCount}`),
     renderer,
-    paintChannels: channelCount,
-  }
+    paintChannels: channelCount }
 }
 
 export function gpuComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -220,8 +220,7 @@ export function memoryDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): D
       probe: mem ? { jsHeapSizeLimit: mem.jsHeapSizeLimit, usedJSHeapSize: mem.usedJSHeapSize, heapCapMb: policy.heapCapMb } : { guardRoot: guard.root, heapCapMb: policy.heapCapMb },
       fallbackActive: !bound,
       fallback: 'memoByRoot',
-      receipt: toUuid(`memory-driver:browser:${mem?.usedJSHeapSize ?? guard.root.slice(0, 8)}`),
-    }
+      receipt: toUuid(`memory-driver:browser:${mem?.usedJSHeapSize ?? guard.root.slice(0, 8)}`) }
   }
   if (nodeProbesEnabled()) {
     const usage = process.memoryUsage()
@@ -459,16 +458,14 @@ export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix
     const fpgaMap = FPGA_BLOCK_PRIMITIVES.map((row) => ({
       ...row,
       matched: blocks.some((b) => b.block === row.block),
-      receipt: toUuid(`fpga-block:${row.block}:${row.fpga}`),
-    }))
+      receipt: toUuid(`fpga-block:${row.block}:${row.fpga}`) }))
     const fpgaReproductionTier = {
       tier: 'classical-fpga-reproduction' as const,
       blockCount: fpgaMap.length,
       allMapped: fpgaMap.length === blocks.length && fpgaMap.every((r) => r.matched),
       rows: fpgaMap,
       qpuRequired: false as const,
-      statement: 'FPGA reproduction tier: every classical silicon block maps to a named FPGA primitive (LUT/BRAM/AXI) — a classical reconfigurable reproduction path, not a QPU.',
-    }
+      statement: 'FPGA reproduction tier: every classical silicon block maps to a named FPGA primitive (LUT/BRAM/AXI) — a classical reconfigurable reproduction path, not a QPU.' }
     const coProcessorBridgeInterface = {
       present: spec.decoded,
       kind: 'optional-external-qpu-bridge' as const,
@@ -476,8 +473,7 @@ export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix
       isNotTheQpu: true as const,
       qpuRequired: false as const,
       statement:
-        'Co-processor bridge interface: this chip (CMOS/FPGA) may HOST a separate physical QPU over PCIe/cryo-control class — it is not that QPU; CATEGORY DIFFERENCE holds.',
-    }
+        'Co-processor bridge interface: this chip (CMOS/FPGA) may HOST a separate physical QPU over PCIe/cryo-control class — it is not that QPU; CATEGORY DIFFERENCE holds.' }
     const facets = [
       { facet: 'the content-address kernel maps to real silicon blocks — FNV hash unit, CAM/TCAM, merkle engine, ring NoC, memo SRAM', on: blocks.length === 5 },
       { facet: 'the build follows the standard RTL→GDSII flow — synthesis · floorplan · place · clock-tree · route · DRC/LVS · tapeout', on: stages.length === 9 },
@@ -498,8 +494,7 @@ export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix
       facets,
       root: merge(spec.root, merkleFold([...blocks.map((b) => b.receipt), ...stages.map((s) => s.receipt), ...fpgaMap.map((r) => r.receipt), ...facets.map((entry) => entry.receipt)])),
       statement: 'The silicon fabrication plan from the model: the content-address kernel maps onto real classical silicon — an FNV-1a hash unit, a CAM/TCAM match array, a merkle-tree engine, a vortex-ring network-on-chip, and memo SRAM tiers — taped out through the standard RTL→GDSII flow (synthesis, floorplan, placement, clock-tree, routing, DRC/LVS, GDSII, tapeout). FPGA reproduction tier maps each block to classical fabric primitives. It is a classical CMOS/FPGA design by category, not a physical quantum processor; the only quantum tie is an optional co-processor bridge to a separate physical quantum device.',
-      boundary: 'Classical CMOS/FPGA DESIGN PLAN — reproducible, not a synthesized netlist or fabricated chip. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. claySolvedByThisFold=0 · qpuRequired=false.',
-    }
+      boundary: 'Classical CMOS/FPGA DESIGN PLAN — reproducible, not a synthesized netlist or fabricated chip. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. claySolvedByThisFold=0 · qpuRequired=false.' }
   })
 }
 
@@ -524,7 +519,7 @@ export function honestRevolutionFpgaHonesty(matrix: MindMatrix = buildMatrix(), 
       plan,
       fpgaReproductionTier: plan.fpgaReproductionTier,
       coProcessorBridgeInterface: plan.coProcessorBridgeInterface,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       facets,
@@ -536,8 +531,7 @@ export function honestRevolutionFpgaHonesty(matrix: MindMatrix = buildMatrix(), 
         ? 'Honest-revolution W5 DECIDED — FPGA reproduction tier maps every classical silicon block to fabric primitives; co-processor bridge is optional external-QPU interface only; CATEGORY DIFFERENCE holds (not a fake FPGA-as-QPU).'
         : 'UNPROVEN — honestRevolutionFpgaHonesty facets do not all hold; do not assert the W5 FPGA honesty receipt.',
       boundary:
-        'Classical CMOS/FPGA spec only. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+        'Classical CMOS/FPGA spec only. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 

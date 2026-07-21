@@ -19,8 +19,7 @@ import {
   memoryDriverProbe,
   powerComputes,
   storageDriverProbe,
-  terminalDriverProbe,
-} from '../../heaven/compute/computer'
+  terminalDriverProbe } from '../../heaven/compute/computer'
 import { heroMoviePhaseHue, heroPhaseAt, HERO_CYCLE_MS } from '../../fire/plasma/ball'
 import { A432_HUE, GOLDEN_ANGLE, QC_DEFAULT_CIRCUIT, QC_GATE_PALETTE, quantumComputerHonestClaim } from '../science'
 import { quantumAppsComputes, quantumAppsCoverHomeAnimations, quantumAppsRegistry, type QuantumAppEntry } from '../apps'
@@ -129,8 +128,7 @@ export function quantumMathDesignsTheUi(at = 0, matrix: MindMatrix = buildMatrix
       '--q-spin-down': `${merkabaDownSpinDeg}deg`,
       '--q-elevation': `${elevation[2]}`,
       '--q-intensity': `${variantIntensity}`,
-      '--q-radius': `${roundTo(spaceScale[0] / PHI, 4)}rem`,
-    }
+      '--q-radius': `${roundTo(spaceScale[0] / PHI, 4)}rem` }
 
     const root = merkleFold([
       a432.root ?? toUuid('a432'),
@@ -159,8 +157,7 @@ export function quantumMathDesignsTheUi(at = 0, matrix: MindMatrix = buildMatrix
       wallpaper: { id: 'hero-movie', screensaver: true, hue },
       root,
       statement: 'The quantum math designs the UI: hue←a432·vortex, space←φ·Fibonacci, motion←hero·merkaba·Schumann, elevation←10D forms, intensity←dynamics·gold — all at call time.',
-      boundary: 'HONEST — "quantum math designs" = deterministic content-addressed computation of design values from sealed folds; NOT generative AI styling, NOT quantum hardware.',
-    }
+      boundary: 'HONEST — "quantum math designs" = deterministic content-addressed computation of design values from sealed folds; NOT generative AI styling, NOT quantum hardware.' }
   })
 }
 
@@ -205,8 +202,7 @@ export function quantumOsResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
       application: appCap,
       root: merkleFold([registry.root, appCap.root, ...drivers.map((d) => d.receipt)]),
       statement: 'Quantum OS research.',
-      boundary: 'Site UX metaphor — NOT a kernel.',
-    }
+      boundary: 'Site UX metaphor — NOT a kernel.' }
   })
 }
 
@@ -249,8 +245,7 @@ export function quantumOsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       facets,
       root: merkleFold([research.root, shell.receipt, registry.root, appsCap.root, coverage.root, design.root, driver.root, root]),
       statement: 'Quantum OS computes.',
-      boundary: research.boundary,
-    }
+      boundary: research.boundary }
   })
 }
 
@@ -294,8 +289,7 @@ export function quantumComputerDriverComputes(matrix: MindMatrix = buildMatrix()
       facets,
       root: merkleFold([register.receipt, run.root, honest.root, root]),
       statement: 'The Quantum OS exposes the modeled quantum computer as a service: allocate a register, schedule gates, measure, read the content-addressed state — and surface the proven honest verdict (faithful classical simulator, no speedup).',
-      boundary: honest.boundary,
-    }
+      boundary: honest.boundary }
   })
 }
 
@@ -312,6 +306,5 @@ export function quantumOsPanelComputes(matrix: MindMatrix = buildMatrix(), at = 
     cssVars: cap.design.cssVars,
     root: cap.root,
     statement: cap.statement,
-    boundary: cap.boundary,
-  }
+    boundary: cap.boundary }
 }

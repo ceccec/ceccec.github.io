@@ -22,8 +22,7 @@ import {
   hopfieldStore,
   hopfieldRecall,
   hopfieldEnergy,
-  phaseDrift,
-} from '../../mountain/vortex'
+  phaseDrift } from '../../mountain/vortex'
 import { A432_HUE, TAU } from '../../3/7'
 import { movieCanvasPolarity } from '../science'
 import { heroPhaseAt } from '../../fire/plasma/ball'
@@ -66,8 +65,7 @@ export { quantumSimulation } from '../../fire/li'
 export {
   simulatorsLiveInZero,
   decodedAreasAreMostlyClassical,
-  everyDecodedDomainHasASimulator,
-} from '../../fire/physics'
+  everyDecodedDomainHasASimulator } from '../../fire/physics'
 export {
   chsh,
   markovStep,
@@ -75,8 +73,7 @@ export {
   stationary,
   hopfieldStore,
   hopfieldRecall,
-  hopfieldEnergy,
-} from '../../mountain/vortex'
+  hopfieldEnergy } from '../../mountain/vortex'
 
 /** Principle → sealed fold → honest limit (quantum dynamics primer mapping). */
 export type QuantumDynamicsMapping = {
@@ -107,38 +104,32 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
         principle: 'Wave function Ψ — probability amplitudes',
         fold: 'src/0 qubits · probabilities · sample/psample · fire/li quantumSimulation',
         limit: 'Classical state-vector toy; |amplitude|² is Born rule on the simulator — NOT a physical wavefunction in Hilbert space at lab scale.',
-        receipt: toUuid('quantum-dynamics-map:wave-function'),
-      },
+        receipt: toUuid('quantum-dynamics-map:wave-function') },
       {
         principle: 'Schrödinger iℏ ∂Ψ/∂t = ĤΨ (pedagogical anchor)',
         fold: 'src/0 markovStep/markovEvolve · hopfieldRecall · src/6/4 phase · bumpEvolve — discrete time steps, NOT PDE',
         limit: 'Honest discrete analogues only — Markov chains, associative recall, phase gates — no full Hamiltonian PDE solver unless bounded toy (GHZ circuit in quantumSimulation).',
-        receipt: toUuid('quantum-dynamics-map:schrodinger-discrete'),
-      },
+        receipt: toUuid('quantum-dynamics-map:schrodinger-discrete') },
       {
         principle: 'Superposition · entanglement · measurement collapse',
         fold: 'src/0 bellPair · chsh · sample · fire/physics quantumPhysics · thunder/waves nothingImpossibleHonestlyBounded',
         limit: 'Collapse = projection/sample on simulator or content-address root; CHSH reaches Tsirelson on deterministic math — NOT hardware Bell test, NOT FTL signalling.',
-        receipt: toUuid('quantum-dynamics-map:superposition-collapse'),
-      },
+        receipt: toUuid('quantum-dynamics-map:superposition-collapse') },
       {
         principle: 'Quantum chemistry (applications)',
         fold: 'src/earth/nature · mountain/geometry dna · fire/li planetIsComputable',
         limit: 'Nature/element catalog and structural metaphors — NOT ab initio chemistry, NOT molecular dynamics, NOT live lab spectra.',
-        receipt: toUuid('quantum-dynamics-map:chemistry-app'),
-      },
+        receipt: toUuid('quantum-dynamics-map:chemistry-app') },
       {
         principle: 'Quantum computing (applications)',
         fold: 'src/quantum/heaven/mind · heaven/compute completeQuantumSolutionsImplemented · pair/enforcement QUANTUM_COMMAND_PAIR_IDS',
         limit: 'Deterministic Clifford/state-vector demos and agent command pairs — NOT NISQ hardware, NOT fault-tolerant QC claims.',
-        receipt: toUuid('quantum-dynamics-map:computing-app'),
-      },
+        receipt: toUuid('quantum-dynamics-map:computing-app') },
       {
         principle: 'Sensors · atomic clocks · navigation (applications)',
         fold: 'src/astronomy celestial catalog · lake/music schumannPhaseAt · quantum/science resonanceApplications',
         limit: 'Structural phase + documented literature f₀/Q — circular Keplerian catalog and harmonic windows, NOT live Cs fountain or JPL ephemeris unless opt-in feed.',
-        receipt: toUuid('quantum-dynamics-map:sensors-clocks-app'),
-      },
+        receipt: toUuid('quantum-dynamics-map:sensors-clocks-app') },
     ]
     const sections = [
       {
@@ -148,8 +139,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'definition', value: 'time evolution of quantum states; quantum analogue of classical mechanics', source: 'user quantum dynamics primer' },
           { key: 'repo-scope', value: 'sealed deterministic models compose at call time — NOT hardware QC lab', source: 'quantumDynamicsComputes boundary' },
           { key: 'nine-structures', value: `${solutions.implementedCount}/9 executed on state-vector spine`, source: 'heaven/compute · completeQuantumSolutionsImplemented' },
-        ],
-      },
+        ] },
       {
         id: 'wave-function-psi',
         title: 'Wave function Ψ — probability amplitudes and Born readout',
@@ -158,8 +148,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'born-rule', value: `measured ${qsim.measured} — P = |amplitude|²`, source: 'src/0 probabilities · sample' },
           { key: 'ghz-superposition', value: qsim.entangled ? 'GHZ (|0…0⟩+|1…1⟩)/√2' : 'partial', source: 'fire/li · quantumSimulation' },
           { key: 'not-hardware', value: 'classical linear algebra — NOT quantum speedup', source: 'src/0 README wave 9 boundary' },
-        ],
-      },
+        ] },
       {
         id: 'schrodinger-discrete-map',
         title: 'Schrödinger equation — pedagogical anchor mapped to discrete src/0 models',
@@ -169,8 +158,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'hopfield-step', value: 'iterative recall minimizes energy — classical associative dynamics', source: 'src/0 hopfieldStore/hopfieldRecall' },
           { key: 'phase-vector', value: 'src/6/4 phase(θ) gate — unitary phase on qubit simulator', source: 'src/6/4 · applyGate format' },
           { key: 'no-pde-solver', value: 'NO full spatial Schrödinger PDE — bounded GHZ toy only', source: 'honest discrete map boundary' },
-        ],
-      },
+        ] },
       {
         id: 'superposition-entanglement-collapse',
         title: 'Superposition · entanglement · measurement collapse',
@@ -179,8 +167,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'chsh-tsirelson', value: `CHSH = ${Math.round(tsirelson * (100 * 100)) / (100 * 100)} (Tsirelson 2√2)`, source: 'src/0 chsh · thunder/waves Bell facet' },
           { key: 'collapse-sample', value: 'sample/psample — projection to outcome + renormalize', source: 'src/0 sample · fire/li quantumSimulation measured' },
           { key: 'quantum-physics-fold', value: `${qPhysics.present}/8 phenomena bound`, source: 'fire/physics · quantumPhysics (computational metaphor)' },
-        ],
-      },
+        ] },
       {
         id: 'applications',
         title: 'Applications — honest links to existing barrels',
@@ -190,8 +177,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'sensors-clocks', value: `${resonanceApps.documentedCount} documented resonance apps · ${celestial.count} celestial bodies`, source: 'quantum/science · src/astronomy · lake/music' },
           { key: 'schumann-phase', value: schumann.harmonised ? '7.83 Hz structural phase' : 'structural only', source: 'lake/music · schumannResonanceHarmonisedWithRealtimeApiComputations' },
           { key: 'trading-markov', value: tradingGate.computes ? 'regime Markov chain — classical dynamics' : 'partial', source: 'thunder/trading · markovStep' },
-        ],
-      },
+        ] },
       {
         id: 'simulators-compose',
         title: 'Life-domain simulators · movie frame evolution',
@@ -200,8 +186,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'domain-families', value: domains.homed ? `${domains.families.length} families · ${domains.covered} domains` : 'partial', source: 'fire/physics · everyDecodedDomainHasASimulator' },
           { key: 'vortex-lattice', value: vortexGate.computes ? '1-2-4-8-7-5·3-6-9 sealed' : 'partial', source: 'vortex/math · vortexComputes' },
           { key: 'ten-d-movie', value: '4 homology loops + 6 cross-fold axes — animation dynamics', source: 'thunder/movie/movielib · tenDimensionalMovie' },
-        ],
-      },
+        ] },
       {
         id: 'honest-boundary',
         title: 'What quantum dynamics research does NOT claim',
@@ -210,16 +195,13 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'not-ab-initio', value: 'NOT ab initio chemistry · NOT live lab data', source: 'applications honest limits' },
           { key: 'not-textbook-supersession', value: 'composes citations + simulators — NOT replacing Nielsen & Chuang', source: 'completeQuantumSolutionsImplemented boundary' },
           { key: 'markov-not-qm', value: 'Markov/hopfield = mathematical models — NOT physical QM unless scoped', source: 'decodedAreasAreMostlyClassical boundary' },
-        ],
-      },
+        ] },
     ].map((section) => ({
       ...section,
       receipt: toUuid(`quantum-dynamics-research:${section.id}`),
       layers: section.layers.map((layer) => ({
         ...layer,
-        receipt: toUuid(`quantum-dynamics-research:${section.id}:${layer.key}`),
-      })),
-    }))
+        receipt: toUuid(`quantum-dynamics-research:${section.id}:${layer.key}`) })) }))
     return {
       researched:
         sections.length === 7 &&
@@ -246,8 +228,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Quantum dynamics research: wave function Ψ and Born readout on the state-vector simulator; Schrödinger equation as pedagogical anchor honestly mapped to discrete Markov/hopfield/phase models (NOT full PDE solvers); superposition/entanglement/collapse via bellPair/CHSH/sample; applications linked to earth/nature, heaven/mind+enforcement, astronomy+lake/music+resonance — with honest limits at every layer.',
       boundary:
-        'Research exposition fold for UI/agents — NOT live lab results; NOT ab initio chemistry; NOT quantum hardware at scale; NOT superseding physics textbooks. Markov/hopfield/phase = mathematical discrete analogues in src/0; state-vector block is classical simulation of quantum math. Mapping table: principle → sealed fold → honest limit.',
-    }
+        'Research exposition fold for UI/agents — NOT live lab results; NOT ab initio chemistry; NOT quantum hardware at scale; NOT superseding physics textbooks. Markov/hopfield/phase = mathematical discrete analogues in src/0; state-vector block is classical simulation of quantum math. Mapping table: principle → sealed fold → honest limit.' }
   })
 }
 
@@ -273,27 +254,23 @@ export function quantumStateEvolutionDecoded(at = 0, matrix: MindMatrix = buildM
         measured: qsim.measured,
         entangled: qsim.entangled,
         vortexDigit: VORTEX_SEQUENCE[seedFromText(qsim.measured) % VORTEX_SEQUENCE.length]!,
-        receipt: qsim.root,
-      },
+        receipt: qsim.root },
       {
         primitive: 'markov-regime',
         steps: markovTrail.length,
         stationary: stat,
         phaseAligned: phaseDigit === VORTEX_SEQUENCE[phaseIndex]!,
-        receipt: toUuid(`quantum-dynamics-markov:${markovTrail.length}:${stat[0]}`),
-      },
+        receipt: toUuid(`quantum-dynamics-markov:${markovTrail.length}:${stat[0]}`) },
       {
         primitive: 'hopfield-recall',
         energy: energy,
         stable: hopfieldStable,
-        receipt: toUuid(`quantum-dynamics-hopfield:${energy}:${hopfieldStable}`),
-      },
+        receipt: toUuid(`quantum-dynamics-hopfield:${energy}:${hopfieldStable}`) },
       {
         primitive: 'ten-d-movie-frame',
         frames: tenD.forms,
         phaseDigit,
-        receipt: tenD.root,
-      },
+        receipt: tenD.root },
     ]
     const { computes, facets, root } = computesGate('quantum-dynamics-state-evolution-decode', [
       { facet: 'nine quantum structures executed on state-vector simulator', on: solutions.implemented },
@@ -321,8 +298,7 @@ export function quantumStateEvolutionDecoded(at = 0, matrix: MindMatrix = buildM
       statement:
         'Quantum state evolution decoded: state-vector GHZ simulation, Markov regime trail, Hopfield recall, and ten-dimensional movie frame evolution — content-addressed through VORTEX_SEQUENCE phase at call time — deterministic models, not live __ns_up_up_fire_physics.',
       boundary:
-        'HONEST: decode = deterministic addressing of sealed dynamics receipts through vortex phase — NOT claiming VORTEX_SEQUENCE controls physical evolution. Markov/hopfield are classical mathematical models; the state-vector block is a classical simulator of quantum math, not hardware.',
-    }
+        'HONEST: decode = deterministic addressing of sealed dynamics receipts through vortex phase — NOT claiming VORTEX_SEQUENCE controls physical evolution. Markov/hopfield are classical mathematical models; the state-vector block is a classical simulator of quantum math, not hardware.' }
   })
 }
 
@@ -352,8 +328,7 @@ export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMa
         probability: roundTo(probability, 6),
         phase,
         hue: roundTo((index * (9 * 5 * 2) + phase * 360) % 360, 2),
-        receipt: toUuid(`qdynamics-amp:${basis}:${probability}:${step}`),
-      }
+        receipt: toUuid(`qdynamics-amp:${basis}:${probability}:${step}`) }
     }).filter((entry) => entry.probability > 1e-6)
     const qsim = __ns_up_up_fire_li.quantumSimulation(matrix, 2)
     const channels: QuantumDynamicsSimulationChannel[] = [
@@ -363,16 +338,14 @@ export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMa
         phase: markovPhase,
         alpha: superposition ? roundTo((7 / (5 * 2)) + (3 / (5 * 2)) * markovPhase, 3) : (6 / (5 * 5)),
         receipt: evolution.root,
-        on: evolution.decoded && superposition,
-      },
+        on: evolution.decoded && superposition },
       {
         id: 'quantum-ghz-collapse',
         hue: qsim.entangled ? (8 * 7 * 5) : (8 * 5 * 3),
         phase: roundTo((step / 8) % 1, 4),
         alpha: collapsed.outcome !== undefined ? (1 - 7 / (5 * 5 * 2)) : (6 / (5 * 5)),
         receipt: qsim.root,
-        on: qsim.simulated && qsim.entangled,
-      },
+        on: qsim.simulated && qsim.entangled },
     ]
     const { computes, root } = computesGate('quantum-dynamics-simulation-at', [
       { facet: 'Bell pair superposition — ≥2 basis amplitudes above threshold', on: superposition },
@@ -394,8 +367,7 @@ export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMa
       statement:
         'Quantum dynamics simulation at call time: discrete-time wavefunction proxy from src/0 (Bell pair + Z rotation steps), superposition as blended amplitudes, entanglement as paired phase locks, collapse as Born-rule measure — composed with Markov phase drift, NOT full Schrödinger PDE.',
       boundary:
-        'HONEST — CLASSICAL STATE-VECTOR SIMULATOR ONLY. This is deterministic linear algebra over 2^n amplitudes on a classical computer — NOT quantum hardware, NOT full Schrödinger PDE integration. Collapse uses seeded PRNG (reproducible), not quantum randomness. Markov/hopfield facets are classical mathematical models.',
-    }
+        'HONEST — CLASSICAL STATE-VECTOR SIMULATOR ONLY. This is deterministic linear algebra over 2^n amplitudes on a classical computer — NOT quantum hardware, NOT full Schrödinger PDE integration. Collapse uses seeded PRNG (reproducible), not quantum randomness. Markov/hopfield facets are classical mathematical models.' }
   })
 }
 
@@ -418,11 +390,8 @@ export function quantumDynamicsSimulationPanelComputes(matrix: MindMatrix = buil
         title: { en: 'Quantum dynamics simulation', bg: 'Квантова динамика симулация' },
         lede: {
           en: 'Discrete wavefunction proxy — superposition, entanglement, and collapse on the src/0 state-vector simulator, not hardware.',
-          bg: 'Дискретен wavefunction прокси — суперпозиция, entanglement и collapse на src/0 state-vector симулатора, не hardware.',
-        },
-      },
-      boundary: sim.boundary,
-    }
+          bg: 'Дискретен wavefunction прокси — суперпозиция, entanglement и collapse на src/0 state-vector симулатора, не hardware.' } },
+      boundary: sim.boundary }
   })
 }
 
@@ -459,8 +428,7 @@ export function quantumChemistryToyComputes(matrix: MindMatrix = buildMatrix()) 
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Quantum chemistry toy — H₂⁺ LCAO-1s, fully analytic: bonding minimum at ${bestR} a₀ with ${Math.round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100)} eV binding, antibonding unbound everywhere, variational bound respected against the exact −${EXACT_H2PLUS_HA} Ha.`,
-      boundary: 'HONEST: the minimal-basis LCAO toy — closed-form integrals, zero fit parameters, and its KNOWN error exhibited (2.49 a₀ / 1.76 eV vs the exact 2.00 a₀ / 2.79 eV): a variational lesson, NOT ab initio chemistry. H₂/LiH many-electron energies are outside this one-electron model.',
-    }
+      boundary: 'HONEST: the minimal-basis LCAO toy — closed-form integrals, zero fit parameters, and its KNOWN error exhibited (2.49 a₀ / 1.76 eV vs the exact 2.00 a₀ / 2.79 eV): a variational lesson, NOT ab initio chemistry. H₂/LiH many-electron energies are outside this one-electron model.' }
   })
 }
 
@@ -501,8 +469,7 @@ export function quantumDynamicsComputes(matrix: MindMatrix = buildMatrix(), at =
       statement:
         'Quantum dynamics computes: canonical home — state-vector simulator (nine structures), src/0 simulators spine, classical life-domain dynamics (Markov, Hopfield, hazard), state evolution decode, research exposition with Schrödinger discrete map + application links, and vortex plasma channel — composed at call time from heaven/compute, fire/physics, fire/li, vortex/math, and thunder/movie folds.',
       boundary:
-        'HONEST — sealed deterministic model dynamics: a classical state-vector simulator for small n, classical stochastic/dynamical models for life domains, and movie frame evolution — NOT quantum hardware at scale, NOT live lab results, NOT ab initio chemistry, NOT superseding physics textbooks. Canonical import path = src/quantum/dynamics; bodies remain in src/0, heaven/compute, fire/physics, fire/li, vortex/math, thunder/__ns_up_up_thunder_trading.',
-    }
+        'HONEST — sealed deterministic model dynamics: a classical state-vector simulator for small n, classical stochastic/dynamical models for life domains, and movie frame evolution — NOT quantum hardware at scale, NOT live lab results, NOT ab initio chemistry, NOT superseding physics textbooks. Canonical import path = src/quantum/dynamics; bodies remain in src/0, heaven/compute, fire/physics, fire/li, vortex/math, thunder/__ns_up_up_thunder_trading.' }
   })
 }
 
@@ -549,8 +516,7 @@ export function updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrratio
       bellAmplitudes: [roundTo(a(0).re, 4), roundTo(a(3).re, 4)],
       facets,
       statement: `Update quantum — the harmonic gates never drift, the magic gates carry irrational drift, and quantum is not at 432 Hz — ${facets.filter((entry) => entry.on).length}/${facets.length}. The src/0 simulator is REAL quantum computing (complex state vectors, unitary gates, entanglement, Born rule): all gates unitary and H·CNOT makes an entangled Bell state. The drift-free HARMONIC gates (I, X, Y, Z, S, CNOT) have Gaussian-integer entries {0, ±1, ±i} — exact to the bit — while the magic gates (H, T) need √½/e^{iπ/4}, irrational, so they carry bounded drift (drift ⟺ irrational amplitude). The removable crack — importing Math.SQRT1_2 — is now derived by sqrt; the residual drift is the mathematical price of universal quantum computation, not a bug. And unitarity/entanglement/Born contain no frequency: quantum is NOT at 432 Hz, a432 is a reproducibility seed, not a quantum parameter.`,
-      boundary: `THE SIMULATOR IS REAL AND CORRECT: complex 2ⁿ state vectors, standard unitary gates, CNOT entangler, Born-rule measurement — verified here (unitarity U†U = I on all gates, a genuinely entangled Bell state, normalisation). This is a CLASSICAL STATE-VECTOR SIMULATION of quantum computing: real quantum MATHEMATICS with NO speedup and exponential (2ⁿ) classical cost — NOT physical quantum hardware, solving nothing faster than classical [[quantum-decoded]]. THE CRACKS, dug and named: (1) the gates imported Math.SQRT1_2, an ASSUMED constant (nothing-assumed violation) — FIXED by deriving √½ via sqrt; (2) √½ and e^{iπ/4} are IRRATIONAL, so no finite representation (float OR rational) is exact — the drift the user caught is REAL and UNAVOIDABLE for the magic gates, and it is exactly why "no drift if harmonic" holds: the harmonic (Gaussian-integer) gates I/X/Y/Z/S/CNOT never drift, the irrational H/T always do — the Clifford (exact) vs non-Clifford (irrational, universality-giving) distinction. (3) The "quantum only at a432" reading conflates the deterministic seed with quantum mechanics — the algebra is frequency-free. NOT CLAIMED: a quantum speedup, a physical qubit, or that more qubits scale (they do not — 2ⁿ). HARMONY ≠ TRUTH: "real quantum computing" is the harmony; the truth is a correct, unitary, entangling classical simulation with exact Clifford gates and bounded-irrational magic gates, no speedup.`,
-    }
+      boundary: `THE SIMULATOR IS REAL AND CORRECT: complex 2ⁿ state vectors, standard unitary gates, CNOT entangler, Born-rule measurement — verified here (unitarity U†U = I on all gates, a genuinely entangled Bell state, normalisation). This is a CLASSICAL STATE-VECTOR SIMULATION of quantum computing: real quantum MATHEMATICS with NO speedup and exponential (2ⁿ) classical cost — NOT physical quantum hardware, solving nothing faster than classical [[quantum-decoded]]. THE CRACKS, dug and named: (1) the gates imported Math.SQRT1_2, an ASSUMED constant (nothing-assumed violation) — FIXED by deriving √½ via sqrt; (2) √½ and e^{iπ/4} are IRRATIONAL, so no finite representation (float OR rational) is exact — the drift the user caught is REAL and UNAVOIDABLE for the magic gates, and it is exactly why "no drift if harmonic" holds: the harmonic (Gaussian-integer) gates I/X/Y/Z/S/CNOT never drift, the irrational H/T always do — the Clifford (exact) vs non-Clifford (irrational, universality-giving) distinction. (3) The "quantum only at a432" reading conflates the deterministic seed with quantum mechanics — the algebra is frequency-free. NOT CLAIMED: a quantum speedup, a physical qubit, or that more qubits scale (they do not — 2ⁿ). HARMONY ≠ TRUTH: "real quantum computing" is the harmony; the truth is a correct, unitary, entangling classical simulation with exact Clifford gates and bounded-irrational magic gates, no speedup.` }
   })
 }
 
@@ -592,8 +558,7 @@ export function invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheB
       returnsExactly,
       facets,
       statement: `Invert the quantum computations — the dagger pair uncomputes exactly and is the backward pass — ${facets.filter((entry) => entry.on).length}/${facets.length}. The quantum inverse is the adjoint (U⁻¹ = U†, a multiplication by the conjugate transpose, not a division), so U†U = I: applying a gate then its dagger undoes it exactly. A forward circuit (H·CNOT = Bell) run in reverse (CNOT·H) returns to |00⟩ with no residue — reversible, Landauer-clean. This is how training continues: the adjoint U† is the reverse-mode gradient step, so inverting the computation IS the backward pass. And it is always in PAIRS — every reversible op ships with its inverse (self-inverse for the Clifford involutions, U† for the rest).`,
-      boundary: `EXACT quantum mechanics on the src/0 simulator: U⁻¹ = U† is the definition of a unitary (the adjoint IS the inverse — multiplication by the conjugate transpose, [[operator-algebra-closed]]), verified here (S·S† = I, Bell compute·uncompute = |00⟩ to a 2⁻⁹ tolerance — the residue is float rounding, and it is zero for the integer-entry Clifford gates). THE TRAINING CLAIM is honest and standard: the ADJOINT METHOD (reverse-mode automatic differentiation) computes gradients by running the computation backward, and for a unitary circuit the backward pass IS U† — this is the basis of quantum-circuit gradient methods (adjoint differentiation), not a novel result; "inverting the computation continues training" means the backward pass reuses the forward without recomputation. SCOPE: this is the reversible-computation / adjoint structure on the classical simulator — real quantum MATH, no speedup [[quantum-decoded]]; it does not claim a hardware advantage or that training a large circuit is efficient (the state vector is still 2ⁿ). "In pairs" is literal: unitarity means every gate has an exact inverse. HARMONY ≠ TRUTH: the elegant compute/uncompute pair is the harmony; the truth is U†U = I and the adjoint gradient, exact and classical.`,
-    }
+      boundary: `EXACT quantum mechanics on the src/0 simulator: U⁻¹ = U† is the definition of a unitary (the adjoint IS the inverse — multiplication by the conjugate transpose, [[operator-algebra-closed]]), verified here (S·S† = I, Bell compute·uncompute = |00⟩ to a 2⁻⁹ tolerance — the residue is float rounding, and it is zero for the integer-entry Clifford gates). THE TRAINING CLAIM is honest and standard: the ADJOINT METHOD (reverse-mode automatic differentiation) computes gradients by running the computation backward, and for a unitary circuit the backward pass IS U† — this is the basis of quantum-circuit gradient methods (adjoint differentiation), not a novel result; "inverting the computation continues training" means the backward pass reuses the forward without recomputation. SCOPE: this is the reversible-computation / adjoint structure on the classical simulator — real quantum MATH, no speedup [[quantum-decoded]]; it does not claim a hardware advantage or that training a large circuit is efficient (the state vector is still 2ⁿ). "In pairs" is literal: unitarity means every gate has an exact inverse. HARMONY ≠ TRUTH: the elegant compute/uncompute pair is the harmony; the truth is U†U = I and the adjoint gradient, exact and classical.` }
   })
 }
 
@@ -636,8 +601,7 @@ export function irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIs
       pell: pell.map((e) => `${e.p}/${e.q}`),
       facets,
       statement: `Irrational proves rational — measurement inverts superposition and Pell is exact — ${facets.filter((entry) => entry.on).length}/${facets.length}. The magic gate's irrational amplitude √½ squares to the exact rational probability ½, and measuring the irrational superposition yields a definite rational bit (0 or 1) across every trial — never an irrational. Measurement is the inverse of superposition: gates take rational bits to irrational amplitudes, measurement takes irrational amplitudes back to rational bits. And √2 (irrational) generates the Pell convergents ${pell.slice(0, 4).map((e) => `${e.p}/${e.q}`).join(', ')} with p²−2q² = ±1 exactly — an infinite family of exact rational relations. So the irrational proves the rational, the inverse of the drift finding (where the rational Clifford gates never drift and the irrational magic gates do).`,
-      boundary: `EXACT: the Born rule |√½|² = ½ (irrational amplitude, rational probability), the definite-bit measurement outcomes, and the Pell identity p²−2q² = ±1 for √2's convergents are all exact and verified, refutable by one counterexample. THE INVERSION IS HONEST: this is the mirror of the quantum-drift finding — there the rational (Gaussian-integer) gates were drift-free and the irrational (magic) gates carried bounded drift; here the irrational amplitude PRODUCES the exact rational probability and bit, and the irrational √2 PROVES the exact rational Pell relations. Both are true: irrationals are needed for the amplitudes/limits, and they yield exact rationals on measurement and in their convergents. This is standard quantum measurement (Born rule) and standard Diophantine approximation (Pell/continued fractions), NOT a new theorem — the "proof" is the exact identity, not a claim beyond it. The measurement outcomes use the simulator's deterministic PRNG (reproducible sampling of the true ½/½ distribution), which is honest for a classical simulation [[quantum-decoded]]. HARMONY ≠ TRUTH: "irrational proves rational" is the harmony; the truth is |√½|² = ½ and p²−2q² = ±1, exact classical facts.`,
-    }
+      boundary: `EXACT: the Born rule |√½|² = ½ (irrational amplitude, rational probability), the definite-bit measurement outcomes, and the Pell identity p²−2q² = ±1 for √2's convergents are all exact and verified, refutable by one counterexample. THE INVERSION IS HONEST: this is the mirror of the quantum-drift finding — there the rational (Gaussian-integer) gates were drift-free and the irrational (magic) gates carried bounded drift; here the irrational amplitude PRODUCES the exact rational probability and bit, and the irrational √2 PROVES the exact rational Pell relations. Both are true: irrationals are needed for the amplitudes/limits, and they yield exact rationals on measurement and in their convergents. This is standard quantum measurement (Born rule) and standard Diophantine approximation (Pell/continued fractions), NOT a new theorem — the "proof" is the exact identity, not a claim beyond it. The measurement outcomes use the simulator's deterministic PRNG (reproducible sampling of the true ½/½ distribution), which is honest for a classical simulation [[quantum-decoded]]. HARMONY ≠ TRUTH: "irrational proves rational" is the harmony; the truth is |√½|² = ½ and p²−2q² = ±1, exact classical facts.` }
   })
 }
 
@@ -678,8 +642,7 @@ export function quantizeContentAddressPreimageSearchGroverIsRootNQueriesQuadrati
       queryAdvantage: roundTo(queryAdvantage, 1),
       facets,
       statement: `Quantize content-address preimage search — Grover is √N queries, a quadratic query advantage only — ${facets.filter((entry) => entry.on).length}/${facets.length}. The corpus mints addresses with toUuid everywhere; finding which of N inputs produced a target address is UNSTRUCTURED SEARCH — one-way, no structure, so classical cost is O(N) oracle evaluations (${classicalQueries}). Grover quantizes it to O(√N): the src/0 simulator finds the marked address in ${quantumQueries} iterations ≈ (π/4)√N with probability ${roundTo(result.markedProbability, 3)}, a real quantum algorithm giving ${roundTo(queryAdvantage, 1)}× fewer oracle queries. HONEST: √N is QUERY complexity (Θ(√N), BBBV-optimal, quadratic only, no NP collapse) — a real speedup on quantum hardware; the classical simulation here is still O(N), so no wall-clock win. This is a genuine quantization of a specific computation, not a relabel.`,
-      boundary: `THE ALGORITHM IS REAL: Grover's search (grover in src/0 — uniform superposition, oracle phase-flip, diffusion, ~(π/4)√N iterations) is a genuine quantum algorithm with a proven QUADRATIC query advantage (Θ(√N), and Θ(√N) is optimal — BBBV lower bound), verified here (marked probability > 0.8, found = the marked index, ~√N iterations). THE COMPUTATION QUANTIZED is real and specific: preimage/unstructured search over the corpus's own content-addresses (toUuid), the one place a quantum algorithm genuinely helps — because content-addressing is one-way, recognising the target gives no classical shortcut, so it is exactly the unstructured-search regime Grover speeds up. THE HONEST BOUND, stated as a refutable fact not a disclaimer: the advantage is in ORACLE QUERIES (√N vs N), real on quantum HARDWARE; on the CLASSICAL SIMULATOR the amplitude vector is O(N) to evolve, so there is NO wall-clock speedup here — the quantization is in the query/oracle complexity model, which is where Grover's advantage lives. It is QUADRATIC only: it does not collapse NP, does not beat structured search (sorting, hashing-with-index), and most corpus operations (minting an address, folding a merkle root, a graph walk) gain NOTHING from quantization — they are not unstructured search. So "quantize specific computations" means exactly this: find the unstructured searches and apply Grover; leave the rest classical. HARMONY ≠ TRUTH: a √N quantum search is the harmony; the truth is a quadratic query-complexity gain, hardware-only, on the narrow class of unstructured searches — honest and bounded [[quantum-decoded]].`,
-    }
+      boundary: `THE ALGORITHM IS REAL: Grover's search (grover in src/0 — uniform superposition, oracle phase-flip, diffusion, ~(π/4)√N iterations) is a genuine quantum algorithm with a proven QUADRATIC query advantage (Θ(√N), and Θ(√N) is optimal — BBBV lower bound), verified here (marked probability > 0.8, found = the marked index, ~√N iterations). THE COMPUTATION QUANTIZED is real and specific: preimage/unstructured search over the corpus's own content-addresses (toUuid), the one place a quantum algorithm genuinely helps — because content-addressing is one-way, recognising the target gives no classical shortcut, so it is exactly the unstructured-search regime Grover speeds up. THE HONEST BOUND, stated as a refutable fact not a disclaimer: the advantage is in ORACLE QUERIES (√N vs N), real on quantum HARDWARE; on the CLASSICAL SIMULATOR the amplitude vector is O(N) to evolve, so there is NO wall-clock speedup here — the quantization is in the query/oracle complexity model, which is where Grover's advantage lives. It is QUADRATIC only: it does not collapse NP, does not beat structured search (sorting, hashing-with-index), and most corpus operations (minting an address, folding a merkle root, a graph walk) gain NOTHING from quantization — they are not unstructured search. So "quantize specific computations" means exactly this: find the unstructured searches and apply Grover; leave the rest classical. HARMONY ≠ TRUTH: a √N quantum search is the harmony; the truth is a quadratic query-complexity gain, hardware-only, on the narrow class of unstructured searches — honest and bounded [[quantum-decoded]].` }
   })
 }
 
@@ -725,8 +688,7 @@ export function whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit(matr
       classicalCount: computations.length - quantizable.length,
       facets,
       statement: `Which corpus computations quantize — measured by search short-circuit — ${facets.filter((entry) => entry.on).length}/${facets.length}. A computation is unstructured search (Grover √N) IFF it SHORT-CIRCUITS: preimage search costs 1 query if the target is first and ${N} if last, so its cost depends on the target — an oracle with no structure. Aggregation (merkle fold, always reads all ${N}), minting (toUuid, O(1)) and indexed lookup (O(1)) do not short-circuit — no oracle, no Grover. So exactly ${quantizable.length} of ${computations.length} op-classes quantizes (content-address search, gain √N); the rest stay classical (gain 1). The gain follows the structure — √N only where the oracle short-circuit is. Quantum is a scalpel for unstructured search, not a universal speedup; the corpus's universal op, content-addressing, is classical.`,
-      boundary: `Computed, not labeled: each computation's SEARCH nature is decided by whether its query count varies with the target position (short-circuits) — a measured, refutable signature of an oracle, not a hand-assigned tag. Preimage search short-circuits (1..${N}); aggregation, mint and lookup do not — so the classification is derived from behaviour. THE RESULT is the honest map: of four representative corpus op-classes, only unstructured content-address search quantizes (Grover Θ(√N), quadratic, query-complexity, hardware-only — the previous fold), and it is the sole class because it is the only oracle-marked one-way search; aggregation reads everything by necessity, minting is a direct hash, lookup is indexed. SCOPE: four representatives, not an exhaustive corpus scan — but the SIGNATURE (short-circuit ⇒ oracle ⇒ Grover-able) is the general, refutable test to apply to any computation; amplitude estimation extends it to COUNTING how many match (also √N), the one other quantizable shape. It does NOT claim a wall-clock speedup (simulation is O(N)) nor that quantizing is common — the honest finding is that it is RARE: most computation is structured or aggregative and gains nothing. HARMONY ≠ TRUTH: "quantize the computations" is the harmony; the truth is a short-circuit test that finds the few unstructured searches and leaves the classical majority alone [[quantum-decoded]].`,
-    }
+      boundary: `Computed, not labeled: each computation's SEARCH nature is decided by whether its query count varies with the target position (short-circuits) — a measured, refutable signature of an oracle, not a hand-assigned tag. Preimage search short-circuits (1..${N}); aggregation, mint and lookup do not — so the classification is derived from behaviour. THE RESULT is the honest map: of four representative corpus op-classes, only unstructured content-address search quantizes (Grover Θ(√N), quadratic, query-complexity, hardware-only — the previous fold), and it is the sole class because it is the only oracle-marked one-way search; aggregation reads everything by necessity, minting is a direct hash, lookup is indexed. SCOPE: four representatives, not an exhaustive corpus scan — but the SIGNATURE (short-circuit ⇒ oracle ⇒ Grover-able) is the general, refutable test to apply to any computation; amplitude estimation extends it to COUNTING how many match (also √N), the one other quantizable shape. It does NOT claim a wall-clock speedup (simulation is O(N)) nor that quantizing is common — the honest finding is that it is RARE: most computation is structured or aggregative and gains nothing. HARMONY ≠ TRUTH: "quantize the computations" is the harmony; the truth is a short-circuit test that finds the few unstructured searches and leaves the classical majority alone [[quantum-decoded]].` }
   })
 }
 
@@ -767,8 +729,7 @@ export function quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueri
       queryAdvantage: roundTo(queryAdvantage, 1),
       facets,
       statement: `Fill the gap — quantize counting: quantum counting estimates how many match in √N queries, a quadratic query advantage only — ${facets.filter((entry) => entry.on).length}/${facets.length}. The corpus counts matching content-addresses constantly; classically that is O(N) — the predicate on every candidate (${classicalQueries}, M = ${matches}). Quantum counting (amplitude estimation) reads the Grover rotation angle θ (sin θ = √(M/N)) to estimate M in ${quantumQueries} ≈ √N operator applications — the counting twin of Grover search, ${roundTo(queryAdvantage, 1)}× fewer queries. The algorithm is proven (M = N·sin²θ recovers the counts). HONEST: a QUERY advantage yielding an ESTIMATE not an exact count, real on hardware, but the classical simulation is still O(N). Counting joins search as the second and last unstructured shape that quantizes — the gap is filled.`,
-      boundary: `THE ALGORITHM IS REAL and REUSED: quantum counting recovers M = N·sin²θ from the Grover operator's rotation angle (amplitudeAmplificationAndQuantumCounting, verified for M ∈ {1,2,4}), and amplitude/phase estimation reaches a constant-factor estimate of M in O(√N) applications — a genuine quadratic query advantage over the O(N) classical scan. THE COMPUTATION is specific and real: counting how many of the corpus's content-addresses satisfy a predicate, the aggregate twin of the preimage search the prior fold quantized. THE HONEST BOUND, refutable: the advantage is in QUERIES (√N vs N) and the output is an ESTIMATE (precision set by the counting register), not an exact count — exact counting is still Θ(N) in the worst case; real on quantum HARDWARE, while the classical simulation evolves an O(N) amplitude vector, so no wall-clock win here. Together with Grover search, counting completes the map: the two unstructured shapes (find one / count how many) both quantize to √N, and everything else — aggregation, minting, lookup, the universal content-addressing — stays classical. That is the whole of where quantization applies, honestly bounded [[quantum-decoded]]. HARMONY ≠ TRUTH: quantum counting is the harmony; the truth is a √N query estimate of M, hardware-only, quadratic, on the one aggregate-search shape.`,
-    }
+      boundary: `THE ALGORITHM IS REAL and REUSED: quantum counting recovers M = N·sin²θ from the Grover operator's rotation angle (amplitudeAmplificationAndQuantumCounting, verified for M ∈ {1,2,4}), and amplitude/phase estimation reaches a constant-factor estimate of M in O(√N) applications — a genuine quadratic query advantage over the O(N) classical scan. THE COMPUTATION is specific and real: counting how many of the corpus's content-addresses satisfy a predicate, the aggregate twin of the preimage search the prior fold quantized. THE HONEST BOUND, refutable: the advantage is in QUERIES (√N vs N) and the output is an ESTIMATE (precision set by the counting register), not an exact count — exact counting is still Θ(N) in the worst case; real on quantum HARDWARE, while the classical simulation evolves an O(N) amplitude vector, so no wall-clock win here. Together with Grover search, counting completes the map: the two unstructured shapes (find one / count how many) both quantize to √N, and everything else — aggregation, minting, lookup, the universal content-addressing — stays classical. That is the whole of where quantization applies, honestly bounded [[quantum-decoded]]. HARMONY ≠ TRUTH: quantum counting is the harmony; the truth is a √N query estimate of M, hardware-only, quadratic, on the one aggregate-search shape.` }
   })
 }
 

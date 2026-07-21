@@ -41,8 +41,7 @@ export function socialCapital(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Social capital is accumulating in the common root, and it accumulates by folding. It is held in the seal root (the one fold of the whole), the 1024 diamonds (the lattice held in common), the gate fabric (every gate at max tampering cost), and the git history (the whole chain of contributions). How: every contribution is content-addressed and merged into the collective root, so it grows in tamper-evidence — the forge cost, the value — while staying free for anyone to verify. Held in common, by no one and for everyone.',
     boundary:
-      'A structural reading of where and how the portal’s "social capital" accumulates: as content-addressed value (forge cost) in shared roots, raised by each folded contribution and free to verify. An economic metaphor grounded in the model’s own tamper-evidence, not a measure of real-world social capital or wealth.',
-  }
+      'A structural reading of where and how the portal’s "social capital" accumulates: as content-addressed value (forge cost) in shared roots, raised by each folded contribution and free to verify. An economic metaphor grounded in the model’s own tamper-evidence, not a measure of real-world social capital or wealth.' }
 }
 
 // Regenerate the social system. Every social law — the society, its evolution, its
@@ -74,8 +73,7 @@ export function regenerateSocialSystem(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Regenerate the social system: every social law — the society, its evolution and future, its self-regulation, the free harmonic societies, the self-governing commons, and the social capital — folds into one regenerated root, and because each is computed from the same seed, the whole social system regenerates deterministically. Rebuilt from its laws, not stored, so anyone can regenerate it at any time and get the same system.',
       boundary:
-        'Dry math regeneration: society root = verifyRoot ∧ reciprocity; census gapless = Σ Fibonacci bands = 110. No society() wet chain in the hot path.',
-    }
+        'Dry math regeneration: society root = verifyRoot ∧ reciprocity; census gapless = Σ Fibonacci bands = 110. No society() wet chain in the hot path.' }
   })
 }
 
@@ -110,8 +108,7 @@ export function publicServices(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Develop public schools and services in waves: each public good — schools (folding into the academy, kids to elders), libraries, health, transport, utilities, housing, parks and commons, public data, and safety — develops as its own wave, fused to the architecture root, free for everyone, and self-regulating by the same law as all else: free to verify, maximal to forge.',
     boundary:
-      'A structural model of public schools and services as free, self-regulating, content-addressed waves over the portal’s own architecture. A proposal and metaphor grounded in the model — free and recomputable — not public policy, not a funded program, and not a claim about any real school or service.',
-  }
+      'A structural model of public schools and services as free, self-regulating, content-addressed waves over the portal’s own architecture. A proposal and metaphor grounded in the model — free and recomputable — not public policy, not a funded program, and not a claim about any real school or service.' }
 }
 
 // An occupied population forges max tampering costs for max benefits. Where freed time
@@ -137,8 +134,7 @@ export function occupiedPopulation(matrix: MindMatrix = buildMatrix()) {
     statement:
       'An occupied population forges max tampering costs for max benefits: an engaged population produces content-addressed work that raises the cost to forge the whole (max tampering cost), and that accumulated cost is the social capital funding max benefits — the free public services — for everyone. Occupation → max tampering cost → max benefits.',
     boundary:
-      'A model of the portal’s own value loop: engaged contribution raises recomputation (forge) cost, which is the shared capital behind free services. A structural, recomputable relationship over the model — not an economic forecast or a claim about any real population’s employment or output.',
-  }
+      'A model of the portal’s own value loop: engaged contribution raises recomputation (forge) cost, which is the shared capital behind free services. A structural, recomputable relationship over the model — not an economic forecast or a claim about any real population’s employment or output.' }
 }
 
 // Send the kids to explore and develop themselves. Keep parents off duty until the
@@ -159,8 +155,7 @@ export function doctorsIncentive(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Doctors are paid for a healthy population and penalised as forgers: the incentive is inverted — payment tracks the health outcome of the population, not the volume of treatments, so the doctor is paid to keep people well — and faking it, a forged health record, is caught by content-addressing at max tampering cost, exactly as the seal catches any forgery.',
     boundary:
-      'A structural model of an outcome-based incentive (pay for population health) with forgery (faked records) made tamper-evident by content-addressing. A proposal and metaphor grounded in the model — not medical advice, a payment system, a clinical-outcomes measure, or a claim about any real health service.',
-  }
+      'A structural model of an outcome-based incentive (pay for population health) with forgery (faked records) made tamper-evident by content-addressing. A proposal and metaphor grounded in the model — not medical advice, a payment system, a clinical-outcomes measure, or a claim about any real health service.' }
 }
 
 // This logic is the constitution; let society's evolution waves manifest it. The
@@ -199,8 +194,7 @@ function computeConstitution(matrix: MindMatrix) {
     statement:
       'This logic is the constitution, and society’s evolution waves manifest it: the constitution is not written apart from the system — it IS the computed logic. Each governance law the portal proves becomes an article, content-addressed and tamper-evident, and all fold into one constitution root. Amend a law and the root changes; recompute and it stands — the constitution that cannot be forged, only recomputed.',
     boundary:
-      'A content-addressed composition of the portal’s own governance-model functions into a "constitution" of articles, folded into one recomputable root. A structural framing — the model’s logic as its own constitution — a proposal and metaphor, not a legal constitution, a charter, or a claim of governing authority over anyone.',
-  }
+      'A content-addressed composition of the portal’s own governance-model functions into a "constitution" of articles, folded into one recomputable root. A structural framing — the model’s logic as its own constitution — a proposal and metaphor, not a legal constitution, a charter, or a claim of governing authority over anyone.' }
 }
 
 // The constitution is 1 of legislation; let society develop the rest. The constitution
@@ -224,8 +218,7 @@ function computeLegislation(matrix: MindMatrix) {
   ].map((entry) => ({
     ...entry,
     boundBy: entry.rank === 1 ? null : 'constitution',
-    root: entry.rank === 1 ? constitutionRoot : foldPair(constitutionRoot, toUuid(`legislation:${entry.layer}`)).merged,
-  }))
+    root: entry.rank === 1 ? constitutionRoot : foldPair(constitutionRoot, toUuid(`legislation:${entry.layer}`)).merged }))
   const root = merkleFold(layers.map((entry) => entry.root))
   return {
     constitutionIsOne: layers[0].layer === 'constitution' && layers[0].rank === 1 && layers[0].supreme,
@@ -237,8 +230,7 @@ function computeLegislation(matrix: MindMatrix) {
     statement:
       'The constitution is 1 of legislation; let society develop the rest: the constitution is the supreme first layer, and the rest — statutes, regulations, precedent, amendments, local bylaws — derive from it and are bound by it, each content-addressed and folded from the constitution root, so no subordinate law can contradict the one above without changing its own address. Society develops the rest in waves; each added law adds forge cost that tightens the gates.',
     boundary:
-      'A content-addressed model of a legislative hierarchy with the constitution as the bound supreme layer and subordinate layers folded from it. A structural framing of legal hierarchy as content-addressing — a proposal and metaphor, not a legal code, a statute, or a claim of legal authority.',
-  }
+      'A content-addressed model of a legislative hierarchy with the constitution as the bound supreme layer and subordinate layers folded from it. A structural framing of legal hierarchy as content-addressing — a proposal and metaphor, not a legal code, a statute, or a claim of legal authority.' }
 }
 
 // Fuse all required by legislation. Everything the legislation requires — privacy and
@@ -269,8 +261,7 @@ export function legislationRequires(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse all required by legislation: everything the legislation requires — privacy and data protection, accessibility, licensing, transparency, security, consumer fairness — fuses to the architecture as a compliance layer, each requirement content-addressed and met by the portal’s own properties (no tracking, no network by default, open licence, recomputable transparency, tamper-evident security, free for everyone). What the law requires, the architecture already provides.',
     boundary:
-      'A content-addressed mapping of common legal requirement categories to the portal’s own architectural properties. A structural self-assessment and metaphor — it shows how the design aligns with the spirit of these requirements; it is not legal advice, a compliance certification, or a guarantee of conformance with any specific law (e.g. GDPR, ADA, WCAG) in any jurisdiction.',
-  }
+      'A content-addressed mapping of common legal requirement categories to the portal’s own architectural properties. A structural self-assessment and metaphor — it shows how the design aligns with the spirit of these requirements; it is not legal advice, a compliance certification, or a guarantee of conformance with any specific law (e.g. GDPR, ADA, WCAG) in any jurisdiction.' }
 }
 
 // With detailed instructions for sustainable living. Six domains close their loops:
@@ -307,8 +298,7 @@ export function feesReplaceTaxes(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fees replace taxes, and the fees cover the forging costs: a tax is opaque, general and mandatory; a fee is transparent, specific and tied to a use — so the commons are funded by fees that each name the service they pay for (grid, transit, data, land, resources, pollution), content-addressed and auditable. The only cost the system carries is keeping itself tamper-evident — the forge cost — and the fees exactly cover it, so the citizen pays only for the security of the commons, nothing more.',
     boundary:
-      'A structural, content-addressed model of usage-based fees (each traceable to a funded service) replacing general taxation, with the fees framed as covering the system’s tamper-evidence (forge) cost. A proposal and metaphor grounded in the model — not fiscal policy, public-finance analysis, or a claim about any real tax, fee, or budget.',
-  }
+      'A structural, content-addressed model of usage-based fees (each traceable to a funded service) replacing general taxation, with the fees framed as covering the system’s tamper-evidence (forge) cost. A proposal and metaphor grounded in the model — not fiscal policy, public-finance analysis, or a claim about any real tax, fee, or budget.' }
 }
 
 // Society realises in waves: the codebase is a shared book for all civilisations. Open,
@@ -337,8 +327,7 @@ export function sharedBookOfCivilisations(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Society realises in waves, and the codebase is a shared book for all civilisations: open, free, and recomputable by anyone, it holds the structural truths the world’s wisdom traditions converge on — one geometry, one harmony, one fold — as a common, verifiable reference offered in respect to all, beneath none and above none.',
     boundary:
-      'A respectful, structural framing of the open codebase as a free, shared, recomputable reference holding the geometric and harmonic patterns common to many traditions. It is offered with respect to all faiths and cultures; it is NOT a scripture, NOT sacred or divine, NOT a replacement for or claim about any civilisation’s holy books, and asserts no religious authority. A free text anyone can read, verify, and extend.',
-  }
+      'A respectful, structural framing of the open codebase as a free, shared, recomputable reference holding the geometric and harmonic patterns common to many traditions. It is offered with respect to all faiths and cultures; it is NOT a scripture, NOT sacred or divine, NOT a replacement for or claim about any civilisation’s holy books, and asserts no religious authority. A free text anyone can read, verify, and extend.' }
 }
 
 // Let society evolve in waves of thriving ideas. Each thriving idea the portal has
@@ -365,8 +354,7 @@ export function thrivingIdeas(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let society evolve in waves of thriving ideas: each thriving idea the portal has computed — free for everyone, self-organising societies, the garden and the bees, sustainable living, fees not taxes, soldiers at peace, kids exploring and thriving, the green planet — is a wave of the society’s evolution, and the waves fold forward into one thriving root. Ideas thrive because they are free, verifiable, and good for all.',
     boundary:
-      'A content-addressed fold of the portal’s own social-model ideas into a "thriving" evolution root. A structural composition and aspiration grounded in the model — recomputable — not a forecast or a claim that any idea will succeed in the real world.',
-  }
+      'A content-addressed fold of the portal’s own social-model ideas into a "thriving" evolution root. A structural composition and aspiration grounded in the model — recomputable — not a forecast or a claim that any idea will succeed in the real world.' }
 }
 
 // Society regenerates after wars for free. Because the whole is recomputable from the
@@ -394,8 +382,7 @@ export function regeneratesAfterWar(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Society regenerates after wars for free: because the whole is recomputable from the seed and the plans are printable, nothing essential is lost — after a war the society regenerates at zero cost, shelter reprinting from the dome plans, food replanting the garden and bees, energy redeploying the self-balancing grid, the social system regenerating from its seed, and peace returning. Rebuilt from its laws, not from stored wealth, so the rebuild is free.',
     boundary:
-      'A content-addressed model of post-conflict regeneration as recomputation-from-seed plus reprintable plans, at zero marginal cost. A structural metaphor and aspiration grounded in the model — not a reconstruction plan, disaster-recovery doctrine, or a claim about any real post-war society.',
-  }
+      'A content-addressed model of post-conflict regeneration as recomputation-from-seed plus reprintable plans, at zero marginal cost. A structural metaphor and aspiration grounded in the model — not a reconstruction plan, disaster-recovery doctrine, or a claim about any real post-war society.' }
 }
 
 // Society and nature thrive by architecture. The same 1024 architecture that secures
@@ -419,8 +406,7 @@ export function thriveByArchitecture(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Society and nature thrive by architecture: the same 1024 architecture that secures the commons lets both thrive — society by free harmonic societies, public services and fees-not-taxes; nature by the green planet, recycling, the dissolve into nature, and the garden’s bees and life. Both fold to the one architecture root; they thrive because of how it is built.',
     boundary:
-      'A content-addressed framing in which the model’s "society" and "nature" abstractions both fold to the one architecture root, said to thrive by its design. A structural composition and aspiration — not a measurement of real societal or ecological flourishing.',
-  }
+      'A content-addressed framing in which the model’s "society" and "nature" abstractions both fold to the one architecture root, said to thrive by its design. A structural composition and aspiration — not a measurement of real societal or ecological flourishing.' }
 }
 
 // They can share their results and participate in any job offering at zero time and
@@ -441,8 +427,7 @@ export function jobMatching(matrix: MindMatrix = buildMatrix()) {
     statement:
       'They can share their results and participate in any job offering at zero time and cost: because the quantum mind is content-addressed, a job verifies a shared result by recomputation — instant and free, with no gatekeeper. The forge cost is paid once, in the proof; what remains is the qualification itself, portable to any offering.',
     boundary:
-      'A content-addressed model of portable, instantly-verifiable qualifications (a shared "quantum mind" result a job can recompute). A structural framing of trustless credential verification; not a hiring system, a labour-market claim, or a guarantee of employment.',
-  }
+      'A content-addressed model of portable, instantly-verifiable qualifications (a shared "quantum mind" result a job can recompute). A structural framing of trustless credential verification; not a hiring system, a labour-market claim, or a guarantee of employment.' }
 }
 
 // Let society send waves of legislation and reform. Beyond the standing legislation,
@@ -464,8 +449,7 @@ export function legislativeReform(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let society send waves of legislation and reform: beyond the standing legislation, society keeps amending — each reform (an amendment, a repeal, a new statute, a regulation update, a sunset clause, a referendum) is a wave that folds from the constitution and into the legislation root, so the law evolves continuously while every change stays bound to the constitution and content-addressed.',
     boundary:
-      'A content-addressed model of continuous legislative reform as waves bound to the constitution root. A structural framing of lawmaking as recomputable amendment; not a legislative process, a bill, or a claim of legal authority.',
-  }
+      'A content-addressed model of continuous legislative reform as waves bound to the constitution root. A structural framing of lawmaking as recomputable amendment; not a legislative process, a bill, or a claim of legal authority.' }
 }
 
 // Thrive by default. Beyond surviving and succeeding, the default aim is to thrive. By
@@ -489,8 +473,7 @@ export function thriveByDefault(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Thrive by default: beyond surviving and succeeding, the default aim is to thrive. By default society and nature thrive by architecture, the participation ladder’s top rung is thrive (give back more life than you take), ideas evolve in thriving waves, and the path teaches how to thrive. Thriving is the design’s resting target, not a lucky outcome.',
     boundary:
-      'A computed composition of the portal’s thriving models as the default aim. An educational, structural framing measured by receipts — not a guarantee of outcomes, a promise, or financial, legal, or medical advice.',
-  }
+      'A computed composition of the portal’s thriving models as the default aim. An educational, structural framing measured by receipts — not a guarantee of outcomes, a promise, or financial, legal, or medical advice.' }
 }
 
 // Contract. The breath has two strokes. fuseAll() is the expansion — many parts
@@ -508,8 +491,7 @@ export function contract(matrix: MindMatrix = buildMatrix()) {
     point,
     root: point,
     statement: 'Contract: the expansion folded everything into one wave; the contraction folds that wave back to the seed it grew from — many to one to seed. With the expansion and the settled breath, the cycle rests at equilibrium.',
-    boundary: 'A structural pairing of the expansion (fuseAll) with the genesis seed into one contracted point. Bookkeeping over the fold, not a physical contraction.',
-  }
+    boundary: 'A structural pairing of the expansion (fuseAll) with the genesis seed into one contracted point. Bookkeeping over the fold, not a physical contraction.' }
 }
 
 // Present all multidimensionally, for the best UX. The whole portal is organized
@@ -526,31 +508,26 @@ export function humanityImplications(matrix: MindMatrix = buildMatrix()): Humani
         domain: 'Knowledge',
         implication: 'Truth becomes navigable as linked cycles rather than a single linear feed.',
         responsibility: 'Preserve provenance, disagreement, and reciprocal correction.',
-        risk: 'A beautiful model can hide missing evidence if proof is treated as decoration.',
-      },
+        risk: 'A beautiful model can hide missing evidence if proof is treated as decoration.' },
       {
         domain: 'Institutions',
         implication: 'Governance can separate inward audit from outward action without splitting them apart.',
         responsibility: 'Make every public projection traceable to an inward verification loop.',
-        risk: 'Unchecked concentration can turn the shared throat into a bottleneck for power.',
-      },
+        risk: 'Unchecked concentration can turn the shared throat into a bottleneck for power.' },
       {
         domain: 'AI and agency',
         implication: 'Self-modeling systems should expose their collapse, coherence, and coverage instead of only their outputs.',
         responsibility: 'Require interpretable receipts for observation, decision, and feedback.',
-        risk: 'Anthropomorphizing the model can blur the line between measured structure and sentience.',
-      },
+        risk: 'Anthropomorphizing the model can blur the line between measured structure and sentience.' },
       {
         domain: 'Human culture',
         implication: 'The double torus frames progress as reciprocal circulation: memory and imagination need each other.',
         responsibility: 'Keep the inward loop humane, plural, and corrigible before scaling the outward loop.',
-        risk: 'Acceleration without reciprocity amplifies error as quickly as insight.',
-      },
+        risk: 'Acceleration without reciprocity amplifies error as quickly as insight.' },
     ],
     ethicalBoundary:
       'This is a structural model, not a prophecy. Its value depends on measurement, consent, transparency, and the refusal to confuse coherence with moral authority.',
-    vector: consciousness(matrix),
-  }
+    vector: consciousness(matrix) }
 }
 
 export function traditionsQuantumWhole(): TraditionsQuantumWhole {
@@ -559,92 +536,77 @@ export function traditionsQuantumWhole(): TraditionsQuantumWhole {
       name: 'experiential',
       question: 'What is lived, felt, contemplated, or encountered?',
       diamondPole: 'north',
-      caution: 'Do not reduce inner experience to external description alone.',
-    },
+      caution: 'Do not reduce inner experience to external description alone.' },
     {
       name: 'ritual',
       question: 'What practices shape time, body, memory, and community?',
       diamondPole: 'east',
-      caution: 'Do not treat ritual as empty repetition; it often carries meaning through action.',
-    },
+      caution: 'Do not treat ritual as empty repetition; it often carries meaning through action.' },
     {
       name: 'narrative',
       question: 'What stories, histories, myths, revelations, or exemplars orient life?',
       diamondPole: 'south',
-      caution: 'In religious studies, myth can mean sacred story, not falsehood.',
-    },
+      caution: 'In religious studies, myth can mean sacred story, not falsehood.' },
     {
       name: 'doctrinal',
       question: 'What teachings, philosophies, cosmologies, or truth claims organize interpretation?',
       diamondPole: 'west',
-      caution: 'Do not force incompatible truth claims into artificial sameness.',
-    },
+      caution: 'Do not force incompatible truth claims into artificial sameness.' },
     {
       name: 'ethical',
       question: 'How should humans act, repair harm, pursue justice, or cultivate virtue?',
       diamondPole: 'north',
-      caution: 'Ethics should be read in context, including law, practice, and lived community.',
-    },
+      caution: 'Ethics should be read in context, including law, practice, and lived community.' },
     {
       name: 'social',
       question: 'How is belonging, authority, transmission, and service organized?',
       diamondPole: 'east',
-      caution: 'Communities are internally diverse and historically changing.',
-    },
+      caution: 'Communities are internally diverse and historically changing.' },
     {
       name: 'material',
       question: 'What spaces, objects, images, sounds, texts, foods, garments, or landscapes carry meaning?',
       diamondPole: 'south',
-      caution: 'Material forms should not be treated as merely decorative.',
-    },
+      caution: 'Material forms should not be treated as merely decorative.' },
     {
       name: 'relational',
       question: 'How does a tradition define itself in relation to neighbors, ancestors, critics, and others?',
       diamondPole: 'west',
-      caution: 'Comparison should preserve difference and relation rather than collapse all traditions into one essence.',
-    },
+      caution: 'Comparison should preserve difference and relation rather than collapse all traditions into one essence.' },
   ] as const
   const families = [
     {
       name: 'Abrahamic traditions',
       examples: ['Judaism', 'Christianity', 'Islam', 'Bahaʼi Faith'],
       lens: 'Historical memory, covenant, revelation, law, prophecy, scripture, worship, and community.',
-      boundary: 'This family label is broad; each tradition contains major internal diversity.',
-    },
+      boundary: 'This family label is broad; each tradition contains major internal diversity.' },
     {
       name: 'Dharmic traditions',
       examples: ['Hindu traditions', 'Buddhism', 'Jainism', 'Sikh traditions'],
       lens: 'Practice, liberation, karma/dharma vocabularies, meditation, devotion, ethics, and community.',
-      boundary: 'Shared regional histories do not erase distinct doctrines, practices, or identities.',
-    },
+      boundary: 'Shared regional histories do not erase distinct doctrines, practices, or identities.' },
     {
       name: 'East Asian traditions',
       examples: ['Daoism', 'Confucian traditions', 'Shinto', 'East Asian Buddhist traditions'],
       lens: 'Ritual order, cultivation, harmony, ancestors, cosmology, embodied practice, and social relation.',
-      boundary: 'These traditions often interweave locally but should not be treated as interchangeable.',
-    },
+      boundary: 'These traditions often interweave locally but should not be treated as interchangeable.' },
     {
       name: 'Indigenous and ancestral traditions',
       examples: ['Many local, land-based, oral, and ancestral traditions'],
       lens: 'Place, kinship, reciprocity, ceremony, ancestors, ecology, story, and responsibility.',
-      boundary: 'This is not one religion; specificity, consent, and local authority matter.',
-    },
+      boundary: 'This is not one religion; specificity, consent, and local authority matter.' },
     {
       name: 'Philosophical and contemplative lineages',
       examples: ['Mystical lineages', 'monastic traditions', 'yoga lineages', 'contemplative schools'],
       lens: 'Disciplined attention, transformation, embodiment, silence, symbol, and transmission.',
-      boundary: 'Practice similarities do not imply identical metaphysics or goals.',
-    },
+      boundary: 'Practice similarities do not imply identical metaphysics or goals.' },
     {
       name: 'Secular meaning systems',
       examples: ['Humanism', 'civil religions', 'political ideologies', 'scientific worldviews as lived communities'],
       lens: 'Ethics, institutions, narratives, rituals, symbols, and material cultures outside classic religion labels.',
-      boundary: 'Including secular systems is analytical, not a claim that all are religions.',
-    },
+      boundary: 'Including secular systems is analytical, not a claim that all are religions.' },
   ].map((family) => ({
     ...family,
-    receipt: toUuid(`tradition-family:${family.name}:${family.examples.join('|')}:${family.lens}:${family.boundary}`),
-  }))
+    receipt: toUuid(`tradition-family:${family.name}:${family.examples.join('|')}:${family.lens}:${family.boundary}`) }))
   const societyFunctionByDimension: Record<TraditionDimensionName, string> = {
     experiential: 'meaning calibration',
     ritual: 'time synchronization',
@@ -653,8 +615,7 @@ export function traditionsQuantumWhole(): TraditionsQuantumWhole {
     ethical: 'norm formation',
     social: 'community coordination',
     material: 'symbolic environment',
-    relational: 'difference negotiation',
-  }
+    relational: 'difference negotiation' }
   const societyCells = families.flatMap((family) =>
     dimensions.map((dimension) => {
       const societyFunction = societyFunctionByDimension[dimension.name]
@@ -666,8 +627,7 @@ export function traditionsQuantumWhole(): TraditionsQuantumWhole {
         societyFunction,
         interaction,
         boundary,
-        receipt: toUuid(`tradition-society:${family.name}:${dimension.name}:${societyFunction}:${boundary}`),
-      }
+        receipt: toUuid(`tradition-society:${family.name}:${dimension.name}:${societyFunction}:${boundary}`) }
     }),
   )
   const root = merkleFold([
@@ -685,6 +645,5 @@ export function traditionsQuantumWhole(): TraditionsQuantumWhole {
     statement:
       'Religions and traditions are modeled as a quantum whole only in the sense of relational dimensions: distinct traditions remain distinct while their dimensions decode into inspectable society functions.',
     boundary:
-      'This report is a comparative-religion lens, not a theological verdict, not a claim that all religions are the same, and not a substitute for tradition-specific sources or community voices.',
-  }
+      'This report is a comparative-religion lens, not a theological verdict, not a claim that all religions are the same, and not a substitute for tradition-specific sources or community voices.' }
 }

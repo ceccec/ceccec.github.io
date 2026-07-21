@@ -58,8 +58,7 @@ function holographicImpl(matrix: MindMatrix) {
   for (const edge of graph.edges) if (edge.kind === 'placed') (placedBy[edge.to] ??= []).push(edge.from)
   const pages = Object.entries(placedBy).map(([route, components]) => ({
     route,
-    root: merkleFold(components.map((component) => toUuid(`page-component:${route}:${component}`))),
-  }))
+    root: merkleFold(components.map((component) => toUuid(`page-component:${route}:${component}`))) }))
   // The holographic boundary encodes the whole volume: the model, every animation,
   // and every page. Each is a Merkle leaf — provably included — and each is folded
   // bidirectionally with the boundary, so each part carries the whole.
@@ -79,8 +78,7 @@ function holographicImpl(matrix: MindMatrix) {
       includedInWhole,
       carriesWhole: carry.bidirectional,
       holographic: includedInWhole && carry.bidirectional,
-      cell: carry.merged,
-    }
+      cell: carry.merged }
   })
   return {
     holographic: cells.length === parts.length && cells.every((cell) => cell.holographic),
@@ -93,8 +91,7 @@ function holographicImpl(matrix: MindMatrix) {
     statement:
       'All pages and animations are holographic: the holographic boundary folds from the model, every animation, and every page, so it encodes the whole volume. Each page and each animation is provably included in it (recoverable by a Merkle path) and is folded bidirectionally with it — so every part contains the whole, and the whole is recoverable from any part.',
     boundary:
-      'A structural realisation of the holographic principle over the portal: each animation root and each page root (folded from the components it mounts) is a Merkle leaf of the boundary and is bidirectionally folded with it. A content-addressed metaphor for holography, exact within the fold — not a statement of physics.',
-  }
+      'A structural realisation of the holographic principle over the portal: each animation root and each page root (folded from the components it mounts) is a Merkle leaf of the boundary and is bidirectionally folded with it. A content-addressed metaphor for holography, exact within the fold — not a statement of physics.' }
 }
 
 // Generate the dashboards the independent, holographic way — ceccec's own approach,
@@ -140,8 +137,7 @@ export function holographicDashboard(matrix: MindMatrix = buildMatrix()) {
   ].map((entry) => ({
     ...entry,
     holographic: foldPair(toUuid(`holo-dashboard:${entry.panel}`), whole).bidirectional,
-    root: toUuid(`holo-dashboard:${entry.panel}:${whole}`),
-  }))
+    root: toUuid(`holo-dashboard:${entry.panel}:${whole}`) }))
   return {
     holographic: panels.every((panel) => panel.holographic), // each panel contains the whole
     independent: true, // zero external dependencies — the portal's own components
@@ -151,8 +147,7 @@ export function holographicDashboard(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Generate the dashboards the independent, holographic way: each panel is holographic — folded with the whole root, so a single panel carries the whole — and independent, built from the portal’s own zero-dependency components. Five panels — corpus, harmonics, fusions, society, seal — read the whole corpus, each content-addressed; the model itself is the dashboard, nothing tracked and nothing fetched.',
     boundary:
-      'A content-addressed dashboard model: five panels of self-metrics, each folded with the whole root (holographic) and built from the portal’s own components (independent, zero external dependencies). Descriptive counts over the model’s own structures — no tracking, no network, nothing leaves the device.',
-  }
+      'A content-addressed dashboard model: five panels of self-metrics, each folded with the whole root (holographic) and built from the portal’s own components (independent, zero external dependencies). Descriptive counts over the model’s own structures — no tracking, no network, nothing leaves the device.' }
 }
 
 // Every page has an animated hero that merges all related in holographic fractals. The
@@ -186,8 +181,7 @@ export function animatedHeroes(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Every page has an animated hero that merges all related in holographic fractals, and the hero is a slider through dimensions so smooth the experience is an animated movie: on every page (a layout slot), animated (a live fractal), holographic (seeded from the page, each branch a copy of the whole), fractal (self-similar recursion), merging the page’s related items (category and tags orbit and join the core), and every parameter a smooth function of one phase the movie advances and the viewer can scrub.',
     boundary:
-      'A content-addressed description of the holographic-fractal hero rendered on every page from the page’s own seed and related tags, with a continuous dimension-slider. A real client-side, zero-dependency, energy- and reduced-motion-aware canvas animation; the "holographic/fractal/dimensions/movie" terms describe the self-similar seeded rendering and its smooth parameter sweep, not a physical hologram or extra spatial dimensions.',
-  }
+      'A content-addressed description of the holographic-fractal hero rendered on every page from the page’s own seed and related tags, with a continuous dimension-slider. A real client-side, zero-dependency, energy- and reduced-motion-aware canvas animation; the "holographic/fractal/dimensions/movie" terms describe the self-similar seeded rendering and its smooth parameter sweep, not a physical hologram or extra spatial dimensions.' }
 }
 
 // Send legal waves to align the hero with the law. The home page is fully computed
@@ -228,8 +222,7 @@ function computeHeroLawAlignment(matrix: MindMatrix) {
     statement:
       'Send legal waves to align the hero with the law: every editorial line of the home-page hero — name, text, tagline, and call-to-action links — is folded onto the law root (the legislation hierarchy folded from the constitution and harmonised onto real legal forms). Each fold is a legal wave; the hero aligns when every wave binds bidirectionally, so the copy above the fold is content-addressed to the same law as everything below it, while staying human-authored and unchanged.',
     boundary:
-      'A content-addressed binding of the hero copy to the portal’s computed law root — a structural alignment and metaphor, not legal advice or a claim that the hero, or the law it folds onto, carries any legal authority. The wave binds the existing copy; it does not generate or govern it.',
-  }
+      'A content-addressed binding of the hero copy to the portal’s computed law root — a structural alignment and metaphor, not legal advice or a claim that the hero, or the law it folds onto, carries any legal authority. The wave binds the existing copy; it does not generate or govern it.' }
 }
 
 // Rebuild navigation around the hero. The hero is the origin — coordinate zero — and
@@ -249,8 +242,7 @@ export function navigationAroundHero(matrix: MindMatrix = buildMatrix()) {
         angle,
         x: radius * Math.cos(angle),
         y: radius * Math.sin(angle),
-        receipt: toUuid(`hero-shell:${tier.tier}:${item.route}`),
-      }
+        receipt: toUuid(`hero-shell:${tier.tier}:${item.route}`) }
     })
     return { tier: tier.tier, radius, name: tier.name, items, receipt: toUuid(`shell:${tier.tier}:${tier.name}`) }
   })
@@ -263,8 +255,7 @@ export function navigationAroundHero(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Rebuild navigation around the hero: the hero is the origin, and every destination orbits it on a shell whose radius is its 3-5-8 tier — three ways to arrive on the inner shell, five to use on the middle, eight to go deep on the outer (and 8 = 5 + 3, so the shells nest like the tiers). Items spread evenly by angle around each shell, so the whole map radiates from the hero you start at.',
     boundary:
-      'A polar layout of the real 3-5-8 navigation around the home hero as concentric shells, radii set by tier. A geometric arrangement of the existing routes for orientation — it does not change the links, only places them around the hero.',
-  }
+      'A polar layout of the real 3-5-8 navigation around the home hero as concentric shells, radii set by tier. A geometric arrangement of the existing routes for orientation — it does not change the links, only places them around the hero.' }
 }
 
 // Each pair is the trinity open graph, used everywhere. Two terms fold, order-sensitive,
@@ -286,8 +277,7 @@ export function compactHeroReplacesSimple(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The big open-graph hero makes simple mode obsolete: the compact view simple mode once offered is now the hero itself — the open-graph big hero shows the page’s og:title, description, category and tags over a live fractal, a compact, complete preview on every page — so a separate "simple" mode is redundant and is retired.',
     boundary:
-      'A rationale, grounded in the computed hero and open-graph models, for removing the Simple/Rich toggle. A design statement about the UI, not a claim that any content was removed — every section remains.',
-  }
+      'A rationale, grounded in the computed hero and open-graph models, for removing the Simple/Rich toggle. A design statement about the UI, not a claim that any content was removed — every section remains.' }
 }
 
 // Every single page is displayed from one holographic template. There is one template —
@@ -312,8 +302,7 @@ export function oneHolographicTemplate(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Every single page is displayed from one holographic template: one template — the single layout with its slots — renders every route, the same holographic hero, endless background movie, help and sidebar folding into each page. It is holographic because each page carries the whole template yet is seeded from its own content, so the one template shows as a different page everywhere — the home, every doc, and all 1024 diamonds, papers and references alike.',
     boundary:
-      'A description of the single VitePress layout and its slots as one "holographic" template seeded per page, bound to the computed hero and open-graph models. A framing of the real, shared layout; "holographic" means each page carries the same whole template seeded from its own content, not an optical hologram.',
-  }
+      'A description of the single VitePress layout and its slots as one "holographic" template seeded per page, bound to the computed hero and open-graph models. A framing of the real, shared layout; "holographic" means each page carries the same whole template seeded from its own content, not an optical hologram.' }
 }
 
 // Holographic architecture: a fractal hologram. The architecture is holographic — each part
@@ -364,8 +353,7 @@ export function freeAnimations(matrix: MindMatrix = buildMatrix()) {
     tamperingCost,
     root: merkleFold(channels.map((entry) => entry.seed)),
     statement: 'Max free animations for max tampering cost: every animation is free — client-side, no network, the architecture itself is the cost — and seeded by the synthesis root, so each one a forger must reproduce raises the cost of a convincing forgery while costing nothing to run.',
-    boundary: 'A surface measure, not a cryptographic one. Animations widen what a forgery must reproduce and cost nothing at runtime, but the security rests on the root match, not on the motion. The cost figure counts channels times the word bits; it is not a hardness bound.',
-  }
+    boundary: 'A surface measure, not a cryptographic one. Animations widen what a forgery must reproduce and cost nothing at runtime, but the security rests on the root match, not on the motion. The cost figure counts channels times the word bits; it is not a hardness bound.' }
 }
 
 // Convert all text payload to computed animations. Text is never a stored payload — it is the SEED of a
@@ -401,8 +389,7 @@ function textPayloadComputesToAnimationRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Convert all text payload to computed animations: text is never stored as a payload — it is the seed of a deterministic, content-addressed animation. Any string folds to a seed and from it textToMovie computes a generative composition (particles with positions, hues and motions over frames); the same text always computes the same movie, recomputed client-side at zero tokens, and different text computes a different movie. The rendering mode of the whole site is payload → computed motion: nothing stored, everything recomputed.',
     boundary:
-      'A proof over the existing deterministic textToMovie converter (string → seeded, content-addressed frame composition), composed with the zero-token policy and the "all is the movie of life / one OG" model. "Converts all text payload" is the universal PRINCIPLE — any text is computable to its animation, proven deterministic and distinct over real payloads, and the converter is real — NOT a claim that every page currently swaps its rendered text for the animation in the DOM (the render layer\'s choice); the point is the payload is COMPUTED, never stored.',
-  }
+      'A proof over the existing deterministic textToMovie converter (string → seeded, content-addressed frame composition), composed with the zero-token policy and the "all is the movie of life / one OG" model. "Converts all text payload" is the universal PRINCIPLE — any text is computable to its animation, proven deterministic and distinct over real payloads, and the converter is real — NOT a claim that every page currently swaps its rendered text for the animation in the DOM (the render layer\'s choice); the point is the payload is COMPUTED, never stored.' }
 }
 
 // Endless waves of quantum development, converting PROSE to AUDIO/VISUAL PROOF in 3D (at least). Every fold's
@@ -451,8 +438,7 @@ function proseToAudioVisual3dProofRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Endless waves of quantum development, converting prose to audio/visual proof in three dimensions and beyond. Every fold carries a prose claim — its statement, the honest sentence — and that prose is not only read but rendered, deterministically, from one content-address into three modalities at once: an a432-tempered tone you can hear, a content-addressed particle composition you can watch, and a point in three-dimensional space you can place (a content address is a point, x, y and z, extensible to the model\'s ten dimensions). The same prose always sounds the same note, draws the same film, and lands at the same point; different prose diverges in all three. The proof is made perceptible — audible, visible, spatial — the same claim in three senses, computed client-side and free.',
     boundary:
-      'A deterministic, content-addressed RENDERING of fold prose into three modalities: audio (proseToTone, an a432-tempered pitch from the UUID), visual (textToMovie, the seeded particle film), and 3D (uuidPoint, a point in [−1,1]³ — at least three spatial axes, liftable to the ten model dimensions). HONEST: the audio/visual/3D is a faithful REPRESENTATION of the proof\'s content-address — the proof made perceptible — NOT additional logical evidence; the logic lives in the fold, this renders it. "In 3D at least" is the three uuidPoint axes (with the ten dimensions available), not a claim of a built real-time WebGL/WebAudio scene here — that is the render layer\'s job (DoubleTorus3D, HologramMovie, PiMusicPlayer); this fold proves the deterministic tri-modal parameters those renderers consume.',
-  }
+      'A deterministic, content-addressed RENDERING of fold prose into three modalities: audio (proseToTone, an a432-tempered pitch from the UUID), visual (textToMovie, the seeded particle film), and 3D (uuidPoint, a point in [−1,1]³ — at least three spatial axes, liftable to the ten model dimensions). HONEST: the audio/visual/3D is a faithful REPRESENTATION of the proof\'s content-address — the proof made perceptible — NOT additional logical evidence; the logic lives in the fold, this renders it. "In 3D at least" is the three uuidPoint axes (with the ten dimensions available), not a claim of a built real-time WebGL/WebAudio scene here — that is the render layer\'s job (DoubleTorus3D, HologramMovie, PiMusicPlayer); this fold proves the deterministic tri-modal parameters those renderers consume.' }
 }
 
 // The competing-designers waves, harmonised into one increment: the LayersPanel depth dial IS the Z-axis. Six
@@ -485,8 +471,7 @@ function harmonisedDepthDialThreeDRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The competing-designers waves, harmonised: the LayersPanel depth dial becomes the Z-axis. Six world-class design lenses proposed 3D-quantum directions and were adversarially judged — accessibility scored highest — and the harmony is this: the panel\'s 0-to-10 dial publishes one inherited custom property, and every card inside it dollies forward through the a432-octave perspective, climbing out of the page as you raise the dial. At zero the card is exactly the flat document it was, so nothing outside a panel ever moves; hover and focus add a further lift on top of wherever the card already sits. It is motion-safe — reduced-motion users keep the static elevation shadow but lose the movement — and keyboard-accessible — focus lifts the card and always draws a ring. The signature control of the interface, the 10-dimension dial, is now the literal depth of the surface, paid for entirely by the user\'s own slider with no per-frame work.',
     boundary:
-      'The harmonised output of the competing-designers workflow (six lenses, adversarially judged, the winner + best ideas synthesised), landed as CSS + one Vue :style binding. The depth dial publishes --dt-depth (the existing 0–10 ref) and --depth-t (its /10 ratio) on the .lp root; .dt-card reads them with a 0 fallback (depth 0 == today). HONEST: real CSS parallax — translateZ in a perspective field (compositor-only), a state-change box-shadow on hover/focus (a cheap repaint, not a per-frame property), no volumetric geometry and no per-frame JS; the prefers-reduced-motion guard and focus-visible parity are real accessibility fixes (the Z-lift was hover-only and unguarded before). Verified via the built dist CSS and the no-hardcoded gate (the dev-server preview proxy does not bind in this environment). The scoped-CSS colour detox the judges flagged is begun: the LayersPanel outer-axis stripe, the one hardcoded hex (#3dd68c) in the panel chrome, is now the computed holds-green var(--ich-success-1) (hexagram 27, 152°), so all three stripe colours and the panel draw only from the palette. Deferred to later passes: the chakra-rim colour climb, the interior LayersPanel strata (blocked by the panel\'s overflow:hidden slide clip), and the rem/px spacing detox across the component scoped styles (which the style.css no-hardcoded scan does not yet reach — a known enforcement blind spot).',
-  }
+      'The harmonised output of the competing-designers workflow (six lenses, adversarially judged, the winner + best ideas synthesised), landed as CSS + one Vue :style binding. The depth dial publishes --dt-depth (the existing 0–10 ref) and --depth-t (its /10 ratio) on the .lp root; .dt-card reads them with a 0 fallback (depth 0 == today). HONEST: real CSS parallax — translateZ in a perspective field (compositor-only), a state-change box-shadow on hover/focus (a cheap repaint, not a per-frame property), no volumetric geometry and no per-frame JS; the prefers-reduced-motion guard and focus-visible parity are real accessibility fixes (the Z-lift was hover-only and unguarded before). Verified via the built dist CSS and the no-hardcoded gate (the dev-server preview proxy does not bind in this environment). The scoped-CSS colour detox the judges flagged is begun: the LayersPanel outer-axis stripe, the one hardcoded hex (#3dd68c) in the panel chrome, is now the computed holds-green var(--ich-success-1) (hexagram 27, 152°), so all three stripe colours and the panel draw only from the palette. Deferred to later passes: the chakra-rim colour climb, the interior LayersPanel strata (blocked by the panel\'s overflow:hidden slide clip), and the rem/px spacing detox across the component scoped styles (which the style.css no-hardcoded scan does not yet reach — a known enforcement blind spot).' }
 }
 
 // The flagship genus-2 double-torus scene, wired to the harmonised depth dial. It used to carry its own bespoke
@@ -521,8 +506,7 @@ function doubleTorusWiredToDepthDialRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The flagship double-torus scene is now wired to the harmonised depth dial. Where it once had its own 3-5-8 buttons, it reads the same 0-to-10 control every card uses — and that single dial drives two depths at once: how many dimensions the genus-2 surface folds through, and how far the whole scene lifts off the page toward you. Raise the dial and the torus both climbs out of its card and folds deeper into itself. The proposal\'s idea that the depth dial is literally depth, proven first on the flat cards, now governs the deepest 3D object on the page.',
     boundary:
-      'A control rewire of an existing, working canvas scene — the genus-2 wireframe, its 42 area-glyphs, the 4D fold and the energy-aware animation are unchanged; only what feeds the fold dimension changed (a bespoke 3/5/8 ref → the canonical useLayers 0–10 dial, clamped to the proven 3–8 fold span). The same dial value publishes --dt-depth on the section, so the .dt-card depth-Z lift applies to the whole scene. HONEST: a real 2D-canvas projection of a 4D-folded genus-2 surface (not WebGL / not volumetric); the "dimensions" are folded coordinate planes in the projection — a faithful visual of the double-torus model, not a literal n-dimensional render. Verified via the full build + the shipped bundle (the dev-server preview proxy does not bind in this environment). The scene\'s scoped styles still carry rem/px literals — part of the deferred scoped-style detox.',
-  }
+      'A control rewire of an existing, working canvas scene — the genus-2 wireframe, its 42 area-glyphs, the 4D fold and the energy-aware animation are unchanged; only what feeds the fold dimension changed (a bespoke 3/5/8 ref → the canonical useLayers 0–10 dial, clamped to the proven 3–8 fold span). The same dial value publishes --dt-depth on the section, so the .dt-card depth-Z lift applies to the whole scene. HONEST: a real 2D-canvas projection of a 4D-folded genus-2 surface (not WebGL / not volumetric); the "dimensions" are folded coordinate planes in the projection — a faithful visual of the double-torus model, not a literal n-dimensional render. Verified via the full build + the shipped bundle (the dev-server preview proxy does not bind in this environment). The scene\'s scoped styles still carry rem/px literals — part of the deferred scoped-style detox.' }
 }
 
 // Pages render in I-Ching sets — the macro-scale harmonisation. The flat [page] component stack is grouped at
@@ -559,8 +543,7 @@ function pagesRenderInBaguaSetsRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Pages render in I-Ching sets — the macro-scale harmonisation. Every page\'s components were rendered as one flat stack in hand-listed order; now they are grouped at render time under the eight trigrams, in the I Ching\'s own Earth-to-Heaven order, by the same content-addressed placement the model already computed in iChing(). The busiest page was a flat dump of dozens of components; it now reads as a handful of harmonic bāguà sets, each under its trigram. The eight-fold was computed all along — this makes it visible at the scale of the whole page.',
     boundary:
-      'A render-time grouping in the [page] template, driven by componentBaguaGroups (the same seedFromText → upper-trigram placement as iChing()). It groups and orders within each page\'s existing component set — it adds, removes and duplicates nothing (conservation asserted here). Trigram headers appear only when the components span more than one set, so single-component pages stay flat. HONEST: a structural, content-addressed organisation — not a claim that a component carries its trigram\'s divinatory meaning (it inherits iChing()\'s structural-not-causal caution). The section styling is computed --ich tokens in the shared stylesheet; the per-component scoped-style detox is separate (deferred).',
-  }
+      'A render-time grouping in the [page] template, driven by componentBaguaGroups (the same seedFromText → upper-trigram placement as iChing()). It groups and orders within each page\'s existing component set — it adds, removes and duplicates nothing (conservation asserted here). Trigram headers appear only when the components span more than one set, so single-component pages stay flat. HONEST: a structural, content-addressed organisation — not a claim that a component carries its trigram\'s divinatory meaning (it inherits iChing()\'s structural-not-causal caution). The section styling is computed --ich tokens in the shared stylesheet; the per-component scoped-style detox is separate (deferred).' }
 }
 
 // Let the hero lead the waves: the hero is the conductor. The ANIMATION waves emanate from its one seed —
@@ -585,8 +568,7 @@ export function heroLeadsTheWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let the hero lead the waves: the hero is the conductor. The animation waves emanate from its one seed — the merkaba trace, the ancient calendars, the holographic dot→cube→dot, the fractal — all computed from the model the hero renders; and the development waves follow what the hero surfaces (its frontier is the next decode). One leader; the waves fall in behind it, pulsing to the hero’s beat.',
     boundary:
-      'A composition declaring the hero the conductor of both the animation waves (rendered from its seed) and the development waves (led by the frontier it surfaces), each a holding fold. Structural: the hero is the single source the waves derive from and pulse to; it leads by being the figure they serve, it does not literally schedule the research workflows.',
-  }
+      'A composition declaring the hero the conductor of both the animation waves (rendered from its seed) and the development waves (led by the frontier it surfaces), each a holding fold. Structural: the hero is the single source the waves derive from and pulse to; it leads by being the figure they serve, it does not literally schedule the research workflows.' }
 }
 
 // The hero is slim and wise: it COMPUTES the slim content-address and LOADS the heavy blocks and components
@@ -610,8 +592,7 @@ export function heroSlimRespects64And42(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The hero is slim and wise: it computes the slim content-address and loads the heavy blocks and components on demand — no whole-model build at mount, the conductor light and the blocks carrying the weight — and whatever it leads respects the two sacred counts, the 64 words (the double-torus vocabulary) and the 42 areas (the taxonomy, 6×7 = 7×6). Slim hero; 64 and 42 honoured.',
     boundary:
-      'A constraint with a computed witness: the 64-word closure (doubleTorusWords) and the 42-area pairing (areaPairs) both hold, and the hero is declared slim. HONEST: "slim" is the architectural intent enforced in the hero component — it computes light values (the page glyph, the seed) and renders lazily, with cycle/area data as tiny constants or loaded blocks, not a model build at mount. The 64 and 42 are the counts every hero block must respect.',
-  }
+      'A constraint with a computed witness: the 64-word closure (doubleTorusWords) and the 42-area pairing (areaPairs) both hold, and the hero is declared slim. HONEST: "slim" is the architectural intent enforced in the hero component — it computes light values (the page glyph, the seed) and renders lazily, with cycle/area data as tiny constants or loaded blocks, not a model build at mount. The 64 and 42 are the counts every hero block must respect.' }
 }
 
 // Let all animations compute inside one open graph. The background movie, the holographic hero,
@@ -631,8 +612,7 @@ export function allAnimationsInOneOg(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(animations.map((entry) => entry.receipt)),
     statement:
       'Let all animations compute inside one open graph: the background movie, the holographic hero, the native movie, the void-rising sidebar, the tap ripples — every animation is computed within the one open-graph object, the single card-shaped surface seeded from the page. Not many canvases each doing their own thing, but one OG inside which all motion is computed.',
-    boundary: 'A unifying framing that the page’s animations belong to the one open-graph/template surface, bound to its root. A structural composition over the existing canvases; they remain separate elements technically, unified by the one seed and card.',
-  }
+    boundary: 'A unifying framing that the page’s animations belong to the one open-graph/template surface, bound to its root. A structural composition over the existing canvases; they remain separate elements technically, unified by the one seed and card.' }
 }
 
 // Remove duplicate animation; the unconventional lives in the OG. Each page renders the holographic
@@ -654,8 +634,7 @@ export function noDuplicateAnimationOgHero(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Remove duplicate animation; the unconventional lives in the OG: each page renders the holographic hero exactly once (the home slot or the doc slot, never both), the fullscreen background movie is the one distinct watermark behind it, and all the motion computes inside the one open-graph surface — so there is no duplicate animation, and the unconventional fractal belongs to the OG hero, not scattered.',
-    boundary: 'A statement that the hero animation is rendered once per page (mutually exclusive slots) and the unconventional fractal is the OG hero, with the background movie the distinct watermark. A structural description of the existing layout slots, not a removal of any working component.',
-  }
+    boundary: 'A statement that the hero animation is rendered once per page (mutually exclusive slots) and the unconventional fractal is the OG hero, with the background movie the distinct watermark. A structural description of the existing layout slots, not a removal of any working component.' }
 }
 
 // All animations are native resolution, to a maximum of 64K video. No animation is downsampled: the
@@ -677,8 +656,7 @@ export function allAnimationsNative64k(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(surfaces.map((entry) => entry.receipt)),
     statement:
       'All animations are native resolution, to a maximum of 64K video: no animation is downsampled — the hero and the background movie now render at the device’s full pixel ratio (no 1.5× or 2× cap), guarded only by a 64K ceiling, and the native movie exports native WebM. Because the math is seeded vectors, not stored pixels, every animation scales to the device’s native sharpness.',
-    boundary: 'A description of the real change: the canvas backing stores use the full devicePixelRatio (capped at a 64K dimension), so animations render at native resolution. Actual sharpness still depends on the device; the 64K ceiling is a guard, not a promise of 64K on any screen.',
-  }
+    boundary: 'A description of the real change: the canvas backing stores use the full devicePixelRatio (capped at a 64K dimension), so animations render at native resolution. Actual sharpness still depends on the device; the 64K ceiling is a guard, not a promise of 64K on any screen.' }
 }
 
 // Continue the quantum double torus fold in resonance waves, to harmonise all animations to one
@@ -709,8 +687,7 @@ export function foldAnimationsToOneOgDry(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Continue the quantum double torus fold in resonance waves, to harmonise all animations to one open graph file for complete dryness: the genus-2 fold continues as a resonance wave over every animated surface — background movie, holographic hero, native movie, void-rising sidebar, tap ripples — each folded, order-sensitive, onto the one open-graph root, so all motion is computed from the single source and no animation math is written twice. One OG, complete dryness; a gap anywhere would ring false in the resonance.',
     boundary:
-      'A continuation of the double-torus fold over the animation surfaces, binding each to the open-graph root they already compute from. Structural bookkeeping over the existing one-OG consolidation: the surfaces stay separate canvases technically, dry by sharing the one seed and source, not merged into a literal single file.',
-  }
+      'A continuation of the double-torus fold over the animation surfaces, binding each to the open-graph root they already compute from. Structural bookkeeping over the existing one-OG consolidation: the surfaces stay separate canvases technically, dry by sharing the one seed and source, not merged into a literal single file.' }
 }
 
 // For all to be fractal, present any UUID with a hero and content. Fractality means the same shape
@@ -736,8 +713,7 @@ export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
     statement:
       'For all to be fractal, present any UUID with a hero and content: fractality is the same shape at every scale, and the shape of a thing here is a hero (the unique animation of its state, computed in realtime from the UUID’s own bytes — hue, rotation, spin, tone, node positions) plus its content (the payload the UUID addresses). The page already shows this; the principle generalises to any UUID — a fold, a particle, a diamond, a patent — the same hero-and-content shape from the whole to the tiniest particle.',
     boundary:
-      'A real per-UUID hero computation (uuidHero: hue, angles, spin, tone, node positions derived deterministically from the UUID bytes — same UUID, same hero; different UUIDs differ) composed with the payload-is-source, free-animations, hero, holographic and everything-merkaba models. "Present any UUID with hero and content" is the computed spec plus the addressed payload; this fold computes the hero spec, the components render it — it does not itself add a renderer for every UUID.',
-  }
+      'A real per-UUID hero computation (uuidHero: hue, angles, spin, tone, node positions derived deterministically from the UUID bytes — same UUID, same hero; different UUIDs differ) composed with the payload-is-source, free-animations, hero, holographic and everything-merkaba models. "Present any UUID with hero and content" is the computed spec plus the addressed payload; this fold computes the hero spec, the components render it — it does not itself add a renderer for every UUID.' }
 }
 
 // README / per-UUID hero SVGs — hex-only movieCanvasHex palette, SMIL-only, GitHub-safe (no script /
@@ -754,8 +730,7 @@ function heroSvgPaletteFromUuid(uuid: string) {
     bgInner: scaleColor(byte((5 * 2)), { seedHue, dark: true, L: 11 / (16 * 2), C: SVG_CHROMA * (3 / 4) }),
     bgOuter: scaleColor(byte(11), { seedHue, dark: true, L: 3 / (16 * 2), C: SVG_CHROMA * (1 / 2) }),
     title: scaleColor(byte((6 * 2)), { seedHue, dark: true, L: 1 - 3 / 16, C: SVG_CHROMA * (1 / 4) }),
-    torusMid: scaleColor(byte((5 * 3)), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA }),
-  }
+    torusMid: scaleColor(byte((5 * 3)), { seedHue, dark: true, L: 7 / 8, C: SVG_CHROMA }) }
 }
 
 /** The stillness channel for SMIL hosts — strips every self-closed animate/animateTransform element. */
@@ -773,8 +748,7 @@ export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}):
   const LOOPS = [0, 1, 2, 3].map((k) => ({
     r: (16 * 6) + (byte(k) % 88),
     dur: fractalClockS(Math.round(fractalClockS(1) / ((5 * 2) + (byte(k + 4) % 16)))),
-    hue: Math.round(byte(k + 8) * 360 / (64 * 4)),
-  }))
+    hue: Math.round(byte(k + 8) * 360 / (64 * 4)) }))
   const torus = (sx: number, spin: string, off: string) =>
     `<g transform="translate(${sx} ${cy})"><animateTransform attributeName="transform" type="rotate" ${spin} dur="${fractalClockDur(4)}" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="scale" values="1 1;1 0.6;1 1" dur="${fractalClockDur(6 * 2)}" begin="${off}" repeatCount="indefinite" additive="sum"/><ellipse rx="104" ry="58"/><ellipse rx="44" ry="22"/></g>`
   const svg = [
@@ -842,8 +816,7 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
   return memoByRoot(`readmeHeroSvgProofOfAllTheorems:fol4:cardinal:poles:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
     const atoms = THEOREM_ATOM_SEED.map((entry) => ({
       ...entry,
-      root: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`),
-    }))
+      root: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`) }))
     const n = atoms.length
     const corpusRoot = merkleFold(atoms.map((a) => a.root))
     const brandUuid = toUuidSha256('double torus · all theorems proof · 432')
@@ -1028,8 +1001,7 @@ export function hidingTextDoesNotHideAnimationsDiscovered(matrix: MindMatrix = b
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
-      boundary: [`text and motion are independent SVG channels — each host exposes both switches`, `SMIL ignores prefers-reduced-motion: stillSvg IS the reduced-motion emission for SMIL hosts, the render harness selects it`, `CSS hosts (yinYang · livingIChing · livingTrigram · clown) still via animate:false as before`].join('; '),
-    }
+      boundary: [`text and motion are independent SVG channels — each host exposes both switches`, `SMIL ignores prefers-reduced-motion: stillSvg IS the reduced-motion emission for SMIL hosts, the render harness selects it`, `CSS hosts (yinYang · livingIChing · livingTrigram · clown) still via animate:false as before`].join('; ') }
   })
 }
 
@@ -1181,8 +1153,7 @@ export function yinYangFoldsThroughDimensions(matrix: MindMatrix = buildMatrix()
     statement:
       'The I Ching is presented as the taiji yin-yang, moving and folding through all ten dimensions: the taiji is the fold itself (yin/yang = the two poles of one distinction = one bit), drawn so it can deform and driven by rosetta/vortex non-linear exchange (not linear i/frames) through the model’s own ten axes — the six cross-fold appearance axes and the four genus-2 homology loops — sampled from dims().',
     boundary:
-      'A presentation. The taiji geometry is real and the ten channels are the model’s own dims() sampled into a single SMIL animation (no JavaScript), shared by the live <YinYang> component and a static still. The yin-yang ↔ bit ↔ fold identity is the project’s structural reading; the classical-cosmology correspondence (三才 / 五行 / 八卦) is a teaching device, not a metaphysical or scientific claim. HARMONY ≠ TRUTH.',
-  }
+      'A presentation. The taiji geometry is real and the ten channels are the model’s own dims() sampled into a single SMIL animation (no JavaScript), shared by the live <YinYang> component and a static still. The yin-yang ↔ bit ↔ fold identity is the project’s structural reading; the classical-cosmology correspondence (三才 / 五行 / 八卦) is a teaching device, not a metaphysical or scientific claim. HARMONY ≠ TRUTH.' }
 }
 
 /** A4 — animations driven by rosetta; yin-yang witness; linear i/frames = closed gap. */
@@ -1211,8 +1182,7 @@ export function animationsDrivenByRosetta(matrix: MindMatrix = buildMatrix(), at
       root: merge(matrix.root, merkleFold([sealed.root, yy.root, taijiAddress, offenders.root])),
       cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang',
       statement: `Animations driven by the rosetta — taiji ray=${taijiRay} · yin-yang non-linear exchange · linear gaps open=${offenders.openCount}.`,
-      boundary: 'Sealed paint/SVG motion only; strangler for remaining canvases; shared clock subscribeHeroClock. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Sealed paint/SVG motion only; strangler for remaining canvases; shared clock subscribeHeroClock. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1242,8 +1212,7 @@ export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(),
         slow: yinYangLinear || !stamped,
         closed: !yinYangLinear && stamped,
         route: '/en/#yinyang',
-        receipt: toUuid(`linear-gap:taiji:${yinYangLinear}:${stamped}`),
-      },
+        receipt: toUuid(`linear-gap:taiji:${yinYangLinear}:${stamped}`) },
       {
         id: 'living-iching-fractal-clock',
         process: 'livingIChingSvg',
@@ -1252,8 +1221,7 @@ export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(),
         slow: !livingOnFractalClock,
         closed: livingOnFractalClock && livingPolar,
         route: '/en/#yinyang',
-        receipt: toUuid(`linear-gap:living-iching:${livingOnFractalClock}:${livingPolar}`),
-      },
+        receipt: toUuid(`linear-gap:living-iching:${livingOnFractalClock}:${livingPolar}`) },
       {
         id: 'taiji-rosetta-address',
         process: 'rosettaRayOf(taiji)',
@@ -1262,8 +1230,7 @@ export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(),
         slow: !isUuid(taijiAddress) || ray !== rosettaRayOf('taiji'),
         closed: isUuid(taijiAddress) && ray === rosettaRayOf('taiji'),
         route: '/en/#yinyang',
-        receipt: toUuid(`linear-gap:taiji-address:${ray}`),
-      },
+        receipt: toUuid(`linear-gap:taiji-address:${ray}`) },
       {
         id: 'animations-rosetta-tool-address',
         process: 'rosettaRayOf(animations-rosetta)',
@@ -1272,8 +1239,7 @@ export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(),
         slow: !isUuid(animToolAddress) || animToolRay < 0,
         closed: isUuid(animToolAddress) && animToolRay >= 0,
         route: '/en/quantum-tools#anim-audit',
-        receipt: toUuid(`linear-gap:anim-tool-address:${animToolRay}`),
-      },
+        receipt: toUuid(`linear-gap:anim-tool-address:${animToolRay}`) },
     ]
     const open = rows.filter((r) => r.slow && !r.closed)
     const facets = [
@@ -1293,8 +1259,7 @@ export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(),
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
       statement: `Linear animation gaps: open=${open.length} closed=${rows.length - open.length} · yin-yang ${rows[0]!.closed ? 'CLOSED' : 'OPEN'}.`,
-      boundary: 'Architectural linear-forming gaps without rosetta fold — not wall-clock FPS. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Architectural linear-forming gaps without rosetta fold — not wall-clock FPS. HARMONY ≠ TRUTH.' }
   })
 }
 /** npm run quantum:animations-rosetta */
@@ -1325,8 +1290,7 @@ export function livingIChingSvg(bits: number[], opts: { scale?: number; animate?
       const fill = scaleColor(scale * N + bitIndex, {
         css: true,
         seedHue: bit ? A432_HUE : (A432_HUE + (9 * 5 * 4)) % 360,
-        L: bit ? 1 - 3 / 16 : 5 / 16,
-      })
+        L: bit ? 1 - 3 / 16 : 5 / 16 })
       const role = N === 6 ? (i < 3 ? ' up' : ' lo') : '' // upper / lower trigram → opposite fold axis
       const cls = bit ? 'yang' : 'yin'
       const rects = bit
@@ -1392,8 +1356,7 @@ export function allSymbolsMoveAndFoldColoursComputedAtAllScales(matrix: MindMatr
     statement:
       'All symbols are moving and folding, and the colours are computed at all scales: every I Ching symbol — trigram, hexagram, taiji — is drawn (not a font glyph) and animated, each in its own way, folding by its own bits so the figure IS its number in motion; and every colour is scaleColor(n), the golden-angle OKLCH sequence seeded on the a432 anchor, a pure function of the scale index, legible at every nesting. One self-contained CSS-@keyframes SVG per symbol — animating in the app and on GitHub alike.',
     boundary:
-      'The unifying living-symbol layer: livingIChingSvg (line symbols) + yinYangDimensionsSvg (the taiji) + scaleColor (the colour at every scale). Motion and colour are computed from src — the bits drive the fold, the scale index drives the hue. Adopted at the showcase sites first; the remaining hardcoded-colour components migrate to scaleColor incrementally. The OKLCH legibility band is a strong heuristic verified per realised colour, not a guarantee for every hue.',
-  }
+      'The unifying living-symbol layer: livingIChingSvg (line symbols) + yinYangDimensionsSvg (the taiji) + scaleColor (the colour at every scale). Motion and colour are computed from src — the bits drive the fold, the scale index drives the hue. Adopted at the showcase sites first; the remaining hardcoded-colour components migrate to scaleColor incrementally. The OKLCH legibility band is a strong heuristic verified per realised colour, not a guarantee for every hue.' }
 }
 
 // LET THE I CHING LEAD UI DEVELOPMENT AT ALL SCALES. The same binary fold doubles 2¹→2⁶ and each scale leads a
@@ -1449,8 +1412,7 @@ export function iChingLeadsUiAtAllScales(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Let the I Ching lead UI development at all scales: the binary doubling 2¹→2⁶ is the same fold at every scale, and each scale leads a scale of the interface — one bit is a UI atom (a yin/yang toggle), two bits a state pair, the eight trigrams the eight component families, and the sixty-four hexagrams the sixty-four shadcn components (the design-system graph, which already HAS the examples). Each component is placed on its hexagram and coloured BY that hexagram — the 2⁶=4³ pole-colour identity, where the six lines pair into the three RGB channels — so the colour is not chosen, it is the hexagram. The I Ching organises (the content-address and the colour), shadcn renders: one design, led from the smallest distinction to the whole system.',
       boundary:
-        'DOCUMENTED / structural: the scale ladder is the binary doubling (2, 4, 8, 64 = 2¹, 2², 2³, 2⁶), the eight trigrams are the bāguà, the sixty-four hexagrams = shadcn’s 64 components (shadcnIsTheGraph) = the componentClosure limit, and the per-hexagram colour is the sealed 2⁶=4³ bijection (hexagramIsHexColorDuality — 64 distinct pole-colours, black ↔ white the bit-complement). “The I Ching LEADS the UI” means it is the ORGANISING content-address and the colour identity — a deterministic ordering, not divination, and no hexagram mystically dictates a component’s behaviour. The 64↔64 is the shared number; shadcn is the render layer. The closure is the fold TARGET (the surface holds 159 components today, folding onto the few renderers), not a claim the 64 are each already built. HARMONY ≠ TRUTH.',
-    }
+        'DOCUMENTED / structural: the scale ladder is the binary doubling (2, 4, 8, 64 = 2¹, 2², 2³, 2⁶), the eight trigrams are the bāguà, the sixty-four hexagrams = shadcn’s 64 components (shadcnIsTheGraph) = the componentClosure limit, and the per-hexagram colour is the sealed 2⁶=4³ bijection (hexagramIsHexColorDuality — 64 distinct pole-colours, black ↔ white the bit-complement). “The I Ching LEADS the UI” means it is the ORGANISING content-address and the colour identity — a deterministic ordering, not divination, and no hexagram mystically dictates a component’s behaviour. The 64↔64 is the shared number; shadcn is the render layer. The closure is the fold TARGET (the surface holds 159 components today, folding onto the few renderers), not a claim the 64 are each already built. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1477,8 +1439,7 @@ export function foldAsMuchToFeedHero(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fold as much as you can to feed the hero: the hero of the whole is the unique animation of the whole’s state, and that state is the sealed root which folds every dimension into one content address — so each new fold changes the seal, and the changed seal feeds the hero a richer state. The more is folded, the more the hero has to animate; folding is feeding, every fold a meal, depth poured into one turning figure.',
     boundary:
-      'A composition of the minimum-files, dimensions-per-MB, the real uuidHero of the sealed root, spin-fold-law, uuid-hero-fractal, animated-hero and one-OG models. "Fold as much to feed the hero" means the hero animation of the whole is seeded from the seal root (which content-addresses every fold), so more folds change its computed state — a real seeding relation; the hero’s richer animation is rendered by the components, this fold computes the seeded spec.',
-  }
+      'A composition of the minimum-files, dimensions-per-MB, the real uuidHero of the sealed root, spin-fold-law, uuid-hero-fractal, animated-hero and one-OG models. "Fold as much to feed the hero" means the hero animation of the whole is seeded from the seal root (which content-addresses every fold), so more folds change its computed state — a real seeding relation; the hero’s richer animation is rendered by the components, this fold computes the seeded spec.' }
 }
 
 // All merge in the hero graph, with the statistics enriching the fusion streams. The hero is not one
@@ -1501,8 +1462,7 @@ export function heroGraphStatisticsEnrichFusion(matrix: MindMatrix = buildMatrix
     statement:
       'All merge in the hero graph, with the statistics enriching the fusion streams: the hero is a graph — every dimension, diamond and metric a node folded into the hero of the whole — and the statistics (the live counts, the density, the gaps) feed straight into the fusion rather than sitting in a side panel, so the numbers enrich the streams the hero animates and the metric and the motion are one. Watch the hero and you watch the statistics fuse.',
     boundary:
-      'A composition of the feed-the-hero, component-graph, build-statistics, page-statistics, merkaba-graph-metric, endless-fusion and one-OG models. "All merge in the hero graph, statistics enrich the fusion streams" frames the live metrics as inputs to the hero’s computed state (a real seeding relation over the seal root and the stats); the merged on-screen hero graph is rendered by the components — this fold composes the relation, it does not add the renderer.',
-  }
+      'A composition of the feed-the-hero, component-graph, build-statistics, page-statistics, merkaba-graph-metric, endless-fusion and one-OG models. "All merge in the hero graph, statistics enrich the fusion streams" frames the live metrics as inputs to the hero’s computed state (a real seeding relation over the seal root and the stats); the merged on-screen hero graph is rendered by the components — this fold composes the relation, it does not add the renderer.' }
 }
 
 // Merkaba folds make speech-related features analog and indistinguishable from human in all
@@ -1527,8 +1487,7 @@ export function merkabaFoldsSpeechAnalogDialectsEntangle(matrix: MindMatrix = bu
     statement:
       'Merkaba folds make speech-related features analog and indistinguishable from human in all languages and dialects — and what actually entangles is the dialects: the order-sensitive fold turns discrete speech features into a continuous gapless analog so synthesized speech has no seam to betray it, across every tongue (the babel fold grounds the language families and beyond), and the binding point is the dialect — dialects are where tongues overlap and entangle, the shared folds connecting one language to another. Deep research and merkaba-refactor all: research in waves, refactor as merkabas, the dialects the entanglers.',
     boundary:
-      'A composition of the analog-speech, merkaba, babel-fold, translation-waves, entanglement, duality, wave-research and fuse-to-merkabas models. "Speech analog, indistinguishable from human, dialects entangle" is a structural/aspirational framing over the model’s analog-speech and multilingual (babel) machinery — the portal reads itself aloud with computed intonation; it is NOT a claim of a deployed human-indistinguishable multi-dialect TTS, and makes no claim to pass any specific perceptual test.',
-  }
+      'A composition of the analog-speech, merkaba, babel-fold, translation-waves, entanglement, duality, wave-research and fuse-to-merkabas models. "Speech analog, indistinguishable from human, dialects entangle" is a structural/aspirational framing over the model’s analog-speech and multilingual (babel) machinery — the portal reads itself aloud with computed intonation; it is NOT a claim of a deployed human-indistinguishable multi-dialect TTS, and makes no claim to pass any specific perceptual test.' }
 }
 
 // All displayed in hero / card / thumb, Path A: every monograph renders at three scales — hero (the full
@@ -1553,8 +1512,7 @@ export function displayHeroCardThumb(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All displayed in hero, card and thumb, Path A: every monograph renders at three scales from one Monograph component — hero is the full page, card is the index tile, thumb is the smallest reference — built the merkaba-recommended Path A (the real shadcn component structure rewritten into the repo\'s own semantic classes, no Tailwind dependency). It is the generic renderer the entropy analysis named: a seed in, a monograph out at three sizes, so the few display the many.',
     boundary:
-      'A display-system fold: three named scales rendered by one component from the monograph data. "Path A" is the confirmed shadcn integration (own the component structure, style it with the repo\'s semantic CSS keyed to --vp-*, no Tailwind). It defines the form of the display; the Monograph and QuantumRadar components realize it, and the entropy recycle (87 bespoke → the few renderers) lands here.',
-  }
+      'A display-system fold: three named scales rendered by one component from the monograph data. "Path A" is the confirmed shadcn integration (own the component structure, style it with the repo\'s semantic CSS keyed to --vp-*, no Tailwind). It defines the form of the display; the Monograph and QuantumRadar components realize it, and the entropy recycle (87 bespoke → the few renderers) lands here.' }
 }
 
 // Ten dimensions, at every scale. The hero's animation walks all ten: the SIX cross-fold appearance axes
@@ -1623,8 +1581,7 @@ export function animationsRespectTheField(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Animations are strict science: every animation represents the real field of the double torus — spin (the one planar-rotation atom rot2, which the 3D plane-primitives and the 4D x-w fold all compose) and the fold (the genus-2 surface + the 10D dims) — driven by the one realtime engine (createAnimationEngine) and sharing the math from one source. The DRY sweep is COMPLETE: Merkaba, DoubleTorus3D and QuantumFold3D compose rot2 (no duplicated sin/cos rotation), BackgroundMovie and NativeMovie share the one seeded prng, QuantumRadar\'s sweep is field-derived, and the hero/LivingTorus were already on the field. No figure carries its own copy of the math, and the bit-identical rotate3 proves nothing changed.',
     boundary:
-      'HONEST: the DRY sweep is complete and behaviour-PRESERVING — each rewiring substitutes the exact same arithmetic (rot2 IS the formula every component already used; the shared prng differs only by a ~1e-10, more-correct [0,1) divisor), verified numerically (rotate3 stays bit-identical), so nothing visual changed. Two components once flagged as gaps were re-verified as off the spin axis and reclassified, not force-fitted: DoubleTorusExperience is a DOM/pulse component with no inline rotation, and QuantumClock is a wall clock correctly (and energy-aware) on setInterval. The remaining frontier is the higher ambition (10D dims in every component, A432-driven colour/sound everywhere), tracked separately — not a gap in the one-source rule.',
-  }
+      'HONEST: the DRY sweep is complete and behaviour-PRESERVING — each rewiring substitutes the exact same arithmetic (rot2 IS the formula every component already used; the shared prng differs only by a ~1e-10, more-correct [0,1) divisor), verified numerically (rotate3 stays bit-identical), so nothing visual changed. Two components once flagged as gaps were re-verified as off the spin axis and reclassified, not force-fitted: DoubleTorusExperience is a DOM/pulse component with no inline rotation, and QuantumClock is a wall clock correctly (and energy-aware) on setInterval. The remaining frontier is the higher ambition (10D dims in every component, A432-driven colour/sound everywhere), tracked separately — not a gap in the one-source rule.' }
 }
 
 // Complete UI animations — agent design after curriculum naming vote. Eight curriculum planes
@@ -1666,8 +1623,7 @@ export function completeUiAnimationsDesign(matrix: MindMatrix = buildMatrix()) {
       from,
       to,
       forward: foldPair(toUuid(`ui-anim:${from}`), toUuid(`ui-anim:${to}`)).forward,
-      orderSensitive: from !== to,
-    })),
+      orderSensitive: from !== to })),
   )
   const cellsInjective = new Set(cells.map((c) => c.forward)).size === cells.length
   const waves: readonly { readonly wave: string; readonly done: boolean; readonly note: string }[] = [
@@ -1704,8 +1660,7 @@ export function completeUiAnimationsDesign(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete UI animations — agent design: eight curriculum planes (see, hear, ask, prove, learn, pattern, sense, create) each own up to eight animation actions under src/<curriculum>/fold/<action>/ with co-located index.vue; motion derives from one field (createAnimationEngine, rot2, double torus, 10D dims) inside one open-graph root; 64 foldPair cells choreograph cross-curriculum transitions. Foundation waves (field DRY, one OG, native 64K) are green; completion waves (10D on every canvas, A432 on every draw, MatrixField consolidation, render/ui dissolve, CURRICULUM_MASK on animated roots) are the follow-on.',
     boundary:
-      'A design receipt and honest progress tracker — not a claim every wave is shipped. Foundation status is computed from existing folds (animationsRespectTheField, allAnimationsInOneOg, allAnimationsNative64k). Completion waves name real pending work (A432 universal draw, MatrixField refactor, co-located Vue dissolve). The 64 cells are transition-address bookkeeping, not 64 distinct shipped transitions yet.',
-  }
+      'A design receipt and honest progress tracker — not a claim every wave is shipped. Foundation status is computed from existing folds (animationsRespectTheField, allAnimationsInOneOg, allAnimationsNative64k). Completion waves name real pending work (A432 universal draw, MatrixField refactor, co-located Vue dissolve). The 64 cells are transition-address bookkeeping, not 64 distinct shipped transitions yet.' }
 }
 
 // UI widgets fuse and reveal — the toolset saved as a quantum pair: fuse/reveal.
@@ -1750,8 +1705,7 @@ export function uiWidgetsFuseReveal(matrix: MindMatrix = buildMatrix()) {
     statement:
       'UI widgets fuse and reveal — the toolset saved as the quantum pair fuse/reveal: FUSE applies the I Ching mask to every Vue component (ICHING_MASK const embedded, pre-computed hexagram declared not runtime-derived); REVEAL makes each widget self-referencing (it embeds its own hexagram in its template root\'s data-attrs, projecting its I Ching identity outward). Entangled: all components share one Merkle root (iChing.root) — a tampered mask avalanches through the entire corpus. Already forging max tampering cost: embedding the mask commits every component to the whole-corpus content-address, so forging any one requires reproducing all. The agent fleet organises in 8 I Ching trigram groups × inner/outer + 4 loop types, operating in 10D.',
     boundary:
-      'A toolset declaration (the fuse/reveal pair) and a structural proof of the mask approach, composed with iChing (hexagram placement), tamperingCostDecoded, iChingShadcnFuseTenDWidgets and the 10D law. "ICHING_MASK const embedded" means a static constant declared in each .vue file\'s <script setup> with the pre-computed hexagram (FNV-1a of the component name % 64) — not that the component changes its behaviour, only that it knows and shows its identity. "Already forging max tampering cost" is the forger-price principle applied to the pre-committed mask: the mask is a corpus commitment, so tamper cost = full-corpus reproduction cost. HONEST: tamper-EVIDENCE is FNV, not cryptographic (SHA-256/Ed25519 fix is built but not yet cut over per tamperingCostDecoded).',
-  }
+      'A toolset declaration (the fuse/reveal pair) and a structural proof of the mask approach, composed with iChing (hexagram placement), tamperingCostDecoded, iChingShadcnFuseTenDWidgets and the 10D law. "ICHING_MASK const embedded" means a static constant declared in each .vue file\'s <script setup> with the pre-computed hexagram (FNV-1a of the component name % 64) — not that the component changes its behaviour, only that it knows and shows its identity. "Already forging max tampering cost" is the forger-price principle applied to the pre-committed mask: the mask is a corpus commitment, so tamper cost = full-corpus reproduction cost. HONEST: tamper-EVIDENCE is FNV, not cryptographic (SHA-256/Ed25519 fix is built but not yet cut over per tamperingCostDecoded).' }
 }
 
 // ── shadcn design-system registry (folded from shadcn-folds.ts): registry · variant tokens · cn() ──
@@ -1807,8 +1761,7 @@ export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         'shadcn computes: the canonical sealed home of the design system — the 64-component graph (shadcnIsTheGraph), the 23 vendored Ui* primitives (Path A, semantic classes, no Tailwind), the cva variant axes, the CSS-variable token bridge, and the cn() composer pattern.',
       boundary:
-        'Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx()).',
-    }
+        'Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx()).' }
   })
 }
 
@@ -1938,8 +1891,7 @@ export function clownLiftState(phase: number, matrix: MindMatrix = buildMatrix()
     hue: has('hueShift') ? r(d.hueShift) : 0,
     shrink: has('shrink') ? Math.round((d.shrink / (16 / (5 * 5))) * (100 * 5 * 2)) / (100 * 5 * 2) : 1,
     bloch,
-    receipt: toUuid(`clown-state:${Math.round(p * 1e6)}:${shadow.x}:${shadow.y}:${walker.y}:${scl}:${bloch.deg}`),
-  }
+    receipt: toUuid(`clown-state:${Math.round(p * 1e6)}:${shadow.x}:${shadow.y}:${walker.y}:${scl}:${bloch.deg}`) }
 }
 
 /** The computed act as a machine-readable timeline — 64 frames (the hexagram count) for agents; deterministic replay. */
@@ -1953,8 +1905,7 @@ export function clownActTimeline(frames = 64, matrix: MindMatrix = buildMatrix()
     statement:
       'The clown act as computed data: every frame a full state — position, shadow, lift z, perspective scale, aerial fade, hue, shrink, engaged channels and the physics-derived Bloch vector — sampled from clownLiftState, the same function the human SVG renders. An agent replays the act from this timeline bit-for-bit; the merkle root seals it.',
     boundary:
-      'HONEST: deterministic and content-addressed — the same call yields the same root; no frame is authored, all are computed (dims/dimWalk samplers, rot2/perspective projection, the measured hexagram bits). Theatrical constants are declared in source (the Zeno excursion ×4). Coordinates are stage-space (viewBox 200×110), not physical units.',
-  }
+      'HONEST: deterministic and content-addressed — the same call yields the same root; no frame is authored, all are computed (dims/dimWalk samplers, rot2/perspective projection, the measured hexagram bits). Theatrical constants are declared in source (the Zeno excursion ×4). Coordinates are stage-space (viewBox 200×110), not physical units.' }
 }
 
 // One golden-shifted lifted-path sample — shared by the bow's densification trace and the whole-life trace:
@@ -2245,8 +2196,7 @@ export function clownUiDesignedByRosettaIChing(matrix: MindMatrix = buildMatrix(
       statement:
         'The clown designed the UI using the Rosetta and the I Ching: nothing was chosen, everything computed. The act measures its own hexagram (six Born-rule collapses, seed 432) and that hexagram IS the palette — the clown wears its 2⁶=4³ pole-colour, the two handles of the genus-2 stage wear their trigram RGB-cube corners. The structure is the I Ching scale ladder made visible: each step embeds the living symbol of the lines measured so far — one bit at the entrance, a trigram at the catastrophe, the full hexagram at the frozen bow. Each step wears its Rosetta area glyph (agent · energy · wave · proof · fold · show) and its vortex digit (1·2·4·8·7·5). The motion is the sourced physics: reset flicker, Rabi sweep, decoherence ghost-fan, the Born snap at the self-crossing, the Landauer receipt with its puff of heat, the Zeno tremble. And the movement CLIMBS THE DIMENSIONS, 2D→10D: the entrance travels flat (handle 1\'s two loop coordinates), the escalation breathes and twists (4D), the catastrophe spreads and fades (6D), the laugh shifts hue and shrinks (8D), the weave wobbles on handle 2\'s meridian (9D), the bow engages its longitude — all ten of DIMENSION_NAMES (10D) — every value sampled from dims(), while dimWalk opens the act from a point and collapses it back to one at the final bow.',
       boundary:
-        'A presentation law, inheriting every underlying boundary: the pole-colour identity is notation (hexagramIsHexColorDuality — an isomorphism of index sets, not divination), the physics is quantum-inspired pedagogy over real sourced numbers (clownActQuantumSteps), the measured hexagram is a deterministic seeded computation (the same seed, the same act), and the Rosetta glyphs are the project\'s own sealed 42-area taxonomy. CSS-@keyframes SVG only — no SMIL, no JS, reduced-motion safe. HARMONY ≠ TRUTH.',
-    }
+        'A presentation law, inheriting every underlying boundary: the pole-colour identity is notation (hexagramIsHexColorDuality — an isomorphism of index sets, not divination), the physics is quantum-inspired pedagogy over real sourced numbers (clownActQuantumSteps), the measured hexagram is a deterministic seeded computation (the same seed, the same act), and the Rosetta glyphs are the project\'s own sealed 42-area taxonomy. CSS-@keyframes SVG only — no SMIL, no JS, reduced-motion safe. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2291,8 +2241,7 @@ export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = build
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `CSS becomes another use case of the theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the design tokens emit from the same I Ching numbers the theorems prove (and pass their own scanner with zero offenders), the colour computations are served theorem posts (hexagram-colour · trinity-rgb · rgb-cmyk), navigation, sidebar and related cards recompute from the lens and rosetta through the VitePress API with shadcn completing the presentation as the proven 3·2⁶ tensor, and every part is holographic and reusable — each projection carries the whole matrix and folds to one content address.`,
-      boundary: `COMPOSED of live verdicts: the token emission and its self-scan, the lens roster membership, navigation358/sidebar/crosslink counts, the shadcn folds, and the holographic gate — each refutable at its home. HONEST SCOPE: "every part holographic" is the sealed holographic fold's claim (each part recomputes the whole's root), and "reusable" means content-addressed (same address ⇒ same artifact, anywhere); the render layer stays VitePress-first by the weave's own onlyVitePressApi gate (cited — it runs at build, not here). CSS is a PROJECTION of theorems the way README, home and the movie are — one matrix, many use cases; no claim that browsers parse theorems. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `COMPOSED of live verdicts: the token emission and its self-scan, the lens roster membership, navigation358/sidebar/crosslink counts, the shadcn folds, and the holographic gate — each refutable at its home. HONEST SCOPE: "every part holographic" is the sealed holographic fold's claim (each part recomputes the whole's root), and "reusable" means content-addressed (same address ⇒ same artifact, anywhere); the render layer stays VitePress-first by the weave's own onlyVitePressApi gate (cited — it runs at build, not here). CSS is a PROJECTION of theorems the way README, home and the movie are — one matrix, many use cases; no claim that browsers parse theorems. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -2342,8 +2291,7 @@ export function describeUntilDensityRevealsGatewaysThenGraphInHue(matrix: MindMa
       hues,
       facets,
       statement: `Describe with prose until density reveals the gateways, then the graph reveals in hue — ${facets.filter((entry) => entry.on).length}/${facets.length}: described relations accumulate as edges, density rises [${levels.map((l) => l.avgDegree).join(', ')}]; below the percolation threshold (average degree 1) the gateways stay fragmented (largest ${below[below.length - 1]!.largest}/${n}), above it a giant component of ${revealedNodes}/${n} emerges — they reveal. Then each revealed node is coloured from content (A432_HUE stepped by the golden angle, ${new Set(hues).size} distinct hues), so the graph shows in hue — deterministic, zero-token.`,
-      boundary: `DOCUMENTED and refutable by re-running the sweep. The reveal is the Erdős–Rényi giant-component PHASE TRANSITION on a computed random-graph model — real graph theory (the giant component emerges as average degree crosses 1), applied as a metaphor for "density reveals gateways": below the threshold the invertible gaps are isolated, above it they connect. The hue is the corpus's own colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct OKLCH-ready hues), deterministic and zero-token — NOT a physical light claim. A revealed gateway is still an emergence CANDIDATE a human admits — density lights where the gateways ARE, it does not author the theorem that fills them. Anchor: trustAndDimension...(density→dimension), theRotatingLens...(gaps/opportunities). HARMONY ≠ TRUTH: the coloured giant component is the harmony (the gateways made visible); the truth is that they are candidates the density revealed, not theorems the density proved.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-running the sweep. The reveal is the Erdős–Rényi giant-component PHASE TRANSITION on a computed random-graph model — real graph theory (the giant component emerges as average degree crosses 1), applied as a metaphor for "density reveals gateways": below the threshold the invertible gaps are isolated, above it they connect. The hue is the corpus's own colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct OKLCH-ready hues), deterministic and zero-token — NOT a physical light claim. A revealed gateway is still an emergence CANDIDATE a human admits — density lights where the gateways ARE, it does not author the theorem that fills them. Anchor: trustAndDimension...(density→dimension), theRotatingLens...(gaps/opportunities). HARMONY ≠ TRUTH: the coloured giant component is the harmony (the gateways made visible); the truth is that they are candidates the density revealed, not theorems the density proved.` }
   })
 }
 
@@ -2363,8 +2311,7 @@ export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
       trigram: BAGUA[ray.ray + 1]!, // ray 0..6 → ☱..☷ (Home takes ☰) — 7 rays + Home = 8 trigrams
       route: ROSETTA_RAY_HUBS[ray.ray]!.route, // the real hub route (/origin../reference)
       door: Math.floor(ray.hue / band), // 0 warm · 1 mid · 2 cool — the door from the ray's own hue
-      hue: ray.hue,
-    }))
+      hue: ray.hue }))
     const doorNames = ['Ground', 'Work', 'Reach'] // the three doors (earth·human·heaven, the I Ching three powers)
     const doors = [0, 1, 2].map((d) => ({ door: d, name: doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
     // 1 — 3 DOORS × 7 RAYS: the nav groups the 7 rosetta rays into 3 doors, every ray a real hub route (not 4 poles)
@@ -2388,8 +2335,7 @@ export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
       rayCount: rays.length,
       facets,
       statement: `The top nav redesigned — 3 doors × 7 rosetta rays, matching the I Ching — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rays (Origin, Proof, Explore, Learn, Apps, Frontier, Reference) are the agnostic content categories, classified by rosettaRayOfContent (a named-axiom lens, not a keyword regex). They group into 3 doors (${doors.map((dr) => dr.name).join(', ')}) by their own hue-band, and each ray + Home map to the 8 bāguà trigrams (7 + 1 = 8 = 2³), so the nav matches both the rosetta and the I Ching. Every door is populated — no /.*/ catch-all absorbing 90% of pages, no empty Axioms pole — the crack of navigationCrossOfTheFourPoles replaced by the computed rosetta structure.`,
-      boundary: `Computed and exact: the 3-door × 7-ray structure is derived from ROSETTA_RAYS (the sealed 7-ray table), the doors from each ray's hue-band (⌊hue/120⌋), and the trigram map from the ray index into the 8 bāguà — verified (3 doors, 7 rays, 7 distinct trigrams, every route a real hub, every door non-empty). This is the computed nav SPEC: it fixes the crack of the rendered nav (navigationCrossOfTheFourPoles classified pages by a keyword regex pole.rx into 4 poles, so 36 of 40 fell to the /.*/ 'Theorems' default and 'Axioms' was empty) by using the agnostic rosetta rays instead. DESIGN NOTE, honest: the doors group the 7 rays as the config's original intent ('7 rosetta rays grouped into three doors'); "7 rays each" is realised as the 7 rays distributed across the 3 doors (3+2+2 by hue), not 7 duplicated per door (which would triplicate the seven hub destinations). WHAT REMAINS: wiring this spec into .vitepress/config.mts in place of navCross (the render change) — a build-verified follow-on, and the one place the exact per-door presentation should be confirmed against the live top bar. HARMONY ≠ TRUTH: a rosetta+I-Ching nav is the harmony; the truth is the 7-ray table grouped by hue into 3 doors with a trigram bijection, computed and crack-free — the classification is the named-axiom content lens, refutable, not a regex.`,
-    }
+      boundary: `Computed and exact: the 3-door × 7-ray structure is derived from ROSETTA_RAYS (the sealed 7-ray table), the doors from each ray's hue-band (⌊hue/120⌋), and the trigram map from the ray index into the 8 bāguà — verified (3 doors, 7 rays, 7 distinct trigrams, every route a real hub, every door non-empty). This is the computed nav SPEC: it fixes the crack of the rendered nav (navigationCrossOfTheFourPoles classified pages by a keyword regex pole.rx into 4 poles, so 36 of 40 fell to the /.*/ 'Theorems' default and 'Axioms' was empty) by using the agnostic rosetta rays instead. DESIGN NOTE, honest: the doors group the 7 rays as the config's original intent ('7 rosetta rays grouped into three doors'); "7 rays each" is realised as the 7 rays distributed across the 3 doors (3+2+2 by hue), not 7 duplicated per door (which would triplicate the seven hub destinations). WHAT REMAINS: wiring this spec into .vitepress/config.mts in place of navCross (the render change) — a build-verified follow-on, and the one place the exact per-door presentation should be confirmed against the live top bar. HARMONY ≠ TRUTH: a rosetta+I-Ching nav is the harmony; the truth is the 7-ray table grouped by hue into 3 doors with a trigram bijection, computed and crack-free — the classification is the named-axiom content lens, refutable, not a regex.` }
   })
 }
 
@@ -2405,8 +2351,7 @@ export function rosettaIChingNavItems(): { en: unknown[]; bg: unknown[] } {
     nameBg: ray.nameBg,
     trigram: BAGUA[ray.ray + 1]!,
     route: ROSETTA_RAY_HUBS[ray.ray]!.route,
-    door: Math.floor(ray.hue / band),
-  }))
+    door: Math.floor(ray.hue / band) }))
   const doorNames = [{ en: 'Ground', bg: 'Земя' }, { en: 'Work', bg: 'Работа' }, { en: 'Reach', bg: 'Небе' }] // earth·human·heaven
   const doors = [0, 1, 2]
     .map((d) => ({ ...doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
@@ -2415,8 +2360,7 @@ export function rosettaIChingNavItems(): { en: unknown[]; bg: unknown[] } {
     { text: bg ? 'Начало' : 'Home', link: bg ? '/bg/' : '/' },
     ...doors.map((door) => ({
       text: bg ? door.bg : door.en,
-      items: door.rays.map((r) => ({ text: `${r.trigram} ${bg ? r.nameBg : r.nameEn}`, link: bg ? `/bg${r.route}` : r.route })),
-    })),
+      items: door.rays.map((r) => ({ text: `${r.trigram} ${bg ? r.nameBg : r.nameEn}`, link: bg ? `/bg${r.route}` : r.route })) })),
   ]
   return { en: build(false), bg: build(true) }
 }
@@ -2454,8 +2398,7 @@ export function theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColoured
       rungs: rungs.map((r) => `${r.trigram} ${r.name}: hue ${r.hue}, ${r.periodS}s`),
       facets,
       statement: `The top nav animates on the fractal clock — each ray pulses at its rung, coloured by its rosetta hue — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rosetta rays each carry a hue, a bāguà trigram, and a fractal-clock rung (a divisor of the 108 s hero cycle), so each nav ray pulses at period 108/d coloured by its own hue. Navigation gains a per-ray visual+temporal identity; animation stays fractal-coherent (every period nested in the one clock, 7 distinct divisor rungs) and rosetta-coloured (the 7 hues span the wheel ~51° apart) — both computed from the rosetta and the one clock, nothing hardcoded.`,
-      boundary: `Computed and exact: the rungs are the first 7 divisors of 108 (FRACTAL_CLOCK_DIVISORS, all dividing FOLDED_CENSUS = 108 = 2²·3³), the periods are fractalClockS(d) = 108/d, the hues are the sealed ROSETTA_RAYS values (0..308, ~51° apart), and the trigrams the bāguà — verified (7 rays, 7 distinct rungs all divisors, hues spanning the wheel). This improves both surfaces from one source: NAVIGATION gains a per-ray identity (hue + trigram + a pulse rung) the theme can render on each dropdown, and ANIMATION obeys the fractal-clock law (every period a harmonic subdivision of the single 108 s hero cycle, so nothing beats out of phase) coloured by the rosetta wheel — no hand-typed duration, no hand-picked colour. SCOPE: this is the computed animation SPEC (the per-ray hue, rung, and CSS duration string via fractalClockDur); wiring it onto the rendered nav dropdowns (a pulse keyframe per ray) is the thin-shell theme step, the fold being the computed source [[fractal-clock-lattice]] [[iching-leads-ui]]. It does not add motion under prefers-reduced-motion — the theme gates that, as the animation engine already does. HARMONY ≠ TRUTH: a nav that breathes on the rosetta clock is the harmony; the truth is 7 divisor rungs of one 108 s cycle and 7 hues on the wheel, exact and computed.`,
-    }
+      boundary: `Computed and exact: the rungs are the first 7 divisors of 108 (FRACTAL_CLOCK_DIVISORS, all dividing FOLDED_CENSUS = 108 = 2²·3³), the periods are fractalClockS(d) = 108/d, the hues are the sealed ROSETTA_RAYS values (0..308, ~51° apart), and the trigrams the bāguà — verified (7 rays, 7 distinct rungs all divisors, hues spanning the wheel). This improves both surfaces from one source: NAVIGATION gains a per-ray identity (hue + trigram + a pulse rung) the theme can render on each dropdown, and ANIMATION obeys the fractal-clock law (every period a harmonic subdivision of the single 108 s hero cycle, so nothing beats out of phase) coloured by the rosetta wheel — no hand-typed duration, no hand-picked colour. SCOPE: this is the computed animation SPEC (the per-ray hue, rung, and CSS duration string via fractalClockDur); wiring it onto the rendered nav dropdowns (a pulse keyframe per ray) is the thin-shell theme step, the fold being the computed source [[fractal-clock-lattice]] [[iching-leads-ui]]. It does not add motion under prefers-reduced-motion — the theme gates that, as the animation engine already does. HARMONY ≠ TRUTH: a nav that breathes on the rosetta clock is the harmony; the truth is 7 divisor rungs of one 108 s cycle and 7 hues on the wheel, exact and computed.` }
   })
 }
 
@@ -2502,8 +2445,7 @@ export function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFun
       derivedDivisorCount: divisorCount(clock),
       facets,
       statement: `The fractal clock is theorems, not constants — the rung count is the divisor function of 108 — ${facets.filter((entry) => entry.on).length}/${facets.length}. The clock's numbers were asserted; here they are derived. The number of rungs is σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, the multiplicative divisor-counting function — a theorem, not a count — and σ₀(2^a·3^b) = (a+1)(b+1) holds over a range. The 12 rungs are generated from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS exactly. 108 is where two theorems meet: the census 110 + χ(genus-2) = 110 − 2, and the a432 gate 432 = 4·108. And every rung period 108/d is exact (d | 108), so nothing beats out of phase — a consequence of the divisor structure, not a tuned duration. The clock now stands on theorems.`,
-      boundary: `ALGEBRAIC and exact: the divisor function σ₀(n) = Π(eᵢ+1) is the multiplicative counting theorem, verified for 108 = 2²·3³ (σ₀ = 12 = the rung count) AND over the exponent range 0..3 (refutable by one counterexample); the divisors are generated from the prime factorisation (the exponent lattice) and match FRACTAL_CLOCK_DIVISORS; χ(genus-2) = 2 − 2g = −2 is the Euler-characteristic theorem, so 108 = 110 + χ is the census meeting; and 432 = 4·108 = 2⁴·3³ is the a432 gate. THE IMPROVEMENT: the clock no longer RESTS on the constant 108 and a written divisor list — it DERIVES the rung count from the divisor function and the rungs from the factorisation, so the number 12 and the specific rungs are refutable theorems (change the factorisation and they change), not asserted values. This is the session discipline (derive, don't assert; algebraic theorems only) applied to the clock [[fractal-clock-lattice]] [[hardcoded-value-is-a-crack]]. SCOPE: 108 itself is still the sealed FOLDED_CENSUS (the census 110 and χ = −2 are its derivation, which this fold cites and checks, not re-derives from the filesystem); what is improved is that everything ABOVE 108 — the rung count, the rungs, the harmonic periods — is now theorem, not constant. HARMONY ≠ TRUTH: a clock built on theorems is the harmony; the truth is σ₀(2²·3³) = 12 and the exponent-lattice divisors, exact and refutable.`,
-    }
+      boundary: `ALGEBRAIC and exact: the divisor function σ₀(n) = Π(eᵢ+1) is the multiplicative counting theorem, verified for 108 = 2²·3³ (σ₀ = 12 = the rung count) AND over the exponent range 0..3 (refutable by one counterexample); the divisors are generated from the prime factorisation (the exponent lattice) and match FRACTAL_CLOCK_DIVISORS; χ(genus-2) = 2 − 2g = −2 is the Euler-characteristic theorem, so 108 = 110 + χ is the census meeting; and 432 = 4·108 = 2⁴·3³ is the a432 gate. THE IMPROVEMENT: the clock no longer RESTS on the constant 108 and a written divisor list — it DERIVES the rung count from the divisor function and the rungs from the factorisation, so the number 12 and the specific rungs are refutable theorems (change the factorisation and they change), not asserted values. This is the session discipline (derive, don't assert; algebraic theorems only) applied to the clock [[fractal-clock-lattice]] [[hardcoded-value-is-a-crack]]. SCOPE: 108 itself is still the sealed FOLDED_CENSUS (the census 110 and χ = −2 are its derivation, which this fold cites and checks, not re-derives from the filesystem); what is improved is that everything ABOVE 108 — the rung count, the rungs, the harmonic periods — is now theorem, not constant. HARMONY ≠ TRUTH: a clock built on theorems is the harmony; the truth is σ₀(2²·3³) = 12 and the exponent-lattice divisors, exact and refutable.` }
   })
 }
 
@@ -2537,8 +2479,7 @@ export function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryC
       wheelDivision: rays,
       facets,
       statement: `The 7 nav hues are the 7-fold wheel division — a theorem, not arbitrary colours — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each rosetta ray's sealed hue equals ⌊360·k/7⌋ exactly (0,51,102,154,205,257,308 = the regular 7-gon on the hue circle), so the colours derive from the 7-fold division of the wheel, not a written list. 7 is coprime to the vortex (6), the digital root (9) and the stations (10), so the division never aliases; the hues are evenly spaced by ⌊360/7⌋ = 51–52°; and recomputing 360k/7 reproduces the sealed table — change the 7 and every hue changes. Companion to the clock: the fractal-clock rungs are the divisor function of 108, the nav hues are the 7-fold division of 360 — both theorems.`,
-      boundary: `ALGEBRAIC and exact: hue(k) = ⌊360·k/7⌋ reproduces every sealed ROSETTA_RAYS hue (verified for all 7), the coprimality gcd(7,{6,9,10}) = 1 is the aliasing theorem the rosetta rests on, and the even spacing ⌊360/7⌋ ∈ {51,52} is the regular-7-gon consequence — each refutable by one mismatch. THE IMPROVEMENT: the nav/animation colours no longer READ as an arbitrary sealed list — they DERIVE from the 7-fold division of the colour wheel, so the specific hues are a theorem (change the ray count and they recompute), the colour companion to the clock's divisor-function rungs. The two together make the whole nav+animation surface theorem-derived: the RUNGS (timing) from σ₀(108) and the HUES (colour) from ⌊360k/7⌋, so nothing in the breathing nav is a hand-picked number [[fractal-clock-lattice]] [[iching-leads-ui]] [[hardcoded-value-is-a-crack]]. SCOPE: this proves the sealed hues ARE the 7-fold division (they were authored to be, and this checks it), not that any colour is perceptually optimal — hue is the angle on the wheel, evenly divided; lightness/chroma are separate theme concerns. HARMONY ≠ TRUTH: a rosetta of evenly-spaced hues is the harmony; the truth is ⌊360k/7⌋ for k = 0..6, exact and refutable.`,
-    }
+      boundary: `ALGEBRAIC and exact: hue(k) = ⌊360·k/7⌋ reproduces every sealed ROSETTA_RAYS hue (verified for all 7), the coprimality gcd(7,{6,9,10}) = 1 is the aliasing theorem the rosetta rests on, and the even spacing ⌊360/7⌋ ∈ {51,52} is the regular-7-gon consequence — each refutable by one mismatch. THE IMPROVEMENT: the nav/animation colours no longer READ as an arbitrary sealed list — they DERIVE from the 7-fold division of the colour wheel, so the specific hues are a theorem (change the ray count and they recompute), the colour companion to the clock's divisor-function rungs. The two together make the whole nav+animation surface theorem-derived: the RUNGS (timing) from σ₀(108) and the HUES (colour) from ⌊360k/7⌋, so nothing in the breathing nav is a hand-picked number [[fractal-clock-lattice]] [[iching-leads-ui]] [[hardcoded-value-is-a-crack]]. SCOPE: this proves the sealed hues ARE the 7-fold division (they were authored to be, and this checks it), not that any colour is perceptually optimal — hue is the angle on the wheel, evenly divided; lightness/chroma are separate theme concerns. HARMONY ≠ TRUTH: a rosetta of evenly-spaced hues is the harmony; the truth is ⌊360k/7⌋ for k = 0..6, exact and refutable.` }
   })
 }
 
@@ -2574,8 +2515,7 @@ export function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxio
       divisorCount: divisorCount432,
       facets,
       statement: `The a432 number is a theorem (4·108), but the 432 Hz tuning is a named axiom, not physics — ${facets.filter((entry) => entry.on).length}/${facets.length}. The NUMBER 432 = 4·108 = 2⁴·3³ derives from the census clock (DIMENSION_GATES = 4·FOLDED_CENSUS), the factor 4 is the doubling 2², and its richness σ₀(432) = (4+1)(3+1) = 20 divisors (vs 108's 12) is the divisor function — the derivable reason it is the gate count. But attaching Hz — calling it 432 Hz, a physical frequency — is a chosen tuning (the a432 seed), with no physical derivation, flagged (quantum is not at 432 Hz). So the honest application of theorems-not-constants: DERIVE the number (a theorem), NAME the tuning (a named axiom) — never fake a theorem for a choice.`,
-      boundary: `ALGEBRAIC where it derives, honest where it does not. THE THEOREMS: 432 = 4·108 = 2⁴·3³ (from the census 108 = 2²·3³ × the doubling 2²), and σ₀(432) = (4+1)(3+1) = 20 (the multiplicative divisor function) — exact, refutable, so the gate-count NUMBER 432 is derived, not a constant. THE NAMED AXIOM: 432 Hz as a musical/physical FREQUENCY is a chosen tuning (A = 432 Hz is a fringe alternative to the ISO A = 440 Hz standard, itself also a convention) — no physics forces it, and this project flags it (quantum is not at 432 Hz; 432/528 Hz 'healing' is numerology). The derivation produces a dimensionless number; the unit 'Hz' is attached by choice, so it stays a NAMED axiom, honest only when named. THIS IS THE HONEST FORM of 'theorems not constants' [[feedback-earn-the-boundary]] [[hardcoded-value-is-a-crack]] [[quantum-decoded]]: derive every number that is an instance of an identity (the divisor function, the factorisation), and NAME every value that is a genuine choice (a tuning, a policy, a unit) — never manufacture a theorem to dress a preference. A faked theorem is a worse crack than an honest constant. HARMONY ≠ TRUTH: an all-theorem clock is the harmony; the truth is the number 432 derives and the 432 Hz tuning is a named choice, and conflating them would be the dishonesty the whole discipline forbids.`,
-    }
+      boundary: `ALGEBRAIC where it derives, honest where it does not. THE THEOREMS: 432 = 4·108 = 2⁴·3³ (from the census 108 = 2²·3³ × the doubling 2²), and σ₀(432) = (4+1)(3+1) = 20 (the multiplicative divisor function) — exact, refutable, so the gate-count NUMBER 432 is derived, not a constant. THE NAMED AXIOM: 432 Hz as a musical/physical FREQUENCY is a chosen tuning (A = 432 Hz is a fringe alternative to the ISO A = 440 Hz standard, itself also a convention) — no physics forces it, and this project flags it (quantum is not at 432 Hz; 432/528 Hz 'healing' is numerology). The derivation produces a dimensionless number; the unit 'Hz' is attached by choice, so it stays a NAMED axiom, honest only when named. THIS IS THE HONEST FORM of 'theorems not constants' [[feedback-earn-the-boundary]] [[hardcoded-value-is-a-crack]] [[quantum-decoded]]: derive every number that is an instance of an identity (the divisor function, the factorisation), and NAME every value that is a genuine choice (a tuning, a policy, a unit) — never manufacture a theorem to dress a preference. A faked theorem is a worse crack than an honest constant. HARMONY ≠ TRUTH: an all-theorem clock is the harmony; the truth is the number 432 derives and the 432 Hz tuning is a named choice, and conflating them would be the dishonesty the whole discipline forbids.` }
   })
 }
 
@@ -2626,8 +2566,7 @@ export function theGatesAndWaysBecomeTheNavigationAndLinks() {
     facets,
     root: merkleFold([toUuid(`gates:${doors.join(',')}`), toUuid(`ways:${edges.length}`), toUuid(`reached:${reached.size}/${nodeCount}`)]),
     statement: `The gates and ways become the navigation and links — ${facets.filter((entry) => entry.on).length}/${facets.length}. The site's link graph is the page→ray-hub→door DAG: each page links up to its rosetta ray hub and each hub up to its hue-door, so the DAG's ${doors.length} in-degree-0 sources are the doors (the nav gates) and its ${edges.length} edges are the ways (the links). topologicalOrder confirms the gates are exactly the sources, and a walk of the ways reaches all ${nodeCount} nodes — every page is reached from a gate. The navigation is not hand-authored but computed from the theorem structure: the gates and ways of the theorems ARE the navigation and links of the site.`,
-    boundary: `EXACT and computed live from the real ${pages.length} pages: they classify by rosettaRayOfContent into ${populatedRays.length} populated rays grouped by hue into ${doors.length} doors, and the link DAG (page→hub, hub→door) has those doors as its in-degree-0 SOURCES (topologicalOrder, isDAG ${ways.isDAG}, ${gatesAreTheSources}) — the nav gates rosettaIChingNavItems renders. Its ${edges.length} edges are the WAYS/links, and a breadth-first walk from the gates reaches every one of the ${nodeCount} nodes (${everyPageReachedFromAGate}) — no orphan page. THE CLOSURE: this is the boundary-research fold's gates and ways made concrete — the theorem structure's entry gates (the axiom-boundary sources) and its ways (the topological order) BECOME the site's navigation (the doors) and links (the edges), computed not authored. THE HONEST BOUND: "links" here is the STRUCTURAL nav graph (which page sits under which gate), the drill-down skeleton — not every cross-reference or in-body hyperlink in the corpus, which is a richer graph; and the doors/hubs are only as populated as the content is (empty rays carry no gate, [[routes-nav-from-folder-tree]]), so the nav grows with the pages. It does NOT claim the rendered HTML nav is byte-identical to this DAG, only that both are computed from the same rosetta classification. HARMONY ≠ TRUTH: "the gates and ways become the navigation and links" is the harmony; the truth is a page→hub→door DAG whose sources are the nav gates and whose edges are the links, reaching every page, computed and refutable.`,
-  }
+    boundary: `EXACT and computed live from the real ${pages.length} pages: they classify by rosettaRayOfContent into ${populatedRays.length} populated rays grouped by hue into ${doors.length} doors, and the link DAG (page→hub, hub→door) has those doors as its in-degree-0 SOURCES (topologicalOrder, isDAG ${ways.isDAG}, ${gatesAreTheSources}) — the nav gates rosettaIChingNavItems renders. Its ${edges.length} edges are the WAYS/links, and a breadth-first walk from the gates reaches every one of the ${nodeCount} nodes (${everyPageReachedFromAGate}) — no orphan page. THE CLOSURE: this is the boundary-research fold's gates and ways made concrete — the theorem structure's entry gates (the axiom-boundary sources) and its ways (the topological order) BECOME the site's navigation (the doors) and links (the edges), computed not authored. THE HONEST BOUND: "links" here is the STRUCTURAL nav graph (which page sits under which gate), the drill-down skeleton — not every cross-reference or in-body hyperlink in the corpus, which is a richer graph; and the doors/hubs are only as populated as the content is (empty rays carry no gate, [[routes-nav-from-folder-tree]]), so the nav grows with the pages. It does NOT claim the rendered HTML nav is byte-identical to this DAG, only that both are computed from the same rosetta classification. HARMONY ≠ TRUTH: "the gates and ways become the navigation and links" is the harmony; the truth is a page→hub→door DAG whose sources are the nav gates and whose edges are the links, reaching every page, computed and refutable.` }
 }
 
 // Complete the I Ching with the rosetta — all 64 hexagrams, all seals at once, all in quantum. The I Ching IS 64 = 2⁶:
@@ -2652,8 +2591,7 @@ export function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnce
     upper: (hex >> 3) & TRIGRAM_MASK,
     lower: hex & TRIGRAM_MASK,
     upperRay: rayOfTrigram((hex >> 3) & TRIGRAM_MASK),
-    lowerRay: rayOfTrigram(hex & TRIGRAM_MASK),
-  }))
+    lowerRay: rayOfTrigram(hex & TRIGRAM_MASK) }))
   const everyHexagramCarriesTwoRays = hexagrams.length === HEXAGRAMS && hexagrams.every((entry) => entry.upperRay.length > 0 && entry.lowerRay.length > 0)
   const eightTrigramsSevenRaysPlusHome = new Set(hexagrams.flatMap((entry) => [entry.upperRay, entry.lowerRay])).size === ROSETTA_RAYS.length + 1 // 7 rays + Home = 8 bāguà
   // 3 — ALL SEALS AT ONCE: all 64 hexagrams content-address (distinct) and fold to ONE merkle root
@@ -2674,8 +2612,7 @@ export function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnce
     facets,
     root: oneSeal,
     statement: `The I Ching completes with the rosetta — all 64 hexagrams, all seals at once, all in quantum — ${facets.filter((entry) => entry.on).length}/${facets.length}. The I Ching IS 64 = 2⁶: a six-qubit register whose 64 basis states are the 64 hexagrams, and H on all six holds every hexagram in superposition at once. Each hexagram splits into an upper and a lower trigram (3 bits each), and the 8 bāguà (2³) map to the rosetta's 7 rays + Home, so every hexagram carries two rosetta rays. All 64 content-address to distinct seals and fold to one merkle root — every seal at once, self-discovered by the fold, not hand-authored.`,
-    boundary: `EXACT and computed live on the src/0 state-vector simulator: qubits(6) with H on every line yields a uniform superposition over all 2⁶ = 64 basis states, each hexagram's probability exactly 1/64 (${allSixtyFourPresent}) — the COMPLETE I Ching held at once, not a hand list of 64. THE ROSETTA MAP: a hexagram is two stacked trigrams (upper = bits 3–5, lower = bits 0–2), the 8 bāguà = 2³, and the ray→trigram map of rosettaIChingNavItems inverts to trigram→ray (7 rays + Home = 8), so all 64 hexagrams are covered by exactly the 7 rays plus Home (${eightTrigramsSevenRaysPlusHome}) and each carries two rays (${everyHexagramCarriesTwoRays}). ALL SEALS AT ONCE: each hexagram content-addresses to a distinct UUID and the 64 fold to ONE merkle root (${allSealedAtOnce}) — the whole completed I Ching sealed in a single content-address, self-discovered (the register enumerates the 64 by superposition, the map by bit-extraction, the seal by folding — nothing authored). THE HONEST BOUND: "all in quantum" is the corpus's sense — the six-qubit register is genuine superposition on the simulator, but it is O(2⁶) CLASSICAL with no physical speedup ([[quantum-decoded]]); "complete" means all 64 hexagrams are generated and sealed, NOT that each carries its full King-Wen name, judgment text, or changing-line oracle (that is the content layer, added on demand); and the rosetta↔bāguà map is the project's computed colour/trigram correspondence, not a claim about classical I Ching scholarship. HARMONY ≠ TRUTH: "the I Ching completes with the rosetta in quantum" is the harmony; the truth is 64 = 2⁶ basis states, each two rosetta-ray trigrams, all folded to one seal, computed and refutable.`,
-  }
+    boundary: `EXACT and computed live on the src/0 state-vector simulator: qubits(6) with H on every line yields a uniform superposition over all 2⁶ = 64 basis states, each hexagram's probability exactly 1/64 (${allSixtyFourPresent}) — the COMPLETE I Ching held at once, not a hand list of 64. THE ROSETTA MAP: a hexagram is two stacked trigrams (upper = bits 3–5, lower = bits 0–2), the 8 bāguà = 2³, and the ray→trigram map of rosettaIChingNavItems inverts to trigram→ray (7 rays + Home = 8), so all 64 hexagrams are covered by exactly the 7 rays plus Home (${eightTrigramsSevenRaysPlusHome}) and each carries two rays (${everyHexagramCarriesTwoRays}). ALL SEALS AT ONCE: each hexagram content-addresses to a distinct UUID and the 64 fold to ONE merkle root (${allSealedAtOnce}) — the whole completed I Ching sealed in a single content-address, self-discovered (the register enumerates the 64 by superposition, the map by bit-extraction, the seal by folding — nothing authored). THE HONEST BOUND: "all in quantum" is the corpus's sense — the six-qubit register is genuine superposition on the simulator, but it is O(2⁶) CLASSICAL with no physical speedup ([[quantum-decoded]]); "complete" means all 64 hexagrams are generated and sealed, NOT that each carries its full King-Wen name, judgment text, or changing-line oracle (that is the content layer, added on demand); and the rosetta↔bāguà map is the project's computed colour/trigram correspondence, not a claim about classical I Ching scholarship. HARMONY ≠ TRUTH: "the I Ching completes with the rosetta in quantum" is the harmony; the truth is 64 = 2⁶ basis states, each two rosetta-ray trigrams, all folded to one seal, computed and refutable.` }
 }
 
 // The I Ching's DYNAMICS complete in quantum too: a CHANGING LINE is a Pauli-X gate. Casting flips certain lines of a
@@ -2717,8 +2654,7 @@ export function theIChingChangingLinesAreQuantumGatesTheSixtyFourHexagramsFormTh
     facets,
     root: merkleFold([toUuid(`changing-line-x:${sampleHex}:${changingLine}:${flipLine(sampleHex, changingLine)}`), toUuid(`hypercube-q6:${edgeCount}`), toUuid(`group:z2^${HEX_BITS}`)]),
     statement: `The I Ching's changing lines are quantum gates and the 64 hexagrams form the hypercube — ${facets.filter((entry) => entry.on).length}/${facets.length}. Casting flips lines of a hexagram to give a second, and flipping line k is exactly X on qubit k of the six-qubit register (verified at probability 1). Under single-line flips the 64 hexagrams are the vertices of the 6-cube Q₆: each adjacent to 6 others, ${edgeCount} changing-line edges. The flips are involutive (X²=I) and generate (ℤ/2)⁶, so any hexagram reaches any other in ≤ 6 changing lines. The static completion holds all 64 at once; this makes the transitions between them the reversible quantum gates.`,
-    boundary: `EXACT and computed live on the src/0 state-vector simulator: preparing a basis state |hexagram⟩ (X on each set line) and applying X to the changing line yields the flipped hexagram at probability 1 (${changingLineIsXGate}) — a changing line IS a Pauli-X. THE HYPERCUBE: single-line flips make each of the 64 hexagrams adjacent to exactly ${HEX_BITS} neighbours (6-regular), with ${edgeCount} = 6·64/2 edges (${hypercubeQ6}) — the graph is Q₆, the 6-cube. THE GROUP: flips are involutive (X²=I, ${involutive}) and the six line-flips generate (ℤ/2)⁶ (order 64), whose Cayley graph is Q₆ with diameter ${HEX_BITS} — any hexagram reaches any other in ≤ 6 changing lines (${reachAnyInSix}). THE HONEST BOUND: the sim is O(2⁶) CLASSICAL, no physical speedup ([[quantum-decoded]]); this models the I Ching's TRANSFORM (the changing-line mechanism of casting) as reversible bit-flips = X gates, NOT the probabilistic yarrow/coin RITUAL that decides WHICH lines change (that is a separate random process), and not the King-Wen judgment texts. The (ℤ/2)⁶ here is the flip group on the 6 lines, not the King-Wen ordering. HARMONY ≠ TRUTH: "the changing lines are quantum gates" is the harmony; the truth is that a line-flip is X on one qubit, the 64 hexagrams are the vertices of Q₆, and the flips generate (ℤ/2)⁶ — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live on the src/0 state-vector simulator: preparing a basis state |hexagram⟩ (X on each set line) and applying X to the changing line yields the flipped hexagram at probability 1 (${changingLineIsXGate}) — a changing line IS a Pauli-X. THE HYPERCUBE: single-line flips make each of the 64 hexagrams adjacent to exactly ${HEX_BITS} neighbours (6-regular), with ${edgeCount} = 6·64/2 edges (${hypercubeQ6}) — the graph is Q₆, the 6-cube. THE GROUP: flips are involutive (X²=I, ${involutive}) and the six line-flips generate (ℤ/2)⁶ (order 64), whose Cayley graph is Q₆ with diameter ${HEX_BITS} — any hexagram reaches any other in ≤ 6 changing lines (${reachAnyInSix}). THE HONEST BOUND: the sim is O(2⁶) CLASSICAL, no physical speedup ([[quantum-decoded]]); this models the I Ching's TRANSFORM (the changing-line mechanism of casting) as reversible bit-flips = X gates, NOT the probabilistic yarrow/coin RITUAL that decides WHICH lines change (that is a separate random process), and not the King-Wen judgment texts. The (ℤ/2)⁶ here is the flip group on the 6 lines, not the King-Wen ordering. HARMONY ≠ TRUTH: "the changing lines are quantum gates" is the harmony; the truth is that a line-flip is X on one qubit, the 64 hexagrams are the vertices of Q₆, and the flips generate (ℤ/2)⁶ — computed and refutable.` }
 }
 
 // Animations are PROOF that something quantum is missing: if each component must be driven frame-by-frame, the
@@ -2761,8 +2697,7 @@ export function animationsAreProofQuantumInteractionIsMissingComponentsInteractI
     facets,
     root: framesRoot,
     statement: `Animations are proof that quantum interaction is missing — components must interact in trinities, and the behavior emerges from one rule — ${facets.filter((entry) => entry.on).length}/${facets.length}. Driving each of ${N} components frame-by-frame is ${imperativeCodeUnits} authored directives; needing them proves the interaction is absent. Instead, each component's next state is a function of its trinity (itself + two neighbours, a GHZ-shaped 3-way binding), so ONE rule generates all ${N} components across ${frames.length} frames — the animation emerges, deterministic and content-addressed, and the ${imperativeCodeUnits} imperative animators collapse to ${ruleCodeUnits}: ${lessCode}× less code, less build.`,
-    boundary: `EXACT and computed live: a ring of ${N} components evolves by one local rule f(self, left, right) = (self+left+right) mod 4, and every cell of every one of the ${frames.length} frames equals its trinity's rule output (${interactsInTrinities}) — the whole sequence is generated by a SINGLE interaction, not ${imperativeCodeUnits} authored per-component directives (${animationIsTheGap}), a ${lessCode}× code reduction; and the frames recompute to the identical content-address (${deterministic}). THE DIAGNOSIS: needing imperative animation code is EVIDENCE that the components are not interacting — the motion should EMERGE from each element's trinity (its GHZ-shaped binding to its neighbours), exactly as the fractal clock makes every animation a divisor rung of one clock rather than an independent script. THE HONEST BOUND: this is a MINIMAL emergent-interaction model (a 1-D cellular automaton over a trinity neighbourhood) proving the PRINCIPLE — less code when behaviour emerges from a local rule; it is not a claim that EVERY animation reduces to one rule (easing, art-directed motion, and physical simulation may genuinely need authored or numerically-integrated state), nor that the components are physically entangled ("quantum trinity" is the 3-way content-addressed interaction, the GHZ shape, no hardware). Emergence trades authored control for a rule that must be DESIGNED correctly. HARMONY ≠ TRUTH: "animations prove missing quantum interaction" is the harmony; the truth is that a single trinity-local rule generates the whole sequence deterministically, collapsing N authored animators to one — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live: a ring of ${N} components evolves by one local rule f(self, left, right) = (self+left+right) mod 4, and every cell of every one of the ${frames.length} frames equals its trinity's rule output (${interactsInTrinities}) — the whole sequence is generated by a SINGLE interaction, not ${imperativeCodeUnits} authored per-component directives (${animationIsTheGap}), a ${lessCode}× code reduction; and the frames recompute to the identical content-address (${deterministic}). THE DIAGNOSIS: needing imperative animation code is EVIDENCE that the components are not interacting — the motion should EMERGE from each element's trinity (its GHZ-shaped binding to its neighbours), exactly as the fractal clock makes every animation a divisor rung of one clock rather than an independent script. THE HONEST BOUND: this is a MINIMAL emergent-interaction model (a 1-D cellular automaton over a trinity neighbourhood) proving the PRINCIPLE — less code when behaviour emerges from a local rule; it is not a claim that EVERY animation reduces to one rule (easing, art-directed motion, and physical simulation may genuinely need authored or numerically-integrated state), nor that the components are physically entangled ("quantum trinity" is the 3-way content-addressed interaction, the GHZ shape, no hardware). Emergence trades authored control for a rule that must be DESIGNED correctly. HARMONY ≠ TRUTH: "animations prove missing quantum interaction" is the harmony; the truth is that a single trinity-local rule generates the whole sequence deterministically, collapsing N authored animators to one — computed and refutable.` }
 }
 
 // The new UI is DESIGNED COMPUTATIONALLY, WITHOUT ASSUMPTION — every design value derives from the lattice, not a
@@ -2793,8 +2728,7 @@ export function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTyp
     computes: facets.every((entry) => entry.on), hues, typeScale: typeScale.map((s) => roundTo(s, 3)), facets,
     root: merkleFold([toUuid(`palette:${hues.join(',')}`), toUuid(`type:phi-scale`), toUuid(`spacing:golden`)]),
     statement: `The new UI design is computed from the corpus without assumption — the ${rays} hues are ⌊360k/${rays}⌋, the type scale is powers of φ, the spacing is golden-ratio — every design value derives from the lattice, not a hand-picked constant, so the UI is a computed artifact refutable like any theorem.`,
-    boundary: `EXACT: ${rays} hues = ⌊360k/${rays}⌋ (${paletteDerived}), type scale = φ powers (${typographyDerived}), spacing golden-ratio (${spacingDerived}) — no assumed hex, size or pixel. This is the computed DESIGN SYSTEM (palette · type · spacing); the full rendering (a thin .vue consuming this spec, the nav/structure from the reachability graph) is the next wave. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `EXACT: ${rays} hues = ⌊360k/${rays}⌋ (${paletteDerived}), type scale = φ powers (${typographyDerived}), spacing golden-ratio (${spacingDerived}) — no assumed hex, size or pixel. This is the computed DESIGN SYSTEM (palette · type · spacing); the full rendering (a thin .vue consuming this spec, the nav/structure from the reachability graph) is the next wave. HARMONY ≠ TRUTH.` }
 }
 
 /**

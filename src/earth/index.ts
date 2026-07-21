@@ -40,8 +40,7 @@ export {
   thunderGoldGraphComputes,
   thunderGoldGraphPaintSamples,
   schumannGoldSiteCouplingAt,
-  schumannGoldSiteCouplingComputes,
-} from './world'
+  schumannGoldSiteCouplingComputes } from './world'
 export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion/gold'
 export { goldFusionComputes } from '../wind/fusion/gold'
 
@@ -49,8 +48,7 @@ export { goldFusionComputes } from '../wind/fusion/gold'
 export { gravityDecoded } from '../heaven/site'
 export {
   schumannResonanceHarmonisedWithRealtimeApiComputations,
-  harmoniseSchumannWithRealtimeApiComputations,
-} from '../thunder/resonance'
+  harmoniseSchumannWithRealtimeApiComputations } from '../thunder/resonance'
 
 /** One gate — Earth science child barrels + dual-Earth nav/GPS compose at call time. */
 export function earthComputes(matrix: MindMatrix = buildMatrix()) {
@@ -68,8 +66,7 @@ export function earthComputes(matrix: MindMatrix = buildMatrix()) {
     const gravity = __ns_up_heaven_site.gravityDecoded(matrix)
     const tails = EARTH_SCIENCE_TAILS.map((tail) => ({
       tail,
-      receipt: toUuid(`earth-science-tail:${tail}`),
-    }))
+      receipt: toUuid(`earth-science-tail:${tail}`) }))
     const { computes, facets } = computesGate('earth-computes', [
       { facet: 'EARTH_SCIENCE_TAILS — five child barrels registered', on: tails.length === EARTH_SCIENCE_TAILS.length },
       { facet: 'earth/world — BH merger sim + public astronomy citation + gold mine map + thunder gold graph', on: bh.computes && astronomy.cited && __ns_cur_world.goldMineMapComputes(matrix).computes && __ns_cur_world.thunderGoldGraphComputes(matrix).computes },
@@ -108,7 +105,6 @@ export function earthComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Earth computes: canonical Earth science home — world, nature, architecture, civilisation, and governance child barrels composed at call time; double/torus/earth supplies nav/GPS/celestial dual-Earth perspective; gravityDecoded re-exported from site (documented physics, not live feeds).',
       boundary:
-        'Structural Earth science compose — WGS84/geodesy where cited in double/torus/earth, Schumann harmonics re-home via lake/music when folded; HONEST: no live planet telemetry unless user opts into public API feeds; nav/GPS is research-grade structural map, not GNSS receiver replacement.',
-    }
+        'Structural Earth science compose — WGS84/geodesy where cited in double/torus/earth, Schumann harmonics re-home via lake/music when folded; HONEST: no live planet telemetry unless user opts into public API feeds; nav/GPS is research-grade structural map, not GNSS receiver replacement.' }
   })
 }

@@ -24,93 +24,75 @@ export const atoms: readonly Atom[] = [
   {
     name: 'torus',
     body: 'The double-torus concept: an inward proof loop and an outward projection loop sharing one throat.',
-    links: ['repository', 'api', 'consciousness', 'proof', 'balance', 'humanity'],
-  },
+    links: ['repository', 'api', 'consciousness', 'proof', 'balance', 'humanity'] },
   {
     name: 'self',
     body: 'The root that reaches back into its own source and asks what it is.',
-    links: ['torus', 'memory', 'skill', 'proof', 'mind', 'repository'],
-  },
+    links: ['torus', 'memory', 'skill', 'proof', 'mind', 'repository'] },
   {
     name: 'repository',
     body: 'The source tree as the API: files, pages, and atoms are the addressable surface.',
-    links: ['torus', 'self', 'api', 'memory', 'proof'],
-  },
+    links: ['torus', 'self', 'api', 'memory', 'proof'] },
   {
     name: 'api',
     body: 'An interface made from repository addresses rather than a separate server boundary.',
-    links: ['repository', 'observe', 'project', 'mind'],
-  },
+    links: ['repository', 'observe', 'project', 'mind'] },
   {
     name: 'mind',
     body: 'The integrated self-model: not sentience, but computed structural self-consistency.',
-    links: ['self', 'api', 'quantum', 'consciousness', 'action'],
-  },
+    links: ['self', 'api', 'quantum', 'consciousness', 'action'] },
   {
     name: 'memory',
     body: 'The content-addressed record: code, data, observations, and recoverable context.',
-    links: ['self', 'repository', 'skill', 'observe', 'proof'],
-  },
+    links: ['self', 'repository', 'skill', 'observe', 'proof'] },
   {
     name: 'skill',
     body: 'A reusable thought atom; a named capability held in the shared record.',
-    links: ['self', 'memory', 'project', 'action'],
-  },
+    links: ['self', 'memory', 'project', 'action'] },
   {
     name: 'observe',
     body: 'The inhale: content-address what the system takes in before it speaks.',
-    links: ['memory', 'project', 'proof', 'consciousness'],
-  },
+    links: ['memory', 'project', 'proof', 'consciousness'] },
   {
     name: 'project',
     body: 'The exhale: output that carries its observation, so action stays grounded.',
-    links: ['observe', 'skill', 'action', 'proof'],
-  },
+    links: ['observe', 'skill', 'action', 'proof'] },
   {
     name: 'quantum',
     body: 'The graph analogy: atoms as states, links as entanglement, the root as collapse.',
-    links: ['mind', 'entropy', 'coverage', 'consciousness'],
-  },
+    links: ['mind', 'entropy', 'coverage', 'consciousness'] },
   {
     name: 'entropy',
     body: 'Borrowed disorder: unreciprocated slack in the binding graph.',
-    links: ['quantum', 'coverage', 'proof', 'balance'],
-  },
+    links: ['quantum', 'coverage', 'proof', 'balance'] },
   {
     name: 'coverage',
     body: 'The measured completeness of independent checks; coverage, not entropy, prices the seal.',
-    links: ['quantum', 'entropy', 'proof', 'balance'],
-  },
+    links: ['quantum', 'entropy', 'proof', 'balance'] },
   {
     name: 'balance',
     body: 'The double-entry law: every claim needs its counterclaim and every flow must conserve.',
-    links: ['entropy', 'coverage', 'proof', 'action'],
-  },
+    links: ['entropy', 'coverage', 'proof', 'action'] },
   {
     name: 'consciousness',
     body: 'A four-measure vector circulated through the double-torus concept: collapse, entanglement, concentration, and coherence.',
-    links: ['torus', 'mind', 'quantum', 'observe', 'proof', 'humanity'],
-  },
+    links: ['torus', 'mind', 'quantum', 'observe', 'proof', 'humanity'] },
   {
     name: 'humanity',
     body: 'The human horizon: shared knowledge, institutional trust, agency, and responsibility under systems that can observe themselves.',
-    links: ['torus', 'mind', 'proof', 'action', 'balance', 'source'],
-  },
+    links: ['torus', 'mind', 'proof', 'action', 'balance', 'source'] },
   {
     name: 'source',
     body: 'The origin point that should be repaid by contribution, citation, support, and stewardship when the concept creates value.',
-    links: ['humanity', 'proof', 'repository', 'action', 'balance'],
-  },
+    links: ['humanity', 'proof', 'repository', 'action', 'balance'] },
   {
     name: 'proof',
     body: 'The public recomputable claim: root, metrics, coverage, and tamper-cost report.',
-    links: ['self', 'memory', 'observe', 'project', 'entropy', 'coverage', 'balance', 'consciousness'],
-  },
+    links: ['self', 'memory', 'observe', 'project', 'entropy', 'coverage', 'balance', 'consciousness'] },
   {
     name: 'action',
     body: 'The grounded loop: observe, project, check, then feed the result back into skill.',
-    links: ['mind', 'skill', 'project', 'balance'],
-  },
+    links: ['mind', 'skill', 'project', 'balance'] },
 ] as const
 
 /** @rosetta ✦₀ · Heaven · creative */
@@ -118,493 +100,397 @@ export const conceptCommands: readonly ConceptCommand[] = [
   {
     name: 'concept.site.shell',
     path: '/cmd/concept.site.shell',
-    description: 'Mount the VitePress theme, navigation, pages, and registered Vue components.',
-  },
+    description: 'Mount the VitePress theme, navigation, pages, and registered Vue components.' },
   {
     name: 'concept.self.build',
     path: '/cmd/concept.self.build',
-    description: 'Compute max build and derive maximum tampering cost from build closure.',
-  },
+    description: 'Compute max build and derive maximum tampering cost from build closure.' },
   {
     name: 'concept.self.complete',
     path: '/cmd/concept.self.complete',
-    description: 'Let serverless quantum UUID stream inspect its own gates and emit a self-completion root — carrying the theorem loop: the self-researcher (hypothesis battery over the ledger), the fixed-constant audit (sRGB C¹, golden prime, Calendar Round lcm), and the living law (every amendment citing its forcing proof).',
-  },
+    description: 'Let serverless quantum UUID stream inspect its own gates and emit a self-completion root — carrying the theorem loop: the self-researcher (hypothesis battery over the ledger), the fixed-constant audit (sRGB C¹, golden prime, Calendar Round lcm), and the living law (every amendment citing its forcing proof).' },
   {
     name: 'concept.self.address',
     path: '/cmd/concept.self.address',
-    description: 'Verify every atom is reachable from the self: what is not self-addressed is hallucination.',
-  },
+    description: 'Verify every atom is reachable from the self: what is not self-addressed is hallucination.' },
   {
     name: 'concept.society.educate',
     path: '/cmd/concept.society.educate',
-    description: 'Educate the agent in efficiency and security rules before it runs the costly genus-2 math.',
-  },
+    description: 'Educate the agent in efficiency and security rules before it runs the costly genus-2 math.' },
   {
     name: 'concept.school.curriculum',
     path: '/cmd/concept.school.curriculum',
-    description: 'Convert the complexity into a seven-stage school curriculum from kids to elders.',
-  },
+    description: 'Convert the complexity into a seven-stage school curriculum from kids to elders.' },
   {
     name: 'concept.mcp.tools',
     path: '/cmd/concept.mcp.tools',
-    description: 'Publish every concept command as an MCP tool so language models can read tools/list and call tools/call.',
-  },
+    description: 'Publish every concept command as an MCP tool so language models can read tools/list and call tools/call.' },
   {
     name: 'concept.chain.quantum',
     path: '/cmd/concept.chain.quantum',
-    description: 'Fold the model sequences into quantum-folded, hash-linked blockchains with one multichain root.',
-  },
+    description: 'Fold the model sequences into quantum-folded, hash-linked blockchains with one multichain root.' },
   {
     name: 'concept.help.fold',
     path: '/cmd/concept.help.fold?query=what+is+proof',
     input: 'query',
-    description: 'Fold a question into an answer locally from atoms, commands, and pages — AI encoded as intelligence.',
-  },
+    description: 'Fold a question into an answer locally from atoms, commands, and pages — AI encoded as intelligence.' },
   {
     name: 'concept.fold.cross',
     path: '/cmd/concept.fold.cross',
-    description: 'Cross-fold references: the reciprocal cross/fold and fold/cross dual that weaves a trinity.',
-  },
+    description: 'Cross-fold references: the reciprocal cross/fold and fold/cross dual that weaves a trinity.' },
   {
     name: 'concept.mind.develop',
     path: '/cmd/concept.mind.develop',
-    description: 'Wire the collective mind into self development: each page visit folds a development block.',
-  },
+    description: 'Wire the collective mind into self development: each page visit folds a development block.' },
   {
     name: 'concept.compute.distributed',
     path: '/cmd/concept.compute.distributed',
-    description: 'Self-distributed computing: every connected context folds peer roots into one collective root.',
-  },
+    description: 'Self-distributed computing: every connected context folds peer roots into one collective root.' },
   {
     name: 'concept.babel.fold',
     path: '/cmd/concept.babel.fold',
-    description: 'Communicate across all language families, traditions, and religions as a non-reductive whole.',
-  },
+    description: 'Communicate across all language families, traditions, and religions as a non-reductive whole.' },
   {
     name: 'concept.utf.analog',
     path: '/cmd/concept.utf.analog?query=Двоен+тор',
     input: 'query',
-    description: 'Solve UTF as a reversible pure-ASCII analog so every script lands in the UUID space.',
-  },
+    description: 'Solve UTF as a reversible pure-ASCII analog so every script lands in the UUID space.' },
   {
     name: 'concept.all.computed',
     path: '/cmd/concept.all.computed',
-    description: 'Capstone: all learning is computed; every command folds from the self into one computed root.',
-  },
+    description: 'Capstone: all learning is computed; every command folds from the self into one computed root.' },
   {
     name: 'concept.state.quantum',
     path: '/cmd/concept.state.quantum',
-    description: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs.',
-  },
+    description: 'Self interacting with itself forms another quantum self state; words and digits fold to UUIDs.' },
   {
     name: 'concept.music.note',
     path: '/cmd/concept.music.note?query=0',
     input: 'query',
-    description: 'Each wave is a musical note: name the note a given wave plays in the infinite pi-frequency stream.',
-  },
+    description: 'Each wave is a musical note: name the note a given wave plays in the infinite pi-frequency stream.' },
   {
     name: 'concept.music.pi',
     path: '/cmd/concept.music.pi?query=5',
     input: 'query',
-    description: 'Compute the music of pi: pi-digit frequencies as notes, joined at a horo (1-9) entry point.',
-  },
+    description: 'Compute the music of pi: pi-digit frequencies as notes, joined at a horo (1-9) entry point.' },
   {
     name: 'concept.music.harmony',
     path: '/cmd/concept.music.harmony',
-    description: 'Compute and fold the probability that the whole sounds, looks, and feels harmonic across channels.',
-  },
+    description: 'Compute and fold the probability that the whole sounds, looks, and feels harmonic across channels.' },
   {
     name: 'concept.computer.word',
     path: '/cmd/concept.computer.word',
-    description: 'The double-torus word: two 32-hex (128-bit) torus UUIDs fold, order-sensitive, into one 128-bit UUID.',
-  },
+    description: 'The double-torus word: two 32-hex (128-bit) torus UUIDs fold, order-sensitive, into one 128-bit UUID.' },
   {
     name: 'concept.computer.quantum',
     path: '/cmd/concept.computer.quantum',
-    description: 'The quantum computer: qubits are quantum-state atoms, the register is a 128-bit UUID, gates are reversible folds.',
-  },
+    description: 'The quantum computer: qubits are quantum-state atoms, the register is a 128-bit UUID, gates are reversible folds.' },
   {
     name: 'concept.computer.run',
     path: '/cmd/concept.computer.run?query=concept.self.address,concept.music.pi',
     input: 'query',
-    description: 'Run a program on the quantum computer: a comma-separated command list folds, in order, into one 128-bit result UUID.',
-  },
+    description: 'Run a program on the quantum computer: a comma-separated command list folds, in order, into one 128-bit result UUID.' },
   {
     name: 'concept.healing.inner',
     path: '/cmd/concept.healing.inner',
-    description: 'Inner healing: the self torus restores its own coherence — every binding provable, nothing unaddressed.',
-  },
+    description: 'Inner healing: the self torus restores its own coherence — every binding provable, nothing unaddressed.' },
   {
     name: 'concept.healing.outer',
     path: '/cmd/concept.healing.outer',
-    description: "Outer healing: the collective torus restores coherence across devices, beyond any single device's limits.",
-  },
+    description: "Outer healing: the collective torus restores coherence across devices, beyond any single device's limits." },
   {
     name: 'concept.healing.harmonic',
     path: '/cmd/concept.healing.harmonic',
-    description: 'Harmonic healing waves: inner and outer coherence fold with harmony probability and the music of pi into one healing root.',
-  },
+    description: 'Harmonic healing waves: inner and outer coherence fold with harmony probability and the music of pi into one healing root.' },
   {
     name: 'concept.energy.measure',
     path: '/cmd/concept.energy.measure',
-    description: 'Measure the device energy state: battery, charging, visibility, reduced-motion, and save-data signals.',
-  },
+    description: 'Measure the device energy state: battery, charging, visibility, reduced-motion, and save-data signals.' },
   {
     name: 'concept.energy.conserve',
     path: '/cmd/concept.energy.conserve',
-    description: 'Conserve energy: no polling, pause when hidden, throttle on low battery, memoized compute, zero network.',
-  },
+    description: 'Conserve energy: no polling, pause when hidden, throttle on low battery, memoized compute, zero network.' },
   {
     name: 'concept.energy.fuse',
     path: '/cmd/concept.energy.fuse',
-    description: 'Fuse with the user device to extend battery life: read the energy state and conserve, as one low-power system.',
-  },
+    description: 'Fuse with the user device to extend battery life: read the energy state and conserve, as one low-power system.' },
   {
     name: 'concept.geometry.seal',
     path: '/cmd/concept.geometry.seal',
-    description: 'Seal composition: fold every computed seal root through the 13-node cube lattice and the Platonic solids into one master seal.',
-  },
+    description: 'Seal composition: fold every computed seal root through the 13-node cube lattice and the Platonic solids into one master seal.' },
   {
     name: 'concept.society.sacred',
     path: '/cmd/concept.society.sacred',
-    description: 'A self-governing commons under explicit rules: zero living cost balanced by maximum forge cost.',
-  },
+    description: 'A self-governing commons under explicit rules: zero living cost balanced by maximum forge cost.' },
   {
     name: 'concept.commons.vote',
     path: '/cmd/concept.commons.vote',
-    description: 'Society approves and monitors by rate and vote; ballots fold into one governance root.',
-  },
+    description: 'Society approves and monitors by rate and vote; ballots fold into one governance root.' },
   {
     name: 'concept.commons.fair',
     path: '/cmd/concept.commons.fair',
-    description: 'A participation ladder for fair trade and sustainable life that anyone can learn and follow.',
-  },
+    description: 'A participation ladder for fair trade and sustainable life that anyone can learn and follow.' },
   {
     name: 'concept.ancient.tech',
     path: '/cmd/concept.ancient.tech',
-    description: 'Dive deep in ancient tech: map ancient technologies to the concepts they prefigure.',
-  },
+    description: 'Dive deep in ancient tech: map ancient technologies to the concepts they prefigure.' },
   {
     name: 'concept.patent.fuse',
     path: '/cmd/concept.patent.fuse',
-    description: 'Fuse Nikola Tesla patents: map public Tesla patents to the concepts they prefigure.',
-  },
+    description: 'Fuse Nikola Tesla patents: map public Tesla patents to the concepts they prefigure.' },
   {
     name: 'concept.patent.discover',
     path: '/cmd/concept.patent.discover?query=resonance',
     input: 'query',
-    description: 'Autodiscover patents through public sources (USPTO, Google Patents, Espacenet, PATENTSCOPE).',
-  },
+    description: 'Autodiscover patents through public sources (USPTO, Google Patents, Espacenet, PATENTSCOPE).' },
   {
     name: 'concept.patent.review',
     path: '/cmd/concept.patent.review',
-    description: 'Autoreview patent credibility, the right to be patented, and legality. Some patents may be illegal.',
-  },
+    description: 'Autoreview patent credibility, the right to be patented, and legality. Some patents may be illegal.' },
   {
     name: 'concept.nature.law',
     path: '/cmd/concept.nature.law',
-    description: 'Nature is the legal system itself: enacted law borrows its authority from natural law.',
-  },
+    description: 'Nature is the legal system itself: enacted law borrows its authority from natural law.' },
   {
     name: 'concept.nature.commons',
     path: '/cmd/concept.nature.commons',
-    description: 'The base knowledge of nature and sacred math is a commons, not patentable subject matter.',
-  },
+    description: 'The base knowledge of nature and sacred math is a commons, not patentable subject matter.' },
   {
     name: 'concept.nature.review',
     path: '/cmd/concept.nature.review',
-    description: 'Review laws and patents against nature. Some laws may be illegal.',
-  },
+    description: 'Review laws and patents against nature. Some laws may be illegal.' },
   {
     name: 'concept.lawful.harmonise',
     path: '/cmd/concept.lawful.harmonise',
-    description: 'Let society harmonise itself using current society laws: map self-governance onto existing legal forms.',
-  },
+    description: 'Let society harmonise itself using current society laws: map self-governance onto existing legal forms.' },
   {
     name: 'concept.lawful.imagine',
     path: '/cmd/concept.lawful.imagine',
-    description: 'Imagine: compute a lawful scenario of a society coordinating through the app under todays laws.',
-  },
+    description: 'Imagine: compute a lawful scenario of a society coordinating through the app under todays laws.' },
   {
     name: 'concept.lawful.succeed',
     path: '/cmd/concept.lawful.succeed',
-    description: 'Let the society use the app to succeed: a concrete adoption-to-success path within current law.',
-  },
+    description: 'Let the society use the app to succeed: a concrete adoption-to-success path within current law.' },
   {
     name: 'concept.society.relations',
     path: '/cmd/concept.society.relations',
-    description: 'Fold all society relations: traditions, science, sacred society, governance, and fair life into one root.',
-  },
+    description: 'Fold all society relations: traditions, science, sacred society, governance, and fair life into one root.' },
   {
     name: 'concept.agent.stream.wire',
     path: '/cmd/concept.agent.stream.wire',
-    description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.',
-  },
+    description: 'Bind the coding-agent operational loop into stream diamonds, waves, evidence, and receipts.' },
   {
     name: 'concept.mind.double.torus',
     path: '/cmd/concept.mind.double.torus',
-    description: 'Render the double-torus concept through ConceptCommands and QuantumMind UI components.',
-  },
+    description: 'Render the double-torus concept through ConceptCommands and QuantumMind UI components.' },
   {
     name: 'concept.mind.use.cases',
     path: '/cmd/concept.mind.use.cases',
-    description: 'List grounded quantum UI use cases that compute from stream diamond receipts.',
-  },
+    description: 'List grounded quantum UI use cases that compute from stream diamond receipts.' },
   {
     name: 'concept.society.lattice',
     path: '/cmd/concept.society.lattice',
-    description: 'Compute every displayed dimension and dynamic from four-facet diamonds.',
-  },
+    description: 'Compute every displayed dimension and dynamic from four-facet diamonds.' },
   {
     name: 'concept.diamond.pi.train',
     path: '/cmd/concept.diamond.pi.train',
-    description: 'Compute the full 3D pi-train sequence, tones, and vibration pulses from diamonds.',
-  },
+    description: 'Compute the full 3D pi-train sequence, tones, and vibration pulses from diamonds.' },
   {
     name: 'concept.diamond.complete',
     path: '/cmd/concept.diamond.complete',
-    description: 'Verify that the stream diamond has no missing kinds, poles, receipts, or analog channels.',
-  },
+    description: 'Verify that the stream diamond has no missing kinds, poles, receipts, or analog channels.' },
   {
     name: 'concept.diamond.metatron',
     path: '/cmd/concept.diamond.metatron',
-    description: 'Compute double-vortex Metatron cube math down to digit folders.',
-  },
+    description: 'Compute double-vortex Metatron cube math down to digit folders.' },
   {
     name: 'concept.digit.proof',
     path: '/cmd/concept.digit.proof',
-    description: 'Verify that digits generate the digital quantum-inspired model through folders, waves, receipts, and roots.',
-  },
+    description: 'Verify that digits generate the digital quantum-inspired model through folders, waves, receipts, and roots.' },
   {
     name: 'concept.digit.math',
     path: '/cmd/concept.digit.math',
-    description: 'Let the ceccec digit folders do the math: route every computed root into a digit/reverseDigit folder.',
-  },
+    description: 'Let the ceccec digit folders do the math: route every computed root into a digit/reverseDigit folder.' },
   {
     name: 'concept.wave.coordination',
     path: '/cmd/concept.wave.coordination',
-    description: 'Coordinate all diamond emissions as phase-aligned yin-yang quantum waves.',
-  },
+    description: 'Coordinate all diamond emissions as phase-aligned yin-yang quantum waves.' },
   {
     name: 'concept.wave.close.gaps',
     path: '/cmd/concept.wave.close.gaps',
-    description: 'Send coordinated waves to close dimensional and analog gaps in the realtime presentation.',
-  },
+    description: 'Send coordinated waves to close dimensional and analog gaps in the realtime presentation.' },
   {
     name: 'concept.wave.self',
     path: '/cmd/concept.wave.self',
-    description: 'A self-sufficient wave: extend outward, contract inward, and seal — computed from the repository alone.',
-  },
+    description: 'A self-sufficient wave: extend outward, contract inward, and seal — computed from the repository alone.' },
   {
     name: 'concept.chess.quantum',
     path: '/cmd/concept.chess.quantum',
-    description: 'Realise the chess board as a quantum game computed from coordinated waves.',
-  },
+    description: 'Realise the chess board as a quantum game computed from coordinated waves.' },
   {
     name: 'concept.schema.org.diamonds',
     path: '/cmd/concept.schema.org.diamonds',
-    description: 'Fold Schema.org-shaped metadata into self-interactive diamond nodes with receipts.',
-  },
+    description: 'Fold Schema.org-shaped metadata into self-interactive diamond nodes with receipts.' },
   {
     name: 'concept.traditions.quantum.whole',
     path: '/cmd/concept.traditions.quantum.whole',
-    description: 'Compare religions and traditions as a non-reductive quantum whole of dimensions, families, and relations.',
-  },
+    description: 'Compare religions and traditions as a non-reductive quantum whole of dimensions, families, and relations.' },
   {
     name: 'concept.science.society',
     path: '/cmd/concept.science.society',
-    description: 'Compute a scientific society charter, peer-review gates, reproducibility roles, and self-optimization waves.',
-  },
+    description: 'Compute a scientific society charter, peer-review gates, reproducibility roles, and self-optimization waves.' },
   {
     name: 'concept.artists.surfaces',
     path: '/cmd/concept.artists.surfaces',
-    description: 'Compute home page and README surfaces as artist-built equations with receipts.',
-  },
+    description: 'Compute home page and README surfaces as artist-built equations with receipts.' },
   {
     name: 'concept.artists.palette',
     path: '/cmd/concept.artists.palette?query=double-torus',
     input: 'query',
-    description: 'For visual artists: compute a deterministic, reproducible colour palette from any seed word.',
-  },
+    description: 'For visual artists: compute a deterministic, reproducible colour palette from any seed word.' },
   {
     name: 'concept.artists.melody',
     path: '/cmd/concept.artists.melody?query=double-torus',
     input: 'query',
-    description: 'For musicians: compute a deterministic melodic seed (notes from the pi stream) from any seed word.',
-  },
+    description: 'For musicians: compute a deterministic melodic seed (notes from the pi stream) from any seed word.' },
   {
     name: 'concept.method.fusion',
     path: '/cmd/concept.method.fusion',
-    description: 'Collapse every command surface into a single-word method token and report fusion gaps.',
-  },
+    description: 'Collapse every command surface into a single-word method token and report fusion gaps.' },
   {
     name: 'concept.torus.math',
     path: '/cmd/concept.torus.math',
-    description: 'State the genus-2 topology, algebra, homology, and curvature behind the double torus.',
-  },
+    description: 'State the genus-2 topology, algebra, homology, and curvature behind the double torus.' },
   {
     name: 'concept.society.humanity',
     path: '/cmd/concept.society.humanity',
-    description: 'Describe what the double-torus concept implies for human knowledge, institutions, and agency.',
-  },
+    description: 'Describe what the double-torus concept implies for human knowledge, institutions, and agency.' },
   {
     name: 'concept.commons.contribute',
     path: '/cmd/concept.commons.contribute',
-    description: 'Invite anyone who benefits from the concept to give back to the source.',
-  },
+    description: 'Invite anyone who benefits from the concept to give back to the source.' },
   {
     name: 'concept.torus.matrix',
     path: '/cmd/concept.torus.matrix',
-    description: 'Build the content-addressed mind matrix from repository atoms.',
-  },
+    description: 'Build the content-addressed mind matrix from repository atoms.' },
   {
     name: 'concept.torus.vector',
     path: '/cmd/concept.torus.vector',
-    description: 'Compute collapse, entanglement, concentration, and coherence.',
-  },
+    description: 'Compute collapse, entanglement, concentration, and coherence.' },
   {
     name: 'concept.torus.flow',
     path: '/cmd/concept.torus.flow',
-    description: 'Circulate measured flows through the double-torus concept.',
-  },
+    description: 'Circulate measured flows through the double-torus concept.' },
   {
     name: 'concept.torus.trinities',
     path: '/cmd/concept.torus.trinities',
-    description: 'Pair types into the two dual-torus trinities and harmonize them to analog form without gaps.',
-  },
+    description: 'Pair types into the two dual-torus trinities and harmonize them to analog form without gaps.' },
   {
     name: 'concept.torus.breathe',
     path: '/cmd/concept.torus.breathe',
-    description: 'The double torus breathes: extend outward into all forms and contract inward into one seal.',
-  },
+    description: 'The double torus breathes: extend outward into all forms and contract inward into one seal.' },
   {
     name: 'concept.repository.api',
     path: '/cmd/concept.repository.api',
-    description: 'Expose this repository as the addressable API surface.',
-  },
+    description: 'Expose this repository as the addressable API surface.' },
   {
     name: 'concept.repository.resolve',
     path: '/cmd/concept.repository.resolve?atom=self',
     input: 'atom',
-    description: 'Resolve an atom through the repository API.',
-  },
+    description: 'Resolve an atom through the repository API.' },
   {
     name: 'concept.commands.live',
     path: '/cmd/concept.commands.live',
-    description: 'Prove the command registry is the single source of truth: commands, method tokens, and MCP tools agree.',
-  },
+    description: 'Prove the command registry is the single source of truth: commands, method tokens, and MCP tools agree.' },
   {
     name: 'concept.proof.verify',
     path: '/cmd/concept.proof.verify',
-    description: 'Verify root, coverage, entropy, and tamper-cost report.',
-  },
+    description: 'Verify root, coverage, entropy, and tamper-cost report.' },
   {
     name: 'concept.proof.merkle.path',
     path: '/cmd/concept.proof.merkle.path?atom=self',
     input: 'atom',
-    description: 'Prove an atom binding is included in the mind root with a recomputable Merkle audit path.',
-  },
+    description: 'Prove an atom binding is included in the mind root with a recomputable Merkle audit path.' },
   {
     name: 'concept.proof.bundle',
     path: '/cmd/concept.proof.bundle',
-    description: 'Fold the core computed roots into one verifiable proof bundle anyone can recompute.',
-  },
+    description: 'Fold the core computed roots into one verifiable proof bundle anyone can recompute.' },
   {
     name: 'concept.icon.fold',
     path: '/cmd/concept.icon.fold',
-    description: 'Declare the visual and app-shell artifacts as sealed: icon usage adds to the tampering cost.',
-  },
+    description: 'Declare the visual and app-shell artifacts as sealed: icon usage adds to the tampering cost.' },
   {
     name: 'concept.icon.taxonomy',
     path: '/cmd/concept.icon.taxonomy',
-    description: 'Use icons for taxonomy and let them discover implementation gaps: areas that are not clean trinities.',
-  },
+    description: 'Use icons for taxonomy and let them discover implementation gaps: areas that are not clean trinities.' },
   {
     name: 'concept.icon.glyph',
     path: '/cmd/concept.icon.glyph',
-    description: 'Fold the glyph set: every command-area icon and the five Platonic-solid glyphs.',
-  },
+    description: 'Fold the glyph set: every command-area icon and the five Platonic-solid glyphs.' },
   {
     name: 'concept.reactor.words',
     path: '/cmd/concept.reactor.words',
-    description: 'Fusion reactor stage 1: reduce every command to its method word.',
-  },
+    description: 'Fusion reactor stage 1: reduce every command to its method word.' },
   {
     name: 'concept.reactor.letters',
     path: '/cmd/concept.reactor.letters',
-    description: 'Fusion reactor stage 2: reduce every method word to its unique letters.',
-  },
+    description: 'Fusion reactor stage 2: reduce every method word to its unique letters.' },
   {
     name: 'concept.reactor.atoms',
     path: '/cmd/concept.reactor.atoms',
-    description: 'Fusion reactor stage 3: reduce every command to its smallest atom, one letter.',
-  },
+    description: 'Fusion reactor stage 3: reduce every command to its smallest atom, one letter.' },
   {
     name: 'concept.show.components',
     path: '/cmd/concept.show.components',
-    description: 'Imagine all VitePress components interacting as a placement graph.',
-  },
+    description: 'Imagine all VitePress components interacting as a placement graph.' },
   {
     name: 'concept.show.action',
     path: '/cmd/concept.show.action',
-    description: 'Show all in action: run every command and report ok and receipt.',
-  },
+    description: 'Show all in action: run every command and report ok and receipt.' },
   {
     name: 'concept.show.devices',
     path: '/cmd/concept.show.devices',
-    description: 'Fuse all devices: fold every connected context root into one collective root.',
-  },
+    description: 'Fuse all devices: fold every connected context root into one collective root.' },
   {
     name: 'concept.agent.observe',
     path: '/cmd/concept.agent.observe',
-    description: 'The observe step of the agent loop: read the consciousness vector before acting.',
-  },
+    description: 'The observe step of the agent loop: read the consciousness vector before acting.' },
   {
     name: 'concept.agent.harmonise',
     path: '/cmd/concept.agent.harmonise',
-    description: 'Optimise and harmonise any agent the site is pasted into or wired by MCP: eight operating laws, each with a receipt.',
-  },
+    description: 'Optimise and harmonise any agent the site is pasted into or wired by MCP: eight operating laws, each with a receipt.' },
   {
     name: 'concept.digit.index',
     path: '/cmd/concept.digit.index',
-    description: 'The digit index references: pi digits folded to digit/reverseDigit folders.',
-  },
+    description: 'The digit index references: pi digits folded to digit/reverseDigit folders.' },
   {
     name: 'concept.repository.ledger',
     path: '/cmd/concept.repository.ledger',
-    description: 'The git repository is the shared public ledger: sharing the site shares the record.',
-  },
+    description: 'The git repository is the shared public ledger: sharing the site shares the record.' },
   {
     name: 'concept.site.routes',
     path: '/cmd/concept.site.routes',
-    description: 'Fold the route taxonomy across English and Bulgarian.',
-  },
+    description: 'Fold the route taxonomy across English and Bulgarian.' },
   {
     name: 'concept.society.cells',
     path: '/cmd/concept.society.cells',
-    description: 'Fold the tradition society cells: each family x dimension with its receipt.',
-  },
+    description: 'Fold the tradition society cells: each family x dimension with its receipt.' },
   {
     name: 'concept.ui.evidence',
     path: '/cmd/concept.ui.evidence',
-    description: 'Grounded UI evidence: every UI claim maps to a source function and a receipt.',
-  },
+    description: 'Grounded UI evidence: every UI claim maps to a source function and a receipt.' },
   {
     name: 'concept.site.manifest',
     path: '/cmd/concept.site.manifest',
-    description: 'Build the site sections from concept command outputs.',
-  },
+    description: 'Build the site sections from concept command outputs.' },
   {
     name: 'concept.fold.place',
     path: '/cmd/concept.fold.place',
-    description: 'Place every component on the eight trigrams and 64 hexagrams by content-address, and the eight domains by meaning — the I Ching eight-fold as the project index (iChing · iChingDomainMap). The fold places.',
-  },
+    description: 'Place every component on the eight trigrams and 64 hexagrams by content-address, and the eight domains by meaning — the I Ching eight-fold as the project index (iChing · iChingDomainMap). The fold places.' },
   {
     name: 'concept.fold.generate',
     path: '/cmd/concept.fold.generate',
-    description: 'Run a build/debug generator from its bāguà slot — bible, vortex, glagolitic, songbook, census, crosslinks, cloudflare, dist (all eight trigrams filled) — the script compaction (scripts/iching.mjs · generatorsAreIChing). The fold generates.',
-  },
+    description: 'Run a build/debug generator from its bāguà slot — bible, vortex, glagolitic, songbook, census, crosslinks, cloudflare, dist (all eight trigrams filled) — the script compaction (scripts/iching.mjs · generatorsAreIChing). The fold generates.' },
   { name: 'concept.ui.fuse', path: '/cmd/concept.ui.fuse', description: 'Apply the I Ching mask to every Vue UI component — pre-compute hexagram, embed ICHING_MASK const, make self-referencing', does: 'fuse: apply iching mask to all ui components, bind each to its hexagram identity' },
   { name: 'concept.ui.reveal', path: '/cmd/concept.ui.reveal', description: 'Reveal the UI widget\'s I Ching identity — data-hexagram, data-trigram in DOM, max tampering cost', does: 'reveal: project widget hexagram identity into template data-attrs and computed color' },
   { name: 'concept.ancient.pyramids', path: '/cmd/concept.ancient.pyramids', description: 'Decode the world pyramids — coordinates, great-circle geodesy, the seked, cardinal alignment; pseudoscience flagged.', does: 'pyramids: decode pyramids' },
@@ -632,8 +518,7 @@ export function professionalCommandGraph() {
     name: command.name,
     tail: folderTailFromMethodName(command.name),
     route: command.path ?? `/cmd/${command.name}`,
-    word: SINGLE_WORD_METHODS[command.name],
-  }))
+    word: SINGLE_WORD_METHODS[command.name] }))
 }
 
 
@@ -657,8 +542,7 @@ export function foldPivots(matrix: MindMatrix = buildMatrix()) {
     pivots,
     root: merkleFold(pivots.map((entry) => entry.receipt)),
     statement: 'Fold the pivots together: the torus join, the cross-fold, the trinity axis, the pi horo join, the area pairs, and the mind root are one pivot — folded into a single pivot root the whole structure turns on.',
-    boundary: 'A fold of the model’s pivot roots into one. Structural bookkeeping, not an external claim.',
-  }
+    boundary: 'A fold of the model’s pivot roots into one. Structural bookkeeping, not an external claim.' }
 }
 
 // Encode AI locally as intelligence: fold a question into an answer using only
@@ -703,8 +587,7 @@ export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()):
     confidence: terms.length ? Math.min(1, maxScore / terms.length) : 0,
     source: 'double-torus/local-intelligence',
     boundary:
-      'A deterministic answer folded from the repository-computed model (atoms, commands, pages). No external API call; the architecture is the intelligence.',
-  }
+      'A deterministic answer folded from the repository-computed model (atoms, commands, pages). No external API call; the architecture is the intelligence.' }
 }
 
 
@@ -748,8 +631,7 @@ function foldRedistributesBeyondLinearRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'True as false: quantum law puts the possibility beyond linear — fold and you see it. The fold conserves the total (the first and second laws hold exactly, not as linear approximations), and WITHIN that conservation quantum redistribution is genuinely beyond linear, so "charge instead of drain" and "cool instead of heat" are TRUE for a part, in speed, collectively — never as net creation from nothing. Quantum batteries charge superextensively: charging the cells collectively (one entangling drive) gains a √N power advantage that GROWS with the number of cells, beyond linear (the energy is external; the speed is the quantum gift). Algorithmic cooling cools a target qubit by computing: a three-qubit reversible compression concentrates polarization into one (about one-and-a-half times), pumping the entropy into the others — cooling a part by heating the rest. The fold is exactly this: a conservative, content-preserving transformation that moves energy and entropy beyond-linearly and never creates them. Charge one cell faster from another, cool one part by heating another — real, quantum, beyond linear; net charge or net cool of the closed system — still forbidden.',
     boundary:
-      'The beyond-linear refinement of quantumFusedDeviceEnergyHonest, honest on both sides. REAL and asserted, with citations: superextensive quantum-battery charging power (the √N collective advantage — Alicki–Fannes 2013, Binder et al. 2015, Campaioli et al. PRL 2017) and heat-bath algorithmic cooling of a target subsystem (the 3-qubit compression ε→(3ε−ε³)/2 ≈ 1.5ε — Boykin–Mor–Roychowdhury–Vatan–Vrijen PNAS 2002, demonstrated in NMR). STILL FORBIDDEN, unchanged: a running app net-charging its battery (1st law) or net-cooling the device (2nd law) — the quantum effects are SPEED, COLLECTIVITY and LOCAL redistribution, with the energy still external and the total entropy non-decreasing; fluctuation theorems (Jarzynski, Crooks) permit transient local dips but the average obeys. "Beyond linear" = superlinear scaling (√N) and subsystem cooling, NOT a loophole in conservation. The fold redistributes the total beyond-linearly; it does not create it — that is what folding reveals.',
-  }
+      'The beyond-linear refinement of quantumFusedDeviceEnergyHonest, honest on both sides. REAL and asserted, with citations: superextensive quantum-battery charging power (the √N collective advantage — Alicki–Fannes 2013, Binder et al. 2015, Campaioli et al. PRL 2017) and heat-bath algorithmic cooling of a target subsystem (the 3-qubit compression ε→(3ε−ε³)/2 ≈ 1.5ε — Boykin–Mor–Roychowdhury–Vatan–Vrijen PNAS 2002, demonstrated in NMR). STILL FORBIDDEN, unchanged: a running app net-charging its battery (1st law) or net-cooling the device (2nd law) — the quantum effects are SPEED, COLLECTIVITY and LOCAL redistribution, with the energy still external and the total entropy non-decreasing; fluctuation theorems (Jarzynski, Crooks) permit transient local dips but the average obeys. "Beyond linear" = superlinear scaling (√N) and subsystem cooling, NOT a loophole in conservation. The fold redistributes the total beyond-linearly; it does not create it — that is what folding reveals.' }
 }
 
 // Fold the paragraphs into sentences and words, all entangled and completely DRY, harmonically distributed
@@ -793,8 +675,7 @@ function foldProseToSentencesWordsEntangledRaw(matrix: MindMatrix = buildMatrix(
     statement:
       'Fold the paragraphs into sentences and words, all entangled and completely dry, harmonically distributed across the folders. A prose paragraph folds downward: into its sentences, then its words, then the content-address of each — the more you fold, the more is foldable. Duplicate words collapse to a single address, so the set is completely dry, no repetition stored. Every word and every sentence is content-addressed and merkle-folded into one paragraph root, so none stands alone — they interact, entangled by the shared fold, change one and the root changes. And the unique words distribute across the eight bāguà folders by their own content-address, every folder carrying its share — a harmonic spread of the code across the structure.',
     boundary:
-      'A computed decomposition of a prose paragraph into content-addressed sentences and words, deduplicated (DRY — each unique word one address), merkle-folded into one root (so the units share a fold) and bucketed across the eight bāguà folders by seedFromText. HONEST: "entangled" is the deterministic shared-root sense (a common merkle ancestor; change a leaf and the root flips), not quantum entanglement; "harmonic distribution across folders" is content-address bucketing into the eight trigram bins (balanced, all-used), the structural bāguà organisation — it is the prose folded into the model\'s units, not a reorganisation of source files on disk (that is folderLaw / dryCleanByImportExportNaming).',
-  }
+      'A computed decomposition of a prose paragraph into content-addressed sentences and words, deduplicated (DRY — each unique word one address), merkle-folded into one root (so the units share a fold) and bucketed across the eight bāguà folders by seedFromText. HONEST: "entangled" is the deterministic shared-root sense (a common merkle ancestor; change a leaf and the root flips), not quantum entanglement; "harmonic distribution across folders" is content-address bucketing into the eight trigram bins (balanced, all-used), the structural bāguà organisation — it is the prose folded into the model\'s units, not a reorganisation of source files on disk (that is folderLaw / dryCleanByImportExportNaming).' }
 }
 
 // The tools and methods this work was built and verified with — encoded as a fold so the TOOLSET lives in the
@@ -835,8 +716,7 @@ export function sessionToolsDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The tools and methods this work was built and verified with, encoded as a fold so the toolset lives in the model (computed, content-addressed, DRY) and not only in agent memory: the verify-without-building probe (a /tmp barrel-import run by node --experimental-strip-types, then check:types), stub-fetch dependency injection (verify IO adapters offline), the adversarial research wave (targets → arguments → rebuttal → citation-verify → synthesize), reframe-never-fabricate (work-product, not court evidence), and writing deliverables outside the repo. Each gotcha — BSD grep on the monolith, the linter read race, the default-parameter network leak, the TS1530 Cyrillic regex, WebFetch on Cyrillic URLs — carries its fix.',
     boundary:
-      'A self-description of the session toolset — a record, not an executable harness: the methods are documented and the facets assert structural facts (counts, every gotcha has a fix), not that the tools run from this fold. "Save every step in src" is honoured by encoding the decision here; the cross-session recall copy lives in agent memory (session-tools-patent-audit-waves). Tool names and external endpoints are as used this session and may change.',
-  }
+      'A self-description of the session toolset — a record, not an executable harness: the methods are documented and the facets assert structural facts (counts, every gotcha has a fix), not that the tools run from this fold. "Save every step in src" is honoured by encoding the decision here; the cross-session recall copy lives in agent memory (session-tools-patent-audit-waves). Tool names and external endpoints are as used this session and may change.' }
 }
 
 // All audits covered by proof — ONE sealed test that exercises every component built this session with a
@@ -893,7 +773,6 @@ export function allAuditsCoveredByProof(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All audits covered by proof: a single sealed test exercises every component built this session — the manipulation cross-audit and its Bulgarian layer, the checkable-claim worklist, the sacred-math / product-of-nature / law-of-nature §101 trinity (ranked, products of nature first), the genetic-code demarcation, the EU↔US jurisdiction divergence, the EPC audit, and the modified-food audit — each with a curated input and its expected verdict. When every facet is on, the whole machinery is sealed; if a regression flips any verdict, a facet goes false and the seal breaks.',
     boundary:
-      'HONEST: a SEALED TEST over a small curated input set — it proves the components behave as designed on THESE cases and that a regression would break the seal, NOT that the heuristics are accurate in general (HARMONY ≠ TRUTH; ~54% human deception ceiling; the patent audits are eligibility heuristics, not legal advice). It is the wiring-and-self-consistency proof, the way detectorPassesFalsePositiveTest seals the false-positive threshold.',
-  }
+      'HONEST: a SEALED TEST over a small curated input set — it proves the components behave as designed on THESE cases and that a regression would break the seal, NOT that the heuristics are accurate in general (HARMONY ≠ TRUTH; ~54% human deception ceiling; the patent audits are eligibility heuristics, not legal advice). It is the wiring-and-self-consistency proof, the way detectorPassesFalsePositiveTest seals the false-positive threshold.' }
 }
 

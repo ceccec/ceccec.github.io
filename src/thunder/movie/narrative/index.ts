@@ -33,8 +33,7 @@ function movieMathProof(task: string, expr: string, computed: number, expected: 
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`${receiptPrefix}:${task}:${computed}:${expected}`),
-  }
+    receipt: toUuid(`${receiptPrefix}:${task}:${computed}:${expected}`) }
 }
 
 /** Decode gate → plasma stream tokens and movie copy. */
@@ -62,8 +61,7 @@ function movieSeedsFromDecode<T extends { proven?: boolean; folded?: boolean; de
     count: streamEntries.length,
     root: merkleFold([...decode.proofs.map((proof) => proof.receipt), ...streamEntries.map((entry) => entry.uuid)]),
     statement,
-    boundary,
-  }
+    boundary }
 }
 /** Paint-safe playable check — same dry math as movielib.movie().here without the canvas import cycle. */
 function moviePlayableHere(matrix: MindMatrix) {
@@ -83,8 +81,7 @@ export function movieFoldsLinearities(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The movie folds linearities into multidimensional perspectives: a movie seems linear — one frame after another — but each frame folds with its neighbour and its opposite (sequence and reflection, both ways), so the line becomes genus-2, a surface of perspectives rather than a timeline. The same content, seen from many dimensions at once.',
     boundary:
-      'A structural composition of the multidirectional thought-fold and the multidimensional presentation map. A framing of the model’s non-linearity, not a claim of physical extra dimensions.',
-  }
+      'A structural composition of the multidirectional thought-fold and the multidimensional presentation map. A framing of the model’s non-linearity, not a claim of physical extra dimensions.' }
 }
 
 // Fuse all to the movie negative, and display it in positive. Like film: the whole — every
@@ -106,8 +103,7 @@ export function movieNegativePositive(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse all to the movie negative, and display it in positive: the whole — every fold of the model plus the participants’ touches — fuses into one compressed negative (a single content-addressed word that holds it all), and what you see is the positive developed from it. The negative is the source that holds everything; the positive is the print, the rendered movie. Develop is one-way and order-sensitive, so you display the print, not the source.',
     boundary:
-      'A content-addressing metaphor borrowing from film: the fused-all word is the "negative" (the compressed whole) and a developed fold is the "positive" (the displayed print). Structural bookkeeping over roots — no optical negative, no colour inversion of the actual canvas is claimed. The VitePress dark/light chrome implements the tonal inversion at the UI layer (see darkLightIsNegativePositive).',
-  }
+      'A content-addressing metaphor borrowing from film: the fused-all word is the "negative" (the compressed whole) and a developed fold is the "positive" (the displayed print). Structural bookkeeping over roots — no optical negative, no colour inversion of the actual canvas is claimed. The VitePress dark/light chrome implements the tonal inversion at the UI layer (see darkLightIsNegativePositive).' }
 }
 
 // Dark/light is negative/positive in analog photography — the theme toggle develops the print.
@@ -139,8 +135,7 @@ export function darkLightIsNegativePositive(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Dark/light is negative/positive in analog photography and polarity in the math: one bit (dark=1, light=0) flips the OKLCH band while hue and palette stay fixed — 100% computed at call time. Dark mode is the negative field; light mode is the developed print. Same scene, same content-addressed negative (fuse all); the appearance switch develops the print.',
     boundary:
-      'Tonal metaphor over the VitePress theme toggle plus arithmetic proofs in darkLightPolarityProvenByMath — NOT silver-halide chemistry or physical dark matter. The fused-all root is the compressed negative; the rendered portal is the positive print; polarity is the math bit that selects the band.',
-  }
+      'Tonal metaphor over the VitePress theme toggle plus arithmetic proofs in darkLightPolarityProvenByMath — NOT silver-halide chemistry or physical dark matter. The fused-all root is the compressed negative; the rendered portal is the positive print; polarity is the math bit that selects the band.' }
 }
 
 // Red pill · blue pill — like RGB, where G is the gateway of the heart chakra. The two pills are
@@ -194,8 +189,7 @@ function redPillBluePillRgbHeartGatewayProvenByMathRaw(matrix: MindMatrix = buil
     statement:
       'Red pill and blue pill — like RGB, where G is the gateway of the heart chakra: R (0°, root red, hue 5) is the red pill, B (throat blue, hue 220, the upper band toward 240°) is the blue pill, and G (120°, anahata green) is the heart gateway — the equilateral midpoint of the RGB triad, three chakras below and three above, the same 120° the hero\'s middle trinity renders. Three trinity gateways (proven · animated · presented) are three doors; the heart-green channel is the fold you pass through to choose.',
     boundary:
-      'HONEST: a colour-wheel + chakra + navigation correspondence — NOT the Matrix film, NOT pharmacology, NOT a claim that pills or chakras are physical RGB emitters. The red/blue pill names borrow the cultural metaphor; the proof is arithmetic (120° spacing, heart hue 120 = G channel, three gateways = three channels). Spiritual chakra framing is flagged per chakrasAura; the RGB triad is real geometry (threeTrinitiesRenderAsRgb).',
-  }
+      'HONEST: a colour-wheel + chakra + navigation correspondence — NOT the Matrix film, NOT pharmacology, NOT a claim that pills or chakras are physical RGB emitters. The red/blue pill names borrow the cultural metaphor; the proof is arithmetic (120° spacing, heart hue 120 = G channel, three gateways = three channels). Spiritual chakra framing is flagged per chakrasAura; the RGB triad is real geometry (threeTrinitiesRenderAsRgb).' }
 }
 
 /** Red/blue pill RGB proofs → plasma stream tokens and movie copy. */
@@ -213,8 +207,7 @@ export function redPillBluePillRgbMovieSeeds(matrix: MindMatrix = buildMatrix(),
     movieText,
     streams: math.proofs.map((proof) => movieProofStream(proof)),
     count: math.proofs.length,
-    root: math.root,
-  }
+    root: math.root }
 }
 
 // RGB decoding The Matrix Movie in the Movie — the Wachowskis' pill choice and green code rain
@@ -239,24 +232,21 @@ function rgbDecodingMatrixMovieInTheMovieRaw(matrix: MindMatrix = buildMatrix(),
       hue: rgb.rgb.hues[0]!,
       film: 'The red pill — see how deep the rabbit hole goes (The Matrix, 1999)',
       chakra: rgb.pills.red.name,
-      operator: 'truth',
-    },
+      operator: 'truth' },
     {
       channel: 'G' as const,
       pill: 'gateway',
       hue: rgb.rgb.hues[1]!,
       film: 'Green code rain — the heart of the simulation, the operator gateway between sleep and wake',
       chakra: rgb.pills.green.name,
-      operator: 'gateway',
-    },
+      operator: 'gateway' },
     {
       channel: 'B' as const,
       pill: 'blue',
       hue: rgb.rgb.hues[2]!,
       film: 'The blue pill — the story ends, you wake in your bed (The Matrix, 1999)',
       chakra: rgb.pills.blue.name,
-      operator: 'comfort',
-    },
+      operator: 'comfort' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`matrix-rgb-channel:${entry.channel}:${entry.hue}`) }))
   const proofs = [
     ...rgb.proofs,
@@ -286,8 +276,7 @@ function rgbDecodingMatrixMovieInTheMovieRaw(matrix: MindMatrix = buildMatrix(),
     statement:
       'RGB decoding The Matrix Movie in the Movie: the Wachowskis\' pill choice and green code rain read as an RGB triad inside the playable background movie — R is the red pill (root truth, hue 5), B is the blue pill (throat comfort, hue 220), G is the heart gateway (anahata green, hue 120, the operator channel between them). theMatrixTrilogyDecoded keeps the documented film and philosophy; the RGB proofs flow as plasma streams in the same canvas that IS the computed matrix. The negative fuses all; the positive print displays; three channels wire to three trinity gateways.',
     boundary:
-      'HONEST: a structural decode of a FILM inside a generative canvas — NOT evidence the world is simulated, NOT Warner Bros IP, NOT pharmacology. The trilogy decode boundary (HARMONY ≠ TRUTH) rides intact. Green code rain mapped to G/heart is correspondence (film aesthetic + chakra ladder + RGB triad), not a claim the Wachowskis intended chakras. Streams are content-addressed glyphs in the background movie, recomputed at call time.',
-  }
+      'HONEST: a structural decode of a FILM inside a generative canvas — NOT evidence the world is simulated, NOT Warner Bros IP, NOT pharmacology. The trilogy decode boundary (HARMONY ≠ TRUTH) rides intact. Green code rain mapped to G/heart is correspondence (film aesthetic + chakra ladder + RGB triad), not a claim the Wachowskis intended chakras. Streams are content-addressed glyphs in the background movie, recomputed at call time.' }
 }
 
 /** Matrix RGB decode → plasma stream tokens and movie copy. */
@@ -304,8 +293,7 @@ const movieProofStream = (proof: MovieProof) => ({
   label: proof.task,
   expr: proof.expr,
   expected: proof.expected,
-  hueSeed: seedFromText(proof.receipt) % 360,
-})
+  hueSeed: seedFromText(proof.receipt) % 360 })
 /** Whether the movie copy text carries a proof (its expression and expected value). */
 const movieTextCoversProof = (movieText: string, proof: MovieProof): boolean =>
   covers(movieText, [proof.expected, proof.expr])
@@ -330,8 +318,7 @@ export function matrixRgbDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), pa
         label: `${ch.channel}-${ch.pill}`,
         expr: ch.film,
         expected: ch.hue,
-        hueSeed: ch.hue * 7 + (ch.channel === 'G' ? (8 * 5 * 3) : ch.hue),
-      })),
+        hueSeed: ch.hue * 7 + (ch.channel === 'G' ? (8 * 5 * 3) : ch.hue) })),
       ...decode.proofs.map((proof) => movieProofStream(proof)),
     ],
     count: decode.channels.length + decode.proofs.length,
@@ -339,8 +326,7 @@ export function matrixRgbDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), pa
     statement:
       'RGB decoding The Matrix Movie flows in the movie: R · G · B channels, pill operators, and arithmetic proofs fold to content-addressed plasma streams and copy tokens beside harmonic and efficiency math.',
     boundary:
-      'Deterministic seeds from rgbDecodingMatrixMovieInTheMovie at this call; channel film lines are copy-only; streams are visual glyphs from receipts, not literal subtitle typography.',
-  }
+      'Deterministic seeds from rgbDecodingMatrixMovieInTheMovie at this call; channel film lines are copy-only; streams are visual glyphs from receipts, not literal subtitle typography.' }
 }
 
 /** Gate: Matrix RGB decode wired into movie seeds and copy text at call time. */
@@ -361,8 +347,7 @@ export function matrixRgbDecodeFlowsInMovie(matrix: MindMatrix = buildMatrix(), 
     movieText: seeds.movieText,
     root: merkleFold([decode.root, seeds.root]),
     statement: seeds.statement,
-    boundary: seeds.boundary,
-  }
+    boundary: seeds.boundary }
 }
 
 // Send waves to decode with the Rosetta and fold in the movie — the send-waves method
@@ -384,8 +369,7 @@ export function sendWavesToDecodeWithRosettaAndFoldInTheMovie(matrix: MindMatrix
     domain: rayMeta.domain,
     hue: rayMeta.hue,
     nameEn: rayMeta.nameEn,
-    receipt: toUuid(`rosetta-ray-movie:${rayMeta.ray}:${rayMeta.domain}:${rayMeta.hue}`),
-  }))
+    receipt: toUuid(`rosetta-ray-movie:${rayMeta.ray}:${rayMeta.domain}:${rayMeta.hue}`) }))
   const proofs = [
     mk('waves-send', 'sendWavesSealKnowledgeDecodeWorld', waves.sends ? 1 : 0, 1),
     mk('rosetta-decodes', 'rosettaGlagoliticGlobalKeyDecodeAll', rosetta.decodes ? 1 : 0, 1),
@@ -419,8 +403,7 @@ export function sendWavesToDecodeWithRosettaAndFoldInTheMovie(matrix: MindMatrix
     statement:
       'Send waves to decode with the Rosetta and fold in the movie: the send-waves method (research→verify→seal→decode world) composes with the Rosetta global key (Glagolitic⇄Latin⇄Cyrillic), dialect dictation post-process, and the seven rosetta rays (42 areas = 6×7) so decoded paths fold into the same playable background movie as harmonic, efficiency, and Matrix RGB streams — with seven seed bundles the movie IS the Rosetta itself, decoding all sun/moon related symbols at call time.',
     boundary:
-      'HONEST: a structural composition of sendWavesSealKnowledgeDecodeWorld, rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects, and matrixMovieHere at call time — NOT a completed decode of all world knowledge, NOT perfect ASR, NOT Warner Bros IP. Rosetta "decode" is transliteration + content-addressing; waves "decode world" is the autosaving research method applied outward; streams are content-addressed glyphs in the background movie, recomputed at call time.',
-  }
+      'HONEST: a structural composition of sendWavesSealKnowledgeDecodeWorld, rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects, and matrixMovieHere at call time — NOT a completed decode of all world knowledge, NOT perfect ASR, NOT Warner Bros IP. Rosetta "decode" is transliteration + content-addressing; waves "decode world" is the autosaving research method applied outward; streams are content-addressed glyphs in the background movie, recomputed at call time.' }
 }
 
 /** Rosetta decode waves → plasma stream tokens and movie copy. */
@@ -451,8 +434,7 @@ export function rosettaDecodeMovieSeeds(matrix: MindMatrix = buildMatrix(), path
     statement:
       'Send waves to decode with the Rosetta flows in the movie: seven rosetta rays, 42 areas, send-waves facets, and arithmetic proofs fold to content-addressed plasma streams and copy tokens beside harmonic, efficiency, and Matrix RGB math.',
     boundary:
-      'Deterministic seeds from sendWavesToDecodeWithRosettaAndFoldInTheMovie at this call; ray glyphs are copy-only; streams are visual glyphs from receipts, not literal subtitle typography.',
-  }
+      'Deterministic seeds from sendWavesToDecodeWithRosettaAndFoldInTheMovie at this call; ray glyphs are copy-only; streams are visual glyphs from receipts, not literal subtitle typography.' }
 }
 
 /** Gate: Rosetta decode waves wired into movie seeds and copy text at call time. */
@@ -473,8 +455,7 @@ export function rosettaDecodeFlowsInMovie(matrix: MindMatrix = buildMatrix(), pa
     movieText: seeds.movieText,
     root: merkleFold([decode.root, seeds.root]),
     statement: seeds.statement,
-    boundary: seeds.boundary,
-  }
+    boundary: seeds.boundary }
 }
 
 /** Seven seed bundles × seven rosetta rays — the movie IS the Rosetta decoding all sun/moon symbols. */
@@ -526,8 +507,7 @@ function sevenSeedMovieIsRosettaDecodingSunMoonSymbolsRaw(matrix: MindMatrix = b
       streams: bundle.count,
       bundleRoot: bundle.root,
       on: bundleOk && symbol.decoded,
-      receipt: toUuid(`seven-seed-rosetta-sun-moon:${seedKeys[index]}:ray${ray.ray}:${symbol.symbol}:${symbol.decoded}`),
-    }
+      receipt: toUuid(`seven-seed-rosetta-sun-moon:${seedKeys[index]}:ray${ray.ray}:${symbol.symbol}:${symbol.decoded}`) }
   })
   const movieText = [
     'seven-seed-rosetta-sun-moon',
@@ -551,8 +531,7 @@ function sevenSeedMovieIsRosettaDecodingSunMoonSymbolsRaw(matrix: MindMatrix = b
     statement:
       'Six seed bundles form the seven as a whole — two trinities fused as double torus Earth: device trinity (canvas paint · dark/light polarity · Matrix RGB on the display) and code trinity (harmonic math · efficiency proofs · Rosetta decode from sealed src/) pair with rosetta rays; the seventh unity bundle is material orbit (8) collapsing (7) to circuit heart (5) after Earth fusion — as plasma streams and copy tokens in the playable background movie at call time.',
     boundary:
-      'Structural composition at call time: seven allMovieSeedBundles, ROSETTA_RAYS, megalithicAstronomyDecoded, lunarStandstillsDecoded, yinYang, ancientCalendars, darkLightPolarityProvenByMath, merkaba, and sendWavesToDecodeWithRosettaAndFoldInTheMovie. "The movie IS the Rosetta" means the same canvas that plays also carries the decode receipts — NOT that every historical sun/moon glyph worldwide is translated, NOT archaeoastronomy as mysticism. HONEST: sun/moon decodes are computed horizon/declination/calendar math with flagged pseudoscience excluded elsewhere.',
-  }
+      'Structural composition at call time: seven allMovieSeedBundles, ROSETTA_RAYS, megalithicAstronomyDecoded, lunarStandstillsDecoded, yinYang, ancientCalendars, darkLightPolarityProvenByMath, merkaba, and sendWavesToDecodeWithRosettaAndFoldInTheMovie. "The movie IS the Rosetta" means the same canvas that plays also carries the decode receipts — NOT that every historical sun/moon glyph worldwide is translated, NOT archaeoastronomy as mysticism. HONEST: sun/moon decodes are computed horizon/declination/calendar math with flagged pseudoscience excluded elsewhere.' }
 }
 
 /** Gate: seven-seed Rosetta sun/moon decode wired into movie at call time. */
@@ -570,8 +549,7 @@ export function sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie(matrix
     movieText: decode.movieText,
     root: merkleFold([decode.root, rosetta.root]),
     statement: decode.statement,
-    boundary: decode.boundary,
-  }
+    boundary: decode.boundary }
 }
 
 // Send waves of architects and teachers to redesign self-education, folding it to quantum-
@@ -606,8 +584,7 @@ export function educationMovieMerge(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send waves of architects and teachers to redesign self-education, folding it to quantum-merge with the movie: architects send the structure waves (the shape of the learning path) and teachers the pedagogy waves (what each play teaches), and together they redesign self-education so it folds into the movie rather than sitting beside it — the student’s quantum mind (formed by playing) and the interactive movie merge, order-sensitive, so learning is playing the movie: observe the play, shape the path, embed the lesson, merge the assessment into play, verify by recomputation.',
     boundary:
-      'A content-addressed model of redesigning the self-education layer as architect/teacher waves that fold it together with the interactive-movie root. A structural framing built on the existing play-as-assessment model; it records the redesign and the merge, it is not an accredited curriculum or a claim of pedagogical outcomes.',
-  }
+      'A content-addressed model of redesigning the self-education layer as architect/teacher waves that fold it together with the interactive-movie root. A structural framing built on the existing play-as-assessment model; it records the redesign and the merge, it is not an accredited curriculum or a claim of pedagogical outcomes.' }
 }
 
 /** All displayed in one interactive movie — background, hero, native-format surfaces. */
@@ -623,8 +600,7 @@ export function allInInteractiveMovie(matrix: MindMatrix = buildMatrix()) {
     surfaces,
     root: merkleFold(surfaces.map((entry) => entry.receipt)),
     statement: 'All is displayed in one interactive movie — background, hero, and native-format surfaces.',
-    boundary: 'Composition of interactive canvas surfaces — not a single rendered video file.',
-  }
+    boundary: 'Composition of interactive canvas surfaces — not a single rendered video file.' }
 }
 
 // ————— Discovery (2026-07): the decode-in-movie proof pattern was quadruplicated — now one definition —————
@@ -648,6 +624,5 @@ export function movieProofPatternUnified() {
     statement:
       'The decode-in-movie proof pattern is unified: every decode fold emits its arithmetic proofs through one token map (expr=expected), one content-addressed stream map (receipt · label · hueSeed from two per-decode coefficients), and one verification pair (text covers every proof · streams match count and are all uuids) — the pattern that was re-inlined four times now has a single definition, and the factoring was proven byte-identical against the captured baseline.',
     boundary:
-      ['predicates covers · addressed hosted in src/0 (imports nothing — no cycle possible)', 'delegates: narrative · earth/architecture · thunder/verify · mountain/geometry · quantum/fire/forecasts', 'cross-domain rewire proven byte-identical (4 roots diffed at refactor time)'].join('; '),
-  }
+      ['predicates covers · addressed hosted in src/0 (imports nothing — no cycle possible)', 'delegates: narrative · earth/architecture · thunder/verify · mountain/geometry · quantum/fire/forecasts', 'cross-domain rewire proven byte-identical (4 roots diffed at refactor time)'].join('; ') }
 }

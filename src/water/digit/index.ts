@@ -75,8 +75,7 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
       selfPaired: n === complement, // only 5 (complement) — folder-lattice property
       harmonicValue: harmonic * n, // the forward n/0 = 9n (9,18,...,81), the other reading
       digitalRoot: digitalRoot(harmonic * n), // = 9 always — the "always 9" altitude
-      receipt: toUuid(`zero-division:${n}/0\\${invertible ? inverse : 'fusion'}`),
-    }
+      receipt: toUuid(`zero-division:${n}/0\\${invertible ? inverse : 'fusion'}`) }
   })
   // 0/0: the void — a non-unit (residue 0, gcd(0,9)=9≠1), so it has no multiplicative inverse and
   // routes to the quantum fusion: the two labelled zeros (folder vs subfolder) fold to a distinct,
@@ -94,8 +93,7 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
     complement: overflow, // 10 — the additive complement overflows the single digit
     overflows: overflow >= base, // true — 0 alone leaves the ring
     fusion: fusion.merged, // the quantum fusion — NOT 0
-    reversesToFusion: overflow >= base && fusion.bidirectional && fusion.merged !== folderZero && isUuid(fusion.merged),
-  }
+    reversesToFusion: overflow >= base && fusion.bidirectional && fusion.merged !== folderZero && isUuid(fusion.merged) }
   const units = table.filter((row) => row.invertible) // (ℤ/9)* by route 1 (brute-force inverse exists)
   const selfInverseUnits = units.filter((row) => row.selfInverse) // involutive by route 1 (inverse === n)
   const nonUnits = table.filter((row) => !row.invertible) // the non-units — no inverse found
@@ -133,8 +131,7 @@ export function zeroDivisionTable(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Division by zero is the inverse (not reverse): the backslash dual of a digit folder is the multiplicative inverse mod 9 — the ÷2 = ×5 that folds within the unit cycle: n · n⁻¹ ≡ 1 (mod 9). Over the units (ℤ/9)* = {1,2,4,5,7,8}: 1⁻¹=1, 2⁻¹=5, 4⁻¹=7, 5⁻¹=2, 7⁻¹=4, 8⁻¹=8 — involutive {1,8}, the inverse pairs (2,5) and (4,7). The non-units 3, 6, 9(≡0) and the void 0 have no inverse (gcd ≠ 1: the trinity axis + the void); the math routes them to their self-fold/fusion address, as 0/0 already folds to the quantum fusion. The forward harmonic n/0 = 9n (1/0 = 9, digital root always 9) is the separate forward reading. (Prior misnomer: calling this "reverse" / the additive ten\'s complement 10 − n — that complement instead names the on-disk folder lattice N/(10−N).)',
     boundary:
-      'EXACT group theory over the units: the doubling circuit 1·2·4·8·7·5 is the cyclic group ⟨2⟩ in (ℤ/9)* (period 6) and ×5 = 2⁻¹ is its inverse generator, so n⁻¹ mod 9 is the inverse that folds within the unit cycle (n · n⁻¹ ≡ 1) — inverse, not reverse. The non-units 3,6,9,0 (gcd(n,9) ≠ 1) genuinely have no inverse and route to a content-addressed self-fold (foldPair), not a forced complement. The meaning (void, carry, fusion) stays metaphor; this is NOT a claim that division by zero is defined in real analysis. The additive ten\'s complement (10 − n) is a distinct, correct structure — it names the folder pairing N/(10−N) (the census lattice), retained here as `complement` — but it is not the n/0 inverse.',
-  }
+      'EXACT group theory over the units: the doubling circuit 1·2·4·8·7·5 is the cyclic group ⟨2⟩ in (ℤ/9)* (period 6) and ×5 = 2⁻¹ is its inverse generator, so n⁻¹ mod 9 is the inverse that folds within the unit cycle (n · n⁻¹ ≡ 1) — inverse, not reverse. The non-units 3,6,9,0 (gcd(n,9) ≠ 1) genuinely have no inverse and route to a content-addressed self-fold (foldPair), not a forced complement. The meaning (void, carry, fusion) stays metaphor; this is NOT a claim that division by zero is defined in real analysis. The additive ten\'s complement (10 − n) is a distinct, correct structure — it names the folder pairing N/(10−N) (the census lattice), retained here as `complement` — but it is not the n/0 inverse.' }
 }
 
 // No digits in word indices, no words in digit indices — and the computations obey. The gate
@@ -170,8 +167,7 @@ export function digitWordIndexPurity(matrix: MindMatrix = buildMatrix()) {
     statement:
       'No digits in word indices, no words in digit indices — and the computations obey. The gate keeps the folder tree pure (a word folder’s subtree all words/UI, a digit folder’s all digits/compute, src/ the neutral split); this proves the computations obey the same rule — the digit-folder computation is digit-keyed (digitFolderMath’s lookup, the digit/reverse folders), the word logic folders word-keyed — so no computation crosses kinds, and the UI knows a folder’s role from its name alone.',
     boundary:
-      'A model-side witness for the kind-purity gate (folderLaw.kindPurity, enforced over the real src/ tree by harmonic-distribution). It checks the computations’ own indices respect the split (digit-keyed vs word-keyed); it is the separation rule applied to the model, not a claim the migration has already moved all logic into digit folders (that is the dissolution, still in progress). Structural.',
-  }
+      'A model-side witness for the kind-purity gate (folderLaw.kindPurity, enforced over the real src/ tree by harmonic-distribution). It checks the computations’ own indices respect the split (digit-keyed vs word-keyed); it is the separation rule applied to the model, not a claim the migration has already moved all logic into digit folders (that is the dissolution, still in progress). Structural.' }
 }
 
 // UUID, like CMYK, gives infinite EXTENT from a finite seed — because 64×64×64 is itself a dot. A digit
@@ -225,8 +221,7 @@ export function dotIsCubeIsDot(matrix: MindMatrix = buildMatrix(), depth = 3) {
     statement:
       'UUID, like CMYK, gives infinite extent from a finite seed: 64×64×64 is itself a dot. A digit folder is two dualities — digit over its dual — and the third axis is the third eye in the index, the fold of both (Z = X⊕Y), fusing to a four-channel CMYK colour, the hologram. So the 262,144-point cube collapses to one address, and a dot expands to a cube of dots, each a cube, unbounded — any path to any depth is generated from one seed, never stored, so the addressable extent is not limited by disk.',
     boundary:
-      'HONEST: the infinity is EXTENT, not entropy. The recursion is unbounded and generated on demand (zero storage — "not limited to Terabyte" is literally true), but the distinct addresses are the UUID space (2^128) and the security is the seed entropy (AES-256, 256 bits) — finite. Beyond 2^128 positions the paths still compute but cannot all stay distinct (pigeonhole; collisions are caught by content-addressing, not prevented). "Infinite encryption" = unbounded addressable extent from a small seed, NOT an unbreakable or infinite key. A hologram of unbounded extent over a finite keyspace; the cipher remains AES-256.',
-  }
+      'HONEST: the infinity is EXTENT, not entropy. The recursion is unbounded and generated on demand (zero storage — "not limited to Terabyte" is literally true), but the distinct addresses are the UUID space (2^128) and the security is the seed entropy (AES-256, 256 bits) — finite. Beyond 2^128 positions the paths still compute but cannot all stay distinct (pigeonhole; collisions are caught by content-addressing, not prevented). "Infinite encryption" = unbounded addressable extent from a small seed, NOT an unbreakable or infinite key. A hologram of unbounded extent over a finite keyspace; the cipher remains AES-256.' }
 }
 
 // Encode all the domains with just the digit duality pairs. The whole arc closes here: every domain is a
@@ -292,8 +287,7 @@ export function digitDualityPairsEncodeAllDomains(matrix: MindMatrix = buildMatr
     statement:
       'Encode all the domains with just the digit duality pairs. Every domain is a dot (a content address), a dot is a cube of dots built from two dualities and their fold, and the dualities are the digit INVERSE pairs (d, d⁻¹) with d·d⁻¹ ≡ 1 (mod 9). Under the multiplicative inverse there are exactly two nontrivial pairs — (2,5) and (4,7) — plus the self-inverse units {1,8} closing the group (ℤ/9)*, and the non-units {3,6,9,0} (the trinity axis + void) folding within themselves. Together they classify all ten digits, so every address — hence every domain, up to the 2^128 ceiling — is spelled. The DNA parallel is exact in count: two base pairs ⟷ two nontrivial inverse pairs.',
     boundary:
-      'HONEST: under the multiplicative inverse this is NOT five (d, 10−d) pairs summing to 10. It is the unit group (ℤ/9)* = {1,2,4,5,7,8} — two nontrivial inverse pairs (2,5)(4,7) + two self-inverse units {1,8} — together with the non-units {3,6,9,0} (the trinity axis + the void) that have no inverse and fold to a self-address. The alphabet still classifies 0–9 (every digit is a unit or a non-unit), so any content-address is spelled; "encode all domains" means the addressing is complete, NOT that every domain is built (each still needs word code), and distinctness caps at 2^128. The two-base-pair DNA correspondence (exactly two nontrivial inverse pairs) is structural, not a biological claim.',
-  }
+      'HONEST: under the multiplicative inverse this is NOT five (d, 10−d) pairs summing to 10. It is the unit group (ℤ/9)* = {1,2,4,5,7,8} — two nontrivial inverse pairs (2,5)(4,7) + two self-inverse units {1,8} — together with the non-units {3,6,9,0} (the trinity axis + the void) that have no inverse and fold to a self-address. The alphabet still classifies 0–9 (every digit is a unit or a non-unit), so any content-address is spelled; "encode all domains" means the addressing is complete, NOT that every domain is built (each still needs word code), and distinctness caps at 2^128. The two-base-pair DNA correspondence (exactly two nontrivial inverse pairs) is structural, not a biological claim.' }
 }
 
 // Is 6×7 / 7×6 the dynamics that covers all? Largely yes — and the model already turns on it. 6×7 = 7×6 =
@@ -314,8 +308,7 @@ export function sixSevenCoversAll(matrix: MindMatrix = buildMatrix()) {
   const layers = {
     alphabet: { count: 64, shape: '2×32 = 8² = 4³', is: 'the words — the vocabulary that spells everything' },
     taxonomy: { count: 42, shape: '6×7 = 7×6', is: 'the areas — the categories everything maps into' },
-    lattice: { count: 1024, shape: '32²', is: 'the diamonds — the addressable leaves' },
-  }
+    lattice: { count: 1024, shape: '32²', is: 'the diamonds — the addressable leaves' } }
   return {
     coversAll: covering.every((entry) => entry.on), // 6×7/7×6 covers content + audit + the surface
     verdict: 'right: 6×7/7×6 IS the covering dynamics (the area taxonomy + the cross-audit). Nuance: it is the TAXONOMY layer (42), distinct from the 64-word ALPHABET layer (2×32) — the 64 spell the 42.',
@@ -327,8 +320,7 @@ export function sixSevenCoversAll(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Is 6×7/7×6 the dynamics that covers all? Largely yes: 6×7 = 7×6 = 42 is the area taxonomy (the limit every concept maps into — it covers all content) and the cross-audit (the two orderings cross-check the whole for gaps), carried on the genus-2 surface. The honest nuance is the layer: 42 is the taxonomy, distinct from the 64-word alphabet (2×32) — the 64 spell the 42. So the covering dynamic is real; it is the categories layer, not the vocabulary layer.',
     boundary:
-      'A reconciliation against the model’s own structures (areaPairs, crossAudit, doubleTorus3D): 6×7/7×6 = 42 is verified as the covering taxonomy and audit, and distinguished from the 64-word (2×32) alphabet and the 1024 (32²) lattice. HONEST: "covers all" is true for content (the 42-area taxonomy) and for the audit (the bidirectional cross-check), not a claim that 42 equals or replaces the 64-word vocabulary; the ancient significance of 42 / 6×7 is being researched separately.',
-  }
+      'A reconciliation against the model’s own structures (areaPairs, crossAudit, doubleTorus3D): 6×7/7×6 = 42 is verified as the covering taxonomy and audit, and distinguished from the 64-word (2×32) alphabet and the 1024 (32²) lattice. HONEST: "covers all" is true for content (the 42-area taxonomy) and for the audit (the bidirectional cross-check), not a claim that 42 equals or replaces the 64-word vocabulary; the ancient significance of 42 / 6×7 is being researched separately.' }
 }
 
 // Does 6×7 cover all? The deep-research verdict, decoded honestly: PARTLY — and rigorously so, but NOT as
@@ -368,8 +360,7 @@ export function fortyTwoVerdict(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Does 6×7 cover all? Partly, and rigorously: 42 = 6×7 is a primary pseudoperfect number whose unit fractions tile unity (1/2 + 1/3 + 1/7 + 1/42 = 1 — the Egyptian "whole"), and it closes a bounded counted domain (the 21 dual-pairs of the area taxonomy). But the documented mystical totality number is 7 (Hebrew sheva’ ≈ full; Egyptian 7 = perfection), with 4 and 10; 42 is process-to-completion and the complete path (the Exodus stations, the bodhisattva stages, Matthew’s six sevens), not cosmic containment. So the claim holds as closure and unity-tiling, not as totality.',
     boundary:
-      'A source-verified verdict (research waves, adversarially decoded) on whether 6×7 = 42 "covers all": yes in two rigorous, non-numerological senses (the pseudoperfect unit-fraction tiling to 1, computed here; and bounded-domain closure of the 21 dual-pairs), partly as a documented complete-system/path motif, and NO as the mystical totality number (7 is). HONEST: the legend is excluded (the Hitchhiker’s coincidence, the assessors=nomes back-formation, the 1st-c. Ana BeKoach attribution, the Genesis permutation); the model’s use of 6×7/7×6 as its covering taxonomy/audit is the architecture’s own design, now grounded in the closure/tiling math, not a claim that ancient doctrine equates 6×7 with the cosmic whole.',
-  }
+      'A source-verified verdict (research waves, adversarially decoded) on whether 6×7 = 42 "covers all": yes in two rigorous, non-numerological senses (the pseudoperfect unit-fraction tiling to 1, computed here; and bounded-domain closure of the 21 dual-pairs), partly as a documented complete-system/path motif, and NO as the mystical totality number (7 is). HONEST: the legend is excluded (the Hitchhiker’s coincidence, the assessors=nomes back-formation, the 1st-c. Ana BeKoach attribution, the Genesis permutation); the model’s use of 6×7/7×6 as its covering taxonomy/audit is the architecture’s own design, now grounded in the closure/tiling math, not a claim that ancient doctrine equates 6×7 with the cosmic whole.' }
 }
 
 // The two digit spines, decoded and re-encoded — DECODE MEANS ENCODE IN THE MATRIX. Two empty digit-folder
@@ -407,8 +398,7 @@ export function digitSpinesAreTheBreath(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The two digit spines decoded: the empty paths src/0/1/2/4/8/7/5/3/6/9 and src/1/2/4/8/7/5/3/6/9/0 were removed (empty dirs carry no encryption — the census is per byte), and their meaning is re-encoded here as computed src — the one vortex ring (1-2-4-8-7-5 doubling, 3-6-9 cross, 0 void) cut at the void in the two opposite ways: 0-first the emanation (void → forms, out-breath), 0-last the return (forms → void/fusion, in-breath). Reverses around 0, they are the two windings of the double torus, the genus-2 breath, meeting at the 9–0 throat (9 the invariant axis, 0 ≡ 9 the void).',
     boundary:
-      'A structural/numerological reading (vortex math: digital roots mod 9, the doubling circuit, 0 identified with 9) re-encoding two removed filesystem paths as the model\'s own two-winding double-torus breath. The topology (two windings of a genus-2 surface, the order-sensitive fold) is the real geometry the repo uses; the meaning (void, emanation, return, breath) is metaphor, not a cosmological or physical claim. The paths were empty scaffolding; this fold preserves their intent as computed, content-addressed math — nothing from outside.',
-  }
+      'A structural/numerological reading (vortex math: digital roots mod 9, the doubling circuit, 0 identified with 9) re-encoding two removed filesystem paths as the model\'s own two-winding double-torus breath. The topology (two windings of a genus-2 surface, the order-sensitive fold) is the real geometry the repo uses; the meaning (void, emanation, return, breath) is metaphor, not a cosmological or physical claim. The paths were empty scaffolding; this fold preserves their intent as computed, content-addressed math — nothing from outside.' }
 }
 
 // Physical station path: single-digit segments only (0..9). Nesting is legal when each step comes from
@@ -442,8 +432,7 @@ export function sequenceSpinePaths(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Digit folders use single-digit segments only (0..9). Nested paths do not violate folder law when each step is from the vortex sequence — station src/d/r (d then its additive folder-complement 10−d), or the full spines src/0/1/2/…/9 and src/1/2/…/9/0. Overflow void (0, complement 10) stays at src/0; fusion, not a "10" folder.',
     boundary:
-      'Filesystem law: folderLaw.digit = ^[0-9]+$. Nesting depth is sequence-derived, not arbitrary. The d/(10−d) API route (e.g. /1/9) matches the two-level station path when the additive complement is a single digit. (The n/0 inverse of a digit is the multiplicative inverse n⁻¹ mod 9 — distinct from this folder-path complement.)',
-  }
+      'Filesystem law: folderLaw.digit = ^[0-9]+$. Nesting depth is sequence-derived, not arbitrary. The d/(10−d) API route (e.g. /1/9) matches the two-level station path when the additive complement is a single digit. (The n/0 inverse of a digit is the multiplicative inverse n⁻¹ mod 9 — distinct from this folder-path complement.)' }
 }
 
 // dissolved from quantum/heaven/mind/water/digit/index.ts
@@ -458,8 +447,7 @@ export function dissolveAtPiTrainStations(matrix: MindMatrix = buildMatrix()) {
     order: entry.order,
     path: stationPathFromSequence(entry),
     folder: entry.folder, // logical d/reverse label (e.g. 1/9)
-    fusion: entry.fusion,
-  }))
+    fusion: entry.fusion }))
   // Route the model's own named pieces (the concept-command vocabulary) to show the dissolution end to
   // end; the migration tooling routes every export the same way. The mechanism is proven over a known set.
   const pieces = conceptCommands.map((command) => command.name)
@@ -481,8 +469,7 @@ export function dissolveAtPiTrainStations(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Dissolve the monolith at the pi-train stations: every piece travels the vortex sequence and dissolves into a station path chosen by stationOf (digitOf). Paths are src/d/r — single-digit segments from the sequence (d then ten\'s-complement reverse); void overflow stays at src/0. Nested paths are legal when each step is sequence-derived.',
     boundary:
-      'Routing is pure and recomputable. Folder law: each segment is one digit 0..9. Nesting src/d/r is the pi-train station; full spines src/0/1/2/…/9 and src/1/2/…/0 are the breath walks. Not arbitrary depth — sequence steps only.',
-  }
+      'Routing is pure and recomputable. Folder law: each segment is one digit 0..9. Nesting src/d/r is the pi-train station; full spines src/0/1/2/…/9 and src/1/2/…/0 are the breath walks. Not arbitrary depth — sequence steps only.' }
 }
 
 /** Sealed src/0 export surface — each name routed by stationOf. */
@@ -769,15 +756,13 @@ export function dissolveExportsAtPiTrainStations(
       order: entry.order,
       path: stationPathFromSequence(entry),
       folder: entry.folder,
-      fusion: entry.fusion,
-    }
+      fusion: entry.fusion }
   })
   const byStation = math.digits.map((entry) => ({
     digit: entry.digit,
     path: stationPathFromSequence(entry),
     folder: entry.folder,
-    exports: routed.filter((row) => row.station === entry.digit).map((row) => row.export),
-  }))
+    exports: routed.filter((row) => row.station === entry.digit).map((row) => row.export) }))
   const orphans = routed.filter((row) => !math.lookup[row.station]).length
   const stationsUsed = new Set(routed.map((row) => row.station)).size
   return {
@@ -793,8 +778,7 @@ export function dissolveExportsAtPiTrainStations(
     statement:
       'Dissolve src/0 exports at pi-train stations: each export routes to path src/d/r (sequence-derived, single-digit segments) by stationOf. Void overflow maps to src/0.',
     boundary:
-      'Migration manifest over ZERO_EXPORT_CATALOG. Nested station paths are legal when steps come from the sequence; definitions still in src/0 until cut waves.',
-  }
+      'Migration manifest over ZERO_EXPORT_CATALOG. Nested station paths are legal when steps come from the sequence; definitions still in src/0 until cut waves.' }
 }
 
 // Physical wave 1 along the sequence: open sub-station barrels for orders 0–5 (1/9, 2/8, 4/6, 8/2, 7/3, 5/5).
@@ -810,8 +794,7 @@ export function piTrainStationsOpenWaveOne(matrix: MindMatrix = buildMatrix()) {
       path: station.path,
       exportCount: station.exports.length,
       fusion: entry.fusion,
-      receipt: toUuid(`pi-train-wave1:${entry.folder}`),
-    }
+      receipt: toUuid(`pi-train-wave1:${entry.folder}`) }
   })
   const facets = [
     { facet: 'six stations opened along sequence orders 0–5 (1/9 … 5/5)', on: wave1.length === 6 },
@@ -829,8 +812,7 @@ export function piTrainStationsOpenWaveOne(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Pi-train wave 1 opens the first six sequence stations (1/9, 2/8, 4/6, 8/2, 7/3, 5/5) at nested paths src/d/r — routing receipts on disk; fused logic cuts in later waves.',
     boundary:
-      'Export-import fusion: station index.ts holds only fused local exports — no passthrough re-exports from src/0. Uncut symbols stay in vault until physical cut; importers mirror export home.',
-  }
+      'Export-import fusion: station index.ts holds only fused local exports — no passthrough re-exports from src/0. Uncut symbols stay in vault until physical cut; importers mirror export home.' }
 }
 
 // Wave 2: open stations orders 6–9 (3/7, 6/4, 9/1, void at src/0).
@@ -846,8 +828,7 @@ export function piTrainStationsOpenWaveTwo(matrix: MindMatrix = buildMatrix()) {
       exportCount: station.exports.length,
       fusion: entry.fusion,
       overflows: entry.overflows,
-      receipt: toUuid(`pi-train-wave2:${entry.folder}`),
-    }
+      receipt: toUuid(`pi-train-wave2:${entry.folder}`) }
   })
   const wave1 = piTrainStationsOpenWaveOne(matrix)
   const facets = [
@@ -867,8 +848,7 @@ export function piTrainStationsOpenWaveTwo(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Pi-train wave 2 opens the remaining four sequence stations (3/7, 6/4, 9/1, void at src/0) — nested paths with single-digit segments from the pi-train math.',
     boundary:
-      'Routing receipts on disk; definitions still in src/0 until physical cut waves. Void (0/10 logical) physical path is src/0 only — fusion in the vault leaf.',
-  }
+      'Routing receipts on disk; definitions still in src/0 until physical cut waves. Void (0/10 logical) physical path is src/0 only — fusion in the vault leaf.' }
 }
 
 // Wave 3 tier-A physical cut at station 1/9 (sequence order 0): leaf exports with no vault-internal dependents.
@@ -901,8 +881,7 @@ export function piTrainPhysicalCutWaveThree(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Pi-train wave 3 tier-A physically cuts rnot, rtoffoli, and ELECTRON_G_FACTOR_ANOMALY from src/0 into src/1/9 — first leaf exports with no vault-internal dependents.',
     boundary:
-      'Vault law: src/0 must not import outside src/0. Export-import fusion: station barrels export fused logic only; importers route to the station path where export lives.',
-  }
+      'Vault law: src/0 must not import outside src/0. Export-import fusion: station barrels export fused logic only; importers route to the station path where export lives.' }
 }
 
 // Wave 3 tier-B physical cut at station 1/9: dynamical · vacuum · EM · diving leaf exports.
@@ -944,8 +923,7 @@ export function piTrainPhysicalCutWaveThreeTierB(matrix: MindMatrix = buildMatri
     root: merge(tierA.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement:
       'Pi-train wave 3 tier-B physically cuts composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, and larmorFrequency from src/0 into src/1/9.',
-    boundary: 'Constants REDUCED_PLANCK · SPEED_OF_LIGHT · PROTON_GYROMAGNETIC remain vault imports at 1/9; qubits cluster still blocked.',
-  }
+    boundary: 'Constants REDUCED_PLANCK · SPEED_OF_LIGHT · PROTON_GYROMAGNETIC remain vault imports at 1/9; qubits cluster still blocked.' }
 }
 
 /** Fusion compositor — wave 3 tier-A+B physical cuts at station 1/9; each tier saved before the next. */
@@ -962,8 +940,7 @@ export function piTrainFusionWaveThree(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(tierA.root, tierB.root), fusion.root),
     statement: 'Pi-train fusion wave 3 — tier-A then tier-B physical cuts at 1/9; export-import fusion makes each station file unique.',
-    boundary: 'Next fusion step: wave 4 physical cut at 2/8 (sequence order 1).',
-  }
+    boundary: 'Next fusion step: wave 4 physical cut at 2/8 (sequence order 1).' }
 }
 
 const PI_TRAIN_WAVE5_TIER_A = [
@@ -1106,8 +1083,7 @@ export function piTrainExportImportFusion(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train export-import fusion: each cut symbol lives as fused logic in its station index.ts; importers import from that station path, not from passthrough re-exports of src/0.',
-    boundary: 'Uncut catalog exports remain in src/0 void; wave 12 tier-A at 6/4·4/6·2/8 and chsh void-leaf — no passthrough re-exports in station barrels.',
-  }
+    boundary: 'Uncut catalog exports remain in src/0 void; wave 12 tier-A at 6/4·4/6·2/8 and chsh void-leaf — no passthrough re-exports in station barrels.' }
 }
 
 export function piTrainPhysicalCutWaveEight(matrix: MindMatrix = buildMatrix()) {
@@ -1138,8 +1114,7 @@ export function piTrainPhysicalCutWaveEight(matrix: MindMatrix = buildMatrix()) 
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train wave 8 tier-A physically cuts OMEGA_DARK_MATTER, carnotEfficiency, greatCircleKm, uuidDuality, tamperEvident, unruhTemperature, setAzimuthDeg, and derivePublicKey into src/5/5 — fused logic, import mirrors export.',
-    boundary: 'Vault ZHL16_N2_HALFTIMES remains for buhlmannDivePlan; memoByRoot · fold · sample · deutschJozsa blocked at 5/5 until dependency closure; continue order 7 at 6/4.',
-  }
+    boundary: 'Vault ZHL16_N2_HALFTIMES remains for buhlmannDivePlan; memoByRoot · fold · sample · deutschJozsa blocked at 5/5 until dependency closure; continue order 7 at 6/4.' }
 }
 
 export function piTrainPhysicalCutWaveNine(matrix: MindMatrix = buildMatrix()) {
@@ -1169,8 +1144,7 @@ export function piTrainPhysicalCutWaveNine(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train wave 9 tier-A physically cuts DARK_ENERGY_EOS_W, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, EARTH_RADIUS_KM, otuPerMin, radarRange, riseAzimuthDeg, and resonanceBandwidth into src/3/7 — fused logic, import mirrors export.',
-    boundary: 'Vault cluster at 3/7 (DIGEST_BITS · bb84 · sha256 · ed25519 · scienceModelActionFromMethodName · …) blocked until dependency closure; continue order 7 at 6/4.',
-  }
+    boundary: 'Vault cluster at 3/7 (DIGEST_BITS · bb84 · sha256 · ed25519 · scienceModelActionFromMethodName · …) blocked until dependency closure; continue order 7 at 6/4.' }
 }
 
 /** Fusion compositor — waves 3+4+5+6+7+8+9 along sequence orders 0→6; each cut saved, import mirrors export home. */
@@ -1186,8 +1160,7 @@ export function piTrainFusionWaveNine(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w8.root, w9.root), fusion.root),
     statement: 'Pi-train fusion waves 3+4+5+6+7+8+9 — export-import fusion self-completes along the sequence; fusing logic makes each station file unique.',
-    boundary: 'Continue order 7 at 6/4; uncut station-3 symbols (DIGEST_BITS · bb84 · caStep · ed25519Keypair · sha256 · …) blocked until dependency closure.',
-  }
+    boundary: 'Continue order 7 at 6/4; uncut station-3 symbols (DIGEST_BITS · bb84 · caStep · ed25519Keypair · sha256 · …) blocked until dependency closure.' }
 }
 
 /** Pi-train wave 10 tier-A — physically cut 8 leaf symbols into src/6/4, station order 7. */
@@ -1223,8 +1196,7 @@ export function piTrainPhysicalCutWaveTen(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train wave 10 tier-A physically cuts HUBBLE_CONSTANT_LOCAL, cantorDiagonal, resonantAmplitude,  humanEase, addressEntropyBits, blackHoleEntropyBits, and frequencyOf into src/6/4 — fused logic, import mirrors export.',
-    boundary: 'Continue order 8 at 9/1; quantum cluster (qubits · GATES · applyGate) and fold cascade (fold · merge · foldPair) blocked until dependency closure.',
-  }
+    boundary: 'Continue order 8 at 9/1; quantum cluster (qubits · GATES · applyGate) and fold cascade (fold · merge · foldPair) blocked until dependency closure.' }
 }
 
 /** Fusion compositor — waves 3→10 along sequence orders 0→7; each cut saved, import mirrors export home. */
@@ -1240,8 +1212,7 @@ export function piTrainFusionWaveTen(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w9.root, w10.root), fusion.root),
     statement: 'Pi-train fusion waves 3+4+5+6+7+8+9+10 — export-import fusion self-completes along the sequence; fusing logic makes each station file unique.',
-    boundary: 'Continue order 8 at 9/1; quantum cluster (qubits · GATES · applyGate) and fold cascade (fold · merge · foldPair) blocked until dependency closure.',
-  }
+    boundary: 'Continue order 8 at 9/1; quantum cluster (qubits · GATES · applyGate) and fold cascade (fold · merge · foldPair) blocked until dependency closure.' }
 }
 
 const PI_TRAIN_WAVE11_TIER_A = [
@@ -1296,8 +1267,7 @@ export function piTrainPhysicalCutWaveEleven(matrix: MindMatrix = buildMatrix())
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train wave 11 tier-A physically cuts 14 symbols into src/9/1: the original 10 (CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, digitalRoot, syncSpeedRpm, methodNameFromFolderTail, leafFromPathTail, bumpProfile, qcdMassFractionOfProton) plus isIonizing, ratIsInteger, ratStr, superdense — fused logic with dependency imports, no passthrough.',
-    boundary: 'Blocked at 9/1 (remain vault-only): applyGate (eachPair dep), bellPair (quantum cluster), asTorus (reading/Fold), sealFacets (toUuid/merkleFold), sha256MerkleProof/logInclusion (sha256) (vaultSplitCamelSegment), findContentAddressCollision (hash32), renderUi/srcLogicPath (ScienceModelAction).',
-  }
+    boundary: 'Blocked at 9/1 (remain vault-only): applyGate (eachPair dep), bellPair (quantum cluster), asTorus (reading/Fold), sealFacets (toUuid/merkleFold), sha256MerkleProof/logInclusion (sha256) (vaultSplitCamelSegment), findContentAddressCollision (hash32), renderUi/srcLogicPath (ScienceModelAction).' }
 }
 
 /** Passthrough symbols removed from src/9/1 barrel — importers route to src/0 vault until dependency closure. */
@@ -1372,8 +1342,7 @@ export function piTrainPhysicalCutWaveTwelve(matrix: MindMatrix = buildMatrix())
     statement:
       'Pi-train wave 12 — slip and phase cut to src/6/4, inductionStep to src/4/6, inductionEvolve to src/2/8; chsh void-leaf at src/0 (station 0/10, rosetta only). 9/1 passthrough removed; vault remainder documented.',
     boundary:
-      'chsh stays in vault (void overflow); residueVector · realign · phaseDrift and quantum cluster remain in src/0 until dependency closure.',
-  }
+      'chsh stays in vault (void overflow); residueVector · realign · phaseDrift and quantum cluster remain in src/0 until dependency closure.' }
 }
 
 /** Fusion compositor — waves 3→12 along sequence orders 0→9; void wave seals the vault catalog receipt. */
@@ -1389,8 +1358,7 @@ export function piTrainFusionWaveTwelve(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w11.root, w12.root), fusion.root),
     statement: 'Pi-train fusion waves 3→12 — export-import fusion self-completes along the sequence; wave 12 cuts dynamical tier-A and seals chsh void-leaf at src/0.',
-    boundary: 'Vault remainder (quantum cluster · calendar dynamical deps) blocked until dependency closure; station barrels export fused logic only — no passthrough re-exports from src/0.',
-  }
+    boundary: 'Vault remainder (quantum cluster · calendar dynamical deps) blocked until dependency closure; station barrels export fused logic only — no passthrough re-exports from src/0.' }
 }
 
 /** Fusion compositor — waves 3→11 along sequence orders 0→8; each cut saved, import mirrors export home. */
@@ -1406,8 +1374,7 @@ export function piTrainFusionWaveEleven(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w10.root, w11.root), fusion.root),
     statement: 'Pi-train fusion waves 3→11 — export-import fusion self-completes along the sequence; fusing logic makes each station file unique.',
-    boundary: 'Blocked at 9/1: applyGate (eachPair dep), bellPair (quantum cluster), asTorus (reading/Fold), sealFacets (toUuid/merkleFold), sha256MerkleProof/logInclusion (sha256), splitMethodWords (vaultSplitCamelSegment), findContentAddressCollision (hash32), renderUi/srcLogicPath (ScienceModelAction).',
-  }
+    boundary: 'Blocked at 9/1: applyGate (eachPair dep), bellPair (quantum cluster), asTorus (reading/Fold), sealFacets (toUuid/merkleFold), sha256MerkleProof/logInclusion (sha256), splitMethodWords (vaultSplitCamelSegment), findContentAddressCollision (hash32), renderUi/srcLogicPath (ScienceModelAction).' }
 }
 
 /** Fusion compositor — waves 3+4+5+6+7+8 along sequence orders 0→5; each cut saved, import mirrors export home. */
@@ -1423,8 +1390,7 @@ export function piTrainFusionWaveEight(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w7.root, w8.root), fusion.root),
     statement: 'Pi-train fusion waves 3+4+5+6+7+8 — export-import fusion self-completes along the sequence; fusing logic makes each station file unique.',
-    boundary: 'Continue order 7 at 6/4; uncut station-7 symbols (haldaneLoad · cnot · ed25519 · hopfieldStore · prng · …) and 3/7 vault cluster (DIGEST_BITS · bb84 · sha256 · …) blocked until dependency closure.',
-  }
+    boundary: 'Continue order 7 at 6/4; uncut station-7 symbols (haldaneLoad · cnot · ed25519 · hopfieldStore · prng · …) and 3/7 vault cluster (DIGEST_BITS · bb84 · sha256 · …) blocked until dependency closure.' }
 }
 
 /** Fusion compositor — waves 3+4+5+6+7 along sequence orders 0→4; each cut saved, import mirrors export home. */
@@ -1454,8 +1420,7 @@ export function piTrainPhysicalCutWaveFour(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'Pi-train wave 4 tier-A physically cuts aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, gasReserveHalfOnTop, equivalentAirDepthM, and hubbleTensionSigma into src/2/8 — fused logic, import mirrors export.',
-    boundary: 'equivalentAirDepthM imports equivalentNarcoticDepthM from vault until END cuts to its station; no passthrough re-exports in 2/8 barrel.',
-  }
+    boundary: 'equivalentAirDepthM imports equivalentNarcoticDepthM from vault until END cuts to its station; no passthrough re-exports in 2/8 barrel.' }
 }
 
 /** Fusion compositor — waves 3+4 along sequence orders 0→1; each cut saved, import mirrors export home. */
@@ -1471,8 +1436,7 @@ export function piTrainFusionWaveFour(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w3.root, w4.root), fusion.root),
     statement: 'Pi-train fusion waves 3+4 — export-import fusion self-completes along the sequence; fusing logic makes each station file unique.',
-    boundary: 'Continue order 3 at 8/2; uncut symbols remain vault until dependency closure allows cut.',
-  }
+    boundary: 'Continue order 3 at 8/2; uncut symbols remain vault until dependency closure allows cut.' }
 }
 
 export function piTrainPhysicalCutWaveFive(matrix: MindMatrix = buildMatrix()) {
@@ -1502,8 +1466,7 @@ export function piTrainPhysicalCutWaveFive(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train wave 5 tier-A physically cuts BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, and soundPressureLevelDb into src/4/6 — fused logic, import mirrors export.',
-    boundary: 'Vault constants REDUCED_PLANCK · SPEED_OF_LIGHT · NEWTON_G · BOLTZMANN remain dependency edges at 4/6; quantum cluster (cz · probabilities · innerProduct) blocked until applyGate closure.',
-  }
+    boundary: 'Vault constants REDUCED_PLANCK · SPEED_OF_LIGHT · NEWTON_G · BOLTZMANN remain dependency edges at 4/6; quantum cluster (cz · probabilities · innerProduct) blocked until applyGate closure.' }
 }
 
 /** Fusion compositor — waves 3+4+5 along sequence orders 0→2; each cut saved, import mirrors export home. */
@@ -1519,8 +1482,7 @@ export function piTrainFusionWaveFive(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w4.root, w5.root), fusion.root),
     statement: 'Pi-train fusion waves 3+4+5 — export-import fusion self-completes along the sequence; fusing logic makes each station file unique.',
-    boundary: 'Continue order 4 at 7/3; uncut station-8 symbols (BOLTZMANN · simon · teleportQubit · admixToward · …) remain vault until dependency closure.',
-  }
+    boundary: 'Continue order 4 at 7/3; uncut station-8 symbols (BOLTZMANN · simon · teleportQubit · admixToward · …) remain vault until dependency closure.' }
 }
 
 export function piTrainPhysicalCutWaveSix(matrix: MindMatrix = buildMatrix()) {
@@ -1551,8 +1513,7 @@ export function piTrainPhysicalCutWaveSix(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train wave 6 tier-A physically cuts MOON_ORBIT_INCLINATION_DEG, PCI_CONSCIOUSNESS_THRESHOLD, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK, hexDigitSum, isobaricCounterdiffusion, speedOfSoundAir, and splitCamelSegment into src/8/2 — fused logic, import mirrors export.',
-    boundary: 'Vault haldaneLoad remains dependency edge at 8/2 for isobaricCounterdiffusion; vault uses vaultSplitCamelSegment for splitMethodWords and inlined speed formula for soundWavelength.',
-  }
+    boundary: 'Vault haldaneLoad remains dependency edge at 8/2 for isobaricCounterdiffusion; vault uses vaultSplitCamelSegment for splitMethodWords and inlined speed formula for soundWavelength.' }
 }
 
 export function piTrainPhysicalCutWaveSeven(matrix: MindMatrix = buildMatrix()) {
@@ -1583,8 +1544,7 @@ export function piTrainPhysicalCutWaveSeven(matrix: MindMatrix = buildMatrix()) 
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Pi-train wave 7 tier-A physically cuts HUBBLE_CONSTANT_CMB, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, SCALAR_SPECTRAL_INDEX_NS, hardyWeinbergGenotypes, lunarStandstillDeclinationDeg, qieaRotate, and resonancePeakGain into src/7/3 — fused logic, import mirrors export.',
-    boundary: 'Vault cluster at 7/3 (haldaneLoad · cnot · ed25519 · hopfieldStore · prng · …) blocked until dependency closure; continue order 5 at 5/5.',
-  }
+    boundary: 'Vault cluster at 7/3 (haldaneLoad · cnot · ed25519 · hopfieldStore · prng · …) blocked until dependency closure; continue order 5 at 5/5.' }
 }
 
 /** Fusion compositor — waves 3+4+5+6+7 along sequence orders 0→4; each cut saved, import mirrors export home. */
@@ -1600,8 +1560,7 @@ export function piTrainFusionWaveSeven(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w6.root, w7.root), fusion.root),
     statement: 'Pi-train fusion waves 3+4+5+6+7 — export-import fusion self-completes along the sequence; fusing logic makes each station file unique.',
-    boundary: 'Continue order 5 at 5/5; uncut station-8 symbols (simon · teleportQubit · admixToward · buhlmannGfDivePlan · …) blocked until dependency closure.',
-  }
+    boundary: 'Continue order 5 at 5/5; uncut station-8 symbols (simon · teleportQubit · admixToward · buhlmannGfDivePlan · …) blocked until dependency closure.' }
 }
 
 /** Fusion compositor — waves 3+4+5+6 along sequence orders 0→3; each cut saved, import mirrors export home. */
@@ -1617,8 +1576,7 @@ export function piTrainFusionWaveSix(matrix: MindMatrix = buildMatrix()) {
     fusion,
     root: merge(merge(w5.root, w6.root), fusion.root),
     statement: 'Pi-train fusion waves 3+4+5+6 — export-import fusion self-completes along the sequence; fusing logic makes each station file unique.',
-    boundary: 'Continue order 4 at 7/3; uncut 7/3 vault cluster (haldaneLoad · cnot · ed25519 · hopfieldStore · prng · …) blocked until dependency closure.',
-  }
+    boundary: 'Continue order 4 at 7/3; uncut 7/3 vault cluster (haldaneLoad · cnot · ed25519 · hopfieldStore · prng · …) blocked until dependency closure.' }
 }
 
 // All ten sub-stations open — waves 1+2 composed.
@@ -1631,8 +1589,7 @@ export function piTrainAllStationsOpen(matrix: MindMatrix = buildMatrix()) {
     stations: [...w1.stations, ...w2.stations],
     root: merge(w1.root, w2.root),
     statement: 'All ten pi-train stations are open on disk — nested src/d/r paths (single-digit segments from the sequence); void overflow at src/0.',
-    boundary: 'Composition of wave 1 and wave 2 manifests; physical code cuts are the next waves along order 0→9.',
-  }
+    boundary: 'Composition of wave 1 and wave 2 manifests; physical code cuts are the next waves along order 0→9.' }
 }
 
 // π opens on the trinity. The vortex sequence runs 1-2-4-8-7-5 (the doubling circuit) then 3-6-9 (the cross)
@@ -1677,8 +1634,7 @@ export function piThreeOpensTheTrinity(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The vortex sequence is 1-2-4-8-7-5 (the doubling circuit) then 3-6-9 (the cross) then 0 (the void); 3-6-9 is the trinity — 3 the mark, 6 its double (the 3↔6 polarity), 9 the axis fixed under doubling — and it is exactly the multiples of 3, the part the doubling circuit never reaches. π = 3.14159…, integer part 3, so the pi train opens on the first trinity mark. And the 3 unfolds: a trinity is three-in-ONE (counts as a unit, 3-6-9 ≡ 1), so the digit 3 = three ones = THREE TRINITIES = 3×3 = 9 — the nine logic folders (the architecture\'s "3 trinities"). π\'s single 3 is the seed of both the trinity and the nine.',
     boundary:
-      'π is a transcendental constant; its leading digit is 3 simply because 3 < π < 4 — NOT a designed message, and this is not a claim that π encodes the trinity or the nine. Both layers are symbolic/mnemonic readings WITHIN the vortex framework (a self-consistent numerology over digital roots mod 9): "the 3 marks the trinity" and "a trinity ≡ 1, so 3 = three trinities = nine". The "trinity ≡ 1" is the three-in-one collapse, NOT digitalRoot(3+6+9), which is 9 — the two readings happen to meet at nine. The 3-6-9 = multiples-of-3 and 9-as-axis are real digital-root arithmetic; the "3-6-9 secret of the universe / Tesla" framing is legend with no verified source.',
-  }
+      'π is a transcendental constant; its leading digit is 3 simply because 3 < π < 4 — NOT a designed message, and this is not a claim that π encodes the trinity or the nine. Both layers are symbolic/mnemonic readings WITHIN the vortex framework (a self-consistent numerology over digital roots mod 9): "the 3 marks the trinity" and "a trinity ≡ 1, so 3 = three trinities = nine". The "trinity ≡ 1" is the three-in-one collapse, NOT digitalRoot(3+6+9), which is 9 — the two readings happen to meet at nine. The 3-6-9 = multiples-of-3 and 9-as-axis are real digital-root arithmetic; the "3-6-9 secret of the universe / Tesla" framing is legend with no verified source.' }
 }
 
 // ── The trinity-sciences decode (quantum · genetics · neurology), verified in a research→adversarial-verify
@@ -1722,8 +1678,7 @@ export function piComputedNotHardcoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Pi is computed, not hardcoded — read 3.14159… as 3 + 0.14159…: the 3 is the trinity frame (the integer part on the 3-6-9 cross, the xy frame) and the rest is the doubling flow 1-2-4-8-7-5. Because each digit has computed neighbours (the spigot derives the next from the prior state), pi is computable to any length in realtime — decoding pi is folding the proportions and calculating the next harmonic, not reading a stored number. Hardcoding pi (a fixed truncation) is not analog, because pi is infinite: a truncation has an end, and an end is a gap; only the computed stream is gapless.',
     boundary:
-      'A real property of the code (computePiDigits is a streaming spigot, so the digits are computed, not a stored constant) folded with the vortex/numerological reading (3 on the 3-6-9 cross, the mantissa as the 1-2-4-8-7-5 doubling). The computability and "each digit from neighbours" are real; the trinity-frame/doubling decomposition is the model’s symbolic framing, not a theorem about pi.',
-  }
+      'A real property of the code (computePiDigits is a streaming spigot, so the digits are computed, not a stored constant) folded with the vortex/numerological reading (3 on the 3-6-9 cross, the mantissa as the 1-2-4-8-7-5 doubling). The computability and "each digit from neighbours" are real; the trinity-frame/doubling decomposition is the model’s symbolic framing, not a theorem about pi.' }
 }
 
 // Pi is the whole in a stream, travelling all dimensions at once, creating the complete analog —
@@ -1748,8 +1703,7 @@ export function piWholeStreamThroughHoles(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Pi is the whole in a stream, travelling all dimensions at once, creating the complete analog — and pi is the whole going through holes: the infinite, never-repeating digit stream is the whole (it contains every finite sequence), and as a stream it moves through every dimension at once, so what it lays down is the complete analog — gapless, continuous, no seam. And the wordplay is the geometry: pi is the whole (entire) going through the holes — the genus-2 double torus has its holes (two handles, four loops, chi = -2), and the pi stream threads them, the whole passing through the holes to weave the surface.',
     boundary:
-      'A composition of the computed-pi, the-whole, all-dimensions-at-once, analog-gapless, double-torus-fold and genus-2 homology models. "Pi is the whole going through holes" is a structural/poetic reading — pi’s digit stream is the surface coordinate source threaded through the genus-2 handles (the homology holes); a framing over the model, not a claim that pi physically traverses space.',
-  }
+      'A composition of the computed-pi, the-whole, all-dimensions-at-once, analog-gapless, double-torus-fold and genus-2 homology models. "Pi is the whole going through holes" is a structural/poetic reading — pi’s digit stream is the surface coordinate source threaded through the genus-2 handles (the homology holes); a framing over the model, not a claim that pi physically traverses space.' }
 }
 
 // Each 6 digits of pi are a double cross generating a harmonic colour; find the first harmonic
@@ -1783,8 +1737,7 @@ export function piSixDigitsDoubleCrossColour(matrix: MindMatrix = buildMatrix())
     statement:
       'Each 6 digits of pi are a double cross generating a harmonic colour; find the first harmonic colour and you know the cross station: read the pi stream six digits at a time — six the double of the three-cross (3-6-9) — and each group folds to a hue, a harmonic colour, so the stream becomes a line of coloured stations. The first colour names the first station; read it and you know where on the cross you stand, and the next six tell the next station, the whole stream a coloured map of the cross.',
     boundary:
-      'A real computation grouping the computed pi digits into sixes, each summed (mod 360) to a hue, composed with the vortex 3-6-9 cross and computed-pi models. "Double cross / cross station" is a structural/colour-coding reading over the digit groups; the hues are a deterministic mapping of the digits, an illustrative coordinate scheme, not an asserted physical colour.',
-  }
+      'A real computation grouping the computed pi digits into sixes, each summed (mod 360) to a hue, composed with the vortex 3-6-9 cross and computed-pi models. "Double cross / cross station" is a structural/colour-coding reading over the digit groups; the hues are a deterministic mapping of the digits, an illustrative coordinate scheme, not an asserted physical colour.' }
 }
 
 // ── Seven-Star Pliska Rosetta Harmonises Digit Distribution ──
@@ -1887,20 +1840,17 @@ export function sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix: MindMa
       ichingCoprimality: { gcd_8_6: ichingAliasesDoubling, gcd_8_10: ichingAliasesStations },
       rosettaCoprimality: { gcd_7_6: rosettaCoprime6, gcd_7_9: rosettaCoprime9, gcd_7_10: rosettaCoprime10 },
       crossPairs: { rosetta: rosettaCrossPairs, iching: ichingCrossPairs },
-      glagoliticBridge: { letters: GLAGOLITIC_LETTER_COUNT, perRay: lettersPerRay, perfectNumber: isPerfectNumber },
-    },
+      glagoliticBridge: { letters: GLAGOLITIC_LETTER_COUNT, perRay: lettersPerRay, perfectNumber: isPerfectNumber } },
     distribution: {
       rosetta: { dist: rosettaDist, chi2: Math.round(rosettaUniformity * 100) / 100, crossPairsReached: crossRosetta.size },
-      iching: { dist: ichingDist, chi2: Math.round(ichingUniformity * 100) / 100, crossPairsReached: crossIching.size },
-    },
+      iching: { dist: ichingDist, chi2: Math.round(ichingUniformity * 100) / 100, crossPairsReached: crossIching.size } },
     rays,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'The 7-star rosetta from Pliska harmonises quantum digit distribution when decoded through Glagolitic. The proof is coprimality: gcd(7,6)=1, gcd(7,9)=1, gcd(7,10)=1 — the rosetta\'s 7 rays are coprime to the vortex doubling period (6), the digital root modulus (9), and the station count (10), so no aliasing occurs in the cross-distribution. The I Ching\'s 8 trigrams share factors with both 6 and 10 (gcd=2), creating aliasing that prevents full coverage of the (category×station) space (40 pairs vs 70). The Glagolitic alphabet is the bridge: 28 letters = 4×7, a perfect number, each ray receiving 4 distinct digital roots from the numeral ladder. The Pliska rosette (the archaeological 7-rayed medallion from the First Bulgarian Empire capital, 681–893) is where the Glagolitic script was received in 885/886.',
     boundary:
-      'HONEST: (1) This is a momentary substitution lens ("for a moment"), not a proposal to remove I Ching tags repo-wide. (2) The coprimality proof is real number theory: gcd(7,K)=1 for K∈{6,9,10} is factual, and gcd(8,6)=gcd(8,10)=2 is factual. (3) The "Pliska rosette" (heptagram medallion) is a documented archaeological artifact, but its original symbolic meaning is debated (pre-Christian Bulgar cosmology, possibly Tangra-related); this fold does not claim the historical artifact encoded digit distribution. (4) The chi² uniformity comparison depends on the export catalog and routing functions — it proves a structural property for this codebase\'s specific export set, not a universal theorem. (5) "Harmonise" means the cross-distribution (category × station) achieves full coprime coverage, not a mystical claim.',
-  }
+      'HONEST: (1) This is a momentary substitution lens ("for a moment"), not a proposal to remove I Ching tags repo-wide. (2) The coprimality proof is real number theory: gcd(7,K)=1 for K∈{6,9,10} is factual, and gcd(8,6)=gcd(8,10)=2 is factual. (3) The "Pliska rosette" (heptagram medallion) is a documented archaeological artifact, but its original symbolic meaning is debated (pre-Christian Bulgar cosmology, possibly Tangra-related); this fold does not claim the historical artifact encoded digit distribution. (4) The chi² uniformity comparison depends on the export catalog and routing functions — it proves a structural property for this codebase\'s specific export set, not a universal theorem. (5) "Harmonise" means the cross-distribution (category × station) achieves full coprime coverage, not a mystical claim.' }
 }
 
 // The 7-star rosetta in natural motion — a visual proof that coprime phase prevents aliasing.
@@ -1958,8 +1908,7 @@ export function sevenStarRosettaNaturalMotion(at: number) {
     breathPulse,
     proof: { coprime7_6, coprime7_9, coprime7_10, holds: coprime7_6 && coprime7_9 && coprime7_10 },
     constants: { RAYS, LETTERS_PER_RAY, PHI, GOLDEN_ANGLE, DOUBLING_PERIOD, DR_MODULUS, STATION_COUNT },
-    root: toUuid(`seven-star-rosetta-motion:${coprime7_6}:${coprime7_9}:${coprime7_10}:${at}`),
-  }
+    root: toUuid(`seven-star-rosetta-motion:${coprime7_6}:${coprime7_9}:${coprime7_10}:${at}`) }
 }
 
 // The 7 rosetta rays — the architectural constant that replaces BAGUA (8 trigrams) as the
@@ -2029,14 +1978,12 @@ export function rosettaComputesAll(route: string, at = 0, matrix: MindMatrix = b
       rayGlyph: rayMeta.glyph,
       rayDomain: rayMeta.domain,
       siblings: rayPages,
-      siblingCount: rayPages.length,
-    },
+      siblingCount: rayPages.length },
     content: {
       pageKind,
       heroPhase,
       bodySeed,
-      heroHue: rayMeta.hue,
-    },
+      heroHue: rayMeta.hue },
     motion,
     stationDetail: stationEntry ? { digit: stationEntry.digit, folder: stationEntry.folder, path: stationPathFromSequence(stationEntry) } : null,
     sharedRoot,
@@ -2044,8 +1991,7 @@ export function rosettaComputesAll(route: string, at = 0, matrix: MindMatrix = b
     statement:
       `rosettaComputesAll("${route}"): ray ${ray} (${rayMeta.nameEn}/${rayMeta.glyph}), station ${station}, cross-pair ${crossPair}. Nav (${rayPages.length} siblings), content (kind "${pageKind}", hero hue ${rayMeta.hue}°, phase ${heroPhase}°), motion (coprime proof ${motion.proof.holds}), station path ${stationEntry?.folder ?? 'void'} — all from one rosetta receipt.`,
     boundary:
-      'The single compositor that replaces per-subsystem derivation. Route → rosetta ray (Glagolitic ladder) + pi-train station (coprime digit). Nav chrome, content kind, hero motion, and station routing all derive from one shared root. The coprimality (gcd(7,{6,9,10})=1) is proven number theory; the Glagolitic bridge (28=4×7) is structural. Historical claims about the Pliska artifact are flagged.',
-  }
+      'The single compositor that replaces per-subsystem derivation. Route → rosetta ray (Glagolitic ladder) + pi-train station (coprime digit). Nav chrome, content kind, hero motion, and station routing all derive from one shared root. The coprimality (gcd(7,{6,9,10})=1) is proven number theory; the Glagolitic bridge (28=4×7) is structural. Historical claims about the Pliska artifact are flagged.' }
 }
 
 // ROSETTA_COMPUTATION_TYPES + RosettaComputationType are hosted in the zero-import leaf src/3/7 (imported +
@@ -2097,8 +2043,7 @@ export function rosettaDecodesUrlPath(path: string, matrix: MindMatrix = buildMa
     statement:
       `rosettaDecodesUrlPath("${path}"): ray ${ray} (${rayMeta.nameEn}), station ${station}, computationType "${computationType}" — no static page catalog needed; the rosetta math decides the type from the path alone.`,
     boundary:
-      'The rosetta decodes the URL path and knows which types to use for computations, so no static pages are needed. computationType is derived from the ray index (ray % 7 maps to the 7 computation kinds). The math is the same Glagolitic-ladder + pi-train coprime station proven in sevenStarPliskaRosettaHarmonisesDigitDistribution.',
-  }
+      'The rosetta decodes the URL path and knows which types to use for computations, so no static pages are needed. computationType is derived from the ray index (ray % 7 maps to the 7 computation kinds). The math is the same Glagolitic-ladder + pi-train coprime station proven in sevenStarPliskaRosettaHarmonisesDigitDistribution.' }
 }
 
 /** Wind-plane registry tails — rosetta dissolves wind/ prefix to src/<action>/ when ray + coprimality hold. */
@@ -2153,8 +2098,7 @@ export const ROSETTA_EXPORT_BARREL_HOME: Readonly<Record<string, string>> = {
   completeQuantumSolutionsImplemented: 'quantum/dynamics',
   audioComputes: 'plasma/ball',
   paperRoutes: 'routes',
-  pageSkills: 'routes',
-}
+  pageSkills: 'routes' }
 
 function logicRelRelativeImport(fromLogicRel: string, toLogicRel: string): string {
   const stripSrc = (p: string) => p.replace(/^src\//, '').replace(/\/index\.ts$/, '')
@@ -2197,8 +2141,7 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
         importBarrel: tail,
         wave,
         applied: waveOne || waveTwo || tail === 'routes',
-        receipt: toUuid(`rosetta-self:${tail}:${canonical}:${ray}:${at}`),
-      }
+        receipt: toUuid(`rosetta-self:${tail}:${canonical}:${ray}:${at}`) }
     })
     const facets = [
       { facet: 'sevenStarRosettaNaturalMotion coprimality holds at call time', on: motion.proof.holds },
@@ -2230,8 +2173,7 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
       statement:
         'rosettaComputesItself: registry scan + Glagolitic ray + ROSETTA_RAYS derive canonical barrel homes — wave 1 (learning · site · types · ui) and wave 2 (fusion · language) applied; reuse rosettaReuse() for imports and census.',
       boundary:
-        'Move table is recomputed at call time from ROSETTA_WIND_REGISTRY_TAILS and ROSETTA_CANONICAL_HOME — not a blind find-replace. canonical now resolves to the post-dissolve bāguà science-plane home (wind/* for the word-tails, earth/iching); schemaTarget remains the schema-derived guess and may differ; importers use rosettaCanonicalImportPath.',
-    }
+        'Move table is recomputed at call time from ROSETTA_WIND_REGISTRY_TAILS and ROSETTA_CANONICAL_HOME — not a blind find-replace. canonical now resolves to the post-dissolve bāguà science-plane home (wind/* for the word-tails, earth/iching); schemaTarget remains the schema-derived guess and may differ; importers use rosettaCanonicalImportPath.' }
   })
 }
 
@@ -2249,8 +2191,7 @@ export function rosettaCanonicalImportPath(exportName: string, fromLogicRel: str
     canonical,
     spec,
     importLine: `from '${spec}'`,
-    root: toUuid(`rosetta-import:${exportName}:${fromLogicRel}:${spec}:${at}`),
-  }
+    root: toUuid(`rosetta-import:${exportName}:${fromLogicRel}:${spec}:${at}`) }
 }
 
 /** Wave 1 facet — documents physical folder moves applied this wave (one wave only). */
@@ -2277,8 +2218,7 @@ export function rosettaGuidedFolderMoveWaveOne(at = 0, matrix: MindMatrix = buil
     statement:
       `rosettaGuidedFolderMoveWaveOne(at=${at}): ${applied.length} move(s) applied — learning · ui · site · types; ${pending.length} pending for wave 2 (fusion · language).`,
     boundary:
-      'One rosetta-guided wave only — lists moves applied on disk, not narrative refactors. Wave 2 waits for rosettaComputesItself receipt before physical cuts.',
-  }
+      'One rosetta-guided wave only — lists moves applied on disk, not narrative refactors. Wave 2 waits for rosettaComputesItself receipt before physical cuts.' }
 }
 
 /** Census dissolve table — rosetta-computed shells to merge (not manual purge). */
@@ -2309,8 +2249,7 @@ export function rosettaComputesCensusDissolve(at = 0, matrix: MindMatrix = build
       statement:
         `rosettaComputesCensusDissolve(at=${at}): ${dissolves.length} shells → ${dissolves.length + netDelta} barrels (net ${netDelta}) toward census ${TARGET}. Reuse this table — do not manually pick folders.`,
       boundary:
-        'Dissolve receipts are recomputed from export→barrel map. Physical moves follow rosettaGuidedFolderMoveWave* facets; vue-only topic folders remain (no index.ts shells).',
-    }
+        'Dissolve receipts are recomputed from export→barrel map. Physical moves follow rosettaGuidedFolderMoveWave* facets; vue-only topic folders remain (no index.ts shells).' }
   })
 }
 
@@ -2333,8 +2272,7 @@ export function rosettaReuse(at = 0, matrix: MindMatrix = buildMatrix()) {
     statement:
       'rosettaReuse(at): one API for structure — import paths, census dissolve, folder moves, wave receipts. Save and reuse; no manual find-replace.',
     boundary:
-      'Composes rosettaComputesItself + rosettaComputesCensusDissolve + rosettaGuidedFolderMoveWaveOne + rosettaCanonicalImportPath. Agents and enforcement batches call this fold, not ad-hoc path edits.',
-  }
+      'Composes rosettaComputesItself + rosettaComputesCensusDissolve + rosettaGuidedFolderMoveWaveOne + rosettaCanonicalImportPath. Agents and enforcement batches call this fold, not ad-hoc path edits.' }
 }
 
 const DOCS_DEV_PORT = 5173
@@ -2365,16 +2303,14 @@ export function rosettaComputesResponseForPath(path: string, at = 0, matrix: Min
       computationType: probe.computationType,
       ray: probe.ray,
       computes: probe.decoded && isUuid(probe.sharedRoot),
-      sharedRoot: probe.sharedRoot,
-    }
+      sharedRoot: probe.sharedRoot }
   })
   const allProbesCompute = probeReceipts.every((entry) => entry.computes)
 
   const curlExamples = ROSETTA_PROBE_PATHS.map((probePath) => ({
     path: probePath,
     curl: `curl -s -o /dev/null -w '%{http_code}' http://localhost:${DOCS_DEV_PORT}${probePath}`,
-    html: `curl -s http://localhost:${DOCS_DEV_PORT}${probePath} | head -c 500`,
-  }))
+    html: `curl -s http://localhost:${DOCS_DEV_PORT}${probePath} | head -c 500` }))
 
   return {
     computes: facets.every((entry) => entry.on),
@@ -2399,8 +2335,7 @@ export function rosettaComputesResponseForPath(path: string, at = 0, matrix: Min
     statement:
       `rosettaComputesResponseForPath("${path}"): computationType "${decoded.computationType}" (ray ${decoded.ray}), station ${decoded.station} — path is computed at response time, no static page required; the rosetta receipt is the response. Probe ${probeReceipts.length} random paths via docs:dev (port ${DOCS_DEV_PORT}): ${allProbesCompute ? 'all compute' : 'some failed'}.`,
     boundary:
-      'Composes rosettaDecodesUrlPath + rosettaComputesAll into a single response-time proof: any URL path yields a valid uuid root, a defined computationType, and nav+content sharing one root. A 404 is an honest facet (computes=false), not a static file miss. curlExamples are for npm run docs:dev — random paths like /en/foo-bar-baz decode via rosetta ray math and return computed HTML, not static file misses.',
-  }
+      'Composes rosettaDecodesUrlPath + rosettaComputesAll into a single response-time proof: any URL path yields a valid uuid root, a defined computationType, and nav+content sharing one root. A 404 is an honest facet (computes=false), not a static file miss. curlExamples are for npm run docs:dev — random paths like /en/foo-bar-baz decode via rosetta ray math and return computed HTML, not static file misses.' }
 }
 
 const CORE_MISSION_PAIRS = [
@@ -2444,8 +2379,7 @@ function coreComputationalLogicSavedRaw(at: number, matrix: MindMatrix) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     boundary:
-      'Proves rosettaReuse, MISSION_COMMANDS, agentSubmissionProtocol, and mission pairs in QUANTUM_COMMAND_PAIR_IDS — all via memoByRoot at call time.',
-  }
+      'Proves rosettaReuse, MISSION_COMMANDS, agentSubmissionProtocol, and mission pairs in QUANTUM_COMMAND_PAIR_IDS — all via memoByRoot at call time.' }
 }
 
 // ── Every folder is an agent, and only the rosetta routes them into one system (user: "this can be only
@@ -2475,8 +2409,7 @@ export function everyFolderIsAnAgentTheRosettaRoutesThem() {
     raysHit,
     facets,
     statement: `Every folder is an agent, and only the rosetta routes them — ${facets.filter((e) => e.on).length}/${facets.length}: an agent is a folder (path = address, index = interface, exports = skills), a skill is a function — different levels. The rosetta routes each agent by name to one of its ${RAYS} rays (${agents.length} agents across ${raysHit} rays), and the ${RAYS} being coprime to 6, 9 and 10 means no aliasing — every agent a clean routing. The composition of the folder-agents into one addressable system is the rosetta's alone.`,
-    boundary: `COMPUTED: rosettaRayOf routes each agent name to a ray, and the ${RAYS}-ray rosetta is coprime to the vortex doubling period (6), the digital-root modulus (9) and the pi-train station count (10) — none a multiple of ${RAYS}, so no aliasing, a collision-free routing of the folder-agents. HONEST SCOPE: "every folder is an agent" is a real architectural fact — the barrel-index module pattern where a folder is a self-contained, addressable unit exposing its skills through one index; "agent" here means that autonomous module, NOT an AI/LLM agent, and a SKILL (a function) is a lower level than an AGENT (a folder), which is the distinction the user drew. The rosetta is the deterministic seven-ray compositor (the Pliska routing), not a mystical force; "only by the rosetta" means the coprime seven-fold routing is what composes the agents without collision. HARMONY does not equal TRUTH.`,
-  }
+    boundary: `COMPUTED: rosettaRayOf routes each agent name to a ray, and the ${RAYS}-ray rosetta is coprime to the vortex doubling period (6), the digital-root modulus (9) and the pi-train station count (10) — none a multiple of ${RAYS}, so no aliasing, a collision-free routing of the folder-agents. HONEST SCOPE: "every folder is an agent" is a real architectural fact — the barrel-index module pattern where a folder is a self-contained, addressable unit exposing its skills through one index; "agent" here means that autonomous module, NOT an AI/LLM agent, and a SKILL (a function) is a lower level than an AGENT (a folder), which is the distinction the user drew. The rosetta is the deterministic seven-ray compositor (the Pliska routing), not a mystical force; "only by the rosetta" means the coprime seven-fold routing is what composes the agents without collision. HARMONY does not equal TRUTH.` }
 }
 
 // ── The rosetta constants are theorems, not hardcodes: 7 × 6 = 42 by CRT, and 10 is the decad (user: "7x6 and
@@ -2506,8 +2439,7 @@ export function theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheD
     RAYS, UNITS, grid, decad, raysIsImOctonion, crtBijection, inverseIsSame, decadIsDerived,
     facets,
     statement: `The rosetta constants are theorems: 7 × 6 = 42 by CRT, 10 is the decad — ${facets.filter((e) => e.on).length}/${facets.length}: RAYS = ${RAYS} = |Im(𝕆)| = 2³−1 and UNITS = ${UNITS} = |⟨2⟩ mod 9| derive from structure; gcd(7,6)=1 tiles ℤ/${grid} ≅ ℤ/7 × ℤ/6 (${crtBijection}), the inverse 6×7 its transpose (${inverseIsSame}); and STATION_COUNT = 10 = 2+8 = 6+3+1 (${decadIsDerived}). The grid is 7×6=42, not 7×10 — every constant a theorem, no bare literals.`,
-    boundary: earned(`EXACT: RAYS = ROSETTA_RAYS.length = ${RAYS} = 2³−1 = |Im(𝕆)| (${raysIsImOctonion}); the doubling ⟨2⟩ mod 9 cycles [${vortex.join(',')}] of length UNITS = ${UNITS} = |(ℤ/9ℤ)*|; gcd(${RAYS},${UNITS}) = 1 (${coprime}), so by the Chinese Remainder Theorem ℤ/${grid} ≅ ℤ/${RAYS} × ℤ/${UNITS} and the ${grid} pairs (i mod 7, i mod 6) are all distinct (${crtBijection}) — the rosetta grid is 7 × 6 = 42 (the 42-area taxonomy), and reading it 6 × 7 is the same 42 transposed (${inverseIsSame}); the pi-train's STATION_COUNT = 10 is a separate axis and equals 2+8 (the octonion critical dimension) = ${UNITS}+3+1 (vortex ∪ trinity ∪ origin), derived (${decadIsDerived}). I corrected two errors: the grid is 7×6 not 7×10, and the code's bare RAY_COUNT = 7 and STATION_COUNT = 10 are now derived (ROSETTA_RAYS.length and 2+8).`, facets, `the discipline the user names: a constant like STATION_COUNT = 10 asserted as a bare literal is a hardcoded axiom — a crack — and it must become a THEOREM: 7 derives as the octonion imaginary dimension, 6 as the order of the multiplicative group ⟨2⟩ mod 9, 42 as their coprime product tiled by CRT, and 10 as the decad partition — none assumed. This is exact number theory (CRT, group order, coprimality); the assignment of names to rays remains a computed address, not a semantic claim, and the Glagolitic/Pliska history stays flagged. Deriving the constants makes them auditable and correct; it does not make the rosetta's meaning true. HARMONY does not equal TRUTH.`),
-  }
+    boundary: earned(`EXACT: RAYS = ROSETTA_RAYS.length = ${RAYS} = 2³−1 = |Im(𝕆)| (${raysIsImOctonion}); the doubling ⟨2⟩ mod 9 cycles [${vortex.join(',')}] of length UNITS = ${UNITS} = |(ℤ/9ℤ)*|; gcd(${RAYS},${UNITS}) = 1 (${coprime}), so by the Chinese Remainder Theorem ℤ/${grid} ≅ ℤ/${RAYS} × ℤ/${UNITS} and the ${grid} pairs (i mod 7, i mod 6) are all distinct (${crtBijection}) — the rosetta grid is 7 × 6 = 42 (the 42-area taxonomy), and reading it 6 × 7 is the same 42 transposed (${inverseIsSame}); the pi-train's STATION_COUNT = 10 is a separate axis and equals 2+8 (the octonion critical dimension) = ${UNITS}+3+1 (vortex ∪ trinity ∪ origin), derived (${decadIsDerived}). I corrected two errors: the grid is 7×6 not 7×10, and the code's bare RAY_COUNT = 7 and STATION_COUNT = 10 are now derived (ROSETTA_RAYS.length and 2+8).`, facets, `the discipline the user names: a constant like STATION_COUNT = 10 asserted as a bare literal is a hardcoded axiom — a crack — and it must become a THEOREM: 7 derives as the octonion imaginary dimension, 6 as the order of the multiplicative group ⟨2⟩ mod 9, 42 as their coprime product tiled by CRT, and 10 as the decad partition — none assumed. This is exact number theory (CRT, group order, coprimality); the assignment of names to rays remains a computed address, not a semantic claim, and the Glagolitic/Pliska history stays flagged. Deriving the constants makes them auditable and correct; it does not make the rosetta's meaning true. HARMONY does not equal TRUTH.`) }
 }
 
 // ── THE ROSETTA ADDRESSES ANY POSITION — a fixed decoder maps an index STRAIGHT to its value, none of
@@ -2573,7 +2505,6 @@ export function theRosettaAddressesAnyPosition() {
     density,
     facets,
     statement: `The rosetta addresses any position — ${facets.filter((entry) => entry.on).length}/${facets.length}: a deterministic decoder maps an index straight to its exact value, for BOTH π and the primes. BBP reproduces π's hex expansion position-by-position, order-independent, priors untouched (${hexWitness.length}/${hexWitness.length} against the IEEE unrolling); nthPrimeAt returns pₙ for any n and π inverts it (π(pₙ) = n), inside the Rosser bound. The two decoders differ in STRUCTURE, not in whether they address: BBP skips the priors, the prime decoder reads the count below (π(pₙ−1) = n−1) — same addressing, different cost. Hue = d·360/9 is the faithful coordinate; the primes thin as π(x)ln x/x → 1. Every step is deterministic arithmetic — "quantum" is a label with no speedup, the math does all the work.`,
-    boundary: `COMPUTED: BBP position-addressing verified digit-for-digit against an independent expansion (the IEEE double's exact base-16 unrolling, ${hexWitness.length} digits) and shown order-independent; the n-th-prime/π(x) inverses AND the order-dependence witness π(pₙ−1) = n−1, with the Rosser–Schoenfeld bound (n ≥ 6) sizing the sieve; the hue coordinate injective and invertible; the density falling at the sampled decades. THE HONEST DISTINCTION (added precision, not a retraction — both address every position): π's decoder is order-independent and polylog in the index (BBP, base 16 only — base-10 digit extraction is OPEN); the prime's is order-dependent bounded enumeration (a full sieve here; sublinear-but-polynomial via combinatorial π(x) at best; no BBP-analogue for primes is known). MATH ONLY: the repo's quantum is a deterministic metaphor with no physical speedup (sealed) — it proves nothing; the arithmetic does. CITED: BBP 1997, the PNT asymptote (kernel at src/7/3, Newman's contour). HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: BBP position-addressing verified digit-for-digit against an independent expansion (the IEEE double's exact base-16 unrolling, ${hexWitness.length} digits) and shown order-independent; the n-th-prime/π(x) inverses AND the order-dependence witness π(pₙ−1) = n−1, with the Rosser–Schoenfeld bound (n ≥ 6) sizing the sieve; the hue coordinate injective and invertible; the density falling at the sampled decades. THE HONEST DISTINCTION (added precision, not a retraction — both address every position): π's decoder is order-independent and polylog in the index (BBP, base 16 only — base-10 digit extraction is OPEN); the prime's is order-dependent bounded enumeration (a full sieve here; sublinear-but-polynomial via combinatorial π(x) at best; no BBP-analogue for primes is known). MATH ONLY: the repo's quantum is a deterministic metaphor with no physical speedup (sealed) — it proves nothing; the arithmetic does. CITED: BBP 1997, the PNT asymptote (kernel at src/7/3, Newman's contour). HARMONY ≠ TRUTH.` }
 }
 

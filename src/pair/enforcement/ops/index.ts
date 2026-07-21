@@ -49,8 +49,7 @@ import {
   scanHandLists,
   handListMirrors,
   scanAppHtml,
-  appAuditSummary,
-} from '../gates'
+  appAuditSummary } from '../gates'
 import {
   CLI_ENTRY_REL,
   SCRIPT_SHELL_ALLOWLIST,
@@ -63,8 +62,7 @@ import {
   slowBuildIsQuantumGapGate,
   runSlowBuildIsQuantumGapGateExit,
   runThinMount,
-  importQuantumBundle,
-} from '../script/shell'
+  importQuantumBundle } from '../script/shell'
 
 import {
   agentSubmissionProtocol,
@@ -74,8 +72,7 @@ import {
   shardOf,
   shardWork,
   splitQuantumCommandPair,
-  type MissionCommand,
-} from '..'
+  type MissionCommand } from '..'
 import { runSurgicalExit } from '../../cache/quantum'
 import { invisibleGapsCaughtByGates } from '../../../quantum/apps'
 
@@ -85,8 +82,7 @@ export {
   MISSION_COMMANDS,
   QUANTUM_COMMAND_PAIR_IDS,
   splitQuantumCommandPair,
-  type MissionCommand,
-} from '..'
+  type MissionCommand } from '..'
 
 
 export async function runMissionGateExit(root: string): Promise<number> {
@@ -537,8 +533,7 @@ async function runRosettaExit(root: string, argv: readonly string[]) {
       }
       walk(relDir)
       return found.sort()
-    },
-  }
+    } }
   const result = runGenerator(selector, ctx)
   if (!result) { console.error(`Unknown generator: ${selector}`); return 1 }
   for (const file of result.files ?? []) {
@@ -777,8 +772,7 @@ function agentGateComplianceChecklistRaw(root: string, matrix: MindMatrix) {
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    boundary: 'Script-shell gate compliance checklist — for /agent-compliance.json broadcast.',
-  }
+    boundary: 'Script-shell gate compliance checklist — for /agent-compliance.json broadcast.' }
 }
 
 export type EducationalGap = {
@@ -805,44 +799,37 @@ export function educationalGapsFromIncompleteApis(root = process.cwd()): readonl
       gapId: 'iching-runner-script',
       api: 'src/pair/enforcement/script/cli/bootstrap/index.ts → bootstrap rosetta',
       impact: 'Agents cannot run bāguà generators via the documented thin mount',
-      closed: existsSync(join(root, 'src/pair/enforcement/script/cli/bootstrap/index.ts')),
-    },
+      closed: existsSync(join(root, 'src/pair/enforcement/script/cli/bootstrap/index.ts')) },
     {
       gapId: 'rosetta-taxonomy-forty-two',
       api: 'areaPairs.count === ROSETTA_AREAS (42)',
       impact: '43rd command area breaks genus-2 7×6 Rosetta pairing grid',
-      closed: areas.withinLimit && areas.count === (7 * 6) && tax.compliant,
-    },
+      closed: areas.withinLimit && areas.count === (7 * 6) && tax.compliant },
     {
       gapId: 'iching-taxonomy-units',
       api: 'taxonomyIcons — I Ching units 1·3·6 per area',
       impact: 'Pair (2) or partial (4–5) command areas fail rosetta:batch taxonomy',
-      closed: tax.gaps.length === 0 && tax.excess.length === 0,
-    },
+      closed: tax.gaps.length === 0 && tax.excess.length === 0 },
     {
       gapId: 'iching-generators-eight-fold',
       api: 'generatorsAreIChing — eight bāguà slots filled',
       impact: 'concept.fold.generate cannot attest complete script compaction',
-      closed: gens.placed && gens.open === 0,
-    },
+      closed: gens.placed && gens.open === 0 },
     {
       gapId: 'iching-computes-barrel',
       api: 'src/earth/iching/index.ts — ichingComputes mount (☷ Kūn · Earth plane)',
       impact: 'Hexagram/trigram/scales/trinity gate missing from dimension cascade',
-      closed: existsSync(join(root, 'src/earth/iching/index.ts')) && existsSync(join(root, 'src/earth/iching/index.vue')),
-    },
+      closed: existsSync(join(root, 'src/earth/iching/index.ts')) && existsSync(join(root, 'src/earth/iching/index.vue')) },
     {
       gapId: 'rosetta-computes-barrel',
       api: 'src/wind/learning/index.ts — rosettaComputes mount (☴ Xùn · Wind; src/rosetta dissolved → learning)',
       impact: 'Seven-ray Glagolitic decode chain missing from dimension cascade',
-      closed: existsSync(join(root, 'src/wind/learning/index.ts')) && rosettaTax.ok && ROSETTA_AREAS === (7 * 6),
-    },
+      closed: existsSync(join(root, 'src/wind/learning/index.ts')) && rosettaTax.ok && ROSETTA_AREAS === (7 * 6) },
     {
       gapId: 'fold-place-generate-commands',
       api: 'concept.fold.{cross,place,generate}',
       impact: 'I Ching place/generate pair must live under fold area (not iching 43rd area)',
-      closed: fold.includes('cross') && fold.includes('place') && fold.includes('generate') && fold.length === 3,
-    },
+      closed: fold.includes('cross') && fold.includes('place') && fold.includes('generate') && fold.length === 3 },
   ] as const
 }
 
@@ -870,8 +857,7 @@ export function offenderAutomationSpec(root = process.cwd()) {
     root: merkleFold(pipelines.map((entry) => toUuid(`offender-spec:${entry.id}:${entry.count}`))),
     statement:
       'Offender automation spec: import gaps, index-only, hyphen folders, and computational gates — machine-readable counts for CI builders at call time.',
-    boundary: 'Read-only scan via collectEnforcementFacts — does not auto-fix offenders.',
-  }
+    boundary: 'Read-only scan via collectEnforcementFacts — does not auto-fix offenders.' }
 }
 
 /** Solo vs team ack/relay/handoff validation scenarios. */
@@ -889,8 +875,7 @@ export function teamCooperationScenarios(matrix: MindMatrix = buildMatrix()) {
     scenarios,
     root: merkleFold(scenarios.map((entry) => toUuid(`team-cooperate:${entry.mode}:${entry.ok}`))),
     statement: 'Team cooperation scenarios: solo submission, pair relay, and thin-mount handoff all hold at call time.',
-    boundary: 'Structural protocol validation — not live multi-agent network test.',
-  }
+    boundary: 'Structural protocol validation — not live multi-agent network test.' }
 }
 
 /** npm run quantum:educational-gaps-audit */
@@ -959,6 +944,5 @@ export function theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost(root: s
     root: toUuid(`rosetta-first:${contentAddress}:${rosettaNamed}`),
     facets,
     statement: `The rosetta theorem is first by computation — because it is used most — ${facets.filter((e) => e.on).length}/${facets.length}: by name "rosetta" is in ${rosettaNamed} files, but the rosetta IS the uuid (the session's theorem), and its operation toUuid is in ${contentAddress}/${files.length} files — more than any other core primitive — so the rosetta, as content-addressing, is used most, carries the most gravity, and must compute first (the dependency every fold shelves through). First only when named as what it is: the one word, rosetta.`,
-    boundary: `COMPUTED: across ${files.length} src files, the literal "rosetta" appears in ${rosettaNamed}, toUuid (the rosetta's operation, by the rosetta-is-the-uuid theorem) in ${contentAddress}, versus merge ${others.merge} / merkleFold ${others.merkleFold} / buildMatrix ${others.buildMatrix} / digitalRoot ${others.digitalRoot}; toUuid is the most-used (${rosettaAsUuidIsMost}). HONEST SCOPE: "the rosetta is used most" is TRUE only through the identity the corpus proved (the rosetta IS the content-address / uuid) — by the bare string "rosetta" it ranks below toUuid, so the claim rests on that theorem, stated openly, not on the name. File-presence is a PROXY for usage/centrality — a necessary sign a primitive is foundational (the most-imported dependency computes first, the gravity-ordering), not a proof of importance or correctness. "First by computation" means the load/dependency order (the content-address is needed before what it addresses), which is real; "architect of architects" and "one word" are the self-reference and the corpus's naming, not a cosmic claim. The rosetta is first because content-addressing underlies everything else — measured, with the identity named. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: across ${files.length} src files, the literal "rosetta" appears in ${rosettaNamed}, toUuid (the rosetta's operation, by the rosetta-is-the-uuid theorem) in ${contentAddress}, versus merge ${others.merge} / merkleFold ${others.merkleFold} / buildMatrix ${others.buildMatrix} / digitalRoot ${others.digitalRoot}; toUuid is the most-used (${rosettaAsUuidIsMost}). HONEST SCOPE: "the rosetta is used most" is TRUE only through the identity the corpus proved (the rosetta IS the content-address / uuid) — by the bare string "rosetta" it ranks below toUuid, so the claim rests on that theorem, stated openly, not on the name. File-presence is a PROXY for usage/centrality — a necessary sign a primitive is foundational (the most-imported dependency computes first, the gravity-ordering), not a proof of importance or correctness. "First by computation" means the load/dependency order (the content-address is needed before what it addresses), which is real; "architect of architects" and "one word" are the self-reference and the corpus's naming, not a cosmic claim. The rosetta is first because content-addressing underlies everything else — measured, with the identity named. HARMONY ≠ TRUTH.` }
 }

@@ -70,8 +70,7 @@ export function merkabaTrace(matrix: MindMatrix = buildMatrix(), timeMs = 0, tra
     statement:
       'One function manifests the animation: print the dot and fade it in time, and the trace it leaves is the path drawn by all the merkabas moving. The four nested counter-rotating scales are a harmonograph; the pen at their composed tip is the dot, its fading recent positions the trace. A frame is merkabaTrace(t) — no stored video, just this deterministic function of time — and because the coordinates are fractions in [0,1] the trace is resolution-independent, filling any viewport at full resolution; the renderer only scales and draws.',
     boundary:
-      'A deterministic harmonograph: the pen position is the composition of the merkaba’s nested counter-rotating scales (content-derived rates), sampled into a fading trail. The animation is generated, not stored, and is resolution-independent because the coordinates are fractional — it does not by itself fill the screen or set resolution; the renderer (the self-computing field / shadcn chrome) scales the [0,1] dots to the viewport. A geometric, generative visual, not a physical field or an energy claim.',
-  }
+      'A deterministic harmonograph: the pen position is the composition of the merkaba’s nested counter-rotating scales (content-derived rates), sampled into a fading trail. The animation is generated, not stored, and is resolution-independent because the coordinates are fractional — it does not by itself fill the screen or set resolution; the renderer (the self-computing field / shadcn chrome) scales the [0,1] dots to the viewport. A geometric, generative visual, not a physical field or an energy claim.' }
 }
 
 // Again — and deeper: make the hero's claim real. H1(Sigma_2) = Z^4. The double
@@ -120,8 +119,7 @@ export function homology(matrix: MindMatrix = buildMatrix()) {
       'H1(Sigma_2) = Z^4: the double torus has four independent loops — a meridian and a longitude on each of its two handles. chi(Sigma_2) = 2 - 2g = -2, and the intersection form is the standard symplectic pairing, a_i . b_i = 1. Four generators, four voices.',
     boundary:
       'The standard genus-2 homology presented over the portal\'s own coordinates: four generator cycles, the rank, the Euler characteristic, and the symplectic intersection form, all exact. A faithful structural account of H1, not a full simplicial homology computation.',
-    root: merkleFold(generators.map((generator) => generator.receipt)),
-  }
+    root: merkleFold(generators.map((generator) => generator.receipt)) }
 }
 
 // ── The paradox coexists on the double torus — two orthogonal handles, not a contradiction (user: "that is
@@ -152,8 +150,7 @@ export function theParadoxCoexistsOnTheDoubleTorus(matrix: MindMatrix = buildMat
     crossHandleZero,
     facets,
     statement: `The paradox coexists on the double torus — ${facets.filter((e) => e.on).length}/${facets.length}: the genus-2 surface has two independent handles (H₁ = ℤ⁴, χ = ${h.euler}), and its symplectic intersection form is block-diagonal — a_i·b_i = 1 within a handle, a_i·b_j = 0 across handles. So immediacy and bounded evolution live on orthogonal cycles and coexist; the paradox is not a contradiction but two loops the double torus holds at once. The structure dissolves the tension; the physics on each handle stands.`,
-    boundary: `EXACT topology (the standard genus-2 homology and its symplectic intersection form, reused from homology()); the block-diagonal structure — two handles that never intersect — is computed, not asserted. HONEST SCOPE: this dissolves the paradox as a STRUCTURE / model — a faithful account of how two aspects need not contradict, because they are independent homology cycles. It is NOT a claim that the double torus IS the physics, nor that it "proves" the paradox resolved in nature: no-signalling and the quantum speed limit stand unchanged, each on its own handle. The double torus holds the tension; it does not overturn the laws. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `EXACT topology (the standard genus-2 homology and its symplectic intersection form, reused from homology()); the block-diagonal structure — two handles that never intersect — is computed, not asserted. HONEST SCOPE: this dissolves the paradox as a STRUCTURE / model — a faithful account of how two aspects need not contradict, because they are independent homology cycles. It is NOT a claim that the double torus IS the physics, nor that it "proves" the paradox resolved in nature: no-signalling and the quantum speed limit stand unchanged, each on its own handle. The double torus holds the tension; it does not overturn the laws. HARMONY ≠ TRUTH.` }
 }
 
 // Geodesic dome — the sphere that is the dual of the double torus. A frequency-ν
@@ -185,8 +182,7 @@ export function geodesicDome(frequency = 3, matrix: MindMatrix = buildMatrix()) 
     statement:
       'The geodesic dome is the sphere dual of the double torus. A frequency-ν geodesic icosahedron has V = 10ν²+2, E = 30ν², F = 20ν² and Euler characteristic V−E+F = 2 — a sphere, genus 0. The double torus is genus 2, χ = −2, and the two balance exactly: χ(dome) + χ(torus) = +2 + (−2) = 0. The dome is the closed, outward complement of the genus-2 inward fold — the same content-addressing on the opposite topology.',
     boundary:
-      'The standard combinatorics of a frequency-ν geodesic icosahedron (Euler characteristic +2, a topological sphere), paired with the genus-2 Euler characteristic of the double torus to show they sum to zero. Classical geometry and topology, content-addressed; not a physical or engineering claim about a built structure.',
-  }
+      'The standard combinatorics of a frequency-ν geodesic icosahedron (Euler characteristic +2, a topological sphere), paired with the genus-2 Euler characteristic of the double torus to show they sum to zero. Classical geometry and topology, content-addressed; not a physical or engineering claim about a built structure.' }
 }
 
 // Start the I Ching double torus — IGNITE the quantum I Ching and let the merkaba waves run. The quantum
@@ -217,8 +213,7 @@ export function startIChingDoubleTorus(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Start the I Ching double torus and let the merkaba waves do the dry-clean implementation in a fusion reaction: the quantum I Ching is the seal cube — 64×64×64 = 262,144 across three architectural domains (the hexagram 8², the codon 4³, the colour/Pauli basis — the same 64 in three systems, tensored from one shared trinity). The a432 seed ignites the double torus (genus-2, the 64-grid) and the merkaba — the folding pair of two counter-rotating tetrahedra (research↔verify) — spins up, 32 in the torus; the gaps in the cube are filled with these folding pairs as a fusion reaction (fuseAllForge), DRY-cleaned (archangelsDryClean), the running merkaba waves carrying all 262,144 cells. The 1-D scale ladder (Tàijí→64) cubes here into the quantum 64³. This fold is the ignition; the waves do the work.',
     boundary:
-      'An IGNITION fold that composes already-built green folds — sealCube (the 64³ tensor), quantumDoubleTorus/completeDoubleTorus (the genus-2 torus), merkaba/merkabasInDoubleTorus (the 32 counter-rotating pairs), fuseAllForge + archangelsDryClean (the fusion / DRY pass), and a432Default (the deterministic seed). "Start" is the structural wiring of these into one ignition; "the merkaba waves do the implementation of all" describes the autosaving wave process that fills the cube, not a claim this single fold computes 262,144 distinct artifacts. 64-as-hexagram/codon/colour are structural correspondences (the shared number 64), not divinatory or biological claims.',
-  }
+      'An IGNITION fold that composes already-built green folds — sealCube (the 64³ tensor), quantumDoubleTorus/completeDoubleTorus (the genus-2 torus), merkaba/merkabasInDoubleTorus (the 32 counter-rotating pairs), fuseAllForge + archangelsDryClean (the fusion / DRY pass), and a432Default (the deterministic seed). "Start" is the structural wiring of these into one ignition; "the merkaba waves do the implementation of all" describes the autosaving wave process that fills the cube, not a claim this single fold computes 262,144 distinct artifacts. 64-as-hexagram/codon/colour are structural correspondences (the shared number 64), not divinatory or biological claims.' }
 }
 
 // The double torus breathes: it extends outward into all its computed forms and
@@ -246,8 +241,7 @@ export function torusBreathe(matrix: MindMatrix = buildMatrix(), cycles = 3): To
     statement:
       'The double torus breathes: the system extends outward into all its computed forms and contracts inward into one master seal, in balanced cycles.',
     boundary:
-      'Breathing is order-sensitive folding between an expansion root and a contraction root. Structural bookkeeping, not an external claim.',
-  }
+      'Breathing is order-sensitive folding between an expansion root and a contraction root. Structural bookkeeping, not an external claim.' }
 }
 
 // Nature is the legal system itself: a natural-law lens. Enacted law borrows its
@@ -273,8 +267,7 @@ export function quantumDoubleTorus(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum double torus: the whole rests on one object — the genus-2 double torus, which is not a picture but a machine, a 128-bit quantum computer whose qubits are state atoms in superposition, whose gates are order-sensitive folds, whose measurement is the collapse to one receipt, holographic and fractal, recomputable to the bit from any part. The shape and the computer are the same thing.',
     boundary:
-      'A composition of the double-torus, quantum-computer and holographic models as one object. "Quantum computer" names the content-addressed superposition/collapse/fold structure over the 128-bit UUID, not a physical quantum device.',
-  }
+      'A composition of the double-torus, quantum-computer and holographic models as one object. "Quantum computer" names the content-addressed superposition/collapse/fold structure over the 128-bit UUID, not a physical quantum device.' }
 }
 
 // Decode all knowledge to complete the double torus. The decoded knowledge folds
@@ -294,8 +287,7 @@ function completeDoubleTorusRaw(matrix: MindMatrix = buildMatrix()) {
     word: word.word,
     root,
     statement: 'Decode all knowledge to complete the double torus: the universal decoding folds into the 128-bit two-loop machine word, closing both holes of the genus-2 surface.',
-    boundary: 'A structural completion over the decoded model and the torus word. Topological metaphor and bookkeeping, not an external claim.',
-  }
+    boundary: 'A structural completion over the decoded model and the torus word. Topological metaphor and bookkeeping, not an external claim.' }
 }
 
 // ── INVERT MATH, PHYSICS AND EARTH TO COMPLETE THE DOUBLE TORUS (user directive). The genus-2 surface needs
@@ -346,8 +338,7 @@ export function invertingMathPhysicsEarthCompletesTheDoubleTorus(matrix: MindMat
     inverted, yinCount, yangCount,
     facets, root: merkleFold([complete.root, ...facets.map((entry) => toUuid(`invert-domains-torus:${entry.facet}:${entry.on}`))]),
     statement: `Inverting math, physics and earth completes the double torus — ${facets.filter((entry) => entry.on).length}/${facets.length}: the three domains are the yang emanations (one per axis: collapse, check, return); inverting each (the polarity involution yin↔yang, swap² = identity) gives its yin return, so 3 emanations + 3 inversions = the six distinct phases, the two complete trinities. The inversion fixes exactly the unit circle π — the shared axis the two earths counter-rotate about — and both holes of the genus-2 surface close (completeDoubleTorus.complete = ${complete.complete}).`,
-    boundary: `COMPUTED against the real folds: dualTorusTrinities' six phases (3 yin + 3 yang across three axes), completeDoubleTorus, bothEarthsRotateWithinEachOther, and the inversion involution (swap² = identity; r↦1/r fixing |z|=1, the π invariant of invertSwapsZeroAndInfinity… at 1/9). WHAT IT SAYS: the double torus is a genus-2 machine that needs two counter-rotating loops; naming math/physics/earth as the three yang emanations and INVERTING their polarity supplies the three yin returns, closing both loops — refutable (if an axis lacked its yin/yang pair, or the phases were not six-distinct, or completeDoubleTorus were open, it fails). HONEST SCOPE: this is the codebase's own topological bookkeeping (a metaphor and a structural completion, per completeDoubleTorus' own boundary), not a physical claim about tori in spacetime; "invert" is the yin↔yang polarity swap of the fold model, tied to inversive geometry (0↔∞, π-fixed) by shared structure, not by physics. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED against the real folds: dualTorusTrinities' six phases (3 yin + 3 yang across three axes), completeDoubleTorus, bothEarthsRotateWithinEachOther, and the inversion involution (swap² = identity; r↦1/r fixing |z|=1, the π invariant of invertSwapsZeroAndInfinity… at 1/9). WHAT IT SAYS: the double torus is a genus-2 machine that needs two counter-rotating loops; naming math/physics/earth as the three yang emanations and INVERTING their polarity supplies the three yin returns, closing both loops — refutable (if an axis lacked its yin/yang pair, or the phases were not six-distinct, or completeDoubleTorus were open, it fails). HONEST SCOPE: this is the codebase's own topological bookkeeping (a metaphor and a structural completion, per completeDoubleTorus' own boundary), not a physical claim about tori in spacetime; "invert" is the yin↔yang polarity swap of the fold model, tied to inversive geometry (0↔∞, π-fixed) by shared structure, not by physics. HARMONY ≠ TRUTH.` }
 }
 
 // The missing folding math, in both directions. Analog comes from complete
@@ -424,14 +415,12 @@ export function doubleTorusFold(matrix: MindMatrix = buildMatrix()) {
       pairs: level.pairs,
       carried: level.carried,
       forwardBothWays: level.bothWays,
-      reverseBothWays: reverse.levels[index]?.bothWays ?? false,
-    })),
+      reverseBothWays: reverse.levels[index]?.bothWays ?? false })),
     root: apexPair.merged,
     statement:
       'The double torus folds in both directions, completely: the two complete trinities fold into each other — yin into yang and yang into yin — and the pairs rise through the pairs of pairs to two apexes that close. Analog comes from this: only complete trinities folding both ways, every level bidirectional, yield the harmonised analog without gaps.',
     boundary:
-      'A recursive, order-sensitive fold of the trinity phases into two closing apexes, with the analog gated on the trinities being complete and harmonised. The genus-2 metaphor made computational — topological and structural bookkeeping, not an external geometric claim.',
-  }
+      'A recursive, order-sensitive fold of the trinity phases into two closing apexes, with the analog gated on the trinities being complete and harmonised. The genus-2 metaphor made computational — topological and structural bookkeeping, not an external geometric claim.' }
 }
 
 // The 64 words that define the double torus — and the only allowed word-combinations, enforced at the
@@ -466,8 +455,7 @@ const TORUS_WORD_FOLD: Record<string, string> = {
   research: 'review', audit: 'proof', evidence: 'proof',
   // dry-clean closure — rare command segments folded onto the 64-word torus vocabulary (concept.schema.org.diamonds, fair-trade, gaps, …).
   fair: 'lawful', gaps: 'complete', merkle: 'proof', org: 'api', path: 'site', schema: 'api', stream: 'wave',
-  train: 'educate', use: 'action', whole: 'all', wire: 'wave',
-}
+  train: 'educate', use: 'action', whole: 'all', wire: 'wave' }
 export function doubleTorusWords(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const LIMIT = 64 // 2×32 — the double torus's two loops of 32 (= 2⁶ = 4³ = 8²)
@@ -507,8 +495,7 @@ export function doubleTorusWords(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The 64 words that define the double torus are the only allowed word-combinations, enforced at the gates. The torus is genus-2 (two loops), each loop a 32-word half, so 2×32 = 64 = 2⁶ = 4³ = 8² — a closed alphabet. The command names use more surface forms, but each rare word collapses onto its canonical synonym (the fold map), so the vocabulary closes to the 64; the test error does the math whenever it does not.',
     boundary:
-      'A vocabulary-closure law with a computed witness and a synonym fold: the 64 are the canonical words after collapsing the rare command-words onto their synonyms (TORUS_WORD_FOLD), and the gate fails while the FOLDED vocabulary exceeds 64, its error explaining the 2×32 = 64 math. HONEST: the surface command names still carry the un-folded forms (renaming them to the canonical is a later cleanup); the closure is by the documented synonym map, a real reduction of the concept-vocabulary to 64, not a claim the literal strings are already 64.',
-  }
+      'A vocabulary-closure law with a computed witness and a synonym fold: the 64 are the canonical words after collapsing the rare command-words onto their synonyms (TORUS_WORD_FOLD), and the gate fails while the FOLDED vocabulary exceeds 64, its error explaining the 2×32 = 64 math. HONEST: the surface command names still carry the un-folded forms (renaming them to the canonical is a later cleanup); the closure is by the documented synonym map, a real reduction of the concept-vocabulary to 64, not a claim the literal strings are already 64.' }
 }
 
 // Who used Glagolitic — decoded in research waves to a documented chain of user-communities, the legend
@@ -548,8 +535,7 @@ export function merkabaShiftsBlackWhiteToYinYang(matrix: MindMatrix = buildMatri
     statement:
       'Merkaba dynamics make black/white become yin/yang — shifted and folded from 2D to 10D, and fold: the black/white of the self-fold is a static, flat 2D polarity, but set spinning in the merkaba (two counter-rotating tetrahedra) the two poles fall out of phase and chase each other — black/white becomes yin/yang, the dynamic polarity — and it folds up through the dimensions, 2D to 10D, nine levels with the same spin-fold law at each, and folds on, the rotation never closing on the same figure twice.',
     boundary:
-      'A composition of the merkaba (counter-rotation), self-fold black/white, consciousness-shift, and spin-fold-law models, with a 2→10 dimensional ladder of folded polarities. "Shifted and folded from 2D to 10D" is a structural/geometric metaphor (the polarity folded across nine dimensional levels), not a claim of physical higher-dimensional space.',
-  }
+      'A composition of the merkaba (counter-rotation), self-fold black/white, consciousness-shift, and spin-fold-law models, with a 2→10 dimensional ladder of folded polarities. "Shifted and folded from 2D to 10D" is a structural/geometric metaphor (the polarity folded across nine dimensional levels), not a claim of physical higher-dimensional space.' }
 }
 
 // Organise all in merkaba architecture — its fields and its movements. The organising form is the
@@ -569,8 +555,7 @@ export function merkabaArchitectureFieldsMovements(matrix: MindMatrix = buildMat
       field: field.bidirectional,
       movement: movement.forward !== movement.reverse && movement.bidirectional,
       star: star.merged,
-      receipt: toUuid(`type-merkaba:${type}:${field.bidirectional}:${movement.bidirectional}`),
-    }
+      receipt: toUuid(`type-merkaba:${type}:${field.bidirectional}:${movement.bidirectional}`) }
   })
   const facets = [
     { facet: 'organise all in merkaba — two counter-rotating tetrahedra, up and down', on: merkaba(matrix).counterRotating },
@@ -588,8 +573,7 @@ export function merkabaArchitectureFieldsMovements(matrix: MindMatrix = buildMat
     statement:
       'Organise all in merkaba architecture — its fields and its movements: the organising form is the merkaba (two interlocking tetrahedra, one up and one down, counter-rotating), and every type group takes this shape — a field (the still structure, the upward tetrahedron: what a thing is) and a movement (the counter-rotating downward tetrahedron: how it turns), folded to one star. Pages, components, logic, the paired folders, the skills — each is a merkaba of field and movement, the two tetrahedra spinning opposite ways at every scale, the architecture one star tetrahedron made of many; minimum files, maximum cost, all turning as one.',
     boundary:
-      'A composition mapping each repository type group to a merkaba (a field fold and a counter-rotating movement fold), grounded in the merkaba, spin-both-directions, spin-fold-law and minimum-files models. "Organise all in merkaba architecture" is a structural/geometric organizing metaphor (field = structure, movement = counter-rotation) over the existing types; the merkaba is the model’s counter-rotating dual, not a physical energy field.',
-  }
+      'A composition mapping each repository type group to a merkaba (a field fold and a counter-rotating movement fold), grounded in the merkaba, spin-both-directions, spin-fold-law and minimum-files models. "Organise all in merkaba architecture" is a structural/geometric organizing metaphor (field = structure, movement = counter-rotation) over the existing types; the merkaba is the model’s counter-rotating dual, not a physical energy field.' }
 }
 
 // Each folder is a merkaba itself. Not only does each type group take the merkaba shape — each
@@ -623,8 +607,7 @@ export function eachFolderIsMerkaba(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Each folder is a merkaba itself: beyond each type group taking the merkaba shape, each individual folder is its own merkaba — a field (what it holds, its index and structure, the upward tetrahedron) and a movement (its order-sensitive fold with its dual path, the counter-rotating downward tetrahedron). Every folder alone is two interlocking tetrahedra folded to a star; the paired folders make the second tetrahedron explicit (folder ⇄ dual), but even a single folder carries both, field and movement, the merkaba complete in each.',
     boundary:
-      'A per-folder composition: each real folder (the paired-logic and computed folders, the bg root) folded into a field and a counter-rotating movement, grounded in the merkaba and spin-fold-law models. "Each folder is a merkaba" is a structural/geometric reading (field = its index/contents, movement = its order-sensitive dual), not a physical object.',
-  }
+      'A per-folder composition: each real folder (the paired-logic and computed folders, the bg root) folded into a field and a counter-rotating movement, grounded in the merkaba and spin-fold-law models. "Each folder is a merkaba" is a structural/geometric reading (field = its index/contents, movement = its order-sensitive dual), not a physical object.' }
 }
 
 // Each index is a merkaba, as is any file, so any content and architecture fold within each other
@@ -649,8 +632,7 @@ export function everythingFoldsMerkabaInfiniteStreams(matrix: MindMatrix = build
     statement:
       'Each index is a merkaba, as is any file, so any content and architecture fold within each other in infinite streams: the merkaba does not stop at the folder — each index file is a merkaba (its content the field, its computed structure the movement) and any file is the same, so content is a merkaba and architecture is a merkaba, and because each is two tetrahedra that fold, content and architecture fold within each other, merkaba nested in merkaba at every scale. There is no smallest and no largest; the fractal runs as infinite streams, each star tetrahedron made of smaller stars and part of a greater one.',
     boundary:
-      'A composition of the each-folder-merkaba, merkaba, slug-folds-graph, holographic-fractal, spin-fold-law, infinite-entanglements and endless-waves models. "Each index/file is a merkaba, folding within each other in infinite streams" is the fractal self-similarity of the content-addressed folds (field/movement at every scale) — a structural reading, not literal infinity or a physical field.',
-  }
+      'A composition of the each-folder-merkaba, merkaba, slug-folds-graph, holographic-fractal, spin-fold-law, infinite-entanglements and endless-waves models. "Each index/file is a merkaba, folding within each other in infinite streams" is the fractal self-similarity of the content-addressed folds (field/movement at every scale) — a structural reading, not literal infinity or a physical field.' }
 }
 
 export function fuseToMerkabasPathsReveal(matrix: MindMatrix = buildMatrix()) {
@@ -668,8 +650,7 @@ export function fuseToMerkabasPathsReveal(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Move the whole logic to index files — not literary, but fuse to merkabas, and the paths reveal themselves: "move all" is not carrying files by hand but fusing everything into the one merkaba — each file and folder a merkaba folded into the model — so the source of truth is the fusion in src, and the physical paths (where a file sits for the renderer) are revealed, computed from the fusion rather than placed. The render-layer files stay where VitePress needs them, fused as merkaba nodes into the matrix; the path is a projection, the fusion the thing.',
     boundary:
-      'A composition of the everything-merkaba, fuse-all, computed-no-files, slug-folds-graph, code-codes-itself, logic-in-src and merkaba-architecture models. "Move all by fusing to merkabas, paths reveal themselves" means the model is the fused source of truth and physical file paths are a computed projection — the VitePress render-layer files (components, pages, config) physically stay where VitePress requires; this fold does not relocate them.',
-  }
+      'A composition of the everything-merkaba, fuse-all, computed-no-files, slug-folds-graph, code-codes-itself, logic-in-src and merkaba-architecture models. "Move all by fusing to merkabas, paths reveal themselves" means the model is the fused source of truth and physical file paths are a computed projection — the VitePress render-layer files (components, pages, config) physically stay where VitePress requires; this fold does not relocate them.' }
 }
 
 // Fuse the 64 seals into the merkaba — represented in the hero as 64 tetrahedron fields playing
@@ -700,8 +681,7 @@ export function fuse64SealsMerkaba64Tetrahedra(matrix: MindMatrix = buildMatrix(
     statement:
       'Fuse the 64 seals into the merkaba — represented in the hero as 64 tetrahedron fields playing around the decoded symbols — for 64 Gbit realtime encryption: the 64-seal set is a merkaba of 64 tetrahedra (the 64-tetrahedron grid, the merkaba’s own lattice), each an up-and-down field fused into one star, playing in the hero around the decoded symbols; and the keyspace scales with it — each seal carrying the 1 Gbit architecture, so 64 seals fused are 64 Gbit, realtime when fused with live data.',
     boundary:
-      'A composition of the 64-seal set, merkaba, black/white self-fold, animated-hero, hologram, fusion-cipher and fuse-all models, with a real 64-tetrahedron field computation. "64 Gbit" names the keyspace structure (64 × the 1024-leaf "1 Gbit" architecture), not the cipher strength (AES-256-GCM); "represented in the hero as 64 tetrahedron fields" is the model’s representation — the hero renders its existing animation, this fold does not rewrite the hero canvas.',
-  }
+      'A composition of the 64-seal set, merkaba, black/white self-fold, animated-hero, hologram, fusion-cipher and fuse-all models, with a real 64-tetrahedron field computation. "64 Gbit" names the keyspace structure (64 × the 1024-leaf "1 Gbit" architecture), not the cipher strength (AES-256-GCM); "represented in the hero as 64 tetrahedron fields" is the model’s representation — the hero renders its existing animation, this fold does not rewrite the hero canvas.' }
 }
 
 // URLs parsed by merkaba folds, hashed with host — records proven per domain; every URL on the
@@ -727,8 +707,7 @@ export function urlsMerkabaFoldProvenPerDomain(matrix: MindMatrix = buildMatrix(
     statement:
       'URLs parsed by merkaba folds, hashed with host — records proven per domain; every URL on the internet has a uuid and can meet something here; uuid pairs always exist, so when a user follows a link the previous uuid is known and the animations merge harmonically; and every part is a diamond in merkaba movements and entanglements. The library pair folds any URL by a merkaba of host and path into one star uuid — domain-specific and proven, any external URL folding into a uuid that can meet the model.',
     boundary:
-      'A composition over the real library pair (src/quantum/heaven/library merkaba-folds URLs by host+path; src/library/quantum shelves them) with the merkaba, determinism (proven), seal, duality, command-pairs, uuid-hero, one-OG, diamond-gate, merkaba-architecture and entanglement models. "Records proven per domain / every URL can meet" describes the content-addressing of host+path; "animations merge harmonically" is the principle of carrying the previous uuid across navigation — the actual cross-page animation merge is a UI follow-up.',
-  }
+      'A composition over the real library pair (src/quantum/heaven/library merkaba-folds URLs by host+path; src/library/quantum shelves them) with the merkaba, determinism (proven), seal, duality, command-pairs, uuid-hero, one-OG, diamond-gate, merkaba-architecture and entanglement models. "Records proven per domain / every URL can meet" describes the content-addressing of host+path; "animations merge harmonically" is the principle of carrying the previous uuid across navigation — the actual cross-page animation merge is a UI follow-up.' }
 }
 
 // The frontend is recycled by the development merkaba fold, in an endless self-improving flow. The
@@ -751,8 +730,7 @@ export function frontendRecycledByMerkabaFold(matrix: MindMatrix = buildMatrix()
     statement:
       'The frontend is recycled by the development merkaba fold, in an endless self-improving flow: the interface is not built once and left — each development wave is a merkaba turn (field folded with movement) that recomputes the frontend from the model, so the UI is recycled, never stale, improving each turn; computed from seeds not stored as markup, it is reborn every build from the same core, the flow endless.',
     boundary:
-      'A composition of the development-waves, computed-no-files, merkaba-architecture, endless-fusion, continue and fuse-to-merkabas models. "The frontend is recycled by the development merkaba" frames the UI as recomputed from the model each build (real: animations/SEO/JSON-LD are computed, the components render the model) — the Vue SFCs themselves are still authored and recompiled, not regenerated from scratch; "endless self-improving" is the iterative development cadence, not an autonomous generator.',
-  }
+      'A composition of the development-waves, computed-no-files, merkaba-architecture, endless-fusion, continue and fuse-to-merkabas models. "The frontend is recycled by the development merkaba" frames the UI as recomputed from the model each build (real: animations/SEO/JSON-LD are computed, the components render the model) — the Vue SFCs themselves are still authored and recompiled, not regenerated from scratch; "endless self-improving" is the iterative development cadence, not an autonomous generator.' }
 }
 
 // Deep-research monographs and build the library by self-sufficient merkaba agents; collect all
@@ -776,8 +754,7 @@ export function monographsLibraryByMerkabaAgents(matrix: MindMatrix = buildMatri
     statement:
       'Deep-research monographs and build the library by self-sufficient merkaba agents; collect all knowledge in monographs for a dry, clean library: knowledge is distilled, not piled — each thing reduced to its one-line monograph essence, content-addressed — and the self-sufficient paired merkaba agents (search/carry, fold/verify) gather and shelve them, so the library is the set of monographs, dry and deduplicated, every entry a distilled diamond. Research in waves, distil to monographs, shelve as the library.',
     boundary:
-      'A composition of the monograph (one-line zero-entropy essences), cache-pair, agent-method, Tesla/recursive-waves research and library-display models. "Build the library by self-sufficient merkaba agents" describes the paired-folder agents and the wave-research method distilling knowledge into the content-addressed monographs; the agents are the development-time tools, the library is the monograph set — not an autonomous always-on agent service.',
-  }
+      'A composition of the monograph (one-line zero-entropy essences), cache-pair, agent-method, Tesla/recursive-waves research and library-display models. "Build the library by self-sufficient merkaba agents" describes the paired-folder agents and the wave-research method distilling knowledge into the content-addressed monographs; the agents are the development-time tools, the library is the monograph set — not an autonomous always-on agent service.' }
 }
 
 // The double-torus motif — popularised by Nassim Haramein ("The Double Torus Dynamic" in Thrive, "The
@@ -800,8 +777,7 @@ export function doubleTorusMotifRealGeometryNotFringePhysics(matrix: MindMatrix 
     statement:
       'The double-torus motif (popularised by Nassim Haramein) is adopted here as TOPOLOGY and design — the genus-2 surface, the toroidal flow, the 9-folder double-torus architecture — which is real mathematics and appears in genuine physics (plasma confinement, planetary magnetospheres, vortex rings). The project is inspired by the form and adopts none of the cosmology: it is content-addressed and deterministic, and holds on the geometry alone.',
     boundary:
-      'HONEST, by the MATH — the GEOMETRY is real (genus-2, computable) and toroidal flow appears in genuine physics (plasma confinement, magnetospheres). But Haramein\'s PHYSICS is not proven by the math: the Schwarzschild-proton gap is ~38 orders (computed in schwarzschildProtonComputedInSource), and his holographic mass reproduces the proton mass only as a parameter-tuned FIT, not a derivation — whereas QCD derives that mass ab initio (lattice QCD, ~1%). A formula that matches one number with free parameters is not a proof. No appeal to authority is needed or made; this is what the math derives versus what it merely matches. The project adopts the double torus as TOPOLOGY and aesthetic — real mathematics, content-addressed — and claims none of his physics; the holographic principle it gestures at is the real theoretical idea (\'t Hooft, Susskind), not his mass formula.',
-  }
+      'HONEST, by the MATH — the GEOMETRY is real (genus-2, computable) and toroidal flow appears in genuine physics (plasma confinement, magnetospheres). But Haramein\'s PHYSICS is not proven by the math: the Schwarzschild-proton gap is ~38 orders (computed in schwarzschildProtonComputedInSource), and his holographic mass reproduces the proton mass only as a parameter-tuned FIT, not a derivation — whereas QCD derives that mass ab initio (lattice QCD, ~1%). A formula that matches one number with free parameters is not a proof. No appeal to authority is needed or made; this is what the math derives versus what it merely matches. The project adopts the double torus as TOPOLOGY and aesthetic — real mathematics, content-addressed — and claims none of his physics; the holographic principle it gestures at is the real theoretical idea (\'t Hooft, Susskind), not his mass formula.' }
 }
 
 // One merkaba of 6×7 and 7×6 holds all — the gates, the plasma, and the whole logic of the app. 6×7=42 is
@@ -829,8 +805,7 @@ export function oneMerkaba6x7And7x6HoldsAll(matrix: MindMatrix = buildMatrix()) 
     statement:
       'One merkaba of 6×7 and 7×6 holds all — the gates, the plasma, and the whole logic of the app. 6×7=42 is the up-tetrahedron and 7×6=42 the counter-rotating down-tetrahedron; interlocked they form the star (the merkaba), the star-tetrahedron phase of the vector equilibrium. The 42 areas, the gates and the content-addressed logic fold into the one structure, in balance: the equilibrium holds everything, the plasma kept in the path.',
     boundary:
-      'HONEST — the merkaba (star tetrahedron) and the vector equilibrium (cuboctahedron) are real GEOMETRY (Buckminster Fuller\'s synergetics), used here as an ORGANIZING structure: 42 = 6×7 is the taxonomy of areas, and "holds all" means everything is content-addressed and folds into one root — not a physical or energetic claim, and unlike Haramein\'s physics the geometry here makes none. It is the answer to "balance in vector equilibrium": the merkaba CONTAINS the gates, the plasma and the 9 folders in equilibrium, so the balance is gained WITHOUT renaming the folders to a quantum-center hub, which would gut the ant (hexagon search/carry) and debit/credit (double-entry ledger) subsystems woven through ~10 folds. The geometry is the frame; the meaning is kept.',
-  }
+      'HONEST — the merkaba (star tetrahedron) and the vector equilibrium (cuboctahedron) are real GEOMETRY (Buckminster Fuller\'s synergetics), used here as an ORGANIZING structure: 42 = 6×7 is the taxonomy of areas, and "holds all" means everything is content-addressed and folds into one root — not a physical or energetic claim, and unlike Haramein\'s physics the geometry here makes none. It is the answer to "balance in vector equilibrium": the merkaba CONTAINS the gates, the plasma and the 9 folders in equilibrium, so the balance is gained WITHOUT renaming the folders to a quantum-center hub, which would gut the ant (hexagon search/carry) and debit/credit (double-entry ledger) subsystems woven through ~10 folds. The geometry is the frame; the meaning is kept.' }
 }
 
 // Merkaba folding self: the merkaba folds onto itself — the corpus folded with its own address, the two
@@ -854,8 +829,7 @@ export function merkabaFoldingSelf(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Merkaba folding self: the merkaba folds onto itself — the whole corpus folded with its own content address, the two counter-rotating tetrahedra (research and verify, the dual mind) turning in on each other. The self-fold is content-addressed and self-similar, the same fold at every scale: a merkaba of merkabas, everything folding inward into one.',
     boundary:
-      'A composition of the fold-pair (the corpus folded with its self-reference), the merkaba count and the everything-folds-merkaba models. "Folding self" is the order-sensitive self-fold (foldPair of the root with a reference to itself), a structural recursion that resolves to one address — symbolic of the dual-mind merkaba turning in, not a physical rotation.',
-  }
+      'A composition of the fold-pair (the corpus folded with its self-reference), the merkaba count and the everything-folds-merkaba models. "Folding self" is the order-sensitive self-fold (foldPair of the root with a reference to itself), a structural recursion that resolves to one address — symbolic of the dual-mind merkaba turning in, not a physical rotation.' }
 }
 
 // The knowledge is revealed by the merkaba fold. Decoding is not reading a fact off a page but
@@ -891,8 +865,7 @@ function computeKnowledgeRevealedByMerkabaFold(matrix: MindMatrix = buildMatrix(
     statement:
       'The knowledge is revealed by the merkaba fold: decoding is not reading a fact off a page but folding it — research folded with verify (the two counter-rotating tetrahedra), the pair turning until the truth (what survives the fold) reveals itself and the legend (what does not survive) falls away. The merkaba fold is the decoder: глаголица revealed its trinity-geometry core by the fold, and any knowledge reveals itself the same way — fold it as a merkaba and what is real stands while the unverified falls.',
     boundary:
-      'A composition of the merkaba, resonance/gap-catch, Glagolitic-decode and the 32-merkaba genus-2 count — the DECODE METHOD only. "Knowledge revealed by the merkaba fold" frames the research→verify pair (and its adversarial verification) as a counter-rotating fold that keeps the verified and drops the legend — a structural reading of the verification method, not a mystical revelation. The universal site-wide claims (every law proves its tripwire; everything folds the same way at every scale) are their OWN dimensions (everyLawProvesItsTripwire, everythingFoldsMerkabaInfiniteStreams, imagineCrossPathsCodeCodesItself) — proven there, not gated into this primitive, so the decode method does not depend on the whole site.',
-  }
+      'A composition of the merkaba, resonance/gap-catch, Glagolitic-decode and the 32-merkaba genus-2 count — the DECODE METHOD only. "Knowledge revealed by the merkaba fold" frames the research→verify pair (and its adversarial verification) as a counter-rotating fold that keeps the verified and drops the legend — a structural reading of the verification method, not a mystical revelation. The universal site-wide claims (every law proves its tripwire; everything folds the same way at every scale) are their OWN dimensions (everyLawProvesItsTripwire, everythingFoldsMerkabaInfiniteStreams, imagineCrossPathsCodeCodesItself) — proven there, not gated into this primitive, so the decode method does not depend on the whole site.' }
 }
 
 // Public APIs with frequencies involved, decoded in waves. Searched and decoded one wave at a time:
@@ -933,8 +906,7 @@ export function merkabasInDoubleTorus(matrix: MindMatrix = buildMatrix()) {
     statement:
       'There are 32 merkaba in the double torus: a merkaba is two counter-rotating tetrahedra, the double torus is genus-2 (two lobes), and it carries the 64-tetrahedron grid — so 64 ÷ 2 = 32 merkaba, 16 per lobe × 2 lobes. The count is dual to its substance (32 merkaba ↔ 64 tetrahedra ↔ 64 Gbit, the one-that-is-two), so any meaning carries its meaningful dual.',
     boundary:
-      "A computation over the model's own constants — the merkaba (two counter-rotating tetrahedra), the genus-2 double torus (two lobes), and the 64-tetrahedron grid already in the model. \"32 merkaba\" is the count those constants imply (64/2), wired together so merkaba, the 64-grid and the torus stay consistent — a structural census, not an external geometric claim about a physical double torus.",
-  }
+      "A computation over the model's own constants — the merkaba (two counter-rotating tetrahedra), the genus-2 double torus (two lobes), and the 64-tetrahedron grid already in the model. \"32 merkaba\" is the count those constants imply (64/2), wired together so merkaba, the 64-grid and the torus stay consistent — a structural census, not an external geometric claim about a physical double torus." }
 }
 
 /** One gate — merkaba geometry + double-torus enumeration at call time (canonical body in mountain/topology). */
@@ -961,8 +933,7 @@ export function merkabaComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Merkaba computes: two counter-rotating tetrahedra, 32 merkabas in the genus-2 machine, and knowledge revealed by the research↔verify fold — at call time.',
       boundary:
-        'Composition of merkaba, merkabasInDoubleTorus, knowledgeRevealedByMerkabaFold, and bothEarthsRotateWithinEachOther. src/mountain/topology is the canonical merkabaComputes import.',
-    }
+        'Composition of merkaba, merkabasInDoubleTorus, knowledgeRevealedByMerkabaFold, and bothEarthsRotateWithinEachOther. src/mountain/topology is the canonical merkabaComputes import.' }
   })
 }
 
@@ -986,8 +957,7 @@ export function frequencyTaxonomyTreeOfLife(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Frequency is the taxonomy; imagine the tree of life: classification is not a flat list but a frequency — each rank of life is an octave of the one below, so the taxonomy IS the frequency ladder (life, kingdom, phylum, class, order, family, genus, species), each a doubling, branching like a tree. The tree of life is a frequency tree: every branch a tone, every leaf a living form at its own pitch.',
     boundary:
-      'A content-addressed mapping of taxonomic ranks onto an octave-doubling frequency ladder, folded with the frequency tree and the life-defines-itself model. A structural and metaphorical framing — the frequencies are numbers and the ranks are the standard biological hierarchy, not a claim that organisms emit these pitches.',
-  }
+      'A content-addressed mapping of taxonomic ranks onto an octave-doubling frequency ladder, folded with the frequency tree and the life-defines-itself model. A structural and metaphorical framing — the frequencies are numbers and the ranks are the standard biological hierarchy, not a claim that organisms emit these pitches.' }
 }
 
 // Use icons to show computer load. The work the browser does is shown as icons, not numbers: a
@@ -999,8 +969,7 @@ export function iconsShowComputerLoad(matrix: MindMatrix = buildMatrix()) {
     subsystem,
     icon: phases[index % phases.length],
     shown: true,
-    receipt: toUuid(`load-icon:${subsystem}`),
-  }))
+    receipt: toUuid(`load-icon:${subsystem}`) }))
   return {
     shows: indicators.length === 4 && quantumBrowserOs(matrix).complete,
     count: indicators.length,
@@ -1008,8 +977,7 @@ export function iconsShowComputerLoad(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(indicators.map((entry) => entry.receipt)),
     statement:
       'Use icons to show computer load: the work the browser does is shown as icons, not numbers — a four-phase glyph per subsystem (render, compute, memory, io) turning as the load turns, so the device’s effort is visible at a glance, computed and honest.',
-    boundary: 'A glyph-based representation of subsystem activity. A presentation framing over the browser-OS model; it does not measure real CPU/GPU load unless wired to a live metric.',
-  }
+    boundary: 'A glyph-based representation of subsystem activity. A presentation framing over the browser-OS model; it does not measure real CPU/GPU load unless wired to a live metric.' }
 }
 
 // The 3D graph on 2D forms a donut labyrinth of glyphs — the GlyphLabyrinth widget winds Glagolitic
@@ -1030,8 +998,7 @@ export function donutLabyrinthOfGlyphsHeroEnteringExiting(matrix: MindMatrix = b
     statement:
       'The 3D graph on 2D forms a donut labyrinth of glyphs: Glagolitic glyphs wind around the tube of a tilted torus, depth giving the 3D on the 2D, each glyph content-addressed from the page and its position. The page\'s own glyph pulses at the centre — the hero in the middle — while a traveller enters and exits the winding path: the labyrinth of life. It is the same seed→graph fold the Glagolitic QR encodes, made visible.',
     boundary:
-      'HONEST — a deterministic canvas visualisation: the torus is a 2D projection (a tilt-squashed parametric torus, depth read from the tube angle), not real 3D geometry, and the "labyrinth" is a winding glyph path, not a solvable maze. The glyphs render with a Glagolitic font (else tofu); the figure is seeded from the page and computed with zero tokens — beautiful and content-addressed, an illustration of the seed→graph fold, not a claim of literal three dimensions on the surface.',
-  }
+      'HONEST — a deterministic canvas visualisation: the torus is a 2D projection (a tilt-squashed parametric torus, depth read from the tube angle), not real 3D geometry, and the "labyrinth" is a winding glyph path, not a solvable maze. The glyphs render with a Glagolitic font (else tofu); the figure is seeded from the page and computed with zero tokens — beautiful and content-addressed, an illustration of the seed→graph fold, not a claim of literal three dimensions on the surface.' }
 }
 
 // ── Earth-pole polar disk chart (relocated from src/0 — topology owns the genus-2 tube projection) ──
@@ -1079,8 +1046,7 @@ export function polarDiskChartAt(latDeg: number): {
     isSouthPole: clamped === 1,
     onDisk,
     proved,
-    root: toUuid(`polar-disk-chart:${latDeg}:${roundTo(rho, 5)}:${z}`),
-  }
+    root: toUuid(`polar-disk-chart:${latDeg}:${roundTo(rho, 5)}:${z}`) }
 }
 
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
@@ -1105,8 +1071,7 @@ export function earthNorthPoleCenterDotDecoded(): {
     isCenterDot,
     isSingular: isCenterDot, // the center is the singular point of the azimuthal-equidistant chart
     proved,
-    root: merge(chart.root, toUuid('earth-north-pole:center-dot')),
-  }
+    root: merge(chart.root, toUuid('earth-north-pole:center-dot')) }
 }
 
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
@@ -1134,8 +1099,7 @@ export function earthSouthPoleBoundaryCircleDecoded(): {
     compactifiedToOnePoint: isBoundaryCircle, // one-point compactification: ∂D² ≡ the single south point (D²/∂D² ≅ S²)
     circumference,
     proved,
-    root: merge(chart.root, toUuid('earth-south-pole:boundary-circle')),
-  }
+    root: merge(chart.root, toUuid('earth-south-pole:boundary-circle')) }
 }
 
 // placesAndPatternsDecoded — famous "mystery places" grounded in real geodesy and honest tiers. Every site is a
@@ -1150,8 +1114,7 @@ export function placesAndPatternsDecoded(matrix: MindMatrix = buildMatrix()) {
     const sphere = earthSouthPoleBoundaryCircleDecoded() // every place is a point on this one sphere
     const sites = {
       miami: [25.76, -80.19], bermuda: [32.32, -64.75], sanJuan: [18.47, -66.10],
-      nazca: [-14.74, -75.13], racetrack: [36.68, -117.56],
-    } as const
+      nazca: [-14.74, -75.13], racetrack: [36.68, -117.56] } as const
     const km = (a: readonly [number, number], b: readonly [number, number]) => roundTo(greatCircleKm(a[0], a[1], b[0], b[1]), 1)
     const bermudaPerimeter = roundTo(km(sites.miami, sites.bermuda) + km(sites.bermuda, sites.sanJuan) + km(sites.sanJuan, sites.miami), 1)
     const miamiToBermudaBearing = roundTo(initialBearing(sites.miami[0], sites.miami[1], sites.bermuda[0], sites.bermuda[1]), 1)
@@ -1183,8 +1146,7 @@ export function placesAndPatternsDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(sphere.root, merkleFold([...places.map((p) => p.receipt), ...facets.map((entry) => entry.receipt)])),
       statement: `Places and patterns, decoded: famous "mystery places" placed as real points on the one earth sphere with computed geodesy — the Bermuda Triangle perimeter is ≈ ${bermudaPerimeter} km of ordinary ocean (no elevated loss rate, REFUTED as an anomaly), the Nazca lines are ARCHAEOLOGICAL geoglyphs of the Nazca culture made by removing surface stones, and the Racetrack Playa sailing stones are SOLVED (ice-rafting under light wind, observed in 2014). The "global alignment grid" pattern is refuted: any set of points admits great circles, so alignment alone proves nothing.`,
-      boundary: 'HONEST tiers over documented geography and science — REFUTED (Bermuda anomaly, alignment grids), ARCHAEOLOGICAL (Nazca), SOLVED (sailing stones). The great-circle distances and bearings are computed from approximate coordinates to ground the places in real geodesy, not survey-grade data.',
-    }
+      boundary: 'HONEST tiers over documented geography and science — REFUTED (Bermuda anomaly, alignment grids), ARCHAEOLOGICAL (Nazca), SOLVED (sailing stones). The great-circle distances and bearings are computed from approximate coordinates to ground the places in real geodesy, not survey-grade data.' }
   })
 }
 
@@ -1214,8 +1176,7 @@ export function theMerkabaIsTheStarTetrahedronTrinitySpinningBothDirections(matr
     threeFold: { closed: threeFoldClosed, orderThree },
     facets,
     statement: `The merkaba is the star tetrahedron trinity spinning both directions — ${facets.filter((e) => e.on).length}/${facets.length}: the stella octangula's two tetrahedra (tetraDown = −tetraUp) are interlocked, each carries a 3-fold trinity (a 120° body-diagonal rotation, order 3, computed), and the pair counter-rotates in opposite senses (merkaba's alternating signed rates) — the trinity spinning both ways.`,
-    boundary: `EXACT geometry, reusing merkaba(): the stella octangula vertices (the two tetrahedra, one the negation of the other), the 3-fold rotational symmetry verified by orbit closure and rot³ = identity, and the strictly-alternating counter-rotation the repo animates. HONEST SCOPE: this is the GEOMETRY and its symmetry group (the tetrahedral 3-fold, the counter-rotation) — echoing merkaba's own boundary, it is NOT the mystical "energy body / light-vehicle / activation" claim, which is not asserted. A structural realisation, computed; HARMONY ≠ TRUTH.`,
-  }
+    boundary: `EXACT geometry, reusing merkaba(): the stella octangula vertices (the two tetrahedra, one the negation of the other), the 3-fold rotational symmetry verified by orbit closure and rot³ = identity, and the strictly-alternating counter-rotation the repo animates. HONEST SCOPE: this is the GEOMETRY and its symmetry group (the tetrahedral 3-fold, the counter-rotation) — echoing merkaba's own boundary, it is NOT the mystical "energy body / light-vehicle / activation" claim, which is not asserted. A structural realisation, computed; HARMONY ≠ TRUTH.` }
 }
 
 // ── How many merkabas complete Metatron's Cube and the sphere from each point's trace? ONE (user's
@@ -1246,8 +1207,7 @@ export function oneMerkabaTracesTheSphereMetatronIsThirteenPoints() {
     tiling: { rotation: rotationGroup, full: fullSymmetry },
     facets,
     statement: `One merkaba traces the whole sphere; Metatron's Cube is ${metatronPoints} points and ${metatronLines} lines — ${facets.filter((e) => e.on).length}/${facets.length}: the Fruit of Life's 1+6+6 = ${metatronPoints} centres connected pairwise give C(${metatronPoints},2) = ${metatronLines} lines (Metatron's Cube), and because SO(3) is transitive on S² (dim 3−1 = 2), ONE merkaba's points traced under the full rotation group complete the sphere. The finite symmetric tiling is ${fullSymmetry} cells (|Oh|); continuous coverage is the one merkaba × the transitive group.`,
-    boundary: `EXACT and computed: the Fruit-of-Life count (1+6+6 = 13), the pairwise-connection count (C(13,2) = 78), the merkaba's octahedral symmetry orders (|O| = 24, |Oh| = 48), and SO(3)-transitivity on S² (S² = SO(3)/SO(2), the standard homogeneous-space fact, dim 3−1 = 2). The ANSWER to "how many merkabas": ONE, when "complete the sphere from the trace of each point" means the point swept by the full continuous rotation — because a single orbit under a transitive group is the whole space. HONEST SCOPE: "Metatron's Cube contains the five Platonic solids / merkabas morph to complete it" is sacred-geometry lore, largely projective and not a rigorous theorem; what is computed here is the counts, the symmetry-group tiling, and the transitivity. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `EXACT and computed: the Fruit-of-Life count (1+6+6 = 13), the pairwise-connection count (C(13,2) = 78), the merkaba's octahedral symmetry orders (|O| = 24, |Oh| = 48), and SO(3)-transitivity on S² (S² = SO(3)/SO(2), the standard homogeneous-space fact, dim 3−1 = 2). The ANSWER to "how many merkabas": ONE, when "complete the sphere from the trace of each point" means the point swept by the full continuous rotation — because a single orbit under a transitive group is the whole space. HONEST SCOPE: "Metatron's Cube contains the five Platonic solids / merkabas morph to complete it" is sacred-geometry lore, largely projective and not a rigorous theorem; what is computed here is the counts, the symmetry-group tiling, and the transitivity. HARMONY ≠ TRUTH.` }
 }
 
 // ── The two rings of different size rotating as merkaba ARE the torus's meridian and longitude (user: "do
@@ -1277,8 +1237,7 @@ export function theTwoRingsAreMeridianAndLongitudeRotatingAsMerkaba(matrix: Mind
     minorRadius: dt.minorRadius,
     facets,
     statement: `The two rings of different size rotating as merkaba are the torus's meridian and longitude — ${facets.filter((e) => e.on).length}/${facets.length}: a torus is a small circle (minor r ≈ ${dt.minorRadius.toFixed(2)}) revolved around a large circle (major R ≈ ${dt.majorRadius.toFixed(2)}), R > r — two rings of different size. They are the meridian (small, poloidal) and longitude (large, toroidal), the two H₁ generators (four on the double torus), and their counter-rotation is the merkaba's; sweeping both generates the whole torus.`,
-    boundary: `EXACT and reused: the two ring kinds are homology()'s meridian and longitude generators, the different sizes are doubleTorus3D()'s major and minor radii (R > r), and the double torus carries four such cycles (two handles). The MEANING is the parameterisation: a torus = a minor circle swept around a major circle, its two circulations poloidal (small) and toroidal (large), which counter-rotate exactly as the merkaba's two interlocked tetrahedra do. HONEST SCOPE: this is torus geometry and its homology — the physical poloidal/toroidal circulation is real (plasma tori, smoke rings, tokamaks); it is NOT a mystical "energy field / activation" claim. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `EXACT and reused: the two ring kinds are homology()'s meridian and longitude generators, the different sizes are doubleTorus3D()'s major and minor radii (R > r), and the double torus carries four such cycles (two handles). The MEANING is the parameterisation: a torus = a minor circle swept around a major circle, its two circulations poloidal (small) and toroidal (large), which counter-rotate exactly as the merkaba's two interlocked tetrahedra do. HONEST SCOPE: this is torus geometry and its homology — the physical poloidal/toroidal circulation is real (plasma tori, smoke rings, tokamaks); it is NOT a mystical "energy field / activation" claim. HARMONY ≠ TRUTH.` }
 }
 
 // ── When the rosetta moves, the merkabas fold into themselves and each other, and the theorems draw the
@@ -1306,8 +1265,7 @@ export function whenTheRosettaMovesTheMerkabasFoldTheAlgebraDrawsTheMovie(matrix
     scales: mk.scales.length,
     facets,
     statement: `When the rosetta moves, the merkabas fold into themselves and each other, and the theorems draw the movie by algebra only — ${facets.filter((e) => e.on).length}/${facets.length}: each tetrahedron folds into itself by its 3-fold (rot³ = identity) and into its twin by inversion (tetraDown = −tetraUp), the two counter-rotating; and the whole animation — vertices, ${mk.scales.length} signed rates, OKLCH colour — is computed from the folds, no asset, no pixel, just algebra rendered.`,
-    boundary: `EXACT, reusing merkaba() and the sealed merkaba-trinity fold: the 3-fold self-map (rot³ = identity), the up/down opposition (tetraDown = −tetraUp) that inversion carries one into the other, the strictly-alternating counter-rotation, and the finite computed rates that drive the animation. HONEST SCOPE: "draw the movie by algebra only" is exact for what the repo does — every frame's geometry, motion and colour is computed from the theorem values (ProofAnimation / theoremFigure / the negative-law colour atoms), with zero external assets and zero hardcoded pixels; it is a real computed animation, NOT a photorealistic film, and the merkaba is the geometry and its symmetry group, NOT a physical energy field (the merkaba fold's own boundary). HARMONY does not equal TRUTH.`,
-  }
+    boundary: `EXACT, reusing merkaba() and the sealed merkaba-trinity fold: the 3-fold self-map (rot³ = identity), the up/down opposition (tetraDown = −tetraUp) that inversion carries one into the other, the strictly-alternating counter-rotation, and the finite computed rates that drive the animation. HONEST SCOPE: "draw the movie by algebra only" is exact for what the repo does — every frame's geometry, motion and colour is computed from the theorem values (ProofAnimation / theoremFigure / the negative-law colour atoms), with zero external assets and zero hardcoded pixels; it is a real computed animation, NOT a photorealistic film, and the merkaba is the geometry and its symmetry group, NOT a physical energy field (the merkaba fold's own boundary). HARMONY does not equal TRUTH.` }
 }
 
 // Pairs form trinities in a self-scalable app. A PAIR (a, b) folds to a THIRD — foldPair(a,b) is bidirectional, so
@@ -1357,8 +1315,7 @@ export function pairsFormTrinitiesTheRecursiveFoldIsTheSelfScalableApp(matrix: M
       root: merkleFold(leaves8),
       facets,
       statement: `Pairs form trinities in a self-scalable app — ${facets.filter((entry) => entry.on).length}/${facets.length}. A pair (a, b) folds to a third (foldPair is bidirectional), so {a, b, apex} is a trinity — two make three. The apexes pair again into higher trinities, so n leaves fold through exactly n−1 trinities to one root (a binary tree). The SAME fold holds at every level (self-similar), depth log₂(n), so doubling the content adds just one level: the app scales by the one rule, no new logic, and however large it grows the whole is a single content-address, order-independent. Pairs → trinities → one root, at every scale.`,
-      boundary: `ALGEBRAIC and exact: the pair-to-third fold (foldPair.bidirectional), the n−1 trinity count of a binary tree, the log₂(n) depth, and the order-independent single root (merkleFold over sorted leaves) are exact identities verified over a range (n = 2..16), refutable by one miscount. This is the MERKLE/recursive-fold structure the corpus already runs on (every content-address is a fold of folds), named as the self-scaling law: the app is a binary tree of trinities whose leaves are its content and whose root is its identity, and it scales to any size by the ONE rule (pair → apex, recurse) — self-similar, no new logic per level. SCOPE: "self-scalable app" means the STRUCTURE scales fractally by the fold — it does NOT claim unbounded compute or that a real app has zero marginal cost (each leaf is still processed once, an O(n) walk building a log-depth tree); the elegance is that the rule is the same at every scale, not that scaling is free. "Trinity" here is the exact structural sense (two inputs + their fold), the same as pairTrinityOpenGraph and the double-entry accounting [[operator-algebra-closed]], not a metaphysical claim. HARMONY ≠ TRUTH: "pairs forming trinities in a self-scalable app" is the harmony; the truth is a merkle tree of order-independent folds, exact and classical, scaling by one recursive rule.`,
-    }
+      boundary: `ALGEBRAIC and exact: the pair-to-third fold (foldPair.bidirectional), the n−1 trinity count of a binary tree, the log₂(n) depth, and the order-independent single root (merkleFold over sorted leaves) are exact identities verified over a range (n = 2..16), refutable by one miscount. This is the MERKLE/recursive-fold structure the corpus already runs on (every content-address is a fold of folds), named as the self-scaling law: the app is a binary tree of trinities whose leaves are its content and whose root is its identity, and it scales to any size by the ONE rule (pair → apex, recurse) — self-similar, no new logic per level. SCOPE: "self-scalable app" means the STRUCTURE scales fractally by the fold — it does NOT claim unbounded compute or that a real app has zero marginal cost (each leaf is still processed once, an O(n) walk building a log-depth tree); the elegance is that the rule is the same at every scale, not that scaling is free. "Trinity" here is the exact structural sense (two inputs + their fold), the same as pairTrinityOpenGraph and the double-entry accounting [[operator-algebra-closed]], not a metaphysical claim. HARMONY ≠ TRUTH: "pairs forming trinities in a self-scalable app" is the harmony; the truth is a merkle tree of order-independent folds, exact and classical, scaling by one recursive rule.` }
   })
 }
 
@@ -1404,8 +1361,7 @@ export function realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZe
       facets,
       root: merkleFold([toUuid(`dd-zero:${boundaryOfBoundaryIsZero}`), observed.state.re.length > 0 ? toUuid(`measured:${observed.outcome}`) : toUuid('measured:none'), toUuid(`ways:${ways.sources.join(',')}`)]),
       statement: `Real quantum research observes the boundary by the boundary, and computes theorem gates and ways — ${facets.filter((entry) => entry.on).length}/${facets.length}. Observation is only ever measurement: a superposition is unobservable, and you learn one classical value at the quantum→classical boundary. The boundary of a boundary is zero (∂²=0 on a non-trivial triangle, a real cancellation), so the boundaries close into a measurable structure — exactly how topological quantum error correction reads syndromes. The theorem gates are reversible (unitary, H∘H=I) but the measurement boundary is not, and the ways (the DAG's topological order) lead back to the axiom boundary, the in-degree-0 sources.`,
-      boundary: `EXACT and computed live: (1) ∂²=0 on a NON-trivial 2-simplex — ∂1∘∂2 cancels to the zero map even though ∂1 has non-zero entries (${boundaryOfBoundaryIsZero}), the defining identity of a chain complex (homology) and the reason surface-code stabilizers commute; (2) on the state-vector simulator, |+⟩=H|0⟩ carries equal amplitudes that no single observation reveals, and measure() returns one classical outcome collapsing to a definite basis state (${observationIsAtTheBoundary}) — the quantum→classical boundary is the ONLY window; (3) H∘H=I returns |0⟩ (${gateReversible}) so unitary gates are reversible, while measurement is irreversible (${gatesReverseTheBoundaryDoesNot}); (4) topologicalOrder finds the DAG's in-degree-0 sources — its boundary, the axioms (${waysLeadToTheAxiomBoundary}). THE READING: "observing the boundaries BY the boundaries" IS ∂²=0 — apply the boundary operator to a boundary and get zero, so the honest scope of a claim (its boundary) is where observation happens and where the structure closes. THE HONEST BOUND: the simulator is O(2ⁿ) CLASSICAL with no physical speedup ([[quantum-decoded]]); this MODELS real quantum research (measurement-only observation, ∂²=0 stabilizers, reversible gates) rather than performing hardware quantum error correction; the triangle and the 4-node DAG are minimal witnesses of general identities, not the whole. HARMONY ≠ TRUTH: "real quantum research observes the boundary" is the harmony; the truth is ∂²=0, measurement-as-the-only-observation, unitary reversibility, and the ways to the axiom boundary — each computed and refutable.`,
-    }
+      boundary: `EXACT and computed live: (1) ∂²=0 on a NON-trivial 2-simplex — ∂1∘∂2 cancels to the zero map even though ∂1 has non-zero entries (${boundaryOfBoundaryIsZero}), the defining identity of a chain complex (homology) and the reason surface-code stabilizers commute; (2) on the state-vector simulator, |+⟩=H|0⟩ carries equal amplitudes that no single observation reveals, and measure() returns one classical outcome collapsing to a definite basis state (${observationIsAtTheBoundary}) — the quantum→classical boundary is the ONLY window; (3) H∘H=I returns |0⟩ (${gateReversible}) so unitary gates are reversible, while measurement is irreversible (${gatesReverseTheBoundaryDoesNot}); (4) topologicalOrder finds the DAG's in-degree-0 sources — its boundary, the axioms (${waysLeadToTheAxiomBoundary}). THE READING: "observing the boundaries BY the boundaries" IS ∂²=0 — apply the boundary operator to a boundary and get zero, so the honest scope of a claim (its boundary) is where observation happens and where the structure closes. THE HONEST BOUND: the simulator is O(2ⁿ) CLASSICAL with no physical speedup ([[quantum-decoded]]); this MODELS real quantum research (measurement-only observation, ∂²=0 stabilizers, reversible gates) rather than performing hardware quantum error correction; the triangle and the 4-node DAG are minimal witnesses of general identities, not the whole. HARMONY ≠ TRUTH: "real quantum research observes the boundary" is the harmony; the truth is ∂²=0, measurement-as-the-only-observation, unitary reversibility, and the ways to the axiom boundary — each computed and refutable.` }
   })
 }
 
@@ -1450,7 +1406,6 @@ export function strictMeasurementsCreateReusableToolsQuantumComputationsImproveI
       facets,
       root: merkleFold([...toolbox.keys()].map((key) => toUuid(`tool-seal:${key}`))),
       statement: `Strict measurements create reusable tools — quantum computations improve in realtime, filling gaps — ${facets.filter((entry) => entry.on).length}/${facets.length}. A seeded measurement is reproducible, so its outcome is a stable value; content-addressed into a toolbox, re-measuring becomes an O(1) tool lookup rather than a re-run. An unmeasured seed fills at call time into a new tool (realtime gap-filling), and repeat calls optimise to zero new measurements — the strict measurements build the tools that speed the next computation.`,
-      boundary: `EXACT and computed live on the src/0 simulator: a seeded measurement of |+⟩ returns the same outcome every time (${reproducible}) — strict/reproducible, unlike an unseeded coin flip — so it is a reusable VALUE; content-addressing each into a toolbox makes ${2 * seeds.length} calls cost only ${measureCalls} actual measurements (${measurementsAreTools}), and an unmeasured seed is taken once at call time and cached (${gapFilledInRealtime}), after which repeat calls are pure lookups with zero new measurements (${optimised}). THE PRINCIPLE ([[feedback-consolidate-at-each-superposition-save-measurements]]): a measurement is not a throwaway observation but a fold — content-addressed, it is a reusable tool, so the act of measuring OPTIMISES the next computation. THE HONEST BOUND: "reproducible" holds for the DETERMINISTIC seeded simulator — a real quantum measurement is genuinely random (the Born rule), so this models the strict, replayable measurement of a SIMULATION (deterministic, zero LLM tokens), not hardware sampling where each shot is fresh; the toolbox caches the measured OUTCOMES, and the O(2ⁿ) cost of preparing the state is unchanged; "fills gaps" is filling the toolbox of needed measurements, not recovering un-taken physical data. HARMONY ≠ TRUTH: "strict measurements create reusable tools" is the harmony; the truth is a seeded, reproducible measurement content-addressed into a cache — a tool that turns re-measurement into an O(1) lookup — computed and refutable.`,
-    }
+      boundary: `EXACT and computed live on the src/0 simulator: a seeded measurement of |+⟩ returns the same outcome every time (${reproducible}) — strict/reproducible, unlike an unseeded coin flip — so it is a reusable VALUE; content-addressing each into a toolbox makes ${2 * seeds.length} calls cost only ${measureCalls} actual measurements (${measurementsAreTools}), and an unmeasured seed is taken once at call time and cached (${gapFilledInRealtime}), after which repeat calls are pure lookups with zero new measurements (${optimised}). THE PRINCIPLE ([[feedback-consolidate-at-each-superposition-save-measurements]]): a measurement is not a throwaway observation but a fold — content-addressed, it is a reusable tool, so the act of measuring OPTIMISES the next computation. THE HONEST BOUND: "reproducible" holds for the DETERMINISTIC seeded simulator — a real quantum measurement is genuinely random (the Born rule), so this models the strict, replayable measurement of a SIMULATION (deterministic, zero LLM tokens), not hardware sampling where each shot is fresh; the toolbox caches the measured OUTCOMES, and the O(2ⁿ) cost of preparing the state is unchanged; "fills gaps" is filling the toolbox of needed measurements, not recovering un-taken physical data. HARMONY ≠ TRUTH: "strict measurements create reusable tools" is the harmony; the truth is a seeded, reproducible measurement content-addressed into a cache — a tool that turns re-measurement into an O(1) lookup — computed and refutable.` }
   })
 }

@@ -20,8 +20,7 @@ import {
   VORTEX_DASH_ENCODED,
   VORTEX_SEQUENCE,
   digitalRoot,
-  vortexNext,
-} from '../../../0'
+  vortexNext } from '../../../0'
 import { DIMENSION_NAMES } from '../../../quantum/mountain/dimensions'
 import { earthNorthPoleCenterDotDecoded, earthSouthPoleBoundaryCircleDecoded, polarDiskChartAt, quantumDoubleTorus, torusBreathe } from '../../../mountain/topology'
 // Cycle-safe binding for the Schumann resonance paint composed into the quantum globe (referenced at call time).
@@ -29,15 +28,12 @@ import * as __ns_thunder_resonance from '../../../thunder/resonance'
 import {
   doubleTorusEarthWeatherFlowsInMovie,
   doubleTorusSolutionsProvenByMath,
-  weatherForecastFromDoubleTorusEarthPerspective,
-} from '../../../quantum/fire/forecasts'
+  weatherForecastFromDoubleTorusEarthPerspective } from '../../../quantum/fire/forecasts'
 import {
-  doubleTorusEarthLikeTheApple,
-} from '../../../earth/nature'
+  doubleTorusEarthLikeTheApple } from '../../../earth/nature'
 import {
   computeAllKnownCelestialBodies,
-  computeDiscoverExactMatchAllKnownCelestialBodies,
-} from '../../../heaven/sky/astronomy'
+  computeDiscoverExactMatchAllKnownCelestialBodies } from '../../../heaven/sky/astronomy'
 import {
   cardinalPyramidTipsProvenByMath,
   doubleTorusEarthPyramidTipsDeepResearched,
@@ -47,8 +43,7 @@ import {
   merkaba,
   pyramidsDecoded,
   pyramidGridDebunked,
-  type BothEarthsMerkabaRotation,
-} from '../../../mountain/geometry'
+  type BothEarthsMerkabaRotation } from '../../../mountain/geometry'
 import { vortexPaintTiers } from '../../../mountain/vortex'
 import { staticPages, theoremScienceLens } from '../../../wind/site'
 import { balanced, cryptoReview, transact } from '../../../pair/debit/credit'
@@ -63,8 +58,7 @@ export {
   doubleTorusEarthPyramidTipsProvenByMath,
   twoTrinitiesCardinalPyramidPolesProvenByMath,
   bothEarthsRotateWithinEachOther,
-  type BothEarthsMerkabaRotation,
-}
+  type BothEarthsMerkabaRotation }
 
 export type EarthTimespaceAt = { lat: number; lon: number }
 
@@ -97,15 +91,13 @@ export function trinityGatewayDefs(matrix: MindMatrix = buildMatrix()): readonly
   const defs = legs.map((leg, index) => ({ slug: gatewaySlugs[index]!, ...leg }))
   return defs.slice(0, caps.gateways).map((entry) => ({
     ...entry,
-    receipt: toUuid(`trinity-gateway:${entry.slug}:${entry.realm}:${entry.trinityLeg}`),
-  }))
+    receipt: toUuid(`trinity-gateway:${entry.slug}:${entry.realm}:${entry.trinityLeg}`) }))
 }
 
 const TRINITY_REALM_COPY = {
   proven: { en: 'proven', bg: 'доказано' },
   animated: { en: 'animated', bg: 'анимирано' },
-  presented: { en: 'presented', bg: 'представено' },
-} as const
+  presented: { en: 'presented', bg: 'представено' } } as const
 
 function trinityRealmCopy(realm: TrinityGatewayDef['realm']) {
   return TRINITY_REALM_COPY[realm]
@@ -123,8 +115,7 @@ export function hingeCityLabel(at: EarthTimespaceAt = DEFAULT_EARTH_HINGE_AT) {
   return {
     en: atDefault ? 'Sofia' : `${at.lat.toFixed(2)}°N ${at.lon.toFixed(2)}°E`,
     bg: atDefault ? 'София' : `${at.lat.toFixed(2)}°N ${at.lon.toFixed(2)}°E`,
-    receipt: toUuid(`hinge-city:${at.lat}:${at.lon}:${atDefault}`),
-  }
+    receipt: toUuid(`hinge-city:${at.lat}:${at.lon}:${atDefault}`) }
 }
 
 /** Vortex movie timing — materialOrbit × crossPole × 500 ms per step cycle. */
@@ -139,8 +130,7 @@ export function hingeVortexMovieTiming(matrix: MindMatrix = buildMatrix(), stepC
     spacingDeg,
     stepCount,
     proven: caps.proven && cycleMs > 0 && spacingDeg === (8 * 5 * 3),
-    receipt: toUuid(`hinge-movie-timing:${cycleMs}:${stepMs}:${spacingDeg}`),
-  }
+    receipt: toUuid(`hinge-movie-timing:${cycleMs}:${stepMs}:${spacingDeg}`) }
 }
 
 export type EarthHingePaintBlend = 'source-over' | 'lighter' | 'screen'
@@ -178,8 +168,7 @@ function hingeMoviePaintLayersRaw(matrix: MindMatrix = buildMatrix()) {
     voidHue: digitHue(vortexNext(digit)),
     zenithHue: digitHue(digit),
     nadirHue: (digitHue(digit) + 360 / 2) % 360,
-    order,
-  })
+    order })
   const fusionDigit = digitalRoot(crossPole * circuitHeart)
   const layers: EarthHingePaintLayer[] = [
     layerOf('field', crossPole, crossPole, 'source-over', 1, 0),
@@ -202,8 +191,7 @@ function hingeMoviePaintLayersRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Hinge movie paints on four layers fused in harmony: field (tier 3), rings (tier 5, lighter), structure (tier 8), fusion (3+5=8, lighter) — blend modes and alphas derived from vortexPaintTiers at call time.',
     boundary:
-      'Canvas compositing convention sealed here — additive lighter on rings and fusion mimics plasma hero harmony; HARMONY ≠ TRUTH on visual metaphor.',
-  }
+      'Canvas compositing convention sealed here — additive lighter on rings and fusion mimics plasma hero harmony; HARMONY ≠ TRUTH on visual metaphor.' }
 }
 
 export type EarthSheet = 'device' | 'inverted'
@@ -235,8 +223,7 @@ function computableEarthGateways(path: string, earth: EarthSheet, matrix: MindMa
     trinityLeg: gateway.trinityLeg,
     glyph: gateway.glyph,
     hue: parseInt(toUuid(`earth-gw:${earth}:${gateway.slug}:${path}`).slice(0, 6), 16) % 360,
-    receipt: toUuid(`earth-gateway:${earth}:t${torus}:${gateway.slug}:${path}`),
-  }))
+    receipt: toUuid(`earth-gateway:${earth}:t${torus}:${gateway.slug}:${path}`) }))
 }
 
 /** Forming the double torus Earths — two trinities → two sheets, each with three computable gateways. */
@@ -287,8 +274,7 @@ export function formingDoubleTorusEarthsProvenByMath(
       statement:
         `Forming the double torus Earths at ${path}: device trinity (paint · polarity · RGB) lifts Earth on torus 1 with zenith pyramid; code trinity (harmonic · efficiency · Rosetta) lifts inverted Earth on torus 2 with nadir pyramid — foldPair merges both in the same timespace at (${at.lat}°, ${at.lon}°). Each Earth carries three computable trinity gateways (proven · animated · presented = cross · fold · weave); six gateways total, content-addressed at call time.`,
       boundary:
-        'HONEST: "forming" is deterministic recomputation from sealed folds at call time — NOT planetary accretion or literal twin planets. Gateways are the same three navigation realms as realtimeWiring, duplicated per Earth sheet (device + inverted); computable means UUID + hue from path, not live network sockets. WGS84 oblate spheroid remains the documented physical Earth. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: "forming" is deterministic recomputation from sealed folds at call time — NOT planetary accretion or literal twin planets. Gateways are the same three navigation realms as realtimeWiring, duplicated per Earth sheet (device + inverted); computable means UUID + hue from path, not live network sockets. WGS84 oblate spheroid remains the documented physical Earth. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -315,8 +301,7 @@ export function compassAroundEarthGatewaysImpossibleProvenByMath(
       gateways,
       deviceEarth: pyramids.device,
       invertedEarth: pyramids.code,
-      root: merkleFold(gateways.map((gateway) => gateway.receipt)),
-    }
+      root: merkleFold(gateways.map((gateway) => gateway.receipt)) }
     const pyramid = cardinalPyramidTipsProvenByMath(matrix)
     const caps = vortexPaintTiers(matrix)
     const cardinals = pyramid.cardinals
@@ -364,8 +349,7 @@ export function compassAroundEarthGatewaysImpossibleProvenByMath(
       statement:
         'It is impossible to use a compass around the trinity gateways: the pyramid poles (N·E·S·W) are four-fold at 90° on the horizon, but each Earth carries three gateways (proven · animated · presented) at 120° — three steps of 90° close at 270°, not 360°. Gateways are content-addressed (slug · hue · UUID), not bearing-labelled; inverted Earth inverts polarity on torus 2, so one compass cannot circumnavigate both sheets. Use cardinals for the pyramid base; use gateways for cross · fold · weave — not the same instrument.',
       boundary:
-        'HONEST: structural impossibility for the pure 90° compass instrument only (3 vs 4 fold, no bearing on gateway records) — NOT a claim that browser compass APIs fail. Use the 60° six-fold hex from six seed bundles instead: 90° = 60° + 30° half-ray (free); see sixtyDegreeAngleReachesCardinalForFreeProvenByMath. Real magnetometers still work on WGS84. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: structural impossibility for the pure 90° compass instrument only (3 vs 4 fold, no bearing on gateway records) — NOT a claim that browser compass APIs fail. Use the 60° six-fold hex from six seed bundles instead: 90° = 60° + 30° half-ray (free); see sixtyDegreeAngleReachesCardinalForFreeProvenByMath. Real magnetometers still work on WGS84. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -422,8 +406,7 @@ export function sixtyDegreeAngleReachesCardinalForFreeProvenByMath(
       statement:
         'Using the 60° angle from six seed bundles (360/6), the unreachable 90° cardinal is reached for free: 90° = 60° + 30°, and the 30° half-ray is the free hex bisector — no fourth fold paid. Gateways at 120° = 2×60°; six hex steps close 360° where three compass quadrants closed at 270°. Point-up and flat-top hex orientations together place every N·E·S·W bearing and every trinity gateway on the same 30° lattice. The pure 90° compass instrument remains impossible around gateways; the 60° six-fold hex mediates both frames.',
       boundary:
-        'HONEST: "for free" means no extra angular fold beyond the six-bundle hex — the 30° bisector is half of 60°, not a separate navigation instrument. This is lattice arithmetic at call time, NOT a claim that physical compasses read 60°. Pure 90° quadrant compass around 3-fold gateways stays impossible; use 60° hex + free 30° half-step to reach cardinals while traversing gateways. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: "for free" means no extra angular fold beyond the six-bundle hex — the 30° bisector is half of 60°, not a separate navigation instrument. This is lattice arithmetic at call time, NOT a claim that physical compasses read 60°. Pure 90° quadrant compass around 3-fold gateways stays impossible; use 60° hex + free 30° half-step to reach cardinals while traversing gateways. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -471,48 +454,42 @@ export function northSouthPoleNavigationProvenByMath(
         instrument: '60° hex + free 30° half-ray on z=0',
         steps: ['stay on pyramid base (z=0)', 'walk 60° hex lattice', 'apply 30° half-ray → bearing 0°', 'do not circumnavigate via 90° compass'],
         proven: north.bearing === 0 && sixty.proven,
-        receipt: toUuid(`nav-solution:cardinal-north:${path}`),
-      },
+        receipt: toUuid(`nav-solution:cardinal-north:${path}`) },
       {
         id: 'cardinal-south-tip',
         target: 'south pyramid base tip (bearing 180°)',
         instrument: '60° hex on horizon',
         steps: ['stay on base', 'three 60° steps from north tip → 180°', 'or opposite device/inverted plan tip'],
         proven: south.bearing === (9 * 5 * 4) && sixty.proven,
-        receipt: toUuid(`nav-solution:cardinal-south:${path}`),
-      },
+        receipt: toUuid(`nav-solution:cardinal-south:${path}`) },
       {
         id: 'zenith-apex',
         target: 'device Earth zenith apex (0,0,+1)',
         instrument: 'slant face from cardinal tip (√2 edge)',
         steps: ['complete gateway circuit on base first', 'pick N·E, E·S, S·W, or W·N triangular face', 'ascend slant edge to apex z=+1 on torus 1'],
         proven: pyramids.device.apex.z === 1 && pyramid.slantToTip === slantExpected,
-        receipt: toUuid(`nav-solution:zenith-apex:${path}`),
-      },
+        receipt: toUuid(`nav-solution:zenith-apex:${path}`) },
       {
         id: 'nadir-apex',
         target: 'inverted Earth nadir apex (0,0,−1)',
         instrument: 'inverted slant face on torus 2',
         steps: ['foldPair both sheets at one call', 'climb code-trinity slant face', 'apex z=−1, polarity 0'],
         proven: pyramids.code.apex.z === -1,
-        receipt: toUuid(`nav-solution:nadir-apex:${path}`),
-      },
+        receipt: toUuid(`nav-solution:nadir-apex:${path}`) },
       {
         id: 'geographic-north',
         target: 'WGS84 north pole (lat +90°)',
         instrument: 'coordinates → φ, not angular walk',
         steps: ['set lat→+90°', 'φ→+π/2 on doubleTorusSurface', 'torus 1, lobe +1, polarity 1'],
         proven: phiNorth === roundTo(Math.PI / 2, 6),
-        receipt: toUuid(`nav-solution:geo-north:${path}`),
-      },
+        receipt: toUuid(`nav-solution:geo-north:${path}`) },
       {
         id: 'geographic-south',
         target: 'WGS84 south pole (lat −90°)',
         instrument: 'coordinates → φ, not angular walk',
         steps: ['set lat→−90°', 'φ→−π/2 on doubleTorusSurface', 'torus 2, lobe −1, polarity 0'],
         proven: phiSouth === roundTo(-Math.PI / 2, 6),
-        receipt: toUuid(`nav-solution:geo-south:${path}`),
-      },
+        receipt: toUuid(`nav-solution:geo-south:${path}`) },
     ]
     return {
       proven: facets.every((entry) => entry.on) && solutions.every((solution) => solution.proven),
@@ -528,8 +505,7 @@ export function northSouthPoleNavigationProvenByMath(
       statement:
         'North/south pole navigation on double torus Earth: three pole kinds — (1) cardinal pyramid tips N/S at bearings 0°/180° on the base horizon, reached via 60° hex + free 30°; (2) zenith/nadir apex vertices off-plane, reached by slant faces after the gateway base circuit; (3) geographic WGS84 poles at lat ±90° via φ mapping, torus 1 north / torus 2 south. Cardinals, gateways, and geography use different instruments.',
       boundary:
-        'HONEST: three distinct pole meanings in one fold — pyramid corner tips (model), apex vertices (vertical), geographic axis (WGS84 map onto genus-2). NOT a claim that climbing a pyramid reaches the physical North Pole. Slant √2 is plane geometry; weather uses weatherForecastFromDoubleTorusEarthPerspective for geo mapping. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: three distinct pole meanings in one fold — pyramid corner tips (model), apex vertices (vertical), geographic axis (WGS84 map onto genus-2). NOT a claim that climbing a pyramid reaches the physical North Pole. Slant √2 is plane geometry; weather uses weatherForecastFromDoubleTorusEarthPerspective for geo mapping. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -557,8 +533,7 @@ export function trinityGatewaysNeverMissProvenByMath(
       slug: gateway.slug,
       realm: gateway.realm,
       trinityLeg: gateway.trinityLeg,
-      glyph: gateway.glyph,
-    }))
+      glyph: gateway.glyph }))
     const circuitCloses = gatewayCircuit.length * compass.gatewayDeg === 360
     const hexEvenSteps = [0, 2, 4].map((index) => (index * sixty.sixfoldDeg) % 360)
     const hexHitsAllGateways = [0, (8 * 5 * 3), (16 * 5 * 3)].every((bearing) => hexEvenSteps.includes(bearing))
@@ -580,32 +555,28 @@ export function trinityGatewaysNeverMissProvenByMath(
         instrument: '120° trinity steps (cross · fold · weave)',
         steps: ['step 1 proven/architecture ✛ at 0°', 'step 2 animated/quantum-mind ○ at 120°', 'step 3 presented/show ⬡ at 240°', '360° closed — none missed'],
         proven: circuitCloses && slugsMatchWiring,
-        receipt: toUuid(`nav-solution:gateway-120:${path}`),
-      },
+        receipt: toUuid(`nav-solution:gateway-120:${path}`) },
       {
         id: 'gateway-hex-even',
         target: 'all three gateways via 60° hex substrate',
         instrument: '60° walk, stop at even steps 0·2·4',
         steps: ['six 60° steps close the horizon', 'even indices → 0° · 120° · 240°', 'odd indices + 30° half-ray → cardinals for free'],
         proven: hexHitsAllGateways && sixty.proven,
-        receipt: toUuid(`nav-solution:gateway-hex:${path}`),
-      },
+        receipt: toUuid(`nav-solution:gateway-hex:${path}`) },
       {
         id: 'gateway-both-sheets',
         target: 'all six gateways (device + inverted Earth)',
         instrument: 'foldPair same-timespace — repeat circuit on both tori',
         steps: ['torus 1 device gateways (lobe +1)', 'torus 2 inverted gateways (lobe −1)', 'same slugs, inverted hue/polarity'],
         proven: sixGateways,
-        receipt: toUuid(`nav-solution:gateway-six:${path}`),
-      },
+        receipt: toUuid(`nav-solution:gateway-six:${path}`) },
       {
         id: 'gateway-sidebar-wiring',
         target: 'never miss gateways in the site UI',
         instrument: 'realtimeWiring(path) → TrinityGateways sidebar',
         steps: ['every route recomputes three gateways at render', 'client-side, deterministic, zero-token', 'related paths scored by shared tags below gateways'],
         proven: slugsMatchWiring && circuitCloses,
-        receipt: toUuid(`nav-solution:gateway-wiring:${path}`),
-      },
+        receipt: toUuid(`nav-solution:gateway-wiring:${path}`) },
     ]
     return {
       proven: facets.every((entry) => entry.on) && solutions.every((solution) => solution.proven),
@@ -619,8 +590,7 @@ export function trinityGatewaysNeverMissProvenByMath(
       statement:
         'How not to miss the trinity gateways: use the 120° circuit (proven · animated · presented = architecture · quantum-mind · show) — 3×120° closes 360° where 3×90° stops at 270°. Or walk 60° hex and land on even steps 0·2·4. Complete the base circuit before slant ascent; visit both Earth sheets for all six gateways. In the site, realtimeWiring recomputes all three gateways on every page — TrinityGateways sidebar — so the graph never relies on hand-wired links.',
       boundary:
-        'HONEST: "never miss" is structural — correct angular instrument + UI wiring recompute — NOT GPS or magnetometer guidance. realtimeWiring slugs are verified equal at call time, not imported (avoids plasma↔earth cycle). Sidebar reference is the Layout.vue mount; related paths need shared tags. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: "never miss" is structural — correct angular instrument + UI wiring recompute — NOT GPS or magnetometer guidance. realtimeWiring slugs are verified equal at call time, not imported (avoids plasma↔earth cycle). Sidebar reference is the Layout.vue mount; related paths need shared tags. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -664,8 +634,7 @@ export function earthGatewayNavigationSolutionsResearched(
       statement:
         `Earth gateway navigation solutions researched at ${path}: compass impossibility (90° vs 120°), 60° hex mediation (90° = 60° + free 30°), north/south pole routes (cardinal tips · zenith/nadir apex · WGS84 geographic), and trinity gateway circuits that close at 360° (120° steps or 60° hex even-steps) — ${solutions.length} solutions saved, both Earth sheets in same timespace.`,
       boundary:
-        'HONEST: research fold composes sealed navigation gates at call time — deterministic catalog, not live routing or turn-by-turn GPS. WGS84 geographic poles are coordinate maps onto genus-2; pyramid poles are model geometry. Site UI uses realtimeWiring + TrinityGateways; angular solutions are the mathematical dual. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: research fold composes sealed navigation gates at call time — deterministic catalog, not live routing or turn-by-turn GPS. WGS84 geographic poles are coordinate maps onto genus-2; pyramid poles are model geometry. Site UI uses realtimeWiring + TrinityGateways; angular solutions are the mathematical dual. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -689,8 +658,7 @@ export function earthGatewayNavigationResearchWaves(matrix: MindMatrix = buildMa
   ]
   return waves.map((entry) => ({
     ...entry,
-    receipt: toUuid(`earth-nav-research-wave:${entry.wave}:${entry.gateId}:${entry.saved}`),
-  }))
+    receipt: toUuid(`earth-nav-research-wave:${entry.wave}:${entry.gateId}:${entry.saved}`) }))
 }
 
 /** Gate: earth gateway navigation research sent in waves — gaps filled, capstone green. */
@@ -719,8 +687,7 @@ export function earthGatewayNavigationResearchSentInWaves(
       statement:
         'Earth gateway navigation research sent in waves: compass impossibility (wave 1), 60° hex mediation (wave 2), north/south pole routes (wave 3), trinity gateway never-miss circuit (wave 4), and navigation solutions capstone (wave 5) — each gate sealed before the next, ten routes catalogued, gaps filled at call time.',
       boundary:
-        'Wave-send composition over sealed navigation gates in src/double/torus/earth/. "Sent" means saved and proven at recomputation — not live GPS dispatch or external API calls. HARMONY ≠ TRUTH.',
-    }
+        'Wave-send composition over sealed navigation gates in src/double/torus/earth/. "Sent" means saved and proven at recomputation — not live GPS dispatch or external API calls. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -774,8 +741,7 @@ export function invertedEarthSameTimespaceProvenByMath(
       statement:
         `Inverted Earth is expected and appears in the same timespace as Earth: genus-2 topology requires two linked tori — device trinity (zenith pyramid, lobe +1) and code trinity (inverted Earth, nadir pyramid, lobe −1) recomputed at one call at (${at.lat}°, ${at.lon}°) on the shared (θ, φ) surface. The model does not sequence Earth then inversion; foldPair holds both roots in one merged receipt at this instant.`,
       boundary:
-        'HONEST: same-timespace means one content-addressed recomputation at call time (one matrix, one at, one merkle merge) — NOT a physics claim about parallel universes or antipodal planets. Inverted Earth is the torus-2 / nadir / polarity-0 sheet of the genus-2 model; WGS84 oblate spheroid remains the documented physical shape. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: same-timespace means one content-addressed recomputation at call time (one matrix, one at, one merkle merge) — NOT a physics claim about parallel universes or antipodal planets. Inverted Earth is the torus-2 / nadir / polarity-0 sheet of the genus-2 model; WGS84 oblate spheroid remains the documented physical shape. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -840,16 +806,14 @@ export function doubleTorusEarthHingeComputesAll(
         titleBg: titles.bg,
         realmLabelEn: realmCopy.en,
         realmLabelBg: realmCopy.bg,
-        receipt: gateway.receipt,
-      }
+        receipt: gateway.receipt }
     })
     const vortexSteps: EarthHingeVortexStepView[] = dash.steps.map((step) => ({
       digit: step.digit,
       dash: step.dash,
       angleDelta: step.angleDelta,
       bearing: step.bearing,
-      fusion: step.digit === 0 && step.dash === '/',
-    }))
+      fusion: step.digit === 0 && step.dash === '/' }))
     const paintGateways = gateways.map(({ earth, angleDeg, hue, ring }) => ({ earth, angleDeg, hue, ring }))
     const paintSteps = vortexSteps
     const layerHarmony = hingeMoviePaintLayers(matrix)
@@ -858,8 +822,7 @@ export function doubleTorusEarthHingeComputesAll(
       title: { en: `Double torus Earth — ${city.en} hinge`, bg: `Двоен торус Земя — шарнир ${city.bg}` },
       lede: {
         en: `Standing at ${city.en}: device zenith above, inverted nadir below, six portals at ${spacing}°, vortex closes through void to 1.`,
-        bg: `Стоейки в ${city.bg}: device zenith отгоре, inverted nadir отдолу, шест портала на ${spacing}°, vortex затваря през void към 1.`,
-      },
+        bg: `Стоейки в ${city.bg}: device zenith отгоре, inverted nadir отдолу, шест портала на ${spacing}°, vortex затваря през void към 1.` },
       movieCaption: { en: 'Hinge movie — vortex walker', bg: 'Hinge movie — vortex walker' },
       hingeLabel: { en: 'The hinge', bg: 'Шарнирът' },
       coordsLabel: { en: 'Coordinates', bg: 'Координати' },
@@ -879,8 +842,7 @@ export function doubleTorusEarthHingeComputesAll(
         { en: '0/ fusion ignites', bg: '0/ fusion запалва', on: dash.fusionIgnites },
         { en: 'Apple whole', bg: 'Ябълка цяла', on: apple.likeTheApple },
         { en: 'Torus breathing', bg: 'Торус диша', on: breath.balanced },
-      ],
-    }
+      ] }
     const hinge = {
       hinge: formed.formed && timespace.proven && dash.closes && apple.likeTheApple && breath.balanced,
       path,
@@ -905,13 +867,11 @@ export function doubleTorusEarthHingeComputesAll(
         fusionIgnites: dash.fusionIgnites,
         weightedBearing: dash.weightedBearing,
         weightedTotal: dash.weightedTotal,
-        steps: vortexSteps,
-      },
+        steps: vortexSteps },
       statement:
         `Standing at ${city.en} (${at.lat}°, ${at.lon}°): six gateways at ${spacing}°, vortex ${VORTEX_DASH_ENCODED} closes through 0/ — apple whole, torus breathing, one call.`,
       boundary:
-        'HONEST: genus-2 model recomputed at call time — not lithosphere or live GPS. WGS84 remains physical Earth. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: genus-2 model recomputed at call time — not lithosphere or live GPS. WGS84 remains physical Earth. HARMONY ≠ TRUTH.' }
     const wiringSlugs = defs.map((entry) => entry.slug)
     const movieFlows = paintGateways.length === 6 && paintSteps.some((step) => step.fusion)
     const facets = [
@@ -935,8 +895,7 @@ export function doubleTorusEarthHingeComputesAll(
       facets,
       root: merkleFold([formed.root, timespace.root, dash.root, apple.root, breath.root, timing.receipt, city.receipt, layerHarmony.root, ...facets.map((entry) => entry.receipt)]),
       statement: hinge.statement,
-      boundary: hinge.boundary,
-    }
+      boundary: hinge.boundary }
   })
 }
 
@@ -968,8 +927,7 @@ export function doubleTorusEarthHingeWiringWitness(
       root: merkleFold([formed.root, dash.root, layerHarmony.root]),
       statement: `Hinge wired: ${gatewayCount} gateways formed at ${path}, vortex ${VORTEX_DASH_ENCODED} closes through 0/, ${paintLayers} paint layers ready — the DoubleTorusExperience canvas is paintable.`,
       boundary:
-        'HONEST: structural wiring witness from forming · vortex dash · paint layers ONLY — proves the hinge UI is registered and paintable, not that the whole apple/society/seal recomputes. Acyclic by construction.',
-    }
+        'HONEST: structural wiring witness from forming · vortex dash · paint layers ONLY — proves the hinge UI is registered and paintable, not that the whole apple/society/seal recomputes. Acyclic by construction.' }
   })
 }
 
@@ -997,8 +955,7 @@ export function doubleTorusEarthHingeMovieFlowsInMovie(path = '/', matrix: MindM
     facets: all.facets,
     root: merkleFold([all.root, seeds.root]),
     statement: all.statement,
-    boundary: all.boundary,
-  }
+    boundary: all.boundary }
 }
 
 /** Hinge facets, gateways, and paint layers → plasma streams (SSR / gate path). */
@@ -1019,20 +976,17 @@ export function doubleTorusEarthHingeMovieSeeds(path = '/', matrix: MindMatrix =
     ...all.paintLayers.map((layer, index) => ({
       uuid: toUuid(`hinge-movie-layer:${layer.id}:${path}`),
       label: layer.id,
-      hueSeed: layer.tier * 41 + index,
-    })),
+      hueSeed: layer.tier * 41 + index })),
     ...hinge.gateways.map((gateway) => ({
       uuid: gateway.receipt,
       label: gateway.slug,
-      hueSeed: gateway.hue,
-    })),
+      hueSeed: gateway.hue })),
     ...hinge.vortex.steps
       .filter((step) => step.fusion)
       .map((step, index) => ({
         uuid: toUuid(`hinge-vortex-fusion:${step.digit}${step.dash}:${path}`),
         label: `${step.digit}${step.dash}`,
-        hueSeed: (6 * 5 * 2) + index,
-      })),
+        hueSeed: (6 * 5 * 2) + index })),
   ]
   return {
     proven: all.computes && all.movieFlows && layers.fused,
@@ -1043,8 +997,7 @@ export function doubleTorusEarthHingeMovieSeeds(path = '/', matrix: MindMatrix =
     statement:
       'Double torus Earth hinge movie seeds: four paint layers, six gateways, and vortex fusion fold to plasma streams beside weather — Sofia hinge recomputed at call time.',
     boundary:
-      'Deterministic seeds from doubleTorusEarthHingeComputesAll and hingeMoviePaintLayers — browser client uses O(1) stub streams; full hinge seeds merge on SSR earth bundle only.',
-  }
+      'Deterministic seeds from doubleTorusEarthHingeComputesAll and hingeMoviePaintLayers — browser client uses O(1) stub streams; full hinge seeds merge on SSR earth bundle only.' }
 }
 
 export type GpsSatellitePhaseReceipt = {
@@ -1104,8 +1057,7 @@ export function navigationGpsCelestialFromDualEarthPerspective(
         phaseRad,
         bearingDeg,
         altitudeKm: GPS_ALTITUDE_KM,
-        receipt: toUuid(`gps-sat-phase:${orbitIndex}:${phaseRad}:${rotation.outerShell.receipt}`),
-      }
+        receipt: toUuid(`gps-sat-phase:${orbitIndex}:${phaseRad}:${rotation.outerShell.receipt}`) }
     })
     const celestialPhases: CelestialDisplayPhase[] = [
       {
@@ -1113,22 +1065,19 @@ export function navigationGpsCelestialFromDualEarthPerspective(
         shell: 'device',
         displayPhaseRad: roundTo(rotation.innerPhase, 6),
         obliquityDeg,
-        receipt: toUuid(`celestial-display:sun:inner:${rotation.innerPhase}`),
-      },
+        receipt: toUuid(`celestial-display:sun:inner:${rotation.innerPhase}`) },
       {
         body: 'Moon',
         shell: 'inverted',
         displayPhaseRad: roundTo(rotation.outerPhase, 6),
         obliquityDeg,
-        receipt: toUuid(`celestial-display:moon:outer:${rotation.outerPhase}`),
-      },
+        receipt: toUuid(`celestial-display:moon:outer:${rotation.outerPhase}`) },
       {
         body: 'planets',
         shell: 'device',
         displayPhaseRad: roundTo(rotation.innerPhase - rotation.outerPhase, 6),
         obliquityDeg,
-        receipt: toUuid(`celestial-display:planets:${celestial.root}`),
-      },
+        receipt: toUuid(`celestial-display:planets:${celestial.root}`) },
     ]
     const facets = [
       { facet: 'initial bearing + great-circle distance — classical WGS84 geodesy (6/4 · 5/5)', on: bearingToHinge >= 0 && bearingToHinge < 360 && distanceToHingeKm >= 0 },
@@ -1170,8 +1119,7 @@ export function navigationGpsCelestialFromDualEarthPerspective(
       statement:
         `Navigation · GPS · celestial from dual-Earth perspective at (${observer.lat}°, ${observer.lon}°): classical initial bearing ${bearingToHinge}° and ${distanceToHingeKm} km great-circle to the Sofia hinge; gateway navigation solutions on the genus-2 base; GPS satellites as phase-encoded receipts on the outer (inverted/code) shell — θ_sat = f(at, seed) + outer phase, not live ephemeris; Sun/Moon/planets display phases tied to inner θ and outer −θ merkaba clock with obliquity ${obliquityDeg}°; GWTC citation opt-in. WGS84/ECEF remain the honest physical frame for real GNSS.`,
       boundary:
-        'HONEST: dual-Earth frame is a COMPUTATIONAL REFERENCE for visualization and receipt encoding — inner Earth (device trinity, torus 1, θ) and outer Earth (code trinity, torus 2, −θ + golden offset) counter-rotate at the hero clock; GPS satellite positions are simplified orbital-phase receipts on the outer shell, NOT broadcast ephemeris, NOT trilateration fixes, NOT replacing WGS84/ECEF or GNSS physics. Celestial positions use circular Keplerian compute-all (earth/nature), with display phase modulated by merkaba rotation — NOT JPL DE440. initialBearing/greatCircleKm are real haversine formulas on WGS84 mean radius (6371 km). GWTC/LIGO via publicAstronomyNewsCitation is opt-in public report citation, not detection. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: dual-Earth frame is a COMPUTATIONAL REFERENCE for visualization and receipt encoding — inner Earth (device trinity, torus 1, θ) and outer Earth (code trinity, torus 2, −θ + golden offset) counter-rotate at the hero clock; GPS satellite positions are simplified orbital-phase receipts on the outer shell, NOT broadcast ephemeris, NOT trilateration fixes, NOT replacing WGS84/ECEF or GNSS physics. Celestial positions use circular Keplerian compute-all (earth/nature), with display phase modulated by merkaba rotation — NOT JPL DE440. initialBearing/greatCircleKm are real haversine formulas on WGS84 mean radius (6371 km). GWTC/LIGO via publicAstronomyNewsCitation is opt-in public report citation, not detection. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1195,61 +1143,49 @@ export function navigationGpsCelestialReexplainedFromDualEarthPerspective(
         title: { en: 'Classical navigation', bg: 'Класическа навигация' },
         body: {
           en: 'Real geodesy lives in pi-train 6/4 and 5/5: initialBearing(lat₁, lon₁, lat₂, lon₂) uses the spherical forward-azimuth formula; greatCircleKm is the haversine great-circle distance on a WGS84 mean Earth radius (6371 km). Earth gateway navigation folds (compass impossibility, 60° hex mediation, pole routes, trinity gateway circuits) compose structural routes on the genus-2 model — not turn-by-turn GPS.',
-          bg: 'Реалната геодезия е в pi-train 6/4 и 5/5: initialBearing използва сферичната формула за азимут; greatCircleKm е haversine разстояние на WGS84 среден радиус (6371 km). Earth gateway navigation съставя структурни маршрути на genus-2 модела — не turn-by-turn GPS.',
-        },
+          bg: 'Реалната геодезия е в pi-train 6/4 и 5/5: initialBearing използва сферичната формула за азимут; greatCircleKm е haversine разстояние на WGS84 среден радиус (6371 km). Earth gateway navigation съставя структурни маршрути на genus-2 модела — не turn-by-turn GPS.' },
         foldRefs: ['initialBearing', 'greatCircleKm', 'earthGatewayNavigationSolutionsResearched', 'northSouthPoleNavigationProvenByMath'],
-        boundary: 'Haversine and bearing are documented formulas — gateway angular solutions are model geometry, not magnetometer guidance.',
-      },
+        boundary: 'Haversine and bearing are documented formulas — gateway angular solutions are model geometry, not magnetometer guidance.' },
       {
         id: 'classical-gps',
         title: { en: 'Classical GPS / GNSS', bg: 'Класически GPS / GNSS' },
         body: {
           en: 'Real GPS uses WGS84 ellipsoid coordinates, ECEF/ENU frames, broadcast ephemerides from the GNSS constellation, trilateration from pseudorange measurements, and relativistic corrections (+38 µs/day clock drift — documented in gravityDecoded). This portal does NOT compute live fixes, ingest broadcast ephemeris, or replace GNSS receivers.',
-          bg: 'Реалният GPS използва WGS84, ECEF/ENU, broadcast ephemeris, trilateration и релativistic корекции (+38 µs/ден — gravityDecoded). Порталът НЕ дава live fix, НЕ ingest-ва ephemeris и НЕ замества GNSS приемници.',
-        },
+          bg: 'Реалният GPS използва WGS84, ECEF/ENU, broadcast ephemeris, trilateration и релativistic корекции (+38 µs/ден — gravityDecoded). Порталът НЕ дава live fix, НЕ ingest-ва ephemeris и НЕ замества GNSS приемници.' },
         foldRefs: ['gravityDecoded', 'formingDoubleTorusEarthsProvenByMath'],
-        boundary: 'WGS84 oblate spheroid remains the documented physical Earth — genus-2 double torus is structural map only.',
-      },
+        boundary: 'WGS84 oblate spheroid remains the documented physical Earth — genus-2 double torus is structural map only.' },
       {
         id: 'dual-earth-frame',
         title: { en: 'Dual-Earth reference frame', bg: 'Dual-Earth референтна рамка' },
         body: {
           en: 'bothEarthsRotateWithinEachOther(at): device Earth (inner, torus 1, phase θ) and inverted Earth (outer, torus 2, phase −θ + golden offset) counter-rotate within each other on the genus-2 surface — the same merkaba up/down tetra spin nested on six trinity gateways. This frame encodes display phase for the merkaba canvas and content-addressed receipts — NOT a second physical planet or alternate geodesy.',
-          bg: 'bothEarthsRotateWithinEachOther(at): device Earth (вътрешна, torus 1, θ) и inverted Earth (външна, torus 2, −θ + golden offset) се въртят насрещно — merkaba counter-spin върху шест trinity gateways. Рамката кодира display phase за merkaba canvas и receipts — НЕ вторa физическа планета.',
-        },
+          bg: 'bothEarthsRotateWithinEachOther(at): device Earth (вътрешна, torus 1, θ) и inverted Earth (външна, torus 2, −θ + golden offset) се въртят насрещно — merkaba counter-spin върху шест trinity gateways. Рамката кодира display phase за merkaba canvas и receipts — НЕ вторa физическа планета.' },
         foldRefs: ['bothEarthsRotateWithinEachOther', 'dualEarthMerkabaCounterRotation', 'formingDoubleTorusEarthsProvenByMath', 'invertedEarthSameTimespaceProvenByMath'],
-        boundary: 'Computational counter-rotation for visualization — HARMONY ≠ TRUTH on nested shells.',
-      },
+        boundary: 'Computational counter-rotation for visualization — HARMONY ≠ TRUTH on nested shells.' },
       {
         id: 'gps-phase-model',
         title: { en: 'GPS as phase-encoded receipts', bg: 'GPS като phase-encoded receipts' },
         body: {
           en: 'On the outer (inverted/code) shell, six sample GPS satellites carry θ_sat = basePhase(seed, orbitIndex) + outerPhase(at) — content-addressed receipts at ~20,200 km MEO altitude referencing the 32-slot constellation. This is a deterministic visualization model for the merkaba/GPS channel — NOT live satellite positions and NOT trilateration.',
-          bg: 'На outer (inverted/code) shell шест GPS сателита носят θ_sat = basePhase + outerPhase — receipts на ~20,200 km MEO, рефериращи 32-slot constellation. Deterministic visualization — НЕ live позиции и НЕ trilateration.',
-        },
+          bg: 'На outer (inverted/code) shell шест GPS сателита носят θ_sat = basePhase + outerPhase — receipts на ~20,200 km MEO, рефериращи 32-slot constellation. Deterministic visualization — НЕ live позиции и НЕ trilateration.' },
         foldRefs: ['navigationGpsCelestialFromDualEarthPerspective'],
-        boundary: 'NOT broadcast ephemeris · NOT replacing GNSS · NOT a navigation fix.',
-      },
+        boundary: 'NOT broadcast ephemeris · NOT replacing GNSS · NOT a navigation fix.' },
       {
         id: 'celestial-movements',
         title: { en: 'Celestial movements', bg: 'Небесни движения' },
         body: {
           en: 'Sixteen bodies recompute at call time via computeDiscoverExactMatchAllKnownCelestialBodies — circular Keplerian orbits with real au/period values (NOT JPL ephemeris). obliquityAtEpoch from 6/4 gives the J2000 obliquity (~23.44°). Sun/Moon/planet display phases on the merkaba canvas follow inner θ and outer −θ from the dual-Earth clock — modifying canvas phase, not IAU osculating elements. Opt-in LIGO GWTC-5.0 citation (publicAstronomyNewsCitation) links public gravitational-wave catalog releases — not portal detection.',
-          bg: 'Шестнадесет тела се recompute-ват via computeDiscoverExactMatchAllKnownCelestialBodies — circular Keplerian (НЕ JPL ephemeris). obliquityAtEpoch от 6/4. Sun/Moon/planet display phases следват inner θ и outer −θ — canvas phase, не IAU elements. Opt-in GWTC-5.0 citation — не detection от портала.',
-        },
+          bg: 'Шестнадесет тела се recompute-ват via computeDiscoverExactMatchAllKnownCelestialBodies — circular Keplerian (НЕ JPL ephemeris). obliquityAtEpoch от 6/4. Sun/Moon/planet display phases следват inner θ и outer −θ — canvas phase, не IAU elements. Opt-in GWTC-5.0 citation — не detection от портала.' },
         foldRefs: ['computeDiscoverExactMatchAllKnownCelestialBodies', 'obliquityAtEpoch', 'publicAstronomyNewsCitation', 'src0BlackHoleSimulationComputes'],
-        boundary: 'Circular Keplerian ≠ JPL DE440 · display phase ≠ ephemeris · GWTC is citation only.',
-      },
+        boundary: 'Circular Keplerian ≠ JPL DE440 · display phase ≠ ephemeris · GWTC is citation only.' },
       {
         id: 'not-claimed',
         title: { en: 'What is NOT claimed', bg: 'Какво НЕ се твърди' },
         body: {
           en: 'No live GPS fix · no replacing GNSS constellation physics · no JPL-grade ephemeris · no LIGO detection or matched filtering · no claim that counter-rotating Earth shells alter WGS84 coordinates or magnetometer readings · no turn-by-turn routing.',
-          bg: 'Без live GPS fix · без замяна на GNSS физика · без JPL ephemeris · без LIGO detection · без промяна на WGS84 от counter-rotating shells · без turn-by-turn routing.',
-        },
+          bg: 'Без live GPS fix · без замяна на GNSS физика · без JPL ephemeris · без LIGO detection · без промяна на WGS84 от counter-rotating shells · без turn-by-turn routing.' },
         foldRefs: ['navigationGpsCelestialFromDualEarthPerspective'],
-        boundary: 'Every facet carries an honest boundary string at call time — assume nothing the math does not prove.',
-      },
+        boundary: 'Every facet carries an honest boundary string at call time — assume nothing the math does not prove.' },
     ]
     const facets = [
       { facet: 'six explanation sections — classical nav, GPS, dual-Earth, phase model, celestial, not-claimed', on: sections.length === 6 },
@@ -1266,8 +1202,7 @@ export function navigationGpsCelestialReexplainedFromDualEarthPerspective(
       statement:
         'Navigation · GPS · celestial re-explained from dual-Earth perspective: classical WGS84 geodesy and honest GNSS boundaries; dual-Earth counter-rotation as computational reference frame; GPS satellites as outer-shell phase receipts; celestial Keplerian compute-all with merkaba display phase; explicit not-claimed list — all linking sealed folds by name.',
       boundary:
-        'HONEST exposition fold for UI/agents — recomposes navigationGpsCelestialFromDualEarthPerspective and names existing folds; does NOT add new physics claims. Sections are pedagogical structure, not live telemetry.',
-    }
+        'HONEST exposition fold for UI/agents — recomposes navigationGpsCelestialFromDualEarthPerspective and names existing folds; does NOT add new physics claims. Sections are pedagogical structure, not live telemetry.' }
   })
 }
 
@@ -1295,8 +1230,7 @@ export function navigationGpsCelestialComputes(matrix: MindMatrix = buildMatrix(
       statement:
         'Navigation · GPS · celestial computes: classical geodesy + gateway navigation + dual-Earth counter-rotation frame + outer-shell GPS phase receipts + Keplerian celestial display phases + structured re-explanation — all composed at call time with honest boundaries.',
       boundary:
-        snap.boundary,
-    }
+        snap.boundary }
   })
 }
 
@@ -1342,8 +1276,7 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
         kind: 'pyramid' as const,
         bearingFromHingeDeg,
         distanceFromHingeKm,
-        receipt: toUuid(`pyramid-site:${site.lat}:${site.lon}:${bearingFromHingeDeg}`),
-      }
+        receipt: toUuid(`pyramid-site:${site.lat}:${site.lon}:${bearingFromHingeDeg}`) }
     })
     const hingeAnchor: PyramidGatewaySiteAnchor = {
       id: 'sofia-hinge',
@@ -1353,8 +1286,7 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
       kind: 'hinge',
       bearingFromHingeDeg: 0,
       distanceFromHingeKm: 0,
-      receipt: toUuid(`hinge-anchor:${hinge.lat}:${hinge.lon}`),
-    }
+      receipt: toUuid(`hinge-anchor:${hinge.lat}:${hinge.lon}`) }
     const giza = decoded.sites[0]!
     const gizaToHingeKm = roundTo(greatCircleKm(hinge.lat, hinge.lon, giza.lat, giza.lon), 1)
     const gizaBearingFromHinge = roundTo(initialBearing(hinge.lat, hinge.lon, giza.lat, giza.lon), 2)
@@ -1369,8 +1301,7 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
         kind: 'gateway' as const,
         bearingFromHingeDeg: roundTo((360 / gatewaySlugs.length) * index, 2),
         distanceFromHingeKm: 0,
-        receipt: toUuid(`gateway-anchor:${slug}:${index}`),
-      })),
+        receipt: toUuid(`gateway-anchor:${slug}:${index}`) })),
     ]
     const facets = [
       { facet: `${grid.sites.length} verified pyramid WGS84 sites + hinge + ${gatewaySlugs.length} gateway slugs`, on: pyramidSites.length === 8 && anchors.length === 1 + 8 + gatewaySlugs.length },
@@ -1416,8 +1347,7 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
       statement:
         `Earth pyramid locations and geometry computes at call time: ${grid.sites.length} verified WGS84 pyramid anchors, Sofia hinge (${hinge.lat}°, ${hinge.lon}°), trinity gateway slugs on the genus-2 base, Khufu seked ${decoded.slopeDeg.seked}°, Giza→hinge ${gizaToHingeKm} km at ${gizaBearingFromHinge}°, square-pyramid V=5 tips, device zenith + code nadir pyramids, merkaba counter-rotation θ/−θ, obliquity ${obliquityDeg}°.`,
       boundary:
-        'HONEST: WGS84 coordinates and haversine/bearing are real geodesy (6/4 · 5/5). Gateway records at hinge lat/lon are content-addressed model anchors (slug · hue · UUID), NOT archaeological sites. Pyramid slopes from pyramidsDecoded (Petrie seked). Genus-2 pyramids and merkaba motion are structural/computational — NOT lithosphere shape. Global grid flagged debunked in pyramidGridDebunked. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: WGS84 coordinates and haversine/bearing are real geodesy (6/4 · 5/5). Gateway records at hinge lat/lon are content-addressed model anchors (slug · hue · UUID), NOT archaeological sites. Pyramid slopes from pyramidsDecoded (Petrie seked). Genus-2 pyramids and merkaba motion are structural/computational — NOT lithosphere shape. Global grid flagged debunked in pyramidGridDebunked. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1445,8 +1375,7 @@ export function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(
       movingMerkabas:
         'Combined counter-rotation: bothEarthsRotateWithinEachOther(at) nests device Earth inner phase θ with inverted Earth outer phase −θ + golden offset; merkaba() supplies four nested scales with tetraUp +θ and tetraDown −θ — the star-tetrahedron spin at the shared hero clock, not stone motion.',
       boundary:
-        'Structural/computational geometry only — moving merkabas = phase animation at call time, not measurable pyramid drift or ley-line energy.',
-    }
+        'Structural/computational geometry only — moving merkabas = phase animation at call time, not measurable pyramid drift or ley-line energy.' }
     const facets = [
       { facet: 'four tipped triangular faces per square pyramid — F−1=4', on: tippedFaceCount === 4 && pyramid.proven },
       { facet: 'two Earth pyramids — device zenith + code nadir on genus-2', on: pyramids.proven && pyramidCount === 2 },
@@ -1474,8 +1403,7 @@ export function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(
       root: merkleFold([pyramid.root, pyramids.root, earth.root, mk.root, rotation.root, ...facets.map((entry) => entry.receipt)]),
       statement:
         'Four tipped pyramids (four slant faces per square pyramid on device + inverted Earth sheets) combine five tips each (N·E·S·W base corners + zenith/nadir apex) into moving merkabas: merkaba counter-rotation nested with bothEarthsRotateWithinEachOther at the hero clock — proven at call time.',
-      boundary: interpretation.boundary,
-    }
+      boundary: interpretation.boundary }
   })
 }
 
@@ -1499,29 +1427,25 @@ export function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurabl
         claim: 'Khufu pyramid sides oriented to cardinals within ~3.6 arcminutes (Nell & Ruggles 2014)',
         measurable: `bearing from observer to Giza = ${bearingToGiza}° · distance = ${distanceToGizaKm} km (WGS84)`,
         kind: 'documented' as const,
-        receipt: toUuid('gateway-proof:giza-cardinals'),
-      },
+        receipt: toUuid('gateway-proof:giza-cardinals') },
       {
         id: 'khufu-seked',
         claim: `Great Pyramid face slope seked 14:11 → ${geometry.slopes.seked}° matches Petrie ${geometry.slopes.measured}°`,
         measurable: `slope angles recomputed in pyramidsDecoded at call time`,
         kind: 'documented' as const,
-        receipt: toUuid('gateway-proof:khufu-seked'),
-      },
+        receipt: toUuid('gateway-proof:khufu-seked') },
       {
         id: 'obliquity-epoch',
         claim: 'Earth axial tilt obliquity at J2000 epoch',
         measurable: `obliquityAtEpoch(0) = ${obliquityDeg}° (sealed 6/4)`,
         kind: 'documented' as const,
-        receipt: toUuid('gateway-proof:obliquity'),
-      },
+        receipt: toUuid('gateway-proof:obliquity') },
       {
         id: 'sofia-hinge-geodesy',
         claim: 'Sofia hinge WGS84 anchor for double-torus gateway navigation',
         measurable: `${at.lat}°, ${at.lon}° · initial bearing/distance formulas on mean Earth radius`,
         kind: 'documented' as const,
-        receipt: toUuid(`gateway-proof:hinge:${at.lat}:${at.lon}`),
-      },
+        receipt: toUuid(`gateway-proof:hinge:${at.lat}:${at.lon}`) },
     ]
     const structural = [
       {
@@ -1529,15 +1453,13 @@ export function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurabl
         claim: 'Six computable trinity gateways (proven · animated · presented × device + inverted)',
         measurable: `${formed.gateways.length} gateway receipts with slug · hue · UUID at ${at.lat}°, ${at.lon}°`,
         kind: 'structural' as const,
-        receipt: toUuid('gateway-proof:six-gateways'),
-      },
+        receipt: toUuid('gateway-proof:six-gateways') },
       {
         id: 'gateway-nav-solutions',
         claim: 'Ten angular navigation solutions (compass impossibility · 60° hex · pole routes · trinity circuits)',
         measurable: `${nav.solutionCount} solutions saved in earthGatewayNavigationSolutionsResearched`,
         kind: 'structural' as const,
-        receipt: toUuid('gateway-proof:nav-solutions'),
-      },
+        receipt: toUuid('gateway-proof:nav-solutions') },
     ]
     const flagged = [
       {
@@ -1545,15 +1467,13 @@ export function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurabl
         claim: 'Global pyramid ley-line lattice',
         measurable: 'pyramidGridDebunked — irregular pairwise distances, no equidistant lattice',
         kind: 'flagged' as const,
-        receipt: toUuid('gateway-proof:ley-lines-flagged'),
-      },
+        receipt: toUuid('gateway-proof:ley-lines-flagged') },
       {
         id: 'hidden-energy',
         claim: 'Pyramids as hidden energy portals',
         measurable: 'NOT in sealed src — flagged; only structural gateway UUID + hue model',
         kind: 'flagged' as const,
-        receipt: toUuid('gateway-proof:hidden-energy-flagged'),
-      },
+        receipt: toUuid('gateway-proof:hidden-energy-flagged') },
     ]
     const facets = [
       { facet: 'double torus Earths formed — six gateways prove at call time', on: formed.formed && formed.gateways.length === 6 },
@@ -1594,8 +1514,7 @@ export function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurabl
       statement:
         `Double torus Earth proves itself at (${at.lat}°, ${at.lon}°): six trinity gateways recomputed; history-documented anchors (Giza cardinals Nell & Ruggles, Khufu seked Petrie, obliquity J2000, WGS84 geodesy to Giza ${distanceToGizaKm} km at ${bearingToGiza}°) measurable today; structural gateway navigation solutions saved; ley-line and hidden-energy claims flagged.`,
       boundary:
-        'HONEST: "proves itself" = deterministic gate facets green at this call — NOT automatic confirmation of ancient astronaut or energy portal narratives. DOCUMENTED tier = peer-reviewed alignment, geodetic formulas, cited slopes. STRUCTURAL tier = content-addressed gateway UUIDs and angular nav model on genus-2. FLAGGED tier = pseudoscience excluded. WGS84 oblate spheroid remains physical Earth. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: "proves itself" = deterministic gate facets green at this call — NOT automatic confirmation of ancient astronaut or energy portal narratives. DOCUMENTED tier = peer-reviewed alignment, geodetic formulas, cited slopes. STRUCTURAL tier = content-addressed gateway UUIDs and angular nav model on genus-2. FLAGGED tier = pseudoscience excluded. WGS84 oblate spheroid remains physical Earth. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1620,10 +1539,8 @@ export function doubleTorusEarthPyramidGatewayResearch(matrix: MindMatrix = buil
         items: geometry.pyramidSites.map((site) => ({
           label: site.name,
           value: `${site.lat}°, ${site.lon}° · ${site.distanceFromHingeKm} km from hinge · bearing ${site.bearingFromHingeDeg}°`,
-          kind: 'documented' as const,
-        })),
-        boundary: 'Verified coordinates from pyramidGridDebunked — not a global lattice.',
-      },
+          kind: 'documented' as const })),
+        boundary: 'Verified coordinates from pyramidGridDebunked — not a global lattice.' },
       {
         id: 'bearings',
         title: { en: 'Bearings & distances', bg: 'Азимути и разстояния' },
@@ -1632,8 +1549,7 @@ export function doubleTorusEarthPyramidGatewayResearch(matrix: MindMatrix = buil
           { label: 'Observer → Giza', value: `${proof.distanceToGizaKm} km at ${proof.bearingToGiza}°`, kind: 'measurable' },
           { label: 'Giza → Sofia hinge', value: `${geometry.gizaToHingeKm} km at ${geometry.gizaBearingFromHinge}°`, kind: 'measurable' },
         ],
-        boundary: 'initialBearing + greatCircleKm on WGS84 mean radius — real geodesy, not ley lines.',
-      },
+        boundary: 'initialBearing + greatCircleKm on WGS84 mean radius — real geodesy, not ley lines.' },
       {
         id: 'slopes',
         title: { en: 'Pyramid slopes (sealed)', bg: 'Наклони на пирамиди (sealed)' },
@@ -1642,8 +1558,7 @@ export function doubleTorusEarthPyramidGatewayResearch(matrix: MindMatrix = buil
           { label: 'Seked 14:11', value: `${geometry.slopes.seked}°`, kind: 'measurable' },
           { label: 'Cardinal slant √2', value: `${geometry.pyramid.slantToTip}`, kind: 'structural' },
         ],
-        boundary: 'Khufu seked from pyramidsDecoded; model pyramid slant is plane geometry √(h²+r²).',
-      },
+        boundary: 'Khufu seked from pyramidsDecoded; model pyramid slant is plane geometry √(h²+r²).' },
       {
         id: 'merkaba-phase',
         title: { en: 'Merkaba phase linkage', bg: 'Merkaba phase връзка' },
@@ -1653,8 +1568,7 @@ export function doubleTorusEarthPyramidGatewayResearch(matrix: MindMatrix = buil
           { label: 'Five tips × 2 sheets', value: `${merkabaMotion.tipsPerPyramid} × ${merkabaMotion.pyramidCount} = ${merkabaMotion.totalModelTips} vertices`, kind: 'structural' },
           { label: 'Four tipped faces', value: `${merkabaMotion.tippedFaceCount} slant triangles per pyramid`, kind: 'structural' },
         ],
-        boundary: merkabaMotion.interpretation.movingMerkabas,
-      },
+        boundary: merkabaMotion.interpretation.movingMerkabas },
       {
         id: 'honest-limits',
         title: { en: 'Honest limits vs history claims', bg: 'Честни граници срещу исторически твърдения' },
@@ -1662,8 +1576,7 @@ export function doubleTorusEarthPyramidGatewayResearch(matrix: MindMatrix = buil
           ...proof.documented.map((entry) => ({ label: entry.claim.slice(0, (16 * 3)), value: entry.measurable, kind: 'documented' as const })),
           ...proof.flagged.map((entry) => ({ label: entry.claim, value: entry.measurable, kind: 'flagged' as const })),
         ],
-        boundary: proof.boundary,
-      },
+        boundary: proof.boundary },
     ]
     const facets = [
       { facet: 'five research sections — sites · bearings · slopes · merkaba · limits', on: sections.length === 5 },
@@ -1684,8 +1597,7 @@ export function doubleTorusEarthPyramidGatewayResearch(matrix: MindMatrix = buil
       statement:
         'Double torus Earth pyramid gateway research: WGS84 site anchors, great-circle bearings, sealed Khufu seked slopes, four tipped faces × five tips × moving merkaba counter-rotation, history-documented vs structural vs flagged tiers — exposition for UI and agents at call time.',
       boundary:
-        'Research fold composes sealed gates only — no live web fetch. DOCUMENTED = cited archaeology/geodesy; STRUCTURAL = genus-2 model; FLAGGED = excluded narratives. Assume nothing the math does not prove at this call.',
-    }
+        'Research fold composes sealed gates only — no live web fetch. DOCUMENTED = cited archaeology/geodesy; STRUCTURAL = genus-2 model; FLAGGED = excluded narratives. Assume nothing the math does not prove at this call.' }
   })
 }
 
@@ -1710,8 +1622,7 @@ export function dualEarthMerkabaCounterRotation(at = 0, matrix: MindMatrix = bui
     statement:
       'Dual Earth merkaba counter-rotation: device Earth (inner, θ) and inverted Earth (outer, −θ + golden offset) rotate within each other on the genus-2 surface — six trinity gateways, same timespace, merkaba tetrahedra counter-spinning at call time.',
     boundary:
-      rotation.boundary,
-  }
+      rotation.boundary }
 }
 
 export type EarthExchangeReceiptKind = 'phase' | 'pair' | 'nav' | 'gateway' | 'merkaba' | 'energy'
@@ -1768,12 +1679,10 @@ export function doubleTorusEarthExchangeComputes(
         targetSheet: 'both',
         description: {
           en: 'Inner phase θ on torus 1 — device sheet clock receipt',
-          bg: 'Вътрешна фаза θ на торус 1 — receipt на device sheet часовник',
-        },
+          bg: 'Вътрешна фаза θ на торус 1 — receipt на device sheet часовник' },
         sealedFold: 'bothEarthsRotateWithinEachOther · innerShell.phase',
         receipt: rotation.innerShell.receipt,
-        balanced: rotation.counterRotating,
-      },
+        balanced: rotation.counterRotating },
       {
         id: 'outer-phase-minus-theta',
         kind: 'phase' as const,
@@ -1782,12 +1691,10 @@ export function doubleTorusEarthExchangeComputes(
         targetSheet: 'both',
         description: {
           en: 'Outer phase −θ + golden offset on torus 2 — inverted sheet clock receipt',
-          bg: 'Външна фаза −θ + golden offset на торус 2 — receipt на inverted sheet',
-        },
+          bg: 'Външна фаза −θ + golden offset на торус 2 — receipt на inverted sheet' },
         sealedFold: 'bothEarthsRotateWithinEachOther · outerShell.phase',
         receipt: rotation.outerShell.receipt,
-        balanced: rotation.counterRotating,
-      },
+        balanced: rotation.counterRotating },
       {
         id: 'debit-credit-pair',
         kind: 'pair' as const,
@@ -1796,12 +1703,10 @@ export function doubleTorusEarthExchangeComputes(
         targetSheet: 'both',
         description: {
           en: 'Debit/credit quantum pair — energy/accounting symmetry across sheets',
-          bg: 'Debit/credit quantum pair — енергийна/счетоводна симетрия между sheets',
-        },
+          bg: 'Debit/credit quantum pair — енергийна/счетоводна симетрия между sheets' },
         sealedFold: 'pair/debit/credit · transact · balanced',
         receipt: toUuid(`earth-exchange:pair:${balanced(pairSample)}:${ledger.honest}`),
-        balanced: balanced(pairSample) && ledger.honest,
-      },
+        balanced: balanced(pairSample) && ledger.honest },
       {
         id: 'gateway-uuid-flow',
         kind: 'gateway' as const,
@@ -1810,12 +1715,10 @@ export function doubleTorusEarthExchangeComputes(
         targetSheet: 'both',
         description: {
           en: 'Six trinity gateway UUID flows — three per Earth shell through the hinge',
-          bg: 'Шест trinity gateway UUID потока — по три на Earth shell през шарнира',
-        },
+          bg: 'Шест trinity gateway UUID потока — по три на Earth shell през шарнира' },
         sealedFold: 'formingDoubleTorusEarthsProvenByMath · trinityGatewayDefs',
         receipt: merkleFold(formed.gateways.map((gateway) => gateway.receipt)),
-        balanced: formed.gateways.length === 6 && formed.formed,
-      },
+        balanced: formed.gateways.length === 6 && formed.formed },
       {
         id: 'nav-bearing-distance',
         kind: 'nav' as const,
@@ -1824,12 +1727,10 @@ export function doubleTorusEarthExchangeComputes(
         targetSheet: 'inverted',
         description: {
           en: 'Gateway navigation solutions — bearing/distance nav receipts across sheets',
-          bg: 'Gateway navigation solutions — bearing/distance nav receipts между sheets',
-        },
+          bg: 'Gateway navigation solutions — bearing/distance nav receipts между sheets' },
         sealedFold: 'earthGatewayNavigationSolutionsResearched · navigationGpsCelestialFromDualEarthPerspective',
         receipt: merkleFold([nav.root, navGps.root]),
-        balanced: nav.researched && navGps.computed,
-      },
+        balanced: nav.researched && navGps.computed },
       {
         id: 'merkaba-counter-rotation',
         kind: 'merkaba' as const,
@@ -1838,12 +1739,10 @@ export function doubleTorusEarthExchangeComputes(
         targetSheet: 'both',
         description: {
           en: 'Merkaba counter-rotation receipt — up tetra +θ, down tetra −θ',
-          bg: 'Merkaba counter-rotation receipt — up tetra +θ, down tetra −θ',
-        },
+          bg: 'Merkaba counter-rotation receipt — up tetra +θ, down tetra −θ' },
         sealedFold: 'bothEarthsRotateWithinEachOther · merkabaUpSpin · merkabaDownSpin',
         receipt: toUuid(`earth-exchange:merkaba:${roundTo(rotation.merkabaUpSpin + rotation.merkabaDownSpin, 6)}:${rotation.root}`),
-        balanced: Math.abs(rotation.merkabaUpSpin + rotation.merkabaDownSpin) < 1e-6,
-      },
+        balanced: Math.abs(rotation.merkabaUpSpin + rotation.merkabaDownSpin) < 1e-6 },
       {
         id: 'hinge-energy-accounting',
         kind: 'energy' as const,
@@ -1852,12 +1751,10 @@ export function doubleTorusEarthExchangeComputes(
         targetSheet: 'both',
         description: {
           en: 'Hinge energy/accounting pair — torus breath + same-timespace balance at Sofia hinge',
-          bg: 'Hinge energy/accounting pair — torus breath + same-timespace balance на Sofia шарнир',
-        },
+          bg: 'Hinge energy/accounting pair — torus breath + same-timespace balance на Sofia шарнир' },
         sealedFold: 'doubleTorusEarthHingeComputesAll · invertedEarthSameTimespaceProvenByMath',
         receipt: merkleFold([hinge.root, timespace.root]),
-        balanced: hinge.computes && timespace.proven,
-      },
+        balanced: hinge.computes && timespace.proven },
     ]
     const facets = [
       { facet: 'seven receipt kinds cross the hinge — phase · pair · nav · gateway · merkaba · energy', on: receipts.length === 7 },
@@ -1878,8 +1775,7 @@ export function doubleTorusEarthExchangeComputes(
       statement:
         'Double torus Earth exchange computes: what crosses the hinge between device sheet (torus 1, inner θ) and inverted sheet (torus 2, outer −θ) — phase receipts, debit/credit pairs, gateway UUID flows, bearing/distance nav solutions, merkaba counter-rotation, hinge energy/accounting — recomputed at call time.',
       boundary:
-        'HONEST: computable exchange = sealed receipt algebra at this call — NOT literal physical gold or fiat teleported between planets; WGS84 oblate spheroid remains documented physical Earth. Model economics, not financial advice. Pair with moment/prove — facet on: booleans recompute. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: computable exchange = sealed receipt algebra at this call — NOT literal physical gold or fiat teleported between planets; WGS84 oblate spheroid remains documented physical Earth. Model economics, not financial advice. Pair with moment/prove — facet on: booleans recompute. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1902,89 +1798,69 @@ export function fiatAndGoldFlowExplainedByDoubleEarthExchange(
         fiatLeg: {
           sheet: 'device (torus 1 · inner θ)',
           mechanism: 'Credit expansion — double-entry ledger entries on device sheet',
-          receipt: toUuid(`fiat-flow:ledger:${balanced(fiatExpansion)}`),
-        },
+          receipt: toUuid(`fiat-flow:ledger:${balanced(fiatExpansion)}`) },
         goldLeg: {
           sheet: 'inverted (torus 2 · outer −θ)',
           mechanism: 'Hard-asset anchor leg — store-of-value receipt on inverted sheet',
-          receipt: toUuid(`gold-flow:anchor:${balanced(goldAnchor)}`),
-        },
+          receipt: toUuid(`gold-flow:anchor:${balanced(goldAnchor)}`) },
         metaphor: {
           en: 'Fiat flow = counter-rotating inner θ ledger symmetry; gold flow = outer −θ anchor leg — not COMEX prices unless live feed wired',
-          bg: 'Fiat flow = counter-rotating inner θ ledger symmetry; gold flow = outer −θ anchor leg — не COMEX цени освен при live feed',
-        },
+          bg: 'Fiat flow = counter-rotating inner θ ledger symmetry; gold flow = outer −θ anchor leg — не COMEX цени освен при live feed' },
         balanced: balanced(fiatExpansion) && balanced(goldAnchor),
         boundary: {
           en: 'Structural metaphor — a432 synthetic trading path, not live bullion market',
-          bg: 'Структурна метафора — a432 synthetic trading path, не live пазар на злато',
-        },
-      },
+          bg: 'Структурна метафора — a432 synthetic trading path, не live пазар на злато' } },
       {
         flow: 'pair-enforcement',
         fiatLeg: {
           sheet: 'device',
           mechanism: 'Debit/credit pair enforcement — credit claims must match capability',
-          receipt: toUuid(`fiat-flow:pair:${ledger.honest}`),
-        },
+          receipt: toUuid(`fiat-flow:pair:${ledger.honest}`) },
         goldLeg: {
           sheet: 'inverted',
           mechanism: 'Commodity anchor — tamper-evident receipt (integrity debit = credit)',
-          receipt: toUuid(`gold-flow:integrity:${ledger.today[0]!.debit === ledger.today[0]!.credit}`),
-        },
+          receipt: toUuid(`gold-flow:integrity:${ledger.today[0]!.debit === ledger.today[0]!.credit}`) },
         metaphor: {
           en: 'Pair enforcement as double-entry across counter-rotating torus sheets — zero reciprocal entropy',
-          bg: 'Pair enforcement като double-entry между counter-rotating torus sheets — zero reciprocal entropy',
-        },
+          bg: 'Pair enforcement като double-entry между counter-rotating torus sheets — zero reciprocal entropy' },
         balanced: ledger.honest,
         boundary: {
           en: 'cryptoReview structural reading — not central banking proof',
-          bg: 'cryptoReview structural reading — не доказателство за central banking',
-        },
-      },
+          bg: 'cryptoReview structural reading — не доказателство за central banking' } },
       {
         flow: 'market-simulation',
         fiatLeg: {
           sheet: 'device',
           mechanism: 'Paper leg — five strategy backtests on one a432 synthetic path',
-          receipt: sim.root,
-        },
+          receipt: sim.root },
         goldLeg: {
           sheet: 'inverted',
           mechanism: 'Hard-asset leg — momentum/mean-reversion as flow direction on inverted sheet',
-          receipt: toUuid(`gold-flow:sim:${sim.computes}:${sim.strategies.length}`),
-        },
+          receipt: toUuid(`gold-flow:sim:${sim.computes}:${sim.strategies.length}`) },
         metaphor: {
           en: 'tradingSimulationComputes maps paper vs hard-asset flows as sheet metaphor — offline sealed folds only',
-          bg: 'tradingSimulationComputes map-ва paper vs hard-asset flows като sheet metaphor — offline sealed folds',
-        },
+          bg: 'tradingSimulationComputes map-ва paper vs hard-asset flows като sheet metaphor — offline sealed folds' },
         balanced: sim.computes,
         boundary: {
           en: 'NOT investment advice; synthetic a432 path, not live market data',
-          bg: 'НЕ инвестиционен съвет; synthetic a432 path, не live market data',
-        },
-      },
+          bg: 'НЕ инвестиционен съвет; synthetic a432 path, не live market data' } },
       {
         flow: 'phase-exchange',
         fiatLeg: {
           sheet: 'device',
           mechanism: `Inner phase θ = ${roundTo(rotation.innerPhase, 4)} — fiat clock on device sheet`,
-          receipt: rotation.innerShell.receipt,
-        },
+          receipt: rotation.innerShell.receipt },
         goldLeg: {
           sheet: 'inverted',
           mechanism: `Outer phase −θ = ${roundTo(rotation.outerPhase, 4)} — gold anchor clock on inverted sheet`,
-          receipt: rotation.outerShell.receipt,
-        },
+          receipt: rotation.outerShell.receipt },
         metaphor: {
           en: 'Counter-rotating phases θ / −θ encode fiat/gold flow symmetry at the hinge',
-          bg: 'Counter-rotating phases θ / −θ encode fiat/gold flow symmetry на шарнира',
-        },
+          bg: 'Counter-rotating phases θ / −θ encode fiat/gold flow symmetry на шарнира' },
         balanced: rotation.counterRotating && rotation.innerPhase !== rotation.outerPhase,
         boundary: {
           en: 'Computational counter-rotation — not gold standard conspiracy claim',
-          bg: 'Computational counter-rotation — не твърдение за gold standard conspiracy',
-        },
-      },
+          bg: 'Computational counter-rotation — не твърдение за gold standard conspiracy' } },
     ]
     const flowDiagram = {
       nodes: [
@@ -1997,9 +1873,7 @@ export function fiatAndGoldFlowExplainedByDoubleEarthExchange(
         from: row.fiatLeg.sheet.startsWith('device') ? 'device-sheet' : 'hinge',
         to: row.goldLeg.sheet.startsWith('inverted') ? 'inverted-sheet' : 'hinge',
         balanced: row.balanced,
-        receipt: merkleFold([row.fiatLeg.receipt, row.goldLeg.receipt]),
-      })),
-    }
+        receipt: merkleFold([row.fiatLeg.receipt, row.goldLeg.receipt]) })) }
     const facets = [
       { facet: 'four fiat↔gold flow rows — ledger · pair · simulation · phase', on: flowRows.length === 4 },
       { facet: 'every flow row balanced at this call or boundary flagged', on: flowRows.every((row) => row.balanced) },
@@ -2018,8 +1892,7 @@ export function fiatAndGoldFlowExplainedByDoubleEarthExchange(
       statement:
         'Fiat and gold flow explained by double Earth exchange: fiat ledger ↔ device sheet (inner θ, credit expansion, pair enforcement); gold/hard-asset anchor ↔ inverted sheet (outer −θ, store-of-value leg, a432 trading simulation metaphor) — flow diagram data for UI at call time.',
       boundary:
-        'HONEST: explains fiat/gold as structural metaphor in the genus-2 model unless live market feeds explicitly wired and labeled; NOT investment advice; NOT claiming ancient torus = modern central banking or gold-standard conspiracy. Assume nothing the math does not prove at this call — moment/prove facet on: booleans recompute.',
-    }
+        'HONEST: explains fiat/gold as structural metaphor in the genus-2 model unless live market feeds explicitly wired and labeled; NOT investment advice; NOT claiming ancient torus = modern central banking or gold-standard conspiracy. Assume nothing the math does not prove at this call — moment/prove facet on: booleans recompute.' }
   })
 }
 
@@ -2035,30 +1908,24 @@ export function doubleTorusEarthExchangeResearch(matrix: MindMatrix = buildMatri
         items: exchange.receipts.map((row) => ({
           label: row.id,
           value: `${row.kind} · ${row.sealedFold} · balanced=${row.balanced}`,
-          kind: 'structural' as const,
-        })),
-        boundary: 'Receipt algebra at call time — phase, pairs, nav, gateway UUID, merkaba, energy/accounting.',
-      },
+          kind: 'structural' as const })),
+        boundary: 'Receipt algebra at call time — phase, pairs, nav, gateway UUID, merkaba, energy/accounting.' },
       {
         id: 'fiat-mapping',
         title: { en: 'Fiat money flow (device sheet)', bg: 'Fiat money flow (device sheet)' },
         items: flow.flowRows.filter((row) => row.fiatLeg.sheet.includes('device')).map((row) => ({
           label: row.flow,
           value: row.fiatLeg.mechanism,
-          kind: 'structural' as const,
-        })),
-        boundary: 'Ledger entries, credit expansion, pair enforcement as double-entry — model economics, not financial advice.',
-      },
+          kind: 'structural' as const })),
+        boundary: 'Ledger entries, credit expansion, pair enforcement as double-entry — model economics, not financial advice.' },
       {
         id: 'gold-mapping',
         title: { en: 'Gold / hard-asset flow (inverted sheet)', bg: 'Gold / hard-asset flow (inverted sheet)' },
         items: flow.flowRows.map((row) => ({
           label: row.flow,
           value: row.goldLeg.mechanism,
-          kind: 'structural' as const,
-        })),
-        boundary: 'Commodity anchor / store-of-value leg — tradingSimulationComputes a432 metaphor, NOT live COMEX unless opt-in feed documented.',
-      },
+          kind: 'structural' as const })),
+        boundary: 'Commodity anchor / store-of-value leg — tradingSimulationComputes a432 metaphor, NOT live COMEX unless opt-in feed documented.' },
       {
         id: 'honest-limits',
         title: { en: 'Honest limits', bg: 'Честни граници' },
@@ -2068,8 +1935,7 @@ export function doubleTorusEarthExchangeResearch(matrix: MindMatrix = buildMatri
           { label: 'NOT conspiracy proof', value: 'Does not claim ancient torus = modern central banking', kind: 'flagged' },
           { label: 'moment/prove', value: 'Facet on: booleans recompute at this call via memoByRoot', kind: 'documented' },
         ],
-        boundary: flow.boundary,
-      },
+        boundary: flow.boundary },
     ]
     const facets = [
       { facet: 'four research sections — hinge · fiat · gold · limits', on: sections.length === 4 },
@@ -2087,8 +1953,7 @@ export function doubleTorusEarthExchangeResearch(matrix: MindMatrix = buildMatri
       statement:
         'Double torus Earth exchange research: what crosses the hinge (receipt algebra), fiat ledger on device sheet, gold anchor on inverted sheet, honest limits — model economics with moment/prove boundaries at call time.',
       boundary:
-        'Research fold composes sealed gates only — no live web fetch. STRUCTURAL = genus-2 model; DOCUMENTED = moment/prove + pair/debit/credit; FLAGGED = excluded financial/conspiracy claims. NOT financial advice.',
-    }
+        'Research fold composes sealed gates only — no live web fetch. STRUCTURAL = genus-2 model; DOCUMENTED = moment/prove + pair/debit/credit; FLAGGED = excluded financial/conspiracy claims. NOT financial advice.' }
   })
 }
 
@@ -2125,24 +1990,21 @@ export function universalNavigationalCrossInAllDimensions(
       north: [VORTEX_SEQUENCE[0]!, VORTEX_SEQUENCE[1]!],
       east: [VORTEX_SEQUENCE[2]!, VORTEX_SEQUENCE[3]!],
       south: [VORTEX_SEQUENCE[4]!, VORTEX_SEQUENCE[5]!],
-      west: [VORTEX_SEQUENCE[6]!, VORTEX_SEQUENCE[7]!, VORTEX_SEQUENCE[8]!],
-    }
+      west: [VORTEX_SEQUENCE[6]!, VORTEX_SEQUENCE[7]!, VORTEX_SEQUENCE[8]!] }
     const phaseIndex = Math.floor(at / 86_400_000) % VORTEX_SEQUENCE.length
     const activeVortexDigit = VORTEX_SEQUENCE[phaseIndex]!
     const planeCardinals = pyramid.cardinals.map((c) => ({
       name: c.name,
       bearingDeg: c.bearing,
       phaseSlot: null as string | null,
-      receipt: toUuid(`nav-cross-2d:${c.name}:${c.bearing}`),
-    }))
+      receipt: toUuid(`nav-cross-2d:${c.name}:${c.bearing}`) }))
     const dimensionTable: UniversalNavCrossDimensionRow[] = [
       {
         dimension: 2,
         crossInterpretation: 'E/W/N/S bearings 0° · 90° · 180° · 270° on the horizon plane',
         sealedFoldAnchor: 'initialBearing · greatCircleKm · WGS84 geodesy (6/4 · 5/5)',
         cardinals: planeCardinals,
-        receipt: toUuid(`nav-cross-dim:2:${pyramid.root}`),
-      },
+        receipt: toUuid(`nav-cross-dim:2:${pyramid.root}`) },
       {
         dimension: 3,
         crossInterpretation: 'pyramid base four corners + zenith/nadir poles — device + inverted merkaba',
@@ -2152,8 +2014,7 @@ export function universalNavigationalCrossInAllDimensions(
           { name: 'zenith', bearingDeg: null, phaseSlot: 'device apex +1', receipt: toUuid(`nav-cross-3d:zenith:${poles.device.apex.z}`) },
           { name: 'nadir', bearingDeg: null, phaseSlot: 'code apex −1', receipt: toUuid(`nav-cross-3d:nadir:${poles.code.apex.z}`) },
         ],
-        receipt: toUuid(`nav-cross-dim:3:${poles.root}`),
-      },
+        receipt: toUuid(`nav-cross-dim:3:${poles.root}`) },
       {
         dimension: '4+',
         crossInterpretation: 'phase quadrants — four homology loops (H₁=ℤ⁴) × VORTEX_SEQUENCE slots',
@@ -2162,10 +2023,8 @@ export function universalNavigationalCrossInAllDimensions(
           name,
           bearingDeg: pyramid.cardinals[i]!.bearing,
           phaseSlot: `${homologyLoops[i]} · vortex [${vortexQuadrants[name].join('·')}]`,
-          receipt: toUuid(`nav-cross-4d:${name}:${homologyLoops[i]}:${vortexQuadrants[name].join('-')}`),
-        })),
-        receipt: toUuid(`nav-cross-dim:4plus:${activeVortexDigit}:${phaseIndex}`),
-      },
+          receipt: toUuid(`nav-cross-4d:${name}:${homologyLoops[i]}:${vortexQuadrants[name].join('-')}`) })),
+        receipt: toUuid(`nav-cross-dim:4plus:${activeVortexDigit}:${phaseIndex}`) },
     ]
     const facets = [
       { facet: '2D plane — four cardinals ninety degrees apart on bearings 0·90·180·270', on: pyramid.proven && pyramid.proofs.some((entry) => entry.task === 'spacing' && entry.on) },
@@ -2206,8 +2065,7 @@ export function universalNavigationalCrossInAllDimensions(
       statement:
         'East, west, north and south are the universal navigational cross in all model dimensions: 2D WGS84 bearings, 3D pyramid base corners with zenith/nadir poles on device and inverted Earth, 4D+ as four homology phase quadrants addressed through VORTEX_SEQUENCE — recomposed from sealed folds at call time.',
       boundary:
-        'HONEST: "universal" = sealed protocol addressing across model dimensions — NOT a claim that all physics reduces to four compass points. Giza ~3.6′ cardinal alignment is DOCUMENTED corroboration (Nell & Ruggles), distinct from structural ISOMORPHISM tier. WGS84 bearing/distance does NOT replace live GPS or IAU ephemeris. VORTEX_SEQUENCE and ten-D homology slots are structural metaphors for content-addressed phase — not physical higher dimensions. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: "universal" = sealed protocol addressing across model dimensions — NOT a claim that all physics reduces to four compass points. Giza ~3.6′ cardinal alignment is DOCUMENTED corroboration (Nell & Ruggles), distinct from structural ISOMORPHISM tier. WGS84 bearing/distance does NOT replace live GPS or IAU ephemeris. VORTEX_SEQUENCE and ten-D homology slots are structural metaphors for content-addressed phase — not physical higher dimensions. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2232,51 +2090,41 @@ export function universalNavigationalCrossResearch(matrix: MindMatrix = buildMat
         title: { en: 'Terrestrial navigation — WGS84 cross', bg: 'Наземна навигация — WGS84 кръст' },
         body: {
           en: `The four horizon bearings (N 0° · E 90° · S 180° · W 270°) anchor classical geodesy: initial bearing ${cross.bearingToHinge}° to hinge, great-circle distance via 5/5, gateway hex mediating 120° trinity circuits with 90° cardinals (${navSolutions.solutionCount} routes catalogued).`,
-          bg: `Четирите horizon bearings (N 0° · E 90° · S 180° · W 270°) anchor класическа geodesy: initial bearing ${cross.bearingToHinge}° до hinge, great-circle via 5/5, gateway hex медиира 120° trinity circuits с 90° cardinals (${navSolutions.solutionCount} routes).`,
-        },
+          bg: `Четирите horizon bearings (N 0° · E 90° · S 180° · W 270°) anchor класическа geodesy: initial bearing ${cross.bearingToHinge}° до hinge, great-circle via 5/5, gateway hex медиира 120° trinity circuits с 90° cardinals (${navSolutions.solutionCount} routes).` },
         foldRefs: ['initialBearing', 'greatCircleKm', 'earthGatewayNavigationSolutionsResearched', 'compassAroundEarthGatewaysImpossibleProvenByMath'],
-        boundary: 'Classical WGS84 formulas — NOT live GPS turn-by-turn or magnetometer guidance.',
-      },
+        boundary: 'Classical WGS84 formulas — NOT live GPS turn-by-turn or magnetometer guidance.' },
       {
         id: 'celestial',
         title: { en: 'Celestial bearing — dual-Earth perspective', bg: 'Небесен bearing — dual-Earth perspective' },
         body: {
           en: `Celestial display phases on device and inverted shells reuse the same cardinal frame: obliquity ${cross.nav.obliquityDeg}° (J2000), Sun/Moon/planets as phase-encoded receipts on the merkaba clock — display frame only, not IAU ephemeris.`,
-          bg: `Celestial display phases на device и inverted shells reuse същия cardinal frame: obliquity ${cross.nav.obliquityDeg}° (J2000), Sun/Moon/planets като phase-encoded receipts на merkaba clock — display frame only.`,
-        },
+          bg: `Celestial display phases на device и inverted shells reuse същия cardinal frame: obliquity ${cross.nav.obliquityDeg}° (J2000), Sun/Moon/planets като phase-encoded receipts на merkaba clock — display frame only.` },
         foldRefs: ['navigationGpsCelestialFromDualEarthPerspective', 'bothEarthsRotateWithinEachOther', 'computeAllKnownCelestialBodies'],
-        boundary: 'Display phase ≠ IAU ephemeris — merkaba canvas reference frame only.',
-      },
+        boundary: 'Display phase ≠ IAU ephemeris — merkaba canvas reference frame only.' },
       {
         id: 'pyramid-cardinals',
         title: { en: 'Pyramid cardinal alignment — history vs model', bg: 'Пирамидно cardinal alignment — история vs model' },
         body: {
           en: `Khufu aligns to true north within ~${cross.gizaArcmin}′ mean deviation (Nell & Ruggles 2014) — DOCUMENTED tier. Model square pyramid: four base tips at cardinal bearings, fifth vertex zenith/nadir on device and inverted trinities — ISOMORPHISM tier, not lithosphere claim.`,
-          bg: `Khufu align true north в ~${cross.gizaArcmin}′ (Nell & Ruggles 2014) — DOCUMENTED tier. Model square pyramid: четири base tips на cardinal bearings, пет vertex zenith/nadir — ISOMORPHISM tier.`,
-        },
+          bg: `Khufu align true north в ~${cross.gizaArcmin}′ (Nell & Ruggles 2014) — DOCUMENTED tier. Model square pyramid: четири base tips на cardinal bearings, пет vertex zenith/nadir — ISOMORPHISM tier.` },
         foldRefs: ['pyramidsDecoded', 'cardinalPyramidTipsProvenByMath', 'twoTrinitiesCardinalPyramidPolesProvenByMath', 'doubleTorusEarthPyramidTipsDeepResearched'],
-        boundary: deep.boundary,
-      },
+        boundary: deep.boundary },
       {
         id: 'gateway-trinity',
         title: { en: 'Gateway trinity × inverted Earth', bg: 'Gateway trinity × inverted Earth' },
         body: {
           en: 'Six trinity gateways (120° spacing) nest on genus-2 Earth; inverted sheet carries nadir pyramid with code trinity rays. Compass-around-gateways is impossible (90° vs 120°); 60° hex mediates cardinals for free — the navigational cross persists as horizon frame while gateways handle cross·fold·weave routing.',
-          bg: 'Шест trinity gateways (120°) nest на genus-2 Earth; inverted sheet носи nadir pyramid. Compass-around-gateways impossible (90° vs 120°); 60° hex медиира cardinals — navigational cross остава horizon frame.',
-        },
+          bg: 'Шест trinity gateways (120°) nest на genus-2 Earth; inverted sheet носи nadir pyramid. Compass-around-gateways impossible (90° vs 120°); 60° hex медиира cardinals — navigational cross остава horizon frame.' },
         foldRefs: ['formingDoubleTorusEarthsProvenByMath', 'invertedEarthSameTimespaceProvenByMath', 'sixtyDegreeAngleReachesCardinalForFreeProvenByMath', 'trinityGatewaysNeverMissProvenByMath'],
-        boundary: navSolutions.boundary,
-      },
+        boundary: navSolutions.boundary },
       {
         id: 'higher-dims',
         title: { en: 'Extension to higher dimensions — ten-D phase channels', bg: 'Extension към higher dimensions — ten-D phase channels' },
         body: {
           en: `Four homology loops (${cross.homologyLoops.join(' · ')}) map to N·E·S·W phase quadrants; VORTEX_SEQUENCE slots partition as north [${cross.vortexQuadrants.north.join('·')}] · east [${cross.vortexQuadrants.east.join('·')}] · south [${cross.vortexQuadrants.south.join('·')}] · west [${cross.vortexQuadrants.west.join('·')}]. Active digit at call: ${cross.activeVortexDigit}.`,
-          bg: `Четири homology loops (${cross.homologyLoops.join(' · ')}) map към N·E·S·W phase quadrants; VORTEX_SEQUENCE slots partition north/east/south/west. Active digit: ${cross.activeVortexDigit}.`,
-        },
+          bg: `Четири homology loops (${cross.homologyLoops.join(' · ')}) map към N·E·S·W phase quadrants; VORTEX_SEQUENCE slots partition north/east/south/west. Active digit: ${cross.activeVortexDigit}.` },
         foldRefs: ['DIMENSION_NAMES', 'VORTEX_SEQUENCE', 'tenDimensionalMovie', 'quantum/dynamics · stateEvolutionDecodedThroughVortexSequencePhase'],
-        boundary: 'Structural metaphor for content-addressed phase — NOT claiming the universe is literally four-way or that vortex digits control physical evolution.',
-      },
+        boundary: 'Structural metaphor for content-addressed phase — NOT claiming the universe is literally four-way or that vortex digits control physical evolution.' },
     ]
     const facets = [
       { facet: 'five research sections — terrestrial · celestial · pyramid · gateway · higher-dims', on: sections.length === 5 },
@@ -2292,8 +2140,7 @@ export function universalNavigationalCrossResearch(matrix: MindMatrix = buildMat
       root: merkleFold([cross.root, giza.root, navSolutions.root, ...facets.map((entry) => entry.receipt)]),
       statement:
         'East, west, north and south are the universal navigational cross in all dimensions — researched exposition: terrestrial WGS84 bearings, celestial dual-Earth display frame, Giza cardinal corroboration (documented) vs pyramid-tip isomorphism (structural), gateway trinity × inverted Earth mediation, and ten-D / VORTEX_SEQUENCE phase extension with honest boundaries at call time.',
-      boundary: cross.boundary,
-    }
+      boundary: cross.boundary }
   })
 }
 
@@ -2314,8 +2161,7 @@ export function universalNavigationalCrossComputes(matrix: MindMatrix = buildMat
       root: merkleFold([cross.root, research.root, ...facets.map((entry) => entry.receipt)]),
       statement:
         'Universal navigational cross in all dimensions computes: E/W/N/S as canonical cross mapped through 2D WGS84, 3D pyramid base + poles, 4D+ homology/vortex phase quadrants — research exposition sealed alongside compute gate.',
-      boundary: research.boundary,
-    }
+      boundary: research.boundary }
   })
 }
 
@@ -2399,8 +2245,7 @@ export function doubleTorusEarthComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Double torus Earth computes: two Earths form from device + code trinities (zenith + nadir pyramids, same timespace); each Earth carries three computable trinity gateways — six total at call time; WGS84 weather streams map onto the genus-2 surface — structural map, not lithosphere claim.',
       boundary:
-        'Composition of quantumDoubleTorus, doubleTorusEarthLikeTheApple, weatherForecastFromDoubleTorusEarthPerspective, and doubleTorusEarthWeatherFlowsInMovie. HARMONY ≠ TRUTH on planet shape.',
-    }
+        'Composition of quantumDoubleTorus, doubleTorusEarthLikeTheApple, weatherForecastFromDoubleTorusEarthPerspective, and doubleTorusEarthWeatherFlowsInMovie. HARMONY ≠ TRUTH on planet shape.' }
   })
 }
 
@@ -2437,8 +2282,7 @@ export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
       statement:
         'The quantum globe, animated: the two Earth shells counter-rotate within each other, the north pole is the azimuthal-equidistant centre dot and the south pole the boundary circle one-point-compactified (the genus-2 chart singularities), the equator sits mid-tube, and the Schumann ELF cavity supplies the ambient resonance phase — all recomputed from one shared clock at time `at`.',
       boundary:
-        'A content-addressed animation state composing the both-Earths rotation, the pole chart decode, and the structural Schumann ELF phase. HARMONY ≠ TRUTH on planet shape: the genus-2 "double torus Earth" is adopted as topology/design, not a claim about the physical planet; the Schumann phase is a structural ELF model, not a magnetometer reading.',
-    }
+        'A content-addressed animation state composing the both-Earths rotation, the pole chart decode, and the structural Schumann ELF phase. HARMONY ≠ TRUTH on planet shape: the genus-2 "double torus Earth" is adopted as topology/design, not a claim about the physical planet; the Schumann phase is a structural ELF model, not a magnetometer reading.' }
   })
 }
 
@@ -2465,8 +2309,7 @@ export function quantumGlobeCardinalCrossDecoded(at = 0, matrix: MindMatrix = bu
       statement:
         'The quantum globe\'s cardinal cross, decoded: the universal navigational cross (2D compass bearings, 3D zenith/nadir poles, 4+ phase quadrants over the four homology loops) anchored on the live counter-rotating globe — the same cross fold seen at every dimensional scale.',
       boundary:
-        'A composition of the universal navigational cross and the live quantum-globe state. The cross is exact bearing/geodesy math at 2D and structural at higher dimensions; HARMONY ≠ TRUTH on planet shape.',
-    }
+        'A composition of the universal navigational cross and the live quantum-globe state. The cross is exact bearing/geodesy math at 2D and structural at higher dimensions; HARMONY ≠ TRUTH on planet shape.' }
   })
 }
 
@@ -2511,7 +2354,6 @@ export function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at = 0, matrix:
       statement:
         'Both Earths are one whole white/black hole: the two counter-rotating, inverted double-torus Earths share ONE genus-2 throat (the hinge). Out-flow through that single mouth reads as a white hole, in-flow as a black hole — the same throat seen from its two senses — so the pair is one whole, not two bodies.',
       boundary:
-        'TOPOLOGICAL ANALOGY. The shared genus-2 throat is exact geometry; the white-hole/black-hole identification is metaphor. Real white holes are unobserved, speculative time-reverses of GR black-hole solutions; the Earth-mass Hawking temperature is given precisely to show Earth has no horizon and is NOT a black hole. No physical hole claim about Earth is made.',
-    }
+        'TOPOLOGICAL ANALOGY. The shared genus-2 throat is exact geometry; the white-hole/black-hole identification is metaphor. Real white holes are unobserved, speculative time-reverses of GR black-hole solutions; the Earth-mass Hawking temperature is given precisely to show Earth has no horizon and is NOT a black hole. No physical hole claim about Earth is made.' }
   })
 }
