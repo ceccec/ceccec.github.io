@@ -36,6 +36,7 @@ import { displayAllWithFewEntropySaved } from '../../lake/ledger'
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../../quantum/heaven/mind'
 import { TAU, PHI, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayOfContent, FOLDED_CENSUS, UNFOLDED_CENSUS, DIMENSION_GATES, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG } from '../../3/7'
+import { THEOREM_ATOM_SEED } from '../../4/6'
 import { rosettaRayOf } from '../../water/digit'
 import { piHexDigitAt, nthPrimeAt } from '../../7/3'
 
@@ -736,11 +737,9 @@ export function anyUuidHeroContentFractal(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
-// The ten-dimensional hero as a self-contained ANIMATED SVG — for the README, where GitHub renders no
-// JavaScript (no canvas, no live hero). The same double torus the live hero animates, emitted as SMIL
-// (animateTransform/animate, no <script>): the genus-2 figure (χ = −2), the four H₁ = ℤ⁴ homology loops
-// orbiting at harmonic rates, the six cross-fold axes pulsing, on the a432 brand. GitHub-safe (no script,
-// no foreignObject, no external refs), deterministic, recomputed from src — so even in 2D the 10D shows.
+// README / per-UUID hero SVGs — hex-only movieCanvasHex palette, SMIL-only, GitHub-safe (no script /
+// foreignObject / external refs). README hero = proof composition over THEOREM_ATOM_SEED; per-UUID heroes
+// remain parametric for OG cards.
 const SVG_CHROMA = 9 / 64
 
 function heroSvgPaletteFromUuid(uuid: string) {
@@ -756,128 +755,120 @@ function heroSvgPaletteFromUuid(uuid: string) {
   }
 }
 
-// The plasma-ball layer — glowing core + radial filaments on the fractal clock / movieCanvasHex spine
-// (same palette atoms as fire/plasma/ball). Hex-only, SMIL-only, GitHub-safe. Filament count = vortex length.
-function heroPlasmaBallLayer(cx: number, cy: number, byte: (k: number) => number): string {
-  const hue = Math.round((byte(6) * 360) / (64 * 4))
-  const core = movieCanvasHex(hue, { L: 7 / 8 })
-  const fil = movieCanvasHex((hue + (8 * 5)) % 360, { L: 1 - 3 / 16 })
-  const n = VORTEX_SEQUENCE.length // sealed 1-2-4-8-7-5 doubling circuit — not a hand-picked ray count
-  const filaments = Array.from({ length: n }, (_, k) => {
-    const a = (k / n) * TAU
-    const r = (6 * 5) + (byte(k) % 26)
-    const x2 = Math.round(cx + Math.cos(a) * r)
-    const y2 = Math.round(cy + Math.sin(a) * r)
-    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[9 - (k % 4)]!)}" begin="${(k % 9) * (2 / 5) + (1 / (5 * 2))}s" repeatCount="indefinite"/></line>`
-  }).join('')
-  return `<g opacity="0.5" data-layer="plasma">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/></circle></g>`
-}
-
-// Merkaba layer — stella octangula from sealed merkaba().tetraUp/tetraDown, projected through the sealed
-// rotate3 + perspective atoms (same law as the live canvas). Counter-rotating SMIL groups. Computational
-// geometry, not Flower-of-Life / sacred-geometry prose.
-const HERO_MERKABA_EDGES: readonly (readonly [number, number])[] = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]]
-const HERO_OBLIQUE_TILT = -Math.asin((7 / (5 * 4))) // matches quantum canvas OBLIQUE_VIEW_TILT (I Ching ratio)
-
-function heroMerkabaLayer(cx: number, cy: number, byte: (k: number) => number): string {
-  const mk = merkaba()
-  const scale = (6 * 9) // ~54 px — nested under the double-torus ellipses
-  const project = (v: readonly [number, number, number]) => {
-    const unit = Math.hypot(v[0], v[1], v[2]) || 1
-    const r = rotate3(v[0] / unit, v[1] / unit, v[2] / unit, 0, HERO_OBLIQUE_TILT, 0)
-    const persp = perspective(r.Z)
-    return { x: Math.round(r.X * persp * scale * unit), y: Math.round(r.Y * persp * scale * unit) }
-  }
-  const tetra = (
-    verts: readonly (readonly [number, number, number])[],
-    hue: number,
-    from: string,
-    to: string,
-  ) => {
-    const pts = verts.map(project)
-    const lines = HERO_MERKABA_EDGES.map(([a, b]) => {
-      const p0 = pts[a]!
-      const p1 = pts[b]!
-      return `<line x1="${p0.x}" y1="${p0.y}" x2="${p1.x}" y2="${p1.y}" stroke="${movieCanvasHex(hue, { L: 1 - 3 / 16 })}" stroke-width="1.25"/>`
-    }).join('')
-    return `<g opacity="0.44"><animateTransform attributeName="transform" type="rotate" from="${from}" to="${to}" dur="${fractalClockDur(4)}" repeatCount="indefinite" additive="sum"/>${lines}</g>`
-  }
-  const hueUp = Math.round((byte(9) * 360) / (64 * 4))
-  const hueDown = Math.round((byte(11) * 360) / (64 * 4))
-  return `<g transform="translate(${cx} ${cy})" data-layer="merkaba" data-counter-rotating="${mk.counterRotating}">${tetra(mk.tetraUp, hueUp, '0', '360')}${tetra(mk.tetraDown, hueDown, '360', '0')}</g>`
-}
-
-// Seven rosetta rays — sealed ROSETTA_RAYS.length spokes at τ/7, hues stepped by GOLDEN_ANGLE, fractal-clock pulse.
-function heroRosettaRaysLayer(cx: number, cy: number, byte: (k: number) => number): string {
-  const n = ROSETTA_RAYS.length
-  const R = (16 * 9)
-  const hue0 = Math.round((byte(11) * 360) / (64 * 4))
-  const lines = Array.from({ length: n }, (_, k) => {
-    const a = (k / n) * TAU - Math.PI / 2
-    const x2 = Math.round(cx + Math.cos(a) * R)
-    const y2 = Math.round(cy + Math.sin(a) * R)
-    const stroke = movieCanvasHex((hue0 + Math.round(k * GOLDEN_ANGLE_DEG)) % 360, { L: 11 / 16 })
-    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="1" opacity="0.45"><animate attributeName="opacity" values="0.18;0.55;0.18" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[k % 4]!)}" begin="${(k % 7) * (1 / 5)}s" repeatCount="indefinite"/></line>`
-  }).join('')
-  return `<g data-layer="rosetta">${lines}</g>`
-}
-
-/** The stillness channel for SMIL hosts — strips every self-closed animate/animateTransform element, leaving
- * geometry and text intact. CSS hosts still via their animate:false option; SMIL ignores prefers-reduced-motion
- * (a CSS media query cannot reach it), so for SMIL the still EMISSION is the reduced-motion form — the render
- * harness picks. */
+/** The stillness channel for SMIL hosts — strips every self-closed animate/animateTransform element. */
 export function stillSvg(svg: string): string {
-  return svg.replace(/<animate[^>]*\/>/g, '')
+  return svg.replace(/<animate[^>]*\/>/g, '').replace(/<animateTransform[^>]*\/>/g, '')
 }
 
+/** Per-UUID parametric hero (OG cards / forge chain). */
 export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}): string {
   const hex = (uuid + uuid).replace(/[^0-9a-f]/gi, '') || '8080808080808080'
-  const byte = (k: number) => parseInt(hex.slice((k * 2) % (7 * 4), ((k * 2) % (7 * 4)) + 2), 16) || (64 * 2) // one byte of the forged UUID
+  const byte = (k: number) => parseInt(hex.slice((k * 2) % (7 * 4), ((k * 2) % (7 * 4)) + 2), 16) || (64 * 2)
   const colors = heroSvgPaletteFromUuid(uuid)
   const W = 760, H = (64 * 6), cx = W / 2, cy = 176
-  const G0 = Math.round(byte((6 * 2)) * 360 / (64 * 4)), G1 = Math.round(byte(13) * 360 / (64 * 4)) // the torus gradient hues, forged from the UUID
-  const LOOPS = [0, 1, 2, 3].map((k) => ({ r: (16 * 6) + (byte(k) % 88), dur: fractalClockS(Math.round(fractalClockS(1) / ((5 * 2) + (byte(k + 4) % 16)))), hue: Math.round(byte(k + 8) * 360 / (64 * 4)) })) // the four H₁ = ℤ⁴ loops — radii/hues forged from the UUID's bytes, periods SNAPPED onto the fractal clock lattice
-  // the eight trigrams (bāguà) as a ring of yin/yang bars (no font dependency), pulsing in sequence — the I Ching
-  const trigram = (t: number, x: number, y: number, k: number) =>
-    `<g fill="${colors.accent}"><animate attributeName="opacity" values="0.22;1;0.22" dur="${fractalClockDur(6 * 2)}" begin="${k}s" repeatCount="indefinite"/>` +
-    [0, 1, 2].map((row) => {
-      const yy = y + (1 - row) * 8 // row 0 bottom, 2 top; bit = 1 → yang (one solid bar), 0 → yin (two bars)
-      return (t >> row) & 1
-        ? `<rect x="${x - 16}" y="${yy - 2}" width="32" height="4" rx="1"/>`
-        : `<rect x="${x - 16}" y="${yy - 2}" width="13" height="4" rx="1"/><rect x="${x + 3}" y="${yy - 2}" width="13" height="4" rx="1"/>`
-    }).join('') + `</g>`
-  const bagua = Array.from({ length: 8 }, (_, k) => { const a = (k / 8) * TAU - Math.PI / 2; return trigram(k, Math.round(cx + Math.cos(a) * 332), Math.round(cy + Math.sin(a) * 156), k) }).join('')
-  // the double torus — two tori COUNTER-rotating with a depth (vertical) pulse: the revised, tumbling movement
+  const G0 = Math.round(byte((6 * 2)) * 360 / (64 * 4)), G1 = Math.round(byte(13) * 360 / (64 * 4))
+  const LOOPS = [0, 1, 2, 3].map((k) => ({
+    r: (16 * 6) + (byte(k) % 88),
+    dur: fractalClockS(Math.round(fractalClockS(1) / ((5 * 2) + (byte(k + 4) % 16)))),
+    hue: Math.round(byte(k + 8) * 360 / (64 * 4)),
+  }))
   const torus = (sx: number, spin: string, off: string) =>
     `<g transform="translate(${sx} ${cy})"><animateTransform attributeName="transform" type="rotate" ${spin} dur="${fractalClockDur(4)}" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="scale" values="1 1;1 0.6;1 1" dur="${fractalClockDur(6 * 2)}" begin="${off}" repeatCount="indefinite" additive="sum"/><ellipse rx="104" ry="58"/><ellipse rx="44" ry="22"/></g>`
   const svg = [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — the animated I Ching, the ten-dimensional hero computed from src">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — content-addressed hero from UUID">`,
     `<defs>`,
     `<radialGradient id="bg" cx="50%" cy="46%" r="74%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
     `<linearGradient id="torus" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${movieCanvasHex(G0, { L: 7 / 8 })}"/><stop offset="50%" stop-color="${colors.torusMid}"/><stop offset="100%" stop-color="${movieCanvasHex(G1, { L: 1 - 3 / 16 })}"/></linearGradient>`,
     `</defs>`,
-    `<rect width="${W}" height="${H}" rx="18" fill="url(#bg)"/>`,
-    heroRosettaRaysLayer(cx, cy, byte),
-    heroMerkabaLayer(cx, cy, byte),
-    heroPlasmaBallLayer(cx, cy, byte),
-    `<g>${bagua}</g>`,
-    `<g fill="none" stroke="url(#torus)" stroke-width="2.5">`,
+    `<rect width="${W}" height="${H}" fill="url(#bg)"/>`,
+    `<g fill="none" stroke="url(#torus)" stroke-width="2.5" data-layer="uuid-torus">`,
     torus(cx - (6 * 5 * 2), 'from="0" to="360"', '0s'),
     torus(cx + (6 * 5 * 2), 'from="360" to="0"', '-4.5s'),
     `</g>`,
     ...LOOPS.map((L) => `<g transform="translate(${cx} ${cy})" data-layer="homology"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${L.dur}s" repeatCount="indefinite" additive="sum"/><circle cx="${L.r}" cy="0" r="5.5" fill="${movieCanvasHex(L.hue, { L: 1 - 3 / 16 })}"/></g>`),
     `<text x="${cx}" y="${cy + 6}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="28" font-weight="700" fill="${colors.title}">Double Torus</text>`,
-    `<text x="${cx}" y="${H - (5 * 4)}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="${colors.accent}">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · I Ching 64 = 4³ · ten dimensions · 432 gates</text>`,
+    `<text x="${cx}" y="${H - (5 * 4)}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" fill="${colors.accent}">χ(Σ₂) = −2 · H₁(Σ₂) = ℤ⁴ · ten dimensions · 432 gates</text>`,
     `</svg>`,
   ].join('')
   return opts.animate === false ? stillSvg(svg) : svg
 }
 
-// tenDimensionalHeroSvg — the README hero, FORGED: brand → SHA-256 UUID → heroSvgFromUuid (parametric).
-// Layers: rosetta rays (ROSETTA_RAYS) · merkaba (mountain/geometry + rotate3/perspective) · plasma (vortex +
-// fractal clock) · bāguà · counter-rotating double torus · four H₁ loops. Hex-only, SMIL-only, GitHub-safe.
+/**
+ * README hero — single visual proof composition of ALL sealed theorem atoms at once.
+ * Walks THEOREM_ATOM_SEED; each glyph is placed from its content-addressed atom root (not hand paths).
+ * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false · tracks-classical-no-speedup.
+ */
+export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix(), opts: { animate?: boolean } = {}): string {
+  return memoByRoot(`readmeHeroSvgProofOfAllTheorems:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
+    const atoms = THEOREM_ATOM_SEED.map((entry) => ({
+      ...entry,
+      root: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`),
+    }))
+    const n = atoms.length
+    const corpusRoot = merkleFold(atoms.map((a) => a.root))
+    const brandUuid = toUuidSha256('double torus · all theorems proof · 432')
+    const colors = heroSvgPaletteFromUuid(brandUuid)
+    const W = 960, H = 540, cx = W / 2, cy = H / 2 - 12
+    const maxR = Math.min(cx, cy) - 36
+    const golden = (GOLDEN_ANGLE_DEG * Math.PI) / 180
+    const ringRadii = [0.22, 0.38, 0.54, 0.7, 0.86].map((t) => Math.round(maxR * t))
+    const ringStroke = movieCanvasHex(A432_HUE, { L: 5 / 16 })
+    const rings = ringRadii
+      .map((r, k) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${ringStroke}" stroke-width="1" opacity="${0.14 + k * 0.03}" data-ring="${k}"/>`)
+      .join('')
+    const homology = Array.from({ length: HOMOLOGY_LOOPS }, (_, k) => {
+      const a = (k / HOMOLOGY_LOOPS) * TAU - Math.PI / 2
+      const x = Math.round(cx + Math.cos(a) * (maxR + 10))
+      const y = Math.round(cy + Math.sin(a) * (maxR + 10))
+      return `<circle cx="${x}" cy="${y}" r="3" fill="${movieCanvasHex((A432_HUE + k * 90) % 360, { L: 11 / 16 })}" data-layer="homology" data-h1="${k}"/>`
+    }).join('')
+    const glyphs: string[] = []
+    const spokes: string[] = []
+    for (let i = 0; i < n; i += 1) {
+      const atom = atoms[i]!
+      const hex = (atom.root + atom.root).replace(/[^0-9a-f]/gi, '')
+      const b0 = parseInt(hex.slice(0, 2), 16) || 64
+      const b1 = parseInt(hex.slice(2, 4), 16) || 64
+      const r = Math.round(18 + Math.sqrt(i + 1) * (maxR / Math.sqrt(n + 1)))
+      const a = i * golden + (b0 / 255) * (TAU / 64)
+      const x = Math.round(cx + Math.cos(a) * Math.min(r, maxR - 4))
+      const y = Math.round(cy + Math.sin(a) * Math.min(r, maxR - 4))
+      const hue = Math.round((A432_HUE + i * GOLDEN_ANGLE_DEG + b1) % 360)
+      const fill = movieCanvasHex(hue, { L: 9 / 16 + (b0 % 16) / 128 })
+      const dur = fractalClockDur(FRACTAL_CLOCK_DIVISORS[digitalRoot(i + 1) % FRACTAL_CLOCK_DIVISORS.length]!)
+      const begin = i === 0 ? '0s' : `${((i % 9) * (2 / 5)).toFixed(1)}s`
+      const id = atom.provedBy.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 48) || `t${i}`
+      spokes.push(`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${fill}" stroke-width="0.4" opacity="0.09"/>`)
+      glyphs.push(
+        `<rect x="${x - 1}" y="${y - 1}" width="2.5" height="2.5" rx="0.4" fill="${fill}" data-theorem="${id}" data-root="${atom.root.slice(0, 8)}" opacity="0.55">` +
+          `<animate attributeName="opacity" values="0.28;0.9;0.28" dur="${dur}" begin="${begin}" repeatCount="indefinite"/>` +
+          `</rect>`,
+      )
+    }
+    const rootShort = corpusRoot.slice(0, 8)
+    const svg = [
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — proof of all ${n} sealed theorems at once" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;tracks-classical-no-speedup">`,
+      `<defs>`,
+      `<radialGradient id="proofBg" cx="50%" cy="48%" r="78%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
+      `</defs>`,
+      `<rect width="${W}" height="${H}" fill="url(#proofBg)"/>`,
+      `<g data-layer="generator-rings">${rings}</g>`,
+      `<g data-layer="merkle-spokes" opacity="0.85">${spokes.join('')}</g>`,
+      `<g data-layer="theorem-glyphs">${glyphs.join('')}</g>`,
+      `<g data-layer="homology">${homology}</g>`,
+      `<circle cx="${cx}" cy="${cy}" r="22" fill="${colors.bgOuter}" stroke="${movieCanvasHex(A432_HUE, { L: 7 / 8 })}" stroke-width="1.5" data-layer="corpus-root"/>`,
+      `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="${colors.title}">Double Torus</text>`,
+      `<text x="${cx}" y="${cy + 14}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8" fill="${colors.accent}">⊢ ${n} · ${rootShort}</text>`,
+      `<text x="${cx}" y="${H - 28}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="${colors.title}">proof of all theorems at once · χ(Σ₂) = −2 · H₁ = ℤ⁴ · 432 gates</text>`,
+      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 · physicalFtl=0 · qpuRequired=false · tracks-classical-no-speedup · ${n} sealed atoms</text>`,
+      `</svg>`,
+    ].join('')
+    return opts.animate === false ? stillSvg(svg) : svg
+  })
+}
+
 export function tenDimensionalHeroSvg(): string {
-  return heroSvgFromUuid(toUuidSha256('double torus · ten dimensions · 432'))
+  return readmeHeroSvgProofOfAllTheorems()
 }
 
 // Any icon is animated too — the same way the hero is: a single trigram (one of the bāguà) as a small, self-

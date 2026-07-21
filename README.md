@@ -6,7 +6,7 @@
 
 *Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/lake/dist (local math only); the VitePress home is the same monograph — one theorem generator, two projections.*
 
-![Double Torus — the ten-dimensional hero, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)
+![Double Torus — proof of all sealed theorems at once, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)
 
 ## 1. Introduction
 
