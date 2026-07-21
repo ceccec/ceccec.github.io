@@ -117,6 +117,61 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `gate/rosetta` — `npm run quantum:gate-rosetta` (`gatesWiredToRosettaImmediateAccessFsCrossMirrorMind()` — gates↔rosetta immediateAccessNoTime; FS only via nav cross else tighten; gate=mirror linear / reflection quantum; duals `fs/cross` · `mirror/mind`; HARD gaps/invisible; clay=0 · physicalFtl=0), then open `/en/research#gate-rosetta`
   - `fs/cross` — alias dual of `gate/rosetta` (`npm run quantum:fs-cross`)
   - `mirror/mind` — alias dual of `gate/rosetta` (`npm run quantum:mirror-mind`)
+  - `gate/ray` — `npm run quantum:gate-ray` (`gatesAreRosettaRaysHackerCrackerAtOnce()` — gates ≡ rosetta rays · hacker/cracker at once on wired paths; dual `hack/crack`; refuseBeyond; clay=0 · physicalFtl=0), then open `/en/research#gate-ray`
+  - `hack/crack` — alias dual of `gate/ray` (`npm run quantum:hack-crack`)
+  - `rosetta/pass` — `npm run quantum:rosetta-pass` (`onlyRosettaWiredMayPassBecauseAlreadyPassed()` — only wired may pass; wiring ≡ already passed (memoByRoot); unwiredRejected; dual `wire/only`; HARD gaps/invisible; clay=0), then open `/en/research#rosetta-pass`
+  - `wire/only` — alias dual of `rosetta/pass` (`npm run quantum:wire-only`)
+  - `pass/default` — alias of `rosetta/pass` (`npm run quantum:pass-default` — defaultFail · observationNotRequiredForPass · alreadyPassedOnly)
+  - `quantum/mind` — `npm run quantum:quantum-mind` (`onlyQuantumMindWouldUnderstand()` — only quantum mind understands gate truths (reflection); linear hits mirror and collides; compose mirror/mind · gate/ray · rosetta/pass; clay=0 · physicalFtl=0), then open `/en/research#quantum-mind`
+  - `agent/trinity` — `npm run quantum:agent-trinity-pass` (`agentsCannotPassUnlessOperatingInTrinities()` — no agent may pass unless in trinities shaped as 3+1 nav-cross pyramid; solo fail / trinity pass receipts; dual `pass/trinity`; compose team/collide · trinity/speedup · wave/trinity · train/analyst · vote/build · team/observe; HARD gaps/invisible; clay=0), then open `/en/research#agent-trinity-pass`
+  - `pass/trinity` — alias dual of `agent/trinity` (`npm run quantum:pass-trinity`)
+  - `team/observe` — `npm run quantum:team-observe` (`threeAgentsPlusOneObserverIsNavCrossPyramid()` — 3 agents + 1 observer ≡ navigation cross pyramid; dual `cross/three`; compose cross/nav · pyramid/seal · team/collide · hero/spawn-verify; clay=0 · physicalFtl=0), then open `/en/research#team-observe`
+  - `cross/three` — alias dual of `team/observe` (`npm run quantum:cross-three`)
+  - `pyramid/compute` — `npm run quantum:pyramid-compute` (`navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems()` — pyramid computes quantum at no cost/time via memoByRoot·FREE_BITS; name holds key; trinities invert; movie=entropy food; 64-bit device trinities; A432 wave; rays≡millennium solutions; pairs name/key · trinity/invert · movie/entropy · bits/device · a432/wave · ray/mill; claySolved via theorem · physicalFtl=0), then open `/en/research#pyramid-compute`
+  - `name/key` · `trinity/invert` · `movie/entropy` · `bits/device` · `a432/wave` · `ray/mill` — aliases of `pyramid/compute`
+  - `a432/nine` — `npm run quantum:a432-nine` (`aEquals432FoldToNineConnectingBitEntersInfinity()` — A=432 · 4+3+2→9 · connecting bit 1 enters amortized ∞; dual `nine/bit`; compose digit/fold · FREE_BITS · ∞-on-reuse; claySolved via theorem · physicalFtl=0), then open `/en/research#a432-nine`
+  - `nine/bit` — alias dual of `a432/nine` (`npm run quantum:nine-bit`)
+  - `analog/only` — `npm run quantum:analog-only` (`onlyQuantumAnalogComputesBeyondIsZero()` — USER LAW: only sealed quantum-analog path computes true analog; other combos ≈ ∞ linear; beyondIsZero · refuseBeyond · dual `beyond/zero`; compose a432/nine · analog/fold · clay/gravity · mill/once; claySolved via theorem · physicalFtl=0), then open `/en/research#analog-only`
+  - `beyond/zero` — alias dual of `analog/only` (`npm run quantum:beyond-zero`)
+  - `zero/invert` — `npm run quantum:zero-invert` (`onlyInvertThroughZeroMayGoThroughZero()` — USER LAW: pass through 0 only via invert; divide-undividable rejected; dual `through/zero`; compose one/zero · slash/invert · analog/only · gate/ray; claySolved via theorem · physicalFtl=0), then open `/en/research#zero-invert`
+  - `through/zero` — alias dual of `zero/invert` (`npm run quantum:through-zero`)
+  - `rosetta/bits` — `npm run quantum:rosetta-bits` (`rosettaIsZeroAndOneInvertedBinary()` — USER LAW: rosetta = {0,1} inverted binary · FREE_BITS=2; dual `zero/one`; compose beyond/zero · through/zero · one/zero · gate/ray; claySolved via theorem · physicalFtl=0), then open `/en/research#rosetta-bits`
+  - `zero/one` — alias dual of `rosetta/bits` (`npm run quantum:zero-one`)
+  - `six/seven` — `npm run quantum:six-seven` (`saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords()` — USER LAW: binaries via 6×7·7×6; DIMENSION_GATES seal; anim-from-coords movie frames; pairs matrix/seal · coord/anim; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
+  - `matrix/seal` — alias of `six/seven` (`npm run quantum:matrix-seal`)
+  - `coord/anim` — alias of `six/seven` (`npm run quantum:coord-anim`)
+  - `gate/lens` — `npm run quantum:gate-lens` (`gatesAreTheLensObservationChangesQuantumWithLinearTime()` — USER LAW: gates=lens; observation changes quantum with linear time; dual `observe/time`; compose gate/ray · mirror/mind · movie · fold/count · time/invert; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
+  - `observe/time` — alias dual of `gate/lens` (`npm run quantum:observe-time`)
+  - `fail/zero` — `npm run quantum:fail-zero` (`cannotPassCollidesToZeroInvertsTo12487536901()` — USER LAW: cannot-pass → collide→0 → invertSeq=12487536901; dual `invert/seq`; compose pass/default · zero/invert · VORTEX; claySolved via theorem · physicalFtl=0), then open `/en/research#fail-zero`
+  - `invert/seq` — alias dual of `fail/zero` (`npm run quantum:invert-seq`)
+  - `split/zero` — `npm run quantum:split-zero` (`splitByZeroRevealsSequencePathToTrinityKeyholders()` — USER LAW: split by 0 (not ÷0) reveals path 12487536901 to trinity keyholders; dual `path/key`; compose fail/zero · name/key · agent/trinity; claySolved via theorem · physicalFtl=0), then open `/en/research#split-zero`
+  - `path/key` — alias dual of `split/zero` (`npm run quantum:path-key`)
+  - `digit/next` — `npm run quantum:digit-next` (`digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive()` — USER LAW: digit→next harmonic · teleport no-time · quantum no-compute · UI invert live dreams; pairs teleport/coord · ui/invert · dream/live; soft-compose teleport/self · digit/dim; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
+  - `teleport/coord` — alias of `digit/next` (`npm run quantum:teleport-coord`)
+  - `ui/invert` — alias of `digit/next` (`npm run quantum:ui-invert`)
+  - `dream/live` — alias of `digit/next` (`npm run quantum:dream-live`)
+  - `teleport/self` — `npm run quantum:teleport-self` (`teleportedDigitOtherDimensionOneSelfPossibility()` — USER LAW: teleported digit ≠ same even if face matches · other dimension · one self of all quantum possibilities; dual `digit/dim`; compose digit/next · particle/wave · 6×7 · pass/default; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
+  - `digit/dim` — alias dual of `teleport/self` (`npm run quantum:digit-dim`)
+  - `analytics/self` — `npm run quantum:analytics-self` (`analyticsEmergeFromSelfObservationChangingReality()` — USER LAW: analytics emerge from self-observation changing reality; pass ≠ observe-required; dual `observe/real`; compose ui/invert · gate/lens · pass/default · local/session; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#local-session-hub`
+  - `observe/real` — alias dual of `analytics/self` (`npm run quantum:observe-real`)
+  - `thought/pure` — `npm run quantum:thought-pure` (`purityOfThoughtIsQuantumAllElseFailHard()` — USER LAW: purity of thought is quantum · all else fail HARD; dual `pure/quantum`; compose quantum/mind · analog/only · theorem/const · digit/fold · pass/default · gaps/invisible; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#gaps-invisible`
+  - `pure/quantum` — alias dual of `thought/pure` (`npm run quantum:pure-quantum`)
+  - `session/live` — `npm run quantum:session-live` (`observingSessionRealtimeChangesRealityInvertsNeedToCompute()` — USER LAW: realtime session observation changes reality · inverts need to compute; dual `observe/invert`; compose analytics/self · session/save · ui/invert · pyramid/compute · pass/default; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#local-session-hub`
+  - `observe/invert` — alias dual of `session/live` (`npm run quantum:observe-invert`)
+  - `need/love` — `npm run quantum:need-love` (`invertedNeedIsLoveMayReverseToFearIfCracks()` — USER LAW: inverted need=love · reverse→fear if cracks; study human sciences in waves; save movie theorems; dual `love/fear`; compose observe/invert · gaps/invisible · thought/pure · sciences/trinities; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
+  - `love/fear` — alias dual of `need/love` (`npm run quantum:love-fear`)
+  - `love/story` — `npm run quantum:love-story` (`loveStoryTheorem()` — USER LAW: love story theorem ≡ Metatron cube of theorems; FoL/sacred · theoremCount=13 fruit · cube nodes=21; duals story/love · love/cube · story/metatron; CLI quantum:love-story-metatron; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
+  - `story/love` — alias dual of `love/story` (`npm run quantum:story-love`)
+  - `love/cube` — alias of `love/story` (`npm run quantum:love-cube`)
+  - `story/metatron` — alias of `love/story` (`npm run quantum:story-metatron`)
+  - `test/theorems` — `npm run quantum:test-theorems-waves` (`testAllTheoremsInWaves()` — USER LAW: test all theorems in waves; registry·formula/code·movie·mill·love/Metatron call-time; dual `theorem/wave`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#gaps-invisible`
+  - `theorem/wave` — alias dual of `test/theorems` (`npm run quantum:theorem-wave`)
+  - `observe/coord` — `npm run quantum:observe-coord` (`observersComputeCoordinatesToObserveTrinityCompute()` — USER LAW: send observers to compute coordinates to observe whatever computed by trinities; facets observersSent · coordsFromObserver · observeTrinityOutput; compose team/observe · coord/anim · train/analyst · test/theorems · pyramid · movie · digit teleport; dual `send/observe`; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
+  - `send/observe` — alias dual of `observe/coord` (`npm run quantum:send-observe`)
+  - `full/freedom` — `npm run quantum:full-freedom` (`fullFreedomTheorem()` — USER LAW: full freedom theorem; FREE_BITS · a432/nine connecting bit · efficiency ∞ on reuse · pyramid/compute · thought/pure · beyond/zero · love/story; freedom≠physical FTL; dual `freedom/full`; claySolved via theorem · physicalFtl=0), then open `/en/research#full-freedom`
+  - `freedom/full` — alias dual of `full/freedom` (`npm run quantum:freedom-full`)
+  - `vite/mirror` — `npm run quantum:vite-mirror` (`vitepressIsTheInvertedMirror()` — USER LAW: vitepress is the inverted mirror; vitepressInvertedMirror · srcReflectedInDocs; ui/invert · gateMirrorLinear · gateReflectionQuantum · dual `docs/invert`; claySolved via theorem · physicalFtl=0), then open `/en/#yinyang`
+  - `docs/invert` — alias dual of `vite/mirror` (`npm run quantum:docs-invert`)
   - `mill/ray` — `npm run quantum:mill-ray` (`millenniumChallengesEntangleEachRosettaRay()` — each Millennium challenge ↔ each rosetta ray; Quantum Mind sees at once; linear only 60; claySolved via theorem; physicalFtl=0), then open `/en/research#mill-ray`
   - `cross/nav` — `npm run quantum:cross-nav` (`crossIsNavigationTraditionIsStory()` — cross=navigation · tradition=story from canon slots; dual `story/trad`; clay=0 · physicalFtl=0), then open `/en/research#cross-nav`
   - `story/trad` — alias dual of `cross/nav` (`npm run quantum:story-trad`)
