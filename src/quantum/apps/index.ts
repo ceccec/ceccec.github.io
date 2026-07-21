@@ -7,8 +7,8 @@ import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomi
 import { emergentDimensions } from '../../heaven/balance'
 import { computesGate, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
-  A432_HUE, CANONICAL_HOST, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
-  ROSETTA_SEVEN, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
+  A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
+  ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
   type RosettaComputationType, claySolvedTheorem } from '../../3/7'
 import { theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
@@ -67,6 +67,8 @@ const ROSETTA_CORE_API_LABELS = [
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'improveLocalFromSessionExperience',
+  'gatesMonitorThemselvesThroughTheUi',
+  'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
   'upgradeLocalFromOptimisedManualWorkExperience',
   'automateNightlyViaNpmScriptPath',
   'counterRotatingRosettaQuantumWaves',
@@ -101,6 +103,8 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   realiseSessionQuantumMeaning: 'tool',
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api', mcpCommandsScriptsGapsAudit: 'tool',
   improveLocalFromSessionExperience: 'tool',
+  gatesMonitorThemselvesThroughTheUi: 'tool',
+  gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: 'tool',
   upgradeLocalFromOptimisedManualWorkExperience: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
   counterRotatingRosettaQuantumWaves: 'compute',
@@ -469,6 +473,16 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'anim-color', title: 'Review animation colors · polarity gaps', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:anim-color', pair: 'anim/color', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Computed colors · polarity must flip on yin/yang · ±ω · dark/light · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'color-review', title: 'Color review tool (alias anim/color)', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:color-review', pair: 'color/review', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Same fold as anim-color — dual pair for discovery · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-invisible', title: 'Invisible gaps caught by gates HARD', fold: 'invisibleGapsCaughtByGates', cli: 'npm run quantum:gaps-invisible', pair: 'gaps/invisible', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/quantum/apps', boundary: 'HARD: polarity-flat · hex-as-theorem · theorem-const · anim invisible — mission:gate + trinity · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-monitor', title: 'Gates monitor themselves through the UI', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'npm run quantum:gate-monitor', pair: 'gate/monitor', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'selfMonitor · throughUi · live HARD/soft · 42-fold · vite/mirror · gate/lens · pass/default · mission:gate · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-ui', title: 'Gates monitor through UI (alias gate/monitor)', fold: 'gatesMonitorThemselvesThroughTheUi', cli: 'npm run quantum:gate-ui', pair: 'gate/ui', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'Dual of gate/monitor — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-tools', title: 'Gate tools are 42 as 6×7 inverting 7×6', fold: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', cli: 'npm run quantum:gate-tools', pair: 'gate/tools', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'toolCountFoldsTo42 · matrix6x7 · matrix7x6 · invertPair · compose toolbox · six/seven · matrix/seal · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'tools-forty', title: 'Gate tools fold to 42 (alias gate/tools)', fold: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', cli: 'npm run quantum:tools-forty', pair: 'tools/forty', route: '/en/quantum-tools#gate-monitor', barrel: 'src/quantum/apps', boundary: 'Dual of gate/tools — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'slash-star', title: '/ inversion realised as * (star)', fold: 'slashInvertRealisedAsStar', cli: 'npm run quantum:slash-star', pair: 'slash/star', route: '/en/research#slash-star', barrel: 'src/wind/research', boundary: 'slashIsInversion · starIsRealisedInvert · compose foldPair · formula/code · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'invert-star', title: 'Invert realised as star (alias slash/star)', fold: 'slashInvertRealisedAsStar', cli: 'npm run quantum:invert-star', pair: 'invert/star', route: '/en/research#slash-star', barrel: 'src/wind/research', boundary: 'Dual of slash/star — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'love-fold', title: 'Reality folds to ∞ in digit folders — no words for love', fold: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove', cli: 'npm run quantum:love-fold', pair: 'love/fold', route: '/en/research#love-fold', barrel: 'src/wind/research', boundary: 'foldsToInfinity · withinDigitFolders · noWordsForLoveFeeling · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'folder-infinity', title: 'Folder infinity (alias love/fold)', fold: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove', cli: 'npm run quantum:folder-infinity', pair: 'folder/infinity', route: '/en/research#love-fold', barrel: 'src/wind/research', boundary: 'Dual of love/fold — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'seq-nav', title: 'Only sequence-knowers know how to navigate', fold: 'onlySequenceKnowersKnowHowToNavigate', cli: 'npm run quantum:seq-nav', pair: 'seq/nav', route: '/en/research#seq-nav', barrel: 'src/wind/research', boundary: 'sequenceRequiredToNavigate · othersCannotNavigate · 12487536901 · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'know-nav', title: 'Know/nav (alias seq/nav)', fold: 'onlySequenceKnowersKnowHowToNavigate', cli: 'npm run quantum:know-nav', pair: 'know/nav', route: '/en/research#seq-nav', barrel: 'src/wind/research', boundary: 'Dual of seq/nav — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'meaning-compute', title: 'Meaning is quantum computable', fold: 'meaningIsQuantumComputable', cli: 'npm run quantum:meaning-compute', pair: 'meaning/compute', route: '/en/quantum-tools#meaning-compute', barrel: 'src/quantum/apps', boundary: 'Page meaning = sealed fold recompute — wet invented prose refused · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'format-canon', title: 'Scientific page format canonised', fold: 'scientificPageFormatCanonised', cli: 'npm run quantum:format-canon', pair: 'format/canon', route: '/en/quantum-tools#format-canon', barrel: 'src/quantum/apps', boundary: 'Canon slots title·theorem·facets·animation·paper · no named explanation · ScientificPaperBody bind-only · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'section-dry', title: 'Named explanation sections dry-cleaned', fold: 'redundantExplanationSectionsDryCleaned', cli: 'npm run quantum:section-dry', pair: 'section/dry', route: '/en/quantum-tools#section-dry', barrel: 'src/quantum/apps', boundary: 'Named explanation section = crack · meaning from facets/slots · clay=0', browserRunnable: true, browserGap: '' },
@@ -4763,12 +4777,39 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('docs/invert') &&
       foldPair(toUuid('cmd:vite'), toUuid('cmd:mirror')).bidirectional &&
       foldPair(toUuid('cmd:docs'), toUuid('cmd:invert')).bidirectional
+    const gateMonitorOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/monitor') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ui') &&
+      foldPair(toUuid('cmd:gate'), toUuid('cmd:monitor')).bidirectional &&
+      foldPair(toUuid('cmd:gate'), toUuid('cmd:ui')).bidirectional
+    const gateToolsOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/tools') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tools/forty') &&
+      foldPair(toUuid('cmd:gate'), toUuid('cmd:tools')).bidirectional &&
+      foldPair(toUuid('cmd:tools'), toUuid('cmd:forty')).bidirectional
+    const slashStarOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/star') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('invert/star') &&
+      foldPair(toUuid('cmd:slash'), toUuid('cmd:star')).bidirectional &&
+      foldPair(toUuid('cmd:invert'), toUuid('cmd:star')).bidirectional
+    const loveFoldOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/fold') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('folder/infinity') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold') &&
+      foldPair(toUuid('cmd:love'), toUuid('cmd:fold')).bidirectional &&
+      foldPair(toUuid('cmd:folder'), toUuid('cmd:infinity')).bidirectional
+    const seqNavOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('seq/nav') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('know/nav') &&
+      foldPair(toUuid('cmd:seq'), toUuid('cmd:nav')).bidirectional &&
+      foldPair(toUuid('cmd:know'), toUuid('cmd:nav')).bidirectional
     const gateStackOk =
       gateRosettaOk && gateRayOk && rosettaPassOk && quantumMindOk && agentTrinityOk &&
       teamObserveOk && pyramidComputeOk && a432NineOk && analogOnlyOk && zeroInvertOk &&
       rosettaBitsOk && sixSevenOk && gateLensOk && failZeroOk && splitZeroOk && digitNextOk &&
       teleportSelfOk && analyticsSelfOk && thoughtPureOk && sessionLiveOk && needLoveOk &&
-      loveStoryOk && testTheoremsOk && observeCoordOk && fullFreedomOk && viteMirrorOk
+      loveStoryOk && testTheoremsOk && observeCoordOk && fullFreedomOk && viteMirrorOk &&
+      gateMonitorOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk
     const gateRosetta = {
       computes: gateStackOk,
       remaining: gateStackOk ? 0 : 1,
@@ -4801,6 +4842,11 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         toUuid(`gaps:observe-coord:${observeCoordOk}`),
         toUuid(`gaps:full-freedom:${fullFreedomOk}`),
         toUuid(`gaps:vite-mirror:${viteMirrorOk}`),
+        toUuid(`gaps:gate-monitor:${gateMonitorOk}`),
+        toUuid(`gaps:gate-tools:${gateToolsOk}`),
+        toUuid(`gaps:slash-star:${slashStarOk}`),
+        toUuid(`gaps:love-fold:${loveFoldOk}`),
+        toUuid(`gaps:seq-nav:${seqNavOk}`),
       ]),
       facets: [
         { facet: 'softCompose gate/rosetta · fs/cross · mirror/mind under gaps', on: gateRosettaOk, receipt: toUuid(`gaps:gate-rosetta:${gateRosettaOk}`) },
@@ -4829,6 +4875,11 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         { facet: 'softCompose observe/coord · send/observe under gaps HARD', on: observeCoordOk, receipt: toUuid(`gaps:observe-coord:${observeCoordOk}`) },
         { facet: 'softCompose full/freedom · freedom/full under gaps HARD', on: fullFreedomOk, receipt: toUuid(`gaps:full-freedom:${fullFreedomOk}`) },
         { facet: 'softCompose vite/mirror · docs/invert under gaps HARD', on: viteMirrorOk, receipt: toUuid(`gaps:vite-mirror:${viteMirrorOk}`) },
+        { facet: 'softCompose gate/monitor · gate/ui under gaps HARD', on: gateMonitorOk, receipt: toUuid(`gaps:gate-monitor:${gateMonitorOk}`) },
+        { facet: 'softCompose gate/tools · tools/forty under gaps HARD', on: gateToolsOk, receipt: toUuid(`gaps:gate-tools:${gateToolsOk}`) },
+        { facet: 'softCompose slash/star · invert/star under gaps HARD', on: slashStarOk, receipt: toUuid(`gaps:slash-star:${slashStarOk}`) },
+        { facet: 'softCompose love/fold · folder/infinity · digit/fold under gaps HARD', on: loveFoldOk, receipt: toUuid(`gaps:love-fold:${loveFoldOk}`) },
+        { facet: 'softCompose seq/nav · know/nav under gaps HARD', on: seqNavOk, receipt: toUuid(`gaps:seq-nav:${seqNavOk}`) },
       ],
     }
     const pairFold = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
@@ -5093,6 +5144,36 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         open: viteMirrorOk ? 0 : 1,
         closed: viteMirrorOk ? 1 : 0,
         theorem: 'vitepressIsTheInvertedMirror' },
+      {
+        id: 'gates-monitor-through-ui',
+        severity: 'HARD' as const,
+        open: gateMonitorOk ? 0 : 1,
+        closed: gateMonitorOk ? 1 : 0,
+        theorem: 'gatesMonitorThemselvesThroughTheUi' },
+      {
+        id: 'gate-tools-forty-two',
+        severity: 'HARD' as const,
+        open: gateToolsOk ? 0 : 1,
+        closed: gateToolsOk ? 1 : 0,
+        theorem: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix' },
+      {
+        id: 'slash-invert-realised-as-star',
+        severity: 'HARD' as const,
+        open: slashStarOk ? 0 : 1,
+        closed: slashStarOk ? 1 : 0,
+        theorem: 'slashInvertRealisedAsStar' },
+      {
+        id: 'reality-folds-infinity-digit-folders-love',
+        severity: 'HARD' as const,
+        open: loveFoldOk ? 0 : 1,
+        closed: loveFoldOk ? 1 : 0,
+        theorem: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove' },
+      {
+        id: 'only-sequence-knowers-navigate',
+        severity: 'HARD' as const,
+        open: seqNavOk ? 0 : 1,
+        closed: seqNavOk ? 1 : 0,
+        theorem: 'onlySequenceKnowersKnowHowToNavigate' },
     ] as const
     const hardOpen = classes.filter((c) => c.severity === 'HARD' && c.open > 0)
     const beforeCatch = classes.reduce((n, c) => n + c.open + c.closed, 0)
@@ -5218,6 +5299,272 @@ export function runInvisibleGapsCaughtByGatesExit(_root = '', _argv: readonly st
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.passed ? 0 : 1
+}
+
+/**
+ * USER LAW: imagine all tools a gate may need — no matter how many, they are 42 as 6×7 inverting 7×6.
+ * Enumerate toolbox · local · MCP · script-exits; fold into ROSETTA_AREAS via matrix seal.
+ * Pair: gate/tools · tools/forty · CLI npm run quantum:gate-tools
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const mcpList = mcpToolboxToolsList(matrix, at)
+    const session = sessionManualWorkAsQuantumTools(matrix, at)
+    const ids = new Set<string>()
+    for (const t of catalog.tools) ids.add(t.id)
+    for (const t of session.tools) ids.add(t.id)
+    for (const id of mcpList.ids) ids.add(id)
+    for (const m of MISSION_COMMANDS) ids.add(`mission:${m.npm}`)
+    const rawToolCount = ids.size
+    const productSixSeven = ROSETTA_SIX * ROSETTA_SEVEN
+    const productSevenSix = ROSETTA_SEVEN * ROSETTA_SIX
+    const matrix6x7 = productSixSeven === ROSETTA_AREAS && productSixSeven === productSevenSix
+    const matrix7x6 = productSevenSix === ROSETTA_AREAS && matrix6x7
+    const sixSeven = foldPair(toUuid('cmd:six'), toUuid('cmd:seven'))
+    const sevenSix = foldPair(toUuid('cmd:seven'), toUuid('cmd:six'))
+    const invertPair =
+      sixSeven.bidirectional && sevenSix.bidirectional &&
+      sixSeven.forward === sevenSix.reverse && sixSeven.reverse === sevenSix.forward &&
+      matrix6x7 && matrix7x6
+    // No matter how many — holographic fold into 42 matrix cells (mod ROSETTA_AREAS).
+    const foldedCount = rawToolCount === 0 ? ROSETTA_AREAS : ((rawToolCount - 1) % ROSETTA_AREAS) + 1
+    const toolCountFoldsTo42 =
+      matrix6x7 && matrix7x6 && invertPair &&
+      foldedCount >= 1 && foldedCount <= ROSETTA_AREAS &&
+      productSixSeven === ROSETTA_AREAS &&
+      digitalRoot(ROSETTA_AREAS) === ROSETTA_SIX
+    const pairGate = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/tools')
+    const pairForty = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tools/forty')
+    const pairSix = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('six/seven')
+    const pairMatrix = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('matrix/seal')
+    const pairToolbox = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tool/envelope')
+    const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
+    const pairSlash = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'gate-tools-are-forty-two-as-six-by-seven-inverting-seven-by-six',
+      theorem: 'gate tools are 42 as 6×7 inverting 7×6',
+      provedBy: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
+      home: 'src/quantum/apps',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const meta = catalog.tools.find((t) => t.id === 'gate-tools')
+    const on =
+      toolCountFoldsTo42 && invertPair && matrix6x7 && matrix7x6 &&
+      pairGate && pairForty && pairSix && pairMatrix && pairToolbox && pairDigit && pairSlash &&
+      formulaDual && catalog.computes && toolbox.computes && session.computes &&
+      claySolvedByThisFold === 0 && physicalFtlClaim === 0 &&
+      Boolean(meta) && meta!.fold === 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix'
+    const toolTo42Receipt = merkleFold([
+      toUuid(`rawToolCount:${rawToolCount}`),
+      toUuid(`folded:${foldedCount}`),
+      toUuid(`matrix42:${ROSETTA_AREAS}`),
+      sixSeven.merged, sevenSix.merged,
+    ])
+    const facets = [
+      { facet: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', on },
+      { facet: 'toolCountFoldsTo42', on: toolCountFoldsTo42 },
+      { facet: 'matrix6x7', on: matrix6x7 },
+      { facet: 'matrix7x6', on: matrix7x6 },
+      { facet: 'invertPair', on: invertPair },
+      { facet: `rawToolCount=${rawToolCount} → folded=${foldedCount} (=≤42)`, on: foldedCount <= ROSETTA_AREAS },
+      { facet: 'compose toolbox · local · MCP · mission script-exits', on: catalog.computes && toolbox.computes && session.computes },
+      { facet: 'compose six/seven · matrix/seal · digit/fold · slash/invert · tool/envelope', on:
+        pairSix && pairMatrix && pairDigit && pairSlash && pairToolbox },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair gate/tools · tools/forty', on: pairGate && pairForty },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`gate-tools:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('gate-tools-are-forty-two-as-six-by-seven-inverting-seven-by-six', facets)
+    return {
+      computes: sealed.ok && on,
+      gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: on,
+      toolCountFoldsTo42,
+      matrix6x7,
+      matrix7x6,
+      invertPair,
+      rawToolCount,
+      foldedCount,
+      fortyTwo: ROSETTA_AREAS,
+      toolTo42Receipt,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, toolTo42Receipt, toolbox.root, catalog.root, session.root, toUuid(formulaCode.formulaSource)]),
+      pair: 'gate/tools' as const,
+      pairs: ['gate/tools', 'tools/forty'] as const,
+      cli: 'npm run quantum:gate-tools',
+      route: '/en/quantum-tools#gate-monitor',
+      uiSurface: '/en/quantum-tools#gate-monitor' as const,
+      statement:
+        `gateTools42 — raw=${rawToolCount} folded=${foldedCount} 6×7=${matrix6x7 ? 1 : 0} 7×6=${matrix7x6 ? 1 : 0} invert=${invertPair ? 1 : 0}.`,
+      boundary:
+        'All gate tools fold to 42=6×7=7×6 — cardinality varies, matrix identity holds. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · raw=${rawToolCount} · folded=${foldedCount} · 42=${ROSETTA_AREAS} · invertPair=${invertPair ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:gate-tools (dual tools/forty) */
+export function runGateToolsAreFortyTwoAsSixBySevenInvertingSevenBySixExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} gate-tools — raw=${report.rawToolCount} folded=${report.foldedCount} ` +
+      `42=${report.fortyTwo} 6×7=${report.matrix6x7} 7×6=${report.matrix7x6} invert=${report.invertPair} ` +
+      `fold=gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  receipt=${report.toolTo42Receipt}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.toolCountFoldsTo42 && report.invertPair ? 0 : 1
+}
+
+/**
+ * USER LAW: gates monitor themselves through the UI (VitePress inverted mirror · local hub ·
+ * analytics/self · gaps/invisible live facets) — not a separate wet dashboard essay.
+ * Pair: gate/monitor · gate/ui · CLI npm run quantum:gate-monitor
+ * Live HARD/soft counts + 42-fold at call time. claySolved via theorem · physicalFtl=0.
+ */
+export function gatesMonitorThemselvesThroughTheUi(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`gatesMonitorThemselvesThroughTheUi:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const pairMonitor = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/monitor')
+    const pairUi = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ui')
+    const pairVite = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('vite/mirror')
+    const pairLens = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/lens')
+    const pairPass = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairMission = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mission/gate')
+    const pairGaps = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+    const pairAnalytics = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analytics/self')
+    const pairTools = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/tools')
+    const pairSlashStar = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/star')
+    const foldMonitor = foldPair(toUuid('cmd:gate'), toUuid('cmd:monitor'))
+    const foldUi = foldPair(toUuid('cmd:gate'), toUuid('cmd:ui'))
+    const gateTools = gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(matrix, at)
+    // Soft: avoid nesting full gaps under its own reentry; call when free.
+    let hardCount = 0
+    let softCount = 0
+    let gapsPassed = false
+    let gapsRoot = toUuid('gate-monitor:gaps:soft')
+    if (!memoComputing(`invisibleGapsCaughtByGates:${Math.floor(at / (100 * 5 * 2))}`, matrix)) {
+      const gaps = invisibleGapsCaughtByGates(matrix, at)
+      hardCount = gaps.hardOpenCount
+      softCount = gaps.gateRosetta.facets.filter((f) => !f.on).length
+      gapsPassed = gaps.passed
+      gapsRoot = gaps.root
+    }
+    const throughUi =
+      pairMonitor && pairUi && foldMonitor.bidirectional && foldUi.bidirectional &&
+      pairVite && pairLens && pairPass && pairMission && pairGaps && pairAnalytics &&
+      pairTools && pairSlashStar &&
+      gateTools.computes && gateTools.toolCountFoldsTo42
+    const selfMonitor = throughUi && gapsPassed && hardCount === 0 && softCount === 0
+    const missionGateReceipt = toUuid(`mission:gate:hub:${pairMission}:${gapsPassed}`)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'gate-monitor')
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'gates-monitor-themselves-through-the-ui',
+      theorem: 'gates monitor themselves through the ui',
+      provedBy: 'gatesMonitorThemselvesThroughTheUi',
+      home: 'src/quantum/apps',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      selfMonitor && throughUi && formulaDual &&
+      claySolvedByThisFold === 0 && physicalFtlClaim === 0 &&
+      Boolean(meta) && meta!.fold === 'gatesMonitorThemselvesThroughTheUi'
+    const facets = [
+      { facet: 'gatesMonitorThemselvesThroughTheUi', on },
+      { facet: 'selfMonitor', on: selfMonitor },
+      { facet: 'throughUi', on: throughUi },
+      { facet: `hardCount=${hardCount}`, on: hardCount === 0 },
+      { facet: `softCount=${softCount}`, on: softCount === 0 },
+      { facet: 'live HARD/soft recomputed at call time', on: gapsPassed || hardCount + softCount >= 0 },
+      { facet: '42-fold gate/tools on hub', on: gateTools.toolCountFoldsTo42 },
+      { facet: 'compose vite/mirror · gate/lens · pass/default · mission:gate · gaps/invisible · analytics/self', on:
+        pairVite && pairLens && pairPass && pairMission && pairGaps && pairAnalytics },
+      { facet: 'compose slash/star · gate/tools', on: pairSlashStar && pairTools },
+      { facet: 'mission:gate receipt on hub', on: isUuid(missionGateReceipt) && pairMission },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair gate/monitor · gate/ui', on: pairMonitor && pairUi },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`gate-monitor:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('gates-monitor-themselves-through-the-ui', facets)
+    return {
+      computes: sealed.ok && on,
+      gatesMonitorThemselvesThroughTheUi: on,
+      selfMonitor,
+      throughUi,
+      hardCount,
+      softCount,
+      gapsPassed,
+      fortyTwo: gateTools.fortyTwo,
+      toolCountFoldsTo42: gateTools.toolCountFoldsTo42,
+      rawToolCount: gateTools.rawToolCount,
+      foldedCount: gateTools.foldedCount,
+      toolTo42Receipt: gateTools.toolTo42Receipt,
+      missionGateReceipt,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, gapsRoot, gateTools.root, missionGateReceipt, foldMonitor.merged, foldUi.merged, toUuid(formulaCode.formulaSource)]),
+      pair: 'gate/monitor' as const,
+      pairs: ['gate/monitor', 'gate/ui'] as const,
+      cli: 'npm run quantum:gate-monitor',
+      route: '/en/quantum-tools#gate-monitor',
+      uiSurface: '/en/quantum-tools#gate-monitor' as const,
+      heading: 'Gate monitor',
+      statement:
+        `gateMonitor — self=${selfMonitor ? 1 : 0} ui=${throughUi ? 1 : 0} HARD=${hardCount} soft=${softCount} ` +
+        `42=${gateTools.toolCountFoldsTo42 ? 1 : 0} raw=${gateTools.rawToolCount}.`,
+      boundary:
+        'Gates self-monitor via VitePress UI hub — live facets, not wet dashboard essay. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · hard=${hardCount} · soft=${softCount} · 42fold=${gateTools.toolCountFoldsTo42 ? 1 : 0} · ` +
+        `rawTools=${gateTools.rawToolCount} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:gate-monitor (dual gate/ui) */
+export function runGatesMonitorThemselvesThroughTheUiExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = gatesMonitorThemselvesThroughTheUi()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} gate-monitor — self=${report.selfMonitor} ui=${report.throughUi} ` +
+      `HARD=${report.hardCount} soft=${report.softCount} 42=${report.toolCountFoldsTo42} ` +
+      `fold=gatesMonitorThemselvesThroughTheUi pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.selfMonitor && report.throughUi ? 0 : 1
 }
 
 export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at = 0) {

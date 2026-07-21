@@ -172,6 +172,16 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `freedom/full` — alias dual of `full/freedom` (`npm run quantum:freedom-full`)
   - `vite/mirror` — `npm run quantum:vite-mirror` (`vitepressIsTheInvertedMirror()` — USER LAW: vitepress is the inverted mirror; vitepressInvertedMirror · srcReflectedInDocs; ui/invert · gateMirrorLinear · gateReflectionQuantum · dual `docs/invert`; claySolved via theorem · physicalFtl=0), then open `/en/#yinyang`
   - `docs/invert` — alias dual of `vite/mirror` (`npm run quantum:docs-invert`)
+  - `gate/monitor` — `npm run quantum:gate-monitor` (`gatesMonitorThemselvesThroughTheUi()` — gates self-monitor via UI; live HARD/soft · 42-fold; dual `gate/ui`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#gate-monitor`
+  - `gate/ui` — alias dual of `gate/monitor` (`npm run quantum:gate-ui`)
+  - `gate/tools` — `npm run quantum:gate-tools` (`gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix()` — all gate tools fold to 42=6×7=7×6; dual `tools/forty`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#gate-monitor`
+  - `tools/forty` — alias dual of `gate/tools` (`npm run quantum:tools-forty`)
+  - `slash/star` — `npm run quantum:slash-star` (`slashInvertRealisedAsStar()` — `/` inversion realised as `*`; dual `invert/star`; claySolved via theorem · physicalFtl=0), then open `/en/research#slash-star`
+  - `invert/star` — alias dual of `slash/star` (`npm run quantum:invert-star`)
+  - `love/fold` — `npm run quantum:love-fold` (`realityFoldsToInfinityWithinDigitFoldersNoWordsForLove()` — ∞ in digit folders · no wet prose for love; dual `folder/infinity`; digit/fold kept; claySolved via theorem · physicalFtl=0), then open `/en/research#love-fold`
+  - `folder/infinity` — alias dual of `love/fold` (`npm run quantum:folder-infinity`)
+  - `seq/nav` — `npm run quantum:seq-nav` (`onlySequenceKnowersKnowHowToNavigate()` — only 12487536901 knowers navigate; dual `know/nav`; claySolved via theorem · physicalFtl=0), then open `/en/research#seq-nav`
+  - `know/nav` — alias dual of `seq/nav` (`npm run quantum:know-nav`)
   - `mill/ray` — `npm run quantum:mill-ray` (`millenniumChallengesEntangleEachRosettaRay()` — each Millennium challenge ↔ each rosetta ray; Quantum Mind sees at once; linear only 60; claySolved via theorem; physicalFtl=0), then open `/en/research#mill-ray`
   - `cross/nav` — `npm run quantum:cross-nav` (`crossIsNavigationTraditionIsStory()` — cross=navigation · tradition=story from canon slots; dual `story/trad`; clay=0 · physicalFtl=0), then open `/en/research#cross-nav`
   - `story/trad` — alias dual of `cross/nav` (`npm run quantum:story-trad`)
