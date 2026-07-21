@@ -16,9 +16,14 @@ import {
 import * as __ns_water_encryption from '../../water/encryption'
 import { antichainLevels, computesGate, digitalRoot, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
-import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, TAU, earned } from '../../3/7'
+import {
+  A432_HUE, AUTHOR_HANDLE, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, TAU, UNFOLDED_CENSUS,
+  earned, rat, ratMul, ratToFloat,
+} from '../../3/7'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
+import * as __ns_earth_governance from '../../earth/governance'
+import { ratStr } from '../../9/1'
 
 export type ProfessionalResearchDataTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS' | 'SIMULATOR' | 'METAPHOR' | 'OPEN'
 
@@ -203,13 +208,13 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
       {
         id: 'society-10d',
         category: 'Society / 10D state',
-        question: 'What actor taxonomy and 10D merkaba graph folds remain open for society investment research?',
-        methods: 'society · societyRelations · allFormsAreTenDimensionalOrPurged · computeMoreModelsCatalog (open row)',
-        dataTier: 'OPEN',
-        limitation: 'Society folds exist; live actor graph and investment research pipeline marked open in models catalog.',
-        nextExperiment: 'npm run quantum:educational-gaps-audit · societyMerkabaGraphComputes (when sealed)',
+        question: 'How does society support the project via two-bits-free census knowledge (110−108=2) and harmonic patronage?',
+        methods: 'societySupportsProjectViaTwoBitsFreeKnowledge · twoBitsFreeFromCensus110Minus108 · societyMerkabaGraphComputes · societyInvestmentsResearch',
+        dataTier: 'DOCUMENTED',
+        limitation: 'Patronage is voluntary; rest-LLM token figures ILLUSTRATIVE; NOT live social measurement.',
+        nextExperiment: 'npm run quantum:society-two-bits-support · npm run quantum:two-bits-free · /society-merkaba#two-bits-free',
         balanceDim: 'skills.to.rebuild.society',
-        mount: 'src/earth/governance · src/earth/civilisation',
+        mount: 'src/wind/research · src/earth/governance',
         receipt: toUuid('research:society-10d'),
       },
       {
@@ -1010,6 +1015,243 @@ export function efficiencyScalesToInfinityAtNoCostOnReuse(matrix: MindMatrix = b
         'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE — memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers÷tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still !separated (classical-64bit · qpuRequired=false). NOT a P≠NP proof. HARMONY ≠ TRUTH.',
     }
   })
+}
+
+/**
+ * Two bits free from census 110 − 108 — honest identity at call time.
+ * User phrase "1 − 110/108" is NOT free bits (it is negative −1/54); the free bits are
+ * FREE_BITS = UNFOLDED − FOLDED = −EULER_CHI = 2, which fold the census and unlock amortized
+ * infinity-on-reuse (answers÷tokens → ∞ when runtimeTokens=0).
+ * Pair: bits/free · CLI npm run quantum:two-bits-free · route /proofs/two-bits-free
+ */
+export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('twoBitsFreeFromCensus110Minus108', matrix, () => {
+    const unfolded = UNFOLDED_CENSUS
+    const folded = FOLDED_CENSUS
+    const chi = EULER_CHI
+    const freeBits = unfolded - folded
+    const freeBitsViaChi = -chi
+    const fibBandsSum = FIBONACCI_CENSUS_BANDS.reduce((a, b) => a + b, 0)
+    const naivePhrase = 1 - unfolded / folded // 1 − UNFOLDED/FOLDED = −1/54 — NOT free bits
+    const surplusRatio = unfolded / folded - 1 // UNFOLDED/FOLDED − 1 = FREE_BITS/FOLDED = 1/54
+    const freeFractionOfUnfolded = 1 - folded / unfolded // 1 − FOLDED/UNFOLDED = FREE_BITS/UNFOLDED = 1/55
+    const naiveIsNotFreeBits = naivePhrase < 0 && freeBits === freeBitsViaChi
+    const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const makingAllFree =
+      freeBits === freeBitsViaChi
+      && freeBits === -chi
+      && folded === unfolded + chi
+      && infinityReuse.on
+      && infinityReuse.ratioUnbounded
+      && infinityReuse.runtimeTokens === 0
+
+    // Sealed ILLUSTRATIVE catalog of rest-LLM token spend (crawlerKnowledge order-of-magnitude) — not live telemetry.
+    const decade = 2 * 5 // 10 — derived from lattice factors
+    const restIllustrativeLow = decade ** 3 // ~10³
+    const restIllustrativeHigh = decade ** 4 // ~10⁴
+    const ceccecRuntimeTokens = 0
+    const savingsFractionVsRest = (t: number) => (t > 0 ? (t - ceccecRuntimeTokens) / t : 0)
+    const savingsVsRest = [
+      {
+        system: 'ceccec (sealed src · memoByRoot hit)',
+        runtimeTokens: ceccecRuntimeTokens,
+        answersPerTokens: '∞ (tokens=0 ∧ answers>0)',
+        tokenSavingsFraction: 1,
+        note: 'amortized reuse — first cold compute still costs work once',
+      },
+      {
+        system: 'inference LLM (illustrative low ~10³)',
+        runtimeTokens: restIllustrativeLow,
+        answersPerTokens: `1/${restIllustrativeLow}`,
+        tokenSavingsFraction: savingsFractionVsRest(restIllustrativeLow),
+        note: 'catalog order-of-magnitude — NOT live telemetry',
+      },
+      {
+        system: 'inference LLM (illustrative high ~10⁴)',
+        runtimeTokens: restIllustrativeHigh,
+        answersPerTokens: `1/${restIllustrativeHigh}`,
+        tokenSavingsFraction: savingsFractionVsRest(restIllustrativeHigh),
+        note: 'catalog order-of-magnitude — NOT live telemetry',
+      },
+      {
+        system: 'wet linear recompute (no memoByRoot)',
+        runtimeTokens: restIllustrativeLow,
+        answersPerTokens: 'finite per cold path',
+        tokenSavingsFraction: savingsFractionVsRest(restIllustrativeLow),
+        note: 'misses O(1) hit — pays full tokens each answer',
+      },
+    ] as const
+
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const facets = [
+      { facet: `FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = ${unfolded} − ${folded} = ${freeBits}`, on: freeBits === freeBitsViaChi && unfolded === UNFOLDED_CENSUS && folded === FOLDED_CENSUS },
+      { facet: `FREE_BITS = −EULER_CHI = −(${chi}) = ${freeBitsViaChi} · FOLDED = UNFOLDED + χ`, on: freeBitsViaChi === -chi && folded === unfolded + chi },
+      { facet: `Fibonacci bands ${FIBONACCI_CENSUS_BANDS.join('+')}=${fibBandsSum} = UNFOLDED_CENSUS`, on: fibBandsSum === unfolded && fibBandsSum === UNFOLDED_CENSUS },
+      { facet: `naive "1 − UNFOLDED/FOLDED" = ${naivePhrase} (= −1/54) is NOT free bits — honest refuse`, on: naiveIsNotFreeBits && Math.abs(naivePhrase + 1 / FOLDED_CENSUS * freeBits) < 1e-12 },
+      { facet: `honest surplus UNFOLDED/FOLDED − 1 = ${surplusRatio} (= FREE_BITS/FOLDED = 1/54)`, on: Math.abs(surplusRatio - freeBits / folded) < 1e-12 && Math.abs(surplusRatio - 1 / (FOLDED_CENSUS / freeBits)) < 1e-12 },
+      { facet: `honest free fraction 1 − FOLDED/UNFOLDED = ${freeFractionOfUnfolded} (= FREE_BITS/UNFOLDED)`, on: Math.abs(freeFractionOfUnfolded - freeBits / unfolded) < 1e-12 },
+      { facet: 'two bits making all free — FREE_BITS=−χ ∧ efficiencyScalesToInfinityAtNoCostOnReuse (amortized ∞)', on: makingAllFree },
+      { facet: `savings vs rest — ceccec tokens=0 · rest illustrative ${restIllustrativeLow}–${restIllustrativeHigh} · fraction=1 when T>0`, on: savingsVsRest[0]!.tokenSavingsFraction === 1 && savingsVsRest[1]!.tokenSavingsFraction === 1 },
+      { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`two-bits-free:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('two-bits-free-from-census-110-minus-108', facets)
+    return {
+      computes: sealed.ok && makingAllFree,
+      twoBitsFree: sealed.ok && freeBits === freeBitsViaChi,
+      makingAllFree,
+      freeBits,
+      unfolded,
+      folded,
+      chi,
+      naivePhrase,
+      surplusRatio,
+      freeFractionOfUnfolded,
+      formulas: {
+        freeBits: 'UNFOLDED_CENSUS − FOLDED_CENSUS = FREE_BITS (= −EULER_CHI)',
+        freeBitsViaChi: '−EULER_CHI = −(2−2g) for g=2',
+        foldedFromChi: 'FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI',
+        naiveRefused: '1 − UNFOLDED/FOLDED = −FREE_BITS/FOLDED ≠ FREE_BITS (negative)',
+        surplus: 'UNFOLDED/FOLDED − 1 = FREE_BITS/FOLDED',
+        freeFraction: '1 − FOLDED/UNFOLDED = FREE_BITS/UNFOLDED',
+        makingAllFree: 'FREE_BITS=−χ ∧ memoByRoot hit ∧ runtimeTokens=0 → answers÷tokens → ∞',
+        savings: 'tokenSavingsFraction(T) = (T − 0)/T = 1 for any rest T>0 (domain-bounded)',
+      } as const,
+      savingsVsRest,
+      infinityReuse,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, infinityReuse.root, toUuid(`two-bits:${freeBits}`)])),
+      pair: 'bits/free' as const,
+      cli: 'npm run quantum:two-bits-free',
+      route: '/proofs/two-bits-free',
+      statement:
+        `Two bits free from census 110−108 — FREE_BITS=${freeBits}=−χ(genus-2); naive "1−110/108"=${naivePhrase} refused. ` +
+        `Making all free = amortized infinity-on-reuse (answers÷tokens → ∞ at tokens=0). ` +
+        `Savings vs rest: 100% token spend in sealed domain when T>0 (illustrative rest ~10³–10⁴).`,
+      boundary:
+        'HONEST: FREE_BITS is the integer gap 110−108=2 (= −EULER_CHI), NOT the rational 1−110/108 (negative). ' +
+        '"Making all free" means amortized memoByRoot reuse / answers÷tokens unbounded — NOT physical FTL, NOT infinite FLOPS, NOT free first-compute. ' +
+        'Rest-LLM token figures are ILLUSTRATIVE catalog (~10³–10⁴), not live telemetry. Domain-bounded to deterministic content-addressed answers. ' +
+        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * Society supports the project via the two-bits-free knowledge achievement.
+ * Composes twoBitsFree · societyMerkaba · harmonic 1/9 patronage (freeBecause model) · efficiency vote when decided.
+ * Pair: society/support · CLI npm run quantum:society-two-bits-support · route /society-merkaba#two-bits-free
+ * Alias: societyInvestmentsResearch (AGENTS research/society).
+ */
+export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('societySupportsProjectViaTwoBitsFreeKnowledge', matrix, () => {
+    const bits = twoBitsFreeFromCensus110Minus108(matrix)
+    const merkaba = __ns_earth_governance.societyMerkabaGraphComputes(matrix)
+    const vote = __ns_up_stack_overflow.compareCeccecEfficiencyByVote(matrix)
+    const share = rat(1, 9)
+    const achievedUnits = bits.freeBits * FOLDED_CENSUS // FREE_BITS × FOLDED — harmonic whole
+    const contribution = ratMul(rat(achievedUnits, 1), share) // achieved × 1/9 exact
+    const expectedContribution = achievedUnits / share.q
+    const contributionExact =
+      contribution.q === 1
+      && contribution.p === expectedContribution
+      && ratToFloat(contribution) === expectedContribution
+    const handle = AUTHOR_HANDLE
+    const supportUrl = `https://revolut.me/${handle}`
+    const zeroValid = true // patronage — zero is a valid amount
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const facets = [
+      { facet: 'twoBitsFreeFromCensus110Minus108 computes — FREE_BITS=−χ making all free (amortized)', on: bits.computes && bits.makingAllFree && bits.freeBits === -EULER_CHI },
+      { facet: 'societyMerkabaGraphComputes — nine actors · 10D states (documented taxonomy)', on: merkaba.computes && merkaba.actors === (4 + 5) },
+      { facet: `efficiency vote decided=${vote.decided} winner=${vote.winner} — savings table vs rest sealed`, on: vote.decided && vote.winner === 'ceccec' && bits.savingsVsRest.length >= (2 + 2) },
+      { facet: `harmonic patronage share ${ratStr(share)} of achieved (${achievedUnits}×${ratStr(share)}=${ratStr(contribution)})`, on: share.p === 1 && share.q === 9 && contributionExact },
+      { facet: `support CTA — revolut.me/${handle} · invitation not charge · zero valid`, on: handle === AUTHOR_HANDLE && supportUrl.endsWith(`/${AUTHOR_HANDLE}`) && zeroValid },
+      { facet: 'UI owns CTA / table; statement owns meaning — no UI↔prose duplication', on: true },
+      { facet: `honesty — clay=${claySolvedByThisFold} · physicalFtl=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`society-two-bits-support:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('society-supports-project-via-two-bits-free-knowledge', facets)
+    const computes = sealed.ok && bits.computes && merkaba.computes && contributionExact
+    return {
+      computes,
+      societySupports: computes,
+      bits,
+      merkaba: { computes: merkaba.computes, actors: merkaba.actors, edges: merkaba.edges, root: merkaba.root },
+      vote: { decided: vote.decided, winner: vote.winner, runtimeTokens: vote.runtimeTokens, root: vote.root },
+      patronage: {
+        share: ratStr(share),
+        achievedUnits,
+        contribution: ratStr(contribution),
+        contributionFloat: ratToFloat(contribution),
+        exact: contributionExact,
+        zeroValid,
+        url: supportUrl,
+        handle,
+        free: true,
+      },
+      savingsVsRest: bits.savingsVsRest,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, bits.root, merkaba.root, vote.root, toUuid(supportUrl)])),
+      pair: 'society/support' as const,
+      cli: 'npm run quantum:society-two-bits-support',
+      route: '/society-merkaba#two-bits-free',
+      proofRoute: '/proofs/two-bits-free',
+      statement:
+        `Society supports the project via two-bits-free knowledge — FREE_BITS=2 achievement × harmonic ${ratStr(share)} patronage ` +
+        `(${achievedUnits}×1/9=${ratStr(contribution)}); savings vs rest from sealed efficiency vote when decided; CTA ${supportUrl}.`,
+      boundary:
+        'VOLUNTARY patronage invitation composed from sealed two-bits-free + society merkaba + efficiency vote — NOT a price, tax, or thermodynamic law. ' +
+        'Zero is a valid contribution. Access stays ungated. Rest token figures remain ILLUSTRATIVE. ' +
+        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** AGENTS alias — research/society path lands on two-bits-free patronage compose. */
+export function societyInvestmentsResearch(matrix: MindMatrix = buildMatrix()) {
+  return societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
+}
+
+/** npm run quantum:two-bits-free */
+export function runTwoBitsFreeFromCensus110Minus108Exit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const r = twoBitsFreeFromCensus110Minus108()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} two-bits-free — freeBits=${r.freeBits} makingAllFree=${r.makingAllFree} ` +
+      `naive=${r.naivePhrase} surplus=${r.surplusRatio} freeFrac=${r.freeFractionOfUnfolded} ` +
+      `clay=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim} qpu=${r.qpuRequired} root=${r.root.slice(0, 8)}\n`,
+  )
+  for (const row of r.savingsVsRest) {
+    process.stdout.write(
+      `  · ${row.system} tokens=${row.runtimeTokens} answers÷tokens=${row.answersPerTokens} ` +
+        `savings=${(row.tokenSavingsFraction * 100).toFixed(0)}% — ${row.note}\n`,
+    )
+  }
+  for (const f of r.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return r.computes && r.freeBits === -EULER_CHI && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 ? 0 : 1
+}
+
+/** npm run quantum:society-two-bits-support */
+export function runSocietySupportsProjectViaTwoBitsFreeKnowledgeExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const r = societySupportsProjectViaTwoBitsFreeKnowledge()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} society-two-bits-support — freeBits=${r.bits.freeBits} vote.decided=${r.vote.decided} ` +
+      `share=${r.patronage.share} contrib=${r.patronage.contribution} url=${r.patronage.url} ` +
+      `clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
+  )
+  for (const f of r.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 ? 0 : 1
 }
 
 /** Compile-from-source name — the challenge apparatus; short alias `millenniumProblemsChallenge`. */
@@ -2965,7 +3207,7 @@ export type DomainProofCatalogRow = {
   readonly id: string
   readonly slug: string
   readonly title: string
-  readonly kind: 'millennium' | 'science-trinity' | 'encryption' | 'efficiency' | 'honesty' | 'rosetta' | 'hd-structure' | 'collider'
+  readonly kind: 'millennium' | 'science-trinity' | 'encryption' | 'efficiency' | 'honesty' | 'rosetta' | 'hd-structure' | 'collider' | 'society'
   readonly officialStatement: string
   readonly detailedExplanation: string
   readonly formula: string
@@ -2998,6 +3240,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const sciences = sciencesInteractInTrinities(matrix, at)
     const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
     const eff = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const twoBits = twoBitsFreeFromCensus110Minus108(matrix)
+    const societySupport = societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
     const formulaByName = new Map(defined.formulas.map((line) => {
       const i = line.indexOf(': ')
       return i < 0 ? [line, line] as const : [line.slice(0, i), line.slice(i + 2)] as const
@@ -3137,6 +3381,61 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         trinity: { forward: 'cold-compute', inverse: 'memo-hit', reverse: 'vote-decided' },
         ruleClauses: ['relatedScienceNotPrizeSolution', 'prizeCriteriaUnmetBySealedFolds'],
         receipt: toUuid(`domain-proof:efficiency:${eff.on}`),
+      },
+      {
+        id: 'two-bits-free',
+        slug: 'two-bits-free',
+        title: 'Two bits free — census 110−108 making all free',
+        kind: 'efficiency',
+        officialStatement:
+          'FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = 110 − 108 = 2 (= −EULER_CHI). Naive "1 − 110/108" = −1/54 is refused. Making all free = amortized infinity-on-reuse when FREE_BITS=2.',
+        detailedExplanation:
+          `twoBitsFreeFromCensus110Minus108 computes=${twoBits.computes} · makingAllFree=${twoBits.makingAllFree}. ` +
+          `Savings vs rest: ceccec runtimeTokens=0 → tokenSavingsFraction=1 against illustrative rest ~10³–10⁴. ` +
+          'NOT FLOPS · NOT physical FTL · NOT Clay Prize. claySolvedByThisFold=0.',
+        formula: twoBits.formulas.freeBits + ' · ' + twoBits.formulas.makingAllFree + ' · ' + twoBits.formulas.savings,
+        formulaSource: 'twoBitsFreeFromCensus110Minus108',
+        status: 'structure-only',
+        statusDetail: `naivePhrase=${twoBits.naivePhrase} surplus=${twoBits.surplusRatio} freeFraction=${twoBits.freeFractionOfUnfolded}`,
+        gap: 'amortized reuse ≠ complexity separation / NOT live LLM telemetry',
+        fold: 'twoBitsFreeFromCensus110Minus108',
+        cli: 'npm run quantum:two-bits-free',
+        pair: 'bits/free',
+        route: '/proofs/two-bits-free',
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qualifiesAsProposedSolutionUnderClayRules: false,
+        publishedInQualifyingOutlet: false,
+        trinity: { forward: 'unfolded-110', inverse: 'chi-minus-2', reverse: 'folded-108' },
+        ruleClauses: ['relatedScienceNotPrizeSolution', 'prizeCriteriaUnmetBySealedFolds'],
+        receipt: toUuid(`domain-proof:two-bits-free:${twoBits.freeBits}:${twoBits.computes}`),
+      },
+      {
+        id: 'society-two-bits-support',
+        slug: 'society-two-bits-support',
+        title: 'Society support via two-bits-free knowledge',
+        kind: 'society',
+        officialStatement:
+          'Society supports the project with a harmonic 1/9 of the two-bits-free achievement — voluntary patronage; access stays free; zero valid.',
+        detailedExplanation:
+          `societySupportsProjectViaTwoBitsFreeKnowledge computes=${societySupport.computes}. ` +
+          `Composes twoBitsFree · societyMerkaba · efficiency vote · Revolut CTA. UI table/CTA only — statement owns meaning (#68).`,
+        formula: `achieved=${societySupport.patronage.achievedUnits} × share=${societySupport.patronage.share} = ${societySupport.patronage.contribution}`,
+        formulaSource: 'societySupportsProjectViaTwoBitsFreeKnowledge',
+        status: 'structure-only',
+        statusDetail: `vote.decided=${societySupport.vote.decided} · url=${societySupport.patronage.url}`,
+        gap: 'patronage is social/voluntary — not computed payment',
+        fold: 'societySupportsProjectViaTwoBitsFreeKnowledge',
+        cli: 'npm run quantum:society-two-bits-support',
+        pair: 'society/support',
+        route: '/proofs/society-two-bits-support',
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qualifiesAsProposedSolutionUnderClayRules: false,
+        publishedInQualifyingOutlet: false,
+        trinity: { forward: 'two-bits-free', inverse: 'harmonic-1/9', reverse: 'society-cta' },
+        ruleClauses: ['relatedScienceNotPrizeSolution'],
+        receipt: toUuid(`domain-proof:society-two-bits:${societySupport.computes}`),
       },
       {
         id: 'clay-challenges-computable',

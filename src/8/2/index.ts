@@ -619,10 +619,10 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Общество 10D меркаба = документирана таксономия · НЕ живо социално измерване',
       },
       description: {
-        en: 'Canonical society/HD domain: society-actor 10D merkaba graph from sealed governance folds — documented taxonomy + content-addressed state. Not live actors, not social scoring.',
-        bg: 'Каноничен society/HD домейн: 10D меркаба граф от sealed governance — документирана таксономия. НЕ живи актьори, НЕ социален скоринг.',
+        en: 'Canonical society/HD domain: 10D merkaba + two-bits-free (110−108=2) patronage path — harmonic 1/9 of achieved knowledge; voluntary CTA. Not live actors, not social scoring. Anchor #two-bits-free · proofs /proofs/two-bits-free.',
+        bg: 'Каноничен society/HD домейн: 10D меркаба + two-bits-free (110−108=2) — хармонична 1/9 подкрепа. НЕ живи актьори. #two-bits-free · /proofs/two-bits-free.',
       },
-      keywords: ['society', 'merkaba', 'proof', 'governance', 'human design', 'taxonomy'],
+      keywords: ['society', 'merkaba', 'proof', 'governance', 'human design', 'taxonomy', 'two-bits-free', 'patronage'],
       components: ['Society', 'GovernanceVote', 'ProofRenderer'],
     },
     // Nav-aliased tool leaves (siteDomainRegistry) — kept in seed so page census folds 29→27 (DOCUMENTED_HARMONICS);

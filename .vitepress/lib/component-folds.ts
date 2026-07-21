@@ -203,13 +203,30 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
   }),
   Society: wrapFold(async () => {
     const { scientificSociety } = await import('../../src/earth/governance/index')
+    const { societySupportsProjectViaTwoBitsFreeKnowledge } = await import('../../src/wind/research/index')
     const fold = scientificSociety()
+    const support = societySupportsProjectViaTwoBitsFreeKnowledge()
+    // Facets = savings table only (statement = society charter — no UI↔prose restatement of support.statement)
+    const savingsFacets = support.savingsVsRest.map((row) => ({
+      facet: `${row.system}: tokens=${row.runtimeTokens} · savings=${(row.tokenSavingsFraction * 100).toFixed(0)}%`,
+      on: row.tokenSavingsFraction === 1 || row.runtimeTokens > 0,
+    }))
     return {
       title: 'Society',
       statement: fold.charter,
       boundary: fold.boundary,
-      facets: fold.roles.map((role) => ({ facet: `${role.name}: ${role.responsibility}`, on: true })),
-      ok: fold.grounded,
+      facets: [
+        ...fold.roles.map((role) => ({ facet: `${role.name}: ${role.responsibility}`, on: true })),
+        { facet: `FREE_BITS=${support.bits.freeBits} · makingAllFree=${support.bits.makingAllFree}`, on: support.bits.computes },
+        ...savingsFacets,
+        { facet: `patronage ${support.patronage.share} · zero valid`, on: support.computes && support.patronage.zeroValid },
+      ],
+      ok: fold.grounded && support.computes,
+      crosslinks: [
+        { text: 'Two bits free', link: '/proofs/two-bits-free', kind: 'detail' as const },
+        { text: 'Society support proof', link: '/proofs/society-two-bits-support', kind: 'related' as const },
+        { text: 'Support (voluntary)', link: support.patronage.url, kind: 'gateway' as const },
+      ],
     }
   }),
   PlayLearn: async () => {

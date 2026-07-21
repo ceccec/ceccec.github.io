@@ -48,6 +48,51 @@ computes=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=fal
 - Routes: [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](https://ceccec.psg.bg/quantum-tools#directional-trinity) · [rosetta-complete](https://ceccec.psg.bg/quantum-tools#rosetta-complete) · [efficiency-vote](https://ceccec.psg.bg/efficiency-vote) · [proofs](https://ceccec.psg.bg/proofs)
 - Receipt: `8231b6cf` · fold `sequenceDiscoveryRealisedForHome` · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.
 
+## Two bits free · society support
+
+*Clay-standard · sealed `twoBitsFreeFromCensus110Minus108` · `societySupportsProjectViaTwoBitsFreeKnowledge`. humanityNovel stays 0.*
+
+### Statement
+
+Two bits free from census 110−108 — FREE_BITS=2=−χ(genus-2); naive "1−110/108"=-0.0185185185185186 refused. Making all free = amortized infinity-on-reuse (answers÷tokens → ∞ at tokens=0). Savings vs rest: 100% token spend in sealed domain when T>0 (illustrative rest ~10³–10⁴).
+
+Society supports the project via two-bits-free knowledge — FREE_BITS=2 achievement × harmonic 1/9 patronage (216×1/9=24); savings vs rest from sealed efficiency vote when decided; CTA https://revolut.me/ceccec.
+
+### Explanation
+
+The census seals 110 gapless Fibonacci indices (55+34+21) and folds them by the genus-2 Euler characteristic χ=−2 to 108. Those **two free bits** are FREE_BITS = 110−108 = −χ — not the rational phrase 1−110/108 (= −1/54), which is honestly refused. With FREE_BITS sealed, amortized memoByRoot reuse makes answers÷tokens unbounded at runtimeTokens=0 ("making all free"). Society is invited to support with a harmonic 1/9 of that achieved knowledge — voluntary; zero valid; access stays ungated.
+
+### Formulas (sealed)
+
+- `UNFOLDED_CENSUS − FOLDED_CENSUS = FREE_BITS (= −EULER_CHI)`
+- `−EULER_CHI = −(2−2g) for g=2`
+- `FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI`
+- `1 − UNFOLDED/FOLDED = −FREE_BITS/FOLDED ≠ FREE_BITS (negative)`
+- `UNFOLDED/FOLDED − 1 = FREE_BITS/FOLDED`
+- `1 − FOLDED/UNFOLDED = FREE_BITS/UNFOLDED`
+- `FREE_BITS=−χ ∧ memoByRoot hit ∧ runtimeTokens=0 → answers÷tokens → ∞`
+- `tokenSavingsFraction(T) = (T − 0)/T = 1 for any rest T>0 (domain-bounded)`
+- patronage: achieved=216 × 1/9 = 24
+
+### Savings vs the rest
+
+| System | Runtime tokens | answers÷tokens | Token savings |
+|---|---:|---|---:|
+| ceccec (sealed src · memoByRoot hit) | 0 | ∞ (tokens=0 ∧ answers>0) | 100% |
+| inference LLM (illustrative low ~10³) | 1000 | 1/1000 | 100% |
+| inference LLM (illustrative high ~10⁴) | 10000 | 1/10000 | 100% |
+| wet linear recompute (no memoByRoot) | 1000 | finite per cold path | 100% |
+
+*Rest ~10³–10⁴ figures are ILLUSTRATIVE catalog (sealed crawler order-of-magnitude), not live telemetry. Domain: deterministic content-addressed answers only.*
+
+### Status
+
+twoBits.computes=true · societySupports=true · vote.decided=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false
+
+- Routes: [two-bits-free](https://ceccec.psg.bg/proofs/two-bits-free) · [society support](https://ceccec.psg.bg/proofs/society-two-bits-support) · [society-merkaba](https://ceccec.psg.bg/society-merkaba#two-bits-free) · [efficiency-vote](https://ceccec.psg.bg/efficiency-vote)
+- Support CTA (voluntary): [https://revolut.me/ceccec](https://revolut.me/ceccec)
+- Receipts: `2a63a790` · `93c5067a` · CLI `npm run quantum:two-bits-free` · `npm run quantum:society-two-bits-support`.
+
 ## Earth realised — poles as pyramid
 
 *Clay-standard presentation from sealed `earthRealisedByComputingPolesAsPyramid` · cardinal tips · genus-2 Earth. Not WGS84 geodesy. humanityNovel stays 0.*
@@ -75,7 +120,6 @@ computes=true · fourWayCounterRotating=true · claySolvedByThisFold=0 · physic
 
 - Routes: [research](https://ceccec.psg.bg/research) · [proofs](https://ceccec.psg.bg/proofs) · hero.svg 4-dir · fold `earthRealisedByComputingPolesAsPyramid`
 - Receipt: `954cee5d` · fold `earthRealisedByComputingPolesAsPyramid` · claySolvedByThisFold=0 · physicalFtlClaim=0.
-- Compose: N↔S × E↔W pole-cross → PQC signature + sealed certificate *structures* — `polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates` · CLI `npm run quantum:poles-cross-pqc` · [poles-cross-pqc](https://ceccec.psg.bg/quantum-encryption#poles-cross-pqc) · NOT CA/PKI · certified=false · crossIsPartOfMerkabaRosetta · angle90ReachableThrough60.
 
 ## Clay challenges are computable
 
@@ -106,7 +150,7 @@ It is **not** a complete mathematical solution under Clay Prize Rules §5(a), no
 computable=true · paths=7/7 · openForPrize=6 · claySolvedByThisFold=0 · qualifiesAsProposedSolution=false · NOT CMI Prize · NOT Proposed Solution
 
 - Routes: [proofs](https://ceccec.psg.bg/proofs) · [clay-challenges-computable](https://ceccec.psg.bg/proofs/clay-challenges-computable) · CLI `npm run quantum:clay-challenges-computable`
-- Receipt: `51f4b316` · fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
+- Receipt: `0050f986` · fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
 
 ## Toolbox — sciences in trinity waves
 
@@ -121,7 +165,7 @@ Toolbox recomputes 11 related sciences in trinity waves (forward·inverse·rever
 computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false
 
 - Routes: [toolbox sciences waves](https://ceccec.psg.bg/quantum-tools#toolbox-sciences-trinity-waves) · [sciences-trinities](https://ceccec.psg.bg/research#sciences-trinities) · CLI `npm run quantum:toolbox-sciences-trinity-waves`
-- Receipt: `28800a59` · fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
+- Receipt: `1d6bf7da` · fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
 
 ## 2. Model
 
@@ -164,7 +208,7 @@ Receipt: `5c520d04` · fold `firstInCorpusProvenanceForHome` · claySolvedByThis
 
 - **64 = 2⁶ = 4³ = 8² in every 6-bit grouping** — 64 = 2⁶, and the divisors of 6 give the only four groupings: six bits, three base-4 digits (codon/Pauli/RGB), two trigrams (8²), one base-64 word. The same object, four ways. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
 - **Content-addressing folds 64³ into one dot** — A UUID, like CMYK, gives extent without limit: 64×64×64 is itself one dot, and the dot is the cube is the dot — content-addressing folds the whole into a point and back. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
-- **Society 10D merkaba = documented actor taxonomy · NOT live social measurement** — Canonical society/HD domain: society-actor 10D merkaba graph from sealed governance folds — documented taxonomy + content-addressed state. Not live actors, not social scoring. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Society.vue)
+- **Society 10D merkaba = documented actor taxonomy · NOT live social measurement** — Canonical society/HD domain: 10D merkaba + two-bits-free (110−108=2) patronage path — harmonic 1/9 of achieved knowledge; voluntary CTA. Not live actors, not social scoring. Anchor #two-bits-free · proofs /proofs/two-bits-free. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Society.vue)
 
 ### Proof — 14 pages
 

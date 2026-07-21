@@ -41,6 +41,7 @@ import {
   millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome, sciencesTrinitiesPanelComputes,
   theoremParticleCollisionPanelComputes,
   clayChallengesComputableFromSequence, toolboxRecomputesRelatedSciencesInTrinityWaves,
+  twoBitsFreeFromCensus110Minus108, societySupportsProjectViaTwoBitsFreeKnowledge,
 } from '../../wind/research/index.ts'
 import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
@@ -434,6 +435,24 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = vote.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'two-bits-free') {
+      const r = twoBitsFreeFromCensus110Minus108()
+      ok = r.computes && r.makingAllFree
+      summary =
+        `freeBits=${r.freeBits} makingAllFree=${r.makingAllFree} naive=${r.naivePhrase.toFixed(6)} ` +
+        `surplus=${r.surplusRatio.toFixed(6)} clay=${r.claySolvedByThisFold}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'society-two-bits-support') {
+      const r = societySupportsProjectViaTwoBitsFreeKnowledge()
+      ok = r.computes
+      summary =
+        `freeBits=${r.bits.freeBits} vote=${r.vote.decided} share=${r.patronage.share} ` +
+        `contrib=${r.patronage.contribution} · ${r.patronage.url}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'local-audit-quantum') {
       const r = localAuditQuantumSpeedEfficiency()
       const exported = exportWithExperiment('local-audit-quantum')
@@ -1016,6 +1035,23 @@ function runTool(toolId: string) {
         <UiButton size="sm" :disabled="runningId === 'prove-no-qpu-64bit'" @click="runTool('prove-no-qpu-64bit')">
           {{ runningId === 'prove-no-qpu-64bit' ? '…' : 'Run prove-no-qpu-64bit' }}
         </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="two-bits-free" aria-label="Two bits free census">
+        <h3>Two bits free · 110−108</h3>
+        <p class="quantum-apps__meta">
+          FREE_BITS=2 (=−χ) · naive 1−110/108 refused · amortized ∞ on reuse · clay=0 · NOT FLOPS.
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'two-bits-free'" @click="runTool('two-bits-free')">
+          {{ runningId === 'two-bits-free' ? '…' : 'Run two-bits-free' }}
+        </UiButton>
+        <UiButton size="sm" :disabled="runningId === 'society-two-bits-support'" @click="runTool('society-two-bits-support')">
+          {{ runningId === 'society-two-bits-support' ? '…' : 'Run society support' }}
+        </UiButton>
+        <p class="quantum-apps__meta">
+          <a href="/society-merkaba#two-bits-free">Society CTA</a>
+          · <a href="/proofs/two-bits-free">Proof</a>
+        </p>
       </section>
       <UiSeparator />
       <section id="toolbox-standard-io">
