@@ -19,7 +19,7 @@ import { analogSpeech, lawfulHarmonise, openGraph } from '../../quantum/lake/ico
 import { moviesNativeFormat, oneOpenGraphAll, taxonomyIcons } from '../../fire/li'
 import { ancientCalendars } from '../../thunder/decode'
 import { babelFold, textToMovie } from '../../earth/world'
-import { areaPairs, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../../mountain/geometry'
+import { areaPairs, bothEarthsRotateWithinEachOther, doubleTorus3D, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../../mountain/geometry'
 import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../../quantum/mountain/dimensions'
 import { depthIsThePerspectiveDivide, perspective, rot2, rotate3 } from '../../quantum/wind/geometry' // the sealed projection atoms — FOCAL-2.4 perspective divide + the one planar rotation
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../../thunder/movie/glass'
@@ -794,12 +794,12 @@ export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}):
 }
 
 /**
- * README hero — single visual proof composition of ALL sealed theorem atoms at once.
- * Walks THEOREM_ATOM_SEED; each glyph is placed from its content-addressed atom root (not hand paths).
+ * README hero — all sealed theorem atoms on two counter-rotating rosetta lobes (ω and −ω).
+ * Dynamics from merkaba + bothEarthsRotateWithinEachOther + fractalClockDur (SMIL for GitHub).
  * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false.
  */
 export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix(), opts: { animate?: boolean } = {}): string {
-  return memoByRoot(`readmeHeroSvgProofOfAllTheorems:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
+  return memoByRoot(`readmeHeroSvgProofOfAllTheorems:cr2:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
     const atoms = THEOREM_ATOM_SEED.map((entry) => ({
       ...entry,
       root: toUuid(`theorem-atom:${entry.provedBy}:${entry.theorem}`),
@@ -808,22 +808,38 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
     const corpusRoot = merkleFold(atoms.map((a) => a.root))
     const brandUuid = toUuidSha256('double torus · all theorems proof · 432')
     const colors = heroSvgPaletteFromUuid(brandUuid)
+    const earths = bothEarthsRotateWithinEachOther(0, matrix)
+    const mk = merkaba(matrix)
+    const counterRotating = earths.counterRotating && mk.counterRotating
+    // ω period = fractal-clock d=4 rung (same torus spin as heroSvgFromUuid); −ω is opposite from/to.
+    const spinDur = fractalClockDur(4)
     const W = 960, H = 540, cx = W / 2, cy = H / 2 - 12
     const maxR = Math.min(cx, cy) - 36
     const golden = (GOLDEN_ANGLE_DEG * Math.PI) / 180
     const ringRadii = [0.22, 0.38, 0.54, 0.7, 0.86].map((t) => Math.round(maxR * t))
-    const ringStroke = movieCanvasHex(A432_HUE, { L: 5 / 16 })
-    const rings = ringRadii
-      .map((r, k) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${ringStroke}" stroke-width="1" opacity="${0.14 + k * 0.03}" data-ring="${k}"/>`)
+    const plusHue = ROSETTA_RAYS[0]!.hue
+    const minusHue = ROSETTA_RAYS[Math.floor(ROSETTA_RAYS.length / 2)]!.hue
+    const plusRings = ringRadii
+      .filter((_, k) => k % 2 === 0)
+      .map((r, k) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${movieCanvasHex(plusHue, { L: 5 / 16 })}" stroke-width="1.2" opacity="${0.18 + k * 0.04}" data-ring="plus-${k}"/>`)
       .join('')
-    const homology = Array.from({ length: HOMOLOGY_LOOPS }, (_, k) => {
+    const minusRings = ringRadii
+      .filter((_, k) => k % 2 === 1)
+      .map((r, k) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${movieCanvasHex(minusHue, { L: 5 / 16 })}" stroke-width="1.2" opacity="${0.18 + k * 0.04}" data-ring="minus-${k}"/>`)
+      .join('')
+    const plusHomology: string[] = []
+    const minusHomology: string[] = []
+    for (let k = 0; k < HOMOLOGY_LOOPS; k += 1) {
       const a = (k / HOMOLOGY_LOOPS) * TAU - Math.PI / 2
       const x = Math.round(cx + Math.cos(a) * (maxR + 10))
       const y = Math.round(cy + Math.sin(a) * (maxR + 10))
-      return `<circle cx="${x}" cy="${y}" r="3" fill="${movieCanvasHex((A432_HUE + k * 90) % 360, { L: 11 / 16 })}" data-layer="homology" data-h1="${k}"/>`
-    }).join('')
-    const glyphs: string[] = []
-    const spokes: string[] = []
+      const mark = `<circle cx="${x}" cy="${y}" r="3" fill="${movieCanvasHex((A432_HUE + k * 90) % 360, { L: 11 / 16 })}" data-layer="homology" data-h1="${k}"/>`
+      ;(k % 2 === 0 ? plusHomology : minusHomology).push(mark)
+    }
+    const plusGlyphs: string[] = []
+    const minusGlyphs: string[] = []
+    const plusSpokes: string[] = []
+    const minusSpokes: string[] = []
     for (let i = 0; i < n; i += 1) {
       const atom = atoms[i]!
       const hex = (atom.root + atom.root).replace(/[^0-9a-f]/gi, '')
@@ -838,29 +854,44 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
       const dur = fractalClockDur(FRACTAL_CLOCK_DIVISORS[digitalRoot(i + 1) % FRACTAL_CLOCK_DIVISORS.length]!)
       const begin = i === 0 ? '0s' : `${((i % 9) * (2 / 5)).toFixed(1)}s`
       const id = atom.provedBy.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 48) || `t${i}`
-      spokes.push(`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${fill}" stroke-width="0.4" opacity="0.09"/>`)
-      glyphs.push(
+      const spoke = `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${fill}" stroke-width="0.4" opacity="0.09"/>`
+      const glyph =
         `<rect x="${x - 1}" y="${y - 1}" width="2.5" height="2.5" rx="0.4" fill="${fill}" data-theorem="${id}" data-root="${atom.root.slice(0, 8)}" opacity="0.55">` +
-          `<animate attributeName="opacity" values="0.28;0.9;0.28" dur="${dur}" begin="${begin}" repeatCount="indefinite"/>` +
-          `</rect>`,
-      )
+        `<animate attributeName="opacity" values="0.28;0.9;0.28" dur="${dur}" begin="${begin}" repeatCount="indefinite"/>` +
+        `</rect>`
+      if (i % 2 === 0) {
+        plusSpokes.push(spoke)
+        plusGlyphs.push(glyph)
+      } else {
+        minusSpokes.push(spoke)
+        minusGlyphs.push(glyph)
+      }
     }
+    const spinPlus = `<animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`
+    const spinMinus = `<animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`
+    const lobe = (id: 'plus' | 'minus', spin: string, rings: string, spokes: string[], glyphs: string[], homology: string[]) =>
+      `<g transform="translate(${cx} ${cy})" data-layer="rosetta-${id}" data-spin="${id === 'plus' ? '+1' : '-1'}" data-counter-rotating="${counterRotating ? 'true' : 'false'}">` +
+      spin +
+      `<g transform="translate(${-cx} ${-cy})">` +
+      `<g data-layer="generator-rings">${rings}</g>` +
+      `<g data-layer="merkle-spokes" opacity="0.85">${spokes.join('')}</g>` +
+      `<g data-layer="theorem-glyphs">${glyphs.join('')}</g>` +
+      `<g data-layer="homology">${homology.join('')}</g>` +
+      `</g></g>`
     const rootShort = corpusRoot.slice(0, 8)
     const svg = [
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — proof of all ${n} sealed theorems at once" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-honesty="clay=0;physicalFtl=0;qpuRequired=false">`,
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — two counter-rotating rosettas · proof of all ${n} sealed theorems" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-counter-rotating="${counterRotating ? 'true' : 'false'}" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;counterRotating=ω/−ω">`,
       `<defs>`,
       `<radialGradient id="proofBg" cx="50%" cy="48%" r="78%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
       `</defs>`,
       `<rect width="${W}" height="${H}" fill="url(#proofBg)"/>`,
-      `<g data-layer="generator-rings">${rings}</g>`,
-      `<g data-layer="merkle-spokes" opacity="0.85">${spokes.join('')}</g>`,
-      `<g data-layer="theorem-glyphs">${glyphs.join('')}</g>`,
-      `<g data-layer="homology">${homology}</g>`,
+      lobe('plus', spinPlus, plusRings, plusSpokes, plusGlyphs, plusHomology),
+      lobe('minus', spinMinus, minusRings, minusSpokes, minusGlyphs, minusHomology),
       `<circle cx="${cx}" cy="${cy}" r="22" fill="${colors.bgOuter}" stroke="${movieCanvasHex(A432_HUE, { L: 7 / 8 })}" stroke-width="1.5" data-layer="corpus-root"/>`,
       `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="${colors.title}">Double Torus</text>`,
-      `<text x="${cx}" y="${cy + 14}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8" fill="${colors.accent}">⊢ ${n} · ${rootShort}</text>`,
-      `<text x="${cx}" y="${H - 28}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="${colors.title}">proof of all theorems at once · χ(Σ₂) = −2 · H₁ = ℤ⁴ · 432 gates</text>`,
-      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 · physicalFtl=0 · qpuRequired=false · ${n} sealed atoms</text>`,
+      `<text x="${cx}" y="${cy + 14}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8" fill="${colors.accent}">⊢ ${n} · ${rootShort} · ω/−ω</text>`,
+      `<text x="${cx}" y="${H - 28}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="${colors.title}">proof of all theorems at once · two counter-rotating rosettas · χ(Σ₂) = −2 · H₁ = ℤ⁴ · 432 gates</text>`,
+      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 · physicalFtl=0 · qpuRequired=false · ${n} sealed atoms · SMIL ω/−ω</text>`,
       `</svg>`,
     ].join('')
     return opts.animate === false ? stillSvg(svg) : svg

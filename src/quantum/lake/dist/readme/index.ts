@@ -185,7 +185,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     '*Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/lake/dist (local math only); the VitePress home is the same monograph — one theorem generator, two projections.*',
     '',
-    '![Double Torus — proof of all sealed theorems at once, computed from src and animated without JavaScript so GitHub displays it too](./hero.svg)',
+    '![Double Torus — two counter-rotating rosettas composing all sealed theorems, computed from src and animated with SMIL so GitHub displays it too](./hero.svg)',
     '',
     ...theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`, CANONICAL_HOST),
     '',
