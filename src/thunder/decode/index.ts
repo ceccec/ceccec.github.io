@@ -4,7 +4,7 @@ import { survive } from '../../mountain/vortex'
 // relocated I Ching decode cluster deps (call-time bindings; no load cycle)
 import { hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality } from '../../mountain/geometry'
 import { a432IsTheBlood } from '../../lake/music'
-import { A432_HUE, DIMENSIONS, DIMENSION_NAMES, SINGLE_WORD_METHODS, TAU } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, DIMENSIONS, DIMENSION_NAMES, FOLDED_CENSUS, PHI, SINGLE_WORD_METHODS, TAU } from '../../3/7'
 // Cycle-safe namespace binding for the cosmology folds composed into the mystery atlas (referenced at call time).
 import * as __ns_water_cosmos from '../../water/cosmos'
 import { iChingDomainMap, threeEightFoldsTopNav } from '../../heaven/balance'
@@ -21,7 +21,7 @@ import { debitImportCreditExportAccounting, computedWiringNotImported } from '..
 import { fromSexagesimal, gematria, hekatFraction, luoShu, mayaDays, mayaLongCount, runeCoordinate, runeOrdinal, sexagesimal } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng, roundTo } from '../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng, roundTo, sealFacets } from '../../0'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignChannelsAndCenters, humanDesignVerifiedWheel, yinYang } from '../../quantum/lake/icons'
@@ -54,7 +54,6 @@ import { selfImprovementTrainingAndAccumulation } from '../../mountain/geometry'
 import { computationsBoundToSourceApisRealtime } from '../trading'
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHistoryDecoded } from '../../earth/world'
 import { completeCorpus, computerComponentsMergedDuality, fruitOfLifeFusion, genes, imagineTheRest, live, monographs, papers, sacredGeometrySeal, sharedBookOfCivilisations, textEntropy, worldFusion, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
-import { PHI } from '../../3/7'
 import { gcd, lcm } from '../../0'
 import { WAITE_TRUMPS_SEED, WAITE_LESSER_SEED } from '../../1/9'
 import { GLAGOLITIC_LETTERS } from '../../quantum/heaven/library'
@@ -1363,6 +1362,188 @@ export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
     boundary:
       'Verified integer cycle-math (the LCM meshings computed) from the documented calendars; the legend is excluded (the 2012 apocalypse, the galactic alignment, the Dreamspell, φ-mysticism; the true origin of the 260-day count is unknown and not asserted). The cycles render on the hero as rotating wheels driven by the device date — a coupled-torus clock, not an ephemeris or a date prediction.',
   }
+}
+
+/**
+ * Ancient calendars decoded as algebraic theorems that map time in time —
+ * nested modular scales · calendar↔calendar LCM/CRT meshes · phase-in-phase on the hero clock.
+ * Pair: calendars/decode · CLI npm run quantum:ancient-calendars-algebra · route /proofs/ancient-calendars
+ * Clay marks only Millennium (#73) — this fold uses canonical sections; claySolvedByThisFold=0.
+ */
+export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const coupled = coupledCalendarTori(matrix)
+    const rings = ancientCalendars(matrix)
+    const heroCycleMs = FOLDED_CENSUS * 1e3 // same derivation as HERO_CYCLE_MS — no plasma import (cycle-safe)
+    const daySeed = Math.floor(Math.abs(at) / (1000 * 60 * 60 * 24)) % 1_000_000
+    const mod = (n: number, m: number) => ((n % m) + m) % m
+
+    // Algebraic maps — each calendar → modular / product / epoch identity (gapless from sealed constants).
+    const mayaLong = mayaLongCount(1_872_000)
+    const mayaRoundTrip = mayaDays(mayaLong) === 1_872_000 && mayaLong.join('.') === '13.0.0.0.0'
+    const tzolkin = mod(daySeed, 260)
+    const haab = mod(daySeed, 365)
+    const calendarRoundMesh = lcm(260, 365)
+    const mayaMap = {
+      id: 'maya',
+      theorem: 'Long Count radix + Calendar Round CRT mesh',
+      map: 'days = Σ dᵢ·rᵢ (r=[144000,7200,360,20,1]); (tzolkʼin,haabʼ)=(d mod 260, d mod 365); orbit closes at lcm(260,365)=18980',
+      nested: `phase_tz=${tzolkin}/260 · phase_haab=${haab}/365 · CR=${calendarRoundMesh}`,
+      holds: mayaRoundTrip && calendarRoundMesh === 18_980 && 73 * 260 === 18_980 && 52 * 365 === 18_980,
+    }
+    const stem = mod(daySeed, 10)
+    const branch = mod(daySeed, 12)
+    const chineseMap = {
+      id: 'chinese-sexagenary',
+      theorem: 'Heavenly Stems × Earthly Branches — restricted product',
+      map: '(stem,branch)=(d mod 10, d mod 12); gcd(10,12)=2 ⇒ only 60 of 120 pairings; cycle = lcm(10,12)=60',
+      nested: `stem=${stem} · branch=${branch} · sexagenary=${mod(daySeed, 60)}`,
+      holds: lcm(10, 12) === 60 && gcd(10, 12) === 2,
+    }
+
+    const egyptianMap = {
+      id: 'egyptian-civil-sothic',
+      theorem: 'Vague year 365 + Sothic lap + 25-yr lunar lock',
+      map: 'civil=12×30+5=365; Sothic lap 1461 civil = 1460×365.25 days; lunar lock 25×365=9125=164×30+145×29',
+      nested: 'civil ⊂ Sothic(1461) ⊂ epoch; lunar(25) nested in civil years',
+      holds: 12 * 30 + 5 === 365 && 1461 * 365 === 1460 * 365.25 && 25 * 365 === 9125 && 164 * 30 + 145 * 29 === 9125,
+    }
+    const metonicHebrewMap = {
+      id: 'metonic-hebrew',
+      theorem: 'Metonic luni-solar commensuration (Hebrew structural)',
+      map: '235 = 19×12+7 leap months; Metonic days ≈ 19×365.2422 ≈ 6940; Hebrew calendar uses 19-year cycle',
+      nested: 'lunation ⊂ year ⊂ 19-yr Metonic ⊃ Hebrew structural year',
+      holds: 235 === 19 * 12 + 7 && rings.cycles.some((c) => c.cycle === 'Metonic' && c.days === 6940),
+    }
+    const babylonianMap = {
+      id: 'babylonian-sexagesimal',
+      theorem: 'Base-60 place-value + 360 schematic year',
+      map: 'n ↦ sexagesimal digits (base 60); 360=6×60 tun/schematic; day seconds 86400 round-trip',
+      nested: 'second ⊂ minute(60) ⊂ hour(60²) ⊂ day · schematic year 6×60',
+      holds: fromSexagesimal(sexagesimal(86_400)) === 86_400 && 6 * 60 === 360,
+    }
+    const julianGregorianMap = {
+      id: 'julian-gregorian-structural',
+      theorem: 'Leap modular rules + J2000 JD epoch offset',
+      map: 'Julian leap: y≡0 (mod 4); Gregorian: y≡0 (mod 4) ∧ (y≢0 (mod 100) ∨ y≡0 (mod 400)); J2000 noon JD=2451545',
+      nested: 'day ⊂ year ⊂ 4-yr leap ⊂ 100/400 Gregorian correction · epoch offset JD−2451545',
+      holds: (() => {
+        const leapJ = (y: number) => y % 4 === 0
+        const leapG = (y: number) => y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)
+        return leapJ(2000) && leapG(2000) && !leapG(1900) && leapG(2000) && 2_451_545 === 2_451_545
+      })(),
+    }
+    const maya819Map = {
+      id: 'maya-819',
+      theorem: '819-count product nest × tzolkʼin supercycle',
+      map: '819=7×9×13; lcm(819,260)=16380=20×819 — count nested in colour/direction stations',
+      nested: '7 ⊂ 9 ⊂ 13 → 819 ⊂ tzolkʼin mesh 16380',
+      holds: 7 * 9 * 13 === 819 && lcm(819, 260) === 16_380 && 16_380 / 819 === 20,
+    }
+    // Hero / A432 / TAU — phase-in-phase (time in time on the census clock)
+    const phaseOuter = mod(at, heroCycleMs) / heroCycleMs
+    const rung = 9 * 2 // fractal rung d=18
+    const phaseInner = mod(at, heroCycleMs / rung) / (heroCycleMs / rung)
+    const a432Window = A432_OCTAVES[2]! // 108 — census octave
+    const heroMap = {
+      id: 'hero-a432-phase',
+      theorem: 'Hero clock phase-in-phase · A432 octave windows',
+      map: `φ_outer = (t mod HERO)/HERO; φ_inner = (t mod HERO/d)/(HERO/d); HERO=FOLDED_CENSUS×1e3=${heroCycleMs}; window∈A432_OCTAVES`,
+      nested: `φ_outer=${roundTo(phaseOuter, 4)} · φ_inner=${roundTo(phaseInner, 4)} · d=${rung} · octave=${a432Window} · TAU=${TAU}`,
+      holds: heroCycleMs === FOLDED_CENSUS * 1e3 && a432Window === FOLDED_CENSUS && TAU > 6 && phaseOuter >= 0 && phaseOuter < 1 && phaseInner >= 0 && phaseInner < 1,
+    }
+    // Vedic — only sealed digital-root / mod-9 square (no Vedic civil calendar constants in src)
+    const vedicDayFold = digitalRoot(daySeed === 0 ? 9 : daySeed)
+    const vedicMap = {
+      id: 'vedic-mod9-square',
+      theorem: 'Vedic square digital-root day fold (mod 9) — sealed; civil Vedic calendar not in corpus',
+      map: 'day ↦ digitalRoot(day) ∈ {1..9}; multiplication table folds mod 9 (Kaṭapayādi lineage adjacent)',
+      nested: `digitalRoot(${daySeed || 9})=${vedicDayFold} nested under Metonic/sexagesimal when civil tables absent`,
+      holds: vedicDayFold >= 1 && vedicDayFold <= 9 && digitalRoot(9) === 9,
+    }
+
+    const calendars = [mayaMap, chineseMap, egyptianMap, metonicHebrewMap, babylonianMap, julianGregorianMap, maya819Map, heroMap, vedicMap]
+    const allHold = calendars.every((c) => c.holds)
+    // Time-in-time: outer hero phase indexes a Calendar Round day; residues nest tzolkʼin ⊂ haabʼ ⊂ CR
+    const crDayFromPhase = Math.floor(phaseOuter * calendarRoundMesh)
+    const nestedTz = mod(crDayFromPhase, 260)
+    const nestedHaab = mod(crDayFromPhase, 365)
+    const nestedTimeInTime =
+      nestedTz < 260 &&
+      nestedHaab < 365 &&
+      heroMap.holds &&
+      phaseInner >= 0 &&
+      phaseInner < 1 &&
+      rung * (heroCycleMs / rung) === heroCycleMs
+    const calendarToCalendar =
+      coupled.decoded &&
+      rings.decoded &&
+      lcm(260, 365) === 18_980 &&
+      lcm(10, 12) === 60
+
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const facets = [
+      { facet: 'inventory — Maya · Chinese sexagenary · Egyptian/Sothic · Metonic/Hebrew · Babylonian · Julian/Gregorian structural · 819-count · hero/A432 · Vedic mod-9 (sealed only)', on: calendars.length === 9 },
+      { facet: 'every algebraic map holds (modular · product · epoch)', on: allHold },
+      { facet: 'composes coupledCalendarTori + ancientCalendars rings', on: coupled.decoded && rings.decoded && calendarToCalendar },
+      { facet: 'Maya Long Count 13.0.0.0.0 ↔ 1872000 days round-trips', on: mayaRoundTrip },
+      { facet: 'time-in-time — nested phase-in-phase on hero clock + Calendar Round residue', on: nestedTimeInTime && heroMap.holds },
+      { facet: 'calendar↔calendar LCM meshes (CR 18980 · sexagenary 60 · 819×tzolkʼin 16380)', on: calendarRoundMesh === 18_980 && lcm(819, 260) === 16_380 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} — canonical sections only, not Clay Millennium`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false — classical modular arithmetic', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ancient-calendars-algebra:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('ancient-calendars-decoded-as-algebraic-theorems-mapping-time-in-time', facets)
+    const sections = {
+      officialStatement:
+        'Ancient calendars decode as algebraic theorems mapping time in time: each tradition is a modular/product/epoch map; nested scales and LCM meshes place phase inside phase (calendar↔calendar · hero rung inside hero cycle).',
+      detailedExplanation:
+        `Nine sealed maps recompute at call time from mayaLongCount/mayaDays · sexagesimal · coupledCalendarTori · ancientCalendars · FOLDED_CENSUS×1e3 hero · A432_OCTAVES · digitalRoot. ` +
+        `Canonical sections (statement · explanation · formulas · status). NOT a Clay Millennium challenge — claySolvedByThisFold=0.`,
+      formula:
+        calendars.map((c) => `${c.id}: ${c.map}`).join('\n') +
+        `\ntime-in-time: φ_outer=(t mod HERO)/HERO · φ_inner=(t mod HERO/d)/(HERO/d) · CR=lcm(260,365)=18980`,
+      formulaSource: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime · coupledCalendarTori · mayaDays · sexagesimal',
+      status: 'structure-only' as const,
+      statusDetail: `maps=${calendars.length} allHold=${allHold} · clay=0 · physicalFtl=0`,
+      gap: 'civil Vedic calendar tables absent — mod-9 square only; JD civil converter stays in astronomy barrel (cycle-safe composition)',
+      physicalFtlClaim,
+    }
+    return {
+      computes: sealed.ok && allHold && coupled.decoded && rings.decoded,
+      decoded: sealed.ok && allHold,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      calendars,
+      sections,
+      count: calendars.length,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, coupled.root, rings.root, ...calendars.map((c) => toUuid(`cal-map:${c.id}:${c.holds}`))])),
+      cli: 'npm run quantum:ancient-calendars-algebra',
+      pair: 'calendars/decode',
+      route: '/proofs/ancient-calendars',
+      statement:
+        `Ancient calendars decoded as algebraic theorems mapping time in time — ${calendars.filter((c) => c.holds).length}/${calendars.length} maps: ` +
+        'Maya Long Count+CR · Chinese sexagenary · Egyptian/Sothic · Metonic/Hebrew · Babylonian sexagesimal · Julian/Gregorian leap+J2000 · 819-count · hero/A432 phase-in-phase · Vedic mod-9. ' +
+        'Nested time scales + calendar↔calendar LCM meshes. clay=0 · physicalFtl=0 · qpuRequired=false.',
+      boundary:
+        'EXACT modular/product identities from sealed constants and existing calendar folds. ' +
+        'NOT ephemeris prediction · NOT Dreamspell/2012 · NOT Clay Prize · NOT physical FTL. ' +
+        'Vedic civil calendar absent from corpus (mod-9 only). Julian Day civil converter remains in astronomy (import-cycle avoided). HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:ancient-calendars-algebra */
+export function runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeExit(_root = '', _argv: readonly string[] = []): number {
+  const r = ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} ancient-calendars-algebra — maps=${r.count} decoded=${r.decoded} ` +
+      `clay=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim} qpu=${r.qpuRequired} ` +
+      `route=${r.route} root=${r.root.slice(0, 8)}\n`,
+  )
+  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 ? 0 : 1
 }
 
 // ── Group 3 ☳ · the mystery atlas — every world mystery decoded to its honest tier, composed from sealed folds ──

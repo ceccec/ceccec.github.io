@@ -48,6 +48,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'harmonic/surprise',
   'research/society',
   'bits/free',
+  'calendars/decode',
   'society/support',
   'merkaba/10d',
   'vortex/merkaba',
