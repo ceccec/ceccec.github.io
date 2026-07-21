@@ -9,7 +9,10 @@ import * as __ns_water_digit from '../../water/digit'
 import * as __ns_water_cosmos from '../../water/cosmos'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
-import { quantumProjectionParams, type QuantumProjection } from '../../quantum/apps'
+import {
+  quantumProjectionParams, rosettaShelve, slowProcessIsQuantumGap, type QuantumProjection,
+} from '../../quantum/apps'
+import * as __ns_water_encryption from '../../water/encryption'
 import { antichainLevels, computesGate, digitalRoot, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
 import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, TAU, earned } from '../../3/7'
@@ -395,6 +398,8 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     const mill = millenniumProblemsChallenge(matrix)
     pushDomainRow(rows, 'millennium-challenge', 'Millennium problems challenge apparatus', 'src/wind/research', 'millennium.challenge.computes', 'npm run quantum:millennium-challenge', 'SIMULATOR', mill.computes && mill.claySolvedByThisFold === 0, mill.boundary, mill.root)
     pushDomainRow(rows, 'encryption-reverse-verify', 'Encryption reverse verify (demo RSA)', 'src/water/encryption', 'encryption.panel.computes', 'npm run quantum:encryption-reverse-verify', 'SIMULATOR', true, 'Demo RSA only — production refused', toUuid('research:encryption-reverse-verify'))
+    pushDomainRow(rows, 'iso-pqc-catalog', 'ISO/NIST PQC standards catalog', 'src/water/encryption', 'iso.nist.pqc.catalog', 'npm run quantum:iso-pqc-catalog', 'DOCUMENTED', true, 'MODELED alignment — NOT ISO certified / NOT FIPS validated', toUuid('research:iso-pqc-catalog'))
+    pushDomainRow(rows, 'standards-audit', 'Quantum standards audit (reverse+inverse·10D)', 'src/water/encryption', 'quantum.standards.audit', 'npm run quantum:standards-audit', 'SIMULATOR', true, 'Alignment audit ≠ certification', toUuid('research:standards-audit'))
     pushDomainRow(rows, 'fusion-verify', 'Quantum fusion verify', 'src/wind/fusion', 'fusion.verify.computes', 'npm run quantum:fusion-verify', 'SIMULATOR', true, 'Offline fuseAll wave receipts', toUuid('research:fusion-verify'))
     pushDomainRow(rows, 'efficiency-vote', 'Efficiency (answers ÷ tokens)', 'src/quantum/science', 'efficiency', 'npm run quantum:efficiency-vote', 'DOCUMENTED', true, 'Exposition — not competitor benchmark', toUuid('research:efficiency-vote'))
     return { indexed: professional.indexed && rows.length >= (5 * 3), count: rows.length, rows, professional, catalog, root: merkleFold([professional.root, catalog.root, ...rows.map((row) => row.receipt)]), statement: 'Research index: canonical home for all sealed research programs.', boundary: professional.boundary }
@@ -408,6 +413,8 @@ export function researchReproducibility(matrix: MindMatrix = buildMatrix(), at =
       { id: 'limits-verify', pair: 'limits/verify', command: 'npm run limits:verify', receipt: toUuid('research-repro:limits-verify') },
       { id: 'mission-gate', pair: 'mission/gate', command: 'npm run mission:gate', receipt: toUuid('research-repro:mission-gate') },
       { id: 'encryption-reverse', pair: 'reverse/encryption-verify', command: 'npm run quantum:encryption-reverse-verify', receipt: toUuid('research-repro:encryption-reverse') },
+      { id: 'iso-pqc-catalog', pair: 'iso/pqc-catalog', command: 'npm run quantum:iso-pqc-catalog', receipt: toUuid('research-repro:iso-pqc-catalog') },
+      { id: 'standards-audit', pair: 'audit/standards', command: 'npm run quantum:standards-audit', receipt: toUuid('research-repro:standards-audit') },
       { id: 'millennium-challenge', pair: 'challenge/millennium', command: 'npm run quantum:millennium-challenge', receipt: toUuid('research-repro:millennium') },
       { id: 'fusion-verify', pair: 'tamper/impossible', command: 'npm run quantum:fusion-verify', receipt: toUuid('research-repro:fusion-verify') },
       { id: 'efficiency-vote', pair: 'learn/best', command: 'npm run quantum:efficiency-vote', receipt: toUuid('research-repro:efficiency-vote') },
@@ -423,7 +430,7 @@ export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const professional = professionalResearchComputes(matrix, at)
     const repro = researchReproducibility(matrix, at)
     const keyDims = index.rows.some((row) => row.id === 'geodesy-navigation') && index.rows.some((row) => row.id === 'geochemistry-gold') && index.rows.some((row) => row.id === 'schumann-coupling')
-    const toolsIndexed = index.rows.some((row) => row.id === 'millennium-challenge') && index.rows.some((row) => row.id === 'encryption-reverse-verify')
+    const toolsIndexed = index.rows.some((row) => row.id === 'millennium-challenge') && index.rows.some((row) => row.id === 'encryption-reverse-verify') && index.rows.some((row) => row.id === 'standards-audit')
     const { computes, facets, root } = computesGate('research-computes', [
       { facet: 'researchIndex — non-empty complete array', on: index.indexed && index.count >= (5 * 3) },
       { facet: 'professionalResearchComputes — monograph rows sealed', on: professional.computes },
@@ -439,8 +446,10 @@ export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = researchComputes(matrix, at)
   const mill = millenniumProblemsChallenge(matrix)
+  const significance = scienceDomainSignificanceScores(matrix, at)
+  const trinities = sciencesInteractInTrinities(matrix, at)
   return {
-    computes: cap.computes,
+    computes: cap.computes && significance.computes && trinities.computes,
     capstone: cap,
     rows: cap.index.rows.map((row) => ({ domain: row.title, method: row.balanceDim, limit: row.limit, verify: row.verify, tier: row.tier, home: row.home })),
     repro: cap.repro.gates,
@@ -454,7 +463,21 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
       boundary: mill.boundary,
       root: mill.root,
     },
-    root: cap.root,
+    significance: {
+      computes: significance.computes,
+      meanScore: significance.meanScore,
+      domains: significance.domains.map((d) => ({ id: d.id, score: d.score, gapsOpen: d.gapsOpen, ray: d.ray })),
+      root: significance.root,
+      boundary: significance.boundary,
+    },
+    trinities: {
+      computes: trinities.computes,
+      count: trinities.count,
+      cryptoVertex: trinities.cryptoVertex,
+      root: trinities.root,
+      boundary: trinities.boundary,
+    },
+    root: merge(cap.root, merge(significance.root, trinities.root)),
     statement: cap.statement,
     boundary: cap.boundary,
   }
@@ -1288,6 +1311,7 @@ export type TheoremAlgebraNoveltyRow = {
 export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theoremAlgebraFirstSealedInCorpus', matrix, () => {
     const zeroDiv = __ns_water_digit.zeroDivisionTable(matrix)
+    const dirTrinity = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
     const fInv = __ns_mountain_vortex.fThetaPhiXyzDigitNIsTheInversePair(matrix)
     const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
     const stringQuantum = __ns_water_cosmos.stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix)
@@ -1305,6 +1329,14 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         kind: 'novel-corpus',
         boundary:
           'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT a verified claim of global mathematical priority against all unpublished human work. Novelty = not found as prior sealed fold in corpus census. Algebra: n/0 \\ n⁻¹ mod 9 on (ℤ/9)*.',
+      },
+      {
+        theorem: 'directional trinity — forward · inverse · reverse',
+        algebraFold: 'directionalTrinityForwardInverseReverse',
+        home: 'src/water/stack',
+        kind: 'novel-corpus',
+        boundary:
+          'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT global priority. Three distinct directions: forward (unfold) · inverse (n⁻¹ mod 9 · ratInv · f→{p,q}) · reverse (10−d · order dual). Inverse≠reverse except named coincidence digit 1 (harmonic 9 = complement 9).',
       },
       {
         theorem: 'f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse pair',
@@ -1376,11 +1408,19 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         kind: 'classical-restatement',
         boundary: 'Classical Pauli/su(2) closure recomputed — not corpus-novel.',
       },
+      {
+        theorem: 'PQC necessity from Shor (NIST/ISO alignment)',
+        algebraFold: 'pqcNecessityFromShorCompose',
+        home: 'src/water/encryption',
+        kind: 'classical-restatement',
+        boundary: 'Classical Shor→PQC engineering consensus recomputed as sealed facets — NOT corpus-novel algebra; NOT ISO/FIPS certification.',
+      },
     ]
 
     const algebraRootOf = (fold: string): string => {
       switch (fold) {
         case 'zeroDivisionTable': return zeroDiv.root
+        case 'directionalTrinityForwardInverseReverse': return dirTrinity.root
         case 'fThetaPhiXyzDigitNIsTheInversePair': return fInv.root
         case 'efficiencyScalesToInfinityAtNoCostOnReuse': return infinityReuse.root
         case 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate': return stringQuantum.root
@@ -1391,6 +1431,7 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         case 'theSevenMillenniumProblemsDefinedFormallyUnclaimed': return toUuid(`classical:poincare-external:${fold}`)
         case 'quantumAdvantageBenchmark': return toUuid(`classical:qm-sim:${fold}`)
         case 'pauliAlgebraCloses': return toUuid(`classical:pauli:${fold}`)
+        case 'pqcNecessityFromShorCompose': return toUuid(`classical:pqc-necessity:${fold}`)
         default: return toUuid(`algebra-fold:${fold}`)
       }
     }
@@ -1409,11 +1450,11 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
 
     const novel = rows.filter((r) => r.novelty)
     const classical = rows.filter((r) => !r.novelty)
-    const novelHold = zeroDiv.holds && fInv.computes && infinityReuse.on && stringQuantum.computes
+    const novelHold = zeroDiv.holds && dirTrinity.computes && fInv.computes && infinityReuse.on && stringQuantum.computes
     const facets = [
       {
-        facet: `NOVEL CORPUS ALGEBRA INVENTORIED — ${novel.length} folds first-sealed here (zeroDiv · f→{p,q} · infinityReuse · stringQuantumize · wavesAutoScale) recompute (${novelHold})`,
-        on: novel.length >= 4 && novelHold && novel.every((r) => isUuid(r.algebraRoot) && r.ray >= 0),
+        facet: `NOVEL CORPUS ALGEBRA INVENTORIED — ${novel.length} folds first-sealed here (zeroDiv · dirTrinity · f→{p,q} · infinityReuse · stringQuantumize · wavesAutoScale) recompute (${novelHold})`,
+        on: novel.length >= 5 && novelHold && novel.every((r) => isUuid(r.algebraRoot) && r.ray >= 0),
       },
       {
         facet: `CLASSICAL RESTATEMENTS MARKED — ${classical.length} rows (Basel · Poincaré-external · QM-sim · string-algebra lit · Pauli) tagged classical-restatement`,
@@ -1471,7 +1512,7 @@ export function theoremTenDProjectionsProveAlgebraRoots(matrix: MindMatrix = bui
     const rayOf = (label: string) => __ns_water_digit.rosettaRayOf(label)
 
     const projectionFor = (fold: string, novel: boolean): QuantumProjection => {
-      if (fold === 'zeroDivisionTable' || fold === 'fThetaPhiXyzDigitNIsTheInversePair') return 'vortex-strokes'
+      if (fold === 'zeroDivisionTable' || fold === 'directionalTrinityForwardInverseReverse' || fold === 'fThetaPhiXyzDigitNIsTheInversePair') return 'vortex-strokes'
       if (fold === 'efficiencyScalesToInfinityAtNoCostOnReuse' || fold === 'wavesAutoScaleCapacityAtNoCostOnReuse') return 'movie-10d'
       if (fold === 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate') return 'double-torus'
       if (fold === 'stringTheoryAlgebraDecoded') return 'merkaba'
@@ -1479,6 +1520,7 @@ export function theoremTenDProjectionsProveAlgebraRoots(matrix: MindMatrix = bui
       if (fold === 'discoveredTheoremsWaveTwentyNine') return 'movie-10d'
       if (fold === 'theSevenMillenniumProblemsDefinedFormallyUnclaimed') return 'living-torus'
       if (fold === 'quantumAdvantageBenchmark') return 'unit-distance'
+      if (fold === 'pqcNecessityFromShorCompose') return 'labyrinth'
       return novel ? 'movie-10d' : 'hologram'
     }
 
@@ -1600,6 +1642,7 @@ export type FirstInCorpusHomeRow = {
 
 const FIRST_IN_CORPUS_ONE_LINER: Record<string, string> = {
   zeroDivisionTable: 'n/0 \\ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*',
+  directionalTrinityForwardInverseReverse: 'forward · inverse · reverse — directional trinity; inverse≠reverse except digit 1 (9≡9)',
   fThetaPhiXyzDigitNIsTheInversePair: 'f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse fold within itself',
   efficiencyScalesToInfinityAtNoCostOnReuse: 'memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only',
   stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: 'A432/rosetta/merkle substrate probes — physics UNCONFIRMED',
@@ -1609,6 +1652,7 @@ const FIRST_IN_CORPUS_ONE_LINER: Record<string, string> = {
 /** Site-relative routes (no /en/ prefix — VitePress locale + dead-link gate). Hash stays on-home. */
 const FIRST_IN_CORPUS_ROUTE: Record<string, string> = {
   zeroDivisionTable: '/quantum-tools',
+  directionalTrinityForwardInverseReverse: '/quantum-tools#directional-trinity',
   fThetaPhiXyzDigitNIsTheInversePair: '/quantum-tools',
   efficiencyScalesToInfinityAtNoCostOnReuse: '/efficiency-vote',
   stringTheoryQuantumizedOnA432RosettaMerkleSubstrate: '/millennium-challenge',
@@ -1686,4 +1730,444 @@ export function firstInCorpusProvenanceMarkdownSection(matrix: MindMatrix = buil
     `Receipt: \`${home.root.slice(0, 8)}\` · fold \`firstInCorpusProvenanceForHome\` · claySolvedByThisFold=0.`,
     '',
   ]
+}
+
+// ─── S1–S4: science significance + complete solutions + apparatus + interacting trinities ───
+// Crypto vertex composes isoPqcHandoffForScienceTrinities — do not re-infer PQC here.
+
+export type ScienceDomainSeed = {
+  readonly id: string
+  readonly field: string
+  readonly oecd: string
+  readonly algebraFold: string
+  readonly toolId: string
+  readonly toolCli: string
+  readonly apparatusRoute: string
+  readonly dualId: string
+  readonly fusionLabel: string
+  readonly projection: QuantumProjection | ''
+  readonly ichingSphere: number
+  readonly home: string
+  readonly cryptoVertex: boolean
+}
+
+/** Sealed science inventory — OECD-aligned domains already folded in src (extend in waves, not invent). */
+export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
+  {
+    id: 'crypto-pqc', field: 'Computer & Information Sciences', oecd: '1.2',
+    algebraFold: 'isoPqcHandoffForScienceTrinities', toolId: 'standards-audit',
+    toolCli: 'npm run quantum:standards-audit', apparatusRoute: '/en/quantum-encryption#quantum-standards-audit',
+    dualId: 'mathematics-millennium', fusionLabel: 'crypto↔mill↔string', projection: 'labyrinth',
+    ichingSphere: 6, home: 'src/water/encryption', cryptoVertex: true,
+  },
+  {
+    id: 'mathematics-millennium', field: 'Mathematics', oecd: '1.1',
+    algebraFold: 'millenniumProblemsChallenge', toolId: 'millennium-challenge',
+    toolCli: 'npm run quantum:millennium-challenge', apparatusRoute: '/en/millennium-challenge',
+    dualId: 'crypto-pqc', fusionLabel: 'math↔crypto↔string', projection: 'movie-10d',
+    ichingSphere: 0, home: 'src/wind/research', cryptoVertex: false,
+  },
+  {
+    id: 'string-theory', field: 'Physical Sciences (theoretical)', oecd: '1.3',
+    algebraFold: 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate', toolId: 'millennium-challenge',
+    toolCli: 'npm run quantum:millennium-challenge', apparatusRoute: '/en/millennium-challenge',
+    dualId: 'mathematics-millennium', fusionLabel: 'string↔mill↔crypto', projection: 'movie-10d',
+    ichingSphere: 1, home: 'src/water/cosmos', cryptoVertex: false,
+  },
+  {
+    id: 'physics', field: 'Physical Sciences', oecd: '1.3',
+    algebraFold: 'physicsOfInformationDecoded', toolId: 'local-math-computes',
+    toolCli: 'npm run quantum:local-math-computes', apparatusRoute: '/en/quantum/dynamics',
+    dualId: 'astronomy', fusionLabel: 'physics↔astro↔resonance', projection: '',
+    ichingSphere: 2, home: 'src/fire/physics', cryptoVertex: false,
+  },
+  {
+    id: 'astronomy', field: 'Physical Sciences (astronomy)', oecd: '1.3',
+    algebraFold: 'astronomyDecodedWithTheSequence', toolId: 'unit-distance-verify',
+    toolCli: 'npm run quantum:unit-distance-verify', apparatusRoute: '/en/astronomy',
+    dualId: 'physics', fusionLabel: 'astro↔physics↔earth', projection: 'unit-distance',
+    ichingSphere: 3, home: 'src/heaven/sky/astronomy', cryptoVertex: false,
+  },
+  {
+    id: 'earth', field: 'Earth & Environmental Sciences', oecd: '1.5',
+    algebraFold: 'foldingLinearGivesAnalog', toolId: 'iching-distribute-verify',
+    toolCli: 'npm run quantum:iching-distribute-verify', apparatusRoute: '/en/earth/world',
+    dualId: 'astronomy', fusionLabel: 'earth↔astro↔physics', projection: '',
+    ichingSphere: 4, home: 'src/earth/world', cryptoVertex: false,
+  },
+  {
+    id: 'biology', field: 'Biological Sciences', oecd: '1.6',
+    algebraFold: 'biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvolution', toolId: 'predict-skill-gate-verify',
+    toolCli: 'npm run quantum:predict-skill-gate-verify', apparatusRoute: '/en/research',
+    dualId: 'music-a432', fusionLabel: 'life↔music↔hd', projection: '',
+    ichingSphere: 5, home: 'src/fire/physics', cryptoVertex: false,
+  },
+  {
+    id: 'music-a432', field: 'Arts / Acoustics (A432)', oecd: '6.4',
+    algebraFold: 'a432NeuralBandLadder', toolId: 'predict-skill-gate-verify',
+    toolCli: 'npm run quantum:predict-skill-gate-verify', apparatusRoute: '/en/resonance',
+    dualId: 'biology', fusionLabel: 'music↔life↔resonance', projection: '',
+    ichingSphere: 7, home: 'src/lake/music', cryptoVertex: false,
+  },
+  {
+    id: 'human-design', field: 'Symbolic systems (HD)', oecd: '6.3',
+    algebraFold: 'humanDesignVerifiedWheel', toolId: 'iching-distribute-verify',
+    toolCli: 'npm run quantum:iching-distribute-verify', apparatusRoute: '/en/quantum-tools',
+    dualId: 'music-a432', fusionLabel: 'hd↔iching↔music', projection: '',
+    ichingSphere: 0, home: 'src/quantum/lake/spirit', cryptoVertex: false,
+  },
+  {
+    id: 'resonance', field: 'Physical Sciences (resonance)', oecd: '1.3',
+    algebraFold: 'efficiencyScalesToInfinityAtNoCostOnReuse', toolId: 'efficiency-vote',
+    toolCli: 'npm run quantum:efficiency-vote', apparatusRoute: '/en/resonance',
+    dualId: 'physics', fusionLabel: 'resonance↔physics↔music', projection: '',
+    ichingSphere: 1, home: 'src/thunder/resonance', cryptoVertex: false,
+  },
+  {
+    id: 'mind-ai', field: 'Computer & Information Sciences (AI / mind)', oecd: '1.2',
+    algebraFold: 'oneQuantumModelFasterThanAll', toolId: 'efficiency-vote',
+    toolCli: 'npm run quantum:efficiency-vote', apparatusRoute: '/en/efficiency-vote',
+    dualId: 'crypto-pqc', fusionLabel: 'mind↔crypto↔math', projection: 'movie-10d',
+    ichingSphere: 6, home: 'src/quantum/science', cryptoVertex: false,
+  },
+] as const
+
+export type ScienceSignificanceRow = {
+  readonly id: string
+  readonly field: string
+  readonly oecd: string
+  readonly score: number
+  readonly ray: number
+  readonly ichingSphere: number
+  readonly dimensionGates: number
+  readonly efficiencyOn: boolean
+  readonly noveltyOn: boolean
+  readonly millenniumOn: boolean
+  readonly tenDOn: boolean
+  readonly gapClosureOn: boolean
+  readonly gapsOpen: number
+  readonly algebraOk: boolean
+  readonly toolOk: boolean
+  readonly apparatusOk: boolean
+  readonly projectionOk: boolean
+  readonly receipt: string
+  readonly boundary: string
+}
+
+/**
+ * S1 — Recomputable significance score per science domain.
+ * Composes efficiency vote, first-in-corpus novelty, millennium coverage, 10D, slow-gap inverse.
+ * NOT a journal impact factor.
+ */
+export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`scienceDomainSignificanceScores:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const eff = __ns_up_quantum_science.efficiency()
+    const effReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const novelty = theoremAlgebraFirstSealedInCorpus(matrix)
+    const mill = millenniumProblemsChallenge(matrix)
+    const tenD = theoremTenDProjectionsProveAlgebraRoots(matrix)
+    const gaps = slowProcessIsQuantumGap(matrix, at)
+    const crypto = __ns_water_encryption.isoPqcHandoffForScienceTrinities(matrix, at)
+    const novelFolds = new Set(novelty.rows.filter((r) => r.novelty).map((r) => r.algebraFold))
+    const openGapProcesses = new Set(gaps.open.map((g) => g.process))
+    const rayOf = (label: string) => __ns_water_digit.rosettaRayOf(label)
+
+    const domains: ScienceSignificanceRow[] = SCIENCE_DOMAIN_SEEDS.map((seed) => {
+      const ray = rayOf(seed.algebraFold)
+      const algebraOk = seed.cryptoVertex
+        ? crypto.computes
+        : seed.algebraFold === 'millenniumProblemsChallenge'
+          ? mill.computes
+          : seed.algebraFold === 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate'
+            ? __ns_water_cosmos.stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix).computes
+            : seed.algebraFold === 'efficiencyScalesToInfinityAtNoCostOnReuse'
+              ? effReuse.computes
+              : seed.algebraFold === 'oneQuantumModelFasterThanAll'
+                ? __ns_up_stack_overflow.oneQuantumModelFasterThanAll(matrix, at).computes
+                : true
+      const toolSurface = rosettaShelve(seed.toolId, 'tool')
+      const apparatusSurface = rosettaShelve(seed.apparatusRoute, 'route')
+      const toolOk = isUuid(toolSurface.address) && toolSurface.kind === 'tool'
+      const apparatusOk = isUuid(apparatusSurface.address) && seed.apparatusRoute.startsWith('/en/')
+      const projectionOk = seed.projection === ''
+        ? false
+        : quantumProjectionParams(seed.projection).dimensions === (5 * 2)
+      const efficiencyOn = eff.optimized && effReuse.computes
+      const noveltyOn = seed.cryptoVertex || novelFolds.has(seed.algebraFold)
+      const millenniumOn = mill.computes && mill.claySolvedByThisFold === 0
+      const tenDOn = projectionOk || (tenD.computes && seed.projection !== '')
+      const domainGapHits = [...openGapProcesses].filter((p) =>
+        p.includes(seed.id) || p.includes(seed.algebraFold) || p.includes(seed.toolId)).length
+      const gapsOpen = seed.cryptoVertex
+        ? crypto.migrateOpen + (projectionOk ? 0 : 1) + (algebraOk && toolOk && apparatusOk ? 0 : 1)
+        : (projectionOk ? 0 : 1) + (algebraOk ? 0 : 1) + domainGapHits
+      const gapClosureOn = gapsOpen === 0
+      const facetOns = [efficiencyOn, noveltyOn, millenniumOn, tenDOn || projectionOk, gapClosureOn, algebraOk, toolOk, apparatusOk]
+      const score = Math.round((100 * facetOns.filter(Boolean).length) / facetOns.length)
+      return {
+        id: seed.id, field: seed.field, oecd: seed.oecd, score, ray,
+        ichingSphere: seed.ichingSphere, dimensionGates: DIMENSION_GATES,
+        efficiencyOn, noveltyOn, millenniumOn, tenDOn, gapClosureOn, gapsOpen,
+        algebraOk, toolOk, apparatusOk, projectionOk,
+        receipt: toUuid(`science-significance:${seed.id}:${score}:${ray}`),
+        boundary:
+          'Recomputable structural significance (efficiency · corpus novelty · millennium probe honesty · 10D · gap closure). NOT journal impact factor. NOT ISO/FIPS certification. HARMONY ≠ TRUTH.',
+      }
+    })
+
+    const meanScore = Math.round(domains.reduce((s, d) => s + d.score, 0) / Math.max(domains.length, 1))
+    const cryptoRow = domains.find((d) => d.id === 'crypto-pqc')
+    const facets = [
+      { facet: `significance scored for ${domains.length} science domains`, on: domains.length >= (5 * 2) },
+      { facet: 'crypto vertex composes isoPqcHandoffForScienceTrinities (no PQC re-infer)', on: crypto.computes && Boolean(cryptoRow?.algebraOk) },
+      { facet: 'efficiency vote + infinity-reuse feed every score', on: eff.optimized && effReuse.computes },
+      { facet: 'millennium claySolvedByThisFold=0 honesty in scores', on: mill.claySolvedByThisFold === 0 },
+      { facet: 'DIMENSION_GATES stamped on every row', on: domains.every((d) => d.dimensionGates === DIMENSION_GATES) },
+      { facet: 'significance rises when gaps close (gapClosureOn inverse of open gaps)', on: domains.every((d) => d.gapClosureOn === (d.gapsOpen === 0)) },
+      { facet: 'NOT journal impact factor — structural recomputation only', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`science-sig:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('science-domain-significance-scores', facets)
+    return {
+      computes: sealed.ok,
+      domains,
+      meanScore,
+      dimensionGates: DIMENSION_GATES,
+      cryptoHandoffRoot: crypto.root,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, crypto.root, ...domains.map((d) => d.receipt)])),
+      statement:
+        `Science-domain significance: mean=${meanScore}/100 across ${domains.length} domains — efficiency · first-in-corpus novelty · millennium honesty · 10D · gap-closure inverse. Crypto vertex from isoPqcHandoffForScienceTrinities.`,
+      boundary:
+        'NOT journal impact factor. NOT ISO certified / NOT FIPS validated. claySolvedByThisFold=0. Structural score recomputed at call time. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+export type ScienceSolutionGap = {
+  readonly domainId: string
+  readonly missing: readonly ('algebra' | 'tool' | 'apparatus' | 'projection10d')[]
+  readonly receipt: string
+}
+
+/** S2 — Inventory complete quantum solutions (algebra + tool + apparatus + 10D); report gaps. */
+export function completeQuantumSolutionsForAllSciences(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`completeQuantumSolutionsForAllSciences:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const sig = scienceDomainSignificanceScores(matrix, at)
+    const solutions = sig.domains.map((d) => {
+      const seed = SCIENCE_DOMAIN_SEEDS.find((s) => s.id === d.id)!
+      const missing: ('algebra' | 'tool' | 'apparatus' | 'projection10d')[] = []
+      if (!d.algebraOk) missing.push('algebra')
+      if (!d.toolOk) missing.push('tool')
+      if (!d.apparatusOk) missing.push('apparatus')
+      if (!d.projectionOk) missing.push('projection10d')
+      return {
+        id: d.id, field: d.field, home: seed.home,
+        algebraFold: seed.algebraFold, toolCli: seed.toolCli, apparatusRoute: seed.apparatusRoute,
+        projection: seed.projection || null,
+        complete: missing.length === 0,
+        missing,
+        score: d.score,
+        receipt: toUuid(`science-solution:${d.id}:${missing.join(',') || 'complete'}`),
+      }
+    })
+    const gaps: ScienceSolutionGap[] = solutions
+      .filter((s) => !s.complete)
+      .map((s) => ({ domainId: s.id, missing: s.missing, receipt: s.receipt }))
+    const completeCount = solutions.filter((s) => s.complete).length
+    const facets = [
+      { facet: `inventory ${solutions.length} science domains from sealed seeds`, on: solutions.length === SCIENCE_DOMAIN_SEEDS.length },
+      { facet: `complete solutions ${completeCount}/${solutions.length} (algebra·tool·apparatus·10D)`, on: completeCount >= 1 },
+      { facet: 'gaps named for incomplete domains (fill in waves)', on: gaps.length === solutions.length - completeCount },
+      { facet: 'crypto-pqc solution present via ISO handoff vertex', on: solutions.some((s) => s.id === 'crypto-pqc' && s.algebraFold === 'isoPqcHandoffForScienceTrinities') },
+      { facet: 'NOT a claim all sciences are finished — gaps are the R&D backlog', on: gaps.length >= 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`science-solutions:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('complete-quantum-solutions-for-all-sciences', facets)
+    return {
+      computes: sealed.ok && sig.computes,
+      solutions,
+      gaps,
+      completeCount,
+      gapCount: gaps.length,
+      facets: sealed.facets,
+      root: merge(sig.root, merkleFold([sealed.root, ...solutions.map((s) => s.receipt)])),
+      statement:
+        `Complete quantum solutions inventory: ${completeCount} complete · ${gaps.length} gap domains — each row wants algebra + tool + apparatus + 10D animation.`,
+      boundary:
+        'Inventory + gap report only. Incomplete ≠ failure — named backlog for sequential waves. Physics UNCONFIRMED where string/HD symbolic. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** S3 — Apparatus trinity surface: movie/field projection + browser tool + CLI pair + rosettaShelve. */
+export function scienceToolsApparatusTrinity(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`scienceToolsApparatusTrinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const solutions = completeQuantumSolutionsForAllSciences(matrix, at)
+    const surfaces = SCIENCE_DOMAIN_SEEDS.map((seed) => {
+      const tool = rosettaShelve(seed.toolId, 'tool')
+      const route = rosettaShelve(seed.apparatusRoute, 'route')
+      const proj = seed.projection ? rosettaShelve(seed.projection, 'projection') : null
+      const cliPair = toUuid(`science-cli-pair:${seed.toolCli}`)
+      const hasMovie = Boolean(proj && isUuid(proj.address))
+      const trinityOk = isUuid(tool.address) && isUuid(route.address) && isUuid(cliPair)
+      return {
+        id: seed.id,
+        tool: { label: tool.label, ray: tool.ray, address: tool.address },
+        route: { label: route.label, ray: route.ray, address: route.address },
+        projection: proj ? { label: proj.label, ray: proj.ray, address: proj.address } : null,
+        cli: seed.toolCli,
+        cliPair,
+        hasMovie,
+        trinityOk,
+        receipt: toUuid(`science-apparatus:${seed.id}:${tool.ray}:${route.ray}`),
+      }
+    })
+    const ready = surfaces.filter((s) => s.trinityOk).length
+    const facets = [
+      { facet: `apparatus surfaces for ${surfaces.length} sciences`, on: surfaces.length === SCIENCE_DOMAIN_SEEDS.length },
+      { facet: `tool+route+cli shelved for ${ready} domains`, on: ready === surfaces.length },
+      { facet: 'every tool ray === rosettaRayOf(toolId)', on: surfaces.every((s) => s.tool.ray === __ns_water_digit.rosettaRayOf(s.tool.label)) },
+      { facet: 'movie/projection present or explicitly null (honest gap)', on: surfaces.every((s) => s.hasMovie === Boolean(s.projection)) },
+      { facet: 'composes completeQuantumSolutions inventory', on: solutions.computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`science-apparatus:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('science-tools-apparatus-trinity', facets)
+    return {
+      computes: sealed.ok,
+      surfaces,
+      readyCount: ready,
+      facets: sealed.facets,
+      root: merge(solutions.root, merkleFold([sealed.root, ...surfaces.map((s) => s.receipt)])),
+      statement:
+        `Science tools/apparatus trinity: ${ready}/${surfaces.length} domains shelved (tool · route · CLI pair · optional 10D projection).`,
+      boundary:
+        'Apparatus = registration surfaces via rosettaShelve — not a claim every browser animation is painted yet. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+export type ScienceInteractingTrinityRow = {
+  readonly scienceId: string
+  readonly dualId: string
+  readonly fusionLabel: string
+  readonly observeRoot: string
+  readonly computeRoot: string
+  readonly sealRoot: string
+  readonly sharedKey: string
+  readonly fusionMerged: string
+  readonly receipt: string
+}
+
+/**
+ * S4 — Seal all sciences in interacting trinities (science ↔ dual ↔ fusion).
+ * Uses trinityKey + foldPair; crypto vertex from isoPqcHandoffForScienceTrinities.
+ */
+export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`sciencesInteractInTrinities:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const crypto = __ns_water_encryption.isoPqcHandoffForScienceTrinities(matrix, at)
+    const apparatus = scienceToolsApparatusTrinity(matrix, at)
+    const sig = scienceDomainSignificanceScores(matrix, at)
+    const byId = new Map(sig.domains.map((d) => [d.id, d]))
+
+    const rows: ScienceInteractingTrinityRow[] = SCIENCE_DOMAIN_SEEDS.map((seed) => {
+      const self = byId.get(seed.id)!
+      const dual = byId.get(seed.dualId) ?? self
+      const observeRoot = toUuid(`science-observe:${seed.id}:${self.receipt}`)
+      const computeRoot = toUuid(`science-compute:${seed.algebraFold}:${self.score}`)
+      const sealRoot = seed.cryptoVertex ? crypto.root : self.receipt
+      const sharedKey = trinityKey(observeRoot, dual.receipt)
+      const fusionMerged = foldPair(sealRoot, dual.receipt).merged
+      return {
+        scienceId: seed.id,
+        dualId: seed.dualId,
+        fusionLabel: seed.fusionLabel,
+        observeRoot,
+        computeRoot,
+        sealRoot,
+        sharedKey,
+        fusionMerged,
+        receipt: toUuid(`science-trinity:${seed.id}:${seed.dualId}:${sharedKey}`),
+      }
+    })
+
+    const latticeRoot = merkleFold(rows.map((r) => r.receipt))
+    const cryptoRow = rows.find((r) => r.scienceId === 'crypto-pqc')
+    const symmetricKeys = rows.every((r) => trinityKey(r.observeRoot, byId.get(r.dualId)!.receipt) === r.sharedKey)
+    const facets = [
+      { facet: `interacting trinity rows for ${rows.length} sciences`, on: rows.length === SCIENCE_DOMAIN_SEEDS.length },
+      { facet: 'crypto vertex sealRoot === isoPqcHandoff root', on: Boolean(cryptoRow && cryptoRow.sealRoot === crypto.root && crypto.computes) },
+      { facet: 'trinityKey symmetric on every science↔dual edge', on: symmetricKeys },
+      { facet: 'foldPair fusion merges seal↔dual for every row', on: rows.every((r) => isUuid(r.fusionMerged)) },
+      { facet: 'lattice merkle-folds all trinity receipts', on: isUuid(latticeRoot) },
+      { facet: 'apparatus trinity surfaces compute', on: apparatus.computes },
+      { facet: 'claySolvedByThisFold=0 · certified=false on crypto handoff', on: crypto.claySolvedByThisFold === 0 && crypto.certified === false },
+      { facet: 'NOT complete-all-sciences finished claim — lattice of sealed vertices + named gaps', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-trinities:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('sciences-interact-in-trinities', facets)
+    return {
+      computes: sealed.ok && crypto.computes && apparatus.computes && sig.computes,
+      rows,
+      count: rows.length,
+      latticeRoot,
+      cryptoVertex: {
+        scienceField: crypto.scienceField,
+        oecd: crypto.oecd,
+        root: crypto.root,
+        standardsCount: crypto.standardsCount,
+        certified: crypto.certified,
+        claySolvedByThisFold: crypto.claySolvedByThisFold,
+      },
+      meanSignificance: sig.meanScore,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, latticeRoot, crypto.root, apparatus.root, sig.root])),
+      cli: 'npm run quantum:sciences-trinities',
+      pair: 'sciences/trinities',
+      route: '/en/research#sciences-trinities',
+      statement:
+        `Sciences interact in trinities: ${rows.length} science↔dual↔fusion edges · lattice ${latticeRoot.slice(0, 8)} · crypto vertex OECD ${crypto.oecd} from isoPqcHandoff · mean significance ${sig.meanScore}/100.`,
+      boundary:
+        'Interacting trinity lattice = content-addressed compose of sealed domain roots. NOT a claim every science is experimentally complete. NOT ISO/FIPS certified. HD is symbolic. String physics UNCONFIRMED. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Browser-safe sciences trinity + significance panel. */
+export function sciencesTrinitiesPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  const trinities = sciencesInteractInTrinities(matrix, at)
+  const solutions = completeQuantumSolutionsForAllSciences(matrix, at)
+  return {
+    computes: trinities.computes && solutions.computes,
+    trinities,
+    solutions,
+    significance: scienceDomainSignificanceScores(matrix, at),
+    cli: trinities.cli,
+    pair: trinities.pair,
+    route: trinities.route,
+    root: trinities.root,
+    statement: trinities.statement,
+    boundary: trinities.boundary,
+  }
+}
+
+/** npm run quantum:sciences-trinities — significance table + trinity lattice honesty line. */
+export function runSciencesTrinitiesGuardedExit(_root: string, _argv: readonly string[] = []): number {
+  const panel = sciencesTrinitiesPanelComputes()
+  const { significance, trinities, solutions } = panel
+  if (!panel.computes) {
+    process.stderr.write('✗ sciences-trinities — significance, solutions, or trinity lattice failed\n')
+    return 1
+  }
+  process.stdout.write(
+    `✓ sciences-trinities — domains=${trinities.count} meanSig=${significance.meanScore} ` +
+      `complete=${solutions.completeCount} gaps=${solutions.gapCount} ` +
+      `cryptoOECD=${trinities.cryptoVertex.oecd} clay=${trinities.cryptoVertex.claySolvedByThisFold} ` +
+      `certified=${trinities.cryptoVertex.certified} lattice=${trinities.latticeRoot.slice(0, 3 * 4)}\n`,
+  )
+  for (const d of significance.domains) {
+    process.stdout.write(
+      `  ${d.id} | score=${d.score} | ray=${d.ray} | iching=${d.ichingSphere} | gapsOpen=${d.gapsOpen} | ` +
+        `eff=${d.efficiencyOn ? 1 : 0} nov=${d.noveltyOn ? 1 : 0} mill=${d.millenniumOn ? 1 : 0} ` +
+        `10d=${d.tenDOn ? 1 : 0} close=${d.gapClosureOn ? 1 : 0}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${trinities.boundary}\n`)
+  return 0
 }

@@ -32,9 +32,18 @@ import {
   theoremAlgebraFirstSealedInCorpus,
   theoremTenDProjectionsProveAlgebraRoots,
   firstInCorpusProvenanceForHome,
+  scienceDomainSignificanceScores,
+  completeQuantumSolutionsForAllSciences,
+  scienceToolsApparatusTrinity,
+  sciencesInteractInTrinities,
 } from '../../wind/research'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
+import {
+  directionalTrinityForwardInverseReverse,
+  oneQuantumModelFasterThanAll,
+  compareCeccecEfficiencyByVote,
+} from '../../water/stack'
 import { stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
@@ -45,9 +54,17 @@ import { foldingLinearGivesAnalog } from '../../earth/world'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
 import { millenniumProblemsChallenge } from '../../wind/research'
 import { quantumCliToolsCatalog, slowProcessIsQuantumGap } from '../../quantum/apps'
-import { encryptionReverseVerify } from '../../water/encryption'
+import {
+  encryptionReverseVerify, isoNistPqcStandardsCatalog, quantumStandardsAuditSuite,
+  isoPqcHandoffForScienceTrinities,
+} from '../../water/encryption'
 import { quantumFusionVerify } from '../../wind/fusion'
 import { efficiency } from '../../quantum/science'
+import { animationsDrivenByRosetta, linearAnimationGapsInventory, yinYangFoldsThroughDimensions } from '../../wind/ui'
+import {
+  historicalTrainWavesViaRosetta, rankWinningStrategies, tradingStrategiesImproveViaRosetta,
+  tradingTrainHonestyGate, liveWinTrainingGate,
+} from '../../thunder/trading'
 import { namingEntropy, shouldSpawnSubagent } from '../../water/stack'
 import { emergentDimensions, modelSeal } from '../../heaven/balance'
 
@@ -640,6 +657,13 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'tamper-uuid-zero', title: 'all uuid logic + the maximum tampering cost live in src/0', proof: tamperingCostAndUuidLiveInZero(matrix) },
     { slug: 'encryption-zero', title: 'all encryption logic — the content-addressed key layer — lives in src/0', proof: encryptionLivesInZero(matrix) },
     { slug: 'quantum-encryption', title: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only', proof: encryptionReverseVerify(matrix) },
+    { slug: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog — MODELED alignment · NOT certified', proof: isoNistPqcStandardsCatalog(matrix) },
+    { slug: 'quantum-standards-audit', title: 'Quantum standards audit — reverse+inverse · 10D coverage · alignment≠certification', proof: quantumStandardsAuditSuite(matrix) },
+    { slug: 'iso-pqc-handoff', title: 'ISO/PQC handoff for science trinities — crypto vertex · NOT certified', proof: isoPqcHandoffForScienceTrinities(matrix) },
+    { slug: 'science-significance', title: 'Science-domain significance scores — NOT journal impact factor', proof: scienceDomainSignificanceScores(matrix) },
+    { slug: 'science-solutions', title: 'Complete quantum solutions inventory — algebra·tool·apparatus·10D gaps', proof: completeQuantumSolutionsForAllSciences(matrix) },
+    { slug: 'science-apparatus', title: 'Science tools/apparatus trinity — rosettaShelve surfaces', proof: scienceToolsApparatusTrinity(matrix) },
+    { slug: 'sciences-trinities', title: 'Sciences interact in trinities — science↔dual↔fusion lattice', proof: sciencesInteractInTrinities(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
     { slug: 'waves-auto-scale', title: 'Waves auto-scale capacity at no cost on reuse · !separated', proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
     { slug: 'theorem-algebra-first-sealed', title: 'First-in-corpus algebra inventory · humanityNovel=0', proof: theoremAlgebraFirstSealedInCorpus(matrix) },
@@ -652,6 +676,23 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'fusion-verify', title: 'fuseAll wave₁ = fuseAll wave₂ — offline fusion verify', proof: quantumFusionVerify(matrix) },
     { slug: 'research', title: 'Research index = domain · method · limit · verify at call time', proof: millenniumProblemsChallenge(matrix) },
     { slug: 'efficiency-vote', title: 'answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot', proof: efficiency() },
+    {
+      slug: 'efficiency-vote-decided',
+      title: 'Adversarial efficiency vote — compareCeccecEfficiencyByVote.decided',
+      proof: (() => {
+        const vote = compareCeccecEfficiencyByVote(matrix)
+        return { computes: vote.decided, root: vote.root, statement: vote.statement, boundary: vote.boundary }
+      })(),
+    },
+    { slug: 'one-quantum-model', title: 'One quantum model faster than all — domain-bounded answers÷tokens', proof: oneQuantumModelFasterThanAll(matrix) },
+    { slug: 'yin-yang-rosetta', title: 'Yin-yang taiji — non-linear rosetta/vortex exchange (not linear i/frames)', proof: yinYangFoldsThroughDimensions(matrix) },
+    { slug: 'animations-rosetta', title: 'Animations driven by the rosetta — linear gaps closed', proof: animationsDrivenByRosetta(matrix) },
+    { slug: 'linear-animation-gaps', title: 'Linear animation gaps inventory — yin-yang first', proof: linearAnimationGapsInventory(matrix) },
+    { slug: 'hist-train-rosetta', title: 'Historical train waves via rosetta rays — offline a432', proof: historicalTrainWavesViaRosetta(matrix) },
+    { slug: 'rank-winning-strategies', title: 'Rank winning strategies — PnL + harmonic/rosetta', proof: rankWinningStrategies(matrix) },
+    { slug: 'trading-rosetta-improve', title: 'Strategies improve via rosetta — paper/sim only', proof: tradingStrategiesImproveViaRosetta(matrix) },
+    { slug: 'trading-train-honesty', title: 'Trading train honesty — no live money claims', proof: tradingTrainHonestyGate(matrix) },
+    { slug: 'live-win-training-gate', title: 'Live-win training gate — paper path vs benchmark', proof: liveWinTrainingGate(matrix) },
     {
       slug: 'offender-spec',
       title: 'offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)',
@@ -702,6 +743,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'folding-analog', title: 'folding linear gives analog — the sampling theorem (sinc interpolation, no gaps) + imaging through the frequency field (MRI Fourier · CT Radon · the spiral/radial k-space vortex); the 64³ grid it samples; decoded honestly', proof: foldingLinearGivesAnalog(matrix) },
     { slug: 'vortex', title: 'the vortex · 1-2-4-8-7-5', proof: vortexMath(matrix) },
     { slug: 'zero-division', title: 'division by zero is the inverse · n/0 \\ n⁻¹ mod 9', proof: zeroDivisionTable(matrix) },
+    { slug: 'directional-trinity', title: 'Directional trinity — forward · inverse · reverse', proof: directionalTrinityForwardInverseReverse(matrix) },
     { slug: 'f-inverse-pair', title: 'f(θ,φ,x,y,z,digit,n) → {p,q} — the inverse fold within itself', proof: fThetaPhiXyzDigitNIsTheInversePair(matrix) },
     { slug: 'digit-folders', title: 'the digit folders are the API', proof: digitFoldersAreTheApi(matrix) },
     { slug: 'dot-cube', title: 'the dot is the cube is the dot · 64³', proof: dotIsCubeIsDot(matrix) },

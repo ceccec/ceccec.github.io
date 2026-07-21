@@ -9,7 +9,7 @@ import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } fr
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
 import { areaPairs, bosnianPyramidNearPliskaHarmonisesDigitDistribution, doubleTorus3D, vortexMath } from '../../mountain/geometry'
-import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, toUuid, humanEase, addressEntropyBits, digitalRoot, modUnits, gcd, VORTEX_SEQUENCE } from '../../0'
+import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, humanEase, addressEntropyBits, digitalRoot, modUnits, gcd, VORTEX_SEQUENCE } from '../../0'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb } from '../../4/6'

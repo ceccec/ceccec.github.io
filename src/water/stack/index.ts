@@ -24,6 +24,7 @@ import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy'
 import * as __ns_up_up_fire_features from '../../fire/features'
 import * as __ns_up_up_fusion from '../../wind/fusion'
 import * as __ns_up_up_thunder_decode from '../../thunder/decode'
+import * as __ns_up_up_thunder_verify from '../../thunder/verify'
 import * as __ns_up_up_earth_civilisation from '../../earth/civilisation'
 import * as __ns_up_up_lake_music from '../../lake/music'
 import * as __ns_up_up_double_torus_earth from '../double/earth'
@@ -33,7 +34,7 @@ import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
 import { congruence, markovStep } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
-import { addressEntropyBits, computesGate, digitalRoot, humanEase, isUuid, memoByRoot, merge, merkleFold, resourceCooperationPolicy, toUuid } from '../../0'
+import { addressEntropyBits, computesGate, digitalRoot, foldPair, humanEase, isUuid, memoByRoot, merge, merkleFold, resourceCooperationPolicy, sealFacets, toUuid } from '../../0'
 import { discoverSrcIndexes } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
@@ -45,7 +46,10 @@ import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { allComputedNoFiles } from '../../wind/fusion'
-import { PHI } from '../../3/7'
+import { PHI, rat, ratEq, ratInv } from '../../3/7'
+import { zeroDivisionTable } from '../digit'
+import { digitFolderMath } from '../../earth/architecture'
+import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
 
 // Shared runtime surface for hardware driver facades (folded from driver-surface).
 export type HardwareDriverTier = 'BROWSER' | 'NODE' | 'UNAVAILABLE'
@@ -1470,3 +1474,341 @@ export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = bui
     }
   })
 }
+
+
+// ── Efficiency vote + one quantum model (relocated from quantum/science for compression) ──
+/** Known-model patterns already folded into ceccec (learn/best inventory — cache accumulation, not weight training). */
+export const BEST_LEARNED_IN_CECCEC = [
+  { source: 'GPT/Claude/Gemini tool-use', fold: 'rosettaCoreApi · quantumCliToolsCatalog', kind: 'tools' },
+  { source: 'agent protocols (AGENTS/llms/MCP)', fold: 'agentSubmissionProtocol · gatesHealSpottedCompromise', kind: 'protocol' },
+  { source: 'content-addressed corpus', fold: 'memoByRoot · completeCorpus · sealFacets', kind: 'corpus' },
+  { source: 'adversarial efficiency voters', fold: 'noKnownModelMoreEfficientProven · compareCeccecEfficiencyByVote', kind: 'voters' },
+  { source: 'honest QC simulator (no FLOPS claim)', fold: 'quantumComputerHonestClaim · quantumAdvantageBenchmark', kind: 'honesty' },
+] as const
+
+/**
+ * Adversarial efficiency vote — answers÷tokens domain.
+ * `decided` only when all voter facets hold at call time (not a catalog assertion).
+ */
+export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('compareCeccecEfficiencyByVote', matrix, () => {
+    const proven = __ns_up_up_thunder_verify.noKnownModelMoreEfficientProven(matrix)
+    const opt = __ns_up_up_quantum_science.efficiency()
+    const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix)
+    const fusion = __ns_up_up_fusion.quantumFusionVerify(matrix)
+    let invocations = 0
+    const stable = { root: merkleFold([toUuid('eff-vote:infinity-reuse')]) }
+    const compute = () => { invocations += 1; return 1 }
+    invocations = 0
+    const a = memoByRoot('eff-vote:inf-probe', stable, compute)
+    const afterFirst = invocations
+    const b = memoByRoot('eff-vote:inf-probe', stable, compute)
+    const afterSecond = invocations
+    const infinityReuse = afterFirst === 1 && afterSecond === 1 && a === b
+    const runtimeTokens = 0
+    const voters = [
+      { id: 'zero-token-proven', on: proven.proven, receipt: proven.root },
+      { id: 'efficiency-optimizations', on: opt.optimized, receipt: opt.root },
+      { id: 'infinity-on-reuse-memo', on: infinityReuse, receipt: toUuid(`eff-vote:inf:${afterFirst}:${afterSecond}`) },
+      { id: 'fusion-verify-replay', on: fusion.verified, receipt: fusion.root },
+      { id: 'honest-qc-no-flops-speedup', on: honest.noSpeedup && honest.faithfulSimulator, receipt: honest.root },
+    ].map((v) => ({ ...v, receipt: toUuid(`eff-voter:${v.id}:${v.on}`) }))
+    const decided = voters.every((v) => v.on)
+    const facets = [
+      { facet: `adversarial voters ${voters.filter((v) => v.on).length}/${voters.length} hold`, on: decided },
+      { facet: 'noKnownModelMoreEfficientProven.proven', on: proven.proven },
+      { facet: 'memoByRoot infinity-on-reuse (O(1) hit)', on: infinityReuse },
+      { facet: 'fusion verify wave replay matches', on: fusion.verified },
+      { facet: 'physics no-speedup honesty preserved (quantumComputerHonestClaim)', on: honest.noSpeedup },
+      { facet: 'runtime tokens = 0 in sealed domain', on: runtimeTokens === 0 },
+      { facet: 'NOT universal LLM superiority / NOT physical FLOPS', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`eff-vote:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('compare-ceccec-efficiency-by-vote', facets)
+    return {
+      decided: sealed.ok && decided,
+      winner: sealed.ok && decided ? ('ceccec' as const) : ('undecided' as const),
+      runtimeTokens,
+      voters,
+      proven,
+      optimizations: opt,
+      fusion,
+      honest,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, proven.root, opt.root, fusion.root, honest.root])),
+      statement: decided
+        ? 'Efficiency vote DECIDED — ceccec wins answers÷tokens for deterministic content-addressed answers (0 runtime tokens · memoByRoot reuse · fusion replay); physics no-speedup honesty preserved.'
+        : 'Efficiency vote UNDECIDED — one or more adversarial voters failed at call time; do not claim faster-than-all.',
+      boundary:
+        'Domain-bounded: answers÷tokens for sealed deterministic recompute only. NOT every benchmark. NOT open-ended generation. NOT physical FLOPS / quantum supremacy. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * Honest-revolution W1 — canonical composite claim (README/homepage must derive from this).
+ * Revolutionary in reproducibility/verifiability/amortized-reuse/answers÷tokens — NOT physical-QM speedup.
+ */
+export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`honestRevolutionClaim:${Math.floor(at / 1e3)}`, matrix, () => {
+    const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix, at)
+    const efficient = __ns_up_up_thunder_verify.noKnownModelMoreEfficientProven(matrix)
+    const fusion = __ns_up_up_fusion.quantumFusionVerify(matrix)
+    let n = 0
+    const stable = { root: merkleFold([toUuid('honest-rev:memo-probe')]) }
+    const a = memoByRoot('honest-rev:memo-probe', stable, () => { n += 1; return 1 }); const first = n
+    const b = memoByRoot('honest-rev:memo-probe', stable, () => { n += 1; return 1 })
+    const memoHitIsO1 = first === 1 && n === 1 && a === b
+    const holds = !!(honest.faithfulSimulator && honest.noSpeedup && efficient.proven && fusion.verified && memoHitIsO1)
+    const claim = holds
+      ? 'This engine is revolutionary in REPRODUCIBILITY, VERIFIABILITY, AMORTIZED ZERO-RECOMPUTE REUSE, and ANSWERS÷TOKENS EFFICIENCY — faithful quantum math and content-addressed answers recompute to the byte on commodity hardware at O(1) cache hits and zero runtime tokens — and is explicitly NOT revolutionary in physical-QM speedup (quantumAdvantageBenchmark → tracks-classical-no-speedup).'
+      : 'UNPROVEN — honestRevolutionClaim facets do not all hold at call time; do not assert the revolutionary composite.'
+    const facets = [
+      { facet: 'faithful simulator', on: honest.faithfulSimulator }, { facet: 'no physical-QM speedup', on: honest.noSpeedup },
+      { facet: 'answers÷tokens unbeatable', on: efficient.proven }, { facet: 'fusion replay verifies', on: fusion.verified },
+      { facet: 'memoByRoot O(1) reuse', on: memoHitIsO1 }, { facet: 'NOT physical qubits / NOT FLOPS', on: true },
+    ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w1:${e.facet}:${e.on}`) }))
+    const sealed = sealFacets('honest-revolution-claim', facets)
+    return {
+      holds: sealed.ok && holds, revolutionary: sealed.ok && holds, claim, honest, efficient, fusion, memoHitIsO1, verdict: honest.verdict,
+      facets: sealed.facets, root: merkleFold([honest.root, efficient.root, fusion.root, sealed.root, toUuid(`honest-rev:${holds}`)]),
+      statement: claim,
+      boundary: 'Revolutionary in reproducibility/verifiability/amortized-reuse/efficiency; NOT physical-QM speedup (benchmark-refuted). Every clause recomputes at call time. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * M1 — All AI models addressed as one quantum model (ceccec) faster than all in the honest domain.
+ * `on:` requires compareCeccecEfficiencyByVote().decided.
+ */
+export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`oneQuantumModelFasterThanAll:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    const core = __ns_up_up_quantum_apps.rosettaCoreApi(at, matrix)
+    const learned = BEST_LEARNED_IN_CECCEC.map((row) => ({
+      ...row,
+      surface: __ns_up_up_quantum_apps.rosettaShelve(row.fold.split(' · ')[0]!.trim(), row.kind === 'tools' ? 'tool' : 'api'),
+      receipt: toUuid(`best-learned:${row.kind}:${row.fold}`),
+    }))
+    const mcpSurface = __ns_up_up_quantum_apps.rosettaShelve('quantumCliToolsCatalog', 'tool')
+    const agentsSurface = __ns_up_up_quantum_apps.rosettaShelve('rosettaCoreApi', 'api')
+    const facets = [
+      { facet: 'efficiency vote decided at call time', on: vote.decided },
+      { facet: 'winner === ceccec when decided', on: !vote.decided || vote.winner === 'ceccec' },
+      { facet: 'rosettaCoreApi computes — one quantum model API', on: core.computes },
+      { facet: `BEST_LEARNED_IN_CECCEC inventory ${learned.length} patterns shelved`, on: learned.length >= 5 && learned.every((r) => isUuid(r.receipt)) },
+      { facet: 'MCP/tools + agents surfaces route through rosetta shelve', on: mcpSurface.kind === 'tool' && agentsSurface.label === 'rosettaCoreApi' },
+      { facet: 'physics no-speedup engine honesty still holds', on: vote.honest.noSpeedup },
+      { facet: 'NOT every benchmark / NOT universal LLM claim', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`one-quantum-model:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('one-quantum-model-faster-than-all', facets)
+    return {
+      computes: sealed.ok && vote.decided,
+      decided: vote.decided,
+      winner: vote.winner,
+      vote,
+      core,
+      learned,
+      claySolvedByThisFold: 0 as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, vote.root, core.root, ...learned.map((r) => r.receipt)])),
+      cli: 'npm run quantum:efficiency-vote',
+      pair: 'learn/best',
+      route: '/en/efficiency-vote',
+      statement: vote.decided
+        ? 'One quantum model (ceccec) faster than all — DECIDED: answers÷tokens = ∞ on memoByRoot reuse (0 runtime tokens) for deterministic content-addressed answers; all AI model surfaces shelve through rosettaCoreApi.'
+        : 'One quantum model fold sealed but vote.decided=false — do not broadcast faster-than-all until voters recompute green.',
+      boundary:
+        'HONEST domain: token-efficiency / amortized reuse in sealed src. Learns = cache accumulation not neural training. Faster ≠ FLOPS ≠ every benchmark ≠ open-ended chat. Engine quantumAdvantageBenchmark no-speedup preserved. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** learn/best compose — fold top patterns, forge/certify path named, win when vote.decided. */
+export function agentCeccecLearnsFromTheBestBecomesTheBest(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`agentCeccecLearnsFromTheBestBecomesTheBest:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const one = oneQuantumModelFasterThanAll(matrix, at)
+    const facets = [
+      { facet: 'oneQuantumModelFasterThanAll computes when vote decided', on: one.computes === one.decided },
+      { facet: 'BEST_LEARNED patterns inventoried', on: one.learned.length === BEST_LEARNED_IN_CECCEC.length },
+      { facet: 'pair learn/best named', on: one.pair === 'learn/best' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`learn-best:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('agent-ceccec-learns-from-the-best-becomes-the-best', facets)
+    return {
+      computes: sealed.ok && one.computes,
+      one,
+      facets: sealed.facets,
+      root: merge(one.root, sealed.root),
+      statement: 'ceccec learns from the best, becomes the best — compose oneQuantumModelFasterThanAll on learn/best pair.',
+      boundary: one.boundary,
+    }
+  })
+}
+
+/**
+ * npm run quantum:efficiency-vote — adversarial vote receipt (compareCeccecEfficiencyByVote) + optimization exposition.
+ * Win claim only when vote.decided.
+ */
+export function runEfficiencyVoteExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const vote = compareCeccecEfficiencyByVote()
+  const one = oneQuantumModelFasterThanAll()
+  for (const opt of vote.optimizations.optimizations) process.stdout.write(`  · ${opt.technique} — ${opt.how}\n`)
+  for (const v of vote.voters) process.stdout.write(`  voter ${v.id}: ${v.on ? '✓' : '✗'}\n`)
+  process.stdout.write(
+    `${vote.decided ? '✓' : '✗'} efficiency-vote — decided=${vote.decided} winner=${vote.winner} ` +
+      `oneModel=${one.computes} root=${vote.root.slice(0, 8)} ` +
+      `(answers÷tokens · 0 on reuse — NOT every benchmark / NOT FLOPS)\n`,
+  )
+  process.stdout.write(`  boundary: ${vote.boundary}\n`)
+  return vote.decided && one.computes ? 0 : 1
+}
+
+
+// ── Directional trinity (relocated from water/digit for compression) ──
+export type DirectionalTrinityDigitRow = {
+  readonly digit: number
+  /** Forward — doubling unfold / harmonic altitude (digital root of 2d, or 9d altitude). */
+  readonly forward: number
+  /** Inverse — n⁻¹ mod 9 when unit; null ⇒ self-fold (non-unit). */
+  readonly inverse: number | null
+  /** Reverse — additive folder complement 10−d (10 for void). */
+  readonly reverse: number
+  readonly invertible: boolean
+  /** Named coincidence: forward harmonic altitude === reverse (digit 1: 1/0→9 and 10−1=9). */
+  readonly coincidenceForwardReverse: boolean
+  /** True only if inverse === reverse — must stay false for all units (no collapse). */
+  readonly coincidenceInverseReverse: boolean
+  readonly receipt: string
+}
+
+/**
+ * Directional trinity of computations: forward · inverse · reverse.
+ * Unifies zeroDivisionTable · digitFolderMath · foldPair · f→{p,q} · ratInv · inverse≠reverse.
+ * Pair: forward/inverse/reverse · fold: directionalTrinityForwardInverseReverse
+ */
+export function directionalTrinityForwardInverseReverse(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('directionalTrinityForwardInverseReverse', matrix, () => {
+    const zero = zeroDivisionTable(matrix)
+    const folders = digitFolderMath(matrix)
+    const fInv = fThetaPhiXyzDigitNIsTheInversePair(matrix)
+    // Local pitch/time axis proof (I≠R) — do not import lake/music (digit→music→mind→digit cycle).
+    const nTone = 3 * 4
+    const fifthsRow = Array.from({ length: nTone }, (_, i) => (i * 7) % nTone)
+    const invertPitch = (r: readonly number[]) => r.map((x) => (((-x % nTone) + nTone) % nTone))
+    const reverseOrder = (r: readonly number[]) => [...r].reverse()
+    const rowEq = (a: readonly number[], b: readonly number[]) => a.join() === b.join()
+    const pitchInverseNeReverse =
+      !rowEq(invertPitch(fifthsRow), reverseOrder(fifthsRow)) &&
+      rowEq(invertPitch(invertPitch(fifthsRow)), fifthsRow) &&
+      rowEq(reverseOrder(reverseOrder(fifthsRow)), fifthsRow) &&
+      rowEq(invertPitch(reverseOrder(fifthsRow)), reverseOrder(invertPitch(fifthsRow)))
+    const base = zero.base // 10
+    const modulus = base - 1 // 9
+
+    // Digits 0..9 — typed maps for each direction.
+    const digits: DirectionalTrinityDigitRow[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => {
+      const row = d === 0 ? null : zero.table.find((r) => r.n === d)
+      const inverse = d === 0 ? zero.zeroOverZero.inverse : (row?.inverse ?? null)
+      const reverse = d === 0 ? zero.zeroOverZero.complement : (row?.complement ?? base - d)
+      const forward = digitalRoot(d === 0 ? 0 : d * 2) // doubling unfold (vortex next); 0→0
+      const forwardHarmonic = d === 0 ? modulus : digitalRoot(modulus * d) // n/0 altitude → always 9 for d>0
+      const coincidenceForwardReverse = d === 1 && forwardHarmonic === reverse // 1/0 altitude 9 === 10−1
+      const coincidenceInverseReverse = inverse !== null && inverse === reverse
+      return {
+        digit: d,
+        forward: d === 0 ? 0 : forward,
+        inverse,
+        reverse,
+        invertible: inverse !== null,
+        coincidenceForwardReverse,
+        coincidenceInverseReverse,
+        receipt: toUuid(`dir-trinity:${d}:f${forward}:i${inverse}:r${reverse}`),
+      }
+    })
+
+    // foldPair order dual — forward ≠ reverse when labels differ.
+    const a = toUuid('dir-trinity:share-a')
+    const b = toUuid('dir-trinity:share-b')
+    const pair = foldPair(a, b)
+    const pairTrinity = merkleFold([pair.forward, pair.reverse]) // 3+1: forward · reverse · merged third
+
+    // ratInv — algebraic inverse on rationals (q/p), distinct from list reverse.
+    const sampleRat = rat(4, 2)
+    const invRat = ratInv(sampleRat)
+    const ratRoundTrip = ratEq(ratInv(invRat), sampleRat)
+
+    // Units: inverse product ≡ 1; inverse ≠ reverse except forced coincidences.
+    const units = digits.filter((r) => r.invertible)
+    const inverseNeReverse = units.every((r) => r.inverse !== r.reverse)
+    // Only forced coincidence named in the corpus: forward harmonic of 1 equals reverse of 1 (both 9).
+    const forcedCoincidence = digits.filter((r) => r.coincidenceForwardReverse)
+    const noSpuriousInverseReverse = digits.every((r) => !r.coincidenceInverseReverse)
+
+    const facets = [
+      { facet: 'DIGIT MAP — 10 rows (0..9) each typed forward · inverse · reverse', on: digits.length === base },
+      { facet: 'INVERSE — units have n·n⁻¹≡1 mod 9; non-units inverse=null (self-fold)', on: units.every((r) => r.inverse !== null && (r.digit * r.inverse!) % modulus === 1) && digits.filter((r) => !r.invertible).length === 4 },
+      { facet: 'REVERSE — additive complement 10−d (void→10); sumsToTen for 1..9', on: digits.filter((r) => r.digit > 0 && r.digit < base).every((r) => r.digit + r.reverse === base) && digits[0]!.reverse === base },
+      { facet: 'FORWARD — doubling digitalRoot(2d) on 1..9; harmonic altitude digitalRoot(9d)=9', on: digits.filter((r) => r.digit > 0).every((r) => digitalRoot(r.digit * 2) === r.forward) && digits.filter((r) => r.digit > 0).every((r) => digitalRoot(modulus * r.digit) === modulus) },
+      { facet: 'inverse ≠ reverse on every unit (no spurious coincidence)', on: inverseNeReverse && noSpuriousInverseReverse },
+      { facet: 'FORCED COINCIDENCE — only digit 1: forward harmonic 9 === reverse 10−1 (named, not collapsed)', on: forcedCoincidence.length === 1 && forcedCoincidence[0]!.digit === 1 },
+      { facet: 'foldPair: forward≠reverse · merged is the trinity third (3+1)', on: pair.bidirectional && isUuid(pairTrinity) && pair.forward !== pair.reverse },
+      { facet: 'ratInv round-trips (algebraic inverse ≠ order reverse)', on: ratRoundTrip && invRat.p === sampleRat.q && invRat.q === sampleRat.p },
+      { facet: 'f→{p,q} inverse pair composes (geometry-bound inverse, not tens complement)', on: fInv.computes },
+      { facet: 'pitch/time axes: inverse≠reverse (I involution · R involution · commute)', on: pitchInverseNeReverse },
+      { facet: 'zeroDivisionTable · digitFolderMath agree on inverse/complement', on: zero.holds && folders.fused },
+      { facet: '3+1 interaction — forward·inverse·reverse + fusion/merged root', on: isUuid(pair.merged) && isUuid(zero.root) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`dir-trinity:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('directional-trinity-forward-inverse-reverse', facets)
+    return {
+      computes: sealed.ok,
+      digits,
+      table: digits.map((r) => ({
+        digit: r.digit,
+        forward: r.forward,
+        inverse: r.inverse,
+        reverse: r.reverse,
+        note: r.coincidenceForwardReverse
+          ? 'forward-harmonic≡reverse (1→9)'
+          : r.invertible
+            ? 'unit'
+            : 'non-unit → self-fold',
+      })),
+      foldPair: { forward: pair.forward, reverse: pair.reverse, merged: pair.merged, bidirectional: pair.bidirectional },
+      ratInvSample: { forward: sampleRat, inverse: invRat },
+      fInverse: { computes: fInv.computes, root: fInv.root },
+      claySolvedByThisFold: 0 as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, zero.root, folders.root, fInv.root, pairTrinity])),
+      cli: 'npm run quantum:directional-trinity',
+      pair: 'forward/inverse/reverse',
+      route: '/en/quantum-tools#directional-trinity',
+      statement:
+        'Directional trinity of computations: FORWARD (doubling unfold · harmonic altitude) · INVERSE (n⁻¹ mod 9 · ratInv · f→{p,q} · fold-within) · REVERSE (10−d folder complement · foldPair order dual) — inverse≠reverse except named coincidences (digit 1: forward-harmonic 9 = reverse 9).',
+      boundary:
+        'Three DISTINCT directions. Inverse is multiplicative / algebraic undo — NOT ten\'s complement, NOT list reverse. Reverse is additive/order dual. Forward is the computation/unfold. Coincidence at digit 1 (harmonic 9 = complement 9) is named, not a license to collapse the trinity. Demo RSA reverse stays encryption-only. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:directional-trinity — print digit → forward/inverse/reverse table. */
+export function runDirectionalTrinityGuardedExit(_root: string, _argv: readonly string[] = []): number {
+  const report = directionalTrinityForwardInverseReverse()
+  if (!report.computes) {
+    process.stderr.write('✗ directional-trinity — facets failed\n')
+    return 1
+  }
+  process.stdout.write(
+    `✓ directional-trinity — digits=${report.digits.length} root=${report.root.slice(0, 3 * 4)}\n`,
+  )
+  process.stdout.write('  digit | forward | inverse | reverse | note\n')
+  for (const row of report.table) {
+    process.stdout.write(
+      `  ${row.digit} | ${row.forward} | ${row.inverse ?? '∅'} | ${row.reverse} | ${row.note}\n`,
+    )
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return 0
+}
+

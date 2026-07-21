@@ -1273,26 +1273,49 @@ export function drawQuantumAppFrame(
 }
 
 /**
- * Taiji — the CORRECT yin-yang motion: the whole pattern is a RIGID figure rotating about its
- * centre (the two eyes are embedded in their lobes and turn with them). Built from the canonical
- * two-radius construction; sense from the doubling orbit (1→2 ascending), period from the hero clock.
+ * Taiji — true yin-yang: rigid figure + NON-LINEAR exchange fold (smoothstep+sin), hue from
+ * rosettaPerspectiveFold. NOT linear frame.p·TAU card-spin. Sense from vortex doubling.
  */
 function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
   const r = Math.min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
-  const yinHue = frame.hue % 360
-  const yangHue = (frame.hue + (9 * 5 * 4)) % 360
+  // Field identity for rosettaPerspectiveFold — same hue/p/t as the shared hero clock frame.
+  const field: AnimationField = {
+    route: '/en/#yinyang',
+    at: 0,
+    t: frame.t,
+    p: frame.p,
+    seed: Math.floor(frame.hue),
+    hue: frame.hue,
+    arms: PLASMA_TIERS[0]!,
+    tags: [],
+    movieText: 'taiji',
+    wiredStreams: [],
+    palette: frame.palette,
+    reduce: frame.reduce,
+    dark: frame.palette.dark,
+    cssWidth: frame.cssWidth,
+    scroll: 0,
+    root: toUuid(`taiji-field:${frame.hue}:${Math.floor(frame.p * (5 * 2 * 100))}`),
+  }
+  const ray = VORTEX_SEQUENCE[Math.floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length]! % 7
+  const view = rosettaPerspectiveFold(ray, field)
+  const yinHue = view.hue % 360
+  const yangHue = (view.hue + (9 * 5 * 4)) % 360
   const dark = (a: number) => paint(yinHue, a, { L: 5 / 16 })
   const light = (a: number) => paint(yangHue, a, { L: 7 / 8 })
-  // Sense from the vortex doubling: 1→2 ascends ⇒ +1 (clockwise on screen). Period = one hero cycle.
+  // Non-linear yin↔yang exchange (same law as taijiRosettaExchangeDegrees): smoothstep + sin/TAU.
+  const u = frame.reduce ? 0 : frame.p
+  const fold = u * u * (3 - 2 * u)
+  const exchange = fold + Math.sin(u * TAU) / TAU
   const dir = VORTEX_SEQ_SENSE
-  const theta = frame.reduce ? 0 : dir * frame.p * TAU
+  const theta = frame.reduce ? 0 : dir * exchange * TAU
   ctx.save()
   ctx.translate(cx, cy)
   ctx.rotate(theta)
-  // Rigid taiji at the origin — drawn once, rotated as one body.
+  // Rigid taiji at the origin — drawn once, rotated as one exchanging body.
   ctx.beginPath(); ctx.arc(0, 0, r, -Math.PI / 2, Math.PI / 2, false); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()
   ctx.beginPath(); ctx.arc(0, 0, r, Math.PI / 2, -Math.PI / 2, false); ctx.fillStyle = light((1 - 2 / (5 * 5))); ctx.fill()
   ctx.beginPath(); ctx.arc(0, -r / 2, r / 2, 0, TAU); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()

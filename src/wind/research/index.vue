@@ -65,6 +65,30 @@ runMillennium()
         <p class="research-index__meta"><code>{{ millennium.cli }}</code> · route <code>{{ millennium.route }}</code></p>
       </section>
       <UiSeparator />
+      <section id="sciences-trinities">
+        <h3>Sciences · significance · trinities</h3>
+        <UiBadge :variant="panel.significance?.computes ? 'default' : 'outline'">
+          meanSig={{ panel.significance?.meanScore ?? '—' }}/100 · trinities={{ panel.trinities?.count ?? '—' }}
+        </UiBadge>
+        <p class="research-index__meta">{{ panel.trinities?.boundary }}</p>
+        <table class="research-index__table">
+          <thead><tr><th>Domain</th><th>Score</th><th>Ray</th><th>Gaps</th></tr></thead>
+          <tbody>
+            <tr v-for="d in panel.significance?.domains ?? []" :key="d.id">
+              <td><code>{{ d.id }}</code></td>
+              <td>{{ d.score }}</td>
+              <td>{{ d.ray }}</td>
+              <td>{{ d.gapsOpen }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="research-index__meta">
+          crypto OECD {{ panel.trinities?.cryptoVertex?.oecd }} ·
+          lattice <code>{{ panel.trinities?.root?.slice(0, 8) }}</code> ·
+          <code>npm run quantum:sciences-trinities</code>
+        </p>
+      </section>
+      <UiSeparator />
       <section>
         <h3>Reproducibility gates</h3>
         <ul class="research-index__list">
