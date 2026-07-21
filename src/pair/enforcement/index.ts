@@ -178,6 +178,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'twenties/three',
   'journey/theorems',
   'theorems/journey',
+  'wave/domain',
+  'domain/harm',
   'observe/coord',
   'send/observe',
   'full/freedom',
