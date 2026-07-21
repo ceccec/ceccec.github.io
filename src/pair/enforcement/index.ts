@@ -101,6 +101,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'rosetta/merkaba',
   'discover/rest',
   'readme/svg-trinity',
+  'symbols/quantumise',
   'wire/paste-link',
   'mcp/browser-parity',
   'tool/envelope',

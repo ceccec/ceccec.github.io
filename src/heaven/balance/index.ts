@@ -705,6 +705,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'counter.rotating.rosetta.quantum.waves', on: (__ns_up_up_quantum_apps).counterRotatingRosettaQuantumWaves(matrix, 0).computes },
     { d: 'universe.almost.described.discover.rest', on: (__ns_up_up_quantum_apps).universeAlmostDescribedInTheoremsDiscoverRest(matrix, 0).computes },
     { d: 'readme.svg.gaps.filled.by.trinity.mind', on: (__ns_up_up_heaven_site).readmeSvgGapsFilledByTrinityMind(matrix).filled },
+    { d: 'symbols.remaining.to.quantumise', on: (__ns_up_up_heaven_site).symbolsRemainingToQuantumise(matrix).quantumised },
     { d: 'double.torus.vortex.computes', on: doubleTorusVortexComputes(matrix).computes },
     { d: 'vortex.computes', on: vortexComputes(matrix).computes },
     { d: 'vortex.plasma.computes', on: vortexPlasmaComputes(matrix).computes },

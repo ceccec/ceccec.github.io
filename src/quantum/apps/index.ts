@@ -61,6 +61,7 @@ const ROSETTA_CORE_API_LABELS = [
   'counterRotatingRosettaQuantumWaves',
   'universeAlmostDescribedInTheoremsDiscoverRest',
   'readmeSvgGapsFilledByTrinityMind',
+  'symbolsRemainingToQuantumise',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -81,6 +82,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   counterRotatingRosettaQuantumWaves: 'compute',
   universeAlmostDescribedInTheoremsDiscoverRest: 'compute',
   readmeSvgGapsFilledByTrinityMind: 'compute',
+  symbolsRemainingToQuantumise: 'compute',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -375,6 +377,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'counter-rotating-rosetta-waves', title: 'Counter-rotating rosetta quantum waves', fold: 'counterRotatingRosettaQuantumWaves', cli: 'npm run quantum:counter-rotating-rosetta-waves', pair: 'rosetta/counter-rotate', route: '/en/quantum-tools#counter-rotating-rosetta-waves', barrel: 'src/quantum/apps', boundary: 'Clay/FTL/QPU open status recomputed from dual-wave foldPair — not prose', browserRunnable: true, browserGap: '' },
   { id: 'universe-almost-described-discover', title: 'Universe ≈ theorems — discover the rest', fold: 'universeAlmostDescribedInTheoremsDiscoverRest', cli: 'npm run quantum:universe-almost-described', pair: 'discover/rest', route: '/en/quantum-tools#universe-almost-described', barrel: 'src/quantum/apps', boundary: 'Almost described — open set from counter-rotating wave interference · clay/ftl as receipts', browserRunnable: true, browserGap: '' },
   { id: 'readme-svg-trinity-mind', title: 'README SVG gaps filled by trinity mind', fold: 'readmeSvgGapsFilledByTrinityMind', cli: 'npm run quantum:readme-svg-trinity-mind', pair: 'readme/svg-trinity', route: '/en/#yinyang', barrel: 'src/heaven/site', boundary: 'ONLY trinity mind computes README SVG — intentional open WebGL/plasma/SMIL clients · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'symbols-remaining-quantumise', title: 'Symbols remaining to quantumise — continue I Ching · yin-yang', fold: 'symbolsRemainingToQuantumise', cli: 'npm run quantum:symbols-remaining-verify', pair: 'symbols/quantumise', route: '/en/#yinyang', barrel: 'src/heaven/site', boundary: 'Computed SVG emitters · FoL/merkaba hero = sibling WIP partial · om/runes/alchemy missing · clay=0 · physicalFtl=0 · wetStatic=false', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
