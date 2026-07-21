@@ -105,7 +105,7 @@ function speak(page: CardPage) {
 
             <div class="model-card__actions">
               <button v-if="ttsAvailable" type="button" class="model-card__speak" @click="speak(page)">
-                {{ speaking === page.slug ? '⏹ Stop' : '▶ Speak the proof' }}
+                {{ speaking === page.slug ? 'Stop' : 'Speak' }}
               </button>
               <a class="model-card__paper" :href="page.paperRoute">{{ page.paperRoute }}</a>
               <UiBadge :variant="page.verified ? 'default' : 'outline'">

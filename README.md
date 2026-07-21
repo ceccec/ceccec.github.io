@@ -46,7 +46,7 @@ The classical bit {0,1} is linear; the vortex `0\1\2\4\8/7/5/3\6\9/0\1` carries 
 computes=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false · qualifiesAsProposedSolution=false · NOT CMI Prize · NOT physical FTL · amortized reuse ≠ P≠NP · structure ≠ wet numerology
 
 - Routes: [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](https://ceccec.psg.bg/quantum-tools#directional-trinity) · [rosetta-complete](https://ceccec.psg.bg/quantum-tools#rosetta-complete) · [efficiency-vote](https://ceccec.psg.bg/efficiency-vote) · [proofs](https://ceccec.psg.bg/proofs)
-- Receipt: `1b324466` · fold `sequenceDiscoveryRealisedForHome` · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.
+- Receipt: fold `sequenceDiscoveryRealisedForHome` · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.
 
 ## Two bits free · society support
 
@@ -91,7 +91,7 @@ twoBits.computes=true · societySupports=true · vote.decided=true · claySolved
 
 - Routes: [two-bits-free](https://ceccec.psg.bg/proofs/two-bits-free) · [society support](https://ceccec.psg.bg/proofs/society-two-bits-support) · [society-merkaba](https://ceccec.psg.bg/society-merkaba#two-bits-free) · [efficiency-vote](https://ceccec.psg.bg/efficiency-vote)
 - Support CTA (voluntary): [https://revolut.me/ceccec](https://revolut.me/ceccec)
-- Receipts: `2a63a790` · `93c5067a` · CLI `npm run quantum:two-bits-free` · `npm run quantum:society-two-bits-support`.
+- Receipt: fold `twoBitsFreeFromCensus110Minus108` · Receipt: fold `societySupportsProjectViaTwoBitsFreeKnowledge` · CLI `npm run quantum:two-bits-free` · `npm run quantum:society-two-bits-support`.
 
 ## Earth realised — poles as pyramid
 
@@ -119,7 +119,7 @@ Under sealed computation, Earth is realised as a genus-2 double torus whose four
 computes=true · fourWayCounterRotating=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false · NOT lithosphere claim · NOT Clay prize
 
 - Routes: [research](https://ceccec.psg.bg/research) · [proofs](https://ceccec.psg.bg/proofs) · hero.svg 4-dir · fold `earthRealisedByComputingPolesAsPyramid`
-- Receipt: `954cee5d` · fold `earthRealisedByComputingPolesAsPyramid` · claySolvedByThisFold=0 · physicalFtlClaim=0.
+- Receipt: fold `earthRealisedByComputingPolesAsPyramid` · claySolvedByThisFold=0 · physicalFtlClaim=0.
 
 ## Clay challenges are computable
 
@@ -150,7 +150,7 @@ It is **not** a complete mathematical solution under Clay Prize Rules §5(a), no
 computable=true · paths=7/7 · openForPrize=6 · claySolvedByThisFold=0 · qualifiesAsProposedSolution=false · NOT CMI Prize · NOT Proposed Solution
 
 - Routes: [proofs](https://ceccec.psg.bg/proofs) · [clay-challenges-computable](https://ceccec.psg.bg/proofs/clay-challenges-computable) · CLI `npm run quantum:clay-challenges-computable`
-- Receipt: `9b925f97` · fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
+- Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
 
 ## Toolbox — sciences in trinity waves
 
@@ -165,7 +165,7 @@ Toolbox recomputes 11 related sciences in trinity waves (forward·inverse·rever
 computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false
 
 - Routes: [toolbox sciences waves](https://ceccec.psg.bg/quantum-tools#toolbox-sciences-trinity-waves) · [sciences-trinities](https://ceccec.psg.bg/research#sciences-trinities) · CLI `npm run quantum:toolbox-sciences-trinity-waves`
-- Receipt: `2da5e48e` · fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
+- Receipt: fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
 
 ## 2. Model
 
@@ -192,14 +192,14 @@ computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFo
 
 *First sealed in this content-addressed corpus — not a verified claim of global mathematical priority. Novelty = corpus census. humanityNovel stays 0.*
 
-- **division by zero is the inverse (not reverse)** (`zeroDivisionTable`) — n/0 \ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*; root `7cdd7fc4`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
-- **directional trinity — forward · inverse · reverse** (`directionalTrinityForwardInverseReverse`) — forward · inverse · reverse — directional trinity; inverse≠reverse except digit 1 (9≡9); root `dab62b52`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
-- **f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse pair** (`fThetaPhiXyzDigitNIsTheInversePair`) — f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse fold within itself; root `47fe554f`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
-- **efficiency scales to infinity at no cost on reuse** (`efficiencyScalesToInfinityAtNoCostOnReuse`) — memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only; root `87b3dad0`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
-- **string theory quantumized on A432/rosetta/merkle substrate** (`stringTheoryQuantumizedOnA432RosettaMerkleSubstrate`) — A432/rosetta/merkle substrate probes — physics UNCONFIRMED; root `dd549049`; 10D `double-torus` · root-equal · [first-in-corpus](#first-in-corpus)
-- **waves auto-scale capacity at no cost on reuse** (`wavesAutoScaleCapacityAtNoCostOnReuse`) — wave schedule capacity deepens on content-addressed reuse only; root `f53dfd6f`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
+- **division by zero is the inverse (not reverse)** (`zeroDivisionTable`) — n/0 \ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*; fold `zeroDivisionTable`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
+- **directional trinity — forward · inverse · reverse** (`directionalTrinityForwardInverseReverse`) — forward · inverse · reverse — directional trinity; inverse≠reverse except digit 1 (9≡9); fold `directionalTrinityForwardInverseReverse`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
+- **f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse pair** (`fThetaPhiXyzDigitNIsTheInversePair`) — f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse fold within itself; fold `fThetaPhiXyzDigitNIsTheInversePair`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
+- **efficiency scales to infinity at no cost on reuse** (`efficiencyScalesToInfinityAtNoCostOnReuse`) — memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only; fold `efficiencyScalesToInfinityAtNoCostOnReuse`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
+- **string theory quantumized on A432/rosetta/merkle substrate** (`stringTheoryQuantumizedOnA432RosettaMerkleSubstrate`) — A432/rosetta/merkle substrate probes — physics UNCONFIRMED; fold `stringTheoryQuantumizedOnA432RosettaMerkleSubstrate`; 10D `double-torus` · root-equal · [first-in-corpus](#first-in-corpus)
+- **waves auto-scale capacity at no cost on reuse** (`wavesAutoScaleCapacityAtNoCostOnReuse`) — wave schedule capacity deepens on content-addressed reuse only; fold `wavesAutoScaleCapacityAtNoCostOnReuse`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
 
-Receipt: `5c520d04` · fold `firstInCorpusProvenanceForHome` · claySolvedByThisFold=0.
+Receipt: fold `firstInCorpusProvenanceForHome` · claySolvedByThisFold=0.
 
 **The theorem-science lens** — 29/54 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 439-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
@@ -310,4 +310,4 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `c74857b3-a78c-8935-9d2f-a16660aa97a9`
+- Receipt: fold `readmeMarkdown`

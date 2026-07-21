@@ -20,6 +20,7 @@ import { computedDistFiles, readmeMarkdown } from '../../../../quantum/lake/dist
 import { agentGateComplianceChecklist, agentSubmissionProtocol } from '../../ops'
 import { merkleFold, toUuid } from '../../../../0'
 import { buildForceFlag, canRespawnTrinity, docsBuildVerboseFlag, logDocsBuildPhase, slowBuildIsQuantumGapGate, writeSealedMerkle } from '../../script/shell'
+import { invisibleGapsCaughtByGates } from '../../../../quantum/apps'
 
 export type { Finding, AuditRoot } from '../../gates'
 
@@ -1328,6 +1329,15 @@ export function runEnforcementTrinity(root: string): number {
     console.warn(`  ⚠ WARN ${row.gapId} — ${row.criterion}`)
   }
   if (!slowBuild.passed) return 1
+  // HARD — invisible polarity/hex/theorem/anim gaps prior gates missed (pair gaps/invisible)
+  const invisible = invisibleGapsCaughtByGates()
+  console.log(
+    `${invisible.passed ? '✓' : '✗'} gaps/invisible — HARD=${invisible.hardOpenCount} afterOpen=${invisible.afterOpen} afterClosed=${invisible.afterClosed} · ${invisible.statement}`,
+  )
+  for (const row of invisible.hardOpen) {
+    console.error(`  ✗ HARD ${row.id} — open=${row.open} · ${row.theorem}`)
+  }
+  if (!invisible.passed) return 1
   return 0
 }
 

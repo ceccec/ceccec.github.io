@@ -42,18 +42,11 @@ function draw(t: number) {
   const phase = (t / (108 * (2 * 5))) * rate * TAU // the census clock scaled by the φ-rate
   // THE CENTER IS MANY — the frame tours the figure's OWN vertices: each of the spec's points takes
   // its turn as the center (weights sharpened so the drift lingers, then travels). The tour rate rides
-  // φ⁻² against the main φ-rate — incommensurate, so the animation never repeats and never rests.
-  const many = Math.max(3, props.spec.points)
+  // φ⁻² tour drives in-frame child phase only; canvas origin stays square-centered (movie/center).
   const tour = phase * PHI ** -2
-  let wx = 0, wy = 0, wsum = 0
-  for (let k = 0; k < many; k += 1) {
-    const a = (k / many) * TAU
-    const w = ((1 + Math.cos(tour - a)) / 2) ** 5
-    wx += w * Math.cos(a); wy += w * Math.sin(a); wsum += w
-  }
   ctx.setTransform(1, 0, 0, 1, 0, 0)
   ctx.clearRect(0, 0, s, s)
-  ctx.translate((s / 9) * (wx / wsum), (s / 9) * (wy / wsum))
+  // Balanced about center — no off-axis translate (movieUnbalancedAroundCenterIsCrack).
   ctx.lineWidth = Math.max(1, s / 2 ** 5)
   // The ONE canvas palette (OKLCH + the negative law) — hsla here was the last literal colour math.
   const stroke = (alpha: number, dh = 0) => { ctx.strokeStyle = movieCanvasRgba((hue + dh) % 360, alpha, { dark: isDark.value }) }

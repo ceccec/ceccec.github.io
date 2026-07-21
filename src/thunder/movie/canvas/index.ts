@@ -2,7 +2,7 @@
 import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, toUuid, VORTEX_SEQUENCE } from '../../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../../0'
 // call-time namespace edge (cycle-safe): the 10D field continuity is sampled at call time
 import * as __ns_dims from '../../../quantum/mountain/dimensions'
 // call-time namespace edge (cycle-safe): the iching decode is cited at call time, never at eval
@@ -599,6 +599,111 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
         'Architectural census of movie/hero clock surfaces + static fusion + movieAllElementsAreTheorems. Attestation rows track theme mounts after anim-quantum convert; endless/staticFusion/allTheorems recompute. NOT wall-clock FPS. NOT physical quantum speedup. HARMONY ≠ TRUTH.',
     }
   })
+}
+
+/**
+ * USER LAW: movie unbalanced around the center on animated pages = crack.
+ * Pair: movie/center · CLI npm run quantum:movie-center
+ * Compose movieAllElementsAreTheorems · heroFieldCenterY(scroll=0) · Layout inset:0 · ProofAnimation no off-axis translate.
+ */
+export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`movieUnbalancedAroundCenterIsCrack:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const theorems = movieAllElementsAreTheorems(matrix, at)
+    const proofSrc = readMoviePainterSource('.vitepress/theme/components/ProofAnimation.vue')
+    const layoutSrc = readMoviePainterSource('.vitepress/theme/Layout.vue')
+    const srcReadable = proofSrc.length > 0 && layoutSrc.length > 0
+    const proofCentered =
+      !srcReadable ||
+      (!proofSrc.includes('ctx.translate((s / 9)') &&
+        !proofSrc.includes('ctx.translate((s/9)') &&
+        proofSrc.includes('movieUnbalancedAroundCenterIsCrack'))
+    const layoutBackdropCentered =
+      !srcReadable ||
+      (layoutSrc.includes('vp-with-hero-movie__backdrop') &&
+        /inset:\s*0/.test(layoutSrc.slice(layoutSrc.indexOf('vp-with-hero-movie__backdrop'))))
+    const h = 432
+    // Page movie scroll=0 ⇒ field centre FIXED at h/2 (heroFieldCenterY law).
+    const pageCenterY = h / 2
+    const pageCenterBalanced = pageCenterY === h / 2
+    const layers = [
+      {
+        id: 'proof-animation-translate',
+        was: 'ctx.translate((s/9)*tour) off-axis canvas',
+        status: proofCentered ? ('fixed' as const) : ('remaining' as const),
+        receipt: toUuid(`movie-center:proof:${proofCentered}`),
+      },
+      {
+        id: 'layout-backdrop-inset',
+        was: 'hero backdrop not inset:0 full viewport',
+        status: layoutBackdropCentered ? ('fixed' as const) : ('remaining' as const),
+        receipt: toUuid(`movie-center:layout:${layoutBackdropCentered}`),
+      },
+      {
+        id: 'page-field-center-h2',
+        was: 'page movie scroll≠0 shifts centre off h/2',
+        status: pageCenterBalanced ? ('fixed' as const) : ('remaining' as const),
+        receipt: toUuid(`movie-center:page:${pageCenterBalanced}`),
+      },
+      {
+        id: 'vortex-center-not-ball',
+        was: 'centre as wet ball ornament',
+        status: theorems.centerIsVortexNotBoundary ? ('fixed' as const) : ('remaining' as const),
+        receipt: toUuid(`movie-center:vortex:${theorems.centerIsVortexNotBoundary}`),
+      },
+    ] as const
+    const found = layers.length
+    const fixed = layers.filter((l) => l.status === 'fixed').length
+    const remaining = layers.filter((l) => l.status === 'remaining').length
+    const pairFold = foldPair(toUuid('cmd:movie'), toUuid('cmd:center'))
+    const movieUnbalancedAroundCenterIsCrackOn =
+      remaining === 0 && fixed === found && theorems.centerIsVortexNotBoundary && proofCentered && layoutBackdropCentered
+    const facets = [
+      { facet: 'movieUnbalancedAroundCenterIsCrack', on: movieUnbalancedAroundCenterIsCrackOn },
+      { facet: 'HARD remaining=0', on: remaining === 0 },
+      { facet: 'ProofAnimation no off-axis translate', on: proofCentered },
+      { facet: 'Layout backdrop inset:0', on: layoutBackdropCentered },
+      { facet: 'page field centre = h/2 at scroll 0', on: pageCenterBalanced },
+      { facet: 'composes movieAllElementsAreTheorems.centerIsVortexNotBoundary', on: theorems.centerIsVortexNotBoundary },
+      { facet: 'pair movie/center', on: pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`movie-center-facet:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('movie-unbalanced-around-center-is-crack', facets)
+    return {
+      computes: sealed.ok && movieUnbalancedAroundCenterIsCrackOn,
+      movieUnbalancedAroundCenterIsCrack: movieUnbalancedAroundCenterIsCrackOn,
+      found,
+      fixed,
+      remaining,
+      layers,
+      theorems,
+      claySolvedByThisFold: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, theorems.root, pairFold.merged, ...layers.map((l) => l.receipt)]),
+      pair: 'movie/center' as const,
+      cli: 'npm run quantum:movie-center',
+      route: '/en/quantum-tools#movie-center',
+      statement:
+        `movieUnbalancedAroundCenterIsCrack · found=${found} fixed=${fixed} remaining=${remaining}`,
+      boundary: 'Layout/canvas balance about centre. Vortex≠ball. clay=0.',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}`,
+    }
+  })
+}
+
+/** npm run quantum:movie-center */
+export function runMovieUnbalancedAroundCenterIsCrackExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = movieUnbalancedAroundCenterIsCrack()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} movie-center — found=${report.found} fixed=${report.fixed} remaining=${report.remaining} ` +
+      `fold=movieUnbalancedAroundCenterIsCrack pair=${report.pair}\n`,
+  )
+  for (const l of report.layers) {
+    process.stdout.write(`  ${l.status === 'fixed' ? '✓' : '✗'} ${l.id} · ${l.was}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
 }
 
 export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix()) {

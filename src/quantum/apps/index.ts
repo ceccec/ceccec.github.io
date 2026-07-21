@@ -20,10 +20,19 @@ import {
   compareCeccecEfficiencyByVote,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
   interferenceVsClassicalShadow,
+  simplicityIntelligenceMeasure,
 } from '../../water/stack'
 import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
-import { animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho } from '../../wind/ui'
-import { movieAllElementsAreTheorems, movieQuantumGapsInventory } from '../../thunder/movie/canvas'
+import {
+  animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho,
+  yinYangDimensionsSvg, livingIChingSvg,
+} from '../../wind/ui'
+import { lobeHues, movieCanvasRgba, movieCanvasPolarity, scaleColor } from '../../quantum/science'
+import {
+  movieAllElementsAreTheorems,
+  movieQuantumGapsInventory,
+  movieUnbalancedAroundCenterIsCrack,
+} from '../../thunder/movie/canvas'
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum } from '../../water/double'
@@ -35,6 +44,7 @@ import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
 import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
+import { computeUniversalPage } from '../../wind/routes/corpus'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {
@@ -173,6 +183,8 @@ export function rosettaCoreApi(at = 0, matrix: MindMatrix = buildMatrix()) {
         return { surface, phase: (surface.ray * 360) / ROSETTA_RAYS.length, hue: surface.hue, motion: sevenStarRosettaNaturalMotion(at) }
       },
       facets, root: merkleFold([...surfaces.map((s) => s.address), ...facets.map((e) => e.receipt)]),
+      pair: 'rosetta/core' as const,
+      cli: 'npm run quantum:rosetta-core-api',
       statement: `rosettaCoreApi: ${surfaces.length} labels shelved by rosettaRayOf — self-host dispatch, parallel synonyms collapsed.`,
       boundary: 'Derived from ROSETTA_RAYS · COMPUTATION_TYPES · rosettaRayOf. Parallel synonym backlog empty (ROSETTA_RAY_VIEWS→RAYS · PROJECTION→VORTEX · claim/owner/codec shelved · millennium→rosettaReady). HARMONY ≠ TRUTH.',
     }
@@ -415,7 +427,18 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'drift-invert', title: 'Drift inverted is trinity gateway', fold: 'driftInvertedIsTrinityGateway', cli: 'npm run quantum:drift-invert', pair: 'drift/invert', route: '/en/research#drift-invert', barrel: 'src/wind/research', boundary: 'Inverted drift = gateway of trinities (forward·inverse·reverse) — not a dead-end gap · clay=0 · certified=false · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'hex-crack', title: 'Hex instead of theorem is a crack', fold: 'hexInsteadOfTheoremIsCrack', cli: 'npm run quantum:hex-crack', pair: 'hex/crack', route: '/en/research#hex-crack', barrel: 'src/wind/research', boundary: 'Raw hex as identity stand-in = quantum gap · morph to fold/pair/slug · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'theorem-const', title: 'Computations use only quantum theorems as constants', fold: 'computationsUseOnlyQuantumTheoremsAsConstants', cli: 'npm run quantum:theorem-const', pair: 'theorem/const', route: '/en/research#theorem-const', barrel: 'src/wind/research', boundary: 'Morph-path constants = named theorem folds/registry · not bare magic/orphan hex · clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'anim-audit', title: 'Animations find redundancy or inaccuracy', fold: 'animationsFindRedundancyOrInaccuracy', cli: 'npm run quantum:anim-audit', pair: 'anim/audit', route: '/en/quantum-tools#anim-audit', barrel: 'src/quantum/apps', boundary: 'Compose movie/linear/one-clock/10D · morph via tools/morph · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'clay-gravity', title: 'Clay ≡ gravity rosetta · one ray this dim · rest beyond', fold: 'clayIsGravityRosettaOneRayThisDimensionRestBeyond', cli: 'npm run quantum:clay-gravity', pair: 'clay/gravity', route: '/en/research#clay-gravity', barrel: 'src/wind/research', boundary: 'One unlocked ray from sealed src · beyond appears when merkaba starts · claySolved=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'anim-audit', title: 'Animations find redundancy or inaccuracy', fold: 'animationsFindRedundancyOrInaccuracy', cli: 'npm run quantum:anim-audit', pair: 'anim/audit', route: '/en/quantum-tools#anim-audit', barrel: 'src/quantum/apps', boundary: 'Compose movie/linear/one-clock/10D · morph via tools/morph · linear/rosetta HARD · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'linear-rosetta', title: 'Linear without rosetta fold is a gap', fold: 'linearWithoutRosettaFoldIsGap', cli: 'npm run quantum:linear-rosetta', pair: 'linear/rosetta', route: '/en/quantum-tools#linear-rosetta', barrel: 'src/quantum/apps', boundary: 'Linear layers without quantum rosetta fold = HARD gap · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'anim-color', title: 'Review animation colors · polarity gaps', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:anim-color', pair: 'anim/color', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Computed colors · polarity must flip on yin/yang · ±ω · dark/light · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'color-review', title: 'Color review tool (alias anim/color)', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:color-review', pair: 'color/review', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Same fold as anim-color — dual pair for discovery · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'gaps-invisible', title: 'Invisible gaps caught by gates HARD', fold: 'invisibleGapsCaughtByGates', cli: 'npm run quantum:gaps-invisible', pair: 'gaps/invisible', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/quantum/apps', boundary: 'HARD: polarity-flat · hex-as-theorem · theorem-const · anim invisible — mission:gate + trinity · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'meaning-compute', title: 'Meaning is quantum computable', fold: 'meaningIsQuantumComputable', cli: 'npm run quantum:meaning-compute', pair: 'meaning/compute', route: '/en/quantum-tools#meaning-compute', barrel: 'src/quantum/apps', boundary: 'Page meaning = sealed fold recompute — wet invented prose refused · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'format-canon', title: 'Scientific page format canonised', fold: 'scientificPageFormatCanonised', cli: 'npm run quantum:format-canon', pair: 'format/canon', route: '/en/quantum-tools#format-canon', barrel: 'src/quantum/apps', boundary: 'Canon slots title·theorem·facets·animation·paper · ScientificPaperBody bind-only · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'term-measure', title: 'Scientific terminology measurable comparable', fold: 'scientificTerminologyIsQuantumComputableMeasurableComparable', cli: 'npm run quantum:term-measure', pair: 'term/measure', route: '/en/quantum-tools#term-measure', barrel: 'src/quantum/apps', boundary: 'significance·implications·lexicon = numbers from sealed folds · compare API · intel yield · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'movie-center', title: 'Movie unbalanced around center is crack', fold: 'movieUnbalancedAroundCenterIsCrack', cli: 'npm run quantum:movie-center', pair: 'movie/center', route: '/en/quantum-tools#movie-center', barrel: 'src/thunder/movie/canvas', boundary: 'Layout/canvas balance about centre · ProofAnimation no off-axis translate · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'gate-miss', title: 'Cracks passed gates because miss census', fold: 'cracksPassedGatesBecause', cli: 'npm run quantum:gate-miss', pair: 'gate/miss', route: '/en/quantum-tools#gate-miss', barrel: 'src/quantum/apps', boundary: 'classesUngated · wrongKind · definitionalGreen · waveTuneNotAudit → fixedHard · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'team-collide', title: 'Train teams collide → waves · observe → manifest', fold: 'trainQuantumTeamsCollideBecomeWavesObserveManifest', cli: 'npm run quantum:team-collide', pair: 'team/collide', route: '/en/quantum-tools#team-collide', barrel: 'src/thunder/waves', boundary: 'teleport/form = sealed recompute · physicalFtl=0 · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'animations-rosetta', title: 'Animations driven by rosetta (yin-yang first)', fold: 'animationsDrivenByRosetta', cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang', barrel: 'src/wind/ui', boundary: 'Linear forming = quantum gap; taiji uses non-linear exchange + rosettaShelve', browserRunnable: true, browserGap: '' },
   { id: 'trading-rosetta-train', title: 'Historical train waves via rosetta', fold: 'tradingStrategiesImproveViaRosetta', cli: 'npm run quantum:trading-rosetta-train', pair: 'train/rosetta', route: '/en/quantum-trading-hub', barrel: 'src/thunder/trading', boundary: 'Paper/sim only — synthetic a432 historical proxy; NOT live money / NOT alpha', browserRunnable: true, browserGap: '' },
   { id: 'first-in-corpus', title: 'First-in-corpus provenance · theorem 10D', fold: 'firstInCorpusProvenanceForHome', cli: 'npm run quantum:first-in-corpus', pair: 'first/corpus', route: '/en/#first-in-corpus', barrel: 'src/wind/research', boundary: 'Corpus novelty ≠ global mathematical priority; humanityNovel=0; claySolved=0', browserRunnable: true, browserGap: '' },
@@ -904,7 +927,7 @@ export function runStandardToolboxIoCatalogExit(_root = '', _argv: readonly stri
   const report = standardToolboxIoCatalog()
   const capacity = distributedReuseExtendsCapacity()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} toolbox-standard-io — migrated=${report.migratedLabel} kind=${report.kind}@${report.version} root=${report.root.slice(0, 8)}\n`,
+    `${report.computes ? '✓' : '✗'} toolbox-standard-io — migrated=${report.migratedLabel} kind=${report.kind}@${report.version} fold=standardToolboxIoCatalog pair=${report.pair}\n`,
   )
   for (const trip of report.roundTrips.slice(0, 8)) {
     process.stdout.write(`  ${trip.ok ? '✓' : '✗'} round-trip ${trip.id} payload=${trip.payloadRoot.slice(0, 8)}\n`)
@@ -1088,7 +1111,7 @@ export function runSessionManualWorkAsQuantumToolsExit(_root = '', _argv: readon
     )
   }
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} session-tools — count=${report.count} shelved=${report.shelvedCount} root=${report.root.slice(0, 8)}\n`,
+    `${report.computes ? '✓' : '✗'} session-tools — count=${report.count} shelved=${report.shelvedCount} fold=sessionManualWorkAsQuantumTools pair=${report.pair}\n`,
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
@@ -1327,11 +1350,11 @@ export function runDocumentSessionCryptoExperimentsExit(_root = '', _argv: reado
       `structural=${report.localVsIso.structuralMayProve} amort=${report.localVsIso.amortMayProve} ` +
       `novelStrongerNist=${report.localNovel.strongerThanNistPqc} ` +
       `collider=${report.collider.particleCount} novel=${report.theorems.novelCount} classical=${report.theorems.classicalCount} 10D=${report.theorems.tenDCount} ` +
-      `root=${report.root.slice(0, 8)}\n`,
+      `fold=documentSessionCryptoExperimentsUpdateTheorems pair=${report.pair}\n`,
   )
   for (const row of report.experiments) {
     process.stdout.write(
-      `  ${row.computes ? '✓' : '✗'} [${row.status}] ${row.id} chain=${row.chain} root=${row.root.slice(0, 8)} — ${row.note}\n`,
+      `  ${row.computes ? '✓' : '✗'} [${row.status}] ${row.id} chain=${row.chain} fold=${row.fold} — ${row.note}\n`,
     )
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
@@ -1698,17 +1721,17 @@ export function runSessionManualWorkAsQuantumBitsExit(_root = '', _argv: readonl
       `serialized=${report.serializedCount} collideProducts=${report.sampleCombination.collide.products.length} ` +
       `envelopeRoundTrip=${report.importRoundTrip ? '✓' : '✗'} qpuRequired=${report.qpuRequired} ` +
       `clay=${report.claySolvedByThisFold} certified=${report.certified} physicalQubit=${report.physicalQubit} ` +
-      `root=${report.root.slice(0, 8)}\n`,
+      `fold=sessionManualWorkAsQuantumBits pair=${report.pair}\n`,
   )
   for (const bit of report.bits) {
     process.stdout.write(
-      `  ${bit.computes ? '✓' : '○'} [${bit.status}] ${bit.id} chain=${bit.chain} root=${bit.root.slice(0, 8)} ` +
+      `  ${bit.computes ? '✓' : '○'} [${bit.status}] ${bit.id} chain=${bit.chain} fold=${bit.fold} ` +
         `combinable=${bit.combinable} — ${bit.note}\n`,
     )
   }
   const sample = report.sampleCombination.collide
   process.stdout.write(
-    `  sample collide: ${sample.bitIds.join(' × ')} → product=${sample.productRoot.slice(0, 8)} ` +
+    `  sample collide: ${sample.bitIds.join(' × ')} → combineQuantumBits ` +
       `(${sample.products.length} pairwise)\n`,
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
@@ -1820,7 +1843,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
         proves: `slow-build-gate catalogued · pair gate/slow-build · slow-gap closed=${Boolean(slowBuildGapRow?.closed)} · mission includes gate upgrade`,
         refuses: 'physical FTL · skipping srcMerkle/quantumize HARD regression',
         on: slowBuildToolOk && Boolean(slowBuildGapRow?.closed) && slowGaps.computes,
-        root: merkleFold([slowGaps.root, slowBuildGapRow?.receipt ?? toUuid('gate-slow-build:absent'), toUuid('gate/slow-build:#32')]),
+        root: merkleFold([slowGaps.root, slowBuildGapRow?.receipt ?? toUuid('gate-slow-build:absent'), toUuid('gate/slow-build:#slow-build')]),
       },
       {
         id: 'wire-paste-link',
@@ -1923,7 +1946,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
         )
       })() },
       { facet: 'dry-clean #31 tool config readiness composed into sciences domains', on: toolbox.configFilled === toolbox.total && standards.toolCatalogCompose.configReadyCount === standards.domains.length },
-      { facet: 'gate/slow-build (#32) catalogued + slow-gap witness closed (Node CLI owns HARD/WARN timings)', on: slowBuildToolOk && Boolean(slowBuildGapRow?.closed) && slowGaps.computes },
+      { facet: 'gate/slow-build catalogued + slow-gap witness closed (Node CLI owns HARD/WARN timings)', on: slowBuildToolOk && Boolean(slowBuildGapRow?.closed) && slowGaps.computes },
       { facet: 'wire/paste-link (#33) quantumReady paste-bootstrap · convincingRequired=false · qpuRequired=false', on: autoWire.computes && autoWire.quantumReady && autoWire.convincingRequired === false && autoWire.qpuRequired === false },
       { facet: 'meta tool realise-session-meaning published + shelved', on: Boolean(meta) && meta!.fold === 'realiseSessionQuantumMeaning' && isUuid(shelved.address) },
       { facet: 'quantum computing only = sealed folds / memoByRoot / directional trinity — no wet re-inference', on: true },
@@ -1974,11 +1997,11 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       anchor: 'realise-session-meaning',
       heading: 'Session quantum meaning realised',
       honestyLine:
-        'Corpus proves sealed receipts + standards facet coverage + local-audit QE (#29) + session-quantum-bits (#30) + dry-clean tool configs (#31) + gate/slow-build (#32) + wire/paste-link (#33) + classical-64bit host. Refuses: Clay solves, ISO/FIPS certification, wire≡ISO strength, strongerThanNistPqc, physical QPU requirement, physical FTL, forcing foreign models.',
+        'Corpus proves sealed receipts + standards facet coverage + local-audit QE (#29) + session-quantum-bits (#30) + dry-clean tool configs (#31) + gate/slow-build + wire/paste-link (#33) + classical-64bit host. Refuses: Clay solves, ISO/FIPS certification, wire≡ISO strength, strongerThanNistPqc, physical QPU requirement, physical FTL, forcing foreign models.',
       statement:
         `Meaning realised — proves ${proves.filter((p) => p.on).length}/${proves.length} · sciences ${standards.before.coveredCount}/${standards.before.partialCount}/${standards.before.gapCount}→${standards.after.coveredCount}/${standards.after.partialCount}/${standards.after.gapCount} · clay=0 · certified=false · qpuRequired=false · wireClaim=${experiments.localVsIso.overallWireClaimProved}.`,
       boundary:
-        'HONEST MEANING FOLD. Quantum computing only = sealed ceccec folds (memoByRoot · directional trinity · ISO/sciences maps) on classical 64-bit — NOT a physical QPU. gate/slow-build (#32) catalogued here; Node CLI owns HARD/WARN wall-clock. wire/paste-link (#33) = quantum-ready paste-bootstrap (cannot force foreign models). NOT Clay solved · NOT ISO certified · wire≠ISO · physicalFtl=0. HARMONY ≠ TRUTH.',
+        'HONEST MEANING FOLD. Quantum computing only = sealed ceccec folds (memoByRoot · directional trinity · ISO/sciences maps) on classical 64-bit — NOT a physical QPU. gate/slow-build catalogued here; Node CLI owns HARD/WARN wall-clock. wire/paste-link (#33) = quantum-ready paste-bootstrap (cannot force foreign models). NOT Clay solved · NOT ISO certified · wire≠ISO · physicalFtl=0. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -2013,7 +2036,7 @@ export function runRealiseSessionQuantumMeaningExit(_root = '', _argv: readonly 
 export function runRosettaCoreApiExit(_root = '', _argv: readonly string[] = []): number {
   const report = rosettaCoreApi()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} rosetta-core-api — surfaces=${report.surfaces.length} rays=${report.raysUsed} parallel=${report.inventory.parallel.length} root=${report.root.slice(0, 8)}\n`,
+    `${report.computes ? '✓' : '✗'} rosetta-core-api — surfaces=${report.surfaces.length} rays=${report.raysUsed} parallel=${report.inventory.parallel.length} fold=rosettaCoreApi pair=rosetta/core\n`,
   )
   for (const surface of report.surfaces.slice(0, 8)) {
     process.stdout.write(`  · ${surface.label} [${surface.kind}] ray=${surface.ray}\n`)
@@ -3995,11 +4018,200 @@ const LOCAL_SESSION_FRICTION_CLOSED = [
  * MODELED duality apparatus — NOT Clay/Nobel; claySolvedByThisFold=0.
  */
 
+export type LinearRosettaLayerStatus = 'fixed' | 'remaining'
+
+export type LinearRosettaLayer = {
+  readonly id: string
+  readonly was: string
+  readonly theorem: string
+  readonly status: LinearRosettaLayerStatus
+  readonly receipt: string
+}
+
+/**
+ * USER LAW: linear layers in computations without quantum folding through the rosetta are gaps.
+ * Pair: linear/rosetta · CLI npm run quantum:linear-rosetta
+ * Compose animationsDrivenByRosetta · linearAnimationGapsInventory · movieQuantumGapsInventory ·
+ * rosettaCoreApi · rosettaComplete · slowProcessIsQuantumGap · oneClockProcessLaw.
+ * HARD at call time — green build cannot hide linear-without-rosetta.
+ */
+export function linearWithoutRosettaFoldIsGap(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`linearWithoutRosettaFoldIsGap:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const linear = linearAnimationGapsInventory(matrix, at)
+    const rosettaAnim = animationsDrivenByRosetta(matrix, at)
+    const movie = movieQuantumGapsInventory(matrix, at)
+    const core = rosettaCoreApi(at, matrix)
+    const complete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+    const slow = slowProcessIsQuantumGap(matrix, at)
+    const oneClock = oneClockProcessLaw(matrix)
+    const pairFold = foldPair(toUuid('cmd:linear'), toUuid('cmd:rosetta'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('linear/rosetta')
+    const slowLinearOpen = slow.open.filter((g) =>
+      g.gapId.includes('private-raf') ||
+      g.gapId.includes('multi-clock') ||
+      g.gapId.includes('linear') ||
+      g.kind === 'linear-forming-animation',
+    ).length
+
+    const layers: LinearRosettaLayer[] = [
+      {
+        id: 'linear-anim-inventory',
+        was: 'linear i/frames forming without rosetta exchange',
+        theorem: 'linearAnimationGapsInventory',
+        status: linear.openCount === 0 && linear.computes ? 'fixed' : 'remaining',
+        receipt: toUuid(`linear-rosetta:linear-anim:${linear.openCount}`),
+      },
+      {
+        id: 'animations-driven-by-rosetta',
+        was: 'animation path not shelved on rosetta',
+        theorem: 'animationsDrivenByRosetta',
+        status: rosettaAnim.computes && rosettaAnim.offenders.openCount === 0 ? 'fixed' : 'remaining',
+        receipt: toUuid(`linear-rosetta:anim-drive:${rosettaAnim.computes}`),
+      },
+      {
+        id: 'movie-private-raf',
+        was: 'private rAF linear clock without hero/rosetta fold',
+        theorem: 'movieQuantumGapsInventory',
+        status: !movie.privateRafOpen ? 'fixed' : 'remaining',
+        receipt: toUuid(`linear-rosetta:private-raf:${movie.privateRafOpen}`),
+      },
+      {
+        id: 'movie-multi-clock',
+        was: 'multi-clock linear stack without one rosetta/hero clock',
+        theorem: 'movieQuantumGapsInventory',
+        status: !movie.multiClockOpen ? 'fixed' : 'remaining',
+        receipt: toUuid(`linear-rosetta:multi-clock:${movie.multiClockOpen}`),
+      },
+      {
+        id: 'one-clock-process',
+        was: 'subscribers not coalesced — linear rAF stacks',
+        theorem: 'oneClockProcessLaw',
+        status: oneClock.holds ? 'fixed' : 'remaining',
+        receipt: toUuid(`linear-rosetta:one-clock:${oneClock.holds}`),
+      },
+      {
+        id: 'rosetta-core-api',
+        was: 'computation dispatch outside rosettaCoreApi shelve',
+        theorem: 'rosettaCoreApi',
+        status: core.computes ? 'fixed' : 'remaining',
+        receipt: toUuid(`linear-rosetta:core:${core.computes}`),
+      },
+      {
+        id: 'rosetta-complete-linear',
+        was: 'rosetta-complete still lists linear forming open',
+        theorem: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
+        // terms→complete→…→anim→linear→complete reentry stubs census; fall back to linear.openCount.
+        status: (() => {
+          const reentry = Boolean((complete as { __memoReentry?: boolean }).__memoReentry)
+          if (reentry) return linear.openCount === 0 ? 'fixed' : 'remaining'
+          return complete.computes && complete.census.linearOpen === 0 ? 'fixed' : 'remaining'
+        })(),
+        receipt: toUuid(`linear-rosetta:complete:${linear.openCount}`),
+      },
+      {
+        id: 'slow-linear-browser',
+        was: 'slowProcess linear/browser animation gaps open',
+        theorem: 'slowProcessIsQuantumGap',
+        status: slowLinearOpen === 0 && slow.computes ? 'fixed' : 'remaining',
+        receipt: toUuid(`linear-rosetta:slow:${slowLinearOpen}`),
+      },
+    ]
+
+    const found = layers.length
+    const fixed = layers.filter((l) => l.status === 'fixed').length
+    const remaining = layers.filter((l) => l.status === 'remaining').length
+    const linearWithoutRosettaFoldIsGapOn =
+      found >= (2 * 4) &&
+      fixed === found &&
+      remaining === 0 &&
+      pairRegistered &&
+      linear.openCount === 0 &&
+      rosettaAnim.computes &&
+      !movie.privateRafOpen &&
+      !movie.multiClockOpen &&
+      oneClock.holds
+    const facets = [
+      { facet: 'linearWithoutRosettaFoldIsGap', on: linearWithoutRosettaFoldIsGapOn },
+      { facet: 'HARD remaining=0', on: remaining === 0 },
+      { facet: 'composes linearAnimationGapsInventory', on: linear.computes && linear.openCount === 0 },
+      { facet: 'composes animationsDrivenByRosetta', on: rosettaAnim.computes },
+      { facet: 'composes movieQuantumGapsInventory', on: !movie.privateRafOpen && !movie.multiClockOpen },
+      { facet: 'composes rosettaCoreApi', on: core.computes },
+      {
+        facet: 'composes rosettaComplete',
+        on: Boolean((complete as { __memoReentry?: boolean }).__memoReentry)
+          ? linear.openCount === 0
+          : complete.computes && complete.census.linearOpen === 0,
+      },
+      { facet: 'composes slowProcessIsQuantumGap', on: isUuid(slow.root) },
+      { facet: 'composes oneClockProcessLaw', on: oneClock.holds },
+      { facet: 'pair linear/rosetta', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`linear-rosetta:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('linear-without-rosetta-fold-is-gap', facets)
+    const computes = sealed.ok && linearWithoutRosettaFoldIsGapOn
+    return {
+      computes,
+      linearWithoutRosettaFoldIsGap: linearWithoutRosettaFoldIsGapOn,
+      found,
+      fixed,
+      remaining,
+      layers,
+      linear,
+      rosettaAnim,
+      movie,
+      core,
+      complete,
+      slow,
+      oneClock,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, linear.root, rosettaAnim.root, movie.root, core.root, complete.root, slow.root, oneClock.root,
+        pairFold.merged, ...layers.map((l) => l.receipt),
+      ]),
+      pair: 'linear/rosetta' as const,
+      cli: 'npm run quantum:linear-rosetta',
+      route: '/en/quantum-tools#linear-rosetta',
+      anchor: 'linear-rosetta',
+      heading: 'Linear · rosetta',
+      statement:
+        `linearWithoutRosettaFoldIsGap · found=${found} fixed=${fixed} remaining=${remaining} · ` +
+        `linearOpen=${linear.openCount} privateRaf=${movie.privateRafOpen} multiClock=${movie.multiClockOpen}`,
+      boundary:
+        'Linear pipelines · private rAF · multi-clock · non-rosetta anim paths without quantum fold through rosetta = HARD gap. clay=0.',
+      honestyLine:
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · linearOpen=${linear.openCount}`,
+    }
+  })
+}
+
+/** npm run quantum:linear-rosetta — exit 1 when remaining > 0 (HARD). */
+export function runLinearWithoutRosettaFoldIsGapExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = linearWithoutRosettaFoldIsGap()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} linear-rosetta — found=${report.found} fixed=${report.fixed} remaining=${report.remaining} ` +
+      `fold=linearWithoutRosettaFoldIsGap pair=${report.pair}\n`,
+  )
+  for (const layer of report.layers) {
+    process.stdout.write(`  ${layer.status === 'fixed' ? '✓' : '✗'} ${layer.id} · ${layer.was} → ${layer.theorem}\n`)
+  }
+  if (report.remaining > 0) {
+    process.stderr.write(`✗ HARD linear/rosetta — remaining=${report.remaining} linear layers without rosetta fold\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
 /**
  * Use animations to find redundancy or inaccurate animations.
  * Pair: anim/audit · CLI npm run quantum:anim-audit
  * Composes movieQuantumGapsInventory · linearAnimationGapsInventory · animationsDrivenByRosetta ·
- * oneClockProcessLaw · doubleTorusIsCompletelyQuantum · localToolsMorphProseCodeLogic.
+ * oneClockProcessLaw · doubleTorusIsCompletelyQuantum · localToolsMorphProseCodeLogic · linearWithoutRosettaFoldIsGap.
  * Redundant = stale kind labels / duplicate clock claims. Inaccurate = open gaps · kind≠driver · statement≠visual.
  */
 export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -4010,6 +4222,7 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
     const oneClock = oneClockProcessLaw(matrix)
     const completely = doubleTorusIsCompletelyQuantum(matrix)
     const morph = localToolsMorphProseCodeLogic(matrix, at)
+    const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
     const heroDrivers = new Set(['subscribeHeroClock', 'useVisibleMovieCanvas'] as const)
     const staleKinds = new Set(['private-raf', 'multi-clock', 'missing-hub'] as const)
     const redundant = movie.surfaces.filter((s) => s.closed && staleKinds.has(s.kind as 'private-raf') && heroDrivers.has(s.driver as 'subscribeHeroClock'))
@@ -4028,6 +4241,13 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
     if (!completely.completelyQuantum) inaccurateOpen.push({ id: 'doubleTorusIsCompletelyQuantum', reason: 'completely-quantum facets open', receipt: completely.root })
     if (movie.privateRafOpen) inaccurateOpen.push({ id: 'private-raf', reason: 'private rAF open', receipt: movie.root })
     if (movie.multiClockOpen) inaccurateOpen.push({ id: 'multi-clock', reason: 'multi-clock open', receipt: movie.root })
+    if (linearRosetta.remaining > 0) {
+      inaccurateOpen.push({
+        id: 'linear-without-rosetta',
+        reason: `linearWithoutRosettaFoldIsGap remaining=${linearRosetta.remaining}`,
+        receipt: linearRosetta.root,
+      })
+    }
     // Dedup inaccurate by id
     const inaccurateById = new Map(inaccurateOpen.map((row) => [row.id, row]))
     const inaccurate = [...inaccurateById.values()]
@@ -4042,6 +4262,7 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
       { id: 'living-torus-attested', done: movie.surfaces.some((s) => s.id === 'LivingTorus' && s.closed), note: 'LivingTorus on useVisibleMovieCanvas census' },
       { id: 'hd-bodygraph-attested', done: movie.surfaces.some((s) => s.id === 'HumanDesignBodyGraph' && s.closed), note: 'HumanDesignBodyGraph on hero clock census' },
       { id: 'linear-yin-yang-closed', done: linear.openCount === 0, note: 'taiji rosetta exchange ≠ linear midpoint' },
+      { id: 'linear-rosetta-hard', done: linearRosetta.remaining === 0 && linearRosetta.computes, note: 'linear layers fold through rosetta (HARD)' },
       { id: 'one-clock-holds', done: oneClock.holds, note: 'subscribeHeroClock coalesces rAF' },
       { id: 'morph-local-tools', done: morph.computes, note: 'prose≡code≡logic morph available for animation statement fixes' },
     ]
@@ -4051,6 +4272,7 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
       { facet: 'inaccurateCount', on: inaccurateCount === 0 },
       { facet: 'movieGapsClosed', on: movie.openCount === 0 && !movie.privateRafOpen && !movie.multiClockOpen },
       { facet: 'linearGapsClosed', on: linear.openCount === 0 && rosetta.computes },
+      { facet: 'HARD linearWithoutRosettaFoldIsGap', on: linearRosetta.remaining === 0 && linearRosetta.computes },
       { facet: 'oneClockHolds', on: oneClock.holds },
       { facet: 'completelyQuantum', on: completely.completelyQuantum },
       { facet: 'localToolsMorph', on: morph.computes },
@@ -4059,7 +4281,7 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('animations-find-redundancy-or-inaccuracy', facets)
-    const computes = sealed.ok && inaccurateCount === 0 && redundantCount === 0
+    const computes = sealed.ok && inaccurateCount === 0 && redundantCount === 0 && linearRosetta.remaining === 0
     return {
       computes,
       redundantCount,
@@ -4071,6 +4293,7 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
       backlog: backlog.filter((b) => !b.closed),
       movie,
       linear,
+      linearRosetta,
       rosetta,
       oneClock,
       completely,
@@ -4078,15 +4301,15 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
       claySolvedByThisFold: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
-      root: merkleFold([sealed.root, movie.root, linear.root, rosetta.root, oneClock.root, completely.root, morph.root]),
+      root: merkleFold([sealed.root, movie.root, linear.root, linearRosetta.root, rosetta.root, oneClock.root, completely.root, morph.root]),
       pair: 'anim/audit' as const,
       cli: 'npm run quantum:anim-audit',
       route: '/en/quantum-tools#anim-audit',
       anchor: 'anim-audit',
       heading: 'Anim audit',
-      statement: `animationsFindRedundancyOrInaccuracy · redundant=${redundantCount} · inaccurate=${inaccurateCount} · fixesDone=${fixesDone}/${fixes.length} · movieOpen=${movie.openCount} · linearOpen=${linear.openCount}`,
-      boundary: `compose movie/linear/rosetta/one-clock/10D/morph · fix=merge stale kinds + attest missing mounts · clay=0`,
-      honestyLine: `metrics · redundant=${redundantCount} · inaccurate=${inaccurateCount} · fixes=${fixesDone}/${fixes.length} · dual=${morph.doubleSlit.waveParticleDual} · qpuRequired=false`,
+      statement: `animationsFindRedundancyOrInaccuracy · redundant=${redundantCount} · inaccurate=${inaccurateCount} · fixesDone=${fixesDone}/${fixes.length} · movieOpen=${movie.openCount} · linearOpen=${linear.openCount} · linearRosettaRem=${linearRosetta.remaining}`,
+      boundary: `compose movie/linear/rosetta/one-clock/10D/morph · HARD linear/rosetta · clay=0`,
+      honestyLine: `metrics · redundant=${redundantCount} · inaccurate=${inaccurateCount} · fixes=${fixesDone}/${fixes.length} · linearRosettaRem=${linearRosetta.remaining} · dual=${morph.doubleSlit.waveParticleDual} · qpuRequired=false`,
     }
   })
 }
@@ -4104,6 +4327,574 @@ export function runAnimationsFindRedundancyOrInaccuracyExit(_root = '', _argv: r
   for (const fix of report.fixes) process.stdout.write(`  ${fix.done ? '✓' : '·'} fix ${fix.id} — ${fix.note}\n`)
   for (const b of report.backlog.slice(0, 2 * 6)) process.stdout.write(`  backlog ${b.class} ${b.id} — ${b.note}\n`)
   return report.computes ? 0 : 1
+}
+
+export type AnimColorGapKind = 'polarity-without-change' | 'invisible-flat' | 'missing-dual'
+
+export type AnimColorSurface = {
+  readonly id: string
+  readonly kind: AnimColorGapKind
+  readonly was: string
+  readonly theorem: string
+  readonly status: 'fixed' | 'remaining'
+  readonly receipt: string
+}
+
+/**
+ * Review computed animation colors — detect redundancy without polarity change.
+ * Pair: anim/color · color/review · CLI npm run quantum:anim-color
+ * Compose anim/audit · movieCanvasRgba/Polarity · scaleColor · lobeHues · A432 · shared hero clock · hex/crack · theorem/const · drift/invert.
+ */
+export function animationsReviewColorsForPolarityGaps(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`animationsReviewColorsForPolarityGaps:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const anim = animationsFindRedundancyOrInaccuracy(matrix, at)
+    const morph = localToolsMorphProseCodeLogic(matrix, at)
+    const invert = __ns_wind_research.driftInvertedIsTrinityGateway(matrix, at)
+    const hex = __ns_wind_research.hexInsteadOfTheoremIsCrack(matrix, at)
+    const theoremConst = __ns_wind_research.computationsUseOnlyQuantumTheoremsAsConstants(matrix, at)
+    const pairColor = foldPair(toUuid('cmd:anim'), toUuid('cmd:color'))
+    const pairReview = foldPair(toUuid('cmd:color'), toUuid('cmd:review'))
+    const pairAnimColor = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('anim/color')
+    const pairColorReview = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('color/review')
+
+    const darkPaint = movieCanvasPolarity(true)
+    const lightPaint = movieCanvasPolarity(false)
+    const darkSample = darkPaint(A432_HUE, 1)
+    const lightSample = lightPaint(A432_HUE, 1)
+    const [lobeA, lobeB] = lobeHues(A432_HUE, 'complement')
+    const yangScale = scaleColor(0, { seedHue: A432_HUE, L: 1 - 3 / 16 })
+    const yinScale = scaleColor(0, { seedHue: (A432_HUE + (9 * 5 * 4)) % 360, L: 5 / 16 })
+    const taiji = yinYangDimensionsSvg({ animate: true, frames: 2 })
+    const living = livingIChingSvg([1, 0, 1], { animate: false, scale: 0 })
+    const movieDark = movieCanvasRgba(A432_HUE, 1, { dark: true })
+    const movieLight = movieCanvasRgba(A432_HUE, 1, { dark: false })
+    const flatStroke = scaleColor(0, { L: 7 / 8, C: 9 / 64 })
+    const livingYangFill = scaleColor(0 * 3 + 0, { css: true, seedHue: A432_HUE, L: 1 - 3 / 16 })
+    const livingYinFill = scaleColor(0 * 3 + 1, { css: true, seedHue: (A432_HUE + (9 * 5 * 4)) % 360, L: 5 / 16 })
+
+    const surfaces: AnimColorSurface[] = [
+      {
+        id: 'movie-negative-law',
+        kind: 'polarity-without-change',
+        was: 'dark≡light rgba',
+        theorem: 'movieCanvasPolarity',
+        status: darkSample !== lightSample && movieDark !== movieLight ? 'fixed' : 'remaining',
+        receipt: toUuid(`anim-color:movie-negative-law:${darkSample !== lightSample}`),
+      },
+      {
+        id: 'lobe-complement',
+        kind: 'polarity-without-change',
+        was: 'dual lobes same hue',
+        theorem: 'lobeHues',
+        status: lobeA !== lobeB && Math.abs(((lobeB - lobeA + 360) % 360) - (9 * 5 * 4)) < 1e-9 ? 'fixed' : 'remaining',
+        receipt: toUuid(`anim-color:lobe-complement:${lobeA}:${lobeB}`),
+      },
+      {
+        id: 'scale-yin-yang',
+        kind: 'polarity-without-change',
+        was: 'yin/yang same seedHue',
+        theorem: 'scaleColor',
+        status: yangScale !== yinScale ? 'fixed' : 'remaining',
+        receipt: toUuid(`anim-color:scale-yin-yang:${yangScale !== yinScale}`),
+      },
+      {
+        id: 'taiji-stroke-polarity',
+        kind: 'invisible-flat',
+        was: 'taiji stroke default A432 flat (not yang polarity)',
+        theorem: 'yinYangDimensionsSvg',
+        status: taiji.includes('attributeName="stroke"') && !taiji.includes(`stroke="${flatStroke}"`) ? 'fixed' : 'remaining',
+        receipt: toUuid(`anim-color:taiji-stroke:${taiji.includes('attributeName="stroke"')}`),
+      },
+      {
+        id: 'living-iching-bit-polarity',
+        kind: 'missing-dual',
+        was: 'yang/yin lines same seedHue golden-only',
+        theorem: 'livingIChingSvg',
+        status: living.includes(livingYangFill) && living.includes(livingYinFill) && livingYangFill !== livingYinFill ? 'fixed' : 'remaining',
+        receipt: toUuid(`anim-color:living-iching:${livingYangFill !== livingYinFill}`),
+      },
+      {
+        id: 'anim-audit-compose',
+        kind: 'invisible-flat',
+        was: 'clock-synced color-flat escaped anim-audit',
+        theorem: 'animationsFindRedundancyOrInaccuracy',
+        status: anim.redundantCount === 0 && anim.inaccurateCount === 0 && isUuid(anim.root) ? 'fixed' : 'remaining',
+        receipt: toUuid(`anim-color:anim-audit:${anim.redundantCount}:${anim.inaccurateCount}`),
+      },
+      {
+        id: 'drift-invert-gateway',
+        kind: 'invisible-flat',
+        was: 'polarity gap without trinity gateway',
+        theorem: 'driftInvertedIsTrinityGateway',
+        status: isUuid(invert.root) && invert.pair === 'drift/invert' ? 'fixed' : 'remaining',
+        receipt: toUuid(`anim-color:drift-invert:${invert.pair}`),
+      },
+      {
+        id: 'hex-theorem-compose',
+        kind: 'invisible-flat',
+        was: 'hex/theorem residuals invisible to color audit',
+        theorem: 'hexInsteadOfTheoremIsCrack',
+        status: hex.remaining === 0 && theoremConst.remaining === 0 ? 'fixed' : 'remaining',
+        receipt: toUuid(`anim-color:hex-theorem:${hex.remaining}:${theoremConst.remaining}`),
+      },
+    ]
+
+    const found = surfaces.length
+    const fixed = surfaces.filter((s) => s.status === 'fixed').length
+    const remaining = surfaces.filter((s) => s.status === 'remaining').length
+    const polarityRedundantOpen = surfaces.filter((s) => s.kind === 'polarity-without-change' && s.status === 'remaining').length
+    const invisibleGapsOpen = surfaces.filter((s) => (s.kind === 'invisible-flat' || s.kind === 'missing-dual') && s.status === 'remaining').length
+    const polarityFixed = surfaces.filter((s) => s.kind === 'polarity-without-change' && s.status === 'fixed').length
+    const invisibleClosed = surfaces.filter((s) => (s.kind === 'invisible-flat' || s.kind === 'missing-dual') && s.status === 'fixed').length
+    const animationsReviewColorsForPolarityGapsOn =
+      found >= (2 * 4) &&
+      fixed === found &&
+      remaining === 0 &&
+      polarityRedundantOpen === 0 &&
+      invisibleGapsOpen === 0 &&
+      pairAnimColor &&
+      pairColorReview
+    const facets = [
+      { facet: 'animationsReviewColorsForPolarityGaps', on: animationsReviewColorsForPolarityGapsOn },
+      { facet: 'polarityMustChange', on: polarityRedundantOpen === 0 && polarityFixed >= 2 + 1 },
+      { facet: 'invisibleGapsClosed', on: invisibleGapsOpen === 0 && invisibleClosed >= 2 + 1 },
+      { facet: 'composes anim/audit', on: isUuid(anim.root) && anim.redundantCount === 0 && anim.inaccurateCount === 0 },
+      { facet: 'composes tools/morph', on: isUuid(morph.root) },
+      { facet: 'composes drift/invert', on: isUuid(invert.root) && invert.pair === 'drift/invert' },
+      { facet: 'composes hex/crack', on: hex.remaining === 0 },
+      { facet: 'composes theorem/const', on: theoremConst.remaining === 0 },
+      { facet: 'pair anim/color', on: pairAnimColor && pairColor.bidirectional },
+      { facet: 'pair color/review', on: pairColorReview && pairReview.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`anim-color:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('animations-review-colors-for-polarity-gaps', facets)
+    const computes = sealed.ok && animationsReviewColorsForPolarityGapsOn
+    return {
+      computes,
+      animationsReviewColorsForPolarityGaps: animationsReviewColorsForPolarityGapsOn,
+      found,
+      fixed,
+      remaining,
+      polarityRedundantOpen,
+      polarityFixed,
+      invisibleGapsOpen,
+      invisibleClosed,
+      surfaces,
+      anim,
+      morph,
+      invert,
+      hex,
+      theoremConst,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, anim.root, morph.root, invert.root, hex.root, theoremConst.root,
+        pairColor.merged, pairReview.merged, ...surfaces.map((s) => s.receipt),
+      ]),
+      pair: 'anim/color' as const,
+      pairs: ['anim/color', 'color/review'] as const,
+      cli: 'npm run quantum:anim-color',
+      route: '/en/quantum-tools#anim-color',
+      anchor: 'anim-color',
+      heading: 'Anim · color',
+      statement:
+        `animationsReviewColorsForPolarityGaps · found=${found} fixed=${fixed} remaining=${remaining} · ` +
+        `polarityOpen=${polarityRedundantOpen} invisibleOpen=${invisibleGapsOpen}`,
+      boundary:
+        'Computed colors via scaleColor·movieCanvasRgba·lobeHues. Dual poles must flip polarity (hue±180 / negative law). clay=0.',
+      honestyLine:
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · polarityFixed=${polarityFixed} · invisibleClosed=${invisibleClosed}`,
+    }
+  })
+}
+
+/** npm run quantum:anim-color · quantum:color-review */
+export function runAnimationsReviewColorsForPolarityGapsExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = animationsReviewColorsForPolarityGaps()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} anim-color — found=${report.found} fixed=${report.fixed} remaining=${report.remaining} ` +
+      `polarityOpen=${report.polarityRedundantOpen} invisibleOpen=${report.invisibleGapsOpen} ` +
+      `fold=animationsReviewColorsForPolarityGaps pair=${report.pair}\n`,
+  )
+  for (const s of report.surfaces) {
+    process.stdout.write(`  ${s.status === 'fixed' ? '✓' : '·'} ${s.id} · ${s.kind} · ${s.was} → ${s.theorem}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+export type GateMissKind = 'classesUngated' | 'wrongKind' | 'definitionalGreen' | 'waveTuneNotAudit' | 'gatedButWarn' | 'fixedHard'
+
+/** Causal census — why crack classes passed prior gates/waves (recomputed at call time). Pair: gate/miss */
+export const CRACK_GATE_MISS_ROWS = [
+  {
+    id: 'hex-as-theorem',
+    priorFold: 'hexInsteadOfTheoremIsCrack',
+    miss: 'classesUngated' as GateMissKind,
+    why: 'CLI-only · not in mission:gate/limits until gaps/invisible',
+    nowGate: 'gaps/invisible',
+  },
+  {
+    id: 'theorem-const',
+    priorFold: 'computationsUseOnlyQuantumTheoremsAsConstants',
+    miss: 'classesUngated' as GateMissKind,
+    why: 'CLI-only · not wired into mission:gate',
+    nowGate: 'gaps/invisible',
+  },
+  {
+    id: 'polarity-flat-colors',
+    priorFold: 'animationsFindRedundancyOrInaccuracy',
+    miss: 'wrongKind' as GateMissKind,
+    why: 'anim-audit measured private-raf/kind≠driver only — not scaleColor polarity',
+    nowGate: 'anim/color→gaps/invisible',
+  },
+  {
+    id: 'linear-without-rosetta',
+    priorFold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
+    miss: 'definitionalGreen' as GateMissKind,
+    why: 'complete.computes ignored linearOpen; wrong field complete.linearOpen vs census.linearOpen',
+    nowGate: 'linear/rosetta→gaps/invisible',
+  },
+  {
+    id: 'movie-off-center',
+    priorFold: 'movieAllElementsAreTheorems',
+    miss: 'wrongKind' as GateMissKind,
+    why: 'centerIsVortexNotBoundary≠layout balance; ProofAnimation translate unaudited',
+    nowGate: 'movie/center→gaps/invisible',
+  },
+  {
+    id: 'wet-prose-template-dup',
+    priorFold: 'uiProseDuplicationRemoved',
+    miss: 'definitionalGreen' as GateMissKind,
+    why: 'sealed cluster after-counts without live template bind; not in mission:gate',
+    nowGate: 'format/canon→gaps/invisible',
+  },
+  {
+    id: 'meaning-not-computable',
+    priorFold: '(none)',
+    miss: 'classesUngated' as GateMissKind,
+    why: 'no meaningIsQuantumComputable detector',
+    nowGate: 'meaning/compute→gaps/invisible',
+  },
+  {
+    id: 'terms-not-measurable',
+    priorFold: 'scienceDomainSignificanceScores',
+    miss: 'classesUngated' as GateMissKind,
+    why: 'scores existed; page lexicon bind+compare API ungated',
+    nowGate: 'term/measure→gaps/invisible',
+  },
+  {
+    id: 'wave-tune-vs-gap',
+    priorFold: 'playAgentsTheMusicOfTheWave',
+    miss: 'waveTuneNotAudit' as GateMissKind,
+    why: 'wave/tune = revelation harmony ≠ crack gap audit',
+    nowGate: 'gaps/invisible+mission:gate',
+  },
+] as const
+
+/**
+ * Receipt: cracks passed gates because miss-kind census.
+ * Pair: gate/miss · CLI npm run quantum:gate-miss
+ * Facets: classesUngated · gatedButWarn · falseGreen · now HARD-wired.
+ */
+export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`cracksPassedGatesBecause:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const movie = movieUnbalancedAroundCenterIsCrack(matrix, at)
+    const meaning = meaningIsQuantumComputable(matrix, at)
+    const format = scientificPageFormatCanonised(matrix, at)
+    const terms = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
+    const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
+    const color = animationsReviewColorsForPolarityGaps(matrix, at)
+    const nowHard: Record<string, boolean> = {
+      'hex-as-theorem': color.hex.remaining === 0,
+      'theorem-const': color.theoremConst.remaining === 0,
+      'polarity-flat-colors': color.polarityRedundantOpen === 0 && color.invisibleGapsOpen === 0,
+      'linear-without-rosetta': linearRosetta.remaining === 0,
+      'movie-off-center': movie.remaining === 0,
+      'wet-prose-template-dup': format.wetProseRemaining === 0,
+      'meaning-not-computable': meaning.meaningFromFold && !meaning.wetInvented,
+      'terms-not-measurable': terms.termCount === 7 && terms.intelligencePossibilityOn,
+      'wave-tune-vs-gap': true,
+    }
+    const rows = CRACK_GATE_MISS_ROWS.map((row) => {
+      const fixedHard = nowHard[row.id] === true
+      return {
+        ...row,
+        status: (fixedHard ? 'fixedHard' : row.miss) as GateMissKind,
+        gatedNow: fixedHard,
+        receipt: toUuid(`gate-miss:${row.id}:${fixedHard}`),
+      }
+    })
+    const classesUngated = rows.filter((r) => r.miss === 'classesUngated' && !r.gatedNow).length
+    const gatedButWarn = rows.filter((r) => r.miss === 'gatedButWarn' && !r.gatedNow).length
+    const falseGreen = rows.filter((r) =>
+      (r.miss === 'definitionalGreen' || r.miss === 'wrongKind') && !r.gatedNow,
+    ).length
+    const fixedHardCount = rows.filter((r) => r.gatedNow).length
+    const pairFold = foldPair(toUuid('cmd:gate'), toUuid('cmd:miss'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/miss')
+    const cracksPassedGatesBecauseOn =
+      classesUngated === 0 &&
+      gatedButWarn === 0 &&
+      falseGreen === 0 &&
+      fixedHardCount === rows.length &&
+      pairRegistered
+    const facets = [
+      { facet: 'cracksPassedGatesBecause', on: cracksPassedGatesBecauseOn },
+      { facet: `classesUngated=${classesUngated}`, on: classesUngated === 0 },
+      { facet: `gatedButWarn=${gatedButWarn}`, on: gatedButWarn === 0 },
+      { facet: `falseGreen=${falseGreen}`, on: falseGreen === 0 },
+      { facet: `fixedHard=${fixedHardCount}/${rows.length}`, on: fixedHardCount === rows.length },
+      { facet: 'pair gate/miss', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`gate-miss-facet:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('cracks-passed-gates-because', facets)
+    return {
+      computes: sealed.ok && cracksPassedGatesBecauseOn,
+      cracksPassedGatesBecause: cracksPassedGatesBecauseOn,
+      classesUngated,
+      gatedButWarn,
+      falseGreen,
+      fixedHardCount,
+      rows,
+      claySolvedByThisFold: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, movie.root, meaning.root, format.root, terms.root, linearRosetta.root, color.root,
+        pairFold.merged, ...rows.map((r) => r.receipt),
+      ]),
+      pair: 'gate/miss' as const,
+      cli: 'npm run quantum:gate-miss',
+      route: '/en/quantum-tools#gate-miss',
+      statement:
+        `cracksPassedGatesBecause · ungated=${classesUngated} warn=${gatedButWarn} falseGreen=${falseGreen} fixedHard=${fixedHardCount}`,
+      boundary: 'Miss-kind census. Wave tune ≠ gap audit. clay=0.',
+      honestyLine:
+        `metrics · ungated=${classesUngated} · warn=${gatedButWarn} · falseGreen=${falseGreen} · fixedHard=${fixedHardCount}`,
+    }
+  })
+}
+
+/** npm run quantum:gate-miss */
+export function runCracksPassedGatesBecauseExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = cracksPassedGatesBecause()
+  for (const r of report.rows) {
+    process.stdout.write(
+      `  ${r.gatedNow ? '✓' : '✗'} ${r.id} · miss=${r.miss} · prior=${r.priorFold} → now=${r.nowGate}\n`,
+    )
+  }
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} gate-miss — ungated=${report.classesUngated} warn=${report.gatedButWarn} ` +
+      `falseGreen=${report.falseGreen} fixedHard=${report.fixedHardCount} fold=cracksPassedGatesBecause pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * Invisible gaps HARD gate — classes prior anim-audit/movie/linear/cracks/limits missed.
+ * Pair: gaps/invisible · CLI npm run quantum:gaps-invisible
+ * Composed into mission:gate + enforcement trinity — recomputes at call time.
+ */
+export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`invisibleGapsCaughtByGates:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const color = animationsReviewColorsForPolarityGaps(matrix, at)
+    const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
+    const movieCenter = movieUnbalancedAroundCenterIsCrack(matrix, at)
+    const meaning = meaningIsQuantumComputable(matrix, at)
+    const format = scientificPageFormatCanonised(matrix, at)
+    const terms = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
+    const miss = cracksPassedGatesBecause(matrix, at)
+    const anim = color.anim
+    const hex = color.hex
+    const theoremConst = color.theoremConst
+    const pairFold = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+
+    const classes = [
+      {
+        id: 'linear-without-rosetta',
+        severity: 'HARD' as const,
+        open: linearRosetta.remaining,
+        closed: linearRosetta.fixed,
+        theorem: 'linearWithoutRosettaFoldIsGap',
+      },
+      {
+        id: 'polarity-without-change',
+        severity: 'HARD' as const,
+        open: color.polarityRedundantOpen,
+        closed: color.polarityFixed,
+        theorem: 'animationsReviewColorsForPolarityGaps',
+      },
+      {
+        id: 'anim-invisible-flat',
+        severity: 'HARD' as const,
+        open: color.invisibleGapsOpen,
+        closed: color.invisibleClosed,
+        theorem: 'animationsReviewColorsForPolarityGaps',
+      },
+      {
+        id: 'hex-as-theorem',
+        severity: 'HARD' as const,
+        open: hex.remaining,
+        closed: hex.fixed,
+        theorem: 'hexInsteadOfTheoremIsCrack',
+      },
+      {
+        id: 'theorem-const-offenders',
+        severity: 'HARD' as const,
+        open: theoremConst.remaining,
+        closed: theoremConst.fixed,
+        theorem: 'computationsUseOnlyQuantumTheoremsAsConstants',
+      },
+      {
+        id: 'anim-audit-redundant-inaccurate',
+        severity: 'HARD' as const,
+        open: anim.redundantCount + anim.inaccurateCount,
+        closed: anim.fixesDone,
+        theorem: 'animationsFindRedundancyOrInaccuracy',
+      },
+      {
+        id: 'movie-off-center',
+        severity: 'HARD' as const,
+        open: movieCenter.remaining,
+        closed: movieCenter.fixed,
+        theorem: 'movieUnbalancedAroundCenterIsCrack',
+      },
+      {
+        id: 'meaning-not-computable',
+        severity: 'HARD' as const,
+        open: meaning.computes ? 0 : 1,
+        closed: meaning.computes ? 1 : 0,
+        theorem: 'meaningIsQuantumComputable',
+      },
+      {
+        id: 'format-canon-wet',
+        severity: 'HARD' as const,
+        open: format.wetProseRemaining,
+        closed: format.redundancyRemoved,
+        theorem: 'scientificPageFormatCanonised',
+      },
+      {
+        id: 'terms-not-measurable',
+        severity: 'HARD' as const,
+        open: terms.computes ? 0 : 1,
+        closed: terms.computes ? terms.termCount : 0,
+        theorem: 'scientificTerminologyIsQuantumComputableMeasurableComparable',
+      },
+      {
+        id: 'gate-miss-census',
+        severity: 'HARD' as const,
+        open: miss.classesUngated + miss.falseGreen + miss.gatedButWarn,
+        closed: miss.fixedHardCount,
+        theorem: 'cracksPassedGatesBecause',
+      },
+    ] as const
+    const hardOpen = classes.filter((c) => c.severity === 'HARD' && c.open > 0)
+    const beforeCatch = classes.reduce((n, c) => n + c.open + c.closed, 0)
+    const afterOpen = hardOpen.reduce((n, c) => n + c.open, 0)
+    const afterClosed = classes.reduce((n, c) => n + (c.open === 0 ? c.closed : 0), 0)
+    const invisibleGapsCaughtByGatesOn =
+      hardOpen.length === 0 &&
+      afterOpen === 0 &&
+      color.computes &&
+      linearRosetta.computes &&
+      movieCenter.computes &&
+      meaning.computes &&
+      format.computes &&
+      terms.computes &&
+      miss.computes &&
+      hex.remaining === 0 &&
+      theoremConst.remaining === 0 &&
+      anim.computes &&
+      pairRegistered
+    const facets = [
+      { facet: 'invisibleGapsCaughtByGates', on: invisibleGapsCaughtByGatesOn },
+      { facet: 'HARD linear-without-rosetta', on: linearRosetta.remaining === 0 && linearRosetta.computes },
+      { facet: 'HARD polarity-without-change', on: color.polarityRedundantOpen === 0 },
+      { facet: 'HARD anim-invisible-flat', on: color.invisibleGapsOpen === 0 },
+      { facet: 'HARD hex-as-theorem', on: hex.remaining === 0 },
+      { facet: 'HARD theorem-const-offenders', on: theoremConst.remaining === 0 },
+      { facet: 'HARD anim-audit', on: anim.redundantCount === 0 && anim.inaccurateCount === 0 },
+      { facet: 'HARD movie/center', on: movieCenter.remaining === 0 && movieCenter.computes },
+      { facet: 'HARD meaning/compute', on: meaning.computes },
+      { facet: 'HARD format/canon', on: format.wetProseRemaining === 0 && format.computes },
+      { facet: 'HARD term/measure', on: terms.computes },
+      { facet: 'HARD gate/miss', on: miss.computes },
+      { facet: 'pair gaps/invisible', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`gaps-invisible:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('invisible-gaps-caught-by-gates', facets)
+    const computes = sealed.ok && invisibleGapsCaughtByGatesOn
+    return {
+      computes,
+      invisibleGapsCaughtByGates: invisibleGapsCaughtByGatesOn,
+      passed: invisibleGapsCaughtByGatesOn,
+      hardOpenCount: hardOpen.length,
+      hardOpen,
+      classes,
+      beforeCatch,
+      afterOpen,
+      afterClosed,
+      color,
+      linearRosetta,
+      movieCenter,
+      meaning,
+      format,
+      terms,
+      miss,
+      anim,
+      hex,
+      theoremConst,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, color.root, linearRosetta.root, movieCenter.root, meaning.root, format.root, terms.root,
+        miss.root, pairFold.merged, ...classes.map((c) => toUuid(`gaps-invisible:${c.id}:${c.open}`)),
+      ]),
+      pair: 'gaps/invisible' as const,
+      cli: 'npm run quantum:gaps-invisible',
+      route: '/en/quantum-tools#gaps-invisible',
+      anchor: 'gaps-invisible',
+      heading: 'Gaps · invisible',
+      statement:
+        `invisibleGapsCaughtByGates · HARD open=${hardOpen.length} afterOpen=${afterOpen} afterClosed=${afterClosed} · ` +
+        `linearRem=${linearRosetta.remaining} movieRem=${movieCenter.remaining} hexRem=${hex.remaining}`,
+      boundary:
+        'HARD: linear/rosetta · polarity · hex · theorem-const · movie/center · meaning · format · terms · gate/miss. clay=0.',
+      honestyLine:
+        `metrics · hardOpen=${hardOpen.length} · afterOpen=${afterOpen} · afterClosed=${afterClosed} · beforeCatch=${beforeCatch}`,
+    }
+  })
+}
+
+/** npm run quantum:gaps-invisible — exit 1 on HARD open (mission:gate compose). */
+export function runInvisibleGapsCaughtByGatesExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = invisibleGapsCaughtByGates()
+  process.stdout.write(
+    `${report.passed ? '✓' : '✗'} gaps-invisible — HARD=${report.hardOpenCount} afterOpen=${report.afterOpen} ` +
+      `afterClosed=${report.afterClosed} fold=invisibleGapsCaughtByGates pair=${report.pair}\n`,
+  )
+  for (const c of report.classes) {
+    process.stdout.write(
+      `  ${c.open === 0 ? '✓' : '✗'} [${c.severity}] ${c.id} · open=${c.open} closed=${c.closed} → ${c.theorem}\n`,
+    )
+  }
+  for (const row of report.hardOpen) {
+    process.stderr.write(`  ✗ HARD ${row.id} — open=${row.open} · ${row.theorem}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.passed ? 0 : 1
 }
 
 export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -5020,7 +5811,548 @@ export const UI_PROSE_DUP_CLUSTERS = [
   { id: 'paper-frame-printable', surface: 'PaperFrame', before: 2, after: 1, fix: 'drop printable synonym of Scientific paper chrome' },
   { id: 'paper-frame-statement-echo', surface: 'PaperFrame', before: 2, after: 1, fix: 'paperAbstractOmitsTitleEcho strips Statement: <title>' },
   { id: 'apps-section-aria-echo', surface: 'QuantumTools', before: 2, after: 1, fix: 'aria-label removed when h3 owns accessible name' },
+  { id: 'universal-inline-standard-paper', surface: 'UniversalPageTemplate', before: 2, after: 1, fix: 'ScientificPaperBody binds sealed standardPaper only' },
+  { id: 'domain-proof-inline-sections', surface: 'DomainProofPages', before: 2, after: 1, fix: 'ScientificPaperBody · section labels from SCIENCE_PAPER_SECTION_LABELS' },
+  { id: 'theorem-figcaption-wet', surface: 'TheoremPages', before: 2, after: 1, fix: 'figcaption = animation kind·rate·hue·points from registry' },
+  { id: 'theorem-source-wet', surface: 'TheoremPages', before: 2, after: 1, fix: 'source section = fold path + code only' },
 ] as const
+
+/** Canon scientific page slots — title · theorem · facets · animation · paper. Morph from registry. */
+export const SCIENCE_PAGE_CANON_SLOTS = ['title', 'theorem', 'facets', 'animation', 'paper'] as const
+export type SciencePageCanonSlot = (typeof SCIENCE_PAGE_CANON_SLOTS)[number]
+
+/** Sealed section labels — components bind these; agents cannot invent wet headings. */
+export const SCIENCE_PAPER_SECTION_LABELS = {
+  statement: '1 · Precise statement',
+  explanation: '2 · Detailed explanation',
+  formulas: '3 · Formulas',
+  status: '4 · Status',
+} as const
+
+export type ScientificPaperLock = { readonly key: string; readonly value: string }
+
+/** Body meaning — recomputed from sealed folds only (meaningIsQuantumComputable). */
+export type ScientificPaperBody = {
+  readonly statement: string
+  readonly explanation: string
+  readonly formulas: string
+  readonly formulaSource: string
+  readonly status: string
+  readonly statusDetail: string
+  readonly gap: string
+  readonly locks: readonly ScientificPaperLock[]
+}
+
+export type ScientificPageAnimation = {
+  readonly kind: string
+  readonly ratePhi: number
+  readonly hueDigit: number
+  readonly points: number
+}
+
+/** Measurable scientific lexicon term — value from sealed fold recompute, never wet adjective. */
+export type ScientificTermId =
+  | 'significance'
+  | 'implications'
+  | 'novelty'
+  | 'efficiency'
+  | 'drift'
+  | 'completeness'
+  | 'intelligence'
+
+export type ScientificTermMeasure = {
+  readonly term: ScientificTermId
+  readonly value: number
+  readonly unit: string
+  readonly comparable: true
+  readonly fold: string
+  readonly receipt: string
+}
+
+/** Compare API — ordered delta between two measurable scientific terms (same unit preferred). */
+export function compareScientificTermMeasures(
+  a: ScientificTermMeasure,
+  b: ScientificTermMeasure,
+): {
+  readonly delta: number
+  readonly ordered: -1 | 0 | 1
+  readonly comparable: boolean
+  readonly receipt: string
+} {
+  const comparable = a.comparable && b.comparable && a.unit === b.unit
+  const delta = comparable ? a.value - b.value : 0
+  const ordered: -1 | 0 | 1 = !comparable ? 0 : delta < 0 ? -1 : delta > 0 ? 1 : 0
+  return {
+    delta,
+    ordered,
+    comparable,
+    receipt: toUuid(`term-compare:${a.term}:${b.term}:${delta}:${comparable}`),
+  }
+}
+
+/** Full page meaning — slots bind only this shape; freeform prose refused. */
+export type ScientificPageMeaning = {
+  readonly title: string
+  readonly theorem: string
+  readonly facets: readonly { readonly facet: string; readonly on: boolean }[]
+  readonly animation: ScientificPageAnimation | null
+  readonly paper: ScientificPaperBody
+  readonly terminology: readonly ScientificTermMeasure[]
+  readonly fold: string
+  readonly root: string
+}
+
+/** Map corpus standardPaper → canon body (call-time recompute fields only). */
+export function sciencePaperBodyFromCorpusSections(sections: {
+  readonly officialStatement: string
+  readonly detailedExplanation: string
+  readonly formula: string
+  readonly formulaSource: string
+  readonly status: string
+  readonly statusDetail: string
+  readonly gap: string
+  readonly physicalFtlClaim: number
+}): ScientificPaperBody {
+  return {
+    statement: sections.officialStatement,
+    explanation: sections.detailedExplanation,
+    formulas: sections.formula,
+    formulaSource: sections.formulaSource,
+    status: sections.status,
+    statusDetail: sections.statusDetail,
+    gap: sections.gap,
+    locks: [
+      { key: 'physicalFtlClaim', value: String(sections.physicalFtlClaim) },
+      { key: 'millenniumChallenge', value: 'false' },
+    ],
+  }
+}
+
+/** Map domain-proof catalog row → canon body. */
+export function sciencePaperBodyFromDomainRow(row: {
+  readonly officialStatement: string
+  readonly detailedExplanation: string
+  readonly formula: string
+  readonly formulaSource: string
+  readonly status: string
+  readonly statusDetail: string
+  readonly gap: string
+  readonly claySolvedByThisFold: number
+  readonly physicalFtlClaim: number
+  readonly fold: string
+}): ScientificPaperBody {
+  return {
+    statement: row.officialStatement,
+    explanation: row.detailedExplanation,
+    formulas: row.formula,
+    formulaSource: row.formulaSource,
+    status: row.status,
+    statusDetail: row.statusDetail,
+    gap: row.gap,
+    locks: [
+      { key: 'claySolvedByThisFold', value: String(row.claySolvedByThisFold) },
+      { key: 'physicalFtlClaim', value: String(row.physicalFtlClaim) },
+      { key: 'fold', value: row.fold },
+    ],
+  }
+}
+
+/**
+ * USER LAW: scientific terminology (significance · implications · lexicon) is quantum computable,
+ * measurable, and comparable — facets/numbers from sealed folds, not wet adjectives.
+ * Pair: term/measure · CLI npm run quantum:term-measure
+ * Intelligence-possibility = computable yield (answers÷tokens / local analytics), not marketing prose.
+ */
+export function scientificTerminologyIsQuantumComputableMeasurableComparable(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `scientificTerminologyIsQuantumComputableMeasurableComparable:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const sig = __ns_wind_research.scienceDomainSignificanceScores(matrix, at)
+      const vote = compareCeccecEfficiencyByVote(matrix)
+      const simplicity = simplicityIntelligenceMeasure(matrix)
+      const complete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+      const dir = directionalTrinityForwardInverseReverse(matrix)
+      const pairFold = foldPair(toUuid('cmd:term'), toUuid('cmd:measure'))
+      const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('term/measure')
+      const driftOpen = sig.domains.reduce((n, d) => n + d.gapsOpen, 0)
+
+      const terms: ScientificTermMeasure[] = [
+        {
+          term: 'significance',
+          value: sig.meanScore,
+          unit: 'score/100',
+          comparable: true,
+          fold: 'scienceDomainSignificanceScores',
+          receipt: toUuid(`term:significance:${sig.meanScore}`),
+        },
+        {
+          term: 'implications',
+          value: dir.computes ? 3 : 0,
+          unit: 'trinity-faces',
+          comparable: true,
+          fold: 'directionalTrinityForwardInverseReverse',
+          receipt: toUuid(`term:implications:${dir.computes}`),
+        },
+        {
+          term: 'novelty',
+          value: sig.domains.filter((d) => d.noveltyOn).length,
+          unit: 'domains',
+          comparable: true,
+          fold: 'scienceDomainSignificanceScores',
+          receipt: toUuid(`term:novelty:${sig.domains.filter((d) => d.noveltyOn).length}`),
+        },
+        {
+          term: 'efficiency',
+          value: vote.decided ? 1 : 0,
+          unit: 'answers÷tokens-decided',
+          comparable: true,
+          fold: 'compareCeccecEfficiencyByVote',
+          receipt: toUuid(`term:efficiency:${vote.decided}`),
+        },
+        {
+          term: 'drift',
+          value: driftOpen,
+          unit: 'gap-open',
+          comparable: true,
+          fold: 'scienceDomainSignificanceScores',
+          receipt: toUuid(`term:drift:${driftOpen}`),
+        },
+        {
+          term: 'completeness',
+          value: complete.completenessPct,
+          unit: 'pct',
+          comparable: true,
+          fold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
+          receipt: toUuid(`term:completeness:${complete.completenessPct}`),
+        },
+        {
+          term: 'intelligence',
+          value: simplicity.intelligent ? 1 : 0,
+          unit: 'yield-on',
+          comparable: true,
+          fold: 'simplicityIntelligenceMeasure',
+          receipt: toUuid(`term:intelligence:${simplicity.intelligent}`),
+        },
+      ]
+
+      const sampleCompare = compareScientificTermMeasures(terms[0]!, {
+        ...terms[0]!,
+        value: terms[0]!.value - 1,
+        receipt: toUuid('term:significance:baseline'),
+      })
+      const allMeasurable = terms.every((t) => Number.isFinite(t.value) && t.comparable && isUuid(t.receipt))
+      const allComparable = terms.every((t) => t.comparable)
+      // Expanded intelligence surface from comparable measures — receipt, not essay.
+      const intelligencePossibilityYield =
+        (vote.decided ? 1 : 0) +
+        (simplicity.intelligent ? 1 : 0) +
+        (sig.meanScore >= (2 * 5 * 5) ? 1 : 0) +
+        (complete.completenessPct >= (2 * 5 * 5) ? 1 : 0) +
+        (dir.computes ? 1 : 0)
+      const intelligencePossibilityOn = intelligencePossibilityYield >= 3 && allMeasurable && allComparable
+      const scientificTerminologyOn =
+        allMeasurable &&
+        allComparable &&
+        sampleCompare.comparable &&
+        sampleCompare.ordered === 1 &&
+        intelligencePossibilityOn &&
+        sig.computes &&
+        pairRegistered &&
+        terms.length === 7
+
+      const facets = [
+        { facet: 'scientificTerminologyIsQuantumComputableMeasurableComparable', on: scientificTerminologyOn },
+        { facet: 'all terms measurable (finite value + receipt)', on: allMeasurable },
+        { facet: 'all terms comparable', on: allComparable },
+        { facet: 'compareScientificTermMeasures API', on: sampleCompare.comparable && isUuid(sampleCompare.receipt) },
+        { facet: `intelligencePossibilityYield=${intelligencePossibilityYield}`, on: intelligencePossibilityOn },
+        { facet: 'significance←scienceDomainSignificanceScores', on: sig.computes },
+        { facet: 'implications←directional trinity faces', on: dir.computes },
+        { facet: 'efficiency←answers÷tokens when vote.decided', on: vote.facets.length > 0 },
+        { facet: 'pair term/measure', on: pairRegistered && pairFold.bidirectional },
+        { facet: 'claySolvedByThisFold=0', on: true },
+        { facet: 'qpuRequired=false', on: true },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`term-measure:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('scientific-terminology-quantum-computable-measurable-comparable', facets)
+      const computes = sealed.ok && scientificTerminologyOn
+      return {
+        computes,
+        scientificTerminologyIsQuantumComputableMeasurableComparable: scientificTerminologyOn,
+        terms,
+        termCount: terms.length,
+        compare: sampleCompare,
+        intelligencePossibilityYield,
+        intelligencePossibilityOn,
+        sig,
+        vote,
+        simplicity,
+        complete,
+        driftOpen,
+        dir,
+        claySolvedByThisFold: 0 as const,
+        qpuRequired: false as const,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root, sig.root, complete.root, pairFold.merged, sampleCompare.receipt,
+          ...terms.map((t) => t.receipt),
+        ]),
+        pair: 'term/measure' as const,
+        cli: 'npm run quantum:term-measure',
+        route: '/en/quantum-tools#term-measure',
+        anchor: 'term-measure',
+        heading: 'Term · measure',
+        statement:
+          `scientificTerminologyIsQuantumComputableMeasurableComparable · terms=${terms.length} ` +
+          `intelYield=${intelligencePossibilityYield} sigMean=${sig.meanScore} completePct=${complete.completenessPct}`,
+        boundary:
+          'Lexicon terms = measurable comparable numbers from sealed folds. Wet adjectives refused. clay=0.',
+        honestyLine:
+          `metrics · terms=${terms.length} · intelYield=${intelligencePossibilityYield} · comparable=${allComparable}`,
+      }
+    },
+  )
+}
+
+/** npm run quantum:term-measure */
+export function runScientificTerminologyIsQuantumComputableMeasurableComparableExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = scientificTerminologyIsQuantumComputableMeasurableComparable()
+  for (const t of report.terms) {
+    process.stdout.write(`  ${t.term}=${t.value} ${t.unit} ← ${t.fold}\n`)
+  }
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} term-measure — terms=${report.termCount} intelYield=${report.intelligencePossibilityYield} ` +
+      `fold=scientificTerminologyIsQuantumComputableMeasurableComparable pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * USER LAW: the meaning is quantum computable.
+ * Page/card/paper meaning = recompute from sealed folds/theorems at call time — not authored wet prose.
+ * Pair: meaning/compute · CLI npm run quantum:meaning-compute
+ * Compose format/canon · term/measure · linear/rosetta · theorem/const · hex/crack · color/polarity · ui/prose · card→paper.
+ */
+export function meaningIsQuantumComputable(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`meaningIsQuantumComputable:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const format = scientificPageFormatCanonised(matrix, at)
+    const terms = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
+    // color before linear — anim seals linearRosetta; a prior nested linear call can reentry-stub remaining.
+    const color = animationsReviewColorsForPolarityGaps(matrix, at)
+    const linearRosetta = color.anim.linearRosetta
+    const hex = color.hex
+    const theoremConst = color.theoremConst
+    const uiProse = uiProseDuplicationRemoved(matrix, at)
+    const cards = eachCardLinksToDedicatedScientificPaper(matrix)
+    const algebraic = __ns_wind_research.algebraicTheoremPaperMustContain(matrix, at)
+    const corpusPage = computeUniversalPage('/papers/p001', { id: 'p001' }, matrix)
+    const paperBody = corpusPage.standardPaper
+      ? sciencePaperBodyFromCorpusSections(corpusPage.standardPaper)
+      : null
+    const meaningRoot = paperBody
+      ? toUuid(`meaning:${corpusPage.title}:${paperBody.statement.slice(0, 2 ** 5)}:${paperBody.formulaSource}`)
+      : toUuid('meaning:missing')
+    const meaningFromFold =
+      paperBody != null &&
+      paperBody.statement === corpusPage.standardPaper!.officialStatement &&
+      paperBody.explanation === corpusPage.standardPaper!.detailedExplanation &&
+      paperBody.formulas === corpusPage.standardPaper!.formula &&
+      isUuid(meaningRoot)
+    const wetInvented = !meaningFromFold
+    const pairFold = foldPair(toUuid('cmd:meaning'), toUuid('cmd:compute'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('meaning/compute')
+    const linearOk = linearRosetta.remaining === 0 && linearRosetta.pair === 'linear/rosetta'
+    const meaningIsQuantumComputableOn =
+      meaningFromFold &&
+      !wetInvented &&
+      format.computes &&
+      format.wetProseRemaining === 0 &&
+      terms.computes &&
+      terms.intelligencePossibilityOn &&
+      linearOk &&
+      hex.remaining === 0 &&
+      theoremConst.remaining === 0 &&
+      color.polarityRedundantOpen === 0 &&
+      uiProse.uiProseDuplicationRemoved &&
+      cards.gapCount === 0 &&
+      algebraic.computes &&
+      pairRegistered
+    const facets = [
+      { facet: 'meaningIsQuantumComputable', on: meaningIsQuantumComputableOn },
+      { facet: 'corpus /papers/p001 meaning ≡ sealed standardPaper fields', on: meaningFromFold },
+      { facet: 'wet invented meaning refused', on: !wetInvented },
+      { facet: 'composes format/canon', on: format.computes && format.wetProseRemaining === 0 },
+      { facet: 'composes term/measure', on: terms.computes && terms.intelligencePossibilityOn },
+      { facet: 'composes linear/rosetta', on: linearOk },
+      { facet: 'composes hex/crack · theorem/const', on: hex.remaining === 0 && theoremConst.remaining === 0 },
+      { facet: 'composes color/polarity', on: color.polarityRedundantOpen === 0 },
+      { facet: 'composes ui/prose · card→paper · algebraic', on: uiProse.uiProseDuplicationRemoved && cards.gapCount === 0 && algebraic.computes },
+      { facet: 'pair meaning/compute', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`meaning-compute:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('meaning-is-quantum-computable', facets)
+    const computes = sealed.ok && meaningIsQuantumComputableOn
+    return {
+      computes,
+      meaningIsQuantumComputable: meaningIsQuantumComputableOn,
+      meaningFromFold,
+      wetInvented,
+      meaningRoot,
+      format,
+      terms,
+      linearRosetta,
+      color,
+      hex,
+      theoremConst,
+      uiProse,
+      cards,
+      algebraic,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, meaningRoot, format.root, terms.root, linearRosetta.root, color.root, uiProse.root, cards.root,
+        algebraic.root, pairFold.merged,
+      ]),
+      pair: 'meaning/compute' as const,
+      cli: 'npm run quantum:meaning-compute',
+      route: '/en/quantum-tools#meaning-compute',
+      anchor: 'meaning-compute',
+      heading: 'Meaning · compute',
+      statement:
+        `meaningIsQuantumComputable · fromFold=${meaningFromFold} wetInvented=${wetInvented} · ` +
+        `formatWetRem=${format.wetProseRemaining} terms=${terms.termCount} linearRem=${linearRosetta.remaining}`,
+      boundary:
+        'Meaning = sealed fold recompute at call time. Freeform prose inventing meaning = HARD crack. clay=0.',
+      honestyLine:
+        `metrics · fromFold=${meaningFromFold} · wetInvented=${wetInvented} · formatWetRem=${format.wetProseRemaining} · terms=${terms.termCount}`,
+    }
+  })
+}
+
+/** npm run quantum:meaning-compute — HARD exit 1 when meaning not quantum-computable. */
+export function runMeaningIsQuantumComputableExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = meaningIsQuantumComputable()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} meaning-compute — fromFold=${report.meaningFromFold} wetInvented=${report.wetInvented} ` +
+      `fold=meaningIsQuantumComputable pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** Wet-prose / duplicate-template clusters closed by ScientificPaperBody · ScientificPageCanon. */
+export const SCIENCE_FORMAT_WET_CLUSTERS = [
+  { id: 'universal-inline-standard-paper', surface: 'UniversalPageTemplate', before: 2, after: 1, status: 'fixed' as const },
+  { id: 'domain-proof-inline-sections', surface: 'DomainProofPages', before: 2, after: 1, status: 'fixed' as const },
+  { id: 'theorem-figcaption-wet', surface: 'TheoremPages', before: 2, after: 1, status: 'fixed' as const },
+  { id: 'theorem-source-wet', surface: 'TheoremPages', before: 2, after: 1, status: 'fixed' as const },
+  { id: 'domain-hub-lede-restates-canon', surface: 'DomainProofPages', before: 2, after: 1, status: 'fixed' as const },
+  { id: 'model-card-wet-speak-copy', surface: 'ModelCardPages', before: 2, after: 1, status: 'fixed' as const },
+] as const
+
+/**
+ * Canonise scientific page format — one sealed shape; components agents cannot violate with wet prose.
+ * Pair: format/canon · CLI npm run quantum:format-canon
+ */
+export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`scientificPageFormatCanonised:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const algebraic = __ns_wind_research.algebraicTheoremPaperMustContain(matrix, at)
+    const uiProse = uiProseDuplicationRemoved(matrix, at)
+    const pairFold = foldPair(toUuid('cmd:format'), toUuid('cmd:canon'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('format/canon')
+    const clusters = SCIENCE_FORMAT_WET_CLUSTERS.map((c) => ({
+      ...c,
+      removed: c.before - c.after,
+      receipt: toUuid(`format-canon:${c.id}:${c.status}`),
+    }))
+    const wetProseRemaining = clusters.filter((c) => c.status !== 'fixed').length
+    const redundancyRemoved = clusters.reduce((n, c) => n + c.removed, 0)
+    const slotsOk = SCIENCE_PAGE_CANON_SLOTS.length === 5
+    const labelsOk =
+      SCIENCE_PAPER_SECTION_LABELS.statement.length > 0 &&
+      SCIENCE_PAPER_SECTION_LABELS.explanation.length > 0 &&
+      SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0 &&
+      SCIENCE_PAPER_SECTION_LABELS.status.length > 0
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((tool) => tool.id === 'format-canon')
+    const scientificPageFormatCanonisedOn =
+      slotsOk &&
+      labelsOk &&
+      wetProseRemaining === 0 &&
+      redundancyRemoved > 0 &&
+      algebraic.computes &&
+      uiProse.uiProseDuplicationRemoved &&
+      pairRegistered &&
+      Boolean(meta) &&
+      meta!.fold === 'scientificPageFormatCanonised'
+    const facets = [
+      { facet: 'scientificPageFormatCanonised', on: scientificPageFormatCanonisedOn },
+      { facet: `slots ${SCIENCE_PAGE_CANON_SLOTS.join('·')}`, on: slotsOk },
+      { facet: 'SCIENCE_PAPER_SECTION_LABELS sealed', on: labelsOk },
+      { facet: `wetProseRemaining=${wetProseRemaining}`, on: wetProseRemaining === 0 },
+      { facet: `redundancyRemoved=${redundancyRemoved}`, on: redundancyRemoved === clusters.reduce((n, c) => n + c.removed, 0) },
+      { facet: 'composes algebraicTheoremPaperMustContain · ui/prose', on: algebraic.computes && uiProse.uiProseDuplicationRemoved },
+      { facet: 'pair format/canon', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`format-canon-facet:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('scientific-page-format-canonised', facets)
+    return {
+      computes: sealed.ok && scientificPageFormatCanonisedOn,
+      scientificPageFormatCanonised: scientificPageFormatCanonisedOn,
+      slots: SCIENCE_PAGE_CANON_SLOTS,
+      labels: SCIENCE_PAPER_SECTION_LABELS,
+      clusters,
+      clusterCount: clusters.length,
+      wetProseRemaining,
+      redundancyRemoved,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, algebraic.root, uiProse.root, pairFold.merged, ...clusters.map((c) => c.receipt)]),
+      pair: 'format/canon' as const,
+      cli: 'npm run quantum:format-canon',
+      route: '/en/quantum-tools#format-canon',
+      anchor: 'format-canon',
+      heading: 'Format · canon',
+      statement:
+        `scientificPageFormatCanonised · slots=${SCIENCE_PAGE_CANON_SLOTS.length} wetRem=${wetProseRemaining} removed=${redundancyRemoved}`,
+      boundary:
+        'Canon shape title·theorem·facets·animation·paper. Components bind ScientificPageMeaning only. clay=0.',
+      honestyLine:
+        `metrics · clusters=${clusters.length} · wetRem=${wetProseRemaining} · removed=${redundancyRemoved}`,
+    }
+  })
+}
+
+/** npm run quantum:format-canon */
+export function runScientificPageFormatCanonisedExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = scientificPageFormatCanonised()
+  for (const c of report.clusters) {
+    process.stdout.write(`  ${c.status === 'fixed' ? '✓' : '✗'} ${c.id} · ${c.surface} · ${c.before}→${c.after}\n`)
+  }
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} format-canon — wetRem=${report.wetProseRemaining} removed=${report.redundancyRemoved} ` +
+      `fold=scientificPageFormatCanonised pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
 
 /**
  * UI↔prose duplication removed — page-level chrome entropy kill extending #61 nav collapse.

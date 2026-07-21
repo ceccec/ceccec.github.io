@@ -50,10 +50,11 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
 
       <figure class="theorem-paper__figure theorem-paper__hero">
         <ProofAnimation v-if="specOf(row)" :spec="specOf(row)!" :size="2 * 9 * 5 * 4" />
-        <figcaption>
-          The proof animated as the hero: <em>{{ specOf(row)?.kind }}</em> family, rate φ⁻{{ specOf(row)?.ratePhi }},
-          hue = vortex digit {{ specOf(row)?.hueDigit }} · {{ specOf(row)?.points }} points — computed
-          from the theorem's own constants by the one shared renderer; in print it certifies the family, on screen it moves.
+        <figcaption v-if="specOf(row)">
+          {{ specOf(row)!.kind }}
+          · φ⁻{{ specOf(row)!.ratePhi }}
+          · hue {{ specOf(row)!.hueDigit }}
+          · {{ specOf(row)!.points }}
         </figcaption>
       </figure>
 
@@ -99,10 +100,9 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
       </section>
 
       <section v-if="sourceOf(row)" class="theorem-paper__source">
-        <h2>4 · Source — how it is achieved</h2>
+        <h2>4 · Source</h2>
         <p class="theorem-paper__source-home">
-          <code>{{ row.provedBy }}</code> at <code>{{ sourceOf(row)!.home }}/index.ts</code> — the function below IS the proof;
-          it runs at zero tokens on every build, and this page shows it unedited.
+          <code>{{ row.provedBy }}</code> · <code>{{ sourceOf(row)!.home }}/index.ts</code>
         </p>
         <pre class="theorem-paper__code"><code>{{ sourceOf(row)!.code }}</code></pre>
       </section>

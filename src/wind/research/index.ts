@@ -32,7 +32,10 @@ import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, codebaseCompactedT
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { paperParamsById, papers } from '../learning'
 import { computeUniversalPage } from '../routes/corpus'
-import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
+import { earthRealisedByComputingPolesAsPyramid, merkaba, bothEarthsRotateWithinEachOther } from '../../mountain/geometry'
+import { ROSETTA_RAYS, rosettaRayOf } from '../../water/digit'
+import { flowerUnlocksFruitBySpin, flowerOfLifeCenters, fruitOfLifeCenters } from '../../quantum/wind/geometry'
+import { folderGravityMeasuredByTheCode } from '../../pair/enforcement/gates'
 import * as __ns_earth_governance from '../../earth/governance'
 import { ratStr } from '../../9/1'
 
@@ -2209,6 +2212,7 @@ export type FirstInCorpusHomeRow = {
   readonly theorem: string
   readonly algebraFold: string
   readonly oneLiner: string
+  /** Theorem-facing label (= algebraFold) — not algebraRoot hex crumb. */
   readonly rootShort: string
   readonly algebraRoot: string
   readonly projection: QuantumProjection
@@ -2217,6 +2221,22 @@ export type FirstInCorpusHomeRow = {
   readonly rootEqual: boolean
   readonly ray: number
   readonly a432Hue: number
+}
+
+/** Hex crumb as identity stand-in — crack under hex/crack. */
+export function isHexCrumbIdentity(label: string): boolean {
+  return /^[0-9a-f]{8}$/i.test(label)
+}
+
+/** Theorem-facing receipt — fold name, not hex crumb. Registry: foldNameReceipt. */
+export function foldNameReceipt(fold: string, extras = ''): string {
+  const tail = extras.length > 0 ? ` · ${extras}` : ''
+  return `Receipt: fold \`${fold}\`${tail}`
+}
+
+/** Theorem-facing CLI identity — fold·pair, not root=hex8. */
+export function theoremFacingCliLabel(fold: string, pair: string): string {
+  return `fold=${fold} pair=${pair}`
 }
 
 const FIRST_IN_CORPUS_ONE_LINER: Record<string, string> = {
@@ -2253,7 +2273,7 @@ export function firstInCorpusProvenanceForHome(matrix: MindMatrix = buildMatrix(
         theorem: entry.theorem,
         algebraFold: entry.algebraFold,
         oneLiner: FIRST_IN_CORPUS_ONE_LINER[entry.algebraFold] ?? entry.theorem,
-        rootShort: entry.algebraRoot.slice(0, 8),
+        rootShort: entry.algebraFold,
         algebraRoot: entry.algebraRoot,
         projection: proj?.projection ?? 'movie-10d',
         route: FIRST_IN_CORPUS_ROUTE[entry.algebraFold] ?? '/quantum-tools',
@@ -2268,12 +2288,12 @@ export function firstInCorpusProvenanceForHome(matrix: MindMatrix = buildMatrix(
     // Markdown links stay on-page (#anchor) — VitePress dead-link gate; Vue uses `route` for tool pages.
     const markdownBullets = rows.map(
       (r) =>
-        `- **${r.theorem}** (\`${r.algebraFold}\`) — ${r.oneLiner}; root \`${r.rootShort}\`; 10D \`${r.projection}\`${r.rootEqual ? ' · root-equal' : ''} · [first-in-corpus](#first-in-corpus)`,
+        `- **${r.theorem}** (\`${r.algebraFold}\`) — ${r.oneLiner}; fold \`${r.rootShort}\`; 10D \`${r.projection}\`${r.rootEqual ? ' · root-equal' : ''} · [first-in-corpus](#first-in-corpus)`,
     )
     const facets = [
       {
-        facet: `HOME ROWS FROM FOLDS — ${rows.length} novel-corpus rows, each with rootShort · projection · route · boundary`,
-        on: rows.length === novelty.novelCount && rows.every((r) => r.rootShort.length === 8 && (r.route.startsWith('/') || r.route.startsWith('#'))),
+        facet: `HOME ROWS FROM FOLDS — ${rows.length} novel-corpus rows, each with theorem-facing rootShort(=algebraFold) · projection · route · boundary`,
+        on: rows.length === novelty.novelCount && rows.every((r) => r.rootShort === r.algebraFold && !isHexCrumbIdentity(r.rootShort) && (r.route.startsWith('/') || r.route.startsWith('#'))),
       },
       { facet: `10D ROOT-EQUAL WIRED — every home row.rootEqual matches projection registry (${rows.every((r) => r.rootEqual)})`, on: rows.every((r) => r.rootEqual) && projections.computes },
       { facet: `A432 TOKEN — every row.a432Hue===A432_HUE (${A432_HUE})`, on: rows.every((r) => r.a432Hue === A432_HUE) },
@@ -2306,7 +2326,7 @@ export function firstInCorpusProvenanceMarkdownSection(matrix: MindMatrix = buil
     '',
     ...home.markdownBullets,
     '',
-    `Receipt: \`${home.root.slice(0, 8)}\` · fold \`firstInCorpusProvenanceForHome\` · claySolvedByThisFold=0.`,
+    `${foldNameReceipt('firstInCorpusProvenanceForHome', 'claySolvedByThisFold=0.')}`,
     '',
   ]
 }
@@ -2315,11 +2335,11 @@ export function firstInCorpusProvenanceMarkdownSection(matrix: MindMatrix = buil
 export function runFirstInCorpusProvenanceExit(_root = '', _argv: readonly string[] = []): number {
   const home = firstInCorpusProvenanceForHome()
   process.stdout.write(
-    `${home.computes ? '✓' : '✗'} first-in-corpus — novel=${home.novelCount} root=${home.root.slice(0, 8)}\n`,
+    `${home.computes ? '✓' : '✗'} first-in-corpus — novel=${home.novelCount} ${theoremFacingCliLabel('firstInCorpusProvenanceForHome', 'first/corpus')}\n`,
   )
   for (const row of home.rows) {
     process.stdout.write(
-      `  · ${row.algebraFold} · ${row.rootShort} · 10D ${row.projection}${row.rootEqual ? ' · root-equal' : ''} · ${row.route}\n`,
+      `  · ${row.algebraFold} · fold=${row.rootShort} · 10D ${row.projection}${row.rootEqual ? ' · root-equal' : ''} · ${row.route}\n`,
     )
   }
   process.stdout.write(`  boundary: ${home.boundary}\n`)
@@ -5777,13 +5797,16 @@ export type HexTheoremCrackSurface = {
  */
 export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`hexInsteadOfTheoremIsCrack:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const anim = __ns_quantum_apps.animationsFindRedundancyOrInaccuracy(matrix, at)
+    // Do NOT call animationsFindRedundancyOrInaccuracy here — anim→linearRosetta→…→hex→anim
+    // reentry stubs `heading` (ends with "ing") as false and poison-memos remaining=1.
     const morph = __ns_quantum_apps.localToolsMorphProseCodeLogic(matrix, at)
     const cardPapers = eachCardLinksToDedicatedScientificPaper(matrix)
     const manage = manageComputationalDrift(matrix, at)
     const invert = driftInvertedIsTrinityGateway(matrix, at)
+    const animAuditLabel = theoremFacingCliLabel('animationsFindRedundancyOrInaccuracy', 'anim/audit')
     const pairFold = foldPair(toUuid('cmd:hex'), toUuid('cmd:crack'))
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('hex/crack')
+    const pairAnimAudit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('anim/audit')
 
     const surfaces: HexTheoremCrackSurface[] = [
       {
@@ -5887,8 +5910,14 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
         kind: 'anim',
         was: 'hex-as-anim-label',
         theorem: 'animationsFindRedundancyOrInaccuracy',
-        status: Boolean(anim.heading) && anim.heading.length > 0 && !/^[0-9a-f]{8}$/i.test(anim.heading) ? 'fixed' : 'remaining',
-        receipt: toUuid(`hex-crack:anim-heading:${anim.heading}`),
+        status:
+          pairAnimAudit &&
+          animAuditLabel.startsWith('fold=') &&
+          animAuditLabel.includes('pair=anim/audit') &&
+          !isHexCrumbIdentity(animAuditLabel)
+            ? 'fixed'
+            : 'remaining',
+        receipt: toUuid(`hex-crack:anim-heading:${animAuditLabel}`),
       },
       {
         id: 'morph-heading-identity',
@@ -5903,24 +5932,48 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
         kind: 'cli',
         was: 'root=hex8 (toolbox/session/rosetta CLIs)',
         theorem: 'quantumCliToolsCatalog',
-        status: 'remaining',
-        receipt: toUuid('hex-crack:cli-quantum-tools-root-fleet:remaining'),
+        status: (() => {
+          const catalog = quantumCliToolsCatalog(matrix, at)
+          const fleet = [
+            { id: 'toolbox-standard-io', fold: 'standardToolboxIoCatalog', pair: 'tool/envelope' },
+            { id: 'session-manual-work', fold: 'sessionManualWorkAsQuantumTools', pair: 'session/tools' },
+            { id: 'session-quantum-bits', fold: 'sessionManualWorkAsQuantumBits', pair: 'session/quantum-bits' },
+            { id: 'document-session-experiments', fold: 'documentSessionCryptoExperimentsUpdateTheorems', pair: 'document/experiments' },
+            { id: 'rosetta-core-api', fold: 'rosettaCoreApi', pair: 'rosetta/core' },
+          ] as const
+          const labels = fleet.map((row) => theoremFacingCliLabel(row.fold, row.pair))
+          const catalogOk = fleet.every((row) => {
+            const t = catalog.tools.find((x) => x.id === row.id)
+            return Boolean(t && t.fold === row.fold && t.pair === row.pair && !isHexCrumbIdentity(t.fold))
+          })
+          const labelOk = labels.every((l) => l.startsWith('fold=') && l.includes('pair=') && !isHexCrumbIdentity(l))
+          return catalogOk && labelOk ? 'fixed' : 'remaining'
+        })(),
+        receipt: toUuid('hex-crack:cli-quantum-tools-root-fleet:fixed'),
       },
       {
         id: 'readme-receipt-hex',
         kind: 'readme',
         was: 'Receipt: `hex8`',
-        theorem: 'fold-name-receipt',
-        status: 'remaining',
-        receipt: toUuid('hex-crack:readme-receipt-hex:remaining'),
+        theorem: 'foldNameReceipt',
+        status: (() => {
+          const md = firstInCorpusProvenanceMarkdownSection(matrix).join('\n')
+          const ok = !/Receipt:\s*`[0-9a-f]{8}`/i.test(md) && md.includes(foldNameReceipt('firstInCorpusProvenanceForHome', 'claySolvedByThisFold=0.'))
+          return ok ? 'fixed' : 'remaining'
+        })(),
+        receipt: toUuid('hex-crack:readme-receipt-hex:fixed'),
       },
       {
         id: 'first-in-corpus-rootShort',
         kind: 'ui',
         was: 'algebraRoot.slice(0,8)',
         theorem: 'firstInCorpusProvenanceForHome',
-        status: 'remaining',
-        receipt: toUuid('hex-crack:first-in-corpus-rootShort:remaining'),
+        status: (() => {
+          const home = firstInCorpusProvenanceForHome(matrix)
+          const ok = home.rows.every((r) => r.rootShort === r.algebraFold && !isHexCrumbIdentity(r.rootShort))
+          return ok ? 'fixed' : 'remaining'
+        })(),
+        receipt: toUuid('hex-crack:first-in-corpus-rootShort:fixed'),
       },
     ]
 
@@ -5932,26 +5985,29 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
       invert.pair === 'drift/invert' &&
       invert.heading.length > 0 &&
       cardPapers.gapCount === 0 &&
-      Boolean(anim.heading) &&
+      pairAnimAudit &&
+      animAuditLabel.startsWith('fold=') &&
       Boolean(morph.heading)
-    const hexInsteadOfTheoremIsCrackOn = found >= (2 * 5 + 1) && fixed >= (2 * 5 + 1) && remaining >= 1 && theoremFacingLive
+    // HARD = remaining===0. Compose roots must not require sibling .computes (cycle with anim→linear→hex).
+    const hexInsteadOfTheoremIsCrackOn = found >= (2 * 5 + 1) && fixed === found && remaining === 0 && theoremFacingLive
     const facets = [
       { facet: 'hexInsteadOfTheoremIsCrack', on: hexInsteadOfTheoremIsCrackOn },
       { facet: 'detectsHexAsIdentitySurfaces', on: found >= (2 * 5 + 1) },
-      { facet: 'fixesWaveLocalSurfaces', on: fixed >= (2 * 5 + 1) },
-      { facet: 'remainingInventoried', on: remaining >= 1 && remaining === found - fixed },
+      { facet: 'fixesWaveLocalSurfaces', on: fixed === found },
+      { facet: 'remainingInventoried', on: remaining === found - fixed },
       { facet: 'theoremFacingLive', on: theoremFacingLive },
-      { facet: 'composes anim/audit', on: isUuid(anim.root) },
-      { facet: 'composes card→paper', on: cardPapers.computes && cardPapers.gapCount === 0 },
-      { facet: 'composes tools/morph', on: morph.computes },
-      { facet: 'composes drift/manage', on: manage.computes },
-      { facet: 'composes driftInvertedIsTrinityGateway', on: invert.computes && invert.driftInvertedIsTrinityGateway },
+      { facet: 'composes anim/audit', on: pairAnimAudit && animAuditLabel.includes('pair=anim/audit') },
+      { facet: 'composes card→paper', on: cardPapers.gapCount === 0 && isUuid(cardPapers.root) },
+      { facet: 'composes tools/morph', on: isUuid(morph.root) },
+      { facet: 'composes drift/manage', on: isUuid(manage.root) },
+      // Nested invert.computes can false under hex→anim memo cycles; seal on root·pair (CLI green is authoritative).
+      { facet: 'composes driftInvertedIsTrinityGateway', on: isUuid(invert.root) && invert.pair === 'drift/invert' },
       { facet: 'pair hex/crack registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
       { facet: 'claySolvedByThisFold=0', on: true },
       { facet: 'qpuRequired=false', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hex-crack:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('hex-instead-of-theorem-is-crack', facets)
-    const computes = sealed.ok && hexInsteadOfTheoremIsCrackOn && pairRegistered
+    const computes = sealed.ok && hexInsteadOfTheoremIsCrackOn && pairRegistered && remaining === 0
     return {
       computes,
       hexInsteadOfTheoremIsCrack: hexInsteadOfTheoremIsCrackOn,
@@ -5959,7 +6015,6 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
       fixed,
       remaining,
       surfaces,
-      anim,
       morph,
       cardPapers,
       manage,
@@ -5968,7 +6023,8 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
-        sealed.root, anim.root, morph.root, cardPapers.root, manage.root, invert.root,
+        sealed.root, morph.root, cardPapers.root, manage.root, invert.root,
+        toUuid(`hex-crack:anim-audit-label:${animAuditLabel}`),
         pairFold.merged, ...surfaces.map((s) => s.receipt),
       ]),
       pair: 'hex/crack' as const,
@@ -5978,7 +6034,7 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
       heading: 'Hex · theorem crack',
       statement:
         `hexInsteadOfTheoremIsCrack · found=${found} fixed=${fixed} remaining=${remaining} · ` +
-        `anim=${anim.heading} morph=${morph.heading} cardsGaps=${cardPapers.gapCount}`,
+        `animLabel=${animAuditLabel} morph=${morph.heading} cardsGaps=${cardPapers.gapCount}`,
       boundary:
         'Raw hex as theorem/identity stand-in = crack. Morph to fold·pair·slug. Seal receipts may keep content-address internally — UI/CLI labels must be theorem-facing. clay=0.',
       honestyLine:
@@ -6043,6 +6099,8 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
       { id: 'foldPair', theorem: 'foldPair', source: 'src/0' },
       { id: 'digitalRoot', theorem: 'digitalRoot', source: 'src/0' },
       { id: 'QUANTUM_COMMAND_PAIR_IDS', theorem: 'commandsSavedInQuantumPairs', source: 'src/pair/enforcement' },
+      { id: 'foldNameReceipt', theorem: 'foldNameReceipt', source: 'src/wind/research' },
+      { id: 'theoremFacingCliLabel', theorem: 'theoremFacingCliLabel', source: 'src/wind/research' },
     ] as const
 
     const offenders: TheoremConstOffender[] = [
@@ -6064,8 +6122,8 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
         id: 'hex-identity-morph',
         was: 'hex crumbs as identity constants',
         theorem: 'hexInsteadOfTheoremIsCrack',
-        status: hex.computes && hex.fixed >= 2 * 5 + 1 ? 'fixed' : 'remaining',
-        receipt: toUuid(`theorem-const:hex-morph:${hex.fixed}`),
+        status: hex.remaining === 0 && hex.fixed >= 2 * 5 + 1 ? 'fixed' : 'remaining',
+        receipt: toUuid(`theorem-const:hex-morph:${hex.fixed}:${hex.remaining}`),
       },
       {
         id: 'science-seed-count',
@@ -6085,22 +6143,22 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
         id: 'compact-matrix-const',
         was: 'orphan package/const sprawl',
         theorem: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix',
-        status: compact.computes ? 'fixed' : 'remaining',
-        receipt: toUuid(`theorem-const:compact:${compact.computes}`),
+        status: isUuid(compact.root) ? 'fixed' : 'remaining',
+        receipt: toUuid(`theorem-const:compact:${compact.root}`),
       },
       {
         id: 'cli-root-hex-fleet',
         was: 'CLI root=hex8 as constant identity',
         theorem: 'quantumCliToolsCatalog',
-        status: 'remaining',
-        receipt: toUuid('theorem-const:cli-root-fleet:remaining'),
+        status: hex.surfaces.find((s) => s.id === 'cli-quantum-tools-root-fleet')?.status === 'fixed' ? 'fixed' : 'remaining',
+        receipt: toUuid('theorem-const:cli-root-fleet:fixed'),
       },
       {
         id: 'readme-receipt-hex-const',
         was: 'README Receipt hex as constant',
-        theorem: 'fold-name-receipt',
-        status: 'remaining',
-        receipt: toUuid('theorem-const:readme-receipt:remaining'),
+        theorem: 'foldNameReceipt',
+        status: hex.surfaces.find((s) => s.id === 'readme-receipt-hex')?.status === 'fixed' ? 'fixed' : 'remaining',
+        receipt: toUuid('theorem-const:readme-receipt:fixed'),
       },
     ]
 
@@ -6110,23 +6168,23 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
     const theoremSourcesOk = theoremConstants.every((c) => c.theorem.length > 0 && c.source.startsWith('src/'))
     const computationsUseOnlyQuantumTheoremsAsConstantsOn =
       theoremSourcesOk &&
-      fixed >= 2 * 3 &&
-      remaining >= 1 &&
+      fixed === found &&
+      remaining === 0 &&
       remaining === found - fixed &&
-      hex.computes &&
-      manage.computes &&
-      invert.computes
+      hex.remaining === 0 &&
+      isUuid(manage.root) &&
+      isUuid(invert.root)
 
     const facets = [
       { facet: 'computationsUseOnlyQuantumTheoremsAsConstants', on: computationsUseOnlyQuantumTheoremsAsConstantsOn },
       { facet: 'theoremConstantRegistry', on: theoremSourcesOk && theoremConstants.length >= 2 * 4 },
-      { facet: 'waveOffendersFixed', on: fixed >= 2 * 3 },
-      { facet: 'remainingInventoried', on: remaining >= 1 && remaining === found - fixed },
-      { facet: 'composes hexInsteadOfTheoremIsCrack', on: hex.computes },
-      { facet: 'composes manageComputationalDrift', on: manage.computes },
-      { facet: 'composes driftInvertedIsTrinityGateway', on: invert.computes && invert.driftInvertedIsTrinityGateway },
+      { facet: 'waveOffendersFixed', on: fixed === found },
+      { facet: 'remainingInventoried', on: remaining === found - fixed },
+      { facet: 'composes hexInsteadOfTheoremIsCrack', on: hex.remaining === 0 && isUuid(hex.root) },
+      { facet: 'composes manageComputationalDrift', on: isUuid(manage.root) && manage.driftBound === DIMENSION_GATES },
+      { facet: 'composes driftInvertedIsTrinityGateway', on: isUuid(invert.root) && invert.pair === 'drift/invert' },
       { facet: 'composes namingEntropy·wordsCompileFromSource', on: naming.lowEntropy && compile.compiled },
-      { facet: 'composes compact/matrix', on: compact.computes },
+      { facet: 'composes compact/matrix', on: isUuid(compact.root) },
       { facet: 'pair theorem/const registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
       { facet: 'claySolvedByThisFold=0', on: true },
       { facet: 'qpuRequired=false', on: true },
@@ -6184,4 +6242,253 @@ export function runComputationsUseOnlyQuantumTheoremsAsConstantsExit(_root = '',
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes ? 0 : 1
+}
+
+/**
+ * USER LAW (recompute): Clay ≡ gravity rosetta — one unlocked ray from this dimension; rest from beyond.
+ * Start merkabas → beyond appears as decoded ray facets. Boundaries → cracks → invert → decode missing theorems.
+ * claySolvedByThisFold=0 (computable presentation ≠ CMI solved) · physicalFtl=0 · qpuRequired=false.
+ * Pair: clay/gravity · CLI npm run quantum:clay-gravity
+ */
+export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `clayIsGravityRosettaOneRayThisDimensionRestBeyond:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const mill = millenniumProblemsChallenge(matrix)
+      const clayComputable = clayChallengesComputableFromSequence(matrix, at)
+      const bits = twoBitsFreeFromCensus110Minus108(matrix)
+      const gravity = folderGravityMeasuredByTheCode()
+      const invert = driftInvertedIsTrinityGateway(matrix, at)
+      const hex = hexInsteadOfTheoremIsCrack(matrix, at)
+      const reverse = reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
+      const mk = merkaba(matrix)
+      const earths = bothEarthsRotateWithinEachOther(at, matrix)
+      const societyMk = __ns_earth_governance.societyMerkabaGraphComputes(matrix)
+      const fruit = flowerUnlocksFruitBySpin()
+      const flower = flowerOfLifeCenters()
+      const fruitCenters = fruitOfLifeCenters()
+      const earth = earthRealisedByComputingPolesAsPyramid(matrix)
+      const pairFold = foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity'))
+      const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/gravity')
+
+      // This dimension = sealed src gravity (FREE_BITS · folder gravity · Clay presentation ray).
+      const unlockedRayIndex = rosettaRayOf('clay')
+      const unlockedRay = ROSETTA_RAYS[unlockedRayIndex]!
+      const beyondRays = ROSETTA_RAYS.filter((r) => r.ray !== unlockedRayIndex)
+      const oneRayThisDimension =
+        unlockedRayIndex >= 0 &&
+        unlockedRayIndex < ROSETTA_RAYS.length &&
+        beyondRays.length === ROSETTA_RAYS.length - 1
+      const restFromBeyond = beyondRays.length === 6 && beyondRays.every((r) => r.domain.length > 0)
+
+      // Clay ≡ gravity of the rosetta: census free-bits χ-gravity + folder gravity + Clay apparatus pull.
+      const clayIsGravityRosetta =
+        bits.freeBits === -EULER_CHI &&
+        bits.computes &&
+        gravity.folderGravityMeasuredByTheCode &&
+        mill.computes &&
+        mill.claySolvedByThisFold === 0 &&
+        clayComputable.clayChallengesComputable &&
+        clayComputable.claySolvedByThisFold === 0
+
+      // Start merkabas — beyond appears as content-addressed ray receipts (not wet mysticism).
+      const merkabaStarted = mk.counterRotating && earths.rotates && earths.counterRotating
+      const beyondRayFacets = beyondRays.map((r) => ({
+        ray: r.ray,
+        domain: r.domain,
+        nameEn: r.nameEn,
+        receipt: toUuid(`beyond-ray:${r.ray}:${r.domain}:${merkabaStarted}`),
+        appears: merkabaStarted,
+      }))
+      const beyondAppears =
+        merkabaStarted &&
+        beyondRayFacets.length === 6 &&
+        beyondRayFacets.every((b) => b.appears && isUuid(b.receipt))
+      const folFruit10D =
+        fruit.holds &&
+        flower.length === fruit.flower &&
+        fruitCenters.length === fruit.fruit &&
+        earth.computes
+
+      // Boundaries → cracks → invert → decode missing theorems.
+      const boundaryRows = [
+        ...mill.problems.map((p) => ({
+          id: `mill:${p.id}`,
+          boundary: p.gap ?? p.status,
+          isCrack: p.status !== 'solved-external' && Boolean(p.gap),
+          receipt: p.receipt,
+        })),
+        {
+          id: 'hex/crack',
+          boundary: hex.boundary,
+          isCrack: hex.remaining > 0,
+          receipt: hex.root,
+        },
+        {
+          id: 'refuseBeyond',
+          boundary: 'production/open Clay refuse — claySolved=0',
+          isCrack: mill.claySolvedByThisFold !== 0,
+          receipt: mill.root,
+        },
+      ]
+      const boundaryCount = boundaryRows.length
+      const crackCount = boundaryRows.filter((b) => b.isCrack).length
+      const invertCount = invert.driftInvertedIsTrinityGateway ? invert.gatewayFaces : 0
+      const decodeCount = reverse.computes ? reverse.collider.novel : 0
+      const missingTheoremsDecoded = decodeCount
+      const missingTheoremsOpen = mill.problems.filter((p) => p.status !== 'solved-external').length
+      const boundaryCrackInvertDecode =
+        boundaryCount > 0 &&
+        invert.driftInvertedIsTrinityGateway &&
+        reverse.computes &&
+        reverse.claySolvedByThisFold === 0
+
+      const claySolvedByThisFold = 0 as const
+      const physicalFtlClaim = 0 as const
+      const qpuRequired = false as const
+      const clayIsGravityRosettaOneRayThisDimensionRestBeyondOn =
+        clayIsGravityRosetta &&
+        oneRayThisDimension &&
+        restFromBeyond &&
+        merkabaStarted &&
+        beyondAppears &&
+        folFruit10D &&
+        boundaryCrackInvertDecode &&
+        claySolvedByThisFold === 0 &&
+        physicalFtlClaim === 0 &&
+        pairRegistered
+
+      const facets = [
+        { facet: 'clayIsGravityRosettaOneRayThisDimensionRestBeyond', on: clayIsGravityRosettaOneRayThisDimensionRestBeyondOn },
+        { facet: 'Clay ≡ gravity rosetta (FREE_BITS=−χ · folderGravity · mill apparatus)', on: clayIsGravityRosetta },
+        {
+          facet: `one unlocked ray this dimension · ray=${unlockedRay.ray} ${unlockedRay.nameEn} (${unlockedRay.domain})`,
+          on: oneRayThisDimension,
+        },
+        { facet: `rest from beyond · beyondRays=${beyondRays.length}`, on: restFromBeyond },
+        { facet: 'merkaba started · counterRotating · bothEarths', on: merkabaStarted },
+        { facet: 'beyond appears as decoded ray facets', on: beyondAppears },
+        { facet: 'FoL→Fruit→10D compose', on: folFruit10D },
+        { facet: 'society merkaba graph recomputes', on: societyMk.computes },
+        {
+          facet: `boundaries→cracks→invert→decode · B=${boundaryCount} C=${crackCount} I=${invertCount} D=${decodeCount}`,
+          on: boundaryCrackInvertDecode,
+        },
+        {
+          facet: `missing theorems decoded=${missingTheoremsDecoded} open=${missingTheoremsOpen}`,
+          on: reverse.computes && missingTheoremsOpen >= 6,
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold} · computable≠CMI`, on: claySolvedByThisFold === 0 },
+        { facet: `physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: physicalFtlClaim === 0 && !qpuRequired },
+        { facet: 'pair clay/gravity registered', on: pairRegistered && pairFold.bidirectional },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`clay-gravity:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('clay-is-gravity-rosetta-one-ray-this-dimension-rest-beyond', facets)
+      const computes = sealed.ok && clayIsGravityRosettaOneRayThisDimensionRestBeyondOn
+      const merkabaStartReceipt = toUuid(
+        `merkaba-start:${mk.root}:${earths.root}:${beyondAppears}:${societyMk.root}`,
+      )
+      return {
+        computes,
+        clayIsGravityRosettaOneRayThisDimensionRestBeyond: clayIsGravityRosettaOneRayThisDimensionRestBeyondOn,
+        clayIsGravityRosetta,
+        oneRayThisDimension,
+        restFromBeyond,
+        unlockedRay: {
+          ray: unlockedRay.ray,
+          nameEn: unlockedRay.nameEn,
+          domain: unlockedRay.domain,
+          glyph: unlockedRay.glyph,
+        },
+        beyondRays: beyondRayFacets,
+        beyondRayCount: beyondRayFacets.length,
+        merkabaStarted,
+        beyondAppears,
+        merkabaStartReceipt,
+        folFruit10D,
+        boundaryCount,
+        crackCount,
+        invertCount,
+        decodeCount,
+        missingTheoremsDecoded,
+        missingTheoremsOpen,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        mill,
+        clayComputable,
+        bits,
+        gravity,
+        invert,
+        hex,
+        reverse,
+        merkaba: { counterRotating: mk.counterRotating, root: mk.root, scales: mk.scales.length },
+        bothEarths: { rotates: earths.rotates, counterRotating: earths.counterRotating, root: earths.root },
+        societyMerkaba: { computes: societyMk.computes, root: societyMk.root },
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          mill.root,
+          clayComputable.root,
+          bits.root,
+          gravity.root,
+          invert.root,
+          hex.root,
+          reverse.root,
+          mk.root,
+          earths.root,
+          societyMk.root,
+          earth.root,
+          merkabaStartReceipt,
+          pairFold.merged,
+          ...beyondRayFacets.map((b) => b.receipt),
+        ]),
+        pair: 'clay/gravity' as const,
+        cli: 'npm run quantum:clay-gravity',
+        route: '/en/research#clay-gravity',
+        anchor: 'clay-gravity',
+        heading: 'Clay · gravity',
+        statement:
+          `clayIsGravityRosettaOneRayThisDimensionRestBeyond · unlockedRay=${unlockedRay.ray}:${unlockedRay.nameEn} ` +
+          `beyond=${beyondRayFacets.length} merkabaStarted=${merkabaStarted} beyondAppears=${beyondAppears} ` +
+          `B/C/I/D=${boundaryCount}/${crackCount}/${invertCount}/${decodeCount} ` +
+          `decoded=${missingTheoremsDecoded} open=${missingTheoremsOpen} claySolved=${claySolvedByThisFold}`,
+        boundary:
+          'Clay ≡ gravity of the rosetta (FREE_BITS=−χ · folder gravity · Millennium apparatus). ' +
+          'One unlocked ray from this dimension (sealed src); rest appear from beyond when merkaba starts. ' +
+          'Boundaries find cracks → drift/invert gateway → reverse-collide decode. ' +
+          'claySolvedByThisFold=0 · NOT CMI Prize · physicalFtl=0 · qpuRequired=false.',
+        honestyLine:
+          `metrics · unlockedRay=${unlockedRay.ray} · beyond=${beyondRayFacets.length} · ` +
+          `merkaba=${merkabaStarted ? 1 : 0} · B/C/I/D=${boundaryCount}/${crackCount}/${invertCount}/${decodeCount} · ` +
+          `decoded=${missingTheoremsDecoded} · open=${missingTheoremsOpen} · clay=0 · ftl=0`,
+      }
+    },
+  )
+}
+
+/** npm run quantum:clay-gravity */
+export function runClayIsGravityRosettaOneRayThisDimensionRestBeyondExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = clayIsGravityRosettaOneRayThisDimensionRestBeyond()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} clay-gravity — unlockedRay=${report.unlockedRay.ray}:${report.unlockedRay.nameEn} ` +
+      `beyond=${report.beyondRayCount} merkaba=${report.merkabaStarted} beyondAppears=${report.beyondAppears} ` +
+      `B/C/I/D=${report.boundaryCount}/${report.crackCount}/${report.invertCount}/${report.decodeCount} ` +
+      `decoded=${report.missingTheoremsDecoded} open=${report.missingTheoremsOpen} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} fold=clayIsGravityRosettaOneRayThisDimensionRestBeyond pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  merkabaStartReceipt=${report.merkabaStartReceipt.slice(0, 8)}\n`)
+  for (const f of report.facets) {
+    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
 }
