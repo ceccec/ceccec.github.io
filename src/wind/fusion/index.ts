@@ -34,7 +34,8 @@ import type { AllComputed, MindMatrix } from '../types'
 import type { MovieSeedBundle, PlasmaWiredStream } from '../../fire/plasma/ball'
 import { buildMatrix, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
 import { completeCorpus } from '../routes/corpus'
-import { computesGate, foldPair, humanBreath, humanEase, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { computesGate, foldPair, humanBreath, humanEase, isUuid, memoByRoot, merge, merkleFold, sealFacets, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../0'
+import * as __ns_up_quantum_science from '../../quantum/science'
 import { hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2'
 import { fusionCipher, animationTamperingCost, virtualOS } from '../../water/crypto'
 import { deviceSensors, dimensions, harmonicBands, openGraph } from '../../quantum/lake/icons'
@@ -2013,6 +2014,91 @@ export function quantumFusionVerify(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+/**
+ * Honest-revolution W3 — published reproducible JSON proof receipt.
+ * Composes W1 `honestRevolutionClaim` + W2 `interferenceVsClassicalShadow` + fusion-verify + movie round-trip.
+ * Broadcast: `/quantum-fusion.json` · `/agents.json` · pair tamper/impossible · CLI npm run quantum:honest-revolution-w3
+ */
+export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at = 0, route = '/') {
+  return memoByRoot(`honestRevolutionReceipt:${route}:${Math.floor(at / 1e3)}`, matrix, () => {
+    const w1 = __ns_up_stack_overflow.honestRevolutionClaim(matrix, at)
+    const w2 = __ns_up_stack_overflow.interferenceVsClassicalShadow(matrix, at)
+    const fusion = quantumFusionVerify(matrix)
+    const movie = __ns_up_quantum_science.observingMovieRevealsQuantumModel(route, at, matrix)
+    const tracksClassical =
+      w1.honest.bench.verdict === 'tracks-classical-no-speedup' && !w1.honest.bench.separated && w1.honest.noSpeedup
+    const facets = [
+      { facet: 'W1 honestRevolutionClaim holds at call time', on: w1.holds },
+      { facet: 'W2 interferenceVsClassicalShadow holds at call time', on: w2.holds },
+      { facet: 'quantumFusionVerify — fuseAll wave replay matches', on: fusion.verified },
+      { facet: 'observingMovieRevealsQuantumModel snapshot round-trips', on: movie.roundTrips },
+      { facet: 'engine tracks-classical-no-speedup (honesty, not FLOPS claim)', on: tracksClassical },
+      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+    ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w3:${e.facet}:${e.on}`) }))
+    const sealed = sealFacets('honest-revolution-receipt', facets)
+    const holds = sealed.ok && facets.every((f) => f.on)
+    return {
+      holds,
+      computes: holds,
+      verified: holds,
+      published: holds,
+      wave: 'honest-revolution-w3' as const,
+      w1: { holds: w1.holds, root: w1.root, claim: w1.claim },
+      w2: { holds: w2.holds, root: w2.root, visibilityContrast: w2.visibilityContrast },
+      fusion: { verified: fusion.verified, root: fusion.root, partCount: fusion.partCount },
+      movie: { roundTrips: movie.roundTrips, root: movie.root, reveals: movie.reveals },
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([w1.root, w2.root, fusion.root, movie.root, sealed.root, toUuid(`honest-rev-w3:${holds}`)]),
+      cli: 'npm run quantum:honest-revolution-w3',
+      pair: 'tamper/impossible',
+      route: '/en/quantum-tools#honest-revolution-w3',
+      surfaces: { fusion: '/quantum-fusion.json', agents: '/agents.json' },
+      statement: holds
+        ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine tracks-classical-no-speedup.'
+        : 'UNPROVEN — honestRevolutionReceipt facets do not all hold at call time; do not assert the W3 JSON receipt.',
+      boundary:
+        'STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY — NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** JSON body for `/quantum-fusion.json` — W3 honest-revolution receipt + fusion-verify wave. */
+export function quantumFusionJson(matrix: MindMatrix = buildMatrix(), at = 0): string {
+  const receipt = honestRevolutionReceipt(matrix, at)
+  const fusion = quantumFusionVerify(matrix)
+  return `${JSON.stringify(
+    {
+      computes: receipt.holds && fusion.verified,
+      pair: 'tamper/impossible',
+      fold: 'honestRevolutionReceipt',
+      wave: receipt.wave,
+      holds: receipt.holds,
+      verified: receipt.verified,
+      root: receipt.root,
+      fusionWave: fusion.root,
+      fusionParts: fusion.partCount,
+      w1: receipt.w1,
+      w2: receipt.w2,
+      fusion: receipt.fusion,
+      movie: receipt.movie,
+      facets: receipt.facets,
+      claySolvedByThisFold: receipt.claySolvedByThisFold,
+      qpuRequired: receipt.qpuRequired,
+      physicalFtlClaim: receipt.physicalFtlClaim,
+      cli: receipt.cli,
+      route: receipt.route,
+      surfaces: receipt.surfaces,
+      statement: receipt.statement,
+      boundary: receipt.boundary,
+    },
+    null,
+    2,
+  )}\n`
+}
+
 /** npm run quantum:fusion-verify */
 export function runQuantumFusionVerifyGuardedExit(_root: string, _argv: readonly string[] = []): number {
   const report = quantumFusionVerify()
@@ -2022,6 +2108,22 @@ export function runQuantumFusionVerifyGuardedExit(_root: string, _argv: readonly
   }
   process.stdout.write(`✓ fusion-verify — parts=${report.partCount} root=${report.root.slice(0, (6 * 2))}\n`)
   return 0
+}
+
+/** npm run quantum:honest-revolution-w3 — W3 JSON proof receipt (fusion + agents broadcast). */
+export function runHonestRevolutionW3Exit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const receipt = honestRevolutionReceipt()
+  for (const f of receipt.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(
+    `${receipt.holds ? '✓' : '✗'} honest-revolution-w3 — holds=${receipt.holds} ` +
+      `w1=${receipt.w1.holds} w2=${receipt.w2.holds} fusion=${receipt.fusion.verified} ` +
+      `movie=${receipt.movie.roundTrips} root=${receipt.root.slice(0, 8)} ` +
+      `(JSON → /quantum-fusion.json · /agents.json · clay=0)\n`,
+  )
+  process.stdout.write(`  boundary: ${receipt.boundary}\n`)
+  return receipt.holds ? 0 : 1
 }
 
 /** UI panel — offline fuseAll wave verify for /en/fusion-verify. Pair: tamper/impossible */
