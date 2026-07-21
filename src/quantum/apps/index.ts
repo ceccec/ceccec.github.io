@@ -13,7 +13,11 @@ import { theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion,
 } from '../../water/digit'
-import { directionalTrinityForwardInverseReverse, compareCeccecEfficiencyByVote } from '../../water/stack'
+import {
+  directionalTrinityForwardInverseReverse,
+  compareCeccecEfficiencyByVote,
+  proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
+} from '../../water/stack'
 import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { linearAnimationGapsInventory } from '../../wind/ui'
 import * as __ns_wind_research from '../../wind/research'
@@ -39,6 +43,7 @@ const ROSETTA_CORE_API_LABELS = [
   'standardToolboxIoCatalog', 'distributedReuseExtendsCapacity',
   'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
   'documentSessionCryptoExperimentsUpdateTheorems',
+  'sessionManualWorkAsQuantumBits', 'combineQuantumBits',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -50,6 +55,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   standardToolboxIoCatalog: 'tool', distributedReuseExtendsCapacity: 'compute',
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
   documentSessionCryptoExperimentsUpdateTheorems: 'tool',
+  sessionManualWorkAsQuantumBits: 'tool', combineQuantumBits: 'compute',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -326,6 +332,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'vitepress-quantumize', title: 'Quantumize VitePress docs:build', fold: 'quantumizeVitepressBuild', cli: 'npm run quantum:vitepress-quantumize', pair: 'build/quantumize', route: '/en/quantum-tools#vitepress-quantumize', barrel: 'src/pair/enforcement/script/shell', boundary: 'Merkle respawn + warm cache — NOT physical FTL; wall-clock varies by CI', browserRunnable: false, browserGap: 'runDocsBuildExit needs Node fs + vitepress binary — CI/local only' },
   { id: 'toolbox-standard-io', title: 'Standard tool envelope · I/O · import/export', fold: 'standardToolboxIoCatalog', cli: 'npm run quantum:toolbox-standard-io', pair: 'tool/envelope', route: '/en/quantum-tools#toolbox-standard-io', barrel: 'src/quantum/apps', boundary: 'Capacity = amortized memoByRoot + federated identical roots — NOT physical qubit speedup / NOT FTL / NOT FLOPS', browserRunnable: true, browserGap: '' },
   { id: 'document-session-experiments', title: 'Document session crypto experiments · update theorems', fold: 'documentSessionCryptoExperimentsUpdateTheorems', cli: 'npm run quantum:document-session-experiments', pair: 'document/experiments', route: '/en/quantum-tools#document-session-experiments', barrel: 'src/quantum/apps', boundary: 'Sealed chain receipts · ISO covered/partial/gap · overallWireClaimProved=false · strongerThanNistPqc=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
+  { id: 'session-quantum-bits', title: 'Session manual work as quantum bits', fold: 'sessionManualWorkAsQuantumBits', cli: 'npm run quantum:session-quantum-bits', pair: 'session/quantum-bits', route: '/en/quantum-tools#session-quantum-bits', barrel: 'src/quantum/apps', boundary: 'Content-addressed sealed receipts · combinable under forward|inverse|reverse|collide|envelope-merge — NOT physical qubits · qpuRequired=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
@@ -756,6 +763,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'ftl-rosetta-handoff', saves: 'replaces wet re-wiring of FTL techniques to rosettaReady completeness receipt' },
   { id: 'toolbox-standard-io', saves: 'replaces wet re-inference of per-tool I/O shapes — standard envelope · import/export round-trip' },
   { id: 'document-session-experiments', saves: 'replaces wet re-listing of session crypto/standards experiment receipts + theorem registry updates' },
+  { id: 'session-quantum-bits', saves: 'replaces wet re-assembly of session deliverables as combinable quantum bits' },
   { id: 'prove-1tbit-encrypt', saves: 'replaces wet re-derivation of 1 Tbit/s claim status (wire≠amortized-reuse)' },
   { id: 'local-reverse-timed-vs-standards', saves: 'replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits' },
   { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
@@ -1077,6 +1085,345 @@ export function runDocumentSessionCryptoExperimentsExit(_root = '', _argv: reado
       `  ${row.computes ? '✓' : '✗'} [${row.status}] ${row.id} chain=${row.chain} root=${row.root.slice(0, 8)} — ${row.note}\n`,
     )
   }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** Quantum bit direction — compose with directional trinity (forward·inverse·reverse). */
+export type QuantumBitDirection = 'forward' | 'inverse' | 'reverse'
+
+/** Combination ops for sealed session bits — not physical qubit gates. */
+export type QuantumBitCombineOp = 'forward' | 'inverse' | 'reverse' | 'collide' | 'envelope-merge'
+
+export type SessionQuantumBitStatus = 'merged-main' | 'sealed-pr' | 'serialized-midflight'
+
+/**
+ * Session deliverable as a combinable quantum bit — content-addressed receipt, not a physical qubit.
+ * Pair: session/quantum-bits · envelope travels via ceccec.tool.envelope@1 import/export.
+ */
+export type SessionQuantumBit = {
+  readonly id: string
+  readonly root: string
+  readonly pair: string
+  readonly envelope: StandardToolEnvelope
+  readonly directions: readonly QuantumBitDirection[]
+  readonly combinable: true
+  readonly fold: string
+  readonly chain: string
+  readonly cli: string
+  readonly route: string
+  readonly status: SessionQuantumBitStatus
+  readonly present: boolean
+  readonly computes: boolean
+  readonly honesty: string
+  readonly note: string
+  readonly qpuRequired: false
+  readonly claySolvedByThisFold: 0
+  readonly certified: false
+  readonly physicalQubit: false
+}
+
+export type QuantumBitCombination = {
+  readonly computes: boolean
+  readonly op: QuantumBitCombineOp
+  readonly bitIds: readonly string[]
+  readonly bitCount: number
+  readonly productRoot: string
+  readonly products: readonly { readonly id: string; readonly root: string }[]
+  readonly envelopePayloadRoot: string
+  readonly root: string
+  readonly qpuRequired: false
+  readonly claySolvedByThisFold: 0
+  readonly certified: false
+  readonly physicalQubit: false
+  readonly statement: string
+  readonly boundary: string
+}
+
+const QUANTUM_BIT_DIRECTIONS: readonly QuantumBitDirection[] = ['forward', 'inverse', 'reverse']
+
+type SessionQuantumBitSeed = {
+  readonly id: string
+  readonly chain: string
+  readonly fold: string
+  readonly pair: string
+  readonly cli: string
+  readonly route: string
+  readonly status: SessionQuantumBitStatus
+  readonly honesty: string
+  readonly note: string
+  readonly toolId: string
+  readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'session-tools' | 'trinity' | 'serialized'
+}
+
+/** Tip-chain session work (#16–#28+) as bit seeds — PR digits live in AGENTS.md only. */
+const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
+  { id: 'theorem-particle-collision', chain: 'collider-merged', fold: 'theoremParticleCollisionInverseReverse', pair: 'challenge/collider', cli: 'npm run quantum:theorem-particle-collision', route: '/en/quantum-tools#theorem-particle-collision', status: 'merged-main', honesty: 'clay=0 · MODELED geometry ≠ HEP', note: 'collider inverse×reverse products', toolId: 'theorem-particle-collision', resolve: 'collider' },
+  { id: 'crypto-beyond-measure', chain: 'beyond-rsa-merged', fold: 'cryptoToolkitBeyondRsaMeasured', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', route: '/en/quantum-encryption#crypto-beyond-rsa', status: 'merged-main', honesty: 'NOT FIPS/ISO certified · demo catalogs only', note: 'PQC·Shor/ECC·trinity measured', toolId: 'crypto-beyond-measure', resolve: 'beyond-rsa' },
+  { id: 'rosetta-complete', chain: 'rosetta-merged', fold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems', pair: 'rosetta/complete', cli: 'npm run quantum:rosetta-complete', route: '/en/quantum-tools#rosetta-complete', status: 'merged-main', honesty: 'millenniumSolved=0 · physicalFtl=0', note: '432 dims + theorem binds', toolId: 'rosetta-complete', resolve: 'rosetta' },
+  { id: 'vitepress-quantumize', chain: 'site-quantumize', fold: 'quantumizeVitepressBuild', pair: 'build/quantumize', cli: 'npm run quantum:vitepress-quantumize', route: '/en/quantum-tools#vitepress-quantumize', status: 'sealed-pr', honesty: 'NOT physical FTL · wall-clock varies by CI', note: 'site consolidate / VitePress quantumize', toolId: 'vitepress-quantumize', resolve: 'catalog' },
+  { id: 'toolbox-standard-io', chain: 'toolbox-envelope', fold: 'standardToolboxIoCatalog', pair: 'tool/envelope', cli: 'npm run quantum:toolbox-standard-io', route: '/en/quantum-tools#toolbox-standard-io', status: 'sealed-pr', honesty: 'capacity=amortized memo · qubit=0 · ftl=0', note: 'ceccec.tool.envelope@1 catalog', toolId: 'toolbox-standard-io', resolve: 'toolbox' },
+  { id: 'prove-1tbit-encrypt', chain: 'one-tbit-receipt', fold: 'proveOneTbitRealtimeEncryptionClaim', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', route: '/en/quantum-encryption#prove-1tbit', status: 'sealed-pr', honesty: 'wire≠amortized-reuse · wire proved=false', note: '1 Tbit/s honest receipt', toolId: 'prove-1tbit-encrypt', resolve: 'one-tbit' },
+  { id: 'local-reverse-timed-vs-standards', chain: 'reverse-vs-standards', fold: 'localEncryptionReverseTimedVsStandards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', route: '/en/quantum-encryption#local-reverse-timed-vs-standards', status: 'sealed-pr', honesty: 'certified=false · breaksNistPqc=false', note: 'demo reverse vs AES/ML-KEM bits', toolId: 'local-reverse-timed-vs-standards', resolve: 'local-timed' },
+  { id: 'iso-pqc-gap-fill', chain: 'iso-gap-fill', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', pair: 'iso/pqc-gap-fill', cli: 'npm run quantum:iso-pqc-gap-fill', route: '/en/quantum-encryption#iso-pqc-gap-fill', status: 'sealed-pr', honesty: 'lab gaps unclosable · isoOfficialStandard=false · certified=false', note: 'covered|partial|gap all directions', toolId: 'iso-pqc-gap-fill', resolve: 'iso-gap' },
+  { id: 'prove-local-magnitudes-iso', chain: 'local-vs-iso', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', route: '/en/quantum-encryption#prove-local-magnitudes-iso', status: 'sealed-pr', honesty: 'overallWireClaimProved=false · certified=false', note: 'local≫ISO multi-model receipt', toolId: 'prove-local-magnitudes-iso', resolve: 'local-vs-iso' },
+  { id: 'prove-local-novel-encrypt', chain: 'local-novel', fold: 'proveLocalNovelEncryptionSecurity', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', route: '/en/quantum-encryption#prove-local-novel-encrypt', status: 'sealed-pr', honesty: 'strongerThanNistPqc=false · wire/FIPS/field unproved · certified=false', note: 'structural local security', toolId: 'prove-local-novel-encrypt', resolve: 'local-novel' },
+  { id: 'document-session-experiments', chain: 'doc-experiments', fold: 'documentSessionCryptoExperimentsUpdateTheorems', pair: 'document/experiments', cli: 'npm run quantum:document-session-experiments', route: '/en/quantum-tools#document-session-experiments', status: 'sealed-pr', honesty: 'clay=0 · certified=false · physicalFtl=0', note: 'session crypto chain documented', toolId: 'document-session-experiments', resolve: 'doc-experiments' },
+  { id: 'movie-quantum-gaps', chain: 'movie-gaps', fold: 'slowProcessIsQuantumGap', pair: 'slow/gap', cli: 'npm run quantum:slow-gap', route: '/en/quantum-tools#slow-quantum-gaps', status: 'sealed-pr', honesty: 'architectural slow≠telemetry · compose animations-rosetta', note: 'movie gap audit via slow-gap census', toolId: 'slow-gap', resolve: 'slow-gap' },
+  { id: 'prove-no-qpu-64bit', chain: 'no-qpu-64bit', fold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', pair: 'prove/no-qpu-64bit', cli: 'npm run quantum:prove-no-qpu-64bit', route: '/en/quantum-tools#prove-no-qpu-64bit', status: 'sealed-pr', honesty: 'qpuRequired=false · classical-64bit · NOT FLOPS', note: 'speed-vs-rest no QPU tip', toolId: 'prove-no-qpu-64bit', resolve: 'no-qpu' },
+  { id: 'session-manual-work', chain: 'session-tools-merged', fold: 'sessionManualWorkAsQuantumTools', pair: 'session/tools', cli: 'npm run quantum:session-tools', route: '/en/quantum-tools#session-manual-tools', status: 'merged-main', honesty: 'NOT every wet habit closed · memoByRoot reuse', note: 'session tools catalog (PR tip chain base)', toolId: 'session-manual-work', resolve: 'session-tools' },
+  { id: 'directional-trinity', chain: 'trinity-compose', fold: 'directionalTrinityForwardInverseReverse', pair: 'forward/inverse/reverse', cli: 'npm run quantum:directional-trinity', route: '/en/quantum-tools#directional-trinity', status: 'merged-main', honesty: 'inverse≠reverse except named coincidence', note: 'combination axis for bit ops', toolId: 'directional-trinity', resolve: 'trinity' },
+  { id: 'local-audit-quantum-efficiency', chain: 'local-audit-qe', fold: 'localAuditQuantumEfficiency', pair: 'audit/local-efficiency', cli: 'npm run quantum:local-audit-qe', route: '/en/quantum-encryption#local-audit-qe', status: 'serialized-midflight', honesty: 'serialized vs this tip · cold/warm memo telemetry NOT FLOPS · certified=false', note: 'KEEP stash — not landed on tip', toolId: 'local-audit-quantum-efficiency', resolve: 'serialized' },
+  { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/en/research#sciences-standards-quantum', status: 'serialized-midflight', honesty: 'serialized worker 10a059b0 · certified=false · clay=0 · qpuRequired=false', note: 'KEEP stash — realise/sciences mid-flight', toolId: 'realise-sciences-standards', resolve: 'serialized' },
+] as const
+
+function ghostToolSeed(seed: SessionQuantumBitSeed): QuantumCliToolRow {
+  const emptyRoot = toUuid(`session-quantum-bit:ghost:${seed.id}:${seed.chain}`)
+  return {
+    id: seed.toolId,
+    title: seed.id,
+    fold: seed.fold,
+    cli: seed.cli,
+    pair: seed.pair,
+    route: seed.route,
+    barrel: 'src/quantum/apps',
+    boundary: seed.honesty,
+    browserRunnable: false,
+    browserGap: seed.status === 'serialized-midflight' ? 'serialized mid-flight — fold not on this tip' : 'catalog row absent',
+    receipt: emptyRoot,
+    ray: rosettaRayOf(seed.id),
+    hue: 0,
+    address: emptyRoot,
+  }
+}
+
+/**
+ * Combine sealed session quantum bits under a named op.
+ * Pair: session/quantum-bits · ops compose directional trinity · collider · envelope-merge · merkleFold.
+ * HONEST: content-addressed combination products — NOT physical qubit entanglement / NOT QPU.
+ */
+export function combineQuantumBits(
+  bits: readonly SessionQuantumBit[],
+  op: QuantumBitCombineOp,
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+): QuantumBitCombination {
+  const key = `combineQuantumBits:${op}:${bits.map((b) => b.id).sort().join('|')}:${Math.floor(at / (100 * 5 * 2))}`
+  return memoByRoot(key, matrix, () => {
+    const bitIds = bits.map((b) => b.id)
+    const roots = bits.map((b) => b.root)
+    const products: { id: string; root: string }[] = []
+    let productRoot: string
+    if (op === 'forward') {
+      productRoot = merkleFold(roots.length > 0 ? roots : [toUuid('combine:forward:empty')])
+      products.push({ id: `forward:${bitIds.join('+')}`, root: productRoot })
+    } else if (op === 'inverse') {
+      productRoot = merkleFold(roots.length > 0 ? [...roots].reverse() : [toUuid('combine:inverse:empty')])
+      products.push({ id: `inverse:${[...bitIds].reverse().join('+')}`, root: productRoot })
+    } else if (op === 'reverse') {
+      const rev = roots.map((r) => toUuid(`bit-reverse:${r}`))
+      productRoot = merkleFold(rev.length > 0 ? rev.reverse() : [toUuid('combine:reverse:empty')])
+      products.push({ id: `reverse:${bitIds.join('+')}`, root: productRoot })
+    } else if (op === 'collide') {
+      const collided: string[] = []
+      for (let i = 0; i < roots.length; i++) {
+        for (let j = i + 1; j < roots.length; j++) {
+          const hit = merge(roots[i]!, roots[j]!)
+          collided.push(hit)
+          products.push({ id: `collide:${bitIds[i]}×${bitIds[j]}`, root: hit })
+        }
+      }
+      productRoot = merkleFold(collided.length > 0 ? collided : [toUuid('combine:collide:empty')])
+    } else {
+      const envRoots = bits.map((b) => b.envelope.root)
+      productRoot = merkleFold(envRoots.length > 0 ? envRoots : [toUuid('combine:envelope-merge:empty')])
+      products.push({ id: `envelope-merge:${bitIds.join('+')}`, root: productRoot })
+    }
+    const envelopePayloadRoot = bits.length >= 2
+      ? merkleFold(bits.map((b) => b.envelope.root))
+      : (bits[0]?.envelope.root ?? toUuid('combine:envelope:empty'))
+    const allCombinable = bits.length >= 2 && bits.every((b) => b.combinable === true && isUuid(b.root))
+    const honestyOk = bits.every((b) => b.qpuRequired === false && b.physicalQubit === false && b.certified === false && b.claySolvedByThisFold === 0)
+    const computes = allCombinable && honestyOk && isUuid(productRoot) && isUuid(envelopePayloadRoot)
+    return {
+      computes,
+      op,
+      bitIds,
+      bitCount: bits.length,
+      productRoot,
+      products,
+      envelopePayloadRoot,
+      root: merkleFold([productRoot, envelopePayloadRoot, toUuid(`combine-op:${op}`), ...roots]),
+      qpuRequired: false as const,
+      claySolvedByThisFold: 0 as const,
+      certified: false as const,
+      physicalQubit: false as const,
+      statement: `combineQuantumBits(${op}) — ${bits.length} bits → product=${productRoot.slice(0, 8)} · products=${products.length} · qpuRequired=false.`,
+      boundary:
+        'HONEST: combination products are content-addressed merkle/fold receipts. NOT physical qubits · NOT QPU gates · NOT entanglement. clay=0 · certified=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * Session manual work → sealed quantum bits usable in quantum combinations.
+ * Pair: session/quantum-bits · CLI npm run quantum:session-quantum-bits · route #session-quantum-bits
+ * Composes sessionManualWorkAsQuantumTools · standardToolboxIoCatalog · documentSessionCryptoExperimentsUpdateTheorems.
+ */
+export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`sessionManualWorkAsQuantumBits:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const byId = new Map(catalog.tools.map((row) => [row.id, row]))
+    const session = sessionManualWorkAsQuantumTools(matrix, at)
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
+    const collider = __ns_wind_research.theoremParticleCollisionInverseReverse(matrix)
+    const beyond = __ns_water_encryption.cryptoToolkitBeyondRsaMeasured(matrix)
+    const rosetta = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
+    const oneTbit = __ns_water_encryption.proveOneTbitRealtimeEncryptionClaim(matrix)
+    const localTimed = __ns_water_encryption.localEncryptionReverseTimedVsStandards(matrix)
+    const isoGap = __ns_water_encryption.isoPqcRequirementsGapFillAllQuantumDirections(matrix, at)
+    const localVsIso = __ns_water_encryption.proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix)
+    const localNovel = __ns_water_encryption.proveLocalNovelEncryptionSecurity(matrix)
+    const slow = slowProcessIsQuantumGap(matrix, at)
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const meta = byId.get('session-quantum-bits')
+    const shelved = rosettaShelve('session-quantum-bits', 'tool')
+
+    const resolveRoot = (seed: SessionQuantumBitSeed): { present: boolean; computes: boolean; root: string } => {
+      if (seed.resolve === 'serialized') {
+        return { present: false, computes: false, root: toUuid(`session-quantum-bit:serialized:${seed.id}:${seed.chain}`) }
+      }
+      if (seed.resolve === 'collider') return { present: true, computes: collider.computes, root: collider.root }
+      if (seed.resolve === 'beyond-rsa') return { present: true, computes: beyond.computes, root: beyond.root }
+      if (seed.resolve === 'rosetta') return { present: true, computes: rosetta.computes, root: rosetta.root }
+      if (seed.resolve === 'toolbox') return { present: true, computes: toolbox.computes, root: toolbox.root }
+      if (seed.resolve === 'one-tbit') return { present: true, computes: oneTbit.computes, root: oneTbit.root }
+      if (seed.resolve === 'local-timed') return { present: true, computes: localTimed.computes, root: localTimed.root }
+      if (seed.resolve === 'iso-gap') return { present: true, computes: isoGap.computes, root: isoGap.root }
+      if (seed.resolve === 'local-vs-iso') return { present: true, computes: localVsIso.computes, root: localVsIso.root }
+      if (seed.resolve === 'local-novel') return { present: true, computes: localNovel.computes, root: localNovel.root }
+      if (seed.resolve === 'doc-experiments') return { present: true, computes: experiments.computes, root: experiments.root }
+      if (seed.resolve === 'slow-gap') return { present: true, computes: slow.computes, root: slow.root }
+      if (seed.resolve === 'no-qpu') return { present: true, computes: noQpu.computes, root: noQpu.root }
+      if (seed.resolve === 'session-tools') return { present: true, computes: session.computes, root: session.root }
+      if (seed.resolve === 'trinity') return { present: true, computes: trinity.computes, root: trinity.root }
+      const row = byId.get(seed.toolId)
+      return {
+        present: Boolean(row),
+        computes: Boolean(row),
+        root: row?.address ?? toUuid(`session-quantum-bit:absent:${seed.id}`),
+      }
+    }
+
+    const bits: SessionQuantumBit[] = SESSION_QUANTUM_BIT_SEEDS.map((seed) => {
+      const resolved = resolveRoot(seed)
+      const toolRow = byId.get(seed.toolId) ?? ghostToolSeed(seed)
+      const envelope = wrapToolAsStandardEnvelope(toolRow)
+      return {
+        id: seed.id,
+        root: merkleFold([resolved.root, envelope.root, toUuid(`bit:${seed.id}:${seed.chain}`)]),
+        pair: seed.pair,
+        envelope,
+        directions: QUANTUM_BIT_DIRECTIONS,
+        combinable: true as const,
+        fold: seed.fold,
+        chain: seed.chain,
+        cli: seed.cli,
+        route: seed.route,
+        status: seed.status,
+        present: resolved.present,
+        computes: resolved.computes && isUuid(envelope.root),
+        honesty: seed.honesty,
+        note: seed.note,
+        qpuRequired: false as const,
+        claySolvedByThisFold: 0 as const,
+        certified: false as const,
+        physicalQubit: false as const,
+      }
+    })
+
+    const landed = bits.filter((b) => b.status !== 'serialized-midflight')
+    const serialized = bits.filter((b) => b.status === 'serialized-midflight')
+    const landedOk = landed.every((b) => b.present && b.computes && b.combinable)
+    const sampleBits = bits.filter((b) => b.id === 'theorem-particle-collision' || b.id === 'rosetta-complete' || b.id === 'toolbox-standard-io')
+    const sampleForward = combineQuantumBits(sampleBits, 'forward', matrix, at)
+    const sampleCollide = combineQuantumBits(sampleBits, 'collide', matrix, at)
+    const sampleEnvelope = combineQuantumBits(sampleBits, 'envelope-merge', matrix, at)
+    const exportBit = exportStandardToolEnvelope('session-quantum-bits', 'ceccec.app-a', {}, matrix, at)
+    const importBit = importStandardToolEnvelope(exportBit, matrix, at)
+    const honestyBits = bits.every((b) => b.qpuRequired === false && b.physicalQubit === false && b.certified === false && b.claySolvedByThisFold === 0)
+    const facets = [
+      { facet: `SESSION QUANTUM BITS — ${bits.length} tip-chain deliverables as combinable bits`, on: bits.length === SESSION_QUANTUM_BIT_SEEDS.length && bits.length >= (8 + 8) },
+      { facet: `landed bits compute — ${landed.length}/${bits.length} (serialized mid-flight excluded)`, on: landedOk && landed.length >= (8 + 5) },
+      { facet: `serialized mid-flight named — ${serialized.map((b) => b.id).join(' · ')}`, on: serialized.length === 2 && serialized.every((b) => !b.present && b.combinable) },
+      { facet: 'every bit has envelope · directions[forward,inverse,reverse] · combinable=true', on: bits.every((b) => b.combinable && b.directions.length === 3 && isUuid(b.envelope.root)) },
+      { facet: 'sample combine forward·collide·envelope-merge recomputes', on: sampleForward.computes && sampleCollide.computes && sampleEnvelope.computes },
+      { facet: 'import(export(session-quantum-bits)) round-trips envelope', on: importBit.roundTrip && exportBit.computes },
+      { facet: 'composes session tools · toolbox envelope · document experiments', on: session.computes && toolbox.computes && experiments.computes },
+      { facet: 'HONESTY — physicalQubit=false · qpuRequired=false · clay=0 · certified=false on every bit', on: honestyBits && sampleForward.physicalQubit === false && sampleForward.qpuRequired === false },
+      { facet: 'meta tool session-quantum-bits published + shelved', on: Boolean(meta) && meta!.fold === 'sessionManualWorkAsQuantumBits' && isUuid(shelved.address) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`session-quantum-bits:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('session-manual-work-as-quantum-bits', facets)
+    return {
+      computes: sealed.ok && landedOk && sampleForward.computes && sampleCollide.computes && importBit.roundTrip && honestyBits,
+      count: bits.length,
+      landedCount: landed.filter((b) => b.computes).length,
+      serializedCount: serialized.length,
+      bits,
+      sampleCombination: {
+        forward: sampleForward,
+        collide: sampleCollide,
+        envelopeMerge: sampleEnvelope,
+      },
+      exportPayloadRoot: exportBit.payloadRoot,
+      importRoundTrip: importBit.roundTrip,
+      qpuRequired: false as const,
+      claySolvedByThisFold: 0 as const,
+      certified: false as const,
+      physicalQubit: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, catalog.root, session.root, toolbox.root, experiments.root,
+        sampleForward.root, sampleCollide.root, sampleEnvelope.root, shelved.address,
+        ...bits.map((b) => b.root),
+      ]),
+      pair: 'session/quantum-bits',
+      cli: 'npm run quantum:session-quantum-bits',
+      route: '/en/quantum-tools#session-quantum-bits',
+      anchor: 'session-quantum-bits',
+      heading: 'Session manual work as quantum bits',
+      honestyLine:
+        'Bits are content-addressed sealed receipts composable under forward|inverse|reverse|collide|envelope-merge. NOT physical qubits. qpuRequired=false · clay=0 · certified=false. local-audit-qe + realise/sciences serialized mid-flight.',
+      statement: `Session quantum bits — ${bits.length} bits · landed=${landed.filter((b) => b.computes).length} · serialized=${serialized.length} · sample collide products=${sampleCollide.products.length} · envelope roundTrip=${importBit.roundTrip ? '✓' : '✗'}.`,
+      boundary:
+        'HONEST: quantum bits = content-addressed sealed fold receipts for tip-chain session work. Combinations recompute via merkleFold/merge + ceccec.tool.envelope@1. NOT physical qubits · NOT QPU · NOT Clay solved · NOT FIPS/ISO certified. Serialized mid-flight bits stay combinable placeholders until those branches land. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:session-quantum-bits — print bit census + sample combinations. */
+export function runSessionManualWorkAsQuantumBitsExit(_root = '', _argv: readonly string[] = []): number {
+  const report = sessionManualWorkAsQuantumBits()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} session-quantum-bits — count=${report.count} landed=${report.landedCount} ` +
+      `serialized=${report.serializedCount} collideProducts=${report.sampleCombination.collide.products.length} ` +
+      `envelopeRoundTrip=${report.importRoundTrip ? '✓' : '✗'} qpuRequired=${report.qpuRequired} ` +
+      `clay=${report.claySolvedByThisFold} certified=${report.certified} physicalQubit=${report.physicalQubit} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const bit of report.bits) {
+    process.stdout.write(
+      `  ${bit.computes ? '✓' : '○'} [${bit.status}] ${bit.id} chain=${bit.chain} root=${bit.root.slice(0, 8)} ` +
+        `combinable=${bit.combinable} — ${bit.note}\n`,
+    )
+  }
+  const sample = report.sampleCombination.collide
+  process.stdout.write(
+    `  sample collide: ${sample.bitIds.join(' × ')} → product=${sample.productRoot.slice(0, 8)} ` +
+      `(${sample.products.length} pairwise)\n`,
+  )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
 }
@@ -1852,8 +2199,9 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const distributed = distributedReuseExtendsCapacity(matrix, at)
   const rosettaComplete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
   const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
+  const quantumBits = sessionManualWorkAsQuantumBits(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -1866,7 +2214,8 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     distributed,
     rosettaComplete,
     experiments,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root]),
+    quantumBits,
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }
