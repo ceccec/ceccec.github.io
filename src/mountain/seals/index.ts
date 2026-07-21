@@ -27,7 +27,14 @@ import { blockchainMusic, harmonics, healingHarmonic, soundColor } from '../../l
 import { selfHarmonise, selfReason } from '../geometry'
 import { conceptCommands } from '../../heaven/atoms'
 import { digitFolders, digitFoldersAreTheApi, folder64SealsProductionElseDevelopment, folderLaw } from '../../earth/architecture'
-import { coordinatedWaves, discoverFromSealedFold, incompleteRevelation, ogInOgWaves, quantumChessGame } from '../../thunder/waves'
+import {
+  coordinatedWaves,
+  discoverFromSealedFold,
+  incompleteRevelation,
+  ogInOgWaves,
+  quantumChessGame,
+  wavesWorkingInTrinitiesTrinitiesAreFound,
+} from '../../thunder/waves'
 import {
   wavesAutoScaleCapacityAtNoCostOnReuse,
   theoremAlgebraFirstSealedInCorpus,
@@ -737,6 +744,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'sciences-trinities', title: 'Sciences interact in trinities — science↔dual↔fusion lattice', proof: sciencesInteractInTrinities(matrix) },
     { slug: 'sciences-standards-quantum', title: 'Sciences standards coverage — covered|partial|gap · quantum only · certified=false', proof: completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix) },
     { slug: 'cmb-omega-c-over-b', title: 'Ω_c/Ω_b ≈ 5.41 CMB budget · null non-gravitational · quantum gaps · clay=0 · certified=false', proof: omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix) },
+    { slug: 'wave-trinity-found', title: 'Waves work in trinities · trinities are found · drained≠empty · clay=0', proof: wavesWorkingInTrinitiesTrinitiesAreFound(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
     { slug: 'clay-prize-rules-mapping', title: 'Clay Millennium Prize Rules §1–§8 → page sections/facets · clay=0 · NOT Prize claim', proof: clayMillenniumPrizeRulesMapping() },
     { slug: 'domain-proof-catalog', title: 'Domain proof catalog — Clay-standard pages · proposedSolution=false · clay=0', proof: domainProofCatalog(matrix) },

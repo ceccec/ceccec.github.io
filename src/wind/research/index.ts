@@ -2681,6 +2681,7 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
     const crypto = __ns_water_encryption.isoPqcHandoffForScienceTrinities(matrix, at)
     const apparatus = scienceToolsApparatusTrinity(matrix, at)
     const sig = scienceDomainSignificanceScores(matrix, at)
+    const cmbBudget = __ns_water_cosmos.omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix, at)
     const byId = new Map(sig.domains.map((d) => [d.id, d]))
 
     const rows: ScienceInteractingTrinityRow[] = SCIENCE_DOMAIN_SEEDS.map((seed) => {
@@ -2716,10 +2717,11 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
       { facet: 'apparatus trinity surfaces compute', on: apparatus.computes },
       { facet: 'claySolvedByThisFold=0 · certified=false on crypto handoff', on: crypto.claySolvedByThisFold === 0 && crypto.certified === false },
       { facet: 'NOT complete-all-sciences finished claim — lattice of sealed vertices + named gaps', on: true },
+      { facet: 'cmb/budget composes — Ω_c/Ω_b trinity/wave science fold · clay=0 · open frontiers remain findable', on: cmbBudget.computes && cmbBudget.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-trinities:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sciences-interact-in-trinities', facets)
     return {
-      computes: sealed.ok && crypto.computes && apparatus.computes && sig.computes,
+      computes: sealed.ok && crypto.computes && apparatus.computes && sig.computes && cmbBudget.computes,
       rows,
       count: rows.length,
       latticeRoot,
@@ -2733,7 +2735,7 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
       },
       meanSignificance: sig.meanScore,
       facets: sealed.facets,
-      root: merge(matrix.root, merkleFold([sealed.root, latticeRoot, crypto.root, apparatus.root, sig.root])),
+      root: merge(matrix.root, merkleFold([sealed.root, latticeRoot, crypto.root, apparatus.root, sig.root, cmbBudget.root])),
       cli: 'npm run quantum:sciences-trinities',
       pair: 'sciences/trinities',
       route: '/en/research#sciences-trinities',
