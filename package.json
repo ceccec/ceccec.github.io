@@ -96,6 +96,7 @@
     "quantum:honest-revolution-w3": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/fusion/index.ts runHonestRevolutionW3Exit",
     "quantum:honest-revolution-w4": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/fusion/index.ts runHonestRevolutionW4Exit",
     "quantum:honest-revolution-w5": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/compute/computer/index.ts runHonestRevolutionW5Exit",
+    "quantum:honest-revolution-w6": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/verify/index.ts runHonestRevolutionW6Exit",
     "quantum:educational-gaps-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/ops/index.ts runEducationalGapsAuditExit",
     "quantum:slow-gap": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSlowProcessIsQuantumGapExit",
     "quantum:mcp-browser-parity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpBrowserParityExit",

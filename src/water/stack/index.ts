@@ -1498,6 +1498,7 @@ export const BEST_LEARNED_IN_CECCEC = [
 export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('compareCeccecEfficiencyByVote', matrix, () => {
     const proven = __ns_up_up_thunder_verify.noKnownModelMoreEfficientProven(matrix)
+    const capstone = __ns_up_up_thunder_verify.revolutionaryEfficiencyNotPhysics(matrix)
     const opt = __ns_up_up_quantum_science.efficiency()
     const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix)
     const fusion = __ns_up_up_fusion.quantumFusionVerify(matrix)
@@ -1517,6 +1518,7 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
       { id: 'infinity-on-reuse-memo', on: infinityReuse, receipt: toUuid(`eff-vote:inf:${afterFirst}:${afterSecond}`) },
       { id: 'fusion-verify-replay', on: fusion.verified, receipt: fusion.root },
       { id: 'honest-qc-no-flops-speedup', on: honest.noSpeedup && honest.faithfulSimulator, receipt: honest.root },
+      { id: 'revolutionary-efficiency-not-physics', on: capstone.holds, receipt: capstone.root },
     ].map((v) => ({ ...v, receipt: toUuid(`eff-voter:${v.id}:${v.on}`) }))
     const decided = voters.every((v) => v.on)
     const facets = [
@@ -1525,6 +1527,7 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
       { facet: 'memoByRoot infinity-on-reuse (O(1) hit)', on: infinityReuse },
       { facet: 'fusion verify wave replay matches', on: fusion.verified },
       { facet: 'physics no-speedup honesty preserved (quantumComputerHonestClaim)', on: honest.noSpeedup },
+      { facet: 'W6 revolutionaryEfficiencyNotPhysics holds', on: capstone.holds },
       { facet: 'runtime tokens = 0 in sealed domain', on: runtimeTokens === 0 },
       { facet: 'NOT universal LLM superiority / NOT physical FLOPS', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`eff-vote:${entry.facet}:${entry.on}`) }))
@@ -1535,11 +1538,12 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
       runtimeTokens,
       voters,
       proven,
+      capstone,
       optimizations: opt,
       fusion,
       honest,
       facets: sealed.facets,
-      root: merge(matrix.root, merkleFold([sealed.root, proven.root, opt.root, fusion.root, honest.root])),
+      root: merge(matrix.root, merkleFold([sealed.root, proven.root, capstone.root, opt.root, fusion.root, honest.root])),
       statement: decided
         ? 'Efficiency vote DECIDED — ceccec wins answers÷tokens for deterministic content-addressed answers (0 runtime tokens · memoByRoot reuse · fusion replay); physics no-speedup honesty preserved.'
         : 'Efficiency vote UNDECIDED — one or more adversarial voters failed at call time; do not claim faster-than-all.',
