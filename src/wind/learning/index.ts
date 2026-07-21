@@ -21,7 +21,7 @@ import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalL
 import { rhythm } from '../../lake/music'
 import { heartProtonAtomDecoded } from '../../mountain/geometry'
 import { monographSliceFromRoute, ROUTE_ALIASES } from '../routes/automount'
-import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, siteDomainRegistry, type LocaleName } from '../site'
+import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, siteDomainRegistry, applyDomainRegistrySidebars, dryCleanVitepressNavSidebarsFromDomainRegistry, type LocaleName } from '../site'
 import { componentGraph } from '../../heaven/core'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { toGlagolitic } from '../../quantum/heaven/library'
@@ -1918,9 +1918,13 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // related sections and crosslinks — two taxonomies were the confusion (13 tag groups + a 23-item
   // 'More' drawer, over the eight-fold law). Seven rays ≤ 8: the folder law holds in the sidebar too.
   const buildSidebar = (i: 0 | 1) => rosettaFold(i)
+  // Discovery omits nav aliases — thin-mount leaves stay served but do not compete in related/crosslink sidebars.
+  const discoveryRoutes = (routes: string[]) =>
+    dedupe(routes).filter((route) => !domains.isNavAlias(route.replace(/^\//, '')))
   const buildRelatedSidebar = (i: 0 | 1): Record<string, { text: string; items: { text: string; link: string }[] }[]> => {
     const byRay = new Map<number, string[]>()
     for (const page of lens.pages) {
+      if (domains.isNavAlias(page.slug)) continue
       const ray = contentRayOf(page.slug)
       if (!byRay.has(ray)) byRay.set(ray, [])
       byRay.get(ray)!.push(routeOf(page.slug))
@@ -1929,23 +1933,26 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     for (const [rayIdx, routes] of byRay.entries()) {
       const ray = ROSETTA_RAYS[rayIdx]!
       const label = i === 1 ? ray.nameBg : ray.nameEn
-      const section = { text: label, items: dedupe(routes).map((route) => item(route, i)) }
-      for (const route of dedupe(routes)) result[route] = [section]
+      const cleaned = discoveryRoutes(routes)
+      const section = { text: label, items: cleaned.map((route) => item(route, i)) }
+      for (const route of cleaned) result[route] = [section]
     }
     return result
   }
   const buildCrosslinks = (i: 0 | 1): Record<string, { text: string; link: string }[]> => {
     const byRay = new Map<number, string[]>()
     for (const page of lens.pages) {
+      if (domains.isNavAlias(page.slug)) continue
       const ray = contentRayOf(page.slug)
       if (!byRay.has(ray)) byRay.set(ray, [])
       byRay.get(ray)!.push(routeOf(page.slug))
     }
     const result: Record<string, { text: string; link: string }[]> = {}
     for (const page of lens.pages) {
+      if (domains.isNavAlias(page.slug)) continue
       const route = routeOf(page.slug)
       const ray = contentRayOf(page.slug)
-      const peers = dedupe((byRay.get(ray) ?? []).filter((r) => r !== route))
+      const peers = discoveryRoutes((byRay.get(ray) ?? []).filter((r) => r !== route))
       result[route] = peers.map((r) => item(r, i))
     }
     return result
@@ -1965,7 +1972,9 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     if (staticPages().some((page) => page.slug === 'governance')) parts.push(`<a href="${link('/governance', i)}#license">${i === 1 ? 'Лиценз' : 'License'}</a>`, `<a href="${link('/governance', i)}#privacy">${i === 1 ? 'Поверителност' : 'Privacy'}</a>`)
     return {
       message: parts.join(' · '),
-      copyright: i === 1 ? 'Отворен, преизчислим, адресиран по съдържание — Двоен торус.' : 'Open, recomputable, content-addressed — the Double Torus.',
+      copyright: i === 1
+        ? 'Отворен, преизчислим, адресиран по съдържание — Двоен торус. Постави линк → auto-wire.'
+        : 'Open, recomputable, content-addressed — the Double Torus. Paste any link → auto-wire.',
     }
   }
   const index = monographs(matrix)
@@ -1983,8 +1992,9 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     clusters: navTags,
     en: { nav: buildNav(0), sidebar: buildSidebar(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
     bg: { nav: buildNav(1), sidebar: buildSidebar(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
-    relatedSidebarComplete: lens.pages.every((p) => routeOf(p.slug) in enRelatedSidebar),
-    crosslinksComplete: lens.pages.every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
+    relatedSidebarComplete: lens.pages.filter((p) => !domains.isNavAlias(p.slug)).every((p) => routeOf(p.slug) in enRelatedSidebar),
+    crosslinksComplete: lens.pages.filter((p) => !domains.isNavAlias(p.slug)).every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
+    aliasDiscoveryPurged: Object.keys(domains.aliasToCanonical).every((alias) => !(routeOf(alias) in enRelatedSidebar) && !Array.isArray(enCrosslinks[routeOf(alias)])),
     searchIndexRoot: index.root,
     searchEntries: index.count,
     routes: pages.map((page) => routeOf(page.slug)),
@@ -2134,19 +2144,13 @@ function vitepressSidebarForLocale(
       ],
     },
   ]
-  const out: Record<string, VitePressSidebarItem[]> = { '/': main }
-  for (const [path, related] of Object.entries(bundle.relatedSidebar)) {
-    // the portal appears GROUPED (the same rosetta fold), collapsed — never a flat 45-link drawer
-    out[path] = [...related, { text: portalLabel, collapsed: true, items: main }]
-  }
+  const merged = applyDomainRegistrySidebars(bundle.relatedSidebar, main, portalLabel, i, matrix)
+  const out = merged.out as Record<string, VitePressSidebarItem[]>
   for (const kind of ['papers', 'references', 'diamonds'] as const) {
     const sections = corpusPrefixSidebar(kind, i, matrix)
     out[`/${kind}/`] = sections
     out[`/${kind}`] = sections
   }
-  // THE THEOREM SIDEBAR IS THE ROSETTA (user law: improve sidebars computationally with the rosetta) —
-  // the quantum-computing theorems grouped by their seven rays, computed from theoremRosettaSidebar; the
-  // locale projection in config prefixes the links for /bg and /gla.
   const theoremSidebar = theoremRosettaSidebar(matrix)
   out['/theorems/'] = theoremSidebar
   out['/theorems'] = theoremSidebar
@@ -2156,26 +2160,16 @@ function vitepressSidebarForLocale(
 /** Canonical VitePress themeConfig.sidebar — path-prefix map from siteNavigation + corpus REST. */
 export function vitepressSidebar(matrix: MindMatrix = buildMatrix()) {
   const nav = siteNavigation(matrix)
+  const dry = dryCleanVitepressNavSidebarsFromDomainRegistry(matrix)
   const en = vitepressSidebarForLocale(nav.en, 0, matrix)
   const bg = vitepressSidebarForLocale(nav.bg, 1, matrix)
-  const root = merkleFold([
-    nav.root,
-    merkleFold(Object.keys(en).sort().map((key) => toUuid(`vp-sidebar:en:${key}`))),
-    merkleFold(Object.keys(bg).sort().map((key) => toUuid(`vp-sidebar:bg:${key}`))),
-  ])
+  const enMerge = applyDomainRegistrySidebars(nav.en.relatedSidebar, en['/']!, 'Portal', 0, matrix)
+  const root = merkleFold([nav.root, dry.root, merkleFold(Object.keys(en).sort().map((key) => toUuid(`vp-sidebar:en:${key}`))), merkleFold(Object.keys(bg).sort().map((key) => toUuid(`vp-sidebar:bg:${key}`)))])
   return {
-    computed:
-      Object.keys(en).length > bundleMinKeys(nav.en) &&
-      Object.keys(bg).length > bundleMinKeys(nav.bg) &&
-      en['/papers/']!.length >= 3 &&
-      isUuid(root),
-    en,
-    bg,
-    root,
-    statement:
-      'Canonical VitePress sidebar: the tag-cloud portal sidebar and per-path rosetta related sections from siteNavigation, plus path-prefix sidebars for /papers/, /references/ and /diamonds/ (index + lattice kind anchors). config.mts projects this object through localeNavLinks and localeSidebarKeys — one source, native VitePress sidebar shape, aligned with local search routes.',
-    boundary:
-      'A path-prefix sidebar map for VitePress themeConfig.sidebar. Papers and references list representative samples (every 27th) under collapsed generator groups; diamonds index links lattice kinds via /diamonds/#kind anchors only — no static /diamonds/<id> SSG pages. The Glagolitic root locale uses the en key map with bare paths.',
+    computed: Object.keys(en).length > bundleMinKeys(nav.en) && Object.keys(bg).length > bundleMinKeys(nav.bg) && en['/papers/']!.length >= 3 && dry.computes && enMerge.aliasKeysPurged && enMerge.domainKeysPresent && isUuid(root),
+    en, bg, dryClean: dry, aliasKeysPurged: enMerge.aliasKeysPurged, domainKeysPresent: enMerge.domainKeysPresent, root,
+    statement: 'Canonical VitePress sidebar: domain registry + rosetta related (aliases purged) + corpus path-prefixes. One source via localeNavLinks/localeSidebarKeys.',
+    boundary: 'Nav aliases omit discovery keys; domain canonicals (incl. learn) get registry sidebars. HARMONY ≠ TRUTH.',
   }
 }
 

@@ -148,8 +148,8 @@ const waveLabel = (provedBy: string) =>
 .theorems-panel__proof { margin: 0; color: var(--vp-c-text-2); font-size: 0.82em; }
 .theorems-panel__name { min-width: 0; }
 .theorems-panel__class { font-size: 0.72em; color: var(--vp-c-text-2); white-space: nowrap; }
-.theorems-panel__class[data-class='finite-complete'] { color: var(--vp-c-green-1, inherit); }
-.theorems-panel__class[data-class='bounded-witness'] { color: var(--vp-c-yellow-1, inherit); }
-.theorems-panel__class[data-class='open'] { color: var(--vp-c-red-1, inherit); }
-.theorems-panel__class[data-class='novel-corpus'] { color: var(--vp-c-brand-1, inherit); }
+.theorems-panel__class[data-class='finite-complete'] { color: var(--status-ready); }
+.theorems-panel__class[data-class='bounded-witness'] { color: var(--status-warn); }
+.theorems-panel__class[data-class='open'] { color: var(--status-gap); }
+.theorems-panel__class[data-class='novel-corpus'] { color: var(--status-partial); }
 </style>

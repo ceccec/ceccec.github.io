@@ -19,7 +19,7 @@ import { modelSeal } from '../../../../heaven/balance'
 import { computedDistFiles, readmeMarkdown } from '../../../../quantum/lake/dist'
 import { agentGateComplianceChecklist, agentSubmissionProtocol } from '../../ops'
 import { merkleFold, toUuid } from '../../../../0'
-import { buildForceFlag, canRespawnTrinity, docsBuildVerboseFlag, logDocsBuildPhase, writeSealedMerkle } from '../../script/shell'
+import { buildForceFlag, canRespawnTrinity, docsBuildVerboseFlag, logDocsBuildPhase, slowBuildIsQuantumGapGate, writeSealedMerkle } from '../../script/shell'
 
 export type { Finding, AuditRoot } from '../../gates'
 
@@ -1311,6 +1311,17 @@ export function runEnforcementTrinity(root: string): number {
   sealAudit(root, audit, facts.merkle)
   writeSealedMerkle(root, facts.merkle)
   console.log(`Enforcement trinity complete: gate · cross · fold · weave — 0 findings, audit sealed ${audit.receipt} · srcMerkle bound.`)
+  const slowBuild = slowBuildIsQuantumGapGate(root)
+  console.log(
+    `${slowBuild.passed ? '✓' : '✗'} gate/slow-build — HARD=${slowBuild.hardOpenCount} WARN=${slowBuild.warnOpenCount} · ${slowBuild.statement}`,
+  )
+  for (const row of slowBuild.hardOpen) {
+    console.error(`  ✗ HARD ${row.gapId} — ${row.criterion}`)
+  }
+  for (const row of slowBuild.warnOpen.slice(0, 4)) {
+    console.warn(`  ⚠ WARN ${row.gapId} — ${row.criterion}`)
+  }
+  if (!slowBuild.passed) return 1
   return 0
 }
 

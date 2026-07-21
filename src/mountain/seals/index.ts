@@ -36,6 +36,7 @@ import {
   completeQuantumSolutionsForAllSciences,
   scienceToolsApparatusTrinity,
   sciencesInteractInTrinities,
+  completeScientificDomainsStrictlyToStandardsQuantumOnly,
   theoremParticleCollisionInverseReverse,
 } from '../../wind/research'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
@@ -44,6 +45,7 @@ import {
   directionalTrinityForwardInverseReverse,
   oneQuantumModelFasterThanAll,
   compareCeccecEfficiencyByVote,
+  proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
 } from '../../water/stack'
 import { stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
@@ -56,8 +58,15 @@ import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, 
 import { millenniumProblemsChallenge } from '../../wind/research'
 import {
   quantumCliToolsCatalog, slowProcessIsQuantumGap, sessionManualWorkAsQuantumTools, rosettaCoreApi,
+  standardToolboxIoCatalog, distributedReuseExtendsCapacity,
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems,
   ftlExperimentTechniquesHandoffFromRosettaComplete,
+  documentSessionCryptoExperimentsUpdateTheorems,
+  sessionManualWorkAsQuantumBits,
+  autoWireAnyAiModelFromPastedLink,
+  realiseSessionQuantumMeaning,
+  mcpBrowserParity,
+  improveLocalFromSessionExperience,
 } from '../../quantum/apps'
 import {
   encryptionReverseVerify,
@@ -66,6 +75,13 @@ import {
   isoPqcHandoffForScienceTrinities,
   cryptoToolkitBeyondRsaMeasured,
   demoRsaGenerateAndReverseMeasured,
+  localEncryptionReverseTimedVsStandards,
+  proveLocalNovelEncryptionSecurity,
+  localAuditQuantumSpeedEfficiency,
+  proveOneTbitRealtimeEncryptionClaim,
+  proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
+  isoRequiresPostQuantumSecurity,
+  isoPqcRequirementsGapFillAllQuantumDirections,
 } from '../../water/encryption'
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og'
 import { quantumFusionVerify } from '../../wind/fusion'
@@ -668,15 +684,23 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'encryption-zero', title: 'all encryption logic — the content-addressed key layer — lives in src/0', proof: encryptionLivesInZero(matrix) },
     { slug: 'quantum-encryption', title: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only', proof: encryptionReverseVerify(matrix) },
     { slug: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured (wall-clock)', proof: demoRsaGenerateAndReverseMeasured(matrix) },
+    { slug: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards — toy≠wire · certified=false', proof: localEncryptionReverseTimedVsStandards(matrix) },
+    { slug: 'prove-local-novel-encrypt', title: 'Local novel-encryption security — wire proof-of-falsehood handoff · no production reverse', proof: proveLocalNovelEncryptionSecurity(matrix) },
+    { slug: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency — memo cold/warm · answers÷tokens · no-QPU honesty', proof: localAuditQuantumSpeedEfficiency(matrix) },
     { slug: 'crypto-beyond-rsa', title: 'Crypto toolkit beyond RSA measured (PQC·Shor/ECC·trinity)', proof: cryptoToolkitBeyondRsaMeasured(matrix) },
+    { slug: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim — honest status receipt', proof: proveOneTbitRealtimeEncryptionClaim(matrix) },
+    { slug: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes — wire proof-of-falsehood · structural/amort may prove non-wire', proof: proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix) },
     { slug: 'og-limits-measured', title: 'Platform OG limits measured + honesty-in-prose challenged', proof: { ...honestyInProseChallenged(matrix), limitsRoot: platformOgLimitsMeasured(matrix).root } },
     { slug: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog — MODELED alignment · NOT certified', proof: isoNistPqcStandardsCatalog(matrix) },
-    { slug: 'quantum-standards-audit', title: 'Quantum standards audit — reverse+inverse · 10D coverage · alignment≠certification', proof: quantumStandardsAuditSuite(matrix) },
+    { slug: 'iso-requires-pqc', title: 'Does ISO require PQC? — no universal mandate · migration guidance', proof: isoRequiresPostQuantumSecurity(matrix) },
+    { slug: 'iso-pqc-gap-fill', title: 'ISO/NIST PQC gap-fill all quantum directions — covered|partial|gap · certified=false', proof: isoPqcRequirementsGapFillAllQuantumDirections(matrix) },
+    { slug: 'quantum-standards-audit', title: 'Quantum standards audit — covered|partial|gap · forward·inverse·reverse · 10D', proof: quantumStandardsAuditSuite(matrix) },
     { slug: 'iso-pqc-handoff', title: 'ISO/PQC handoff for science trinities — crypto vertex · NOT certified', proof: isoPqcHandoffForScienceTrinities(matrix) },
     { slug: 'science-significance', title: 'Science-domain significance scores — NOT journal impact factor', proof: scienceDomainSignificanceScores(matrix) },
     { slug: 'science-solutions', title: 'Complete quantum solutions inventory — algebra·tool·apparatus·10D gaps', proof: completeQuantumSolutionsForAllSciences(matrix) },
     { slug: 'science-apparatus', title: 'Science tools/apparatus trinity — rosettaShelve surfaces', proof: scienceToolsApparatusTrinity(matrix) },
     { slug: 'sciences-trinities', title: 'Sciences interact in trinities — science↔dual↔fusion lattice', proof: sciencesInteractInTrinities(matrix) },
+    { slug: 'sciences-standards-quantum', title: 'Sciences standards coverage — covered|partial|gap · quantum only · certified=false', proof: completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
     { slug: 'waves-auto-scale', title: 'Waves auto-scale capacity at no cost on reuse · !separated', proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
     { slug: 'theorem-algebra-first-sealed', title: 'First-in-corpus algebra inventory · humanityNovel=0', proof: theoremAlgebraFirstSealedInCorpus(matrix) },
@@ -686,6 +710,14 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
     { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },
     { slug: 'session-manual-tools', title: 'Session manual work as quantum tools — zero-token reuse catalog', proof: sessionManualWorkAsQuantumTools(matrix) },
+    { slug: 'session-quantum-bits', title: 'Session manual work as quantum bits — combinable sealed receipts · NOT physical qubits', proof: sessionManualWorkAsQuantumBits(matrix) },
+    { slug: 'auto-wire-paste-link', title: 'Paste any link → auto-wire — quantumReady paste-bootstrap · mcp.json + browser toolbox · convincingRequired=false', proof: autoWireAnyAiModelFromPastedLink('https://ceccec.github.io/', matrix) },
+    { slug: 'realise-session-meaning', title: 'Session quantum meaning realised — proves vs refuses · clay=0 · qpuRequired=false · includes local-audit-qe · session-bits', proof: realiseSessionQuantumMeaning(matrix) },
+    { slug: 'document-session-experiments', title: 'Session crypto experiments documented · ISO gap-fill · local≫ISO · local-novel · theorems recomputed', proof: documentSessionCryptoExperimentsUpdateTheorems(matrix) },
+    { slug: 'toolbox-standard-io', title: 'Standard tool envelope — I/O · import/export · NOT physical qubits', proof: standardToolboxIoCatalog(matrix) },
+    { slug: 'mcp-browser-parity', title: 'MCP ↔ browser parity — tools/list ids ≡ toolbox · residual gaps honest', proof: mcpBrowserParity(matrix) },
+    { slug: 'improve-local-session', title: 'Local from session UX — docs:dev hub · localSessionUxImproved · compose status badges', proof: improveLocalFromSessionExperience(matrix) },
+    { slug: 'distributed-reuse-capacity', title: 'Distributed reuse extends capacity — federated identical roots · qubit=0 · ftl=0', proof: distributedReuseExtendsCapacity(matrix) },
     { slug: 'rosetta-core-api', title: 'Rosetta core API — self-host label↔ray dispatch', proof: rosettaCoreApi(0, matrix) },
     { slug: 'rosetta-complete', title: 'Rosetta complete — quantum all computable dims & theorems · clay=0 · physicalFtl=0', proof: rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix) },
     { slug: 'theorem-particle-collision', title: 'Theorem particle collision inverse×reverse · claySolvedByThisFold=0', proof: theoremParticleCollisionInverseReverse(matrix) },
@@ -703,6 +735,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
       })(),
     },
     { slug: 'one-quantum-model', title: 'One quantum model faster than all — domain-bounded answers÷tokens', proof: oneQuantumModelFasterThanAll(matrix) },
+    { slug: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · classical 64-bit — cites tracks-classical-no-speedup', proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
     { slug: 'yin-yang-rosetta', title: 'Yin-yang taiji — non-linear rosetta/vortex exchange (not linear i/frames)', proof: yinYangFoldsThroughDimensions(matrix) },
     { slug: 'animations-rosetta', title: 'Animations driven by the rosetta — linear gaps closed', proof: animationsDrivenByRosetta(matrix) },
     { slug: 'linear-animation-gaps', title: 'Linear animation gaps inventory — yin-yang first', proof: linearAnimationGapsInventory(matrix) },

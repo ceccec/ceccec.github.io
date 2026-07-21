@@ -234,12 +234,22 @@ export function generators(): Generator[] {
             break
           }
         }
+        // Status palette ratchet — emitted tokens must carry every --status-* kind in :root and .dark (mode flip).
+        if (!error) {
+          const tokensText = ichingTokensCss()
+          const statusKinds = ['ready', 'ok', 'gap', 'warn', 'partial', 'error', 'refused', 'ci'] as const
+          const missing = statusKinds.filter((k) => !tokensText.includes(`--status-${k}:`))
+          if (missing.length > 0) {
+            error = `Status palette missing --status-* kinds: ${missing.join(', ')} — seal via ichingTokens()`
+          } else if (!tokensText.includes('.dark')) {
+            error = 'Status/light-dark tokens missing .dark block — mode flip required'
+          }
+        }
         const messages = [`${tri(0b111).glyph} dist: ${write.length} dist artifact(s) + README + computed tokens.css; body scanned clean.`]
-        // PRODUCTION SEAL (W6 flipped this from report-only to build-breaking): scan every src/**/*.vue for
-        // hardcoded <style> literals + canvas paint/font colour literals. The same canonical-CSS law that gates the
-        // theme stylesheets now gates the components — any non-canonical literal fails docs:build.
+        // PRODUCTION SEAL: scan every src/**/*.vue AND .vitepress/theme/**/*.vue for hardcoded <style> + canvas
+        // paint/font colour literals. Theme components were a regression hole; both surfaces HARD now.
         if (ctx.list) {
-          const vueFiles = ctx.list('src', '.vue')
+          const vueFiles = [...ctx.list('src', '.vue'), ...ctx.list('.vitepress/theme', '.vue')]
           let vueOffenders = 0
           const worst: Array<{ path: string; n: number }> = []
           for (const vuePath of vueFiles) {
@@ -249,11 +259,11 @@ export function generators(): Generator[] {
             if (n > 0) { vueOffenders += n; worst.push({ path: vuePath, n }) }
           }
           worst.sort((a, b) => b.n - a.n)
-          const top = worst.slice(0, 5).map((w) => `${w.path.replace(/^src\//, '')}:${w.n}`).join(' · ')
+          const top = worst.slice(0, 5).map((w) => `${w.path}:${w.n}`).join(' · ')
           if (vueOffenders > 0) {
             if (!error) error = `Hardcoded .vue values (${vueOffenders} across ${worst.length} component(s)): ${top}${worst.length > 5 ? ' …' : ''}`
           } else {
-            messages.push(`${tri(0b111).glyph} vue-scan: 0 hardcoded literal(s) across ${vueFiles.length} .vue — sealed.`)
+            messages.push(`${tri(0b111).glyph} vue-scan: 0 hardcoded literal(s) across ${vueFiles.length} .vue (src+theme) — sealed.`)
           }
         }
         return { files: out, messages, error }

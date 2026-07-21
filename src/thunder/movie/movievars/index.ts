@@ -23,12 +23,34 @@ const L_SOFT = 1 - 5 / 16 // 11/16 without an 11 literal
 const L_CARD = 1 - 3 / 16 // 13/16 without a 13 literal
 const L_GLOW = 7 / 8
 
-/** Perceptual OKLCH band — negative (dark field) lifts; positive (light field) deepens. */
+/** Perceptual OKLCH band — dark field lifts paint; light field lifts chrome washes (near-white back)
+ * and deepens accent glow for contrast. Light back matches computedMovieThemeColors (24/25). */
 export function chromeLightnessBand(mode: 'light' | 'dark') {
   const isDark = mode === 'dark'
   return isDark
     ? { back: L_BACK, shell: L_SHELL, soft: L_SOFT, card: L_CARD, glow: L_GLOW, chroma: CHROMA, dark: true }
-    : { back: 5 / (2 * 16), shell: 3 / 8, soft: 7 / 16, card: 9 / 16, glow: 5 / 8, chroma: CHROMA * (1 + 1 / (4 * 5)), dark: false }
+    : {
+        back: 1 - 1 / (5 * 5), // 24/25 — near-white field (theme/manifest light bg)
+        shell: L_CARD, // 13/16 — translucent panel wash on the light print
+        soft: L_SOFT, // 11/16
+        card: HERO_INK_L, // 15/16 — tool/card surfaces stay readable over the movie
+        glow: 3 / 8, // deepen brand accents on the light field (contrast)
+        chroma: CHROMA * (1 + 1 / (4 * 5)),
+        dark: false,
+      }
+}
+
+/** Mode-aware halo — soft field-matched shadow so hero/body ink stays legible on the live movie. */
+export function heroTextShadow(hue: number, dark: boolean, waveIndex = 0): string {
+  const seedHue = ((hue % 360) + 360) % 360
+  if (dark) {
+    // Light ink on dark movie — soft dark halo (not a hard drop-shadow).
+    const a = scaleColorAlpha(waveIndex, 9 / (4 * 5), { seedHue, L: L_BACK, C: CHROMA / 2, dark: true })
+    return `0 ${TIERS[0] / TIERS[2]}px ${TIERS[0]}px ${a}, 0 0 ${TIERS[2]}px ${a}`
+  }
+  // Dark ink on light movie — soft light halo.
+  const a = scaleColorAlpha(waveIndex + 1, 3 / 5, { seedHue, L: HERO_INK_L, C: CHROMA / 4, dark: false })
+  return `0 ${TIERS[0] / TIERS[2]}px ${TIERS[0]}px ${a}, 0 0 ${TIERS[2] + TIERS[0]}px ${a}`
 }
 
 /** The live text INK — the negative law applied to type instead of shadows: the ink sits at the polarity
@@ -134,8 +156,8 @@ function backgroundMovieColorVarsRaw(
     '--vp-movie-accent-h': `${accentH}px`,
     '--vp-movie-line-height': String(lineHeight),
     '--vp-movie-min-h': `${minMovieH}px`,
-    // No shadows: legibility is the computed ink (the negative-law pole + live hue), not a halo.
-    '--vp-hero-text-shadow': 'none',
+    // Mode-aware halo — ink still carries contrast; shadow is a soft field-matched assist on the live movie.
+    '--vp-hero-text-shadow': heroTextShadow(palette.waveHue, band.dark, waveIndex),
     '--vp-movie-link': linkColor,
     '--vp-movie-mark-on': markOn,
     '--vp-movie-mark-off': markOff,
@@ -205,13 +227,15 @@ export function darkLightPolarityProvenByMath(matrix: MindMatrix = buildMatrix()
     mk('ink-involution', 'L_ink_dark+L_ink_light=1', HERO_INK_L + (1 - HERO_INK_L), 1),
     mk('ink-poles', 'dark>1/2>light', HERO_INK_L > 1 / 2 && 1 - HERO_INK_L < 1 / 2 ? 1 : 0, 1),
     mk('ink-follows-hue', 'ink(h)≠ink(h+¼turn)', heroInkColor(0, true) === heroInkColor(360 / 4, true) ? 0 : 1, 1),
-    mk('no-shadow', 'shadow=none both poles', lightVars['--vp-hero-text-shadow'] === 'none' && darkVars['--vp-hero-text-shadow'] === 'none' ? 1 : 0, 1),
+    mk('mode-shadow', 'shadow_light≠shadow_dark', lightVars['--vp-hero-text-shadow'] === darkVars['--vp-hero-text-shadow'] ? 0 : 1, 1),
+    mk('shadow-present', 'both shadows non-empty', lightVars['--vp-hero-text-shadow']!.length > 0 && darkVars['--vp-hero-text-shadow']!.length > 0 ? 1 : 0, 1),
     mk('ink-inverts', 'ink_light≠ink_dark', lightVars['--vp-hero-ink'] === darkVars['--vp-hero-ink'] ? 0 : 1, 1),
-    mk('back-halve', 'L_dark_back/2', dark.back / 2, light.back),
-    mk('glow-delta', '7/8-5/8', L_GLOW - 5 / 8, 1 / 4),
-    mk('shell-ratio', 'L_dark_shell/L_light_shell', dark.shell / light.shell, 3 / 2),
-    mk('soft-delta', 'L_dark_soft-L_light_soft', dark.soft - light.soft, 1 / 4),
-    mk('card-delta', 'L_dark_card-L_light_card', dark.card - light.card, 1 / 4),
+    mk('back-near-white', 'light.back=24/25', light.back, 1 - 1 / (5 * 5)),
+    mk('back-void', 'dark.back=5/16', dark.back, L_BACK),
+    mk('glow-deepens', 'light.glow<dark.glow', light.glow < dark.glow ? 1 : 0, 1),
+    mk('shell-lifts', 'light.shell≥dark.shell', light.shell >= dark.shell ? 1 : 0, 1),
+    mk('card-lifts', 'light.card>dark.card', light.card > dark.card ? 1 : 0, 1),
+    mk('soft-same-or-lift', 'light.soft≥dark.soft−ε', light.soft + 1e-9 >= dark.soft ? 1 : 0, 1),
     mk('chroma-lift', 'C_light/C_dark', roundTo(light.chroma / dark.chroma, 4), 1 + 1 / (4 * 5)),
     mk('polarity-bit', 'dark XOR light', (dark.dark ? 1 : 0) ^ (light.dark ? 1 : 0), 1),
     mk('dark-flag', 'band.dark dark', dark.dark ? 1 : 0, 1),
@@ -230,9 +254,9 @@ export function darkLightPolarityProvenByMath(matrix: MindMatrix = buildMatrix()
     polarity: { dark: 1, light: 0 },
     root: merkleFold(proofs.map((entry) => entry.receipt)),
     statement:
-      'Dark/light is polarity in the math — one bit (dark=1, light=0) flips the OKLCH band while hue and waveIndex stay fixed; L relations (back/2, glow Δ1/4, shell 3/2) and chrome/theme inversion recompute at call time, 100% computed. The movie canvas shows it as analog photography: dark paints the sealed POSITIVE; light recomputes every colour through the NEGATIVE law (L′ = 1 − L, hue + half-turn, density unchanged) in the same paint path — an involution, colours only, nothing else changes. Type follows the same law with NO shadows: heroInkColor puts the ink at the pole opposite the field (15/16 ↔ 1/16, involution partners) tinted by the LIVE field hue, so the text colour drifts with the background every tick.',
+      'Dark/light is polarity in the math — one bit (dark=1, light=0) flips the OKLCH band while hue and waveIndex stay fixed; light chrome lifts toward near-white (back=24/25) for panel legibility while accent glow deepens; chrome/theme inversion and mode-aware text-shadow recompute at call time, 100% computed. The movie canvas shows it as analog photography: dark paints the sealed POSITIVE; light recomputes every colour through the NEGATIVE law (L′ = 1 − L, hue + half-turn, density unchanged) in the same paint path — an involution. Type follows the same law: heroInkColor puts the ink at the pole opposite the field (15/16 ↔ 1/16) tinted by the LIVE field hue, with a soft mode-aware halo so body/hero stay readable on the movie.',
     boundary:
-      'Arithmetic over canonical I Ching fractions in chromeLightnessBand and scaleColor — not physical dark matter. Same content-addressed palette; only the polarity pole changes the perceptual band. The negative law lives in the colour atoms (rgbaAt, movieCanvasRgba) — an OKLCH recomputation per colour, no pixel post-processing; standalone widget figures without a palette stay positive prints.',
+      'Arithmetic over canonical I Ching fractions in chromeLightnessBand and scaleColor — not physical dark matter. Same content-addressed palette; only the polarity pole changes the perceptual band. The negative law lives in the colour atoms (rgbaAt, movieCanvasRgba) — an OKLCH recomputation per colour, no pixel post-processing; standalone widget figures without a palette stay positive prints. Text-shadow is a computed assist, not a hardcoded rgba literal.',
   }
 }
 
