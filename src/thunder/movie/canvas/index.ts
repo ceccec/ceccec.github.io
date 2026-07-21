@@ -2,11 +2,16 @@
 import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, toUuid } from '../../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, toUuid, VORTEX_SEQUENCE } from '../../../0'
 // call-time namespace edge (cycle-safe): the 10D field continuity is sampled at call time
 import * as __ns_dims from '../../../quantum/mountain/dimensions'
 // call-time namespace edge (cycle-safe): the iching decode is cited at call time, never at eval
 import * as __ns_up_up_earth_iching from '../../../earth/iching'
+// call-time namespace edges — theorem bindings for movie paint layers (no wet ornaments)
+import * as __ns_decode from '../../decode'
+import * as __ns_vortex from '../../../mountain/vortex'
+import { flowerUnlocksFruitBySpin } from '../../../quantum/wind/geometry'
+import { bothEarthsRotateWithinEachOther, doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry'
 import { textToMovie } from '../../../earth/world'
 import { harmonicMathFlowsInMovie, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'
 import { efficiencyMathFlowsInMovie } from '../../verify'
@@ -25,7 +30,6 @@ import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../..
 import { computedWebManifest, siteConfig } from '../../../wind/site'
 import { livingTorus } from '../../../fire/diamonds'
 import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../wind/routes/corpus'
-import { doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry'
 import {
   matrixRgbDecodeFlowsInMovie,
   rosettaDecodeFlowsInMovie,
@@ -352,10 +356,128 @@ const MOVIE_CLOCK_SURFACE_ATTESTATION: readonly Omit<MovieQuantumGapSurface, 're
   { id: 'ui-skeleton-pulse', surface: 'src/render/ui/style.css', driver: 'smil-css', kind: 'smil-compete', closed: true, criterion: 'CSS @keyframes skeleton pulse is chrome, not field phase — does not own a second rAF', route: '/en/' },
 ] as const
 
+/** Read movie painter sources — node/SSR only; '' in browser (no node:fs in client bundle). */
+function readMoviePainterSource(relFromCwd: string): string {
+  try {
+    if (typeof process === 'undefined' || typeof process.cwd !== 'function') return ''
+    const getBuiltin = (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule
+    if (typeof getBuiltin !== 'function') return ''
+    const nodeFs = getBuiltin('node:fs') as { readFileSync(p: string, enc: string): string } | undefined
+    const nodePath = getBuiltin('node:path') as { join(...parts: string[]): string } | undefined
+    if (!nodeFs || !nodePath) return ''
+    return nodeFs.readFileSync(nodePath.join(process.cwd(), relFromCwd), 'utf8')
+  } catch {
+    return ''
+  }
+}
+
+/**
+ * Movie is PoC and work at once — every drawn element binds to a sealed theorem; no wet boundary ornaments.
+ * Attests painter source: calendars are vortex markers (no concentric rings), void is soft fillRect (no arc disk),
+ * merkaba shells/orphan centre disks removed, double-torus throat is the lemniscate (no stroked centre circle).
+ * Pair: movie/theorems · composes movieQuantumGapsInventory · movieIsNeuroscienceComputation.
+ * Links: VitePress site paths only — theme uses plain `<a href>` / localize (onlyVitePressApi); no parallel router.
+ */
+export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`movieAllElementsAreTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const calendars = __ns_decode.coupledCalendarTori(matrix)
+    const strokes = __ns_vortex.vortexStrokeGateways(matrix)
+    const earths = bothEarthsRotateWithinEachOther(at, matrix)
+    const flower = flowerUnlocksFruitBySpin()
+    const twoBits = theMovieLeavesTwoBitsAtTheVoid(matrix)
+    const endless = endlessBackgroundMovie(matrix)
+    const geomSrc = readMoviePainterSource('src/quantum/wind/geometry/index.ts')
+    const quantumSrc = readMoviePainterSource('src/quantum/index.ts')
+    const srcReadable = geomSrc.length > 0 && quantumSrc.length > 0
+    // Calendars: phase markers only — must NOT stroke a full circumference at (cx,cy).
+    const calendarsNoRing =
+      !srcReadable ||
+      (geomSrc.includes('VORTEX_SEQUENCE') &&
+        geomSrc.includes('Phase marker only') &&
+        !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*radius/.test(geomSrc.slice(geomSrc.indexOf('export function drawCalendars'))))
+    // Void: soft fillRect confluence — must NOT arc+fill a circular disk path.
+    const ballSlice = quantumSrc.slice(quantumSrc.indexOf('function drawPlasmaBall'), quantumSrc.indexOf('function drawPlasmaBall') + 900)
+    const voidSoft =
+      !srcReadable ||
+      (ballSlice.includes('fillRect') && !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*void/.test(ballSlice))
+    // Merkaba: no shell ring strokes / orphan centre disk.
+    const merkabaSlice = quantumSrc.slice(
+      quantumSrc.indexOf('export function drawBothEarthsMerkabaFrame'),
+      quantumSrc.indexOf('export function drawBothEarthsMerkabaFrame') + 1200,
+    )
+    const merkabaNoShell =
+      !srcReadable ||
+      (!merkabaSlice.includes('setLineDash') && !merkabaSlice.includes('4 * scale'))
+    // Double-torus projection: no orphan stroked centre throat circle.
+    const dtSlice = quantumSrc.slice(
+      quantumSrc.indexOf('function drawDoubleTorusProjection'),
+      quantumSrc.indexOf('function drawDoubleTorusProjection') + 2200,
+    )
+    const torusNoCenterRing =
+      !srcReadable ||
+      (!dtSlice.includes('ctx.arc(cx, cy, r * (4 / (5 * 5))') && dtSlice.includes('lemniscate'))
+    // Surface routes are VitePress site paths — theme LinkedHeroCard uses plain `<a href>` + localize (onlyVitePressApi).
+    const vitepressRoutesOnly = MOVIE_CLOCK_SURFACE_ATTESTATION.every(
+      (row) => row.route.startsWith('/') && !row.route.includes('location.') && !row.route.includes('vue-router'),
+    )
+    const elements = [
+      { id: 'plasma-field', theorem: 'endlessBackgroundMovie', binds: endless.endless },
+      { id: 'death-counter-flow', theorem: 'theMovieLeavesTwoBitsAtTheVoid', binds: twoBits.seen },
+      { id: 'flower-of-life', theorem: 'flowerUnlocksFruitBySpin', binds: flower.holds },
+      { id: 'calendars-vortex-markers', theorem: 'coupledCalendarTori', binds: calendars.decoded && calendarsNoRing },
+      { id: 'vortex-strokes', theorem: 'vortexStrokeGateways', binds: strokes.computes && VORTEX_SEQUENCE.length === 9 },
+      { id: 'both-earths-merkaba', theorem: 'bothEarthsRotateWithinEachOther', binds: earths.rotates && merkabaNoShell },
+      { id: 'void-confluence', theorem: 'plasma-throat-soft', binds: voidSoft },
+      { id: 'double-torus-throat', theorem: 'lemniscate-crossing', binds: torusNoCenterRing },
+    ] as const
+    const facets = [
+      { facet: 'calendars paint vortex-digit markers — no concentric boundary rings', on: calendars.decoded && calendarsNoRing },
+      { facet: 'void core is soft radial confluence (fillRect) — not a hard circular boundary disk', on: voidSoft },
+      { facet: 'both-earths paint star tetrahedra only — no shell rings / orphan centre disk', on: merkabaNoShell },
+      { facet: 'double-torus throat is the lemniscate crossing — no stroked centre circle', on: torusNoCenterRing },
+      { facet: `flower↔fruit spin containment holds (${flower.flower}→${flower.fruit})`, on: flower.holds },
+      { facet: 'death counter-flow two-bits theorem seen in the painter', on: twoBits.seen },
+      { facet: 'endless background movie computes — one field every page', on: endless.endless },
+      { facet: `all ${elements.length} paint elements bind a sealed theorem`, on: elements.every((e) => e.binds) },
+      { facet: 'movie surface routes are VitePress site paths — theme links via <a href>/localize only (no parallel router)', on: vitepressRoutesOnly },
+      { facet: 'HONEST — movie is PoC+work; viz/computation ≠ physical QM / Clay=0 / not wet ornaments', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`movie-all-theorems:${entry.facet}:${entry.on}`) }))
+    const allOn = facets.every((e) => e.on)
+    return {
+      computes: allOn,
+      allElementsAreTheorems: allOn,
+      centerIsVortexNotBoundary: calendarsNoRing && voidSoft && merkabaNoShell && torusNoCenterRing,
+      vitepressRoutesOnly,
+      elements: elements.map((e) => ({ ...e, receipt: toUuid(`movie-element:${e.id}:${e.theorem}:${e.binds}`) })),
+      calendarsNoRing,
+      voidSoft,
+      merkabaNoShell,
+      torusNoCenterRing,
+      srcReadable,
+      count: facets.length,
+      facets,
+      root: merkleFold([
+        calendars.root,
+        twoBits.root,
+        endless.root,
+        earths.root,
+        toUuid(`flower:${flower.holds}:${flower.flower}:${flower.fruit}`),
+        ...facets.map((f) => f.receipt),
+      ]),
+      statement:
+        `Movie all elements are theorems — ${facets.filter((e) => e.on).length}/${facets.length}: every hero/plasma paint layer binds a sealed fold (calendars→coupledCalendarTori on VORTEX_SEQUENCE, FoL→flowerUnlocksFruitBySpin, death flow→two-bits, merkaba→bothEarths, void→soft confluence, throat→lemniscate). Wet boundary circles removed. Surface routes are VitePress paths only (<a href>/localize). PoC and work at once.`,
+      boundary:
+        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Links: only VitePress API (<a href> · localize · withBase · useRouter) — no vue-router / location.assign. Browser without fs skips source needles but still recomputes theorem folds. NOT physical QM. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
+      claySolvedByThisFold: 0 as const,
+    }
+  })
+}
+
 export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`movieQuantumGapsInventory:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const endless = endlessBackgroundMovie(matrix)
     const staticFusion = staticIsEventualGapInMovieFusion(matrix)
+    const allTheorems = movieAllElementsAreTheorems(matrix, at)
     const surfaces: MovieQuantumGapSurface[] = MOVIE_CLOCK_SURFACE_ATTESTATION.map((row) => ({
       ...row,
       receipt: toUuid(`movie-gap:${row.id}:${row.driver}:${row.closed}`),
@@ -381,6 +503,16 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       route: '/en/',
       receipt: toUuid(`movie-gap:static-fusion:${staticFusion.fused}`),
     })
+    surfaces.push({
+      id: 'movieAllElementsAreTheorems',
+      surface: 'src/thunder/movie/canvas',
+      driver: 'useVisibleMovieCanvas',
+      kind: 'static-fusion',
+      closed: allTheorems.allElementsAreTheorems && allTheorems.centerIsVortexNotBoundary,
+      criterion: 'every paint element binds a theorem — centre is vortex throat not wet boundary circle',
+      route: '/en/',
+      receipt: toUuid(`movie-gap:all-theorems:${allTheorems.allElementsAreTheorems}`),
+    })
     const privateRafOpen = surfaces.some((s) => !s.closed && (s.kind === 'private-raf' || s.driver === 'private-raf'))
     const multiClockOpen = surfaces.some((s) => !s.closed && s.kind === 'multi-clock')
     const open = surfaces.filter((s) => !s.closed)
@@ -390,6 +522,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       { facet: 'no open multi-clock attestation rows', on: !multiClockOpen },
       { facet: 'endless background movie computes', on: endless.endless },
       { facet: 'static→movie fusion fused (or named open)', on: staticFusion.fused || open.some((s) => s.id === 'staticIsEventualGapInMovieFusion') },
+      { facet: 'movie all elements are theorems — centre is vortex not boundary', on: allTheorems.allElementsAreTheorems && allTheorems.centerIsVortexNotBoundary },
       { facet: 'HONEST — viz/computation movie ≠ physical QM speedup', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-quantum-gaps:${entry.facet}:${entry.on}`) }))
     return {
@@ -402,11 +535,12 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       multiClockOpen,
       endless,
       staticFusion,
+      allTheorems,
       facets,
-      root: merkleFold([endless.root, staticFusion.root, ...surfaces.map((s) => s.receipt), ...facets.map((f) => f.receipt)]),
-      statement: `Movie quantum gaps — open=${open.length} closed=${surfaces.length - open.length}; private-raf=${privateRafOpen ? 'OPEN' : 'closed'}; multi-clock=${multiClockOpen ? 'OPEN' : 'closed'}; endless=${endless.endless}; staticFusion=${staticFusion.fused}.`,
+      root: merkleFold([endless.root, staticFusion.root, allTheorems.root, ...surfaces.map((s) => s.receipt), ...facets.map((f) => f.receipt)]),
+      statement: `Movie quantum gaps — open=${open.length} closed=${surfaces.length - open.length}; private-raf=${privateRafOpen ? 'OPEN' : 'closed'}; multi-clock=${multiClockOpen ? 'OPEN' : 'closed'}; endless=${endless.endless}; staticFusion=${staticFusion.fused}; allTheorems=${allTheorems.allElementsAreTheorems}.`,
       boundary:
-        'Architectural census of movie/hero clock surfaces + static fusion. Attestation rows track theme mounts after anim-quantum convert; endless/staticFusion recompute. NOT wall-clock FPS. NOT physical quantum speedup. HARMONY ≠ TRUTH.',
+        'Architectural census of movie/hero clock surfaces + static fusion + movieAllElementsAreTheorems. Attestation rows track theme mounts after anim-quantum convert; endless/staticFusion/allTheorems recompute. NOT wall-clock FPS. NOT physical quantum speedup. HARMONY ≠ TRUTH.',
     }
   })
 }

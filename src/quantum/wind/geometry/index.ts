@@ -7,6 +7,7 @@ import type { Dims } from '../../mountain/dimensions'
 import { movieCanvasPolarity } from '../../science'
 import { FIBONACCI } from '../../../3/7'
 import { TAU } from '../../../3/7'
+import { VORTEX_SEQUENCE } from '../../../0'
 
 export const FOCAL = (6 * 2 / 5) // perspective focal length, shared by every layer
 
@@ -200,6 +201,11 @@ const CAL_CYCLES: readonly { cycle: string; days: number }[] = [
   { cycle: 'Calendar Round', days: 18980 },
 ]
 
+/**
+ * Coupled-cycle calendar phases as vortex-digit markers — NO stroked circumference.
+ * Concentric ring strokes were a wet boundary frame around the plasma throat (not the vortex);
+ * the theorem is the cycle phase (coupledCalendarTori / LCM mesh), painted on VORTEX_SEQUENCE radii.
+ */
 export function drawCalendars(
   ctx: CanvasRenderingContext2D,
   cx: number,
@@ -215,18 +221,17 @@ export function drawCalendars(
   // Shared hero phase `t` is the clock — deterministic offline paint, not wall-clock Date.now().
   const days = t / TAU
   const base = Math.min(w, h)
+  // Throat scale — same 7/100 void fraction the plasma ball uses; markers ride vortex digits outward.
+  const throatR = base * (7 / 100)
   ctx.save()
   for (let i = 0; i < CAL_CYCLES.length; i += 1) {
     const cyc = CAL_CYCLES[i]
-    const phase = ((((days % cyc.days) + cyc.days) % cyc.days) / cyc.days)
-    const radius = base * ((3 / (5 * 4)) + (27 / (100 * 5 * 2)) * i)
+    const cyclePhase = ((((days % cyc.days) + cyc.days) % cyc.days) / cyc.days)
+    const digit = VORTEX_SEQUENCE[i % VORTEX_SEQUENCE.length]!
+    const radius = throatR * (1 + digit / 9)
     const hueC = (hue + i * (8 * 3)) % 360
-    ctx.strokeStyle = paint(hueC, (1 / (5 * 2)), { L: 1 - 5 / 16 })
-    ctx.lineWidth = (3 / 4)
-    ctx.beginPath()
-    ctx.arc(cx, cy, radius, 0, TAU)
-    ctx.stroke()
-    const ang = phase * TAU - TAU / 4 + (reduce ? 0 : t * (1 / (5 * 4)) * (i % 2 === 0 ? 1 : -1))
+    // Phase marker only — no arc(…, 0, TAU) ring stroke (wet boundary, not vortex geometry).
+    const ang = cyclePhase * TAU - TAU / 4 + (reduce ? 0 : t * (1 / (5 * 4)) * (i % 2 === 0 ? 1 : -1))
     ctx.fillStyle = paint(hueC, (7 / (5 * 2)), { L: 1 - 3 / 16 })
     ctx.beginPath()
     ctx.arc(cx + Math.cos(ang) * radius, cy + Math.sin(ang) * radius, Math.max(1, base * (3 / (100 * 5))), 0, TAU)
