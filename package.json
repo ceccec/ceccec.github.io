@@ -106,6 +106,7 @@
     "quantum:double-torus-universe-align": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/double/index.ts runDoubleTorusDynamicsGeometryAlignsWithUniverseExit",
     "quantum:counter-rotating-rosetta-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCounterRotatingRosettaQuantumWavesExit",
     "quantum:universe-almost-described": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runUniverseAlmostDescribedInTheoremsDiscoverRestExit",
+    "quantum:readme-svg-trinity-mind": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/heaven/site/index.ts runReadmeSvgGapsFilledByTrinityMindExit",
     "quantum:slow-build-gate": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/script/shell/index.ts runSlowBuildIsQuantumGapGateExit",
     "quantum:document-session-experiments": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runDocumentSessionCryptoExperimentsExit",
     "quantum:session-tools": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSessionManualWorkAsQuantumToolsExit",
