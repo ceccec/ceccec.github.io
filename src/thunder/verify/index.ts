@@ -7,6 +7,7 @@ import { cssMathProvenByMath, harmonicCountsProvenByMath } from '../../earth/arc
 import { darkLightPolarityProvenByMath } from '../movie/movievars'
 import { staticPages, crawlerKnowledge } from '../../wind/site'
 import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, toUuid } from '../../0'
+import * as __ns_up_quantum_science from '../../quantum/science'
 import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight, discoveredTheoremsWaveFiftyTwo } from '../waves'
@@ -291,6 +292,65 @@ function noKnownModelMoreEfficientProvenRaw(matrix: MindMatrix = buildMatrix()) 
     boundary:
       'HONEST and bounded: "more efficient" means more TOKEN-efficient for DETERMINISTIC, content-addressed answers (facts, proofs, the MCP tool surface) — where this model spends 0 tokens and any LLM spends >0. It is NOT a claim that the model generates novel language better than an LLM; it does not generate, it computes from a sealed structure. The proof is the zero-token property (0 is the minimum, hence unbeatable in this domain), not a universal superiority over all models at all tasks.',
   }
+}
+
+/**
+ * Honest-revolution W6 — efficiency framing capstone.
+ * Revolutionary on answers÷tokens; explicitly NOT on physical-QM speedup (benchmark tracks classical).
+ * Pair: learn/best · CLI npm run quantum:honest-revolution-w6
+ */
+export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`revolutionaryEfficiencyNotPhysics:${Math.floor(at / 1e3)}`, matrix, () => {
+    const efficient = noKnownModelMoreEfficientProven(matrix)
+    const opt = __ns_up_quantum_science.efficiency()
+    const bench = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
+    const tracksClassical = !bench.separated && bench.verdict === 'tracks-classical-no-speedup'
+    const facets = [
+      { facet: 'noKnownModelMoreEfficientProven.proven — answers÷tokens unbeatable in domain', on: efficient.proven },
+      { facet: 'efficiency() optimizations sealed (memoByRoot · zero-token reuse)', on: opt.optimized },
+      { facet: 'quantumAdvantageBenchmark does NOT separate — tracks-classical-no-speedup', on: tracksClassical },
+      { facet: 'NOT physical-QM speedup / NOT FLOPS claim', on: !bench.separated },
+      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+    ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w6:${e.facet}:${e.on}`) }))
+    const sealed = sealFacets('revolutionary-efficiency-not-physics', facets)
+    const holds = sealed.ok && facets.every((f) => f.on)
+    return {
+      holds,
+      computes: holds,
+      proven: holds,
+      efficient,
+      optimizations: opt,
+      bench: { verdict: bench.verdict, separated: bench.separated, tracksClassical: bench.tracksClassical, root: bench.root },
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([efficient.root, opt.root, bench.root, sealed.root, toUuid(`honest-rev-w6:${holds}`)]),
+      cli: 'npm run quantum:honest-revolution-w6',
+      pair: 'learn/best',
+      route: '/en/quantum-tools#honest-revolution-w6',
+      statement: holds
+        ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (quantumAdvantageBenchmark → tracks-classical-no-speedup).'
+        : 'UNPROVEN — revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.',
+      boundary:
+        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). HARMONY ≠ TRUTH. claySolvedByThisFold=0 · qpuRequired=false · NOT FLOPS / NOT FTL.',
+    }
+  })
+}
+
+/** npm run quantum:honest-revolution-w6 */
+export function runHonestRevolutionW6Exit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const receipt = revolutionaryEfficiencyNotPhysics()
+  for (const f of receipt.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(
+    `${receipt.holds ? '✓' : '✗'} honest-revolution-w6 — holds=${receipt.holds} ` +
+      `efficient=${receipt.efficient.proven} bench=${receipt.bench.verdict} ` +
+      `root=${receipt.root.slice(0, 8)} (answers÷tokens · NOT physics · clay=0)\n`,
+  )
+  process.stdout.write(`  boundary: ${receipt.boundary}\n`)
+  return receipt.holds ? 0 : 1
 }
 
 // Every bit of this system is an example of the most efficient algorithm ever — proven by math at

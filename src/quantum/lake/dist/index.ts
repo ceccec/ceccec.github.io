@@ -58,6 +58,7 @@ import { observingMovieRevealsQuantumModel } from '../../science'
 import { theoremPagePaths, theoremPageRows } from '../../../wind/routes/corpus'
 import { honestRevolutionReceipt, quantumFusionJson } from '../../../wind/fusion'
 import { honestRevolutionFpgaHonesty } from '../../../heaven/compute/computer'
+import { revolutionaryEfficiencyNotPhysics } from '../../../thunder/verify'
 
 
 
@@ -110,9 +111,10 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const localSession = improveLocalFromSessionExperience(matrix)
   const honestRev = honestRevolutionReceipt(matrix)
   const honestFpga = honestRevolutionFpgaHonesty(matrix)
+  const honestEff = revolutionaryEfficiencyNotPhysics(matrix)
   return `${JSON.stringify(
     {
-      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && honestRev.holds && honestFpga.holds),
+      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && honestRev.holds && honestFpga.holds && honestEff.holds),
       oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
       protocol: {
         laws: harmonise.laws,
@@ -263,6 +265,20 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         route: honestFpga.route,
         statement: honestFpga.statement,
         boundary: honestFpga.boundary,
+      },
+      revolutionaryEfficiencyNotPhysics: {
+        computes: honestEff.holds,
+        holds: honestEff.holds,
+        root: honestEff.root,
+        benchVerdict: honestEff.bench.verdict,
+        efficient: honestEff.efficient.proven,
+        qpuRequired: honestEff.qpuRequired,
+        claySolvedByThisFold: honestEff.claySolvedByThisFold,
+        pair: honestEff.pair,
+        cli: honestEff.cli,
+        route: honestEff.route,
+        statement: honestEff.statement,
+        boundary: honestEff.boundary,
       },
       surfaces: {
         agents: '/agents.json',

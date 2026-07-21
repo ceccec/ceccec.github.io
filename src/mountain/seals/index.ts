@@ -87,6 +87,7 @@ import {
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og'
 import { quantumFusionVerify, honestRevolutionReceipt, honestRevolutionComputerPanelComputes } from '../../wind/fusion'
 import { honestRevolutionFpgaHonesty } from '../../heaven/compute/computer'
+import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify'
 import { efficiency } from '../../quantum/science'
 import { animationsDrivenByRosetta, linearAnimationGapsInventory, yinYangFoldsThroughDimensions } from '../../wind/ui'
 import {
@@ -742,6 +743,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'honest-revolution-w3', title: 'Honest-revolution W3 — JSON proof receipt → /quantum-fusion.json · clay=0', proof: honestRevolutionReceipt(matrix) },
     { slug: 'honest-revolution-w4', title: 'Honest-revolution W4 — computer Vue proof panel · clay=0', proof: honestRevolutionComputerPanelComputes(matrix) },
     { slug: 'honest-revolution-w5', title: 'Honest-revolution W5 — FPGA honesty + co-processor bridge · clay=0', proof: honestRevolutionFpgaHonesty(matrix) },
+    { slug: 'honest-revolution-w6', title: 'Honest-revolution W6 — efficiency not physics capstone · clay=0', proof: revolutionaryEfficiencyNotPhysics(matrix) },
     { slug: 'yin-yang-rosetta', title: 'Yin-yang taiji — non-linear rosetta/vortex exchange (not linear i/frames)', proof: yinYangFoldsThroughDimensions(matrix) },
     { slug: 'animations-rosetta', title: 'Animations driven by the rosetta — linear gaps closed', proof: animationsDrivenByRosetta(matrix) },
     { slug: 'linear-animation-gaps', title: 'Linear animation gaps inventory — yin-yang first', proof: linearAnimationGapsInventory(matrix) },
