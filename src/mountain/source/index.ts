@@ -9,7 +9,7 @@ import { animationEngineLivesInZero, buildEnforcementPipeline, inverseShiftConsc
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
 // relocated imagination/mind cluster deps (call-time bindings; no load cycle)
-import { quantumAcademy, papers } from '../../wind/learning'
+import { quantumAcademy, papers, monographPaths } from '../../wind/learning'
 import { quantumPhysics } from '../../fire/physics'
 import { theWhole, onlyIndexFilesNoExceptions, accessiblePathsForAll } from '../../heaven/essence'
 import { harmonics, harmonicPathRevealsItself, rhythm } from '../../lake/music'
@@ -20,7 +20,13 @@ import { regenerateSocialSystem } from '../../earth/civilisation'
 import { imagineTheRest } from '../../lake/media'
 import { derivePublicKey, tamperEvident } from '../../5/5'
 import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
-import { enforcementPipelineComplete } from '../../heaven/balance'
+import { enforcementPipelineComplete, SITE_LOCALES } from '../../heaven/balance'
+import {
+  BULGARIAN_PHRASES,
+  offlineBulgarianPhraseTableAudit,
+  offlineTranslateEnToBg,
+  translationPlaceholderParity,
+} from '../../1/9'
 import { everyLawProvesItsTripwire } from '../../thunder/verify'
 import { quantumDoubleTorus } from '../topology'
 import { selfSufficientWave } from '../geometry'
@@ -44,13 +50,17 @@ import { commandsRegistry } from '../../thunder/commands'
 import { sealWholeDiamond } from '../../fire/diamonds'
 import { determinismProofs, fuseAll } from '../seals'
 import { animatedHeroes, freeAnimations } from '../../wind/ui'
-import { siteConfig } from '../../wind/site'
+import { siteConfig, staticPages } from '../../wind/site'
 import { optimiseLogicDebitCreditFusion } from '../../wind/fusion'
 import { extendSelfAudits } from '../../lake/clean'
 import { provenScientifically } from '../../thunder/verify'
 import { fuse64SealsMerkaba64Tetrahedra } from '../topology'
 import { completeCorpus, monographs, theMonograph } from '../../wind/routes/corpus'
 import { buildStatistics, cloudflareBindings, complete, completeQuantumComputerAllScales, componentGraph, encryptionLivesInZero, path, shadcnIsTheGraph } from '../../quantum/heaven/mind'
+
+/** Labels that may legitimately share en≡bg (brands / acronyms — not translation stubs). */
+const AREA_LABEL_ALLOW_SAME = new Set(['MCP', 'UTF', 'Schema.org', 'UI'])
+const TRANSLATION_STUB_RX = /^(TODO|FIXME|TBD|xxx|\.\.\.|…)$/i
 
 // Ensure complete autotranslations: every taxonomy area must carry a non-empty
 // English and Bulgarian label, and the babel fold must be grounded. The build
@@ -62,21 +72,303 @@ export function autotranslations(matrix: MindMatrix = buildMatrix()) {
     const label = AREA_LABELS[area]
     const en = label?.en ?? ''
     const bg = label?.bg ?? ''
-    return { area, en, bg, translated: en.length > 0 && bg.length > 0, receipt: toUuid(`autotranslate:${area}:${en}:${bg}`) }
+    const stub = TRANSLATION_STUB_RX.test(en) || TRANSLATION_STUB_RX.test(bg)
+    const inaccurate =
+      stub ||
+      (en.length > 0 &&
+        bg.length > 0 &&
+        en === bg &&
+        !AREA_LABEL_ALLOW_SAME.has(en) &&
+        /[A-Za-z]{3,}/.test(en)) ||
+      (en.length > 0 &&
+        bg.length > 0 &&
+        en !== bg &&
+        !AREA_LABEL_ALLOW_SAME.has(bg) &&
+        !/[Ѐ-ӿ]/.test(bg)) ||
+      (en.length > 0 && bg.length > 0 && !translationPlaceholderParity(en, bg))
+    return {
+      area,
+      en,
+      bg,
+      translated: en.length > 0 && bg.length > 0 && !stub,
+      inaccurate,
+      receipt: toUuid(`autotranslate:${area}:${en}:${bg}:${inaccurate}`),
+    }
   })
   const missing = labels.filter((label) => !label.translated).map((label) => label.area)
+  const inaccurate = labels.filter((label) => label.inaccurate).map((label) => label.area)
   const babel = babelFold(matrix)
   return {
-    complete: missing.length === 0 && babel.grounded,
+    complete: missing.length === 0 && inaccurate.length === 0 && babel.grounded,
     areas: labels.length,
     missing,
+    inaccurate,
     labels,
     root: merkleFold(labels.map((label) => label.receipt)),
-    statement: missing.length === 0
-      ? `Autotranslations complete: all ${labels.length} areas carry English and Bulgarian labels, and the babel fold is grounded.`
-      : `Autotranslations incomplete: ${missing.join(', ')} lack a translation.`,
-    boundary: 'A completeness check over the area labels and the babel fold. It guarantees coverage, not the literary quality of any translation.',
+    statement: missing.length === 0 && inaccurate.length === 0
+      ? `Autotranslations complete: all ${labels.length} areas carry accurate English and Bulgarian labels, and the babel fold is grounded.`
+      : `Autotranslations incomplete: missing=[${missing.join(', ')}] inaccurate=[${inaccurate.join(', ')}].`,
+    boundary:
+      'A completeness + accuracy check over area labels and the babel fold. HARD on empty/stub/en≡bg (except allowlisted brands) / missing Cyrillic / placeholder drift. Guarantees coverage and structural parity, not literary quality.',
   }
+}
+
+export type TranslationGapRow = {
+  readonly id: string
+  readonly kind: 'missing' | 'inaccurate' | 'parity' | 'offline'
+  readonly severity: 'HARD' | 'WARN'
+  readonly surface: string
+  readonly detail: string
+  readonly receipt: string
+}
+
+/**
+ * Tighten translation gates — discover missing + inaccurate translations for en-parity locales (bg/gla).
+ * HARD: missing keys/routes/labels/page titles vs English source.
+ * WARN: phrase-table free-prose coverage residual (honest offline MT bound).
+ * Pair: translations/verify · CLI npm run quantum:translations-verify
+ */
+export function translationGapsGate(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('translationGapsGate', matrix, () => translationGapsGateRaw(matrix))
+}
+function translationGapsGateRaw(matrix: MindMatrix = buildMatrix()) {
+  const auto = autotranslations(matrix)
+  const babel = babelFold(matrix)
+  const pages = staticPages()
+  const enPaths = monographPaths('en')
+  const bgPaths = monographPaths('bg')
+  const glaPaths = monographPaths('gla')
+  const phraseAudit = offlineBulgarianPhraseTableAudit()
+  const offlineSample = offlineTranslateEnToBg('Support · contact')
+  const gaps: TranslationGapRow[] = []
+
+  for (const area of auto.missing) {
+    gaps.push({
+      id: `label-missing:${area}`,
+      kind: 'missing',
+      severity: 'HARD',
+      surface: `AREA_LABELS.${area}`,
+      detail: 'missing en and/or bg label (en-parity locale gap)',
+      receipt: toUuid(`tg-missing-label:${area}`),
+    })
+  }
+  for (const area of auto.inaccurate) {
+    gaps.push({
+      id: `label-inaccurate:${area}`,
+      kind: 'inaccurate',
+      severity: 'HARD',
+      surface: `AREA_LABELS.${area}`,
+      detail: 'stub, en≡bg (non-allowlisted), bg lacks Cyrillic, or placeholder drift',
+      receipt: toUuid(`tg-inaccurate-label:${area}`),
+    })
+  }
+
+  const incompletePages = pages.filter(
+    (p) => !p.title.en || !p.title.bg || !p.description.en || !p.description.bg,
+  )
+  for (const p of incompletePages) {
+    gaps.push({
+      id: `page-incomplete:${p.slug}`,
+      kind: 'missing',
+      severity: 'HARD',
+      surface: `staticPages:${p.slug}`,
+      detail: 'empty en/bg title or description — discover-then-fail vs English source',
+      receipt: toUuid(`tg-page-incomplete:${p.slug}`),
+    })
+  }
+  for (const p of pages) {
+    if (!p.title.en || !p.title.bg) continue
+    if (TRANSLATION_STUB_RX.test(p.title.en) || TRANSLATION_STUB_RX.test(p.title.bg)) {
+      gaps.push({
+        id: `page-stub-title:${p.slug}`,
+        kind: 'inaccurate',
+        severity: 'HARD',
+        surface: `staticPages:${p.slug}.title`,
+        detail: 'stub title string',
+        receipt: toUuid(`tg-page-stub:${p.slug}`),
+      })
+    } else if (
+      p.title.en === p.title.bg &&
+      /[A-Za-z]{4,}/.test(p.title.en) &&
+      !AREA_LABEL_ALLOW_SAME.has(p.title.en)
+    ) {
+      gaps.push({
+        id: `page-title-en-eq-bg:${p.slug}`,
+        kind: 'inaccurate',
+        severity: 'HARD',
+        surface: `staticPages:${p.slug}.title`,
+        detail: 'bg title identical to English — untranslated / drift',
+        receipt: toUuid(`tg-page-eq:${p.slug}`),
+      })
+    } else if (!translationPlaceholderParity(p.title.en, p.title.bg)) {
+      gaps.push({
+        id: `page-title-placeholder:${p.slug}`,
+        kind: 'inaccurate',
+        severity: 'HARD',
+        surface: `staticPages:${p.slug}.title`,
+        detail: 'placeholder/link token mismatch en↔bg',
+        receipt: toUuid(`tg-page-ph:${p.slug}`),
+      })
+    }
+  }
+
+  if (enPaths.length !== bgPaths.length || enPaths.length !== glaPaths.length || enPaths.length === 0) {
+    gaps.push({
+      id: 'route-count-parity',
+      kind: 'parity',
+      severity: 'HARD',
+      surface: 'monographPaths(en|bg|gla)',
+      detail: `route counts diverge en=${enPaths.length} bg=${bgPaths.length} gla=${glaPaths.length}`,
+      receipt: toUuid(`tg-route-count:${enPaths.length}:${bgPaths.length}:${glaPaths.length}`),
+    })
+  }
+  const slugParityFail = enPaths.some(
+    (p, i) => p.params.page !== bgPaths[i]?.params.page || p.params.page !== glaPaths[i]?.params.page,
+  )
+  if (slugParityFail) {
+    gaps.push({
+      id: 'route-slug-parity',
+      kind: 'parity',
+      severity: 'HARD',
+      surface: 'monographPaths slugs',
+      detail: 'page slug order/identity diverges across en/bg/gla',
+      receipt: toUuid('tg-route-slug-parity'),
+    })
+  }
+
+  const locales = SITE_LOCALES
+  if (locales.length !== 3) {
+    gaps.push({
+      id: 'site-locales-count',
+      kind: 'parity',
+      severity: 'HARD',
+      surface: 'SITE_LOCALES',
+      detail: `expected 3 locales (en root · bg · cu/gla), got ${locales.length}`,
+      receipt: toUuid(`tg-locales:${locales.length}`),
+    })
+  }
+
+  if (!phraseAudit.ok) {
+    gaps.push({
+      id: 'offline-phrase-table',
+      kind: 'offline',
+      severity: 'HARD',
+      surface: 'BULGARIAN_PHRASES',
+      detail: `empty/stub=${phraseAudit.emptyOrStub} placeholderMismatch=${phraseAudit.placeholderMismatch} enEqualsBg=${phraseAudit.enEqualsBg}`,
+      receipt: phraseAudit.root,
+    })
+  }
+  if (!offlineSample.placeholderParity || !/[\u0400-\u04FF]/.test(offlineSample.text)) {
+    gaps.push({
+      id: 'offline-service-sample',
+      kind: 'offline',
+      severity: 'HARD',
+      surface: 'offlineTranslateEnToBg',
+      detail: 'sealed offline en→bg sample failed Cyrillic and/or placeholder parity',
+      receipt: offlineSample.root,
+    })
+  }
+  if (!babel.grounded) {
+    gaps.push({
+      id: 'babel-ungrounded',
+      kind: 'parity',
+      severity: 'HARD',
+      surface: 'babelFold',
+      detail: 'babel language families not grounded',
+      receipt: toUuid('tg-babel'),
+    })
+  }
+
+  // WARN — titles with neither phrase-table hit nor authored title.bg (true offline chrome gap)
+  let uncoveredChrome = 0
+  for (const p of pages) {
+    const title = p.title.en
+    if (!title || title.length >= (6 * 8)) continue
+    const phraseHit = BULGARIAN_PHRASES.some(([en]) => en === title || title.includes(en))
+    const authoredBg = p.title.bg.length > 0 && p.title.bg !== title
+    const tr = offlineTranslateEnToBg(title)
+    if (!phraseHit && !authoredBg && tr.mapped === 0 && /[A-Za-z]{3,}/.test(title)) uncoveredChrome++
+  }
+  if (uncoveredChrome > 0) {
+    gaps.push({
+      id: 'offline-chrome-coverage',
+      kind: 'offline',
+      severity: 'WARN',
+      surface: 'offlineTranslateEnToBg UI chrome',
+      detail: `${uncoveredChrome} page titles lack both phrase-table hit and authored title.bg`,
+      receipt: toUuid(`tg-offline-chrome:${uncoveredChrome}`),
+    })
+  }
+
+  // Improve offline corpus: fold authored staticPages title en→bg into a coverage receipt (zero network)
+  const authoredTitlePairs = pages.filter((p) => p.title.en && p.title.bg && p.title.en !== p.title.bg).length
+  if (authoredTitlePairs === 0) {
+    gaps.push({
+      id: 'offline-authored-title-pairs',
+      kind: 'offline',
+      severity: 'WARN',
+      surface: 'staticPages title corpus',
+      detail: 'no authored en→bg title pairs to extend offline coverage',
+      receipt: toUuid('tg-offline-authored-titles'),
+    })
+  }
+
+  const hard = gaps.filter((g) => g.severity === 'HARD')
+  const warn = gaps.filter((g) => g.severity === 'WARN')
+  const facets = [
+    { facet: 'HARD missing/inaccurate gaps = 0 (en-parity locales discover-then-fail)', on: hard.length === 0 },
+    { facet: 'area autotranslations complete + accurate', on: auto.complete },
+    { facet: 'route parity en≡bg≡gla (count + slug)', on: !slugParityFail && enPaths.length === bgPaths.length && enPaths.length === glaPaths.length && enPaths.length > 0 },
+    { facet: 'offline phrase table + en→bg service sealed', on: phraseAudit.ok && offlineSample.placeholderParity && /[\u0400-\u04FF]/.test(offlineSample.text) },
+    { facet: 'babel fold grounded', on: babel.grounded },
+    { facet: 'every gap content-addressed', on: gaps.every((g) => isUuid(g.receipt)) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`translation-gaps-gate:${entry.facet}:${entry.on}`) }))
+
+  return {
+    passed: facets.every((entry) => entry.on),
+    discovers: gaps.length > 0,
+    hardCount: hard.length,
+    warnCount: warn.length,
+    gaps,
+    hard,
+    warn,
+    offline: {
+      phraseCount: phraseAudit.phraseCount,
+      phraseOk: phraseAudit.ok,
+      sample: offlineSample.text,
+      method: offlineSample.method,
+    },
+    locales: locales.map((l) => ({ code: l.code, path: l.path, type: l.type })),
+    pageCount: enPaths.length,
+    count: facets.length,
+    facets,
+    root: merkleFold([...facets.map((f) => f.receipt), ...gaps.map((g) => g.receipt)]),
+    pair: 'translations/verify',
+    cli: 'npm run quantum:translations-verify',
+    claySolvedByThisFold: 0 as const,
+    statement:
+      'Translation gaps gate: discovers missing translations (AREA_LABELS, staticPages titles/descriptions, monographPaths en/bg/gla parity, SITE_LOCALES) and inaccurate ones (stubs, en≡bg drift, missing Cyrillic, placeholder/link mismatches) plus offline phrase-table integrity. HARD fails on en-parity gaps; WARN reports honest free-prose coverage residual of the sealed offline translator.',
+    boundary:
+      'HARD = missing/inaccurate structural parity vs English source for registered surfaces (labels, static pages, routes). Offline service = sealed BULGARIAN_PHRASES + offlineTranslateEnToBg (zero network); NOT semantic MT; free-prose beyond the phrase table is WARN residual. Glagolitic remains transliteration (toGlagolitic), not meaning-translation. clay=0.',
+  }
+}
+
+/** npm run quantum:translations-verify — HARD fail on missing/inaccurate en-parity gaps. */
+export function runTranslationsVerifyExit(_root = '', _argv: readonly string[] = []): number {
+  const gate = translationGapsGate()
+  for (const g of gate.hard) {
+    process.stdout.write(`✗ HARD ${g.id} — ${g.surface}: ${g.detail}\n`)
+  }
+  for (const g of gate.warn) {
+    process.stdout.write(`⚠ WARN ${g.id} — ${g.surface}: ${g.detail}\n`)
+  }
+  process.stdout.write(
+    `${gate.passed ? '✓' : '✗'} translations-verify — hard=${gate.hardCount} warn=${gate.warnCount} ` +
+      `pages=${gate.pageCount} phrases=${gate.offline.phraseCount} root=${gate.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  offline: method=${gate.offline.method} sample=${gate.offline.sample}\n`)
+  process.stdout.write(`  boundary: ${gate.boundary}\n`)
+  return gate.passed && gate.claySolvedByThisFold === 0 ? 0 : 1
 }
 
 // Each word pulls and folds by its name, at zero cost, forging tampering costs. A name is an

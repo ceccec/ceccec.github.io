@@ -227,17 +227,25 @@ export function localePaths(route: string) {
   return { gla: localePath(route, 'gla'), en: localePath(route, 'en'), bg: localePath(route, 'bg') }
 }
 
+/** Authored staticPages title pairs — extend sealed offline en→bg corpus (zero network). */
+export function offlineSiteTitlePhrases(): readonly (readonly [string, string])[] {
+  return staticPages()
+    .filter((p) => p.title.en.length > 0 && p.title.bg.length > 0 && p.title.en !== p.title.bg)
+    .map((p) => [p.title.en, p.title.bg] as const)
+}
+
 /** Bulgarian home — computed from the English home body homeMarkdown() (mirror of glagoliticHomeFromEnglish). */
 export function bulgarianHomeFromEnglish(enMarkdown: string): string {
   const fm = enMarkdown.match(/^---\n[\s\S]*?\n---\n?/)
   const front = fm ? fm[0] : ''
   const body = fm ? enMarkdown.slice(fm[0].length) : enMarkdown
+  const extras = offlineSiteTitlePhrases()
   const translated = body
     .split('\n')
     .map((line) => {
       if (/^\s*```/.test(line) || /^\s*</.test(line) || /^\s*$/.test(line)) return line
       if (line.startsWith('<!--')) return '<!-- ИЗЧИСЛЕНА СТРАНИЦА — тялото е homeMarkdown() (src/quantum/lake/dist/readme), единният теоремен генератор, споделен с README.md. Не се редактира на ръка. -->'
-      return bulgarianFromEnglish(line)
+      return bulgarianFromEnglish(line, extras)
     })
     .join('\n')
   return `${front.replace(/^layout: home\n/m, '')}${translated}`

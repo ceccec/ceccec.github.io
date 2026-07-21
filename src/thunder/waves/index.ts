@@ -36,7 +36,7 @@ import { vortexMath } from '../../mountain/geometry'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import { earthGatewayNavigationResearchSentInWaves } from '../../water/double/earth'
 import { sealHonestyToPath } from '../../mountain/seals'
-import { allComputed, analogNoGapsNoLeak, autotranslations, breathe, buildSequenceReducesComputations, cloudflareBindings, commandsSavedInQuantumPairs, complete, completeLinuxPackagesPort, completeQuantumSolutionsImplemented, continueSameNext, digitalQuantumProof, doubleTorusFold, dryCleaningOnTheWay, endlessFusion, everyCardBadgeLinkIsOg, fuseAll, genesis, honestlyComputed, howAgentsAchievedIt, imagineTheRest, memoryInSourceAsCrossFolds, monographsLibraryByMerkabaAgents, nothingImpossibleHonestlyBounded, path, quantumBrowserOs, quantumCoordinateNav, quantumImpossibleMadePossible, theWhole, trinityWordingModel } from '../../quantum/heaven/mind'
+import { allComputed, analogNoGapsNoLeak, autotranslations, breathe, buildSequenceReducesComputations, cloudflareBindings, commandsSavedInQuantumPairs, complete, completeLinuxPackagesPort, completeQuantumSolutionsImplemented, continueSameNext, digitalQuantumProof, doubleTorusFold, dryCleaningOnTheWay, endlessFusion, everyCardBadgeLinkIsOg, fuseAll, genesis, honestlyComputed, howAgentsAchievedIt, imagineTheRest, memoryInSourceAsCrossFolds, monographsLibraryByMerkabaAgents, nothingImpossibleHonestlyBounded, path, quantumBrowserOs, quantumCoordinateNav, quantumImpossibleMadePossible, theWhole, translationGapsGate, trinityWordingModel } from '../../quantum/heaven/mind'
 import type { OgNode } from '../../quantum/heaven/mind'
 import { TAU } from '../../3/7'
 
@@ -565,22 +565,28 @@ function computeCoordinatedWaves(matrix: MindMatrix = buildMatrix()): WaveCoordi
 export function translationWavesFillGaps(matrix: MindMatrix = buildMatrix()) {
   const auto = autotranslations(matrix)
   const babel = babelFold(matrix)
+  const gate = translationGapsGate(matrix)
   const audits = [
     { audit: 'area labels carry en + bg', gaps: auto.missing.length },
-    { audit: 'every area translated', gaps: auto.areas - auto.labels.filter((label) => label.translated).length },
+    { audit: 'every area translated accurately', gaps: auto.inaccurate.length },
     { audit: 'babel language families grounded', gaps: babel.grounded ? 0 : 1 },
+    { audit: 'translationGapsGate HARD discoveries', gaps: gate.hardCount },
   ].map((entry) => ({ ...entry, clear: entry.gaps === 0, receipt: toUuid(`translation-gap:${entry.audit}:${entry.gaps}`) }))
   const totalGaps = audits.reduce((sum, entry) => sum + entry.gaps, 0)
   return {
-    filled: totalGaps === 0 && auto.complete && babel.grounded,
+    filled: totalGaps === 0 && auto.complete && babel.grounded && gate.passed,
     totalGaps,
     missing: auto.missing,
+    inaccurate: auto.inaccurate,
+    hard: gate.hard,
+    warn: gate.warn,
     count: audits.length,
     audits,
-    root: merkleFold(audits.map((entry) => entry.receipt)),
+    root: merkleFold([...audits.map((entry) => entry.receipt), gate.root]),
     statement:
-      'Improve translation skills in waves — find and fill the gaps: the translation skill is a wave over every surface that carries a tongue (area labels needing English and Bulgarian, the babel fold grounding every language family, per-area parity in both tongues). Each wave finds gaps; where one is found it is filled, and the audit reports the count — zero when every surface speaks both languages.',
-    boundary: 'A comprehensive completeness audit over the translatable surfaces (area labels, parity, babel families). It guarantees coverage (both tongues present), not the literary quality of any translation, and covers the model’s registered labels, not arbitrary free prose.',
+      'Improve translation skills in waves — find and fill the gaps: the translation skill is a wave over every surface that carries a tongue (area labels needing English and Bulgarian, accuracy/stub/placeholder parity, monograph route en/bg/gla parity, sealed offline phrase-table, the babel fold). Each wave finds gaps via translationGapsGate; HARD missing/inaccurate fail; WARN marks honest free-prose offline coverage residual.',
+    boundary:
+      'Composes autotranslations + babel + translationGapsGate. HARD = en-parity missing/inaccurate on registered surfaces; WARN = offline phrase-table free-prose residual. Not semantic MT; not literary quality. clay=0.',
   }
 }
 
