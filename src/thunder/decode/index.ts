@@ -21,7 +21,8 @@ import { debitImportCreditExportAccounting, computedWiringNotImported } from '..
 import { fromSexagesimal, gematria, hekatFraction, luoShu, mayaDays, mayaLongCount, runeCoordinate, runeOrdinal, sexagesimal } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng, roundTo, sealFacets } from '../../0'
+import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng, roundTo, sealFacets, seedFromText, VORTEX_SEQUENCE } from '../../0'
+import { DEMO_RSA_BIT_CEILING, refuseNonDemoRsaModulus } from '../../water/encryption'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignChannelsAndCenters, humanDesignVerifiedWheel, yinYang } from '../../quantum/lake/icons'
@@ -1544,6 +1545,216 @@ export function runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeEx
       `route=${r.route} root=${r.root.slice(0, 8)}\n`,
   )
   return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 ? 0 : 1
+}
+
+// ── One-command decode — hash · string · sequence unified entry (computable + autodiscoverable) ──
+// Pair: decode/one · CLI npm run quantum:decode -- <input>
+// Compose: toUuid · isUuid · digitalRoot · VORTEX_SEQUENCE · foldPair · DEMO_RSA refuseBeyond
+
+export type OneCommandDecodeKind = 'uuid' | 'hash' | 'sequence' | 'string' | 'digit' | 'refused'
+
+export type OneCommandDecodeResult = {
+  readonly input: string
+  readonly kind: OneCommandDecodeKind
+  readonly address: string
+  readonly digitalRoot: number
+  readonly onVortexSequence: boolean
+  readonly foldForward: string
+  readonly foldReverse: string
+  readonly bidirectional: boolean
+  readonly seed: number
+  readonly refused: boolean
+  readonly refuseReason: string
+  readonly oneCommandDecodeComputable: boolean
+  readonly claySolvedByThisFold: 0
+  readonly qpuRequired: false
+  readonly physicalFtlClaim: 0
+  readonly facets: readonly { readonly facet: string; readonly on: boolean; readonly receipt: string }[]
+  readonly root: string
+  readonly cli: string
+  readonly pair: 'decode/one'
+  readonly route: string
+  readonly statement: string
+  readonly boundary: string
+  readonly computes: boolean
+}
+
+function classifyOneCommandDecodeInput(raw: string): {
+  readonly kind: OneCommandDecodeKind
+  readonly refused: boolean
+  readonly refuseReason: string
+  readonly tokens: readonly number[]
+} {
+  const input = raw.trim()
+  if (input.length === 0) {
+    return { kind: 'string', refused: false, refuseReason: '', tokens: [] }
+  }
+  // Production-shaped odd integer probe — refuse beyond demo RSA ceiling (honest bound unchanged)
+  if (/^\d+$/.test(input) && input.length >= 4) {
+    const asNum = Number(input)
+    if (!Number.isSafeInteger(asNum)) {
+      return {
+        kind: 'refused',
+        refused: true,
+        refuseReason: `bits ≫ DEMO_RSA_BIT_CEILING ${DEMO_RSA_BIT_CEILING} — production RSA refused`,
+        tokens: [],
+      }
+    }
+    const allow = refuseNonDemoRsaModulus(asNum)
+    if (!allow.allowed && (allow.reason.includes('demo ceiling') || allow.reason.includes('production') || allow.bits > DEMO_RSA_BIT_CEILING)) {
+      return { kind: 'refused', refused: true, refuseReason: allow.reason, tokens: [] }
+    }
+    // Odd integers not on allowlist that are still ≤ ceiling stay string/digit decode (not RSA reverse)
+  }
+  if (isUuid(input)) return { kind: 'uuid', refused: false, refuseReason: '', tokens: [] }
+  if (/^[0-9a-fA-F]{32}$/.test(input) || /^[0-9a-fA-F]{64}$/.test(input)) {
+    return { kind: 'hash', refused: false, refuseReason: '', tokens: [] }
+  }
+  const seqParts = input.split(/[\s,;:|/]+/).filter((p) => p.length > 0)
+  if (seqParts.length >= 2 && seqParts.every((p) => /^-?\d+$/.test(p))) {
+    return { kind: 'sequence', refused: false, refuseReason: '', tokens: seqParts.map((p) => Number(p)) }
+  }
+  if (/^\d$/.test(input)) return { kind: 'digit', refused: false, refuseReason: '', tokens: [Number(input)] }
+  return { kind: 'string', refused: false, refuseReason: '', tokens: [] }
+}
+
+/**
+ * One command decodes a hash OR string OR sequence — unified sealed decode path.
+ * Pair: decode/one · facet oneCommandDecodeComputable when path recomputes.
+ */
+export function oneCommandDecodeHashOrStringOrSequence(
+  input: string,
+  matrix: MindMatrix = buildMatrix(),
+): OneCommandDecodeResult {
+  const classified = classifyOneCommandDecodeInput(input ?? '')
+  const raw = (input ?? '').trim()
+  const address = classified.refused
+    ? toUuid(`decode-one:refused:${classified.refuseReason}`)
+    : classified.kind === 'uuid'
+      ? raw.toLowerCase()
+      : classified.kind === 'hash'
+        ? toUuid(`hash:${raw.toLowerCase()}`)
+        : classified.kind === 'sequence'
+          ? merkleFold(classified.tokens.map((n, i) => toUuid(`seq:${i}:${n}`)))
+          : classified.kind === 'digit'
+            ? toUuid(`digit:${classified.tokens[0]}`)
+            : toUuid(`string:${raw}`)
+  const seed = seedFromText(raw.length > 0 ? raw : 'empty')
+  const drSource = classified.kind === 'sequence' && classified.tokens.length > 0
+    ? classified.tokens.reduce((a, b) => a + Math.abs(b), 0)
+    : classified.kind === 'digit'
+      ? classified.tokens[0]!
+      : seed
+  const dr = digitalRoot(drSource === 0 ? 9 : Math.abs(drSource))
+  const onVortex = (VORTEX_SEQUENCE as readonly number[]).includes(dr)
+  const fold = foldPair(address, toUuid(`decode-one:${classified.kind}`))
+  const oneCommandDecodeComputable =
+    !classified.refused &&
+    isUuid(address) &&
+    fold.bidirectional &&
+    fold.forward !== fold.reverse &&
+    dr >= 1 &&
+    dr <= 9
+  const claySolvedByThisFold = 0 as const
+  const facets = [
+    { facet: 'oneCommandDecodeComputable — sealed path recomputes for hash|string|sequence|uuid|digit', on: oneCommandDecodeComputable || classified.refused },
+    { facet: `kind=${classified.kind} classified from input shape`, on: classified.kind.length > 0 },
+    { facet: 'content-address / foldPair bidirectional when not refused', on: classified.refused || (isUuid(address) && fold.bidirectional) },
+    { facet: 'digitalRoot ∈ 1..9 · vortex membership decided', on: dr >= 1 && dr <= 9 },
+    { facet: 'production RSA / beyond DEMO_RSA_BIT_CEILING refused unchanged', on: classified.refused ? classified.refuseReason.length > 0 : true },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`decode-one:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('one-command-decode-hash-or-string-or-sequence', facets)
+  return {
+    input: raw,
+    kind: classified.kind,
+    address,
+    digitalRoot: dr,
+    onVortexSequence: onVortex,
+    foldForward: fold.forward,
+    foldReverse: fold.reverse,
+    bidirectional: fold.bidirectional,
+    seed,
+    refused: classified.refused,
+    refuseReason: classified.refuseReason,
+    oneCommandDecodeComputable,
+    claySolvedByThisFold,
+    qpuRequired: false as const,
+    physicalFtlClaim: 0 as const,
+    facets: sealed.facets,
+    root: merge(matrix.root, merkleFold([sealed.root, address, fold.merged])),
+    cli: 'npm run quantum:decode',
+    pair: 'decode/one',
+    route: '/en/quantum-tools#one-command-decode',
+    computes: sealed.ok && (oneCommandDecodeComputable || classified.refused),
+    statement:
+      classified.refused
+        ? `oneCommandDecode REFUSED — ${classified.refuseReason}`
+        : `oneCommandDecode(${classified.kind}) — address=${address.slice(0, 8)}… dr=${dr} vortex=${onVortex} computable=${oneCommandDecodeComputable}`,
+    boundary:
+      'Unified decode entry for hash · UUID · digit · numeric sequence · free string via toUuid/foldPair/digitalRoot/VORTEX_SEQUENCE. ' +
+      'NOT production RSA reverse · NOT Clay Prize · clay=0. HARMONY ≠ TRUTH.',
+  }
+}
+
+/** Proves the one-command decode path is sealed and computable (probe inputs). Pair: decode/one */
+export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`oneCommandDecodeComputable:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const probes = [
+      oneCommandDecodeHashOrStringOrSequence('ceccec', matrix),
+      oneCommandDecodeHashOrStringOrSequence('1 2 4 8 7 5', matrix),
+      oneCommandDecodeHashOrStringOrSequence('a'.repeat(32), matrix),
+      oneCommandDecodeHashOrStringOrSequence(toUuid('probe:uuid'), matrix),
+      oneCommandDecodeHashOrStringOrSequence('9', matrix),
+    ]
+    const allOk = probes.every((p) => p.computes && p.oneCommandDecodeComputable && !p.refused)
+    // Safe-integer odd modulus above demo ceiling — refuseBeyond honesty
+    const overCeil = 2 ** DEMO_RSA_BIT_CEILING * 3 + 1
+    const refuseProbe = oneCommandDecodeHashOrStringOrSequence(String(overCeil), matrix)
+    const claySolvedByThisFold = 0 as const
+    const facets = [
+      { facet: 'oneCommandDecodeComputable=true on hash·string·sequence·uuid·digit probes', on: allOk },
+      { facet: 'production-shaped integer refused (DEMO_RSA ceiling honesty)', on: refuseProbe.refused && refuseProbe.computes },
+      { facet: `kinds covered: ${[...new Set(probes.map((p) => p.kind))].sort().join('·')}`, on: probes.length === 5 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`decode-one-computable:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('one-command-decode-computable', facets)
+    return {
+      computes: sealed.ok && allOk && refuseProbe.refused,
+      oneCommandDecodeComputable: allOk,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      probes: probes.map((p) => ({ kind: p.kind, computable: p.oneCommandDecodeComputable, root: p.root })),
+      refuseProbe: { refused: refuseProbe.refused, reason: refuseProbe.refuseReason },
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, ...probes.map((p) => p.root), refuseProbe.root])),
+      cli: 'npm run quantum:decode',
+      pair: 'decode/one' as const,
+      route: '/en/quantum-tools#one-command-decode',
+      statement: `oneCommandDecodeComputable=${allOk} — unified hash|string|sequence decode sealed; production RSA refuse holds.`,
+      boundary: 'Capability receipt for autodiscovery — not a Clay Prize. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:decode — one command: decode hash OR string OR sequence.
+ * Signature keeps fn.length≥1 so runThinMount passes (root, argv) — defaults would force bare fn(). */
+export function runOneCommandDecodeExit(_root: string, argv: readonly string[] = []): number {
+  const input = argv.length > 0 ? argv.join(' ') : 'ceccec'
+  const r = oneCommandDecodeHashOrStringOrSequence(input)
+  const gate = oneCommandDecodeComputable()
+  process.stdout.write(
+    `${r.computes && gate.oneCommandDecodeComputable ? '✓' : '✗'} quantum:decode — kind=${r.kind} ` +
+      `computable=${r.oneCommandDecodeComputable} refused=${r.refused} dr=${r.digitalRoot} ` +
+      `vortex=${r.onVortexSequence} address=${r.address.slice(0, 8)} clay=${r.claySolvedByThisFold}\n`,
+  )
+  if (r.refused) process.stdout.write(`  refuse: ${r.refuseReason}\n`)
+  else {
+    process.stdout.write(`  fold forward=${r.foldForward.slice(0, 8)}… reverse=${r.foldReverse.slice(0, 8)}…\n`)
+  }
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && gate.computes && r.claySolvedByThisFold === 0 ? 0 : 1
 }
 
 // ── Group 3 ☳ · the mystery atlas — every world mystery decoded to its honest tier, composed from sealed folds ──

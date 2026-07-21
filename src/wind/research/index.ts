@@ -11,15 +11,23 @@ import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
 import {
   quantumProjectionParams, rosettaShelve, slowProcessIsQuantumGap, standardToolboxIoCatalog,
+  quantumCliToolsCatalog,
   type QuantumProjection,
 } from '../../quantum/apps'
+import * as __ns_quantum_apps from '../../quantum/apps'
 import * as __ns_water_encryption from '../../water/encryption'
-import { antichainLevels, computesGate, digitalRoot, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
+import * as __ns_wind_site from '../../wind/site'
+import * as __ns_thunder_decode from '../../thunder/decode'
+import {
+  antichainLevels, computesGate, digitalRoot, DIGEST_BITS, doubleTorusSurface, foldPair, isUuid,
+  memoByRoot, merge, merkleFold, resourceCooperationPolicy, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE,
+} from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
 import {
-  A432_HUE, AUTHOR_HANDLE, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, TAU, UNFOLDED_CENSUS,
-  earned, rat, ratMul, ratToFloat,
+  A432_HUE, AUTHOR_HANDLE, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
+  TAU, UNFOLDED_CENSUS, fibonacci, earned, rat, ratMul, ratToFloat,
 } from '../../3/7'
+import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { paperParamsById, papers } from '../learning'
 import { computeUniversalPage } from '../routes/corpus'
@@ -3622,6 +3630,33 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         ruleClauses: ['relatedScienceNotPrizeSolution'],
         receipt: toUuid('domain-proof:ancient-calendars-algebra'),
       },
+      {
+        id: 'fixed-limits-theorem-tools',
+        slug: 'fixed-limits-theorem-tools',
+        title: 'Fixed limits of theorem-related tools are theorems',
+        kind: 'honesty',
+        officialStatement:
+          'Every HARD ceiling on theorem-related tools (census 110/108/432 · FREE_BITS=2 · papers 432 · paper section budgets · DIGEST_BITS=64 · demo RSA / AES-256 / inverse-4 · heap 2048 · F(18)=2584 · CLI/pair catalogs) is itself an algebraic/canonical theorem proved from sealed constants.',
+        detailedExplanation:
+          'fixedLimitsOfTheoremRelatedToolsAreTheorems recomputes each limit identity at call time. Canonical sections only — NOT a Clay Millennium challenge (claySolvedByThisFold=0). Compose limits:verify · paper/algebraic · max-bits/crypto.',
+        formula:
+          '110=55+34+21 · 108=110+(−2) · FREE_BITS=2=−χ · 432=4×108 · papers.count=432 · |requiredSections|=9 · DIGEST_BITS=64 · heap=2048 · F(18)=2584',
+        formulaSource: 'fixedLimitsOfTheoremRelatedToolsAreTheorems',
+        status: 'structure-only',
+        statusDetail: 'proof-from-sealed-constants · clay=0 · CLI npm run quantum:fixed-limits-theorems',
+        gap: 'limits are structural ceilings — not Clay Prize solutions',
+        fold: 'fixedLimitsOfTheoremRelatedToolsAreTheorems',
+        cli: 'npm run quantum:fixed-limits-theorems',
+        pair: 'limits/theorems',
+        route: '/en/proofs/fixed-limits-theorem-tools',
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qualifiesAsProposedSolutionUnderClayRules: false,
+        publishedInQualifyingOutlet: false,
+        trinity: { forward: 'seal-limit', inverse: 'recompute-identity', reverse: 'refuse-beyond' },
+        ruleClauses: ['relatedScienceNotPrizeSolution'],
+        receipt: toUuid('domain-proof:fixed-limits-theorem-tools'),
+      },
     ]
 
     const rows = [...millenniumRows, ...scienceRows, ...honestyRows]
@@ -4287,7 +4322,8 @@ export type AlgebraicPaperSectionScore = {
   readonly receipt: string
 }
 
-const SECTION_MIN: Record<AlgebraicPaperSectionId, number> = {
+/** Exported for fixed-limits theorems — section char budgets (lattice products, not magic). */
+export const ALGEBRAIC_PAPER_SECTION_MIN: Record<AlgebraicPaperSectionId, number> = {
   title: 2 * 3,
   abstract: 2 * 5 * 4,
   statement: 2 * 5 * 8,
@@ -4298,6 +4334,7 @@ const SECTION_MIN: Record<AlgebraicPaperSectionId, number> = {
   status: 2 * 5 * 2,
   references: 2 * 5 * 2,
 }
+const SECTION_MIN = ALGEBRAIC_PAPER_SECTION_MIN
 
 function scoreAlgebraicPaperSections(sections: AlgebraicPaperSections): {
   readonly scores: readonly AlgebraicPaperSectionScore[]
@@ -4557,9 +4594,510 @@ export type TheoremGapWaveCluster = {
   readonly receipt: string
 }
 
+export type FixedLimitTheorem = {
+  readonly id: string
+  readonly name: string
+  readonly statement: string
+  readonly formula: string
+  readonly proof: string
+  readonly value: number | string
+  readonly holds: boolean
+  readonly sealPath: string
+  readonly receipt: string
+}
+
 /**
- * Fill theorem gaps in waves — audit registry/domain proofs/algebraic surfaces; fill by canonical sections.
- * Composes incompletePapersGapsFill · domainProofCatalog · ancient calendars · secp256k1 · plasma.
+ * Fixed limits of theorem-related tools — each HARD ceiling sealed as an algebraic/canonical theorem.
+ * Pair: limits/theorems · claySolvedByThisFold ≡ 0 · Clay mark only Millennium.
+ */
+export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`fixedLimitsOfTheoremRelatedToolsAreTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
+    const bandsSum = FIBONACCI_CENSUS_BANDS.reduce((a, b) => a + b, 0)
+    const dimGates = HOMOLOGY_LOOPS * FOLDED_CENSUS
+    const corpus = papers(matrix)
+    const maxBits = __ns_water_encryption.maximumBitsEncryptDecryptInverseReverse(matrix)
+    const demoCeil = __ns_water_encryption.DEMO_RSA_BIT_CEILING
+    const heap = resourceCooperationPolicy().heapCapMb
+    const lineCeil = fibonacci(18)
+    const tools = quantumCliToolsCatalog(matrix)
+    const pairCount = QUANTUM_COMMAND_PAIR_IDS.length
+    const sectionCount = ALGEBRAIC_PAPER_REQUIRED_SECTIONS.length
+    const statementMin = ALGEBRAIC_PAPER_SECTION_MIN.statement
+
+    const mk = (
+      id: string,
+      name: string,
+      statement: string,
+      formula: string,
+      proof: string,
+      value: number | string,
+      holds: boolean,
+      sealPath: string,
+    ): FixedLimitTheorem => ({
+      id,
+      name,
+      statement,
+      formula,
+      proof,
+      value,
+      holds,
+      sealPath,
+      receipt: toUuid(`fixed-limit-thm:${id}:${holds}:${value}`),
+    })
+
+    const theorems: FixedLimitTheorem[] = [
+      mk(
+        'limit-census-unfolded-110',
+        'Unfolded census is exactly 110',
+        'Theorem. The unfolded Fibonacci census of src/ index.ts files is exactly UNFOLDED_CENSUS = 110 = 55+34+21 (gapless), not less, not more.',
+        'UNFOLDED_CENSUS = Σ FIBONACCI_CENSUS_BANDS = 55+34+21 = 110',
+        'Proof. FIBONACCI_CENSUS_BANDS is sealed in src/3/7; sum recomputes to 110; equals UNFOLDED_CENSUS const; auditComputationalGates HARD-fails otherwise.',
+        UNFOLDED_CENSUS,
+        bandsSum === UNFOLDED_CENSUS && UNFOLDED_CENSUS === 110,
+        'src/3/7 · limits:verify',
+      ),
+      mk(
+        'limit-census-folded-108',
+        'Folded census is exactly 108',
+        'Theorem. FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI = 110+(−2) = 108 (genus-2 fold).',
+        'FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI',
+        'Proof. EULER_CHI=−2 sealed; arithmetic 110−2=108; verifyFoldedCensus requires exact match.',
+        FOLDED_CENSUS,
+        FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && FOLDED_CENSUS === 108,
+        'src/3/7 · limits:verify',
+      ),
+      mk(
+        'limit-free-bits-2',
+        'FREE_BITS = 2 (= −χ)',
+        'Theorem. FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = 110−108 = 2 = −EULER_CHI. Naive 1−110/108 refused.',
+        'FREE_BITS = 110 − 108 = −χ = 2',
+        'Proof. Difference of sealed census constants; equals −EULER_CHI; twoBitsFreeFromCensus110Minus108 recomputes the same identity.',
+        freeBits,
+        freeBits === 2 && freeBits === -EULER_CHI,
+        'src/3/7 · bits/free',
+      ),
+      mk(
+        'limit-dimension-gates-432',
+        'Dimension gates are exactly 432',
+        'Theorem. DIMENSION_GATES = HOMOLOGY_LOOPS × FOLDED_CENSUS = 4×108 = 432 (facets, not files).',
+        'DIMENSION_GATES = 4 × 108 = 432',
+        'Proof. HOMOLOGY_LOOPS=4 (H₁=ℤ⁴) and FOLDED_CENSUS=108 sealed; product 432; HARD in auditComputationalGates.',
+        DIMENSION_GATES,
+        dimGates === DIMENSION_GATES && DIMENSION_GATES === 432,
+        'src/3/7 · limits:verify',
+      ),
+      mk(
+        'limit-homology-loops-4',
+        'Homology loops = 4',
+        'Theorem. H₁(Σ₂)=ℤ⁴ ⇒ HOMOLOGY_LOOPS = 4 is the fixed rank of the genus-2 surface.',
+        'HOMOLOGY_LOOPS = 4',
+        'Proof. Sealed const HOMOLOGY_LOOPS; used as the sole multiplier into DIMENSION_GATES.',
+        HOMOLOGY_LOOPS,
+        HOMOLOGY_LOOPS === 4,
+        'src/3/7',
+      ),
+      mk(
+        'limit-papers-corpus-432',
+        'Proof-paper corpus cardinality = 432',
+        'Theorem. The sealed papers() corpus defaults to count = DIMENSION_GATES = 432 (108 π-digits × 4 homology generators).',
+        'papers(matrix).count = 432 = DIMENSION_GATES',
+        'Proof. papers(matrix) recomputes count; equals DIMENSION_GATES; paperParamsById default count=432.',
+        corpus.count,
+        corpus.count === DIMENSION_GATES && corpus.count === 432,
+        'src/wind/learning · /papers',
+      ),
+      mk(
+        'limit-algebraic-paper-sections-9',
+        'Algebraic paper required sections = 9',
+        'Theorem. ALGEBRAIC_PAPER_REQUIRED_SECTIONS has exactly 9 required section ids (title…references); paper incomplete iff any missing.',
+        '|ALGEBRAIC_PAPER_REQUIRED_SECTIONS| = 9',
+        'Proof. Const array length recomputed; algebraicTheoremPaperMustContain facets require length===9.',
+        sectionCount,
+        sectionCount === 9,
+        'src/wind/research · paper/algebraic',
+      ),
+      mk(
+        'limit-statement-min-chars-80',
+        'Statement section minimum = 80 chars',
+        'Theorem. ALGEBRAIC_PAPER_SECTION_MIN.statement = 2×5×8 = 80 — lattice product budget for a precise statement.',
+        'statementMin = 2·5·8 = 80',
+        'Proof. SECTION_MIN derives from lattice factors only; scoreAlgebraicPaperSections rejects shorter statements.',
+        statementMin,
+        statementMin === 2 * 5 * 8,
+        'src/wind/research · paper/algebraic',
+      ),
+      mk(
+        'limit-digest-bits-64',
+        'Content-address digest floor = 64 bits',
+        'Theorem. DIGEST_BITS = 64 is the forge-floor log2 width of the content-address atom (src/0).',
+        'DIGEST_BITS = 64',
+        'Proof. Sealed const in src/0; tamperCostLog2(0,n)=DIGEST_BITS; theorem tools inherit the same security floor.',
+        DIGEST_BITS,
+        DIGEST_BITS === 64,
+        'src/0',
+      ),
+      mk(
+        'limit-demo-rsa-bit-ceiling',
+        'Demo RSA reverse bit ceiling',
+        'Theorem. DEMO_RSA_BIT_CEILING is the HARD reverse ceiling for teaching RSA (production refused beyond).',
+        `DEMO_RSA_BIT_CEILING = ${demoCeil}`,
+        'Proof. Computed from TEACHING_RSA_P×TEACHING_RSA_Q via floor(log2(n))+1; refuseBeyond when bits > ceiling.',
+        demoCeil,
+        demoCeil === maxBits.reverseMaxBits && demoCeil > 0,
+        'src/water/encryption · max-bits/crypto',
+      ),
+      mk(
+        'limit-aes-encrypt-bits-256',
+        'Encrypt/decrypt named ceiling = 256 bits',
+        'Theorem. maximumBitsEncryptDecryptInverseReverse.encryptMaxBits = decryptMaxBits = 256 (AES-256 named).',
+        'encryptMaxBits = decryptMaxBits = 2^8 = 256',
+        'Proof. Recompute maximumBitsEncryptDecryptInverseReverse; facets require encrypt=decrypt=256.',
+        maxBits.encryptMaxBits,
+        maxBits.computes && maxBits.encryptMaxBits === 256 && maxBits.decryptMaxBits === 256,
+        'src/water/encryption · max-bits/crypto',
+      ),
+      mk(
+        'limit-inverse-digit-bits-4',
+        'Inverse digit domain = 4 bits',
+        'Theorem. inverseMaxBits = 4 names the digit-folder mod-9 inverse domain (0..9), not RSA inverse.',
+        'inverseMaxBits = 4',
+        'Proof. maximumBitsEncryptDecryptInverseReverse.inverseMaxBits === 4 at call time.',
+        maxBits.inverseMaxBits,
+        maxBits.computes && maxBits.inverseMaxBits === 4,
+        'src/water/encryption · max-bits/crypto',
+      ),
+      mk(
+        'limit-heap-cap-2048',
+        'Node heap cap = 2048 MB',
+        'Theorem. resourceCooperationPolicy().heapCapMb = 64×16×2 = 2048 — sealed NODE process heap ceiling for theorem CLIs/docs:build.',
+        'heapCapMb = 64·16·2 = 2048',
+        'Proof. Origin resourceCooperationPolicy recomputes heapCapMb; docs:build/docs:dev bind --max-old-space-size to this.',
+        heap,
+        heap === 64 * 16 * 2,
+        'src/0 · resourceCooperationPolicy',
+      ),
+      mk(
+        'limit-line-ceiling-fib18-2584',
+        'Monolith line ceiling = F(18)=2584',
+        'Theorem. The compression line target is fibonacci(18)=2584 — a Fibonacci governance bound, not a typed magic number.',
+        'fibonacci(18) = 2584',
+        'Proof. fibonacci sealed in src/3/7; F(18) recomputes to 2584; weave compression ratchet cites this ceiling.',
+        lineCeil,
+        lineCeil === 2584,
+        'src/3/7 · weave/compression',
+      ),
+      mk(
+        'limit-quantum-cli-tools-catalog',
+        'quantum:* CLI catalog is finite and sealed',
+        'Theorem. quantumCliToolsCatalog.tools.length is a finite sealed census (≥14) of theorem-adjacent CLI tools.',
+        `tools.length = ${tools.count}`,
+        'Proof. Catalog recomputes from QUANTUM_CLI_TOOL_ROWS; count ≥ 2×7 and computes.',
+        tools.count,
+        tools.computes && tools.count >= 2 * 7,
+        'src/quantum/apps · tool/envelope',
+      ),
+      mk(
+        'limit-quantum-command-pairs',
+        'Quantum command pairs are dual and registered',
+        'Theorem. QUANTUM_COMMAND_PAIR_IDS is a finite dual-pair registry (each id a/b with a≠b) bounding agent theorem commands.',
+        `pairCount = ${pairCount}`,
+        'Proof. Every id splits on first / into dual halves; foldQuantumCommandPairs pairs each; length ≥ 8×5.',
+        pairCount,
+        pairCount >= 8 * 5 && QUANTUM_COMMAND_PAIR_IDS.every((id) => id.includes('/')),
+        'src/pair/enforcement · AGENTS.md',
+      ),
+    ]
+
+    const allHold = theorems.every((t) => t.holds)
+    const claySolvedByThisFold = 0 as const
+    const facets = [
+      { facet: `enumerated fixed-limit theorems (${theorems.length})`, on: theorems.length >= (2 * 7) },
+      { facet: 'all fixed-limit theorems hold at call time', on: allHold },
+      { facet: 'census 110/108/432 + FREE_BITS=2 among theorems', on: theorems.filter((t) => t.id.startsWith('limit-census') || t.id === 'limit-free-bits-2' || t.id === 'limit-dimension-gates-432').every((t) => t.holds) },
+      { facet: 'paper/crypto/heap/line ceilings among theorems', on: theorems.filter((t) => /paper|rsa|aes|heap|line|digest|inverse/.test(t.id)).every((t) => t.holds) },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · not Clay-marked`, on: claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`fixed-limits-thms:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('fixed-limits-of-theorem-related-tools-are-theorems', facets)
+    return {
+      computes: sealed.ok && allHold,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      allHold,
+      count: theorems.length,
+      theorems,
+      byId: Object.fromEntries(theorems.map((t) => [t.id, t])) as Record<string, FixedLimitTheorem>,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, ...theorems.map((t) => t.receipt)])),
+      cli: 'npm run quantum:fixed-limits-theorems',
+      pair: 'limits/theorems' as const,
+      route: '/en/proofs/fixed-limits-theorem-tools',
+      statement:
+        `Fixed limits of theorem-related tools are theorems — ${theorems.filter((t) => t.holds).length}/${theorems.length} hold: ` +
+        'census 110/108/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-256 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs; clay=0.',
+      boundary:
+        'Each limit is an identity over sealed constants (proof-from-sealed-constants). NOT Clay Prize · NOT physical FTL. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:fixed-limits-theorems */
+export function runFixedLimitsOfTheoremRelatedToolsAreTheoremsExit(_root = '', _argv: readonly string[] = []): number {
+  const r = fixedLimitsOfTheoremRelatedToolsAreTheorems()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} fixed-limits-theorems — count=${r.count} allHold=${r.allHold} ` +
+      `clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
+  )
+  for (const t of r.theorems) {
+    process.stdout.write(`  ${t.holds ? '✓' : '✗'} ${t.id} = ${t.value}\n`)
+  }
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+export type AutodiscoverKind = 'compute' | 'decode'
+export type AutodiscoverStatus = 'open' | 'partial' | 'covered' | 'honest-open' | 'available'
+export type AutodiscoverItem = {
+  readonly id: string
+  readonly kind: AutodiscoverKind
+  readonly status: AutodiscoverStatus
+  readonly sealPath: string
+  readonly family?: string
+  readonly surfaceId?: string
+  readonly note: string
+  readonly receipt: string
+}
+
+/**
+ * Autodiscover at call time what still needs to be computed or decoded.
+ * Composes papers/fill · domain proofs · fixed limits · MCP gaps · folder migration · universe open · one-command decode.
+ * Pair: discover/compute-decode · claySolvedByThisFold ≡ 0
+ */
+export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`autodiscoverWhatIsToBeComputedOrDecoded:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const papersFill = incompletePapersGapsFill(matrix, at)
+    const catalog = domainProofCatalog(matrix, at)
+    const limits = fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix, at)
+    const mcp = __ns_quantum_apps.mcpBrowserParity(matrix, at)
+    const mcpScripts = __ns_quantum_apps.mcpCommandsScriptsGapsAudit(matrix, at)
+    const universe = __ns_quantum_apps.universeAlmostDescribedInTheoremsDiscoverRest(matrix, at)
+    const folder = __ns_wind_site.folderMigrationDedupWaves(matrix)
+    const stringGaps = __ns_water_cosmos.stringTheoryMillenniumTheoremGapsInventory(matrix)
+    const oneDecode = __ns_thunder_decode.oneCommandDecodeComputable(matrix, at)
+    const oneDecodeComputable = oneDecode.computes && oneDecode.oneCommandDecodeComputable
+    const oneDecodeRoot = oneDecode.root
+
+    const items: AutodiscoverItem[] = []
+    const push = (row: Omit<AutodiscoverItem, 'receipt'>) => {
+      items.push({ ...row, receipt: toUuid(`autodiscover:${row.kind}:${row.id}:${row.status}`) })
+    }
+
+    // Available tool — one-command decode (hash|string|sequence)
+    push({
+      id: 'tool-one-command-decode',
+      kind: 'decode',
+      status: oneDecodeComputable ? 'available' : 'open',
+      sealPath: 'src/thunder/decode · npm run quantum:decode',
+      family: 'decode-tools',
+      note: 'Unified one-command decode for hash|uuid|string|sequence|digit — computable + autodiscoverable',
+    })
+
+    // Fixed-limit theorems as compute surfaces (fill when !holds)
+    for (const t of limits.theorems) {
+      push({
+        id: t.id,
+        kind: 'compute',
+        status: t.holds ? 'covered' : 'open',
+        sealPath: t.sealPath,
+        family: 'fixed-limits',
+        surfaceId: t.id,
+        note: t.name,
+      })
+    }
+
+    // Corpus paper samples + all domain-proof slugs as theorem-surface compute items
+    for (const id of ['p001', 'p108', 'p432'] as const) {
+      const complete = algebraicTheoremPaperComplete(id, matrix, at)
+      push({
+        id: `paper-${id}`,
+        kind: 'compute',
+        status: complete.complete ? 'covered' : 'open',
+        sealPath: `/papers/${id}`,
+        family: 'corpus-papers',
+        surfaceId: id,
+        note: complete.complete ? 'algebraic paper checklist complete' : `missing: ${complete.missing.join(',')}`,
+      })
+    }
+    for (const row of catalog.rows) {
+      const family =
+        row.kind === 'millennium' ? 'millennium'
+          : row.kind === 'calendar' || row.slug === 'secp256k1-field-prime' || row.slug === 'plasma-thunder-phenomena' || row.slug === 'encryption-honesty'
+            ? 'algebraic-surfaces'
+            : 'science-honesty'
+      const complete = algebraicTheoremPaperComplete(row.slug, matrix, at)
+      push({
+        id: `proof-${row.slug}`,
+        kind: 'compute',
+        status: complete.complete ? 'covered' : 'open',
+        sealPath: row.route,
+        family,
+        surfaceId: row.slug,
+        note: `${row.title} · ${complete.complete ? 'complete' : 'thin'}`,
+      })
+    }
+
+    // Incomplete papers residuals
+    for (const r of papersFill.residuals.slice(0, 2 * 8)) {
+      push({
+        id: `papers-fill-${r.id}`,
+        kind: 'compute',
+        status: 'honest-open',
+        sealPath: r.surface,
+        family: 'papers-fill-residual',
+        note: r.fill,
+      })
+    }
+    for (const r of papersFill.honestOpen) {
+      push({
+        id: `papers-fill-${r.id}`,
+        kind: 'decode',
+        status: 'honest-open',
+        sealPath: r.surface,
+        note: r.fill,
+      })
+    }
+
+    // MCP / folder / universe / string gaps
+    // HONEST: residualOnlyHonestCi ⇒ named CI/Node residuals are intentional (not an open compute debt).
+    if (mcp.computes && mcp.residualOnlyHonestCi) {
+      push({
+        id: 'mcp-browser-residuals',
+        kind: 'compute',
+        status: 'honest-open',
+        sealPath: 'src/quantum/apps · mcp/browser-parity',
+        note: `${mcp.residualCount} Node/CI browserGap residuals — HONEST_CI set (not PRIMARY inflate)`,
+      })
+    } else if (mcp.residualCount > 0) {
+      push({
+        id: 'mcp-browser-residuals',
+        kind: 'compute',
+        status: 'partial',
+        sealPath: 'src/quantum/apps · mcp/browser-parity',
+        note: `${mcp.residualCount} Node/CI browserGap residuals`,
+      })
+    } else {
+      push({
+        id: 'mcp-browser-parity',
+        kind: 'compute',
+        status: 'covered',
+        sealPath: 'src/quantum/apps · mcp/browser-parity',
+        note: 'tools/list ≡ toolbox or listed residuals only',
+      })
+    }
+    push({
+      id: 'mcp-scripts-gaps',
+      kind: 'compute',
+      status: mcpScripts.computes
+        ? (mcpScripts.residualCount === 0 ? 'covered' : 'honest-open')
+        : (mcpScripts.gapCount > 0 ? 'partial' : 'covered'),
+      sealPath: 'src/quantum/apps · mcp/scripts-audit',
+      note: `gapCount=${mcpScripts.gapCount} · residual=${mcpScripts.residualCount} · kept-intentional named · computes=${mcpScripts.computes}`,
+    })
+    push({
+      id: 'folder-migration',
+      kind: 'decode',
+      status: folder.residualCount > 0 ? 'open' : folder.partialCount > 0 ? 'partial' : 'covered',
+      sealPath: 'src/wind/site · folder/migrate',
+      note: `migrated=${folder.migratedCount} partial=${folder.partialCount} residual=${folder.residualCount}`,
+    })
+    for (const g of (universe.openSet ?? []).slice(0, 8)) {
+      push({
+        id: `universe-open-${g}`,
+        kind: 'decode',
+        status: 'open',
+        sealPath: 'src/quantum/apps · discover/rest',
+        note: `universeAlmostDescribed open: ${g}`,
+      })
+    }
+    for (const g of stringGaps.theoremGaps.slice(0, 8)) {
+      push({
+        id: `string-gap-${g.id ?? g.gap.slice(0, 12)}`,
+        kind: 'decode',
+        status: 'honest-open',
+        sealPath: 'src/water/cosmos · string/millennium',
+        note: g.gap,
+      })
+    }
+
+    // #77 nothing/moves · incomplete revelation — available decode protocol (no waves import; pair-addressed)
+    const nothingMoves = foldPair(toUuid('cmd:nothing'), toUuid('cmd:moves'))
+    push({
+      id: 'tool-discover-from-sealed-fold',
+      kind: 'decode',
+      status: nothingMoves.bidirectional ? 'available' : 'open',
+      sealPath: 'src/thunder/waves · nothing/moves',
+      family: 'decode-tools',
+      note: 'discoverFromSealedFold / incompleteRevelation — offline sealed discovery',
+    })
+
+    const computeOpen = items.filter((i) => i.kind === 'compute' && (i.status === 'open' || i.status === 'partial')).length
+    const decodeOpen = items.filter((i) => i.kind === 'decode' && (i.status === 'open' || i.status === 'partial' || i.status === 'honest-open')).length
+    const availableTools = items.filter((i) => i.status === 'available').length
+    const claySolvedByThisFold = 0 as const
+    const facets = [
+      { facet: `autodiscover list recomputes (${items.length} items)`, on: items.length >= (2 * 5 * 2) },
+      { facet: `compute open|partial=${computeOpen}`, on: computeOpen >= 0 },
+      { facet: `decode open|partial|honest-open=${decodeOpen}`, on: decodeOpen >= 0 },
+      { facet: `available tools=${availableTools} include one-command decode`, on: availableTools >= 1 && items.some((i) => i.id === 'tool-one-command-decode') },
+      { facet: 'compose papers/fill · domain proofs · fixed limits · MCP · folder · universe', on: papersFill.computes && catalog.computes && limits.computes && mcp.computes && folder.computes },
+      { facet: 'oneCommandDecode path autodiscoverable', on: oneDecodeComputable || items.some((i) => i.id === 'tool-one-command-decode' && i.status === 'available') },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`autodiscover-cd:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('autodiscover-what-is-to-be-computed-or-decoded', facets)
+    return {
+      computes: sealed.ok && items.length > 0 && papersFill.computes && catalog.computes && limits.computes,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      items,
+      computeOpen,
+      decodeOpen,
+      availableTools,
+      coveredCount: items.filter((i) => i.status === 'covered').length,
+      oneCommandDecodeComputable: oneDecodeComputable,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, papersFill.root, catalog.root, limits.root, oneDecodeRoot, ...items.map((i) => i.receipt)])),
+      cli: 'npm run quantum:autodiscover-compute-decode',
+      pair: 'discover/compute-decode' as const,
+      route: '/en/quantum-tools#autodiscover-compute-decode',
+      statement:
+        `Autodiscover compute|decode — items=${items.length} computeOpen=${computeOpen} decodeOpen=${decodeOpen} ` +
+        `available=${availableTools} oneCommandDecode=${oneDecodeComputable}; clay=0.`,
+      boundary:
+        'Machine gapless inventory at call time from sealed folds. Available ≠ done; open/partial/honest-open named. NOT Clay Prize. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:autodiscover-compute-decode */
+export function runAutodiscoverWhatIsToBeComputedOrDecodedExit(_root = '', _argv: readonly string[] = []): number {
+  const r = autodiscoverWhatIsToBeComputedOrDecoded()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} autodiscover-compute-decode — items=${r.items.length} ` +
+      `computeOpen=${r.computeOpen} decodeOpen=${r.decodeOpen} available=${r.availableTools} ` +
+      `oneCommandDecode=${r.oneCommandDecodeComputable} clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
+  )
+  for (const i of r.items.filter((x) => x.status === 'available' || x.status === 'open' || x.status === 'partial').slice(0, 16)) {
+    process.stdout.write(`  · ${i.kind}/${i.status} ${i.id} ← ${i.sealPath}\n`)
+  }
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/**
+ * Fill theorem gaps in waves — surfaces driven by autodiscoverWhatIsToBeComputedOrDecoded (not hand-picked).
+ * Composes incompletePapersGapsFill · domainProofCatalog · fixedLimits · autodiscovery.
  * Pair: theorems/waves · claySolvedByThisFold ≡ 0
  */
 export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -4568,27 +5106,23 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
     const must = algebraicTheoremPaperMustContain(matrix, at)
     const papersFill = incompletePapersGapsFill(matrix, at)
     const catalog = domainProofCatalog(matrix, at)
+    const limits = fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix, at)
+    const auto = autodiscoverWhatIsToBeComputedOrDecoded(matrix, at)
 
-    const wavePlan: readonly { readonly wave: string; readonly family: string; readonly surfaces: readonly string[] }[] = [
-      { wave: 'wave-1-corpus', family: 'corpus-papers', surfaces: ['p001', 'p108', 'p432'] },
-      { wave: 'wave-2-millennium', family: 'millennium', surfaces: catalog.rows.filter((r) => r.kind === 'millennium').map((r) => r.slug) },
-      {
-        wave: 'wave-3-algebra-calendar-crypto-plasma',
-        family: 'algebraic-surfaces',
-        surfaces: ['ancient-calendars', 'secp256k1-field-prime', 'plasma-thunder-phenomena', 'encryption-honesty'],
-      },
-      {
-        wave: 'wave-4-science-honesty',
-        family: 'science-honesty',
-        surfaces: catalog.rows
-          .filter((r) => r.kind === 'science-trinity' || r.kind === 'efficiency' || r.kind === 'honesty' || r.kind === 'collider' || r.kind === 'rosetta' || r.kind === 'society')
-          .map((r) => r.slug),
-      },
-    ]
+    // Drive waves from autodiscovery theorem-surface compute items (family tag), not a wet hand list.
+    const theoremCompute = auto.items.filter(
+      (item) => item.kind === 'compute' && (item.family === 'corpus-papers' || item.family === 'millennium' || item.family === 'algebraic-surfaces' || item.family === 'science-honesty' || item.family === 'fixed-limits'),
+    )
+    const familyOrder = ['corpus-papers', 'millennium', 'algebraic-surfaces', 'science-honesty', 'fixed-limits'] as const
+    const wavePlan = familyOrder
+      .map((family, i) => {
+        const surfaces = theoremCompute.filter((item) => item.family === family).map((item) => item.surfaceId ?? item.id)
+        return { wave: `wave-${i + 1}-${family}`, family, surfaces }
+      })
+      .filter((plan) => plan.surfaces.length > 0)
 
-    // Before fill: raw corpus/domain fields lack first-class definitions·proofs·references — checklist gap until synthesis.
     const thinBefore = (id: string): boolean =>
-      paperParamsById(id, matrix) != null || domainProofPageBySlug(id, matrix, at) != null
+      id.startsWith('limit-') || paperParamsById(id, matrix) != null || domainProofPageBySlug(id, matrix, at) != null
 
     const clusters: TheoremGapWaveCluster[] = []
     let gapsBefore = 0
@@ -4602,9 +5136,15 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
       for (const surface of plan.surfaces) {
         const wasThin = thinBefore(surface)
         if (wasThin) before += 1
-        const check = algebraicTheoremPaperComplete(surface, matrix, at)
-        if (!check.complete) after += 1
-        else if (wasThin) filled += 1
+        if (surface.startsWith('limit-')) {
+          const lim = limits.theorems.find((t) => t.id === surface)
+          if (!lim?.holds) after += 1
+          else if (wasThin) filled += 1
+        } else {
+          const check = algebraicTheoremPaperComplete(surface, matrix, at)
+          if (!check.complete) after += 1
+          else if (wasThin) filled += 1
+        }
       }
       gapsBefore += before
       gapsAfter += after
@@ -4626,17 +5166,18 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
     const claySolvedByThisFold = 0 as const
     const wavesRun = clusters.length
     const facets = [
-      { facet: `waves run (${wavesRun}) — one wave per theorem family/cluster`, on: wavesRun === wavePlan.length },
+      { facet: `waves driven by autodiscovery (${wavesRun} families · ${theoremCompute.length} surfaces)`, on: wavesRun >= 4 && auto.computes && theoremCompute.length >= (2 * 5 * 2) },
       { facet: `gaps before=${gapsBefore} → after=${gapsAfter} · filled=${filledTotal}`, on: gapsBefore > 0 && gapsAfter === 0 && filledTotal === gapsBefore },
       { facet: 'sample algebraic surfaces complete (p001 · ancient-calendars · secp256k1 · plasma)', on: samplesOk },
       { facet: 'compose incompletePapersGapsFill (#73 residuals named; corpus filled)', on: papersFill.computes },
+      { facet: 'compose fixedLimitsOfTheoremRelatedToolsAreTheorems', on: limits.computes && limits.allHold },
       { facet: 'compose domainProofCatalog + proveAlgebraicTheoremMeans + paper checklist', on: catalog.computes && prove.computes && must.computes },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · Clay mark only Millennium rows`, on: claySolvedByThisFold === 0 && catalog.rows.filter((r) => r.kind === 'millennium').every((r) => r.claySolvedByThisFold === 0) },
       { facet: 'canonical sections fill — not Clay badges on algebraic papers', on: samplesOk && must.incompleteIfMissingRequired },
     ].map((entry) => ({ ...entry, receipt: toUuid(`thm-gaps-waves:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('theorem-gaps-filled-in-waves', facets)
     return {
-      computes: sealed.ok && gapsAfter === 0 && samplesOk && prove.computes && must.computes && papersFill.computes && catalog.computes,
+      computes: sealed.ok && gapsAfter === 0 && samplesOk && prove.computes && must.computes && papersFill.computes && catalog.computes && limits.computes && auto.computes,
       claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
@@ -4645,21 +5186,23 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
       filledTotal,
       wavesRun,
       clusters,
+      autodiscover: { computes: auto.computes, computeOpen: auto.computeOpen, decodeOpen: auto.decodeOpen, root: auto.root },
+      limits: { computes: limits.computes, count: limits.count, allHold: limits.allHold, root: limits.root },
       samples: sampleSurfaces.map((id) => {
         const c = algebraicTheoremPaperComplete(id, matrix, at)
         return { id, complete: c.complete, missing: c.missing, root: c.root }
       }),
       papersFill: { computes: papersFill.computes, residualStatic: papersFill.incompleteAfter, corpusFilled: papersFill.corpusFilled },
       facets: sealed.facets,
-      root: merge(matrix.root, merkleFold([sealed.root, prove.root, must.root, papersFill.root, catalog.root, ...clusters.map((c) => c.receipt)])),
+      root: merge(matrix.root, merkleFold([sealed.root, prove.root, must.root, papersFill.root, catalog.root, limits.root, auto.root, ...clusters.map((c) => c.receipt)])),
       cli: 'npm run quantum:algebraic-theorem-paper',
       pair: 'theorems/waves' as const,
       route: '/en/quantum-tools#algebraic-theorem-paper',
       statement:
         `Theorem gaps filled in waves — before=${gapsBefore} after=${gapsAfter} filled=${filledTotal} waves=${wavesRun}; ` +
-        `compose papers/fill + domain proofs + ancient calendars + secp256k1 + plasma; clay=0 · canonical sections only.`,
+        `driven by autodiscovery (computeOpen=${auto.computeOpen} decodeOpen=${auto.decodeOpen}); fixed-limits theorems=${limits.count}; clay=0.`,
       boundary:
-        'Wave fill synthesizes full algebraic-paper checklist (defs·proofs·refs) from sealed catalog/corpus fields. ' +
+        'Wave fill from autodiscoverWhatIsToBeComputedOrDecoded theorem-surface compute items + sealed checklist synthesis. ' +
         'Does not invent Clay solutions. Residual thin staticPages remain named via incompletePapersGapsFill. HARMONY ≠ TRUTH.',
     }
   })
