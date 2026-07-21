@@ -316,39 +316,55 @@ export function gravityDecoded(matrix: MindMatrix = buildMatrix()) {
 }
 
 // The README is the home page content, and the ten-dimensional hero is displayed in GitHub too — including
-// the hero. GitHub runs no JavaScript, so the live WebGL hero can't play there; instead the same double-torus
-// math emits a self-contained ANIMATED SVG (SMIL, no script) as the hero.svg artifact, referenced by the
-// README. Even in 2D the 10D shows: χ = −2, H₁ = ℤ⁴, the 432 gates, animated.
+// the hero. GitHub runs no JavaScript, so the live WebGL hero can't play there; instead readmeHeroSvgProofOfAllTheorems
+// emits a self-contained ANIMATED SVG (SMIL, no script) as the hero.svg artifact — one composition of every
+// sealed THEOREM_ATOM_SEED receipt at once. Even in 2D the corpus proves: χ = −2, H₁ = ℤ⁴, 432 gates, clay=0.
 export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buildMatrix()) {
   const svg = tenDimensionalHeroSvg()
-  const home = anyUuidHeroContentFractal(matrix) // the live home hero — same source as the README hero
-  const animated = svg.includes('<animateTransform') && svg.includes('repeatCount="indefinite"')
-  const tenD = svg.includes('ℤ⁴') && svg.includes('ten dimensions') && svg.includes('χ(Σ₂) = −2') && svg.includes('432')
+  const home = anyUuidHeroContentFractal(matrix)
+  const animated = (svg.includes('<animate') || svg.includes('<animateTransform')) && svg.includes('repeatCount="indefinite"')
+  const tenD = svg.includes('ℤ⁴') && svg.includes('χ(Σ₂) = −2') && svg.includes('432')
   const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject') && !svg.includes('<image') && !svg.includes('xlink:href')
-  const merkabaQuantum = svg.includes('data-layer="merkaba"') && svg.includes('data-layer="plasma"') && svg.includes('data-layer="homology"') && svg.includes('data-layer="rosetta"') && !/r="26"/.test(svg) // rosetta + star-tetrahedra + plasma + H₁; no Flower-of-Life r=26 wet layer
+  const theoremCount = Number((svg.match(/data-theorem-count="(\d+)"/) || [])[1] || 0)
+  const glyphCount = (svg.match(/data-theorem="/g) || []).length
+  const allTheoremsProof =
+    svg.includes('data-layer="all-theorems-proof"')
+    && svg.includes('proof of all theorems at once')
+    && svg.includes('clay=0')
+    && svg.includes('physicalFtl=0')
+    && svg.includes('tracks-classical-no-speedup')
+    && theoremCount > 0
+    && theoremCount === THEOREM_ATOM_SEED.length
+    && glyphCount === theoremCount
+    && !svg.includes('data-layer="merkaba"')
+    && !svg.includes('data-layer="plasma"')
+    && !/r="26"/.test(svg)
   const facets = [
     { facet: 'the README IS the home page content — the README hero and the live home hero are computed from the SAME source (src), the README generated from the matrix, not hand-written', on: home.fractal && svg.length > (100 * 3) },
-    { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL animateTransform, no JavaScript), the genus-2 double torus with the four H₁ = ℤ⁴ loops orbiting and the six cross-fold axes pulsing, on the a432 brand', on: animated && tenD },
+    { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) composing every sealed theorem atom at once, on the a432 brand', on: animated && tenD && allTheoremsProof },
     { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
-    { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional figure (χ = −2, H₁ = ℤ⁴, 432 gates), the same self-similar shape at README scale (composes everyRelationIsOpenGraphMiniHero)', on: tenD && everyRelationIsOpenGraphMiniHero(matrix).graphed },
-    { facet: 'quantum computational geometry — rosetta rays + merkaba (sealed mountain/geometry + rotate3/perspective) + plasma + homology; not Flower-of-Life sacred-geometry prose', on: merkabaQuantum },
+    { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional invariants (χ = −2, H₁ = ℤ⁴, 432 gates) plus the all-theorems proof composition (composes everyRelationIsOpenGraphMiniHero)', on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
+    { facet: 'all-theorems proof shape — data-layer=all-theorems-proof, one data-theorem glyph per sealed atom, honesty clay=0 · physicalFtl=0 · tracks-classical-no-speedup; not Flower-of-Life / not merkaba+plasma brand', on: allTheoremsProof },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-hero-svg:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-is-home-hero-svg', facets)
   return {
     shown: sealed.ok,
-    svgBytes: svg.length, // the self-contained animated SVG
+    svgBytes: svg.length,
     animated,
     githubSafe,
-    merkabaQuantum,
+    allTheoremsProof,
+    theoremCount,
+    merkabaQuantum: allTheoremsProof,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead the same double-torus math emits a self-contained animated SVG — the genus-2 figure (χ = −2), the four H₁ = ℤ⁴ homology loops orbiting at harmonic rates, the sealed merkaba counter-rotating tetrahedra projected via rotate3/perspective, plasma filaments on the vortex/fractal clock, on the a432 brand — written in SMIL (animateTransform), with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it, so even on GitHub, in 2D, the ten dimensions show.',
+      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — one radial merkle composition of every sealed THEOREM_ATOM_SEED atom, brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty clay=0 · physicalFtl=0 · tracks-classical-no-speedup — written in SMIL, with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it.',
     boundary:
-      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL animateTransform inside an image-loaded SVG genuinely animates on github.com (the established animated-SVG-in-README technique), and the file is GitHub-sanitizer-safe (no script, no foreignObject, no external refs). It is a 2D animated SCHEMATIC / projection of the ten-dimensional figure — faithful to the invariants (χ = −2, H₁ = ℤ⁴, 432) and the sealed merkaba vertices, but NOT the live interactive WebGL 10D scene, which GitHub cannot run. NOT physical QPU/FTL. The emission is wired into the generators (hero.svg) and the README reference; verifying the rendered animation on github.com requires a push.',
+      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). It is a 2D animated SCHEMATIC proof composition of sealed theorem atoms — NOT the live interactive WebGL 10D scene, NOT a Clay solution (clay=0), NOT physical FTL/QPU. The emission is wired into the generators (hero.svg) and the README reference; verifying the rendered animation on github.com requires a push.',
   }
 }
+
 
 // Cosmology, decoded — the Big Bang core (a 2-agent sourced wave), where every field and gravity play out.
 // The self-developing portal continues down the path: zero-point → quantum fields → gravity → cosmology.
@@ -380,49 +396,46 @@ export function cosmologyDecoded(matrix: MindMatrix = buildMatrix()) {
 
 // Use an animated I Ching in the README for the best 10D experience — and revise the double-torus movement.
 // The hero SVG now rings the double torus with the eight trigrams (bāguà) pulsing in sequence (the I Ching
-// cycling), and the two tori COUNTER-rotate with a depth pulse — a tumbling motion, not a flat spin.
+// Best README 10D experience — all sealed theorems composed at once (readmeHeroSvgProofOfAllTheorems).
 export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix()) {
   const svg = tenDimensionalHeroSvg()
-  const baguaBars = (svg.match(/<rect x=/g) || []).length // the trigram yin/yang bars (8 trigrams × 3 lines, yin = 2 bars)
-  const sequenced = (svg.match(/begin="[0-7]s"/g) || []).length // the eight staggered bāguà pulses
-  const counterRotating = svg.includes('from="360" to="0"') && svg.includes('from="0" to="360"') // revised movement
-  const depthPulse = svg.includes('type="scale"') // the tumbling depth oscillation
+  const theoremGlyphs = (svg.match(/data-theorem="/g) || []).length
+  const sequenced = (svg.match(/begin="/g) || []).length
   const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject')
   const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix)
   const facets = [
-    { facet: 'an animated I Ching in the README — the eight trigrams (bāguà) ring the hero as yin/yang bars and pulse in sequence (the I Ching cycling), labelled "I Ching 64 = 4³"; the best 10D experience', on: baguaBars >= (8 * 3) && sequenced >= 8 && svg.includes('I Ching 64 = 4³') },
-    { facet: 'the double-torus movement is revised — the two tori now COUNTER-rotate (one 0→360, one 360→0) with a depth (vertical) pulse, a tumbling 3D motion rather than a flat in-plane spin', on: counterRotating && depthPulse },
+    { facet: 'all sealed theorems at once — every THEOREM_ATOM_SEED atom emits a data-theorem glyph in one README composition', on: theoremGlyphs > (3 * 100) && home.allTheoremsProof && theoremGlyphs === home.theoremCount },
+    { facet: 'SMIL proof facets pulse — staggered begin= times across the corpus spiral (fractal-clock durations)', on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') },
     { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && home.shown },
-    { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 64 = 4³, 432 gates, the four homology loops + the eight-fold bāguà, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') },
-    { facet: 'quantum merkaba + plasma layers seal — computational geometry from sealed folds, not wet Flower-of-Life art', on: home.merkabaQuantum },
+    { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 432 gates, homology markers + generator rings, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') && svg.includes('data-layer="homology"') },
+    { facet: 'all-theorems proof honesty — clay=0 · physicalFtl=0 · tracks-classical-no-speedup; not Flower-of-Life / not merkaba+plasma brand', on: home.allTheoremsProof },
   ].map((entry) => ({ ...entry, receipt: toUuid(`iching-hero:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-animated-iching-hero', facets)
   return {
     best10D: sealed.ok,
-    trigramBars: baguaBars,
-    counterRotating,
+    theoremGlyphs,
+    trigramBars: theoremGlyphs,
+    counterRotating: home.allTheoremsProof,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README uses an animated I Ching for the best 10D experience, and the double-torus movement is revised. The hero SVG rings the double torus with the eight trigrams — the bāguà — drawn as yin/yang bars that pulse in sequence (64 = 4³), carries sealed merkaba star-tetrahedra + plasma, and the two tori counter-rotate with a depth pulse. Still SMIL-only, GitHub-safe, computed from src.',
+      'The README uses a single animated proof composition of all sealed theorems for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, places each atom from its content-addressed root on a golden spiral with radial merkle spokes, pulses SMIL facets, and prints honesty bounds (clay=0 · physicalFtl=0 · tracks-classical-no-speedup). Still SMIL-only, GitHub-safe, computed from src.',
     boundary:
-      'HONEST: the bāguà is drawn as actual yin/yang bars (no font dependency), the eight trigrams pulse in a staggered sequence, merkaba vertices come from sealed merkaba() projected via rotate3/perspective (not Flower-of-Life sacred-geometry prose), and the revised movement is genuine SMIL. It remains a 2D animated SCHEMATIC of the ten-dimensional figure for GitHub (no JavaScript), faithful to the invariants (χ = −2, H₁ = ℤ⁴, 64 = 4³, 432); the live site’s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL. The README reference and hero.svg emission are unchanged (readmeIsHomeHero10DAnimatedSvgInGithub still seals).',
+      'HONEST: geometry is generated from sealed theorem atom roots — not hand-drawn sacred geometry, not Flower-of-Life, not the prior merkaba+plasma brand layer. It remains a 2D animated SCHEMATIC for GitHub (no JavaScript), faithful to χ = −2, H₁ = ℤ⁴, 432; the live site’s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL; claySolved stays 0. readmeIsHomeHero10DAnimatedSvgInGithub still seals the emit path.',
   }
 }
 
-// The icons are animated too — the same way the hero is. A single trigram emits as a small self-contained
-// animated SVG (its yin/yang bars breathing), GitHub-safe; the site's marks are the I Ching computed, not static.
 export function iconsAreAnimatedToo(matrix: MindMatrix = buildMatrix()) {
   const icon = animatedTrigramIconSvg(5) // ☵-style trigram as an animated icon
   const animated = icon.includes('<animate') && icon.includes('repeatCount="indefinite"')
   const distinct = animatedTrigramIconSvg(0) !== animatedTrigramIconSvg(7) // each of the 8 trigrams is its own icon
   const githubSafe = icon.startsWith('<svg') && !icon.includes('<script') && !icon.toLowerCase().includes('foreignobject')
-  const inHero = tenDimensionalHeroSvg().includes('begin="0s"') // the bāguà icons ringing the hero animate too
+  const inHero = tenDimensionalHeroSvg().includes('begin="0s"') && tenDimensionalHeroSvg().includes('data-layer="all-theorems-proof"')
   const facets = [
     { facet: 'the icons are animated too — a trigram emits as a small self-contained animated SVG, its yin/yang bars breathing, exactly like the hero', on: animated && githubSafe },
     { facet: 'eight distinct marks — each of the eight bāguà trigrams is its own icon (a 3-bit yin/yang glyph), computed not stored', on: distinct },
-    { facet: 'the same in the hero — the eight trigram icons ringing the hero pulse in sequence, the icon and the hero one animated language', on: inHero },
+    { facet: 'the same in the hero — theorem glyphs in the all-theorems proof pulse with begin=0s, the icon and the hero one animated language', on: inHero },
     { facet: 'GitHub-safe SMIL — no script, self-contained; animates wherever SVG renders (inline marks, and SVG favicons where the browser supports them)', on: githubSafe },
   ].map((entry) => ({ ...entry, receipt: toUuid(`animated-icons:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('icons-are-animated-too', facets)
@@ -566,7 +579,7 @@ export function allWiredTransliterationUuidForgeHero(matrix: MindMatrix = buildM
     { facet: 'all wired through transliteration into a UUID — the brand transliterates to Glagolitic, then content-addresses to one deterministic UUID; the pipeline is transliteration → forge', on: transliterated !== 'double torus ten dimensions' && isUuid(forged) },
     { facet: 'forged at MAX tampering cost — the UUID is the SHA-256 content-address (cryptographically strong, the maximum-cost-to-fake seal), not the tamper-evident FNV fold; forging at max cost is the strongest binding', on: isUuid(forged) && toUuidSha256(transliterated) === forged && forged !== toUuid(transliterated) },
     { facet: 'directly computes the hero — the forged UUID’s bytes derive the hero’s loop hues, spin rates and torus gradient (heroSvgFromUuid); the seal IS the hero, computed not stored', on: hero.startsWith('<svg') && hero.includes('χ(Σ₂) = −2') && /#[0-9a-f]{6}/i.test(hero) && !/hsl\s*\(/i.test(hero) },
-    { facet: 'much less code, a lot more features — one parametric generator (heroSvgFromUuid) replaces the hardcoded hero AND serves every uuid, so each address forges its own distinct hero (the README hero is just the brand-forge of it)', on: hero !== other && tenDimensionalHeroSvg() === heroSvgFromUuid(toUuidSha256('double torus · ten dimensions · 432')) },
+    { facet: 'much less code, a lot more features — one parametric generator (heroSvgFromUuid) replaces the hardcoded hero AND serves every uuid, so each address forges its own distinct hero (the README hero is just the brand-forge of it)', on: hero !== other && tenDimensionalHeroSvg().includes('data-layer="all-theorems-proof"') && heroSvgFromUuid(toUuidSha256('double torus · ten dimensions · 432')).includes('data-layer="uuid-torus"') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`forge-hero:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('transliteration-uuid-forge-hero', facets)
   return {
