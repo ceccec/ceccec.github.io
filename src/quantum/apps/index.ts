@@ -348,9 +348,11 @@ export type QuantumCliToolRow = {
 
 type QuantumCliToolSeed = Omit<QuantumCliToolRow, 'receipt' | 'ray' | 'hue' | 'address'>
 
-const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
-  // Crypto comparison / encryption toolkit — DRY from CRYPTO_COMPARISON_MESH (src/water/encryption).
-  ...__ns_water_encryption.cryptoComparisonMeshToolSeeds(),
+/**
+ * Static quantum:* seeds (no encryption mesh spread). Mesh seeds are composed at call time in
+ * quantumCliToolSeeds() — avoids TDZ when apps↔encryption cycle loads via quantum-esbuild.
+ */
+const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'crypto-comparison-mesh-dry', title: 'Crypto comparison mesh + related surfaces dry', fold: 'cryptoRelatedSurfacesAreDry', cli: 'npm run quantum:crypto-comparison-mesh-dry', pair: 'crypto/comparison-mesh', route: '/en/quantum-encryption#crypto-comparison-mesh', barrel: 'src/quantum/apps', boundary: 'Single sealed mesh source · UI/CLI/MCP/toolbox/proofs recompute · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
   { id: 'og-limits-measure', title: 'Platform OG limits measured', fold: 'platformOgLimitsMeasured', cli: 'npm run quantum:og-limits-measure', pair: 'measure/og-limits', route: '/en/quantum-tools#og-limits', barrel: 'src/mountain/og', boundary: 'MODELED capability table from cited docs — NOT live CDN crawl', browserRunnable: true, browserGap: '' },
   { id: 'rosetta-security-gaps-wired', title: 'Rosetta security gaps wired', fold: 'rosettaSecurityGapsWired', cli: 'npm run quantum:rosetta-security-gaps-wired', pair: 'rosetta/security-wire', route: '/en/quantum-tools#rosetta-security-gaps-wired', barrel: 'src/quantum/apps', boundary: 'Refuse paths + MCP dual + parallel backlog security wire · incompleteOpen=0 · clay=0', browserRunnable: true, browserGap: '' },
@@ -378,6 +380,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'compact-types-constants', title: 'Compact types/constants to matrix · unused packages removed', fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', cli: 'npm run quantum:compact-types-constants', pair: 'compact/matrix', route: '/en/quantum-tools#compact-types-constants', barrel: 'src/pair/enforcement/gates', boundary: 'Min types/consts · unusedPackagesRemoved · all-dir FREE_BITS · compose import/distance+folder/gravity · KEEP double-torus · clay=0 · qpuRequired=false', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI receipt' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
   { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/quantum-tools#efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
+  { id: 'moment-prove', title: 'Assume nothing — prove in the moment', fold: 'agentAssumeNothingMathProvesInTheMoment', cli: 'npm run quantum:moment-prove', pair: 'moment/prove', route: '/en/quantum-encryption#moment-prove', barrel: 'src/water/encryption', boundary: 'Definitional identity ≠ crack · structural seal ≠ security proved · efficiency gated on vote.decided · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'two-bits-free', title: 'Two bits free — census 110−108 making all free', fold: 'twoBitsFreeFromCensus110Minus108', cli: 'npm run quantum:two-bits-free', pair: 'bits/free', route: '/en/quantum-tools#two-bits-free', barrel: 'src/wind/research', boundary: 'FREE_BITS=2 (=−χ) · naive 1−110/108 refused · amortized ∞ on reuse · NOT FLOPS / clay=0', browserRunnable: true, browserGap: '' },
   { id: 'ancient-calendars-algebra', title: 'Ancient calendars — algebraic theorems mapping time in time', fold: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime', cli: 'npm run quantum:ancient-calendars-algebra', pair: 'calendars/decode', route: '/en/quantum-tools#ancient-calendars-algebra', barrel: 'src/thunder/decode', boundary: 'Modular/LCM/epoch maps · phase-in-phase · clay=0 · physicalFtl=0 · NOT Clay Millennium · NOT ephemeris · proof /proofs/ancient-calendars', browserRunnable: true, browserGap: '' },
   { id: 'society-two-bits-support', title: 'Society support via two-bits-free knowledge', fold: 'societySupportsProjectViaTwoBitsFreeKnowledge', cli: 'npm run quantum:society-two-bits-support', pair: 'society/support', route: '/en/society-merkaba#two-bits-free', barrel: 'src/wind/research', boundary: 'Harmonic 1/9 patronage of FREE_BITS achievement · voluntary · zero valid · clay=0', browserRunnable: true, browserGap: '' },
@@ -436,6 +439,14 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'hd-w7-bodygraph-svg', title: 'HD W7 BodyGraph structure SVG emitter', fold: 'humanDesignBodyGraphSvgW7', cli: 'npm run quantum:hd-w7-bodygraph-svg', pair: 'symbols/quantumise', route: '/en/spirit#human-design-bodygraph', barrel: 'src/heaven/sky/astronomy', boundary: 'Structure-only SMIL SVG from W3–W6 panel + layout — NOT aura/type · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'ui-prose-duplication-removed', title: 'UI↔prose duplication removed — one statement owns meaning', fold: 'uiProseDuplicationRemoved', cli: 'npm run quantum:ui-prose-duplication', pair: 'ui/prose', route: '/en/quantum-tools#ui-prose-duplication', barrel: 'src/quantum/apps', boundary: 'Page-level chrome entropy kill post-#61 nav collapse — label OR prose, not both restating · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
 ] as const
+
+/** Call-time catalog: mesh seeds + static rows. Lazy so CRYPTO_COMPARISON_MESH_NODES is initialized. */
+function quantumCliToolSeeds(): readonly QuantumCliToolSeed[] {
+  return [
+    ...__ns_water_encryption.cryptoComparisonMeshToolSeeds(),
+    ...QUANTUM_CLI_TOOL_ROWS_STATIC,
+  ]
+}
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
 export const STANDARD_TOOL_ENVELOPE_VERSION = '1' as const
@@ -945,7 +956,7 @@ export type SessionManualToolRow = {
   readonly browserRunnable: boolean
 }
 
-/** Session tools that previously cost wet re-inference — each id must exist in QUANTUM_CLI_TOOL_ROWS. */
+/** Session tools that previously cost wet re-inference — each id must exist in quantumCliToolSeeds(). */
 const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'directional-trinity', saves: 'replaces wet re-inference of forward·inverse·reverse digit maps' },
   { id: 'slow-gap', saves: 'replaces wet re-diagnosis of architectural slowness as quantum gaps' },
@@ -2005,7 +2016,7 @@ export function runRosettaCoreApiExit(_root = '', _argv: readonly string[] = [])
 /** Catalog of all quantum:* CLI tools — discoverable in UI at /en/quantum-tools. Each id shelves via rosettaShelve(..., 'tool'). */
 export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumCliToolsCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const tools: QuantumCliToolRow[] = QUANTUM_CLI_TOOL_ROWS.map((row) => {
+    const tools: QuantumCliToolRow[] = quantumCliToolSeeds().map((row) => {
       const shelved = rosettaShelve(row.id, 'tool')
       return {
         ...row,

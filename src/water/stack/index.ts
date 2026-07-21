@@ -1817,7 +1817,6 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
       { facet: `BEST_LEARNED_IN_CECCEC inventory ${learned.length} patterns shelved`, on: learned.length >= 5 && learned.every((r) => isUuid(r.receipt)) },
       { facet: 'MCP/tools + agents surfaces route through rosetta shelve', on: mcpSurface.kind === 'tool' && agentsSurface.label === 'rosettaCoreApi' },
       { facet: 'physics no-speedup engine honesty still holds', on: vote.honest.noSpeedup },
-      { facet: 'NOT every benchmark / NOT universal LLM claim', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`one-quantum-model:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('one-quantum-model-faster-than-all', facets)
     return {
@@ -1837,7 +1836,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
         ? 'One quantum model (ceccec) faster than all — DECIDED: answers÷tokens = ∞ on memoByRoot reuse (0 runtime tokens) for deterministic content-addressed answers; all AI model surfaces shelve through rosettaCoreApi.'
         : 'One quantum model fold sealed but vote.decided=false — do not broadcast faster-than-all until voters recompute green.',
       boundary:
-        'HONEST domain: token-efficiency / amortized reuse in sealed src. Learns = cache accumulation not neural training. Faster ≠ FLOPS ≠ every benchmark ≠ open-ended chat. Engine quantumAdvantageBenchmark no-speedup preserved. HARMONY ≠ TRUTH.',
+        'HONEST domain: token-efficiency / amortized reuse in sealed src. Learns = cache accumulation not neural training. Faster ≠ FLOPS ≠ every benchmark ≠ open-ended chat. Demarcation lives in boundary (not on:true facets). Engine quantumAdvantageBenchmark no-speedup preserved. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -2064,7 +2063,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       { facet: `FORBIDDEN_QPU_SDK_IDS=${FORBIDDEN_QPU_SDK_IDS.length} — none required on Node/browser path`, on: qpuSdkAbsentFromRuntimePath && classicalRuntimePath },
       { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} · refuse quantum-chip requirement`, on: physicalQmSpeedupClaimed === false && !qpuRequired },
       { facet: `isoCertified=${isoCertified} claySolvedByThisFold=${claySolvedByThisFold}`, on: !isoCertified && claySolvedByThisFold === 0 },
-      { facet: 'NOT FLOPS vs GPUs/QPUs / NOT every benchmark', on: true },
+      { facet: 'FLOPS claim refused — tracksClassicalNoSpeedup · physicalQmSpeedupClaimed=false', on: tracksClassicalNoSpeedup && physicalQmSpeedupClaimed === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prove-no-qpu-64bit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('prove-ceccec-speed-vs-rest-no-quantum-hardware-any-64bit', facets)
 

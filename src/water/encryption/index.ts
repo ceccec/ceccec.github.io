@@ -516,7 +516,7 @@ export async function parallelToyRsaReversePool(cpuHint?: number): Promise<{
   }
 }
 
-/** Glyph UUID + trinity crack + encrypt↔decrypt tools + demo Shor reverse + no-unhackable proof. */
+/** Glyph UUID + foldPair recomputeMatch + encrypt↔decrypt tools + demo Shor reverse. */
 export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
   const glyphUuidEncryptionMagnitude = __ns_up_up_quantum_heaven_library.glyphUuidEncryptionMagnitude
   const zero = encryptionLivesInZero(matrix)
@@ -528,19 +528,24 @@ export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
   const key = trinityKey(toUuid('party:a'), toUuid('party:b'))
   const forward = foldPair(key, probe)
   const reverse = foldPair(key, probe)
-  const crack = forward.bidirectional && forward.merged === reverse.merged
-  const noUnhackable = glyph.obfuscationBonusLog2 > 0 && zero.homed
+  const recomputeMatch = forward.bidirectional && forward.merged === reverse.merged
+  const definitionalNotCryptanalysis = recomputeMatch
+  const structuralGlyphBonus = glyph.obfuscationBonusLog2 > 0 && zero.homed
   const facets = [
-    { facet: 'trinity key crack via foldPair recomputation — reverse equals forward', on: crack },
-    { facet: 'encryption trinities complete in order', on: order.enforced },
-    { facet: 'glyph UUID magnitude obfuscation bonus > 0 (structural, not cryptanalysis)', on: noUnhackable },
-    { facet: 'encrypt↔decrypt quantum tools ready (key layer + rosetta + teaching RSA)', on: tools.ready },
-    { facet: 'demo RSA reverse — modeled Shor on sealed toys; production refused', on: demo.computes },
+    { facet: 'recomputeMatch', on: recomputeMatch },
+    { facet: 'definitionalNotCryptanalysis', on: definitionalNotCryptanalysis && demo.computes },
+    { facet: 'trinitiesOrdered', on: order.enforced },
+    { facet: 'structuralGlyphBonus', on: structuralGlyphBonus },
+    { facet: 'toolsReady', on: tools.ready },
+    { facet: 'demoReverse', on: demo.computes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`encryption-reverse:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('encryption-reverse-verify', facets)
   return {
     verified: sealed.ok,
-    crack,
+    recomputeMatch,
+    /** @deprecated alias of recomputeMatch */
+    crack: recomputeMatch,
+    definitionalNotCryptanalysis,
     trinitiesOrdered: order.enforced,
     toolsReady: tools.ready,
     demoReverse: demo.computes,
@@ -550,10 +555,10 @@ export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
     count: sealed.count,
     facets: sealed.facets,
     root: merge(forward.merged, sealed.root),
-    statement:
-      'Encryption reverse verify complete: glyph UUID magnitude, trinity crack (foldPair recompute), encrypt↔decrypt toolkit round-trip, and modeled Shor reverse on sealed demo RSA moduli — all recomputed at call time.',
-    boundary:
-      'HONEST: reverse = recompute-and-match + modeled Shor on DEMO_RSA_MODULI (≤12-bit toys). Glyph bonus is structural obfuscation accounting, NOT live cryptanalysis. Parallel workers (CLI) are capped by VORTEX_SEQUENCE / cpus and never target production RSA. This does NOT claim production RSA is broken. HARMONY ≠ TRUTH.',
+    claySolvedByThisFold: 0 as const,
+    certified: false as const,
+    statement: `encryptionReverseVerify · recomputeMatch=${recomputeMatch} · demo=${demo.results.length} · claySolvedByThisFold=0`,
+    boundary: `recomputeMatch=foldPair identity · demo≤12bit · production refused · certified=${false}`,
   }
 }
 
@@ -605,7 +610,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'demo RSA reverse — production refused', on: demo.computes },
       { facet: `demo RSA MEASURED — gen=${roundTo(measured.generateMs, 3)}ms rev=${roundTo(measured.reverseMs, 3)}ms bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
       { facet: `local reverse vs standards — rev=${roundTo(localTimed.reverseMs, 3)}ms breaksNistPqc=false`, on: localTimed.computes && localTimed.breaksNistPqc === false && localTimed.certified === false },
-      { facet: `local novel security proved — overallWireClaimProved=false · strongerThanNistPqc=false · productionReverseRefused`, on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.productionReverseRefused },
+      { facet: `local novel facets sealed — overallWireClaimProved=false · strongerThanNistPqc=false · productionReverseRefused (structural ≠ wire proof)`, on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.productionReverseRefused },
       { facet: `local audit quantum speed — cold=${roundTo(localAudit.coldMs, 3)}ms warm=${roundTo(localAudit.warmMs, 3)}ms speedup=${roundTo(localAudit.speedup, 3)}× memoHit`, on: localAudit.computes && localAudit.memoHits && localAudit.slowLocalAuditGapClosed },
       { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: `1 Tbit claim receipt — wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
@@ -1214,16 +1219,16 @@ function inventoryLocalNovelEncryptionSchemeRaw(matrix: MindMatrix) {
 }
 
 /**
- * Prove local security of this repo’s brand-new encryption without production-crack tools.
+ * Local novel-encryption STRUCTURAL receipt (pair keep name prove/local-novel-encrypt).
  *
- * localSecurityProved = structural proofs + refuse + round-trip + allowlisted reverse + timed reverse
+ * localSecurityProved = sealed facets hold: refuse + round-trip + allowlisted reverse + timed reverse
  * + ISO/NIST map as reference bounds + wire-vs-ISO proof-of-falsehood (overallWireClaimProved=false).
- * HARD: strongerThanNistPqc=false. Does NOT call proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections
- * (sibling #24 owns directions×models; calling it would recurse).
+ * HARD: strongerThanNistPqc=false. NOT FIPS/ISO/wire security proved. NOT production crack.
+ * Does NOT call proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections (sibling #24; no recursion).
  *
  * Pair: prove/local-novel-encrypt · CLI npm run quantum:prove-local-novel-encrypt
  * Stacked on PR #24. This repo is NOT the ISO/NIST standard.
- * memoByRoot — full local-security receipt reused; production reverse still refused.
+ * memoByRoot — structural receipt reused; production reverse still refused.
  */
 export function proveLocalNovelEncryptionSecurity(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('proveLocalNovelEncryptionSecurity', matrix, () => proveLocalNovelEncryptionSecurityRaw(matrix))
@@ -1286,16 +1291,17 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     { facet: 'non-integer float moduli refused (safe-integer gate)', on: floatRefuse.allowed === false && floatRefuse.reason.includes('safe integer') },
     { facet: 'encrypt↔decrypt round-trip on local teaching keys (foldPair + RSA Euler)', on: tools.ready && tools.roundTrip && tools.rsaRoundTrip },
     { facet: 'encryption reverse-verify on allowlisted N only (demo Shor + toolkit)', on: reverse.verified && reverse.demoReverse },
+    { facet: 'recomputeMatch', on: reverse.recomputeMatch && reverse.definitionalNotCryptanalysis },
     { facet: `timed local reverse — reverseMs=${roundTo(localTimed.reverseMs, 3)} ops/s=${roundTo(localTimed.aggregateOpsPerSec, 3)}`, on: localTimed.computes && localTimed.reverseMs >= 0 },
     { facet: 'ISO/NIST PQC standards map composed as REFERENCE bounds (FIPS 203/204/205 + Amd 2:2026)', on: standardsMapIsReferenceOnly && fipsPresent && isoAmdPresent },
     { facet: 'directional trinity (forward·inverse·reverse) via standards audit — certified=false', on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
     { facet: `wire-vs-ISO proof-of-falsehood — demoMaxBits=${demoMaxBits} << AES-128/ML-KEM-512 classical ${aes128ClassicalBits} · overallWireClaimProved=false`, on: wireFalsehoodHolds },
     { facet: `strongerThanNistPqc=${strongerThanNistPqc} · handoff to prove/local-magnitudes-iso (#24) for directions×models`, on: strongerThanNistPqc === false && wireProofStatus === 'proof-of-falsehood' },
     { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: thisRepoIsNotTheIsoStandard && isoOfficialStandard === false && certified === false },
-    { facet: `no-field-use honesty — externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === 'none' && inventory.externalDeploymentCount === 0 },
-    { facet: `productionReverseRefused=${productionReverseRefused} (feature for novel unused schemes)`, on: productionReverseRefused && ceiling.holds && far.holds },
+    { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === 'none' && inventory.externalDeploymentCount === 0 },
+    { facet: `productionReverseRefused=${productionReverseRefused}`, on: productionReverseRefused && ceiling.holds && far.holds },
     { facet: `certified=${certified} fipsValidated=${fipsValidated} claySolvedByThisFold=${claySolvedByThisFold}`, on: certified === false && fipsValidated === false && claySolvedByThisFold === 0 },
-    { facet: `securityModel=${securityModel} — not battle-tested-in-the-wild`, on: securityModel === 'structural+adversarial+measured-local' },
+    { facet: `securityModel=${securityModel}`, on: securityModel === 'structural+adversarial+measured-local' },
   ]
   const sealed = sealFacets('prove-local-novel-encryption-security', facets)
   const localSecurityProved = sealed.ok
@@ -1307,7 +1313,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     computes: sealed.ok,
     localSecurityProved,
     means:
-      'localSecurityProved = structural proofs + refuse + round-trip + allowlisted reverse + timed reverse + ISO/NIST reference map + wire-vs-ISO proof-of-falsehood (overallWireClaimProved=false). Sibling prove/local-magnitudes-iso (#24) owns directions×models. NOT the ISO standard. NOT wire stronger than NIST PQC.',
+      'localSecurityProved=sealed.ok · refuse · round-trip · allowlisted reverse · timed reverse · ISO/NIST reference · overallWireClaimProved=false',
     unproved: [
       'FIPS validation',
       'ISO certification',
@@ -1316,6 +1322,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
       'field battle-testing (externalDeploymentCount=0)',
       'wire AES-GCM reverse / production RSA reverse',
       'Clay millennium progress',
+      'production moduli reverse',
     ] as const,
     inventory,
     tools,
@@ -1352,9 +1359,8 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     cli: 'npm run quantum:prove-local-novel-encrypt',
     route: '/en/quantum-encryption#prove-local-novel-encrypt',
     siblingMagnitudesPair: 'prove/local-magnitudes-iso',
-    statement: `Local novel-encryption security ${localSecurityProved ? 'PROVED' : 'OPEN'} under ${securityModel} — overallWireClaimProved=${overallWireClaimProved} (${wireProofStatus}) strongerThanNistPqc=${strongerThanNistPqc} productionReverseRefused=${productionReverseRefused} certified=${certified} thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard}.`,
-    boundary:
-      'HONEST LOCAL PROOF TOOLBOX (stacked on #24). Wire confidentiality vs ISO/NIST PQC is proof-of-falsehood (demoMaxBits≪AES-128/ML-KEM-512 classical). Full directions×models table lives in proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections — this fold does not call it (no recursion). This repo is NOT the ISO standard. HARMONY ≠ TRUTH.',
+    statement: `proveLocalNovelEncryptionSecurity · localSecurityProved=${localSecurityProved} · overallWireClaimProved=${overallWireClaimProved} · strongerThanNistPqc=${strongerThanNistPqc} · certified=${certified} · claySolvedByThisFold=${claySolvedByThisFold}`,
+    boundary: `securityModel=${securityModel} · wireProofStatus=${wireProofStatus} · sibling=${'prove/local-magnitudes-iso'}`,
   }
 }
 
@@ -1385,6 +1391,79 @@ export function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv: r
   process.stdout.write(`  unproved: ${report.unproved.join(' · ')}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.localSecurityProved ? 0 : 1
+}
+
+/** moment/prove — facet on: receipts at call time. Pair: moment/prove · CLI npm run quantum:moment-prove */
+export function agentAssumeNothingMathProvesInTheMoment(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`agentAssumeNothingMathProvesInTheMoment:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const reverse = encryptionReverseVerify(matrix)
+    const novel = proveLocalNovelEncryptionSecurity(matrix)
+    const vote = compareCeccecEfficiencyByVote(matrix)
+    const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    const reverseLabelsIdentity =
+      reverse.definitionalNotCryptanalysis === true &&
+      reverse.recomputeMatch === true &&
+      reverse.crack === reverse.recomputeMatch &&
+      reverse.certified === false &&
+      reverse.claySolvedByThisFold === 0
+    const novelIsStructural =
+      novel.localSecurityProved === novel.computes &&
+      novel.overallWireClaimProved === false &&
+      novel.strongerThanNistPqc === false &&
+      novel.certified === false &&
+      novel.claySolvedByThisFold === 0 &&
+      novel.securityModel === 'structural+adversarial+measured-local'
+    const efficiencyGated = !vote.decided || (vote.decided && vote.winner === 'ceccec')
+    const noClayFtl =
+      novel.claySolvedByThisFold === 0 &&
+      reverse.claySolvedByThisFold === 0 &&
+      noQpu.claySolvedByThisFold === 0 &&
+      noQpu.qpuRequired === false
+    const pairId = 'moment/prove' as const
+    const pairFold = foldPair(toUuid('cmd:moment'), toUuid('cmd:prove'))
+    const pairDual = pairFold.bidirectional && pairFold.forward !== pairFold.reverse
+    const facets = [
+      { facet: 'recomputeMatch', on: reverseLabelsIdentity && reverse.verified },
+      { facet: 'localSecurityProved', on: novelIsStructural },
+      { facet: 'vote.decided', on: efficiencyGated },
+      { facet: 'claySolvedByThisFold', on: noClayFtl && novel.certified === false },
+      { facet: 'qpuRequired', on: noQpu.qpuRequired === false },
+      { facet: 'pairDual', on: pairDual },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`moment-prove:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('agent-assume-nothing-math-proves-in-the-moment', facets)
+    return {
+      computes: sealed.ok,
+      reverse,
+      novel,
+      vote,
+      noQpu,
+      claySolvedByThisFold: 0 as const,
+      physicalFtlClaim: 0 as const,
+      certified: false as const,
+      qpuRequired: false as const,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(reverse.root, merge(novel.root, merge(vote.root, merge(pairFold.merged, sealed.root)))),
+      pair: pairId,
+      cli: 'npm run quantum:moment-prove',
+      route: '/en/quantum-encryption#moment-prove',
+      statement: `moment/prove · computes=${sealed.ok} · recomputeMatch=${reverse.recomputeMatch} · localSecurityProved=${novel.localSecurityProved} · vote.decided=${vote.decided} · claySolvedByThisFold=0`,
+      boundary: `pair=${pairId} · certified=${false} · qpuRequired=${false}`,
+    }
+  })
+}
+
+/** npm run quantum:moment-prove */
+export function runAgentAssumeNothingMathProvesInTheMomentExit(_root: string, _argv: readonly string[] = []): number {
+  const report = agentAssumeNothingMathProvesInTheMoment()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} moment-prove — computes=${report.computes} ` +
+      `recomputeMatch=${report.reverse.recomputeMatch} ` +
+      `localSecurityProved=${report.novel.localSecurityProved} ` +
+      `vote.decided=${report.vote.decided} clay=${report.claySolvedByThisFold} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  return report.computes ? 0 : 1
 }
 
 // ─── Local audit quantum speed & efficiency (memoByRoot amortized reuse) ───

@@ -119,6 +119,7 @@
     "quantum:name-entropy-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runNameEntropyVerifyGuardedExit",
     "quantum:simplicity-measure-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runSimplicityMeasureVerifyGuardedExit",
     "quantum:efficiency-vote": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runEfficiencyVoteExit",
+    "quantum:moment-prove": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runAgentAssumeNothingMathProvesInTheMomentExit",
     "quantum:two-bits-free": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runTwoBitsFreeFromCensus110Minus108Exit",
     "quantum:ancient-calendars-algebra": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/decode/index.ts runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeExit",
     "quantum:society-two-bits-support": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runSocietySupportsProjectViaTwoBitsFreeKnowledgeExit",
