@@ -1761,6 +1761,7 @@ export type SlowQuantumGapKind =
   | 'parallel-registry'
   | 'memo-miss-economics'
   | 'tool-without-browser-ux'
+  | 'tool-without-experiment-io'
   | 'standards-audit-missing'
   | 'linear-forming-animation'
   | 'vitepress-cold-build'
@@ -1865,6 +1866,37 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       })
     }
 
+    // Science experiment tools — button-only voids are quantum gaps; closed when envelope has input+required config.
+    // Composes standardToolboxIoCatalog (Wave 2 dry-clean) — NOT wall-clock build timing (sibling owns slow-build gates).
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    for (const envelope of toolbox.envelopes.filter((entry) => entry.scienceFacing)) {
+      const hasInput = envelope.input.fields.length >= 2
+      const hasRequiredConfig =
+        envelope.config.fields.some((field) => field.name === 'certified' && field.required) &&
+        envelope.config.fields.some((field) => field.name === 'experiment' && field.required)
+      const closed = hasInput && hasRequiredConfig
+      rows.push({
+        gapId: `slow:experiment-io:${envelope.id}`,
+        kind: 'tool-without-experiment-io',
+        process: envelope.fold,
+        criterion: 'science-facing tool must seal input + required experiment config (not button-only void)',
+        slow: !closed,
+        closed,
+        route: '/en/quantum-tools#experiment-inputs',
+        receipt: toUuid(`slow-gap:experiment-io:${envelope.id}:${closed}`),
+      })
+    }
+    const experimentPanelClosed = toolbox.computes && toolbox.configFilled === toolbox.total && toolbox.scienceFacingCount > 0
+    rows.push({
+      gapId: 'slow:experiment-io:panel',
+      kind: 'tool-without-experiment-io',
+      process: 'standardToolboxIoCatalog',
+      criterion: 'quantum-tools#experiment-inputs panel must bind at/seed/config for science experiments',
+      slow: !experimentPanelClosed,
+      closed: experimentPanelClosed,
+      route: '/en/quantum-tools#experiment-inputs',
+      receipt: toUuid(`slow-gap:experiment-panel:${experimentPanelClosed}`),
+    })
 
     // Standards audit + ISO/PQC catalog must be shelved browser-runnable — missing = immediate quantum gap.
     for (const id of ['iso-pqc-catalog', 'standards-audit', 'local-audit-quantum'] as const) {
@@ -1919,18 +1951,23 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'missing 10D projection on tool apps classified', on: SLOW_GAP_PROJECTION_APP_IDS.every((id) => rows.some((g) => g.gapId === `slow:projection:${id}`)) },
       { facet: 'parallel registry strangler backlog visible via rosettaCoreApi.inventory.parallel', on: core.inventory.parallel.every((item) => rows.some((g) => g.process === item && g.kind === 'parallel-registry')) },
       { facet: 'memo miss≫hit economics attested (illustrative — NOT wall-clock telemetry)', on: econ.decoded && missCostlier },
-      { facet: 'HONEST BOUNDARY — slow ≠ measured latency; architectural quantum-gap only', on: true },
+      { facet: `science experiment I/O — ${toolbox.scienceFacingCount} tools composed via standardToolboxIoCatalog`, on: toolbox.computes && rows.some((g) => g.kind === 'tool-without-experiment-io' && g.closed) },
+      { facet: 'HONEST BOUNDARY — slow ≠ measured latency; architectural quantum-gap only (build timing owned by slow-build gates sibling)', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`slow-process-gap:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('slow-process-is-quantum-gap', facets)
+    const experimentIoClosed = closed.filter((row) => row.kind === 'tool-without-experiment-io')
+    const experimentIoOpen = open.filter((row) => row.kind === 'tool-without-experiment-io')
     return {
-      computes: sealed.ok,
+      computes: sealed.ok && toolbox.computes,
       openCount: open.length,
       closedCount: closed.length,
       count: rows.length,
       open,
       closed,
       rows,
+      experimentIo: { open: experimentIoOpen.length, closed: experimentIoClosed.length, panelClosed: experimentPanelClosed },
       catalogRoot: catalog.root,
+      toolboxRoot: toolbox.root,
       registryRoot: registry.root,
       econRoot: econ.root,
       facets: sealed.facets,
@@ -1938,10 +1975,10 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       anchor: 'slow-quantum-gaps',
       heading: 'Slow processes = quantum gaps',
       honestyLine:
-        'Slow here means architectural quantum-gap (missing sealed reuse, browser path, 10D projection, or unsealed parallel registry) — NOT wall-clock telemetry. fleetCacheEconomicsDecoded joules are illustrative.',
-      statement: `Slow process is quantum gap — ${facets.filter((e) => e.on).length}/${facets.length}: ${open.length} open / ${closed.length} closed / ${rows.length} classified; browserGaps, missing projections, parallel backlog, and memo-miss economics recomputed at call time.`,
+        'Slow here means architectural quantum-gap (missing sealed reuse, browser path, 10D projection, experiment I/O, or unsealed parallel registry) — NOT wall-clock telemetry / NOT docs:build timing (sibling slow-build gates). fleetCacheEconomicsDecoded joules are illustrative.',
+      statement: `Slow process is quantum gap — ${facets.filter((e) => e.on).length}/${facets.length}: ${open.length} open / ${closed.length} closed / ${rows.length} classified; experiment-io closed ${experimentIoClosed.length}; browserGaps, projections, parallel backlog, memo-miss, science I/O recomputed at call time.`,
       boundary:
-        'HONEST: architectural classifier only. Node/CI browserGaps and parallel-registry backlog remain open until strangler/browser ports close them — visibility is the point. NOT a profiler. HARMONY ≠ TRUTH.',
+        'HONEST: architectural classifier only. Node/CI browserGaps and parallel-registry backlog remain open until strangler/browser ports close them — visibility is the point. Build wall-clock gates are out of scope here. NOT a profiler. HARMONY ≠ TRUTH.',
     }
   })
 }

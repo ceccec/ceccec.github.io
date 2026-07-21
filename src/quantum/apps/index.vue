@@ -518,6 +518,13 @@ function runTool(toolId: string) {
         <UiBadge :variant="panel.slowGaps.openCount === 0 ? 'default' : 'outline'">
           open {{ panel.slowGaps.openCount }} · closed {{ panel.slowGaps.closedCount }}
         </UiBadge>
+        <UiBadge :variant="panel.slowGaps.experimentIo.panelClosed ? 'default' : 'outline'">
+          experiment-io closed {{ panel.slowGaps.experimentIo.closed }} · open {{ panel.slowGaps.experimentIo.open }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          Science tool I/O composes <a href="#experiment-inputs">#experiment-inputs</a> + toolbox envelopes —
+          NOT docs:build wall-clock (sibling slow-build gates).
+        </p>
         <ul class="quantum-apps__facets">
           <li v-for="gap in panel.slowGaps.open" :key="gap.gapId">
             <UiBadge variant="outline">{{ gap.kind }}</UiBadge>
