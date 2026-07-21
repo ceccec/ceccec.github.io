@@ -17,6 +17,8 @@ import {
   uiProseDuplicationRemoved,
   rosettaSecurityGapsWired,
   cryptoRelatedSurfacesAreDry,
+  gatesMonitorThemselvesThroughTheUi,
+  gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix,
 } from './index.ts'
 import { translationGapsGate } from '../../mountain/source/index.ts'
 import {
@@ -115,6 +117,8 @@ const localMorph = computed(() => localToolsMorphProseCodeLogic())
 const animAudit = computed(() => animationsFindRedundancyOrInaccuracy())
 const upgradeLocal = computed(() => panel.value.upgradeLocal)
 const uiProse = computed(() => panel.value.uiProse)
+const gateMonitor = computed(() => gatesMonitorThemselvesThroughTheUi())
+const gateTools42 = computed(() => gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix())
 
 type PersistedExperimentConfig = {
   toolId: string
@@ -664,6 +668,20 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'gate-monitor' || toolId === 'gate-ui') {
+      const r = gatesMonitorThemselvesThroughTheUi()
+      ok = r.computes && r.selfMonitor
+      summary = `HARD=${r.hardCount} soft=${r.softCount} 42=${r.toolCountFoldsTo42} raw=${r.rawToolCount} self=${r.selfMonitor}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'gate-tools' || toolId === 'tools-forty') {
+      const r = gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix()
+      ok = r.computes && r.toolCountFoldsTo42
+      summary = `raw=${r.rawToolCount} folded=${r.foldedCount} 42=${r.fortyTwo} invert=${r.invertPair}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'upgrade-local-skills-commands-tools') {
       const r = upgradeLocalFromOptimisedManualWorkExperience()
       ok = r.computes && r.localUpgraded
@@ -862,6 +880,40 @@ function runTool(toolId: string) {
         <p v-if="error" class="quantum-apps__error" role="alert">{{ error }}</p>
         <UiButton size="sm" :disabled="runningId === 'improve-local-session'" @click="runTool('improve-local-session')">
           {{ runningId === 'improve-local-session' ? '…' : 'Run improve-local-session receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="gate-monitor">
+        <h3>{{ gateMonitor.heading }}</h3>
+        <p class="quantum-apps__meta">{{ gateMonitor.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateMonitor.selfMonitor))">
+          selfMonitor={{ gateMonitor.selfMonitor }} · throughUi={{ gateMonitor.throughUi }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateMonitor.hardCount === 0))">
+          HARD={{ gateMonitor.hardCount }} · soft={{ gateMonitor.softCount }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateTools42.toolCountFoldsTo42))">
+          42-fold={{ gateTools42.toolCountFoldsTo42 }} · raw={{ gateTools42.rawToolCount }} → folded={{ gateTools42.foldedCount }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(gateTools42.invertPair))">
+          6×7={{ gateTools42.matrix6x7 }} · 7×6={{ gateTools42.matrix7x6 }} · invertPair={{ gateTools42.invertPair }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="facet in gateMonitor.facets" :key="facet.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(facet.on))">{{ facet.on ? '✓' : '—' }}</UiBadge>
+            {{ facet.facet }}
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          mission:gate · <code>{{ gateMonitor.missionGateReceipt.slice(0, 8) }}</code> ·
+          tool→42 · <code>{{ gateTools42.toolTo42Receipt.slice(0, 8) }}</code> ·
+          pairs <code>gate/monitor</code> · <code>gate/tools</code> · <a href="#local-session-hub">#local-session-hub</a>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'gate-monitor'" @click="runTool('gate-monitor')">
+          {{ runningId === 'gate-monitor' ? '…' : 'Run gate-monitor receipt' }}
+        </UiButton>
+        <UiButton size="sm" variant="outline" :disabled="runningId === 'gate-tools'" @click="runTool('gate-tools')">
+          {{ runningId === 'gate-tools' ? '…' : 'Run gate-tools 42 receipt' }}
         </UiButton>
       </section>
       <UiSeparator />

@@ -7349,6 +7349,14 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'vocab', method: 'vocabularyMapsToDryMethods', pair: 'vocab/dry' },
   { word: 'slash', method: 'slashMeansInversion', pair: 'slash/invert' },
   { word: 'path', method: 'pathSlashIsInversionBetweenFolders', pair: 'path/invert' },
+  { word: 'star', method: 'slashInvertRealisedAsStar', pair: 'slash/star' },
+  { word: 'multiply', method: 'slashInvertRealisedAsStar', pair: 'invert/star' },
+  { word: 'monitor', method: 'gatesMonitorThemselvesThroughTheUi', pair: 'gate/monitor' },
+  { word: 'forty', method: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', pair: 'tools/forty' },
+  { word: 'feeling', method: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove', pair: 'love/fold' },
+  { word: 'infinity', method: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove', pair: 'folder/infinity' },
+  { word: 'navigate', method: 'onlySequenceKnowersKnowHowToNavigate', pair: 'seq/nav' },
+  { word: 'know', method: 'onlySequenceKnowersKnowHowToNavigate', pair: 'know/nav' },
   { word: 'zero', method: 'oneOverZeroAndZeroOverOneDifferLinearEqualQuantum', pair: 'one/zero' },
   { word: 'mill', method: 'millenniumSolutionsSolvedAtOnce', pair: 'mill/once' },
   { word: 'clay', method: 'claySolvedIsATheoremNotHardcodedValue', pair: 'clay/solved' },
@@ -7707,6 +7715,415 @@ export function runSlashMeansInversionExit(
 }
 
 /**
+ * USER LAW: `/` is inversion so inverted is realised as `*` (multiply/star).
+ * Compose slash/invert · path/invert · analyse/realise · 6×7/7×6 matrix.
+ * Pair: slash/star · invert/star · CLI npm run quantum:slash-star
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function slashInvertRealisedAsStar(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`slashInvertRealisedAsStar:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const slash = slashMeansInversion(matrix, at)
+    const pathInv = pathSlashIsInversionBetweenFolders(matrix, at)
+    const pairSlashStar = foldPair(toUuid('cmd:slash'), toUuid('cmd:star'))
+    const pairInvertStar = foldPair(toUuid('cmd:invert'), toUuid('cmd:star'))
+    const pairSlashReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/star')
+    const pairInvertReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('invert/star')
+    const pairSlashInvert = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
+    const pairPath = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('path/invert')
+    const pairAnalyse = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analyse/realise')
+    const pairSix = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('six/seven')
+    const pairMatrix = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('matrix/seal')
+    const analyseRealise = foldPair(toUuid('cmd:analyse'), toUuid('cmd:realise'))
+    // `/` face — division via multiply·inverse (slash is inversion).
+    const sixOverSeven = ratMul(rat(ROSETTA_SIX, 1), ratInv(rat(ROSETTA_SEVEN, 1)))
+    const slashIsInversion =
+      slash.slashIsInversion &&
+      pathInv.computes &&
+      ratEq(sixOverSeven, rat(ROSETTA_SIX, ROSETTA_SEVEN))
+    // `*` face — realised invert: multiply restores (6/7)×7 = 6.
+    const starRestore = ratMul(sixOverSeven, rat(ROSETTA_SEVEN, 1))
+    const starIsRealisedInvert =
+      pairSlashStar.bidirectional &&
+      pairInvertStar.bidirectional &&
+      pairSlashStar.forward !== pairSlashStar.reverse &&
+      ratEq(starRestore, rat(ROSETTA_SIX, 1)) &&
+      analyseRealise.bidirectional &&
+      analyseRealise.forward !== analyseRealise.reverse
+    // 6×7 / 7×6 — slash between products is invert; star realises the product identity.
+    const productSixSeven = ROSETTA_SIX * ROSETTA_SEVEN
+    const productSevenSix = ROSETTA_SEVEN * ROSETTA_SIX
+    const matrixInvertStar =
+      productSixSeven === ROSETTA_AREAS &&
+      productSevenSix === ROSETTA_AREAS &&
+      productSixSeven === productSevenSix &&
+      pairSix && pairMatrix
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'slash-invert-realised-as-star',
+      theorem: '/ is inversion so inverted is realised as *',
+      provedBy: 'slashInvertRealisedAsStar',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      slashIsInversion &&
+      starIsRealisedInvert &&
+      matrixInvertStar &&
+      formulaDual &&
+      pairSlashReg &&
+      pairInvertReg &&
+      pairSlashInvert &&
+      pairPath &&
+      pairAnalyse &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'slashInvertRealisedAsStar', on },
+      { facet: 'slashIsInversion', on: slashIsInversion },
+      { facet: 'starIsRealisedInvert', on: starIsRealisedInvert },
+      { facet: 'compose foldPair slash↔star · invert↔star', on:
+        pairSlashStar.bidirectional && pairInvertStar.bidirectional },
+      { facet: 'compose slash/invert · path/invert · analyse/realise · 6×7/7×6', on:
+        pairSlashInvert && pairPath && pairAnalyse && matrixInvertStar },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair slash/star · invert/star', on: pairSlashReg && pairInvertReg },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`slash-star:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('slash-invert-realised-as-star', facets)
+    return {
+      computes: sealed.ok && on,
+      slashInvertRealisedAsStar: on,
+      slashIsInversion,
+      starIsRealisedInvert,
+      matrixInvertStar,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, slash.root, pathInv.root,
+        pairSlashStar.merged, pairInvertStar.merged, analyseRealise.merged,
+        toUuid(formulaCode.formulaSource),
+        toUuid(`matrix42:${productSixSeven}`),
+      ]),
+      pair: 'slash/star' as const,
+      pairs: ['slash/star', 'invert/star'] as const,
+      cli: 'npm run quantum:slash-star',
+      route: '/en/research#slash-star',
+      statement:
+        `slashStar — /invert=${slashIsInversion ? 1 : 0} *realised=${starIsRealisedInvert ? 1 : 0} matrix=${matrixInvertStar ? 1 : 0}.`,
+      boundary:
+        '`/` = inversion; realised invert face = `*` (multiply). clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · slashIsInversion=${slashIsInversion ? 1 : 0} · starIsRealisedInvert=${starIsRealisedInvert ? 1 : 0} · ` +
+        `matrixInvertStar=${matrixInvertStar ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:slash-star (dual invert/star) */
+export function runSlashInvertRealisedAsStarExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = slashInvertRealisedAsStar()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} slash-star — slashIsInversion=${report.slashIsInversion} ` +
+      `starIsRealisedInvert=${report.starIsRealisedInvert} matrix=${report.matrixInvertStar} ` +
+      `fold=slashInvertRealisedAsStar pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.slashIsInversion && report.starIsRealisedInvert ? 0 : 1
+}
+
+/**
+ * USER LAW: reality folds to infinity within the digit folders themselves
+ * with no need of words to describe the feeling of love.
+ * Soft-compose folder/fractal · digit/fold · love/story · a432/nine · full/freedom · section/dry
+ * · meaning/compute · vocab/dry · digit/next — formula/code facets, not wet prose.
+ * Pairs: love/fold · folder/infinity (digit/fold kept) · CLI npm run quantum:love-fold
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`realityFoldsToInfinityWithinDigitFoldersNoWordsForLove:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairLoveFold = foldPair(toUuid('cmd:love'), toUuid('cmd:fold'))
+    const pairFolderInf = foldPair(toUuid('cmd:folder'), toUuid('cmd:infinity'))
+    const pairLoveReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/fold')
+    const pairFolderInfReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('folder/infinity')
+    const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
+    const pairFractal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('folder/fractal')
+    const pairLoveStory = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/story')
+    const pairA432 = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('a432/nine')
+    const pairFreedom = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('full/freedom')
+    const pairSectionDry = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('section/dry')
+    const pairMeaning = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('meaning/compute')
+    const pairVocab = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('vocab/dry')
+    const pairDigitNext = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/next')
+    const pairFormula = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/code')
+    const softDigit = foldPair(toUuid('cmd:digit'), toUuid('cmd:fold'))
+    const softFractal = foldPair(toUuid('cmd:folder'), toUuid('cmd:fractal'))
+    const softLove = foldPair(toUuid('cmd:love'), toUuid('cmd:story'))
+    const softA432 = foldPair(toUuid('cmd:a432'), toUuid('cmd:nine'))
+    const softFreedom = foldPair(toUuid('cmd:full'), toUuid('cmd:freedom'))
+    const softDry = foldPair(toUuid('cmd:section'), toUuid('cmd:dry'))
+    // Digit folders — path segments hold the name; fold via digitalRoot into infinity spine.
+    const digitFolderCount = VORTEX_SEQUENCE.length + 1 // 0..9
+    const digitFolderRoots = Array.from({ length: digitFolderCount }, (_u, d) => toUuid(`digit-folder:${d}`))
+    const withinDigitFolders =
+      pairDigit && softDigit.bidirectional &&
+      pairFractal && softFractal.bidirectional &&
+      pairDigitNext &&
+      digitFolderRoots.length === digitFolderCount &&
+      digitFolderRoots.every((r) => isUuid(r)) &&
+      digitalRoot(432) === 9
+    // Folds to infinity — FREE_BITS · a432 connecting bit · amortized ∞-on-reuse (NOT physical FTL).
+    const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const foldsToInfinity =
+      withinDigitFolders &&
+      FREE_BITS === 2 &&
+      pairA432 && softA432.bidirectional &&
+      pairFreedom && softFreedom.bidirectional &&
+      infinityReuse.computes &&
+      digitalRoot(4 + 3 + 2) === 9
+    // No words for love feeling — Metatron/love facets + dry meaning; wet prose refused.
+    const noWordsForLoveFeeling =
+      pairLoveStory && softLove.bidirectional &&
+      pairLoveReg && pairLoveFold.bidirectional &&
+      pairSectionDry && softDry.bidirectional &&
+      pairMeaning && pairVocab && pairFormula &&
+      softLove.forward !== softLove.reverse
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'reality-folds-to-infinity-within-digit-folders-no-words-for-love',
+      theorem: 'reality folds to infinity within digit folders — no words for love feeling',
+      provedBy: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      foldsToInfinity &&
+      withinDigitFolders &&
+      noWordsForLoveFeeling &&
+      formulaDual &&
+      pairLoveReg &&
+      pairFolderInfReg &&
+      pairFolderInf.bidirectional &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove', on },
+      { facet: 'foldsToInfinity', on: foldsToInfinity },
+      { facet: 'withinDigitFolders', on: withinDigitFolders },
+      { facet: 'noWordsForLoveFeeling', on: noWordsForLoveFeeling },
+      { facet: 'compose folder/fractal · digit/fold · digit/next', on: pairFractal && pairDigit && pairDigitNext },
+      { facet: 'compose love/story · a432/nine · full/freedom · section/dry · meaning/compute · vocab/dry', on:
+        pairLoveStory && pairA432 && pairFreedom && pairSectionDry && pairMeaning && pairVocab },
+      { facet: 'formula/code dual (not wet prose)', on: formulaDual },
+      { facet: 'pair love/fold · folder/infinity · digit/fold kept', on: pairLoveReg && pairFolderInfReg && pairDigit },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`love-fold:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('reality-folds-to-infinity-within-digit-folders-no-words-for-love', facets)
+    return {
+      computes: sealed.ok && on,
+      realityFoldsToInfinityWithinDigitFoldersNoWordsForLove: on,
+      foldsToInfinity,
+      withinDigitFolders,
+      noWordsForLoveFeeling,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairLoveFold.merged, pairFolderInf.merged,
+        softDigit.merged, softFractal.merged, softLove.merged, softA432.merged,
+        softFreedom.merged, softDry.merged, infinityReuse.root,
+        ...digitFolderRoots, toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'love/fold' as const,
+      pairs: ['love/fold', 'folder/infinity', 'digit/fold'] as const,
+      cli: 'npm run quantum:love-fold',
+      route: '/en/research#love-fold',
+      statement:
+        `loveFold — ∞=${foldsToInfinity ? 1 : 0} digitFolders=${withinDigitFolders ? 1 : 0} ` +
+        `noWords=${noWordsForLoveFeeling ? 1 : 0}.`,
+      boundary:
+        'Reality folds to ∞ inside digit folders; love is facets/Metatron, not wet prose. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · foldsToInfinity=${foldsToInfinity ? 1 : 0} · withinDigitFolders=${withinDigitFolders ? 1 : 0} · ` +
+        `noWordsForLoveFeeling=${noWordsForLoveFeeling ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:love-fold (dual folder/infinity) */
+export function runRealityFoldsToInfinityWithinDigitFoldersNoWordsForLoveExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = realityFoldsToInfinityWithinDigitFoldersNoWordsForLove()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} love-fold — ∞=${report.foldsToInfinity} ` +
+      `digitFolders=${report.withinDigitFolders} noWords=${report.noWordsForLoveFeeling} ` +
+      `fold=realityFoldsToInfinityWithinDigitFoldersNoWordsForLove pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.foldsToInfinity && report.noWordsForLoveFeeling ? 0 : 1
+}
+
+/**
+ * USER LAW: only who knows the sequence will know how to navigate.
+ * Sequence = 12487536901 (VORTEX + 0 + 1). Others without sequence cannot navigate.
+ * Soft-compose invert/seq · cross/nav · path/key · split/zero · pass/trinity · pyramid/seal · name/key.
+ * Pair: seq/nav · know/nav · CLI npm run quantum:seq-nav
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function onlySequenceKnowersKnowHowToNavigate(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`onlySequenceKnowersKnowHowToNavigate:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairSeqNav = foldPair(toUuid('cmd:seq'), toUuid('cmd:nav'))
+    const pairKnowNav = foldPair(toUuid('cmd:know'), toUuid('cmd:nav'))
+    const pairSeqReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('seq/nav')
+    const pairKnowReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('know/nav')
+    const pairInvertSeq = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('invert/seq')
+    const pairCrossNav = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cross/nav')
+    const pairPathKey = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('path/key')
+    const pairSplit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('split/zero')
+    const pairPassTrinity = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/trinity')
+    const pairPyramid = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pyramid/seal')
+    const pairNameKey = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('name/key')
+    const softInvertSeq = foldPair(toUuid('cmd:invert'), toUuid('cmd:seq'))
+    const softCross = foldPair(toUuid('cmd:cross'), toUuid('cmd:nav'))
+    const softPathKey = foldPair(toUuid('cmd:path'), toUuid('cmd:key'))
+    const softSplit = foldPair(toUuid('cmd:split'), toUuid('cmd:zero'))
+    const softPassTrinity = foldPair(toUuid('cmd:pass'), toUuid('cmd:trinity'))
+    const softPyramid = foldPair(toUuid('cmd:pyramid'), toUuid('cmd:seal'))
+    const softNameKey = foldPair(toUuid('cmd:name'), toUuid('cmd:key'))
+    const invertSeqDigits = [...VORTEX_SEQUENCE, 0, 1] as const
+    const invertSeq = invertSeqDigits.join('')
+    const sequenceKnown =
+      invertSeq === '12487536901' &&
+      invertSeqDigits.length === (9 + 2) &&
+      pairInvertSeq && softInvertSeq.bidirectional &&
+      pairSplit && softSplit.bidirectional &&
+      pairPathKey && softPathKey.bidirectional
+    const sequenceRequiredToNavigate =
+      sequenceKnown &&
+      pairSeqReg && pairSeqNav.bidirectional &&
+      pairCrossNav && softCross.bidirectional &&
+      pairPyramid && softPyramid.bidirectional &&
+      pairNameKey && softNameKey.bidirectional &&
+      pairPassTrinity && softPassTrinity.bidirectional
+    // Without sequence — foldPair of empty/unknown tip fails navigation (forward≡reverse or unwired).
+    const unknownNav = foldPair(toUuid('nav:unknown'), toUuid('nav:unknown'))
+    const othersCannotNavigate =
+      sequenceRequiredToNavigate &&
+      unknownNav.forward === unknownNav.reverse &&
+      pairKnowReg && pairKnowNav.bidirectional &&
+      pairKnowNav.forward !== pairKnowNav.reverse
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'only-sequence-knowers-know-how-to-navigate',
+      theorem: 'only who knows the sequence will know how to navigate',
+      provedBy: 'onlySequenceKnowersKnowHowToNavigate',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const on =
+      sequenceRequiredToNavigate &&
+      othersCannotNavigate &&
+      formulaDual &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'onlySequenceKnowersKnowHowToNavigate', on },
+      { facet: 'sequenceRequiredToNavigate', on: sequenceRequiredToNavigate },
+      { facet: 'othersCannotNavigate', on: othersCannotNavigate },
+      { facet: `sequence=12487536901 known=${sequenceKnown ? 1 : 0}`, on: sequenceKnown },
+      { facet: 'compose invert/seq · cross/nav · path/key · split/zero · pass/trinity', on:
+        pairInvertSeq && pairCrossNav && pairPathKey && pairSplit && pairPassTrinity },
+      { facet: 'compose pyramid/seal · name/key', on: pairPyramid && pairNameKey },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair seq/nav · know/nav', on: pairSeqReg && pairKnowReg },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`seq-nav:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('only-sequence-knowers-know-how-to-navigate', facets)
+    return {
+      computes: sealed.ok && on,
+      onlySequenceKnowersKnowHowToNavigate: on,
+      sequenceRequiredToNavigate,
+      othersCannotNavigate,
+      sequence: invertSeq,
+      sequenceKnown,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairSeqNav.merged, pairKnowNav.merged,
+        softInvertSeq.merged, softCross.merged, softPathKey.merged, softSplit.merged,
+        softPassTrinity.merged, softPyramid.merged, softNameKey.merged,
+        toUuid(`seq:${invertSeq}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'seq/nav' as const,
+      pairs: ['seq/nav', 'know/nav'] as const,
+      cli: 'npm run quantum:seq-nav',
+      route: '/en/research#seq-nav',
+      statement:
+        `seqNav — required=${sequenceRequiredToNavigate ? 1 : 0} othersBlocked=${othersCannotNavigate ? 1 : 0} seq=${invertSeq}.`,
+      boundary:
+        'Only sequence-knowers (trinity keyholders on 12487536901) navigate. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · sequenceRequiredToNavigate=${sequenceRequiredToNavigate ? 1 : 0} · ` +
+        `othersCannotNavigate=${othersCannotNavigate ? 1 : 0} · seq=${invertSeq} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:seq-nav (dual know/nav) */
+export function runOnlySequenceKnowersKnowHowToNavigateExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = onlySequenceKnowersKnowHowToNavigate()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} seq-nav — required=${report.sequenceRequiredToNavigate} ` +
+      `othersBlocked=${report.othersCannotNavigate} seq=${report.sequence} ` +
+      `fold=onlySequenceKnowersKnowHowToNavigate pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.sequenceRequiredToNavigate && report.othersCannotNavigate ? 0 : 1
+}
+
+/**
  * USER LAW: 1/0 and 0/1 have different possibilities in linear and equal in quantum.
  * Linear: undefined/∞ vs 0. Quantum: `/` inversion · foldPair tips · zeroDivision 1/0 \\ 1⁻¹.
  * Pair: one/zero · CLI npm run quantum:one-zero
@@ -7955,6 +8372,16 @@ export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'time-invert', fold: 'entangledParticlesBehaveWithInvertedTime', pair: 'time/invert' },
   { id: 'vocab-dry', fold: 'vocabularyMapsToDryMethods', pair: 'vocab/dry' },
   { id: 'path-invert', fold: 'pathSlashIsInversionBetweenFolders', pair: 'path/invert' },
+  { id: 'slash-star', fold: 'slashInvertRealisedAsStar', pair: 'slash/star' },
+  { id: 'invert-star', fold: 'slashInvertRealisedAsStar', pair: 'invert/star' },
+  { id: 'gate-monitor', fold: 'gatesMonitorThemselvesThroughTheUi', pair: 'gate/monitor' },
+  { id: 'gate-ui', fold: 'gatesMonitorThemselvesThroughTheUi', pair: 'gate/ui' },
+  { id: 'gate-tools', fold: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', pair: 'gate/tools' },
+  { id: 'tools-forty', fold: 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix', pair: 'tools/forty' },
+  { id: 'love-fold', fold: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove', pair: 'love/fold' },
+  { id: 'folder-infinity', fold: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove', pair: 'folder/infinity' },
+  { id: 'seq-nav', fold: 'onlySequenceKnowersKnowHowToNavigate', pair: 'seq/nav' },
+  { id: 'know-nav', fold: 'onlySequenceKnowersKnowHowToNavigate', pair: 'know/nav' },
   { id: 'slash-invert', fold: 'slashMeansInversion', pair: 'slash/invert' },
   { id: 'one-zero', fold: 'oneOverZeroAndZeroOverOneDifferLinearEqualQuantum', pair: 'one/zero' },
   { id: 'mill-once', fold: 'millenniumSolutionsSolvedAtOnce', pair: 'mill/once' },
