@@ -47,6 +47,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'predict/skill-gate-verify',
   'harmonic/surprise',
   'research/society',
+  'bits/free',
+  'society/support',
   'merkaba/10d',
   'vortex/merkaba',
   'timeout/dry-refactor',

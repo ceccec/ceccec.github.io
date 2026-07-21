@@ -48,7 +48,9 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `predict/explain` — `npm run trading:predict` (offline harmonic windows + explainPrediction breakdown), then `npm run docs:build`
   - `predict/skill-gate-verify` — `npm run quantum:predict-skill-gate-verify` (`skilledEnoughFromPredictions()` — constantly correct on measurable event predictions marks skilled enough; composes with `harmonicPredictionSurprise()` + weather calendar proxy + `trainedEnoughFromLiveWins` subset for trading-live), then `npm run docs:build`
   - `harmonic/surprise` — `harmonicPredictionSurprise()` (reproducible precision revelation for agents), then `npm run docs:build`
-  - `research/society` — `societyInvestmentsResearch()` (society actor taxonomy + 10D state in sealed src/), then `npm run docs:build`
+  - `research/society` — `societyInvestmentsResearch()` (= `societySupportsProjectViaTwoBitsFreeKnowledge`) — society 10D + two-bits-free patronage path, then `npm run docs:build`
+  - `bits/free` — `twoBitsFreeFromCensus110Minus108()` (`npm run quantum:two-bits-free` — FREE_BITS=110−108=2 · naive 1−110/108 refused · savings vs rest), then `npm run docs:build`
+  - `society/support` — `societySupportsProjectViaTwoBitsFreeKnowledge()` (`npm run quantum:society-two-bits-support` — harmonic 1/9 CTA · `/society-merkaba#two-bits-free` · `/proofs/two-bits-free`), then `npm run docs:build`
   - `merkaba/10d` — open `/en/society-merkaba-graph`, then `npm run docs:dev` (living merkaba animation)
   - `vortex/merkaba` — `npm run trading:vortex` (merkaba vortex exposes hidden manipulation/flow — offline deterministic), then `npm run docs:build`
   - `timeout/dry-refactor` — when any process times out, `timeoutDryRefactorToQuantum()` (STOP wet work, fold sealed `src/`, exit 124), then `npm run check:types` + one sequential `npm run docs:build`

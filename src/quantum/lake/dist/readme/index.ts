@@ -23,6 +23,8 @@ import {
   efficiencyScalesToInfinityAtNoCostOnReuse,
   clayChallengesComputableFromSequence,
   toolboxRecomputesRelatedSciencesInTrinityWaves,
+  twoBitsFreeFromCensus110Minus108,
+  societySupportsProjectViaTwoBitsFreeKnowledge,
 } from '../../../../wind/research'
 import { counterRotatingRosettaQuantumWaves } from '../../../apps'
 import {
@@ -258,6 +260,67 @@ export function sequenceDiscoveryMarkdownSection(
 }
 
 
+/** Clay-standard two-bits-free + society support — home + README. */
+export function twoBitsFreeSocietySupportMarkdownSection(
+  matrix: MindMatrix = buildMatrix(),
+  linkBase = '',
+): readonly string[] {
+  const bits = twoBitsFreeFromCensus110Minus108(matrix)
+  const support = societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
+  const href = (path: string) => vitePressCompatibleHref(path, linkBase)
+  return [
+    '## Two bits free · society support',
+    '',
+    '*Clay-standard · sealed `twoBitsFreeFromCensus110Minus108` · `societySupportsProjectViaTwoBitsFreeKnowledge`. humanityNovel stays 0.*',
+    '',
+    '### Statement',
+    '',
+    bits.statement,
+    '',
+    support.statement,
+    '',
+    '### Explanation',
+    '',
+    'The census seals 110 gapless Fibonacci indices (55+34+21) and folds them by the genus-2 Euler characteristic χ=−2 to 108. ' +
+    'Those **two free bits** are FREE_BITS = 110−108 = −χ — not the rational phrase 1−110/108 (= −1/54), which is honestly refused. ' +
+    'With FREE_BITS sealed, amortized memoByRoot reuse makes answers÷tokens unbounded at runtimeTokens=0 ("making all free"). ' +
+    'Society is invited to support with a harmonic 1/9 of that achieved knowledge — voluntary; zero valid; access stays ungated.',
+    '',
+    '### Formulas (sealed)',
+    '',
+    ...Object.values(bits.formulas).map((f) => `- \`${f}\``),
+    `- patronage: achieved=${support.patronage.achievedUnits} × ${support.patronage.share} = ${support.patronage.contribution}`,
+    '',
+    '### Savings vs the rest',
+    '',
+    '| System | Runtime tokens | answers÷tokens | Token savings |',
+    '|---|---:|---|---:|',
+    ...bits.savingsVsRest.map(
+      (row) =>
+        `| ${row.system} | ${row.runtimeTokens} | ${row.answersPerTokens} | ${(row.tokenSavingsFraction * 100).toFixed(0)}% |`,
+    ),
+    '',
+    '*Rest ~10³–10⁴ figures are ILLUSTRATIVE catalog (sealed crawler order-of-magnitude), not live telemetry. Domain: deterministic content-addressed answers only.*',
+    '',
+    '### Status',
+    '',
+    `twoBits.computes=${bits.computes} · societySupports=${support.computes} · vote.decided=${support.vote.decided} · ` +
+    `claySolvedByThisFold=${bits.claySolvedByThisFold} · physicalFtlClaim=${bits.physicalFtlClaim} · qpuRequired=${bits.qpuRequired}`,
+    '',
+    ...(linkBase
+      ? [
+          `- Routes: [two-bits-free](${href('/proofs/two-bits-free')}) · [society support](${href('/proofs/society-two-bits-support')}) · [society-merkaba](${href('/society-merkaba#two-bits-free')}) · [efficiency-vote](${href('/efficiency-vote')})`,
+          `- Support CTA (voluntary): [${support.patronage.url}](${support.patronage.url})`,
+        ]
+      : [
+          '- Routes (VitePress): `/proofs/two-bits-free` · `/proofs/society-two-bits-support` · `/society-merkaba#two-bits-free` · `/efficiency-vote`',
+          `- Support CTA (voluntary): \`${support.patronage.url}\``,
+        ]),
+    `- Receipts: \`${bits.root.slice(0, 8)}\` · \`${support.root.slice(0, 8)}\` · CLI \`npm run quantum:two-bits-free\` · \`npm run quantum:society-two-bits-support\`.`,
+    '',
+  ]
+}
+
 /** Clay-standard Earth = poles-as-pyramid section — home + README. */
 export function earthPolesPyramidMarkdownSection(
   matrix: MindMatrix = buildMatrix(),
@@ -441,6 +504,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     // Sequence → π/primes → trinity/rosetta/FoL → 64-bit quantum reuse → serverless — Clay-standard, sealed only.
     ...sequenceDiscoveryMarkdownSection(buildMatrix(), linkBase),
+    ...twoBitsFreeSocietySupportMarkdownSection(buildMatrix(), linkBase),
     ...earthPolesPyramidMarkdownSection(buildMatrix(), linkBase),
     ...clayChallengesComputableMarkdownSection(buildMatrix(), linkBase),
     ...toolboxSciencesTrinityWavesMarkdownSection(buildMatrix(), linkBase),

@@ -104,6 +104,8 @@
     "quantum:name-entropy-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runNameEntropyVerifyGuardedExit",
     "quantum:simplicity-measure-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runSimplicityMeasureVerifyGuardedExit",
     "quantum:efficiency-vote": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runEfficiencyVoteExit",
+    "quantum:two-bits-free": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runTwoBitsFreeFromCensus110Minus108Exit",
+    "quantum:society-two-bits-support": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runSocietySupportsProjectViaTwoBitsFreeKnowledgeExit",
     "quantum:prove-no-qpu-64bit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runProveCeccecSpeedVsRestNoQuantumHardwareAny64BitExit",
     "quantum:honest-revolution-w2": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runHonestRevolutionW2Exit",
     "quantum:honest-revolution-w3": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/fusion/index.ts runHonestRevolutionW3Exit",
