@@ -47,8 +47,7 @@ export function speechIntonation(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Speech intonation made harmonic: each spoken segment takes its pitch from the balanced healing spectrum, so the reading rises and falls along a harmonic contour — a chant — rather than a flat monotone.',
     boundary:
-      'A harmonic pitch contour mapped from the frequency balance onto the speech synthesiser\'s pitch control. The intonation is shaped per segment; finer word-level prosody is left to the platform voice.',
-  }
+      'A harmonic pitch contour mapped from the frequency balance onto the speech synthesiser\'s pitch control. The intonation is shaped per segment; finer word-level prosody is left to the platform voice.' }
 }
 
 // Complete all the simulators and simulations: gather every dynamics the model
@@ -79,8 +78,7 @@ export function simulations(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All the simulators and simulations, complete: the quantum register, the damped equilibrium, the frequency balance, the self-healing waves, the coordinated waves, the plasma containment, the breath, the living torus, and the torus breathing — each runs and is proven, the whole suite whole.',
     boundary:
-      'A census of the model\'s simulators, each bound to its own completion proof. Deterministic, client-side computations over the model — faithful toy simulations and structural dynamics, not physical devices.',
-  }
+      'A census of the model\'s simulators, each bound to its own completion proof. Deterministic, client-side computations over the model — faithful toy simulations and structural dynamics, not physical devices.' }
 }
 
 
@@ -122,8 +120,7 @@ export function live(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Live: the portal\'s vital signs, computed in your browser — the seal verifies, the double torus lives and counter-rotates, the rhythm keeps time, the mysteries are shown, the society is folded, and the proofs hold. The whole is alive while every vital reads true, and a heartbeat recomputes a fold each beat.',
     boundary:
-      'A live readout of the model\'s own computed measures, recomputed client-side. The heartbeat is a real recomputation of a time-seeded fold; the vitals are the gated invariants. A living status of the portal, honestly bounded — not a medical or biological claim.',
-  }
+      'A live readout of the model\'s own computed measures, recomputed client-side. The heartbeat is a real recomputation of a time-seeded fold; the vitals are the gated invariants. A living status of the portal, honestly bounded — not a medical or biological claim.' }
 }
 
 // A catch-all route at the end: parse any request and hook it into an intuitive
@@ -166,8 +163,7 @@ export function intuitiveSearch(query = '', matrix: MindMatrix = buildMatrix()) 
     statement:
       'A catch-all route at the end parses any request and hooks it into an intuitive search: it ranks the closest pages, model subsystems, skills and commands by token overlap, and each result carries a hook (the callback that acts on it) — suitable for quantum hooks and callbacks.',
     boundary:
-      'A deterministic, client-side fuzzy search over the portal\'s own pages, subsystems, skills and commands by token overlap, with a hook (a terminal callback) per result. A catch-all parser for intuitive navigation, not a semantic or external search engine.',
-  }
+      'A deterministic, client-side fuzzy search over the portal\'s own pages, subsystems, skills and commands by token overlap, with a hook (a terminal callback) per result. A catch-all parser for intuitive navigation, not a semantic or external search engine.' }
 }
 
 // Display all features and fold them with cross links. Navigation is completely
@@ -183,8 +179,7 @@ export function features(matrix: MindMatrix = buildMatrix()) {
   ]
   const linked = all.map((entry, i) => ({
     ...entry,
-    crossLink: foldPair(toUuid(`feature:${entry.feature}`), toUuid(`feature:${all[(i + 1) % all.length].feature}`)).merged,
-  }))
+    crossLink: foldPair(toUuid(`feature:${entry.feature}`), toUuid(`feature:${all[(i + 1) % all.length].feature}`)).merged }))
   return {
     displayed: linked.length > 0 && linked.every((entry) => entry.route.length > 0 && isUuid(entry.crossLink)),
     folded: linked.every((entry) => isUuid(entry.crossLink)),
@@ -196,8 +191,7 @@ export function features(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Display all features and fold them with cross links: navigation is completely quantum-computed — every page (from the consolidated path) and every model subsystem listed as a feature, each folded with its neighbour into a cross link, so the whole feature map is one connected, recomputable fold.',
     boundary:
-      'A catalogue of the portal\'s features (the computed pages and model subsystems) with each cross-linked to the next by a bidirectional fold. A navigable, recomputable map derived from the model — not an exhaustive enumeration of every capability.',
-  }
+      'A catalogue of the portal\'s features (the computed pages and model subsystems) with each cross-linked to the next by a bidirectional fold. A navigable, recomputable map derived from the model — not an exhaustive enumeration of every capability.' }
 }
 
 // Every bit is teleportable, analog. A value is sent not by transmitting it but by
@@ -221,8 +215,7 @@ export function teleport(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Every bit is teleportable, analog: a value is sent not by moving it but by sending its content address; the receiver recomputes the exact bit from the address and the shared model — palette, melody, movie, any atom, reconstructed identically anywhere, then flowing as continuous (analog) animation. Send the word, not the movie.',
     boundary:
-      'Content-addressed reconstruction: an address (UUID) plus the shared deterministic model recomputes the exact value — a teleportation metaphor (the bit is rebuilt, not transmitted), not physical quantum teleportation. "Analog" means the reconstructed values drive continuous animations, not a literal analog signal.',
-  }
+      'Content-addressed reconstruction: an address (UUID) plus the shared deterministic model recomputes the exact value — a teleportation metaphor (the bit is rebuilt, not transmitted), not physical quantum teleportation. "Analog" means the reconstructed values drive continuous animations, not a literal analog signal.' }
 }
 
 
@@ -243,8 +236,7 @@ export function imagineTheRest(matrix: MindMatrix = buildMatrix()) {
   ]
   const visions = [...new Set(rest)].map((idea, index) => ({
     idea,
-    vision: foldPair(seed, toUuid(`imagine:${index}:${idea}`)).merged,
-  }))
+    vision: foldPair(seed, toUuid(`imagine:${index}:${idea}`)).merged }))
   return {
     imagined: visions.length > 0 && visions.every((entry) => entry.vision.length === (9 * 4)),
     count: visions.length,
@@ -253,8 +245,7 @@ export function imagineTheRest(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Imagine the rest: the portal’s imagination folds together everything still open — the domains the society has yet to discover, the fruit-of-life waves still to fold, and the scientists’ named frontiers — and content-addresses each as a vision, an imagined next that is recomputable and honestly held as not-yet-built.',
     boundary:
-      'A content-addressed enumeration of the portal’s own open ideas (undiscovered fusion domains, unfolded waves, named frontiers), each folded with the imagination seed into a "vision". Imagined possibilities held honestly as open and not-yet-built — not claims that they exist or work, and not a forecast.',
-  }
+      'A content-addressed enumeration of the portal’s own open ideas (undiscovered fusion domains, unfolded waves, named frontiers), each folded with the imagination seed into a "vision". Imagined possibilities held honestly as open and not-yet-built — not claims that they exist or work, and not a forecast.' }
 }
 
 
@@ -280,8 +271,7 @@ export function studentQuantumMind(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Students take exams on each page that form their quantum mind: every passed exam folds into the student’s own content-addressed mind root, kept offline on the device and shareable only by request and approval. The accumulating mind generates infinite creativity (the unbounded generative space) and forges max tampering costs (each result tamper-evident) — it creates without limit and cannot be forged.',
     boundary:
-      'A content-addressed model of a learner’s accumulating self-test record as a "quantum mind" root, stored locally and shared only on consent. The "infinite creativity" is the unbounded deterministic generative space and the forge cost is content-addressing; it is a structural framing of verifiable self-learning, not a measure of intelligence, a credential, or a claim about a real mind.',
-  }
+      'A content-addressed model of a learner’s accumulating self-test record as a "quantum mind" root, stored locally and shared only on consent. The "infinite creativity" is the unbounded deterministic generative space and the forge cost is content-addressing; it is a structural framing of verifiable self-learning, not a measure of intelligence, a credential, or a claim about a real mind.' }
 }
 
 // Students don't know they are on exam — it all happens by just playing. Every play
@@ -311,8 +301,7 @@ export function playMind(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Students don’t know they are on exam — it all happens by just playing: every play folds silently into the student’s offline quantum mind, the results point the musical note the play sounds, and the stream of art continues in balance with the individual (a gentle, personalised shift). Offline by default, shared only by request and approval, verifiable by any job at zero time and cost.',
     boundary:
-      'A content-addressed model of ambient, play-based self-assessment: interactions fold into a local mind record that biases the music and art and can be shared on consent. A structural framing of learning-by-playing; not covert surveillance (it is local and opt-in to share), not a hidden test of any real person, and not a credential.',
-  }
+      'A content-addressed model of ambient, play-based self-assessment: interactions fold into a local mind record that biases the music and art and can be shared on consent. A structural framing of learning-by-playing; not covert surveillance (it is local and opt-in to share), not a hidden test of any real person, and not a credential.' }
 }
 
 // Thousands of animations, self-generated at no cost. Each distinct seed yields a
@@ -333,8 +322,7 @@ export function generativeSpace(samples = (100 * 5 * 4)) {
     statement:
       'Thousands of animations, self-generated at no cost: each distinct seed yields a distinct deterministic palette, melody and movie. A sample of seeds produces all-distinct movies — no collision — so the generative space is effectively unbounded, computed client-side for free.',
     boundary:
-      'A determinism/uniqueness check over the generative seed space: distinct seeds give distinct content-addressed outputs at the sampled scale. "Unbounded" is practical (no collision observed), bounded by the 128-bit address space, not literally infinite.',
-  }
+      'A determinism/uniqueness check over the generative seed space: distinct seeds give distinct content-addressed outputs at the sampled scale. "Unbounded" is practical (no collision observed), bounded by the 128-bit address space, not literally infinite.' }
 }
 
 // A message has a content UUID, and the message unlocks links — but the trinity
@@ -352,8 +340,7 @@ export function messageUnlock(content = '', matrix: MindMatrix = buildMatrix()) 
       glyph: entry.icon,
       complete: entry.verbs.length === 3,
       links: entry.verbs.map((verb) => ({ label: `${entry.area}.${verb}`, command: `concept.${entry.area}.${verb}`, href: `/commands` })),
-      receipt: toUuid(`unlock:${contentUuid}:${entry.area}`),
-    }))
+      receipt: toUuid(`unlock:${contentUuid}:${entry.area}`) }))
     .filter((entry) => entry.complete) // trinity must be complete to be revealed
   return {
     contentUuid,
@@ -361,8 +348,7 @@ export function messageUnlock(content = '', matrix: MindMatrix = buildMatrix()) 
     unlocked,
     root: merge(contentUuid, merkleFold(unlocked.map((entry) => entry.receipt))),
     statement: 'A message has a content UUID and unlocks links, but only a complete trinity reveals them: evoke a whole three-command area and its three links open; a pair or singleton stays locked.',
-    boundary: 'Content-addressed messaging over the command areas; links are model routes, not external resources. The reveal rule is structural (a complete trinity), not a security gate.',
-  }
+    boundary: 'Content-addressed messaging over the command areas; links are model routes, not external resources. The reveal rule is structural (a complete trinity), not a security gate.' }
 }
 
 // Use all skills to make the app as usable as possible — and so prove the prefix
@@ -382,7 +368,6 @@ export function realIntelligence(matrix: MindMatrix = buildMatrix()) {
     evidences,
     root: merkleFold(evidences.map((evidence) => evidence.receipt)),
     statement: 'The intelligence here is computed, in house, self-addressed, and answers with receipts — so the prefix "artificial" is obsolete. It is intelligence: real because it is recomputable, not because it imitates.',
-    boundary: '"Not artificial" means computed, in-house, and self-grounded — NOT a claim of sentience, consciousness, or human-equivalent understanding. Recomputable, not alive.',
-  }
+    boundary: '"Not artificial" means computed, in-house, and self-grounded — NOT a claim of sentience, consciousness, or human-equivalent understanding. Recomputable, not alive.' }
 }
 

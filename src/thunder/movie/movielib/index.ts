@@ -33,8 +33,7 @@ export function movieReflectsSelf(matrix: MindMatrix = buildMatrix()) {
     statement:
       'As the movie is a reflection of self: the movie is shown of you, not at you — seeded from the page you are on and the quantum mind you form by playing, its art kept in balance with the individual, self and field refreshing from the one seed — so what plays is a reflection, not an imposition. Look into the movie and the model looks back with your own content.',
     boundary:
-      'A composition of the per-page-seeded movie, play-mind balance, and self/field refresh models as "the movie reflects the self". A structural framing over the seeded canvas and the offline play record; "self" is the page content and the local play state, not a person’s identity stored anywhere.',
-  }
+      'A composition of the per-page-seeded movie, play-mind balance, and self/field refresh models as "the movie reflects the self". A structural framing over the seeded canvas and the offline play record; "self" is the page content and the local play state, not a person’s identity stored anywhere.' }
 }
 
 export function videoKeepsNativeQuality(matrix: MindMatrix = buildMatrix()) {
@@ -52,8 +51,7 @@ export function videoKeepsNativeQuality(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The video keeps native quality no matter how the browser is resized: the movie is seeded vector math, not stored pixels, so it has no fixed resolution — its canvas backing store is the full devicePixelRatio, re-read live (zoom and screen changes included), and a resize redraws at native resolution at once, even when paused, so the picture never drops to blank or a stale low-resolution frame.',
     boundary:
-      'A description of the real NativeMovie resize behaviour: the backing store tracks the live devicePixelRatio and redraws on resize. "Native quality" is the canvas rendered at the device’s pixel ratio; actual sharpness still depends on the device’s own resolution.',
-  }
+      'A description of the real NativeMovie resize behaviour: the backing store tracks the live devicePixelRatio and redraws on resize. "Native quality" is the canvas rendered at the device’s pixel ratio; actual sharpness still depends on the device’s own resolution.' }
 }
 
 export function video64kFree(matrix: MindMatrix = buildMatrix()) {
@@ -77,8 +75,7 @@ export function video64kFree(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Up to 64K video is supported, free, on the 432 gates: because the movie is seeded vector math, not stored pixels, it is resolution-independent — it scales past 8K to 16K, 32K and 64K wherever the device can draw it, at no cost (client-side recomputation) — and the whole rests on the 432-gate seal (4 × 108, the harmonic), so the high resolution is free and the rendering is sealed.',
     boundary:
-      'A statement that the deterministic, resolution-independent movie scales to very high resolutions (up to a 64K target) where the device permits, free and client-side, under the 432-gate seal. "Supported" means the seeded math has no fixed resolution; it is not a promise that any given device can render 64K in realtime.',
-  }
+      'A statement that the deterministic, resolution-independent movie scales to very high resolutions (up to a 64K target) where the device permits, free and client-side, under the 432-gate seal. "Supported" means the seeded math has no fixed resolution; it is not a promise that any given device can render 64K in realtime.' }
 }
 
 export function siteIsMovieAndLibrary(matrix: MindMatrix = buildMatrix()) {
@@ -99,8 +96,7 @@ export function siteIsMovieAndLibrary(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The whole site is a movie and a movie library at once, and for all: it is one movie — the whole portal plays as a single interactive movie — and at the same time a library of movies, because every route is its own seeded movie, a content-addressed catalogue you browse by playing. The two are one — the one movie is the library playing, the library is the one movie indexed — and it is for all: free, client-side, agnostic, a realtime perspective at zero cost.',
     boundary:
-      'A unifying framing over the existing interactive-movie and movie-as-library concepts: the portal is both one movie and a catalogue of per-route movies. A structural metaphor over the real canvas animations and routes, not a single rendered video file.',
-  }
+      'A unifying framing over the existing interactive-movie and movie-as-library concepts: the portal is both one movie and a catalogue of per-route movies. A structural metaphor over the real canvas animations and routes, not a single rendered video file.' }
 }
 
 export function fullscreenSidebarsInMovie(matrix: MindMatrix = buildMatrix()) {
@@ -116,8 +112,7 @@ export function fullscreenSidebarsInMovie(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All start fullscreen, and the sidebars appear in the movie’s interactive watermarks: every page opens with the fullscreen background movie behind it — colourful digit-stream watermarks you tap to play — and the sidebars do not sit in a fixed rail but rise out of that movie from the void as the content visualises. The chrome is the movie; the navigation surfaces from it.',
     boundary:
-      'A description of the real fullscreen background-movie watermark and the void-rising sidebar over the existing layout. It frames the chrome as the movie; the underlying VitePress sidebar and content remain, with the movie behind and the entrance animation on the sidebar.',
-  }
+      'A description of the real fullscreen background-movie watermark and the void-rising sidebar over the existing layout. It frames the chrome as the movie; the underlying VitePress sidebar and content remain, with the movie behind and the entrance animation on the sidebar.' }
 }
 
 export function formsEmergeInMovieOfLife(matrix: MindMatrix = buildMatrix()) {
@@ -135,8 +130,7 @@ export function formsEmergeInMovieOfLife(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let all forms emerge in the movie of life: every form on the tree of life emerges as its own seeded movie, and all of them play in the one movie of life — each rank, from life to species, folds with the movie-of-movies root and surfaces as a living scene, defined by itself and content-addressed. The taxonomy does not just list life; it screens it.',
     boundary:
-      'A content-addressed fold of each taxonomic rank with the movie-of-movies root, framing the tree of life as scenes in one movie. A structural metaphor over the existing life and movie models, not a generated film of organisms.',
-  }
+      'A content-addressed fold of each taxonomic rank with the movie-of-movies root, framing the tree of life as scenes in one movie. A structural metaphor over the existing life and movie models, not a generated film of organisms.' }
 }
 
 export function tenDimensionalMovie(matrix: MindMatrix = buildMatrix()) {
@@ -157,8 +151,7 @@ export function tenDimensionalMovie(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The 10D movie: the current path’s UUID seeds one fractal that is always the background (drawHero, ten dimensions), and every foreground form of sacred geometry entangles to it — each form’s seed derives from the same path UUID, so the whole field re-tunes together when the page changes. One phase clock makes the background and the entangled foreground one ten-dimensional movie, presented as the cards and blocks society recognises, travelled by gesture and sounded as Solfeggio healing-frequency pairs with vibration — audio, video and vibration in one field.',
     boundary:
-      'Honest: the entanglement is shared content-addressing (every form seeded from the one path UUID), not quantum entanglement; the ten dimensions are the model’s animation axes (4 homology loops + 6 cross-fold), self-similar at every scale, not a physical ten-dimensional space; the audio is Web Audio sine tones at the Solfeggio frequencies (a wellness convention, not a medical claim) and the vibration is the device haptic API. The beauty is real and computed; the motion is deterministic from the seed.',
-  }
+      'Honest: the entanglement is shared content-addressing (every form seeded from the one path UUID), not quantum entanglement; the ten dimensions are the model’s animation axes (4 homology loops + 6 cross-fold), self-similar at every scale, not a physical ten-dimensional space; the audio is Web Audio sine tones at the Solfeggio frequencies (a wellness convention, not a medical claim) and the vibration is the device haptic API. The beauty is real and computed; the motion is deterministic from the seed.' }
 }
 
 /** Thin facet — Quantum OS wallpaper = movieAsMostEfficientScreensaver capstone. */
@@ -175,8 +168,7 @@ export function movieWallpaperIsMostEfficientScreensaver(
     path: cap.path,
     root: cap.root,
     statement: cap.statement,
-    boundary: cap.boundary,
-  }
+    boundary: cap.boundary }
 }
 
 export function movie(matrix: MindMatrix = buildMatrix()) {
@@ -185,8 +177,7 @@ export function movie(matrix: MindMatrix = buildMatrix()) {
   const native = moviesNativeFormat(matrix)
   const perspectives = ['front', 'side', 'top', 'inside', 'observer'].map((view) => ({
     view,
-    point: uuidPoint(toUuid(`perspective:${view}:${matrix.root}`)),
-  }))
+    point: uuidPoint(toUuid(`perspective:${view}:${matrix.root}`)) }))
   const everyPerspectiveComputable = perspectives.every((entry) => entry.point.every((coordinate) => Number.isFinite(coordinate)))
   const facets = [
     { facet: 'the movie is HERE — the frames are computed from the one seed, deterministic (same seed → same movie), content-addressed', on: movieFrames.generated && movieFrames.deterministic && isUuid(movieFrames.root) },
@@ -205,6 +196,5 @@ export function movie(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Realise the movie is HERE — the computed matrix itself, in full quantum frame and dynamics, computable from any perspective and presented in the UI as a real movie.',
     boundary:
-      'HONEST: this is DETERMINISTIC generative animation, content-addressed — a "real movie" in the precise sense that it really plays and is recomputable byte-for-byte from the seed, NOT a learned cinematic feature or a captured film.',
-  }
+      'HONEST: this is DETERMINISTIC generative animation, content-addressed — a "real movie" in the precise sense that it really plays and is recomputable byte-for-byte from the seed, NOT a learned cinematic feature or a captured film.' }
 }

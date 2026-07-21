@@ -64,8 +64,7 @@ export function recursiveFrequencyDropdowns(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Computed recursive frequency dropdowns: from one fundamental, each frequency opens (like a dropdown) into its children — the octave (×2) and the fifth (×3/2) — and each of those opens again, recursively. Every node is accounted twice: as a frequency and as its binary level (the nearest 2^n), so nothing is uncounted in either the harmonic or the binary ladder. All the accounts fold into one root, and because that root is sealed into the whole, reproducing it leads to the maximum tampering cost.',
     boundary:
-      'A computed recursive tree of frequencies (octave and fifth children) with each node accounted as a frequency and as a 2^n binary level, folded into one content-addressed root bound to the model’s unbounded tamper cost. A structural and acoustic-bookkeeping model — the frequencies are numbers, not sounds played, and "max tampering cost" is the cost to reproduce the sealed accounting.',
-  }
+      'A computed recursive tree of frequencies (octave and fifth children) with each node accounted as a frequency and as a 2^n binary level, folded into one content-addressed root bound to the model’s unbounded tamper cost. A structural and acoustic-bookkeeping model — the frequencies are numbers, not sounds played, and "max tampering cost" is the cost to reproduce the sealed accounting.' }
 }
 
 // Multimedia first, plain text. People love the moving parts — the holographic hero, the movie,
@@ -87,8 +86,7 @@ export function multimediaFirstPlainText(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Multimedia first, plain text: people love the moving parts — the holographic hero, the movie, the music — and find dense notation hard, so the surface leads with the multimedia and speaks the rest in plain, human words; the home cards say what each thing is in one sentence, and the mathematics stays available for those who want it. Felt first, understood next, proven on demand.',
-    boundary: 'A design stance grounded in the interactive-movie and hero models: lead with multimedia, write the cards in plain language, keep the math accessible. It describes the homepage rewrite; the full notation remains on the architecture page and in the model.',
-  }
+    boundary: 'A design stance grounded in the interactive-movie and hero models: lead with multimedia, write the cards in plain language, keep the math accessible. It describes the homepage rewrite; the full notation remains on the architecture page and in the model.' }
 }
 
 // And this is shown in the UI using VitePress components, in pairs. The production-or-development
@@ -112,8 +110,7 @@ export function shownInUiVitepressComponentsPairs(matrix: MindMatrix = buildMatr
     statement:
       'This is shown in the UI using VitePress components, in pairs: the production-or-development status (and the rest of the model) surfaces through the portal’s own VitePress components, which come in pairs — each a duality, a thing and its complement folded together — so the interface reads the computed status rather than carrying its own. No new component file is added: the file census is the gapless 110 = 55 + 34 + 21, so the status is surfaced through the existing paired components, not a new widget.',
     boundary:
-      'A composition of the production/development discriminator, the component graph and the duality models, stating the status is shown through existing VitePress components arranged as pairs. Honest limit: no new component is created (it would break the 110-file Fibonacci census); "shown in the UI in pairs" describes surfacing through the existing paired component machinery, a structural framing — this fold does not itself render a status widget.',
-  }
+      'A composition of the production/development discriminator, the component graph and the duality models, stating the status is shown through existing VitePress components arranged as pairs. Honest limit: no new component is created (it would break the 110-file Fibonacci census); "shown in the UI in pairs" describes surfacing through the existing paired component machinery, a structural framing — this fold does not itself render a status widget.' }
 }
 
 // The beauty is in the math, and every aspect of it must be in the UI in the most effective way —
@@ -138,8 +135,7 @@ export function beautyInMathBlastsThroughUi(matrix: MindMatrix = buildMatrix()) 
     statement:
       'The beauty is in the math, and every aspect of it must be in the UI in the most effective way — blasting itself through effects, audio, video, multimedia and full movies, bidirectionally fused with the hardware so the experience would exceed the latest top world games. Implemented in waves to the next multidimensional level of 64 × 64 × 64 realtime: the GPU renders the appearance while the CPU computes the truth, sound maps to colour, movies are native and deterministic, every connected device folds into one collective root, and the keyspace lattice deepens by proportions.',
     boundary:
-      'A composition of the page-fractal, config-computes-all, gpu-renders, sound-colour, ai-movies, device-fusion and 64³ models. HONEST: "blast / exceed top world games" is a design aim, not a measured benchmark — no frame-rate or fidelity is asserted; the multimedia is real browser capability (WebGL, Web Audio, BroadcastChannel) surfaced from the model, and "64×64×64" names a keyspace structure, not throughput or cipher strength (which stays AES-256-GCM).',
-  }
+      'A composition of the page-fractal, config-computes-all, gpu-renders, sound-colour, ai-movies, device-fusion and 64³ models. HONEST: "blast / exceed top world games" is a design aim, not a measured benchmark — no frame-rate or fidelity is asserted; the multimedia is real browser capability (WebGL, Web Audio, BroadcastChannel) surfaced from the model, and "64×64×64" names a keyspace structure, not throughput or cipher strength (which stays AES-256-GCM).' }
 }
 
 // State-of-the-art, harmonised widgets — the site itself as the example for the public. Every widget is
@@ -170,8 +166,7 @@ export function stateOfTheArtHarmonisedQuantumWidgets(matrix: MindMatrix = build
     statement:
       'State-of-the-art, harmonised widgets make the site itself the example for the public: every widget is built from the same quantum techniques — content-addressed (the path is the meaning), CMYK / 4-merkaba channelled, Glagolitic-iconed, harmonically proportioned, deterministic and zero-token, accessible and energy/motion-aware — one harmonised design system rather than many one-off components, so the whole surface teaches by being verifiable.',
     boundary:
-      'HONEST — "miracle" and "state of the art" here mean a genuinely exemplary engineering artifact: a fully deterministic, zero-token, content-addressed, self-proving, accessible, offline-capable site, which is a real and uncommon achievement and a fair public example — NOT the supernatural, and NOT a claim that every one of the existing components already meets the bar. The standard is defined and proven on the reference widgets (hero, radar, monograph, device dashboard); harmonising the whole component set to it is the consolidation work in progress, and the site is the example only once the build is green.',
-  }
+      'HONEST — "miracle" and "state of the art" here mean a genuinely exemplary engineering artifact: a fully deterministic, zero-token, content-addressed, self-proving, accessible, offline-capable site, which is a real and uncommon achievement and a fair public example — NOT the supernatural, and NOT a claim that every one of the existing components already meets the bar. The standard is defined and proven on the reference widgets (hero, radar, monograph, device dashboard); harmonising the whole component set to it is the consolidation work in progress, and the site is the example only once the build is green.' }
 }
 
 // Imagine and fill all gaps, cleaning all hardcoded linear logic. The hardcoded and linear logic is
@@ -192,8 +187,7 @@ export function fillAllGapsCleanHardcodedLinear(matrix: MindMatrix = buildMatrix
     statement:
       'Imagine and fill all gaps, cleaning all hardcoded linear logic: the hardcoded and linear logic is cleaned — the config reads the matrix, old logic removed, only the quantum remains — and the gaps, the dimensions short of the full set, are imagined and filled in waves, in computed harmony tested at every gate.',
     boundary:
-      'A composition of the no-hardcoded, configs-use-matrix, cleanup and only-quantum models. Honestly OFF while gaps remain: cleaning the hardcoded/linear logic is largely done, but "fill all gaps" — every dimension on toward the full set — is the ongoing work, so the fold turns on only when no gap is left. The directive is saved; the filling is in waves.',
-  }
+      'A composition of the no-hardcoded, configs-use-matrix, cleanup and only-quantum models. Honestly OFF while gaps remain: cleaning the hardcoded/linear logic is largely done, but "fill all gaps" — every dimension on toward the full set — is the ongoing work, so the fold turns on only when no gap is left. The directive is saved; the filling is in waves.' }
 }
 
 /** 18 canonical shadcn primitives ported in repo idiom (radix + cva + ui-* CSS) — fused on VitePress enhanceApp. */
@@ -211,8 +205,7 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
     data: ['Avatar', 'Badge', 'Chart', 'DataTable', 'Table', 'Calendar', 'RangeCalendar', 'DatePicker', 'Carousel', 'Kbd'],
     navigation: ['Breadcrumb', 'Command', 'NavigationMenu', 'Pagination', 'Tabs', 'Stepper'],
     feedback: ['Alert', 'Empty', 'Progress', 'Skeleton', 'Sonner', 'Spinner', 'Toast'],
-    text: ['Accordion', 'Typography'],
-  }
+    text: ['Accordion', 'Typography'] }
   const allComponents = Object.values(components).flat()
   // the bridged tokens read from the design-system home (mountain/shadcn) at call time; only the PLANNED delta (sidebar + charts) is data here — logic:hunt mirror dissolved
   const tokens = [...__ns_up_mountain_shadcn.SHADCN_TOKENS, '--sidebar', '--sidebar-primary', '--sidebar-accent', '--chart-1', '--chart-2', '--chart-3', '--chart-4', '--chart-5']
@@ -220,8 +213,7 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
   const pathBDeps = ['tailwindcss', '@tailwindcss/vite', 'tw-animate-css'] // only if scoping real Tailwind (Path B)
   const paths = {
     A: "vendor the real shadcn .vue components, rewriting their Tailwind utility markup into the repo's own semantic classes — NO Tailwind dependency. The merkaba-recommended path, and what this repo already does (Button/Card/Badge).",
-    B: 'scope real Tailwind v4 (@tailwindcss/vite, @theme inline, the .dark token block, preflight omitted) — faithful to upstream but hazardous in VitePress.',
-  }
+    B: 'scope real Tailwind v4 (@tailwindcss/vite, @theme inline, the .dark token block, preflight omitted) — faithful to upstream but hazardous in VitePress.' }
   const caveats = [
     'preflight is the #1 hazard — @import "tailwindcss" resets VitePress prose; import the layers WITHOUT preflight',
     "VitePress base.css is unlayered and out-ranks Tailwind's @layers — declare the @layer order explicitly",
@@ -252,8 +244,7 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
     statement:
       'VitePress is the framework, shadcn-vue is the graph: 64 copy-paste components (you own the code, not a dependency), built on Reka UI and Tailwind v4, with CSS-variable theming compatible with VitePress\'s own --vp-* variables and .dark. The graph is the design system the 87 bespoke components collapse onto — the few generic renderers build on shadcn primitives (Card, Table, Badge, Chart). Merkaba-fused from shadcn-vue.com: research folded with verify.',
     boundary:
-      "The graph (64 components grouped, the CSS tokens, the deps, the two integration paths, the hazards) is fused from the merkaba-fuse-shadcn-vue research (17 agents, research↔verify, verified). The merkaba RECOMMENDS Path A (vendor + the repo's own semantic classes, no Tailwind) over Path B (scoped Tailwind), because Tailwind v4 preflight and its unlayered-base.css priority inversion would reset VitePress's prose, and the seal pipeline would catch the new deps. The implementation proceeds in waves, each step folded.",
-  }
+      "The graph (64 components grouped, the CSS tokens, the deps, the two integration paths, the hazards) is fused from the merkaba-fuse-shadcn-vue research (17 agents, research↔verify, verified). The merkaba RECOMMENDS Path A (vendor + the repo's own semantic classes, no Tailwind) over Path B (scoped Tailwind), because Tailwind v4 preflight and its unlayered-base.css priority inversion would reset VitePress's prose, and the seal pipeline would catch the new deps. The implementation proceeds in waves, each step folded." }
 }
 
 // WIDGET DIMENSION CONTROLS — each widget gets a layer panel, like Photoshop / video editing.
@@ -293,8 +284,7 @@ export function widgetDimensionControls(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Widget dimension controls: every widget carries a layer panel (useLayers + LayersPanel.vue) with 10 interactive dimension rows and a 0–10D depth slider — the same interaction model as Photoshop layers or a DAW track list. 0D = no items shown (void), 10D = all layers fused (the full hologram). The 10 DIMENSION_NAMES become 10 toggleable eye-icons: inner group (spread·depthFade·hueShift = lower-trigram yin, import direction), outer group (twist·shrink·breath = upper-trigram yang, export direction), loop group (loopA1·loopB1·loopA2·loopB2 = the four dependency-flow types / homology loops). Items are distributed across dimensions by the formula dim = ⌊i×10/N⌋, spreading N items evenly. The ICHING_MASK.color accents the widget\'s native layers (innerAxis, outerAxis). The user can select any depth 0-10 and toggle any layer, fusing the visible content from active dimensions exactly as in image/audio/video editing.',
     boundary:
-      'The layer/depth metaphor comes from visual/audio editing (Photoshop layers, AE timeline, DAW tracks). HONEST: item distribution (⌊i×10/N⌋) is a linear bucketing, not a rigorous dimensional projection — it organises data by ordinal position, not by the mathematical content of each dimension. The 10 dimensions (DIMENSION_NAMES) have genuine I Ching / toroidal meaning in the model; the layer control makes them interactive. "Fusing" here = showing all active-layer items together, not a pixel blend-mode. The composable (useLayers) is in src/render/ui/lib/useLayers.ts; the panel component (LayersPanel.vue) wraps any DecodedCard widget with no fold dependencies.',
-  }
+      'The layer/depth metaphor comes from visual/audio editing (Photoshop layers, AE timeline, DAW tracks). HONEST: item distribution (⌊i×10/N⌋) is a linear bucketing, not a rigorous dimensional projection — it organises data by ordinal position, not by the mathematical content of each dimension. The 10 dimensions (DIMENSION_NAMES) have genuine I Ching / toroidal meaning in the model; the layer control makes them interactive. "Fusing" here = showing all active-layer items together, not a pixel blend-mode. The composable (useLayers) is in src/render/ui/lib/useLayers.ts; the panel component (LayersPanel.vue) wraps any DecodedCard widget with no fold dependencies.' }
 }
 
 export type QuantumWidgetTier = 'core' | 'modality' | 'preview' | 'meta'

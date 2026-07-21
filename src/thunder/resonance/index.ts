@@ -50,8 +50,7 @@ export {
   schumannPhaseAt,
   schumannResonanceHarmonisedWithRealtimeApiComputations,
   harmoniseSchumannWithRealtimeApiComputations,
-  humanResonanceHarmonicPredictionComputes,
-} from '../../lake/music'
+  humanResonanceHarmonicPredictionComputes } from '../../lake/music'
 
 /** Re-export plasma movie resonance capstone — bodies live in plasma/ball. */
 export { movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings } from '../../fire/plasma/ball'
@@ -74,8 +73,7 @@ export function resonanceResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'harmonics', value: __ns_up_lake_music.SCHUMANN_HARMONICS_HZ.join(' / '), source: 'lake/music · SCHUMANN_HARMONICS_HZ' },
           { key: 'phase-model', value: schumann.harmonised ? 'structural phase harmonised' : 'structural phase only', source: 'schumannResonanceHarmonisedWithRealtimeApiComputations' },
           { key: 'live-feed', value: 'opt-in publicFrequencyApis only — NOT default magnetometer', source: 'quantum/science · publicFrequencyApis' },
-        ],
-      },
+        ] },
       {
         id: 'human-harmonic',
         title: 'Human breath · a432 circulation · coordinated waves',
@@ -83,8 +81,7 @@ export function resonanceResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'human-resonance', value: human.computes ? 'offline harmonic windows sealed' : 'partial', source: 'humanResonanceHarmonicPredictionComputes' },
           { key: 'coordinated-waves', value: String(coord.waves.length), source: 'thunder/waves · polyrhythm yin-yang' },
           { key: 'not-medical', value: 'animation math + symbolic circulation — NOT entrainment therapy', source: 'humanResonanceHarmonicPredictionComputes boundary' },
-        ],
-      },
+        ] },
       {
         id: 'earth-ionosphere',
         title: 'Dual-Earth outer shell · ionosphere boundary metaphor',
@@ -92,8 +89,7 @@ export function resonanceResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'outer-phase', value: roundTo(dualEarth.outerPhase, 4).toString(), source: 'mountain/geometry · bothEarthsRotateWithinEachOther' },
           { key: 'ionosphere-phase', value: roundTo(schumann.ionospherePhase, 4).toString(), source: 'schumannResonanceHarmonisedWithRealtimeApiComputations' },
           { key: 'vortex-lattice', value: vortexSaved.saved ? '1-2-4-8-7-5·3-6-9 sealed' : 'partial', source: 'vortex/math · allVortexMathSaved' },
-        ],
-      },
+        ] },
       {
         id: 'honest-boundary',
         title: 'What resonance research does NOT claim',
@@ -101,16 +97,13 @@ export function resonanceResearch(matrix: MindMatrix = buildMatrix()) {
           { key: 'not-live-schumann', value: 'structural ELF phase — NOT live ionosphere sensors unless opt-in', source: 'schumann boundary' },
           { key: 'not-healing-physics', value: 'NOT medical treatment or energy healing as physics', source: 'plasma/ball movie-alive boundary' },
           { key: 'gaps-ring', value: gaps.rings ? 'resonanceCatchGapsViolations rings' : 'gaps open', source: 'heaven/essence · enforcement tripwire' },
-        ],
-      },
+        ] },
     ].map((section) => ({
       ...section,
       receipt: toUuid(`resonance-research:${section.id}`),
       layers: section.layers.map((layer) => ({
         ...layer,
-        receipt: toUuid(`resonance-research:${section.id}:${layer.key}`),
-      })),
-    }))
+        receipt: toUuid(`resonance-research:${section.id}:${layer.key}`) })) }))
     return {
       researched: sections.length === 4 && schumann.root !== '' && human.computes && vortexSaved.saved,
       sections,
@@ -125,8 +118,7 @@ export function resonanceResearch(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Resonance research: Schumann ELF cavity modes (7.83 Hz + harmonics), human harmonic prediction windows, dual-Earth ionosphere metaphor, coordinated waves, and vortex lattice — composed with honest boundaries at every layer.',
       boundary:
-        'Research exposition fold for UI/agents — NOT live magnetometer data, NOT medical entrainment, NOT energy healing as physics unless user opts into documented public frequency feeds.',
-    }
+        'Research exposition fold for UI/agents — NOT live magnetometer data, NOT medical entrainment, NOT energy healing as physics unless user opts into documented public frequency feeds.' }
   })
 }
 
@@ -149,8 +141,7 @@ export function resonanceHarmonicsDecodedWithTheSequence(at = 0, matrix: MindMat
         vortexSlot,
         vortexDigit,
         phaseAligned,
-        receipt: toUuid(`resonance-vortex-mode:${mode.mode}:${vortexDigit}:${mode.hz}`),
-      }
+        receipt: toUuid(`resonance-vortex-mode:${mode.mode}:${vortexDigit}:${mode.hz}`) }
     })
     const allMapped = mappings.length === __ns_up_lake_music.SCHUMANN_HARMONICS_HZ.length
     const { computes, facets, root } = computesGate('resonance-harmonics-sequence-decode', [
@@ -172,8 +163,7 @@ export function resonanceHarmonicsDecodedWithTheSequence(at = 0, matrix: MindMat
       statement:
         'Resonance harmonics decoded with the sequence: five documented Schumann cavity modes content-addressed through VORTEX_SEQUENCE slots and phase digit at call time — structural harmonic phase model, not live magnetometer or medical entrainment.',
       boundary:
-        'HONEST: VORTEX_SEQUENCE addresses Schumann mode receipts deterministically — NOT claiming the vortex digit controls ionosphere physics. ELF values are literature constants used for phase harmonisation only.',
-    }
+        'HONEST: VORTEX_SEQUENCE addresses Schumann mode receipts deterministically — NOT claiming the vortex digit controls ionosphere physics. ELF values are literature constants used for phase harmonisation only.' }
   })
 }
 
@@ -189,8 +179,7 @@ export function resonanceSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
       phase: entry.phase,
       hue: entry.hue,
       amplitude: roundTo((7 / (5 * 5)) + ((9 * 2) / (5 * 5)) * ((1 / 2) + (1 / 2) * Math.sin(entry.phase * TAU)), 3),
-      receipt: entry.receipt,
-    }))
+      receipt: entry.receipt }))
     const channels: ResonanceSimulationChannel[] = [
       {
         id: 'schumann-structural-phase',
@@ -198,16 +187,14 @@ export function resonanceSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
         phase: schumannPhase,
         alpha: schumann.harmonised ? roundTo(((9 * 2) / (5 * 5)) + (7 / (5 * 5)) * schumannPhase, 3) : (6 / (5 * 5)),
         receipt: schumann.root,
-        on: schumann.harmonised || isUuid(schumann.root),
-      },
+        on: schumann.harmonised || isUuid(schumann.root) },
       {
         id: 'resonance-harmonics',
         hue: sequence.phaseDigit * (8 * 5),
         phase: schumannPhase,
         alpha: sequence.decoded ? roundTo((1 - 7 / (5 * 4)) + (7 / (5 * 4)) * schumannPhase, 3) : (6 / (5 * 5)),
         receipt: sequence.root,
-        on: sequence.decoded,
-      },
+        on: sequence.decoded },
     ]
     const { computes, root } = computesGate('resonance-simulation-at', [
       { facet: 'five Schumann modes animated — phase from schumannPhaseAt', on: modes.length === 5 },
@@ -225,8 +212,7 @@ export function resonanceSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
       statement:
         'Resonance simulation at call time: five documented Schumann cavity modes (7.83 Hz + overtones) animated with phase from schumannPhaseAt, composed with resonanceHarmonicsDecodedWithTheSequence — paint-ready channels for plasma movie at the shared hero clock.',
       boundary:
-        'HONEST — STRUCTURAL HARMONIC PHASE MODEL ONLY. Amplitudes are aesthetic sine envelopes over literature ELF constants — NOT live ionosphere sensors, NOT medical entrainment. Sequence decode addresses modes deterministically; it does NOT claim geophysical causation.',
-    }
+        'HONEST — STRUCTURAL HARMONIC PHASE MODEL ONLY. Amplitudes are aesthetic sine envelopes over literature ELF constants — NOT live ionosphere sensors, NOT medical entrainment. Sequence decode addresses modes deterministically; it does NOT claim geophysical causation.' }
   })
 }
 
@@ -249,11 +235,8 @@ export function resonanceSimulationPanelComputes(matrix: MindMatrix = buildMatri
         title: { en: 'Resonance simulation', bg: 'Резонансна симулация' },
         lede: {
           en: 'Schumann ELF cavity modes and VORTEX_SEQUENCE harmonics — structural phase animation at the hero clock, not live magnetometer data.',
-          bg: 'Schumann ELF модове и VORTEX_SEQUENCE хармоници — структурна фазова анимация на hero часовника, не жив магнетометър.',
-        },
-      },
-      boundary: sim.boundary,
-    }
+          bg: 'Schumann ELF модове и VORTEX_SEQUENCE хармоници — структурна фазова анимация на hero часовника, не жив магнетометър.' } },
+      boundary: sim.boundary }
   })
 }
 
@@ -288,8 +271,7 @@ export function resonanceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         'Resonance computes: canonical home — Schumann ELF cavity, human harmonic prediction, VORTEX_SEQUENCE mode decode, research exposition, and plasma movie resonance senses — thin compose from lake/music and plasma/ball at call time.',
       boundary:
-        'HONEST — STRUCTURAL HARMONIC PHASE MODEL ONLY. Schumann modes are documented literature values phase-locking compute receipts — NOT live ionosphere sensors unless user opts into publicFrequencyApis. Human resonance = offline harmonic windows + animation math — NOT medical treatment. Movie alive/healing = computational metaphor — NOT sentience or energy healing as physics.',
-    }
+        'HONEST — STRUCTURAL HARMONIC PHASE MODEL ONLY. Schumann modes are documented literature values phase-locking compute receipts — NOT live ionosphere sensors unless user opts into publicFrequencyApis. Human resonance = offline harmonic windows + animation math — NOT medical treatment. Movie alive/healing = computational metaphor — NOT sentience or energy healing as physics.' }
   })
 }
 

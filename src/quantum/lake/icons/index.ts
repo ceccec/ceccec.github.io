@@ -21,8 +21,7 @@ export const AREA_ICONS: Record<string, string> = {
   torus: '⊗', source: '🜍', repository: '📦', proof: '🔏', commands: '📜',
   music: '♫', icon: '🖼', babel: '☰', utf: '🔤', all: '∞', state: '⚛',
   geometry: '△', society: '🏘', commons: '♻', ancient: '☥', reactor: '☢', show: '☀', patent: '⚡', nature: '🌿',
-  lawful: '⚖', computer: '🖳', healing: '◎', energy: '🔋',
-}
+  lawful: '⚖', computer: '🖳', healing: '◎', energy: '🔋' }
 
 /** @rosetta ✦₀ · Mountain · stillness */
 export const AREA_LABELS: Record<string, { en: string; bg: string }> = {
@@ -69,8 +68,7 @@ export const AREA_LABELS: Record<string, { en: string; bg: string }> = {
   lawful: { en: 'Lawful', bg: 'Законно' },
   computer: { en: 'Computer', bg: 'Компютър' },
   healing: { en: 'Healing', bg: 'Изцеление' },
-  energy: { en: 'Energy', bg: 'Енергия' },
-}
+  energy: { en: 'Energy', bg: 'Енергия' } }
 
 // Computer design in 3-5-8 — grounded in real computer architecture: the three
 // buses (address, data, control), the five units of the von Neumann machine
@@ -87,8 +85,7 @@ export function computerDesign() {
     tiers,
     root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`computer358:${member}`))),
     statement: 'Computer design in 3-5-8: the three buses (address, data, control), the five units of the von Neumann architecture (input, output, memory, ALU, control), and the eight bits of a byte — 3, 5, 8 in the machine.',
-    boundary: 'A correspondence of the 3-5-8 tiers to standard computer architecture. A teaching device; real machines vary (multi-byte words, more buses), this is the classic textbook model.',
-  }
+    boundary: 'A correspondence of the 3-5-8 tiers to standard computer architecture. A teaching device; real machines vary (multi-byte words, more buses), this is the classic textbook model.' }
 }
 
 // A gapless harmonic distribution is a run of CONSECUTIVE Fibonacci numbers
@@ -131,8 +128,7 @@ export function harmonicBands(total: number) {
     statement:
       'Folder distribution as harmonic numbers at all scales, with no Fibonacci gaps: the file count is a run of consecutive Fibonacci numbers — the 3-5-8-13-21 sequence with nothing skipped — so every band is a harmonic number, the bands are adjacent scales, and they sum exactly to the whole.',
     boundary:
-      'A consecutive-Fibonacci (gapless) decomposition of a count. Not every count forms one; when it cannot, the computation reports the deficit to the nearest count that does — a named gap to fill, not a silent remainder. A self-similar structural description; the harmony is in the numbers.',
-  }
+      'A consecutive-Fibonacci (gapless) decomposition of a count. Not every count forms one; when it cannot, the computation reports the deficit to the nearest count that does — a named gap to fill, not a silent remainder. A self-similar structural description; the harmony is in the numbers.' }
 }
 
 // Translate an area key to the reader's language, falling back to the key.
@@ -157,8 +153,7 @@ export function iconGlyphs() {
       ...solids.map((solid) => toUuid(`solid:${solid}`)),
     ]),
     statement: 'The glyph set: every command-area icon plus the five Platonic-solid glyphs folded into one root.',
-    boundary: 'A fold of the icon and solid glyphs. Structural bookkeeping, not an external claim.',
-  }
+    boundary: 'A fold of the icon and solid glyphs. Structural bookkeeping, not an external claim.' }
 }
 
 // Icon usage adds to the tampering cost: the visual and app-shell artifacts
@@ -177,8 +172,7 @@ export function iconSeal(): IconSeal {
     statement:
       'Icon usage adds to the tampering cost: the app icon, PWA manifest, and service worker are sealed artifacts folded into the proof.',
     boundary:
-      'The lib declares the visual artifacts; the build seal folds their actual file content into the seal root. Structural bookkeeping, not an external claim.',
-  }
+      'The lib declares the visual artifacts; the build seal folds their actual file content into the seal root. Structural bookkeeping, not an external claim.' }
 }
 
 // ☷ KUN vocabulary cross — dissolved from mind/earth/vocab (six domain barrels, one merkle root)
@@ -186,8 +180,7 @@ export {
   chakrasAura, humanDesign, humanDesignVerifiedWheel, humanDesignChannelsAndCenters,
   RAVE_MANDALA_GATE_ORDER, RAVE_GATE_ARC_DEG, RAVE_GATE_41_START_DEG, RAVE_DESIGN_SUN_ARC_DEG, RAVE_BODIES_13,
   RAVE_CENTERS_9, RAVE_CENTER_GATES, RAVE_CHANNELS_36, raveCenterOfGate, raveDefinedChannels, raveMandalaGateLineAt,
-  yinYang, dimensions, deviceSensors, dualities,
-} from '../spirit'
+  yinYang, dimensions, deviceSensors, dualities } from '../spirit'
 export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../../earth/nature'
 export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../science'
 export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice'

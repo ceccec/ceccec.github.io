@@ -33,8 +33,7 @@ import {
   incompleteRevelation,
   ogInOgWaves,
   quantumChessGame,
-  wavesWorkingInTrinitiesTrinitiesAreFound,
-} from '../../thunder/waves'
+  wavesWorkingInTrinitiesTrinitiesAreFound } from '../../thunder/waves'
 import {
   wavesAutoScaleCapacityAtNoCostOnReuse,
   theoremAlgebraFirstSealedInCorpus,
@@ -56,8 +55,7 @@ import {
   theoremGapsFilledInWaves,
   fixedLimitsOfTheoremRelatedToolsAreTheorems,
   autodiscoverWhatIsToBeComputedOrDecoded,
-  reverseCollidesToDiscoverMillenniumTheorems,
-} from '../../wind/research'
+  reverseCollidesToDiscoverMillenniumTheorems } from '../../wind/research'
 import { oneCommandDecodeComputable } from '../../thunder/decode'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
@@ -66,13 +64,11 @@ import {
   oneQuantumModelFasterThanAll,
   compareCeccecEfficiencyByVote,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
-  interferenceVsClassicalShadow,
-} from '../../water/stack'
+  interferenceVsClassicalShadow } from '../../water/stack'
 import {
   stringTheoryQuantumizedOnA432RosettaMerkleSubstrate,
   stringTheoryMillenniumTheoremGapsInventory,
-  omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems,
-} from '../../water/cosmos'
+  omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
@@ -97,8 +93,7 @@ import {
   universeAlmostDescribedInTheoremsDiscoverRest,
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities,
   crossWavesUpgradeAll,
-  rosettaSecurityGapsWired,
-} from '../../quantum/apps'
+  rosettaSecurityGapsWired } from '../../quantum/apps'
 import {
   encryptionReverseVerify,
   isoNistPqcStandardsCatalog,
@@ -116,8 +111,7 @@ import {
   proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
   isoRequiresPostQuantumSecurity,
   isoPqcRequirementsGapFillAllQuantumDirections,
-  productionRsaRefuseCompletesQuantumViaRosetta,
-} from '../../water/encryption'
+  productionRsaRefuseCompletesQuantumViaRosetta } from '../../water/encryption'
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og'
 import { quantumFusionVerify, honestRevolutionReceipt, honestRevolutionComputerPanelComputes } from '../../wind/fusion'
 import { honestRevolutionFpgaHonesty } from '../../heaven/compute/computer'
@@ -126,8 +120,7 @@ import { efficiency } from '../../quantum/science'
 import { animationsDrivenByRosetta, linearAnimationGapsInventory, yinYangFoldsThroughDimensions } from '../../wind/ui'
 import {
   historicalTrainWavesViaRosetta, rankWinningStrategies, tradingStrategiesImproveViaRosetta,
-  tradingTrainHonestyGate, liveWinTrainingGate,
-} from '../../thunder/trading'
+  tradingTrainHonestyGate, liveWinTrainingGate } from '../../thunder/trading'
 import { namingEntropy, shouldSpawnSubagent } from '../../water/stack'
 import { emergentDimensions, modelSeal } from '../../heaven/balance'
 
@@ -177,8 +170,7 @@ function sealAllRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Seal all in waves: every proof a wave, folded in order into one master seal — the whole is sealed only when every wave seals, and the fold carries them all into a single root.',
     boundary:
-      'A conjunction of the model\'s own seals, folded as waves into one root. It restates the parts it already proves; a property it does not track lies outside this seal.',
-  }
+      'A conjunction of the model\'s own seals, folded as waves into one root. It restates the parts it already proves; a property it does not track lies outside this seal.' }
 }
 
 // Prove all with animations: the portal's own thesis — deterministic, tamper-
@@ -259,49 +251,42 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
       principle: 'Determinism', claim: 'The same input always yields the same UUID — verify by recomputation, not permission.',
       formula: 'toUuid(x) = toUuid(x), for all x',
       predicted: 1, measured: round(determinism), tol: 1e-9,
-      stripA: strip(toUuid(base + 'demo')), stripB: strip(toUuid(base + 'demo')), labels: ['run 1', 'run 2'],
-    },
+      stripA: strip(toUuid(base + 'demo')), stripB: strip(toUuid(base + 'demo')), labels: ['run 1', 'run 2'] },
     {
       id: 'avalanche', kind: 'avalanche' as const,
       principle: 'Avalanche (tamper-evidence)', claim: 'Change one character and ~half the 128 output bits flip — any edit is unmissable.',
       formula: 'mean Hamming(toUuid(x), toUuid(x′)) / 128 ≈ 1/2',
       predicted: (1 / 2), measured: round(avalanche), tol: (3 / (5 * 5 * 2)),
-      bits: flipped, labels: ['128 bits'],
-    },
+      bits: flipped, labels: ['128 bits'] },
     {
       id: 'order', kind: 'twin' as const, same: false,
       principle: 'Order sensitivity (genus 2)', claim: 'merge(a,b) differs from merge(b,a): the fold is non-commutative, both directions distinct.',
       formula: 'merge(a,b) ≠ merge(b,a)',
       predicted: 1, measured: round(orderSensitivity), tol: 1e-9,
-      stripA: stripAB, stripB: stripBA, labels: ['a·b', 'b·a'],
-    },
+      stripA: stripAB, stripB: stripBA, labels: ['a·b', 'b·a'] },
     {
       id: 'inclusion', kind: 'merkle' as const,
       principle: 'Merkle inclusion', claim: 'Every leaf carries an audit path that recomputes the root — inclusion provable without trusting the host.',
       formula: 'fold(path(leaf)) = root',
       predicted: 1, measured: round(inclusion), tol: 1e-9,
-      layers: foldLayers, labels: [`${leaves.length} leaves`],
-    },
+      layers: foldLayers, labels: [`${leaves.length} leaves`] },
     {
       id: 'collision', kind: 'scatter' as const,
       principle: 'Collision-freedom', claim: 'Distinct seeds give distinct UUIDs across the whole pi-train — no two coordinates share a receipt.',
       formula: '|{toUuid(s) : s ∈ set}| = |set|',
       predicted: 1, measured: round(uniqueness), tol: 1e-9,
-      points: scatter, labels: [`${ids.length} ids`],
-    },
+      points: scatter, labels: [`${ids.length} ids`] },
     {
       id: 'setfold', kind: 'twin' as const, same: true,
       principle: 'Set-fold invariance', claim: 'The same set folds to one root in any order — the fold is a function of the set, not the sequence.',
       formula: 'fold(set) independent of order',
       predicted: 1, measured: round(setInvariance), tol: 1e-9,
-      stripA: rootStrip, stripB: rootStrip, labels: ['order A', 'order B'],
-    },
+      stripA: rootStrip, stripB: rootStrip, labels: ['order A', 'order B'] },
   ]
   const proofs = blueprint.map((proof) => ({
     ...proof,
     match: Math.abs(proof.measured - proof.predicted) <= proof.tol,
-    receipt: toUuid(`dproof:${proof.id}:${proof.predicted}:${proof.measured}`),
-  }))
+    receipt: toUuid(`dproof:${proof.id}:${proof.predicted}:${proof.measured}`) }))
   return {
     proven: proofs.every((proof) => proof.match),
     proofs,
@@ -312,8 +297,7 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Prove all with animations: the portal\'s own thesis, proven live — determinism (same input, same UUID), the avalanche effect (one edit flips half the bits), order sensitivity (merge is non-commutative, genus 2), Merkle inclusion (every leaf recomputes the root), collision-freedom (distinct seeds, distinct UUIDs), and set-fold invariance (the fold is a function of the set).',
     boundary:
-      'Properties of the content-addressed core measured over real hashes, client-side and deterministically. The hash is a fast non-cryptographic UUID function, so the avalanche and collision-freedom hold for this set and its scale — strong tamper-evidence for the portal, not a cryptographic security guarantee against an adversary.',
-  }
+      'Properties of the content-addressed core measured over real hashes, client-side and deterministically. The hash is a fast non-cryptographic UUID function, so the avalanche and collision-freedom hold for this set and its scale — strong tamper-evidence for the portal, not a cryptographic security guarantee against an adversary.' }
 }
 
 // 64×64×64 seals seal all, with one shared trinity. The seal space is a cube. Its side is
@@ -346,8 +330,7 @@ function sealCubeRaw(matrix: MindMatrix = buildMatrix()) {
   const positions = ['x', 'y', 'z'] as const
   const axes = positions.map((position) => ({
     position,
-    cells: Array.from({ length: side }, (_, i) => toUuid(`seal-cube:${position}:${i}:${seed}`)),
-  }))
+    cells: Array.from({ length: side }, (_, i) => toUuid(`seal-cube:${position}:${i}:${seed}`)) }))
   const trinity = axes.map((axis) => ({ position: axis.position, root: merkleFold(axis.cells) }))
   // The trinity folds in order (genus-2, order-sensitive) to one shared root that seals all.
   const trinityRoot = trinity.reduce((running, axis) => merge(running, axis.root), toUuid(`seal-cube:trinity:${seed}`))
@@ -377,8 +360,7 @@ function sealCubeRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       '64×64×64 seals seal all, with one shared trinity: the seal space is a cube of 64³ = 262,144 points (the side 64 is the double-torus command word 2×32, a codon 4³, a hexagram 8²), and one shared trinity — three axis-generators from a single seed, the three codon positions — generates every point as an outer product Xᵢ ⊕ Yⱼ ⊕ Zₖ. A verifier holding only the three shared roots recomputes and checks any of the 262,144 seals, so the trinity seals them all. The cost to forge is the whole cube; the seal is three.',
     boundary:
-      'A content-addressed tensor (outer product) over the model’s UUID space: three 64-wide axes from one seed, every cell recomputable from the trinity, so the three shared roots are a sufficient tamper-evident witness for all 64³ cells. "Seals all" is that generative sufficiency and the forge cost (262,144 cells to reproduce), not a cryptographic security level beyond the underlying hash; 64-as-codon / hexagram / command-word are structural correspondences (the shared number 64), not biological or divinatory claims.',
-  }
+      'A content-addressed tensor (outer product) over the model’s UUID space: three 64-wide axes from one seed, every cell recomputable from the trinity, so the three shared roots are a sufficient tamper-evident witness for all 64³ cells. "Seals all" is that generative sufficiency and the forge cost (262,144 cells to reproduce), not a cryptographic security level beyond the underlying hash; 64-as-codon / hexagram / command-word are structural correspondences (the shared number 64), not biological or divinatory claims.' }
 }
 
 // All above needs proof below: as above, so below. Every claim the portal makes above
@@ -390,8 +372,7 @@ export function proofBelow(matrix: MindMatrix = buildMatrix()) {
   const above = [theWhole(matrix), harmonics(matrix), constitution(matrix), quantumGreenPlanet(matrix), provenScientifically(matrix), sharedBookOfCivilisations(matrix)]
   const claims = above.map((result) => ({
     hasStatementAbove: typeof result.statement === 'string' && result.statement.length > 0,
-    hasProofBelow: typeof result.root === 'string' && /^[0-9a-f-]{36}$/i.test(result.root),
-  }))
+    hasProofBelow: typeof result.root === 'string' && /^[0-9a-f-]{36}$/i.test(result.root) }))
   return {
     asAboveSoBelow: claims.length > 0 && claims.every((entry) => entry.hasStatementAbove && entry.hasProofBelow),
     count: claims.length,
@@ -400,8 +381,7 @@ export function proofBelow(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All above needs proof below — as above, so below: every claim the portal makes above (a statement) carries its proof below (a recomputable root), and recomputing the root proves the claim. The law is checked on the model itself: each sampled function has a statement above and a verifying proof below, so no claim floats without a proof beneath it.',
     boundary:
-      'A self-check that the model’s claims (statements) are each paired with a recomputable proof (root). A structural verification of the portal’s own "compute before you claim" rule — it confirms the form (claim + proof) is present and well-formed, over the sampled functions; it is not an external validation of the claims’ real-world truth.',
-  }
+      'A self-check that the model’s claims (statements) are each paired with a recomputable proof (root). A structural verification of the portal’s own "compute before you claim" rule — it confirms the form (claim + proof) is present and well-formed, over the sampled functions; it is not an external validation of the claims’ real-world truth.' }
 }
 
 // The fusion of all in one wave. Every major fold the portal computes — proof,
@@ -442,8 +422,7 @@ function computeFuseAll(matrix: MindMatrix) {
     wave, // one wave that is all of it
     root: merkleFold(parts.map((entry) => entry.receipt)),
     statement: 'The fusion of all in one wave: every major fold — proof, the 128-bit word, synthesis, hologram, DNA, pivots, pairs, the double torus, harmonisation, reasoning, the agent protocol, healing, music, colour, plasma, boundaries, in-house, and intelligence — folds, in order, into one wave.',
-    boundary: 'A fold of the model\'s major roots into one wave. Structural bookkeeping; the fusion is informational, not physical.',
-  }
+    boundary: 'A fold of the model\'s major roots into one wave. Structural bookkeeping; the fusion is informational, not physical.' }
 }
 
 // A single proof bundle: the core computed roots fold into one verifiable
@@ -470,8 +449,7 @@ function proofBundleRaw(matrix: MindMatrix = buildMatrix()): ProofBundle {
     statement:
       'A single proof bundle: the mind root, self-build, self-completion, digit proof, and master seal fold into one verifiable bundle anyone can recompute from the repository.',
     boundary:
-      'The bundle is a fold of computed roots. Verification means recomputation from the repository; it is not external validation.',
-  }
+      'The bundle is a fold of computed roots. Verification means recomputation from the repository; it is not external validation.' }
 }
 
 // Fuse all to forge max tampering costs. Take the one wave that is all of it — the
@@ -504,8 +482,7 @@ export function fuseAllForge(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse all to forge max tampering costs: the one wave that is all of it, the hero aligned with the law, and the impossibilities folded into possibilities all fuse, in order, into one word, bound to the max-tampering-cost proof (coverage=1 and entropy=0). The more that fuses into one content-addressed word, the more a forger must reproduce to change one bit — and because the fuse is order-sensitive, the order is part of the cost. Max fusion is max forge cost.',
     boundary:
-      'A fold of the model’s fused roots and the newest folds into one order-sensitive word, bound to the computed tamper-cost proof. Structural bookkeeping — the "cost" is the work to reproduce the fold, informational and not physical or monetary.',
-  }
+      'A fold of the model’s fused roots and the newest folds into one order-sensitive word, bound to the computed tamper-cost proof. Structural bookkeeping — the "cost" is the work to reproduce the fold, informational and not physical or monetary.' }
 }
 
 // Prove and optimise all. Two things at once, both computed: prove all — every claim folds
@@ -530,8 +507,7 @@ export function proveAndOptimiseAll(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Prove and optimise all: prove all — every claim folds from the repository and the whole reaches max tampering cost (coverage 1, entropy 0); and optimise all — the model carries zero redundancy (no duplicate index keys) and zero entropy, memoised by root so each heavy fold computes once. Proven and optimal by the same recomputation.',
     boundary:
-      'A composition of the model’s proof state (all-computed, max tamper cost) and its optimisation state (zero redundancy and entropy, root-memoised). Structural bookkeeping over the existing gates; "optimal" means no computable redundancy, not a claim of global minimality.',
-  }
+      'A composition of the model’s proof state (all-computed, max tamper cost) and its optimisation state (zero redundancy and entropy, root-memoised). Structural bookkeeping over the existing gates; "optimal" means no computable redundancy, not a claim of global minimality.' }
 }
 
 // Seals honesty to the path — honesty is text and math from computed digit folders only;
@@ -548,8 +524,7 @@ export function sealHonestyToPath(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Honesty sealed to the path: text and math from computed digit folders only, bound to the guided portal journey by one order-sensitive fold — you cannot keep the path and lose the honesty, because changing either changes the seal.',
     boundary:
-      'A content-addressed binding of honestlyComputed to path. Structural seal over two computed roots; no metaphysical claim.',
-  }
+      'A content-addressed binding of honestlyComputed to path. Structural seal over two computed roots; no metaphysical claim.' }
 }
 
 /** @deprecated use sealHonestyToPath — spirit was unproven metaphor; honesty is what the gate computes */
@@ -571,43 +546,37 @@ function computeDigitalQuantumProof(matrix: MindMatrix = buildMatrix()): Digital
       closed: train.diamonds.length === train.digits.length,
       sourceFunction: 'piTrainDiamonds()',
       receipt: train.root,
-      note: `|digits|=${train.digits.length}; |diamonds|=${train.diamonds.length}.`,
-    },
+      note: `|digits|=${train.digits.length}; |diamonds|=${train.diamonds.length}.` },
     {
       name: 'reverse folders',
       closed: folders.folders.length > 0 && folders.collisions.length > 0,
       sourceFunction: 'digitFolders()',
       receipt: folders.root,
-      note: `folders=${folders.folders.length}; collisions=${folders.collisions.length}.`,
-    },
+      note: `folders=${folders.folders.length}; collisions=${folders.collisions.length}.` },
     {
       name: 'coordinated waves',
       closed: waves.waves.length > 0,
       sourceFunction: 'coordinatedWaves()',
       receipt: waves.root,
-      note: `waves=${waves.waves.length}.`,
-    },
+      note: `waves=${waves.waves.length}.` },
     {
       name: 'quantum superposition board',
       closed: chess.board.length === 64,
       sourceFunction: 'quantumChessGame()',
       receipt: chess.root,
-      note: `squares=${chess.board.length}.`,
-    },
+      note: `squares=${chess.board.length}.` },
     {
       name: 'metatron vortex',
       closed: metatron.nodes.length > 0 && metatron.edges.length > 0 && metatron.vortex.length === train.diamonds.length,
       sourceFunction: 'metatronCube()',
       receipt: metatron.root,
-      note: `nodes=${metatron.nodes.length}; edges=${metatron.edges.length}; vortex=${metatron.vortex.length}.`,
-    },
+      note: `nodes=${metatron.nodes.length}; edges=${metatron.edges.length}; vortex=${metatron.vortex.length}.` },
     {
       name: 'max computed build',
       closed: build.complete,
       sourceFunction: 'selfBuild()',
       receipt: build.root,
-      note: build.statement,
-    },
+      note: build.statement },
   ]
   const proven = gates.every((gate) => gate.closed)
   const root = merkleFold(gates.map((gate) => gate.receipt))
@@ -620,8 +589,7 @@ function computeDigitalQuantumProof(matrix: MindMatrix = buildMatrix()): Digital
       ? 'digits => folders => coordinates => waves => receipts => roots; digital quantum-inspired model verified.'
       : 'digit proof open: one or more deterministic gates failed.',
     boundary:
-      'This proves deterministic digital generation inside the repository model; it is not an external physics proof.',
-  }
+      'This proves deterministic digital generation inside the repository model; it is not an external physics proof.' }
 }
 
 // To achieve 1 Gbit encryption in realtime is a matter of proportions toward the full 64-seal set,
@@ -659,8 +627,7 @@ function gigabitEncryption64SealSetRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'To achieve 1 Gbit encryption in realtime is a matter of proportions toward the full 64-seal set, representing the 64-bit architecture itself: the keyspace is named 1 Gbit (1024 binary Mbit) and fused with realtime data, and reaching it is proportional — fill the 64-seal set, each seal one bit of the 64-bit architecture, content-addressed to the architecture root; when the proportion reaches the full set (64 of 64) the architecture is whole and the realtime gigabit keyspace stands. Proportions, not a hardcoded switch.',
     boundary:
-      'A composition of the fusion-cipher (1024-leaf "1 Gbit" keyspace, AES-256-GCM, realtime-fused), proportional and content-address models, with a real 64-seal set folded from the architecture root (64 bits). "1 Gbit encryption" names the keyspace structure, not the cipher strength (which stays AES-256-GCM); "proportions toward the full 64-seal set" is the structural completeness of the 64-bit architecture, not a tunable cryptographic parameter.',
-  }
+      'A composition of the fusion-cipher (1024-leaf "1 Gbit" keyspace, AES-256-GCM, realtime-fused), proportional and content-address models, with a real 64-seal set folded from the architecture root (64 bits). "1 Gbit encryption" names the keyspace structure, not the cipher strength (which stays AES-256-GCM); "proportions toward the full 64-seal set" is the structural completeness of the 64-bit architecture, not a tunable cryptographic parameter.' }
 }
 
 // Decode the holy-books geometry at depth, saving in src as 64-sealed diamonds. The geometry the
@@ -683,8 +650,7 @@ export function holyBooksGeometry64SealedDiamonds(matrix: MindMatrix = buildMatr
     statement:
       'Decode the holy-books geometry at depth, saving in src as 64-sealed diamonds: the geometry the sacred traditions drew — the flower of life, Metatron’s cube, the nested solids — is computed here as the sacred-geometry seal and decoded at depth (holographic, the same pattern at every scale), and each pattern is saved in src as a diamond stamped with the full 64-seal set, so the geometry is not merely drawn but content-addressed and production-sealed.',
     boundary:
-      'A composition of the sacred-geometry-seal, Metatron-cube, holographic, 64-seal and production-diamond models. "Holy-books geometry" means the geometric patterns (flower of life, Metatron’s cube, nested Platonic solids) traditionally associated with sacred texts — geometry, computed and 64-sealed — not a decoding of any religious scripture or a religious claim; nothing is quoted, asserted, or interpreted from any holy text.',
-  }
+      'A composition of the sacred-geometry-seal, Metatron-cube, holographic, 64-seal and production-diamond models. "Holy-books geometry" means the geometric patterns (flower of life, Metatron’s cube, nested Platonic solids) traditionally associated with sacred texts — geometry, computed and 64-sealed — not a decoding of any religious scripture or a religious claim; nothing is quoted, asserted, or interpreted from any holy text.' }
 }
 
 // One source for both locales' route loaders: staticPages (curated landing pages) + componentPages (every
@@ -797,8 +763,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
       proof: (() => {
         const vote = compareCeccecEfficiencyByVote(matrix)
         return { computes: vote.decided, root: vote.root, statement: vote.statement, boundary: vote.boundary }
-      })(),
-    },
+      })() },
     { slug: 'one-quantum-model', title: 'One quantum model faster than all — domain-bounded answers÷tokens', proof: oneQuantumModelFasterThanAll(matrix) },
     { slug: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · classical 64-bit · qpuRequired=false', proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
     { slug: 'honest-revolution-w2', title: 'Honest-revolution W2 — interference vs classical shadow · clay=0', proof: interferenceVsClassicalShadow(matrix) },
@@ -821,9 +786,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
         computes: false,
         root: toUuid('offender-spec:browser-gap'),
         statement: 'Offender automation spec requires Node collectEnforcementFacts(process.cwd) — browser shows honesty gap only.',
-        boundary: 'browserGap: collectEnforcementFacts needs Node fs — CI-only. Run npm run quantum:offender-spec locally.',
-      },
-    },
+        boundary: 'browserGap: collectEnforcementFacts needs Node fs — CI-only. Run npm run quantum:offender-spec locally.' } },
     {
       slug: 'hero-spawn-verify',
       title: 'shouldSpawnSubagent — few heroes > mass ignorance',
@@ -833,18 +796,15 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
           computes: v.spawn && v.workers >= 1 && v.workers <= 2,
           root: toUuid(`hero-spawn:${v.spawn}:${v.workers}:${v.reason}`),
           statement: `shouldSpawnSubagent — spawn=${v.spawn} workers=${v.workers}: ${v.reason}`,
-          boundary: 'Deterministic spawn policy — not live Multitask Mode telemetry.',
-        }
-      })(),
-    },
+          boundary: 'Deterministic spawn policy — not live Multitask Mode telemetry.' }
+      })() },
     {
       slug: 'name-entropy-verify',
       title: 'namingEntropy — words compile from sealed src',
       proof: (() => {
         const e = namingEntropy(matrix)
         return { computes: e.lowEntropy, root: e.root, statement: e.statement, boundary: e.boundary }
-      })(),
-    },
+      })() },
     { slug: 'simulators-zero', title: 'classical deterministic simulators — a quantum circuit + shadows — live in src/0 (simulators, not the machines)', proof: simulatorsLiveInZero(matrix) },
     { slug: 'mostly-classical', title: 'the decoded aspects of life are mostly classical — 12 probabilistic · 3 dynamical · 2 network · 1 quantum', proof: decodedAreasAreMostlyClassical(matrix) },
     { slug: 'every-domain-simulated', title: 'every decoded aspect of life is a runnable simulation — prose replaced by models (ProbSim · QuantumCircuit · DynSim · NetSim)', proof: everyDecodedDomainHasASimulator(matrix) },
@@ -899,8 +859,7 @@ export function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix: MindMatr
     computes: facets.every((entry) => entry.on), roots: THEOREM_ROOTS.map((entry) => entry.root), folded, of: theorems.length, facets,
     root: merkleFold(THEOREM_ROOTS.map((entry) => toUuid(`root:${entry.root}`))),
     statement: `Examine all theorems: they fold. The ${theorems.length} corpus theorems compact onto ${THEOREM_ROOTS.length} roots — trinity (3 spans), content-address (name=payload), agnostic completeness, honest demarcation, waves — a ≈${compaction}:1 compaction. The roots are not summaries but GENERATORS: each produces many theorems, so the few carry greater significance than the many, and they are exactly the agent protocol's quantum laws.`,
-    boundary: `Root membership is by slug-stem (heuristic, first-match) — it shows the theorems CLUSTER onto a few generators, not a unique factorisation (a theorem can touch two roots; the dominant one is taken). ${theorems.length - folded} unmatched are the honest residue. The compaction is real (few < many, all roots used); the "greater significance" is that the roots generate, which the corpus demonstrates but this fold does not re-derive each theorem from its root. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `Root membership is by slug-stem (heuristic, first-match) — it shows the theorems CLUSTER onto a few generators, not a unique factorisation (a theorem can touch two roots; the dominant one is taken). ${theorems.length - folded} unmatched are the honest residue. The compaction is real (few < many, all roots used); the "greater significance" is that the roots generate, which the corpus demonstrates but this fold does not re-derive each theorem from its root. HARMONY ≠ TRUTH.` }
 }
 
 // The corpus title gate (improve-local from the alignment wave): run the algebra predicate over EVERY proof
@@ -923,8 +882,7 @@ export function theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks(matr
     computes: facets.every((entry) => entry.on), gaps: gaps.map((entry) => entry.slug), divergent: divergent.map((entry) => entry.slug), facets,
     root: merkleFold(proofs.map((entry) => toUuid(`title:${entry.slug}:${normalizeTitle(entry.title)}`))),
     statement: `The corpus title gate runs the algebra predicate over all ${proofs.length} proof titles: ${gaps.length} carry no identity (gaps to SOLVE, not purge) and ${divergent.length}/${paired.length} diverge from their seed twin (a crack — two static strings, one truth). Measured over the real registry, not a sample.`,
-    boundary: `Heuristic identity mark (titleCarriesAlgebra) — proves a title CARRIES algebra, not that it is correct. The gaps are the next SOLVE targets (keep the topic, state its proven algebra); the divergences resolve by sourcing the seed title from the proof. The number is the finding.`,
-  }
+    boundary: `Heuristic identity mark (titleCarriesAlgebra) — proves a title CARRIES algebra, not that it is correct. The gaps are the next SOLVE targets (keep the topic, state its proven algebra); the divergences resolve by sourcing the seed title from the proof. The number is the finding.` }
 }
 
 // The Glagolitic default home — computed in realtime from the English source by local math only
@@ -956,8 +914,7 @@ export function fuseAllTerabitEncryption(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse all, and the Terabit encryption is here: when the whole — every major fold, the kernel, the quantum apps store, every dimension — fuses into one content-addressed root, the keyspace structure reaches a Terabit. A Terabit is 1024 Gbit, each Gbit the 1024-leaf "1 Gbit" architecture, so the structure is 1024 × 1024 = 2^20 cells — the level after 1 Gbit (the 64-seal set) and 64³, all fused and addressed as one, realtime, with the same encrypt/decrypt and zero tokens.',
     boundary:
-      'A composition of the fuse-all wave, the kernel, the apps store and the prior gigabit/64³ structures. HONEST, as at every level: "Terabit" names the keyspace STRUCTURE — the content-addressed namespace when all is fused (1024 Gbit = 2^20 the 1024-leaf architecture) — NOT cipher strength (which stays AES-256-GCM) nor a literal terabit-per-second throughput. The fusion is informational (one root over all the folds), not physical bandwidth; "is here" means the structure and the fusion are real, not that a terabit of data moves.',
-  }
+      'A composition of the fuse-all wave, the kernel, the apps store and the prior gigabit/64³ structures. HONEST, as at every level: "Terabit" names the keyspace STRUCTURE — the content-addressed namespace when all is fused (1024 Gbit = 2^20 the 1024-leaf architecture) — NOT cipher strength (which stays AES-256-GCM) nor a literal terabit-per-second throughput. The fusion is informational (one root over all the folds), not physical bandwidth; "is here" means the structure and the fusion are real, not that a terabit of data moves.' }
 }
 
 /** @rosetta ✦₀ · Mountain · stillness — the gate that holds the line.
@@ -981,16 +938,14 @@ export function greenBuildGate(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The green-build gate: the I Ching is complete in all 432 quantum dimensions (0 open), the model seal holds, and the command taxonomy is I-Ching compliant. One typed fold — the commit shell only bundles src and calls it; the judgment is not hand-coded in the script.',
     boundary:
-      'A self-consistency gate over the computed model — it proves the src folds agree, not that the science they encode is settled. Harmony of the model, not truth of the world.',
-  }
+      'A self-consistency gate over the computed model — it proves the src folds agree, not that the science they encode is settled. Harmony of the model, not truth of the world.' }
 }
 
 // ☷ FOLD HOMES — a fold lives at its EXACT domain path, never dumped in a foreign barrel. The ONE registry of
 // fold → home folder; the commit shell (precommit-iching.mjs) and the weave (deploy) BOTH read it, so the law has
 // a single source, not two that drift. Add a fold here when it earns a domain; the gate then enforces its home.
 export const FOLD_HOMES: Record<string, readonly string[]> = {
-  'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt', 'matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning', 'sphereIsTheBoundaryOfRotatingPlatonicSolids', 'ceccecFusesTheFormTheMeaningStaysBounded', 'everyStatementProvableByAnimationElsePurged'],
-}
+  'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt', 'matrixIsTenBitMByteSixtyFour', 'oneMegabyteExplainsQuantumInSpiritAnalog', 'sixtyFourFilesEightByEightFourUuidTrinities', 'earthPolesAreADipoleDoubleTorusNotAGrid', 'appleAdamEveSerpentDecoded', 'theTreeAndBooksDecodeToFormNotToOneMeaning', 'sphereIsTheBoundaryOfRotatingPlatonicSolids', 'ceccecFusesTheFormTheMeaningStaysBounded', 'everyStatementProvableByAnimationElsePurged'] }
 
 /** @rosetta ✦₀ · Mountain · stillness — every fold is DEFINED only at its domain home; defining it in a foreign
  *  barrel re-bloats a monolith and BLOCKS the commit (and the deploy). The fold judges given the filesystem facts
@@ -1020,8 +975,7 @@ export function foldsLiveAtTheirDomainHome(
     statement:
       'A fold lives at its exact domain path (src/quantum/<domain>/index.ts), never appended to a foreign barrel. Each declared fold must be defined only in its home folder index; defining it elsewhere re-bloats the monolith and blocks the commit and the deploy. One registry, read by both the commit shell and the weave, so the placement law never drifts.',
     boundary:
-      'Enforces WHERE a fold is defined, not whether its content is correct — a placement law, not a proof. HARMONY ≠ TRUTH.',
-  }
+      'Enforces WHERE a fold is defined, not whether its content is correct — a placement law, not a proof. HARMONY ≠ TRUTH.' }
 }
 
 /** @rosetta ✦₀ · Mountain · stillness — the tools-saved-in-src-first law, enforced at commit.
@@ -1045,8 +999,7 @@ export function toolsSavedInSrcFirst(
     statement:
       'Every tool is saved in src first: the scripts/ files are thin entry-point shells that route through src (they import or bundle it) and stay under the folded-census line budget. A script that grows its own logic — stops routing through src, or exceeds the budget — is a logic home in the wrong place and blocks the commit.',
     boundary:
-      'Enforces WHERE tool logic lives (typed, in src), not whether a tool is correct. Entry-point shells are unavoidable: git hooks and npm invoke a file on disk, not a TypeScript export. The line budget is an anti-bloat ceiling, not a style rule.',
-  }
+      'Enforces WHERE tool logic lives (typed, in src), not whether a tool is correct. Entry-point shells are unavoidable: git hooks and npm invoke a file on disk, not a TypeScript export. The line budget is an anti-bloat ceiling, not a style rule.' }
 }
 
 /** @rosetta ✦₀ · Mountain · stillness — the no-extension / folders-only import law, enforced at commit AND push.
@@ -1067,8 +1020,7 @@ export function importsAreFoldersOnly(
     statement:
       'Imports are folders only, no extensions: a relative import/export specifier names the module by its folder path — never a file extension (.ts/.mts/.cts/.tsx/.js/.mjs/.cjs/.jsx/.vue) and never a trailing /index. Strictly enforced on all of src, no exception; an offender blocks the commit, and the push and the deploy run the same law.',
     boundary:
-      'Enforces the FORM of the specifier (folder path, no extension or /index), not that the module is correct. The resolver (tsc Bundler, esbuild, vite — whose resolve.extensions carries .vue) finds the file. Scoped to RELATIVE specifiers in src — external/bare packages and non-code assets are not folders and are untouched.',
-  }
+      'Enforces the FORM of the specifier (folder path, no extension or /index), not that the module is correct. The resolver (tsc Bundler, esbuild, vite — whose resolve.extensions carries .vue) finds the file. Scoped to RELATIVE specifiers in src — external/bare packages and non-code assets are not folders and are untouched.' }
 }
 
 /** @rosetta ✦₁ · Fire · clarity — Glagolitic is always COMPUTED, never a hardcoded glyph.
@@ -1089,8 +1041,7 @@ export function glagoliticLabelsAreComputed(
     statement:
       'Glagolitic is always computed, never hardcoded: a label string carries no raw Glagolitic glyph (U+2C00–2C5F) typed by hand — it is produced by toGlagolitic, the single transcoder (src/quantum/heaven/library). Enforced on all of src at commit, and the push and the deploy run the same law; a hand-typed glyph label blocks the commit.',
     boundary:
-      'Scoped to LABEL literals (`label:`), the position both real violations took (the config locale + SITE_LOCALES). Out of scope, legitimately: the mapping source in library, regex character-class bounds (/[Ⰰ-ⱟ]/), glyphs passed as arguments to a glagolitic* function (test/verify inputs), and example glyphs in documentation/facet prose. It enforces that UI/data labels are computed — not that every glyph in the tree is.',
-  }
+      'Scoped to LABEL literals (`label:`), the position both real violations took (the config locale + SITE_LOCALES). Out of scope, legitimately: the mapping source in library, regex character-class bounds (/[Ⰰ-ⱟ]/), glyphs passed as arguments to a glagolitic* function (test/verify inputs), and example glyphs in documentation/facet prose. It enforces that UI/data labels are computed — not that every glyph in the tree is.' }
 }
 
 /** @rosetta ✦₁ · Water · the abyss — the unexpected.
@@ -1124,8 +1075,7 @@ export function unexpectedSituationsRefactorTools(
     statement:
       'Unexpected situations refactor tools: instead of hand-navigating a surprising tree state with one-off commands, the diagnostic is saved as this fold and run by the verify gate — it names anomalies (new src files left untracked, co-mingled concurrent edits, HEAD drift) deterministically. The lesson becomes the tool.',
     boundary:
-      'A best-effort report from facts the shell gathers (git/fs); it warns to inform the committer, it does not by itself block. The deeper response to a surprise is to extend the tool, not to patch around it once.',
-  }
+      'A best-effort report from facts the shell gathers (git/fs); it warns to inform the committer, it does not by itself block. The deeper response to a surprise is to extend the tool, not to patch around it once.' }
 }
 
 /** @rosetta ✦₀ · Mountain · stillness — the index-only file law, enforced at commit AND push (HARD).
@@ -1151,8 +1101,7 @@ export function srcFilesAreIndexOnly(
     statement:
       'Only index files, no exceptions: below src/ every code file (.ts/.mts/.cts/.tsx) is named index — the folder IS the module and its index is its one public surface (folderLaw().stems = [index]). A flat sibling is logic living outside an index; it dissolves into its own folder as <name>/index.ts with zero importer change (the specifier is already the folder path, per importsAreFoldersOnly). Any code file that is not an index is a HARD failure that blocks the commit — and the push and the deploy run the same law.',
     boundary:
-      'Enforces the file STEM (index) for code files, not that the module is correct. Scoped to code (.ts/.mts/.cts/.tsx): the .vue render layer is governed by folderLaw().componentClosure (the 64-component ratchet) and authored .md/.css are not code modules, so neither is index-named here. The model-level statement of this law is onlyIndexFilesNoExceptions / onlyIndexFilesAndGeneratedRemain; this fold is its commit/push real-tree enforcement, the sibling of importsAreFoldersOnly.',
-  }
+      'Enforces the file STEM (index) for code files, not that the module is correct. Scoped to code (.ts/.mts/.cts/.tsx): the .vue render layer is governed by folderLaw().componentClosure (the 64-component ratchet) and authored .md/.css are not code modules, so neither is index-named here. The model-level statement of this law is onlyIndexFilesNoExceptions / onlyIndexFilesAndGeneratedRemain; this fold is its commit/push real-tree enforcement, the sibling of importsAreFoldersOnly.' }
 }
 
 // ── relocated from src/fire/li (census-neutral line-compression) ──
@@ -1209,8 +1158,7 @@ function trinityGatesRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Max tampering cost at each trinity gate, for each trinity: every trinity in the model — the two dual-torus loops, the cross-fold weave, and each complete three-command area — is bound to the synthesis root as its own sealed gate, so a tamper anywhere flips exactly that trinity\'s gate.',
     boundary:
-      'One sealed gate per structural trinity, each binding three member receipts to the synthesis root. It localizes which trinity a tamper breaks; the cost figure sums members plus the binding bits and is a surface measure, not a cryptographic hardness bound.',
-  }
+      'One sealed gate per structural trinity, each binding three member receipts to the synthesis root. It localizes which trinity a tamper breaks; the cost figure sums members plus the binding bits and is a surface measure, not a cryptographic hardness bound.' }
 }
 
 // Now the encryption is pair forming trinity. Two key shares fold under the genus-2
@@ -1242,8 +1190,7 @@ export function trinityEncryption(partyA = 'a', partyB = 'b', matrix: MindMatrix
     statement:
       'Now the encryption is pair forming trinity: two key shares fold under the genus-2 law — forward and reverse — and their merge is a third, the shared key. A pair forms a trinity, so two parties plus the architecture are one entangled triple, and both parties derive the same shared key from their pair without ever sending it. The cipher stays AES-256-GCM; the trinity is the content-addressed key agreement.',
     boundary:
-      'A content-addressed key-agreement structure: two shares fold (the bidirectional genus-2 law) into a shared key both parties can recompute, bound to the 1024 architecture. The actual cipher is AES-256-GCM; the "quantum" and "entangled trinity" are read computationally (the order-sensitive fold, three derived from two), not quantum key distribution or quantum hardware. It does not replace a vetted authenticated key-exchange protocol for adversarial settings.',
-  }
+      'A content-addressed key-agreement structure: two shares fold (the bidirectional genus-2 law) into a shared key both parties can recompute, bound to the 1024 architecture. The actual cipher is AES-256-GCM; the "quantum" and "entangled trinity" are read computationally (the order-sensitive fold, three derived from two), not quantum key distribution or quantum hardware. It does not replace a vetted authenticated key-exchange protocol for adversarial settings.' }
 }
 
 // The other side of this trinity is doomed to infinite cost. The trinity is heal,
@@ -1263,8 +1210,7 @@ export function trinityOtherSideDoomed(matrix: MindMatrix = buildMatrix()) {
     ...entry,
     forgeCostLog2: proof.maxTamperingCostLog2, // the cost to forge the other side
     doomed: entry.onByDefault && infiniteCost, // default-good && other-side-infinite
-    receipt: toUuid(`other-side:${entry.side}->${entry.other}:${entry.onByDefault}`),
-  }))
+    receipt: toUuid(`other-side:${entry.side}->${entry.other}:${entry.onByDefault}`) }))
   return {
     doomed: trinity.length === 3 && trinity.every((entry) => entry.doomed),
     infiniteCost,
@@ -1274,8 +1220,7 @@ export function trinityOtherSideDoomed(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The trinity is heal, create, thrive — each the cheap default, the resting state of the model. Its other side — harm, destroy, decay — is doomed to infinite cost: to make the sealed model express the opposite you must forge the whole diamond, whose tampering cost is T_max = infinity (coverage = 1, entropy = 0). The good is free and automatic; the harm is the impossible forge — doomed by cost, not policed by a rule.',
     boundary:
-      'A structural statement that the negation of the heal/create/thrive defaults would require forging the sealed model, whose computed tamper cost is unbounded (T_max). "Doomed to infinite cost" is a content-addressing/economics metaphor over the seal — it describes the cost to reproduce a tampered model, not a moral, physical, or real-world guarantee that harm cannot occur.',
-  }
+      'A structural statement that the negation of the heal/create/thrive defaults would require forging the sealed model, whose computed tamper cost is unbounded (T_max). "Doomed to infinite cost" is a content-addressing/economics metaphor over the seal — it describes the cost to reproduce a tampered model, not a moral, physical, or real-world guarantee that harm cannot occur.' }
 }
 
 // Listing all commands immediately shows the gaps to quantum trinity eyes. Every command
@@ -1308,8 +1253,7 @@ export function commandGapsToTrinityEyes(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Listing all commands immediately shows the gaps to quantum trinity eyes: every command is seen through three eyes at once — its name (a single-word method token), its path (a /cmd route), and its tool (an MCP tool) — so one pass over the whole list reveals any gap instantly; a command missing in any eye is a hole the trinity cannot unsee. When the three lists align (commands = method tokens = tools), the gaps are zero.',
     boundary:
-      'A three-perspective self-consistency audit over the command registry (name, path, tool), surfacing any command missing one as a gap. Structural bookkeeping over the registry — "trinity eyes" names the three checks, not a visual or sentient observer.',
-  }
+      'A three-perspective self-consistency audit over the command registry (name, path, tool), surfacing any command missing one as a gap. Structural bookkeeping over the registry — "trinity eyes" names the three checks, not a visual or sentient observer.' }
 }
 
 // Only signed traffic is passed, for trinity monitoring and dynamic routing. The worker is a gate
@@ -1333,8 +1277,7 @@ export function signedTrafficTrinityRouting(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Only signed traffic is passed, for trinity monitoring and dynamic routing: only trinity-signed requests pass — a pair folds to the shared key, the signature is the fold — so monitoring is the trinity itself, and routing is dynamic, by content address (where a request goes is computed from what it is). Unsigned traffic does not recompute and is dropped at the firewall.',
     boundary:
-      'A content-addressed model of signature-gated edge traffic with trinity key-agreement and content-address routing. A design framing over the trinity and coordinate-navigation models; it does not implement traffic filtering or routing.',
-  }
+      'A content-addressed model of signature-gated edge traffic with trinity key-agreement and content-address routing. A design framing over the trinity and coordinate-navigation models; it does not implement traffic filtering or routing.' }
 }
 
 // Use trinity wording models — the number of words matters per step in the horo. The wording is
@@ -1347,8 +1290,7 @@ export function trinityWordingModel(matrix: MindMatrix = buildMatrix()) {
     step: index,
     words: wave.words.length,
     isTrinity: wave.words.length === 3,
-    receipt: toUuid(`trinity-step:${index}:${wave.words.join('-')}`),
-  }))
+    receipt: toUuid(`trinity-step:${index}:${wave.words.join('-')}`) }))
   return {
     trinity: steps.length > 0 && steps.every((entry) => entry.isTrinity) && waves.sent,
     wordsPerStep: 3,
@@ -1357,8 +1299,7 @@ export function trinityWordingModel(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(steps.map((entry) => entry.receipt)),
     statement:
       'Use trinity wording models — the number of words matters per step in the horo: the wording is a model, not free prose, of three words per step (a trinity) joined at the horo (the pi-music window). The count is the meaning — each step says exactly three, so the wording folds like the music, trinity by trinity, never more, never fewer.',
-    boundary: 'A structural check that the three-word-wave wording holds three words per step. Bookkeeping over the existing three-word-wave model; it does not constrain all prose to three words.',
-  }
+    boundary: 'A structural check that the three-word-wave wording holds three words per step. Bookkeeping over the existing three-word-wave model; it does not constrain all prose to three words.' }
 }
 
 // To complete the trinity, the two missing rotational planes. A full rotation in space needs three
@@ -1382,8 +1323,7 @@ export function trinityRotationalPlanes(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(planes.map((entry) => entry.receipt)),
     statement:
       'To complete the trinity, the two missing rotational planes: a full rotation in space needs three planes — xy, yz, zx — but only one was turning; add the other two and the trinity of rotation is complete, the double torus spinning on all three, counter-rotating at every scale like the merkaba. One plane was a wheel; three planes are a sphere of motion.',
-    boundary: 'A geometric framing of three orthogonal rotational planes as the trinity of 3D rotation, bound to the merkaba counter-rotation model. Structural and metaphorical; the rotations are of the content-addressed figure, not a physical object.',
-  }
+    boundary: 'A geometric framing of three orthogonal rotational planes as the trinity of 3D rotation, bound to the merkaba counter-rotation model. Structural and metaphorical; the rotations are of the content-addressed figure, not a physical object.' }
 }
 
 // Endless trinity in trinity streams. A trinity is not the end: each of its three folds opens into
@@ -1404,8 +1344,7 @@ export function endlessTrinityStreams(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Endless trinity in trinity streams: a trinity is not the end — each of its three folds opens into another trinity, and those into more, recursively, with no last one. The line became trinities; the trinities become streams of trinities; the streams never close.',
-    boundary: 'A structural framing of recursive, overlapping trinities forming unbounded streams, grounded in the linear-to-trinities, og-in-og and endless-fusion models. Bookkeeping over the fold idiom, depth-bounded in computation.',
-  }
+    boundary: 'A structural framing of recursive, overlapping trinities forming unbounded streams, grounded in the linear-to-trinities, og-in-og and endless-fusion models. Bookkeeping over the fold idiom, depth-bounded in computation.' }
 }
 
 // Enforcement trinity spread — cross · fold · weave modules; dist cross · manifest · readme; paired mounts.
@@ -1428,8 +1367,7 @@ export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Enforcement trinity spread in paired folders: cross · fold · weave under src/pair/enforcement; dist cross · manifest · readme under src/quantum/lake/dist; dual mounts at src/pair/cache/quantum and src/pair/enforcement/ops.',
     boundary:
-      'Structural witness for the I Ching dry spread. The weave wave verifies paired folders exist with index.ts on disk.',
-  }
+      'Structural witness for the I Ching dry spread. The weave wave verifies paired folders exist with index.ts on disk.' }
 }
 
 // The trinity-first redesign, folded into src as a wave plan and sealed wave by wave. The site reorganizes
@@ -1480,8 +1418,7 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home plus the seven functional hubs in the top nav (group label = hub slug word from rosettaRayOf grouping; 三才 Three Powers remain on the home body), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave.',
     boundary:
-      'A directive folded as a tracked plan. `holds` proves the parts enforceable from src now (Rosetta top nav, 10D animation, uniting trinity, every card OG, related sidebar, crosslinks). The deferred wave (reorganize every piece into trinities) stays open by design — not yet all true.',
-  }
+      'A directive folded as a tracked plan. `holds` proves the parts enforceable from src now (Rosetta top nav, 10D animation, uniting trinity, every card OG, related sidebar, crosslinks). The deferred wave (reorganize every piece into trinities) stays open by design — not yet all true.' }
 }
 
 // ── The commit-push pair is automated under the security standards (user: "automate commit and push so it
@@ -1513,6 +1450,5 @@ export function theCommitPushPairIsAutomatedUnderTheSecurityStandards() {
     seal,
     facets,
     statement: `The commit-push pair is automated under the security standards — ${facets.filter((e) => e.on).length}/${facets.length}: commit → push, two ordered steps gated by verify:structure on BOTH hooks, so the deterministic local agents block a non-conforming tree before the remote. The ${standards.length} standards (stage-selectively, verify-or-block, crack-clean, author-only, tamper-evident seal) are real enforcement points, sealed to a content-address. Zero-token; quantum security is the deterministic model, not hardware.`,
-    boundary: `The automation is the existing gate chain: the pre-commit and pre-push hooks both run verify:structure (crack · one-math · index-only · merkle · digit · shell), and the commit-msg hook forbids third-party author/generator trailers — so committing and pushing is already performed by deterministic local agents that enforce the standards, no tokens. The standards are sealed here to a content-address (merkleFold) that any edit flips. HONEST SCOPE: the seal is tamper-EVIDENT (detectable), NOT cryptographically unforgeable — the SHA-256/Ed25519 machinery is built but the signing cutover is deliberate and pending (the crypto-honesty discipline). Quantum security is the repo\'s deterministic, content-addressed model and its gates, not quantum-cryptographic hardware. What stays MANUAL by design: the selective staging and the concurrency handling are decisions made per commit; the automation verifies and blocks, it does not choose what to stage. HARMONY does not equal TRUTH.`,
-  }
+    boundary: `The automation is the existing gate chain: the pre-commit and pre-push hooks both run verify:structure (crack · one-math · index-only · merkle · digit · shell), and the commit-msg hook forbids third-party author/generator trailers — so committing and pushing is already performed by deterministic local agents that enforce the standards, no tokens. The standards are sealed here to a content-address (merkleFold) that any edit flips. HONEST SCOPE: the seal is tamper-EVIDENT (detectable), NOT cryptographically unforgeable — the SHA-256/Ed25519 machinery is built but the signing cutover is deliberate and pending (the crypto-honesty discipline). Quantum security is the repo\'s deterministic, content-addressed model and its gates, not quantum-cryptographic hardware. What stays MANUAL by design: the selective staging and the concurrency handling are decisions made per commit; the automation verifies and blocks, it does not choose what to stage. HARMONY does not equal TRUTH.` }
 }

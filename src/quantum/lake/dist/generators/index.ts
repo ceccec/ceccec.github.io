@@ -73,8 +73,7 @@ export function generators(): Generator[] {
           const dest = `${name}.glagolitic.txt`
           return {
             files: [{ path: dest, content: out }],
-            messages: [`Transliterated to Glagolitic: ${dest} (${out.split('\n').length} lines, from ${srcPath}) — script-conversion, zero network`],
-          }
+            messages: [`Transliterated to Glagolitic: ${dest} (${out.split('\n').length} lines, from ${srcPath}) — script-conversion, zero network`] }
         }
         const verses = bibleParallel()
         const block = verses
@@ -91,10 +90,8 @@ export function generators(): Generator[] {
             block,
             `\n— ${verses.length} founding verses · meaning rendered in Glagolitic · bible.glagolitic.txt + bible.parallel.json`,
             '  local translation service · no machine translation · no network · zero tokens',
-          ],
-        }
-      },
-    },
+          ] }
+      } },
     {
       trigram: 0b010,
       glyph: tri(0b010).glyph,
@@ -108,8 +105,7 @@ export function generators(): Generator[] {
         // The English home body is COMPUTED (homeMarkdown — the one theorem generator shared with the
         // README); the Glagolitic home is its transform, exactly what the Vite plugin serves in realtime.
         return { files: [], messages: [`Glagolitic home (computed, not written):\n ${glagoliticHomeFromEnglish(homeMarkdown()).slice(0, (100 * 2))} …`] }
-      },
-    },
+      } },
     {
       trigram: 0b110,
       glyph: tri(0b110).glyph,
@@ -141,14 +137,12 @@ export function generators(): Generator[] {
           hyperdrive: (b) => ({ hyperdrive: [{ binding: b.varName, id: '<hyperdrive-id>' }] }),
           analytics: (b) => ({ analytics_engine_datasets: [{ binding: b.varName, dataset: 'double_torus_audit' }] }),
           service: (b) => ({ services: [{ binding: b.varName, service: 'double-torus-seal-verifier' }] }),
-          secrets: (b) => ({ secrets_store_secrets: [{ binding: b.varName, store_id: '<secrets-store-id>', secret_name: 'double-torus-secret-uuid' }] }),
-        }
+          secrets: (b) => ({ secrets_store_secrets: [{ binding: b.varName, store_id: '<secrets-store-id>', secret_name: 'double-torus-secret-uuid' }] }) }
 
         const config: Record<string, unknown> = {
           name: 'double-torus',
           compatibility_date: '2025-06-01',
-          pages_build_output_dir: '.vitepress/dist',
-        }
+          pages_build_output_dir: '.vitepress/dist' }
         for (const binding of model.bindings) {
           if (enabled.has(binding.id)) Object.assign(config, fragment[binding.id]!(binding))
         }
@@ -179,10 +173,8 @@ export function generators(): Generator[] {
             `Cloudflare wizard: wrangler.jsonc written — ${enabled.size}/${model.bindings.length} bindings enabled${
               enabled.size ? ` (${[...enabled].join(', ')})` : ' (all optional)'
             }; ${model.bindings.length} total fused, each raising the tampering cost.`,
-          ],
-        }
-      },
-    },
+          ] }
+      } },
     {
       trigram: 0b111,
       glyph: tri(0b111).glyph,
@@ -267,8 +259,7 @@ export function generators(): Generator[] {
           }
         }
         return { files: out, messages, error }
-      },
-    },
+      } },
     {
       trigram: 0b001,
       glyph: tri(0b001).glyph,
@@ -282,10 +273,8 @@ export function generators(): Generator[] {
         const fold = foldVortex()
         return {
           files: [{ path: 'vortex.json', content: `${JSON.stringify(fold, null, 2)}\n` }],
-          messages: [`${tri(0b001).glyph} vortex: valid=${fold.valid} · palindrome=[${fold.palindrome.join(',')}] · total=${fold.total} · inverseHolds=${fold.inverseHolds} → vortex.json`],
-        }
-      },
-    },
+          messages: [`${tri(0b001).glyph} vortex: valid=${fold.valid} · palindrome=[${fold.palindrome.join(',')}] · total=${fold.total} · inverseHolds=${fold.inverseHolds} → vortex.json`] }
+      } },
     {
       trigram: 0b011,
       glyph: tri(0b011).glyph,
@@ -299,10 +288,8 @@ export function generators(): Generator[] {
         const corpus = pesnopoika()
         return {
           files: [{ path: 'songbook.json', content: `${JSON.stringify(corpus, null, 2)}\n` }],
-          messages: [`${tri(0b011).glyph} songbook: ${corpus.count} songs · ${corpus.dictionarySize} dialect entries → songbook.json`],
-        }
-      },
-    },
+          messages: [`${tri(0b011).glyph} songbook: ${corpus.count} songs · ${corpus.dictionarySize} dialect entries → songbook.json`] }
+      } },
     {
       trigram: 0b100,
       glyph: tri(0b100).glyph,
@@ -316,10 +303,8 @@ export function generators(): Generator[] {
         const report = whatIsNotProvenIsPurged()
         return {
           files: [{ path: 'census.json', content: `${JSON.stringify(report, null, 2)}\n` }],
-          messages: [`${tri(0b100).glyph} census: ${report.proven} proven · ${report.purge.length} purged · pure=${report.pureProof} → census.json`],
-        }
-      },
-    },
+          messages: [`${tri(0b100).glyph} census: ${report.proven} proven · ${report.purge.length} purged · pure=${report.pureProof} → census.json`] }
+      } },
     {
       trigram: 0b101,
       glyph: tri(0b101).glyph,
@@ -335,10 +320,8 @@ export function generators(): Generator[] {
         const total = Object.values(links).reduce((n, peers) => n + peers.length, 0)
         return {
           files: [{ path: 'crosslinks.json', content: `${JSON.stringify(links, null, 2)}\n` }],
-          messages: [`${tri(0b101).glyph} crosslinks: ${Object.keys(links).length} pages · ${total} peer links → crosslinks.json`],
-        }
-      },
-    },
+          messages: [`${tri(0b101).glyph} crosslinks: ${Object.keys(links).length} pages · ${total} peer links → crosslinks.json`] }
+      } },
   ]
 }
 
@@ -361,8 +344,7 @@ export function generatorsAreIChing() {
     name: g.name,
     title: g.title,
     glyphMatchesBagua: BAGUA[g.trigram]!.glyph === g.glyph,
-    receipt: toUuid(`generator:${g.trigram}:${g.name}`),
-  }))
+    receipt: toUuid(`generator:${g.trigram}:${g.name}`) }))
   const distinctTrigrams = new Set(slots.map((s) => s.trigram)).size === slots.length
   const filled = slots.length
   const open = BAGUA.length - filled
@@ -377,6 +359,5 @@ export function generatorsAreIChing() {
     statement:
       'The build/debug generators, compacted with the I Ching: eight generators folded into one trigram-indexed registry. Each is placed on the bāguà whose nature it shares — the corpus received (bible → ☷ Earth), the live render that flows (glagolitic → ☵ Water), the optional bindings that pervade (cloudflare → ☴ Wind), the whole made manifest (dist → ☰ Heaven), the sequence that arouses (vortex → ☳ Thunder), the joyous songbook (songbook → ☱ Lake), the stable census (census → ☶ Mountain), the clinging peer map (crosslinks → ☲ Fire). One runner, eight trigrams, all eight filled.',
     boundary:
-      'A SEMANTIC placement of imperative generators onto the I Ching’s eight-fold index (the same convention as iChingDomainMap), plus a genuine de-duplication: the read/write/exit boilerplate is now written once. It organises and compacts; it is not divination, and a generator does not acquire its trigram’s meaning. The plans are pure (files returned, not written); only the runner shell touches the disk.',
-  }
+      'A SEMANTIC placement of imperative generators onto the I Ching’s eight-fold index (the same convention as iChingDomainMap), plus a genuine de-duplication: the read/write/exit boilerplate is now written once. It organises and compacts; it is not divination, and a generator does not acquire its trigram’s meaning. The plans are pure (files returned, not written); only the runner shell touches the disk.' }
 }

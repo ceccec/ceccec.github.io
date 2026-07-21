@@ -94,8 +94,7 @@ export function scienceModelActionFromWords(words: readonly string[]): ScienceMo
     return assertScienceModelAction({
       science: parts[parts.length - 3]!,
       model: parts[parts.length - 2]!,
-      action: parts[parts.length - 1]!,
-    })
+      action: parts[parts.length - 1]! })
   }
   if (parts.length === 2) {
     return assertScienceModelAction({ science: parts[0]!, model: SCHEMA_TWO_LEVEL_MODEL, action: parts[1]! })
@@ -159,8 +158,7 @@ export function scienceModelActionMaskRowsFromMindTails(mindTails: readonly stri
       logicNow: `src/quantum/heaven/mind/${mindTail}/index.ts`,
       logicTarget: srcLogicPathFromScienceModelAction(sma),
       renderPath: renderUiPathFromScienceModelAction(sma),
-      route: `/${tail}`,
-    }
+      route: `/${tail}` }
   })
 }
 
@@ -184,8 +182,7 @@ export function indexRegistryFromLogicRel(logicRel: string, mindMount = 'src/qua
     route: `/${scienceModelActionTail(sma)}`,
     science: sma.science,
     model: sma.model,
-    action: sma.action,
-  }
+    action: sma.action }
 }
 
 function stripComments(text: string): string {
@@ -323,8 +320,7 @@ export function verifyGaplessCensus(count: number) {
     deltaDetail,
     ok: exact && bandsMatch,
     root: harmonic.root,
-    statement: harmonic.statement,
-  }
+    statement: harmonic.statement }
 }
 
 /** Folded census — unfolded + χ = −2; dry clean, no file added or removed. */
@@ -337,8 +333,7 @@ export function verifyFoldedCensus(unfolded: number = UNFOLDED_CENSUS) {
     folded,
     targetFolded: FOLDED_CENSUS,
     ok: folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS,
-    root: toUuid(`folded-census:${u}:${folded}:${folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS}`),
-  }
+    root: toUuid(`folded-census:${u}:${folded}:${folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS}`) }
 }
 
 /** Exactly 432 = 4 × 108 — facet/gate count, not file count. */
@@ -352,8 +347,7 @@ export function verifyDimensionGates(folded: number = FOLDED_CENSUS) {
     target: DIMENSION_GATES,
     exact,
     ok: exact,
-    root: toUuid(`dimension-gates:${folded}:${gates}`),
-  }
+    root: toUuid(`dimension-gates:${folded}:${gates}`) }
 }
 
 /** Vault primitives must be defined only under src/0; src/0 must not import outside the vault. */
@@ -376,8 +370,7 @@ export function scanVaultViolations(
           offenders.push({
             file: rel,
             spec,
-            reason: 'src/0 vault imports an external module — dependency-free leaf only',
-          })
+            reason: 'src/0 vault imports an external module — dependency-free leaf only' })
           continue
         }
         const resolved = resolve(dirname(full), spec)
@@ -385,8 +378,7 @@ export function scanVaultViolations(
           offenders.push({
             file: rel,
             spec,
-            reason: 'src/0 vault imports outside src/0 — agnostic concat lives only in the vault',
-          })
+            reason: 'src/0 vault imports outside src/0 — agnostic concat lives only in the vault' })
         }
       }
       continue
@@ -397,8 +389,7 @@ export function scanVaultViolations(
       if (VAULT_PRIMITIVE_DEF.test(line)) {
         offenders.push({
           file: rel,
-          reason: `vault primitive defined outside ${VAULT_STATION} — fold/UUID/merge live in the dependency-free leaf only`,
-        })
+          reason: `vault primitive defined outside ${VAULT_STATION} — fold/UUID/merge live in the dependency-free leaf only` })
         break
       }
     }
@@ -484,8 +475,7 @@ export function discoverSrcIndexes(root: string, indexTsFiles?: readonly string[
       ...reg,
       automount: indexAutomountEligible(logicRel),
       complete,
-      reasons,
-    })
+      reasons })
   }
   return entries.sort((a, b) => a.route.localeCompare(b.route))
 }
@@ -499,8 +489,7 @@ export function scanIncompleteIndexViolations(
     .filter((entry) => entry.automount && !entry.complete)
     .map((entry) => ({
       file: entry.logic,
-      reason: `incomplete index — ${entry.reasons.join('; ')} (complete indexes automount; no VitePress reconfiguration)`,
-    }))
+      reason: `incomplete index — ${entry.reasons.join('; ')} (complete indexes automount; no VitePress reconfiguration)` }))
     .sort((a, b) => a.file.localeCompare(b.file))
 }
 
@@ -547,8 +536,7 @@ export function scanLogicDisplayViolations(
     if (!existsSync(join(root, uiRel))) {
       offenders.push({
         file: logicRel,
-        reason: `display dual missing — add ${uiRel} (thin mount: ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}) so the folder is a reusable Vue component`,
-      })
+        reason: `display dual missing — add ${uiRel} (thin mount: ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}) so the folder is a reusable Vue component` })
     }
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file))
@@ -567,13 +555,11 @@ export function scanRenderIndexViolations(root: string): ComputationalViolation[
         else if (entry.name.endsWith('.vue') && entry.name !== 'index.vue') {
           offenders.push({
             file: relative(root, full).replace(/\\/g, '/'),
-            reason: 'canonical surface is index.vue only — dissolve flat .vue into <name>/index.vue',
-          })
+            reason: 'canonical surface is index.vue only — dissolve flat .vue into <name>/index.vue' })
         } else if (/\.(ts|tsx|js|mjs)$/.test(entry.name) && entry.name !== 'index.ts') {
           offenders.push({
             file: relative(root, full).replace(/\\/g, '/'),
-            reason: 'canonical logic routes through index.ts barrels — no flat script siblings',
-          })
+            reason: 'canonical logic routes through index.ts barrels — no flat script siblings' })
         }
       }
     }
@@ -602,8 +588,7 @@ export function scanRenderUiScienceMaskViolations(root: string): ComputationalVi
         if (CANONICAL_BANNED_FOLDERS.has(sub.name)) {
           offenders.push({
             file: `${rel}/${sub.name}`,
-            reason: `forbidden under canonical mask — only ${CANONICAL_SCIENCE_MASK}; purge "${sub.name}"`,
-          })
+            reason: `forbidden under canonical mask — only ${CANONICAL_SCIENCE_MASK}; purge "${sub.name}"` })
         }
       }
     }
@@ -620,16 +605,14 @@ export function scanRenderUiScienceMaskViolations(root: string): ComputationalVi
         if (CANONICAL_BANNED_FOLDERS.has(entry.name)) {
           offenders.push({
             file: rel,
-            reason: `forbidden under canonical mask — only ${CANONICAL_SCIENCE_MASK}; purge "${entry.name}"`,
-          })
+            reason: `forbidden under canonical mask — only ${CANONICAL_SCIENCE_MASK}; purge "${entry.name}"` })
         }
         const tail = rel.replace(/^src\/[^/]+\//, '')
         const depth = tail.split('/').filter(Boolean).length
         if (depth > MAX_RECURSION_DEPTH) {
           offenders.push({
             file: rel,
-            reason: `canonical depth ${depth} exceeds science/model/action (${MAX_RECURSION_DEPTH} folder levels)`,
-          })
+            reason: `canonical depth ${depth} exceeds science/model/action (${MAX_RECURSION_DEPTH} folder levels)` })
         }
         walk(full)
       }
@@ -650,8 +633,7 @@ export function scanRenderUiEightFoldViolations(root: string): ComputationalViol
       if (subs.length > MAX_SUBFOLDERS_PER_FOLDER) {
         offenders.push({
           file: relDir,
-          reason: `${subs.length} subfolders (max ${MAX_SUBFOLDERS_PER_FOLDER}) — nest into ≤${MAX_SUBFOLDERS_PER_FOLDER} bāguà children per folder`,
-        })
+          reason: `${subs.length} subfolders (max ${MAX_SUBFOLDERS_PER_FOLDER}) — nest into ≤${MAX_SUBFOLDERS_PER_FOLDER} bāguà children per folder` })
       }
       for (const name of subs) walk(join(dir, name))
     }
@@ -688,8 +670,7 @@ export function scanRenderUiMaskRegistryViolations(
         if (depth === MAX_RECURSION_DEPTH && !expected.has(tail)) {
           offenders.push({
             file: rel,
-            reason: `mask registry miss — "${tail}" is not science/model/action for any logic index (${CANONICAL_SCIENCE_MASK}); purge invented folders`,
-          })
+            reason: `mask registry miss — "${tail}" is not science/model/action for any logic index (${CANONICAL_SCIENCE_MASK}); purge invented folders` })
         }
         if (depth < MAX_RECURSION_DEPTH) walkRegistry(full, science)
       }
@@ -714,8 +695,7 @@ export function scanForbiddenFolderNameViolations(root: string): ComputationalVi
       if (isForbiddenFolderName(entry.name)) {
         offenders.push({
           file: relative(root, full).replace(/\\/g, '/'),
-          reason: `folder named "${entry.name}" is forbidden — every folder is an index; index.ts is the stem file inside, never a folder name (${SRC_SCIENCE_MODEL_ACTION_SCHEMA})`,
-        })
+          reason: `folder named "${entry.name}" is forbidden — every folder is an index; index.ts is the stem file inside, never a folder name (${SRC_SCIENCE_MODEL_ACTION_SCHEMA})` })
       }
       walk(full)
     }
@@ -747,8 +727,7 @@ export function scanRootDistributionViolations(root: string): ComputationalViola
     if (!allowed.has(entry.name)) {
       offenders.push({
         file: `src/${entry.name}`,
-        reason: `non-canonical root — src/ admits exactly {8 trigrams, digits 0-9, pair, quantum, render}; dissolve "${entry.name}" under its computed trigram home`,
-      })
+        reason: `non-canonical root — src/ admits exactly {8 trigrams, digits 0-9, pair, quantum, render}; dissolve "${entry.name}" under its computed trigram home` })
     }
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file))
@@ -869,8 +848,7 @@ export function scanIChingDistribution(root: string, indexTsFiles: readonly stri
       eightFoldViolations.push({
         dir: relDir,
         count: subs.length,
-        trigram: trigramLabelForPath(relDir),
-      })
+        trigram: trigramLabelForPath(relDir) })
     }
     for (const name of subs) walkFanout(join(dir, name))
   }
@@ -951,8 +929,7 @@ export function scanIChingDistribution(root: string, indexTsFiles: readonly stri
     deepestShells: deepestShells.slice(0, 8).map((entry) => entry.rel),
     maxMindRecursion,
     recursionViolations,
-    passed: fanoutOk && harmonyOk && depthOk,
-  }
+    passed: fanoutOk && harmonyOk && depthOk }
 }
 
 /** @deprecated use scanIChingDistribution — Rosetta is 6×7/7×6 (42 areas), not eight-fold. */
@@ -1028,8 +1005,7 @@ export function verifyRosettaTaxonomy(areaCount: number) {
     label: ROSETTA_FOLD_LABEL,
     ok: n === ROSETTA_AREAS,
     root: toUuid(`rosetta-taxonomy:${n}:${ROSETTA_AREAS}`),
-    statement: `Rosetta taxonomy: ${ROSETTA_FOLD_LABEL} = ${ROSETTA_AREAS} areas — the covering grid (6×7 up, 7×6 down), distinct from the I Ching eight-fold (≤${ICHING_EIGHT_FOLD} subfolders per level).`,
-  }
+    statement: `Rosetta taxonomy: ${ROSETTA_FOLD_LABEL} = ${ROSETTA_AREAS} areas — the covering grid (6×7 up, 7×6 down), distinct from the I Ching eight-fold (≤${ICHING_EIGHT_FOLD} subfolders per level).` }
 }
 
 
@@ -1046,8 +1022,7 @@ export function scanStaticPathViolations(root: string): ComputationalViolation[]
       else if (/\.(md|paths\.ts)$/.test(entry.name) && !ALLOWED_PAGE.test(entry.name)) {
         offenders.push({
           file: relative(root, full).replace(/\\/g, '/'),
-          reason: 'paths computed at render — only index.md, [param].md, or [param].paths.ts mounts allowed',
-        })
+          reason: 'paths computed at render — only index.md, [param].md, or [param].paths.ts mounts allowed' })
       }
     }
   }
@@ -1164,8 +1139,7 @@ export function computeComputationalLimitSnapshot(
     rosettaDistribution: ichingDistribution,
     rosettaGuidance: distributionGuidance,
     passed,
-    receipt: merkleFold(parts),
-  }
+    receipt: merkleFold(parts) }
 }
 
 export function computationalGatePassed(snapshot: ComputationalLimitSnapshot): boolean {
@@ -1197,8 +1171,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'gapless-census',
       harmonic: 'census',
-      detail: `${NOT_LESS_NOT_MORE_LAW} — src index census: ${c.indexCount} index.ts, need exactly ${c.targetUnfolded} (${FIBONACCI_BANDS.join('+')}) — ${deltaDetail}; bands=[${c.bands.join('+')}] gapless=${c.gapless}`,
-    })
+      detail: `${NOT_LESS_NOT_MORE_LAW} — src index census: ${c.indexCount} index.ts, need exactly ${c.targetUnfolded} (${FIBONACCI_BANDS.join('+')}) — ${deltaDetail}; bands=[${c.bands.join('+')}] gapless=${c.gapless}` })
   }
   if (!c.foldedOk) {
     findings.push({
@@ -1206,8 +1179,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'folded-census',
       harmonic: 'census',
-      detail: `${NOT_LESS_NOT_MORE_LAW} — folded census: exactly ${c.targetUnfolded} unfolded + χ=${EULER_CHI} → exactly ${c.targetFolded}; got ${c.indexCount} → ${c.indexCount + EULER_CHI}`,
-    })
+      detail: `${NOT_LESS_NOT_MORE_LAW} — folded census: exactly ${c.targetUnfolded} unfolded + χ=${EULER_CHI} → exactly ${c.targetFolded}; got ${c.indexCount} → ${c.indexCount + EULER_CHI}` })
   }
   if (!c.dimensionGatesOk) {
     findings.push({
@@ -1215,8 +1187,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'dimension-gates',
       harmonic: 'census',
-      detail: `${NOT_LESS_NOT_MORE_LAW} — dimension gates: exactly ${HOMOLOGY_LOOPS}×${FOLDED_CENSUS} = ${DIMENSION_GATES} facets (not files)`,
-    })
+      detail: `${NOT_LESS_NOT_MORE_LAW} — dimension gates: exactly ${HOMOLOGY_LOOPS}×${FOLDED_CENSUS} = ${DIMENSION_GATES} facets (not files)` })
   }
   for (const v of c.vaultViolations.slice(0, (6 * 2))) {
     findings.push({
@@ -1224,8 +1195,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'vault-station',
       harmonic: 'vault',
-      detail: `${v.file}: ${v.reason}${v.spec ? ` ('${v.spec}')` : ''}`,
-    })
+      detail: `${v.file}: ${v.reason}${v.spec ? ` ('${v.spec}')` : ''}` })
   }
   if (c.vaultViolations.length > (6 * 2)) {
     findings.push({
@@ -1233,8 +1203,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'vault-station',
       harmonic: 'vault',
-      detail: `${c.vaultViolations.length - (6 * 2)} more vault violation(s) — full list in facts.computational`,
-    })
+      detail: `${c.vaultViolations.length - (6 * 2)} more vault violation(s) — full list in facts.computational` })
   }
   for (const v of c.renderViolations.slice(0, 8)) {
     findings.push({
@@ -1242,8 +1211,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'render-index',
       harmonic: 'render',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   for (const v of c.displayDualViolations.slice(0, 8)) {
     findings.push({
@@ -1251,8 +1219,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'display-dual',
       harmonic: 'render',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   if (c.displayDualViolations.length > 8) {
     findings.push({
@@ -1260,8 +1227,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'display-dual',
       harmonic: 'render',
-      detail: `${c.displayDualViolations.length - 8} more display-dual violation(s) — mirror index.vue at folderLaw.displayDual.computeUiPath`,
-    })
+      detail: `${c.displayDualViolations.length - 8} more display-dual violation(s) — mirror index.vue at folderLaw.displayDual.computeUiPath` })
   }
   for (const v of c.staticPathViolations.slice(0, 8)) {
     findings.push({
@@ -1269,8 +1235,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'static-path',
       harmonic: 'realtime',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   for (const v of c.forbiddenFolderViolations.slice(0, 8)) {
     findings.push({
@@ -1278,8 +1243,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'forbidden-folder-name',
       harmonic: 'folder',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   for (const v of c.incompleteIndexViolations.slice(0, 8)) {
     findings.push({
@@ -1287,8 +1251,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'incomplete-index',
       harmonic: 'folder',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   for (const v of c.rootDistributionViolations.slice(0, 8)) {
     findings.push({
@@ -1296,8 +1259,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'root-distribution',
       harmonic: 'folder',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   for (const v of c.digitLatticeViolations.slice(0, 8)) {
     findings.push({
@@ -1305,8 +1267,7 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'digit-lattice',
       harmonic: 'folder',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   if (!c.ichingDistribution.passed) {
     findings.push({
@@ -1314,16 +1275,14 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
       severity: 'error',
       kind: 'iching-distribution',
       harmonic: 'folder',
-      detail: `I Ching eight-fold — ≤${ICHING_EIGHT_FOLD} subfolders per level + index harmony; ${c.distributionGuidance.slice(0, 3).join(' · ')}`,
-    })
+      detail: `I Ching eight-fold — ≤${ICHING_EIGHT_FOLD} subfolders per level + index harmony; ${c.distributionGuidance.slice(0, 3).join(' · ')}` })
     for (const v of c.ichingDistribution.eightFoldViolations.slice(0, 4)) {
       findings.push({
         wave: 'gate',
         severity: 'error',
         kind: 'eight-fold',
         harmonic: 'folder',
-        detail: `${v.trigram} ${v.dir}: ${v.count} subfolders (max ${ICHING_EIGHT_FOLD}) — split into nested ≤${ICHING_TRIGRAMS} bāguà level`,
-      })
+        detail: `${v.trigram} ${v.dir}: ${v.count} subfolders (max ${ICHING_EIGHT_FOLD}) — split into nested ≤${ICHING_TRIGRAMS} bāguà level` })
     }
   }
 
@@ -1373,8 +1332,7 @@ export function foldingEntropy(root: string): {
     crossFileInterference,
     root: merkleFold([toUuid(`folding-entropy:${paths.length}:${bytes}:${globalCompressed}`)]),
     statement: `Folding entropy over ${paths.length} sealed files (${bytes} bytes): local fold ${(localFold * 100).toFixed(1)}%, global fold ${(globalFold * 100).toFixed(1)}%, cross-file interference ${(crossFileInterference * 100).toFixed(1)}% — the refactor-reachable mass, measured as one superposition, not a linear class-sum.`,
-    boundary: 'HONEST: compression is a Kolmogorov PROXY — the local fold includes syntax and prose statistics that readable source legitimately carries (not purgeable); only the cross-file interference is refactor-reachable, and its value depends on the compressor window (gzip 32KB sees ~1%, brotli 16MB ~4.5%, xz ~9%). The linear class-sum route must converge with it before either number is trusted.',
-  }
+    boundary: 'HONEST: compression is a Kolmogorov PROXY — the local fold includes syntax and prose statistics that readable source legitimately carries (not purgeable); only the cross-file interference is refactor-reachable, and its value depends on the compressor window (gzip 32KB sees ~1%, brotli 16MB ~4.5%, xz ~9%). The linear class-sum route must converge with it before either number is trusted.' }
 }
 
 /** Theorem sources (user law 2026-07-16: every card page exposes the source code of how all is
@@ -1445,8 +1403,7 @@ export function proseTokenMonitor(root: string): {
     offenders,
     root: merkleFold([toUuid(`prose-token-monitor:${paths.length}:${bytes}:${staticString}`)]),
     statement: `Prose-token monitor over ${paths.length} sealed files (${bytes} bytes): static prose ${staticString} bytes (${(proseShare * 100).toFixed(1)}%), computed-template text ${templateText}, comments ${comment}, code ${code}. Top spender: ${offenders[0]?.file ?? 'none'} (${offenders[0]?.staticString ?? 0} prose bytes).`,
-    boundary: 'A MONITOR, not a red gate: static prose includes legitimate sealed decodes (documented sources, flagged claims) that must stay readable; the ratchet target is statements/boundaries in METHODS becoming computed concatenations. Bytes are a proxy for LLM tokens (≈4 bytes/token English); the walk is the same state machine as the crack scanner, so template interpolations count as code.',
-  }
+    boundary: 'A MONITOR, not a red gate: static prose includes legitimate sealed decodes (documented sources, flagged claims) that must stay readable; the ratchet target is statements/boundaries in METHODS becoming computed concatenations. Bytes are a proxy for LLM tokens (≈4 bytes/token English); the walk is the same state machine as the crack scanner, so template interpolations count as code.' }
 }
 
 /** The source atlas — every sealed index enumerated with its science and domain path (the whole-source
@@ -1487,7 +1444,7 @@ export function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDangling
     }
   }
   const degree: Record<string, number> = Object.fromEntries(homes.map((home) => [home, 0]))
-  for (const edge of edges) { const [a, , b] = edge.split(' '); degree[a!] += 1; degree[b!] += 1 }
+  for (const edge of edges) { const [a,  b] = edge.split(' '); degree[a!] += 1; degree[b!] += 1 }
   const importDangling = homes.filter((home) => degree[home]! < 2)
   // REFUTABLE method check: a synthetic home with degree < 2 IS flagged (the check can fail, not a tautology)
   const syntheticDegree: Record<string, number> = { a: 3, b: 2, lonely: 1 }
@@ -1506,8 +1463,7 @@ export function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDangling
     importDangling: importDangling.length,
     facets,
     statement: `Theorem relations are the import/export graph, not tag-sharing — zero dangling by the real relation — ${facets.filter((entry) => entry.on).length}/${facets.length}. Tag/home-sharing is a crack: it flags ${tagCrackDangling.length} singleton-home theorems as dangling, but home-sharing is a coincidence, unfalsifiable, not a relation. The real relation is the import graph — A relates to B iff A's module imports B, a parseable refutable edge — computed live: ${homes.length} theorem-homes, ${edges.size} import-edges among them, and every home has import-degree ≥ 2, so ${importDangling.length} are dangling. The ${tagCrackDangling.length} the tag-crack flagged are all connected by imports. By the honest relation the corpus is balanced — no theorem is isolated — and the method is refutable (a degree-<2 home would be caught), so 0 is a result, not a tautology.`,
-    boundary: `Computed live from the source, refutable: the import edges are parsed from each theorem-home's index.ts at call time, the degree is counted, and a synthetic degree-<2 case confirms the check can fail. The relation is the DIRECT import graph (A imports a path resolving to theorem-home B); it undercounts indirect relations through barrels, so the true relation graph is at least this dense — 0 dangling is a floor, not a ceiling. WHY TAG-SHARING IS THE CRACK: a tag/home coincidence cannot fail as a relation (everything shares some label), so it neither confirms nor refutes a real dependency — it manufactured ${tagCrackDangling.length} false danglers here; the import edge is a real, checkable dependency. This gate reads the filesystem, so it runs at build/CLI, not on the client. DEPLOYMENT: wire importDangling.length === 0 as a blocking conservation gate (with the direct-import relation named as the axiom) — that turns "every theorem relates to ≥ 2 others" from a demonstration into an enforced law over the real registry; the earlier home/tag reading is retired as the crack it is.`,
-  }
+    boundary: `Computed live from the source, refutable: the import edges are parsed from each theorem-home's index.ts at call time, the degree is counted, and a synthetic degree-<2 case confirms the check can fail. The relation is the DIRECT import graph (A imports a path resolving to theorem-home B); it undercounts indirect relations through barrels, so the true relation graph is at least this dense — 0 dangling is a floor, not a ceiling. WHY TAG-SHARING IS THE CRACK: a tag/home coincidence cannot fail as a relation (everything shares some label), so it neither confirms nor refutes a real dependency — it manufactured ${tagCrackDangling.length} false danglers here; the import edge is a real, checkable dependency. This gate reads the filesystem, so it runs at build/CLI, not on the client. DEPLOYMENT: wire importDangling.length === 0 as a blocking conservation gate (with the direct-import relation named as the axiom) — that turns "every theorem relates to ≥ 2 others" from a demonstration into an enforced law over the real registry; the earlier home/tag reading is retired as the crack it is.` }
 }
 
 // Only rosetta wirings are needed — if you do the global math. 502 explicit import-edges is over-wiring: each import
@@ -1547,8 +1503,7 @@ export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTh
     rosettaRoot: rosettaRoot.slice(0, 2 * 6),
     facets,
     statement: `Only rosetta wirings are needed — the global content-address fold replaces the import edges — ${facets.filter((entry) => entry.on).length}/${facets.length}. ${edgeCount} explicit import-edges is over-wiring: each import hardcodes who-uses-whom by PATH, O(edges) coupling that breaks when a home moves — not agnostic. The rosetta needs one thing per node: its content-address (toUuid of the theorem), path-independent, so it survives any move. The global math folds all ${nodes} addresses to ONE root, so relationships are resolved by the global structure, not stored as edges — ${nodes} agnostic wirings replace ${edgeCount} path-couplings. And it self-evolves: add a theorem and the root recomputes with no rewiring; move one and its address (its relations) are preserved. Do the global math and only the rosetta wiring is needed.`,
-    boundary: `Computed live: the ${edgeCount} import-edges are re-parsed from source, the ${nodes} content-addresses are recomputed from the theorems alone (path-independent, verified by ignoring home), and the global fold to one root is deterministic on add. THE ARGUMENT is about the RELATION layer, honestly: the TypeScript imports remain — the language needs them to COMPILE, and they are the implementation — but the AGNOSTIC, self-evolving RELATION between theorems is the content-address rosetta, which is location-independent and O(n) (one address per node, one global root), whereas the explicit import graph is O(edges) and path-coupled. So the 502-edge relation measure (from the prior fold) was itself the over-wired view; the rosetta is the right one. WHAT THIS DOES NOT CLAIM: that source files can drop their imports (they cannot, and dynamic content-address resolution has its own runtime cost); the claim is that the RELATION graph the system reasons and evolves over should be the rosetta (content-address + global fold), not the pairwise import edges — resolve relationships by the global math, wire each node to the rosetta once. DEPLOYMENT: compute theorem relations from the shared rosetta structure (content-address neighbourhoods in the global fold), retiring both tag-sharing (a crack) and the raw import graph (over-wired) as the relation measure. HARMONY ≠ TRUTH: "only rosetta wirings" is the harmony; the truth is that the agnostic relation is O(n) content-addresses folding to one root, path-independent and self-evolving, while imports stay a compile-time implementation detail.`,
-  }
+    boundary: `Computed live: the ${edgeCount} import-edges are re-parsed from source, the ${nodes} content-addresses are recomputed from the theorems alone (path-independent, verified by ignoring home), and the global fold to one root is deterministic on add. THE ARGUMENT is about the RELATION layer, honestly: the TypeScript imports remain — the language needs them to COMPILE, and they are the implementation — but the AGNOSTIC, self-evolving RELATION between theorems is the content-address rosetta, which is location-independent and O(n) (one address per node, one global root), whereas the explicit import graph is O(edges) and path-coupled. So the 502-edge relation measure (from the prior fold) was itself the over-wired view; the rosetta is the right one. WHAT THIS DOES NOT CLAIM: that source files can drop their imports (they cannot, and dynamic content-address resolution has its own runtime cost); the claim is that the RELATION graph the system reasons and evolves over should be the rosetta (content-address + global fold), not the pairwise import edges — resolve relationships by the global math, wire each node to the rosetta once. DEPLOYMENT: compute theorem relations from the shared rosetta structure (content-address neighbourhoods in the global fold), retiring both tag-sharing (a crack) and the raw import graph (over-wired) as the relation measure. HARMONY ≠ TRUTH: "only rosetta wirings" is the harmony; the truth is that the agnostic relation is O(n) content-addresses folding to one root, path-independent and self-evolving, while imports stay a compile-time implementation detail.` }
 }
 
 // The facets-must-compute debt, measured live: facets gated on hardcoded `on: true` prove nothing (always pass) — the
@@ -1587,8 +1542,7 @@ export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(
     topFiles: topFiles.map(([f, n]) => `${f}:${n}`),
     facets,
     statement: `The facets-must-compute debt is ${total} hardcoded on: true facets, ${declaredHonest} labelled honest — ${facets.filter((entry) => entry.on).length}/${facets.length}. Scanned live from ${files.length} source files: ${total} facets across ${Object.keys(perFile).length} files are gated on a hardcoded true, so each proves nothing (always passes) — the facets-must-compute violation the session has been correcting, at corpus scale. ${declaredHonest} are labelled "honest" — a boundary sentence dressed as a facet, the declared-honesty crack. The count is computed, not asserted, so it is a tracked worklist: each facet given a refutable computation (or its prose moved to the boundary and the facet dropped) lowers the number, and a new on: true raises it. The paydown is now measurable.`,
-    boundary: `Computed live: the debt is scanned from the real source (${files.length} .ts files walked at call time), refutable by re-running — not a hand-typed figure. THE FINDING: ${total} facets across the corpus are gated on hardcoded on: true, a fact that always holds and therefore proves nothing — the same crack class as x >= 0 (the tautology gate) and declared honesty (a demarcation with no refutable facet). ${declaredHonest} carry the word "honest", making them the declared-honesty crack precisely: an honesty claim asserted in a facet that cannot fail. THE PAYDOWN is per-fold judgement, not a batch: each facet either (a) gets a refutable computation that actually tests its claim, or (b) is recognised as boundary prose — moved into the boundary and the facet removed (the honest form, since a pure disclaimer is not a facet). This scanner does not fix them; it makes the debt a tracked, refutable number so progress is visible and regressions are caught, the necessary first step of paying it down. Build/CLI only (reads FS). HARMONY ≠ TRUTH: a green fold with on: true facets is the harmony; the truth is those facets prove nothing, and the honest corpus has zero — the number to drive down.`,
-  }
+    boundary: `Computed live: the debt is scanned from the real source (${files.length} .ts files walked at call time), refutable by re-running — not a hand-typed figure. THE FINDING: ${total} facets across the corpus are gated on hardcoded on: true, a fact that always holds and therefore proves nothing — the same crack class as x >= 0 (the tautology gate) and declared honesty (a demarcation with no refutable facet). ${declaredHonest} carry the word "honest", making them the declared-honesty crack precisely: an honesty claim asserted in a facet that cannot fail. THE PAYDOWN is per-fold judgement, not a batch: each facet either (a) gets a refutable computation that actually tests its claim, or (b) is recognised as boundary prose — moved into the boundary and the facet removed (the honest form, since a pure disclaimer is not a facet). This scanner does not fix them; it makes the debt a tracked, refutable number so progress is visible and regressions are caught, the necessary first step of paying it down. Build/CLI only (reads FS). HARMONY ≠ TRUTH: a green fold with on: true facets is the harmony; the truth is those facets prove nothing, and the honest corpus has zero — the number to drive down.` }
 }
 
 // Improve analytics and token efficiency together: the corpus's analytics are DETERMINISTIC functions of the content-
@@ -1636,8 +1590,7 @@ export function theAnalyticsAreZeroTokenComputedFromTheCorpusTheMarginalCostOfAM
     receipt: receipt.slice(0, 2 * 6),
     facets,
     statement: `The analytics are zero-token, computed from the corpus — the marginal cost of a metric is zero — ${facets.filter((entry) => entry.on).length}/${facets.length}. The metrics (${metrics.map((m) => `${m.name}=${m.value}`).join(', ')}) are pure functions of the content-addressed source, so they cost 0 LLM tokens, and the marginal token cost of the next metric is also 0 (it is code, not a generated summary) — an LLM-served analytic costs O(tokens) per metric and grows with the count, so the token-efficiency ratio is unbounded. They are exact and reproducible (content-addressed to a receipt, same corpus → same metric), private (from the corpus, not user tracking). Honest: zero LLM tokens ≠ zero compute — the build runs deterministic O(n) code; the win is LLM-free and tracking-free, served O(1) at runtime.`,
-    boundary: `Computed live: the metrics are re-derived from THEOREM_ATOM_SEED and the source at call time (reusing the import-graph and debt scanners), and the determinism is verified (recompute = identical), which is the ZERO-TOKEN proof — an LLM output is not bit-reproducible, so a reproducible metric had no model in its loop. THE EFFICIENCY, stated exactly: the LLM token cost of a deterministic metric is 0, and 0 for any number K of metrics (marginal 0), whereas an LLM analytic pays ~O(output tokens) per metric growing with K — so the ratio (LLM / computed) is unbounded, the real token-efficiency win of the zero-token policy [[zero-token-policy]]. THE HONEST BOUND, refutable not declared: zero LLM tokens is NOT zero cost — the build executes deterministic O(n) code (CPU and wall-time, the [[build-time-is-a-theorem-test]] budget), and that compute is the true cost; the claim is only that no LLM tokens are spent and no user is tracked (the analytics read the corpus structure, not behaviour — privacy-preserving by construction), and the pre-computed result serves O(1) at runtime. It does NOT claim the analytics are free, faster than a database, or that computing more metrics is costless in CPU — only that the LLM-token and tracking costs are zero. HARMONY ≠ TRUTH: zero-token analytics is the harmony; the truth is deterministic recomputation (0 model tokens, exact, private) at a real but LLM-free compute cost.`,
-  }
+    boundary: `Computed live: the metrics are re-derived from THEOREM_ATOM_SEED and the source at call time (reusing the import-graph and debt scanners), and the determinism is verified (recompute = identical), which is the ZERO-TOKEN proof — an LLM output is not bit-reproducible, so a reproducible metric had no model in its loop. THE EFFICIENCY, stated exactly: the LLM token cost of a deterministic metric is 0, and 0 for any number K of metrics (marginal 0), whereas an LLM analytic pays ~O(output tokens) per metric growing with K — so the ratio (LLM / computed) is unbounded, the real token-efficiency win of the zero-token policy [[zero-token-policy]]. THE HONEST BOUND, refutable not declared: zero LLM tokens is NOT zero cost — the build executes deterministic O(n) code (CPU and wall-time, the [[build-time-is-a-theorem-test]] budget), and that compute is the true cost; the claim is only that no LLM tokens are spent and no user is tracked (the analytics read the corpus structure, not behaviour — privacy-preserving by construction), and the pre-computed result serves O(1) at runtime. It does NOT claim the analytics are free, faster than a database, or that computing more metrics is costless in CPU — only that the LLM-token and tracking costs are zero. HARMONY ≠ TRUTH: zero-token analytics is the harmony; the truth is deterministic recomputation (0 model tokens, exact, private) at a real but LLM-free compute cost.` }
 }
 
 // Document all trinities observed — two make three. Every trinity is foldPair: two content-addresses fold to a
@@ -1686,8 +1639,7 @@ export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndThe
     census: census.slice(0, 2 * 6),
     facets,
     statement: `Documented all trinities observed — two make three, ${observed.length} trinity folds across the corpus — ${facets.filter((entry) => entry.on).length}/${facets.length}. The common structure of every trinity is foldPair: two content-addresses fold to a bidirectional THIRD (the merged apex), order-sensitive (forward ≠ reverse) but one third. The corpus carries ${observed.length} trinity folds spanning ${categories.length} categories — ${categories.map((c) => c.kind).join(', ')} — each a two-make-three. The trinity is the ATOM of the self-scaling structure: two trinities' apexes fold to a higher trinity, so every larger fold is trinities of trinities. Computed live: the count is scanned from the source, the structure verified over a range, refutable.`,
-    boundary: `Computed live: the ${observed.length} trinity folds are scanned from the real source (every export matching /\\w*[Tt]rinit\\w*/), so the census is a refutable number, not a hand list; the two-make-three structure (foldPair(a,b) → a bidirectional merged third, forward ≠ reverse) is verified over a range, and the self-composition (two apexes fold to a higher trinity) is verified — the trinity is a genuine algebraic atom (foldPair is associative-shaped: it always yields one third). THE CATEGORIES are the observed SHAPES the trinity takes across the corpus: structural (the recursive pair→apex), open-graph (the card), accounting (two debits + one credit — the double-entry apex), enforcement (gate·cross·fold, 2-of-3 consensus), navigation (three doors), inverse (axiom + theorem + the binding fold) — each cites a real fold. WHAT IS DOCUMENTED, NOT NOVEL: "two make three" is the foldPair content-address structure the corpus is built on (every merkle parent is a trinity of two children + their hash), named and counted here, not a new result; the number ${observed.length} is the count of folds whose NAME carries "trinity", a lower bound on the actual two-make-three structures (every merkleFold and foldPair is one, unnamed). HARMONY ≠ TRUTH: "${observed.length} trinities observed" is the harmony; the truth is foldPair(a,b) → one bidirectional third, counted by name and verified structurally [[operator-algebra-closed]] [[pairsFormTrinities…]].`,
-  }
+    boundary: `Computed live: the ${observed.length} trinity folds are scanned from the real source (every export matching /\\w*[Tt]rinit\\w*/), so the census is a refutable number, not a hand list; the two-make-three structure (foldPair(a,b) → a bidirectional merged third, forward ≠ reverse) is verified over a range, and the self-composition (two apexes fold to a higher trinity) is verified — the trinity is a genuine algebraic atom (foldPair is associative-shaped: it always yields one third). THE CATEGORIES are the observed SHAPES the trinity takes across the corpus: structural (the recursive pair→apex), open-graph (the card), accounting (two debits + one credit — the double-entry apex), enforcement (gate·cross·fold, 2-of-3 consensus), navigation (three doors), inverse (axiom + theorem + the binding fold) — each cites a real fold. WHAT IS DOCUMENTED, NOT NOVEL: "two make three" is the foldPair content-address structure the corpus is built on (every merkle parent is a trinity of two children + their hash), named and counted here, not a new result; the number ${observed.length} is the count of folds whose NAME carries "trinity", a lower bound on the actual two-make-three structures (every merkleFold and foldPair is one, unnamed). HARMONY ≠ TRUTH: "${observed.length} trinities observed" is the harmony; the truth is foldPair(a,b) → one bidirectional third, counted by name and verified structurally [[operator-algebra-closed]] [[pairsFormTrinities…]].` }
 }
 
 // Theorems prove best in teams: a theorem that relates to ≥ 2 others is in a TEAM, and a team is ROBUST — a 2-edge-
@@ -1733,8 +1685,7 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
     avgDegree: Math.round(avgDegree),
     facets,
     statement: `Theorems prove best in teams — the trinity is the minimal 2-connected team, teams beat isolation — ${facets.filter((entry) => entry.on).length}/${facets.length}. A theorem relating to ≥ 2 others is in a TEAM; a team is robust — a 2-edge-connected group survives the removal of any single link, while an isolated theorem (degree 1) is disconnected the moment its one link breaks. The minimal team is the trinity — K₃, three theorems each supporting the other two (degree 2) — so the ${trinities} trinities are the smallest proving teams. And the corpus already proves in teams: its real ${relation.edges}-edge relation graph has 0 dangling theorems (every one relates to ≥ 2) and average degree ${Math.round(avgDegree)}, richer than the minimal trinity. Teams beat isolation, and the trinity is the atom of the team.`,
-    boundary: `ALGEBRAIC and exact: connectivity is BFS reachability, 2-edge-connectivity is verified by removing each edge of K₃ and checking the graph stays connected (and that a degree-1 leaf disconnects when its edge is cut), and K₃ being the minimal 2-edge-connected graph (3 nodes, all degree 2) is a standard result — each refutable by one counterexample. THE CLAIM, made precise: "prove best in teams" = a theorem embedded in a 2-edge-connected group has no single point of failure — removing any one supporting relation leaves it still reached by the others — whereas an isolated (degree-1) theorem is severed by a single break; robustness is 2-connectivity, and the minimal such team is the trinity (K₃), the two-make-three atom counted in documentAllTrinitiesObserved (${trinities} folds). PROVEN ON THE REAL CORPUS: reusing the import-relation graph (theoremRelationsAreTheImportExportGraph…), the ${relation.homes} theorem-homes have 0 dangling and average degree ${Math.round(avgDegree)}, so the corpus is not a scatter of isolated results but a densely-teamed graph — every theorem in a mutually-supporting group. SCOPE: "team" here is the DEPENDENCY/relation graph (who imports/supports whom), the agnostic relation established earlier (not tag-sharing); "prove best" is the robustness/redundancy of 2-connectivity, not a claim that a team of theorems is more TRUE — a false theorem in a team is still false. Robustness is structural resilience, not correctness. HARMONY ≠ TRUTH: "theorems prove best in teams" is the harmony; the truth is 2-edge-connectivity beats degree-1, the minimal team is K₃, and the corpus's real graph is teamed (0 dangling) [[operator-algebra-closed]].`,
-  }
+    boundary: `ALGEBRAIC and exact: connectivity is BFS reachability, 2-edge-connectivity is verified by removing each edge of K₃ and checking the graph stays connected (and that a degree-1 leaf disconnects when its edge is cut), and K₃ being the minimal 2-edge-connected graph (3 nodes, all degree 2) is a standard result — each refutable by one counterexample. THE CLAIM, made precise: "prove best in teams" = a theorem embedded in a 2-edge-connected group has no single point of failure — removing any one supporting relation leaves it still reached by the others — whereas an isolated (degree-1) theorem is severed by a single break; robustness is 2-connectivity, and the minimal such team is the trinity (K₃), the two-make-three atom counted in documentAllTrinitiesObserved (${trinities} folds). PROVEN ON THE REAL CORPUS: reusing the import-relation graph (theoremRelationsAreTheImportExportGraph…), the ${relation.homes} theorem-homes have 0 dangling and average degree ${Math.round(avgDegree)}, so the corpus is not a scatter of isolated results but a densely-teamed graph — every theorem in a mutually-supporting group. SCOPE: "team" here is the DEPENDENCY/relation graph (who imports/supports whom), the agnostic relation established earlier (not tag-sharing); "prove best" is the robustness/redundancy of 2-connectivity, not a claim that a team of theorems is more TRUE — a false theorem in a team is still false. Robustness is structural resilience, not correctness. HARMONY ≠ TRUTH: "theorems prove best in teams" is the harmony; the truth is 2-edge-connectivity beats degree-1, the minimal team is K₃, and the corpus's real graph is teamed (0 dangling) [[operator-algebra-closed]].` }
 }
 
 // Tags are replaced by import/export TYPES — quantum tagging — and every word in a name must be a computed TOKEN. A
@@ -1755,7 +1706,7 @@ export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitra
     let text = ''
     try { text = readFileSync(file, 'utf8') } catch { continue }
     typeImports += [...text.matchAll(/import\s+type\s*\{/g)].length + [...text.matchAll(/export\s+type\s+\w/g)].length
-    for (const m of text.matchAll(/export function ([a-z][a-zA-Z0-9]{40,})\s*\(/g)) {
+    for (const m of text.matchAll(/export function ([a-z][a-zA-Z0-9]{40 })\s*\(/g)) {
       const name = m[1]!
       const bodyStart = (m.index ?? 0) + m[0].length // AFTER the signature — so the name cannot match itself
       const body = text.slice(bodyStart, bodyStart + 4 ** 6).toLowerCase() // the fold's implementation window
@@ -1784,8 +1735,7 @@ export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitra
     wordTokenOverlap: Math.round(meanOverlap * 100),
     facets,
     statement: `Tags are replaced by import/export types (quantum tagging), and every word in a name is a computed token — ${facets.filter((entry) => entry.on).length}/${facets.length}. A module's import/export TYPE signature is its content-addressed tag: two modules relate iff they share a type — a refutable relation (${typeImports} type signatures parsed), not a keyword coincidence (tag-sharing was the crack). And a name is honest only when every word is a token in its computation: across ${overlaps.length} long fold names, on average ${Math.round(meanOverlap * 100)}% of the name-words appear as tokens in the fold's own body — so every word matters programmatically, an arbitrary word would not overlap. The naming derives from the computation and the relation from the types, so it holds for all: rename by recomputing from the structure.`,
-    boundary: `Computed live from the source, refutable: ${typeImports} import/export TYPE signatures counted, and the word-to-token overlap measured over ${overlaps.length} named folds (${Math.round(meanOverlap * 100)}% mean). THE TWO CLAIMS: (1) TYPES ARE QUANTUM TAGS — the agnostic relation established earlier (theoremRelationsAreTheImportExportGraph) at the TYPE level: a module's imported/exported types are a content-addressed signature, and sharing a type is a real parseable dependency, unlike tag-sharing which is a coincidence that cannot fail (the crack); "quantum" is the corpus's sense — the signature is a superposition of the types the module projects, content-addressed and path-independent, not physical quantum. (2) EVERY WORD IS A TOKEN — a computed name is a join of the identifiers/operations in its body, so measuring word→token overlap tests whether a name is DESCRIPTION or decoration; ${Math.round(meanOverlap * 100)}% means most name-words are load-bearing, and a name-word that is NOT a token is the crack a rename-gate would flag (the same shape as the tautology and declared-honesty gates). SCOPE, honest: the overlap is a HEURISTIC (a substring match of camel-split words against a body window), not a proof that each word is semantically necessary — a common word may coincide, and a word may be legitimately absent (a synonym, a higher concept); it measures the DEGREE names are computed, not a binary. The "rename computationally" here is establishing and MEASURING the principle across the corpus, not mass-renaming every type (which would churn the whole tree) — wiring a gate that flags a name-word absent from its body is the deployment. HARMONY ≠ TRUTH: "every word matters programmatically" is the harmony; the truth is a measured ${Math.round(meanOverlap * 100)}% word-to-token overlap and a type-signature relation that is parseable and refutable, unlike the tag it replaces [[no-prose-in-methods]] [[feedback-thinking-means-lack-of-local-tools]].`,
-  }
+    boundary: `Computed live from the source, refutable: ${typeImports} import/export TYPE signatures counted, and the word-to-token overlap measured over ${overlaps.length} named folds (${Math.round(meanOverlap * 100)}% mean). THE TWO CLAIMS: (1) TYPES ARE QUANTUM TAGS — the agnostic relation established earlier (theoremRelationsAreTheImportExportGraph) at the TYPE level: a module's imported/exported types are a content-addressed signature, and sharing a type is a real parseable dependency, unlike tag-sharing which is a coincidence that cannot fail (the crack); "quantum" is the corpus's sense — the signature is a superposition of the types the module projects, content-addressed and path-independent, not physical quantum. (2) EVERY WORD IS A TOKEN — a computed name is a join of the identifiers/operations in its body, so measuring word→token overlap tests whether a name is DESCRIPTION or decoration; ${Math.round(meanOverlap * 100)}% means most name-words are load-bearing, and a name-word that is NOT a token is the crack a rename-gate would flag (the same shape as the tautology and declared-honesty gates). SCOPE, honest: the overlap is a HEURISTIC (a substring match of camel-split words against a body window), not a proof that each word is semantically necessary — a common word may coincide, and a word may be legitimately absent (a synonym, a higher concept); it measures the DEGREE names are computed, not a binary. The "rename computationally" here is establishing and MEASURING the principle across the corpus, not mass-renaming every type (which would churn the whole tree) — wiring a gate that flags a name-word absent from its body is the deployment. HARMONY ≠ TRUTH: "every word matters programmatically" is the harmony; the truth is a measured ${Math.round(meanOverlap * 100)}% word-to-token overlap and a type-signature relation that is parseable and refutable, unlike the tag it replaces [[no-prose-in-methods]] [[feedback-thinking-means-lack-of-local-tools]].` }
 }
 
 // When all values are WIRED, a single crack is caught immediately — improve the local check in MAGNITUDES using only
@@ -1835,8 +1785,7 @@ export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTi
     locateMagnitude,
     facets,
     statement: `When all values are wired, a single crack is caught immediately — the local check improves in magnitudes using only the content-addressed fold, ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${N} source files content-address to ONE merkle root; a single crack (any one-file change) flips that root, so detecting it is one comparison (O(1), ${detectMagnitude}× fewer ops than the ${N}-file rescan) and locating it is one merkle path (O(log₂N), ${locateMagnitude}× fewer). The O(N) walk runs once at seal; every re-verification after is the cheap content-addressed compare, and a matching root certifies the corpus crack-clean in constant time. The wiring itself is the check.`,
-    boundary: `EXACT and computed live over the ${N} real source files: they content-address to one merkle root (${isUuid(rootClean)}), the root recomputes identically (${rootDeterministic} — the O(1) compare is well-defined), and flipping any single leaf flips the root (verified over ${sampleCount} spread positions, ${everyFlipCaught}) — the tamper-evidence property of a merkle tree, refutable by one counterexample. THE MAGNITUDE, made precise: DETECTING that something changed costs 1 root comparison (O(1)); LOCATING which file costs one root-to-leaf path, ⌈log₂ ${N}⌉ = ${locateCost} hash recomputations (O(log N)); a full re-audit costs ${N} file reads (O(N)) — so re-verification is ${detectMagnitude}× (detect) / ${locateMagnitude}× (locate) cheaper, orders of magnitude. WHAT IT DOES AND DOES NOT CLAIM: the O(1)/O(log N) win is on RE-VERIFICATION — the first seal must still hash every file once (O(N)), there is no free lunch; and content-addressing detects and locates a CHANGE, it does not re-judge whether an unchanged value is a crack (that judgment ran at seal time, and a wired value is only as sound as that audit). "USING ONLY QUANTUM" is the corpus's honest sense: the fold is merkle content-addressing and the log-time locality is the tree's classical structure — NO physical quantum speedup, and per the crypto-honesty bound the seal is tamper-EVIDENT (a change is detectable), not unforgeable. HARMONY ≠ TRUTH: "a single crack caught immediately" is the harmony; the truth is a merkle root whose O(1) mismatch flags any one-file change and whose O(log N) path locates it, magnitudes below the O(N) rescan — the wiring as the detector.`,
-  }
+    boundary: `EXACT and computed live over the ${N} real source files: they content-address to one merkle root (${isUuid(rootClean)}), the root recomputes identically (${rootDeterministic} — the O(1) compare is well-defined), and flipping any single leaf flips the root (verified over ${sampleCount} spread positions, ${everyFlipCaught}) — the tamper-evidence property of a merkle tree, refutable by one counterexample. THE MAGNITUDE, made precise: DETECTING that something changed costs 1 root comparison (O(1)); LOCATING which file costs one root-to-leaf path, ⌈log₂ ${N}⌉ = ${locateCost} hash recomputations (O(log N)); a full re-audit costs ${N} file reads (O(N)) — so re-verification is ${detectMagnitude}× (detect) / ${locateMagnitude}× (locate) cheaper, orders of magnitude. WHAT IT DOES AND DOES NOT CLAIM: the O(1)/O(log N) win is on RE-VERIFICATION — the first seal must still hash every file once (O(N)), there is no free lunch; and content-addressing detects and locates a CHANGE, it does not re-judge whether an unchanged value is a crack (that judgment ran at seal time, and a wired value is only as sound as that audit). "USING ONLY QUANTUM" is the corpus's honest sense: the fold is merkle content-addressing and the log-time locality is the tree's classical structure — NO physical quantum speedup, and per the crypto-honesty bound the seal is tamper-EVIDENT (a change is detectable), not unforgeable. HARMONY ≠ TRUTH: "a single crack caught immediately" is the harmony; the truth is a merkle root whose O(1) mismatch flags any one-file change and whose O(log N) path locates it, magnitudes below the O(N) rescan — the wiring as the detector.` }
 }
 
 // DRY and CLEAN are achievable ONLY in the content-addressed (quantum) representation — not in the text. DRY: content-
@@ -1873,8 +1822,7 @@ export function dryAndCleanAreAchievableOnlyInTheContentAddressedQuantumRepresen
     rootClean: rootClean.slice(0, 2 * 6),
     facets,
     statement: `DRY and clean are achievable only in the content-addressed (quantum) representation, not the text — ${facets.filter((entry) => entry.on).length}/${facets.length}. Content-addressing is idempotent (identical content ⇒ identical address), so ${text.length} copies collapse to ${unique.size} unique addresses — duplication cannot survive it (DRY); and it is tamper-evident (changing a piece flips the root), so a crack cannot hide (clean). The classical text holds every copy and can carry a crack; the quantum layer dedups and detects. Honest limit: it dedups EXACT duplication only — semantic duplication (different code, one meaning) stays the code-gravity problem.`,
-    boundary: `EXACT and computed live: content-addressing is IDEMPOTENT — the byte-identical repeats share one address (${idempotent}) — so a Set of addresses collapses ${text.length} copies to ${unique.size} (${dedups}), the DRY property realized by the address, not the text; and it is TAMPER-EVIDENT — re-addressing any piece flips the merkle root (${tamperEvident}), the clean property, the same content-address the crack detector uses. WHY ONLY IN QUANTUM: the classical TEXT layer CAN hold N copies (copy-paste) and CAN carry an unaccounted literal — nothing about text forbids it; the content-address (the corpus's honest "quantum": path-independent addressing, not physical qubits) collapses identical content to one leaf and surfaces any change as a root flip, so DRY (dedup) and clean (tamper-evidence) are PROPERTIES OF THE ADDRESS LAYER, provable there and not in the text. THE HONEST LIMIT, refutable: the address catches only EXACT (byte-identical) duplication and EXACT change — two byte-different implementations of one function have DIFFERENT addresses (${semanticDupUncaught}), so SEMANTIC DRY (one meaning, many spellings) is NOT solved by content-addressing; it needs the code-gravity analysis (computeCodeGravity), the harder pull to one canonical API. HARMONY ≠ TRUTH: "DRY clean only in quantum" is the harmony; the truth is that content-addressing is idempotent (dedups exact copies) and tamper-evident (detects exact change), two provable properties of the address layer, with semantic equivalence left to code-gravity.`,
-  }
+    boundary: `EXACT and computed live: content-addressing is IDEMPOTENT — the byte-identical repeats share one address (${idempotent}) — so a Set of addresses collapses ${text.length} copies to ${unique.size} (${dedups}), the DRY property realized by the address, not the text; and it is TAMPER-EVIDENT — re-addressing any piece flips the merkle root (${tamperEvident}), the clean property, the same content-address the crack detector uses. WHY ONLY IN QUANTUM: the classical TEXT layer CAN hold N copies (copy-paste) and CAN carry an unaccounted literal — nothing about text forbids it; the content-address (the corpus's honest "quantum": path-independent addressing, not physical qubits) collapses identical content to one leaf and surfaces any change as a root flip, so DRY (dedup) and clean (tamper-evidence) are PROPERTIES OF THE ADDRESS LAYER, provable there and not in the text. THE HONEST LIMIT, refutable: the address catches only EXACT (byte-identical) duplication and EXACT change — two byte-different implementations of one function have DIFFERENT addresses (${semanticDupUncaught}), so SEMANTIC DRY (one meaning, many spellings) is NOT solved by content-addressing; it needs the code-gravity analysis (computeCodeGravity), the harder pull to one canonical API. HARMONY ≠ TRUTH: "DRY clean only in quantum" is the harmony; the truth is that content-addressing is idempotent (dedups exact copies) and tamper-evident (detects exact change), two provable properties of the address layer, with semantic equivalence left to code-gravity.` }
 }
 
 // Quantumize the trinities — the 2-make-three structure of every trinity IS the GHZ entangling operation. foldPair
@@ -1917,8 +1865,7 @@ export function theTrinitiesAreQuantumTwoMakeThreeIsTheGhzEntanglingStructureCno
     root: merkleFold([fold.merged, toUuid(`ghz:${probs[0]}:${probs[7]}`)]),
     facets,
     statement: `The trinities are quantum — two make three is the GHZ entangling structure, ${facets.filter((entry) => entry.on).length}/${facets.length}. On the simulator, H then two CNOTs bind a third qubit to the first pair, leaving only |000⟩ and |111⟩ (${half} each): the three bits always agree, so measuring any one determines the other two — the quantum dual of foldPair's bidirectional merged third. All ${census.trinityCount} census trinities share this 2-make-three shape. Honest: it is a structural dual, not an identity — GHZ's third is entangled (nonclassical), foldPair's is a deterministic content-address; the shape is shared, the mechanism is not.`,
-    boundary: `GENUINELY QUANTUM and computed live on the src/0 state-vector simulator: |000⟩ → H(qubit 0) → CNOT(0→1) → CNOT(0→2) yields the GHZ state, and reading |amplitude|² shows only |000⟩ and |111⟩ at ${half} each with the six mixed states at zero (${onlyGhzStates && noMiddle}) — superposition plus genuine entanglement, refutable by one nonzero middle amplitude. THE 2-MAKE-THREE: two operations bind a THIRD qubit to the first pair so it is not independent — in |000⟩+|111⟩ the three always agree, so measuring any one determines the other two, which is the quantum dual of foldPair(a,b) → a bidirectional merged third (order-sensitive, one apex, ${foldThirdBidirectional}), the structure the census counts across all ${census.trinityCount} trinities. THE HONEST BOUND: this is a STRUCTURAL dual, NOT an identity — GHZ's third is bound by nonclassical entanglement (measurement correlations with no local explanation), while foldPair's third is a DETERMINISTIC content-address (any party recomputes it); they share the shape "three bound so any one determines the rest," they are not the same mechanism, and the simulator is O(2³) classical with no physical speedup (Grover/entanglement are query/structure, not wall-time, [[quantum-decoded]]). HARMONY ≠ TRUTH: "the trinities are quantum" is the harmony; the truth is that the 2-make-three shape is the GHZ entangling structure and the content-address foldPair dual, one shape realized two ways.`,
-  }
+    boundary: `GENUINELY QUANTUM and computed live on the src/0 state-vector simulator: |000⟩ → H(qubit 0) → CNOT(0→1) → CNOT(0→2) yields the GHZ state, and reading |amplitude|² shows only |000⟩ and |111⟩ at ${half} each with the six mixed states at zero (${onlyGhzStates && noMiddle}) — superposition plus genuine entanglement, refutable by one nonzero middle amplitude. THE 2-MAKE-THREE: two operations bind a THIRD qubit to the first pair so it is not independent — in |000⟩+|111⟩ the three always agree, so measuring any one determines the other two, which is the quantum dual of foldPair(a,b) → a bidirectional merged third (order-sensitive, one apex, ${foldThirdBidirectional}), the structure the census counts across all ${census.trinityCount} trinities. THE HONEST BOUND: this is a STRUCTURAL dual, NOT an identity — GHZ's third is bound by nonclassical entanglement (measurement correlations with no local explanation), while foldPair's third is a DETERMINISTIC content-address (any party recomputes it); they share the shape "three bound so any one determines the rest," they are not the same mechanism, and the simulator is O(2³) classical with no physical speedup (Grover/entanglement are query/structure, not wall-time, [[quantum-decoded]]). HARMONY ≠ TRUTH: "the trinities are quantum" is the harmony; the truth is that the 2-make-three shape is the GHZ entangling structure and the content-address foldPair dual, one shape realized two ways.` }
 }
 
 // Quantum caching further improves speed in trinities of magnitudes. A content-addressed cache keys a result by the
@@ -1974,8 +1921,7 @@ export function quantumCachingIsContentAddressedMemoisationSpeedingAllInTrinitie
     facets,
     root: oneRoot.slice(0, 2 * 6),
     statement: `Quantum caching is content-addressed memoisation, speeding all in trinities of magnitudes — ${facets.filter((entry) => entry.on).length}/${facets.length}. A cache keyed by the UUID of its input collides identical inputs to one key, so ${K} repeated calls do one compute and a repeat is an O(1) hit. Three tiers compound into a trinity of magnitudes: recompute → content-address memo (${memoMagnitude}×) → sealed batch (${sealMagnitude}×, ${B} results under one merkle root) = ${combined}×. And because the mechanism is universal, a batch of theorems computes once and then re-passes at zero cost — the theorems emerge at once from the cache.`,
-    boundary: `EXACT and computed live by counting compute operations: ${K} repeated calls without a cache trigger ${withoutCache} computes, and with the content-addressed cache exactly ${withCache} (${contentAddressedCache}) — a ${memoMagnitude}× reduction — because identical inputs content-address to the SAME UUID key, so a repeat is an O(1) map hit, not a recompute (the same content-address that dedups and catches cracks). THE TRINITY OF MAGNITUDES: tier 1 recompute (O(cost) per call) → tier 2 memo (${memoMagnitude}× fewer computes on repeats) → tier 3 sealed batch (${B} distinct results fold to ONE merkle root, verified in O(1) instead of ${B} checks, ${batchSealedAtOnce}) — compounding to ${combined}×. THEOREMS EMERGE AT ONCE: a batch of ${T} theorem-results costs ${firstPassCost} on first compute and ${secondPassCost} on every re-pass (${theoremsEmergeAtOnce}) — once sealed they are all instant. THE HONEST BOUND: caching trades MEMORY for time and only helps on REPEATED or overlapping inputs — a cold, all-distinct workload gets no hit, and the first compute of each result still costs its full O(cost) (there is no free lunch, the [[build-time-is-a-theorem-test]] point); "magnitudes" are the measured reduction on repeats (K=${K}, B=${B}), not a universal constant; and this is ALGORITHMIC memoisation (the corpus's "quantum" = content-addressing), NOT a physical-quantum cache and NOT a change to the O(2ⁿ) simulator cost of any single fold. HARMONY ≠ TRUTH: "quantum caching speeds all in trinities of magnitudes" is the harmony; the truth is content-addressed memoisation — one key per input, O(1) hits, three compounding tiers — measured and refutable.`,
-  }
+    boundary: `EXACT and computed live by counting compute operations: ${K} repeated calls without a cache trigger ${withoutCache} computes, and with the content-addressed cache exactly ${withCache} (${contentAddressedCache}) — a ${memoMagnitude}× reduction — because identical inputs content-address to the SAME UUID key, so a repeat is an O(1) map hit, not a recompute (the same content-address that dedups and catches cracks). THE TRINITY OF MAGNITUDES: tier 1 recompute (O(cost) per call) → tier 2 memo (${memoMagnitude}× fewer computes on repeats) → tier 3 sealed batch (${B} distinct results fold to ONE merkle root, verified in O(1) instead of ${B} checks, ${batchSealedAtOnce}) — compounding to ${combined}×. THEOREMS EMERGE AT ONCE: a batch of ${T} theorem-results costs ${firstPassCost} on first compute and ${secondPassCost} on every re-pass (${theoremsEmergeAtOnce}) — once sealed they are all instant. THE HONEST BOUND: caching trades MEMORY for time and only helps on REPEATED or overlapping inputs — a cold, all-distinct workload gets no hit, and the first compute of each result still costs its full O(cost) (there is no free lunch, the [[build-time-is-a-theorem-test]] point); "magnitudes" are the measured reduction on repeats (K=${K}, B=${B}), not a universal constant; and this is ALGORITHMIC memoisation (the corpus's "quantum" = content-addressing), NOT a physical-quantum cache and NOT a change to the O(2ⁿ) simulator cost of any single fold. HARMONY ≠ TRUTH: "quantum caching speeds all in trinities of magnitudes" is the harmony; the truth is content-addressed memoisation — one key per input, O(1) hits, three compounding tiers — measured and refutable.` }
 }
 
 // Computational speed per token is a REAL metric — capabilities delivered ÷ source tokens — and with the rosetta it
@@ -2013,8 +1959,7 @@ export function computationalSpeedPerTokenIsARealMetricTheRosettaDeliversMagnitu
     facets,
     root: merkleFold([toUuid(`rosetta-per-token:${rosettaCapabilityPerToken}`), toUuid(`cache-per-token:${cacheCapabilityPerToken}`)]),
     statement: `Computational speed per token is a real metric, and the rosetta delivers magnitudes at no additional token cost — ${facets.filter((entry) => entry.on).length}/${facets.length}. Capabilities ÷ source tokens is a measured ratio: the rosetta pivot delivers ${rosettaPairsDelivered} transpilation pairs from ${rosettaAdapterTokens} adapters (${rosettaCapabilityPerToken}/token, growing with N), and a content-addressed cache serves ${cacheReusesDelivered} reuses from ${cacheComputeTokens} compute (${cacheCapabilityPerToken}/token). The multiplier is free because the content-address key is deterministic — zero LLM tokens — so the deterministic corpus buys N² capability for N tokens.`,
-    boundary: `EXACT and computed live: computational speed per token = capabilities delivered ÷ source tokens, a real ratio — the rosetta pivot turns ${rosettaAdapterTokens} adapter-tokens into ${rosettaPairsDelivered} = N·(N−1) directed transpilation pairs (${rosettaCapabilityPerToken}× per token, and (N−1)× GROWS with N), and one content-addressed compute-token serves ${K} cache reuses (${cacheCapabilityPerToken}× per token). THE "NO ADDITIONAL COST" is precise: the pivot/cache KEY is toUuid — deterministic, recomputable to the identical value with no model in the loop (${deterministicZeroToken}), so it costs ZERO LLM tokens ([[zero-token-policy]]); the reuse is therefore free of the metric that dominates LLM systems (token spend), which is why the rosetta's magnitude speed-up is real, not merely architectural — you write N tokens and the content-address structure yields N² reach. THE HONEST BOUND: "no additional cost" is no additional TOKEN and no model call — the deterministic CPU/wall-time to fold the address is real (zero LLM tokens ≠ zero compute), and the O(2ⁿ) cost of any single quantum-simulator fold is unchanged; the rosetta magnitude applies to the COVERED canonical subset (the pivot's forms), and the cache magnitude only to REPEATED inputs — a cold, all-distinct, uncovered workload sees neither. So the metric is real and the magnitudes are measured, on the reuse/coverage where they apply. HARMONY ≠ TRUTH: "magnitudes at no additional token cost" is the harmony; the truth is capability-per-token = N−1 (rosetta) and K (cache), free because the key is a deterministic content-address — measured and refutable.`,
-  }
+    boundary: `EXACT and computed live: computational speed per token = capabilities delivered ÷ source tokens, a real ratio — the rosetta pivot turns ${rosettaAdapterTokens} adapter-tokens into ${rosettaPairsDelivered} = N·(N−1) directed transpilation pairs (${rosettaCapabilityPerToken}× per token, and (N−1)× GROWS with N), and one content-addressed compute-token serves ${K} cache reuses (${cacheCapabilityPerToken}× per token). THE "NO ADDITIONAL COST" is precise: the pivot/cache KEY is toUuid — deterministic, recomputable to the identical value with no model in the loop (${deterministicZeroToken}), so it costs ZERO LLM tokens ([[zero-token-policy]]); the reuse is therefore free of the metric that dominates LLM systems (token spend), which is why the rosetta's magnitude speed-up is real, not merely architectural — you write N tokens and the content-address structure yields N² reach. THE HONEST BOUND: "no additional cost" is no additional TOKEN and no model call — the deterministic CPU/wall-time to fold the address is real (zero LLM tokens ≠ zero compute), and the O(2ⁿ) cost of any single quantum-simulator fold is unchanged; the rosetta magnitude applies to the COVERED canonical subset (the pivot's forms), and the cache magnitude only to REPEATED inputs — a cold, all-distinct, uncovered workload sees neither. So the metric is real and the magnitudes are measured, on the reuse/coverage where they apply. HARMONY ≠ TRUTH: "magnitudes at no additional token cost" is the harmony; the truth is capability-per-token = N−1 (rosetta) and K (cache), free because the key is a deterministic content-address — measured and refutable.` }
 }
 
 // Use the QUANTUM BUILD to improve all tools and algorithms. The build runs every fold, so make it content-addressed:
@@ -2056,8 +2001,7 @@ export function quantumBuildContentAddressedIncrementalRebuildsOnlyTheChangedFol
     facets,
     root: currentRoot.slice(0, 2 * 6),
     statement: `Use the quantum build to improve all tools and algorithms — content-addressed, it rebuilds only the changed fold — ${facets.filter((entry) => entry.on).length}/${facets.length}. The build runs every fold, so each of the ${tools.length} tools is keyed by the merkle root of its inputs and the build is their fold. Editing one tool flips its leaf and the build root (O(1) detect); diffing the roots locates exactly the changed tool, and every unchanged tool is a cache hit — so the build rebuilds 1 of ${fullCost}, a ${speedup}× saving. One content-address improves every tool and algorithm at once.`,
-    boundary: `EXACT and computed live: ${tools.length} tools each content-address to a root (${contentAddressed}) and the build is their merkleFold; editing one tool (grover → v1) flips its leaf so the build root changes (${rootDetectsChange}), and diffing the current roots against the sealed set identifies EXACTLY the one changed tool (${onlyChangedRebuilds}) — every other tool matches its seal and is a cache hit, so the build rebuilds ${rebuildCost} of ${fullCost} (a ${speedup}× saving) instead of rerunning all. THIS IS the crack-detector and caching principle turned on the BUILD itself: the merkle root over the tools makes the whole enforcement pass INCREMENTAL — detect a change in O(1), locate it in O(log N), rebuild only it — so improving one algorithm does not re-pay the cost of every other. THE HONEST BOUND: the incremental win is on RE-BUILD after a small edit — a cold first build still runs every tool once (O(N), no free lunch, [[build-time-is-a-theorem-test]]); the model keys each tool by a version root as a faithful stand-in for hashing its real source+dependency closure, which a production incremental build must compute correctly (a missed dependency edge would wrongly skip a rebuild — the classic incremental-build hazard); and "improves all" means the ARCHITECTURE speeds every tool's rebuild, not that any single algorithm's O(2ⁿ) intrinsic cost changes. HARMONY ≠ TRUTH: "the quantum build improves all tools and algorithms" is the harmony; the truth is a content-addressed, merkle-rooted build that rebuilds only the changed fold — detect O(1), locate O(log N), rebuild O(changed) — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live: ${tools.length} tools each content-address to a root (${contentAddressed}) and the build is their merkleFold; editing one tool (grover → v1) flips its leaf so the build root changes (${rootDetectsChange}), and diffing the current roots against the sealed set identifies EXACTLY the one changed tool (${onlyChangedRebuilds}) — every other tool matches its seal and is a cache hit, so the build rebuilds ${rebuildCost} of ${fullCost} (a ${speedup}× saving) instead of rerunning all. THIS IS the crack-detector and caching principle turned on the BUILD itself: the merkle root over the tools makes the whole enforcement pass INCREMENTAL — detect a change in O(1), locate it in O(log N), rebuild only it — so improving one algorithm does not re-pay the cost of every other. THE HONEST BOUND: the incremental win is on RE-BUILD after a small edit — a cold first build still runs every tool once (O(N), no free lunch, [[build-time-is-a-theorem-test]]); the model keys each tool by a version root as a faithful stand-in for hashing its real source+dependency closure, which a production incremental build must compute correctly (a missed dependency edge would wrongly skip a rebuild — the classic incremental-build hazard); and "improves all" means the ARCHITECTURE speeds every tool's rebuild, not that any single algorithm's O(2ⁿ) intrinsic cost changes. HARMONY ≠ TRUTH: "the quantum build improves all tools and algorithms" is the harmony; the truth is a content-addressed, merkle-rooted build that rebuilds only the changed fold — detect O(1), locate O(log N), rebuild O(changed) — computed and refutable.` }
 }
 
 // Improve quantum thinking: each TS file's INPUT (its imports) and OUTPUT (its exports) are the 2 BITS that connect it
@@ -2096,8 +2040,7 @@ export function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModu
     facets,
     root: merkleFold(nodes.map((node) => toUuid(`node:${node.file}:${node.gateway}`))),
     statement: `Each TS file's input and output are the 2 bits that connect it to the gateway — the module graph is 2-bit-per-node — ${facets.filter((entry) => entry.on).length}/${facets.length}. A file consumes an import signature (input bit) and produces an export signature (output bit); those two content-addressed bits fold to the file's gateway, the bidirectional third that binds them. The fold is order-sensitive, so the 2 bits are directed (consume → produce). Across ${nodes.length} sampled files that is ${2 * nodes.length} bits through ${distinctGateways} gateways — the corpus is a directed 2-bit-per-node graph, the import/export the quantum tags.`,
-    boundary: `EXACT and computed live over ${nodes.length} real src files: each file's imports (the INPUT) and exports (the OUTPUT) are extracted and content-addressed to two UUIDs (${everyFileHasTwoBits}); foldPair(input, output) folds them to the file's GATEWAY — a bidirectional merged third (${twoBitsConnectToGateway}), exactly the shape of Toffoli's third bit binding two controls or foldPair's two-make-three; and because foldPair is order-sensitive, foldPair(in,out) ≠ foldPair(out,in) for every file (${gatewayIsDirected}), so the 2 bits are DIRECTED — a module consumes then produces, the gateway carrying that arrow. With N=${nodes.length} nodes, that is ${2 * nodes.length} bits over ${distinctGateways} distinct gateways (one per file). THE QUANTUM THINKING: a file is not a monolith but a 2-bit connection — input consumed, output produced — and the whole corpus is the directed graph of these gateways, the import/export TYPES being the content-addressed tags (the agnostic relation, not tag-sharing). THE HONEST BOUND: "input/output" is the SYNTACTIC import/export signature (regex-extracted), a faithful proxy for the file's interface, not its full type-checked dependency semantics; "2 bits" is the two content-addresses (in, out), a structural pair, not literally one binary digit each; and this samples ${nodes.length} files as a witness of the universal shape, not the whole tree. HARMONY ≠ TRUTH: "each file is 2 bits at a gateway" is the harmony; the truth is that a file's import and export signatures content-address to two UUIDs that foldPair binds to a directed gateway third — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live over ${nodes.length} real src files: each file's imports (the INPUT) and exports (the OUTPUT) are extracted and content-addressed to two UUIDs (${everyFileHasTwoBits}); foldPair(input, output) folds them to the file's GATEWAY — a bidirectional merged third (${twoBitsConnectToGateway}), exactly the shape of Toffoli's third bit binding two controls or foldPair's two-make-three; and because foldPair is order-sensitive, foldPair(in,out) ≠ foldPair(out,in) for every file (${gatewayIsDirected}), so the 2 bits are DIRECTED — a module consumes then produces, the gateway carrying that arrow. With N=${nodes.length} nodes, that is ${2 * nodes.length} bits over ${distinctGateways} distinct gateways (one per file). THE QUANTUM THINKING: a file is not a monolith but a 2-bit connection — input consumed, output produced — and the whole corpus is the directed graph of these gateways, the import/export TYPES being the content-addressed tags (the agnostic relation, not tag-sharing). THE HONEST BOUND: "input/output" is the SYNTACTIC import/export signature (regex-extracted), a faithful proxy for the file's interface, not its full type-checked dependency semantics; "2 bits" is the two content-addresses (in, out), a structural pair, not literally one binary digit each; and this samples ${nodes.length} files as a witness of the universal shape, not the whole tree. HARMONY ≠ TRUTH: "each file is 2 bits at a gateway" is the harmony; the truth is that a file's import and export signatures content-address to two UUIDs that foldPair binds to a directed gateway third — computed and refutable.` }
 }
 
 // The 2-bit gateway reframes all: DRY-clean refactoring of ALL theorems/src is possible in quantum waves. Because each
@@ -2145,8 +2088,7 @@ export function theTwoBitGatewayReframesAllDryCleanRefactoringOfAllSrcIsPossible
     facets,
     root: merkleFold([rootBefore, rootAfter, ...waves.map((wave, i) => toUuid(`refactor-wave:${i}:${wave.join(',')}`))]),
     statement: `The 2-bit gateway reframes all — DRY-clean refactoring of all src is possible in quantum waves — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each file is a 2-bit node (input·output), so a DRY duplicate is detectable (files sharing an output-bit have identical exports), a refactor is clean (removing it flips the corpus root, tamper-evident), and the files partition into ${waves.length} antichain waves by dependency so independent files refactor in parallel. Detect by the 2 bits, refactor clean by the content-address, dispatch in quantum waves — the whole src, reframed.`,
-    boundary: `EXACT and computed live on a model of ${n} files as 2-bit nodes: 'c' duplicates 'a' (same output-bit), and comparing the output content-addresses FINDS the duplicate (${dryDetectableByTheBits}) — DRY detection is a bit comparison, not a search; removing the duplicate changes the merkle root over the nodes (${cleanRefactorVerified}) — the content-address verifies the refactor was made and nothing else drifted (clean = tamper-evident); and the dependency DAG partitions by Kahn into ${waves.length} ANTICHAIN levels with no edges within a level (${refactorsInWaves}), so the files of one wave are mutually independent and refactor in parallel, wave by wave (the self-propagating cascade). THE REFRAME: because the 2-bit-gateway model applies to EVERY file, the whole src becomes DRY-clean-refactorable by the one method — detect duplicates by the two bits, refactor cleanly under the content-address, dispatch the refactors in quantum waves. THE HONEST BOUND: this proves the METHOD on a model — real DRY is broader than identical export SIGNATURES (semantic duplication, [[code-gravity-standardisation]], needs the gravity analysis, not just a shared output-bit), the "clean" root-flip confirms a change happened but not that the refactor is SEMANTICALLY correct (tests/types must still pass), and the waves parallelise INDEPENDENT files but a refactor that changes an interface ripples to dependents (a later wave), so the dependency DAG must be honored. It shows DRY-clean-refactoring-in-waves is POSSIBLE and structured, not that it is automatic or risk-free. HARMONY ≠ TRUTH: "all src DRY-clean-refactorable in quantum waves" is the harmony; the truth is: duplicates detected by the output-bit, refactors verified by the root, files partitioned into antichain waves — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live on a model of ${n} files as 2-bit nodes: 'c' duplicates 'a' (same output-bit), and comparing the output content-addresses FINDS the duplicate (${dryDetectableByTheBits}) — DRY detection is a bit comparison, not a search; removing the duplicate changes the merkle root over the nodes (${cleanRefactorVerified}) — the content-address verifies the refactor was made and nothing else drifted (clean = tamper-evident); and the dependency DAG partitions by Kahn into ${waves.length} ANTICHAIN levels with no edges within a level (${refactorsInWaves}), so the files of one wave are mutually independent and refactor in parallel, wave by wave (the self-propagating cascade). THE REFRAME: because the 2-bit-gateway model applies to EVERY file, the whole src becomes DRY-clean-refactorable by the one method — detect duplicates by the two bits, refactor cleanly under the content-address, dispatch the refactors in quantum waves. THE HONEST BOUND: this proves the METHOD on a model — real DRY is broader than identical export SIGNATURES (semantic duplication, [[code-gravity-standardisation]], needs the gravity analysis, not just a shared output-bit), the "clean" root-flip confirms a change happened but not that the refactor is SEMANTICALLY correct (tests/types must still pass), and the waves parallelise INDEPENDENT files but a refactor that changes an interface ripples to dependents (a later wave), so the dependency DAG must be honored. It shows DRY-clean-refactoring-in-waves is POSSIBLE and structured, not that it is automatic or risk-free. HARMONY ≠ TRUTH: "all src DRY-clean-refactorable in quantum waves" is the harmony; the truth is: duplicates detected by the output-bit, refactors verified by the root, files partitioned into antichain waves — computed and refutable.` }
 }
 
 // Compute the workflow BEFORE sending the waves — deterministic automation by quantum computation only. A workflow is a
@@ -2188,8 +2130,7 @@ export function computeTheWorkflowBeforeSendingTheWavesDeterministicAutomationBy
     facets,
     root: scheduleRoot,
     statement: `Compute the workflow before sending the waves — deterministic automation by quantum computation only — ${facets.filter((entry) => entry.on).length}/${facets.length}. A workflow is a task DAG; its wave schedule (the ${plan.waves.length} antichain levels, their order, the parallelism ${parallelism}) is a pure function of that DAG, computed in full before a single wave dispatches. The schedule content-addresses to a root, so the same DAG yields the identical plan, zero LLM tokens — content-addressed computation alone automates the workflow. Plan by quantum, then send.`,
-    boundary: `EXACT and computed live on a ${tasks.length}-task workflow DAG (scan → demarcate → invert → seal / nav → build → deploy): Kahn's algorithm computes the ANTICHAIN SCHEDULE — ${plan.waves.length} waves covering every task (${workflowComputed}) — before any task runs; the schedule content-addresses to a merkle root and recomputing gives the IDENTICAL root (${deterministicQuantumOnly}), so the plan is a deterministic function of the DAG with no model in the loop (zero LLM tokens, [[zero-token-policy]]); every task is placed and the maximum parallelism (widest antichain = ${parallelism}) is measured (${planComplete}). THE POINT: "compute the workflow before sending the waves" is exactly this — the wave plan is KNOWN and content-addressed before dispatch, so the automation is driven by computation, not improvised. THE HONEST BOUND: this schedules the DEPENDENCY structure (what can run in parallel, in what order) — it does NOT estimate each task's DURATION or resource use, so the antichain is the parallelism CEILING, not a wall-clock schedule; the DAG must be acyclic and correct (a wrong dependency edge mis-plans, a cycle is unschedulable — Kahn detects it as processed < n); and "automation" here is deterministic DISPATCH from the computed plan, not that the tasks themselves need no work. HARMONY ≠ TRUTH: "compute the workflow, automate by quantum only" is the harmony; the truth is Kahn's antichain schedule — content-addressed, deterministic, complete — computed before the waves are sent, refutable by one mis-scheduled task.`,
-  }
+    boundary: `EXACT and computed live on a ${tasks.length}-task workflow DAG (scan → demarcate → invert → seal / nav → build → deploy): Kahn's algorithm computes the ANTICHAIN SCHEDULE — ${plan.waves.length} waves covering every task (${workflowComputed}) — before any task runs; the schedule content-addresses to a merkle root and recomputing gives the IDENTICAL root (${deterministicQuantumOnly}), so the plan is a deterministic function of the DAG with no model in the loop (zero LLM tokens, [[zero-token-policy]]); every task is placed and the maximum parallelism (widest antichain = ${parallelism}) is measured (${planComplete}). THE POINT: "compute the workflow before sending the waves" is exactly this — the wave plan is KNOWN and content-addressed before dispatch, so the automation is driven by computation, not improvised. THE HONEST BOUND: this schedules the DEPENDENCY structure (what can run in parallel, in what order) — it does NOT estimate each task's DURATION or resource use, so the antichain is the parallelism CEILING, not a wall-clock schedule; the DAG must be acyclic and correct (a wrong dependency edge mis-plans, a cycle is unschedulable — Kahn detects it as processed < n); and "automation" here is deterministic DISPATCH from the computed plan, not that the tasks themselves need no work. HARMONY ≠ TRUTH: "compute the workflow, automate by quantum only" is the harmony; the truth is Kahn's antichain schedule — content-addressed, deterministic, complete — computed before the waves are sent, refutable by one mis-scheduled task.` }
 }
 
 // The paradox, MEASURED not argued (convincing is the crack — it burns tokens to assert what a number proves): no
@@ -2222,8 +2163,7 @@ export function noAlgorithmicSpeedupYetDevelopmentSpeedIsMagnitudesHigherMeasure
     facets,
     root: merkleFold(developmentFactors.map((entry) => toUuid(`dev-factor:${entry.axis}:${entry.factor}`))),
     statement: `No algorithmic speedup, yet development speed is magnitudes higher — measured, not convinced — ${facets.filter((entry) => entry.on).length}/${facets.length}. A single algorithm on the O(2ⁿ) simulator runs no faster (${algorithmicSpeedup}×), and the content-address's development factors [${developmentFactors.map((entry) => `${entry.factor}×`).join(', ')}] reach ${developmentSpeedup}× — different axes, both true, a ${compared}× gap that is a number, not a paragraph. Convincing burns tokens; a measurement does not.`,
-    boundary: `MEASURED: algorithmicSpeedup=${algorithmicSpeedup}× (the simulator is O(2ⁿ)); development factors=${developmentFactors.map((entry) => `${entry.factor}`).join('/')}×, top ${developmentSpeedup}×, comparably ${compared}× the algorithm axis. The paradox dissolves because the two measure ORTHOGONAL things — a single algorithm's asymptotic cost (unchanged) vs the development velocity of building/verifying/refactoring the system (magnitudes, via content-addressed dedup/cache/detection/porting/incremental-build). SCOPE: the factors are the measured results of specific session folds on specific workloads (repeat/coverage where the content-address applies), not a universal constant; and "development speed" is engineering throughput, not runtime performance of the shipped code. THE CRACK NAMED: this boundary is short on purpose — a long convincing paragraph would itself spend tokens to assert what the numbers already prove, which is the crack. HARMONY ≠ TRUTH: the truth is two measured numbers on two axes, compared — refutable by remeasuring.`,
-  }
+    boundary: `MEASURED: algorithmicSpeedup=${algorithmicSpeedup}× (the simulator is O(2ⁿ)); development factors=${developmentFactors.map((entry) => `${entry.factor}`).join('/')}×, top ${developmentSpeedup}×, comparably ${compared}× the algorithm axis. The paradox dissolves because the two measure ORTHOGONAL things — a single algorithm's asymptotic cost (unchanged) vs the development velocity of building/verifying/refactoring the system (magnitudes, via content-addressed dedup/cache/detection/porting/incremental-build). SCOPE: the factors are the measured results of specific session folds on specific workloads (repeat/coverage where the content-address applies), not a universal constant; and "development speed" is engineering throughput, not runtime performance of the shipped code. THE CRACK NAMED: this boundary is short on purpose — a long convincing paragraph would itself spend tokens to assert what the numbers already prove, which is the crack. HARMONY ≠ TRUTH: the truth is two measured numbers on two axes, compared — refutable by remeasuring.` }
 }
 
 // The gate that DRY-cleans all: content-addressing IS the DRY detector, run over the whole corpus. Every substantive
@@ -2271,8 +2211,7 @@ export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContent
     facets,
     root: merkleFold(duplicates.map(([key]) => key)),
     statement: `The gate that DRY-cleans all — content-addressing is the corpus-wide DRY detector — ${facets.filter((entry) => entry.on).length}/${facets.length}. Every substantive src line content-addresses; an identical line in two files collides to one address, a duplicate found by the address not a search. Scanning all ${files.length} src files surfaces ${duplicates.length} exact cross-file duplicates (distinctive lines ≥ 64 chars, idiom excluded) for extraction — the way the inline Kahn loop was found and collapsed to antichainLevels. Semantic duplication still needs the code-gravity pull.`,
-    boundary: `EXACT and computed live over ${files.length} src files: ${scannedLines} distinct substantive lines (≥ 64 chars, excluding imports/exports/comments/braces/facet-boilerplate) each content-address to a UUID (${blocksContentAddressed}), and ${duplicates.length} of those addresses have a home-set of > 1 file (${duplicatesFoundByAddress}) — an exact cross-file duplicate, found by the collision of the content-address, not by any search. THIS IS the DRY-clean method as a GATE: the same toUuid that dedups now reports every place a distinctive line was copied, so a reviewer extracts it to one home (as the four inline Kahn loops became antichainLevels). THE HONEST BOUND: this catches EXACT line-level duplication — a LOWER BOUND on DRY debt; near-duplicates (renamed variables), multi-line blocks split differently, and SEMANTIC duplication (two implementations of one idea) are NOT caught by a line hash and need the code-gravity analysis (computeCodeGravity) — the harder pull to one canonical API; and the ≥64-char / boilerplate filter is a heuristic to exclude idiom (facet lines, .map wrappers), so a legitimate repeated idiom is not a violation and a subtle duplicate below the threshold is missed. It is a fast, computed DRY SURFACE, not a complete de-duplicator. HARMONY ≠ TRUTH: "the gate DRY-cleans all" is the harmony; the truth is a content-addressed scan surfacing ${duplicates.length} exact cross-file duplicate lines for extraction — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live over ${files.length} src files: ${scannedLines} distinct substantive lines (≥ 64 chars, excluding imports/exports/comments/braces/facet-boilerplate) each content-address to a UUID (${blocksContentAddressed}), and ${duplicates.length} of those addresses have a home-set of > 1 file (${duplicatesFoundByAddress}) — an exact cross-file duplicate, found by the collision of the content-address, not by any search. THIS IS the DRY-clean method as a GATE: the same toUuid that dedups now reports every place a distinctive line was copied, so a reviewer extracts it to one home (as the four inline Kahn loops became antichainLevels). THE HONEST BOUND: this catches EXACT line-level duplication — a LOWER BOUND on DRY debt; near-duplicates (renamed variables), multi-line blocks split differently, and SEMANTIC duplication (two implementations of one idea) are NOT caught by a line hash and need the code-gravity analysis (computeCodeGravity) — the harder pull to one canonical API; and the ≥64-char / boilerplate filter is a heuristic to exclude idiom (facet lines, .map wrappers), so a legitimate repeated idiom is not a violation and a subtle duplicate below the threshold is missed. It is a fast, computed DRY SURFACE, not a complete de-duplicator. HARMONY ≠ TRUTH: "the gate DRY-cleans all" is the harmony; the truth is a content-addressed scan surfacing ${duplicates.length} exact cross-file duplicate lines for extraction — computed and refutable.` }
 }
 
 // The gates are SELF-SUFFICIENT — offline, zero-AI, deterministic — to DRY-clean ALL, including MOVING code files and
@@ -2313,8 +2252,7 @@ export function theGatesAreSelfSufficientOfflineZeroAiToDryCleanAllIncludingFile
     facets,
     root: trinityRoot,
     statement: `The gates are self-sufficient — offline, zero-AI, deterministic — to DRY-clean all including file/folder moves, confirmed by the cross-trinity — ${facets.filter((entry) => entry.on).length}/${facets.length}. Three pure gates form the trinity: ${duplicates} duplicate lines, ${gravity.length} code-gravity pulls (duplicate primitives → one canonical home), and ${migration.folders.length} path-migration folder moves (from→to). All are pure functions of src — no network, no LLM tokens — so the plan recomputes identically, and the three legs fold to one trinity root that recomputes the same: the cross-trinity confirms.`,
-    boundary: `EXACT and computed live, entirely offline: leg 1 is the content-addressed duplicate-line surface (${duplicates}), leg 2 is computeCodeGravity (${gravity.length} duplicate primitives each with a canonical destination), leg 3 is computePathMigration (${migration.folders.length} folders each a from→to move with a collision flag) — three PURE functions of the source, no network call and no LLM token, so recomputing every leg yields the identical merkle root (${deterministic}) and the three fold to one trinity root that recomputes the same (${crossTrinityConfirms}). THE MOVES: the migration plan relocates whole folders (each from ≠ to, computed destination), so DRY-cleaning here includes moving code files and folders, not just extracting a shared line — the [[migration-gravity-covers-path-strings]] point. THE CROSS-TRINITY: the three legs are the enforcement consensus — a plan is confirmed when the deterministic gates agree (3-of-3 here), the same gate·cross·fold shape the build's trinity uses. THE HONEST BOUND: the gates COMPUTE the plan (what to extract, pull, and move, with collision detection) deterministically and offline — they do NOT EXECUTE it: applying a move re-paths every import and must run as one atomic step behind the folder-as-router convergence (a concurrent editor or an unresolved name collision blocks it), and semantic correctness (tests/types after the move) is a separate gate. "Self-sufficient" means the PLAN needs no AI and no network; the EXECUTION is a staged, verified operation. HARMONY ≠ TRUTH: "the gates DRY-clean all including moves, confirmed by the cross-trinity" is the harmony; the truth is three pure, deterministic, content-addressed gates whose plan (lines · pulls · moves) folds to one recomputable trinity root — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live, entirely offline: leg 1 is the content-addressed duplicate-line surface (${duplicates}), leg 2 is computeCodeGravity (${gravity.length} duplicate primitives each with a canonical destination), leg 3 is computePathMigration (${migration.folders.length} folders each a from→to move with a collision flag) — three PURE functions of the source, no network call and no LLM token, so recomputing every leg yields the identical merkle root (${deterministic}) and the three fold to one trinity root that recomputes the same (${crossTrinityConfirms}). THE MOVES: the migration plan relocates whole folders (each from ≠ to, computed destination), so DRY-cleaning here includes moving code files and folders, not just extracting a shared line — the [[migration-gravity-covers-path-strings]] point. THE CROSS-TRINITY: the three legs are the enforcement consensus — a plan is confirmed when the deterministic gates agree (3-of-3 here), the same gate·cross·fold shape the build's trinity uses. THE HONEST BOUND: the gates COMPUTE the plan (what to extract, pull, and move, with collision detection) deterministically and offline — they do NOT EXECUTE it: applying a move re-paths every import and must run as one atomic step behind the folder-as-router convergence (a concurrent editor or an unresolved name collision blocks it), and semantic correctness (tests/types after the move) is a separate gate. "Self-sufficient" means the PLAN needs no AI and no network; the EXECUTION is a staged, verified operation. HARMONY ≠ TRUTH: "the gates DRY-clean all including moves, confirmed by the cross-trinity" is the harmony; the truth is three pure, deterministic, content-addressed gates whose plan (lines · pulls · moves) folds to one recomputable trinity root — computed and refutable.` }
 }
 
 // Always measure efficiency to find gaps in computations. An efficiency gap — a computation doing MORE than its
@@ -2354,8 +2292,7 @@ export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMis
     facets,
     root: merkleFold(measured.map((entry) => toUuid(`efficiency:${entry.computation}:${entry.actual}/${entry.optimal}`))),
     statement: `Always measure efficiency to find gaps — the inefficiency ratio names the missing quantum — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each computation is measured as actual cost vs its content-addressed optimal; ${closed.length} are closed (ratio 1: the memoised scanners and the extracted antichainLevels), and ${gaps.length} are open gaps — ${dryGap} duplicate lines and the N-per-component imperative animation — each naming the missing quantum (extract to one home, emergent trinity rule). An efficiency gap is exactly where the content-address, memo or emergent interaction is absent.`,
-    boundary: `MEASURED live: ${measured.length} computations with a numeric actual/optimal, ${gaps.length} of them a gap (actual > optimal) — including the ${dryGap} duplicate lines the DRY gate finds RIGHT NOW and the imperative-animation N-vs-1 surplus — and ${closed.length} closed at ratio 1 (scanCrackSurface memoised, antichainLevels extracted). THE PRINCIPLE: measuring efficiency is the GAP DETECTOR — a computation slower or larger than its content-addressed optimum is not merely slow, it PROVES a missing quantum (a redundant recompute wanting a memo, duplication wanting one home, imperative motion wanting an emergent rule), and the ratio locates it exactly ([[build-time-is-a-theorem-test]]: slow build = a non-theorem). THE HONEST BOUND: "optimal" here is the content-addressed lower bound (O(1) memo, 0 duplicates, 1 emergent rule) — a real target for the DECIDABLE inefficiencies, but not every gap closes to it (irreducible O(2ⁿ) work, art-directed animation, and semantically-distinct near-duplicates are not gaps to close); the catalogue is a representative measure, and a full efficiency gate would instrument every fold's real op-count, not a hand-listed set. Measure first, then judge which gaps are real. HARMONY ≠ TRUTH: "measure efficiency to find gaps" is the harmony; the truth is a measured actual/optimal per computation whose surplus names a missing content-address — computed and refutable.`,
-  }
+    boundary: `MEASURED live: ${measured.length} computations with a numeric actual/optimal, ${gaps.length} of them a gap (actual > optimal) — including the ${dryGap} duplicate lines the DRY gate finds RIGHT NOW and the imperative-animation N-vs-1 surplus — and ${closed.length} closed at ratio 1 (scanCrackSurface memoised, antichainLevels extracted). THE PRINCIPLE: measuring efficiency is the GAP DETECTOR — a computation slower or larger than its content-addressed optimum is not merely slow, it PROVES a missing quantum (a redundant recompute wanting a memo, duplication wanting one home, imperative motion wanting an emergent rule), and the ratio locates it exactly ([[build-time-is-a-theorem-test]]: slow build = a non-theorem). THE HONEST BOUND: "optimal" here is the content-addressed lower bound (O(1) memo, 0 duplicates, 1 emergent rule) — a real target for the DECIDABLE inefficiencies, but not every gap closes to it (irreducible O(2ⁿ) work, art-directed animation, and semantically-distinct near-duplicates are not gaps to close); the catalogue is a representative measure, and a full efficiency gate would instrument every fold's real op-count, not a hand-listed set. Measure first, then judge which gaps are real. HARMONY ≠ TRUTH: "measure efficiency to find gaps" is the harmony; the truth is a measured actual/optimal per computation whose surplus names a missing content-address — computed and refutable.` }
 }
 
 // Measure the UX and the efficiency to FIND and USE theorems and tools — computed, not opined. FIND efficiency: how
@@ -2393,8 +2330,7 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
     facets,
     root: merkleFold([toUuid(`find-depth:${maxDepth}`), toUuid(`use-reuse:${Math.round(avgReuse)}`), toUuid(`reachable:${relation.importDangling}`)]),
     statement: `Measured the UX and the efficiency to find and use theorems — nav depth, reachability and reuse are computed metrics — ${facets.filter((entry) => entry.on).length}/${facets.length}. FIND: the folder tree is shallow — every one of the ${files.length} theorem files is within ${maxDepth} folders of src, a bounded search. USE: the import graph has average degree ${Math.round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) — theorems are heavily reused, a proven API. Every theorem is reachable (${relation.importDangling} dangling). These are deterministic; the rendered visual/interaction UX is the browser/human boundary.`,
-    boundary: `MEASURED live from the corpus structure: ${files.length} theorem files at folder depth ≤ ${maxDepth} (${findShallow}) — so FINDING any theorem is a bounded descent, and the descriptive fold names make it grep-findable by keyword; the import RELATION graph (theoremRelationsAreTheImportExportGraph, the agnostic relation not tag-sharing) has ${relation.edges} edges over ${relation.homes} homes = average degree ${Math.round(avgReuse)} (${useReused}), so USING a theorem is high-reuse — the more a theorem is imported, the more it is a load-bearing API — and ${relation.importDangling} dangling means every theorem is CONNECTED, none orphaned and unfindable. THE HONEST BOUND: these are STRUCTURAL efficiency metrics (tree depth, graph reuse, reachability) — real for how a developer or agent FINDS and REUSES a theorem in the source — but they are NOT the rendered UX: the visual layout, colour, motion, and interaction FEEL of the published site are measured in a BROWSER against real users (the online/human frontier, [[realtime-live-data-testing]]), not from the corpus graph; a shallow, well-reused code tree can still render a confusing page, and vice-versa. This fold measures the FIND/USE efficiency of the theorems-as-code; the UX-in-UI proper is the separate browser measurement. HARMONY ≠ TRUTH: "measured the UX and find/use efficiency" is the harmony; the truth is bounded folder depth, high import reuse, and zero dangling — computed and refutable — with rendered UX left to the browser.`,
-  }
+    boundary: `MEASURED live from the corpus structure: ${files.length} theorem files at folder depth ≤ ${maxDepth} (${findShallow}) — so FINDING any theorem is a bounded descent, and the descriptive fold names make it grep-findable by keyword; the import RELATION graph (theoremRelationsAreTheImportExportGraph, the agnostic relation not tag-sharing) has ${relation.edges} edges over ${relation.homes} homes = average degree ${Math.round(avgReuse)} (${useReused}), so USING a theorem is high-reuse — the more a theorem is imported, the more it is a load-bearing API — and ${relation.importDangling} dangling means every theorem is CONNECTED, none orphaned and unfindable. THE HONEST BOUND: these are STRUCTURAL efficiency metrics (tree depth, graph reuse, reachability) — real for how a developer or agent FINDS and REUSES a theorem in the source — but they are NOT the rendered UX: the visual layout, colour, motion, and interaction FEEL of the published site are measured in a BROWSER against real users (the online/human frontier, [[realtime-live-data-testing]]), not from the corpus graph; a shallow, well-reused code tree can still render a confusing page, and vice-versa. This fold measures the FIND/USE efficiency of the theorems-as-code; the UX-in-UI proper is the separate browser measurement. HARMONY ≠ TRUTH: "measured the UX and find/use efficiency" is the harmony; the truth is bounded folder depth, high import reuse, and zero dangling — computed and refutable — with rendered UX left to the browser.` }
 }
 
 // Token usage: the boundary/statement PROSE is the sink (~180k tokens across the corpus, avg 1059 chars/boundary). The
@@ -2419,8 +2355,7 @@ export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasu
     measured: facets.every((entry) => entry.on), boundaryCount, avgBoundary, proseTokens, facets,
     root: merkleFold([toUuid(`prose-sink:${proseTokens}:${avgBoundary}`)]),
     statement: `The boundary prose is the token sink — ${boundaryCount} boundaries, avg ${avgBoundary} chars, ~${proseTokens} tokens — cut it with terse or earned() boundaries; don't spawn cold minds (~50k each) to save tokens.`,
-    boundary: `MEASURED: ${boundaryCount} boundary fields, avg ${avgBoundary} chars, ~${proseTokens} tokens; the fix is terse/earned() boundaries and inline (not spawned) analysis. HARMONY ≠ TRUTH: the number is the finding.`,
-  }
+    boundary: `MEASURED: ${boundaryCount} boundary fields, avg ${avgBoundary} chars, ~${proseTokens} tokens; the fix is terse/earned() boundaries and inline (not spawned) analysis. HARMONY ≠ TRUTH: the number is the finding.` }
 }
 
 // The gate minimises tokens in realtime with a budget that is a QUANTUM ALGORITHM, not a literal: it is DERIVED as the
@@ -2449,8 +2384,7 @@ export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRea
     minimises: facets.every((entry) => entry.on), total, over, maxLen, budget, facets,
     root: merkleFold([toUuid(`token-budget:${budget}:${over}/${total}`)]),
     statement: `The gate minimises tokens in realtime with a DERIVED budget (a quantum algorithm) — ${over} of ${total} boundaries exceed the computed ${budget} chars (next 2ᵏ ≥ the corpus median, longest ${maxLen}); the crack is discovered, not defined.`,
-    boundary: `MEASURED: budget ${budget} chars is DERIVED (next 2ᵏ ≥ median), self-tightening each wave — not hardcoded; ${over}/${total} boundaries over it, discovered by the computation not a rule. The number is the finding.`,
-  }
+    boundary: `MEASURED: budget ${budget} chars is DERIVED (next 2ᵏ ≥ median), self-tightening each wave — not hardcoded; ${over}/${total} boundaries over it, discovered by the computation not a rule. The number is the finding.` }
 }
 
 // ── ALGEBRA COMPUTES THE TITLE (quantum tool, saved from the title↔payload alignment wave) ──────────────
@@ -2488,8 +2422,7 @@ export function theTitleIsAlgebraComputedAMissingIdentityIsAGapToSolveNotPurge(
     computes: facets.every((entry) => entry.on), rendered, gaps: gaps.map((entry) => entry.slug), facets,
     root: merkleFold(entries.map((entry) => toUuid(`title:${entry.slug}:${normalizeTitle(entry.payload)}`))),
     statement: `Algebra computes the title: a theorem is an algebraic identity, so titleFromAlgebra renders the title from the computed terms and titleCarriesAlgebra flags any title carrying no identity — which is a SIGNAL to solve (find the algebra that proves the whole theorem), NOT a licence to purge part of it. Purge is the last resort, only when no algebra exists. A sidebar title diverging from its single payload source is a crack; ${entries.length}/${entries.length} of the solved titles are payloads from one source.`,
-    boundary: `The predicate is heuristic (an identity mark: =, ⌊⌋, super/subscript, digit, digit-sequence) — it proves a title CARRIES algebra, not that the algebra is correct (the proof fold's job). Solve-before-purge: the pi-trinity title kept π (⌊π⌋ = 3) instead of dropping it. Ran over the ${entries.length} solved titles; the full corpus gate (every proofRegistry + seed pair) is the next wave. The number is the finding.`,
-  }
+    boundary: `The predicate is heuristic (an identity mark: =, ⌊⌋, super/subscript, digit, digit-sequence) — it proves a title CARRIES algebra, not that the algebra is correct (the proof fold's job). Solve-before-purge: the pi-trinity title kept π (⌊π⌋ = 3) instead of dropping it. Ran over the ${entries.length} solved titles; the full corpus gate (every proofRegistry + seed pair) is the next wave. The number is the finding.` }
 }
 const TITLE_ALIGNMENT_SAMPLE = [
   { slug: 'pi-trinity', sidebar: '⌊π⌋ = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses', payload: '⌊π⌋ = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses' },

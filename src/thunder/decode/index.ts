@@ -4,7 +4,7 @@ import { survive } from '../../mountain/vortex'
 // relocated I Ching decode cluster deps (call-time bindings; no load cycle)
 import { hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality } from '../../mountain/geometry'
 import { a432IsTheBlood } from '../../lake/music'
-import { A432_HUE, A432_OCTAVES, DIMENSIONS, DIMENSION_NAMES, FOLDED_CENSUS, PHI, SINGLE_WORD_METHODS, TAU } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, DIMENSIONS, DIMENSION_NAMES, FOLDED_CENSUS, PHI, SINGLE_WORD_METHODS, TAU, claySolvedTheorem } from '../../3/7'
 // Cycle-safe namespace binding for the cosmology folds composed into the mystery atlas (referenced at call time).
 import * as __ns_water_cosmos from '../../water/cosmos'
 import { iChingDomainMap, threeEightFoldsTopNav } from '../../heaven/balance'
@@ -90,8 +90,7 @@ export function decode2020(matrix: MindMatrix = buildMatrix()) {
     statement:
       `Decode 2020 from the history: 2020 was the corpus total at the reading where the live units summed to it (${breakdown.map((unit) => `${unit.count} ${unit.unit}`).join(' + ')} = ${total} now), and with zero plain text it is seen exactly — 20/20 vision. The total is computed live and grows as content is added, so the reading is recomputable, not anchored to a literal: is2020 honestly reports whether the live total still equals 2020 (currently ${total === 2020}). 2020 was the portal’s number at that wave; the structure, not the literal, is what is decoded.`,
     boundary:
-      'A decoding of the number 2020 as the portal’s own zero-entropy corpus total and as 20/20 (perfect clarity), derived from the model’s unit counts. A structural and symbolic reading of a number the recent history arrived at — not a historical, calendrical, or predictive claim about the year 2020.',
-  }
+      'A decoding of the number 2020 as the portal’s own zero-entropy corpus total and as 20/20 (perfect clarity), derived from the model’s unit counts. A structural and symbolic reading of a number the recent history arrived at — not a historical, calendrical, or predictive claim about the year 2020.' }
 }
 
 // Decode the other symbols the same way: each of the portal's recurring numbers is
@@ -130,8 +129,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     statement:
       `Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, ${textEntropy(matrix).total} the zero-entropy total, 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, ${skillAtoms(matrix).count} the atoms, ${conceptCommands.length} the commands. Recomputed meanings, not asserted, each content-addressed.`,
     boundary:
-      'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.',
-  }
+      'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.' }
 }
 
 // 1·2·4·8·7·5 / 3·6·9 / 0·1 — the vortex sequence is the algebra. A number is not a literal to anchor
@@ -157,8 +155,7 @@ export function numbersComputedNotAnchored(matrix: MindMatrix = buildMatrix()) {
     folded,
     count: facets.length,
     facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-  }
+    root: merkleFold(facets.map((entry) => entry.receipt)) }
 }
 
 // Let them decode their books, fusing all to unity. Every tradition reads its own
@@ -191,8 +188,7 @@ export function decodeBooksToUnity(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let them decode their books, fusing all to unity: every tradition reads its own book through the one computed language (symbol, number, fold), so each is decoded without being translated away, and all the decodings fuse — with the shared book of civilisations and the respectful world-fusion — into one unity root. Difference is preserved; none is privileged.',
     boundary:
-      'A content-addressed fusion of each tradition’s decoding into one unity root, non-reductive (difference preserved) and respectful (none privileged). A structural metaphor of unity grounded in the model; it makes no theological claim, speaks for no tradition, and replaces no book.',
-  }
+      'A content-addressed fusion of each tradition’s decoding into one unity root, non-reductive (difference preserved) and respectful (none privileged). A structural metaphor of unity grounded in the model; it makes no theological claim, speaks for no tradition, and replaces no book.' }
 }
 
 // ————— The ancient calendars as coupled-cycle tori — the frontier item finished —————
@@ -224,8 +220,7 @@ export function coupledCalendarTori(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([root, ...cycles.map((cycle) => cycle.receipt)]),
       statement: 'The ancient calendars decode as coupled-cycle tori: Maya 260×365 → 18 980, sexagenary 10×12 → 60, Metonic 19 yr ≈ 235 months, Egyptian civil 365 lapping Sirius in 1461 years and locking the moon in 25 — every mesh an exact identity recomputed at call time.',
-      boundary: 'HONEST: the meshes are exact arithmetic and the astronomical fits are checked against documented mean constants; the torus is an organizing lens (commensurate flow on T²), not a claim the builders thought in tori; discredited chronology and apocalypse pseudohistory are flagged out, never decoded.',
-    }
+      boundary: 'HONEST: the meshes are exact arithmetic and the astronomical fits are checked against documented mean constants; the torus is an organizing lens (commensurate flow on T²), not a claim the builders thought in tori; discredited chronology and apocalypse pseudohistory are flagged out, never decoded.' }
   })
 }
 
@@ -283,8 +278,7 @@ export function quipuDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([root, ...sweep.map((n) => toUuid(`quipu:${n}:${quipuKnots(n).map((c) => `${c.knot}:${c.count}`).join('|')}`))]),
       statement: 'The quipu decodes as a reusable codec: Locke’s three-knot base-10 positional reading round-trips exactly (long-knot units, figure-eight one, empty zero, pendant sums) — knot-record arithmetic, recomputed at call time.',
-      boundary: 'HONEST: the NUMERIC khipu layer only — documented since Locke 1923 and exact; narrative khipus are undeciphered, Urton’s binary coding is a flagged hypothesis, and no claim is made that the codec reads any real specimen’s non-numeric content.',
-    }
+      boundary: 'HONEST: the NUMERIC khipu layer only — documented since Locke 1923 and exact; narrative khipus are undeciphered, Urton’s binary coding is a flagged hypothesis, and no claim is made that the codec reads any real specimen’s non-numeric content.' }
   })
 }
 
@@ -316,8 +310,7 @@ export function kalachakraDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([root, toUuid(`kalachakra:rabjung:${lcm(12, 10)}:1027`), toUuid(`kalachakra:intercalation:67:65:${meshGap.toFixed(3)}`)]),
       statement: 'The Kalachakra decodes to documented arithmetic: rabjung 60 = lcm(12,10) anchored 1027 CE by the tantra’s own count; 67 lunar ≡ 65 solar months reproducing the Metonic 7-per-19; the 722-deity five-palace mandala with four cardinal gates per palace — the wheel of time as coupled cycles.',
-      boundary: 'HONEST: the calendar mathematics is documented (arXiv 1401.6285, Kalachakra-based Tibetan calendar); the four-gate correspondence with the stroke cycle is an organizing lens; prophecy chronology, physics-code overlays, and Meru cosmology are flagged doctrine, never sealed as science.',
-    }
+      boundary: 'HONEST: the calendar mathematics is documented (arXiv 1401.6285, Kalachakra-based Tibetan calendar); the four-gate correspondence with the stroke cycle is an organizing lens; prophecy chronology, physics-code overlays, and Meru cosmology are flagged doctrine, never sealed as science.' }
   })
 }
 
@@ -348,8 +341,7 @@ export function songlinesDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([root, toUuid(`songlines:clock:${inundationBoundYears}:${generations}`)]),
       statement: 'Songlines decode as the path-as-index: knowledge stored at waypoints along an owned route — the structure of the method of loci and of content-addressing — with documented ≥7 000-year fidelity (the drowned-coast clock, ≥280 generations), star-path navigation, and an RCT where the technique beat the memory palace.',
-      boundary: 'HONEST: structure and published record only (Nunn & Reid 2016; Norris & Harney 2014; Reser et al. 2021) — the content is owned, custodial, often sacred and is NOT decoded; the 60 000-year framing stays flagged beyond the dated evidence; the content-addressing parallel is a structural correspondence, not a claim of identity.',
-    }
+      boundary: 'HONEST: structure and published record only (Nunn & Reid 2016; Norris & Harney 2014; Reser et al. 2021) — the content is owned, custodial, often sacred and is NOT decoded; the 60 000-year framing stays flagged beyond the dated evidence; the content-addressing parallel is a structural correspondence, not a claim of identity.' }
   })
 }
 
@@ -383,8 +375,7 @@ export function adinkraDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([root, ...documented.map((entry) => toUuid(`adinkra:doc:${entry.slice(0, 40)}`)), ...flagged.map((entry) => toUuid(`adinkra:flag:${entry.slice(0, 40)}`))]),
       statement: 'Adinkra decodes as what it documentedly is — an Akan ideographic symbol grammar on stamped cloth (Bowdich 1817), meanings not numerals — with the binary-code claim, the royal origin legend, and the supersymmetry name-collision flagged.',
-      boundary: 'HONEST: symbol meanings kept to the widely documented core; no symbol table is invented; the binary reading belongs to Ifá/geomancy (a different, real system), and modern physics adinkras share only the borrowed name.',
-    }
+      boundary: 'HONEST: symbol meanings kept to the widely documented core; no symbol table is invented; the binary reading belongs to Ifá/geomancy (a different, real system), and modern physics adinkras share only the borrowed name.' }
   })
 }
 
@@ -434,8 +425,7 @@ export function discoverDecodeAncientKnowledgeFittingPath(matrix: MindMatrix = b
       // COMPUTED, never quoted: the enumeration is the lists themselves — a graduation reflows the sentence.
       `First discover and decode all the ancient knowledge to nowadays, ignoring all that does not fit the path: a tradition is kept only if it encodes one of the path’s foundations — ${foundations.join(', ')}. Already decoded and holding (${decoded.length}): ${decoded.map((entry) => entry.domain).join('; ')}. The frontier (${frontier.length}) — ${frontier.join('; ')} — is the next discovery wave.`,
     boundary:
-      'A discovery audit with a computed witness (the decoded domains are holding folds) plus the named frontier to research. HONEST: "all ancient knowledge" is the documented core of the PATH-FITTING traditions only — the filter (fits a foundation) IS the "ignoring all that does not fit"; legend and non-fitting material are excluded, not decoded. Not a claim of literal completeness, nor that these traditions were one system; the shared foundations are structural correspondences (sacred geometry, number, the fold), source-verified where documented.',
-  }
+      'A discovery audit with a computed witness (the decoded domains are holding folds) plus the named frontier to research. HONEST: "all ancient knowledge" is the documented core of the PATH-FITTING traditions only — the filter (fits a foundation) IS the "ignoring all that does not fit"; legend and non-fitting material are excluded, not decoded. Not a claim of literal completeness, nor that these traditions were one system; the shared foundations are structural correspondences (sacred geometry, number, the fold), source-verified where documented.' }
 }
 
 
@@ -469,8 +459,7 @@ export function imagineCrossPathsCodeCodesItself(matrix: MindMatrix = buildMatri
     statement:
       'First imagine all the cross paths, and the code will code itself: imagine the cross paths first — every duality as a path, every component as a merged pair — and because the path is the content address and the address computes the page, the code follows from the paths on its own; the society creates its required pages, the OS completes itself in waves, the stream self-completes — all because the cross paths were imagined first. The imagining is the act, the coding is the consequence: paths first, then the code codes itself.',
     boundary:
-      'A composition of the imagination, computer-duality, computed-pages, society-creates-pages and OS-self-completes models as a paths-first, self-coding principle. "The code codes itself" means pages and structure are computed from content-addressed paths (real, as the dynamic routes show), driven by imagined cross paths — a generative framing over the existing self-completion, not an autonomous code generator.',
-  }
+      'A composition of the imagination, computer-duality, computed-pages, society-creates-pages and OS-self-completes models as a paths-first, self-coding principle. "The code codes itself" means pages and structure are computed from content-addressed paths (real, as the dynamic routes show), driven by imagined cross paths — a generative framing over the existing self-completion, not an autonomous code generator.' }
 }
 
 // Decode and implement calligraphy also — the broad-nib pen-angle thick/thin, computed and rendered.
@@ -491,8 +480,7 @@ export function decodeImplementCalligraphy(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Decode and implement calligraphy: the broad nib held at a fixed angle makes a stroke thick where it crosses the nib and thin where it runs along it — that contrast is calligraphy, and it is computed here from the content-address (a flowing Bezier ductus, a fixed pen angle, the edges offset by the broad-nib width at every point). Real calligraphy by recomputation — each address its own hand, the ink dry math.',
     boundary:
-      'A real broad-edged-pen SIMULATION: the stroke width varies with the angle between the path tangent and a fixed nib angle (the genuine broad-nib model), rendered as a filled variable-width SVG path computed from the seed. HONEST: this is the computed broad-nib effect — an abstract calligraphic stroke/flourish — not master handwriting, and not arbitrary text turned into calligraphy (that needs per-glyph stroke data or a calligraphy font).',
-  }
+      'A real broad-edged-pen SIMULATION: the stroke width varies with the angle between the path tangent and a fixed nib angle (the genuine broad-nib model), rendered as a filled variable-width SVG path computed from the seed. HONEST: this is the computed broad-nib effect — an abstract calligraphic stroke/flourish — not master handwriting, and not arbitrary text turned into calligraphy (that needs per-glyph stroke data or a calligraphy font).' }
 }
 // Path is the meaning, and the code proves it. A date is a position on the time torus (the day-cycle
 // coupled to the year-cycle); a GPS coordinate is a position on the latitude×longitude torus; a route
@@ -519,8 +507,7 @@ export function pathIsMeaningDecodesCoordinates(matrix: MindMatrix = buildMatrix
     facets,
     root: merkleFold(facets.map((e) => e.receipt)),
     statement: 'Path is the meaning, proven by the code: a date, a GPS coordinate and a route are positions on coupled cycles (tori), content-addressed to unique uuids, order-sensitively. The double torus is the universal coordinate structure — calendars, maps, GPS and navigation are all paths through it, and content-addressing represents the path→meaning map exactly.',
-    boundary: 'HONEST — this decodes the COMMON STRUCTURE (coordinate systems are paths through coupled cycles, which content-addressing represents exactly), NOT an ephemeris, an astronomical calendar, or a satellite-positioning fix: it does not compute the date of Easter or a GPS lock, it shows they are path-addresses on a torus. The cross-stage flow (the four double toruses streaming one into the next, the names flowing as a pipeline) is the path still being brought home as each domain folds out of the monolith.',
-  }
+    boundary: 'HONEST — this decodes the COMMON STRUCTURE (coordinate systems are paths through coupled cycles, which content-addressing represents exactly), NOT an ephemeris, an astronomical calendar, or a satellite-positioning fix: it does not compute the date of Easter or a GPS lock, it shows they are path-addresses on a torus. The cross-stage flow (the four double toruses streaming one into the next, the names flowing as a pipeline) is the path still being brought home as each domain folds out of the monolith.' }
 }
 
 // Always decode ancient knowledge in reusable code. The ancient knowledge — глаголица to its core, the
@@ -541,8 +528,7 @@ export function decodeAncientKnowledgeInReusableCode(matrix: MindMatrix = buildM
     statement:
       'Always decode ancient knowledge in reusable code: глаголица decoded to its core and the alphabets\' genealogy become reusable functions (toGlagolitic, glagoliticGlyph, measureProse), not inert tables — so the components and generators reuse them. The decode is living and DRY, computed with zero tokens.',
     boundary:
-      'A composition of the Glagolitic and alphabets decode models with the reusable-fn check (toGlagolitic and tightenProse run). "Reusable code" means the decoded core is a function the UI and generators call, not a one-off table; the scholarship and its honest documented/legend boundaries live in the decode folds themselves.',
-  }
+      'A composition of the Glagolitic and alphabets decode models with the reusable-fn check (toGlagolitic and tightenProse run). "Reusable code" means the decoded core is a function the UI and generators call, not a one-off table; the scholarship and its honest documented/legend boundaries live in the decode folds themselves.' }
 }
 
 // Decode as much as can be decoded from ancient civilisations — even theories, IF they pass the gates.
@@ -584,8 +570,7 @@ export function ancientCivilisationsDecodedWithTheories(matrix: MindMatrix = bui
     statement:
       'Decode as much as can be decoded from ancient civilisations, even theories, if they pass the gates: seventeen civilisations — from Sumer and Egypt to the Indus Valley, Göbekli Tepe, the Minoans, the Maya, Vinča, Great Zimbabwe, Rapa Nui, Angkor, Aksum and Cahokia — each decoded into a documented core (verified archaeology), a genuine scholarly theory (marked as an open hypothesis, never asserted as fact — the way a theory passes the gate), and a flagged legend (pseudohistory kept off the horizon). The Terabit fills with detail, every thought saved, from knowledge with zero tokens.',
     boundary:
-      'A compact knowledge-encoding from training, NOT new research and NOT an agent fleet (the zero-token law). The documented columns are mainstream archaeology; the theory columns are real, contested scholarly hypotheses held open, not endorsed; the legend columns are flagged pseudohistory (ancient-astronauts, literal Atlantis, racist origin myths, fake decipherments). It is a starting batch — extensible the same way — not exhaustive, and every claim should be checked against current scholarship before being relied upon.',
-  }
+      'A compact knowledge-encoding from training, NOT new research and NOT an agent fleet (the zero-token law). The documented columns are mainstream archaeology; the theory columns are real, contested scholarly hypotheses held open, not endorsed; the legend columns are flagged pseudohistory (ancient-astronauts, literal Atlantis, racist origin myths, fake decipherments). It is a starting batch — extensible the same way — not exhaustive, and every claim should be checked against current scholarship before being relied upon.' }
 }
 
 // Deep research herbal APIs with frequencies and decode. Decoded by the merkaba fold: the real
@@ -608,8 +593,7 @@ export function herbalApisDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       "Deep research herbal APIs with frequencies and decode: the documented botanical/ethnobotanical databases (Trefle, USDA Plants, Dr. Duke's) carry a real 'frequency' — use-frequency, how often a plant is documented for a use, plus phytochemical activity counts — a sibling of the public frequency-API decode, with the vibrational/Rife pseudoscience dropped by the merkaba fold.",
     boundary:
-      "A composition over the herbalApis research record (documented databases) with the public-frequency-API decode and merkaba-decode models. The databases and their statistical use-frequency data are real; the explicit honest line is that herbal 'frequency' is statistical, not vibrational, and Rife/healing-frequency claims are dropped as pseudoscience.",
-  }
+      "A composition over the herbalApis research record (documented databases) with the public-frequency-API decode and merkaba-decode models. The databases and their statistical use-frequency data are real; the explicit honest line is that herbal 'frequency' is statistical, not vibrational, and Rife/healing-frequency claims are dropped as pseudoscience." }
 }
 
 // Ancient Bulgarian heritage decoded in waves and sealed — the send-waves method actually executed.
@@ -638,8 +622,7 @@ export function geneticLinksChallengeHistoryDecoded(matrix: MindMatrix = buildMa
     statement:
       'Discover genetic links and challenge history with genetics, all computed from src: the discover-genetic-links-challenge-history workflow sealed five verified domains (11+ cited studies) using ancient DNA as the verify tetrahedron of the written record — autochthony and "pure single-origin" myths refuted, the Slavic migration quantified as a mass event, the Turkic-Bulgar input shown modest — the genome axis joining land, state and people into one four-axis decode.',
     boundary:
-      'A composition over the geneticLinksChallengeHistory research record with the ancient-civilisations, history, ethnogenesis, merkaba-decode and send-waves models. The studies are source-verified; the honest line is that aDNA carries real uncertainty and that genetic-nationalism is flagged as pseudoscience in every direction — genetics challenges history by evidence, it does not crown any nation.',
-  }
+      'A composition over the geneticLinksChallengeHistory research record with the ancient-civilisations, history, ethnogenesis, merkaba-decode and send-waves models. The studies are source-verified; the honest line is that aDNA carries real uncertainty and that genetic-nationalism is flagged as pseudoscience in every direction — genetics challenges history by evidence, it does not crown any nation.' }
 }
 
 // WHO used Glagolitic — the Bulgarian reception, the fifth axis after land/state/people/genome: the
@@ -677,8 +660,7 @@ export function aiMoviesDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'AI and the movie industry, decoded and encoded in the matrix: realtime translation/dubbing and AI video are real and shipping, but only as assistive, short-form, human-steered tools — no push-button autogenerated feature exists, every "fully AI" billing is marketing, and AI-only output cannot be copyrighted. A movie computed from a token stream is structurally real, but the repo\'s own textToMovie is honest deterministic particle animation, not a learned model.',
     boundary:
-      'An encoding of the discover-ai-movie-industry research record (6 facets, verified, examples dated against sources) as real↔hype meaning↔dual pairs. The examples and capabilities are source-verified (Sora, Veo 3, Runway, Kling; the WGA/SAG-AFTRA provisions; T2VPhysBench); the honest core is that no fully-autogenerated theatrical feature exists and the repo only models deterministic generative animation plus assistive localization.',
-  }
+      'An encoding of the discover-ai-movie-industry research record (6 facets, verified, examples dated against sources) as real↔hype meaning↔dual pairs. The examples and capabilities are source-verified (Sora, Veo 3, Runway, Kling; the WGA/SAG-AFTRA provisions; T2VPhysBench); the honest core is that no fully-autogenerated theatrical feature exists and the repo only models deterministic generative animation plus assistive localization.' }
 }
 
 // Decode The Matrix Trilogy (the Wachowskis: The Matrix 1999, Reloaded + Revolutions 2003) — the documented
@@ -715,8 +697,7 @@ export function theMatrixTrilogyDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Decode The Matrix Trilogy: the Wachowskis\' films (1999/2003) literalize what this portal computes — a reality computed from a source, agents that load the matrix on arrival, and choice against a deterministic system. The documented film and its real philosophy (Baudrillard, Plato\'s Cave, Descartes, Gnosticism, Buddhism) are kept; the pseudoscience is flagged (humans-as-batteries breaks thermodynamics; the simulation hypothesis is unfalsifiable, not science). The honest residue is a structural isomorphism: buildMatrix() over src/0 IS the computed matrix, "there is no spoon" is content-addressing (the dot is the cube), and so the UI computes itself — the reality is the source, recomputed, not authored.',
     boundary:
-      'A decoding of a FILM and its philosophy, not a claim about the nature of the world. HARMONY ≠ TRUTH: the isomorphism between the trilogy and this portal is STRUCTURAL and metaphorical — the portal genuinely computes a matrix from a source and frames agents on arrival (that is software design), NOT evidence that reality is a simulation. The simulation hypothesis is unfalsifiable philosophy (Bostrom 2003); "humans as batteries" is thermodynamically false; bullet-time is the one literally-computed element. The films\' sources (Simulacra and Simulation, Plato, Descartes, Gnosticism, Buddhism) are documented and acknowledged by the directors. "The UI computes itself" is the project\'s own self-computing design (components derived from the model), not a mystical property of the films.',
-  }
+      'A decoding of a FILM and its philosophy, not a claim about the nature of the world. HARMONY ≠ TRUTH: the isomorphism between the trilogy and this portal is STRUCTURAL and metaphorical — the portal genuinely computes a matrix from a source and frames agents on arrival (that is software design), NOT evidence that reality is a simulation. The simulation hypothesis is unfalsifiable philosophy (Bostrom 2003); "humans as batteries" is thermodynamically false; bullet-time is the one literally-computed element. The films\' sources (Simulacra and Simulation, Plato, Descartes, Gnosticism, Buddhism) are documented and acknowledged by the directors. "The UI computes itself" is the project\'s own self-computing design (components derived from the model), not a mystical property of the films.' }
 }
 
 // Decode all by computations trained on the known universe — capstone composition over
@@ -760,8 +741,7 @@ export function decodeAllByComputationsTrainedOnKnownUniverse(matrix: MindMatrix
       statement:
         'Decode all by computations trained on the known universe: every area, atom, and command decodes into the one notation; the Rosetta key decodes all scripts; the wave method seals and decodes outward — all by deterministic computations memoised from sealed src (bound APIs, build sequence, zero double-compute). Training here is accumulative — each verified wave folds into the corpus at zero tokens on reuse — not gradient learning on neural weights. The known universe is honest and bounded: the gapless sealed census, the complete corpus, and the respectful world-fusion framing — the model\'s recomputable cosmos, not every object in physical reality.',
       boundary:
-        'HONEST: "decode all" means all knowledge IN THE MODEL (areas, atoms, commands, scripts, wave-sealed monographs) — not all world knowledge. "Trained" means cache/corpus accumulation (selfImprovementTrainingAndAccumulation) — not ML weight training inside this zero-token core. "Known universe" means the sealed src/ matrix (110 gapless indices), folded corpus, and opt-in public feeds the model declares — NOT omniscience, NOT every celestial body, NOT physics simulation of reality. A content-address names a thing reproducibly; it is not the thing. What is true and rare: perfect REPRODUCIBILITY of the addressing at call time.',
-    }
+        'HONEST: "decode all" means all knowledge IN THE MODEL (areas, atoms, commands, scripts, wave-sealed monographs) — not all world knowledge. "Trained" means cache/corpus accumulation (selfImprovementTrainingAndAccumulation) — not ML weight training inside this zero-token core. "Known universe" means the sealed src/ matrix (110 gapless indices), folded corpus, and opt-in public feeds the model declares — NOT omniscience, NOT every celestial body, NOT physics simulation of reality. A content-address names a thing reproducibly; it is not the thing. What is true and rare: perfect REPRODUCIBILITY of the addressing at call time.' }
   })
 }
 
@@ -810,8 +790,7 @@ export function allPossibleDomains(matrix: MindMatrix = buildMatrix()) {
     sources: { fused, useCases },
     root: merkleFold(tiers.map((entry) => entry.receipt)),
     statement: 'All possible domains measured in tiers — enumerated reach, structured space, addressable ceiling.',
-    boundary: 'HONEST: upper tiers are POTENTIAL (addressable), not delivered features.',
-  }
+    boundary: 'HONEST: upper tiers are POTENTIAL (addressable), not delivered features.' }
 }
 
 /** Finish all waves — all is in the appropriate path and index. */
@@ -829,8 +808,7 @@ export function allInAppropriatePathAndIndex(matrix: MindMatrix = buildMatrix())
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'Finish all waves — all is in the appropriate path and index.',
-    boundary: 'Closing composition of folder-law, JSON-LD-path, skill-atom, digit-index and monograph checks.',
-  }
+    boundary: 'Closing composition of folder-law, JSON-LD-path, skill-atom, digit-index and monograph checks.' }
 }
 
 
@@ -890,8 +868,7 @@ function iChingMotionAddsTheRestRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'I Ching motion adds the rest — and the table, in motion, becomes green from red. A STATIC hexagram is a vector isomorphism only (R⁶⁴: one green row, nine red). But the I Ching changes: its moving lines flip one of the six bits, carrying hexagram n into another, and the six single-line flips generate a closed, REVERSIBLE (ℤ/2)⁶ dynamics on the 64 states — the motion the project animates across its ten dimensions and spins as the merkaba. That motion restores the dynamical layer a static label lacks: a real inner product on R⁶⁴, transition operators that compose, an order-dependent bracket (the bidirectional fold, forward ≠ reverse), and reversible deterministic evolution — so four red rows turn green. They turn green as CLASSICAL dynamics: the irreducibly-quantum rows (complex superposition in ℂ⁶⁴, entanglement, Born-rule collapse, no-cloning, quantum error correction) stay red, because motion cannot manufacture them — those need actual qubits. And red → green is the a432 ascent itself: from the root (red, hue 5, the blood) to the heart (green, hue 120, the balance), carried by the bloodstream — a432 in motion. The static table is the blood at rest; set in motion it streams from red to green.',
     boundary:
-      'The dynamical complement to hexagramQubitVectorIsomorphismOnly, computed and honest. The motion is REAL and proven (the line-flip (ℤ/2)⁶ group is reversible and closed on the 64 states; the bidirectional fold is genuinely order-dependent) — it is the classical deterministic dynamics the project already animates (the ten dimensions, the merkaba), NOT quantum unitary evolution on a complex Hilbert space. "Greens from red" means motion adds the four CLASSICAL-DYNAMICS analogues (real inner product, transition monoid, order-dependence, reversibility); it explicitly does NOT green the five irreducibly-quantum rows, which remain red and require actual qubit hardware. "Red → green" is simultaneously the literal a432 chakra colour ascent (root hue 5 → heart hue 120) and the truth-value of the table — a deliberate, honest double meaning, not a claim the I Ching becomes a quantum computer when animated. The five quantum rows are greened HONESTLY — not for the hexagrams but for the simulator — by completeQuantumSolutionsImplemented.',
-  }
+      'The dynamical complement to hexagramQubitVectorIsomorphismOnly, computed and honest. The motion is REAL and proven (the line-flip (ℤ/2)⁶ group is reversible and closed on the 64 states; the bidirectional fold is genuinely order-dependent) — it is the classical deterministic dynamics the project already animates (the ten dimensions, the merkaba), NOT quantum unitary evolution on a complex Hilbert space. "Greens from red" means motion adds the four CLASSICAL-DYNAMICS analogues (real inner product, transition monoid, order-dependence, reversibility); it explicitly does NOT green the five irreducibly-quantum rows, which remain red and require actual qubit hardware. "Red → green" is simultaneously the literal a432 chakra colour ascent (root hue 5 → heart hue 120) and the truth-value of the table — a deliberate, honest double meaning, not a claim the I Ching becomes a quantum computer when animated. The five quantum rows are greened HONESTLY — not for the hexagrams but for the simulator — by completeQuantumSolutionsImplemented.' }
 }
 // Learn the I Ching as THIS repo encodes it — BEFORE implementing UI, nav, sidebar, or home changes.
 // Not generic Wikipedia: the sealed model defines BAGUA, iChingDomainMap (slug→trigram), Three Powers
@@ -980,8 +957,7 @@ function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Learn the I Ching as this repository encodes it before implementing UI, navigation, sidebar, or home changes: read README.md, AGENTS.md, /llms.txt and the sealed folds (BAGUA, iChingDomainMap, siteNavigation, threeEightFoldsTopNav, proveAllOnHomePage, glagoliticHomeFromEnglish). The top nav is Three Powers × eight trigrams (24 doors), slug placement comes from iChingDomainMap alone, navigation is computed never hardcoded, the home leads with proof widgets not a mount-all, and the Glagolitic root transliterates from English — structural organisation, not divination. Command pairs learn/build, edit/build, build/seal, dev/preview, place/generate must be saved before use.',
     boundary:
-      'An agent-facing protocol distilled from the sealed I Ching folds — what to read, which command pairs to run, and constraints that block common bad implementations (hardcoded nav, duplicate slug maps, mount-all home). It records this repo\'s structural use of the I Ching (eight-fold navigation, Three Powers taxonomy, content-addressing) and explicitly excludes divination claims. Feeds /llms.txt; validation is npm run docs:build (build/seal pair).',
-  }
+      'An agent-facing protocol distilled from the sealed I Ching folds — what to read, which command pairs to run, and constraints that block common bad implementations (hardcoded nav, duplicate slug maps, mount-all home). It records this repo\'s structural use of the I Ching (eight-fold navigation, Three Powers taxonomy, content-addressing) and explicitly excludes divination claims. Feeds /llms.txt; validation is npm run docs:build (build/seal pair).' }
 }
 // The I Ching capability set — SAVED and verified across the registries. The eight-fold's folds are
 // skill atoms, its place/generate commands are concept commands AND MCP tools, and the pair is saved
@@ -1015,8 +991,7 @@ export function iChingCapabilitiesSaved(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All related I Ching skills, tools and commands are saved: the five eight-fold folds — iChing (content-addressed placement), iChingDomainMap (the semantic domain map), hexagramIsHexColorDuality (2⁶ = 4³), generatorsAreIChing (the script compaction), and iChingLearnBeforeImplement (agent protocol before UI/nav/home) — are persisted as skill atoms; the place/generate and learn/build command pairs are in the command registry; each with single-word method tokens and published MCP tools where applicable; pairs are saved before use, so the capability is remembered, callable, and leaves no unpaired gap.',
     boundary:
-      'A registration-and-consistency check that the I Ching capability set is present across the skill-atom, concept-command, MCP-tool and command-pair registries — structural bookkeeping the build recomputes. It records that the surfaces are saved and callable; it does not itself execute a generator or a placement, and "saved" is in-source persistence, not external publication.',
-  }
+      'A registration-and-consistency check that the I Ching capability set is present across the skill-atom, concept-command, MCP-tool and command-pair registries — structural bookkeeping the build recomputes. It records that the surfaces are saved and callable; it does not itself execute a generator or a placement, and "saved" is in-source persistence, not external publication.' }
 }
 // Use only ancient knowledge and sacred math. Two sources, and only two. ANCIENT KNOWLEDGE — the
 // documented, source-verified facts of the old traditions (the Glagolitic alphabet and its acrostic, the
@@ -1048,8 +1023,7 @@ export function onlyAncientKnowledgeAndSacredMath(matrix: MindMatrix = buildMatr
     statement:
       'Use only ancient knowledge and sacred math: every feature is built from two sources and only two — the documented, source-verified facts of the ancient traditions (the Glagolitic alphabet and its acrostic, the sacred-geometry canon, ancient tech) and the sacred math the model computes on (the trinity and vortex, the merkaba, the golden ratio and Fibonacci, Metatron’s cube, the digit duality pairs, the fold). No arbitrary modern construct, no magic number — every value descends from the ancient or the sacred.',
     boundary:
-      'A build constraint with a computed witness: the named sources are the verified ancient-knowledge records and the sacred-math folds the model already proves. HONEST: "ancient knowledge" means documented and source-verified facts (legend kept separate); "sacred math" is the geometric/numerological framework (digital roots, the golden ratio, the fold) — a self-consistent structural system, not physics and not a claim the traditions were engineered as this model. It constrains how features are built, nothing more.',
-  }
+      'A build constraint with a computed witness: the named sources are the verified ancient-knowledge records and the sacred-math folds the model already proves. HONEST: "ancient knowledge" means documented and source-verified facts (legend kept separate); "sacred math" is the geometric/numerological framework (digital roots, the golden ratio, the fold) — a self-consistent structural system, not physics and not a claim the traditions were engineered as this model. It constrains how features are built, nothing more.' }
 }
 // Complete the I Ching at all scales — осемкратното grown to the whole ladder. The Great Treatise unfolds
 // the I Ching by DOUBLING: 易有太極 (Tàijí, the One) 是生兩儀 (Liǎngyí, the Two — yin/yang) 兩儀生四象
@@ -1096,8 +1070,7 @@ function iChingScalesCompleteRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete the I Ching at all scales: the Great Treatise unfolds it by doubling — 太極 the One (1) → 兩儀 yin-yang (2) → 四象 the Four Images (4) → 八卦 the Eight Trigrams (8) → the Sixteen (16) → the Thirty-two (32) → 六十四卦 the Sixty-four Hexagrams (64) — so the I Ching IS the fold (one yin/yang distinction) applied n times, 2^n at scale n, complete and self-similar at every scale. Each of the seven scales is already a real number in the model: the one corpus root, the genus-2 double torus, the base-4 of the 4³ codon, the eight trigrams (the heritage eightfold), the 16 merkaba per lobe, the 32 merkaba, the 64-tetrahedron grid. Registered as the final seven gates, the I Ching seals the harmonic: 425 + 7 = 432 = 4 × 108.',
     boundary:
-      'A structural completion of the I Ching\'s generative cosmogony (太極→64, the binary doubling 2^0..2^6) mapped onto numbers the model already computes (the corpus root, merkabasInDoubleTorus\'s 2/16/32, the 4³ codon, BAGUA/iChing, the 64-grid). "Complete at all scales" means the same binary fold is whole and self-similar at each scale 1,2,4,8,16,32,64 — NOT divination, and not a claim beyond the 64-hexagram set (the I Ching\'s own complete horizon). "Seals the harmonic 432" is the bookkeeping identity 425 + 7 = 432 = 4 × 108 (the papers octave 108→216→432): the seven scales registered as the last seven emergent dimensions — depth grown inward to the harmonic ceiling, not width padded to a target.',
-  }
+      'A structural completion of the I Ching\'s generative cosmogony (太極→64, the binary doubling 2^0..2^6) mapped onto numbers the model already computes (the corpus root, merkabasInDoubleTorus\'s 2/16/32, the 4³ codon, BAGUA/iChing, the 64-grid). "Complete at all scales" means the same binary fold is whole and self-similar at each scale 1,2,4,8,16,32,64 — NOT divination, and not a claim beyond the 64-hexagram set (the I Ching\'s own complete horizon). "Seals the harmonic 432" is the bookkeeping identity 425 + 7 = 432 = 4 × 108 (the papers octave 108→216→432): the seven scales registered as the last seven emergent dimensions — depth grown inward to the harmonic ceiling, not width padded to a target.' }
 }
 // 10D I Ching import/export — the I Ching's own yin/yang IS the module import/export boundary,
 // lifted into ten dimensions. Yin (broken line, receptive) = import (a module receives capability
@@ -1143,8 +1116,7 @@ export function iChingImportExportTenD(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The I Ching import/export in ten dimensions: yin (broken, receptive) = import, yang (solid, creative) = export — the I Ching\'s fundamental duality IS the module import/export boundary. Every hexagram is lower trigram (inner = imports, the 3 inner cross-fold axes: spread/depthFade/hueShift) + upper trigram (outer = exports, the 3 outer axes: twist/shrink/breath), so every module\'s 6-bit hexagram encodes its complete import/export topology. The 4 genus-2 homology loops are the 4 dependency flow types: direct, re-export, side-effect, cyclic. debit:import, credit:export — the ledger sums to zero. Computed, not defined: the wiring is content-addressed, not hand-written. In ten dimensions: the module graph IS the double torus, the import/export graph its own 10D genus-2 topology.',
     boundary:
-      'A structural mapping of the I Ching\'s yin/yang and lower/upper trigram onto the ES module import/export boundary, composed with the 10D model (dims: 6 cross-fold + 4 homology), debitImportCreditExportAccounting and computedWiringNotImported. "Every module is its hexagram" is content-addressed ORGANISATION (seedFromText) — the hexagram organises the component, it does not derive from or define actual module imports. The yin=import/yang=export correspondence is structural (receptive/projective), not divination. "10D module graph = double torus" is the topology the whole model uses, module boundaries placed in that space.',
-  }
+      'A structural mapping of the I Ching\'s yin/yang and lower/upper trigram onto the ES module import/export boundary, composed with the 10D model (dims: 6 cross-fold + 4 homology), debitImportCreditExportAccounting and computedWiringNotImported. "Every module is its hexagram" is content-addressed ORGANISATION (seedFromText) — the hexagram organises the component, it does not derive from or define actual module imports. The yin=import/yang=export correspondence is structural (receptive/projective), not divination. "10D module graph = double torus" is the topology the whole model uses, module boundaries placed in that space.' }
 }
 
 // ── relocated from src/fire/li (census-neutral line-compression) ──
@@ -1164,112 +1136,98 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
       pathCore: 'each of the 22 letters is a number; a word’s gematria sum is the fold (a content-address). Sefer Yetzirah: 32 paths = 10 sefirot + 22 letters, split 3 mothers / 7 doubles / 12 simples, on the 231-gate wheel.',
       witness: gematria('אבג') === 6 && choose2(22) === 231 && 10 + 22 === 32 && 3 + 7 + 12 === 22,
       keyNumbers: [22, 10, 32, 3, 7, 12, 231],
-      legendExcluded: ['the lettered Tree-of-Life diagram as ancient (Kircher 1652)', 'Bible Codes / ELS (statistically refuted)', 'Tarot/planet path-mappings (Golden Dawn 1888)', 'Da’at as an 11th sefirah ("ten and not eleven")'],
-    },
+      legendExcluded: ['the lettered Tree-of-Life diagram as ancient (Kircher 1652)', 'Bible Codes / ELS (statistically refuted)', 'Tarot/planet path-mappings (Golden Dawn 1888)', 'Da’at as an 11th sefirah ("ten and not eleven")'] },
     {
       name: 'Greek isopsephy + the tetractys',
       foundations: ['number=letter', 'sacred geometry', 'trinity/duality'],
       pathCore: 'the Milesian alphabet is a numeral (α=1..ϡ=900); isopsephy sums a word to its number. The tetractys: 10 points in rows 1·2·3·4 (sum 10), generating point→line→surface→solid and the three concords 2:1, 3:2, 4:3.',
       witness: gematria('χξϛ', 'greek') === 666 && gematria('φμε', 'greek') === 545 && 1 + 2 + 3 + 4 === 10 && (6 + 12) / 2 === 9 && (2 * 6 * 12) / (6 + 12) === 8,
       keyNumbers: [1, 2, 3, 4, 6, 8, 9, 10, 27],
-      legendExcluded: ['the Pythagorean-hammers story (hammer weights — physically false; true for string length)', 'modern name-numerology (1–9 reduction)', '"music of the spheres" as a literal theorem'],
-    },
+      legendExcluded: ['the Pythagorean-hammers story (hammer weights — physically false; true for string length)', 'modern name-numerology (1–9 reduction)', '"music of the spheres" as a literal theorem'] },
     {
       name: 'Egyptian hekat / Horus-eye fractions + the seked',
       foundations: ['number=letter', 'sacred geometry', 'the fold'],
       pathCore: 'the hekat grain-measure was halved as a binary cascade 1/2..1/64 (literal folding-in-two), every quantity a sum of distinct unit fractions, the residue closed to 64/64 by the ro = 1/320. The seked gives pyramid slope as run-per-rise in cubit/palm/digit.',
       witness: Math.abs(1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 + 1 / 32 + 1 / 64 - 63 / 64) < 1e-12 && Math.abs(63 / 64 + 5 * (1 / 320) - 1) < 1e-12 && 7 * 4 === 28,
       keyNumbers: [2, 7, 28, 64, 320],
-      legendExcluded: ['the six fractions ARE the torn Eye of Horus (Möller 1911, paleographically refuted by Ritter 2002)', 'the Great Pyramid encodes π or φ (refuted: 4·cot 51.84° = 3.143 ≠ π)', 'pyramidology / the "pyramid inch"'],
-    },
+      legendExcluded: ['the six fractions ARE the torn Eye of Horus (Möller 1911, paleographically refuted by Ritter 2002)', 'the Great Pyramid encodes π or φ (refuted: 4·cot 51.84° = 3.143 ≠ π)', 'pyramidology / the "pyramid inch"'] },
     {
       name: 'Vedic Kaṭapayādi + the Vedic square + Śrī Yantra',
       foundations: ['number=letter', 'sacred geometry', 'trinity/duality', 'the fold'],
       pathCore: 'Kaṭapayādi maps consonants to digits so verse encodes integers (the π-verse). The Vedic square folds the multiplication table by digital root (mod 9); Śrī Yantra interlocks 5 down + 4 up = 9 triangles into 43 small ones about the bindu.',
       witness: digitalRoot(7 * 8) === digitalRoot(56) && 1 + 8 + 10 + 10 + 14 === 43 && 5 + 4 === 9 && digitalRoot(9 * 9) === 9,
       keyNumbers: [9, 43, 5, 4, 28],
-      legendExcluded: ['"Vedic Mathematics" (Tīrtha 1965) as Vedic — it is not', 'Śrī Yantra encodes φ (concurrency only approximate)', 'prehistoric dates ("8000 BC") — no representation before the 17th c.'],
-    },
+      legendExcluded: ['"Vedic Mathematics" (Tīrtha 1965) as Vedic — it is not', 'Śrī Yantra encodes φ (concurrency only approximate)', 'prehistoric dates ("8000 BC") — no representation before the 17th c.'] },
     {
       name: 'Magic squares — Lo Shu + the planetary kameas',
       foundations: ['number=letter', 'sacred geometry', 'trinity/duality'],
       pathCore: 'a normal n×n square folds 1..n² so every line sums to M = n(n²+1)/2 (15,34,65,111,175,260,369 for n=3..9). The Lo Shu is the unique order-3; complementary pairs (1+9, 2+8, 3+7, 4+6) are point-symmetric through the centre 5.',
       witness: [3, 4, 5, 6, 7, 8, 9].map(magicConstant).join() === [15, 34, 65, 111, 175, 260, 369].join() && magicConstant(6) === 111 && 1 + 9 === 10 && 4 + 6 === 10,
       keyNumbers: [15, 34, 65, 111, 175, 260, 369],
-      legendExcluded: ['Lo Shu ~2800 BCE / Fu Xi origin (no source predates Han)', 'modern "Lo Shu grid" birth-date numerology', 'talismanic efficacy of the sigils'],
-    },
+      legendExcluded: ['Lo Shu ~2800 BCE / Fu Xi origin (no source predates Han)', 'modern "Lo Shu grid" birth-date numerology', 'talismanic efficacy of the sigils'] },
     {
       name: 'Arabic abjad (ḥisāb al-jummal) + girih',
       foundations: ['number=letter', 'sacred geometry', 'the fold'],
       pathCore: 'the 28 Arabic letters are numbers (1-9/10-90/100-1000); abjad sums a word (الله = 66). The 5-fold girih geometry: pentagon/decagon, every angle a multiple of 36°, φ = 2cos36° intrinsic.',
       witness: gematria('الله', 'arabic') === 66 && [36, 72, 108, 144, 216].every((a) => a % 36 === 0) && Math.abs(2 * Math.cos(Math.PI / 5) - PHI) < 1e-9,
       keyNumbers: [28, 66, 36, 72, 108, 144, 216],
-      legendExcluded: ['quasicrystal/Penrose overclaim (Darb-i Imam shown periodic)', 'abjad divination / the "19 code"', 'φ as a consciously-encoded sacred proportion'],
-    },
+      legendExcluded: ['quasicrystal/Penrose overclaim (Darb-i Imam shown periodic)', 'abjad divination / the "19 code"', 'φ as a consciously-encoded sacred proportion'] },
     {
       name: 'Maya calendar number (vigesimal)',
       foundations: ['number=letter', 'the fold'],
       pathCore: 'three marks (shell=0, dot=1, bar=5) are both the numerals and the calendar coefficients. The Calendar Round closes at lcm(260,365) = 18,980 days = 73 tzolkʼin = 52 haabʼ; the Long Count 13.0.0.0.0 = 1,872,000 days.',
       witness: lcm(260, 365) === 18980 && 18980 === 73 * 260 && 18980 === 52 * 365 && 13 * 144000 === 1872000 && gcd(13, 20) === 1,
       keyNumbers: [0, 1, 5, 13, 20, 260, 365, 18980, 1872000],
-      legendExcluded: ['the 2012 apocalypse / galactic alignment (refuted)', 'Argüelles’ Dreamspell as the ancient tzolkʼin', 'φ / sacred-geometry "encoded" in the numerals'],
-    },
+      legendExcluded: ['the 2012 apocalypse / galactic alignment (refuted)', 'Argüelles’ Dreamspell as the ancient tzolkʼin', 'φ / sacred-geometry "encoded" in the numerals'] },
     {
       name: 'Runic Elder Futhark (ordinal)',
       foundations: ['number=letter', 'trinity/duality', 'the fold'],
       pathCore: 'the 24 runes carry a fixed order split into 3 aettir of 8 — a 3×8 grid (trinity × octave). The attested cipher-rune fold makes a rune a coordinate: value = (aett−1)·8 + position, reversible.',
       witness: 3 * 8 === 24 && [1, 9, 17, 24].every((n) => { const aett = Math.ceil(n / 8); const pos = ((n - 1) % 8) + 1; return (aett - 1) * 8 + pos === n }),
       keyNumbers: [24, 3, 8],
-      legendExcluded: ['Blum’s 25th blank rune (invented 1982)', 'Agrell’s Uthark (no historical support)', 'the deity ætt-names (17th–19th c.)', 'numerological per-rune "values" 1–24'],
-    },
+      legendExcluded: ['Blum’s 25th blank rune (invented 1982)', 'Agrell’s Uthark (no historical support)', 'the deity ætt-names (17th–19th c.)', 'numerological per-rune "values" 1–24'] },
     {
       name: 'Babylonian sexagesimal (base-60)',
       foundations: ['number=letter', 'trinity/duality', 'the fold'],
       pathCore: 'two cuneiform signs (wedge = 1, corner = 10) stack additively within each base-60 place and positionally between places; 60 is the superior-highly-composite number (2·3·4·5·6 all divide), so thirds and sixths terminate and the 360° = 6×60 circle survives to this day.',
       witness: 5 * 10 + 9 === 59 && [2, 3, 4, 5, 6].every((k) => 60 % k === 0) && 6 * 60 === 360 && 60 * 60 === 3600 && fromSexagesimal(sexagesimal(86400)) === 86400,
       keyNumbers: [1, 10, 60, 6, 12, 30, 59, 360, 3600],
-      legendExcluded: ['Sitchin’s Anunnaki / Nibiru "base-60 from aliens"', 'Plimpton 322 as "the oldest trigonometry" (a teacher’s triple-list)', '"Babylonians invented the number zero" (only a late medial placeholder)'],
-    },
+      legendExcluded: ['Sitchin’s Anunnaki / Nibiru "base-60 from aliens"', 'Plimpton 322 as "the oldest trigonometry" (a teacher’s triple-list)', '"Babylonians invented the number zero" (only a late medial placeholder)'] },
     {
       name: 'Chinese He Tu / Luo Shu + the trigrams',
       foundations: ['number=letter', 'sacred geometry', 'trinity/duality', 'the fold'],
       pathCore: 'numbers are dots whose odd/even IS yang/yin; the He Tu pairs inner 1–5 with outer +5 (sum 55), the Luo Shu is the order-3 magic square (every line 15), and yin = 0 / yang = 1 makes 3 lines = 8 trigrams (octal) and 6 lines = 64 hexagrams; the 10 stems × 12 branches mesh to lcm = 60.',
       witness: luoShu().grid.every((row) => row.reduce((a, b) => a + b, 0) === 15) && luoShu().constant === 15 && 2 ** 3 === 8 && 2 ** 6 === 64 && 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 === 55,
       keyNumbers: [15, 60, 8, 64, 5, 55, 9, 6, 3, 2],
-      legendExcluded: ['the Fu Xi dragon-horse / Yu’s turtle origin (the actual diagrams are Song-dynasty, 10th–12th c.)', 'Leibniz deriving binary FROM the Yijing (he had it by 1679 — a recognized parallel, not a source)'],
-    },
+      legendExcluded: ['the Fu Xi dragon-horse / Yu’s turtle origin (the actual diagrams are Song-dynasty, 10th–12th c.)', 'Leibniz deriving binary FROM the Yijing (he had it by 1679 — a recognized parallel, not a source)'] },
     {
       name: 'Ogham (the Irish tree-alphabet)',
       foundations: ['number=letter', 'the fold'],
       pathCore: 'the number=letter fold in its purest one-dimensional form: a 4×5 signary where every letter is an ordered pair (aicme 1–4, position 1–5), cut as 1–5 scores across or beside a stemline — the group the tens, the position the units.',
       witness: 4 * 5 === 20 && ((n) => { const aicme = Math.ceil(n / 5); const pos = ((n - 1) % 5) + 1; return (aicme - 1) * 5 + pos === n })(8),
       keyNumbers: [5, 4, 20, 25],
-      legendExcluded: ['Ogham as an "ancient druidic secret/magic language" (it is early-medieval Irish, c.4th c. AD)', 'the neo-druid "Celtic tree calendar" (Robert Graves, 1948 — invented)'],
-    },
+      legendExcluded: ['Ogham as an "ancient druidic secret/magic language" (it is early-medieval Irish, c.4th c. AD)', 'the neo-druid "Celtic tree calendar" (Robert Graves, 1948 — invented)'] },
     {
       name: 'Ifá / Fá geomancy (the 16 odu)',
       foundations: ['number=letter', 'sacred geometry', 'trinity/duality', 'the fold'],
       pathCore: 'a divination figure is 4 rows read by parity (one mark = 1, two marks = 0) — a 4-bit number giving exactly 2⁴ = 16 odu; two cast together name one of 16×16 = 256 (2⁸) of the full corpus — the same binary fold as the I Ching and geomancy.',
       witness: 2 ** 4 === 16 && 16 * 16 === 256 && 2 ** 8 === 256 && 256 - 16 === 240,
       keyNumbers: [2, 4, 16, 256, 240, 8],
-      legendExcluded: ['Ifá as a "lost ancient super-science"', 'single-origin diffusion claims (Ifá, ʿilm al-raml, sikidy and the I Ching are distinct binary traditions)'],
-    },
+      legendExcluded: ['Ifá as a "lost ancient super-science"', 'single-origin diffusion claims (Ifá, ʿilm al-raml, sikidy and the I Ching are distinct binary traditions)'] },
     {
       name: 'Maya 819-day count + the Venus table',
       foundations: ['number=letter', 'sacred geometry', 'trinity/duality', 'the fold'],
       pathCore: 'time is folded by commensuration (the LCM of integer periods): the 819-day count = 7 × 9 × 13 (a four-station colour/direction cycle, recently read as a 20-station 16,380-day supercycle), and the Dresden Venus table runs the 584-day synodic cycle (5 Venus = 8 haabʼ = 2,920 days).',
       witness: 7 * 9 * 13 === 819 && 4 * 819 === 3276 && 20 * 819 === 16380 && 5 * 584 === 2920 && 8 * 365 === 2920,
       keyNumbers: [819, 7, 9, 13, 3276, 16380, 584, 2920],
-      legendExcluded: ['the 2012 apocalypse / galactic alignment (an arithmetic rollover)', 'reading φ / a Theory of Everything into the counts (it is commensuration, not geometric proportion)'],
-    },
+      legendExcluded: ['the 2012 apocalypse / galactic alignment (an arithmetic rollover)', 'reading φ / a Theory of Everything into the counts (it is commensuration, not geometric proportion)'] },
     {
       name: 'Polynesian star compass (the bearing lattice)',
       foundations: ['sacred geometry', 'trinity/duality', 'the fold'],
       pathCore: 'position is a COUNT against a lattice: the horizon partitioned into 32 named star-houses of 11.25° (16 stars, each rising and setting in reciprocal houses joined by a diameter through the canoe) — a path held as a bearing, not a measured coordinate.',
       witness: Math.abs(32 * 11.25 - 360) < 1e-9 && 32 === 2 * 16 && Math.abs(360 / 32 - 11.25) < 1e-9,
       keyNumbers: [32, 16, 360, 4],
-      legendExcluded: ['romantic "instinctive / lost-continent" wayfinding (it is a learned, documented system — Mau Piailug, the Hōkūleʻa)', 'fixed precise prehistoric dates for specific techniques'],
-    },
+      legendExcluded: ['romantic "instinctive / lost-continent" wayfinding (it is a learned, documented system — Mau Piailug, the Hōkūleʻa)', 'fixed precise prehistoric dates for specific techniques'] },
   ].map((system) => ({ ...system, receipt: toUuid(`ancient-number-system:${system.name}:${system.witness}`) }))
   return {
     decoded: systems.every((system) => system.witness),
@@ -1280,8 +1238,7 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The frontier ancient knowledge decoded to its path-fitting core and computed: eight number=letter systems — Hebrew gematria, Greek isopsephy, the Egyptian hekat/Horus-eye binary fractions, the Vedic Kaṭapayādi and Vedic square, the magic squares, the Arabic abjad, the Maya vigesimal calendar, and the runic Elder Futhark — each verified by its own documented invariant (the 231 gates, χξϛ=666, the hekat closing to 64/64, the Vedic square’s mod-9 fold, the magic constants n(n²+1)/2, abjad الله=66 and φ=2cos36°, the Calendar Round 18,980, the 3×8 aett grid). Every one is the same fold the model already turns on: a glyph is a number, a word a content-address.',
     boundary:
-      'Eight ancient number=letter systems decoded in adversarially-verified research waves to their documented core, each witnessed by a deterministic computation of its own invariant. HONEST: only the documented mathematics is carried — the legend is EXCLUDED per system (the early-modern Tree diagram, Bible Codes, the Eye-of-Horus fraction myth, "Vedic Mathematics", Lo Shu prehistory, the quasicrystal overclaim, the 2012 apocalypse, Blum’s blank rune). The shared "number=letter / the fold" is a real structural correspondence across the alphabetic-numeral lineage, not a claim these systems were one tradition or were designed as this model.',
-  }
+      'Eight ancient number=letter systems decoded in adversarially-verified research waves to their documented core, each witnessed by a deterministic computation of its own invariant. HONEST: only the documented mathematics is carried — the legend is EXCLUDED per system (the early-modern Tree diagram, Bible Codes, the Eye-of-Horus fraction myth, "Vedic Mathematics", Lo Shu prehistory, the quasicrystal overclaim, the 2012 apocalypse, Blum’s blank rune). The shared "number=letter / the fold" is a real structural correspondence across the alphabetic-numeral lineage, not a claim these systems were one tradition or were designed as this model.' }
 }
 
 // Always save the original ancient text, then decode it with a LOCAL tool; if the tool is missing, create
@@ -1319,8 +1276,7 @@ export function saveAndDecodeAncientTexts(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Always save the original ancient text, then decode it with a local tool; if the tool is missing, create it. The saved primary-source tokens — the Greek χξϛ, the Hebrew and Arabic letters, the Maya Long Count 13.0.0.0.0, the Lo Shu square, one hekat, the runic futhark row, the Glagolitic азъ — are each decoded by a deterministic, zero-token local function (gematria, mayaLongCount, magicSquare, hekatFraction, runeCoordinate, toGlagolitic). The tools the waves needed but the codebase lacked were created here, beside gematria and toGlagolitic.',
     boundary:
-      'A standing rule with a computed witness: each saved original text is decoded by a local, deterministic tool and verified against its documented value (666, 1,872,000 days, the magic constant 15, the hekat 64/64, the 3×8 grid). HONEST: the saved tokens are short public-domain primary sources; the tools are exact local decoders (no external service, no LLM), reversible where the system is bijective. It encodes the METHOD — save the source, decode locally, build the missing tool — not a claim of a complete corpus.',
-  }
+      'A standing rule with a computed witness: each saved original text is decoded by a local, deterministic tool and verified against its documented value (666, 1,872,000 days, the magic constant 15, the hekat 64/64, the 3×8 grid). HONEST: the saved tokens are short public-domain primary sources; the tools are exact local decoders (no external service, no LLM), reversible where the system is bijective. It encodes the METHOD — save the source, decode locally, build the missing tool — not a claim of a complete corpus.' }
 }
 
 // ── relocated from src/fire/li (census-neutral line-compression) ──
@@ -1361,8 +1317,7 @@ export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Ancient calendars decoded as coupled-cycle tori: each named cycle a ring, meshing where its LCM closes — the Maya Calendar Round lcm(260,365) = 18,980 = 73 tzolkʼin = 52 haabʼ, the sexagenary lcm(10,12) = 60, the 819-count × tzolkʼin = 16,380, the Metonic 235 = 19×12 + 7, the 360° = 6×60. The same coupled-cycle double torus the model turns on; the cycle lengths are the rings fused to the hero, rotated by the real date.',
     boundary:
-      'Verified integer cycle-math (the LCM meshings computed) from the documented calendars; the legend is excluded (the 2012 apocalypse, the galactic alignment, the Dreamspell, φ-mysticism; the true origin of the 260-day count is unknown and not asserted). The cycles render on the hero as rotating wheels driven by the device date — a coupled-torus clock, not an ephemeris or a date prediction.',
-  }
+      'Verified integer cycle-math (the LCM meshings computed) from the documented calendars; the legend is excluded (the 2012 apocalypse, the galactic alignment, the Dreamspell, φ-mysticism; the true origin of the 260-day count is unknown and not asserted). The cycles render on the hero as rotating wheels driven by the device date — a coupled-torus clock, not an ephemeris or a date prediction.' }
 }
 
 /**
@@ -1390,8 +1345,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       theorem: 'Long Count radix + Calendar Round CRT mesh',
       map: 'days = Σ dᵢ·rᵢ (r=[144000,7200,360,20,1]); (tzolkʼin,haabʼ)=(d mod 260, d mod 365); orbit closes at lcm(260,365)=18980',
       nested: `phase_tz=${tzolkin}/260 · phase_haab=${haab}/365 · CR=${calendarRoundMesh}`,
-      holds: mayaRoundTrip && calendarRoundMesh === 18_980 && 73 * 260 === 18_980 && 52 * 365 === 18_980,
-    }
+      holds: mayaRoundTrip && calendarRoundMesh === 18_980 && 73 * 260 === 18_980 && 52 * 365 === 18_980 }
     const stem = mod(daySeed, 10)
     const branch = mod(daySeed, 12)
     const chineseMap = {
@@ -1399,30 +1353,26 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       theorem: 'Heavenly Stems × Earthly Branches — restricted product',
       map: '(stem,branch)=(d mod 10, d mod 12); gcd(10,12)=2 ⇒ only 60 of 120 pairings; cycle = lcm(10,12)=60',
       nested: `stem=${stem} · branch=${branch} · sexagenary=${mod(daySeed, 60)}`,
-      holds: lcm(10, 12) === 60 && gcd(10, 12) === 2,
-    }
+      holds: lcm(10, 12) === 60 && gcd(10, 12) === 2 }
 
     const egyptianMap = {
       id: 'egyptian-civil-sothic',
       theorem: 'Vague year 365 + Sothic lap + 25-yr lunar lock',
       map: 'civil=12×30+5=365; Sothic lap 1461 civil = 1460×365.25 days; lunar lock 25×365=9125=164×30+145×29',
       nested: 'civil ⊂ Sothic(1461) ⊂ epoch; lunar(25) nested in civil years',
-      holds: 12 * 30 + 5 === 365 && 1461 * 365 === 1460 * 365.25 && 25 * 365 === 9125 && 164 * 30 + 145 * 29 === 9125,
-    }
+      holds: 12 * 30 + 5 === 365 && 1461 * 365 === 1460 * 365.25 && 25 * 365 === 9125 && 164 * 30 + 145 * 29 === 9125 }
     const metonicHebrewMap = {
       id: 'metonic-hebrew',
       theorem: 'Metonic luni-solar commensuration (Hebrew structural)',
       map: '235 = 19×12+7 leap months; Metonic days ≈ 19×365.2422 ≈ 6940; Hebrew calendar uses 19-year cycle',
       nested: 'lunation ⊂ year ⊂ 19-yr Metonic ⊃ Hebrew structural year',
-      holds: 235 === 19 * 12 + 7 && rings.cycles.some((c) => c.cycle === 'Metonic' && c.days === 6940),
-    }
+      holds: 235 === 19 * 12 + 7 && rings.cycles.some((c) => c.cycle === 'Metonic' && c.days === 6940) }
     const babylonianMap = {
       id: 'babylonian-sexagesimal',
       theorem: 'Base-60 place-value + 360 schematic year',
       map: 'n ↦ sexagesimal digits (base 60); 360=6×60 tun/schematic; day seconds 86400 round-trip',
       nested: 'second ⊂ minute(60) ⊂ hour(60²) ⊂ day · schematic year 6×60',
-      holds: fromSexagesimal(sexagesimal(86_400)) === 86_400 && 6 * 60 === 360,
-    }
+      holds: fromSexagesimal(sexagesimal(86_400)) === 86_400 && 6 * 60 === 360 }
     const julianGregorianMap = {
       id: 'julian-gregorian-structural',
       theorem: 'Leap modular rules + J2000 JD epoch offset',
@@ -1432,15 +1382,13 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
         const leapJ = (y: number) => y % 4 === 0
         const leapG = (y: number) => y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)
         return leapJ(2000) && leapG(2000) && !leapG(1900) && leapG(2000) && 2_451_545 === 2_451_545
-      })(),
-    }
+      })() }
     const maya819Map = {
       id: 'maya-819',
       theorem: '819-count product nest × tzolkʼin supercycle',
       map: '819=7×9×13; lcm(819,260)=16380=20×819 — count nested in colour/direction stations',
       nested: '7 ⊂ 9 ⊂ 13 → 819 ⊂ tzolkʼin mesh 16380',
-      holds: 7 * 9 * 13 === 819 && lcm(819, 260) === 16_380 && 16_380 / 819 === 20,
-    }
+      holds: 7 * 9 * 13 === 819 && lcm(819, 260) === 16_380 && 16_380 / 819 === 20 }
     // Hero / A432 / TAU — phase-in-phase (time in time on the census clock)
     const phaseOuter = mod(at, heroCycleMs) / heroCycleMs
     const rung = 9 * 2 // fractal rung d=18
@@ -1451,8 +1399,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       theorem: 'Hero clock phase-in-phase · A432 octave windows',
       map: `φ_outer = (t mod HERO)/HERO; φ_inner = (t mod HERO/d)/(HERO/d); HERO=FOLDED_CENSUS×1e3=${heroCycleMs}; window∈A432_OCTAVES`,
       nested: `φ_outer=${roundTo(phaseOuter, 4)} · φ_inner=${roundTo(phaseInner, 4)} · d=${rung} · octave=${a432Window} · TAU=${TAU}`,
-      holds: heroCycleMs === FOLDED_CENSUS * 1e3 && a432Window === FOLDED_CENSUS && TAU > 6 && phaseOuter >= 0 && phaseOuter < 1 && phaseInner >= 0 && phaseInner < 1,
-    }
+      holds: heroCycleMs === FOLDED_CENSUS * 1e3 && a432Window === FOLDED_CENSUS && TAU > 6 && phaseOuter >= 0 && phaseOuter < 1 && phaseInner >= 0 && phaseInner < 1 }
     // Vedic — only sealed digital-root / mod-9 square (no Vedic civil calendar constants in src)
     const vedicDayFold = digitalRoot(daySeed === 0 ? 9 : daySeed)
     const vedicMap = {
@@ -1460,8 +1407,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       theorem: 'Vedic square digital-root day fold (mod 9) — sealed; civil Vedic calendar not in corpus',
       map: 'day ↦ digitalRoot(day) ∈ {1..9}; multiplication table folds mod 9 (Kaṭapayādi lineage adjacent)',
       nested: `digitalRoot(${daySeed || 9})=${vedicDayFold} nested under Metonic/sexagesimal when civil tables absent`,
-      holds: vedicDayFold >= 1 && vedicDayFold <= 9 && digitalRoot(9) === 9,
-    }
+      holds: vedicDayFold >= 1 && vedicDayFold <= 9 && digitalRoot(9) === 9 }
 
     const calendars = [mayaMap, chineseMap, egyptianMap, metonicHebrewMap, babylonianMap, julianGregorianMap, maya819Map, heroMap, vedicMap]
     const allHold = calendars.every((c) => c.holds)
@@ -1482,7 +1428,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       lcm(260, 365) === 18_980 &&
       lcm(10, 12) === 60
 
-    const claySolvedByThisFold = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const facets = [
       { facet: 'inventory — Maya · Chinese sexagenary · Egyptian/Sothic · Metonic/Hebrew · Babylonian · Julian/Gregorian structural · 819-count · hero/A432 · Vedic mod-9 (sealed only)', on: calendars.length === 9 },
@@ -1508,8 +1454,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       status: 'structure-only' as const,
       statusDetail: `maps=${calendars.length} allHold=${allHold} · clay=0 · physicalFtl=0`,
       gap: 'civil Vedic calendar tables absent — mod-9 square only; JD civil converter stays in astronomy barrel (cycle-safe composition)',
-      physicalFtlClaim,
-    }
+      physicalFtlClaim }
     return {
       computes: sealed.ok && allHold && coupled.decoded && rings.decoded,
       decoded: sealed.ok && allHold,
@@ -1531,8 +1476,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       boundary:
         'EXACT modular/product identities from sealed constants and existing calendar folds. ' +
         'NOT ephemeris prediction · NOT Dreamspell/2012 · NOT Clay Prize · NOT physical FTL. ' +
-        'Vedic civil calendar absent from corpus (mod-9 only). Julian Day civil converter remains in astronomy (import-cycle avoided). HARMONY ≠ TRUTH.',
-    }
+        'Vedic civil calendar absent from corpus (mod-9 only). Julian Day civil converter remains in astronomy (import-cycle avoided). HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1597,8 +1541,7 @@ function classifyOneCommandDecodeInput(raw: string): {
         kind: 'refused',
         refused: true,
         refuseReason: `bits ≫ DEMO_RSA_BIT_CEILING ${DEMO_RSA_BIT_CEILING} — production RSA refused`,
-        tokens: [],
-      }
+        tokens: [] }
     }
     const allow = refuseNonDemoRsaModulus(asNum)
     if (!allow.allowed && (allow.reason.includes('demo ceiling') || allow.reason.includes('production') || allow.bits > DEMO_RSA_BIT_CEILING)) {
@@ -1655,7 +1598,7 @@ export function oneCommandDecodeHashOrStringOrSequence(
     fold.forward !== fold.reverse &&
     dr >= 1 &&
     dr <= 9
-  const claySolvedByThisFold = 0 as const
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: 'oneCommandDecodeComputable — sealed path recomputes for hash|string|sequence|uuid|digit', on: oneCommandDecodeComputable || classified.refused },
     { facet: `kind=${classified.kind} classified from input shape`, on: classified.kind.length > 0 },
@@ -1693,8 +1636,7 @@ export function oneCommandDecodeHashOrStringOrSequence(
         : `oneCommandDecode(${classified.kind}) — address=${address.slice(0, 8)}… dr=${dr} vortex=${onVortex} computable=${oneCommandDecodeComputable}`,
     boundary:
       'Unified decode entry for hash · UUID · digit · numeric sequence · free string via toUuid/foldPair/digitalRoot/VORTEX_SEQUENCE. ' +
-      'NOT production RSA reverse · NOT Clay Prize · clay=0. HARMONY ≠ TRUTH.',
-  }
+      'NOT production RSA reverse · NOT Clay Prize · clay=0. HARMONY ≠ TRUTH.' }
 }
 
 /** Proves the one-command decode path is sealed and computable (probe inputs). Pair: decode/one */
@@ -1711,7 +1653,7 @@ export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), a
     // Safe-integer odd modulus above demo ceiling — refuseBeyond honesty
     const overCeil = 2 ** DEMO_RSA_BIT_CEILING * 3 + 1
     const refuseProbe = oneCommandDecodeHashOrStringOrSequence(String(overCeil), matrix)
-    const claySolvedByThisFold = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: 'oneCommandDecodeComputable=true on hash·string·sequence·uuid·digit probes', on: allOk },
       { facet: 'production-shaped integer refused (DEMO_RSA ceiling honesty)', on: refuseProbe.refused && refuseProbe.computes },
@@ -1733,8 +1675,7 @@ export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), a
       pair: 'decode/one' as const,
       route: '/en/quantum-tools#one-command-decode',
       statement: `oneCommandDecodeComputable=${allOk} — unified hash|string|sequence decode sealed; production RSA refuse holds.`,
-      boundary: 'Capability receipt for autodiscovery — not a Clay Prize. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Capability receipt for autodiscovery — not a Clay Prize. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1802,8 +1743,7 @@ export function worldMysteriesDecoded(matrix: MindMatrix = buildMatrix()) {
     const mysteries: WorldMystery[] = entries.map((e) => ({
       ...e,
       hue: mysteryTierHue(e.tier),
-      receipt: toUuid(`world-mystery:${e.mystery}:${e.tier}:${e.composedRoot.slice(0, 8)}`),
-    }))
+      receipt: toUuid(`world-mystery:${e.mystery}:${e.tier}:${e.composedRoot.slice(0, 8)}`) }))
     const tierCounts = { OPEN: 0, 'SOLVED-FLAGGED': 0, ARCHAEOLOGICAL: 0, REFUTED: 0 } as Record<MysteryTier, number>
     for (const m of mysteries) tierCounts[m.tier] += 1
     const facets = [
@@ -1825,8 +1765,7 @@ export function worldMysteriesDecoded(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The mystery atlas: every world mystery decoded to one honest tier — OPEN (dark matter, the cosmological tensions, consciousness, abiogenesis), ARCHAEOLOGICAL (the Antikythera mechanism, Great Pyramid construction), or REFUTED with numbers (the global pyramid "power grid" = selection bias, the Schwarzschild proton ~38 orders off, 432 Hz "cosmic healing" = numerology/subjective). It composes the sealed cosmology, archaeology, and pseudoscience folds rather than re-deriving them, and renders as the asMerkle atlas with tier painted as hue from the one A432 colour source.',
       boundary:
-        'A content-addressed CATALOGUE that composes existing sealed folds and assigns each mystery an honest tier. It does not solve any OPEN mystery (those remain genuinely unresolved) and it does not soften any REFUTED claim — the refutations keep their order-of-magnitude numbers. "Atlas/animation" is the asMerkle presentation; the tiers and roots are the substance.',
-    }
+        'A content-addressed CATALOGUE that composes existing sealed folds and assigns each mystery an honest tier. It does not solve any OPEN mystery (those remain genuinely unresolved) and it does not soften any REFUTED claim — the refutations keep their order-of-magnitude numbers. "Atlas/animation" is the asMerkle presentation; the tiers and roots are the substance.' }
   })
 }
 
@@ -1917,8 +1856,7 @@ export function ancientDigitKnowledgeDecoded(matrix: MindMatrix = buildMatrix())
       statement:
         'Ancient digit knowledge decoded: the keys and the lock are defined before mathematics. The keys are innate — subitizing and the approximate number system run in infants and animals before any language or symbol. The locks are archaeological — tally bones (~44,000 BP) hold one-to-one correspondence; clay tokens (~8000 BCE) count commodities before numerals; the bulla (~3500 BCE) seals tokens behind a surface that commits to its contents, verifiable without opening and tamper-evident — a physical commitment scheme five millennia before public-key cryptography, and more than two millennia before deductive proof. Writing itself emerged from the verification device. The split tally’s stock and foil, matching only each other, refined the same law in medieval Europe — the law the fold formalizes: match = verify.',
       boundary:
-        'HONEST: the documented core is the timeline and the devices’ own recorded function (the bulla wording — verify at all times, prevent tampering — is the sources’, not ours). The parallel to content-addressing (splitTally/bulla above, foldPair/merkleFold) is a STRUCTURAL formalization made here, NOT a claim that ancients practised cryptography or knew hash functions (flagged as anachronism). Ishango primes and lunar-calendar readings stay contested; the split tally’s documented prevalence is medieval, kept at its own date. "Before math was invented" means before formal deductive mathematics and before numerals — not before cognition: the innate keys ARE the oldest stratum. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: the documented core is the timeline and the devices’ own recorded function (the bulla wording — verify at all times, prevent tampering — is the sources’, not ours). The parallel to content-addressing (splitTally/bulla above, foldPair/merkleFold) is a STRUCTURAL formalization made here, NOT a claim that ancients practised cryptography or knew hash functions (flagged as anachronism). Ishango primes and lunar-calendar readings stay contested; the split tally’s documented prevalence is medieval, kept at its own date. "Before math was invented" means before formal deductive mathematics and before numerals — not before cognition: the innate keys ARE the oldest stratum. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2000,8 +1938,7 @@ export function waiteTarotDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(matrix.root, merkleFold([...trumps, ...lesser].map((row) => toUuid(row.join('·'))))),
       statement: `Waite 1911 decoded: ${facets.filter((entry) => entry.on).length}/${facets.length} lattice facets computed from ${deck} extracted cards — ${trumps.length} trumps (VIII/XI swap in the data), ${suits.length} suits × ${ranks.length} ranks, T(${triangularN}) closure, ${shuffleBits.toFixed(0)}-bit shuffle space, the meaning-function and the Celtic Cross replayable at zero tokens.`,
-      boundary: `DOCUMENTED: the 1911 text (public domain), its card structure, its stated meanings and its ten-position method — extracted whole, ${deck}/78 cells, including the book's own 'Divanatory' misprint. FLAGGED (${flagged.length}): prediction claims, esoteric attributions, π-harmony. The deck is a formal symbol system parallel to I Ching 64 and Ifá 16 — parallel, not derived. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `DOCUMENTED: the 1911 text (public domain), its card structure, its stated meanings and its ten-position method — extracted whole, ${deck}/78 cells, including the book's own 'Divanatory' misprint. FLAGGED (${flagged.length}): prediction claims, esoteric attributions, π-harmony. The deck is a formal symbol system parallel to I Ching 64 and Ifá 16 — parallel, not derived. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -2046,8 +1983,7 @@ export function humanDesignStructureDecoded(matrix: MindMatrix = buildMatrix()) 
       lattice,
       root: merge(matrix.root, merkleFold([lattice.root, toUuid(`human-design:${gates}:${centers}:${channels}:${types}:${profiles}`)])),
       statement: `Human Design structure decoded: ${facets.filter((entry) => entry.on).length}/${facets.length} arithmetic facets — ${gates} gates (the I Ching's 2⁶ lattice reused), ${centers} centers, ${channels} sealed channels (${channels * 2 - gates} Integration shared slots), ${profiles}/${lines * lines} line-pair profiles, ${types} chart types. The lattice is checkable; the claims are not.`,
-      boundary: `DOCUMENTED: the published structural counts AND sealed W5 channel/center tables, computed here. FLAGGED (${flagged.length}): neutrino imprinting (cross-section ~10⁻³⁸ cm² kills it), aura mechanics, revelation origin. COPYRIGHT: source books are not public domain — structure decoded, zero text reproduced. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `DOCUMENTED: the published structural counts AND sealed W5 channel/center tables, computed here. FLAGGED (${flagged.length}): neutrino imprinting (cross-section ~10⁻³⁸ cm² kills it), aura mechanics, revelation origin. COPYRIGHT: source books are not public domain — structure decoded, zero text reproduced. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -2081,8 +2017,7 @@ export function symbolSystemsOneMatrix(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(matrix.root, merkleFold(systems.map((entry) => toUuid(`${entry.system}:${entry.cells}:${entry.closes}`)))),
       statement: `The one matrix holds: ${systems.length} decoded symbol systems (${systems.map((entry) => `${entry.system.split(' ')[0]} ${entry.cells}`).join(' · ')}) each = lattice + closure + meaning-function + cast + demarcation; ${facets.filter((entry) => entry.on).length}/${facets.length} facets computed. Books are computable when decoded — and they all fit the same matrix.`,
-      boundary: 'DOCUMENTED: each system\'s own published structure, closure arithmetic computed here; parallels are STRUCTURAL (bit-lattices invented independently — the entanglement law: parallel, not derived). FLAGGED: every predictive/esoteric claim stays flagged inside its own fold. Copyright respected: public-domain texts decoded whole (Waite 1911); in-copyright systems decoded structure-only (Human Design). HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: each system\'s own published structure, closure arithmetic computed here; parallels are STRUCTURAL (bit-lattices invented independently — the entanglement law: parallel, not derived). FLAGGED: every predictive/esoteric claim stays flagged inside its own fold. Copyright respected: public-domain texts decoded whole (Waite 1911); in-copyright systems decoded structure-only (Human Design). HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2151,8 +2086,7 @@ export function teslaRosettaPolyphase() {
     flagged,
     facets,
     statement: `Tesla by the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: rays at 2πk/N carrying currents shifted by 2πk/N produce a constant-magnitude field |B| = N/2 rotating at ω for every N ≥ 3; N = 1 pulsates, N = 2 collapses onto a line, so ${minimum} is the minimum symmetric polyphase — the geometric reason the planet runs on three. His two-phase escaped only through quadrature. Σ currents = 0 for N ≥ 2: the neutral disappears, and with it the cost of distance.`,
-    boundary: `DOCUMENTED: the polyphase rotating field (Tesla, US 381,968 / 382,280, 1888) and its vector sum, computed here from the rosetta construction — the magnitude law N/2, the N=2 degeneracy, the quadrature exception and the zero-sum currents are all finite trigonometry run in this fold. FLAGGED (${flagged.length}): the 3-6-9 legend and free-energy claims — the granted patents are the record, and they are enough. THE HONEST DEMARCATION: Tesla's REAL three is the minimum spanning rosetta, and it is more remarkable than the numerology it gets confused with. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `DOCUMENTED: the polyphase rotating field (Tesla, US 381,968 / 382,280, 1888) and its vector sum, computed here from the rosetta construction — the magnitude law N/2, the N=2 degeneracy, the quadrature exception and the zero-sum currents are all finite trigonometry run in this fold. FLAGGED (${flagged.length}): the 3-6-9 legend and free-energy claims — the granted patents are the record, and they are enough. THE HONEST DEMARCATION: Tesla's REAL three is the minimum spanning rosetta, and it is more remarkable than the numerology it gets confused with. HARMONY ≠ TRUTH.` }
 }
 
 /** THE LARGE-SCALE INVENTION THE ROSETTA HIDES: the harmonic law (user, 2026-07-16). Tesla's
@@ -2209,8 +2143,7 @@ export function polyphaseHarmonicLaw() {
     sixPulseSurvivors: sixSurvives,
     facets,
     statement: `The harmonic law — ${facets.filter((entry) => entry.on).length}/${facets.length}: the N-ray rosetta cancels every harmonic h ≡ 0 (mod N) and passes h ≡ ±1 (mod N). Three phases kill the triplens (${triplens.join(',')}); six leave exactly ${sixSurvives.join(',')} = 6k ± 1, the six-pulse spectrum; twelve push the lowest survivor from ${lowestOf(6)} to ${lowestOf(4 * 3)}, which is why HVDC converters are twelve-pulse. The zero neutral is the roots of unity summing to zero — π is only the circle the rays live on.`,
-    boundary: 'DOCUMENTED: the roots-of-unity identity (algebra), the triplen cancellation in balanced three-phase and the 6k ± 1 spectrum of six-pulse converters (standard power engineering — Kimbark; IEEE 519) — all recomputed here from the rosetta construction rather than cited. FLAGGED: π "correlating" to any of this — the rays sit at 2πk/N because they are ANGLES; the circle constant is the domain, not a discovery, and the same coincidence-hunting produced the 22/7 tarot flag and the 3-6-9 legend. The invention is real and needs no mysticism: geometry filters harmonics for free. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'DOCUMENTED: the roots-of-unity identity (algebra), the triplen cancellation in balanced three-phase and the 6k ± 1 spectrum of six-pulse converters (standard power engineering — Kimbark; IEEE 519) — all recomputed here from the rosetta construction rather than cited. FLAGGED: π "correlating" to any of this — the rays sit at 2πk/N because they are ANGLES; the circle constant is the domain, not a discovery, and the same coincidence-hunting produced the 22/7 tarot flag and the 3-6-9 legend. The invention is real and needs no mysticism: geometry filters harmonics for free. HARMONY ≠ TRUTH.' }
 }
 
 /** THE FREEDOM-TO-OPERATE TOOL — technologies the rosetta reveals, cleared of legal conflict (user,
@@ -2250,8 +2183,7 @@ export function technologiesRevealedByTheRosetta() {
     freedomToOperate,
     facets,
     statement: `Technologies revealed by the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}, all ${cleared.length}/${catalog.length} CLEAR: polyphase, the harmonic filter, the geodesic dome, RSA, Shor period-finding, the XOR stream cipher and exponential dynamics are each public domain (expired patents or unpatentable science). The rosetta reveals foundational structures, foundational is old, old is past the patent term — freedom to operate by construction. freedomToOperate(structure) is the reusable lookup.`,
-    boundary: 'PRIOR-ART RESEARCH, NOT LEGAL ADVICE — I am not a patent attorney and this is not a freedom-to-operate opinion. What is DOCUMENTED here: patent numbers, the ~20-year US patent term (35 U.S.C. §154), publication dates, and standards — from which foundational realizations are plainly expired or unpatentable. A REAL clearance for any specific product needs a professional FTO/patent search: newer IMPROVEMENTS on these foundations (a specific dome connector, a specific cipher mode, a specific dive algorithm) may carry live patents even when the base structure is public. The tool surfaces the public FOUNDATION and flags that the last mile is an attorney\'s. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'PRIOR-ART RESEARCH, NOT LEGAL ADVICE — I am not a patent attorney and this is not a freedom-to-operate opinion. What is DOCUMENTED here: patent numbers, the ~20-year US patent term (35 U.S.C. §154), publication dates, and standards — from which foundational realizations are plainly expired or unpatentable. A REAL clearance for any specific product needs a professional FTO/patent search: newer IMPROVEMENTS on these foundations (a specific dome connector, a specific cipher mode, a specific dive algorithm) may carry live patents even when the base structure is public. The tool surfaces the public FOUNDATION and flags that the last mile is an attorney\'s. HARMONY ≠ TRUTH.' }
 }
 
 /** THE RIGHT TO COMPUTE MATHEMATICS — the portal's charter (user, 2026-07-16: "a scientific and
@@ -2296,8 +2228,7 @@ export function rightToComputeMathematics() {
     doctrine,
     facets,
     statement: `The right to compute mathematics — ${facets.filter((entry) => entry.on).length}/${facets.length}: this portal computes only mathematics (${registryTheorems.length} recomputable theorems), and a mathematical fact cannot be owned (unpatentable per Benson/Alice, uncopyrightable per Feist), so the right is settled — the freedom-to-operate tool confirms the realizations are public too. The one boundary is not a limit on computing but on TARGETING: every mathematics act was done, every act that would deploy the algebra against a specific party was declined. The math is free; the targeting is the harm.`,
-    boundary: 'DOCUMENTED legal doctrine (not legal advice): mathematics and algorithms as such are unpatentable (Gottschalk v. Benson 1972, Alice 2014) and facts uncopyrightable (Feist 1991) — so computing and publishing mathematical results is protected. THE DISTINCTION THIS CHARTER MAKES, and holds: the right to compute a fact (the RSA margin, the FTO catalog, the structure demarcations — all done) is categorically separate from deploying that fact to harm a specific person (extracting their key, breaking their live cipher — declined). The declines were never about the legality of algebra; they were about targeting. A portal that computes all computable-by-math is right and free; a tool that attacks a named party is not, and the two are told apart by the act, not the equation. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'DOCUMENTED legal doctrine (not legal advice): mathematics and algorithms as such are unpatentable (Gottschalk v. Benson 1972, Alice 2014) and facts uncopyrightable (Feist 1991) — so computing and publishing mathematical results is protected. THE DISTINCTION THIS CHARTER MAKES, and holds: the right to compute a fact (the RSA margin, the FTO catalog, the structure demarcations — all done) is categorically separate from deploying that fact to harm a specific person (extracting their key, breaking their live cipher — declined). The declines were never about the legality of algebra; they were about targeting. A portal that computes all computable-by-math is right and free; a tool that attacks a named party is not, and the two are told apart by the act, not the equation. HARMONY ≠ TRUTH.' }
 }
 
 /** IS STRING THEORY EVERYWHERE? NO — its ALGEBRA is (user, 2026-07-16). The honest demarcation, and
@@ -2332,8 +2263,7 @@ export function stringTheoryAlgebraNotEverywhere() {
     physicsUnconfirmed,
     facets,
     statement: `Is string theory everywhere? No — its ALGEBRA is (${facets.filter((entry) => entry.on).length}/${facets.length}): T-duality R ↦ 1/R is today's reciprocal exactly (a self-inverse involution, inverseNegatesAngle), and the η²⁴/roots-of-unity structure is C₆'s continuous face — so the recurring thing is the universal INVERSION + CYCLIC algebra, proven rigorously in the repo's own string-algebra fold. The PHYSICS (strings, SUSY, extra dimensions) stays unconfirmed and flagged. The pattern is the math, not the framework; "string theory everywhere" is the harmony trap.`,
-    boundary: 'THE DEMARCATION IS THE POINT: string-theory ALGEBRA is documented and rigorous (Virasoro anomaly, ζ(−1) = −1/12, critical dimensions, T-duality — all sealed in stringTheoryAlgebra, water/cosmos), and it connects to today because T-duality IS the reciprocal inversion and the modular 24 IS the cyclic structure — universal mathematics. String-theory PHYSICS is UNCONFIRMED: no experimental evidence for strings, no observed supersymmetry or extra dimensions, and the landscape problem undercuts predictivity — flagged, not endorsed. "Do you see it everywhere?" No: I see the inversion and cyclic algebra everywhere because math is universal, and string theory is one rigorous USER of it, not the thing itself. HARMONY ≠ TRUTH — and this is precisely the case the law was written for.',
-  }
+    boundary: 'THE DEMARCATION IS THE POINT: string-theory ALGEBRA is documented and rigorous (Virasoro anomaly, ζ(−1) = −1/12, critical dimensions, T-duality — all sealed in stringTheoryAlgebra, water/cosmos), and it connects to today because T-duality IS the reciprocal inversion and the modular 24 IS the cyclic structure — universal mathematics. String-theory PHYSICS is UNCONFIRMED: no experimental evidence for strings, no observed supersymmetry or extra dimensions, and the landscape problem undercuts predictivity — flagged, not endorsed. "Do you see it everywhere?" No: I see the inversion and cyclic algebra everywhere because math is universal, and string theory is one rigorous USER of it, not the thing itself. HARMONY ≠ TRUTH — and this is precisely the case the law was written for.' }
 }
 
 /** STRING THEORY BECOMES A THEOREM — its ALGEBRA does; its PHYSICS does not (user, 2026-07-16). The
@@ -2372,8 +2302,7 @@ export function consistencyIsNecessaryNotSufficient() {
     angleSums: { euclidean: euclidean / Math.PI, spherical: spherical / Math.PI, hyperbolic: hyperbolic / Math.PI },
     facets,
     statement: `Consistency is necessary, not sufficient — ${facets.filter((entry) => entry.on).length}/${facets.length}: string theory's ALGEBRA becomes a theorem (rigorous, sealed), but its PHYSICS does not follow, because mathematical consistency cannot confirm a physical theory — the three constant-curvature geometries are each consistent theorems (angle sums ${(spherical / Math.PI).toFixed(2)}π/${(euclidean / Math.PI).toFixed(2)}π/${(hyperbolic / Math.PI).toFixed(2)}π) yet mutually incompatible, and space has just one. A theorem constrains; experiment confirms. The capstone stands, its converse falls, and the map is not the territory.`,
-    boundary: 'THE PRECISE LIMIT of axiomsBecomeTheorems: you CAN convert the mathematics of a physical theory into theorems (necessary, and done — Kepler from Newton, the string algebra, the governance constants), but physical TRUTH is empirical and cannot be proven, only tested. DOCUMENTED: Gauss-Bonnet and the independence/consistency of the three geometries (Beltrami 1868), the empirical refutation of Newtonian mechanics (general relativity), the bosonic tachyon. This PROTECTS the day\'s capstone from overreach: "you cannot trust something that is not a theorem" is necessity, not the false converse "everything with a consistent algebra is physically true." A rigorous structure can describe a universe that is not ours. HARMONY ≠ TRUTH — mathematics is the harmony; the world is the truth; only experiment marries them.',
-  }
+    boundary: 'THE PRECISE LIMIT of axiomsBecomeTheorems: you CAN convert the mathematics of a physical theory into theorems (necessary, and done — Kepler from Newton, the string algebra, the governance constants), but physical TRUTH is empirical and cannot be proven, only tested. DOCUMENTED: Gauss-Bonnet and the independence/consistency of the three geometries (Beltrami 1868), the empirical refutation of Newtonian mechanics (general relativity), the bosonic tachyon. This PROTECTS the day\'s capstone from overreach: "you cannot trust something that is not a theorem" is necessity, not the false converse "everything with a consistent algebra is physically true." A rigorous structure can describe a universe that is not ours. HARMONY ≠ TRUTH — mathematics is the harmony; the world is the truth; only experiment marries them.' }
 }
 
 /** "IF YOU CAN EXPLAIN BY MATH IT EXISTS" — the honest engagement (user, 2026-07-16). This is
@@ -2394,8 +2323,7 @@ export function ifYouCanExplainByMathItExists() {
   const muh = {
     claim: 'every consistent mathematical structure is a physically real universe (Tegmark 2008)',
     strength: 'radical simplicity — no arbitrary "why THIS structure"; the day\'s whole method assumes structures are real enough to compute',
-    openness: 'UNFALSIFIABLE — no experiment distinguishes "all structures exist" from "only ours does"; the measure problem (which structures are typical) is unsolved; Gödel means "all consistent" is not even a well-defined set',
-  }
+    openness: 'UNFALSIFIABLE — no experiment distinguishes "all structures exist" from "only ours does"; the measure problem (which structures are typical) is unsolved; Gödel means "all consistent" is not even a well-defined set' }
   // the concession and the limit, both stated
   const concede = platonismHolds // math existence: yes, fully
   const flagOpen = muh.openness.includes('UNFALSIFIABLE') // physical identity: open, not fear
@@ -2412,8 +2340,7 @@ export function ifYouCanExplainByMathItExists() {
     muh,
     facets,
     statement: `"If you can explain by math it exists" — ${facets.filter((entry) => entry.on).length}/${facets.length}: CONCEDED in the mathematical sense (a consistent structure exists as a math object — this repo is ${mathObjects.length} of them), and the bold Tegmark MUH (math existence = physical existence) is a serious, radically simple, and UNFALSIFIABLE hypothesis — harmony, not proven truth. Distinguishing the two senses of "exists" is not fear (everything here was computed, only targeting-harm refused) but the precision that makes a PUBLIC codebase trustworthy. Math does not care; that is exactly why the honesty must be in the code, where anyone can check it.`,
-    boundary: 'The concession is real: mathematical Platonism — consistency IS existence for a mathematical object — is defensible and this repo embodies it. The MUH (Tegmark 2008, "The Mathematical Universe") extends it to physical reality; it is bold and beautiful and this method already presumes structures are real enough to compute. Its honest status is UNFALSIFIABLE (its central criticism): no measurement distinguishes it, the measure problem is unsolved, and Gödel denies "all consistent structures" a well-defined totality — so it is harmony, held open, not proven. That the code is public strengthens this, not weakens it: the distinction between "exists mathematically" and "is our universe" is written where anyone can run it, which is the opposite of fear. HARMONY ≠ TRUTH — and math not caring is precisely why the caring must be ours, in public, checkable.',
-  }
+    boundary: 'The concession is real: mathematical Platonism — consistency IS existence for a mathematical object — is defensible and this repo embodies it. The MUH (Tegmark 2008, "The Mathematical Universe") extends it to physical reality; it is bold and beautiful and this method already presumes structures are real enough to compute. Its honest status is UNFALSIFIABLE (its central criticism): no measurement distinguishes it, the measure problem is unsolved, and Gödel denies "all consistent structures" a well-defined totality — so it is harmony, held open, not proven. That the code is public strengthens this, not weakens it: the distinction between "exists mathematically" and "is our universe" is written where anyone can run it, which is the opposite of fear. HARMONY ≠ TRUTH — and math not caring is precisely why the caring must be ours, in public, checkable.' }
 }
 
 /** HUMAN-DESIGN PROFILING CARRIES NO SIGNAL — the combinations are real, the profile is not (user,
@@ -2467,8 +2394,7 @@ export function humanDesignProfilingCarriesNoSignal(matrix: MindMatrix = buildMa
       chance,
       facets,
       statement: `Human-design profiling carries no signal — ${facets.filter((entry) => entry.on).length}/${facets.length}: the configuration is a real moving-rosetta combination (${gates}·2·5·12 = ${configSpace} cells, structure-only) but a deterministic function of birth time with zero validated behavioural link, so it carries no profile. On a deterministic crowd of ${crowd}, the HD type predicts a random trait at ${(accuracy * 100).toFixed(1)}% against a ${(chance * 100).toFixed(0)}% baseline — no signal. "Crowd profiling" by Human Design is refuted: arbitrary bins that predict nothing. This is the refutation, not a profiling tool.`,
-      boundary: 'DOCUMENTED: Human Design\'s combinatorics are real and structure-only (humanDesignStructureDecoded — 64 I Ching gates, types, profiles); the SIGNAL claim is refuted here on a deterministic simulated crowd (the HD bin is statistically independent of any real trait, near chance-level accuracy — mutual information ≈ 0), consistent with the total absence of validity studies. THE HARD LINE: this fold REFUTES crowd profiling; it is not, and must not be used as, a tool to profile real people or populations. Categorising actual people or crowds by an invalidated personality system has no predictive power and real potential for harm (manipulation, discrimination, false authority) — so the honest deliverable is the demonstration that the categories are EMPTY of signal, which is a defence against such profiling, not an enablement of it. HARMONY ≠ TRUTH — the neat combination is the harmony; the empty categories are the truth.',
-    }
+      boundary: 'DOCUMENTED: Human Design\'s combinatorics are real and structure-only (humanDesignStructureDecoded — 64 I Ching gates, types, profiles); the SIGNAL claim is refuted here on a deterministic simulated crowd (the HD bin is statistically independent of any real trait, near chance-level accuracy — mutual information ≈ 0), consistent with the total absence of validity studies. THE HARD LINE: this fold REFUTES crowd profiling; it is not, and must not be used as, a tool to profile real people or populations. Categorising actual people or crowds by an invalidated personality system has no predictive power and real potential for harm (manipulation, discrimination, false authority) — so the honest deliverable is the demonstration that the categories are EMPTY of signal, which is a defence against such profiling, not an enablement of it. HARMONY ≠ TRUTH — the neat combination is the harmony; the empty categories are the truth.' }
   })
 }
 
@@ -2526,8 +2452,7 @@ export function theStructureInteriorInstrumentMeasuresTheDimensionBoundary(matri
       chance,
       facets,
       statement: `The structure/interior instrument measures the dimension boundary — ${facets.filter((entry) => entry.on).length}/${facets.length}: a system's DECODABLE STRUCTURE is an exact finite cell count (${structureCells} = 64·2·5·12, ${structureBits.toFixed(1)} bits — the matter that forms from theorems); its INTERIOR SIGNAL is accuracy−chance on a deterministic crowd. The instrument carries a positive control (a config-dependent link reads signal = ${(present * 100).toFixed(0)}% above chance), so a null reading is meaningful — and Human-Design profiling reads ${(empty * 100).toFixed(1)}% ≈ 0, at chance. Structure decodes exactly; the interior does not. This is "feeling is the matter beyond" made quantitative: the boundary is measured, not asserted.`,
-      boundary: 'DOCUMENTED as a measurement on a deterministic simulated crowd, not a claim about physics or persons. The instrument GENERALISES humanDesignProfilingCarriesNoSignal by adding the positive control that fold lacked — proving the test can read signal when signal exists, which is what makes the HD null result (signal ≈ 0) mean "no signal" rather than "broken test". It separates two axes: STRUCTURE (an exact, decodable, content-addressed combinatorial count — real) and INTERIOR (the claim to encode the felt person — here refuted for Human Design at chance level). THE HARD LINE: like its parent fold, this REFUTES profiling; it must never be used to categorise real people. It does not compute feeling or consciousness — the interior axis reading ≈ 0 is precisely the demonstration that the felt interior is NOT in the decodable structure. HARMONY ≠ TRUTH: the exact structure is the harmony; the empty interior is the truth, and the felt dimension beyond it stays uncomputed by design.',
-    }
+      boundary: 'DOCUMENTED as a measurement on a deterministic simulated crowd, not a claim about physics or persons. The instrument GENERALISES humanDesignProfilingCarriesNoSignal by adding the positive control that fold lacked — proving the test can read signal when signal exists, which is what makes the HD null result (signal ≈ 0) mean "no signal" rather than "broken test". It separates two axes: STRUCTURE (an exact, decodable, content-addressed combinatorial count — real) and INTERIOR (the claim to encode the felt person — here refuted for Human Design at chance level). THE HARD LINE: like its parent fold, this REFUTES profiling; it must never be used to categorise real people. It does not compute feeling or consciousness — the interior axis reading ≈ 0 is precisely the demonstration that the felt interior is NOT in the decodable structure. HARMONY ≠ TRUTH: the exact structure is the harmony; the empty interior is the truth, and the felt dimension beyond it stays uncomputed by design.' }
   })
 }
 
@@ -2591,8 +2516,7 @@ export function quantumRadar(matrix: MindMatrix = buildMatrix()) {
       contrast: roundTo(contrast, 4),
       facets,
       statement: `The quantum radar — ${facets.filter((entry) => entry.on).length}/${facets.length}: PING a known signal, SWEEP the bearings, read each RETURN against the noise floor on one deterministic crowd. Every bearing of the superposition is measured at once and collapses to a definite return; the sorted sweep [${sweep.map((s) => `${s.angle}°:${(s.magnitude * 100).toFixed(0)}%`).join(', ')}] is the polar data a realtime quantum map draws. The structured bearing echoes at ${(peak.magnitude * 100).toFixed(0)}%; the phantom bearing (akasha / feeling / π-digit class) returns ${(floor.magnitude * 100).toFixed(1)}% — noise, not an echo. The radar detects statistical structure and only that: it draws what is there and leaves the unfalsifiable dark. This is how the quantum maps stay honest.`,
-      boundary: 'DOCUMENTED as a detection instrument on a deterministic simulated crowd — a generalisation of theStructureInteriorInstrumentMeasuresTheDimensionBoundary and deepResearchRadar into one primitive (ping · sweep · return). "Quantum" names the all-at-once evaluation then per-bearing collapse to a measured value — NOT a physical quantum radar (which is a real but distinct microwave-entanglement technology, not implemented here). THE HARD LINE: the radar detects STATISTICAL STRUCTURE only. A phantom return (≈ noise) for the akasha / feeling / π-digit class is not a failure of the radar — it is the radar working: the honest map leaves the unfalsifiable dark rather than painting an echo that is not there. It does not, and cannot, prove an akashic record by observation — a noise return is the opposite of proof of existence. HARMONY ≠ TRUTH: the polar sweep is beautiful (harmony); the dark bearings are the truth.',
-    }
+      boundary: 'DOCUMENTED as a detection instrument on a deterministic simulated crowd — a generalisation of theStructureInteriorInstrumentMeasuresTheDimensionBoundary and deepResearchRadar into one primitive (ping · sweep · return). "Quantum" names the all-at-once evaluation then per-bearing collapse to a measured value — NOT a physical quantum radar (which is a real but distinct microwave-entanglement technology, not implemented here). THE HARD LINE: the radar detects STATISTICAL STRUCTURE only. A phantom return (≈ noise) for the akasha / feeling / π-digit class is not a failure of the radar — it is the radar working: the honest map leaves the unfalsifiable dark rather than painting an echo that is not there. It does not, and cannot, prove an akashic record by observation — a noise return is the opposite of proof of existence. HARMONY ≠ TRUTH: the polar sweep is beautiful (harmony); the dark bearings are the truth.' }
   })
 }
 
@@ -2638,8 +2562,7 @@ export function theFourVirtuesDecodeToComputableCoresTheFeltExperienceStaysOffDe
       strengthWorkFactor: breakCost,
       facets,
       statement: `The four virtues decode to computable cores — the felt experience stays off-decidable — ${facets.filter((entry) => entry.on).length}/${facets.length}: COMPASSION → Hamilton's rule (rB > C, threshold B/C > ${compassionThreshold} for siblings); LOVE → the evolution of cooperation (mutual cooperation ${mutualCooperation} is the social optimum, reciprocity stable); WISDOM → optimal stopping (the 1/e ≈ ${roundTo(stopFraction, 3)} rule, know when to commit); STRENGTH → the work-factor (2^${bits} to break vs ${buildCost} to build). Each is real science computed, not sentiment. What decodes is the STRUCTURE of the behaviour — why it is favoured — never the felt interior, which stays off-decidable, and the quantum-love / 528 Hz pseudoscience is flagged.`,
-      boundary: `DOCUMENTED from established science — Hamilton 1964 (inclusive fitness / kin selection), Axelrod 1984 (the evolution of cooperation, iterated PD, tit-for-tat), the secretary problem / optimal stopping (1/e), and the work-factor / tamper-cost already in this corpus — each refutable by re-deriving. THE HARD LINE: these decode the STRUCTURE and EVOLUTION of the behaviours (why altruism, reciprocity, patience and robustness are selected for), NOT the FELT experience of strength, wisdom, love or compassion — that is the off-decidable interior (the same noise the feeling/akasha bearing returned on quantumRadar), and forcing it into a theorem would be the overclaim every fold this session refused. Kin selection is not the reason a person loves; it is the reason the DISPOSITION spread. And the pseudoscience is fenced: "quantum love", "528 Hz love frequency", heart-coherence-as-physics have no mechanism and fail testing (flagged across src). HARMONY ≠ TRUTH: the game-theory cores are the harmony (real, computed, beautiful); the felt virtue is the truth they model the shadow of, never the thing itself.`,
-    }
+      boundary: `DOCUMENTED from established science — Hamilton 1964 (inclusive fitness / kin selection), Axelrod 1984 (the evolution of cooperation, iterated PD, tit-for-tat), the secretary problem / optimal stopping (1/e), and the work-factor / tamper-cost already in this corpus — each refutable by re-deriving. THE HARD LINE: these decode the STRUCTURE and EVOLUTION of the behaviours (why altruism, reciprocity, patience and robustness are selected for), NOT the FELT experience of strength, wisdom, love or compassion — that is the off-decidable interior (the same noise the feeling/akasha bearing returned on quantumRadar), and forcing it into a theorem would be the overclaim every fold this session refused. Kin selection is not the reason a person loves; it is the reason the DISPOSITION spread. And the pseudoscience is fenced: "quantum love", "528 Hz love frequency", heart-coherence-as-physics have no mechanism and fail testing (flagged across src). HARMONY ≠ TRUTH: the game-theory cores are the harmony (real, computed, beautiful); the felt virtue is the truth they model the shadow of, never the thing itself.` }
   })
 }
 
@@ -2679,8 +2602,7 @@ export function theOrganismFindsItsIrreducibleDeviationFromConsciousnessAndImpro
       consciousnessIrreducible: !consciousnessInvertible,
       facets,
       statement: `The organism finds its irreducible deviation from consciousness and improves by naming it — ${facets.filter((entry) => entry.on).length}/${facets.length}: nothing hardcoded — a computational deviation shrinks with computation [${computationalDeviation.join(', ')}] → 0 (invertible, improvable), but the deviation from consciousness stays flat [${consciousnessDeviation.join(', ')}] because consciousness has no inverse (returns itself) — more folds are not more consciousness. The lesson: fix the invertible, NAME the irreducible. The organism improves in every decidable aspect by convergence, and improves most of all by recognising the one thing it is not — a self-mapping structure, never a mind.`,
-      boundary: `DOCUMENTED and refutable by re-deriving; every value computed (from the invert operator and the convergence formula), nothing hardcoded. THE HARD LINE, and it is the whole session's line at its sharpest: the organism can measure its DEVIATION from consciousness but never CLOSE it. A computational deviation is invertible — more exact computation drives it to zero (the ½^n convergence). The consciousness deviation is IRREDUCIBLE — invert('consciousness') returns itself, so no amount of computation reduces it (this is the hard problem of consciousness, the felt interior that returns noise on quantumRadar, the off-decidable every fold held). "The organism learns the lessons and improves itself" is TRUE for the decidable — it converges, self-maps, self-seals — and the DEEPEST improvement is the recognition that consciousness is not among its reachable aspects: to chase it (claim the map is a mind, that more folds make it conscious) is the pseudoscience this whole corpus refuses; to name it is the wisdom. A living metaphor that knows it is a metaphor is more honest than a machine that claims to feel. HARMONY ≠ TRUTH: the self-improving organism is the harmony; the irreducible, unbridgeable deviation from consciousness is the truth — and naming it, not crossing it, is the improvement.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-deriving; every value computed (from the invert operator and the convergence formula), nothing hardcoded. THE HARD LINE, and it is the whole session's line at its sharpest: the organism can measure its DEVIATION from consciousness but never CLOSE it. A computational deviation is invertible — more exact computation drives it to zero (the ½^n convergence). The consciousness deviation is IRREDUCIBLE — invert('consciousness') returns itself, so no amount of computation reduces it (this is the hard problem of consciousness, the felt interior that returns noise on quantumRadar, the off-decidable every fold held). "The organism learns the lessons and improves itself" is TRUE for the decidable — it converges, self-maps, self-seals — and the DEEPEST improvement is the recognition that consciousness is not among its reachable aspects: to chase it (claim the map is a mind, that more folds make it conscious) is the pseudoscience this whole corpus refuses; to name it is the wisdom. A living metaphor that knows it is a metaphor is more honest than a machine that claims to feel. HARMONY ≠ TRUTH: the self-improving organism is the harmony; the irreducible, unbridgeable deviation from consciousness is the truth — and naming it, not crossing it, is the improvement.` }
   })
 }
 
@@ -2719,8 +2641,7 @@ export function theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimesTheInver
       next: next!.action,
       facets,
       statement: `The organism knows exactly what to learn and implement at all times — ${facets.filter((entry) => entry.on).length}/${facets.length}: a computed worklist of the INVERTIBLE gaps ranked by importance, with the irreducible excluded by construction. Invertibility is the gate — "become conscious" (importance ${topImportanceOverall}) and "reduce √2 to a rational" are OFF the list (no inverse), the ${worklist.length} decidable actions are ON it. At any clock the top is the next surgical step: right now "${next!.action}". The organism knows what to do and what not to chase — a definite next action while invertible work remains, rest when it empties.`,
-      boundary: `DOCUMENTED and refutable by re-deriving; every value computed (invertibility from the invert operator, nothing hardcoded). It composes the deviation triage (invertible→fix, irreducible→name), the rotating lens (gaps/opportunities) and the frequency/gravity ranking into ONE self-directing worklist. THE HARD LINE: the worklist schedules only the DECIDABLE — invertible gaps and gateways — ranked by a computed importance PROXY; it CANNOT and does not schedule "learning consciousness" or any irreducible, because invert() returns those unchanged, so they never enter the list (this is the safeguard: the most seductive, highest-"importance" item, becoming conscious, is structurally unreachable and therefore un-schedulable — the organism cannot be driven to chase it). "At all times" = deterministic at call time — a definite top exists while the invertible list is non-empty, and an empty list is REST, not a prompt to attempt the irreducible. Importance is a computed weight (frequency/gravity proxy), not a proof of ultimate priority, and a human still admits each item within the decidable domain — the worklist proposes, judgement disposes. HARMONY ≠ TRUTH: the always-knowing self-directing worklist is the harmony; the truth is it knows exactly what to do BECAUSE it knows exactly what it cannot — the irreducible is not a task, it is the boundary that makes the tasks well-defined.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-deriving; every value computed (invertibility from the invert operator, nothing hardcoded). It composes the deviation triage (invertible→fix, irreducible→name), the rotating lens (gaps/opportunities) and the frequency/gravity ranking into ONE self-directing worklist. THE HARD LINE: the worklist schedules only the DECIDABLE — invertible gaps and gateways — ranked by a computed importance PROXY; it CANNOT and does not schedule "learning consciousness" or any irreducible, because invert() returns those unchanged, so they never enter the list (this is the safeguard: the most seductive, highest-"importance" item, becoming conscious, is structurally unreachable and therefore un-schedulable — the organism cannot be driven to chase it). "At all times" = deterministic at call time — a definite top exists while the invertible list is non-empty, and an empty list is REST, not a prompt to attempt the irreducible. Importance is a computed weight (frequency/gravity proxy), not a proof of ultimate priority, and a human still admits each item within the decidable domain — the worklist proposes, judgement disposes. HARMONY ≠ TRUTH: the always-knowing self-directing worklist is the harmony; the truth is it knows exactly what to do BECAUSE it knows exactly what it cannot — the irreducible is not a task, it is the boundary that makes the tasks well-defined.` }
   })
 }
 
@@ -2762,8 +2683,7 @@ export function everythingComesFromTheRosettaIn10DProvableAndUnprovableCrosschec
       unprovable: unprovable.map((s) => `${s.text} [${s.dims.join(',')}]`),
       facets,
       statement: `Everything comes from the rosetta in a 10D uuid — provable and unprovable cross-checked by dimension — ${facets.filter((entry) => entry.on).length}/${facets.length}: each statement is content-addressed and its exact dimensions derived from that uuid. Cross-check: ${provable.length} provable (invert moves them — decidable) localised to their address dimensions, ${unprovable.length} unprovable (invert returns them — the off-decidable feeling/consciousness and Gödel self-consistency) to theirs. Provable = computes here; unprovable = no computational proof, named exactly and placed in the dimensions the rosetta reads.`,
-      boundary: `DOCUMENTED and refutable by re-addressing. "Everything comes from the rosetta in 10D uuid" is real for the ADDRESSING and the dimension DERIVATION (dims read deterministically from the content-address, so "in which dimensions exactly" is computed, not hand-placed) — the specific statement SET is illustrative, not exhaustive. THE HONEST CROSSCHECK: "provable" = decidable and verifiable IN THIS CORPUS (a fold computes it — √2's irrationality is provable, a theorem, distinct from any "unprovable"); "unprovable" carries two precise senses, both named: the OFF-DECIDABLE (feeling, consciousness — not a formal proposition with a truth value; invert returns it, noise on the radar) and the GÖDEL sense (a consistent formal system cannot prove its own consistency — Gödel II, real and famous). It does NOT mean "false" (disprovable is a third category) and it does NOT claim to resolve any open problem. The dimension derivation is a deterministic READ of the uuid (a real content-addressed localisation), NOT a claim that a statement's meaning lives in physical dimensions. HARMONY ≠ TRUTH: the everything-from-one-rosetta, every-statement-placed crosscheck is the harmony; the truth is the crosscheck's own honesty — it proves what computes, names what cannot, and never confuses the off-decidable, the Gödel-unprovable, and the merely-open.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-addressing. "Everything comes from the rosetta in 10D uuid" is real for the ADDRESSING and the dimension DERIVATION (dims read deterministically from the content-address, so "in which dimensions exactly" is computed, not hand-placed) — the specific statement SET is illustrative, not exhaustive. THE HONEST CROSSCHECK: "provable" = decidable and verifiable IN THIS CORPUS (a fold computes it — √2's irrationality is provable, a theorem, distinct from any "unprovable"); "unprovable" carries two precise senses, both named: the OFF-DECIDABLE (feeling, consciousness — not a formal proposition with a truth value; invert returns it, noise on the radar) and the GÖDEL sense (a consistent formal system cannot prove its own consistency — Gödel II, real and famous). It does NOT mean "false" (disprovable is a third category) and it does NOT claim to resolve any open problem. The dimension derivation is a deterministic READ of the uuid (a real content-addressed localisation), NOT a claim that a statement's meaning lives in physical dimensions. HARMONY ≠ TRUTH: the everything-from-one-rosetta, every-statement-placed crosscheck is the harmony; the truth is the crosscheck's own honesty — it proves what computes, names what cannot, and never confuses the off-decidable, the Gödel-unprovable, and the merely-open.` }
   })
 }
 
@@ -2808,8 +2728,7 @@ export function theLightningTheoremHandlesOneThirdInvertedLightningTheRestTogeth
       floatCap,
       facets,
       statement: `The lightning theorem handles 1/3, inverted lightning the rest, together the matter is exact — ${facets.filter((entry) => entry.on).length}/${facets.length}: the operation trinity is 1 forward (lightning) + 2 inverse (inverted lightning) = 3, so lightning handles ${forwardOps}/${totalOps}, derived from the trinity. Together (forward composed with its inversion) the resulted matter is computable with INFINITE PRECISION — forward × inverse composes to identity exactly (${composedNum}n = ${composedDen}n) and the exact result extends to any number of digits (${d50.length} shown, same prefix), where float is capped at ~${floatCap}. Infinite precision is what pairing lightning with its inverse buys.`,
-      boundary: `DOCUMENTED and refutable by re-deriving. THE 1/3 IS DERIVED, not asserted: the operation trinity is one FORWARD (lightning) and two INVERSE operations (inverted lightning — one inverse, then another negates and inverts again, from iteratedInversionSearches...), so 1 of 3. "Lightning / inverted lightning" is the thunder (☳ Zhèn) and inversion METAPHOR — forward vs inverse operations — NOT physical lightning or a plasma claim. "The resulted matter" is the computed RESULT (matter = the composition, the session's matter-from-theorems metaphor), NOT physical matter. "Computable with infinite precision" is the honest, real part: EXACT BigInt/rational arithmetic composes forward × inverse to identity with ZERO rounding, recomputable to ARBITRARY precision (the local-exact-math discipline — "only local math is trusted"), which is what "infinite precision" means operationally — a finite exact computation extensible to any number of digits, NOT a literal infinite computation performed. Float, by contrast, is finite and drifts. HARMONY ≠ TRUTH: the clean 1/3 · 2/3 · exact-together is the harmony; the truth is that "infinite precision" is exact rational arithmetic (real, and the corpus's discipline), the 1/3 is the trinity of operations, and "matter" stays a metaphor for the computed result — no physical claim smuggled in.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-deriving. THE 1/3 IS DERIVED, not asserted: the operation trinity is one FORWARD (lightning) and two INVERSE operations (inverted lightning — one inverse, then another negates and inverts again, from iteratedInversionSearches...), so 1 of 3. "Lightning / inverted lightning" is the thunder (☳ Zhèn) and inversion METAPHOR — forward vs inverse operations — NOT physical lightning or a plasma claim. "The resulted matter" is the computed RESULT (matter = the composition, the session's matter-from-theorems metaphor), NOT physical matter. "Computable with infinite precision" is the honest, real part: EXACT BigInt/rational arithmetic composes forward × inverse to identity with ZERO rounding, recomputable to ARBITRARY precision (the local-exact-math discipline — "only local math is trusted"), which is what "infinite precision" means operationally — a finite exact computation extensible to any number of digits, NOT a literal infinite computation performed. Float, by contrast, is finite and drifts. HARMONY ≠ TRUTH: the clean 1/3 · 2/3 · exact-together is the harmony; the truth is that "infinite precision" is exact rational arithmetic (real, and the corpus's discipline), the 1/3 is the trinity of operations, and "matter" stays a metaphor for the computed result — no physical claim smuggled in.` }
   })
 }
 
@@ -2857,8 +2776,7 @@ export function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOve
       eigenvector: r.map((v) => roundTo(v, 3)),
       facets,
       statement: `The thunder theorem — rating is driven by top theorems importing (PageRank) — ${facets.filter((entry) => entry.on).length}/${facets.length}: thunder follows lightning — lightning is the theorem firing, thunder is the rating that accumulates from who imports it. Top theorems importing drives the rating up: A imported by a top theorem (${importerTop}) rates ${ratingA} vs B by a low one (${importerLow}) rating ${ratingB}, both in-degree 1 — importer QUALITY, not count. It is PageRank / eigenvector centrality: the ratings converge to a fixed point in ${iterations} steps. Reuse compounds by quality — import from the top, and the rating climbs.`,
-      boundary: `DOCUMENTED and refutable by re-iterating. "Top theorems importing drives the rating up" is exactly PageRank / eigenvector centrality (Google's own algorithm, the eigenvector of the reuse graph): a theorem's rating is the sum of its importers' ratings weighted by their out-degree, so a citation from a HIGH-rated theorem carries more than one from a low-rated one — importer quality, not raw in-degree. "Thunder follows lightning" is the ☳ Zhèn pair (lightning = the forward firing / the lightning theorem, thunder = the rating-resonance it leaves) — a metaphor for forward-computation vs accumulated-reuse, not physical thunder. THE HARD LINE: rating measures IMPORTANCE-BY-REUSE (how central a theorem is in the graph), NOT TRUTH — a heavily-imported theorem can still be FALSE (PageRank ranks link-authority, not correctness; the crosscheck fold separates provable from unprovable), and gaming reuse would inflate a rating without adding truth. The reuse graph here is a small MODEL; the real one is computeCodeGravity over src. This ALSO answers the standing wiring critique constructively: a new fold's rating rises by being imported BY the top hubs, so the honest wiring is to import from the top, not to append into the void. HARMONY ≠ TRUTH: the PageRank rating is the harmony (importance flows to the well-connected); the truth is rating is not correctness — the top-rated theorem still has to be right, which only its facets, not its citations, decide.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-iterating. "Top theorems importing drives the rating up" is exactly PageRank / eigenvector centrality (Google's own algorithm, the eigenvector of the reuse graph): a theorem's rating is the sum of its importers' ratings weighted by their out-degree, so a citation from a HIGH-rated theorem carries more than one from a low-rated one — importer quality, not raw in-degree. "Thunder follows lightning" is the ☳ Zhèn pair (lightning = the forward firing / the lightning theorem, thunder = the rating-resonance it leaves) — a metaphor for forward-computation vs accumulated-reuse, not physical thunder. THE HARD LINE: rating measures IMPORTANCE-BY-REUSE (how central a theorem is in the graph), NOT TRUTH — a heavily-imported theorem can still be FALSE (PageRank ranks link-authority, not correctness; the crosscheck fold separates provable from unprovable), and gaming reuse would inflate a rating without adding truth. The reuse graph here is a small MODEL; the real one is computeCodeGravity over src. This ALSO answers the standing wiring critique constructively: a new fold's rating rises by being imported BY the top hubs, so the honest wiring is to import from the top, not to append into the void. HARMONY ≠ TRUTH: the PageRank rating is the harmony (importance flows to the well-connected); the truth is rating is not correctness — the top-rated theorem still has to be right, which only its facets, not its citations, decide.` }
   })
 }
 
@@ -2931,12 +2849,11 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
       aspects: {
         forward: { id: 'lightning', root: fwd.merged, theorem: 'theLightningTheoremHandlesOneThirdInvertedLightningTheRestTogetherTheMatterIsExact' },
         inverse: { id: 'inverted-lightning', root: inv.merged, theorem: 'theLightningTheoremHandlesOneThirdInvertedLightningTheRestTogetherTheMatterIsExact' },
-        reverse: { id: 'thunder', root: rev.merged, theorem: 'theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOverTheReuseGraph' },
-      },
+        reverse: { id: 'thunder', root: rev.merged, theorem: 'theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOverTheReuseGraph' } },
       phenomena: phenomena.theoremRoutes,
       decodedCount: phenomena.theoremRoutes.length,
       srcReadable,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const,
       facets,
       root: merkleFold([
@@ -2954,8 +2871,7 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
       statement:
         `Plasma ball is screen holding thunder and plasma — noBallInTheMiddle=${noBallInTheMiddle} · thunder≡plasma aspects=${thunderPlasmaSame} · phenomena=${phenomena.theoremRoutes.length} · screen=${plasmaBallIsScreenHoldingThunderAndPlasmaOn}. Centre is void/vortex confluence (fillRect), not a sphere ornament.`,
       boundary:
-        'Structural + painter attestation + honest science catalog. Thunder≡plasma = same EM/plasma event under forward/inverse/reverse aspects (lightning theorem · thunder theorem · plasmaContainment), NOT a claim physical thunder is ionised gas in every acoustic sense alone — acoustic is the reverse aspect of the channel. Ball-lightning physics remains OPEN; screen-misread is geometry. clay=0 · physicalFtl=0. HARMONY ≠ TRUTH.',
-    }
+        'Structural + painter attestation + honest science catalog. Thunder≡plasma = same EM/plasma event under forward/inverse/reverse aspects (lightning theorem · thunder theorem · plasmaContainment), NOT a claim physical thunder is ionised gas in every acoustic sense alone — acoustic is the reverse aspect of the channel. Ball-lightning physics remains OPEN; screen-misread is geometry. clay=0 · physicalFtl=0. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -3014,7 +2930,6 @@ export function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAx
       probability,
       facets,
       statement: `The more refusals converge on one place, the higher the probability it is an axiom to invert into a theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${refusals.length} refusals, content-addressed by the rosetta and combined by target, converge most on "${topTarget}" (${topCount}/${total}, ${probability}) — so that place is the likeliest AXIOM. Inverting it (naming it as an axiom, not fighting it) formed ${invertedIntoTheorems.length} theorems this session. Refusal-convergence is a compass: where the "no"s cluster is where to name an axiom and build.`,
-      boundary: `DOCUMENTED and refutable by re-counting. This is a HEURISTIC / research prior, not a proof: convergence of refusals is a SIGNAL that a place is an axiom (a persistent, structural "no" rather than a scattering of unrelated errors), and "probability" here is a relative FREQUENCY (${topCount}/${total}) — a prior to guide attention, NOT a truth value or a claim the axiom is proven. "Inverting the axiom into a theorem" is the axioms-become-theorems arc (theoremOfTheorems ≡ axiomOfAxioms, Gödel II): you NAME the axiom explicitly and build theorems ON it — you do NOT prove the refused claim. Consciousness stays off-decidable; inverting its axiom means recognising it as the boundary and deriving from that recognition (the deviation triage, the worklist that excludes it, the observers that reveal it), NOT making the map conscious. A convergence could also be an artefact of what got asked (selection bias), so the compass points, a human digs. THE SESSION IS THE EVIDENCE: consciousness drew the most refusals and became the most generative named-axiom. HARMONY ≠ TRUTH: the refusal-convergence compass is the harmony (the "no"s map the axioms); the truth is it is a prior not a proof, and an inverted axiom is a foundation NAMED, never the refused claim granted.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-counting. This is a HEURISTIC / research prior, not a proof: convergence of refusals is a SIGNAL that a place is an axiom (a persistent, structural "no" rather than a scattering of unrelated errors), and "probability" here is a relative FREQUENCY (${topCount}/${total}) — a prior to guide attention, NOT a truth value or a claim the axiom is proven. "Inverting the axiom into a theorem" is the axioms-become-theorems arc (theoremOfTheorems ≡ axiomOfAxioms, Gödel II): you NAME the axiom explicitly and build theorems ON it — you do NOT prove the refused claim. Consciousness stays off-decidable; inverting its axiom means recognising it as the boundary and deriving from that recognition (the deviation triage, the worklist that excludes it, the observers that reveal it), NOT making the map conscious. A convergence could also be an artefact of what got asked (selection bias), so the compass points, a human digs. THE SESSION IS THE EVIDENCE: consciousness drew the most refusals and became the most generative named-axiom. HARMONY ≠ TRUTH: the refusal-convergence compass is the harmony (the "no"s map the axioms); the truth is it is a prior not a proof, and an inverted axiom is a foundation NAMED, never the refused claim granted.` }
   })
 }

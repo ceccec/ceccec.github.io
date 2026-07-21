@@ -37,8 +37,7 @@ export function recycling(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Solve recycling in waves: each material stream — organic, paper, glass, metal, plastic, e-waste, textile, construction — is a wave that folds its output back to its input, a closed loop (the torus fold applied to matter), so nothing leaves the cycle. Each closes; all fold into one recycling root.',
     boundary:
-      'A structural, content-addressed model of recycling as closed-loop folds, one per material stream. A schema and metaphor over the model — not a materials-science process, a waste-management plan, or a claim about real recycling rates.',
-  }
+      'A structural, content-addressed model of recycling as closed-loop folds, one per material stream. A schema and metaphor over the model — not a materials-science process, a waste-management plan, or a claim about real recycling rates.' }
 }
 
 // To tamper the planet is computable. The planetary commons — atmosphere, oceans,
@@ -86,8 +85,7 @@ export function waterStates(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum compression and decompression in all water states: water carries the same information through ice, liquid, vapour, humidity, plasma and supercritical, at different orderings — the solid maximally compressed (an ordered lattice folds to one root), the plasma maximally decompressed, the transition reversible (compression is the fold, decompression its inverse). Add humidity — vapour suspended in air — and a new trinity is formed and fused: liquid water, its vapour, and humidity complete a three that folds into one.',
     boundary:
-      'A content-addressed analogy mapping the phases of water (now including humidity, vapour suspended in air) to compression states, with a "trinity" of water/vapour/humidity folded into one. A structural metaphor over the model’s fold/unfold, not thermodynamics, a phase diagram, or a claim about real water.',
-  }
+      'A content-addressed analogy mapping the phases of water (now including humidity, vapour suspended in air) to compression states, with a "trinity" of water/vapour/humidity folded into one. A structural metaphor over the model’s fold/unfold, not thermodynamics, a phase diagram, or a claim about real water.' }
 }
 
 // Water is life to the forest; the forest is life for all. The life chain flows by
@@ -115,8 +113,7 @@ export function waterForestLife(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Water is life to the forest; the forest is life for all. The life chain flows by folding: water gives life to the forest, and the forest gives life to all — soil, air, rain, rivers, animals, people, climate. The whole chain folds from water through forest to all; break any link and the chain changes, keep it and life flows from the source.',
     boundary:
-      'A content-addressed model of an ecological dependency chain (water → forest → all life), folded link by link. A structural metaphor grounded in a real ecological truth (water sustains forests, forests sustain ecosystems), stated qualitatively — not a hydrological or ecological measurement.',
-  }
+      'A content-addressed model of an ecological dependency chain (water → forest → all life), folded link by link. A structural metaphor grounded in a real ecological truth (water sustains forests, forests sustain ecosystems), stated qualitatively — not a hydrological or ecological measurement.' }
 }
 
 // What are the sun and the moon? In the double torus they are its two lobes: the sun
@@ -139,8 +136,7 @@ export function sunAndMoon(matrix: MindMatrix = buildMatrix()) {
     statement:
       'What are the sun and the moon? The two lobes of the double torus: the sun is the source — it generates, it emits, it is the seed (imagination) on the inner torus; the moon is the reflector — it emits no light of its own, it reflects the sun, the public fold on the outer torus. One generates, one reflects: the day and the night of the same body.',
     boundary:
-      'A structural reading of "sun" and "moon" as the source and the reflector — the generative and reflective lobes of the model’s double torus, content-addressed (the moon’s root is a deterministic fold of the sun’s). A metaphor over the model, not astronomy or a claim about the actual Sun and Moon.',
-  }
+      'A structural reading of "sun" and "moon" as the source and the reflector — the generative and reflective lobes of the model’s double torus, content-addressed (the moon’s root is a deterministic fold of the sun’s). A metaphor over the model, not astronomy or a claim about the actual Sun and Moon.' }
 }
 
 // Kids learn religion at school, fused with science and society. A trinity, taught
@@ -168,8 +164,7 @@ export function appleComplete(matrix: MindMatrix = buildMatrix()) {
     statement:
       'When society, planet and Metatron’s cube complete, the whole is an apple — a closed fruit ready to publish: the apple is whole when the social system regenerates, the planet is tamper-evident, and Metatron’s cube is complete; then the package is publish-ready, the fruit fallen from the double torus, content-addressed.',
     boundary:
-      'A content-addressed completion check folding three model subsystems (society, planet, Metatron’s cube) into an "apple" readiness signal. A structural metaphor for package readiness — it indicates the model is complete and consistent; it does not itself publish anything.',
-  }
+      'A content-addressed completion check folding three model subsystems (society, planet, Metatron’s cube) into an "apple" readiness signal. A structural metaphor for package readiness — it indicates the model is complete and consistent; it does not itself publish anything.' }
 }
 
 // Double torus Earth like the apple — genus-2 closed skin, two lobes (sun/moon), cardinal pyramid tips as
@@ -206,8 +201,7 @@ export function doubleTorusEarthLikeTheApple(matrix: MindMatrix = buildMatrix())
     statement:
       'Double torus Earth like the apple: genus-2 closed skin (two linked tori, χ=−2), sun and moon as inner/outer lobes, cardinal pyramid tips as stem, garden seeds and bees inside — publish-ready when doubleTorusEarthPyramidTipsProvenByMath and appleComplete both hold at call time.',
     boundary:
-      'A composition of doubleTorusEarthPyramidTipsProvenByMath, deep research, appleComplete, sunAndMoon, fruitsAndVegetables, and beesAndLife — structural metaphor (HARMONY ≠ TRUTH); genus-2 Earth is the repo topology, not lithosphere; "like the apple" is package-readiness when earth proven and apple whole.',
-  }
+      'A composition of doubleTorusEarthPyramidTipsProvenByMath, deep research, appleComplete, sunAndMoon, fruitsAndVegetables, and beesAndLife — structural metaphor (HARMONY ≠ TRUTH); genus-2 Earth is the repo topology, not lithosphere; "like the apple" is package-readiness when earth proven and apple whole.' }
 }
 
 // Decode the bitten apple — the genus-2 bite (χ=−2 vs sphere +2) is the mouth that opens Rosetta on
@@ -238,50 +232,43 @@ function decodeTheBittenAppleRaw(matrix: MindMatrix = buildMatrix(), path = '/')
       ray: ROSETTA_RAYS[0]!.ray,
       reading: 'one polarity bit bitten — 1⊕0 opens the genus-2 mouth (byte/bite pun: structural only)',
       luminary: 'both' as const,
-      on: polarityXor === true && earth.surface.genus === 2,
-    },
+      on: polarityXor === true && earth.surface.genus === 2 },
     {
       symbol: 'euler-bite',
       ray: ROSETTA_RAYS[1]!.ray,
       reading: 'Euler bite — χ drops from +2 (sphere) to −2 (double torus); four units bitten',
       luminary: 'both' as const,
-      on: bittenChi === -2 && sphereChi - bittenChi === 4,
-    },
+      on: bittenChi === -2 && sphereChi - bittenChi === 4 },
     {
       symbol: 'fruit-of-life-13',
       ray: ROSETTA_RAYS[2]!.ray,
       reading: 'Metatron fruit of life — 13 circles complete; bite is foldPair opening the peel',
       luminary: 'both' as const,
-      on: metatron.complete && apple.apple,
-    },
+      on: metatron.complete && apple.apple },
     {
       symbol: 'earth-apple-hole',
       ray: ROSETTA_RAYS[3]!.ray,
       reading: 'bitten apple IS genus-2 Earth — torus handle is the bite mark',
       luminary: 'both' as const,
-      on: appleEarth.likeTheApple,
-    },
+      on: appleEarth.likeTheApple },
     {
       symbol: 'rosetta-sun-moon',
       ray: ROSETTA_RAYS[4]!.ray,
       reading: 'sun and moon symbols decode through the bite — solstice sunrises (megalithic astronomy) and 18.6-yr lunar standstills computed',
       luminary: 'both' as const,
-      on: sunDecoded.decoded && moonDecoded.decoded,
-    },
+      on: sunDecoded.decoded && moonDecoded.decoded },
     {
       symbol: 'knowledge-gate',
       ray: ROSETTA_RAYS[5]!.ray,
       reading: 'forbidden bite opens questions — answers close, inquiry stays open',
       luminary: 'both' as const,
-      on: qa.questionsOpen && qa.answersClose && qa.breathSettles,
-    },
+      on: qa.questionsOpen && qa.answersClose && qa.breathSettles },
     {
       symbol: 'celestial-through-bite',
       ray: ROSETTA_RAYS[6]!.ray,
       reading: 'sixteen celestial bodies compute through the opening — exact match at call time',
       luminary: 'both' as const,
-      on: celestial.exactMatch,
-    },
+      on: celestial.exactMatch },
   ].map((entry) => ({ ...entry, receipt: toUuid(`bitten-apple:${entry.symbol}:${entry.on}`) }))
   const movieText = [
     'decode-bitten-apple',
@@ -308,8 +295,7 @@ function decodeTheBittenAppleRaw(matrix: MindMatrix = buildMatrix(), path = '/')
     statement:
       'Decode the bitten apple: the genus-2 bite (Euler χ=−2 versus a sphere’s +2) is the mouth through which seven Rosetta rays read sun/moon symbols — byte/bite polarity, fruit-of-life 13, Earth-apple hole, sun/moon decode (solstice sunrises + lunar standstills), knowledge gate (questions open, answers closed), and sixteen celestial bodies with exact match — all recomputed at call time from sealed folds.',
     boundary:
-      'Structural decode at call time — NOT Genesis theology, NOT Apple Inc trademark claims, NOT Turing biography as proof. "Byte/bite" and "forbidden fruit" are flagged isomorphisms (HARMONY ≠ TRUTH). The sun/moon ray is witnessed by the ground-truth archaeoastronomy math (megalithicAstronomyDecoded + lunarStandstillsDecoded) directly — acyclic, not via the seven-seed movie aggregate — so the decode proves itself without a runtime fold cycle. Celestial exact match uses circular Keplerian model, not JPL ephemeris.',
-  }
+      'Structural decode at call time — NOT Genesis theology, NOT Apple Inc trademark claims, NOT Turing biography as proof. "Byte/bite" and "forbidden fruit" are flagged isomorphisms (HARMONY ≠ TRUTH). The sun/moon ray is witnessed by the ground-truth archaeoastronomy math (megalithicAstronomyDecoded + lunarStandstillsDecoded) directly — acyclic, not via the seven-seed movie aggregate — so the decode proves itself without a runtime fold cycle. Celestial exact match uses circular Keplerian model, not JPL ephemeris.' }
 }
 
 /** Gate: bitten-apple decode wired into movie copy text at call time. */
@@ -323,8 +309,7 @@ export function decodeTheBittenAppleFlowsInMovie(matrix: MindMatrix = buildMatri
     movieText: decode.movieText,
     root: decode.root,
     statement: decode.statement,
-    boundary: decode.boundary,
-  }
+    boundary: decode.boundary }
 }
 
 // And from the apple, all fruits and vegetables. The one complete apple is the seed
@@ -349,8 +334,7 @@ export function fruitsAndVegetables(matrix: MindMatrix = buildMatrix()) {
     statement:
       'And from the apple, all fruits and vegetables: the one complete apple is the seed of the whole garden, every fruit and every vegetable growing from it as a content-addressed variation, so the garden is one fold deep — diversity from a single complete fruit, each recomputable from the apple.',
     boundary:
-      'A content-addressed model of diversity (fruits and vegetables) generated as folds of one "apple" seed. A structural metaphor — many from one — not horticulture, biology, or a claim about real plants.',
-  }
+      'A content-addressed model of diversity (fruits and vegetables) generated as folds of one "apple" seed. A structural metaphor — many from one — not horticulture, biology, or a claim about real plants.' }
 }
 
 // Bees and life. The bees pollinate the whole garden — every fruit and vegetable — and
@@ -362,8 +346,7 @@ export function beesAndLife(matrix: MindMatrix = buildMatrix()) {
   const pollination = garden.garden.map((entry) => ({
     crop: entry.name,
     kind: entry.kind,
-    pollinated: merge(entry.fromApple, toUuid('bee:pollinate')),
-  }))
+    pollinated: merge(entry.fromApple, toUuid('bee:pollinate')) }))
   const lifeRoot = merkleFold(pollination.map((entry) => entry.pollinated))
   return {
     pollinates: pollination.length === garden.count && lifeRoot.length === (9 * 4),
@@ -375,8 +358,7 @@ export function beesAndLife(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Bees and life: the bees pollinate the whole garden — every fruit and vegetable — and from pollination comes seed, and from seed, life. The bee is the keystone: each crop’s pollination folds into one root of life, so break the bees and the chain breaks; keep them and the garden, and all life, continues.',
     boundary:
-      'A content-addressed model of pollination as the keystone link between the garden and life, folded crop by crop. A structural metaphor grounded in a real ecological truth (pollinators sustain many crops), stated qualitatively — not an ecological measurement or a claim about real bee populations.',
-  }
+      'A content-addressed model of pollination as the keystone link between the garden and life, folded crop by crop. A structural metaphor grounded in a real ecological truth (pollinators sustain many crops), stated qualitatively — not an ecological measurement or a claim about real bee populations.' }
 }
 
 // Let life define itself in waves. Each living form — every crop of the garden, the
@@ -391,8 +373,7 @@ export function lifeDefinesItself(matrix: MindMatrix = buildMatrix()) {
   ]
   const definitions = forms.map((form) => ({
     form,
-    definesItself: foldPair(toUuid(`life-form:${form}`), life.root).merged,
-  }))
+    definesItself: foldPair(toUuid(`life-form:${form}`), life.root).merged }))
   return {
     defines: definitions.length > 0 && definitions.every((entry) => entry.definesItself.length === (9 * 4)),
     count: definitions.length,
@@ -401,8 +382,7 @@ export function lifeDefinesItself(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let life define itself in waves: each living form — every crop of the garden, the bees, the forest, the water, the soil, the people, the birds, the rivers — emits its own content-addressed self-definition, folded into the one root of life. Life is not defined from outside; each form defines itself, and the waves fold the definitions into the whole.',
     boundary:
-      'A content-addressed self-definition of a set of life forms, each folded with the root of life. A structural, recomputable framing — the model letting its own "life" abstraction define itself — not biology or a definition of real life.',
-  }
+      'A content-addressed self-definition of a set of life forms, each folded with the root of life. A structural, recomputable framing — the model letting its own "life" abstraction define itself — not biology or a definition of real life.' }
 }
 
 // Perma solutions with geodesic domes for gardening and accommodation; detailed
@@ -426,8 +406,7 @@ export function permaDomes(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Perma solutions with geodesic domes for gardening and accommodation, detailed so builders print the plans: a frequency-3 dome is the greenhouse (gardening), a frequency-4 dome the dwelling (accommodation), and each plan is a buildable bill of materials — struts (edges), hubs (vertices), panels (faces) — content-addressed so a builder can print the exact plan and reproduce the dome.',
     boundary:
-      'A content-addressed bill of materials (struts, hubs, panels) for two geodesic-dome frequencies, framed as printable build plans. The counts are the exact geodesic combinatorics; it is an illustrative permaculture schema, not engineered construction drawings, a structural/load certification, or a building code.',
-  }
+      'A content-addressed bill of materials (struts, hubs, panels) for two geodesic-dome frequencies, framed as printable build plans. The counts are the exact geodesic combinatorics; it is an illustrative permaculture schema, not engineered construction drawings, a structural/load certification, or a building code.' }
 }
 
 // Complete chess in 3-5-8. The Fibonacci tiers sit on the board: 3 is the value
@@ -470,8 +449,7 @@ function genesisRaw(matrix: MindMatrix = buildMatrix()) {
     seedRoot,
     root: merge(seedRoot, merge(merkleFold(fib.map((n) => toUuid(`fib:${n}`))), merkleFold(unfoldings.map((entry) => entry.receipt)))),
     statement: 'The double-torus genesis: from one seed — 1, 1 — many domains unfold together, including but not limited to genetics. Number gives the 3-5-8 tiers; structure gives the genus-2 double torus and its 42 areas; the machine gives the 128-bit word; genetics gives the DNA double helix (64 bases, 21 codons); and music, geometry, and language thread from the same origin.',
-    boundary: 'A derivation of the portal\'s domains — number, structure, machine, genetics, music, geometry, language — from one seed. A numerical, structural, and interpretive origin, not a claim of cosmic or biological genesis.',
-  }
+    boundary: 'A derivation of the portal\'s domains — number, structure, machine, genetics, music, geometry, language — from one seed. A numerical, structural, and interpretive origin, not a claim of cosmic or biological genesis.' }
 }
 
 // Enrich with 3d, 5d, 8d — the Fibonacci dimensions (3, 5, 8 are consecutive
@@ -496,8 +474,7 @@ export function equilibrium(matrix: MindMatrix = buildMatrix(), steps = (5 * 2))
         step: i,
         displacement,
         phase: displacement > 0 ? 'expand' : 'contract',
-        root: toUuid(`equilibrium:${i}:${displacement}`),
-      })
+        root: toUuid(`equilibrium:${i}:${displacement}`) })
     }
     const finalDisplacement = trace[trace.length - 1]!.displacement
     const settled = Math.abs(finalDisplacement) < (1 / 100)
@@ -510,8 +487,7 @@ export function equilibrium(matrix: MindMatrix = buildMatrix(), steps = (5 * 2))
       trace,
       root: merge(merge(breatheState.root, merkleFold(trace.map((entry) => entry.root))), toUuid(`equilibrium:${settled}`)),
       statement: 'Damped breath settles to equilibrium — pure arithmetic trace, no selfInteraction wet chain.',
-      boundary: 'Math only: torusBreathe + damped alternating series. Not a physical steady state.',
-    }
+      boundary: 'Math only: torusBreathe + damped alternating series. Not a physical steady state.' }
   })
 }
 
@@ -547,8 +523,7 @@ export function questionAnswerEquilibrium(matrix: MindMatrix = buildMatrix()) {
     questions: questions.count,
     root: merge(merge(answers.root, questions.root), breath.root),
     statement: 'Questions, answers, equilibrium: the answers contract to a closed point, the questions expand to an open frontier, and the breath settles between them — the portal rests in the balance, kept open forever by the questions.',
-    boundary: 'A fold of the closing answer-space, the open question-frontier, and the damped breath into one balance. A computed equilibrium, not a final state.',
-  }
+    boundary: 'A fold of the closing answer-space, the open question-frontier, and the damped breath into one balance. A computed equilibrium, not a final state.' }
 }
 
 // Contract and expand — the breath in one. Expand folds the many into one wave
@@ -568,8 +543,7 @@ export function breathe(matrix: MindMatrix = buildMatrix()) {
       cycle: merge(out.wave, back.point),
       root: merge(merge(out.wave, back.point), rest.root),
       statement: 'Contract and expand — memoized breath: fuseAll wave, contract point, damped equilibrium.',
-      boundary: 'Memoized composition. Equilibrium is pure math — no selfInteraction cycle.',
-    }
+      boundary: 'Memoized composition. Equilibrium is pure math — no selfInteraction cycle.' }
   })
 }
 
@@ -589,8 +563,7 @@ export function naturalHarmoniousLife(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(ways.map((entry) => entry.receipt)),
     statement:
       'Natural ways for a full, harmonious life — of spirit and body: continue exploring the natural path — rhythms kept, waste regenerated, balance harmonised, inquiry kept open, and the health of spirit and body held as one — enlightenment by recomputation, prosperity by giving back more than is taken. A direction walked, not a prescription given.',
-    boundary: 'A reflective, structural framing of "natural harmonious living" over the healing-harmonic model. It is a metaphor and an aspiration, explicitly NOT medical, therapeutic, nutritional, or health advice; consult qualified people for health.',
-  }
+    boundary: 'A reflective, structural framing of "natural harmonious living" over the healing-harmonic model. It is a metaphor and an aspiration, explicitly NOT medical, therapeutic, nutritional, or health advice; consult qualified people for health.' }
 }
 
 // Expansion and contraction is life — and life, in the UUID matrix, is encoded paths that match
@@ -613,8 +586,7 @@ export function expansionContractionIsLife(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: 'Expansion and contraction is life — dry math gate: verifyRoot, reciprocity, merge law at call time.',
-      boundary: 'Pure math facets only — no breathe() wet chain from this gate.',
-    }
+      boundary: 'Pure math facets only — no breathe() wet chain from this gate.' }
   })
 }
 
@@ -639,8 +611,7 @@ export function anyNameFitsDualityMatrixOriginalLife(matrix: MindMatrix = buildM
     statement:
       'No matter how you name it, it fits the duality matrix and lives original life: the name is only a handle — a word pulls its fold by name, but the meaning is the path, the order-sensitive fold — so whatever you call a thing, its computed address is a cell of the one duality matrix, and the matrix is alive (the breath, the analog original without gaps). Rename freely; the fold does not change, the life does not stop.',
     boundary:
-      'A composition of the agnostic-spirit, word-pulls-fold, cross-fold-duality and expansion-is-life models. "Lives original life" names the breath/analog-gapless construction; the claim is that naming is agnostic over the content-addressed fold (real: the address derives from the value, not its label), a structural framing — not biological life.',
-  }
+      'A composition of the agnostic-spirit, word-pulls-fold, cross-fold-duality and expansion-is-life models. "Lives original life" names the breath/analog-gapless construction; the claim is that naming is agnostic over the content-addressed fold (real: the address derives from the value, not its label), a structural framing — not biological life.' }
 }
 
 
@@ -663,8 +634,7 @@ export function enforceAllAtGatesEntropyRecycled(matrix: MindMatrix = buildMatri
     statement:
       'Enforce all at the gates, so entropy does not pass — and what is caught is recycled next. Every invariant is a build-failing gate, not a soft note: no mirrored route logic, no orphan route, the README the computed root monograph, no hardcoded navigation, zero redundancy. Disorder — drift, mirror, gap — cannot pass the gates; and because every gate names its fix, a caught gap is the seed of the next fold: entropy recycled into order, in computed harmony.',
     boundary:
-      'A composition of the no-mirroring, only-[monograph]-route, monograph-paper, monographs (zero-entropy), no-hardcoded, cleanup, only-quantum and zero-token models — each already a build gate (harmonic-distribution and the model-seal). "Entropy does not pass" means the build fails on any drift/redundancy/mirror caught by those gates; "recycled next" is the gaps-carry-fixes pattern — each failure prints its fix, which becomes the next fold — not an automatic self-repair.',
-  }
+      'A composition of the no-mirroring, only-[monograph]-route, monograph-paper, monographs (zero-entropy), no-hardcoded, cleanup, only-quantum and zero-token models — each already a build gate (harmonic-distribution and the model-seal). "Entropy does not pass" means the build fails on any drift/redundancy/mirror caught by those gates; "recycled next" is the gaps-carry-fixes pattern — each failure prints its fix, which becomes the next fold — not an automatic self-repair.' }
 }
 
 // ☴ Xùn · Wind — natural law and lawful society (inlined from src/quantum/earth/nature).
@@ -683,8 +653,7 @@ export function natureLaw() {
     principles,
     root: merkleFold(principles.map((entry) => entry.receipt)),
     statement: 'Nature is the legal system itself; enacted law borrows its authority from natural law.',
-    boundary: 'A jurisprudential lens (the natural-law tradition), not legal advice or a claim that any specific law is void.',
-  }
+    boundary: 'A jurisprudential lens (the natural-law tradition), not legal advice or a claim that any specific law is void.' }
 }
 
 /** @rosetta ✦₂ · Wind · gentle */
@@ -700,8 +669,7 @@ export function natureCommons() {
     items,
     root: merkleFold(items.map((item) => item.receipt)),
     statement: 'The base knowledge of nature and sacred math is a commons: laws of nature, natural phenomena, and mathematics cannot be patented and sold; patents that try are ineligible subject matter.',
-    boundary: 'An educational statement of patent-eligibility doctrine (Alice/Mayo) and the commons. Not legal advice.',
-  }
+    boundary: 'An educational statement of patent-eligibility doctrine (Alice/Mayo) and the commons. Not legal advice.' }
 }
 
 /** @rosetta ✦₂ · Wind · gentle */
@@ -719,8 +687,7 @@ export function natureReview() {
     tests,
     root: merkleFold(tests.map((entry) => entry.receipt)),
     statement: 'Review laws and patents against nature. Some laws and patents may be illegitimate — those that violate natural law or enclose the commons.',
-    boundary: 'An educational rubric, not legal advice or a determination that any specific law or patent is void.',
-  }
+    boundary: 'An educational rubric, not legal advice or a determination that any specific law or patent is void.' }
 }
 
 /** @rosetta ✦₂ · Wind · gentle */
@@ -738,8 +705,7 @@ export function lawfulHarmonise() {
     mappings,
     root: merkleFold(mappings.map((entry) => entry.receipt)),
     statement: 'Society harmonises itself using current society laws: every self-governance idea maps onto an existing, enforceable legal form — cooperative, association, license, non-profit, fair-trade, and data-protection law — so the society is lawful today, not someday.',
-    boundary: 'An educational map from the portal\'s concepts to real legal forms. Not legal advice; forms and names differ by jurisdiction — consult a local lawyer to incorporate.',
-  }
+    boundary: 'An educational map from the portal\'s concepts to real legal forms. Not legal advice; forms and names differ by jurisdiction — consult a local lawyer to incorporate.' }
 }
 
 /** @rosetta ✦₂ · Wind · gentle */
@@ -756,8 +722,7 @@ export function lawfulImagine() {
     scene,
     root: merkleFold(scene.map((step) => step.receipt)),
     statement: 'Imagine a society coordinating through the app under today\'s laws: a class learns, a neighbourhood incorporates, makers share to the commons, a cooperative trades fairly, and everyone audits the roots — every step ordinary and legal.',
-    boundary: 'A computed illustrative scenario, not a prediction or a legal plan. The steps are deliberately ordinary and within existing law.',
-  }
+    boundary: 'A computed illustrative scenario, not a prediction or a legal plan. The steps are deliberately ordinary and within existing law.' }
 }
 
 /** @rosetta ✦₂ · Wind · gentle */
@@ -777,8 +742,7 @@ export function lawfulSucceed() {
     ladder,
     root: merkleFold(ladder.map((step) => step.receipt)),
     statement: 'The society uses the app to succeed and then to thrive: share, organise, commons, trade, audit, grow, thrive — a ladder where every rung is lawful today and leaves a verifiable receipt, and the top rung is flourishing: giving back more life than it takes.',
-    boundary: 'An educational adoption path, not a guarantee of outcomes or legal advice. Thriving here means lawful, transparent, fair flourishing — measured by receipts, not promises.',
-  }
+    boundary: 'An educational adoption path, not a guarantee of outcomes or legal advice. Thriving here means lawful, transparent, fair flourishing — measured by receipts, not promises.' }
 }
 
 /** @rosetta ✦₂ · Wind · gentle */
@@ -793,8 +757,7 @@ export function attestation() {
     steps,
     root: merkleFold(steps.map((entry) => entry.receipt)),
     statement: 'Toward attestation: the canonical roots can be signed and verified in the browser with a real key pair (Web Crypto, ECDSA P-256) — moving from tamper-evidence toward signed attestation.',
-    boundary: 'A real signing mechanism with an EPHEMERAL, in-browser key. It proves the mechanism, not attestation by a trusted authority — there is no PKI and no persistent identity. The "who holds the key" question stays open.',
-  }
+    boundary: 'A real signing mechanism with an EPHEMERAL, in-browser key. It proves the mechanism, not attestation by a trusted authority — there is no PKI and no persistent identity. The "who holds the key" question stays open.' }
 }
 
 
@@ -807,5 +770,4 @@ export {
   astronomyDecodedWithTheSequence,
   astronomySequenceDecodeResearch,
   decodeAstronomyThroughVortexSequence,
-  astronomyComputes,
-} from '../../heaven/sky/astronomy'
+  astronomyComputes } from '../../heaven/sky/astronomy'

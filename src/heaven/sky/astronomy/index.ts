@@ -9,7 +9,7 @@ import * as __ns_up_iching from '../../../earth/iching'
 import * as __ns_up_sun from '../sun'
 import * as __ns_up_moon from '../moon'
 import * as __ns_up_learning from '../../../wind/learning'
-import { schwarzschildRadius, EARTH_RADIUS_KM } from '../../../3/7'
+import { schwarzschildRadius, EARTH_RADIUS_KM, claySolvedTheorem } from '../../../3/7'
 import { MOON_ORBIT_INCLINATION_DEG } from '../../../8/2'
 import { LUNAR_NODAL_PERIOD_YEARS } from '../../../9/1'
 import type { MindMatrix } from '../../../wind/types'
@@ -28,8 +28,7 @@ import { fractalClockDur, heroPhaseAt } from '../../../fire/plasma/ball'
 import {
   RAVE_BODIES_13, RAVE_CENTER_GATES, RAVE_CENTERS_9, RAVE_CHANNELS_36, RAVE_DESIGN_SUN_ARC_DEG, RAVE_GATE_ARC_DEG, RAVE_LINE_ARC_DEG,
   humanDesignChannelsAndCenters, humanDesignVerifiedWheel,
-  raveDefinedChannels, raveMandalaGateLineAt,
-} from '../../../quantum/lake/spirit'
+  raveDefinedChannels, raveMandalaGateLineAt } from '../../../quantum/lake/spirit'
 
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
@@ -101,8 +100,7 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
       periodStable,
       orbitClosed,
       exactMatch,
-      receipt: toUuid(`celestial-compute:${planet.name}:${exactMatch}`),
-    }
+      receipt: toUuid(`celestial-compute:${planet.name}:${exactMatch}`) }
   })
   const sunAndMoon = __ns_up_earth_nature.sunAndMoon; const sunMoon = sunAndMoon(matrix)
   const sunRs = schwarzschildRadius(1.989e30)
@@ -115,8 +113,7 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
     schwarzschildBand: sunRs > 2900 && sunRs < (100 * 6 * 5),
     lobe: sunMoon.sun.lobe,
     exactMatch: sunMoon.sun.emits && sunRs > 2900 && sunRs < (100 * 6 * 5),
-    receipt: toUuid(`celestial-compute:Sun:${sunMoon.sun.emits && sunRs > 2900 && sunRs < (100 * 6 * 5)}`),
-  }
+    receipt: toUuid(`celestial-compute:Sun:${sunMoon.sun.emits && sunRs > 2900 && sunRs < (100 * 6 * 5)}`) }
   const moon = {
     kind: 'satellite' as const,
     name: 'Moon',
@@ -133,8 +130,7 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
       LUNAR_NODAL_PERIOD_YEARS > (9 * 2) &&
       LUNAR_NODAL_PERIOD_YEARS < 19 &&
       EARTH_RADIUS_KM === 6371,
-    receipt: toUuid(`celestial-compute:Moon:${!sunMoon.moon.emits && sunMoon.moon.reflects}`),
-  }
+    receipt: toUuid(`celestial-compute:Moon:${!sunMoon.moon.emits && sunMoon.moon.reflects}`) }
   const majorMoonBodies = moons0.moons.map((body, index) => {
     const atPeriod = majorMoons(matrix, timeDays + body.periodDays)
     const closed = atPeriod.moons.find((entry) => entry.name === body.name)!
@@ -157,8 +153,7 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
       parentStable,
       radiusStable,
       exactMatch,
-      receipt: toUuid(`celestial-compute:${body.name}:${exactMatch}`),
-    }
+      receipt: toUuid(`celestial-compute:${body.name}:${exactMatch}`) }
   })
   const bodies = [...planets, sun, moon, ...majorMoonBodies]
   const computed = at0.computed && moons0.computed && bodies.length === 16
@@ -175,8 +170,7 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
     statement:
       'Compute all known celestial bodies at call time: eight planets from solarSystem, Sun and Moon from sealed lobes and lunar constants, six major moons (Io, Europa, Ganymede, Callisto, Titan, Triton) from majorMoons — circular Keplerian model with per-body state and match receipts.',
     boundary:
-      'HONEST: circular Keplerian model, not JPL ephemeris; major moons orbit parent in simplified circular paths; Sun schwarzschild and Moon constants from sealed stations; sixteen bodies is the honest encoded census.',
-  }
+      'HONEST: circular Keplerian model, not JPL ephemeris; major moons orbit parent in simplified circular paths; Sun schwarzschild and Moon constants from sealed stations; sixteen bodies is the honest encoded census.' }
 }
 
 // Compute and you will discover exact match with all known celestial bodies — at call time the sealed
@@ -213,8 +207,7 @@ export function computeDiscoverExactMatchAllKnownCelestialBodies(matrix: MindMat
     statement:
       'Compute and you will discover exact match with all known celestial bodies: at call time computeAllKnownCelestialBodies recomputes sixteen bodies — eight planets, Sun, Moon, six major moons — from sealed au/periodYr/periodDays (circular Keplerian orbits); schwarzschildRadius for the solar mass; lunar constants from sealed stations. Exact means deterministic equality on encoded fields — not JPL ephemeris precision.',
     boundary:
-      'HONEST: simplified circular Keplerian model from solarSystem and majorMoons (real catalog values rounded, not osculating elements or perturbations). Sun schwarzschild uses CODATA G and 1.989e30 kg. Moon constants are orbital inclination and nodal period, not a computed lunar ephemeris. "Exact match" = exact within what the sealed math proves at this call.',
-  }
+      'HONEST: simplified circular Keplerian model from solarSystem and majorMoons (real catalog values rounded, not osculating elements or perturbations). Sun schwarzschild uses CODATA G and 1.989e30 kg. Moon constants are orbital inclination and nodal period, not a computed lunar ephemeris. "Exact match" = exact within what the sealed math proves at this call.' }
 }
 
 // Deep research — all known celestial bodies · compute all · exact match. Researched in waves with
@@ -233,68 +226,57 @@ function computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearchedRaw(matri
       kind: 'documented' as const,
       topic: 'eight planets — mean distances and sidereal periods',
       fact: 'Mercury–Neptune au and periodYr in solarSystem match NASA/JPL simplified mean orbital elements (rounded to two decimals)',
-      source: 'NASA/JPL Solar System Exploration · solarSystem',
-    },
+      source: 'NASA/JPL Solar System Exploration · solarSystem' },
     {
       kind: 'documented' as const,
       topic: 'Sun — Schwarzschild radius for solar mass',
       fact: 'schwarzschildRadius(1.989e30 kg) ≈ 2.95 km using CODATA G and c — event horizon scale for solar mass',
-      source: 'CODATA · schwarzschildRadius · gravityDecoded',
-    },
+      source: 'CODATA · schwarzschildRadius · gravityDecoded' },
     {
       kind: 'documented' as const,
       topic: 'Moon — orbital inclination to ecliptic',
       fact: `MOON_ORBIT_INCLINATION_DEG = ${MOON_ORBIT_INCLINATION_DEG}° — mean inclination of lunar orbit to ecliptic (NASA fact sheet)`,
-      source: 'NASA Moon fact sheet · src/8/2',
-    },
+      source: 'NASA Moon fact sheet · src/8/2' },
     {
       kind: 'documented' as const,
       topic: 'Moon — nodal regression period',
       fact: `LUNAR_NODAL_PERIOD_YEARS ≈ ${LUNAR_NODAL_PERIOD_YEARS} yr — Moon's ascending node completes one revolution (saros cycle anchor)`,
-      source: 'NASA · src/9/1 · megalithicAstronomyDecoded',
-    },
+      source: 'NASA · src/9/1 · megalithicAstronomyDecoded' },
     {
       kind: 'documented' as const,
       topic: 'Galilean moons — Jovian satellite periods',
       fact: 'Io (1.769 d), Europa (3.551 d), Ganymede (7.155 d), Callisto (16.689 d) — mean sidereal periods from JPL Horizons simplified',
-      source: 'NASA/JPL Galilean satellites · majorMoons',
-    },
+      source: 'NASA/JPL Galilean satellites · majorMoons' },
     {
       kind: 'documented' as const,
       topic: 'Titan and Triton — major outer-system moons',
       fact: 'Titan (15.945 d, Saturn) and Triton (5.877 d retrograde, Neptune) — mean orbital periods from JPL',
-      source: 'NASA/JPL · majorMoons',
-    },
+      source: 'NASA/JPL · majorMoons' },
     {
       kind: 'documented' as const,
       topic: 'Earth equatorial radius',
       fact: `EARTH_RADIUS_KM = ${EARTH_RADIUS_KM} km — WGS84 mean Earth radius used in Moon match receipt`,
-      source: 'WGS84 · src/3/7',
-    },
+      source: 'WGS84 · src/3/7' },
     {
       kind: 'flagged' as const,
       topic: 'flat Earth / hollow Earth as planet shape',
       fact: 'Contradicted by thousands of independent observations; flat-Earth cosmology cannot explain celestial body motions encoded here',
-      source: 'Science Feedback · Empirical Earth',
-    },
+      source: 'Science Feedback · Empirical Earth' },
     {
       kind: 'flagged' as const,
       topic: 'circular Keplerian model as JPL ephemeris',
       fact: 'solarSystem and majorMoons use simplified circular orbits — NOT osculating elements, perturbations, or JPL DE440 precision; claiming ephemeris-grade accuracy would be dishonest',
-      source: 'NASA/JPL Horizons documentation · honest boundary',
-    },
+      source: 'NASA/JPL Horizons documentation · honest boundary' },
     {
       kind: 'isomorphism' as const,
       topic: 'Sun/Moon as double-torus lobes',
       fact: 'Sun = inner generator lobe (emits); Moon = outer reflector lobe (reflects Sun) — structural reading in sunAndMoon, not heliocentric claim',
-      source: 'sunAndMoon · doubleTorusEarthLikeTheApple',
-    },
+      source: 'sunAndMoon · doubleTorusEarthLikeTheApple' },
     {
       kind: 'isomorphism' as const,
       topic: 'circular Keplerian compute-all as structural model',
       fact: 'computeAllKnownCelestialBodies recomputes sixteen bodies deterministically at call time — map topology for the portal, not live planetarium ephemeris',
-      source: 'computeAllKnownCelestialBodies · planetsGalaxyComputeItself',
-    },
+      source: 'computeAllKnownCelestialBodies · planetsGalaxyComputeItself' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`celestial-research:${entry.kind}:${entry.topic}`) }))
   const documented = findings.filter((f) => f.kind === 'documented').length
   const flagged = findings.filter((f) => f.kind === 'flagged').length
@@ -323,8 +305,7 @@ function computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearchedRaw(matri
     statement:
       'Deep research — compute all known celestial bodies: NASA/JPL simplified planets and major moons, Schwarzschild Sun, lunar inclination and nodal period, WGS84 Earth radius — all recomputed at call time via computeAllKnownCelestialBodies with exact-match receipts. Flat Earth flagged; circular Keplerian honestly bounded vs JPL ephemeris. Sun/Moon double-torus lobes are structural isomorphism (HARMONY ≠ TRUTH).',
     boundary:
-      'HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (NASA/JPL, CODATA, WGS84) · FLAGGED (flat Earth, ephemeris overclaim) · ISOMORPHISM (double-torus lobes, compute-all structural model). Circular Keplerian ≠ JPL DE440; major moons use mean periods only. NOT live web research at call time — findings encoded from verified wave.',
-  }
+      'HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (NASA/JPL, CODATA, WGS84) · FLAGGED (flat Earth, ephemeris overclaim) · ISOMORPHISM (double-torus lobes, compute-all structural model). Circular Keplerian ≠ JPL DE440; major moons use mean periods only. NOT live web research at call time — findings encoded from verified wave.' }
 }
 
 // The galaxy computes itself at no cost — wire and observe. The planets and their movements are
@@ -351,8 +332,7 @@ export function planetsGalaxyComputeItself(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Computationally create all the planets and their movements — the galaxy computes itself at no cost; wire and observe: the eight planets and their motion are computed (deterministic orbits from a seed-phase and the time), interacting in one system, every position traceable to a content address, no stored ephemeris — so the galaxy turns at zero cost, recomputed each frame. Wire it to the display and observe; the motion is a reading of the computation, the trace its content-addressed path.',
     boundary:
-      'A composition over a real orbital computation (solarSystem: eight bodies with real radii/periods, positions a deterministic function of seed and time) with the computed-no-files, free-animations, hero and hologram models. The orbits are simplified circular Keplerian (real radii and periods, content-addressed); "the galaxy computes itself / wire and observe" frames the deterministic recomputation — this fold computes the positions, it does not itself render a planetarium.',
-  }
+      'A composition over a real orbital computation (solarSystem: eight bodies with real radii/periods, positions a deterministic function of seed and time) with the computed-no-files, free-animations, hero and hologram models. The orbits are simplified circular Keplerian (real radii and periods, content-addressed); "the galaxy computes itself / wire and observe" frames the deterministic recomputation — this fold computes the positions, it does not itself render a planetarium.' }
 }
 
 /** Deep-research exposition — sequence layer ↔ astronomy layer ↔ decode output for UI/agents. */
@@ -375,8 +355,7 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
           { key: 'digit-folder-probe', value: vortexSaved.digits.fused ? 'fused 1-2-4-8-7-5·3-6-9-0' : 'unfused', source: 'vortex/math · digitFolderSequenceProbe' },
           { key: 'pi-train-stations', value: String(train.diamonds.length), source: 'fire/diamonds · piTrainDiamonds' },
           { key: 'census-indices', value: '110 gapless (55+34+21 Fibonacci)', source: 'thunder/decode · foldedCensus' },
-        ],
-      },
+        ] },
       {
         id: 'astronomy-layer',
         title: 'Celestial catalog · solarSystem · majorMoons',
@@ -385,8 +364,7 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
           { key: 'planets', value: celestial.planets.map((entry) => entry.name).join(', '), source: 'fire/li · solarSystem' },
           { key: 'major-moons', value: celestial.majorMoons.map((entry) => entry.name).join(', '), source: 'fire/li · majorMoons' },
           { key: 'deep-research', value: `${deep.documented} documented · ${deep.flagged} flagged · ${deep.isomorphism} isomorphism`, source: 'computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched' },
-        ],
-      },
+        ] },
       {
         id: 'decode-layer',
         title: 'decodeAll · Rosetta 42 areas · I Ching 64 hexagrams',
@@ -395,8 +373,7 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
           { key: 'rosetta-areas', value: '42 = 7×6 rays', source: 'water/digit · ROSETTA_AREAS' },
           { key: 'iching-hexagrams', value: ichingGate.computes ? '64 hexagram keys' : 'partial', source: 'iching · ichingComputes' },
           { key: 'transliteration', value: 'content-address + path math — NOT ciphertext decryption', source: 'rosetta · boundary' },
-        ],
-      },
+        ] },
       {
         id: 'harmonic-layer',
         title: 'a432 · Schumann · coordinated waves',
@@ -404,8 +381,7 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
           { key: 'a432-seed', value: `hue ${a432Fold.light.hue} — highly composite tuning seed`, source: 'lake/music · a432' },
           { key: 'schumann-band', value: schumann.harmonised ? 'harmonised (opt-in feed)' : 'structural phase', source: 'lake/music · schumannResonanceHarmonisedWithRealtimeApiComputations' },
           { key: 'harmonic-boundary', value: '432 is brand seed, NOT cosmic substrate', source: 'heaven/balance · eightFoldBalance boundary' },
-        ],
-      },
+        ] },
       {
         id: 'honest-boundary',
         title: 'What sequence decode does NOT claim',
@@ -413,16 +389,13 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
           { key: 'not-ephemeris', value: 'circular Keplerian catalog — NOT JPL DE440 live positions', source: 'computeAllKnownCelestialBodies boundary' },
           { key: 'not-orbit-control', value: 'VORTEX_SEQUENCE addresses bodies — does NOT control physical orbits', source: 'astronomyDecodedWithTheSequence boundary' },
           { key: 'not-omniscience', value: 'decode-all = sealed model cosmos — NOT every object in physical reality', source: 'decodeAllByComputationsTrainedOnKnownUniverse boundary' },
-        ],
-      },
+        ] },
     ].map((section) => ({
       ...section,
       receipt: toUuid(`astronomy-sequence-research:${section.id}`),
       layers: section.layers.map((layer) => ({
         ...layer,
-        receipt: toUuid(`astronomy-sequence-research:${section.id}:${layer.key}`),
-      })),
-    }))
+        receipt: toUuid(`astronomy-sequence-research:${section.id}:${layer.key}`) })) }))
     return {
       researched: sections.length === 5 && celestial.computed && decodeAll.decodes && vortexSaved.saved,
       sections,
@@ -435,8 +408,7 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
       statement:
         'Astronomy sequence decode research: VORTEX_SEQUENCE and digit-folder probe address the sixteen-body celestial catalog through content-addressed receipts — composed with decode-all, Rosetta 42 areas, I Ching 64 hexagram keys, a432/Schumann harmonic windows, and pi-train stations — with honest boundaries at every layer.',
       boundary:
-        'Research exposition fold for UI/agents — NOT live web research at call time. Sequence addressing is deterministic naming through sealed vortex/digit protocol; astronomy uses simplified Keplerian catalog; decode is transliteration + content-addressing.',
-    }
+        'Research exposition fold for UI/agents — NOT live web research at call time. Sequence addressing is deterministic naming through sealed vortex/digit protocol; astronomy uses simplified Keplerian catalog; decode is transliteration + content-addressing.' }
   })
 }
 
@@ -481,8 +453,7 @@ export function astronomyDecodedWithTheSequence(at = 0, matrix: MindMatrix = bui
         celestialReceipt: body.receipt,
         exactMatch: body.exactMatch,
         sequenceReceipt,
-        rosettaReceipt,
-      }
+        rosettaReceipt }
     })
     const allMapped = mappings.length === 16 && mappings.every((entry) => isUuid(entry.sequenceReceipt))
     const anchorsOk = sun.computes && moon.computes && celestial.computed
@@ -518,8 +489,7 @@ export function astronomyDecodedWithTheSequence(at = 0, matrix: MindMatrix = bui
       statement:
         'Astronomy decoded with the sequence: sixteen celestial bodies content-addressed through VORTEX_SEQUENCE slots, phase digit at call time, digit-folder probe, pi-train stations, Rosetta ray receipts, I Ching hexagram keys (1–64), decode-all chain, and sun/moon compute anchors — deterministic addressing, not live ephemeris or orbit control.',
       boundary:
-        'HONEST: sequence decode = deterministic addressing of the sealed celestial catalog through vortex/digit/Rosetta protocol — NOT live JPL ephemeris, NOT claiming VORTEX_SEQUENCE literally controls physical orbits, NOT omniscience. Circular Keplerian model only. Hexagram and Rosetta mappings are content-address keys for navigation in the model, not astronomical causation.',
-    }
+        'HONEST: sequence decode = deterministic addressing of the sealed celestial catalog through vortex/digit/Rosetta protocol — NOT live JPL ephemeris, NOT claiming VORTEX_SEQUENCE literally controls physical orbits, NOT omniscience. Circular Keplerian model only. Hexagram and Rosetta mappings are content-address keys for navigation in the model, not astronomical causation.' }
   })
 }
 
@@ -544,8 +514,7 @@ export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
         orbitPhase,
         hue,
         vortexDigit: mapping.vortexDigit,
-        receipt: body.receipt,
-      }
+        receipt: body.receipt }
     })
     const channels: AstronomySimulationChannel[] = [
       {
@@ -554,24 +523,21 @@ export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
         phase: bodies[0]?.orbitPhase ?? 0,
         alpha: sequence.decoded ? roundTo(0.68 + (8 / (5 * 5)) * (bodies[0]?.orbitPhase ?? 0), 3) : (6 / (5 * 5)),
         receipt: sequence.root,
-        on: sequence.decoded,
-      },
+        on: sequence.decoded },
       {
         id: 'sun-phase',
         hue: bodies.find((entry) => entry.name === 'Sun')?.hue ?? (9 * 5),
         phase: bodies.find((entry) => entry.name === 'Sun')?.orbitPhase ?? 0,
         alpha: celestial.sun.exactMatch ? (1 - 2 / (5 * 5)) : (6 / (5 * 5)),
         receipt: celestial.sun.receipt,
-        on: celestial.sun.exactMatch && celestial.sun.emits,
-      },
+        on: celestial.sun.exactMatch && celestial.sun.emits },
       {
         id: 'moon-phase',
         hue: bodies.find((entry) => entry.name === 'Moon')?.hue ?? (7 * 6 * 5),
         phase: bodies.find((entry) => entry.name === 'Moon')?.orbitPhase ?? 0,
         alpha: celestial.moon.exactMatch ? (1 - 3 / (5 * 5)) : (6 / (5 * 5)),
         receipt: celestial.moon.receipt,
-        on: celestial.moon.exactMatch && !celestial.moon.emits,
-      },
+        on: celestial.moon.exactMatch && !celestial.moon.emits },
     ]
     const { computes, root } = computesGate('astronomy-simulation-at', [
       { facet: 'sixteen bodies — orbit phase + vortex hue at at', on: bodies.length === 16 },
@@ -589,8 +555,7 @@ export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
       statement:
         'Astronomy simulation at call time: sixteen celestial bodies with Keplerian orbit phase and vortex-digit hue from astronomyDecodedWithTheSequence — paint-ready channels for plasma movie at the shared hero clock.',
       boundary:
-        'HONEST — circular Keplerian catalog, NOT live JPL ephemeris. Vortex digit drives hue/orbit phase as deterministic addressing — NOT physical orbit control. Sun/Moon lobe semantics from sealed nature fold.',
-    }
+        'HONEST — circular Keplerian catalog, NOT live JPL ephemeris. Vortex digit drives hue/orbit phase as deterministic addressing — NOT physical orbit control. Sun/Moon lobe semantics from sealed nature fold.' }
   })
 }
 
@@ -613,11 +578,8 @@ export function astronomySimulationPanelComputes(matrix: MindMatrix = buildMatri
         title: { en: 'Astronomy simulation', bg: 'Астрономическа симулация' },
         lede: {
           en: 'Sixteen-body Keplerian catalog with VORTEX_SEQUENCE hue — circular model, not JPL ephemeris.',
-          bg: 'Шестнадесет телесен Keplerian каталог с VORTEX_SEQUENCE нюанс — кръгов модел, не JPL ефemerida.',
-        },
-      },
-      boundary: sim.boundary,
-    }
+          bg: 'Шестнадесет телесен Keplerian каталог с VORTEX_SEQUENCE нюанс — кръгов модел, не JPL ефemerida.' } },
+      boundary: sim.boundary }
   })
 }
 
@@ -644,8 +606,7 @@ export function planetBatchFacetsComputes(batch: number, matrix: MindMatrix = bu
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Planet batch ${batch} paint facets: ${chunk.map((p) => p.name).join(' · ')} — au, period, live Keplerian angle and content-addressed hue, all from the one solarSystem model.`,
-      boundary: 'Circular Keplerian mean elements (NASA/JPL simplified, two decimals) with content-addressed paint — a deterministic exhibit, NOT an ephemeris.',
-    }
+      boundary: 'Circular Keplerian mean elements (NASA/JPL simplified, two decimals) with content-addressed paint — a deterministic exhibit, NOT an ephemeris.' }
   })
 }
 
@@ -657,8 +618,7 @@ export const MEEUS_J2000_CIVIL = {
   year: 4 * 5 * 100,
   month: 1,
   day: 1,
-  hourUt: 2 * 6,
-} as const
+  hourUt: 2 * 6 } as const
 /** Full circle in degrees — sealed lattice form (8×45). */
 const DEG_CIRCLE = 8 * 45
 /** Degrees → radians via TAU (never Math.PI). */
@@ -824,20 +784,17 @@ export function sealedMeeusEphemerisAt(jd: number): {
     'North Node': north,
     'South Node': south,
     Pluto: pluto,
-    ...Object.fromEntries(planets.map((p) => [p.name, p.longitudeDeg])),
-  }
+    ...Object.fromEntries(planets.map((p) => [p.name, p.longitudeDeg])) }
   const bodies = RAVE_BODIES_13.map((name) => ({
     name,
     longitudeDeg: byName[name]!,
-    receipt: toUuid(`meeus-lon:${name}:${roundTo(byName[name]!, 6)}`),
-  }))
+    receipt: toUuid(`meeus-lon:${name}:${roundTo(byName[name]!, 6)}`) }))
   return {
     jd,
     bodies,
     sun,
     moon,
-    root: merkleFold(bodies.map((b) => b.receipt)),
-  }
+    root: merkleFold(bodies.map((b) => b.receipt)) }
 }
 
 /**
@@ -873,8 +830,7 @@ export function designLayerFromNatalSun(birthJd: number): {
     designSunDeg,
     targetDeg,
     arcErrDeg,
-    daysBeforeBirth: birthJd - designJd,
-  }
+    daysBeforeBirth: birthJd - designJd }
 }
 
 /**
@@ -935,8 +891,7 @@ export function humanDesignEphemerisCore(matrix: MindMatrix = buildMatrix(), bir
       statement:
         'HD W4 sealed Meeus ephemeris: geocentric ecliptic longitudes for the 13 activation bodies (Sun…Pluto, Nodes; no Chiron) plus Design-layer solver Sun(design)=Sun(birth)−88° of solar arc — reduced-precision Meeus formulas, adversarial reference-tolerance facets at call time.',
       boundary:
-        'HONEST — sealed Meeus reduced-precision (Sun ch.25, Moon truncated ch.47, planets circular+eq.center, Pluto polynomial). NOT JPL DE440 / Swiss Ephemeris. Tolerances are facet bands for a symbolic HD computer, not arcsecond astronomy. Cusp/fast-mover UX warnings compose in humanDesignChartStructureAt (W5). Predictive/aura HD claims remain flagged in humanDesignDecoded. HARMONY ≠ TRUTH.',
-    }
+        'HONEST — sealed Meeus reduced-precision (Sun ch.25, Moon truncated ch.47, planets circular+eq.center, Pluto polynomial). NOT JPL DE440 / Swiss Ephemeris. Tolerances are facet bands for a symbolic HD computer, not arcsecond astronomy. Cusp/fast-mover UX warnings compose in humanDesignChartStructureAt (W5). Predictive/aura HD claims remain flagged in humanDesignDecoded. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -963,8 +918,7 @@ export function humanDesignChartStructureAt(matrix: MindMatrix = buildMatrix(), 
         return {
           layer, body: body.name, longitudeDeg: body.longitudeDeg,
           gate: gl.gate, line: gl.line, cusp, fastMoverCusp: cusp && fastMover,
-          receipt: toUuid(`hd-chart-act:${layer}:${body.name}:${gl.gate}.${gl.line}:${cusp}`),
-        }
+          receipt: toUuid(`hd-chart-act:${layer}:${body.name}:${gl.gate}.${gl.line}:${cusp}`) }
       })
     const personality = activationOf(personalityEph.bodies, 'personality')
     const design = activationOf(designEph.bodies, 'design')
@@ -1005,8 +959,7 @@ export function humanDesignChartStructureAt(matrix: MindMatrix = buildMatrix(), 
       statement:
         'HD W5 chart structure: Meeus W4 longitudes → wheel W3 gate.line for personality + Design layers; sealed 36-channel table yields defined channels; cusp warnings when a body sits within one line-arc of a gate edge (Moon/Mercury tagged).',
       boundary:
-        'HONEST STRUCTURE COMPUTER — reduced Meeus + verified wheel + sealed channel lattice. NOT JPL DE440. NOT Swiss Ephemeris. NOT aura/type/authority/strategy claims (flagged elsewhere). Cusp band is a UX caution for symbolic charts, not an arcsecond astronomy product. HARMONY ≠ TRUTH.',
-    }
+        'HONEST STRUCTURE COMPUTER — reduced Meeus + verified wheel + sealed channel lattice. NOT JPL DE440. NOT Swiss Ephemeris. NOT aura/type/authority/strategy claims (flagged elsewhere). Cusp band is a UX caution for symbolic charts, not an arcsecond astronomy product. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1116,14 +1069,13 @@ export function humanDesignChartStructureFacetsAt(matrix: MindMatrix = buildMatr
         toUuid(`hd-w6-def:${definitionKind}:${components}:${definedCenters.join(',')}`),
       ]),
       pair: 'edit/build' as const,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       route: '/en/spirit#human-design-bodygraph',
       statement:
         'HD W6 structure-only chart facets: compose W3 wheel + W5 channel/center tables + W5 chart activations → defined/open centers, hanging gates, definition connectivity (none|single|split|triple-split|quadruple-split), personality∩design gate sets, cusp count — symbolic structure computer at birth JD.',
       boundary:
-        'HONEST STRUCTURE ONLY — combinatorial BodyGraph facets from sealed RAVE_* tables + Meeus×wheel activations. definitionKind is a graph-connectivity label, NOT type/authority/strategy/aura science. NOT JPL DE440 / Swiss Ephemeris. Profiling remains refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+        'HONEST STRUCTURE ONLY — combinatorial BodyGraph facets from sealed RAVE_* tables + Meeus×wheel activations. definitionKind is a graph-connectivity label, NOT type/authority/strategy/aura science. NOT JPL DE440 / Swiss Ephemeris. Profiling remains refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1158,8 +1110,7 @@ export const RAVE_CENTER_LAYOUT = {
   Sacral: { x: 1 / 2, y: 5 / 8, shape: 'sq' as const },
   SolarPlexus: { x: 1 / 2 + 1 / (2 * 4), y: 5 / 8, shape: 'tri' as const },
   Spleen: { x: 1 / 2 - 1 / (2 * 4), y: 5 / 8, shape: 'tri' as const },
-  Root: { x: 1 / 2, y: 7 / 8, shape: 'sq' as const },
-} as const satisfies Record<(typeof RAVE_CENTERS_9)[number], { x: number; y: number; shape: 'tri' | 'sq' | 'dia' }>
+  Root: { x: 1 / 2, y: 7 / 8, shape: 'sq' as const } } as const satisfies Record<(typeof RAVE_CENTERS_9)[number], { x: number; y: number; shape: 'tri' | 'sq' | 'dia' }>
 
 /** HD BodyGraph Vue panel — sealed W5/W6 chart structure → browser paint (JD-parameter structure demo). */
 export function humanDesignBodyGraphPanelComputes(matrix: MindMatrix = buildMatrix(), birthJd = MEEUS_J2000_JD) {
@@ -1202,13 +1153,12 @@ export function humanDesignBodyGraphPanelComputes(matrix: MindMatrix = buildMatr
       root: merkleFold([chart.root, structure.root, lattice.root, ...facets.map((f) => f.receipt)]),
       route: '/en/spirit#human-design-bodygraph',
       pair: 'immersive/hero',
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       statement:
         'HD BodyGraph Vue UX: sealed W5 chart + W6 structure facets paint 9 centers + 36 channel wires; defined/open/hanging + definitionKind from Meeus×wheel activations — structure computer for /en/spirit, not a personality engine.',
       boundary:
-        'STRUCTURE-ONLY browser surface. JD input recomputes sealed facets (default J2000 sample — NOT anyone\'s natal chart). Profiling/aura/type/authority claims remain refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+        'STRUCTURE-ONLY browser surface. JD input recomputes sealed facets (default J2000 sample — NOT anyone\'s natal chart). Profiling/aura/type/authority claims remain refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1420,7 +1370,7 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
       facets,
       root: merkleFold([panel.root, ...facets.map((f) => f.receipt), toUuid(`hd-w7-svg:${svg.length}:${panel.definitionKind}`)]),
       pair: 'symbols/quantumise' as const,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       route: '/en/spirit#human-design-bodygraph',
@@ -1428,8 +1378,7 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
       statement:
         'HD W7 BodyGraph SVG emitter: sealed RAVE_CENTER_LAYOUT + W5/W6 panel activations → SMIL-safe structure SVG (9 centers · 36 channels · definition/hanging/JD attrs) for symbols inventory + /en/spirit — structure computer, not personality engine.',
       boundary:
-        'HONEST STRUCTURE ONLY — computed SVG from sealed lattice/layout/Meeus×wheel activations. NOT commercial BodyGraph product · NOT aura/type/authority · NOT JPL DE440. claySolved=0 · physicalFtl=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+        'HONEST STRUCTURE ONLY — computed SVG from sealed lattice/layout/Meeus×wheel activations. NOT commercial BodyGraph product · NOT aura/type/authority · NOT JPL DE440. claySolved=0 · physicalFtl=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1502,8 +1451,7 @@ export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         'Astronomy computes: canonical celestial home — sixteen-body catalog, exact-match discover wave, deep-research tiers, galaxy Keplerian compute, VORTEX_SEQUENCE decode, research exposition, HD W4 sealed Meeus ephemeris (Design Sun−88°), HD W5 chart structure, HD W6 structure facets, HD BodyGraph Vue panel, and HD W7 BodyGraph SVG emitter — composed at call time from sun/moon/earth/nature lobes and decode/rosetta receipts.',
       boundary:
-        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; BodyGraph UX/SVG is structure-only (not aura/type); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.',
-    }
+        'HONEST — circular Keplerian catalog PLUS sealed Meeus reduced-precision longitudes for HD (NOT live JPL DE440); VORTEX_SEQUENCE addresses bodies deterministically, NOT orbit control; BodyGraph UX/SVG is structure-only (not aura/type); pyramid/gateway display lives in double/torus/earth — astronomy does not duplicate portal nav/GPS folds.' }
   })
 }
 

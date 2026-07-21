@@ -33,8 +33,7 @@ export function plainLanguage() {
     statement:
       'Simple to use, rich in features: one plain-language line for each idea, so anyone understands the portal before meeting its depth.',
     boundary:
-      'Plain restatements of the model\'s own ideas for a first-time reader. They simplify; the precise definitions live in the pages they link to.',
-  }
+      'Plain restatements of the model\'s own ideas for a first-time reader. They simplify; the precise definitions live in the pages they link to.' }
 }
 
 /** @rosetta ✦₁ · Water · depth */
@@ -53,8 +52,7 @@ export function playLearn(word = 'play') {
       frequency: SCALE[step],
       hue: value % 360,
       hsl: movieCanvasHex(value % 360, { L: 13 / 16 }),
-      receipt: seed,
-    }
+      receipt: seed }
   })
   return {
     playable: letters.length > 0,
@@ -65,8 +63,7 @@ export function playLearn(word = 'play') {
     statement:
       'Kids like to learn playing: each letter of a word becomes a coloured tile and a note on a C-major scale, so any word is a little song. The same word always plays the same song — deterministic computation, learned by play.',
     boundary:
-      'A playful deterministic mapping of letters to colours and notes (on a fixed major scale). A toy for learning that the same input gives the same output — not a claim about language, music theory, or synaesthesia.',
-  }
+      'A playful deterministic mapping of letters to colours and notes (on a fixed major scale). A toy for learning that the same input gives the same output — not a claim about language, music theory, or synaesthesia.' }
 }
 
 // Quantum speech is analog by nature. Text is discrete symbols; speech is a continuous wave.
@@ -82,8 +79,7 @@ export function analogSpeech() {
     params,
     root: merkleFold(params.map((entry) => entry.receipt)),
     statement: 'Quantum speech is analog by nature: text is discrete symbols, but speech is a continuous wave — pitch, rate, and volume vary smoothly. Turning text into speech bridges the discrete to the analog.',
-    boundary: 'A description of speech as a continuous signal shaped by analog parameters, rendered by the device Web Speech API. Not a claim about quantum acoustics.',
-  }
+    boundary: 'A description of speech as a continuous signal shaped by analog parameters, rendered by the device Web Speech API. Not a claim about quantum acoustics.' }
 }
 
 /** @rosetta ✦₁ · Water · depth */
@@ -101,8 +97,7 @@ export function typographySeo() {
     principles,
     root: merkleFold(principles.map((entry) => entry.receipt)),
     statement: 'Best SEO starts with typography: system fonts (no fetch, no layout shift), legible rendering, a comfortable measure, a clear semantic hierarchy, tabular figures, and a steady reading rhythm.',
-    boundary: 'Typographic and structural principles applied in the theme CSS. They aid readability and crawlability; they are not a ranking guarantee.',
-  }
+    boundary: 'Typographic and structural principles applied in the theme CSS. They aid readability and crawlability; they are not a ranking guarantee.' }
 }
 
 /** @rosetta ✦₁ · Water · depth */
@@ -117,8 +112,7 @@ export function openGraph() {
     fields,
     root: merkleFold(fields.map((entry) => entry.receipt)),
     statement: 'Open Graph is computed from the route via openGraphCardFromRoute: title/description/image/links, with animation branched on platformOgLimitsMeasured — not wet frontmatter stubs alone.',
-    boundary: 'Mapping applied at render time from openGraphCardFromRoute; platform animation limits are MEASURED (platformOgLimitsMeasured), not prose. External CDN render is not guaranteed.',
-  }
+    boundary: 'Mapping applied at render time from openGraphCardFromRoute; platform animation limits are MEASURED (platformOgLimitsMeasured), not prose. External CDN render is not guaranteed.' }
 }
 
 // Each char a UUID, and next the words. Content-addressing goes all the way down.
@@ -130,8 +124,7 @@ export function charUuids(text = '') {
     chars,
     root: chars.length > 0 ? merkleFold(chars.map((entry) => entry.uuid)) : toUuid('char:empty'),
     statement: 'Each char a UUID: every character folds to a content UUID, and the characters fold into one root.',
-    boundary: 'A content-addressing of characters. Structural bookkeeping over text, not an external claim.',
-  }
+    boundary: 'A content-addressing of characters. Structural bookkeeping over text, not an external claim.' }
 }
 
 /** @rosetta ✦₁ · Water · depth */
@@ -148,8 +141,7 @@ export function wordUuids(text = '') {
     words,
     root: words.length > 0 ? merkleFold(words.map((entry) => entry.uuid)) : toUuid('word:empty'),
     statement: 'Next for the words: every word folds from its characters to a word UUID, and the words fold into the text root — char to word to whole.',
-    boundary: 'A content-addressing of words built from characters. Structural bookkeeping over text, not an external claim.',
-  }
+    boundary: 'A content-addressing of words built from characters. Structural bookkeeping over text, not an external claim.' }
 }
 
 // Humanize. Behind the maths and the 3d+ is a simple set of promises to a person.
@@ -169,8 +161,7 @@ export function humanize() {
     translations,
     root: merkleFold(translations.map((entry) => entry.receipt)),
     statement: 'Humanized: every core idea said plainly for a person — what it means for you, not how it is built.',
-    boundary: 'Plain-language restatements of the model\'s properties. Warmth and clarity, not new claims.',
-  }
+    boundary: 'Plain-language restatements of the model\'s properties. Warmth and clarity, not new claims.' }
 }
 
 // Present all multidimensionally, for the best UX.
@@ -239,6 +230,5 @@ export function multidimensional() {
     count: dimsServed.reduce((sum, d) => sum + d.items.length, 0),
     root: merkleFold(dimsServed.flatMap((d) => d.items.map((item) => toUuid(`multidim:${item.label}`)))),
     statement: `Present all multidimensionally: the served portal in ${dimsServed.length} dimensions of experience, each browsable — every destination a served science surface (the purge law filters at call time), so the breadth is a map, not a scroll.`,
-    boundary: 'A presentation map over the SERVED routes only — items whose pages left the theorem-science lens drop at call time, and a dimension with no served destination has no entry. A guide for the user experience, not new capability.',
-  }
+    boundary: 'A presentation map over the SERVED routes only — items whose pages left the theorem-science lens drop at call time, and a dimension with no served destination has no entry. A guide for the user experience, not new capability.' }
 }

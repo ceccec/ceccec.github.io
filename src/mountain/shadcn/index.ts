@@ -23,8 +23,7 @@ export const SHADCN_IMPLEMENTED: readonly string[] = [...SHADCN_PRIMITIVE_NAMES,
 export const SHADCN_VARIANTS = {
   Button: { variant: ['default', 'secondary', 'outline', 'ghost', 'destructive', 'link'], size: ['default', 'sm', 'lg', 'icon'] },
   Badge: { variant: ['default', 'secondary', 'outline', 'destructive'] },
-  Alert: { variant: ['default', 'destructive'] },
-} as const
+  Alert: { variant: ['default', 'destructive'] } } as const
 
 /** Design-system CSS-variable tokens (oklch new-york), bridged to VitePress --vp-* and .dark. */
 export const SHADCN_TOKENS = [
@@ -97,8 +96,7 @@ export function shadcnQuantumLens(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(graph.root, merkleFold(facets.map((entry) => entry.receipt))),
       statement: `Reviewing shadcn with the quantum lens opens dimensions of theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the cva variant table is a tensor product of dimension ${tensorDim} = 3·2⁶ (exactly three hexagram spaces); the compound SFCs form a prefix forest of depth ≤ 2 partitioning the ${SHADCN_IMPLEMENTED.length}-SFC inventory (${SHADCN_PRIMITIVE_NAMES.length} roots + ${SHADCN_COMPOUND_SFCS.length} leaves); the 64-component graph is the 6-bit hexagram measurement basis; the ${SHADCN_TOKENS.length} tokens are the mode-invariant observable basis under the light/dark ℤ/2 action; and mounting is measurement — the cva superposition collapses to one state, with 'default' the ground state every varianted axis carries.`,
-      boundary: `STRUCTURAL QUANTUM (the registry's own demarcation, quantum-decoded): tensor/basis/measurement/ground-state name exact combinatorial structure — dimension products, a prefix partial order, a bijection onto 2⁶, a ℤ/2 action, and membership of 'default' — every check arithmetic over the sealed tables and refutable by editing them (add a Badge size axis and the 192 factorisation breaks). NO physical qubit, superposition or speedup is claimed: a mounted component holds ONE variant; "superposition" is the defined-but-unmeasured cva space. The 3·2⁶ factorisation is a computed coincidence of the current table, sealed as such — not numerology, not a law of design systems. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `STRUCTURAL QUANTUM (the registry's own demarcation, quantum-decoded): tensor/basis/measurement/ground-state name exact combinatorial structure — dimension products, a prefix partial order, a bijection onto 2⁶, a ℤ/2 action, and membership of 'default' — every check arithmetic over the sealed tables and refutable by editing them (add a Badge size axis and the 192 factorisation breaks). NO physical qubit, superposition or speedup is claimed: a mounted component holds ONE variant; "superposition" is the defined-but-unmeasured cva space. The 3·2⁶ factorisation is a computed coincidence of the current table, sealed as such — not numerology, not a law of design systems. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -131,7 +129,6 @@ export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         'shadcn computes: the canonical sealed home of the design system — the 64-component graph (shadcnIsTheGraph), the 23 vendored Ui* primitives (Path A, semantic classes, no Tailwind), the cva variant axes, the CSS-variable token bridge, and the cn() composer pattern — registry and tokens sealed in src, SFCs in the VitePress theme.',
       boundary:
-        'Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx()).',
-    }
+        'Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx()).' }
   })
 }

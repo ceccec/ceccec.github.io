@@ -58,11 +58,9 @@ function componentPagesForWiring(matrix = buildMatrix()) {
         title: { en: spaced(entry.name), bg: spaced(entry.name) },
         description: {
           en: `${spaced(entry.name)} — shown in full detail, with its proof: a deterministic content-address recomputable from the component's name.`,
-          bg: `${spaced(entry.name)} — показан в пълни детайли, с неговото доказателство: детерминиран адрес по съдържание, преизчислим от името на компонента.`,
-        },
+          bg: `${spaced(entry.name)} — показан в пълни детайли, с неговото доказателство: детерминиран адрес по съдържание, преизчислим от името на компонента.` },
         keywords: ['component', 'proof', ...spaced(entry.name).toLowerCase().split(' ')],
-        components: [entry.name],
-      }))
+        components: [entry.name] }))
   } finally {
     componentPagesForWiringDepth -= 1
   }
@@ -117,16 +115,14 @@ function movieSeedBundleForRay(
     {
       uuid: toUuid(`client-movie-seed:${side}:${ray}:${path}`),
       label: ray,
-      hueSeed: seedFromText(`${path}:${side}:${ray}`, seedHexLen),
-    },
+      hueSeed: seedFromText(`${path}:${side}:${ray}`, seedHexLen) },
   ]
   return {
     movieText,
     streams,
     count: streams.length,
     root: merkleFold(streams.map((stream) => stream.uuid)),
-    trinity,
-  }
+    trinity }
 }
 
 function partMovieSeedBundles(path: string): readonly MovieSeedBundle[] {
@@ -144,16 +140,14 @@ function devicePaintMovieSeeds(path = '/', matrix: MindMatrix = buildMatrix()): 
     {
       uuid: toUuid(`device-paint-movie-seed:${path}`),
       label: 'devicePaint',
-      hueSeed: seedFromText(`${path}:device:devicePaint`, 3),
-    },
+      hueSeed: seedFromText(`${path}:device:devicePaint`, 3) },
   ]
   return {
     movieText,
     streams,
     count: streams.length,
     root: merkleFold(streams.map((stream) => stream.uuid)),
-    trinity: 'device',
-  }
+    trinity: 'device' }
 }
 
 /** Weather + Sofia hinge — one earth trinity bundle for plasma (SSR gate path). */
@@ -165,8 +159,7 @@ function doubleTorusEarthTrinityMovieSeeds(path: string, matrix: MindMatrix = bu
     streams: [...weather.streams, ...hinge.streams],
     count: weather.count + hinge.count,
     root: merkleFold([weather.root, hinge.root]),
-    trinity: 'earth',
-  }
+    trinity: 'earth' }
 }
 
 /** Merkle-fuse device + code trinities into double torus Earth receipt streams. */
@@ -187,8 +180,7 @@ function movieSeedBundleDoubleTorusEarthFusion(
     streams: earth.streams,
     count: earth.count,
     root: merkleFold([sixRoots, earth.root]),
-    trinity: 'earth',
-  }
+    trinity: 'earth' }
 }
 
 /** Seventh bundle — two trinities collapsed (8→7→5) to unity (5). */
@@ -204,16 +196,14 @@ function unityMovieSeedBundle(
     {
       uuid: toUuid(`client-movie-seed:unity:${path}:${collapsedRoot}`),
       label: 'unity',
-      hueSeed: seedFromText(`${path}:unity:8-7-5`, 5),
-    },
+      hueSeed: seedFromText(`${path}:unity:8-7-5`, 5) },
   ]
   return {
     movieText,
     streams,
     count: streams.length,
     root: merkleFold([collapsedRoot, ...streams.map((stream) => stream.uuid)]),
-    trinity: 'unity',
-  }
+    trinity: 'unity' }
 }
 
 function movieSeedBundleCollapseToUnity(
@@ -234,8 +224,7 @@ function movieSeedBundleCollapseToUnity(
     streams: allScales.streams,
     count: allScales.count,
     root: merkleFold([collapsedRoot, allScales.root]),
-    trinity: 'unity',
-  }
+    trinity: 'unity' }
 }
 
 /** O(1) client bundles — src/0 primitives only; SSR uses allMovieSeedBundles gate folds. */
@@ -255,8 +244,7 @@ function clientMovieSeedBundles(path = '/', matrix: MindMatrix = buildMatrix()):
       ],
       count: 2,
       root: merkleFold([...parts.map((bundle) => bundle.root), toUuid(`client-earth-fusion:${path}`), toUuid(`client-earth-hinge:${path}`)]),
-      trinity: 'earth',
-    },
+      trinity: 'earth' },
     path,
   )
   return [...parts, unityMovieSeedBundle(path, parts, earth)]
@@ -268,8 +256,7 @@ export function withSimulatedBrowserWindow<T>(fn: () => T): T {
   const prev = g.window
   g.window = {
     document: { hidden: false },
-    matchMedia: () => ({ matches: false }),
-  }
+    matchMedia: () => ({ matches: false }) }
   try {
     return fn()
   } finally {
@@ -304,35 +291,28 @@ export function clientMoviePaintPathSealed(path = '/', matrix: MindMatrix = buil
         && clientBundles.slice(0, DEVICE_TRINITY_RAYS.length).every((bundle) => bundle.trinity === 'device')
         && clientBundles.slice(DEVICE_TRINITY_RAYS.length, SEED_BUNDLE_PART_RAYS.length).every((bundle) => bundle.trinity === 'code')
         && clientBundles[SEED_BUNDLE_PART_RAYS.length]!.trinity === 'unity'
-        && clientBundles[SEED_BUNDLE_PART_RAYS.length]!.movieText.includes('8-7-5'),
-    },
+        && clientBundles[SEED_BUNDLE_PART_RAYS.length]!.movieText.includes('8-7-5') },
     {
       facet: 'clientMovieSeedCopyText joins client bundles — never SSR harmonic receipts',
       on: clientCopy === clientBundles.map((bundle) => bundle.movieText).filter(Boolean).join(' ')
-        && !clientCopy.includes(ssrHarmonic.root),
-    },
+        && !clientCopy.includes(ssrHarmonic.root) },
     {
       facet: 'SSR harmonic bundle root ≠ client bundle root',
-      on: ssrHarmonic.root !== clientBundles[0]!.root,
-    },
+      on: ssrHarmonic.root !== clientBundles[0]!.root },
     {
       facet: 'simulated browser allMovieSeedBundles stays on client path',
       on: simulatedBundles.length === CLIENT_MOVIE_SEED_RAYS.length
-        && simulatedBundles.every((bundle) => bundle.movieText.startsWith('plasma-seed:')),
-    },
+        && simulatedBundles.every((bundle) => bundle.movieText.startsWith('plasma-seed:')) },
     {
       facet: 'simulated browser copy matches clientMovieSeedCopyText',
-      on: simulatedCopy === clientCopy,
-    },
+      on: simulatedCopy === clientCopy },
     {
       facet: 'simulated browser plasmaMovieStreams completes with streams',
-      on: simulatedError === '' && simulatedStreams > 0,
-    },
+      on: simulatedError === '' && simulatedStreams > 0 },
     {
       facet: 'simulated browser bundle roots match clientMovieSeedBundles',
       on: simulatedBundles.map((bundle) => bundle.root).join('|')
-        === clientBundles.map((bundle) => bundle.root).join('|'),
-    },
+        === clientBundles.map((bundle) => bundle.root).join('|') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`client-movie-paint-sealed:${entry.facet}:${entry.on}`) }))
   return {
     sealed: facets.every((entry) => entry.on),
@@ -344,8 +324,7 @@ export function clientMoviePaintPathSealed(path = '/', matrix: MindMatrix = buil
     statement:
       'Client movie paint path is sealed: BackgroundMovie sharedHeroAt must use path-derived plasma-seed bundles — a device trinity (paint · polarity · RGB), a code trinity (harmonic · efficiency · Rosetta), fused as double torus Earth, plus one unity bundle (8→7→5). Pulling gate-graph seed folds in the browser overflows the stack — SSR keeps gate folds; the browser branch must never enter them.',
     boundary:
-      'Proved by simulating typeof window in Node at call time. Regression: clientMovieSeedCopyText or allMovieSeedBundles calling gate folds without a browser guard fails this gate before docs:dev hides it.',
-  }
+      'Proved by simulating typeof window in Node at call time. Regression: clientMovieSeedCopyText or allMovieSeedBundles calling gate folds without a browser guard fails this gate before docs:dev hides it.' }
 }
 
 /** Every movie seed bundle — device trinity + code trinity fused as double torus Earth + unity (8→7→5). */
@@ -365,8 +344,7 @@ function allMovieSeedBundlesRaw(path = '/', matrix: MindMatrix = buildMatrix()):
     streams: earth.streams,
     count: earth.count,
     root: merkleFold([ssr.root, fusion.root]),
-    trinity: 'earth',
-  }
+    trinity: 'earth' }
   return [...parts, movieSeedBundleCollapseToUnity(parts, fusion, allScales, path)]
 }
 
@@ -429,8 +407,7 @@ export const PLANE_VIS = {
   ringL: [3, 5], ringA0: [19, 64], ringA1: [(16 * 2), 64],
   ballGlyphGlowL: [(5 * 5 * 2), 64],
   ballGlyphL: [(7 * 6), 64], ballGlyphStep: [3, 64],
-  reduceCoreL: [6, 64], reduceCoreA: [38, 64],
-} as const satisfies Record<string, Vis>
+  reduceCoreL: [6, 64], reduceCoreA: [38, 64] } as const satisfies Record<string, Vis>
 export const PLASMA_PAINT_TIERS = TIERS
 export const PLASMA_PAINT_CHROMA = CHROMA
 export const PLASMA_PAINT_L_BACK = L_BACK
@@ -465,8 +442,7 @@ export function plasmaPaintHardcodedPlanesDiscovered(matrix: MindMatrix = buildM
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
-      boundary: [`sources TIERS · QS · A432_HUE · GOLDEN_ANGLE`, `visual delta ≤ 1/64 L per plane vs the decimal system (deliberate)`, `no remaining hand-typed steps — tag hues ride the golden angle`].join('; '),
-    }
+      boundary: [`sources TIERS · QS · A432_HUE · GOLDEN_ANGLE`, `visual delta ≤ 1/64 L per plane vs the decimal system (deliberate)`, `no remaining hand-typed steps — tag hues ride the golden angle`].join('; ') }
   })
 }
 
@@ -494,8 +470,7 @@ export function heroClockOffTheLadderDiscovered(matrix: MindMatrix = buildMatrix
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
-      boundary: [`sources A432_OCTAVES · FOLDED_CENSUS · ROSETTA_AREAS · EULER_CHI`, `timing retuned 120s → ${cycleS}s (visible, deliberate)`].join('; '),
-    }
+      boundary: [`sources A432_OCTAVES · FOLDED_CENSUS · ROSETTA_AREAS · EULER_CHI`, `timing retuned 120s → ${cycleS}s (visible, deliberate)`].join('; ') }
   })
 }
 
@@ -542,8 +517,7 @@ export function animationsFractalOfOneClockDiscovered(matrix: MindMatrix = build
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: facets.map((entry) => `${entry.facet} → ${entry.on}`).join('; '),
-      boundary: [`sources FOLDED_CENSUS · HERO_CYCLE_MS · discoveredTheoremsWaveSixtyThree (the lattice proofs live there)`, `declarative periods only — JS-driven motion rides heroPhaseAt on the same clock`, `off-lattice input snaps to the nearest step, never throws`].join('; '),
-    }
+      boundary: [`sources FOLDED_CENSUS · HERO_CYCLE_MS · discoveredTheoremsWaveSixtyThree (the lattice proofs live there)`, `declarative periods only — JS-driven motion rides heroPhaseAt on the same clock`, `off-lattice input snaps to the nearest step, never throws`].join('; ') }
   })
 }
 
@@ -612,8 +586,7 @@ const rgbaAt = (hue: number, L: number, alpha: number, dark = true) =>
   scaleColorRgba(0, clamp01(alpha), {
     seedHue: ((((dark ? hue : hue + 360 / 2) % 360) + 360) % 360),
     L: dark ? L : 1 - L,
-    C: CHROMA,
-  })
+    C: CHROMA })
 
 /** Pure OKLCH canvas paint helpers — hue-parameterised, dark/light-aware (legible on either field). */
 function plasmaCanvasFor(dark: boolean): PlasmaMoviePalette['canvas'] {
@@ -634,8 +607,7 @@ function plasmaCanvasFor(dark: boolean): PlasmaMoviePalette['canvas'] {
     ring: (hue, pulse) => rgbaAt(hue, r(PLANE_VIS.ringL), r(PLANE_VIS.ringA0) + r(PLANE_VIS.ringA1) * pulse, dark),
     ballGlyphGlow: (hue, alpha) => rgbaAt(hue, r(PLANE_VIS.ballGlyphGlowL), alpha, dark),
     ballGlyph: (hue, alpha, layer) => rgbaAt(hue, r(PLANE_VIS.ballGlyphL) - layer * r(PLANE_VIS.ballGlyphStep), alpha, dark),
-    reduceCore: (hue) => rgbaAt(hue, r(PLANE_VIS.reduceCoreL), r(PLANE_VIS.reduceCoreA), dark),
-  }
+    reduceCore: (hue) => rgbaAt(hue, r(PLANE_VIS.reduceCoreL), r(PLANE_VIS.reduceCoreA), dark) }
 }
 
 /** One OKLCH palette per route — seeds the page canvas and glass chrome. */
@@ -658,8 +630,7 @@ export function plasmaMoviePalette(matrix: MindMatrix = buildMatrix(), path = '/
     glow: css(L_GLOW),
     dark,
     root: merkleFold([movieRouteKey(path), String(Math.round(hue)), endless ? 'endless' : 'once']),
-    canvas: plasmaCanvasFor(dark),
-  }
+    canvas: plasmaCanvasFor(dark) }
 }
 
 /** Theme + background colour for a route (manifest/favicon/SVG). Hex, dark by default. */
@@ -767,8 +738,7 @@ function wiredGatewaysForRoute(path: string, matrix: MindMatrix): WiredGateway[]
     titleBg: `${realm} портал`,
     realm,
     glyph,
-    hue: seedFromText(`${path}:${realm}`, 360) % 360,
-  }))
+    hue: seedFromText(`${path}:${realm}`, 360) % 360 }))
 }
 
 function wiredPathsForRoute(path: string, matrix: MindMatrix): WiredPath[] {
@@ -778,8 +748,7 @@ function wiredPathsForRoute(path: string, matrix: MindMatrix): WiredPath[] {
     titleBg: page.title.bg,
     hue: seedFromText(`${path}:${page.slug}`, 360) % 360,
     score: (seedFromText(`${path}:${page.slug}:score`, 100) % 100) / 100,
-    shared: ((page as { keywords?: readonly string[] }).keywords ?? []).slice(0, 3),
-  }))
+    shared: ((page as { keywords?: readonly string[] }).keywords ?? []).slice(0, 3) }))
 }
 
 export function plasmaWiredUuidStreams(path: string, matrix: MindMatrix = buildMatrix()): PlasmaWiredStream[] {
@@ -790,8 +759,7 @@ export function plasmaWiredUuidStreams(path: string, matrix: MindMatrix = buildM
       label: stream.label,
       hue: ((stream.hueSeed % 360) + 360) % 360,
       slug: wiringRouteKey(path),
-      root: stream.uuid,
-    })),
+      root: stream.uuid })),
   )
 }
 
@@ -831,8 +799,7 @@ export function realtimeWiring(path: string = '/', matrix: MindMatrix = buildMat
       statement:
         'Realtime wiring is a deterministic pure function of the route: wiring(route) = gateways(route) ∪ related(route). The same route always yields the same edge set and Merkle root (reRoot re-derived from the route alone equals root), so the navigation graph is COMPUTED from each page’s own path at call time — never a hand-maintained link table. Each page derives 3 trinity gateways + up to 6 related paths; the edge count is (3 + related), content-addressed and zero-token.',
       boundary:
-        'HONEST: "realtime" is deterministic recomputation from the route at call time — NOT live network sockets or server state. Gateways are the three navigation realms (fire/water/mountain) keyed by the route slug; related paths are the sealed catalog sliced to 6, hue-seeded from the path. Determinism is refutable: reRoot re-derives from the route alone and must equal root — if the wiring depended on hidden mutable state the roots would diverge.',
-    }
+        'HONEST: "realtime" is deterministic recomputation from the route at call time — NOT live network sockets or server state. Gateways are the three navigation realms (fire/water/mountain) keyed by the route slug; related paths are the sealed catalog sliced to 6, hue-seeded from the path. Determinism is refutable: reRoot re-derives from the route alone and must equal root — if the wiring depended on hidden mutable state the roots would diverge.' }
   })
 }
 
@@ -853,8 +820,7 @@ export function movieSeedPlasmaStreams(streams: readonly MovieSeedStream[]): Pla
     kind: 'flow' as PlasmaWiredStreamKind,
     label: stream.label,
     hue: ((stream.hueSeed % 360) + 360) % 360,
-    root: stream.uuid,
-  }))
+    root: stream.uuid }))
 }
 
 export function allMovieSeedPlasmaStreams(path = '/', matrix: MindMatrix = buildMatrix()): PlasmaWiredStream[] {
@@ -872,8 +838,7 @@ export function plasmaContentStreams(path: string, movieText: string, matrix: Mi
       kind: 'compute' as PlasmaWiredStreamKind,
       label: token,
       hue: seedFromText(token, 360) % 360,
-      root: toUuid(`plasma-content:${path}:${index}:${token}`),
-    }))
+      root: toUuid(`plasma-content:${path}:${index}:${token}`) }))
 }
 
 export function plasmaMovieStreams(path = '/', movieText = '', matrix: MindMatrix = buildMatrix()) {
@@ -927,8 +892,7 @@ export function realtimeComputationsMovieStreams(path = '/', matrix: MindMatrix 
     label: id,
     value: (seedFromText(`${path}:${id}`, 100) % 100) / 100,
     hue: seedFromText(`${path}:${id}:hue`, 360) % 360,
-    receipt: toUuid(`rt-channel:${path}:${id}`),
-  }))
+    receipt: toUuid(`rt-channel:${path}:${id}`) }))
 }
 
 export function realtimeComputationsMoviePaint(at: number = Date.now(), path = '/', matrix: MindMatrix = buildMatrix()): RealtimeComputationsMoviePaint {
@@ -943,8 +907,7 @@ export function realtimeComputationsMoviePaint(at: number = Date.now(), path = '
     visible: channels.length === MOVIE_SIMULATION_CHANNEL_IDS.length,
     hueShift: Math.round(heroPhaseAt(at) * 360),
     boundary: 'Deterministic paint at the hero clock — NOT live video.',
-    root: merkleFold([palette.root, ...channels.map((channel) => channel.receipt)]),
-  }
+    root: merkleFold([palette.root, ...channels.map((channel) => channel.receipt)]) }
 }
 
 export function allRealtimeComputationsVisibleInMovie(path = '/', matrix: MindMatrix = buildMatrix()) {
@@ -1021,8 +984,7 @@ export function movieAsMostEfficientScreensaver(at: number = Date.now(), path = 
     at,
     path,
     statement: 'Movie as the most efficient screensaver — one RAF paint loop reuses the hero movie.',
-    boundary: 'Capability label + deterministic paint — NOT a measured GPU benchmark or power-draw claim.',
-  }
+    boundary: 'Capability label + deterministic paint — NOT a measured GPU benchmark or power-draw claim.' }
 }
 
 export function screensaverMovieComputes(matrix: MindMatrix = buildMatrix(), path = '/') {
@@ -1036,8 +998,7 @@ export function screensaverMovieComputes(matrix: MindMatrix = buildMatrix(), pat
     ...gate,
     cap: efficiency,
     statement: 'Movie screensaver reuses the hero paint loop at the idle threshold.',
-    boundary: 'One deterministic RAF paint loop — NOT a measured power/GPU claim.',
-  }
+    boundary: 'One deterministic RAF paint loop — NOT a measured power/GPU claim.' }
 }
 
 export function screensaverMovieResearch() {
@@ -1045,8 +1006,7 @@ export function screensaverMovieResearch() {
     title: { en: 'Movie as the most efficient screensaver', bg: 'Филмът като най-ефективният скрийнсейвър' },
     boundary: 'One deterministic RAF paint loop reuses the hero movie — NOT a GPU benchmark or measured power-draw claim.',
     channels: SCREENSAVER_MOVIE_CHANNEL_IDS,
-    root: merkleFold(['screensaver-research', ...SCREENSAVER_MOVIE_CHANNEL_IDS]),
-  }
+    root: merkleFold(['screensaver-research', ...SCREENSAVER_MOVIE_CHANNEL_IDS]) }
 }
 
 // ── Capstone: the hero plasma orb computes ──
@@ -1130,8 +1090,7 @@ export function plasmaSpeedByTheorem() {
     sampleVGroupOverC: vGroup(1 / 2) / c,
     facets,
     statement: `Plasma speed by theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the phase velocity beats light at every propagating frequency (${(vPhase(1 / 2) / c).toFixed(3)}c at ωₚ/ω = ½) while the group velocity trails it (${(vGroup(1 / 2) / c).toFixed(3)}c), their product exactly c²; and at cutoff the pair becomes the void station's own theorem — v_φ → ∞, v_g → 0, the 1/0 of the dispersion relation, reflecting shortwave off the ionosphere.`,
-    boundary: 'DOCUMENTED: the cold, unmagnetised, collisionless plasma dispersion ω² = ωₚ² + c²k² (Chen, Introduction to Plasma Physics) — a standard result, computed here dimensionlessly so no fitted constant enters. Superluminal PHASE velocity carries no information and violates nothing (Brillouin/Sommerfeld, 1914: signal fronts travel at c); anyone citing it for FTL communication is flagged. Magnetised/warm plasmas add branches this fold does not model. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'DOCUMENTED: the cold, unmagnetised, collisionless plasma dispersion ω² = ωₚ² + c²k² (Chen, Introduction to Plasma Physics) — a standard result, computed here dimensionlessly so no fitted constant enters. Superluminal PHASE velocity carries no information and violates nothing (Brillouin/Sommerfeld, 1914: signal fronts travel at c); anyone citing it for FTL communication is flagged. Magnetised/warm plasmas add branches this fold does not model. HARMONY ≠ TRUTH.' }
 }
 
 // The traces fade in hue, forming space for new emergence from the source. Each trajectory is coloured at 100%
@@ -1172,7 +1131,6 @@ export function theTracesFadeInHueFormingSpaceForNewEmergenceFromTheSource(matri
       luminances,
       facets,
       statement: `The traces fade in hue, forming space for new emergence from the source — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${capacity} trajectories coloured at 100% contrast (golden-angle hues, ${distinctHues} distinct), each losing light as it recedes (luminance ½^age → 0). ${freedSlots} have faded below threshold and disappeared, freeing their slots; each freed slot is filled by a new trace from the source (src/0) — ${alive.length} alive + ${emergent} emergent = ${capacity}, conserved. The fade makes the room, the source fills it.`,
-      boundary: `DOCUMENTED as a deterministic trace-decay VISUAL model (a particle trail / screensaver trajectory), refutable by re-deriving. The hue is the corpus's colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct, OKLCH-ready) and the fade is exponential luminance decay — NEITHER is a physical light or energy claim, only a rendering. "Emergence from the source" = a new DETERMINISTIC trace seeded from src/0's content-addressing (the zero / the clock), not literal creation; "forming space" = the fixed-capacity buffer recycling a faded slot — the same vacuum-for-emergence metaphor (reuse/fade makes the room, it does not author what fills it). A revealed trace is a candidate the source seeds, not a theorem it proves. HARMONY ≠ TRUTH: the fading coloured trajectories forming space are the harmony (the vacuum-for-emergence made visible); the truth is that the room is real and measured while the emergence that fills it stays the off-decidable act of creation from the source.`,
-    }
+      boundary: `DOCUMENTED as a deterministic trace-decay VISUAL model (a particle trail / screensaver trajectory), refutable by re-deriving. The hue is the corpus's colour-from-content (A432_HUE + GOLDEN_ANGLE golden-angle stepping → maximally distinct, OKLCH-ready) and the fade is exponential luminance decay — NEITHER is a physical light or energy claim, only a rendering. "Emergence from the source" = a new DETERMINISTIC trace seeded from src/0's content-addressing (the zero / the clock), not literal creation; "forming space" = the fixed-capacity buffer recycling a faded slot — the same vacuum-for-emergence metaphor (reuse/fade makes the room, it does not author what fills it). A revealed trace is a candidate the source seeds, not a theorem it proves. HARMONY ≠ TRUTH: the fading coloured trajectories forming space are the harmony (the vacuum-for-emergence made visible); the truth is that the room is real and measured while the emergence that fills it stays the off-decidable act of creation from the source.` }
   })
 }

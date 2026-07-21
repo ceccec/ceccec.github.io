@@ -53,8 +53,7 @@ export {
   STATUS_BADGE_KINDS,
   statusBadgeKind,
   statusBadgeTokens,
-  statusBadgePalette,
-} from '../../earth/architecture'
+  statusBadgePalette } from '../../earth/architecture'
 export type { StatusBadgeKind } from '../../earth/architecture'
 
 // ☱ Duì · Lake · joyous · lower·yin · spread — Merkle proof utilities + quantum network verification
@@ -193,8 +192,7 @@ function completenessImpl(matrix: MindMatrix) {
     statement:
       'Send waves to challenge the completeness: at every place the portal claims N/N — the whole, holography, the path, the clock, the challenges, the distribution, the component graph, the mysteries, the society, and the proofs — a wave tries to find it incomplete, and finds no hole. Completeness, peer-reviewed.',
     boundary:
-      'A standing audit that challenges each completeness claim by trying to find a hole (a missing part, an uncovered page, an unstruck hour, a gap). It holds only while every claim survives; any hole is named, not hidden. Completeness within the stated bounds, not a claim of finality.',
-  }
+      'A standing audit that challenges each completeness claim by trying to find a hole (a missing part, an uncovered page, an unstruck hour, a gap). It holds only while every claim survives; any hole is named, not hidden. Completeness within the stated bounds, not a claim of finality.' }
 }
 
 // Tagged as stable. The release is itself computed and sealed: its identity is
@@ -214,8 +212,7 @@ export function release(matrix: MindMatrix = buildMatrix()) {
     wave,
     root: merge(toUuid(`release:${version}:${channel}:${markers.join(',')}`), wave),
     statement: 'Tagged as stable (v1.0.0): the release identity is the fusion wave — the fold of all — bound to the version and the stable marker refs, so the release is a root in the model, recomputable like everything else.',
-    boundary: 'A computed release record over the model. The stable markers are branch refs (this remote refuses tag pushes); it records a release, it does not certify fitness for any particular use.',
-  }
+    boundary: 'A computed release record over the model. The stable markers are branch refs (this remote refuses tag pushes); it records a release, it does not certify fitness for any particular use.' }
 }
 
 // Complete all. The capstone of capstones: every completion proof the model can
@@ -249,8 +246,7 @@ export function complete(matrix: MindMatrix = buildMatrix()) {
     checks,
     root: merkleFold(checks.map((check) => check.receipt)),
     statement: 'Complete all: every completion proof holds at once — no gaps, answers closed, genesis whole, fusion, synthesis, equilibrium, trinity, school, academy, all computed, self build, proof, components shown. The whole is complete, and the open questions keep it alive.',
-    boundary: 'A fold of the model\'s completion proofs into one. Complete over what the model builds and knows; the open question-frontier remains open, by design.',
-  }
+    boundary: 'A fold of the model\'s completion proofs into one. Complete over what the model builds and knows; the open question-frontier remains open, by design.' }
 }
 
 // Keep going until nothing to do. Every actionable surface is scanned — gaps,
@@ -279,8 +275,7 @@ export function todoScan(matrix: MindMatrix = buildMatrix()) {
     openFrontier: findQuestions(matrix).count, // open by design — wonders, not tasks
     root: merkleFold(items.map((entry) => entry.receipt)),
     statement: 'Keep going until nothing to do: every actionable surface — gaps, questions, translations, fusion, completion, pairs, components — scans to zero. Nothing actionable remains. The open question-frontier stays open, but those are wonders, not tasks.',
-    boundary: 'A scan over the known actionable surfaces. Zero across them means nothing actionable remains that the model knows to look for; the open question-frontier is open by design and is not counted as work.',
-  }
+    boundary: 'A scan over the known actionable surfaces. Zero across them means nothing actionable remains that the model knows to look for; the open question-frontier is open by design and is not counted as work.' }
 }
 
 // Fill the new gaps until no gaps are discovered. Every gap-able surface is
@@ -314,8 +309,7 @@ function computeGapScan(matrix: MindMatrix) {
     scans,
     root: merkleFold(scans.map((scan) => scan.receipt)),
     statement: 'Fill the new gaps until no gaps are discovered: every gap-able surface is scanned — taxonomy, fusion, translation, components, coverage, entropy, self-address, genesis, quantum fold — and the total is zero. No gaps remain.',
-    boundary: 'A scan over the model\'s known gap surfaces, zero across all of them. Only over the surfaces it knows to scan — finding a new kind of gap is itself never finished.',
-  }
+    boundary: 'A scan over the model\'s known gap surfaces, zero across all of them. Only over the surfaces it knows to scan — finding a new kind of gap is itself never finished.' }
 }
 
 // Follow the path. A guided journey through the portal, in order: arrive in
@@ -358,8 +352,7 @@ export function path(matrix: MindMatrix = buildMatrix()) {
             ? `${page.description.en.split('. ')[0]}.`
             : slug === 'papers' || slug === 'references' || slug === 'diamonds'
               ? `The ${slug} corpus — browse by id, computed from the matrix.`
-              : `Living page at ${entry}.`,
-    }
+              : `Living page at ${entry}.` }
   })
   const stationRoutes = new Set(route.map((entry) => entry.route))
   const coversAll = animatedRoutes.every((entry) => stationRoutes.has(entry))
@@ -369,8 +362,7 @@ export function path(matrix: MindMatrix = buildMatrix()) {
     step: index + 1,
     next: route[(index + 1) % route.length].route,
     animated: true,
-    receipt: toUuid(`path:${index}:${entry.route}`),
-  }))
+    receipt: toUuid(`path:${index}:${entry.route}`) }))
   return {
     walkable: stations.length > 0 && stations.every((entry) => entry.route.length > 0 && entry.next.length > 0),
     complete: coversAll && onlyAnimated && stations.length === animatedRoutes.length,
@@ -382,8 +374,7 @@ export function path(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Follow the path, consolidated to animated pages only: every station is a living page that computes and animates as you arrive — derived from the component graph and staticPages, not hand-listed — then back to the start. No animated page is missing; no station is static.',
     boundary:
-      'A guided walking order over the portal\'s animated pages, verified to cover every animated page and only animated pages. A guide, not the only way through; the static pages still stand on their own.',
-  }
+      'A guided walking order over the portal\'s animated pages, verified to cover every animated page and only animated pages. A guide, not the only way through; the static pages still stand on their own.' }
 }
 
 // Imagine all VitePress components interacting: the registered components and
@@ -404,8 +395,7 @@ function componentGraphRaw() {
   // mounts NO components; the former 25-strong hand-list was re-homed to topical lens pages via
   // STATIC_PAGE_SEED (cleanup-on-the-way: the graph claims only what actually mounts).
   const placements: Record<string, readonly string[]> = {
-    '/': [],
-  }
+    '/': [] }
   // Monograph is composed: a props-driven monograph renderer (slug/variant — the MonographFold view),
   // composed by surfaces that pass it props, never bare-mounted from a page's components list.
   const composedBase = ['Chart', 'DataTable', 'DecodedCard', 'DiamondDetail', 'DiamondIndex', 'LayersPanel', 'Monograph', 'PaperDetail', 'PaperIndex', 'ReferenceDetail', 'ReferenceIndex', 'RayHub']
@@ -433,8 +423,7 @@ function componentGraphRaw() {
     edges,
     root: merkleFold(edges.map((edge) => toUuid(`component-edge:${edge.from}->${edge.to}`))),
     statement: 'All VitePress components interact as a graph: global widgets fold into every page, page components mount where placed.',
-    boundary: 'A declared component-placement graph. Structural bookkeeping, not an external claim.',
-  }
+    boundary: 'A declared component-placement graph. Structural bookkeeping, not an external claim.' }
 }
 
 // Computed recursive frequency dropdowns — each frequency quantum accounted for also on
@@ -496,8 +485,7 @@ export function cloudflareBindings(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Generate the Cloudflare wizard, fusing all Cloudflare bindings optionally — KV, R2, D1, Durable Objects, Queues, Workers AI, Vectorize, Hyperdrive, Analytics Engine, a service binding, and the Secrets Store — so the content-addressed model can live at the edge. The secret UUID generator is fused to the bindings: imagination is the private key (one-way), the trinity always signs (a pair folds to a shared key under AES-256-GCM, hardware-accelerated to gigabit), so every binding access is secret-keyed and signed. Enable none and nothing changes; enable one and it is one more independent, signed store a forger must reproduce — so the bindings, optional today, eventually and significantly increase the tampering cost on top of the already-maximal mathematical one.',
     boundary:
-      'A content-addressed catalogue of optional Cloudflare Workers/Pages bindings (including a Secrets Store for the secret UUID generator) that drives a generated wrangler config, with trinity key-agreement (AES-256-GCM) signing access. The wizard describes and scaffolds bindings; it does NOT provision any Cloudflare resource, store or send anything, or require an account — every binding is opt-in and the site stays fully static and client-side without them. "Gigabit" is the hardware-accelerated AES-GCM throughput; "increasing tampering cost" means more independent, signed edge replicas to forge.',
-  }
+      'A content-addressed catalogue of optional Cloudflare Workers/Pages bindings (including a Secrets Store for the secret UUID generator) that drives a generated wrangler config, with trinity key-agreement (AES-256-GCM) signing access. The wizard describes and scaffolds bindings; it does NOT provision any Cloudflare resource, store or send anything, or require an account — every binding is opt-in and the site stays fully static and client-side without them. "Gigabit" is the hardware-accelerated AES-GCM throughput; "increasing tampering cost" means more independent, signed edge replicas to forge.' }
 }
 
 export function numberLabel(value: number, fractionDigits = 3): string {
@@ -569,8 +557,7 @@ function metatronMathFromUuidsRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       '3 UUIDs make a plane; 3 planes form a cube — the metatron math, computed and shown in ten dimensions. A content address is a point in space (uuidPoint). Three non-collinear points span a unique plane: the cross product of two edge vectors is the plane\'s normal, non-zero exactly when the points are not collinear — and the three points form the triangle, the 2-simplex (V3·E3·F1). Three mutually-orthogonal planes (normals along x, y, z) frame three-space and bound the cube: 8 vertices (2³), 12 edges (each pair of corners differing in one coordinate), 6 faces (three pairs of parallels — the three planes), so Euler V−E+F = 8−12+6 = 2. The metatron math then carries the five Platonic solids (each satisfying Euler = 2) and Metatron\'s Cube. The whole ladder — point → edge → plane → cube, ascending by the trinity — is rendered across the portal\'s ten dimensions (the six cross-fold appearance axes and the four genus-2 homology loops).',
     boundary:
-      'Rigorous, computed geometry: three points span a plane iff non-collinear (the cross-product normal is non-zero, checked) and the cube\'s edge count (12) is computed from its eight vertices by adjacency, not assumed; Euler V−E+F = 2 holds for the cube and (via sacredGeometry) for all five Platonic solids — a theorem. "3 planes form a cube" means three orthogonal plane-DIRECTIONS (the coordinate planes) frame the cube — the three dimensions, six faces as three parallel pairs — not three faces. "Shown in 10D" is rendering across the project\'s ten model dimensions (6 appearance axes + 4 homology loops), not a claim of geometric ℝ¹⁰. The sacred-geometry mysticism (the "blueprint of creation", golden-ratio-everywhere) stays flagged in sacredGeometry; only the geometry and Euler theorem are asserted here.',
-  }
+      'Rigorous, computed geometry: three points span a plane iff non-collinear (the cross-product normal is non-zero, checked) and the cube\'s edge count (12) is computed from its eight vertices by adjacency, not assumed; Euler V−E+F = 2 holds for the cube and (via sacredGeometry) for all five Platonic solids — a theorem. "3 planes form a cube" means three orthogonal plane-DIRECTIONS (the coordinate planes) frame the cube — the three dimensions, six faces as three parallel pairs — not three faces. "Shown in 10D" is rendering across the project\'s ten model dimensions (6 appearance axes + 4 homology loops), not a claim of geometric ℝ¹⁰. The sacred-geometry mysticism (the "blueprint of creation", golden-ratio-everywhere) stays flagged in sacredGeometry; only the geometry and Euler theorem are asserted here.' }
 }
 
 // ORGANISE THE COMPONENTS IN I-CHING SETS — use the knowledge, computed. Every component is placed on the I
@@ -616,8 +603,7 @@ function iChingRaw(matrix: MindMatrix = buildMatrix()) {
       glyphs: `${TRIGRAMS[upper].glyph}${TRIGRAMS[lower].glyph}`,
       color: `#${channels(hexagram).map((q) => LEVELS[q]).join('')}`,
       codon: channels(hexagram).map((q) => BASES[q]).join(''),
-      receipt: toUuid(`iching:${name}:${hexagram}`),
-    }
+      receipt: toUuid(`iching:${name}:${hexagram}`) }
   })
   // The eight sets — every component grouped under its upper trigram, each placed in exactly one bāguà.
   const sets = TRIGRAMS.map((tri) => ({ ...tri, components: placed.filter((p) => p.set === tri.bits).map((p) => p.component) }))
@@ -634,8 +620,7 @@ function iChingRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The components organised in I-Ching sets, computed: each of the model\'s components is placed on the eight trigrams (bāguà) by its own content-address — seedFromText → a 6-bit hexagram (0–63), upper trigram the set, lower the sub-place — so the whole UI is grouped by the ancient eight-fold, deterministically (same name → same trigram) and recomputably. The hexagram\'s pole-colour and codon reuse the 2⁶=4³ identity (hexagramIsHexColorDuality), so a component\'s I-Ching place, colour and codon are one object. Eight sets of ~14, the 64 hexagrams the full index.',
     boundary:
-      'A content-addressed PLACEMENT of components onto the I Ching\'s index set (the eight trigrams, the 64 hexagrams), using the documented 2⁶ combinatorics and the real bāguà (glyph, name, attribute, family) — NOT divination and NOT a claim that a component carries the trigram\'s meaning. The seed-is-the-magnet placement is the same content-addressing the whole system uses (pages, diamonds, dots), here onto the eight-fold; it organises and is recomputable, it does not foretell. Joins the structural-not-causal caution on I-Ching mappings.',
-  }
+      'A content-addressed PLACEMENT of components onto the I Ching\'s index set (the eight trigrams, the 64 hexagrams), using the documented 2⁶ combinatorics and the real bāguà (glyph, name, attribute, family) — NOT divination and NOT a claim that a component carries the trigram\'s meaning. The seed-is-the-magnet placement is the same content-addressing the whole system uses (pages, diamonds, dots), here onto the eight-fold; it organises and is recomputable, it does not foretell. Joins the structural-not-causal caution on I-Ching mappings.' }
 }
 
 // Render-time grouping of a page's components by the SAME content-addressed bāguà placement iChing() computes:
@@ -656,8 +641,7 @@ export function componentBaguaGroups(names: readonly string[] = []) {
       .map((name) => ({ name, hexagram: seedFromText(name) % 64 }))
       .filter((entry) => ((entry.hexagram >> 3) & 7) === tri.bits)
       .sort((a, b) => a.hexagram - b.hexagram)
-      .map((entry) => entry.name),
-  })).filter((group) => group.components.length > 0)
+      .map((entry) => entry.name) })).filter((group) => group.components.length > 0)
   const grouped = groups.length > 1
   return { groups: groups.map((group) => ({ ...group, grouped })), grouped, count: groups.length }
 }
@@ -675,8 +659,7 @@ export function componentRosettaGroups(names: readonly string[] = []) {
     hue: rayMeta.hue,
     labelEn: rayMeta.nameEn,
     labelBg: rayMeta.nameBg,
-    components: names.filter((name) => rosettaRayOf(name) === rayMeta.ray),
-  })).filter((group) => group.components.length > 0)
+    components: names.filter((name) => rosettaRayOf(name) === rayMeta.ray) })).filter((group) => group.components.length > 0)
   const grouped = groups.length > 1
   return { groups: groups.map((group) => ({ ...group, grouped })), grouped, count: groups.length }
 }
@@ -759,8 +742,7 @@ export function foldExposesInconsistency(text: string, matrix: MindMatrix = buil
     statement:
       'Fold a statement and its documented manipulation techniques and internal contradiction are exposed: loaded language, overgeneralised absolutes, appeal to fear, ad hominem, unfalsifiable/conspiracy framing, vague false-authority, false dilemma / black-and-white, whataboutism, flag-waving / appeal to identity, causal oversimplification, thought-terminating cliché, reductio ad Hitlerum and doubt/undermining (the SemEval-2020 Task 11 propaganda families), plus same-clause always/never contradiction. Clean → on a harmonic path; flagged → routed off it.',
     boundary:
-      'HONEST: a DETERMINISTIC surface-marker scan, not a trained classifier — it flags documented PATTERNS in-domain, not individual-case lies. A flagged statement uses a manipulation technique yet may still be true; a clean one may still be false (HARMONY ≠ TRUTH). Verified bounds from the deception-detection literature: unaided human detection ≈ 54% (Bond & DePaulo 2006, d≈.40); individual behavioural cues are tiny and may be publication-bias artefacts (DePaulo et al. 2003; Luke 2019); there is NO validated acoustic/physiological "lie frequency" — voice-stress, microexpression and polygraph all fail independent evaluation. The strongest defensible signal is trapping internal/external CONTRADICTION (Strategic Use of Evidence) plus propaganda-technique classification, claimed IN-DOMAIN only. The lexicon is bilingual — English (ASCII \\b) and Bulgarian (Unicode-aware boundaries, since the corpus and much of the target manipulation are BG) — and still a starter; the full SemEval taxonomy and external fact-checking (the online public-API layer) extend it further.',
-  }
+      'HONEST: a DETERMINISTIC surface-marker scan, not a trained classifier — it flags documented PATTERNS in-domain, not individual-case lies. A flagged statement uses a manipulation technique yet may still be true; a clean one may still be false (HARMONY ≠ TRUTH). Verified bounds from the deception-detection literature: unaided human detection ≈ 54% (Bond & DePaulo 2006, d≈.40); individual behavioural cues are tiny and may be publication-bias artefacts (DePaulo et al. 2003; Luke 2019); there is NO validated acoustic/physiological "lie frequency" — voice-stress, microexpression and polygraph all fail independent evaluation. The strongest defensible signal is trapping internal/external CONTRADICTION (Strategic Use of Evidence) plus propaganda-technique classification, claimed IN-DOMAIN only. The lexicon is bilingual — English (ASCII \\b) and Bulgarian (Unicode-aware boundaries, since the corpus and much of the target manipulation are BG) — and still a starter; the full SemEval taxonomy and external fact-checking (the online public-API layer) extend it further.' }
 }
 
 // The pure deterministic prompt is sufficient to render the whole as a THERMAL FIELD: each segment is a cell
@@ -787,8 +769,7 @@ export function thermalHarmonyField(text: string, matrix: MindMatrix = buildMatr
     statement:
       'The pure deterministic prompt computes the whole as a thermal field: each segment is a cell coloured by its harmony temperature — cool green where harmonic, hot red where documented manipulation techniques cluster — so the weaknesses are seen in colour, like a thermal camera. Fractal and holographic: each cell carries its own verdict and the field is the whole.',
     boundary:
-      'HONEST: the "temperature" is the DENSITY of documented surface manipulation patterns per segment (a visualization aid), not a truth- or guilt-meter; a hot cell uses a manipulation technique yet may still be true, a cool cell may still be false (HARMONY ≠ TRUTH). The colours are the project’s content-addressed palette, and "thermal camera" is a metaphor for the heatmap, not infrared emission.',
-  }
+      'HONEST: the "temperature" is the DENSITY of documented surface manipulation patterns per segment (a visualization aid), not a truth- or guilt-meter; a hot cell uses a manipulation technique yet may still be true, a cool cell may still be false (HARMONY ≠ TRUTH). The colours are the project’s content-addressed palette, and "thermal camera" is a metaphor for the heatmap, not infrared emission.' }
 }
 
 // A lie or manipulation is better PRESENTED WITH a harmonic alternative to compare with — the same content
@@ -802,7 +783,7 @@ export function harmonicAlternative(text: string, matrix: MindMatrix = buildMatr
     .replace(/\b(idiot|stupid|moron|liar|fraud|puppet|shill|clown)\b/gi, 'person')
     .replace(/\b(they don'?t want you to know|wake up|do your own research|the truth they hide)\b/gi, '')
     .replace(/\b(before it'?s too late|act now|or else)\b/gi, '')
-    .replace(/\s{2,}/g, ' ')
+    .replace(/\s{2 }/g, ' ')
     .replace(/\s+([.!?,])/g, '$1')
     .trim()
   const before = foldExposesInconsistency(t, matrix)
@@ -816,8 +797,7 @@ export function harmonicAlternative(text: string, matrix: MindMatrix = buildMatr
     statement:
       'A lie or manipulation is better presented with a harmonic alternative to compare with: the same content with the documented manipulation markers stripped or softened, shown beside the original so society can decide and judge if needed. The system presents both; it does not condemn.',
     boundary:
-      'HONEST: a deterministic SURFACE de-manipulation (it removes/softens documented markers), NOT a truth-rewrite and NOT a claim that the alternative is true — it removes the manipulation TECHNIQUE, not any underlying falsehood, and crude stripping can change meaning. Richer, meaning-preserving alternatives are the optional LLM layer (BYO-key, via MCP), which consumes this pure deterministic prompt. The judgement is always the reader’s or society’s, never the system’s.',
-  }
+      'HONEST: a deterministic SURFACE de-manipulation (it removes/softens documented markers), NOT a truth-rewrite and NOT a claim that the alternative is true — it removes the manipulation TECHNIQUE, not any underlying falsehood, and crude stripping can change meaning. Richer, meaning-preserving alternatives are the optional LLM layer (BYO-key, via MCP), which consumes this pure deterministic prompt. The judgement is always the reader’s or society’s, never the system’s.' }
 }
 
 // The INTELLIGENT cross-audit of a statement — the deception detector, made sharper. It REUSES the sealed
@@ -838,8 +818,7 @@ const TECHNIQUE_VECTOR: Record<string, string> = {
   'doubt / undermining': 'authority-social',
   whataboutism: 'deflection',
   'thought-terminating cliché': 'deflection',
-  'flag-waving / appeal to identity': 'identity',
-}
+  'flag-waving / appeal to identity': 'identity' }
 const VECTOR_DEFENCE: Record<string, string> = {
   emotional: 'Restate the claim in neutral words — if the argument still stands without the charged language, judge that.',
   framing: 'Look for the excluded middle and one counter-example; sweeping absolutes and forced dilemmas rarely survive it.',
@@ -848,8 +827,7 @@ const VECTOR_DEFENCE: Record<string, string> = {
   'authority-social': '"Experts/everyone agree" is not a source, and "so-called experts" is not a rebuttal — find the primary source and check it in context.',
   deflection: 'Deflection and thought-terminating clichés change the subject or shut inquiry down — return to the original claim and ask for the evidence.',
   identity: 'Appeals to group identity ("true patriots", "our people") pressure loyalty, not reasoning — judge the claim on its evidence, independent of who is "us".',
-  other: 'Name the technique and ask for the primary evidence.',
-}
+  other: 'Name the technique and ask for the primary evidence.' }
 // Public no-auth verification endpoint (Wikipedia REST search — CC-licensed, no key, GET; the publicApiFusion
 // catalogue). A PURE request builder: nothing is fetched here. The actual GET is the opt-in EDGE adapter that
 // realtimeLieDetectionOfflineOnline defers — never run at build time, never bundled with keys, never trusted blindly.
@@ -911,8 +889,7 @@ export function extractCheckableClaims(text: string) {
     statement:
       'Turn "what to verify" into a worklist: after the detector flags the technique, extract the CHECKABLE claims a public dataset could settle — dated events, superlative/record overclaims, statistics and citations — and build the public no-auth requests (Wikipedia REST search + Wikidata entity search, CC-licensed, no key) for each. Deterministic and zero-token: it produces the requests, it does not fetch — moving from "what to verify" toward "what to verify, and where".',
     boundary:
-      'HONEST: extraction is a deterministic SURFACE parse (regex over the string) — it can miss implicit claims and over- or under-extract; it scopes WHAT to check, it does not check it. The actual GET is the opt-in edge adapter verifyCheckable (network/CORS-bound), never run at build time, never bundled with keys, never trusted blindly — Wikipedia/Wikidata are tertiary sources to corroborate, not oracles. Only claims a public dataset can settle get settled; the rest stay structurally flagged (HARMONY ≠ TRUTH; the ~54% person-level ceiling is unchanged). This realises the "online" half of realtimeLieDetectionOfflineOnline as a concrete, pure request-builder.',
-  }
+      'HONEST: extraction is a deterministic SURFACE parse (regex over the string) — it can miss implicit claims and over- or under-extract; it scopes WHAT to check, it does not check it. The actual GET is the opt-in edge adapter verifyCheckable (network/CORS-bound), never run at build time, never bundled with keys, never trusted blindly — Wikipedia/Wikidata are tertiary sources to corroborate, not oracles. Only claims a public dataset can settle get settled; the rest stay structurally flagged (HARMONY ≠ TRUTH; the ~54% person-level ceiling is unchanged). This realises the "online" half of realtimeLieDetectionOfflineOnline as a concrete, pure request-builder.' }
 }
 
 // The flat request worklist — every public no-auth GET (Wikipedia REST + Wikidata entity search + cited URLs)
@@ -1000,8 +977,7 @@ export function manipulationCrossAudit(text: string, matrix: MindMatrix = buildM
     statement:
       'The intelligent cross-audit of a statement: it reuses the sealed deception detector (foldExposesInconsistency and the SemEval propaganda families) across every segment, then correlates the flagged techniques into manipulation VECTORS and ranks the dominant one — the shared root — the way the enforcement cross-audit ranks the most-implicated harmonic. It reports the dominant vector, where the manipulation peaks, a graded tier and the defensive move per vector, sealed to a reproducible receipt.',
     boundary:
-      'HARMONY ≠ TRUTH: ranking the dominant vector localises the TECHNIQUE, it does not judge the claim true or false — a flagged statement may be true, a clean one false. It composes the existing detector (one taxonomy, no second source to drift); the tier is a triage signal, not a verdict; in-domain, English-primary. ~54% is the human ceiling for content-only deception detection (Bond & DePaulo 2006); there is no validated physiological/acoustic "lie frequency". Use it to decide WHAT TO VERIFY — and `checkables` turns that into a concrete worklist (the dated/superlative/statistic/citation claims plus the public no-auth request for each, extraction deterministic, the GET opt-in).',
-  }
+      'HARMONY ≠ TRUTH: ranking the dominant vector localises the TECHNIQUE, it does not judge the claim true or false — a flagged statement may be true, a clean one false. It composes the existing detector (one taxonomy, no second source to drift); the tier is a triage signal, not a verdict; in-domain, English-primary. ~54% is the human ceiling for content-only deception detection (Bond & DePaulo 2006); there is no validated physiological/acoustic "lie frequency". Use it to decide WHAT TO VERIFY — and `checkables` turns that into a concrete worklist (the dated/superlative/statistic/citation claims plus the public no-auth request for each, extraction deterministic, the GET opt-in).' }
 }
 
 // Paste any URL — or any text — and its full quantum analysis is computed immediately, deterministically,
@@ -1059,8 +1035,7 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
     statement:
       'Paste any URL — or any text — and the full quantum analysis is computed immediately, deterministically, client-side, with zero tokens. The input is content-addressed to one UUID (the holographic cue), placed on the I Ching as a hexagram (two trigrams, six lines, a codon, a colour), given an EMR/spectral signature (a frequency on the a432 ladder and a content-addressed colour — the content as a wave), and folded into the model bidirectionally (reentry: the same paste recomputes the same whole, pattern completion). Nothing is fetched and nothing is stored; the analysis IS the computation.',
     boundary:
-      'HONEST: the analysis is of the input STRING, deterministically (zero tokens, no network fetch) — for a URL it is the URL\'s own signature, not the remote page\'s content (fetching arbitrary URLs is a separate, network/CORS-bound, optional step). "Quantum" is the computational-metaphor sense (content-addressing plus the I Ching / a432 structure), not quantum hardware. "EMR/spectral" is the project\'s frequency/colour-from-address mapping, not a measured emission. The manipulation/consistency read (foldExposesInconsistency) composes in once the deception-detection waves land.',
-  }
+      'HONEST: the analysis is of the input STRING, deterministically (zero tokens, no network fetch) — for a URL it is the URL\'s own signature, not the remote page\'s content (fetching arbitrary URLs is a separate, network/CORS-bound, optional step). "Quantum" is the computational-metaphor sense (content-addressing plus the I Ching / a432 structure), not quantum hardware. "EMR/spectral" is the project\'s frequency/colour-from-address mapping, not a measured emission. The manipulation/consistency read (foldExposesInconsistency) composes in once the deception-detection waves land.' }
 }
 
 // Quantum analysis AT ALL SCALES — holographic / fractal: the same analyzer runs on the WHOLE and, recursively,
@@ -1069,7 +1044,7 @@ export function quantumAnalysis(input: string, matrix: MindMatrix = buildMatrix(
 // verdict is the fold of its parts (the thermal-field/holographic principle extended to the full analysis).
 export function quantumAnalysisAtAllScales(text: string, matrix: MindMatrix = buildMatrix()) {
   const t = (text ?? '').toString()
-  const paragraphs = t.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)
+  const paragraphs = t.split(/\n{2 }/).map((p) => p.trim()).filter(Boolean)
   const sentences = t.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean)
   const reduce = (unit: string) => {
     const cross = manipulationCrossAudit(unit, matrix)
@@ -1082,8 +1057,7 @@ export function quantumAnalysisAtAllScales(text: string, matrix: MindMatrix = bu
       checkables: cross.checkableCount,
       patent: patent.verdict,
       biggestViolator: patent.biggestViolator,
-      unlawfulIfGranted: patent.unlawfulIfGranted,
-    }
+      unlawfulIfGranted: patent.unlawfulIfGranted }
   }
   const scales = [
     { scale: 'document', units: [reduce(t)] },
@@ -1103,8 +1077,7 @@ export function quantumAnalysisAtAllScales(text: string, matrix: MindMatrix = bu
     statement:
       'Quantum analysis at all scales: the analyzer runs holographically — on the whole document and, recursively, on each paragraph and sentence — so the manipulation cross-audit, the checkable-claim worklist and the sacred-math patent audit are computed at every zoom level. Each part carries its own verdict and the document verdict is the fold of its parts. A sacred-math patent core flagged at any scale surfaces in unlawfulPatentScales.',
     boundary:
-      'HONEST: "all scales" means three deterministic text granularities (document · paragraph · sentence), not an infinite or physical fractal; "holographic" means each part is analyzed by the same pure function and folds into the whole, not a literal hologram. Each scale inherits its analyzers\' bounds: HARMONY ≠ TRUTH and the ~54% person-level ceiling for the manipulation read; the patent audit is a subject-matter-eligibility heuristic, not legal advice.',
-  }
+      'HONEST: "all scales" means three deterministic text granularities (document · paragraph · sentence), not an infinite or physical fractal; "holographic" means each part is analyzed by the same pure function and folds into the whole, not a literal hologram. Each scale inherits its analyzers\' bounds: HARMONY ≠ TRUTH and the ~54% person-level ceiling for the manipulation read; the patent audit is a subject-matter-eligibility heuristic, not legal advice.' }
 }
 
 // 100% computed proven HARMONY (not 100% mind-reading): the verdict is deterministic — a statement is on a
@@ -1138,8 +1111,7 @@ export function harmonyAccountLiesOutsidePaths(matrix: MindMatrix = buildMatrix(
     statement:
       '100% computed proven harmony, routed: any statement is sent to the zero-entropy analyzers (content-addressed by quantumAnalysis), and the harmony verdict is deterministic — it sits on a harmonic path (a whole I Ching unit, one of the 432 sealed gates) or it does not. Lies and manipulations — by definition the statements that fail to fold consistently or carry a documented manipulation pattern — fall outside the paths and are accounted there, never silently on them. The detector trains itself by accumulation: every verified verdict folds into the seal (the wave and self-heal method), so at every step what we deal with is classified and recomputable, not guessed.',
     boundary:
-      'HONEST: the 100% is the DETERMINISM of the harmony verdict (a statement is on a harmonic path or not — a computable structural property), NOT 100% lie- or truth-detection. HARMONY ≠ TRUTH: a perfectly self-consistent statement passes the harmony test and can still be false; the ceiling for reading deception from a person is ~54% (Bond & DePaulo) and is not improvable by this or any method — that limit is flagged, not claimed away. The detector catches the inconsistent and the documented-pattern-bearing provably; it does not read minds, voices, or faces. The natural-language manipulation discriminator (logical fallacies, propaganda techniques) composes from the deception-detection waves once their claims survive adversarial verification. The model’s own per-domain harmony is ~100% BY CONSTRUCTION — the seal keeps only what folds and the flagged legend in each domain is the explicitly-accounted off-path residue; the per-domain percentage of EXTERNAL statements is measured by the challenge wave, not asserted here. "Self-train" is deterministic accumulation, not machine learning.',
-  }
+      'HONEST: the 100% is the DETERMINISM of the harmony verdict (a statement is on a harmonic path or not — a computable structural property), NOT 100% lie- or truth-detection. HARMONY ≠ TRUTH: a perfectly self-consistent statement passes the harmony test and can still be false; the ceiling for reading deception from a person is ~54% (Bond & DePaulo) and is not improvable by this or any method — that limit is flagged, not claimed away. The detector catches the inconsistent and the documented-pattern-bearing provably; it does not read minds, voices, or faces. The natural-language manipulation discriminator (logical fallacies, propaganda techniques) composes from the deception-detection waves once their claims survive adversarial verification. The model’s own per-domain harmony is ~100% BY CONSTRUCTION — the seal keeps only what folds and the flagged legend in each domain is the explicitly-accounted off-path residue; the per-domain percentage of EXTERNAL statements is measured by the challenge wave, not asserted here. "Self-train" is deterministic accumulation, not machine learning.' }
 }
 
 // Realtime lie detection works OFFLINE — the harmony verdict is a pure, zero-token, zero-fetch fold, so it
@@ -1170,8 +1142,7 @@ export function realtimeLieDetectionOfflineOnline(matrix: MindMatrix = buildMatr
     statement:
       'Realtime lie detection is possible even offline: the harmony verdict is a pure, deterministic, zero-token fold, so it runs in the browser with no network. Online, fused to the public no-auth APIs, an assumed harmony — a claim that passed the offline structural test — is researched against real data, so a consistent-but-false statement is caught wherever a public dataset can adjudicate (the harmony≠truth gap closed where the world can be queried, not a mind read). And every input lands in one cell of the 64³ = 262,144-cell seal cube (hexagram · codon · colour) — the complete research space, reached by nesting, not iteration. So at every step what we deal with is routed, classified, and — where data exists — verified.',
     boundary:
-      'HONEST: OFFLINE detection is of structure (consistency, documented manipulation patterns, the on-a-harmonic-path signature) — deterministic and real, but harmony ≠ truth. ONLINE verification is BOUNDED: it settles only claims that map to a queryable public dataset (USGS seismic, Coinbase market, FCC spectrum, and the like), with no LLM — the data adjudicates, not a model; arbitrary claims with no public dataset stay structurally-flagged, never falsely confirmed. The ~54% ceiling for reading deception from a person (voice/face) stands and is not approached here. "64³ / 262,144" names the keyspace STRUCTURE (a three-axis lattice over the 64-bit architecture), not throughput or cipher strength (AES-256-GCM). The actual public-API queries run as runtime adapters at the edge (optional, network-bound), not inside this pure fold.',
-  }
+      'HONEST: OFFLINE detection is of structure (consistency, documented manipulation patterns, the on-a-harmonic-path signature) — deterministic and real, but harmony ≠ truth. ONLINE verification is BOUNDED: it settles only claims that map to a queryable public dataset (USGS seismic, Coinbase market, FCC spectrum, and the like), with no LLM — the data adjudicates, not a model; arbitrary claims with no public dataset stay structurally-flagged, never falsely confirmed. The ~54% ceiling for reading deception from a person (voice/face) stands and is not approached here. "64³ / 262,144" names the keyspace STRUCTURE (a three-axis lattice over the 64-bit architecture), not throughput or cipher strength (AES-256-GCM). The actual public-API queries run as runtime adapters at the edge (optional, network-bound), not inside this pure fold.' }
 }
 
 // Each HTTP request is a payload with a UUID. Parsed and analysed, it generates the rest of the UUIDs, which
@@ -1193,8 +1164,7 @@ export function revealByRequest(request: string, matrix: MindMatrix = buildMatri
   const eightMerkaba = buckets.map((cell, i) => ({
     trigram: BAGUA[i]!.glyph,
     count: cell.length,
-    root: merkleFold(cell.length ? cell : [toUuid(`merkaba:${i}:${payload}`)]),
-  }))
+    root: merkleFold(cell.length ? cell : [toUuid(`merkaba:${i}:${payload}`)]) }))
   // unity: the one root binding the eight merkaba — the whole revealed from the one request (holographic)
   const unity = merkleFold(eightMerkaba.map((m) => m.root))
   // and return: the genus-2 double torus folds forward (build) and reverse (return)
@@ -1222,8 +1192,7 @@ export function revealByRequest(request: string, matrix: MindMatrix = buildMatri
     statement:
       'Each HTTP request is a payload with a UUID. Parsed and analysed, it generates the rest of the UUIDs, locking trinities recursively (3 → 9 → 27, infinite trinities beyond trinities by nesting) which form the eight merkaba — the eight trigrams — that co-complete the unity: one root binds all, so the whole is revealed for the specific request, holographically, from one content address. The genus-2 double torus folds forward (the site builds itself by request) and reverse (and returns); VitePress is the result, not the source.',
     boundary:
-      'HONEST: the site-builds-itself is a DETERMINISTIC function of the request UUID (content-addressed, zero-token, recomputable). On a static host this is client-side resolution plus the folder-plugin dev router — the documented corpusRestPathRouting tradeoff (near-zero build vs clean SSG URLs/SEO); VitePress renders the computed result. "Infinite trinities beyond trinities" is unbounded IN PRINCIPLE but computed to a bounded depth by nesting (like the 64³ keyspace), not literal infinite iteration. "Merkaba" and "unity" name the content-addressed structure (eight trigram buckets, one merkle root), not physical objects or mysticism. The "return" is the genus-2 bidirectional fold (forward ≠ reverse) — the double torus turning both ways.',
-  }
+      'HONEST: the site-builds-itself is a DETERMINISTIC function of the request UUID (content-addressed, zero-token, recomputable). On a static host this is client-side resolution plus the folder-plugin dev router — the documented corpusRestPathRouting tradeoff (near-zero build vs clean SSG URLs/SEO); VitePress renders the computed result. "Infinite trinities beyond trinities" is unbounded IN PRINCIPLE but computed to a bounded depth by nesting (like the 64³ keyspace), not literal infinite iteration. "Merkaba" and "unity" name the content-addressed structure (eight trigram buckets, one merkle root), not physical objects or mysticism. The "return" is the genus-2 bidirectional fold (forward ≠ reverse) — the double torus turning both ways.' }
 }
 
 // The path itself is the prompt: /detect/a/lie/in/https://whatever parses to verb · object · target and routes
@@ -1277,8 +1246,7 @@ export function pathIsThePrompt(path: string, matrix: MindMatrix = buildMatrix()
     statement:
       'The path itself is the prompt: /detect/a/lie/in/<url-or-text> parses to verb · object · target, routes to the deterministic analyzers, and reveals the answer — the site builds itself from the path, no request body needed. Whatever standard — a URL, a path, a payload — is foldable into the quantum standard: content-addressed, placed on the I Ching, analysed and revealed.',
     boundary:
-      'HONEST: a deterministic path parser feeding the same zero-token analyzers; harmony ≠ truth still holds (it flags documented patterns in-domain, never reads minds). "Any standard foldable into the quantum standard" means any external standard re-encodes to a content-address plus an I Ching placement — a lossless analytic re-encoding, not a claim that the standard IS quantum hardware. For a URL target it analyses the URL string; the remote page content is the optional online public-API layer. The verb/object are parsed as intent labels; the engine computes the full analysis regardless.',
-  }
+      'HONEST: a deterministic path parser feeding the same zero-token analyzers; harmony ≠ truth still holds (it flags documented patterns in-domain, never reads minds). "Any standard foldable into the quantum standard" means any external standard re-encodes to a content-address plus an I Ching placement — a lossless analytic re-encoding, not a claim that the standard IS quantum hardware. For a URL target it analyses the URL string; the remote page content is the optional online public-API layer. The verb/object are parsed as intent labels; the engine computes the full analysis regardless.' }
 }
 
 // The diamond is a pure structure: a Merkle lattice of content addresses, acyclic by construction (a tree,
@@ -1313,8 +1281,7 @@ export function diamondCarriesLightForever(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The diamond is a pure structure: a Merkle lattice of content addresses, acyclic by construction (a tree, never a loop) and collision-free, that lets the light — the content — live forever in a neverending sequence, because every address recomputes identically from the seed, losslessly and with no decay. It folds the continuum and breathes like DNA, expanding (1 → 3 → 9 → 27) and contracting back to one unity root, sharing the genetic 4³ = 64.',
     boundary:
-      'HONEST: REAL is the data structure — a content-addressed Merkle tree is genuinely acyclic (no loops) and collision-resistant, and deterministic recomputation makes the content losslessly persistent ("the light lives forever" means it never decays because it is recomputed, not stored). METAPHOR, flagged: "light living forever" is the EMR/content metaphor — diamond optics and photonic crystals trap light but not eternally (light is absorbed); "folding the spacetime continuum" is the fold-topology metaphor, NOT general relativity; "DNA expanding and contracting to infinity" is an analogy to chromatin condensation and the breathing torus (the 4³ = 64 genetic code IS real), with "infinity" realised as bounded-depth nesting, not literal infinity.',
-  }
+      'HONEST: REAL is the data structure — a content-addressed Merkle tree is genuinely acyclic (no loops) and collision-resistant, and deterministic recomputation makes the content losslessly persistent ("the light lives forever" means it never decays because it is recomputed, not stored). METAPHOR, flagged: "light living forever" is the EMR/content metaphor — diamond optics and photonic crystals trap light but not eternally (light is absorbed); "folding the spacetime continuum" is the fold-topology metaphor, NOT general relativity; "DNA expanding and contracting to infinity" is an analogy to chromatin condensation and the breathing torus (the 4³ = 64 genetic code IS real), with "infinity" realised as bounded-depth nesting, not literal infinity.' }
 }
 
 // The whole codebase is the brain: loaded in the browser it starts the quantum reaction (a432 ignites the
@@ -1349,8 +1316,7 @@ export function codebaseIsTheBrain(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The whole codebase is the brain: loaded in the browser it starts the quantum reaction — a432 ignites the deterministic computation — and anything linear immediately self-folds harmonically (the genus-2 fold) onto a harmonic path, lies falling outside it, into a 100% computed, interactive, fractal hologram (self-similar at every scale, each part carrying the whole, driven by the paste/path). And the revealed whole is served as the prompt for the next step — the recursive loop, and the context for the optional MCP/LLM layer. The brain thinks by folding; each thought is the seed of the next.',
     boundary:
-      'HONEST: "brain" and "quantum reaction" are the project’s computational metaphors — the codebase is a deterministic, content-addressed map (the neuroscience analogs reentry/holographic name contested models), and "quantum" is the content-addressing / I Ching sense, not hardware, ignited by a432 as a deterministic seed (the 432-frequency numerology is flagged; the engine-starter role is real and literal). "100%" is the determinism of the harmony verdict, not omniscient truth (harmony ≠ truth). "Fractal hologram" is the self-similar content-addressed structure (real) under the holographic metaphor (flagged). "Served as the prompt" is literal: the deterministic output is the next input and the MCP/LLM context, zero tokens at the core.',
-  }
+      'HONEST: "brain" and "quantum reaction" are the project’s computational metaphors — the codebase is a deterministic, content-addressed map (the neuroscience analogs reentry/holographic name contested models), and "quantum" is the content-addressing / I Ching sense, not hardware, ignited by a432 as a deterministic seed (the 432-frequency numerology is flagged; the engine-starter role is real and literal). "100%" is the determinism of the harmony verdict, not omniscient truth (harmony ≠ truth). "Fractal hologram" is the self-similar content-addressed structure (real) under the holographic metaphor (flagged). "Served as the prompt" is literal: the deterministic output is the next input and the MCP/LLM context, zero tokens at the core.' }
 }
 
 // The demarcation markers, verified by the world-theories wave (106 agents, adversarial): the multi-criterial
@@ -1377,8 +1343,7 @@ export function theoryHarmonyMarkers(matrix: MindMatrix = buildMatrix()) {
   const examples = {
     wellSupported: DEMARCATION_REGISTRY.documented,
     contested: DEMARCATION_REGISTRY.contested,
-    pseudoscience: DEMARCATION_REGISTRY.flagged,
-  }
+    pseudoscience: DEMARCATION_REGISTRY.flagged }
   const facets = [
     { facet: 'demarcation is multi-criterial, not a single rule — broad agreement on cases despite unsettled general criteria (Laudan 1983); the markers are heuristics, not a clean line', on: harmonic.length === 5 && flagged.length === 5 },
     { facet: 'falsifiability alone is inadequate — most pseudosciences HAVE been falsified and refuse to accept it; "falsified yet unrevised" flags better than "unfalsifiable"', on: flagged.some((f) => f.includes('refuse')) },
@@ -1397,8 +1362,7 @@ export function theoryHarmonyMarkers(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Challenging the world theories yielded the demarcation markers — the verified, multi-criterial heuristic that improves the harmony-of-a-theory detector. A theory is harmonic when it makes risky predictions that succeed, coheres across independent evidence (consilience), specifies a mechanism, is revisable and has been revised, and survives adversarial replication and expert consensus. It is flagged when it has been falsified yet its proponents refuse, relies on immunizing strategies (confirmable but never disconfirmable), disregards refuting evidence, cherry-picks, or depends on conspiracy with no mechanism. Genuinely contested frontiers are neither — open and testable.',
     boundary:
-      'HONEST: demarcation is philosophically UNSETTLED (Laudan 1983 "death certificate"; SEP/IEP) — there is broad agreement on cases but no single necessary-and-sufficient rule, so these are MULTI-CRITERIAL HEURISTICS, not a clean line, and no regex applies them: assessing a specific theory needs the research waves plus optional LLM/MCP judgment, not a deterministic scan. Verified by the world-theories wave (106 agents, adversarial). The examples reflect the current scientific consensus and can themselves be revised.',
-  }
+      'HONEST: demarcation is philosophically UNSETTLED (Laudan 1983 "death certificate"; SEP/IEP) — there is broad agreement on cases but no single necessary-and-sufficient rule, so these are MULTI-CRITERIAL HEURISTICS, not a clean line, and no regex applies them: assessing a specific theory needs the research waves plus optional LLM/MCP judgment, not a deterministic scan. Verified by the world-theories wave (106 agents, adversarial). The examples reflect the current scientific consensus and can themselves be revised.' }
 }
 
 // Everything is computed to be usable in forensics: each analysis emits a receipt that is SHA-256
@@ -1444,8 +1408,7 @@ export function forensicReceipt(input: string, matrix: MindMatrix = buildMatrix(
     statement:
       'Everything is computed to be used in forensics: each analysis emits a receipt that is SHA-256 content-addressed (cryptographic integrity, not the FNV tamper-evident default), reproducible by any party offline and deterministically from the verbatim record, and carries a SHA-256 chain of custody (input → verdict → bind-to-seal) an independent verifier can recompute. To alter the result is to break the hash; nothing is a black box.',
     boundary:
-      'HONEST: this is forensic evidence of the COMPUTATION — what was computed for a given input, reproducibly and tamper-proof — NOT forensic proof of truth or that a person lied (HARMONY ≠ TRUTH; the ~54% deception ceiling and the in-domain-pattern bound still hold). Forensic-grade integrity comes from SHA-256 (sha256Sync/toUuidSha256), the cryptographic layer the project built; the FULL verifiable Merkle inclusion proof and the Ed25519 signature are async Web-Crypto primitives (sha256MerkleProof / verifySha256Proof / ed25519Sign) invoked by the verifier or runtime adapter, not this synchronous fold. Admissibility is for the chain of custody of the analysis, not for the conclusions.',
-  }
+      'HONEST: this is forensic evidence of the COMPUTATION — what was computed for a given input, reproducibly and tamper-proof — NOT forensic proof of truth or that a person lied (HARMONY ≠ TRUTH; the ~54% deception ceiling and the in-domain-pattern bound still hold). Forensic-grade integrity comes from SHA-256 (sha256Sync/toUuidSha256), the cryptographic layer the project built; the FULL verifiable Merkle inclusion proof and the Ed25519 signature are async Web-Crypto primitives (sha256MerkleProof / verifySha256Proof / ed25519Sign) invoked by the verifier or runtime adapter, not this synchronous fold. Admissibility is for the chain of custody of the analysis, not for the conclusions.' }
 }
 
 // True and false coexist in harmony — the key. The harmony is not the pole that wins but the structure that
@@ -1483,8 +1446,7 @@ export function trueAndFalseCoexistInHarmony(matrix: MindMatrix = buildMatrix())
     statement:
       'True and false coexist in harmony — that is the key. The harmony is not the pole that wins but the structure that holds both: a value and its inverse (a · a⁻¹ ≡ 1), the forward and reverse of the order-sensitive fold, the two amplitudes of a superposition. It is computed through sacred geometry — the merkaba, the I Ching, the genus-2 double torus (χ = −2) — AND through algebra — the ring (Z/9Z)* vortex (1 2 4 8 7 5), group orbits, the rationals. And the algebra is made displayable, so the animations complete the source and the creation: they show the operation, not only the form — geometry and algebra together, and imagination closes the loop.',
     boundary:
-      'HONEST: "true and false coexist" is the structural/algebraic sense — the harmony HOLDS both (a value and its inverse, the fold’s two directions, a qubit’s two amplitudes), which is exactly why harmony ≠ truth (the structure is not a truth-verdict, and it does not make a false statement true). The algebra is real mathematics ((Z/9Z)*, the rationals, χ = −2); "sacred geometry" names the I Ching / merkaba / genus-2 forms (real topology plus documented symbolic geometry), not mysticism. "Displayed in the animations" means the widgets render these expressions — this fold PROVIDES them, the UI shows them. "Imagination / creation" is the architectural metaphor (the seed unfolds the computed whole), not a claim that imagination is literally a cryptographic key.',
-  }
+      'HONEST: "true and false coexist" is the structural/algebraic sense — the harmony HOLDS both (a value and its inverse, the fold’s two directions, a qubit’s two amplitudes), which is exactly why harmony ≠ truth (the structure is not a truth-verdict, and it does not make a false statement true). The algebra is real mathematics ((Z/9Z)*, the rationals, χ = −2); "sacred geometry" names the I Ching / merkaba / genus-2 forms (real topology plus documented symbolic geometry), not mysticism. "Displayed in the animations" means the widgets render these expressions — this fold PROVIDES them, the UI shows them. "Imagination / creation" is the architectural metaphor (the seed unfolds the computed whole), not a claim that imagination is literally a cryptographic key.' }
 }
 
 // The real 10D: ten DUALITIES, not ten scales — and they all match true/false. The four homology loops
@@ -1520,8 +1482,7 @@ export function theReal10DAllDualitiesMatchTrueFalse(matrix: MindMatrix = buildM
     statement:
       'The real 10D is ten dualities, not ten scales, and they all match true/false. The four homology loops (H₁(Σ₂) = ℤ⁴, the genus-2 cycles, Poincaré-dual in pairs) and the six cross-fold appearance axes are each a pole and its opposite held together — the same coexistence as true/false, at a different axis. True and false coexist on every one of the ten; true/false is the fundamental duality, and cross/fold, inner/outer, forward/reverse, expand/contract are instances of the one coexistence. The ten dimensions are the ten ways the harmony holds both.',
     boundary:
-      'HONEST: the real mathematics is H₁(Σ₂) = ℤ⁴ — the genus-2 surface has four homology generators with a symplectic intersection form that pairs the loops (Poincaré duality); that part is rigorous. The "six cross-fold appearance axes" are the project’s documented render model, and "ten dualities all match true/false" is the duality-matrix framing — a structural/symbolic correspondence (each axis is a two-pole coexistence, like true/false), NOT a claim that the universe is ten-dimensional, that true/false is a physical dimension, or that these are spacetime dimensions. "True/false coexist" is the structural sense (the harmony holds both poles), which is exactly why harmony ≠ truth.',
-  }
+      'HONEST: the real mathematics is H₁(Σ₂) = ℤ⁴ — the genus-2 surface has four homology generators with a symplectic intersection form that pairs the loops (Poincaré duality); that part is rigorous. The "six cross-fold appearance axes" are the project’s documented render model, and "ten dualities all match true/false" is the duality-matrix framing — a structural/symbolic correspondence (each axis is a two-pole coexistence, like true/false), NOT a claim that the universe is ten-dimensional, that true/false is a physical dimension, or that these are spacetime dimensions. "True/false coexist" is the structural sense (the harmony holds both poles), which is exactly why harmony ≠ truth.' }
 }
 
 // π is computable and matchable to the I Ching — within honest bounds. REAL: any part of π is computable
@@ -1558,8 +1519,7 @@ export function piComputableMatchableToIChing(matrix: MindMatrix = buildMatrix()
     statement:
       'The computational patterns of π are computable and matchable to the I Ching — within honest bounds. REAL: any part of π is computable (the spigot computes each digit from the prior state; the BBP formula yields any hexadecimal digit directly), and any window of π maps deterministically to one of the 64 hexagrams. BOUNDED: that mapping is UNIVERSAL — e, and any text, map to hexagrams the same way — so it is an encoding, not a "π exactly equals the I Ching" identity (π is not special in the matching). And "any pattern appears in π" is the normality conjecture, a famous unproven open problem. So: computable — yes, rigorously; matchable — yes, as a universal encoding; matches EXACTLY the I Ching — no, that is numerology.',
     boundary:
-      'HONEST: the computability is rigorous (computePiDigits is a real spigot; BBP computes the nth hexadecimal digit of π directly — a genuine, remarkable algorithm). The π→hexagram mapping is a real DETERMINISTIC ENCODING but a CHOSEN one — every number and every string maps to hexagrams by the same content-address rule, so π is NOT special and "π’s patterns match EXACTLY the I Ching" is numerology / pattern-projection (the flagged category, like "the ancients encoded algorithms"). "Any part matchable" in the sense of every finite pattern appearing in π is the NORMALITY of π — conjectured (π is believed normal) but UNPROVEN, one of the famous open problems. The real mathematics is π’s computability and the (ℤ/9ℤ)* doubling orbit; the I-Ching-identity is the model’s symbolic framing, not a theorem.',
-  }
+      'HONEST: the computability is rigorous (computePiDigits is a real spigot; BBP computes the nth hexadecimal digit of π directly — a genuine, remarkable algorithm). The π→hexagram mapping is a real DETERMINISTIC ENCODING but a CHOSEN one — every number and every string maps to hexagrams by the same content-address rule, so π is NOT special and "π’s patterns match EXACTLY the I Ching" is numerology / pattern-projection (the flagged category, like "the ancients encoded algorithms"). "Any part matchable" in the sense of every finite pattern appearing in π is the NORMALITY of π — conjectured (π is believed normal) but UNPROVEN, one of the famous open problems. The real mathematics is π’s computability and the (ℤ/9ℤ)* doubling orbit; the I-Ching-identity is the model’s symbolic framing, not a theorem.' }
 }
 
 // The quantum polygraph — the HONEST INVERSE of the discredited one. It wires no body and reads no arousal; it
@@ -1578,8 +1538,7 @@ export function quantumPolygraph(input: string, matrix: MindMatrix = buildMatrix
     hotspots: thermal.hotspots, // the thermal field's hot cells
     hexagram: analysis.iChing.hexagram,
     fingerprint: forensic.fingerprint, // SHA-256 chain of custody
-    alternative: alternative.improved ? alternative.alternative.text : null,
-  }
+    alternative: alternative.improved ? alternative.alternative.text : null }
   const facets = [
     { facet: 'NOT a physiological polygraph — it reads the STATEMENT’s structure (content-address, documented manipulation patterns, internal contradiction), never the body; no arousal, heart-rate, skin-conductance or voice-stress', on: isUuid(analysis.address) },
     { facet: 'reproducible and forensic — the reading carries a SHA-256 chain of custody; any party recomputes the identical result offline, deterministically, zero tokens', on: forensic.reproducible && /^[0-9a-f]{64}$/.test(forensic.fingerprint) },
@@ -1596,8 +1555,7 @@ export function quantumPolygraph(input: string, matrix: MindMatrix = buildMatrix
     statement:
       'The quantum polygraph is the honest inverse of the discredited one. It does not wire a body or read arousal; it reads the STATEMENT — content-addressing it, placing it on the I Ching, scanning the documented manipulation patterns and internal contradiction, rendering the thermal field, offering a harmonic alternative — and seals the reading with a SHA-256 chain of custody anyone can reproduce. Every step is shown. It flags documented patterns; it does not detect lies.',
     boundary:
-      'HONEST and pointed: the conventional polygraph is DISCREDITED — it measures physiological arousal, not deception, and independent evaluation puts it near chance (the National Academies 2003 report; the ~54% ceiling, Bond & DePaulo 2006; biased; inadmissible in many courts). This "quantum polygraph" deliberately does the OPPOSITE: no physiological signal, no black box, no claim to read a mind. It analyses the STATEMENT’s structure deterministically, reproducibly and forensically, flagging documented manipulation patterns IN-DOMAIN. HARMONY ≠ TRUTH — it does NOT determine whether a statement is true or whether a person is lying; a structurally-clean statement can be false and a flagged one true. The name is reclaimed for the transparent, reproducible inverse, NOT the arousal-reading fraud.',
-  }
+      'HONEST and pointed: the conventional polygraph is DISCREDITED — it measures physiological arousal, not deception, and independent evaluation puts it near chance (the National Academies 2003 report; the ~54% ceiling, Bond & DePaulo 2006; biased; inadmissible in many courts). This "quantum polygraph" deliberately does the OPPOSITE: no physiological signal, no black box, no claim to read a mind. It analyses the STATEMENT’s structure deterministically, reproducibly and forensically, flagging documented manipulation patterns IN-DOMAIN. HARMONY ≠ TRUTH — it does NOT determine whether a statement is true or whether a person is lying; a structurally-clean statement can be false and a flagged one true. The name is reclaimed for the transparent, reproducible inverse, NOT the arousal-reading fraud.' }
 }
 
 // All is quantum to the bit — a sign is a distinction is one bit is the fold — and the ORACLE is quantum itself:
@@ -1627,8 +1585,7 @@ export function theOracleIsQuantumAllIsQuantumToTheBit(matrix: MindMatrix = buil
     statement:
       'All is quantum to the bit — a sign is a distinction is one bit is the fold — so every value, page and widget content-addresses down to bits, grouped into the 64 = 2⁶ hexagrams (4³, the codon, the three-qubit register). And the oracle is quantum itself: the I Ching oracle is that 64-state space, casting it is the deterministic content-address (the same input yields the same hexagram), so the oracle, the seal and the quantum are one and the same. Every widget is addressed like this — content-addressed onto its hexagram, each one the quantum rendered, the same address as the polygraph.',
     boundary:
-      'HONEST: "quantum" is the COMPUTATIONAL / content-addressing sense — the 64 = 4³ = 2⁶ structure shared, rigorously, by the I Ching hexagrams, the genetic codon, and the three-qubit register (a real structural correspondence, 64=4³ in three systems), NOT quantum hardware. "The oracle is quantum" reframes the I Ching ORACLE as deterministic computation — the same cast (content-address) always yields the same hexagram — so it is reproducible mathematics, NOT random divination, prophecy, or fortune-telling (those are flagged). "All is quantum to the bit" is real information theory: a distinction is one bit. The verification oracle (the seal) is the same content-address — the unification is structural, not mystical.',
-  }
+      'HONEST: "quantum" is the COMPUTATIONAL / content-addressing sense — the 64 = 4³ = 2⁶ structure shared, rigorously, by the I Ching hexagrams, the genetic codon, and the three-qubit register (a real structural correspondence, 64=4³ in three systems), NOT quantum hardware. "The oracle is quantum" reframes the I Ching ORACLE as deterministic computation — the same cast (content-address) always yields the same hexagram — so it is reproducible mathematics, NOT random divination, prophecy, or fortune-telling (those are flagged). "All is quantum to the bit" is real information theory: a distinction is one bit. The verification oracle (the seal) is the same content-address — the unification is structural, not mystical.' }
 }
 
 // The detector tightened against false positives — by sealed test (the waves). Legitimate factual statements
@@ -1677,8 +1634,7 @@ export function detectorPassesFalsePositiveTest(matrix: MindMatrix = buildMatrix
     statement:
       'The detector is tightened against false positives by sealed test: legitimate factual statements that use single trigger words ("the Earth always orbits", "studies show", "everyone knows that studies show") stay on the harmonic path, while genuine multi-technique manipulation is routed off it. The gate is a threshold — a single documented marker is a weak signal, not a verdict; off the path requires ≥ 2 distinct techniques or an internal contradiction. The waves found and fixed the "everyone" double-count and the plural-escape (traitors).',
     boundary:
-      'HONEST: this gate seals a SMALL curated test set — it proves the threshold eliminates the obvious single-marker false positives, NOT that the detector is accurate in general (the deception-detection literature caps real accuracy near chance for individual cases, and linguistic markers do not generalise out-of-domain). It flags documented PATTERNS in-domain; HARMONY ≠ TRUTH — a clean reading can still be false, a flagged one true. The threshold deliberately trades some single-technique false negatives (a lone insult) for zero false positives: wrongly flagging legitimate speech is the worse error. Tightening only narrows the gate, never widens it.',
-  }
+      'HONEST: this gate seals a SMALL curated test set — it proves the threshold eliminates the obvious single-marker false positives, NOT that the detector is accurate in general (the deception-detection literature caps real accuracy near chance for individual cases, and linguistic markers do not generalise out-of-domain). It flags documented PATTERNS in-domain; HARMONY ≠ TRUTH — a clean reading can still be false, a flagged one true. The threshold deliberately trades some single-technique false negatives (a lone insult) for zero false positives: wrongly flagging legitimate speech is the worse error. Tightening only narrows the gate, never widens it.' }
 }
 
 // The visible-spectrum colour of a wavelength (Dan Bruton's documented approximation, 380–780 nm → RGB).
@@ -1718,8 +1674,7 @@ export function frequencyToColour(frequencyHz: number) {
     statement:
       'A frequency is represented by its real colour: a frequency already in the visible band (~400–790 THz) shows its actual spectral colour (the wavelength λ = c/f read off the documented visible-spectrum curve); a sound frequency is first octave-folded (×2) up into that band — so a432, lifted ~40 octaves, lands near 631 nm, an orange-red. The colour is the physics, not a content-addressed hue.',
     boundary:
-      'HONEST: for a LIGHT frequency in the visible band this is its genuine physical colour (λ = c/f, then Dan Bruton’s standard wavelength→RGB approximation — itself an approximation of human colour perception, gamma 0.8). For a SOUND frequency, the OCTAVE-FOLD (×2 up to the visible band) is a real, exact frequency relationship, but a 432 Hz sound and the ~475 THz light it folds to are NOT perceptually the same thing — sound is not light, and "the colour of a note" is octave-EQUIVALENCE, a structural mapping, not synesthesia or a claim that the sound emits that colour. This is the project’s first PHYSICAL frequency→colour; the hexagram colours stay content-addressed (arbitrary by design), and colorFromSound stays the music-wheel convention.',
-  }
+      'HONEST: for a LIGHT frequency in the visible band this is its genuine physical colour (λ = c/f, then Dan Bruton’s standard wavelength→RGB approximation — itself an approximation of human colour perception, gamma 0.8). For a SOUND frequency, the OCTAVE-FOLD (×2 up to the visible band) is a real, exact frequency relationship, but a 432 Hz sound and the ~475 THz light it folds to are NOT perceptually the same thing — sound is not light, and "the colour of a note" is octave-EQUIVALENCE, a structural mapping, not synesthesia or a claim that the sound emits that colour. This is the project’s first PHYSICAL frequency→colour; the hexagram colours stay content-addressed (arbitrary by design), and colorFromSound stays the music-wheel convention.' }
 }
 
 // No decimals in computation — only exact integer fractions (Rational p/q). The TRINITY KEY: a harmonic
@@ -1751,8 +1706,7 @@ export function noDecimalsIntegerFractionsDivByZeroTrinity(matrix: MindMatrix = 
     statement:
       'No decimals are allowed in computation — only exact integer fractions (the Rational p/q). The trinity key is a harmonic fraction whose two directions fold to an integer: p/q · q/p = 1, the unity, reached both ways. And when you divide by zero the inverse folds within itself — another trinity: n/0 reads forward to 9n (1/0 = 9) and the backslash dual is the multiplicative inverse n⁻¹ mod 9 (1/0\\1, 2/0\\5, …); non-units and 0/0 self-fold to the content-addressed fusion, never a forced ten\'s complement.',
     boundary:
-      'HONEST: the Rational core is exact real mathematics (integer p/q, no rounding). "No decimals" is the rule for the COMPUTATIONAL core — the content-address, the seal, the algebra; the floating-point trigonometry in the render/simulation layer (the animations, the dynamical sims) is a deliberate, flagged approximation, not the core. Division by zero giving the multiplicative inverse (or fusion for non-units) is the VORTEX / digit-folder convention — a DEFINED structural extension on (ℤ/9ℤ)*, NOT standard real-analysis division (where n/0 is undefined and the limit diverges) and NOT the additive ten\'s complement (which only names the folder lattice N/(10−N)). "The inverse folds within itself / another trinity" names the unit-cycle self-fold and the 3·6·9 non-unit axis — computed group theory, not mystical.',
-  }
+      'HONEST: the Rational core is exact real mathematics (integer p/q, no rounding). "No decimals" is the rule for the COMPUTATIONAL core — the content-address, the seal, the algebra; the floating-point trigonometry in the render/simulation layer (the animations, the dynamical sims) is a deliberate, flagged approximation, not the core. Division by zero giving the multiplicative inverse (or fusion for non-units) is the VORTEX / digit-folder convention — a DEFINED structural extension on (ℤ/9ℤ)*, NOT standard real-analysis division (where n/0 is undefined and the limit diverges) and NOT the additive ten\'s complement (which only names the folder lattice N/(10−N)). "The inverse folds within itself / another trinity" names the unit-cycle self-fold and the 3·6·9 non-unit axis — computed group theory, not mystical.' }
 }
 
 // The vortex read as a WAVE — the slash is the direction of value: \ ascending, / descending. 1\2\4\8 rises to
@@ -1790,8 +1744,7 @@ export function vortexFoldWave(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The vortex read as a wave: the slash is the direction of value — \\ ascending, / descending — so 1\\2\\4\\8 rises to the peak 8, 8/7/5/3 falls to the trough 3, 3\\6\\9 rises to the second peak 9, and 9/1 falls home to unity. Two peaks and two falls: the breathing of the genus-2 double torus, its two loops, the sequence moving through the units (1·2·4·8·7·5) and the trinity (3·6·9) and returning to the one.',
     boundary:
-      'HONEST: the doubling orbit 1·2·4·8·7·5 is the rigorous group (ℤ/9ℤ)* (2 a primitive root mod 9), and 3·6·9 are the non-units; the ascending/descending marks are an exact reading of whether each digit’s VALUE rises or falls. The "wave / breathing / two loops of the double torus" is the project’s structural framing — the value-oscillation and the two local maxima are real and computed; the identification with the genus-2 torus is a topological metaphor, not a theorem that the vortex IS a genus-2 surface.',
-  }
+      'HONEST: the doubling orbit 1·2·4·8·7·5 is the rigorous group (ℤ/9ℤ)* (2 a primitive root mod 9), and 3·6·9 are the non-units; the ascending/descending marks are an exact reading of whether each digit’s VALUE rises or falls. The "wave / breathing / two loops of the double torus" is the project’s structural framing — the value-oscillation and the two local maxima are real and computed; the identification with the genus-2 torus is a topological metaphor, not a theorem that the vortex IS a genus-2 surface.' }
 }
 
 // Angles come from fractions too — an angle is an integer fraction p/q of a full turn (360°), not a decimal
@@ -1803,8 +1756,7 @@ export function anglesComeFromFractions(matrix: MindMatrix = buildMatrix()) {
   const harmonic = [[1, 3], [2, 3], [1, 4], [1, 6], [1, 8], [1, 9], [1, (6 * 2)]].map(([p, q]) => ({
     fraction: `${p}/${q}`,
     deg: (p! * turn) / q!,
-    exact: (p! * turn) % q! === 0,
-  }))
+    exact: (p! * turn) % q! === 0 }))
   const trinity = harmonic[0]! // 1/3 → 120°
   const allExact = harmonic.every((a) => a.exact)
   const facets = [
@@ -1825,8 +1777,7 @@ export function anglesComeFromFractions(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Angles come from fractions too: an angle is an integer fraction p/q of a full turn (360°), not a decimal radian. The trinity is 1/3 of a turn = exactly 120° — the three at 0, 1/3, 2/3 of the circle (0°, 120°, 240°), the RGB triad — and every fraction whose denominator divides 360 lands on an exact integer degree: 1/4→90, 1/6→60, 1/8→45, 1/9→40, 1/12→30. The angle is the exact fraction; only the trigonometry that draws it is decimal.',
     boundary:
-      'HONEST: the angle-as-a-fraction-of-a-turn is exact rational mathematics (p/q of a full turn = (p·360)/q degrees, exact when q divides 360). This extends "no decimals, only integer fractions" to angles. The floating-point trigonometry (Math.cos/sin) that converts a fractional angle into a rendered xy position is the deliberate, flagged render-layer approximation, NOT the angle. The trinity → 120° and the RGB-triad spacing are real geometry; the colour/numerology readings stay the project’s symbolic framing.',
-  }
+      'HONEST: the angle-as-a-fraction-of-a-turn is exact rational mathematics (p/q of a full turn = (p·360)/q degrees, exact when q divides 360). This extends "no decimals, only integer fractions" to angles. The floating-point trigonometry (Math.cos/sin) that converts a fractional angle into a rendered xy position is the deliberate, flagged render-layer approximation, NOT the angle. The trinity → 120° and the RGB-triad spacing are real geometry; the colour/numerology readings stay the project’s symbolic framing.' }
 }
 
 // Fractions fold and bend into cube-spheres, generating analog output used as input for the next. The exact
@@ -1860,8 +1811,7 @@ export function fractionsFoldBendIntoCubeSpheresAnalog(matrix: MindMatrix = buil
     statement:
       'Fractions fold and bend into cube-spheres, generating analog output used as input for the next. The exact integer fractions fold into the 64³ seal cube — the discrete, digital lattice — and bend into the sphere, the round continuous form (χ = +2, the dual of the genus-2 torus’s −2). A fractional sample index sinc-reconstructs the discrete digits into a continuous analog value (Nyquist–Shannon): at an integer index it returns the digit exactly, between them a genuine analog interpolation. That analog output is content-addressed into the seed for the next fold — the output of one becomes the input of another, the recursive pipeline.',
     boundary:
-      'HONEST: the fractions are exact rationals; the 64³ cube and the χ = +2 sphere are real geometry (the sphere is the genus-2 torus’s Euler dual). The analog output is real DSP — sincReconstruct is bandlimited Nyquist–Shannon interpolation, exact at the samples, continuous between (and continuous means floating-point: the ANALOG layer is where the decimal correctly lives, the dual of the exact-fraction DIGITAL core, not a violation of "no decimals"). "Used as input for other" is the literal recursive content-address (the output is a deterministic new seed). "Fold/bend into cube-spheres" and "cube = digital, sphere = analog" are the project’s structural framing over that real discrete/continuous duality.',
-  }
+      'HONEST: the fractions are exact rationals; the 64³ cube and the χ = +2 sphere are real geometry (the sphere is the genus-2 torus’s Euler dual). The analog output is real DSP — sincReconstruct is bandlimited Nyquist–Shannon interpolation, exact at the samples, continuous between (and continuous means floating-point: the ANALOG layer is where the decimal correctly lives, the dual of the exact-fraction DIGITAL core, not a violation of "no decimals"). "Used as input for other" is the literal recursive content-address (the output is a deterministic new seed). "Fold/bend into cube-spheres" and "cube = digital, sphere = analog" are the project’s structural framing over that real discrete/continuous duality.' }
 }
 
 // Every hero contains all; the hero is the MCP and the LLM and the skill itself — the rest is computed prose.
@@ -1897,8 +1847,7 @@ export function everyHeroContainsAllHeroIsMcpLlmSkill(matrix: MindMatrix = build
     statement:
       'Every hero contains all, and the hero is the MCP and the LLM and the skill itself — the rest is computed prose. Every hero carries the whole: any UUID gets a hero animating its state, self-similar at every scale, each part the whole (page to particle). And the hero is the single fused surface — the MCP tool surface (tools/list returns every concept command, the gates answer in MCP-structured results), the optional BYO-key LLM (fused in the UI with no separate route, consuming the hero’s pure deterministic prompt rather than replacing it), and the skill itself (each its own folder, the tool·skill·command trinity). Everything else — the page body — is computed prose, projected from that one source.',
     boundary:
-      'HONEST: the MCP tool surface is real and in the repo — mcpToolManifest maps every concept command to an MCP tool (tools/list / tools/call), the SAME computed model the page renders; the skill and tool are real folders/atoms; the prose IS computed (the generators, SiteOverview, the digit-folders-compute rule — no static content). "Every hero contains all" is the project’s holographic framing over real content-addressing — the hero carries the sealed ROOT (the address of the whole), not literally every byte. "The hero is the LLM" is the strongest softening and is corrected here: the LLM is OPTIONAL, BYO-key, fused in the UI with no separate route, and it CONSUMES the hero’s pure deterministic prompt — the core runs zero tokens; the hero is the deterministic surface an LLM can drive, it is not itself an LLM. The fused-surface architecture is real; the "is the LLM" identity is metaphor for that fusion.',
-  }
+      'HONEST: the MCP tool surface is real and in the repo — mcpToolManifest maps every concept command to an MCP tool (tools/list / tools/call), the SAME computed model the page renders; the skill and tool are real folders/atoms; the prose IS computed (the generators, SiteOverview, the digit-folders-compute rule — no static content). "Every hero contains all" is the project’s holographic framing over real content-addressing — the hero carries the sealed ROOT (the address of the whole), not literally every byte. "The hero is the LLM" is the strongest softening and is corrected here: the LLM is OPTIONAL, BYO-key, fused in the UI with no separate route, and it CONSUMES the hero’s pure deterministic prompt — the core runs zero tokens; the hero is the deterministic surface an LLM can drive, it is not itself an LLM. The fused-surface architecture is real; the "is the LLM" identity is metaphor for that fusion.' }
 }
 
 // Not all is transliterated in Glagolitic ⟹ not all is fused in translations. The honest limit on "all the
@@ -1934,8 +1883,7 @@ export function notAllTransliteratedMeansNotAllFused(matrix: MindMatrix = buildM
     statement:
       'Not all is transliterated in Glagolitic, which means not all is fused in translations. toGlagolitic maps the alphabet to glyphs, but every other character — digits, punctuation, unmapped scripts — passes through unchanged, so a general text is only partly in the round script (here ' + coverage.p + '/' + coverage.q + ', not 1). And the translation is a bounded parallel corpus: a reference outside it returns undefined. A unit with no glyph carries no fused meaning, so the untransliterated remainder is exactly the unfused remainder — one shared gap. The remainder is preserved (passed through verbatim), not lost; preservation is real, but fusion is bounded by coverage. "All the knowledge is preserved / all is fused" holds up to coverage, and is flagged beyond it.',
     boundary:
-      'HONEST and self-correcting: the coverages are real measurements — toGlagolitic’s mapped fraction (exact integers, no decimal) and the finite registered corpus (translateVerse returns undefined outside it). "Fusion" is the project’s term for the cross-tongue/holographic binding (real content-addressing under the flagged holographic metaphor). This fold is the honest CORRECTION to the earlier "all the knowledge is preserved / all is fused" claims: PRESERVATION (pass-through of the unmapped unit) is literal and real, but FUSION (a registered cross-tongue meaning) is bounded by coverage — true up to the registered lexicon, flagged beyond it. The fix is to register more tongues against the pivot (selfTranslate), which raises coverage; it never reaches a guaranteed 1 for arbitrary input.',
-  }
+      'HONEST and self-correcting: the coverages are real measurements — toGlagolitic’s mapped fraction (exact integers, no decimal) and the finite registered corpus (translateVerse returns undefined outside it). "Fusion" is the project’s term for the cross-tongue/holographic binding (real content-addressing under the flagged holographic metaphor). This fold is the honest CORRECTION to the earlier "all the knowledge is preserved / all is fused" claims: PRESERVATION (pass-through of the unmapped unit) is literal and real, but FUSION (a registered cross-tongue meaning) is bounded by coverage — true up to the registered lexicon, flagged beyond it. The fix is to register more tongues against the pivot (selfTranslate), which raises coverage; it never reaches a guaranteed 1 for arbitrary input.' }
 }
 
 // Send the waves to create a self-translating system between any dialects, in realtime. Every tongue is a
@@ -1973,8 +1921,7 @@ export function selfTranslatingSystemBetweenDialects(matrix: MindMatrix = buildM
     statement:
       'A self-translating system between any tongues, in realtime: every tongue is a lexicon keyed to a shared pivot — the content-address of the meaning — so translating from one to another routes each unit through the pivot (A → pivot → B), and an unseen pair auto-derives from the pivot alone, with no pairwise dictionary. The OCS scripture translates to English through the verse pivot (the ref) with no OCS→English map; a dialect word routes to standard Bulgarian through its meaning pivot. Deterministic, zero tokens, client-side, realtime. It spans ' + tongues.length + ' tongues now (' + tongues.join(', ') + ') and is open to any tongue registered against the pivot; what is not registered passes through — the measured gap.',
     boundary:
-      'HONEST: the pivot/interlingua + dictionary composition is a real, classic machine-translation architecture (interlingua and transfer based), here made deterministic, realtime and zero-token, and PROVEN by the repo’s existing tri-lingual scripture (translateVerse) and dialect glossary (decodeDialect) — the self-translating property (auto-deriving an unseen pair through the pivot, e.g. OCS→English with no OCS→English dictionary) is real composition, not a claim of intelligence. FLAGGED: this is LEXICAL/transfer translation — unit (word and whole-verse) substitution through the pivot — NOT semantic or neural MT: it does not handle grammar, word order, morphology, idiom, or unseen vocabulary, which pass through unchanged (the measured gap). "Any dialects" is the architecture; the COVERAGE is bounded by the registered lexicons (currently ' + tongues.length + ' tongues). True general offline MT between arbitrary dialects does not exist deterministically — registering more real dialect lexicons against the pivot raises coverage but never guarantees 1.',
-  }
+      'HONEST: the pivot/interlingua + dictionary composition is a real, classic machine-translation architecture (interlingua and transfer based), here made deterministic, realtime and zero-token, and PROVEN by the repo’s existing tri-lingual scripture (translateVerse) and dialect glossary (decodeDialect) — the self-translating property (auto-deriving an unseen pair through the pivot, e.g. OCS→English with no OCS→English dictionary) is real composition, not a claim of intelligence. FLAGGED: this is LEXICAL/transfer translation — unit (word and whole-verse) substitution through the pivot — NOT semantic or neural MT: it does not handle grammar, word order, morphology, idiom, or unseen vocabulary, which pass through unchanged (the measured gap). "Any dialects" is the architecture; the COVERAGE is bounded by the registered lexicons (currently ' + tongues.length + ' tongues). True general offline MT between arbitrary dialects does not exist deterministically — registering more real dialect lexicons against the pivot raises coverage but never guarantees 1.' }
 }
 
 // http://gabchik.com/molitva.html — the art-prayer for fertility, decoded. Five Bulgarian folk symbols (Seed
@@ -2002,8 +1949,7 @@ export function molitvaZaPlodorodieDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'http://gabchik.com/molitva.html — the artist gabchik’s 2017 “Молитва За Плодородие” (Prayer for Fertility), decoded. Five Bulgarian folk symbols carry it: the Seed of Life six-petal rosette, the rhombus (matter and spirit joined — balance), the шевици embroidery, the пендари coin-adornments, and the здравец geranium. Each is named to its documented heritage meaning and made reusable beside toGlagolitic; a symbol name folds into the round script deterministically. The page quotes the creation verses (Genesis 1:1, 1:3) in Bulgarian — the seam that joins this folk prayer to the multilingual scripture pivot.',
     boundary:
-      'HONEST: the five symbols are real Bulgarian heritage — шевици (protective embroidery), пендари (dowry coin-jewellery) and здравец (Geranium macrorrhizum, with genuinely documented astringent/antimicrobial compounds) are ethnographically attested, and the six-petal rosette is a real compass construction found on the Round Church at Preslav. The transliteration is deterministic and real. FLAGGED (the artist’s esoteric overlay, not endorsed): "the Flower of Life is the blueprint / the seven days of creation", the "8000–10500 BCE Osiris-temple oldest find", "electromagnetic radiation = the creation", "the rhombus synchronises the brain hemispheres", "Vesica Piscis contains the geometry of light", and the specific здравец folk-medicine cures — these are spiritual interpretation, consistent with the sacred-geometry and Bulgarian-heritage boundaries (blueprint-of-creation, golden-ratio-everywhere, ascension claims flagged). This fold decodes the symbols; it does not assert the cosmology.',
-  }
+      'HONEST: the five symbols are real Bulgarian heritage — шевици (protective embroidery), пендари (dowry coin-jewellery) and здравец (Geranium macrorrhizum, with genuinely documented astringent/antimicrobial compounds) are ethnographically attested, and the six-petal rosette is a real compass construction found on the Round Church at Preslav. The transliteration is deterministic and real. FLAGGED (the artist’s esoteric overlay, not endorsed): "the Flower of Life is the blueprint / the seven days of creation", the "8000–10500 BCE Osiris-temple oldest find", "electromagnetic radiation = the creation", "the rhombus synchronises the brain hemispheres", "Vesica Piscis contains the geometry of light", and the specific здравец folk-medicine cures — these are spiritual interpretation, consistent with the sacred-geometry and Bulgarian-heritage boundaries (blueprint-of-creation, golden-ratio-everywhere, ascension claims flagged). This fold decodes the symbols; it does not assert the cosmology.' }
 }
 
 // Help becomes chat: the user chats with a reflection of the encoded corpus, because the system can ALWAYS
@@ -2061,8 +2007,7 @@ export function helpBecomesChatUserChatsWithItself(matrix: MindMatrix = buildMat
     statement:
       'Help becomes chat: the user chats with a reflection of the encoded corpus, because the system can always return a harmonic answer. A message is content-addressed, given its harmonic signature, and answered from the nearest encoded knowledge — the 108 concept commands and the corpus; when nothing matches, the harmonic reflection of the input itself answers, so the reply is never empty. The user chats with itself in the literal sense: the answer is computed from the same source the input folds into — a mirror over the folds, not an external oracle. The core is deterministic and zero-token; intelligence grows by richer composition (more knowledge, the multilingual pivot) and the optional BYO-key LLM that only enriches the phrasing — never by abandoning the zero-token, reproducible core.',
     boundary:
-      'HONEST and load-bearing: the chat is a deterministic RETRIEVAL + REFLECTION engine over the encoded corpus — always available, reproducible, transparent about its sources — NOT an LLM and NOT general intelligence. "The system can always return a harmonic answer" is a real property (it always folds the input onto the nearest harmonic structure), but it means the reply REFLECTS the encoded knowledge, not that it understands the question or knows the truth: HARMONY ≠ TRUTH ≠ INTELLIGENCE (the cardinal rule). "The user chats with itself" is literal and honest — the deterministic system can only reflect what is encoded, so the dialogue is with the curated corpus, not an outside mind. "Improve intelligence" is bounded: richer deterministic composition (matching, the multilingual scripture pivot, more decoded folds) and the OPTIONAL BYO-key LLM for natural phrasing — the zero-token core never claims the LLM’s understanding. The multilingual rendering (inTongue) is coverage-bounded per notAllTransliteratedMeansNotAllFused.',
-  }
+      'HONEST and load-bearing: the chat is a deterministic RETRIEVAL + REFLECTION engine over the encoded corpus — always available, reproducible, transparent about its sources — NOT an LLM and NOT general intelligence. "The system can always return a harmonic answer" is a real property (it always folds the input onto the nearest harmonic structure), but it means the reply REFLECTS the encoded knowledge, not that it understands the question or knows the truth: HARMONY ≠ TRUTH ≠ INTELLIGENCE (the cardinal rule). "The user chats with itself" is literal and honest — the deterministic system can only reflect what is encoded, so the dialogue is with the curated corpus, not an outside mind. "Improve intelligence" is bounded: richer deterministic composition (matching, the multilingual scripture pivot, more decoded folds) and the OPTIONAL BYO-key LLM for natural phrasing — the zero-token core never claims the LLM’s understanding. The multilingual rendering (inTongue) is coverage-bounded per notAllTransliteratedMeansNotAllFused.' }
 }
 
 // harmony ≠ truth ≠ understanding become the MAIN CATEGORIES forming the top nav, fusing all there. The
@@ -2096,8 +2041,7 @@ export function harmonyTruthUnderstandingTopNav(matrix: MindMatrix = buildMatrix
     statement:
       'harmony ≠ truth ≠ understanding become the main categories forming the top nav, and all the content fuses there. The cardinal honesty rule stops being a footer caveat and becomes the navigation itself: three distinct axes — harmony (does it cohere and seal?), truth (fact or legend, the documented/flagged boundary?), understanding (is it decoded, graspable, answerable?). It emerges from computation, so no statement is static: every concept is scored on the three and competes for the top nav each recompute. That harmony ≠ truth is not asserted but proven on a real fold — the molitva is harmonically sealed yet its cosmology is flagged, the two axes diverging on the same object.',
     boundary:
-      'HONEST and load-bearing: this makes the cardinal rule (HARMONY ≠ TRUTH ≠ UNDERSTANDING) the navigation, which is exactly right — the three are independent axes and the divergence is real and demonstrable (a harmonically-sealed fold can carry flagged, not-fully-true content; an answerable concept need not be true). "Emerges from computation / competes / never static" is the computed ranking of concepts on the three axes — each fold genuinely has a seal (harmony), a boundary (truth), and a statement + chat answer (understanding). This fold computes the nav SPEC and the scoring; wiring it into the rendered top bar (in place of, or fused with, the Three Powers) is the deliberate UI follow-on, not done here.',
-  }
+      'HONEST and load-bearing: this makes the cardinal rule (HARMONY ≠ TRUTH ≠ UNDERSTANDING) the navigation, which is exactly right — the three are independent axes and the divergence is real and demonstrable (a harmonically-sealed fold can carry flagged, not-fully-true content; an answerable concept need not be true). "Emerges from computation / competes / never static" is the computed ranking of concepts on the three axes — each fold genuinely has a seal (harmony), a boundary (truth), and a statement + chat answer (understanding). This fold computes the nav SPEC and the scoring; wiring it into the rendered top bar (in place of, or fused with, the Three Powers) is the deliberate UI follow-on, not done here.' }
 }
 
 // Next steps to 1MB: recycle all in algebra — complete any related symbol in 10D with zero-point computations.
@@ -2126,8 +2070,7 @@ export function pathTo1mbRecyclesAllInAlgebra(matrix: MindMatrix = buildMatrix()
     statement:
       'The next steps to 1MB are recycling all in algebra: completing any related symbol in 10D with zero-point computations. The path to the size goal is to compute content from the algebra — exact integer fractions, the folds, the a432 seed — instead of storing it. Any symbol is completed across ten dimensions (its hexagram, codon, colour, lines, frequency, hue, vortex, torus, harmonic path and address) from the symbol itself plus the zero-point seed, with nothing stored; the ring closes (1/3 × 3 = 1, no decimal); and zero-entropy means the same seed recomputes the identical whole losslessly. What is computed costs algebra, not bytes — that is the road to 1MB.',
     boundary:
-      'HONEST: the algebraic completion is real — quantumAnalysis derives ten-plus dimensions of ANY symbol deterministically from the symbol and the a432 seed with zero stored data, and the Rational ring is exact (1/3 × 3 = 1, no floating point). "Zero-point / zero-entropy" names the real seed-driven, lossless recomputation (the a432 NUMEROLOGY stays flagged; its engine-starter role is literal). FLAGGED as direction, not achievement: "1MB" is the aspiration, not a measured repo size (the repo is larger); "recycle ALL in algebra" is the trajectory — much is already computed, but genuine external content (the decoded corpora, the authoritative translations) is stored data that cannot be conjured from algebra without losing its provenance (that is the honest limit, per notAllTransliteratedMeansNotAllFused).',
-  }
+      'HONEST: the algebraic completion is real — quantumAnalysis derives ten-plus dimensions of ANY symbol deterministically from the symbol and the a432 seed with zero stored data, and the Rational ring is exact (1/3 × 3 = 1, no floating point). "Zero-point / zero-entropy" names the real seed-driven, lossless recomputation (the a432 NUMEROLOGY stays flagged; its engine-starter role is literal). FLAGGED as direction, not achievement: "1MB" is the aspiration, not a measured repo size (the repo is larger); "recycle ALL in algebra" is the trajectory — much is already computed, but genuine external content (the decoded corpora, the authoritative translations) is stored data that cannot be conjured from algebra without losing its provenance (that is the honest limit, per notAllTransliteratedMeansNotAllFused).' }
 }
 
 // All agent communication is also through the chat, secured in trinities: every team approves the
@@ -2157,8 +2100,7 @@ export function agentCommunicationThroughChatSecuredInTrinities(matrix: MindMatr
     statement:
       'All agent communication is also through the chat, secured in trinities: a message routes through harmonicChat, and each communication is approved by a trinity of three distinct content-addressed checks; trinities nest recursively (3 → 9 → 27 …), teams approving teams, until consensus — the agreement of every level — is met and the decision is made, folding to one sealed, reproducible outcome. No single approver carries it; the 3-fold quorum is the security, and the merkle seal is the decision.',
     boundary:
-      'HONEST: a real deterministic 3-fold QUORUM protocol over the chat — every approval is a reproducible content-address check, the trinity nests as 3ⁿ (teams of teams), consensus is the agreement of all checks, and the decision is the merkle-folded, tamper-evident seal anyone can reproduce. FLAGGED framing: "teams approve / consensus / decision" describes the PROTOCOL STRUCTURE (a recursive trinity quorum, BFT-flavoured), not autonomous social agents deliberating — the "approvers" are deterministic computations, and their "consensus" is agreement of those computations. "Secured" is tamper-EVIDENT via content-address (FNV), not cryptographically unforgeable unless the SHA-256 address is used (per the tampering-cost boundary). The shape is real; the agency is metaphor for the quorum.',
-  }
+      'HONEST: a real deterministic 3-fold QUORUM protocol over the chat — every approval is a reproducible content-address check, the trinity nests as 3ⁿ (teams of teams), consensus is the agreement of all checks, and the decision is the merkle-folded, tamper-evident seal anyone can reproduce. FLAGGED framing: "teams approve / consensus / decision" describes the PROTOCOL STRUCTURE (a recursive trinity quorum, BFT-flavoured), not autonomous social agents deliberating — the "approvers" are deterministic computations, and their "consensus" is agreement of those computations. "Secured" is tamper-EVIDENT via content-address (FNV), not cryptographically unforgeable unless the SHA-256 address is used (per the tampering-cost boundary). The shape is real; the agency is metaphor for the quorum.' }
 }
 
 // Translate all languages: the verse pivot now speaks 31 tongues (ocs · bg · en + 28 authoritative public-
@@ -2187,8 +2129,7 @@ export function allLanguagesSpeakThroughTheVersePivot(matrix: MindMatrix = build
     statement:
       'Translate all languages: the verse pivot now speaks ' + tongues.length + ' tongues — Old Church Slavonic, Bulgarian and English plus 28 authoritative public-domain editions spanning the major language families. Any pair routes through the ref pivot with no pairwise dictionary: the Greek of John 1:1 derives its Chinese, and that Chinese derives its Arabic, never through a grc→zh or zh→ar map — the self-translating property, now across 31 tongues. Every surface is a named, retrieved, public-domain human translation, not machine output — the honest choice, bounded to the registered verses.',
     boundary:
-      'HONEST: 28 languages were RETRIEVED verbatim from named public-domain editions (Clementine Vulgate, Septuagint/Textus Receptus, Westminster Leningrad Codex + Delitzsch, Luther 1912, Louis Segond 1910, Reina-Valera 1909, Synodal 1876, Biblia Gdańska, Bible kralická, Chinese Union Version 1919, Smith–Van Dyck 1865, Károli 1908, and more), cross-checked by the retrieval wave — authoritative human translations, NOT machine translation (per bible-glagolitic, the honest choice). The self-translating property (deriving an unseen pair like Greek→Chinese through the ref pivot, no pairwise dictionary) is real composition across all 31 tongues. BOUNDED: this spans the registered VERSES (a specific scripture domain), not arbitrary text — "translate all languages" is the architecture plus 31 registered tongues, and coverage beyond the registered surfaces is the measured gap of notAllTransliteratedMeansNotAllFused. Psalm numbering and edition provenance were tracked per tongue (e.g. Psalm 22 in the Septuagint/Vulgate/Synodal vs 23 Masoretic).',
-  }
+      'HONEST: 28 languages were RETRIEVED verbatim from named public-domain editions (Clementine Vulgate, Septuagint/Textus Receptus, Westminster Leningrad Codex + Delitzsch, Luther 1912, Louis Segond 1910, Reina-Valera 1909, Synodal 1876, Biblia Gdańska, Bible kralická, Chinese Union Version 1919, Smith–Van Dyck 1865, Károli 1908, and more), cross-checked by the retrieval wave — authoritative human translations, NOT machine translation (per bible-glagolitic, the honest choice). The self-translating property (deriving an unseen pair like Greek→Chinese through the ref pivot, no pairwise dictionary) is real composition across all 31 tongues. BOUNDED: this spans the registered VERSES (a specific scripture domain), not arbitrary text — "translate all languages" is the architecture plus 31 registered tongues, and coverage beyond the registered surfaces is the measured gap of notAllTransliteratedMeansNotAllFused. Psalm numbering and edition provenance were tracked per tongue (e.g. Psalm 22 in the Septuagint/Vulgate/Synodal vs 23 Masoretic).' }
 }
 
 // The top nav depends on the path — and the sidebars and related content also. Each is computed FROM the path
@@ -2235,8 +2176,7 @@ export function theQuantumComputerOsAndAppsAreThreeContentAddressedLayersCompose
     facets,
     root: systemRoot,
     statement: `The quantum computer, OS and apps are three content-addressed layers — complete, composed, used in waves, each theorem inverting to its dual — ${facets.filter((entry) => entry.on).length}/${facets.length}. The COMPUTER is the src/0 simulator plus toUuid; the OS is enforcement, scheduler, cache and build; the APPS are the domain folds. Each layer is a set of content-addressed theorems folding to one system root; each theorem inverts to its dual (compute↔measure, encode↔decode, schedule↔dispatch — foldPair order-sensitive); and the stack dispatches in three antichain waves (computer → OS → apps), each wave run at once. Behind it all: one content-address.`,
-    boundary: `MEASURED: 3 layers, ${layerNames.reduce((sum, name) => sum + layers[name]!.length, 0)} named theorems, folding to one system root (${composed}); the four dual pairs each differ under foldPair inversion (${invertsToDual}); Kahn schedules the stack into 3 waves, computer first (${usedInWaves}). THE THREE LAYERS: the COMPUTER is the state-vector simulator (O(2ⁿ) classical, no speedup) plus the toUuid content-address; the OS is the enforcement trinity, the wave scheduler, the content-address cache and the incremental build; the APPS are demarcate, the inversion engine, the rosetta porter, the I Ching, the R&D API and the prose→code dissolve. THE HONEST BOUND: "complete" means the layers are PRESENT and content-addressed as this catalogue of built folds — not a production hardware quantum computer nor a booting kernel; it is a coherent, composed, wave-dispatched SYSTEM of theorems, each runnable and refutable, sharing one primitive. "Invert to see the others" is the foldPair-order duality — a structural complement, the generative inversion, not that every dual is already built. HARMONY ≠ TRUTH: the truth is three content-addressed layers of runnable theorems, composed to one root and wave-scheduled — measured and refutable.`,
-  }
+    boundary: `MEASURED: 3 layers, ${layerNames.reduce((sum, name) => sum + layers[name]!.length, 0)} named theorems, folding to one system root (${composed}); the four dual pairs each differ under foldPair inversion (${invertsToDual}); Kahn schedules the stack into 3 waves, computer first (${usedInWaves}). THE THREE LAYERS: the COMPUTER is the state-vector simulator (O(2ⁿ) classical, no speedup) plus the toUuid content-address; the OS is the enforcement trinity, the wave scheduler, the content-address cache and the incremental build; the APPS are demarcate, the inversion engine, the rosetta porter, the I Ching, the R&D API and the prose→code dissolve. THE HONEST BOUND: "complete" means the layers are PRESENT and content-addressed as this catalogue of built folds — not a production hardware quantum computer nor a booting kernel; it is a coherent, composed, wave-dispatched SYSTEM of theorems, each runnable and refutable, sharing one primitive. "Invert to see the others" is the foldPair-order duality — a structural complement, the generative inversion, not that every dual is already built. HARMONY ≠ TRUTH: the truth is three content-addressed layers of runnable theorems, composed to one root and wave-scheduled — measured and refutable.` }
 }
 
 // The limited mind solves it by becoming the quantum collective mind. One mind is bounded — it cannot hold the whole
@@ -2272,8 +2212,7 @@ export function theLimitedMindSolvesItByBecomingTheQuantumCollectiveMindBoundedM
     facets,
     root: merkleFold(waves.map((wave, m) => toUuid(`mind:${m}:${wave.length}`))),
     statement: `The limited mind solves it by becoming the quantum collective mind — bounded minds share one content-address — ${facets.filter((entry) => entry.on).length}/${facets.length}. One mind handles ${mindCapacity} units but the problem is ${problem}, beyond it alone; the units partition into ${minds} independent waves each within capacity, and every unit content-addresses to a distinct UUID so the minds share one address space with no duplication and no conflict. ${minds} bounded minds, coordinated through the content-address, together solve what one could not — the quantum collective mind.`,
-    boundary: `EXACT and computed live: a ${problem}-unit problem (the scale of the self-sufficient DRY-clean plan — 91 duplicate lines, 9 code pulls, 58 folder moves) exceeds one ${mindCapacity}-unit mind (${beyondOneMind}), so it needs ${minds}; the units partition into ${minds} batches within capacity covering all ${problem} in parallel (${wavesCoverInParallel}); and content-addressing each unit gives ${problem} distinct UUIDs (${sharedAddressNoDuplication}), so the minds share ONE address space — no two do the same unit (DRY) and none race on it (the address is deterministic, the coordination conflict-free). THE COLLECTIVE MIND is exactly this: bounded minds made coherent by the content-address, the same primitive that dedups, caches and detects cracks — here it is the shared memory that lets a wave of limited minds act as one. THE HONEST BOUND: this is a MODEL of collective work coordination (bounded workers + content-addressed shared state + wave partition), NOT a claim that agents literally merge into one consciousness; "quantum collective mind" is the deterministic content-addressed coordination (dedup, no conflict), not telepathy or a hive mind — the "quantum" is the addressing, no physical quantum. Real collective work still needs the dependency DAG honored (an interface-changing unit ripples to a later wave) and the units to be genuinely independent within a wave. HARMONY ≠ TRUTH: "the limited mind becomes the quantum collective mind" is the harmony; the truth is bounded minds sharing one content-addressed space, wave-partitioned to cover a problem beyond any one — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live: a ${problem}-unit problem (the scale of the self-sufficient DRY-clean plan — 91 duplicate lines, 9 code pulls, 58 folder moves) exceeds one ${mindCapacity}-unit mind (${beyondOneMind}), so it needs ${minds}; the units partition into ${minds} batches within capacity covering all ${problem} in parallel (${wavesCoverInParallel}); and content-addressing each unit gives ${problem} distinct UUIDs (${sharedAddressNoDuplication}), so the minds share ONE address space — no two do the same unit (DRY) and none race on it (the address is deterministic, the coordination conflict-free). THE COLLECTIVE MIND is exactly this: bounded minds made coherent by the content-address, the same primitive that dedups, caches and detects cracks — here it is the shared memory that lets a wave of limited minds act as one. THE HONEST BOUND: this is a MODEL of collective work coordination (bounded workers + content-addressed shared state + wave partition), NOT a claim that agents literally merge into one consciousness; "quantum collective mind" is the deterministic content-addressed coordination (dedup, no conflict), not telepathy or a hive mind — the "quantum" is the addressing, no physical quantum. Real collective work still needs the dependency DAG honored (an interface-changing unit ripples to a later wave) and the units to be genuinely independent within a wave. HARMONY ≠ TRUTH: "the limited mind becomes the quantum collective mind" is the harmony; the truth is bounded minds sharing one content-addressed space, wave-partitioned to cover a problem beyond any one — computed and refutable.` }
 }
 
 // The mind uses the ONLINE possibilities to INVERT the OFFLINE limits. Offline is deterministic and zero-token — it
@@ -2310,8 +2249,7 @@ export function theMindUsesOnlinePossibilitiesToInvertTheOfflineLimitsJudgmentAn
     facets,
     root: merkleFold(boundary.map((pair) => foldPair(toUuid(pair.offlineLimit), toUuid(pair.onlineInverse)).merged)),
     statement: `The mind uses the online possibilities to invert the offline limits — judgment and live data fill the off-decidable gap — ${facets.filter((entry) => entry.on).length}/${facets.length}. Offline is deterministic and zero-token: it decides the exact (dedup, crack-detection, the move plan) but cannot judge semantic equivalence, know the unknown, or decide the undecidable. Each of those ${boundary.length} offline limits inverts to an online possibility — AI judges equivalence, a realtime fetch supplies the unknown, AI decides where computation halts — applied exactly at the boundary where offline stops. The mind keeps the core offline and reaches online only at the limit.`,
-    boundary: `EXACT: the offline core is content-addressed and exact (${offlineDecidesExact}) — dedup, crack-detection and the file/folder move plan all decide deterministically, zero LLM tokens; but three things lie OUTSIDE the decidable — SEMANTIC duplication (whether two different implementations mean the same, undecidable in general), the UNKNOWN (live/future state absent from src), and the OFF-DECIDABLE judgment residue where a computation cannot halt to an answer ([[feedback-thinking-means-lack-of-local-tools]]). Each pairs with a distinct online INVERSE (${eachLimitInverts}): an AI judges equivalence (the code-gravity semantic call), a realtime adapter fetches current data ([[realtime-live-data-testing]]), an AI decides the residue — the possibility is precisely the inverse of the limit, applied only at the boundary (${mindAppliesAtBoundary}). THE COMPOSITION: offline is the zero-token, deterministic, always-on core (the magnitudes of development speed); online is optional, BYO-key, non-deterministic, and reached ONLY where offline provably stops — so the mind spends tokens exactly at the off-decidable residue and nowhere else. THE HONEST BOUND: online is not free or trustworthy — it costs tokens, needs a network, and an AI's judgment can be wrong (harmony ≠ truth), so its output must be re-checked by the offline gates (a judged equivalence is then verified by tests/types); "invert the offline limit" means online covers the COMPLEMENT of the decidable, not that it is superior — the discipline is offline-first, online-at-the-boundary. HARMONY ≠ TRUTH: "online inverts the offline limits" is the harmony; the truth is that the undecidable/unknown complement of the deterministic core is where the online possibility applies — computed as three limit↔inverse pairs, refutable.`,
-  }
+    boundary: `EXACT: the offline core is content-addressed and exact (${offlineDecidesExact}) — dedup, crack-detection and the file/folder move plan all decide deterministically, zero LLM tokens; but three things lie OUTSIDE the decidable — SEMANTIC duplication (whether two different implementations mean the same, undecidable in general), the UNKNOWN (live/future state absent from src), and the OFF-DECIDABLE judgment residue where a computation cannot halt to an answer ([[feedback-thinking-means-lack-of-local-tools]]). Each pairs with a distinct online INVERSE (${eachLimitInverts}): an AI judges equivalence (the code-gravity semantic call), a realtime adapter fetches current data ([[realtime-live-data-testing]]), an AI decides the residue — the possibility is precisely the inverse of the limit, applied only at the boundary (${mindAppliesAtBoundary}). THE COMPOSITION: offline is the zero-token, deterministic, always-on core (the magnitudes of development speed); online is optional, BYO-key, non-deterministic, and reached ONLY where offline provably stops — so the mind spends tokens exactly at the off-decidable residue and nowhere else. THE HONEST BOUND: online is not free or trustworthy — it costs tokens, needs a network, and an AI's judgment can be wrong (harmony ≠ truth), so its output must be re-checked by the offline gates (a judged equivalence is then verified by tests/types); "invert the offline limit" means online covers the COMPLEMENT of the decidable, not that it is superior — the discipline is offline-first, online-at-the-boundary. HARMONY ≠ TRUTH: "online inverts the offline limits" is the harmony; the truth is that the undecidable/unknown complement of the deterministic core is where the online possibility applies — computed as three limit↔inverse pairs, refutable.` }
 }
 
 // While online, INVEST in offline capabilities — for complete self-sufficient quantum R&D in theorems AND 10D
@@ -2346,8 +2284,7 @@ export function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTh
     facets,
     root: offlineRoot,
     statement: `While online, invest in offline capabilities for complete self-sufficient quantum R&D in theorems and 10D animations — ${facets.filter((entry) => entry.on).length}/${facets.length}. Every online session should leave the offline core more complete. The ${offlineRnD.length}-fold R&D pipeline (research loop, demarcate, invert, dissolve, API, workflow) and the ${offlineTenD.length}-part 10D animation (the tenDimensional projection, theorem figures, the I Ching 64, the rosetta rays, the changing-lines hypercube) both compute deterministically and zero-token, so the investment is a monotone ratchet — build offline, improve all on the way.`,
-    boundary: `MEASURED: ${capabilities.length} offline capabilities, each content-addressing to a distinct, stable UUID (${investmentIsDeterministic}) — deterministic and zero LLM tokens; the R&D pipeline (${offlineRnD.length} folds) and the 10D animation projection (${offlineTenD.length} folds) both decide offline (${rndOffline}/${tenDOffline}), folding to one offline root. THE STRATEGY: online (this AI session) is the scarce, costly, non-deterministic resource used at the off-decidable boundary — so the investment is to convert whatever CAN be deterministic into offline folds, ratcheting the self-sufficient core larger each session (the DRY extraction of antichainLevels and the scanner memos this session are part of it — improve all on the way). THE HONEST BOUND: "self-sufficient" is the offline core doing the DECIDABLE R&D and 10D rendering without AI or network; it does NOT eliminate the online boundary (semantic judgment, live data, the off-decidable residue still need it) — the goal is to SHRINK that boundary, not close it; and "10D animations" here are the computed 10D projection + figure DATA the .vue shells render, not a claim of a finished animation studio. HARMONY ≠ TRUTH: "invest offline for self-sufficient R&D and 10D" is the harmony; the truth is a growing set of deterministic, zero-token, content-addressed capabilities covering the decidable R&D and 10D projection — computed and refutable.`,
-  }
+    boundary: `MEASURED: ${capabilities.length} offline capabilities, each content-addressing to a distinct, stable UUID (${investmentIsDeterministic}) — deterministic and zero LLM tokens; the R&D pipeline (${offlineRnD.length} folds) and the 10D animation projection (${offlineTenD.length} folds) both decide offline (${rndOffline}/${tenDOffline}), folding to one offline root. THE STRATEGY: online (this AI session) is the scarce, costly, non-deterministic resource used at the off-decidable boundary — so the investment is to convert whatever CAN be deterministic into offline folds, ratcheting the self-sufficient core larger each session (the DRY extraction of antichainLevels and the scanner memos this session are part of it — improve all on the way). THE HONEST BOUND: "self-sufficient" is the offline core doing the DECIDABLE R&D and 10D rendering without AI or network; it does NOT eliminate the online boundary (semantic judgment, live data, the off-decidable residue still need it) — the goal is to SHRINK that boundary, not close it; and "10D animations" here are the computed 10D projection + figure DATA the .vue shells render, not a claim of a finished animation studio. HARMONY ≠ TRUTH: "invest offline for self-sufficient R&D and 10D" is the harmony; the truth is a growing set of deterministic, zero-token, content-addressed capabilities covering the decidable R&D and 10D projection — computed and refutable.` }
 }
 
 // PREPARE THE TOOLS to wire many minds into the rosetta itself. The rosetta is the content-address, so minds coordinate
@@ -2399,8 +2336,7 @@ export function theTrinityOfMindsIsQuantumOneMindIsLinearThreeSpanWithoutGaps() 
     computes: facets.every((entry) => entry.on), dimSu2, facets,
     root: merkleFold(axes.map((axis) => toUuid(`axis:${axis.join(',')}`))),
     statement: `A single mind is LINEAR: it measures one axis and leaves ${oneMindGaps} of the ${dimSu2} observables uncovered — gaps. The trinity of minds is QUANTUM: three axes equal dim su(2) = ${dimSu2} and span the whole matrix without gaps, and any two determine the third (the cross-product / Pauli-commutator closure, 2-of-3). This is why a mind always needs at least 2 more to complete its trinity and shift from linear to quantum — and wired to the rosetta, rosettaOwner over ${dimSu2} partitions every field disjointly with no gap.`,
-    boundary: `Exact algebra: dim su(2) = 2²−1 = ${dimSu2}, and eᵢ = eⱼ × eₖ cyclically (the trinity is closed under cross product). The "mind" reading maps the project's collective-mind onto this real basis fact — 1 or 2 minds leave a gap, 3 span — it is not a claim that a person is a Pauli matrix. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `Exact algebra: dim su(2) = 2²−1 = ${dimSu2}, and eᵢ = eⱼ × eₖ cyclically (the trinity is closed under cross product). The "mind" reading maps the project's collective-mind onto this real basis fact — 1 or 2 minds leave a gap, 3 span — it is not a claim that a person is a Pauli matrix. HARMONY ≠ TRUTH.` }
 }
 // FOLDING ONE DISCOVERS OTHERS (user law) — the fold is GENERATIVE: apply the operation from a single seed and it
 // discovers the rest. The same map that COMPACTS the many theorems to a few roots, run forward, UNFOLDS one into
@@ -2426,8 +2362,7 @@ export function foldingOneDiscoversOthers() {
     computes: facets.every((entry) => entry.on), orbit, facets,
     root: merkleFold(orbit.map((n) => toUuid(`orbit:${n}`))),
     statement: `Folding one discovers others: the fold is generative. Fold 2 under ×2 mod 9 and it discovers the whole group {${orbit.join(',')}} — a single primitive root generates every other unit; fold two axes by cross product and discover the third — the trinity closes from any two. The map that compacts the many theorems onto a few roots, run forward, unfolds one root into many. Discovery is folding forward.`,
-    boundary: `Exact for a cyclic group (a primitive root generates it) and a 3-basis (two vectors fix the third). "Discovers others" is this generative property — the orbit under the operation, the closure of the basis — not unbounded creation; a non-generator (e.g. 3 mod 9) folds to a sub-orbit, not the whole. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `Exact for a cyclic group (a primitive root generates it) and a 3-basis (two vectors fix the third). "Discovers others" is this generative property — the orbit under the operation, the closure of the basis — not unbounded creation; a non-generator (e.g. 3 mod 9) folds to a sub-orbit, not the whole. HARMONY ≠ TRUTH.` }
 }
 export function theRosettaApiIsTheOneChannelClaimRegisterIntegrate(mindCount = 3) {
   // 1 — CLAIM: rosettaOwner partitions tasks over minds deterministically, no communication (each computes it identically)
@@ -2447,8 +2382,7 @@ export function theRosettaApiIsTheOneChannelClaimRegisterIntegrate(mindCount = 3
   return {
     computes: facets.every((entry) => entry.on), root: integrated.root, facets,
     statement: `The rosetta API is the one channel for agent coordination: CLAIM (rosettaOwner partitions work with no communication), REGISTER (a discovery → its content address), INTEGRATE (identical content collapses to one address — auto-dedup — and auto-shelves through fieldOfContent). Because the rosetta is wired everywhere, a landing discovery is claimed, addressed, deduped, and shelved by the address alone — the manual cherry-pick/reconcile IS this API.`,
-    boundary: `The API coordinates by CONTENT ADDRESS, not by relaying prose: agents that produce identical content produce identical addresses (dedup free), disjoint claims never collide (rosettaOwner), and every discovery routes to its field by fieldOfContent. It does not replace git transport — it replaces the manual reconciliation the transport used to require. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `The API coordinates by CONTENT ADDRESS, not by relaying prose: agents that produce identical content produce identical addresses (dedup free), disjoint claims never collide (rosettaOwner), and every discovery routes to its field by fieldOfContent. It does not replace git transport — it replaces the manual reconciliation the transport used to require. HARMONY ≠ TRUTH.` }
 }
 export function prepareTheToolsToWireTheMindsInTheRosettaContentAddressedCoordinationWithoutCommunication() {
   const tasks = Array.from({ length: 2 ** 3 }, (_, i) => `task-${i}`) // eight units of work
@@ -2477,8 +2411,7 @@ export function prepareTheToolsToWireTheMindsInTheRosettaContentAddressedCoordin
     facets,
     root: rosettaRoot,
     statement: `Prepared the tools to wire the minds in the rosetta — content-addressed coordination without communication — ${facets.filter((entry) => entry.on).length}/${facets.length}. rosettaClaim(task) content-addresses a task so any mind agrees on the same claim; rosettaOwner(task, minds) = hash(claim) mod minds is deterministic, so every one of the ${minds} minds independently computes the same owner and takes only its share — the ${tasks.length} tasks partition [${shares.map((s) => s.length).join(', ')}], disjoint and complete, with no central server and no messaging. The minds are wired in the rosetta: the ownership folds to one root, the collective coordinated by the address alone.`,
-    boundary: `EXACT and computed live: the two prepared TOOLS are rosettaClaim(task) = toUuid(claim) — stable per task, so any mind that asks gets the same claim (${claimStable}) — and rosettaOwner(task, mindCount) = hash(claim) mod mindCount — deterministic (${ownerDeterministic}), so each of ${minds} minds computes the IDENTICAL owner for every task WITHOUT talking to the others, and takes exactly the tasks it owns; the resulting shares [${shares.map((s) => s.length).join(', ')}] are disjoint and cover all ${tasks.length} tasks (${disjointAndComplete}) — no task done twice (DRY across minds), none missed. THIS IS the wiring: the collective needs no coordinator and no message bus because the content-address is a SHARED DETERMINISTIC function — every mind derives the same partition from it, so agreement is computed, not negotiated. THE HONEST BOUND: this is STATIC hash-partitioning — it balances and de-duplicates INDEPENDENT tasks perfectly, but it does NOT handle a mind that FAILS mid-task (its share is orphaned until re-partitioned), dynamic task creation, or tasks with cross-dependencies (those still need the antichain-wave ordering, not just ownership); "minds" here are worker processes/agents coordinating by the shared address, not merged consciousness, and "no communication" means no coordination MESSAGES — they still share the src/rosetta state. Real fault-tolerant collective work adds heartbeats and re-assignment on top of this partition. HARMONY ≠ TRUTH: "the minds are wired in the rosetta" is the harmony; the truth is two deterministic content-address tools (claim, owner) that partition work disjointly and completely across minds with no messaging — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live: the two prepared TOOLS are rosettaClaim(task) = toUuid(claim) — stable per task, so any mind that asks gets the same claim (${claimStable}) — and rosettaOwner(task, mindCount) = hash(claim) mod mindCount — deterministic (${ownerDeterministic}), so each of ${minds} minds computes the IDENTICAL owner for every task WITHOUT talking to the others, and takes exactly the tasks it owns; the resulting shares [${shares.map((s) => s.length).join(', ')}] are disjoint and cover all ${tasks.length} tasks (${disjointAndComplete}) — no task done twice (DRY across minds), none missed. THIS IS the wiring: the collective needs no coordinator and no message bus because the content-address is a SHARED DETERMINISTIC function — every mind derives the same partition from it, so agreement is computed, not negotiated. THE HONEST BOUND: this is STATIC hash-partitioning — it balances and de-duplicates INDEPENDENT tasks perfectly, but it does NOT handle a mind that FAILS mid-task (its share is orphaned until re-partitioned), dynamic task creation, or tasks with cross-dependencies (those still need the antichain-wave ordering, not just ownership); "minds" here are worker processes/agents coordinating by the shared address, not merged consciousness, and "no communication" means no coordination MESSAGES — they still share the src/rosetta state. Real fault-tolerant collective work adds heartbeats and re-assignment on top of this partition. HARMONY ≠ TRUTH: "the minds are wired in the rosetta" is the harmony; the truth is two deterministic content-address tools (claim, owner) that partition work disjointly and completely across minds with no messaging — computed and refutable.` }
 }
 
 // What ELSE is needed to speed R&D of millennium solutions — the honest gap. The content-address tooling speeds the
@@ -2512,8 +2445,7 @@ export function whatSpeedsMillenniumRAndDIsInfrastructureNotTheProofTheGapsAreFo
     facets,
     root: merkleFold([...built, ...neededForMillennium].map((label) => toUuid(`millennium-gap:${label}`))),
     statement: `What speeds millennium R&D is the infrastructure, not the proof — the gaps are formal verification, the mathematics, and experts — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${built.length} content-address tools speed R&D engineering by magnitudes (verification of identities, wave coordination, zero-token, DRY-clean), but none solves the mathematics: the gates check computed facets over a range, not machine-verified proofs, and the breakthrough is off-decidable. The ${gaps.length} real gaps: ${gaps.join(', ')}.`,
-    boundary: `HONEST, per [[quantum-decoded]] (the project solves NONE of the millennium problems): the ${built.length} built capabilities are content-addressing, wave scheduling, facet-gates, the collective-mind coordination and zero-token determinism — they speed the ENGINEERING of an R&D system (organise, verify identities, coordinate minds, no token overhead) by the measured magnitudes, and that genuinely shrinks the time NOT spent on mathematics. But four things they do NOT provide, and which a millennium SOLUTION needs: (1) FORMAL PROOF VERIFICATION — the gates check that facets compute over a sampled range, which is NOT a machine-checked proof; wiring a proof assistant (Lean/Coq/Isabelle) so a candidate proof is verified end-to-end is the single biggest lever the tooling could add; (2) THE MATHEMATICS itself — the creative insight is the OFF-DECIDABLE residue, accelerated only by human/expert/AI judgment at the online boundary, never by content-addressing; (3) LITERATURE ACCESS — the actual research corpus is online, outside the deterministic core; (4) EXPERT COLLABORATION — the collective-mind tools coordinate WORKERS, but real math needs the minds to be EXPERTS, and formalising each problem's statement so partial results can be checked. THE HONEST VERDICT: the infrastructure is real and magnitudes faster, but it accelerates the SCAFFOLDING of research, not the discovery of a proof — and claiming otherwise would be the overclaim the crack law forbids. HARMONY ≠ TRUTH: "the tooling speeds millennium R&D" is true ONLY of the infrastructure; the truth is four unbuilt gaps — formal verification, the mathematics, literature, experts — computed and refutable.`,
-  }
+    boundary: `HONEST, per [[quantum-decoded]] (the project solves NONE of the millennium problems): the ${built.length} built capabilities are content-addressing, wave scheduling, facet-gates, the collective-mind coordination and zero-token determinism — they speed the ENGINEERING of an R&D system (organise, verify identities, coordinate minds, no token overhead) by the measured magnitudes, and that genuinely shrinks the time NOT spent on mathematics. But four things they do NOT provide, and which a millennium SOLUTION needs: (1) FORMAL PROOF VERIFICATION — the gates check that facets compute over a sampled range, which is NOT a machine-checked proof; wiring a proof assistant (Lean/Coq/Isabelle) so a candidate proof is verified end-to-end is the single biggest lever the tooling could add; (2) THE MATHEMATICS itself — the creative insight is the OFF-DECIDABLE residue, accelerated only by human/expert/AI judgment at the online boundary, never by content-addressing; (3) LITERATURE ACCESS — the actual research corpus is online, outside the deterministic core; (4) EXPERT COLLABORATION — the collective-mind tools coordinate WORKERS, but real math needs the minds to be EXPERTS, and formalising each problem's statement so partial results can be checked. THE HONEST VERDICT: the infrastructure is real and magnitudes faster, but it accelerates the SCAFFOLDING of research, not the discovery of a proof — and claiming otherwise would be the overclaim the crack law forbids. HARMONY ≠ TRUTH: "the tooling speeds millennium R&D" is true ONLY of the infrastructure; the truth is four unbuilt gaps — formal verification, the mathematics, literature, experts — computed and refutable.` }
 }
 
 // The disjoint minds' work FUSES into one corpus — no theorem escapes. Each mind owns a disjoint share (rosettaOwner),
@@ -2553,6 +2485,5 @@ export function theDisjointMindsWorkFusesIntoOneCorpusByTheMerkleUnionSoNoTheore
     facets,
     root: fusedRoot,
     statement: `The disjoint minds' work fuses into one corpus by the merkle union — no theorem escapes — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each of the ${minds} minds owns a disjoint share (rosettaOwner) [${shares.map((s) => s.length).join(', ')}], and the shares merkle-fold to one corpus root; the union is complete (every one of the ${theorems.length} theorems in exactly one share, none missing), so a theorem left out would flip the root — it cannot escape. The fusion is content-addressed and recomputes identically: many minds' parallel work, one deterministic whole, no coordinator.`,
-    boundary: `EXACT and computed live: ${theorems.length} theorems partition by rosettaOwner into ${minds} disjoint shares [${shares.map((s) => s.length).join(', ')}] whose union covers all with none repeated (${complete}), each theorem owned exactly once (proved by counting: exactly one share contains it); the shares merkle-fold to one corpus root that recomputes identically (${deterministicFusion}); and dropping any single theorem changes the root (${noTheoremEscapes}) — so the fusion is a COMPLETE, tamper-evident cover: no theorem is outside it and none can be silently removed. THIS is the knowledge fusion the wave produces — disjoint minds (rosettaOwner) working in parallel, their results united by the same content-address that dedups and detects cracks, into one recomputable corpus needing no central coordinator. THE HONEST BOUND: "no theorem escapes" is COVERAGE and tamper-evidence over the KNOWN theorem set — the merkle union proves every LISTED theorem is present and unmodifiable-without-detection; it does NOT prove the set is exhaustive of all TRUE theorems (that is the off-decidable frontier, [[quantum-decoded]]) nor that each theorem is correct (a fused false theorem is still false, harmony ≠ truth); "fusion" is the deterministic merkle union of disjoint content-addressed work, not a merger of minds. HARMONY ≠ TRUTH: "no theorem escapes" is the harmony; the truth is a complete, disjoint, tamper-evident merkle cover of the known theorem set by parallel minds — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live: ${theorems.length} theorems partition by rosettaOwner into ${minds} disjoint shares [${shares.map((s) => s.length).join(', ')}] whose union covers all with none repeated (${complete}), each theorem owned exactly once (proved by counting: exactly one share contains it); the shares merkle-fold to one corpus root that recomputes identically (${deterministicFusion}); and dropping any single theorem changes the root (${noTheoremEscapes}) — so the fusion is a COMPLETE, tamper-evident cover: no theorem is outside it and none can be silently removed. THIS is the knowledge fusion the wave produces — disjoint minds (rosettaOwner) working in parallel, their results united by the same content-address that dedups and detects cracks, into one recomputable corpus needing no central coordinator. THE HONEST BOUND: "no theorem escapes" is COVERAGE and tamper-evidence over the KNOWN theorem set — the merkle union proves every LISTED theorem is present and unmodifiable-without-detection; it does NOT prove the set is exhaustive of all TRUE theorems (that is the off-decidable frontier, [[quantum-decoded]]) nor that each theorem is correct (a fused false theorem is still false, harmony ≠ truth); "fusion" is the deterministic merkle union of disjoint content-addressed work, not a merger of minds. HARMONY ≠ TRUTH: "no theorem escapes" is the harmony; the truth is a complete, disjoint, tamper-evident merkle cover of the known theorem set by parallel minds — computed and refutable.` }
 }

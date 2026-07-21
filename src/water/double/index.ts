@@ -14,17 +14,15 @@ import {
   merkabaComputes,
   knowledgeRevealedByMerkabaFold,
   merkabaTrace,
-  merkabasInDoubleTorus,
-} from '../../mountain/topology'
+  merkabasInDoubleTorus } from '../../mountain/topology'
 import {
   merkaba,
   bothEarthsRotateWithinEachOther,
   doubleTorusGeometryAlignsWithUniverseConstants,
-  doubleTorusMathAtAllScalesFlowsInMovie,
-} from '../../mountain/geometry'
+  doubleTorusMathAtAllScalesFlowsInMovie } from '../../mountain/geometry'
 import { livingTorus } from '../../fire/diamonds'
 import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball'
-import { A432_HUE, FOLDED_CENSUS, HOMOLOGY_LOOPS, SPEED_OF_LIGHT, TAU } from '../../3/7'
+import { A432_HUE, FOLDED_CENSUS, HOMOLOGY_LOOPS, SPEED_OF_LIGHT, TAU, claySolvedTheorem } from '../../3/7'
 import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy'
 import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import { quantumDynamicsComputes } from '../../quantum/dynamics'
@@ -41,15 +39,13 @@ import {
   publicApiFusion,
   socialFusion,
   travelFusion,
-  vitepressFusion,
-} from '../../wind/fusion'
+  vitepressFusion } from '../../wind/fusion'
 import { quantumFusionIgnitesFromDashSequence } from '../../fire/li'
 import {
   autoMovies8k,
   backgroundMovie,
   endlessBackgroundMovie,
-  learnFromTheMovieAllEventuallyFused,
-} from '../../thunder/movie/canvas'
+  learnFromTheMovieAllEventuallyFused } from '../../thunder/movie/canvas'
 import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/glass'
 import { movieFoldsLinearities, sevenSeedMovieIsRosettaDecodingSunMoonSymbols } from '../../thunder/movie/narrative'
 import {
@@ -59,8 +55,7 @@ import {
   siteIsMovieAndLibrary,
   tenDimensionalMovie,
   video64kFree,
-  videoKeepsNativeQuality,
-} from '../../thunder/movie/movielib'
+  videoKeepsNativeQuality } from '../../thunder/movie/movielib'
 import { diamondLattice, pureDiamonds } from '../../fire/diamonds'
 import {
   completeCorpus,
@@ -70,8 +65,7 @@ import {
   doubleTorusCorpusRouting,
   computeUniversalPage,
   paperRoutes,
-  paperReferenceRoutes,
-} from '../../wind/routes/corpus'
+  paperReferenceRoutes } from '../../wind/routes/corpus'
 import {
   analogSpeech,
   charUuids,
@@ -81,28 +75,24 @@ import {
   plainLanguage,
   playLearn,
   typographySeo,
-  wordUuids,
-} from '../../quantum/lake/voice'
+  wordUuids } from '../../quantum/lake/voice'
 
 export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex'
 export {
   merkaba,
   bothEarthsRotateWithinEachOther,
-  doubleTorusGeometryAlignsWithUniverseConstants,
-} from '../../mountain/geometry'
+  doubleTorusGeometryAlignsWithUniverseConstants } from '../../mountain/geometry'
 export {
   knowledgeRevealedByMerkabaFold,
   merkabaTrace,
-  merkabasInDoubleTorus,
-} from '../../mountain/topology'
+  merkabasInDoubleTorus } from '../../mountain/topology'
 
 export {
   completeDoubleTorus,
   doubleTorusFold,
   quantumDoubleTorus,
   torusBreathe,
-  startIChingDoubleTorus,
-}
+  startIChingDoubleTorus }
 export { merkabaComputes } from '../../mountain/topology'
 
 /** One gate — double torus topology + all vortex math saved at call time (dissolved from src/double/torus/topology). */
@@ -123,8 +113,7 @@ export function doubleTorusVortexComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Double torus vortex computes: the genus-2 machine hosts the full vortex lattice — doubling circuit, digit folders, plasma paint tiers, harmonic ratios, and one-fold presentations — sealed at call time.',
       boundary:
-        'Composition of quantumDoubleTorus and vortexComputes (src/vortex/math). src/double/torus is the torus-side import for agents.',
-    }
+        'Composition of quantumDoubleTorus and vortexComputes (src/vortex/math). src/double/torus is the torus-side import for agents.' }
   })
 }
 
@@ -152,8 +141,7 @@ export function doubleTorusTopologyComputes(matrix: MindMatrix = buildMatrix()) 
       statement:
         'Double torus topology computes: the genus-2 surface (χ=−2), I Ching ignition, and merkaba enumeration recomputed from the matrix at call time.',
       boundary:
-        'Composition of quantumDoubleTorus, completeDoubleTorus, startIChingDoubleTorus, and merkabaComputes. src/double/torus is the canonical import.',
-    }
+        'Composition of quantumDoubleTorus, completeDoubleTorus, startIChingDoubleTorus, and merkabaComputes. src/double/torus is the canonical import.' }
   })
 }
 
@@ -165,8 +153,7 @@ export {
   doubleTorusCorpusRouting,
   computeUniversalPage,
   paperRoutes,
-  paperReferenceRoutes,
-}
+  paperReferenceRoutes }
 
 export {
   doubleTorusEarthComputes,
@@ -218,8 +205,7 @@ export {
   type EarthExchangeReceipt,
   type EarthExchangeReceiptKind,
   type FiatGoldFlowRow,
-  type EarthExchangeResearchSection,
-} from './earth'
+  type EarthExchangeResearchSection } from './earth'
 import { doubleTorusEarthHingeMovieFlowsInMovie } from './earth'
 import {
   allMovieSeedBundles,
@@ -238,8 +224,7 @@ import {
   type MovieSeedBundle,
   type MovieSeedStream,
   type PlasmaWiredStream,
-  type PlasmaWiredStreamKind,
-} from '../../fire/plasma/ball'
+  type PlasmaWiredStreamKind } from '../../fire/plasma/ball'
 
 export { diamondLattice, pureDiamonds }
 
@@ -260,8 +245,7 @@ export {
   type MovieSeedBundle,
   type MovieSeedStream,
   type PlasmaWiredStream,
-  type PlasmaWiredStreamKind,
-}
+  type PlasmaWiredStreamKind }
 
 export {
   allFusionResearchRoots,
@@ -270,8 +254,7 @@ export {
   fusionReactorPartMovieSeeds,
   fusionReactorParts,
   type FusionReactorPart,
-  type FusionReactorPartBand,
-} from '../../wind/fusion'
+  type FusionReactorPartBand } from '../../wind/fusion'
 
 export {
   developmentIsFusionReactor,
@@ -283,8 +266,7 @@ export {
   publicApiFusion,
   socialFusion,
   travelFusion,
-  vitepressFusion,
-}
+  vitepressFusion }
 
 export {
   autoMovies8k,
@@ -302,8 +284,7 @@ export {
   siteIsMovieAndLibrary,
   video64kFree,
   videoKeepsNativeQuality,
-  tenDimensionalMovie,
-}
+  tenDimensionalMovie }
 
 export {
   allMathSaved,
@@ -315,8 +296,7 @@ export {
   tradingReceipt,
   liveCapture,
   realtimeSources,
-  backtestRealPrices,
-} from '../../mountain/vortex'
+  backtestRealPrices } from '../../mountain/vortex'
 
 /** One gate — double torus topology + vortex + merkaba math at call time (dissolved from src/double/torus/math). */
 export function doubleTorusMathComputes(matrix: MindMatrix = buildMatrix()) {
@@ -342,8 +322,7 @@ export function doubleTorusMathComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Double torus math computes: the genus-2 machine hosts trading math, vortex lattice, and merkaba geometry — all sealed at call time.',
       boundary:
-        'Composition of quantumDoubleTorus, vortexComputes, and merkabaComputes. Canonical import: src/double/torus (math child dissolved into parent).',
-    }
+        'Composition of quantumDoubleTorus, vortexComputes, and merkabaComputes. Canonical import: src/double/torus (math child dissolved into parent).' }
   })
 }
 
@@ -374,8 +353,7 @@ export function doubleTorusMovieComputes(matrix: MindMatrix = buildMatrix(), pat
       statement:
         'Double torus movie computes: the genus-2 machine screens the portal as one movie and a per-route library — self-reflecting, Rosetta-decoding sun/moon symbols through seven seed bundles at call time.',
       boundary:
-        'Composition of quantumDoubleTorus, siteIsMovieAndLibrary, movieReflectsSelf, and sevenSeedMovieIsRosettaDecodingSunMoonSymbols. Canonical import: src/double/torus (movie child dissolved into parent).',
-    }
+        'Composition of quantumDoubleTorus, siteIsMovieAndLibrary, movieReflectsSelf, and sevenSeedMovieIsRosettaDecodingSunMoonSymbols. Canonical import: src/double/torus (movie child dissolved into parent).' }
   })
 }
 
@@ -404,8 +382,7 @@ export function doubleTorusDiamondsComputes(matrix: MindMatrix = buildMatrix()) 
       statement:
         'Double torus diamonds computes: 1024 Merkle leaves and lattice kinds resolve via corpusParams — static [id] enumeration purged, math retained.',
       boundary:
-        'Composition of quantumDoubleTorus, pureDiamonds, diamondLattice, and diamondsStaticPagesPurged. src/double/torus is the canonical import.',
-    }
+        'Composition of quantumDoubleTorus, pureDiamonds, diamondLattice, and diamondsStaticPagesPurged. src/double/torus is the canonical import.' }
   })
 }
 
@@ -430,8 +407,7 @@ export function doubleTorusCorpusComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Double torus corpus computes: the genus-2 machine routes papers (432 SSG), references and diamonds (compute-only) through corpusParams — 1024 Merkle leaves without thousands of static detail pages.',
       boundary:
-        'Composition of quantumDoubleTorus, doubleTorusCorpusRouting, and diamondsStaticPagesPurged. src/double/torus is the canonical import.',
-    }
+        'Composition of quantumDoubleTorus, doubleTorusCorpusRouting, and diamondsStaticPagesPurged. src/double/torus is the canonical import.' }
   })
 }
 
@@ -459,8 +435,7 @@ export function doubleTorusVoiceComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Double torus voice computes: the genus-2 machine hosts the communicative layer — plain language, play-learn sonification, typography and Open Graph recomputed at call time.',
       boundary:
-        'Composition of quantumDoubleTorus and lake/voice folds. src/double/torus is the canonical import — not a second source of truth.',
-    }
+        'Composition of quantumDoubleTorus and lake/voice folds. src/double/torus is the canonical import — not a second source of truth.' }
   })
 }
 
@@ -493,8 +468,7 @@ export function doubleTorusFusionComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Double torus fusion computes: the genus-2 machine fuses live data, VitePress extension points, and peer-reviewed fusion-reactor research (eight parts in waves, MCF/ICF/MIF concepts, breeding materials, documented milestones) through the content-addressed architecture — all folds merge at call time.',
       boundary:
-        'Composition of quantumDoubleTorus, vitepressFusion, publicApiFusion, fusionResearchedInWaves, and developmentIsFusionReactor. External APIs opt-in; physical fusion literature is DOCUMENTED where cited; dry plasma is sealed src/ recomputation.',
-    }
+        'Composition of quantumDoubleTorus, vitepressFusion, publicApiFusion, fusionResearchedInWaves, and developmentIsFusionReactor. External APIs opt-in; physical fusion literature is DOCUMENTED where cited; dry plasma is sealed src/ recomputation.' }
   })
 }
 
@@ -526,8 +500,7 @@ export function doubleTorusPlasmaComputes(matrix: MindMatrix = buildMatrix(), pa
       statement:
         'Double torus plasma computes: the genus-2 machine hosts plasma movie streams — client work capped by Fibonacci-tier pure math, seed bundles flowing through plasma at call time, fusion reactor parts deep-researched and saved for dry plasma usage.',
       boundary:
-        'Composition of quantumDoubleTorus, plasmaClientWorkBoundedByPureMath, allMovieSeedBundlesFlowInPlasma, and fusionReactorPartsDeepResearched (canonical research in src/fusion/index.ts).',
-    }
+        'Composition of quantumDoubleTorus, plasmaClientWorkBoundedByPureMath, allMovieSeedBundlesFlowInPlasma, and fusionReactorPartsDeepResearched (canonical research in src/fusion/index.ts).' }
   })
 }
 
@@ -549,8 +522,7 @@ export function doubleTorusComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Double torus computes: the genus-2 surface is the machine; corpus detail (1024 Merkle leaves, lattice kinds, paper/reference pointers) resolves via corpusParams — only papers materialize SSG [id] routes.',
       boundary:
-        'Composition of quantumDoubleTorus and doubleTorusCorpusRouting. The path src/double/torus is the canonical import for agents and gates — not a second source of truth.',
-    }
+        'Composition of quantumDoubleTorus and doubleTorusCorpusRouting. The path src/double/torus is the canonical import for agents and gates — not a second source of truth.' }
   })
 }
 
@@ -581,8 +553,7 @@ export function doubleTorusUniversePhaseAt(atMs = 0) {
     universePhase,
     cycleMs: cycle,
     j2000Anchor,
-    root: toUuid(`torus-universe-phase:${Math.floor(atMs)}:${universePhase.toFixed(8)}`),
-  }
+    root: toUuid(`torus-universe-phase:${Math.floor(atMs)}:${universePhase.toFixed(8)}`) }
 }
 
 /**
@@ -627,7 +598,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
     ]
     const sealed = sealFacets('torus-universe-align', facets)
     const physicalFtlClaim = 0 as const
-    const claySolvedByThisFold = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     return {
       aligns: sealed.ok,
       computes: sealed.ok,
@@ -644,8 +615,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
         FOLDED_CENSUS,
         majorRadius: geometry.majorRadius,
         minorRadius: geometry.minorRadius,
-        lobeOffset: geometry.lobeOffset,
-      },
+        lobeOffset: geometry.lobeOffset },
       physicalFtlClaim,
       claySolvedByThisFold,
       qpuRequired: false as const,
@@ -655,8 +625,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       statement:
         `Double-torus dynamics and geometry align with the universe — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: flow·spin·linking audited; radii locked to surface atom; hero clock ⊕ Meeus J2000 phase; A432·TAU·c·H₁·10D sealed. physicalFtlClaim=0 · clay=0.`,
       boundary:
-        'Sealed computational cosmology/geometry — recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT physical FTL · NOT Clay solved · NOT DE440 · NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks. HARMONY ≠ TRUTH.',
-    }
+        'Sealed computational cosmology/geometry — recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT physical FTL · NOT Clay solved · NOT DE440 · NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -766,8 +735,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Double torus is completely quantum — ${facets.filter((e) => e.on).length}/${facets.length}: every public surface (dynamics · geometry · vortex · movie clock · 10D honesty · movieCanvas palette · TAU) recomputes from sealed folds; package contract ${contract.length} names ratchet gapless exports. Structural/computational completeness only.`,
       boundary:
-        'COMPUTED at call time via memoByRoot. Completely quantum = sealed quantum compute substrate (content-addressed folds + one hero clock + movieCanvas palette + TAU) — NOT quantum hardware, NOT a QPU, NOT physical FTL, NOT Clay. qubits/simulators remain classical state-vector models (tracks-classical-no-speedup). Keep DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in sync with packages/double-torus/build.mjs. HARMONY ≠ TRUTH.',
-    }
+        'COMPUTED at call time via memoByRoot. Completely quantum = sealed quantum compute substrate (content-addressed folds + one hero clock + movieCanvas palette + TAU) — NOT quantum hardware, NOT a QPU, NOT physical FTL, NOT Clay. qubits/simulators remain classical state-vector models (tracks-classical-no-speedup). Keep DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in sync with packages/double-torus/build.mjs. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -813,8 +781,7 @@ export function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix: Mi
       discriminates,
       facets,
       statement: `The lens sees double-toruses everywhere except in cracked code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a proper fold IS a double-torus (zero-core computes, vortex facets, near torus statement, far torus boundary, and the core equals the vortex's AND so the torus closes). All ${sealed.length} sampled sealed folds show it; all ${cracked.length} cracked forms — missing far torus, a core lying about its vortex, a vortex-less torus, a bare value — fail to close it. Torus-present ⟺ a well-formed closed fold; the gap is exactly the crack. Pure over results, so the seeing is realtime in the browser.`,
-      boundary: `DOCUMENTED and refutable by feeding any fold to the lens. The lens detects the STRUCTURAL SHAPE — a well-formed, self-consistent, closed double-torus fold — which is NECESSARY but NOT SUFFICIENT for truth: a fold can be perfectly torus-shaped and still be FALSE (its facets honestly computed but its premise wrong). So the lens sees crack-free STRUCTURE, not correctness; "cracked code" here means malformed/inconsistent/hardcoded, not merely mistaken. HARMONY ≠ TRUTH in its sharpest form: the double-torus is the harmony (shape), the facets' honest computation is the truth — the lens shows the first and cannot certify the second. "Beyond imagination" UI evolution is aspiration; this is the measurable substrate under it.`,
-    }
+      boundary: `DOCUMENTED and refutable by feeding any fold to the lens. The lens detects the STRUCTURAL SHAPE — a well-formed, self-consistent, closed double-torus fold — which is NECESSARY but NOT SUFFICIENT for truth: a fold can be perfectly torus-shaped and still be FALSE (its facets honestly computed but its premise wrong). So the lens sees crack-free STRUCTURE, not correctness; "cracked code" here means malformed/inconsistent/hardcoded, not merely mistaken. HARMONY ≠ TRUTH in its sharpest form: the double-torus is the harmony (shape), the facets' honest computation is the truth — the lens shows the first and cannot certify the second. "Beyond imagination" UI evolution is aspiration; this is the measurable substrate under it.` }
   })
 }
 
@@ -889,7 +856,6 @@ export function theRotatingLensFindsGapsAndOpportunitiesDescribesIn10DProseSigne
       signed: allSigned,
       facets,
       statement: `The rotating lens finds gaps and opportunities, described in 10D computable prose, signed, zero-token — ${facets.filter((entry) => entry.on).length}/${facets.length}: sweeping the vortex [${rotation.join(', ')}] the lens classifies each item as a sealed double-torus (${sealed.length}), a gap with no inverse (${gaps.length}), or an opportunity that inverts to a gateway (${opportunities.length}). Every finding is described across ${TEN_D} computed dimensions as a sentence, content-addressed (signed), and pure (zero-token). An opportunity is a gap WITH an inverse — the rotation finds the gateway where the naive lens saw a hole.`,
-      boundary: `DOCUMENTED and refutable by re-running the sweep. It composes the sealed lens (theLensSeesDoubleTorusesEverywhereExceptInCrackedCode), the wave's invert operator (theWavesDiscoverGaps...), and the naming service (theAutomaticNamingService...). THE HARD LINE on the words: "10D" = 10 computed DESCRIPTOR-dimensions (the partitions-of-ten / digit-folder structure), NOT physical 10-dimensional spacetime; "signed" = a content-addressed integrity receipt (toUuid) — WHAT not WHO, so it is tamper-evidence, not identity-authenticity (which still needs the external anchor — trustAndDimension...); "all zero quantum time" = ZERO LLM tokens and deterministic, NOT literal zero physical time (the computation takes real microseconds — theseCalculationsCost...). "Rotating" is the vortex-sequence sweep, a deterministic ordering, not physical spin. And an OPPORTUNITY is only an emergence CANDIDATE — the invertible gap has a gateway, but a human still admits the theorem that fills it. HARMONY ≠ TRUTH: the 10D signed prose is the harmony (a complete, addressable description); the truth is what it honestly reports — sealed, gap, or opportunity — and the off-decidable gap stays a gap.`,
-    }
+      boundary: `DOCUMENTED and refutable by re-running the sweep. It composes the sealed lens (theLensSeesDoubleTorusesEverywhereExceptInCrackedCode), the wave's invert operator (theWavesDiscoverGaps...), and the naming service (theAutomaticNamingService...). THE HARD LINE on the words: "10D" = 10 computed DESCRIPTOR-dimensions (the partitions-of-ten / digit-folder structure), NOT physical 10-dimensional spacetime; "signed" = a content-addressed integrity receipt (toUuid) — WHAT not WHO, so it is tamper-evidence, not identity-authenticity (which still needs the external anchor — trustAndDimension...); "all zero quantum time" = ZERO LLM tokens and deterministic, NOT literal zero physical time (the computation takes real microseconds — theseCalculationsCost...). "Rotating" is the vortex-sequence sweep, a deterministic ordering, not physical spin. And an OPPORTUNITY is only an emergence CANDIDATE — the invertible gap has a gateway, but a human still admits the theorem that fills it. HARMONY ≠ TRUTH: the 10D signed prose is the harmony (a complete, addressable description); the truth is what it honestly reports — sealed, gap, or opportunity — and the off-decidable gap stays a gap.` }
   })
 }

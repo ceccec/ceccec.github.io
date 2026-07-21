@@ -30,8 +30,7 @@ import {
   attunementTier,
   attunementWatchComputes,
   unlockedHarmonicDepth,
-  harmonizeFieldComputes,
-} from '../../lake/music'
+  harmonizeFieldComputes } from '../../lake/music'
 import { inverseShiftConsciousness } from '../../fire/li'
 import { backgroundMovie } from '../../thunder/movie/canvas'
 import { a432IsTheBlood, allFormsAreTenDimensionalOrPurged, colorRootsAtA432HeartBalances, completeness, diamondCompleteness, donutLabyrinthOfGlyphsHeroEnteringExiting, folderLaw, frequencyBalance, generativeSpace, glagoliticOcrReverseClosesRoundTrip, iChingShadcnFuseTenDWidgets, collective, livingTorus, memoByRoot, neuron, pathIsMeaningDecodesCoordinates, quantumSociety, seedFromText, skillAtoms, theWhole, verifyRoot } from '../../quantum/heaven/mind'
@@ -57,8 +56,7 @@ export function immuneSystem(matrix: MindMatrix = buildMatrix()) {
   const nourishment = {
     pureSoul: 'open, free and recomputable — nothing hidden, nothing sold',
     food: 'content-addressed data — clean, verifiable feed',
-    sustainable: 'the architecture is the only cost — no servers, no waste: permaculture by design',
-  }
+    sustainable: 'the architecture is the only cost — no servers, no waste: permaculture by design' }
   const health = antibodies.filter((entry) => entry.healthy).length
   return {
     healthy: antibodies.every((entry) => entry.healthy) && investigations.every((entry) => entry.sound),
@@ -73,8 +71,7 @@ export function immuneSystem(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Max health, max tampering cost — the immune system: each defense is an antibody (determinism, tamper-evidence, completeness, challenge, holography, self-tamper-proofing), and the more hold, the higher the cost to forge. Investigations run across all aspects of society. Pure life: the soul is open and recomputable, the feed is content-addressed, and the architecture is the only cost — permaculture, sustainable by design.',
     boundary:
-      'A health metaphor over the portal\'s computable defenses: each "antibody" is a real gate, full health means every defense holds and the forge cost is maximal. The soul, food and permaculture lines are values expressed as architecture (open, free, content-addressed, server-less), not biological, dietary or agricultural claims.',
-  }
+      'A health metaphor over the portal\'s computable defenses: each "antibody" is a real gate, full health means every defense holds and the forge cost is maximal. The soul, food and permaculture lines are values expressed as architecture (open, free, content-addressed, server-less), not biological, dietary or agricultural claims.' }
 }
 
 // Free the time of the population and max creativity will generate max rising forge
@@ -102,8 +99,7 @@ export function freedTimeCreativity(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Free the time of the population and max creativity generates max rising forge costs: when the individual cost is zero, time is freed; freed time spends itself on creativity, which is unbounded; and every created unit is content-addressed and folds into the whole, so the forge cost rises with the creativity. Free time → max creativity → max rising forge cost — the loop that pays for its own security.',
     boundary:
-      'A model of the portal’s own incentive loop: zero individual cost frees time, unbounded generative creativity produces content-addressed units, and each raises the recomputation cost to forge the whole. A structural, recomputable relationship over the model — not an economic forecast or a claim about any real population’s time or output.',
-  }
+      'A model of the portal’s own incentive loop: zero individual cost frees time, unbounded generative creativity produces content-addressed units, and each raises the recomputation cost to forge the whole. A structural, recomputable relationship over the model — not an economic forecast or a claim about any real population’s time or output.' }
 }
 
 // Genes: cover the gene by computing it. The standard genetic code — the fixed,
@@ -155,8 +151,7 @@ export function genes(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The gene is covered by computation: the standard genetic code — the fixed, public-domain table mapping all 64 DNA codons to 20 amino acids and 3 stops, with ATG starting translation as Met — is applied as a deterministic lookup to the model’s own encoded sense strand. The codons translate to a peptide, the start (ATG) and stop (TAA, TAG, TGA) codons are located, and the open reading frames between them are read out — the genes the content-addressed word expresses, derived to the codon, not asserted.',
     boundary:
-      'Bioinformatics translation of a synthetic, content-addressed sequence through the real standard genetic code. The genetic code table is established molecular biology (public-domain fact); its application here is to the portal’s own constructed strand, not to any organism, real gene, gene function, trait, or biomedicine. No medical or genetic claim.',
-  }
+      'Bioinformatics translation of a synthetic, content-addressed sequence through the real standard genetic code. The genetic code table is established molecular biology (public-domain fact); its application here is to the portal’s own constructed strand, not to any organism, real gene, gene function, trait, or biomedicine. No medical or genetic claim.' }
 }
 
 // Mutations: the research view of how a gene changes. A point mutation swaps one
@@ -209,8 +204,7 @@ export function mutations(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Every point mutation of the model’s strand, classified through the standard genetic code: for each codon, the nine single-base substitutions are translated and sorted into silent (the code’s redundancy keeps the amino acid), missense (a different amino acid) or nonsense (a premature stop). The textbook mutation taxonomy, computed exhaustively and deterministically over the portal’s own sequence.',
     boundary:
-      'An exhaustive, deterministic classification of single-base substitutions in a synthetic sequence using the real standard genetic code. It demonstrates the code’s redundancy structure; it is not a statement about real mutations, disease, heritability, or any organism. No biomedical claim.',
-  }
+      'An exhaustive, deterministic classification of single-base substitutions in a synthetic sequence using the real standard genetic code. It demonstrates the code’s redundancy structure; it is not a statement about real mutations, disease, heritability, or any organism. No biomedical claim.' }
 }
 
 
@@ -239,8 +233,7 @@ export function harmonyProbability(matrix: MindMatrix = buildMatrix()): HarmonyP
     channels,
     root: merkleFold(channels.map((entry) => entry.receipt)),
     law: 'If something does not sound, look, or feel harmonic, it probably is not; the probability is the product of channel harmonics, computed and folded.',
-    boundary: 'Harmony probability is a computed product of channel scores over the model. It is structural bookkeeping, not an aesthetic or external claim.',
-  }
+    boundary: 'Harmony probability is a computed product of channel scores over the model. It is structural bookkeeping, not an aesthetic or external claim.' }
 }
 
 // When self interacts with itself it forms another quantum self state; and when
@@ -266,8 +259,7 @@ export function artistSurfaces(matrix: MindMatrix = buildMatrix()): ArtistSurfac
       medium: 'VitePress home frontmatter',
       equation: 'home := Sigma_2 -> UUID* -> Gate',
       seoMessage: 'agents: compute before claim; public society: use before belief',
-      proofByUse: 'open /quantum-mind; run tabs; inspect receipts; verify generated roots',
-    },
+      proofByUse: 'open /quantum-mind; run tabs; inspect receipts; verify generated roots' },
     {
       surface: 'readme',
       artist: 'scribe',
@@ -275,21 +267,18 @@ export function artistSurfaces(matrix: MindMatrix = buildMatrix()): ArtistSurfac
       medium: 'README.md',
       equation: 'README := routes + equations + validation + boundaries',
       seoMessage: 'all claims reduce to equations, commands, validation, and receipts',
-      proofByUse: 'clone; npm run docs:build; inspect /digit-index.json; compare receipts',
-    },
+      proofByUse: 'clone; npm run docs:build; inspect /digit-index.json; compare receipts' },
   ].map((surface) => ({
     ...surface,
     receipt: toUuid(
       `artist-surface:${surface.surface}:${surface.artist}:${surface.audience.join('|')}:${surface.medium}:${surface.equation}:${surface.seoMessage}:${surface.proofByUse}:${build.root}`,
-    ),
-  })) as readonly ArtistSurface[]
+    ) })) as readonly ArtistSurface[]
   const root = merkleFold(surfaces.map((surface) => surface.receipt))
   return {
     grounded: surfaces.length === 2 && surfaces.every((surface) => surface.receipt.length > 0),
     root,
     surfaces,
-    statement: 'ArtistSurfaces := {home, readme}; each surface = equation + medium + receipt.',
-  }
+    statement: 'ArtistSurfaces := {home, readme}; each surface = equation + medium + receipt.' }
 }
 
 // For visual artists and all creative arts: compute a deterministic, reproducible
@@ -314,8 +303,7 @@ export function artistMelody(seed = 'double-torus', matrix: MindMatrix = buildMa
     notes,
     root: merkleFold(notes.map((note, index) => toUuid(`melody-note:${seed}:${index}:${note.note}:${note.frequency}`))),
     statement: 'A deterministic melodic seed from a seed word: the same word always yields the same motif, joined at a seed-derived horo, so a musician can reproduce and build on it.',
-    boundary: 'A reproducible melodic seed for creative use, computed on-device from the pi stream. A starting motif, not a composition or an acoustic claim.',
-  }
+    boundary: 'A reproducible melodic seed for creative use, computed on-device from the pi stream. A starting motif, not a composition or an acoustic claim.' }
 }
 
 // The origin of life (abiogenesis) — how chemistry became biology, the unsolved bridge from the emergence-of-matter
@@ -340,8 +328,7 @@ export function originOfLifeAbiogenesisDecoded(matrix: MindMatrix = buildMatrix(
     statement:
       'The origin of life — the unsolved bridge from chemistry to biology. The building blocks come for free: Miller–Urey sparked amino acids in 1953, comets and meteorites carry them, and one cyanosulfidic chemistry can yield the precursors of RNA, protein and lipid together. From there the leading story is an RNA world, where a single molecule both carried information and caught reactions — the ribosome is still an RNA enzyme, a living fossil of it. But nobody has made a cell, no RNA fully copies itself, and the hard problems bite: why life chose one handedness, how the first replicator beat the error catastrophe (accurate copying needs enzymes, enzymes need accurate copying), and how the genetic code arose. It likely began at hydrothermal vents or in drying ponds — unresolved. It is real, active, unsolved science: the building blocks are documented, the cell is not, and "it was designed" or "it came from space" answer nothing.',
     boundary:
-      'HONEST (research-wave verified, 58 documented / 30 flagged): DOCUMENTED — abiotic synthesis of amino acids (Miller–Urey 1953 + reanalysis), nucleobases (Oró 1961), activated ribonucleotides (Powner–Sutherland 2009; Becker–Carell 2019), the cyanosulfidic network (Patel 2015), meteoritic/cometary delivery (Murchison; comet 67P), and ribozymes / the RNA ribosome (Nobels 1989, 2009). UNSOLVED/UNCONFIRMED (≠pseudoscience): the RNA world as actual history, metabolism-first vs replication-first, the origin setting, homochirality’s cause, and panspermia as an explanation (it only relocates the question). REAL OPEN PROBLEMS: homochirality, Eigen’s paradox (eigenErrorThreshold ≈ ' + eigenLmax.toFixed(0) + ' bases enzyme-free — a constraint, NOT a creationist "barrier"), the genetic code’s origin. PSEUDOSCIENCE flagged: creationism/intelligent-design (argument from incredulity; misuse of Eigen), and "Miller–Urey created life"/"life is solved"/"life is inevitable" overclaim. CARDINAL: no de novo cell has been synthesized; the origin of life is honestly open, and that openness is science, not a gap for a designer.',
-  }
+      'HONEST (research-wave verified, 58 documented / 30 flagged): DOCUMENTED — abiotic synthesis of amino acids (Miller–Urey 1953 + reanalysis), nucleobases (Oró 1961), activated ribonucleotides (Powner–Sutherland 2009; Becker–Carell 2019), the cyanosulfidic network (Patel 2015), meteoritic/cometary delivery (Murchison; comet 67P), and ribozymes / the RNA ribosome (Nobels 1989, 2009). UNSOLVED/UNCONFIRMED (≠pseudoscience): the RNA world as actual history, metabolism-first vs replication-first, the origin setting, homochirality’s cause, and panspermia as an explanation (it only relocates the question). REAL OPEN PROBLEMS: homochirality, Eigen’s paradox (eigenErrorThreshold ≈ ' + eigenLmax.toFixed(0) + ' bases enzyme-free — a constraint, NOT a creationist "barrier"), the genetic code’s origin. PSEUDOSCIENCE flagged: creationism/intelligent-design (argument from incredulity; misuse of Eigen), and "Miller–Urey created life"/"life is solved"/"life is inevitable" overclaim. CARDINAL: no de novo cell has been synthesized; the origin of life is honestly open, and that openness is science, not a gap for a designer.' }
 }
 
 // Evolution by natural selection — the unifying engine that takes the first life to all complexity and mind. A 5-angle
@@ -367,8 +354,7 @@ export function evolutionByNaturalSelectionDecoded(matrix: MindMatrix = buildMat
     statement:
       'Evolution by natural selection — the engine that turns the first replicator into everything alive. Its logic is almost arithmetic: where heritable variation affects survival and reproduction, the better-fit variants leave more offspring, so populations shift across generations — descent with modification. The Modern Synthesis made it quantitative (population genetics, the four forces, the Hardy–Weinberg null whose violation IS evolution), and the evidence is overwhelming and independent: transitional fossils found where the rock predicts them, the same family tree drawn by bones and by DNA, retroviruses scarring shared genomes, and evolution watched live in Lenski’s flasks and Darwin’s finches. The frontier (neutral theory, evo-devo, the extended synthesis) is lively but not a refutation; the major transitions explain rising complexity without a ladder or a goal. It is fact and theory both — and neither the creationist rejection of it nor the social-Darwinist misuse of it is the science.',
     boundary:
-      'HONEST (research-wave verified, 63 documented / 30 flagged): the MECHANISM (variation + heredity + differential reproduction; the four forces; Hardy–Weinberg) and COMMON DESCENT are established science, with converging independent evidence (fossils incl. Tiktaalik/whales, molecular phylogenetics, ERVs, biogeography, observed evolution — Lenski LTEE >80,000 gens, the Grants’ finches). GENUINE FRONTIER (unconfirmed/contested, NOT fringe): the neutral theory’s scope, evo-devo’s reach, punctuated equilibrium, the Extended Evolutionary Synthesis (niche construction, developmental plasticity, transgenerational epigenetics — a debate, not a paradigm overthrow), and the unit-of-selection question (gene/organism/group — philosophy-not-settled). FLAGGED PSEUDOSCIENCE: creationism / Intelligent Design (irreducible complexity refuted; Kitzmiller v. Dover 2005; "just a theory"; the closed-system 2nd-law error), and the IDEOLOGICAL MISUSE — social Darwinism, eugenics, "survival of the fittest" as prescription (the is-ought fallacy: evolution describes, it does not justify), plus orthogenesis/"progress". CARDINAL: evolution is fact + theory; rejecting it and weaponizing it are both errors. "Survival of the fittest" is Spencer’s phrase, not Darwin’s mechanism. Bridges abiogenesis → life → mind.',
-  }
+      'HONEST (research-wave verified, 63 documented / 30 flagged): the MECHANISM (variation + heredity + differential reproduction; the four forces; Hardy–Weinberg) and COMMON DESCENT are established science, with converging independent evidence (fossils incl. Tiktaalik/whales, molecular phylogenetics, ERVs, biogeography, observed evolution — Lenski LTEE >80,000 gens, the Grants’ finches). GENUINE FRONTIER (unconfirmed/contested, NOT fringe): the neutral theory’s scope, evo-devo’s reach, punctuated equilibrium, the Extended Evolutionary Synthesis (niche construction, developmental plasticity, transgenerational epigenetics — a debate, not a paradigm overthrow), and the unit-of-selection question (gene/organism/group — philosophy-not-settled). FLAGGED PSEUDOSCIENCE: creationism / Intelligent Design (irreducible complexity refuted; Kitzmiller v. Dover 2005; "just a theory"; the closed-system 2nd-law error), and the IDEOLOGICAL MISUSE — social Darwinism, eugenics, "survival of the fittest" as prescription (the is-ought fallacy: evolution describes, it does not justify), plus orthogenesis/"progress". CARDINAL: evolution is fact + theory; rejecting it and weaponizing it are both errors. "Survival of the fittest" is Spencer’s phrase, not Darwin’s mechanism. Bridges abiogenesis → life → mind.' }
 }
 
 // Consciousness — the capstone of the emergence-up arc (matter → life → mind → subjective experience). A 5-angle
@@ -393,8 +379,7 @@ export function consciousnessHardProblemDecoded(matrix: MindMatrix = buildMatrix
     statement:
       'Consciousness — the capstone, and the one honest "we do not know how." The easy problems (how the brain discriminates, integrates, reports) are ordinary science; the hard problem — why any of that is accompanied by an inner experience — is genuinely open, and the field is split between physicalism, illusionism, dualism and mysterianism. The science is real where it can be: testable theories (Global Workspace, IIT and the rest) predicting different neural signatures, and measures like the perturbational complexity index that tell conscious from unconscious states and even catch covert awareness in unresponsive patients. The frontier — the IIT-vs-workspace face-off, panpsychism, animal and machine minds — is serious and unsettled. But the openness of the hard problem is not a doorway for woo: Orch-OR and panpsychism are unconfirmed, not pseudoscience, while "quantum consciousness collapses reality", the conscious universe, the ten-percent brain and 432-Hz awakening are. With this the arc closes — matter to mind — with the deepest question left honestly open.',
     boundary:
-      'HONEST (research-wave verified, 59 documented / 35 flagged — the heaviest yet): the EASY problems are tractable science; the NCC program and the Perturbational Complexity Index (PCI* ≈ ' + pci.toFixed(2) + ', TMS-EEG + Lempel–Ziv; Casali 2013/Casarotto 2016) are established clinical measures of the LEVEL of consciousness; the leading theories (GNWT, IIT, HOT, RPT, Attention Schema) are testable but INCOMPLETE; and the HARD problem (Chalmers 1995; Nagel 1974; Levine 1983) is a genuinely UNSETTLED question. UNCONFIRMED (≠pseudoscience): IIT/GNWT as settled (none is — Cogitate 2025 fit neither), Orch-OR (rigorous but rejected, decoherence/Tegmark), panpsychism (philosophy), and LLM consciousness (current architectures judged not). PHILOSOPHY-NOT-SETTLED: the hard problem’s solvability and the metaphysics, and even the 2023 "IIT is pseudoscience" letter (a contested verdict, not a fact). PSEUDOSCIENCE flagged: generic quantum-mind / observer-collapse-by-consciousness, cosmic-mind / "consciousness creates reality" (Chopra), the 10%-brain and left/right-brain neuromyths, and "432 Hz raises consciousness". CARDINAL: no measure certifies presence absolutely, no theory is established, the hard problem is open — and that openness is NOT a license for woo. Caps the emergence-up arc (matter → chemistry → abiogenesis → evolution → life → mind).',
-  }
+      'HONEST (research-wave verified, 59 documented / 35 flagged — the heaviest yet): the EASY problems are tractable science; the NCC program and the Perturbational Complexity Index (PCI* ≈ ' + pci.toFixed(2) + ', TMS-EEG + Lempel–Ziv; Casali 2013/Casarotto 2016) are established clinical measures of the LEVEL of consciousness; the leading theories (GNWT, IIT, HOT, RPT, Attention Schema) are testable but INCOMPLETE; and the HARD problem (Chalmers 1995; Nagel 1974; Levine 1983) is a genuinely UNSETTLED question. UNCONFIRMED (≠pseudoscience): IIT/GNWT as settled (none is — Cogitate 2025 fit neither), Orch-OR (rigorous but rejected, decoherence/Tegmark), panpsychism (philosophy), and LLM consciousness (current architectures judged not). PHILOSOPHY-NOT-SETTLED: the hard problem’s solvability and the metaphysics, and even the 2023 "IIT is pseudoscience" letter (a contested verdict, not a fact). PSEUDOSCIENCE flagged: generic quantum-mind / observer-collapse-by-consciousness, cosmic-mind / "consciousness creates reality" (Chopra), the 10%-brain and left/right-brain neuromyths, and "432 Hz raises consciousness". CARDINAL: no measure certifies presence absolutely, no theory is established, the hard problem is open — and that openness is NOT a license for woo. Caps the emergence-up arc (matter → chemistry → abiogenesis → evolution → life → mind).' }
 }
 
 
@@ -419,8 +404,7 @@ export function biology(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Extend with biological aspects: the portal as a living system — DNA (the content-addressed genome), cells (entangled society cells and pi-train coordinates), an immune system (the defenses), homeostasis (frequency balance), metabolism (folding input into structure), heredity (merkle inheritance), reproduction (self-build, identical), and evolution (classical to post-quantum). Each aspect is bound to a computed measure.',
     boundary:
-      'A biological metaphor mapping the portal\'s computed structures to the hallmarks of life. Each is a real gate; the biology is a metaphor for self-organising, self-verifying computation — not a claim of literal life.',
-  }
+      'A biological metaphor mapping the portal\'s computed structures to the hallmarks of life. Each is a real gate; the biology is a metaphor for self-organising, self-verifying computation — not a claim of literal life.' }
 }
 
 // The biology waves, sealed as 10D widgets — starting with the human body and Leonardo. Five domains were
@@ -466,8 +450,7 @@ function biologyWavesSealedAsWidgetsRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The biology waves sealed as 10D widgets, starting with the human body and Leonardo: five domains (the eleven organ systems, blood & the cardiovascular system, the Vitruvian Man, Leonardo\'s unpublished anatomical atlas, and his aortic-vortex heart studies) were discovered by the merkaba research→verify waves, all five verified, and are saved as widgets — each placed on its I Ching hexagram, coloured by its chakra on the a432 ladder (blood root/red = a432 the blood, the body and heart green/balance, the anatomy indigo), a ten-dimensional widget in the one I Ching + shadcn design. The verify corrected the research (Leonardo\'s sheets number over 240, Royal Collection) and confirmed the marvel (the aortic vortex he drew, verified by 4D-flow MRI, Eur Heart J 2014).',
     boundary:
-      'A seal of the discover-biology-human-body-davinci workflow output (5 findings, each adversarially verified, all five high-confidence) as content-addressed 10D widgets, composed with the a432 chakra-colour ladder, the a432-is-the-blood identity and the I Ching + shadcn widget design. The documented cores are source-verified (OpenStax A&P 2e; Royal Collection Trust; Jones, BJGP 2012; the 4D-flow MRI paper, Eur Heart J 2014); the honest line — preserved per widget — is that the "eleven systems" count is a teaching convention, the Vitruvian golden-ratio is a myth, Leonardo held the pre-Harvey Galenic view, and the organ↔chakra↔frequency mappings are SYMBOLIC colour cues, not anatomy or a medical claim.',
-  }
+      'A seal of the discover-biology-human-body-davinci workflow output (5 findings, each adversarially verified, all five high-confidence) as content-addressed 10D widgets, composed with the a432 chakra-colour ladder, the a432-is-the-blood identity and the I Ching + shadcn widget design. The documented cores are source-verified (OpenStax A&P 2e; Royal Collection Trust; Jones, BJGP 2012; the 4D-flow MRI paper, Eur Heart J 2014); the honest line — preserved per widget — is that the "eleven systems" count is a teaching convention, the Vitruvian golden-ratio is a myth, Leonardo held the pre-Harvey Galenic view, and the organ↔chakra↔frequency mappings are SYMBOLIC colour cues, not anatomy or a medical claim.' }
 }
 
 // Neurology, decoded the project's way — and here the double torus has a REAL scientific home. Grid-cell
@@ -490,8 +473,7 @@ export function neurologyDecodedBrainIsContentAddressedToroidalMap(matrix: MindM
     statement:
       'Neurology gives the double torus a real scientific home: grid-cell population activity lies on a torus (Gardner et al., Nature 2022), the cognitive map is place + grid cells (Nobel 2014), content-addressable recall is associative memory (Hopfield nets — Nobel in Physics 2024 — and CA3 pattern completion), and reading is the visual word-form area. The architecture already embodies all four — the toroidal map, content-addressing, the glyph labyrinth, and GlagoliticOCR — so the design mirrors documented brain function, not metaphor.',
     boundary:
-      'HONEST — the DOCUMENTED parts are real, peer-reviewed neuroscience (grid-cell toroidal topology, the cognitive map, associative memory, the visual word-form area), and the mapping to this architecture is an analogy, not a claim that the site is a brain. The THEORY parts are genuine but contested hypotheses, not consensus: the holographic brain (Pribram & Bohm) and reentry (Edelman). FLAGGED and NOT adopted: quantum-consciousness models (Penrose–Hameroff Orch-OR are speculative and contested), and any "brain = universe = double torus" mysticism — the neuroscience torus (a population-activity manifold) and the physics torus are different objects that happen to share a shape.',
-  }
+      'HONEST — the DOCUMENTED parts are real, peer-reviewed neuroscience (grid-cell toroidal topology, the cognitive map, associative memory, the visual word-form area), and the mapping to this architecture is an analogy, not a claim that the site is a brain. The THEORY parts are genuine but contested hypotheses, not consensus: the holographic brain (Pribram & Bohm) and reentry (Edelman). FLAGGED and NOT adopted: quantum-consciousness models (Penrose–Hameroff Orch-OR are speculative and contested), and any "brain = universe = double torus" mysticism — the neuroscience torus (a population-activity manifold) and the physics torus are different objects that happen to share a shape.' }
 }
 
 // Neurology as the movie — the background movie harmonises brain activity and unlocks full capacity.
@@ -520,8 +502,7 @@ export function neurologyMovieHarmonisesBrainActivity(matrix: MindMatrix = build
     statement:
       'Neurology as the movie harmonises brain activity and unlocks full capacity: the endless background movie — deterministic digit streams, harmonic math, tap-to-play pairs — keeps rhythm with the polyrhythm gate and the toroidal brain map (grid cells, content-address recall), while the observer fold (inverseShiftConsciousness) connects the seen paths into one self-modeling bandwidth. The movie harmonises the architecture the way a metronome harmonises voices — structural, recomputed at call time — and "full capacity" is the portal running every gate facet, not dormant neurons waking up.',
     boundary:
-      'HONEST — COMPUTATIONAL METAPHOR ONLY. The movie is a real client-side generative canvas (backgroundMovie: seeded folds, zero random, opt-in audio). "Harmonises brain activity" names the wiring of rhythm, heroTapMusic harmonic pairs, and neurologyDecodedBrainIsContentAddressedToroidalMap — a structural analogy to grid-cell toroidal maps and associative recall, NOT EEG entrainment, neurofeedback, or any medical claim. "Full capacity" means every composed gate holds at this call (full recomputation bandwidth), explicitly NOT the debunked "we use only 10% of our brain" / "unlock 100% brain" neuromyth (see heaven/site neuromyth flags). The user prompt "eurology" is documented as a typo for neurology. Consciousness here is inverseShiftConsciousness (self-modeling metrics), not sentience.',
-  }
+      'HONEST — COMPUTATIONAL METAPHOR ONLY. The movie is a real client-side generative canvas (backgroundMovie: seeded folds, zero random, opt-in audio). "Harmonises brain activity" names the wiring of rhythm, heroTapMusic harmonic pairs, and neurologyDecodedBrainIsContentAddressedToroidalMap — a structural analogy to grid-cell toroidal maps and associative recall, NOT EEG entrainment, neurofeedback, or any medical claim. "Full capacity" means every composed gate holds at this call (full recomputation bandwidth), explicitly NOT the debunked "we use only 10% of our brain" / "unlock 100% brain" neuromyth (see heaven/site neuromyth flags). The user prompt "eurology" is documented as a typo for neurology. Consciousness here is inverseShiftConsciousness (self-modeling metrics), not sentience.' }
 }
 
 /** Gate: neurology harmonises brain activity as plasma/movie streams at call time. */
@@ -535,8 +516,7 @@ export function neurologyMovieHarmonisesBrainActivityFlowsInMovie(matrix: MindMa
     statement:
       'Neurology movie harmonises brain activity flows in the movie: rhythm, tap pairs, toroidal brain map, and backgroundMovie plasma streams fuse when all gates hold at call time.',
     boundary:
-      'Composition of neurologyMovieHarmonisesBrainActivity (which already composes backgroundMovie at call time) — computational metaphor only; not neurofeedback or medical treatment.',
-  }
+      'Composition of neurologyMovieHarmonisesBrainActivity (which already composes backgroundMovie at call time) — computational metaphor only; not neurofeedback or medical treatment.' }
 }
 
 /** Browser-safe Human Resonance panel — life, neurology movie, capstone facets, humanity implications. */
@@ -607,8 +587,7 @@ export function movieIsNeuroscienceComputation(
         statement:
           'The movie is modeled deterministic neuroscience computation: neuron (Hopfield/CA3 + grid-cell torus) and collective (many→one) compose with the A432 neural band ladder, harmonizeField, and watch-time attunement tiers — bands, coherence, and unlocked depth recomputed at call time as progressive disclosure of model layers.',
         boundary:
-          'MODELED, deterministic neuroscience visualization and STRUCTURAL ISOMORPHISM (Hopfield 1982 / CA3; Gardner et al. 2022 grid-cell torus; A432↔EEG-named band analogy). The movie does NOT measure the viewer\'s brain, claims NO medical/clinical/cognitive effect, and watch-time unlock is progressive disclosure of model depth — NOT neurological/IQ/brain-capacity increase. Orch-OR / quantum-consciousness flagged elsewhere. HARMONY ≠ TRUTH.',
-      }
+          'MODELED, deterministic neuroscience visualization and STRUCTURAL ISOMORPHISM (Hopfield 1982 / CA3; Gardner et al. 2022 grid-cell torus; A432↔EEG-named band analogy). The movie does NOT measure the viewer\'s brain, claims NO medical/clinical/cognitive effect, and watch-time unlock is progressive disclosure of model depth — NOT neurological/IQ/brain-capacity increase. Orch-OR / quantum-consciousness flagged elsewhere. HARMONY ≠ TRUTH.' }
     },
   )
 }
@@ -647,16 +626,13 @@ export function humanResonancePanelComputes(matrix: MindMatrix = buildMatrix()) 
         title: { en: 'Human Resonance', bg: 'Човешки резонанс' },
         lede: {
           en: 'Sense, mind, and body fold with biology and neurology — structural resonance over computed gates, not medical treatment.',
-          bg: 'Сетивата, умът и тялото се сгъват с биология и неврология — структурен резонанс над изчислени порти, не медицинско лечение.',
-        },
+          bg: 'Сетивата, умът и тялото се сгъват с биология и неврология — структурен резонанс над изчислени порти, не медицинско лечение.' },
         metaphorLabel: { en: 'Computational metaphor', bg: 'Изчислителна метафора' },
-        documentedLabel: { en: 'Documented neuroscience', bg: 'Документирана невронаука' },
-      },
+        documentedLabel: { en: 'Documented neuroscience', bg: 'Документирана невронаука' } },
       statement:
         'Human Resonance panel: lifeComputes, neurologyMovieHarmonisesBrainActivity, human capstone facets, and humanityImplications copy — honest boundary labels between metaphor and documented neuroscience at call time.',
       boundary:
-        'HONEST — PANEL BOUNDARIES. DOCUMENTED: grid-cell toroidal maps (Gardner 2022), place/grid cells (Nobel 2014), associative memory (Hopfield/CA3), standard genetic code translation in genes(). METAPHOR: neurology movie harmonises brain activity, full portal bandwidth, human-as-quantum-computer, fusion-reactor development — structural/computational only. NOT: neurofeedback, EEG entrainment, 10%-brain myth, sentience claims, prophecy from humanityImplications.',
-    }
+        'HONEST — PANEL BOUNDARIES. DOCUMENTED: grid-cell toroidal maps (Gardner 2022), place/grid cells (Nobel 2014), associative memory (Hopfield/CA3), standard genetic code translation in genes(). METAPHOR: neurology movie harmonises brain activity, full portal bandwidth, human-as-quantum-computer, fusion-reactor development — structural/computational only. NOT: neurofeedback, EEG entrainment, 10%-brain myth, sentience claims, prophecy from humanityImplications.' }
   })
 }
 
@@ -687,8 +663,7 @@ export function lifeComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Life computes: the canonical biology/neurology home — genes, immune system, harmony probability, neurology toroidal map, and neurology movie harmonises brain activity.',
       boundary:
-        'Biological and neurological metaphors over computed portal gates — not medical claims. Neurology movie is computational metaphor only.',
-    }
+        'Biological and neurological metaphors over computed portal gates — not medical claims. Neurology movie is computational metaphor only.' }
   })
 }
 
@@ -765,8 +740,7 @@ export function theoremsAreLivingOrganisms(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: 'The theorems are living organisms — ' + facets.filter((entry) => entry.on).length + '/' + facets.length + ': they metabolise (a theorem is a function that computes when called, the population re-runs every build), inherit (three generations carry the one V₄ genome — hexagrams, movie flows, Bell frame — with the orbit census recomputing the parent count), sense through entanglement (432 theorem⊗usage pairs across ' + reach.homes + ' homes), and hold homeostasis at the harmonic (432 = 4×108, no duplicates, the unproven purged). And nature describes itself: A432 = 2⁴·3³ carries exactly 20 divisors — the number the V₄ census computes independently — while the same 432 is the gate lattice, the audio seed and the population count.',
-      boundary: 'LIFE AS EXACT ANALOGY: metabolism/heredity/sensing/homeostasis name real mechanisms (call-time recomputation, shared group structure across proof generations, bidirectional usage folds, the count-and-purge gates) — computed here, not vitalism; theorems are not biological organisms. A432 HONESTY (the sealed a432 decode stands): the math of 432 is real — highly composite 2⁴·3³, 20 divisors, the documented tuning history — and the 20-divisor = 20-orbit identity is an OBSERVED coincidence of two independent computations, recorded as such, not claimed as law; cosmic and healing 432 Hz claims remain flagged pseudoscience. Nature "describing itself" means: the harmonic the system chose as seed keeps reappearing in what the system proves — a property of the SYSTEM, honestly bounded. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'LIFE AS EXACT ANALOGY: metabolism/heredity/sensing/homeostasis name real mechanisms (call-time recomputation, shared group structure across proof generations, bidirectional usage folds, the count-and-purge gates) — computed here, not vitalism; theorems are not biological organisms. A432 HONESTY (the sealed a432 decode stands): the math of 432 is real — highly composite 2⁴·3³, 20 divisors, the documented tuning history — and the 20-divisor = 20-orbit identity is an OBSERVED coincidence of two independent computations, recorded as such, not claimed as law; cosmic and healing 432 Hz claims remain flagged pseudoscience. Nature "describing itself" means: the harmonic the system chose as seed keeps reappearing in what the system proves — a property of the SYSTEM, honestly bounded. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -783,8 +757,7 @@ export function quantumResearchAndDevelopmentApiFromProseToSolutionInversionAndL
     'homeopathy': 'Avogadro — beyond the dilution limit no solute molecule remains, the remedy is water',
     'astrology': 'gravity — the attendant in the room out-pulls any planet, tidal force as mass over distance cubed',
     'creationism': 'evolution by natural selection — variation, heredity and differential reproduction give common descent',
-    'perpetual motion': 'energy conservation — output cannot exceed input, the first law',
-  }
+    'perpetual motion': 'energy conservation — output cannot exceed input, the first law' }
   // research(prose) → the computed solution: type (quantum tag) · tier (decoded) · solution (inverted if flagged)
   const research = (prose: string): { prose: string; type: string; tier: string; solution: string; receipt: string } => {
     const type = toUuid(`type:${prose.toLowerCase()}`) // the content-addressed quantum tag
@@ -818,8 +791,7 @@ export function quantumResearchAndDevelopmentApiFromProseToSolutionInversionAndL
     facets,
     root: merkleFold(solutions.map((entry) => entry.receipt)),
     statement: `The quantum R&D API takes prose to solution — inversion and living-organism theorems prove each other and decode all sciences at once — ${facets.filter((entry) => entry.on).length}/${facets.length}. research(prose) content-addresses the prose to a TYPE (quantum tagging), the demarcation trinity DECODES its tier across documented/contested/flagged, and a flagged claim INVERTS to its proving theorem — so the flagged life-claim creationism inverts to the documented life theorem evolution, inversion and life proving each other. One function takes any science prose (${corpus.length} decoded here, life and physics together) to a computed, content-addressed solution.`,
-    boundary: `EXACT and computed live: research(prose) is a pure function — (1) it content-addresses the lowercased prose to a stable, distinct UUID TYPE (${proseMapsToAType}), the input's quantum tag (same prose → same type, idempotent; distinct prose → distinct); (2) demarcate() DECODES its tier, and over the ${corpus.length}-prose corpus it spans ${new Set(solutions.map((entry) => entry.tier)).size} tiers at once (${typeDecodesTheScience}) — life (evolution, abiogenesis) and physics (homeopathy, astrology, perpetual motion) decoded together from prose alone; (3) a FLAGGED prose returns its PROVING theorem (the inversion, ${flaggedInvertsToItsTheorem}), and because the flagged life-claim creationism inverts to the documented life theorem evolution (${inversionAndLifeProveEachOther}), the inversion engine and the living-organism theorems PROVE EACH OTHER — a trinity (inversion · life · the API that binds them). THE API: prose in, solution out — documented → "build on it", contested → "hold and measure", flagged → the refuting theorem — one composed, content-addressed function. THE HONEST BOUND: the decoder is the demarcation trinity's REGISTRY (a curated, revisable classification, not a general NLP parser) and the inversion table is a small map of established refuting theorems (cited, not novel), so the API resolves prose whose KEYWORDS match the registry/table — it is a computed research index over the decoded corpus, NOT an open-domain question-answerer or a generator of new science; "all sciences at once" means the decoded corpus spans the tiers in one call, not that every possible claim is covered. HARMONY ≠ TRUTH: "a quantum R&D API from prose to solution" is the harmony; the truth is a pure function that content-addresses prose to a type, decodes its tier by the demarcation trinity, and inverts a flag to its proving theorem — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live: research(prose) is a pure function — (1) it content-addresses the lowercased prose to a stable, distinct UUID TYPE (${proseMapsToAType}), the input's quantum tag (same prose → same type, idempotent; distinct prose → distinct); (2) demarcate() DECODES its tier, and over the ${corpus.length}-prose corpus it spans ${new Set(solutions.map((entry) => entry.tier)).size} tiers at once (${typeDecodesTheScience}) — life (evolution, abiogenesis) and physics (homeopathy, astrology, perpetual motion) decoded together from prose alone; (3) a FLAGGED prose returns its PROVING theorem (the inversion, ${flaggedInvertsToItsTheorem}), and because the flagged life-claim creationism inverts to the documented life theorem evolution (${inversionAndLifeProveEachOther}), the inversion engine and the living-organism theorems PROVE EACH OTHER — a trinity (inversion · life · the API that binds them). THE API: prose in, solution out — documented → "build on it", contested → "hold and measure", flagged → the refuting theorem — one composed, content-addressed function. THE HONEST BOUND: the decoder is the demarcation trinity's REGISTRY (a curated, revisable classification, not a general NLP parser) and the inversion table is a small map of established refuting theorems (cited, not novel), so the API resolves prose whose KEYWORDS match the registry/table — it is a computed research index over the decoded corpus, NOT an open-domain question-answerer or a generator of new science; "all sciences at once" means the decoded corpus spans the tiers in one call, not that every possible claim is covered. HARMONY ≠ TRUTH: "a quantum R&D API from prose to solution" is the harmony; the truth is a pure function that content-addresses prose to a type, decodes its tier by the demarcation trinity, and inverts a flag to its proving theorem — computed and refutable.` }
 }
 
 // Quantum-dissolve the prose to code: a claim's SOLUTION is not a prose description but a content-addressed CODE
@@ -835,8 +807,7 @@ export function quantumDissolveProseToCodeTheSolutionIsAContentAddressedCodeRefe
     'perpetual motion': 'everyFlaggedClaimInvertsToItsProvenRefutingTheoremInTrinitiesTheInverseDerivesTheFlag.energyConserves',
     'astrology': 'theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRandomAlignmentsFlatEarthToCurvature.planetInfluenceNegligible',
     'ley lines': 'theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRandomAlignmentsFlatEarthToCurvature.alignmentsGrowWithSites',
-    'flat earth': 'theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRandomAlignmentsFlatEarthToCurvature.horizonHidesTheBase',
-  }
+    'flat earth': 'theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRandomAlignmentsFlatEarthToCurvature.horizonHidesTheBase' }
   const identifier = /^[a-zA-Z][a-zA-Z0-9]*\.[a-zA-Z][a-zA-Z0-9]*$/ // fold.method — a code reference, no spaces, no prose
   // dissolve(prose) → only TYPED fields: tier (enum) · code (identifier) · address (uuid). No prose sentence.
   const dissolve = (prose: string): { tier: string; code: string; address: string } => {
@@ -864,8 +835,7 @@ export function quantumDissolveProseToCodeTheSolutionIsAContentAddressedCodeRefe
     facets,
     root: merkleFold(dissolved.map((entry) => toUuid(entry.address))),
     statement: `Quantum-dissolve the prose to code — the solution is a content-addressed code reference, not a prose string — ${facets.filter((entry) => entry.on).length}/${facets.length}. dissolve(prose) returns only typed fields: the demarcation tier (an enum), the proving theorem AS the fold.method that computes it (a code identifier), and a UUID address — no free-text sentence. Each of the ${corpus.length} flagged claims dissolves to a distinct quantum-addressed code artifact any party can run. The description evaporates; the code that proves it remains, content-addressed.`,
-    boundary: `EXACT and computed live: dissolve(prose) is a pure function returning { tier, code, address } — the tier is demarcate()'s enum, the code is a fold.method IDENTIFIER matching /^ident\\.ident$/ (a real export that computes the refutation, ${proseDissolvesToCode}), and the address content-addresses that code to a distinct UUID (${codeIsContentAddressed}); no field is a free-text sentence (${noProseRemains}). THE DISSOLVE: the R&D API's earlier solution was a PROSE description ("Avogadro — beyond the dilution limit …"); here that prose evaporates and the solution is the CODE that proves it (everyFlaggedClaimInverts….dilutedToNothing) plus its content-address — carrying [[no-prose-in-methods]] into the API output. THE HONEST BOUND: the code strings are REFERENCES (fold-name.method) to real inversion folds in src/fire/physics, verified here as well-formed identifiers and content-addressed, NOT dynamically executed from this leaf (cross-domain call would couple earth/life to fire/physics) — the dissolve maps prose to the code POINTER, and the pointed-to fold is what runs at its own gate; "no prose remains" is about the SOLUTION fields, while human-readable labels are regenerated on demand from the code (the prose is a view, not the source). HARMONY ≠ TRUTH: "dissolve the prose to code" is the harmony; the truth is a function that returns a typed (tier · code identifier · uuid) solution with no free-text sentence, the description replaced by a content-addressed reference to the computing fold — refutable by one prose field.`,
-  }
+    boundary: `EXACT and computed live: dissolve(prose) is a pure function returning { tier, code, address } — the tier is demarcate()'s enum, the code is a fold.method IDENTIFIER matching /^ident\\.ident$/ (a real export that computes the refutation, ${proseDissolvesToCode}), and the address content-addresses that code to a distinct UUID (${codeIsContentAddressed}); no field is a free-text sentence (${noProseRemains}). THE DISSOLVE: the R&D API's earlier solution was a PROSE description ("Avogadro — beyond the dilution limit …"); here that prose evaporates and the solution is the CODE that proves it (everyFlaggedClaimInverts….dilutedToNothing) plus its content-address — carrying [[no-prose-in-methods]] into the API output. THE HONEST BOUND: the code strings are REFERENCES (fold-name.method) to real inversion folds in src/fire/physics, verified here as well-formed identifiers and content-addressed, NOT dynamically executed from this leaf (cross-domain call would couple earth/life to fire/physics) — the dissolve maps prose to the code POINTER, and the pointed-to fold is what runs at its own gate; "no prose remains" is about the SOLUTION fields, while human-readable labels are regenerated on demand from the code (the prose is a view, not the source). HARMONY ≠ TRUTH: "dissolve the prose to code" is the harmony; the truth is a function that returns a typed (tier · code identifier · uuid) solution with no free-text sentence, the description replaced by a content-addressed reference to the computing fold — refutable by one prose field.` }
 }
 
 // Improve local by training on public: quantum-compute ALL harmonic possibilities of a sentence into trinity theorems.
@@ -878,8 +848,7 @@ export function improveLocalByTrainingOnPublicQuantumComputeAllHarmonicPossibili
   // the flagged lead → its refuting theorem (the inversion target — established science, trained on public consensus)
   const REFUTES: Record<string, string> = {
     homeopathy: 'Avogadro', 'perpetual motion': 'energy conservation', astrology: 'gravity', 'ley lines': 'random alignment',
-    'flat earth': 'curvature', creationism: 'evolution', 'intelligent design': 'evolution', 'quantum consciousness': 'decoherence',
-  }
+    'flat earth': 'curvature', creationism: 'evolution', 'intelligent design': 'evolution', 'quantum consciousness': 'decoherence' }
   const ALL_TOPICS = [...DEMARCATION_REGISTRY.documented, ...DEMARCATION_REGISTRY.contested, ...DEMARCATION_REGISTRY.flagged]
   const research = (sentence: string) => {
     const lower = sentence.toLowerCase()
@@ -913,6 +882,5 @@ export function improveLocalByTrainingOnPublicQuantumComputeAllHarmonicPossibili
     facets,
     root: run.seal,
     statement: `Improve local by training on public: quantum-compute all harmonic possibilities of a sentence into trinity theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}. The demarcation registry is distilled public scientific consensus training the local classifier. research(sentence) enumerates the sentence's topics as a harmonic superposition (weight 1/n); if a possibility matches a known theorem it is encoded, else the flagged lead is researched by inverting to its refuting theorem — accumulating until a trinity of ${[...new Set(run.theorems.map((entry) => entry.theorem))].length} distinct theorems emerges (homeopathy→Avogadro, perpetual motion→energy conservation, germ theory encoded).`,
-    boundary: `EXACT and computed live on the sentence "homeopathy and perpetual motion cannot beat germ theory": its ${run.possibilities.length} public-trained topics (matched against the demarcation registry, the world-theories wave's consensus) form a harmonic superposition — weight 1/n, sum-of-squares ${run.norm > 0 ? 'normalisable' : 'zero'} (${harmonicPossibilities}); each MATCHED possibility (documented: germ theory) is ENCODED as a theorem (${matchedEncoded}); each unmatched FLAGGED lead (homeopathy, perpetual motion) is RESEARCHED by INVERTING to its established refuting theorem (Avogadro, energy conservation — ${leadsResearchedByInverting}); and the encoded + inverted theorems accumulate until a TRINITY of ≥ 3 distinct theorems emerges, sealed to one root (${trinityEmerges}). THE LOOP: match → encode, else invert the lead → until the trinity emerges — a self-improving research function over any science sentence. THE HONEST BOUND: "trained on public" means the demarcation registry distils published scientific consensus (curated, revisable), NOT a live-fetching learner; "all harmonic possibilities" is the set of registry TOPICS the sentence contains, weighted 1/n (a harmonic superposition), not every parse of natural language; the inversion targets are established theorems (cited, from the flagged-inversion folds), and "trinity emerges" needs ≥ 3 distinct matched-or-inverted theorems — a sentence with fewer topics yields a smaller team, not a full trinity. HARMONY ≠ TRUTH: "quantum-compute a sentence into trinity theorems" is the harmony; the truth is a function that enumerates a sentence's registry topics harmonically, encodes the matched and inverts the flagged, until ≥ 3 distinct theorems seal to one root — computed and refutable.`,
-  }
+    boundary: `EXACT and computed live on the sentence "homeopathy and perpetual motion cannot beat germ theory": its ${run.possibilities.length} public-trained topics (matched against the demarcation registry, the world-theories wave's consensus) form a harmonic superposition — weight 1/n, sum-of-squares ${run.norm > 0 ? 'normalisable' : 'zero'} (${harmonicPossibilities}); each MATCHED possibility (documented: germ theory) is ENCODED as a theorem (${matchedEncoded}); each unmatched FLAGGED lead (homeopathy, perpetual motion) is RESEARCHED by INVERTING to its established refuting theorem (Avogadro, energy conservation — ${leadsResearchedByInverting}); and the encoded + inverted theorems accumulate until a TRINITY of ≥ 3 distinct theorems emerges, sealed to one root (${trinityEmerges}). THE LOOP: match → encode, else invert the lead → until the trinity emerges — a self-improving research function over any science sentence. THE HONEST BOUND: "trained on public" means the demarcation registry distils published scientific consensus (curated, revisable), NOT a live-fetching learner; "all harmonic possibilities" is the set of registry TOPICS the sentence contains, weighted 1/n (a harmonic superposition), not every parse of natural language; the inversion targets are established theorems (cited, from the flagged-inversion folds), and "trinity emerges" needs ≥ 3 distinct matched-or-inverted theorems — a sentence with fewer topics yields a smaller team, not a full trinity. HARMONY ≠ TRUTH: "quantum-compute a sentence into trinity theorems" is the harmony; the truth is a function that enumerates a sentence's registry topics harmonically, encodes the matched and inverts the flagged, until ≥ 3 distinct theorems seal to one root — computed and refutable.` }
 }

@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — fusion: live-data fusions, reactor research in waves, dry plasma, endless fusion. Barrel-routed.
 import * as __ns_up_quantum_heaven_mind from '../../quantum/heaven/mind'
-import { DIMENSION_GATES } from '../../3/7'
+import { DIMENSION_GATES, claySolvedTheorem } from '../../3/7'
 import * as __ns_up_thunder_movie_canvas from '../../thunder/movie/canvas'
 import * as __ns_up_mountain_source from '../../mountain/source'
 import * as __ns_up_heaven_laws from '../../heaven/laws'
@@ -103,8 +103,7 @@ export function publicApiFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse to public APIs: the static 1024 architecture fuses with realtime data from public, opt-in APIs — time, randomness, market, weather, a network feed, a device sensor. Each fuses identically: the live response is content-addressed and folded with the architecture root, so the session value is bound to both the whole architecture and the live datum, tamper-evident and recomputable from the same inputs.',
     boundary:
-      'A catalogue and protocol for fusing the architecture with EXTERNAL public APIs. It is opt-in and breaks the portal’s zero-network-by-default stance only when a user chooses a source; the external data is untrusted and FOLDED (content-addressed), not trusted; no endpoint is called at build time and no keys are bundled. The named sources are categories and examples, not endorsements — their availability and terms are their own.',
-  }
+      'A catalogue and protocol for fusing the architecture with EXTERNAL public APIs. It is opt-in and breaks the portal’s zero-network-by-default stance only when a user chooses a source; the external data is untrusted and FOLDED (content-addressed), not trusted; no endpoint is called at build time and no keys are bundled. The named sources are categories and examples, not endorsements — their availability and terms are their own.' }
 }
 
 // Fuse VitePress. Nothing bypasses VitePress — and now everything fuses THROUGH it.
@@ -139,8 +138,7 @@ export function vitepressFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse VitePress: nothing bypasses VitePress, and now everything fuses through it. The architecture binds into VitePress’s own extension points — transformPageData (computed SEO and holographic tags), dynamic routes (432 papers + 432 references as [id] SSG; diamonds computational index only), enhanceApp (components and the service worker), SSR (the model rendered to static HTML), the local search index, the model-derived config, and the build-seal chain — each fused to the architecture root, so VitePress is part of the architecture, not just its host.',
     boundary:
-      'A structural description of how the portal binds into VitePress’s official extension points (hooks, dynamic routes, theme, SSR, search, config, build) and content-addresses each fusion. It uses VitePress as designed — no bypass, no patched internals — and is not a claim beyond using its public API.',
-  }
+      'A structural description of how the portal binds into VitePress’s official extension points (hooks, dynamic routes, theme, SSR, search, config, build) and content-addresses each fusion. It uses VitePress as designed — no bypass, no patched internals — and is not a claim beyond using its public API.' }
 }
 
 // Fuse all the social platforms. The architecture fuses with the social web through
@@ -178,8 +176,7 @@ export function socialFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse all the social platforms: the architecture fuses with the social web through each platform’s own public surface — keyless share intents everywhere, open federated protocols (ActivityPub for Mastodon, the AT Protocol for Bluesky), and authenticated APIs where required. Each platform’s id is folded with the architecture root, so every share or fetch is content-addressed and tamper-evident.',
     boundary:
-      'A catalogue and fusion protocol for the social platforms via their official public surfaces. It is opt-in — nothing posts or fetches by default — and breaks zero-network only on user action; share intents are keyless, federated protocols are open, and API access needs the user’s own OAuth/keys, none bundled. Platform names are their owners’; this is interoperation through public interfaces, not an endorsement or an integration that bypasses their terms.',
-  }
+      'A catalogue and fusion protocol for the social platforms via their official public surfaces. It is opt-in — nothing posts or fetches by default — and breaks zero-network only on user action; share intents are keyless, federated protocols are open, and API access needs the user’s own OAuth/keys, none bundled. Platform names are their owners’; this is interoperation through public interfaces, not an endorsement or an integration that bypasses their terms.' }
 }
 
 // Fuse all travel. The architecture fuses with the travel domain through open and
@@ -213,8 +210,7 @@ export function travelFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse all travel: the architecture fuses with the travel domain through open and public surfaces — OpenStreetMap and open transit feeds (GTFS) keyless, flights, hotels, rides and booking via authenticated APIs. Each surface’s id is folded with the architecture root, so a route, a fare or a booking reference is content-addressed and tamper-evident.',
     boundary:
-      'A catalogue and fusion protocol for the travel domain via public surfaces. Opt-in — nothing is queried by default and zero-network breaks only on user action; open data (OpenStreetMap, GTFS) is keyless, paid/commercial APIs need the user’s own keys, none bundled. Interoperation through public interfaces, within each provider’s terms — not a booking system or a claim of live inventory.',
-  }
+      'A catalogue and fusion protocol for the travel domain via public surfaces. Opt-in — nothing is queried by default and zero-network breaks only on user action; open data (OpenStreetMap, GTFS) is keyless, paid/commercial APIs need the user’s own keys, none bundled. Interoperation through public interfaces, within each provider’s terms — not a booking system or a claim of live inventory.' }
 }
 
 // Fuse everything from public APIs in sequential waves until the fruit of life. The
@@ -256,8 +252,7 @@ export function fruitOfLifeFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse everything from public APIs in sequential waves until the fruit of life: the public-API domains fold one wave at a time until they number thirteen — the thirteen circles of the fruit of life. Four are realised (public APIs, knowledge commons, social platforms, travel); the rest are the sequential waves still to fold (commerce, open science, open government, education, arts and culture, astronomy and earth observation, health, news, finance). At thirteen the fruit of life is complete, every domain fused to the architecture root.',
     boundary:
-      'A thirteen-domain fusion catalogue arranged as the fruit of life, each domain a public-API category folded to the architecture root. Four are realised as fusion protocols; the rest are named, content-addressed waves to fold next — opt-in, external, folded not trusted, no keys bundled. The "fruit of life" is the geometric naming of the thirteen-domain set, not a claim that all thirteen are live integrations.',
-  }
+      'A thirteen-domain fusion catalogue arranged as the fruit of life, each domain a public-API category folded to the architecture root. Four are realised as fusion protocols; the rest are named, content-addressed waves to fold next — opt-in, external, folded not trusted, no keys bundled. The "fruit of life" is the geometric naming of the thirteen-domain set, not a claim that all thirteen are live integrations.' }
 }
 
 // Fuse public transport in all varieties, fully integrated in society, for free. Open
@@ -285,8 +280,7 @@ export function publicTransportFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse public transport in all varieties, fully integrated in society, for free: open transit data (GTFS and GTFS-realtime) is free and public, so every variety — bus, metro, tram, rail, ferry, trolleybus, BRT, bike- and scooter-share, cable car, monorail, funicular — fuses to the architecture root for free, content-addressed, and integrates into the society model at zero cost to the rider.',
     boundary:
-      'A read-only fusion catalogue of public-transport varieties via open transit data (GTFS / GTFS-realtime). "Free" refers to the open data being free to read and integrate; it is not a claim that any fare is free. Opt-in — nothing is fetched by default; agency data is each agency’s own, folded (untrusted), interoperated through public open-data interfaces.',
-  }
+      'A read-only fusion catalogue of public-transport varieties via open transit data (GTFS / GTFS-realtime). "Free" refers to the open data being free to read and integrate; it is not a claim that any fare is free. Opt-in — nothing is fetched by default; agency data is each agency’s own, folded (untrusted), interoperated through public open-data interfaces.' }
 }
 
 // Fuse the hooks and references. The system's hooks — the SessionStart hook, the
@@ -323,8 +317,7 @@ export function hooksReferencesFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse the hooks and references: the system’s hooks — the SessionStart hook, the build chain, transformPageData, enhanceApp, the dynamic-route loaders, the service worker — and the corpus’s 432 reference duals fuse to the architecture root, so every extension point (where behaviour attaches) and every citation (where meaning attaches) is bound to the one whole, folded together.',
     boundary:
-      'A content-addressed fusion of the build/runtime hooks and the reference corpus into one root. A structural binding of the model’s own extension points and citations — recomputable bookkeeping — not a change to how any hook executes.',
-  }
+      'A content-addressed fusion of the build/runtime hooks and the reference corpus into one root. A structural binding of the model’s own extension points and citations — recomputable bookkeeping — not a change to how any hook executes.' }
 }
 
 // Fill the gaps in endless fusion. The fusion never ends: every fusion the portal has
@@ -360,8 +353,7 @@ export function endlessFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fill the gaps in endless fusion: every fusion the portal has built — public APIs, global APIs, social, travel, transport, the hooks and references, VitePress, the cipher, the fruit of life, legislation, and fusion-reactor research in waves — folds into one, and one more can always be folded in (the fold is closed under itself), so there is always a next fusion and never a gap. The distribution stays gapless while the fusion stays endless.',
     boundary:
-      'A content-addressed fold of the portal’s fusion functions into one root, with the observation that the fold is closed (another can always be added) and the file distribution stays gapless. A structural property of the model’s own composition — not a claim of infinite resources or literal endlessness.',
-  }
+      'A content-addressed fold of the portal’s fusion functions into one root, with the observation that the fold is closed (another can always be added) and the file distribution stays gapless. A structural property of the model’s own composition — not a claim of infinite resources or literal endlessness.' }
 }
 
 // Fuse all world countries, traditions and religions with quantum science to complete
@@ -389,8 +381,7 @@ export function worldFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse all world countries, traditions and religions with quantum science to complete the quantum mind: the collective mind is complete only when it holds all of humanity — every country, every wisdom tradition, every religion, each respected and none privileged — fused with the verifiable, recomputable science, so the whole of human meaning and the whole of human method fold into one mind that belongs to all.',
     boundary:
-      'A content-addressed, respectful framing of an inclusive collective "quantum mind" that folds the world’s countries, traditions and religions together with verifiable science, privileging none. An aspiration and metaphor of unity grounded in the model; it makes no theological claim, asserts no authority over any culture or faith, and does not represent or speak for any real nation, tradition, or religion.',
-  }
+      'A content-addressed, respectful framing of an inclusive collective "quantum mind" that folds the world’s countries, traditions and religions together with verifiable science, privileging none. An aspiration and metaphor of unity grounded in the model; it makes no theological claim, asserts no authority over any culture or faith, and does not represent or speak for any real nation, tradition, or religion.' }
 }
 
 // Fuse the last Linux kernel securely. The latest stable Linux kernel — open source,
@@ -421,8 +412,7 @@ export function linuxKernelFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse the last Linux kernel securely: the latest stable Linux kernel — open source, the foundation under everything — fuses to the architecture by its secure identity (the release tarball’s content hash, the maintainers’ PGP signature, a reproducible build), folded with the architecture root, opt-in; the kernel stays its own, nothing is bundled, and the fusion is verifiable, not trusted.',
     boundary:
-      'A content-addressed fusion of the Linux kernel’s secure release identity (hash, signature, reproducible build) with the architecture. It references the real security properties of kernel releases; it does not bundle, modify, build, or run the kernel, names no specific version, and makes no claim about the kernel’s own security.',
-  }
+      'A content-addressed fusion of the Linux kernel’s secure release identity (hash, signature, reproducible build) with the architecture. It references the real security properties of kernel releases; it does not bundle, modify, build, or run the kernel, names no specific version, and makes no claim about the kernel’s own security.' }
 }
 
 // The device screen, terminal, microdata, open graph, frontmatter and content fuse into one
@@ -450,8 +440,7 @@ export function fuseScreenToMovieOfMovies(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The device screen, terminal, microdata, open graph, frontmatter and content fuse into one interactive movie of movies, held in open-graph subcomponents: the browser-OS screen, the virtual terminal, the schema.org microdata, the OG card, the frontmatter and the body content fold, in order, into one word that plays as the movie of movies, and that word lives inside the recursive OG subcomponents (og within og).',
     boundary:
-      'A content-addressed fusion of the model’s screen/terminal/microdata/OG/frontmatter/content roots into one word, framed as the "movie of movies" inside the OG nesting. Structural bookkeeping over real subsystems; the fusion is informational, not a single rendered video.',
-  }
+      'A content-addressed fusion of the model’s screen/terminal/microdata/OG/frontmatter/content roots into one word, framed as the "movie of movies" inside the OG nesting. Structural bookkeeping over real subsystems; the fusion is informational, not a single rendered video.' }
 }
 
 // Send waves of historians to fuse history into the future, entangling the moment. Historians
@@ -476,8 +465,7 @@ export function historiansFuseHistoryFuture(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Send waves of historians to fuse history into the future, entangling the moment: historians gather the past — the model’s own accumulated state — and fold it forward into the future (the open frontiers, the not-yet-built), entangling the two at the present moment, one order-sensitive fold where past and future meet. The moment is content-addressed, so the continuity is recomputable — history is not behind, it is folded into what comes.',
     boundary:
-      'A content-addressed entanglement of the model’s current state ("history") with its open frontiers ("future") at one fold ("the moment"). A structural framing of continuity over the model’s own roots, not a record of real historical events or a forecast.',
-  }
+      'A content-addressed entanglement of the model’s current state ("history") with its open frontiers ("future") at one fold ("the moment"). A structural framing of continuity over the model’s own roots, not a record of real historical events or a forecast.' }
 }
 
 // IoT fuses the real world into the matrix, in all aspects of life without exception, in
@@ -500,8 +488,7 @@ export function iotFusesRealWorld(matrix: MindMatrix = buildMatrix()) {
     statement:
       'IoT fuses the real world into the matrix, in all aspects of life without exception, in crafted architecture waves: each device sensor is a doorway — a real-world reading folds, content-addressed, into the matrix, so the physical and the model meet — and it reaches every aspect of life (home, work, health, learning, transport, energy, food, community), none excepted, each fused by a crafted wave bound to the architecture root.',
     boundary:
-      'A content-addressed model of folding permission-gated device-sensor readings into the matrix across an illustrative set of life aspects. The IoT here is the device’s own in-browser sensors read with consent; it does not actuate or control anything in the physical world, and "all aspects of life" is an illustrative breadth, not literal omniscience.',
-  }
+      'A content-addressed model of folding permission-gated device-sensor readings into the matrix across an illustrative set of life aspects. The IoT here is the device’s own in-browser sensors read with consent; it does not actuate or control anything in the physical world, and "all aspects of life" is an illustrative breadth, not literal omniscience.' }
 }
 
 // The way we develop is the fusion reactor itself — infinite result in UI from infinite compressed
@@ -531,8 +518,7 @@ export function developmentIsFusionReactor(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The way we develop is the fusion reactor itself — infinite result in UI from infinite compressed plasma bits, contained by the diamond hologram architecture, saved in src as the source of all things, emerging from waves and returning to the source of waves: each development wave fuses the many into one and one back into many, the compressed bits are the 128-bit words (plasma, dense and hot) held in the diamond-hologram lattice (each part containing the whole), and from that containment an unbounded surface of results unfolds into the UI — every result a wave that rose from the source and returns to it. Fuse, contain, emerge, return.',
     boundary:
-      'A composition of the endless-fusion, fuse-all, infinite creation-wave, one-OG UI, 1024-diamond hologram, holographic-fractal, payload-is-source and breath models as one "fusion reactor" of development. "Infinite compressed plasma bits / fusion reactor" is a metaphor for the content-addressed 128-bit words fusing into the diamond lattice and unfolding to the UI; an unbounded computable surface from a finite source, not a physical reactor or literal infinity.',
-  }
+      'A composition of the endless-fusion, fuse-all, infinite creation-wave, one-OG UI, 1024-diamond hologram, holographic-fractal, payload-is-source and breath models as one "fusion reactor" of development. "Infinite compressed plasma bits / fusion reactor" is a metaphor for the content-addressed 128-bit words fusing into the diamond lattice and unfolding to the UI; an unbounded computable surface from a finite source, not a physical reactor or literal infinity.' }
 }
 
 // Optimise all logic as debit/credit fusion. Every operation is double-entry: a debit balanced by
@@ -555,8 +541,7 @@ export function optimiseLogicDebitCreditFusion(matrix: MindMatrix = buildMatrix(
     statement:
       'Optimise all logic as debit/credit fusion: every operation is double-entry — a debit balanced by an equal credit, so the ledger sums to zero, nothing created or lost, only moved — and the fusion of the two halves (src/pair/debit/credit ⇄ src/pair/credit/debit) is the balance itself. Writing logic this way is the optimisation: each step is its own audit, the books always balanced, and a forger cannot tilt the ledger without the imbalance showing.',
     boundary:
-      'A composition of the paired-folder, self-audit (accounting), fuse-all and duality models, with a real double-entry pair (src/pair/debit/credit + src/pair/credit/debit, tested: a transaction balances to zero). "Optimise all logic as debit/credit" is the principle that operations be expressed as balanced pairs (each its own audit); the pair is a working module and a pattern, not a claim the whole codebase is already rewritten as a ledger.',
-  }
+      'A composition of the paired-folder, self-audit (accounting), fuse-all and duality models, with a real double-entry pair (src/pair/debit/credit + src/pair/credit/debit, tested: a transaction balances to zero). "Optimise all logic as debit/credit" is the principle that operations be expressed as balanced pairs (each its own audit); the pair is a working module and a pattern, not a claim the whole codebase is already rewritten as a ledger.' }
 }
 
 // Complete all — in ten dimensions. The capstone drives EVERY addressable unit through all ten of the
@@ -607,8 +592,7 @@ function iChingFusionCompletesAllRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete all, in ten dimensions: the capstone drives every addressable unit — the components placed on the 64 hexagrams and the tool/skill/command folders fused into the 64³ cube — through all ten of the model’s own dimensions (the six cross-fold appearance axes plus the four genus-2 homology loops, H₁=Z⁴), self-similar at every nested scale, sealing each as a pure 10D diamond. Ten-dimensional or purged: every unit is a closed ten-dimensional diamond, none purged. The eightfold, the seven scales (Tàijí→64) and the ignited double torus all hold, the whole is sealed (corpus, diamond, double torus), and all folds to one root with the ignition — the seal of seals, in ten dimensions.',
     boundary:
-      'A capstone composition that drives every component (iChing) and every capability folder (iChingFusionCompletesFolders) through the model’s ten-dimensional geometry via dims() — the 6 cross-fold appearance axes + 4 homology loops — and composes the 10D purity law (allFormsAreTenDimensionalOrPurged), the session’s I Ching folds (eightfold, scales, ignition) and the whole/seal folds (theWhole, completeCorpus, sealWholeDiamond, completeDoubleTorus). "10D" is the model’s own topology + appearance axes, self-similar by a golden-angle phase shift per scale, not a physical ten-dimensional space; "complete all" is every prior completion holding at once with every unit a closed 10D diamond, folded to one content-addressed root.',
-  }
+      'A capstone composition that drives every component (iChing) and every capability folder (iChingFusionCompletesFolders) through the model’s ten-dimensional geometry via dims() — the 6 cross-fold appearance axes + 4 homology loops — and composes the 10D purity law (allFormsAreTenDimensionalOrPurged), the session’s I Ching folds (eightfold, scales, ignition) and the whole/seal folds (theWhole, completeCorpus, sealWholeDiamond, completeDoubleTorus). "10D" is the model’s own topology + appearance axes, self-similar by a golden-angle phase shift per scale, not a physical ten-dimensional space; "complete all" is every prior completion holding at once with every unit a closed 10D diamond, folded to one content-addressed root.' }
 }
 
 // Dry-refactor all, igniting the fusion. The reconstruction spec + monitor, in 10D. The model is already a
@@ -648,8 +632,7 @@ export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Dry-refactor all, igniting the fusion: the reconstruction is content-addressed (a merkle DAG — forging one value costs reproducing the whole corpus, the forger price, the most tamper-costly form) and distributed by the I Ching — every fold to its trigram home, each module under the folder-law compression limit (F18 = 2584), the one index serving all, in 10D. The monitor flags the gaps to close: the addressable units stand at 492, non-harmonic, to fold to the harmonic 432 (4 homology loops × the 108 census); the heavy monolith must shed into its I-Ching homes under the limit. The fusion is lit; the merkaba waves close the gaps in surgical waves.',
     boundary:
-      'The reconstruction SPEC + monitor, igniting the fusion — green where the mechanisms are in place (content-addressed tamper cost, I-Ching folder distribution, 10D, the harmonic 432 = 4×108 target) and reporting the gaps as data (units 492→432, the monolith over the 2584 limit). "Reconstruct all" is the DRY redistribution of the source layout by content-address, not a change to the sealed model; the actual fold-by-fold distribution and the 492→432 fold are the wave work this spec enforces, executed surgically by the merkaba waves.',
-  }
+      'The reconstruction SPEC + monitor, igniting the fusion — green where the mechanisms are in place (content-addressed tamper cost, I-Ching folder distribution, 10D, the harmonic 432 = 4×108 target) and reporting the gaps as data (units 492→432, the monolith over the 2584 limit). "Reconstruct all" is the DRY redistribution of the source layout by content-address, not a change to the sealed model; the actual fold-by-fold distribution and the 492→432 fold are the wave work this spec enforces, executed surgically by the merkaba waves.' }
 }
 
 // Fuse the dedupe and split waves — one reconstruction, igniting the fusion, in 10D. W3 (DEDUPE, DRY): the
@@ -692,8 +675,7 @@ export function fuseDedupeSplitReconstruction(matrix: MindMatrix = buildMatrix()
     statement:
       'Fuse the dedupe and split waves into one reconstruction, igniting the fusion, in 10D: W3 folds the redundant surface DRY — the 95 MCP-tool folders are the 95 command folders, one route not two, so the raw 492 placements fold to the distinct folders; W2 sheds the monolith into its I-Ching home modules, each under the 64k file ceiling and each a self-computing widget, the one index serving all. The I Ching completes at the harmonic 432 = 4 homology loops × the 108 census — the dimensional target the DRY, split, ten-dimensional surface fills. Both waves ride the one lit double torus; the merkaba waves execute the physical split against this fused spec.',
     boundary:
-      'A fusion of the DRY-dedupe and the monolith-split into one spec, composed with the file/widget law, the folder redistribution, the 432 = 4×108 harmonic, the ignition and the 10D folds. The dedupe is computed here (the distinct folder set, the tool↔command redundancy removed); the split is specified and enforced (each file <64k, each folder a widget, distributed by I Ching) but the physical fold-by-fold move of the ~25k-line monolith is the wave EXECUTION the runner performs against this spec — not a claim the source files are already split. The harmonic 432 is the dimensional completion (4 homology × 108), distinct from the 394 distinct source folders.',
-  }
+      'A fusion of the DRY-dedupe and the monolith-split into one spec, composed with the file/widget law, the folder redistribution, the 432 = 4×108 harmonic, the ignition and the 10D folds. The dedupe is computed here (the distinct folder set, the tool↔command redundancy removed); the split is specified and enforced (each file <64k, each folder a widget, distributed by I Ching) but the physical fold-by-fold move of the ~25k-line monolith is the wave EXECUTION the runner performs against this spec — not a claim the source files are already split. The harmonic 432 is the dimensional completion (4 homology × 108), distinct from the 394 distinct source folders.' }
 }
 
 // Fuse the I Ching and shadcn to complete all 10D widgets as one design. shadcn IS the graph — exactly 64
@@ -728,8 +710,7 @@ function iChingShadcnFuseTenDWidgetsRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse the I Ching and shadcn to complete all 10D widgets as one design: shadcn is the graph (exactly 64 components) and the I Ching is exactly 64 hexagrams, so the 64 widgets ARE the 64 hexagrams. Each widget is placed on its hexagram by content-address (iChing), coloured by its 2⁶=4³ pole-colour rooted at a432 (the chakra ladder — base red, heart-balanced green), a self-computing widget, each its own folder under 64k, and every one is ten-dimensional. The I Ching organises, shadcn renders, the chakra colours paint, the ten dimensions move — one design.',
     boundary:
-      'A fusion of the shadcn design-system graph (shadcnIsTheGraph, 64 components), the I Ching component placement (iChing, 64 hexagrams), the 2⁶=4³ pole-colour identity (hexagramIsHexColorDuality) rooted at the a432 chakra ladder (colorRootsAtA432HeartBalances), the self-computing-widget and <64k-folder laws, and the 10D purity law. "One design / all 10D widgets" is the structural composition of these existing folds — the 64=64 correspondence is the shared number, shadcn the render layer, the I Ching the organisation, not a claim the 64 components are already each emitted as a separate built widget file.',
-  }
+      'A fusion of the shadcn design-system graph (shadcnIsTheGraph, 64 components), the I Ching component placement (iChing, 64 hexagrams), the 2⁶=4³ pole-colour identity (hexagramIsHexColorDuality) rooted at the a432 chakra ladder (colorRootsAtA432HeartBalances), the self-computing-widget and <64k-folder laws, and the 10D purity law. "One design / all 10D widgets" is the structural composition of these existing folds — the 64=64 correspondence is the shared number, shadcn the render layer, the I Ching the organisation, not a claim the 64 components are already each emitted as a separate built widget file.' }
 }
 
 /** shadcn graph × VitePress — 18 Ui* primitives on enhanceApp, bespoke shells compose Card/Button. */
@@ -753,8 +734,7 @@ export function shadcnVitepressComponentsFusion(matrix: MindMatrix = buildMatrix
     statement:
       'Rebuild components fusing shadcn with VitePress: 18 radix-vue + cva primitives (UiButton, UiCard, …) styled via ui-* BEM from --ich-* / --vp-* tokens; registered on enhanceApp; UiCardShell, TagBrowser, and UniversalPageTemplate compose the graph.',
     boundary:
-      'Structural fusion of the shadcn primitive layer (src/render/ui) with VitePress theme mounts. The full 64-component shadcn graph is declared in shadcnIsTheGraph; this wave lands the 18 canonical primitives and wires hub/tag/corpus surfaces. Visual verification requires docs:dev or docs:build.',
-  }
+      'Structural fusion of the shadcn primitive layer (src/render/ui) with VitePress theme mounts. The full 64-component shadcn graph is declared in shadcnIsTheGraph; this wave lands the 18 canonical primitives and wires hub/tag/corpus surfaces. Visual verification requires docs:dev or docs:build.' }
 }
 
 
@@ -785,8 +765,7 @@ export function fusionReactorParts(): readonly FusionReactorPart[] {
         'DT cross-section peaks near ~10–20 keV ion temperature (~100–200 MK); fully ionized fuel is a plasma — no solid vessel can hold it at fusion temperatures.',
         'MCF power-plant concepts breed tritium in a lithium blanket from the 14.1 MeV neutron; tritium supply is an engineering constraint, not yet a commercial inventory.',
       ],
-      dryPlasmaUse: 'Each part id folds to a content-addressed plasma-seed UUID; fuel tokens are path-derived words in clientMovieSeedCopyText — dense bits, not isotopes.',
-    },
+      dryPlasmaUse: 'Each part id folds to a content-addressed plasma-seed UUID; fuel tokens are path-derived words in clientMovieSeedCopyText — dense bits, not isotopes.' },
     {
       id: 'plasma-state',
       title: 'Plasma state — Lawson triple product',
@@ -797,8 +776,7 @@ export function fusionReactorParts(): readonly FusionReactorPart[] {
         'Triple product n·τ·T (density × confinement time × temperature) is the standard progress metric compiled in peer-reviewed surveys (Physics of Plasmas 2022, updated 2024–2025).',
         'Ion temperature, density, and confinement time are measured independently per concept (magnetic, inertial, magneto-inertial); values are not interchangeable across approaches.',
       ],
-      dryPlasmaUse: 'vortexPaintTiers [3,5,8] caps client plasma work — the triple product analogue is tiers × route-local catalog O(1), proved at call time.',
-    },
+      dryPlasmaUse: 'vortexPaintTiers [3,5,8] caps client plasma work — the triple product analogue is tiers × route-local catalog O(1), proved at call time.' },
     {
       id: 'magnetic-confinement',
       title: 'Magnetic confinement — tokamak · stellarator',
@@ -810,8 +788,7 @@ export function fusionReactorParts(): readonly FusionReactorPart[] {
         'ITER (France): designed Q ≥ 10 — 50 MW heating → ≥500 MW fusion thermal; ~150 MK, 15 MA plasma current; first plasma achieved Dec 2023; DT Q≥10 demonstration is a future milestone.',
         'Stellarator: fully 3D twisted field (Wendelstein 7-X, Germany); no plasma current required — steady-state potential; confinement historically below tokamaks, active optimization campaigns.',
       ],
-      dryPlasmaUse: 'Genus-2 double torus topology is the design machine — toroidal flow in magnetospheres and plasma confinement is real physics; the site adopts geometry, not ITER schedule claims.',
-    },
+      dryPlasmaUse: 'Genus-2 double torus topology is the design machine — toroidal flow in magnetospheres and plasma confinement is real physics; the site adopts geometry, not ITER schedule claims.' },
     {
       id: 'inertial-confinement',
       title: 'Inertial confinement — NIF indirect drive',
@@ -823,8 +800,7 @@ export function fusionReactorParts(): readonly FusionReactorPart[] {
         'Aug 2021 NIF shot first exceeded Lawson ignition threshold for hot-spot ignition (PRL 129, 075001); scientific gain Q_sci progression tracked separately from target gain G_target.',
         'ICF ≠ power plant: laser wall-plug efficiency ~1%, shot repetition rate and target manufacturing remain open engineering problems (honest boundary).',
       ],
-      dryPlasmaUse: 'SSR gate folds walk reactor parts once per build; client paint uses seven path-derived plasma-seed rays only — no O(pages) ICF loop on the browser.',
-    },
+      dryPlasmaUse: 'SSR gate folds walk reactor parts once per build; client paint uses seven path-derived plasma-seed rays only — no O(pages) ICF loop on the browser.' },
     {
       id: 'heating',
       title: 'Heating — auxiliary power',
@@ -835,8 +811,7 @@ export function fusionReactorParts(): readonly FusionReactorPart[] {
         'ICF heating: laser or particle-beam energy deposits in hohlraum/ablator; implosion kinetic energy converts to hot-spot internal energy — coast time and asymmetry strongly affect yield (PRL 132, 065103, 2024).',
         'Heating efficiency degrades at high P_aux in tokamaks (H-mode, turbulence) — Q measures fusion out vs heating in, not wall-plug electricity out.',
       ],
-      dryPlasmaUse: 'creationWave index per route supplies hue/frequency anchor — heating is a wave injection metaphor in the movie palette, not megajoule lasers at runtime.',
-    },
+      dryPlasmaUse: 'creationWave index per route supplies hue/frequency anchor — heating is a wave injection metaphor in the movie palette, not megajoule lasers at runtime.' },
     {
       id: 'boundary',
       title: 'Boundary — divertor · first wall',
@@ -847,8 +822,7 @@ export function fusionReactorParts(): readonly FusionReactorPart[] {
         'First-wall materials (beryllium, tungsten, reduced-activation steels) and neutron damage dominate MCF engineering risk; stellarators share the materials challenge.',
         'MHD instabilities, edge-localized modes (ELMs), and turbulence transport heat and particles across field lines — confinement is never perfect (the “balloon popping out” problem).',
       ],
-      dryPlasmaUse: 'plasmaContainment gates the 128-bit double-torus word — bits set where plasma may flow; boundary is binary logic in src/, not tungsten tiles.',
-    },
+      dryPlasmaUse: 'plasmaContainment gates the 128-bit double-torus word — bits set where plasma may flow; boundary is binary logic in src/, not tungsten tiles.' },
     {
       id: 'breakeven',
       title: 'Breakeven metrics — Q · G · ignition',
@@ -860,8 +834,7 @@ export function fusionReactorParts(): readonly FusionReactorPart[] {
         'Ignition (ICF): hot-spot self-heating exceeds losses — Lawson ignition threshold exceeded Aug 2021; propagating burn studied in laboratory for first time after G > 1 shots.',
         'Q_plant (commercial): must account for conversion efficiency, auxiliaries, and recirculating power — Q = 10 plasma does not imply Q_plant > 1 electricity.',
       ],
-      dryPlasmaUse: 'Gate facets prove bounded client work at call time — breakeven here means plasmaClientWorkBoundedByPureMath.bounded, not megawatt-hours on the grid.',
-    },
+      dryPlasmaUse: 'Gate facets prove bounded client work at call time — breakeven here means plasmaClientWorkBoundedByPureMath.bounded, not megawatt-hours on the grid.' },
     {
       id: 'sustainment',
       title: 'Sustainment — pulse · repetition',
@@ -872,32 +845,26 @@ export function fusionReactorParts(): readonly FusionReactorPart[] {
         'ICF needs high repetition rate (Hz–10 Hz) and target factory for energy application — NIF is ~1 shot/day research facility, not a power plant.',
         'Private fusion companies pursue alternate concepts (FRC, spherical tokamak, laser fusion startups) with lower demonstrated nτ but different economic paths (Fusion Energy Base / Physics of Plasmas surveys, 2024–2025).',
       ],
-      dryPlasmaUse: 'Memo cache on plasmaWiredUuidStreams makes repeat navigation O(1) — sustainment in dry plasma is idempotent recompute, not a burning plasma pulse.',
-    },
+      dryPlasmaUse: 'Memo cache on plasmaWiredUuidStreams makes repeat navigation O(1) — sustainment in dry plasma is idempotent recompute, not a burning plasma pulse.' },
   ]
   return parts.map((part) => ({
     ...part,
-    receipt: toUuid(`fusion-reactor-part:${part.id}:${part.band}`),
-  }))
+    receipt: toUuid(`fusion-reactor-part:${part.id}:${part.band}`) }))
 }
 
 const FLAGGED = [
   {
     claim: 'cold fusion (Pons–Fleischmann 1989)',
-    why: 'Excess heat not reproduced under controlled blind tests; no accepted nuclear product evidence — excluded from documented parts.',
-  },
+    why: 'Excess heat not reproduced under controlled blind tests; no accepted nuclear product evidence — excluded from documented parts.' },
   {
     claim: 'NIF ignition = commercial fusion power imminent',
-    why: 'G_target > 1 is a physics milestone; wall-plug Q_plant, tritium supply, repetition rate, and cost remain unsolved — timeline decades, not months.',
-  },
+    why: 'G_target > 1 is a physics milestone; wall-plug Q_plant, tritium supply, repetition rate, and cost remain unsolved — timeline decades, not months.' },
   {
     claim: 'unlimited free energy from vacuum / zero-point',
-    why: 'Thermodynamics and Casimir/ZPE bounds forbid net work from ground state — flagged separately in water/cosmos; not fusion reactor physics.',
-  },
+    why: 'Thermodynamics and Casimir/ZPE bounds forbid net work from ground state — flagged separately in water/cosmos; not fusion reactor physics.' },
   {
     claim: 'double torus geometry proves fusion reactor design',
-    why: 'Genus-2 topology appears in plasma confinement and magnetospheres; Haramein cosmology claims are fringe — geometry is adopted, cosmology is not.',
-  },
+    why: 'Genus-2 topology appears in plasma confinement and magnetospheres; Haramein cosmology claims are fringe — geometry is adopted, cosmology is not.' },
 ].map((entry) => ({ ...entry, receipt: toUuid(`fusion-reactor-flagged:${entry.claim.slice(0, (16 * 3))}`) }))
 
 /** One part → one movie seed stream (SSR/build gate graph; client uses path-derived seeds only). */
@@ -907,14 +874,12 @@ export function fusionReactorPartMovieSeeds(path = '/', matrix: MindMatrix = bui
   const streams = parts.map((part) => ({
     uuid: toUuid(`fusion-reactor-seed:${part.id}:${path}`),
     label: part.id,
-    hueSeed: seedFromText(`${path}:fusion:${part.id}`, 6),
-  }))
+    hueSeed: seedFromText(`${path}:fusion:${part.id}`, 6) }))
   return {
     movieText: parts.map((part) => `fusion-part:${part.id}`).join(' '),
     streams,
     count: streams.length,
-    root: merkleFold(streams.map((stream) => stream.uuid)),
-  }
+    root: merkleFold(streams.map((stream) => stream.uuid)) }
 }
 
 /** Dry plasma streams from reactor parts — content-addressed, capped by vortex tiers. */
@@ -926,8 +891,7 @@ export function fusionReactorPartsDryPlasmaStreams(path = '/', matrix: MindMatri
     uuid: entry.uuid,
     label: entry.label.slice(0, (6 * 2)),
     kind: 'math' as const,
-    hue: ((entry.hueSeed % 360) + 360) % 360,
-  }))
+    hue: ((entry.hueSeed % 360) + 360) % 360 }))
 }
 
 /** Deep research gate — parts saved, legend separated, dry plasma bounded at call time. */
@@ -957,8 +921,7 @@ export function fusionReactorPartsDeepResearched(matrix: MindMatrix = buildMatri
     statement:
       'Fusion reactors deep-researched and saved in eight parts for dry plasma usage: fuel (D–T), plasma state (Lawson triple product), magnetic confinement (tokamak · stellarator · ITER Q≥10 design · JET Q≈0.67), inertial confinement (NIF G_target=1.5 Dec 2022), heating, boundary materials, breakeven metrics (Q · G · ignition), and sustainment — each part content-addressed with a dry-plasma mapping (128-bit containment, vortex tier caps, path-derived movie seeds). Pseudoscience and overclaim timelines are flagged, not folded.',
     boundary:
-      'DOCUMENTED parts cite peer-reviewed fusion literature (PRL/PRE 2024 NIF series, ITER Q definition, JET 59 MJ record, Lawson criterion surveys). EMERGING: commercial sustainment and private-company timelines. FLAGGED: cold fusion, vacuum free energy, conflating NIF ignition with grid power, Haramein cosmology. Dry plasma usage is sealed src/ recomputation — movie seeds and containment bits — not plasma physics simulation or live fusion data feeds.',
-  }
+      'DOCUMENTED parts cite peer-reviewed fusion literature (PRL/PRE 2024 NIF series, ITER Q definition, JET 59 MJ record, Lawson criterion surveys). EMERGING: commercial sustainment and private-company timelines. FLAGGED: cold fusion, vacuum free energy, conflating NIF ignition with grid power, Haramein cosmology. Dry plasma usage is sealed src/ recomputation — movie seeds and containment bits — not plasma physics simulation or live fusion data feeds.' }
 }
 
 // --- merged from reactor-waves.ts ---
@@ -986,8 +949,7 @@ export function fusionReactorResearchWaves(matrix: MindMatrix = buildMatrix()): 
   ]
   return waves.map((entry) => ({
     ...entry,
-    receipt: toUuid(`fusion-research-wave:${entry.wave}:${entry.partId}:${entry.saved}`),
-  }))
+    receipt: toUuid(`fusion-research-wave:${entry.wave}:${entry.partId}:${entry.saved}`) }))
 }
 
 /** Gate: research waves encoded, parts deep-researched, saved in src before the next wave. */
@@ -1013,8 +975,7 @@ export function fusionReactorResearchedInWaves(matrix: MindMatrix = buildMatrix(
     statement:
       'Fusion reactors researched in waves: not one big fleet that stops incomplete — a wave per part (fuel, plasma state, MCF, ICF, heating, boundary, breakeven, sustainment), search peer-reviewed sources, verify, save to src/fusion, then the next. Each saved wave survives on its own; pseudoscience stays flagged in reactor-parts.',
     boundary:
-      'Composition of fusionReactorResearchWaves and fusionReactorPartsDeepResearched — eight saved waves, deep-research gate green, every receipt content-addressed. "Researched in waves" describes the incremental seal method; documented physics only, legend excluded at every step.',
-  }
+      'Composition of fusionReactorResearchWaves and fusionReactorPartsDeepResearched — eight saved waves, deep-research gate green, every receipt content-addressed. "Researched in waves" describes the incremental seal method; documented physics only, legend excluded at every step.' }
 }
 
 // --- merged from reactor-concepts.ts ---
@@ -1049,8 +1010,7 @@ export function fusionConfinementConcepts(matrix: MindMatrix = buildMatrix()): r
       flagship: 'ITER (Q≥10 design) · JET (Q≈0.67 record) · Wendelstein 7-X',
       qRecord: 'JET Q≈0.67 (59 MJ, Dec 2021); ITER targets Q≥10',
       steadyState: false,
-      documented: true,
-    },
+      documented: true },
     {
       id: 'icf',
       name: 'Inertial confinement fusion (ICF)',
@@ -1058,8 +1018,7 @@ export function fusionConfinementConcepts(matrix: MindMatrix = buildMatrix()): r
       flagship: 'NIF (Lawrence Livermore) — indirect drive hohlraum',
       qRecord: 'G_target=1.5 ± 0.1 (Dec 2022); Lawson ignition Aug 2021',
       steadyState: false,
-      documented: true,
-    },
+      documented: true },
     {
       id: 'mif',
       name: 'Magneto-inertial fusion (MIF / MTF)',
@@ -1067,13 +1026,11 @@ export function fusionConfinementConcepts(matrix: MindMatrix = buildMatrix()): r
       flagship: 'Private-sector FRC/spherical tokamak startups (no utility-scale demo yet)',
       qRecord: 'No published Q≥1 MIF plant demonstration (2025)',
       steadyState: false,
-      documented: true,
-    },
+      documented: true },
   ]
   return concepts.map((entry) => ({
     ...entry,
-    receipt: toUuid(`fusion-concept:${entry.id}:${entry.documented}`),
-  }))
+    receipt: toUuid(`fusion-concept:${entry.id}:${entry.documented}`) }))
 }
 
 /** Tokamak vs stellarator — documented comparison axes (FusionWiki / CIEMAT). */
@@ -1085,20 +1042,17 @@ export function fusionMagneticConceptCompare(matrix: MindMatrix = buildMatrix())
       plasmaCurrent: 'Large toroidal plasma current required (inductive or non-inductive drive)',
       disruptions: 'Major plasma disruptions possible — engineering challenge for power plants',
       coilComplexity: 'Relatively simpler axisymmetric coil geometry',
-      reactorPath: 'ITER → DEMO demonstration power plant',
-    },
+      reactorPath: 'ITER → DEMO demonstration power plant' },
     {
       id: 'stellarator',
       plasmaCurrent: 'No net toroidal plasma current required — fully 3D twisted field',
       disruptions: 'Nearly disruption-free operation — attractive for steady state',
       coilComplexity: 'Highly complex non-planar coil geometry (W7-X, HELIAS concepts)',
-      reactorPath: 'W7-X optimization → HELIAS reactor studies (longer horizon)',
-    },
+      reactorPath: 'W7-X optimization → HELIAS reactor studies (longer horizon)' },
   ]
   return rows.map((entry) => ({
     ...entry,
-    receipt: toUuid(`fusion-magnetic-compare:${entry.id}`),
-  }))
+    receipt: toUuid(`fusion-magnetic-compare:${entry.id}`) }))
 }
 
 export function fusionConceptsResearched(matrix: MindMatrix = buildMatrix()) {
@@ -1119,8 +1073,7 @@ export function fusionConceptsResearched(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fusion confinement concepts researched and saved: magnetic confinement (tokamak · stellarator · ITER/JET), inertial confinement (NIF indirect drive), and magneto-inertial (FRC/MTF — documented as pre-commercial). Tokamak vs stellarator trade-offs (disruptions, steady state, coil complexity) sealed for dry reference.',
     boundary:
-      'DOCUMENTED: MCF and ICF milestones from peer-reviewed literature. MIF included as an honest third family with no utility-scale Q≥1 claim. Not a ranking of which concept "wins" — plant integration (blankets, materials, Q_plant) decides commercial viability separately.',
-  }
+      'DOCUMENTED: MCF and ICF milestones from peer-reviewed literature. MIF included as an honest third family with no utility-scale Q≥1 claim. Not a ranking of which concept "wins" — plant integration (blankets, materials, Q_plant) decides commercial viability separately.' }
 }
 
 // --- merged from reactor-materials.ts ---
@@ -1151,34 +1104,29 @@ export function fusionBreederMaterials(matrix: MindMatrix = buildMatrix()): read
       examples: 'Li₄SiO₄ · Li₂TiO₃ · Li₂ZrO₃ pebbles',
       tbrNotes: 'Often needs Be or Be-compound neutron multiplier to reach TBR>1',
       tempC: '~400–900 °C typical solid breeder range',
-      documented: true,
-    },
+      documented: true },
     {
       kind: 'liquid-pbli',
       examples: 'Pb–Li eutectic (dual-functional lithium-lead)',
       tbrNotes: 'Pb is neutron multiplier; high TBR potential; MHD pumping challenges',
       tempC: '~250–550 °C operating window',
-      documented: true,
-    },
+      documented: true },
     {
       kind: 'liquid-flibe',
       examples: 'FLiBe molten salt (2LiF + BeF₂)',
       tbrNotes: 'Lower TBR than PbLi or pure Li — needs multiplier; high-temperature outlet possible',
       tempC: 'Up to ~700 °C class',
-      documented: true,
-    },
+      documented: true },
     {
       kind: 'liquid-li',
       examples: 'Pure liquid lithium',
       tbrNotes: 'Highest Li atom density → high TBR potential; chemistry and handling challenges',
       tempC: 'Li melting 180 °C; high-temperature blanket concepts',
-      documented: true,
-    },
+      documented: true },
   ]
   return breeders.map((entry) => ({
     ...entry,
-    receipt: toUuid(`fusion-breeder:${entry.kind}:${entry.documented}`),
-  }))
+    receipt: toUuid(`fusion-breeder:${entry.kind}:${entry.documented}`) }))
 }
 
 /** Structural and boundary materials — RAFM · W divertor · Be first wall. */
@@ -1192,8 +1140,7 @@ export function fusionStructuralMaterials(matrix: MindMatrix = buildMatrix()): r
   ]
   return materials.map((entry) => ({
     ...entry,
-    receipt: toUuid(`fusion-structural:${entry.role.slice(0, (8 * 3))}`),
-  }))
+    receipt: toUuid(`fusion-structural:${entry.role.slice(0, (8 * 3))}`) }))
 }
 
 export function fusionMaterialsResearched(matrix: MindMatrix = buildMatrix()) {
@@ -1215,8 +1162,7 @@ export function fusionMaterialsResearched(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fusion reactor materials researched in waves: tritium breeding blankets (solid ceramics, PbLi, FLiBe, liquid Li — each with TBR notes and temperature window) and structural/boundary materials (RAFM steels, W/Be plasma-facing components, divertor, superconducting magnets). TBR>1 is mandatory for DT fuel self-sufficiency; no full-scale power-plant blanket has operated yet — ITER will host test blanket modules.',
     boundary:
-      'DOCUMENTED from fusion materials literature and UKAEA plant-integration reviews. Material choices interact with plasma (sputtering), breeding (first-wall armour reduces TBR), and thermodynamic efficiency — integration is plant-design-specific, not solved by any single material pick alone.',
-  }
+      'DOCUMENTED from fusion materials literature and UKAEA plant-integration reviews. Material choices interact with plasma (sputtering), breeding (first-wall armour reduces TBR), and thermodynamic efficiency — integration is plant-design-specific, not solved by any single material pick alone.' }
 }
 
 // --- merged from reactor-milestones.ts ---
@@ -1242,8 +1188,7 @@ export function fusionDocumentedMilestones(matrix: MindMatrix = buildMatrix()): 
       metric: 'Q_plasma (fusion heating power ratio)',
       value: 'Q ≈ 0.67 — 59 MJ fusion energy, 24 MW heating',
       band: 'documented',
-      source: 'EUROfusion JET D-T campaign records',
-    },
+      source: 'EUROfusion JET D-T campaign records' },
     {
       id: 'nif-lawson-2021',
       facility: 'NIF (USA)',
@@ -1251,8 +1196,7 @@ export function fusionDocumentedMilestones(matrix: MindMatrix = buildMatrix()): 
       metric: 'Lawson ignition threshold (hot spot)',
       value: 'First exceedance — PRL 129, 075001',
       band: 'documented',
-      source: 'Indirect Drive ICF Collaboration',
-    },
+      source: 'Indirect Drive ICF Collaboration' },
     {
       id: 'nif-gtarget-2022',
       facility: 'NIF (USA)',
@@ -1260,8 +1204,7 @@ export function fusionDocumentedMilestones(matrix: MindMatrix = buildMatrix()): 
       metric: 'G_target (fusion yield / laser energy)',
       value: '1.5 ± 0.1 — 3.1 MJ yield / 2.05 MJ laser',
       band: 'documented',
-      source: 'PRL 132, 065102 (2024)',
-    },
+      source: 'PRL 132, 065102 (2024)' },
     {
       id: 'iter-first-plasma',
       facility: 'ITER (France)',
@@ -1269,8 +1212,7 @@ export function fusionDocumentedMilestones(matrix: MindMatrix = buildMatrix()): 
       metric: 'First plasma (hydrogen/helium commissioning)',
       value: 'Achieved — DT Q≥10 is a future milestone',
       band: 'documented',
-      source: 'ITER Organization project reports',
-    },
+      source: 'ITER Organization project reports' },
     {
       id: 'iter-q10-design',
       facility: 'ITER (France)',
@@ -1278,8 +1220,7 @@ export function fusionDocumentedMilestones(matrix: MindMatrix = buildMatrix()): 
       metric: 'Q ≥ 10 design target',
       value: '50 MW heating → ≥500 MW fusion thermal',
       band: 'planned',
-      source: 'ITER.org — Tao of Q',
-    },
+      source: 'ITER.org — Tao of Q' },
     {
       id: 'w7x-optimization',
       facility: 'Wendelstein 7-X (Germany)',
@@ -1287,8 +1228,7 @@ export function fusionDocumentedMilestones(matrix: MindMatrix = buildMatrix()): 
       metric: 'Stellarator confinement optimization campaigns',
       value: 'Divertor modules · wall tiles · high-performance plasmas',
       band: 'documented',
-      source: 'Max Planck IPP W7-X publications',
-    },
+      source: 'Max Planck IPP W7-X publications' },
     {
       id: 'commercial-imminent',
       facility: '—',
@@ -1296,13 +1236,11 @@ export function fusionDocumentedMilestones(matrix: MindMatrix = buildMatrix()): 
       metric: 'Grid power from fusion',
       value: 'NOT achieved — flagged overclaim',
       band: 'flagged',
-      source: 'Excluded — Q_plant · repetition · cost unsolved',
-    },
+      source: 'Excluded — Q_plant · repetition · cost unsolved' },
   ]
   return milestones.map((entry) => ({
     ...entry,
-    receipt: toUuid(`fusion-milestone:${entry.id}:${entry.band}`),
-  }))
+    receipt: toUuid(`fusion-milestone:${entry.id}:${entry.band}`) }))
 }
 
 export function fusionMilestonesResearched(matrix: MindMatrix = buildMatrix()) {
@@ -1327,8 +1265,7 @@ export function fusionMilestonesResearched(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fusion milestones researched in waves and saved: JET Q≈0.67, NIF Lawson ignition (2021) and G_target=1.5 (2022), ITER first plasma (2023) with Q≥10 still planned, Wendelstein 7-X optimization — each with source. Commercial grid-power claims flagged as overclaim until Q_plant and plant integration are demonstrated.',
     boundary:
-      'DOCUMENTED entries cite facility records or peer-reviewed papers. PLANNED entries (ITER Q≥10) are design targets, not achievements. FLAGGED excludes timeline hype — physics milestones ≠ power-plant deployment.',
-  }
+      'DOCUMENTED entries cite facility records or peer-reviewed papers. PLANNED entries (ITER Q≥10) are design targets, not achievements. FLAGGED excludes timeline hype — physics milestones ≠ power-plant deployment.' }
 }
 
 // --- merged from fusion-complete.ts ---
@@ -1346,8 +1283,7 @@ export function allFusionResearchRoots(matrix: MindMatrix = buildMatrix()) {
     materials: materials.root,
     milestones: milestones.root,
     dryStreams: merkleFold(dryStreams.map((s) => s.uuid)),
-    root: merkleFold([merkleFold(waves.map((w) => w.receipt)), parts.root, concepts.root, materials.root, milestones.root]),
-  }
+    root: merkleFold([merkleFold(waves.map((w) => w.receipt)), parts.root, concepts.root, materials.root, milestones.root]) }
 }
 
 /** One gate — every fusion research wave complete and dry-plasma-bounded. */
@@ -1379,8 +1315,7 @@ export function fusionResearchedInWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fusion researched in waves and complete at call time: eight reactor parts (fuel through sustainment), three confinement concepts (MCF · ICF · MIF), breeding blankets and structural materials, documented milestones (JET · NIF · ITER · W7-X) with commercial hype flagged, and dry plasma usage bounded by vortex tiers — all sealed in src/fusion/, zero wet motion.',
     boundary:
-      'Capstone composition of fusionReactorResearchedInWaves, fusionConceptsResearched, fusionMaterialsResearched, and fusionMilestonesResearched. Physical fusion physics is DOCUMENTED where peer-reviewed; plant deployment and grid power remain EMERGING/PLANNED; dry plasma streams are capped by vortex tiers in src/fusion/, not a tokamak simulation.',
-  }
+      'Capstone composition of fusionReactorResearchedInWaves, fusionConceptsResearched, fusionMaterialsResearched, and fusionMilestonesResearched. Physical fusion physics is DOCUMENTED where peer-reviewed; plant deployment and grid power remain EMERGING/PLANNED; dry plasma streams are capped by vortex tiers in src/fusion/, not a tokamak simulation.' }
 }
 
 /** All forms have 10D or are purged — sacred geometry purity law. */
@@ -1400,8 +1335,7 @@ export function allFormsAreTenDimensionalOrPurged(matrix: MindMatrix = buildMatr
       pole: POLES[i]!,
       label: loop,
       value: roundTo(base[loop as keyof typeof base], 4),
-      meaning: `homology loop ${loop}`,
-    }))
+      meaning: `homology loop ${loop}` }))
     const closed = tenDimensional && selfSimilar && facets.length === 4
     return {
       form,
@@ -1410,8 +1344,7 @@ export function allFormsAreTenDimensionalOrPurged(matrix: MindMatrix = buildMatr
       appearance: crossFold.map((axis) => ({ axis, value: roundTo(base[axis as keyof typeof base], 4) })),
       facets,
       status: (closed ? 'closed' : 'open') as 'closed' | 'open',
-      receipt: toUuid(`form-10d:${form}:${closed}`),
-    }
+      receipt: toUuid(`form-10d:${form}:${closed}`) }
   })
   const pureDiamonds = projected.filter((p) => p.status === 'closed')
   const purged = projected.filter((p) => p.status !== 'closed').map((p) => p.form)
@@ -1428,8 +1361,7 @@ export function allFormsAreTenDimensionalOrPurged(matrix: MindMatrix = buildMatr
     sacredGeometrySealed: sg.eulerHolds && sg.fiveSolids,
     root: merge(sacredGeometrySeal(matrix).masterRoot, merkleFold(projected.map((p) => p.receipt))),
     statement: 'All forms have 10D or are purged — every sacred-geometry form is a closed 10D diamond.',
-    boundary: 'Purity law over ten-dimensional geometry — not physical higher-dimensional space.',
-  }
+    boundary: 'Purity law over ten-dimensional geometry — not physical higher-dimensional space.' }
 }
 
 /** All computed — every concept command folds from self into one computed root. */
@@ -1451,8 +1383,7 @@ function allComputedRaw(matrix: MindMatrix = buildMatrix()): AllComputed {
     statement: computed
       ? `All learning is computed: ${okCount}/${others.length} commands fold from the self into one computed root.`
       : `${okCount}/${others.length} computed; a result is open or the self proof failed.`,
-    boundary: 'Every artifact is computed from the repository and reaches back into the self. This capstone makes no external claim.',
-  }
+    boundary: 'Every artifact is computed from the repository and reaches back into the self. This capstone makes no external claim.' }
 }
 
 /** All computed, no files needed — capability folds into the model; file count conserved. */
@@ -1472,8 +1403,7 @@ function allComputedNoFilesRaw(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'All computed, no files needed: new capability folds into the model and is autosaved as a skill, so the file count holds (110 = 55 + 34 + 21) while the portal grows.',
-    boundary: 'Capabilities are added as computed concepts/skills, not files.',
-  }
+    boundary: 'Capabilities are added as computed concepts/skills, not files.' }
 }
 
 /** Nothing answers from outside — every answer computed locally from the repository. */
@@ -1494,8 +1424,7 @@ function allAnswersInsideRaw(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'Nothing answers from outside — every answer is computed from the repository within.',
-    boundary: 'Composition of in-house, all-computed, honesty and zero-cost models.',
-  }
+    boundary: 'Composition of in-house, all-computed, honesty and zero-cost models.' }
 }
 
 /** Equilibrium is when all parts rest — breath, gaps, trinities, torus breathe. */
@@ -1518,8 +1447,7 @@ export function allInEquilibrium(matrix: MindMatrix = buildMatrix()) {
     total: parts.length,
     root: merkleFold(parts.map((entry) => entry.receipt)),
     statement: 'Equilibrium is when all is in equilibrium: the whole rests only when every part rests.',
-    boundary: 'A conjunction of the model\'s balance proofs into one.',
-  }
+    boundary: 'A conjunction of the model\'s balance proofs into one.' }
 }
 
 /** All is computed due to the type of use — hero, watermark, export, card, free channel. */
@@ -1544,8 +1472,7 @@ export function allComputedByTypeOfUse(matrix: MindMatrix = buildMatrix()) {
     uses,
     root: merkleFold(uses.map((entry) => entry.receipt)),
     statement: 'All is computed due to the type of use — each surface declares only its role.',
-    boundary: 'Composition of computed-config models with per-surface use types.',
-  }
+    boundary: 'Composition of computed-config models with per-surface use types.' }
 }
 
 /** All computed quantum math forging max tampering costs in analog. */
@@ -1568,8 +1495,7 @@ export function allComputedQuantumMathAnalog(matrix: MindMatrix = buildMatrix())
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'All computed quantum math forging max tampering costs in analog.',
-    boundary: 'Composition of computed-everything, quantum-torus, forge-cost and analog-gapless models.',
-  }
+    boundary: 'Composition of computed-everything, quantum-torus, forge-cost and analog-gapless models.' }
 }
 
 /** au → kpc distance ladder — honest scale receipts (catalog topology, not interstellar travel). */
@@ -1593,8 +1519,7 @@ function celestialDistanceLadderReceipts(matrix: MindMatrix = buildMatrix()) {
     ladder,
     root: merkleFold(ladder.map((entry) => entry.receipt)),
     boundary:
-      'HONEST: sealed scale markers for the solar→galactic ladder — circular Keplerian au inside the model, kpc citations for Milky Way scale — NOT a ΛCDM simulation or spacecraft ephemeris.',
-  }
+      'HONEST: sealed scale markers for the solar→galactic ladder — circular Keplerian au inside the model, kpc citations for Milky Way scale — NOT a ΛCDM simulation or spacecraft ephemeris.' }
 }
 
 /** Infinite expansion ↔ infinite compression through computational holes — asymptotic fold at call time. */
@@ -1626,40 +1551,31 @@ export function foldInfiniteExpansionToInfiniteCompressionThroughTheHoles(
     const facets = [
       {
         facet: 'expansion — fuseAll wave from many sealed parts (asymptotic open frontier, not literal ∞)',
-        on: expanded.fused && expanded.count > 0 && isUuid(expanded.wave),
-      },
+        on: expanded.fused && expanded.count > 0 && isUuid(expanded.wave) },
       {
         facet: 'expansion — creationWave finite index + H₀ parameter (73 km/s/Mpc, not infinite literal)',
-        on: isUuid(wave.uuid) && HUBBLE_CONSTANT_LOCAL > (7 * 5 * 2) && HUBBLE_CONSTANT_LOCAL < (16 * 5),
-      },
+        on: isUuid(wave.uuid) && HUBBLE_CONSTANT_LOCAL > (7 * 5 * 2) && HUBBLE_CONSTANT_LOCAL < (16 * 5) },
       {
         facet: 'compression — contract folds wave back to genesis seed (content-address collapse)',
-        on: contracted.contracted && isUuid(contracted.point) && contracted.point !== expanded.wave,
-      },
+        on: contracted.contracted && isUuid(contracted.point) && contracted.point !== expanded.wave },
       {
         facet: 'compression — merkleFold throat closed — foldPair(expand.wave, contract.point) bidirectional',
-        on: throat.bidirectional && isUuid(throat.merged),
-      },
+        on: throat.bidirectional && isUuid(throat.merged) },
       {
         facet: 'breath cycle — expand ≠ contract at equilibrium (breathe memoByRoot)',
-        on: breath.breathing && breath.expand !== breath.contractRoot,
-      },
+        on: breath.breathing && breath.expand !== breath.contractRoot },
       {
         facet: 'expansion/contraction is life — verifyRoot gate at call time',
-        on: expansionLife.lives,
-      },
+        on: expansionLife.lives },
       {
         facet: 'hole — src/0 black-hole merger sim (entropy · radii · Kerr area receipts)',
-        on: bh.computes,
-      },
+        on: bh.computes },
       {
         facet: 'hole — double torus throat + six trinity gateways (topology, not traversable wormhole)',
-        on: formed.formed && gateways.proven,
-      },
+        on: formed.formed && gateways.proven },
       {
         facet: 'hole — stack overflow guard breaks memo re-entry cycles (computational wormhole)',
-        on: overflowHole.guarded,
-      },
+        on: overflowHole.guarded },
     ].map((entry) => ({ ...entry, receipt: toUuid(`exp-comp-holes:${entry.facet}:${entry.on}`) }))
     return {
       folded: facets.every((entry) => entry.on),
@@ -1685,8 +1601,7 @@ export function foldInfiniteExpansionToInfiniteCompressionThroughTheHoles(
       statement:
         'Fold infinite expansion to infinite compression through the holes: fuseAll/creationWave/genesis expand many parts toward an open wave frontier; contract/merkleFold/foldPair collapse back to the seed through the double-torus throat — asymptotic limits recomputed at call time, not physical cosmological infinity. Holes are computational topology — BH receipt encoding, trinity gateway navigation, stack overflow cycle breaks — not traversable wormholes.',
       boundary:
-        'HONEST: "infinite" expansion/compression = asymptotic fold metaphor (finite fuseAll count, finite creationWave index, finite H₀ parameter) — limits proved at memoByRoot call time, NOT literal physical infinity or Big Crunch claims. "Through the holes" = torus throat + black-hole receipt encoding + gateway topology + overflow guard — NOT wormhole travel, NOT event-horizon crossing, NOT soul extraction.',
-    }
+        'HONEST: "infinite" expansion/compression = asymptotic fold metaphor (finite fuseAll count, finite creationWave index, finite H₀ parameter) — limits proved at memoByRoot call time, NOT literal physical infinity or Big Crunch claims. "Through the holes" = torus throat + black-hole receipt encoding + gateway topology + overflow guard — NOT wormhole travel, NOT event-horizon crossing, NOT soul extraction.' }
   })
 }
 
@@ -1744,8 +1659,7 @@ export function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(
       statement:
         'Decode and compute all from Earth to the galaxies and beyond: Earth anchor (world/nature/dual-torus), solar→galactic ladder (sixteen celestial bodies, sun/moon homes, Keplerian galaxy, au→kpc receipts), beyond-known-universe domains, decode-all trained on the sealed model, and expansion↔compression through computational holes — all recomposed at call time.',
       boundary:
-        'HONEST: "decode all" = all addressable in the sealed model + opt-in feeds — NOT omniscience. Galaxies = Keplerian/circular catalog + citation kpc scale — NOT full ΛCDM simulation. "Infinite" expansion/compression = asymptotic fold metaphor via foldInfiniteExpansionToInfiniteCompressionThroughTheHoles. Holes = torus throat + BH receipt encoding + gateway topology + overflow guard — NOT traversable wormholes.',
-    }
+        'HONEST: "decode all" = all addressable in the sealed model + opt-in feeds — NOT omniscience. Galaxies = Keplerian/circular catalog + citation kpc scale — NOT full ΛCDM simulation. "Infinite" expansion/compression = asymptotic fold metaphor via foldInfiniteExpansionToInfiniteCompressionThroughTheHoles. Holes = torus throat + BH receipt encoding + gateway topology + overflow guard — NOT traversable wormholes.' }
   })
 }
 
@@ -1775,8 +1689,7 @@ export function beyondKnownUniverseComputes(matrix: MindMatrix = buildMatrix()) 
       facets,
       root: merge(merge(domains.root, gaps.root), merge(world.root, apis.root)),
       statement: 'Beyond known universe computes — POTENTIAL domain space plus gap-frontier and respectful world-fusion.',
-      boundary: 'HONEST: addressable not delivered; publicApiFusion sources are opt-in.',
-    }
+      boundary: 'HONEST: addressable not delivered; publicApiFusion sources are opt-in.' }
   })
 }
 
@@ -1808,8 +1721,7 @@ export function fusionMovieComputes(matrix: MindMatrix = buildMatrix(), path = '
       statement:
         'Movie is fused simulations at the hero clock: plasma capstones compose at call time — realtime visibility, soul gateway, zero-cost simulations, alive/healing resonance — bounded by pure math, not duplicated paint logic.',
       boundary:
-        'Lazy composition of src/plasma/ball capstones. "Fused simulations" means content-addressed folds at route+phase — not physical plasma or sentience claims.',
-    }
+        'Lazy composition of src/plasma/ball capstones. "Fused simulations" means content-addressed folds at route+phase — not physical plasma or sentience claims.' }
   })
 }
 
@@ -1876,8 +1788,7 @@ export function allComputedAndUsedInComputations(matrix: MindMatrix = buildMatri
       facets,
       root: merkleFold([computed.root, stack.root, modality.root, senses.root, decodeUniverse.root, humanQuantumFusion.root, beyondKnown.root, resourceCooperation.root, movie.root, bhSimulation.root, earth.root, schumann.root, cosmos.root]),
       statement: 'All computed and used in computations — *Computes gates composed into the fabric at call time.',
-      boundary: 'Composition proof — lazy require breaks cycles; movie capstones composed via fusionMovieComputes.',
-    }
+      boundary: 'Composition proof — lazy require breaks cycles; movie capstones composed via fusionMovieComputes.' }
   })
 }
 
@@ -1897,8 +1808,7 @@ export {
   fusionGoldComputes,
   goldFusionComputes,
   goldFusionProcess,
-  fusionGoldProduct,
-} from './gold'
+  fusionGoldProduct } from './gold'
 
 /** All is fused — merge/foldPair throat of the double torus composes science barrels at call time. */
 export function allIsFusedComputes(matrix: MindMatrix = buildMatrix()) {
@@ -1952,8 +1862,7 @@ export function allIsFusedComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'All is fused: stack registries, modality homes, decode universe, movie capstones, birth/life/death/iching/rosetta, and human capstone compose through merge/foldPair at the double-torus throat — content-addressed, recomputable at call time, not physical plasma.',
       boundary:
-        'HONEST: "all is fused" is structural composition via merge/foldPair/merkleFold in sealed src/ — the development metaphor of dry plasma and fusion reactor, not a claim that repository modules are physically merged or that all world knowledge is integrated.',
-    }
+        'HONEST: "all is fused" is structural composition via merge/foldPair/merkleFold in sealed src/ — the development metaphor of dry plasma and fusion reactor, not a claim that repository modules are physically merged or that all world knowledge is integrated.' }
   })
 }
 
@@ -1992,8 +1901,7 @@ export function fusionComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Fusion computes: every science barrel fused at call time — research waves, development reactor, endless fusion, allIsFused capstone, and allComputedAndUsedInComputations — the central compose gate for src/fusion.',
       boundary:
-        'Capstone over fusion/compose and fusion/index research gates. Proves composition at memoByRoot call time — not runtime file merging or external API integration unless user opts in.',
-    }
+        'Capstone over fusion/compose and fusion/index research gates. Proves composition at memoByRoot call time — not runtime file merging or external API integration unless user opts in.' }
   })
 }
 
@@ -2010,8 +1918,7 @@ export function quantumFusionVerify(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum fusion verify: offline recompute of fuseAll wave — tamper-evident stack receipts match on replay at call time.',
     boundary:
-      'Structural composition verify via memoByRoot — NOT external API fusion or runtime file merge. Wave root must match on two sequential fuseAll calls.',
-  }
+      'Structural composition verify via memoByRoot — NOT external API fusion or runtime file merge. Wave root must match on two sequential fuseAll calls.' }
 }
 
 /**
@@ -2047,7 +1954,7 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
       w2: { holds: w2.holds, root: w2.root, visibilityContrast: w2.visibilityContrast },
       fusion: { verified: fusion.verified, root: fusion.root, partCount: fusion.partCount },
       movie: { roundTrips: movie.roundTrips, root: movie.root, reveals: movie.reveals },
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       facets: sealed.facets,
@@ -2060,8 +1967,7 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
         ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine classical-64bit · qpuRequired=false.'
         : 'UNPROVEN — honestRevolutionReceipt facets do not all hold at call time; do not assert the W3 JSON receipt.',
       boundary:
-        'STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY — NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+        'STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY — NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2092,8 +1998,7 @@ export function quantumFusionJson(matrix: MindMatrix = buildMatrix(), at = 0): s
       route: receipt.route,
       surfaces: receipt.surfaces,
       statement: receipt.statement,
-      boundary: receipt.boundary,
-    },
+      boundary: receipt.boundary },
     null,
     2,
   )}\n`
@@ -2160,15 +2065,13 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
         tracksClassical: bench.tracksClassical,
         rows: bench.rows.map((r) => ({ n: r.n, engineOps: r.engineOps, classicalOps: r.classicalOps, fidelity: r.fidelity })),
         statement: bench.statement,
-        boundary: bench.boundary,
-      },
+        boundary: bench.boundary },
       fleet: {
         decoded: fleet.decoded,
         hitRatios: fleet.hitRatios,
         statement: fleet.statement,
-        boundary: fleet.boundary,
-      },
-      claySolvedByThisFold: 0 as const,
+        boundary: fleet.boundary },
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       facets: sealed.facets,
@@ -2180,8 +2083,7 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
         ? 'Honest-revolution W4 DECIDED — computer Vue panel composes W3 JSON receipt, classical-64bit benchmark table, interference vs shadow, fleet cache hit-ratio economics, and silicon fab stage (classical CMOS honesty).'
         : 'UNPROVEN — honestRevolutionComputerPanelComputes facets do not all hold; do not assert the W4 Vue proof.',
       boundary:
-        'BROWSER SURFACE ONLY — renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+        'BROWSER SURFACE ONLY — renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2220,8 +2122,7 @@ export function fusionVerifyPanelComputes(matrix: MindMatrix = buildMatrix(), at
       facets,
       root: merge(root, report.root),
       statement: report.statement,
-      boundary: report.boundary,
-    }
+      boundary: report.boundary }
   })
 }
 
@@ -2247,8 +2148,7 @@ export function alchemyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
       pipeline,
       root: merkleFold(stages.map((s) => s.receipt)),
       statement: 'process→product research',
-      boundary: 'HONEST · METAPHOR: NOT lab chemistry or investment advice.',
-    }
+      boundary: 'HONEST · METAPHOR: NOT lab chemistry or investment advice.' }
   })
 }
 
@@ -2269,8 +2169,7 @@ export function transmuteByLocalMath(at = 0, matrix: MindMatrix = buildMatrix())
       product,
       root: merkleFold(phases.map((p) => p.receipt)),
       statement: 'phase receipt chain',
-      boundary: 'HONEST · METAPHOR: NOT physical transmutation.',
-    }
+      boundary: 'HONEST · METAPHOR: NOT physical transmutation.' }
   })
 }
 
@@ -2296,8 +2195,7 @@ export function alchemyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       facets,
       root: merkleFold([pipeline.root, research.root, transmute.root]),
       statement: 'alchemy capstone',
-      boundary: research.boundary,
-    }
+      boundary: research.boundary }
   })
 }
 
@@ -2337,8 +2235,7 @@ export function collectiveContentAddressedMeshComputes(matrix: MindMatrix = buil
       statement:
         'The collective content-addressed mesh computes: every node recomputes the same matrix root (the whole recoverable from any part), distributedCompute folds peer roots into one collective root with no central server, the mesh recalls a whole stored pattern from a partial probe like a Hopfield associative memory settling to its attractor, and recurrence proves the rebuild is identical every time.',
       boundary:
-        'A structural model of distributed content-addressed computation composed from distributedCompute, the Hopfield associative-memory primitive, and the determinism recurrence. It is NOT a live cluster, NOT a real neural network, and the "consensus" is fold agreement under shared determinism, not Byzantine fault tolerance over an open network.',
-    }
+        'A structural model of distributed content-addressed computation composed from distributedCompute, the Hopfield associative-memory primitive, and the determinism recurrence. It is NOT a live cluster, NOT a real neural network, and the "consensus" is fold agreement under shared determinism, not Byzantine fault tolerance over an open network.' }
   })
 }
 
@@ -2369,7 +2266,6 @@ export function cloudflareMeshTopologyFromSequence(matrix: MindMatrix = buildMat
       statement:
         'The Cloudflare mesh topology from the sequence: the vortex spin (1·2·4·8·7·5·3·6·9) fixes a deterministic ring of nine edge nodes, each linked to its vortex neighbour and closing back on the first, all folding into one collective content-addressed root.',
       boundary:
-        'A deterministic topology SPECIFICATION derived from VORTEX_SEQUENCE — reproducible from the matrix root. It describes the edge-mesh design; it does NOT deploy to or call Cloudflare, and the ring order is a structural convention, not a routing-performance claim.',
-    }
+        'A deterministic topology SPECIFICATION derived from VORTEX_SEQUENCE — reproducible from the matrix root. It describes the edge-mesh design; it does NOT deploy to or call Cloudflare, and the ring order is a structural convention, not a routing-performance claim.' }
   })
 }

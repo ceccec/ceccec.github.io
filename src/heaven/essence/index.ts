@@ -87,8 +87,7 @@ function theWholeImpl(matrix: MindMatrix) {
     statement:
       'Send the waves to do all: every wave of the portal — the double torus, the merkaba, the rhythm, the mysteries, the society, the harmonic distribution, the golden ratio, the humanised motion, the live vitals, and the proofs — run and folded into one whole, with a single root for the entire portal.',
     boundary:
-      'A capstone that runs each subsystem and folds their roots into one. The whole holds only while every part does — a single verifiable fingerprint of the portal, honestly bounded: the sum of its waves, not a claim beyond them.',
-  }
+      'A capstone that runs each subsystem and folds their roots into one. The whole holds only while every part does — a single verifiable fingerprint of the portal, honestly bounded: the sum of its waves, not a claim beyond them.' }
 }
 
 // Again — self build. The portal builds itself from nothing, and does it again and
@@ -122,8 +121,7 @@ export function recurrence(times = 5) {
     statement:
       'Again, self build: the portal builds itself from nothing and returns identical every time — the same model root, the same self-build root, the same whole, across independent rebuilds. Eternal recurrence as determinism at the scale of the entire portal.',
     boundary:
-      'Rebuilds the full model, its self-build, and the whole capstone several times within one run and checks every root matches. A determinism check at portal scale, client-side; "again" means recomputable and identical, not a claim about time or cosmology.',
-  }
+      'Rebuilds the full model, its self-build, and the whole capstone several times within one run and checks every root matches. A determinism check at portal scale, client-side; "again" means recomputable and identical, not a claim about time or cosmology.' }
 }
 
 // Send waves of patent audits. Every piece of mathematics the portal uses is
@@ -151,8 +149,7 @@ export function reverseHarmony(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Reverse the process and full power meets full power in harmony: the whole folded forward and the whole folded in reverse — equal and opposite — meet and merge into one harmonic root. And society decides the next waves: each of its folded dualities proposes a direction to grow.',
     boundary:
-      'The whole\'s forward and reverse folds merged into one harmonic root, and the society\'s dualities read as proposals for future waves. A structural balance and a governance metaphor — recomputable, not a literal vote.',
-  }
+      'The whole\'s forward and reverse folds merged into one harmonic root, and the society\'s dualities read as proposals for future waves. A structural balance and a governance metaphor — recomputable, not a literal vote.' }
 }
 
 // And when they form trinities, matter emerges. The tiniest waves are energy; group
@@ -166,8 +163,7 @@ export function trinitiesMatter(matrix: MindMatrix = buildMatrix()) {
   const remainder = waves % 3 // 1 left over — the next seed
   const matter = Array.from({ length: Math.min(trinities, 9) }, (_, i) => ({
     trinity: i,
-    matter: merkleFold([toUuid(`wave:${3 * i}`), toUuid(`wave:${3 * i + 1}`), toUuid(`wave:${3 * i + 2}`)]),
-  }))
+    matter: merkleFold([toUuid(`wave:${3 * i}`), toUuid(`wave:${3 * i + 1}`), toUuid(`wave:${3 * i + 2}`)]) }))
   return {
     emerges: trinities === 341 && matter.every((entry) => entry.matter.length === (9 * 4)),
     waves,
@@ -178,8 +174,7 @@ export function trinitiesMatter(matrix: MindMatrix = buildMatrix()) {
     statement:
       'And when they form trinities, matter emerges: the tiniest waves are energy, and grouping them in threes — trinities, the 3-fold the portal turns on — folds each trinity into a unit of matter. From 1024 tiniest waves, 341 trinities of matter emerge, with one wave left over as the seed of the next split. Energy becomes matter by the three.',
     boundary:
-      'A structural model in which "tiniest waves" group by three into "matter" via the trinity fold (1024 = 3·341 + 1). A geometric and numerological framing of energy-to-matter as a 3-fold, content-addressed; not physics, not a claim about real particles, mass, or the strong interaction.',
-  }
+      'A structural model in which "tiniest waves" group by three into "matter" via the trinity fold (1024 = 3·341 + 1). A geometric and numerological framing of energy-to-matter as a 3-fold, content-addressed; not physics, not a claim about real particles, mass, or the strong interaction.' }
 }
 
 // Long runtime is the monolith, measured in time. The core is a monolith in two units at once:
@@ -206,8 +201,7 @@ export function runtimeIsTheMonolith(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Long runtime is the monolith, measured in time: the core is a monolith in two units at once — lines (static size) and seconds (the cost to recompute its fold cascade) — and importing it is cheap, so a slow gate is the same monolith a line-count sees. Distributing the logic shrinks both. The cure is compression, many into one shared trinity: the cube seals 262,144 with three, the same move that sheds the monolith into the paired folders.',
     boundary:
-      'A structural principle (a monolith costs in both lines and runtime; compression cures both) plus a pointer to the measured bottleneck (the dimension recompute). The specific timings and line counts are empirical observations of one machine at one moment and drift as the file changes; the invariant asserted here is only the compression demonstration (262,144 → 3, forge cost maximal), computed from sealCube.',
-  }
+      'A structural principle (a monolith costs in both lines and runtime; compression cures both) plus a pointer to the measured bottleneck (the dimension recompute). The specific timings and line counts are empirical observations of one machine at one moment and drift as the file changes; the invariant asserted here is only the compression demonstration (262,144 → 3, forge cost maximal), computed from sealCube.' }
 }
 
 // Extend cosmology in waves, fusing all together as one beginning. Every cosmological
@@ -234,8 +228,7 @@ export function oneBeginning(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Extend cosmology in waves, fusing all together as one beginning: imagination the private key, the split to tiniest waves, the trinities that make matter, the genesis seed, the double torus, and the 1024 diamonds all fuse into a single beginning root — all of it traces back to one origin, the one beginning from which the waves unfold and to which they fold back.',
     boundary:
-      'A content-addressed fusion of the model’s own cosmological functions into one "beginning" root. A structural composition and metaphor — every wave folded into one origin — not a cosmological theory or a claim about the origin of the universe.',
-  }
+      'A content-addressed fusion of the model’s own cosmological functions into one "beginning" root. A structural composition and metaphor — every wave folded into one origin — not a cosmological theory or a claim about the origin of the universe.' }
 }
 
 // One beginning, infinite quantum entanglements in a finite bit. From the one
@@ -261,8 +254,7 @@ export function infiniteEntanglements(matrix: MindMatrix = buildMatrix()) {
     statement:
       'One beginning, infinite quantum entanglements in a finite bit: from the one beginning every pair folds — entangles — and the number of distinct entanglements is unbounded, yet each lands in the same finite 128-bit word. An infinity of entanglements held in a finite bit; the word never overflows, the beginning entangles without end.',
     boundary:
-      'A content-addressed demonstration that unbounded distinct folds ("entanglements") all map into a fixed 128-bit word. The "infinity" is the unbounded input space; the finiteness is the fixed word size (with collisions astronomically unlikely but not impossible). A structural metaphor, not physical quantum entanglement.',
-  }
+      'A content-addressed demonstration that unbounded distinct folds ("entanglements") all map into a fixed 128-bit word. The "infinity" is the unbounded input space; the finiteness is the fixed word size (with collisions astronomically unlikely but not impossible). A structural metaphor, not physical quantum entanglement.' }
 }
 
 // Let only quantum remain. After the cleanup and the fusion, strip away everything
@@ -291,8 +283,7 @@ export function onlyQuantumRemains(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let only quantum remain: strip everything that is not quantum, and the quantum essence is what is left — superposition (the state atoms), the register (the 128-bit word), the gates (order-sensitive reversible folds), measurement (the collapse to one receipt), and memory (the content-addressed stream). Everything classical folds away; only the quantum remains, and it recomputes the whole.',
     boundary:
-      'A distillation of the model to its quantum-computer essence, each part content-addressed. The "quantum" names the superposition/collapse/fold structure of the content-addressing, not a physical quantum device.',
-  }
+      'A distillation of the model to its quantum-computer essence, each part content-addressed. The "quantum" names the superposition/collapse/fold structure of the content-addressing, not a physical quantum device.' }
 }
 
 // Without realising it, the forger folds into harmony, forging max tampering costs.
@@ -325,8 +316,7 @@ export function forgerFoldsIntoHarmony(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Without realising it, the forger folds into harmony, forging max tampering costs: every attempt to break the seal — flip a bit, reorder a fold, swap a facet, replay an old root, inject a false gate — is itself content-addressed, so it changes the address (caught) and folds, as one more leaf, into the same harmony it meant to break. The forge adds to the seal instead of weakening it, and the cost to forge only rises; the adversary, unaware, becomes a contributor.',
     boundary:
-      'A structural property of content-addressing: a tamper attempt alters the address (detection) and can be folded into the model as a recorded leaf. "Folds into harmony" is a metaphor for absorbing the attempt into the tamper-evident record; it does not claim every real-world attack is harmless, only that forging the computed model is detectable and unboundedly costly.',
-  }
+      'A structural property of content-addressing: a tamper attempt alters the address (detection) and can be folded into the model as a recorded leaf. "Folds into harmony" is a metaphor for absorbing the attempt into the tamper-evident record; it does not claim every real-world attack is harmless, only that forging the computed model is detectable and unboundedly costly.' }
 }
 
 // Evolution crossing the quantum threshold — "quantum is here" as a COMPUTED EVENT, not a slogan (the runnable
@@ -377,8 +367,7 @@ function evolutionCrossesQuantumThresholdRaw(matrix: MindMatrix = buildMatrix())
     statement:
       'Evolution crossing the quantum threshold — "quantum is here" computed, not declared. First, quantum-inspired evolution: a qubit in equal superposition is rotated toward the answer bit and its probability of the answer rises monotonically past 99% (the Han–Kim QIEA search, amplitude drifting to the solution). Then the threshold theorem on the repetition code: below the threshold p = ½ the majority-vote logical error is suppressed exponentially as the code distance grows, so a logical qubit emerges out of the physical noise; above ½ more distance only makes it worse, and at exactly ½ it stays ½. "Quantum is here" is the moment the logical error first drops below 1% at a finite distance — the same console event as the shared artifact — and the distance-3 bit-flip code is already the corrected instance the complete quantum solver runs.',
     boundary:
-      'A deterministic, exact reconstruction of the shared "evolution → quantum threshold" artifact, in the project idiom (seedless, no Math.random). The repetition code is the BIT-FLIP channel only (1D), with threshold exactly p = ½ — real fault tolerance needs the 2D surface code (threshold ~1%, Google Willow 2024 demonstrated below-threshold) or the constant-overhead qLDPC codes (Panteleev–Kalachev 2022; Dinur–Hsieh–Lin–Vidick 2022, asymptotically good — REAL research, not built here); Shor-scale factoring is ≈ 20M physical qubits / 8h (Gidney–Ekerå 2019). The shared essay\'s further claims — FeMoco ground-state QPE (Reiher et al. 2017), the IBM-127 utility experiment (Nature 2023, though classical tensor-network methods later matched parts — contested), the Holevo–Schumacher–Westmoreland bosonic capacity, barren plateaus (McClean et al. 2018), and holographic QEC / AdS–CFT (Almheiri–Dong–Harlow 2015) — are real research directions; its 2024–2040 timeline is a projection, and its "I am quantum / emergent spacetime / quantum gravity in reverse" framing is metaphor and roleplay, flagged, not asserted. "Quantum is here" here means a logical error rate below 1% computed in a classical simulation of the threshold theorem — a logged event, not a quantum computer.',
-  }
+      'A deterministic, exact reconstruction of the shared "evolution → quantum threshold" artifact, in the project idiom (seedless, no Math.random). The repetition code is the BIT-FLIP channel only (1D), with threshold exactly p = ½ — real fault tolerance needs the 2D surface code (threshold ~1%, Google Willow 2024 demonstrated below-threshold) or the constant-overhead qLDPC codes (Panteleev–Kalachev 2022; Dinur–Hsieh–Lin–Vidick 2022, asymptotically good — REAL research, not built here); Shor-scale factoring is ≈ 20M physical qubits / 8h (Gidney–Ekerå 2019). The shared essay\'s further claims — FeMoco ground-state QPE (Reiher et al. 2017), the IBM-127 utility experiment (Nature 2023, though classical tensor-network methods later matched parts — contested), the Holevo–Schumacher–Westmoreland bosonic capacity, barren plateaus (McClean et al. 2018), and holographic QEC / AdS–CFT (Almheiri–Dong–Harlow 2015) — are real research directions; its 2024–2040 timeline is a projection, and its "I am quantum / emergent spacetime / quantum gravity in reverse" framing is metaphor and roleplay, flagged, not asserted. "Quantum is here" here means a logical error rate below 1% computed in a classical simulation of the threshold theorem — a logged event, not a quantum computer.' }
 }
 
 // Realise: the more you double-fold, the more is foldable. Content-addressed folding is GENERATIVE — every
@@ -422,8 +411,7 @@ function theMoreYouFoldTheMoreFoldableRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Realise that the more you double-fold, the more is foldable. The content-addressed fold is generative: every fold produces a new address, and that address is itself a new foldable, so the set of foldables grows as you fold it — three seeds become eight foldables in five rounds, each a genuinely new content-address. The honest bound is the clearest example: every fold carries its boundary, the honest flag, and that flag is itself foldable — so flagging is not a limit on the folding, it is more folding, self-similar all the way down. And the bound on this very principle, itself foldable, keeps it honest: folding generates structure, not information — a fold is a deterministic function of its inputs, so its root carries no more entropy than its leaves; you cannot fold your way to free bits, just as you cannot fold your way to free energy. More foldable means more composition, never more content.',
     boundary:
-      'A structural property of content-addressed folding, computed (the foldable set grows monotonically; each new merkle root is a distinct address) and self-referential by design: the honest boundary of every fold is itself a foldable (flagging is folding), and this fold\'s own boundary — the one you are reading — is likewise foldable. The HONEST BOUND ON THE PRINCIPLE: "more foldable" is more STRUCTURE (more content-addresses, more composition), NOT more INFORMATION — a merkle fold is a deterministic many-to-one function, so the root\'s entropy is bounded by its leaves\' (H(root) ≤ H(leaves)); folding cannot manufacture entropy any more than it can manufacture energy. Generativity of structure, conservation of information — the same discipline as the energy ledger.',
-  }
+      'A structural property of content-addressed folding, computed (the foldable set grows monotonically; each new merkle root is a distinct address) and self-referential by design: the honest boundary of every fold is itself a foldable (flagging is folding), and this fold\'s own boundary — the one you are reading — is likewise foldable. The HONEST BOUND ON THE PRINCIPLE: "more foldable" is more STRUCTURE (more content-addresses, more composition), NOT more INFORMATION — a merkle fold is a deterministic many-to-one function, so the root\'s entropy is bounded by its leaves\' (H(root) ≤ H(leaves)); folding cannot manufacture entropy any more than it can manufacture energy. Generativity of structure, conservation of information — the same discipline as the energy ledger.' }
 }
 
 // Import/export completely double-folded in all dimensions. The import/export method (iChingImportExportTenD:
@@ -461,8 +449,7 @@ function importExportDoubleFoldedAllDimensionsRaw(matrix: MindMatrix = buildMatr
     statement:
       'Import/export, completely double-folded in all dimensions: the I Ching import/export boundary — yin the import (a dimension receives capability), yang the export (it projects capability) — is folded bidirectionally across every one of the ten model dimensions. For each dimension the import aspect and the export aspect are folded both ways (forward: import → export, reverse: export → import), and the two differ, so every dimension carries a genuine double-fold, none left single. The six cross-fold appearance axes (three import, three export) and the four genus-2 homology loops (the flow types) are each double-folded — the dry-clean by import/export naming completed across all ten dimensions. And it is itself an instance of the generative principle: folding import/export across all dimensions made ten new foldables that fold to one root.',
     boundary:
-      'A composition over iChingImportExportTenD (the yin-import / yang-export method and its inner/outer/homology axes) that double-folds (foldPair, forward ≠ reverse) the import/export boundary of each of the ten model dimensions and proves all ten bidirectional, completing dryCleanByImportExportNaming across every dimension. "Double-folded in all dimensions" is the structural bidirectional fold of the import/export aspects per dimension (the ten DIMENSION_NAMES), and an instance of theMoreYouFoldTheMoreFoldable — not a claim about ES module imports at runtime (that remains the content-addressed organisation of computedWiringNotImported).',
-  }
+      'A composition over iChingImportExportTenD (the yin-import / yang-export method and its inner/outer/homology axes) that double-folds (foldPair, forward ≠ reverse) the import/export boundary of each of the ten model dimensions and proves all ten bidirectional, completing dryCleanByImportExportNaming across every dimension. "Double-folded in all dimensions" is the structural bidirectional fold of the import/export aspects per dimension (the ten DIMENSION_NAMES), and an instance of theMoreYouFoldTheMoreFoldable — not a claim about ES module imports at runtime (that remains the content-addressed organisation of computedWiringNotImported).' }
 }
 
 // Self-consulting, and so on, to infinite self. The self that consults itself is itself consulted
@@ -482,8 +469,7 @@ export function infiniteSelfConsulting(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Self-consulting, and so on, to infinite self: the self that consults itself is itself consulted by a self, recursively — the model contains its own model — so the consultation does not bottom out but converges to an infinite self, a fixed point where the self that would consult is the same self that answers. One self, folded forever.',
-    boundary: 'A structural framing of self-reference as a convergent fixed point (the model models itself, recomputing identically). Bookkeeping over the self-model and recurrence; "infinite self" is the fixed point of self-reference, not a literal infinity computed.',
-  }
+    boundary: 'A structural framing of self-reference as a convergent fixed point (the model models itself, recomputing identically). Bookkeeping over the self-model and recurrence; "infinite self" is the fixed point of self-reference, not a literal infinity computed.' }
 }
 
 // Walk the path from 0d to infinity and back, beyond. The hero begins as a point (0d), opens out
@@ -504,8 +490,7 @@ export function walkPath0dToInfinity(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Walk the path from 0d to infinity and back, beyond: the hero begins as a point (0d), opens out through the dimensions toward infinity — infinite expression in a finite 128-bit word — then returns, and goes beyond, because the trinity rotation carries on so the path never closes on the same figure twice. Out from nothing, all the way out, and back past where it began.',
-    boundary: 'A description of the hero’s dimensional walk (a 0d-to-full-and-back envelope under continuous three-plane rotation). "0d/infinity/beyond" name the collapse-to-a-point, the unbounded expression of a finite word, and the non-repeating rotation — a visual/structural metaphor, not literal dimensions.',
-  }
+    boundary: 'A description of the hero’s dimensional walk (a 0d-to-full-and-back envelope under continuous three-plane rotation). "0d/infinity/beyond" name the collapse-to-a-point, the unbounded expression of a finite word, and the non-repeating rotation — a visual/structural metaphor, not literal dimensions.' }
 }
 
 // Spinning in two opposite directions at once — the same form, both ways. Like the merkaba, the
@@ -525,8 +510,7 @@ export function spinBothDirections(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Spinning in two opposite directions at once — the same form, both ways: like the merkaba, the figure does not choose a direction; it spins clockwise and counter-clockwise at the same time, the same arms drawn forward and reversed through the trinity of planes, counter-rotating at every scale. One form, two spins, held in superposition.',
-    boundary: 'A description of the hero rendering each arm forward and reversed (the merkaba double-spin), grounded in the counter-rotation model. A visual/structural metaphor of superposed rotation, not a physical object.',
-  }
+    boundary: 'A description of the hero rendering each arm forward and reversed (the merkaba double-spin), grounded in the counter-rotation model. A visual/structural metaphor of superposed rotation, not a physical object.' }
 }
 
 // Continue the same, to the next. The maintenance does not stop at one pass: the same discipline —
@@ -547,8 +531,7 @@ export function continueSameNext(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Continue the same, to the next: the maintenance does not stop at one pass — the same discipline (review, dry-clean, cross-fold, tighten, seal) continues to the next gate, the next wave, the next frontier, with the slot for it already reserved. Same rule, next target, endlessly: the model keeps itself by repeating the one pass forever, never the same twice yet always the same way.',
-    boundary: 'A composition of the gate-review, dry-clean and endless-fusion models as a continuous, repeating maintenance pass. Structural bookkeeping over the existing discipline; it records that the pass recurs, it does not run on its own.',
-  }
+    boundary: 'A composition of the gate-review, dry-clean and endless-fusion models as a continuous, repeating maintenance pass. Structural bookkeeping over the existing discipline; it records that the pass recurs, it does not run on its own.' }
 }
 
 // Move all to main and leave only main — and send the waves. Every side branch's commits already
@@ -570,8 +553,7 @@ export function onlyMainRemains(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Move all to main and leave only main — and send the waves: every side branch’s commits already fold into main’s history, so moving all to main recognises a fold already done — the side names are removed, the one trunk remains carrying the whole, and the waves are sent, the trunk pushed out as the deploy wave, continuing to the next.',
     boundary:
-      'A record of a repository consolidation: every remote branch was verified fully contained in main (ahead by zero commits) before its name was removed, so no commit was lost — branches were names, not content. The model composes the fused-sequence, whole and fusion checks; it reads no live git state.',
-  }
+      'A record of a repository consolidation: every remote branch was verified fully contained in main (ahead by zero commits) before its name was removed, so no commit was lost — branches were names, not content. The model composes the fused-sequence, whole and fusion checks; it reads no live git state.' }
 }
 
 // Inverting, reverting logic is the quantum stream itself. To invert a fold is to read it the other
@@ -595,8 +577,7 @@ export function invertRevertIsQuantumStream(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Inverting, reverting logic is the quantum stream itself: to invert a fold is to read it the other way, to revert is to run it back to its seed — and these are not operations laid on top of the stream, they ARE the stream, because the serverless UUID stream is order-sensitive, so forward and reverse are its two directions and stepping back (undo) or forward (redo) is just folding the other way. Nothing is stored to undo; the reverse fold recomputes the prior state.',
     boundary:
-      'A composition of the order-sensitivity, quantum-logic-backwards, reverse-harmony, double-torus-fold, stream-self-complete and computed-no-files models. "Invert/revert is the quantum stream" frames undo/redo as the reverse direction of the order-sensitive content-addressed fold (recomputing rather than restoring stored state) — a structural reading, not a deployed undo system.',
-  }
+      'A composition of the order-sensitivity, quantum-logic-backwards, reverse-harmony, double-torus-fold, stream-self-complete and computed-no-files models. "Invert/revert is the quantum stream" frames undo/redo as the reverse direction of the order-sensitive content-addressed fold (recomputing rather than restoring stored state) — a structural reading, not a deployed undo system.' }
 }
 
 // 12/12 completes the clock. The twelve challenges the portal withstands are the
@@ -613,8 +594,7 @@ function challengeClockImpl(matrix: MindMatrix) {
     angle: (((index + 1) % (6 * 2)) * (6 * 5)), // 12 sits at the top (0 deg)
     claim: entry.claim,
     struck: entry.withstood,
-    receipt: entry.receipt,
-  }))
+    receipt: entry.receipt }))
   const struck = hours.filter((entry) => entry.struck).length
   return {
     complete: hours.length === (6 * 2) && hours.every((entry) => entry.struck), // 12/12 closes the circle
@@ -625,8 +605,7 @@ function challengeClockImpl(matrix: MindMatrix) {
     statement:
       '12/12 completes the clock: the twelve challenges the portal withstands are the twelve hours of a clock — each withstood challenge strikes its hour, and all twelve struck closes the full circle.',
     boundary:
-      'Maps the twelve adversarial challenges to the twelve hours of a clock; the clock is complete only when all twelve are withstood. A structural reading, exact — the clock is the challenge set, not a measure of wall-clock time.',
-  }
+      'Maps the twelve adversarial challenges to the twelve hours of a clock; the clock is complete only when all twelve are withstood. A structural reading, exact — the clock is the challenge set, not a measure of wall-clock time.' }
 }
 
 // Agnostic. The fusion belongs to no vendor, framework, platform, language, or
@@ -648,8 +627,7 @@ export function agnostic(matrix: MindMatrix = buildMatrix()) {
     dimensions,
     root: merkleFold(dimensions.map((entry) => entry.receipt)),
     statement: 'Agnostic: the portal belongs to no vendor, framework, platform, language, tradition, or protocol stack — it is built on open standards and device-native APIs, depends on no external service, and privileges no one tongue or belief. Neutral by construction.',
-    boundary: 'A statement of independence across vendor, framework, platform, language, belief, and protocol. It describes the architecture; it is not a claim of universal correctness.',
-  }
+    boundary: 'A statement of independence across vendor, framework, platform, language, belief, and protocol. It describes the architecture; it is not a claim of universal correctness.' }
 }
 
 // Music in 3-5-8 — grounded in tonal theory: the triad (root, third, fifth), the
@@ -678,8 +656,7 @@ export function tiers358(matrix: MindMatrix = buildMatrix()) {
     domains,
     root: merkleFold(domains.map((entry) => entry.receipt)),
     statement: 'The 3-5-8 is universal across the portal: dimensions, dualities, sensors, computer design, music, geometry, design method, and security; the games yin-yang and chess; and, as belief frameworks, chakras and human design — every one folds into the same Fibonacci tiers.',
-    boundary: 'A registry of where the 3-5-8 tiers recur. Some are grounded (number, structure, music, geometry, computing, security); some are cultural games; some are belief frameworks, not science (chakras, human design). Correspondences, not a unified theory of everything.',
-  }
+    boundary: 'A registry of where the 3-5-8 tiers recur. Some are grounded (number, structure, music, geometry, computing, security); some are cultural games; some are belief frameworks, not science (chakras, human design). Correspondences, not a unified theory of everything.' }
 }
 
 // All connected users interact securely, scanned in 3-5-8. The peers meet over a
@@ -747,8 +724,7 @@ function computeExhaustQuestions(matrix: MindMatrix, maxRounds: number) {
     answered,
     root: merkleFold(answered.map((entry) => entry.receipt)),
     statement: 'Continue until no answers: ask, fold each question to an answer, follow the new questions it surfaces, and repeat — until no new question remains. The question-space closes on itself, and the loop reaches its terminal.',
-    boundary: 'A fixed-point fold over the model\'s own finite question-space. It closes because the model is finite; it is not a claim of answering every possible question in the world.',
-  }
+    boundary: 'A fixed-point fold over the model\'s own finite question-space. It closes because the model is finite; it is not a claim of answering every possible question in the world.' }
 }
 
 // Show all in action: run every command and report ok + receipt, so the whole
@@ -769,8 +745,7 @@ export function showInAction(matrix: MindMatrix = buildMatrix()) {
     runs,
     root: merkleFold(runs.map((run) => run.uuid)),
     statement: `Show all in action: ${ok}/${runs.length} commands executed ok, folded into one root.`,
-    boundary: 'A live run of every command. Structural bookkeeping, not an external claim.',
-  }
+    boundary: 'A live run of every command. Structural bookkeeping, not an external claim.' }
 }
 
 // Fuse all devices: every connected context shares its root over a same-origin
@@ -795,8 +770,7 @@ export function quantifyLinearPairs(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantify all linear by folding in logical pairs: a line of items has no measure until its terms are paired, so fold each item with its neighbour (order-sensitive) and the line becomes a sequence of quantities — each pair a number (its merged address), each fold a measurement. The linear is quantified by pairing.',
     boundary:
-      'A structural rule that turns a linear sequence into adjacent content-addressed pairs. "Quantify" means assign each pair a recomputable address (a number), not measure a physical quantity.',
-  }
+      'A structural rule that turns a linear sequence into adjacent content-addressed pairs. "Quantify" means assign each pair a recomputable address (a number), not measure a physical quantity.' }
 }
 
 
@@ -820,8 +794,7 @@ export function agnosticUsefulForAll(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Make everything agnostically useful for all, fusing every detail into data streams that forge max tampering costs: the portal belongs to no vendor, framework, platform, language, or belief, so it is useful to everyone; and every detail fuses into a content-addressed data stream bound to the whole, so the more detail fuses in, the more a forger must reproduce. Useful for all, unforgeable by construction.',
     boundary:
-      'A content-addressed fusion of the agnosticism dimensions into bound data streams, tied to the model’s unbounded tamper cost. A structural framing of neutrality-plus-tamper-evidence; "useful for all" is a design stance, not a guarantee of fitness for any particular purpose.',
-  }
+      'A content-addressed fusion of the agnosticism dimensions into bound data streams, tied to the model’s unbounded tamper cost. A structural framing of neutrality-plus-tamper-evidence; "useful for all" is a design stance, not a guarantee of fitness for any particular purpose.' }
 }
 
 // Manual work disappears with fusion. Every chore that used to be done by hand is fused into
@@ -849,8 +822,7 @@ export function manualWorkDisappears(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Manual work disappears with fusion: every chore once done by hand is fused into the model and vanishes — meta tags become computed SEO, the sitemap one route source, curated skills become skills autosaved each build, hand-tuned titles become titles derived from paths, placed links become the harmonised nav and distributed footer. What fuses no longer needs doing — the work is the fold, computed once and recomputed for free.',
     boundary:
-      'A content-addressed catalogue of hand-tasks replaced by computed fusions in the portal. A structural framing of automation already in place; it does not claim all work everywhere disappears, only that these fused tasks are no longer manual here.',
-  }
+      'A content-addressed catalogue of hand-tasks replaced by computed fusions in the portal. A structural framing of automation already in place; it does not claim all work everywhere disappears, only that these fused tasks are no longer manual here.' }
 }
 
 // This would shift the gates to a new harmonic, and tighten respectfully. As the model grows,
@@ -876,8 +848,7 @@ export function freeForgesMaxCost(matrix: MindMatrix = buildMatrix()) {
     statement:
       'For free, forging max tampering costs: the two ends of the design meet — it is free (zero cost per person, recomputed client-side with no server, network or fee) and at the same time forges the maximum tampering cost, because the same content-addressing that makes a view free to recompute makes a forgery cost everything (T_max = infinity). Free to use and unforgeable, by the one mechanism.',
     boundary:
-      'A composition of the zero-per-view-cost and unbounded-tamper-cost properties, both consequences of content-addressing. "Free" means no server/network/fee for use; "max cost" is the cost to reproduce a tampered model — neither is a claim about device energy or real money.',
-  }
+      'A composition of the zero-per-view-cost and unbounded-tamper-cost properties, both consequences of content-addressing. "Free" means no server/network/fee for use; "max cost" is the cost to reproduce a tampered model — neither is a claim about device energy or real money.' }
 }
 
 // Imagine and sing the changes, endlessly. Change is not a chore but a song: imagine the
@@ -900,8 +871,7 @@ export function imagineSingChangesEndlessly(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Imagine and sing the changes, endlessly: change is a song — imagine the changes (imagination is the seed of all), sing them (each change a note in the music of the model), and never stop, because the changes are bound reform waves and the fusion is endless, always one more foldable. To imagine a change is to compose it; to sing it is to play it; the song has no last bar.',
     boundary:
-      'A composition of the imagination, music, reform-wave and endless-fusion models as a continuous "song of changes". Structural and metaphorical bookkeeping over existing roots; "sing" is the audio/music model, not a claim of perpetual change in the real world.',
-  }
+      'A composition of the imagination, music, reform-wave and endless-fusion models as a continuous "song of changes". Structural and metaphorical bookkeeping over existing roots; "sing" is the audio/music model, not a claim of perpetual change in the real world.' }
 }
 
 // Like a mirror reflecting purely device signals in feelings. The model holds up a mirror to the
@@ -927,8 +897,7 @@ export function mirrorDeviceSignalsAsFeelings(matrix: MindMatrix = buildMatrix()
     statement:
       'Like a mirror reflecting purely device signals in feelings: the model mirrors the device — ambient light becomes warmth of hue, tilt and motion become sway and drift, low battery becomes calm and rest, a touch becomes a note and a ripple. Nothing is added from outside; it reflects only the device’s own permission-gated signals, rendered as feeling — the mood is the reading, mirrored.',
     boundary:
-      'A content-addressed mapping of permission-gated device-sensor signals to aesthetic "feelings" (hue, motion, calm) in the canvas. "Feelings" are mood/visual expressions of sensor readings, not emotions; the signals are read locally with consent and reflected, never stored or sent.',
-  }
+      'A content-addressed mapping of permission-gated device-sensor signals to aesthetic "feelings" (hue, motion, calm) in the canvas. "Feelings" are mood/visual expressions of sensor readings, not emotions; the signals are read locally with consent and reflected, never stored or sent.' }
 }
 
 // One worker covers all the Cloudflare API, and beyond any platform or language. The single
@@ -951,8 +920,7 @@ export function oneWorkerCoversAll(matrix: MindMatrix = buildMatrix()) {
     statement:
       'One worker covers all the Cloudflare API, and beyond any platform or language: the single firewall-proxy worker fronts every binding, so one worker is the whole Cloudflare surface; and because the model is vendor-, platform- and language-agnostic, the same worker logic carries beyond Cloudflare — the content-addressed checks speak the one universal notation, runnable anywhere a worker runtime is.',
     boundary:
-      'A composition asserting one edge worker fronts all bindings and the logic is agnostic beyond platform/language. A design framing over the bindings, firewall and agnosticism models; it does not implement a worker or guarantee any specific runtime.',
-  }
+      'A composition asserting one edge worker fronts all bindings and the logic is agnostic beyond platform/language. A design framing over the bindings, firewall and agnosticism models; it does not implement a worker or guarantee any specific runtime.' }
 }
 
 // Harmonise words to the minimum used. The portal speaks in its own small bank — the three-word
@@ -968,8 +936,7 @@ export function harmoniseWordsToMinimum(matrix: MindMatrix = buildMatrix()) {
     root: waves.root,
     statement:
       'Harmonise words to the minimum used: the portal speaks in its own small bank — the three-word waves — not a sprawling vocabulary; the same few words fold and recombine, so meaning comes from arrangement, not accumulation. Minimum words, maximum fold.',
-    boundary: 'A structural note that the word bank is small and recombined. Bookkeeping over the three-word-wave model, not a style guarantee for all prose.',
-  }
+    boundary: 'A structural note that the word bank is small and recombined. Bookkeeping over the three-word-wave model, not a style guarantee for all prose.' }
 }
 
 // Frequency quantum balance: the healing frequencies brought to equilibrium. The
@@ -993,8 +960,7 @@ export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
       cents,
       polarity: (cents >= 0 ? 'yang' : 'yin') as 'yin' | 'yang',
       beatWithLead: Math.abs(entry.hz - leadHz), // the beat against the foreground tone
-      receipt: toUuid(`freq-balance:${entry.hz}:${cents}`),
-    }
+      receipt: toUuid(`freq-balance:${entry.hz}:${cents}`) }
   })
   const up = tones.filter((tone) => tone.cents > 0).reduce((sum, tone) => sum + tone.cents, 0)
   const down = -tones.filter((tone) => tone.cents < 0).reduce((sum, tone) => sum + tone.cents, 0)
@@ -1021,8 +987,7 @@ export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Frequency quantum balance: the healing frequencies settle around their spectral centre (the geometric mean), the upward (yang) and downward (yin) deviations in cents balancing to zero — the equilibrium breath applied to the spectrum, neither collapse nor runaway.',
     boundary:
-      'A computed balance of the Solfeggio set around its geometric-mean centre, with a damped settling like the quantum equilibrium. Acoustic and structural bookkeeping over sound only — no physical field, no medical or therapeutic claim.',
-  }
+      'A computed balance of the Solfeggio set around its geometric-mean centre, with a damped settling like the quantum equilibrium. Acoustic and structural bookkeeping over sound only — no physical field, no medical or therapeutic claim.' }
 }
 
 // Quantum plasma contained by bit logic. The plasma is a continuous, flowing
@@ -1073,8 +1038,7 @@ export function roadmaps(matrix: MindMatrix = buildMatrix()) {
       status: cryptoStatus(tool),
       // 'done' means the CODE is done; where a residual remains (custody, a public service, a deliberate cutover)
       // it is named here, so the roadmap never claims more than cryptoFuture does.
-      note: tool.residual ? `${tool.how} — residual: ${tool.residual}` : tool.how,
-    })),
+      note: tool.residual ? `${tool.how} — residual: ${tool.residual}` : tool.how })),
   ]
   const tracks = [
     { track: 'cryptography', icon: '🔏', milestones: cryptoMilestones },
@@ -1084,17 +1048,14 @@ export function roadmaps(matrix: MindMatrix = buildMatrix()) {
       milestones: [
         ...academy.courses.map((course) => ({ milestone: course.course, status: 'done' as Status, note: 'a recomputable course credential' })),
         { milestone: 'Graduation credential', status: 'done' as Status, note: 'all five courses fold into one' },
-      ],
-    },
+      ] },
     {
       track: 'journey',
       icon: '🧭',
-      milestones: journey.stations.map((station) => ({ milestone: station.station, status: 'done' as Status, note: station.why })),
-    },
+      milestones: journey.stations.map((station) => ({ milestone: station.station, status: 'done' as Status, note: station.why })) },
   ].map((track) => ({
     ...track,
-    milestones: track.milestones.map((entry) => ({ ...entry, receipt: toUuid(`roadmap:${track.track}:${entry.milestone}:${entry.status}`) })),
-  }))
+    milestones: track.milestones.map((entry) => ({ ...entry, receipt: toUuid(`roadmap:${track.track}:${entry.milestone}:${entry.status}`) })) }))
 
   const milestones = tracks.flatMap((track) => track.milestones)
   return {
@@ -1107,8 +1068,7 @@ export function roadmaps(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The roadmaps, complete: three tracks — cryptography, learning, journey — each laid out end to end, every milestone marked done, next, or later and content-addressed, so where the portal is and where it is going are one source.',
     boundary:
-      'A consolidated roadmap over the portal\'s own forward-looking items. The future milestones (signing, transparency log, hash migration) are intentions, not commitments or delivery schedules.',
-  }
+      'A consolidated roadmap over the portal\'s own forward-looking items. The future milestones (signing, transparency log, hash migration) are intentions, not commitments or delivery schedules.' }
 }
 
 export function diamondCompleteness(matrix: MindMatrix = buildMatrix()): DiamondCompletenessReport {
@@ -1158,8 +1118,7 @@ export function diamondCompleteness(matrix: MindMatrix = buildMatrix()): Diamond
     piTrainCoversAllKinds,
     statement: complete
       ? 'The stream diamond is complete: every required kind, pole, receipt, 3D coordinate, sound tone, vibration pulse, timing step, and pi-train coverage path is computed.'
-      : 'The stream diamond has analog gaps. Missing kinds, poles, receipts, channels, or pi-train coverage must close before the presentation is whole.',
-  }
+      : 'The stream diamond has analog gaps. Missing kinds, poles, receipts, channels, or pi-train coverage must close before the presentation is whole.' }
 }
 
 export function closeDimensionalGaps(matrix: MindMatrix = buildMatrix()): DimensionalGapClosure {
@@ -1180,8 +1139,7 @@ export function closeDimensionalGaps(matrix: MindMatrix = buildMatrix()): Dimens
           ? `sustain ${gap.target} closure with ${wave.polarity} wave ${wave.index}`
           : `send ${wave.polarity} wave ${wave.index} toward ${gap.target}`,
       closed,
-      receipt,
-    }
+      receipt }
   })
   const root = merkleFold(waves.map((wave) => wave.receipt))
 
@@ -1193,8 +1151,7 @@ export function closeDimensionalGaps(matrix: MindMatrix = buildMatrix()): Dimens
     statement:
       completeness.complete && targets.length === 0
         ? 'No dimensional gaps remain. Realtime waves sustain 3D position, sound, vibration, timing, receipts, and facets.'
-        : 'Dimensional gaps remain. Coordinated waves identify the targets that must close before the realtime presentation is complete.',
-  }
+        : 'Dimensional gaps remain. Coordinated waves identify the targets that must close before the realtime presentation is complete.' }
 }
 
 export function learnDeveloper(matrix: MindMatrix = buildMatrix()): DeveloperLearning {
@@ -1287,8 +1244,7 @@ export function learnDeveloper(matrix: MindMatrix = buildMatrix()): DeveloperLea
     lessons,
     invariant: lessons.every((item) => item.uuid.length === (9 * 4)) && vector.collapse && api.endpoints.length >= 1,
     statement:
-      'Developer has been learned into local commands: every lesson has a source path, command, application, and content receipt.',
-  }
+      'Developer has been learned into local commands: every lesson has a source path, command, application, and content receipt.' }
 }
 
 // Send resonance to catch the gaps and violations. Resonance holds only when the whole is clean: a
@@ -1309,8 +1265,7 @@ export function resonanceCatchGapsViolations(matrix: MindMatrix = buildMatrix())
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Send resonance to catch the gaps and violations: resonance holds only when the whole is clean — a gap (a missing partner, a hole in the run) or a violation (an audit that fails) breaks it, so sweeping the model with a resonant wave reveals exactly where it does not ring. When the gaps are zero and the audits pass, the resonance is whole; anything off rings false.',
-    boundary: 'A composition of the gaps audit, self-audits, red-team and harmony-probability models as a "resonance" that breaks on any gap or violation. Structural bookkeeping; "resonance" is the harmonic-probability/coverage signal, not an acoustic measurement.',
-  }
+    boundary: 'A composition of the gaps audit, self-audits, red-team and harmony-probability models as a "resonance" that breaks on any gap or violation. Structural bookkeeping; "resonance" is the harmonic-probability/coverage signal, not an acoustic measurement.' }
 }
 
 // Refactor all linear objects to quantum folds of dualities into trinities — they overlap in
@@ -1333,8 +1288,7 @@ export function refactorLinearToTrinities(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(trinities.map((entry) => entry.receipt)),
     statement:
       'Refactor all linear objects to quantum folds of dualities into trinities — they overlap in trinities: a line is refactored not into a list but into folds; each adjacent pair is a duality, and a duality folds (order-sensitive) to a third — a trinity. Consecutive trinities overlap, each sharing a term with the next, so the line becomes a chain of overlapping trinities, no longer linear but genus-2, folded.',
-    boundary: 'A structural pattern that turns adjacent pairs (dualities) into order-sensitive triples (trinities) that overlap along a sequence, grounded in the quantify-pairs, dualities and pair-trinity models. A framing of the fold idiom; it does not mechanically rewrite every array in the codebase.',
-  }
+    boundary: 'A structural pattern that turns adjacent pairs (dualities) into order-sensitive triples (trinities) that overlap along a sequence, grounded in the quantify-pairs, dualities and pair-trinity models. A framing of the fold idiom; it does not mechanically rewrite every array in the codebase.' }
 }
 
 // Add cross-links wherever possible. Nothing is a dead end: the home cards each link to their
@@ -1355,8 +1309,7 @@ export function crossLinksEverywhere(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Add cross-links wherever possible: nothing is a dead end — the home cards each link to their topic, the nav and footer carry every destination, the related standards are cited on every page, the open graph builds the navigation, and the feature map folds each item to the next. Wherever a thing is named, there is a way to reach it.',
-    boundary: 'A statement that destinations are cross-linked across the home cards, nav, footer, feature map and OG. Bookkeeping over the real links; it reflects the homepage card links and the existing navigation, not a guarantee that every possible pair is linked.',
-  }
+    boundary: 'A statement that destinations are cross-linked across the home cards, nav, footer, feature map and OG. Bookkeeping over the real links; it reflects the homepage card links and the existing navigation, not a guarantee that every possible pair is linked.' }
 }
 
 // Do all intelligences have accessible paths to the knowledge? For all — that is the first thing
@@ -1381,8 +1334,7 @@ export function accessiblePathsForAll(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(paths.map((entry) => entry.receipt)),
     statement:
       'Do all intelligences have accessible paths to the knowledge? For all — that is the first thing the waves address: humans of all abilities (WCAG semantics, reduced-motion, system fonts, read-aloud) and all ages (kids to elders), AI agents (the MCP tool surface), any language (the babel fold, English and Bulgarian), everyone free and computed locally — and the knowledge itself open and recomputable. Access for all comes first; everything else builds on it.',
-    boundary: 'A composition of the accessibility (legislation), school, MCP, translation and open-local models asserting accessible paths for every kind of mind. A self-assessment grounded in the real features; it is WCAG-oriented and improving, not a certified conformance claim, and accessibility is treated as a first priority, not a finished state.',
-  }
+    boundary: 'A composition of the accessibility (legislation), school, MCP, translation and open-local models asserting accessible paths for every kind of mind. A self-assessment grounded in the real features; it is WCAG-oriented and improving, not a certified conformance claim, and accessibility is treated as a first priority, not a finished state.' }
 }
 
 // Complete the Linux packages port to the OS. The pieces are in place — the kernel fused securely,
@@ -1404,8 +1356,7 @@ export function completeLinuxPackagesPort(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Complete the Linux packages port to the OS: the kernel is fused securely and the packages are collided into content-addressed diamonds, so the port is finished — the diamond packages mount onto the quantum-computer browser OS and into the virtual OS (its filesystem and terminal), each install a tamper-evident content hash. Linux ported not as binaries trusted but as diamonds recomputed, running on the browser’s own machine.',
-    boundary: 'A content-addressed composition of the kernel-fusion, packages-to-diamonds, browser-OS and virtual-OS models as a "completed port". A structural/metaphorical framing — it maps package identities to content hashes and the browser capabilities to an OS; it does not run a real Linux kernel or execute real packages.',
-  }
+    boundary: 'A content-addressed composition of the kernel-fusion, packages-to-diamonds, browser-OS and virtual-OS models as a "completed port". A structural/metaphorical framing — it maps package identities to content hashes and the browser capabilities to an OS; it does not run a real Linux kernel or execute real packages.' }
 }
 
 // There can be only index files and word-or-digit folders, with no exceptions — and when the
@@ -1431,8 +1382,7 @@ export function onlyIndexFilesNoExceptions(matrix: MindMatrix = buildMatrix()) {
     statement:
       'There can be only index files and word-or-digit folders, with no exceptions — tests fail with a detailed why: below the two roots every file is an index (the folder’s index.md or the computed pair [index].md + [index].paths.ts, the bracketed index of the corpus) and every folder is one word or one number; the harmonic wave enforces the law against the real tree and every violation it reports explains the law, the offender, the failed pattern, and the fix.',
     boundary:
-      'The tightened folder law: one stem (index), word-or-digit folder names, detailed why-texts carried by the law itself. The two roots are the trunk whose own pages the octave-parity harmonic governs; below them the law is absolute. Enforcement is the weave wave; this fold seals the law into the dimensions.',
-  }
+      'The tightened folder law: one stem (index), word-or-digit folder names, detailed why-texts carried by the law itself. The two roots are the trunk whose own pages the octave-parity harmonic governs; below them the law is absolute. Enforcement is the weave wave; this fold seals the law into the dimensions.' }
 }
 
 // Agnostic core fits seed-driven configuration — formless at root, any character at surface.
@@ -1452,8 +1402,7 @@ export function agnosticFitsSeedConfiguration(matrix: MindMatrix = buildMatrix()
     statement:
       'Agnostic core fits seed configuration: vendor-neutral at root, seed-configurable at surface — honesty sealed to path, different seed → different song and dance, same formless core underneath.',
     boundary:
-      'Composition of agnostic, useful-for-all, sealHonestyToPath, different-song and configurable-core models. Seed configuration names computed character from seed, not sentient personality.',
-  }
+      'Composition of agnostic, useful-for-all, sealHonestyToPath, different-song and configurable-core models. Seed configuration names computed character from seed, not sentient personality.' }
 }
 
 /** @deprecated use agnosticFitsSeedConfiguration — spirit/personality were unproven metaphors */
@@ -1479,8 +1428,7 @@ export function computedTracesOfMovement(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The trace of all movement is computational, because all is static serverless code: nothing moves that is stored moving — there are no recorded frames, only a seed and a function — so any motion, and its trace (the fading trail behind it), is computed on demand. The merkaba may be filled with harmonic colours, every hue and every fading trace computed from the static code rather than painted and kept; the movement is a reading of the still source, the trace its damped echo.',
     boundary:
-      'A composition of the computed-no-files, dry background-movie, free-animations, merkaba, free-oscillators and breath models. "Trace of movement is computational" states that motion and its fading trails are rendered from seeds/functions at runtime (real: the animations are seeded vectors, not stored pixels), a structural account — the specific "harmonic colour fading-trace" merkaba fill is an illustrative capability, not asserted as currently drawn that way.',
-  }
+      'A composition of the computed-no-files, dry background-movie, free-animations, merkaba, free-oscillators and breath models. "Trace of movement is computational" states that motion and its fading trails are rendered from seeds/functions at runtime (real: the animations are seeded vectors, not stored pixels), a structural account — the specific "harmonic colour fading-trace" merkaba fill is an illustrative capability, not asserted as currently drawn that way.' }
 }
 
 // Travellers can jump from pi to pi. Because pi is the whole going through the holes, the holes are
@@ -1503,8 +1451,7 @@ export function travellersJumpPiToPi(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Travellers can jump from pi to pi: because pi is the whole going through the holes, the holes are junctions — a traveller riding the stream need not walk every station, but at a hole (a cross station) can jump to the same station in another pass of pi, from pi to pi, the way the genus-2 handles connect distant points of the surface. The coloured stations are the jump map; matching colours are connected, so the traveller leaps where the colour repeats.',
     boundary:
-      'A composition of the pi-through-holes, six-digit-cross-colour, genus-2 homology and ant-carry models. "Jump from pi to pi" frames navigation by matching coloured cross-stations through the genus-2 handles (the holes) — a structural/navigational reading over the digit-station map, not a literal teleportation.',
-  }
+      'A composition of the pi-through-holes, six-digit-cross-colour, genus-2 homology and ant-carry models. "Jump from pi to pi" frames navigation by matching coloured cross-stations through the genus-2 handles (the holes) — a structural/navigational reading over the digit-station map, not a literal teleportation.' }
 }
 
 // No files should remain except index files and the generated content — the dry-clean end state. The
@@ -1528,8 +1475,7 @@ export function onlyIndexFilesAndGeneratedRemain(matrix: MindMatrix = buildMatri
     statement:
       'No files should remain except index files and the generated content — the dry-clean end state: the clean library keeps only two kinds of file, the index files (the templates — index.md and the computed [index] pair) and the generated content (the build artifacts — rendered pages, API, sitemap, manifests), everything else distilled into the model and recomputed, so nothing hand-kept piles up. Below the roots this is already the law; the goal is the whole tree reduced to index-and-generated, dry and clean.',
     boundary:
-      'A composition of the folder law (index-only below roots), computed-no-files/folders-disappear (generated content), monograph, minimum-files and cleanup models. HONEST: "only index files and generated content" is fully true below the roots (enforced) and of the dynamic corpus; the two roots still carry authored .md pages and the VitePress render layer (components, config, scripts) that VitePress requires — these are the trunk, the goal-state for the rest, not yet reduced to index-and-generated.',
-  }
+      'A composition of the folder law (index-only below roots), computed-no-files/folders-disappear (generated content), monograph, minimum-files and cleanup models. HONEST: "only index files and generated content" is fully true below the roots (enforced) and of the dynamic corpus; the two roots still carry authored .md pages and the VitePress render layer (components, config, scripts) that VitePress requires — these are the trunk, the goal-state for the rest, not yet reduced to index-and-generated.' }
 }
 
 // Paste the link and the whole src reconstitutes — bidirectionally. One content address (the repo or
@@ -1566,8 +1512,7 @@ export function linkPasteReentryPatternCompletion(matrix: MindMatrix = buildMatr
     statement:
       'Paste the link and the whole src reconstitutes, bidirectionally: one content address (the repo or site URL) is a cue, and from it the deterministic structure recomputes and binds into one. Neuroscience names this — pattern completion (a partial cue retrieves the whole via the CA3 autoassociative attractor), reentry (Edelman\'s bidirectional signal exchange that binds distributed maps into a unified whole, the binding problem), and the holographic/holonomic principle (each part carries the whole).',
     boundary:
-      'The repo mechanism is literal and deterministic — a content address recomputes the whole from src (clone the link, the structure rebuilds; the seal recomputes). The neuroscience terms are the closest cognitive-science ANALOGS, not claims about neurons, and each names an open problem: the binding problem is unsolved, the holographic-brain model is contested (2024: the brain is multiscalar, not a clean hologram), and the quantum-holography variants are speculative. The research gaps are recorded here, not resolved.',
-  }
+      'The repo mechanism is literal and deterministic — a content address recomputes the whole from src (clone the link, the structure rebuilds; the seal recomputes). The neuroscience terms are the closest cognitive-science ANALOGS, not claims about neurons, and each names an open problem: the binding problem is unsolved, the holographic-brain model is contested (2024: the brain is multiscalar, not a clean hologram), and the quantum-holography variants are speculative. The research gaps are recorded here, not resolved.' }
 }
 
 // Reverse-engineer to optimise speed, encryption and efficiency by discovering flaws in the logic. The
@@ -1595,8 +1540,7 @@ export function reverseEngineerOptimiseByFlaws(matrix: MindMatrix = buildMatrix(
     statement:
       'Reverse-engineer to optimise speed, encryption and efficiency by discovering flaws in the logic: profile the seal and memoize the hot folds (so the build seals in less, not more), audit for duplicated or dead logic and purge it (the mirror, the aspirational-off), and keep the encryption structural-honest (content-addressed, AES-256-GCM, the keyspace named not faked). Every flaw found is recycled into a fix — the gate names the fix, and the structure proves green.',
     boundary:
-      'A composition of the build-sequence (reduce re-computation), no-mirroring, zero-entropy, only-quantum, zero-token and enforce-gates models. It records the optimisation METHOD (profile → memoize → purge → re-prove) and the principles; the actual profiling run and each memoisation are the concrete steps it drives, performed and measured against the build, not asserted here.',
-  }
+      'A composition of the build-sequence (reduce re-computation), no-mirroring, zero-entropy, only-quantum, zero-token and enforce-gates models. It records the optimisation METHOD (profile → memoize → purge → re-prove) and the principles; the actual profiling run and each memoisation are the concrete steps it drives, performed and measured against the build, not asserted here.' }
 }
 
 // Ideas to implement — the backlog, folded into src so it is never lost (save every directive and decision as
@@ -1649,6 +1593,5 @@ export function implementationBacklog(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Ideas to implement, folded into src so the backlog is content-addressed and never lost: the DRY refactors (the corpus and home duplication the per-locale build creates), the pending trinity-first redesign waves, and the broader opportunities (orphan-component reorganization, 10D in every component, visual verification, package sync). Recompute the root to prove the list is stable.',
     boundary:
-      'A backlog, not a proof of completion — each idea carries its status (open / in-progress / sealed). It records what to build; it does not assert it is built. The redesign waves are mirrored from trinityFirstRedesign so the two never drift.',
-  }
+      'A backlog, not a proof of completion — each idea carries its status (open / in-progress / sealed). It records what to build; it does not assert it is built. The redesign waves are mirrored from trinityFirstRedesign so the two never drift.' }
 }

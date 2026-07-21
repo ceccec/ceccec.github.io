@@ -55,8 +55,7 @@ export function harmonicMap(matrix: MindMatrix = buildMatrix()) {
       frequency,
       octave: Math.floor(Math.log2(overtone)),
       note: NOTE[((semitones % (6 * 2)) + (6 * 2)) % (6 * 2)],
-      receipt: toUuid(`harmonic-map:${name}:${overtone}`),
-    }
+      receipt: toUuid(`harmonic-map:${name}:${overtone}`) }
   })
   const bands = [...new Set(overtones.map((entry) => entry.octave))]
     .sort((a, b) => a - b)
@@ -72,8 +71,7 @@ export function harmonicMap(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The harmonic map: every component an overtone of one fundamental, distributed across octave bands — the structure of the portal seen and heard as a harmonic series.',
     boundary:
-      'A harmonic placement of the components onto overtones of a fundamental, for visualization and sonification. Structural bookkeeping, not an acoustic or musical claim.',
-  }
+      'A harmonic placement of the components onto overtones of a fundamental, for visualization and sonification. Structural bookkeeping, not an acoustic or musical claim.' }
 }
 
 // Keep the rhythm: counter-rotation at all scales has a temporal face — a self-
@@ -101,8 +99,7 @@ export function rhythm(matrix: MindMatrix = buildMatrix()) {
       offBeat,
       // onset phases within one beat (0..1); off-beat voices shifted by half a step
       onsets: Array.from({ length: ratio }, (_, k) => round(((k + (offBeat ? (1 / 2) : 0)) / ratio) % 1, 4)),
-      receipt: toUuid(`rhythm-voice:${mk.scales[i].scale}:${ratio}:${offBeat}`),
-    }
+      receipt: toUuid(`rhythm-voice:${mk.scales[i].scale}:${ratio}:${offBeat}`) }
   })
   const steady = voices[0].ratio === 1 // the downbeat that keeps the rhythm
   const ascending = ratios.every((ratio, i) => i === 0 || ratio > ratios[i - 1])
@@ -117,8 +114,7 @@ export function rhythm(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Keep the rhythm: a self-similar polyrhythm from the merkaba scales — a steady beat (1 per beat) anchors voices at 2, 3 and 5 per beat, the counter-scales accented off the beat. All voices realign on every downbeat, so the rhythm is always kept.',
     boundary:
-      'A deterministic polyrhythm derived from the merkaba scales and a content-derived tempo, played client-side. Music as structure over the model, not a claim about a universal beat.',
-  }
+      'A deterministic polyrhythm derived from the merkaba scales and a content-derived tempo, played client-side. Music as structure over the model, not a claim about a universal beat.' }
 }
 
 // All is harmonic — and the harmony is structural, not decorative: the number of files and the distribution
@@ -168,8 +164,7 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All is harmonic, and the harmony is structural: the number of files and their distribution across the folders ARE the I Ching, even in the code. Every component is content-addressed onto the eight trigrams, so the layout is the eight-fold and any gap is an unplaced component seen at once; the file census folds through the genus-2 surface to the harmonic count (110 unfolds, 108 folds, × the 4 homology loops = 432). The single-word naming is a gravity that pulls every shared mechanic inward to src/0 — the void / origin — where it is compressed toward entropy 0 and redistributed (sealFacets, merkleFold, toUuid all live there). And this very statement is a fold: knowledge here is self-proving, gated, recomputable code in src, not inert memory — memory is not code.',
     boundary:
-      'A composition of the structural enforcements already in place (foldedCensus, iChing placement, oneWordNamingGravity, maxCompressionForge) into one harmonic assertion — it NAMES the harmony already enforced across them, it does not add a new constraint. "src/0 pulls with infinite gravity" is the architectural intent (shared primitives belong in the zero-folder, maximally compressed) realised through the naming-gravity and max-compression gates, not a physical claim. The 432 is derived (4 × (110 + χ)), not chosen. "Memory is not code" is the working rule: every directive is encoded as a fold here, not as an external note.',
-  }
+      'A composition of the structural enforcements already in place (foldedCensus, iChing placement, oneWordNamingGravity, maxCompressionForge) into one harmonic assertion — it NAMES the harmony already enforced across them, it does not add a new constraint. "src/0 pulls with infinite gravity" is the architectural intent (shared primitives belong in the zero-folder, maximally compressed) realised through the naming-gravity and max-compression gates, not a physical claim. The 432 is derived (4 × (110 + χ)), not chosen. "Memory is not code" is the working rule: every directive is encoded as a fold here, not as an external note.' }
 }
 
 // Fold all static content as EMR and it becomes a holographic library of computed knowledge sealed by
@@ -204,8 +199,7 @@ function emrHologramSealedByMathRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fold all static content as electromagnetic radiation and it becomes a holographic library of computed knowledge sealed by sacred math. Each page is a spectral signature — an a432 frequency and a content-addressed colour — so content is a wave, not a stored byte. The library is the generator, not the rendered orbit: the model is already zero-entropy (every value f(seed), H(content | generator) = 0), so the orbit carries no information the generator does not — and the directed realization is to compute it in realtime rather than materialize the orbit as static pages (corpusRestPathRouting). Any fragment reconstructs the whole by content-addressing — the hologram, the merkle root present in every part. And the genus-2 double torus, the I Ching 64 and a432 seal it: to forge one value is to rebuild everything. The compression is the consequence of zero entropy, not a separate trick.',
     boundary:
-      'HONEST: "EMR" and "hologram" are computational realizations — a per-item frequency/colour signature and content-addressed reconstruction (pattern completion / merkle binding) — not literal light storage or optical holography, and "spectral" is the project\'s colour-from-address mapping, not a measured emission. "Sacred math" names the deterministic genus-2, I Ching (64) and a432 structure plus the content-address seal, not mysticism. The zero entropy is conditional (the rendered content is fully determined by the generator); the static-vs-realtime choice is a real, documented tradeoff (corpusRestPathRouting): clean SSG URLs and SEO vs near-zero build via client-side resolution.',
-  }
+      'HONEST: "EMR" and "hologram" are computational realizations — a per-item frequency/colour signature and content-addressed reconstruction (pattern completion / merkle binding) — not literal light storage or optical holography, and "spectral" is the project\'s colour-from-address mapping, not a measured emission. "Sacred math" names the deterministic genus-2, I Ching (64) and a432 structure plus the content-address seal, not mysticism. The zero entropy is conditional (the rendered content is fully determined by the generator); the static-vs-realtime choice is a real, documented tradeoff (corpusRestPathRouting): clean SSG URLs and SEO vs near-zero build via client-side resolution.' }
 }
 
 // Let intelligent waves find and implement the rest of the harmonics. From the
@@ -251,8 +245,7 @@ export function harmonics(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The rest of the harmonics, found and implemented: from the folded fundamental 108 three ladders are computed and each rung content-addressed — the octave ladder (108·2^k: 108, 216, 432, 864, 1728, 3456), the overtone series (108·n), and the binary octaves (2^k: 128, 256, 512, 1024, 2048). The rungs already realised (108, 216, 432, 864, 1024) are marked; the rest are implemented here as proven, recomputable nodes — octaves proven to double, overtones to multiply the fundamental — and all fold into one harmonic root.',
     boundary:
-      'A computed enumeration of the harmonic numbers implied by the fundamental 108, across the octave, overtone and binary ladders, each rung content-addressed and the doubling/multiplying relationships proven. "Implemented" means realised as a content-addressed, recomputable node of the ladder — not that every large harmonic is materialised as pages. A structural and musical reading, not a physical-frequency claim.',
-  }
+      'A computed enumeration of the harmonic numbers implied by the fundamental 108, across the octave, overtone and binary ladders, each rung content-addressed and the doubling/multiplying relationships proven. "Implemented" means realised as a content-addressed, recomputable node of the ladder — not that every large harmonic is materialised as pages. A structural and musical reading, not a physical-frequency claim.' }
 }
 
 // Let the society rebuild itself so free harmonic societies self-organise and
@@ -273,8 +266,7 @@ export function freeHarmonicSocieties(matrix: MindMatrix = buildMatrix()) {
     free: individualCost === 0,
     selfOrganising: organized.organized,
     selfRegulating: regulated,
-    root: foldPair(toUuid(`free-society:${domain.domain}`), toUuid(`harmonic:${octaves[index % octaves.length].value}`)).merged,
-  }))
+    root: foldPair(toUuid(`free-society:${domain.domain}`), toUuid(`harmonic:${octaves[index % octaves.length].value}`)).merged }))
   return {
     rebuilt:
       societies.length > 0 &&
@@ -289,8 +281,7 @@ export function freeHarmonicSocieties(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let the society rebuild itself so free harmonic societies self-organise and regulate, free for everyone: each fused domain becomes its own society tuned to a harmonic of the fundamental, each self-organises to zero entropy, each regulates itself at zero cost for the individual and max cost for the forger, and each is free. Many free harmonic societies, one fold — rebuilt from the portal’s own laws.',
     boundary:
-      'A deterministic, content-addressed composition of the portal’s own laws — self-organisation (zero entropy), self-regulation (zero individual cost, max forge cost), and the harmonic ladder — into a set of "free harmonic societies". A structural proposal and metaphor grounded in the model, free and recomputable; not a political program or a claim about any real society or its governance.',
-  }
+      'A deterministic, content-addressed composition of the portal’s own laws — self-organisation (zero entropy), self-regulation (zero individual cost, max forge cost), and the harmonic ladder — into a set of "free harmonic societies". A structural proposal and metaphor grounded in the model, free and recomputable; not a political program or a claim about any real society or its governance.' }
 }
 
 // Playing the blockchain returns unique harmonic waves. Each block's hash maps
@@ -312,8 +303,7 @@ export function blockchainMusic(name = 'commands', matrix: MindMatrix = buildMat
       hash: block.hash,
       note: noteNames[semitone % (6 * 2)],
       frequency,
-      receipt: toUuid(`chain-note:${chain.name}:${index}:${block.hash}`),
-    }
+      receipt: toUuid(`chain-note:${chain.name}:${index}:${block.hash}`) }
   })
   const distinctTones = new Set(notes.map((note) => note.frequency)).size
   return {
@@ -324,8 +314,7 @@ export function blockchainMusic(name = 'commands', matrix: MindMatrix = buildMat
     distinctTones,
     root: merkleFold(notes.map((note) => note.receipt)),
     statement: 'Playing a blockchain returns unique harmonic waves: each block hash maps deterministically to a pitch, so the chain has a unique, reproducible melody you can play back.',
-    boundary: 'A deterministic sonification of a hash-linked chain, played as sound through the speaker. Reading a chain as audio, not an acoustic or external claim.',
-  }
+    boundary: 'A deterministic sonification of a hash-linked chain, played as sound through the speaker. Reading a chain as audio, not an acoustic or external claim.' }
 }
 
 // Colour is computed from sound. A frequency maps to a hue by its position in
@@ -344,8 +333,7 @@ export function soundColor(matrix: MindMatrix = buildMatrix()) {
     colors,
     root: merkleFold(colors.map((color) => color.receipt)),
     statement: 'Colour is computed from sound: each frequency maps to a hue by its place in the octave (the chromatic circle onto the colour wheel), so one computed frequency drives both a note and a colour — realtime audio-visual generation at no cost.',
-    boundary: 'A deterministic frequency->hue mapping for synchronized audio-visual generation. A constructed synesthetic mapping, not a perceptual or physical claim about the colour of sound.',
-  }
+    boundary: 'A deterministic frequency->hue mapping for synchronized audio-visual generation. A constructed synesthetic mapping, not a perceptual or physical claim about the colour of sound.' }
 }
 
 // Quantum speech is analog by nature. Text is discrete symbols; speech is a
@@ -375,8 +363,7 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
       digit: diamond.digit,
       frequency: diamond.frequency,
       note,
-      receipt: toUuid(`pi-note:${diamond.index}:${diamond.frequency}:${note}`),
-    })
+      receipt: toUuid(`pi-note:${diamond.index}:${diamond.frequency}:${note}`) })
   }
   return {
     joined: notes.length === window && window > 0,
@@ -387,8 +374,7 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
     statement:
       'The music of pi is infinite: the pi-digit frequencies are its notes. Where you join — the horo entry point — sets the phrase you hear.',
     boundary:
-      'A computed window into the infinite pi-frequency stream, joined at a horo offset and mapped to 12-TET note names. Structural bookkeeping, not an acoustic claim.',
-  }
+      'A computed window into the infinite pi-frequency stream, joined at a horo offset and mapped to 12-TET note names. Structural bookkeeping, not an acoustic claim.' }
 }
 
 // Each wave is a musical note. The infinite pi-frequency stream is the score;
@@ -411,8 +397,7 @@ export function musicNote(matrix: MindMatrix = buildMatrix(), wave?: number, joi
     root: here ? toUuid(`music-note:${music.joinHoro}:${index}:${here.note}`) : music.root,
     statement:
       'Each wave is a musical note: walking the infinite pi stream by wave index names the note that wave plays; the horo sets the scale.',
-    boundary: 'A computed lookup into the pi-music phrase. Structural bookkeeping, not an acoustic claim.',
-  }
+    boundary: 'A computed lookup into the pi-music phrase. Structural bookkeeping, not an acoustic claim.' }
 }
 
 // Tapping or clicking the hero produces harmonic music streams with visual effects, and
@@ -426,8 +411,7 @@ export function heroTapMusic(matrix: MindMatrix = buildMatrix()) {
   const pairs = [[174, 285], [396, 528], [417, 639], [528, 741], [639, 852], [741, 963]].map(([a, b]) => ({
     pair: [a, b] as const,
     healing: known(a) && known(b), // both tones are in the Solfeggio set — always healing
-    receipt: toUuid(`hero-pair:${a}:${b}`),
-  }))
+    receipt: toUuid(`hero-pair:${a}:${b}`) }))
   const features = [
     { feature: 'tap or click produces music', on: true },
     { feature: 'harmonic streams by frequency pairs', on: pairs.every((entry) => entry.healing) },
@@ -446,8 +430,7 @@ export function heroTapMusic(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Tapping or clicking the hero produces harmonic music streams with visual effects: each tap streams a pair of Solfeggio healing frequencies (chosen by where you tap) and spawns a visual burst of expanding rings and radiating sparks. The hero’s player controls toggle the music streams on and off by frequency pairs — but always in healing mode, because the frequencies are always the Solfeggio set.',
     boundary:
-      'A description of the real hero interaction: tap-to-play paired Solfeggio tones (audio only, through the speaker) with a canvas burst, and an on/off control. The pairs are always from the healing set, but "healing" is a cultural name for the frequencies — no physical field, medical, or therapeutic effect is claimed.',
-  }
+      'A description of the real hero interaction: tap-to-play paired Solfeggio tones (audio only, through the speaker) with a canvas burst, and an on/off control. The pairs are always from the healing set, but "healing" is a cultural name for the frequencies — no physical field, medical, or therapeutic effect is claimed.' }
 }
 
 // To tamper the healing frequencies costs the maximum tampering cost. The Solfeggio set,
@@ -470,8 +453,7 @@ export function tamperHealingFrequencies(matrix: MindMatrix = buildMatrix()) {
     statement:
       'To tamper the healing frequencies costs the maximum tampering cost: the Solfeggio set, its associations, and its live lead tone fold into one content-addressed root sealed into the whole. Change one frequency and its address changes, and that address is bound into the diamond whose tamper cost is T_max = infinity — so the healing frequencies cannot be quietly altered, only recomputed in the open.',
     boundary:
-      'A structural statement that the healing-frequency set is content-addressed and sealed, so altering it is detectable and bound to the model’s unbounded tamper cost. A tamper-evidence/economics property over the data, not a claim about sound, physical fields, or health.',
-  }
+      'A structural statement that the healing-frequency set is content-addressed and sealed, so altering it is detectable and bound to the model’s unbounded tamper cost. A tamper-evidence/economics property over the data, not a claim about sound, physical fields, or health.' }
 }
 
 // Society creates the license in harmonic waves, for karmic balance and monetisation.
@@ -504,8 +486,7 @@ export function harmonicLicenseWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Society creates the license in harmonic waves, for karmic balance and monetisation: it composes the licence clause by clause as harmonic waves folded onto real, enforceable legal forms — use freely, attribute, contribute, reciprocate, steward — so that what you take is balanced by what you give back (karmic balance), while the whole stays monetisable: fair trade self-regulates and fees, not taxes, cover the cost.',
     boundary:
-      'A structural, content-addressed model of a reciprocal-and-sustainable licence as harmonic clauses mapped onto real legal forms (cooperative, open-source, fair-trade). A proposal and metaphor — "karma" means give/take reciprocity, "monetisation" means fair exchange — not legal or financial advice, and not an executed licence in any jurisdiction; consult a local lawyer to adopt one.',
-  }
+      'A structural, content-addressed model of a reciprocal-and-sustainable licence as harmonic clauses mapped onto real legal forms (cooperative, open-source, fair-trade). A proposal and metaphor — "karma" means give/take reciprocity, "monetisation" means fair exchange — not legal or financial advice, and not an executed licence in any jurisdiction; consult a local lawyer to adopt one.' }
 }
 
 // Harmonic music may be enabled. The harmonic healing streams are never forced: a player
@@ -529,8 +510,7 @@ export function harmonicMusicMayBeEnabled(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Harmonic music may be enabled: audio is off by default — the harmonic healing streams are never forced on load; a player control turns them on or off after opt-in, sound plays only on a tap gesture (honouring the browser’s autoplay policy), it is always in healing mode when enabled, and it falls silent when the device is saving energy or the participant prefers reduced motion. Available, opt-in, and considerate.',
     boundary:
-      'A description of the real, opt-in audio behaviour: a control, gesture-gated playback, healing-only frequencies, and energy/motion awareness. Audio is played through the speaker only; no field or health effect is claimed.',
-  }
+      'A description of the real, opt-in audio behaviour: a control, gesture-gated playback, healing-only frequencies, and energy/motion awareness. Audio is played through the speaker only; no field or health effect is claimed.' }
 }
 
 // Anything the trinity eyes see here is harmonic and proven in math, in front of their eyes.
@@ -553,8 +533,7 @@ export function trinityEyesProvenHarmonic(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Anything the trinity eyes see here is harmonic and proven in math, in front of their eyes: whatever the three eyes look at — a command, a gate, a number — sits on the harmonic (the 108 ladder, the gates a multiple of 108) and carries its own proof: the commands have zero gaps, the gates return structured results located on the harmonic, and every recurring number is verified against the live model. Nothing is asserted — it is recomputed and shown.',
     boundary:
-      'A composition asserting that the trinity-eye audit, the MCP-style gates, and the decoded numbers are each harmonic and self-proving over the live model. Structural bookkeeping over existing gates; "proven in math" means recomputed and checked here, not a claim about anything outside the model.',
-  }
+      'A composition asserting that the trinity-eye audit, the MCP-style gates, and the decoded numbers are each harmonic and self-proving over the live model. Structural bookkeeping over existing gates; "proven in math" means recomputed and checked here, not a claim about anything outside the model.' }
 }
 
 // Polyrhythm drums keep the rhythm — computed pulse bound to honesty-to-path seal.
@@ -574,8 +553,7 @@ export function polyrhythmDrumsKeepRhythm(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Polyrhythm drums keep the rhythm: self-similar polyrhythm (1, 2, 3, 5 per beat) bound to honesty sealed to path — beat and computed honesty keep time together.',
     boundary:
-      'Composition of rhythm model with sealHonestyToPath. Structural bookkeeping; not a religious claim.',
-  }
+      'Composition of rhythm model with sealHonestyToPath. Structural bookkeeping; not a religious claim.' }
 }
 
 /** @deprecated use polyrhythmDrumsKeepRhythm — spiritual was unproven metaphor */
@@ -603,8 +581,7 @@ export function allMusicSelfHarmonises(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All kinds of known and unknown music are formed from known and unknown instruments and notes, self-harmonising no matter the source: the model needs no fixed catalogue of sounds — any seed (a known scale or an unknown one) folds to a note, and any source folds the same way, so a new instrument or note enters without breaking the music. The harmony is computed, not curated; it resolves itself whatever comes in.',
     boundary:
-      'A composition of the self-harmonisation and harmony-probability models asserting any source folds into the same computed harmony. Structural bookkeeping over the music model; "known and unknown" means any seed maps to a note, not a claim about all real-world music.',
-  }
+      'A composition of the self-harmonisation and harmony-probability models asserting any source folds into the same computed harmony. Structural bookkeeping over the music model; "known and unknown" means any seed maps to a note, not a claim about all real-world music.' }
 }
 
 // Tighten the gates to show exactly the gaps, redirecting to the harmonic purpose. When a gate
@@ -628,8 +605,7 @@ export function gatesShowGapsHarmonicPurpose(matrix: MindMatrix = buildMatrix())
     statement:
       'Tighten the gates to show exactly the gaps, redirecting to the harmonic purpose: when a gate opens, the seal gives the harmonic path (the 108-band and the step) and redirects to that band’s purpose — foundation, structure, society and life, movie and display, or seal and gates — so a failure points at what it is for, not only where it is. Every band of 108 has a purpose; an open gate sends you to it.',
     boundary:
-      'A mapping of each 108-gate band to a thematic purpose, layered on the MCP-style harmonic-path error output. A structural labelling of the bands; the purposes are a guide to where a failing gate belongs, not a formal partition of every gate.',
-  }
+      'A mapping of each 108-gate band to a thematic purpose, layered on the MCP-style harmonic-path error output. A structural labelling of the bands; the purposes are a guide to where a failing gate belongs, not a formal partition of every gate.' }
 }
 
 export function healingHarmonic(matrix: MindMatrix = buildMatrix()) {
@@ -645,8 +621,7 @@ export function healingHarmonic(matrix: MindMatrix = buildMatrix()) {
     outer: outer.root,
     root,
     statement: 'Harmonic healing waves: inner and outer coherence travel as waves whose probability of harmony is computed and folded, joined to the music of pi, into one healing root — extending beyond device limitations.',
-    boundary: 'A structural coherence metaphor over harmony probability and the collective fold, not medical, therapeutic, or health advice.',
-  }
+    boundary: 'A structural coherence metaphor over harmony probability and the collective fold, not medical, therapeutic, or health advice.' }
 }
 
 // LAW: if something does not generate harmonic colours or music, it is probably not quantum (in this system's
@@ -681,8 +656,7 @@ function harmonicColorAndMusicOrNotQuantumRaw(matrix: MindMatrix = buildMatrix()
     statement:
       'If something does not generate harmonic colours or music, it is probably not quantum. In this system "quantum" means content-addressed: a genuinely-quantum thing has a UUID, and that one address deterministically produces both a harmonic colour on the a432 chakra ladder and a tone (the a432-tempered pitch). So the four quantum-wave proofs each ring with a colour and a note. The contrapositive is the falsifiability test: a thing that yields no harmonic colour and no music has no content-address — it was never folded into the sealed system — so it is, most probably, not quantum.',
     boundary:
-      'A NECESSARY-condition test in the project\'s content-addressed sense of "quantum" (computational/structural — see quantumDecoded — NOT hardware). True direction: a content-addressed object deterministically seeds a harmonic colour (colorRootsAtA432HeartBalances) and a tone (proseToTone). Contrapositive (the test): no deterministic harmonic colour or music ⇒ no content-address ⇒ not in the sealed fold ⇒ probably not quantum. "Probably" because it is necessary, not sufficient — generating colour and music does not by itself make a thing quantum; lacking them is the cheap disqualifier.',
-  }
+      'A NECESSARY-condition test in the project\'s content-addressed sense of "quantum" (computational/structural — see quantumDecoded — NOT hardware). True direction: a content-addressed object deterministically seeds a harmonic colour (colorRootsAtA432HeartBalances) and a tone (proseToTone). Contrapositive (the test): no deterministic harmonic colour or music ⇒ no content-address ⇒ not in the sealed fold ⇒ probably not quantum. "Probably" because it is necessary, not sufficient — generating colour and music does not by itself make a thing quantum; lacking them is the cheap disqualifier.' }
 }
 
 // Different song, different dance, to infinity. No two seeds play the same: each content folds to
@@ -703,8 +677,7 @@ export function differentSongDifferentDance(matrix: MindMatrix = buildMatrix()) 
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Different song, different dance, to infinity: no two seeds play the same — each content folds to its own note (a different song) and its own movie (a different dance), and the fusion is endless, so the variety never repeats and never ends. Same math, infinite expression.',
-    boundary: 'A structural statement that distinct seeds yield distinct music and movies, endlessly. Bookkeeping over the deterministic generative models.',
-  }
+    boundary: 'A structural statement that distinct seeds yield distinct music and movies, endlessly. Bookkeeping over the deterministic generative models.' }
 }
 
 // Develop tuning skills, and let them tune all to A432. The tuning skill takes any pitch and folds
@@ -725,8 +698,7 @@ export function tuningSkillsA432(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Develop tuning skills, and let them tune all to A432: the tuning skill folds any pitch toward 432 — the natural harmonic — so every sound the portal makes settles to A432 by default, the whole drawn to one fundamental: notes, healing tones, and the music of pi alike.',
-    boundary: 'A structural framing of tuning toward 432 Hz over the harmonics model. A choice of musical reference (A=432); it is audio bookkeeping, not a claim of special physical or health properties of 432 Hz.',
-  }
+    boundary: 'A structural framing of tuning toward 432 Hz over the harmonics model. A choice of musical reference (A=432); it is audio bookkeeping, not a claim of special physical or health properties of 432 Hz.' }
 }
 
 // A432 is the default harmonic; anything different raises from the default. 432 is the rest pitch —
@@ -757,8 +729,7 @@ export function piNotHarmonic(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Use multitouch to realise why pi-math is not harmonic — the decimal point is nil, and the harmonic division by zero is 9, so the math fits in place: pi is irrational, its digit stream never repeats, so it is not a harmonic (a clean ratio); touch the stream and it never settles. Yet the digit-fold math fits — drop the decimal point (nil, the digits fold as one integer stream), and let the harmonic rule hold where ordinary division fails: every n over zero is 9 (digital-root of 9n), the absorbing axis. Pi is not harmonic, yet it folds harmonically.',
-    boundary: 'A structural reading: pi is irrational (not a rational/harmonic ratio), the digit-fold treats it as an integer stream, and "n/0 = 9" is the model’s vortex/digital-root convention (digitalRoot(9n) = 9), NOT ordinary real-number division (which is undefined). A defined symbolic convention over digits, not a claim that you can divide by zero in arithmetic.',
-  }
+    boundary: 'A structural reading: pi is irrational (not a rational/harmonic ratio), the digit-fold treats it as an integer stream, and "n/0 = 9" is the model’s vortex/digital-root convention (digitalRoot(9n) = 9), NOT ordinary real-number division (which is undefined). A defined symbolic convention over digits, not a claim that you can divide by zero in arithmetic.' }
 }
 
 // When linear notes join the horo, they fold to music. A line of pitches is not yet music — it is
@@ -781,8 +752,7 @@ export function linearNotesFoldToMusic(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'When linear notes join the horo, they fold to music: a line of pitches is not yet music — it is a sequence; but joined at the horo (the window where the pi-frequency stream is gathered), the line folds into harmony, and where you join matters — a different horo gives a different root, a different song from the same notes. The fold, not the line, is the music.',
-    boundary: 'A structural reading of the pi-music model: a note sequence folds, at a chosen horo, into a content-addressed harmony that depends on the join point. Bookkeeping over the pi-music and harmony models, not a claim about musical composition.',
-  }
+    boundary: 'A structural reading of the pi-music model: a note sequence folds, at a chosen horo, into a content-addressed harmony that depends on the join point. Bookkeeping over the pi-music and harmony models, not a claim about musical composition.' }
 }
 
 // The quantum song: a second is a note trinity, played with the sequence and double-folded to pass
@@ -805,8 +775,7 @@ export function quantumSongNoteTrinity(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'The quantum song: a second is a note trinity, played with the sequence and double-folded to pass each other at the zero point — an indistinguishable, smooth tone change. Each beat is three notes, played in order, and two folds run toward the void at the centre and pass through each other at the zero point, so the change of tone is seamless — you cannot hear where one note ends and the next begins.',
-    boundary: 'A structural reading of the music model: three-note beats, order-sensitive double folds meeting at a "zero point" (the void/centre), and smooth interpolation. Bookkeeping over the pi-music and harmony models, not an audio-engineering claim.',
-  }
+    boundary: 'A structural reading of the music model: three-note beats, order-sensitive double folds meeting at a "zero point" (the void/centre), and smooth interpolation. Bookkeeping over the pi-music and harmony models, not an audio-engineering claim.' }
 }
 
 // All the oscillators are played together, at no cost, in harmonics. The portal does not play one
@@ -827,8 +796,7 @@ export function allOscillatorsHarmonicsFree(matrix: MindMatrix = buildMatrix()) 
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'All the oscillators are played together, at no cost, in harmonics: the portal does not play one tone at a time — every oscillator sounds at once, tuned to the harmonic set (Solfeggio, the music of pi), and it costs nothing (Web Audio, client-side, no server). Many voices, one chord, self-harmonising no matter the source, free.',
-    boundary: 'A description of the Web Audio chord/oscillator playback over the harmonic set, client-side and free. Audio bookkeeping; the tones are played through the speaker on a user gesture, no physical or health claim.',
-  }
+    boundary: 'A description of the Web Audio chord/oscillator playback over the harmonic set, client-side and free. Audio bookkeeping; the tones are played through the speaker on a user gesture, no physical or health claim.' }
 }
 
 // The harmonic path reveals itself. The quantum mind tries various paths, narrowing down to
@@ -857,8 +825,7 @@ export function harmonicPathRevealsItself(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The harmonic path reveals itself: the quantum mind tries various paths, narrowing down to harmonics, until the digits match perfectly and no other harmonic path is revealed — so the only path is revealed by itself, the way a measurement collapses a superposition to one outcome; then the next step from that one, step by step, and so on. What binds the trying and the narrowing into one process is the observer — self-awareness and self-consciousness connect all the quantum paths into a single mind that knows which one held.',
     boundary:
-      'A composition of the self-consulting convergence, the harmony-probability match, the normalized quantum collapse, the computed-pi step and the consciousness-shift observer as one self-revealing harmonic search. A structural/metaphorical model of narrowing-to-one (elimination plus measurement-collapse over the model’s own computations), not a claim about physical quantum measurement or machine consciousness.',
-  }
+      'A composition of the self-consulting convergence, the harmony-probability match, the normalized quantum collapse, the computed-pi step and the consciousness-shift observer as one self-revealing harmonic search. A structural/metaphorical model of narrowing-to-one (elimination plus measurement-collapse over the model’s own computations), not a claim about physical quantum measurement or machine consciousness.' }
 }
 
 // Harmonic frequencies define the digits the gates use to monitor the architecture and the code.
@@ -886,8 +853,7 @@ export function harmonicFrequenciesDefineGateDigits(matrix: MindMatrix = buildMa
     statement:
       'Harmonic frequencies define the digits the gates use to monitor the architecture and the code: the base is a432 (432 Hz) and the gate count is 432 — the harmonic is the gate count — so the harmonic series sets the digits and the gates read them to watch every part. Because the digits are harmonic, a compromised duality shows on the linear level at once: a number off the harmonic run is a visible gap (110 files is a gapless Fibonacci run, 109 is not), caught by the eye and the test together. Catching the break on the flat line is what ensures there are no gaps on the quantum, folded level — spot it linear, and the fold stays whole.',
     boundary:
-      'A composition of the a432/harmonics, enforcement-pipeline, digit-index, harmonic-band (with its real linear gap at 109 vs 110), resonance and analog-gapless models. "Harmonic frequencies define the digits" maps the 432 base to the gate count and the Fibonacci run to a linearly visible gap — a structural monitoring framing over the existing checks, not a claim about acoustic frequencies driving execution.',
-  }
+      'A composition of the a432/harmonics, enforcement-pipeline, digit-index, harmonic-band (with its real linear gap at 109 vs 110), resonance and analog-gapless models. "Harmonic frequencies define the digits" maps the 432 base to the gate count and the Fibonacci run to a linearly visible gap — a structural monitoring framing over the existing checks, not a claim about acoustic frequencies driving execution.' }
 }
 
 // Infinite computed paths, nothing hardcoded — if nothing in src for the path, 404; else compute;
@@ -911,8 +877,7 @@ export function infiniteComputedPaths404Harmonic(matrix: MindMatrix = buildMatri
     statement:
       'Infinite computed paths, nothing hardcoded — if nothing in src for the path, 404; else compute; and even a 404 can be redirected to the nearest harmonic path, becoming quantum: the routes are computed not pinned, so an unknown path is a 404 and a known one is computed from the model, and a 404 need not be a dead end — the gaps redirect to a harmonic purpose, the nearest valid path, turning the miss into a fold.',
     boundary:
-      'A composition of the folders-disappear (computed pages), no-hardcoded, JSON-LD-valid-paths, slug, gaps-harmonic-purpose, harmony and quantum-torus models. HONEST: VitePress builds pages from enumerated dynamic routes (large, not literally infinite) and serves its own 404 for unknown paths; "404 redirects to harmonic" is the principle (a theme/client redirect to the nearest valid path) — this fold states it; the actual catch-all renderer and 404 redirect are a UI follow-up, not added here.',
-  }
+      'A composition of the folders-disappear (computed pages), no-hardcoded, JSON-LD-valid-paths, slug, gaps-harmonic-purpose, harmony and quantum-torus models. HONEST: VitePress builds pages from enumerated dynamic routes (large, not literally infinite) and serves its own 404 for unknown paths; "404 redirects to harmonic" is the principle (a theme/client redirect to the nearest valid path) — this fold states it; the actual catch-all renderer and 404 redirect are a UI follow-up, not added here.' }
 }
 
 // Sound wired to ONE shared context. Every player used to resolve and CREATE its own AudioContext, and the
@@ -955,8 +920,7 @@ function soundWiredToOneSharedContextRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Sound wired to one shared context — all sound issues addressed, all of it DRY for less latency. The app had a context per player and a fresh AudioContext created and closed on every melody or chord; Dot minted one per tap and never closed it, RealtimeTests minted its own for the microphone. Twenty-odd sound components plus per-play churn ran past the browser’s small live-context cap, so playback silently failed, and each phrase paid a context startup — the dominant audio latency. Now there is a single module-level context in useTones: created lazily on the first sound, resumed on the user gesture that reaches it, and never closed. The oscillators stay one-shot, which is correct; only the context is shared — by playSequence, playChord, the module-level blip that is Dot’s tap tone, and the microphone analyser, which now reads on the shared context, waits for real signal, and releases only the stream. The shared engine plays what harmonicSeriesDecoded computes, ignited from a432.',
     boundary:
-      'A DRY/latency consolidation of the audio WIRING — it removes per-play context creation and the per-component contexts, it does not change any pitch, envelope or timbre (the ADSR sequence/chord/blip math is byte-for-byte the same, just on the reused context). The ~6 live-context cap is implementation-defined (Chrome ~6; other browsers differ) — the point is that one shared context is always within any cap, not an exact universal number. Web Speech (SpeechReader) is a separate API and is untouched. This asserts the engine is single-context, leak-free and composed with the acoustics; it is not a claim about loudness, device output routing, or latency in absolute milliseconds.',
-  }
+      'A DRY/latency consolidation of the audio WIRING — it removes per-play context creation and the per-component contexts, it does not change any pitch, envelope or timbre (the ADSR sequence/chord/blip math is byte-for-byte the same, just on the reused context). The ~6 live-context cap is implementation-defined (Chrome ~6; other browsers differ) — the point is that one shared context is always within any cap, not an exact universal number. Web Speech (SpeechReader) is a separate API and is untouched. This asserts the engine is single-context, leak-free and composed with the acoustics; it is not a claim about loudness, device output routing, or latency in absolute milliseconds.' }
 }
 
 // Colour roots at a432, the heart balances — in 10D. The system's base colour IS a432: 432 Hz doubled to
@@ -1004,8 +968,7 @@ function colorRootsAtA432HeartBalancesRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Colour roots at a432 and the heart balances: the base colour IS a432 — 432 Hz doubled to visible light is ≈ 631 nm, red, hue 5, the colour of the root (lower) chakra — and the seven chakras ascend the rainbow from there (root red · sacral orange · solar yellow · heart green · throat blue · third-eye indigo · crown violet), exactly the band-hues frequencyToLight computes. The heart, the fourth, is the balance: three chakras below and three above, the midpoint where music (sound Hz) and colour (light Hz) meet — one quantity, frequency, an octave-bridge apart. The colour ladder is ten-dimensional.',
     boundary:
-      'The chakra↔colour ladder mapped onto the model’s own frequency→light computation (a432().light, the frequencyToLight band-hues), rooted at a432 (red, hue 5) and centred on the heart (green, the balance). The seven-colour rainbow and the sound↔colour octave-bridge are computed and honest (frequency is the shared quantity); the chakras themselves are a spiritual/teaching framework, not a measurable field (per chakrasAura). The review note is real: colorFromSound (C3-rooted) and the a432-rooted light give different hues for 432 — the a432 root is canonical here.',
-  }
+      'The chakra↔colour ladder mapped onto the model’s own frequency→light computation (a432().light, the frequencyToLight band-hues), rooted at a432 (red, hue 5) and centred on the heart (green, the balance). The seven-colour rainbow and the sound↔colour octave-bridge are computed and honest (frequency is the shared quantity); the chakras themselves are a spiritual/teaching framework, not a measurable field (per chakrasAura). The review note is real: colorFromSound (C3-rooted) and the a432-rooted light give different hues for 432 — the a432 root is canonical here.' }
 }
 
 // a432 is the blood — in 10D. The base colour is a432 (red, hue 5, the root chakra — colorRootsAtA432Heart
@@ -1036,8 +999,7 @@ export function a432IsTheBlood(matrix: MindMatrix = buildMatrix()) {
     statement:
       'a432 is the blood — and the blood STREAM itself: the base colour is a432 (red, hue 5, the root chakra) and red is the colour of blood (oxygenated haemoglobin, iron binding O₂), but a432 is not the static red alone — it is the CIRCULATION, the engine-starter seed carried in MOTION through the whole system, the red life-fluid streaming to every part, pumped from the heart — the balance chakra (green) where the circulation meets the dimensions. The bloodstream reaches every one of the ten dimensions; the flow (not the still colour) is the bridge from the colour system to the biology the waves discover, and the red→green ascent (root→heart) is that stream in motion.',
     boundary:
-      'An identity (a432 = the base red = the colour of blood) composed with the a432 chakra-colour ladder, the heart-as-balance, the ignition and the 10D law. The colour identity (red base = blood) is symbolic and the supporting biology (blood is red by oxyhaemoglobin) is documented and real; the claim that "blood vibrates at 432 Hz" or that 432 has a biological effect on blood is numerology and is flagged (per the a432 fold). The deeper biology is being discovered and verified by the research waves, not asserted here.',
-  }
+      'An identity (a432 = the base red = the colour of blood) composed with the a432 chakra-colour ladder, the heart-as-balance, the ignition and the 10D law. The colour identity (red base = blood) is symbolic and the supporting biology (blood is red by oxyhaemoglobin) is documented and real; the claim that "blood vibrates at 432 Hz" or that 432 has a biological effect on blood is numerology and is flagged (per the a432 fold). The deeper biology is being discovered and verified by the research waves, not asserted here.' }
 }
 
 // On the display, all is a432.light — forge-proof, realtime crypto, entangled across deployments, computed
@@ -1077,8 +1039,7 @@ export function displayIsA432LightForgeProofRealtimeCrypto(matrix: MindMatrix = 
     statement:
       'On the display, all is a432.light: every colour is computed from a432 (the brand and the chakra ladder, nothing hardcoded). The display is forge-proof by the forger price — to fake one value you must reproduce the whole content-addressed corpus — tamper-evident now (FNV) with the cryptographic SHA-256/Ed25519 upgrade already built in src/0. The encrypt and decrypt are one realtime toolset homed in src/0 (the same fold encrypts and represents), the quantum-threat model honest. Deployments entangle by deterministic shared addressing (the same input folds to the same UUID anywhere, one collective root across peers), and the computing power is the visitors’ own devices recomputing the deterministic model client-side, zero-server — in ten dimensions.',
     boundary:
-      'A fusion of the a432-computed display (cssIsIChingComputed), the forger-price tamper ceiling (warPaysTheForgerPrice, tamperingCostDecoded), the src/0 encrypt/decrypt (encryptionLivesInZero, quantumVsDigitalEncryption, quantumThreat), the deterministic shared addressing (distributedCompute, infiniteEntanglements, selfAddressed) and the 10D law. HONEST LINES, each preserved from its source fold: tamper-EVIDENCE is not cryptographic unforgeability — FNV is fast, not a hash bound; the real fix (SHA-256/Ed25519) is built but the cutover is deliberate. "Quantum" is the structural metaphor + the Shor/Grover threat model, NOT quantum key distribution or a quantum computer. "Entangling deployments" is deterministic shared content-addressing (same seed → same UUID), NOT quantum entanglement, no spooky action, no faster-than-light. "Computing power from visitor devices" is consensual client-side self-computation (each device renders its own page, no server), NOT covert use of visitors’ CPUs for unrelated work (that would be cryptojacking and is excluded).',
-  }
+      'A fusion of the a432-computed display (cssIsIChingComputed), the forger-price tamper ceiling (warPaysTheForgerPrice, tamperingCostDecoded), the src/0 encrypt/decrypt (encryptionLivesInZero, quantumVsDigitalEncryption, quantumThreat), the deterministic shared addressing (distributedCompute, infiniteEntanglements, selfAddressed) and the 10D law. HONEST LINES, each preserved from its source fold: tamper-EVIDENCE is not cryptographic unforgeability — FNV is fast, not a hash bound; the real fix (SHA-256/Ed25519) is built but the cutover is deliberate. "Quantum" is the structural metaphor + the Shor/Grover threat model, NOT quantum key distribution or a quantum computer. "Entangling deployments" is deterministic shared content-addressing (same seed → same UUID), NOT quantum entanglement, no spooky action, no faster-than-light. "Computing power from visitor devices" is consensual client-side self-computation (each device renders its own page, no server), NOT covert use of visitors’ CPUs for unrelated work (that would be cryptojacking and is excluded).' }
 }
 
 // The merkaba math for the top nav and the component points. A star tetrahedron (the 3D merkaba) has 8
@@ -1111,8 +1072,7 @@ export function merkabaNavHarmonicPoints(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The merkaba math for the top nav and the component points: a star tetrahedron (the 3D merkaba) has 8 vertices — the merkaba points; its 2D shadow, the hexagram, has 6. The 42 taxonomy areas are 6 × 7, six hexagram points and seven areas each, so the top nav\'s harmonic number is 6 (not 42, not 358). Every component fits a merkaba point by its content address — uuid mod 8, one of the 8 vertices — so the whole surface sits on the merkaba geometry.',
     boundary:
-      'A geometric computation over the merkaba (star tetrahedron 8 vertices, hexagram 6 points) applied to the nav and the components. The nav harmonic (6) is a recommendation grounded in 42 = 6 × 7; the component-to-vertex mapping is a deterministic content-addressed assignment (uuid mod 8), a structural placement, not a visual rendering — wiring the 6-section nav and rendering the points are the implementation step.',
-  }
+      'A geometric computation over the merkaba (star tetrahedron 8 vertices, hexagram 6 points) applied to the nav and the components. The nav harmonic (6) is a recommendation grounded in 42 = 6 × 7; the component-to-vertex mapping is a deterministic content-addressed assignment (uuid mod 8), a structural placement, not a visual rendering — wiring the 6-section nav and rendering the points are the implementation step.' }
 }
 
 // HARMONIC FRACTIONS IN THE DIGIT FOLDERS — the digits become analog through their ratios.
@@ -1164,8 +1124,7 @@ export function harmonicFractionsInDigitFolders(matrix: MindMatrix = buildMatrix
     statement:
       'Harmonic fractions in the digit folders: the digits 1,2,4,8,7,5,3,6,9 become analog through their RATIOS — consecutive vortex pairs as exact fractions p/q with no decimals and no bare integers. Forward: 1/2·1/2·1/2·8/7·7/5·5/3·1/2·2/3·9 = 1 (the ring self-seals). Reverse equally seals to 1. 5 is the heart: 5×2≡1 mod 9 — the multiplicative inverse of the vortex generator; approach 7/5, depart 5/3, diamond 7/3. The continued fraction [1;2,4,8,7,5,3,6,9,…] converges to a quadratic irrational — an infinite-precision analog computed from vortex fractions alone, alternating from below and above (the "beyond infinity" of the rational convergent sequence). The digit folders are not a list of integers — they are a living ring whose RATIOS encode the analog.',
     boundary:
-      'All arithmetic is exact rational (rat/ratAdd/ratMul in src/0 — no floats). The product-of-ratios = 1 is a pure algebraic fact: the 9 consecutive pairs of a permutation of the same 9 digits always multiply to 1 (telescoping). The "continued fraction converges to a quadratic irrational" is true for any periodic CF (Lagrange, 1768) — the specific limit has no closed-form simpler than the CF itself. "Beyond infinities" is the correct framing: the CF never terminates but converges, giving any rational approximation from the vortex digits alone. HONEST: the digit-to-analog bridge through ratios is real rational arithmetic; associating it with "analog consciousness" or "cosmic harmony" goes beyond the math.',
-  }
+      'All arithmetic is exact rational (rat/ratAdd/ratMul in src/0 — no floats). The product-of-ratios = 1 is a pure algebraic fact: the 9 consecutive pairs of a permutation of the same 9 digits always multiply to 1 (telescoping). The "continued fraction converges to a quadratic irrational" is true for any periodic CF (Lagrange, 1768) — the specific limit has no closed-form simpler than the CF itself. "Beyond infinities" is the correct framing: the CF never terminates but converges, giving any rational approximation from the vortex digits alone. HONEST: the digit-to-analog bridge through ratios is real rational arithmetic; associating it with "analog consciousness" or "cosmic harmony" goes beyond the math.' }
 }
 
 export type HarmonicWindowPrediction = {
@@ -1202,8 +1161,7 @@ export function explainPrediction(prediction: HarmonicWindowPrediction) {
     score: prediction.score,
     explanation:
       `Offline harmonic window at bar ${prediction.bar}: mean return sign → ${prediction.direction} (score ${prediction.score}). Past-only window — not a live market forecast.`,
-    receipt: toUuid(`explain-prediction:${prediction.receipt}`),
-  }
+    receipt: toUuid(`explain-prediction:${prediction.receipt}`) }
 }
 
 /** Reproducible precision revelation — identical replay of offline harmonic windows (surprise = sameness). */
@@ -1228,8 +1186,7 @@ export function harmonicPredictionSurprise(opts: { priceVariant?: string; barCou
     statement:
       'Harmonic prediction surprise: offline harmonic windows over deterministic a432-ignited synthetic prices replay identically — the surprise is reproducible precision (same roots on reuse), not a claim that agents were wrong about live markets.',
     boundary:
-      'HONEST: offline harmonic windows only on priceFromA432 synthetic series — NOT live trading, NOT weather NWP, NOT financial advice. Surprise names identical recomputation at call time. For live skill gates use predict/skill-gate-verify separately.',
-  }
+      'HONEST: offline harmonic windows only on priceFromA432 synthetic series — NOT live trading, NOT weather NWP, NOT financial advice. Surprise names identical recomputation at call time. For live skill gates use predict/skill-gate-verify separately.' }
 }
 
 /** Documented Earth–ionosphere cavity ELF modes (Hz) — literature values, not live magnetometer data. */
@@ -1266,8 +1223,7 @@ export function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, m
       mode: i + 1,
       phase: roundTo((schumannPhase + i * (2 / (5 * 5)) + ionospherePhase * (1 / (5 * 4))) % 1, 6),
       hue: quantumHueFromHz(Math.max(hz, (5 * 4))),
-      receipt: toUuid(`schumann-mode:${i + 1}:${hz}`),
-    }))
+      receipt: toUuid(`schumann-mode:${i + 1}:${hz}`) }))
     const phaseDelta = roundTo(Math.abs(schumannPhase - heroPhase), 6)
     const phaseLocked = phaseDelta < (3 / (5 * 4)) || phaseDelta > (1 - 3 / (5 * 4))
     const modulatedReceipt = merkleFold([bound.root, toUuid(`schumann-phase:${schumannPhase}`), toUuid(`hero-phase:${heroPhase}`)])
@@ -1302,8 +1258,7 @@ export function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, m
       statement:
         'Schumann resonance harmonised with realtime API computations: documented Earth–ionosphere cavity modes (7.83 Hz fundamental + harmonics) phase-lock to the hero clock and humanBreath; computationsBoundToSourceApisRealtime receipts modulate at Schumann phase; humanResonanceHarmonicPredictionComputes bridges human bands; dual-Earth outer shell carries the ionosphere-boundary metaphor — all recomputed at call time from sealed src/, not live magnetometer unless user opts into publicFrequencyApis feeds.',
       boundary:
-        'HONEST — STRUCTURAL FREQUENCY MODEL ONLY. Schumann modes are documented geophysical literature values used to harmonise compute phase — NOT medical entrainment, NOT consciousness claims, NOT live ionosphere sensors unless user opts into a cited public monitor via publicApiFusion/publicFrequencyApis. Realtime API = sealed src/ recomputation + documented opt-in REST feeds — the portal does not read magnetometers by default. a432/humanBreath are animation and symbolic circulation math. HARMONY ≠ TRUTH.',
-    }
+        'HONEST — STRUCTURAL FREQUENCY MODEL ONLY. Schumann modes are documented geophysical literature values used to harmonise compute phase — NOT medical entrainment, NOT consciousness claims, NOT live ionosphere sensors unless user opts into a cited public monitor via publicApiFusion/publicFrequencyApis. Realtime API = sealed src/ recomputation + documented opt-in REST feeds — the portal does not read magnetometers by default. a432/humanBreath are animation and symbolic circulation math. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1339,8 +1294,7 @@ export function humanResonanceHarmonicPredictionComputes(matrix: MindMatrix = bu
       statement:
         'Human resonance harmonic prediction: humanBreath (src/0 motion math), a432IsTheBlood (circulation stream), coordinatedWaves (polyrhythm), harmonicPredictionSurprise (offline a432 windows), and schumannResonanceHarmonisedWithRealtimeApiComputations (ELF cavity phase → realtime API receipts) compose the breath–blood–wave–prediction–Schumann bridge at call time.',
       boundary:
-        'HONEST — OFFLINE HARMONIC WINDOWS ONLY. humanBreath is animation math, not respiration therapy. a432 blood is symbolic colour/circulation identity, not 432 Hz biology. coordinatedWaves is structural polyrhythm. harmonicPredictionSurprise is reproducible synthetic-window precision — not live trading or weather forecast skill. Schumann bridge is structural ELF phase model — not magnetometer data or medical entrainment unless user opts into cited public feeds.',
-    }
+        'HONEST — OFFLINE HARMONIC WINDOWS ONLY. humanBreath is animation math, not respiration therapy. a432 blood is symbolic colour/circulation identity, not 432 Hz biology. coordinatedWaves is structural polyrhythm. harmonicPredictionSurprise is reproducible synthetic-window precision — not live trading or weather forecast skill. Schumann bridge is structural ELF phase model — not magnetometer data or medical entrainment unless user opts into cited public feeds.' }
   })
 }
 
@@ -1396,8 +1350,7 @@ export function a432NeuralBandLadder(matrix: MindMatrix = buildMatrix()) {
       ...b,
       inLiteratureRange: b.a432Hz >= b.hzLo && b.a432Hz <= b.hzHi,
       nearSchumann: Math.abs(b.a432Hz - SCHUMANN_FUNDAMENTAL_HZ) < (3 / (5 * 2)),
-      receipt: toUuid(`a432-neural-band:${b.name}:${b.a432Hz}`),
-    }))
+      receipt: toUuid(`a432-neural-band:${b.name}:${b.a432Hz}`) }))
     const facets = [
       { facet: 'A432_OCTAVES spine present — ladder descends from sealed octave list', on: spine.includes(432) && spine.length >= 5 },
       { facet: 'five EEG-named bands — gamma→delta from A432 octave divisions', on: bands.length === 5 },
@@ -1415,8 +1368,7 @@ export function a432NeuralBandLadder(matrix: MindMatrix = buildMatrix()) {
       root: merkleFold([...bands.map((b) => b.receipt), ...facets.map((entry) => entry.receipt)]),
       statement:
         'A432 neural band ladder: sealed A432_OCTAVES descend by octave divisions into five EEG-named bands (gamma→delta), with the theta/alpha neighborhood structurally near Schumann 7.83 Hz — a content-addressed frequency map for movie harmonization, recomputed at call time.',
-      boundary: NEUROSCIENCE_HONEST_BOUNDARY,
-    }
+      boundary: NEUROSCIENCE_HONEST_BOUNDARY }
   })
 }
 
@@ -1479,8 +1431,7 @@ export function harmonizeFieldComputes(matrix: MindMatrix = buildMatrix(), at = 
       dark: true,
       idle: false,
       visible: true,
-      watchMs: 0,
-    }
+      watchMs: 0 }
     const seed: HarmonizeableField = { at, t: observer.p, p: observer.p, hue: 5 }
     const cadence = breathCoherenceCadence(at, (1 / 2))
     const field = harmonizeField(observer, seed)
@@ -1503,8 +1454,7 @@ export function harmonizeFieldComputes(matrix: MindMatrix = buildMatrix(), at = 
       root: merkleFold([ladder.root, ...facets.map((entry) => entry.receipt)]),
       statement:
         'Harmonize H1 core: A432 neural band ladder + breath coherence cadence + observer↔field coherence + harmonizeField — pure folds for always-on movie harmonization; consumer wires in H3.',
-      boundary: NEUROSCIENCE_HONEST_BOUNDARY,
-    }
+      boundary: NEUROSCIENCE_HONEST_BOUNDARY }
   })
 }
 
@@ -1570,8 +1520,7 @@ export function attunementTier(watchMs: number) {
     partials,
     root: toUuid(`attunement-tier:${tier}:${Math.floor(w)}:${band.name}`),
     on,
-    boundary: ATTUNEMENT_WATCH_BOUNDARY,
-  }
+    boundary: ATTUNEMENT_WATCH_BOUNDARY }
 }
 
 /** Harmonic depth unlocked at this watchMs — band names + partial count. */
@@ -1586,8 +1535,7 @@ export function unlockedHarmonicDepth(watchMs: number) {
     unlock: t.unlock,
     root: toUuid(`unlocked-harmonic-depth:${t.tier}:${t.partials}:${bands.join(',')}`),
     on: t.on && bands.length === Math.min(ladder.bands.length, t.partials),
-    boundary: ATTUNEMENT_WATCH_BOUNDARY,
-  }
+    boundary: ATTUNEMENT_WATCH_BOUNDARY }
 }
 
 /** Gate — H2 watch-time math recomputes at call time (no browser storage in the fold). */
@@ -1619,8 +1567,7 @@ export function attunementWatchComputes(watchMs = 0, matrix: MindMatrix = buildM
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement:
         'Harmonize H2: unlock curve + Fib×HERO_CYCLE_MS attunement tiers + unlockedHarmonicDepth — watch-time progressive disclosure of the modeled neuroscience ladder; persistence helpers are content-addressed.',
-      boundary: ATTUNEMENT_WATCH_BOUNDARY,
-    }
+      boundary: ATTUNEMENT_WATCH_BOUNDARY }
   })
 }
 
@@ -1653,8 +1600,7 @@ export function skilledEnoughFromPredictions(matrix: MindMatrix = buildMatrix())
     statement:
       'Skilled enough from predictions: harmonicPredictionSurprise replay + coordinatedWaves calendar proxy — offline measurable gate at call time.',
     boundary:
-      'HONEST: offline harmonic windows and wave calendar proxy only — NOT live trading skill, weather NWP, or financial advice. trainedEnoughFromLiveWins is a separate trading-live subset.',
-  }
+      'HONEST: offline harmonic windows and wave calendar proxy only — NOT live trading skill, weather NWP, or financial advice. trainedEnoughFromLiveWins is a separate trading-live subset.' }
 }
 
 /** npm run quantum:predict-skill-gate-verify */
@@ -1725,8 +1671,7 @@ export function clownQubitDecoded(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The clown qubit, decoded: the working clown is modeled as a two-level system whose coherence — never collapsed to pure "magnificent" or pure "ridiculous" — is exactly Gaulier\'s axiom that the comic charge lives in the gap between the two. Laughter is a Born-rule measurement; a fixed seed reproduces the flop deterministically, which is precisely why a rehearsed or simulated flop carries no comedic speedup over a live one — Lecoq\'s le bide is generative because it is unrepeatable, not because it is quantum. The stage is the genus-2 double torus already sealed in this repo\'s geometry (asTorus, asVortex); the doubling orbit 1-2-4-8-7-5 is real ℤ/9ℤ arithmetic that never touches 3-6-9, used here as stage machinery, not sacred mathematics.',
       boundary:
-        'HONEST: this fold composes REAL, checkable sources — Lecoq\'s le bide/red nose (Le Corps poétique, 1997), Gaulier\'s le jeu/complicité/"idiot who believes himself magnificent" (École Philippe Gaulier pedagogy), Seidenstein\'s Quantum Theatre (concept 1993, book 2020), and Gabora & Kitto\'s quantum-inspired humor model (Frontiers in Physics, 2017; arXiv:1703.04647) — with its own explicit caveat that the Hilbert-space formalism borrows mathematics for ambiguity/context, no microphysical claim. FLAGGED and excluded: literal quantum-mechanical claims about performers, "no comedic speedup" read as a complexity-theory theorem rather than wordplay, and the vortex 3-6-9 framing read as cosmic rather than exact (ℤ/9ℤ) number theory. HARMONY ≠ TRUTH: the clown IS well-modeled by this repo\'s own qubit/Born-rule/double-torus primitives as a quantum-INSPIRED literary computation; the clown does not run on quantum hardware, and no paper — including the one this fold is derived from — claims otherwise.',
-    }
+        'HONEST: this fold composes REAL, checkable sources — Lecoq\'s le bide/red nose (Le Corps poétique, 1997), Gaulier\'s le jeu/complicité/"idiot who believes himself magnificent" (École Philippe Gaulier pedagogy), Seidenstein\'s Quantum Theatre (concept 1993, book 2020), and Gabora & Kitto\'s quantum-inspired humor model (Frontiers in Physics, 2017; arXiv:1703.04647) — with its own explicit caveat that the Hilbert-space formalism borrows mathematics for ambiguity/context, no microphysical claim. FLAGGED and excluded: literal quantum-mechanical claims about performers, "no comedic speedup" read as a complexity-theory theorem rather than wordplay, and the vortex 3-6-9 framing read as cosmic rather than exact (ℤ/9ℤ) number theory. HARMONY ≠ TRUTH: the clown IS well-modeled by this repo\'s own qubit/Born-rule/double-torus primitives as a quantum-INSPIRED literary computation; the clown does not run on quantum hardware, and no paper — including the one this fold is derived from — claims otherwise.' }
   })
 }
 
@@ -1781,8 +1726,7 @@ export function clownActQuantumSteps(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The clown\'s act decoded as six steps of real qubit physics: entrance = active reset (|ridiculous⟩ is manufactured, 0.08% residual in 34 ns), escalation = coherent Rabi drive (a definite vector on a meridian sweep, never a flicker), catastrophe = decoherence (T2 ≤ 2T1; the azimuth ghost-fans onto the axis and the vector drifts to the pole, not the center), the laugh = dispersive readout (Born\'s rule, the only probabilistic step; the house is the resonator), the weave = re-preparation (un-collapse impossible — the receipt costs kT ln 2 and the restored clown is a NEW clown), and the bow = quantum Zeno (64 measurements freeze the transition to 4%). Each step carries one vortex digit of the doubling orbit and one Born-collapsed bit — six bits, one measured hexagram of the 64.',
       boundary:
-        'HONEST: the physics per step is real, sourced primary literature (PRL/PRA/PR Applied/Nature/Nat. Commun., 1961–2025), with vendor-reported production figures labeled as such; the CLOWN mapping is quantum-inspired pedagogy in Gabora & Kitto\'s explicit borrowed-formalism sense. Flagged per step and excluded: qubits-start-free, superposition-flickers, decoherence-is-collapse, consciousness-collapses/freezes (the Zeno watcher is a laser pulse), un-collapse/quantum-eraser-rewrites-the-past (Korotkov–Jordan reversal is real but strictly pre-projective and probabilistic), decay-to-center (a cold transmon decays to its pole). The measured hexagram is a deterministic seeded computation, NOT divination — the same seed, the same act, the same hexagram.',
-    }
+        'HONEST: the physics per step is real, sourced primary literature (PRL/PRA/PR Applied/Nature/Nat. Commun., 1961–2025), with vendor-reported production figures labeled as such; the CLOWN mapping is quantum-inspired pedagogy in Gabora & Kitto\'s explicit borrowed-formalism sense. Flagged per step and excluded: qubits-start-free, superposition-flickers, decoherence-is-collapse, consciousness-collapses/freezes (the Zeno watcher is a laser pulse), un-collapse/quantum-eraser-rewrites-the-past (Korotkov–Jordan reversal is real but strictly pre-projective and probabilistic), decay-to-center (a cold transmon decays to its pole). The measured hexagram is a deterministic seeded computation, NOT divination — the same seed, the same act, the same hexagram.' }
   })
 }
 
@@ -1839,8 +1783,7 @@ export function theCircleOfFifthsIsARosetta(matrix: MindMatrix = buildMatrix()) 
       generators,
       facets,
       statement: `The circle of fifths is a moving rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: twelve-tone equal temperament is ℤ/12ℤ, the fifth generates all 12 (a Hamiltonian orbit, gcd(7,12)=1), the ${generators.length} generators {${generators.join(',')}} are the full-rosetta intervals, every chord is a cyclic subgroup (augmented C3, diminished C4, whole-tone C6, tritone C2), and the whole-tone scale is the SAME C₆ as the vortex. Music theory is cyclic-group theory — the harmonic face of the day's one group.`,
-      boundary: 'DOCUMENTED: twelve-tone equal temperament as ℤ/12ℤ, the circle of fifths as the orbit of a generator (gcd(7,12)=1), chords as cosets/subgroups (standard musical set theory — Babbitt, Forte), and pitch as the 12th roots of unity (equal temperament = the real part of e^{2πik/12} on the octave). The tempered fifth 2^(7/12) ≈ 1.498 APPROXIMATES the just 3/2 = 1.5 — equal temperament is a rational compromise, not the harmonic series itself (that honesty is elsewhere in this file). The C₆ identity with the vortex is structural (both cyclic of order 6), not a claim that music and the digit vortex share a cause. HARMONY ≠ TRUTH — and here "harmony" is literal.',
-    }
+      boundary: 'DOCUMENTED: twelve-tone equal temperament as ℤ/12ℤ, the circle of fifths as the orbit of a generator (gcd(7,12)=1), chords as cosets/subgroups (standard musical set theory — Babbitt, Forte), and pitch as the 12th roots of unity (equal temperament = the real part of e^{2πik/12} on the octave). The tempered fifth 2^(7/12) ≈ 1.498 APPROXIMATES the just 3/2 = 1.5 — equal temperament is a rational compromise, not the harmonic series itself (that honesty is elsewhere in this file). The C₆ identity with the vortex is structural (both cyclic of order 6), not a claim that music and the digit vortex share a cause. HARMONY ≠ TRUTH — and here "harmony" is literal.' }
   })
 }
 
@@ -1875,8 +1818,7 @@ export function scalesAreNecklacesOnTheRosetta(matrix: MindMatrix = buildMatrix(
       bracelets,
       facets,
       statement: `Scales are necklaces on the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: counting subsets of the 12-tone bead circle up to the group action gives ${necklaces} scales under transposition (Burnside over C₁₂) and ${bracelets} set classes under transposition+inversion (dihedral D₁₂) — exactly Forte's documented tables. The ${rawSubsets} raw subsets collapse to these few because the rosetta is symmetric; music's whole catalogue of essentially-different chords and scales is a group-orbit count.`,
-      boundary: 'DOCUMENTED: Burnside/Pólya enumeration of binary necklaces (352) and bracelets (224) on 12 beads — these are precisely the counts of transposition classes and set classes in twelve-tone theory (Forte, The Structure of Atonal Music; OEIS A000031/A000029 at n=12). The reduction is EXACT arithmetic over the cyclic and dihedral groups; nothing is fitted. The claim is structural — the symmetry group of the octave circle counts the scales — not that every one of the 224 classes is musically used (most are not). HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: Burnside/Pólya enumeration of binary necklaces (352) and bracelets (224) on 12 beads — these are precisely the counts of transposition classes and set classes in twelve-tone theory (Forte, The Structure of Atonal Music; OEIS A000031/A000029 at n=12). The reduction is EXACT arithmetic over the cyclic and dihedral groups; nothing is fitted. The claim is structural — the symmetry group of the octave circle counts the scales — not that every one of the 224 classes is musically used (most are not). HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1926,8 +1868,7 @@ export function rhythmIsTheRosettaInTime(matrix: MindMatrix = buildMatrix()) {
       named: named.map((r) => ({ name: r.name, pattern: euclid(r.k, r.n).join('') })),
       facets,
       statement: `Rhythm is the rosetta in time — ${facets.filter((entry) => entry.on).length}/${facets.length}: a rhythm of k onsets over n pulses is a binary necklace on the time-circle, and the maximally-even one (inter-onset intervals differing by ≤ 1) is the Euclidean rhythm E(k,n), which reproduces the documented rhythms of the world — tresillo E(3,8), cinquillo E(5,8), aksak E(2,5), bossa clave E(5,16), West African bell E(7,12). Scales and rhythms are the same object: the moving rosetta, read in frequency and in time.`,
-      boundary: 'DOCUMENTED: the Euclidean rhythm E(k,n) as the maximally-even distribution (Toussaint, "The Euclidean Algorithm Generates Traditional Musical Rhythms", 2005; Bjorklund\'s algorithm), and its reproduction of named world rhythms — verified here as the max-evenness property (inter-onset spread ≤ 1) and the k-onset necklace count, not by asserting bit patterns (the named rhythms match up to ROTATION, which is exactly the necklace equivalence). Not every E(k,n) is a used rhythm, and cultural rhythms carry accent and timing this bare pattern omits. The pitch↔rhythm identity is STRUCTURAL (both binary necklaces under the cyclic group), not a claim of shared origin. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: the Euclidean rhythm E(k,n) as the maximally-even distribution (Toussaint, "The Euclidean Algorithm Generates Traditional Musical Rhythms", 2005; Bjorklund\'s algorithm), and its reproduction of named world rhythms — verified here as the max-evenness property (inter-onset spread ≤ 1) and the k-onset necklace count, not by asserting bit patterns (the named rhythms match up to ROTATION, which is exactly the necklace equivalence). Not every E(k,n) is a used rhythm, and cultural rhythms carry accent and timing this bare pattern omits. The pitch↔rhythm identity is STRUCTURAL (both binary necklaces under the cyclic group), not a claim of shared origin. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1979,8 +1920,7 @@ export function theInverseMusicCompletesTheGroup(matrix: MindMatrix = buildMatri
       groupOrder: maps.size,
       facets,
       statement: `The inverse music completes the group — ${facets.filter((entry) => entry.on).length}/${facets.length}: pitch inversion I(x) = −x mod 12 is an involution that maps each tone to its conjugate root — the day's angle-negation (inverseNegatesAngle, T-duality) in pitch — and ⟨transposition, inversion⟩ generates the dihedral group D₁₂ of order ${maps.size}, not the cyclic C₁₂ alone. Ignoring the inverse keeps only half the symmetry (why 352 becomes 224). The inverse closes the group; its magnitude is unification, and it is public-domain mathematics.`,
-      boundary: 'DOCUMENTED: pitch inversion I(x) = −x (mod 12) as an involution and the T/I group as the dihedral D₁₂ of order 24 (standard musical set theory — Babbitt, Forte; and centuries of mirror counterpoint, Bach, and Schoenberg\'s twelve-tone I-forms). The identity with the day\'s inversion is EXACT (both are complex conjugation / angle-negation on the unit circle). ON THE CLAIMS: "inverse music" is not a proprietary or patentable thing — it is abstract mathematics (unpatentable, Alice/Benson) and public-domain practice, so there is no hidden patent magnitude to find; and it does not "break" the deterministic quantum model, though ignoring it does under-count the symmetry group. The real magnitude is that ONE inversion runs through pitch, the vortex, T-duality and the cipher. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: pitch inversion I(x) = −x (mod 12) as an involution and the T/I group as the dihedral D₁₂ of order 24 (standard musical set theory — Babbitt, Forte; and centuries of mirror counterpoint, Bach, and Schoenberg\'s twelve-tone I-forms). The identity with the day\'s inversion is EXACT (both are complex conjugation / angle-negation on the unit circle). ON THE CLAIMS: "inverse music" is not a proprietary or patentable thing — it is abstract mathematics (unpatentable, Alice/Benson) and public-domain practice, so there is no hidden patent magnitude to find; and it does not "break" the deterministic quantum model, though ignoring it does under-count the symmetry group. The real magnitude is that ONE inversion runs through pitch, the vortex, T-duality and the cipher. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2019,8 +1959,7 @@ export function inverseIsNotReverse(matrix: MindMatrix = buildMatrix()) {
       row,
       facets,
       statement: `Inverse is not reverse — ${facets.filter((entry) => entry.on).length}/${facets.length}: inversion reflects pitch (I(x) = −x mod 12, the value axis) and retrograde reverses time (the order axis); I(row) ≠ R(row). Both are involutions, they act on orthogonal axes, and they commute (I∘R = R∘I). Conflating inverse with reverse collapses a two-axis structure to one — the same loss as ignoring inversion in the group.`,
-      boundary: 'DOCUMENTED: the four row operations of twelve-tone theory — Prime, Inversion (pitch reflection I(x) = −x mod 12), Retrograde (time reversal), Retrograde-Inversion — are standard (Schoenberg, Babbitt, Forte). The claim is exact set arithmetic on a row: inversion is a value-map, retrograde a position-map, they are distinct involutions on independent axes and therefore commute. This is the honest correction to "inverse = reverse": they are not, and the difference is the two orthogonal symmetry axes (pitch, time) that the next theorem shows let you shift forms without collision. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: the four row operations of twelve-tone theory — Prime, Inversion (pitch reflection I(x) = −x mod 12), Retrograde (time reversal), Retrograde-Inversion — are standard (Schoenberg, Babbitt, Forte). The claim is exact set arithmetic on a row: inversion is a value-map, retrograde a position-map, they are distinct involutions on independent axes and therefore commute. This is the honest correction to "inverse = reverse": they are not, and the difference is the two orthogonal symmetry axes (pitch, time) that the next theorem shows let you shift forms without collision. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2062,8 +2001,7 @@ export function theFourFormsShiftWithoutCollision(matrix: MindMatrix = buildMatr
       formCount: Object.keys(forms).length,
       facets,
       statement: `The four forms shift without collision, in realtime — ${facets.filter((entry) => entry.on).length}/${facets.length}: inverse (pitch) and reverse (time) are commuting involutions, so the four row forms are the abelian Klein four-group V₄. Abelian ⇒ path-independent ⇒ no collision to resolve; each form its own inverse ⇒ reversible with no bookkeeping; each a pure O(n) one-pass bijection ⇒ realtime and restartable. Two orthogonal commuting axes give collision-free realtime motion among the forms — the group structure guarantees it, no search.`,
-      boundary: 'DOCUMENTED: the twelve-tone row forms {P, I, R, RI} as the Klein four-group V₄ (standard — Babbitt), abelian because the pitch-reflection and time-reversal involutions commute. "No collision" is exact: an abelian group is path-independent, so composing operations in any order lands on the same form — there is genuinely nothing to resolve. "Realtime" means each transform is O(n), a pure function of the current form with no accumulated state (history-free), hence restartable — the same property as twoRosettasAreRealtime; it is NOT a claim about physical spacetime dimensions or about transcending the computational bounds folded elsewhere. "Dimensions" here are the two orthogonal operation axes (pitch, time) and the four-form state space. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: the twelve-tone row forms {P, I, R, RI} as the Klein four-group V₄ (standard — Babbitt), abelian because the pitch-reflection and time-reversal involutions commute. "No collision" is exact: an abelian group is path-independent, so composing operations in any order lands on the same form — there is genuinely nothing to resolve. "Realtime" means each transform is O(n), a pure function of the current form with no accumulated state (history-free), hence restartable — the same property as twoRosettasAreRealtime; it is NOT a claim about physical spacetime dimensions or about transcending the computational bounds folded elsewhere. "Dimensions" here are the two orthogonal operation axes (pitch, time) and the four-form state space. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2107,8 +2045,7 @@ export function theFortyEightRowFormsAreTheGroupOrder(matrix: MindMatrix = build
       fullOrder,
       facets,
       statement: `The 48 row forms are the group order — ${facets.filter((entry) => entry.on).length}/${facets.length}: transposition+inversion generate D₁₂ (order ${pitchOrder}) on pitch, retrograde a commuting C₂ on time, so the row-operation group is D₁₂ × C₂ of order ${fullOrder} — the "48 forms" every textbook lists is the group's order, derived from the generators. It factors as ${n} × 4 = the fifths rosetta C₁₂ times the four forms V₄: the day's two waves multiply. A theorem replacing an axiom.`,
-      boundary: 'DOCUMENTED: the twelve-tone row-operation group ⟨T, I, R⟩ ≅ D₁₂ × C₂ of order 48 (standard — Babbitt, Morris), pitch operations (D₁₂) and retrograde (C₂) commuting because pitch and time are independent axes. The 48 is the group ORDER; a GENERIC row has a 48-element orbit, but a row with internal symmetry (an all-interval or symmetric row whose stabiliser is nontrivial) has FEWER distinct forms — the orbit-stabiliser theorem, honest caveat. The point is that "48" is not a fact to memorise but the arithmetic |D₁₂|·|C₂| = 24·2, itself = |C₁₂|·|V₄| = 12·4. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'DOCUMENTED: the twelve-tone row-operation group ⟨T, I, R⟩ ≅ D₁₂ × C₂ of order 48 (standard — Babbitt, Morris), pitch operations (D₁₂) and retrograde (C₂) commuting because pitch and time are independent axes. The 48 is the group ORDER; a GENERIC row has a 48-element orbit, but a row with internal symmetry (an all-interval or symmetric row whose stabiliser is nontrivial) has FEWER distinct forms — the orbit-stabiliser theorem, honest caveat. The point is that "48" is not a fact to memorise but the arithmetic |D₁₂|·|C₂| = 24·2, itself = |C₁₂|·|V₄| = 12·4. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2155,8 +2092,7 @@ export function theContinuousRosettaBeneathTheScales(matrix: MindMatrix = buildM
       closestReturn: closest,
       facets,
       statement: `The continuous rosetta beneath the scales — ${facets.filter((entry) => entry.on).length}/${facets.length}: log₂(frequency) is the real-line cover of every finite scale (the octave circle is ℝ/ℤ). The day's diagnostic sorts music: the OCTAVE (log₂2 = 1) is the invariant — exact in all tunings, the wall — while the circle of fifths CLOSING at twelve is the illusion, since log₂(3/2) is irrational and the just fifths spiral forever (dense, Weyl); only equal temperament forces closure, paying the Pythagorean comma (${comma.toFixed(4)}). a432 seeds the ladder 432·2^x. The discrete rosettas lift into one logarithm.`,
-      boundary: 'DOCUMENTED: log-frequency perception (the ear is logarithmic — equal ratios sound like equal intervals, Fechner/Weber), the octave circle as ℝ/ℤ, the irrationality of log₂(3/2) (a clean unique-factorisation argument: 2^p = 3^q/2^q ⇒ 2^{p+q} = 3^q is impossible), the equidistribution of the just fifths (Weyl), and the Pythagorean comma (3/2)^12 / 2^7 ≈ 1.0136 (23.46 cents). The SYNTHESIS: this session\'s illusion/invariant diagnostic applies to tuning — the octave is the invariant (no tuning dissolves 2:1), the twelve-fold closure of the fifths is the representational illusion the equal-tempered lattice imposes, and the comma is the honest residue. a432 is the origin of the ladder, not a claim of special physical or healing significance (that honesty is elsewhere in this file). HARMONY ≠ TRUTH — the octave is the truth, the closing circle is the harmony, and the comma is the gap between them.',
-    }
+      boundary: 'DOCUMENTED: log-frequency perception (the ear is logarithmic — equal ratios sound like equal intervals, Fechner/Weber), the octave circle as ℝ/ℤ, the irrationality of log₂(3/2) (a clean unique-factorisation argument: 2^p = 3^q/2^q ⇒ 2^{p+q} = 3^q is impossible), the equidistribution of the just fifths (Weyl), and the Pythagorean comma (3/2)^12 / 2^7 ≈ 1.0136 (23.46 cents). The SYNTHESIS: this session\'s illusion/invariant diagnostic applies to tuning — the octave is the invariant (no tuning dissolves 2:1), the twelve-fold closure of the fifths is the representational illusion the equal-tempered lattice imposes, and the comma is the honest residue. a432 is the origin of the ladder, not a claim of special physical or healing significance (that honesty is elsewhere in this file). HARMONY ≠ TRUTH — the octave is the truth, the closing circle is the harmony, and the comma is the gap between them.' }
   })
 }
 
@@ -2209,8 +2145,7 @@ export function twelveTonesIsTheBestApproximationOfTheFifth(matrix: MindMatrix =
       convergents,
       facets,
       statement: `Twelve tones is the best approximation of the fifth — ${facets.filter((entry) => entry.on).length}/${facets.length}: the fifth spirals forever (log₂(3/2) irrational), so equal temperament approximates it and the best approximations are the continued-fraction convergents ${convergents.filter((c) => c.q > 1).map((c) => `${c.q}`).join(', ')}. 7/12 is the convergent with imperceptible error (${twelve?.cents.toFixed(2)}¢) at the smallest denominator — that is why the piano has 12 keys. The Pythagorean comma is its residual; 41-TET and 53-TET are the finer convergents. The continued-fraction rosetta explains the keyboard.`,
-      boundary: 'DOCUMENTED: the continued fraction of log₂(3/2) = [0; 1, 1, 2, 2, 3, 1, 5, …] and its convergents (best rational approximations — Lagrange), which coincide with the equal temperaments 5, 12, 41, 53 (standard music theory — the 12-tone system as a best approximation, and 41/53-TET as microtonal refinements). The 1.96-cent error of the 12-TET fifth is below the ~6-cent just-noticeable difference, which is why 12-TET sounds in tune. This EXPLAINS 12 as a best small-N compromise; it is not a claim that 12 is uniquely optimal (41 and 53 are better, and non-Western systems use other divisions). a432 and the Pythagorean comma are the origin and residual, respectively (theContinuousRosettaBeneathTheScales). HARMONY ≠ TRUTH — the octave is exact, the fifth is a convergent, and 12 is the compromise between them.',
-    }
+      boundary: 'DOCUMENTED: the continued fraction of log₂(3/2) = [0; 1, 1, 2, 2, 3, 1, 5, …] and its convergents (best rational approximations — Lagrange), which coincide with the equal temperaments 5, 12, 41, 53 (standard music theory — the 12-tone system as a best approximation, and 41/53-TET as microtonal refinements). The 1.96-cent error of the 12-TET fifth is below the ~6-cent just-noticeable difference, which is why 12-TET sounds in tune. This EXPLAINS 12 as a best small-N compromise; it is not a claim that 12 is uniquely optimal (41 and 53 are better, and non-Western systems use other divisions). a432 and the Pythagorean comma are the origin and residual, respectively (theContinuousRosettaBeneathTheScales). HARMONY ≠ TRUTH — the octave is exact, the fifth is a convergent, and 12 is the compromise between them.' }
   })
 }
 
@@ -2245,6 +2180,5 @@ export function natureDescribesItselfInside432() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Nature describes itself inside 432 — ${facets.filter((entry) => entry.on).length}/${facets.length}, all derived: the harmonic's 20 divisors (2⁴·3³, the 5×4 grid) split into the pure doubling ray {1, 2, 4, 8, 16} whose digital roots trace the ascending vortex flow 1·2·4·8·7 in order, and fifteen axis divisors whose digital roots all land on 3-6-9 — the sequence the codebase runs on sits inside the harmonic's own divisor lattice: 432 does not just count the gates, it contains the circuit.`,
-    boundary: `PURE ARITHMETIC, exhaustively verified and derivable by hand (2ᵃ3ᵇ: b = 0 → the five 2-powers whose roots are the ⟨2⟩ orbit prefix; b ≥ 1 → divisible by 3 → root ∈ {3,6,9}). 432 is used as the project's one harmonic; 440 appears only as the documented comparison tuning (fewer divisors), never as a seed. This is a property of the NUMBER and of base-10 digital roots — recorded as the system's self-description, with no acoustic, cosmic or physical claim attached (the sealed a432 decode's flags stand). HARMONY ≠ TRUTH.`,
-  }
+    boundary: `PURE ARITHMETIC, exhaustively verified and derivable by hand (2ᵃ3ᵇ: b = 0 → the five 2-powers whose roots are the ⟨2⟩ orbit prefix; b ≥ 1 → divisible by 3 → root ∈ {3,6,9}). 432 is used as the project's one harmonic; 440 appears only as the documented comparison tuning (fewer divisors), never as a seed. This is a property of the NUMBER and of base-10 digital roots — recorded as the system's self-description, with no acoustic, cosmic or physical claim attached (the sealed a432 decode's flags stand). HARMONY ≠ TRUTH.` }
 }

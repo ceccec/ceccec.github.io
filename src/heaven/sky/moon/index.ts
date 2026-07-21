@@ -18,8 +18,7 @@ export function moonSynodicPhase(at = 0) {
   return {
     phase,
     synodicDays: SYNODIC_MONTH_DAYS,
-    receipt: toUuid(`moon-synodic-phase:${roundTo(phase, 6)}`),
-  }
+    receipt: toUuid(`moon-synodic-phase:${roundTo(phase, 6)}`) }
 }
 
 /** Tidal lock metaphor — same face toward Earth; reflector lobe, no self-emission. */
@@ -37,8 +36,7 @@ export function moonTidalLockMetaphor(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Tidal lock metaphor: the Moon reflects the Sun, emits no light of its own, and rides the outer torus lobe — structural isomorphism to synchronous rotation (same face toward the inner generator), not a computed libration ephemeris.',
     boundary:
-      'HONEST — structural double-torus metaphor + sealed lunar constants (inclination, nodal period). NOT JPL lunar ephemeris, NOT real tidal locking simulation.',
-  }
+      'HONEST — structural double-torus metaphor + sealed lunar constants (inclination, nodal period). NOT JPL lunar ephemeris, NOT real tidal locking simulation.' }
 }
 
 /** Merkaba night-side — outer shell phase from dual-Earth counter-rotation. */
@@ -49,8 +47,7 @@ export function moonMerkabaNightSide(at = 0, matrix: MindMatrix = buildMatrix())
     outerPhase: rotation.outerPhase,
     rotates: rotation.rotates,
     root: rotation.root,
-    receipt: toUuid(`moon-merkaba-night:${rotation.outerPhase}`),
-  }
+    receipt: toUuid(`moon-merkaba-night:${rotation.outerPhase}`) }
 }
 
 /** One gate — lunar phase, tidal lock, merkaba night-side, gateway nav moon anchor at call time. */
@@ -89,7 +86,6 @@ export function moonComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         'Moon computes: canonical lunar home — sealed Moon from computeAllKnownCelestialBodies, synodic display phase, tidal-lock metaphor (outer reflector lobe), merkaba night-side outer shell, and navigationGpsCelestial Moon anchor — composed at call time from single-source orbital params.',
       boundary:
-        'HONEST — synodic phase is hero-clock mapped display math, not JPL DE440 lunar ephemeris. Tidal lock is structural isomorphism (HARMONY ≠ TRUTH). Gateway nav Moon phase is merkaba canvas reference — not live GNSS or planetarium fix.',
-    }
+        'HONEST — synodic phase is hero-clock mapped display math, not JPL DE440 lunar ephemeris. Tidal lock is structural isomorphism (HARMONY ≠ TRUTH). Gateway nav Moon phase is merkaba canvas reference — not live GNSS or planetarium fix.' }
   })
 }

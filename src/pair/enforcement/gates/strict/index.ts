@@ -11,8 +11,7 @@ import {
   scanVitepressIndex,
   type StrictGateSnapshot,
   type StrictHyphenOffender,
-  type StrictNonTsOffender,
-} from './scan'
+  type StrictNonTsOffender } from './scan'
 
 export {
   MONOLITH_FILE_BYTES,
@@ -26,16 +25,14 @@ export {
   type StrictHyphenOffender,
   type StrictNonTsOffender,
   type StrictImportGapOffender,
-  type StrictGateSnapshot,
-} from './scan'
+  type StrictGateSnapshot } from './scan'
 
 export { computeStrictGateSnapshot, strictGatePassed, scanVitepressIndex, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './scan'
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './scan'
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './scan'
 
 export const FOLD_HOMES: Record<string, readonly string[]> = {
-  'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt', 'matrixIsTenBitMByteSixtyFour'],
-}
+  'src/quantum/water/cache': ['quantumHalvesTheHashDoublingRestoresIt', 'matrixIsTenBitMByteSixtyFour'] }
 
 export function foldsLiveAtTheirDomainHome(definers: readonly { name: string; files: readonly string[] }[] = []) {
   const homeOf = new Map<string, string>()
@@ -95,8 +92,7 @@ function pushStrictOffenders(
       severity: 'error',
       kind,
       harmonic,
-      detail: `${where}: ${v.reason}${v.spec ? ` ('${v.spec}')` : ''}`,
-    })
+      detail: `${where}: ${v.reason}${v.spec ? ` ('${v.spec}')` : ''}` })
   }
   if (offenders.length > cap) {
     findings.push({
@@ -104,8 +100,7 @@ function pushStrictOffenders(
       severity: 'error',
       kind,
       harmonic,
-      detail: `${offenders.length - cap} more ${kind} offender(s) — full list in facts.strict`,
-    })
+      detail: `${offenders.length - cap} more ${kind} offender(s) — full list in facts.strict` })
   }
 }
 
@@ -124,8 +119,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       severity: 'error',
       kind: 'script-shell',
       harmonic: 'pipeline',
-      detail: v,
-    })
+      detail: v })
   }
   if (s.scriptShellViolations.length > (5 * 4)) {
     findings.push({
@@ -133,8 +127,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       severity: 'error',
       kind: 'script-shell',
       harmonic: 'pipeline',
-      detail: `${s.scriptShellViolations.length - (5 * 4)} more script-shell violation(s) — full list in facts.strict`,
-    })
+      detail: `${s.scriptShellViolations.length - (5 * 4)} more script-shell violation(s) — full list in facts.strict` })
   }
   if (!s.pairsPaired) {
     findings.push({
@@ -142,8 +135,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       severity: 'error',
       kind: 'quantum-pair',
       harmonic: 'pipeline',
-      detail: 'gate pairs not saved in quantum pairs (gate/unite · scan/fold · digit/gate)',
-    })
+      detail: 'gate pairs not saved in quantum pairs (gate/unite · scan/fold · digit/gate)' })
   }
   if (!s.merkleOk) {
     findings.push({
@@ -151,8 +143,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       severity: 'error',
       kind: 'merkle',
       harmonic: 'pipeline',
-      detail: 'src merkle not sealed (expected 64 hex chars)',
-    })
+      detail: 'src merkle not sealed (expected 64 hex chars)' })
   }
   if (!s.digitPassed) {
     findings.push({
@@ -160,8 +151,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       severity: 'error',
       kind: 'digit-math',
       harmonic: 'digit',
-      detail: 'vortex digit gate sequence failed — src/0/{digit}/index.ts digitFold invalid',
-    })
+      detail: 'vortex digit gate sequence failed — src/0/{digit}/index.ts digitFold invalid' })
   }
   pushStrictOffenders(findings, 'import-gap', 'folder', s.importGaps)
   pushStrictOffenders(findings, 'one-math', 'math', s.oneMath)
@@ -172,8 +162,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       severity: 'warn',
       kind: 'monolith-file',
       harmonic: 'compression',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   if (s.fileSize.length > (6 * 2)) {
     findings.push({
@@ -181,8 +170,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       severity: 'warn',
       kind: 'monolith-file',
       harmonic: 'compression',
-      detail: `${s.fileSize.length - (6 * 2)} more monolith-file ratchet target(s) — full list in facts.strict`,
-    })
+      detail: `${s.fileSize.length - (6 * 2)} more monolith-file ratchet target(s) — full list in facts.strict` })
   }
   pushStrictOffenders(findings, 'non-index-code', 'folder', s.nonTs)
   pushStrictOffenders(findings, 'vitepress-index', 'config', s.vitepressIndex.filter((v) => !v.transitional))
@@ -192,8 +180,7 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       severity: 'warn',
       kind: 'vitepress-thin-mount',
       harmonic: 'config',
-      detail: `${v.file}: ${v.reason}`,
-    })
+      detail: `${v.file}: ${v.reason}` })
   }
   const passed = strictGatePassed(s)
   const report: string[] = []

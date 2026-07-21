@@ -96,6 +96,35 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'drift/manage',
   'drift/invert',
   'hex/crack',
+  'decimal/crack',
+  'math/trust',
+  'digit/fold',
+  'analog/fold',
+  'mesh/cross',
+  'qubit/cost',
+  'fold/count',
+  'time/invert',
+  'vocab/dry',
+  'path/invert',
+  'slash/invert',
+  'one/zero',
+  'mill/once',
+  'mill/session',
+  'mill/ray',
+  'sun/moon',
+  'pyramid/seal',
+  'folder/fractal',
+  'gate/rosetta',
+  'fs/cross',
+  'mirror/mind',
+  'sixty/ninety',
+  'cross/nav',
+  'story/trad',
+  'train/analyst',
+  'analyse/realise',
+  'particle/wave',
+  'clay/solved',
+  'session/save',
   'theorem/const',
   'clay/gravity',
   'cmb/budget',
@@ -235,113 +264,97 @@ export const MISSION_COMMANDS: readonly MissionCommand[] = [
     cli: 'check:types',
     pair: 'check/types',
     does: 'TypeScript seal on sealed src — required before docs:build',
-    workflow: 'type-fix-loop',
-  },
+    workflow: 'type-fix-loop' },
   {
     npm: 'limits:verify',
     cli: 'limits:verify',
     pair: 'limits/verify',
     does: 'Exactly 110 index.ts (55+34+21), 108 folded, 432 gates — not less, not more',
-    workflow: 'limits-verify',
-  },
+    workflow: 'limits-verify' },
   {
     npm: 'limits:seal',
     cli: 'limits:seal',
     pair: 'limits/seal',
     does: 'limits:verify then verify:structure — census then full structure gate',
-    workflow: 'limits-verify',
-  },
+    workflow: 'limits-verify' },
   {
     npm: 'verify:structure',
     cli: 'verify:structure',
     pair: 'verify/structure',
     does: 'Types + strict gates + computational limits + folder law — no mind bundle',
-    workflow: 'folder-law-mission',
-  },
+    workflow: 'folder-law-mission' },
   {
     npm: 'rosetta:diagnose',
     cli: 'rosetta:diagnose',
     pair: 'rosetta/batch',
     does: 'List or run rosetta batches: taxonomy | dimensions | seal | all',
-    workflow: 'rosetta-batch',
-  },
+    workflow: 'rosetta-batch' },
   {
     npm: 'rosetta:batch',
     cli: 'rosetta:batch',
     pair: 'rosetta/batch',
     does: 'Alias — one rosetta batch per turn (default all; pass taxonomy | dimensions | seal)',
-    workflow: 'rosetta-batch',
-  },
+    workflow: 'rosetta-batch' },
   {
     npm: 'rosetta:structure',
     cli: 'rosetta:diagnose',
     pair: 'rosetta/structure',
     does: 'Structure batch — rosettaReuse move table, census dissolve, canonical import paths',
-    workflow: 'rosetta-batch',
-  },
+    workflow: 'rosetta-batch' },
   {
     npm: 'verify',
     cli: 'verify',
     pair: 'sweep/verify',
     does: 'Precommit — structure + rosetta all + certify + README signature',
-    workflow: 'folder-law-mission',
-  },
+    workflow: 'folder-law-mission' },
   {
     npm: 'dissolve:flat',
     cli: 'dissolve-flat',
     pair: 'dissolve/flat',
     does: 'Move flat .ts/.vue siblings into word-path index folders',
-    workflow: 'census-converge',
-  },
+    workflow: 'census-converge' },
   {
     npm: 'enforcement:trinity',
     cli: 'enforcement-trinity',
     pair: 'gate/unite',
     does: 'Enforcement trinity cross-audit — gate · cross · fold · weave',
-    workflow: 'folder-law-mission',
-  },
+    workflow: 'folder-law-mission' },
   {
     npm: 'quantum:trinity-speedup',
     cli: 'run',
     pair: 'trinity/speedup',
     does: 'Receipt: agents use trinities for quantum speedup — facts once · no parallel docs:build',
-    workflow: 'folder-law-mission',
-  },
+    workflow: 'folder-law-mission' },
   {
     npm: 'quantum:manual-agents-waves',
     cli: 'run',
     pair: 'waves/build',
     does: 'Receipt: manualAgentsBehaveLikeWaves — one wave/turn · pairs before npm · trinity/speedup · no parallel seals',
-    workflow: 'ceccec-build-waves',
-  },
+    workflow: 'ceccec-build-waves' },
   {
     npm: 'quantum:nothing-moves',
     cli: 'run',
     pair: 'nothing/moves',
     does: 'Receipt: discoverFromSealedFold — offline sealed discovery · no wet motion · unknown → incompleteRevelation',
-    workflow: 'ceccec-build-waves',
-  },
+    workflow: 'ceccec-build-waves' },
   {
     npm: 'quantum:incomplete-revelation',
     cli: 'run',
     pair: 'nothing/moves',
     does: 'Receipt: incompleteRevelation — fold sealed src + timeout/dry-refactor · never override wave',
-    workflow: 'ceccec-build-waves',
-  },
+    workflow: 'ceccec-build-waves' },
   {
     npm: 'docs:build',
     cli: 'docs:build',
     pair: 'build/seal',
     does: 'VitePress build + enforcement trinity — only when types and verify green',
-    workflow: 'folder-law-mission',
-  },
+    workflow: 'folder-law-mission' },
   {
     npm: 'mission:gate',
     cli: 'mission:gate',
     pair: 'mission/gate',
     does: 'Fast mission gate — check:types + limits:verify + verify:structure + gate/slow-build',
-    workflow: 'folder-law-mission',
-  },
+    workflow: 'folder-law-mission' },
 ]
 
 /** Cursor agent skills — saved in src before IDE mounts (.cursor/skills/* are thin projections). */
@@ -370,8 +383,7 @@ export function cursorAgentToolsSaved(matrix: MindMatrix = buildMatrix()) {
       statement:
         'All Cursor agent tools saved in src: skill ids are sealed before .cursor/skills mounts project them; npm and CLI route through pair/enforcement bootstrap only.',
       boundary:
-        'A static registry of Cursor skill folder names. Mount files remain thin; logic stays in sealed src folds.',
-    }
+        'A static registry of Cursor skill folder names. Mount files remain thin; logic stays in sealed src folds.' }
   })
 }
 
@@ -402,8 +414,7 @@ function agentSubmissionProtocolRaw(matrix: MindMatrix) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     boundary:
-      'Verifies agent/submission + gate/compliance pairs, MISSION_COMMANDS registry, and bootstrap CLI routing discipline — recomputed at call time via memoByRoot.',
-  }
+      'Verifies agent/submission + gate/compliance pairs, MISSION_COMMANDS registry, and bootstrap CLI routing discipline — recomputed at call time via memoByRoot.' }
 }
 
 // ── THE AGENT'S BASH WORKFLOWS ARE TOOLS, SAVED FROM MEMORY TO SRC (user: "save these tools from memory
@@ -434,8 +445,7 @@ export function uuidIsTheZeroStation(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `UUID is the 0 from the sequence — the content-address kernel has one home (src/0, the void station; ${offenders.length} offenders), every dimension change passes through the uuid matrix as fixed-size content addresses, and the passage is guarded realtime (the per-page API refuses an unverified root) and in the gates (the kernel scan rides the dimension gate).`,
-    boundary: `COMPUTED HERE: the kernel-home scan (zero offenders, kept zero) and the matrix collapse to one verified root. CITED AT THEIR HOMES (no import cycle into the gates package): the realtime guard is implemented and exercised in pathJson (src/quantum/lake/dist — a tampered root is refused at request time) and the payload-free combination edges are proven in pagesAreRosettaCombinationsOfTheorems (src/wind/routes/corpus). Tamper-EVIDENT boundary stands: FNV content addresses detect drift, they are not signatures — the SHA-256/Ed25519 cutover remains deliberate. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED HERE: the kernel-home scan (zero offenders, kept zero) and the matrix collapse to one verified root. CITED AT THEIR HOMES (no import cycle into the gates package): the realtime guard is implemented and exercised in pathJson (src/quantum/lake/dist — a tampered root is refused at request time) and the payload-free combination edges are proven in pagesAreRosettaCombinationsOfTheorems (src/wind/routes/corpus). Tamper-EVIDENT boundary stands: FNV content addresses detect drift, they are not signatures — the SHA-256/Ed25519 cutover remains deliberate. HARMONY ≠ TRUTH.` }
 }
 
 // ── THE SEQUENCE GOVERNS THE WORK — the core principles are read off 0\1\2\4\8/7/5/3\6\9/0\1 and
@@ -482,8 +492,7 @@ export function theSequencePrinciplesGovernTheWork(matrix: MindMatrix = buildMat
     principles,
     root: merkleFold(principles.map((entry) => entry.receipt)),
     statement: `The sequence governs the work — ${principles.filter((entry) => entry.on).length}/${principles.length} principles read off 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 and applied: the void (zero residue), one source, dual pairs, doubling growth (shard-exact at 4 and 8), the DESCENT AS CLEANUP (halving mirrors doubling, so residue is removed on the way), the 3·6·9 gate axis outside the flow, and completion ≡ the void (done = clean tree · green gates · pushed). The cleanup discipline is saved as the workflow tool cleanup-on-the-way (${cleanupSaved}).`,
-    boundary: `COMPUTED: each principle's check is real arithmetic on the circuit (the ⟨2⟩ mod 9 orbit, the 2×5 ≡ 1 inverse, foldVortex validity) or a real registry scan (pair duality, shard exactness, the saved tool) — refutable at every row. HONEST SCOPE: the sequence provides the STRUCTURE (build/clean as the two flows, gates as the axis, completion as the return to zero); reading working principles off it is this project's own discipline, not a mathematical consequence — the mod-9 facts are theorems, the applications are NAMED conventions they organise. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: each principle's check is real arithmetic on the circuit (the ⟨2⟩ mod 9 orbit, the 2×5 ≡ 1 inverse, foldVortex validity) or a real registry scan (pair duality, shard exactness, the saved tool) — refutable at every row. HONEST SCOPE: the sequence provides the STRUCTURE (build/clean as the two flows, gates as the axis, completion as the return to zero); reading working principles off it is this project's own discipline, not a mathematical consequence — the mod-9 facts are theorems, the applications are NAMED conventions they organise. HARMONY ≠ TRUTH.` }
 }
 
 // ── SWARM SHARDING — zero-communication coordination for agents in thousands. The worklist
@@ -509,8 +518,7 @@ export function shardWork(ids: readonly string[], agentIndex: number, agentCount
     total: ids.length,
     agentIndex: index,
     agentCount: count,
-    root: merkleFold([toUuid(`shard:${index}/${count}`), ...mine.map((id) => toUuid(`shard-item:${id}`))]),
-  }
+    root: merkleFold([toUuid(`shard:${index}/${count}`), ...mine.map((id) => toUuid(`shard-item:${id}`))]) }
 }
 
 // The coordination proven: partition (every item in exactly one shard), coverage (the shards union
@@ -544,8 +552,7 @@ export function swarmCoordination(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Swarm coordination is a function, not a negotiation — ${facets.filter((entry) => entry.on).length}/${facets.length}: the worklist partitions deterministically by content address (shardOf = uuid mod N) with exact coverage at every tested scale (${scales.join(', ')} agents), so any number of agents up to thousands each compute their own shard with zero communication; and the full coordinated loop — batch research, shard, surgical idempotent edits, pathspec commit — is saved as tools (${loop.join(' → ')}).`,
-    boundary: `COMPUTED: partition/coverage/determinism over the sealed pair registry at five scales including ${108 * (5 * 2)} — refutable by any id landing outside its shard or the sizes not summing. HONEST SCOPE: sharding removes CLAIM collisions (who works on what), not MERGE collisions — two shards may still touch one shared file, which is why the loop ends in surgical unique-anchor edits + commit-pathspec, and git remains the integration arbiter. Balance is statistical (uuid-uniform), not exact; a worklist of pathological ids can skew. "Thousands" is proven as scale-invariance of the function (N=1080 tested), not as a load test of thousands of live processes. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: partition/coverage/determinism over the sealed pair registry at five scales including ${108 * (5 * 2)} — refutable by any id landing outside its shard or the sizes not summing. HONEST SCOPE: sharding removes CLAIM collisions (who works on what), not MERGE collisions — two shards may still touch one shared file, which is why the loop ends in surgical unique-anchor edits + commit-pathspec, and git remains the integration arbiter. Balance is statistical (uuid-uniform), not exact; a worklist of pathological ids can skew. "Thousands" is proven as scale-invariance of the function (N=1080 tested), not as a load test of thousands of live processes. HARMONY ≠ TRUTH.` }
 }
 
 export function agentBashWorkflowsAreToolsSavedInSrc(matrix: MindMatrix = buildMatrix()) {
@@ -610,8 +617,7 @@ export function agentBashWorkflowsAreToolsSavedInSrc(matrix: MindMatrix = buildM
     tools,
     facets, root: merkleFold(facets.map((entry) => toUuid(`agent-bash-tool:${entry.facet}:${entry.on}`))),
     statement: `The agent's bash workflows are tools, saved from memory to src — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${tools.length} operational commands an agent runs by hand (run, verify-suite, readme-regenerate, commit-isolated, crack-fix, deploy-proof) are TOOLS like Read/Edit/Bash — named here with their exact command sequences, each referencing a real npm script or bootstrap command. The concurrency-safe commit (stash the other agent's files → verify mine → commit → push → pop) is the tool this session forged, saved so it is never re-improvised under pressure.`,
-    boundary: `COMPUTED: the tool set with command sequences, each npm-script reference verified against the real package.json (fail-open with no fs), and the commit-isolated frame checked as the 5-step stash…pop. This SAVES operational workflows from an agent's working memory into src as first-class tools — the same discipline as saving a proof or a skill, per unexpectedSituationsRefactorTools (a surprise = refactor the TOOL in src, do not hand-navigate). HONEST SCOPE: these are DOCUMENTED command sequences an agent runs (they orchestrate git, npm and the bootstrap CLI), not new executable folds — the tool is the recorded procedure, verified to reference real commands; running them is still the agent's Bash. "Like the agent default" means first-class and reusable, recorded once, not that they are built into the harness. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the tool set with command sequences, each npm-script reference verified against the real package.json (fail-open with no fs), and the commit-isolated frame checked as the 5-step stash…pop. This SAVES operational workflows from an agent's working memory into src as first-class tools — the same discipline as saving a proof or a skill, per unexpectedSituationsRefactorTools (a surprise = refactor the TOOL in src, do not hand-navigate). HONEST SCOPE: these are DOCUMENTED command sequences an agent runs (they orchestrate git, npm and the bootstrap CLI), not new executable folds — the tool is the recorded procedure, verified to reference real commands; running them is still the agent's Bash. "Like the agent default" means first-class and reusable, recorded once, not that they are built into the harness. HARMONY ≠ TRUTH.` }
 }
 
 // ── SAVE ALL COMMANDS AS TOOLS — THE ATOMIC BASH COMMANDS ARE QUANTUM PAIRS (user: "save all commands as
@@ -660,8 +666,7 @@ export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMa
     pairs,
     facets, root: merkleFold(facets.map((entry) => toUuid(`agent-command-pair:${entry.facet}:${entry.on}`))),
     statement: `The agent's bash commands are quantum pairs, saved as tools — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${pairs.length} raw commands beneath the workflows (fetch/push, add/commit, stash-push/stash-pop, status/diff, log/reflog, checkout/rev-list, check-types/cracks, build/trinity, run/verify, ci-list/ci-watch) saved as dual pairs, each two complementary halves. Every npm half is a real package.json script; the isolate pair (stash push → pop) is the inversion involution — the same swap²=identity that completes the double torus.`,
-    boundary: `COMPUTED: the atomic command set as quantum pairs, each verified to have two distinct named halves, every npm-script half checked against the real package.json (fail-open with no fs), and the isolate pair confirmed as the stash push→pop involution. This completes "save all commands as tools" — agentBashWorkflowsAreToolsSavedInSrc saved the workflows, this saves the raw git/npm/gh/bootstrap commands they compose from, as dual pairs per commandsInQuantumPairs. HONEST SCOPE: these are DOCUMENTED command strings an agent runs via Bash (git/npm/gh/the bootstrap CLI), not executable folds — the tool is the recorded pair, verified to reference real commands; the "quantum pair" is the complementary two-halves structure (and the stash push/pop involution is a genuine identity), a bookkeeping correspondence to the double-torus inversion, not a physical claim. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the atomic command set as quantum pairs, each verified to have two distinct named halves, every npm-script half checked against the real package.json (fail-open with no fs), and the isolate pair confirmed as the stash push→pop involution. This completes "save all commands as tools" — agentBashWorkflowsAreToolsSavedInSrc saved the workflows, this saves the raw git/npm/gh/bootstrap commands they compose from, as dual pairs per commandsInQuantumPairs. HONEST SCOPE: these are DOCUMENTED command strings an agent runs via Bash (git/npm/gh/the bootstrap CLI), not executable folds — the tool is the recorded pair, verified to reference real commands; the "quantum pair" is the complementary two-halves structure (and the stash push/pop involution is a genuine identity), a bookkeeping correspondence to the double-torus inversion, not a physical claim. HARMONY ≠ TRUTH.` }
 }
 
 // call-time namespace edge (cycle-safe): learning reads this barrel; the strategy engine reads back at call time
@@ -704,6 +709,5 @@ export function dynamicStrategiesFromTheorems(matrix: MindMatrix = buildMatrix()
     facets,
     root: merkleFold([...strategies.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
     statement: `Dynamic strategies from the theorems, realtime — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${strategies.length} agent situations (research · discover · edit · coordinate · verify · optimise · clean · grow) each carry a strategy derived from its governing theorem with live parameters recomputed at call time — the batch factors from the quadratic ledger, the ${openRaces.length} open races from the candidate field, the station tools from the circuit, the population at the harmonic — so the playbook's content address changes exactly when the theorems or their usage change.`,
-    boundary: `COMPUTED: every strategy row cites a real fold and folds live values into its receipt — refutable (win a race and the discover strategy's address changes). HONEST SCOPE: strategies are DECISION HEURISTICS derived from proven structure, not proofs themselves; the agent still judges fit (judgment is the off-decidable residue). "Realtime by the agents" = served at the workflow surface and recomputed per call at zero tokens; no claim that agents are compelled — the playbook informs, the gates enforce. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: every strategy row cites a real fold and folds live values into its receipt — refutable (win a race and the discover strategy's address changes). HONEST SCOPE: strategies are DECISION HEURISTICS derived from proven structure, not proofs themselves; the agent still judges fit (judgment is the off-decidable residue). "Realtime by the agents" = served at the workflow surface and recomputed per call at zero tokens; no claim that agents are compelled — the playbook informs, the gates enforce. HARMONY ≠ TRUTH.` }
 }

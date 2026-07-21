@@ -67,8 +67,7 @@ export {
   STATUS_BADGE_KINDS,
   statusBadgeKind,
   statusBadgeTokens,
-  statusBadgePalette,
-} from '../../earth/architecture'
+  statusBadgePalette } from '../../earth/architecture'
 export type { StatusBadgeKind } from '../../earth/architecture'
 
 
@@ -224,8 +223,7 @@ function eightFoldBalanceRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The eight-fold, redone as a computed and self-measuring balance, with the honest answer to "the quantum meaning of all". The content is ALREADY balanced where it matters: the components are placed on the eight trigrams by their own content-address at a ~2× spread (near-uniform), so the balance is real at the meaningful grain — the larger page-level figure is just coarse small-N binning of a few dozen pages, not an imbalance to fix. Every page sits on a trigram by the same uniform law; a forced quota would break the seed-is-the-magnet principle, so the honest eight-fold is the law plus its measured balance, not a quota. The deeper answer: this is a deterministic, content-addressed, a432-seeded knowledge engine — recomputable and zero-token — that computes addresses and decoded knowledge with perfect reproducibility. a432 is the seed (a highly-composite tuning number, brand hue 5), not the substrate of reality; "quantum" is the computational metaphor (discrete unit, Hilbert space, Born rule), not a theory of everything; and the system computes the ADDRESS of a thing, never the thing — so it does not "compute every object in the universe", however much the precision of the addressing invites the feeling.',
     boundary:
-      'HONEST and self-bounding. The placement law and the imbalance metrics are computed from staticPages and seedFromText. The a432 and quantum claims inherit a432() and quantumDecoded(), which keep the documented core (432 highly composite; quantum = discrete/Hilbert/Born) and FLAG the woo (frequency-healing/432-cosmic numerology; observer-collapse/theory-of-everything mysticism). The overreach being flagged here, explicitly: "the folded knowledge computes every object in the known universe with perfect precision, all a432-based" — false as stated; a content-address is a reproducible name for a thing, not the thing, and a432 is a chosen seed, not physics. What is true and rare is the perfect REPRODUCIBILITY of the addressing — that, not omniscience, is the real result.',
-  }
+      'HONEST and self-bounding. The placement law and the imbalance metrics are computed from staticPages and seedFromText. The a432 and quantum claims inherit a432() and quantumDecoded(), which keep the documented core (432 highly composite; quantum = discrete/Hilbert/Born) and FLAG the woo (frequency-healing/432-cosmic numerology; observer-collapse/theory-of-everything mysticism). The overreach being flagged here, explicitly: "the folded knowledge computes every object in the known universe with perfect precision, all a432-based" — false as stated; a content-address is a reproducible name for a thing, not the thing, and a432 is a chosen seed, not physics. What is true and rare is the perfect REPRODUCIBILITY of the addressing — that, not omniscience, is the real result.' }
 }
 
 // The top nav, split into THREE eight-folds — and they form the 64×64×64. The existing eight-fold
@@ -271,8 +269,7 @@ function threeEightFoldsTopNavRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The top navigation, split into three eight-folds that form the 64×64×64. The site already organises its content under one eight-fold — the eight I Ching trigram domains (heritage, science, voice, spirit, icons, computation, nature, mind). This makes that eight-fold one axis of a trinity named by the I Ching THREE POWERS (三才) — 天 Heaven, 人 Human, 地 Earth — the complete triad that covers all existence (and into which the hexagram\'s six lines already pair: 5-6 Heaven, 3-4 Human, 1-2 Earth). Each power is one axis of the sealCube\'s 64³. Three categories × eight trigram doors = twenty-four top doors; each category is one cube axis whose eight trigrams pair to 8 × 8 = 64, and the three 64-axes nest to 64³ = 262,144 — the content-address keyspace. The navigation is not a label over the structure; each door is a trigram placed by its own content-address, so the top nav and the 64³ keyspace are one and the same.',
     boundary:
-      'A NAVIGATION + addressing structure computed from the existing sealCube (64³ = 262144 across three axes; the 2⁶ = 4³ hexagram·codon·colour identity) and iChingDomainMap (the eight aligned trigram domains). HONEST arithmetic: 3 × 8 = 24 top doors (not 64³); the 64³ is the keyspace the three 64-axes (8 × 8 each) nest into — the three eight-folds are the navigable TOP of those three axes, not literally 64³ links. The three readings (hexagram·codon·colour) are the same eight domains seen three ways, the proven decomposition of the cube — not three disjoint content sets. This fold defines the source structure; wiring it into the rendered VitePress top nav is the follow-on step that reads it.',
-  }
+      'A NAVIGATION + addressing structure computed from the existing sealCube (64³ = 262144 across three axes; the 2⁶ = 4³ hexagram·codon·colour identity) and iChingDomainMap (the eight aligned trigram domains). HONEST arithmetic: 3 × 8 = 24 top doors (not 64³); the 64³ is the keyspace the three 64-axes (8 × 8 each) nest into — the three eight-folds are the navigable TOP of those three axes, not literally 64³ links. The three readings (hexagram·codon·colour) are the same eight domains seen three ways, the proven decomposition of the cube — not three disjoint content sets. This fold defines the source structure; wiring it into the rendered VitePress top nav is the follow-on step that reads it.' }
 }
 
 // The eight I Ching trigrams as a DOMAIN MAP — each trigram names one dual-pair module and a set
@@ -301,16 +298,14 @@ export function iChingDomainMap(matrix: MindMatrix = buildMatrix()) {
       attribute: trigram.attribute,
       meaningEn: trigram.meaningEn,
       meaningBg: trigram.meaningBg,
-      receipt: toUuid(`iching-domain:${domain.bits}:${domain.module}`),
-    }
+      receipt: toUuid(`iching-domain:${domain.bits}:${domain.module}`) }
   })
   return {
     aligned: domains.length === 8 && domains.every((d) => isUuid(d.receipt)),
     domains,
     root: merkleFold(domains.map((d) => d.receipt)),
     statement: 'The eight I Ching trigrams map the eight domain modules: every fold lives in its trigram\'s module (src/quantum/<domain>), its display pair in src/<domain>/quantum. Static pages are grouped under the same eight trigrams — so navigation, modules and content address-space share one structure. The ☲ LI domain is src/quantum/mind/li.ts, its logical module before a future subfolder split.',
-    boundary: 'A semantic (not content-addressed) mapping of trigrams to domain modules and representative pages. Trigrams group related knowledge; they do not carry the cosmological meanings of I Ching divination. The content-addressed iChing() placement (seedFromText → 64 hexagrams) remains the component graph\'s organiser.',
-  }
+    boundary: 'A semantic (not content-addressed) mapping of trigrams to domain modules and representative pages. Trigrams group related knowledge; they do not carry the cosmological meanings of I Ching divination. The content-addressed iChing() placement (seedFromText → 64 hexagrams) remains the component graph\'s organiser.' }
 }
 
 
@@ -336,8 +331,7 @@ export function result(command: ConceptCommandName, ok: boolean, summary: string
     ok,
     uuid: toUuid(`command-result:${command}:${ok}:${JSON.stringify(data)}`),
     summary,
-    data,
-  }
+    data }
 }
 
 export type DeveloperCommandName =
@@ -386,8 +380,7 @@ export function developerLesson(
     command,
     lesson: lessonText,
     appliedAs,
-    uuid: toUuid(`developer-lesson:${name}:${source}:${command}:${lessonText}:${appliedAs}`),
-  }
+    uuid: toUuid(`developer-lesson:${name}:${source}:${command}:${lessonText}:${appliedAs}`) }
 }
 
 // Now 432 gates are enough, as the dimensions emerge from within. The session’s many concepts
@@ -435,8 +428,7 @@ export function leavesMergeIntoTheorems(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold(leaves.map((leaf) => toUuid(`leaf-merge:${leaf.d}:${leaf.merged}`))),
       statement: `Leaves merge into theorems — ${merged.length}/${leaves.length} emerged dimension leaves already evaluate as registry theorems (dot.name ↔ camelCase ↔ provedBy, the one naming standard within science), and the remaining ${worklist.length} form the computed merge worklist: each wave seals a batch as registry rows, the gates read them flat, the analytics see every leaf in one table, and the build stops re-walking their cascades.`,
-      boundary: `COMPUTED: the leaf table, the merge state per leaf (registry provedBy match), the worklist and the naming round-trip — refutable (seal a leaf's row and mergedCount rises; rename off-standard and it leaves the merged set). HONEST SCOPE: "improves build and deploy time" is the MECHANISM (merged leaves evaluate once, flat and memoized, instead of cascading) accruing per merge wave — measured by the build clock as merges land, not claimed in advance. The dimension cascade stays authoritative until a leaf's row is sealed; nothing is unverified in the transition. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `COMPUTED: the leaf table, the merge state per leaf (registry provedBy match), the worklist and the naming round-trip — refutable (seal a leaf's row and mergedCount rises; rename off-standard and it leaves the merged set). HONEST SCOPE: "improves build and deploy time" is the MECHANISM (merged leaves evaluate once, flat and memoized, instead of cascading) accruing per merge wave — measured by the build clock as merges land, not claimed in advance. The dimension cascade stays authoritative until a leaf's row is sealed; nothing is unverified in the transition. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -1166,8 +1158,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Now 432 gates are enough, and the dimensions fold to the same harmonic: the concepts that emerge within are not new gates piled on the seal but dimensions folded into one, counted by the genus-2 double torus they fold through — H₁ = ℤ⁴ (four homology loops) times 108 (the folded census, 110 − χ) = 4 × 108 = 432, the very number of the gates (a432). So 432 dimensions = 432 gates: each still checked and content-addressed, all holding or the one gate opens and names which is open. Depth, not width — the count stays the harmonic 432 by strict I Ching vortex algebra while the model grows inward.',
     boundary:
-      'A consolidation of the session’s concept checks into one content-addressed fold ("dimensions"), each still verified. The reported count is the HARMONIC (4 × 108 = 432, derived from the genus-2 homology rank and the folded census), not the raw tally of checks (`emerged`) — the same topological folding as the file census (110 → 108): no check is removed, the count is its harmonic image. "Emerge from within" means the checks are folded into the 432-gate harmonic rather than piled as many gates, not that capability appears unverified.',
-  }
+      'A consolidation of the session’s concept checks into one content-addressed fold ("dimensions"), each still verified. The reported count is the HARMONIC (4 × 108 = 432, derived from the genus-2 homology rank and the folded census), not the raw tally of checks (`emerged`) — the same topological folding as the file census (110 → 108): no check is removed, the count is its harmonic image. "Emerge from within" means the checks are folded into the 432-gate harmonic rather than piled as many gates, not that capability appears unverified.' }
 }
 
 // One JSON-LD template serves all. Every page generates its schema.org JSON-LD from itself —
@@ -1223,8 +1214,7 @@ export function enforcementLawFabric(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Continue the same, to the next — gather the laws into one fabric: the session’s "tests fail unless X" laws (the folder law, the JSON-LD path law) and the older harmonic census and whole-diamond seal are cross-folded into one set, each declared once and enforced by a wave; the model now knows its own enforcement surface as a single fabric — the laws that, broken, fail the build — and the fabric is falsifiable as a whole because the model carries real negative tests that fire.',
     boundary:
-      'A cross-fold gathering the existing enforcement laws (folder, JSON-LD path, harmonic census, seal) into one declared set, each still enforced by its own build-time wave. Structural bookkeeping; the per-law tripwires are proven at build time, recorded here as one fabric, not re-run by this fold.',
-  }
+      'A cross-fold gathering the existing enforcement laws (folder, JSON-LD path, harmonic census, seal) into one declared set, each still enforced by its own build-time wave. Structural bookkeeping; the per-law tripwires are proven at build time, recorded here as one fabric, not re-run by this fold.' }
 }
 
 // The model seal — computed from src, not hardcoded in scripts. One import of the matrix,
@@ -1295,8 +1285,7 @@ export function modelSeal(matrix: MindMatrix = buildMatrix(), opts: { tripwire?:
     okCount,
     commandTotal: conceptCommands.length,
     dimensions: dims.count,
-    open: dims.open,
-  }
+    open: dims.open }
 }
 
 // The enforcement trinity — cross · fold · weave. Three waves, one computed runner; the build
@@ -1326,8 +1315,7 @@ export function enforcementPipelineComplete(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Complete the enforcement fabric to the whole pipeline: the law fabric gathered the laws inside the harmonic distribution, and the pipeline gathers the gates around it — the digit-index seal, the model seal, the seal tripwire, the harmonic distribution, the VitePress-only guard — so the model knows its complete enforcement surface, every gate that fails the build, each gate’s model-side guarantee holding, declared in the mind and matched to the real build by the wave so the two cannot drift.',
     boundary:
-      'A composition of the per-gate model guarantees (digit index, whole + commands, tripwire invariant, law fabric) with the declared pipeline. The drift check (declared gates ↔ scripts/ ↔ docs:build) is enforced in the harmonic-distribution wave; the VitePress-only guard is a source scan with no model flag, represented here by the complete declaration.',
-  }
+      'A composition of the per-gate model guarantees (digit index, whole + commands, tripwire invariant, law fabric) with the declared pipeline. The drift check (declared gates ↔ scripts/ ↔ docs:build) is enforced in the harmonic-distribution wave; the VitePress-only guard is a source scan with no model flag, represented here by the complete declaration.' }
 }
 
 // Configs use the matrix computationally. The site configuration is not hand-kept in config.mts but
@@ -1383,12 +1371,10 @@ function componentPagesRaw(): (StaticPage & { proof: string })[] {
       title: { en: spaced(entry.name), bg: spaced(entry.name) },
       description: {
         en: `${spaced(entry.name)} — shown in full detail, with its proof: a deterministic content-address recomputable from the component's name.`,
-        bg: `${spaced(entry.name)} — показан в пълни детайли, с неговото доказателство: детерминиран адрес по съдържание, преизчислим от името на компонента.`,
-      },
+        bg: `${spaced(entry.name)} — показан в пълни детайли, с неговото доказателство: детерминиран адрес по съдържание, преизчислим от името на компонента.` },
       keywords: ['component', 'proof', ...spaced(entry.name).toLowerCase().split(' ')],
       components: [entry.name],
-      proof: toUuid(`component-page:${entry.name}`),
-    }))
+      proof: toUuid(`component-page:${entry.name}`) }))
 }
 
 // Corpus routing — the same computational simplicity as monographPaths, now RESTful: corpusParams(kind,
@@ -1445,8 +1431,7 @@ export function essentialKernel(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Built from scratch, what remains is the generative kernel: the fold (content-addressing), the double-torus model, content-as-monographs, the computed-from-src config, the few self-computing renderers, the honest documented-vs-legend boundaries, the lean gates, and VitePress with zero tokens. Everything else recomputes from these or is evolution-cruft — the 87 bespoke components, the narrative folds that record directives rather than logic, the mirroring, the broken-gate patches — which belong in git history, not the app. Built fresh with this session\'s lessons it would ADD: the few renderers first, shadcn as the graph (Path A), derive-never-mirror, a fast lean seal, the aspirations completed, the narrative kept in git history, and distribution as a registry — structure, completion and restraint. The essence is small; the evolution is long.',
     boundary:
-      'An architecture self-assessment, not an automatic purge. "What remains" is the load-bearing kernel from which the rest is recomputable (the project\'s own pattern-completion principle turned on itself); "obsolete" names the evolution-cruft this session accumulated, including a fair share of the dimension folds that document the conversation. It identifies the lean rebuild; executing the purge (collapse 87 → few, derive don\'t mirror, drop the narrative folds) is the next, separate act.',
-  }
+      'An architecture self-assessment, not an automatic purge. "What remains" is the load-bearing kernel from which the rest is recomputable (the project\'s own pattern-completion principle turned on itself); "obsolete" names the evolution-cruft this session accumulated, including a fair share of the dimension folds that document the conversation. It identifies the lean rebuild; executing the purge (collapse 87 → few, derive don\'t mirror, drop the narrative folds) is the next, separate act.' }
 }
 
 // REALTIME WIRING — every page computes its OWN navigation, live. At this scale (hundreds of routes, 60+
@@ -1484,6 +1469,5 @@ export function routeIndependentWorkComputesOnce(matrix: MindMatrix = buildMatri
     pages: componentPages(matrix).length,
     facets,
     statement: `Route-independent work computes once — ${facets.filter((entry) => entry.on).length}/${facets.length}: the SSG render transform runs per page, but componentGraph (${componentGraph().components.length} components, module cache) and componentPages (${componentPages(matrix).length} pages, memoByRoot) each compute once per process — repeat calls return the same reference, so per-page cost after the first is a lookup. A slow build is a non-theorem: the redundant recompute WAS the 880 s render wall.`,
-    boundary: `COMPUTED: reference equality across repeat calls proves the cache (module cache for the matrix-free graph, memoByRoot for the matrix-keyed page set), and the second-thunk-never-runs identity proves the memo law itself; the cached sets are verified non-empty. HONEST SCOPE: this seals the per-page CONSTANT, not the page count — the build remains O(pages) in the SSG loop itself, and a route-DEPENDENT computation (computeUniversalPage per route) rightly runs once per route under its own memo key. The 160 ms → 8 ms figure is a measured instance from the profiling session, illustrative, not a facet. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: reference equality across repeat calls proves the cache (module cache for the matrix-free graph, memoByRoot for the matrix-keyed page set), and the second-thunk-never-runs identity proves the memo law itself; the cached sets are verified non-empty. HONEST SCOPE: this seals the per-page CONSTANT, not the page count — the build remains O(pages) in the SSG loop itself, and a route-DEPENDENT computation (computeUniversalPage per route) rightly runs once per route under its own memo key. The 160 ms → 8 ms figure is a measured instance from the profiling session, illustrative, not a facet. HARMONY ≠ TRUTH.` }
 }

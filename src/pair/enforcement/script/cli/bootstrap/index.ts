@@ -46,8 +46,7 @@ async function loadCli(): Promise<Record<string, unknown>> {
     format: 'esm',
     write: false,
     platform: 'node',
-    logLevel: 'silent',
-  })
+    logLevel: 'silent' })
   mkdirSync(dir, { recursive: true })
   writeFileSync(bundle, built.outputFiles[0].text)
   writeFileSync(keyFile, merkle)

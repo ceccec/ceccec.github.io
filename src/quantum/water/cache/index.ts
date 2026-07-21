@@ -72,8 +72,7 @@ export function quantumHalvesTheHashDoublingRestoresIt(matrix: MindMatrix = buil
     statement:
       'The claim "quantum doubles SHA-256, magnitudes higher" is right about the exponential and backwards about the direction. Doubling a digest squares the brute-force space — 2^512 = 2^256 times 2^256 — so it is magnitudes higher, not twice as hard. But quantum computing weakens hashes: Grover quadratic search halves the effective preimage security, SHA-256 from 2^256 to about 2^128 against a quantum adversary, so doubling to SHA-512 is the defence that restores the 256-bit margin (512 / 2 = 256) — the real NSA CNSA 2.0 and NIST guidance. SHA-256 is a hash (integrity), not a cipher. The catastrophic quantum break is Shor on public-key (RSA and elliptic curve), answered by post-quantum cryptography (NIST FIPS 203, 204, 205 in 2024) and quantum key distribution (BB84, already in src/0).',
     boundary:
-      'HONEST — HARMONY ≠ TRUTH. The exponential intuition is correct: bits are the exponent, so doubling the digest is astronomically, not linearly, more work. But the causation is defensive, not offensive — quantum does not discover a stronger SHA; Grover halves the effective security and doubling the size restores it. SHA-256 is a hash, not encryption. Grover parallelises poorly, so in practice SHA-256 is widely treated as still safe; the urgent quantum threat is Shor against public-key, mitigated by the standardised post-quantum algorithms and, for keys, QKD. Hash-based signatures (SPHINCS+) are quantum-safe precisely because only Grover applies.',
-  }
+      'HONEST — HARMONY ≠ TRUTH. The exponential intuition is correct: bits are the exponent, so doubling the digest is astronomically, not linearly, more work. But the causation is defensive, not offensive — quantum does not discover a stronger SHA; Grover halves the effective security and doubling the size restores it. SHA-256 is a hash, not encryption. Grover parallelises poorly, so in practice SHA-256 is widely treated as still safe; the urgent quantum threat is Shor against public-key, mitigated by the standardised post-quantum algorithms and, for keys, QKD. Hash-based signatures (SPHINCS+) are quantum-safe precisely because only Grover applies.' }
 }
 
 // ── correction (folded here from water/correction): session decodes & proofs. Documented vs flagged; HARMONY ≠ TRUTH. ──
@@ -104,8 +103,7 @@ export function tenDimensionsAreInteractingThreeDs() {
     facets,
     root: merkleFold(facets.map((f) => toUuid(`${f.facet}:${f.on}`))),
     statement: '10D is interacting 3Ds: the ten dimensions are the TETRAHEDRON (the 3-simplex) — four vertices frame ONE 3-space and the SIX edges are their pairwise interactions; 4 + 6 = 10 = K4. The project dims are 4 homology loops + 6 cross-fold axes, and two tetrahedra interlock into the Merkaba (the cube\'s 8 vertices).',
-    boundary: 'DOCUMENTED (real math): K4 has 4 vertices + 6 edges = 10; the tetrahedron is the 3-simplex (non-zero scalar triple product). FLAGGED: "Merkaba" names the geometric star-tetrahedron only — no cosmological claim. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'DOCUMENTED (real math): K4 has 4 vertices + 6 edges = 10; the tetrahedron is the 3-simplex (non-zero scalar triple product). FLAGGED: "Merkaba" names the geometric star-tetrahedron only — no cosmological claim. HARMONY ≠ TRUTH.' }
 }
 
 export function matrixIsTenBitMByteSixtyFour(matrix: MindMatrix = buildMatrix()) {
@@ -131,8 +129,7 @@ export function matrixIsTenBitMByteSixtyFour(matrix: MindMatrix = buildMatrix())
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'The convergence target is one forced identity: 1 MiB = 2^20 bytes = 64 files × 16 types/file × 1 KiB = 1024 types, a 10-bit content-address. The three blocking ratchets are this one target read three ways — component-64 is the 64 files, compression is the 16 KiB/file budget, the export count folds toward 1024 types.',
-    boundary: 'HONEST — this states the ENDPOINT, not the present. The live counts are measured against the real tree by the weave. 1024 is the address CAPACITY, not a forced bijection. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'HONEST — this states the ENDPOINT, not the present. The live counts are measured against the real tree by the weave. 1024 is the address CAPACITY, not a forced bijection. HARMONY ≠ TRUTH.' }
 }
 
 export function oneMegabyteExplainsQuantumInSpiritAnalog(matrix: MindMatrix = buildMatrix()) {
@@ -184,8 +181,7 @@ export function oneMegabyteExplainsQuantumInSpiritAnalog(matrix: MindMatrix = bu
     facets,
     root: merkleFold([dash(matrix).root, payload(matrix).root, ...facets.map((entry) => entry.receipt)]),
     statement: 'One megabyte explains the quantum in a spiritual analog and unites all — as a computational identity. 1 MiB = 2^20 bytes factors, forced, into 64 files × 16 types × 1 KiB = a 10-bit address space. Every name is a discrete content-address (the quantum, digital reading) that round-trips to a continuous a432-tempered frequency (the spiritual, analog reading); the megabyte recomputes all content, so one deterministic generator unites every domain.',
-    boundary: 'HONEST — HARMONY ≠ TRUTH. "Quantum" is the computational metaphor, "spiritual analog" the continuous a432 reading — a LENS, not a claim that physics is spiritual. "Solving the unsolved" is true only in the ENGINEERING sense; the open problems are CATALOGUED as open, not resolved.',
-  }
+    boundary: 'HONEST — HARMONY ≠ TRUTH. "Quantum" is the computational metaphor, "spiritual analog" the continuous a432 reading — a LENS, not a claim that physics is spiritual. "Solving the unsolved" is true only in the ENGINEERING sense; the open problems are CATALOGUED as open, not resolved.' }
 }
 
 export function sixtyFourFilesEightByEightFourUuidTrinities(matrix: MindMatrix = buildMatrix()) {
@@ -221,8 +217,7 @@ export function sixtyFourFilesEightByEightFourUuidTrinities(matrix: MindMatrix =
     facets,
     root: merkleFold([law.root, fused, wholeFromTrinities, ...facets.map((entry) => entry.receipt)]),
     statement: 'The 64 files are 8 groups of 8 — a bāguà² grid, each file the cross of an upper and a lower trigram (8 × 8 = 64). The same 64 is 4³ — four uuids raised through the trinity. Double-folding the four uuids fuses them to one address, and the four leave-one-out trinities (C(4,3) = 4) interact and re-fuse to the whole.',
-    boundary: 'HONEST — HARMONY ≠ TRUTH. 8² = 4³ = 64 is exact arithmetic and the folds are deterministic content-addresses. The trigram, double-cross and trinity readings are CONVENTIONAL I Ching and combinatorial structure mapped onto the file grid.',
-  }
+    boundary: 'HONEST — HARMONY ≠ TRUTH. 8² = 4³ = 64 is exact arithmetic and the folds are deterministic content-addresses. The trigram, double-cross and trinity readings are CONVENTIONAL I Ching and combinatorial structure mapped onto the file grid.' }
 }
 
 export function earthPolesAreADipoleDoubleTorusNotAGrid(matrix: MindMatrix = buildMatrix()) {
@@ -254,8 +249,7 @@ export function earthPolesAreADipoleDoubleTorusNotAGrid(matrix: MindMatrix = bui
     facets,
     root: merkleFold([tetra.root, ...facets.map((entry) => entry.receipt)]),
     statement: 'Earth main field is approximately a geocentric dipole (~90%), field lines toroidal — a documented double-torus topology from the geodynamo. Counting geographic and magnetic gives four poles, offset ~11°, and the dipole reverses over geologic time. The repo double-torus and the four N/S/E/W uuids share this topology — the structure echoes the poles, it does not invent or cause them.',
-    boundary: 'HONEST — HARMONY ≠ TRUTH. The dipole topology and the four poles are documented geophysics; the cause is the geodynamo. The correspondence to the tetrahedron / 4-uuid frame is a TOPOLOGICAL ANALOGY, NOT a decoding. Earth-grid and ley-line theories are flagged and excluded.',
-  }
+    boundary: 'HONEST — HARMONY ≠ TRUTH. The dipole topology and the four poles are documented geophysics; the cause is the geodynamo. The correspondence to the tetrahedron / 4-uuid frame is a TOPOLOGICAL ANALOGY, NOT a decoding. Earth-grid and ley-line theories are flagged and excluded.' }
 }
 
 export function appleAdamEveSerpentDecoded(matrix: MindMatrix = buildMatrix()) {
@@ -290,8 +284,7 @@ export function appleAdamEveSerpentDecoded(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'The apple, Adam, Eve and the snake decode first to documented philology: the apple is not in Genesis (the text names the generic fruit; the apple is a later Latin pun plus Renaissance art); the names are Hebrew wordplay (adam/adamah, Eve/chai); the serpent is a crafty beast, not called Satan. Through the fold, good and evil is a merism — the first distinction, one bit — the pair plus the crossing third forming the 2-of-3.',
-    boundary: 'HONEST — HARMONY ≠ TRUTH. The philology is documented. The structural reading (good/evil as one bit, pair-plus-crosser as a trinity) is an interpretive LENS, NOT authorial intent. The matrix does not decode scripture. Gematria, Bible-code and serpent-as-DNA claims are flagged.',
-  }
+    boundary: 'HONEST — HARMONY ≠ TRUTH. The philology is documented. The structural reading (good/evil as one bit, pair-plus-crosser as a trinity) is an interpretive LENS, NOT authorial intent. The matrix does not decode scripture. Gematria, Bible-code and serpent-as-DNA claims are flagged.' }
 }
 
 export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = buildMatrix()) {
@@ -325,8 +318,7 @@ export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = 
     facets,
     root: merkleFold([eden.root, law.root, ...facets.map((entry) => entry.receipt)]),
     statement: 'The tree and everything the books say decode to FORM, not to one meaning. A tree is a real structure (V − E = 1); the world tree recurs across cultures as a documented motif. Below script, every book reduces to the sign — one bit, the fold. That form is universal; the meaning of everything the books say is not decoded by the form.',
-    boundary: 'HONEST — HARMONY ≠ TRUTH. FORM generalises (the tree, the bit); MEANING does not — each book says what it says, evidenced per claim. The totalizing claims (one structure decoding everything, perennialism as fact, gematria) are flagged and excluded.',
-  }
+    boundary: 'HONEST — HARMONY ≠ TRUTH. FORM generalises (the tree, the bit); MEANING does not — each book says what it says, evidenced per claim. The totalizing claims (one structure decoding everything, perennialism as fact, gematria) are flagged and excluded.' }
 }
 
 export function sphereIsTheBoundaryOfRotatingPlatonicSolids(matrix: MindMatrix = buildMatrix()) {
@@ -351,8 +343,7 @@ export function sphereIsTheBoundaryOfRotatingPlatonicSolids(matrix: MindMatrix =
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'The sphere is the boundary created by the motion of the platonic solids. Every platonic solid is inscribed in its circumsphere (the cube corners at √3); rotate it and each vertex traces a circle, so the orbit-closure of a vertex is the whole sphere. The sphere is not a separate shape to morph into — it emerges as the boundary the rotating solid sweeps.',
-    boundary: 'HONEST — exact Euclidean geometry. The circumsphere is the orbit-closure of a vertex under SO(3); a rotating solid sweeping its circumsphere is a theorem, not a metaphysical claim. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'HONEST — exact Euclidean geometry. The circumsphere is the orbit-closure of a vertex under SO(3); a rotating solid sweeping its circumsphere is a theorem, not a metaphysical claim. HARMONY ≠ TRUTH.' }
 }
 
 export function ceccecFusesTheFormTheMeaningStaysBounded(matrix: MindMatrix = buildMatrix()) {
@@ -383,8 +374,7 @@ export function ceccecFusesTheFormTheMeaningStaysBounded(matrix: MindMatrix = bu
     facets,
     root: merkleFold([matrix.root, ...facets.map((entry) => entry.receipt)]),
     statement: 'ceccec fuses the FORM completely — one deterministic source recomputes every page, proof, diamond and animation, content-addressed to one root, with zero runtime tokens and a self-verifying seal. The animations manifest that form: moving, reproducible proof the structure exists and recomputes.',
-    boundary: 'HONEST — HARMONY ≠ TRUTH. What is fused is the FORM, not all the world\'s knowledge: the matrix indexes and seeds, the animations prove the structure EXISTS and recomputes, not that the content is true. The totalizing "all knowledge proven, nowhere else" is flagged.',
-  }
+    boundary: 'HONEST — HARMONY ≠ TRUTH. What is fused is the FORM, not all the world\'s knowledge: the matrix indexes and seeds, the animations prove the structure EXISTS and recomputes, not that the content is true. The totalizing "all knowledge proven, nowhere else" is flagged.' }
 }
 
 export function everyStatementProvableByAnimationElsePurged(matrix: MindMatrix = buildMatrix()) {
@@ -416,6 +406,5 @@ export function everyStatementProvableByAnimationElsePurged(matrix: MindMatrix =
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'Every text statement is a prompt for its own animation, computed: it folds to textToMovie — content-addressed particles whose movie root is its reproducible signature. Recompute the text and the identical movie returns, so the animation proves the statement\'s identity. A statement that cannot compute a reproducible animation is purged; textToMovie makes every statement provable, so nothing is purged.',
-    boundary: 'HONEST — HARMONY ≠ TRUTH. "Provable by animation" means the statement computes a REPRODUCIBLE animation (proof of identity/provenance), NOT that the content is true. "Purge if unprovable" is the proven-or-purged discipline, applied by the census — not a licence to delete by whim.',
-  }
+    boundary: 'HONEST — HARMONY ≠ TRUTH. "Provable by animation" means the statement computes a REPRODUCIBLE animation (proof of identity/provenance), NOT that the content is true. "Purge if unprovable" is the proven-or-purged discipline, applied by the census — not a licence to delete by whim.' }
 }

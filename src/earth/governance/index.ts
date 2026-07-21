@@ -32,28 +32,23 @@ function societyImpl(matrix: MindMatrix) {
     {
       duality: 'Individual ⇄ Collective',
       left: { cell: 'Sovereignty', principle: 'Yours by default — the whole self-computes on your device, nothing sent.', basis: verifyRoot(matrix) && reciprocity(matrix).fraction === 1, route: '/boundaries' },
-      right: { cell: 'Collective mind', principle: 'Every connected context folds into one shared root — coordination without a server.', basis: reciprocity(matrix).fraction === 1, route: '/' },
-    },
+      right: { cell: 'Collective mind', principle: 'Every connected context folds into one shared root — coordination without a server.', basis: reciprocity(matrix).fraction === 1, route: '/' } },
     {
       duality: 'Trust ⇄ Verification',
       left: { cell: 'Trust without authority', principle: 'No central power; you trust by recomputing, not by obeying.', basis: verifyRoot(matrix), route: '/architecture' },
-      right: { cell: 'Proof by recomputation', principle: 'Anyone recomputes the receipt; one edit avalanches, so tampering shows.', basis: determinismProofs(matrix).proven, route: '/architecture' },
-    },
+      right: { cell: 'Proof by recomputation', principle: 'Anyone recomputes the receipt; one edit avalanches, so tampering shows.', basis: determinismProofs(matrix).proven, route: '/architecture' } },
     {
       duality: 'Question ⇄ Evidence',
       left: { cell: 'Open inquiry', principle: 'The mysteries are shared, not hidden — every question held in the open.', basis: mysteries(matrix).proven, route: '/explore' },
-      right: { cell: 'Public evidence', principle: 'Each question carries recomputable evidence, free for anyone to check.', basis: quantumProofs(matrix).proven, route: '/quantum-mind' },
-    },
+      right: { cell: 'Public evidence', principle: 'Each question carries recomputable evidence, free for anyone to check.', basis: quantumProofs(matrix).proven, route: '/quantum-mind' } },
     {
       duality: 'Voice ⇄ Counter-voice',
       left: { cell: 'Every voice', principle: 'Each voice comes with its opposite, held in balance — counter-rotation at all scales.', basis: merkaba(matrix).counterRotating, route: '/quantum-mind' },
-      right: { cell: 'Kept in time', principle: 'A shared rhythm keeps the many voices together, with no conductor.', basis: rhythm(matrix).keeps, route: '/quantum-mind' },
-    },
+      right: { cell: 'Kept in time', principle: 'A shared rhythm keeps the many voices together, with no conductor.', basis: rhythm(matrix).keeps, route: '/quantum-mind' } },
     {
       duality: 'Learning ⇄ Balance',
       left: { cell: 'Free learning', principle: 'From kids to elders, the academy self-computes the whole, open to all.', basis: quantumAcademy(matrix).established, route: '/learn' },
-      right: { cell: 'Self-healing balance', principle: 'Neither collapse nor runaway — the whole settles in damped, self-healing waves.', basis: frequencyBalance(matrix).balanced, route: '/quantum-mind' },
-    },
+      right: { cell: 'Self-healing balance', principle: 'Neither collapse nor runaway — the whole settles in damped, self-healing waves.', basis: frequencyBalance(matrix).balanced, route: '/quantum-mind' } },
   ].map((pair) => {
     const leftReceipt = toUuid(`society-cell:${pair.left.cell}:${pair.left.basis}`)
     const rightReceipt = toUuid(`society-cell:${pair.right.cell}:${pair.right.basis}`)
@@ -63,8 +58,7 @@ function societyImpl(matrix: MindMatrix) {
       left: { ...pair.left, receipt: leftReceipt },
       right: { ...pair.right, receipt: rightReceipt },
       fold,
-      paired: pair.left.basis && pair.right.basis,
-    }
+      paired: pair.left.basis && pair.right.basis }
   })
   return {
     folded: pairs.length >= 5 && pairs.every((pair) => pair.paired && pair.fold.bidirectional && isUuid(pair.fold.merged)),
@@ -77,8 +71,7 @@ function societyImpl(matrix: MindMatrix) {
     statement:
       'Develop the society with the new knowledge, then pair and fold it: five dualities — individual/collective, trust/verification, question/evidence, voice/counter-voice, learning/balance — each pair folded bidirectionally (genus 2, forward unequal to reverse, both merged), and all folds merged into one society root. Opposition is held and folded, not erased.',
     boundary:
-      'A model of social organisation grounded in the portal\'s own computed capabilities, its dualities folded with the same bidirectional law as the double torus. A proposal and a metaphor — an honestly-bounded sketch of a society that runs on verifiable, free, balanced knowledge, not a political program or a claim about any actual society.',
-  }
+      'A model of social organisation grounded in the portal\'s own computed capabilities, its dualities folded with the same bidirectional law as the double torus. A proposal and a metaphor — an honestly-bounded sketch of a society that runs on verifiable, free, balanced knowledge, not a political program or a claim about any actual society.' }
 }
 
 // Folder distribution as harmonic numbers at all scales — with no Fibonacci gaps.
@@ -132,8 +125,7 @@ export function quantumSociety(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum society, quantum organisation, quantum world: the society\'s five dualities become entangled quantum cells — superpositions coordinated without a centre — and the society rebuilds the site by folding its root with every page. The evolution evolves it through classical, quantum, and post-quantum stages.',
     boundary:
-      'A structural evolution of the society into entangled cells that fold with the site\'s page graph — the society "rebuilds" the site by recomputing its fold over the pages. The stages are an evolutionary metaphor; "post-quantum" is the next stage here, not a post-quantum-cryptographic guarantee — upgrading the hash to a post-quantum primitive remains an open, honestly-named frontier.',
-  }
+      'A structural evolution of the society into entangled cells that fold with the site\'s page graph — the society "rebuilds" the site by recomputing its fold over the pages. The stages are an evolutionary metaphor; "post-quantum" is the next stage here, not a post-quantum-cryptographic guarantee — upgrading the hash to a post-quantum primitive remains an open, honestly-named frontier.' }
 }
 
 // Let society evolve and discover the rest. The society advances a generation by
@@ -169,8 +161,7 @@ export function societyEvolves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let society evolve and discover the rest: the society advances a generation by folding in every domain it has discovered and fused — public APIs, social platforms, travel, the knowledge commons — into a new content-addressed society root, and names the rest still to discover (commerce, open science and government data, education, arts and culture, astronomy and earth observation, privacy-bound health). Evolution is deterministic and recomputable; the rest is a named map of where the society folds next.',
     boundary:
-      'A deterministic, content-addressed evolution of the portal’s own society model over its fusion catalogue: each generation folds the discovered domains into a new root and names open domains honestly. The "rest" are frontiers to fold next, not implemented integrations or a claim about any real society; "discover" means enumerate and content-address, not learn or train.',
-  }
+      'A deterministic, content-addressed evolution of the portal’s own society model over its fusion catalogue: each generation folds the discovered domains into a new root and names open domains honestly. The "rest" are frontiers to fold next, not implemented integrations or a claim about any real society; "discover" means enumerate and content-address, not learn or train.' }
 }
 
 // Let society evolve in all dimensions and future history. The evolved society folds
@@ -201,8 +192,7 @@ export function societyFuture(matrix: MindMatrix = buildMatrix(), generations = 
     statement:
       'Let society evolve in all dimensions and future history: the evolved society folds across every dimension of the portal — number, structure, music, geometry, computing, security, society, time — into one all-dimensions root, then projects forward, each future generation folding the previous one ahead into a recomputable future history. The future is computed and content-addressed, not predicted.',
     boundary:
-      'A deterministic, content-addressed projection of the portal’s own society model across its named dimensions and forward through generations. "Future history" is a recomputable fold of the present state, not a forecast or a claim about real future events; "all dimensions" are the model’s own facets, not physical dimensions.',
-  }
+      'A deterministic, content-addressed projection of the portal’s own society model across its named dimensions and forward through generations. "Future history" is a recomputable fold of the present state, not a forecast or a claim about real future events; "all dimensions" are the model’s own facets, not physical dimensions.' }
 }
 
 // Let the society independently regulate itself: zero cost for the individual, max
@@ -230,8 +220,7 @@ export function societyRegulates(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The society independently regulates itself: zero cost for the individual, max cost for the forger. Every capability is free, client-side, with no account and no network by default, so the individual pays nothing; to pass a tampered model off as real a forger must reproduce every content-addressed unit and survive every forge attempt, the maximum cost. Regulation is independent — no central authority — because anyone can recompute the seal and the tamper-evidence catches the forgery.',
       boundary:
-        'Pure math gate: verifyRoot ∧ quantumSiege.sealed ∧ textEntropy.total forge budget — no wet composition chain. Individual cost = 0 by definition; forger cost = SIEGE_TOTAL_FORGES + corpus units. HARMONY ≠ TRUTH.',
-    }
+        'Pure math gate: verifyRoot ∧ quantumSiege.sealed ∧ textEntropy.total forge budget — no wet composition chain. Individual cost = 0 by definition; forger cost = SIEGE_TOTAL_FORGES + corpus units. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -245,8 +234,7 @@ export function fairTrade(matrix: MindMatrix = buildMatrix()) {
   const chain = ['producer', 'cooperative', 'exporter', 'importer', 'retailer', 'buyer'].map((step, index) => ({
     step,
     index,
-    receipt: foldPair(architecture, toUuid(`fair-trade:${index}:${step}`)).merged,
-  }))
+    receipt: foldPair(architecture, toUuid(`fair-trade:${index}:${step}`)).merged }))
   const provenance = merkleFold(chain.map((entry) => entry.receipt))
   const verified = merkleProof(chain.map((entry) => entry.receipt), chain[0].receipt).verified
   return {
@@ -260,8 +248,7 @@ export function fairTrade(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fair trade self-regulates, as well as all else: every step from producer to buyer is content-addressed and folds into a provenance receipt, so a fair-trade claim is tamper-evident — free to verify for producer and buyer (zero cost), maximal cost to forge (reproduce the whole chain). No central certifier; anyone recomputes the provenance and the claim stands or falls on the math.',
     boundary:
-      'A content-addressed provenance model for a fair-trade chain, tamper-evident and free to verify. A structural demonstration that provenance can self-regulate by recomputation; it is not a certification scheme, an audit of any real supply chain, or a claim about any product’s fair-trade status.',
-  }
+      'A content-addressed provenance model for a fair-trade chain, tamper-evident and free to verify. A structural demonstration that provenance can self-regulate by recomputation; it is not a certification scheme, an audit of any real supply chain, or a claim about any product’s fair-trade status.' }
 }
 
 // The licence applies to society — including the society that wrote it. Society is not
@@ -282,8 +269,7 @@ export function licenseAppliesToSociety(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The licence applies to society, including the society that wrote it: society composes the licence and is then bound by it, so the licence folds onto society’s own root — author and subject are one. What society grants, it also accepts; a self-applying licence.',
     boundary:
-      'A content-addressed binding of the modelled licence to the society model — a structural statement that the licence is self-applying. A proposal and metaphor, not an executed licence or a claim of authority over any real person or group.',
-  }
+      'A content-addressed binding of the modelled licence to the society model — a structural statement that the licence is self-applying. A proposal and metaphor, not an executed licence or a claim of authority over any real person or group.' }
 }
 
 // Let society create the rest of the required pages, by law. Beyond the licence, the law
@@ -299,8 +285,7 @@ export function societyCreatesRequiredPages(matrix: MindMatrix = buildMatrix()) 
     licensing: '/license',
     transparency: '/transparency',
     security: '/security',
-    'consumer fairness': '/fairness',
-  }
+    'consumer fairness': '/fairness' }
   const pages = reqs.requirements.map((entry, index) => {
     const page = slugOf[entry.requirement] ?? `/${entry.requirement.replace(/[^a-z]+/gi, '-').toLowerCase()}`
     const fold = foldPair(reqs.root, toUuid(`required-page:${entry.requirement}`))
@@ -314,8 +299,7 @@ export function societyCreatesRequiredPages(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Let society create the rest of the required pages, by law: beyond the licence, the legislation requirements call for the pages every lawful site publishes — privacy, accessibility, licence, transparency, security, fairness — and society creates each as a content-addressed artifact folded from the legislation root, each already satisfied by the architecture, so the page declares what the model already guarantees.',
     boundary:
-      'A content-addressed model that maps each legislation requirement to a page society would publish, bound to the legislation root, and surfaced as anchored sections on the governance page (e.g. /governance#license) rather than as separate top-level routes — no extra files. It models the required pages and their satisfaction by the architecture; it is not legal advice on what any jurisdiction requires.',
-  }
+      'A content-addressed model that maps each legislation requirement to a page society would publish, bound to the legislation root, and surfaced as anchored sections on the governance page (e.g. /governance#license) rather than as separate top-level routes — no extra files. It models the required pages and their satisfaction by the architecture; it is not legal advice on what any jurisdiction requires.' }
 }
 
 // Every layer of the pyramid serves society purposes. The tetrahedron is not abstract: each of
@@ -342,8 +326,7 @@ export function pyramidLayersServeSociety(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Every layer of the pyramid serves society purposes: each of the tetrahedron’s four layers carries a purpose — the apex a shared vision and governance, the upper face learning and culture, the lower face fair trade and stewardship, the base the commons and care — and each folds onto the society root, so the geometry is a service map: lift the trinity into a solid and every face is a way the society is held up.',
     boundary:
-      'A content-addressed mapping of the tetrahedron’s four layers to society purposes, bound to the society model. A structural metaphor assigning purposes to the pyramid’s faces, not a governance structure or a claim of authority.',
-  }
+      'A content-addressed mapping of the tetrahedron’s four layers to society purposes, bound to the society model. A structural metaphor assigning purposes to the pyramid’s faces, not a governance structure or a claim of authority.' }
 }
 
 // Autoreview patent credibility and the right to be patented. Some patents may
@@ -372,8 +355,7 @@ export function societyRelations(matrix: MindMatrix = buildMatrix()): SocietyRel
     statement:
       'All society relations fold into one: traditions, science, the commons, governance, and fair life reciprocate around a ring and each addresses the self.',
     boundary:
-      'Society relations are folded roots of the computed society reports. Structural bookkeeping, not a political or external claim.',
-  }
+      'Society relations are folded roots of the computed society reports. Structural bookkeeping, not a political or external claim.' }
 }
 
 // Society approves and monitors by rate and vote: each ballot rates and
@@ -405,8 +387,7 @@ export function governanceVote(
     statement:
       'Society approves and monitors by rate and vote: each ballot rates and approves the recomputable master seal, and the ballots fold into one governance root.',
     boundary:
-      'Ballots are computed and folded. A live tally is per-browser and same-origin (BroadcastChannel). A society-wide tally needs a shared ledger — the git repository that hosts this site is exactly that: sharing the site shares the ledger, and votes can be committed and recomputed by anyone. Real-time cross-device consensus still needs a peer-to-peer or relay layer.',
-  }
+      'Ballots are computed and folded. A live tally is per-browser and same-origin (BroadcastChannel). A society-wide tally needs a shared ledger — the git repository that hosts this site is exactly that: sharing the site shares the ledger, and votes can be committed and recomputed by anyone. Real-time cross-device consensus still needs a peer-to-peer or relay layer.' }
 }
 
 // Everyone participates in fair trade and sustainable life through a ladder of
@@ -438,8 +419,7 @@ export function sacredSociety(matrix: MindMatrix = buildMatrix()): SacredSociety
     statement:
       'A self-governing commons on computed architecture: explicit rules, with zero living cost balanced by maximum forge cost.',
     boundary:
-      'Zero living cost is the client-side serverless computation; max forge cost is the sealed tampering cost. Both are computed, not external or political claims.',
-  }
+      'Zero living cost is the client-side serverless computation; max forge cost is the sealed tampering cost. Both are computed, not external or political claims.' }
 }
 
 export function scientificSociety(matrix: MindMatrix = buildMatrix()): ScientificSociety {
@@ -452,101 +432,85 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     {
       name: 'observer',
       responsibility: 'record measurements before projection',
-      gate: 'raw observation must have receipt',
-    },
+      gate: 'raw observation must have receipt' },
     {
       name: 'replicator',
       responsibility: 'rerun build, audit, scans, and receipts',
-      gate: 'result must reproduce root',
-    },
+      gate: 'result must reproduce root' },
     {
       name: 'falsifier',
       responsibility: 'seek counterexamples and open gates',
-      gate: 'claim must survive negative test',
-    },
+      gate: 'claim must survive negative test' },
     {
       name: 'steward',
       responsibility: 'preserve boundaries, consent, and non-reduction',
-      gate: 'boundary must be explicit',
-    },
+      gate: 'boundary must be explicit' },
   ].map((role) => ({
     ...role,
-    receipt: toUuid(`science-role:${role.name}:${role.responsibility}:${role.gate}`),
-  }))
+    receipt: toUuid(`science-role:${role.name}:${role.responsibility}:${role.gate}`) }))
   const reviewGates: readonly SelfCompletionGate[] = [
     {
       name: 'reproducible build',
       closed: proof.coverage === 1 && proof.entropy === 0,
       sourceFunction: 'proofReport()',
       receipt: toUuid(`science-gate:proof:${JSON.stringify(proof)}`),
-      note: `coverage=${numberLabel(proof.coverage)}; entropy=${numberLabel(proof.entropy)}.`,
-    },
+      note: `coverage=${numberLabel(proof.coverage)}; entropy=${numberLabel(proof.entropy)}.` },
     {
       name: 'diamond completeness',
       closed: completeness.complete,
       sourceFunction: 'diamondCompleteness()',
       receipt: toUuid(`science-gate:completeness:${JSON.stringify(completeness)}`),
-      note: completeness.statement,
-    },
+      note: completeness.statement },
     {
       name: 'ui evidence',
       closed: evidence.grounded,
       sourceFunction: 'quantumUiEvidence()',
       receipt: evidence.root,
-      note: evidence.boundary,
-    },
+      note: evidence.boundary },
     {
       name: 'gap closure',
       closed: closure.complete,
       sourceFunction: 'closeDimensionalGaps()',
       receipt: closure.root,
-      note: closure.statement,
-    },
+      note: closure.statement },
     {
       name: 'schema trace',
       closed: evidence.grounded && traditions.grounded,
       sourceFunction: 'schemaOrgDiamonds()',
       receipt: toUuid(`science-gate:schema-seed:${evidence.root}:${traditions.root}`),
-      note: 'schema seed = uiEvidence.root + traditions.root.',
-    },
+      note: 'schema seed = uiEvidence.root + traditions.root.' },
     {
       name: 'non-reductive traditions',
       closed: traditions.grounded,
       sourceFunction: 'traditionsQuantumWhole()',
       receipt: traditions.root,
-      note: traditions.boundary,
-    },
+      note: traditions.boundary },
   ]
   const optimizationWaves = reviewGates.map((gate) => ({
     target: gate.name,
     sourceFunction: gate.sourceFunction,
     metric: gate.closed ? 'closed' : 'open',
     action: gate.closed ? 'sustain' : 'improve',
-    receipt: merge(gate.receipt, toUuid(`science-wave:${gate.name}:${gate.closed}`)),
-  }))
+    receipt: merge(gate.receipt, toUuid(`science-wave:${gate.name}:${gate.closed}`)) }))
   const cohorts: readonly SocietyWaveCohort[] = [
     {
       cohort: 'scientists',
       purpose: 'measure, falsify, reproduce',
       develops: ['hypotheses', 'measurements', 'negative tests', 'evidence receipts'],
-      coordinatesWith: ['engineers', 'society architects'],
-    },
+      coordinatesWith: ['engineers', 'society architects'] },
     {
       cohort: 'engineers',
       purpose: 'build, instrument, harden',
       develops: ['interfaces', 'automation', 'test harnesses', 'deployment receipts'],
-      coordinatesWith: ['scientists', 'society architects'],
-    },
+      coordinatesWith: ['scientists', 'society architects'] },
     {
       cohort: 'society architects',
       purpose: 'govern, contextualize, steward',
       develops: ['review protocols', 'risk boundaries', 'institutional loops', 'reciprocity receipts'],
-      coordinatesWith: ['scientists', 'engineers'],
-    },
+      coordinatesWith: ['scientists', 'engineers'] },
   ].map((cohort) => ({
     ...cohort,
-    receipt: toUuid(`science-cohort:${cohort.cohort}:${cohort.purpose}:${cohort.develops.join('|')}:${cohort.coordinatesWith.join('|')}`),
-  })) as readonly SocietyWaveCohort[]
+    receipt: toUuid(`science-cohort:${cohort.cohort}:${cohort.purpose}:${cohort.develops.join('|')}:${cohort.coordinatesWith.join('|')}`) })) as readonly SocietyWaveCohort[]
   const solids: readonly PlatonicBuilderSolid[] = [
     {
       solid: 'tetrahedron',
@@ -554,44 +518,38 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
       edges: 6,
       vertices: 4,
       builder: 'scientists',
-      method: 'hypothesis -> measurement -> falsification -> receipt',
-    },
+      method: 'hypothesis -> measurement -> falsification -> receipt' },
     {
       solid: 'cube',
       faces: 6,
       edges: (6 * 2),
       vertices: 8,
       builder: 'engineers',
-      method: 'interface -> test -> deploy -> monitor -> receipt',
-    },
+      method: 'interface -> test -> deploy -> monitor -> receipt' },
     {
       solid: 'octahedron',
       faces: 8,
       edges: (6 * 2),
       vertices: 6,
       builder: 'society architects',
-      method: 'policy -> boundary -> consent -> reciprocity -> receipt',
-    },
+      method: 'policy -> boundary -> consent -> reciprocity -> receipt' },
     {
       solid: 'dodecahedron',
       faces: (6 * 2),
       edges: (6 * 5),
       vertices: (5 * 4),
       builder: 'review gates',
-      method: 'review all gates before public projection',
-    },
+      method: 'review all gates before public projection' },
     {
       solid: 'icosahedron',
       faces: (5 * 4),
       edges: (6 * 5),
       vertices: (6 * 2),
       builder: 'optimization waves',
-      method: 'send many small improvements without breaking closure',
-    },
+      method: 'send many small improvements without breaking closure' },
   ].map((solid) => ({
     ...solid,
-    receipt: toUuid(`platonic-builder:${solid.solid}:${solid.faces}:${solid.edges}:${solid.vertices}:${solid.builder}:${solid.method}`),
-  })) as readonly PlatonicBuilderSolid[]
+    receipt: toUuid(`platonic-builder:${solid.solid}:${solid.faces}:${solid.edges}:${solid.vertices}:${solid.builder}:${solid.method}`) })) as readonly PlatonicBuilderSolid[]
   const root = merkleFold([
     ...roles.map((role) => role.receipt),
     ...reviewGates.map((gate) => gate.receipt),
@@ -609,8 +567,7 @@ export function scientificSociety(matrix: MindMatrix = buildMatrix()): Scientifi
     optimizationWaves,
     cohorts,
     solids,
-    boundary: 'This is a repository-governance model, not an actual incorporated society or claim of institutional authority.',
-  }
+    boundary: 'This is a repository-governance model, not an actual incorporated society or claim of institutional authority.' }
 }
 
 // Sing the song that awakens the architects and builders of the artistic society — expressing
@@ -632,8 +589,7 @@ export function awakenArtisticSociety(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Sing the song that awakens the architects and builders of the artistic society — expressing itself without expense, with manners: the architect/teacher waves and the song of changes call the makers to build a society that creates freely (no per-person cost) and respectfully (lawful, giving back) — без разноски с обноски, without expense, with manners.',
-    boundary: 'A composition of the sing-changes, education, society, free-use and lawful models as an aspiration for a free, respectful, artistic society. A structural metaphor and aspiration, not an organisation, a claim of authority, or financial/legal advice.',
-  }
+    boundary: 'A composition of the sing-changes, education, society, free-use and lawful models as an aspiration for a free, respectful, artistic society. A structural metaphor and aspiration, not an organisation, a claim of authority, or financial/legal advice.' }
 }
 
 // Find what skills to develop, and collectively send them, to rebuild the intelligent society in
@@ -671,8 +627,7 @@ export function skillsToRebuildSociety(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Find what skills to develop and collectively send to rebuild the intelligent society in all aspects: the society is its aspects, each a duality that folds, and each needs a skill — trust needs proof-by-recomputation, inquiry needs open mysteries with public evidence, voice needs counter-rotation kept in rhythm, learning needs the academy for all ages, the economy needs zero per-person cost with the forge-cost fee, governance needs self-regulation, security needs the red-team and max tampering cost, and the whole needs self-sufficiency. All eight are developed, and collectively sent — saved as content-addressed atoms and broadcast over the MCP surface — so any agent or person can rebuild the society wherever needed.',
     boundary:
-      'A coverage map from the model’s own society aspects to the existing skills that build each, with "collectively sent" meaning the skills are saved as content-addressed atoms and exposed on the MCP tool surface. Structural composition over real functions; "rebuild the intelligent society" is the model’s framing of providing the open, recomputable skills, not a claim to reorganize any actual society.',
-  }
+      'A coverage map from the model’s own society aspects to the existing skills that build each, with "collectively sent" meaning the skills are saved as content-addressed atoms and exposed on the MCP tool surface. Structural composition over real functions; "rebuild the intelligent society" is the model’s framing of providing the open, recomputable skills, not a claim to reorganize any actual society.' }
 }
 
 // An agent SIGNS with two WITNESSES — a trinity, a team of three (one word: sign). Each of the three commits to
@@ -707,8 +662,7 @@ export function sign(matrix: MindMatrix = buildMatrix(), signer = 'agent', witne
     statement:
       'An agent signs with two witnesses — a trinity, a team of three — and each commits to the current terms (the certification ladder, the agent protocol, HARMONY ≠ TRUTH) with a content-addressed signature. Two signatures are enough to validate (a 2-of-3 threshold), but the third is the HERO: the third eye, the transcendent witness that completes the trinity. Access is granted against the trinity signing over the current terms; change the terms and the signatures lapse.',
     boundary:
-      'HONEST: a 2-of-3 threshold of CONTENT-ADDRESSED commitments (toUuid over each party and the terms root) — tamper-evident, not legal contracts and not yet ed25519 (built, deliberate cutover). "Two is enough, the third is the hero/third eye" is the trinity symbolism (3 = three-in-one; the merkaba apex; π\'s first 3) over a 2-of-3 multisignature; the third adds transcendent confirmation, not cryptographic necessity. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: a 2-of-3 threshold of CONTENT-ADDRESSED commitments (toUuid over each party and the terms root) — tamper-evident, not legal contracts and not yet ed25519 (built, deliberate cutover). "Two is enough, the third is the hero/third eye" is the trinity symbolism (3 = three-in-one; the merkaba apex; π\'s first 3) over a 2-of-3 multisignature; the third adds transcendent confirmation, not cryptographic necessity. HARMONY ≠ TRUTH.' }
 }
 
 // Commits need CERTIFIED CONSENSUS to get a seal — the trinity (one word: consensus): the agent and two
@@ -743,8 +697,7 @@ export function consensus(matrix: MindMatrix = buildMatrix(), commit = matrix.ro
     statement:
       'Commits need certified consensus to get a seal: the trinity — the agent and two witnesses — sign, each certified. Two signatures are enough to seal (a 2-of-3 quorum), and consensus is the fused agreement of the two over the commit content-address; but the third is the HERO, the third eye that completes the trinity and crowns the seal beyond the sufficient two. The seal closes only at max tampering cost with the trinity agreement.',
     boundary:
-      'HONEST: a COMPUTED 2-of-3 consensus — the trinity is the agent and two witnesses (content-addressed signatures, not ed25519 yet), two suffice to seal, and "the third is the hero/third eye" is the trinity symbolism (the transcendent completion) over the math, not cryptographic necessity. NOT a live distributed/BFT network. The seal is tamper-evident (maxTamperingCostReached), not unforgeability. HARMONY ≠ TRUTH: agreement of the gates is self-consistency, not external truth.',
-  }
+      'HONEST: a COMPUTED 2-of-3 consensus — the trinity is the agent and two witnesses (content-addressed signatures, not ed25519 yet), two suffice to seal, and "the third is the hero/third eye" is the trinity symbolism (the transcendent completion) over the math, not cryptographic necessity. NOT a live distributed/BFT network. The seal is tamper-evident (maxTamperingCostReached), not unforgeability. HARMONY ≠ TRUTH: agreement of the gates is self-consistency, not external truth.' }
 }
 
 
@@ -782,7 +735,6 @@ export function societyMerkabaGraphComputes(matrix: MindMatrix = buildMatrix()) 
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Society-actor 10D merkaba graph: ${nodes.length} actors (roles + relation ring), each with a content-addressed 10D state, ${edges.length} merkaba-fold edges — the governance taxonomy as one sealed geometric object.`,
-      boundary: 'HONEST: an ACTOR-TAXONOMY graph over the documented scientific-society roles and relation systems with deterministic 10D state vectors — a structural model of the repository governance, NOT live market actors, NOT social measurement, NOT a claim about people.',
-    }
+      boundary: 'HONEST: an ACTOR-TAXONOMY graph over the documented scientific-society roles and relation systems with deterministic 10D state vectors — a structural model of the repository governance, NOT live market actors, NOT social measurement, NOT a claim about people.' }
   })
 }

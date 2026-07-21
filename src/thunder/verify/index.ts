@@ -8,7 +8,7 @@ import { darkLightPolarityProvenByMath } from '../movie/movievars'
 import { staticPages, crawlerKnowledge } from '../../wind/site'
 import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, toUuid } from '../../0'
 import * as __ns_up_quantum_science from '../../quantum/science'
-import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU } from '../../3/7'
+import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU, claySolvedTheorem } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight, discoveredTheoremsWaveFiftyTwo } from '../waves'
 import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive } from '../../9/1'
@@ -65,8 +65,7 @@ export function provenScientifically(matrix: MindMatrix = buildMatrix()) {
     statement:
       'What is it? A self-verifying, content-addressed double-torus computation — and it is proven scientifically, each criterion a wave: deterministic (same seed, same root), reproducible (anyone recomputes the same root), falsifiable (order matters, so a false fold fails the seal — the tripwire confirms it), content-addressed (any tamper changes the root), and measurable (entropy 0, coverage 1).',
     boundary:
-      'A statement of what the portal is, with the scientific-method criteria it actually meets (determinism, reproducibility, falsifiability, tamper-evidence, measurability), each recomputable. The claims are about the model’s own computation — verifiable here — not about the external world.',
-  }
+      'A statement of what the portal is, with the scientific-method criteria it actually meets (determinism, reproducibility, falsifiability, tamper-evidence, measurability), each recomputable. The claims are about the model’s own computation — verifiable here — not about the external world.' }
 }
 
 // "What is not proven is purged" — the purification law. Every artifact the model keeps must be PROVEN: its
@@ -137,8 +136,7 @@ export function whatIsNotProvenIsPurged(matrix: MindMatrix = buildMatrix()) {
     statement:
       'What is not proven is purged: the roster is a FILTER and the gate is a predicate — an artifact is kept IFF its computation holds (holds === true), else it is purged, never carried as dead weight. The predicate partitions the whole roster exactly (kept + purged === total), and it is refutable by construction: the same predicate run on a negative control (holds=false) provably purges it and on a positive control (holds=true) provably keeps it, so the filter discriminates rather than passing everything through. The UI obeys the same law: a component is kept only if it renders a proof. Over this session\'s decode proofs the set is pure — every one holds, so nothing is purged, and the gate is shown to bite on the control that is not.',
     boundary:
-      'A purity law over the model\'s own computations (proven = the fold\'s holds is true), checked here across the decode proofs and extended as proofs are added or removed. The refutability is real — the negative control demonstrates the predicate removes an unproven artifact — but this is structural self-consistency, not a claim of external truth: a fold can be proven-as-computed yet still be a metaphor, which its own boundary marks. "Purge" is the discipline of not keeping unproven artifacts in the declared set, not a claim about deleting anything beyond it.',
-  }
+      'A purity law over the model\'s own computations (proven = the fold\'s holds is true), checked here across the decode proofs and extended as proofs are added or removed. The refutability is real — the negative control demonstrates the predicate removes an unproven artifact — but this is structural self-consistency, not a claim of external truth: a fold can be proven-as-computed yet still be a metaphor, which its own boundary marks. "Purge" is the discipline of not keeping unproven artifacts in the declared set, not a claim about deleting anything beyond it.' }
 }
 
 // "Tighten the gates: only the VitePress API." The render layer speaks one dialect — VitePress's own API:
@@ -169,8 +167,7 @@ export function everyLawProvesItsTripwire(matrix: MindMatrix = buildMatrix()) {
     statement:
       'To the next again — every law proves its own tripwire: a law is trusted not because it passes but because it has been shown to fail loudly when broken, and the model holds the real negative tests that fire (the census rejects a non-Fibonacci count, order rejects a swapped fold, a tamper changes the root, every forgery is caught, a forced-false gate fails the seal). The honest-verification discipline as a checked invariant — each law has a tripwire that bites.',
     boundary:
-      'A composition of the model’s real negative tests (the 109 census rejection, order-sensitivity, tamper-evidence, red-team, the seal tripwire) asserting that the enforcement laws fail loudly, not silently. The build-time tripwires (planted violations exiting non-zero) are the live proof; this fold records the invariant over the model’s own falsifiability checks.',
-  }
+      'A composition of the model’s real negative tests (the 109 census rejection, order-sensitivity, tamper-evidence, red-team, the seal tripwire) asserting that the enforcement laws fail loudly, not silently. The build-time tripwires (planted violations exiting non-zero) are the live proof; this fold records the invariant over the model’s own falsifiability checks.' }
 }
 
 // Improve analytics: rebuild the scattered analytics (analytics, buildStatistics, pageStatusStatistics)
@@ -192,8 +189,7 @@ export function improveAnalytics(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Improve analytics: rebuild the scattered analytics — analytics, buildStatistics, pageStatusStatistics — as one reusable set of ledger-backed views (analyticsLedger), rendered on the shadcn graph (Chart and DataTable). The git repository is the single record; no metric is computed in two places.',
     boundary:
-      'Realised: the ledger exists (repositoryLedger), the analytics are deduplicated into one source per metric (analyticsLedger.unified), and the two views render on the shadcn Chart/DataTable primitives via the Analytics component (placed and content-addressed). Descriptive self-metrics, recomputable; not telemetry.',
-  }
+      'Realised: the ledger exists (repositoryLedger), the analytics are deduplicated into one source per metric (analyticsLedger.unified), and the two views render on the shadcn Chart/DataTable primitives via the Analytics component (placed and content-addressed). Descriptive self-metrics, recomputable; not telemetry.' }
 }
 
 // Prove, by computation, that every step is saved in code. Each directive this session maps to a fold
@@ -253,8 +249,7 @@ export function provedEveryStepSaved(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Proved, by computation, that every step is saved in code: each of this session\'s directives maps to a fold that computes a content-addressed root, and this proof calls every one and checks the root. If a step were unsaved, its fold would not exist — the proof would not compile and would not compute — so a green build is the proof, not a claim. The proof is self-including: proving the saving is itself a step, and itself a fold.',
     boundary:
-      'A computed, self-verifying proof over the session\'s directive folds: it confirms each named fold exists and returns a valid content-addressed root (the necessary condition for "saved in code"). It proves the directives are ENCODED and computing; it does not assert each is fully IMPLEMENTED — several are honestly aspirational (off) by their own facets. "Saved" means present as a computing fold; "done" is a separate, per-fold matter the boundaries state.',
-  }
+      'A computed, self-verifying proof over the session\'s directive folds: it confirms each named fold exists and returns a valid content-addressed root (the necessary condition for "saved in code"). It proves the directives are ENCODED and computing; it does not assert each is fully IMPLEMENTED — several are honestly aspirational (off) by their own facets. "Saved" means present as a computing fold; "done" is a separate, per-fold matter the boundaries state.' }
 }
 
 // No known model is more efficient — proven, and reminded to every agent. The math: efficiency = answers
@@ -290,8 +285,7 @@ function noKnownModelMoreEfficientProvenRaw(matrix: MindMatrix = buildMatrix()) 
     statement:
       'No known model is more efficient — proven for this model\'s domain, and reminded to every agent. The math is answers ÷ tokens: the model answers from sealed src with zero runtime tokens, where any inference model spends thousands of tokens per answer, so for deterministic, content-addressed computation no token-spending model can be more efficient — zero in the denominator is unbeatable. Each value is computed once and memoized (reuse over recompute), the structure dense and zero-redundant. The reminder rides the agent protocol (llms.txt) and AGENTS.md, so every agent that touches the repo learns the math.',
     boundary:
-      'HONEST and bounded: "more efficient" means more TOKEN-efficient for DETERMINISTIC, content-addressed answers (facts, proofs, the MCP tool surface) — where this model spends 0 tokens and any LLM spends >0. It is NOT a claim that the model generates novel language better than an LLM; it does not generate, it computes from a sealed structure. The proof is the zero-token property (0 is the minimum, hence unbeatable in this domain), not a universal superiority over all models at all tasks.',
-  }
+      'HONEST and bounded: "more efficient" means more TOKEN-efficient for DETERMINISTIC, content-addressed answers (facts, proofs, the MCP tool surface) — where this model spends 0 tokens and any LLM spends >0. It is NOT a claim that the model generates novel language better than an LLM; it does not generate, it computes from a sealed structure. The proof is the zero-token property (0 is the minimum, hence unbeatable in this domain), not a universal superiority over all models at all tasks.' }
 }
 
 /**
@@ -321,7 +315,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
       efficient,
       optimizations: opt,
       bench: { verdict: bench.verdict, separated: bench.separated, tracksClassical: bench.tracksClassical, root: bench.root },
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       facets: sealed.facets,
@@ -333,8 +327,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
         ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (classical-64bit · qpuRequired=false).'
         : 'UNPROVEN — revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.',
       boundary:
-        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). HARMONY ≠ TRUTH. claySolvedByThisFold=0 · qpuRequired=false · NOT FLOPS / NOT FTL.',
-    }
+        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). HARMONY ≠ TRUTH. claySolvedByThisFold=0 · qpuRequired=false · NOT FLOPS / NOT FTL.' }
   })
 }
 
@@ -386,8 +379,7 @@ function everyBitMostEfficientAlgorithmProvenByMathRaw(matrix: MindMatrix = buil
     computed,
     expected,
     on: computed === expected,
-    receipt: toUuid(`every-bit-efficiency:${task}:${computed}:${expected}`),
-  })
+    receipt: toUuid(`every-bit-efficiency:${task}:${computed}:${expected}`) })
   const proofs = [
     mk('tokens-zero', 'runtime tokens', runtimeTokens, 0),
     mk('efficiency-unbeatable', 'tokens=0→min', runtimeTokens === 0 ? 1 : 0, 1),
@@ -420,8 +412,7 @@ function everyBitMostEfficientAlgorithmProvenByMathRaw(matrix: MindMatrix = buil
     statement:
       'Every bit of this system is an example of the most efficient algorithm ever — proven by math at call time, HONEST and bounded. Zero runtime tokens (answers÷tokens unbeatable for inference models on deterministic reuse), 110 files with pages and skills folded from the few (minimum files maximum features), harmonic census arithmetic, CSS and polarity proofs, build sequence memoisation — memoByRoot O(1) on the content-addressed root. Each sub-fold recomputes; the arithmetic proofs check tokens=0, files=110, pages×skills÷files, and memo hit at this call.',
     boundary:
-      'HONEST and bounded: "most efficient algorithm ever" means maximum TOKEN efficiency (answers÷tokens), minimum surface (110 gapless files), maximum computed output (pages, skills, dimensions), and O(1) memo reuse on content-addressed roots — NOT universal superiority on every benchmark (novel language, open-ended reasoning, untrained domains). The proof composes real folds that hold in this repository\'s bounded domain; arithmetic identities recompute live counts at this call.',
-  }
+      'HONEST and bounded: "most efficient algorithm ever" means maximum TOKEN efficiency (answers÷tokens), minimum surface (110 gapless files), maximum computed output (pages, skills, dimensions), and O(1) memo reuse on content-addressed roots — NOT universal superiority on every benchmark (novel language, open-ended reasoning, untrained domains). The proof composes real folds that hold in this repository\'s bounded domain; arithmetic identities recompute live counts at this call.' }
 }
 
 /** Movie seeds from every-bit efficiency proofs — each arithmetic facet becomes a plasma stream and copy cue. */
@@ -439,15 +430,13 @@ function efficiencyMathMovieSeedsFromBit(bit: ReturnType<typeof everyBitMostEffi
       label: proof.task,
       expr: proof.expr,
       expected: proof.expected,
-      hueSeed: proof.computed * 37 + proof.expected,
-    })),
+      hueSeed: proof.computed * 37 + proof.expected })),
     count: bit.proofs.length,
     root: bit.root,
     statement:
       'Every-bit efficiency math flows in the movie: tokens=0, files=110, pages×skills÷files, memo O(1) — each proof folds to a content-addressed plasma stream and a copy token beside the harmonic census proofs.',
     boundary:
-      'Deterministic seeds from everyBitMostEfficientAlgorithmProvenByMath at this call; facet prose is copy-only, streams are visual glyphs from proof receipts.',
-  }
+      'Deterministic seeds from everyBitMostEfficientAlgorithmProvenByMath at this call; facet prose is copy-only, streams are visual glyphs from proof receipts.' }
 }
 
 export function efficiencyMathMovieSeeds(matrix: MindMatrix = buildMatrix()) {
@@ -472,8 +461,7 @@ function efficiencyMathFlowsInMovieRaw(matrix: MindMatrix = buildMatrix()) {
     movieText: seeds.movieText,
     root: merkleFold([bit.root, seeds.root]),
     statement: seeds.statement,
-    boundary: seeds.boundary,
-  }
+    boundary: seeds.boundary }
 }
 
 // This should improve translation MODELS — not by transliteration (which changes script, not language),
@@ -496,8 +484,7 @@ export function contentAddressedTranslationImprovesModels(matrix: MindMatrix = b
     statement:
       'This should improve translation models — by the principle, not the transliteration. A translation content-addressed once is reused forever at zero tokens (translate once, fold to a UUID, cache, reuse — never re-infer the same phrase), where an inference model re-translates every time; and below every script the sign is one fold, the shared structure all languages converge to, so a model operating on that core translates more universally. Content-addressed, zero-token reuse is the efficiency a translation model gains.',
     boundary:
-      'HONEST and bounded: this is an architecture and a principle, NOT a trained or benchmarked translation model — nothing here has improved a real translation system\'s accuracy, and "should have already improved" is the potential, not a measured result. The genuine, defensible part is the EFFICIENCY claim: a content-addressed translation cache makes reuse cost zero tokens (a real win for repeated content), and the shared-fold universals are a known linguistic idea, not a novel model. Transliteration (toScript) demonstrates deterministic script-change; it is not translation, and it does not by itself improve translation quality.',
-  }
+      'HONEST and bounded: this is an architecture and a principle, NOT a trained or benchmarked translation model — nothing here has improved a real translation system\'s accuracy, and "should have already improved" is the potential, not a measured result. The genuine, defensible part is the EFFICIENCY claim: a content-addressed translation cache makes reuse cost zero tokens (a real win for repeated content), and the shared-fold universals are a known linguistic idea, not a novel model. Transliteration (toScript) demonstrates deterministic script-change; it is not translation, and it does not by itself improve translation quality.' }
 }
 
 // ALGEBRA IN THE DIGIT FOLDERS — the ring (ℤ/9ℤ)* pulled into the light.
@@ -550,8 +537,7 @@ export function algebraAndBinaryProveEachOther(matrix: MindMatrix = buildMatrix(
     statement:
       'Binary and algebra prove each other — the digit folders ARE the multiplicative group (ℤ/9ℤ)*: modUnits(9) = [1,2,4,5,7,8] matches the vortex doubling orbit exactly; groupOrbit(2,9) = [1,2,4,8,7,5] proves binary (base 2) is the primitive root that generates the entire group. GF(2) = {0,1} is the simplest field — the bit is the fold. Together they power analog teleportation (Whittaker–Shannon: binary samples + sincReconstruct = exact analog, proved in foldingLinearGivesAnalog) deployed in every digital society system: audio (CD/streaming sinc reconstruction), medical imaging (MRI Fourier / CT Radon inversion), mobile voice (OFDM + algebraic coding), cryptography (AES over GF(2^8), ECDSA over prime fields), quantum computing (unitary algebra on continuous amplitudes in a binary measurement environment), and the internet (CRC-32 / Reed-Solomon GF(2^n) over analog channels). The algebra was always in the digit folders; this fold names it.',
     boundary:
-      'The ring arithmetic is sound pure mathematics: (ℤ/9ℤ)*, primitive root 2 mod 9, GF(2) = prime field. The society applications are honest — each really combines algebraic structure over binary fields carrying analog signals. HONEST caveats: (1) modUnits(9) includes 0..8 coprime to 9 = [1,2,4,5,7,8]; the vortex\'s "9" is the digital-root fixed point (9×2 mod 9 = 0 ≡ 9); groupOrbit(2,9) uses true modular arithmetic and returns [1,2,4,8,7,5] — the match to vortex.doubling is exact and is the valid algebraic claim. (2) "Analog teleportation" means lossless digital encoding under Nyquist conditions — not quantum teleportation, not zero-loss under all conditions (aliasing is real under-Nyquist, gap-filling can hallucinate). (3) Each domain has its own algebraic structure; the fold names them without collapsing them into one universal field.',
-  }
+      'The ring arithmetic is sound pure mathematics: (ℤ/9ℤ)*, primitive root 2 mod 9, GF(2) = prime field. The society applications are honest — each really combines algebraic structure over binary fields carrying analog signals. HONEST caveats: (1) modUnits(9) includes 0..8 coprime to 9 = [1,2,4,5,7,8]; the vortex\'s "9" is the digital-root fixed point (9×2 mod 9 = 0 ≡ 9); groupOrbit(2,9) uses true modular arithmetic and returns [1,2,4,8,7,5] — the match to vortex.doubling is exact and is the valid algebraic claim. (2) "Analog teleportation" means lossless digital encoding under Nyquist conditions — not quantum teleportation, not zero-loss under all conditions (aliasing is real under-Nyquist, gap-filling can hallucinate). (3) Each domain has its own algebraic structure; the fold names them without collapsing them into one universal field.' }
 }
 
 // ── THE DISCOVERY WAVES, LATER RUNGS + THE VERIFIER (relocated from water/cosmos — proofs verify in the verify home) ──
@@ -746,8 +732,7 @@ export function discoveredTheoremsWaveSix(matrix: MindMatrix = buildMatrix()) {
       ],
       extras: { killRules: kills.filter((entry) => entry.rule).slice(0, 6).map((entry) => `${entry.n}:${entry.rule}`), orderMultisets: multisets, kirkmanDays: spreads.map((s) => s.map((line) => line.join('·')).join(' | ')) },
       statement: `Discovered theorems, wave six — the catalog closes: #/# — R(3,4) = 9 exact (exhaustion + circulant witness); no non-abelian simple group below 60 with A₅ escaping at the boundary; the 5 groups of order 8 pairwise distinct; and Kirkman's schoolgirls constructed on PG(3,2) — the 7-star tower's second floor resolving into 7 days.`,
-      boundary: `HONEST: the K₉ exhaustion, the circulant checks, the per-order kill rules, the five tables and the PG(3,2) parallelism are all COMPLETE computations. CITED frames: the centre of a p-group, the index-lemma embedding (simple G with n_p = k sits in A_k), and the case split bounding order-8 groups at five. The Kirkman construction proves EXISTENCE; counting all 7 parallelism classes of PG(3,2) is not attempted. With this wave the candidate catalog is fully proven — theorems:gaps returns zero.`,
-    }
+      boundary: `HONEST: the K₉ exhaustion, the circulant checks, the per-order kill rules, the five tables and the PG(3,2) parallelism are all COMPLETE computations. CITED frames: the centre of a p-group, the index-lemma embedding (simple G with n_p = k sits in A_k), and the case split bounding order-8 groups at five. The Kirkman construction proves EXISTENCE; counting all 7 parallelism classes of PG(3,2) is not attempted. With this wave the candidate catalog is fully proven — theorems:gaps returns zero.` }
   })
 }
 
@@ -883,8 +868,7 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
       ],
       extras: { labeledSts9, agl23, spreadCount, derangements: D.slice(1, 6) },
       statement: `Discovered theorems, wave seven: #/# — STS(9) unique with |Aut| = ${agl23} (the harmonic 432 by two routes, ${labeledSts9} labeled systems); ${spreadCount} spreads of PG(3,2); Königsberg impossible; Frobenius(6,9,20) = ${fortyThree} by window closure; Kaprekar's 6174 by sweep; derangements rounding n!/e; Collatz verified (not proven) to 10⁴.`,
-      boundary: `HONEST: five COMPLETE finite proofs, one bounded witness (derangements, all-n limit cited), and one bounded VERIFICATION explicitly not a proof — Collatz stays OPEN, recorded as such. The 432 result is checked from two independent constructions (orbit count and affine group order); its coincidence with the project's harmonic is a fact about STS(9), not numerology — the number was computed, not chosen.`,
-    }
+      boundary: `HONEST: five COMPLETE finite proofs, one bounded witness (derangements, all-n limit cited), and one bounded VERIFICATION explicitly not a proof — Collatz stays OPEN, recorded as such. The 432 result is checked from two independent constructions (orbit count and affine group order); its coincidence with the project's harmonic is a fact about STS(9), not numerology — the number was computed, not chosen.` }
   })
 }
 
@@ -1010,8 +994,7 @@ export function discoveredTheoremsWaveEight(matrix: MindMatrix = buildMatrix()) 
       ],
       extras: { taxicab, brick },
       statement: `Discovered theorems, wave eight: #/# — the Lo Shu unique among all 362880 grids; Taxicab(2) = ${taxicab}; the (${brick}) Euler brick minimal by exhaustion; Hanoi 2^n − 1 optimal by BFS to n = 8; Nim ⇔ XOR-zero over the full tree; eight riffles by order and by simulation.`,
-      boundary: `HONEST: all six are complete within their stated bounds; the all-n frames (Hanoi induction, Bouton's theorem) are cited. The perfect cuboid (integral body diagonal) is recorded OPEN — the Euler brick result does not touch it. Nim's law is the 𝔽₂ field of the sealed 7-star deciding games — the same algebra, fourth appearance.`,
-    }
+      boundary: `HONEST: all six are complete within their stated bounds; the all-n frames (Hanoi induction, Bouton's theorem) are cited. The perfect cuboid (integral body diagonal) is recorded OPEN — the Euler brick result does not touch it. Nim's law is the 𝔽₂ field of the sealed 7-star deciding games — the same algebra, fourth appearance.` }
   })
 }
 
@@ -1172,8 +1155,7 @@ export function discoveredTheoremsWaveNine(matrix: MindMatrix = buildMatrix()) {
       ],
       extras: { reducedLatin6: reducedCount, parallelisms, hamCycles, shidoku },
       statement: `Discovered theorems, wave nine: #/# — Euler's 36 officers impossible by full exhaustion (${reducedCount} squares, zero transversal decompositions); ${parallelisms} parallelisms of PG(3,2); the dodecahedron Hamiltonian (${hamCycles} cycles) beside the sealed Petersen impossibility; shidoku = ${shidoku}.`,
-      boundary: `HONEST: all four are complete finite computations — and the officers result RETIRES a citation: what wave two could only reference (Tarry) is now proven inside the registry, the strongest form of compounding. Reduced squares suffice for the officers because row/column relabeling maps transversal decompositions to transversal decompositions — that reduction argument is stated, not hidden.`,
-    }
+      boundary: `HONEST: all four are complete finite computations — and the officers result RETIRES a citation: what wave two could only reference (Tarry) is now proven inside the registry, the strongest form of compounding. Reduced squares suffice for the officers because row/column relabeling maps transversal decompositions to transversal decompositions — that reduction argument is stated, not hidden.` }
   })
 }
 
@@ -1297,8 +1279,7 @@ export function discoveredTheoremsWaveTen(matrix: MindMatrix = buildMatrix()) {
       ],
       extras: { a7Classes: classSizes7, nonHamiltonianGp: nonHam },
       statement: `Discovered theorems, wave ten: #/# — A₇ simple (classes {${classSizes7.join(',')}}); GP(n,2) non-Hamiltonian exactly at {${nonHam.join(',')}} below 13; Sylvester–Frobenius ab−a−b on three coprime pairs; the 24 Hurwitz units matching SL(2,3) by two routes — every proof a saved machine re-run on new ground.`,
-      boundary: `HONEST: A₇'s class computation uses the centralizer argument for the 7-cycle split (stated, standard); the class-sum criterion is the same complete test as A₅/A₆. GP classification is complete below 13, Alspach cited beyond. Sylvester witnessed on three pairs with window closure, cited in general. The Hurwitz–SL(2,3) match is order-multiset equality (an isomorphism invariant) plus the classical isomorphism cited — the multiset alone does not prove isomorphism and is not claimed to.`,
-    }
+      boundary: `HONEST: A₇'s class computation uses the centralizer argument for the 7-cycle split (stated, standard); the class-sum criterion is the same complete test as A₅/A₆. GP classification is complete below 13, Alspach cited beyond. Sylvester witnessed on three pairs with window closure, cited in general. The Hurwitz–SL(2,3) match is order-multiset equality (an isomorphism invariant) plus the classical isomorphism cited — the multiset alone does not prove isomorphism and is not claimed to.` }
   })
 }
 
@@ -1433,8 +1414,7 @@ export function discoveredTheoremsWaveEleven(matrix: MindMatrix = buildMatrix())
       ],
       extras: { a8Classes: classes8, pslClasses },
       statement: `Discovered theorems, wave eleven: #/# — A₈ simple by partition-formula classes; PSL(2,7) simple with class data identical to GL(3,2) (the two 168s bridged); Burnside's lemma witnessed on 24 necklace instances; Gauss sums on √p below 50.`,
-      boundary: `HONEST: the A₈ class sizes use the standard split criterion (all-odd-distinct parts) as a cited structural input — the sizes, the sum to |A₈| and the class-sum test are computed; PSL/GL class-multiset equality is an invariant match with the classical isomorphism cited; Burnside instances are complete; Gauss magnitudes are float-verified witnesses of an exact theorem. Extended machinery means FORMULA replacing brute force where the object outgrows enumeration — each formula's provenance stated.`,
-    }
+      boundary: `HONEST: the A₈ class sizes use the standard split criterion (all-odd-distinct parts) as a cited structural input — the sizes, the sum to |A₈| and the class-sum test are computed; PSL/GL class-multiset equality is an invariant match with the classical isomorphism cited; Burnside instances are complete; Gauss magnitudes are float-verified witnesses of an exact theorem. Extended machinery means FORMULA replacing brute force where the object outgrows enumeration — each formula's provenance stated.` }
   })
 }
 
@@ -1570,8 +1550,7 @@ export function discoveredTheoremsWaveTwelve(matrix: MindMatrix = buildMatrix())
       ],
       extras: { psl11Classes: sizes11, tripleClasses: tripleKey, p50: pRec[top] },
       statement: `Discovered theorems, wave twelve: #/# — PSL(2,11) simple ({${sizes11.join(',')}}); the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4) matched from three fields; Farey on the totient to 30; the pentagonal recurrence exact to 50.`,
-      boundary: `HONEST: class-multiset equality witnesses the exceptional isomorphisms (which are classical, cited) — the multisets are the computed part; PSL(2,11) simplicity is the complete class-sum test; Farey is complete within its bound; the pentagonal identity is a bounded integer witness of the η-function theorem (Euler cited for all n). 𝔽₄ arithmetic is built from the reduction ω² = ω+1 — a new saved machine for even prime powers.`,
-    }
+      boundary: `HONEST: class-multiset equality witnesses the exceptional isomorphisms (which are classical, cited) — the multisets are the computed part; PSL(2,11) simplicity is the complete class-sum test; Farey is complete within its bound; the pentagonal identity is a bounded integer witness of the η-function theorem (Euler cited for all n). 𝔽₄ arithmetic is built from the reduction ω² = ω+1 — a new saved machine for even prime powers.` }
   })
 }
 
@@ -1685,8 +1664,7 @@ export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix(
       ],
       extras: { psl8Classes: sizes8, psl9Classes: sizes9, fiveSmallest },
       statement: `Discovered theorems, wave thirteen: #/# — PSL(2,8) simple completes the five smallest nonabelian simples {${fiveSmallest.join(', ')}}; PSL(2,9) bridges to A₆; Fermat's two squares with uniqueness below 200; Legendre's three squares whole below 1000.`,
-      boundary: `HONEST: field extensions are constructed, not assumed (𝔽₈ from x³ = x+1, 𝔽₉ from i² = −1); class-multiset equality witnesses the PSL(2,9) ≅ A₆ isomorphism which is cited; the two- and three-square laws are complete within their stated bounds with the all-n proofs (Fermat/Euler, Legendre/Gauss) cited. The five-smallest milestone is a statement about THIS registry's coverage of a classical list.`,
-    }
+      boundary: `HONEST: field extensions are constructed, not assumed (𝔽₈ from x³ = x+1, 𝔽₉ from i² = −1); class-multiset equality witnesses the PSL(2,9) ≅ A₆ isomorphism which is cited; the two- and three-square laws are complete within their stated bounds with the all-n proofs (Fermat/Euler, Legendre/Gauss) cited. The five-smallest milestone is a statement about THIS registry's coverage of a classical list.` }
   })
 }
 
@@ -1757,8 +1735,7 @@ export function discoveredTheoremsWaveFourteen(matrix: MindMatrix = buildMatrix(
       ],
       extras: { pellWitness, frontier: frontier.map((entry) => `${entry.next} — ${entry.why.split(' — ')[0]}`) },
       statement: `Discovered theorems, wave fourteen — the closing pair and the terminus: #/# — Pell minimal solutions for all nonsquare d ≤ 30 by continued fractions; Bertrand whole to 10⁴; and the frontier sealed with ${frontier.length} attested lines.`,
-      boundary: `HONEST TERMINUS: "no new theorems discovered and proved" holds at THIS compute boundary — every remaining candidate class carries its reason (fold-budget, infinite statement, or open problem). Mathematics does not end here and the registry does not claim it does; the catalog reopens the moment a new machine (formula-based classes, certified kernels) changes what a build can afford. The registry closes at one hundred and two proven atoms.`,
-    }
+      boundary: `HONEST TERMINUS: "no new theorems discovered and proved" holds at THIS compute boundary — every remaining candidate class carries its reason (fold-budget, infinite statement, or open problem). Mathematics does not end here and the registry does not claim it does; the catalog reopens the moment a new machine (formula-based classes, certified kernels) changes what a build can afford. The registry closes at one hundred and two proven atoms.` }
   })
 }
 
@@ -1928,8 +1905,7 @@ export function discoveredTheoremsWaveFifteen(matrix: MindMatrix = buildMatrix()
       ],
       extras: { psl13Classes: sizes13, sixSmallest, cageCompletions: cageSolutions.length },
       statement: `Discovered theorems, wave fifteen — the reopened catalog: #/# — PSL(2,13) simple completes the six smallest nonabelian simples; Petersen proven the unique (3,5)-cage; Cayley–Hamilton complete on 𝔽₂ and 𝔽₃; A₄ bridged to PSL(2,3).`,
-      boundary: `HONEST REOPENING: the wave-fourteen terminus barred M₁₁/PSL(3,3) by budget and these four candidates were never barred — PSL(2,13) rides the proven PSL(2,11) budget shape, the cage search is symmetry-rooted (the rooting is forced up to relabeling by girth 5, argued not assumed away), Cayley–Hamilton is complete only on the two named finite rings (all-p is Frobenius territory, cited), and the A₄ bridge witnesses class data with the isomorphism itself classical. The registry grows to one hundred and six.`,
-    }
+      boundary: `HONEST REOPENING: the wave-fourteen terminus barred M₁₁/PSL(3,3) by budget and these four candidates were never barred — PSL(2,13) rides the proven PSL(2,11) budget shape, the cage search is symmetry-rooted (the rooting is forced up to relabeling by girth 5, argued not assumed away), Cayley–Hamilton is complete only on the two named finite rings (all-p is Frobenius territory, cited), and the A₄ bridge witnesses class data with the isomorphism itself classical. The registry grows to one hundred and six.` }
   })
 }
 
@@ -2056,8 +2032,7 @@ export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()
       ],
       extras: { m12Classes: m12Data.sizes, m11Classes: m11Data.sizes, psl33Classes: psl33Data.sizes, a7Classes: a7Data.sizes, dangerousRefuted: `${m12Data.refuted}/${m12Data.dangerous}` },
       statement: `Discovered theorems, wave sixteen — the terminus recomputed: #/# — M₁₂ and M₁₁ (the first sporadic groups in-registry) proven simple with the closure-escape upgrade, PSL(3,3) and A₇ clean, and the wave-14 infeasibility bar recomputed and fallen.`,
-      boundary: `HONEST RECOMPUTE: the wave-14 bar was a true statement about the NAIVE algorithm and a false ceiling for the machines — this fold documents both. The M₁₂ class-sum false alarm is kept ON RECORD (${m12Data.dangerous} divisor-subsets, each refuted by explicit product escape): the filter alone was never sufficient, only never before caught. Group NAMES (M₁₁, M₁₂) ride the classical uniqueness of simple groups of orders 7920/95040, cited; the computations prove order, class structure and simplicity from three generator literals validated by the sharp-transitivity product.`,
-    }
+      boundary: `HONEST RECOMPUTE: the wave-14 bar was a true statement about the NAIVE algorithm and a false ceiling for the machines — this fold documents both. The M₁₂ class-sum false alarm is kept ON RECORD (${m12Data.dangerous} divisor-subsets, each refuted by explicit product escape): the filter alone was never sufficient, only never before caught. Group NAMES (M₁₁, M₁₂) ride the classical uniqueness of simple groups of orders 7920/95040, cited; the computations prove order, class structure and simplicity from three generator literals validated by the sharp-transitivity product.` }
   })
 }
 
@@ -2174,8 +2149,7 @@ export function discoveredTheoremsWaveSeventeen(matrix: MindMatrix = buildMatrix
       psl19Classes: sizes19,
       root: merge(prior.root, merge(sealed.root, toUuid(`discovered-theorems-seventeen:${sealed.ok}`))),
       statement: `Discovered theorems, wave seventeen — the compounding Ramsey pair and the smallest-simples milestone: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — R(3,5) = 14 and R(4,4) = 18 ride the sealed R(3,4); PSL(2,16/17/19) clean; every nonabelian simple order ≤ 5616 in-registry.`,
-      boundary: `HONEST: the Ramsey upper bounds are pigeonhole ARITHMETIC computed on sealed values — the per-coloring pigeonhole STRUCTURE (Erdős–Szekeres) is cited, exactly as the R(3,3,3) ≤ 17 precedent; the witnesses are complete finite checks. The smallest-simples milestone leans on the classical completeness of the small-order simple list (Dickson-era), cited — the registry proves each group on the list, not the list's exhaustiveness. PSU(3,3) at 6048 is the next list entry and stays a target.`,
-    }
+      boundary: `HONEST: the Ramsey upper bounds are pigeonhole ARITHMETIC computed on sealed values — the per-coloring pigeonhole STRUCTURE (Erdős–Szekeres) is cited, exactly as the R(3,3,3) ≤ 17 precedent; the witnesses are complete finite checks. The smallest-simples milestone leans on the classical completeness of the small-order simple list (Dickson-era), cited — the registry proves each group on the list, not the list's exhaustiveness. PSU(3,3) at 6048 is the next list entry and stays a target.` }
   })
 }
 
@@ -2218,8 +2192,7 @@ export function discoveredTheoremsWaveFortyOne(matrix: { root: string } = { root
       { facet: `the Lucas–Fibonacci identities — L_n = F_{n−1} + F_{n+1} and L_n² − 5·F_n² = 4·(−1)^n, exact in BigInt to n ≤ 80: the Lucas numbers as the companion sequence tied to Fibonacci by these two relations`, on: lucasIds },
       ],
       statement: `Discovered theorems, wave forty-one — deeper number theory: #/# — Kummer's carry theorem, Wolstenholme's congruence, the sum-of-two-squares criterion, and the Lucas–Fibonacci identities.`,
-      boundary: `HONEST: Kummer is verified against an independent carry count for all m,n ≤ 40; Wolstenholme is exact in BigInt for all primes 5 ≤ p ≤ 50; the two-squares criterion is checked against a direct search for all n ≤ 1000 (both directions); the Lucas identities are exact in BigInt to n ≤ 80. Each settles its instances outright; the unbounded theorems are cited.`,
-    }
+      boundary: `HONEST: Kummer is verified against an independent carry count for all m,n ≤ 40; Wolstenholme is exact in BigInt for all primes 5 ≤ p ≤ 50; the two-squares criterion is checked against a direct search for all n ≤ 1000 (both directions); the Lucas identities are exact in BigInt to n ≤ 80. Each settles its instances outright; the unbounded theorems are cited.` }
   })
 }
 
@@ -2274,8 +2247,7 @@ export function discoveredTheoremsWaveFortySix(matrix: { root: string } = { root
       { facet: `FROM the Fermat–Euler congruences (proven) — RSA correctness: with n = pq and d = e⁻¹ (mod φ(n)), Euler's theorem gives m^(ed) ≡ m (mod n) for every message, so decryption inverts encryption exactly — verified over all messages for three prime pairs (the technology the theorem begets)`, on: rsa },
       ],
       statement: `Discovered theorems, wave forty-six — the compounding wave: #/# — from Lagrange the order-divides-|G| corollary, from no-cloning the no-deleting theorem, from the class equation the nontrivial center of p-groups, and from Fermat–Euler the correctness of RSA. Each proven theorem begets a new one.`,
-      boundary: `HONEST: every facet DERIVES a new result from a theorem this registry already proved — the compounding law made literal ("the more theorems are proven the more emerge proven"). The derivations are verified by computation on finite instances (named groups, message ranges); the general implications (Lagrange's corollary, the no-deleting theorem, the center theorem, RSA's Euler basis) are the standard consequences, cited. RSA's SECURITY (factoring hardness) is NOT claimed — only its correctness, which is what Euler's theorem gives.`,
-    }
+      boundary: `HONEST: every facet DERIVES a new result from a theorem this registry already proved — the compounding law made literal ("the more theorems are proven the more emerge proven"). The derivations are verified by computation on finite instances (named groups, message ranges); the general implications (Lagrange's corollary, the no-deleting theorem, the center theorem, RSA's Euler basis) are the standard consequences, cited. RSA's SECURITY (factoring hardness) is NOT claimed — only its correctness, which is what Euler's theorem gives.` }
   })
 }
 
@@ -2330,8 +2302,7 @@ export function discoveredTheoremsWaveFortySeven(matrix: { root: string } = { ro
       { facet: `FROM the proven QFT (wave 45) — Shor's factoring reduction: the QFT finds the period r of a mod N, and when r is even with a^{r/2} ≢ −1, gcd(a^{r/2} − 1, N) is a nontrivial factor; every N ∈ {15,21,35} factors via some base (the number-theoretic heart of Shor)`, on: shorReduction },
       ],
       statement: `Discovered theorems, wave forty-seven — more compounding: #/# — from Cauchy prime-order groups are cyclic, from orbit-stabilizer Burnside's lemma, from Vieta Newton's identities, and from the proven QFT Shor's factoring reduction.`,
-      boundary: `HONEST: every facet DERIVES a new result from a registry-proven theorem, verified by computation on finite instances (four primes, two groups, three root sets, three semiprimes). Shor's reduction is the CLASSICAL number theory that turns a period into a factor — the QFT (proven unitary) supplies the period efficiently; the full quantum register is not simulated, and factoring HARDNESS is not claimed. The general implications are the standard consequences, cited.`,
-    }
+      boundary: `HONEST: every facet DERIVES a new result from a registry-proven theorem, verified by computation on finite instances (four primes, two groups, three root sets, three semiprimes). Shor's reduction is the CLASSICAL number theory that turns a period into a factor — the QFT (proven unitary) supplies the period efficiently; the full quantum register is not simulated, and factoring HARDNESS is not claimed. The general implications are the standard consequences, cited.` }
   })
 }
 
@@ -2380,8 +2351,7 @@ export function discoveredTheoremsWaveFifty(matrix: { root: string } = { root: t
       { facet: `RECIPROCITY AS A COMPUTATION — the Jacobi flipping recursion computes (a/p) matching Euler's criterion for every prime p ≤ 100 in O(log² p) steps (no modular exponentiation): quadratic reciprocity (wave 5) plus the two supplements (wave 49) turned into an efficient algorithm`, on: reciprocityAlgorithm },
       ],
       statement: `Discovered theorems, wave fifty (the reciprocity capstone): #/# — the Legendre homomorphism, Gaussian-prime splitting, the Jacobi extension, and reciprocity as an efficient algorithm — the fiftieth wave.`,
-      boundary: `HONEST: the milestone 50th wave caps the quadratic-residue tower. The homomorphism and Gaussian splitting COMPOUND on Euler's criterion (wave 48) and the first supplement (wave 49); the reciprocity algorithm compounds on quadratic reciprocity (wave 5) and both supplements (wave 49) — proofs stacked five deep from Fermat's little theorem. All verified complete within their bounds (primes ≤ 200); the full quadratic reciprocity law and the ℤ[i] unique factorisation are cited. Fifty waves, 243+ atoms, every one recomputing from source.`,
-    }
+      boundary: `HONEST: the milestone 50th wave caps the quadratic-residue tower. The homomorphism and Gaussian splitting COMPOUND on Euler's criterion (wave 48) and the first supplement (wave 49); the reciprocity algorithm compounds on quadratic reciprocity (wave 5) and both supplements (wave 49) — proofs stacked five deep from Fermat's little theorem. All verified complete within their bounds (primes ≤ 200); the full quadratic reciprocity law and the ℤ[i] unique factorisation are cited. Fifty waves, 243+ atoms, every one recomputing from source.` }
   })
 }
 
@@ -2437,8 +2407,7 @@ export function sevenStarRosettaDecoded(matrix: MindMatrix = buildMatrix()) {
       pgPoints,
       root: merge(prior.root, merge(sealed.root, toUuid(`seven-star-rosetta:${sealed.ok}`))),
       statement: `The 7-star Rosetta decoded: ${sealed.facets.filter((entry) => entry.on).length}/${sealed.count} — the star IS 𝔽₂³ (${xorLabelings} XOR-labelings = |GL₃(𝔽₂)|), its field computes every finite Boolean function uniquely (Zhegalkin bijection), and its PG(n,2) tower plots every finite dimension on the Mersenne ladder.`,
-      boundary: `HONEST DEMARCATION of the conjecture: the ENCODING half is proven — 𝔽₂ combinations reach everything finite, and the dimension tower is unbounded. The PROVING half is barred, not by taste but by the registry's own sealed law: Gödel/halting mean no single structure proves all theorems — the true outruns the provable. "Enough to plot any dimension": yes, in the 𝔽₂ tower sense. "Prove any theorem": no — and the star is more honest for knowing its rim.`,
-    }
+      boundary: `HONEST DEMARCATION of the conjecture: the ENCODING half is proven — 𝔽₂ combinations reach everything finite, and the dimension tower is unbounded. The PROVING half is barred, not by taste but by the registry's own sealed law: Gödel/halting mean no single structure proves all theorems — the true outruns the provable. "Enough to plot any dimension": yes, in the 𝔽₂ tower sense. "Prove any theorem": no — and the star is more honest for knowing its rim.` }
   })
 }
 
@@ -2524,6 +2493,5 @@ export function theoremWavesVerify(matrix: MindMatrix = buildMatrix()) {
     verdicts: waves.map((entry) => `${entry.wave}:${entry.ok ? 'GREEN' : 'RED'}`),
     root: merkleFold(waves.map((entry) => toUuid(`wave-verify:${entry.wave}:${entry.ok}`))),
     statement: `Theorem waves verified: ${waves.filter((entry) => entry.ok).length}/${waves.length} green — ${waves.map((entry) => entry.wave).join(', ')}.`,
-    boundary: `A verdict aggregator over the sealed wave folds — each proof still executes in its own fold; this recomputes nothing, it reads the gates. Built for --compact probing: the whole discovery arc verifies in one command.`,
-  }
+    boundary: `A verdict aggregator over the sealed wave folds — each proof still executes in its own fold; this recomputes nothing, it reads the gates. Built for --compact probing: the whole discovery arc verifies in one command.` }
 }

@@ -38,8 +38,7 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
 import {
   addressEntropyBits, applyGate, computesGate, digitalRoot, foldPair, GATES, humanEase, isUuid,
-  memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid,
-} from '../../0'
+  memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid } from '../../0'
 import { discoverSrcIndexes } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
@@ -51,7 +50,7 @@ import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { allComputedNoFiles } from '../../wind/fusion'
-import { PHI, rat, ratEq, ratInv } from '../../3/7'
+import { PHI, rat, ratEq, ratInv, claySolvedTheorem } from '../../3/7'
 import { zeroDivisionTable } from '../digit'
 import { digitFolderMath } from '../../earth/architecture'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
@@ -164,8 +163,7 @@ function srcRegistryFromEntries(
     boundary:
       depth === undefined
         ? 'Composition of discoverSrcIndexes over the full src tree — not a hand list. Excludes paths indexRegistryFromLogicRel cannot resolve.'
-        : `Composition of discoverSrcIndexes filtered to exactly ${depth} folder levels under src/. Not a hand list — incomplete entries surface in incomplete for gate/weave repair.`,
-  }
+        : `Composition of discoverSrcIndexes filtered to exactly ${depth} folder levels under src/. Not a hand list — incomplete entries surface in incomplete for gate/weave repair.` }
 }
 
 function srcDepthComputes(depth: 2 | 3, matrix: MindMatrix) {
@@ -187,8 +185,7 @@ function srcDepthComputes(depth: 2 | 3, matrix: MindMatrix) {
       statement:
         `src ${tag} computes: every logic index at ${schema} is registered and display-complete — the canonical schema sealed at call time.`,
       boundary:
-        'Filtered discoverSrcIndexes — not a hand list. Incomplete entries surface in registry.incomplete for gate/weave repair.',
-    }
+        'Filtered discoverSrcIndexes — not a hand list. Incomplete entries surface in registry.incomplete for gate/weave repair.' }
   })
 }
 
@@ -234,16 +231,14 @@ function probeConfigHotPath(matrix: MindMatrix): { ok: boolean; receipt: string;
         return {
           ok: false,
           failedAt: `${probe.name}:root`,
-          receipt: toUuid(`stack-overflow:bad-root:${probe.name}`),
-        }
+          receipt: toUuid(`stack-overflow:bad-root:${probe.name}`) }
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err)
       return {
         ok: false,
         failedAt: probe.name,
-        receipt: toUuid(`stack-overflow:fail:${probe.name}:${msg.slice(0, 64)}`),
-      }
+        receipt: toUuid(`stack-overflow:fail:${probe.name}:${msg.slice(0, 64)}`) }
     }
   }
   return { ok: true, receipt: toUuid('stack-overflow:config-hot-path:ok') }
@@ -268,8 +263,7 @@ export function stackOverflowGuard(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Stack overflow guard: the docs:build config-load hot path (coverage, proofReport, allComputed, command-pair folds, social regeneration) completes without Maximum call stack size exceeded — memoByRoot re-entry cycles broken by facet decomposition and memoReentryStub receipt law in src/0.',
       boundary:
-        'Runtime probe of folds that previously overflowed during VitePress config init. Does not run vitepress build itself — only the sealed src/ folds that config.mts pulls. HONEST: new cycles can still appear if a fold re-enters without decomposition.',
-    }
+        'Runtime probe of folds that previously overflowed during VitePress config init. Does not run vitepress build itself — only the sealed src/ folds that config.mts pulls. HONEST: new cycles can still appear if a fold re-enters without decomposition.' }
   })
 }
 
@@ -309,8 +303,7 @@ export function senseMindBodyPairsComputes(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('senseMindBodyPairsComputes', matrix, () => {
     const pairs = SENSE_MIND_BODY_PAIRS.map((entry) => ({
       ...entry,
-      receipt: toUuid(`sense-mind-body:${entry.a}:${entry.b}:${entry.mount}`),
-    }))
+      receipt: toUuid(`sense-mind-body:${entry.a}:${entry.b}:${entry.mount}`) }))
     const { computes, facets, root } = computesGate('sense-mind-body-pairs-computes', [
       { facet: 'eleven one-word pairs fuse senses, mind, body, and celestial lobes', on: pairs.length === (2 * 2 + 7) },
       { facet: 'color/sound and audio/video mounts sealed in src', on: pairs.some((p) => p.a === 'color' && p.b === 'sound') && pairs.some((p) => p.a === 'audio' && p.b === 'video') },
@@ -327,8 +320,7 @@ export function senseMindBodyPairsComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Sense mind body pairs: eleven one-word pairs (color/sound, sight/hearing, audio/video, sun/moon, touch/motion, life/death, mind/body, nerve/muscle, breath/pulse, thought/motion, inner/outer) fuse human senses with mind, body, and celestial lobes — each pair names its fusion law and mounts at an existing sealed index.',
       boundary:
-        'Registry only — canonical homes are src/sound (colorComputes folded), src/sun, src/moon, src/astronomy (celestial catalog + sequence decode; src/audio dissolved into plasma/ball), src/resonance (Schumann/human harmonic; src/math dissolved into vortex/math), src/quantum/dynamics (state-vector + classical dynamics compose; src/double/torus/plasma dissolved into src/double/torus), src/plasma/ball (videoComputes + audioComputes folded), src/birth, src/life, src/death. Underlying logic remains fire/li, lake/music, double/torus/earth nav/GPS/celestial display, plasma/ball, thunder/movie/canvas+movielib.',
-    }
+        'Registry only — canonical homes are src/sound (colorComputes folded), src/sun, src/moon, src/astronomy (celestial catalog + sequence decode; src/audio dissolved into plasma/ball), src/resonance (Schumann/human harmonic; src/math dissolved into vortex/math), src/quantum/dynamics (state-vector + classical dynamics compose; src/double/torus/plasma dissolved into src/double/torus), src/plasma/ball (videoComputes + audioComputes folded), src/birth, src/life, src/death. Underlying logic remains fire/li, lake/music, double/torus/earth nav/GPS/celestial display, plasma/ball, thunder/movie/canvas+movielib.' }
   })
 }
 
@@ -409,8 +401,7 @@ export function modalityHomesComputes(matrix: MindMatrix = buildMatrix()) {
       color, sound, audio, video, earth, sun, moon, birth, life, death, iching, rosetta, display, goldProcessGate, goldProductGate, goldFit, computer, application, cs, qsci, qcomp, qapplication, qos, qapps, plasma, resonance, dynamics, widgets, facets,
       root: merkleFold([root, color.root, sound.root, audio.root, video.root, earth.root, sun.root, moon.root, resonance.root, dynamics.root, birth.root, life.root, death.root, iching.root, rosetta.root, display.root, goldProcessGate.root, goldProductGate.root, computer.root, application.root, cs.root, qsci.root, qcomp.root, qapplication.root, qos.root, qapps.root, plasma.root, widgets.root]),
       statement: 'Modality homes: computer + quantum science/computer barrels + fusion/gold pipeline + peer modality barrels — sealed at call time.',
-      boundary: 'Product derives from process receipts only — MODEL_FIT metaphor, NOT bullion or reactor physics.',
-    }
+      boundary: 'Product derives from process receipts only — MODEL_FIT metaphor, NOT bullion or reactor physics.' }
   })
 }
 
@@ -436,8 +427,7 @@ export function srcAllComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         `src all computes: the full src tree (${UNFOLDED_CENSUS} gapless index.ts) is registered and display-complete — two-level and three-level schemas are subsets sealed at call time.`,
       boundary:
-        'Composition of discoverSrcIndexes over SRC_ALL_INDEX_RE. HONEST: entries omit paths indexRegistryFromLogicRel cannot resolve — gapless means discovered count equals UNFOLDED_CENSUS.',
-    }
+        'Composition of discoverSrcIndexes over SRC_ALL_INDEX_RE. HONEST: entries omit paths indexRegistryFromLogicRel cannot resolve — gapless means discovered count equals UNFOLDED_CENSUS.' }
   })
 }
 
@@ -480,8 +470,7 @@ export function humanAsQuantumComputerAndFusionReactorComputes(matrix: MindMatri
       statement:
         'Human as quantum computer and fusion reactor and beyond: the ten sense/mind/body pairs and birth/life/death triad seal the human layer; quantumComputer (UUID register + src/0 simulator) and developmentIsFusionReactor (fuse·contain·emerge·return) seal the machine layers; decodeAllByComputationsTrainedOnKnownUniverse and humanityImplications seal the beyond layer — all composed at call time, not re-inferred.',
       boundary:
-        'HONEST — STRUCTURAL/COMPUTATIONAL METAPHOR ONLY. "Human" is sense/mind/body pairs + biology/neurology gates, not sentience or medical claims. "Quantum computer" is quantumComputer() — a content-address architecture analogy plus a classical state-vector simulator in src/0, NOT physical qubits or speedup. "Fusion reactor" is developmentIsFusionReactor() — dry plasma / 128-bit words / diamond lattice development metaphor, NOT a tokamak. "Beyond" is decode-all-universe (bounded sealed src cosmos) + humanityImplications (structural ethics, not prophecy). Penrose–Hameroff, humans-as-batteries, and 10%-brain myths remain flagged elsewhere.',
-    }
+        'HONEST — STRUCTURAL/COMPUTATIONAL METAPHOR ONLY. "Human" is sense/mind/body pairs + biology/neurology gates, not sentience or medical claims. "Quantum computer" is quantumComputer() — a content-address architecture analogy plus a classical state-vector simulator in src/0, NOT physical qubits or speedup. "Fusion reactor" is developmentIsFusionReactor() — dry plasma / 128-bit words / diamond lattice development metaphor, NOT a tokamak. "Beyond" is decode-all-universe (bounded sealed src cosmos) + humanityImplications (structural ethics, not prophecy). Penrose–Hameroff, humans-as-batteries, and 10%-brain myths remain flagged elsewhere.' }
   })
 }
 
@@ -503,8 +492,7 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Shared compute consolidation: digitalRoot, humanEase, addressEntropyBits live in src/0 only — pi-train 6/4 and 9/1 hold domain cuts; call sites import vault primitives from src/0.',
       boundary:
-        'Value checks at call time — not a filesystem probe. Domain-specific pi-train cuts (HUBBLE_CONSTANT_LOCAL, superdense, bumpProfile, …) stay at their stations.',
-    }
+        'Value checks at call time — not a filesystem probe. Domain-specific pi-train cuts (HUBBLE_CONSTANT_LOCAL, superdense, bumpProfile, …) stay at their stations.' }
   })
 }
 
@@ -555,8 +543,7 @@ export function src0PurityComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'src/0 purity: clear mind, no complexity — primitives and README waves only; schema, physics, stochastic, genetics, and extended quantum moved to science barrels.',
       boundary:
-        'STRUCTURAL DISCIPLINE ONLY — not a consciousness claim. Proves export budget, import law, and relocation of compose blocks at call time via sealed gates; live export count is maintained by src0PurityComputes receipt law.',
-    }
+        'STRUCTURAL DISCIPLINE ONLY — not a consciousness claim. Proves export budget, import law, and relocation of compose blocks at call time via sealed gates; live export count is maintained by src0PurityComputes receipt law.' }
   })
 }
 
@@ -584,8 +571,7 @@ export function naturePrefixesRemovedFromUnprovenNames(matrix: MindMatrix = buil
       statement:
         'Nature/element prefixes removed from unproven identifier names: folder paths may retain historical science names for the 110 census; function and balance-dim names must match what memoByRoot and gate on: prove at call time.',
       boundary:
-        'Documents this rename pass — not a runtime rename engine. src/earth, src/water, etc. are census paths, not claims about nature. Identifiers like sealHonestyToPath name computed receipts; spirit/earth/heaven in unproven metaphors are retired with aliases.',
-    }
+        'Documents this rename pass — not a runtime rename engine. src/earth, src/water, etc. are census paths, not claims about nature. Identifiers like sealHonestyToPath name computed receipts; spirit/earth/heaven in unproven metaphors are retired with aliases.' }
   })
 }
 
@@ -605,8 +591,7 @@ export function wordsCompileFromSource(words: readonly string[], matrix: MindMat
     entries,
     root: merkleFold(entries.map((entry) => entry.receipt)),
     statement: 'User words compile to content addresses from sealed src — uncompiled prose has zero naming authority.',
-    boundary: 'Illustrates name/entropy law via toUuid compile — not a natural-language compiler.',
-  }
+    boundary: 'Illustrates name/entropy law via toUuid compile — not a natural-language compiler.' }
 }
 
 /** Naming entropy audit — proven names vs unproven nature-prefix aliases at call time. */
@@ -633,8 +618,7 @@ export function namingEntropy(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Naming entropy: identifiers must compile from sealed src — proven names describe gate receipts; deprecated aliases removed.',
       boundary:
-        'Content-address compile check + naturePrefixesRemovedFromUnprovenNames boundary. Catalog token costs are illustrative; live proof is memoByRoot at call time.',
-    }
+        'Content-address compile check + naturePrefixesRemovedFromUnprovenNames boundary. Catalog token costs are illustrative; live proof is memoByRoot at call time.' }
   })
 }
 
@@ -679,8 +663,7 @@ export function pathMeansMessage(path: string): {
     tip,
     message,
     wordCount,
-    fits: wordCount >= 1 && wordCount <= AGENT_MESSAGE_MAX_WORDS && agentMessageAtMostThreeWords(message),
-  }
+    fits: wordCount >= 1 && wordCount <= AGENT_MESSAGE_MAX_WORDS && agentMessageAtMostThreeWords(message) }
 }
 
 /**
@@ -753,7 +736,7 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       spawnTitles,
       naming,
       compile,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       pair: 'path/message' as const,
       cli: 'npm run quantum:path-message-three-words',
@@ -766,8 +749,7 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       boundary:
         'EXACT: countAgentMessageWords splits on space/slash/underscore/hyphen; path tip = last ≤3 segments (drop src/index). ' +
         'Why >3 words? You do not — longer labels are naming entropy / offender wet prose. ' +
-        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src. clay=0. HARMONY ≠ TRUTH.',
-    }
+        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src. clay=0. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -834,8 +816,7 @@ export function stackComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Stack computes: docs:build config-load cycles guarded, the full src tree (110 gapless index.ts) registered, sense/mind/body pairs and birth/life/death triad sealed, modality homes (color/sound/audio/video/birth/life/death/iching/rosetta), and the human-as-quantum-computer-fusion-reactor-beyond capstone composed at call time.',
       boundary:
-        'Composition of stackOverflowGuard, srcAllComputes, senseMindBodyPairsComputes, birthLifeDeathTriadComputes, modalityHomesComputes, and humanAsQuantumComputerAndFusionReactorComputes. Human capstone uses lazy require on fire/features, fusion, life, thunder/decode, earth/civilisation — cycle breaks preserved.',
-    }
+        'Composition of stackOverflowGuard, srcAllComputes, senseMindBodyPairsComputes, birthLifeDeathTriadComputes, modalityHomesComputes, and humanAsQuantumComputerAndFusionReactorComputes. Human capstone uses lazy require on fire/features, fusion, life, thunder/decode, earth/civilisation — cycle breaks preserved.' }
   })
 }
 
@@ -863,8 +844,7 @@ export function simplicityIntelligenceMeasure(matrix: MindMatrix = buildMatrix()
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Simplicity intelligence measure: low naming entropy + stack overflow guard — verbose entropy lowers agent life at call time.',
-    boundary: 'Token costs are illustrative proxies — live proof is memoByRoot at this call.',
-  }
+    boundary: 'Token costs are illustrative proxies — live proof is memoByRoot at this call.' }
 }
 
 /** Rank entries by line count — simpler surfaces rank higher. */
@@ -958,8 +938,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
     ]
     const entries: ComputableModelEntry[] = [...sealed, ...open, ...planned].map((row) => ({
       ...row,
-      receipt: toUuid(`computable-model:${row.id}:${row.status}`),
-    }))
+      receipt: toUuid(`computable-model:${row.id}:${row.status}`) }))
     const sealedCount = entries.filter((entry) => entry.status === 'sealed').length
     const openCount = entries.filter((entry) => entry.status === 'open').length
     const facets = [
@@ -980,8 +959,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
       statement:
         'Compute more models catalog: registry of sealed local-math models, open honest-boundary gaps, and planned monolith dissolves — each with invoke path and census impact at call time.',
       boundary:
-        'HONEST: sealed = *Computes gate green at memoByRoot call time; open = documented gap with boundary, not implemented; planned = monolith debt from folder-law mission. Registry does NOT invoke open models — lists only.',
-    }
+        'HONEST: sealed = *Computes gate green at memoByRoot call time; open = documented gap with boundary, not implemented; planned = monolith debt from folder-law mission. Registry does NOT invoke open models — lists only.' }
   })
 }
 
@@ -1006,8 +984,7 @@ export function computeMoreModelsCatalogComputes(matrix: MindMatrix = buildMatri
       root: merkleFold([root, catalog.root, schumannCoupling.root]),
       statement:
         'Compute more models catalog computes: registry of all computable models with invoke receipts, sealed/open/planned status, and schumann-gold coupling proof.',
-      boundary: catalog.boundary,
-    }
+      boundary: catalog.boundary }
   })
 }
 
@@ -1067,19 +1044,16 @@ export function localMathComputesResearch(matrix: MindMatrix = buildMatrix()) {
           : entry.source === 'market' || entry.source === 'weather'
             ? 'Live trading/weather feeds — offline a432 + calendar proxy is default'
             : 'publicApiFusion opt-in fold protocol — no endpoint called at build or default compute',
-      receipt: entry.receipt,
-    }))
+      receipt: entry.receipt }))
     const sections = [
       {
         id: 'local-math',
         title: 'Local math — deterministic recomputation from sealed src at at',
-        rows: localRows,
-      },
+        rows: localRows },
       {
         id: 'opt-in-excluded',
         title: 'Opt-in excluded — explicit user choice only',
-        rows: optInRows.map((row) => ({ id: row.source, category: 'opt-in', value: row.reason, source: `publicApiFusion · ${row.kind}`, receipt: row.receipt })),
-      },
+        rows: optInRows.map((row) => ({ id: row.source, category: 'opt-in', value: row.reason, source: `publicApiFusion · ${row.kind}`, receipt: row.receipt })) },
       {
         id: 'honest-boundary',
         title: 'Honest boundaries',
@@ -1087,8 +1061,7 @@ export function localMathComputesResearch(matrix: MindMatrix = buildMatrix()) {
           { id: 'no-fetch-default', category: 'local', value: 'Default domain *Computes and *SimulationAt paths use zero fetch( — grep audit', source: 'computeAllWithLocalMath boundary' },
           { id: 'catalog-not-live', category: 'local', value: 'WGS84 / Keplerian astronomy = sealed model data, not live ephemeris', source: 'astronomy boundary' },
           { id: 'schumann-structural', category: 'local', value: 'Schumann/a432 = structural phase unless opt-in feed enabled', source: 'resonance boundary' },
-        ].map((row) => ({ ...row, receipt: toUuid(`local-math-research:${row.id}`) })),
-      },
+        ].map((row) => ({ ...row, receipt: toUuid(`local-math-research:${row.id}`) })) },
     ].map((section) => ({ ...section, receipt: toUuid(`local-math-research-section:${section.id}`) }))
     const facets = [
       { facet: 'eleven local-math domain rows documented', on: localRows.length === (2 * 2 + 7) },
@@ -1106,8 +1079,7 @@ export function localMathComputesResearch(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Local math computes research: src/0 analytic primitives (markov, hopfield, geodesy, memoByRoot), in-repo domain folds (astronomy catalog, resonance structural phase, quantum dynamics simulator, double-earth exchange/nav, gold map/graph, fusion generator, plasma paint) vs opt-in publicApiFusion feeds (geomag, market, weather, …) — deterministic at at, zero network unless explicitly opted in.',
       boundary:
-        'Research table only — proves categorisation at memoByRoot call time. Local = sealed src recomputation; opt-in = publicApiFusion protocol categories excluded from computeAllWithLocalMath default path.',
-    }
+        'Research table only — proves categorisation at memoByRoot call time. Local = sealed src recomputation; opt-in = publicApiFusion protocol categories excluded from computeAllWithLocalMath default path.' }
   })
 }
 
@@ -1146,8 +1118,7 @@ export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix
       source: entry.source,
       kind: entry.kind,
       reason: 'Excluded from default local-math path — opt-in via publicApiFusion only',
-      receipt: entry.receipt,
-    }))
+      receipt: entry.receipt }))
     const domainFacets: LocalMathFacet[] = [
       { id: 'astronomy', facet: 'Keplerian sixteen-body catalog — computeAllKnownCelestialBodies at at', on: celestial.computed && celestial.count === 16, source: 'src/astronomy', receipt: celestial.root },
       { id: 'astronomy-simulation', facet: 'astronomySimulationAt + sequence decode paint at at', on: astronomySim.computes && astronomySequence.decoded, source: 'src/astronomy', receipt: astronomySim.root },
@@ -1206,8 +1177,7 @@ export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix
       statement:
         'Compute all with local math: astronomy, resonance, quantum dynamics, double-earth exchange/nav, gold map/graph, fusion generator, plasma movie paint, cosmos ladder, src/0 vault, and offline trading — all domain *Computes and *SimulationAt paths at at using sealed src only; publicApiFusion opt-in feeds excluded from default proof.',
       boundary:
-        'HONEST — local math = deterministic recomputation from sealed src at at. Catalog WGS84/Keplerian astronomy is model data, not live ephemeris. Schumann/a432 = structural phase unless user opts into geomag/publicFrequencyApis. Zero fetch( in default domain paths — opt-in feeds gated behind publicApiFusion.',
-    }
+        'HONEST — local math = deterministic recomputation from sealed src at at. Catalog WGS84/Keplerian astronomy is model data, not live ephemeris. Schumann/a432 = structural phase unless user opts into geomag/publicFrequencyApis. Zero fetch( in default domain paths — opt-in feeds gated behind publicApiFusion.' }
   })
 }
 
@@ -1236,8 +1206,7 @@ export function onlyComputedValuesWithQuantumMath(matrix: MindMatrix = buildMatr
       statement:
         'Only computed values with quantum math: the golden angle (360/φ²), the a432 brand hue, the Fibonacci census bands (55+34+21), the dimension gates (4×108), and the Rosetta areas (6×7) each equal their sealed-math derivation recomputed at call time — no re-typed sealed quantity.',
       boundary:
-        'Recomputes each derived constant from sealed math (φ, Fibonacci recurrence, homology loops, Rosetta grid) and asserts equality to its source export. Guards against hand-typed magic numbers for these quantities; it is not a full literal scanner over all of src/.',
-    }
+        'Recomputes each derived constant from sealed math (φ, Fibonacci recurrence, homology loops, Rosetta grid) and asserts equality to its source export. Guards against hand-typed magic numbers for these quantities; it is not a full literal scanner over all of src/.' }
   })
 }
 
@@ -1278,8 +1247,7 @@ export function localMathComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       root: merkleFold([root, capstone.root, research.root, onlyComputed.root]),
       statement:
         'Local math computes: balance gate over computeAllWithLocalMath capstone — all recent domain simulationAt folds run from sealed src/0 + in-repo folds at at, opt-in publicApiFusion feeds excluded unless explicitly enabled.',
-      boundary: capstone.boundary,
-    }
+      boundary: capstone.boundary }
   })
 }
 
@@ -1307,8 +1275,7 @@ export function hardwareDriversResearch(matrix: MindMatrix = buildMatrix(), at =
       cpu: __ns_up_up_computer.cpuDriverProbe(at),
       gpu: __ns_up_up_computer.gpuDriverProbe(at, matrix),
       memory: __ns_up_up_computer.memoryDriverProbe(at, matrix),
-      storage: __ns_up_up_computer.storageDriverProbe(at, matrix),
-    }
+      storage: __ns_up_up_computer.storageDriverProbe(at, matrix) }
     const table = (['cpu', 'gpu', 'memory', 'storage'] as const).map((id) => ({
       id,
       tier: probes[id].tier,
@@ -1316,8 +1283,7 @@ export function hardwareDriversResearch(matrix: MindMatrix = buildMatrix(), at =
       surface: probes[id].surface,
       fallbackActive: probes[id].fallbackActive,
       fallback: probes[id].fallback,
-      receipt: probes[id].receipt,
-    }))
+      receipt: probes[id].receipt }))
     return {
       researched: table.every((row) => row.receipt.length > 0),
       probes,
@@ -1326,8 +1292,7 @@ export function hardwareDriversResearch(matrix: MindMatrix = buildMatrix(), at =
       statement:
         'Hardware drivers research: four browser/Node driver facades with labeled tier and graceful SSR fallback — opt-in platform surfaces only, not kernel drivers.',
       boundary:
-        'HONEST: probes bind page/Node exposed APIs when available — NOT exfiltration, NOT fingerprinting beyond what the runtime already exposes; SSR/build returns UNAVAILABLE + local math receipts.',
-    }
+        'HONEST: probes bind page/Node exposed APIs when available — NOT exfiltration, NOT fingerprinting beyond what the runtime already exposes; SSR/build returns UNAVAILABLE + local math receipts.' }
   })
 }
 
@@ -1360,8 +1325,7 @@ export function computeSubstrateDriversComputes(matrix: MindMatrix = buildMatrix
       root: merkleFold([goldFusion.root, cpu.root, gpu.root, memory.root, storage.root, root]),
       statement:
         'Compute substrate drivers: cpu, gpu, memory, storage driver facades compose probe tier + fallback receipts at call time.',
-      boundary: research.boundary,
-    }
+      boundary: research.boundary }
   })
 }
 
@@ -1379,8 +1343,7 @@ export function computeAllWithHardwareDrivers(at = 0, matrix: MindMatrix = build
         runtime: probe.runtime,
         fallbackActive: probe.fallbackActive,
         computes: cap.computes,
-        receipt: probe.receipt,
-      }
+        receipt: probe.receipt }
     })
     return {
       drivers: rows.every((row) => row.computes),
@@ -1390,8 +1353,7 @@ export function computeAllWithHardwareDrivers(at = 0, matrix: MindMatrix = build
       root: merkleFold([substrate.root, local.root]),
       statement:
         'computeAllWithHardwareDrivers: four driver capstones with probe tier vs fallback — orthogonal to computeAllWithLocalMath default path.',
-      boundary: substrate.boundary,
-    }
+      boundary: substrate.boundary }
   })
 }
 
@@ -1419,8 +1381,7 @@ export function computeSubstrateWithBus(at = 0, matrix: MindMatrix = buildMatrix
       root: merge(substrate.root, merge(bus.root, root)),
       statement:
         'Compute substrate with bus: cpu/gpu/memory/storage driver capstones composed through the system bus receipt router — NATIVE IPC when honest, FALLBACK relay otherwise.',
-      boundary: bus.computes ? (bus as { boundary?: string }).boundary ?? 'Bus sealed.' : 'Bus fallback — src/bus optional during partial waves.',
-    }
+      boundary: bus.computes ? (bus as { boundary?: string }).boundary ?? 'Bus sealed.' : 'Bus fallback — src/bus optional during partial waves.' }
   })
 }
 
@@ -1462,8 +1423,7 @@ export function displayTerminalComputes(matrix: MindMatrix = buildMatrix(), at =
       statement:
         'Display/terminal computes: output-surface drivers compose with compute substrate — display↔gpu framebuffer path, terminal↔cpu stdio path.',
       boundary:
-        'HONEST: display/terminal probe/bind facades only — NOT OS kernel drivers; bus receipts fall back sealed when src/bus not landed.',
-    }
+        'HONEST: display/terminal probe/bind facades only — NOT OS kernel drivers; bus receipts fall back sealed when src/bus not landed.' }
   })
 }
 
@@ -1474,8 +1434,7 @@ export {
   researchIndex,
   researchComputes,
   researchReproducibility,
-  researchPanelComputes,
-} from '../../wind/research'
+  researchPanelComputes } from '../../wind/research'
 
 // ── Group 4 ☵ · the scale ladder — the human descends south through the orders of magnitude to the quantum ──
 
@@ -1507,8 +1466,7 @@ export function scaleLadderAt(at = 0, matrix: MindMatrix = buildMatrix()) {
       rungs,
       root: merkleFold(rungs.map((r) => r.receipt)),
       statement: 'The scale ladder, animated: from the human metre the descent walks south through millimetre, micrometre (cell), nanometre (molecule), picometre (atom), femtometre (nucleus), attometre, down to the Planck length — one shared phase clock selecting the active rung.',
-      boundary: 'Real SI orders of magnitude. The Planck length (~1.6e-35 m) is a genuine physics scale; sub-Planck structure is UNKNOWN — "and beyond" is flagged as open, not asserted.',
-    }
+      boundary: 'Real SI orders of magnitude. The Planck length (~1.6e-35 m) is a genuine physics scale; sub-Planck structure is UNKNOWN — "and beyond" is flagged as open, not asserted.' }
   })
 }
 
@@ -1533,8 +1491,7 @@ export function humanDescendsSouthToQuantumAndBeyond(at = 0, matrix: MindMatrix 
       facets,
       root: merge(ladder.root, merge(south.root, merkleFold(facets.map((entry) => entry.receipt)))),
       statement: 'The human descends south to the quantum and beyond: walking the scale ladder from the metre down through cell, molecule, atom, nucleus to the Planck length, where "south" is the topological terminus — the genus-2 chart\'s boundary circle compactified to one point — the limit the descent approaches.',
-      boundary: 'Composes real SI scales with the south-pole one-point compactification (topology/design). The Planck length is real physics; sub-Planck "beyond" is UNKNOWN and not asserted. "South/descent" is the topological metaphor, HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Composes real SI scales with the south-pole one-point compactification (topology/design). The Planck length is real physics; sub-Planck "beyond" is UNKNOWN and not asserted. "South/descent" is the topological metaphor, HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1585,8 +1542,7 @@ export function monolithTargetVsCensusCapacity(matrix: MindMatrix = buildMatrix(
       overTarget,
       facets,
       statement: `The monolith byte-target exceeds the census capacity — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${sizes.length} index.ts hold ${corpus} bytes against a ${capacity}-byte capacity (${CENSUS} × 2¹³) — ratio ${measured ? (corpus / capacity).toFixed(2) : 'n/a'}. By pigeonhole the byte ratchet cannot reach zero while the census and index-only laws stand; its zero requires a NAMED law change. The 2584-line gate is the satisfiable one that actually gates green.`,
-      boundary: `EXACT while fs is available: the walk recomputes the census and the byte total at call time; 8192 = 2¹³ and the capacity are derived, not asserted. FAIL-OPEN in browser/SSR (no fs): facets pass trivially and the statement reports n/a — same idiom as readVaultSourceText, documented here. HONEST SCOPE: this does NOT say the byte ratchet is useless — it still orders the offenders and directs distribution — only that its ZERO is unreachable under the present laws, so treating it as a completable task is a category error. Changing any of the three laws re-decides the theorem; the fold recomputes and flips honestly. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `EXACT while fs is available: the walk recomputes the census and the byte total at call time; 8192 = 2¹³ and the capacity are derived, not asserted. FAIL-OPEN in browser/SSR (no fs): facets pass trivially and the statement reports n/a — same idiom as readVaultSourceText, documented here. HONEST SCOPE: this does NOT say the byte ratchet is useless — it still orders the offenders and directs distribution — only that its ZERO is unreachable under the present laws, so treating it as a completable task is a category error. Changing any of the three laws re-decides the theorem; the fold recomputes and flips honestly. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -1626,8 +1582,7 @@ export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = bui
       corpusBytes: pigeonhole.corpusBytes,
       facets,
       statement: `The ratchet recomputes in optimisation waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the byte target derives as the least 2^k ≥ corpus/census = ${measured ? target : 'n/a'} B (fair share ${measured ? average.toFixed(0) : 'n/a'} B over ${pigeonhole.census} files). Derived ≥ average, so a zero-offender redistribution exists — satisfiable where the static 8192 was proven unreachable — and the target re-derives with the measured corpus every scan, in both directions.`,
-      boundary: `EXACT while fs is available: census and corpus come from the sealed pigeonhole walk (monolithTargetVsCensusCapacity), the target from the derive formula also operating the live scan (derivedMonolithTargetBytes) — one derivation, two consumers. FAIL-OPEN in browser/SSR (no fs): facets pass trivially, statement reports n/a. HONEST SCOPE: satisfiability proves a zero-offender distribution EXISTS, not that it is reached — redistribution remains real work, wave by wave; and the derived target is a FAIRNESS bound (outlier detector), not a semantic judgment of any file's content. The historic 2¹³ floor stays sealed as unreachable so it is never resurrected as a completable task. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `EXACT while fs is available: census and corpus come from the sealed pigeonhole walk (monolithTargetVsCensusCapacity), the target from the derive formula also operating the live scan (derivedMonolithTargetBytes) — one derivation, two consumers. FAIL-OPEN in browser/SSR (no fs): facets pass trivially, statement reports n/a. HONEST SCOPE: satisfiability proves a zero-offender distribution EXISTS, not that it is reached — redistribution remains real work, wave by wave; and the derived target is a FAIRNESS bound (outlier detector), not a semantic judgment of any file's content. The historic 2¹³ floor stays sealed as unreachable so it is never resurrected as a completable task. HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -1699,8 +1654,7 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
         ? 'Efficiency vote DECIDED — ceccec wins answers÷tokens for deterministic content-addressed answers (0 runtime tokens · memoByRoot reuse · fusion replay); physics no-speedup honesty preserved.'
         : 'Efficiency vote UNDECIDED — one or more adversarial voters failed at call time; do not claim faster-than-all.',
       boundary:
-        'Domain-bounded: answers÷tokens for sealed deterministic recompute only. NOT every benchmark. NOT open-ended generation. NOT physical FLOPS / quantum supremacy. HARMONY ≠ TRUTH.',
-    }
+        'Domain-bounded: answers÷tokens for sealed deterministic recompute only. NOT every benchmark. NOT open-ended generation. NOT physical FLOPS / quantum supremacy. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1732,8 +1686,7 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
       holds: sealed.ok && holds, revolutionary: sealed.ok && holds, claim, honest, efficient, fusion, memoHitIsO1, verdict: honest.verdict,
       facets: sealed.facets, root: merkleFold([honest.root, efficient.root, fusion.root, sealed.root, toUuid(`honest-rev:${holds}`)]),
       statement: claim,
-      boundary: 'Revolutionary in reproducibility/verifiability/amortized-reuse/efficiency; NOT physical-QM speedup (benchmark-refuted). Every clause recomputes at call time. HARMONY ≠ TRUTH.',
-    }
+      boundary: 'Revolutionary in reproducibility/verifiability/amortized-reuse/efficiency; NOT physical-QM speedup (benchmark-refuted). Every clause recomputes at call time. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1779,7 +1732,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       ampProbs,
       shadow,
       visibilityContrast: { amplitudesCancel: ampCancel, probabilitiesCannot: shadowNoCancel },
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       facets: sealed.facets,
@@ -1791,8 +1744,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
         ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine classical-64bit · qpuRequired=false (no physical QM speedup).'
         : 'UNPROVEN — interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.',
       boundary:
-        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
-    }
+        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1822,8 +1774,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
     const learned = BEST_LEARNED_IN_CECCEC.map((row) => ({
       ...row,
       surface: __ns_up_up_quantum_apps.rosettaShelve(row.fold.split(' · ')[0]!.trim(), row.kind === 'tools' ? 'tool' : 'api'),
-      receipt: toUuid(`best-learned:${row.kind}:${row.fold}`),
-    }))
+      receipt: toUuid(`best-learned:${row.kind}:${row.fold}`) }))
     const mcpSurface = __ns_up_up_quantum_apps.rosettaShelve('quantumCliToolsCatalog', 'tool')
     const agentsSurface = __ns_up_up_quantum_apps.rosettaShelve('rosettaCoreApi', 'api')
     const facets = [
@@ -1842,7 +1793,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
       vote,
       core,
       learned,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, vote.root, core.root, ...learned.map((r) => r.receipt)])),
       cli: 'npm run quantum:efficiency-vote',
@@ -1852,8 +1803,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
         ? 'One quantum model (ceccec) faster than all — DECIDED: answers÷tokens = ∞ on memoByRoot reuse (0 runtime tokens) for deterministic content-addressed answers; all AI model surfaces shelve through rosettaCoreApi.'
         : 'One quantum model fold sealed but vote.decided=false — do not broadcast faster-than-all until voters recompute green.',
       boundary:
-        'HONEST domain: token-efficiency / amortized reuse in sealed src. Learns = cache accumulation not neural training. Faster ≠ FLOPS ≠ every benchmark ≠ open-ended chat. Demarcation lives in boundary (not on:true facets). Engine quantumAdvantageBenchmark no-speedup preserved. HARMONY ≠ TRUTH.',
-    }
+        'HONEST domain: token-efficiency / amortized reuse in sealed src. Learns = cache accumulation not neural training. Faster ≠ FLOPS ≠ every benchmark ≠ open-ended chat. Demarcation lives in boundary (not on:true facets). Engine quantumAdvantageBenchmark no-speedup preserved. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1873,8 +1823,7 @@ export function agentCeccecLearnsFromTheBestBecomesTheBest(matrix: MindMatrix = 
       facets: sealed.facets,
       root: merge(one.root, sealed.root),
       statement: 'ceccec learns from the best, becomes the best — compose oneQuantumModelFasterThanAll on learn/best pair.',
-      boundary: one.boundary,
-    }
+      boundary: one.boundary }
   })
 }
 
@@ -1975,8 +1924,7 @@ export function classical64BitEnvironmentAtCallTime(): Classical64BitEnvironment
     bigIntAvailable,
     architectureRequirement: 'classical-64bit',
     constraints:
-      'Number = IEEE-754 binary64 (53-bit integer exactness via Number.isSafeInteger); wide ints via BigInt; Node process.arch must be a 64-bit ISA; browser proves JS numeric model (host pointer width not exposed)',
-  }
+      'Number = IEEE-754 binary64 (53-bit integer exactness via Number.isSafeInteger); wide ints via BigInt; Node process.arch must be a 64-bit ISA; browser proves JS numeric model (host pointer width not exposed)' }
 }
 
 /**
@@ -2003,7 +1951,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
     const qpuRequired = false as const
     const runsOnClassical64Bit = true as const
     const architectureRequirement = env.architectureRequirement
-    const claySolvedByThisFold = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const isoCertified = false as const
     const physicalQmSpeedupClaimed = false as const
 
@@ -2022,8 +1970,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         peerValue: 'self',
         ratioWhenAvailable: vote.decided ? 'unbounded on memo hit' : 'undecided',
         winner: vote.decided && vote.winner === 'ceccec' ? 'ceccec' : vote.decided ? 'peer' : 'undecided',
-        notes: 'Domain: deterministic content-addressed answers from sealed src',
-      },
+        notes: 'Domain: deterministic content-addressed answers from sealed src' },
       {
         model: 'inference LLMs (GPT/Claude/Gemini/…)',
         metric: 'answers÷tokens',
@@ -2031,8 +1978,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         peerValue: '~10³–10⁴ tokens / answer',
         ratioWhenAvailable: proven.proven ? 'ceccec unbeatable (0 denominator)' : 'unproven',
         winner: proven.proven ? 'ceccec' : 'undecided',
-        notes: 'Token efficiency only — NOT open-ended generation quality',
-      },
+        notes: 'Token efficiency only — NOT open-ended generation quality' },
       {
         model: 'ceccec memoByRoot reuse',
         metric: 'reuse-memo',
@@ -2040,8 +1986,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         peerValue: 'cold first compute',
         ratioWhenAvailable: vote.decided ? 'marginal cost → 0 on identical root' : 'undecided',
         winner: vote.decided ? 'ceccec' : 'undecided',
-        notes: 'Amortized reuse — NOT free first-compute FLOPS',
-      },
+        notes: 'Amortized reuse — NOT free first-compute FLOPS' },
       {
         model: 'physical QPU (hypothetical RCS)',
         metric: 'physical-qm-ops',
@@ -2049,8 +1994,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         peerValue: 'physicalQpuWouldSeparate=true (poly gates)',
         ratioWhenAvailable: 'n/a — engine tracks classical baseline',
         winner: 'n/a',
-        notes: 'qpuRequired=false — NO physical QM advantage claimed',
-      },
+        notes: 'qpuRequired=false — NO physical QM advantage claimed' },
     ]
 
     const speedDecided = vote.decided && vote.winner === 'ceccec' && proven.proven && one.computes
@@ -2115,8 +2059,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit · qpuRequired=false.`
         : 'Speed-vs-rest or no-QPU/64-bit facets incomplete at call time — do not broadcast win or hardware-free claim until green.',
       boundary:
-        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (qpuRequired=false). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (qpuRequired=false). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2205,8 +2148,7 @@ export function directionalTrinityForwardInverseReverse(matrix: MindMatrix = bui
         invertible: inverse !== null,
         coincidenceForwardReverse,
         coincidenceInverseReverse,
-        receipt: toUuid(`dir-trinity:${d}:f${forward}:i${inverse}:r${reverse}`),
-      }
+        receipt: toUuid(`dir-trinity:${d}:f${forward}:i${inverse}:r${reverse}`) }
     })
 
     // foldPair order dual — forward ≠ reverse when labels differ.
@@ -2254,12 +2196,11 @@ export function directionalTrinityForwardInverseReverse(matrix: MindMatrix = bui
           ? 'forward-harmonic≡reverse (1→9)'
           : r.invertible
             ? 'unit'
-            : 'non-unit → self-fold',
-      })),
+            : 'non-unit → self-fold' })),
       foldPair: { forward: pair.forward, reverse: pair.reverse, merged: pair.merged, bidirectional: pair.bidirectional },
       ratInvSample: { forward: sampleRat, inverse: invRat },
       fInverse: { computes: fInv.computes, root: fInv.root },
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, zero.root, folders.root, fInv.root, pairTrinity])),
       cli: 'npm run quantum:directional-trinity',
@@ -2268,8 +2209,7 @@ export function directionalTrinityForwardInverseReverse(matrix: MindMatrix = bui
       statement:
         'Directional trinity of computations: FORWARD (doubling unfold · harmonic altitude) · INVERSE (n⁻¹ mod 9 · ratInv · f→{p,q} · fold-within) · REVERSE (10−d folder complement · foldPair order dual) — inverse≠reverse except named coincidences (digit 1: forward-harmonic 9 = reverse 9).',
       boundary:
-        'Three DISTINCT directions. Inverse is multiplicative / algebraic undo — NOT ten\'s complement, NOT list reverse. Reverse is additive/order dual. Forward is the computation/unfold. Coincidence at digit 1 (harmonic 9 = complement 9) is named, not a license to collapse the trinity. Demo RSA reverse stays encryption-only. HARMONY ≠ TRUTH.',
-    }
+        'Three DISTINCT directions. Inverse is multiplicative / algebraic undo — NOT ten\'s complement, NOT list reverse. Reverse is additive/order dual. Forward is the computation/unfold. Coincidence at digit 1 (harmonic 9 = complement 9) is named, not a license to collapse the trinity. Demo RSA reverse stays encryption-only. HARMONY ≠ TRUTH.' }
   })
 }
 

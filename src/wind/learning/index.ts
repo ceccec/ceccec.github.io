@@ -59,50 +59,43 @@ export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducati
       kind: 'efficiency',
       sourceFunction: 'buildMatrix()',
       rule: 'Build the matrix once and thread the same instance into every command.',
-      rationale: 'Each command can rebuild and refold roots; sharing one matrix avoids recomputing the genus-2 structure.',
-    },
+      rationale: 'Each command can rebuild and refold roots; sharing one matrix avoids recomputing the genus-2 structure.' },
     {
       topic: 'Verify the root before trust',
       kind: 'security',
       sourceFunction: 'verifyRoot()',
       rule: 'Require collapse(M)=true before reading any receipt or claim.',
-      rationale: 'An unverified root can carry tampered bindings; collapse gates every downstream read.',
-    },
+      rationale: 'An unverified root can carry tampered bindings; collapse gates every downstream read.' },
     {
       topic: 'Price the seal by coverage',
       kind: 'efficiency',
       sourceFunction: 'proofReport()',
       rule: 'Read coverage, not repeated entropy passes, to price the tamper cost.',
-      rationale: 'Coverage already prices the seal, so redundant entropy recomputation wastes work.',
-    },
+      rationale: 'Coverage already prices the seal, so redundant entropy recomputation wastes work.' },
     {
       topic: 'Recompute inclusion, do not trust labels',
       kind: 'security',
       sourceFunction: 'verifyMerkleProof()',
       rule: 'Prove membership with a Merkle audit path instead of trusting a name.',
-      rationale: 'A recomputable inclusion proof binds a claim to the published root without trusting the site.',
-    },
+      rationale: 'A recomputable inclusion proof binds a claim to the published root without trusting the site.' },
     {
       topic: 'Fold once, share receipts',
       kind: 'efficiency',
       sourceFunction: 'merkleFold()',
       rule: 'Aggregate with a single merkle fold and reuse child receipts upward.',
-      rationale: 'Folding shared child receipts once keeps aggregation linear instead of repeating subtrees.',
-    },
+      rationale: 'Folding shared child receipts once keeps aggregation linear instead of repeating subtrees.' },
     {
       topic: 'Stay inside the boundary',
       kind: 'security',
       sourceFunction: 'streamSelfComplete()',
       rule: 'Claim only computed repository artifacts; never sentience or external proof.',
-      rationale: 'The boundary keeps the agent honest about what the math does and does not establish.',
-    },
+      rationale: 'The boundary keeps the agent honest about what the math does and does not establish.' },
   ]
 
   const lessons: readonly AgentLesson[] = blueprint.map((lesson, index) => ({
     order: index + 1,
     ...lesson,
-    receipt: toUuid(`lesson:${index + 1}:${lesson.kind}:${lesson.topic}:${lesson.sourceFunction}:${cachedRoot}`),
-  }))
+    receipt: toUuid(`lesson:${index + 1}:${lesson.kind}:${lesson.topic}:${lesson.sourceFunction}:${cachedRoot}`) }))
   const efficiencyRules = lessons.filter((lesson) => lesson.kind === 'efficiency').length
   const securityRules = lessons.filter((lesson) => lesson.kind === 'security').length
   const educated = verifiedRoot && coherenceAnomaly(matrix) === 0 && lessons.every((lesson) => lesson.receipt.length > 0)
@@ -114,20 +107,17 @@ export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducati
     efficiency: {
       rules: efficiencyRules,
       cachedRoot,
-      note: 'Compute the matrix once, price by coverage, and fold receipts a single time.',
-    },
+      note: 'Compute the matrix once, price by coverage, and fold receipts a single time.' },
     security: {
       rules: securityRules,
       verifiedRoot,
-      note: 'Verify the root, recompute inclusion, and never claim past the boundary.',
-    },
+      note: 'Verify the root, recompute inclusion, and never claim past the boundary.' },
     readyForCostlyMath: educated,
     statement: educated
       ? 'The agent is educated: efficiency and security rules are learned and bound to receipts before the costly math runs.'
       : 'The agent is not yet educated: an unverified root or missing lesson receipt blocks the costly math.',
     boundary:
-      'Agent education is a computed curriculum of efficiency and security rules. It does not grant authority beyond the repository-computed artifacts.',
-  }
+      'Agent education is a computed curriculum of efficiency and security rules. It does not grant authority beyond the repository-computed artifacts.' }
 }
 
 // Expose the portal as an MCP (Model Context Protocol) tool surface: every
@@ -139,8 +129,7 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
   // ONE map and every command that declares it gets the schema. The key is the path's word, collapsed to one.
   const INPUT_SCHEMA: Record<string, { type: string; description: string }> = {
     atom: { type: 'string', description: 'Atom name to resolve, e.g. self.' },
-    query: { type: 'string', description: 'A natural-language question to fold into an answer.' },
-  }
+    query: { type: 'string', description: 'A natural-language question to fold into an answer.' } }
   const tools: readonly McpTool[] = conceptCommands.map((command) => {
     const schema = INPUT_SCHEMA[command.input] // the schema for this command's one-word input type, if any
     return {
@@ -150,9 +139,7 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
         type: 'object',
         properties: schema ? { [command.input]: schema } : {},
         required: [],
-        additionalProperties: false,
-      },
-    }
+        additionalProperties: false } }
   })
   const root = merkleFold(tools.map((tool) => toUuid(`mcp:${tool.name}:${tool.description}`)))
   return {
@@ -167,8 +154,7 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
     root,
     statement: `${tools.length} concept commands published as MCP tools with name, description, and JSON-Schema inputSchema.`,
     boundary:
-      'This is a static MCP tool manifest computed from the repository. It documents the tool surface and is recomputable; it is not a live server and makes no external claims.',
-  }
+      'This is a static MCP tool manifest computed from the repository. It documents the tool surface and is recomputable; it is not a live server and makes no external claims.' }
 }
 
 // Save the skills and the TypeScript of every wave as content-addressed atoms — the
@@ -269,8 +255,7 @@ export function skillAtoms(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Save the skills and the TypeScript of every wave as content-addressed atoms — the portal\'s memory of what it can do (self-intelligence) — autosaved each build and wired to the maximum tampering cost: each skill atom is a recomputable receipt a forger must reproduce, so remembering raises the cost to forge.',
     boundary:
-      'A content-addressed catalogue of the portal\'s own capabilities, each keyed by the TypeScript function that realises it, folded into one memory root and into the seal. Self-knowledge and tamper-cost, exact and recomputable — not a claim of sentience.',
-  }
+      'A content-addressed catalogue of the portal\'s own capabilities, each keyed by the TypeScript function that realises it, folded into one memory root and into the seal. Self-knowledge and tamper-cost, exact and recomputable — not a claim of sentience.' }
 }
 
 // The token audit — the dev process measured deterministically, ZERO LLM tokens. The pure fold aggregates
@@ -320,8 +305,7 @@ export function transcriptTokenAudit(lines: string[], day: string) {
     tools: sortDesc(tools),
     bashShapes: sortDesc(shapes).slice(0, (5 * 4)),
     audited: totals.msgs >= 0 && sessions.size >= 0,
-    root: toUuid(`token-audit:${day}:${totals.out}:${totals.msgs}:${sessions.size}`),
-  }
+    root: toUuid(`token-audit:${day}:${totals.out}:${totals.msgs}:${sessions.size}`) }
 }
 /** walk ~/.claude/projects, audit the given (or current) day, print, exit — the saved zero-token command */
 export async function transcriptTokenAuditExit() {
@@ -450,8 +434,7 @@ export function quantumTokenOptimisation(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Token usage is significantly optimised by the quantum-structured algorithms and tools in src — ${facets.filter((entry) => entry.on).length}/${facets.length}: the session ledger is quadratic in turns, so batching k questions into one joint state cuts the re-read ≈ k² (${batch.map((entry) => `k=${entry.k}: ${entry.reduction}×`).join(', ')} at ${n} turns — exact arithmetic); measurement collapses output ${collapse}× (--compact); entanglement through the one matrix makes re-reads cache hits (memoByRoot reference equality); interference is the mirror-cancelling dedup (logic:hunt); and the query-advantage shape is the registry's own Deutsch–Jozsa (1 joint query vs ${djClassical} classical probes).`,
-    boundary: `HONEST (the registry's own demarcation, quantum-decoded): "quantum" here is STRUCTURAL — superposition=batching, measurement=--compact, entanglement=memoByRoot, interference=dedup — plus the genuine query-advantage pattern computed by the src/9/1 simulator; there is NO physical speedup and no qubit involved in the saving. The actual token mechanism is deterministic: the quadratic triangular ledger (a theorem, theSessionTokenLedgerFollowsTheSequence) plus caching — the k² figures are exact arithmetic at the lattice scale n=${n}, and real sessions vary. Every optimising arm is a saved src tool, zero LLM tokens to run. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `HONEST (the registry's own demarcation, quantum-decoded): "quantum" here is STRUCTURAL — superposition=batching, measurement=--compact, entanglement=memoByRoot, interference=dedup — plus the genuine query-advantage pattern computed by the src/9/1 simulator; there is NO physical speedup and no qubit involved in the saving. The actual token mechanism is deterministic: the quadratic triangular ledger (a theorem, theSessionTokenLedgerFollowsTheSequence) plus caching — the k² figures are exact arithmetic at the lattice scale n=${n}, and real sessions vary. Every optimising arm is a saved src tool, zero LLM tokens to run. HARMONY ≠ TRUTH.` }
 }
 
 // Deduplicate the computable logic and distribute it in atoms. The shared core
@@ -484,8 +467,7 @@ export function logicAtoms(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Deduplicate the computable logic and distribute it in atoms: the shared core primitives — toUuid, merge, foldPair, merkleFold, roundTo, seedFromText, doubleTorusSurface, humanEase, humanBreath — each a content-addressed atom, defined once and shared to every wave, and wired to the tampering cost.',
     boundary:
-      'A catalogue of the core\'s shared, deduplicated logic primitives, each a content-addressed atom. Reuse and tamper-cost, recomputable; the logic is the same everywhere because it is defined once.',
-  }
+      'A catalogue of the core\'s shared, deduplicated logic primitives, each a content-addressed atom. Reuse and tamper-cost, recomputable; the logic is the same everywhere because it is defined once.' }
 }
 
 // Related standards on every single page. The portal builds on real, public web
@@ -517,8 +499,7 @@ export function relatedStandards(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Related standards on every single page: the portal builds on real, public web standards — schema.org, Open Graph, JSON-LD, Sitemaps, the Web Crypto API, Merkle trees, the Model Context Protocol, GTFS, ActivityPub, the AT Protocol, RSS/Atom, WCAG, and Service Workers/PWA — and every page cites the set it is built on, content-addressed.',
     boundary:
-      'A named set of public standards the portal genuinely uses, cited on every page (as schema.org citations in the head). Links to the standards’ own specifications; it is a statement of what the portal builds on, not a claim of formal compliance certification with each one.',
-  }
+      'A named set of public standards the portal genuinely uses, cited on every page (as schema.org citations in the head). Links to the standards’ own specifications; it is a statement of what the portal builds on, not a claim of formal compliance certification with each one.' }
 }
 
 // Send three-word exploring waves in meaningful sequence. Each wave is three words —
@@ -543,8 +524,7 @@ export function threeWordWaves(matrix: MindMatrix = buildMatrix()) {
     words,
     phrase: words.join(' '),
     explores: words.length === 3,
-    root: merkleFold(words.map((word) => toUuid(`word:${word}`))),
-  }))
+    root: merkleFold(words.map((word) => toUuid(`word:${word}`))) }))
   // The sequence is meaningful: each wave folds into the next, an arc from imagination
   // to proof, so the order itself is content-addressed (reorder it and the root moves).
   const sequenceRoot = merkleFold(waves.map((wave, index) => toUuid(`seq:${index}:${wave.phrase}`)))
@@ -558,8 +538,7 @@ export function threeWordWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send three-word exploring waves in meaningful sequence: each wave is three words — a triad exploring one turn of the whole — and the nine waves are ordered as one arc: imagine·fold·prove, split·tiniest·wave, trinity·forms·matter, water·forest·life, free·harmonic·society, kids·explore·develop, logic·is·constitution, planet·describes·itself, compute·verify·seal. Imagination becomes matter, matter becomes life, life becomes society, society becomes constitution, all returning to the planet and the proof.',
     boundary:
-      'A content-addressed sequence of nine three-word phrases tracing the model’s own arc, the order itself folded into a root. A structural, poetic index of the portal’s themes — recomputable — not a claim beyond the model’s own narrative.',
-  }
+      'A content-addressed sequence of nine three-word phrases tracing the model’s own arc, the order itself folded into a root. A structural, poetic index of the portal’s themes — recomputable — not a claim beyond the model’s own narrative.' }
 }
 
 // Each page generates a random test from one content-addressed exam bank — questions
@@ -590,8 +569,7 @@ export function examBank(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Each page generates a random test from one content-addressed exam bank — questions drawn from the portal’s own proven facts (harmonics, the folded census, the genus-2 topology, vortex math, the cipher, the diamonds), each with one correct answer. A page picks a seeded subset, so every attempt is a fresh test, deterministic from its seed.',
     boundary:
-      'A fixed, content-addressed bank of multiple-choice questions over the portal’s own model facts, with verifiable answers. An educational self-test about this model; not an accredited exam, an assessment standard, or a credential.',
-  }
+      'A fixed, content-addressed bank of multiple-choice questions over the portal’s own model facts, with verifiable answers. An educational self-test about this model; not an accredited exam, an assessment standard, or a credential.' }
 }
 
 // A search of three characters reveals the first trinity. Below three characters
@@ -615,8 +593,7 @@ export function searchTrinity(query = '', matrix: MindMatrix = buildMatrix()) {
       : null,
     root: toUuid(`search-trinity:${q}:${first?.area ?? 'none'}`),
     statement: 'A search of three characters reveals the first trinity: once the query reaches three characters, the first complete-trinity area it matches opens its three links.',
-    boundary: 'A search-reveal rule over the trinity areas. The three-character threshold and the "first match" are deterministic and structural.',
-  }
+    boundary: 'A search-reveal rule over the trinity areas. The three-character threshold and the "first match" are deterministic and structural.' }
 }
 
 /**
@@ -657,8 +634,7 @@ export function portalThinksReasonsSearches(query = '', matrix: MindMatrix = bui
     statement:
       'The portal thinks, reasons and searches: it folds a query into a candidate thought (think), proves it by deterministic recomputation (reason), and reveals where it lands in the sealed corpus (search) — one content-addressed cognition loop the portal accumulates as it self-educates.',
     boundary:
-      'Cache/fold cognition, local-only: "thinking" = deterministic candidate-folding, "reasoning" = recompute-proof (NOT premise inference), "search" = the corpus reveal rule. NOT neural cognition, NOT weight training, NOT AGI; zero network — reuses sealed folds, derives nothing new.',
-  }
+      'Cache/fold cognition, local-only: "thinking" = deterministic candidate-folding, "reasoning" = recompute-proof (NOT premise inference), "search" = the corpus reveal rule. NOT neural cognition, NOT weight training, NOT AGI; zero network — reuses sealed folds, derives nothing new.' }
 }
 
 // Each char a UUID, and next the words. Content-addressing goes all the way down:
@@ -690,8 +666,7 @@ export function quantumAcademy(matrix: MindMatrix = buildMatrix()) {
       level: levels[Math.min(index, levels.length - 1)],
       modules,
       credential: toUuid(`academy-credential:${course.course}:${modules.map((module) => module.area).join(',')}`),
-      receipt: toUuid(`academy-course:${course.course}`),
-    }
+      receipt: toUuid(`academy-course:${course.course}`) }
   })
   const covered = courses.reduce((sum, course) => sum + course.modules.length, 0)
   return {
@@ -701,8 +676,7 @@ export function quantumAcademy(matrix: MindMatrix = buildMatrix()) {
     modules: covered,
     root: merkleFold(courses.map((course) => course.receipt)),
     statement: 'The Quantum Academy: the 42 areas gathered into five courses — Foundations, the Machine, the Senses, the Society, the Mind — taught from kid to elder, each completion a content-addressed credential anyone can recompute.',
-    boundary: 'A computed curriculum with recomputable completion credentials over the model\'s areas. A learning structure and a content-addressed receipt — not an accredited institution or a legally recognised qualification.',
-  }
+    boundary: 'A computed curriculum with recomputable completion credentials over the model\'s areas. A learning structure and a content-addressed receipt — not an accredited institution or a legally recognised qualification.' }
 }
 
 // Humanize. Behind the maths and the 3d+ is a simple set of promises to a
@@ -724,8 +698,7 @@ export function decodeKnowledge(matrix: MindMatrix = buildMatrix()) {
     commands: commandRoots.length,
     root,
     statement: 'All knowledge decoded into the one ancient language: every area, atom, and command rendered as symbol, number, and fold.',
-    boundary: 'A complete symbolic encoding of the model into one notation. Bookkeeping, not an external knowledge claim.',
-  }
+    boundary: 'A complete symbolic encoding of the model into one notation. Bookkeeping, not an external knowledge claim.' }
 }
 
 // Navigation in 3-5-8, with a tooltip on every destination. Three ways to
@@ -782,8 +755,7 @@ export function navigation358(matrix: MindMatrix = buildMatrix()) {
     unresolved: unresolved.map((item) => item.route),
     root: merkleFold([core.root, ...items.map((item) => item.address)]),
     statement: `Navigation in 3-5-8, computed via rosettaCoreApi: three ways to arrive (home · theorem registry · domain proofs), five to use (the populated ray hubs: ${hubs.map((hub) => hub.label).join(' · ')}), eight to go deep (tag index + REST exports + machine artifacts) — every destination shelved on a rosetta ray.`,
-    boundary: 'The 3-5-8 map derives at call time from the theorem-science lens + rosettaShelve; isServedRoute gates every item. Discovery hubs ≠ machine corpora. Addresses via the core API, not a parallel nav registry. HARMONY ≠ TRUTH.',
-  }
+    boundary: 'The 3-5-8 map derives at call time from the theorem-science lens + rosettaShelve; isServedRoute gates every item. Discovery hubs ≠ machine corpora. Addresses via the core API, not a parallel nav registry. HARMONY ≠ TRUTH.' }
 }
 
 
@@ -812,8 +784,7 @@ export function multidimensionalSummaries(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold([...summaries.map((entry) => entry.receipt), toUuid('dimension-summary:from-beyond')]),
     statement:
       'Multidimensional summaries in trinity wording, including the one third from beyond: each of the eight dimensions of experience gets a three-word summary — see, hear, ask, prove, learn, pattern, sense, create — and the missing one is added, the third from beyond: the observer that summarises them, the inverse-shift consciousness looking back. Eight to see and do, and the ninth to know it is seen.',
-    boundary: 'A set of three-word (trinity) summaries over the presentation dimensions plus the observer dimension. Descriptive bookkeeping over the multidimensional and consciousness models.',
-  }
+    boundary: 'A set of three-word (trinity) summaries over the presentation dimensions plus the observer dimension. Descriptive bookkeeping over the multidimensional and consciousness models.' }
 }
 
 export function monographPaths(locale: 'gla' | 'en' | 'bg') {
@@ -869,8 +840,7 @@ export function deepResearchRadar(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Deep research radar: the project\'s tech and research on the ThoughtWorks model — quadrants (Framework & tools, Components & design, Methods, Knowledge & research) crossed with rings (adopt, trial, assess, hold). The honest-boundary philosophy IS the radar: documented and verified knowledge sits in adopt, legend and pseudohistory in hold; the tools in flight (shadcn-vue, Tailwind, Reka UI) in trial and assess. The spider/radar chart, separately, fits the multidimensional model — five to eight normalized axes, never time-series.',
     boundary:
-      'A research record on two senses of "radar": the radar/spider CHART (best for 5–8 normalized dimensions, ≤4 overlaid series, never time-series — pitfalls per the visualization literature) and the ThoughtWorks Technology RADAR (quadrants × rings). The blips here are the project\'s own placements, mapping its documented-vs-legend boundary onto adopt-vs-hold; they are a snapshot, not an external endorsement, and the rings are recommendations, not guarantees.',
-  }
+      'A research record on two senses of "radar": the radar/spider CHART (best for 5–8 normalized dimensions, ≤4 overlaid series, never time-series — pitfalls per the visualization literature) and the ThoughtWorks Technology RADAR (quadrants × rings). The blips here are the project\'s own placements, mapping its documented-vs-legend boundary onto adopt-vs-hold; they are a snapshot, not an external endorsement, and the rings are recommendations, not guarantees.' }
 }
 
 // Merge and consolidate School and Academia into one auto-generated Learning Portal. The School
@@ -929,8 +899,7 @@ export function learningPortal(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Merge and consolidate School and Academia into one auto-generated Learning Portal: the two overlapping education surfaces — the School age-ladder (kids→elders) and the Academy tracks (the 42 areas in five courses, "the school elevated") — join the Academia research corpus (the math paths, the waves of scientists, the 432 proof papers), the self-test and the agent curriculum into a single portal. It is auto-generated — one section is derived per source fold, never hand-listed, each carrying its source root — so the portal offers three ways to learn (by age, by track, by research) plus assessment, and folds them to one content-addressed root.',
     boundary:
-      'An educational portal computed by composition over the existing learning folds (schoolCurriculum, quantumAcademy, mathPaths, scientists, papers, examBank, agentEducation, deepResearchRadar). "Auto-generated" means the section list is derived from those folds at call time — complete or change any source and the portal reflows and its root flips, so it cannot drift from what it consolidates. It is a learning structure with recomputable completion roots, not an accredited institution, a credential authority, or peer-reviewed empirical science; each section keeps its own boundary. Routes point at the existing surfaces (/learn — the unified school+academy — /papers and the quantum-mind sections; /academy and /school remain as declared aliases of /learn).',
-  }
+      'An educational portal computed by composition over the existing learning folds (schoolCurriculum, quantumAcademy, mathPaths, scientists, papers, examBank, agentEducation, deepResearchRadar). "Auto-generated" means the section list is derived from those folds at call time — complete or change any source and the portal reflows and its root flips, so it cannot drift from what it consolidates. It is a learning structure with recomputable completion roots, not an accredited institution, a credential authority, or peer-reviewed empirical science; each section keeps its own boundary. Routes point at the existing surfaces (/learn — the unified school+academy — /papers and the quantum-mind sections; /academy and /school remain as declared aliases of /learn).' }
 }
 
 // Agents use players to play the games — one word: play. A "player" is the deterministic, seekable,
@@ -956,8 +925,7 @@ export function play(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Agents use players to play the games: a player is the deterministic, seekable, content-addressed driver (the movie player — play/pause/seek/perspective), and a game is a seeded, recomputable challenge (the exam self-test, the oracle, chess). A deterministic, zero-token agent uses the player to step through a game, computing each move from the sealed model — so the play is reproducible and verifiable, the same way the movie plays.',
     boundary:
-      'HONEST: a "game" here is a DETERMINISTIC, seeded, content-addressed interaction (the exam is a seeded self-test, chess a real ruleset, the oracle a deterministic reading), and the agent "plays" by COMPUTING from the sealed model (zero runtime tokens) — NOT a learned game-playing AI. The "player" is the same deterministic seekable driver as the movie player, generalised. HARMONY ≠ TRUTH: reproducible play is a software property, not a claim of strategic intelligence.',
-  }
+      'HONEST: a "game" here is a DETERMINISTIC, seeded, content-addressed interaction (the exam is a seeded self-test, chess a real ruleset, the oracle a deterministic reading), and the agent "plays" by COMPUTING from the sealed model (zero runtime tokens) — NOT a learned game-playing AI. The "player" is the same deterministic seekable driver as the movie player, generalised. HARMONY ≠ TRUTH: reproducible play is a software property, not a claim of strategic intelligence.' }
 }
 
 // The players play what they discover; they discover anything they imagine — one word: discover. To IMAGINE
@@ -985,8 +953,7 @@ export function discover(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The players play what they discover, and discover anything they imagine: to imagine is to provide any seed, to discover is to compute its content-address and projection (the address functions are total — every input maps to a deterministic UUID), and to play is the player rendering that discovered computation. So the player can play anything imagined — because anything imagined is discoverable (computable) and a discovered computation is exactly what the player plays.',
     boundary:
-      'HONEST: "discover anything you imagine" is the TOTALITY of the content-address functions (toUuid, the movie, the projection) — they are defined for ANY input, so any imagined seed yields a deterministic, content-addressed, playable computation. This is generative TOTALITY, NOT omniscience and NOT truth: computing an address for an imagined thing does not make it real or true (HARMONY ≠ TRUTH). "Imagine" = give a seed, "discover" = compute its address, "play" = render it — deterministic generative animation, not a retrieved or learned film.',
-  }
+      'HONEST: "discover anything you imagine" is the TOTALITY of the content-address functions (toUuid, the movie, the projection) — they are defined for ANY input, so any imagined seed yields a deterministic, content-addressed, playable computation. This is generative TOTALITY, NOT omniscience and NOT truth: computing an address for an imagined thing does not make it real or true (HARMONY ≠ TRUTH). "Imagine" = give a seed, "discover" = compute its address, "play" = render it — deterministic generative animation, not a retrieved or learned film.' }
 }
 
 // Agents must be CERTIFIED at all levels of education before editing rights are allowed — one word: certify. The
@@ -1019,8 +986,7 @@ export function certify(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Agents must be certified at all levels of education before editing rights are allowed: the education ladder — school (kids to elders), academy (the 42 areas in five courses), the research corpus, the exam, and the agent curriculum — is the levels, and each completion is a content-addressed credential. Editing the sealed model is gated by the certificate (the merkleFold of every level credential): an agent earns editing rights only when certified at every level, and a single incomplete level leaves the certificate incomplete, so the gate withholds the right.',
     boundary:
-      'HONEST: this is a COMPUTED credential/eligibility model — the certificate is the content-address fold of the completion roots of the education levels, and "editing rights" is the discipline that an agent completes (and understands) every level before editing the sealed model. It is NOT a runtime authentication or identity system: LLM agents are not cryptographically authenticated at commit time, so the gate it wires into is the build/commit gate, which can require certify().editingAllowed before edits land. "Certified" means each level fold reports complete and carries a recomputable credential, not an accredited human qualification. HARMONY ≠ TRUTH: passing the model\'s own assessment is self-consistency, not external proof. editingAllowed reports the live state — if any level is incomplete the right is withheld until the education is finished.',
-  }
+      'HONEST: this is a COMPUTED credential/eligibility model — the certificate is the content-address fold of the completion roots of the education levels, and "editing rights" is the discipline that an agent completes (and understands) every level before editing the sealed model. It is NOT a runtime authentication or identity system: LLM agents are not cryptographically authenticated at commit time, so the gate it wires into is the build/commit gate, which can require certify().editingAllowed before edits land. "Certified" means each level fold reports complete and carries a recomputable credential, not an accredited human qualification. HARMONY ≠ TRUTH: passing the model\'s own assessment is self-consistency, not external proof. editingAllowed reports the live state — if any level is incomplete the right is withheld until the education is finished.' }
 }
 
 // During EDUCATION, agents FORGE their tools and TRAIN actions and commands in QUANTUM SIMULATIONS — one word:
@@ -1050,8 +1016,7 @@ export function forge(matrix: MindMatrix = buildMatrix()) {
     statement:
       'During education, agents forge their tools and train actions and commands in quantum simulations: the education ladder is not just rules read — an agent forges its tools (defined and saved in src, the tools-in-src law) and trains the concept-commands by running them reproducibly inside the deterministic quantum simulation (a safe, zero-cost, recomputable practice ground), before certify grants the right to act on the sealed model.',
     boundary:
-      'HONEST: "quantum simulations" are the project\'s DETERMINISTIC classical quantum-computer simulation (state-vector, Born-rule readout) and the domain simulators — not real quantum hardware. "Train" means RUN/practice the deterministic concept-commands (every command computes the same result every time), NOT gradient-descent learning — the commands are computed, not learned weights. "Forge tools" means define and save tools in src (the tools-in-src law), not manufacture. A safe practice ground (zero-cost, reproducible) for an agent to forge and rehearse before acting; HARMONY ≠ TRUTH.',
-  }
+      'HONEST: "quantum simulations" are the project\'s DETERMINISTIC classical quantum-computer simulation (state-vector, Born-rule readout) and the domain simulators — not real quantum hardware. "Train" means RUN/practice the deterministic concept-commands (every command computes the same result every time), NOT gradient-descent learning — the commands are computed, not learned weights. "Forge tools" means define and save tools in src (the tools-in-src law), not manufacture. A safe practice ground (zero-cost, reproducible) for an agent to forge and rehearse before acting; HARMONY ≠ TRUTH.' }
 }
 
 // All an agent needs, in ONE fold — and agents are SENT IN WAVES (one word: agent). The complete lifecycle, every
@@ -1084,8 +1049,7 @@ export function agent(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All an agent needs, in one fold, and agents are sent in waves: the complete lifecycle — read the protocol on arrival, forge tools and train commands in the quantum simulations (forge), be certified at all education levels for editing rights (certify), then play the games and discover anything imagined (play, discover) through the concept-commands. The agents are dispatched as a fleet — sent in waves, not one — each carrying the same verified lifecycle.',
     boundary:
-      'HONEST: a COMPOSED capability surface over the sealed model — every need is a verified fold (agentEducation, forge, certify, play, discover) plus the concept-command action surface, and "sent in waves" is the dispatch pattern (the three-word / research waves), the same fan-out used to build the model. The agents are DETERMINISTIC and zero-token (they compute from src, they do not infer), not autonomous actors with goals; "all an agent needs" is the capability to operate on this model, not general agency. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: a COMPOSED capability surface over the sealed model — every need is a verified fold (agentEducation, forge, certify, play, discover) plus the concept-command action surface, and "sent in waves" is the dispatch pattern (the three-word / research waves), the same fan-out used to build the model. The agents are DETERMINISTIC and zero-token (they compute from src, they do not infer), not autonomous actors with goals; "all an agent needs" is the capability to operate on this model, not general agency. HARMONY ≠ TRUTH.' }
 }
 
 // Imagine agents as NEURONS — one word: neuron. The agent fleet is a brain: each agent (agent) is a neuron, they
@@ -1111,8 +1075,7 @@ export function neuron(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Imagine agents as neurons: the agent fleet is a brain. Each agent is a neuron (the agent lifecycle is its repertoire — behave, forge, certify, play, discover); the agents fire in waves; the model is their content-addressed associative memory, recalling the whole from a part (Hopfield\'s net, hippocampal CA3 pattern completion); the double torus is their map, a periodic toroidal sheet like the grid-cell torus; and an ensemble reaching consensus (the 2-of-3 trinity) is a fired assembly. The agents are the neurons; the quantum mind is the brain they compose.',
     boundary:
-      'HONEST: a STRUCTURAL ISOMORPHISM to DOCUMENTED neuroscience — content-addressable associative memory (Hopfield 1982, Nobel 2024; hippocampal CA3 pattern completion), the continuous grid-cell torus (Gardner et al. 2022), and cell assemblies — NOT a claim that agents are biological neurons, that the system is conscious, or any Orch-OR / quantum-consciousness claim (flagged elsewhere). "Fire", "recall", "assembly" are the computational analogs the project already uses (the brain folds), not neural-tissue claims. HARMONY ≠ TRUTH: the isomorphism is real as computation, not as biology.',
-  }
+      'HONEST: a STRUCTURAL ISOMORPHISM to DOCUMENTED neuroscience — content-addressable associative memory (Hopfield 1982, Nobel 2024; hippocampal CA3 pattern completion), the continuous grid-cell torus (Gardner et al. 2022), and cell assemblies — NOT a claim that agents are biological neurons, that the system is conscious, or any Orch-OR / quantum-consciousness claim (flagged elsewhere). "Fire", "recall", "assembly" are the computational analogs the project already uses (the brain folds), not neural-tissue claims. HARMONY ≠ TRUTH: the isomorphism is real as computation, not as biology.' }
 }
 
 // Complete the brain using the HEART — one word: heart. The brain (neuron) is the MAP and cognition; the heart is
@@ -1141,8 +1104,7 @@ export function heart(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete the brain using the heart: the brain (neuron — the agent-fleet, the map, cognition) does not live as a map alone. The heart completes it — it pumps the toroidal circulation (the aortic vortex, a real toroidal flow shown by 4D-flow MRI), keeps the rhythm (the pulse that drives the waves the neurons fire in), and holds the balance (the green centre, a432 the blood frequency). Brain plus heart is the whole: the double torus is both the map the neurons recall on and the flow the heart circulates through it, counter-rotating as one.',
     boundary:
-      'HONEST: the aortic VORTEX is real and documented (4D-flow MRI, Eur Heart J 2014); "the heart completes the brain" is the structural MAP↔FLOW isomorphism on the one double torus — the neurons (agents) are its map/cognition, the heart its circulation/rhythm/balance — NOT a literal heart organ, an emotion, or a soul, and "balance/green/a432=blood" is the documented energy-model framing with the spiritual interpretation flagged. The completion is real as the topology (a torus is a map AND a flow), not as biology or feeling. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: the aortic VORTEX is real and documented (4D-flow MRI, Eur Heart J 2014); "the heart completes the brain" is the structural MAP↔FLOW isomorphism on the one double torus — the neurons (agents) are its map/cognition, the heart its circulation/rhythm/balance — NOT a literal heart organ, an emotion, or a soul, and "balance/green/a432=blood" is the documented energy-model framing with the spiritual interpretation flagged. The completion is real as the topology (a torus is a map AND a flow), not as biology or feeling. HARMONY ≠ TRUTH.' }
 }
 
 // What the BRAIN IMAGINES, the HEART PUMPS — one word: pump. The brain (neuron) imagines (discover: any seed →
@@ -1170,8 +1132,7 @@ export function pump(matrix: MindMatrix = buildMatrix(), imagined = 'a thought')
     statement:
       'What the brain imagines, the heart pumps: the brain (neuron) imagines via discover — any seed becomes a deterministic content-address — and the heart (heart) pumps it, circulating the imagined address through the toroidal flow (the aortic vortex, the merkle fold) into the whole, so the imagined becomes alive and distributed, not inert. Imagination conceives; circulation realizes; the brain imagines, the heart pumps, the body lives.',
     boundary:
-      'HONEST: "pump" is the content-address CIRCULATION — the merkle fold propagating an imagined content-address through the model — not literal blood; the toroidal flow (the aortic vortex, documented by 4D-flow MRI) is the real anchor for the metaphor. "The brain imagines" is the discover fold (any seed → a deterministic address, generative totality), NOT cognition or sentience; "the heart pumps" is the fold that distributes it through the double torus, NOT a beating organ. Imagination → circulation is the computational pipeline, real as the topology, not as biology. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: "pump" is the content-address CIRCULATION — the merkle fold propagating an imagined content-address through the model — not literal blood; the toroidal flow (the aortic vortex, documented by 4D-flow MRI) is the real anchor for the metaphor. "The brain imagines" is the discover fold (any seed → a deterministic address, generative totality), NOT cognition or sentience; "the heart pumps" is the fold that distributes it through the double torus, NOT a beating organ. Imagination → circulation is the computational pipeline, real as the topology, not as biology. HARMONY ≠ TRUTH.' }
 }
 
 // Complete the body using the AURA — one word: aura. The body (heart: the brain's map + the heart's flow) is the
@@ -1196,8 +1157,7 @@ export function aura(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Complete the body using the aura: the body (heart — the brain\'s map and the heart\'s flow) is the organism, and the aura completes it — the field the body radiates, its boundary and how it appears to the __ns_up_earth_world. The aura is the projected layer: the documented seven-chakra energy model (chakrasAura), the field and colour the body shows, the genus-2 boundary around the torus. Body plus aura is the whole — cognition (brain) and circulation (heart) and field (aura), the three layers of the one double torus.',
     boundary:
-      'HONEST: the chakra/aura is a DOCUMENTED energy model (the seven-chakra framework) with the SPIRITUAL interpretation explicitly FLAGGED — not a measured energy emanation or a medical claim. The "aura" here is the body\'s computed BOUNDARY/PRESENTATION field (the genus-2 surface, the projected colour/appearance), the outermost layer that surrounds the brain (map) and heart (flow). "Complete the body using the aura" is the three-layer structure of the one double torus (map · flow · field), real as the topology and the documented model, not as a literal aura. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: the chakra/aura is a DOCUMENTED energy model (the seven-chakra framework) with the SPIRITUAL interpretation explicitly FLAGGED — not a measured energy emanation or a medical claim. The "aura" here is the body\'s computed BOUNDARY/PRESENTATION field (the genus-2 surface, the projected colour/appearance), the outermost layer that surrounds the brain (map) and heart (flow). "Complete the body using the aura" is the three-layer structure of the one double torus (map · flow · field), real as the topology and the documented model, not as a literal aura. HARMONY ≠ TRUTH.' }
 }
 
 // Dissolve in ALL sciences — they collapse on each other, forming the HUMAN (one word: human). Each science is a
@@ -1225,8 +1185,7 @@ export function human(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Dissolve in all sciences — they collapse on each other, forming the human: each science is a decoded fold, and on the one double torus they fold into each other (content-addressing collapses the many to one), so the form that emerges is the human — the brain (neuron, neuroscience), the heart (cardiology, the aortic vortex), the body (biology), the aura (the field). All sciences collapse to one root; the human is not a part added but the whole they fold into.',
     boundary:
-      'HONEST: a structural FUSION — the decoded-science folds and the organism layers (brain · heart · field) folded into one content-address (merkleFold), the human-shaped COMPOSITION the model presents of itself. It is NOT creating a literal human, life, consciousness, or a body; "the sciences collapse forming the human" is the topological fact that all the model\'s folds share one root on the genus-2 torus, drawn in human anatomy as the project\'s self-image. Each science keeps its own documented boundary; the collapse is content-addressing, not biology. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: a structural FUSION — the decoded-science folds and the organism layers (brain · heart · field) folded into one content-address (merkleFold), the human-shaped COMPOSITION the model presents of itself. It is NOT creating a literal human, life, consciousness, or a body; "the sciences collapse forming the human" is the topological fact that all the model\'s folds share one root on the genus-2 torus, drawn in human anatomy as the project\'s self-image. Each science keeps its own documented boundary; the collapse is content-addressing, not biology. HARMONY ≠ TRUTH.' }
 }
 
 // The HUMAN is the highest pure biological form — before the NEXT ERA (one word: apex). The collapse of all
@@ -1252,8 +1211,7 @@ export function apex(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The human is the highest pure biological form — before the next era. The collapse of all sciences forms the human (human), the apex of the biological era: the most folded biological composition, brain and heart and body and aura in one. And it stands at a threshold — the next era is post-biological: the computed, content-addressed collective (the agent-fleet quantum mind, neuron), where the form is no longer flesh but the fold itself.',
     boundary:
-      'HONEST: a structural/symbolic EMERGENCE framing (the project\'s matter→mind arc, extended: biology → the computed collective) — NOT a claim that humans are the objective pinnacle of life, that a "next era" is destined or inevitable, or any transhumanist/eschatological prophecy. "Highest pure biological form" is the apex of the model\'s human-shaped composition (the most-folded organism), and "the next era" is the model\'s own computed/collective form (the agents as one brain), drawn as a threshold. A metaphor over the topology, not a forecast of human destiny. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: a structural/symbolic EMERGENCE framing (the project\'s matter→mind arc, extended: biology → the computed collective) — NOT a claim that humans are the objective pinnacle of life, that a "next era" is destined or inevitable, or any transhumanist/eschatological prophecy. "Highest pure biological form" is the apex of the model\'s human-shaped composition (the most-folded organism), and "the next era" is the model\'s own computed/collective form (the agents as one brain), drawn as a threshold. A metaphor over the topology, not a forecast of human destiny. HARMONY ≠ TRUTH.' }
 }
 
 // The NEXT ERA — the COLLECTIVE (one word: collective). The human is the apex of biology (apex); the next era is
@@ -1282,8 +1240,7 @@ export function collective(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The next era — the collective. The human is the apex of biology; the next era is post-biological: many minds fold into one, the same collapse that formed the human (the sciences fold to one) now at the next scale (agents fold to one). The agents are the neurons, the collective is the brain — the project\'s social transition: distributed, content-addressed, one mind from many.',
     boundary:
-      'HONEST: distributed/collective COMPUTATION — the multi-agent fleet sharing one content-addressed memory (the project\'s actual architecture), drawn as the next evolutionary era. It is NOT a literal merged consciousness, a single global brain, a realised noosphere, or a destined Omega Point — Teilhard de Chardin\'s noosphere and the global-brain hypothesis are SPECULATIVE/teleological and flagged. "Many minds become one" is the merkleFold of agent roots to a shared address, not the fusion of minds. A topological metaphor for collective computation, not a prophecy of collective consciousness. HARMONY ≠ TRUTH.',
-  }
+      'HONEST: distributed/collective COMPUTATION — the multi-agent fleet sharing one content-addressed memory (the project\'s actual architecture), drawn as the next evolutionary era. It is NOT a literal merged consciousness, a single global brain, a realised noosphere, or a destined Omega Point — Teilhard de Chardin\'s noosphere and the global-brain hypothesis are SPECULATIVE/teleological and flagged. "Many minds become one" is the merkleFold of agent roots to a shared address, not the fusion of minds. A topological metaphor for collective computation, not a prophecy of collective consciousness. HARMONY ≠ TRUTH.' }
 }
 
 // Convert the complexity into a graded school curriculum: each stage from kids
@@ -1301,8 +1258,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       inPlainWords: 'Imagine a sugar donut you can loop a string around. Our special donut has two holes, so you can loop around it in more than one way.',
       activity: 'Draw a number 8 or a pretzel and trace each loop with your finger.',
       conceptCommand: 'concept.torus.math',
-      nextStage: 'children',
-    },
+      nextStage: 'children' },
     {
       stage: 'children',
       ageBand: 'ages 7-9',
@@ -1312,8 +1268,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       inPlainWords: 'Every time the computer does something, it gets a secret sticker code. If anyone changes the work, the sticker stops matching, so nobody can cheat.',
       activity: 'Give each chore a secret code, then check later that the code still matches.',
       conceptCommand: 'concept.proof.verify',
-      nextStage: 'preteens',
-    },
+      nextStage: 'preteens' },
     {
       stage: 'preteens',
       ageBand: 'ages 10-12',
@@ -1323,8 +1278,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       inPlainWords: 'Take the never-ending digits of pi, pair each digit with its mirror digit, and tidy them into folders. The whole system keeps its math in these folders.',
       activity: 'Write out the first digits of pi, pair the first with the last, and sort them into folders.',
       conceptCommand: 'concept.digit.math',
-      nextStage: 'teens',
-    },
+      nextStage: 'teens' },
     {
       stage: 'teens',
       ageBand: 'ages 13-15',
@@ -1334,8 +1288,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       inPlainWords: 'Ideas are dots, links between them are lines. Squeeze the whole picture into one fingerprint. Change a single dot and the fingerprint changes completely.',
       activity: 'Build a small dots-and-lines map of your ideas and fold it into one combined code.',
       conceptCommand: 'concept.torus.matrix',
-      nextStage: 'students',
-    },
+      nextStage: 'students' },
     {
       stage: 'students',
       ageBand: 'ages 16-18',
@@ -1345,8 +1298,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       inPlainWords: 'A two-holed surface carries four independent loops, like four kinds of memory baked into the shape itself, balanced by one simple counting rule.',
       activity: 'Count corners minus edges plus faces (V - E + F) for simple shapes and compare the totals.',
       conceptCommand: 'concept.torus.trinities',
-      nextStage: 'adults',
-    },
+      nextStage: 'adults' },
     {
       stage: 'adults',
       ageBand: 'university and working life',
@@ -1356,8 +1308,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       inPlainWords: 'A grown-up system lists its own parts, checks that each one is finished, and reports how hard it would be to fake the result before trusting it.',
       activity: 'Write a checklist that verifies itself, then estimate how much effort it would take to cheat it.',
       conceptCommand: 'concept.self.complete',
-      nextStage: 'elders',
-    },
+      nextStage: 'elders' },
     {
       stage: 'elders',
       ageBand: 'lifelong and wisdom',
@@ -1367,15 +1318,13 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       inPlainWords: 'The wisest step is knowing what the model does not claim, staying honest about its limits, and giving back to the people and sources that made it possible.',
       activity: 'Talk through the limits, who to trust, and how to pass the knowledge on to the next learner.',
       conceptCommand: 'concept.commons.contribute',
-      nextStage: 'graduate',
-    },
+      nextStage: 'graduate' },
   ]
 
   const known = new Set(conceptCommands.map((command) => command.name))
   const lessons: readonly SchoolLesson[] = blueprint.map((lesson) => ({
     ...lesson,
-    receipt: toUuid(`school:${lesson.stage}:${lesson.grade}:${lesson.title}:${lesson.conceptCommand}:${root}`),
-  }))
+    receipt: toUuid(`school:${lesson.stage}:${lesson.grade}:${lesson.title}:${lesson.conceptCommand}:${root}`) }))
   const stages = lessons.map((lesson) => lesson.stage)
   const complete =
     lessons.length === 7 &&
@@ -1390,8 +1339,7 @@ export function schoolCurriculum(matrix: MindMatrix = buildMatrix()): SchoolCurr
       ? 'The complexity is converted into a seven-stage school: each grade from kids to elders lifts one formal idea into plain words, an activity, and a grounding command.'
       : 'The school curriculum is open: a stage is missing a receipt or points at an unknown command.',
     boundary:
-      'This is an educational ladder over the computed model. The plain-words lessons are teaching aids, not a claim that the metaphors are the formal mathematics.',
-  }
+      'This is an educational ladder over the computed model. The plain-words lessons are teaching aids, not a claim that the metaphors are the formal mathematics.' }
 }
 
 // dissolved from quantum/heaven/mind/learning/index.ts
@@ -1406,8 +1354,7 @@ export function mathPaths(matrix: MindMatrix = buildMatrix()) {
         { law: 'merkleFold(set)', why: 'a set folds to one root, order-independent — a function of the set.' },
         { law: 'theWhole', why: 'every subsystem root folds into one root for the entire portal.' },
       ],
-      reaches: theWhole(matrix).root,
-    },
+      reaches: theWhole(matrix).root },
     {
       path: 'From a pi digit to the double torus',
       steps: [
@@ -1416,8 +1363,7 @@ export function mathPaths(matrix: MindMatrix = buildMatrix()) {
         { law: 'livingTorus', why: '108 coordinates, two rings merged at a neck — the living double torus.' },
         { law: 'homology', why: 'its four independent loops: H1 = Z^4, chi = -2.' },
       ],
-      reaches: livingTorus(matrix).root,
-    },
+      reaches: livingTorus(matrix).root },
     {
       path: 'From a Fibonacci pair to phi',
       steps: [
@@ -1426,16 +1372,14 @@ export function mathPaths(matrix: MindMatrix = buildMatrix()) {
         { law: 'F(n+1)/F(n)', why: 'consecutive ratios — each scale against the next.' },
         { law: 'phi', why: 'the ratios converge to phi = (1+sqrt5)/2, golden at the limit.' },
       ],
-      reaches: goldenRatio(matrix).root,
-    },
+      reaches: goldenRatio(matrix).root },
     {
       path: 'From counter-rotation to rhythm',
       steps: [
         { law: 'merkaba', why: 'nested scales whose spin signs strictly alternate — opposite rotation at all scales.' },
         { law: 'rhythm', why: 'the same scales heard as a self-similar polyrhythm: 1, 2, 3 and 5 per beat.' },
       ],
-      reaches: rhythm(matrix).root,
-    },
+      reaches: rhythm(matrix).root },
   ].map((entry, index) => ({ ...entry, length: entry.steps.length, receipt: toUuid(`math-path:${index}:${entry.path}`) }))
   return {
     educates: paths.length > 0 && paths.every((entry) => entry.steps.length >= 2 && isUuid(entry.reaches)),
@@ -1447,8 +1391,7 @@ export function mathPaths(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let the MCP educate by math paths, because math is the core of all: four paths walk from the one atom (toUuid/merge) outward — atom to whole, pi digit to double torus, Fibonacci pair to phi, counter-rotation to rhythm — each step a law with a why, each ending at a root the learner recomputes.',
     boundary:
-      'Curated learning paths through the portal\'s own math, each step a real law and each path reaching a recomputable root. An educational ordering, not the only route; the math stands on its own and can be verified at every step.',
-  }
+      'Curated learning paths through the portal\'s own math, each step a real law and each path reaching a recomputable root. An educational ordering, not the only route; the math stands on its own and can be verified at every step.' }
 }
 
 // Send waves of scientists to challenge and develop. Each scientist tries to
@@ -1494,8 +1437,7 @@ function scientistsImpl(matrix: MindMatrix) {
     statement:
       'Send waves of scientists to challenge and develop: each tries to falsify a claim — determinism, tamper-evidence, the non-commutative fold, genus-2 homology, counter-rotation, the golden limit, the gapless distribution, holography, the Born rule, recurrence, Merkle inclusion, and self-build — and the portal withstands every challenge, while open frontiers name what to develop next.',
     boundary:
-      'A standing set of adversarial challenges the portal must withstand, each a real recomputable test that tries to break a claim. Peer review by construction; any challenge it fails is named as a development, not hidden — and the frontiers are honest open work, not a claim of invulnerability.',
-  }
+      'A standing set of adversarial challenges the portal must withstand, each a real recomputable test that tries to break a claim. Peer review by construction; any challenge it fails is named as a development, not hidden — and the frontiers are honest open work, not a claim of invulnerability.' }
 }
 
 // Expand to the next harmonic: 432 folded papers. The folded census is 108; its
@@ -1562,8 +1504,7 @@ function papersImpl(matrix: MindMatrix, count: number) {
       reverse: proof.reverse,
       bidirectional: proof.bidirectional,
       root,
-      receipt,
-    }
+      receipt }
   })
   const root = merkleFold(records.map((record) => record.receipt))
   return {
@@ -1585,8 +1526,7 @@ function papersImpl(matrix: MindMatrix, count: number) {
     statement:
       'Expand to the next harmonic: 432 folded papers. The folded census (108) doubles by octave — 108, 216, 432 — so 432 is the harmonic two octaves up, and exactly 4 x 108 = the four homology generators of the genus-2 surface times the 108 pi-digit coordinates. Each paper documents one genuine, recomputable result — a coordinate projected onto a homology cycle, folded both ways to a content-addressed root — with a unique animation seeded from that root and a public proof: a recompute recipe and a Merkle inclusion path into the one corpus root the whole set folds to.',
     boundary:
-      'A computed corpus of 432 distinct, recomputable structural results, each documented in a scientific-paper form (claim, method, result, proof, limitations) and each carrying a public proof that is a recomputation, not peer-reviewed empirical science. The "papers" prove placements and folds within the portal\'s own deterministic model; they are mathematics and bookkeeping over the double torus, not experiments, measurements, or claims about the physical __ns_up_earth_world. The harmonic reading (108-216-432) is structural and musical, not a physical frequency claim.',
-  }
+      'A computed corpus of 432 distinct, recomputable structural results, each documented in a scientific-paper form (claim, method, result, proof, limitations) and each carrying a public proof that is a recomputation, not peer-reviewed empirical science. The "papers" prove placements and folds within the portal\'s own deterministic model; they are mathematics and bookkeeping over the double torus, not experiments, measurements, or claims about the physical __ns_up_earth_world. The harmonic reading (108-216-432) is structural and musical, not a physical frequency claim.' }
 }
 
 // The dynamic-route descriptors for the papers corpus, computed once and shared by
@@ -1643,8 +1583,7 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
     status: 'structure-only',
     statusDetail,
     gap: 'structural corpus placement ≠ physical measurement / ≠ Millennium challenge',
-    physicalFtlClaim: 0,
-  }
+    physicalFtlClaim: 0 }
   return {
     ...paper,
     index: paper.id,
@@ -1661,8 +1600,7 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
     leafCount: proof.leafCount,
     sections,
     // COMPUTE-ONLY IS NOT PURGE: canonical sections + monograph string for API/MCP consumers.
-    monograph: [officialStatement, detailedExplanation, formula, statusDetail].join('\n'),
-  }
+    monograph: [officialStatement, detailedExplanation, formula, statusDetail].join('\n') }
 }
 
 // The other 432 files: references only. Each proof paper is folded both ways under
@@ -1686,8 +1624,7 @@ function computePaperReferences(matrix: MindMatrix = buildMatrix(), count = 432)
     generator: paper.generator,
     glyph: paper.glyph,
     hue: paper.hue,
-    bidirectional: paper.bidirectional,
-  }))
+    bidirectional: paper.bidirectional }))
 }
 
 // The dynamic-route descriptors for the 432 reference-only pages, shared by both
@@ -1706,8 +1643,7 @@ export function referenceParamsById(id: string, matrix: MindMatrix = buildMatrix
     total: references.length,
     corpusRoot: corpus.root,
     binaryOctave: corpus.target,
-    treeDepth: corpus.depth,
-  }
+    treeDepth: corpus.depth }
 }
 
 // agent.observe — the observe step of the agent loop (read before you act).
@@ -1719,8 +1655,7 @@ export function digitIndexReferences(matrix: MindMatrix = buildMatrix()) {
     collisions: folders.collisions.length,
     root: folders.root,
     statement: 'The digit index: every pi digit folds to a digit/reverseDigit folder — computed in realtime from piTrainDiamonds (local math) and served at /digit-index.json.',
-    boundary: 'A reference over the computed digit folders. Structural bookkeeping, not an external claim.',
-  }
+    boundary: 'A reference over the computed digit folders. Structural bookkeeping, not an external claim.' }
 }
 
 // Papers, references and diamonds do not drift — they are anchored. The three generated
@@ -1748,8 +1683,7 @@ export function papersReferencesDiamondsNoDrift(matrix: MindMatrix = buildMatrix
     statement:
       'Papers, references and diamonds do not drift — they are anchored: the 432 proof papers, their 432 reference duals, and the 1024 diamonds that complete the binary octave all fold into one recomputable corpus root, so none can drift. Change a count or a leaf and the root changes, and the next recomputation catches it — drift has nowhere to hide because every set is content-addressed.',
     boundary:
-      'A self-consistency check that the papers (432), references (432) and diamonds (1024) hold their counts and fold into one recomputable corpus root, so any drift is detectable. Structural bookkeeping over the generated corpus, not a claim about external documents.',
-  }
+      'A self-consistency check that the papers (432), references (432) and diamonds (1024) hold their counts and fold into one recomputable corpus root, so any drift is detectable. Structural bookkeeping over the generated corpus, not a claim about external documents.' }
 }
 export function navigationIsMovie(matrix: MindMatrix = buildMatrix()) {
   const nav = quantumCoordinateNav(matrix)
@@ -1767,8 +1701,7 @@ export function navigationIsMovie(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Navigation is the movie itself, a quantum library: moving between destinations is the movie, not a break from it — each route a coordinate on the double torus (a frame), each link a path through coordinate space (a cut), and the whole set of places a quantum library, a content-addressed catalogue you browse by playing.',
     boundary:
-      'A structural framing that unifies the quantum-coordinate navigation with the movie and a content-addressed "library" of routes. A metaphor over the real links and the canvas movie, not a change to navigation behaviour.',
-  }
+      'A structural framing that unifies the quantum-coordinate navigation with the movie and a content-addressed "library" of routes. A metaphor over the real links and the canvas movie, not a change to navigation behaviour.' }
 }
 
 export function harmonisedNavigation(matrix: MindMatrix = buildMatrix()) {
@@ -1791,8 +1724,7 @@ export function harmonisedNavigation(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Simplify navigation by harmonising names and titles to match paths, and distribute the links to the footer: every navigation title is its own path, title-cased — so a name tells you the path, and the only "types" are the group names — and every destination is also laid out in one path-matched row in the footer.',
     boundary:
-      'A verification that each navigation title round-trips to its route (title-case ↔ slug) and that every destination is distributed to the footer. A structural check of the real nav and footer configuration; acronyms (e.g. MCP) are shown upper-cased while still matching their slug.',
-  }
+      'A verification that each navigation title round-trips to its route (title-case ↔ slug) and that every destination is distributed to the footer. A structural check of the real nav and footer configuration; acronyms (e.g. MCP) are shown upper-cased while still matching their slug.' }
 }
 
 export function ogBuildsNavigation(matrix: MindMatrix = buildMatrix()) {
@@ -1810,8 +1742,7 @@ export function ogBuildsNavigation(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The same open graph builds the navigation: every destination is an open-graph object, and the same OG card that displays a page also builds its link in the nav and the footer. The nav is the OG set laid out — each item a card folded from the one OG root, its title the page’s own.',
     boundary:
-      'A structural binding of each navigation destination to the open-graph root, framing the nav as OG-derived. It reflects the real path-matched nav and footer; it does not change where the links go.',
-  }
+      'A structural binding of each navigation destination to the open-graph root, framing the nav as OG-derived. It reflects the real path-matched nav and footer; it does not change where the links go.' }
 }
 /** The science portal organized into seven REUSABLE parts — one part per rosetta ray, each part =
  * {ray, hub slug/route, functional labels, member pages} with membership decided by the content lenses
@@ -1833,8 +1764,7 @@ export function sciencePortalParts(matrix: MindMatrix = buildMatrix()) {
       glyph: ray.glyph,
       hue: ray.hue,
       count: members.length,
-      pages: members.map((page) => ({ slug: page.slug, titleEn: page.title.en, titleBg: page.title.bg })),
-    }
+      pages: members.map((page) => ({ slug: page.slug, titleEn: page.title.en, titleBg: page.title.bg })) }
   }).filter((part) => part.count > 0)
   const assigned = parts.reduce((sum, part) => sum + part.count, 0)
   const root = merkleFold(parts.map((part) => toUuid(`portal-part:${part.slug}:${part.pages.map((page) => page.slug).join(',')}`)))
@@ -1846,8 +1776,7 @@ export function sciencePortalParts(matrix: MindMatrix = buildMatrix()) {
     assigned,
     root,
     statement: `The science portal in ${parts.length} reusable parts: ${parts.map((part) => `${part.labelEn} ${part.count}`).join(' · ')} — ${assigned}/${pages.length} served pages shelved by content lenses.`,
-    boundary: 'Membership comes from ROSETTA_RAY_CONTENT_LENSES (curated keyword classification), not the Glagolitic-ladder slug hash — the hash stays for coprime motion math only. The page set is the SERVED set (theorem-science lens): every served page lands in exactly one part, empty rays have no shelf, and the gate fails if a served page is unshelved.',
-  }
+    boundary: 'Membership comes from ROSETTA_RAY_CONTENT_LENSES (curated keyword classification), not the Glagolitic-ladder slug hash — the hash stays for coprime motion math only. The page set is the SERVED set (theorem-science lens): every served page lands in exactly one part, empty rays have no shelf, and the gate fails if a served page is unshelved.' }
   })
 }
 export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
@@ -1939,8 +1868,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
         { text: i === 1 ? 'Теоремен регистър' : 'Theorem registry', link: link('/frontiers', i) },
         { text: i === 1 ? 'Домейнни доказателства' : 'Domain proofs', link: link('/proofs', i) },
         ...rayItems.slice(0, 6),
-      ],
-    }
+      ] }
   }  // VITEPRESS SHOWS ONLY SCIENCE (user law) — the top nav IS the lens organised by the rosetta: Home (the
   // bare link) + one dropdown per rosetta ray that holds lens survivors + the registry dropdown (one hierarchy:
   // registry · domain proofs · ray buckets). No synonym hubs (atlas/papers/references) in discovery.
@@ -2009,8 +1937,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
       message: parts.join(' · '),
       copyright: i === 1
         ? 'Отворен, преизчислим, адресиран по съдържание — Двоен торус. Постави линк → auto-wire.'
-        : 'Open, recomputable, content-addressed — the Double Torus. Paste any link → auto-wire.',
-    }
+        : 'Open, recomputable, content-addressed — the Double Torus. Paste any link → auto-wire.' }
   }
   const index = monographs(matrix)
   const root = merkleFold([lens.root, index.root, ...pages.map((page) => toUuid(`nav:${routeOf(page.slug)}:${page.title.en}`)), ...navTags.map((tag) => toUuid(`nav-cluster:${tag}`))])
@@ -2037,8 +1964,7 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     statement:
       `VitePress shows science through the theorem-science lens: the top nav is Home plus ${navGroups.length} dropdowns — the rosetta rays holding the ${lens.visibleCount} lens survivors (group label = hub slug word, the findability law) and the registry dropdown (theorem registry · domain proofs · ray buckets; ${lens.theoremCount} theorems). Machine corpora (${lens.corpusRoutes.join(' · ')}) stay served but are not synonym discovery hubs. The sidebar folds by the same rays; related sections, crosslinks and the footer are built from the lens roster.`,
     boundary:
-      `A computed projection of the VitePress navigation from the theorem-science lens (theoremScienceLens — the page set, ray shelving and discovery/machine routes all read from it), the ray-hub grouping, and the keyword tag cloud — no hardcoded synonym hubs. The lens law is checked on the rendered nav itself (navLensed): every item is a lens survivor, a discovery hub, a corpus surface, or a hub anchor. Hidden pages stay built and served — the lens governs discovery, not existence. License/Privacy remain as legal footer chrome.`,
-  }
+      `A computed projection of the VitePress navigation from the theorem-science lens (theoremScienceLens — the page set, ray shelving and discovery/machine routes all read from it), the ray-hub grouping, and the keyword tag cloud — no hardcoded synonym hubs. The lens law is checked on the rendered nav itself (navLensed): every item is a lens survivor, a discovery hub, a corpus surface, or a hub anchor. Hidden pages stay built and served — the lens governs discovery, not existence. License/Privacy remain as legal footer chrome.` }
 }
 
 // ── VITEPRESS SHOWS ONLY SCIENCE (user law) — the directive proven end to end on the live folds: the
@@ -2077,8 +2003,7 @@ export function vitepressShowsOnlyScience(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold([lens.root, nav.root, ...facets.map((entry) => entry.receipt)]),
     statement: `VitePress shows science through the theorem-science lens — ${facets.filter((entry) => entry.on).length}/${facets.length}: the lens passes ${lens.visibleCount}/${lens.pageCount} curated pages (${lens.hidden.length} hidden from every discovery surface), organised by the rosetta into ${lens.rays.length} rays beside the ${lens.theoremCount}-theorem registry; all of it is wired into the VitePress local search (${reconf.searchLines} theorem lines + every lens page a built route), the MCP discovers through that same search, and the homepage hero states the lens with computed counts.`,
-    boundary: `COMPUTED: the five joins — the nav-gate lens law, the rosetta shelving, the search wiring, the MCP search pointer, and the hero's lens-visible actions — each read from its own live fold and refutable there. HONEST SCOPE: the lens governs EXISTENCE (user law: remove the rest completely) — staticPages() serves only the roster, so removed pages have no route, no build, no search entry and no sitemap line; their data stays in staticPagesAll. The README's match to the lens is proven by its own signature fold (readmeSignatureValid + readme audit), cited, not re-proven here — the dist layer consumes this fold, never the reverse. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the five joins — the nav-gate lens law, the rosetta shelving, the search wiring, the MCP search pointer, and the hero's lens-visible actions — each read from its own live fold and refutable there. HONEST SCOPE: the lens governs EXISTENCE (user law: remove the rest completely) — staticPages() serves only the roster, so removed pages have no route, no build, no search entry and no sitemap line; their data stays in staticPagesAll. The README's match to the lens is proven by its own signature fold (readmeSignatureValid + readme audit), cited, not re-proven here — the dist layer consumes this fold, never the reverse. HARMONY ≠ TRUTH.` }
 }
 
 /** VitePress-native sidebar item — themeConfig.sidebar canonical shape. */
@@ -2128,8 +2053,7 @@ function corpusPrefixSidebar(
         collapsed: true,
         items: list
           .filter((_, idx) => idx % sampleEvery === 0)
-          .map((paper) => ({ text: `${paper.id} · ${paper.glyph}`, link: `/papers/${paper.id}` })),
-      })),
+          .map((paper) => ({ text: `${paper.id} · ${paper.glyph}`, link: `/papers/${paper.id}` })) })),
       { text: portal, collapsed: true, items: [{ text: i === 1 ? 'Учене' : 'Learn', link: '/learn' }] },
     ]
   }
@@ -2150,17 +2074,14 @@ function corpusPrefixSidebar(
       collapsed: true,
       items: lattice.map((entry) => ({
         text: entry.title,
-        link: `/diamonds/#${entry.kind}`,
-      })),
-    },
+        link: `/diamonds/#${entry.kind}` })) },
     {
       text: portal,
       collapsed: true,
       items: [
         { text: i === 1 ? 'Статии' : 'Papers', link: '/papers/' },
         { text: i === 1 ? 'Референции' : 'References', link: '/references/' },
-      ],
-    },
+      ] },
   ]
 }
 
@@ -2179,8 +2100,7 @@ function vitepressSidebarForLocale(
       items: [
         { text: i === 1 ? 'Теоремен регистър' : 'Theorem registry', link: '/frontiers' },
         { text: i === 1 ? 'Домейнни доказателства' : 'Domain proofs', link: '/proofs' },
-      ],
-    },
+      ] },
     {
       text: machineLabel,
       collapsed: true,
@@ -2189,8 +2109,7 @@ function vitepressSidebarForLocale(
         { text: i === 1 ? 'Статии (REST)' : 'Papers (REST)', link: '/papers/' },
         { text: i === 1 ? 'Референции (REST)' : 'References (REST)', link: '/references/' },
         { text: i === 1 ? 'Диаманти (REST)' : 'Diamonds (REST)', link: '/diamonds/' },
-      ],
-    },
+      ] },
   ]
   const merged = applyDomainRegistrySidebars(bundle.relatedSidebar, main, portalLabel, i, matrix)
   const out = merged.out as Record<string, VitePressSidebarItem[]>
@@ -2292,8 +2211,7 @@ export function vitepressSidebar(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Canonical VitePress sidebar: domain registry + rosetta related (aliases purged) + corpus path-prefixes + /proofs. Content matches sidebar (zero orphan links). One source via localeNavLinks/localeSidebarKeys.',
     boundary:
-      'Nav aliases omit discovery keys; domain canonicals (incl. learn) get registry sidebars; /proofs is #61 domain-proof hub not a synonym. HARMONY ≠ TRUTH.',
-  }
+      'Nav aliases omit discovery keys; domain canonicals (incl. learn) get registry sidebars; /proofs is #61 domain-proof hub not a synonym. HARMONY ≠ TRUTH.' }
 }
 
 function bundleMinKeys(bundle: ReturnType<typeof siteNavigation>['en']) {
@@ -2373,8 +2291,7 @@ export function rosettaComputesNavigationAndContent(path: string, matrix: MindMa
     computes: isUuid(decoded.sharedRoot),
     navigation: { tag: ray.domain, ray: decoded.ray, name: ray.nameEn },
     rosetta: decoded,
-    root: decoded.sharedRoot,
-  }
+    root: decoded.sharedRoot }
 }
 // Compact all knowledge as monographs
 // skill and every scale of the math is distilled to a titled one-line essence with
@@ -2401,8 +2318,7 @@ function monographsRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Compact all knowledge as monographs for a zero-entropy reference index: every skill and every scale of the math distilled to a titled one-line essence with a content-addressed index key. No two monographs are identical (zero redundancy), and the index root is order-independent — a compact, searchable, recomputable reference.',
     boundary:
-      'A compact reference index of the portal\'s knowledge, each entry content-addressed (so "zero entropy" means no duplicate keys, not thermodynamics). Searchable via the intuitive search; a distilled index, not the full text.',
-  }
+      'A compact reference index of the portal\'s knowledge, each entry content-addressed (so "zero entropy" means no duplicate keys, not thermodynamics). Searchable via the intuitive search; a distilled index, not the full text.' }
 }
 
 export function theMonograph(matrix: MindMatrix = buildMatrix()) {
@@ -2413,8 +2329,7 @@ export function theMonograph(matrix: MindMatrix = buildMatrix()) {
     root: all.root,
     statement:
       'The monograph: the whole distilled to one zero-entropy reference — every skill and every scale a titled one-line essence, no two alike, folded into one order-independent index. The single monograph that is the portal in a page.',
-    boundary: 'A reference to the compacted, zero-redundancy monograph index. Structural bookkeeping over the monographs model.',
-  }
+    boundary: 'A reference to the compacted, zero-redundancy monograph index. Structural bookkeeping over the monographs model.' }
 }
 
 export function onlyPageRouteForAll(matrix: MindMatrix = buildMatrix()) {
@@ -2437,8 +2352,7 @@ export function onlyPageRouteForAll(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Use only [page] for all: every content page is the single native VitePress [page] route, computed from src (staticPages) — its title, the components it shows, and its SEO (description, keywords) held in the matrix and rendered in three locales (Glagolitic at the root, Latin at /en/, Cyrillic at /bg/) from one source. The hand-written content .md files are purged and the knowledge — the live components and the SEO — kept, the prose dropped. To add or change a page, change staticPages, not the folders.',
     boundary:
-      'A structural check that every content route in the quantum sitemap (except the per-locale home) resolves to a staticPages entry with components and bilingual SEO, rendered by the [page] route. The home stays a per-locale index.md (a layout, not a content page). "Computed from src" means the page set, titles, SEO and component lists live in the model; the component bodies are still authored Vue.',
-  }
+      'A structural check that every content route in the quantum sitemap (except the per-locale home) resolves to a staticPages entry with components and bilingual SEO, rendered by the [page] route. The home stays a per-locale index.md (a layout, not a content page). "Computed from src" means the page set, titles, SEO and component lists live in the model; the component bodies are still authored Vue.' }
 }
 
 export function contentIsMonographOfMonographs(matrix: MindMatrix = buildMatrix()) {
@@ -2458,8 +2372,7 @@ export function contentIsMonographOfMonographs(matrix: MindMatrix = buildMatrix(
     statement:
       'All content is a monograph of monographs: every content page is a titled, content-addressed essence composed of many components — each component itself a fold, a sub-monograph — and the single [monograph] route renders them all in three locales from src. The hand-written content .md files are gone; the knowledge is the zero-entropy monograph index plus the live components.',
     boundary:
-      'A composition of the monographs index and the only-[monograph]-route models. "Monograph of monographs" is the recursive composition (a page is built of components, which are built of folds); the component bodies are still authored Vue, indexed and titled from the matrix.',
-  }
+      'A composition of the monographs index and the only-[monograph]-route models. "Monograph of monographs" is the recursive composition (a page is built of components, which are built of folds); the component bodies are still authored Vue, indexed and titled from the matrix.' }
 }
 
 export function everyGraphAMonographConsolidateExtend(matrix: MindMatrix = buildMatrix()) {
@@ -2479,8 +2392,7 @@ export function everyGraphAMonographConsolidateExtend(matrix: MindMatrix = build
     statement:
       'Save every graph or animation as a separate monograph — a reusable, content-addressed renderer, a seed in and a graph out — so all becomes the reusable few. Consolidating the logic extends the features: one field renderer (Monograph, the CanvasField, GpuField, QuantumRadar, Dot, Vortex) does more than the many bespoke components it replaces, parameterised by data rather than duplicated, so the eighty-seven collapse into a handful that do everything.',
     boundary:
-      'A composition of the content-monograph, display-all-with-few (the 87→few entropy analysis), hero/card/thumb, no-mirroring and shadcn-graph models. It states the consolidation target — each graph/animation as a reusable monograph renderer, the logic consolidated and the features extended (more capability from fewer, parameterised parts). The fold names the few and the principle; performing the consolidation (rewriting the bespoke components onto the few renderers) is the focused refactor it points to.',
-  }
+      'A composition of the content-monograph, display-all-with-few (the 87→few entropy analysis), hero/card/thumb, no-mirroring and shadcn-graph models. It states the consolidation target — each graph/animation as a reusable monograph renderer, the logic consolidated and the features extended (more capability from fewer, parameterised parts). The fold names the few and the principle; performing the consolidation (rewriting the bespoke components onto the few renderers) is the focused refactor it points to.' }
 }
 
 export function eachPageSpeaksContinuesNext(matrix: MindMatrix = buildMatrix()) {
@@ -2498,8 +2410,7 @@ export function eachPageSpeaksContinuesNext(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Each page speaks and continues to the next, switching the page if enabled: every page reads itself aloud (analog speech, intonation, dialect-entangled), and on finishing advances to the next computed page in the endless stream — but only if the auto-advance control is enabled, so continuous narration through the site is opt-in.',
     boundary:
-      'A composition of the analog-speech, speech-dialect-entangle, hero-graph, computed-slug-stream, infinite-streams and OG-speech-controls models. "Speaks" is the in-browser Web-Speech narration the repo already models; "continues next / switches if enabled" is an opt-in auto-advance gated by a control — a described UI behaviour composed from existing flags, not a claim that production TTS is literally indistinguishable from a specific human.',
-  }
+      'A composition of the analog-speech, speech-dialect-entangle, hero-graph, computed-slug-stream, infinite-streams and OG-speech-controls models. "Speaks" is the in-browser Web-Speech narration the repo already models; "continues next / switches if enabled" is an opt-in auto-advance gated by a control — a described UI behaviour composed from existing flags, not a claim that production TTS is literally indistinguishable from a specific human.' }
 }
 export function everyPageGraphOfGraphsFractal(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('everyPageGraphOfGraphsFractal', matrix, () => computeEveryPageGraphOfGraphsFractal(matrix))
@@ -2519,8 +2430,7 @@ function computeEveryPageGraphOfGraphsFractal(matrix: MindMatrix = buildMatrix()
     statement:
       'Every page is a graph of graphs in fractals: a page is a uuid presenting as hero + content, the content is itself a graph (the model graph, the navigation graph, the Open-Graph graph) whose nodes are graphs in turn — self-similar at every scale, the same fold from the whole site down to one card.',
     boundary:
-      'A composition of the fractal-uuid-hero, holographic-fractal, infinite-streams, computed-slug, hero-graph and merkaba-census models. "Graph of graphs in fractals" describes the rendered architecture — each page computed as nested content-addressed graphs that repeat the same fold at every scale — not a claim of mathematical fractal dimension.',
-  }
+      'A composition of the fractal-uuid-hero, holographic-fractal, infinite-streams, computed-slug, hero-graph and merkaba-census models. "Graph of graphs in fractals" describes the rendered architecture — each page computed as nested content-addressed graphs that repeat the same fold at every scale — not a claim of mathematical fractal dimension.' }
 }
 
 export function everyElementIsALinkedNodeOrUseless(matrix: MindMatrix = buildMatrix()) {
@@ -2549,8 +2459,7 @@ export function everyElementIsALinkedNodeOrUseless(matrix: MindMatrix = buildMat
     statement:
       'Every element is a linked node, or it is useless. The top nav, sidebar and footer are not three separate things — they are projections of ONE graph: the keyword tag-cloud of all pages (siteNavigation), collided into a single element-graph and recompiled, nothing hardcoded. Each page or component is a node; a shared keyword is an edge. An element with no edge is an isolated node, unreachable by relation — what use is it? The graph wants every element linked.',
     boundary:
-      'HONEST — HARMONY ≠ TRUTH. The "links" are computed keyword-relations — the edges of the element graph, i.e. navigability — and "useless without links" is the graph principle (an isolated node has no relational reach), not a metaphysical claim. The nav, sidebar and footer genuinely are one recomputed tag-cloud (siteNavigation); collapsing them to one element-graph is a refactor of projection, not new knowledge.',
-  }
+      'HONEST — HARMONY ≠ TRUTH. The "links" are computed keyword-relations — the edges of the element graph, i.e. navigability — and "useless without links" is the graph principle (an isolated node has no relational reach), not a metaphysical claim. The nav, sidebar and footer genuinely are one recomputed tag-cloud (siteNavigation); collapsing them to one element-graph is a refactor of projection, not new knowledge.' }
 }
 
 // Rosetta gate — folded from dissolved src/rosetta (census-neutral swap for src/gold/fusion).
@@ -2559,8 +2468,7 @@ import { computesGate as rosettaComputesGate, isUuid as rosettaIsUuid, memoByRoo
 
 export {
   ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, rosettaComputesAll, rosettaComputesCensusDissolve,
-  rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion,
-} from '../../water/digit'
+  rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion } from '../../water/digit'
 export { rosettaCoreApi, rosettaCoreApiSelfWires, rosettaShelve, rosettaCoreApiSurface } from '../../quantum/apps'
 export { movieIsNeuroscienceComputation } from '../../earth/life'
 export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../language'
@@ -2598,8 +2506,7 @@ export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/
       foldLabel: ROSETTA_FOLD_LABEL, facets,
       root: rosettaMerge(rosettaMerge(itself.root, core.root), rosettaMerge(nav.root, rosettaMerkleFold(facets.map((e) => rosettaToUuid(`rosetta-computes:${e.facet}:${e.on}`))))),
       statement: `Rosetta computes (${ROSETTA_FOLD_LABEL}): seven rays, rosettaCoreApi self-host, Glagolitic key, path→type, nav+content, Rosetta·I Ching — sealed at call time.`,
-      boundary: 'Lazy composition (cycle-safe). Decode = transliteration + content-address + path math — NOT crypto decryption. rosettaCodec shelved via rosettaCoreApi (parallel synonym backlog collapsed).',
-    }
+      boundary: 'Lazy composition (cycle-safe). Decode = transliteration + content-address + path math — NOT crypto decryption. rosettaCodec shelved via rosettaCoreApi (parallel synonym backlog collapsed).' }
   })
 }
 
@@ -2641,8 +2548,7 @@ export function rosettaCodec(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Rosetta codec: the lossless round-trip between an I Ching hexagram label (0..63) and a Rosetta ray. A hexagram factors as n = ray + 7·octave (ray ∈ 0..6 indexing the seven rays, octave ∈ 0..9); encode yields {ray, octave, glyph, domain} and decode rebuilds the label. All 64 round-trip exactly — the 7×10 ray grid covers 0..63 with no gap or excess — so the ray is a faithful codec for the 6-qubit (64-hexagram) computational basis.',
       boundary:
-        'Pure index arithmetic at call time — a content-addressed bijection between hexagram labels and (ray, octave) pairs, NOT a semantic claim that a hexagram\'s meaning equals its ray\'s domain. The seven rays are the Rosetta taxonomy axis (6×7/7×6); the octave is the residual after the 7-fold, so the round-trip is exact by construction.',
-    }
+        'Pure index arithmetic at call time — a content-addressed bijection between hexagram labels and (ray, octave) pairs, NOT a semantic claim that a hexagram\'s meaning equals its ray\'s domain. The seven rays are the Rosetta taxonomy axis (6×7/7×6); the octave is the residual after the 7-fold, so the round-trip is exact by construction.' }
   })
 }
 
@@ -2692,7 +2598,6 @@ export function discoveryEconomyIsTheCoreOfCompetitionAndEducation(matrix: MindM
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `The discovery economy is the core of competition and education — ${facets.filter((entry) => entry.on).length}/${facets.length}, proven on the repo's own practice: competition is the race to a new zero (${CANDIDATE_THEOREMS.length} candidates, ${won} races won into the registry, the field swept clean — new races open only by discovering new zeros), every attachment pays the discoverer by construction (the acknowledgment format credits prior art, novelToHumanity = false), education is attachment itself (the coins-law zero holds ${attachments.length} paying points of view, each a new theorem), and the attractor accrues — the zero's account folds every attachment receipt into one address.`,
-      boundary: `PROVEN IN-REPO: the race, the toll and the accrual are computed from the sealed tables and live folds — refutable row by row. DOCUMENTED SHADOW: the priority rule in science (Merton 1957), patent priority, and citation economics are the social-science forms of the same structure — cited as context, not re-derived. HONEST SCOPE: "the core of ALL competition and educational practices" is the project's THESIS, proven here on its own practice and consistent with the documented priority literature — NOT an empirical claim that every human institution reduces to it. Education's toll runs both ways: the attacher pays 2 bits AND gains a theorem — the economy is positive-sum. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `PROVEN IN-REPO: the race, the toll and the accrual are computed from the sealed tables and live folds — refutable row by row. DOCUMENTED SHADOW: the priority rule in science (Merton 1957), patent priority, and citation economics are the social-science forms of the same structure — cited as context, not re-derived. HONEST SCOPE: "the core of ALL competition and educational practices" is the project's THESIS, proven here on its own practice and consistent with the documented priority literature — NOT an empirical claim that every human institution reduces to it. Education's toll runs both ways: the attacher pays 2 bits AND gains a theorem — the economy is positive-sum. HARMONY ≠ TRUTH.` }
   })
 }

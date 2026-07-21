@@ -37,8 +37,7 @@ export function analytics(matrix: MindMatrix = buildMatrix()) {
   const make = (board: string, icon: string, metrics: { metric: string; value: number }[]) => ({
     board,
     icon,
-    metrics: metrics.map((entry) => ({ ...entry, receipt: toUuid(`analytics:${board}:${entry.metric}:${entry.value}`) })),
-  })
+    metrics: metrics.map((entry) => ({ ...entry, receipt: toUuid(`analytics:${board}:${entry.metric}:${entry.value}`) })) })
   const boards = [
     make('model', '◉', [
       { metric: 'areas', value: areaPairs().count },
@@ -71,8 +70,7 @@ export function analytics(matrix: MindMatrix = buildMatrix()) {
     statement:
       'DRY analytics: the portal\'s self-metrics counted once — the model, the proof, and the reach — each content-addressed, so every dashboard reads from one source instead of reciting numbers.',
     boundary:
-      'Self-metrics over the model\'s own structures (areas, commands, components, gates, coverage). Descriptive counts, not usage telemetry — nothing is tracked, nothing leaves the device.',
-  }
+      'Self-metrics over the model\'s own structures (areas, commands, components, gates, coverage). Descriptive counts, not usage telemetry — nothing is tracked, nothing leaves the device.' }
 }
 // 1024 Merkle leaves in pureDiamonds — computational, not SSG. diamondParamsById resolves
 // one leaf on demand via memoized diamondRoutes(); static /diamonds/<id> pages are purged.
@@ -102,8 +100,7 @@ export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
       count: lattice.length,
       merkleLeaves: leaves.count,
       ssgDetailRoutes: corpusCatchAllPaths('diamonds', matrix).length,
-      mode: 'computational-lattice' as const,
-    },
+      mode: 'computational-lattice' as const },
     { resource: 'harmonics', count: harmonics(matrix).harmonics.length, mode: 'computed' as const },
   ]
   const crud = [
@@ -118,8 +115,7 @@ export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
       resource: resource.resource,
       format: format.format,
       path: `/api/${resource.resource}.${format.format}`,
-      receipt: toUuid(`rest:${resource.resource}:${format.format}`),
-    })),
+      receipt: toUuid(`rest:${resource.resource}:${format.format}`) })),
   )
   return {
     restful:
@@ -139,8 +135,7 @@ export function restfulFormats(matrix: MindMatrix = buildMatrix()) {
     statement:
       'RESTful CRUD paths in several formats (json, xml, txt, md, html, csv, ndjson). Papers and references expose 432 SSG detail items each; diamonds expose lattice kinds in /api/diamonds.json with 1024 Merkle leaves in pureDiamonds — zero diamond [id] SSG routes after purge.',
     boundary:
-      'Static read-API over build artifacts: GET on /api/{resource}.{format} is real; POST/PUT model recomputation; DELETE N/A. Diamonds count in resources is lattice kinds (API rows), not SSG page count — merkleLeaves holds the 1024 computational tree.',
-  }
+      'Static read-API over build artifacts: GET on /api/{resource}.{format} is real; POST/PUT model recomputation; DELETE N/A. Diamonds count in resources is lattice kinds (API rows), not SSG page count — merkleLeaves holds the 1024 computational tree.' }
 }
 // Plain-to-referenced text ratio measures text entropy — and the portal holds it at
 // zero. Text that carries no reference is plain (free, disordered); text bound to a
@@ -161,8 +156,7 @@ export function textEntropy(matrix: MindMatrix = buildMatrix()) {
     // referenced: every unit carries a content address, so all of it is referenced.
     referenced: entry.count,
     plain: 0,
-    receipt: toUuid(`text-entropy:${entry.unit}:${entry.count}`),
-  }))
+    receipt: toUuid(`text-entropy:${entry.unit}:${entry.count}`) }))
   const total = units.reduce((sum, entry) => sum + entry.count, 0)
   const referenced = units.reduce((sum, entry) => sum + entry.referenced, 0)
   const plain = total - referenced
@@ -180,8 +174,7 @@ export function textEntropy(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Plain-to-referenced text ratio measures text entropy. Text that carries no reference is plain and disordered; text bound to a content address (a root, a receipt, a link) is referenced and ordered. The portal computes every unit — papers, references, diamonds, commands, atoms, harmonics — from the model and content-addresses it, so every unit is referenced: plain text is zero, the ratio plain/total is zero, and the text entropy is zero. Zero plain text, zero entropy.',
     boundary:
-      'A structural, referential entropy measure: the fraction of corpus units that are plain (unreferenced) versus referenced (content-addressed). It is zero because every page is computed and content-addressed; it measures referential order over the model’s own units, not the Shannon entropy of characters or natural-language text quality.',
-  }
+      'A structural, referential entropy measure: the fraction of corpus units that are plain (unreferenced) versus referenced (content-addressed). It is zero because every page is computed and content-addressed; it measures referential order over the model’s own units, not the Shannon entropy of characters or natural-language text quality.' }
 }
 // When all is completely built, compression begins — to zero entropy and max forge
 // cost. Every subsystem root folds into one 128-bit word: the whole corpus, maximally
@@ -227,8 +220,7 @@ export function compression(matrix: MindMatrix = buildMatrix()) {
     statement:
       'When all is completely built, compression begins — to zero entropy and max forge cost. Every subsystem root folds into one 128-bit word: the whole corpus, maximally compressed to a single content address. The compressed form has zero entropy (one root, nothing plain) and the maximal forge cost (to forge the one root, a forger must reproduce every unit that folds into it). The end state of the build is all of it in one number — recomputable by anyone, fakeable by no one.',
     boundary:
-      'A maximal content-addressed fold of the portal’s subsystem roots into one 128-bit word. "Compression" here is the fold to a single address (a digest of the whole), not a reversible data-compression codec; "zero entropy" is the referential measure (one root, no plain text); "max forge cost" is the recomputation burden of the whole corpus, not a cryptographic hash bound — the underlying fold is tamper-evident, not a cryptographic hash.',
-  }
+      'A maximal content-addressed fold of the portal’s subsystem roots into one 128-bit word. "Compression" here is the fold to a single address (a digest of the whole), not a reversible data-compression codec; "zero entropy" is the referential measure (one root, no plain text); "max forge cost" is the recomputation burden of the whole corpus, not a cryptographic hash bound — the underlying fold is tamper-evident, not a cryptographic hash.' }
 }
 // Analysis is the next flower. After the seed (7) and the fruit of life (13) comes
 // the flower of life — nineteen circles — and the analysis of the whole corpus is
@@ -265,8 +257,7 @@ export function analysisFlower(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Analysis is the next flower: after the seed (7) and the fruit of life (13) comes the flower of life — nineteen circles — and the analysis of the whole corpus is that flower. Nineteen measures, each a petal read straight from the live model — the file distribution, the folded census, papers and references, the diamonds, the 2020 referenced units, zero text entropy, the harmonic ladders, the thirteen fusion domains, social, travel and blockchain fusions, the commands, skill atoms, society dimensions, the genus, and the compression to one root — folded into one analysis root.',
     boundary:
-      'A nineteen-measure analysis of the portal’s own corpus, each measure read from the live model and content-addressed, arranged as the flower of life. A structural self-analysis and geometric framing, recomputable; not an external benchmark or a claim about anything outside the model.',
-  }
+      'A nineteen-measure analysis of the portal’s own corpus, each measure read from the live model and content-addressed, arranged as the flower of life. A structural self-analysis and geometric framing, recomputable; not an external benchmark or a claim about anything outside the model.' }
 }
 // Fuse global APIs in waves. Beyond the public-transport and public-API fusions, the
 // great open global data sources fuse to the architecture in waves — maps, knowledge,
@@ -297,8 +288,7 @@ export function globalApis(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse global APIs in waves: the great open global data sources — maps and geocoding, knowledge, weather, development data, space and earth observation, biodiversity, science and scholarship, and the open social protocols — fuse to the architecture in waves, each content-addressed and folded, opt-in and free to read, integrating the world’s open data without a centre.',
     boundary:
-      'A catalogue of major open global data sources fused (content-addressed) to the architecture. Opt-in and read-only via public open-data interfaces; no endpoint is called at build time and no keys are bundled. The named sources are examples of open data, not endorsements, and each has its own terms.',
-  }
+      'A catalogue of major open global data sources fused (content-addressed) to the architecture. Opt-in and read-only via public open-data interfaces; no endpoint is called at build time and no keys are bundled. The named sources are examples of open data, not endorsements, and each has its own terms.' }
 }
 // Fuse build statistics. The build's own measurable numbers — commands, gates, source
 // files, papers, references, diamonds, skill atoms, referenced units, harmonic rungs —
@@ -325,8 +315,7 @@ export function buildStatistics(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fuse build statistics: the build’s own measurable numbers — commands, gates, source files, papers, references, diamonds, skill atoms, referenced units, harmonic rungs — fuse into one content-addressed statistics root, so the build measures itself and binds the measurement to the seal: statistics that cannot drift from the thing they measure.',
     boundary:
-      'A content-addressed snapshot of the build’s own self-metrics, folded into one root. Descriptive counts over the model’s structures, recomputable; not analytics, not telemetry, and nothing leaves the device.',
-  }
+      'A content-addressed snapshot of the build’s own self-metrics, folded into one root. Descriptive counts over the model’s structures, recomputable; not analytics, not telemetry, and nothing leaves the device.' }
 }
 // Max compression forges max tampering costs. The two are the same number seen twice:
 // when everything compresses to one 128-bit word, forging that one word requires
@@ -349,8 +338,7 @@ export function maxCompressionForge(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Max compression forges max tampering costs: when everything compresses to one 128-bit word, forging that word requires reproducing every unit that folded into it — so the compression ratio is the forge cost. The tighter the compression (the more units in the one root), the higher the cost to forge it. Maximum compression is maximum tampering cost.',
     boundary:
-      'A content-addressed statement that the model’s compression (everything folded to one word, zero entropy) and its forge cost (reproduce every fold) are the same property measured two ways. A structural property of the fold — tamper-evidence by content-addressing — not a cryptographic hardness proof.',
-  }
+      'A content-addressed statement that the model’s compression (everything folded to one word, zero entropy) and its forge cost (reproduce every fold) are the same property measured two ways. A structural property of the fold — tamper-evidence by content-addressing — not a cryptographic hardness proof.' }
 }
 // Improving coverage per pixel. Coverage per pixel is how much meaning each rendered
 // pixel carries: the same semantic payload (the page's title, description, category,
@@ -376,8 +364,7 @@ export function coveragePerPixel(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Improving coverage per pixel: coverage per pixel is how much meaning each rendered pixel carries, so the same semantic payload (title, description, category, tags, and the ten open-graph fields) packed into fewer pixels reads as higher coverage. The refactor — the compact open-graph big hero — packs the whole social card into one banner where simple mode spread the same meaning down a long, sparse scroll, so coverage per pixel rises.',
     boundary:
-      'A computed density ratio (semantic items per pixel) comparing the compact open-graph hero to a sparse long-scroll layout. A structural measure of information density over the design, not a claim about search rankings or a pixel-perfect physical measurement.',
-  }
+      'A computed density ratio (semantic items per pixel) comparing the compact open-graph hero to a sparse long-scroll layout. A structural measure of information density over the design, not a claim about search rankings or a pixel-perfect physical measurement.' }
 }
 // Let build statistics show the gaps to all eyes. The build does not hide its health: its own
 // statistics surface every gap plainly — command gaps (zero through the trinity eyes), file-
@@ -400,8 +387,7 @@ export function buildStatisticsShowGaps(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let build statistics show the gaps to all eyes: the build surfaces every gap plainly as a statistic — command gaps (zero through the trinity eyes), file-distribution gaps (zero, the Fibonacci run gapless), and drift (zero, the corpus anchored) — so anyone reading the build sees exactly where, if anywhere, a hole is. Gaps are not buried in a log; they are shown.',
     boundary:
-      'A composition of the command-gap, harmonic-distribution and no-drift audits as one "gaps" statistic over the build. Structural bookkeeping; it reports the computable gaps (currently zero), not a guarantee against every conceivable defect.',
-  }
+      'A composition of the command-gap, harmonic-distribution and no-drift audits as one "gaps" statistic over the build. Structural bookkeeping; it reports the computable gaps (currently zero), not a guarantee against every conceivable defect.' }
 }
 
 // Fuse fleet-scale statistics. One build measures itself (buildStatistics); a fleet of N nodes
@@ -423,8 +409,7 @@ export function fleetScaleStatsFused(matrix: MindMatrix = buildMatrix()) {
       distinctRecompute: 1, // one deterministic recompute, shared by content-address
       hitRatio: hit,
       expectedJoules: nearest.expectedJoules,
-      receipt: toUuid(`fleet-scale:${nodes}:${hit}:${nearest.expectedJoules}`),
-    }
+      receipt: toUuid(`fleet-scale:${nodes}:${hit}:${nearest.expectedJoules}`) }
   })
   const facets = [
     { facet: 'one build measures itself — buildStatistics fuses commands, gates, files, papers, diamonds, harmonic rungs', on: perBuild.fused },
@@ -449,6 +434,5 @@ export function fleetScaleStatsFused(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Fleet-scale statistics, fused: one build measures itself (commands, gates, source files, papers, diamonds, harmonic rungs), and a fleet of N nodes running the same content-addressed build emits N times that output while its distinct recompute work stays at a single build — identical inputs fold to identical roots, so the hit set is shared and the marginal cost of one more node falls toward a cache-hit lookup rather than a fresh recompute. The per-build self-metrics and the fleet cache economics fuse into one fleet-statistics root.',
     boundary:
-      'A deterministic composition of buildStatistics and fleetCacheEconomicsDecoded into a fleet model. The node counts and joule figures are illustrative orders of magnitude over sealed constants, not telemetry of any deployed fleet; "output" is self-metric emission, not user-facing work.',
-  }
+      'A deterministic composition of buildStatistics and fleetCacheEconomicsDecoded into a fleet model. The node counts and joule figures are illustrative orders of magnitude over sealed constants, not telemetry of any deployed fleet; "output" is self-metric emission, not user-facing work.' }
 }

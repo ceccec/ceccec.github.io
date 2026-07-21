@@ -82,8 +82,7 @@ export function auditCross(root: string, count = computedDistFiles(siteUrl()).le
     severity: 'error',
     kind: 'digit-index',
     harmonic: 'digit',
-    detail,
-  }))
+    detail }))
   const report = [`Cross wave OK: ${count} dist artifacts + README.md + en/bg home (I Ching sections); digit index sealed.`]
   return { findings, report }
 }
@@ -124,8 +123,7 @@ export function auditFold(): { findings: Finding[]; report: string[] } {
       severity: 'error',
       kind: 'open-gate',
       harmonic: `gate-band-${band}`,
-      detail: `${failure.label} — gate ${index}/${seal.gateCount}, band ${band} step ${step}/108 → ${purpose}`,
-    })
+      detail: `${failure.label} — gate ${index}/${seal.gateCount}, band ${band} step ${step}/108 → ${purpose}` })
   }
   const trip = modelSeal(matrix, { tripwire: true, tripwireOnly: true })
   if (trip.passed) {
@@ -134,8 +132,7 @@ export function auditFold(): { findings: Finding[]; report: string[] } {
       severity: 'error',
       kind: 'tripwire',
       harmonic: 'tripwire',
-      detail: 'tripwire broken — seal passed with a forced false gate',
-    })
+      detail: 'tripwire broken — seal passed with a forced false gate' })
   }
   const report = [
     `Fold wave OK: ${seal.okCount}/${seal.commandTotal} commands; ${seal.dimensions} dimensions emerge within; ${seal.gateCount} gates closed (harmonic 432). Tripwire verified.`,
@@ -403,8 +400,7 @@ const walkIndices = (dir) => {
           severity: 'warn',
           harmonic: 'compression',
           kind: 'compression',
-          detail: `${full.replace(`${root}/`, '')} is ${lines} lines, over the ${compressionLimit}-line target — distribute its logic into the surrounding folder indices`,
-        })
+          detail: `${full.replace(`${root}/`, '')} is ${lines} lines, over the ${compressionLimit}-line target — distribute its logic into the surrounding folder indices` })
       }
     }
   }
@@ -440,8 +436,7 @@ if (importGapOffenders.length > 0) {
   ratchetPush({
     kind: 'import-gap',
     harmonic: 'folder',
-    detail: `${importGapOffenders.length} import ../ gap(s) — fill gaps with barrel indexes or migrate the fold closer; ${sample}`,
-  })
+    detail: `${importGapOffenders.length} import ../ gap(s) — fill gaps with barrel indexes or migrate the fold closer; ${sample}` })
 }
 report.push(
   `Import gaps (../ depth law): ${importGapOffenders.length} violation(s) — observing ../ beyond folder depth reveals missing barrels (folderLaw + strict scanImportGaps).`,
@@ -683,8 +678,7 @@ if (barrel && existsSync(join(root, 'src'))) {
     const offenders = s.imports.map((o) => ({
       importer: relative(root, o.file),
       spec: o.spec,
-      reason: o.reason,
-    }))
+      reason: o.reason }))
     if (!facts && offenders.length) {
       const sample = offenders.slice(0, 8).map((o, i) => `  ${i + 1}. ${o.importer}: '${o.spec}' (${o.reason}) — import the folder only`).join('\n')
       gaps.push({ harmonic: 'barrel', kind: 'import-extension', detail: `${offenders.length} import(s) violate folder-only law — never filename, extension, or /index (folderLaw.barrelImports.noExtensions; ALL of src, HARD, no exception). First ${Math.min(8, offenders.length)} of ${offenders.length}:\n${sample}\n— fix: dissolve <name>.ts into <name>/index.ts and import the folder — ${barrel.fixExtension}` })
@@ -701,8 +695,7 @@ if (barrel && existsSync(join(root, 'src'))) {
       gaps.push({
         harmonic: 'barrel',
         kind: 'hyphen-folder',
-        detail: `${hyphenOffenders.length} hyphenated folder(s) under src/ — one word per folder level, HARD (folderLaw.strict.oneWord). First ${Math.min(8, hyphenOffenders.length)}:\n${sample}`,
-      })
+        detail: `${hyphenOffenders.length} hyphenated folder(s) under src/ — one word per folder level, HARD (folderLaw.strict.oneWord). First ${Math.min(8, hyphenOffenders.length)}:\n${sample}` })
     }
     report.push(
       `One-word folder law: ${hyphenOffenders.length} hyphenated folder(s)${hyphenOffenders.length ? '' : ' — every folder segment is a single word'}.`,
@@ -795,8 +788,7 @@ if (displayDual) {
     ratchetPush({
       kind: 'display-dual',
       harmonic: 'render',
-      detail: `${missingDisplay.length} logic index.ts without mirror index.vue (${paired} paired) — ${displayDual.law}; sample: ${sample} …`,
-    })
+      detail: `${missingDisplay.length} logic index.ts without mirror index.vue (${paired} paired) — ${displayDual.law}; sample: ${sample} …` })
   }
   report.push(
     `Display dual: ${paired}/${logicIndexRels.filter((rel) => displayUiPathFromLogicIndex(rel)).length} mind logic folders have mirror index.vue — ${missingDisplay.length} gap(s) (folderLaw.displayDual).`,
@@ -827,8 +819,7 @@ const walkFolderLaw = (dir, rel, isRoot) => {
     gaps.push({
       harmonic: 'folder',
       kind: 'name',
-      detail: `folder ${rel} is named neither one word (${law.word}) nor one digit (${law.digit}) — why this fails: ${law.why.name}`,
-    })
+      detail: `folder ${rel} is named neither one word (${law.word}) nor one digit (${law.digit}) — why this fails: ${law.why.name}` })
   }
   const entries = readdirSync(dir, { withFileTypes: true })
   for (const entry of entries) {
@@ -838,8 +829,7 @@ const walkFolderLaw = (dir, rel, isRoot) => {
       gaps.push({
         harmonic: 'folder',
         kind: 'contents',
-        detail: `folder ${rel} contains ${entry.name}, which is not an index file (allowed: ${law.indexFiles.join(', ')}) — why this fails: ${law.why.contents}`,
-      })
+        detail: `folder ${rel} contains ${entry.name}, which is not an index file (allowed: ${law.indexFiles.join(', ')}) — why this fails: ${law.why.contents}` })
     } else if (
       !isRoot &&
       (entry.name.endsWith('.md') || entry.name.endsWith('.paths.ts')) &&
@@ -851,8 +841,7 @@ const walkFolderLaw = (dir, rel, isRoot) => {
       gaps.push({
         harmonic: 'folder',
         kind: 'contents',
-        detail: `folder ${rel} contains ${entry.name} (stem "${stemOf(entry.name)}"), but below the roots there can be only index files (${law.indexFiles.join(', ')}) or a bracketed dynamic-route index — why this fails: ${law.why.contents}`,
-      })
+        detail: `folder ${rel} contains ${entry.name} (stem "${stemOf(entry.name)}"), but below the roots there can be only index files (${law.indexFiles.join(', ')}) or a bracketed dynamic-route index — why this fails: ${law.why.contents}` })
     }
   }
 }
@@ -890,8 +879,7 @@ if (existsSync(scriptsDir)) {
     gaps.push({
       harmonic: 'pipeline',
       kind: 'legacy-scripts',
-      detail: `scripts/ still contains ${leftovers.length} .mjs file(s) — delete scripts/; all logic lives in src/${cliEntry}`,
-    })
+      detail: `scripts/ still contains ${leftovers.length} .mjs file(s) — delete scripts/; all logic lives in src/${cliEntry}` })
   }
   const legacyChecks = leftovers.filter((file) => file.startsWith('check-'))
   for (const script of legacyChecks) {
@@ -926,8 +914,7 @@ if (!/agent submission|entry\.mjs|script\/shell/i.test(agentsDoc)) {
     harmonic: 'agent-law',
     kind: 'unpublished',
     detail:
-      'AGENTS.md does not declare agent submission to script-shell gates (cli/bootstrap · 24-line budget · script-exits routing) — why this fails: any agent must submit to the gates before commands or CLI edits; publish agent/submission + gate/compliance pairs where agents read them',
-  })
+      'AGENTS.md does not declare agent submission to script-shell gates (cli/bootstrap · 24-line budget · script-exits routing) — why this fails: any agent must submit to the gates before commands or CLI edits; publish agent/submission + gate/compliance pairs where agents read them' })
 }
 {
   const matrix = buildMatrix()
@@ -937,8 +924,7 @@ if (!/agent submission|entry\.mjs|script\/shell/i.test(agentsDoc)) {
     gaps.push({
       harmonic: 'agent-law',
       kind: 'unpublished',
-      detail: `agentSubmissionProtocol() fold failed at weave — missing: ${failed.join('; ')}`,
-    })
+      detail: `agentSubmissionProtocol() fold failed at weave — missing: ${failed.join('; ')}` })
   }
   const compliance = agentGateComplianceChecklist(root, matrix)
   if (!compliance.compliant) {
@@ -946,8 +932,7 @@ if (!/agent submission|entry\.mjs|script\/shell/i.test(agentsDoc)) {
     gaps.push({
       harmonic: 'agent-law',
       kind: 'script-shell',
-      detail: `agentGateComplianceChecklist() failed at weave — ${failed.join('; ')}`,
-    })
+      detail: `agentGateComplianceChecklist() failed at weave — ${failed.join('; ')}` })
   }
 }
 
@@ -1194,8 +1179,7 @@ const payload = {
   harmonicAssignment,
   folded: { unfolded: folded.unfolded, euler: folded.euler, genus: folded.genus, count: folded.folded },
   gaps,
-  distribution,
-}
+  distribution }
 if (existsSync(out)) writeFileSync(join(out, 'harmonic.json'), JSON.stringify(payload, null, 2))
 
 const findings: Finding[] = [
@@ -1252,8 +1236,7 @@ export function intelligentAudit(findings: Finding[]) {
     .map(([harmonic, group]) => ({
       harmonic,
       count: group.length,
-      waves: [...new Set(group.map((finding) => finding.wave))] as Finding['wave'][],
-    }))
+      waves: [...new Set(group.map((finding) => finding.wave))] as Finding['wave'][] }))
     .sort((a, b) => b.count - a.count || a.harmonic.localeCompare(b.harmonic))
   const receipt = findings.length
     ? merkleFold(findings.map((finding) => toUuid(`${finding.wave}:${finding.severity}:${finding.kind}:${finding.detail}`)))
@@ -1274,8 +1257,7 @@ function sealAudit(root: string, audit: ReturnType<typeof intelligentAudit>, src
     errorCount: audit.errors.length,
     warnCount: audit.warns.length,
     roots: audit.roots,
-    findings: [...audit.errors, ...audit.warns],
-  }
+    findings: [...audit.errors, ...audit.warns] }
   writeFileSync(join(out, 'audit.json'), JSON.stringify(payload, null, 2))
 }
 
@@ -1362,6 +1344,5 @@ export function vitePlugin(projectRoot: string): Plugin {
     buildEnd() {
       const code = runEnforcementTrinity(projectRoot)
       if (code !== 0) throw new Error(`Enforcement trinity failed (code ${code}).`)
-    },
-  }
+    } }
 }

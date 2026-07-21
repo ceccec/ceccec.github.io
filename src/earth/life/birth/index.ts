@@ -38,8 +38,7 @@ export function birthCreationWave(matrix: MindMatrix = buildMatrix(), index = 0)
     statement:
       'Creation wave: each index alone yields a content UUID, a pi-stream note, and a hue — grounded in genesis seedRoot, addressable without walking a chain.',
     boundary:
-      'Composition of creationWave and genesis. Deterministic generative art — not cosmological or biological creation claims.',
-  }
+      'Composition of creationWave and genesis. Deterministic generative art — not cosmological or biological creation claims.' }
 }
 
 /** Forms emerge in the movie of life — taxonomic ranks fold with the movie root as scenes. */
@@ -74,8 +73,7 @@ export function birthLifeDeathTriadComputes(matrix: MindMatrix = buildMatrix()) 
     const death = deathComputes(matrix)
     const triad = BIRTH_LIFE_DEATH_TRIAD.map((entry) => ({
       ...entry,
-      receipt: toUuid(`birth-life-death:${entry.phase}:${entry.mount}`),
-    }))
+      receipt: toUuid(`birth-life-death:${entry.phase}:${entry.mount}`) }))
     const { computes, facets } = computesGate('birth-life-death-triad-computes', [
       { facet: 'src/earth/life/birth computes — genesis creation emergence', on: birth.computes },
       { facet: 'src/life computes — biology neurology harmony', on: life.computes },
@@ -94,8 +92,7 @@ export function birthLifeDeathTriadComputes(matrix: MindMatrix = buildMatrix()) 
       statement:
         'Birth/life/death triad computes: src/birth (genesis, creation, emergence), src/life (biology, neurology), and src/death (compost, entropy recycle, regeneration) sealed as one cycle at call time.',
       boundary:
-        'Composition of birthComputes, lifeComputes, and deathComputes via lazy require. Structural/computational cycle metaphors — not medical obstetrics, mortality, or eschatology.',
-    }
+        'Composition of birthComputes, lifeComputes, and deathComputes via lazy require. Structural/computational cycle metaphors — not medical obstetrics, mortality, or eschatology.' }
   })
 }
 
@@ -135,7 +132,6 @@ export function birthComputes(matrix: MindMatrix = buildMatrix()) {
       statement:
         'Birth computes: the canonical genesis/origin/creation/emergence home — double-torus genesis, create-by-default generative floor, creation waves, forms in the movie of life, kids-define-education consent, and the abiogenesis frontier — triad entry with src/life and src/death at call time.',
       boundary:
-        'Structural/computational origin and creation metaphors over computed portal gates — genesis is domain unfolding from one seed, create-by-default is deterministic generative art, abiogenesis is an honestly bounded research decode. Not medical birth, obstetrics, or creationist theology unless explicitly flagged in the underlying fold.',
-    }
+        'Structural/computational origin and creation metaphors over computed portal gates — genesis is domain unfolding from one seed, create-by-default is deterministic generative art, abiogenesis is an honestly bounded research decode. Not medical birth, obstetrics, or creationist theology unless explicitly flagged in the underlying fold.' }
   })
 }

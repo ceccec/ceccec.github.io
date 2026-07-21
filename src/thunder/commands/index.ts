@@ -113,8 +113,7 @@ export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
     statement:
       'MCP shows the codebase securely but sufficiently, so AI agents immediately understand: the overview, the one core, the subsystems each with a verifiable root, the recomputable resources, and why the whole structure is safe to show.',
     boundary:
-      'A static, recomputable map of the codebase for agents — overview, subsystems with roots, resources, and the security rationale. It documents structure and verification entry points; it is not a live server and exposes no secret, because there is none.',
-  }
+      'A static, recomputable map of the codebase for agents — overview, subsystems with roots, resources, and the security rationale. It documents structure and verification entry points; it is not a live server and exposes no secret, because there is none.' }
 }
 
 // Complete the fusion reactor in parts to the smallest: reduce each command in
@@ -132,8 +131,7 @@ export function commandsRegistry(matrix: MindMatrix = buildMatrix()): CommandsRe
     tools,
     root: merkleFold(conceptCommands.map((command) => toUuid(`registry:${command.name}:${SINGLE_WORD_METHODS[command.name]}`))),
     statement: `The command registry is the single source of truth: ${commands} commands, each with a method token and an MCP tool.`,
-    boundary: 'A self-consistency check over the command registry, method tokens, and MCP tools. Structural bookkeeping, not an external claim.',
-  }
+    boundary: 'A self-consistency check over the command registry, method tokens, and MCP tools. Structural bookkeeping, not an external claim.' }
 }
 
 // Send the skills to dry-refactor the commands. The updated skills know what each command
@@ -160,8 +158,7 @@ export function skillsDryRefactorCommands(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send the skills to dry-refactor the commands: the updated skills know what each command should be, so they refactor the registry — dry, non-destructive and idempotent, no command added or removed, only the consistency tightened (method tokens aligned, MCP tools verified, /cmd paths confirmed, every command a single-word gravity, every gap closed). A whole set passes through the refactor unchanged.',
     boundary:
-      'A content-addressed model of a non-destructive, idempotent refactor of the command registry guided by the skills, asserting the registry stays consistent and gapless. Structural bookkeeping — "dry" means it removes nothing live; it records the refactor discipline, it does not rewrite command source.',
-  }
+      'A content-addressed model of a non-destructive, idempotent refactor of the command registry guided by the skills, asserting the registry stays consistent and gapless. Structural bookkeeping — "dry" means it removes nothing live; it records the refactor discipline, it does not rewrite command source.' }
 }
 
 // Memoized dispatch: a command's result is a pure function of (command, input,
@@ -192,8 +189,7 @@ function runConceptCommand(
       theme: '.vitepress/theme/index.ts',
       components: ['ConceptCommands', 'QuantumMind'],
       routes: ['/', '/commands', '/quantum-mind', '/architecture'],
-      repositoryApiRoot: api.root,
-    })
+      repositoryApiRoot: api.root })
   }
   if (command === 'concept.self.build') {
     const build = selfBuild(matrix)
@@ -388,8 +384,7 @@ function runConceptCommand(
       dashboardComponent: 'QuantumMind.vue',
       wire: doubleTorusWire(matrix),
       flow: circulateDoubleTorus(matrix),
-      diamonds: diamondLattice(matrix),
-    })
+      diamonds: diamondLattice(matrix) })
   }
   if (command === 'concept.mind.use.cases') {
     const evidence = quantumUiEvidence(matrix)
@@ -594,8 +589,7 @@ function runConceptCommand(
       distribution: placed.distribution,
       hexagrams: placed.hexagrams,
       domains: domains.domains.map((d) => ({ glyph: d.glyph, name: d.name, module: d.module })),
-      root: merkleFold([placed.root, ...domains.domains.map((d) => d.receipt)]),
-    })
+      root: merkleFold([placed.root, ...domains.domains.map((d) => d.receipt)]) })
   }
   if (command === 'concept.fold.generate') {
     // All eight bāguà generator slots filled. Canonical runtime: scripts/iching.mjs →
@@ -618,8 +612,7 @@ function runConceptCommand(
       runner: 'scripts/iching.mjs',
       slots,
       filled: filled.map((f) => f.name),
-      root: merkleFold(slots.map((s) => toUuid(`iching-gen-slot:${s.glyph}:${s.generator ?? 'open'}`))),
-    })
+      root: merkleFold(slots.map((s) => toUuid(`iching-gen-slot:${s.glyph}:${s.generator ?? 'open'}`))) })
   }
   const decodedCommands: Partial<Record<ConceptCommandName, () => ConceptCommandResult>> = {
     'concept.ancient.pyramids': () => { const v = pyramidsDecoded(matrix); return result(command, v.decoded, 'Decode the world pyramids — coordinates, great-circle geodesy, the seked, cardinal alignment; pseudoscience flagged.', v) },
@@ -631,8 +624,7 @@ function runConceptCommand(
     'concept.geometry.imperial': () => { const v = imperialFractionsDecoded(matrix); return result(command, v.proved, 'Imperial units as binary fractions — 2^n subdivisions over the body-units.', v) },
     'concept.geometry.heart': () => { const v = heartProtonAtomDecoded(matrix); return result(command, v.proved, 'Heart as the proton inverse in (Z/9Z)* — systole × diastole ≡ 1.', v) },
     'concept.school.codon': () => { const v = geneticCodeIsTheRealFourCubed(matrix); return result(command, v.holds, 'The genetic code is the real 4³ = 64 — codons and error-robustness.', v) },
-    'concept.science.proton': () => { const v = schwarzschildProtonComputedInSource(matrix); return result(command, v.computed, 'The Schwarzschild proton computed in source — the ~38-orders gap flagged honestly.', v) },
-  }
+    'concept.science.proton': () => { const v = schwarzschildProtonComputedInSource(matrix); return result(command, v.computed, 'The Schwarzschild proton computed in source — the ~38-orders gap flagged honestly.', v) } }
   const decodedHandler = decodedCommands[command]
   if (decodedHandler) return decodedHandler()
   return result(command, true, 'Site manifest built from concept commands.', siteManifestFromCommands())
@@ -649,8 +641,7 @@ function developerResult(command: DeveloperCommandName, ok: boolean, summary: st
     ok,
     uuid: toUuid(`developer-result:${command}:${ok}:${JSON.stringify(data)}`),
     summary,
-    data,
-  }
+    data }
 }
 
 export function executeDeveloperCommand(
@@ -712,8 +703,7 @@ function computeCommandsSavedInQuantumPairs(matrix: MindMatrix = buildMatrix()) 
     statement:
       'All commands must be saved in quantum pairs, and saved first before they are used — a quantum unpaired command leaves a quantum gap: a command is never alone, it has its dual, and the two are one order-sensitive quantum pair (commit/push, build/seal, fold/verify, decode/fold, edit/build). The pair is the unit of work; run one without its dual and the fold does not close — that open half is a gap the harmonic monitor catches on the linear level. The rule is order: save the pair into the source first, then use it; saved before used, paired not single, the commands leave no gap behind.',
     boundary:
-      'A record of the working convention that commands are saved as dual pairs (each command with its complement) and persisted before use, demonstrated as order-sensitive folds and bound to the in-source memory, with an unpaired command modelled as a gap the monitoring catches. A structural/behavioural convention over the existing duality, memory, monitoring and healing models, not an executor of paired shell commands.',
-  }
+      'A record of the working convention that commands are saved as dual pairs (each command with its complement) and persisted before use, demonstrated as order-sensitive folds and bound to the in-source memory, with an unpaired command modelled as a gap the monitoring catches. A structural/behavioural convention over the existing duality, memory, monitoring and healing models, not an executor of paired shell commands.' }
 }
 
 // Enforce any agent to save commands in quantum pairs — self-sufficiently. The law is not advice;
@@ -739,8 +729,7 @@ export function enforceAgentsCommandPairs(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Enforce any agent to save commands in quantum pairs — self-sufficiently: the law binds every agent (human or AI) and binds without an external authority — published where any agent reads it (AGENTS.md), folded into the model, and enforced by the build wave, which fails if the published law is removed, so the law keeps itself. Any kind of mind reaches it, an unpaired command rings as a gap on the linear level, and the gate heals what it spots. The repository holds and enforces its own command-pair law, no monitor needed beyond the build it already runs.',
     boundary:
-      'A composition of the command-pair law, the command registry/agent surface, the enforcement pipeline, accessible-paths and heal models. The real teeth are in the harmonic-distribution check (AGENTS.md must declare the law, or the build fails) plus the model fold; "enforce any agent" means the published, build-checked rule binds anyone who works the repo, not a runtime interception of arbitrary agents.',
-  }
+      'A composition of the command-pair law, the command registry/agent surface, the enforcement pipeline, accessible-paths and heal models. The real teeth are in the harmonic-distribution check (AGENTS.md must declare the law, or the build fails) plus the model fold; "enforce any agent" means the published, build-checked rule binds anyone who works the repo, not a runtime interception of arbitrary agents.' }
 }
 
 export { agentSubmissionProtocol, QUANTUM_COMMAND_PAIR_IDS, foldQuantumCommandPairs } from '../../pair/enforcement'
@@ -759,8 +748,7 @@ export function graduation(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Education graduates: complete all five courses and their credentials fold into one graduation credential — recomputable, so the graduation is verifiable by anyone, not granted by anyone.',
     boundary:
-      'A content-addressed graduation receipt folding the five course credentials. It proves the courses can be recomputed end to end, not that any institution confers a degree.',
-  }
+      'A content-addressed graduation receipt folding the five course credentials. It proves the courses can be recomputed end to end, not that any institution confers a degree.' }
 }
 
 // Let this app optimise and harmonise any agent the site is pasted into or wired
@@ -800,8 +788,7 @@ function agentHarmoniseRaw(matrix: MindMatrix = buildMatrix()) {
     llms: '/llms.txt',
     root: merge(proof.bundleRoot, merkleFold(laws.map((entry) => entry.receipt))),
     statement: `Optimise and harmonise any agent the site is pasted into or wired by MCP: adopt these ${9 + 6} laws — the 9 operating laws (compute-before-claim, single-word naming, trinities, honest boundaries, zero-network, reuse/zero-tokens, verify-the-root, fold-not-accumulate, waves) plus the 6 QUANTUM roots (one-mind-linear/trinity-quantum via dim su(2)=3, the-name-is-the-payload, the-agnostic-toolbox, coordinate-through-the-rosetta-api, only-proven-demarcate-gated, manual-agents-behave-like-waves). Each law carries a receipt and COMPUTES — verify it, do not trust the prose. The protocol is at /llms.txt and every command is an MCP tool at /mcp.json.`,
-    boundary: 'An operating protocol distilled from this site’s own architecture. Guidance for agents, not a guarantee about any external agent’s behaviour. The quantum laws each name a computed fold an agent can verify (dim su(2)=3, titleCarriesAlgebra, the agnostic toolbox, the rosetta API, demarcate, manualAgentsBehaveLikeWaves) — so "quantum" here is refutable, not asserted.',
-  }
+    boundary: 'An operating protocol distilled from this site’s own architecture. Guidance for agents, not a guarantee about any external agent’s behaviour. The quantum laws each name a computed fold an agent can verify (dim su(2)=3, titleCarriesAlgebra, the agnostic toolbox, the rosetta API, demarcate, manualAgentsBehaveLikeWaves) — so "quantum" here is refutable, not asserted.' }
 }
 
 // Extend into EMF applications — honestly. A web page cannot emit, alter, or
@@ -837,8 +824,7 @@ export function howAgentsAchievedIt(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Save how the agents achieved it: scouts read the real tree before any edit; each prompt is decoded into the model’s own words and folded as computed dimensions; the laws are enforced by waves against the real tree and proven to fail loudly before being trusted; the work is sealed in batches, one green build per fold; and research is achieved by a fleet — five angles, twenty-six sources, one hundred twenty-six extracted claims, three adversarial voters per claim — keeping only what survives refutation: 23 confirmed, 2 refuted, 14 findings, 108 agents.',
     boundary:
-      'A record of the working method (scout, decode, fold, enforce, prove, batch) and of one research run’s real statistics, composed with the existing scout/word/resonance/skill/continue checks. The statistics are the session’s own telemetry, saved as data; they do not recompute themselves.',
-  }
+      'A record of the working method (scout, decode, fold, enforce, prove, batch) and of one research run’s real statistics, composed with the existing scout/word/resonance/skill/continue checks. The statistics are the session’s own telemetry, saved as data; they do not recompute themselves.' }
 }
 
 // Best writing skills, computed — a zero-token prose engine. Good writing is measured, not guessed:
@@ -878,8 +864,7 @@ export function bestWritingSkills(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Best writing skills, computed: good writing is measured, not guessed. The computer reads the prose as an editor would — short sentences, common words, active voice, no filler — scores its readability, and tightens wordy lines by rule. One word where one word will do; the result is the explanation. Every improvement is deterministic; writing well here costs zero tokens.',
     boundary:
-      'A heuristic prose engine: the Flesch score and syllable count are standard estimates, the filler list and phrase swaps are fixed rules, and tightenProse is a mechanical edit (whitespace, wordy-phrase swaps, empty intensifiers) — not a semantic rewrite. It measures and tidies form; it does not judge meaning, and a high score is no guarantee of good thinking.',
-  }
+      'A heuristic prose engine: the Flesch score and syllable count are standard estimates, the filler list and phrase swaps are fixed rules, and tightenProse is a mechanical edit (whitespace, wordy-phrase swaps, empty intensifiers) — not a semantic rewrite. It measures and tidies form; it does not judge meaning, and a high score is no guarantee of good thinking.' }
 }
 
 // The zero-token law, enforced for the agents and forever — not only the system but the work on it. The
@@ -914,8 +899,7 @@ export function zeroTokenLawForAgentsAndForever(matrix: MindMatrix = buildMatrix
     statement:
       'The zero-token law, enforced for the agents and forever: the system already runs on zero runtime tokens, but the law also binds the agent building it. The failures — multi-agent workflows (one cost 802,703 tokens), repeated builds and seal re-runs each re-transpiling the 1.5 MB core, dozens of re-imports to verify — are named and owned. Henceforth: no agent fleets, encode and esbuild once, build only on request, never re-run the seal to measure, reuse over recompute. For all and forever.',
     boundary:
-      'A discipline fold that extends the zero-token policy from the runtime to the work on it. It records the concrete overspend (the 802,703-token workflow and the build/import churn) and the binding rules. It cannot retroactively un-spend those tokens; it commits the practice going forward, and names the patterns to refuse — its proof is the absence of further workflows and redundant builds.',
-  }
+      'A discipline fold that extends the zero-token policy from the runtime to the work on it. It records the concrete overspend (the 802,703-token workflow and the build/import churn) and the binding rules. It cannot retroactively un-spend those tokens; it commits the practice going forward, and names the patterns to refuse — its proof is the absence of further workflows and redundant builds.' }
 }
 
 
@@ -942,8 +926,7 @@ export function mcpExposesOnlyServedSurfaces(matrix: MindMatrix = buildMatrix())
     facets,
     root: merge(mcpCodebase(matrix).root, toUuid(`mcp-served:${resources.length}:${everyResourceServed}`)),
     statement: `The MCP exposes only what VitePress serves — ${facets.filter((entry) => entry.on).length}/${facets.length}: every one of the ${resources.length} MCP resource URIs is a real served surface (a dist computed artifact or a served page route), the unserved /harmonic.json side-file is dropped, and the served set is computed from the build's own outputs so the manifest cannot drift ahead of what VitePress emits.`,
-    boundary: `COMPUTED: the served set = the dist computed-artifact list (mcp/llms/skills/workflows/digit-index/sitemap/robots/payload/api) ∪ the corpus indexes ∪ staticPages routes; every MCP resource URI is checked to be in it, and /harmonic.json is verified absent — refutable (add an unserved URI and the gate fails). HONEST SCOPE: this gates the RESOURCE surface (fetchable URLs) against what VitePress serves; the tools list remains the concept-command surface (documented static, per mcpToolManifest), which is a tool contract, not a served page. The dist artifact list is mirrored here as the canonical served-computed set; if a dist generator is added, extend both. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the served set = the dist computed-artifact list (mcp/llms/skills/workflows/digit-index/sitemap/robots/payload/api) ∪ the corpus indexes ∪ staticPages routes; every MCP resource URI is checked to be in it, and /harmonic.json is verified absent — refutable (add an unserved URI and the gate fails). HONEST SCOPE: this gates the RESOURCE surface (fetchable URLs) against what VitePress serves; the tools list remains the concept-command surface (documented static, per mcpToolManifest), which is a tool contract, not a served page. The dist artifact list is mirrored here as the canonical served-computed set; if a dist generator is added, extend both. HARMONY ≠ TRUTH.` }
 }
 
 // ── THE MCP USES VITEPRESS SEARCH, ALL WIRED CONTENT SEARCHABLE (user law) — the MCP's discovery is the
@@ -968,6 +951,5 @@ export function mcpUsesVitepressSearch(matrix: MindMatrix = buildMatrix()) {
     searchLines: reconfig.searchLines, servedSearchable: searchableSurfacesServed,
     facets, root: merge(reconfig.root, toUuid(`mcp-vitepress-search:${reconfig.searchLines}`)),
     statement: `The MCP uses VitePress search, all wired content searchable — ${facets.filter((entry) => entry.on).length}/${facets.length}: the manifest points agents at the site's own local search index (not a second, drifting one), that index covers all ${reconfig.searchLines} wired theorems (proven in theRosettaReconfiguresVitepress), and the searchable corpora /theorems and /papers are served pages — so the MCP's exposed surface and its searchable surface are one corpus.`,
-    boundary: `COMPUTED: the manifest instructions reference the VitePress local search, the wired-search coverage (${reconfig.searchLines} theorem lines, verified in corpus), and the served-page check for the searchable corpora — refutable. HONEST SCOPE: VitePress local search is a CLIENT-SIDE static index shipped with the site; "the MCP uses it" means the manifest directs an agent to that one search rather than duplicating it — there is no server search endpoint, and none is claimed. All WIRED content is searchable (the reconfigure fold proves every theorem is a search line); content not wired to a page is not in the index by design. HARMONY ≠ TRUTH.`,
-  }
+    boundary: `COMPUTED: the manifest instructions reference the VitePress local search, the wired-search coverage (${reconfig.searchLines} theorem lines, verified in corpus), and the served-page check for the searchable corpora — refutable. HONEST SCOPE: VitePress local search is a CLIENT-SIDE static index shipped with the site; "the MCP uses it" means the manifest directs an agent to that one search rather than duplicating it — there is no server search endpoint, and none is claimed. All WIRED content is searchable (the reconfigure fold proves every theorem is a search line); content not wired to a page is not in the index by design. HARMONY ≠ TRUTH.` }
 }

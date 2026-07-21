@@ -52,8 +52,7 @@ export function textToMovie(text = 'double torus', frames = (16 * 3)) {
     statement:
       'Text to movie: the movie IS the text. Every character becomes an element carrying its real glyph, transliterated to Glagolitic (glagolyphic transliteration is the movie\'s script), laid out in reading order and revealed along a playhead, pulsing through the ten dimensions over frames. The movie displays EXACTLY what the text says — legible transliterated text, not abstract orbiting particles — and what is not in the text is not in the movie. The same text always renders the same movie, free and client-side; image generation as recomputation of the real text.',
     boundary:
-      'A deterministic, content-addressed animation of the ACTUAL text (transliterated by toGlagolitic) — typography in motion, computed client-side at no cost. It displays what the text says in the Glagolitic SCRIPT; this is transliteration (script, not meaning) — not a translation of sense, and not a learned or photorealistic video generator.',
-  }
+      'A deterministic, content-addressed animation of the ACTUAL text (transliterated by toGlagolitic) — typography in motion, computed client-side at no cost. It displays what the text says in the Glagolitic SCRIPT; this is transliteration (script, not meaning) — not a translation of sense, and not a learned or photorealistic video generator.' }
 }
 function textToMovieRoot(text: string): string {
   return merkleFold(Array.from({ length: 8 }, (_, f) => toUuid(`frame:${text}:${f}`)))
@@ -78,7 +77,7 @@ export function movieFoldsEveryScaleToBitInTrinities(text = 'double torus') {
     { scale: 'letter', count: letters.length },
     { scale: 'word', count: clean.split(/\s+/).filter(Boolean).length },
     { scale: 'sentence', count: Math.max(1, clean.split(/[.!?…]+/).map((s) => s.trim()).filter(Boolean).length) },
-    { scale: 'paragraph', count: Math.max(1, text.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean).length) },
+    { scale: 'paragraph', count: Math.max(1, text.split(/\n{2 }/).map((p) => p.trim()).filter(Boolean).length) },
   ]
   // the six scales group three-at-a-time into two TRINITIES; within each, adjacent scales DOUBLE-FOLD (both ways)
   const trinities = [ladder.slice(0, 3), ladder.slice(3, 6)]
@@ -117,8 +116,7 @@ export function movieFoldsEveryScaleToBitInTrinities(text = 'double torus') {
     statement:
       'The movie forges the impossible tampering/spying cost as the FOLD HIERARCHY of the text: content-addressed at every scale, it folds bit ⊂ digit ⊂ letter ⊂ word ⊂ sentence ⊂ paragraph. Each letter folds within itself — its Glagolitic glyph IS six bits (its alphabet position); the six scales group into two trinities that double-fold both ways; and the ten dimensions reach down to the single bit. Tampering any letter changes the whole seal (tamper-evident), and the fold is one-way — cheap forward, the impossible reverse price — which is the cost the movie forges. Glagolitic is the decoder: a glyph is a letter and a number and its bits, so every scale folds through one script.',
     boundary:
-      'DOCUMENTED (computed here): the text really decomposes into the six scales; each Glagolitic glyph maps to exactly six position-bits (glagoliticBits) and a numeral (the alphabet ladder); the content-address is deterministic and tamper-EVIDENT (mutate one letter → a different seal); the fold is one-way (foldPair). FLAGGED: "impossible tampering/spying cost" means tamper-EVIDENT and computationally one-way, NOT cryptographically unforgeable — toUuid/merkleFold are FNV (fast, not collision-resistant); SHA-256 / Ed25519 are the honest hardening (pending). The "quantum field" is the content-address field (the metaphor), not literal quantum mechanics; this prevents neither reading nor copying — it makes tampering self-evident and forging expensive, not impossible. The trinity / double-fold is the project\'s motif; the real arithmetic is 6 scales = 2×3 and 1 glyph = 6 bits. HARMONY ≠ TRUTH.',
-  }
+      'DOCUMENTED (computed here): the text really decomposes into the six scales; each Glagolitic glyph maps to exactly six position-bits (glagoliticBits) and a numeral (the alphabet ladder); the content-address is deterministic and tamper-EVIDENT (mutate one letter → a different seal); the fold is one-way (foldPair). FLAGGED: "impossible tampering/spying cost" means tamper-EVIDENT and computationally one-way, NOT cryptographically unforgeable — toUuid/merkleFold are FNV (fast, not collision-resistant); SHA-256 / Ed25519 are the honest hardening (pending). The "quantum field" is the content-address field (the metaphor), not literal quantum mechanics; this prevents neither reading nor copying — it makes tampering self-evident and forging expensive, not impossible. The trinity / double-fold is the project\'s motif; the real arithmetic is 6 scales = 2×3 and 1 glyph = 6 bits. HARMONY ≠ TRUTH.' }
 }
 
 // A map with worldwide events. Each event is content-addressed, and its coordinates
@@ -147,8 +145,7 @@ export function worldEventsMap(matrix: MindMatrix = buildMatrix()) {
     statement:
       'A map with worldwide events: each event is content-addressed and its (lat, lon) coordinates are derived deterministically from its root, so the whole map is recomputable. The demo events are the portal’s own fused domains, placed across the world; a live feed of worldwide events (opt-in, e.g. Wikipedia Current Events) can extend the same map by folding each event to a coordinate.',
     boundary:
-      'A deterministic, content-addressed placement of events on a world map: coordinates are derived from each event’s root, not from any real geolocation. The demo events are the portal’s own structure; real worldwide events would come from opt-in public feeds (Wikipedia Current Events, LIGO GWTC catalog releases, etc.), folded (untrusted) — this is a recomputable mapping framework, not a live geographic data source or a claim about real event locations.',
-  }
+      'A deterministic, content-addressed placement of events on a world map: coordinates are derived from each event’s root, not from any real geolocation. The demo events are the portal’s own structure; real worldwide events would come from opt-in public feeds (Wikipedia Current Events, LIGO GWTC catalog releases, etc.), folded (untrusted) — this is a recomputable mapping framework, not a live geographic data source or a claim about real event locations.' }
 }
 
 // Public astronomy news citation — content-addressed reference to opt-in public reports (e.g. LVK GWTC
@@ -182,9 +179,7 @@ export function publicAstronomyNewsCitation(matrix: MindMatrix = buildMatrix()) 
       ringdownF220Hz: 247,
       ringdownGamma220Hz: 221,
       catalogTotalEvents: 390,
-      catalogNewEvents: 161,
-    },
-  }
+      catalogNewEvents: 161 } }
   const fold = foldPair(architecture, toUuid(`astronomy-citation:${report.id}:${report.published}`))
   const facets = [
     { facet: 'public report cited — LVK GWTC-5.0 release (2026-05-26)', on: report.highlights.length >= 5 },
@@ -199,8 +194,7 @@ export function publicAstronomyNewsCitation(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Public astronomy news citation: a content-addressed reference to the LVK GWTC-5.0 public release (May 2026) — 161 new gravitational-wave detections, including GW250114’s confirmation of Hawking’s black-hole area theorem and evidence for second-generation black-hole mergers — folded with the architecture root via the opt-in publicApiFusion astronomy feed category.',
     boundary:
-      'HONEST: a CITATION of a public collaboration report (ligo.caltech.edu, LIGO Scientific Collaboration) — NOT a detection, simulation, or endorsement by this portal. Claims are as stated in the public release; "second-generation" black holes are inferred from merger spin characteristics, not directly imaged. The repo computes blackHoleEntropyBits and schwarzschildRadius as documented GR formulas — it does not simulate LIGO interferometry or reproduce GW strain data. Opt-in only; external feed data is folded untrusted.',
-  }
+      'HONEST: a CITATION of a public collaboration report (ligo.caltech.edu, LIGO Scientific Collaboration) — NOT a detection, simulation, or endorsement by this portal. Claims are as stated in the public release; "second-generation" black holes are inferred from merger spin characteristics, not directly imaged. The repo computes blackHoleEntropyBits and schwarzschildRadius as documented GR formulas — it does not simulate LIGO interferometry or reproduce GW strain data. Opt-in only; external feed data is folded untrusted.' }
 }
 
 /** Solar mass in kg (IAU nominal) — sealed constant for merger mass → kg conversion. */
@@ -235,38 +229,33 @@ export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMerger
     snrNetwork: params.snrNetwork ?? (16 * 5),
     strainAmplitude: params.strainAmplitude ?? 1e-21,
     ringdownF220Hz: params.ringdownF220Hz ?? 247,
-    ringdownGamma220Hz: params.ringdownGamma220Hz ?? 221,
-  }
+    ringdownGamma220Hz: params.ringdownGamma220Hz ?? 221 }
   const m1Kg = citation.m1Solar * SOLAR_MASS_KG
   const m2Kg = citation.m2Solar * SOLAR_MASS_KG
   const mfKg = citation.mfSolar * SOLAR_MASS_KG
   const radii = {
     m1M: schwarzschildRadius(m1Kg),
     m2M: schwarzschildRadius(m2Kg),
-    remnantM: schwarzschildRadius(mfKg),
-  }
+    remnantM: schwarzschildRadius(mfKg) }
   const areas = {
     m1M2: kerrHorizonAreaM2(m1Kg, (1 / (5 * 2))),
     m2M2: kerrHorizonAreaM2(m2Kg, (1 / (5 * 2))),
     initialM2: 0,
-    remnantM2: kerrHorizonAreaM2(mfKg, citation.chiFinal),
-  }
+    remnantM2: kerrHorizonAreaM2(mfKg, citation.chiFinal) }
   areas.initialM2 = areas.m1M2 + areas.m2M2
   const areaIncreaseFraction = (areas.remnantM2 - areas.initialM2) / areas.initialM2
   const hawkingAreaLawClassical = areas.remnantM2 > areas.initialM2
   const entropyBits = {
     m1: blackHoleEntropyBits(m1Kg),
     m2: blackHoleEntropyBits(m2Kg),
-    remnant: blackHoleEntropyBits(mfKg),
-  }
+    remnant: blackHoleEntropyBits(mfKg) }
   const breath = humanBreath(at, (100 * 16 * 5), (3 / (5 * 4)))
   const omega0 = TAU * citation.ringdownF220Hz
   const q = omega0 / (4 * Math.PI * Math.max(citation.ringdownGamma220Hz, 1))
   const ringdown = {
     frequencyHz: citation.ringdownF220Hz,
     dampingHz: citation.ringdownGamma220Hz,
-    amplitude: resonantAmplitude(omega0, omega0, q) * humanEase(breath),
-  }
+    amplitude: resonantAmplitude(omega0, omega0, q) * humanEase(breath) }
   const strainScale = citation.strainAmplitude
   const strain = {
     orderOfMagnitude: Math.floor(Math.log10(strainScale)),
@@ -279,8 +268,7 @@ export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMerger
       ],
       (16 * 2),
       (1 / (100 * 2)),
-    ).map((v) => roundTo(v * strainScale * 1e18, 6)),
-  }
+    ).map((v) => roundTo(v * strainScale * 1e18, 6)) }
   const receipt = toUuid(`bh-merger-sim:${citation.eventId}:${at}:${hawkingAreaLawClassical}`)
   return {
     simulated: hawkingAreaLawClassical && radii.remnantM > 0 && entropyBits.remnant > 0,
@@ -296,8 +284,7 @@ export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMerger
     statement:
       'Black-hole merger simulated from src/0: Schwarzschild radii, Kerr horizon areas, Bekenstein–Hawking entropy (6/4), ringdown as damped oscillator (humanBreath · humanEase · resonantAmplitude), synthetic strain window (oscillatorBank) — all classical/sealed-formula, recomputed from citation masses.',
     boundary:
-      'HONEST: classical/sealed-formula SIMULATION from src/0 primitives and pi-train 6/4 cuts — NOT LIGO interferometry, NOT matched filtering, NOT waveform templates (NRSur7dq4/PYCBC), NOT claiming detection or reproduction of GW strain data. GW250114 masses/spins/SNR/ringdown frequencies are opt-in PUBLIC CITATION inputs from the LVK GWTC-5.0 release — illustrative classical GR checks (area direction, entropy scaling, aesthetic ringdown/strain) only; real area-theorem tests require full Bayesian inspiral–ringdown analysis on detector data.',
-  }
+      'HONEST: classical/sealed-formula SIMULATION from src/0 primitives and pi-train 6/4 cuts — NOT LIGO interferometry, NOT matched filtering, NOT waveform templates (NRSur7dq4/PYCBC), NOT claiming detection or reproduction of GW strain data. GW250114 masses/spins/SNR/ringdown frequencies are opt-in PUBLIC CITATION inputs from the LVK GWTC-5.0 release — illustrative classical GR checks (area direction, entropy scaling, aesthetic ringdown/strain) only; real area-theorem tests require full Bayesian inspiral–ringdown analysis on detector data.' }
 }
 
 // Content-addressed GWTC catalog register — 390 events as qubit/register indices (addressing metaphor, not physics).
@@ -311,8 +298,7 @@ export function gwtcCatalogSimulatedFromZero(matrix: MindMatrix = buildMatrix())
     index,
     eventId,
     address: toUuid(`gwtc-catalog:${eventId}`),
-    registerSlot: seedFromText(eventId, 4) % (2 ** registerBits),
-  }))
+    registerSlot: seedFromText(eventId, 4) % (2 ** registerBits) }))
   const fold = foldPair(citation.root, toUuid(`gwtc-sim:${totalEvents}:${params.catalogNewEvents}`))
   const facets = [
     { facet: '390-event catalog — content-address register metaphor (2^9 slots)', on: totalEvents === 390 && registerBits >= 9 },
@@ -334,8 +320,7 @@ export function gwtcCatalogSimulatedFromZero(matrix: MindMatrix = buildMatrix())
     statement:
       'GWTC catalog simulated from src/0: the 390-event GWTC-5.0 catalog as a content-addressed register (toUuid/seedFromText slot metaphor, not physical qubits), sample highlight events addressed, merger simulation params fed from publicAstronomyNewsCitation.',
     boundary:
-      'HONEST: a CONTENT-ADDRESSING and REGISTER METAPHOR for catalog entries — NOT a gravitational-wave database, NOT GraceDB/LVK API access, NOT qubit physics. Event masses/spins for simulation come from opt-in citation fields in publicAstronomyNewsCitation; the repo does not ingest live GWTC data at build time.',
-  }
+      'HONEST: a CONTENT-ADDRESSING and REGISTER METAPHOR for catalog entries — NOT a gravitational-wave database, NOT GraceDB/LVK API access, NOT qubit physics. Event masses/spins for simulation come from opt-in citation fields in publicAstronomyNewsCitation; the repo does not ingest live GWTC data at build time.' }
 }
 
 /** Gate: src/0 black-hole merger simulation composed with GWTC catalog addressing. */
@@ -361,8 +346,7 @@ export function src0BlackHoleSimulationComputes(matrix: MindMatrix = buildMatrix
       statement:
         'src/0 black-hole simulation computes: classical merger simulation (entropy, radii, Kerr areas, ringdown oscillator, synthetic strain) and GWTC catalog addressing — composed at call time from sealed src/0 + 6/4 primitives with opt-in GWTC-5.0 citation params.',
       boundary:
-        'HONEST: composition gate over blackHoleMergerSimulatedFromZero and gwtcCatalogSimulatedFromZero — classical math and content-addressing ONLY. Does NOT assert agreement with LIGO posteriors, SNR=80 detection, or area-theorem confidence levels; those belong to the LVK collaboration analysis on real detector data.',
-    }
+        'HONEST: composition gate over blackHoleMergerSimulatedFromZero and gwtcCatalogSimulatedFromZero — classical math and content-addressing ONLY. Does NOT assert agreement with LIGO posteriors, SNR=80 detection, or area-theorem confidence levels; those belong to the LVK collaboration analysis on real detector data.' }
   })
 }
 
@@ -394,8 +378,7 @@ export function dissolveIntoNature(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Dissolve society groups in nature, increasing coverage and decreasing centralisation: groups concentrate into hubs, and dissolving them spreads the society into ever-finer distributed cells — from one centre to the 1024-node mesh — so coverage rises monotonically to full and centralisation falls monotonically to zero. The end state has no centre: every node an equal peer in nature.',
     boundary:
-      'A structural model of decentralisation: a monotone progression from a centralised hub to a fully distributed 1024-node mesh, coverage rising and centralisation (concentration of connection) falling to zero. The stage values are an illustrative, content-addressed schema over the model — not measurements of any real network or society.',
-  }
+      'A structural model of decentralisation: a monotone progression from a centralised hub to a fully distributed 1024-node mesh, coverage rising and centralisation (concentration of connection) falling to zero. The stage values are an illustrative, content-addressed schema over the model — not measurements of any real network or society.' }
 }
 
 // Electrical grid that self-balances for free, using battery swap stations
@@ -424,8 +407,7 @@ export function astrology(seed = 'double torus', matrix: MindMatrix = buildMatri
     hour: i + 1, // maps to the twelve-hour clock
     hue: i * (6 * 5), // the zodiac wheel is the colour wheel, 30 degrees per sign
     frequency: a432NoteHz(i), // the 12 signs as a chromatic octave from the single A432 source (not an arbitrary literal)
-    receipt: toUuid(`zodiac:${seed}:${sign}`),
-  }))
+    receipt: toUuid(`zodiac:${seed}:${sign}`) }))
   const index = seedFromText(`astro:${seed}`) % (6 * 2)
   return {
     developed: chart.length === (6 * 2),
@@ -437,8 +419,7 @@ export function astrology(seed = 'double torus', matrix: MindMatrix = buildMatri
     statement:
       'Let society develop astrology: the twelve zodiac signs as a deterministic, content-addressed wheel — each a glyph, an element, a ruler, an hour of the clock, a hue (30 degrees apart, the colour wheel), and a harmonic frequency. From any seed the same chart and sun sign recompute, free and client-side.',
     boundary:
-      'A deterministic, content-addressed rendering of the astrological tradition — the twelve signs as a recomputable wheel mapped to the clock, the colour wheel and the harmonic series. Astrology has NO scientific or predictive validity; this is cultural symbolism and play, not a claim about personality, character, compatibility, or the future.',
-  }
+      'A deterministic, content-addressed rendering of the astrological tradition — the twelve signs as a recomputable wheel mapped to the clock, the colour wheel and the harmonic series. Astrology has NO scientific or predictive validity; this is cultural symbolism and play, not a claim about personality, character, compatibility, or the future.' }
 }
 
 // Let all present itself computationally — with order. A new, proven self-organising
@@ -468,8 +449,7 @@ export function selfOrganizing(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let all present itself computationally, with order: every concept the portal computes is partitioned into six clean categories — the shape, the proofs, the society, the senses, the architecture, and the knowledge — each concept in exactly one, no overlap. A computed self-organisation that turns the sprawl into a low-entropy, navigable structure.',
     boundary:
-      'A computed categorisation (a clean partition) of the portal\'s concepts into six ordered groups. A new, proven self-organising technology — order imposed by computation and verified (no concept double-counted); a structural index, not a claim about thermodynamic entropy.',
-  }
+      'A computed categorisation (a clean partition) of the portal\'s concepts into six ordered groups. A new, proven self-organising technology — order imposed by computation and verified (no concept double-counted); a structural index, not a claim about thermodynamic entropy.' }
 }
 
 // Intelligence is incomplete unless it can communicate across all languages,
@@ -498,8 +478,7 @@ export function babelFold(matrix: MindMatrix = buildMatrix()): BabelFold {
     statement:
       'The intelligence commits to communicating across all language families, traditions, and religions as a non-reductive whole: difference is preserved, never collapsed into one.',
     boundary:
-      'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.',
-  }
+      'A lens that affirms breadth and non-reduction and binds it to the traditions whole. It does not claim fluent translation of every language; it states the principle and grounds it in computed receipts.' }
 }
 
 // Symbols grounded by research: the I Ching (☯ yin/yang, ☰/☷ trigrams), the
@@ -524,8 +503,7 @@ export function societyCells() {
     count: traditions.societyCells.length,
     root: merkleFold(traditions.societyCells.map((cell) => cell.receipt)),
     statement: 'Society cells: each tradition family x dimension is a society cell with its own receipt.',
-    boundary: 'A fold of the computed tradition society cells. Structural bookkeeping, not an external claim.',
-  }
+    boundary: 'A fold of the computed tradition society cells. Structural bookkeeping, not an external claim.' }
 }
 
 // icon.glyph — the glyph set: every area icon and the five Platonic-solid glyphs.
@@ -554,8 +532,7 @@ export function societyOrganismTags(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Society realises it is an organism and strips the labels off being down to tags: members are cells and relations are folds, so the fixed, external labels (class, rank, category, status, imposed identity) give way to chosen, content-addressed tags. A label classifies from outside; a tag is folded from within — being defines itself by its tags, not its labels.',
     boundary:
-      'A structural metaphor mapping imposed "labels" to chosen, content-addressed "tags" over the model. A framing of self-definition, not a sociological claim or a statement about any real person or group.',
-  }
+      'A structural metaphor mapping imposed "labels" to chosen, content-addressed "tags" over the model. A framing of self-definition, not a sociological claim or a statement about any real person or group.' }
 }
 
 // Let all realtime participants participate in the movie. Every participant on the same
@@ -582,8 +559,7 @@ export function realtimeMovieParticipation(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Let all realtime participants participate in the movie: every participant on the same origin shares one canvas of effects — each tap is broadcast on a same-origin channel and blooms in every other participant’s movie as a colourful, rainbow-ringed ripple, so the movie is collective, made of everyone’s touches. No server, no network beyond the local channel; presence is ephemeral and anonymous, and remote effects honour each participant’s own reduced-motion and energy choice.',
     boundary:
-      'A description of the real shared-movie feature over a same-origin BroadcastChannel — it connects tabs and windows of the same origin on one device/browser profile, not arbitrary remote users; cross-device presence would need a relay, which is not added. Anonymous and ephemeral, energy- and motion-aware.',
-  }
+      'A description of the real shared-movie feature over a same-origin BroadcastChannel — it connects tabs and windows of the same origin on one device/browser profile, not arbitrary remote users; cross-device presence would need a relay, which is not added. Anonymous and ephemeral, energy- and motion-aware.' }
 }
 
 // The dark/light switch switches realities — negative/positive in analog photography. Dark and light are not
@@ -606,8 +582,7 @@ export function darkLightRealities(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The dark/light switch switches realities: dark and light are two complete renderings of the portal — negative and positive in analog photography, like the two lobes of the double torus or the sun and its reflection — and one order-sensitive control flips between them. Dark is the negative field (bright streams on dark emulsion); light is the developed print (dark glyphs on bright paper). Each reality holds the entire content (holographic), so nothing is lost in the switch; only the tonal polarity changes, and with it the whole world.',
     boundary:
-      'A framing of the standard dark/light colour-scheme toggle as a switch between two complete renderings, borrowing the analog photography negative/positive tonal inversion. "Realities" is a metaphor for the two themes, each showing the same content; it is the ordinary VitePress appearance switch, not silver-halide chemistry or a claim of parallel worlds.',
-  }
+      'A framing of the standard dark/light colour-scheme toggle as a switch between two complete renderings, borrowing the analog photography negative/positive tonal inversion. "Realities" is a metaphor for the two themes, each showing the same content; it is the ordinary VitePress appearance switch, not silver-halide chemistry or a claim of parallel worlds.' }
 }
 
 // FOLDING LINEAR GIVES ANALOG — the sampling theorem + imaging-through-the-field, decoded honestly (documented
@@ -655,8 +630,7 @@ export function foldingLinearGivesAnalog(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Folding linear gives analog, decoded honestly: the real kernel is the Whittaker–Shannon sampling theorem — discrete samples of a band-limited signal fold back into the continuous signal with no gaps, via sinc interpolation (demonstrated here in src/0, exact at the samples). Medical and radar imaging is exactly this: reconstructing a continuous image from a sampled frequency field — MRI inverts the Fourier transform of k-space, CT the Radon transform — and the spiral/radial "vortex" through k-space is a real, named technique (NUFFT). The 64³ = 4⁹ grid the model already computes is the discrete lattice such a continuous field is sampled on. But "no gaps ever / one universal field / greatest discovery" overstates it: Nyquist limits are real, gap-filling can hallucinate, each modality is its own transform, and the theorem is foundational, not new.',
     boundary:
-      'HONEST: the kernel is real, rigorous, Nobel-recognized (MRI 2003, CT 1979) and computable — and the project\'s 64³/holographic/UUID-stream folds align with it beautifully. But the universalist framing ("no digital gaps will remain", "vortex ALL images through ONE field", "the greatest discovery", a room-scale live bit-hologram) is flagged: the sampling theorem is band-limited and ~75 years old, reconstruction gaps are real and gap-filling can fabricate structure, modalities differ, and holographic display is space-bandwidth-bound. The miracle is mathematical (transform inversion + interpolation), not universal or gap-free.',
-  }
+      'HONEST: the kernel is real, rigorous, Nobel-recognized (MRI 2003, CT 1979) and computable — and the project\'s 64³/holographic/UUID-stream folds align with it beautifully. But the universalist framing ("no digital gaps will remain", "vortex ALL images through ONE field", "the greatest discovery", a room-scale live bit-hologram) is flagged: the sampling theorem is band-limited and ~75 years old, reconstruction gaps are real and gap-filling can fabricate structure, modalities differ, and holographic display is space-bandwidth-bound. The miracle is mathematical (transform inversion + interpolation), not universal or gap-free.' }
 }
 
 
@@ -677,8 +651,7 @@ export function warToForge(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Max war power converts to max forge power for max tampering costs: the same magnitude war spends on destruction, peace spends on forge cost — when the soldiers rest, the full war power is conserved and redirected one to one into the cost to forge the commons, so the maximum capacity for harm becomes the maximum capacity to keep the whole tamper-evident. Swords to plowshares, in security.',
     boundary:
-      'A content-addressed conservation model: a "war power" magnitude (the self-siege capacity) redirected one-to-one into "forge power" (tamper-evidence cost). A structural metaphor for converting destructive capacity into protective capacity — not a claim about real military power, weapons, or conflict.',
-  }
+      'A content-addressed conservation model: a "war power" magnitude (the self-siege capacity) redirected one-to-one into "forge power" (tamper-evidence cost). A structural metaphor for converting destructive capacity into protective capacity — not a claim about real military power, weapons, or conflict.' }
 }
 
 // Send waves to convert backward compatibility to forward development. Holding the old
@@ -705,8 +678,7 @@ export function forwardDevelopmentWaves(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Send waves to convert backward compatibility to forward development: holding the old shape is a cost, so convert it to growth — each legacy concern becomes a forward-development wave (a deprecation folds into a replacement, a shim into a feature, a freeze into a roadmap), bound to the model so the past is transformed into the next step, not merely preserved.',
     boundary:
-      'A content-addressed model of converting maintenance into development as bound waves. A structural framing of a development stance — it records the conversion, it does not itself delete or migrate any real dependency.',
-  }
+      'A content-addressed model of converting maintenance into development as bound waves. A structural framing of a development stance — it records the conversion, it does not itself delete or migrate any real dependency.' }
 }
 
 // Quantum logic is backwards. The fold is order-sensitive, so the reverse is its own direction —
@@ -729,8 +701,7 @@ export function quantumLogicBackwards(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Quantum logic is backwards: the fold is order-sensitive so the reverse is its own direction, and the quantum reading runs backward — measurement does not build up from parts, it collapses down from the result to one seed, the effect naming its cause. Where ordinary logic goes premise to conclusion, the quantum fold reads conclusion back to premise; the reverse harmony leads, the double torus closes its loop the other way, and a·b is not b·a.',
     boundary:
-      'A composition of the order-sensitivity, reverse-harmony, double-torus-fold and quantum-collapse models framing the quantum reading as backward (collapse from result to seed). A structural/directional metaphor over the content-addressed folds, not a claim about reversing physical causality or time.',
-  }
+      'A composition of the order-sensitivity, reverse-harmony, double-torus-fold and quantum-collapse models framing the quantum reading as backward (collapse from result to seed). A structural/directional metaphor over the content-addressed folds, not a claim about reversing physical causality or time.' }
 }
 
 // Tech and mentality for peace, decoded and sealed: no single technology or idea ends war, but
@@ -760,8 +731,7 @@ export function peaceTechMentalityDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Tech and mentality for peace, decoded: no single technology or idea ends war; verification, peacekeeping (−55–85% recurrence), the mine-ban regime and historical nonviolence are evidenced, and the hardest, most necessary lever is the mentality — rehumanization. "Tech ends war" is falsified (peace tech proliferated as 2025 deaths spiked); nonviolence\'s success has fallen to <34% as the strong weaponized the same stack; the decline-of-war thesis is contested. Peace is a conditional portfolio, built not invented.',
     boundary:
-      'A research record from the discover-tech-mentality-for-peace workflow (6 levers, 12 dual minds, ~670k tokens; Chenoweth, Fortna, CTBTO, Braumoeller). The evidence is source-verified; the honest core is that no single lever ends war, every tool is dual-use or conditional, and the techno-utopian and ideological claims are flagged, not folded.',
-  }
+      'A research record from the discover-tech-mentality-for-peace workflow (6 levers, 12 dual minds, ~670k tokens; Chenoweth, Fortna, CTBTO, Braumoeller). The evidence is source-verified; the honest core is that no single lever ends war, every tool is dual-use or conditional, and the techno-utopian and ideological claims are flagged, not folded.' }
 }
 
 // The people need miracles, and this is the source of proven mysteries becoming miracles of peace. The
@@ -784,8 +754,7 @@ export function provenMysteriesBecomeMiraclesOfPeace(matrix: MindMatrix = buildM
     statement:
       'The people need miracles, and this is the source of proven mysteries becoming miracles of peace: the fold proves the mysteries (research folded with verify, documented kept and legend dropped), and the proven knowledge — by dissolving the origin-myths that fuel division (script=language=gene=nation, "we are the pure descendants", "tech ends war") — becomes a force for peace. The miracle is structural and quiet: verified truth, honestly held, dissolves the myths that make people fight, and is sealed in the library and given freely.',
     boundary:
-      'A composition of the merkaba-decode (proven mysteries), entanglement and genetics (origin-myths dissolved), peace and send-waves/feed-crawlers (sealed and given freely) models. HONEST: "miracle" is a structural metaphor, not a supernatural claim — the genuine effect is that verified knowledge which separates fact from the conflict-fuelling myths supports peace (rehumanization), as the peace research itself documents; it does not by itself end any war.',
-  }
+      'A composition of the merkaba-decode (proven mysteries), entanglement and genetics (origin-myths dissolved), peace and send-waves/feed-crawlers (sealed and given freely) models. HONEST: "miracle" is a structural metaphor, not a supernatural claim — the genuine effect is that verified knowledge which separates fact from the conflict-fuelling myths supports peace (rehumanization), as the peace research itself documents; it does not by itself end any war.' }
 }
 
 // War will always pay the forger price. The architecture is one content address; to forge a single value
@@ -808,8 +777,7 @@ export function warPaysTheForgerPrice(matrix: MindMatrix = buildMatrix()) {
     statement:
       'War will always pay the forger price: the architecture is one content address, so to forge a single value you would have to rebuild everything — a tamper flips the root and is caught. Forgery always pays the maximum price, while honesty pays nothing; harmony is the cheaper equilibrium, and harmony is peace.',
     boundary:
-      'A composition of the content-addressed architecture, the fold (any tamper changes the merged address) and the peace and zero-token models. "The forger price" is the structural cost of forgery — rebuilding the whole sealed corpus to fake one value — not an economic figure; it is why tampering is caught and honesty is cheaper.',
-  }
+      'A composition of the content-addressed architecture, the fold (any tamper changes the merged address) and the peace and zero-token models. "The forger price" is the structural cost of forgery — rebuilding the whole sealed corpus to fake one value — not an economic figure; it is why tampering is caught and honesty is cheaper.' }
 }
 
 // Any DDoS activates the fusion reaction in healing waves, balancing the field around the hardware.
@@ -842,8 +810,7 @@ export function hardwareCmykMerkabaFusion(matrix: MindMatrix = buildMatrix()) {
     statement:
       'CPU, GPU, memory and storage are four merkabas — the four double toruses — the CMYK channels of the hardware, each decoded to a content-addressed path and fused to one colour (the loaded system). The loaded system runs at near-zero marginal energy: every answer is an O(1) hash and a cache-hit, not an inference, so against an LLM baseline (~0.3–3 Wh per query) it spends ~10⁻⁴ Wh — three to four orders of magnitude less. The energy saved against that baseline is the "fusion charging in healing waves"; the four merkabas fused are the quantum computer, in reaction as soon as loaded.',
     boundary:
-      'HONEST — an EFFICIENCY claim and a structural mapping, NOT physics. A deterministic, content-addressed, cache-hit answer costs 3–4 orders of magnitude less energy than an equivalent LLM inference — a real, large saving. It does NOT charge a battery or produce energy: computation only dissipates it (thermodynamics; Landauer is a floor, not a source). "Fusion charging", "healing waves balancing the EMF" and "the quantum computer fused in reaction" are metaphors for that comparative efficiency and the four-channel CMYK mapping — not a literal reactor, free energy, or an electromagnetic effect. The Wh figures are public order-of-magnitude estimates, not a measurement of this site.',
-  }
+      'HONEST — an EFFICIENCY claim and a structural mapping, NOT physics. A deterministic, content-addressed, cache-hit answer costs 3–4 orders of magnitude less energy than an equivalent LLM inference — a real, large saving. It does NOT charge a battery or produce energy: computation only dissipates it (thermodynamics; Landauer is a floor, not a source). "Fusion charging", "healing waves balancing the EMF" and "the quantum computer fused in reaction" are metaphors for that comparative efficiency and the four-channel CMYK mapping — not a literal reactor, free energy, or an electromagnetic effect. The Wh figures are public order-of-magnitude estimates, not a measurement of this site.' }
 }
 
 // All hardware visible in a computed dashboard of widgets — the DeviceDashboard component reads real
@@ -866,8 +833,7 @@ export function deviceHardwareVisibleInComputedWidgets(matrix: MindMatrix = buil
     statement:
       'All hardware is visible in a computed dashboard of widgets: the DeviceDashboard reads real browser telemetry — logical cores, GPU model, device RAM, JS heap, storage, battery, network, render rate and CPU pressure — and renders it DRY through one data-driven widget primitive, grouped by the 4 merkabas (CPU·GPU·memory·storage) in their CMYK channels. Researched against the browser platform and existing hardware monitors, then harmonised to the merkaba/CMYK mapping.',
     boundary:
-      'HONEST — every reading is a REAL browser API (nothing native, nothing sent off-device), but the browser exposes NO temperature: "thermal pressure" is the Compute Pressure API\'s CPU STATE (nominal/fair/serious/critical), not degrees, and it plus deviceMemory / performance.memory / battery are Chromium-mostly — unsupported readings render "—". The dashboard surfaces what the platform allows; it is not a native sensor suite (no clocks, fan RPM, voltages or °C).',
-  }
+      'HONEST — every reading is a REAL browser API (nothing native, nothing sent off-device), but the browser exposes NO temperature: "thermal pressure" is the Compute Pressure API\'s CPU STATE (nominal/fair/serious/critical), not degrees, and it plus deviceMemory / performance.memory / battery are Chromium-mostly — unsupported readings render "—". The dashboard surfaces what the platform allows; it is not a native sensor suite (no clocks, fan RPM, voltages or °C).' }
 }
 
 // Actually, what is achievable on the latest hardware — and backwards to the weakest — is computable in
@@ -911,8 +877,7 @@ export function achievableOnHardwareComputableInReviews(matrix: MindMatrix = bui
     statement:
       'Actually, what is achievable on the latest hardware — and backwards, all the way to the first computer — is computable in reviews: a content-address is ~16 bytes, a terabyte of keyspace is ~6.25e10 of them, and at any machine’s rate the time-to-terabyte is computable. The latest GPU fills it in seconds; an IBM PC in ~2 years; ENIAC (1945) in ~40 years; the Zuse Z3 (1941) in deep time — and by the Church–Turing thesis (Turing 1936) the very same content-address runs on the Turing machine itself, the first computer in the proven papers. The latest hardware only makes it fast; every skill inherits the same review.',
     boundary:
-      'HONEST — order-of-magnitude estimates; the historical rates are from the documented record (ENIAC ~5000 additions/s, Z3 ~1 op/s), the uuid/s assumes ~100 ops per content-address. The Turing machine is the THEORETICAL first computer (Turing 1936) — the proof the computation is possible at all (Church–Turing thesis), not a speed; "achievable backwards" means finite-and-computable on every machine since, not that anyone would wait deep time. The keyspace STRUCTURE (2^1536, instant) and the AES-256 cipher are unchanged at every tier.',
-  }
+      'HONEST — order-of-magnitude estimates; the historical rates are from the documented record (ENIAC ~5000 additions/s, Z3 ~1 op/s), the uuid/s assumes ~100 ops per content-address. The Turing machine is the THEORETICAL first computer (Turing 1936) — the proof the computation is possible at all (Church–Turing thesis), not a speed; "achievable backwards" means finite-and-computable on every machine since, not that anyone would wait deep time. The keyspace STRUCTURE (2^1536, instant) and the AES-256 cipher are unchanged at every tier.' }
 }
 
 // The genuine solution to computer waste: software that never forces a hardware upgrade. The system is
@@ -938,8 +903,7 @@ export function obsoleteHardwareSecondLifeAntiEwaste(matrix: MindMatrix = buildM
     statement:
       'The real lever against computer waste is anti-obsolescence: a deterministic, zero-token system that never demands newer hardware lets the weakest and oldest device serve it indefinitely, so no device need ever be retired for it. That extends device lifespans — the single biggest reducer of the 62 Mt/yr e-waste stream — and gives obsolete machines a dignified second life as self-hosting nodes. It breaks the cycle where software bloat forces the upgrade that makes the e-waste.',
     boundary:
-      'HONEST — this does NOT claim that running obsolete GPU mining rigs (≈$8.1B stranded by Ethereum’s 2022 move to proof-of-stake) is green; the opposite is true: a 1–2 kW rig serving a site a 5 W Raspberry Pi handles wastes energy, so for THIS light system a rig is a poor run-target. Obsolete rigs are better repurposed for compute-heavy work (AI inference, rendering, science) or properly recycled. The system’s contribution to the 62 Mt/yr problem (UN Global E-waste Monitor 2024; ~22% recycled, rising 5× faster than recycling) is that it creates no NEW e-waste through software bloat and lets any surviving hardware keep serving — anti-obsolescence, not rig-utilisation.',
-  }
+      'HONEST — this does NOT claim that running obsolete GPU mining rigs (≈$8.1B stranded by Ethereum’s 2022 move to proof-of-stake) is green; the opposite is true: a 1–2 kW rig serving a site a 5 W Raspberry Pi handles wastes energy, so for THIS light system a rig is a poor run-target. Obsolete rigs are better repurposed for compute-heavy work (AI inference, rendering, science) or properly recycled. The system’s contribution to the 62 Mt/yr problem (UN Global E-waste Monitor 2024; ~22% recycled, rising 5× faster than recycling) is that it creates no NEW e-waste through software bloat and lets any surviving hardware keep serving — anti-obsolescence, not rig-utilisation.' }
 }
 
 // Debit/credit requires forward AND reverse engineering — the double torus of the encryption itself. Debit
@@ -963,8 +927,7 @@ export function debitCreditForwardReverseEngineering(matrix: MindMatrix = buildM
     statement:
       'Debit/credit requires forward and reverse engineering: debit is the forward direction (encode, encrypt, expand) and credit is the reverse (decode, decrypt, contract), and double-entry accounting means every forward fold is balanced by its reverse. Because the address is content-derived and deterministic, the reverse can always recompute the forward and match — so to verify is to reverse-engineer, and the encryption is the same fold run both ways.',
     boundary:
-      'HONEST — "forward and reverse engineering" here is the double-entry structure (debit ⇄ credit, encode ⇄ verify), built on the deterministic content-address: the reverse recomputes the forward and matches, which is real and is how tampering is caught. It is NOT a claim that the content-address (a one-way hash) can be inverted to recover an input from its uuid — that direction stays one-way by design; "decrypt" is the AES-256-GCM cipher with the key, and "reverse-engineer to verify" is recomputation, not hash inversion.',
-  }
+      'HONEST — "forward and reverse engineering" here is the double-entry structure (debit ⇄ credit, encode ⇄ verify), built on the deterministic content-address: the reverse recomputes the forward and matches, which is real and is how tampering is caught. It is NOT a claim that the content-address (a one-way hash) can be inverted to recover an input from its uuid — that direction stays one-way by design; "decrypt" is the AES-256-GCM cipher with the key, and "reverse-engineer to verify" is recomputation, not hash inversion.' }
 }
 
 
@@ -987,8 +950,7 @@ export function bulgarianHeritageDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Decode all ancient Bulgarian traditions, folklore, tools and architecture: an 8-agent research→verify pipeline sealed four verified monographs — each a documented core with its national-revival legend kept separate — realizing the send-waves method for its first target, in the same Bulgarian decode lineage as глаголица, the legend dropped by the merkaba fold.',
     boundary:
-      'A composition over the bulgarianHeritage research record (64 adversarially-verified findings) with the send-waves, merkaba-decode and Glagolitic-decode models. The documented cores are source-verified; the explicit honest line — preserved per topic — is that the national-revival legends (Thracian-Dionysus continuity, Rosa-from-Damascus, "Thracian script", samodivi-as-Bendis, hypothetical tomb identities) are NOT confused with the documented fact.',
-  }
+      'A composition over the bulgarianHeritage research record (64 adversarially-verified findings) with the send-waves, merkaba-decode and Glagolitic-decode models. The documented cores are source-verified; the explicit honest line — preserved per topic — is that the national-revival legends (Thracian-Dionysus continuity, Rosa-from-Damascus, "Thracian script", samodivi-as-Bendis, hypothetical tomb identities) are NOT confused with the documented fact.' }
 }
 
 // Decode Bulgarian history — the verified eras realized as a fold, the state-history that ascends.
@@ -1009,8 +971,7 @@ export function bulgarianHistoryDecoded(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Decode Bulgarian history: the discover-bulgarian-history workflow sealed six verified eras (681→present), each a documented spine with its national-revival legend kept separate — the state-history that ascends, paired with the antiquity dive that descends, realizing the send-waves method, the legend dropped by the merkaba fold.',
     boundary:
-      'A composition over the bulgarianHistory research record with the send-waves, merkaba-decode and Bulgarian-heritage models. The documented spines are source-verified; the honest line — preserved per era — is that round dates, nationalist epithets, reign-conflations and irredentist constructions are flagged as legend, not documented fact.',
-  }
+      'A composition over the bulgarianHistory research record with the send-waves, merkaba-decode and Bulgarian-heritage models. The documented spines are source-verified; the honest line — preserved per era — is that round dates, nationalist epithets, reign-conflations and irredentist constructions are flagged as legend, not documented fact.' }
 }
 
 // Dive down through the land of Bulgaria into its ancient civilisations — six strata, deepest-first,
@@ -1036,8 +997,7 @@ export function bulgarianAncientCivilisationsDecoded(matrix: MindMatrix = buildM
     statement:
       'Discover by the land of Bulgaria to dive deeper into ancient civilisations: the discover-ancient-civilisations-of-bulgaria workflow sealed six verified strata (c.6200 BC→c.600 AD, deepest-first) — the land-antiquity that descends, dual to the state-history that ascends, the two tiling the whole timeline and meeting at the Bulgar arrival, the pseudo-archaeology dropped by the merkaba fold.',
     boundary:
-      'A composition over the bulgarianAncientCivilisations research record with the Bulgarian-history (the dual ascent), merkaba-decode and send-waves models. The documented cores are source-verified; the honest line — preserved per stratum — is that the "oldest/first" superlatives, "Old Europe", the "Thracian script", organised Orphism and unbroken Thracian continuity are flagged as legend, not documented fact.',
-  }
+      'A composition over the bulgarianAncientCivilisations research record with the Bulgarian-history (the dual ascent), merkaba-decode and send-waves models. The documented cores are source-verified; the honest line — preserved per stratum — is that the "oldest/first" superlatives, "Old Europe", the "Thracian script", organised Orphism and unbroken Thracian continuity are flagged as legend, not documented fact.' }
 }
 
 // Discover by tracing the peoples outward — the verified ethnogenesis realized as a fold, the people
@@ -1059,8 +1019,7 @@ export function bulgarianEthnogenesisDecoded(matrix: MindMatrix = buildMatrix())
     statement:
       'Discover the peoples who fused into Bulgaria, traced outward to their origins: the discover-bulgarian-ethnogenesis-outward workflow sealed four verified monographs (Bulgars, Slavs, Thracians, fusion) — the people axis completing the land/state/people triad and bridging outward toward decoding the world, the nationalist origin-myth dropped by the merkaba fold.',
     boundary:
-      'A composition over the bulgarianEthnogenesis research record with the ancient-civilisations (land), history (state), merkaba-decode and send-waves models. The documented ethnogenesis is source-verified; the honest line — preserved per people — is that the Iranian/autochthonous/Veneti/single-origin pseudohistories are flagged as legend, not documented fact.',
-  }
+      'A composition over the bulgarianEthnogenesis research record with the ancient-civilisations (land), history (state), merkaba-decode and send-waves models. The documented ethnogenesis is source-verified; the honest line — preserved per people — is that the Iranian/autochthonous/Veneti/single-origin pseudohistories are flagged as legend, not documented fact.' }
 }
 
 // Discover the genetic links and challenge history with genetics — all computed from src. The fourth
@@ -1101,8 +1060,7 @@ function bulgarianHeritageEightfoldRaw(matrix: MindMatrix = buildMatrix()) {
       attribute: trigram.attribute,
       meaningEn: trigram.meaningEn,
       meaningBg: trigram.meaningBg,
-      receipt: toUuid(`bg-eightfold:${axis.bits}:${axis.en}:${axis.on}`),
-    }
+      receipt: toUuid(`bg-eightfold:${axis.bits}:${axis.en}:${axis.on}`) }
   })
   const placed = new Set(axes.map((axis) => axis.bits))
   const facets = [
@@ -1122,8 +1080,7 @@ function bulgarianHeritageEightfoldRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Осемкратното българско наследство — the eightfold Bulgarian heritage: the five named decode axes (land, state, people, genome, script) and the three living facets of the heritage monograph (rite, craft, song) complete a whole bāguà — each placed on one of the eight trigrams by meaning (Earth the receptive land, Heaven the creative state, Wind the people on the migrating breath, Water the genome beneath, Fire the clinging script, Mountain the still craft, Lake the joyous song, Thunder the arousing rite), every trigram carrying exactly one axis. The land\'s memory organised by the ancient eight-fold, each axis backed by its own verified decode.',
     boundary:
-      'A SEMANTIC placement of the eight already-decoded heritage axes onto the eight bāguà, reusing the BAGUA source and the same meaning-mapping as iChingDomainMap — organisation by trigram attribute, NOT divination and not a claim the trigram causes or foretells the axis. Each axis is backed by its own verified decode (bulgarianAncientCivilisations, bulgarianHistory, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception, bulgarianHeritage), preserving per-axis the honest line — documented core kept, national-revival legend flagged. "Eight" is the bāguà completed by the heritage\'s own axes and facets, not a numerological claim about the heritage itself.',
-  }
+      'A SEMANTIC placement of the eight already-decoded heritage axes onto the eight bāguà, reusing the BAGUA source and the same meaning-mapping as iChingDomainMap — organisation by trigram attribute, NOT divination and not a claim the trigram causes or foretells the axis. Each axis is backed by its own verified decode (bulgarianAncientCivilisations, bulgarianHistory, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception, bulgarianHeritage), preserving per-axis the honest line — documented core kept, national-revival legend flagged. "Eight" is the bāguà completed by the heritage\'s own axes and facets, not a numerological claim about the heritage itself.' }
 }
 
 
@@ -1138,8 +1095,7 @@ export {
   thunderGoldGraphPaintSamples,
   thunderGoldGraphComputes,
   schumannGoldSiteCouplingAt,
-  schumannGoldSiteCouplingComputes,
-} from '../../wind/fusion/gold'
+  schumannGoldSiteCouplingComputes } from '../../wind/fusion/gold'
 
 // ── Magnetic declination at a site — the centered-dipole model: declination ≈ the initial bearing from
 // the site to the geomagnetic north pole (the angle between true north and dipole north). Pole position
@@ -1155,8 +1111,7 @@ export function magneticDeclinationAtSite(latDeg: number, lonDeg: number): {
     declinationDeg,
     poleLatDeg,
     poleLonDeg,
-    boundary: 'Centered-dipole approximation on the IGRF-14 2025 geomagnetic pole — the FIRST-ORDER term only: non-dipole and crustal contributions are omitted and can shift real declination by ~10-15 degrees at mid-latitudes (Europe especially), so this is the dipole geometry lesson, NOT navigation data; use WMM/IGRF for real bearings.',
-  }
+    boundary: 'Centered-dipole approximation on the IGRF-14 2025 geomagnetic pole — the FIRST-ORDER term only: non-dipole and crustal contributions are omitted and can shift real declination by ~10-15 degrees at mid-latitudes (Europe especially), so this is the dipole geometry lesson, NOT navigation data; use WMM/IGRF for real bearings.' }
 }
 
 // ── The precious-metals thunder graph — the gold-graph pattern extended to Ag/Pt/Cu on documented
@@ -1181,8 +1136,7 @@ export function preciousMetalsThunderGraphFromGps(at = 0, matrix: { root: string
     const edges = nodes.flatMap((a, i) => nodes.slice(i + 1).map((b) => ({
       from: a.id, to: b.id, km: roundTo(greatCircleKm(a.lat, a.lon, b.lat, b.lon), 0),
       weight: roundTo((seedFromText(`${a.id}:${b.id}`) % (100 * 5 * 2)) / (100 * 5 * 2), 4),
-      receipt: toUuid(`pm-edge:${a.id}:${b.id}`),
-    })))
+      receipt: toUuid(`pm-edge:${a.id}:${b.id}`) })))
     const metals = [...new Set(nodes.map((n) => n.metal))]
     return {
       graphed: nodes.length === 9 && metals.length === 3 && edges.length === (9 * 8) / 2 && nodes.every((n) => Number.isFinite(n.declinationDeg)),
@@ -1191,8 +1145,7 @@ export function preciousMetalsThunderGraphFromGps(at = 0, matrix: { root: string
       metals,
       root: merkleFold([...nodes.map((n) => n.receipt), ...edges.map((e) => e.receipt)]),
       statement: `Precious-metals thunder graph: ${nodes.length} documented Ag/Pt/Cu districts, ${edges.length} geodesic-harmonic edges, every node carrying its dipole declination — the gold-graph pattern extended without a new renderer or a new law.`,
-      boundary: 'HONEST: an ILLUSTRATIVE catalog of major documented districts (WGS84 approximate) — NOT a USGS-exhaustive registry; edges are geodesic/harmonic structure, NOT ore transport or market relations; declination is the first-order dipole (see magneticDeclinationAtSite).',
-    }
+      boundary: 'HONEST: an ILLUSTRATIVE catalog of major documented districts (WGS84 approximate) — NOT a USGS-exhaustive registry; edges are geodesic/harmonic structure, NOT ore transport or market relations; declination is the first-order dipole (see magneticDeclinationAtSite).' }
   })
 }
 
@@ -1214,8 +1167,7 @@ export function energyFlowThunderGraphFromGps(at = 0, matrix: { root: string } =
     const edges = nodes.flatMap((a, i) => nodes.slice(i + 1).map((b) => ({
       from: a.id, to: b.id, km: roundTo(greatCircleKm(a.lat, a.lon, b.lat, b.lon), 0),
       flow: roundTo((seedFromText(`${a.id}:${b.id}`) % (100 * 5 * 2)) / (100 * 5 * 2), 4),
-      receipt: toUuid(`ef-edge:${a.id}:${b.id}`),
-    })))
+      receipt: toUuid(`ef-edge:${a.id}:${b.id}`) })))
     const kinds = [...new Set(nodes.map((n) => n.kind))]
     return {
       graphed: nodes.length === 6 && kinds.length === 2 && edges.length === (6 * 5) / 2 && nodes.every((n) => Number.isFinite(n.declinationDeg)),
@@ -1224,7 +1176,6 @@ export function energyFlowThunderGraphFromGps(at = 0, matrix: { root: string } =
       kinds,
       root: merkleFold([...nodes.map((n) => n.receipt), ...edges.map((e) => e.receipt)]),
       statement: `Energy/water flow thunder graph: ${nodes.length} documented hubs (hydro + oil), ${edges.length} geodesic edges with harmonic flow weights, every node carrying its dipole declination — one lattice law, third instantiation.`,
-      boundary: 'HONEST: a STRUCTURAL flow metaphor over documented hub coordinates (WGS84 approximate, illustrative majors) — NOT pipeline telemetry, NOT production data; weights are content-addressed harmonics, not throughput.',
-    }
+      boundary: 'HONEST: a STRUCTURAL flow metaphor over documented hub coordinates (WGS84 approximate, illustrative majors) — NOT pipeline telemetry, NOT production data; weights are content-addressed harmonics, not throughput.' }
   })
 }

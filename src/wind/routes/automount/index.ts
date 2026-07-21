@@ -157,8 +157,7 @@ export function createZeitwerkLoader(tag = 'main'): ZeitwerkLoader {
       return {
         receipt: toUuid(`reload:${tag}:noop:sealed-immutable`),
         noop: true as const,
-        reason: 'sealed src is immutable at runtime — reload is a receipt, not a mutation',
-      }
+        reason: 'sealed src is immutable at runtime — reload is a receipt, not a mutation' }
     },
 
     cnameFor(basename: string, abspath = '') {
@@ -217,16 +216,14 @@ export function createZeitwerkLoader(tag = 'main'): ZeitwerkLoader {
       const receipt: OnLoadReceipt = {
         cname,
         receipt: toUuid(`onLoad:${tag}:${cname}`),
-        at: 0,
-      }
+        at: 0 }
       hooks.push(receipt)
       return receipt
     },
 
     get root() {
       return computeRoot()
-    },
-  }
+    } }
 
   return loader
 }
@@ -308,8 +305,7 @@ export function rosettaZeitwerkLoader(slug: string): ZeitwerkEntry | null {
     inflected,
     stationResolved,
     rosettaRay: ray,
-    receipt: toUuid(`zeitwerk-entry:${srcPath}:${constantName}`),
-  }
+    receipt: toUuid(`zeitwerk-entry:${srcPath}:${constantName}`) }
 }
 
 function entryFromZeitwerk(zeitwerk: ZeitwerkEntry): ZeitwerkRegistryEntry {
@@ -321,8 +317,7 @@ function entryFromZeitwerk(zeitwerk: ZeitwerkEntry): ZeitwerkRegistryEntry {
     route: `/${zeitwerk.slug}`,
     science: zeitwerk.science,
     model: zeitwerk.model,
-    action: zeitwerk.action,
-  }
+    action: zeitwerk.action }
 }
 
 /** Resolve slug → registry row via zeitwerk bijection (replaces indexOfIndexes scan in automount). */
@@ -429,8 +424,7 @@ export function zeitwerkPort(slug = 'automount') {
     statement:
       `Complete Zeitwerk Loader API ported to sealed TypeScript (${facets.length} facets, 15 API methods): createZeitwerkLoader, pushDir, setup, eagerLoad, reload, cnameFor, filepathFor, camelize, collapse, ignore, inflect, setInflector, getInflector, tagPath, onLoad — all content-addressed, deterministic. Shared receipt root with rosettaDecodesUrlPath proves both derive constants from the same path truth.`,
     boundary:
-      'HONEST: Ruby Zeitwerk autoloads at runtime via const_missing; TS has no runtime autoloading — the port implements the same path↔constant bijection as a pure, deterministic mapping function. eagerLoad enumerates and returns a receipt; reload is a noop receipt (sealed src is immutable). collapse aligns with dissolving fold/folds path segments. The shared root with rosetta proves both systems derive constants from the same path truth. onLoad is a receipt, not a live callback — facet at call time.',
-  }
+      'HONEST: Ruby Zeitwerk autoloads at runtime via const_missing; TS has no runtime autoloading — the port implements the same path↔constant bijection as a pure, deterministic mapping function. eagerLoad enumerates and returns a receipt; reload is a noop receipt (sealed src is immutable). collapse aligns with dissolving fold/folds path segments. The shared root with rosetta proves both systems derive constants from the same path truth. onLoad is a receipt, not a live callback — facet at call time.' }
 }
 
 function parseHarmonicRequest(path: string) {
@@ -490,8 +484,7 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
       proof: decoded.sharedRoot,
       logic: decoded.glagoliticAddress,
       target: null,
-      rosetta: decoded,
-    }
+      rosetta: decoded }
   }
   const entry = resolveZeitwerkRegistryEntry(bare)
   const legacy = [...staticPages(), ...componentPages()].find((page) => page.slug === bare || (entry && page.slug === entry.action))
@@ -508,8 +501,7 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
       proof: 'proof' in legacy ? (legacy as { proof: string }).proof : null,
       logic: entry?.logic ?? null,
       target: entry?.target ?? null,
-      rosetta: decoded,
-    }
+      rosetta: decoded }
   }
   if (entry) {
     const rawTitle = entry.action
@@ -523,8 +515,7 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
       proof: toUuid(`index:${entry.logic}`),
       logic: entry.logic,
       target: entry.target,
-      rosetta: decoded,
-    }
+      rosetta: decoded }
   }
   const rayMeta = ROSETTA_RAYS[decoded.ray]!
   return {
@@ -536,8 +527,7 @@ export function monographSliceFromRoute(path: string, locale: 'gla' | 'en' | 'bg
     proof: decoded.sharedRoot,
     logic: decoded.glagoliticAddress,
     target: null,
-    rosetta: decoded,
-  }
+    rosetta: decoded }
 }
 
 export function vitepressIndexOfIndexesLaw() {
@@ -554,6 +544,5 @@ export function vitepressIndexOfIndexesLaw() {
     statement:
       'VitePress automounts every index without reconfiguration. Indices are discovered from src/ and displayed automatically when complete; when incomplete, gates fail — the index does not care about VitePress.',
     boundary:
-      'discoverSrcIndexes walks src/**/index.ts; vitepressAutomountPaths enumerates complete automount-eligible paths only; monographSliceFromRoute computes body at runtime.',
-  }
+      'discoverSrcIndexes walks src/**/index.ts; vitepressAutomountPaths enumerates complete automount-eligible paths only; monographSliceFromRoute computes body at runtime.' }
 }

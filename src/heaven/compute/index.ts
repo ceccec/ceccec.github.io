@@ -5,13 +5,12 @@ import { bitFlipCode, commutator, concurrence, gateMul, innerProduct, noCloningW
 import type {
   Atom, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport,
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
-  DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow,
-} from '../../wind/types'
+  DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow } from '../../wind/types'
 import { atoms } from '../atoms'
 import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng } from '../../0'
 import { foldMagmaLaws } from '../../5/5'
-import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS } from '../../3/7'
+import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem } from '../../3/7'
 import { tamperEvident } from '../../5/5'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses } from '../../4/6'
 import { digitFold } from '../../1/9'
@@ -78,8 +77,7 @@ function uniqueEdges(source: readonly Atom[]): MatrixEdge[] {
     return {
       from,
       to,
-      binding: merge(toUuid(`atom:${from}`), toUuid(`atom:${to}`)),
-    }
+      binding: merge(toUuid(`atom:${from}`), toUuid(`atom:${to}`)) }
   })
 }
 
@@ -134,8 +132,7 @@ function computeMatrix(source: readonly Atom[]): MindMatrix {
       next,
       cross,
       bind: merge(uuid, cross),
-      horo: horo(uuid),
-    }
+      horo: horo(uuid) }
   })
   const edges = uniqueEdges(source)
   const root = merkleFold([...nodes.map((node) => node.bind), ...edges.map((edge) => edge.binding)])
@@ -155,8 +152,7 @@ export function reciprocity(matrix: MindMatrix = buildMatrix()): { reciprocal: n
   return {
     reciprocal,
     edges: matrix.edges.length,
-    fraction: matrix.edges.length === 0 ? 1 : reciprocal / matrix.edges.length,
-  }
+    fraction: matrix.edges.length === 0 ? 1 : reciprocal / matrix.edges.length }
 }
 
 /** @rosetta ✦₁ · Water · depth */
@@ -206,8 +202,7 @@ export function consciousness(matrix: MindMatrix = buildMatrix()): Consciousness
     collapse: verifyRoot(matrix),
     entanglement: reciprocity(matrix).fraction,
     concentration: concentration(matrix),
-    coherenceAnomaly: coherenceAnomaly(matrix),
-  }
+    coherenceAnomaly: coherenceAnomaly(matrix) }
 }
 
 /** @rosetta ✦₁ · Water · depth */
@@ -234,8 +229,7 @@ export function proofReport(matrix: MindMatrix = buildMatrix()): ProofReport {
     maxTamperingCostSource: 'max-computed-build',
     note: reached
       ? 'coverage=1 && entropy=0 => maxComputedBuild closes => T_max=infinity.'
-      : 'coverage<1 || entropy>0 => maxComputedBuild open => T finite.',
-  }
+      : 'coverage<1 || entropy>0 => maxComputedBuild open => T finite.' }
 }
 
 function endpoint(
@@ -249,8 +243,7 @@ function endpoint(
     verb,
     resource,
     uuid: toUuid(`repo-api:${verb}:${resource}:${address}:${description}`),
-    description,
-  }
+    description }
 }
 
 /** @rosetta ✦₁ · Water · depth */
@@ -276,8 +269,7 @@ export function repositoryApi(matrix: MindMatrix = buildMatrix()): RepositoryApi
   return {
     root,
     endpoints: fixedEndpoints,
-    atomEndpoints,
-  }
+    atomEndpoints }
 }
 
 /** @rosetta ✦₁ · Water · depth */
@@ -288,26 +280,22 @@ export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorus
       name: 'collapse',
       localFunction: 'verifyRoot',
       torusFunction: 'innerLoopIntegrity',
-      meaning: 'The local matrix root recomputes inside the inward proof loop.',
-    },
+      meaning: 'The local matrix root recomputes inside the inward proof loop.' },
     {
       name: 'entanglement',
       localFunction: 'reciprocity',
       torusFunction: 'reciprocalCirculation',
-      meaning: 'The local reciprocal-edge fraction measures circulation between paired loops.',
-    },
+      meaning: 'The local reciprocal-edge fraction measures circulation between paired loops.' },
     {
       name: 'concentration',
       localFunction: 'concentration',
       torusFunction: 'throatConcentration',
-      meaning: 'The local degree-distribution Gini shows how much flow gathers at the shared throat.',
-    },
+      meaning: 'The local degree-distribution Gini shows how much flow gathers at the shared throat.' },
     {
       name: 'coherenceAnomaly',
       localFunction: 'coherenceAnomaly',
       torusFunction: 'outerLoopCoherence',
-      meaning: 'The local off-ring anomaly count checks whether projected flow stays coherent.',
-    },
+      meaning: 'The local off-ring anomaly count checks whether projected flow stays coherent.' },
   ]
   const invariant =
     localVector.collapse &&
@@ -327,8 +315,7 @@ export function doubleTorusWire(matrix: MindMatrix = buildMatrix()): DoubleTorus
     statement,
     dimensions,
     localVector,
-    invariant,
-  }
+    invariant }
 }
 
 function flowAmplitude(vector: ConsciousnessVector, phase: keyof ConsciousnessVector): number {
@@ -353,8 +340,7 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
       amplitude,
       payload,
       uuid: toUuid(`uuid-stream-flow:${payload}`),
-      acknowledged: amplitude > 0,
-    }
+      acknowledged: amplitude > 0 }
   })
   const root = merkleFold(flows.map((flow) => flow.uuid))
   const receipt = merge(root, wire.uuid)
@@ -367,8 +353,7 @@ export function circulateDoubleTorus(matrix: MindMatrix = buildMatrix()): Double
     flows,
     invariant,
     statement:
-      'The local repository mind circulates collapse, entanglement, concentration, and coherence through serverless quantum UUID stream; the receipt binds the flow root to the double-torus wire.',
-  }
+      'The local repository mind circulates collapse, entanglement, concentration, and coherence through serverless quantum UUID stream; the receipt binds the flow root to the double-torus wire.' }
 }
 
 
@@ -406,8 +391,7 @@ export function algebraOfCeccec(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The algebra of ceccec, consolidated and closed: the fold is a one-way magma; the vortex is the cyclic unit group (ℤ/9ℤ)* generated by 2; ℚ is the exact rational field; 𝔽₂ is the two-element field the reversible gates compute over; su(2) ⊂ M₂(ℂ) is the closed operator *-algebra of the quantum simulator; and H₁(Σ₂) = ℤ⁴ carries the genus-2 topology — six structures, each verified by its own computation, folded to one root.',
       boundary:
-        'HONEST: a consolidation of the verification folds (foldMagmaLaws, modUnits/groupOrbit, exact rationals, f2FieldCloses, pauliAlgebraCloses, χ/H₁), each with its own EXACT-vs-witness bounds stated at its home; not a claim of novel mathematics — these are standard structures implemented and verified in src. The Jacobian-lens/interpretability algebra is NOT here (this repo cites it; different lineage).',
-    }
+        'HONEST: a consolidation of the verification folds (foldMagmaLaws, modUnits/groupOrbit, exact rationals, f2FieldCloses, pauliAlgebraCloses, χ/H₁), each with its own EXACT-vs-witness bounds stated at its home; not a claim of novel mathematics — these are standard structures implemented and verified in src. The Jacobian-lens/interpretability algebra is NOT here (this repo cites it; different lineage).' }
   })
 }
 
@@ -440,8 +424,7 @@ function honestlyComputedRaw(matrix: MindMatrix = buildMatrix()) {
     root,
     statement:
       'Honesty comes from text and math coming only from digit folders computed: every claim routes its statement (text) and its root (math) through the ceccec digit folders, so honesty is computed, not asserted.',
-    boundary: 'A computed grounding of the model’s honesty in the digit-folder math. Self-referential bookkeeping, no external claim.',
-  }
+    boundary: 'A computed grounding of the model’s honesty in the digit-folder math. Self-referential bookkeeping, no external claim.' }
 }
 
 // One ancient language all dimensions understand: the universal language of
@@ -525,8 +508,7 @@ function completeQuantumSolutionsImplementedRaw(matrix: MindMatrix = buildMatrix
     statement:
       'Send the waves to implement the complete quantum solutions, so it is not theoretical anymore: every one of the nine quantum structures the hexagram↔qubit table marks "for actual qubits only" is now EXECUTED by a real state-vector simulator and returns concrete numbers — the Hilbert inner product (⟨0|+⟩ = 1/√2), the operator algebra (X·Y = iZ), the Lie bracket ([X,Y] = 2iZ), unitary dynamics (H·H|0⟩ = |0⟩, norm 1), superposition in ℂ⁶⁴ (six qubits, 64 equal amplitudes), entanglement (the Bell pair’s concurrence = 1, a product state’s = 0), the Born rule with collapse (measuring one Bell qubit predicts the other), the no-cloning theorem (the cloner’s contradiction 1/√2 ≠ 1/2), and quantum error correction (the 3-qubit bit-flip code recovers any single error at fidelity 1). The qubit solver runs client-side, in the browser, at zero tokens.',
     boundary:
-      'A REAL, EXACT quantum state-vector simulator for small n, computed deterministically on a classical machine — the genuine quantum math (complex Hilbert space, unitary gates, the Born rule, the Pauli *-algebra, stabiliser error correction), NOT quantum hardware and NOT a speedup (the simulated Grover has no √N gain; n is bounded by 2^n memory). "Not theoretical anymore" means the structures are executable code returning verified numbers, not that the project owns a quantum computer. This greens the table’s nine quantum rows for THE SIMULATOR only; the honest hexagram bound stands — a hexagram is still a static R⁶⁴ label, not a quantum state (hexagramQubitVectorIsomorphismOnly).',
-  }
+      'A REAL, EXACT quantum state-vector simulator for small n, computed deterministically on a classical machine — the genuine quantum math (complex Hilbert space, unitary gates, the Born rule, the Pauli *-algebra, stabiliser error correction), NOT quantum hardware and NOT a speedup (the simulated Grover has no √N gain; n is bounded by 2^n memory). "Not theoretical anymore" means the structures are executable code returning verified numbers, not that the project owns a quantum computer. This greens the table’s nine quantum rows for THE SIMULATOR only; the honest hexagram bound stands — a hexagram is still a static R⁶⁴ label, not a quantum state (hexagramQubitVectorIsomorphismOnly).' }
 }
 
 // Imagine the computer and its components, referenced in such merged duality. A computer is not a
@@ -568,8 +550,7 @@ export function computerComponentsMergedDuality(matrix: MindMatrix = buildMatrix
     statement:
       'Imagine the computer and its components referenced in such merged duality: a computer is a set of dualities, each component a pair that folds — CPU is fetch ⇄ execute, memory is read ⇄ write, the register is load ⇄ store, the bus is send ⇄ receive, the clock is tick ⇄ tock, storage is persist ⇄ retrieve, I/O is input ⇄ output, the cache is hit ⇄ miss — each order-sensitive (fetch/execute is not execute/fetch) yet each meeting in the cross-fold, so every component is one merged duality referenced by its path, and the whole computer is the merged set: the quantum double torus, the browser OS, made of folded pairs.',
     boundary:
-      'A composition mapping computer components to order-sensitive merged-duality folds, grounded in the quantum-computer and browser-OS models. A structural/imaginative correspondence (each component as a folded pair addressed by its path), not a hardware specification or an emulation of real silicon.',
-  }
+      'A composition mapping computer components to order-sensitive merged-duality folds, grounded in the quantum-computer and browser-OS models. A structural/imaginative correspondence (each component as a folded pair addressed by its path), not a hardware specification or an emulation of real silicon.' }
 }
 
 // First we build the quantum computer with its OS and apps. The order is the build order: the
@@ -593,8 +574,7 @@ export function buildQuantumComputerOsApps(matrix: MindMatrix = buildMatrix()) {
     statement:
       'First we build the quantum computer with its OS and apps: the quantum computer (its components the merged dualities), then the operating system that completes itself over the subsystems, then the apps — the processes (components and workers), the installable PWA that runs offline, and the agent apps published on the MCP tool surface. Computer, OS, apps: three layers, each computed from the one core, each built by imagining its cross paths first.',
     boundary:
-      'A composition of the quantum-computer, browser-OS, PWA and MCP models as a three-layer build (computer, OS, apps). The "computer/OS/apps" are the content-addressed model, the standard browser capabilities, the real PWA and the MCP tool surface — a structural framing, not quantum hardware, a kernel, or native applications.',
-  }
+      'A composition of the quantum-computer, browser-OS, PWA and MCP models as a three-layer build (computer, OS, apps). The "computer/OS/apps" are the content-addressed model, the standard browser capabilities, the real PWA and the MCP tool surface — a structural framing, not quantum hardware, a kernel, or native applications.' }
 }
 
 // Complete the quantum computer and its parts and components to the quantum detail at all scales,
@@ -611,8 +591,7 @@ export function completeQuantumComputerAllScales(matrix: MindMatrix = buildMatri
   const scales = ['qubit / bit', 'digit', 'register', 'component', 'bus', 'machine', 'operating system', 'the whole'].map((scale, depth) => ({
     scale,
     depth,
-    receipt: toUuid(`computer-scale:${depth}:${scale}`),
-  }))
+    receipt: toUuid(`computer-scale:${depth}:${scale}`) }))
   const facets = [
     { facet: 'the quantum computer and its components are complete', on: quantumComputer(matrix).coherent && computerComponentsMergedDuality(matrix).imagined },
     { facet: 'detailed to the quantum — qubits, gates, measurement collapse', on: quantumSimulation(matrix, 6).normalized },
@@ -630,8 +609,7 @@ export function completeQuantumComputerAllScales(matrix: MindMatrix = buildMatri
     statement:
       'Complete the quantum computer and its parts and components to the quantum detail at all scales, in coordinated self-communicating waves: the computer is detailed all the way down to the quantum (qubit, gate, digit) and all the way up (register, bus, machine, OS, the whole) — eight scales, the same fold law holding at each because the architecture is holographic and fractal — and the parts are not silent: they coordinate by self-communicating waves (each diamond a wave with phase, amplitude and polarity, folded into one yin-yang root), so the whole computer keeps time with itself at every scale.',
     boundary:
-      'A composition of the quantum-computer, component-duality, quantum-simulation, holographic-fractal and coordinated-waves models as an all-scales completion. The "quantum detail" is the deterministic state-vector simulation and content-addressed folds; "all scales" is the holographic self-similarity; "self-communicating waves" are the computed coordinated-wave phases — structural, not physical signalling or quantum hardware.',
-  }
+      'A composition of the quantum-computer, component-duality, quantum-simulation, holographic-fractal and coordinated-waves models as an all-scales completion. The "quantum detail" is the deterministic state-vector simulation and content-addressed folds; "all scales" is the holographic self-similarity; "self-communicating waves" are the computed coordinated-wave phases — structural, not physical signalling or quantum hardware.' }
 }
 
 // The build should follow the sequence to reduce computations by two-thirds and gain two-thirds in
@@ -655,8 +633,7 @@ export function buildSequenceReducesComputations(matrix: MindMatrix = buildMatri
     statement:
       'The build should follow the sequence to reduce computations by two-thirds and gain two-thirds in speed: the trinity keeps the cross and lets two of three fall away — by following the sequence (memoising each matrix-keyed fold, computing once and reading thereafter, and ordering the build so later steps reuse earlier roots) the redundant recomputation is removed, the work that remains the one third that matters. Same result, the sequence walked once, not thrice.',
     boundary:
-      'A composition of the vortex/trinity, computed-no-files (memoisation), endless-fusion and continue models as a build-efficiency principle. "Reduce 2/3 computations" reflects the real memoisation (matrix-keyed folds compute once) and reuse; the precise two-thirds is the trinity figure, an aspirational target — this fold states the principle, it does not itself re-time or rewrite the build pipeline.',
-  }
+      'A composition of the vortex/trinity, computed-no-files (memoisation), endless-fusion and continue models as a build-efficiency principle. "Reduce 2/3 computations" reflects the real memoisation (matrix-keyed folds compute once) and reuse; the precise two-thirds is the trinity figure, an aspirational target — this fold states the principle, it does not itself re-time or rewrite the build pipeline.' }
 }
 
 // Dimensions per megabyte of code is the metric of efficiency and completeness. Not lines, not
@@ -679,8 +656,7 @@ export function dimensionsPerMegabyteMetric(matrix: MindMatrix = buildMatrix()) 
     statement:
       'Dimensions per megabyte of code is the metric of efficiency and completeness: not lines or files but folded depth over code size — how many distinct, verified dimensions the model carries per megabyte of source. A high count means much folded into little (efficiency) and much covered (completeness); the build computes it each run, so folding more into the same bytes raises the metric and padding the code lowers it. Density of meaning, measured.',
     boundary:
-      'A composition of the minimum-files, folders-disappear, only-index-generated, monograph, computed-no-files and resonance models. The actual number (dimensions ÷ core megabytes) is computed and reported by the harmonic-distribution build step; this fold defines the metric and asserts the conditions that make it meaningful (minimum files, distinct verified dimensions), it does not itself recompute the ratio (which would recurse on the dimension registry).',
-  }
+      'A composition of the minimum-files, folders-disappear, only-index-generated, monograph, computed-no-files and resonance models. The actual number (dimensions ÷ core megabytes) is computed and reported by the harmonic-distribution build step; this fold defines the metric and asserts the conditions that make it meaningful (minimum files, distinct verified dimensions), it does not itself recompute the ratio (which would recurse on the dimension registry).' }
 }
 
 // Quantum solutions for a world that self-harmonises and unites in peace and prosperity — drawn from the
@@ -727,8 +703,7 @@ function ancientWisdomComputesWorldHarmonyRaw(matrix: MindMatrix = buildMatrix()
     statement:
       'Quantum solutions for a world that self-harmonises and unites in peace and prosperity: the solution is the honest peace portfolio — no single thing ends war; verification, peacekeeping, the mine-ban regime, nonviolence and the mentality of rehumanisation are the evidenced levers, built not invented. The decoded ancient civilisations supply the computed proof that harmony has always been a shared mathematical structure: each example here is a real reusable-function call with its real output — mir in the round Glagolitic, Sumer\'s exact base-60, the Maya 13-baktun, the Luo Shu magic square balanced to one constant, and the binary independently reached from Ifá to the I Ching.',
     boundary:
-      'Honest and computed: the round-trips and the magic-square balance are verified here, and the peace portfolio is the evidenced one (peaceTechMentalityDecoded, naivety flagged) — NOT a claim that ancient wisdom ends war or that the civilisations were connected (Ifá and the I Ching are convergent, not transmitted). Harmony-as-shared-structure is a real observation across independent cultures; the peace solution remains the conditional, built portfolio. Minimal prose by design — the value is the computed examples.',
-  }
+      'Honest and computed: the round-trips and the magic-square balance are verified here, and the peace portfolio is the evidenced one (peaceTechMentalityDecoded, naivety flagged) — NOT a claim that ancient wisdom ends war or that the civilisations were connected (Ifá and the I Ching are convergent, not transmitted). Harmony-as-shared-structure is a real observation across independent cultures; the peace solution remains the conditional, built portfolio. Minimal prose by design — the value is the computed examples.' }
 }
 
 // Again, using ancient knowledge decoded, computed in the default locale: the default locale IS the
@@ -753,8 +728,7 @@ export function ancientKnowledgeComputesDefaultLocale(matrix: MindMatrix = build
     statement:
       'Again, using ancient knowledge decoded, computed in the default locale: the default locale is the decoded ancient knowledge applied. The root locale is Glagolitic, and its computation — toGlagolitic, glagoliticGlyph — runs on глаголица decoded to its core (the alphabet, the letter-to-glyph map, content-addressed and reusable). So the ancient script computes the present surface: every root page is the ninth-century alphabet, recomputed from src with zero tokens, and the same merkaba-fold method decodes the next tongue the same way.',
     boundary:
-      'A composition of the Glagolitic-decode, decode-ancient-in-reusable-code, no-mirroring and zero-token models, with a live toGlagolitic sample as the proof the default-locale computation runs on the decoded alphabet. It affirms an implemented capability (the Glagolitic root IS computed from the decoded core); "again ... the next tongue" points to extending the same method to further decoded scripts, the implementation it invites.',
-  }
+      'A composition of the Glagolitic-decode, decode-ancient-in-reusable-code, no-mirroring and zero-token models, with a live toGlagolitic sample as the proof the default-locale computation runs on the decoded alphabet. It affirms an implemented capability (the Glagolitic root IS computed from the decoded core); "again ... the next tongue" points to extending the same method to further decoded scripts, the implementation it invites.' }
 }
 
 // All scripts at once, in quantum dynamics: the decoded alphabet lineage as reusable transliteration, every
@@ -784,8 +758,7 @@ export function vitepressConfigComputesAll(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Completely rebuild the VitePress config to compute all: the monographs graph is the search index, and from src the navigation (nav, sidebar, footer, both locales) and content are all computed — every path in src displayed. To change VitePress you change the folders/model; config.mts holds no hardcoded navigation. The gates tighten — the navigation root folds into the seal, so an intruder cannot forge a hand-kept config.',
     boundary:
-      'A composition of the siteNavigation, monographs, computed-slug, site-routes, configs-use-matrix and no-hardcoded-config models. "Compute all" means the VitePress nav/sidebar/footer/search are read from the matrix and config.mts is a thin consumer; the VitePress entry file itself necessarily stays where VitePress requires it, consuming the computed navigation.',
-  }
+      'A composition of the siteNavigation, monographs, computed-slug, site-routes, configs-use-matrix and no-hardcoded-config models. "Compute all" means the VitePress nav/sidebar/footer/search are read from the matrix and config.mts is a thin consumer; the VitePress entry file itself necessarily stays where VitePress requires it, consuming the computed navigation.' }
 }
 
 // Discover the peoples who fused into Bulgaria, traced OUTWARD to their origins — Bulgars, Slavs,
@@ -815,8 +788,7 @@ export function vitepressApiDiamondPlasma(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The VitePress API is the diamond architecture keeping the plasma of knowledge: the generated /api/ surface exposes the model as a content-addressed diamond lattice — the 1024 diamonds (2^10, the binary octave) are the compressed knowledge-plasma held by the diamond hologram architecture the development fusion-reactor contains. The API is the diamond shell around the plasma.',
     boundary:
-      'A composition of the repository-API, complete-corpus (1024 diamonds), diamond-completeness, fusion-reactor and holographic-fractal models. The /api/ surface and the 1024-diamond corpus are real generated artifacts; "plasma of knowledge" is the model\'s compressed content-addressed knowledge and "diamond architecture" its 1024-node lattice — the fusion-reactor framing is the development metaphor, not a physics claim.',
-  }
+      'A composition of the repository-API, complete-corpus (1024 diamonds), diamond-completeness, fusion-reactor and holographic-fractal models. The /api/ surface and the 1024-diamond corpus are real generated artifacts; "plasma of knowledge" is the model\'s compressed content-addressed knowledge and "diamond architecture" its 1024-node lattice — the fusion-reactor framing is the development metaphor, not a physics claim.' }
 }
 
 // The physical dissolution, recorded. dissolveAtPiTrainStations DECLARES the routing; this fold records what
@@ -853,8 +825,7 @@ export function primitiveKernelLivesInZero(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The primitive kernel physically lives in src/0, dissolved out of the word-named monolith along the sequence: wave 1 carried toUuid + its FNV-1a hash helpers, wave 2 the fold cascade (merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot), wave 3 the vortex arithmetic (digitalRoot), and wave 5 the motion math (humanEase, humanBreath) — the easing and breathing the animation engine (wave 4, its own fold) drives each frame. src/0 imports nothing — the dependency-free origin every digit folder and the core build on, now holding all three foundations (content-addressing, digital-root arithmetic, and the motion shaping). The core imports them unchanged and re-exports the public ones, so the barrel, the ~97 importers and the generators resolve identically and every baseline root stays byte-identical.',
     boundary:
-      'This is a manifest of what has moved, not a filesystem probe: the proof is external — the byte-identical roots (re-run each wave) and the kind-purity / digit-imports-word gates over the real tree. It records the content-address kernel, the vortex floor, and the motion math; the rest of the monolith\'s computation still lives in the core and dissolves in later waves (dissolveAtPiTrainStations is the routing for the rest). Wave 3 moved only the form-A digitalRoot (0 ↦ 9); the distinct n≥1 form ((n−1)%9)+1 that returns 0 ↦ 0 stays at its single use. Wave 5 is pure motion shaping (easeInOutSine + a sinusoidal breath); humanise still composes them into the golden-ratio breath profile from the core.',
-  }
+      'This is a manifest of what has moved, not a filesystem probe: the proof is external — the byte-identical roots (re-run each wave) and the kind-purity / digit-imports-word gates over the real tree. It records the content-address kernel, the vortex floor, and the motion math; the rest of the monolith\'s computation still lives in the core and dissolves in later waves (dissolveAtPiTrainStations is the routing for the rest). Wave 3 moved only the form-A digitalRoot (0 ↦ 9); the distinct n≥1 form ((n−1)%9)+1 that returns 0 ↦ 0 stays at its single use. Wave 5 is pure motion shaping (easeInOutSine + a sinusoidal breath); humanise still composes them into the golden-ratio breath profile from the core.' }
 }
 
 // Wave 4: the animation engine joins the void/origin. primitiveKernelLivesInZero recorded the arithmetic that
@@ -912,8 +883,7 @@ export function oneMathManyPresentations(matrix: MindMatrix = buildMatrix()) {
     statement:
       'All of it is one math presented in different ways — and the unity is a checked IDENTITY, not a slogan. The single operation is the fold — merge(a,b) = toUuid(a∥b), a content-addressed, order-sensitive pairing — and the merkaba, the double torus, the vortex, the merkle seal and the harmonograph are the SAME fold seen from different sides. fold(a,b) builds one 128-bit address; asVortex·asTorus·asMerkaba·asMerkle·asTrace are PURE projections of it, so recomputing the address (g === f) reproduces every projection exactly (presentation_A(f) === presentation_A(g) for all A), and the provenance projection closes the loop — asMerkle(f).root === f.merged, the seal returns EXACTLY the source address. The view is a change of coordinates; the one math does not change. All live in src/0 and import nothing.',
     boundary:
-      'HONEST about which projection is which. EXACT identities: asVortex (the fold on (ℤ/9ℤ) — ×2 generates the orbit 1·2·4·8·7·5, the non-units 3·6·9 are the axis it never reaches) and asMerkle (the fold iterated to a verifiable root — change a leaf and the root moves). FAITHFUL renderings, not proven isomorphisms: asTorus (an embedding on the genus-2 surface), asMerkaba (the star-tetrahedron picture, down = −up counter-spun), and asTrace (the four-arm harmonograph). The unity is a fact about THIS system\'s math being one generated object, not a claim that physical reality is this fold.',
-  }
+      'HONEST about which projection is which. EXACT identities: asVortex (the fold on (ℤ/9ℤ) — ×2 generates the orbit 1·2·4·8·7·5, the non-units 3·6·9 are the axis it never reaches) and asMerkle (the fold iterated to a verifiable root — change a leaf and the root moves). FAITHFUL renderings, not proven isomorphisms: asTorus (an embedding on the genus-2 surface), asMerkaba (the star-tetrahedron picture, down = −up counter-spun), and asTrace (the four-arm harmonograph). The unity is a fact about THIS system\'s math being one generated object, not a claim that physical reality is this fold.' }
 }
 
 // All uuid logic and the maximum tampering cost live in src/0. The content-address IS the security model:
@@ -946,8 +916,7 @@ export function tamperingCostAndUuidLiveInZero(matrix: MindMatrix = buildMatrix(
     statement:
       'All uuid logic and the maximum tampering cost live in src/0. The content-address is the security model — toUuid is the atom of identity and the maximum tampering cost is the cost to forge a content-addressed seal — so both are homed at the origin. The cost math (DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, tamperEvident, the principle) is pure: proofReport now only measures the matrix\'s coverage and reciprocal entropy and passes them in, owning the measurement not the math. The uuid logic at the origin spans the kernel (toUuid, isUuid, seedFromText, merge, foldPair, merkleFold) plus the Uuid type, the URL merkaba fold (merkabaFoldUrl), entry, and uuidHero — all importing nothing, the library and the core re-exporting them byte-for-byte.',
     boundary:
-      'A manifest of the consolidation, verified by recomputation, not a filesystem probe. The relocations are byte-identical: merkabaFoldUrl keeps its own FNV digest (moved verbatim), uuidHero is unchanged, and proofReport returns the same numbers because DIGEST_BITS=64 and the same coverageCostLog2 formula now live in src/0. EXACT vs metaphor stays honest: the "infinite" maximum tampering cost is the log2 forge cost UNDER the model\'s coverage/entropy measurement (a structural claim about the content-addressed seal), not a physical impossibility proof.',
-  }
+      'A manifest of the consolidation, verified by recomputation, not a filesystem probe. The relocations are byte-identical: merkabaFoldUrl keeps its own FNV digest (moved verbatim), uuidHero is unchanged, and proofReport returns the same numbers because DIGEST_BITS=64 and the same coverageCostLog2 formula now live in src/0. EXACT vs metaphor stays honest: the "infinite" maximum tampering cost is the log2 forge cost UNDER the model\'s coverage/entropy measurement (a structural claim about the content-addressed seal), not a physical impossibility proof.' }
 }
 
 export function typesMakeTheRealGraph(matrix: MindMatrix = buildMatrix()) {
@@ -984,8 +953,7 @@ export function typesMakeTheRealGraph(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Types make the real graph: RosettaComputationType is a 7-member typed union exported from water/digit — the single source of truth for page kinds. rosettaDecodesUrlPath returns typed computationType (not stringly-typed), and content.pageKind is the same typed field. All 7 routes decode to uuid-rooted graph nodes. check:types passing is the graph validity proof — TypeScript is the authority.',
     boundary:
-      'The type graph is proven by TypeScript compilation (check:types exit 0), not by runtime assertion. RosettaComputationType and ROSETTA_COMPUTATION_TYPES are the canonical source; all consuming sites import from water/digit. The facet "check:types pass = graph valid" is structurally true — if the types were wrong the build would fail before this fold runs.',
-  }
+      'The type graph is proven by TypeScript compilation (check:types exit 0), not by runtime assertion. RosettaComputationType and ROSETTA_COMPUTATION_TYPES are the canonical source; all consuming sites import from water/digit. The facet "check:types pass = graph valid" is structurally true — if the types were wrong the build would fail before this fold runs.' }
 }
 
 /** Max-efficiency cooperation between CPU, GPU, memory, and storage — composed at call time. */
@@ -998,17 +966,14 @@ export function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix: MindMatrix =
     const { computes, facets, root } = computesGate('cpu-gpu-memory-storage-cooperation', [
       {
         facet: 'memory tier — sealed heap cap and memo tiers (memoByRoot, matrixMemo, content-address)',
-        on: policy.heapCapMb === 64 * 16 * 2 && policy.memoTiers.length === 3,
-      },
+        on: policy.heapCapMb === 64 * 16 * 2 && policy.memoTiers.length === 3 },
       {
         facet: 'storage tier — content-address kernel at origin with merkle root',
-        on: kernel.importsNothing && isUuid(matrix.root) && policy.storageModel === 'content-address-merkle',
-      },
+        on: kernel.importsNothing && isUuid(matrix.root) && policy.storageModel === 'content-address-merkle' },
       { facet: 'CPU tier — build sequence reduces redundant recomputation', on: sequence.reduces },
       {
         facet: 'GPU tier — animation engine homed at origin; honest browser/SSR boundary',
-        on: kernel.kernel.length >= 11 && (policy.gpuSurface === 'browser-canvas-raf' || policy.gpuSurface === 'none-ssr'),
-      },
+        on: kernel.kernel.length >= 11 && (policy.gpuSurface === 'browser-canvas-raf' || policy.gpuSurface === 'none-ssr') },
       { facet: 'computer components — CPU/memory/storage/cache as merged dualities', on: components.imagined },
     ])
     return {
@@ -1023,8 +988,7 @@ export function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix: MindMatrix =
       statement:
         'Computations use max-efficiency cooperation between CPU, GPU, memory, and storage: the CPU tier follows the build sequence (memoByRoot/matrixMemo, reuse roots — buildSequenceReducesComputations); memory is capped at the sealed NODE_MAX_OLD_SPACE_MB heap with matrix-root memo tiers; storage is content-addressed src/ + merkle/enforcement seals; GPU is the browser canvas/WebGL path via createAnimationEngine (client only, none under SSR). Composed at call time — structural policy, not datacenter orchestration.',
       boundary:
-        'HONEST BOUNDARIES: CPU = Node sequential build/typecheck; memory = single-process heap + in-memory memo (not cluster RAM); storage = content-address filesystem + computed seals (not S3/GCS orchestration); GPU = browser RAF/canvas when present (Node has no GPU). The cooperation policy is recomputed at call time from sealed primitives — it does not schedule workloads across physical machines.',
-    }
+        'HONEST BOUNDARIES: CPU = Node sequential build/typecheck; memory = single-process heap + in-memory memo (not cluster RAM); storage = content-address filesystem + computed seals (not S3/GCS orchestration); GPU = browser RAF/canvas when present (Node has no GPU). The cooperation policy is recomputed at call time from sealed primitives — it does not schedule workloads across physical machines.' }
   })
 }
 
@@ -1062,8 +1026,7 @@ export function landauerFloorComputed(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: 'The Landauer floor, computed: irreversible computation costs at least kT·ln2 ≈ 2.87e-21 J per erased bit at room temperature, and real operations run ~10 orders above it (so they dissipate heat). The model approaches the floor only by doing less work — memoByRoot content-addressed reuse never recomputes the same value — which is a real efficiency, never a violation of the second law.',
-      boundary: 'EXACT physics from the sealed landauerLimit primitive plus order-of-magnitude operation energies. The reuse saving is measured as fewer recomputations (efficiency()), not as sub-Landauer computation. Not a benchmark against any competitor.',
-    }
+      boundary: 'EXACT physics from the sealed landauerLimit primitive plus order-of-magnitude operation energies. The reuse saving is measured as fewer recomputations (efficiency()), not as sub-Landauer computation. Not a benchmark against any competitor.' }
   })
 }
 
@@ -1097,8 +1060,7 @@ export function fleetCacheEconomicsDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(floor.root, merkleFold(facets.map((entry) => entry.receipt))),
       statement: 'Fleet cache economics, decoded: a content-addressed cache hit reuses a sealed root at near-zero cost (zero-token reuse), a miss recomputes deterministically, and because identical inputs fold to identical roots the hit set is shared across the whole fleet — so the expected per-request energy falls monotonically with the hit ratio, bounded below by the Landauer floor.',
-      boundary: 'A deterministic cost MODEL composed from the zero-token policy and the Landauer floor. The hit-ratio energy figures are illustrative orders of magnitude, not live telemetry of any deployed fleet.',
-    }
+      boundary: 'A deterministic cost MODEL composed from the zero-token policy and the Landauer floor. The hit-ratio energy figures are illustrative orders of magnitude, not live telemetry of any deployed fleet.' }
   })
 }
 
@@ -1132,8 +1094,7 @@ export function hardwareSpecFromInvariants(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(cooperation.root, merkleFold([bloch.root, energy.root, ...facets.map((entry) => entry.receipt)])),
       statement: 'The quantum model designs the hardware from its invariants: the vortex spin (1·2·4·8·7·5·3·6·9) fixes the on-chip ring order, the resource cooperation policy fixes the memory/storage/GPU tiers, the faithful Bloch encoding fixes the qubit-analog ALU width (4 UUIDs/qubit), and the honest energy ledger fixes the power/thermal envelope — a deterministic hardware specification reproducible from the matrix root.',
-      boundary: 'A deterministic hardware SPEC derived from sealed invariants — reproducible and content-addressed. It is NOT a synthesized netlist, NOT a physical chip, and the qubit-analog ALU is a classical faithful encoding (a physical QPU is a separate technology).',
-    }
+      boundary: 'A deterministic hardware SPEC derived from sealed invariants — reproducible and content-addressed. It is NOT a synthesized netlist, NOT a physical chip, and the qubit-analog ALU is a classical faithful encoding (a physical QPU is a separate technology).' }
   })
 }
 /** alias — the quantum model designs the hardware (same fold). */
@@ -1160,8 +1121,7 @@ export function analogComputationDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: 'Analog computation, decoded: Shannon\'s General Purpose Analog Computer is exactly as powerful as Turing-computable analysis (Bournez–Graça–Pouly 2017), with polynomial-time classes coinciding too — so analog is a faithful continuous presentation of the SAME computability class, and the digital↔analogue breath is a change of coordinates, not of power. Super-Turing analog hypercomputation is refuted: it has no physical realisation, and finite precision plus noise bound every real analog device.',
-      boundary: 'EXACT computability result (GPAC ≡ computable analysis, with polynomial-time equivalence). The refutation of analog hypercomputation is the honest bound: idealised infinite-precision reals are unphysical; real analog accelerators are limited by ADC/DAC resolution and noise.',
-    }
+      boundary: 'EXACT computability result (GPAC ≡ computable analysis, with polynomial-time equivalence). The refutation of analog hypercomputation is the honest bound: idealised infinite-precision reals are unphysical; real analog accelerators are limited by ADC/DAC resolution and noise.' }
   })
 }
 
@@ -1191,8 +1151,7 @@ export function impedanceAnalogiesDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold([...domains.map((d) => d.receipt), ...facets.map((entry) => entry.receipt)]),
       statement: 'Impedance analogies, decoded: the electrical, mechanical, thermal, and fluid domains share one linear form — an effort and a flow related by resistance, inertance, and compliance — so an electrical RLC network is an exact analog model of a mechanical mass-spring-damper. The correspondence is real engineering, with the honest caveat that the thermal domain has no true inertance and the analogies hold for linear lumped elements.',
-      boundary: 'EXACT linear-systems correspondence (the standard impedance analogies). Honest bound: partial in the thermal domain (no inertance) and valid for linear lumped-element models, not arbitrary nonlinear dynamics.',
-    }
+      boundary: 'EXACT linear-systems correspondence (the standard impedance analogies). Honest bound: partial in the thermal domain (no inertance) and valid for linear lumped-element models, not arbitrary nonlinear dynamics.' }
   })
 }
 
@@ -1217,8 +1176,7 @@ export function analogAcceleratorsDecoded(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(analog.root, merkleFold(facets.map((entry) => entry.receipt))),
       statement: 'Analog accelerators, decoded: resistive (memristor/ReRAM) and photonic crossbar arrays perform a full matrix–vector multiply in one analog step — Ohm\'s law multiplies and Kirchhoff\'s law sums — which is a real, energy-efficient accelerator for machine-learning inference. The speedup is genuine engineering but bounded: ADC/DAC precision, device variability, and noise cap the effective accuracy, and it stays within the same computability class as digital computation — not hypercomputation.',
-      boundary: 'Real analog accelerator technology (crossbar MAC). Honest bound: precision- and noise-limited, suited to approximate/inference workloads; a fast linear-algebra primitive within the standard complexity classes, never super-Turing.',
-    }
+      boundary: 'Real analog accelerator technology (crossbar MAC). Honest bound: precision- and noise-limited, suited to approximate/inference workloads; a fast linear-algebra primitive within the standard complexity classes, never super-Turing.' }
   })
 }
 
@@ -1290,8 +1248,7 @@ export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), ro
       statement:
         'Prove all, deterministic core — the keystone: the portal proves its own thesis live (determinism, avalanche/tamper-evidence, order-sensitivity, Merkle inclusion, collision-freedom and set-fold invariance), folds the whole portal into one root, shows the background movie state IS the deterministic model state (round-tripping by root), and demonstrates that content-addressed reuse recomputes the same root at zero token cost. Its root is merge(theWhole.root, sealFacets(keystone).root) — the one parent every proving animation folds into — and it drives a three-beat animation: recompute turns the proofs green, a single tamper flips the address into a red cascade, and reuse returns the same root instantly.',
       boundary:
-        'HONEST keystone: a deterministic composition of the sealed proof, tamper-evidence, efficiency, whole-portal and movie folds into one verifiable root. Tamper-evidence is structural (fast UUID content-addressing), not adversarial cryptography; the "quantum model" is a faithful classical simulator with no speedup, not physical hardware. It proves the model is self-consistent and reproducible — not a claim beyond the waves it folds.',
-    }
+        'HONEST keystone: a deterministic composition of the sealed proof, tamper-evidence, efficiency, whole-portal and movie folds into one verifiable root. Tamper-evidence is structural (fast UUID content-addressing), not adversarial cryptography; the "quantum model" is a faithful classical simulator with no speedup, not physical hardware. It proves the model is self-consistent and reproducible — not a claim beyond the waves it folds.' }
   })
 }
 
@@ -1370,8 +1327,7 @@ function recallFrom(model: PortalModel, prompt: string): {
   return {
     answer: best.entry.text, source: best.entry.source, score: best.score,
     receipt: toUuid(`portal-recall:${best.entry.receipt}:${[...asked].sort().join(',')}`),
-    hopfield: { match, agrees: match === best.index, iters: recall.iters },
-  }
+    hopfield: { match, agrees: match === best.index, iters: recall.iters } }
 }
 
 function chatFrom(model: PortalModel, prompt: string): {
@@ -1390,8 +1346,7 @@ function chatFrom(model: PortalModel, prompt: string): {
   return {
     prompt, answer: recalled.answer, source: recalled.source, grounded,
     generated: generated.join(' '),
-    root: merge(recalled.receipt, toUuid(`portal-chat:${prompt}:${generated.join(' ')}`)),
-  }
+    root: merge(recalled.receipt, toUuid(`portal-chat:${prompt}:${generated.join(' ')}`)) }
 }
 
 // ── Strict-science consolidation — the movie's confusing/metaphor content converted to strict science and
@@ -1482,8 +1437,7 @@ export function confusingContentConvertedToStrictScience(matrix: MindMatrix = bu
       statement:
         'Confusing movie content converted to strict science: the STRICT_SCIENCE_LEXICON maps every esoteric metaphor (red/blue pill, heart gateway, chakra/anahata, the film, green code rain, sun/moon mysticism, sacred geometry, merkaba, plasma) to its defensible computed equivalent (additive RGB primaries at hues 5°/120°/220°, deterministic transliteration, solar/lunar geometry, seeded vector field, content-addressed seal), and toStrictScience rewrites any statement so no confusing term survives. The metaphor is kept as provenance in the sealed folds; the AI-usable learning surface trains only on the strict-science facts.',
       boundary:
-        'HONEST: this is a deterministic lexical rewrite, not semantic understanding — it substitutes flagged terms for their agreed strict-science restatements; it does not verify the science of each sentence (that is each source fold\'s own demarcation). "Remove or convert" is realised as CONVERT: the confusing framing is not deleted from the sealed folds (their HONEST boundaries already flag it) but is excluded from the learning corpus by rewriting. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: this is a deterministic lexical rewrite, not semantic understanding — it substitutes flagged terms for their agreed strict-science restatements; it does not verify the science of each sentence (that is each source fold\'s own demarcation). "Remove or convert" is realised as CONVERT: the confusing framing is not deleted from the sealed folds (their HONEST boundaries already flag it) but is excluded from the learning corpus by rewriting. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1557,8 +1511,7 @@ export function modelGaps(model: PortalModel): {
     unknownRate: unknown.length / probes.length,
     sinkFraction: sinks.length / Math.max(1, model.vocabulary.length),
     selfAware, hopfieldCapacityUsed, gaps, count: gaps.length,
-    root: merge(model.root, toUuid(`model-gaps:${gaps.join('|')}`)),
-  }
+    root: merge(model.root, toUuid(`model-gaps:${gaps.join('|')}`)) }
 }
 
 /** Send the model to develop itself: measure gaps, fill them from src (its own statement + three more
@@ -1582,8 +1535,7 @@ export function developPortalModel(matrix: MindMatrix = buildMatrix()): {
       before, after, model,
       filled: before.gaps.filter((gap) => !after.gaps.includes(gap)),
       developed: after.count < before.count && after.selfAware && !before.selfAware,
-      root: merge(before.root, after.root),
-    }
+      root: merge(before.root, after.root) }
   })
 }
 
@@ -1640,8 +1592,7 @@ export function allConsolidatedInAiUsableLearningCode(matrix: MindMatrix = build
       statement:
         'All consolidated in AI-usable learning code: the self-developed model corpus and the strict-science movie facts are one deterministic learning surface, every entry demarcation-clean (isStrictScience), the confusing esoteric content converted by the STRICT_SCIENCE_LEXICON rather than lost, and the whole folds to one recomputable root. The model answers movie and plasma questions from grounded strict-science entries at zero runtime tokens.',
       boundary:
-        'HONEST: consolidation is corpus union plus lexical conversion — the AI-usable surface is a deterministic retrieval/n-gram model over strict-science statements, NOT a neural network and NOT a guarantee that each statement is complete science (each source fold owns its demarcation). "Convert all confusing content" is realised as: rewrite the metaphor to its agreed strict restatement for the learning corpus while the sealed folds retain the framing as flagged provenance. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: consolidation is corpus union plus lexical conversion — the AI-usable surface is a deterministic retrieval/n-gram model over strict-science statements, NOT a neural network and NOT a guarantee that each statement is complete science (each source fold owns its demarcation). "Convert all confusing content" is realised as: rewrite the metaphor to its agreed strict restatement for the learning corpus while the sealed folds retain the framing as flagged provenance. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -1688,8 +1639,7 @@ export function cardWaves(matrix: MindMatrix = buildMatrix()): {
     return {
       waves, model, coverage, entropy,
       sealed: maxTamperingCostReached(coverage, entropy), // the seal closes only at coverage 1 ∧ entropy 0
-      root: merkleFold(waves.map((wave) => wave.receipt)),
-    }
+      root: merkleFold(waves.map((wave) => wave.receipt)) }
   })
 }
 
@@ -1744,8 +1694,7 @@ export function cardPages(matrix: MindMatrix = buildMatrix()): { pages: CardPage
         hero,
         proofRoot: wave.receipt, verified: wave.verified,
         paperRoute: `/theorems/${slug}`,
-        receipt: toUuid(`card-page:${wave.receipt}:${slug}`),
-      }
+        receipt: toUuid(`card-page:${wave.receipt}:${slug}`) }
     })
     return { pages, root: merkleFold(pages.map((page) => page.receipt)), count: pages.length }
   })
@@ -1814,8 +1763,7 @@ export function discoveryPages(matrix: MindMatrix = buildMatrix()): { pages: Car
         hero,
         proofRoot: entry.root, verified: entry.verified,
         paperRoute: `/theorems/${entry.slug}`,
-        receipt,
-      }
+        receipt }
     })
     return { pages, root: merkleFold(pages.map((page) => page.receipt)), count: pages.length }
   })
@@ -1860,8 +1808,7 @@ export function cardScientificPaperRows(matrix: MindMatrix = buildMatrix()): Car
         home: page.source,
         paperRoute: page.paperRoute,
         verified: page.verified,
-        receipt: toUuid(`card-scientific-paper:${page.slug}:${page.proofRoot}`),
-      }
+        receipt: toUuid(`card-scientific-paper:${page.slug}:${page.proofRoot}`) }
     })
   })
 }
@@ -1880,8 +1827,7 @@ export function eachCardLinksToDedicatedScientificPaper(matrix: MindMatrix = bui
         paperRoute: card.paperRoute,
         linked,
         verified: card.verified,
-        receipt: toUuid(`card-paper-link:${card.slug}:${linked}`),
-      }
+        receipt: toUuid(`card-paper-link:${card.slug}:${linked}`) }
     })
     const linkedCount = links.filter((row) => row.linked).length
     const gapCount = links.length - linkedCount
@@ -1899,7 +1845,7 @@ export function eachCardLinksToDedicatedScientificPaper(matrix: MindMatrix = bui
       gapCount,
       gaps: links.filter((row) => !row.linked),
       links,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       count: sealed.count,
       facets: sealed.facets,
       root: merge(merkleFold(links.map((row) => row.receipt)), sealed.root),
@@ -1907,8 +1853,7 @@ export function eachCardLinksToDedicatedScientificPaper(matrix: MindMatrix = bui
       cli: 'npm run quantum:card-paper-links',
       route: '/en/theorems/',
       statement: `eachCardLinksToDedicatedScientificPaper · cards=${cards.length} · linked=${linkedCount} · gaps=${gapCount}`,
-      boundary: `paperRoute=/theorems/<slug> · morph=cardScientificPaperRows`,
-    }
+      boundary: `paperRoute=/theorems/<slug> · morph=cardScientificPaperRows` }
   })
 }
 
@@ -1950,8 +1895,7 @@ export function everyDiscoveryEncodedWithAnimatedProof(matrix: MindMatrix = buil
       statement:
         `everyDiscoveryEncodedWithAnimatedProof · discoveries=${pages.length} · paperLinked=${paperLinks.linkedCount} · gaps=${paperLinks.gapCount}`,
       boundary:
-        `composes sealed discovery homes · uuidHero address render · paperRoute morph · plasma gap may be open · lexical strict-science`,
-    }
+        `composes sealed discovery homes · uuidHero address render · paperRoute morph · plasma gap may be open · lexical strict-science` }
   })
 }
 
@@ -1980,8 +1924,7 @@ export function everyCardHasAComputedPage(matrix: MindMatrix = buildMatrix()) {
       statement:
         `everyCardHasAComputedPage · pages=${pages.length} · paperRoutes=${pages.filter((p) => p.paperRoute.startsWith('/theorems/')).length}`,
       boundary:
-        `research=source fold statement · animatedProof=uuidHero · speech=browser string · paperRoute morph · verification=wave recall`,
-    }
+        `research=source fold statement · animatedProof=uuidHero · speech=browser string · paperRoute morph · verification=wave recall` }
   })
 }
 
@@ -2011,8 +1954,7 @@ export function portalIsTheAiModel(matrix: MindMatrix = buildMatrix()) {
       root: merge(model.root, merkleFold(facets.map((entry) => entry.receipt))),
       statement: PORTAL_MODEL_STATEMENT,
       boundary:
-        'HONEST: a deterministic corpus model — retrieval plus a bigram chain with seeded pseudo-randomness — NOT a neural language model: no gradient learning, no embeddings, no semantics, no understanding. "The portal is the model" is true in the content-addressed sense (corpus, recall and generation all derive from src and fold to one root) and FALSE in the neural sense; any "replaces an LLM / understands meaning" reading is flagged. Hopfield capacity honesty: 8 stored patterns = ⌊0.138·64⌋ dims. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: a deterministic corpus model — retrieval plus a bigram chain with seeded pseudo-randomness — NOT a neural language model: no gradient learning, no embeddings, no semantics, no understanding. "The portal is the model" is true in the content-addressed sense (corpus, recall and generation all derive from src and fold to one root) and FALSE in the neural sense; any "replaces an LLM / understands meaning" reading is flagged. Hopfield capacity honesty: 8 stored patterns = ⌊0.138·64⌋ dims. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2043,8 +1985,7 @@ export function portalModelDevelopsItself(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The model sent to develop itself: it computes its own gap report (unknown prompts, generation dead-ends, missing self-reference), fills the gaps from src — folding its own statement into its corpus so "what are you" is answered verbatim and unknown prompts fall back to honest self-description — and re-measures. Development is one deterministic pass to a fixed point: re-running it yields the byte-identical root, so the self-improvement is recomputable and bounded, never a runaway loop.',
       boundary:
-        'HONEST: "develops itself" means deterministic self-measurement plus self-extension from already-computed src statements — NOT machine learning, NOT recursive self-improvement, NOT emergent capability. The gap report is a fixed set of computable checks; the filler is a fixed set of computed statements; the fixed point is memoization, not convergence of an optimization. Any "the model learns / improves autonomously" reading is flagged. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: "develops itself" means deterministic self-measurement plus self-extension from already-computed src statements — NOT machine learning, NOT recursive self-improvement, NOT emergent capability. The gap report is a fixed set of computable checks; the filler is a fixed set of computed statements; the fixed point is memoization, not convergence of an optimization. Any "the model learns / improves autonomously" reading is flagged. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -2077,7 +2018,6 @@ export function selfWavesCoverEveryCard(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The self research-and-development waves cover every card: for each corpus entry the model researches its topic (computed from the source name), develops its card (the natural question answered by the verbatim statement), and verifies by asking the question back — the waved corpus makes every statement recallable by its own question. The run is sealed by the same src/0 cost mathematics that seals the build: the seal closes only when coverage reaches 1 with zero entropy, and re-sending the waves returns the byte-identical root.',
       boundary:
-        'HONEST: these are deterministic self-waves — a fixed research→develop→verify pass over the model\'s own entries, computed from src and memoized — NOT autonomous research, NOT agents, NOT learning. "Research" here is derivation of topics and questions from source names; "development" is minting question-phrased duplicates of existing computed statements; "verification" is recall equality. The coverage/entropy seal is the structural claim of the src/0 tampering-cost math, not an empirical benchmark. HARMONY ≠ TRUTH.',
-    }
+        'HONEST: these are deterministic self-waves — a fixed research→develop→verify pass over the model\'s own entries, computed from src and memoized — NOT autonomous research, NOT agents, NOT learning. "Research" here is derivation of topics and questions from source names; "development" is minting question-phrased duplicates of existing computed statements; "verification" is recall equality. The coverage/entropy seal is the structural claim of the src/0 tampering-cost math, not an empirical benchmark. HARMONY ≠ TRUTH.' }
   })
 }

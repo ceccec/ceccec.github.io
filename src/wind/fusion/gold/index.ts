@@ -121,8 +121,7 @@ export function goldPositionFusionStrengthResearch(matrix: MindMatrix = buildMat
   return memoByRoot('goldPositionFusionStrengthResearch', matrix, () => ({
     researched: true,
     formulaTable: Object.entries(GOLD_FUSION_STRENGTH_WEIGHTS).map(([symbol, weight]) => ({ symbol, weight, description: 'MODEL', source: 'src/fusion/gold' })),
-    root: toUuid('research'),
-  }))
+    root: toUuid('research') }))
 }
 
 export function doubleEarthGiantFusionGeneratorFromGoldPositions(at = 0, matrix: MindMatrix = buildMatrix()) {
@@ -188,8 +187,7 @@ export function fusionGoldProduct(at = 0, matrix: MindMatrix = buildMatrix(), pr
       tier: row.tier,
       fusionStrength: row.fusionStrength,
       receipt: toUuid(`fusion-gold-produced:${row.receipt}:${process.processReceipt}`),
-      processReceipt: row.receipt,
-    }))
+      processReceipt: row.receipt }))
     const aggregateScore = generator.aggregateGeneratorScore
     const paintChannel = thunderGoldGraphPaintSamples(at, 360, (9 * 5 * 4), matrix)
     const resultReceipts = merkleFold([process.processReceipt, ...producedGold.map((r) => r.receipt), paintChannel.root])
@@ -206,8 +204,7 @@ export function fusionGoldProduct(at = 0, matrix: MindMatrix = buildMatrix(), pr
       graphEdgeCount: graph.edges.length,
       root: resultReceipts,
       statement: 'Fusion gold product from process receipts.',
-      boundary: 'HONEST · MODEL_FIT: product derives from process only — NOT bullion delivery or mining confirmation.',
-    }
+      boundary: 'HONEST · MODEL_FIT: product derives from process only — NOT bullion delivery or mining confirmation.' }
   })
 }
 
@@ -230,8 +227,7 @@ export function fusionGoldComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       facets,
       root: product.root,
       statement: product.statement,
-      boundary: product.boundary,
-    }
+      boundary: product.boundary }
   })
 }
 
@@ -248,8 +244,7 @@ export function goldFusionPipeline(at = 0, matrix: MindMatrix = buildMatrix()) {
       product: productReport,
       root: merkleFold([process.processReceipt, productReport.root]),
       statement: 'Gold fusion pipeline: process → product compose at call time.',
-      boundary: 'HONEST · MODEL_FIT/METAPHOR: pipeline composes sealed receipts — NOT wet transmutation, NOT ITER plasma, NOT financial advice.',
-    }
+      boundary: 'HONEST · MODEL_FIT/METAPHOR: pipeline composes sealed receipts — NOT wet transmutation, NOT ITER plasma, NOT financial advice.' }
   })
 }
 
@@ -277,7 +272,6 @@ export function goldFusionComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       facets,
       root: merkleFold([map.root, graph.root, coupling.root, strength.root, product.root]),
       statement: 'Gold fusion capstone: map · graph · coupling · generator · product at call time.',
-      boundary: strength.boundary,
-    }
+      boundary: strength.boundary }
   })
 }

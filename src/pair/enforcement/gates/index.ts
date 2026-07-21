@@ -15,13 +15,12 @@ import {
   scanVitepressIndex,
   type StrictGateSnapshot,
   type StrictHyphenOffender,
-  type StrictNonTsOffender,
-} from './strict'
+  type StrictNonTsOffender } from './strict'
+import { claySolvedTheorem } from '../../../3/7'
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
-  type ComputationalLimitSnapshot,
-} from './computational'
+  type ComputationalLimitSnapshot } from './computational'
 
 /** One normalised finding from any trinity wave. */
 export type Finding = {
@@ -121,8 +120,7 @@ export {
   auditComputationalGates,
   type ComputationalLimitSnapshot,
   type IChingDistributionSnapshot,
-  type RosettaDistributionSnapshot,
-} from './computational'
+  type RosettaDistributionSnapshot } from './computational'
 export {
   auditStrictGates,
   strictGatePassed,
@@ -131,8 +129,7 @@ export {
   scanVitepressIndex,
   type StrictGateSnapshot,
   type StrictHyphenOffender,
-  type StrictNonTsOffender,
-} from './strict'
+  type StrictNonTsOffender } from './strict'
 
 export type EnforcementFacts = {
   readonly root: string
@@ -168,8 +165,7 @@ function walkSrcTree(root: string, out: WalkOut): void {
           out.hyphenFolders.push({
             path: join('src', ...relParts, entry.name),
             segment: entry.name,
-            reason: 'hyphenated folder — two words disguised as one; nest as word/word (one word per folder level)',
-          })
+            reason: 'hyphenated folder — two words disguised as one; nest as word/word (one word per folder level)' })
         }
         walk(full, [...relParts, entry.name])
       } else if (entry.name.endsWith('.ts')) {
@@ -185,13 +181,11 @@ function walkSrcTree(root: string, out: WalkOut): void {
         if (entry.name === 'index.vue') continue // display dual — lawful beside index.ts
         out.nonTs.push({
           file: full,
-          reason: 'frontend surface must be folder index — dissolve flat .vue into <name>/index.vue; backend is index.ts only under src',
-        })
+          reason: 'frontend surface must be folder index — dissolve flat .vue into <name>/index.vue; backend is index.ts only under src' })
       } else if (/\.(mts|cts|tsx|js|mjs|cjs|jsx)$/.test(entry.name)) {
         out.nonTs.push({
           file: full,
-          reason: 'frontend surface must be folder index — dissolve flat .vue into <name>/index.vue; backend is index.ts only under src',
-        })
+          reason: 'frontend surface must be folder index — dissolve flat .vue into <name>/index.vue; backend is index.ts only under src' })
       }
     }
   }
@@ -262,8 +256,7 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
     indexTsFiles: out.indexTs,
     bodies: out.bodies,
     strict,
-    computational,
-  }
+    computational }
 }
 
 export function readFact(facts: EnforcementFacts, path: string): string {
@@ -290,8 +283,7 @@ export function collectStrictGateOffenders(facts: EnforcementFacts) {
     imports: facts.strict.imports,
     importGaps: facts.strict.importGaps,
     indexOnly: facts.strict.indexOnly,
-    hyphenFolders: facts.strict.hyphenFolders,
-  }
+    hyphenFolders: facts.strict.hyphenFolders }
 }
 
 export function collectFoldDefiners(facts: EnforcementFacts, foldNames: readonly string[]) {
@@ -301,8 +293,7 @@ export function collectFoldDefiners(facts: EnforcementFacts, foldNames: readonly
       name,
       files: facts.indexTsFiles
         .filter((file) => re.test(facts.bodies.get(relative(facts.root, file)) ?? ''))
-        .map((file) => relative(facts.root, file)),
-    }
+        .map((file) => relative(facts.root, file)) }
   })
 }
 
@@ -357,8 +348,7 @@ export function collectImportPathDistanceEdges(facts: EnforcementFacts): readonl
         spec,
         segmentDistance: importPathSegmentDistance(spec),
         treeHopDistance: importPathTreeHopDistance(importerDir, importeeDir),
-        gapHops: importPathGapHops(spec),
-      })
+        gapHops: importPathGapHops(spec) })
     }
   }
   return edges
@@ -418,30 +408,24 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = process.
   const facets = [
     {
       facet: `import path shows distance — ${edgeCount} edges each carry segmentDistance + treeHopDistance + gapHops`,
-      on: edgeCount > 0 && everyEdgeShowsDistance,
-    },
+      on: edgeCount > 0 && everyEdgeShowsDistance },
     {
       facet: `mean/max import distance recomputed — meanTreeHop=${meanTreeHop.toFixed(4)} maxTreeHop=${maxTreeHop} meanSegment=${meanSegment.toFixed(4)} maxSegment=${maxSegment}`,
-      on: edgeCount > 0 && Number.isFinite(meanTreeHop) && Number.isFinite(maxTreeHop) && maxTreeHop >= meanTreeHop,
-    },
+      on: edgeCount > 0 && Number.isFinite(meanTreeHop) && Number.isFinite(maxTreeHop) && maxTreeHop >= meanTreeHop },
     {
       facet: `compactness — meanTreeHop≤ROSETTA_SIX(${ROSETTA_SIX}) ∧ maxTreeHop≤ICHING_EIGHT_FOLD(${ICHING_EIGHT_FOLD})`,
-      on: compactness,
-    },
+      on: compactness },
     {
       facet: `evenDistribution — CV(treeHop)=${cvTreeHop.toFixed(4)}≤1/FREE_BITS(${1 / freeBits}) ∧ max≤FREE_BITS×mean`,
-      on: evenDistribution,
-    },
+      on: evenDistribution },
     {
       facet: `compose census 110/108 · FREE_BITS=${freeBits}=−χ · importOffenders=${importOffenders} · importGaps=${importGaps}`,
-      on: censusOk && freeBitsOk && importOffenders === 0 && importGaps === 0,
-    },
+      on: censusOk && freeBitsOk && importOffenders === 0 && importGaps === 0 },
     {
       facet: 'compose dissolve/flat + import/distance pairs (folder-law migration measurement)',
-      on: dissolvePaired && importDistancePaired.bidirectional && importDistancePaired.forward !== importDistancePaired.reverse,
-    },
+      on: dissolvePaired && importDistancePaired.bidirectional && importDistancePaired.forward !== importDistancePaired.reverse },
   ]
-  const claySolvedByThisFold = 0 as const
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const qpuRequired = false as const
   const physicalFtlClaim = 0 as const
   const facetsLive = [
@@ -490,8 +474,7 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = process.
     boundary:
       'EXACT: segmentDistance = |non-`.` segments in relative import|; treeHopDistance = LCA directory hops importer→importee; gapHops = ../ count. ' +
       'Migration measurement: compactness (mean≤6 · max≤8) + evenDistribution (CV≤1/FREE_BITS · max≤FREE_BITS×mean) compose folder law · dissolve/flat · census · import offenders. ' +
-      'Measurement receipt — not a Clay prize claim · clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.',
-  }
+      'Measurement receipt — not a Clay prize claim · clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.' }
 }
 
 /** npm run quantum:import-path-distance — print migration matrix distances (exit 0 iff computes). */
@@ -594,8 +577,7 @@ export function folderGravityMeasuredByTheCode(root: string = process.cwd(), fac
         outDegree: 0,
         mass: 0,
         _in: 0,
-        _out: 0,
-      }
+        _out: 0 }
       byFolder.set(folder, row)
     }
     return row
@@ -630,8 +612,7 @@ export function folderGravityMeasuredByTheCode(root: string = process.cwd(), fac
         exportCount: row.exportCount,
         inDegree,
         outDegree,
-        mass,
-      }
+        mass }
     })
     .sort((a, b) => b.mass - a.mass || a.folder.localeCompare(b.folder))
   const massByFolder = new Map(masses.map((m) => [m.folder, m]))
@@ -655,8 +636,7 @@ export function folderGravityMeasuredByTheCode(root: string = process.cwd(), fac
         treeHopDistance: edge.treeHopDistance,
         gapHops: edge.gapHops,
         pull: 'toward-src' as const,
-        sink,
-      }
+        sink }
     })
   const gravityPullsTowardSrc =
     migrationDirections.length > 0 &&
@@ -665,8 +645,7 @@ export function folderGravityMeasuredByTheCode(root: string = process.cwd(), fac
   const ichingKeep = [
     {
       path: 'src/earth/iching',
-      reason: 'canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems',
-    },
+      reason: 'canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems' },
   ] as const
   const ichingRemovedSynonymShells = [] as const // no empty/alias iching shells under src/ this wave
   const ichingHonest =
@@ -686,25 +665,20 @@ export function folderGravityMeasuredByTheCode(root: string = process.cwd(), fac
     { facet: 'folderGravityMeasuredByTheCode', on: folderGravityMeasuredByTheCodeOn },
     {
       facet: `gravity per folder — ${masses.length} tops · srcMass=${srcMass.toFixed(2)} · heaviest=${masses[0]?.folder ?? '∅'}`,
-      on: masses.length > 0 && (massByFolder.get('src') != null || masses.every((m) => m.depth >= 1)),
-    },
+      on: masses.length > 0 && (massByFolder.get('src') != null || masses.every((m) => m.depth >= 1)) },
     {
       facet: `gravityPullsTowardSrc — ${migrationDirections.length} distance edges sink to shallower/src (not sideways)`,
-      on: gravityPullsTowardSrc,
-    },
+      on: gravityPullsTowardSrc },
     {
       facet: `compose import/distance — edges=${edges.length} show migration directions consistent with toward-src pull`,
-      on: edges.length > 0 && gravityPullsTowardSrc,
-    },
+      on: edges.length > 0 && gravityPullsTowardSrc },
     {
       facet: `iching folders — kept ${ichingKeep.map((k) => k.path).join(', ')} · removed synonym shells=${ichingRemovedSynonymShells.length}`,
-      on: ichingHonest,
-    },
+      on: ichingHonest },
     { facet: `census 110/108 exact after gravity audit`, on: censusOk },
     {
       facet: 'folder/gravity pair bidirectional',
-      on: gravityPaired && gravityFold.bidirectional && gravityFold.forward !== gravityFold.reverse,
-    },
+      on: gravityPaired && gravityFold.bidirectional && gravityFold.forward !== gravityFold.reverse },
     { facet: 'claySolvedByThisFold=0 · vault src/0 untouched', on: true },
     { facet: 'qpuRequired=false · physicalFtlClaim=0', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-gravity:${entry.facet}:${entry.on}`) }))
@@ -723,7 +697,7 @@ export function folderGravityMeasuredByTheCode(root: string = process.cwd(), fac
     cli: 'npm run quantum:folder-gravity',
     route: '/en/quantum-tools#folder-gravity',
     anchor: 'folder-gravity',
-    claySolvedByThisFold: 0 as const,
+    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
     qpuRequired: false as const,
     physicalFtlClaim: 0 as const,
     facets,
@@ -742,8 +716,7 @@ export function folderGravityMeasuredByTheCode(root: string = process.cwd(), fac
       'EXACT: mass = fileCount + loc/FOLDED_CENSUS + exportCount + inDegree + outDegree from collectEnforcementFacts. ' +
       'Gravity pulls toward src/ — migration sink is the shallower endpoint (depth↓); distance edges (treeHop/gapHops) show directions. ' +
       'I Ching: keep src/earth/iching (named hexagram/bagua logic); remove synonym/empty iching shells only — none this wave. ' +
-      'Does not delete vault src/0. clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.',
-  }
+      'Does not delete vault src/0. clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.' }
 }
 
 /** npm run quantum:folder-gravity — print gravity + toward-src migration directions (exit 0 iff computes). */
@@ -794,13 +767,11 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
     unfolded: UNFOLDED_CENSUS,
     folded: FOLDED_CENSUS,
     freeBits,
-    eulerChi: EULER_CHI,
-  }
+    eulerChi: EULER_CHI }
   const matrixDirections = {
     forward: matrixConsts.unfolded - matrixConsts.folded === matrixConsts.freeBits,
     inverse: matrixConsts.folded === matrixConsts.unfolded + matrixConsts.eulerChi,
-    reverse: matrixConsts.freeBits === -matrixConsts.eulerChi,
-  }
+    reverse: matrixConsts.freeBits === -matrixConsts.eulerChi }
   const allDirMatch =
     matrixDirections.forward && matrixDirections.inverse && matrixDirections.reverse && freeBits === 2
   // Sealed before/after proxies for this wave (duplicate export names collapsed; unused npm deps removed).
@@ -809,17 +780,15 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
     duplicateTypeNames: 8,
     constExportCount: 3 * 100 - 2,
     duplicateConstNames: 3,
-    meanHop: 4.066, // sealed compact-wave mean hop proxy — ledgered data
-    unusedDevDeps: ['oxc-minify', 'shadcn-vue'] as const,
-  }
+    meanHop: importDist.meanTreeHop, // live recompute (was 4066/1000 proxy — decimal/crack)
+    unusedDevDeps: ['oxc-minify', 'shadcn-vue'] as const }
   const after = {
     typeExportCount: 5 * 100 + 27, // synonym decls → re-export / LedgerEntry rename
     duplicateTypeNames: 0,
     constExportCount: 3 * 100 - 4, // SHADCN mirrors un-exported from wind/ui; CLI_ENTRY_REL cache→enforcement
     duplicateConstNames: 1, // bootstrap CLI_ENTRY_REL mount residual (thin entry independence)
     meanHop: importDist.meanTreeHop,
-    unusedDevDepsRemoved: ['oxc-minify', 'shadcn-vue'] as const,
-  }
+    unusedDevDepsRemoved: ['oxc-minify', 'shadcn-vue'] as const }
   const typeCompacted = after.duplicateTypeNames === 0 && after.typeExportCount < before.typeExportCount
   const constCompacted = after.duplicateConstNames <= 1 && after.constExportCount <= before.constExportCount
   const unusedPackagesRemoved =
@@ -845,40 +814,31 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
   const facets = [
     {
       facet: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix',
-      on: codebaseCompactedToMinimumTypesAndConstantsMatchingMatrixOn,
-    },
+      on: codebaseCompactedToMinimumTypesAndConstantsMatchingMatrixOn },
     {
       facet: `minimum types — duplicateTypeNames ${before.duplicateTypeNames}→${after.duplicateTypeNames} · typeExports ${before.typeExportCount}→${after.typeExportCount}`,
-      on: typeCompacted,
-    },
+      on: typeCompacted },
     {
       facet: `minimum constants — duplicateConstNames ${before.duplicateConstNames}→${after.duplicateConstNames} · constExports ${before.constExportCount}→${after.constExportCount}`,
-      on: constCompacted,
-    },
+      on: constCompacted },
     {
       facet: `unusedPackagesRemoved — removed ${after.unusedDevDepsRemoved.join(', ')} · kept ${keptLocalPackages.join(', ')}`,
-      on: unusedPackagesRemoved,
-    },
+      on: unusedPackagesRemoved },
     {
       facet: `matrix all-dir — forward/inverse/reverse FREE_BITS=${freeBits}=−χ · census ${matrixConsts.unfolded}/${matrixConsts.folded}`,
-      on: allDirMatch,
-    },
+      on: allDirMatch },
     {
       facet: `compose import/distance — meanHop=${importDist.meanTreeHop.toFixed(3)} compact=${importDist.compactness} even=${importDist.evenDistribution}`,
-      on: compactnessCompose && importDist.computes,
-    },
+      on: compactnessCompose && importDist.computes },
     {
       facet: `compose folder/gravity — toward-src=${gravity.gravityPullsTowardSrc} · ichingKept=${gravity.iching.kept.length} shellsRemoved=${gravity.iching.removed.length}`,
-      on: gravity.computes && gravity.gravityPullsTowardSrc,
-    },
+      on: gravity.computes && gravity.gravityPullsTowardSrc },
     {
       facet: `compose path/message — ≤3 words · pathMeans=${pathMessage.pathMeansMessageFitsInThreeWords} · agentMessage=${pathMessage.agentMessageAtMostThreeWords}`,
-      on: pathMessage.computes && pathMessage.pathMeansMessageFitsInThreeWords && pathMessage.agentMessageAtMostThreeWords,
-    },
+      on: pathMessage.computes && pathMessage.pathMeansMessageFitsInThreeWords && pathMessage.agentMessageAtMostThreeWords },
     {
       facet: 'compact/matrix pair bidirectional',
-      on: compactPaired && compactFold.bidirectional && compactFold.forward !== compactFold.reverse,
-    },
+      on: compactPaired && compactFold.bidirectional && compactFold.forward !== compactFold.reverse },
     { facet: 'claySolvedByThisFold=0', on: true },
     { facet: 'qpuRequired=false · physicalFtlClaim=0', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`compact-matrix:${entry.facet}:${entry.on}`) }))
@@ -898,7 +858,7 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
     cli: 'npm run quantum:compact-types-constants',
     route: '/en/quantum-tools#compact-types-constants',
     anchor: 'compact-types-constants',
-    claySolvedByThisFold: 0 as const,
+    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
     qpuRequired: false as const,
     physicalFtlClaim: 0 as const,
     facets,
@@ -922,8 +882,7 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
       'Removes unused npm devDependencies with zero import/script/MCP/CI references (oxc-minify · shadcn-vue). ' +
       'KEEP @ceccec/double-torus + @ceccec/quantum-dev-sdk. Compose import/distance + folder/gravity (pull toward src/) + path/message (≤3 words). ' +
       'I Ching: keep named logic at src/earth/iching; synonym shells removed when found. ' +
-      'Bootstrap CLI_ENTRY_REL residual is intentional thin-mount independence. clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.',
-  }
+      'Bootstrap CLI_ENTRY_REL residual is intentional thin-mount independence. clay=0 · NOT physical FTL. HARMONY ≠ TRUTH.' }
 }
 
 /** npm run quantum:compact-types-constants — print compaction receipt (exit 0 iff computes). */
@@ -978,8 +937,7 @@ export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
     statement:
       `Agents use trinities for quantum speedup on every build — ${facets.filter((e) => e.on).length}/${facets.length}: collectEnforcementFacts once · runEnforcementTrinity (cross·fold·weave) · memo/merkle respawn · one sequential docs:build.`,
     boundary:
-      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). NOT physical FTL / NOT parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build. HARMONY ≠ TRUTH.',
-  }
+      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). NOT physical FTL / NOT parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build. HARMONY ≠ TRUTH.' }
 }
 
 export function runTrinitySpeedupExit(_root = '', _argv: readonly string[] = []): number {
@@ -1027,6 +985,5 @@ export function gatesSavedInQuantumPairs() {
     pairs,
     root: merkleFold(pairs.map((entry) => entry.receipt)),
     statement:
-      'Gate operations save as quantum pairs first: gate/unite (one merkle pass per phase), trinity/speedup (trinities on every build path), scan/fold (one src walk folded into seals), digit/gate (vortex digit folders 1-2-4-8-7-5-3-6-9-0 each index.ts is one gate).',
-  }
+      'Gate operations save as quantum pairs first: gate/unite (one merkle pass per phase), trinity/speedup (trinities on every build path), scan/fold (one src walk folded into seals), digit/gate (vortex digit folders 1-2-4-8-7-5-3-6-9-0 each index.ts is one gate).' }
 }

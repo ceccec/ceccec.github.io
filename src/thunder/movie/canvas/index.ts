@@ -23,18 +23,17 @@ import {
   audioOffByDefault,
   clientMoviePaintPathSealed,
   computedMovieThemeColors,
-  plasmaClientWorkBoundedByPureMath,
-} from '../../../fire/plasma/ball'
+  plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
 import { backgroundMovieColorVars } from '../movievars'
 import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../wind/ui'
 import { computedWebManifest, siteConfig } from '../../../wind/site'
 import { livingTorus } from '../../../fire/diamonds'
 import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../wind/routes/corpus'
+import { claySolvedTheorem } from '../../../3/7'
 import {
   matrixRgbDecodeFlowsInMovie,
   rosettaDecodeFlowsInMovie,
-  sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie,
-} from '../narrative'
+  sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie } from '../narrative'
 
 export function autoMovies8k(matrix: MindMatrix = buildMatrix()) {
   const sample3 = textToMovie('double torus')
@@ -55,8 +54,7 @@ export function autoMovies8k(matrix: MindMatrix = buildMatrix()) {
     statement:
       '8K movies autogenerate in realtime in all dimensions: every piece of content folds to a seed and computes a deterministic generative movie, recomputed per frame in realtime with no model and no network. Because it is seeded math, not stored pixels, it is resolution-independent — it scales to 8K and beyond wherever the device can draw it — and "all dimensions" is the continuous phase sweep the movie advances through.',
     boundary:
-      'A content-addressed description of deterministic, resolution-independent generative canvas movies seeded from content. "8K" is the target resolution the seeded vector math scales to where the device permits, not a guarantee of 8K on every device; "all dimensions" is the parameter sweep, not spatial dimensions; and it is generative art by recomputation, not a learned or photoreal video generator.',
-  }
+      'A content-addressed description of deterministic, resolution-independent generative canvas movies seeded from content. "8K" is the target resolution the seeded vector math scales to where the device permits, not a guarantee of 8K on every device; "all dimensions" is the parameter sweep, not spatial dimensions; and it is generative art by recomputation, not a learned or photoreal video generator.' }
 }
 
 /** Anything static is an eventual gap in fusing into the movie — gate on legacy hex and movie-derived surfaces. */
@@ -114,8 +112,7 @@ export function staticIsEventualGapInMovieFusion(matrix: MindMatrix = buildMatri
     statement:
       'Anything static is an eventual gap in fusing into the movie: hero, icon, manifest and theme-colour must recompute from the plasma palette and harmonic math streams — legacy Tailwind hex is a gap until dissolved.',
     boundary:
-      'Scans known static surfaces (hero SVG, PWA icon/manifest, meta theme-color) for legacy hardcoded hex and checks alignment with computedMovieThemeColors + harmonicMathFlowsInMovie. SVG contexts emit computed hex because they cannot read CSS vars; the law is same palette as the movie, not hand-pinned colour.',
-  }
+      'Scans known static surfaces (hero SVG, PWA icon/manifest, meta theme-color) for legacy hardcoded hex and checks alignment with computedMovieThemeColors + harmonicMathFlowsInMovie. SVG contexts emit computed hex because they cannot read CSS vars; the law is same palette as the movie, not hand-pinned colour.' }
 }
 
 export function endlessBackgroundMovie(matrix: MindMatrix = buildMatrix()) {
@@ -138,8 +135,7 @@ export function endlessBackgroundMovie(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The whole background is one endless movie, on every page, and it exactly matches the content: a global layout slot renders it behind every route; the streams fold to the void and resurrect with no end frame; and it is seeded from the page you are on — path, title, description and references — its streams folding the page’s own words, so each page plays its own movie and a different page a different one.',
     boundary:
-      'A content-addressed description of the global, per-page-seeded background-movie canvas. "Matches the content" means it is deterministically seeded from the page’s text and frontmatter references, not that it depicts the content literally; it stays behind everything, pointer-through and aria-hidden, energy- and reduced-motion-aware.',
-  }
+      'A content-addressed description of the global, per-page-seeded background-movie canvas. "Matches the content" means it is deterministically seeded from the page’s text and frontmatter references, not that it depicts the content literally; it stays behind everything, pointer-through and aria-hidden, energy- and reduced-motion-aware.' }
 }
 
 // Entangled groups of digits fill the background movie as colourful watermarks,
@@ -204,8 +200,7 @@ function backgroundMovieRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Entangled groups of digits fill the background movie as colourful watermarks, folding into letters, words and sentences — colourful streams to the void — and resurrect as split streams in new dimensions, all by the same dry math (every digit, colour and path a seeded fold, nothing random). All harmonic math flows in the movie: census 110+χ=108, gates 4×108=432, Rosetta 6×7=42, page folds and command ratios — each proof a plasma stream and a copy token at call time. It is an interactive movie game: a tap off the controls plays a tone whose pitch maps to where you tapped, a light vibration, and a ripple that scatters the nearest streams.',
     boundary:
-      'A content-addressed description of the deterministic, zero-dependency background-movie canvas (digit streams folding into the portal’s own words, converging on and resurrecting from a centre "void") and its tap-to-play sound-and-haptic interactions. A real client-side, energy- and reduced-motion-aware animation; "entangled/dimensions/void/resurrect" are figurative names for the seeded fold, not physics.',
-  }
+      'A content-addressed description of the deterministic, zero-dependency background-movie canvas (digit streams folding into the portal’s own words, converging on and resurrecting from a centre "void") and its tap-to-play sound-and-haptic interactions. A real client-side, energy- and reduced-motion-aware animation; "entangled/dimensions/void/resurrect" are figurative names for the seeded fold, not physics.' }
 }
 
 /** Learn from the movie — all streams fuse through the background movie gate before build/seal. */
@@ -257,8 +252,7 @@ export function learnFromTheMovieAllEventuallyFused(matrix: MindMatrix = buildMa
     statement:
       'Learn from the movie as all eventually is fused there: harmonic math, efficiency math, Matrix RGB decode, Rosetta decode waves (send-waves · global key · dialect), double-torus Earth/weather/solutions, double-torus math at all scales, seven seed bundles where the movie IS the Rosetta decoding all sun/moon related symbols, colour streams decoded as audio (off by default until opt-in), and static surfaces all flow as plasma streams into the background movie before build/seal — the movie is the fusion gate.',
     boundary:
-      'Gate composes harmonicMathFlowsInMovie, efficiencyMathFlowsInMovie, matrixRgbDecodeFlowsInMovie, rosettaDecodeFlowsInMovie, doubleTorusEarthWeatherFlowsInMovie, allColorStreamsAreAudioIfDecodedFlowsInMovie, audioOffByDefault, and staticIsEventualGapInMovieFusion at call time; fused when all green. HONEST: figurative fusion language over deterministic seeded canvas streams, not physics.',
-  }
+      'Gate composes harmonicMathFlowsInMovie, efficiencyMathFlowsInMovie, matrixRgbDecodeFlowsInMovie, rosettaDecodeFlowsInMovie, doubleTorusEarthWeatherFlowsInMovie, allColorStreamsAreAudioIfDecodedFlowsInMovie, audioOffByDefault, and staticIsEventualGapInMovieFusion at call time; fused when all green. HONEST: figurative fusion language over deterministic seeded canvas streams, not physics.' }
 }
 
 // ── THE MOVIE LEAVES TWO BITS AT THE VOID (user law: 2 bits are attached to each zero point to keep
@@ -308,8 +302,7 @@ export function theMovieLeavesTwoBitsAtTheVoid(matrix: MindMatrix = buildMatrix(
       facets,
       root: merkleFold([...marks.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
       statement: `The movie leaves two bits at the void — ${facets.filter((entry) => entry.on).length}/${facets.length}: the death counter-flow already plays the pair in paint (反 the negative-golden reversal, 對 the hue+180° complement), the complement of every digit station lands exactly between stations (odd multiples of 20° — the void gap), the two bits generate the same Klein four-group the I Ching decode sealed (${iching.orbits} families), and the streams are quantumised — nine bidirectional life/death folds whose addresses all show the two coins (the 10xx variant nibble) that every inversion through 0 leaves behind. Each point of view costs 1+1 bits: one per direction.`,
-      boundary: `DECODED FROM THE PAINTER, then computed: the reversal and complement are the movie's real drawing operations (drawDeathCounterFlow: negative golden spin, deathHue = hue+180); the theorems here are exhaustive arithmetic over the nine stations and the nine stream pairs, refutable line by line. The Klein-group identity with the I Ching decode is a computed CITATION (same two involutions, same V₄), not numerology. "Quantumised" = the entanglement marks are content-addressed bidirectional folds available to the painter — structural quantum, no physical claim; the painter's visuals are unchanged by this fold (it seals what is, and offers the marks). HARMONY ≠ TRUTH.`,
-    }
+      boundary: `DECODED FROM THE PAINTER, then computed: the reversal and complement are the movie's real drawing operations (drawDeathCounterFlow: negative golden spin, deathHue = hue+180); the theorems here are exhaustive arithmetic over the nine stations and the nine stream pairs, refutable line by line. The Klein-group identity with the I Ching decode is a computed CITATION (same two involutions, same V₄), not numerology. "Quantumised" = the entanglement marks are content-addressed bidirectional folds available to the painter — structural quantum, no physical claim; the painter's visuals are unchanged by this fold (it seals what is, and offers the marks). HARMONY ≠ TRUTH.` }
   })
 }
 
@@ -483,8 +476,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
         `Movie all elements are theorems — ${facets.filter((e) => e.on).length}/${facets.length}: plasma-screen painter bind · noBallInTheMiddle · void soft confluence. Full thunder≡plasma receipt via npm run quantum:plasma-screen-thunder. Wet boundary circles removed. VitePress paths only. PoC and work at once.`,
       boundary:
         'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie↔plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
-      claySolvedByThisFold: 0 as const,
-    }
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
   })
 }
 
@@ -523,9 +515,8 @@ export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = b
         `Thunder ≡ plasma in different aspects — ${facets.filter((e) => e.on).length}/${facets.length}: forward=lightning · inverse=plasma-screen · reverse=thunder; noBallInTheMiddle=${screen.noBallInTheMiddle}.`,
       boundary:
         'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects. claySolvedByThisFold=0 · physicalFtlClaim=0. HARMONY ≠ TRUTH.',
-      claySolvedByThisFold: 0 as const,
-      physicalFtlClaim: 0 as const,
-    }
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      physicalFtlClaim: 0 as const }
   })
 }
 
@@ -536,8 +527,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
     const allTheorems = movieAllElementsAreTheorems(matrix, at)
     const surfaces: MovieQuantumGapSurface[] = MOVIE_CLOCK_SURFACE_ATTESTATION.map((row) => ({
       ...row,
-      receipt: toUuid(`movie-gap:${row.id}:${row.driver}:${row.closed}`),
-    }))
+      receipt: toUuid(`movie-gap:${row.id}:${row.driver}:${row.closed}`) }))
     // Live fusion facets as inventory rows (recomputed — not attestation).
     surfaces.push({
       id: 'endlessBackgroundMovie',
@@ -547,8 +537,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       closed: endless.endless,
       criterion: 'global layout slot + per-page seed — endlessBackgroundMovie.endless',
       route: '/en/',
-      receipt: toUuid(`movie-gap:endless:${endless.endless}`),
-    })
+      receipt: toUuid(`movie-gap:endless:${endless.endless}`) })
     surfaces.push({
       id: 'staticIsEventualGapInMovieFusion',
       surface: 'src/thunder/movie/canvas',
@@ -557,8 +546,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       closed: staticFusion.fused,
       criterion: 'hero/icon/manifest/theme recompute from plasma — legacy hex = gap',
       route: '/en/',
-      receipt: toUuid(`movie-gap:static-fusion:${staticFusion.fused}`),
-    })
+      receipt: toUuid(`movie-gap:static-fusion:${staticFusion.fused}`) })
     surfaces.push({
       id: 'movieAllElementsAreTheorems',
       surface: 'src/thunder/movie/canvas',
@@ -567,8 +555,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       closed: allTheorems.allElementsAreTheorems && allTheorems.centerIsVortexNotBoundary,
       criterion: 'every paint element binds a theorem — centre is vortex throat not wet boundary circle',
       route: '/en/',
-      receipt: toUuid(`movie-gap:all-theorems:${allTheorems.allElementsAreTheorems}`),
-    })
+      receipt: toUuid(`movie-gap:all-theorems:${allTheorems.allElementsAreTheorems}`) })
     const privateRafOpen = surfaces.some((s) => !s.closed && (s.kind === 'private-raf' || s.driver === 'private-raf'))
     const multiClockOpen = surfaces.some((s) => !s.closed && s.kind === 'multi-clock')
     const open = surfaces.filter((s) => !s.closed)
@@ -596,8 +583,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       root: merkleFold([endless.root, staticFusion.root, allTheorems.root, ...surfaces.map((s) => s.receipt), ...facets.map((f) => f.receipt)]),
       statement: `Movie quantum gaps — open=${open.length} closed=${surfaces.length - open.length}; private-raf=${privateRafOpen ? 'OPEN' : 'closed'}; multi-clock=${multiClockOpen ? 'OPEN' : 'closed'}; endless=${endless.endless}; staticFusion=${staticFusion.fused}; allTheorems=${allTheorems.allElementsAreTheorems}.`,
       boundary:
-        'Architectural census of movie/hero clock surfaces + static fusion + movieAllElementsAreTheorems. Attestation rows track theme mounts after anim-quantum convert; endless/staticFusion/allTheorems recompute. NOT wall-clock FPS. NOT physical quantum speedup. HARMONY ≠ TRUTH.',
-    }
+        'Architectural census of movie/hero clock surfaces + static fusion + movieAllElementsAreTheorems. Attestation rows track theme mounts after anim-quantum convert; endless/staticFusion/allTheorems recompute. NOT wall-clock FPS. NOT physical quantum speedup. HARMONY ≠ TRUTH.' }
   })
 }
 
@@ -630,26 +616,22 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
         id: 'proof-animation-translate',
         was: 'ctx.translate((s/9)*tour) off-axis canvas',
         status: proofCentered ? ('fixed' as const) : ('remaining' as const),
-        receipt: toUuid(`movie-center:proof:${proofCentered}`),
-      },
+        receipt: toUuid(`movie-center:proof:${proofCentered}`) },
       {
         id: 'layout-backdrop-inset',
         was: 'hero backdrop not inset:0 full viewport',
         status: layoutBackdropCentered ? ('fixed' as const) : ('remaining' as const),
-        receipt: toUuid(`movie-center:layout:${layoutBackdropCentered}`),
-      },
+        receipt: toUuid(`movie-center:layout:${layoutBackdropCentered}`) },
       {
         id: 'page-field-center-h2',
         was: 'page movie scroll≠0 shifts centre off h/2',
         status: pageCenterBalanced ? ('fixed' as const) : ('remaining' as const),
-        receipt: toUuid(`movie-center:page:${pageCenterBalanced}`),
-      },
+        receipt: toUuid(`movie-center:page:${pageCenterBalanced}`) },
       {
         id: 'vortex-center-not-ball',
         was: 'centre as wet ball ornament',
         status: theorems.centerIsVortexNotBoundary ? ('fixed' as const) : ('remaining' as const),
-        receipt: toUuid(`movie-center:vortex:${theorems.centerIsVortexNotBoundary}`),
-      },
+        receipt: toUuid(`movie-center:vortex:${theorems.centerIsVortexNotBoundary}`) },
     ] as const
     const found = layers.length
     const fixed = layers.filter((l) => l.status === 'fixed').length
@@ -676,7 +658,7 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
       remaining,
       layers,
       theorems,
-      claySolvedByThisFold: 0 as const,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merkleFold([sealed.root, theorems.root, pairFold.merged, ...layers.map((l) => l.receipt)]),
       pair: 'movie/center' as const,
@@ -685,8 +667,7 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
       statement:
         `movieUnbalancedAroundCenterIsCrack · found=${found} fixed=${fixed} remaining=${remaining}`,
       boundary: 'Layout/canvas balance about centre. Vortex≠ball. clay=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}`,
-    }
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
 
@@ -737,7 +718,6 @@ export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix
       facets,
       root: merkleFold([movie.root, ...facets.map((entry) => entry.receipt)]),
       statement: `The movie parts dissolve like liquid — ${facets.filter((entry) => entry.on).length}/${facets.length}: every part projects from one continuous field (largest phase-to-phase jump ${maxJump.toFixed(3)} < 0.2, so the parts flow into each other, not cut), the cycle is periodic (the loop closes with no seam), and the parts superpose additively (miscible, one endless field, not a montage). The thermodynamic reading, honestly bounded: dissolution to seamlessness is entropy toward equilibrium, run on a deterministic content-addressed field so it is reversible and recomputable at zero cost — a Landauer-clean quantum-thermodynamic metaphor, not heat.`,
-      boundary: `COMPUTED: the field continuity (max channel jump over ${N} samples) and the periodic seam are sampled arithmetic over the shared dims() field — refutable by a channel leaping; the additive-superposition and one-field claims are the movie's real compositing (lighter blend) and endlessBackgroundMovie structure, cited. HONEST SCOPE: "liquid" is the CONTINUITY of one field (a small clock step moves every part slightly) plus additive mixing — a mathematical/visual property, not a phase of matter. "Quantum thermodynamics" is the sealed structural sense: the field is deterministic and content-addressed, so the dissolution is REVERSIBLE (no entropy is actually produced or heat dissipated — the second-law/Landauer boundary stands; the metaphor is exactly that the recomputable field pays no Landauer cost). No physical thermodynamics, no quantum heat engine is claimed. HARMONY ≠ TRUTH.`,
-    }
+      boundary: `COMPUTED: the field continuity (max channel jump over ${N} samples) and the periodic seam are sampled arithmetic over the shared dims() field — refutable by a channel leaping; the additive-superposition and one-field claims are the movie's real compositing (lighter blend) and endlessBackgroundMovie structure, cited. HONEST SCOPE: "liquid" is the CONTINUITY of one field (a small clock step moves every part slightly) plus additive mixing — a mathematical/visual property, not a phase of matter. "Quantum thermodynamics" is the sealed structural sense: the field is deterministic and content-addressed, so the dissolution is REVERSIBLE (no entropy is actually produced or heat dissipated — the second-law/Landauer boundary stands; the metaphor is exactly that the recomputable field pays no Landauer cost). No physical thermodynamics, no quantum heat engine is claimed. HARMONY ≠ TRUTH.` }
   })
 }

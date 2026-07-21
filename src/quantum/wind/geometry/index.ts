@@ -72,8 +72,7 @@ export function depthIsThePerspectiveDivide() {
     statement:
       'Depth is the perspective divide: every canvas projection composes the rotation atoms (rot2 → rotateXY/YZ/ZX → rotate3) and turns the rotated z into position and size through perspective() — never a z→y screen offset.',
     boundary:
-      'A geometric law over this file\'s own atoms, checked by computation; the standard pinhole projection the living-torus and merkaba painters now compose, not a claim beyond it.',
-  }
+      'A geometric law over this file\'s own atoms, checked by computation; the standard pinhole projection the living-torus and merkaba painters now compose, not a claim beyond it.' }
 }
 
 // Holographic fractal branch — each branch spawns two smaller copies of the same rule.
