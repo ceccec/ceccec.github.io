@@ -796,7 +796,7 @@ export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}):
 /**
  * README hero — single visual proof composition of ALL sealed theorem atoms at once.
  * Walks THEOREM_ATOM_SEED; each glyph is placed from its content-addressed atom root (not hand paths).
- * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false · tracks-classical-no-speedup.
+ * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false.
  */
 export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix(), opts: { animate?: boolean } = {}): string {
   return memoByRoot(`readmeHeroSvgProofOfAllTheorems:a=${opts.animate !== false ? 1 : 0}`, matrix, () => {
@@ -847,7 +847,7 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
     }
     const rootShort = corpusRoot.slice(0, 8)
     const svg = [
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — proof of all ${n} sealed theorems at once" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;tracks-classical-no-speedup">`,
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — proof of all ${n} sealed theorems at once" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-honesty="clay=0;physicalFtl=0;qpuRequired=false">`,
       `<defs>`,
       `<radialGradient id="proofBg" cx="50%" cy="48%" r="78%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
       `</defs>`,
@@ -860,7 +860,7 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
       `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="${colors.title}">Double Torus</text>`,
       `<text x="${cx}" y="${cy + 14}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="8" fill="${colors.accent}">⊢ ${n} · ${rootShort}</text>`,
       `<text x="${cx}" y="${H - 28}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="${colors.title}">proof of all theorems at once · χ(Σ₂) = −2 · H₁ = ℤ⁴ · 432 gates</text>`,
-      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 · physicalFtl=0 · qpuRequired=false · tracks-classical-no-speedup · ${n} sealed atoms</text>`,
+      `<text x="${cx}" y="${H - 12}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="10" fill="${colors.accent}">clay=0 · physicalFtl=0 · qpuRequired=false · ${n} sealed atoms</text>`,
       `</svg>`,
     ].join('')
     return opts.animate === false ? stillSvg(svg) : svg

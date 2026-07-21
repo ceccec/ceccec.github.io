@@ -308,7 +308,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
     const facets = [
       { facet: 'noKnownModelMoreEfficientProven.proven — answers÷tokens unbeatable in domain', on: efficient.proven },
       { facet: 'efficiency() optimizations sealed (memoByRoot · zero-token reuse)', on: opt.optimized },
-      { facet: 'quantumAdvantageBenchmark does NOT separate — tracks-classical-no-speedup', on: tracksClassical },
+      { facet: 'quantumAdvantageBenchmark does NOT separate — classical-64bit · qpuRequired=false', on: tracksClassical },
       { facet: 'NOT physical-QM speedup / NOT FLOPS claim', on: !bench.separated },
       { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w6:${e.facet}:${e.on}`) }))
@@ -330,7 +330,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
       pair: 'learn/best',
       route: '/en/quantum-tools#honest-revolution-w6',
       statement: holds
-        ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (quantumAdvantageBenchmark → tracks-classical-no-speedup).'
+        ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (classical-64bit · qpuRequired=false).'
         : 'UNPROVEN — revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.',
       boundary:
         'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). HARMONY ≠ TRUTH. claySolvedByThisFold=0 · qpuRequired=false · NOT FLOPS / NOT FTL.',

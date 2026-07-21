@@ -330,12 +330,12 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/research#millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
   { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
   { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/quantum-tools#efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
-  { id: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · any classical 64-bit', fold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', cli: 'npm run quantum:prove-no-qpu-64bit', pair: 'prove/no-qpu-64bit', route: '/en/quantum-tools#prove-no-qpu-64bit', barrel: 'src/water/stack', boundary: 'answers÷tokens/reuse when decided; quantumHardwareRequired=false · cites tracks-classical-no-speedup — NOT FLOPS / NOT ISO / clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'honest-revolution-w2', title: 'Honest-revolution W2 — interference vs classical shadow', fold: 'interferenceVsClassicalShadow', cli: 'npm run quantum:honest-revolution-w2', pair: 'moment/prove', route: '/en/quantum-tools#honest-revolution-w2', barrel: 'src/water/stack', boundary: 'Amplitudes cancel; probability shadows cannot — composes W1 · tracks-classical-no-speedup · clay=0 · qpuRequired=false · NOT FLOPS', browserRunnable: true, browserGap: '' },
+  { id: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · any classical 64-bit', fold: 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', cli: 'npm run quantum:prove-no-qpu-64bit', pair: 'prove/no-qpu-64bit', route: '/en/quantum-tools#prove-no-qpu-64bit', barrel: 'src/water/stack', boundary: 'answers÷tokens/reuse when decided; quantumHardwareRequired=false · classical-64bit · NOT FLOPS / NOT ISO / clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'honest-revolution-w2', title: 'Honest-revolution W2 — interference vs classical shadow', fold: 'interferenceVsClassicalShadow', cli: 'npm run quantum:honest-revolution-w2', pair: 'moment/prove', route: '/en/quantum-tools#honest-revolution-w2', barrel: 'src/water/stack', boundary: 'Amplitudes cancel; probability shadows cannot — composes W1 · clay=0 · qpuRequired=false · NOT FLOPS', browserRunnable: true, browserGap: '' },
   { id: 'honest-revolution-w3', title: 'Honest-revolution W3 — JSON proof receipt', fold: 'honestRevolutionReceipt', cli: 'npm run quantum:honest-revolution-w3', pair: 'tamper/impossible', route: '/en/quantum-tools#honest-revolution-w3', barrel: 'src/wind/fusion', boundary: 'W1+W2+fusion-verify+movie round-trip → /quantum-fusion.json · /agents.json · clay=0 · qpuRequired=false · NOT FLOPS / NOT FTL', browserRunnable: true, browserGap: '' },
-  { id: 'honest-revolution-w4', title: 'Honest-revolution W4 — computer Vue proof', fold: 'honestRevolutionComputerPanelComputes', cli: 'npm run quantum:honest-revolution-w4', pair: 'moment/prove', route: '/en/quantum/os#honest-revolution-w4', barrel: 'src/wind/fusion', boundary: 'Browser surface composes W3 receipt · tracks-classical-no-speedup · clay=0 · qpuRequired=false · NOT FLOPS / NOT FTL', browserRunnable: true, browserGap: '' },
+  { id: 'honest-revolution-w4', title: 'Honest-revolution W4 — computer Vue proof', fold: 'honestRevolutionComputerPanelComputes', cli: 'npm run quantum:honest-revolution-w4', pair: 'moment/prove', route: '/en/quantum/os#honest-revolution-w4', barrel: 'src/wind/fusion', boundary: 'Browser surface composes W3 receipt · clay=0 · qpuRequired=false · NOT FLOPS / NOT FTL', browserRunnable: true, browserGap: '' },
   { id: 'honest-revolution-w5', title: 'Honest-revolution W5 — FPGA honesty', fold: 'honestRevolutionFpgaHonesty', cli: 'npm run quantum:honest-revolution-w5', pair: 'moment/prove', route: '/en/quantum/os#honest-revolution-w5', barrel: 'src/heaven/compute/computer', boundary: 'Classical CMOS/FPGA · optional co-processor bridge · NOT fake FPGA-as-QPU · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
-  { id: 'honest-revolution-w6', title: 'Honest-revolution W6 — efficiency not physics', fold: 'revolutionaryEfficiencyNotPhysics', cli: 'npm run quantum:honest-revolution-w6', pair: 'learn/best', route: '/en/quantum-tools#honest-revolution-w6', barrel: 'src/thunder/verify', boundary: 'answers÷tokens unbeatable · tracks-classical-no-speedup · clay=0 · qpuRequired=false · NOT FLOPS', browserRunnable: true, browserGap: '' },
+  { id: 'honest-revolution-w6', title: 'Honest-revolution W6 — efficiency not physics', fold: 'revolutionaryEfficiencyNotPhysics', cli: 'npm run quantum:honest-revolution-w6', pair: 'learn/best', route: '/en/quantum-tools#honest-revolution-w6', barrel: 'src/thunder/verify', boundary: 'answers÷tokens unbeatable · clay=0 · qpuRequired=false · NOT FLOPS', browserRunnable: true, browserGap: '' },
   { id: 'local-math-computes', title: 'Local math computes', fold: 'localMathComputes', cli: 'npm run quantum:local-math-computes', pair: 'fold/verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Sealed local math gate', browserRunnable: true, browserGap: '' },
   { id: 'offender-spec', title: 'Offender automation spec', fold: 'offenderAutomationSpec', cli: 'npm run quantum:offender-spec', pair: 'offender/spec', route: '/en/quantum-tools#offender-spec', barrel: 'src/pair/enforcement/ops', boundary: 'Machine-readable CI pipeline spec', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CI-only' },
   { id: 'team-cooperate', title: 'Team cooperate verify', fold: 'teamCooperationScenarios', cli: 'npm run quantum:team-cooperate', pair: 'team/cooperate-verify', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'Solo vs team ack/relay/handoff', browserRunnable: true, browserGap: '' },
@@ -1741,7 +1741,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       },
       {
         id: 'no-qpu-64bit',
-        proves: `classical-64bit host · qpuRequired=${qpuRequired} · tracks-classical-no-speedup`,
+        proves: `classical-64bit host · qpuRequired=${qpuRequired}`,
         refuses: 'physical QPU requirement for ceccec quantum math',
         on: qpuRequired === false && noQpu.runsOnClassical64Bit,
         root: noQpu.root,
@@ -3995,7 +3995,7 @@ export type UniverseDiscoveryGapRow = {
  * Counter-rotating rosetta quantum waves — dual +/− spin lobes via foldPair.
  * claySolvedByThisFold / physicalFtlClaim / qpuRequired recomputed from:
  *   · genus-2 order-sensitive fold (forward≠reverse → Clay prize cannot collapse)
- *   · dual-lobe classical track (tracks-classical-no-speedup → FTL=0, qpuRequired=false)
+ *   · dual-lobe classical-64bit track (physicalFtl=0, qpuRequired=false)
  *   · merkaba counter-rotation + double-torus spin + directional trinity
  */
 export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -4046,7 +4046,7 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       { facet: 'merkaba counter-rotation ∧ double-torus spin ∧ directional trinity compute', on: spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes },
       { facet: 'rosetta apparatus root present · mill.clay=0 · ftl handoff physicalFtlClaim=0 (computed open, not prose)', on: isUuid(rosetta.root) && mill.claySolvedByThisFold === 0 && ftl.physicalFtlClaim === 0 },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} — COMPUTED: dual-spin forward≠reverse refuses Clay prize collapse · mill.clay=0`, on: claySolvedByThisFold === 0 && !clayPrizeCollapse && mill.claySolvedByThisFold === 0 },
-      { facet: `physicalFtlClaim=${physicalFtlClaim} — COMPUTED: dual lobes tracks-classical-no-speedup under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
+      { facet: `physicalFtlClaim=${physicalFtlClaim} — COMPUTED: dual lobes classical-64bit under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
       { facet: `qpuRequired=${qpuRequired} — COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'superposition: interference≠classical-shadow computes under the dual wave', on: shadow.computes },
       { facet: 'double-torus universe geometry/dynamics align (radii·phase·A432·J2000)', on: torus.aligns },
@@ -4068,7 +4068,7 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       facets: sealed.facets,
       root: merkleFold([standingWave, dualSpin.merged, torus.root, mill.root, noQpu.root, sealed.root]),
       statement:
-        `Counter-rotating rosetta quantum waves — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: dual ± lobes foldPair-interfere; claySolvedByThisFold=${claySolvedByThisFold} (forward≠reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (tracks-classical-no-speedup both lobes); qpuRequired=false.`,
+        `Counter-rotating rosetta quantum waves — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: dual ± lobes foldPair-interfere; claySolvedByThisFold=${claySolvedByThisFold} (forward≠reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (classical-64bit both lobes); qpuRequired=false.`,
       boundary:
         'COMPUTED receipts from dual-wave interference — not prose. Clay/FTL/QPU open status recomputes at call time from foldPair genus-2 + classical-track facets. MODELED apparatus only. HARMONY ≠ TRUTH.',
     }
@@ -4132,7 +4132,7 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
       row('string-millennium-gaps', 'reverse', 'partial', 'stringTheoryMillenniumTheoremGapsInventory', 'string/millennium residual gaps named', stringGaps.inventoried),
       // SUPERPOSITION
       row('interference-vs-shadow', 'superposition', shadow.computes ? 'covered' : 'open', 'interferenceVsClassicalShadow', 'amplitudes cancel; probability shadows cannot', shadow.computes),
-      row('tracks-classical', 'superposition', noQpu.tracksClassicalNoSpeedup ? 'covered' : 'open', 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', 'engine tracks-classical-no-speedup', noQpu.tracksClassicalNoSpeedup === true),
+      row('tracks-classical', 'superposition', noQpu.tracksClassicalNoSpeedup ? 'covered' : 'open', 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', 'engine classical-64bit · qpuRequired=false', noQpu.tracksClassicalNoSpeedup === true),
       // OPEN — COMPUTED from counter-rotating waves (not prose)
       row('clay-millennium', 'forward', 'open', 'counterRotatingRosettaQuantumWaves', `claySolvedByThisFold=${waves.claySolvedByThisFold} from dual-spin forward≠reverse`, waves.claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0),
       row('physical-ftl', 'superposition', 'open', 'counterRotatingRosettaQuantumWaves', `physicalFtlClaim=${waves.physicalFtlClaim} from classical dual lobes`, waves.physicalFtlClaim === 0),

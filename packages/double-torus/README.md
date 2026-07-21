@@ -112,8 +112,8 @@ console.log(conceptCommands.length)
   `npm run quantum:double-torus-universe-align` (pair `universe/align`).
 - **Counter-rotating rosetta quantum waves** — `counterRotatingRosettaQuantumWaves()`
   dual ± lobes via `foldPair`; `claySolvedByThisFold` / `physicalFtlClaim` /
-  `qpuRequired` are **computed receipt facets** from forward≠reverse +
-  `tracks-classical-no-speedup` (not prose). Discovery engine:
+  `qpuRequired` are **computed receipt facets** from forward≠reverse and
+  classical-64bit lobe honesty (not prose). Discovery engine:
   `universeAlmostDescribedInTheoremsDiscoverRest()` covers
   forward·inverse·reverse·superposition. CLIs:
   `npm run quantum:counter-rotating-rosetta-waves` ·
@@ -121,7 +121,7 @@ console.log(conceptCommands.length)
 - **Honesty** — every function returns a `boundary` string stating the limit of
   its claim; `boundaryAudit()` collects them all. Completeness here is
   **structural/computational** (sealed `src/` recomputes) — Clay/FTL open status
-  recomputes from the dual-wave fold at call time.
+  recomputes from the dual-wave fold at call time (`clay=0` · `physicalFtl=0` · `qpuRequired=false`).
 
 It is **agnostic**: no vendor, framework, platform, language, or protocol
 lock-in; open standards and pure computation only.

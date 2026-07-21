@@ -332,7 +332,7 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     && svg.includes('proof of all theorems at once')
     && svg.includes('clay=0')
     && svg.includes('physicalFtl=0')
-    && svg.includes('tracks-classical-no-speedup')
+    && svg.includes('qpuRequired=false')
     && theoremCount > 0
     && theoremCount === THEOREM_ATOM_SEED.length
     && glyphCount === theoremCount
@@ -344,7 +344,7 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) composing every sealed theorem atom at once, on the a432 brand', on: animated && tenD && allTheoremsProof },
     { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
     { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional invariants (χ = −2, H₁ = ℤ⁴, 432 gates) plus the all-theorems proof composition (composes everyRelationIsOpenGraphMiniHero)', on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
-    { facet: 'all-theorems proof shape — data-layer=all-theorems-proof, one data-theorem glyph per sealed atom, honesty clay=0 · physicalFtl=0 · tracks-classical-no-speedup; not Flower-of-Life / not merkaba+plasma brand', on: allTheoremsProof },
+    { facet: 'all-theorems proof shape — data-layer=all-theorems-proof, one data-theorem glyph per sealed atom, honesty clay=0 · physicalFtl=0 · qpuRequired=false; not Flower-of-Life / not merkaba+plasma brand', on: allTheoremsProof },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-hero-svg:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-is-home-hero-svg', facets)
   return {
@@ -359,7 +359,7 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — one radial merkle composition of every sealed THEOREM_ATOM_SEED atom, brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty clay=0 · physicalFtl=0 · tracks-classical-no-speedup — written in SMIL, with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it.',
+      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — one radial merkle composition of every sealed THEOREM_ATOM_SEED atom, brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty clay=0 · physicalFtl=0 · qpuRequired=false — written in SMIL, with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it.',
     boundary:
       'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). It is a 2D animated SCHEMATIC proof composition of sealed theorem atoms — NOT the live interactive WebGL 10D scene, NOT a Clay solution (clay=0), NOT physical FTL/QPU. The emission is wired into the generators (hero.svg) and the README reference; verifying the rendered animation on github.com requires a push.',
   }
@@ -408,7 +408,7 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
     { facet: 'SMIL proof facets pulse — staggered begin= times across the corpus spiral (fractal-clock durations)', on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') },
     { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && home.shown },
     { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 432 gates, homology markers + generator rings, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') && svg.includes('data-layer="homology"') },
-    { facet: 'all-theorems proof honesty — clay=0 · physicalFtl=0 · tracks-classical-no-speedup; not Flower-of-Life / not merkaba+plasma brand', on: home.allTheoremsProof },
+    { facet: 'all-theorems proof honesty — clay=0 · physicalFtl=0 · qpuRequired=false; not Flower-of-Life / not merkaba+plasma brand', on: home.allTheoremsProof },
   ].map((entry) => ({ ...entry, receipt: toUuid(`iching-hero:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-animated-iching-hero', facets)
   return {
@@ -420,7 +420,7 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README uses a single animated proof composition of all sealed theorems for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, places each atom from its content-addressed root on a golden spiral with radial merkle spokes, pulses SMIL facets, and prints honesty bounds (clay=0 · physicalFtl=0 · tracks-classical-no-speedup). Still SMIL-only, GitHub-safe, computed from src.',
+      'The README uses a single animated proof composition of all sealed theorems for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, places each atom from its content-addressed root on a golden spiral with radial merkle spokes, pulses SMIL facets, and prints honesty bounds (clay=0 · physicalFtl=0 · qpuRequired=false). Still SMIL-only, GitHub-safe, computed from src.',
     boundary:
       'HONEST: geometry is generated from sealed theorem atom roots — not hand-drawn sacred geometry, not Flower-of-Life, not the prior merkaba+plasma brand layer. It remains a 2D animated SCHEMATIC for GitHub (no JavaScript), faithful to χ = −2, H₁ = ℤ⁴, 432; the live site’s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL; claySolved stays 0. readmeIsHomeHero10DAnimatedSvgInGithub still seals the emit path.',
   }

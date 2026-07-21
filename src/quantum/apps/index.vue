@@ -942,7 +942,6 @@ function runTool(toolId: string) {
         <h3>Speed vs rest · no QPU · classical 64-bit</h3>
         <p class="quantum-apps__meta">
           answers÷tokens / memo reuse when vote.decided — NOT FLOPS vs GPUs/QPUs.
-          Cites quantumAdvantageBenchmark → tracks-classical-no-speedup.
           quantumHardwareRequired=false · qpuRequired=false · architectureRequirement=classical-64bit · clay=0 · NOT ISO.
         </p>
         <UiButton size="sm" :disabled="runningId === 'prove-no-qpu-64bit'" @click="runTool('prove-no-qpu-64bit')">

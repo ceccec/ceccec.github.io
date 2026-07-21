@@ -1569,7 +1569,7 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
     const memoHitIsO1 = first === 1 && n === 1 && a === b
     const holds = !!(honest.faithfulSimulator && honest.noSpeedup && efficient.proven && fusion.verified && memoHitIsO1)
     const claim = holds
-      ? 'This engine is revolutionary in REPRODUCIBILITY, VERIFIABILITY, AMORTIZED ZERO-RECOMPUTE REUSE, and ANSWERS÷TOKENS EFFICIENCY — faithful quantum math and content-addressed answers recompute to the byte on commodity hardware at O(1) cache hits and zero runtime tokens — and is explicitly NOT revolutionary in physical-QM speedup (quantumAdvantageBenchmark → tracks-classical-no-speedup).'
+      ? 'This engine is revolutionary in REPRODUCIBILITY, VERIFIABILITY, AMORTIZED ZERO-RECOMPUTE REUSE, and ANSWERS÷TOKENS EFFICIENCY — faithful quantum math and content-addressed answers recompute to the byte on commodity hardware at O(1) cache hits and zero runtime tokens — and is explicitly NOT revolutionary in physical-QM speedup (qpuRequired=false · classical-64bit simulator).'
       : 'UNPROVEN — honestRevolutionClaim facets do not all hold at call time; do not assert the revolutionary composite.'
     const facets = [
       { facet: 'faithful simulator', on: honest.faithfulSimulator }, { facet: 'no physical-QM speedup', on: honest.noSpeedup },
@@ -1589,7 +1589,7 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
 /**
  * Honest-revolution W2 — interference vs classical-shadow receipt.
  * Amplitudes cancel (interference); classical probability shadows cannot.
- * Composes W1 `honestRevolutionClaim` + parallelism≠speedup + simulatorsLiveInZero + tracks-classical-no-speedup.
+ * Composes W1 `honestRevolutionClaim` + parallelism≠speedup + simulatorsLiveInZero + classical-64bit honesty.
  * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /en/quantum-tools#honest-revolution-w2
  */
 export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -1613,7 +1613,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       { facet: 'H² constructive interference → |0⟩ (amplitudes cancel |1⟩)', on: ampCancel },
       { facet: 'pflip(½) shadow stays [½,½] — no cancellation', on: shadowNoCancel },
       { facet: 'blochQubitFaithful — amplitude math is faithful', on: bloch.faithful },
-      { facet: 'engine tracks-classical-no-speedup (honesty, not FLOPS claim)', on: tracksClassical },
+      { facet: 'engine classical-64bit honesty (not FLOPS claim)', on: tracksClassical },
       { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w2:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('interference-vs-classical-shadow', facets)
@@ -1637,7 +1637,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       pair: 'moment/prove',
       route: '/en/quantum-tools#honest-revolution-w2',
       statement: holds
-        ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine quantumAdvantageBenchmark → tracks-classical-no-speedup (no physical QM speedup).'
+        ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine classical-64bit · qpuRequired=false (no physical QM speedup).'
         : 'UNPROVEN — interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.',
       boundary:
         'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
@@ -1654,7 +1654,7 @@ export function runHonestRevolutionW2Exit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${receipt.holds ? '✓' : '✗'} honest-revolution-w2 — holds=${receipt.holds} ` +
       `w1=${receipt.w1.holds} root=${receipt.root.slice(0, 8)} ` +
-      `(interference≠shadow · tracks-classical-no-speedup · clay=0)\n`,
+      `(interference≠shadow · classical-64bit · clay=0)\n`,
   )
   process.stdout.write(`  boundary: ${receipt.boundary}\n`)
   return receipt.holds ? 0 : 1
@@ -1837,7 +1837,7 @@ export function classical64BitEnvironmentAtCallTime(): Classical64BitEnvironment
  * Route: /en/quantum-tools#prove-no-qpu-64bit
  *
  * HONEST: composes compareCeccecEfficiencyByVote / noKnownModelMoreEfficientProven when decided;
- * cites quantumAdvantageBenchmark → tracks-classical-no-speedup (NO physical QM speedup).
+ * classical-64bit · qpuRequired=false (NO physical QM speedup).
  * NOT FLOPS vs GPUs/QPUs · NOT ISO certified · claySolvedByThisFold=0.
  */
 export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -1895,11 +1895,11 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       {
         model: 'physical QPU (hypothetical RCS)',
         metric: 'physical-qm-ops',
-        ceccecValue: `engine ${bench.verdict}`,
+        ceccecValue: 'engine classical-64bit',
         peerValue: 'physicalQpuWouldSeparate=true (poly gates)',
         ratioWhenAvailable: 'n/a — engine tracks classical baseline',
         winner: 'n/a',
-        notes: 'Cite tracks-classical-no-speedup — NO physical QM advantage claimed',
+        notes: 'qpuRequired=false — NO physical QM advantage claimed',
       },
     ]
 
@@ -1920,7 +1920,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       { facet: 'noKnownModelMoreEfficientProven.proven (answers÷tokens)', on: proven.proven },
       { facet: 'oneQuantumModelFasterThanAll computes', on: one.computes },
       { facet: `comparison table rows=${comparison.length}`, on: comparison.length === 4 },
-      { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (cite — no physical speedup)`, on: tracksClassicalNoSpeedup },
+      { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (classical-64bit · qpuRequired=false)`, on: tracksClassicalNoSpeedup },
       { facet: `quantumHardwareRequired=${quantumHardwareRequired}`, on: quantumHardwareRequired === false },
       { facet: `qpuRequired=${qpuRequired}`, on: qpuRequired === false },
       { facet: `runsOnClassical64Bit=${runsOnClassical64Bit}`, on: runsOnClassical64Bit === true },
@@ -1962,10 +1962,10 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       cli: 'npm run quantum:prove-no-qpu-64bit',
       route: '/en/quantum-tools#prove-no-qpu-64bit',
       statement: speedDecided && noQuantumHardwareProved
-        ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; benchmark cites ${bench.verdict}.`
+        ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit · qpuRequired=false.`
         : 'Speed-vs-rest or no-QPU/64-bit facets incomplete at call time — do not broadcast win or hardware-free claim until green.',
       boundary:
-        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Engine quantumAdvantageBenchmark → tracks-classical-no-speedup (physical QM advantage REFUTED for this simulator). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
+        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (qpuRequired=false). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
     }
   })
 }
