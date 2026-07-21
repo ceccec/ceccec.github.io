@@ -57,6 +57,8 @@ import {
   runCheckTypesExit,
   runDocsBuildExit,
   quantumizeVitepressBuild,
+  slowBuildIsQuantumGapGate,
+  runSlowBuildIsQuantumGapGateExit,
   runThinMount,
   importQuantumBundle,
 } from '../script/shell'
@@ -88,7 +90,10 @@ export async function runMissionGateExit(root: string): Promise<number> {
   if (types !== 0) return types
   const limits = runVerifyLimitsExit(root)
   if (limits !== 0) return limits
-  return runVerifyStructureExit(root)
+  const structure = await runVerifyStructureExit(root)
+  if (structure !== 0) return structure
+  // HARD srcMerkle/quantumize regression; WARN phase timings — pair gate/slow-build
+  return runSlowBuildIsQuantumGapGateExit(root)
 }
 
 export function runVerifyLimitsExit(root: string): number {
@@ -101,6 +106,12 @@ export function runVerifyLimitsExit(root: string): number {
   }
   for (const line of audit.report) process.stdout.write(`${line}\n`)
   process.stdout.write(`✓ limits:verify — exactly ${facts.computational.indexCount} index.ts (${UNFOLDED_CENSUS} unfolded, ${FOLDED_CENSUS} folded, ${DIMENSION_GATES} gates)\n`)
+  const slowBuild = slowBuildIsQuantumGapGate(root)
+  process.stdout.write(
+    `${slowBuild.passed ? '✓' : '✗'} limits:verify · gate/slow-build — HARD=${slowBuild.hardOpenCount} WARN=${slowBuild.warnOpenCount} ` +
+      `(srcMerkle quantumize · phase timings WARN-only)\n`,
+  )
+  if (!slowBuild.passed) return 1
   return 0
 }
 

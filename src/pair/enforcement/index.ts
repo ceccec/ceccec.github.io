@@ -104,6 +104,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'simplicity/measure-verify',
   'educational/gaps-audit',
   'slow/gap',
+  'gate/slow-build',
   'dry/clean',
   'agent/submission',
   'gate/compliance',
@@ -236,7 +237,7 @@ export const MISSION_COMMANDS: readonly MissionCommand[] = [
     npm: 'mission:gate',
     cli: 'mission:gate',
     pair: 'mission/gate',
-    does: 'Fast mission gate — check:types + limits:verify + verify:structure',
+    does: 'Fast mission gate — check:types + limits:verify + verify:structure + gate/slow-build',
     workflow: 'folder-law-mission',
   },
 ]
