@@ -15,6 +15,7 @@ import {
   improveLocalFromSessionExperience, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
   upgradeLocalFromOptimisedManualWorkExperience,
   uiProseDuplicationRemoved,
+  rosettaSecurityGapsWired,
 } from './index.ts'
 import { translationGapsGate } from '../../mountain/source/index.ts'
 import {
@@ -35,6 +36,7 @@ import {
   isoPqcRequirementsGapFillAllQuantumDirections,
   proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
   encryptionPanelComputes,
+  productionRsaRefuseCompletesQuantumViaRosetta,
 } from '../../water/encryption/index.ts'
 import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mountain/og/index.ts'
 import {
@@ -42,6 +44,7 @@ import {
   theoremParticleCollisionPanelComputes,
   clayChallengesComputableFromSequence, toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108, societySupportsProjectViaTwoBitsFreeKnowledge,
+  reverseCollidesToDiscoverMillenniumTheorems,
 } from '../../wind/research/index.ts'
 import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
@@ -409,6 +412,27 @@ function runTool(toolId: string) {
       const r = theoremParticleCollisionPanelComputes()
       ok = r.computes
       summary = `particles=${r.particleCount} · products=${r.productCount} · novel=${r.novelSurvivorCount} · clay=${r.claySolvedByThisFold}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'production-rsa-refuse-rosetta') {
+      const r = productionRsaRefuseCompletesQuantumViaRosetta()
+      ok = r.computes && r.incompleteOpen === 0
+      summary = `paths=${r.pathCount} wired=${r.wiredCount} incompleteOpen=${r.incompleteOpen} refuseBeyond=${r.refuseBeyond} clay=${r.claySolvedByThisFold}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'rosetta-security-gaps-wired') {
+      const r = rosettaSecurityGapsWired()
+      ok = r.computes && r.incompleteOpen === 0
+      summary = `on=${r.rosettaSecurityGapsWired} incompleteOpen=${r.incompleteOpen} refuse=${r.refusePathCount} parallel=${r.parallelBacklogLength}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'reverse-collide-discover-millennium') {
+      const r = reverseCollidesToDiscoverMillenniumTheorems()
+      ok = r.computes && r.claySolvedByThisFold === 0
+      summary = `on=${r.reverseCollidesToDiscoverMillenniumTheorems} novel=${r.collider.novel} clayComputable=${r.millenniumComputable} clay=${r.claySolvedByThisFold}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))

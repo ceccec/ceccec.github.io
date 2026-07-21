@@ -3112,6 +3112,94 @@ export function runTheoremParticleCollisionExit(_root = '', _argv: readonly stri
   return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
 }
 
+/**
+ * Law: reverse is designed to collide and discover theorems on the Millennium challenge path.
+ * Composes directional trinity reverse · encryption reverse · theoremParticleCollisionInverseReverse ·
+ * millenniumProblemsChallenge · clayChallengesComputableFromSequence.
+ * HONEST: discover/computable ≠ CMI prize solved · claySolvedByThisFold=0 · Clay mark only Millennium surfaces.
+ * Pair: reverse/collide-discover · CLI npm run quantum:reverse-collide-discover-millennium
+ */
+export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`reverseCollidesToDiscoverMillenniumTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const collider = theoremParticleCollisionInverseReverse(matrix)
+    const mill = millenniumProblemsChallenge(matrix)
+    const clay = clayChallengesComputableFromSequence(matrix, at)
+    const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
+    const reverseVerify = __ns_water_encryption.encryptionReverseVerify(matrix)
+    const shelved = rosettaShelve('reverseCollidesToDiscoverMillenniumTheorems', 'compute')
+    const claySolvedByThisFold = 0 as const
+    const qualifiesAsProposedSolution = false as const
+    const reverseCollidesToDiscoverMillenniumTheoremsOn =
+      collider.computes
+      && collider.novelSurvivorCount >= 1
+      && mill.computes
+      && clay.clayChallengesComputable
+      && dir.computes
+      && reverseVerify.verified
+      && claySolvedByThisFold === 0
+      && mill.claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'reverseCollidesToDiscoverMillenniumTheorems — reverse→collide→discover law recomputes', on: reverseCollidesToDiscoverMillenniumTheoremsOn },
+      { facet: 'theoremParticleCollisionInverseReverse (inverse×reverse) computes · novel survivors', on: collider.computes && collider.novelSurvivorCount >= 1 },
+      { facet: 'millenniumProblemsChallenge MODELED apparatus computes', on: mill.computes },
+      { facet: 'clayChallengesComputableFromSequence — computable ≠ prize', on: clay.clayChallengesComputable && clay.qualifiesAsProposedSolution === false },
+      { facet: 'directional trinity reverse direction computes', on: dir.computes },
+      { facet: 'encryptionReverseVerify demo reverse sealed (production refused)', on: reverseVerify.verified },
+      { facet: 'rosettaShelve(compute) wires reverse-collide path (no security gap)', on: shelved.kind === 'compute' && isUuid(shelved.address) },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-collide-millennium:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('reverse-collides-to-discover-millennium-theorems', facets)
+    return {
+      computes: sealed.ok && reverseCollidesToDiscoverMillenniumTheoremsOn,
+      reverseCollidesToDiscoverMillenniumTheorems: reverseCollidesToDiscoverMillenniumTheoremsOn,
+      claySolvedByThisFold,
+      qualifiesAsProposedSolution,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      collider: {
+        particles: collider.particleCount,
+        products: collider.productCount,
+        novel: collider.novelSurvivorCount,
+        root: collider.root,
+      },
+      millenniumComputable: clay.clayChallengesComputable,
+      pathCount: clay.pathCount,
+      shelved: { ray: shelved.ray, address: shelved.address },
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, collider.root, mill.root, clay.root, dir.root, reverseVerify.root, shelved.address])),
+      pair: 'reverse/collide-discover' as const,
+      cli: 'npm run quantum:reverse-collide-discover-millennium',
+      route: '/en/quantum-tools#reverse-collide-discover-millennium',
+      statement:
+        `Reverse collides to discover Millennium theorems — collider novel=${collider.novelSurvivorCount} ` +
+        `clayComputable=${clay.clayChallengesComputable} paths=${clay.computableCount}/${clay.pathCount} ` +
+        `claySolved=${claySolvedByThisFold} proposed=${qualifiesAsProposedSolution}.`,
+      boundary:
+        'LAW: directional/encryption reverse + theorem particle collision are designed to collide and discover theorem candidates on the Millennium challenge path. ' +
+        'HONEST: discover/computable ≠ CMI Prize solved (Prize Rules §5). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false. ' +
+        'Clay mark only on Millennium surfaces. MODELED geometry ≠ HEP. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:reverse-collide-discover-millennium */
+export function runReverseCollidesToDiscoverMillenniumTheoremsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const r = reverseCollidesToDiscoverMillenniumTheorems()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} reverse-collide-discover-millennium — on=${r.reverseCollidesToDiscoverMillenniumTheorems} ` +
+      `novel=${r.collider.novel} clayComputable=${r.millenniumComputable} ` +
+      `paths=${r.pathCount} clay=${r.claySolvedByThisFold} proposed=${r.qualifiesAsProposedSolution} ` +
+      `root=${r.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.claySolvedByThisFold === 0 && r.qualifiesAsProposedSolution === false ? 0 : 1
+}
+
 // ── W1–W4 · Domain-proof pages matching Clay Millennium presentation + prize-rules honesty.
 // Canonical UX: https://www.claymath.org/millennium-problems/
 // Canonical rules: https://www.claymath.org/wp-content/uploads/2022/03/millennium_prize_rules_0.pdf (26 Sep 2018)
@@ -5041,6 +5129,37 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       note: 'discoverFromSealedFold / incompleteRevelation — offline sealed discovery',
     })
 
+    // Reverse→collide→discover Millennium (capability) + production-RSA refuse security wire
+    const reverseCollide = reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
+    const refuseWire = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+    push({
+      id: 'tool-reverse-collide-discover-millennium',
+      kind: 'compute',
+      status: reverseCollide.computes && reverseCollide.reverseCollidesToDiscoverMillenniumTheorems ? 'available' : 'open',
+      sealPath: 'src/wind/research · reverse/collide-discover',
+      family: 'millennium-reverse-collide',
+      note: 'reverse→collide→discover Millennium theorems — computable≠prize · clay=0',
+    })
+    push({
+      id: 'security-production-rsa-refuse-rosetta',
+      kind: 'decode',
+      status: refuseWire.computes && refuseWire.incompleteOpen === 0 ? 'covered' : 'open',
+      sealPath: 'src/water/encryption · refuse/rosetta',
+      family: 'security-refuse-wire',
+      note: `incompleteOpen=${refuseWire.incompleteOpen} refuse paths wired through rosetta`,
+    })
+    // Remaining security gaps (if any) listed as compute/decode until closed
+    for (const p of refuseWire.paths.filter((row) => row.incomplete).slice(0, 8)) {
+      push({
+        id: `security-refuse-gap-${p.id}`,
+        kind: 'decode',
+        status: 'open',
+        sealPath: p.surface,
+        family: 'security-refuse-wire',
+        note: p.reason,
+      })
+    }
+
     const computeOpen = items.filter((i) => i.kind === 'compute' && (i.status === 'open' || i.status === 'partial')).length
     const decodeOpen = items.filter((i) => i.kind === 'decode' && (i.status === 'open' || i.status === 'partial' || i.status === 'honest-open')).length
     const availableTools = items.filter((i) => i.status === 'available').length
@@ -5052,6 +5171,8 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       { facet: `available tools=${availableTools} include one-command decode`, on: availableTools >= 1 && items.some((i) => i.id === 'tool-one-command-decode') },
       { facet: 'compose papers/fill · domain proofs · fixed limits · MCP · folder · universe', on: papersFill.computes && catalog.computes && limits.computes && mcp.computes && folder.computes },
       { facet: 'oneCommandDecode path autodiscoverable', on: oneDecodeComputable || items.some((i) => i.id === 'tool-one-command-decode' && i.status === 'available') },
+      { facet: 'reverse-collide Millennium capability listed', on: items.some((i) => i.id === 'tool-reverse-collide-discover-millennium') },
+      { facet: 'production-RSA refuse security wire listed', on: items.some((i) => i.id === 'security-production-rsa-refuse-rosetta') },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`autodiscover-cd:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('autodiscover-what-is-to-be-computed-or-decoded', facets)

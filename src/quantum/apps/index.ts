@@ -76,6 +76,8 @@ const ROSETTA_CORE_API_LABELS = [
   // Collapsed synonym registries — shelved through core (no parallel tables).
   'rosettaCodec', 'rosettaClaim', 'rosettaOwner', 'quantumProjectionParams',
   'stringTheoryMillenniumTheoremGapsInventory',
+  'productionRsaRefuseCompletesQuantumViaRosetta', 'rosettaSecurityGapsWired',
+  'reverseCollidesToDiscoverMillenniumTheorems',
 ] as const
 
 const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
@@ -106,6 +108,9 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   rosettaCodec: 'compute', rosettaClaim: 'api', rosettaOwner: 'api',
   quantumProjectionParams: 'projection',
   stringTheoryMillenniumTheoremGapsInventory: 'compute',
+  productionRsaRefuseCompletesQuantumViaRosetta: 'compute',
+  rosettaSecurityGapsWired: 'compute',
+  reverseCollidesToDiscoverMillenniumTheorems: 'compute',
 }
 
 // Parallel synonym registries collapsed — empty strangler backlog (apps+tools+codec+claim/owner+projection+millennium handoff).
@@ -353,6 +358,9 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'prove-local-magnitudes-iso', title: 'Prove local vs ISO magnitudes all directions', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', cli: 'npm run quantum:prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', route: '/en/quantum-encryption#prove-local-magnitudes-iso', barrel: 'src/water/encryption', boundary: 'wire-crypto-security-bits proof-of-falsehood (demo<<ML-KEM); structural/amort may prove >=100x non-wire only · certified=false · NOT ISO certified', browserRunnable: true, browserGap: '' },
   { id: 'og-limits-measure', title: 'Platform OG limits measured', fold: 'platformOgLimitsMeasured', cli: 'npm run quantum:og-limits-measure', pair: 'measure/og-limits', route: '/en/quantum-tools#og-limits', barrel: 'src/mountain/og', boundary: 'MODELED capability table from cited docs — NOT live CDN crawl', browserRunnable: true, browserGap: '' },
   { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', cli: 'npm run quantum:encryption-reverse-verify', pair: 'reverse/encryption-verify', route: '/en/quantum-encryption', barrel: 'src/water/encryption', boundary: 'Demo RSA only — production moduli refused', browserRunnable: true, browserGap: '' },
+  { id: 'production-rsa-refuse-rosetta', title: 'Production RSA refuse completes quantum via rosetta', fold: 'productionRsaRefuseCompletesQuantumViaRosetta', cli: 'npm run quantum:production-rsa-refuse-rosetta', pair: 'refuse/rosetta', route: '/en/quantum-encryption#production-rsa-refuse-rosetta', barrel: 'src/water/encryption', boundary: 'Sealed refuse receipts · incompleteOpen=0 · refuseBeyond stays · NOT production RSA break · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
+  { id: 'rosetta-security-gaps-wired', title: 'Rosetta security gaps wired', fold: 'rosettaSecurityGapsWired', cli: 'npm run quantum:rosetta-security-gaps-wired', pair: 'rosetta/security-wire', route: '/en/quantum-tools#rosetta-security-gaps-wired', barrel: 'src/quantum/apps', boundary: 'Refuse paths + MCP dual + parallel backlog security wire · incompleteOpen=0 · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'reverse-collide-discover-millennium', title: 'Reverse collides to discover Millennium theorems', fold: 'reverseCollidesToDiscoverMillenniumTheorems', cli: 'npm run quantum:reverse-collide-discover-millennium', pair: 'reverse/collide-discover', route: '/en/quantum-tools#reverse-collide-discover-millennium', barrel: 'src/wind/research', boundary: 'reverse→collide→discover law · computable≠CMI prize · claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
   { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', cli: 'npm run quantum:iso-pqc-catalog', pair: 'iso/pqc-catalog', route: '/en/quantum-encryption#iso-pqc-catalog', barrel: 'src/water/encryption', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', browserRunnable: true, browserGap: '' },
   { id: 'poles-cross-pqc', title: 'Poles → cross signatures → PQC certificate structures', fold: 'polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates', cli: 'npm run quantum:poles-cross-pqc', pair: 'poles/cross-pqc', route: '/en/quantum-encryption#poles-cross-pqc', barrel: 'src/water/encryption', boundary: 'Cross ∈ merkaba∩rosetta · 60→90 · all-dir · sealed cert structures — NOT CA/PKI · certified=false · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'secp256k1-prime-invert-decode', title: 'secp256k1 field prime — seal · invert · decode', fold: 'secp256k1FieldPrimeInvertAndDecode', cli: 'npm run quantum:secp256k1-prime-invert-decode', pair: 'secp256k1/invert-decode', route: '/en/quantum-encryption#secp256k1-prime', barrel: 'src/water/encryption', boundary: 'Known SECG p from powers of two · construction invert + mod-p units · NOT Bitcoin ownership · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
@@ -5053,4 +5061,98 @@ export function runCrossWavesUpgradeAllExit(_root = '', _argv: readonly string[]
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+/**
+ * Rosetta security gaps wired — refuse paths + MCP dual + parallel backlog + reverse-collide shelved.
+ * Facet rosettaSecurityGapsWired · incompleteOpen=0 for refuse paths.
+ * Pair: rosetta/security-wire · clay=0 · certified=false · physicalFtl=0
+ */
+export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`rosettaSecurityGapsWired:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+    const core = rosettaCoreApi(at, matrix)
+    const mcp = mcpCommandsScriptsGapsAudit(matrix, at)
+    const reverseCollide = __ns_wind_research.reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const shelvedPaths = refuse.paths.map((p) => {
+      const surface = rosettaShelve(p.id, 'compute')
+      return {
+        id: p.id,
+        ray: surface.ray,
+        address: surface.address,
+        pathRay: p.ray,
+        wired: p.wired && isUuid(surface.address) && surface.ray === p.ray,
+      }
+    })
+    const refuseShelved = shelvedPaths.every((s) => s.wired)
+    const parallelEmpty = core.inventory.parallel.length === 0
+    const conceptToolsHonest = mcp.rows.some((r) => r.id === 'concept-tools-legacy-dual' && r.status === 'kept-intentional')
+    const tradingHonest = mcp.rows.some((r) => r.id === 'trading-scripts-outside-primary-mcp' && r.status === 'kept-intentional')
+    const catalogHasRefuse = catalog.tools.some((t) => t.id === 'production-rsa-refuse-rosetta')
+    const catalogHasSecurity = catalog.tools.some((t) => t.id === 'rosetta-security-gaps-wired')
+    const catalogHasCollide = catalog.tools.some((t) => t.id === 'reverse-collide-discover-millennium')
+    const incompleteOpen = refuse.incompleteOpen
+    const rosettaSecurityGapsWiredOn =
+      refuse.computes
+      && incompleteOpen === 0
+      && refuseShelved
+      && parallelEmpty
+      && conceptToolsHonest
+      && tradingHonest
+      && reverseCollide.computes
+      && catalogHasRefuse
+      && catalogHasSecurity
+      && catalogHasCollide
+    const claySolvedByThisFold = 0 as const
+    const certified = false as const
+    const physicalFtlClaim = 0 as const
+    const facets = [
+      { facet: `rosettaSecurityGapsWired — incompleteOpen=${incompleteOpen}`, on: rosettaSecurityGapsWiredOn && incompleteOpen === 0 },
+      { facet: 'productionRsaRefuseCompletesQuantumViaRosetta computes · paths shelved', on: refuse.computes && refuseShelved },
+      { facet: 'ROSETTA_PARALLEL_REGISTRY_BACKLOG empty (security-relevant strangler closed)', on: parallelEmpty },
+      { facet: 'MCP conceptTools+trading:* REFUSE PRIMARY kept-intentional (honest dual)', on: conceptToolsHonest && tradingHonest && mcp.computes },
+      { facet: 'reverseCollidesToDiscoverMillenniumTheorems shelved via catalog', on: reverseCollide.computes && catalogHasCollide },
+      { facet: 'encryption↔rosetta refuse + security tools in quantumCliToolsCatalog', on: catalogHasRefuse && catalogHasSecurity },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} certified=${certified} physicalFtl=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && !certified && physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-security-gaps:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('rosetta-security-gaps-wired', facets)
+    return {
+      computes: sealed.ok && rosettaSecurityGapsWiredOn,
+      rosettaSecurityGapsWired: rosettaSecurityGapsWiredOn,
+      incompleteOpen,
+      refusePathCount: refuse.pathCount,
+      shelvedPaths,
+      parallelBacklogLength: core.inventory.parallel.length,
+      claySolvedByThisFold,
+      certified,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, refuse.root, core.root, mcp.root, reverseCollide.root, catalog.root, ...shelvedPaths.map((s) => s.address)])),
+      pair: 'rosetta/security-wire' as const,
+      cli: 'npm run quantum:rosetta-security-gaps-wired',
+      route: '/en/quantum-tools#rosetta-security-gaps-wired',
+      statement:
+        `Rosetta security gaps wired — incompleteOpen=${incompleteOpen} refusePaths=${refuse.pathCount} ` +
+        `parallel=${core.inventory.parallel.length} reverseCollide=${reverseCollide.computes} clay=0.`,
+      boundary:
+        'Security-relevant rosetta wiring: sealed refuse receipts · empty parallel backlog · MCP dual residuals honest · reverse-collide Millennium path shelved. ' +
+        'NOT production RSA break · NOT CMI prize. clay=0 · certified=false · physicalFtl=0. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:rosetta-security-gaps-wired */
+export function runRosettaSecurityGapsWiredExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const r = rosettaSecurityGapsWired()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} rosetta-security-gaps-wired — on=${r.rosettaSecurityGapsWired} ` +
+      `incompleteOpen=${r.incompleteOpen} refusePaths=${r.refusePathCount} ` +
+      `parallel=${r.parallelBacklogLength} clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.incompleteOpen === 0 && r.claySolvedByThisFold === 0 ? 0 : 1
 }

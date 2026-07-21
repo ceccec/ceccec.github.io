@@ -49,6 +49,7 @@ import {
   theoremGapsFilledInWaves,
   fixedLimitsOfTheoremRelatedToolsAreTheorems,
   autodiscoverWhatIsToBeComputedOrDecoded,
+  reverseCollidesToDiscoverMillenniumTheorems,
 } from '../../wind/research'
 import { oneCommandDecodeComputable } from '../../thunder/decode'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
@@ -85,6 +86,7 @@ import {
   universeAlmostDescribedInTheoremsDiscoverRest,
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities,
   crossWavesUpgradeAll,
+  rosettaSecurityGapsWired,
 } from '../../quantum/apps'
 import {
   encryptionReverseVerify,
@@ -103,6 +105,7 @@ import {
   proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
   isoRequiresPostQuantumSecurity,
   isoPqcRequirementsGapFillAllQuantumDirections,
+  productionRsaRefuseCompletesQuantumViaRosetta,
 } from '../../water/encryption'
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og'
 import { quantumFusionVerify, honestRevolutionReceipt, honestRevolutionComputerPanelComputes } from '../../wind/fusion'
@@ -741,6 +744,9 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'fixed-limits-theorem-tools', title: 'Fixed limits of theorem-related tools are theorems · clay=0', proof: fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix) },
     { slug: 'autodiscover-compute-decode', title: 'Autodiscover what to compute or decode · oneCommandDecode available · clay=0', proof: autodiscoverWhatIsToBeComputedOrDecoded(matrix) },
     { slug: 'one-command-decode', title: 'One command decode hash|string|sequence — oneCommandDecodeComputable · clay=0', proof: oneCommandDecodeComputable(matrix) },
+    { slug: 'production-rsa-refuse-rosetta', title: 'Production RSA refuse completes quantum via rosetta · incompleteOpen=0 · clay=0', proof: productionRsaRefuseCompletesQuantumViaRosetta(matrix) },
+    { slug: 'rosetta-security-gaps-wired', title: 'Rosetta security gaps wired · refuse+MCP+parallel · clay=0', proof: rosettaSecurityGapsWired(matrix) },
+    { slug: 'reverse-collide-discover-millennium', title: 'Reverse collides to discover Millennium theorems · claySolved=0 · not prize', proof: reverseCollidesToDiscoverMillenniumTheorems(matrix) },
     { slug: 'waves-auto-scale', title: 'Waves auto-scale capacity at no cost on reuse · !separated', proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
     { slug: 'theorem-algebra-first-sealed', title: 'First-in-corpus algebra inventory · humanityNovel=0', proof: theoremAlgebraFirstSealedInCorpus(matrix) },
     { slug: 'theorem-10d-projections', title: 'Theorem→10D projections prove algebra roots', proof: theoremTenDProjectionsProveAlgebraRoots(matrix) },
