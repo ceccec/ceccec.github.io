@@ -10,7 +10,8 @@ import * as __ns_water_cosmos from '../../water/cosmos'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
 import {
-  quantumProjectionParams, rosettaShelve, slowProcessIsQuantumGap, type QuantumProjection,
+  quantumProjectionParams, rosettaShelve, slowProcessIsQuantumGap, standardToolboxIoCatalog,
+  type QuantumProjection,
 } from '../../quantum/apps'
 import * as __ns_water_encryption from '../../water/encryption'
 import { antichainLevels, computesGate, digitalRoot, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
@@ -2227,10 +2228,14 @@ export type ScienceDomainStandardsRow = {
   readonly toolOk: boolean
   readonly apparatusOk: boolean
   readonly projectionOk: boolean
-  /** Catalog tool id — Wave2 science experiment input schemas shelve here (compose, do not fork). */
+  /** Catalog tool id — Wave2 science experiment input/config schemas shelve here (compose, do not fork). */
   readonly toolId: string
   readonly toolCli: string
   readonly toolShelved: boolean
+  /** #31 toolbox config readiness — required honesty knobs present on the domain tool envelope. */
+  readonly toolConfigReady: boolean
+  readonly scienceFacing: boolean
+  readonly configFieldCount: number
   readonly receipt: string
   readonly honesty: string
 }
@@ -2251,6 +2256,9 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
     const mind = __ns_up_stack_overflow.oneQuantumModelFasterThanAll(matrix, at)
     const stringGaps = __ns_water_cosmos.stringTheoryMillenniumTheoremGapsInventory(matrix)
     const noQpu = __ns_up_stack_overflow.proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
+    // Compose #31 Wave2 — domain toolIds must carry filled input+config (do not fork envelope fields).
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const envelopeByToolId = new Map(toolbox.envelopes.map((envelope) => [envelope.id, envelope]))
     const solById = new Map(solutions.solutions.map((s) => [s.id, s]))
 
     const beforeOf = (id: string): ScienceStandardsCoverage => {
@@ -2338,6 +2346,16 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
 
       const toolSurface = rosettaShelve(seed.toolId, 'tool')
       const toolShelved = isUuid(toolSurface.address) && toolSurface.kind === 'tool'
+      const envelope = envelopeByToolId.get(seed.toolId)
+      const configFieldCount = envelope?.config.fields.length ?? 0
+      const toolConfigReady = Boolean(
+        envelope &&
+          configFieldCount >= 4 &&
+          envelope.config.fields.some((field) => field.name === 'certified' && field.required) &&
+          envelope.config.fields.some((field) => field.name === 'claySolved' && field.required) &&
+          envelope.config.fields.some((field) => field.name === 'qpuRequired' && field.required),
+      )
+      const scienceFacing = Boolean(envelope?.scienceFacing)
       return {
         id: seed.id,
         field: seed.field,
@@ -2355,7 +2373,10 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
         toolId: seed.toolId,
         toolCli: seed.toolCli,
         toolShelved,
-        receipt: toUuid(`science-standards:${seed.id}:${before}:${coverage}:${filledByQuantum}:${seed.toolId}`),
+        toolConfigReady,
+        scienceFacing,
+        configFieldCount,
+        receipt: toUuid(`science-standards:${seed.id}:${before}:${coverage}:${filledByQuantum}:${seed.toolId}:${toolConfigReady}`),
         honesty,
       }
     })
@@ -2369,6 +2390,8 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
     const filledCount = domains.filter((d) => d.filledByQuantum).length
     const labGaps = domains.filter((d) => d.unclosableWithoutExternalLab)
     const toolCatalogCompose = domains.filter((d) => d.toolShelved)
+    const toolConfigReadyCount = domains.filter((d) => d.toolConfigReady).length
+    const scienceFacingDomainCount = domains.filter((d) => d.scienceFacing).length
     const claySolvedByThisFold = 0 as const
     const certified = false as const
     const qpuRequired = noQpu.qpuRequired
@@ -2380,6 +2403,8 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       { facet: `AFTER standards covered=${coveredCount} partial=${partialCount} gap=${gapCount}`, on: coveredCount + partialCount + gapCount === domains.length },
       { facet: `quantum-filled closable facets — ${filledCount}/${domains.length}`, on: filledCount >= (5 + 2) && improved },
       { facet: `domain toolIds shelved for catalog/input-schema compose — ${toolCatalogCompose.length}/${domains.length}`, on: toolCatalogCompose.length === domains.length },
+      { facet: `domain tool configs ready (Wave2 #31) — ${toolConfigReadyCount}/${domains.length} · toolbox filled ${toolbox.configFilled}/${toolbox.total}`, on: toolConfigReadyCount === domains.length && toolbox.computes && toolbox.configFilled === toolbox.total },
+      { facet: `science-facing domain tools carry experiment knobs — ${scienceFacingDomainCount}/${domains.length} (physics/local-math may be structural-only)`, on: scienceFacingDomainCount >= (5 + 2) && domains.filter((d) => d.scienceFacing).every((d) => d.toolConfigReady) && toolbox.scienceFacingCount >= scienceFacingDomainCount },
       { facet: 'crypto vertex composes isoPqc gap-fill + handoff (no PQC re-infer)', on: crypto.computes && isoGap.computes && isoGap.certified === false },
       { facet: `lab/unclosable gaps named honestly — ${labGaps.length} domains`, on: labGaps.length >= 3 && labGaps.every((d) => d.coverage !== 'covered') },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · certified=${certified}`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 && certified === false && crypto.certified === false },
@@ -2390,7 +2415,7 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
     const sealed = sealFacets('complete-scientific-domains-strictly-to-standards-quantum-only', facets)
 
     return {
-      computes: sealed.ok && solutions.computes && trinities.computes && crypto.computes && isoGap.computes && mill.computes && noQpu.qpuRequired === false && toolCatalogCompose.length === domains.length,
+      computes: sealed.ok && solutions.computes && trinities.computes && crypto.computes && isoGap.computes && mill.computes && noQpu.qpuRequired === false && toolCatalogCompose.length === domains.length && toolConfigReadyCount === domains.length && toolbox.computes,
       domains,
       before: { coveredCount: beforeCovered, partialCount: beforePartial, gapCount: beforeGap },
       after: { coveredCount, partialCount, gapCount },
@@ -2398,7 +2423,11 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       toolCatalogCompose: {
         count: toolCatalogCompose.length,
         toolIds: [...new Set(domains.map((d) => d.toolId))],
-        note: 'Science experiment tool input/config schemas Wave2 compose via these catalog ids — standards fold does not fork envelope fields or rewrite nav/theme',
+        configReadyCount: toolConfigReadyCount,
+        scienceFacingCount: scienceFacingDomainCount,
+        toolboxConfigFilled: toolbox.configFilled,
+        toolboxTotal: toolbox.total,
+        note: 'Science experiment tool input/config schemas Wave2 (#31) compose via these catalog ids — standards fold does not fork envelope fields or rewrite nav/theme',
       },
       labGapDomainIds: labGaps.map((d) => d.id),
       claySolvedByThisFold,
@@ -2414,7 +2443,7 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       },
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([
-        sealed.root, solutions.root, trinities.root, mill.root, crypto.root, isoGap.root, mind.root, noQpu.root,
+        sealed.root, solutions.root, trinities.root, mill.root, crypto.root, isoGap.root, mind.root, noQpu.root, toolbox.root,
         ...domains.map((d) => d.receipt),
       ])),
       pair: 'sciences/standards',
@@ -2423,9 +2452,9 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       anchor: 'sciences-standards-quantum',
       heading: 'Scientific domains · standards coverage (quantum only)',
       statement:
-        `Sciences standards (quantum only): before ${beforeCovered}/${beforePartial}/${beforeGap} → after ${coveredCount}/${partialCount}/${gapCount} · filled=${filledCount} · toolIds shelved=${toolCatalogCompose.length} · crypto ISO ${isoGap.coveredCount}/${isoGap.partialCount}/${isoGap.gapCount} · clay=0 · certified=false · qpuRequired=false.`,
+        `Sciences standards (quantum only): before ${beforeCovered}/${beforePartial}/${beforeGap} → after ${coveredCount}/${partialCount}/${gapCount} · filled=${filledCount} · toolConfigs=${toolConfigReadyCount}/${domains.length} · toolbox ${toolbox.configFilled}/${toolbox.total} · crypto ISO ${isoGap.coveredCount}/${isoGap.partialCount}/${isoGap.gapCount} · clay=0 · certified=false · qpuRequired=false.`,
       boundary:
-        'Strictly to standards = covered|partial|gap vs named ISO/NIST/OECD/Clay/science maps recomputed from sealed quantum folds. Domain toolId rows compose with quantumCliToolsCatalog / standardToolboxIoCatalog input schemas (Wave2) — this fold does not rewrite nav/theme or envelope field tables. Lab gaps unclosable. NOT ISO certified · NOT FIPS · claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+        'Strictly to standards = covered|partial|gap vs named ISO/NIST/OECD/Clay/science maps recomputed from sealed quantum folds. Domain toolId rows compose with quantumCliToolsCatalog / standardToolboxIoCatalog input+config schemas (Wave2 #31) — this fold does not rewrite nav/theme or envelope field tables. Lab gaps unclosable. NOT ISO certified · NOT FIPS · claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -2489,7 +2518,8 @@ export function runCompleteScientificDomainsStrictlyToStandardsQuantumOnlyExit(
   process.stdout.write(
     `✓ sciences-standards-quantum — before=${report.before.coveredCount}/${report.before.partialCount}/${report.before.gapCount} ` +
       `after=${report.after.coveredCount}/${report.after.partialCount}/${report.after.gapCount} ` +
-      `filled=${report.filledCount} labDomains=${report.labGapDomainIds.length} ` +
+      `filled=${report.filledCount} toolConfigs=${report.toolCatalogCompose.configReadyCount}/${report.domains.length} ` +
+      `labDomains=${report.labGapDomainIds.length} ` +
       `clay=${report.claySolvedByThisFold} certified=${report.certified} qpuRequired=${report.qpuRequired} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
