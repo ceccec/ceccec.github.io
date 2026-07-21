@@ -88,6 +88,7 @@
     "quantum:standards-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runQuantumStandardsAuditGuardedExit",
     "quantum:iso-pqc-gap-fill": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runIsoPqcRequirementsGapFillExit",
     "quantum:cmb-omega-c-over-b": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/cosmos/index.ts runOmegaCOverOmegaBCmbBudgetQuantumGapsInTheoremsExit",
+    "quantum:wave-trinity-found": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runWavesWorkingInTrinitiesTrinitiesAreFoundExit",
     "quantum:sciences-trinities": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runSciencesTrinitiesGuardedExit",
     "quantum:sciences-standards-quantum": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runCompleteScientificDomainsStrictlyToStandardsQuantumOnlyExit",
     "quantum:drift-manage": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runManageComputationalDriftExit",

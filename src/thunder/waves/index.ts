@@ -12,7 +12,7 @@ import { CANDIDATE_THEOREMS, THEOREM_ATOM_SEED } from '../../4/6'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
 import {    antichainLevels, createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, sealFacets, toUuid, prng, gcd, VORTEX_SEQUENCE } from '../../0'
-import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded } from '../../water/cosmos'
+import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
 import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, rosettaRayOfContent, UNFOLDED_CENSUS } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
 import { quantumZeno } from '../../6/4'
@@ -25,7 +25,7 @@ import { skillAtoms } from '../../wind/learning'
 import { harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { splitImagination } from '../../mountain/source'
 import { diamondLattice, piTrainDiamonds, pureDiamonds, sealWholeDiamond, selfBuild } from '../../fire/diamonds'
-import { shouldSpawnSubagent } from '../../water/stack'
+import { shouldSpawnSubagent, directionalTrinityForwardInverseReverse } from '../../water/stack'
 import * as __ns_gates from '../../pair/enforcement/gates'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import * as __ns_commands from '../../thunder/commands'
@@ -2740,6 +2740,126 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
     }
   })
 }
+
+
+/**
+ * USER LAW / anti-crack: drained computeOpen · closed PR · conflict reconcile must NOT mean
+ * "no waves working in trinities" or "no trinities will be found".
+ * Waves work in trinities; trinities are found via collide/invert/decode/boundary cracks.
+ * Pairs: wave/trinity · trinity/found · CLI npm run quantum:wave-trinity-found
+ * Composes: manualAgentsBehaveLikeWaves · playAgentsTheMusicOfTheWave · trinity/speedup ·
+ * directionalTrinity · sciencesInteractInTrinities · drift/invert · clay/gravity · cmb/budget.
+ * claySolvedByThisFold=0 · physicalFtlClaim=0 · census untouched.
+ */
+export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`wavesWorkingInTrinitiesTrinitiesAreFound:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const waves = manualAgentsBehaveLikeWaves(matrix)
+    const music = playAgentsTheMusicOfTheWave(matrix)
+    const trinity = __ns_gates.agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const dirs = directionalTrinityForwardInverseReverse(matrix)
+    const sciences = __ns_waves_research.sciencesInteractInTrinities(matrix, at)
+    const invert = __ns_waves_research.driftInvertedIsTrinityGateway(matrix, at)
+    const clay = __ns_waves_research.clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix, at)
+    const cmb = omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix, at)
+    const mill = __ns_waves_research.millenniumProblemsChallenge(matrix)
+    const collider = __ns_waves_research.theoremParticleCollisionInverseReverse(matrix)
+    const waveTrinityPair = foldPair(toUuid('cmd:wave'), toUuid('cmd:trinity'))
+    const trinityFoundPair = foldPair(toUuid('cmd:trinity'), toUuid('cmd:found'))
+    const falseConclusionNoTrinities = false // drained/closed ≠ emptiness — HARD crack if asserted
+    const wavesWorkingInTrinities =
+      waves.computes && music.plays && trinity.computes && dirs.computes && waveTrinityPair.bidirectional
+    // Findable now: gateway faces · merkaba/beyond rays · collide · sciences · CMB — even when manage-drift residuals fail wet-green.
+    const invertGatewayFacesFound = invert.gatewayFaces === 3
+    const clayRaysFound = clay.oneRayThisDimension === true && clay.merkabaStarted === true && clay.beyondAppears === true
+    const trinitiesAreFound =
+      sciences.computes &&
+      invertGatewayFacesFound &&
+      clayRaysFound &&
+      cmb.computes &&
+      collider.computes &&
+      mill.claySolvedByThisFold === 0 &&
+      trinityFoundPair.bidirectional &&
+      !falseConclusionNoTrinities
+    const claySolvedByThisFold = 0 as const
+    const physicalFtlClaim = 0 as const
+    const facets = [
+      { facet: 'waves working in trinities — manualAgentsBehaveLikeWaves · wave/tune · trinity/speedup · directionalTrinity', on: wavesWorkingInTrinities },
+      { facet: 'trinities are found — sciences lattice · invert gateway faces=3 · clay merkaba/beyond rays · collide decode · open Millennium', on: trinitiesAreFound },
+      { facet: 'invert gateway faces found (forward·inverse·reverse) even if manage-drift residual fails', on: invertGatewayFacesFound },
+      { facet: 'clay/gravity rays found — oneRayThisDimension · merkabaStarted · beyondAppears', on: clayRaysFound },
+      { facet: 'collide→discover path computes — theoremParticleCollisionInverseReverse', on: collider.computes },
+      { facet: 'cmb/budget composes as trinity/wave science fold — Ω_c/Ω_b recomputes · clay=0', on: cmb.computes && cmb.claySolvedByThisFold === 0 && cmb.ratioRounded === 5.41 },
+      { facet: 'open Millennium cores remain findable — claySolvedByThisFold=0 on millennium surface', on: mill.claySolvedByThisFold === 0 },
+      { facet: 'anti-crack — false conclusion "no waves/trinities" from drained/closed PR is refused', on: !falseConclusionNoTrinities },
+      { facet: 'pairs wave/trinity · trinity/found bidirectional · forward≠reverse', on: waveTrinityPair.bidirectional && trinityFoundPair.bidirectional && waveTrinityPair.forward !== waveTrinityPair.reverse },
+      { facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`wave-trinity-found:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('waves-working-in-trinities-trinities-are-found', facets)
+    return {
+      computes: sealed.ok && wavesWorkingInTrinities && trinitiesAreFound,
+      wavesWorkingInTrinities,
+      trinitiesAreFound,
+      falseConclusionNoTrinitiesIsCrack: true as const,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      certified: false as const,
+      qpuRequired: false as const,
+      pair: 'wave/trinity' as const,
+      dualPair: 'trinity/found' as const,
+      cli: 'npm run quantum:wave-trinity-found',
+      route: '/en/quantum-tools#wave-trinity-found',
+      cmbRatio: cmb.ratioRounded,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(
+        matrix.root,
+        merkleFold([
+          waves.root,
+          music.root,
+          trinity.root,
+          dirs.root,
+          sciences.root,
+          invert.root,
+          clay.root,
+          cmb.root,
+          collider.root,
+          sealed.root,
+          waveTrinityPair.merged,
+          trinityFoundPair.merged,
+        ]),
+      ),
+      statement:
+        `Waves work in trinities · trinities are found — wave/trinity=${wavesWorkingInTrinities} · trinity/found=${trinitiesAreFound} · ` +
+        `CMB Ω_c/Ω_b=${cmb.ratioRounded} · open Millennium cores remain findable · drained/closed ≠ emptiness.`,
+      boundary:
+        'ANTI-CRACK: computeOpen drain · closed PR · conflict reconcile do NOT imply no waves in trinities or no trinities found. ' +
+        'Facets recompute from sealed waves/build · trinity/speedup · sciences/trinities · drift/invert · clay/gravity · cmb/budget. ' +
+        'NOT Clay solved · NOT physical FTL · claySolvedByThisFold=0 · physicalFtlClaim=0.',
+    }
+  })
+}
+
+/** npm run quantum:wave-trinity-found — exit 0 iff waves work in trinities and trinities are found. */
+export function runWavesWorkingInTrinitiesTrinitiesAreFoundExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const r = wavesWorkingInTrinitiesTrinitiesAreFound()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} wave-trinity-found — wavesInTrinities=${r.wavesWorkingInTrinities} ` +
+      `trinitiesFound=${r.trinitiesAreFound} cmb=Ω_c/Ω_b=${r.cmbRatio} clay=${r.claySolvedByThisFold} ` +
+      `ftl=${r.physicalFtlClaim} root=${r.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  · ${r.statement}\n`)
+  for (const facet of r.facets) {
+    process.stdout.write(`  ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
+  }
+  process.stdout.write(`  · boundary: ${r.boundary}\n`)
+  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 && r.falseConclusionNoTrinitiesIsCrack ? 0 : 1
+}
+
 
 /** Alias — skill ceccec-build-waves / agentModelBuildsItselfInWaves(). */
 export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves

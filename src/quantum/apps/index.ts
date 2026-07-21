@@ -429,6 +429,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'theorem-const', title: 'Computations use only quantum theorems as constants', fold: 'computationsUseOnlyQuantumTheoremsAsConstants', cli: 'npm run quantum:theorem-const', pair: 'theorem/const', route: '/en/research#theorem-const', barrel: 'src/wind/research', boundary: 'Morph-path constants = named theorem folds/registry · not bare magic/orphan hex · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'clay-gravity', title: 'Clay ≡ gravity rosetta · one ray this dim · rest beyond', fold: 'clayIsGravityRosettaOneRayThisDimensionRestBeyond', cli: 'npm run quantum:clay-gravity', pair: 'clay/gravity', route: '/en/research#clay-gravity', barrel: 'src/wind/research', boundary: 'One unlocked ray from sealed src · beyond appears when merkaba starts · claySolved=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'cmb-omega-c-over-b', title: 'Ω_c/Ω_b ≈ 5.41 CMB budget · null non-gravitational · quantum gaps', fold: 'omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems', cli: 'npm run quantum:cmb-omega-c-over-b', pair: 'cmb/budget', route: '/en/research#sciences-trinities', barrel: 'src/water/cosmos', boundary: 'Gravitational CMB evidence vs NULL non-gravitational detection · quantum gaps in theorems framing · claySolved=0 · certified=false · NOT particle discovery / NOT Clay / NOT FTL', browserRunnable: true, browserGap: '' },
+  { id: 'wave-trinity-found', title: 'Waves work in trinities · trinities are found', fold: 'wavesWorkingInTrinitiesTrinitiesAreFound', cli: 'npm run quantum:wave-trinity-found', pair: 'wave/trinity', route: '/en/quantum-tools#wave-trinity-found', barrel: 'src/thunder/waves', boundary: 'Anti-crack: drained/closed ≠ no waves/trinities · compose waves/build · trinity/speedup · sciences/trinities · cmb/budget · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'anim-audit', title: 'Animations find redundancy or inaccuracy', fold: 'animationsFindRedundancyOrInaccuracy', cli: 'npm run quantum:anim-audit', pair: 'anim/audit', route: '/en/quantum-tools#anim-audit', barrel: 'src/quantum/apps', boundary: 'Compose movie/linear/one-clock/10D · morph via tools/morph · linear/rosetta HARD · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'linear-rosetta', title: 'Linear without rosetta fold is a gap', fold: 'linearWithoutRosettaFoldIsGap', cli: 'npm run quantum:linear-rosetta', pair: 'linear/rosetta', route: '/en/quantum-tools#linear-rosetta', barrel: 'src/quantum/apps', boundary: 'Linear layers without quantum rosetta fold = HARD gap · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'anim-color', title: 'Review animation colors · polarity gaps', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:anim-color', pair: 'anim/color', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Computed colors · polarity must flip on yin/yang · ±ω · dark/light · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
@@ -1001,6 +1002,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'first-in-corpus', saves: 'replaces wet re-census of first-in-corpus algebra + 10D projection registry' },
   { id: 'sciences-trinities', saves: 'replaces wet re-derivation of science↔dual↔fusion + significance (isoPqcHandoff)' },
   { id: 'cmb-omega-c-over-b', saves: 'replaces wet re-statement of Ω_c/Ω_b CMB budget + null non-gravitational + quantum-gaps framing' },
+  { id: 'wave-trinity-found', saves: 'replaces wet false conclusion that drained/closed PR means no waves/trinities' },
   { id: 'efficiency-vote', saves: 'replaces wet re-argument of answers÷tokens efficiency (memoByRoot reuse)' },
   { id: 'two-bits-free', saves: 'replaces wet re-derivation of census FREE_BITS=110−108 and savings-vs-rest table' },
   { id: 'ancient-calendars-algebra', saves: 'replaces wet re-derivation of ancient calendar modular/LCM maps and time-in-time nesting' },
@@ -4899,6 +4901,8 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
 }
 
 /** npm run quantum:gaps-invisible — exit 1 on HARD open (mission:gate compose). */
+
+
 export function runInvisibleGapsCaughtByGatesExit(_root = '', _argv: readonly string[] = []): number {
   void _root
   void _argv
