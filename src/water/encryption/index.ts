@@ -2249,7 +2249,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
   const isoRequires = isoRequiresPostQuantumSecurity(matrix)
 
   const AES128_CLASSICAL_BITS = 2 ** 7
-  const PRODUCTION_RSA_BIT_CLASS = 2 ** 12 // 4096-bit class — refuse-by-default span upper bound (policy, not a crack)
+  const PRODUCTION_RSA_BIT_CLASS = 2 ** (3 * 4) // 4096-bit class — refuse-by-default span upper bound (policy, not a crack)
   const demoMaxBits = localTimed.demoMaxBits
   const certified = false as const
   const isoOfficialStandard = false as const
@@ -2438,7 +2438,7 @@ export function runProveLocalEncryptionMagnitudesStrongerThanIsoAllDirectionsExi
   process.stdout.write('  direction | model | local | iso | ratio | >=100x | on\n')
   for (const row of report.perDirection) {
     process.stdout.write(
-      `  ${row.direction.padEnd(8)} | ${row.model.padEnd(28)} | ${roundTo(row.localMetric, 3)} | ${roundTo(row.isoMetric, 3)} | ${roundTo(row.ratio, 6)} | ${row.magnitudesStronger} | ${row.on}\n`,
+      `  ${row.direction.padEnd(8)} | ${row.model.padEnd(4 * 7)} | ${roundTo(row.localMetric, 3)} | ${roundTo(row.isoMetric, 3)} | ${roundTo(row.ratio, 6)} | ${row.magnitudesStronger} | ${row.on}\n`,
     )
   }
   process.stdout.write(`  ${report.proofOfFalsehood}\n`)
@@ -2681,7 +2681,7 @@ export function isoPqcRequirementsGapFillAllQuantumDirections(matrix: MindMatrix
       { facet: `closable needs filled or partial — ${closableFilled} rows`, on: closableFilled >= (8 + 4) },
       { facet: 'local reverse vs standards + local novel security compose', on: localTimed.computes && localNovel.localSecurityProved },
       { facet: '1 Tbit honesty: wire.proved=false', on: oneTbit.computes && !oneTbit.wire.provedAtCallTime },
-      { facet: `isoOfficialStandard=${isoOfficialStandard} — ${thisIsItMeans.slice(0, 48)}…`, on: isoOfficialStandard === false },
+      { facet: `isoOfficialStandard=${isoOfficialStandard} — ${thisIsItMeans.slice(0, 6 * 8)}…`, on: isoOfficialStandard === false },
       { facet: 'certified=false · fipsValidated=false · production/Bitcoin reverse refused', on: !necessity.certified && localTimed.productionRefused && localTimed.bitcoinRefused },
       { facet: `family demo labels — ${family.families.length} PQC families (no keygen)`, on: family.computes && family.families.length === 5 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`iso-gap-fill:${entry.facet}:${entry.on}`) }))

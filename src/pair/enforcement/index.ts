@@ -25,6 +25,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'edit/build',
   'learn/build',
   'wave/tune',
+  'waves/build',
+  'document/experiments',
   'learn/music',
   'dev/preview',
   'place/generate',
