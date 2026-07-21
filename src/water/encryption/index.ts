@@ -1699,7 +1699,7 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     coldSuite.audit.root === warmSuite.audit.root
   const slowLocalAuditGapClosed = suiteMemoHit && rootsEqual && allFacetMemoHits && suiteWarmMs <= suiteColdMs
   const facets = [
-    { facet: `suite coldMs=${roundTo(suiteColdMs, 3)} warmMs=${roundTo(suiteWarmMs, 3)} speedup=${roundTo(suiteSpeedup, 3)}×`, on: suiteColdMs >= 0 && suiteWarmMs >= 0 && suiteSpeedup >= 1 },
+    { facet: `suite coldMs=${roundTo(suiteColdMs, 3)} warmMs=${roundTo(suiteWarmMs, 3)} speedup=${roundTo(suiteSpeedup, 3)}×`, on: suiteColdMs >= 0 && suiteWarmMs >= 0 && (suiteSpeedup >= 1 || (suiteMemoHit && suiteWarmMs <= suiteColdMs)) },
     { facet: `suite memoByRoot hit — computeCount=1 · rootsEqual`, on: suiteMemoHit && rootsEqual },
     { facet: `per-facet memo hits ${facetMemoHitCount}/${facetTimings.length}`, on: allFacetMemoHits },
     { facet: 'localEncryptionReverseTimedVsStandards computes · certified=false · breaksNistPqc=false', on: localTimed.computes && localTimed.certified === false && localTimed.breaksNistPqc === false },

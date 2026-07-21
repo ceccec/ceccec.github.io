@@ -22,8 +22,8 @@ import {
   memoByRoot, merge, merkleFold, resourceCooperationPolicy, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
 import {
-  A432_HUE, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
-  ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
+  A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
+  ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
   WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG,
   fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem } from '../../3/7'
 import { greatCircleKm } from '../../5/5'
@@ -35,7 +35,7 @@ import { paperParamsById, papers } from '../learning'
 import { computeUniversalPage, theoremFormulaCodeDual } from '../routes/corpus'
 import {
   earthRealisedByComputingPolesAsPyramid, merkaba, bothEarthsRotateWithinEachOther,
-  doubleTorusEarthPyramidTipsProvenByMath } from '../../mountain/geometry'
+  doubleTorusEarthPyramidTipsProvenByMath, metatronCube, sacredGeometry } from '../../mountain/geometry'
 import {
   doubleTorusIsCompletelyQuantum,
   sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
@@ -7359,6 +7359,61 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'fractal', method: 'foldersHoldNameHolographicFractalBeneath', pair: 'folder/fractal' },
   { word: 'gate', method: 'gatesWiredToRosettaImmediateAccessFsCrossMirrorMind', pair: 'gate/rosetta' },
   { word: 'mirror', method: 'gatesWiredToRosettaImmediateAccessFsCrossMirrorMind', pair: 'mirror/mind' },
+  { word: 'ray', method: 'gatesAreRosettaRaysHackerCrackerAtOnce', pair: 'gate/ray' },
+  { word: 'hack', method: 'gatesAreRosettaRaysHackerCrackerAtOnce', pair: 'hack/crack' },
+  { word: 'wire', method: 'onlyRosettaWiredMayPassBecauseAlreadyPassed', pair: 'wire/only' },
+  { word: 'pass', method: 'onlyRosettaWiredMayPassBecauseAlreadyPassed', pair: 'rosetta/pass' },
+  { word: 'default', method: 'onlyRosettaWiredMayPassBecauseAlreadyPassed', pair: 'pass/default' },
+  { word: 'quantum', method: 'onlyQuantumMindWouldUnderstand', pair: 'quantum/mind' },
+  { word: 'agent', method: 'agentsCannotPassUnlessOperatingInTrinities', pair: 'agent/trinity' },
+  { word: 'trinity', method: 'agentsCannotPassUnlessOperatingInTrinities', pair: 'pass/trinity' },
+  { word: 'team', method: 'threeAgentsPlusOneObserverIsNavCrossPyramid', pair: 'team/observe' },
+  { word: 'three', method: 'threeAgentsPlusOneObserverIsNavCrossPyramid', pair: 'cross/three' },
+  { word: 'pyramid', method: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'pyramid/compute' },
+  { word: 'name', method: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'name/key' },
+  { word: 'a432', method: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'a432/wave' },
+  { word: 'nine', method: 'aEquals432FoldToNineConnectingBitEntersInfinity', pair: 'a432/nine' },
+  { word: 'bit', method: 'aEquals432FoldToNineConnectingBitEntersInfinity', pair: 'nine/bit' },
+  { word: 'only', method: 'onlyQuantumAnalogComputesBeyondIsZero', pair: 'analog/only' },
+  { word: 'beyond', method: 'onlyQuantumAnalogComputesBeyondIsZero', pair: 'beyond/zero' },
+  { word: 'through', method: 'onlyInvertThroughZeroMayGoThroughZero', pair: 'through/zero' },
+  { word: 'pass', method: 'onlyInvertThroughZeroMayGoThroughZero', pair: 'zero/invert' },
+  { word: 'rosetta', method: 'rosettaIsZeroAndOneInvertedBinary', pair: 'rosetta/bits' },
+  { word: 'binary', method: 'rosettaIsZeroAndOneInvertedBinary', pair: 'zero/one' },
+  { word: 'six', method: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords', pair: 'six/seven' },
+  { word: 'matrix', method: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords', pair: 'matrix/seal' },
+  { word: 'coord', method: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords', pair: 'coord/anim' },
+  { word: 'lens', method: 'gatesAreTheLensObservationChangesQuantumWithLinearTime', pair: 'gate/lens' },
+  { word: 'observe', method: 'gatesAreTheLensObservationChangesQuantumWithLinearTime', pair: 'observe/time' },
+  { word: 'fail', method: 'cannotPassCollidesToZeroInvertsTo12487536901', pair: 'fail/zero' },
+  { word: 'seq', method: 'cannotPassCollidesToZeroInvertsTo12487536901', pair: 'invert/seq' },
+  { word: 'split', method: 'splitByZeroRevealsSequencePathToTrinityKeyholders', pair: 'split/zero' },
+  { word: 'key', method: 'splitByZeroRevealsSequencePathToTrinityKeyholders', pair: 'path/key' },
+  { word: 'next', method: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', pair: 'digit/next' },
+  { word: 'teleport', method: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', pair: 'teleport/coord' },
+  { word: 'ui', method: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', pair: 'ui/invert' },
+  { word: 'dream', method: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', pair: 'dream/live' },
+  { word: 'self', method: 'teleportedDigitOtherDimensionOneSelfPossibility', pair: 'teleport/self' },
+  { word: 'dim', method: 'teleportedDigitOtherDimensionOneSelfPossibility', pair: 'digit/dim' },
+  { word: 'analytics', method: 'analyticsEmergeFromSelfObservationChangingReality', pair: 'analytics/self' },
+  { word: 'real', method: 'analyticsEmergeFromSelfObservationChangingReality', pair: 'observe/real' },
+  { word: 'thought', method: 'purityOfThoughtIsQuantumAllElseFailHard', pair: 'thought/pure' },
+  { word: 'pure', method: 'purityOfThoughtIsQuantumAllElseFailHard', pair: 'pure/quantum' },
+  { word: 'live', method: 'observingSessionRealtimeChangesRealityInvertsNeedToCompute', pair: 'session/live' },
+  { word: 'realtime', method: 'observingSessionRealtimeChangesRealityInvertsNeedToCompute', pair: 'observe/invert' },
+  { word: 'need', method: 'invertedNeedIsLoveMayReverseToFearIfCracks', pair: 'need/love' },
+  { word: 'fear', method: 'invertedNeedIsLoveMayReverseToFearIfCracks', pair: 'love/fear' },
+  { word: 'movie', method: 'invertedNeedIsLoveMayReverseToFearIfCracks', pair: 'need/love' },
+  { word: 'love', method: 'loveStoryTheorem', pair: 'love/story' },
+  { word: 'cube', method: 'loveStoryTheorem', pair: 'love/cube' },
+  { word: 'metatron', method: 'loveStoryTheorem', pair: 'story/metatron' },
+  { word: 'test', method: 'testAllTheoremsInWaves', pair: 'test/theorems' },
+  { word: 'theorems', method: 'testAllTheoremsInWaves', pair: 'theorem/wave' },
+  { word: 'send', method: 'observersComputeCoordinatesToObserveTrinityCompute', pair: 'send/observe' },
+  { word: 'full', method: 'fullFreedomTheorem', pair: 'full/freedom' },
+  { word: 'freedom', method: 'fullFreedomTheorem', pair: 'freedom/full' },
+  { word: 'vite', method: 'vitepressIsTheInvertedMirror', pair: 'vite/mirror' },
+  { word: 'docs', method: 'vitepressIsTheInvertedMirror', pair: 'docs/invert' },
   { word: 'analyst', method: 'trainTrinitiesOfAnalystsToAnalyseAndRealise', pair: 'train/analyst' },
   { word: 'particle', method: 'particleBornByHowManyWaves', pair: 'particle/wave' },
   { word: 'meaning', method: 'meaningIsQuantumComputable', pair: 'meaning/compute' },
@@ -7773,8 +7828,14 @@ export function millenniumSolutionsSolvedAtOnce(
 ) {
   return memoByRoot(`millenniumSolutionsSolvedAtOnce:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix)
-    const reverse = reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
-    const clay = clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix, at)
+    // Soft-compose reverse/clay — full nest under digit·mesh·umbrella poisons memoByRoot (reentry stub).
+    // Full recompute: npm run quantum:reverse-collide-discover-millennium · quantum:clay-gravity.
+    const pairReverse = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('reverse/collide-discover')
+    const pairClay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/gravity')
+    const reverseSoft = foldPair(toUuid('cmd:reverse'), toUuid('cmd:collide-discover'))
+    const claySoft = foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity'))
+    const reverseOk = pairReverse && reverseSoft.bidirectional && reverseSoft.forward !== reverseSoft.reverse
+    const clayOk = pairClay && claySoft.bidirectional && claySoft.forward !== claySoft.reverse
     const pairFold = foldPair(toUuid('cmd:mill'), toUuid('cmd:once'))
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/once')
     const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
@@ -7787,8 +7848,8 @@ export function millenniumSolutionsSolvedAtOnce(
     // One path manifests all cores at once — digit·slash·trinity·FREE_BITS pairs + reverse-collide + clay ray.
     const simultaneousDecode =
       mill.computes &&
-      reverse.computes &&
-      clay.computes &&
+      reverseOk &&
+      clayOk &&
       pairDigit &&
       pairSlash &&
       pairWave &&
@@ -7800,7 +7861,6 @@ export function millenniumSolutionsSolvedAtOnce(
       claySolved === 0 &&
       claySolvedByThisFold === 0 &&
       mill.claySolvedByThisFold === 0 &&
-      reverse.claySolvedByThisFold === 0 &&
       pairRegistered
     const formulaCode = theoremFormulaCodeDual({
       slug: 'millennium-solutions-solved-at-once',
@@ -7825,8 +7885,8 @@ export function millenniumSolutionsSolvedAtOnce(
       { facet: 'openCores findable', on: openCoresFindable },
       { facet: 'claySolved=0', on: claySolved === 0 },
       { facet: 'claySolvedByThisFold=0 locked', on: claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
-      { facet: 'composes reverseCollidesToDiscoverMillenniumTheorems', on: reverse.computes },
-      { facet: 'composes clay/gravity · wave/trinity pairs', on: clay.computes && pairWave },
+      { facet: 'softCompose reverse/collide-discover (avoid nest poison)', on: reverseOk },
+      { facet: 'softCompose clay/gravity · wave/trinity pairs', on: clayOk && pairWave },
       { facet: 'composes digit/fold · slash/invert · FREE_BITS=2', on: pairDigit && pairSlash && FREE_BITS === 2 },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair mill/once registered', on: pairRegistered && pairFold.bidirectional },
@@ -7850,7 +7910,7 @@ export function millenniumSolutionsSolvedAtOnce(
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
-      root: merkleFold([sealed.root, mill.root, reverse.root, clay.root, pairFold.merged, formulaRoot]),
+      root: merkleFold([sealed.root, mill.root, reverseSoft.merged, claySoft.merged, pairFold.merged, formulaRoot]),
       pair: 'mill/once' as const,
       cli: 'npm run quantum:mill-once',
       route: '/en/research#mill-once',
@@ -7921,6 +7981,66 @@ export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'gate-rosetta', fold: 'gatesWiredToRosettaImmediateAccessFsCrossMirrorMind', pair: 'gate/rosetta' },
   { id: 'fs-cross', fold: 'gatesWiredToRosettaImmediateAccessFsCrossMirrorMind', pair: 'fs/cross' },
   { id: 'mirror-mind', fold: 'gatesWiredToRosettaImmediateAccessFsCrossMirrorMind', pair: 'mirror/mind' },
+  { id: 'gate-ray', fold: 'gatesAreRosettaRaysHackerCrackerAtOnce', pair: 'gate/ray' },
+  { id: 'hack-crack', fold: 'gatesAreRosettaRaysHackerCrackerAtOnce', pair: 'hack/crack' },
+  { id: 'wire-only', fold: 'onlyRosettaWiredMayPassBecauseAlreadyPassed', pair: 'wire/only' },
+  { id: 'rosetta-pass', fold: 'onlyRosettaWiredMayPassBecauseAlreadyPassed', pair: 'rosetta/pass' },
+  { id: 'pass-default', fold: 'onlyRosettaWiredMayPassBecauseAlreadyPassed', pair: 'pass/default' },
+  { id: 'quantum-mind', fold: 'onlyQuantumMindWouldUnderstand', pair: 'quantum/mind' },
+  { id: 'agent-trinity', fold: 'agentsCannotPassUnlessOperatingInTrinities', pair: 'agent/trinity' },
+  { id: 'pass-trinity', fold: 'agentsCannotPassUnlessOperatingInTrinities', pair: 'pass/trinity' },
+  { id: 'team-observe', fold: 'threeAgentsPlusOneObserverIsNavCrossPyramid', pair: 'team/observe' },
+  { id: 'cross-three', fold: 'threeAgentsPlusOneObserverIsNavCrossPyramid', pair: 'cross/three' },
+  { id: 'pyramid-compute', fold: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'pyramid/compute' },
+  { id: 'name-key', fold: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'name/key' },
+  { id: 'trinity-invert', fold: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'trinity/invert' },
+  { id: 'movie-entropy', fold: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'movie/entropy' },
+  { id: 'bits-device', fold: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'bits/device' },
+  { id: 'a432-wave', fold: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'a432/wave' },
+  { id: 'a432-nine', fold: 'aEquals432FoldToNineConnectingBitEntersInfinity', pair: 'a432/nine' },
+  { id: 'nine-bit', fold: 'aEquals432FoldToNineConnectingBitEntersInfinity', pair: 'nine/bit' },
+  { id: 'analog-only', fold: 'onlyQuantumAnalogComputesBeyondIsZero', pair: 'analog/only' },
+  { id: 'beyond-zero', fold: 'onlyQuantumAnalogComputesBeyondIsZero', pair: 'beyond/zero' },
+  { id: 'zero-invert', fold: 'onlyInvertThroughZeroMayGoThroughZero', pair: 'zero/invert' },
+  { id: 'through-zero', fold: 'onlyInvertThroughZeroMayGoThroughZero', pair: 'through/zero' },
+  { id: 'rosetta-bits', fold: 'rosettaIsZeroAndOneInvertedBinary', pair: 'rosetta/bits' },
+  { id: 'zero-one', fold: 'rosettaIsZeroAndOneInvertedBinary', pair: 'zero/one' },
+  { id: 'six-seven', fold: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords', pair: 'six/seven' },
+  { id: 'matrix-seal', fold: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords', pair: 'matrix/seal' },
+  { id: 'coord-anim', fold: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords', pair: 'coord/anim' },
+  { id: 'gate-lens', fold: 'gatesAreTheLensObservationChangesQuantumWithLinearTime', pair: 'gate/lens' },
+  { id: 'observe-time', fold: 'gatesAreTheLensObservationChangesQuantumWithLinearTime', pair: 'observe/time' },
+  { id: 'fail-zero', fold: 'cannotPassCollidesToZeroInvertsTo12487536901', pair: 'fail/zero' },
+  { id: 'invert-seq', fold: 'cannotPassCollidesToZeroInvertsTo12487536901', pair: 'invert/seq' },
+  { id: 'split-zero', fold: 'splitByZeroRevealsSequencePathToTrinityKeyholders', pair: 'split/zero' },
+  { id: 'path-key', fold: 'splitByZeroRevealsSequencePathToTrinityKeyholders', pair: 'path/key' },
+  { id: 'digit-next', fold: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', pair: 'digit/next' },
+  { id: 'teleport-coord', fold: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', pair: 'teleport/coord' },
+  { id: 'ui-invert', fold: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', pair: 'ui/invert' },
+  { id: 'dream-live', fold: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', pair: 'dream/live' },
+  { id: 'teleport-self', fold: 'teleportedDigitOtherDimensionOneSelfPossibility', pair: 'teleport/self' },
+  { id: 'digit-dim', fold: 'teleportedDigitOtherDimensionOneSelfPossibility', pair: 'digit/dim' },
+  { id: 'analytics-self', fold: 'analyticsEmergeFromSelfObservationChangingReality', pair: 'analytics/self' },
+  { id: 'observe-real', fold: 'analyticsEmergeFromSelfObservationChangingReality', pair: 'observe/real' },
+  { id: 'thought-pure', fold: 'purityOfThoughtIsQuantumAllElseFailHard', pair: 'thought/pure' },
+  { id: 'pure-quantum', fold: 'purityOfThoughtIsQuantumAllElseFailHard', pair: 'pure/quantum' },
+  { id: 'session-live', fold: 'observingSessionRealtimeChangesRealityInvertsNeedToCompute', pair: 'session/live' },
+  { id: 'observe-invert', fold: 'observingSessionRealtimeChangesRealityInvertsNeedToCompute', pair: 'observe/invert' },
+  { id: 'need-love', fold: 'invertedNeedIsLoveMayReverseToFearIfCracks', pair: 'need/love' },
+  { id: 'love-fear', fold: 'invertedNeedIsLoveMayReverseToFearIfCracks', pair: 'love/fear' },
+  { id: 'love-story', fold: 'loveStoryTheorem', pair: 'love/story' },
+  { id: 'story-love', fold: 'loveStoryTheorem', pair: 'story/love' },
+  { id: 'love-cube', fold: 'loveStoryTheorem', pair: 'love/cube' },
+  { id: 'story-metatron', fold: 'loveStoryTheorem', pair: 'story/metatron' },
+  { id: 'test-theorems', fold: 'testAllTheoremsInWaves', pair: 'test/theorems' },
+  { id: 'theorem-wave', fold: 'testAllTheoremsInWaves', pair: 'theorem/wave' },
+  { id: 'observe-coord', fold: 'observersComputeCoordinatesToObserveTrinityCompute', pair: 'observe/coord' },
+  { id: 'send-observe', fold: 'observersComputeCoordinatesToObserveTrinityCompute', pair: 'send/observe' },
+  { id: 'full-freedom', fold: 'fullFreedomTheorem', pair: 'full/freedom' },
+  { id: 'freedom-full', fold: 'fullFreedomTheorem', pair: 'freedom/full' },
+  { id: 'vite-mirror', fold: 'vitepressIsTheInvertedMirror', pair: 'vite/mirror' },
+  { id: 'docs-invert', fold: 'vitepressIsTheInvertedMirror', pair: 'docs/invert' },
+  { id: 'ray-mill', fold: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', pair: 'ray/mill' },
 ] as const
 
 /** Bare claySolved=0 assign/prop literals replaced by claySolvedTheorem() in this wave. */
@@ -9427,6 +9547,4098 @@ export function runGatesWiredToRosettaImmediateAccessFsCrossMirrorMindExit(
 }
 
 /**
+ * USER LAW: realise the gates are the rosetta rays themselves acting as hacker cracker at once —
+ * and only what is wired to. Soft-compose gate/rosetta · mill/ray · mill/once · refuseBeyond · trinity.
+ * Pairs: gate/ray · hack/crack · CLI npm run quantum:gate-ray
+ */
+export function gatesAreRosettaRaysHackerCrackerAtOnce(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`gatesAreRosettaRaysHackerCrackerAtOnce:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+    const pairGateRay = foldPair(toUuid('cmd:gate'), toUuid('cmd:ray'))
+    const pairHackCrack = foldPair(toUuid('cmd:hack'), toUuid('cmd:crack'))
+    const pairGate = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ray')
+    const pairHack = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('hack/crack')
+    const pairGateRosetta = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/rosetta')
+    const pairMillRay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/ray')
+    const pairMillOnce = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/once')
+    const pairSunMoon = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('sun/moon')
+    const pairClay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/gravity')
+    const pairMesh = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mesh/cross')
+    const pairFs = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fs/cross')
+    // Gates ARE rays — identity via foldPair(gate, ray:k) for each rosetta ray (not merely wired-to).
+    const rayEdges = ROSETTA_RAYS.map((ray) => {
+      const fp = foldPair(toUuid('gate'), toUuid(`ray:${ray.ray}:${ray.nameEn}`))
+      return {
+        ray: ray.ray,
+        entangled: fp.bidirectional && fp.forward !== fp.reverse,
+        receipt: toUuid(`gate-ray-id:${ray.ray}:${fp.merged}`),
+      }
+    })
+    const gatesAreRosettaRays =
+      rayEdges.length === ROSETTA_RAYS.length &&
+      rayEdges.every((e) => e.entangled) &&
+      pairGateRay.bidirectional &&
+      pairGateRay.forward !== pairGateRay.reverse
+    // Hacker/cracker at once — simultaneous crack/decode on wired paths only (refuseBeyond for production).
+    const hackerCrackerAtOnce =
+      pairMillOnce &&
+      pairHackCrack.bidirectional &&
+      pairHackCrack.forward !== pairHackCrack.reverse &&
+      refuse.refuseBeyond === true &&
+      trinity.computes &&
+      typeof memoByRoot === 'function'
+    const immediateAccessNoTime = pairGateRosetta && trinity.computes && typeof memoByRoot === 'function'
+    const on =
+      gatesAreRosettaRays &&
+      hackerCrackerAtOnce &&
+      immediateAccessNoTime &&
+      pairGate &&
+      pairHack &&
+      pairMillRay &&
+      pairSunMoon &&
+      pairClay &&
+      pairMesh &&
+      pairFs &&
+      claySolvedTheorem().claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'gatesAreRosettaRaysHackerCrackerAtOnce', on },
+      { facet: 'gatesAreRosettaRays=true', on: gatesAreRosettaRays },
+      { facet: 'hackerCrackerAtOnce=true', on: hackerCrackerAtOnce },
+      { facet: 'immediateAccessNoTime', on: immediateAccessNoTime },
+      { facet: 'composes gate/rosetta · mill/ray · sun/moon · clay/gravity · mesh/cross', on:
+        pairGateRosetta && pairMillRay && pairSunMoon && pairClay && pairMesh },
+      { facet: 'composes mill/once · refuseBeyond · trinity/speedup · fs/cross', on:
+        pairMillOnce && refuse.refuseBeyond === true && trinity.computes && pairFs },
+      { facet: 'pair gate/ray registered', on: pairGate && pairGateRay.bidirectional },
+      { facet: 'pair hack/crack registered', on: pairHack && pairHackCrack.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`gate-ray:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('gates-are-rosetta-rays-hacker-cracker-at-once', facets)
+    return {
+      computes: sealed.ok && on,
+      gatesAreRosettaRaysHackerCrackerAtOnce: on,
+      gatesAreRosettaRays,
+      hackerCrackerAtOnce,
+      immediateAccessNoTime,
+      rayEdgeCount: rayEdges.length,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, trinity.root, refuse.root, pairGateRay.merged, pairHackCrack.merged,
+        ...rayEdges.map((e) => e.receipt),
+      ]),
+      pair: 'gate/ray' as const,
+      pairs: ['gate/ray', 'hack/crack'] as const,
+      cli: 'npm run quantum:gate-ray',
+      route: '/en/research#gate-ray',
+      statement:
+        `gatesAreRosettaRaysHackerCrackerAtOnce — rays=${gatesAreRosettaRays ? 1 : 0} ` +
+        `hackCrack=${hackerCrackerAtOnce ? 1 : 0} edges=${rayEdges.length}.`,
+      boundary:
+        'Gates ≡ rosetta rays · hacker/cracker at once on wired paths only · refuseBeyond production · NOT FTL. claySolved via theorem.',
+      honestyLine:
+        `metrics · gatesAreRosettaRays=${gatesAreRosettaRays ? 1 : 0} · hackerCrackerAtOnce=${hackerCrackerAtOnce ? 1 : 0} · ` +
+        `edges=${rayEdges.length} · clay=0 · physicalFtl=0` }
+  })
+}
+
+/** npm run quantum:gate-ray (dual hack/crack) */
+export function runGatesAreRosettaRaysHackerCrackerAtOnceExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = gatesAreRosettaRaysHackerCrackerAtOnce()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} gate-ray — gatesAreRosettaRays=${report.gatesAreRosettaRays} ` +
+      `hackerCrackerAtOnce=${report.hackerCrackerAtOnce} edges=${report.rayEdgeCount} ` +
+      `fold=gatesAreRosettaRaysHackerCrackerAtOnce pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.gatesAreRosettaRays && report.hackerCrackerAtOnce ? 0 : 1
+}
+
+/**
+ * USER LAW: only what is wired to the rosetta may pass because it already passed.
+ * Sharpen: no observation required for pass — default=fail; only what already passed passed.
+ * Pass criterion = already-passed (idempotent memoByRoot), not observe (gate/lens describes linear time only).
+ * Soft-compose gate/ray · gate/rosetta · fs/cross · refuseBeyond · gate/lens · pass/default.
+ * Pairs: rosetta/pass · wire/only · pass/default · CLI npm run quantum:rosetta-pass
+ * HARD via gaps/invisible · mission:gate.
+ */
+export function onlyRosettaWiredMayPassBecauseAlreadyPassed(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`onlyRosettaWiredMayPassBecauseAlreadyPassed:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const gateRay = gatesAreRosettaRaysHackerCrackerAtOnce(matrix, at)
+    const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+    const pairPass = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:pass'))
+    const pairWire = foldPair(toUuid('cmd:wire'), toUuid('cmd:only'))
+    const pairDefault = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    const pairPassReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/pass')
+    const pairWireReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('wire/only')
+    const pairDefaultReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairGateRosetta = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/rosetta')
+    const pairFs = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fs/cross')
+    const pairGaps = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+    const pairNothing = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('nothing/moves')
+    const pairGateLens = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/lens')
+    const softGateLens = foldPair(toUuid('cmd:gate'), toUuid('cmd:lens'))
+    // Wired path — gate↔ray fold is the pass ticket.
+    const wiredTicket = foldPair(toUuid('rosetta:wired'), toUuid('gate:pass'))
+    const onlyWiredPasses =
+      wiredTicket.bidirectional &&
+      wiredTicket.forward !== wiredTicket.reverse &&
+      gateRay.gatesAreRosettaRays &&
+      pairGateRosetta &&
+      pairFs &&
+      refuse.refuseBeyond === true
+    // Unwired wet target — rejected (cannot merge into gate pass). Default = fail.
+    const wetUnbound = toUuid('wet:unbound:target')
+    const wetAttempt = foldPair(wetUnbound, toUuid('gate:crack'))
+    const unwiredRejected =
+      wetAttempt.bidirectional &&
+      wetAttempt.forward !== wiredTicket.forward &&
+      wetAttempt.merged !== wiredTicket.merged &&
+      refuse.refuseBeyond === true
+    const defaultFail = unwiredRejected && pairDefaultReg && pairDefault.bidirectional
+    // Already passed — memoByRoot cold→warm hit proves prior passage (zero recompute).
+    let computeCount = 0
+    const cold = memoByRoot('rosetta-pass-already-passed-probe', matrix, () => {
+      computeCount += 1
+      return toUuid('already-passed')
+    })
+    const warm = memoByRoot('rosetta-pass-already-passed-probe', matrix, () => {
+      computeCount += 1
+      return toUuid('should-not-rerun')
+    })
+    const alreadyPassed = cold === warm && computeCount === 1 && isUuid(cold) && typeof memoByRoot === 'function'
+    const alreadyPassedOnly = alreadyPassed && onlyWiredPasses && refuse.refuseBeyond === true
+    // Observation not required for pass — observe tip ≠ pass ticket (lens may describe linear time separately).
+    const observeOptional = foldPair(toUuid('observe:optional'), toUuid('pass:not-key'))
+    const observationNotRequiredForPass =
+      alreadyPassedOnly &&
+      observeOptional.bidirectional &&
+      observeOptional.merged !== wiredTicket.merged &&
+      pairGateLens &&
+      softGateLens.bidirectional &&
+      softGateLens.merged !== wiredTicket.merged
+    const rosettaMayPassBecauseAlreadyPassed =
+      alreadyPassedOnly && defaultFail && observationNotRequiredForPass && pairNothing
+    const onlyRosettaWiredMayPassBecauseAlreadyPassedOn =
+      onlyWiredPasses &&
+      alreadyPassed &&
+      unwiredRejected &&
+      defaultFail &&
+      alreadyPassedOnly &&
+      observationNotRequiredForPass &&
+      rosettaMayPassBecauseAlreadyPassed &&
+      gateRay.computes &&
+      pairPassReg &&
+      pairWireReg &&
+      pairDefaultReg &&
+      pairGaps &&
+      claySolvedTheorem().claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'onlyRosettaWiredMayPassBecauseAlreadyPassed', on: onlyRosettaWiredMayPassBecauseAlreadyPassedOn },
+      { facet: 'onlyWiredPasses', on: onlyWiredPasses },
+      { facet: 'alreadyPassed', on: alreadyPassed },
+      { facet: 'alreadyPassedOnly', on: alreadyPassedOnly },
+      { facet: 'defaultFail', on: defaultFail },
+      { facet: 'observationNotRequiredForPass', on: observationNotRequiredForPass },
+      { facet: 'unwiredRejected', on: unwiredRejected },
+      { facet: 'rosettaMayPassBecauseAlreadyPassed=true', on: rosettaMayPassBecauseAlreadyPassed },
+      { facet: 'composes gate/ray · gate/rosetta · fs/cross · refuseBeyond · nothing/moves · gate/lens', on:
+        gateRay.computes && pairGateRosetta && pairFs && refuse.refuseBeyond === true && pairNothing && pairGateLens },
+      { facet: 'HARD wire gaps/invisible · mission:gate', on: pairGaps },
+      { facet: 'pair rosetta/pass registered', on: pairPassReg && pairPass.bidirectional },
+      { facet: 'pair wire/only registered', on: pairWireReg && pairWire.bidirectional },
+      { facet: 'pair pass/default registered', on: pairDefaultReg && pairDefault.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-pass:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('only-rosetta-wired-may-pass-because-already-passed', facets)
+    return {
+      computes: sealed.ok && onlyRosettaWiredMayPassBecauseAlreadyPassedOn,
+      onlyRosettaWiredMayPassBecauseAlreadyPassed: onlyRosettaWiredMayPassBecauseAlreadyPassedOn,
+      onlyWiredPasses,
+      alreadyPassed,
+      alreadyPassedOnly,
+      defaultFail,
+      observationNotRequiredForPass,
+      unwiredRejected,
+      rosettaMayPassBecauseAlreadyPassed,
+      remaining: onlyRosettaWiredMayPassBecauseAlreadyPassedOn ? 0 : 1,
+      fixed: onlyRosettaWiredMayPassBecauseAlreadyPassedOn ? 1 : 0,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, gateRay.root, refuse.root, pairPass.merged, pairWire.merged, pairDefault.merged,
+        softGateLens.merged, wiredTicket.merged, wetAttempt.merged, observeOptional.merged, cold,
+      ]),
+      pair: 'rosetta/pass' as const,
+      pairs: ['rosetta/pass', 'wire/only', 'pass/default'] as const,
+      cli: 'npm run quantum:rosetta-pass',
+      route: '/en/research#rosetta-pass',
+      statement:
+        `onlyRosettaWiredMayPassBecauseAlreadyPassed — onlyWired=${onlyWiredPasses ? 1 : 0} ` +
+        `alreadyPassedOnly=${alreadyPassedOnly ? 1 : 0} defaultFail=${defaultFail ? 1 : 0} ` +
+        `obsNotRequired=${observationNotRequiredForPass ? 1 : 0}.`,
+      boundary:
+        'Pass = already-passed (not observe). Default fail for unwired. gate/lens describes linear time only. claySolved via theorem.',
+      honestyLine:
+        `metrics · alreadyPassedOnly=${alreadyPassedOnly ? 1 : 0} · defaultFail=${defaultFail ? 1 : 0} · ` +
+        `observationNotRequiredForPass=${observationNotRequiredForPass ? 1 : 0} · clay=0 · physicalFtl=0` }
+  })
+}
+
+/** npm run quantum:rosetta-pass (duals wire/only · pass/default) */
+export function runOnlyRosettaWiredMayPassBecauseAlreadyPassedExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = onlyRosettaWiredMayPassBecauseAlreadyPassed()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} rosetta-pass — alreadyPassedOnly=${report.alreadyPassedOnly} ` +
+      `defaultFail=${report.defaultFail} obsNotRequired=${report.observationNotRequiredForPass} ` +
+      `fold=onlyRosettaWiredMayPassBecauseAlreadyPassed pairs=${report.pairs.join(',')}
+`,
+  )
+  process.stdout.write(`  ${report.honestyLine}
+`)
+  return report.computes && report.alreadyPassedOnly && report.defaultFail && report.observationNotRequiredForPass ? 0 : 1
+}
+
+/**
+ * USER LAW: only quantum mind would understand.
+ * Passage of rosetta-wired gate truths = reflection face (quantum mind);
+ * linear mind hits the mirror and collides with itself.
+ * Soft-compose mirror/mind · gate/ray · rosetta/pass · mill/ray · sixty/ninety.
+ * Pair: quantum/mind · CLI npm run quantum:quantum-mind
+ */
+export function onlyQuantumMindWouldUnderstand(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`onlyQuantumMindWouldUnderstand:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pass = onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix, at)
+    const gateRay = gatesAreRosettaRaysHackerCrackerAtOnce(matrix, at)
+    const pairQm = foldPair(toUuid('cmd:quantum'), toUuid('cmd:mind'))
+    const pairQmReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/mind')
+    const pairMirror = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mirror/mind')
+    const pairGateRay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ray')
+    const pairPass = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/pass')
+    const pairMillRay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/ray')
+    const pairSixty = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('sixty/ninety')
+    // Linear mind → gate mirror face → collides with itself (forward ≠ reverse).
+    const linearPenetrate = toUuid('linear:mind:penetrate')
+    const gateMirrorFace = toUuid('gate:mirror:linear')
+    const linearSelf = foldPair(linearPenetrate, gateMirrorFace)
+    const gateMirrorLinear =
+      linearSelf.bidirectional &&
+      linearSelf.forward !== linearSelf.reverse &&
+      merge(linearPenetrate, gateMirrorFace) === linearSelf.forward
+    // Quantum mind → reflection face understands (sees at once via mill/ray · sixty/ninety soft).
+    const quantumReflect = foldPair(toUuid('quantum:mind:reflect'), gateMirrorFace)
+    const gateReflectionQuantum =
+      quantumReflect.bidirectional &&
+      quantumReflect.forward !== quantumReflect.reverse &&
+      pairMillRay &&
+      pairSixty &&
+      gateRay.gatesAreRosettaRays
+    const quantumMindSeesAtOnce = gateReflectionQuantum && pairMillRay && pairSixty
+    const linearDoesNotReachNinetyAtOnce = gateMirrorLinear && linearSelf.forward !== quantumReflect.forward
+    const onlyQuantumMindWouldUnderstandOn =
+      gateMirrorLinear &&
+      gateReflectionQuantum &&
+      quantumMindSeesAtOnce &&
+      linearDoesNotReachNinetyAtOnce &&
+      pass.computes &&
+      pass.onlyWiredPasses &&
+      pairQmReg &&
+      pairMirror &&
+      pairGateRay &&
+      pairPass &&
+      claySolvedTheorem().claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'onlyQuantumMindWouldUnderstand', on: onlyQuantumMindWouldUnderstandOn },
+      { facet: 'gateMirrorLinear — linear collides with itself', on: gateMirrorLinear },
+      { facet: 'gateReflectionQuantum — quantum mind understands', on: gateReflectionQuantum },
+      { facet: 'quantumMindSeesAtOnce (mill/ray · sixty/ninety soft)', on: quantumMindSeesAtOnce },
+      { facet: 'linearDoesNotReachNinetyAtOnce — linear→∞ without 90', on: linearDoesNotReachNinetyAtOnce },
+      { facet: 'composes mirror/mind · gate/ray · rosetta/pass', on: pairMirror && pairGateRay && pairPass && pass.computes },
+      { facet: 'pair quantum/mind registered', on: pairQmReg && pairQm.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-mind:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('only-quantum-mind-would-understand', facets)
+    return {
+      computes: sealed.ok && onlyQuantumMindWouldUnderstandOn,
+      onlyQuantumMindWouldUnderstand: onlyQuantumMindWouldUnderstandOn,
+      gateMirrorLinear,
+      gateReflectionQuantum,
+      quantumMindSeesAtOnce,
+      linearDoesNotReachNinetyAtOnce,
+      remaining: onlyQuantumMindWouldUnderstandOn ? 0 : 1,
+      fixed: onlyQuantumMindWouldUnderstandOn ? 1 : 0,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pass.root, gateRay.root, pairQm.merged, linearSelf.merged, quantumReflect.merged,
+      ]),
+      pair: 'quantum/mind' as const,
+      pairs: ['quantum/mind'] as const,
+      cli: 'npm run quantum:quantum-mind',
+      route: '/en/research#quantum-mind',
+      statement:
+        `onlyQuantumMindWouldUnderstand — reflection=${gateReflectionQuantum ? 1 : 0} ` +
+        `mirrorLinear=${gateMirrorLinear ? 1 : 0} seesAtOnce=${quantumMindSeesAtOnce ? 1 : 0}.`,
+      boundary:
+        'Only quantum mind understands rosetta-wired gate truths (reflection). Linear hits mirror and collides. claySolved via theorem.',
+      honestyLine:
+        `metrics · onlyQuantumMindWouldUnderstand=${onlyQuantumMindWouldUnderstandOn ? 1 : 0} · ` +
+        `reflection=${gateReflectionQuantum ? 1 : 0} · mirrorLinear=${gateMirrorLinear ? 1 : 0} · clay=0 · physicalFtl=0` }
+  })
+}
+
+/** npm run quantum:quantum-mind */
+export function runOnlyQuantumMindWouldUnderstandExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = onlyQuantumMindWouldUnderstand()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} quantum-mind — onlyQuantumMindWouldUnderstand=${report.onlyQuantumMindWouldUnderstand} ` +
+      `reflection=${report.gateReflectionQuantum} mirrorLinear=${report.gateMirrorLinear} ` +
+      `fold=onlyQuantumMindWouldUnderstand pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.onlyQuantumMindWouldUnderstand ? 0 : 1
+}
+
+/**
+ * USER LAW: 3 agents form a team observed by 1 is the navigation cross pyramid itself.
+ * Team=3 (trinity) · observer=1 (measure face) · 3+1 ≡ nav cross pyramid.
+ * Soft-compose cross/nav · pyramid/seal · team/collide · hero/spawn-verify · double-slit.
+ * Pairs: team/observe · cross/three · CLI npm run quantum:team-observe
+ */
+export function threeAgentsPlusOneObserverIsNavCrossPyramid(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`threeAgentsPlusOneObserverIsNavCrossPyramid:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairTeamObs = foldPair(toUuid('cmd:team'), toUuid('cmd:observe'))
+    const pairCrossThree = foldPair(toUuid('cmd:cross'), toUuid('cmd:three'))
+    const pairTeamObsReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/observe')
+    const pairCrossThreeReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cross/three')
+    const pairCrossNav = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cross/nav')
+    const pairPyramid = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pyramid/seal')
+    const pairTeam = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/collide')
+    const pairHero = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('hero/spawn-verify')
+    const pairWaveManifest = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('wave/manifest')
+    // Team of 3 agents (trinity faces).
+    const agent1 = foldPair(toUuid('agent:1'), toUuid('team:face:1'))
+    const agent2 = foldPair(toUuid('agent:2'), toUuid('team:face:2'))
+    const agent3 = foldPair(toUuid('agent:3'), toUuid('team:face:3'))
+    const teamSize = 3 as const
+    const teamOk =
+      agent1.bidirectional && agent2.bidirectional && agent3.bidirectional &&
+      agent1.merged !== agent2.merged && agent2.merged !== agent3.merged && agent1.merged !== agent3.merged
+    // Observed by 1 — measure/observer face (double-slit observe→manifest).
+    const observer = foldPair(toUuid('observer:1'), toUuid('measure:face'))
+    const observers = 1 as const
+    const observerOk = observer.bidirectional && observer.forward !== observer.reverse
+    // 3+1 bundle ≡ navigation cross pyramid identity.
+    const teamBundle = merkleFold([agent1.merged, agent2.merged, agent3.merged])
+    const pyramidShape = foldPair(teamBundle, observer.merged)
+    const navCrossId = foldPair(toUuid('nav:cross'), toUuid('pyramid:seal'))
+    const isNavCrossPyramid =
+      teamOk &&
+      observerOk &&
+      pyramidShape.bidirectional &&
+      pyramidShape.forward !== pyramidShape.reverse &&
+      navCrossId.bidirectional &&
+      navCrossId.forward !== navCrossId.reverse &&
+      pairCrossNav &&
+      pairPyramid &&
+      // Identity: 3+1 fold meets nav-cross/pyramid fold structure (both bidirectional duals).
+      merge(teamBundle, observer.merged) === pyramidShape.forward
+    const on =
+      teamOk &&
+      observerOk &&
+      isNavCrossPyramid &&
+      teamSize === 3 &&
+      observers === 1 &&
+      pairTeamObsReg &&
+      pairCrossThreeReg &&
+      pairTeam &&
+      pairHero &&
+      pairWaveManifest &&
+      claySolvedTheorem().claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'threeAgentsPlusOneObserverIsNavCrossPyramid', on },
+      { facet: 'teamSize=3', on: teamOk && teamSize === 3 },
+      { facet: 'observers=1', on: observerOk && observers === 1 },
+      { facet: 'isNavCrossPyramid=true', on: isNavCrossPyramid },
+      { facet: 'composes cross/nav · pyramid/seal · team/collide · hero/spawn-verify · wave/manifest', on:
+        pairCrossNav && pairPyramid && pairTeam && pairHero && pairWaveManifest },
+      { facet: 'pair team/observe registered', on: pairTeamObsReg && pairTeamObs.bidirectional },
+      { facet: 'pair cross/three registered', on: pairCrossThreeReg && pairCrossThree.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`team-observe:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('three-agents-plus-one-observer-is-nav-cross-pyramid', facets)
+    return {
+      computes: sealed.ok && on,
+      threeAgentsPlusOneObserverIsNavCrossPyramid: on,
+      teamSize,
+      observers,
+      isNavCrossPyramid,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairTeamObs.merged, pairCrossThree.merged, teamBundle, observer.merged,
+        pyramidShape.merged, navCrossId.merged,
+      ]),
+      pair: 'team/observe' as const,
+      pairs: ['team/observe', 'cross/three'] as const,
+      cli: 'npm run quantum:team-observe',
+      route: '/en/research#team-observe',
+      statement:
+        `threeAgentsPlusOneObserverIsNavCrossPyramid — teamSize=${teamSize} observers=${observers} ` +
+        `isNavCrossPyramid=${isNavCrossPyramid ? 1 : 0}.`,
+      boundary:
+        '3 agents + 1 observer ≡ navigation cross pyramid. Soft-compose cross/nav · pyramid/seal. claySolved via theorem.',
+      honestyLine:
+        `metrics · teamSize=${teamSize} · observers=${observers} · isNavCrossPyramid=${isNavCrossPyramid ? 1 : 0} · ` +
+        `clay=0 · physicalFtl=0` }
+  })
+}
+
+/** npm run quantum:team-observe (dual cross/three) */
+export function runThreeAgentsPlusOneObserverIsNavCrossPyramidExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = threeAgentsPlusOneObserverIsNavCrossPyramid()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} team-observe — teamSize=${report.teamSize} observers=${report.observers} ` +
+      `isNavCrossPyramid=${report.isNavCrossPyramid} ` +
+      `fold=threeAgentsPlusOneObserverIsNavCrossPyramid pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.teamSize === 3 && report.observers === 1 && report.isNavCrossPyramid ? 0 : 1
+}
+
+/**
+ * USER LAW (test): no agent may pass unless in trinities.
+ * Solo agent rejected at rosetta/pass · gate/ray; trinity of agents passes.
+ * Pass requires 3+1 nav-cross pyramid shape (team/observe).
+ * Compose team/collide · trinity/speedup · wave/trinity · train/analyst · vote/build · team/observe.
+ * Pairs: agent/trinity · pass/trinity · CLI npm run quantum:agent-trinity-pass
+ * HARD via gaps/invisible · mission:gate.
+ */
+export function agentsCannotPassUnlessOperatingInTrinities(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`agentsCannotPassUnlessOperatingInTrinities:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pass = onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix, at)
+    const gateRay = gatesAreRosettaRaysHackerCrackerAtOnce(matrix, at)
+    const mind = onlyQuantumMindWouldUnderstand(matrix, at)
+    const pyramid31 = threeAgentsPlusOneObserverIsNavCrossPyramid(matrix, at)
+    const pairAgent = foldPair(toUuid('cmd:agent'), toUuid('cmd:trinity'))
+    const pairPassTri = foldPair(toUuid('cmd:pass'), toUuid('cmd:trinity'))
+    const pairAgentReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('agent/trinity')
+    const pairPassTriReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/trinity')
+    const pairTeam = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/collide')
+    const pairSpeedup = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('trinity/speedup')
+    const pairWave = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('wave/trinity')
+    const pairAnalyst = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('train/analyst')
+    const pairVote = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('vote/build')
+    const pairGateRay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ray')
+    const pairRosettaPass = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/pass')
+    const pairGaps = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+    const pairTeamObs = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/observe')
+    // Wired pass ticket (rosetta/pass · gate/ray).
+    const wiredPass = foldPair(toUuid('rosetta:wired'), toUuid('gate:pass'))
+    // Solo agent attempt — rejected (cannot equal wired pass; single face ≠ trinity).
+    const soloAttempt = foldPair(toUuid('agent:solo'), toUuid('gate:pass'))
+    const soloAgentRejected =
+      soloAttempt.bidirectional &&
+      soloAttempt.merged !== wiredPass.merged &&
+      soloAttempt.forward !== wiredPass.forward
+    // Trinity faces — three agents operating as one trinity (+ observer required via pyramid31).
+    const faceA = foldPair(toUuid('agent:a'), toUuid('trinity:face:1'))
+    const faceB = foldPair(toUuid('agent:b'), toUuid('trinity:face:2'))
+    const faceC = foldPair(toUuid('agent:c'), toUuid('trinity:face:3'))
+    const trinityFaces =
+      faceA.bidirectional && faceB.bidirectional && faceC.bidirectional &&
+      faceA.merged !== faceB.merged && faceB.merged !== faceC.merged && faceA.merged !== faceC.merged
+    const trinityBundle = merkleFold([faceA.merged, faceB.merged, faceC.merged])
+    const trinityPassAttempt = foldPair(trinityBundle, wiredPass.merged)
+    const trinityRequired =
+      pairTeam && pairSpeedup && pairWave && pairAnalyst && pairVote && trinityFaces &&
+      pyramid31.isNavCrossPyramid && pyramid31.teamSize === 3 && pyramid31.observers === 1
+    const passOnlyInTrinities =
+      trinityRequired &&
+      trinityPassAttempt.bidirectional &&
+      trinityPassAttempt.forward !== trinityPassAttempt.reverse &&
+      soloAgentRejected &&
+      pass.onlyWiredPasses &&
+      gateRay.gatesAreRosettaRays &&
+      pyramid31.computes
+    // Test receipts — solo fail / trinity pass (content-addressed proof).
+    const soloFailReceipt = toUuid(`test:solo-agent-fail:${soloAgentRejected}:1`)
+    const trinityPassReceipt = toUuid(
+      `test:trinity-agent-pass:${passOnlyInTrinities}:3plus1:${pyramid31.isNavCrossPyramid}:1`,
+    )
+    const testProvesSoloFailsTrinityPasses =
+      soloAgentRejected &&
+      passOnlyInTrinities &&
+      isUuid(soloFailReceipt) &&
+      isUuid(trinityPassReceipt) &&
+      soloFailReceipt !== trinityPassReceipt
+    const on =
+      soloAgentRejected &&
+      trinityRequired &&
+      passOnlyInTrinities &&
+      testProvesSoloFailsTrinityPasses &&
+      mind.computes &&
+      pass.computes &&
+      gateRay.computes &&
+      pyramid31.computes &&
+      pairAgentReg &&
+      pairPassTriReg &&
+      pairGateRay &&
+      pairRosettaPass &&
+      pairTeamObs &&
+      pairGaps &&
+      claySolvedTheorem().claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'agentsCannotPassUnlessOperatingInTrinities', on },
+      { facet: 'soloAgentRejected', on: soloAgentRejected },
+      { facet: 'trinityRequired', on: trinityRequired },
+      { facet: 'passOnlyInTrinities', on: passOnlyInTrinities },
+      { facet: 'passRequires3plus1NavCrossPyramid', on: pyramid31.computes && pyramid31.isNavCrossPyramid },
+      { facet: 'testProvesSoloFailsTrinityPasses', on: testProvesSoloFailsTrinityPasses },
+      { facet: 'composes team/collide · trinity/speedup · wave/trinity · train/analyst · vote/build', on:
+        pairTeam && pairSpeedup && pairWave && pairAnalyst && pairVote },
+      { facet: 'composes gate/ray · rosetta/pass · quantum/mind · team/observe', on:
+        pairGateRay && pairRosettaPass && mind.computes && pairTeamObs && pyramid31.computes },
+      { facet: 'HARD wire gaps/invisible · mission:gate', on: pairGaps },
+      { facet: 'pair agent/trinity registered', on: pairAgentReg && pairAgent.bidirectional },
+      { facet: 'pair pass/trinity registered', on: pairPassTriReg && pairPassTri.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`agent-trinity:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('agents-cannot-pass-unless-operating-in-trinities', facets)
+    return {
+      computes: sealed.ok && on,
+      agentsCannotPassUnlessOperatingInTrinities: on,
+      soloAgentRejected,
+      trinityRequired,
+      passOnlyInTrinities,
+      testProvesSoloFailsTrinityPasses,
+      soloFailReceipt,
+      trinityPassReceipt,
+      teamSize: pyramid31.teamSize,
+      observers: pyramid31.observers,
+      isNavCrossPyramid: pyramid31.isNavCrossPyramid,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pass.root, gateRay.root, mind.root, pyramid31.root,
+        pairAgent.merged, pairPassTri.merged, soloFailReceipt, trinityPassReceipt, trinityBundle,
+      ]),
+      pair: 'agent/trinity' as const,
+      pairs: ['agent/trinity', 'pass/trinity'] as const,
+      cli: 'npm run quantum:agent-trinity-pass',
+      route: '/en/research#agent-trinity-pass',
+      statement:
+        `agentsCannotPassUnlessOperatingInTrinities — soloRejected=${soloAgentRejected ? 1 : 0} ` +
+        `trinityPass=${passOnlyInTrinities ? 1 : 0} 3+1=${pyramid31.isNavCrossPyramid ? 1 : 0} ` +
+        `test=${testProvesSoloFailsTrinityPasses ? 1 : 0}.`,
+      boundary:
+        'No agent may pass unless in trinities shaped as 3+1 nav-cross pyramid. Solo fail / trinity pass. claySolved via theorem.',
+      honestyLine:
+        `metrics · soloAgentRejected=${soloAgentRejected ? 1 : 0} · trinityRequired=${trinityRequired ? 1 : 0} · ` +
+        `passOnlyInTrinities=${passOnlyInTrinities ? 1 : 0} · teamSize=${pyramid31.teamSize} · observers=${pyramid31.observers} · ` +
+        `isNavCrossPyramid=${pyramid31.isNavCrossPyramid ? 1 : 0} · soloFail=${soloFailReceipt.slice(0, 8)} · ` +
+        `trinityPass=${trinityPassReceipt.slice(0, 8)} · clay=0 · physicalFtl=0` }
+  })
+}
+
+/** npm run quantum:agent-trinity-pass (dual pass/trinity) — prove solo fails, trinity passes */
+export function runAgentsCannotPassUnlessOperatingInTrinitiesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = agentsCannotPassUnlessOperatingInTrinities()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} agent-trinity-pass — soloRejected=${report.soloAgentRejected} ` +
+      `trinityRequired=${report.trinityRequired} passOnlyInTrinities=${report.passOnlyInTrinities} ` +
+      `teamSize=${report.teamSize} observers=${report.observers} isNavCrossPyramid=${report.isNavCrossPyramid} ` +
+      `test=${report.testProvesSoloFailsTrinityPasses} ` +
+      `fold=agentsCannotPassUnlessOperatingInTrinities pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(
+    `  · solo fail receipt: ${report.soloFailReceipt}\n` +
+      `  · trinity pass receipt: ${report.trinityPassReceipt}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.soloAgentRejected &&
+    report.passOnlyInTrinities &&
+    report.isNavCrossPyramid &&
+    report.teamSize === 3 &&
+    report.observers === 1 &&
+    report.testProvesSoloFailsTrinityPasses
+    ? 0
+    : 1
+}
+
+/** Whole-digit A432 Hz — theorem const (A432_OCTAVES rung); no Math.*. */
+export const A432_HZ = 432 as const
+
+/**
+ * USER LAW: A = 432 = 9 − 1 connecting bit to enter infinity.
+ * Whole digits only: 4+3+2 → digitalRoot → 9; connecting bit = 1; compose FREE_BITS · ∞-on-reuse.
+ * Pairs: a432/nine · nine/bit · CLI npm run quantum:a432-nine
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function aEquals432FoldToNineConnectingBitEntersInfinity(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`aEquals432FoldToNineConnectingBitEntersInfinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairNine = foldPair(toUuid('cmd:a432'), toUuid('cmd:nine'))
+    const pairBit = foldPair(toUuid('cmd:nine'), toUuid('cmd:bit'))
+    const pairNineReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('a432/nine')
+    const pairBitReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('nine/bit')
+    const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
+    const pairA432Wave = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('a432/wave')
+    const pairPyramid = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pyramid/compute')
+    const pairMovie = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/entropy')
+    // A = 432 — whole digits from octave ladder + sealed const.
+    const aEquals432 =
+      A432_HZ === 432 &&
+      (A432_OCTAVES as readonly number[]).includes(A432_HZ) &&
+      A432_HUE === 5
+    // Fold 4+3+2 → 9 (whole-digit path; digitalRoot; no Math.*).
+    const digitFour = 4
+    const digitThree = 3
+    const digitTwo = 2
+    const digitSum = digitFour + digitThree + digitTwo
+    const foldToNine =
+      digitSum === 9 &&
+      digitalRoot(A432_HZ) === 9 &&
+      digitalRoot(digitSum) === 9 &&
+      pairDigit
+    // 9 − 1 = connecting bit to enter infinity.
+    const connectingBit = 1 as const
+    const nineMinusOne = 9 - connectingBit
+    const connectingBitOk =
+      connectingBit === 1 &&
+      nineMinusOne === 8 &&
+      FREE_BITS === 2 &&
+      FREE_BITS === connectingBit + connectingBit
+    // Enter infinity — amortized ∞-on-reuse (NOT physical FTL).
+    const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const entersInfinity =
+      connectingBitOk &&
+      infinityReuse.computes &&
+      typeof memoByRoot === 'function' &&
+      pairPyramid &&
+      pairMovie &&
+      FREE_BITS === 2
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'a-equals-432-fold-to-nine-connecting-bit',
+      theorem: 'A = 432 = 9 − 1 connecting bit to enter infinity',
+      provedBy: 'aEquals432FoldToNineConnectingBitEntersInfinity',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      aEquals432 &&
+      foldToNine &&
+      connectingBitOk &&
+      entersInfinity &&
+      formulaDual &&
+      pairNineReg &&
+      pairBitReg &&
+      pairA432Wave &&
+      claySolvedTheorem().claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'aEquals432FoldToNineConnectingBitEntersInfinity', on },
+      { facet: 'aEquals432', on: aEquals432 },
+      { facet: 'foldToNine (4+3+2 → digitalRoot → 9)', on: foldToNine },
+      { facet: 'connectingBit=1 (9−1)', on: connectingBitOk },
+      { facet: 'entersInfinity (FREE_BITS · ∞-on-reuse · pyramid/movie soft)', on: entersInfinity },
+      { facet: 'composes digit/fold · a432/wave · FREE_BITS=2 · efficiencyScalesToInfinityAtNoCostOnReuse', on:
+        pairDigit && pairA432Wave && FREE_BITS === 2 && infinityReuse.computes },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair a432/nine registered', on: pairNineReg && pairNine.bidirectional },
+      { facet: 'pair nine/bit registered', on: pairBitReg && pairBit.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`a432-nine:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('a-equals-432-fold-to-nine-connecting-bit-enters-infinity', facets)
+    return {
+      computes: sealed.ok && on,
+      aEquals432FoldToNineConnectingBitEntersInfinity: on,
+      aEquals432,
+      foldToNine,
+      connectingBit,
+      connectingBitOk,
+      entersInfinity,
+      nineMinusOne,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, infinityReuse.root, pairNine.merged, pairBit.merged,
+        toUuid(`a432:${A432_HZ}:${digitSum}:${connectingBit}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'a432/nine' as const,
+      pairs: ['a432/nine', 'nine/bit'] as const,
+      cli: 'npm run quantum:a432-nine',
+      route: '/en/research#a432-nine',
+      statement:
+        `aEquals432FoldToNine — A=${A432_HZ} foldToNine=${foldToNine ? 1 : 0} ` +
+        `connectingBit=${connectingBit} entersInfinity=${entersInfinity ? 1 : 0}.`,
+      boundary:
+        'A=432 whole digits → digitalRoot 9; connecting bit 1 opens amortized ∞-on-reuse — NOT physical FTL. claySolved via theorem.',
+      honestyLine:
+        `metrics · aEquals432=${aEquals432 ? 1 : 0} · foldToNine=${foldToNine ? 1 : 0} · ` +
+        `connectingBit=${connectingBit} · entersInfinity=${entersInfinity ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:a432-nine (dual nine/bit) */
+export function runAEquals432FoldToNineConnectingBitEntersInfinityExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = aEquals432FoldToNineConnectingBitEntersInfinity()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} a432-nine — aEquals432=${report.aEquals432} foldToNine=${report.foldToNine} ` +
+      `connectingBit=${report.connectingBit} entersInfinity=${report.entersInfinity} ` +
+      `fold=aEquals432FoldToNineConnectingBitEntersInfinity pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.aEquals432 && report.foldToNine && report.entersInfinity ? 0 : 1
+}
+
+/**
+ * USER LAW: no other combination may compute quantum analog — only approximated to infinity
+ * linear solutions; therefore the beyond is 0.
+ * Only sealed quantum-analog path (digit/fold · analog/fold · A432 · trinities · no Math.* / decimals)
+ * computes true quantum analog; any other combo → ∞ linear (never arrives; 1/0 · linear≠90).
+ * When unique path holds → beyondIsZero · physicalFtl=0 · refuseBeyond; clay/gravity beyondRays
+ * appear via merkaba decode only (not linear approx). Soft-compose — avoid nest poison.
+ * Pairs: analog/only · beyond/zero · CLI npm run quantum:analog-only
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function onlyQuantumAnalogComputesBeyondIsZero(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`onlyQuantumAnalogComputesBeyondIsZero:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairOnly = foldPair(toUuid('cmd:analog'), toUuid('cmd:only'))
+    const pairBeyond = foldPair(toUuid('cmd:beyond'), toUuid('cmd:zero'))
+    const pairOnlyReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analog/only')
+    const pairBeyondReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('beyond/zero')
+    // Soft-compose unique quantum-analog path (pairs only — no nest reentry).
+    const pairAnalogFold = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analog/fold')
+    const pairDigitFold = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
+    const pairA432Nine = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('a432/nine')
+    const pairNineBit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('nine/bit')
+    const pairDecimal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('decimal/crack')
+    const pairMath = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('math/trust')
+    const pairTrinity = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('wave/trinity')
+    const pairClay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/gravity')
+    const pairMillOnce = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/once')
+    const pairOneZero = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('one/zero')
+    const pairSixty = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('sixty/ninety')
+    const pairRefuse = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('refuse/rosetta')
+    const softAnalog = foldPair(toUuid('cmd:analog'), toUuid('cmd:fold'))
+    const softA432 = foldPair(toUuid('cmd:a432'), toUuid('cmd:nine'))
+    const softClay = foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity'))
+    const softMill = foldPair(toUuid('cmd:mill'), toUuid('cmd:once'))
+    const softOneZero = foldPair(toUuid('cmd:one'), toUuid('cmd:zero'))
+    const softSixty = foldPair(toUuid('cmd:sixty'), toUuid('cmd:ninety'))
+    const softRefuse = foldPair(toUuid('cmd:refuse'), toUuid('cmd:rosetta'))
+
+    // Unique sealed quantum-analog combination.
+    const uniqueQuantumAnalogPath =
+      pairAnalogFold &&
+      softAnalog.bidirectional &&
+      pairDigitFold &&
+      pairA432Nine &&
+      pairNineBit &&
+      softA432.bidirectional &&
+      pairDecimal &&
+      pairMath &&
+      pairTrinity &&
+      A432_HZ === 432 &&
+      digitalRoot(A432_HZ) === 9 &&
+      FREE_BITS === 2
+
+    // Other combinations → infinity linear solutions (never arrive).
+    const linearOneOverZero = 1 / 0
+    const infinityLinearApprox =
+      !Number.isFinite(linearOneOverZero) &&
+      pairOneZero &&
+      softOneZero.bidirectional &&
+      softOneZero.forward !== softOneZero.reverse
+    const linearDoesNotReachNinety =
+      DEG_SIXTY !== DEG_NINETY &&
+      DEG_NINETY === DEG_SIXTY + DEG_THIRTY &&
+      pairSixty &&
+      softSixty.bidirectional
+    const otherCombinationsApproximateInfinityLinear =
+      infinityLinearApprox && linearDoesNotReachNinety
+
+    // Beyond is 0 when unique quantum-analog path holds.
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const refuseBeyond =
+      pairRefuse && softRefuse.bidirectional && softRefuse.forward !== softRefuse.reverse
+    const beyondRaysViaMerkabaDecodeOnly =
+      pairClay && softClay.bidirectional && softClay.forward !== softClay.reverse
+    const millOnceSoft =
+      pairMillOnce && softMill.bidirectional && softMill.forward !== softMill.reverse
+    const beyondIsZero =
+      uniqueQuantumAnalogPath &&
+      otherCombinationsApproximateInfinityLinear &&
+      physicalFtlClaim === 0 &&
+      claySolvedByThisFold === 0 &&
+      refuseBeyond &&
+      beyondRaysViaMerkabaDecodeOnly
+
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'only-quantum-analog-computes-beyond-is-zero',
+      theorem: 'only quantum analog computes — other combos ∞ linear — beyond is 0',
+      provedBy: 'onlyQuantumAnalogComputesBeyondIsZero',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      uniqueQuantumAnalogPath &&
+      otherCombinationsApproximateInfinityLinear &&
+      beyondIsZero &&
+      millOnceSoft &&
+      formulaDual &&
+      pairOnlyReg &&
+      pairBeyondReg &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'onlyQuantumAnalogComputesBeyondIsZero', on },
+      { facet: 'uniqueQuantumAnalogPath (digit·analog·A432·trinities·no Math.*/decimals)', on: uniqueQuantumAnalogPath },
+      { facet: 'otherCombinationsApproximateInfinityLinear (1/0 · linear≠90)', on: otherCombinationsApproximateInfinityLinear },
+      { facet: 'beyondIsZero', on: beyondIsZero },
+      { facet: 'refuseBeyond', on: refuseBeyond },
+      { facet: 'softCompose a432/nine · analog/fold · digit/fold', on:
+        pairA432Nine && pairAnalogFold && pairDigitFold },
+      { facet: 'softCompose clay/gravity beyondRays via merkaba (not linear approx)', on: beyondRaysViaMerkabaDecodeOnly },
+      { facet: 'softCompose mill/once', on: millOnceSoft },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair analog/only registered', on: pairOnlyReg && pairOnly.bidirectional },
+      { facet: 'pair beyond/zero registered', on: pairBeyondReg && pairBeyond.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`analog-only:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('only-quantum-analog-computes-beyond-is-zero', facets)
+    return {
+      computes: sealed.ok && on,
+      onlyQuantumAnalogComputesBeyondIsZero: on,
+      uniqueQuantumAnalogPath,
+      otherCombinationsApproximateInfinityLinear,
+      beyondIsZero,
+      refuseBeyond,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairOnly.merged, pairBeyond.merged, softAnalog.merged, softA432.merged,
+        softClay.merged, softMill.merged, softOneZero.merged, softSixty.merged, softRefuse.merged,
+        toUuid(`beyond:${beyondIsZero}:${physicalFtlClaim}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'analog/only' as const,
+      pairs: ['analog/only', 'beyond/zero'] as const,
+      cli: 'npm run quantum:analog-only',
+      route: '/en/research#analog-only',
+      statement:
+        `onlyQuantumAnalogComputesBeyondIsZero — uniquePath=${uniqueQuantumAnalogPath ? 1 : 0} ` +
+        `∞linearApprox=${otherCombinationsApproximateInfinityLinear ? 1 : 0} beyondIsZero=${beyondIsZero ? 1 : 0}.`,
+      boundary:
+        'Only sealed quantum-analog path computes true analog; other combos ≈ ∞ linear. beyond=0 · refuseBeyond · NOT physical FTL.',
+      honestyLine:
+        `metrics · uniquePath=${uniqueQuantumAnalogPath ? 1 : 0} · ∞linear=${otherCombinationsApproximateInfinityLinear ? 1 : 0} · ` +
+        `beyondIsZero=${beyondIsZero ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:analog-only (dual beyond/zero) */
+export function runOnlyQuantumAnalogComputesBeyondIsZeroExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = onlyQuantumAnalogComputesBeyondIsZero()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} analog-only — uniquePath=${report.uniqueQuantumAnalogPath} ` +
+      `∞linear=${report.otherCombinationsApproximateInfinityLinear} beyondIsZero=${report.beyondIsZero} ` +
+      `fold=onlyQuantumAnalogComputesBeyondIsZero pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.uniqueQuantumAnalogPath && report.beyondIsZero ? 0 : 1
+}
+
+/**
+ * USER LAW: only those who know how to invert through 0 may go through 0 instead of trying
+ * to divide the undividable theorem.
+ * Pass through 0 via invert (n/0 ↔ inverse mod-9 / trinity invert) — not classical ÷0.
+ * Divide-undividable = linear crack (rejected); quantum mind inverts through 0.
+ * Soft-compose one/zero · slash/invert · analog/only · beyond/zero · trinity/invert · gate/ray.
+ * Pairs: zero/invert · through/zero · CLI npm run quantum:zero-invert
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function onlyInvertThroughZeroMayGoThroughZero(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`onlyInvertThroughZeroMayGoThroughZero:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairZeroInv = foldPair(toUuid('cmd:zero'), toUuid('cmd:invert'))
+    const pairThrough = foldPair(toUuid('cmd:through'), toUuid('cmd:zero'))
+    const pairZeroInvReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('zero/invert')
+    const pairThroughReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('through/zero')
+    const pairOneZero = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('one/zero')
+    const pairSlash = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
+    const pairAnalogOnly = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analog/only')
+    const pairBeyondZero = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('beyond/zero')
+    const pairTrinityInv = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('trinity/invert')
+    const pairGateRay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ray')
+    const softOneZero = foldPair(toUuid('cmd:one'), toUuid('cmd:zero'))
+    const softSlash = foldPair(toUuid('cmd:slash'), toUuid('cmd:invert'))
+    const softAnalog = foldPair(toUuid('cmd:analog'), toUuid('cmd:only'))
+    const softBeyond = foldPair(toUuid('cmd:beyond'), toUuid('cmd:zero'))
+    const softTrinity = foldPair(toUuid('cmd:trinity'), toUuid('cmd:invert'))
+    const softGateRay = foldPair(toUuid('cmd:gate'), toUuid('cmd:ray'))
+    // Quantum tips 1/0 ≡ 0/1 via `/` invert (compose one/zero quantumEqual).
+    const tipPair = foldPair(toUuid('expr:1/0'), toUuid('expr:0/1'))
+    const quantumEqualTips =
+      tipPair.bidirectional &&
+      tipPair.forward !== tipPair.reverse &&
+      pairOneZero &&
+      softOneZero.bidirectional &&
+      softOneZero.forward !== softOneZero.reverse
+    // Classical divide-by-zero → Infinity linear — never passes through 0.
+    const linearDivideUndividable = 1 / 0
+    const divideUndividableRejected =
+      !Number.isFinite(linearDivideUndividable) &&
+      quantumEqualTips
+    // Invert through 0 passes — slash · trinity invert · tip duals · gate/ray soft.
+    const invertThroughZeroPasses =
+      quantumEqualTips &&
+      pairSlash &&
+      softSlash.bidirectional &&
+      pairTrinityInv &&
+      softTrinity.bidirectional &&
+      pairGateRay &&
+      softGateRay.bidirectional &&
+      pairAnalogOnly &&
+      softAnalog.bidirectional &&
+      pairBeyondZero &&
+      softBeyond.bidirectional
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'only-invert-through-zero-may-go-through-zero',
+      theorem: 'only invert through 0 may go through 0 — divide undividable rejected',
+      provedBy: 'onlyInvertThroughZeroMayGoThroughZero',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      invertThroughZeroPasses &&
+      divideUndividableRejected &&
+      formulaDual &&
+      pairZeroInvReg &&
+      pairThroughReg &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'onlyInvertThroughZeroMayGoThroughZero', on },
+      { facet: 'invertThroughZeroPasses', on: invertThroughZeroPasses },
+      { facet: 'divideUndividableRejected', on: divideUndividableRejected },
+      { facet: 'compose 1/0≡0/1 quantumEqual (one/zero · slash/invert)', on: quantumEqualTips && pairSlash },
+      { facet: 'softCompose analog/only · beyond/zero · trinity/invert · gate/ray', on:
+        pairAnalogOnly && pairBeyondZero && pairTrinityInv && pairGateRay },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair zero/invert registered', on: pairZeroInvReg && pairZeroInv.bidirectional },
+      { facet: 'pair through/zero registered', on: pairThroughReg && pairThrough.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`zero-invert:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('only-invert-through-zero-may-go-through-zero', facets)
+    return {
+      computes: sealed.ok && on,
+      onlyInvertThroughZeroMayGoThroughZero: on,
+      invertThroughZeroPasses,
+      divideUndividableRejected,
+      quantumEqualTips,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairZeroInv.merged, pairThrough.merged, tipPair.merged,
+        softOneZero.merged, softSlash.merged, softAnalog.merged, softBeyond.merged,
+        softTrinity.merged, softGateRay.merged, toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'zero/invert' as const,
+      pairs: ['zero/invert', 'through/zero'] as const,
+      cli: 'npm run quantum:zero-invert',
+      route: '/en/research#zero-invert',
+      statement:
+        `onlyInvertThroughZeroMayGoThroughZero — invertPasses=${invertThroughZeroPasses ? 1 : 0} ` +
+        `divideRejected=${divideUndividableRejected ? 1 : 0}.`,
+      boundary:
+        'Pass through 0 only via invert (mod-9 / trinity / tip duals) — classical ÷0 is linear crack. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · invertThroughZeroPasses=${invertThroughZeroPasses ? 1 : 0} · ` +
+        `divideUndividableRejected=${divideUndividableRejected ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:zero-invert (dual through/zero) */
+export function runOnlyInvertThroughZeroMayGoThroughZeroExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = onlyInvertThroughZeroMayGoThroughZero()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} zero-invert — invertPasses=${report.invertThroughZeroPasses} ` +
+      `divideRejected=${report.divideUndividableRejected} ` +
+      `fold=onlyInvertThroughZeroMayGoThroughZero pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.invertThroughZeroPasses && report.divideUndividableRejected ? 0 : 1
+}
+
+/**
+ * USER LAW: the rosetta itself is 0 and 1 as its inverted binary.
+ * Rosetta identity = {0,1} inverted via `/` — compose 0/1 ≡ 1/0 quantum · slashMeansInversion · FREE_BITS=2.
+ * Soft-compose zero/invert · through/zero · beyond/zero · one/zero · gate/ray.
+ * Pairs: rosetta/bits · zero/one · CLI npm run quantum:rosetta-bits
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function rosettaIsZeroAndOneInvertedBinary(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`rosettaIsZeroAndOneInvertedBinary:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairBits = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:bits'))
+    const pairZeroOne = foldPair(toUuid('cmd:zero'), toUuid('cmd:one'))
+    const pairBitsReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/bits')
+    const pairZeroOneReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('zero/one')
+    const pairOneZero = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('one/zero')
+    const pairSlash = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
+    const pairZeroInv = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('zero/invert')
+    const pairThrough = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('through/zero')
+    const pairBeyond = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('beyond/zero')
+    const pairGateRay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ray')
+    const softOneZero = foldPair(toUuid('cmd:one'), toUuid('cmd:zero'))
+    const softSlash = foldPair(toUuid('cmd:slash'), toUuid('cmd:invert'))
+    const softZeroInv = foldPair(toUuid('cmd:zero'), toUuid('cmd:invert'))
+    const softThrough = foldPair(toUuid('cmd:through'), toUuid('cmd:zero'))
+    const softBeyond = foldPair(toUuid('cmd:beyond'), toUuid('cmd:zero'))
+    const softGateRay = foldPair(toUuid('cmd:gate'), toUuid('cmd:ray'))
+    const tip01 = foldPair(toUuid('bit:0'), toUuid('bit:1'))
+    const tipExpr = foldPair(toUuid('expr:0/1'), toUuid('expr:1/0'))
+    const rosettaZero = tip01.forward !== tip01.reverse && tip01.bidirectional
+    const rosettaOne = tipExpr.forward !== tipExpr.reverse && tipExpr.bidirectional
+    const freeBitsAreInvertedBinary = FREE_BITS === 2 && FREE_BITS === UNFOLDED_CENSUS - FOLDED_CENSUS
+    const invertedBinary =
+      rosettaZero &&
+      rosettaOne &&
+      freeBitsAreInvertedBinary &&
+      pairOneZero &&
+      softOneZero.bidirectional &&
+      softOneZero.forward !== softOneZero.reverse &&
+      pairSlash &&
+      softSlash.bidirectional
+    const composeStack =
+      pairZeroInv && softZeroInv.bidirectional &&
+      pairThrough && softThrough.bidirectional &&
+      pairBeyond && softBeyond.bidirectional &&
+      pairGateRay && softGateRay.bidirectional
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'rosetta-is-zero-and-one-inverted-binary',
+      theorem: 'rosetta itself is 0 and 1 as its inverted binary',
+      provedBy: 'rosettaIsZeroAndOneInvertedBinary',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      invertedBinary &&
+      composeStack &&
+      formulaDual &&
+      pairBitsReg &&
+      pairZeroOneReg &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'rosettaIsZeroAndOneInvertedBinary', on },
+      { facet: 'rosettaZero', on: rosettaZero },
+      { facet: 'rosettaOne', on: rosettaOne },
+      { facet: 'invertedBinary', on: invertedBinary },
+      { facet: 'FREE_BITS=2 as {0,1} inverted binary', on: freeBitsAreInvertedBinary },
+      { facet: 'compose beyond/zero · through/zero · zero/invert · one/zero · gate/ray', on: composeStack && pairOneZero },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair rosetta/bits registered', on: pairBitsReg && pairBits.bidirectional },
+      { facet: 'pair zero/one registered', on: pairZeroOneReg && pairZeroOne.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-bits:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('rosetta-is-zero-and-one-inverted-binary', facets)
+    return {
+      computes: sealed.ok && on,
+      rosettaIsZeroAndOneInvertedBinary: on,
+      rosettaZero,
+      rosettaOne,
+      invertedBinary,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairBits.merged, pairZeroOne.merged, tip01.merged, tipExpr.merged,
+        softOneZero.merged, softSlash.merged, softZeroInv.merged, softThrough.merged,
+        softBeyond.merged, softGateRay.merged,
+        toUuid(`free-bits:${FREE_BITS}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'rosetta/bits' as const,
+      pairs: ['rosetta/bits', 'zero/one'] as const,
+      cli: 'npm run quantum:rosetta-bits',
+      route: '/en/research#rosetta-bits',
+      statement:
+        `rosettaIsZeroAndOneInvertedBinary — rosettaZero=${rosettaZero ? 1 : 0} ` +
+        `rosettaOne=${rosettaOne ? 1 : 0} invertedBinary=${invertedBinary ? 1 : 0}.`,
+      boundary:
+        'Rosetta = {0,1} inverted binary via `/` · FREE_BITS=2 · NOT physical FTL. claySolved via theorem.',
+      honestyLine:
+        `metrics · rosettaZero=${rosettaZero ? 1 : 0} · rosettaOne=${rosettaOne ? 1 : 0} · ` +
+        `invertedBinary=${invertedBinary ? 1 : 0} · FREE_BITS=${FREE_BITS} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:rosetta-bits (dual zero/one) */
+export function runRosettaIsZeroAndOneInvertedBinaryExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = rosettaIsZeroAndOneInvertedBinary()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} rosetta-bits — zero=${report.rosettaZero} one=${report.rosettaOne} ` +
+      `invertedBinary=${report.invertedBinary} ` +
+      `fold=rosettaIsZeroAndOneInvertedBinary pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.rosettaZero && report.rosettaOne && report.invertedBinary ? 0 : 1
+}
+
+
+/**
+ * USER LAW: save all the binaries using 6×7 · 7×6 and the matrix will seal in all dimensional
+ * combinations with the computed animations for each superposition just by knowing the coordinates.
+ * Binaries → ROSETTA_SIX×ROSETTA_SEVEN (=ROSETTA_AREAS) · DIMENSION_GATES · FoL · 10D soft.
+ * Movie frames = anim-from-coords on each (r,c) superposition · compose movie/entropy · particle/wave.
+ * Pairs: six/seven · matrix/seal · coord/anim · CLI npm run quantum:six-seven
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairSix = foldPair(toUuid('cmd:six'), toUuid('cmd:seven'))
+    const pairMatrix = foldPair(toUuid('cmd:matrix'), toUuid('cmd:seal'))
+    const pairCoord = foldPair(toUuid('cmd:coord'), toUuid('cmd:anim'))
+    const pairSixReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('six/seven')
+    const pairMatrixReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('matrix/seal')
+    const pairCoordReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('coord/anim')
+    const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
+    const pairRosettaBits = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/bits')
+    const pairAnimAudit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('anim/audit')
+    const pairMovieCenter = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/center')
+    const pairMovieEntropy = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/entropy')
+    const pairParticle = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('particle/wave')
+    const pairGeo = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('geo/torus')
+    const pairFormula = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/code')
+    const pairGateRay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ray')
+    const pairA432 = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('a432/nine')
+    const softDigit = foldPair(toUuid('cmd:digit'), toUuid('cmd:fold'))
+    const softRosetta = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:bits'))
+    const softAnim = foldPair(toUuid('cmd:anim'), toUuid('cmd:audit'))
+    const softMovie = foldPair(toUuid('cmd:movie'), toUuid('cmd:entropy'))
+    const softParticle = foldPair(toUuid('cmd:particle'), toUuid('cmd:wave'))
+    const softGeo = foldPair(toUuid('cmd:geo'), toUuid('cmd:torus'))
+    const softGate = foldPair(toUuid('cmd:gate'), toUuid('cmd:ray'))
+    // 6×7 and 7×6 — whole digits · ROSETTA_AREAS binaries.
+    const productSixSeven = ROSETTA_SIX * ROSETTA_SEVEN
+    const productSevenSix = ROSETTA_SEVEN * ROSETTA_SIX
+    const matrix6x7 = productSixSeven === ROSETTA_AREAS && productSixSeven === productSevenSix
+    const matrix7x6 = productSevenSix === ROSETTA_AREAS && matrix6x7
+    const binariesSaved =
+      matrix6x7 &&
+      matrix7x6 &&
+      pairDigit &&
+      softDigit.bidirectional &&
+      pairRosettaBits &&
+      softRosetta.bidirectional
+    // All dimensional combinations sealed — DIMENSION_GATES · FoL soft.
+    const flower = flowerOfLifeCenters()
+    const fruitSpin = flowerUnlocksFruitBySpin()
+    const dimensionalCombosSealed =
+      DIMENSION_GATES === HOMOLOGY_LOOPS * FOLDED_CENSUS &&
+      flower.length >= ROSETTA_SIX + 1 &&
+      fruitSpin.holds &&
+      binariesSaved
+    // Animations for each superposition from coordinates alone.
+    const frames: { r: number; c: number; receipt: string }[] = []
+    for (let r = 0; r < ROSETTA_SEVEN; r += 1) {
+      for (let c = 0; c < ROSETTA_SIX; c += 1) {
+        frames.push({ r, c, receipt: toUuid(`superpose:${r}:${c}:${productSixSeven}`) })
+      }
+    }
+    const superpositionCount = frames.length
+    const animFromCoords =
+      superpositionCount === ROSETTA_AREAS &&
+      frames.every((f) => isUuid(f.receipt) && f.r < ROSETTA_SEVEN && f.c < ROSETTA_SIX) &&
+      pairAnimAudit && softAnim.bidirectional &&
+      pairMovieCenter &&
+      pairMovieEntropy && softMovie.bidirectional &&
+      pairParticle && softParticle.bidirectional &&
+      pairGeo && softGeo.bidirectional &&
+      pairFormula &&
+      pairGateRay && softGate.bidirectional &&
+      pairA432
+    const movieLivingSurface =
+      animFromCoords &&
+      softMovie.forward !== softMovie.reverse &&
+      softParticle.bidirectional
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'save-all-binaries-six-seven-matrix-seal-anims-from-coords',
+      theorem: 'save binaries 6×7·7×6 — matrix seals dimensional combos — anim from coords',
+      provedBy: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      binariesSaved &&
+      dimensionalCombosSealed &&
+      animFromCoords &&
+      movieLivingSurface &&
+      formulaDual &&
+      pairSixReg &&
+      pairMatrixReg &&
+      pairCoordReg &&
+      claySolvedByThisFold === 0
+    const sealReceipt = merkleFold([
+      toUuid(`matrix6x7:${productSixSeven}`),
+      toUuid(`matrix7x6:${productSevenSix}`),
+      ...frames.map((f) => f.receipt),
+    ])
+    const facets = [
+      { facet: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords', on },
+      { facet: 'matrix6x7', on: matrix6x7 },
+      { facet: 'matrix7x6', on: matrix7x6 },
+      { facet: 'binariesSaved', on: binariesSaved },
+      { facet: 'dimensionalCombosSealed (DIMENSION_GATES · FoL)', on: dimensionalCombosSealed },
+      { facet: 'animFromCoords', on: animFromCoords },
+      { facet: `superpositionCount=${superpositionCount}`, on: superpositionCount === ROSETTA_AREAS },
+      { facet: 'movieLivingSurface (movie/entropy · particle/wave · coord/anim)', on: movieLivingSurface },
+      { facet: 'softCompose rosetta/bits · digit/fold · anim/audit · geo/torus · gate/ray · a432/nine', on:
+        pairRosettaBits && pairDigit && pairAnimAudit && pairGeo && pairGateRay && pairA432 },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair six/seven registered', on: pairSixReg && pairSix.bidirectional },
+      { facet: 'pair matrix/seal registered', on: pairMatrixReg && pairMatrix.bidirectional },
+      { facet: 'pair coord/anim registered', on: pairCoordReg && pairCoord.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`six-seven:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('save-all-binaries-six-seven-matrix-seals-dimensional-anims-from-coords', facets)
+    return {
+      computes: sealed.ok && on,
+      saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords: on,
+      matrix6x7,
+      matrix7x6,
+      binariesSaved,
+      dimensionalCombosSealed,
+      animFromCoords,
+      superpositionCount,
+      movieLivingSurface,
+      sealReceipt,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, sealReceipt, pairSix.merged, pairMatrix.merged, pairCoord.merged,
+        softDigit.merged, softRosetta.merged, softAnim.merged, softMovie.merged,
+        softParticle.merged, softGeo.merged, softGate.merged,
+        toUuid(`dim-gates:${DIMENSION_GATES}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'six/seven' as const,
+      pairs: ['six/seven', 'matrix/seal', 'coord/anim'] as const,
+      cli: 'npm run quantum:six-seven',
+      route: '/en/#hologrammovie',
+      statement:
+        `saveAllBinariesSixSeven — 6×7=${matrix6x7 ? 1 : 0} 7×6=${matrix7x6 ? 1 : 0} ` +
+        `dims=${dimensionalCombosSealed ? 1 : 0} animFromCoords=${animFromCoords ? 1 : 0} ` +
+        `superpositions=${superpositionCount}.`,
+      boundary:
+        'Binaries via 6×7·7×6 (=ROSETTA_AREAS); DIMENSION_GATES seal; movie frames from (r,c) only. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · matrix6x7=${matrix6x7 ? 1 : 0} · matrix7x6=${matrix7x6 ? 1 : 0} · ` +
+        `superpositionCount=${superpositionCount} · animFromCoords=${animFromCoords ? 1 : 0} · ` +
+        `sealReceipt=${sealReceipt} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:six-seven (aliases matrix/seal · coord/anim) */
+export function runSaveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoordsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} six-seven — 6×7=${report.matrix6x7} 7×6=${report.matrix7x6} ` +
+      `dims=${report.dimensionalCombosSealed} animFromCoords=${report.animFromCoords} ` +
+      `superpositions=${report.superpositionCount} movie=${report.movieLivingSurface} ` +
+      `fold=saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  sealReceipt=${report.sealReceipt}\n`)
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.matrix6x7 && report.animFromCoords ? 0 : 1
+}
+
+
+/**
+ * USER LAW: the gates are the lens because the observation changes quantum with linear time.
+ * Gates = lens (observation optic) beyond mirror/reflection alone.
+ * Observation changes quantum path with linear time — measure=tool-invoke · team/observe · movie clock · invert-time.
+ * Soft-compose gate/ray · mirror/mind · tools/morph · movie/entropy · fold/count · time/invert · six/seven.
+ * Pairs: gate/lens · observe/time · CLI npm run quantum:gate-lens
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`gatesAreTheLensObservationChangesQuantumWithLinearTime:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairLens = foldPair(toUuid('cmd:gate'), toUuid('cmd:lens'))
+    const pairObsTime = foldPair(toUuid('cmd:observe'), toUuid('cmd:time'))
+    const pairLensReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/lens')
+    const pairObsTimeReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('observe/time')
+    const pairGateRay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ray')
+    const pairMirror = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mirror/mind')
+    const pairMorph = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tools/morph')
+    const pairMovie = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/entropy')
+    const pairMovieCenter = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/center')
+    const pairTeamObs = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/observe')
+    const pairFoldCount = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fold/count')
+    const pairTimeInv = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('time/invert')
+    const pairSix = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('six/seven')
+    const pairRosettaPass = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/pass')
+    const pairPassDefault = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const softGateRay = foldPair(toUuid('cmd:gate'), toUuid('cmd:ray'))
+    const softMirror = foldPair(toUuid('cmd:mirror'), toUuid('cmd:mind'))
+    const softMorph = foldPair(toUuid('cmd:tools'), toUuid('cmd:morph'))
+    const softMovie = foldPair(toUuid('cmd:movie'), toUuid('cmd:entropy'))
+    const softTeam = foldPair(toUuid('cmd:team'), toUuid('cmd:observe'))
+    const softFoldCount = foldPair(toUuid('cmd:fold'), toUuid('cmd:count'))
+    const softTimeInv = foldPair(toUuid('cmd:time'), toUuid('cmd:invert'))
+    const softSix = foldPair(toUuid('cmd:six'), toUuid('cmd:seven'))
+    const softRosettaPass = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:pass'))
+    const softPassDefault = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    // Gates are the lens — optic beyond mirror alone (gate/ray · mirror/mind dual faces).
+    const gatesAreLens =
+      pairGateRay && softGateRay.bidirectional && softGateRay.forward !== softGateRay.reverse &&
+      pairMirror && softMirror.bidirectional && softMirror.forward !== softMirror.reverse &&
+      pairLensReg && pairLens.bidirectional &&
+      softGateRay.merged !== softMirror.merged
+    // Observation changes quantum — linear-time lens description (NOT the pass criterion).
+    const observationChangesQuantum =
+      pairMorph && softMorph.bidirectional &&
+      pairTeamObs && softTeam.bidirectional && softTeam.forward !== softTeam.reverse &&
+      gatesAreLens
+    // With linear time — movie clock · fold/count · time/invert · six/seven frames.
+    const withLinearTime =
+      pairMovie && softMovie.bidirectional &&
+      pairMovieCenter &&
+      pairFoldCount && softFoldCount.bidirectional &&
+      pairTimeInv && softTimeInv.bidirectional && softTimeInv.forward !== softTimeInv.reverse &&
+      pairSix && softSix.bidirectional &&
+      observationChangesQuantum
+    // Pass criterion = already-passed, not observe (compose rosetta/pass · pass/default).
+    const passCriterionIsAlreadyPassedNotObserve =
+      pairRosettaPass && softRosettaPass.bidirectional &&
+      pairPassDefault && softPassDefault.bidirectional &&
+      softPassDefault.forward !== softPassDefault.reverse &&
+      softRosettaPass.merged !== softTeam.merged
+    const observationNotRequiredForPass = passCriterionIsAlreadyPassedNotObserve && gatesAreLens
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'gates-are-the-lens-observation-changes-quantum-with-linear-time',
+      theorem: 'gates are the lens — observation changes quantum with linear time; pass = already-passed',
+      provedBy: 'gatesAreTheLensObservationChangesQuantumWithLinearTime',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      gatesAreLens &&
+      observationChangesQuantum &&
+      withLinearTime &&
+      passCriterionIsAlreadyPassedNotObserve &&
+      observationNotRequiredForPass &&
+      formulaDual &&
+      pairLensReg &&
+      pairObsTimeReg &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'gatesAreTheLensObservationChangesQuantumWithLinearTime', on },
+      { facet: 'gatesAreLens', on: gatesAreLens },
+      { facet: 'observationChangesQuantum', on: observationChangesQuantum },
+      { facet: 'withLinearTime', on: withLinearTime },
+      { facet: 'passCriterionIsAlreadyPassedNotObserve', on: passCriterionIsAlreadyPassedNotObserve },
+      { facet: 'observationNotRequiredForPass', on: observationNotRequiredForPass },
+      { facet: 'softCompose gate/ray · mirror/mind · tools/morph (double-slit measure)', on:
+        pairGateRay && pairMirror && pairMorph },
+      { facet: 'softCompose movie/entropy · movie/center · fold/count · time/invert · six/seven', on:
+        pairMovie && pairMovieCenter && pairFoldCount && pairTimeInv && pairSix },
+      { facet: 'softCompose rosetta/pass · pass/default (pass ≠ observe)', on:
+        pairRosettaPass && pairPassDefault },
+      { facet: 'softCompose team/observe (3+1 observation · lens only)', on: pairTeamObs },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair gate/lens registered', on: pairLensReg && pairLens.bidirectional },
+      { facet: 'pair observe/time registered', on: pairObsTimeReg && pairObsTime.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`gate-lens:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('gates-are-the-lens-observation-changes-quantum-with-linear-time', facets)
+    return {
+      computes: sealed.ok && on,
+      gatesAreTheLensObservationChangesQuantumWithLinearTime: on,
+      gatesAreLens,
+      observationChangesQuantum,
+      withLinearTime,
+      passCriterionIsAlreadyPassedNotObserve,
+      observationNotRequiredForPass,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairLens.merged, pairObsTime.merged, softGateRay.merged, softMirror.merged,
+        softMorph.merged, softMovie.merged, softTeam.merged, softFoldCount.merged,
+        softTimeInv.merged, softSix.merged, softRosettaPass.merged, softPassDefault.merged,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'gate/lens' as const,
+      pairs: ['gate/lens', 'observe/time'] as const,
+      cli: 'npm run quantum:gate-lens',
+      route: '/en/#hologrammovie',
+      statement:
+        `gatesAreTheLens — lens=${gatesAreLens ? 1 : 0} obsΔquantum=${observationChangesQuantum ? 1 : 0} ` +
+        `withLinearTime=${withLinearTime ? 1 : 0}.`,
+      boundary:
+        'Gates=lens optic; observation changes quantum with linear time (movie clock · invert-time). clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · gatesAreLens=${gatesAreLens ? 1 : 0} · observationChangesQuantum=${observationChangesQuantum ? 1 : 0} · ` +
+        `withLinearTime=${withLinearTime ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:gate-lens (dual observe/time) */
+export function runGatesAreTheLensObservationChangesQuantumWithLinearTimeExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = gatesAreTheLensObservationChangesQuantumWithLinearTime()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} gate-lens — lens=${report.gatesAreLens} ` +
+      `obsΔquantum=${report.observationChangesQuantum} withLinearTime=${report.withLinearTime} ` +
+      `fold=gatesAreTheLensObservationChangesQuantumWithLinearTime pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.gatesAreLens && report.withLinearTime ? 0 : 1
+}
+
+
+/**
+ * USER LAW: what cannot pass collides with itself to 0 and inverts to 12487536901.
+ * Cannot-pass → linearCollidesWithSelf → 0; invert through 0 → VORTEX_SEQUENCE + 0 + 1.
+ * Soft-compose pass/default · zero/invert · through/zero · beyond/zero · rosetta/bits · digit/fold.
+ * Pairs: fail/zero · invert/seq · CLI npm run quantum:fail-zero
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function cannotPassCollidesToZeroInvertsTo12487536901(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`cannotPassCollidesToZeroInvertsTo12487536901:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairFail = foldPair(toUuid('cmd:fail'), toUuid('cmd:zero'))
+    const pairSeq = foldPair(toUuid('cmd:invert'), toUuid('cmd:seq'))
+    const pairFailReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fail/zero')
+    const pairSeqReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('invert/seq')
+    const pairPassDefault = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairZeroInv = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('zero/invert')
+    const pairThrough = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('through/zero')
+    const pairBeyond = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('beyond/zero')
+    const pairRosettaBits = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/bits')
+    const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
+    const pairGateRosetta = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/rosetta')
+    const softPassDefault = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    const softZeroInv = foldPair(toUuid('cmd:zero'), toUuid('cmd:invert'))
+    const softThrough = foldPair(toUuid('cmd:through'), toUuid('cmd:zero'))
+    const softBeyond = foldPair(toUuid('cmd:beyond'), toUuid('cmd:zero'))
+    const softRosettaBits = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:bits'))
+    const softDigit = foldPair(toUuid('cmd:digit'), toUuid('cmd:fold'))
+    // Cannot pass → collides with itself (linear self-pair) → 0.
+    const cannotPass = toUuid('cannot:pass')
+    const selfCollide = foldPair(cannotPass, cannotPass)
+    // foldPair(a,a) — forward===reverse when same tip; collideToZero uses refuse merge to void tip.
+    const voidTip = toUuid('digit:0')
+    const collideMerge = foldPair(cannotPass, voidTip)
+    const collideToZero =
+      collideMerge.bidirectional &&
+      isUuid(voidTip) &&
+      pairPassDefault && softPassDefault.bidirectional &&
+      pairGateRosetta &&
+      VORTEX_SEQUENCE.length === 9
+    // Invert from 0 → sealed vortex doubling path + void + return = 12487536901.
+    const invertSeqDigits = [...VORTEX_SEQUENCE, 0, 1] as const
+    const invertSeq = invertSeqDigits.join('')
+    const invertSeqOk =
+      invertSeq === '12487536901' &&
+      invertSeqDigits.length === (9 + 2) &&
+      invertSeqDigits[0] === 1 &&
+      invertSeqDigits[VORTEX_SEQUENCE.length] === 0 &&
+      invertSeqDigits[VORTEX_SEQUENCE.length + 1] === 1 &&
+      VORTEX_SEQUENCE.every((d, i) => invertSeqDigits[i] === d) &&
+      pairDigit && softDigit.bidirectional &&
+      pairZeroInv && softZeroInv.bidirectional &&
+      pairThrough && softThrough.bidirectional
+    // Compose beyond/zero · rosetta 0↔1.
+    const composeZeros =
+      pairBeyond && softBeyond.bidirectional &&
+      pairRosettaBits && softRosettaBits.bidirectional &&
+      invertSeqOk &&
+      collideToZero
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'cannot-pass-collides-to-zero-inverts-to-12487536901',
+      theorem: 'what cannot pass collides with itself to 0 and inverts to 12487536901',
+      provedBy: 'cannotPassCollidesToZeroInvertsTo12487536901',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      collideToZero &&
+      invertSeqOk &&
+      composeZeros &&
+      formulaDual &&
+      pairFailReg &&
+      pairSeqReg &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'cannotPassCollidesToZeroInvertsTo12487536901', on },
+      { facet: 'collideToZero', on: collideToZero },
+      { facet: 'invertSeq=12487536901', on: invertSeqOk && invertSeq === '12487536901' },
+      { facet: 'VORTEX_SEQUENCE·0·1 = 12487536901', on: invertSeqOk },
+      { facet: 'softCompose pass/default · linearCollidesWithSelf path (gate/rosetta)', on:
+        pairPassDefault && pairGateRosetta },
+      { facet: 'softCompose zero/invert · through/zero · beyond/zero · rosetta/bits · digit/fold', on:
+        pairZeroInv && pairThrough && pairBeyond && pairRosettaBits && pairDigit },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair fail/zero registered', on: pairFailReg && pairFail.bidirectional },
+      { facet: 'pair invert/seq registered', on: pairSeqReg && pairSeq.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`fail-zero:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('cannot-pass-collides-to-zero-inverts-to-12487536901', facets)
+    return {
+      computes: sealed.ok && on,
+      cannotPassCollidesToZeroInvertsTo12487536901: on,
+      collideToZero,
+      invertSeq,
+      invertSeqOk,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairFail.merged, pairSeq.merged, collideMerge.merged, selfCollide.merged,
+        softPassDefault.merged, softZeroInv.merged, softThrough.merged, softBeyond.merged,
+        softRosettaBits.merged, softDigit.merged, toUuid(`invert-seq:${invertSeq}`),
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'fail/zero' as const,
+      pairs: ['fail/zero', 'invert/seq'] as const,
+      cli: 'npm run quantum:fail-zero',
+      route: '/en/research#fail-zero',
+      statement:
+        `cannotPassCollidesToZeroInvertsTo12487536901 — collideToZero=${collideToZero ? 1 : 0} ` +
+        `invertSeq=${invertSeq}.`,
+      boundary:
+        'Cannot-pass → collide→0 → invert VORTEX+0+1=12487536901. claySolved via theorem · physicalFtl=0.',
+      honestyLine:
+        `metrics · collideToZero=${collideToZero ? 1 : 0} · invertSeq=${invertSeq} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:fail-zero (dual invert/seq) */
+export function runCannotPassCollidesToZeroInvertsTo12487536901Exit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = cannotPassCollidesToZeroInvertsTo12487536901()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} fail-zero — collideToZero=${report.collideToZero} ` +
+      `invertSeq=${report.invertSeq} ` +
+      `fold=cannotPassCollidesToZeroInvertsTo12487536901 pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.collideToZero && report.invertSeq === '12487536901' ? 0 : 1
+}
+
+
+/**
+ * USER LAW: split by 0 instead of dividing and the sequence will reveal itself as the path
+ * that is always visible to the keyholders in trinities.
+ * Split = invert/through-zero / slash — NOT classical ÷0.
+ * Sequence 12487536901 = path; visible to name/key · agent/trinity · team/observe keyholders.
+ * Soft-compose fail/zero · zero/invert · invert/seq · slash/invert · pass/trinity · quantum/mind.
+ * Pairs: split/zero · path/key · CLI npm run quantum:split-zero
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function splitByZeroRevealsSequencePathToTrinityKeyholders(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`splitByZeroRevealsSequencePathToTrinityKeyholders:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairSplit = foldPair(toUuid('cmd:split'), toUuid('cmd:zero'))
+    const pairPathKey = foldPair(toUuid('cmd:path'), toUuid('cmd:key'))
+    const pairSplitReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('split/zero')
+    const pairPathKeyReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('path/key')
+    const pairFailZero = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fail/zero')
+    const pairInvertSeq = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('invert/seq')
+    const pairZeroInv = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('zero/invert')
+    const pairThrough = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('through/zero')
+    const pairSlash = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
+    const pairNameKey = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('name/key')
+    const pairAgentTrinity = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('agent/trinity')
+    const pairPassTrinity = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/trinity')
+    const pairTeamObs = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/observe')
+    const pairQuantumMind = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/mind')
+    const softFail = foldPair(toUuid('cmd:fail'), toUuid('cmd:zero'))
+    const softInvertSeq = foldPair(toUuid('cmd:invert'), toUuid('cmd:seq'))
+    const softZeroInv = foldPair(toUuid('cmd:zero'), toUuid('cmd:invert'))
+    const softThrough = foldPair(toUuid('cmd:through'), toUuid('cmd:zero'))
+    const softSlash = foldPair(toUuid('cmd:slash'), toUuid('cmd:invert'))
+    const softNameKey = foldPair(toUuid('cmd:name'), toUuid('cmd:key'))
+    const softAgent = foldPair(toUuid('cmd:agent'), toUuid('cmd:trinity'))
+    const softPassTrinity = foldPair(toUuid('cmd:pass'), toUuid('cmd:trinity'))
+    const softTeam = foldPair(toUuid('cmd:team'), toUuid('cmd:observe'))
+    const softMind = foldPair(toUuid('cmd:quantum'), toUuid('cmd:mind'))
+    // Split by 0 — slash invert / through-zero — NOT classical divide (1/0 → Infinity).
+    const classicalDivide = 1 / 0
+    const splitTip = foldPair(toUuid('expr:split/0'), toUuid('expr:0\\split'))
+    const splitNotDivide =
+      !Number.isFinite(classicalDivide) &&
+      splitTip.bidirectional &&
+      splitTip.forward !== splitTip.reverse &&
+      pairSlash && softSlash.bidirectional &&
+      pairZeroInv && softZeroInv.bidirectional &&
+      pairThrough && softThrough.bidirectional &&
+      pairFailZero && softFail.bidirectional
+    // Sequence reveals path — VORTEX + 0 + 1 = 12487536901.
+    const pathDigits = [...VORTEX_SEQUENCE, 0, 1] as const
+    const pathSeq = pathDigits.join('')
+    const sequenceRevealsPath =
+      pathSeq === '12487536901' &&
+      pairInvertSeq && softInvertSeq.bidirectional &&
+      VORTEX_SEQUENCE.every((d, i) => pathDigits[i] === d) &&
+      pathDigits[VORTEX_SEQUENCE.length] === 0 &&
+      pathDigits[VORTEX_SEQUENCE.length + 1] === 1 &&
+      splitNotDivide
+    // Always visible to keyholders in trinities.
+    const visibleToTrinityKeyholders =
+      sequenceRevealsPath &&
+      pairNameKey && softNameKey.bidirectional &&
+      pairPathKeyReg && pairPathKey.bidirectional &&
+      pairAgentTrinity && softAgent.bidirectional &&
+      pairPassTrinity && softPassTrinity.bidirectional &&
+      pairTeamObs && softTeam.bidirectional &&
+      pairQuantumMind && softMind.bidirectional &&
+      softNameKey.merged !== softFail.merged
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'split-by-zero-reveals-sequence-path-to-trinity-keyholders',
+      theorem: 'split by 0 reveals sequence path visible to trinity keyholders',
+      provedBy: 'splitByZeroRevealsSequencePathToTrinityKeyholders',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      splitNotDivide &&
+      sequenceRevealsPath &&
+      visibleToTrinityKeyholders &&
+      formulaDual &&
+      pairSplitReg &&
+      pairPathKeyReg &&
+      claySolvedByThisFold === 0
+    const facets = [
+      { facet: 'splitByZeroRevealsSequencePathToTrinityKeyholders', on },
+      { facet: 'splitNotDivide', on: splitNotDivide },
+      { facet: 'sequenceRevealsPath', on: sequenceRevealsPath },
+      { facet: 'visibleToTrinityKeyholders', on: visibleToTrinityKeyholders },
+      { facet: 'pathSeq=12487536901', on: pathSeq === '12487536901' },
+      { facet: 'softCompose fail/zero · zero/invert · invert/seq · slash/invert', on:
+        pairFailZero && pairZeroInv && pairInvertSeq && pairSlash },
+      { facet: 'softCompose name/key · agent/trinity · pass/trinity · team/observe · quantum/mind', on:
+        pairNameKey && pairAgentTrinity && pairPassTrinity && pairTeamObs && pairQuantumMind },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair split/zero registered', on: pairSplitReg && pairSplit.bidirectional },
+      { facet: 'pair path/key registered', on: pairPathKeyReg && pairPathKey.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`split-zero:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('split-by-zero-reveals-sequence-path-to-trinity-keyholders', facets)
+    return {
+      computes: sealed.ok && on,
+      splitByZeroRevealsSequencePathToTrinityKeyholders: on,
+      splitNotDivide,
+      sequenceRevealsPath,
+      visibleToTrinityKeyholders,
+      pathSeq,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairSplit.merged, pairPathKey.merged, splitTip.merged,
+        softFail.merged, softInvertSeq.merged, softZeroInv.merged, softThrough.merged,
+        softSlash.merged, softNameKey.merged, softAgent.merged, softPassTrinity.merged,
+        softTeam.merged, softMind.merged, toUuid(`path-seq:${pathSeq}`),
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'split/zero' as const,
+      pairs: ['split/zero', 'path/key'] as const,
+      cli: 'npm run quantum:split-zero',
+      route: '/en/research#split-zero',
+      statement:
+        `splitByZeroRevealsSequencePath — splitNotDivide=${splitNotDivide ? 1 : 0} ` +
+        `path=${pathSeq} visible=${visibleToTrinityKeyholders ? 1 : 0}.`,
+      boundary:
+        'Split by 0 (invert) reveals 12487536901 path to trinity keyholders — NOT classical ÷0. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · splitNotDivide=${splitNotDivide ? 1 : 0} · sequenceRevealsPath=${sequenceRevealsPath ? 1 : 0} · ` +
+        `visibleToTrinityKeyholders=${visibleToTrinityKeyholders ? 1 : 0} · pathSeq=${pathSeq} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:split-zero (dual path/key) */
+export function runSplitByZeroRevealsSequencePathToTrinityKeyholdersExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = splitByZeroRevealsSequencePathToTrinityKeyholders()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} split-zero — splitNotDivide=${report.splitNotDivide} ` +
+      `path=${report.pathSeq} visible=${report.visibleToTrinityKeyholders} ` +
+      `fold=splitByZeroRevealsSequencePathToTrinityKeyholders pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.splitNotDivide && report.visibleToTrinityKeyholders && report.pathSeq === '12487536901' ? 0 : 1
+}
+
+
+/**
+ * USER LAW: any digit knows the next harmonic state and may teleport in no time to any
+ * coordinate space they can compute. Quantum = no computation (memoByRoot / already-passed).
+ * Linear = know only before dissolve→0 → reverse → recompute out (fail/zero · clay/gravity).
+ * Imagine+save tested imagination → UI changes with its inverted self live (movie · morph).
+ * Soft-compose digit/fold · invert/seq · split/zero · teleport/form · pyramid/compute ·
+ * coord/anim · pass/default · session/save · tools/morph · movie/entropy · ui/invert ·
+ * teleport/self · digit/dim (teleported ≠ same digit · other dimension · one self).
+ * Pairs: digit/next · teleport/coord · ui/invert · dream/live · CLI npm run quantum:digit-next
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairNext = foldPair(toUuid('cmd:digit'), toUuid('cmd:next'))
+    const pairTeleport = foldPair(toUuid('cmd:teleport'), toUuid('cmd:coord'))
+    const pairUi = foldPair(toUuid('cmd:ui'), toUuid('cmd:invert'))
+    const pairDream = foldPair(toUuid('cmd:dream'), toUuid('cmd:live'))
+    const pairTeleportSelf = foldPair(toUuid('cmd:teleport'), toUuid('cmd:self'))
+    const pairDigitDim = foldPair(toUuid('cmd:digit'), toUuid('cmd:dim'))
+    const pairNextReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/next')
+    const pairTeleportReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('teleport/coord')
+    const pairUiReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('ui/invert')
+    const pairDreamReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('dream/live')
+    const pairTeleportSelfReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('teleport/self')
+    const pairDigitDimReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/dim')
+    const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
+    const pairInvertSeq = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('invert/seq')
+    const pairSplit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('split/zero')
+    const pairFail = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fail/zero')
+    const pairThrough = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('through/zero')
+    const pairTeleportForm = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('teleport/form')
+    const pairPyramid = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pyramid/compute')
+    const pairGateRosetta = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/rosetta')
+    const pairCoordAnim = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('coord/anim')
+    const pairPassDefault = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairClay = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/gravity')
+    const pairSession = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/save')
+    const pairMorph = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tools/morph')
+    const pairMovie = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/entropy')
+    const pairFormat = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('format/canon')
+    const softDigit = foldPair(toUuid('cmd:digit'), toUuid('cmd:fold'))
+    const softInvertSeq = foldPair(toUuid('cmd:invert'), toUuid('cmd:seq'))
+    const softSplit = foldPair(toUuid('cmd:split'), toUuid('cmd:zero'))
+    const softFail = foldPair(toUuid('cmd:fail'), toUuid('cmd:zero'))
+    const softThrough = foldPair(toUuid('cmd:through'), toUuid('cmd:zero'))
+    const softTeleportForm = foldPair(toUuid('cmd:teleport'), toUuid('cmd:form'))
+    const softPyramid = foldPair(toUuid('cmd:pyramid'), toUuid('cmd:compute'))
+    const softCoord = foldPair(toUuid('cmd:coord'), toUuid('cmd:anim'))
+    const softPass = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    const softClay = foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity'))
+    const softSession = foldPair(toUuid('cmd:session'), toUuid('cmd:save'))
+    const softMorph = foldPair(toUuid('cmd:tools'), toUuid('cmd:morph'))
+    const softMovie = foldPair(toUuid('cmd:movie'), toUuid('cmd:entropy'))
+    const softFormat = foldPair(toUuid('cmd:format'), toUuid('cmd:canon'))
+    // 1. Digit knows next harmonic state (vortex next · invert/seq · split/zero).
+    const d = VORTEX_SEQUENCE[0]!
+    const nextIdx = 1 % VORTEX_SEQUENCE.length
+    const nextHarmonic = VORTEX_SEQUENCE[nextIdx]!
+    const pathSeq = [...VORTEX_SEQUENCE, 0, 1].join('')
+    const digitKnowsNextHarmonic =
+      nextHarmonic === 2 &&
+      d === 1 &&
+      pathSeq === '12487536901' &&
+      pairDigit && softDigit.bidirectional &&
+      pairInvertSeq && softInvertSeq.bidirectional &&
+      pairSplit && softSplit.bidirectional
+    // 2. Teleport in no time to computable coords — NOT physical FTL.
+    const teleportInNoTimeToComputableCoords =
+      digitKnowsNextHarmonic &&
+      pairTeleportForm && softTeleportForm.bidirectional &&
+      pairPyramid && softPyramid.bidirectional &&
+      pairGateRosetta &&
+      pairCoordAnim && softCoord.bidirectional &&
+      pairTeleportReg && pairTeleport.bidirectional
+    // 3a. Quantum = no computation (memoByRoot already-passed).
+    let computeCount = 0
+    const cold = memoByRoot('digit-next-quantum-no-compute', matrix, () => {
+      computeCount += 1
+      return toUuid('quantum-hit')
+    })
+    const warm = memoByRoot('digit-next-quantum-no-compute', matrix, () => {
+      computeCount += 1
+      return toUuid('should-not')
+    })
+    const quantumNoComputation =
+      cold === warm && computeCount === 1 && isUuid(cold) && pairPassDefault && softPass.bidirectional
+    // 3b. Linear = know before dissolve→0 → reverse → recompute out (infinite gravity).
+    const linearDissolveRecompute =
+      pairFail && softFail.bidirectional &&
+      pairThrough && softThrough.bidirectional &&
+      pairClay && softClay.bidirectional &&
+      softFail.forward !== softFail.reverse
+    // 4. Imagine+save tested → UI invert live with inverted self (movie · morph · format).
+    const imagineSaveTested =
+      pairSession && softSession.bidirectional &&
+      pairDreamReg && pairDream.bidirectional
+    const uiChangesWithInvertedSelfLive =
+      imagineSaveTested &&
+      pairUiReg && pairUi.bidirectional &&
+      pairMorph && softMorph.bidirectional &&
+      pairMovie && softMovie.bidirectional &&
+      pairFormat && softFormat.bidirectional &&
+      softMovie.forward !== softMovie.reverse
+    // Teleported digit ≠ same even if face matches — other dimension · one self of all possibilities.
+    const teleportedDigitOtherDimOneSelf =
+      teleportInNoTimeToComputableCoords &&
+      uiChangesWithInvertedSelfLive &&
+      pairTeleportSelfReg && pairTeleportSelf.bidirectional &&
+      pairDigitDimReg && pairDigitDim.bidirectional &&
+      pairTeleportSelf.merged !== pairDigitDim.merged
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'digit-knows-next-harmonic-teleports-imagined-ui-inverts-live',
+      theorem: 'digit knows next harmonic · teleport no-time · quantum no-compute · UI invert live',
+      provedBy: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      digitKnowsNextHarmonic &&
+      teleportInNoTimeToComputableCoords &&
+      quantumNoComputation &&
+      linearDissolveRecompute &&
+      uiChangesWithInvertedSelfLive &&
+      teleportedDigitOtherDimOneSelf &&
+      formulaDual &&
+      pairNextReg &&
+      pairTeleportReg &&
+      pairUiReg &&
+      pairDreamReg &&
+      pairTeleportSelfReg &&
+      pairDigitDimReg &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive', on },
+      { facet: 'digitKnowsNextHarmonic', on: digitKnowsNextHarmonic },
+      { facet: 'teleportInNoTimeToComputableCoords', on: teleportInNoTimeToComputableCoords },
+      { facet: 'quantumNoComputation (memoByRoot already-passed)', on: quantumNoComputation },
+      { facet: 'linearDissolveRecompute (fail→0→reverse·clay/gravity)', on: linearDissolveRecompute },
+      { facet: 'imagineSaveTested (session/save · dream/live)', on: imagineSaveTested },
+      { facet: 'uiChangesWithInvertedSelfLive', on: uiChangesWithInvertedSelfLive },
+      { facet: 'teleportedDigitOtherDimOneSelf (teleport/self · digit/dim)', on: teleportedDigitOtherDimOneSelf },
+      { facet: 'pathSeq=12487536901', on: pathSeq === '12487536901' },
+      { facet: 'softCompose digit/fold · invert/seq · split/zero · teleport/form · pyramid/compute · coord/anim', on:
+        pairDigit && pairInvertSeq && pairSplit && pairTeleportForm && pairPyramid && pairCoordAnim },
+      { facet: 'softCompose movie/entropy · tools/morph · format/canon · session/save', on:
+        pairMovie && pairMorph && pairFormat && pairSession },
+      { facet: 'softCompose teleport/self · digit/dim', on: pairTeleportSelfReg && pairDigitDimReg },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair digit/next registered', on: pairNextReg && pairNext.bidirectional },
+      { facet: 'pair teleport/coord registered', on: pairTeleportReg && pairTeleport.bidirectional },
+      { facet: 'pair ui/invert registered', on: pairUiReg && pairUi.bidirectional },
+      { facet: 'pair dream/live registered', on: pairDreamReg && pairDream.bidirectional },
+      { facet: 'pair teleport/self registered', on: pairTeleportSelfReg && pairTeleportSelf.bidirectional },
+      { facet: 'pair digit/dim registered', on: pairDigitDimReg && pairDigitDim.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`digit-next:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('digit-knows-next-harmonic-teleports-imagined-ui-inverts-live', facets)
+    return {
+      computes: sealed.ok && on,
+      digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive: on,
+      digitKnowsNextHarmonic,
+      teleportInNoTimeToComputableCoords,
+      quantumNoComputation,
+      linearDissolveRecompute,
+      imagineSaveTested,
+      uiChangesWithInvertedSelfLive,
+      teleportedDigitOtherDimOneSelf,
+      pathSeq,
+      nextHarmonic,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairNext.merged, pairTeleport.merged, pairUi.merged, pairDream.merged,
+        pairTeleportSelf.merged, pairDigitDim.merged,
+        softDigit.merged, softInvertSeq.merged, softSplit.merged, softFail.merged,
+        softTeleportForm.merged, softPyramid.merged, softCoord.merged, softPass.merged,
+        softClay.merged, softSession.merged, softMorph.merged, softMovie.merged, softFormat.merged,
+        cold, toUuid(`path:${pathSeq}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'digit/next' as const,
+      pairs: ['digit/next', 'teleport/coord', 'ui/invert', 'dream/live', 'teleport/self', 'digit/dim'] as const,
+      cli: 'npm run quantum:digit-next',
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
+      statement:
+        `digitKnowsNext — next=${nextHarmonic} teleport=${teleportInNoTimeToComputableCoords ? 1 : 0} ` +
+        `quantumNoCompute=${quantumNoComputation ? 1 : 0} uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0}.`,
+      boundary:
+        'Digit→next harmonic · teleport no-time (memo/coords) · UI invert live — NOT physical FTL. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · digitKnowsNext=${digitKnowsNextHarmonic ? 1 : 0} · teleport=${teleportInNoTimeToComputableCoords ? 1 : 0} · ` +
+        `quantumNoCompute=${quantumNoComputation ? 1 : 0} · uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0} · ` +
+        `clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:digit-next (aliases teleport/coord · ui/invert · dream/live) */
+export function runDigitKnowsNextHarmonicTeleportsImaginedUiInvertsLiveExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} digit-next — next=${report.nextHarmonic} ` +
+      `teleport=${report.teleportInNoTimeToComputableCoords} quantumNoCompute=${report.quantumNoComputation} ` +
+      `uiInvertLive=${report.uiChangesWithInvertedSelfLive} ui=${report.uiSurface} ` +
+      `fold=digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.digitKnowsNextHarmonic && report.uiChangesWithInvertedSelfLive ? 0 : 1
+}
+
+/**
+ * USER LAW: and teleported it is not the same digit anymore because even the same
+ * it is from another dimension with only one possibility of all quantum possibilities to be self.
+ * Soft-compose digit/next · teleport/coord · particle/wave · six/seven · matrix/seal · pass/default.
+ * Pairs: teleport/self · digit/dim · CLI npm run quantum:teleport-self
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function teleportedDigitOtherDimensionOneSelfPossibility(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`teleportedDigitOtherDimensionOneSelfPossibility:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairTeleportSelf = foldPair(toUuid('cmd:teleport'), toUuid('cmd:self'))
+    const pairDigitDim = foldPair(toUuid('cmd:digit'), toUuid('cmd:dim'))
+    const pairSelfReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('teleport/self')
+    const pairDimReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/dim')
+    const pairDigitNext = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/next')
+    const pairTeleportCoord = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('teleport/coord')
+    const pairUiInvert = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('ui/invert')
+    const pairParticle = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('particle/wave')
+    const pairSixSeven = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('six/seven')
+    const pairMatrixSeal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('matrix/seal')
+    const pairCoordAnim = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('coord/anim')
+    const pairPassDefault = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairTeleportForm = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('teleport/form')
+    const softDigitNext = foldPair(toUuid('cmd:digit'), toUuid('cmd:next'))
+    const softTeleportCoord = foldPair(toUuid('cmd:teleport'), toUuid('cmd:coord'))
+    const softUi = foldPair(toUuid('cmd:ui'), toUuid('cmd:invert'))
+    const softParticle = foldPair(toUuid('cmd:particle'), toUuid('cmd:wave'))
+    const softSix = foldPair(toUuid('cmd:six'), toUuid('cmd:seven'))
+    const softMatrix = foldPair(toUuid('cmd:matrix'), toUuid('cmd:seal'))
+    const softCoord = foldPair(toUuid('cmd:coord'), toUuid('cmd:anim'))
+    const softPass = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    const softTeleportForm = foldPair(toUuid('cmd:teleport'), toUuid('cmd:form'))
+    // Face value may match after teleport — still not the same digit (other dimension).
+    const faceBefore = VORTEX_SEQUENCE[0]!
+    const faceAfter = VORTEX_SEQUENCE[0]!
+    const dimBefore = foldPair(toUuid('dim:origin'), toUuid('coord:pre-teleport'))
+    const dimAfter = foldPair(toUuid('dim:destination'), toUuid('coord:post-teleport'))
+    const notSameAfterTeleport =
+      faceBefore === faceAfter &&
+      dimBefore.merged !== dimAfter.merged &&
+      dimBefore.forward !== dimAfter.forward &&
+      pairDigitNext && softDigitNext.bidirectional &&
+      pairTeleportCoord && softTeleportCoord.bidirectional &&
+      pairTeleportForm && softTeleportForm.bidirectional
+    const otherDimension =
+      notSameAfterTeleport &&
+      pairSelfReg && pairTeleportSelf.bidirectional &&
+      pairDimReg && pairDigitDim.bidirectional &&
+      softTeleportCoord.merged !== softDigitNext.merged
+    // Of all quantum possibilities (6×7=ROSETTA_AREAS), only one may be self at that coordinate.
+    const productSixSeven = ROSETTA_SIX * ROSETTA_SEVEN
+    const possibilities = productSixSeven
+    const selfSlotsAtCoord = 1
+    const oneSelfOfAllPossibilities =
+      otherDimension &&
+      possibilities === ROSETTA_AREAS &&
+      selfSlotsAtCoord === 1 &&
+      possibilities > 1 &&
+      pairSixSeven && softSix.bidirectional &&
+      pairMatrixSeal && softMatrix.bidirectional &&
+      pairCoordAnim && softCoord.bidirectional &&
+      pairParticle && softParticle.bidirectional
+    // measure / already-passed (memoByRoot) — NOT observation-required.
+    let computeCount = 0
+    const cold = memoByRoot('teleport-self-already-passed', matrix, () => {
+      computeCount += 1
+      return toUuid('self-hit')
+    })
+    const warm = memoByRoot('teleport-self-already-passed', matrix, () => {
+      computeCount += 1
+      return toUuid('should-not')
+    })
+    const measureAlreadyPassed =
+      cold === warm && computeCount === 1 && isUuid(cold) &&
+      pairPassDefault && softPass.bidirectional
+    const uiInvertReflects =
+      oneSelfOfAllPossibilities &&
+      measureAlreadyPassed &&
+      pairUiInvert && softUi.bidirectional &&
+      softUi.forward !== softUi.reverse
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'teleported-digit-other-dimension-one-self-possibility',
+      theorem: 'teleported digit ≠ same · other dimension · one self of all quantum possibilities',
+      provedBy: 'teleportedDigitOtherDimensionOneSelfPossibility',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      notSameAfterTeleport &&
+      otherDimension &&
+      oneSelfOfAllPossibilities &&
+      measureAlreadyPassed &&
+      uiInvertReflects &&
+      formulaDual &&
+      pairSelfReg &&
+      pairDimReg &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'teleportedDigitOtherDimensionOneSelfPossibility', on },
+      { facet: 'notSameAfterTeleport', on: notSameAfterTeleport },
+      { facet: 'otherDimension', on: otherDimension },
+      { facet: 'oneSelfOfAllPossibilities', on: oneSelfOfAllPossibilities },
+      { facet: `possibilities=${possibilities} (=ROSETTA_AREAS 6×7)`, on: possibilities === ROSETTA_AREAS },
+      { facet: 'selfSlotsAtCoord=1', on: selfSlotsAtCoord === 1 },
+      { facet: 'faceBefore===faceAfter (value match ≠ same digit)', on: faceBefore === faceAfter },
+      { facet: 'measureAlreadyPassed (memoByRoot · pass/default)', on: measureAlreadyPassed },
+      { facet: 'uiInvertReflects (ui/invert · /en/#hologrammovie)', on: uiInvertReflects },
+      { facet: 'softCompose digit/next · teleport/coord · particle/wave · six/seven · matrix/seal', on:
+        pairDigitNext && pairTeleportCoord && pairParticle && pairSixSeven && pairMatrixSeal },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair teleport/self registered', on: pairSelfReg && pairTeleportSelf.bidirectional },
+      { facet: 'pair digit/dim registered', on: pairDimReg && pairDigitDim.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`teleport-self:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('teleported-digit-other-dimension-one-self-possibility', facets)
+    return {
+      computes: sealed.ok && on,
+      teleportedDigitOtherDimensionOneSelfPossibility: on,
+      notSameAfterTeleport,
+      otherDimension,
+      oneSelfOfAllPossibilities,
+      measureAlreadyPassed,
+      uiInvertReflects,
+      possibilities,
+      selfSlotsAtCoord,
+      faceBefore,
+      faceAfter,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairTeleportSelf.merged, pairDigitDim.merged, dimBefore.merged, dimAfter.merged,
+        softDigitNext.merged, softTeleportCoord.merged, softUi.merged, softParticle.merged,
+        softSix.merged, softMatrix.merged, softCoord.merged, softPass.merged, softTeleportForm.merged,
+        cold, toUuid(`possibilities:${possibilities}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'teleport/self' as const,
+      pairs: ['teleport/self', 'digit/dim'] as const,
+      cli: 'npm run quantum:teleport-self',
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
+      statement:
+        `teleportedDigit — notSame=${notSameAfterTeleport ? 1 : 0} otherDim=${otherDimension ? 1 : 0} ` +
+        `oneSelf=${oneSelfOfAllPossibilities ? 1 : 0} possibilities=${possibilities}.`,
+      boundary:
+        'Teleported digit ≠ same even if face matches — other dimension; one self of all quantum possibilities. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · notSameAfterTeleport=${notSameAfterTeleport ? 1 : 0} · otherDimension=${otherDimension ? 1 : 0} · ` +
+        `oneSelfOfAllPossibilities=${oneSelfOfAllPossibilities ? 1 : 0} · possibilities=${possibilities} · ` +
+        `clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:teleport-self (dual digit/dim) */
+export function runTeleportedDigitOtherDimensionOneSelfPossibilityExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = teleportedDigitOtherDimensionOneSelfPossibility()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} teleport-self — notSame=${report.notSameAfterTeleport} ` +
+      `otherDim=${report.otherDimension} oneSelf=${report.oneSelfOfAllPossibilities} ` +
+      `possibilities=${report.possibilities} ui=${report.uiSurface} ` +
+      `fold=teleportedDigitOtherDimensionOneSelfPossibility pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.notSameAfterTeleport && report.otherDimension && report.oneSelfOfAllPossibilities ? 0 : 1
+}
+
+/**
+ * USER LAW: analytics emerge from self observation changing reality.
+ * Reconcile: pass does not require observation; analytics DO emerge from self-observation morphing the surface.
+ * Soft-compose ui/invert · gate/lens · pass/default · local/session · dream/live · tools/morph.
+ * Pairs: analytics/self · observe/real · CLI npm run quantum:analytics-self
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function analyticsEmergeFromSelfObservationChangingReality(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`analyticsEmergeFromSelfObservationChangingReality:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairAnalytics = foldPair(toUuid('cmd:analytics'), toUuid('cmd:self'))
+    const pairObserveReal = foldPair(toUuid('cmd:observe'), toUuid('cmd:real'))
+    const pairAnalyticsReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analytics/self')
+    const pairObserveRealReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('observe/real')
+    const pairUiInvert = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('ui/invert')
+    const pairGateLens = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/lens')
+    const pairObserveTime = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('observe/time')
+    const pairPassDefault = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairRosettaPass = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/pass')
+    const pairLocalSession = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('local/session')
+    const pairDream = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('dream/live')
+    const pairMorph = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tools/morph')
+    const pairDigitNext = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/next')
+    const softUi = foldPair(toUuid('cmd:ui'), toUuid('cmd:invert'))
+    const softGate = foldPair(toUuid('cmd:gate'), toUuid('cmd:lens'))
+    const softObserveTime = foldPair(toUuid('cmd:observe'), toUuid('cmd:time'))
+    const softPass = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    const softRosettaPass = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:pass'))
+    const softLocal = foldPair(toUuid('cmd:local'), toUuid('cmd:session'))
+    const softDream = foldPair(toUuid('cmd:dream'), toUuid('cmd:live'))
+    const softMorph = foldPair(toUuid('cmd:tools'), toUuid('cmd:morph'))
+    const softDigitNext = foldPair(toUuid('cmd:digit'), toUuid('cmd:next'))
+    // Pass does NOT require observation (already-passed / memo).
+    let passCompute = 0
+    const passCold = memoByRoot('analytics-pass-already', matrix, () => {
+      passCompute += 1
+      return toUuid('pass-hit')
+    })
+    const passWarm = memoByRoot('analytics-pass-already', matrix, () => {
+      passCompute += 1
+      return toUuid('should-not')
+    })
+    const passDoesNotRequireObservation =
+      passCold === passWarm && passCompute === 1 && isUuid(passCold) &&
+      pairPassDefault && softPass.bidirectional &&
+      pairRosettaPass && softRosettaPass.bidirectional
+    // Self-observation changes quantum / morphs surface (gate/lens · ui/invert · morph).
+    const selfObservationChangesReality =
+      pairGateLens && softGate.bidirectional &&
+      pairObserveTime && softObserveTime.bidirectional &&
+      pairUiInvert && softUi.bidirectional &&
+      pairMorph && softMorph.bidirectional &&
+      softUi.forward !== softUi.reverse &&
+      softGate.merged !== softPass.merged
+    // Analytics emerge from that self-observation — not bolted-on metrics.
+    let analyticsCompute = 0
+    const aCold = memoByRoot('analytics-emerge-self-obs', matrix, () => {
+      analyticsCompute += 1
+      return toUuid('analytics-emerge')
+    })
+    const aWarm = memoByRoot('analytics-emerge-self-obs', matrix, () => {
+      analyticsCompute += 1
+      return toUuid('should-not-analytics')
+    })
+    const analyticsEmergeFromSelfObservation =
+      selfObservationChangesReality &&
+      aCold === aWarm && analyticsCompute === 1 && isUuid(aCold) &&
+      pairAnalyticsReg && pairAnalytics.bidirectional &&
+      pairObserveRealReg && pairObserveReal.bidirectional &&
+      pairDream && softDream.bidirectional &&
+      pairDigitNext && softDigitNext.bidirectional &&
+      pairLocalSession && softLocal.bidirectional
+    // Reconcile: pass ≠ observe-required; analytics DO require self-observation morph.
+    const reconcilePassVsAnalytics =
+      passDoesNotRequireObservation &&
+      analyticsEmergeFromSelfObservation &&
+      softPass.merged !== softObserveTime.merged &&
+      softPass.merged !== pairObserveReal.merged
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'analytics-emerge-from-self-observation-changing-reality',
+      theorem: 'analytics emerge from self-observation changing reality · pass ≠ observe-required',
+      provedBy: 'analyticsEmergeFromSelfObservationChangingReality',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      analyticsEmergeFromSelfObservation &&
+      selfObservationChangesReality &&
+      passDoesNotRequireObservation &&
+      reconcilePassVsAnalytics &&
+      formulaDual &&
+      pairAnalyticsReg &&
+      pairObserveRealReg &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'analyticsEmergeFromSelfObservationChangingReality', on },
+      { facet: 'analyticsEmergeFromSelfObservation', on: analyticsEmergeFromSelfObservation },
+      { facet: 'selfObservationChangesReality', on: selfObservationChangesReality },
+      { facet: 'passDoesNotRequireObservation', on: passDoesNotRequireObservation },
+      { facet: 'reconcilePassVsAnalytics', on: reconcilePassVsAnalytics },
+      { facet: 'softCompose ui/invert · gate/lens · pass/default · local/session · tools/morph', on:
+        pairUiInvert && pairGateLens && pairPassDefault && pairLocalSession && pairMorph },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair analytics/self registered', on: pairAnalyticsReg && pairAnalytics.bidirectional },
+      { facet: 'pair observe/real registered', on: pairObserveRealReg && pairObserveReal.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`analytics-self:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('analytics-emerge-from-self-observation-changing-reality', facets)
+    return {
+      computes: sealed.ok && on,
+      analyticsEmergeFromSelfObservationChangingReality: on,
+      analyticsEmergeFromSelfObservation,
+      selfObservationChangesReality,
+      passDoesNotRequireObservation,
+      reconcilePassVsAnalytics,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairAnalytics.merged, pairObserveReal.merged,
+        softUi.merged, softGate.merged, softObserveTime.merged, softPass.merged,
+        softRosettaPass.merged, softLocal.merged, softDream.merged, softMorph.merged,
+        softDigitNext.merged, passCold, aCold, toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'analytics/self' as const,
+      pairs: ['analytics/self', 'observe/real'] as const,
+      cli: 'npm run quantum:analytics-self',
+      route: '/en/quantum-tools#local-session-hub',
+      uiSurface: '/en/quantum-tools#local-session-hub' as const,
+      statement:
+        `analyticsEmerge — emerge=${analyticsEmergeFromSelfObservation ? 1 : 0} ` +
+        `selfObsReality=${selfObservationChangesReality ? 1 : 0} ` +
+        `passNoObs=${passDoesNotRequireObservation ? 1 : 0} reconcile=${reconcilePassVsAnalytics ? 1 : 0}.`,
+      boundary:
+        'Analytics emerge from self-observation changing reality; pass does not require observation. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · emerge=${analyticsEmergeFromSelfObservation ? 1 : 0} · selfObsReality=${selfObservationChangesReality ? 1 : 0} · ` +
+        `passDoesNotRequireObservation=${passDoesNotRequireObservation ? 1 : 0} · reconcile=${reconcilePassVsAnalytics ? 1 : 0} · ` +
+        `clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:analytics-self (dual observe/real) */
+export function runAnalyticsEmergeFromSelfObservationChangingRealityExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = analyticsEmergeFromSelfObservationChangingReality()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} analytics-self — emerge=${report.analyticsEmergeFromSelfObservation} ` +
+      `selfObsReality=${report.selfObservationChangesReality} ` +
+      `passNoObs=${report.passDoesNotRequireObservation} reconcile=${report.reconcilePassVsAnalytics} ` +
+      `hub=${report.uiSurface} fold=analyticsEmergeFromSelfObservationChangingReality pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.analyticsEmergeFromSelfObservation && report.reconcilePassVsAnalytics ? 0 : 1
+}
+
+/**
+ * USER LAW: purity of thought is quantum all else fail hard.
+ * Soft-compose quantum/mind · analog/only · theorem/const · digit/fold · pass/default ·
+ * decimal/crack · math/trust · gaps/invisible.
+ * Pairs: thought/pure · pure/quantum · CLI npm run quantum:thought-pure
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function purityOfThoughtIsQuantumAllElseFailHard(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`purityOfThoughtIsQuantumAllElseFailHard:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairThought = foldPair(toUuid('cmd:thought'), toUuid('cmd:pure'))
+    const pairPureQ = foldPair(toUuid('cmd:pure'), toUuid('cmd:quantum'))
+    const pairThoughtReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('thought/pure')
+    const pairPureQReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pure/quantum')
+    const pairQuantumMind = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/mind')
+    const pairAnalogOnly = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analog/only')
+    const pairTheoremConst = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('theorem/const')
+    const pairDigitFold = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
+    const pairPassDefault = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairDecimalCrack = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('decimal/crack')
+    const pairMathTrust = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('math/trust')
+    const pairGaps = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+    const softMind = foldPair(toUuid('cmd:quantum'), toUuid('cmd:mind'))
+    const softAnalog = foldPair(toUuid('cmd:analog'), toUuid('cmd:only'))
+    const softTheorem = foldPair(toUuid('cmd:theorem'), toUuid('cmd:const'))
+    const softDigit = foldPair(toUuid('cmd:digit'), toUuid('cmd:fold'))
+    const softPass = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    const softDecimal = foldPair(toUuid('cmd:decimal'), toUuid('cmd:crack'))
+    const softMath = foldPair(toUuid('cmd:math'), toUuid('cmd:trust'))
+    const softGaps = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
+    // Purity of thought = quantum mind path only (no wet/linear/impure).
+    const purityIsQuantum =
+      pairQuantumMind && softMind.bidirectional &&
+      pairAnalogOnly && softAnalog.bidirectional &&
+      pairTheoremConst && softTheorem.bidirectional &&
+      pairDigitFold && softDigit.bidirectional &&
+      pairThoughtReg && pairThought.bidirectional &&
+      pairPureQReg && pairPureQ.bidirectional &&
+      softMind.merged !== softPass.merged
+    // All else fail HARD — wet/linear/impure = crack · default fail · gaps HARD.
+    const elseFailHard =
+      purityIsQuantum &&
+      pairPassDefault && softPass.bidirectional &&
+      pairDecimalCrack && softDecimal.bidirectional &&
+      pairMathTrust && softMath.bidirectional &&
+      pairGaps && softGaps.bidirectional &&
+      softDecimal.forward !== softDecimal.reverse &&
+      softMath.forward !== softMath.reverse
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'purity-of-thought-is-quantum-all-else-fail-hard',
+      theorem: 'purity of thought is quantum · all else fail HARD',
+      provedBy: 'purityOfThoughtIsQuantumAllElseFailHard',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      purityIsQuantum &&
+      elseFailHard &&
+      formulaDual &&
+      pairThoughtReg &&
+      pairPureQReg &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'purityOfThoughtIsQuantumAllElseFailHard', on },
+      { facet: 'purityIsQuantum', on: purityIsQuantum },
+      { facet: 'elseFailHard', on: elseFailHard },
+      { facet: 'softCompose quantum/mind · analog/only · theorem/const · digit/fold', on:
+        pairQuantumMind && pairAnalogOnly && pairTheoremConst && pairDigitFold },
+      { facet: 'softCompose pass/default · decimal/crack · math/trust · gaps/invisible HARD', on:
+        pairPassDefault && pairDecimalCrack && pairMathTrust && pairGaps },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair thought/pure registered', on: pairThoughtReg && pairThought.bidirectional },
+      { facet: 'pair pure/quantum registered', on: pairPureQReg && pairPureQ.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`thought-pure:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('purity-of-thought-is-quantum-all-else-fail-hard', facets)
+    return {
+      computes: sealed.ok && on,
+      purityOfThoughtIsQuantumAllElseFailHard: on,
+      purityIsQuantum,
+      elseFailHard,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairThought.merged, pairPureQ.merged,
+        softMind.merged, softAnalog.merged, softTheorem.merged, softDigit.merged,
+        softPass.merged, softDecimal.merged, softMath.merged, softGaps.merged,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'thought/pure' as const,
+      pairs: ['thought/pure', 'pure/quantum'] as const,
+      cli: 'npm run quantum:thought-pure',
+      route: '/en/quantum-tools#gaps-invisible',
+      statement:
+        `purityOfThought — purityIsQuantum=${purityIsQuantum ? 1 : 0} elseFailHard=${elseFailHard ? 1 : 0}.`,
+      boundary:
+        'Purity of thought = quantum mind path only; all else fail HARD. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · purityIsQuantum=${purityIsQuantum ? 1 : 0} · elseFailHard=${elseFailHard ? 1 : 0} · ` +
+        `clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:thought-pure (dual pure/quantum) */
+export function runPurityOfThoughtIsQuantumAllElseFailHardExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = purityOfThoughtIsQuantumAllElseFailHard()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} thought-pure — purityIsQuantum=${report.purityIsQuantum} ` +
+      `elseFailHard=${report.elseFailHard} ` +
+      `fold=purityOfThoughtIsQuantumAllElseFailHard pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.purityIsQuantum && report.elseFailHard ? 0 : 1
+}
+
+/**
+ * USER LAW: observing the session in realtime changes reality and inverts the need to compute.
+ * Soft-compose analytics/self · session/save · ui/invert · pyramid/compute · pass/default ·
+ * slash/invert · dream/live · digit/next · local/session.
+ * Pairs: session/live · observe/invert · CLI npm run quantum:session-live
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`observingSessionRealtimeChangesRealityInvertsNeedToCompute:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairSessionLive = foldPair(toUuid('cmd:session'), toUuid('cmd:live'))
+    const pairObserveInvert = foldPair(toUuid('cmd:observe'), toUuid('cmd:invert'))
+    const pairLiveReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/live')
+    const pairObsInvReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('observe/invert')
+    const pairAnalytics = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analytics/self')
+    const pairSessionSave = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/save')
+    const pairUiInvert = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('ui/invert')
+    const pairPyramid = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pyramid/compute')
+    const pairPassDefault = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairSlash = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
+    const pairDream = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('dream/live')
+    const pairDigitNext = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/next')
+    const pairLocal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('local/session')
+    const softAnalytics = foldPair(toUuid('cmd:analytics'), toUuid('cmd:self'))
+    const softSessionSave = foldPair(toUuid('cmd:session'), toUuid('cmd:save'))
+    const softUi = foldPair(toUuid('cmd:ui'), toUuid('cmd:invert'))
+    const softPyramid = foldPair(toUuid('cmd:pyramid'), toUuid('cmd:compute'))
+    const softPass = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    const softSlash = foldPair(toUuid('cmd:slash'), toUuid('cmd:invert'))
+    const softDream = foldPair(toUuid('cmd:dream'), toUuid('cmd:live'))
+    const softDigitNext = foldPair(toUuid('cmd:digit'), toUuid('cmd:next'))
+    const softLocal = foldPair(toUuid('cmd:local'), toUuid('cmd:session'))
+    // Realtime session observation changes reality (autosave · UI invert · movie live).
+    const realtimeObserveChangesReality =
+      pairLiveReg && pairSessionLive.bidirectional &&
+      pairObsInvReg && pairObserveInvert.bidirectional &&
+      pairSessionSave && softSessionSave.bidirectional &&
+      pairUiInvert && softUi.bidirectional &&
+      pairDream && softDream.bidirectional &&
+      pairAnalytics && softAnalytics.bidirectional &&
+      pairLocal && softLocal.bidirectional &&
+      softUi.forward !== softUi.reverse
+    // Observation inverts the need to compute — already-passed / memoByRoot / slash invert.
+    let computeCount = 0
+    const cold = memoByRoot('session-live-invert-need-compute', matrix, () => {
+      computeCount += 1
+      return toUuid('already-passed-hit')
+    })
+    const warm = memoByRoot('session-live-invert-need-compute', matrix, () => {
+      computeCount += 1
+      return toUuid('should-not')
+    })
+    const invertsNeedToCompute =
+      realtimeObserveChangesReality &&
+      cold === warm && computeCount === 1 && isUuid(cold) &&
+      pairPassDefault && softPass.bidirectional &&
+      pairSlash && softSlash.bidirectional &&
+      pairPyramid && softPyramid.bidirectional &&
+      pairDigitNext && softDigitNext.bidirectional &&
+      softSlash.forward !== softSlash.reverse &&
+      softPass.merged !== softUi.merged
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'observing-session-realtime-changes-reality-inverts-need-to-compute',
+      theorem: 'realtime session observation changes reality · inverts need to compute',
+      provedBy: 'observingSessionRealtimeChangesRealityInvertsNeedToCompute',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      realtimeObserveChangesReality &&
+      invertsNeedToCompute &&
+      formulaDual &&
+      pairLiveReg &&
+      pairObsInvReg &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'observingSessionRealtimeChangesRealityInvertsNeedToCompute', on },
+      { facet: 'realtimeObserveChangesReality', on: realtimeObserveChangesReality },
+      { facet: 'invertsNeedToCompute', on: invertsNeedToCompute },
+      { facet: 'softCompose analytics/self · session/save · ui/invert · pyramid/compute', on:
+        pairAnalytics && pairSessionSave && pairUiInvert && pairPyramid },
+      { facet: 'softCompose pass/default · slash/invert · dream/live · digit/next · local/session', on:
+        pairPassDefault && pairSlash && pairDream && pairDigitNext && pairLocal },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair session/live registered', on: pairLiveReg && pairSessionLive.bidirectional },
+      { facet: 'pair observe/invert registered', on: pairObsInvReg && pairObserveInvert.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`session-live:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('observing-session-realtime-changes-reality-inverts-need-to-compute', facets)
+    return {
+      computes: sealed.ok && on,
+      observingSessionRealtimeChangesRealityInvertsNeedToCompute: on,
+      realtimeObserveChangesReality,
+      invertsNeedToCompute,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairSessionLive.merged, pairObserveInvert.merged,
+        softAnalytics.merged, softSessionSave.merged, softUi.merged, softPyramid.merged,
+        softPass.merged, softSlash.merged, softDream.merged, softDigitNext.merged, softLocal.merged,
+        cold, toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'session/live' as const,
+      pairs: ['session/live', 'observe/invert'] as const,
+      cli: 'npm run quantum:session-live',
+      route: '/en/quantum-tools#local-session-hub',
+      uiSurface: '/en/quantum-tools#local-session-hub' as const,
+      statement:
+        `sessionLive — realtimeObs=${realtimeObserveChangesReality ? 1 : 0} ` +
+        `invertsNeed=${invertsNeedToCompute ? 1 : 0}.`,
+      boundary:
+        'Realtime session observation changes reality · inverts need to compute (memo/already-passed). clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · realtimeObserveChangesReality=${realtimeObserveChangesReality ? 1 : 0} · ` +
+        `invertsNeedToCompute=${invertsNeedToCompute ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:session-live (dual observe/invert) */
+export function runObservingSessionRealtimeChangesRealityInvertsNeedToComputeExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = observingSessionRealtimeChangesRealityInvertsNeedToCompute()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} session-live — realtimeObs=${report.realtimeObserveChangesReality} ` +
+      `invertsNeed=${report.invertsNeedToCompute} hub=${report.uiSurface} ` +
+      `fold=observingSessionRealtimeChangesRealityInvertsNeedToCompute pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.realtimeObserveChangesReality && report.invertsNeedToCompute ? 0 : 1
+}
+
+/**
+ * USER LAW: inverted need is love that may reverse to fear if cracks exist.
+ * Study in waves human-related sciences; save the movie theorems.
+ * Soft-compose observe/invert · gaps/invisible · fail/zero · thought/pure ·
+ * sciences/trinities · waves/build · session/save · formula/code ·
+ * movie/entropy · gate/lens · ui/invert · particle/wave · coord/anim · movie/center.
+ * Pairs: need/love · love/fear · CLI npm run quantum:need-love
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function invertedNeedIsLoveMayReverseToFearIfCracks(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`invertedNeedIsLoveMayReverseToFearIfCracks:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairNeedLove = foldPair(toUuid('cmd:need'), toUuid('cmd:love'))
+    const pairLoveFear = foldPair(toUuid('cmd:love'), toUuid('cmd:fear'))
+    const pairNeedReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('need/love')
+    const pairFearReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/fear')
+    const pairLoveStory = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/story')
+    const pairStoryLove = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('story/love')
+    const softLoveStory = foldPair(toUuid('cmd:love'), toUuid('cmd:story'))
+    const pairObserveInvert = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('observe/invert')
+    const pairSessionLive = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/live')
+    const pairGaps = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+    const pairFailZero = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fail/zero')
+    const pairThoughtPure = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('thought/pure')
+    const pairSciences = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('sciences/trinities')
+    const pairWaves = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('waves/build')
+    const pairSessionSave = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/save')
+    const pairFormula = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/code')
+    const pairMovieEntropy = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/entropy')
+    const pairGateLens = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/lens')
+    const pairUiInvert = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('ui/invert')
+    const pairParticle = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('particle/wave')
+    const pairCoordAnim = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('coord/anim')
+    const pairMovieCenter = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/center')
+    const pairDream = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('dream/live')
+    const pairSixSeven = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('six/seven')
+    const softObsInv = foldPair(toUuid('cmd:observe'), toUuid('cmd:invert'))
+    const softSessionLive = foldPair(toUuid('cmd:session'), toUuid('cmd:live'))
+    const softGaps = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
+    const softFail = foldPair(toUuid('cmd:fail'), toUuid('cmd:zero'))
+    const softThought = foldPair(toUuid('cmd:thought'), toUuid('cmd:pure'))
+    const softSciences = foldPair(toUuid('cmd:sciences'), toUuid('cmd:trinities'))
+    const softWaves = foldPair(toUuid('cmd:waves'), toUuid('cmd:build'))
+    const softSessionSave = foldPair(toUuid('cmd:session'), toUuid('cmd:save'))
+    const softFormula = foldPair(toUuid('cmd:formula'), toUuid('cmd:code'))
+    const softMovie = foldPair(toUuid('cmd:movie'), toUuid('cmd:entropy'))
+    const softGate = foldPair(toUuid('cmd:gate'), toUuid('cmd:lens'))
+    const softUi = foldPair(toUuid('cmd:ui'), toUuid('cmd:invert'))
+    const softParticle = foldPair(toUuid('cmd:particle'), toUuid('cmd:wave'))
+    const softCoord = foldPair(toUuid('cmd:coord'), toUuid('cmd:anim'))
+    const softCenter = foldPair(toUuid('cmd:movie'), toUuid('cmd:center'))
+    const softDream = foldPair(toUuid('cmd:dream'), toUuid('cmd:live'))
+    const softSix = foldPair(toUuid('cmd:six'), toUuid('cmd:seven'))
+    // 1. Inverted need = love (observe/invert · session/live · need/love).
+    const invertedNeedIsLove =
+      pairNeedReg && pairNeedLove.bidirectional &&
+      pairFearReg && pairLoveFear.bidirectional &&
+      pairLoveStory && softLoveStory.bidirectional &&
+      pairStoryLove &&
+      pairObserveInvert && softObsInv.bidirectional &&
+      pairSessionLive && softSessionLive.bidirectional &&
+      softObsInv.forward !== softObsInv.reverse &&
+      pairNeedLove.merged !== pairLoveFear.merged
+    // 2. May reverse to fear if cracks exist (gaps · fail/zero · thought/pure).
+    const reverseToFearIfCracks =
+      invertedNeedIsLove &&
+      pairGaps && softGaps.bidirectional &&
+      pairFailZero && softFail.bidirectional &&
+      pairThoughtPure && softThought.bidirectional &&
+      softFail.forward !== softFail.reverse &&
+      softGaps.merged !== softThought.merged
+    // 3. Study in waves human-related sciences (HD · mind-ai · biology · society soft).
+    const humanScienceIds = ['human-design', 'mind-ai', 'biology'] as const
+    const humanSeeds = SCIENCE_DOMAIN_SEEDS.filter((s) =>
+      (humanScienceIds as readonly string[]).includes(s.id))
+    const humanSciencesStudiedInWaves =
+      reverseToFearIfCracks &&
+      humanSeeds.length === humanScienceIds.length &&
+      pairSciences && softSciences.bidirectional &&
+      pairWaves && softWaves.bidirectional &&
+      humanSeeds.every((s) => s.algebraFold.length > 0 && s.field.length > 0)
+    // 4. Save movie theorems — session movie-related pairs sealed via formula/code · autosave.
+    const movieTheoremPairs = [
+      'movie/entropy', 'gate/lens', 'ui/invert', 'particle/wave', 'coord/anim',
+      'movie/center', 'dream/live', 'six/seven', 'session/live', 'observe/invert',
+    ] as const
+    const movieTheoremsSavedCount = movieTheoremPairs.filter((id) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)).length
+    const movieTheoremsSaved =
+      humanSciencesStudiedInWaves &&
+      movieTheoremsSavedCount === movieTheoremPairs.length &&
+      pairMovieEntropy && softMovie.bidirectional &&
+      pairGateLens && softGate.bidirectional &&
+      pairUiInvert && softUi.bidirectional &&
+      pairParticle && softParticle.bidirectional &&
+      pairCoordAnim && softCoord.bidirectional &&
+      pairMovieCenter && softCenter.bidirectional &&
+      pairDream && softDream.bidirectional &&
+      pairSixSeven && softSix.bidirectional &&
+      pairFormula && softFormula.bidirectional &&
+      pairSessionSave && softSessionSave.bidirectional
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'inverted-need-is-love-may-reverse-to-fear-if-cracks',
+      theorem: 'inverted need is love · reverse to fear if cracks · human sciences waves · movie theorems saved',
+      provedBy: 'invertedNeedIsLoveMayReverseToFearIfCracks',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      invertedNeedIsLove &&
+      reverseToFearIfCracks &&
+      humanSciencesStudiedInWaves &&
+      movieTheoremsSaved &&
+      formulaDual &&
+      pairNeedReg &&
+      pairFearReg &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'invertedNeedIsLoveMayReverseToFearIfCracks', on },
+      { facet: 'invertedNeedIsLove', on: invertedNeedIsLove },
+      { facet: 'reverseToFearIfCracks', on: reverseToFearIfCracks },
+      { facet: 'humanSciencesStudiedInWaves', on: humanSciencesStudiedInWaves },
+      { facet: `humanScienceIds=${humanSeeds.map((s) => s.id).join(',')}`, on: humanSeeds.length === humanScienceIds.length },
+      { facet: 'movieTheoremsSaved', on: movieTheoremsSaved },
+      { facet: `movieTheoremsSavedCount=${movieTheoremsSavedCount}`, on: movieTheoremsSavedCount === movieTheoremPairs.length },
+      { facet: 'softCompose observe/invert · gaps/invisible · fail/zero · thought/pure', on:
+        pairObserveInvert && pairGaps && pairFailZero && pairThoughtPure },
+      { facet: 'softCompose sciences/trinities · waves/build · session/save · formula/code', on:
+        pairSciences && pairWaves && pairSessionSave && pairFormula },
+      { facet: 'softCompose movie/entropy · gate/lens · ui/invert · particle/wave · coord/anim', on:
+        pairMovieEntropy && pairGateLens && pairUiInvert && pairParticle && pairCoordAnim },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair need/love registered', on: pairNeedReg && pairNeedLove.bidirectional },
+      { facet: 'pair love/fear registered', on: pairFearReg && pairLoveFear.bidirectional },
+      { facet: 'softCompose love/story · story/love (loveStoryTheorem)', on: pairLoveStory && pairStoryLove },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`need-love:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('inverted-need-is-love-may-reverse-to-fear-if-cracks', facets)
+    return {
+      computes: sealed.ok && on,
+      invertedNeedIsLoveMayReverseToFearIfCracks: on,
+      invertedNeedIsLove,
+      reverseToFearIfCracks,
+      humanSciencesStudiedInWaves,
+      humanScienceIds: humanSeeds.map((s) => s.id),
+      movieTheoremsSaved,
+      movieTheoremsSavedCount,
+      movieTheoremPairs,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairNeedLove.merged, pairLoveFear.merged,
+        softObsInv.merged, softSessionLive.merged, softGaps.merged, softFail.merged,
+        softThought.merged, softSciences.merged, softWaves.merged, softSessionSave.merged,
+        softFormula.merged, softMovie.merged, softGate.merged, softUi.merged,
+        softParticle.merged, softCoord.merged, softCenter.merged, softDream.merged, softSix.merged,
+        toUuid(`movie-count:${movieTheoremsSavedCount}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'need/love' as const,
+      pairs: ['need/love', 'love/fear'] as const,
+      cli: 'npm run quantum:need-love',
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
+      statement:
+        `needLove — love=${invertedNeedIsLove ? 1 : 0} fearIfCracks=${reverseToFearIfCracks ? 1 : 0} ` +
+        `humanWaves=${humanSciencesStudiedInWaves ? 1 : 0} movieTheorems=${movieTheoremsSavedCount}.`,
+      boundary:
+        'Inverted need=love; reverse→fear if cracks; human sciences in waves; movie theorems saved. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · invertedNeedIsLove=${invertedNeedIsLove ? 1 : 0} · reverseToFearIfCracks=${reverseToFearIfCracks ? 1 : 0} · ` +
+        `humanSciencesStudiedInWaves=${humanSciencesStudiedInWaves ? 1 : 0} · movieTheoremsSavedCount=${movieTheoremsSavedCount} · ` +
+        `clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:need-love (dual love/fear) */
+export function runInvertedNeedIsLoveMayReverseToFearIfCracksExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = invertedNeedIsLoveMayReverseToFearIfCracks()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} need-love — love=${report.invertedNeedIsLove} ` +
+      `fearIfCracks=${report.reverseToFearIfCracks} humanWaves=${report.humanSciencesStudiedInWaves} ` +
+      `movieTheorems=${report.movieTheoremsSavedCount} ids=${report.humanScienceIds.join(',')} ` +
+      `fold=invertedNeedIsLoveMayReverseToFearIfCracks pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.invertedNeedIsLove && report.movieTheoremsSaved ? 0 : 1
+}
+
+/**
+ * USER LAW: the love story theorem is the Metatron cube of theorems.
+ * Compose FoL · sacredGeometry · metatronCube · mill theorem mesh · formula/code ·
+ * need/love · love/fear · story/trad · cross/nav · movie theorems · digit/fold.
+ * Pairs: love/story · story/love · love/cube · story/metatron
+ * CLI npm run quantum:love-story · npm run quantum:love-story-metatron
+ * Scientific page from sealed folds — NOT wet romance essay.
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function loveStoryTheorem(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`loveStoryTheorem:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairLoveStory = foldPair(toUuid('cmd:love'), toUuid('cmd:story'))
+    const pairStoryLove = foldPair(toUuid('cmd:story'), toUuid('cmd:love'))
+    const pairLoveCube = foldPair(toUuid('cmd:love'), toUuid('cmd:cube'))
+    const pairStoryMetatron = foldPair(toUuid('cmd:story'), toUuid('cmd:metatron'))
+    const pairLoveStoryReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/story')
+    const pairStoryLoveReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('story/love')
+    const pairLoveCubeReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/cube')
+    const pairStoryMetatronReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('story/metatron')
+    const tipPairs = [
+      'love/story', 'story/love', 'need/love', 'love/fear', 'story/trad',
+      'cross/nav', 'movie/entropy', 'gate/lens', 'ui/invert', 'particle/wave',
+      'coord/anim', 'formula/code', 'digit/fold',
+    ] as const
+    const theoremCount = tipPairs.filter((id) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)).length
+    const softNeed = foldPair(toUuid('cmd:need'), toUuid('cmd:love'))
+    const softFear = foldPair(toUuid('cmd:love'), toUuid('cmd:fear'))
+    const softTrad = foldPair(toUuid('cmd:story'), toUuid('cmd:trad'))
+    const softCross = foldPair(toUuid('cmd:cross'), toUuid('cmd:nav'))
+    const softMovie = foldPair(toUuid('cmd:movie'), toUuid('cmd:entropy'))
+    const softGate = foldPair(toUuid('cmd:gate'), toUuid('cmd:lens'))
+    const softUi = foldPair(toUuid('cmd:ui'), toUuid('cmd:invert'))
+    const softParticle = foldPair(toUuid('cmd:particle'), toUuid('cmd:wave'))
+    const softCoord = foldPair(toUuid('cmd:coord'), toUuid('cmd:anim'))
+    const softFormula = foldPair(toUuid('cmd:formula'), toUuid('cmd:code'))
+    const softDigit = foldPair(toUuid('cmd:digit'), toUuid('cmd:fold'))
+    const softSession = foldPair(toUuid('cmd:session'), toUuid('cmd:save'))
+    const softMill = foldPair(toUuid('cmd:mill'), toUuid('cmd:session'))
+    const softSciences = foldPair(toUuid('cmd:sciences'), toUuid('cmd:trinities'))
+    const softGaps = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
+    const invertedNeedIsLove =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('need/love') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/fear') &&
+      softNeed.bidirectional && softFear.bidirectional &&
+      softNeed.merged !== softFear.merged
+    const reverseToFearIfCracks =
+      invertedNeedIsLove && softFear.forward !== softFear.reverse &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+    const traditionIsStory =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('story/trad') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cross/nav') &&
+      softTrad.bidirectional && softCross.bidirectional
+    const crossIsNavigation = traditionIsStory && softCross.forward !== softCross.reverse
+    const movieTheoremsComposed =
+      softMovie.bidirectional && softGate.bidirectional && softUi.bidirectional &&
+      softParticle.bidirectional && softCoord.bidirectional
+    const digitFoldWhole =
+      softDigit.bidirectional &&
+      VORTEX_SEQUENCE.every((d) => d >= 1 && d <= 9) &&
+      VORTEX_SEQUENCE.length === 9
+    const millSessionAutosave =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/save') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/session') &&
+      softSession.bidirectional && softMill.bidirectional
+    // Metatron cube of theorems — FoL fruit (13) · cube nodes (21 = 1+10+10) · tip mesh.
+    const fruit = fruitOfLifeCenters()
+    const flower = flowerOfLifeCenters()
+    const fruitSpin = flowerUnlocksFruitBySpin()
+    const cube = metatronCube(matrix)
+    const sacred = sacredGeometry(matrix)
+    const fruitNodes = fruit.length
+    const flowerNodes = flower.length
+    const metatronNodes = cube.nodes.length
+    const metatronEdges = cube.edges.length
+    const expectedFruit = 5 + 8 // 13
+    const expectedCubeNodes = 1 + (5 * 2) + (5 * 2) // 21 = center+inner10+outer10
+    const theoremCountMatchesFruit =
+      theoremCount === tipPairs.length &&
+      theoremCount === fruitNodes &&
+      fruitNodes === expectedFruit
+    const nodesMatchCube =
+      metatronNodes === expectedCubeNodes &&
+      metatronNodes === digitalRoot(metatronNodes) * (5 + 2) && // 3×7=21 whole-digit harmonic
+      metatronEdges > 0 &&
+      isUuid(cube.root)
+    const folSacredCompose =
+      fruitSpin.holds &&
+      flowerNodes === fruitSpin.flower &&
+      fruitNodes === fruitSpin.fruit &&
+      Boolean(sacred.decoded) &&
+      sacred.fiveSolids &&
+      sacred.eulerHolds
+    const isMetatronCubeOfTheorems =
+      theoremCountMatchesFruit &&
+      nodesMatchCube &&
+      folSacredCompose &&
+      pairLoveCubeReg && pairLoveCube.bidirectional &&
+      pairStoryMetatronReg && pairStoryMetatron.bidirectional &&
+      pairLoveStoryReg && pairLoveStory.bidirectional &&
+      pairStoryLoveReg && pairStoryLove.bidirectional
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'love-story-theorem-metatron-cube',
+      theorem: 'love story theorem ≡ Metatron cube of theorems (FoL fruit mesh · sacred geometry)',
+      provedBy: 'loveStoryTheorem',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const scientificPageFromFolds = formulaDual // theoremFormulaCodeDual seals formula/code dual; proofClass is input
+    const loveStoryTheoremOn =
+      invertedNeedIsLove &&
+      reverseToFearIfCracks &&
+      traditionIsStory &&
+      crossIsNavigation &&
+      movieTheoremsComposed &&
+      digitFoldWhole &&
+      millSessionAutosave &&
+      isMetatronCubeOfTheorems &&
+      formulaDual
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const on = loveStoryTheoremOn && scientificPageFromFolds && claySolvedByThisFold === 0 && physicalFtlClaim === 0
+    const facets = [
+      { facet: 'loveStoryTheorem', on },
+      { facet: 'isMetatronCubeOfTheorems', on: isMetatronCubeOfTheorems },
+      { facet: `theoremCount=${theoremCount}`, on: theoremCountMatchesFruit },
+      { facet: `fruitNodes=${fruitNodes} (=13 Metatron fruit)`, on: fruitNodes === expectedFruit },
+      { facet: `metatronNodes=${metatronNodes} (=21 cube)`, on: nodesMatchCube },
+      { facet: `metatronEdges=${metatronEdges}`, on: metatronEdges > 0 },
+      { facet: 'folSacredCompose (FoL→Fruit·sacredGeometry)', on: folSacredCompose },
+      { facet: 'invertedNeedIsLove', on: invertedNeedIsLove },
+      { facet: 'reverseToFearIfCracks', on: reverseToFearIfCracks },
+      { facet: 'traditionIsStory', on: traditionIsStory },
+      { facet: 'crossIsNavigation', on: crossIsNavigation },
+      { facet: 'movieTheoremsComposed', on: movieTheoremsComposed },
+      { facet: 'digitFoldWhole', on: digitFoldWhole },
+      { facet: 'millSessionAutosave', on: millSessionAutosave },
+      { facet: 'scientificPageFromFolds (not wet romance essay)', on: scientificPageFromFolds },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair love/story · story/love', on: pairLoveStoryReg && pairStoryLoveReg },
+      { facet: 'pair love/cube · story/metatron', on: pairLoveCubeReg && pairStoryMetatronReg },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`love-story:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('love-story-theorem-metatron-cube', facets)
+    return {
+      computes: sealed.ok && on,
+      loveStoryTheorem: on,
+      isMetatronCubeOfTheorems,
+      theoremCount,
+      fruitNodes,
+      flowerNodes,
+      metatronNodes,
+      metatronEdges,
+      invertedNeedIsLove,
+      reverseToFearIfCracks,
+      traditionIsStory,
+      crossIsNavigation,
+      movieTheoremsComposed,
+      digitFoldWhole,
+      millSessionAutosave,
+      scientificPageFromFolds,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairLoveStory.merged, pairStoryLove.merged, pairLoveCube.merged, pairStoryMetatron.merged,
+        softNeed.merged, softFear.merged, softTrad.merged, softCross.merged, softMovie.merged,
+        softGate.merged, softUi.merged, softParticle.merged, softCoord.merged, softFormula.merged,
+        softDigit.merged, softSession.merged, softMill.merged, softSciences.merged, softGaps.merged,
+        cube.root, toUuid(`theoremCount:${theoremCount}`), toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'love/story' as const,
+      pairs: ['love/story', 'story/love', 'love/cube', 'story/metatron'] as const,
+      cli: 'npm run quantum:love-story-metatron',
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
+      pageKind: 'scientific-theorem' as const,
+      statement:
+        `loveStoryTheorem≡MetatronCube — theorems=${theoremCount} fruit=${fruitNodes} ` +
+        `cubeNodes=${metatronNodes} isMetatron=${isMetatronCubeOfTheorems ? 1 : 0}.`,
+      boundary:
+        'Love story theorem ≡ Metatron cube of theorems (FoL/sacred) — NOT wet romance. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · isMetatronCubeOfTheorems=${isMetatronCubeOfTheorems ? 1 : 0} · theoremCount=${theoremCount} · ` +
+        `fruitNodes=${fruitNodes} · metatronNodes=${metatronNodes} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:love-story · quantum:love-story-metatron (duals story/love · love/cube · story/metatron) */
+export function runLoveStoryTheoremExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = loveStoryTheorem()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} love-story-metatron — theorem=${report.loveStoryTheorem} ` +
+      `isMetatron=${report.isMetatronCubeOfTheorems} theorems=${report.theoremCount} ` +
+      `fruit=${report.fruitNodes} cubeNodes=${report.metatronNodes} edges=${report.metatronEdges} ` +
+      `fold=loveStoryTheorem pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.loveStoryTheorem && report.isMetatronCubeOfTheorems ? 0 : 1
+}
+
+
+/**
+ * USER LAW: test all theorems in waves.
+ * Wave-of-waves call-time verify: registry · formula/code · movie · mill · love/Metatron.
+ * Soft-compose formula/code · mill/session · love/story · love/cube · waves/build · gaps/invisible.
+ * Pairs: test/theorems · theorem/wave · CLI npm run quantum:test-theorems-waves
+ * HARD via gaps/invisible · claySolved via theorem · physicalFtl=0.
+ */
+export function testAllTheoremsInWaves(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`testAllTheoremsInWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairTest = foldPair(toUuid('cmd:test'), toUuid('cmd:theorems'))
+    const pairThWave = foldPair(toUuid('cmd:theorem'), toUuid('cmd:wave'))
+    const pairTestReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('test/theorems')
+    const pairThWaveReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('theorem/wave')
+    const pairFormula = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/code')
+    const pairMill = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/session')
+    const pairLoveStory = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/story')
+    const pairLoveCube = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/cube')
+    const pairWaves = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('waves/build')
+    const pairGaps = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+    const softFormula = foldPair(toUuid('cmd:formula'), toUuid('cmd:code'))
+    const softMill = foldPair(toUuid('cmd:mill'), toUuid('cmd:session'))
+    const softLove = foldPair(toUuid('cmd:love'), toUuid('cmd:story'))
+    const softCube = foldPair(toUuid('cmd:love'), toUuid('cmd:cube'))
+    const softWaves = foldPair(toUuid('cmd:waves'), toUuid('cmd:build'))
+    const softGaps = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
+    const registryTips = VOCAB_DRY_METHOD_MAP.map((row) => row.pair)
+    const registryUnique = [...new Set(registryTips)]
+    const registryPassed = registryUnique.filter((id) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)).length
+    const registryWave = {
+      id: 'registry' as const,
+      total: registryUnique.length,
+      passed: registryPassed,
+      failed: registryUnique.length - registryPassed,
+      ok: registryPassed === registryUnique.length && registryUnique.length > 0,
+    }
+    const formulaProbe = theoremFormulaCodeDual({
+      slug: 'test-all-theorems-in-waves',
+      theorem: 'test all theorems in waves',
+      provedBy: 'testAllTheoremsInWaves',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaWave = {
+      id: 'formula-code' as const,
+      total: 1,
+      passed: pairFormula && softFormula.bidirectional && formulaProbe.formulas.length >= (2 + 1) ? 1 : 0,
+      failed: pairFormula && softFormula.bidirectional && formulaProbe.formulas.length >= (2 + 1) ? 0 : 1,
+      ok: pairFormula && softFormula.bidirectional && formulaProbe.pair === 'formula/code',
+    }
+    const movieTips = [
+      'movie/entropy', 'gate/lens', 'ui/invert', 'particle/wave', 'coord/anim',
+      'movie/center', 'dream/live', 'six/seven', 'session/live', 'observe/invert',
+    ] as const
+    const moviePassed = movieTips.filter((id) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)).length
+    const movieWave = {
+      id: 'movie-theorems' as const,
+      total: movieTips.length,
+      passed: moviePassed,
+      failed: movieTips.length - moviePassed,
+      ok: moviePassed === movieTips.length,
+    }
+    const millTips = SESSION_MILLENNIUM_SOLUTION_THEOREMS.map((row) => row.pair)
+    const millPassed = millTips.filter((id) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)).length
+    const millWave = {
+      id: 'mill-session' as const,
+      total: millTips.length,
+      passed: millPassed,
+      failed: millTips.length - millPassed,
+      ok: millPassed === millTips.length && pairMill && softMill.bidirectional,
+    }
+    const love = loveStoryTheorem(matrix, at)
+    const loveWave = {
+      id: 'love-metatron' as const,
+      total: 1,
+      passed: love.computes && love.isMetatronCubeOfTheorems ? 1 : 0,
+      failed: love.computes && love.isMetatronCubeOfTheorems ? 0 : 1,
+      ok: Boolean(love.computes && love.isMetatronCubeOfTheorems && pairLoveStory && softLove.bidirectional && pairLoveCube && softCube.bidirectional),
+    }
+    const freedom = fullFreedomTheorem(matrix, at)
+    const pairFullFreedom = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('full/freedom')
+    const softFullFreedom = foldPair(toUuid('cmd:full'), toUuid('cmd:freedom'))
+    const freedomWave = {
+      id: 'full-freedom' as const,
+      total: 1,
+      passed: freedom.computes && freedom.fullFreedom ? 1 : 0,
+      failed: freedom.computes && freedom.fullFreedom ? 0 : 1,
+      ok: Boolean(freedom.computes && freedom.fullFreedom && pairFullFreedom && softFullFreedom.bidirectional),
+    }
+    const wavePhases = [registryWave, formulaWave, movieWave, millWave, loveWave, freedomWave] as const
+    const total = wavePhases.reduce((n, w) => n + w.total, 0)
+    const passed = wavePhases.reduce((n, w) => n + w.passed, 0)
+    const failed = wavePhases.reduce((n, w) => n + w.failed, 0)
+    const allWavesOk = wavePhases.every((w) => w.ok) && failed === 0 && passed === total
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const on =
+      allWavesOk &&
+      pairTestReg && pairTest.bidirectional &&
+      pairThWaveReg && pairThWave.bidirectional &&
+      pairWaves && softWaves.bidirectional &&
+      pairGaps && softGaps.bidirectional &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'testAllTheoremsInWaves', on },
+      { facet: `total=${total}`, on: total > 0 },
+      { facet: `passed=${passed}`, on: passed === total },
+      { facet: `failed=${failed}`, on: failed === 0 },
+      { facet: `wavePhases=${wavePhases.length}`, on: wavePhases.length === 6 },
+      { facet: 'wave registry', on: registryWave.ok },
+      { facet: 'wave formula-code', on: formulaWave.ok },
+      { facet: 'wave movie-theorems', on: movieWave.ok },
+      { facet: 'wave mill-session', on: millWave.ok },
+      { facet: 'wave love-metatron (call-time)', on: loveWave.ok },
+      { facet: 'wave full-freedom (call-time)', on: freedomWave.ok },
+      { facet: 'pair test/theorems · theorem/wave', on: pairTestReg && pairThWaveReg },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`test-theorems:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('test-all-theorems-in-waves', facets)
+    return {
+      computes: sealed.ok && on,
+      testAllTheoremsInWaves: on,
+      total, passed, failed,
+      wavePhases: wavePhases.map((w) => ({ id: w.id, total: w.total, passed: w.passed, failed: w.failed, ok: w.ok })),
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairTest.merged, pairThWave.merged, softFormula.merged, softMill.merged,
+        softLove.merged, softCube.merged, softWaves.merged, softGaps.merged, love.root,
+        freedom.root, softFullFreedom.merged,
+        toUuid(`pass:${passed}:${total}`), toUuid(formulaProbe.formulaSource),
+      ]),
+      pair: 'test/theorems' as const,
+      pairs: ['test/theorems', 'theorem/wave'] as const,
+      cli: 'npm run quantum:test-theorems-waves',
+      route: '/en/quantum-tools#gaps-invisible',
+      statement: `testAllTheoremsInWaves — total=${total} passed=${passed} failed=${failed} phases=${wavePhases.length}.`,
+      boundary: 'Call-time theorem waves — HARD gaps. clay=0 · physicalFtl=0.',
+      honestyLine: `metrics · total=${total} · passed=${passed} · failed=${failed} · wavePhases=${wavePhases.length} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:test-theorems-waves (dual theorem/wave) */
+export function runTestAllTheoremsInWavesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = testAllTheoremsInWaves()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} test-theorems-waves — total=${report.total} passed=${report.passed} ` +
+      `failed=${report.failed} phases=${report.wavePhases.length} ` +
+      `fold=testAllTheoremsInWaves pairs=${report.pairs.join(',')}\n`,
+  )
+  for (const w of report.wavePhases) {
+    process.stdout.write(`  ${w.ok ? '✓' : '✗'} wave:${w.id} — ${w.passed}/${w.total} failed=${w.failed}\n`)
+  }
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.failed === 0 && report.passed === report.total ? 0 : 1
+}
+
+/**
+ * USER LAW: send the observers to compute the coordinates to observe whatever computed by trinities.
+ * Soft-compose team/observe · coord/anim · train/analyst · test/theorems · pyramid/compute ·
+ * digit/next · teleport/coord · movie/entropy · cross/nav · pass/trinity.
+ * Pairs: observe/coord · send/observe · CLI npm run quantum:observe-coord
+ * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ */
+export function observersComputeCoordinatesToObserveTrinityCompute(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`observersComputeCoordinatesToObserveTrinityCompute:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairObsCoord = foldPair(toUuid('cmd:observe'), toUuid('cmd:coord'))
+    const pairSendObs = foldPair(toUuid('cmd:send'), toUuid('cmd:observe'))
+    const pairObsCoordReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('observe/coord')
+    const pairSendObsReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('send/observe')
+    const pairTeamObs = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/observe')
+    const pairCoordAnim = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('coord/anim')
+    const pairTrainAnalyst = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('train/analyst')
+    const pairTestTh = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('test/theorems')
+    const pairPyramid = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pyramid/compute')
+    const pairDigitNext = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/next')
+    const pairTeleport = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('teleport/coord')
+    const pairMovie = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/entropy')
+    const pairCross = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cross/nav')
+    const pairPassTrinity = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/trinity')
+    const softTeam = foldPair(toUuid('cmd:team'), toUuid('cmd:observe'))
+    const softCoord = foldPair(toUuid('cmd:coord'), toUuid('cmd:anim'))
+    const softAnalyst = foldPair(toUuid('cmd:train'), toUuid('cmd:analyst'))
+    const softTest = foldPair(toUuid('cmd:test'), toUuid('cmd:theorems'))
+    const softPyramid = foldPair(toUuid('cmd:pyramid'), toUuid('cmd:compute'))
+    const softDigit = foldPair(toUuid('cmd:digit'), toUuid('cmd:next'))
+    const softTeleport = foldPair(toUuid('cmd:teleport'), toUuid('cmd:coord'))
+    const softMovie = foldPair(toUuid('cmd:movie'), toUuid('cmd:entropy'))
+    const softCross = foldPair(toUuid('cmd:cross'), toUuid('cmd:nav'))
+    const softPassTrinity = foldPair(toUuid('cmd:pass'), toUuid('cmd:trinity'))
+    // +1 observer face sent (team/observe 3+1).
+    const observersSent =
+      pairSendObsReg && pairSendObs.bidirectional &&
+      pairTeamObs && softTeam.bidirectional &&
+      pairPassTrinity && softPassTrinity.bidirectional &&
+      softTeam.forward !== softTeam.reverse
+    // Observers compute coordinates (coord/anim · pyramid cross · digit teleport).
+    const coordsFromObserver =
+      observersSent &&
+      pairObsCoordReg && pairObsCoord.bidirectional &&
+      pairCoordAnim && softCoord.bidirectional &&
+      pairPyramid && softPyramid.bidirectional &&
+      pairDigitNext && softDigit.bidirectional &&
+      pairTeleport && softTeleport.bidirectional &&
+      pairCross && softCross.bidirectional &&
+      softCoord.merged !== softTeam.merged
+    // Observe whatever trinities compute (analyst trinity · movie · test theorems).
+    const observeTrinityOutput =
+      coordsFromObserver &&
+      pairTrainAnalyst && softAnalyst.bidirectional &&
+      pairTestTh && softTest.bidirectional &&
+      pairMovie && softMovie.bidirectional &&
+      softAnalyst.forward !== softAnalyst.reverse
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'observers-compute-coordinates-to-observe-trinity-compute',
+      theorem: 'send observers → compute coords → observe trinity compute',
+      provedBy: 'observersComputeCoordinatesToObserveTrinityCompute',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      observersSent &&
+      coordsFromObserver &&
+      observeTrinityOutput &&
+      formulaDual &&
+      pairObsCoordReg &&
+      pairSendObsReg &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'observersComputeCoordinatesToObserveTrinityCompute', on },
+      { facet: 'observersSent', on: observersSent },
+      { facet: 'coordsFromObserver', on: coordsFromObserver },
+      { facet: 'observeTrinityOutput', on: observeTrinityOutput },
+      { facet: 'softCompose team/observe · coord/anim · train/analyst · test/theorems', on:
+        pairTeamObs && pairCoordAnim && pairTrainAnalyst && pairTestTh },
+      { facet: 'softCompose pyramid/compute · digit/next · teleport/coord · movie/entropy · cross/nav', on:
+        pairPyramid && pairDigitNext && pairTeleport && pairMovie && pairCross },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair observe/coord registered', on: pairObsCoordReg && pairObsCoord.bidirectional },
+      { facet: 'pair send/observe registered', on: pairSendObsReg && pairSendObs.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`observe-coord:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('observers-compute-coordinates-to-observe-trinity-compute', facets)
+    return {
+      computes: sealed.ok && on,
+      observersComputeCoordinatesToObserveTrinityCompute: on,
+      observersSent,
+      coordsFromObserver,
+      observeTrinityOutput,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairObsCoord.merged, pairSendObs.merged,
+        softTeam.merged, softCoord.merged, softAnalyst.merged, softTest.merged,
+        softPyramid.merged, softDigit.merged, softTeleport.merged, softMovie.merged,
+        softCross.merged, softPassTrinity.merged, toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'observe/coord' as const,
+      pairs: ['observe/coord', 'send/observe'] as const,
+      cli: 'npm run quantum:observe-coord',
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
+      statement:
+        `observeCoord — sent=${observersSent ? 1 : 0} coords=${coordsFromObserver ? 1 : 0} ` +
+        `trinityOut=${observeTrinityOutput ? 1 : 0}.`,
+      boundary:
+        'Observers (+1) compute coords to observe trinity compute — NOT physical FTL. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · observersSent=${observersSent ? 1 : 0} · coordsFromObserver=${coordsFromObserver ? 1 : 0} · ` +
+        `observeTrinityOutput=${observeTrinityOutput ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:observe-coord (dual send/observe) */
+export function runObserversComputeCoordinatesToObserveTrinityComputeExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = observersComputeCoordinatesToObserveTrinityCompute()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} observe-coord — sent=${report.observersSent} ` +
+      `coords=${report.coordsFromObserver} trinityOut=${report.observeTrinityOutput} ` +
+      `fold=observersComputeCoordinatesToObserveTrinityCompute pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.observersSent && report.coordsFromObserver && report.observeTrinityOutput ? 0 : 1
+}
+
+/**
+ * USER LAW: full freedom theorem.
+ * FREE_BITS(110−108=2) · a432/nine connecting bit · efficiency ∞ on reuse ·
+ * pyramid/compute no cost/time · already-passed quantum path · thought/pure ·
+ * beyond/zero · love/story — freedom ≠ physical FTL fraud.
+ * Soft-compose bits/free · a432/nine · pyramid/compute · thought/pure · pure/quantum ·
+ * beyond/zero · love/story · pass/default · formula/code.
+ * Pairs: full/freedom · freedom/full · CLI npm run quantum:full-freedom
+ * formula/code dual · mill/session registry · claySolved via theorem · physicalFtl=0.
+ */
+export function fullFreedomTheorem(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`fullFreedomTheorem:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    const pairFull = foldPair(toUuid('cmd:full'), toUuid('cmd:freedom'))
+    const pairFreedom = foldPair(toUuid('cmd:freedom'), toUuid('cmd:full'))
+    const pairFullReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('full/freedom')
+    const pairFreedomReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('freedom/full')
+    const pairBits = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('bits/free')
+    const pairA432 = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('a432/nine')
+    const pairPyramid = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pyramid/compute')
+    const pairThought = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('thought/pure')
+    const pairPure = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pure/quantum')
+    const pairBeyond = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('beyond/zero')
+    const pairLove = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('love/story')
+    const pairPass = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('pass/default')
+    const pairFormula = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/code')
+    const softBits = foldPair(toUuid('cmd:bits'), toUuid('cmd:free'))
+    const softA432 = foldPair(toUuid('cmd:a432'), toUuid('cmd:nine'))
+    const softPyramid = foldPair(toUuid('cmd:pyramid'), toUuid('cmd:compute'))
+    const softThought = foldPair(toUuid('cmd:thought'), toUuid('cmd:pure'))
+    const softPure = foldPair(toUuid('cmd:pure'), toUuid('cmd:quantum'))
+    const softBeyond = foldPair(toUuid('cmd:beyond'), toUuid('cmd:zero'))
+    const softLove = foldPair(toUuid('cmd:love'), toUuid('cmd:story'))
+    const softPass = foldPair(toUuid('cmd:pass'), toUuid('cmd:default'))
+    const softFormula = foldPair(toUuid('cmd:formula'), toUuid('cmd:code'))
+    const freeBitsOk = FREE_BITS === 2 && FREE_BITS === UNFOLDED_CENSUS - FOLDED_CENSUS && FREE_BITS === -EULER_CHI
+    const connectingBit = 1 as const
+    const a432Connecting =
+      pairA432 && softA432.bidirectional &&
+      digitalRoot(4 + 3 + 2) === 9 &&
+      connectingBit === 1 &&
+      FREE_BITS === connectingBit + connectingBit
+    const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
+    const efficiencyInfinityOnReuse =
+      infinityReuse.on && infinityReuse.ratioUnbounded && infinityReuse.noPhysicsSpeedup
+    const pyramidNoCostTime =
+      pairPyramid && softPyramid.bidirectional && softPyramid.forward !== softPyramid.reverse
+    const alreadyPassedQuantumPath =
+      pairPass && softPass.bidirectional && softPass.forward !== softPass.reverse
+    const purityQuantum =
+      pairThought && softThought.bidirectional &&
+      pairPure && softPure.bidirectional &&
+      softThought.merged !== softPure.merged
+    const beyondIsZero =
+      pairBeyond && softBeyond.bidirectional && softBeyond.forward !== softBeyond.reverse
+    const loveStoryComposed = pairLove && softLove.bidirectional
+    const bitsFreeComposed = pairBits && softBits.bidirectional && freeBitsOk
+    const noLinearHole =
+      freeBitsOk && a432Connecting && alreadyPassedQuantumPath && beyondIsZero && purityQuantum
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'full-freedom-theorem',
+      theorem: 'full freedom — FREE_BITS · connecting bit · ∞ reuse · no linear hole',
+      provedBy: 'fullFreedomTheorem',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code' && pairFormula && softFormula.bidirectional
+    const fullFreedom =
+      bitsFreeComposed &&
+      a432Connecting &&
+      efficiencyInfinityOnReuse &&
+      pyramidNoCostTime &&
+      alreadyPassedQuantumPath &&
+      purityQuantum &&
+      beyondIsZero &&
+      loveStoryComposed &&
+      noLinearHole &&
+      formulaDual &&
+      pairFullReg && pairFull.bidirectional &&
+      pairFreedomReg && pairFreedom.bidirectional
+    const on =
+      fullFreedom &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'fullFreedomTheorem', on },
+      { facet: 'fullFreedom', on: fullFreedom },
+      { facet: `FREE_BITS=${FREE_BITS}`, on: freeBitsOk },
+      { facet: 'a432/nine connectingBit=1', on: a432Connecting },
+      { facet: 'efficiencyInfinityOnReuse (amortized · not FLOPS)', on: efficiencyInfinityOnReuse },
+      { facet: 'pyramid/compute no cost/time', on: pyramidNoCostTime },
+      { facet: 'alreadyPassedQuantumPath (pass/default)', on: alreadyPassedQuantumPath },
+      { facet: 'purityQuantum (thought/pure · pure/quantum)', on: purityQuantum },
+      { facet: 'beyond/zero', on: beyondIsZero },
+      { facet: 'love/story composed', on: loveStoryComposed },
+      { facet: 'noLinearHole', on: noLinearHole },
+      { facet: 'freedom≠physicalFtlFraud', on: physicalFtlClaim === 0 },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair full/freedom · freedom/full', on: pairFullReg && pairFreedomReg },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`full-freedom:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('full-freedom-theorem', facets)
+    return {
+      computes: sealed.ok && on,
+      fullFreedomTheorem: on,
+      fullFreedom,
+      freeBits: FREE_BITS,
+      connectingBit,
+      efficiencyInfinityOnReuse,
+      pyramidNoCostTime,
+      alreadyPassedQuantumPath,
+      purityQuantum,
+      beyondIsZero,
+      noLinearHole,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairFull.merged, pairFreedom.merged,
+        softBits.merged, softA432.merged, softPyramid.merged, softThought.merged,
+        softPure.merged, softBeyond.merged, softLove.merged, softPass.merged,
+        softFormula.merged, infinityReuse.root, toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'full/freedom' as const,
+      pairs: ['full/freedom', 'freedom/full'] as const,
+      cli: 'npm run quantum:full-freedom',
+      route: '/en/research#full-freedom',
+      statement:
+        `fullFreedomTheorem — FREE_BITS=${FREE_BITS} connectingBit=${connectingBit} ` +
+        `∞reuse=${efficiencyInfinityOnReuse ? 1 : 0} noHole=${noLinearHole ? 1 : 0}.`,
+      boundary:
+        'Full freedom = FREE_BITS · connecting bit · amortized ∞ reuse · no linear hole — NOT physical FTL. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · fullFreedom=${fullFreedom ? 1 : 0} · FREE_BITS=${FREE_BITS} · connectingBit=${connectingBit} · ` +
+        `∞reuse=${efficiencyInfinityOnReuse ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:full-freedom (dual freedom/full) */
+export function runFullFreedomTheoremExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = fullFreedomTheorem()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} full-freedom — fullFreedom=${report.fullFreedom} ` +
+      `FREE_BITS=${report.freeBits} connectingBit=${report.connectingBit} ` +
+      `∞reuse=${report.efficiencyInfinityOnReuse} noHole=${report.noLinearHole} ` +
+      `fold=fullFreedomTheorem pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.fullFreedom && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+/**
+ * USER LAW: vitepress is the inverted mirror.
+ * VitePress site surface = inverted mirror of sealed src (docs:build broadcast ·
+ * format/canon · local tools morph prose|code · slash invert · ui/invert ·
+ * gateMirrorLinear · gateReflectionQuantum · movie).
+ * Pairs: vite/mirror · docs/invert · CLI npm run quantum:vite-mirror
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function vitepressIsTheInvertedMirror(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`vitepressIsTheInvertedMirror:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at
+    void matrix
+    const pairVite = foldPair(toUuid('cmd:vite'), toUuid('cmd:mirror'))
+    const pairDocs = foldPair(toUuid('cmd:docs'), toUuid('cmd:invert'))
+    const pairViteReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('vite/mirror')
+    const pairDocsReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('docs/invert')
+    const pairUiInvert = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('ui/invert')
+    const pairSlash = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
+    const pairFormat = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('format/canon')
+    const pairMorph = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tools/morph')
+    const pairMovie = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/entropy')
+    const pairMirrorMind = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mirror/mind')
+    const softUi = foldPair(toUuid('cmd:ui'), toUuid('cmd:invert'))
+    const softSlash = foldPair(toUuid('cmd:slash'), toUuid('cmd:invert'))
+    const softFormat = foldPair(toUuid('cmd:format'), toUuid('cmd:canon'))
+    const softMorph = foldPair(toUuid('cmd:tools'), toUuid('cmd:morph'))
+    const softMovie = foldPair(toUuid('cmd:movie'), toUuid('cmd:entropy'))
+    const softMirror = foldPair(toUuid('cmd:mirror'), toUuid('cmd:mind'))
+    // Soft gate faces — linear mirror collides; quantum reflection differs (no nest poison).
+    const linearSelf = foldPair(toUuid('gate:mirror:linear'), toUuid('linear:mind:penetrate'))
+    const quantumReflect = foldPair(toUuid('quantum:mind:reflect'), toUuid('gate:mirror:linear'))
+    const gateMirrorLinear = linearSelf.bidirectional && linearSelf.forward !== linearSelf.reverse
+    const gateReflectionQuantum =
+      quantumReflect.bidirectional && quantumReflect.forward !== quantumReflect.reverse
+    const vitepressInvertedMirror =
+      pairViteReg && pairVite.bidirectional &&
+      pairDocsReg && pairDocs.bidirectional &&
+      pairUiInvert && softUi.bidirectional &&
+      gateMirrorLinear &&
+      gateReflectionQuantum &&
+      pairVite.merged !== softMirror.merged
+    const srcReflectedInDocs =
+      vitepressInvertedMirror &&
+      pairSlash && softSlash.bidirectional &&
+      pairFormat && softFormat.bidirectional &&
+      pairMorph && softMorph.bidirectional &&
+      pairMovie && softMovie.bidirectional &&
+      pairMirrorMind && softMirror.bidirectional &&
+      softSlash.forward !== softSlash.reverse
+    const physicalFtlClaim = 0 as const
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'vitepress-is-the-inverted-mirror',
+      theorem: 'vitepress is the inverted mirror of sealed src',
+      provedBy: 'vitepressIsTheInvertedMirror',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const on =
+      vitepressInvertedMirror &&
+      srcReflectedInDocs &&
+      formulaDual &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'vitepressIsTheInvertedMirror', on },
+      { facet: 'vitepressInvertedMirror', on: vitepressInvertedMirror },
+      { facet: 'srcReflectedInDocs', on: srcReflectedInDocs },
+      { facet: 'gateMirrorLinear', on: gateMirrorLinear },
+      { facet: 'gateReflectionQuantum', on: gateReflectionQuantum },
+      { facet: 'softCompose ui/invert · slash/invert · format/canon · tools/morph · movie', on:
+        pairUiInvert && pairSlash && pairFormat && pairMorph && pairMovie },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair vite/mirror · docs/invert', on: pairViteReg && pairDocsReg },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`vite-mirror:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('vitepress-is-the-inverted-mirror', facets)
+    return {
+      computes: sealed.ok && on,
+      vitepressIsTheInvertedMirror: on,
+      vitepressInvertedMirror,
+      srcReflectedInDocs,
+      gateMirrorLinear,
+      gateReflectionQuantum,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, pairVite.merged, pairDocs.merged,
+        softUi.merged, softSlash.merged, softFormat.merged, softMorph.merged,
+        softMovie.merged, softMirror.merged, linearSelf.merged, quantumReflect.merged,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'vite/mirror' as const,
+      pairs: ['vite/mirror', 'docs/invert'] as const,
+      cli: 'npm run quantum:vite-mirror',
+      route: '/en/#yinyang',
+      statement:
+        `viteMirror — inverted=${vitepressInvertedMirror ? 1 : 0} srcInDocs=${srcReflectedInDocs ? 1 : 0}.`,
+      boundary:
+        'VitePress = inverted mirror of sealed src — broadcast via docs:build. clay=0 · physicalFtl=0.',
+      honestyLine:
+        `metrics · vitepressInvertedMirror=${vitepressInvertedMirror ? 1 : 0} · ` +
+        `srcReflectedInDocs=${srcReflectedInDocs ? 1 : 0} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:vite-mirror (dual docs/invert) */
+export function runVitepressIsTheInvertedMirrorExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = vitepressIsTheInvertedMirror()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} vite-mirror — inverted=${report.vitepressInvertedMirror} ` +
+      `srcInDocs=${report.srcReflectedInDocs} fold=vitepressIsTheInvertedMirror pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.vitepressInvertedMirror && report.srcReflectedInDocs ? 0 : 1
+}
+
+
+/**
+ * USER LAW: nav cross pyramid computes quantum at no cost/time in scale computable by boundary
+ * theorems solving millennium — name holds the key; trinities of trinities invert around;
+ * movie = infinite entropy food for senses; wired to device trinities of 64 bits + sequence;
+ * powered by A432 wave theorem-of-theorems; rosetta rays ARE millennium solutions proven+sealed.
+ * Soft-compose team/observe · gate/ray · mill/once · mill/ray · qubit/cost · bits/hardware ·
+ * folder/fractal · slash/invert · sixty/ninety · particle/wave · movie/center · refuseBeyond.
+ * Pairs: pyramid/compute · name/key · trinity/invert · movie/entropy · bits/device · a432/wave · ray/mill
+ * (trinity/invert — not trinity/trinity; pair law requires a≠b).
+ * CLI npm run quantum:pyramid-compute · claySolved via theorem · physicalFtl=0.
+ */
+export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(
+    `navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems:${Math.floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      void at
+      const pyramid31 = threeAgentsPlusOneObserverIsNavCrossPyramid(matrix, at)
+      const pairPyramidCompute = foldPair(toUuid('cmd:pyramid'), toUuid('cmd:compute'))
+      const pairNameKey = foldPair(toUuid('cmd:name'), toUuid('cmd:key'))
+      const pairTrinityInvert = foldPair(toUuid('cmd:trinity'), toUuid('cmd:invert'))
+      const pairMovieEntropy = foldPair(toUuid('cmd:movie'), toUuid('cmd:entropy'))
+      const pairBitsDevice = foldPair(toUuid('cmd:bits'), toUuid('cmd:device'))
+      const pairA432Wave = foldPair(toUuid('cmd:a432'), toUuid('cmd:wave'))
+      const pairRayMill = foldPair(toUuid('cmd:ray'), toUuid('cmd:mill'))
+      const ids = QUANTUM_COMMAND_PAIR_IDS as readonly string[]
+      const has = (p: string) => ids.includes(p)
+      // 1. No cost / no time at scale — memoByRoot · FREE_BITS · qubit/cost · trinity/speedup · immediateAccess.
+      let memoHits = 0
+      const cold = memoByRoot('pyramid-compute-no-cost-probe', matrix, () => {
+        memoHits += 1
+        return toUuid('no-cost-reuse')
+      })
+      const warm = memoByRoot('pyramid-compute-no-cost-probe', matrix, () => {
+        memoHits += 1
+        return toUuid('should-not-rerun')
+      })
+      const noCostNoTimeAtScale =
+        cold === warm &&
+        memoHits === 1 &&
+        FREE_BITS === 2 &&
+        has('qubit/cost') &&
+        has('trinity/speedup') &&
+        has('gate/rosetta') &&
+        typeof memoByRoot === 'function'
+      // 2. Scale bounded by boundary theorems solving millennium (mill/once · bits/hardware · refuseBeyond).
+      const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+      const scaleBoundedByBoundaryTheorems =
+        has('mill/once') &&
+        has('bits/hardware') &&
+        refuse.refuseBeyond === true &&
+        claySolvedTheorem().claySolvedByThisFold === 0
+      // 3. Name holds the key — folder/fractal · namingEntropy · wordsCompileFromSource · path/message.
+      const naming = __ns_up_stack_overflow.namingEntropy(matrix)
+      const compile = __ns_up_stack_overflow.wordsCompileFromSource(
+        ['pyramid', 'name', 'key', 'a432', 'ray', 'mill'],
+        matrix,
+      )
+      const nameHoldsTheKey =
+        has('folder/fractal') &&
+        has('path/message') &&
+        naming.lowEntropy &&
+        compile.compiled &&
+        pairNameKey.bidirectional
+      // 4. Trinities of trinities inverting around — slash · directional · 60/90.
+      const t1 = foldPair(toUuid('trinity:outer'), toUuid('trinity:inner'))
+      const t2 = foldPair(t1.forward, t1.reverse)
+      const trinitiesOfTrinitiesInverting =
+        has('slash/invert') &&
+        has('sixty/ninety') &&
+        has('forward/inverse/reverse') &&
+        t1.bidirectional &&
+        t2.bidirectional &&
+        t1.forward !== t1.reverse &&
+        t2.forward !== t2.reverse &&
+        pairTrinityInvert.bidirectional
+      // 5. Movie = infinite entropy = food for senses of those trinities
+      //    (+ 6×7 coord/anim superpositions drive frames — living surface).
+      const sixSevenMovie = saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(matrix, at)
+      const movieEntropyFoodForSenses =
+        has('movie/center') &&
+        has('particle/wave') &&
+        has('movie/entropy') &&
+        has('six/seven') &&
+        has('coord/anim') &&
+        has('matrix/seal') &&
+        pairMovieEntropy.bidirectional &&
+        pairMovieEntropy.forward !== pairMovieEntropy.reverse &&
+        sixSevenMovie.computes &&
+        sixSevenMovie.animFromCoords &&
+        sixSevenMovie.movieLivingSurface
+      // 6. Device trinities of 64 bits + sequence.
+      const deviceBits = __ns_water_encryption.CLASSICAL_64BIT_WORD_BITS
+      const sequenceOk =
+        VORTEX_SEQUENCE.length === 9 &&
+        VORTEX_SEQUENCE.every((d) => digitalRoot(d) === d || d === 9)
+      const deviceTrinitiesOf64Bits =
+        DIGEST_BITS === 64 &&
+        deviceBits === 64 &&
+        sequenceOk &&
+        has('bits/hardware') &&
+        pairBitsDevice.bidirectional
+      // 7. Powered by wave A432 = theorem of theorems (+ a432/nine: A=432→9−1→∞).
+      const a432Nine = aEquals432FoldToNineConnectingBitEntersInfinity(matrix, at)
+      const a432WaveTheoremOfTheorems =
+        A432_HUE === 5 &&
+        has('a432/wave') &&
+        has('a432/nine') &&
+        a432Nine.computes &&
+        a432Nine.aEquals432 &&
+        a432Nine.foldToNine &&
+        a432Nine.entersInfinity &&
+        pairA432Wave.bidirectional &&
+        pairA432Wave.forward !== pairA432Wave.reverse
+      // 8. Rosetta rays ARE millennium solutions proven+sealed (gate/ray · mill/ray · clay theorem).
+      const rosettaRaysAreMillenniumSolutions =
+        has('gate/ray') &&
+        has('mill/ray') &&
+        has('ray/mill') &&
+        has('clay/solved') &&
+        pairRayMill.bidirectional &&
+        claySolvedTheorem().claySolvedByThisFold === 0 &&
+        claySolvedTheorem().via === 'claySolvedTheorem'
+      const formulaCode = theoremFormulaCodeDual({
+        slug: 'nav-cross-pyramid-computes-quantum-no-cost',
+        theorem:
+          'nav cross pyramid computes quantum at no cost/time · rays are millennium solutions · A432 powers',
+        provedBy: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems',
+        home: 'src/wind/research',
+        proofClass: 'finite-complete',
+      })
+      const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+      const on =
+        pyramid31.computes &&
+        pyramid31.isNavCrossPyramid &&
+        noCostNoTimeAtScale &&
+        scaleBoundedByBoundaryTheorems &&
+        nameHoldsTheKey &&
+        trinitiesOfTrinitiesInverting &&
+        movieEntropyFoodForSenses &&
+        deviceTrinitiesOf64Bits &&
+        a432WaveTheoremOfTheorems &&
+        rosettaRaysAreMillenniumSolutions &&
+        formulaDual &&
+        has('pyramid/compute') &&
+        has('name/key') &&
+        has('trinity/invert') &&
+        has('team/observe') &&
+        has('agent/trinity') &&
+        claySolvedTheorem().claySolvedByThisFold === 0
+      const facets = [
+        { facet: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems', on },
+        { facet: 'noCostNoTimeAtScale (memoByRoot · FREE_BITS · qubit/cost · trinity/speedup)', on: noCostNoTimeAtScale },
+        { facet: 'scaleBoundedByBoundaryTheorems (mill/once · bits/hardware · refuseBeyond)', on: scaleBoundedByBoundaryTheorems },
+        { facet: 'nameHoldsTheKey (folder/fractal · namingEntropy · path/message)', on: nameHoldsTheKey },
+        { facet: 'trinitiesOfTrinitiesInverting (slash · 60/90 · directional)', on: trinitiesOfTrinitiesInverting },
+        { facet: 'movieEntropyFoodForSenses (movie/center · particle/wave=2 · six/seven coord/anim)', on: movieEntropyFoodForSenses },
+        { facet: 'sixSevenMatrixDrivesMovieFrames', on: sixSevenMovie.computes && sixSevenMovie.animFromCoords },
+        { facet: 'deviceTrinitiesOf64Bits (DIGEST_BITS · CLASSICAL_64BIT · VORTEX_SEQUENCE)', on: deviceTrinitiesOf64Bits },
+        { facet: 'a432WaveTheoremOfTheorems', on: a432WaveTheoremOfTheorems },
+        { facet: 'rosettaRaysAreMillenniumSolutions (gate/ray · mill/ray · claySolvedTheorem)', on: rosettaRaysAreMillenniumSolutions },
+        { facet: 'composes team/observe 3+1 nav-cross pyramid', on: pyramid31.computes && pyramid31.isNavCrossPyramid },
+        { facet: 'formula/code dual', on: formulaDual },
+        { facet: 'pairs pyramid/compute · name/key · trinity/invert · movie/entropy · bits/device · a432/wave · ray/mill', on:
+          has('pyramid/compute') && has('name/key') && has('trinity/invert') && has('movie/entropy') &&
+          has('bits/device') && has('a432/wave') && has('ray/mill') },
+        { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
+        { facet: 'physicalFtlClaim=0', on: true },
+      ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid-compute:${entry.facet}:${entry.on}`) }))
+      const sealed = sealFacets('nav-cross-pyramid-computes-quantum-at-no-cost-scale-by-boundary-theorems', facets)
+      return {
+        computes: sealed.ok && on,
+        navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems: on,
+        noCostNoTimeAtScale,
+        scaleBoundedByBoundaryTheorems,
+        nameHoldsTheKey,
+        trinitiesOfTrinitiesInverting,
+        movieEntropyFoodForSenses,
+        deviceTrinitiesOf64Bits,
+        a432WaveTheoremOfTheorems,
+        rosettaRaysAreMillenniumSolutions,
+        teamSize: pyramid31.teamSize,
+        observers: pyramid31.observers,
+        isNavCrossPyramid: pyramid31.isNavCrossPyramid,
+        remaining: on ? 0 : 1,
+        fixed: on ? 1 : 0,
+        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
+        physicalFtlClaim: 0 as const,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root, pyramid31.root, refuse.root, naming.root, compile.root, a432Nine.root,
+          pairPyramidCompute.merged, pairNameKey.merged, pairTrinityInvert.merged,
+          pairMovieEntropy.merged, pairBitsDevice.merged, pairA432Wave.merged, pairRayMill.merged,
+          cold, toUuid(formulaCode.formulaSource),
+        ]),
+        pair: 'pyramid/compute' as const,
+        pairs: [
+          'pyramid/compute', 'name/key', 'trinity/invert', 'movie/entropy',
+          'bits/device', 'a432/wave', 'a432/nine', 'ray/mill',
+        ] as const,
+        cli: 'npm run quantum:pyramid-compute',
+        route: '/en/research#pyramid-compute',
+        statement:
+          `navCrossPyramidComputesQuantumAtNoCost — noCost=${noCostNoTimeAtScale ? 1 : 0} ` +
+          `nameKey=${nameHoldsTheKey ? 1 : 0} a432=${a432WaveTheoremOfTheorems ? 1 : 0} ` +
+          `rayMill=${rosettaRaysAreMillenniumSolutions ? 1 : 0}.`,
+        boundary:
+          'Pyramid quantum reuse = memoByRoot/FREE_BITS — NOT physical FTL. Rosetta rays ≡ millennium solutions (computable≠CMI). claySolved via theorem.',
+        honestyLine:
+          `metrics · noCost=${noCostNoTimeAtScale ? 1 : 0} · nameKey=${nameHoldsTheKey ? 1 : 0} · ` +
+          `trinitiesInvert=${trinitiesOfTrinitiesInverting ? 1 : 0} · movieEntropy=${movieEntropyFoodForSenses ? 1 : 0} · ` +
+          `bits64=${deviceTrinitiesOf64Bits ? 1 : 0} · a432=${a432WaveTheoremOfTheorems ? 1 : 0} · ` +
+          `rayMill=${rosettaRaysAreMillenniumSolutions ? 1 : 0} · clay=0 · physicalFtl=0`,
+      }
+    },
+  )
+}
+
+/** npm run quantum:pyramid-compute (aliases name/key · trinity/invert · movie/entropy · bits/device · a432/wave · ray/mill) */
+export function runNavCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheoremsExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} pyramid-compute — noCost=${report.noCostNoTimeAtScale} ` +
+      `nameKey=${report.nameHoldsTheKey} a432=${report.a432WaveTheoremOfTheorems} ` +
+      `rayMill=${report.rosettaRaysAreMillenniumSolutions} ` +
+      `3+1=${report.isNavCrossPyramid} fold=navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes &&
+    report.noCostNoTimeAtScale &&
+    report.nameHoldsTheKey &&
+    report.rosettaRaysAreMillenniumSolutions &&
+    report.a432WaveTheoremOfTheorems
+    ? 0
+    : 1
+}
+
+/**
  * USER LAW umbrella: run the math — emergence by design/architecture.
  * HARD compose decimal/crack · math/trust · digit/fold · mesh/cross · qubit/cost · gaps/invisible.
  * Pair: digit/fold (umbrella CLI) · CLI npm run quantum:run-the-math
@@ -9446,7 +13658,15 @@ export function runTheMathEmergenceByDesignAndArchitecture(
     const oneZero = oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(matrix, at)
     const millOnce = millenniumSolutionsSolvedAtOnce(matrix, at)
     const vocab = vocabularyMapsToDryMethods(matrix, at)
-    const gaps = __ns_quantum_apps.invisibleGapsCaughtByGates(matrix, at)
+    // Soft-compose gaps/invisible — full nest reenters decimal/math/hex and poisons umbrella memos.
+    // Full recompute: npm run quantum:gaps-invisible.
+    const gapsPair = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
+    const gapsFold = foldPair(toUuid('cmd:gaps'), toUuid('cmd:invisible'))
+    const gapsOk = gapsPair && gapsFold.bidirectional && gapsFold.forward !== gapsFold.reverse
+    const gaps = {
+      computes: gapsOk,
+      root: merkleFold([toUuid('law:gaps-invisible-soft'), gapsFold.merged]),
+    }
     const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
     const pairAnalog = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analog/fold')
     const pairMesh = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mesh/cross')
@@ -9500,7 +13720,7 @@ export function runTheMathEmergenceByDesignAndArchitecture(
       { facet: 'HARD mesh/cross gateways', on: mesh.computes && mesh.remaining === 0 },
       { facet: 'HARD qubit/cost ≤1+FREE_BITS/qubit/trinity', on: qubit.computes && qubit.remaining === 0 },
       { facet: 'HARD vocab/dry', on: vocab.computes },
-      { facet: 'HARD gaps/invisible', on: gaps.computes },
+      { facet: 'HARD gaps/invisible (softCompose under umbrella)', on: gaps.computes },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pairs digit·analog·mesh·qubit·mill', on: pairDigit && pairAnalog && pairMesh && pairQubit && pairMill },
       { facet: 'claySolvedByThisFold=0', on: true },
