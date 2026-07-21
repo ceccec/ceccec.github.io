@@ -18,6 +18,7 @@ import {
   localEncryptionReverseTimedVsStandards,
   proveLocalNovelEncryptionSecurity,
   proveOneTbitRealtimeEncryptionClaim,
+  isoPqcRequirementsGapFillAllQuantumDirections,
   encryptionPanelComputes,
 } from '../../water/encryption/index.ts'
 import { platformOgLimitsMeasured, honestyInProseChallenged } from '../../mountain/og/index.ts'
@@ -127,6 +128,18 @@ function runTool(toolId: string) {
       const imported = importStandardToolEnvelope(exported)
       ok = r.localSecurityProved && exported.computes && imported.roundTrip
       summary = `localSecurityProved=${r.localSecurityProved} productionReverseRefused=${r.productionReverseRefused} certified=${r.certified} fieldHistory=${r.fieldHistory} thisRepoIsNotTheIsoStandard=${r.thisRepoIsNotTheIsoStandard} · envelope roundTrip=${imported.roundTrip}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
+      ]
+    } else if (toolId === 'iso-pqc-gap-fill') {
+      const r = isoPqcRequirementsGapFillAllQuantumDirections()
+      const exported = exportStandardToolEnvelope('iso-pqc-gap-fill', 'ceccec.local')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.computes && exported.computes && imported.roundTrip
+      summary = `isoRequiresPQC=${r.answer.isoRequiresPostQuantumSecurity} covered=${r.coveredCount} partial=${r.partialCount} gap=${r.gapCount} lab=${r.labGaps.length} isoOfficialStandard=${r.isoOfficialStandard} · envelope roundTrip=${imported.roundTrip}`
       root = r.root
       boundary = r.boundary
       facets = [

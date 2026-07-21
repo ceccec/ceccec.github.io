@@ -72,6 +72,7 @@
     "quantum:encryption-reverse-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runEncryptionReverseVerifyGuardedExit",
     "quantum:iso-pqc-catalog": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runIsoNistPqcCatalogGuardedExit",
     "quantum:standards-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runQuantumStandardsAuditGuardedExit",
+    "quantum:iso-pqc-gap-fill": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runIsoPqcRequirementsGapFillExit",
     "quantum:sciences-trinities": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runSciencesTrinitiesGuardedExit",
     "quantum:directional-trinity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runDirectionalTrinityGuardedExit",
     "quantum:animations-rosetta": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/ui/index.ts runAnimationsRosettaGuardedExit",

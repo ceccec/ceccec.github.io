@@ -5,6 +5,7 @@ import {
   runEncryptionToolInBrowser,
   runPqcStandardsToolInBrowser,
   runQuantumStandardsAuditInBrowser,
+  runIsoPqcRequirementsGapFillInBrowser,
 } from './index.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
@@ -20,6 +21,7 @@ const error = ref('')
 const result = shallowRef<ReturnType<typeof runEncryptionToolInBrowser> | null>(null)
 const pqcResult = shallowRef<ReturnType<typeof runPqcStandardsToolInBrowser> | null>(null)
 const auditResult = shallowRef<ReturnType<typeof runQuantumStandardsAuditInBrowser> | null>(null)
+const isoGapResult = shallowRef<ReturnType<typeof runIsoPqcRequirementsGapFillInBrowser> | null>(null)
 
 function selectModulus(n: number) {
   selectedModulus.value = n
@@ -32,6 +34,7 @@ function runTool() {
     result.value = runEncryptionToolInBrowser(selectedModulus.value)
     pqcResult.value = runPqcStandardsToolInBrowser(familyPrefer.value)
     auditResult.value = runQuantumStandardsAuditInBrowser()
+    isoGapResult.value = runIsoPqcRequirementsGapFillInBrowser()
     panel.value = encryptionPanelComputes()
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'run failed'
@@ -201,21 +204,60 @@ runTool()
         <p class="encryption-tools__boundary">{{ pqcResult?.boundary ?? panel.pqc?.boundary }}</p>
       </section>
       <UiSeparator />
+      <section id="iso-requires-pqc" aria-label="Does ISO require post-quantum security">
+        <h3>Does ISO require post-quantum security?</h3>
+        <p class="encryption-tools__lede">{{ isoGapResult?.plainAnswer ?? '—' }}</p>
+        <UiBadge :variant="isoGapResult?.isoRequiresPostQuantumSecurity === false ? 'default' : 'outline'">
+          isoRequiresPQC={{ isoGapResult?.isoRequiresPostQuantumSecurity ?? '—' }}
+        </UiBadge>
+        <UiBadge variant="outline">universalMandate={{ isoGapResult?.universalMandate ?? false }}</UiBadge>
+        <UiBadge variant="outline">migrationGuidance={{ isoGapResult?.migrationGuidance ?? true }}</UiBadge>
+        <UiBadge variant="outline">nistAlignedIsoWork={{ isoGapResult?.nistAlignedIsoWork ?? true }}</UiBadge>
+        <UiBadge variant="outline">isoOfficialStandard=false · certified=false</UiBadge>
+      </section>
+      <UiSeparator />
+      <section id="iso-pqc-gap-fill" aria-label="ISO NIST PQC gap fill all quantum directions">
+        <h3>ISO/NIST PQC gap-fill — forward · inverse · reverse</h3>
+        <p class="encryption-tools__lede">
+          Normative needs mapped to covered | partial | gap. Lab certification stays gap with handoff — not faked closed.
+        </p>
+        <UiBadge :variant="isoGapResult?.ok ? 'default' : 'outline'">
+          covered={{ isoGapResult?.coveredCount ?? '—' }}
+          · partial={{ isoGapResult?.partialCount ?? '—' }}
+          · gap={{ isoGapResult?.gapCount ?? '—' }}
+        </UiBadge>
+        <table v-if="isoGapResult?.needs?.length" class="encryption-tools__table">
+          <thead>
+            <tr><th>Coverage</th><th>Id</th><th>Direction</th><th>Need</th><th>Lab?</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="n in isoGapResult.needs" :key="n.id">
+              <td><UiBadge :variant="n.coverage === 'covered' ? 'default' : 'outline'">{{ n.coverage }}</UiBadge></td>
+              <td><code>{{ n.id }}</code></td>
+              <td>{{ n.direction }}</td>
+              <td>{{ n.need }}</td>
+              <td>{{ n.unclosableWithoutExternalLab }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="encryption-tools__boundary">{{ isoGapResult?.boundary }}</p>
+      </section>
+      <UiSeparator />
       <section id="quantum-standards-audit" aria-label="Quantum standards audit">
         <h3>Quantum standards audit</h3>
         <p class="encryption-tools__lede">
-          Reverse (demo RSA) + inverse (digit-zero · f→{p,q} · ratInv) + reverse≠inverse · all 10 computable dimensions.
+          Reverse (demo RSA) + inverse (digit-zero · f→{p,q} · ratInv) + reverse≠inverse · covered|partial|gap · all 10 computable dimensions.
         </p>
         <UiBadge v-if="auditResult" :variant="auditResult.ok ? 'default' : 'outline'">
-          {{ auditResult.ok ? 'computes' : 'gap' }} · dims {{ auditResult.dimensions.coveredCount }}/10
+          covered {{ auditResult.coveredCount ?? auditResult.passCount }} · partial {{ auditResult.partialCount ?? 0 }} · gap {{ auditResult.gapCount }} · dims {{ auditResult.dimensions.coveredCount }}/10
         </UiBadge>
         <table v-if="auditResult" class="encryption-tools__table">
           <thead>
-            <tr><th>Verdict</th><th>Id</th><th>Standard / dimension</th><th>R/I</th><th>Export</th></tr>
+            <tr><th>Coverage</th><th>Id</th><th>Standard / dimension</th><th>R/I</th><th>Export</th></tr>
           </thead>
           <tbody>
             <tr v-for="row in auditResult.audits" :key="row.id">
-              <td><UiBadge :variant="row.verdict === 'pass' ? 'default' : 'outline'">{{ row.verdict }}</UiBadge></td>
+              <td><UiBadge :variant="(row.coverage ?? row.verdict) === 'covered' || row.verdict === 'pass' ? 'default' : 'outline'">{{ row.coverage ?? row.verdict }}</UiBadge></td>
               <td><code>{{ row.id }}</code></td>
               <td>{{ row.standardOrDimension }}</td>
               <td>{{ row.reverseOrInverse }}</td>
