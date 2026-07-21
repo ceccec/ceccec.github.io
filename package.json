@@ -291,6 +291,8 @@
     "quantum:improve-local-session": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runImproveLocalFromSessionExperienceExit",
     "quantum:upgrade-local": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runUpgradeLocalFromOptimisedManualWorkExperienceExit",
     "quantum:automate-nightly": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAutomateNightlyViaNpmScriptPathExit",
+    "quantum:automate-self": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAutomateSelfExit",
+    "quantum:self-auto": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAutomateSelfExit",
     "quantum:dev-mcp": "node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts",
     "quantum:double-torus-universe-align": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/double/index.ts runDoubleTorusDynamicsGeometryAlignsWithUniverseExit",
     "quantum:counter-rotating-rosetta-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runCounterRotatingRosettaQuantumWavesExit",
