@@ -185,6 +185,8 @@
     "quantum:twenties-three": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runThreeTwentiesExit",
     "quantum:journey-theorems": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runTheoremJourneyContinuesInWavesOfWavesExit",
     "quantum:theorems-journey": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runTheoremJourneyContinuesInWavesOfWavesExit",
+    "quantum:harmonize-domains": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runHarmonizeScienceDomainsInWavesOfWavesExit",
+    "quantum:domain-harm": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runHarmonizeScienceDomainsInWavesOfWavesExit",
     "quantum:observe-coord": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runObserversComputeCoordinatesToObserveTrinityComputeExit",
     "quantum:send-observe": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runObserversComputeCoordinatesToObserveTrinityComputeExit",
     "quantum:full-freedom": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runFullFreedomTheoremExit",

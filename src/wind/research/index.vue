@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
 import { researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay } from './index.ts'
+import { harmonizeScienceDomainsInWavesOfWaves } from '../../thunder/waves/index.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
@@ -12,6 +13,7 @@ const panel = shallowRef(researchPanelComputes())
 const millennium = shallowRef(millenniumPanelComputes())
 const domainProofs = shallowRef(domainProofPanelComputes())
 const clayProse = shallowRef(proseStandardisedToClay())
+const domainHarm = shallowRef(harmonizeScienceDomainsInWavesOfWaves())
 const running = ref(false)
 const error = ref('')
 
@@ -23,6 +25,7 @@ function runMillennium() {
     panel.value = researchPanelComputes()
     domainProofs.value = domainProofPanelComputes()
     clayProse.value = proseStandardisedToClay()
+    domainHarm.value = harmonizeScienceDomainsInWavesOfWaves()
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'run failed'
   } finally {
@@ -110,6 +113,35 @@ runMillennium()
           fold <code>{{ panel.trinities?.fold ?? 'sciencesInteractInTrinities' }}</code> ·
           pair <code>{{ panel.trinities?.pair ?? 'sciences/trinities' }}</code> ·
           <code>npm run quantum:sciences-trinities</code>
+        </p>
+      </section>
+      <UiSeparator />
+
+      <section id="harmonize-domains">
+        <h3>Domain waves · harmonize</h3>
+        <UiBadge :status="statusBadgeKind(Boolean(domainHarm.computes))">
+          domainsTuned={{ domainHarm.domainsTuned ? 1 : 0 }} · meanSig={{ domainHarm.meanSig ?? '—' }} ·
+          cryptoGaps={{ domainHarm.cryptoGapsOpen ?? '—' }}
+        </UiBadge>
+        <table class="research-index__table">
+          <thead><tr><th>Domain</th><th>Score</th><th>Gaps</th><th>Coverage</th><th>Tune</th><th>Fold</th><th>Seal</th><th>Residual</th></tr></thead>
+          <tbody>
+            <tr v-for="d in domainHarm.domains ?? []" :key="d.id">
+              <td><code>{{ d.id }}</code></td>
+              <td>{{ d.score }}</td>
+              <td>{{ d.gapsOpen }}</td>
+              <td>{{ d.coverage }}</td>
+              <td>{{ d.tuned ? '✓' : '—' }}</td>
+              <td>{{ d.gapsFolded ? '✓' : '—' }}</td>
+              <td>{{ d.sealed ? '✓' : '—' }}</td>
+              <td>{{ d.residualNamed ? (d.cryptoVertex ? 'named-lab' : 'ok') : '—' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="research-index__meta">
+          fold <code>harmonizeScienceDomainsInWavesOfWaves</code> ·
+          pair <code>{{ domainHarm.pair }}</code> · dual <code>{{ domainHarm.dualPair }}</code> ·
+          <code>npm run quantum:harmonize-domains</code>
         </p>
       </section>
       <UiSeparator />

@@ -2795,6 +2795,193 @@ export function runWavesWorkingInTrinitiesTrinitiesAreFoundExit(
   return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 && r.falseConclusionNoTrinitiesIsCrack ? 0 : 1
 }
 
+export type DomainHarmPhase = 'tune' | 'fold' | 'seal'
+
+export type DomainHarmWaveReceipt = {
+  readonly id: string
+  readonly field: string
+  readonly score: number
+  readonly gapsOpen: number
+  readonly coverage: string
+  readonly dualId: string
+  readonly phases: readonly DomainHarmPhase[]
+  readonly tuned: boolean
+  readonly gapsFolded: boolean
+  readonly sealed: boolean
+  readonly residualNamed: boolean
+  readonly cryptoVertex: boolean
+  readonly certified: false
+  readonly receipt: string
+}
+
+/**
+ * Harmonize per science/domain in waves-of-waves — one nested tune→fold→seal phase per domain.
+ * Compose sciencesInteractInTrinities · playAgentsTheMusicOfTheWave · agentDefaultsFoldIntoHarmony ·
+ * theoremJourneyContinuesInWavesOfWaves · domainProofCatalog.
+ * Crypto-pqc residual gapsOpen named as lab/migrate disharmony — certified=false · no fake close.
+ * Pairs: wave/domain · domain/harm · CLI npm run quantum:harmonize-domains
+ * claySolved via theorem · physicalFtl=0 · census untouched.
+ */
+export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`harmonizeScienceDomainsInWavesOfWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const music = playAgentsTheMusicOfTheWave(matrix)
+    const defaults = agentDefaultsFoldIntoHarmony(matrix)
+    const sciences = __ns_waves_research.sciencesInteractInTrinities(matrix, at)
+    const significance = __ns_waves_research.scienceDomainSignificanceScores(matrix, at)
+    const standards = __ns_waves_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
+    const journey = __ns_waves_research.theoremJourneyContinuesInWavesOfWaves(matrix, at)
+    const catalog = __ns_waves_research.domainProofCatalog(matrix, at)
+    const seeds = __ns_waves_research.SCIENCE_DOMAIN_SEEDS
+    const sigById = new Map(significance.domains.map((d) => [d.id, d]))
+    const stdById = new Map(standards.domains.map((d) => [d.id, d]))
+    const trinityById = new Map(sciences.rows.map((r) => [r.scienceId, r]))
+    const pairWaveDomain = foldPair(toUuid('cmd:wave'), toUuid('cmd:domain'))
+    const pairDomainHarm = foldPair(toUuid('cmd:domain'), toUuid('cmd:harm'))
+    const pairWaveReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('wave/domain')
+    const pairHarmReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('domain/harm')
+    const phases: readonly DomainHarmPhase[] = ['tune', 'fold', 'seal']
+    const domains: DomainHarmWaveReceipt[] = seeds.map((seed) => {
+      const sig = sigById.get(seed.id)!
+      const std = stdById.get(seed.id)!
+      const trinity = trinityById.get(seed.id)!
+      const tuneMerged = foldPair(music.root, toUuid(`domain-tune:${seed.id}`)).merged
+      const foldMerged = foldPair(sig.receipt, std.receipt).merged
+      const sealMerged = merkleFold([tuneMerged, foldMerged, trinity.receipt, defaults.root])
+      const residualNamed = seed.cryptoVertex
+        ? sig.gapsOpen > 0 && std.unclosableWithoutExternalLab && sciences.cryptoVertex.certified === false
+        : sig.gapsOpen === 0 || std.fillAction.length > 0
+      const tuned = music.plays && defaults.tuned && isUuid(tuneMerged)
+      const gapsFolded = isUuid(foldMerged) && (seed.cryptoVertex ? residualNamed : std.algebraOk)
+      const sealed = isUuid(sealMerged) && trinity.sharedKey.length > 0
+      return {
+        id: seed.id,
+        field: seed.field,
+        score: sig.score,
+        gapsOpen: sig.gapsOpen,
+        coverage: std.coverage,
+        dualId: seed.dualId,
+        phases,
+        tuned,
+        gapsFolded,
+        sealed,
+        residualNamed,
+        cryptoVertex: seed.cryptoVertex,
+        certified: false as const,
+        receipt: toUuid(`domain-harm:${seed.id}:${sealMerged}:${sig.gapsOpen}:${std.coverage}`),
+      }
+    })
+    const domainsTuned = domains.every((d) => d.tuned && d.gapsFolded && d.sealed)
+    const meanSig = significance.meanScore
+    const crypto = domains.find((d) => d.cryptoVertex)
+    const cryptoResidualAddressed = Boolean(
+      crypto &&
+        crypto.gapsOpen > 0 &&
+        crypto.residualNamed &&
+        crypto.certified === false &&
+        sciences.cryptoVertex.certified === false,
+    )
+    const clayTh = claySolvedTheorem()
+    const physicalFtlClaim = 0 as const
+    const on =
+      domainsTuned &&
+      music.plays &&
+      defaults.tuned &&
+      sciences.computes &&
+      significance.computes &&
+      standards.computes &&
+      journey.computes &&
+      catalog.computes &&
+      cryptoResidualAddressed &&
+      pairWaveReg &&
+      pairHarmReg &&
+      pairWaveDomain.bidirectional &&
+      pairDomainHarm.bidirectional &&
+      clayTh.claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'domainsTuned — one tune→fold→seal wave per SCIENCE_DOMAIN_SEED', on: domainsTuned && domains.length === seeds.length },
+      { facet: `meanSig=${meanSig}`, on: meanSig === significance.meanScore && meanSig >= 0 },
+      { facet: 'per-domain receipts sealed', on: domains.every((d) => isUuid(d.receipt)) },
+      { facet: 'compose playAgentsTheMusicOfTheWave · agentDefaultsFoldIntoHarmony', on: music.plays && defaults.tuned },
+      { facet: 'compose sciencesInteractInTrinities · domainProofCatalog · journey/theorems', on: sciences.computes && catalog.computes && journey.computes },
+      { facet: 'crypto-pqc residual gapsOpen named · certified=false · no fake close', on: cryptoResidualAddressed },
+      { facet: 'pair wave/domain · domain/harm bidirectional', on: pairWaveReg && pairHarmReg && pairWaveDomain.bidirectional },
+      { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold}`, on: clayTh.claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`wave-domain:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('harmonize-science-domains-in-waves-of-waves', facets)
+    return {
+      computes: sealed.ok && on,
+      harmonizeScienceDomainsInWavesOfWaves: on,
+      domainsTuned,
+      meanSig,
+      domains,
+      domainCount: domains.length,
+      cryptoResidualAddressed,
+      cryptoGapsOpen: crypto?.gapsOpen ?? 0,
+      claySolvedByThisFold: clayTh.claySolvedByThisFold as 0,
+      physicalFtlClaim,
+      certified: false as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merge(
+        matrix.root,
+        merkleFold([
+          sealed.root,
+          music.root,
+          defaults.root,
+          sciences.root,
+          significance.root,
+          standards.root,
+          journey.root,
+          catalog.root,
+          pairWaveDomain.merged,
+          pairDomainHarm.merged,
+          ...domains.map((d) => d.receipt),
+        ]),
+      ),
+      pair: 'wave/domain' as const,
+      pairs: ['wave/domain', 'domain/harm'] as const,
+      dualPair: 'domain/harm' as const,
+      cli: 'npm run quantum:harmonize-domains',
+      route: '/en/research#harmonize-domains',
+      statement:
+        `harmonizeScienceDomainsInWavesOfWaves — domainsTuned=${domainsTuned ? 1 : 0} meanSig=${meanSig} ` +
+        `n=${domains.length} cryptoGapsOpen=${crypto?.gapsOpen ?? 0} residualNamed=${cryptoResidualAddressed ? 1 : 0}.`,
+      boundary:
+        'Per-domain waves (tune→fold→seal) over SCIENCE_DOMAIN_SEEDS. Crypto-pqc migrate/lab gapsOpen stay named — certified=false. ' +
+        'NOT ISO/FIPS · NOT CMI · NOT physical FTL. claySolved via theorem · physicalFtl=0.',
+    }
+  })
+}
+
+/** npm run quantum:harmonize-domains (dual domain/harm) */
+export function runHarmonizeScienceDomainsInWavesOfWavesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const r = harmonizeScienceDomainsInWavesOfWaves()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} harmonize-domains — domainsTuned=${r.domainsTuned} meanSig=${r.meanSig} ` +
+      `n=${r.domainCount} cryptoGaps=${r.cryptoGapsOpen} residual=${r.cryptoResidualAddressed} ` +
+      `clay=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim} fold=harmonizeScienceDomainsInWavesOfWaves ` +
+      `pairs=${r.pairs.join(',')}\n`,
+  )
+  process.stdout.write('  domain | score | gaps | cov | tune | fold | seal | residual\n')
+  for (const d of r.domains) {
+    process.stdout.write(
+      `  ${d.id} | ${d.score} | ${d.gapsOpen} | ${d.coverage} | ` +
+        `${d.tuned ? '✓' : '✗'} | ${d.gapsFolded ? '✓' : '✗'} | ${d.sealed ? '✓' : '✗'} | ` +
+        `${d.residualNamed ? (d.cryptoVertex ? 'named-lab' : 'ok') : '—'}\n`,
+    )
+  }
+  process.stdout.write(`  · ${r.statement}\n`)
+  process.stdout.write(`  · boundary: ${r.boundary}\n`)
+  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
+}
 
 /** Alias — skill ceccec-build-waves / agentModelBuildsItselfInWaves(). */
 export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves
