@@ -22,7 +22,6 @@ const result = shallowRef<ReturnType<typeof runEncryptionToolInBrowser> | null>(
 const pqcResult = shallowRef<ReturnType<typeof runPqcStandardsToolInBrowser> | null>(null)
 const auditResult = shallowRef<ReturnType<typeof runQuantumStandardsAuditInBrowser> | null>(null)
 const isoGapResult = shallowRef<ReturnType<typeof runIsoPqcRequirementsGapFillInBrowser> | null>(null)
-const isoGapResult = shallowRef<ReturnType<typeof runIsoPqcRequirementsGapFillInBrowser> | null>(null)
 
 function selectModulus(n: number) {
   selectedModulus.value = n
