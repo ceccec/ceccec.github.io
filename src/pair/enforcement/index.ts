@@ -108,6 +108,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'local/session',
   'upgrade/local',
   'sdk/wire',
+  'automate/nightly',
   'universe/align',
   'rosetta/counter-rotate',
   'rosetta/merkaba',

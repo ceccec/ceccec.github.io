@@ -1,0 +1,33 @@
+{
+  "name": "ceccec automate nightly",
+  "description": "Nightly mission checkpoint via npm-script path (quantum-dev-sdk / bootstrap). Local stdio MCP stays IDE-only — do not register dashboard MCP for child-process stdio.",
+  "pair": "automate/nightly",
+  "cli": "npm run quantum:automate-nightly",
+  "route": "/en/quantum-tools#automate-nightly",
+  "trigger": {
+    "kind": "schedule",
+    "cronHint": "0 3 * * *",
+    "timezoneHint": "UTC"
+  },
+  "steps": [
+    "npm run quantum:trinity-speedup",
+    "npm run mission:gate",
+    "npm run quantum:upgrade-local"
+  ],
+  "optional": [
+    "QUANTUM_DEV_ALLOW_DOCS_BUILD=1 npm run docs:build"
+  ],
+  "refuse": [
+    "dashboard MCP registration of packages/quantum-dev-sdk local stdio",
+    "parallel docs:build",
+    "wet-linear grind without waves/build + edit/build"
+  ],
+  "honesty": {
+    "dashboardMcpForLocalStdio": false,
+    "ideStdioMount": ".cursor/mcp.json",
+    "qpuRequired": false,
+    "physicalFtl": false,
+    "claySolvedByThisFold": 0
+  },
+  "instructions": "Run as a Cursor Automation or cron: checkout ceccec/ceccec.github.io on main tip, npm ci, then npm run quantum:automate-nightly. That seals the receipt and documents steps. Prefer executing the two steps (trinity/speedup → mission:gate) sequentially. Never spawn parallel docs:build. docs:build only with QUANTUM_DEV_ALLOW_DOCS_BUILD=1 after green gates."
+}

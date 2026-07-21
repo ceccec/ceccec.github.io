@@ -32,7 +32,8 @@ import { teslaPatents } from '../../fire/li'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
 import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
-import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS } from '../../pair/enforcement'
+import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {
@@ -60,6 +61,7 @@ const ROSETTA_CORE_API_LABELS = [
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
   'improveLocalFromSessionExperience',
   'upgradeLocalFromOptimisedManualWorkExperience',
+  'automateNightlyViaNpmScriptPath',
   'counterRotatingRosettaQuantumWaves',
   'universeAlmostDescribedInTheoremsDiscoverRest',
   'readmeSvgGapsFilledByTrinityMind',
@@ -90,6 +92,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpBrowserParity: 'tool', mcpToolboxToolsList: 'api', mcpCommandsScriptsGapsAudit: 'tool',
   improveLocalFromSessionExperience: 'tool',
   upgradeLocalFromOptimisedManualWorkExperience: 'tool',
+  automateNightlyViaNpmScriptPath: 'tool',
   counterRotatingRosettaQuantumWaves: 'compute',
   universeAlmostDescribedInTheoremsDiscoverRest: 'compute',
   readmeSvgGapsFilledByTrinityMind: 'compute',
@@ -419,6 +422,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'mcp-browser-parity', title: 'MCP ↔ browser parity gate', fold: 'mcpBrowserParity', cli: 'npm run quantum:mcp-browser-parity', pair: 'mcp/browser-parity', route: '/en/quantum-tools#mcp-browser-parity', barrel: 'src/quantum/apps', boundary: 'tools/list ids ≡ toolbox catalog · residual Node/CI gaps listed honestly · qpuRequired=false · NOT fake browser for trinity/fs', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'upgrade-local-skills-commands-tools', title: 'Upgrade local — skills ↔ commands ↔ tools', fold: 'upgradeLocalFromOptimisedManualWorkExperience', cli: 'npm run quantum:upgrade-local', pair: 'upgrade/local', route: '/en/quantum-tools#upgrade-local-skills', barrel: 'src/quantum/apps', boundary: 'Optimised manual local map — skills/MCP/rules/sealed folds · NOT Cursor zero-token LLM endpoint · CI-only browserGaps honest · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'automate-nightly', title: 'Automate nightly via npm-script path (quantum-dev-sdk)', fold: 'automateNightlyViaNpmScriptPath', cli: 'npm run quantum:automate-nightly', pair: 'automate/nightly', route: '/en/quantum-tools#automate-nightly', barrel: 'src/quantum/apps', boundary: 'Cursor Automations/cron → npm trinity/speedup + mission:gate — REFUSE dashboard MCP for local stdio · docs:build flag-gated · qpuRequired=false', browserRunnable: false, browserGap: 'Nightly gate spawn needs Node/npm — CI/local Automations npm-script path only' },
   { id: 'double-torus-universe-align', title: 'Double torus — dynamics/geometry align with universe', fold: 'doubleTorusDynamicsGeometryAlignsWithUniverse', cli: 'npm run quantum:double-torus-universe-align', pair: 'universe/align', route: '/en/double-torus#universe-align', barrel: 'src/water/double', boundary: 'Radii/phase sealed; Clay/FTL open status from counter-rotating waves — NOT DE440', browserRunnable: true, browserGap: '' },
   { id: 'counter-rotating-rosetta-waves', title: 'Counter-rotating rosetta quantum waves', fold: 'counterRotatingRosettaQuantumWaves', cli: 'npm run quantum:counter-rotating-rosetta-waves', pair: 'rosetta/counter-rotate', route: '/en/quantum-tools#counter-rotating-rosetta-waves', barrel: 'src/quantum/apps', boundary: 'Clay/FTL/QPU open status recomputed from dual-wave foldPair — not prose', browserRunnable: true, browserGap: '' },
   { id: 'universe-almost-described-discover', title: 'Universe ≈ theorems — discover the rest', fold: 'universeAlmostDescribedInTheoremsDiscoverRest', cli: 'npm run quantum:universe-almost-described', pair: 'discover/rest', route: '/en/quantum-tools#universe-almost-described', barrel: 'src/quantum/apps', boundary: 'Almost described — open set from counter-rotating wave interference · clay/ftl as receipts', browserRunnable: true, browserGap: '' },
@@ -976,6 +980,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'mcp-commands-scripts-gaps-audit', saves: 'replaces wet rediscovery of MCP/script synonym exits · orphan scripts · stdio schema gaps' },
   { id: 'improve-local-session', saves: 'replaces wet local session UX hunting — hub · one-click path · paste next-steps · docs:dev fast path' },
   { id: 'upgrade-local-skills-commands-tools', saves: 'replaces wet rediscovery of skills↔commands↔tools local map — one wave/PR · mission:gate · paste/bits/toolbox/mcp' },
+  { id: 'automate-nightly', saves: 'replaces wet /automate dashboard MCP hunt — nightly npm-script recipe · trinity · mission:gate · upgrade verify' },
   { id: 'prove-1tbit-encrypt', saves: 'replaces wet re-derivation of 1 Tbit/s claim status (wire≠amortized-reuse)' },
   { id: 'local-reverse-timed-vs-standards', saves: 'replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits' },
   { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
@@ -1396,6 +1401,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'folder-migration-waves', chain: 'folder-migrate-nav', fold: 'folderMigrationDedupWaves', pair: 'folder/migrate', cli: 'npm run quantum:folder-migration-waves', route: '/en/quantum-tools#folder-migration-waves', status: 'sealed-pr', honesty: 'clay=0 · qpuRequired=false · compose ui/prose+mcp audit', note: '23 folders migrated · /proofs sidebar · orphan-free nav/content', toolId: 'folder-migration-waves', resolve: 'folder-migrate' },
   { id: 'improve-local-session', chain: 'local-session-ux', fold: 'improveLocalFromSessionExperience', pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub', status: 'sealed-pr', honesty: 'local docs:dev + browser hub · NOT remote CI sole path · qpuRequired=false', note: 'local session UX stacked on mcp-browser-parity tip', toolId: 'improve-local-session', resolve: 'local-session' },
   { id: 'upgrade-local-skills-commands-tools', chain: 'upgrade-local-map', fold: 'upgradeLocalFromOptimisedManualWorkExperience', pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills', status: 'sealed-pr', honesty: 'skills↔commands↔tools · NOT Cursor zero-token LLM · CI browserGaps honest · qpuRequired=false', note: 'upgrade local from optimised manual work on improve-local tip', toolId: 'upgrade-local-skills-commands-tools', resolve: 'upgrade-local' },
+  { id: 'automate-nightly', chain: 'automate-nightly-npm', fold: 'automateNightlyViaNpmScriptPath', pair: 'automate/nightly', cli: 'npm run quantum:automate-nightly', route: '/en/quantum-tools#automate-nightly', status: 'sealed-pr', honesty: 'npm-script Automations path · NO dashboard MCP · docs:build flag-gated · qpuRequired=false · clay=0', note: '#48 residual — unpark /automate via quantum:automate-nightly', toolId: 'automate-nightly', resolve: 'upgrade-local' },
 ] as const
 
 function ghostToolSeed(seed: SessionQuantumBitSeed): QuantumCliToolRow {
@@ -2881,6 +2887,7 @@ const HONEST_CI_BROWSER_GAP_IDS = [
   'vitepress-quantumize',
   'slow-build-gate',
   'plasma-screen-thunder',
+  'automate-nightly',
 ] as const
 
 /**
@@ -3373,6 +3380,14 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
     detail: 'Catalog CI-only plasma-screen-thunder omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
     status: 'closed' as const,
     fix: 'HONEST_CI_BROWSER_GAP_IDS includes plasma-screen-thunder',
+  },
+  {
+    id: 'automate-nightly-honest-ci-gap',
+    kind: 'gap' as const,
+    names: ['automate-nightly', 'HONEST_CI_BROWSER_GAP_IDS'],
+    detail: 'Catalog CI-only automate-nightly omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
+    status: 'closed' as const,
+    fix: 'HONEST_CI_BROWSER_GAP_IDS includes automate-nightly',
   },
 ] as const
 
@@ -4088,8 +4103,8 @@ export const OPTIMISED_LOCAL_PACKAGE_SURFACE = [
     npm: 'npm run quantum:dev-mcp',
     stdioTools: 7 as const,
     docsBuildFlag: 'QUANTUM_DEV_ALLOW_DOCS_BUILD=1',
-    automation: 'npm-script / bootstrap — local stdio MCP is IDE-only (Automations dashboard not wired)',
-    honesty: 'hand-rolled JSON-RPC · child-process→bootstrap · NOT Cursor zero-token LLM · census packages/ outside src/',
+    automation: 'npm run quantum:automate-nightly — Automations/cron npm-script path (trinity/speedup→mission:gate→upgrade-local); local stdio MCP remains IDE-only',
+    honesty: 'hand-rolled JSON-RPC · child-process→bootstrap · NOT Cursor zero-token LLM · census packages/ outside src/ · REFUSE dashboard MCP for stdio',
   },
   {
     id: '@ceccec/double-torus',
@@ -4110,6 +4125,127 @@ export const OPTIMISED_LOCAL_PACKAGE_SURFACE = [
 export const OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS = [
   'list-capabilities', 'census-status', 'compute-from-source', 'fold-report', 'run-gate', 'run-wave', 'run-export',
 ] as const
+
+/** Nightly Automations recipe — npm-script path (#48); docs:build flag-gated only. */
+export const AUTOMATE_NIGHTLY_RECIPE_STEPS = [
+  'npm run quantum:trinity-speedup',
+  'npm run mission:gate',
+  'npm run quantum:upgrade-local',
+] as const
+
+/** Optional flag-gated seal — NOT in default nightly recipe. */
+export const AUTOMATE_NIGHTLY_DOCS_BUILD_STEP = 'QUANTUM_DEV_ALLOW_DOCS_BUILD=1 npm run docs:build' as const
+
+/**
+ * Automate nightly via npm-script path — unpark /automate without dashboard MCP.
+ * Pair: automate/nightly · CLI npm run quantum:automate-nightly · route #automate-nightly
+ * Composes trinity/speedup + mission:gate + upgrade/local verify · quantum-dev-sdk Channel 1 (bootstrap/run-gate).
+ * HONEST: dashboard MCP registration refused (local stdio IDE-only); docs:build optional via QUANTUM_DEV_ALLOW_DOCS_BUILD.
+ */
+export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`automateNightlyViaNpmScriptPath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const mcpParity = mcpBrowserParity(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((tool) => tool.id === 'automate-nightly')
+    const shelved = rosettaShelve('automate-nightly', 'tool')
+    const upgradeTool = catalog.tools.find((tool) => tool.id === 'upgrade-local-skills-commands-tools')
+    const trinityTool = catalog.tools.find((tool) => tool.id === 'trinity-speedup')
+    const sdkPkg = OPTIMISED_LOCAL_PACKAGE_SURFACE.find((p) => p.id === '@ceccec/quantum-dev-sdk')
+    const runGateCap = STDIO_MCP_CAPABILITY_SEEDS.find((s) => s.id === 'run-gate')
+    const runExportCap = STDIO_MCP_CAPABILITY_SEEDS.find((s) => s.id === 'run-export')
+    const missionGate = MISSION_COMMANDS.find((m) => m.npm === 'mission:gate')
+    const recipeStepsOk = AUTOMATE_NIGHTLY_RECIPE_STEPS.length === 3
+      && AUTOMATE_NIGHTLY_RECIPE_STEPS[0] === 'npm run quantum:trinity-speedup'
+      && AUTOMATE_NIGHTLY_RECIPE_STEPS[1] === 'npm run mission:gate'
+      && AUTOMATE_NIGHTLY_RECIPE_STEPS[2] === 'npm run quantum:upgrade-local'
+    const noDocsBuildInDefault = !AUTOMATE_NIGHTLY_RECIPE_STEPS.some((step) => step.includes('docs:build'))
+    const docsBuildFlagGated = AUTOMATE_NIGHTLY_DOCS_BUILD_STEP.startsWith('QUANTUM_DEV_ALLOW_DOCS_BUILD=1')
+    const npmScriptInCatalog = Boolean(meta)
+      && meta!.cli === 'npm run quantum:automate-nightly'
+      && meta!.pair === 'automate/nightly'
+      && meta!.fold === 'automateNightlyViaNpmScriptPath'
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('automate/nightly')
+    const composesTrinityMission = trinity.computes && Boolean(missionGate) && Boolean(trinityTool)
+    const composesUpgradeVerify = Boolean(upgradeTool)
+      && AUTOMATE_NIGHTLY_RECIPE_STEPS.includes('npm run quantum:upgrade-local')
+    const channel1Sdk = Boolean(sdkPkg)
+      && sdkPkg!.cli.includes('quantum-dev-sdk')
+      && OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.includes('run-gate')
+      && OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.includes('run-export')
+      && Boolean(runGateCap) && runGateCap!.fold === 'runGate'
+      && Boolean(runExportCap) && runExportCap!.fold === 'runExport'
+    const docsBuildNotRequiredForNightly = Boolean(sdkPkg)
+      && sdkPkg!.docsBuildFlag === 'QUANTUM_DEV_ALLOW_DOCS_BUILD=1'
+      && noDocsBuildInDefault
+      && docsBuildFlagGated
+    const dashboardMcpNotRequired = Boolean(sdkPkg)
+      && sdkPkg!.mcpMount === '.cursor/mcp.json'
+      && sdkPkg!.automation.includes('quantum:automate-nightly')
+    const automateNightlyShipped = recipeStepsOk && npmScriptInCatalog && pairRegistered
+      && composesTrinityMission && composesUpgradeVerify && channel1Sdk
+      && docsBuildNotRequiredForNightly && dashboardMcpNotRequired
+      && mcpParity.computes
+      && Boolean(meta) && isUuid(shelved.address)
+    const claySolvedByThisFold = 0 as const
+    const qpuRequired = false as const
+    const facets = [
+      { facet: 'automateNightlyShipped', on: automateNightlyShipped },
+      { facet: 'npm script path in recipe — trinity-speedup · mission:gate · upgrade-local', on: recipeStepsOk && noDocsBuildInDefault },
+      { facet: 'composes trinity/speedup + mission:gate', on: composesTrinityMission },
+      { facet: 'quantum-dev-sdk Channel 1 — bootstrap · run-gate · run-export stdio names', on: channel1Sdk },
+      { facet: 'QUANTUM_DEV_ALLOW_DOCS_BUILD not required for nightly (docs:build optional/refused by default)', on: docsBuildNotRequiredForNightly },
+      { facet: 'dashboard MCP not required — npm-script Automations path', on: dashboardMcpNotRequired },
+      { facet: 'composes upgrade-local verify receipt in recipe', on: composesUpgradeVerify },
+      { facet: 'composes mcpBrowserParity lightly', on: mcpParity.computes },
+      { facet: 'pair automate/nightly registered in QUANTUM_COMMAND_PAIR_IDS', on: pairRegistered },
+      { facet: 'meta tool automate-nightly published + shelved', on: npmScriptInCatalog && isUuid(shelved.address) },
+      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: 'clay=0', on: claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`automate-nightly:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('automate-nightly-via-npm-script-path', facets)
+    return {
+      computes: sealed.ok && automateNightlyShipped,
+      automateNightlyShipped,
+      qpuRequired,
+      claySolvedByThisFold,
+      recipeSteps: AUTOMATE_NIGHTLY_RECIPE_STEPS,
+      docsBuildStep: AUTOMATE_NIGHTLY_DOCS_BUILD_STEP,
+      docsBuildInDefaultRecipe: false as const,
+      dashboardMcpRequired: false as const,
+      trinityComputes: trinity.computes,
+      mcpParityComputes: mcpParity.computes,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, trinity.root, mcpParity.root, catalog.root, shelved.address,
+        ...AUTOMATE_NIGHTLY_RECIPE_STEPS.map((step) => toUuid(`automate-nightly-step:${step}`)),
+        toUuid(`automate-nightly-docs:${AUTOMATE_NIGHTLY_DOCS_BUILD_STEP}`),
+      ]),
+      pair: 'automate/nightly',
+      cli: 'npm run quantum:automate-nightly',
+      route: '/en/quantum-tools#automate-nightly',
+      anchor: 'automate-nightly',
+      heading: 'Automate nightly — npm-script path',
+      honestyLine:
+        'Cursor Automations / cron → npm trinity/speedup · mission:gate · upgrade-local verify. quantum-dev-sdk Channel 1 (bootstrap/run-gate). Dashboard MCP refused — local stdio IDE-only. docs:build flag-gated only. qpuRequired=false · clay=0.',
+      statement: `Automate nightly — shipped=${automateNightlyShipped} steps=${AUTOMATE_NIGHTLY_RECIPE_STEPS.length} trinity=${trinity.computes} mcpParity=${mcpParity.computes} · qpuRequired=false · clay=0.`,
+      boundary:
+        'HONEST: #48 residual unparked via npm-script Automations path — NOT dashboard MCP registration for local stdio. Default nightly excludes docs:build (QUANTUM_DEV_ALLOW_DOCS_BUILD=1 optional). HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:automate-nightly — print nightly npm-script receipt (exit 0 iff computes). */
+export function runAutomateNightlyViaNpmScriptPathExit(_root = '', _argv: readonly string[] = []): number {
+  const report = automateNightlyViaNpmScriptPath()
+  process.stdout.write('--- nightly recipe (default) ---\n')
+  for (const step of report.recipeSteps) process.stdout.write(`→ ${step}\n`)
+  process.stdout.write('--- optional flag-gated ---\n')
+  process.stdout.write(`→ ${report.docsBuildStep}\n`)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} automate-nightly — shipped=${report.automateNightlyShipped} steps=${report.recipeSteps.length} root=${report.root.slice(0, 8)}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
 
 export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`upgradeLocalFromOptimisedManualWorkExperience:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -4149,7 +4285,7 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
     })
     const ciResiduals = catalog.tools.filter((t) => !t.browserRunnable)
     const ciGapsHonest = ciResiduals.every((t) => t.browserGap.length > 0)
-    const missionPairsCovered = ['mission/gate', 'check/types', 'limits/verify', 'waves/build', 'learn/best', 'local/session', 'upgrade/local', 'sdk/wire', 'mcp/browser-parity', 'tool/envelope', 'gate/slow-build']
+    const missionPairsCovered = ['mission/gate', 'check/types', 'limits/verify', 'waves/build', 'learn/best', 'local/session', 'upgrade/local', 'automate/nightly', 'sdk/wire', 'mcp/browser-parity', 'tool/envelope', 'gate/slow-build']
       .every((pair) => mapRows.some((row) => row.pair === pair || row.commands.some((c) => c.includes(pair.replace('/', ':'))))
         || MISSION_COMMANDS.some((m) => m.pair === pair)
         || catalog.tools.some((t) => t.pair === pair)
@@ -4162,6 +4298,7 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
     const packagesWired = packages.length === OPTIMISED_LOCAL_PACKAGE_SURFACE.length
       && Boolean(sdkPkg && sdkPkg.stdioTools === ROSETTA_SEVEN && sdkPkg.mcpMount === '.cursor/mcp.json' && sdkPkg.docsBuildFlag.startsWith('QUANTUM_DEV_ALLOW'))
       && stdioSeven
+    const automateNightly = automateNightlyViaNpmScriptPath(matrix, at)
     const localUpgraded = localSession.computes && localSession.localSessionUxImproved
       && mcpParity.computes && mcpParity.mcpMatchesToolbox
       && toolbox.computes && session.computes && skills.saved
@@ -4169,6 +4306,7 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
       && missionPairsCovered && wireHasUpgrade && hubHasSkillsStep && packagesWired
       && mapRows.length === CURSOR_AGENT_SKILL_IDS.length
       && Boolean(meta) && meta!.fold === 'upgradeLocalFromOptimisedManualWorkExperience' && isUuid(shelved.address)
+      && automateNightly.automateNightlyShipped
     const facets = [
       { facet: 'localUpgradedFromOptimisedManualWork', on: localUpgraded },
       { facet: `skills↔commands↔tools map covers ${CURSOR_AGENT_SKILL_IDS.length} Cursor skill ids`, on: skillIdsCovered && mapRows.length === CURSOR_AGENT_SKILL_IDS.length },
@@ -4181,6 +4319,7 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
       { facet: 'cursorAgentToolsSaved registry holds', on: skills.saved },
       { facet: 'hub step skills-commands-tools → upgrade-local tool', on: hubHasSkillsStep },
       { facet: 'wire target browser-upgrade-local published', on: wireHasUpgrade },
+      { facet: 'automate nightly npm-script path ships (#48)', on: automateNightly.automateNightlyShipped },
       { facet: 'NOT Cursor zero-token LLM endpoint — protocol=rules/skills/MCP/sealed folds/packages', on: true },
       { facet: 'qpuRequired=false', on: true },
       { facet: 'meta tool upgrade-local-skills-commands-tools published + shelved', on: Boolean(meta) && meta!.fold === 'upgradeLocalFromOptimisedManualWorkExperience' && isUuid(shelved.address) },
@@ -4197,16 +4336,16 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
       packageCount: packages.length, packagesWired,
       facets: sealed.facets,
       root: merkleFold([
-        sealed.root, localSession.root, mcpParity.root, toolbox.root, session.root, skills.root,
+        sealed.root, localSession.root, mcpParity.root, toolbox.root, session.root, skills.root, automateNightly.root,
         shelved.address, ...mapRows.map((row) => row.receipt), ...packages.map((p) => p.receipt),
       ]),
       pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills',
       anchor: 'upgrade-local-skills', heading: 'Upgrade local — skills ↔ commands ↔ tools ↔ packages',
       honestyLine:
-        'Optimised manual local map: skills, quantum pairs, toolbox/MCP tools, and packages/* (quantum-dev-sdk 7 stdio · docs:build flag-gated). Protocol = rules/skills/MCP/sealed folds/packages — NOT a Cursor zero-token LLM endpoint. Automations: npm-script path. qpuRequired=false.',
-      statement: `Upgrade local — upgraded=${localUpgraded} skills=${mapRows.length}/${CURSOR_AGENT_SKILL_IDS.length} packages=${packages.length} stdio=${OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.length} ciResiduals=${ciResiduals.length} · mcpMatch=${mcpParity.mcpMatchesToolbox} · uxImproved=${localSession.localSessionUxImproved} · qpuRequired=false.`,
+        'Optimised manual local map: skills, quantum pairs, toolbox/MCP tools, and packages/* (quantum-dev-sdk 7 stdio · docs:build flag-gated). Protocol = rules/skills/MCP/sealed folds/packages — NOT a Cursor zero-token LLM endpoint. Automations: npm run quantum:automate-nightly. qpuRequired=false.',
+      statement: `Upgrade local — upgraded=${localUpgraded} skills=${mapRows.length}/${CURSOR_AGENT_SKILL_IDS.length} packages=${packages.length} stdio=${OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.length} ciResiduals=${ciResiduals.length} automateShipped=${automateNightly.automateNightlyShipped} · mcpMatch=${mcpParity.mcpMatchesToolbox} · uxImproved=${localSession.localSessionUxImproved} · qpuRequired=false.`,
       boundary:
-        'HONEST: local agent surface upgrade receipt. Thin .cursor/skills + .cursor/mcp.json mounts point here; logic stays in sealed src + packages/*. NOT fake Cursor LLM registration. /automate nightly still parked (dashboard MCP not local stdio). HARMONY ≠ TRUTH.',
+        'HONEST: local agent surface upgrade receipt. Thin .cursor/skills + .cursor/mcp.json mounts point here; logic stays in sealed src + packages/*. NOT fake Cursor LLM registration. /automate nightly shipped via npm-script (REFUSE dashboard MCP stdio). HARMONY ≠ TRUTH.',
     }
   })
 }
