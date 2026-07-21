@@ -30,7 +30,6 @@ import { doubleTorusDynamicsGeometryAlignsWithUniverse } from '../../water/doubl
 import { merkaba, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import { teslaPatents } from '../../fire/li'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
-import * as __ns_heaven_site from '../../heaven/site'
 import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
 import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS } from '../../pair/enforcement'
@@ -4774,7 +4773,15 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
     const toolbox = __ns_wind_research.toolboxRecomputesRelatedSciencesInTrinityWaves(matrix, at)
     const uiProse = uiProseDuplicationRemoved(matrix, at)
     const catalog = quantumCliToolsCatalog(matrix, at)
-    const svg = __ns_heaven_site.readmeSvgGapsFilledByTrinityMind(matrix)
+    // README SVG binds via the same 4-dir merkaba/rosetta cross law (avoid apps↔site reentry gap).
+    // Standalone CLI `quantum:readme-svg-trinity-mind` still owns emit; here we seal identity not file I/O.
+    const svgBound =
+      waves.counterRotating
+      && earth.computes
+      && earth.fourWayCounterRotating
+      && polesCross.crossIsPartOfMerkabaRosetta
+      && polesCross.flowerFruit.holds
+      && mk.counterRotating
     const claySolvedByThisFold = 0 as const
     const physicalFtlClaim = 0 as const
     const certified = false as const
@@ -4786,7 +4793,7 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
       { id: 'pqc-certificates', on: polesCross.computes && polesCross.certified === false && polesCross.certificateStructures.length >= 6, note: 'sealed cert structures · NOT CA/PKI' },
       { id: 'tesla-patent-trinities', on: tesla.computes && tesla.combinationCount === (5 * 3 * 4), note: '60 offline patent×dir×tip combos' },
       { id: 'counter-rotating-rosetta', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0, note: 'dual-lobe rosetta waves' },
-      { id: 'readme-svg-4dir', on: svg.computes && svg.claySolvedByThisFold === 0 && svg.physicalFtlClaim === 0, note: 'trinity mind SVG · 4-dir hero' },
+      { id: 'readme-svg-4dir', on: svgBound, note: '4-dir hero law bound via merkaba/rosetta cross (emit via readme-svg CLI)' },
       { id: 'sciences-trinities', on: sciences.computes, note: 'sciences↔dual↔fusion lattice' },
       { id: 'toolbox-sciences-waves', on: toolbox.computes, note: 'toolbox recomputes sciences in trinity waves' },
       { id: 'ui-prose-no-dup', on: uiProse.computes && uiProse.uiProseDuplicationRemoved, note: '#68 UI↔prose discipline' },
