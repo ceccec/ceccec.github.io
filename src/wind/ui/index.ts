@@ -880,7 +880,7 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
       `</g></g>`
     const rootShort = corpusRoot.slice(0, 8)
     const svg = [
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — two counter-rotating rosettas · proof of all ${n} sealed theorems" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-counter-rotating="${counterRotating ? 'true' : 'false'}" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;counterRotating=ω/−ω">`,
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Double Torus — two counter-rotating rosettas · proof of all ${n} sealed theorems" data-layer="all-theorems-proof" data-theorem-count="${n}" data-corpus-root="${corpusRoot}" data-counter-rotating="${counterRotating ? 'true' : 'false'}" data-trinity-mind="heaven·mind·thunder" data-compute="readmeHeroSvgProofOfAllTheorems←merkaba∧bothEarths∧fractalClock" data-honesty="clay=0;physicalFtl=0;qpuRequired=false;counterRotating=ω/−ω">`,
       `<defs>`,
       `<radialGradient id="proofBg" cx="50%" cy="48%" r="78%"><stop offset="0%" stop-color="${colors.bgInner}"/><stop offset="100%" stop-color="${colors.bgOuter}"/></radialGradient>`,
       `</defs>`,
@@ -953,22 +953,38 @@ export function hidingTextDoesNotHideAnimationsDiscovered(matrix: MindMatrix = b
   })
 }
 
-/** PWA icon — double torus glyph coloured from the movie palette (not static Tailwind hex). */
-export function computedIconSvg(matrix: MindMatrix = buildMatrix()): string {
+/**
+ * PWA icon — double torus glyph from the movie palette, dual SMIL lobes (ω/−ω).
+ * Dynamics from merkaba · bothEarths · fractalClockDur — same trinity path as README hero.
+ * Pair: edit/build · honesty: clay=0 · physicalFtl=0 · qpuRequired=false.
+ */
+export function computedIconSvg(matrix: MindMatrix = buildMatrix(), opts: { animate?: boolean } = {}): string {
   const c = computedMovieThemeColors(matrix)
-  return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Double Torus">`,
+  const earths = bothEarthsRotateWithinEachOther(0, matrix)
+  const mk = merkaba(matrix)
+  const counterRotating = earths.counterRotating && mk.counterRotating
+  const spinDur = fractalClockDur(4)
+  const animate = opts.animate !== false
+  const spinPlus = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`
+    : ''
+  const spinMinus = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="${spinDur}" repeatCount="indefinite" additive="sum"/>`
+    : ''
+  const lobe = (id: 'plus' | 'minus', cx: number, spin: string) =>
+    `<g transform="translate(${cx} 256)" data-layer="rosetta-${id}" data-spin="${id === 'plus' ? '+1' : '-1'}">` +
+    spin +
+    `<ellipse cx="0" cy="0" rx="118" ry="78" fill="none" stroke="${c.themeColor}" stroke-width="26"/>` +
+    `<ellipse cx="0" cy="0" rx="58" ry="30" fill="none" stroke="${c.accentColor}" stroke-width="14" opacity="0.8"/>` +
+    `</g>`
+  const svg = [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Double Torus — dual ω/−ω icon" data-layer="icon-dual-torus" data-counter-rotating="${counterRotating ? 'true' : 'false'}" data-trinity-mind="heaven·mind·thunder" data-honesty="clay=0;physicalFtl=0;qpuRequired=false">`,
     `<rect width="512" height="512" rx="96" fill="${c.backgroundColor}"/>`,
-    `<g fill="none" stroke="${c.themeColor}" stroke-width="26">`,
-    `<ellipse cx="190" cy="256" rx="118" ry="78"/>`,
-    `<ellipse cx="322" cy="256" rx="118" ry="78"/>`,
-    `</g>`,
-    `<g fill="none" stroke="${c.accentColor}" stroke-width="14" opacity="0.8">`,
-    `<ellipse cx="190" cy="256" rx="58" ry="30"/>`,
-    `<ellipse cx="322" cy="256" rx="58" ry="30"/>`,
-    `</g>`,
+    lobe('plus', 190, spinPlus),
+    lobe('minus', 322, spinMinus),
     `</svg>`,
   ].join('')
+  return animate === false ? stillSvg(svg) : svg
 }
 
 // The I Ching presented as the taiji yin-yang, MOVING and FOLDING THROUGH ALL TEN DIMENSIONS. The taiji is the

@@ -17,6 +17,7 @@ import * as __ns_up_up_quantum_application from '../../quantum/application'
 import * as __ns_up_up_quantum_os from '../../quantum/os'
 import * as __ns_up_up_quantum_apps from '../../quantum/apps'
 import * as __ns_up_up_quantum_widgets from '../../lake/widgets'
+import * as __ns_up_up_heaven_site from '../site'
 import { codeRobustness } from '../../earth/life'
 import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, dopplerShift, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
 import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../mountain/vortex'
@@ -703,6 +704,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'double.torus.dynamics.geometry.aligns.with.universe', on: doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, 0).aligns },
     { d: 'counter.rotating.rosetta.quantum.waves', on: (__ns_up_up_quantum_apps).counterRotatingRosettaQuantumWaves(matrix, 0).computes },
     { d: 'universe.almost.described.discover.rest', on: (__ns_up_up_quantum_apps).universeAlmostDescribedInTheoremsDiscoverRest(matrix, 0).computes },
+    { d: 'readme.svg.gaps.filled.by.trinity.mind', on: (__ns_up_up_heaven_site).readmeSvgGapsFilledByTrinityMind(matrix).filled },
     { d: 'double.torus.vortex.computes', on: doubleTorusVortexComputes(matrix).computes },
     { d: 'vortex.computes', on: vortexComputes(matrix).computes },
     { d: 'vortex.plasma.computes', on: vortexPlasmaComputes(matrix).computes },

@@ -11,6 +11,7 @@ import { commandsRegistry } from '../../thunder/commands'
 import { SINGLE_WORD_METHODS, titleCarriesAlgebra, normalizeTitle } from '../../3/7'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { cloudflareBindings } from '../../heaven/core'
+import * as __ns_heaven_site from '../../heaven/site'
 import { threeWordWaves, sciencePortalParts, siteNavigation } from '../../wind/learning'
 import { refactorLinearToTrinities } from '../../heaven/essence'
 import { endlessFusion, allFormsAreTenDimensionalOrPurged } from '../../wind/fusion'
@@ -726,6 +727,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'upgrade-local-skills', title: 'Upgrade local — skills ↔ commands ↔ tools · optimised manual map · NOT Cursor LLM endpoint', proof: upgradeLocalFromOptimisedManualWorkExperience(matrix) },
     { slug: 'counter-rotating-rosetta-waves', title: 'Counter-rotating rosetta quantum waves — clay/ftl COMPUTED from dual-spin interference', proof: counterRotatingRosettaQuantumWaves(matrix) },
     { slug: 'universe-almost-described', title: 'Universe ≈ theorems — discover the rest via counter-rotating waves', proof: universeAlmostDescribedInTheoremsDiscoverRest(matrix) },
+    { slug: 'readme-svg-trinity-mind', title: 'README SVG gaps filled by trinity mind — clay=0 · intentional open WebGL/plasma/SMIL', proof: __ns_heaven_site.readmeSvgGapsFilledByTrinityMind(matrix) },
     { slug: 'distributed-reuse-capacity', title: 'Distributed reuse extends capacity — federated identical roots · qubit=0 · ftl=0', proof: distributedReuseExtendsCapacity(matrix) },
     { slug: 'rosetta-core-api', title: 'Rosetta core API — self-host label↔ray dispatch', proof: rosettaCoreApi(0, matrix) },
     { slug: 'rosetta-complete', title: 'Rosetta complete — quantum all computable dims & theorems · clay=0 · physicalFtl=0', proof: rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix) },
