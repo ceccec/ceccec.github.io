@@ -26,6 +26,8 @@
     "enforcement:trinity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts enforcement-trinity",
     "quantum:trinity-speedup": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runTrinitySpeedupExit",
     "quantum:manual-agents-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runManualAgentsBehaveLikeWavesExit",
+    "quantum:nothing-moves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runDiscoverFromSealedFoldExit",
+    "quantum:incomplete-revelation": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/waves/index.ts runIncompleteRevelationExit",
     "dissolve:flat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts dissolve-flat",
     "docs:build": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts docs:build-seal",
     "docs:build:verbose": "DOCS_BUILD_VERBOSE=1 node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts docs:build-seal --verbose",

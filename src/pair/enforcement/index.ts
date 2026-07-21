@@ -267,6 +267,20 @@ export const MISSION_COMMANDS: readonly MissionCommand[] = [
     workflow: 'ceccec-build-waves',
   },
   {
+    npm: 'quantum:nothing-moves',
+    cli: 'run',
+    pair: 'nothing/moves',
+    does: 'Receipt: discoverFromSealedFold — offline sealed discovery · no wet motion · unknown → incompleteRevelation',
+    workflow: 'ceccec-build-waves',
+  },
+  {
+    npm: 'quantum:incomplete-revelation',
+    cli: 'run',
+    pair: 'nothing/moves',
+    does: 'Receipt: incompleteRevelation — fold sealed src + timeout/dry-refactor · never override wave',
+    workflow: 'ceccec-build-waves',
+  },
+  {
     npm: 'docs:build',
     cli: 'docs:build',
     pair: 'build/seal',

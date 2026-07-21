@@ -5,6 +5,8 @@ import type { Plugin } from 'vite'
 // `import { readFileSync } from 'node:fs'` eager-binds and throws in the client.
 import {
   agentHarmonise,
+  discoverFromSealedFold,
+  incompleteRevelation,
   manualAgentsBehaveLikeWaves,
   buildMatrix,
   componentPages,
@@ -107,6 +109,8 @@ export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
 export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const harmonise = agentHarmonise(matrix)
   const waveLaw = manualAgentsBehaveLikeWaves(matrix)
+  const nothingMoves = discoverFromSealedFold('manualAgentsBehaveLikeWaves', 0, matrix)
+  const incomplete = incompleteRevelation({ foldId: 'ghost-unknown-fold', reason: 'agents-json-probe' }, matrix)
   const session = sessionManualWorkAsQuantumTools(matrix)
   const toolbox = standardToolboxIoCatalog(matrix)
   const distributed = distributedReuseExtendsCapacity(matrix)
@@ -118,7 +122,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const honestEff = revolutionaryEfficiencyNotPhysics(matrix)
   return `${JSON.stringify(
     {
-      computes: Boolean(harmonise.harmonised && waveLaw.computes && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && upgradeLocal.computes && honestRev.holds && honestFpga.holds && honestEff.holds),
+      computes: Boolean(harmonise.harmonised && waveLaw.computes && nothingMoves.discovers && incomplete.incomplete && incomplete.computes && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && upgradeLocal.computes && honestRev.holds && honestFpga.holds && honestEff.holds),
       oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
       protocol: {
         laws: harmonise.laws,
@@ -141,6 +145,43 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         boundary: waveLaw.boundary,
         claySolvedByThisFold: waveLaw.claySolvedByThisFold,
         qpuRequired: waveLaw.qpuRequired,
+      },
+      discoverFromSealedFold: {
+        computes: nothingMoves.computes,
+        discovers: nothingMoves.discovers,
+        incomplete: nothingMoves.incomplete,
+        foldId: nothingMoves.foldId,
+        known: nothingMoves.known,
+        wetMotion: nothingMoves.wetMotion,
+        catalogCount: nothingMoves.catalogCount,
+        pair: nothingMoves.pair,
+        cli: nothingMoves.cli,
+        route: nothingMoves.route,
+        root: nothingMoves.root,
+        facets: nothingMoves.facets,
+        statement: nothingMoves.statement,
+        boundary: nothingMoves.boundary,
+        claySolvedByThisFold: nothingMoves.claySolvedByThisFold,
+        qpuRequired: nothingMoves.qpuRequired,
+        physicalFtlClaim: nothingMoves.physicalFtlClaim,
+      },
+      incompleteRevelation: {
+        computes: incomplete.computes,
+        incomplete: incomplete.incomplete,
+        overrideWave: incomplete.overrideWave,
+        foldId: incomplete.foldId,
+        reason: incomplete.reason,
+        next: incomplete.next,
+        pair: incomplete.pair,
+        cli: incomplete.cli,
+        route: incomplete.route,
+        root: incomplete.root,
+        facets: incomplete.facets,
+        statement: incomplete.statement,
+        boundary: incomplete.boundary,
+        claySolvedByThisFold: incomplete.claySolvedByThisFold,
+        qpuRequired: incomplete.qpuRequired,
+        physicalFtlClaim: incomplete.physicalFtlClaim,
       },
       autoWireAnyAiModelFromPastedLink: {
         computes: autoWire.computes,
