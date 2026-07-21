@@ -768,7 +768,7 @@ function heroPlasmaBallLayer(cx: number, cy: number, byte: (k: number) => number
     const r = (6 * 5) + (byte(k) % 26)
     const x2 = Math.round(cx + Math.cos(a) * r)
     const y2 = Math.round(cy + Math.sin(a) * r)
-    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[9 - (k % 4)]!)}" begin="${(k % 9) * (2 / 5) + (1 / (5 * 2))}s" repeatCount="indefinite"/></line>`
+    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${fil}" stroke-width="1.5"><animate attributeName="opacity" values="0.12;0.7;0.12" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[9 - (k % 4)]!)}" begin="${roundTo((k % 9) * (2 / 5) + (1 / (5 * 2)), 2)}s" repeatCount="indefinite"/></line>`
   }).join('')
   return `<g opacity="0.5" data-layer="plasma">${filaments}<circle cx="${cx}" cy="${cy}" r="14" fill="${core}"><animate attributeName="r" values="11;18;11" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0.85;0.35" dur="${fractalClockDur(9 * 2)}" repeatCount="indefinite"/></circle></g>`
 }
@@ -817,7 +817,7 @@ function heroRosettaRaysLayer(cx: number, cy: number, byte: (k: number) => numbe
     const x2 = Math.round(cx + Math.cos(a) * R)
     const y2 = Math.round(cy + Math.sin(a) * R)
     const stroke = movieCanvasHex((hue0 + Math.round(k * GOLDEN_ANGLE_DEG)) % 360, { L: 11 / 16 })
-    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="1" opacity="0.45"><animate attributeName="opacity" values="0.18;0.55;0.18" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[k % 4]!)}" begin="${(k % 7) * (1 / 5)}s" repeatCount="indefinite"/></line>`
+    return `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="1" opacity="0.45"><animate attributeName="opacity" values="0.18;0.55;0.18" dur="${fractalClockDur(FRACTAL_CLOCK_DIVISORS[k % 4]!)}" begin="${roundTo((k % 7) * (1 / 5), 2)}s" repeatCount="indefinite"/></line>`
   }).join('')
   return `<g data-layer="rosetta">${lines}</g>`
 }
