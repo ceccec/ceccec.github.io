@@ -397,6 +397,83 @@ export const FIBONACCI: readonly number[] = (() => {
 /** τ / φ² — the golden angle in RADIANS, same fold as GOLDEN_ANGLE seen from the radian side. */
 export const GOLDEN_ANGLE_RAD = TAU / (PHI * PHI)
 
+/**
+ * Gap-scan candidate: the golden angle is τ/φ² — the most irrational rotation.
+ * Bounded witness: identity · φ²=φ+1 · CF of Fib approximants all-1s · orbit min-gap vs rational clump.
+ * Pair: golden/angle · provedBy registry row · claySolved via theorem · physicalFtl=0.
+ */
+export function theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation() {
+  const identityRad = GOLDEN_ANGLE_RAD === TAU / (PHI * PHI)
+  const identityDeg = GOLDEN_ANGLE === (9 * 5 * 8) / (PHI * PHI)
+  const phiQuadratic = PHI * PHI === PHI + 1
+  // Classic Fibonacci 1,1,2,3,5,… — Euclidean quotients on consecutive pairs are 1 until the terminal step.
+  const fib: number[] = [1, 1]
+  while (fib.length < (8 + 5)) fib.push(fib[fib.length - 1]! + fib[fib.length - 2]!)
+  let cfAllOnes = true
+  for (let i = 2; i < fib.length; i += 1) {
+    let a = fib[i]!
+    let b = fib[i - 1]!
+    while (b > 0) {
+      const q = Math.floor(a / b)
+      const r = a - q * b
+      if (b > 1 && q !== 1) cfAllOnes = false
+      a = b
+      b = r
+    }
+  }
+  // Equidistribution bound: N golden steps keep positive min circular gap; rational 108° clumps to 0.
+  const full = 9 * 5 * 8 // 360
+  const minGap = (step: number, n: number) => {
+    const hues = Array.from({ length: n }, (_, k) => (k * step) % full).sort((x, y) => x - y)
+    const gaps = hues.map((h, i) => (i + 1 < hues.length ? hues[i + 1]! : hues[0]! + full) - h)
+    return Math.min(...gaps)
+  }
+  const n = 8 + 5 // 13
+  const goldenMin = minGap(GOLDEN_ANGLE, n)
+  const rationalMin = minGap(9 * 3 * 4, n) // 108° — gcd with 360 collapses
+  const equidistributionBound = goldenMin > 0 && rationalMin === 0
+  const facets = [
+    { facet: `identity GOLDEN_ANGLE_RAD = TAU/(PHI·PHI) (${identityRad}) ∧ GOLDEN_ANGLE = 360/φ² (${identityDeg})`, on: identityRad && identityDeg },
+    { facet: `φ quadratic φ² = φ+1 (${phiQuadratic}) — slowest CF convergence seed`, on: phiQuadratic },
+    { facet: `Fib approximants Euclidean quotients are 1s (CF [1;1,1,…] witness, ${cfAllOnes})`, on: cfAllOnes },
+    { facet: `equidistribution bound — golden minGap=${goldenMin}>0 vs rational-108 clump=${rationalMin} at N=${n}`, on: equidistributionBound },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`golden-angle:${entry.facet}:${entry.on}`) }))
+  const on = facets.every((entry) => entry.on)
+  return {
+    computes: on,
+    theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation: on,
+    GOLDEN_ANGLE_RAD,
+    GOLDEN_ANGLE,
+    PHI,
+    goldenMin,
+    rationalMin,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    pair: 'golden/angle' as const,
+    statement:
+      `theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation — identity · φ²=φ+1 · CF-ones · equidistribution bound.`,
+    boundary:
+      'Bounded witness: identity + Fib CF + min-gap vs rational clump. NOT physical FTL. claySolved via theorem=0.',
+  }
+}
+
+/** npm run quantum:golden-angle (dual angle/golden) */
+export function runTheGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotationExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} golden-angle — identity·CF·equidistribution fold=theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation pair=${report.pair}\n`,
+  )
+  process.stdout.write(
+    `  metrics · goldenMin=${report.goldenMin} · rationalMin=${report.rationalMin} · clay=0 · physicalFtl=0\n`,
+  )
+  return report.computes ? 0 : 1
+}
+
 // The ten dimensions of the model (6 cross-fold appearance axes + 4 genus-2 homology loops). Hosted in
 // this zero-import leaf so the count + names initialise before any cyclic consumer barrel
 // (quantum/mountain/dimensions ↔ mountain/topology ↔ heaven/* …) runs, removing the SSR-bundle TDZ

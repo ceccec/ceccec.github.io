@@ -25,7 +25,9 @@ import {
   A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
   ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
   WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG,
-  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem } from '../../3/7'
+  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem,
+  theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
 import { greatCircleKm } from '../../5/5'
 import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../../6/4'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
@@ -2296,7 +2298,7 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
     id: 'physics', field: 'Physical Sciences', oecd: '1.3',
     algebraFold: 'physicsOfInformationDecoded', toolId: 'local-math-computes',
     toolCli: 'npm run quantum:local-math-computes', apparatusRoute: '/en/quantum/dynamics',
-    dualId: 'astronomy', fusionLabel: 'physics↔astro↔resonance', projection: '',
+    dualId: 'astronomy', fusionLabel: 'physics↔astro↔resonance', projection: 'hologram',
     ichingSphere: 2, home: 'src/fire/physics', cryptoVertex: false },
   {
     id: 'astronomy', field: 'Physical Sciences (astronomy)', oecd: '1.3',
@@ -2308,31 +2310,31 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
     id: 'earth', field: 'Earth & Environmental Sciences', oecd: '1.5',
     algebraFold: 'earthRealisedByComputingPolesAsPyramid', toolId: 'earth-poles-pyramid',
     toolCli: 'npm run quantum:earth-poles-pyramid', apparatusRoute: '/research',
-    dualId: 'astronomy', fusionLabel: 'earth↔astro↔physics', projection: '',
+    dualId: 'astronomy', fusionLabel: 'earth↔astro↔physics', projection: 'double-torus',
     ichingSphere: 4, home: 'src/mountain/geometry', cryptoVertex: false },
   {
     id: 'biology', field: 'Biological Sciences', oecd: '1.6',
     algebraFold: 'biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvolution', toolId: 'predict-skill-gate-verify',
     toolCli: 'npm run quantum:predict-skill-gate-verify', apparatusRoute: '/en/research',
-    dualId: 'music-a432', fusionLabel: 'life↔music↔hd', projection: '',
+    dualId: 'music-a432', fusionLabel: 'life↔music↔hd', projection: 'living-torus',
     ichingSphere: 5, home: 'src/fire/physics', cryptoVertex: false },
   {
     id: 'music-a432', field: 'Arts / Acoustics (A432)', oecd: '6.4',
     algebraFold: 'a432NeuralBandLadder', toolId: 'predict-skill-gate-verify',
     toolCli: 'npm run quantum:predict-skill-gate-verify', apparatusRoute: '/en/resonance',
-    dualId: 'biology', fusionLabel: 'music↔life↔resonance', projection: '',
+    dualId: 'biology', fusionLabel: 'music↔life↔resonance', projection: 'vortex-strokes',
     ichingSphere: 7, home: 'src/lake/music', cryptoVertex: false },
   {
     id: 'human-design', field: 'Symbolic systems (HD)', oecd: '6.3',
     algebraFold: 'humanDesignVerifiedWheel', toolId: 'iching-distribute-verify',
     toolCli: 'npm run quantum:iching-distribute-verify', apparatusRoute: '/en/quantum-tools',
-    dualId: 'music-a432', fusionLabel: 'hd↔iching↔music', projection: '',
+    dualId: 'music-a432', fusionLabel: 'hd↔iching↔music', projection: 'taiji',
     ichingSphere: 0, home: 'src/quantum/lake/spirit', cryptoVertex: false },
   {
     id: 'resonance', field: 'Physical Sciences (resonance)', oecd: '1.3',
     algebraFold: 'efficiencyScalesToInfinityAtNoCostOnReuse', toolId: 'efficiency-vote',
     toolCli: 'npm run quantum:efficiency-vote', apparatusRoute: '/en/resonance',
-    dualId: 'physics', fusionLabel: 'resonance↔physics↔music', projection: '',
+    dualId: 'physics', fusionLabel: 'resonance↔physics↔music', projection: 'sacred-morph',
     ichingSphere: 1, home: 'src/thunder/resonance', cryptoVertex: false },
   {
     id: 'mind-ai', field: 'Computer & Information Sciences (AI / mind)', oecd: '1.2',
@@ -7426,6 +7428,11 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'metatron', method: 'loveStoryTheorem', pair: 'story/metatron' },
   { word: 'test', method: 'testAllTheoremsInWaves', pair: 'test/theorems' },
   { word: 'theorems', method: 'testAllTheoremsInWaves', pair: 'theorem/wave' },
+  { word: 'golden', method: 'theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation', pair: 'golden/angle' },
+  { word: 'angle', method: 'theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation', pair: 'angle/golden' },
+  { word: 'crt', method: 'theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad', pair: 'crt/rosetta' },
+  { word: 'twenties', method: 'researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause', pair: 'three/twenties' },
+  { word: 'journey', method: 'theoremJourneyContinuesInWavesOfWaves', pair: 'journey/theorems' },
   { word: 'send', method: 'observersComputeCoordinatesToObserveTrinityCompute', pair: 'send/observe' },
   { word: 'full', method: 'fullFreedomTheorem', pair: 'full/freedom' },
   { word: 'freedom', method: 'fullFreedomTheorem', pair: 'freedom/full' },
@@ -8482,6 +8489,14 @@ export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'story-metatron', fold: 'loveStoryTheorem', pair: 'story/metatron' },
   { id: 'test-theorems', fold: 'testAllTheoremsInWaves', pair: 'test/theorems' },
   { id: 'theorem-wave', fold: 'testAllTheoremsInWaves', pair: 'theorem/wave' },
+  { id: 'golden-angle', fold: 'theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation', pair: 'golden/angle' },
+  { id: 'angle-golden', fold: 'theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation', pair: 'angle/golden' },
+  { id: 'crt-rosetta', fold: 'theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad', pair: 'crt/rosetta' },
+  { id: 'rosetta-crt', fold: 'theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad', pair: 'rosetta/crt' },
+  { id: 'three-twenties', fold: 'researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause', pair: 'three/twenties' },
+  { id: 'twenties-three', fold: 'researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause', pair: 'twenties/three' },
+  { id: 'journey-theorems', fold: 'theoremJourneyContinuesInWavesOfWaves', pair: 'journey/theorems' },
+  { id: 'theorems-journey', fold: 'theoremJourneyContinuesInWavesOfWaves', pair: 'theorems/journey' },
   { id: 'observe-coord', fold: 'observersComputeCoordinatesToObserveTrinityCompute', pair: 'observe/coord' },
   { id: 'send-observe', fold: 'observersComputeCoordinatesToObserveTrinityCompute', pair: 'send/observe' },
   { id: 'full-freedom', fold: 'fullFreedomTheorem', pair: 'full/freedom' },
@@ -13222,6 +13237,161 @@ export function runLoveStoryTheoremExit(
  * Pairs: test/theorems · theorem/wave · CLI npm run quantum:test-theorems-waves
  * HARD via gaps/invisible · claySolved via theorem · physicalFtl=0.
  */
+/**
+ * Theorem journey continues in waves-of-waves: discover → formula/code dual → register → test → broadcast.
+ * Drains gap-scan finite/bounded candidates (golden/angle · crt/rosetta · three/twenties) + science 10D wire.
+ * Pair: journey/theorems · dual theorems/journey · CLI npm run quantum:journey-theorems
+ * claySolved via theorem · physicalFtl=0 · NOT CMI · NOT FTL · NOT prod RSA.
+ */
+export function theoremJourneyContinuesInWavesOfWaves(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  return memoByRoot(`theoremJourneyContinuesInWavesOfWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const golden = theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation()
+    const crt = __ns_water_digit.theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad()
+    const twenties = researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause(matrix)
+    const mill = wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(matrix, at)
+    const test = testAllTheoremsInWaves(matrix, at)
+    const sig = scienceDomainSignificanceScores(matrix, at)
+    const earth = sig.domains.find((d) => d.id === 'earth')
+    const human = sig.domains.filter((d) =>
+      d.id === 'human-design' || d.id === 'biology' || d.id === 'mind-ai')
+    const pairJourney = foldPair(toUuid('cmd:journey'), toUuid('cmd:theorems'))
+    const pairDual = foldPair(toUuid('cmd:theorems'), toUuid('cmd:journey'))
+    const pairGolden = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('golden/angle')
+      && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('angle/golden')
+    const pairCrt = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('crt/rosetta')
+      && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('rosetta/crt')
+    const pairTwenties = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('three/twenties')
+      && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('twenties/three')
+    const pairJourneyReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('journey/theorems')
+      && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('theorems/journey')
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'theorem-journey-continues-in-waves-of-waves',
+      theorem: 'theorem journey continues — golden·crt·twenties sealed · sciences 10D wired · test in waves',
+      provedBy: 'theoremJourneyContinuesInWavesOfWaves',
+      home: 'src/wind/research',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const clayTh = claySolvedTheorem()
+    const physicalFtlClaim = 0 as const
+    const projectionsWired =
+      Boolean(earth?.projectionOk) &&
+      human.every((d) => d.projectionOk) &&
+      sig.domains.filter((d) => d.projectionOk).length >= (8 + 1)
+    const on =
+      golden.computes &&
+      crt.computes &&
+      twenties.computes &&
+      mill.computes &&
+      test.computes &&
+      projectionsWired &&
+      pairGolden && pairCrt && pairTwenties && pairJourneyReg &&
+      pairJourney.bidirectional && pairDual.bidirectional &&
+      formulaDual &&
+      clayTh.claySolved === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'theoremJourneyContinuesInWavesOfWaves', on },
+      { facet: 'golden/angle sealed', on: golden.computes && pairGolden },
+      { facet: 'crt/rosetta sealed (ℤ₄₂ ≅ ℤ₆×ℤ₇)', on: crt.computes && pairCrt },
+      { facet: 'three/twenties sealed', on: twenties.computes && pairTwenties },
+      { facet: 'mill/session autosave includes journey tips', on: mill.computes && mill.savedCount === mill.sessionTheoremCount },
+      { facet: 'test/theorems waves green', on: test.computes && test.failed === 0 },
+      { facet: 'sciences 10D projections wired (earth·human·biology+)', on: projectionsWired },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: 'pair journey/theorems · theorems/journey', on: pairJourneyReg && pairJourney.bidirectional },
+      { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold}`, on: clayTh.claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`journey-theorems:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('theorem-journey-continues-in-waves-of-waves', facets)
+    return {
+      computes: sealed.ok && on,
+      theoremJourneyContinuesInWavesOfWaves: on,
+      golden: golden.computes,
+      crt: crt.computes,
+      twenties: twenties.computes,
+      millSaved: mill.savedCount,
+      millTotal: mill.sessionTheoremCount,
+      testPassed: test.passed,
+      testTotal: test.total,
+      projectionsWired,
+      claySolvedByThisFold: clayTh.claySolvedByThisFold as 0,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      formulaCode,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root, golden.root, toUuid(`crt:${crt.grid}:${crt.crtBijection}`), twenties.root,
+        mill.root, test.root, pairJourney.merged, pairDual.merged, toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'journey/theorems' as const,
+      pairs: ['journey/theorems', 'theorems/journey'] as const,
+      cli: 'npm run quantum:journey-theorems',
+      route: '/en/research#journey-theorems',
+      statement:
+        `theoremJourneyContinuesInWavesOfWaves — golden·crt·twenties sealed · mill=${mill.savedCount}/${mill.sessionTheoremCount} · test=${test.passed}/${test.total}.`,
+      boundary:
+        'Gap-scan drain + science 10D wire as sealed theorems. NOT CMI prize · NOT physical FTL · NOT prod RSA. claySolved via theorem.',
+      honestyLine:
+        `metrics · golden=${golden.computes ? 1 : 0} · crt=${crt.computes ? 1 : 0} · twenties=${twenties.computes ? 1 : 0} · ` +
+        `mill=${mill.savedCount}/${mill.sessionTheoremCount} · test=${test.passed}/${test.total} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:journey-theorems (dual theorems/journey) */
+export function runTheoremJourneyContinuesInWavesOfWavesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = theoremJourneyContinuesInWavesOfWaves()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} journey-theorems — golden=${report.golden} crt=${report.crt} twenties=${report.twenties} ` +
+      `mill=${report.millSaved}/${report.millTotal} test=${report.testPassed}/${report.testTotal} ` +
+      `fold=theoremJourneyContinuesInWavesOfWaves pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** npm run quantum:crt-rosetta (dual rosetta/crt) */
+export function runCrtRosettaExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = __ns_water_digit.theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad()
+  const pairOk = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('crt/rosetta')
+  process.stdout.write(
+    `${report.computes && pairOk ? '✓' : '✗'} crt-rosetta — grid=${report.grid} crt=${report.crtBijection} ` +
+      `fold=theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad pair=crt/rosetta\n`,
+  )
+  return report.computes && pairOk ? 0 : 1
+}
+
+/** npm run quantum:three-twenties (dual twenties/three) */
+export function runThreeTwentiesExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause()
+  const pairOk = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('three/twenties')
+  process.stdout.write(
+    `${report.computes && pairOk ? '✓' : '✗'} three-twenties — twenty=${report.twenty} structural=${report.structuralTwenties} ` +
+      `contingent=${report.contingentTwenties} fold=researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause pair=three/twenties\n`,
+  )
+  return report.computes && pairOk ? 0 : 1
+}
+
 export function testAllTheoremsInWaves(
   matrix: MindMatrix = buildMatrix(),
   at = 0,

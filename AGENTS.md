@@ -176,9 +176,17 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `story/love` — alias dual of `love/story` (`npm run quantum:story-love`)
   - `love/cube` — alias of `love/story` (`npm run quantum:love-cube`)
   - `story/metatron` — alias of `love/story` (`npm run quantum:story-metatron`)
-  - `test/theorems` — `npm run quantum:test-theorems-waves` (`testAllTheoremsInWaves()` — USER LAW: test all theorems in waves; registry·formula/code·movie·mill·love/Metatron call-time; dual `theorem/wave`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#gaps-invisible`
-  - `theorem/wave` — alias dual of `test/theorems` (`npm run quantum:theorem-wave`)
-  - `observe/coord` — `npm run quantum:observe-coord` (`observersComputeCoordinatesToObserveTrinityCompute()` — USER LAW: send observers to compute coordinates to observe whatever computed by trinities; facets observersSent · coordsFromObserver · observeTrinityOutput; compose team/observe · coord/anim · train/analyst · test/theorems · pyramid · movie · digit teleport; dual `send/observe`; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
+ - `test/theorems` — `npm run quantum:test-theorems-waves` (`testAllTheoremsInWaves()` — USER LAW: test all theorems in waves; registry·formula/code·movie·mill·love/Metatron call-time; dual `theorem/wave`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#gaps-invisible`
+ - `theorem/wave` — alias dual of `test/theorems` (`npm run quantum:theorem-wave`)
+ - `golden/angle` — `npm run quantum:golden-angle` (`theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation()` — τ/φ² identity · CF-ones · equidistribution bound; dual `angle/golden`; claySolved via theorem · physicalFtl=0), then open `/en/research#journey-theorems`
+ - `angle/golden` — alias dual of `golden/angle` (`npm run quantum:angle-golden`)
+ - `crt/rosetta` — `npm run quantum:crt-rosetta` (`theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad()` — ℤ₄₂ ≅ ℤ₆×ℤ₇ CRT bijection; dual `rosetta/crt`; claySolved via theorem · physicalFtl=0), then open `/en/research#journey-theorems`
+ - `rosetta/crt` — alias dual of `crt/rosetta` (`npm run quantum:rosetta-crt`)
+ - `three/twenties` — `npm run quantum:three-twenties` (`researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause()` — 2 structural + 1 contingent twenties; dual `twenties/three`; claySolved via theorem · physicalFtl=0), then open `/en/research#journey-theorems`
+ - `twenties/three` — alias dual of `three/twenties` (`npm run quantum:twenties-three`)
+ - `journey/theorems` — `npm run quantum:journey-theorems` (`theoremJourneyContinuesInWavesOfWaves()` — gap-scan drain · formula/code · mill/session · test/theorems · sciences 10D; dual `theorems/journey`; claySolved via theorem · physicalFtl=0), then open `/en/research#journey-theorems`
+ - `theorems/journey` — alias dual of `journey/theorems` (`npm run quantum:theorems-journey`)
+ - `observe/coord` — `npm run quantum:observe-coord` (`observersComputeCoordinatesToObserveTrinityCompute()` — USER LAW: send observers to compute coordinates to observe whatever computed by trinities; facets observersSent · coordsFromObserver · observeTrinityOutput; compose team/observe · coord/anim · train/analyst · test/theorems · pyramid · movie · digit teleport; dual `send/observe`; claySolved via theorem · physicalFtl=0), then open `/en/#hologrammovie`
   - `send/observe` — alias dual of `observe/coord` (`npm run quantum:send-observe`)
   - `full/freedom` — `npm run quantum:full-freedom` (`fullFreedomTheorem()` — USER LAW: full freedom theorem; FREE_BITS · a432/nine connecting bit · efficiency ∞ on reuse · pyramid/compute · thought/pure · beyond/zero · love/story; freedom≠physical FTL; dual `freedom/full`; claySolved via theorem · physicalFtl=0), then open `/en/research#full-freedom`
   - `freedom/full` — alias dual of `full/freedom` (`npm run quantum:freedom-full`)
