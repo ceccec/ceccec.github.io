@@ -396,7 +396,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'predict-skill-gate-verify', title: 'Predict skill gate verify', fold: 'skilledEnoughFromPredictions', cli: 'npm run quantum:predict-skill-gate-verify', pair: 'predict/skill-gate-verify', route: '/en/quantum-tools', barrel: 'src/lake/music', boundary: 'Measurable event prediction skill', browserRunnable: true, browserGap: '' },
   { id: 'f-inverse-pair', title: 'f→{p,q} inverse fold', fold: 'fThetaPhiXyzDigitNIsTheInversePair', cli: 'npm run quantum:f-inverse-pair', pair: 'inverse/pair', route: '/en/quantum-tools', barrel: 'src/mountain/vortex', boundary: 'Inverse fold within itself — not RSA crack', browserRunnable: true, browserGap: '' },
   { id: 'translations-verify', title: 'Translation gaps gate (en/bg/gla parity)', fold: 'translationGapsGate', cli: 'npm run quantum:translations-verify', pair: 'translations/verify', route: '/en/quantum-tools#translations-verify', barrel: 'src/mountain/source', boundary: 'HARD discover-then-fail on missing/inaccurate en-parity · WARN offline phrase residual · clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'mcp-commands-scripts-gaps-audit', title: 'MCP commands ↔ scripts gaps audit', fold: 'mcpCommandsScriptsGapsAudit', cli: 'npm run quantum:mcp-commands-scripts-gaps-audit', pair: 'mcp/scripts-audit', route: '/en/quantum-tools#mcp-commands-scripts-gaps-audit', barrel: 'src/quantum/apps', boundary: 'Overlap · useless · gap census for stdio MCP + package.json + toolbox — residual trading:* / conceptTools named honestly · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-commands-scripts-gaps-audit', title: 'MCP commands ↔ scripts gaps audit', fold: 'mcpCommandsScriptsGapsAudit', cli: 'npm run quantum:mcp-commands-scripts-gaps-audit', pair: 'mcp/scripts-audit', route: '/en/quantum-tools#mcp-commands-scripts-gaps-audit', barrel: 'src/quantum/apps', boundary: 'Overlap · useless · gap census — conceptTools+trading:* REFUSE PRIMARY (kept-intentional) · plasma/trinity in HONEST_CI · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'slow-gap', title: 'Slow process = quantum gap', fold: 'slowProcessIsQuantumGap', cli: 'npm run quantum:slow-gap', pair: 'slow/gap', route: '/en/quantum-tools#slow-quantum-gaps', barrel: 'src/quantum/apps', boundary: 'Architectural slow≠telemetry — browserGap · missing 10D · parallel registry · memo-miss model', browserRunnable: true, browserGap: '' },
   { id: 'sciences-trinities', title: 'Sciences interact in trinities + significance', fold: 'sciencesInteractInTrinities', cli: 'npm run quantum:sciences-trinities', pair: 'sciences/trinities', route: '/en/research#sciences-trinities', barrel: 'src/wind/research', boundary: 'Structural significance ≠ journal IF; crypto vertex from isoPqcHandoff; claySolved=0', browserRunnable: true, browserGap: '' },
   { id: 'animations-rosetta', title: 'Animations driven by rosetta (yin-yang first)', fold: 'animationsDrivenByRosetta', cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang', barrel: 'src/wind/ui', boundary: 'Linear forming = quantum gap; taiji uses non-linear exchange + rosettaShelve', browserRunnable: true, browserGap: '' },
@@ -2879,6 +2879,7 @@ const HONEST_CI_BROWSER_GAP_IDS = [
   'educational-gaps-audit',
   'vitepress-quantumize',
   'slow-build-gate',
+  'plasma-screen-thunder',
 ] as const
 
 /**
@@ -3344,17 +3345,17 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
     id: 'concept-tools-legacy-dual',
     kind: 'gap' as const,
     names: ['/mcp.json#conceptTools', 'executeConceptCommand'],
-    detail: 'Legacy concept commands under result.conceptTools alongside PRIMARY toolbox tools',
-    status: 'residual' as const,
-    fix: 'strangler: PRIMARY tools/list = toolbox ids; conceptTools stay legacy until callers migrate',
+    detail: 'REFUSE PRIMARY inflate — conceptTools stay dual under result.conceptTools; PRIMARY tools/list ≡ toolbox ids only',
+    status: 'kept-intentional' as const,
+    fix: 'honest residual facet: callers migrate to toolbox envelopes; executeConceptCommand remains legacy dual',
   },
   {
     id: 'trading-scripts-outside-primary-mcp',
     kind: 'gap' as const,
     names: ['trading:offline', 'trading:live', 'trading:train'],
-    detail: 'trading:* npm scripts are bootstrap exits but not PRIMARY /mcp.json toolbox tools',
-    status: 'residual' as const,
-    fix: 'invoke via stdio run-export / npm; not every script is a toolbox envelope',
+    detail: 'REFUSE PRIMARY inflate — trading:* stay npm/bootstrap exits; invoke via stdio run-export / npm scripts',
+    status: 'kept-intentional' as const,
+    fix: 'honest residual facet: not every trading script is a toolbox envelope; PRIMARY stays #toolbox-standard-io',
   },
   {
     id: 'trinity-speedup-honest-ci-gap',
@@ -3363,6 +3364,14 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
     detail: 'Catalog CI-only trinity-speedup omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
     status: 'closed' as const,
     fix: 'HONEST_CI_BROWSER_GAP_IDS includes trinity-speedup',
+  },
+  {
+    id: 'plasma-screen-thunder-honest-ci-gap',
+    kind: 'gap' as const,
+    names: ['plasma-screen-thunder', 'HONEST_CI_BROWSER_GAP_IDS'],
+    detail: 'Catalog CI-only plasma-screen-thunder omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
+    status: 'closed' as const,
+    fix: 'HONEST_CI_BROWSER_GAP_IDS includes plasma-screen-thunder',
   },
 ] as const
 
@@ -3386,7 +3395,9 @@ export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), 
     const closedCount = rows.filter((r) => r.status === 'closed').length
     const residualCount = rows.filter((r) => r.status === 'residual').length
     const keptCount = rows.filter((r) => r.status === 'kept-intentional').length
-    const closedOn = openCount === 0 && closedCount >= (2 * 3) && residualCount >= 2
+    const conceptToolsKept = rows.some((r) => r.id === 'concept-tools-legacy-dual' && r.status === 'kept-intentional')
+    const tradingKept = rows.some((r) => r.id === 'trading-scripts-outside-primary-mcp' && r.status === 'kept-intentional')
+    const closedOn = openCount === 0 && closedCount >= (2 * 3) && residualCount === 0 && conceptToolsKept && tradingKept
     const translationsInCatalog = catalog.tools.some((t) => t.id === 'translations-verify' && t.cli.includes('translations-verify'))
     const auditInCatalog = catalog.tools.some((t) => t.id === 'mcp-commands-scripts-gaps-audit')
     const fInverseNamed = catalog.tools.some((t) => t.id === 'f-inverse-pair' && t.cli.includes('f-inverse-pair'))
@@ -3400,9 +3411,10 @@ export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), 
       { facet: 'mcp-commands-scripts-gaps-audit catalogued', on: auditInCatalog },
       { facet: 'f-inverse-pair CLI named (not local-math synonym)', on: fInverseNamed },
       { facet: 'PRIMARY mcp tools/list ≡ toolbox (compose mcpBrowserParity)', on: parity.mcpMatchesToolbox && mcpList.computes },
-      { facet: 'mcpBrowserParity residualOnlyHonestCi (trinity-speedup named)', on: parity.residualOnlyHonestCi && parity.computes },
+      { facet: 'mcpBrowserParity residualOnlyHonestCi (plasma+trinity named)', on: parity.residualOnlyHonestCi && parity.computes },
+      { facet: 'conceptTools+trading:* REFUSE PRIMARY — kept-intentional honest residual', on: conceptToolsKept && tradingKept && residualCount === 0 },
       { facet: 'qpuRequired=false · clay=0', on: qpuRequired === false },
-      { facet: `residuals named (${residualCount}) · kept aliases (${keptCount})`, on: residualCount >= 2 && keptCount >= 1 },
+      { facet: `no open residual rows · kept-intentional=${keptCount}`, on: residualCount === 0 && keptCount >= (2 * 2) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-scripts-audit-facet:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-commands-scripts-gaps-audit', facets)
     return {
@@ -3429,11 +3441,11 @@ export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), 
       anchor: 'mcp-commands-scripts-gaps-audit',
       heading: 'MCP commands ↔ scripts gaps audit',
       honestyLine:
-        'Overlap · useless · gap census for stdio MCP + package.json + toolbox. Residuals: conceptTools legacy + trading:* outside PRIMARY tools/list. qpuRequired=false · clay=0.',
+        'Overlap · useless · gap census for stdio MCP + package.json + toolbox. conceptTools+trading:* REFUSE PRIMARY inflate (kept-intentional honest residual). HONEST_CI includes plasma-screen-thunder. qpuRequired=false · clay=0.',
       statement:
         `MCP/scripts audit — overlap=${overlapCount} useless=${uselessCount} gap=${gapCount} closedOn=${closedOn} closed=${closedCount} residual=${residualCount} kept=${keptCount} · qpuRequired=false · clay=0.`,
       boundary:
-        'HONEST: collapses synonym npm exits and stdio wave stubs; does not delete intentional iching:* aliases or force every trading script into PRIMARY /mcp.json. NOT physical QPU. HARMONY ≠ TRUTH.',
+        'HONEST: collapses synonym npm exits and stdio wave stubs; REFUSE PRIMARY inflate for conceptTools+trading:* (kept-intentional); plasma+trinity in HONEST_CI. NOT physical QPU. HARMONY ≠ TRUTH.',
     }
   })
 }
