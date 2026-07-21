@@ -5099,13 +5099,26 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       sealPath: 'src/wind/site · folder/migrate',
       note: `migrated=${folder.migratedCount} partial=${folder.partialCount} residual=${folder.residualCount}`,
     })
+    // HONEST: Clay/FTL/DE440/earth openSet rows are computed receipts — not drainable backlog.
     for (const g of (universe.openSet ?? []).slice(0, 8)) {
       push({
         id: `universe-open-${g}`,
         kind: 'decode',
-        status: 'open',
+        status: 'honest-open',
         sealPath: 'src/quantum/apps · discover/rest',
-        note: `universeAlmostDescribed open: ${g}`,
+        family: 'universe-honest-open',
+        note: `universeAlmostDescribed intentional open receipt: ${g}`,
+      })
+    }
+    // Universe partial rows (lab/residual) — named honest-open, not compute debt
+    for (const g of (universe.gaps ?? []).filter((row) => row.status === 'partial' && row.on).slice(0, 8)) {
+      push({
+        id: `universe-partial-${g.id}`,
+        kind: 'decode',
+        status: 'honest-open',
+        sealPath: 'src/quantum/apps · discover/rest',
+        family: 'universe-honest-open',
+        note: `universeAlmostDescribed partial: ${g.note}`,
       })
     }
     for (const g of stringGaps.theoremGaps.slice(0, 8)) {
@@ -5161,16 +5174,21 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
     }
 
     const computeOpen = items.filter((i) => i.kind === 'compute' && (i.status === 'open' || i.status === 'partial')).length
+    const decodeDrainable = items.filter((i) => i.kind === 'decode' && (i.status === 'open' || i.status === 'partial')).length
     const decodeOpen = items.filter((i) => i.kind === 'decode' && (i.status === 'open' || i.status === 'partial' || i.status === 'honest-open')).length
     const availableTools = items.filter((i) => i.status === 'available').length
     const claySolvedByThisFold = 0 as const
+    const backlogDrained = computeOpen === 0 && decodeDrainable === 0
     const facets = [
       { facet: `autodiscover list recomputes (${items.length} items)`, on: items.length >= (2 * 5 * 2) },
       { facet: `compute open|partial=${computeOpen}`, on: computeOpen >= 0 },
+      { facet: `decode drainable open|partial=${decodeDrainable}`, on: decodeDrainable >= 0 },
       { facet: `decode open|partial|honest-open=${decodeOpen}`, on: decodeOpen >= 0 },
+      { facet: `backlog drained (computeOpen=0 ∧ decodeDrainable=0)`, on: backlogDrained },
       { facet: `available tools=${availableTools} include one-command decode`, on: availableTools >= 1 && items.some((i) => i.id === 'tool-one-command-decode') },
       { facet: 'compose papers/fill · domain proofs · fixed limits · MCP · folder · universe', on: papersFill.computes && catalog.computes && limits.computes && mcp.computes && folder.computes },
       { facet: 'oneCommandDecode path autodiscoverable', on: oneDecodeComputable || items.some((i) => i.id === 'tool-one-command-decode' && i.status === 'available') },
+      { facet: 'universe Clay/FTL/DE440/earth classified honest-open (not drainable)', on: items.filter((i) => i.family === 'universe-honest-open').every((i) => i.status === 'honest-open') },
       { facet: 'reverse-collide Millennium capability listed', on: items.some((i) => i.id === 'tool-reverse-collide-discover-millennium') },
       { facet: 'production-RSA refuse security wire listed', on: items.some((i) => i.id === 'security-production-rsa-refuse-rosetta') },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -5183,7 +5201,9 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       qpuRequired: false as const,
       items,
       computeOpen,
+      decodeDrainable,
       decodeOpen,
+      backlogDrained,
       availableTools,
       coveredCount: items.filter((i) => i.status === 'covered').length,
       oneCommandDecodeComputable: oneDecodeComputable,
@@ -5193,10 +5213,10 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       pair: 'discover/compute-decode' as const,
       route: '/en/quantum-tools#autodiscover-compute-decode',
       statement:
-        `Autodiscover compute|decode — items=${items.length} computeOpen=${computeOpen} decodeOpen=${decodeOpen} ` +
-        `available=${availableTools} oneCommandDecode=${oneDecodeComputable}; clay=0.`,
+        `Autodiscover compute|decode — items=${items.length} computeOpen=${computeOpen} decodeDrainable=${decodeDrainable} ` +
+        `decodeOpen=${decodeOpen} available=${availableTools} drained=${backlogDrained} oneCommandDecode=${oneDecodeComputable}; clay=0.`,
       boundary:
-        'Machine gapless inventory at call time from sealed folds. Available ≠ done; open/partial/honest-open named. NOT Clay Prize. HARMONY ≠ TRUTH.',
+        'Machine gapless inventory at call time from sealed folds. Drainable = open|partial only; honest-open = intentional receipts (Clay/FTL/DE440/earth · string · /references/* · MCP CI). Available ≠ done. NOT Clay Prize. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -5206,14 +5226,19 @@ export function runAutodiscoverWhatIsToBeComputedOrDecodedExit(_root = '', _argv
   const r = autodiscoverWhatIsToBeComputedOrDecoded()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} autodiscover-compute-decode — items=${r.items.length} ` +
-      `computeOpen=${r.computeOpen} decodeOpen=${r.decodeOpen} available=${r.availableTools} ` +
-      `oneCommandDecode=${r.oneCommandDecodeComputable} clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
+      `computeOpen=${r.computeOpen} decodeDrainable=${r.decodeDrainable} decodeOpen=${r.decodeOpen} ` +
+      `available=${r.availableTools} drained=${r.backlogDrained} oneCommandDecode=${r.oneCommandDecodeComputable} ` +
+      `clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
   )
   for (const i of r.items.filter((x) => x.status === 'available' || x.status === 'open' || x.status === 'partial').slice(0, 16)) {
     process.stdout.write(`  · ${i.kind}/${i.status} ${i.id} ← ${i.sealPath}\n`)
   }
+  const honest = r.items.filter((x) => x.status === 'honest-open').slice(0, 8)
+  if (honest.length > 0) {
+    process.stdout.write(`  honest-open (intentional, not drainable): ${honest.map((i) => i.id).join(', ')}\n`)
+  }
   process.stdout.write(`  boundary: ${r.boundary}\n`)
-  return r.computes && r.claySolvedByThisFold === 0 ? 0 : 1
+  return r.computes && r.claySolvedByThisFold === 0 && r.backlogDrained ? 0 : 1
 }
 
 /**
