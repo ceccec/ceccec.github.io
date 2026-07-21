@@ -114,6 +114,7 @@ export declare function weatherForecastFromDoubleTorusEarthPerspective(at?: Weat
             perLobe: number;
             majorRadius: number;
             minorRadius: number;
+            lobeOffset: number;
             root: string;
             statement: string;
             boundary: string;

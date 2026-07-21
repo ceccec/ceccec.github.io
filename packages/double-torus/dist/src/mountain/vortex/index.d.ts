@@ -728,7 +728,7 @@ export declare function fThetaPhiXyzDigitNIsTheInversePair(matrix?: MindMatrix):
         sample: {
             p: number;
             q: number;
-            digit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            digit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         }[];
     };
     count: number;

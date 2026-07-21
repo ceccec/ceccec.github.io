@@ -427,7 +427,7 @@ export declare function theoremScienceLens(matrix?: MindMatrix): {
     pages: StaticPage[];
     hidden: string[];
     rays: {
-        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
         labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         labelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";

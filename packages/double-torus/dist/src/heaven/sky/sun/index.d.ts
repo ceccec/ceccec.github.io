@@ -310,6 +310,7 @@ export declare function sunComputes(matrix?: MindMatrix, at?: number): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -486,6 +487,7 @@ export declare function sunComputes(matrix?: MindMatrix, at?: number): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;
@@ -930,6 +932,7 @@ export declare function sunComputes(matrix?: MindMatrix, at?: number): {
                                 perLobe: number;
                                 majorRadius: number;
                                 minorRadius: number;
+                                lobeOffset: number;
                                 root: string;
                                 statement: string;
                                 boundary: string;
@@ -1106,6 +1109,7 @@ export declare function sunComputes(matrix?: MindMatrix, at?: number): {
                             perLobe: number;
                             majorRadius: number;
                             minorRadius: number;
+                            lobeOffset: number;
                             root: string;
                             statement: string;
                             boundary: string;
@@ -1213,6 +1217,7 @@ export declare function sunComputes(matrix?: MindMatrix, at?: number): {
                         perLobe: number;
                         majorRadius: number;
                         minorRadius: number;
+                        lobeOffset: number;
                         root: string;
                         statement: string;
                         boundary: string;

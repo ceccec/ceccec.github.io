@@ -417,7 +417,7 @@ export declare function harmonisedBuildWave(matrix?: MindMatrix): {
     }[];
     groups: HarmonisedBuildGroup[];
     scheduleRoot: string;
-    spin: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6)[];
+    spin: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6)[];
     orbit: number[];
     root: string;
     statement: string;

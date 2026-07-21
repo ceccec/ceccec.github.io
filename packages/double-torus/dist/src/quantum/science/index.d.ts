@@ -99,12 +99,12 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             mappings: ({
                 primitive: string;
                 measured: string;
                 entangled: boolean;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 steps?: undefined;
                 stationary?: undefined;
@@ -142,7 +142,7 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
             } | {
                 primitive: string;
                 frames: number;
-                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 measured?: undefined;
                 entangled?: undefined;
@@ -564,12 +564,12 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                 decoded: boolean;
                 at: number;
                 phaseIndex: number;
-                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 mappings: ({
                     primitive: string;
                     measured: string;
                     entangled: boolean;
-                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                     steps?: undefined;
                     stationary?: undefined;
@@ -607,7 +607,7 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                 } | {
                     primitive: string;
                     frames: number;
-                    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                     measured?: undefined;
                     entangled?: undefined;
@@ -1568,7 +1568,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 ray: number;
                 kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                 pageKind: import("../heaven/mind").RosettaComputationType;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
             }[];
             count: number;
@@ -1910,7 +1910,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 unfolded: number;
                 euler: -2;
                 genus: number;
-                betti: (1 | 4)[];
+                betti: (4 | 1)[];
                 folded: number;
                 delta: -2;
                 fold: boolean;
@@ -2487,7 +2487,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                     pageKind: import("../heaven/mind").RosettaComputationType;
-                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
                 count: number;
@@ -2829,7 +2829,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;
@@ -3743,7 +3743,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                     pageKind: import("../heaven/mind").RosettaComputationType;
-                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
                 count: number;
@@ -4085,7 +4085,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     unfolded: number;
                     euler: -2;
                     genus: number;
-                    betti: (1 | 4)[];
+                    betti: (4 | 1)[];
                     folded: number;
                     delta: -2;
                     fold: boolean;

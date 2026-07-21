@@ -120,12 +120,12 @@ export declare function quantumApplicationComputes(matrix?: MindMatrix, at?: num
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             mappings: ({
                 primitive: string;
                 measured: string;
                 entangled: boolean;
-                vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 steps?: undefined;
                 stationary?: undefined;
@@ -163,7 +163,7 @@ export declare function quantumApplicationComputes(matrix?: MindMatrix, at?: num
             } | {
                 primitive: string;
                 frames: number;
-                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 measured?: undefined;
                 entangled?: undefined;
@@ -617,12 +617,12 @@ export declare function quantumApplicationPanelComputes(matrix?: MindMatrix, at?
                 decoded: boolean;
                 at: number;
                 phaseIndex: number;
-                phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                 mappings: ({
                     primitive: string;
                     measured: string;
                     entangled: boolean;
-                    vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                     steps?: undefined;
                     stationary?: undefined;
@@ -660,7 +660,7 @@ export declare function quantumApplicationPanelComputes(matrix?: MindMatrix, at?
                 } | {
                     primitive: string;
                     frames: number;
-                    phaseDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+                    phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                     measured?: undefined;
                     entangled?: undefined;

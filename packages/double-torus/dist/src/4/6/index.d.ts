@@ -285,7 +285,7 @@ export declare function axiomsBecomeTheorems(): {
 export declare function theoremOfTheorems(): {
     computes: boolean;
     atoms: number;
-    regulars: (0 | 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864)[];
+    regulars: (0 | 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864)[];
     root: string;
     facets: {
         facet: string;
@@ -399,7 +399,7 @@ export declare function algebraDissolvesFalseLimitsProvesRealOnes(): {
 export declare function anyFixedNumberIsATheoremOrDatum(): {
     computes: boolean;
     forms: string[];
-    regulars: (0 | 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864)[];
+    regulars: (0 | 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864)[];
     replacementCount: number;
     facets: {
         facet: string;

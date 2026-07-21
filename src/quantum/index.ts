@@ -939,7 +939,9 @@ export function drawLivingTorusFrame(
   if (n === 0) return
   const cx = w / 2
   const cy = h / 2
-  const phase = reduce ? 0 : at / (100 * 5 * 2)
+  // Universe-aligned spin: fractal-clock rung d=18 on the 108 s hero cycle (≈6 s/rev) — was at/1000 drift.
+  const LIVING_TORUS_SPIN_DIVISOR = (9 * 2) // 18 — HERO_CYCLE_MS / 18 ≈ 6000 ms
+  const phase = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS) * TAU * LIVING_TORUS_SPIN_DIVISOR
 
   // Project every coordinate onto the genus-2 surface through the sealed atoms (rotate3 +
   // perspective) — no z→y offset. Each lobe spins RIGIDLY about its own hole axis (an XY-plane

@@ -498,6 +498,7 @@ export declare function earthComputes(matrix?: MindMatrix): {
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;
@@ -665,6 +666,7 @@ export declare function earthComputes(matrix?: MindMatrix): {
                     perLobe: number;
                     majorRadius: number;
                     minorRadius: number;
+                    lobeOffset: number;
                     root: string;
                     statement: string;
                     boundary: string;

@@ -282,7 +282,7 @@ export declare function corpusCatchAllPaths(kind: CorpusKind, matrix?: MindMatri
 declare function componentRosettaGroups(names?: readonly string[]): {
     groups: {
         grouped: boolean;
-        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         nameBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
@@ -464,7 +464,7 @@ export type RosettaBreadcrumb = {
 export declare function rayHubPart(route: string, matrix?: MindMatrix): {
     hub: RosettaRayHub;
     part: {
-        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
         route: string;
         labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";

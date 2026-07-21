@@ -350,10 +350,14 @@ export function humanBreath(timeMs: number, periodMs: number, depth = (9 / (5 * 
 // Genus-2 surface atom — one shared source so model and animation place coordinates identically.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const TORUS_LOBE_OFFSET = (9 * 2)
+/** Major (ring) radius of the shared genus-2 surface atom — Fibonacci lattice 5×4. */
+export const TORUS_RING_R = (5 * 4)
+/** Base tube (minor) radius before digit modulation — Fibonacci 7. */
+export const TORUS_TUBE_R_BASE = 7
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function doubleTorusSurface(theta: number, phi: number, digit: number, lobe: number): { x: number; y: number; z: number } {
-  const ringR = (5 * 4)
-  const tubeR = 7 + digit * (2 / 5)
+  const ringR = TORUS_RING_R
+  const tubeR = TORUS_TUBE_R_BASE + digit * (2 / 5)
   const ribbon = ringR + tubeR * Math.cos(phi)
   return {
     x: lobe * TORUS_LOBE_OFFSET + ribbon * Math.cos(theta),

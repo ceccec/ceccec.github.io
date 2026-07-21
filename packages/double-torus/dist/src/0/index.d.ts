@@ -84,6 +84,10 @@ export declare function humanEase(phase: number): number;
 export declare function humanBreath(timeMs: number, periodMs: number, depth?: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare const TORUS_LOBE_OFFSET: number;
+/** Major (ring) radius of the shared genus-2 surface atom — Fibonacci lattice 5×4. */
+export declare const TORUS_RING_R: number;
+/** Base tube (minor) radius before digit modulation — Fibonacci 7. */
+export declare const TORUS_TUBE_R_BASE = 7;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function doubleTorusSurface(theta: number, phi: number, digit: number, lobe: number): {
     x: number;
@@ -184,8 +188,8 @@ export declare function foldVortex(): {
     valid: boolean;
     pairs: {
         position: number;
-        forward: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
-        reverse: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+        forward: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        reverse: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
         sum: number;
         root: number;
     }[];

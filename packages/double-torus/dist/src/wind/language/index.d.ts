@@ -365,7 +365,7 @@ export declare function rosettaIsTheUuidQuantumMapsTheoremsByA432(matrix?: MindM
     N: number;
     portals: number;
     sigClasses: number;
-    base: 0 | 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864;
+    base: 0 | 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864;
     axiomsClose: boolean;
     facets: {
         facet: string;

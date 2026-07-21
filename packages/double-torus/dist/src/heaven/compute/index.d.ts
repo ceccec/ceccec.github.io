@@ -434,7 +434,7 @@ export declare function fleetCacheEconomicsDecoded(matrix?: MindMatrix): {
  */
 export declare function hardwareSpecFromInvariants(matrix?: MindMatrix): {
     decoded: boolean;
-    ringOrder: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6)[];
+    ringOrder: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6)[];
     doublingOrbit: number[];
     tiers: import("../../0").ResourceTier[];
     documented: string[];

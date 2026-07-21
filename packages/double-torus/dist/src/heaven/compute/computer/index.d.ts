@@ -2104,7 +2104,7 @@ export declare function siliconFabricationPlanFromModel(matrix?: MindMatrix): {
         qpuRequired: false;
         statement: string;
     };
-    ringOrder: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6)[];
+    ringOrder: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6)[];
     documented: string[];
     flagged: string[];
     facets: {
@@ -2177,7 +2177,7 @@ export declare function honestRevolutionFpgaHonesty(matrix?: MindMatrix, at?: nu
             qpuRequired: false;
             statement: string;
         };
-        ringOrder: (9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6)[];
+        ringOrder: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6)[];
         documented: string[];
         flagged: string[];
         facets: {

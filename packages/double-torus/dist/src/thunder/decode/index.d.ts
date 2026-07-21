@@ -401,7 +401,7 @@ export declare function decodeAllByComputationsTrainedOnKnownUniverse(matrix?: M
         unfolded: number;
         euler: -2;
         genus: number;
-        betti: (1 | 4)[];
+        betti: (4 | 1)[];
         folded: number;
         delta: -2;
         fold: boolean;
@@ -877,7 +877,7 @@ export declare function humanDesignStructureDecoded(matrix?: MindMatrix): {
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 9 | 5 | 2 | 1 | 4 | 7 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
+            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
             b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";

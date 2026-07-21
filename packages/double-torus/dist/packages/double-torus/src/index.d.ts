@@ -11,3 +11,5 @@ export { drawHero, drawFlower, drawCalendars, drawArchitecture, drawBursts, buil
 export type { HeroScene, Vec3, ArchNode, Burst, AnimationField, SharedHeroState, SharedHeroCopy, FieldForce, FieldLayer, RosettaPerspective, QuantumAppFrame, RealtimeSubtitleState, LivingTorusCoordinate, } from '../../../src/quantum/index.ts';
 export { pesnopoika, provePesnopoika, decodeSong, songEntry, verses, refrains, provenance, classifyGenre, decodeDialect, glossDialect, dialectStratum, aksak, aksakBeats, PESNOPOIKA, PESNOPOIKA_SOURCE, DIALECT_GLOSSARY, PROVENANCE, GENRES, AKSAK, } from '../../../src/quantum/heaven/library/index.ts';
 export type { Song, Provenance, Genre } from '../../../src/quantum/heaven/library/index.ts';
+export { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusUniversePhaseAt, } from '../../../src/water/double/index.ts';
+export { counterRotatingRosettaQuantumWaves, universeAlmostDescribedInTheoremsDiscoverRest, } from '../../../src/quantum/apps/index.ts';

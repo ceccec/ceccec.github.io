@@ -989,7 +989,7 @@ export declare function ogBuildsNavigation(matrix?: MindMatrix): {
 export declare function sciencePortalParts(matrix?: MindMatrix): {
     computed: boolean;
     parts: {
-        ray: 0 | 5 | 2 | 1 | 4 | 3 | 6;
+        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
         route: string;
         labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
@@ -1674,7 +1674,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             ray: number;
             kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
             pageKind: __ns_up_water_digit.RosettaComputationType;
-            vortexDigit: 9 | 5 | 2 | 1 | 4 | 8 | 7 | 3 | 6;
+            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
             receipt: string;
         }[];
         count: number;
@@ -2016,7 +2016,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             unfolded: number;
             euler: -2;
             genus: number;
-            betti: (1 | 4)[];
+            betti: (4 | 1)[];
             folded: number;
             delta: -2;
             fold: boolean;
