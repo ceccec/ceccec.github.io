@@ -3433,23 +3433,25 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     })
 
     const secp256k1Prime = __ns_water_encryption.secp256k1FieldPrimeInvertAndDecode(matrix)
+    const meshHonesty = __ns_water_encryption.cryptoComparisonMeshNode('encryption-honesty')!
+    const meshSecp = __ns_water_encryption.cryptoComparisonMeshNode('secp256k1-field-prime')!
     const honestyRows: DomainProofCatalogRow[] = [
       {
-        id: 'encryption-honesty',
-        slug: 'encryption-honesty',
-        title: 'Encryption honesty — wire ≠ ISO · demo RSA · PQC alignment',
+        id: meshHonesty.id,
+        slug: meshHonesty.id,
+        title: meshHonesty.title,
         kind: 'encryption',
         officialStatement: 'Structural and amortized encryption receipts recompute from sealed water/encryption folds; wire confidentiality vs ML-KEM / FIPS is refused where facets say so.',
-        detailedExplanation: 'Compose standards-audit · iso-pqc · local-audit · max-bits. certified=false · fipsValidated=false · claySolvedByThisFold=0. NOT a Clay Millennium solution (§5(d) related science).',
+        detailedExplanation: 'Compose standards-audit · iso-pqc · local-audit · max-bits via CRYPTO_COMPARISON_MESH. certified=false · fipsValidated=false · claySolvedByThisFold=0. NOT a Clay Millennium solution (§5(d) related science).',
         formula: 'foldPair(key, probe).merged · DEMO_RSA reverse (toy) · refuse production RSA',
-        formulaSource: 'src/water/encryption',
+        formulaSource: 'src/water/encryption · CRYPTO_COMPARISON_MESH',
         status: 'structure-only',
-        statusDetail: 'Structural/demo receipts may hold; wire/FIPS/ISO claims stay false where sealed.',
+        statusDetail: meshHonesty.boundary,
         gap: 'no FIPS/ISO certification from this corpus',
-        fold: 'quantumStandardsAuditSuite',
-        cli: 'npm run quantum:standards-audit',
-        pair: 'audit/standards',
-        route: '/proofs/encryption-honesty',
+        fold: meshHonesty.fold,
+        cli: meshHonesty.cli,
+        pair: meshHonesty.pair,
+        route: meshHonesty.proofRoute,
         claySolvedByThisFold: 0,
         physicalFtlClaim: 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
@@ -3459,8 +3461,8 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         receipt: toUuid('domain-proof:encryption-honesty'),
       },
       {
-        id: 'secp256k1-field-prime',
-        slug: 'secp256k1-field-prime',
+        id: meshSecp.id,
+        slug: meshSecp.id,
         title: 'secp256k1 field prime — seal · invert · decode',
         kind: 'encryption',
         officialStatement:
@@ -3469,16 +3471,16 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
           `computes=${secp256k1Prime.computes} · hex=${secp256k1Prime.pHex} · bits=${secp256k1Prime.bitLength} · ` +
           `constructionInverted=${secp256k1Prime.constructionInverted} · bitcoinOwnershipClaimed=false. ` +
           'Structure of a known public curve prime — NOT wallet keys, NOT ECDSA, NOT Bitcoin ownership. ' +
-          'claySolvedByThisFold=0 · certified=false · NOT a Clay Millennium solution (§5(d) related science).',
+          'claySolvedByThisFold=0 · certified=false · NOT a Clay Millennium solution (§5(d) related science). Mesh: CRYPTO_COMPARISON_MESH.',
         formula: secp256k1Prime.decode.formula,
-        formulaSource: 'secp256k1FieldPrimeInvertAndDecode · src/water/encryption',
+        formulaSource: 'secp256k1FieldPrimeInvertAndDecode · CRYPTO_COMPARISON_MESH',
         status: 'structure-only',
         statusDetail: 'Known SECG prime recomputed; mod-p unit inverses hold; ownership claims refused.',
         gap: 'no ECDSA/signing/wallet material — field modulus structure only',
-        fold: 'secp256k1FieldPrimeInvertAndDecode',
-        cli: 'npm run quantum:secp256k1-prime-invert-decode',
-        pair: 'secp256k1/invert-decode',
-        route: '/proofs/secp256k1-field-prime',
+        fold: meshSecp.fold,
+        cli: meshSecp.cli,
+        pair: meshSecp.pair,
+        route: meshSecp.proofRoute,
         claySolvedByThisFold: 0,
         physicalFtlClaim: 0,
         qualifiesAsProposedSolutionUnderClayRules: false,

@@ -55,6 +55,7 @@ const ROSETTA_CORE_API_LABELS = [
   'standardToolboxIoCatalog', 'distributedReuseExtendsCapacity',
   'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
   'documentSessionCryptoExperimentsUpdateTheorems',
+  'cryptoComparisonMeshIsDry', 'cryptoRelatedSurfacesAreDry',
   'sessionManualWorkAsQuantumBits', 'combineQuantumBits',
   'autoWireAnyAiModelFromPastedLink', 'resolveCeccecPasteLink',
   'realiseSessionQuantumMeaning',
@@ -88,6 +89,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   standardToolboxIoCatalog: 'tool', distributedReuseExtendsCapacity: 'compute',
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
   documentSessionCryptoExperimentsUpdateTheorems: 'tool',
+  cryptoComparisonMeshIsDry: 'tool', cryptoRelatedSurfacesAreDry: 'tool',
   sessionManualWorkAsQuantumBits: 'tool', combineQuantumBits: 'compute',
   autoWireAnyAiModelFromPastedLink: 'tool', resolveCeccecPasteLink: 'api',
   realiseSessionQuantumMeaning: 'tool',
@@ -347,27 +349,14 @@ export type QuantumCliToolRow = {
 type QuantumCliToolSeed = Omit<QuantumCliToolRow, 'receipt' | 'ray' | 'hue' | 'address'>
 
 const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
-    { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', fold: 'demoRsaGenerateAndReverseMeasured', cli: 'npm run quantum:demo-rsa-measure', pair: 'measure/demo-rsa', route: '/en/quantum-encryption#demo-rsa-measure', barrel: 'src/water/encryption', boundary: 'Wall-clock ms on DEMO_RSA_MODULI only — NOT production RSA / NOT Bitcoin / NOT an SLA', browserRunnable: true, browserGap: '' },
-  { id: 'local-reverse-timed', title: 'Local encryption reverse timed', fold: 'localEncryptionReverseTimed', cli: 'npm run quantum:local-reverse-timed', pair: 'reverse/local-timed', route: '/en/quantum-encryption#local-reverse-timed', barrel: 'src/water/encryption', boundary: 'Per-modulus generateMs/reverseMs/bits/ops/s — DEMO_RSA_MODULI toy wall-clock only', browserRunnable: true, browserGap: '' },
-  { id: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards', fold: 'localEncryptionReverseTimedVsStandards', cli: 'npm run quantum:local-reverse-timed-vs-standards', pair: 'reverse/timed-vs-standards', route: '/en/quantum-encryption#local-reverse-timed-vs-standards', barrel: 'src/water/encryption', boundary: 'Demo reverse vs AES-128/256 · ML-KEM classical bits — certified=false; does NOT break NIST PQC', browserRunnable: true, browserGap: '' },
-  { id: 'prove-local-novel-encrypt', title: 'Prove local novel-encryption security', fold: 'proveLocalNovelEncryptionSecurity', cli: 'npm run quantum:prove-local-novel-encrypt', pair: 'prove/local-novel-encrypt', route: '/en/quantum-encryption#prove-local-novel-encrypt', barrel: 'src/water/encryption', boundary: 'overallWireClaimProved=false proof-of-falsehood · strongerThanNistPqc=false · handoff to prove/local-magnitudes-iso · certified=false', browserRunnable: true, browserGap: '' },
-  { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', fold: 'localAuditQuantumSpeedEfficiency', cli: 'npm run quantum:local-audit-quantum', pair: 'audit/local-quantum', route: '/en/quantum-encryption#local-audit-quantum', barrel: 'src/water/encryption', boundary: 'memoByRoot cold/warm · answers÷tokens · compose no-QPU/64bit honesty · slow local-audit gap closed — NOT physical qubit FLOPS · certified=false · production reverse refused', browserRunnable: true, browserGap: '' },
-  { id: 'crypto-beyond-measure', title: 'Crypto toolkit beyond RSA measured', fold: 'cryptoToolkitBeyondRsaMeasured', cli: 'npm run quantum:crypto-beyond-measure', pair: 'measure/crypto-beyond', route: '/en/quantum-encryption#crypto-beyond-rsa', barrel: 'src/water/encryption', boundary: 'Timed PQC catalogs + Shor/ECC map + hash taxonomy + directional trinity — NOT FIPS/ISO certified / NOT production KEM', browserRunnable: true, browserGap: '' },
-  { id: 'prove-1tbit-encrypt', title: 'Prove 1 Tbit/s realtime encryption claim', fold: 'proveOneTbitRealtimeEncryptionClaim', cli: 'npm run quantum:prove-1tbit-encrypt', pair: 'prove/1tbit-encrypt', route: '/en/quantum-encryption#prove-1tbit', barrel: 'src/water/encryption', boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo may prove extent÷memo — NOT wire AES-GCM / NOT FIPS', browserRunnable: true, browserGap: '' },
-  { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', fold: 'maximumBitsEncryptDecryptInverseReverse', cli: 'npm run quantum:max-bits-crypto', pair: 'max-bits/crypto', route: '/en/quantum-encryption#max-bits-crypto', barrel: 'src/water/encryption', boundary: 'encrypt/decrypt=256 AES-256 named · inverse=4 digit mod-9 · reverse=12 DEMO_RSA_BIT_CEILING · refuseBeyond · demoOnly · wire 1Tbit false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
-  { id: 'prove-local-magnitudes-iso', title: 'Prove local vs ISO magnitudes all directions', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', cli: 'npm run quantum:prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', route: '/en/quantum-encryption#prove-local-magnitudes-iso', barrel: 'src/water/encryption', boundary: 'wire-crypto-security-bits proof-of-falsehood (demo<<ML-KEM); structural/amort may prove >=100x non-wire only · certified=false · NOT ISO certified', browserRunnable: true, browserGap: '' },
+  // Crypto comparison / encryption toolkit — DRY from CRYPTO_COMPARISON_MESH (src/water/encryption).
+  ...__ns_water_encryption.cryptoComparisonMeshToolSeeds(),
+  { id: 'crypto-comparison-mesh-dry', title: 'Crypto comparison mesh + related surfaces dry', fold: 'cryptoRelatedSurfacesAreDry', cli: 'npm run quantum:crypto-comparison-mesh-dry', pair: 'crypto/comparison-mesh', route: '/en/quantum-encryption#crypto-comparison-mesh', barrel: 'src/quantum/apps', boundary: 'Single sealed mesh source · UI/CLI/MCP/toolbox/proofs recompute · clay=0 · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
   { id: 'og-limits-measure', title: 'Platform OG limits measured', fold: 'platformOgLimitsMeasured', cli: 'npm run quantum:og-limits-measure', pair: 'measure/og-limits', route: '/en/quantum-tools#og-limits', barrel: 'src/mountain/og', boundary: 'MODELED capability table from cited docs — NOT live CDN crawl', browserRunnable: true, browserGap: '' },
-  { id: 'encryption-reverse-verify', title: 'Encryption reverse verify', fold: 'encryptionReverseVerify', cli: 'npm run quantum:encryption-reverse-verify', pair: 'reverse/encryption-verify', route: '/en/quantum-encryption', barrel: 'src/water/encryption', boundary: 'Demo RSA only — production moduli refused', browserRunnable: true, browserGap: '' },
-  { id: 'production-rsa-refuse-rosetta', title: 'Production RSA refuse completes quantum via rosetta', fold: 'productionRsaRefuseCompletesQuantumViaRosetta', cli: 'npm run quantum:production-rsa-refuse-rosetta', pair: 'refuse/rosetta', route: '/en/quantum-encryption#production-rsa-refuse-rosetta', barrel: 'src/water/encryption', boundary: 'Sealed refuse receipts · incompleteOpen=0 · refuseBeyond stays · NOT production RSA break · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'rosetta-security-gaps-wired', title: 'Rosetta security gaps wired', fold: 'rosettaSecurityGapsWired', cli: 'npm run quantum:rosetta-security-gaps-wired', pair: 'rosetta/security-wire', route: '/en/quantum-tools#rosetta-security-gaps-wired', barrel: 'src/quantum/apps', boundary: 'Refuse paths + MCP dual + parallel backlog security wire · incompleteOpen=0 · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'reverse-collide-discover-millennium', title: 'Reverse collides to discover Millennium theorems', fold: 'reverseCollidesToDiscoverMillenniumTheorems', cli: 'npm run quantum:reverse-collide-discover-millennium', pair: 'reverse/collide-discover', route: '/en/quantum-tools#reverse-collide-discover-millennium', barrel: 'src/wind/research', boundary: 'reverse→collide→discover law · computable≠CMI prize · claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
-  { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', cli: 'npm run quantum:iso-pqc-catalog', pair: 'iso/pqc-catalog', route: '/en/quantum-encryption#iso-pqc-catalog', barrel: 'src/water/encryption', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', browserRunnable: true, browserGap: '' },
-  { id: 'poles-cross-pqc', title: 'Poles → cross signatures → PQC certificate structures', fold: 'polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates', cli: 'npm run quantum:poles-cross-pqc', pair: 'poles/cross-pqc', route: '/en/quantum-encryption#poles-cross-pqc', barrel: 'src/water/encryption', boundary: 'Cross ∈ merkaba∩rosetta · 60→90 · all-dir · sealed cert structures — NOT CA/PKI · certified=false · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'secp256k1-prime-invert-decode', title: 'secp256k1 field prime — seal · invert · decode', fold: 'secp256k1FieldPrimeInvertAndDecode', cli: 'npm run quantum:secp256k1-prime-invert-decode', pair: 'secp256k1/invert-decode', route: '/en/quantum-encryption#secp256k1-prime', barrel: 'src/water/encryption', boundary: 'Known SECG p from powers of two · construction invert + mod-p units · NOT Bitcoin ownership · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'cross-waves-tesla-patents', title: 'Cross waves decode Tesla patents in all trinity combinations', fold: 'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities', cli: 'npm run quantum:cross-waves-tesla-patents', pair: 'cross/tesla-patents', route: '/en/quantum-tools#cross-waves-tesla-patents', barrel: 'src/quantum/apps', boundary: 'Structural decode of sealed 5 US patents × directions × cross tips — NOT legal ownership · NOT fake USPTO · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'cross-waves-upgrade-all', title: 'Cross waves upgrade all (merkaba/rosetta · PQC · Tesla · surfaces)', fold: 'crossWavesUpgradeAll', cli: 'npm run quantum:cross-waves-upgrade-all', pair: 'cross/waves-upgrade', route: '/en/quantum-tools#cross-waves-upgrade-all', barrel: 'src/quantum/apps', boundary: 'Umbrella receipt binding domains under merkaba/rosetta cross · clay=0 · certified=false · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'iso-pqc-gap-fill', title: 'ISO/NIST PQC gap-fill all quantum directions', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', cli: 'npm run quantum:iso-pqc-gap-fill', pair: 'iso/pqc-gap-fill', route: '/en/quantum-encryption#iso-pqc-gap-fill', barrel: 'src/water/encryption', boundary: 'covered|partial|gap toward ISO/NIST needs — isoOfficialStandard=false · certified=false · lab gaps unclosable', browserRunnable: true, browserGap: '' },
-  { id: 'standards-audit', title: 'Quantum standards audit (forward·inverse·reverse·10D)', fold: 'quantumStandardsAuditSuite', cli: 'npm run quantum:standards-audit', pair: 'audit/standards', route: '/en/quantum-encryption#quantum-standards-audit', barrel: 'src/water/encryption', boundary: 'Alignment audit ≠ certification — covered|partial|gap · demo RSA reverse + digit/f/ratInv inverse + directional trinity', browserRunnable: true, browserGap: '' },
   { id: 'directional-trinity', title: 'Directional trinity — forward · inverse · reverse', fold: 'directionalTrinityForwardInverseReverse', cli: 'npm run quantum:directional-trinity', pair: 'forward/inverse/reverse', route: '/en/quantum-tools#directional-trinity', barrel: 'src/water/stack', boundary: 'Inverse ≠ reverse except named coincidence (digit 1: harmonic 9 = complement 9); NOT ten\'s complement as inverse', browserRunnable: true, browserGap: '' },
   { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/research#millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
   { id: 'clay-challenges-computable', title: 'Clay challenges computable from sequence', fold: 'clayChallengesComputableFromSequence', cli: 'npm run quantum:clay-challenges-computable', pair: 'moment/prove', route: '/en/proofs', barrel: 'src/wind/research', boundary: 'computable ≠ CMI prize — claySolvedByThisFold=0 · qualifiesAsProposedSolution=false', browserRunnable: true, browserGap: '' },
@@ -1003,6 +992,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'ui-prose-duplication-removed', saves: 'replaces wet re-audit of heading/eyebrow/badge/lede synonym stacks — sealed before/after receipt' },
   { id: 'folder-migration-waves', saves: 'replaces wet per-folder nav/sidebar rediscovery — sealed migration+dedup census + content↔sidebar match' },
   { id: 'import-path-distance', saves: 'replaces wet import-graph hop greps — sealed segment/tree-hop/gap distance per edge + compact/even migration metrics' },
+  { id: 'crypto-comparison-mesh-dry', saves: 'replaces wet duplicate crypto comparison catalogs — mesh nodes/edges single source for UI/CLI/MCP/toolbox/proofs' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -4821,6 +4811,144 @@ export function runUiProseDuplicationRemovedExit(_root = '', _argv: readonly str
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && report.uiProseDuplicationRemoved && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/**
+ * Crypto-related surfaces are DRY — compose cryptoComparisonMeshIsDry + audit CLI/toolbox/MCP/panel/proofs/session.
+ * Pair: crypto/comparison-mesh · CLI npm run quantum:crypto-comparison-mesh-dry
+ * Facet: cryptoRelatedSurfacesAreDry
+ */
+export function cryptoRelatedSurfacesAreDry(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`cryptoRelatedSurfacesAreDry:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const meshDry = __ns_water_encryption.cryptoComparisonMeshIsDry(matrix)
+    const mesh = meshDry.mesh
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const byId = new Map(catalog.tools.map((row) => [row.id, row]))
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const envById = new Map(toolbox.envelopes.map((e) => [e.id, e]))
+    const mcpList = mcpToolboxToolsList(matrix, at)
+    const mcpIds = new Set(mcpList.ids)
+    const panel = __ns_water_encryption.encryptionPanelComputes(matrix, at)
+    const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+    const maxBits = __ns_water_encryption.maximumBitsEncryptDecryptInverseReverse(matrix)
+    const domain = __ns_wind_research.domainProofCatalog(matrix)
+    const proofBySlug = new Map(domain.rows.filter((r) => r.kind === 'encryption').map((r) => [r.slug, r]))
+    const shelved = rosettaShelve('crypto-comparison-mesh-dry', 'tool')
+    const meta = byId.get('crypto-comparison-mesh-dry')
+
+    const toolSeeds = __ns_water_encryption.cryptoComparisonMeshToolSeeds()
+    const cliMatch = toolSeeds.every((seed) => {
+      const row = byId.get(seed.id)
+      return Boolean(row) && row!.fold === seed.fold && row!.pair === seed.pair && row!.cli === seed.cli && row!.route === seed.route
+    })
+    const toolboxMatch = toolSeeds.every((seed) => {
+      const env = envById.get(seed.id)
+      return Boolean(env) && env!.fold === seed.fold && env!.pair === seed.pair
+    })
+    const mcpMatch = toolSeeds.every((seed) => mcpIds.has(seed.id))
+    const panelMatch = panel.sections.every((s) => {
+      const node = mesh.nodes.find((n) => n.inPanel && __ns_water_encryption.cryptoComparisonMeshPanelId(n.route, n.id) === s.id)
+      return Boolean(node) && s.title === node!.title && s.cli === node!.cli && s.pair === node!.pair && s.route === node!.route
+    })
+      && panel.sections.length === mesh.panelCount
+    const honesty = __ns_water_encryption.cryptoComparisonMeshNode('encryption-honesty')
+    const secpProof = __ns_water_encryption.cryptoComparisonMeshNode('secp256k1-field-prime')
+    const proofsMatch = Boolean(honesty) && Boolean(secpProof)
+      && proofBySlug.get('encryption-honesty')?.route === honesty!.proofRoute
+      && proofBySlug.get('encryption-honesty')?.fold === honesty!.fold
+      && proofBySlug.get('secp256k1-field-prime')?.route === secpProof!.proofRoute
+      && proofBySlug.get('secp256k1-field-prime')?.fold === secpProof!.fold
+    const sessionCryptoIds = [
+      'local-reverse-timed-vs-standards',
+      'iso-pqc-gap-fill',
+      'prove-local-magnitudes-iso',
+      'prove-local-novel-encrypt',
+      'local-audit-quantum',
+      'prove-1tbit-encrypt',
+    ] as const
+    const sessionMatch = sessionCryptoIds.every((id) => {
+      const node = __ns_water_encryption.cryptoComparisonMeshNode(id)
+      const seed = SESSION_QUANTUM_BIT_SEEDS.find((s) => s.id === id)
+      return Boolean(node) && Boolean(seed)
+        && seed!.fold === node!.fold && seed!.pair === node!.pair && seed!.cli === node!.cli && seed!.route === node!.route
+    })
+    const refuseBeyondStays = refuse.refuseBeyond === true && maxBits.refuseBeyond === true && mesh.refuseBeyond === true
+    const cryptoRelatedSurfacesAreDryOn = meshDry.cryptoComparisonMeshIsDry
+      && cliMatch && toolboxMatch && mcpMatch && panelMatch && proofsMatch && sessionMatch
+      && refuseBeyondStays
+      && refuse.claySolvedByThisFold === 0 && mesh.certified === false
+      && Boolean(meta) && meta!.fold === 'cryptoRelatedSurfacesAreDry' && isUuid(shelved.address)
+
+    const residuals = [
+      !cliMatch ? 'cli-catalog-drift' : '',
+      !toolboxMatch ? 'toolbox-envelope-drift' : '',
+      !mcpMatch ? 'mcp-tools-list-drift' : '',
+      !panelMatch ? 'encryption-panel-sections-drift' : '',
+      !proofsMatch ? 'domain-proof-route-drift' : '',
+      !sessionMatch ? 'session-bit-seed-drift' : '',
+      !refuseBeyondStays ? 'refuseBeyond-regress' : '',
+    ].filter((x) => x.length > 0)
+
+    const facets = [
+      { facet: 'cryptoRelatedSurfacesAreDry', on: cryptoRelatedSurfacesAreDryOn },
+      { facet: 'composes cryptoComparisonMeshIsDry', on: meshDry.computes && meshDry.cryptoComparisonMeshIsDry },
+      { facet: `CLI catalog matches mesh tool seeds (${toolSeeds.length})`, on: cliMatch },
+      { facet: 'toolbox envelopes match mesh fold/pair', on: toolboxMatch },
+      { facet: 'MCP tools/list includes mesh tool ids', on: mcpMatch },
+      { facet: 'encryptionPanel sections derive from mesh.inPanel', on: panelMatch && panel.meshDry.cryptoComparisonMeshIsDry },
+      { facet: 'domain proofs encryption-honesty + secp256k1 match mesh proofRoute/fold', on: proofsMatch },
+      { facet: 'session quantum bit seeds match mesh for crypto comparison ids', on: sessionMatch },
+      { facet: 'refuseBeyond stays on max-bits + production-rsa-refuse + mesh', on: refuseBeyondStays },
+      { facet: 'clay=0 · certified=false', on: mesh.claySolvedByThisFold === 0 && mesh.certified === false && refuse.claySolvedByThisFold === 0 },
+      { facet: 'meta tool crypto-comparison-mesh-dry published + shelved', on: Boolean(meta) && meta!.fold === 'cryptoRelatedSurfacesAreDry' && isUuid(shelved.address) },
+      { facet: `residual wet surfaces=${residuals.length}`, on: residuals.length === 0 },
+    ]
+    const sealed = sealFacets('crypto-related-surfaces-are-dry', facets)
+    return {
+      computes: sealed.ok && cryptoRelatedSurfacesAreDryOn,
+      cryptoRelatedSurfacesAreDry: cryptoRelatedSurfacesAreDryOn,
+      cryptoComparisonMeshIsDry: meshDry.cryptoComparisonMeshIsDry,
+      mesh,
+      meshDry,
+      toolSeedCount: toolSeeds.length,
+      residuals,
+      refuseBeyond: true as const,
+      claySolvedByThisFold: 0 as const,
+      certified: false as const,
+      facets: sealed.facets,
+      root: merge(meshDry.root, merge(catalog.root, merge(toolbox.root, merge(mcpList.root, merge(panel.root, merge(refuse.root, sealed.root)))))),
+      pair: 'crypto/comparison-mesh' as const,
+      cli: 'npm run quantum:crypto-comparison-mesh-dry',
+      route: '/en/quantum-encryption#crypto-comparison-mesh',
+      statement:
+        `cryptoRelatedSurfacesAreDry=${cryptoRelatedSurfacesAreDryOn} · meshDry=${meshDry.cryptoComparisonMeshIsDry} ` +
+        `tools=${toolSeeds.length} residuals=${residuals.length} refuseBeyond=true clay=0.`,
+      boundary:
+        'HONEST DRY RECEIPT. Single sealed CRYPTO_COMPARISON_MESH for comparison nodes/edges; CLI/toolbox/MCP/panel/proofs/session recompute. ' +
+        'Residuals listed when a surface drifts. certified=false · clay=0 · refuseBeyond stays · NOT production RSA break. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:crypto-comparison-mesh-dry */
+export function runCryptoRelatedSurfacesAreDryExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = cryptoRelatedSurfacesAreDry()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} crypto-comparison-mesh-dry — cryptoRelatedSurfacesAreDry=${report.cryptoRelatedSurfacesAreDry} ` +
+      `meshIsDry=${report.cryptoComparisonMeshIsDry} nodes=${report.mesh.nodeCount} edges=${report.mesh.edgeCount} ` +
+      `tools=${report.toolSeedCount} residuals=${report.residuals.length} clay=${report.claySolvedByThisFold} ` +
+      `root=${report.root.slice(0, 2 ** 3)}\n`,
+  )
+  if (report.residuals.length > 0) {
+    process.stdout.write(`  residuals: ${report.residuals.join(', ')}\n`)
+  }
+  for (const e of report.mesh.edges) {
+    process.stdout.write(`  edge ${e.id}: ${e.from} —${e.relation}→ ${e.to}\n`)
+  }
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.cryptoRelatedSurfacesAreDry && report.residuals.length === 0 && report.claySolvedByThisFold === 0 ? 0 : 1
 }
 
 // ── Cross waves: Tesla patents × trinity directions × merkaba/rosetta cross tips ───────────
