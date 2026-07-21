@@ -2,8 +2,9 @@
 // Clay-standard domain-proof papers — title · statement · explanation · formulas · status ·
 // publication/refereeing norms · Clay hub + Prize Rules PDF provenance.
 // All fields from domainProofCatalog / clayMillenniumPrizeRulesMapping (sealed src).
+// Internal nav: VitePress API only (useRoute · withBase) — standing rule linksUseOnlyVitePressApi.
 import { computed } from 'vue'
-import { useRoute } from 'vitepress'
+import { useRoute, withBase } from 'vitepress'
 import {
   domainProofPageBySlug,
   domainProofPageRows,
@@ -22,16 +23,21 @@ const rows = computed<DomainProofCatalogRow[]>(() => {
 })
 const rules = computed(() => clayMillenniumPrizeRulesMapping())
 const isHub = computed(() => !slugFromRoute.value)
+
+/** VitePress withBase — sole internal href emitter on this surface. */
+const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path}`)
 </script>
 
 <template>
   <div class="proofs" data-logic="src/wind/research/index.ts#domainProofCatalog">
     <header v-if="isHub" class="proofs__hub">
-      <p class="proofs__mast">ceccec · one catalog · Clay presentation · claySolvedByThisFold=0</p>
+      <p class="proofs__mast">ceccec · one catalog · Clay presentation · computable · open for prize · claySolvedByThisFold=0</p>
       <h1>Domain proofs</h1>
       <p class="proofs__lede">
         The single Clay-standard catalog (title · statement · explanation · formulas · status · Prize Rules honesty).
-        Not a second theorem hub — the registry is <a href="/frontiers">/frontiers</a>.
+        Clay challenges are <strong>computable</strong> from the sequence/trinity stack (sealed paths recompute) —
+        that is not CMI Prize solved. Status triad: computable / open for prize / claySolvedByThisFold=0.
+        Not a second theorem hub — the registry is <a :href="vpHref('/frontiers')">/frontiers</a>.
         MODELED CHALLENGE apparatus only; not CMI Prize acceptance.
       </p>
       <p class="proofs__provenance">
@@ -43,7 +49,7 @@ const isHub = computed(() => !slugFromRoute.value)
       </p>
       <ul class="proofs__index">
         <li v-for="row in rows" :key="row.id">
-          <a :href="row.route">{{ row.title }}</a>
+          <a :href="vpHref(row.route)">{{ row.title }}</a>
           <code>{{ row.status }}</code>
           <span>{{ row.kind }}</span>
         </li>
@@ -138,11 +144,11 @@ const isHub = computed(() => !slugFromRoute.value)
       </section>
 
       <p class="domain-proof__nav">
-        <a href="/proofs">← Domain proofs hub</a>
+        <a :href="vpHref('/proofs')">← Domain proofs hub</a>
         ·
-        <a href="/frontiers">Theorem registry</a>
+        <a :href="vpHref('/frontiers')">Theorem registry</a>
         ·
-        <a href="/research">Research</a>
+        <a :href="vpHref('/research')">Research</a>
       </p>
     </article>
   </div>

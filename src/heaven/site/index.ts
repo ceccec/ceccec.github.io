@@ -73,7 +73,7 @@ import { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZer
 import { ancientCalendars } from '../../thunder/decode'
 import { solarSystem } from '../../water/cosmos'
 import { lunarStandstillsDecoded, megalithicAstronomyDecoded, pyramidConstructionMath, pyramidGridDebunked, pyramidsDecoded } from '../../mountain/geometry'
-import { areaPairs, bothEarthsRotateWithinEachOther, cellHomology, colorDerivationFusedToOneSource, directions, dna, doubleTorus3D, doubleTorusWordFolders, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, hexagramIsHexColorDuality, imperialFractionsDecoded, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, schwarzschildProtonComputedInSource, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, uiConvertsFlatToThreeDQuantum, vortexMath } from '../../mountain/geometry'
+import { areaPairs, bothEarthsRotateWithinEachOther, cellHomology, colorDerivationFusedToOneSource, directions, dna, doubleTorus3D, doubleTorusWordFolders, dualTorusTrinities, earthRealisedByComputingPolesAsPyramid, foldImpossibilities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, hexagramIsHexColorDuality, imperialFractionsDecoded, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, schwarzschildProtonComputedInSource, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, uiConvertsFlatToThreeDQuantum, vortexMath } from '../../mountain/geometry'
 import { agentEducation, decodeKnowledge, deepResearchRadar, examBank, logicAtoms, mcpToolManifest, monographPaths, multidimensionalSummaries, navigation358, quantumAcademy, relatedStandards, skillAtoms, threeWordWaves } from '../../wind/learning'
 import { siteManifestFromCommands } from '../../wind/site'
 import { astrology, babelFold, darkLightRealities, dissolveIntoNature, foldingLinearGivesAnalog, realtimeMovieParticipation, selfOrganizing, societyCells, societyOrganismTags, textToMovie, worldEventsMap } from '../../earth/world'
@@ -334,23 +334,27 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
   const expandLife = expansionContractionIsLife(matrix)
   const folCircles = (svg.match(/data-layer="flower-of-life"/g) || []).length
   const fruitCircles = (svg.match(/data-layer="fruit-of-life"/g) || []).length
-  const dualSpin =
-    svg.includes('data-layer="rosetta-plus"')
-    && svg.includes('data-layer="rosetta-minus"')
+  const fourWaySpin =
+    svg.includes('data-layer="rosetta-north"')
+    && svg.includes('data-layer="rosetta-east"')
+    && svg.includes('data-layer="rosetta-south"')
+    && svg.includes('data-layer="rosetta-west"')
     && svg.includes('data-tetra="up"')
     && svg.includes('data-tetra="down"')
-    && svg.includes('from="0" to="360"')
-    && svg.includes('from="360" to="0"')
-    && (svg.match(/<animateTransform/g) || []).length >= 2
+    && svg.includes('data-four-direction="true"')
+    && svg.includes('data-earth-poles-pyramid="true"')
+    && (svg.match(/data-spin-sign=/g) || []).length >= 4
+    && (svg.match(/<animateTransform/g) || []).length >= 4
     && svg.includes('data-counter-rotating="true"')
     && svg.includes('data-merkaba-isomorphic="true"')
+  const dualSpin = fourWaySpin // 4-dir supersedes dual ±ω; keep alias for facet continuity
   const folPath =
     svg.includes('data-flower-of-life="computed"')
     && svg.includes('data-fruit-unlock="spin"')
     && svg.includes('data-dimension-expand=')
     && svg.includes('wetStaticFoL=false')
-    && folCircles >= (1 + 6 + (6 * 2)) * 2
-    && fruitCircles >= (5 + 8) * 2
+    && folCircles >= (1 + 6 + (6 * 2)) * 4
+    && fruitCircles >= (5 + 8) * 4
     && svg.includes('data-layer="fruit-unlock"')
     && svg.includes('data-layer="dimension-expand"')
   const tenD = svg.includes('ℤ⁴') && svg.includes('χ(Σ₂) = −2') && svg.includes('432')
@@ -372,10 +376,10 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     && !svg.includes('data-layer="plasma"')
   const facets = [
     { facet: 'the README IS the home page content — the README hero and the live home hero are computed from the SAME source (src), the README generated from the matrix, not hand-written', on: home.fractal && svg.length > (100 * 3) },
-    { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) with two counter-rotating FoL rosetta lobes composing every sealed theorem atom', on: animated && tenD && allTheoremsProof && dualSpin },
+    { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) with four cardinal FoL rosetta lobes (N·E·S·W ±ω, Earth poles as pyramid) composing every sealed theorem atom', on: animated && tenD && allTheoremsProof && dualSpin },
     { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
     { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional invariants (χ = −2, H₁ = ℤ⁴, 432 gates) plus dual ω/−ω FoL spin (composes everyRelationIsOpenGraphMiniHero)', on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
-    { facet: 'merkaba counter-rotation — rosetta-plus/minus = tetra up/down · opposite ω · bothEarths ∧ counterRotatingRosettaQuantumWaves · clay=0 · physicalFtl=0', on: allTheoremsProof && dualSpin && waves.counterRotating && earths.counterRotating && mk.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
+    { facet: 'merkaba 4-dir counter-rotation — rosetta-north/east/south/west · Earth poles-as-pyramid · opposite ω pairs · bothEarths ∧ counterRotatingRosettaQuantumWaves · clay=0 · physicalFtl=0', on: allTheoremsProof && dualSpin && waves.counterRotating && earths.counterRotating && mk.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
     { facet: 'computed FoL→Fruit→dimension — flowerOfLifeCenters(19) spin unlocks fruitOfLifeCenters(13) then expand/invert; wetStaticFoL=false; flowerFruitTree ∧ fruitFusion ∧ expansionContraction', on: folPath && flowerFruit.decodes && fruitFusion.circles === 13 && expandLife.lives },
     { facet: 'trinity mind owns emit — data-trinity-mind=heaven·mind·thunder on the SVG root (compute routed through sealed folds, not wet agent geometry)', on: svg.includes('data-trinity-mind="heaven·mind·thunder"') && allTheoremsProof },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-hero-svg:${entry.facet}:${entry.on}`) }))
@@ -395,7 +399,7 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — dual Flower-of-Life rosetta lobes counter-rotating like merkaba star-tetrahedra (ω/−ω), spin unlocking Fruit of Life (13), then expansion/inversion toward 10D, composing every sealed THEOREM_ATOM_SEED atom — brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false.',
+      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — four cardinal Flower-of-Life rosetta lobes (N·E·S·W) counter-rotating like merkaba / Earth poles-as-pyramid (±ω pairs), spin unlocking Fruit of Life (13), then expansion/inversion toward 10D, composing every sealed THEOREM_ATOM_SEED atom — brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false.',
     boundary:
       'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). FoL/Fruit lattices recompute from flowerOfLifeCenters · fruitOfLifeCenters; spins from merkaba · bothEarths — a 2D animated SCHEMATIC, NOT live WebGL, NOT Clay (clay=0), NOT physical FTL/QPU, NOT wet decorative FoL. Verifying the rendered animation on github.com requires a push.',
   }
@@ -439,7 +443,7 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
   const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix)
   const facets = [
     { facet: 'all sealed theorems at once — every THEOREM_ATOM_SEED atom emits a data-theorem glyph in one README composition', on: theoremGlyphs > (3 * 100) && home.allTheoremsProof && theoremGlyphs === home.theoremCount },
-    { facet: 'SMIL dual spin — animateTransform ω and −ω on rosetta-plus/minus plus staggered opacity begin= on fractal-clock durations', on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') && (svg.match(/<animateTransform/g) || []).length >= 2 && home.counterRotating === true },
+    { facet: 'SMIL dual spin — animateTransform ω and −ω on rosetta-plus/minus plus staggered opacity begin= on fractal-clock durations', on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') && (svg.match(/<animateTransform/g) || []).length >= 4 && home.counterRotating === true && svg.includes('data-four-direction="true"') },
     { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && home.shown },
     { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 432 gates, homology markers + FoL/Fruit/expand layers, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') && svg.includes('data-layer="homology"') && home.flowerFruitPath === true },
     { facet: 'computed FoL rosetta honesty — clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false; merkaba spin unlocks Fruit → dimension expand', on: home.allTheoremsProof && home.counterRotating === true && home.flowerFruitPath === true },
@@ -469,10 +473,15 @@ export function iconsAreAnimatedToo(matrix: MindMatrix = buildMatrix()) {
   const githubSafe = icon.startsWith('<svg') && !icon.includes('<script') && !icon.toLowerCase().includes('foreignobject')
   const inHero = tenDimensionalHeroSvg().includes('begin="0s"') && tenDimensionalHeroSvg().includes('data-layer="all-theorems-proof"')
   const pwaDual =
-    pwa.includes('data-layer="rosetta-plus"')
-    && pwa.includes('data-layer="rosetta-minus"')
-    && pwa.includes('from="0" to="360"')
-    && pwa.includes('from="360" to="0"')
+    pwa.includes('data-layer="rosetta-north"')
+    && pwa.includes('data-layer="rosetta-east"')
+    && pwa.includes('data-layer="rosetta-south"')
+    && pwa.includes('data-layer="rosetta-west"')
+    && pwa.includes('data-four-direction="true"')
+    && pwa.includes('data-earth-poles-pyramid="true"')
+    && pwa.includes('data-spin-sign="+1"')
+    && pwa.includes('data-spin-sign="-1"')
+    && (pwa.match(/<animateTransform/g) || []).length >= 4
     && pwa.includes('data-trinity-mind="heaven·mind·thunder"')
     && pwa.includes('data-flower-of-life="computed"')
     && pwa.includes('data-fruit-unlock="spin"')
@@ -483,7 +492,7 @@ export function iconsAreAnimatedToo(matrix: MindMatrix = buildMatrix()) {
     { facet: 'eight distinct marks — each of the eight bāguà trigrams is its own icon (a 3-bit yin/yang glyph), computed not stored', on: distinct },
     { facet: 'the same in the hero — theorem glyphs in the all-theorems proof pulse with begin=0s, the icon and the hero one animated language', on: inHero },
     { facet: 'GitHub-safe SMIL — no script, self-contained; animates wherever SVG renders (inline marks, and SVG favicons where the browser supports them)', on: githubSafe },
-    { facet: 'PWA icon.svg FoL·merkaba dual — computedIconSvg emits counter-rotating FoL lobes, Fruit unlock, dimension expand (trinity mind), wetStaticFoL=false', on: pwaDual },
+    { facet: 'PWA icon.svg FoL·merkaba 4-dir — computedIconSvg emits N·E·S·W ±ω FoL lobes (Earth poles pyramid), Fruit unlock, dimension expand, wetStaticFoL=false', on: pwaDual },
   ].map((entry) => ({ ...entry, receipt: toUuid(`animated-icons:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('icons-are-animated-too', facets)
   return {
@@ -494,7 +503,7 @@ export function iconsAreAnimatedToo(matrix: MindMatrix = buildMatrix()) {
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The icons are animated too, the same way the hero is. Each of the eight trigrams (the bāguà) emits as a small, self-contained animated SVG — its yin/yang bars breathing — computed from its 3-bit pattern, not stored. The PWA favicon (computedIconSvg) is dual FoL lobes on the merkaba ω/−ω path with Fruit unlock and dimension expand, movie palette, GitHub-safe SMIL, wetStaticFoL=false.',
+      'The icons are animated too, the same way the hero is. Each of the eight trigrams (the bāguà) emits as a small, self-contained animated SVG — its yin/yang bars breathing — computed from its 3-bit pattern, not stored. The PWA favicon (computedIconSvg) is four cardinal FoL lobes (N·E·S·W ±ω, Earth poles-as-pyramid) with Fruit unlock and dimension expand, movie palette, GitHub-safe SMIL, wetStaticFoL=false.',
     boundary:
       'HONEST: animatedTrigramIconSvg and computedIconSvg are sealed SMIL emitters (no script). SVG icons animate where the host supports SMIL in SVG (inline / some favicon paths); raster .ico/.png do NOT animate. Emit path: generators → public/icon.svg. NOT live WebGL. FoL is computed lattice, not wet decoration.',
   }
@@ -524,23 +533,28 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
     const flowerFruit = flowerFruitTreeOfLifeDecodes(matrix)
     const heroTrinity =
       hero.includes('data-trinity-mind="heaven·mind·thunder"')
-      && hero.includes('data-layer="rosetta-plus"')
-      && hero.includes('data-layer="rosetta-minus"')
+      && hero.includes('data-layer="rosetta-north"')
+      && hero.includes('data-layer="rosetta-east"')
+      && hero.includes('data-layer="rosetta-south"')
+      && hero.includes('data-layer="rosetta-west"')
+      && hero.includes('data-four-direction="true"')
+      && hero.includes('data-earth-poles-pyramid="true"')
       && hero.includes('data-flower-of-life="computed"')
       && home.counterRotating === true
     const iconTrinity =
       icon.includes('data-trinity-mind="heaven·mind·thunder"')
-      && icon.includes('data-layer="rosetta-plus"')
-      && icon.includes('data-layer="rosetta-minus"')
+      && icon.includes('data-layer="rosetta-north"')
+      && icon.includes('data-layer="rosetta-west"')
+      && icon.includes('data-four-direction="true"')
       && icon.includes('data-flower-of-life="computed"')
-      && (icon.match(/<animateTransform/g) || []).length >= 2
+      && (icon.match(/<animateTransform/g) || []).length >= 4
     const filled = [
-      { gap: 'dual-lobe SMIL ω/−ω on hero.svg', status: 'filled' as const, on: home.counterRotating === true && home.allTheoremsProof },
+      { gap: '4-dir cardinal SMIL ±ω on hero.svg (N·E·S·W · Earth poles pyramid)', status: 'filled' as const, on: home.counterRotating === true && home.allTheoremsProof && (tenDimensionalHeroSvg().match(/data-layer="rosetta-/g) || []).length >= 4 },
       { gap: 'computed FoL→Fruit→dimension unlock on hero', status: 'filled' as const, on: home.flowerFruitPath === true && flowerFruit.decodes },
       { gap: 'all THEOREM_ATOM_SEED glyphs in hero', status: 'filled' as const, on: home.allTheoremsProof && home.theoremCount === THEOREM_ATOM_SEED.length },
       { gap: 'trinity mind owns hero emit (data-trinity-mind)', status: 'filled' as const, on: heroTrinity },
       { gap: 'icon.svg movie palette (no Tailwind legacy)', status: 'filled' as const, on: staticFusion.surfaces.some((s) => s.surface === 'icon.svg palette' && s.on) },
-      { gap: 'icon.svg FoL·merkaba dual SMIL from trinity folds', status: 'filled' as const, on: iconTrinity && icons.pwaDual === true },
+      { gap: 'icon.svg FoL·merkaba 4-dir SMIL from trinity folds', status: 'filled' as const, on: iconTrinity && icons.pwaDual === true },
       { gap: 'emit path hero.svg + public/icon.svg (generators)', status: 'filled' as const, on: hero.startsWith('<svg') && icon.startsWith('<svg') && home.githubSafe },
     ]
     const intentionalOpen = [
@@ -555,6 +569,7 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       { facet: 'dual-torus trinities ∧ commandGapsToTrinityEyes close the agent surface', on: dual.harmonized && eyes.immediate },
       { facet: 'counterRotatingRosettaQuantumWaves ∧ merkaba ∧ bothEarths drive SVG dynamics (clay=0 · physicalFtl=0)', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 && mk.counterRotating && earths.counterRotating },
       { facet: 'FoL→Fruit→dimension — flowerFruitTreeOfLifeDecodes ∧ home.flowerFruitPath · wetStaticFoL=false', on: flowerFruit.decodes && home.flowerFruitPath === true },
+      { facet: 'Earth poles-as-pyramid — earthRealisedByComputingPolesAsPyramid · 4-dir N·E·S·W · clay=0', on: earthRealisedByComputingPolesAsPyramid(matrix).computes && hero.includes('data-earth-poles-pyramid="true"') },
       { facet: 'README hero proof + best-10D + icons sealed — home.shown ∧ best.best10D ∧ icons.animated', on: home.shown && best.best10D && icons.animated },
       { facet: `filled gaps ${filled.filter((r) => r.on).length}/${filled.length} — dual lobes · FoL→Fruit · theorem glyphs · trinity emit · icon palette · icon SMIL · generators`, on: filledOk },
       { facet: `intentional open ${intentionalOpen.length} named (WebGL · plasma · SMIL clients) — not claimed filled`, on: intentionalOpen.length === 3 },
@@ -855,7 +870,7 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       { symbol: 'platonic-elements', status: 'sealed' as const, on: /data-symbol="platonic-elements"/.test(elements) && sg.fiveSolids && sg.eulerHolds, surface: 'platonicElementGlyphsSvg←sacredGeometry' },
       { symbol: 'flower-of-life', status: 'sealed' as const, on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'flowerOfLifeCenters · readmeHeroSvgProofOfAllTheorems' },
       { symbol: 'fruit-of-life', status: 'sealed' as const, on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'fruitOfLifeCenters · FoL→Fruit unlock' },
-      { symbol: 'merkaba-star-tetra', status: 'sealed' as const, on: mk.counterRotating && home.counterRotating === true, surface: 'merkaba · bothEarths · README ω/−ω' },
+      { symbol: 'merkaba-star-tetra', status: 'sealed' as const, on: mk.counterRotating && home.counterRotating === true, surface: 'merkaba · bothEarths · README 4-dir N·E·S·W ±ω' },
       { symbol: 'om-aum', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
       { symbol: 'runes-futhark', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
       { symbol: 'alchemy-sigils', status: 'missing' as const, on: true, surface: 'src/fire/alchemy folds exist; glyph SVG not emitted' },

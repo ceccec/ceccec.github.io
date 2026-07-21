@@ -2187,6 +2187,44 @@ export function onlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
   }
 }
 
+
+/**
+ * Standing rule: in-site navigation uses only the VitePress link API.
+ * Composes onlyVitePressApi — useData / useRoute / useRouter / withBase + VP-intercepted <a href>
+ * or documented root-relative markdown links. Refuses invented host wrappers for home surfaces
+ * and parallel routers. Pair: moment/prove · site/consolidate
+ */
+export function linksUseOnlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('linksUseOnlyVitePressApi', matrix, () => {
+    const vp = onlyVitePressApi(matrix)
+    const api = vp.api
+    const required = ['useData', 'useRoute', 'useRouter', 'withBase'] as const
+    const hasRequired = required.every((name) => api.includes(name))
+    const allowsVpAnchor = api.includes('<a href>')
+    const facets = [
+      { facet: 'onlyVitePressApi.holds — render layer refuses parallel router / History bypass', on: vp.holds && vp.strict },
+      { facet: 'API surface names useData · useRoute · useRouter · withBase', on: hasRequired },
+      { facet: 'VP-intercepted <a href> allowed (withBase-prefixed internals preferred in theme)', on: allowsVpAnchor },
+      { facet: 'forbidden surface listed (vue-router · location.assign · history.pushState · .VP* querySelector)', on: vp.forbidden.length >= 5 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`links-use-only-vitepress-api:${entry.facet}:${entry.on}`) }))
+    const sealed = facets.every((f) => f.on)
+    return {
+      computes: sealed && vp.holds,
+      linksUseOnlyVitePressApi: sealed && vp.holds,
+      api,
+      forbidden: vp.forbidden,
+      facets,
+      root: merge(matrix.root, merkleFold([vp.root, ...facets.map((f) => f.receipt)])),
+      pair: 'moment/prove' as const,
+      statement:
+        `linksUseOnlyVitePressApi — ${facets.filter((f) => f.on).length}/${facets.length}: in-site links use VitePress API only ` +
+        `(useData/useRoute/useRouter/withBase · VP markdown · VP-intercepted anchors). Composes onlyVitePressApi.`,
+      boundary:
+        'Governs VitePress site surfaces (theme .vue · home markdown · nav). README.md on GitHub may use absolute CANONICAL_HOST URLs — that is not a VitePress surface. External Clay/CMI URLs stay external. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
 /** @rosetta ✦₁ · Fire · clarity */
 export function glagoliticAlphabetDecoded(matrix: MindMatrix = buildMatrix()) {
   void matrix
