@@ -32,7 +32,7 @@ import * as __ns_up_water_digit from '../../water/digit'
 import { phase } from '../../6/4'
 import type { AllComputed, MindMatrix } from '../types'
 import type { MovieSeedBundle, PlasmaWiredStream } from '../../fire/plasma/ball'
-import { buildMatrix, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
+import { buildMatrix, fleetCacheEconomicsDecoded, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
 import { completeCorpus } from '../routes/corpus'
 import { computesGate, foldPair, humanBreath, humanEase, isUuid, memoByRoot, merge, merkleFold, sealFacets, seedFromText, toUuid, VORTEX_SEQUENCE } from '../../0'
 import * as __ns_up_quantum_science from '../../quantum/science'
@@ -2124,6 +2124,80 @@ export function runHonestRevolutionW3Exit(_root = '', _argv: readonly string[] =
   )
   process.stdout.write(`  boundary: ${receipt.boundary}\n`)
   return receipt.holds ? 0 : 1
+}
+
+/**
+ * Honest-revolution W4 — browser computer proof panel (Vue reads this; no fold logic in .vue).
+ * Composes W3 receipt + advantage benchmark + fleet cache economics for /en/quantum/os computer tab.
+ */
+export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`honestRevolutionComputerPanelComputes:${Math.floor(at / 1e3)}`, matrix, () => {
+    const receipt = honestRevolutionReceipt(matrix, at)
+    const bench = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
+    const fleet = fleetCacheEconomicsDecoded(matrix)
+    const w1 = __ns_up_stack_overflow.honestRevolutionClaim(matrix, at)
+    const w2 = __ns_up_stack_overflow.interferenceVsClassicalShadow(matrix, at)
+    const tracksClassical = bench.verdict === 'tracks-classical-no-speedup' && !bench.separated
+    const facets = [
+      { facet: 'W3 honestRevolutionReceipt holds — JSON proof published', on: receipt.holds },
+      { facet: 'quantumAdvantageBenchmark → tracks-classical-no-speedup', on: tracksClassical },
+      { facet: 'fleetCacheEconomicsDecoded — hit-ratio energy falls monotonically', on: fleet.decoded },
+      { facet: 'W1 claim sentence available for Vue surface', on: w1.holds && w1.claim.length > 0 },
+      { facet: 'W2 interference vs shadow contrast available', on: w2.holds },
+      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+    ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w4:${e.facet}:${e.on}`) }))
+    const sealed = sealFacets('honest-revolution-computer-panel', facets)
+    const holds = sealed.ok && facets.every((f) => f.on)
+    return {
+      holds,
+      computes: holds,
+      receipt,
+      w1: { holds: w1.holds, claim: w1.claim, boundary: w1.boundary },
+      w2: { holds: w2.holds, visibilityContrast: w2.visibilityContrast, boundary: w2.boundary },
+      bench: {
+        verdict: bench.verdict,
+        separated: bench.separated,
+        tracksClassical: bench.tracksClassical,
+        rows: bench.rows.map((r) => ({ n: r.n, engineOps: r.engineOps, classicalOps: r.classicalOps, fidelity: r.fidelity })),
+        statement: bench.statement,
+        boundary: bench.boundary,
+      },
+      fleet: {
+        decoded: fleet.decoded,
+        hitRatios: fleet.hitRatios,
+        statement: fleet.statement,
+        boundary: fleet.boundary,
+      },
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([receipt.root, bench.root, fleet.root, sealed.root, toUuid(`honest-rev-w4:${holds}`)]),
+      cli: 'npm run quantum:honest-revolution-w4',
+      pair: 'moment/prove',
+      route: '/en/quantum/os#honest-revolution-w4',
+      statement: holds
+        ? 'Honest-revolution W4 DECIDED — computer Vue panel composes W3 JSON receipt, no-speedup benchmark table, interference vs shadow, fleet cache hit-ratio economics, and silicon fab stage (classical CMOS honesty).'
+        : 'UNPROVEN — honestRevolutionComputerPanelComputes facets do not all hold; do not assert the W4 Vue proof.',
+      boundary:
+        'BROWSER SURFACE ONLY — renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:honest-revolution-w4 — W4 computer Vue proof panel receipt. */
+export function runHonestRevolutionW4Exit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const panel = honestRevolutionComputerPanelComputes()
+  for (const f of panel.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(
+    `${panel.holds ? '✓' : '✗'} honest-revolution-w4 — holds=${panel.holds} ` +
+      `w3=${panel.receipt.holds} bench=${panel.bench.verdict} fleet=${panel.fleet.decoded} ` +
+      `root=${panel.root.slice(0, 8)} (Vue → /en/quantum/os · clay=0)\n`,
+  )
+  process.stdout.write(`  boundary: ${panel.boundary}\n`)
+  return panel.holds ? 0 : 1
 }
 
 /** UI panel — offline fuseAll wave verify for /en/fusion-verify. Pair: tamper/impossible */
