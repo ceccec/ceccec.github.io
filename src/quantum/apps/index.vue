@@ -4,7 +4,7 @@ import {
   quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap,
   sessionManualWorkAsQuantumTools, rosettaCoreApi,
   standardToolboxIoCatalog, distributedReuseExtendsCapacity,
-  exportStandardToolEnvelope, importStandardToolEnvelope,
+  exportStandardToolEnvelope, importStandardToolEnvelope, defaultToolExperimentValues,
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems,
   ftlExperimentTechniquesHandoffFromRosettaComplete,
   documentSessionCryptoExperimentsUpdateTheorems,
@@ -67,6 +67,49 @@ const runningId = ref<string | null>(null)
 const error = ref('')
 const lastRun = shallowRef<RunReceipt | null>(null)
 const spawnTask = ref('qualified bounded task with sealed fold target')
+const experimentToolId = ref('demo-rsa-measure')
+const experimentAt = ref(0)
+const experimentSeed = ref('')
+const experimentConfigJson = ref('{"certified":false,"claySolved":0,"qpuRequired":false,"productionReverse":false,"experiment":true,"refuseWireClaim":true}')
+
+const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
+const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
+
+function syncExperimentDefaults(toolId: string) {
+  experimentToolId.value = toolId
+  const envelope = panel.value.toolbox.envelopes.find((e) => e.id === toolId)
+  if (!envelope) return
+  const defaults = defaultToolExperimentValues(envelope)
+  experimentAt.value = Number(defaults.input.at ?? 0)
+  experimentSeed.value = String(defaults.input.seed ?? '')
+  if (typeof defaults.input.task === 'string') spawnTask.value = defaults.input.task
+  experimentConfigJson.value = JSON.stringify(defaults.config)
+}
+
+function experimentInputPayload(): Record<string, string | number | boolean> {
+  const payload: Record<string, string | number | boolean> = {
+    ...experimentDefaults.value.input,
+    at: experimentAt.value,
+    seed: experimentSeed.value,
+  }
+  if (experimentToolId.value === 'hero-spawn-verify') payload.task = spawnTask.value
+  return payload
+}
+
+syncExperimentDefaults(experimentToolId.value)
+
+function experimentConfigPayload(): Record<string, string | number | boolean> {
+  try {
+    const parsed = JSON.parse(experimentConfigJson.value) as Record<string, string | number | boolean>
+    return { ...experimentDefaults.value.config, ...parsed }
+  } catch {
+    return { ...experimentDefaults.value.config }
+  }
+}
+
+function exportWithExperiment(toolId: string) {
+  return exportStandardToolEnvelope(toolId, 'ceccec.local', experimentInputPayload(), undefined, Number(experimentAt.value) || 0, experimentConfigPayload())
+}
 
 const launchPreview = computed(() => (activeId.value ? quantumAppLaunch(activeId.value) : null))
 const encryptionTimedLine = computed(() => {
@@ -121,7 +164,7 @@ function runTool(toolId: string) {
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'local-reverse-timed-vs-standards') {
       const r = localEncryptionReverseTimedVsStandards()
-      const exported = exportStandardToolEnvelope('local-reverse-timed-vs-standards', 'ceccec.local')
+      const exported = exportWithExperiment('local-reverse-timed-vs-standards')
       const imported = importStandardToolEnvelope(exported)
       ok = r.computes && exported.computes && imported.roundTrip
       summary = `rev=${r.reverseMs.toFixed(3)}ms ops/s=${r.aggregateOpsPerSec.toFixed(3)} demoMaxBits=${r.demoMaxBits} breaksNistPqc=${r.breaksNistPqc} certified=${r.certified} · envelope roundTrip=${imported.roundTrip}`
@@ -133,7 +176,7 @@ function runTool(toolId: string) {
       ]
     } else if (toolId === 'prove-local-novel-encrypt') {
       const r = proveLocalNovelEncryptionSecurity()
-      const exported = exportStandardToolEnvelope('prove-local-novel-encrypt', 'ceccec.local')
+      const exported = exportWithExperiment('prove-local-novel-encrypt')
       const imported = importStandardToolEnvelope(exported)
       ok = r.localSecurityProved && exported.computes && imported.roundTrip
       summary = `localSecurityProved=${r.localSecurityProved} overallWireClaimProved=${r.overallWireClaimProved} (${r.wireProofStatus}) strongerThanNistPqc=${r.strongerThanNistPqc} productionReverseRefused=${r.productionReverseRefused} thisRepoIsNotTheIsoStandard=${r.thisRepoIsNotTheIsoStandard} · envelope roundTrip=${imported.roundTrip}`
@@ -145,7 +188,7 @@ function runTool(toolId: string) {
       ]
     } else if (toolId === 'iso-pqc-gap-fill') {
       const r = isoPqcRequirementsGapFillAllQuantumDirections()
-      const exported = exportStandardToolEnvelope('iso-pqc-gap-fill', 'ceccec.local')
+      const exported = exportWithExperiment('iso-pqc-gap-fill')
       const imported = importStandardToolEnvelope(exported)
       ok = r.computes && exported.computes && imported.roundTrip
       summary = `isoRequiresPQC=${r.answer.isoRequiresPostQuantumSecurity} covered=${r.coveredCount} partial=${r.partialCount} gap=${r.gapCount} lab=${r.labGaps.length} isoOfficialStandard=${r.isoOfficialStandard} · envelope roundTrip=${imported.roundTrip}`
@@ -164,7 +207,7 @@ function runTool(toolId: string) {
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'prove-1tbit-encrypt') {
       const r = proveOneTbitRealtimeEncryptionClaim()
-      const exported = exportStandardToolEnvelope('prove-1tbit-encrypt', 'ceccec.local')
+      const exported = exportWithExperiment('prove-1tbit-encrypt')
       const imported = importStandardToolEnvelope(exported)
       ok = r.computes && exported.computes && imported.roundTrip
       summary = `wire.proved=${r.wire.provedAtCallTime} demo=${r.demo.measuredBitsPerSec.toExponential(3)} amort=${r.amortized.measuredBitsPerSec.toExponential(3)} amort.proved=${r.amortized.provedAtCallTime} · envelope=${exported.kind}@${exported.version} roundTrip=${imported.roundTrip}`
@@ -176,7 +219,7 @@ function runTool(toolId: string) {
       ]
     } else if (toolId === 'prove-local-magnitudes-iso') {
       const r = proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections()
-      const exported = exportStandardToolEnvelope('prove-local-magnitudes-iso', 'ceccec.local')
+      const exported = exportWithExperiment('prove-local-magnitudes-iso')
       const imported = importStandardToolEnvelope(exported)
       ok = r.computes && exported.computes && imported.roundTrip && r.overallWireClaimProved === false
       summary = `overallWireClaimProved=${r.overallWireClaimProved} status=${r.wireProofStatus} wireRatio=${r.wireRatio.toExponential(3)} structural=${r.structuralMayProve} amort=${r.amortMayProve} · envelope roundTrip=${imported.roundTrip}`
@@ -261,7 +304,7 @@ function runTool(toolId: string) {
       facets = vote.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'local-audit-quantum') {
       const r = localAuditQuantumSpeedEfficiency()
-      const exported = exportStandardToolEnvelope('local-audit-quantum', 'ceccec.local')
+      const exported = exportWithExperiment('local-audit-quantum')
       const imported = importStandardToolEnvelope(exported)
       ok = r.computes && exported.computes && imported.roundTrip
       summary =
@@ -276,7 +319,7 @@ function runTool(toolId: string) {
       ]
     } else if (toolId === 'prove-no-qpu-64bit') {
       const r = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit()
-      const exported = exportStandardToolEnvelope('prove-no-qpu-64bit', 'ceccec.local')
+      const exported = exportWithExperiment('prove-no-qpu-64bit')
       const imported = importStandardToolEnvelope(exported)
       ok = r.computes && exported.computes && imported.roundTrip
       summary =
@@ -427,17 +470,20 @@ function runTool(toolId: string) {
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'toolbox-standard-io') {
+      syncExperimentDefaults('toolbox-standard-io')
       const r = standardToolboxIoCatalog()
       const capacity = distributedReuseExtendsCapacity()
-      const exported = exportStandardToolEnvelope('toolbox-standard-io', 'ceccec.browser')
+      const input = experimentInputPayload()
+      const config = experimentConfigPayload()
+      const exported = exportStandardToolEnvelope('toolbox-standard-io', 'ceccec.browser', input, undefined, Number(input.at ?? 0), config)
       const imported = importStandardToolEnvelope(exported)
       ok = r.computes && capacity.computes && imported.roundTrip
-      summary = `migrated=${r.migratedLabel} · roundTrip=${imported.roundTrip ? '✓' : '✗'} · capacity=${capacity.reuseCapacity}/${capacity.total} · qubit=${capacity.physicalQubitSpeedup}`
+      summary = `migrated=${r.migratedLabel} · config=${r.configFilled}/${r.configMissingBefore} · science=${r.scienceFacingCount} · roundTrip=${imported.roundTrip ? '✓' : '✗'} · capacity=${capacity.reuseCapacity}/${capacity.total} · qubit=${capacity.physicalQubitSpeedup}`
       root = r.root
       boundary = r.boundary
       facets = [
         ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
-        { facet: 'import(export) round-trip', on: imported.roundTrip },
+        { facet: 'import(export) round-trip with experiment input/config', on: imported.roundTrip },
         { facet: `distributedReuseExtendsCapacity=${capacity.extendsCapacity}`, on: capacity.extendsCapacity },
       ]
     }
@@ -472,6 +518,13 @@ function runTool(toolId: string) {
         <UiBadge :variant="panel.slowGaps.openCount === 0 ? 'default' : 'outline'">
           open {{ panel.slowGaps.openCount }} · closed {{ panel.slowGaps.closedCount }}
         </UiBadge>
+        <UiBadge :variant="panel.slowGaps.experimentIo.panelClosed ? 'default' : 'outline'">
+          experiment-io closed {{ panel.slowGaps.experimentIo.closed }} · open {{ panel.slowGaps.experimentIo.open }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          Science tool I/O composes <a href="#experiment-inputs">#experiment-inputs</a> + toolbox envelopes —
+          NOT docs:build wall-clock (sibling slow-build gates).
+        </p>
         <ul class="quantum-apps__facets">
           <li v-for="gap in panel.slowGaps.open" :key="gap.gapId">
             <UiBadge variant="outline">{{ gap.kind }}</UiBadge>
@@ -674,16 +727,23 @@ function runTool(toolId: string) {
           · ftl={{ panel.distributed.physicalFtlClaim }}
         </UiBadge>
         <p class="quantum-apps__meta">{{ panel.distributed.capacityMeans }}</p>
+        <UiBadge :variant="panel.toolbox.configFilled === panel.toolbox.total ? 'default' : 'outline'">
+          config filled {{ panel.toolbox.configFilled }}/{{ panel.toolbox.configMissingBefore }}
+          · science {{ panel.toolbox.scienceFacingCount }}
+        </UiBadge>
         <table class="quantum-apps__table">
-          <thead><tr><th>Tool</th><th>Input</th><th>Output</th><th>Import/Export</th><th>Root</th></tr></thead>
+          <thead><tr><th>Tool</th><th>Input</th><th>Config</th><th>Output</th><th>Import/Export</th><th>Root</th></tr></thead>
           <tbody>
-            <tr v-for="envelope in panel.toolbox.envelopes" :key="envelope.id">
+            <tr v-for="envelope in panel.toolbox.envelopes" :key="envelope.id" @click="syncExperimentDefaults(envelope.id)">
               <td>
                 <strong>{{ envelope.id }}</strong>
                 <div class="quantum-apps__meta"><code>{{ envelope.fold }}</code> · {{ envelope.pair }}</div>
                 <div class="quantum-apps__meta">{{ envelope.boundary }}</div>
+                <UiBadge v-if="envelope.scienceFacing" variant="outline">science</UiBadge>
+                <UiBadge v-if="!envelope.browserRunnable" variant="outline">CI · {{ envelope.browserGap }}</UiBadge>
               </td>
-              <td class="quantum-apps__meta">{{ envelope.input.fields.map((f) => f.name).join(', ') }}</td>
+              <td class="quantum-apps__meta">{{ envelope.input.fields.map((f) => f.name + (f.required ? '*' : '')).join(', ') }}</td>
+              <td class="quantum-apps__meta">{{ envelope.config.fields.map((f) => f.name + (f.required ? '*' : '')).join(', ') }}</td>
               <td class="quantum-apps__meta">{{ envelope.output.fields.map((f) => f.name).join(', ') }}</td>
               <td>
                 <UiBadge :variant="envelope.import.roundTrip && envelope.export.roundTrip ? 'default' : 'outline'">
@@ -791,10 +851,38 @@ function runTool(toolId: string) {
         </table>
       </section>
       <UiSeparator />
-      <section>
-        <h3>Browser-runnable tools</h3>
+      <section id="experiment-inputs" aria-label="Scientific experiment inputs and configs">
+        <h3>Experiment inputs · configs</h3>
+        <p class="quantum-apps__meta">
+          Not button-only voids — set <code>at</code> · <code>seed</code> · config JSON before Run.
+          Science tools require certified=false · claySolved=0 · qpuRequired=false. CI-only tools keep explicit browserGap why.
+        </p>
+        <label class="quantum-apps__meta" for="experiment-tool">Tool</label>
+        <select id="experiment-tool" class="quantum-apps__input" :value="experimentToolId" @change="syncExperimentDefaults(($event.target as HTMLSelectElement).value)">
+          <option v-for="envelope in panel.toolbox.envelopes" :key="envelope.id" :value="envelope.id">
+            {{ envelope.id }}{{ envelope.scienceFacing ? ' · science' : '' }}{{ envelope.browserRunnable ? '' : ' · CI' }}
+          </option>
+        </select>
+        <label class="quantum-apps__meta" for="experiment-at">at (phase)</label>
+        <input id="experiment-at" v-model.number="experimentAt" class="quantum-apps__input" type="number" />
+        <label class="quantum-apps__meta" for="experiment-seed">seed</label>
+        <input id="experiment-seed" v-model="experimentSeed" class="quantum-apps__input" type="text" autocomplete="off" />
         <label class="quantum-apps__meta" for="spawn-task">Hero spawn task (input)</label>
         <input id="spawn-task" v-model="spawnTask" class="quantum-apps__input" type="text" autocomplete="off" />
+        <label class="quantum-apps__meta" for="experiment-config">config JSON (required honesty knobs)</label>
+        <textarea id="experiment-config" v-model="experimentConfigJson" class="quantum-apps__input quantum-apps__textarea" rows="4" />
+        <p class="quantum-apps__meta">
+          selected {{ experimentEnvelope.id }} · science={{ experimentEnvelope.scienceFacing }}
+          · input {{ experimentEnvelope.input.fields.map((f) => f.name).join(', ') }}
+          · config {{ experimentEnvelope.config.fields.map((f) => f.name).join(', ') }}
+        </p>
+        <UiButton size="sm" :disabled="runningId === experimentToolId" @click="runTool(experimentToolId)">
+          {{ runningId === experimentToolId ? '…' : `Run ${experimentToolId} with inputs/config` }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section>
+        <h3>Browser-runnable tools</h3>
         <table class="quantum-apps__table">
           <thead><tr><th>Tool</th><th>Browser</th><th>Route</th><th>Run</th></tr></thead>
           <tbody>
@@ -812,7 +900,7 @@ function runTool(toolId: string) {
               </td>
               <td><a :href="tool.route">{{ tool.route }}</a></td>
               <td>
-                <UiButton size="sm" :disabled="runningId === tool.id" @click="runTool(tool.id)">
+                <UiButton size="sm" :disabled="runningId === tool.id" @click="syncExperimentDefaults(tool.id); runTool(tool.id)">
                   {{ runningId === tool.id ? '…' : 'Run' }}
                 </UiButton>
               </td>
@@ -872,6 +960,7 @@ function runTool(toolId: string) {
 .quantum-apps__facets { list-style: none; padding: 0; }
 .quantum-apps__facets li { margin-bottom: var(--ich-sp2); display: flex; gap: var(--ich-sp3); flex-wrap: wrap; align-items: baseline; }
 .quantum-apps__error { color: var(--vp-c-danger-1, crimson); font-size: var(--ich-text-sm); }
+.quantum-apps__textarea { font-family: var(--vp-font-family-mono, ui-monospace, monospace); min-height: calc(1rem * 6); resize: vertical; }
 .quantum-apps__input {
   display: block;
   width: min(100%, calc(1rem * (5 * 8 - 4)));

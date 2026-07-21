@@ -85,6 +85,7 @@ export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
       computes: facets.every((entry) => entry.on),
       domains,
       aliasToCanonical: Object.fromEntries(navAliasToCanonical),
+      aliasCount: navAliasToCanonical.size,
       navSlugs: new Set(domains.map((d) => d.canonical)),
       isNavAlias: (slug: string) => navAliasToCanonical.has(slug.replace(/^\//, '')),
       canonicalOf: (slug: string) => navAliasToCanonical.get(slug.replace(/^\//, '')) ?? slug.replace(/^\//, ''),
@@ -92,6 +93,121 @@ export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
       root: merkleFold([...domains.map((d) => d.receipt), ...facets.map((f) => f.receipt)]),
       statement: `Site domain registry — ${domains.length} concerns, one canonical page each; nav omits aliases; ROUTE_ALIASES thin-mounts fusion/millennium; page census ${served.size}→${pageCensus.folded} ∈ DOCUMENTED_HARMONICS.`,
       boundary: 'IA regroup over the sealed 7-ray hubs — NOT a claim of Clay/FTL solutions; trading is paper/sim; society is documented taxonomy. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** VitePress sidebar sections from the sealed domain registry — one section per domain; aliases → canonical anchors. Pair: dry/clean · site/consolidate. */
+export function domainSidebarFromRegistry(locale: 0 | 1 = 0, matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot(`domainSidebarFromRegistry:${locale}`, matrix, () => {
+    const registry = siteDomainRegistry(matrix)
+    const byRay = new Map<number, typeof registry.domains>()
+    for (const domain of registry.domains) {
+      const bucket = byRay.get(domain.ray) ?? []
+      bucket.push(domain)
+      byRay.set(domain.ray, bucket)
+    }
+    const sections = registry.domains.map((domain) => {
+      const peers = (byRay.get(domain.ray) ?? []).filter((peer) => peer.id !== domain.id)
+      const aliasAnchors = domain.aliases.slice(0, 6).map((alias) => ({
+        text: locale === 1 ? `#${alias}` : `#${alias}`,
+        link: `/${domain.canonical}#${alias}`,
+      }))
+      const items = [
+        { text: locale === 1 ? domain.labelBg : domain.labelEn, link: `/${domain.canonical}` },
+        { text: locale === 1 ? `Хъб · ${domain.hub}` : `Hub · ${domain.hub}`, link: `/${domain.hub}` },
+        ...peers.map((peer) => ({
+          text: locale === 1 ? peer.labelBg : peer.labelEn,
+          link: `/${peer.canonical}`,
+        })),
+        ...aliasAnchors,
+      ].slice(0, 8)
+      return {
+        domainId: domain.id,
+        canonical: domain.canonical,
+        route: `/${domain.canonical}`,
+        text: locale === 1 ? domain.labelBg : domain.labelEn,
+        items,
+        receipt: toUuid(`domain-sidebar:${domain.id}:${items.map((item) => item.link).join(',')}`),
+      }
+    })
+    const facets = [
+      { facet: `domain sidebars for all ${ROSETTA_SEVEN} registry concerns`, on: sections.length === ROSETTA_SEVEN && registry.computes },
+      { facet: 'each domain sidebar ≤8 items (eight-fold)', on: sections.every((section) => section.items.length > 0 && section.items.length <= 8) },
+      { facet: 'alias leaves become canonical#anchor — no separate nav slug', on: sections.every((section) => section.items.every((item) => !registry.isNavAlias(item.link.replace(/^\//, '').split('#')[0]!))) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`domain-sidebar-reg:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on) && registry.computes,
+      sections,
+      byCanonical: Object.fromEntries(sections.map((section) => [section.route, section])),
+      facets,
+      root: merkleFold([...sections.map((section) => section.receipt), ...facets.map((facet) => facet.receipt), registry.root]),
+      pair: 'dry/clean',
+      statement: `Domain sidebars from sealed registry — ${sections.length} concerns; aliases fold to canonical#anchor; eight-fold holds.`,
+      boundary: 'Computed IA from SITE_DOMAIN_SEED — NOT Clay/FTL claims. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** Merge domain-registry sidebars into a VitePress path map — aliases omitted; learn/canonical always covered. */
+export function applyDomainRegistrySidebars(
+  relatedSidebar: Record<string, { text: string; items: { text: string; link: string }[] }[]>,
+  main: { text: string; link?: string; items?: { text: string; link?: string }[]; collapsed?: boolean }[],
+  portalLabel: string,
+  locale: 0 | 1 = 0,
+  matrix: MindMatrix = buildMatrix(),
+) {
+  const domains = siteDomainRegistry(matrix)
+  const domainBars = domainSidebarFromRegistry(locale, matrix)
+  const out: Record<string, { text: string; link?: string; items?: { text: string; link?: string }[]; collapsed?: boolean }[]> = { '/': main }
+  for (const [path, related] of Object.entries(relatedSidebar)) {
+    if (domains.isNavAlias(path.replace(/^\//, ''))) continue
+    const lead = domainBars.byCanonical[path]
+    const domainSection = lead ? [{ text: lead.text, collapsed: false as const, items: lead.items }] : []
+    out[path] = [...domainSection, ...related, { text: portalLabel, collapsed: true, items: main }]
+  }
+  for (const section of domainBars.sections) {
+    if (!out[section.route]) out[section.route] = [{ text: section.text, items: section.items }, { text: portalLabel, collapsed: true, items: main }]
+  }
+  const aliasKeysPurged = Object.keys(domains.aliasToCanonical).every((alias) => !out[`/${alias}`])
+  const domainKeysPresent = domains.domains.every((domain) => Boolean(out[`/${domain.canonical}`]))
+  return { out, aliasKeysPurged, domainKeysPresent, computes: domainBars.computes && aliasKeysPurged && domainKeysPresent, root: domainBars.root }
+}
+
+/**
+ * Dry-clean VitePress nav/sidebars wave — purge alias discovery keys; sidebars from domain registry.
+ * Pair: dry/clean · site/consolidate · Wave 1 of dry-clean refactor waves.
+ */
+export function dryCleanVitepressNavSidebarsFromDomainRegistry(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('dryCleanVitepressNavSidebarsFromDomainRegistry', matrix, () => {
+    const registry = siteDomainRegistry(matrix)
+    const domainSidebars = domainSidebarFromRegistry(0, matrix)
+    const aliasSlugs = Object.keys(registry.aliasToCanonical)
+    const facets = [
+      { facet: 'siteDomainRegistry computes (seven concerns)', on: registry.computes && registry.domains.length === ROSETTA_SEVEN },
+      { facet: 'domainSidebarFromRegistry computes', on: domainSidebars.computes },
+      { facet: `alias census sealed (${aliasSlugs.length} → canonical)`, on: aliasSlugs.length >= 4 && registry.aliasCount === aliasSlugs.length },
+      { facet: 'tools aliases include efficiency-vote · offender-spec · hero-spawn · name-entropy', on: ['efficiency-vote', 'offender-spec', 'hero-spawn-verify', 'name-entropy-verify'].every((alias) => registry.isNavAlias(alias)) },
+      { facet: 'learn + research + fusion aliases thin-mount', on: registry.canonicalOf('academy') === 'learn' && registry.canonicalOf('millennium-challenge') === 'research' && registry.canonicalOf('fusion-verify') === 'quantum-tools' },
+      { facet: 'A432 tokens untouched — domain registry is IA only (no theme token rewrite)', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`dry-clean-nav:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      before: {
+        nav: 'rosettaIChing Home+3 doors; siteNavigation dropdowns already omit aliases',
+        sidebar: 'relatedSidebar/crosslinks still keyed alias leaves (efficiency-vote…)',
+      },
+      after: {
+        nav: 'unchanged live top nav (I Ching doors); domain leads stay in siteNavigation',
+        sidebar: 'alias keys purged; domain sidebars from SITE_DOMAIN_SEED; learn/canonical covered',
+      },
+      aliasPurged: aliasSlugs.length,
+      domainSidebarCount: domainSidebars.sections.length,
+      facets,
+      root: merkleFold([registry.root, domainSidebars.root, ...facets.map((facet) => facet.receipt)]),
+      pair: 'dry/clean',
+      statement: `Dry-clean nav/sidebars Wave 1 — ${aliasSlugs.length} aliases → canonical; ${domainSidebars.sections.length} domain sidebars sealed.`,
+      boundary: 'IA dry-clean only — certified=false · clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
     }
   })
 }
