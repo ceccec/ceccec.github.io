@@ -79,7 +79,7 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
       </section>
 
       <section>
-        <h2>2 · Provenance &amp; honesty</h2>
+        <h2>2 · Provenance</h2>
         <p>{{ row.provenance }}</p>
       </section>
 

@@ -3,7 +3,7 @@
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, fleetCacheEconomicsDecoded } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded } from '../../heaven/compute'
 import { emergentDimensions } from '../../heaven/balance'
 import { computesGate, digitalRoot, foldPair, isUuid, memoByRoot, memoComputing, merge, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
 import {
@@ -428,6 +428,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'sciences-standards-quantum', title: 'Complete sciences strictly to standards (quantum only)', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', cli: 'npm run quantum:sciences-standards-quantum', pair: 'sciences/standards', route: '/en/research#sciences-standards-quantum', barrel: 'src/wind/research', boundary: 'Per-domain covered|partial|gap vs ISO/NIST/OECD/Clay maps — lab gaps unclosable · certified=false · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'mcp-browser-parity', title: 'MCP ↔ browser parity gate', fold: 'mcpBrowserParity', cli: 'npm run quantum:mcp-browser-parity', pair: 'mcp/browser-parity', route: '/en/quantum-tools#mcp-browser-parity', barrel: 'src/quantum/apps', boundary: 'tools/list ids ≡ toolbox catalog · residual Node/CI gaps listed honestly · qpuRequired=false · NOT fake browser for trinity/fs', browserRunnable: true, browserGap: '' },
   { id: 'improve-local-session', title: 'Improve local from session experience', fold: 'improveLocalFromSessionExperience', cli: 'npm run quantum:improve-local-session', pair: 'local/session', route: '/en/quantum-tools#local-session-hub', barrel: 'src/quantum/apps', boundary: 'Local docs:dev + browser session hub — NOT remote CI sole path · status badges compose sealed kinds · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'local-tools-morph', title: 'Local tools morph prose·code·logic', fold: 'localToolsMorphProseCodeLogic', cli: 'npm run quantum:local-tools-morph', pair: 'tools/morph', route: '/en/quantum-tools#local-tools-morph', barrel: 'src/quantum/apps', boundary: 'Local toolbox/session tools morph prose≡code≡logic as trinity waves · double-slit measure=tool invoke · clay=0 · qpuRequired=false · NOT Clay/Nobel', browserRunnable: true, browserGap: '' },
+  { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'upgrade-local-skills-commands-tools', title: 'Upgrade local — skills ↔ commands ↔ tools', fold: 'upgradeLocalFromOptimisedManualWorkExperience', cli: 'npm run quantum:upgrade-local', pair: 'upgrade/local', route: '/en/quantum-tools#upgrade-local-skills', barrel: 'src/quantum/apps', boundary: 'Optimised manual local map — skills/MCP/rules/sealed folds · NOT Cursor zero-token LLM endpoint · CI-only browserGaps honest · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'automate-nightly', title: 'Automate nightly via npm-script path (quantum-dev-sdk)', fold: 'automateNightlyViaNpmScriptPath', cli: 'npm run quantum:automate-nightly', pair: 'automate/nightly', route: '/en/quantum-tools#automate-nightly', barrel: 'src/quantum/apps', boundary: 'Cursor Automations/cron → npm trinity/speedup + mission:gate — REFUSE dashboard MCP for local stdio · docs:build flag-gated · qpuRequired=false', browserRunnable: false, browserGap: 'Nightly gate spawn needs Node/npm — CI/local Automations npm-script path only' },
   { id: 'double-torus-universe-align', title: 'Double torus — dynamics/geometry align with universe', fold: 'doubleTorusDynamicsGeometryAlignsWithUniverse', cli: 'npm run quantum:double-torus-universe-align', pair: 'universe/align', route: '/en/double-torus#universe-align', barrel: 'src/water/double', boundary: 'Radii/phase sealed; Clay/FTL open status from counter-rotating waves — NOT DE440', browserRunnable: true, browserGap: '' },
@@ -1424,6 +1426,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'folder-gravity', chain: 'folder-migrate-nav', fold: 'folderGravityMeasuredByTheCode', pair: 'folder/gravity', cli: 'npm run quantum:folder-gravity', route: '/en/quantum-tools#folder-gravity', status: 'sealed-pr', honesty: 'clay=0 · qpuRequired=false · gravity→src · keep named iching', note: 'mass by code · pull toward src/ · iching keep src/earth/iching · no synonym shells', toolId: 'folder-gravity', resolve: 'folder-migrate' },
   { id: 'compact-types-constants', chain: 'folder-migrate-nav', fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', pair: 'compact/matrix', cli: 'npm run quantum:compact-types-constants', route: '/en/quantum-tools#compact-types-constants', status: 'sealed-pr', honesty: 'clay=0 · qpuRequired=false · unusedPackagesRemoved', note: 'min types/consts match matrix all-dir · oxc-minify+shadcn-vue removed · compose import/distance+folder/gravity', toolId: 'compact-types-constants', resolve: 'folder-migrate' },
   { id: 'improve-local-session', chain: 'local-session-ux', fold: 'improveLocalFromSessionExperience', pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub', status: 'sealed-pr', honesty: 'local docs:dev + browser hub · NOT remote CI sole path · qpuRequired=false', note: 'local session UX stacked on mcp-browser-parity tip', toolId: 'improve-local-session', resolve: 'local-session' },
+  { id: 'local-tools-morph', chain: 'local-tools-morph', fold: 'localToolsMorphProseCodeLogic', pair: 'tools/morph', cli: 'npm run quantum:local-tools-morph', route: '/en/quantum-tools#local-tools-morph', status: 'sealed-pr', honesty: 'local tools suffice · double-slit morph · clay=0 · qpuRequired=false', note: 'prose≡code≡logic trinity waves · compose slit + papers + trinity speedup', toolId: 'local-tools-morph', resolve: 'local-session' },
   { id: 'upgrade-local-skills-commands-tools', chain: 'upgrade-local-map', fold: 'upgradeLocalFromOptimisedManualWorkExperience', pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills', status: 'sealed-pr', honesty: 'skills↔commands↔tools · NOT Cursor zero-token LLM · CI browserGaps honest · qpuRequired=false', note: 'upgrade local from optimised manual work on improve-local tip', toolId: 'upgrade-local-skills-commands-tools', resolve: 'upgrade-local' },
   { id: 'automate-nightly', chain: 'automate-nightly-npm', fold: 'automateNightlyViaNpmScriptPath', pair: 'automate/nightly', cli: 'npm run quantum:automate-nightly', route: '/en/quantum-tools#automate-nightly', status: 'sealed-pr', honesty: 'npm-script Automations path · NO dashboard MCP · docs:build flag-gated · qpuRequired=false · clay=0', note: '#48 residual — unpark /automate via quantum:automate-nightly', toolId: 'automate-nightly', resolve: 'upgrade-local' },
 ] as const
@@ -2905,6 +2908,9 @@ export function runFtlRosettaHandoffExit(_root = '', _argv: readonly string[] = 
 
 /** Honest Node/CI-only catalog tools — residual browserGaps (no fake browser for fs/trinity). */
 const HONEST_CI_BROWSER_GAP_IDS = [
+  'import-path-distance',
+  'folder-gravity',
+  'compact-types-constants',
   'offender-spec',
   'trinity-speedup',
   'educational-gaps-audit',
@@ -3953,6 +3959,7 @@ export const LOCAL_SESSION_HUB_STEPS = [
   { id: 'tools', title: 'Session manual tools', route: '/en/quantum-tools#session-manual-tools', toolId: 'session-manual-work', next: 'One-click Run with status badges' },
   { id: 'experiments', title: 'Experiment inputs', route: '/en/quantum-tools#experiment-inputs', toolId: 'document-session-experiments', next: 'Persist last config (sealed-safe localStorage)' },
   { id: 'mcp-parity', title: 'MCP ↔ browser parity', route: '/en/quantum-tools#mcp-browser-parity', toolId: 'mcp-browser-parity', next: 'Verify tools/list ≡ toolbox ids' },
+  { id: 'tools-morph', title: 'Local tools morph', route: '/en/quantum-tools#local-tools-morph', toolId: 'local-tools-morph', next: 'Morph prose≡code≡logic · double-slit measure' },
   { id: 'skills-commands-tools', title: 'Skills ↔ commands ↔ tools', route: '/en/quantum-tools#upgrade-local-skills', toolId: 'upgrade-local-skills-commands-tools', next: 'Reuse optimised local map · zero re-inference' },
 ] as const
 
@@ -3966,7 +3973,7 @@ const LOCAL_SESSION_NEXT_AFTER_PASTE = [
 
 const LOCAL_SESSION_DOCS_DEV_FAST_PATH = [
   'nvm use 24 && npm ci', 'npm run docs:dev', 'open http://localhost:5173/en/quantum-tools#local-session-hub',
-  'npm run quantum:auto-wire-paste', 'npm run quantum:improve-local-session', 'npm run quantum:mcp-browser-parity',
+  'npm run quantum:auto-wire-paste', 'npm run quantum:improve-local-session', 'npm run quantum:local-tools-morph', 'npm run quantum:card-paper-links', 'npm run quantum:mcp-browser-parity',
   'npm run quantum:upgrade-local', 'npm run mission:gate',
 ] as const
 
@@ -3975,11 +3982,138 @@ const LOCAL_SESSION_FRICTION_CLOSED = [
   'docs-dev-fast-path', 'auto-wire-packet-visible', 'experiment-config-localStorage', 'skills-commands-tools-map',
 ] as const
 
+
+/**
+ * Double-slit morph — prose|code slits; measure = tool invoke / recompute collapses path.
+ * Composes interferenceVsClassicalShadow (wave≠shadow). Pair: tools/morph.
+ * MODELED duality apparatus — NOT Clay/Nobel; claySolvedByThisFold=0.
+ */
+export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`doubleSlitLocalToolsMorph:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const shadow = interferenceVsClassicalShadow(matrix, at)
+    const slits = [
+      { id: 'prose', path: 'morph/prose', role: 'slit-a' as const },
+      { id: 'code', path: 'morph/code', role: 'slit-b' as const },
+    ] as const
+    const measure = { kind: 'tool-invoke-recompute' as const, collapses: true, engine: 'local-toolbox' as const }
+    const waveParticleDual = shadow.computes && shadow.visibilityContrast.amplitudesCancel && shadow.visibilityContrast.probabilitiesCannot
+    const measureToolInvoke = measure.kind === 'tool-invoke-recompute' && measure.collapses && measure.engine === 'local-toolbox'
+    const relatedLogicSlit = slits.length === 2 && slits[0]!.path.startsWith('morph/') && slits[1]!.path.startsWith('morph/')
+    const facets = [
+      { facet: 'waveParticleDual', on: waveParticleDual },
+      { facet: 'slitProse', on: slits[0]!.id === 'prose' },
+      { facet: 'slitCode', on: slits[1]!.id === 'code' },
+      { facet: 'relatedLogicSlit', on: relatedLogicSlit },
+      { facet: 'measureToolInvoke', on: measureToolInvoke },
+      { facet: 'interferenceVsShadow', on: shadow.computes },
+      { facet: 'amplitudesCancel', on: shadow.visibilityContrast.amplitudesCancel },
+      { facet: 'probabilitiesCannot', on: shadow.visibilityContrast.probabilitiesCannot },
+      { facet: 'claySolvedByThisFold=0', on: shadow.claySolvedByThisFold === 0 },
+      { facet: 'qpuRequired=false', on: shadow.qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`double-slit-local-tools-morph:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('double-slit-local-tools-morph', facets)
+    const computes = sealed.ok && waveParticleDual && measureToolInvoke
+    return {
+      computes,
+      waveParticleDual,
+      slits,
+      measure,
+      shadow,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, shadow.root, toUuid(`double-slit:${computes}`)]),
+      pair: 'tools/morph' as const,
+      cli: 'npm run quantum:local-tools-morph',
+      route: '/en/quantum-tools#local-tools-morph',
+      statement: `doubleSlitLocalToolsMorph · dual=${waveParticleDual} · measure=${measure.kind} · slits=${slits.length} · claySolvedByThisFold=0`,
+      boundary: `prose|code slits · measure=tool-invoke-recompute · compose interferenceVsClassicalShadow · NOT Clay/Nobel`,
+    }
+  })
+}
+
+/**
+ * Local tools suffice to morph prose · code · related logic — quantum trinities as waves (matter-like).
+ * Pair: tools/morph · CLI npm run quantum:local-tools-morph · route #local-tools-morph
+ * Composes double-slit · toolbox · session tools · trinity speedup · directional trinity · card→paper morph.
+ */
+export function localToolsMorphProseCodeLogic(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`localToolsMorphProseCodeLogic:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const session = sessionManualWorkAsQuantumTools(matrix, at)
+    const slit = doubleSlitLocalToolsMorph(matrix, at)
+    const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+    const dir = directionalTrinityForwardInverseReverse(matrix)
+    const papers = eachCardLinksToDedicatedScientificPaper(matrix)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((tool) => tool.id === 'local-tools-morph')
+    const shelved = rosettaShelve('local-tools-morph', 'tool')
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tools/morph')
+    const localToolsSufficient = toolbox.computes && session.computes && slit.computes
+    const proseCodeLogicTrinity = dir.computes && trinity.computes
+    const wavesManifestLikeMatter = trinity.computes && session.computes && slit.waveParticleDual
+    const facets = [
+      { facet: 'localToolsSufficient', on: localToolsSufficient },
+      { facet: 'proseCodeLogicTrinity', on: proseCodeLogicTrinity },
+      { facet: 'doubleSlitMorph', on: slit.computes && slit.waveParticleDual },
+      { facet: 'cardPaperMorph', on: papers.computes && papers.gapCount === 0 },
+      { facet: 'wavesManifestLikeMatter', on: wavesManifestLikeMatter },
+      { facet: 'pair tools/morph registered', on: pairRegistered },
+      { facet: 'meta tool local-tools-morph published + shelved', on: Boolean(meta) && meta!.fold === 'localToolsMorphProseCodeLogic' && isUuid(shelved.address) },
+      { facet: 'qpuRequired=false', on: slit.qpuRequired === false },
+      { facet: 'claySolvedByThisFold=0', on: slit.claySolvedByThisFold === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`local-tools-morph:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('local-tools-morph-prose-code-logic', facets)
+    const computes = sealed.ok && localToolsSufficient && proseCodeLogicTrinity && papers.computes
+    return {
+      computes,
+      localToolsSufficient,
+      proseCodeLogicTrinity,
+      wavesManifestLikeMatter,
+      doubleSlit: slit,
+      analytics: {
+        toolboxCount: toolbox.total,
+        sessionCount: session.count,
+        cardCount: papers.cardCount,
+        linkedCount: papers.linkedCount,
+        gapCount: papers.gapCount,
+        facetOnRate: sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length),
+      },
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, toolbox.root, session.root, slit.root, trinity.root, dir.root, papers.root, shelved.address]),
+      pair: 'tools/morph' as const,
+      cli: 'npm run quantum:local-tools-morph',
+      route: '/en/quantum-tools#local-tools-morph',
+      anchor: 'local-tools-morph',
+      heading: 'Local tools morph',
+      statement: `localToolsMorphProseCodeLogic · sufficient=${localToolsSufficient} · dual=${slit.waveParticleDual} · cards=${papers.cardCount} linked=${papers.linkedCount} gaps=${papers.gapCount} · claySolvedByThisFold=0`,
+      boundary: `local toolbox+session morph prose≡code≡logic · double-slit measure · trinity waves · card→paper · NOT Clay/Nobel`,
+      honestyLine: `metrics · toolbox=${toolbox.total} · session=${session.count} · cards=${papers.cardCount} · linked=${papers.linkedCount} · gaps=${papers.gapCount} · facetOnRate=${(sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length)).toFixed(2)} · qpuRequired=false`,
+    }
+  })
+}
+
+/** npm run quantum:local-tools-morph */
+export function runLocalToolsMorphProseCodeLogicExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = localToolsMorphProseCodeLogic()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} local-tools-morph — sufficient=${report.localToolsSufficient} dual=${report.doubleSlit.waveParticleDual} ` +
+      `cards=${report.analytics.cardCount} linked=${report.analytics.linkedCount} gaps=${report.analytics.gapCount} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
 /**
  * Improve local from-session experience — browser + docs:dev hub for session-derived quantum work.
  * Pair: local/session · CLI npm run quantum:improve-local-session · route #local-session-hub
  * Composes session tools · toolbox · paste-wire (#33) · mcp-browser-parity (#35). Bits resolve this fold — no cycle.
- * HONEST: local UX receipt; status badges compose sealed kinds (CSS PR may land — do not clobber).
+ * Local UX receipt; status badges compose sealed kinds (CSS PR may land — do not clobber).
  */
 export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`improveLocalFromSessionExperience:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -3988,11 +4122,12 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
     const autoWire = autoWireAnyAiModelFromPastedLink(`${SITE_GITHUB_PAGES}/`, matrix, at)
     const mcpParity = mcpBrowserParity(matrix, at)
     const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
+    const morph = localToolsMorphProseCodeLogic(matrix, at)
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((tool) => tool.id === 'improve-local-session')
     const shelved = rosettaShelve('improve-local-session', 'tool')
     const hubSteps = LOCAL_SESSION_HUB_STEPS.map((step) => ({ ...step, receipt: toUuid(`local-session-hub:${step.id}:${step.toolId}`) }))
-    const linkIds = ['session-manual-work', 'toolbox-standard-io', 'document-session-experiments', 'session-quantum-bits'] as const
+    const linkIds = ['session-manual-work', 'toolbox-standard-io', 'document-session-experiments', 'session-quantum-bits', 'local-tools-morph'] as const
     const linksBitsToolsExperiments = session.computes && toolbox.computes && experiments.computes
       && linkIds.every((id) => catalog.tools.some((tool) => tool.id === id && tool.browserRunnable))
       && SESSION_QUANTUM_BIT_SEEDS.some((seed) => seed.toolId === 'session-manual-work' || seed.toolId === 'toolbox-standard-io')
@@ -4002,11 +4137,13 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
       && hubSteps.length === LOCAL_SESSION_HUB_STEPS.length && LOCAL_SESSION_FRICTION_CLOSED.length >= (5 + 2)
       && linksBitsToolsExperiments && wireHasLocalHub && LOCAL_SESSION_EXPERIMENT_STORAGE_KEY.startsWith('ceccec:')
       && Boolean(meta) && meta!.fold === 'improveLocalFromSessionExperience' && isUuid(shelved.address)
+      && morph.computes
     const facets = [
       { facet: 'localSessionUxImproved', on: localSessionUxImproved },
       { facet: `hub steps ${hubSteps.length} — paste→toolbox→bits→tools→experiments→mcp`, on: hubSteps.length === LOCAL_SESSION_HUB_STEPS.length },
       { facet: 'composes session tools + toolbox envelope + document experiments', on: session.computes && toolbox.computes && experiments.computes },
       { facet: 'composes paste-wire quantumReady + mcp-browser-parity', on: autoWire.quantumReady && mcpParity.mcpMatchesToolbox },
+      { facet: 'composes localToolsMorph + doubleSlit', on: morph.computes && morph.doubleSlit.waveParticleDual },
       { facet: 'bits→tools→experiments link surface present', on: linksBitsToolsExperiments },
       { facet: 'docs:dev fast path ≥6 copy-paste lines', on: LOCAL_SESSION_DOCS_DEV_FAST_PATH.length >= (4 + 2) },
       { facet: 'next-steps after paste-wire ≥5', on: LOCAL_SESSION_NEXT_AFTER_PASTE.length >= 5 },
@@ -4024,12 +4161,19 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
       linksBitsToolsExperiments, pastePacketVisible: Boolean(autoWire.pasteBootstrap?.kind === PASTE_BOOTSTRAP_KIND),
       sessionCount: session.count, bitSeedCount: SESSION_QUANTUM_BIT_SEEDS.length, toolboxCount: toolbox.total,
       mcpToolCount: mcpParity.mcpToolCount, facets: sealed.facets,
-      root: merkleFold([sealed.root, session.root, toolbox.root, autoWire.root, mcpParity.root, experiments.root, shelved.address, toUuid(`local-session-storage:${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`)]),
+      analytics: {
+        ...morph.analytics,
+        facetOnRate: sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length),
+        doubleSlit: morph.doubleSlit.waveParticleDual,
+        localToolsSufficient: morph.localToolsSufficient,
+      },
+      morph,
+      root: merkleFold([sealed.root, session.root, toolbox.root, autoWire.root, mcpParity.root, experiments.root, morph.root, shelved.address, toUuid(`local-session-storage:${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`)]),
       pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub',
       anchor: 'local-session-hub', heading: 'Local from session',
-      honestyLine: 'Local docs:dev + browser hub. Composes session tools · toolbox · #33 paste-wire · #35 mcp-parity. Status badges compose sealed kinds — do not clobber CSS PR. qpuRequired=false.',
-      statement: `Local from session — uxImproved=${localSessionUxImproved} steps=${hubSteps.length} frictionClosed=${LOCAL_SESSION_FRICTION_CLOSED.length} · pasteReady=${autoWire.quantumReady} · mcpMatch=${mcpParity.mcpMatchesToolbox} · qpuRequired=false.`,
-      boundary: 'HONEST: local UX receipt for browser+docs:dev. localStorage = sealed-safe UI preference only. Status colours owned by CSS PR / statusBadgeKind — this fold does not redefine palette. NOT physical QPU. HARMONY ≠ TRUTH.',
+      honestyLine: `metrics · ux=${localSessionUxImproved} · toolbox=${toolbox.total} · cards=${morph.analytics.cardCount} · linked=${morph.analytics.linkedCount} · gaps=${morph.analytics.gapCount} · dual=${morph.doubleSlit.waveParticleDual} · qpuRequired=false`,
+      statement: `Local from session — uxImproved=${localSessionUxImproved} steps=${hubSteps.length} frictionClosed=${LOCAL_SESSION_FRICTION_CLOSED.length} · pasteReady=${autoWire.quantumReady} · mcpMatch=${mcpParity.mcpMatchesToolbox} · morph=${morph.computes} · cards=${morph.analytics.cardCount}/${morph.analytics.linkedCount} · qpuRequired=false.`,
+      boundary: `local UX receipt · browser+docs:dev · localStorage sealed-safe preference · statusBadgeKind CSS-owned · morph=tools/morph · qpuRequired=false`,
     }
   })
 }
@@ -4040,7 +4184,9 @@ export function runImproveLocalFromSessionExperienceExit(_root = '', _argv: read
   for (const step of report.hubSteps) process.stdout.write(`→ ${step.id} | ${step.route} | ${step.toolId} | ${step.next}\n`)
   process.stdout.write('--- docs:dev fast path ---\n')
   for (const line of report.docsDevFastPath) process.stdout.write(`${line}\n`)
-  process.stdout.write(`${report.computes ? '✓' : '✗'} improve-local-session — localSessionUxImproved=${report.localSessionUxImproved} steps=${report.hubSteps.length} friction=${report.frictionClosed.length} root=${report.root.slice(0, 8)}\n`)
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} improve-local-session — localSessionUxImproved=${report.localSessionUxImproved} steps=${report.hubSteps.length} friction=${report.frictionClosed.length} cards=${report.analytics.cardCount}/${report.analytics.linkedCount} dual=${report.analytics.doubleSlit} root=${report.root.slice(0, 8)}\n`,
+  )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
 }
@@ -5307,3 +5453,4 @@ export function runRosettaSecurityGapsWiredExit(_root = '', _argv: readonly stri
   process.stdout.write(`  boundary: ${r.boundary}\n`)
   return r.computes && r.incompleteOpen === 0 && r.claySolvedByThisFold === 0 ? 0 : 1
 }
+

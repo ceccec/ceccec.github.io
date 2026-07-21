@@ -114,6 +114,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'session/tools',
   'session/quantum-bits',
   'local/session',
+  'tools/morph',
   'upgrade/local',
   'sdk/wire',
   'automate/nightly',

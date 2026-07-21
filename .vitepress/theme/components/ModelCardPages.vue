@@ -107,12 +107,13 @@ function speak(page: CardPage) {
               <button v-if="ttsAvailable" type="button" class="model-card__speak" @click="speak(page)">
                 {{ speaking === page.slug ? '⏹ Stop' : '▶ Speak the proof' }}
               </button>
+              <a class="model-card__paper" :href="page.paperRoute">{{ page.paperRoute }}</a>
               <UiBadge :variant="page.verified ? 'default' : 'outline'">
                 wave · {{ page.verified ? 'verified ✓' : 'open —' }}
               </UiBadge>
             </div>
 
-            <UiAlert title="Honest boundary">
+            <UiAlert title="Boundary">
               <p>{{ page.boundary }}</p>
             </UiAlert>
           </div>
