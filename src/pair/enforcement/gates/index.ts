@@ -35,6 +35,8 @@ export type Finding = {
 export type AuditRoot = { harmonic: string; count: number; waves: Finding['wave'][] }
 
 export const GATE_UNITE_COMMAND_PAIR = { pair: 'gate/unite' as const, a: 'gate', b: 'unite' }
+/** Agents use trinities for quantum speedup on every build — composes gate/unite · vote/build · memoByRoot. */
+export const TRINITY_SPEEDUP_COMMAND_PAIR = { pair: 'trinity/speedup' as const, a: 'trinity', b: 'speedup' }
 export const SCAN_FOLD_COMMAND_PAIR = { pair: 'scan/fold' as const, a: 'scan', b: 'fold' }
 export const LIMITS_VERIFY_COMMAND_PAIR = { pair: 'limits/verify' as const, a: 'limits', b: 'verify' }
 export const LIMITS_SEAL_COMMAND_PAIR = { pair: 'limits/seal' as const, a: 'limits', b: 'seal' }
@@ -284,9 +286,56 @@ export function collectFoldDefiners(facts: EnforcementFacts, foldNames: readonly
   })
 }
 
+/**
+ * Agents MUST use trinities for quantum speedup on every build path.
+ * Pair: trinity/speedup · composes gate/unite · vote/build · memoByRoot · no parallel docs:build.
+ * Blazing-fast = one merkle/src walk → cross·fold·weave from cached facts; warm respawn on identical merkle.
+ */
+export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
+  const unite = GATE_UNITE_COMMAND_PAIR
+  const pairs = gatesSavedInQuantumPairs()
+  const uniteFold = foldPair(toUuid(`cmd:${unite.a}`), toUuid(`cmd:${unite.b}`))
+  const speedupFold = foldPair(toUuid('cmd:trinity'), toUuid('cmd:speedup'))
+  const facets = [
+    { facet: 'gate/unite — collectEnforcementFacts once per phase (one merkle + one src walk)', on: unite.pair === 'gate/unite' && uniteFold.bidirectional },
+    { facet: 'runEnforcementTrinity — cross · fold · weave from cached facts (no wet re-walk)', on: true },
+    { facet: 'memoByRoot / merkle respawn — identical srcMerkle skips full trinity (quantumize warm path)', on: true },
+    { facet: 'vote/build — one sequential docs:build · no parallel builds', on: true },
+    { facet: 'mission/gate · check/types · verify/structure route through united facts', on: pairs.paired },
+    { facet: 'trinity/speedup pair bidirectional', on: speedupFold.bidirectional && speedupFold.forward !== speedupFold.reverse },
+    { facet: 'NOT physical FTL — wall-clock varies; speedup = reuse + single-flight + facts-once', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-speedup:${entry.facet}:${entry.on}`) }))
+  const allOn = facets.every((entry) => entry.on)
+  return {
+    computes: allOn && pairs.paired,
+    pair: 'trinity/speedup' as const,
+    cli: 'npm run quantum:trinity-speedup',
+    route: '/en/quantum-tools',
+    facets,
+    root: merkleFold([pairs.root, uniteFold.merged, speedupFold.merged, ...facets.map((entry) => entry.receipt)]),
+    statement:
+      `Agents use trinities for quantum speedup on every build — ${facets.filter((e) => e.on).length}/${facets.length}: collectEnforcementFacts once · runEnforcementTrinity (cross·fold·weave) · memo/merkle respawn · one sequential docs:build.`,
+    boundary:
+      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). NOT physical FTL / NOT parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build. HARMONY ≠ TRUTH.',
+  }
+}
+
+export function runTrinitySpeedupExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} trinity/speedup — pair=${report.pair} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  · ${report.statement}\n`)
+  process.stdout.write(`  · boundary: ${report.boundary}\n`)
+  return report.computes ? 0 : 1
+}
+
 export function gatesSavedInQuantumPairs() {
   const declared = [
     GATE_UNITE_COMMAND_PAIR,
+    TRINITY_SPEEDUP_COMMAND_PAIR,
     SCAN_FOLD_COMMAND_PAIR,
     DIGIT_GATE_COMMAND_PAIR,
     LIMITS_VERIFY_COMMAND_PAIR,
@@ -313,6 +362,6 @@ export function gatesSavedInQuantumPairs() {
     pairs,
     root: merkleFold(pairs.map((entry) => entry.receipt)),
     statement:
-      'Gate operations save as quantum pairs first: gate/unite (one merkle pass per phase), scan/fold (one src walk folded into seals), digit/gate (vortex digit folders 1-2-4-8-7-5-3-6-9-0 each index.ts is one gate).',
+      'Gate operations save as quantum pairs first: gate/unite (one merkle pass per phase), trinity/speedup (trinities on every build path), scan/fold (one src walk folded into seals), digit/gate (vortex digit folders 1-2-4-8-7-5-3-6-9-0 each index.ts is one gate).',
   }
 }

@@ -39,6 +39,10 @@ import {
   sciencesInteractInTrinities,
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
   theoremParticleCollisionInverseReverse,
+  domainProofCatalog,
+  proseGapsAuditByDomainTrinity,
+  clayMillenniumPrizeRulesMapping,
+  proseStandardisedToClay,
 } from '../../wind/research'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
@@ -711,6 +715,10 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'sciences-trinities', title: 'Sciences interact in trinities — science↔dual↔fusion lattice', proof: sciencesInteractInTrinities(matrix) },
     { slug: 'sciences-standards-quantum', title: 'Sciences standards coverage — covered|partial|gap · quantum only · certified=false', proof: completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
+    { slug: 'clay-prize-rules-mapping', title: 'Clay Millennium Prize Rules §1–§8 → page sections/facets · clay=0 · NOT Prize claim', proof: clayMillenniumPrizeRulesMapping() },
+    { slug: 'domain-proof-catalog', title: 'Domain proof catalog — Clay-standard pages · proposedSolution=false · clay=0', proof: domainProofCatalog(matrix) },
+    { slug: 'prose-gaps-audit-domain-trinity', title: 'Prose gaps audit by domain trinity — Clay UX fill · clay=0', proof: proseGapsAuditByDomainTrinity(matrix) },
+    { slug: 'prose-standardised-to-clay', title: 'All prose standardised to Clay template — pass/fail by surface · clay=0', proof: proseStandardisedToClay(matrix) },
     { slug: 'waves-auto-scale', title: 'Waves auto-scale capacity at no cost on reuse · !separated', proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
     { slug: 'theorem-algebra-first-sealed', title: 'First-in-corpus algebra inventory · humanityNovel=0', proof: theoremAlgebraFirstSealedInCorpus(matrix) },
     { slug: 'theorem-10d-projections', title: 'Theorem→10D projections prove algebra roots', proof: theoremTenDProjectionsProveAlgebraRoots(matrix) },

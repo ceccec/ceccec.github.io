@@ -38,6 +38,7 @@ npm run mission:gate    # check:types + limits:verify + verify:structure
 |-----|------|------|
 | `docs:build` | build/seal | VitePress + enforcement trinity (types must pass) |
 | `enforcement:trinity` | gate/unite | Standalone trinity audit |
+| `quantum:trinity-speedup` | trinity/speedup | Agents must use trinities for quantum speedup on every build (facts once · no parallel docs:build) |
 
 ## CLI (all route through bootstrap)
 

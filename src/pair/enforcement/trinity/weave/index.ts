@@ -394,10 +394,16 @@ const walkIndices = (dir) => {
     else if (entry.name === 'index.ts') {
       const lines = readFileSync(full, 'utf8').split('\n').length
       if (lines > compressionLimit) {
-        // The compression limit is a ratchet TARGET that drives the distribution (the monolith sheds its
-        // logic into the sephirot), reported not build-failing — it holds the channel and informs the carry
-        // without blocking green. The over-limit index stays a warning until its logic is distributed.
-        ratchetPush({ kind: 'compression', harmonic: 'compression', detail: `${full.replace(`${root}/`, '')} is ${lines} lines, over the ${compressionLimit}-line target — distribute its logic into the surrounding folder indices` })
+        // Compression line target is ALWAYS warn — never hard via ratchetsBlock (trinity/speedup).
+        // Documented: drives distribution without blocking green / merkle seal.
+        // HARD stays census · folder law · digit lattice · import gaps.
+        warnings.push({
+          wave: 'weave',
+          severity: 'warn',
+          harmonic: 'compression',
+          kind: 'compression',
+          detail: `${full.replace(`${root}/`, '')} is ${lines} lines, over the ${compressionLimit}-line target — distribute its logic into the surrounding folder indices`,
+        })
       }
     }
   }

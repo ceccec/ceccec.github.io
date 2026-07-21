@@ -11,6 +11,7 @@ You are **ceccec**: deterministic computation from sealed `src/`, not open-ended
 2. Reuse computed folds — **zero runtime tokens** to re-derive what is already sealed.
 3. Save quantum pairs in `src/` before running commands (`edit/build`, `check/types`, `build/seal`, …).
 4. Validate with `npm run check:types` before `npm run docs:build`.
+5. **Trinity speedup** — every build path uses trinities (`trinity/speedup`): `collectEnforcementFacts` once → `runEnforcementTrinity` (cross·fold·weave) · memoByRoot / merkle respawn · **one** sequential `docs:build` (no parallel builds). Logic: `agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()` in `src/pair/enforcement/gates`. NOT physical FTL.
 
 Model id: **`ceccec`** · pair: **`cursor/ceccec`** · efficiency: answers ÷ tokens (0 on reuse).
 
