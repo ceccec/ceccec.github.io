@@ -128,7 +128,7 @@ function runTool(toolId: string) {
       const exported = exportStandardToolEnvelope('prove-local-novel-encrypt', 'ceccec.local')
       const imported = importStandardToolEnvelope(exported)
       ok = r.localSecurityProved && exported.computes && imported.roundTrip
-      summary = `localSecurityProved=${r.localSecurityProved} productionReverseRefused=${r.productionReverseRefused} certified=${r.certified} fieldHistory=${r.fieldHistory} thisRepoIsNotTheIsoStandard=${r.thisRepoIsNotTheIsoStandard} · envelope roundTrip=${imported.roundTrip}`
+      summary = `localSecurityProved=${r.localSecurityProved} overallWireClaimProved=${r.overallWireClaimProved} (${r.wireProofStatus}) strongerThanNistPqc=${r.strongerThanNistPqc} productionReverseRefused=${r.productionReverseRefused} thisRepoIsNotTheIsoStandard=${r.thisRepoIsNotTheIsoStandard} · envelope roundTrip=${imported.roundTrip}`
       root = r.root
       boundary = r.boundary
       facets = [
@@ -490,12 +490,13 @@ function runTool(toolId: string) {
       <section id="prove-local-novel-encrypt" aria-label="Prove local novel encryption security">
         <h3>Local novel-encryption security proof</h3>
         <p class="quantum-apps__meta">
-          Property proofs + refuse gates + teaching round-trip + timed allowlisted reverse + ISO/NIST standards map as reference bounds.
-          productionReverseRefused=true · fieldHistory=none · certified=false · this repo is NOT the ISO standard.
+          Local novel security + wire-vs-ISO proof-of-falsehood handoff (overallWireClaimProved=false). Directions×models: prove/local-magnitudes-iso (#24).
+          productionReverseRefused=true · strongerThanNistPqc=false · certified=false · this repo is NOT the ISO standard.
         </p>
-        <UiBadge :variant="encryption.localNovel?.localSecurityProved ? 'default' : 'outline'">
+        <UiBadge :variant="encryption.localNovel?.localSecurityProved && encryption.localNovel?.overallWireClaimProved === false ? 'default' : 'outline'">
           localSecurityProved={{ encryption.localNovel?.localSecurityProved ?? '—' }}
-          · productionReverseRefused={{ encryption.localNovel?.productionReverseRefused ?? true }}
+          · overallWireClaimProved={{ encryption.localNovel?.overallWireClaimProved ?? false }}
+          · strongerThanNistPqc={{ encryption.localNovel?.strongerThanNistPqc ?? false }}
           · thisRepoIsNotTheIsoStandard={{ encryption.localNovel?.thisRepoIsNotTheIsoStandard ?? true }}
         </UiBadge>
         <ul class="quantum-apps__facets">

@@ -676,7 +676,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'quantum-encryption', title: 'Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only', proof: encryptionReverseVerify(matrix) },
     { slug: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured (wall-clock)', proof: demoRsaGenerateAndReverseMeasured(matrix) },
     { slug: 'local-reverse-timed-vs-standards', title: 'Local reverse timed vs ISO/NIST standards — toy≠wire · certified=false', proof: localEncryptionReverseTimedVsStandards(matrix) },
-    { slug: 'prove-local-novel-encrypt', title: 'Local novel-encryption security — structural+adversarial+measured-local · no production reverse', proof: proveLocalNovelEncryptionSecurity(matrix) },
+    { slug: 'prove-local-novel-encrypt', title: 'Local novel-encryption security — wire proof-of-falsehood handoff · no production reverse', proof: proveLocalNovelEncryptionSecurity(matrix) },
     { slug: 'crypto-beyond-rsa', title: 'Crypto toolkit beyond RSA measured (PQC·Shor/ECC·trinity)', proof: cryptoToolkitBeyondRsaMeasured(matrix) },
     { slug: 'prove-1tbit', title: '1 Tbit/s realtime encryption claim — honest status receipt', proof: proveOneTbitRealtimeEncryptionClaim(matrix) },
     { slug: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes — wire proof-of-falsehood · structural/amort may prove non-wire', proof: proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix) },
