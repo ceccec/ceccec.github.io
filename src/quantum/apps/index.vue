@@ -3,6 +3,8 @@ import { computed, ref, shallowRef } from 'vue'
 import {
   quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap,
   sessionManualWorkAsQuantumTools, rosettaCoreApi,
+  standardToolboxIoCatalog, distributedReuseExtendsCapacity,
+  exportStandardToolEnvelope, importStandardToolEnvelope,
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems,
   ftlExperimentTechniquesHandoffFromRosettaComplete,
 } from './index.ts'
@@ -281,6 +283,34 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'session-manual-work') {
+      const r = sessionManualWorkAsQuantumTools()
+      ok = r.computes
+      summary = `session ${r.shelvedCount}/${r.count} shelved`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'rosetta-core-api') {
+      const r = rosettaCoreApi()
+      ok = r.computes
+      summary = `surfaces=${r.surfaces.length} · rays=${r.raysUsed} · parallel=${r.inventory.parallel.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'toolbox-standard-io') {
+      const r = standardToolboxIoCatalog()
+      const capacity = distributedReuseExtendsCapacity()
+      const exported = exportStandardToolEnvelope('toolbox-standard-io', 'ceccec.browser')
+      const imported = importStandardToolEnvelope(exported)
+      ok = r.computes && capacity.computes && imported.roundTrip
+      summary = `migrated=${r.migratedLabel} · roundTrip=${imported.roundTrip ? '✓' : '✗'} · capacity=${capacity.reuseCapacity}/${capacity.total} · qubit=${capacity.physicalQubitSpeedup}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: 'import(export) round-trip', on: imported.roundTrip },
+        { facet: `distributedReuseExtendsCapacity=${capacity.extendsCapacity}`, on: capacity.extendsCapacity },
+      ]
     }
     lastRun.value = { toolId, ok, summary, root, boundary, facets }
     panel.value = quantumAppsPanelComputes()
@@ -375,6 +405,43 @@ function runTool(toolId: string) {
         </UiButton>
         <UiButton size="sm" :disabled="runningId === 'ftl-rosetta-handoff'" @click="runTool('ftl-rosetta-handoff')">
           {{ runningId === 'ftl-rosetta-handoff' ? '…' : 'Run FTL handoff' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="toolbox-standard-io" aria-label="Standard tool envelope I/O import export">
+        <h3>{{ panel.toolbox.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.toolbox.honestyLine }}</p>
+        <UiBadge :variant="panel.toolbox.computes ? 'default' : 'outline'">
+          envelope {{ panel.toolbox.migratedLabel }} · {{ panel.toolbox.kind }}@{{ panel.toolbox.version }}
+        </UiBadge>
+        <UiBadge :variant="panel.distributed.extendsCapacity ? 'default' : 'outline'">
+          distributed {{ panel.distributed.reuseCapacity }}/{{ panel.distributed.total }}
+          · qubit={{ panel.distributed.physicalQubitSpeedup }}
+          · ftl={{ panel.distributed.physicalFtlClaim }}
+        </UiBadge>
+        <p class="quantum-apps__meta">{{ panel.distributed.capacityMeans }}</p>
+        <table class="quantum-apps__table">
+          <thead><tr><th>Tool</th><th>Input</th><th>Output</th><th>Import/Export</th><th>Root</th></tr></thead>
+          <tbody>
+            <tr v-for="envelope in panel.toolbox.envelopes" :key="envelope.id">
+              <td>
+                <strong>{{ envelope.id }}</strong>
+                <div class="quantum-apps__meta"><code>{{ envelope.fold }}</code> · {{ envelope.pair }}</div>
+                <div class="quantum-apps__meta">{{ envelope.boundary }}</div>
+              </td>
+              <td class="quantum-apps__meta">{{ envelope.input.fields.map((f) => f.name).join(', ') }}</td>
+              <td class="quantum-apps__meta">{{ envelope.output.fields.map((f) => f.name).join(', ') }}</td>
+              <td>
+                <UiBadge :variant="envelope.import.roundTrip && envelope.export.roundTrip ? 'default' : 'outline'">
+                  {{ envelope.import.kind }}
+                </UiBadge>
+              </td>
+              <td><code>{{ envelope.root.slice(0, 8) }}</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <UiButton size="sm" :disabled="runningId === 'toolbox-standard-io'" @click="runTool('toolbox-standard-io')">
+          {{ runningId === 'toolbox-standard-io' ? '…' : 'Run envelope · import/export' }}
         </UiButton>
       </section>
       <UiSeparator />

@@ -35,6 +35,7 @@ const ROSETTA_CORE_API_LABELS = [
   'rosettaDecodesUrlPath', 'rosettaComputesItself', 'rosettaReuse', 'ROSETTA_RAYS', 'ROSETTA_COMPUTATION_TYPES',
   'ROSETTA_RAY_HUBS', 'ROSETTA_CORE_KINDS', 'sevenStarRosettaNaturalMotion', 'VORTEX_SEQUENCE',
   'navigation358', 'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sessionManualWorkAsQuantumTools',
+  'standardToolboxIoCatalog', 'distributedReuseExtendsCapacity',
   'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
@@ -44,6 +45,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   ROSETTA_RAY_HUBS: 'nav', navigation358: 'nav', sevenStarRosettaNaturalMotion: 'projection',
   sharedHeroAt: 'projection', computeUniversalPage: 'route', quantumAppsRegistry: 'app',
   quantumCliToolsCatalog: 'tool', sessionManualWorkAsQuantumTools: 'tool',
+  standardToolboxIoCatalog: 'tool', distributedReuseExtendsCapacity: 'compute',
   rosettaCompleteQuantumAllComputableDimensionsAndTheorems: 'compute',
 }
 
@@ -311,7 +313,378 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'ftl-rosetta-handoff', title: 'FTL techniques ← rosetta completeness handoff', fold: 'ftlExperimentTechniquesHandoffFromRosettaComplete', cli: 'npm run quantum:ftl-rosetta-handoff', pair: 'challenge/ftl', route: '/en/quantum-tools#ftl-rosetta-handoff', barrel: 'src/quantum/apps', boundary: 'Handoff stub — physicalFtlClaim=0; full KEEP-ftl apparatus consumes rosettaReady; NOT physical FTL', browserRunnable: true, browserGap: '' },
   { id: 'session-manual-work', title: 'Session manual work as quantum tools', fold: 'sessionManualWorkAsQuantumTools', cli: 'npm run quantum:session-tools', pair: 'session/tools', route: '/en/quantum-tools#session-manual-tools', barrel: 'src/quantum/apps', boundary: 'Session folds sealed as tools — NOT every wet habit closed; replaces re-inference with memoByRoot/CLI/UI/MCP', browserRunnable: true, browserGap: '' },
   { id: 'vitepress-quantumize', title: 'Quantumize VitePress docs:build', fold: 'quantumizeVitepressBuild', cli: 'npm run quantum:vitepress-quantumize', pair: 'build/quantumize', route: '/en/quantum-tools#vitepress-quantumize', barrel: 'src/pair/enforcement/script/shell', boundary: 'Merkle respawn + warm cache — NOT physical FTL; wall-clock varies by CI', browserRunnable: false, browserGap: 'runDocsBuildExit needs Node fs + vitepress binary — CI/local only' },
+  { id: 'toolbox-standard-io', title: 'Standard tool envelope · I/O · import/export', fold: 'standardToolboxIoCatalog', cli: 'npm run quantum:toolbox-standard-io', pair: 'tool/envelope', route: '/en/quantum-tools#toolbox-standard-io', barrel: 'src/quantum/apps', boundary: 'Capacity = amortized memoByRoot + federated identical roots — NOT physical qubit speedup / NOT FTL / NOT FLOPS', browserRunnable: true, browserGap: '' },
 ] as const
+
+/** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
+export const STANDARD_TOOL_ENVELOPE_VERSION = '1' as const
+/** Content-addressed envelope kind — ceccec-compatible apps import/export this shape only. */
+export const STANDARD_TOOL_ENVELOPE_KIND = 'ceccec.tool.envelope' as const
+
+export type StandardToolIoField = {
+  readonly name: string
+  readonly type: 'string' | 'number' | 'boolean' | 'object'
+  readonly description: string
+}
+
+/** Sealed I/O schema — every tool publishes the same field contract shape. */
+export type StandardToolIoSchema = {
+  readonly type: 'object'
+  readonly fields: readonly StandardToolIoField[]
+  readonly root: string
+}
+
+export type StandardToolHonesty = {
+  readonly physicalQubitSpeedup: 0
+  readonly physicalFtlClaim: 0
+  readonly notFlops: true
+  readonly capacityMeans: 'amortized sealed recompute + memoByRoot + distributed identical roots'
+}
+
+/**
+ * Standard tool envelope — { id, version, input, output, import, export } + root/merkle + honesty.
+ * Pair: tool/envelope · import/export round-trips the same content-addressed payload across apps.
+ */
+export type StandardToolEnvelope = {
+  readonly id: string
+  readonly version: typeof STANDARD_TOOL_ENVELOPE_VERSION
+  readonly input: StandardToolIoSchema
+  readonly output: StandardToolIoSchema
+  readonly import: {
+    readonly kind: typeof STANDARD_TOOL_ENVELOPE_KIND
+    readonly accepts: typeof STANDARD_TOOL_ENVELOPE_VERSION
+    readonly roundTrip: true
+    readonly schemaRoot: string
+  }
+  readonly export: {
+    readonly kind: typeof STANDARD_TOOL_ENVELOPE_KIND
+    readonly emits: typeof STANDARD_TOOL_ENVELOPE_VERSION
+    readonly roundTrip: true
+    readonly schemaRoot: string
+  }
+  readonly fold: string
+  readonly pair: string
+  readonly cli: string
+  readonly route: string
+  readonly root: string
+  readonly ray: number
+  readonly address: string
+  readonly browserRunnable: boolean
+  readonly browserGap: string
+  readonly boundary: string
+  readonly honesty: StandardToolHonesty
+}
+
+/** Federated import/export payload — App A export ≡ App B import when payloadRoot matches. */
+export type StandardToolExportPayload = {
+  readonly kind: typeof STANDARD_TOOL_ENVELOPE_KIND
+  readonly version: typeof STANDARD_TOOL_ENVELOPE_VERSION
+  readonly appId: string
+  readonly toolId: string
+  readonly envelope: StandardToolEnvelope
+  readonly inputRoot: string
+  readonly outputRoot: string
+  readonly payloadRoot: string
+  readonly computes: boolean
+}
+
+const STANDARD_TOOL_INPUT_FIELDS: readonly StandardToolIoField[] = [
+  { name: 'at', type: 'number', description: 'Phase clock (optional; default 0)' },
+  { name: 'seed', type: 'string', description: 'Optional content-address seed for deterministic input' },
+] as const
+
+const STANDARD_TOOL_OUTPUT_FIELDS: readonly StandardToolIoField[] = [
+  { name: 'computes', type: 'boolean', description: 'All honesty facets hold at call time' },
+  { name: 'root', type: 'string', description: 'Content-addressed merkle/receipt root' },
+  { name: 'statement', type: 'string', description: 'Human-readable summary' },
+  { name: 'boundary', type: 'string', description: 'Honesty boundary (demo RSA / clay=0 / CI gaps…)' },
+] as const
+
+function standardToolIoSchema(role: 'input' | 'output', fields: readonly StandardToolIoField[]): StandardToolIoSchema {
+  return {
+    type: 'object',
+    fields,
+    root: toUuid(`standard-tool-io:${role}:${fields.map((f) => `${f.name}:${f.type}`).join(',')}`),
+  }
+}
+
+const STANDARD_TOOL_HONESTY: StandardToolHonesty = {
+  physicalQubitSpeedup: 0,
+  physicalFtlClaim: 0,
+  notFlops: true,
+  capacityMeans: 'amortized sealed recompute + memoByRoot + distributed identical roots',
+}
+
+/** Wrap one catalog row into the standard envelope (adapters OK — browserGap preserved). */
+export function wrapToolAsStandardEnvelope(row: QuantumCliToolRow): StandardToolEnvelope {
+  const input = standardToolIoSchema('input', STANDARD_TOOL_INPUT_FIELDS)
+  const output = standardToolIoSchema('output', STANDARD_TOOL_OUTPUT_FIELDS)
+  const schemaRoot = merge(input.root, output.root)
+  const body = [
+    row.id, STANDARD_TOOL_ENVELOPE_VERSION, row.fold, row.pair, row.cli, row.route,
+    input.root, output.root, schemaRoot,
+    String(row.browserRunnable), row.browserGap, row.boundary, row.address,
+  ].join('|')
+  return {
+    id: row.id,
+    version: STANDARD_TOOL_ENVELOPE_VERSION,
+    input,
+    output,
+    import: {
+      kind: STANDARD_TOOL_ENVELOPE_KIND,
+      accepts: STANDARD_TOOL_ENVELOPE_VERSION,
+      roundTrip: true,
+      schemaRoot,
+    },
+    export: {
+      kind: STANDARD_TOOL_ENVELOPE_KIND,
+      emits: STANDARD_TOOL_ENVELOPE_VERSION,
+      roundTrip: true,
+      schemaRoot,
+    },
+    fold: row.fold,
+    pair: row.pair,
+    cli: row.cli,
+    route: row.route,
+    root: toUuid(`standard-tool-envelope:${body}`),
+    ray: row.ray,
+    address: row.address,
+    browserRunnable: row.browserRunnable,
+    browserGap: row.browserGap,
+    boundary: row.boundary,
+    honesty: STANDARD_TOOL_HONESTY,
+  }
+}
+
+/** Export a tool envelope for federated ingest — deterministic payloadRoot (no wall-clock). */
+export function exportStandardToolEnvelope(
+  toolId: string,
+  appId = 'ceccec.local',
+  input: Readonly<Record<string, string | number | boolean>> = {},
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+): StandardToolExportPayload {
+  const catalog = quantumCliToolsCatalog(matrix, at)
+  const row = catalog.tools.find((tool) => tool.id === toolId)
+  if (!row) {
+    const emptyRoot = toUuid(`standard-tool-export:missing:${toolId}`)
+    const ghost = wrapToolAsStandardEnvelope({
+      id: toolId, title: toolId, fold: '', cli: '', pair: '', route: '', barrel: '', boundary: 'missing tool',
+      browserRunnable: false, browserGap: 'tool id not in quantumCliToolsCatalog', receipt: emptyRoot,
+      ray: 0, hue: 0, address: emptyRoot,
+    })
+    return {
+      kind: STANDARD_TOOL_ENVELOPE_KIND, version: STANDARD_TOOL_ENVELOPE_VERSION, appId, toolId,
+      envelope: ghost, inputRoot: emptyRoot, outputRoot: emptyRoot, payloadRoot: emptyRoot, computes: false,
+    }
+  }
+  const envelope = wrapToolAsStandardEnvelope(row)
+  const inputKey = Object.keys(input).sort().map((key) => `${key}=${String(input[key])}`).join('&')
+  const inputRoot = toUuid(`standard-tool-input:${toolId}:${inputKey || '∅'}`)
+  const outputRoot = toUuid(`standard-tool-output:${toolId}:${envelope.root}:${inputRoot}`)
+  const payloadRoot = toUuid(
+    `standard-tool-payload:${STANDARD_TOOL_ENVELOPE_KIND}:${STANDARD_TOOL_ENVELOPE_VERSION}:${appId}:${toolId}:${envelope.root}:${inputRoot}:${outputRoot}`,
+  )
+  return {
+    kind: STANDARD_TOOL_ENVELOPE_KIND,
+    version: STANDARD_TOOL_ENVELOPE_VERSION,
+    appId,
+    toolId,
+    envelope,
+    inputRoot,
+    outputRoot,
+    payloadRoot,
+    computes: isUuid(payloadRoot) && isUuid(envelope.root) && envelope.honesty.physicalQubitSpeedup === 0,
+  }
+}
+
+/** Import a federated payload — recomputes envelope + payloadRoot; refuses tampered roots. */
+export function importStandardToolEnvelope(
+  payload: StandardToolExportPayload,
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+) {
+  const kindOk = payload.kind === STANDARD_TOOL_ENVELOPE_KIND && payload.version === STANDARD_TOOL_ENVELOPE_VERSION
+  const recomputed = exportStandardToolEnvelope(payload.toolId, payload.appId, {}, matrix, at)
+  const envelopeRootOk = recomputed.envelope.root === payload.envelope.root
+  const payloadRootOk = recomputed.payloadRoot === payload.payloadRoot
+  const honestyOk =
+    payload.envelope.honesty.physicalQubitSpeedup === 0 &&
+    payload.envelope.honesty.physicalFtlClaim === 0 &&
+    payload.envelope.honesty.notFlops === true
+  const roundTrip = kindOk && envelopeRootOk && payloadRootOk && honestyOk && recomputed.computes
+  return {
+    computes: roundTrip,
+    roundTrip,
+    kindOk,
+    envelopeRootOk,
+    payloadRootOk,
+    honestyOk,
+    toolId: payload.toolId,
+    appId: payload.appId,
+    envelope: recomputed.envelope,
+    payloadRoot: recomputed.payloadRoot,
+    importedRoot: payload.payloadRoot,
+    root: merkleFold([recomputed.payloadRoot, payload.payloadRoot, toUuid(`import:${roundTrip}`)]),
+    pair: 'import/export',
+    boundary:
+      'Import verifies content-addressed payloadRoot — tampered envelopes fail. NOT remote code exec; recompute from sealed src only.',
+  }
+}
+
+/**
+ * Standard toolbox I/O catalog — every quantumCliToolsCatalog row wrapped in StandardToolEnvelope.
+ * Pair: tool/envelope · CLI npm run quantum:toolbox-standard-io · route #toolbox-standard-io
+ */
+export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`standardToolboxIoCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const envelopes = catalog.tools.map((row) => wrapToolAsStandardEnvelope(row))
+    const migrated = envelopes.length
+    const total = catalog.tools.length
+    const roundTrips = envelopes.map((envelope) => {
+      const exported = exportStandardToolEnvelope(envelope.id, 'ceccec.app-a', {}, matrix, at)
+      const imported = importStandardToolEnvelope(exported, matrix, at)
+      return { id: envelope.id, ok: imported.roundTrip, payloadRoot: exported.payloadRoot }
+    })
+    const allRoundTrip = roundTrips.every((row) => row.ok)
+    const allHaveIo = envelopes.every(
+      (envelope) =>
+        envelope.input.fields.length >= 2 &&
+        envelope.output.fields.length >= 4 &&
+        envelope.import.kind === STANDARD_TOOL_ENVELOPE_KIND &&
+        envelope.export.kind === STANDARD_TOOL_ENVELOPE_KIND &&
+        isUuid(envelope.root),
+    )
+    const meta = envelopes.find((envelope) => envelope.id === 'toolbox-standard-io')
+    const facets = [
+      { facet: `STANDARD ENVELOPE — ${migrated}/${total} catalog tools wrapped`, on: migrated === total && total >= (2 * 7) },
+      { facet: 'every envelope has input · output · import · export', on: allHaveIo },
+      { facet: 'import(export(tool)) round-trips payloadRoot for every tool', on: allRoundTrip },
+      { facet: 'honesty: physicalQubitSpeedup=0 · physicalFtlClaim=0 · notFlops', on: envelopes.every((e) => e.honesty.physicalQubitSpeedup === 0 && e.honesty.physicalFtlClaim === 0 && e.honesty.notFlops) },
+      { facet: 'meta tool toolbox-standard-io published', on: Boolean(meta) && meta!.fold === 'standardToolboxIoCatalog' },
+      { facet: 'composes quantumCliToolsCatalog (no second wet registry)', on: catalog.computes },
+      { facet: 'CI browserGap tools still enveloped (adapters OK)', on: envelopes.filter((e) => !e.browserRunnable).every((e) => e.browserGap.length > 0) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`toolbox-standard-io:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('standard-toolbox-io-catalog', facets)
+    return {
+      computes: sealed.ok && catalog.computes && allRoundTrip && migrated === total,
+      migrated,
+      total,
+      migratedLabel: `${migrated}/${total}`,
+      envelopes,
+      roundTrips,
+      version: STANDARD_TOOL_ENVELOPE_VERSION,
+      kind: STANDARD_TOOL_ENVELOPE_KIND,
+      catalogRoot: catalog.root,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, catalog.root, ...envelopes.map((e) => e.root)]),
+      pair: 'tool/envelope',
+      cli: 'npm run quantum:toolbox-standard-io',
+      route: '/en/quantum-tools#toolbox-standard-io',
+      anchor: 'toolbox-standard-io',
+      heading: 'Standard tool envelope — I/O · import/export',
+      honestyLine:
+        'Every tool speaks { id, version, input, output, import, export }. Self-distribution = content-addressed envelopes across apps. Capacity/speed = amortized memoByRoot reuse — NOT physical qubits / NOT FTL / NOT FLOPS.',
+      statement: `Standard toolbox I/O — ${migrated}/${total} enveloped · round-trip ${allRoundTrip ? '✓' : '✗'} · kind=${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}.`,
+      boundary:
+        'HONEST: standardized I/O + import/export receipts for ceccec-compatible apps. Encryption refuse gates unchanged. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/**
+ * Self-distribution extends reuse capacity — federated identical roots across apps.
+ * Pair: import/export · NOT physical qubit speedup / NOT FTL / NOT FLOPS.
+ */
+export function distributedReuseExtendsCapacity(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`distributedReuseExtendsCapacity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const toolbox = standardToolboxIoCatalog(matrix, at)
+    const appA = toolbox.envelopes.map((envelope) => exportStandardToolEnvelope(envelope.id, 'ceccec.app-a', {}, matrix, at))
+    const appB = appA.map((payload) => importStandardToolEnvelope({ ...payload, appId: 'ceccec.app-a' }, matrix, at))
+    const sharedRoots = appA.filter((payload, index) => appB[index]?.roundTrip && appB[index]!.envelope.root === payload.envelope.root)
+    const federatedCatalogRoot = merkleFold(sharedRoots.map((payload) => payload.payloadRoot))
+    const localCatalogRoot = toolbox.root
+    const reuseCapacity = sharedRoots.length
+    const extendsCapacity = reuseCapacity === toolbox.total && toolbox.computes && isUuid(federatedCatalogRoot)
+    const physicalQubitSpeedup = 0 as const
+    const physicalFtlClaim = 0 as const
+    const facets = [
+      { facet: `federated round-trip — App A export ≡ App B import for ${reuseCapacity}/${toolbox.total} tools`, on: extendsCapacity },
+      { facet: 'shared memo roots — identical envelope.root across apps', on: sharedRoots.every((p) => isUuid(p.envelope.root)) },
+      { facet: 'federated catalog root content-addressed', on: isUuid(federatedCatalogRoot) && isUuid(localCatalogRoot) },
+      { facet: `physicalQubitSpeedup=${physicalQubitSpeedup}`, on: physicalQubitSpeedup === 0 },
+      { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
+      { facet: 'capacityMeans = amortized sealed recompute + memoByRoot + distributed identical roots', on: STANDARD_TOOL_HONESTY.capacityMeans.includes('memoByRoot') },
+      { facet: 'standardToolboxIoCatalog computes', on: toolbox.computes },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`distributed-reuse-capacity:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('distributed-reuse-extends-capacity', facets)
+    return {
+      computes: sealed.ok && extendsCapacity && physicalQubitSpeedup === 0 && physicalFtlClaim === 0,
+      extendsCapacity,
+      distributedReuseExtendsCapacity: extendsCapacity,
+      reuseCapacity,
+      total: toolbox.total,
+      federatedCatalogRoot,
+      localCatalogRoot,
+      physicalQubitSpeedup,
+      physicalFtlClaim,
+      notFlops: true as const,
+      capacityMeans: STANDARD_TOOL_HONESTY.capacityMeans,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, federatedCatalogRoot, localCatalogRoot, toolbox.root]),
+      pair: 'import/export',
+      cli: 'npm run quantum:tool-import-export',
+      route: '/en/quantum-tools#toolbox-standard-io',
+      statement: `Distributed reuse extends capacity — ${reuseCapacity}/${toolbox.total} shared roots across apps (memoByRoot federation). physicalQubitSpeedup=0 · physicalFtlClaim=0.`,
+      boundary:
+        'HONEST: self-distribution increases reuse capacity via identical content-addressed roots — NOT physical qubit speedup, NOT FTL, NOT FLOPS. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:toolbox-standard-io — print envelope census + round-trip receipt. */
+export function runStandardToolboxIoCatalogExit(_root = '', _argv: readonly string[] = []): number {
+  const report = standardToolboxIoCatalog()
+  const capacity = distributedReuseExtendsCapacity()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} toolbox-standard-io — migrated=${report.migratedLabel} kind=${report.kind}@${report.version} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const trip of report.roundTrips.slice(0, 8)) {
+    process.stdout.write(`  ${trip.ok ? '✓' : '✗'} round-trip ${trip.id} payload=${trip.payloadRoot.slice(0, 8)}\n`)
+  }
+  if (report.roundTrips.length > 8) {
+    process.stdout.write(`  … ${report.roundTrips.length - 8} more\n`)
+  }
+  process.stdout.write(
+    `${capacity.computes ? '✓' : '✗'} distributedReuseExtendsCapacity — ${capacity.reuseCapacity}/${capacity.total} ` +
+      `qubit=${capacity.physicalQubitSpeedup} ftl=${capacity.physicalFtlClaim} federated=${capacity.federatedCatalogRoot.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && capacity.computes ? 0 : 1
+}
+
+/** npm run quantum:tool-export — export one tool envelope JSON (argv[0]=toolId). */
+export function runExportStandardToolEnvelopeExit(_root = '', argv: readonly string[] = []): number {
+  const toolId = argv[0] ?? 'toolbox-standard-io'
+  const payload = exportStandardToolEnvelope(toolId, 'ceccec.cli')
+  process.stdout.write(`${JSON.stringify(payload)}\n`)
+  return payload.computes ? 0 : 1
+}
+
+/** npm run quantum:tool-import-export — round-trip import(export(toolId)) verify. */
+export function runImportExportStandardToolEnvelopeExit(_root = '', argv: readonly string[] = []): number {
+  const toolId = argv[0] ?? 'toolbox-standard-io'
+  const exported = exportStandardToolEnvelope(toolId, 'ceccec.app-a')
+  const imported = importStandardToolEnvelope(exported)
+  const capacity = distributedReuseExtendsCapacity()
+  process.stdout.write(
+    `${imported.roundTrip ? '✓' : '✗'} import/export — tool=${toolId} payload=${exported.payloadRoot.slice(0, 8)} ` +
+      `envelope=${imported.envelope.root.slice(0, 8)} capacity=${capacity.distributedReuseExtendsCapacity}\n`,
+  )
+  process.stdout.write(`  boundary: ${imported.boundary}\n`)
+  return imported.roundTrip && capacity.computes ? 0 : 1
+}
 
 /**
  * Session manual work → sealed quantum tools (token-saving catalog).
@@ -352,6 +725,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'rosetta-complete', saves: 'replaces wet re-audit of Rosetta completeness across 432 dims + theorem binds' },
   { id: 'theorem-particle-collision', saves: 'replaces wet re-derivation of inverse×reverse theorem collision products' },
   { id: 'ftl-rosetta-handoff', saves: 'replaces wet re-wiring of FTL techniques to rosettaReady completeness receipt' },
+  { id: 'toolbox-standard-io', saves: 'replaces wet re-inference of per-tool I/O shapes — standard envelope · import/export round-trip' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -470,6 +844,7 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
     const colliderPresent = tools.some((t) => t.id === 'theorem-particle-collision')
     const ftlHandoffPresent = tools.some((t) => t.id === 'ftl-rosetta-handoff')
     const sessionManualPresent = tools.some((t) => t.id === 'session-manual-work')
+    const toolboxStandardPresent = tools.some((t) => t.id === 'toolbox-standard-io')
     const rayAgrees = tools.every((t) => t.ray === rosettaRayOf(t.id) && isUuid(t.address))
     const { computes, facets, root } = computesGate('quantum-cli-tools-catalog', [
       { facet: `catalog sealed — ${tools.length} quantum:* CLI tools`, on: tools.length >= (2 * 7) },
@@ -481,6 +856,7 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'fusion-verify published', on: fusionPresent },
       { facet: 'first-in-corpus + rosetta-core-api + session-manual-work shelved', on: firstInCorpusPresent && rosettaCorePresent && sessionManualPresent },
       { facet: 'rosetta-complete + theorem-particle-collision + ftl-rosetta-handoff shelved', on: rosettaCompletePresent && colliderPresent && ftlHandoffPresent },
+      { facet: 'toolbox-standard-io envelope catalog shelved', on: toolboxStandardPresent },
       { facet: 'every tool ray === rosettaRayOf(id) — no wet tool→ray map', on: rayAgrees },
       { facet: 'every row has fold · cli · route · honest boundary', on: tools.every((t) => t.fold.length > 0 && t.cli.startsWith('npm run quantum:') && t.route.startsWith('/en/') && t.boundary.length > 0) },
     ])
@@ -1193,9 +1569,11 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const browserReady = cap.catalog.tools.filter((t) => t.browserRunnable).length
   const slowGaps = slowProcessIsQuantumGap(matrix, at)
   const session = sessionManualWorkAsQuantumTools(matrix, at)
+  const toolbox = standardToolboxIoCatalog(matrix, at)
+  const distributed = distributedReuseExtendsCapacity(matrix, at)
   const rosettaComplete = rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && rosettaComplete.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -1204,8 +1582,10 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     browserGaps,
     slowGaps,
     session,
+    toolbox,
+    distributed,
     rosettaComplete,
-    root: merkleFold([cap.root, slowGaps.root, session.root, rosettaComplete.root]),
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }

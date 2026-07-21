@@ -43,7 +43,7 @@ import {
   agentBashWorkflowsAreToolsSavedInSrc, agentSubmissionProtocol,
   dynamicStrategiesFromTheorems, sequenceStations,
 } from '../../../pair/enforcement'
-import { sessionManualWorkAsQuantumTools } from '../../apps'
+import { sessionManualWorkAsQuantumTools, standardToolboxIoCatalog, distributedReuseExtendsCapacity } from '../../apps'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
@@ -90,15 +90,17 @@ export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
 }
 
 /**
- * /agents.json — zero-token discovery: agent protocol + sessionManualWorkAsQuantumTools catalog.
- * Pair: session/tools · compose agentHarmonise + session catalog (never a second wet list).
+ * /agents.json — zero-token discovery: agent protocol + session tools + standard toolbox envelopes.
+ * Pair: session/tools · tool/envelope · compose agentHarmonise (never a second wet list).
  */
 export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const harmonise = agentHarmonise(matrix)
   const session = sessionManualWorkAsQuantumTools(matrix)
+  const toolbox = standardToolboxIoCatalog(matrix)
+  const distributed = distributedReuseExtendsCapacity(matrix)
   return `${JSON.stringify(
     {
-      computes: Boolean(harmonise.harmonised && session.computes),
+      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes),
       protocol: {
         laws: harmonise.laws,
         mcp: harmonise.mcp,
@@ -132,6 +134,52 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
           browserRunnable: tool.browserRunnable,
         })),
       },
+      standardToolboxIoCatalog: {
+        computes: toolbox.computes,
+        migrated: toolbox.migratedLabel,
+        kind: toolbox.kind,
+        version: toolbox.version,
+        pair: toolbox.pair,
+        cli: toolbox.cli,
+        route: toolbox.route,
+        root: toolbox.root,
+        honestyLine: toolbox.honestyLine,
+        statement: toolbox.statement,
+        boundary: toolbox.boundary,
+        tools: toolbox.envelopes.map((envelope) => ({
+          id: envelope.id,
+          version: envelope.version,
+          fold: envelope.fold,
+          pair: envelope.pair,
+          cli: envelope.cli,
+          route: envelope.route,
+          inputRoot: envelope.input.root,
+          outputRoot: envelope.output.root,
+          importKind: envelope.import.kind,
+          exportKind: envelope.export.kind,
+          root: envelope.root,
+          ray: envelope.ray,
+          address: envelope.address,
+          browserRunnable: envelope.browserRunnable,
+          browserGap: envelope.browserGap,
+          boundary: envelope.boundary,
+          honesty: envelope.honesty,
+        })),
+      },
+      distributedReuseExtendsCapacity: {
+        computes: distributed.computes,
+        extendsCapacity: distributed.extendsCapacity,
+        reuseCapacity: distributed.reuseCapacity,
+        total: distributed.total,
+        physicalQubitSpeedup: distributed.physicalQubitSpeedup,
+        physicalFtlClaim: distributed.physicalFtlClaim,
+        notFlops: distributed.notFlops,
+        capacityMeans: distributed.capacityMeans,
+        federatedCatalogRoot: distributed.federatedCatalogRoot,
+        root: distributed.root,
+        pair: distributed.pair,
+        boundary: distributed.boundary,
+      },
       surfaces: {
         agents: '/agents.json',
         compliance: '/agent-compliance.json',
@@ -139,7 +187,7 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         llms: '/llms.txt',
         skills: '/skills.json',
         workflows: '/workflows.json',
-        quantumTools: '/en/quantum-tools#session-manual-tools',
+        quantumTools: '/en/quantum-tools#toolbox-standard-io',
       },
     },
     null,

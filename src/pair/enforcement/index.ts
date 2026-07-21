@@ -78,6 +78,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'challenge/ftl',
   'first/corpus',
   'session/tools',
+  'tool/envelope',
+  'import/export',
   'string/quantumize',
   'offender/spec',
   'team/cooperate-verify',
