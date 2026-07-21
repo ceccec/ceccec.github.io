@@ -29,6 +29,7 @@ import {
   proveLocalNovelEncryptionSecurity,
   localAuditQuantumSpeedEfficiency,
   proveOneTbitRealtimeEncryptionClaim,
+  maximumBitsEncryptDecryptInverseReverse,
   isoPqcRequirementsGapFillAllQuantumDirections,
   proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
   encryptionPanelComputes,
@@ -315,6 +316,13 @@ function runTool(toolId: string) {
         ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
         { facet: `standard envelope ${exported.kind}@${exported.version} import/export round-trip`, on: imported.roundTrip },
       ]
+    } else if (toolId === 'max-bits-crypto') {
+      const r = maximumBitsEncryptDecryptInverseReverse()
+      ok = r.computes
+      summary = `encrypt=${r.encryptMaxBits} decrypt=${r.decryptMaxBits} inverse=${r.inverseMaxBits} reverse=${r.reverseMaxBits} refuseBeyond=${r.refuseBeyond} demoOnly=${r.demoOnly} wire1Tbit=${r.wireOneTbitProvedAtCallTime}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'prove-local-magnitudes-iso') {
       const r = proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections()
       const exported = exportWithExperiment('prove-local-magnitudes-iso')
