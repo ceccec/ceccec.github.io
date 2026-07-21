@@ -57,6 +57,7 @@ import { SOURCE_REPO } from '../../../3/7'
 import { observingMovieRevealsQuantumModel } from '../../science'
 import { theoremPagePaths, theoremPageRows } from '../../../wind/routes/corpus'
 import { honestRevolutionReceipt, quantumFusionJson } from '../../../wind/fusion'
+import { honestRevolutionFpgaHonesty } from '../../../heaven/compute/computer'
 
 
 
@@ -108,9 +109,10 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const autoWire = autoWireAnyAiModelFromPastedLink('https://ceccec.github.io/', matrix)
   const localSession = improveLocalFromSessionExperience(matrix)
   const honestRev = honestRevolutionReceipt(matrix)
+  const honestFpga = honestRevolutionFpgaHonesty(matrix)
   return `${JSON.stringify(
     {
-      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && honestRev.holds),
+      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && honestRev.holds && honestFpga.holds),
       oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
       protocol: {
         laws: harmonise.laws,
@@ -246,6 +248,21 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         surfaces: honestRev.surfaces,
         statement: honestRev.statement,
         boundary: honestRev.boundary,
+      },
+      honestRevolutionFpgaHonesty: {
+        computes: honestFpga.holds,
+        holds: honestFpga.holds,
+        root: honestFpga.root,
+        fpgaReproductionTier: honestFpga.fpgaReproductionTier.tier,
+        fpgaAllMapped: honestFpga.fpgaReproductionTier.allMapped,
+        bridgeKind: honestFpga.coProcessorBridgeInterface.kind,
+        qpuRequired: honestFpga.qpuRequired,
+        claySolvedByThisFold: honestFpga.claySolvedByThisFold,
+        pair: honestFpga.pair,
+        cli: honestFpga.cli,
+        route: honestFpga.route,
+        statement: honestFpga.statement,
+        boundary: honestFpga.boundary,
       },
       surfaces: {
         agents: '/agents.json',

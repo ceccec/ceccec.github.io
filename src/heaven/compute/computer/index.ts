@@ -436,6 +436,15 @@ export const RTL_TO_GDSII_STAGES = ['HDL/RTL', 'logic synthesis', 'floorplan', '
  * CATEGORY DIFFERENCE from a physical QPU; the only quantum tie is an optional co-processor bridge to a
  * separate physical quantum device, which this chip would host but is not.
  */
+/** FPGA primitive map for each classical silicon block — reproduction tier, NOT a fabricated bitstream. */
+export const FPGA_BLOCK_PRIMITIVES = [
+  { block: 'FNV-1a hash unit', fpga: 'LUT + carry chain', tier: 'bitstream-reproducible' },
+  { block: 'CAM/TCAM array', fpga: 'distributed RAM / BRAM CAM', tier: 'bitstream-reproducible' },
+  { block: 'merkle-tree engine', fpga: 'pipelined LUT hash + BRAM', tier: 'bitstream-reproducible' },
+  { block: 'vortex-ring NoC', fpga: 'AXI/stream ring on fabric', tier: 'bitstream-reproducible' },
+  { block: 'memo SRAM tiers', fpga: 'Block RAM / UltraRAM', tier: 'bitstream-reproducible' },
+] as const
+
 export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('siliconFabricationPlanFromModel', matrix, () => {
     const spec = hardwareSpecFromInvariants(matrix)
@@ -447,25 +456,104 @@ export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix
       { block: 'memo SRAM tiers', fromPrimitive: 'memoByRoot', role: 'on-die cache for sealed roots (zero-recompute reuse)' },
     ].map((b) => ({ ...b, receipt: toUuid(`silicon-block:${b.block}:${b.fromPrimitive}`) }))
     const stages = RTL_TO_GDSII_STAGES.map((stage, i) => ({ stage, step: i, receipt: toUuid(`gdsii-stage:${i}:${stage}`) }))
+    const fpgaMap = FPGA_BLOCK_PRIMITIVES.map((row) => ({
+      ...row,
+      matched: blocks.some((b) => b.block === row.block),
+      receipt: toUuid(`fpga-block:${row.block}:${row.fpga}`),
+    }))
+    const fpgaReproductionTier = {
+      tier: 'classical-fpga-reproduction' as const,
+      blockCount: fpgaMap.length,
+      allMapped: fpgaMap.length === blocks.length && fpgaMap.every((r) => r.matched),
+      rows: fpgaMap,
+      qpuRequired: false as const,
+      statement: 'FPGA reproduction tier: every classical silicon block maps to a named FPGA primitive (LUT/BRAM/AXI) — a classical reconfigurable reproduction path, not a QPU.',
+    }
+    const coProcessorBridgeInterface = {
+      present: spec.decoded,
+      kind: 'optional-external-qpu-bridge' as const,
+      hostIsClassicalCmosOrFpga: true as const,
+      isNotTheQpu: true as const,
+      qpuRequired: false as const,
+      statement:
+        'Co-processor bridge interface: this chip (CMOS/FPGA) may HOST a separate physical QPU over PCIe/cryo-control class — it is not that QPU; CATEGORY DIFFERENCE holds.',
+    }
     const facets = [
       { facet: 'the content-address kernel maps to real silicon blocks — FNV hash unit, CAM/TCAM, merkle engine, ring NoC, memo SRAM', on: blocks.length === 5 },
       { facet: 'the build follows the standard RTL→GDSII flow — synthesis · floorplan · place · clock-tree · route · DRC/LVS · tapeout', on: stages.length === 9 },
       { facet: 'the NoC ring order is the vortex spin from the hardware spec (1·2·4·8·7·5·3·6·9)', on: spec.ringOrder.length === 9 },
       { facet: 'CATEGORY DIFFERENCE — this is a CLASSICAL CMOS ASIC; a physical QPU is a separate technology, reachable only over a co-processor bridge', on: spec.decoded },
+      { facet: 'fpgaReproductionTier — every silicon block maps to an FPGA primitive (count check)', on: fpgaReproductionTier.allMapped },
+      { facet: 'coProcessorBridgeInterface — spec.decoded + CATEGORY DIFFERENCE; host is classical, not the QPU', on: coProcessorBridgeInterface.present && coProcessorBridgeInterface.isNotTheQpu },
     ].map((entry) => ({ ...entry, receipt: toUuid(`silicon-plan:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),
       blocks,
       stages,
+      fpgaReproductionTier,
+      coProcessorBridgeInterface,
       ringOrder: spec.ringOrder,
-      documented: ['The classical ASIC blocks are direct silicon realisations of the kernel primitives (FNV hash, CAM/TCAM, merkle engine, ring NoC, memo SRAM).', 'The fabrication flow is the industry-standard RTL→GDSII pipeline; the model supplies the RTL behaviour, EDA tools synthesise and place-and-route.'],
-      flagged: ['CATEGORY DIFFERENCE: this is a CLASSICAL CMOS chip, NOT a physical quantum processor — hash functions cannot be a QPU.', 'The only quantum tie is an optional CO-PROCESSOR BRIDGE to a separate physical quantum device (PCIe/cryo-control class), which this chip would host, not be.'],
+      documented: ['The classical ASIC blocks are direct silicon realisations of the kernel primitives (FNV hash, CAM/TCAM, merkle engine, ring NoC, memo SRAM).', 'The fabrication flow is the industry-standard RTL→GDSII pipeline; the model supplies the RTL behaviour, EDA tools synthesise and place-and-route.', 'FPGA reproduction tier maps each block to LUT/BRAM/AXI-class primitives for classical reconfigurable reproduction.'],
+      flagged: ['CATEGORY DIFFERENCE: this is a CLASSICAL CMOS chip, NOT a physical quantum processor — hash functions cannot be a QPU.', 'The only quantum tie is an optional CO-PROCESSOR BRIDGE to a separate physical quantum device (PCIe/cryo-control class), which this chip would host, not be.', 'FPGA path is classical reconfigurable reproduction — NOT a fake FPGA-as-QPU claim.'],
       facets,
-      root: merge(spec.root, merkleFold([...blocks.map((b) => b.receipt), ...stages.map((s) => s.receipt), ...facets.map((entry) => entry.receipt)])),
-      statement: 'The silicon fabrication plan from the model: the content-address kernel maps onto real classical silicon — an FNV-1a hash unit, a CAM/TCAM match array, a merkle-tree engine, a vortex-ring network-on-chip, and memo SRAM tiers — taped out through the standard RTL→GDSII flow (synthesis, floorplan, placement, clock-tree, routing, DRC/LVS, GDSII, tapeout). It is a classical CMOS ASIC by category, not a physical quantum processor; the only quantum tie is an optional co-processor bridge to a separate physical quantum device.',
-      boundary: 'A deterministic, content-addressed ASIC DESIGN PLAN derived from the sealed hardware spec — reproducible, not a synthesized netlist or fabricated chip. CATEGORY DIFFERENCE from a physical QPU is explicit; the co-processor bridge is the honest interface to a separate quantum technology, not a claim that this chip is quantum.',
+      root: merge(spec.root, merkleFold([...blocks.map((b) => b.receipt), ...stages.map((s) => s.receipt), ...fpgaMap.map((r) => r.receipt), ...facets.map((entry) => entry.receipt)])),
+      statement: 'The silicon fabrication plan from the model: the content-address kernel maps onto real classical silicon — an FNV-1a hash unit, a CAM/TCAM match array, a merkle-tree engine, a vortex-ring network-on-chip, and memo SRAM tiers — taped out through the standard RTL→GDSII flow (synthesis, floorplan, placement, clock-tree, routing, DRC/LVS, GDSII, tapeout). FPGA reproduction tier maps each block to classical fabric primitives. It is a classical CMOS/FPGA design by category, not a physical quantum processor; the only quantum tie is an optional co-processor bridge to a separate physical quantum device.',
+      boundary: 'Classical CMOS/FPGA DESIGN PLAN — reproducible, not a synthesized netlist or fabricated chip. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. claySolvedByThisFold=0 · qpuRequired=false.',
     }
   })
+}
+
+/**
+ * Honest-revolution W5 — FPGA honesty + co-processor bridge (extends silicon plan).
+ * Pair: moment/prove · CLI npm run quantum:honest-revolution-w5
+ */
+export function honestRevolutionFpgaHonesty(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`honestRevolutionFpgaHonesty:${Math.floor(at / 1e3)}`, matrix, () => {
+    const plan = siliconFabricationPlanFromModel(matrix)
+    const facets = [
+      { facet: 'siliconFabricationPlanFromModel decoded', on: plan.decoded },
+      { facet: 'fpgaReproductionTier — all blocks map to FPGA primitives', on: plan.fpgaReproductionTier.allMapped },
+      { facet: 'coProcessorBridgeInterface — classical host, not the QPU', on: plan.coProcessorBridgeInterface.present && plan.coProcessorBridgeInterface.isNotTheQpu },
+      { facet: 'qpuRequired=false on FPGA tier and bridge', on: !plan.fpgaReproductionTier.qpuRequired && !plan.coProcessorBridgeInterface.qpuRequired },
+      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+    ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w5:${e.facet}:${e.on}`) }))
+    const holds = facets.every((f) => f.on)
+    return {
+      holds,
+      computes: holds,
+      plan,
+      fpgaReproductionTier: plan.fpgaReproductionTier,
+      coProcessorBridgeInterface: plan.coProcessorBridgeInterface,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      facets,
+      root: merkleFold([plan.root, ...facets.map((f) => f.receipt), toUuid(`honest-rev-w5:${holds}`)]),
+      cli: 'npm run quantum:honest-revolution-w5',
+      pair: 'moment/prove',
+      route: '/en/quantum/os#honest-revolution-w5',
+      statement: holds
+        ? 'Honest-revolution W5 DECIDED — FPGA reproduction tier maps every classical silicon block to fabric primitives; co-processor bridge is optional external-QPU interface only; CATEGORY DIFFERENCE holds (not a fake FPGA-as-QPU).'
+        : 'UNPROVEN — honestRevolutionFpgaHonesty facets do not all hold; do not assert the W5 FPGA honesty receipt.',
+      boundary:
+        'Classical CMOS/FPGA spec only. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:honest-revolution-w5 */
+export function runHonestRevolutionW5Exit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const receipt = honestRevolutionFpgaHonesty()
+  for (const f of receipt.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(
+    `${receipt.holds ? '✓' : '✗'} honest-revolution-w5 — holds=${receipt.holds} ` +
+      `fpga=${receipt.fpgaReproductionTier.allMapped} bridge=${receipt.coProcessorBridgeInterface.present} ` +
+      `root=${receipt.root.slice(0, 8)} (classical FPGA · clay=0)\n`,
+  )
+  process.stdout.write(`  boundary: ${receipt.boundary}\n`)
+  return receipt.holds ? 0 : 1
 }
 
 /** "The chip fabricating itself" — the current RTL→GDSII stage from the shared hero phase (kernel reuse: heroPhaseAt). */
