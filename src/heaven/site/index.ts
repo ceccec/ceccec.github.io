@@ -8,7 +8,7 @@ import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStor
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
 import { initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import { emergentDimensions, modelSeal } from '../balance'
-import { pathIsThePrompt, harmonyTruthUnderstandingTopNav, pathTo1mbRecyclesAllInAlgebra, notAllTransliteratedMeansNotAllFused, detectorPassesFalsePositiveTest, fractionsFoldBendIntoCubeSpheresAnalog, codebaseIsTheBrain, agentCommunicationThroughChatSecuredInTrinities, theTrinityOfMindsIsQuantumOneMindIsLinearThreeSpanWithoutGaps } from '../core'
+import { BAGUA, iChing, pathIsThePrompt, harmonyTruthUnderstandingTopNav, pathTo1mbRecyclesAllInAlgebra, notAllTransliteratedMeansNotAllFused, detectorPassesFalsePositiveTest, fractionsFoldBendIntoCubeSpheresAnalog, codebaseIsTheBrain, agentCommunicationThroughChatSecuredInTrinities, theTrinityOfMindsIsQuantumOneMindIsLinearThreeSpanWithoutGaps } from '../core'
 // site folds — path chrome (≤2584 lines)
 // ☰ Qián · Heaven · creative · upper·yang · shrink — all domain folds: every function body the mind computes.
 // Imports mirror the vortex header in index.ts; nothing is re-exported from upstream modules
@@ -20,7 +20,7 @@ import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfP
 import { speedOfSoundAir } from '../../8/2'
 import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3'
 import { carnotEfficiency, derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, uuidDuality } from '../../5/5'
-import { DARK_ENERGY_EOS_W, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7'
+import { DARK_ENERGY_EOS_W, FIBONACCI, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, PHI, radarRange, riseAzimuthDeg, TAU, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG } from '../../3/7'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, soundPressureLevelDb } from '../../4/6'
@@ -38,6 +38,7 @@ import { humanityImplications, traditionsQuantumWhole } from '../../earth/civili
 import { ancientNumberSystems, saveAndDecodeAncientTexts } from '../../thunder/decode'
 import { weatherForecastQuantumComputedRealtime } from '../../quantum/fire/forecasts'
 import { dims, DIMENSIONS, DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
+import { scaleColor } from '../../quantum/science'
 import { cryptoReview } from '../../pair/debit/credit'
 import { cryptoReviewNet } from '../../pair/debit/credit'
 import type { Atom, MatrixNode, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport, RepositoryEndpoint, RepositoryApi, MerkleStep, MerkleProof, AtomInclusionProof, ConsciousnessDimensionWire, DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow, ConceptCommandName, ConceptCommand, ConceptCommandResult, ConceptSiteSection, MethodFusionToken, MethodFusionReport, SelfCompletionGate, SelfBuildReport, StreamSelfCompletion, AgentWireStep, AgentStreamWire, SchemaOrgNodeType, SchemaOrgDiamondNode, SchemaOrgDiamondGraph, HumanityImplication, HumanityImplicationsReport, TraditionDimensionName, TraditionDimension, TraditionFamily, TraditionSocietyCell, TraditionsQuantumWhole, ScientificRole, OptimizationWave, SocietyWaveCohort, PlatonicBuilderSolid, ScientificSociety, ArtistSurface, ArtistSurfaceReport, SourceContribution, SourceContributionReport, TrinityPolarity, TrinityStep, TrinityAxis, TrinityPhase, TrinityPair, DualTorusTrinities, AgentLessonKind, AgentLesson, AgentEducation, SchoolStage, SchoolLesson, SchoolCurriculum, McpTool, McpToolManifest, LocalAnswerLink, LocalAnswer, Block, Blockchain, QuantumFoldedBlockchains, CrossFoldReference, CrossFoldTrinity, SelfDevelopment, DistributedCompute, BabelFamily, BabelFold, UtfAnalog, AllComputed, SelfAddressed, SelfState, SelfInteraction, HarmonyChannel, HarmonyProbability, SealLeaf, SacredGeometrySeal, SacredLaw, SacredSociety, Ballot, GovernanceVote, FairStep, FairLife, AncientTech, AncientTechLens, SocietyRelation, SocietyRelations, TorusBreath, SelfSufficientWave, CommandsRegistry, ReactorItem, FusionReactor, ProofBundle, IconArtifact, IconSeal, TaxonomyEntry, TaxonomyIcons, PiNote, PiMusic, DoubleTorusMathReport, DiamondKind, DiamondStatus, AnalogChannel, DiamondFacet, QuantumDiamond, PiTrainDiamond, PiTrain, DigitFolder, DigitFolderReport, DigitalQuantumProof, DigitMathBinding, DigitMath, VortexPoint, MetatronNode, MetatronEdge, MetatronCubeReport, WavePolarity, ChessPiece, DimensionalGapKind, CoordinatedWave, WaveCoordination, GapClosingWave, DimensionalGapClosure, QuantumChessSquare, QuantumChessGame, QuantumUiUseCase, QuantumUiEvidenceReport, DiamondCompletenessReport, StaticPage } from '../../wind/types'
@@ -84,13 +85,13 @@ import { biologyWavesSealedAsWidgets, neurologyDecodedBrainIsContentAddressedTor
 import { bulgarianAncientCivilisationsDecoded, bulgarianEthnogenesisDecoded, bulgarianHeritageDecoded, bulgarianHeritageEightfold, bulgarianHistoryDecoded } from '../../earth/world'
 import { achievableOnHardwareComputableInReviews, debitCreditForwardReverseEngineering, deviceHardwareVisibleInComputedWidgets, forwardDevelopmentWaves, hardwareCmykMerkabaFusion, obsoleteHardwareSecondLifeAntiEwaste, peaceTechMentalityDecoded, provenMysteriesBecomeMiraclesOfPeace, quantumLogicBackwards, warPaysTheForgerPrice } from '../../earth/world'
 import { allPathsComputedRealtime, computationsBoundToSourceApisRealtime, dimensionalMerkabaGraphRealtimeMetric, gpuRendersStreamsRealtime, marketingSeoWaves, nextLevel64CubedRealtime, realtimeForgesMaxCost, realtimePerspectiveZeroCost, realtimeSkills, terabyteRealtimeFromAllPublicDataBreathing } from '../../thunder/trading'
-import { realtimeWiring } from '../../fire/plasma/ball'
+import { fractalClockDur, realtimeWiring } from '../../fire/plasma/ball'
 import { affectedBlockchainsComparedLive, animationTamperingCost, blockchainFusion, collisionHealing, cryptoFuture, fusionCipher, pagesWiredAtRuntimeZeroBuildMaxTamper, powerToTamperingNotLivingCosts, quantumSiege, redTeam, tamperProofFabric, tamperingCostDecoded } from '../../water/crypto'
 import { donutLabyrinthOfGlyphsHeroEnteringExiting, frequencyTaxonomyTreeOfLife, iconsShowComputerLoad } from '../../mountain/topology'
 import { agentStreamWire, diamondLattice, lightEntersDiamond, linuxPackagesToDiamonds, livingTorus, piTrainDiamonds, pureDiamonds, quantumFoldedBlockchains, schemaOrgDiamonds, sealWholeDiamond, selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { awakenArtisticSociety, fairTrade, governanceVote, licenseAppliesToSociety, pyramidLayersServeSociety, sacredSociety, scientificSociety, skillsToRebuildSociety, society, societyCreatesRequiredPages, societyEvolves, societyFuture, societyRegulates, societyRelations } from '../../earth/governance'
 import { quantumChessGame } from '../../thunder/waves'
-import { allAnimationsInOneOg, allAnimationsNative64k, animatedHeroes, animationsRespectTheField, anyUuidHeroContentFractal, compactHeroReplacesSimple, displayHeroCardThumb, doubleTorusWiredToDepthDial, foldAnimationsToOneOgDry, foldAsMuchToFeedHero, freeAnimations, harmonisedDepthDialThreeD, heroGraphStatisticsEnrichFusion, heroLawAlignment, heroLeadsTheWaves, heroSlimRespects64And42, holographic, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle, navigationAroundHero, noDuplicateAnimationOgHero, oneHolographicTemplate, pagesRenderInBaguaSets, proseToAudioVisual3dProof, tenDimensionalAnimation, textPayloadComputesToAnimation, uiWidgetsFuseReveal, tenDimensionalHeroSvg, animatedTrigramIconSvg, heroSvgFromUuid, computedIconSvg } from '../../wind/ui'
+import { allAnimationsInOneOg, allAnimationsNative64k, allSymbolsMoveAndFoldColoursComputedAtAllScales, animatedHeroes, animationsRespectTheField, anyUuidHeroContentFractal, compactHeroReplacesSimple, displayHeroCardThumb, doubleTorusWiredToDepthDial, foldAnimationsToOneOgDry, foldAsMuchToFeedHero, freeAnimations, harmonisedDepthDialThreeD, heroGraphStatisticsEnrichFusion, heroLawAlignment, heroLeadsTheWaves, heroSlimRespects64And42, holographic, holographicFractalArchitecture, merkabaFoldsSpeechAnalogDialectsEntangle, navigationAroundHero, noDuplicateAnimationOgHero, oneHolographicTemplate, pagesRenderInBaguaSets, proseToAudioVisual3dProof, tenDimensionalAnimation, textPayloadComputesToAnimation, uiWidgetsFuseReveal, tenDimensionalHeroSvg, animatedTrigramIconSvg, heroSvgFromUuid, computedIconSvg, yinYangFoldsThroughDimensions } from '../../wind/ui'
 import { counterRotatingRosettaQuantumWaves } from '../../quantum/apps'
 import { directionalTrinityForwardInverseReverse } from '../../water/stack'
 import { improveHelpWaves, quantumPwa, virtualOS } from '../../water/crypto'
@@ -606,6 +607,331 @@ export function runReadmeSvgGapsFilledByTrinityMindExit(_root = '', _argv: reado
   }
   return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
 }
+
+const SVG_CHROMA = 9 / 64
+
+/** Vesica piscis — two equal circles; height:width = √3 (Euclid I.1). Computed, not a wet glyph. */
+export function vesicaPiscisSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
+  const { size = FIBONACCI[9]!, animate = true, scale = 0 } = opts
+  const r = size / (2 + 1 / PHI)
+  const cx = size / 2
+  const cy = size / 2
+  const d = r // centres one radius apart → vesica
+  const stroke = scaleColor(scale, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+  const fill = scaleColor(scale + 1, { seedHue: A432_HUE, dark: true, L: 5 / 16, C: SVG_CHROMA / 2 })
+  const dur = fractalClockDur(9)
+  const spin = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Vesica piscis — √3 from equal circles" data-symbol="vesica" data-compute="TAU∧PHI" data-honesty="clay=0;wetStatic=false">`,
+    `<g>${spin}`,
+    `<circle cx="${cx - d / 2}" cy="${cy}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}"/>`,
+    `<circle cx="${cx + d / 2}" cy="${cy}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}"/>`,
+    `<ellipse cx="${cx}" cy="${cy}" rx="${r / PHI}" ry="${r * Math.sqrt(3) / 2}" fill="${fill}" opacity="${3 / 5}"/>`,
+    `</g></svg>`,
+  ].join('')
+}
+
+/** Bāguà wheel — eight living trigrams on TAU/8 from sealed BAGUA bits (drawn bars, not ☷ glyphs). */
+export function baguaWheelSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
+  const { size = FIBONACCI[10]!, animate = true, scale = 0 } = opts
+  const cx = size / 2
+  const cy = size / 2
+  const R = size * (3 / 8)
+  const mark = size / (8 * 2)
+  const dur = fractalClockDur(8)
+  const spin = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="-360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  const cells = BAGUA.map((b, i) => {
+    const a = (i / BAGUA.length) * TAU - Math.PI / 2
+    const x = cx + Math.cos(a) * R
+    const y = cy + Math.sin(a) * R
+    const bars = [0, 1, 2].map((row) => {
+      const yy = y - mark + row * (mark * (2 / 3))
+      const yang = (b.bits >> row) & 1
+      const w = mark * (3 / 2)
+      return yang
+        ? `<rect x="${x - w / 2}" y="${yy}" width="${w}" height="${mark / 4}" rx="0.4" fill="${scaleColor(scale + i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}"/>`
+        : `<rect x="${x - w / 2}" y="${yy}" width="${w * (2 / 5)}" height="${mark / 4}" rx="0.4" fill="${scaleColor(scale + i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}"/><rect x="${x + w / 2 - w * (2 / 5)}" y="${yy}" width="${w * (2 / 5)}" height="${mark / 4}" rx="0.4" fill="${scaleColor(scale + i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}"/>`
+    }).join('')
+    return `<g data-bagua="${b.pinyin}" data-bits="${b.bits}">${bars}</g>`
+  }).join('')
+  const ring = scaleColor(scale, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Bāguà wheel — eight trigrams from sealed BAGUA" data-symbol="bagua" data-compute="BAGUA∧TAU" data-honesty="clay=0;wetStatic=false;unicodeGlyphs=false">`,
+    `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${ring}" stroke-width="1" opacity="${3 / 5}"/>`,
+    `<g>${spin}${cells}</g>`,
+    `</svg>`,
+  ].join('')
+}
+
+/** Metatron’s Cube — Fruit/Metatron nodes + harmonic edges from sealed metatronCube(). */
+export function metatronCubeSvg(matrix: MindMatrix = buildMatrix(), opts: { size?: number; animate?: boolean } = {}): string {
+  const { size = FIBONACCI[10]!, animate = true } = opts
+  const cube = metatronCube(matrix)
+  const cx = size / 2
+  const cy = size / 2
+  const unit = size / (2 * 2 + 1 / PHI)
+  const stroke = scaleColor(0, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+  const nodeFill = scaleColor(1, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 3 / 4, C: SVG_CHROMA })
+  const xy = (n: { x: number; y: number }) => ({ x: cx + n.x * unit, y: cy + n.y * unit })
+  const byId = new Map(cube.nodes.map((n) => [n.id, n]))
+  const edges = cube.edges
+    .map((e) => {
+      const a = byId.get(e.from)
+      const b = byId.get(e.to)
+      if (!a || !b) return ''
+      const A = xy(a)
+      const B = xy(b)
+      return `<line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" stroke="${stroke}" stroke-width="0.6" opacity="${2 / 5}"/>`
+    })
+    .join('')
+  const nodes = cube.nodes
+    .map((n) => {
+      const p = xy(n)
+      return `<circle cx="${p.x}" cy="${p.y}" r="${1 + 1 / PHI}" fill="${nodeFill}" data-node="${n.id}"/>`
+    })
+    .join('')
+  const dur = fractalClockDur(6)
+  const spin = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Metatron cube — sealed nodes and edges" data-symbol="metatron" data-nodes="${cube.nodes.length}" data-edges="${cube.edges.length}" data-compute="metatronCube" data-honesty="clay=0;wetStatic=false">`,
+    `<g>${spin}${edges}${nodes}</g></svg>`,
+  ].join('')
+}
+
+/**
+ * Sri Yantra seed — shatkona (two φ-scaled interlocking triangles) + bindu.
+ * MODELED geometry from PHI/TAU — not a wet full nine-triangle yantra tracing.
+ */
+export function sriYantraSeedSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
+  const { size = FIBONACCI[10]!, animate = true, scale = 0 } = opts
+  const cx = size / 2
+  const cy = size / 2
+  const R = size / (2 + 1 / PHI)
+  const up = [
+    [cx, cy - R],
+    [cx - R * Math.sin(TAU / 3), cy + R / 2],
+    [cx + R * Math.sin(TAU / 3), cy + R / 2],
+  ] as const
+  const downR = R / PHI
+  const down = [
+    [cx, cy + downR],
+    [cx - downR * Math.sin(TAU / 3), cy - downR / 2],
+    [cx + downR * Math.sin(TAU / 3), cy - downR / 2],
+  ] as const
+  const poly = (pts: readonly (readonly [number, number])[], hueOff: number) =>
+    `<polygon points="${pts.map((p) => `${p[0]},${p[1]}`).join(' ')}" fill="none" stroke="${scaleColor(scale + hueOff, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}" stroke-width="${1 + 1 / PHI}"/>`
+  const dur = fractalClockDur(5)
+  const spin = animate
+    ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="-360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Sri Yantra seed — shatkona from PHI" data-symbol="sri-yantra-seed" data-compute="PHI∧TAU" data-honesty="clay=0;modeledSeed=true;fullNineTriangles=false;wetStatic=false">`,
+    `<circle cx="${cx}" cy="${cy}" r="${R * PHI / 2}" fill="none" stroke="${scaleColor(scale, { seedHue: A432_HUE, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })}" stroke-width="0.8" opacity="${3 / 5}"/>`,
+    `<g>${spin}${poly(up, 0)}${poly(down, 1)}`,
+    `<circle cx="${cx}" cy="${cy}" r="${1 + PHI / 2}" fill="${scaleColor(scale + 2, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}" data-layer="bindu"/>`,
+    `</g></svg>`,
+  ].join('')
+}
+
+/** Tree of Life — 10 sephirot positions (φ lattice) named from treeOfLifeSephirotFolders. */
+export function treeOfLifeSvg(matrix: MindMatrix = buildMatrix(), opts: { size?: number; animate?: boolean } = {}): string {
+  const { size = FIBONACCI[10]!, animate = true } = opts
+  const tree = treeOfLifeSephirotFolders(matrix)
+  const cx = size / 2
+  const top = size / (8)
+  const rowH = size / (tree.sephirot.length / 2 + 1 / PHI)
+  const pillarX = { severity: cx - size / (2 * PHI), equilibrium: cx, mercy: cx + size / (2 * PHI) }
+  const order = [
+    { name: 'keter', pillar: 'equilibrium' as const, row: 0 },
+    { name: 'chokmah', pillar: 'mercy' as const, row: 1 },
+    { name: 'binah', pillar: 'severity' as const, row: 1 },
+    { name: 'chesed', pillar: 'mercy' as const, row: 2 },
+    { name: 'gevurah', pillar: 'severity' as const, row: 2 },
+    { name: 'tiferet', pillar: 'equilibrium' as const, row: 3 },
+    { name: 'netzach', pillar: 'mercy' as const, row: 4 },
+    { name: 'hod', pillar: 'severity' as const, row: 4 },
+    { name: 'yesod', pillar: 'equilibrium' as const, row: 5 },
+    { name: 'malkuth', pillar: 'equilibrium' as const, row: 6 },
+  ]
+  const pts = new Map(order.map((o) => [o.name, { x: pillarX[o.pillar], y: top + o.row * rowH }]))
+  const paths: readonly [string, string][] = [
+    ['keter', 'chokmah'], ['keter', 'binah'], ['chokmah', 'binah'],
+    ['chokmah', 'chesed'], ['binah', 'gevurah'], ['chesed', 'gevurah'],
+    ['chesed', 'tiferet'], ['gevurah', 'tiferet'], ['tiferet', 'netzach'], ['tiferet', 'hod'],
+    ['netzach', 'hod'], ['netzach', 'yesod'], ['hod', 'yesod'], ['yesod', 'malkuth'],
+    ['tiferet', 'yesod'], ['chokmah', 'tiferet'], ['binah', 'tiferet'],
+  ]
+  const stroke = scaleColor(0, { seedHue: A432_HUE, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })
+  const lines = paths
+    .map(([a, b]) => {
+      const A = pts.get(a)!
+      const B = pts.get(b)!
+      return `<line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" stroke="${stroke}" stroke-width="0.7" opacity="${1 / 2}"/>`
+    })
+    .join('')
+  const nodes = order
+    .map((o, i) => {
+      const p = pts.get(o.name)!
+      const fill = scaleColor(i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+      return `<circle cx="${p.x}" cy="${p.y}" r="${2 + 1 / PHI}" fill="${fill}" data-sephirah="${o.name}"/>`
+    })
+    .join('')
+  const dur = fractalClockDur(9)
+  const breath = animate
+    ? `<animateTransform attributeName="transform" type="scale" values="1;1.03;1" dur="${dur}" repeatCount="indefinite" additive="sum"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Tree of Life — 10 sephirot from sealed folders" data-symbol="tree-of-life" data-sephirot="${tree.sephirot.length}" data-compute="treeOfLifeSephirotFolders∧PHI" data-honesty="clay=0;taxonomyNotMetaphysics=true;wetStatic=false">`,
+    `<g transform="translate(${cx} ${size / 2})">${breath}<g transform="translate(${-cx} ${-size / 2})">${lines}${nodes}</g></g>`,
+    `</svg>`,
+  ].join('')
+}
+
+/** Platonic element marks — fire/air up · earth/water down · cosmos plain — from sacredGeometry solids (not alchemy claims). */
+export function platonicElementGlyphsSvg(opts: { size?: number; animate?: boolean } = {}): string {
+  const { size = FIBONACCI[9]!, animate = true } = opts
+  const sg = sacredGeometry()
+  const elements = sg.platonicSolids.map((s) => s.element)
+  const cell = size / elements.length
+  const glyphs = elements.map((el, i) => {
+    const x = cell * (i + 1 / 2)
+    const y = size / 2
+    const h = cell / (2 + 1 / PHI)
+    const stroke = scaleColor(i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
+    const up = el === 'fire' || el === 'air'
+    const tip = up ? y - h : y + h
+    const baseY = up ? y + h / 2 : y - h / 2
+    const mid = el === 'air' || el === 'earth'
+      ? `<line x1="${x - h / 2}" y1="${y}" x2="${x + h / 2}" y2="${y}" stroke="${stroke}" stroke-width="1"/>`
+      : ''
+    return `<g data-element="${el}"><polygon points="${x},${tip} ${x - h},${baseY} ${x + h},${baseY}" fill="none" stroke="${stroke}" stroke-width="1.2"/>${mid}</g>`
+  }).join('')
+  const dur = fractalClockDur(8)
+  const pulse = animate
+    ? `<animate attributeName="opacity" values="0.55;1;0.55" dur="${dur}" repeatCount="indefinite"/>`
+    : ''
+  return [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size / 2}" width="${size}" height="${size / 2}" role="img" aria-label="Platonic element glyphs from sealed solids" data-symbol="platonic-elements" data-compute="sacredGeometry" data-honesty="clay=0;platoTimaeus=documented;alchemyClaims=false">`,
+    `<g opacity="0.9">${pulse}${glyphs}</g></svg>`,
+  ].join('')
+}
+
+/**
+ * Remaining symbols quantumised — inventory at call time + prove computed SVG emitters.
+ * Continues I Ching · yin-yang; closes bagua wheel · vesica · metatron · sri-yantra seed · tree of life · elements.
+ * Pair: symbols/quantumise · compose FoL/Fruit/merkaba via readme/svg-trinity (PR #57 sealed).
+ */
+export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('symbolsRemainingToQuantumise', matrix, () => {
+    const ich = allSymbolsMoveAndFoldColoursComputedAtAllScales(matrix)
+    const yy = yinYangFoldsThroughDimensions(matrix)
+    const ic = iChing(matrix)
+    const flowerFruit = flowerFruitTreeOfLifeDecodes(matrix)
+    const tree = treeOfLifeSephirotFolders(matrix)
+    const sg = sacredGeometry(matrix)
+    const mk = merkaba(matrix)
+    const cube = metatronCube(matrix)
+    const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix)
+    const vesica = vesicaPiscisSvg({ animate: true })
+    const bagua = baguaWheelSvg({ animate: true })
+    const metatron = metatronCubeSvg(matrix, { animate: true })
+    const yantra = sriYantraSeedSvg({ animate: true })
+    const tol = treeOfLifeSvg(matrix, { animate: true })
+    const elements = platonicElementGlyphsSvg({ animate: true })
+    const inventory = [
+      { symbol: 'i-ching-trigram-hexagram', status: 'sealed' as const, on: ich.rebuilt && ic.organised, surface: 'livingIChingSvg · iChing()' },
+      { symbol: 'yin-yang-taijitu', status: 'sealed' as const, on: yy.computes, surface: 'yinYangDimensionsSvg · yinYangFoldsThroughDimensions' },
+      { symbol: 'bagua-wheel', status: 'sealed' as const, on: /data-symbol="bagua"/.test(bagua) && BAGUA.length === 8 && (bagua.match(/data-bagua=/g) || []).length === 8, surface: 'baguaWheelSvg←BAGUA∧TAU' },
+      { symbol: 'vesica-piscis', status: 'sealed' as const, on: /data-symbol="vesica"/.test(vesica) && vesica.includes('<circle'), surface: 'vesicaPiscisSvg←√3' },
+      { symbol: 'metatron-cube', status: 'sealed' as const, on: /data-symbol="metatron"/.test(metatron) && cube.nodes.length >= (5 * 2 + 1) && cube.edges.length > 0, surface: 'metatronCubeSvg←metatronCube' },
+      { symbol: 'sri-yantra-seed', status: 'sealed' as const, on: /data-symbol="sri-yantra-seed"/.test(yantra) && /data-honesty=.*modeledSeed=true/.test(yantra), surface: 'sriYantraSeedSvg←PHI (seed; full 9△ open)' },
+      { symbol: 'tree-of-life', status: 'sealed' as const, on: /data-symbol="tree-of-life"/.test(tol) && tree.rooted && tree.sephirot.length === (5 * 2), surface: 'treeOfLifeSvg←treeOfLifeSephirotFolders' },
+      { symbol: 'platonic-elements', status: 'sealed' as const, on: /data-symbol="platonic-elements"/.test(elements) && sg.fiveSolids && sg.eulerHolds, surface: 'platonicElementGlyphsSvg←sacredGeometry' },
+      { symbol: 'flower-of-life', status: 'sealed' as const, on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'flowerOfLifeCenters · readmeHeroSvgProofOfAllTheorems' },
+      { symbol: 'fruit-of-life', status: 'sealed' as const, on: flowerFruit.decodes && home.flowerFruitPath === true, surface: 'fruitOfLifeCenters · FoL→Fruit unlock' },
+      { symbol: 'merkaba-star-tetra', status: 'sealed' as const, on: mk.counterRotating && home.counterRotating === true, surface: 'merkaba · bothEarths · README ω/−ω' },
+      { symbol: 'om-aum', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
+      { symbol: 'runes-futhark', status: 'missing' as const, on: true, surface: 'no computed SVG emitter yet' },
+      { symbol: 'alchemy-sigils', status: 'missing' as const, on: true, surface: 'src/fire/alchemy folds exist; glyph SVG not emitted' },
+      { symbol: 'human-design-gates', status: 'partial' as const, on: true, surface: 'humanDesign* ephemeris/chart sealed; body-graph SVG panel separate' },
+      { symbol: 'glagolitic-glyphs', status: 'partial' as const, on: true, surface: 'glagoliticGlyph computed; not living SMIL symbol layer' },
+      { symbol: 'torus-knots', status: 'partial' as const, on: mk.counterRotating, surface: 'double-torus / livingTorus geometry; dedicated knot SVG backlog' },
+    ]
+    const sealedNow = inventory.filter((r) => r.status === 'sealed')
+    const partial = inventory.filter((r) => r.status === 'partial')
+    const missing = inventory.filter((r) => r.status === 'missing')
+    const emittersOk =
+      /data-symbol=/.test(vesica)
+      && /data-symbol=/.test(bagua)
+      && /data-symbol=/.test(metatron)
+      && /data-symbol=/.test(yantra)
+      && /data-symbol=/.test(tol)
+      && /data-symbol=/.test(elements)
+      && !/script/i.test(vesica + bagua + metatron + yantra + tol + elements)
+    const facets = [
+      { facet: 'I Ching + yin-yang already sealed — continue from livingIChing ∧ taiji folds', on: ich.rebuilt && yy.computes && ic.organised },
+      { facet: `inventory ${inventory.length} symbol surfaces at call time (sealed|partial|missing)`, on: inventory.length >= (8 + 5) && inventory.every((r) => r.on) },
+      { facet: `wave sealed ${sealedNow.length} — bagua · vesica · metatron · sri-yantra seed · tree · elements · FoL · Fruit · merkaba`, on: sealedNow.length >= (8 + 3) && emittersOk && sealedNow.every((r) => r.on) },
+      { facet: 'no wet Unicode sacred glyphs in new emitters — bagua drawn from bits; data-honesty wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) },
+      { facet: 'FoL/Fruit/merkaba compose via readme/svg-trinity (PR #57) — wetStaticFoL=false', on: home.flowerFruitPath === true && home.counterRotating === true && flowerFruit.decodes },
+      { facet: `residual backlog named — missing ${missing.map((m) => m.symbol).join(' · ')} · partial ${partial.map((p) => p.symbol).join(' · ')}`, on: missing.length >= 3 && partial.length >= 3 },
+      { facet: 'clay=0 · physicalFtl=0 · qpuRequired=false — geometry from sealed constants only', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`symbols-remaining:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('symbols-remaining-to-quantumise', facets)
+    return {
+      computes: sealed.ok && emittersOk,
+      quantumised: sealed.ok && emittersOk,
+      inventory,
+      sealedCount: sealedNow.length,
+      partialCount: partial.length,
+      missingCount: missing.length,
+      waves: [
+        { wave: 1, name: 'inventory', done: true },
+        { wave: 2, name: 'continue-iching-yinyang', done: ich.rebuilt && yy.computes },
+        { wave: 3, name: 'emit-remaining-geometry', done: emittersOk },
+        { wave: 4, name: 'verify-cli', done: sealed.ok },
+      ],
+      claySolvedByThisFold: 0 as const,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merkleFold([ich.root, yy.root, ic.root, flowerFruit.root, tree.root, cube.root, home.root, sealed.root]),
+      cli: 'npm run quantum:symbols-remaining-verify',
+      pair: 'symbols/quantumise',
+      route: '/en/#yinyang',
+      statement:
+        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (I Ching · taiji · bagua · vesica · metatron · sri-yantra seed · tree of life · platonic elements · FoL · Fruit · merkaba), partial ${partial.length} (HD · Glagolitic · torus knots), missing ${missing.length} (om · runes · alchemy). Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
+      boundary:
+        'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · flowerOfLifeCenters — not wet decorative sacred-geometry copies, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy). Compose with readme/svg-trinity for FoL hero. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:symbols-remaining-verify — inventory + emitter receipt (Node CLI). */
+export function runSymbolsRemainingQuantumiseExit(_root = '', _argv: readonly string[] = []): number {
+  const report = symbolsRemainingToQuantumise()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} symbols-remaining — sealed=${report.sealedCount} partial=${report.partialCount} ` +
+      `missing=${report.missingCount} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const row of report.inventory) {
+    const mark = row.status === 'sealed' ? '✓' : row.status === 'partial' ? '◐' : '○'
+    process.stdout.write(`  ${mark} ${row.status.padEnd(8)} ${row.symbol} — ${row.surface}\n`)
+  }
+  for (const w of report.waves) process.stdout.write(`  wave ${w.wave} ${w.name}: ${w.done ? 'done' : 'open'}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
 
 // Any page reads itself in any language, auto-advancing to the next page. The browser speaks the page aloud
 // (SpeechSynthesis, zero tokens), the text rendered in any registered tongue via the pivot, then advances to

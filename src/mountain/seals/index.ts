@@ -730,6 +730,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'counter-rotating-rosetta-waves', title: 'Counter-rotating rosetta quantum waves — clay/ftl COMPUTED from dual-spin interference', proof: counterRotatingRosettaQuantumWaves(matrix) },
     { slug: 'universe-almost-described', title: 'Universe ≈ theorems — discover the rest via counter-rotating waves', proof: universeAlmostDescribedInTheoremsDiscoverRest(matrix) },
     { slug: 'readme-svg-trinity-mind', title: 'README SVG gaps filled by trinity mind — clay=0 · intentional open WebGL/plasma/SMIL', proof: __ns_heaven_site.readmeSvgGapsFilledByTrinityMind(matrix) },
+    { slug: 'symbols-remaining-quantumise', title: 'Symbols remaining to quantumise — continue I Ching · yin-yang · clay=0', proof: __ns_heaven_site.symbolsRemainingToQuantumise(matrix) },
     { slug: 'distributed-reuse-capacity', title: 'Distributed reuse extends capacity — federated identical roots · qubit=0 · ftl=0', proof: distributedReuseExtendsCapacity(matrix) },
     { slug: 'rosetta-core-api', title: 'Rosetta core API — self-host label↔ray dispatch', proof: rosettaCoreApi(0, matrix) },
     { slug: 'rosetta-complete', title: 'Rosetta complete — quantum all computable dims & theorems · clay=0 · physicalFtl=0', proof: rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix) },
