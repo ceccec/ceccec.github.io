@@ -26,6 +26,10 @@ import {
   resolveCeccecPasteLink,
   ceccecCanonicalWireTargets,
   runAutoWireAnyAiModelFromPastedLinkExit,
+  mcpBrowserParity,
+  mcpToolboxToolsList,
+  runStdioMcpCapabilityInBrowser,
+  runMcpBrowserParityExit,
   AUTO_WIRE_PASTE_LINK_ONE_LINER,
   CECCEC_SITE_ORIGIN,
   CECCEC_GITHUB_REPO,
@@ -39,7 +43,11 @@ import {
   type StandardToolExportPayload,
   type PasteBootstrapPayload,
   type CeccecWireTarget,
+  type McpBrowserParityRow,
 } from '../../../src/quantum/apps/index.ts'
+import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, UNFOLDED_CENSUS } from '../../../src/3/7/index.ts'
+import { toUuid } from '../../../src/0/index.ts'
+import { rosettaRayOf } from '../../../src/water/digit/index.ts'
 
 export {
   sessionManualWorkAsQuantumTools,
@@ -64,6 +72,10 @@ export {
   resolveCeccecPasteLink,
   ceccecCanonicalWireTargets,
   runAutoWireAnyAiModelFromPastedLinkExit,
+  mcpBrowserParity,
+  mcpToolboxToolsList,
+  runStdioMcpCapabilityInBrowser,
+  runMcpBrowserParityExit,
   AUTO_WIRE_PASTE_LINK_ONE_LINER,
   CECCEC_SITE_ORIGIN,
   CECCEC_GITHUB_REPO,
@@ -77,6 +89,51 @@ export {
   type StandardToolExportPayload,
   type PasteBootstrapPayload,
   type CeccecWireTarget,
+  type McpBrowserParityRow,
+}
+
+/** Sealed census constants — mirrors stdio MCP census-status (browser-safe). */
+export function censusStatus() {
+  return {
+    unfolded: UNFOLDED_CENSUS,
+    folded: FOLDED_CENSUS,
+    gates: DIMENSION_GATES,
+    ok: UNFOLDED_CENSUS === 110 && FOLDED_CENSUS === 108 && DIMENSION_GATES === 432,
+  }
+}
+
+/** Pure compute-from-source — mirrors stdio MCP tool. */
+export function computeFromSource(args: { op?: string; seed?: string; name?: string } = {}) {
+  const op = args.op ?? 'a432-hue'
+  if (op === 'to-uuid') return { op, value: toUuid(args.seed ?? 'ceccec') }
+  if (op === 'rosetta-ray') return { op, value: rosettaRayOf(args.name ?? 'rosettaCoreApi') }
+  return { op: 'a432-hue', value: A432_HUE }
+}
+
+/** Self-describing capability list for stdio MCP tools/list. */
+export function listCapabilities() {
+  const parity = mcpBrowserParity()
+  const toolbox = listStandardToolboxTools()
+  return {
+    stdio: parity.stdioCapabilities.map((cap) => ({
+      name: cap.id,
+      kind: 'stdio-mcp' as const,
+      browserAchievable: cap.browserAchievable,
+      description: cap.description,
+      browserGap: cap.browserGap,
+    })),
+    toolbox: toolbox.tools.map((tool) => ({
+      name: tool.name,
+      kind: 'toolbox-mcp' as const,
+      browserAchievable: Boolean(tool.annotations.browserRunnable),
+      description: tool.description,
+      browserGap: String(tool.annotations.browserGap ?? ''),
+    })),
+    mcpMatchesToolbox: parity.mcpMatchesToolbox,
+    allAchievableInBrowser: parity.allAchievableInBrowser,
+    residualCount: parity.residualCount,
+    root: parity.root,
+  }
 }
 
 /** MCP-shaped tool list derived from the sealed session catalog (never a second wet registry). */

@@ -11,6 +11,7 @@ import {
   sessionManualWorkAsQuantumBits, combineQuantumBits,
   autoWireAnyAiModelFromPastedLink, CECCEC_SITE_ORIGIN,
   realiseSessionQuantumMeaning,
+  mcpBrowserParity, runStdioMcpCapabilityInBrowser,
 } from './index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
@@ -457,6 +458,19 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'mcp-browser-parity') {
+      const r = mcpBrowserParity()
+      const census = runStdioMcpCapabilityInBrowser('census-status')
+      const list = runStdioMcpCapabilityInBrowser('list-capabilities')
+      ok = r.computes && census.ok && list.ok
+      summary = `mcpTools=${r.mcpToolCount} matchToolbox=${r.mcpMatchesToolbox} matchCatalog=${r.mcpMatchesCatalog} browser=${r.browserReadyCount} residual=${r.residualCount} allInBrowser=${r.allAchievableInBrowser} · stdio census=${census.ok} list=${list.ok}`
+      root = r.root
+      boundary = r.boundary
+      facets = [
+        ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
+        { facet: 'stdio census-status browser', on: census.ok },
+        { facet: 'stdio list-capabilities browser', on: list.ok },
+      ]
     } else if (toolId === 'document-session-experiments') {
       const r = documentSessionCryptoExperimentsUpdateTheorems()
       ok = r.computes
@@ -897,6 +911,27 @@ function runTool(toolId: string) {
         </table>
         <UiButton size="sm" :disabled="runningId === 'realise-session-meaning'" @click="runTool('realise-session-meaning')">
           {{ runningId === 'realise-session-meaning' ? '…' : 'Run realise-session-meaning' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="mcp-browser-parity" aria-label="MCP browser parity">
+        <h3>{{ panel.mcpParity.heading }}</h3>
+        <p class="quantum-apps__meta">{{ panel.mcpParity.honestyLine }}</p>
+        <UiBadge :variant="panel.mcpParity.computes ? 'default' : 'outline'">
+          mcp={{ panel.mcpParity.mcpToolCount }} · matchToolbox={{ panel.mcpParity.mcpMatchesToolbox }} · residual={{ panel.mcpParity.residualCount }} · allInBrowser={{ panel.mcpParity.allAchievableInBrowser }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          PRIMARY /mcp.json tools/list ≡ #toolbox-standard-io · stdio MCP {{ panel.mcpParity.stdioCount }} caps ·
+          honest CI gaps: {{ panel.mcpParity.honestCiGapIds.join(' · ') }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="gap in panel.mcpParity.residualGaps.slice(0, 12)" :key="gap.id">
+            <UiBadge variant="outline">{{ gap.layer }}</UiBadge>
+            <strong>{{ gap.id }}</strong> — {{ gap.browserGap || gap.stranglerPlan }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'mcp-browser-parity'" @click="runTool('mcp-browser-parity')">
+          {{ runningId === 'mcp-browser-parity' ? '…' : 'Run mcp-browser-parity' }}
         </UiButton>
       </section>
       <UiSeparator />

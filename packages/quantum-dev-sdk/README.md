@@ -6,13 +6,16 @@ Thin, census-safe wrappers over sealed `src/` quantum tools. Improves token usag
 
 | Surface | What |
 |---|---|
+| `/mcp.json` | PRIMARY `result.tools` = toolbox catalog ids (auto-wire parity) |
 | `/agents.json` | session catalog + `standardToolboxIoCatalog` envelopes + paste-bootstrap |
 | `/en/quantum-tools#toolbox-standard-io` | Standard I/O · import/export table |
+| `/en/quantum-tools#mcp-browser-parity` | MCP↔browser parity matrix + residual gaps |
 | `/en/quantum-tools#session-manual-tools` | Session tools table |
 | `/en/quantum-tools#auto-wire-paste-link` | Paste any link → auto-wire |
+| `npm run quantum:mcp-browser-parity` | Parity gate receipt |
 | `npm run quantum:auto-wire-paste` | paste-bootstrap JSON from any ceccec URL |
 | `npm run quantum:toolbox-standard-io` | Envelope census + round-trip |
-| `npm run quantum:tool-import-export` | App A↔B import/export verify |
+| `.cursor/mcp.json` | Local stdio MCP (`quantum-dev`) — IDE agent only |
 | `rosettaShelve(id, 'tool')` | Content-addressed tool ray |
 
 ## Use (workspace)
