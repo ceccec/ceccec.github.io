@@ -98,6 +98,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'sdk/wire',
   'universe/align',
   'rosetta/counter-rotate',
+  'rosetta/merkaba',
   'discover/rest',
   'readme/svg-trinity',
   'wire/paste-link',
