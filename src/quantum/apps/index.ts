@@ -344,6 +344,8 @@ export type StandardToolIoField = {
   readonly name: string
   readonly type: 'string' | 'number' | 'boolean' | 'object'
   readonly description: string
+  readonly required?: boolean
+  readonly defaultValue?: string | number | boolean
 }
 
 /** Sealed I/O schema — every tool publishes the same field contract shape. */
@@ -361,13 +363,14 @@ export type StandardToolHonesty = {
 }
 
 /**
- * Standard tool envelope — { id, version, input, output, import, export } + root/merkle + honesty.
+ * Standard tool envelope — { id, version, input, config, output, import, export } + root/merkle + honesty.
  * Pair: tool/envelope · import/export round-trips the same content-addressed payload across apps.
  */
 export type StandardToolEnvelope = {
   readonly id: string
   readonly version: typeof STANDARD_TOOL_ENVELOPE_VERSION
   readonly input: StandardToolIoSchema
+  readonly config: StandardToolIoSchema
   readonly output: StandardToolIoSchema
   readonly import: {
     readonly kind: typeof STANDARD_TOOL_ENVELOPE_KIND
@@ -391,6 +394,7 @@ export type StandardToolEnvelope = {
   readonly browserRunnable: boolean
   readonly browserGap: string
   readonly boundary: string
+  readonly scienceFacing: boolean
   readonly honesty: StandardToolHonesty
 }
 
@@ -402,14 +406,22 @@ export type StandardToolExportPayload = {
   readonly toolId: string
   readonly envelope: StandardToolEnvelope
   readonly inputRoot: string
+  readonly configRoot: string
   readonly outputRoot: string
   readonly payloadRoot: string
   readonly computes: boolean
 }
 
 const STANDARD_TOOL_INPUT_FIELDS: readonly StandardToolIoField[] = [
-  { name: 'at', type: 'number', description: 'Phase clock (optional; default 0)' },
-  { name: 'seed', type: 'string', description: 'Optional content-address seed for deterministic input' },
+  { name: 'at', type: 'number', description: 'Phase clock (optional; default 0)', required: false, defaultValue: 0 },
+  { name: 'seed', type: 'string', description: 'Optional content-address seed for deterministic input', required: false, defaultValue: '' },
+] as const
+
+const STANDARD_TOOL_CONFIG_FIELDS: readonly StandardToolIoField[] = [
+  { name: 'certified', type: 'boolean', description: 'Must stay false — not FIPS/ISO certified', required: true, defaultValue: false },
+  { name: 'claySolved', type: 'number', description: 'Must stay 0 — Clay Millennium unsolved by this fold', required: true, defaultValue: 0 },
+  { name: 'qpuRequired', type: 'boolean', description: 'Must stay false — classical 64-bit only', required: true, defaultValue: false },
+  { name: 'productionReverse', type: 'boolean', description: 'Production/Bitcoin reverse refused', required: true, defaultValue: false },
 ] as const
 
 const STANDARD_TOOL_OUTPUT_FIELDS: readonly StandardToolIoField[] = [
@@ -419,11 +431,49 @@ const STANDARD_TOOL_OUTPUT_FIELDS: readonly StandardToolIoField[] = [
   { name: 'boundary', type: 'string', description: 'Honesty boundary (demo RSA / clay=0 / CI gaps…)' },
 ] as const
 
-function standardToolIoSchema(role: 'input' | 'output', fields: readonly StandardToolIoField[]): StandardToolIoSchema {
+/** Science-facing experiment tools require sealed input + config (Wave 2 dry-clean). */
+export function isScienceFacingTool(row: Pick<QuantumCliToolRow, 'id' | 'route' | 'pair' | 'barrel'>): boolean {
+  const hay = `${row.id}|${row.route}|${row.pair}|${row.barrel}`
+  return /encryption|research|crypto|iso|audit|prove|millennium|sciences|theorem|rosetta|ftl|directional|demo-rsa|local-reverse|local-audit|document|toolbox|efficiency|first-in|animations|trading-rosetta|session|predict|iching|unit-distance|standards|collider|fusion-verify|og-limits/.test(hay)
+}
+
+function toolInputFieldsFor(row: QuantumCliToolRow): readonly StandardToolIoField[] {
+  const extra: StandardToolIoField[] = []
+  if (/rsa|reverse|encrypt|crypto|iso|audit/.test(row.id)) {
+    extra.push({ name: 'demoOnly', type: 'boolean', description: 'Demo moduli only — production refused', required: true, defaultValue: true })
+  }
+  if (/millennium|theorem|collider|sciences|first-in|rosetta-complete|ftl/.test(row.id)) {
+    extra.push({ name: 'modeledOnly', type: 'boolean', description: 'MODELED apparatus — not lab/HEP/Clay solved', required: true, defaultValue: true })
+  }
+  if (row.id === 'hero-spawn-verify') {
+    extra.push({ name: 'task', type: 'string', description: 'Bounded spawn task text', required: true, defaultValue: 'qualified bounded task with sealed fold target' })
+  }
+  if (row.id === 'trading-rosetta-train') {
+    extra.push({ name: 'paperSimOnly', type: 'boolean', description: 'Paper/sim only — not live money', required: true, defaultValue: true })
+  }
+  if (!row.browserRunnable) {
+    extra.push({ name: 'ciOnly', type: 'boolean', description: `CI/Node only — ${row.browserGap}`, required: true, defaultValue: true })
+  }
+  return [...STANDARD_TOOL_INPUT_FIELDS, ...extra]
+}
+
+function toolConfigFieldsFor(row: QuantumCliToolRow): readonly StandardToolIoField[] {
+  const extra: StandardToolIoField[] = []
+  if (isScienceFacingTool(row)) {
+    extra.push({ name: 'experiment', type: 'boolean', description: 'Scientific experiment run (sealed fold recompute)', required: true, defaultValue: true })
+    extra.push({ name: 'refuseWireClaim', type: 'boolean', description: 'Refuse unproved wire/FIPS claims', required: true, defaultValue: true })
+  }
+  if (!row.browserRunnable) {
+    extra.push({ name: 'browserGapWhy', type: 'string', description: row.browserGap, required: true, defaultValue: row.browserGap })
+  }
+  return [...STANDARD_TOOL_CONFIG_FIELDS, ...extra]
+}
+
+function standardToolIoSchema(role: 'input' | 'config' | 'output', fields: readonly StandardToolIoField[]): StandardToolIoSchema {
   return {
     type: 'object',
     fields,
-    root: toUuid(`standard-tool-io:${role}:${fields.map((f) => `${f.name}:${f.type}`).join(',')}`),
+    root: toUuid(`standard-tool-io:${role}:${fields.map((f) => `${f.name}:${f.type}:${f.required ? '1' : '0'}`).join(',')}`),
   }
 }
 
@@ -434,20 +484,33 @@ const STANDARD_TOOL_HONESTY: StandardToolHonesty = {
   capacityMeans: 'amortized sealed recompute + memoByRoot + distributed identical roots',
 }
 
+/** Default input+config values from sealed field defaults — browser experiments bind these. */
+export function defaultToolExperimentValues(envelope: StandardToolEnvelope): {
+  readonly input: Record<string, string | number | boolean>
+  readonly config: Record<string, string | number | boolean>
+} {
+  const read = (fields: readonly StandardToolIoField[]) =>
+    Object.fromEntries(fields.map((field) => [field.name, field.defaultValue ?? (field.type === 'boolean' ? false : field.type === 'number' ? 0 : '')]))
+  return { input: read(envelope.input.fields), config: read(envelope.config.fields) }
+}
+
 /** Wrap one catalog row into the standard envelope (adapters OK — browserGap preserved). */
 export function wrapToolAsStandardEnvelope(row: QuantumCliToolRow): StandardToolEnvelope {
-  const input = standardToolIoSchema('input', STANDARD_TOOL_INPUT_FIELDS)
+  const scienceFacing = isScienceFacingTool(row)
+  const input = standardToolIoSchema('input', toolInputFieldsFor(row))
+  const config = standardToolIoSchema('config', toolConfigFieldsFor(row))
   const output = standardToolIoSchema('output', STANDARD_TOOL_OUTPUT_FIELDS)
-  const schemaRoot = merge(input.root, output.root)
+  const schemaRoot = merge(merge(input.root, config.root), output.root)
   const body = [
     row.id, STANDARD_TOOL_ENVELOPE_VERSION, row.fold, row.pair, row.cli, row.route,
-    input.root, output.root, schemaRoot,
-    String(row.browserRunnable), row.browserGap, row.boundary, row.address,
+    input.root, config.root, output.root, schemaRoot,
+    String(row.browserRunnable), row.browserGap, row.boundary, row.address, String(scienceFacing),
   ].join('|')
   return {
     id: row.id,
     version: STANDARD_TOOL_ENVELOPE_VERSION,
     input,
+    config,
     output,
     import: {
       kind: STANDARD_TOOL_ENVELOPE_KIND,
@@ -471,6 +534,7 @@ export function wrapToolAsStandardEnvelope(row: QuantumCliToolRow): StandardTool
     browserRunnable: row.browserRunnable,
     browserGap: row.browserGap,
     boundary: row.boundary,
+    scienceFacing,
     honesty: STANDARD_TOOL_HONESTY,
   }
 }
@@ -482,6 +546,7 @@ export function exportStandardToolEnvelope(
   input: Readonly<Record<string, string | number | boolean>> = {},
   matrix: MindMatrix = buildMatrix(),
   at = 0,
+  config: Readonly<Record<string, string | number | boolean>> = {},
 ): StandardToolExportPayload {
   const catalog = quantumCliToolsCatalog(matrix, at)
   const row = catalog.tools.find((tool) => tool.id === toolId)
@@ -494,15 +559,20 @@ export function exportStandardToolEnvelope(
     })
     return {
       kind: STANDARD_TOOL_ENVELOPE_KIND, version: STANDARD_TOOL_ENVELOPE_VERSION, appId, toolId,
-      envelope: ghost, inputRoot: emptyRoot, outputRoot: emptyRoot, payloadRoot: emptyRoot, computes: false,
+      envelope: ghost, inputRoot: emptyRoot, configRoot: emptyRoot, outputRoot: emptyRoot, payloadRoot: emptyRoot, computes: false,
     }
   }
   const envelope = wrapToolAsStandardEnvelope(row)
-  const inputKey = Object.keys(input).sort().map((key) => `${key}=${String(input[key])}`).join('&')
+  const defaults = defaultToolExperimentValues(envelope)
+  const mergedInput = { ...defaults.input, ...input }
+  const mergedConfig = { ...defaults.config, ...config }
+  const inputKey = Object.keys(mergedInput).sort().map((key) => `${key}=${String(mergedInput[key])}`).join('&')
+  const configKey = Object.keys(mergedConfig).sort().map((key) => `${key}=${String(mergedConfig[key])}`).join('&')
   const inputRoot = toUuid(`standard-tool-input:${toolId}:${inputKey || '∅'}`)
-  const outputRoot = toUuid(`standard-tool-output:${toolId}:${envelope.root}:${inputRoot}`)
+  const configRoot = toUuid(`standard-tool-config:${toolId}:${configKey || '∅'}`)
+  const outputRoot = toUuid(`standard-tool-output:${toolId}:${envelope.root}:${inputRoot}:${configRoot}`)
   const payloadRoot = toUuid(
-    `standard-tool-payload:${STANDARD_TOOL_ENVELOPE_KIND}:${STANDARD_TOOL_ENVELOPE_VERSION}:${appId}:${toolId}:${envelope.root}:${inputRoot}:${outputRoot}`,
+    `standard-tool-payload:${STANDARD_TOOL_ENVELOPE_KIND}:${STANDARD_TOOL_ENVELOPE_VERSION}:${appId}:${toolId}:${envelope.root}:${inputRoot}:${configRoot}:${outputRoot}`,
   )
   return {
     kind: STANDARD_TOOL_ENVELOPE_KIND,
@@ -511,6 +581,7 @@ export function exportStandardToolEnvelope(
     toolId,
     envelope,
     inputRoot,
+    configRoot,
     outputRoot,
     payloadRoot,
     computes: isUuid(payloadRoot) && isUuid(envelope.root) && envelope.honesty.physicalQubitSpeedup === 0,
@@ -570,11 +641,22 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
     const allHaveIo = envelopes.every(
       (envelope) =>
         envelope.input.fields.length >= 2 &&
+        envelope.config.fields.length >= 4 &&
         envelope.output.fields.length >= 4 &&
         envelope.import.kind === STANDARD_TOOL_ENVELOPE_KIND &&
         envelope.export.kind === STANDARD_TOOL_ENVELOPE_KIND &&
         isUuid(envelope.root),
     )
+    const scienceEnvelopes = envelopes.filter((envelope) => envelope.scienceFacing)
+    const scienceHaveRequiredConfig = scienceEnvelopes.every(
+      (envelope) =>
+        envelope.config.fields.some((field) => field.name === 'certified' && field.required) &&
+        envelope.config.fields.some((field) => field.name === 'claySolved' && field.required) &&
+        envelope.config.fields.some((field) => field.name === 'qpuRequired' && field.required) &&
+        envelope.config.fields.some((field) => field.name === 'experiment' && field.required),
+    )
+    const missingBefore = total
+    const filledConfig = envelopes.filter((envelope) => envelope.config.fields.length >= 4).length
     const meta = envelopes.find((envelope) => envelope.id === 'toolbox-standard-io')
     const prove1tbit = envelopes.find((envelope) => envelope.id === 'prove-1tbit-encrypt')
     const localRevStd = envelopes.find((envelope) => envelope.id === 'local-reverse-timed-vs-standards')
@@ -585,7 +667,9 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
     const localAuditEnv = envelopes.find((envelope) => envelope.id === 'local-audit-quantum')
     const facets = [
       { facet: `STANDARD ENVELOPE — ${migrated}/${total} catalog tools wrapped`, on: migrated === total && total >= (2 * 7) },
-      { facet: 'every envelope has input · output · import · export', on: allHaveIo },
+      { facet: 'every envelope has input · config · output · import · export', on: allHaveIo },
+      { facet: `science-facing tools (${scienceEnvelopes.length}) have required experiment config`, on: scienceEnvelopes.length > 0 && scienceHaveRequiredConfig },
+      { facet: `config filled ${filledConfig}/${missingBefore} (was missing on all)`, on: filledConfig === total },
       { facet: 'import(export(tool)) round-trips payloadRoot for every tool', on: allRoundTrip },
       { facet: 'honesty: physicalQubitSpeedup=0 · physicalFtlClaim=0 · notFlops', on: envelopes.every((e) => e.honesty.physicalQubitSpeedup === 0 && e.honesty.physicalFtlClaim === 0 && e.honesty.notFlops) },
       { facet: 'meta tool toolbox-standard-io published', on: Boolean(meta) && meta!.fold === 'standardToolboxIoCatalog' },
@@ -597,14 +681,17 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
       { facet: `prove-no-qpu-64bit enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(proveNoQpu) && proveNoQpu!.version === STANDARD_TOOL_ENVELOPE_VERSION && proveNoQpu!.fold === 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit' },
       { facet: `local-audit-quantum enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(localAuditEnv) && localAuditEnv!.version === STANDARD_TOOL_ENVELOPE_VERSION && localAuditEnv!.fold === 'localAuditQuantumSpeedEfficiency' },
       { facet: 'composes quantumCliToolsCatalog (no second wet registry)', on: catalog.computes },
-      { facet: 'CI browserGap tools still enveloped (adapters OK)', on: envelopes.filter((e) => !e.browserRunnable).every((e) => e.browserGap.length > 0) },
+      { facet: 'CI browserGap tools still enveloped with explicit why', on: envelopes.filter((e) => !e.browserRunnable).every((e) => e.browserGap.length > 0 && e.config.fields.some((f) => f.name === 'browserGapWhy')) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`toolbox-standard-io:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('standard-toolbox-io-catalog', facets)
     return {
-      computes: sealed.ok && catalog.computes && allRoundTrip && migrated === total,
+      computes: sealed.ok && catalog.computes && allRoundTrip && migrated === total && scienceHaveRequiredConfig,
       migrated,
       total,
       migratedLabel: `${migrated}/${total}`,
+      scienceFacingCount: scienceEnvelopes.length,
+      configFilled: filledConfig,
+      configMissingBefore: missingBefore,
       envelopes,
       roundTrips,
       version: STANDARD_TOOL_ENVELOPE_VERSION,
@@ -616,12 +703,12 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
       cli: 'npm run quantum:toolbox-standard-io',
       route: '/en/quantum-tools#toolbox-standard-io',
       anchor: 'toolbox-standard-io',
-      heading: 'Standard tool envelope — I/O · import/export',
+      heading: 'Standard tool envelope — input · config · output · import/export',
       honestyLine:
-        'Every tool speaks { id, version, input, output, import, export }. Self-distribution = content-addressed envelopes across apps. Capacity/speed = amortized memoByRoot reuse — NOT physical qubits / NOT FTL / NOT FLOPS.',
-      statement: `Standard toolbox I/O — ${migrated}/${total} enveloped · round-trip ${allRoundTrip ? '✓' : '✗'} · kind=${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}.`,
+        'Every tool speaks { id, version, input, config, output, import, export }. Science experiments require config (certified=false · clay=0 · qpuRequired=false). Capacity = amortized memoByRoot — NOT physical qubits / NOT FTL / NOT FLOPS.',
+      statement: `Standard toolbox I/O — ${migrated}/${total} enveloped · science ${scienceEnvelopes.length} with required config · filled ${filledConfig}/${missingBefore} · round-trip ${allRoundTrip ? '✓' : '✗'} · kind=${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}.`,
       boundary:
-        'HONEST: standardized I/O + import/export receipts for ceccec-compatible apps. Encryption refuse gates unchanged. HARMONY ≠ TRUTH.',
+        'HONEST: standardized I/O+config + import/export receipts. certified=false · clay=0 · qpuRequired=false · production reverse refused. HARMONY ≠ TRUTH.',
     }
   })
 }
