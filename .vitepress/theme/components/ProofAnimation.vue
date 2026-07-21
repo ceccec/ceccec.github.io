@@ -1,12 +1,12 @@
 <script setup lang="ts">
 // ONE renderer for every proof animation — interprets ProofAnimationSpec (kind · points · lines ·
 // ratePhi · hueDigit) from src/thunder/waves. Rates are φ^−k (quasi-periodic, never repeats), hues
-// are vortex digits on the one circle (d·360/9): the same two sealed generators as the movie. A
-// single shared rAF drives every visible canvas; off-screen canvases pause via IntersectionObserver.
+// are vortex digits on the one circle (d·360/9): the same two sealed generators as the movie. The
+// ONE shared hero clock (subscribeHeroClock) drives every visible canvas; off-screen pause via IO.
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { useData } from 'vitepress'
 import { PHI, TAU } from '../../../src/3/7'
-import { movieCanvasRgba } from '../../lib/hero-movie-paint'
+import { movieCanvasRgba, subscribeHeroClock } from '../../lib/hero-movie-paint'
 import { geodesicDomeComputes, oneExponentialLaw } from '../../../src/6/4'
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
 
@@ -19,7 +19,7 @@ const LADDER = oneExponentialLaw().ladder
 const props = defineProps<{ spec: ProofAnimationSpec; size?: number }>()
 const { isDark } = useData()
 const el = ref<HTMLCanvasElement | null>(null)
-let raf = 0
+let offClock: (() => void) | null = null
 let visible = true // fail toward motion: a late or absent IntersectionObserver must not freeze the proof
 let io: IntersectionObserver | null = null
 
@@ -290,11 +290,6 @@ function draw(t: number) {
   }
 }
 
-function loop(t: number) {
-  if (visible) draw(t)
-  raf = requestAnimationFrame(loop)
-}
-
 onMounted(() => {
   const canvas = el.value
   if (!canvas) return
@@ -304,9 +299,10 @@ onMounted(() => {
   draw(0) // one guaranteed frame — the proof glyph shows even where rAF/IO are throttled
   io = new IntersectionObserver((entries) => { visible = entries.some((entry) => entry.isIntersecting) })
   io.observe(canvas)
-  raf = requestAnimationFrame(loop)
+  // ONE hero clock — no private rAF (anim-quantum convert; multiplies cost outside the sequence).
+  offClock = subscribeHeroClock((t) => { if (visible) draw(t) })
 })
-onBeforeUnmount(() => { cancelAnimationFrame(raf); io?.disconnect() })
+onBeforeUnmount(() => { offClock?.(); offClock = null; io?.disconnect() })
 </script>
 
 <template>

@@ -1,12 +1,13 @@
 <script setup lang="ts">
 // ☰ Qián · Heaven — compute/model render shell: each card its dedicated page with detailed computed
-// research, an animated proof (createAnimationEngine + the card's uuidHero — hue/rotations/spin/tone/tips),
+// research, an animated proof (subscribeHeroClock + the card's uuidHero — hue/rotations/spin/tone/tips),
 // and text-to-speech (the browser speechSynthesis reads the computed speech string). Thin shell: all
 // content computed in src/heaven/compute (the dissolved model section); the .vue only paints the fold and drives the browser-only surfaces.
-import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vitepress'
 import { cardPage, cardPages, discoveryPage, discoveryPages, type CardPage } from '../../../src/heaven/compute/index.ts'
-import { createAnimationEngine, humanBreath } from '../../../src/0'
+import { humanBreath } from '../../../src/0'
+import { subscribeHeroClock } from '../../lib/hero-movie-paint'
 import UiCard from './ui/Card.vue'
 import UiCardContent from './ui/CardContent.vue'
 import UiBadge from './ui/Badge.vue'
@@ -24,8 +25,9 @@ const pages = computed<CardPage[]>(() => {
 })
 
 // ── Animated proof — the card's content-address (uuidHero) rendered as a spinning twin-handle merkaba ──
+// ONE hero clock (subscribeHeroClock) — createAnimationEngine here was a second rAF outside the sequence.
 const frames = ref<Record<string, { ax: number; ay: number; bx: number; by: number; t: number }>>({})
-const engine = shallowRef<ReturnType<typeof createAnimationEngine> | null>(null)
+let offClock: (() => void) | null = null
 function paint(timeMs: number) {
   const next: typeof frames.value = {}
   for (const page of pages.value) {
@@ -43,11 +45,9 @@ function paint(timeMs: number) {
   frames.value = next
 }
 onMounted(() => {
-  const e = createAnimationEngine(paint)
-  engine.value = e
-  e.start()
+  offClock = subscribeHeroClock(paint)
 })
-onBeforeUnmount(() => { engine.value?.dispose(); if (typeof window !== 'undefined') window.speechSynthesis?.cancel() })
+onBeforeUnmount(() => { offClock?.(); offClock = null; if (typeof window !== 'undefined') window.speechSynthesis?.cancel() })
 
 // ── Text-to-speech — the browser voice reads the computed speech string ──
 const speaking = ref<string | null>(null)

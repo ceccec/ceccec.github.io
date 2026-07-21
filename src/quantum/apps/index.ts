@@ -16,6 +16,9 @@ import {
 import { directionalTrinityForwardInverseReverse, compareCeccecEfficiencyByVote } from '../../water/stack'
 import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
 import { linearAnimationGapsInventory } from '../../wind/ui'
+import { movieQuantumGapsInventory } from '../../thunder/movie/canvas'
+import { movieIsNeuroscienceComputation } from '../../earth/life'
+import { harmonizeFieldComputes } from '../../lake/music'
 import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
 
@@ -1302,6 +1305,11 @@ export type SlowQuantumGapKind =
   | 'standards-audit-missing'
   | 'linear-forming-animation'
   | 'vitepress-cold-build'
+  | 'movie-private-raf'
+  | 'movie-multi-clock'
+  | 'movie-harmonize'
+  | 'movie-neuroscience'
+  | 'movie-static-fusion'
 
 export type SlowQuantumGapRow = {
   readonly gapId: string
@@ -1441,12 +1449,81 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       gapId: 'slow:vitepress:cold-wipe',
       kind: 'vitepress-cold-build',
       process: 'runDocsBuildExit.wipe',
-      criterion: 'docs:build must quantumize — merkle respawn + preserve .temp/.vite caches unless --force (NOT FTL)',
+      criterion: 'docs:build must quantumize — merkle respawn + preserve .temp/.vite caches unless --force (NOT FTL); NOT the hero movie',
       slow: !vpQzPresent,
       closed: vpQzPresent,
       route: '/en/quantum-tools#vitepress-quantumize',
       receipt: toUuid(`slow-gap:vitepress-qz:${vpQzPresent}`),
     })
+
+
+    // Movie stack — private rAF / multi-clock / harmonize / neuroscience / static fusion (viz ≠ physical QM).
+    // NOTE: quantumizeVitepressBuild is the VitePress build warmer — NOT the hero/background movie.
+    const movieGaps = movieQuantumGapsInventory(matrix, at)
+    const neuro = movieIsNeuroscienceComputation(matrix, at)
+    const harmonize = harmonizeFieldComputes(matrix, at)
+    rows.push({
+      gapId: 'slow:movie:private-raf',
+      kind: 'movie-private-raf',
+      process: 'ProofAnimation·theme',
+      criterion: 'theme movie mounts must not own private requestAnimationFrame — subscribeHeroClock only',
+      slow: movieGaps.privateRafOpen,
+      closed: !movieGaps.privateRafOpen,
+      route: '/en/quantum-tools#slow-quantum-gaps',
+      receipt: toUuid(`slow-gap:movie-private-raf:${!movieGaps.privateRafOpen}`),
+    })
+    rows.push({
+      gapId: 'slow:movie:multi-clock',
+      kind: 'movie-multi-clock',
+      process: 'ModelCardPages·createAnimationEngine',
+      criterion: 'second createAnimationEngine rAF outside subscribeHeroClock is a multi-clock gap',
+      slow: movieGaps.multiClockOpen,
+      closed: !movieGaps.multiClockOpen,
+      route: '/en/quantum-tools#slow-quantum-gaps',
+      receipt: toUuid(`slow-gap:movie-multi-clock:${!movieGaps.multiClockOpen}`),
+    })
+    rows.push({
+      gapId: 'slow:movie:harmonize',
+      kind: 'movie-harmonize',
+      process: 'harmonizeField',
+      criterion: 'harmonizeFieldComputes must hold; page+card movies wire observer↔field (H3)',
+      slow: !harmonize.computes,
+      closed: harmonize.computes,
+      route: '/en/',
+      receipt: toUuid(`slow-gap:movie-harmonize:${harmonize.computes}`),
+    })
+    rows.push({
+      gapId: 'slow:movie:neuroscience',
+      kind: 'movie-neuroscience',
+      process: 'movieIsNeuroscienceComputation',
+      criterion: 'movie IS modeled neuroscience computation (bands·harmonize·tiers) — NOT brain measurement / NOT physical QM',
+      slow: !neuro.computes,
+      closed: neuro.computes,
+      route: '/en/',
+      receipt: toUuid(`slow-gap:movie-neuro:${neuro.computes}`),
+    })
+    rows.push({
+      gapId: 'slow:movie:static-fusion',
+      kind: 'movie-static-fusion',
+      process: 'staticIsEventualGapInMovieFusion',
+      criterion: 'static hero/icon/manifest hex must fuse into computed movie palette',
+      slow: !movieGaps.staticFusion.fused,
+      closed: movieGaps.staticFusion.fused,
+      route: '/en/',
+      receipt: toUuid(`slow-gap:movie-static:${movieGaps.staticFusion.fused}`),
+    })
+    for (const surface of movieGaps.open) {
+      rows.push({
+        gapId: `slow:movie:surface:${surface.id}`,
+        kind: surface.kind === 'private-raf' ? 'movie-private-raf' : surface.kind === 'multi-clock' ? 'movie-multi-clock' : surface.kind === 'static-fusion' ? 'movie-static-fusion' : 'movie-harmonize',
+        process: surface.surface,
+        criterion: surface.criterion,
+        slow: true,
+        closed: false,
+        route: surface.route,
+        receipt: surface.receipt,
+      })
+    }
 
     const open = rows.filter((row) => row.slow && !row.closed)
     const closed = rows.filter((row) => row.closed)
@@ -1476,10 +1553,10 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       anchor: 'slow-quantum-gaps',
       heading: 'Slow processes = quantum gaps',
       honestyLine:
-        'Slow here means architectural quantum-gap (missing sealed reuse, browser path, 10D projection, or unsealed parallel registry) — NOT wall-clock telemetry. fleetCacheEconomicsDecoded joules are illustrative.',
-      statement: `Slow process is quantum gap — ${facets.filter((e) => e.on).length}/${facets.length}: ${open.length} open / ${closed.length} closed / ${rows.length} classified; browserGaps, missing projections, parallel backlog, and memo-miss economics recomputed at call time.`,
+        'Slow here means architectural quantum-gap (missing sealed reuse, browser path, 10D projection, movie private-rAF/multi-clock, or unsealed parallel registry) — NOT wall-clock telemetry. Movie rows are viz/computation gaps — NOT physical QM. fleetCacheEconomicsDecoded joules are illustrative.',
+      statement: `Slow process is quantum gap — ${facets.filter((e) => e.on).length}/${facets.length}: ${open.length} open / ${closed.length} closed / ${rows.length} classified; browserGaps, projections, parallel backlog, movie clock/neuroscience, and memo-miss economics recomputed at call time.`,
       boundary:
-        'HONEST: architectural classifier only. Node/CI browserGaps and parallel-registry backlog remain open until strangler/browser ports close them — visibility is the point. NOT a profiler. HARMONY ≠ TRUTH.',
+        'HONEST: architectural classifier only. Node/CI browserGaps and parallel-registry backlog remain open until strangler/browser ports close them — visibility is the point. Movie gaps ≠ physical quantum speedup. NOT a profiler. HARMONY ≠ TRUTH.',
     }
   })
 }
