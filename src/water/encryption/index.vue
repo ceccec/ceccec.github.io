@@ -270,6 +270,23 @@ runTool()
         <p class="encryption-tools__boundary">{{ panel.polesCross?.boundary }}</p>
       </section>
       <UiSeparator />
+      <section id="secp256k1-prime" aria-label="secp256k1 field prime seal invert decode">
+        <h3>secp256k1 field prime — seal · invert · decode</h3>
+        <p class="encryption-tools__lede">
+          p = 2<sup>256</sup> − 2<sup>32</sup> − 2<sup>9</sup> − 2<sup>8</sup> − 2<sup>7</sup> − 2<sup>6</sup> − 2<sup>4</sup> − 1
+          (SECG). Structure of a known curve prime — NOT Bitcoin ownership · clay=0 · certified=false.
+        </p>
+        <UiBadge :variant="panel.secp256k1Prime?.computes ? 'default' : 'outline'">
+          bits={{ panel.secp256k1Prime?.bitLength ?? '—' }}
+          · constructionInverted={{ panel.secp256k1Prime?.constructionInverted ?? '—' }}
+          · ownership={{ panel.secp256k1Prime?.bitcoinOwnershipClaimed ?? false }}
+        </UiBadge>
+        <p class="encryption-tools__meta">
+          <code>{{ panel.secp256k1Prime?.pHex ?? '—' }}</code>
+        </p>
+        <p class="encryption-tools__boundary">{{ panel.secp256k1Prime?.boundary }}</p>
+      </section>
+      <UiSeparator />
       <section id="iso-pqc-catalog" aria-label="ISO NIST PQC catalog">
         <h3>ISO / NIST PQC catalog</h3>
         <p class="encryption-tools__meta">

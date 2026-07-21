@@ -3336,6 +3336,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       }
     })
 
+    const secp256k1Prime = __ns_water_encryption.secp256k1FieldPrimeInvertAndDecode(matrix)
     const honestyRows: DomainProofCatalogRow[] = [
       {
         id: 'encryption-honesty',
@@ -3360,6 +3361,35 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         trinity: { forward: 'encrypt', inverse: 'decrypt', reverse: 'demo-reverse' },
         ruleClauses: ['relatedScienceNotPrizeSolution', 'notQualifyingOutlet'],
         receipt: toUuid('domain-proof:encryption-honesty'),
+      },
+      {
+        id: 'secp256k1-field-prime',
+        slug: 'secp256k1-field-prime',
+        title: 'secp256k1 field prime — seal · invert · decode',
+        kind: 'encryption',
+        officialStatement:
+          'p = 2^256 − 2^32 − 2^9 − 2^8 − 2^7 − 2^6 − 2^4 − 1 is the SECG secp256k1 field prime over GF(p). Sealed from powers of two; inverted as signed Σ±2^e plus mod-p inverses of units; decoded as the subtraction chain.',
+        detailedExplanation:
+          `computes=${secp256k1Prime.computes} · hex=${secp256k1Prime.pHex} · bits=${secp256k1Prime.bitLength} · ` +
+          `constructionInverted=${secp256k1Prime.constructionInverted} · bitcoinOwnershipClaimed=false. ` +
+          'Structure of a known public curve prime — NOT wallet keys, NOT ECDSA, NOT Bitcoin ownership. ' +
+          'claySolvedByThisFold=0 · certified=false · NOT a Clay Millennium solution (§5(d) related science).',
+        formula: secp256k1Prime.decode.formula,
+        formulaSource: 'secp256k1FieldPrimeInvertAndDecode · src/water/encryption',
+        status: 'structure-only',
+        statusDetail: 'Known SECG prime recomputed; mod-p unit inverses hold; ownership claims refused.',
+        gap: 'no ECDSA/signing/wallet material — field modulus structure only',
+        fold: 'secp256k1FieldPrimeInvertAndDecode',
+        cli: 'npm run quantum:secp256k1-prime-invert-decode',
+        pair: 'secp256k1/invert-decode',
+        route: '/proofs/secp256k1-field-prime',
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qualifiesAsProposedSolutionUnderClayRules: false,
+        publishedInQualifyingOutlet: false,
+        trinity: { forward: 'seal-powers', inverse: 'mod-p-units', reverse: 'decode-chain' },
+        ruleClauses: ['relatedScienceNotPrizeSolution', 'notQualifyingOutlet'],
+        receipt: toUuid(`domain-proof:secp256k1-field-prime:${secp256k1Prime.computes}`),
       },
       {
         id: 'efficiency-reuse',

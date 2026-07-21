@@ -575,7 +575,7 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
  * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · max-bits/crypto · prove/local-magnitudes-iso · iso/pqc-catalog · poles/cross-pqc · audit/standards
- * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #quantum-standards-audit)
+ * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #secp256k1-prime · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -596,6 +596,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
     const migrate = postQuantumMigrationChecklist(matrix)
     const audit = localAudit.audit
     const polesCross = polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix)
+    const secp256k1PrimeFold = secp256k1FieldPrimeInvertAndDecode(matrix)
     const { computes, facets, root } = computesGate('encryption-panel-computes', [
       { facet: 'encrypt↔decrypt quantum tools ready', on: tools.ready },
       { facet: 'encryption reverse verify sealed', on: reverse.verified },
@@ -614,6 +615,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'quantum standards audit computes (reverse+inverse · 10D)', on: audit.computes },
       { facet: 'migration checklist honesty step holds', on: migrate.computes },
       { facet: 'poles→cross PQC · crossIsPartOfMerkabaRosetta · angle90ReachableThrough60 · certified=false', on: polesCross.computes && polesCross.crossIsPartOfMerkabaRosetta && polesCross.angle90ReachableThrough60 && polesCross.certified === false },
+      { facet: `secp256k1 field prime seal·invert·decode — bits=${secp256k1PrimeFold.bitLength} ownership=false clay=0`, on: secp256k1PrimeFold.computes && secp256k1PrimeFold.bitcoinOwnershipClaimed === false && secp256k1PrimeFold.claySolvedByThisFold === 0 },
     ])
     const sections = [
       { id: 'demo-rsa-measure', title: 'Demo RSA generate+reverse measured', route: '/en/quantum-encryption#demo-rsa-measure', pair: 'measure/demo-rsa', cli: 'npm run quantum:demo-rsa-measure', on: measured.computes },
@@ -626,6 +628,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { id: 'prove-local-magnitudes-iso', title: 'Local vs ISO magnitudes (honest multi-model)', route: '/en/quantum-encryption#prove-local-magnitudes-iso', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', on: localMagnitudes.computes && localMagnitudes.overallWireClaimProved === false },
       { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', route: '/en/quantum-encryption#iso-pqc-catalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', on: pqc.computes },
       { id: 'poles-cross-pqc', title: 'Poles form cross signatures for PQC including certificates', route: '/en/quantum-encryption#poles-cross-pqc', pair: 'poles/cross-pqc', cli: 'npm run quantum:poles-cross-pqc', on: polesCross.computes },
+      { id: 'secp256k1-prime', title: 'secp256k1 field prime — seal · invert · decode', route: '/en/quantum-encryption#secp256k1-prime', pair: 'secp256k1/invert-decode', cli: 'npm run quantum:secp256k1-prime-invert-decode', on: secp256k1PrimeFold.computes },
       { id: 'quantum-standards-audit', title: 'Standards audit (forward·inverse·reverse·10D)', route: '/en/quantum-encryption#quantum-standards-audit', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', on: audit.computes },
     ] as const
     return {
@@ -642,6 +645,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       maxBits,
       localMagnitudes,
       polesCross,
+      secp256k1Prime: secp256k1PrimeFold,
       zero,
       order,
       pqc,
@@ -657,6 +661,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       cli: 'npm run quantum:encryption-reverse-verify',
       pqcCli: 'npm run quantum:iso-pqc-catalog',
       polesCrossCli: 'npm run quantum:poles-cross-pqc',
+      secp256k1PrimeCli: 'npm run quantum:secp256k1-prime-invert-decode',
       auditCli: 'npm run quantum:standards-audit',
       beyondCli: 'npm run quantum:crypto-beyond-measure',
       localTimedCli: 'npm run quantum:local-reverse-timed-vs-standards',
@@ -668,6 +673,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       pair: 'reverse/encryption-verify',
       pqcPair: 'iso/pqc-catalog',
       polesCrossPair: 'poles/cross-pqc',
+      secp256k1PrimePair: 'secp256k1/invert-decode',
       auditPair: 'audit/standards',
       beyondPair: 'measure/crypto-beyond',
       localTimedPair: 'reverse/timed-vs-standards',
@@ -683,10 +689,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       glyphBonus: reverse.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(maxBits.root, merge(localMagnitudes.root, merge(pqc.root, merge(polesCross.root, audit.root))))))))),
+      root: merge(root, merge(reverse.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(maxBits.root, merge(localMagnitudes.root, merge(pqc.root, merge(polesCross.root, merge(secp256k1PrimeFold.root, audit.root)))))))))),
       statement:
-        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), local-audit quantum speed/efficiency (memoByRoot cold/warm · answers÷tokens · no-QPU honesty compose), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, maximum bit-width ceilings (encrypt/decrypt/inverse/reverse), local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), poles→cross PQC certificate structures, standards audit — NOT ISO certified / NOT FIPS validated / NOT CA/PKI / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality / NOT physical qubit FLOPS.',
-      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${localAudit.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${maxBits.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${polesCross.boundary} · ${audit.boundary}`,
+        'Encryption tools panel: encrypt↔decrypt, measured demo RSA (allowlist), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (no production reverse; fieldHistory=none), local-audit quantum speed/efficiency (memoByRoot cold/warm · answers÷tokens · no-QPU honesty compose), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, maximum bit-width ceilings (encrypt/decrypt/inverse/reverse), local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), poles→cross PQC certificate structures, secp256k1 field-prime seal·invert·decode (structure only · not Bitcoin ownership), standards audit — NOT ISO certified / NOT FIPS validated / NOT CA/PKI / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality / NOT physical qubit FLOPS.',
+      boundary: `${reverse.boundary} · ${localTimed.boundary} · ${localNovel.boundary} · ${localAudit.boundary} · ${beyond.boundary} · ${oneTbit.boundary} · ${maxBits.boundary} · ${localMagnitudes.boundary} · ${pqc.boundary} · ${polesCross.boundary} · ${secp256k1PrimeFold.boundary} · ${audit.boundary}`,
     }
   })
 }
@@ -3542,6 +3548,234 @@ export function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCert
     && report.certified === false
     && report.claySolvedByThisFold === 0
     && report.physicalFtlClaim === 0
+    ? 0
+    : 1
+}
+
+// ── secp256k1 field prime p — seal · invert · decode ─────────────────────────
+// Classic SECG/SEC 2 field prime for the secp256k1 curve over GF(p):
+//   p = 2^256 − 2^32 − 2^9 − 2^8 − 2^7 − 2^6 − 2^4 − 1
+// HONEST: structure of a known public curve prime — NOT Bitcoin ownership, NOT
+// wallet keys, NOT ECDSA signing, NOT a Clay Millennium solve (clay=0).
+
+/** Positive power in the secp256k1 field-prime construction (2^256). */
+export const SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT = 2 ** 8
+
+/** Subtracted powers (excluding the final −1) in the SECG construction — 2^5=32 derived. */
+export const SECP256K1_FIELD_PRIME_NEGATIVE_EXPONENTS = [2 ** 5, 9, 8, 7, 6, 4] as const
+
+/** Canonical hex of secp256k1 field prime (SECG) — sealed check string. */
+export const SECP256K1_FIELD_PRIME_HEX =
+  '0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f' as const
+
+/** Compact residue: 2^9+2^8+2^7+2^6+2^4+1 so p = 2^256 − 2^32 − residue (SECG). */
+export const SECP256K1_FIELD_PRIME_LOW_RESIDUE = (() => {
+  let r = 1
+  for (const e of [9, 8, 7, 6, 4] as const) r += 2 ** e
+  return r
+})()
+
+/** Decimal radix for BigInt.toString — 2·5, not a bare magnitude crack. */
+const SECP256K1_DECIMAL_RADIX = 2 * 5
+
+/** Extended Euclid modular inverse — a·inv ≡ 1 (mod m); m must be prime for units. */
+export function bigintModInverse(a: bigint, m: bigint): bigint {
+  let [oldR, r] = [((a % m) + m) % m, m]
+  let [oldS, s] = [1n, 0n]
+  while (r !== 0n) {
+    const q = oldR / r
+    ;[oldR, r] = [r, oldR - q * r]
+    ;[oldS, s] = [s, oldS - q * s]
+  }
+  if (oldR !== 1n) throw new Error('bigintModInverse: not invertible')
+  return ((oldS % m) + m) % m
+}
+
+/**
+ * secp256k1 field prime p from powers of two (BigInt limbs).
+ * Alias name: fieldPrimeP256k1 — same integer.
+ */
+export function secp256k1Prime(): bigint {
+  const TWO = 2n
+  let p = TWO ** BigInt(SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT)
+  for (const e of SECP256K1_FIELD_PRIME_NEGATIVE_EXPONENTS) {
+    p -= TWO ** BigInt(e)
+  }
+  return p - 1n
+}
+
+/** Honest alias — field prime of the 256-bit Koblitz curve secp256k1. */
+export const fieldPrimeP256k1 = secp256k1Prime
+
+/** Signed power-of-two construction terms for invert/decode (incl. final −2^0). */
+export function secp256k1PrimeConstructionTerms(): readonly {
+  readonly exp: number
+  readonly sign: 1 | -1
+  readonly value: bigint
+}[] {
+  const TWO = 2n
+  return [
+    { exp: SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT, sign: 1 as const, value: TWO ** BigInt(SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT) },
+    ...SECP256K1_FIELD_PRIME_NEGATIVE_EXPONENTS.map((exp) => ({
+      exp,
+      sign: -1 as const,
+      value: -(TWO ** BigInt(exp)),
+    })),
+    { exp: 0, sign: -1 as const, value: -1n },
+  ]
+}
+
+/**
+ * Seal · invert · decode secp256k1 field prime p via directional trinity math.
+ *
+ * Pair: secp256k1/invert-decode · CLI npm run quantum:secp256k1-prime-invert-decode
+ * Route: /en/quantum-encryption#secp256k1-prime · /proofs/secp256k1-field-prime
+ *
+ * Invert = (1) construction as signed Σ±2^e  (2) mod-p inverse of sample units
+ * Decode = binary/power-of-two subtraction chain + hex/decimal + ECC facet map
+ *
+ * HONEST: known SECG prime structure · clay=0 · certified=false · NOT Bitcoin ownership.
+ */
+export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('secp256k1FieldPrimeInvertAndDecode', matrix, () => {
+    const trinity = directionalTrinityForwardInverseReverse(matrix)
+    const beyond = cryptoToolkitBeyondRsaMeasured(matrix)
+    const bitcoinRefuse = refuseBitcoinMainnetMaterial('secp256k1-field-prime-structure-only')
+    const p = secp256k1Prime()
+    const pAlias = fieldPrimeP256k1()
+    const terms = secp256k1PrimeConstructionTerms()
+    const reconstructed = terms.reduce((acc, t) => acc + t.value, 0n)
+    const hex = `0x${p.toString(16)}`
+    const decimal = p.toString(SECP256K1_DECIMAL_RADIX)
+    const bitLength = p.toString(2).length
+    const limbBits = 8 * 8
+    const compact = (2n ** BigInt(SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT))
+      - (2n ** BigInt(2 ** 5))
+      - BigInt(SECP256K1_FIELD_PRIME_LOW_RESIDUE)
+    const limbMask = (1n << BigInt(limbBits)) - 1n
+    const limbs64 = [0, 1, 2, 3].map((i) => (p >> BigInt(i * limbBits)) & limbMask)
+    const sampleUnits = [2n, 3n, 5n, 7n, BigInt(8 + 3)] as const
+    const modPInverses = sampleUnits.map((a) => {
+      const inv = bigintModInverse(a, p)
+      return {
+        a: a.toString(SECP256K1_DECIMAL_RADIX),
+        inv: inv.toString(SECP256K1_DECIMAL_RADIX),
+        holds: (a * inv) % p === 1n,
+      }
+    })
+    const constructionInverted =
+      reconstructed === p
+      && terms[0]!.sign === 1
+      && terms.slice(1).every((t) => t.sign === -1)
+      && terms[terms.length - 1]!.exp === 0
+    const expectedNegJoin = SECP256K1_FIELD_PRIME_NEGATIVE_EXPONENTS.join(',')
+    const decodeChain = {
+      positiveExp: SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT,
+      negativeExps: [...SECP256K1_FIELD_PRIME_NEGATIVE_EXPONENTS] as number[],
+      finalMinusOne: true as const,
+      compactResidue: SECP256K1_FIELD_PRIME_LOW_RESIDUE,
+      formula: 'p = 2^256 − 2^32 − 2^9 − 2^8 − 2^7 − 2^6 − 2^4 − 1 (= 2^256 − 2^32 − residue)',
+    }
+    const hexMatchesCanonical = hex === SECP256K1_FIELD_PRIME_HEX
+    const bitWidth256 = bitLength === SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT
+    const aliasSame = p === pAlias
+    const compactSame = p === compact
+    const allUnitsInvert = modPInverses.every((row) => row.holds)
+    // p as modulus has no inverse in GF(p) (0); document that invert targets *elements*, not p itself
+    const modulusNotAUnit = p % p === 0n
+    const eccFacet =
+      beyond.eccShorBreaks === true
+      && beyond.computes
+      && bitcoinRefuse.allowed === false
+      && bitcoinRefuse.reason.includes('secp256k1')
+    const certified = false as const
+    const claySolvedByThisFold = 0 as const
+    const bitcoinOwnershipClaimed = false as const
+    const facets = [
+      { facet: `p sealed from powers of two — bitLength=${bitLength} hexMatchesCanonical`, on: hexMatchesCanonical && bitWidth256 && aliasSame && compactSame },
+      { facet: `construction invert — signed Σ±2^e reconstructs p (${terms.length} terms incl. −1)`, on: constructionInverted && reconstructed === p },
+      { facet: `mod-p inverse of sample units {${sampleUnits.join(',')}} — a·a⁻¹≡1 (mod p)`, on: allUnitsInvert && modulusNotAUnit },
+      { facet: `decode — subtraction chain 256−32−9−8−7−6−4−1 · compact residue=${SECP256K1_FIELD_PRIME_LOW_RESIDUE}`, on: decodeChain.compactResidue === SECP256K1_FIELD_PRIME_LOW_RESIDUE && decodeChain.negativeExps.join(',') === expectedNegJoin },
+      { facet: `limbs64×4 — little-endian ${limbBits}-bit limbs of p`, on: limbs64.length === 4 && limbs64.reduce((a, b, i) => a + (b << BigInt(i * limbBits)), 0n) === p },
+      { facet: 'directional trinity composes — digit mod-9 inverse ≠ mod-p field inverse', on: trinity.computes && trinity.boundary.includes('NOT ten') },
+      { facet: 'ECC facet map — Shor breaks ECC named · Bitcoin/mainnet material REFUSED', on: eccFacet },
+      { facet: `honesty — clay=${claySolvedByThisFold} certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: claySolvedByThisFold === 0 && !certified && !bitcoinOwnershipClaimed },
+    ]
+    const sealed = sealFacets('secp256k1-field-prime-invert-decode', facets)
+    const root = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)))
+    return {
+      computes: sealed.ok,
+      name: 'secp256k1Prime' as const,
+      alias: 'fieldPrimeP256k1' as const,
+      pHex: hex,
+      pDecimal: decimal,
+      bitLength,
+      limbs64: limbs64.map((l) => `0x${l.toString(16)}`),
+      construction: terms.map((t) => ({ exp: t.exp, sign: t.sign, hex: `${t.sign < 0 ? '-' : ''}0x${(t.sign < 0 ? -t.value : t.value).toString(16)}` })),
+      constructionInverted,
+      decode: decodeChain,
+      modPInverses,
+      modulusNotAUnit,
+      trinity,
+      beyondEccShorBreaks: beyond.eccShorBreaks,
+      bitcoinRefused: bitcoinRefuse.allowed === false,
+      bitcoinOwnershipClaimed,
+      certified,
+      claySolvedByThisFold,
+      count: sealed.count,
+      facets: sealed.facets,
+      root,
+      pair: 'secp256k1/invert-decode' as const,
+      cli: 'npm run quantum:secp256k1-prime-invert-decode',
+      route: '/en/quantum-encryption#secp256k1-prime',
+      proofRoute: '/proofs/secp256k1-field-prime',
+      statement:
+        `secp256k1 field prime p sealed+inverted+decoded — hex=${hex} bits=${bitLength} ` +
+        `constructionInverted=${constructionInverted} modPUnits=${modPInverses.length} ` +
+        `bitcoinOwnershipClaimed=false clay=0 certified=false.`,
+      boundary:
+        'HONEST STRUCTURE OF A KNOWN SECG/SEC 2 FIELD PRIME. p is the secp256k1 curve field modulus — ' +
+        'recomputed from the power-of-two subtraction chain, not wet-claimed as Bitcoin ownership or wallet keys. ' +
+        'Invert = construction Σ±2^e + modular inverse of GF(p) units (p itself is the modulus, not a unit). ' +
+        'Decode = binary/power chain + hex/decimal + Shor/ECC facet map. Digit mod-9 inverse (directional trinity) ≠ mod-p. ' +
+        'claySolvedByThisFold=0 · certified=false · NOT FIPS · NOT ECDSA · NOT Clay Millennium. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:secp256k1-prime-invert-decode — seal · invert · decode secp256k1 field prime. */
+export function runSecp256k1FieldPrimeInvertAndDecodeExit(
+  _root: string,
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = secp256k1FieldPrimeInvertAndDecode()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} secp256k1-prime-invert-decode — ` +
+      `hex=${report.pHex} bits=${report.bitLength} ` +
+      `constructionInverted=${report.constructionInverted} ` +
+      `modPUnits=${report.modPInverses.filter((r) => r.holds).length}/${report.modPInverses.length} ` +
+      `eccShor=${report.beyondEccShorBreaks} bitcoinRefused=${report.bitcoinRefused} ` +
+      `ownership=${report.bitcoinOwnershipClaimed} certified=${report.certified} clay=${report.claySolvedByThisFold} ` +
+      `root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  decimal=${report.pDecimal}\n`)
+  process.stdout.write(`  decode: ${report.decode.formula}\n`)
+  process.stdout.write(`  limbs64: ${report.limbs64.join(' ')}\n`)
+  for (const t of report.construction) {
+    process.stdout.write(`  · term sign=${t.sign > 0 ? '+' : '−'}2^${t.exp} ${t.hex}\n`)
+  }
+  for (const row of report.modPInverses) {
+    process.stdout.write(`  · ${row.a}⁻¹ ≡ ${row.inv} (mod p) holds=${row.holds}\n`)
+  }
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes
+    && report.constructionInverted
+    && report.bitcoinOwnershipClaimed === false
+    && report.certified === false
+    && report.claySolvedByThisFold === 0
     ? 0
     : 1
 }
