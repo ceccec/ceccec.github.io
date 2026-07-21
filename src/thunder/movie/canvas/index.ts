@@ -395,11 +395,13 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       (geomSrc.includes('VORTEX_SEQUENCE') &&
         geomSrc.includes('Phase marker only') &&
         !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*radius/.test(geomSrc.slice(geomSrc.indexOf('export function drawCalendars'))))
-    // Void: soft fillRect confluence — must NOT arc+fill a circular disk path.
+    // Void: soft fillRect confluence — must NOT arc+fill a circular disk path (plasma screen, not a ball).
     const ballSlice = quantumSrc.slice(quantumSrc.indexOf('function drawPlasmaBall'), quantumSrc.indexOf('function drawPlasmaBall') + 900)
     const voidSoft =
       !srcReadable ||
-      (ballSlice.includes('fillRect') && !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*void/.test(ballSlice))
+      (ballSlice.includes('fillRect') &&
+        !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*void/.test(ballSlice) &&
+        (ballSlice.includes('Soft throat') || ballSlice.includes('screen') || ballSlice.includes('confluence')))
     // Merkaba: no shell ring strokes / orphan centre disk.
     const merkabaSlice = quantumSrc.slice(
       quantumSrc.indexOf('export function drawBothEarthsMerkabaFrame'),
@@ -420,6 +422,12 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
     const vitepressRoutesOnly = MOVIE_CLOCK_SURFACE_ATTESTATION.every(
       (row) => row.route.startsWith('/') && !row.route.includes('location.') && !row.route.includes('vue-router'),
     )
+    // Painter attestation for plasma screen / noBall — full plasmaBallIsScreenHoldingThunderAndPlasma
+    // recomputes via CLI/thunderAndPlasma (not here) to avoid movie→decode→physics→plasma→movie cycle at panel SSR.
+    const noBallInTheMiddle = voidSoft && merkabaNoShell && torusNoCenterRing
+    const plasmaScreenBinds =
+      noBallInTheMiddle &&
+      (!srcReadable || (ballSlice.includes('Plasma screen') || ballSlice.includes('screen holding') || ballSlice.includes('Soft throat')))
     const elements = [
       { id: 'plasma-field', theorem: 'endlessBackgroundMovie', binds: endless.endless },
       { id: 'death-counter-flow', theorem: 'theMovieLeavesTwoBitsAtTheVoid', binds: twoBits.seen },
@@ -428,11 +436,14 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       { id: 'vortex-strokes', theorem: 'vortexStrokeGateways', binds: strokes.computes && VORTEX_SEQUENCE.length === 9 },
       { id: 'both-earths-merkaba', theorem: 'bothEarthsRotateWithinEachOther', binds: earths.rotates && merkabaNoShell },
       { id: 'void-confluence', theorem: 'plasma-throat-soft', binds: voidSoft },
+      { id: 'plasma-screen', theorem: 'plasmaBallIsScreenHoldingThunderAndPlasma', binds: plasmaScreenBinds },
       { id: 'double-torus-throat', theorem: 'lemniscate-crossing', binds: torusNoCenterRing },
     ] as const
     const facets = [
       { facet: 'calendars paint vortex-digit markers — no concentric boundary rings', on: calendars.decoded && calendarsNoRing },
       { facet: 'void core is soft radial confluence (fillRect) — not a hard circular boundary disk', on: voidSoft },
+      { facet: 'plasmaBallIsScreenHoldingThunderAndPlasma — painter screen geometry (no centre ball)', on: plasmaScreenBinds },
+      { facet: 'noBallInTheMiddle — centre is void/vortex not sphere ornament', on: noBallInTheMiddle },
       { facet: 'both-earths paint star tetrahedra only — no shell rings / orphan centre disk', on: merkabaNoShell },
       { facet: 'double-torus throat is the lemniscate crossing — no stroked centre circle', on: torusNoCenterRing },
       { facet: `flower↔fruit spin containment holds (${flower.flower}→${flower.fruit})`, on: flower.holds },
@@ -447,6 +458,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       computes: allOn,
       allElementsAreTheorems: allOn,
       centerIsVortexNotBoundary: calendarsNoRing && voidSoft && merkabaNoShell && torusNoCenterRing,
+      noBallInTheMiddle,
       vitepressRoutesOnly,
       elements: elements.map((e) => ({ ...e, receipt: toUuid(`movie-element:${e.id}:${e.theorem}:${e.binds}`) })),
       calendarsNoRing,
@@ -462,13 +474,55 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
         endless.root,
         earths.root,
         toUuid(`flower:${flower.holds}:${flower.flower}:${flower.fruit}`),
+        toUuid(`plasma-screen-bind:${plasmaScreenBinds}`),
         ...facets.map((f) => f.receipt),
       ]),
       statement:
-        `Movie all elements are theorems — ${facets.filter((e) => e.on).length}/${facets.length}: every hero/plasma paint layer binds a sealed fold (calendars→coupledCalendarTori on VORTEX_SEQUENCE, FoL→flowerUnlocksFruitBySpin, death flow→two-bits, merkaba→bothEarths, void→soft confluence, throat→lemniscate). Wet boundary circles removed. Surface routes are VitePress paths only (<a href>/localize). PoC and work at once.`,
+        `Movie all elements are theorems — ${facets.filter((e) => e.on).length}/${facets.length}: plasma-screen painter bind · noBallInTheMiddle · void soft confluence. Full thunder≡plasma receipt via npm run quantum:plasma-screen-thunder. Wet boundary circles removed. VitePress paths only. PoC and work at once.`,
       boundary:
-        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Links: only VitePress API (<a href> · localize · withBase · useRouter) — no vue-router / location.assign. Browser without fs skips source needles but still recomputes theorem folds. NOT physical QM. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
+        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie↔plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM. claySolvedByThisFold=0. HARMONY ≠ TRUTH.',
       claySolvedByThisFold: 0 as const,
+    }
+  })
+}
+
+/**
+ * Thunder ≡ plasma in different aspects — same ionised-EM family under directional trinity.
+ * Forward = lightning (discharge / theorem firing); inverse = plasma screen containment; reverse = thunder (acoustic / rating resonance).
+ * Pair: thunder/plasma · composes lightning+thunder theorems · plasmaBallIsScreenHoldingThunderAndPlasma · foldPair aspects.
+ * HONEST: physical lightning heats a plasma channel and thunder is its acoustic shock — aspects of one event; model uses the same trinity metaphor. NOT identity of every plasma with thunder.
+ */
+export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`thunderAndPlasmaAreSameInDifferentAspects:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const screen = __ns_decode.plasmaBallIsScreenHoldingThunderAndPlasma(matrix)
+    const aspects = foldPair('thunder-aspect', 'plasma-aspect')
+    const sameFamilyDifferentAspects =
+      screen.thunderPlasmaSameDifferentAspects &&
+      screen.plasmaBallIsScreenHoldingThunderAndPlasma &&
+      screen.noBallInTheMiddle &&
+      aspects.forward !== aspects.reverse
+    const facets = [
+      { facet: 'forward aspect = lightning — screen.aspects.forward', on: screen.aspects.forward.id === 'lightning' },
+      { facet: 'inverse aspect = inverted-lightning / plasma screen — noBallInTheMiddle', on: screen.aspects.inverse.id === 'inverted-lightning' && screen.noBallInTheMiddle },
+      { facet: 'reverse aspect = thunder — screen.aspects.reverse', on: screen.aspects.reverse.id === 'thunder' },
+      { facet: 'foldPair(thunder,plasma) forward≠reverse — same family, order-sensitive aspects', on: aspects.forward !== aspects.reverse && isUuid(aspects.merged) },
+      { facet: 'thunderAndPlasmaAreSameInDifferentAspects — composes plasmaBallIsScreenHoldingThunderAndPlasma', on: sameFamilyDifferentAspects },
+      { facet: 'HONEST — lightning channel is plasma; thunder is acoustic shock; clay=0 · physicalFtl=0', on: screen.claySolvedByThisFold === 0 && screen.physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`thunder-plasma-aspects:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((e) => e.on),
+      thunderAndPlasmaAreSameInDifferentAspects: sameFamilyDifferentAspects,
+      aspects: screen.aspects,
+      screen,
+      count: facets.length,
+      facets,
+      root: merkleFold([screen.root, aspects.merged, ...facets.map((f) => f.receipt)]),
+      statement:
+        `Thunder ≡ plasma in different aspects — ${facets.filter((e) => e.on).length}/${facets.length}: forward=lightning · inverse=plasma-screen · reverse=thunder; noBallInTheMiddle=${screen.noBallInTheMiddle}.`,
+      boundary:
+        'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects. claySolvedByThisFold=0 · physicalFtlClaim=0. HARMONY ≠ TRUTH.',
+      claySolvedByThisFold: 0 as const,
+      physicalFtlClaim: 0 as const,
     }
   })
 }

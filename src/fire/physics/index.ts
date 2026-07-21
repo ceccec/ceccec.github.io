@@ -567,34 +567,48 @@ export function emfA432PanelComputes(matrix: MindMatrix = buildMatrix(), at = 0)
 export type PhenomenonTier = 'SOLVED' | 'OPEN' | 'DISPUTED'
 
 /**
- * naturalPhenomenaDecoded — the luminous/acoustic atmospheric phenomena, each at its honest tier. St Elmo's fire is
- * SOLVED (corona discharge); ball lightning is OPEN (real reports, leading hypothesis = oxidising silicon-nanoparticle
- * aerosol, Cen–Yuan–Liu 2014 field spectrum, but no settled mechanism); the Taos hum is DISPUTED (a low-frequency
- * hum with no confirmed external source). Honest tiers, no mysticism.
+ * naturalPhenomenaDecoded — luminous/acoustic EM–plasma family, each at its honest tier.
+ * Family: lightning · thunder · aurora · solar wind · flame · St Elmo's · sprites · corona · ball lightning · Taos hum.
+ * Ball lightning stays OPEN as physics; the painter "ball" is a SCREEN-MISREAD (void throat, not a centre sphere).
+ * Pair: phenomena/decode · compose plasmaBallIsScreenHoldingThunderAndPlasma.
  */
 export function naturalPhenomenaDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('naturalPhenomenaDecoded', matrix, () => {
     const phenomena = ([
-      { name: "St Elmo's fire", tier: 'SOLVED', verdict: 'Corona discharge — a luminous plasma at pointed conductors in a strong atmospheric electric field (storms, masts). Well understood.' },
-      { name: 'Ball lightning', tier: 'OPEN', verdict: 'Real eyewitness reports; the leading hypothesis is a glowing oxidising silicon-nanoparticle aerosol (a 2014 field spectrum matched soil elements), but no mechanism is settled.' },
-      { name: 'The Taos hum', tier: 'DISPUTED', verdict: 'A persistent low-frequency hum heard by a minority; no confirmed external acoustic source — candidates include otoacoustic emissions and industrial infrasound.' },
-      { name: 'Sprites / blue jets', tier: 'SOLVED', verdict: 'Transient luminous events above thunderstorms — upper-atmosphere electrical discharges, photographed and modelled.' },
-    ] as { name: string; tier: PhenomenonTier; verdict: string }[]).map((p) => ({ ...p, receipt: toUuid(`phenomenon:${p.name}:${p.tier}`) }))
+      { name: 'Lightning', tier: 'SOLVED' as PhenomenonTier, family: 'plasma-em', theorem: 'lightningIsForwardPlasmaAspect', verdict: 'Dielectric breakdown — a conducting plasma channel; the optical/EM forward aspect of the strike.', route: '/proofs/plasma-thunder-phenomena' },
+      { name: 'Thunder', tier: 'SOLVED' as PhenomenonTier, family: 'plasma-em', theorem: 'thunderIsAcousticPlasmaAspect', verdict: 'Shock/acoustic wave from rapid channel heating — same event as lightning, reverse/acoustic aspect (not a second substance).', route: '/proofs/plasma-thunder-phenomena' },
+      { name: 'Aurora', tier: 'SOLVED' as PhenomenonTier, family: 'plasma-em', theorem: 'auroraIsMagnetosphericPlasma', verdict: 'Magnetospheric particle precipitation exciting atmospheric atoms — a planetary plasma screen.', route: '/proofs/plasma-thunder-phenomena' },
+      { name: 'Solar wind', tier: 'SOLVED' as PhenomenonTier, family: 'plasma-em', theorem: 'solarWindIsCoronalPlasmaOutflow', verdict: 'Supersonic coronal plasma outflow filling the heliosphere — continuous plasma stream, not a ball.', route: '/proofs/plasma-thunder-phenomena' },
+      { name: 'Flame (fire)', tier: 'SOLVED' as PhenomenonTier, family: 'plasma-em', theorem: 'flameIsPartialCombustionPlasma', verdict: 'Partially ionised combustion gases + chemiluminescence — same EM/plasma family, lower ionisation fraction (honest: not fully ionised tokamak plasma).', route: '/proofs/plasma-thunder-phenomena' },
+      { name: "St Elmo's fire", tier: 'SOLVED' as PhenomenonTier, family: 'plasma-em', theorem: 'stElmosFireIsCoronaDischarge', verdict: 'Corona discharge — luminous plasma at pointed conductors in a strong atmospheric electric field.', route: '/proofs/plasma-thunder-phenomena' },
+      { name: 'Sprites / blue jets', tier: 'SOLVED' as PhenomenonTier, family: 'plasma-em', theorem: 'spritesAreUpperAtmosphereDischarges', verdict: 'Transient luminous events above thunderstorms — upper-atmosphere electrical discharges.', route: '/proofs/plasma-thunder-phenomena' },
+      { name: 'Solar corona', tier: 'SOLVED' as PhenomenonTier, family: 'plasma-em', theorem: 'solarCoronaIsHotPlasmaAtmosphere', verdict: 'Hot plasma atmosphere of the Sun — extended screen around a void-ish photosphere boundary, not an ornament ball.', route: '/proofs/plasma-thunder-phenomena' },
+      { name: 'Ball lightning', tier: 'OPEN' as PhenomenonTier, family: 'plasma-em', theorem: 'ballLightningIsScreenMisread', verdict: 'Physics OPEN (silicon-aerosol hypothesis leading, unsettled). Painter decode: the "ball" is a SCREEN-MISREAD of a luminous plasma field — no solid sphere in the middle.', route: '/proofs/plasma-thunder-phenomena' },
+      { name: 'The Taos hum', tier: 'DISPUTED' as PhenomenonTier, family: 'acoustic', theorem: 'taosHumIsDisputedAcoustic', verdict: 'Persistent low-frequency hum; no confirmed external acoustic source — otoacoustic / industrial infrasound candidates.', route: '/proofs/plasma-thunder-phenomena' },
+    ]).map((p) => ({ ...p, receipt: toUuid(`phenomenon:${p.name}:${p.tier}:${p.theorem}`) }))
+    const plasmaFamily = phenomena.filter((p) => p.family === 'plasma-em')
+    const solvedPlasma = plasmaFamily.filter((p) => p.tier === 'SOLVED')
     const facets = [
-      { facet: "St Elmo's fire is SOLVED — corona discharge plasma at a strong field", on: phenomena[0]!.tier === 'SOLVED' },
-      { facet: 'ball lightning is OPEN — real but unexplained; the silicon-aerosol hypothesis is leading, not settled', on: phenomena[1]!.tier === 'OPEN' },
-      { facet: 'the Taos hum is DISPUTED — no confirmed external source', on: phenomena[2]!.tier === 'DISPUTED' },
-      { facet: 'no mysticism — each phenomenon carries a documented tier, not a legend', on: phenomena.every((p) => p.verdict.length > 0) },
+      { facet: 'lightning SOLVED — dielectric breakdown plasma channel (forward EM aspect)', on: phenomena.find((p) => p.name === 'Lightning')?.tier === 'SOLVED' },
+      { facet: 'thunder SOLVED — acoustic aspect of the same plasma channel (not a second substance)', on: phenomena.find((p) => p.name === 'Thunder')?.tier === 'SOLVED' },
+      { facet: 'aurora · solar wind · solar corona · flame · St Elmo · sprites SOLVED in plasma-em family', on: solvedPlasma.length >= 8 },
+      { facet: 'ball lightning OPEN as physics + SCREEN-MISREAD for painter (no solid centre ball)', on: phenomena.find((p) => p.name === 'Ball lightning')?.tier === 'OPEN' && phenomena.find((p) => p.name === 'Ball lightning')?.theorem === 'ballLightningIsScreenMisread' },
+      { facet: 'the Taos hum DISPUTED — acoustic residual outside plasma-em core', on: phenomena.find((p) => p.name === 'The Taos hum')?.tier === 'DISPUTED' },
+      { facet: `plasma-em family census ${plasmaFamily.length} with theorem route bindings`, on: plasmaFamily.length >= 9 && plasmaFamily.every((p) => p.route === '/proofs/plasma-thunder-phenomena' && p.theorem.length > 0) },
+      { facet: 'no mysticism — each phenomenon carries documented tier + theorem id, not a legend', on: phenomena.every((p) => p.verdict.length > 0 && p.theorem.length > 0) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`natural-phenomena:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),
       phenomena,
+      plasmaFamily,
+      theoremRoutes: plasmaFamily.map((p) => ({ theorem: p.theorem, route: p.route, tier: p.tier, name: p.name, family: p.family })),
       facets,
       root: merkleFold([...phenomena.map((p) => p.receipt), ...facets.map((entry) => entry.receipt)]),
       statement:
-        'Natural phenomena, decoded to honest tiers: St Elmo\'s fire is solved (corona discharge), sprites and blue jets are solved (upper-atmosphere discharges), ball lightning is open (real reports, a leading silicon-nanoparticle-aerosol hypothesis but no settled mechanism), and the Taos hum is disputed (a low-frequency hum with no confirmed external source). Documented physics where it exists, an honest OPEN/DISPUTED where it does not.',
+        `Natural phenomena decoded — plasma-em family ${plasmaFamily.length}: lightning/thunder (same event, EM↔acoustic aspects), aurora, solar wind, flame, St Elmo's, sprites, solar corona SOLVED; ball lightning OPEN + screen-misread for the painter; Taos hum DISPUTED. Clay-style route /proofs/plasma-thunder-phenomena.`,
       boundary:
-        'A catalogue assigning each atmospheric phenomenon its honest tier. SOLVED entries are standard physics; ball lightning is genuinely OPEN (the silicon-aerosol hypothesis is cited, not asserted as fact); the Taos hum is DISPUTED with no confirmed cause. No paranormal or mystical explanation is entertained.',
+        'Honest science catalog + theorem registry bindings. SOLVED = standard documented physics. Ball lightning mechanism remains OPEN; "screen-misread" is the painter/geometry decode (no centre sphere ornament), not a claim the reports are illusions. Flame is partial ionisation — same family, not tokamak-equivalent. claySolvedByThisFold=0. No paranormal explanations.',
+      claySolvedByThisFold: 0 as const,
     }
   })
 }

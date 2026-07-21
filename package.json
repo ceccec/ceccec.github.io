@@ -120,6 +120,7 @@
     "quantum:slow-gap": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runSlowProcessIsQuantumGapExit",
     "quantum:mcp-browser-parity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpBrowserParityExit",
     "quantum:ui-prose-duplication": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runUiProseDuplicationRemovedExit",
+    "quantum:plasma-screen-thunder": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/decode/index.ts runPlasmaBallIsScreenHoldingThunderAndPlasmaExit",
     "quantum:mcp-commands-scripts-gaps-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMcpCommandsScriptsGapsAuditExit",
     "quantum:f-inverse-pair": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/vortex/index.ts runFThetaPhiXyzDigitNIsTheInversePairExit",
     "quantum:improve-local-session": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runImproveLocalFromSessionExperienceExit",

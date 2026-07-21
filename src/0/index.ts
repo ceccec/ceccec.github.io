@@ -641,6 +641,10 @@ export function decodeVortexDashAngles(encoded: string = VORTEX_DASH_ENCODED) {
 /** Canonical I Ching integers for CSS · geometry · token derivation. */
 export const ICHING_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 27, 54, 64, 100, 108, 216, 360, 432, 864] as const
 
+/** Status badge kinds — cycle-free leaf (theme + architecture re-export; avoids STATUS_BADGE_KINDS TDZ). */
+export const STATUS_BADGE_KINDS = ['ready', 'ok', 'gap', 'warn', 'partial', 'error', 'refused', 'ci'] as const
+export type StatusBadgeKind = (typeof STATUS_BADGE_KINDS)[number]
+
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function vortexNext(d: number): number {
   if (d === 5) return 3          // circuit→cross: 5×2=10→1 would loop; step to cross instead

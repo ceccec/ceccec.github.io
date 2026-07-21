@@ -3537,6 +3537,33 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         ruleClauses: ['relatedScienceNotPrizeSolution', 'notAProposedSolution'],
         receipt: toUuid('domain-proof:theorem-collider'),
       },
+      {
+        id: 'plasma-thunder-phenomena',
+        slug: 'plasma-thunder-phenomena',
+        title: 'Plasma screen · thunder≡plasma · natural plasma-em phenomena as theorems',
+        kind: 'honesty',
+        officialStatement:
+          'plasmaBallIsScreenHoldingThunderAndPlasma — the plasma "ball" is the screen holding thunder+plasma; noBallInTheMiddle (void/vortex confluence). Thunder ≡ plasma under forward=lightning · inverse=inverted-lightning · reverse=thunder. naturalPhenomenaDecoded binds lightning·thunder·aurora·solar wind·flame·St Elmo·sprites·corona (SOLVED) + ball lightning (OPEN, screen-misread) to theorem routes. claySolvedByThisFold=0.',
+        detailedExplanation:
+          `Compose plasmaBallIsScreenHoldingThunderAndPlasma · thunderAndPlasmaAreSameInDifferentAspects · naturalPhenomenaDecoded · movieAllElementsAreTheorems (#63). ` +
+          'Painter attestation: soft fillRect throat, not a centre sphere. Ball-lightning physics remains OPEN; screen-misread is geometry honesty. NOT tokamak / NOT Clay Prize.',
+        formula: 'screen ∧ noBallInTheMiddle ∧ thunderPlasmaSameDifferentAspects ∧ naturalPhenomenaDecoded.decoded',
+        formulaSource: 'plasmaBallIsScreenHoldingThunderAndPlasma · naturalPhenomenaDecoded',
+        status: 'structure-only',
+        statusDetail: 'Honest EM/plasma catalog + painter screen geometry — not a Clay solution',
+        gap: 'ball lightning mechanism unsettled; flame ≠ fully ionised plasma',
+        fold: 'plasmaBallIsScreenHoldingThunderAndPlasma',
+        cli: 'npm run quantum:plasma-screen-thunder',
+        pair: 'plasma/screen',
+        route: '/proofs/plasma-thunder-phenomena',
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qualifiesAsProposedSolutionUnderClayRules: false,
+        publishedInQualifyingOutlet: false,
+        trinity: { forward: 'lightning', inverse: 'plasma-screen', reverse: 'thunder' },
+        ruleClauses: ['relatedScienceNotPrizeSolution', 'notAProposedSolution'],
+        receipt: toUuid('domain-proof:plasma-thunder-phenomena'),
+      },
     ]
 
     const rows = [...millenniumRows, ...scienceRows, ...honestyRows]
@@ -3544,7 +3571,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const allClayZero = rows.every((r) => r.claySolvedByThisFold === 0)
     const noneProposed = rows.every((r) => r.qualifiesAsProposedSolutionUnderClayRules === false && r.publishedInQualifyingOutlet === false)
     const facets = [
-      { facet: `catalog rows ≥ 7 millennium + sciences + honesty (${rows.length})`, on: rows.length >= (2 * 3 + 1) + SCIENCE_DOMAIN_SEEDS.length + (2 * 2) },
+      { facet: `catalog rows ≥ 7 millennium + sciences + honesty (${rows.length})`, on: rows.length >= (2 * 3 + 1) + SCIENCE_DOMAIN_SEEDS.length + (2 * 2 + 1) },
       { facet: 'seven millennium dedicated routes', on: millenniumRows.length === (2 * 3 + 1) },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} on every row`, on: allClayZero && claySolvedByThisFold === 0 },
       { facet: 'qualifiesAsProposedSolutionUnderClayRules=false on every row (§5)', on: noneProposed },
