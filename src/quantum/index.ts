@@ -26,7 +26,7 @@ import type { MindMatrix } from '../wind/types'
 import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'
-import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, TAU } from '../3/7'
+import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, TAU } from '../3/7'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -748,17 +748,6 @@ export function fieldLayers(field: AnimationField): readonly FieldLayer[] {
   })
 }
 
-/** The seven rosetta rays — the canonical perspectives (inlined for SSR safety, as in component-bagua-groups). */
-const ROSETTA_RAY_VIEWS: readonly { readonly glyph: string; readonly domain: string }[] = [
-  { glyph: 'Ⰰ', domain: 'origin' },
-  { glyph: 'Ⰲ', domain: 'expression' },
-  { glyph: 'Ⰴ', domain: 'knowledge' },
-  { glyph: 'Ⰶ', domain: 'nature' },
-  { glyph: 'Ⰹ', domain: 'computation' },
-  { glyph: 'Ⰿ', domain: 'geometry' },
-  { glyph: 'Ⱄ', domain: 'language' },
-] as const
-
 /** A viewpoint onto the one field — a rosetta ray re-projects the SAME content-addressed field. */
 export interface RosettaPerspective {
   readonly ray: number
@@ -778,16 +767,17 @@ export interface RosettaPerspective {
  * from a different ray (rotation + A432 hue rotation). The field's identity (`field.root`) is preserved —
  * only the view changes — so all seven perspectives are folds of one fusion, not seven different things.
  * HONEST: the ray bijection is exact (lossless 7-fold); "folds the mind" is the metaphor for the re-view.
+ * Collapse: glyph/domain from sealed ROSETTA_RAYS only — no parallel ROSETTA_RAY_VIEWS table.
  */
 export function rosettaPerspectiveFold(ray: number, field: AnimationField): RosettaPerspective {
-  const r = (((ray % 7) + 7) % 7)
-  const view = ROSETTA_RAY_VIEWS[r]!
-  const turn = (r / 7) * TAU
+  const r = (((ray % ROSETTA_RAYS.length) + ROSETTA_RAYS.length) % ROSETTA_RAYS.length)
+  const view = ROSETTA_RAYS[r]!
+  const turn = (r / ROSETTA_RAYS.length) * TAU
   return {
     ray: r,
     glyph: view.glyph,
     domain: view.domain,
-    hue: (field.hue + (r * 360) / 7) % 360,
+    hue: (field.hue + (r * 360) / ROSETTA_RAYS.length) % 360,
     rotation: { rx: field.t * (1 / 5) + turn, ry: field.t * (3 / (5 * 4)) + turn * (1 / 2), rz: turn * PHI ** -2 },
     root: toUuid(`rosetta-perspective:${field.root}:${r}`),
   }

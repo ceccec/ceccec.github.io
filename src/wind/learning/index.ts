@@ -2598,7 +2598,7 @@ export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/
       foldLabel: ROSETTA_FOLD_LABEL, facets,
       root: rosettaMerge(rosettaMerge(itself.root, core.root), rosettaMerge(nav.root, rosettaMerkleFold(facets.map((e) => rosettaToUuid(`rosetta-computes:${e.facet}:${e.on}`))))),
       statement: `Rosetta computes (${ROSETTA_FOLD_LABEL}): seven rays, rosettaCoreApi self-host, Glagolitic key, path→type, nav+content, Rosetta·I Ching — sealed at call time.`,
-      boundary: 'Lazy composition (cycle-safe). Decode = transliteration + content-address + path math — NOT crypto decryption. Parallel registries = strangler backlog in core.inventory.',
+      boundary: 'Lazy composition (cycle-safe). Decode = transliteration + content-address + path math — NOT crypto decryption. rosettaCodec shelved via rosettaCoreApi (parallel synonym backlog collapsed).',
     }
   })
 }

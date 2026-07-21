@@ -71,6 +71,9 @@ const ROSETTA_CORE_API_LABELS = [
   'crossWavesUpgradeAll',
   'folderMigrationDedupWaves',
   'sharedHeroAt', 'computeUniversalPage',
+  // Collapsed synonym registries — shelved through core (no parallel tables).
+  'rosettaCodec', 'rosettaClaim', 'rosettaOwner', 'quantumProjectionParams',
+  'stringTheoryMillenniumTheoremGapsInventory',
 ] as const
 
 const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
@@ -97,14 +100,13 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities: 'tool',
   crossWavesUpgradeAll: 'tool',
   folderMigrationDedupWaves: 'nav',
+  rosettaCodec: 'compute', rosettaClaim: 'api', rosettaOwner: 'api',
+  quantumProjectionParams: 'projection',
+  stringTheoryMillenniumTheoremGapsInventory: 'compute',
 }
 
-// Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
-// string/millennium named as apparatus-handoff (rosettaReady), not as Clay/physics claim.
-const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [
-  'ROSETTA_RAY_VIEWS duplicate', 'PROJECTION_SEGMENT/FORMS→VORTEX', 'rosettaClaim/Owner(heaven/core)',
-  'rosettaCodec(learning)', 'string/millennium→rosettaReady-handoff',
-] as const
+// Parallel synonym registries collapsed — empty strangler backlog (apps+tools+codec+claim/owner+projection+millennium handoff).
+const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [] as const
 
 /** Shelve any label onto a rosetta ray — the one registration primitive. */
 export function rosettaShelve(label: string, kind: RosettaCoreSurfaceKind = 'api'): RosettaCoreSurface {
@@ -138,7 +140,13 @@ export function rosettaCoreApi(at = 0, matrix: MindMatrix = buildMatrix()) {
       { facet: 'label↔ray — surface.ray === rosettaRayOf(label)', on: surfaces.every((s) => s.ray === rosettaRayOf(s.label)) },
       { facet: 'hubs index=ray from ROSETTA_RAYS + COMPUTATION_TYPES', on: ROSETTA_RAY_HUBS.every((h, i) => h.ray === i && h.pageKind === ROSETTA_COMPUTATION_TYPES[i]) },
       { facet: 'ROSETTA_CORE_KINDS.length === ROSETTA_RAYS.length', on: ROSETTA_CORE_KINDS.length === ROSETTA_RAYS.length },
-      { facet: 'parallel strangler backlog named', on: inventory.parallel.length >= 4 },
+      { facet: 'parallel synonym registries collapsed (backlog empty)', on: inventory.parallel.length === 0 },
+      { facet: 'codec·claim·owner·projection·millennium shelved via core', on:
+        resolve('rosettaCodec').kind === 'compute'
+        && resolve('rosettaClaim').kind === 'api'
+        && resolve('rosettaOwner').kind === 'api'
+        && resolve('quantumProjectionParams').kind === 'projection'
+        && resolve('stringTheoryMillenniumTheoremGapsInventory').kind === 'compute' },
       { facet: 'resolve(rosettaComputesAll).kind === compute', on: resolve('rosettaComputesAll').kind === 'compute' },
       { facet: 'resolveRoute(/en/) computes', on: resolveRoute('/en/').computed === true && isUuid(resolveRoute('/en/').sharedRoot) },
       { facet: 'tool+app labels shelved', on: resolve('quantumCliToolsCatalog', 'tool').kind === 'tool' && resolve('quantumAppsRegistry', 'app').kind === 'app' },
@@ -154,8 +162,8 @@ export function rosettaCoreApi(at = 0, matrix: MindMatrix = buildMatrix()) {
         return { surface, phase: (surface.ray * 360) / ROSETTA_RAYS.length, hue: surface.hue, motion: sevenStarRosettaNaturalMotion(at) }
       },
       facets, root: merkleFold([...surfaces.map((s) => s.address), ...facets.map((e) => e.receipt)]),
-      statement: `rosettaCoreApi: ${surfaces.length} labels shelved by rosettaRayOf — self-host dispatch, no wet registry.`,
-      boundary: 'Derived from ROSETTA_RAYS · COMPUTATION_TYPES · rosettaRayOf. Parallel APP_ROWS/TOOL_ROWS/PR#11/#12 named in inventory. HARMONY ≠ TRUTH.',
+      statement: `rosettaCoreApi: ${surfaces.length} labels shelved by rosettaRayOf — self-host dispatch, parallel synonyms collapsed.`,
+      boundary: 'Derived from ROSETTA_RAYS · COMPUTATION_TYPES · rosettaRayOf. Parallel synonym backlog empty (ROSETTA_RAY_VIEWS→RAYS · PROJECTION→VORTEX · claim/owner/codec shelved · millennium→rosettaReady). HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -177,14 +185,14 @@ export function rosettaCoreApiSelfWires(at = 0, matrix: MindMatrix = buildMatrix
       { facet: 'kind×ray census from sealed tables', on: surfaceOk },
       { facet: 'rosettaComputesItself holds', on: rosettaComputesItself(at, matrix).computed },
       { facet: 'shelve preserves kind', on: kinds.every((k) => rosettaShelve(`probe-${k}`, k).kind === k) },
-      { facet: 'inventory names parallel backlog', on: core.inventory.parallel.length >= 4 },
+      { facet: 'inventory parallel backlog collapsed empty', on: core.inventory.parallel.length === 0 },
       { facet: 'VORTEX_SEQUENCE ≥ ray count', on: VORTEX_SEQUENCE.length >= ROSETTA_RAYS.length },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-core-self-wires:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((e) => e.on), at, core, slots, count: slots.length, facets,
       root: merkleFold([core.root, ...slots.map((s) => s.receipt), ...facets.map((e) => e.receipt)]),
       statement: `rosettaCoreApiSelfWires: ${core.surfaces.length} labels · ${slots.length} kind×ray slots — wire-all-there via the rosetta.`,
-      boundary: 'Structural codec closure. Strangler backlog in core.inventory. HARMONY ≠ TRUTH.',
+      boundary: 'Structural codec closure. Parallel synonym strangler backlog empty. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -244,28 +252,28 @@ export type QuantumProjectionParams = {
   readonly root: string
 }
 
-const PROJECTION_SEGMENT_SLOT: Record<QuantumProjection, number> = {
-  plasma: 0, taiji: 1, 'sacred-morph': 2, hologram: 3, labyrinth: 4,
-  'movie-10d': 5, 'living-torus': 6, merkaba: 7, 'double-torus': 8,
-  'unit-distance': 6, // VORTEX_SEQUENCE[6] = 3 — the pro-3 tower layers
-  'vortex-strokes': 2, // VORTEX_SEQUENCE[2] = 4 — the four gateway reversals of the stroke cycle
-}
-
-const PROJECTION_FORMS: Record<QuantumProjection, number> = {
-  plasma: 9, taiji: 2, 'sacred-morph': (5 + 8), hologram: 1, labyrinth: (8 * 3), // 13 = fruit-of-life centres (Fib 5+8)
-  'movie-10d': 6, 'living-torus': 1, merkaba: 2, 'double-torus': 2,
-  'unit-distance': 7, // seven split-prime channels drawn — a rosetta-sized sample of the t
-  'vortex-strokes': (5 * 2), // the ten-digit tour 1·2·4·8·7·5·3·6·9·0 — every digit once, the void included
+/** One VORTEX-keyed projection surface — slot indexes VORTEX_SEQUENCE; forms are the draw count (no parallel SEGMENT/FORMS tables). */
+const PROJECTION_VORTEX: Record<QuantumProjection, { readonly slot: number; readonly forms: number }> = {
+  plasma: { slot: 0, forms: 9 },
+  taiji: { slot: 1, forms: 2 },
+  'sacred-morph': { slot: 2, forms: (5 + 8) }, // 13 = fruit-of-life centres (Fib 5+8)
+  hologram: { slot: 3, forms: 1 },
+  labyrinth: { slot: 4, forms: (8 * 3) },
+  'movie-10d': { slot: 5, forms: 6 },
+  'living-torus': { slot: 6, forms: 1 },
+  merkaba: { slot: 7, forms: 2 },
+  'double-torus': { slot: 8, forms: 2 },
+  'unit-distance': { slot: 6, forms: 7 }, // VORTEX_SEQUENCE[6] = 3 — pro-3 tower; seven split-prime channels
+  'vortex-strokes': { slot: 2, forms: (5 * 2) }, // VORTEX_SEQUENCE[2] = 4 gateways; ten-digit tour incl. void
 }
 
 /** The orbit's natural sense — derived from the doubling circuit (1→2 ascending ⇒ +1), not a literal. */
 const ORBIT_DIRECTION: 1 | -1 = (VORTEX_SEQUENCE[1] ?? 2) > (VORTEX_SEQUENCE[0] ?? 1) ? 1 : -1
 
-/** Resolve the computed projection params for one projection id — pure, sequence-derived. */
+/** Resolve the computed projection params for one projection id — pure, VORTEX-sequence-derived. */
 export function quantumProjectionParams(projection: QuantumProjection): QuantumProjectionParams {
-  const slot = PROJECTION_SEGMENT_SLOT[projection]
+  const { slot, forms } = PROJECTION_VORTEX[projection]
   const segments = VORTEX_SEQUENCE[slot % VORTEX_SEQUENCE.length] ?? 9
-  const forms = PROJECTION_FORMS[projection]
   // bits ← 128 (2⁷) holographic word; digital root keeps the lineage to the sequence.
   const bits = projection === 'hologram' ? (64 * 2) : 0
   return {
@@ -394,7 +402,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'animations-rosetta', title: 'Animations driven by rosetta (yin-yang first)', fold: 'animationsDrivenByRosetta', cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang', barrel: 'src/wind/ui', boundary: 'Linear forming = quantum gap; taiji uses non-linear exchange + rosettaShelve', browserRunnable: true, browserGap: '' },
   { id: 'trading-rosetta-train', title: 'Historical train waves via rosetta', fold: 'tradingStrategiesImproveViaRosetta', cli: 'npm run quantum:trading-rosetta-train', pair: 'train/rosetta', route: '/en/quantum-trading-hub', barrel: 'src/thunder/trading', boundary: 'Paper/sim only — synthetic a432 historical proxy; NOT live money / NOT alpha', browserRunnable: true, browserGap: '' },
   { id: 'first-in-corpus', title: 'First-in-corpus provenance · theorem 10D', fold: 'firstInCorpusProvenanceForHome', cli: 'npm run quantum:first-in-corpus', pair: 'first/corpus', route: '/en/#first-in-corpus', barrel: 'src/wind/research', boundary: 'Corpus novelty ≠ global mathematical priority; humanityNovel=0; claySolved=0', browserRunnable: true, browserGap: '' },
-  { id: 'rosetta-core-api', title: 'Rosetta core API dispatch', fold: 'rosettaCoreApi', cli: 'npm run quantum:rosetta-core-api', pair: 'rosetta/core', route: '/en/quantum-tools#rosetta-core-api', barrel: 'src/quantum/apps', boundary: 'Self-host label↔ray shelve — NOT a remote RPC; parallel backlog named honestly', browserRunnable: true, browserGap: '' },
+  { id: 'rosetta-core-api', title: 'Rosetta core API dispatch', fold: 'rosettaCoreApi', cli: 'npm run quantum:rosetta-core-api', pair: 'rosetta/core', route: '/en/quantum-tools#rosetta-core-api', barrel: 'src/quantum/apps', boundary: 'Self-host label↔ray shelve — NOT a remote RPC; parallel synonym backlog collapsed empty', browserRunnable: true, browserGap: '' },
   { id: 'rosetta-complete', title: 'Rosetta complete — quantum all computable dims & theorems', fold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems', cli: 'npm run quantum:rosetta-complete', pair: 'rosetta/complete', route: '/en/quantum-tools#rosetta-complete', barrel: 'src/quantum/apps', boundary: 'Enabling apparatus — millenniumSolvedByThisFold=0 · physicalFtlClaim=0; rosettaReady≠Clay/FTL solved', browserRunnable: true, browserGap: '' },
   { id: 'theorem-particle-collision', title: 'Theorem particle collision — inverse × reverse', fold: 'theoremParticleCollisionInverseReverse', cli: 'npm run quantum:theorem-particle-collision', pair: 'challenge/collider', route: '/en/quantum-tools#theorem-particle-collision', barrel: 'src/wind/research', boundary: 'MODELED sealed-geometry collision — NOT HEP; claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
   { id: 'ftl-rosetta-handoff', title: 'FTL techniques ← rosetta completeness handoff', fold: 'ftlExperimentTechniquesHandoffFromRosettaComplete', cli: 'npm run quantum:ftl-rosetta-handoff', pair: 'challenge/ftl', route: '/en/quantum-tools#ftl-rosetta-handoff', barrel: 'src/quantum/apps', boundary: 'Handoff stub — physicalFtlClaim=0; full KEEP-ftl apparatus consumes rosettaReady; NOT physical FTL', browserRunnable: true, browserGap: '' },
@@ -2485,7 +2493,7 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       { facet: `IMMEDIATELY VISIBLE — ${open.length} open architectural slow gaps enumerated (not hidden in logs)`, on: open.every((row) => row.gapId.length > 0 && row.criterion.length > 0) },
       { facet: 'browser Node/CI gaps classified from quantumCliToolsCatalog.browserGap', on: catalog.tools.filter((t) => !t.browserRunnable).every((t) => open.some((g) => g.gapId === `slow:browser:${t.id}`)) },
       { facet: 'missing 10D projection on tool apps classified', on: SLOW_GAP_PROJECTION_APP_IDS.every((id) => rows.some((g) => g.gapId === `slow:projection:${id}`)) },
-      { facet: 'parallel registry strangler backlog visible via rosettaCoreApi.inventory.parallel', on: core.inventory.parallel.every((item) => rows.some((g) => g.process === item && g.kind === 'parallel-registry')) },
+      { facet: 'parallel synonym strangler collapsed — inventory.parallel empty (no open parallel-registry rows)', on: core.inventory.parallel.length === 0 && !rows.some((g) => g.kind === 'parallel-registry' && !g.closed) },
       { facet: 'memo miss≫hit economics attested (illustrative — NOT wall-clock telemetry)', on: econ.decoded && missCostlier },
       { facet: `science experiment I/O — ${toolbox.scienceFacingCount} tools composed via standardToolboxIoCatalog`, on: toolbox.computes && rows.some((g) => g.kind === 'tool-without-experiment-io' && g.closed) },
       { facet: 'HONEST BOUNDARY — slow ≠ measured latency; architectural quantum-gap only (build timing owned by slow-build gates sibling)', on: true },
@@ -2514,7 +2522,7 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
         'Slow here means architectural quantum-gap (missing sealed reuse, browser path, 10D projection, experiment I/O, movie private-rAF/multi-clock, or unsealed parallel registry) — NOT wall-clock telemetry / NOT docs:build timing (sibling slow-build gates). Movie rows are viz/computation gaps — NOT physical QM. fleetCacheEconomicsDecoded joules are illustrative.',
       statement: `Slow process is quantum gap — ${facets.filter((e) => e.on).length}/${facets.length}: ${open.length} open / ${closed.length} closed / ${rows.length} classified; experiment-io closed ${experimentIoClosed.length}; browserGaps, projections, parallel backlog, movie clock/neuroscience, memo-miss, science I/O recomputed at call time.`,
       boundary:
-        'HONEST: architectural classifier only. Node/CI browserGaps and parallel-registry backlog remain open until strangler/browser ports close them — visibility is the point. Build wall-clock gates are out of scope here. Movie gaps ≠ physical quantum speedup. NOT a profiler. HARMONY ≠ TRUTH.',
+        'HONEST: architectural classifier only. Node/CI browserGaps remain open until browser ports close them — visibility is the point. Parallel synonym strangler collapsed (inventory.parallel=0). Build wall-clock gates are out of scope here. Movie gaps ≠ physical quantum speedup. NOT a profiler. HARMONY ≠ TRUTH.',
     }
   })
 }
@@ -2628,8 +2636,10 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
       {
         id: 'parallel-strangler',
         kind: 'parallel',
-        before: `parallel backlog ${parallelOpen} (named honesty)`,
-        after: 'named in rosettaCoreApi.inventory.parallel — strangler, not silent',
+        before: 'parallel backlog was 5 synonym registries',
+        after: parallelOpen === 0
+          ? 'synonym registries collapsed — ROSETTA_RAY_VIEWS→RAYS · PROJECTION→VORTEX · claim/owner/codec shelved · millennium→rosettaReady'
+          : 'named in rosettaCoreApi.inventory.parallel — strangler, not silent',
         open: parallelOpen > 0,
         receipt: toUuid(`rosetta-complete:gap:parallel:${parallelOpen}`),
       },
@@ -2750,7 +2760,7 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
       statement:
         `Rosetta complete quantum all computable dimensions & theorems — ${completenessPct}% · complete=${rosettaComplete}: dims ${dimPct}% (open=${dims.open.length}) · theorem-bind ${theoremBindPct}% · lattice ${latticePct}% · handoff.rosettaReady=${handoff.rosettaReady}. millenniumSolvedByThisFold=0 · physicalFtlClaim=0.`,
       boundary:
-        'HARD HONESTY: enabling apparatus only. Completing Rosetta coverage does NOT solve Clay Millennium Problems (millenniumSolvedByThisFold=0) and does NOT claim physical FTL signaling (physicalFtlClaim=0). rosettaReady lets millennium challenge + FTL techniques consume a completeness receipt — challenge/probe/address, not prize/physics solved. Parallel strangler + science gaps may remain named. HARMONY ≠ TRUTH.',
+        'HARD HONESTY: enabling apparatus only. Completing Rosetta coverage does NOT solve Clay Millennium Problems (millenniumSolvedByThisFold=0) and does NOT claim physical FTL signaling (physicalFtlClaim=0). rosettaReady lets millennium challenge + FTL techniques consume a completeness receipt — challenge/probe/address, not prize/physics solved. Parallel synonym strangler collapsed; science gaps may remain named. HARMONY ≠ TRUTH.',
     }
   })
 }
