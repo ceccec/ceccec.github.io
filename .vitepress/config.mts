@@ -10,7 +10,7 @@ import { defineConfig } from 'vitepress'
 import { srcFolderPlugins } from './src-plugins.mts'
 import { buildLockPlugin, releaseDirectBuildLock } from './build-lock-plugin.mts'
 import { buildVerbosePlugin } from './build-verbose-plugin.mts'
-import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero } from './lib/vitepress-seo'
+import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
 
 /** Root pages live under pages/ without bg|gla prefix — default locale is English (canonical bare URLs). */
 function siteLocaleForRelative(relative: string) {
@@ -34,6 +34,7 @@ import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-serv
 // srcFolderPlugins from mind + lake/dist indices (folderLaw.indexSurfaces.vitepress.consumes).
 const config = siteConfig()
 const nav = siteNavigation()
+const vpNative = vitepressNativeDocsConfig()
 // TOP NAV = the rosetta+I-Ching nav: Home + 3 doors (Ground · Work · Reach) grouping the 7 rosetta rays by hue-band,
 // each ray a bāguà trigram; only populated rays appear (rosettaRayOfContent over the served pages), so every link
 // resolves to a real hub. Replaces the 4-pole keyword-regex cross. Sidebar/footer stay from siteNavigation.
@@ -286,7 +287,7 @@ const siteTitleBg = config.titleBg
 const siteDescription = config.description
 const siteDescriptionBg = config.descriptionBg
 
-// https://vitepress.dev/reference/site-config
+// https://vitepress.dev/reference/site-config — values from vitepressNativeDocsConfig (sealed src).
 export default defineConfig({
   // ~69 catch-all shells — serial SSR (buildConcurrency>1 races .vitepress/.temp); target ≤3 min.
   buildConcurrency: 1,
@@ -295,6 +296,10 @@ export default defineConfig({
   // Page tree lives under .vitepress/pages (thin mounts + paths.ts); logic in src/; static assets in public/.
   srcDir: '.vitepress/pages',
   cleanUrls: true,
+  // Git last-updated timestamps → useData().page.lastUpdated + default-theme footer (vitepress.dev site-config).
+  lastUpdated: vpNative.lastUpdated,
+  // Markdown image lazy loading (vitepress.dev/guide/markdown#image-lazy-loading) — VP default is false.
+  markdown: vpNative.markdown,
   // Production seal (W6): dead markdown links FAIL the build — never suppressed. VitePress defaults to false,
   // but we pin it so no future edit can silence a broken link; gaps surface loud and get filled. The computed
   // catch-all route resolution (universalRoutePath / automount) keeps every internal link live by construction.
@@ -587,6 +592,11 @@ export default defineConfig({
   themeConfig: {
     aside: true,
     outline: 'deep',
+    // Sealed VP-native emitter (vitepress.dev default-theme-config) — logo · edit · lastUpdated · external icon.
+    logo: vpNative.theme.logo,
+    externalLinkIcon: vpNative.theme.externalLinkIcon,
+    editLink: vpNative.theme.editLink,
+    lastUpdated: vpNative.theme.lastUpdated,
     // The GitHub repository, shown in the top nav. One source for the repo link across both locales.
     socialLinks: [{ icon: 'github', link: 'https://github.com/ceccec/ceccec.github.io' }],
     // Nothing bypasses VitePress — not even search. VitePress's built-in local
@@ -605,8 +615,7 @@ export default defineConfig({
         miniSearch: {
           _splitIntoSections: (file: string, html: string) => searchSectionsFor(file, html),
         },
-        // The default locale is Glagolitic, so the search UI defaults to the ninth-century script;
-        // English (/en/) and Bulgarian (/bg/) override it with their own labels.
+        // Top-level translations = Glagolitic (/gla/ fallback); root + bg locales override for en/bg.
         translations: {
           button: { buttonText: toGlagolitic('Search'), buttonAriaLabel: toGlagolitic('Search') },
           modal: {
@@ -630,6 +639,18 @@ export default defineConfig({
               },
             },
           },
+          gla: {
+            translations: {
+              button: { buttonText: toGlagolitic('Search'), buttonAriaLabel: toGlagolitic('Search') },
+              modal: {
+                displayDetails: toGlagolitic('Display detailed list'),
+                resetButtonTitle: toGlagolitic('Reset search'),
+                backButtonTitle: toGlagolitic('Close search'),
+                noResultsText: toGlagolitic('No results for'),
+                footer: { selectText: toGlagolitic('to select'), navigateText: toGlagolitic('to navigate'), closeText: toGlagolitic('to close') },
+              },
+            },
+          },
           bg: {
             translations: {
               button: { buttonText: 'Търсене', buttonAriaLabel: 'Търсене' },
@@ -650,7 +671,7 @@ export default defineConfig({
     root: {
       label: 'English',
       lang: 'en',
-      link: SITE_LOCALES[0].path,
+      link: vpNative.localeLinks.root,
       title: siteTitle,
       description: siteDescription,
       themeConfig: {
@@ -664,12 +685,15 @@ export default defineConfig({
         sidebarMenuLabel: 'Menu',
         returnToTopLabel: 'Return to top',
         langMenuLabel: 'Change language',
+        skipToContentLabel: vpNative.localeLabels.en.skipToContentLabel,
+        editLink: { ...vpNative.theme.editLink, text: vpNative.localeLabels.en.editLinkText },
+        lastUpdated: { ...vpNative.theme.lastUpdated, text: vpNative.localeLabels.en.lastUpdatedText },
       },
     },
     gla: {
       label: toGlagolitic('Glagolica'), // computed, never a hardcoded glyph string — Glagolitic is always toGlagolitic
       lang: 'cu',
-      link: SITE_LOCALES[2].path,
+      link: vpNative.localeLinks.gla,
       title: toGlagolitic(siteTitle),
       description: toGlagolitic(siteDescription),
       themeConfig: {
@@ -683,12 +707,16 @@ export default defineConfig({
         sidebarMenuLabel: toGlagolitic('Menu'),
         returnToTopLabel: toGlagolitic('Return to top'),
         langMenuLabel: toGlagolitic('Change language'),
+        skipToContentLabel: toGlagolitic(vpNative.localeLabels.gla.skipToContentLabel),
+        editLink: { ...vpNative.theme.editLink, text: toGlagolitic(vpNative.localeLabels.gla.editLinkText) },
+        lastUpdated: { ...vpNative.theme.lastUpdated, text: toGlagolitic(vpNative.localeLabels.gla.lastUpdatedText) },
       },
     },
     bg: {
       label: 'Български',
       lang: 'bg-BG',
-      link: SITE_LOCALES[2].path,
+      // BUGFIX: was SITE_LOCALES[2] (/gla/) — must be SITE_LOCALES[1] (/bg/) per vitepressNativeDocsConfig.
+      link: vpNative.localeLinks.bg,
       title: siteTitleBg,
       description: siteDescriptionBg,
       themeConfig: {
@@ -702,6 +730,9 @@ export default defineConfig({
         sidebarMenuLabel: 'Меню',
         returnToTopLabel: 'Към началото',
         langMenuLabel: 'Смени езика',
+        skipToContentLabel: vpNative.localeLabels.bg.skipToContentLabel,
+        editLink: { ...vpNative.theme.editLink, text: vpNative.localeLabels.bg.editLinkText },
+        lastUpdated: { ...vpNative.theme.lastUpdated, text: vpNative.localeLabels.bg.lastUpdatedText },
       },
     },
   },

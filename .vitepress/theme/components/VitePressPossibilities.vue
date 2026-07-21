@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { onlyVitePressApi } from '../../../src/fire/li/index.ts'
 import { vitepressConfigComputesAll } from '../../../src/heaven/compute/index.ts'
+import { vitepressDocsResearchImprovements } from '../../../src/wind/site/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import UiAsideShell from './UiAsideShell.vue'
 
@@ -9,6 +10,7 @@ const { pick, t } = useSiteLocale()
 
 const vpApi = computed(() => onlyVitePressApi())
 const config = computed(() => vitepressConfigComputesAll())
+const research = computed(() => vitepressDocsResearchImprovements())
 
 const seedParts = computed(() => ['vitepress-possibilities', vpApi.value.root.slice(0, 8)] as const)
 
@@ -16,6 +18,7 @@ const labels = computed(() => ({
   summary: pick('VitePress possibilities', 'VitePress възможности'),
   allowed: pick('Allowed API', 'Позволен API'),
   config: pick('Config computes', 'Конфигурация изчислява'),
+  research: pick('Docs research → applied', 'Документация → приложено'),
   ok: pick('on', 'да'),
   off: pick('off', 'не'),
 }))
@@ -41,6 +44,20 @@ const labels = computed(() => ({
       <ul class="vitepress-possibilities__facets">
         <li
           v-for="facet in config.facets"
+          :key="facet.facet"
+          :class="{ 'is-on': facet.on }"
+        >
+          <span class="vitepress-possibilities__mark">{{ facet.on ? labels.ok : labels.off }}</span>
+          {{ t(facet.facet) }}
+        </li>
+      </ul>
+    </section>
+
+    <section class="vitepress-possibilities__section">
+      <p class="vitepress-possibilities__heading">{{ labels.research }}</p>
+      <ul class="vitepress-possibilities__facets">
+        <li
+          v-for="facet in research.facets"
           :key="facet.facet"
           :class="{ 'is-on': facet.on }"
         >
