@@ -163,7 +163,7 @@ export function useImmersiveMovie() {
   return { immersive, textShadow }
 }
 
-export { prefersReducedMotion, useHeroClock, useVisibleMovieCanvas, viewportSize, type MovieIntensity } from './movie-canvas'
+export { prefersReducedMotion, useHeroClock, useSharedHero, useVisibleMovieCanvas, viewportSize, type MovieIntensity } from './movie-canvas'
 
 export type CorpusGridItem = {
   route: string

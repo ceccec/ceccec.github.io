@@ -1,6 +1,15 @@
 // One hero clock + canvas resize/paint — background movie, card movies, subtitles (DRY mount).
-import { nextTick, onMounted, onUnmounted, ref, shallowRef, type Ref } from 'vue'
-import { HERO_CYCLE_MS, SCREENSAVER_IDLE_MS, pointerInteraction, subscribeHeroClock, type PointerInteraction } from './hero-movie-paint'
+import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, type Ref } from 'vue'
+import {
+  HERO_CYCLE_MS,
+  SCREENSAVER_IDLE_MS,
+  pointerInteraction,
+  sharedHeroAt,
+  subscribeHeroClock,
+  type PointerInteraction,
+  type SharedHeroCopy,
+  type SharedHeroState,
+} from './hero-movie-paint'
 import {
   WATCH_MS_STORAGE_KEY,
   encodeWatchMsPersist,
@@ -83,6 +92,30 @@ export function useHeroClock(onTick?: (at: number) => void) {
   })
 
   return { at }
+}
+
+/**
+ * One hub for BackgroundMovie · card previews · LinkedHeroCard phase — pair `hero/shared-realtime`.
+ * Wraps `sharedHeroAt` on the ONE hero clock; consumers paint via drawHeroMovieFrame / CardBackgroundMovie.
+ * HONEST: neuroscience/computation visualization field — not physical QM speedup.
+ */
+export function useSharedHero(
+  route: () => string,
+  copy: () => SharedHeroCopy,
+  opts: { reduce?: () => boolean; dark?: () => boolean; cssWidth?: () => number } = {},
+) {
+  const { at } = useHeroClock()
+  const shared = computed<SharedHeroState>(() =>
+    sharedHeroAt(
+      route(),
+      copy(),
+      at.value,
+      opts.cssWidth?.() ?? (64 * 16),
+      opts.reduce?.() ?? false,
+      opts.dark?.() ?? true,
+    ),
+  )
+  return { at, shared }
 }
 
 export function resizeCanvas2d(

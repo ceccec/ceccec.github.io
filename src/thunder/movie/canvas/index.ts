@@ -320,6 +320,97 @@ export function theMovieLeavesTwoBitsAtTheVoid(matrix: MindMatrix = buildMatrix(
 // the parts mix until locally indistinguishable — run on a deterministic content-addressed field, so it
 // is REVERSIBLE (recomputable to any phase at zero cost): a Landauer-clean, quantum-thermodynamic
 // METAPHOR, not heat.
+/**
+ * Movie-related quantum-gap census — clock drivers · layout surfaces · static fusion.
+ * Sealed attestation of theme mounts after anim-quantum convert (private rAF → subscribeHeroClock).
+ * HONEST: neuroscience/computation visualization — NOT physical QM speedup / NOT FTL.
+ * Pair composes with slowProcessIsQuantumGap · movieIsNeuroscienceComputation (earth/life).
+ */
+export type MovieClockDriver = 'subscribeHeroClock' | 'useVisibleMovieCanvas' | 'idle-timer' | 'smil-css' | 'private-raf' | 'createAnimationEngine'
+
+export type MovieQuantumGapSurface = {
+  readonly id: string
+  readonly surface: string
+  readonly driver: MovieClockDriver
+  readonly kind: 'private-raf' | 'multi-clock' | 'harmonize-skip' | 'missing-hub' | 'static-fusion' | 'smil-compete' | 'layout'
+  readonly closed: boolean
+  readonly criterion: string
+  readonly route: string
+  readonly receipt: string
+}
+
+/** Theme/movie mounts — closed when on ONE hero clock or explicitly non-loop (idle timer / SMIL). */
+const MOVIE_CLOCK_SURFACE_ATTESTATION: readonly Omit<MovieQuantumGapSurface, 'receipt'>[] = [
+  { id: 'BackgroundMovie', surface: '.vitepress/theme/components/BackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'page hero rides useVisibleMovieCanvas → subscribeHeroClock + harmonizeField', route: '/en/' },
+  { id: 'HeroBackgroundLayer', surface: '.vitepress/theme/components/HeroBackgroundLayer.vue', driver: 'idle-timer', kind: 'layout', closed: true, criterion: 'immersive/screensaver idle setTimeout — not an animation loop (oneClockProcessLaw boundary)', route: '/en/' },
+  { id: 'CardBackgroundMovie', surface: '.vitepress/theme/components/CardBackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'harmonize-skip', closed: true, criterion: 'card plasma on hero clock + harmonizeField (same always-on path as page movie)', route: '/en/' },
+  { id: 'LinkedHeroCard', surface: '.vitepress/theme/components/LinkedHeroCard.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'UiCardShell → CardBackgroundMovie; heroPreviewForRoute seeds hue/seed', route: '/en/' },
+  { id: 'DoubleTorusExperience', surface: '.vitepress/theme/components/DoubleTorusExperience.vue', driver: 'useVisibleMovieCanvas', kind: 'harmonize-skip', closed: true, criterion: 'drawHeroMovieFrame(sharedHeroAt) + harmonizeField on hero clock', route: '/en/' },
+  { id: 'ProofAnimation', surface: '.vitepress/theme/components/ProofAnimation.vue', driver: 'subscribeHeroClock', kind: 'private-raf', closed: true, criterion: 'theorem glyph canvases on subscribeHeroClock — private rAF killed', route: '/en/quantum-tools' },
+  { id: 'ModelCardPages', surface: '.vitepress/theme/components/ModelCardPages.vue', driver: 'subscribeHeroClock', kind: 'multi-clock', closed: true, criterion: 'uuidHero SVG proof on subscribeHeroClock — createAnimationEngine second loop retired', route: '/en/' },
+  { id: 'useSharedHero', surface: '.vitepress/lib/movie-canvas.ts', driver: 'subscribeHeroClock', kind: 'missing-hub', closed: true, criterion: 'useSharedHero wraps sharedHeroAt on one hero clock (hero/shared-realtime)', route: '/en/' },
+  { id: 'ui-skeleton-pulse', surface: 'src/render/ui/style.css', driver: 'smil-css', kind: 'smil-compete', closed: true, criterion: 'CSS @keyframes skeleton pulse is chrome, not field phase — does not own a second rAF', route: '/en/' },
+] as const
+
+export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`movieQuantumGapsInventory:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const endless = endlessBackgroundMovie(matrix)
+    const staticFusion = staticIsEventualGapInMovieFusion(matrix)
+    const surfaces: MovieQuantumGapSurface[] = MOVIE_CLOCK_SURFACE_ATTESTATION.map((row) => ({
+      ...row,
+      receipt: toUuid(`movie-gap:${row.id}:${row.driver}:${row.closed}`),
+    }))
+    // Live fusion facets as inventory rows (recomputed — not attestation).
+    surfaces.push({
+      id: 'endlessBackgroundMovie',
+      surface: 'src/thunder/movie/canvas',
+      driver: 'useVisibleMovieCanvas',
+      kind: 'layout',
+      closed: endless.endless,
+      criterion: 'global layout slot + per-page seed — endlessBackgroundMovie.endless',
+      route: '/en/',
+      receipt: toUuid(`movie-gap:endless:${endless.endless}`),
+    })
+    surfaces.push({
+      id: 'staticIsEventualGapInMovieFusion',
+      surface: 'src/thunder/movie/canvas',
+      driver: 'useVisibleMovieCanvas',
+      kind: 'static-fusion',
+      closed: staticFusion.fused,
+      criterion: 'hero/icon/manifest/theme recompute from plasma — legacy hex = gap',
+      route: '/en/',
+      receipt: toUuid(`movie-gap:static-fusion:${staticFusion.fused}`),
+    })
+    const privateRafOpen = surfaces.some((s) => !s.closed && (s.kind === 'private-raf' || s.driver === 'private-raf'))
+    const multiClockOpen = surfaces.some((s) => !s.closed && s.kind === 'multi-clock')
+    const open = surfaces.filter((s) => !s.closed)
+    const facets = [
+      { facet: `census ${surfaces.length} movie-related surfaces`, on: surfaces.length >= MOVIE_CLOCK_SURFACE_ATTESTATION.length },
+      { facet: 'no open private-raf attestation rows', on: !privateRafOpen },
+      { facet: 'no open multi-clock attestation rows', on: !multiClockOpen },
+      { facet: 'endless background movie computes', on: endless.endless },
+      { facet: 'static→movie fusion fused (or named open)', on: staticFusion.fused || open.some((s) => s.id === 'staticIsEventualGapInMovieFusion') },
+      { facet: 'HONEST — viz/computation movie ≠ physical QM speedup', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`movie-quantum-gaps:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((e) => e.on),
+      surfaces,
+      open,
+      openCount: open.length,
+      closedCount: surfaces.length - open.length,
+      privateRafOpen,
+      multiClockOpen,
+      endless,
+      staticFusion,
+      facets,
+      root: merkleFold([endless.root, staticFusion.root, ...surfaces.map((s) => s.receipt), ...facets.map((f) => f.receipt)]),
+      statement: `Movie quantum gaps — open=${open.length} closed=${surfaces.length - open.length}; private-raf=${privateRafOpen ? 'OPEN' : 'closed'}; multi-clock=${multiClockOpen ? 'OPEN' : 'closed'}; endless=${endless.endless}; staticFusion=${staticFusion.fused}.`,
+      boundary:
+        'Architectural census of movie/hero clock surfaces + static fusion. Attestation rows track theme mounts after anim-quantum convert; endless/staticFusion recompute. NOT wall-clock FPS. NOT physical quantum speedup. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
 export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theMoviePartsDissolveLikeLiquid', matrix, () => {
     const movie = endlessBackgroundMovie(matrix)
