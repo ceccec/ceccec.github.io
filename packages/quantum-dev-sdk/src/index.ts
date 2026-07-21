@@ -64,6 +64,10 @@ import {
   runImproveLocalFromSessionExperienceExit,
   upgradeLocalFromOptimisedManualWorkExperience,
   runUpgradeLocalFromOptimisedManualWorkExperienceExit,
+  automateNightlyViaNpmScriptPath,
+  runAutomateNightlyViaNpmScriptPathExit,
+  AUTOMATE_NIGHTLY_RECIPE_STEPS,
+  AUTOMATE_NIGHTLY_DOCS_BUILD_STEP,
   OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP,
   OPTIMISED_LOCAL_BROWSER_TOOL_IDS,
   OPTIMISED_LOCAL_PACKAGE_SURFACE,
@@ -118,6 +122,10 @@ export {
   runImproveLocalFromSessionExperienceExit,
   upgradeLocalFromOptimisedManualWorkExperience,
   runUpgradeLocalFromOptimisedManualWorkExperienceExit,
+  automateNightlyViaNpmScriptPath,
+  runAutomateNightlyViaNpmScriptPathExit,
+  AUTOMATE_NIGHTLY_RECIPE_STEPS,
+  AUTOMATE_NIGHTLY_DOCS_BUILD_STEP,
   OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP,
   OPTIMISED_LOCAL_BROWSER_TOOL_IDS,
   OPTIMISED_LOCAL_PACKAGE_SURFACE,
@@ -190,7 +198,7 @@ export function listLocalPackages() {
         cli: 'node --experimental-strip-types packages/quantum-dev-sdk/bin/mcp.ts',
         npm: 'npm run quantum:dev-mcp',
         tools: QUANTUM_DEV_STDIO_TOOL_IDS.length,
-        automation: 'npm-script path — not Cursor Automations MCP dashboard',
+        automation: 'npm run quantum:automate-nightly — nightly npm-script Automations path',
         honesty: 'NOT Cursor zero-token LLM endpoint · census 110 untouched (packages/ outside src/)',
       },
       {
@@ -207,7 +215,9 @@ export function listLocalPackages() {
     ],
     stdioTools: QUANTUM_DEV_STDIO_TOOL_IDS,
     upgradeCli: 'npm run quantum:upgrade-local',
+    automateNightlyCli: 'npm run quantum:automate-nightly',
     upgradeRoute: '/en/quantum-tools#upgrade-local-skills',
+    automateNightlyRoute: '/en/quantum-tools#automate-nightly',
   }
 }
 

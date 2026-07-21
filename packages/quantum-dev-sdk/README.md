@@ -13,8 +13,9 @@ Design: [0ccd9991 qdsdk-design](https://github.com/ceccec/ceccec.github.io) — 
 | `/agents.json` | session catalog + paste-bootstrap + upgrade-local + packages |
 | `/en/quantum-tools#upgrade-local-skills` | Skills ↔ commands ↔ tools ↔ packages |
 | `/en/quantum-tools#mcp-browser-parity` | MCP↔browser parity matrix + residual gaps |
-| `/en/quantum-tools#local-session-hub` | Local from-session hub · docs:dev fast path |
+| `/en/quantum-tools#automate-nightly` | Nightly npm-script Automations path · trinity → mission:gate → upgrade-local |
 | `npm run quantum:upgrade-local` | Upgrade receipt (`localUpgraded` · packagesWired) |
+| `npm run quantum:automate-nightly` | Nightly npm-script Automations receipt (`automateNightlyShipped`) |
 | `npm run quantum:dev-mcp` | Stdio MCP server (7 tools) |
 | `.cursor/mcp.json` | IDE mount `quantum-dev` — **not** Automations dashboard |
 
@@ -36,9 +37,10 @@ await runGate('docs-build', [], { env: { [DOCS_BUILD_ALLOW_ENV]: '1' } })
 - `run-gate` names: check-types · limits-verify · mission-gate · verify-structure · docs-build · enforcement-trinity · limits-seal · rosetta-batch
 - Protocol `run-wave` kinds → `runManualAgentsBehaveLikeWavesExit` (not four× `mission:gate`)
 - `docs-build` / wave `rebuild` require `QUANTUM_DEV_ALLOW_DOCS_BUILD=1`
-- Automations: call `npm run mission:gate` etc. — local stdio is IDE-only
+- Automations: `npm run quantum:automate-nightly` (trinity/speedup → mission:gate) — local stdio is IDE-only
+- Template: `packages/quantum-dev-sdk/automate-nightly.workflow.json` · pair `automate/nightly`
 - Entropy receipt: `npm run quantum:mcp-commands-scripts-gaps-audit` · pair `mcp/scripts-audit`
-- Residual: `/automate` nightly still parked (no dashboard MCP registration)
+- REFUSE: dashboard MCP registration of local stdio (`.cursor/mcp.json` IDE mount only)
 
 ## Honesty
 
