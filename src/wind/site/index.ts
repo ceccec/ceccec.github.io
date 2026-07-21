@@ -29,7 +29,72 @@ import { proofReport } from '../../heaven/compute'
 import { freeForgesMaxCost } from '../../heaven/essence'
 import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
 import { TAU } from '../../3/7'
+import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture'
 import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9'
+
+/** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
+export const SITE_DOMAIN_SEED = [
+  { id: 'tools', labelEn: 'Quantum tools', labelBg: 'Квантови инструменти', ray: 4, hub: 'apps', canonical: 'quantum-tools', aliases: ['efficiency-vote', 'offender-spec', 'hero-spawn-verify', 'name-entropy-verify', 'fusion-verify'] as const },
+  { id: 'trading', labelEn: 'Trading', labelBg: 'Търговия', ray: 4, hub: 'apps', canonical: 'quantum-trading-hub', aliases: [] as const },
+  { id: 'encryption', labelEn: 'Encryption', labelBg: 'Криптиране', ray: 5, hub: 'frontier', canonical: 'quantum-encryption', aliases: [] as const },
+  { id: 'theorems', labelEn: 'Theorems', labelBg: 'Теореми', ray: 5, hub: 'frontier', canonical: 'frontiers', aliases: [] as const },
+  { id: 'research', labelEn: 'Research', labelBg: 'Изследвания', ray: 2, hub: 'explore', canonical: 'research', aliases: ['millennium-challenge'] as const },
+  { id: 'learn', labelEn: 'Learn', labelBg: 'Обучение', ray: 3, hub: 'learn', canonical: 'learn', aliases: ['learn-developer', 'academy', 'school'] as const },
+  { id: 'society', labelEn: 'Society', labelBg: 'Общество', ray: 0, hub: 'origin', canonical: 'society-merkaba', aliases: [] as const },
+] as const
+export type SiteDomainId = (typeof SITE_DOMAIN_SEED)[number]['id']
+
+/** Catch-all thin mounts only — nav-hidden tool leaves stay as seed pages (genus-2 fold ∈ DOCUMENTED_HARMONICS) but omit from dropdowns. */
+export const ROUTE_ALIASES: Record<string, string> = {
+  academy: 'learn',
+  school: 'learn',
+  'millennium-challenge': 'research',
+  'fusion-verify': 'quantum-tools',
+}
+
+/** Domain registry for VitePress nav — canonical pages only; nav aliases filtered; route aliases thin-mount. */
+export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('siteDomainRegistry', matrix, () => {
+    const navAliasToCanonical = new Map<string, string>()
+    for (const domain of SITE_DOMAIN_SEED) for (const alias of domain.aliases) navAliasToCanonical.set(alias, domain.canonical)
+    for (const [alias, canonical] of Object.entries(ROUTE_ALIASES)) navAliasToCanonical.set(alias, canonical)
+    const domains = SITE_DOMAIN_SEED.map((domain) => {
+      const rayMeta = ROSETTA_RAYS[domain.ray]!
+      return {
+        ...domain,
+        route: `/${domain.canonical}`,
+        hubRoute: `/${domain.hub}`,
+        rayNameEn: rayMeta.nameEn,
+        rayNameBg: rayMeta.nameBg,
+        hue: rayMeta.hue,
+        receipt: toUuid(`site-domain:${domain.id}:${domain.canonical}:${domain.ray}`),
+      }
+    })
+    const served = new Set(staticPages().map((page) => page.slug))
+    const pageCensus = foldedCensus(served.size)
+    const harmonics = DOCUMENTED_HARMONICS as readonly number[]
+    const canonicalsServed = domains.every((domain) => served.has(domain.canonical) || domain.canonical === 'learn')
+    const facets = [
+      { facet: `seven domain concerns — tools · trading · encryption · theorems · research · learn · society (${domains.length === SITE_DOMAIN_SEED.length})`, on: domains.length === ROSETTA_SEVEN },
+      { facet: 'each domain has one canonical slug and a rosetta ray/hub', on: domains.every((d) => d.canonical.length > 0 && d.ray >= 0 && d.ray < ROSETTA_SEVEN) },
+      { facet: 'ROUTE_ALIASES thin-mounts millennium→research and fusion→quantum-tools (plus learn school/academy)', on: ROUTE_ALIASES['millennium-challenge'] === 'research' && ROUTE_ALIASES['fusion-verify'] === 'quantum-tools' },
+      { facet: 'canonical domain pages are in the served set (learn may stay outside theorem lens — hub still exists)', on: canonicalsServed },
+      { facet: `served page census folds into DOCUMENTED_HARMONICS — ${served.size}→${pageCensus.folded}`, on: harmonics.includes(pageCensus.folded) && pageCensus.folded > 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`site-domain-reg:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      domains,
+      aliasToCanonical: Object.fromEntries(navAliasToCanonical),
+      navSlugs: new Set(domains.map((d) => d.canonical)),
+      isNavAlias: (slug: string) => navAliasToCanonical.has(slug.replace(/^\//, '')),
+      canonicalOf: (slug: string) => navAliasToCanonical.get(slug.replace(/^\//, '')) ?? slug.replace(/^\//, ''),
+      facets,
+      root: merkleFold([...domains.map((d) => d.receipt), ...facets.map((f) => f.receipt)]),
+      statement: `Site domain registry — ${domains.length} concerns, one canonical page each; nav omits aliases; ROUTE_ALIASES thin-mounts fusion/millennium; page census ${served.size}→${pageCensus.folded} ∈ DOCUMENTED_HARMONICS.`,
+      boundary: 'IA regroup over the sealed 7-ray hubs — NOT a claim of Clay/FTL solutions; trading is paper/sim; society is documented taxonomy. HARMONY ≠ TRUTH.',
+    }
+  })
+}
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.

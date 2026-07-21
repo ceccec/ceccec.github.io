@@ -1614,7 +1614,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
       root: merge(matrix.root, merkleFold([sealed.root, vote.root, core.root, ...learned.map((r) => r.receipt)])),
       cli: 'npm run quantum:efficiency-vote',
       pair: 'learn/best',
-      route: '/en/efficiency-vote',
+      route: '/en/quantum-tools#efficiency-vote',
       statement: vote.decided
         ? 'One quantum model (ceccec) faster than all — DECIDED: answers÷tokens = ∞ on memoByRoot reuse (0 runtime tokens) for deterministic content-addressed answers; all AI model surfaces shelve through rosettaCoreApi.'
         : 'One quantum model fold sealed but vote.decided=false — do not broadcast faster-than-all until voters recompute green.',

@@ -868,11 +868,13 @@ const pipeline = buildEnforcementPipeline()
 const buildChain = JSON.parse(read(join(root, 'package.json'))).scripts?.['docs:build'] ?? ''
 const cliEntry = 'src/pair/enforcement/script/cli/bootstrap/index.ts'
 const subcommand = pipeline.gates[0]?.script ?? 'enforcement-trinity'
+// docs:build-seal = shared-argv chain that runs vitepress then enforcement-trinity (pair: build/quantumize).
+const trinityWired = buildChain.includes(subcommand) || buildChain.includes('docs:build-seal')
 if (!existsSync(join(root, cliEntry))) {
   gaps.push({ harmonic: 'pipeline', kind: 'missing-cli', detail: `enforcement pipeline declares ${cliEntry} but it does not exist — why this fails: ${pipeline.why.drift}` })
 }
-if (!buildChain.includes(cliEntry) || !buildChain.includes(subcommand)) {
-  gaps.push({ harmonic: 'pipeline', kind: 'unwired', detail: `docs:build must invoke ${cliEntry} with ${subcommand} — why this fails: ${pipeline.why.drift}` })
+if (!buildChain.includes(cliEntry) || !trinityWired) {
+  gaps.push({ harmonic: 'pipeline', kind: 'unwired', detail: `docs:build must invoke ${cliEntry} with ${subcommand} (or docs:build-seal chain) — why this fails: ${pipeline.why.drift}` })
 }
 const scriptsDir = join(root, 'scripts')
 if (existsSync(scriptsDir)) {
@@ -1252,13 +1254,15 @@ export function intelligentAudit(findings: Finding[]) {
   return { failed: errors.length > 0, errors, warns, roots, receipt, waveCount: 4 }
 }
 
-function sealAudit(root: string, audit: ReturnType<typeof intelligentAudit>): void {
+function sealAudit(root: string, audit: ReturnType<typeof intelligentAudit>, srcMerkle: string): void {
   const out = join(root, '.vitepress', 'dist')
   if (!existsSync(out)) return
   const payload = {
     generatedAt: new Date().toISOString(),
     root: audit.receipt,
     failed: audit.failed,
+    pendingTrinity: false,
+    srcMerkle,
     waveCount: audit.waveCount,
     errorCount: audit.errors.length,
     warnCount: audit.warns.length,
@@ -1295,7 +1299,7 @@ export function runEnforcementTrinity(root: string): number {
     }
     console.error('  Root correlation (attack the root, not the leaves):')
     for (const correlated of audit.roots) console.error(`    ${correlated.harmonic} — ${correlated.count} finding(s) via ${correlated.waves.join(' · ')}`)
-    sealAudit(root, audit)
+    sealAudit(root, audit, facts.merkle)
     console.error(`Enforcement trinity FAILED — audit sealed ${audit.receipt}. Trace the top root before grinding leaves.`)
     return 1
   }
@@ -1304,9 +1308,9 @@ export function runEnforcementTrinity(root: string): number {
     console.warn(`  ⚠ ${audit.warns.length} ratchet target(s) (non-blocking):`)
     for (const finding of audit.warns) console.warn(`    [${finding.wave}/${finding.harmonic}/${finding.kind}] ${finding.detail}`)
   }
-  sealAudit(root, audit)
+  sealAudit(root, audit, facts.merkle)
   writeSealedMerkle(root, facts.merkle)
-  console.log(`Enforcement trinity complete: gate · cross · fold · weave — 0 findings, audit sealed ${audit.receipt}.`)
+  console.log(`Enforcement trinity complete: gate · cross · fold · weave — 0 findings, audit sealed ${audit.receipt} · srcMerkle bound.`)
   return 0
 }
 

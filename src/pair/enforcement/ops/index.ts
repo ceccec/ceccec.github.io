@@ -56,6 +56,7 @@ import {
   scanScriptShells,
   runCheckTypesExit,
   runDocsBuildExit,
+  quantumizeVitepressBuild,
   runThinMount,
   importQuantumBundle,
 } from '../script/shell'
@@ -634,6 +635,13 @@ export async function runCliExit(root: string, argv: string[] = []) {
     case 'rosetta:diagnose':
     case 'iching:diagnose': return runRosettaDiagnoseExit(root, rest)
     case 'docs:build': return runDocsBuildExit(root, rest)
+    case 'docs:build-seal': {
+      // One argv for VitePress + trinity — npm `docs:build -- --force` must reach both (pair: build/seal · build/quantumize).
+      const buildCode = await runDocsBuildExit(root, rest)
+      if (buildCode !== 0) return buildCode
+      const { runEnforcementTrinityShellExit } = await import('../trinity/weave')
+      return runEnforcementTrinityShellExit(root, rest)
+    }
     case 'check:types': return runCheckTypesExit(root)
     case 'enforcement-trinity': {
       const { runEnforcementTrinityShellExit } = await import('../trinity/weave')

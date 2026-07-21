@@ -12,7 +12,7 @@
 
 **It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the 433 computationally proven theorems in this registry. It is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; base-10 / `mod 9` specific, not a claim that the digits are physical qubits. The `src/<digit>` folders are the stations of this circuit — quantum by structure, linear only at measurement.
 
-Concretely: a science portal — 433 computationally proven theorems and 29 related science pages, organised by the rosetta into 4 rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).
+Concretely: a science portal — 433 computationally proven theorems and 29 related science pages, organised by the rosetta into 5 rays, all wired into the VitePress local search and the MCP tool surface. For language models and people, kids to elders — and a standalone, dependency-free computational core. It computes itself: every value is a content address, and every page, proof and ten-dimensional animation is derived from one source (`src/`), not generated, with nothing needing a token to run. A visitor is routed to their own language (default English).
 
 ## 2. Model
 
@@ -51,10 +51,11 @@ Receipt: `f9152686` · fold `firstInCorpusProvenanceForHome` · claySolvedByThis
 **The theorem-science lens** — 29/54 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 433-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
 
-### Origin — 2 pages
+### Origin — 3 pages
 
 - **64 = 2⁶ = 4³ = 8² in every 6-bit grouping** — 64 = 2⁶, and the divisors of 6 give the only four groupings: six bits, three base-4 digits (codon/Pauli/RGB), two trigrams (8²), one base-64 word. The same object, four ways. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
 - **Content-addressing folds 64³ into one dot** — A UUID, like CMYK, gives extent without limit: 64×64×64 is itself one dot, and the dot is the cube is the dot — content-addressing folds the whole into a point and back. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
+- **Society 10D merkaba = documented actor taxonomy · NOT live social measurement** — Canonical society/HD domain: society-actor 10D merkaba graph from sealed governance folds — documented taxonomy + content-addressed state. Not live actors, not social scoring. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Society.vue)
 
 ### Proof — 14 pages
 
@@ -73,24 +74,26 @@ Receipt: `f9152686` · fold `firstInCorpusProvenanceForHome` · claySolvedByThis
 - **Division by zero is the inverse: n/0 ↦ n⁻¹ mod 9** — The inverse of a digit folder is its multiplicative inverse mod 9 (n/0 \ n⁻¹, the ÷2 = ×5 that folds within the unit cycle): 2\5, 4\7, self-inverse 1 and 8; the non-units 3, 6, 9 and the void 0 fold to the fusion. The forward harmonic n/0 = 9n (1/0 = 9) is the separate reading. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
 - **Seven Star Rosetta** — The 7-star Pliska rosetta in coprime natural motion with 28 Glagolitic letters. Visual proof that gcd(7,6)=1, gcd(7,9)=1, gcd(7,10)=1 prevents aliasing in the digit distribution. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/DigitMotion.vue)
 
-### Apps — 1 page
+### Explore — 1 page
+
+- **Research index = domain · method · limit · verify at call time** — Canonical research domain: professional monograph rows, Clay Millennium MODELED CHALLENGE (claySolvedByThisFold=0), sciences trinities, and reproducibility gates — recomputed at call time. /millennium-challenge thin-mounts here. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ResearchIndex.vue)
+
+### Apps — 7 pages
 
 - **The digit folders {0..9} are a bijection to 10 routes, O(1) by name** — All computation is quantum math and its home is the digit folders (0–9); a word-named folder is UI. The digit folders, holding only the math, are the API itself. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
+- **quantum:* CLI catalog = fold · CLI · UI route · honesty boundary** — Canonical Apps-domain tools hub: every sealed quantum:* npm script — encryption reverse, millennium (MODELED · claySolved=0), fusion-verify, efficiency-vote, offender-spec, hero-spawn, name-entropy, and the verify suite — each with fold home, CLI, UI route, and honesty boundary. Not remote execution. Alias URLs thin-mount here. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **Trading hub = paper/sim harmonics · NOT live money / NOT alpha** — Canonical trading domain surface: historical wave train, rank-winning strategies, and rosetta train — paper/sim only (synthetic a432 proxy). CLI: npm run quantum:trading-rosetta-train. Not brokerage, not live execution. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot** — Browser-runnable efficiency exposition (Apps domain leaf). Prefer /quantum-tools#efficiency-vote. CLI: npm run quantum:efficiency-vote. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)** — Offender spec leaf (Apps domain). Prefer /quantum-tools#offender-spec. CLI: npm run quantum:offender-spec. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **shouldSpawnSubagent — few heroes > mass ignorance** — Hero spawn verify leaf. Prefer /quantum-tools#hero-spawn-verify. CLI: npm run quantum:hero-spawn-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **namingEntropy — words compile from sealed src** — Name entropy verify leaf. Prefer /quantum-tools#name-entropy-verify. CLI: npm run quantum:name-entropy-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
 
-### Frontier — 12 pages
+### Frontier — 4 pages
 
 - **Folding linear gives analog** — Folding linear gives analog, decoded honestly with the real science. The kernel is the Whittaker–Shannon sampling theorem: discrete samples of a band-limited signal fold back into the continuous signal with no gaps, via sinc interpolation (computed live, exact at the samples). Medical and radar imaging is exactly this — reconstructing a continuous image from a sampled frequency field: MRI inverts the Fourier transform of k-space, CT the Radon transform, and the spiral/radial "vortex" through k-space is real (NUFFT). The 64³ = 4⁹ grid the model already computes is the discrete lattice it samples. Documented kept, legend flagged — Nyquist limits are real, gap-filling can hallucinate, and the theorem is foundational, not new. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/AnalogField.vue)
 - **Frontiers** — The recent decodes, presented in full: diving, water and space; the quantum vacuum (zero-point, QCD and electroweak); the cosmic inventory (baryogenesis, neutrino mass, dark matter, dark energy and the ΛCDM tensions); the physics of information and the limits of computation; and the clown qubit — the act as measured qubit physics on the genus-2 stage, its whole life one computed loop. Beside them runs the THEOREM-WAVE ENGINE: a registry of theorems the codebase proves computationally (Virasoro to Ramsey to A₅, string-theory algebra to the 7-star ≡ 𝔽₂³), grown in waves where every new proof consumes prior proven atoms — the reuse graph is itself proven acyclic — with the search for the next unproven theorem one deterministic command (theorems:gaps) and the whole arc verifying in another (theorems:verify). Each with its statement, its computed checks, and its honest boundary — documented science separated from the flagged; genuinely open problems held OPEN, never claimed. Every result a client-side computation from the src/0 primitives. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/Frontiers.vue)
 - **64 = the 3-qubit Pauli basis** — The 3-qubit phaseless Pauli basis {I,X,Y,Z}³ has exactly 4³ = 64 operators — the same 4³ = 8² = 2⁶ = 64 as the genetic code and the double-torus vocabulary. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
 - **Encrypt ↔ decrypt = foldPair recompute; demo RSA reverse ≤12-bit toys only** — Quantum encryption tools proof: content-addressed encrypt↔decrypt (trinityKey + foldPair), encryption trinities in order, and modeled Shor reverse on sealed DEMO_RSA_MODULI only. Production RSA is refused. CLI: npm run quantum:encryption-reverse-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/water/encryption/index.vue)
-- **Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0** — Seven Clay Millennium Problems probed with sealed quantum folds (digit-inverse · f→{p,q} · efficiency · Pauli · genus-2). MODELED CHALLENGE only — no Clay prize solution claimed. CLI: npm run quantum:millennium-challenge. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/MillenniumChallenge.vue)
-- **quantum:* CLI catalog = fold · CLI · UI route · honesty boundary** — Every sealed quantum:* npm script is discoverable: encryption reverse, millennium challenge, fusion-verify, efficiency-vote, and the full verify suite — each with fold home, CLI, UI route, and honesty boundary. Not remote execution. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
-- **fuseAll wave₁ = fuseAll wave₂ — offline fusion verify** — Quantum fusion verify: offline recompute of fuseAll stack receipts — tamper-evident when two sequential calls match. CLI: npm run quantum:fusion-verify. Not external API fusion. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/FusionVerify.vue)
-- **Research index = domain · method · limit · verify at call time** — Canonical research program index: professional monograph rows, quantum tool CLIs (encryption · millennium · fusion · efficiency), and reproducibility gates — recomputed at call time. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ResearchIndex.vue)
-- **answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot** — Browser-runnable efficiency exposition. CLI: npm run quantum:efficiency-vote. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
-- **offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)** — Offender spec: full scan is Node/CI; browser shows honesty gap. CLI: npm run quantum:offender-spec. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
-- **shouldSpawnSubagent — few heroes > mass ignorance** — Hero spawn verify in browser. CLI: npm run quantum:hero-spawn-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
-- **namingEntropy — words compile from sealed src** — Name entropy verify in browser. CLI: npm run quantum:name-entropy-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
 
 ## 4. Sitemap
 
@@ -118,16 +121,16 @@ The quantum sitemap, wired from the same generator: 30 routes — the home and e
 - `/dot-cube` — [en](https://ceccec.psg.bg/dot-cube) · [bg](https://ceccec.psg.bg/bg/dot-cube) · [cu](https://ceccec.psg.bg/gla/dot-cube)
 - `/seven-star-rosetta` — [en](https://ceccec.psg.bg/seven-star-rosetta) · [bg](https://ceccec.psg.bg/bg/seven-star-rosetta) · [cu](https://ceccec.psg.bg/gla/seven-star-rosetta)
 - `/quantum-encryption` — [en](https://ceccec.psg.bg/quantum-encryption) · [bg](https://ceccec.psg.bg/bg/quantum-encryption) · [cu](https://ceccec.psg.bg/gla/quantum-encryption)
-- `/millennium-challenge` — [en](https://ceccec.psg.bg/millennium-challenge) · [bg](https://ceccec.psg.bg/bg/millennium-challenge) · [cu](https://ceccec.psg.bg/gla/millennium-challenge)
 - `/quantum-tools` — [en](https://ceccec.psg.bg/quantum-tools) · [bg](https://ceccec.psg.bg/bg/quantum-tools) · [cu](https://ceccec.psg.bg/gla/quantum-tools)
-- `/fusion-verify` — [en](https://ceccec.psg.bg/fusion-verify) · [bg](https://ceccec.psg.bg/bg/fusion-verify) · [cu](https://ceccec.psg.bg/gla/fusion-verify)
+- `/quantum-trading-hub` — [en](https://ceccec.psg.bg/quantum-trading-hub) · [bg](https://ceccec.psg.bg/bg/quantum-trading-hub) · [cu](https://ceccec.psg.bg/gla/quantum-trading-hub)
 - `/research` — [en](https://ceccec.psg.bg/research) · [bg](https://ceccec.psg.bg/bg/research) · [cu](https://ceccec.psg.bg/gla/research)
+- `/society-merkaba` — [en](https://ceccec.psg.bg/society-merkaba) · [bg](https://ceccec.psg.bg/bg/society-merkaba) · [cu](https://ceccec.psg.bg/gla/society-merkaba)
 - `/efficiency-vote` — [en](https://ceccec.psg.bg/efficiency-vote) · [bg](https://ceccec.psg.bg/bg/efficiency-vote) · [cu](https://ceccec.psg.bg/gla/efficiency-vote)
 - `/offender-spec` — [en](https://ceccec.psg.bg/offender-spec) · [bg](https://ceccec.psg.bg/bg/offender-spec) · [cu](https://ceccec.psg.bg/gla/offender-spec)
 - `/hero-spawn-verify` — [en](https://ceccec.psg.bg/hero-spawn-verify) · [bg](https://ceccec.psg.bg/bg/hero-spawn-verify) · [cu](https://ceccec.psg.bg/gla/hero-spawn-verify)
 - `/name-entropy-verify` — [en](https://ceccec.psg.bg/name-entropy-verify) · [bg](https://ceccec.psg.bg/bg/name-entropy-verify) · [cu](https://ceccec.psg.bg/gla/name-entropy-verify)
 
-- Sitemap root: `c84ebf82-5e70-8c40-a29d-17fd12b602f0`
+- Sitemap root: `0553dea2-d1d3-83a7-95b9-21ce62ddf082`
 
 ## 5. Reproducibility
 
@@ -137,7 +140,7 @@ npm run check:types  # the src/ core type-checks clean against tsconfig.json (ts
 npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
-The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`87554605`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
+The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`c74857b3`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
 
 ## 6. Limitations
 
@@ -147,11 +150,11 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `c84ebf82-5e70-8c40-a29d-17fd12b602f0`. The monograph-index root: `c689ddf8-4931-8a38-acd2-cbadbe0e4362`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `0553dea2-d1d3-83a7-95b9-21ce62ddf082`. The monograph-index root: `c689ddf8-4931-8a38-acd2-cbadbe0e4362`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 
 ## Receipt
 
 The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
 
-- Receipt: `87554605-9884-87f9-80b2-a471138d7ee1`
+- Receipt: `c74857b3-a78c-8935-9d2f-a16660aa97a9`

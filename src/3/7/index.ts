@@ -736,12 +736,14 @@ export const ROSETTA_RAY_CONTENT_LENSES: readonly { ray: number; stems: readonly
   // proof-first lens shelved 90% under Proof (rosettaRayDistribution…). Sub-categorising the proofs: a page proves
   // SOMETHING — classify it by that subject (geometry→Frontier, simulator→Apps, decode→Explore, language→Reference,
   // architecture→Origin, school→Learn); only a page with no subject falls to Proof, the receptive default.
-  { ray: 4, stems: ['console', 'terminal', 'commands', 'cmd', 'mcp', 'demo', 'show', 'simulations', 'simulator', 'api', 'audio', '432 hz'] },
+  // Apps before Frontier so tools/trading/cli pages do not fall into the broad 'quantum' Frontier stem.
+  { ray: 4, stems: ['console', 'terminal', 'commands', 'cmd', 'mcp', 'demo', 'show', 'simulations', 'simulator', 'api', 'audio', '432 hz', 'tools', 'cli', 'catalog', 'trading', 'efficiency', 'offender', 'spawn'] },
   { ray: 5, stems: ['frontiers', 'physics', 'cosmology', 'quantum', 'geometry', 'golden ratio', 'analog', 'sampling', 'nyquist', 'cryptography', 'encryption', 'dimensions', 'vacuum'] },
-  { ray: 2, stems: ['explore', 'heritage', 'history', 'ancient', 'decode', 'spirit', 'chakras', 'tesla', 'electromagnetic', 'patents', 'frequencies', 'ethnogenesis'] },
+  // Research before heritage so the research index shelves under Explore (knowledge), not Frontier via 'quantum'.
+  { ray: 2, stems: ['research', 'millennium', 'explore', 'heritage', 'history', 'ancient', 'decode', 'spirit', 'chakras', 'tesla', 'electromagnetic', 'patents', 'frequencies', 'ethnogenesis'] },
   { ray: 3, stems: ['learn', 'school', 'academy', 'curriculum', 'commons', 'natural law'] },
   { ray: 6, stems: ['reference', 'language', 'speech', 'typography', 'dictionary', 'icons', 'glyphs', 'voice'] },
-  { ray: 0, stems: ['three powers', 'san cai', 'start', 'governance', 'boundaries', 'honesty', 'architecture', 'matrix', 'model', 'mind', 'double torus', 'uuid', 'monograph'] },
+  { ray: 0, stems: ['three powers', 'san cai', 'start', 'governance', 'boundaries', 'honesty', 'architecture', 'matrix', 'model', 'mind', 'double torus', 'uuid', 'monograph', 'society', 'merkaba'] },
   { ray: 1, stems: ['proof', 'theorem'] }, // the receptive default — a pure proof with no subject shelves here
 ] as const
 /** Shelve content into its ray by the ordered lenses above — slug + keywords in, ray index out.

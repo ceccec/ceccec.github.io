@@ -28,7 +28,7 @@ import { localMathComputes, namingEntropy, shouldSpawnSubagent, simplicityIntell
 import { teamCooperationScenarios } from '../../pair/enforcement/ops/index.ts'
 import { ichingDistributeVerify } from '../../earth/iching/index.ts'
 import { skilledEnoughFromPredictions } from '../../lake/music/index.ts'
-import LinkedHeroCard from '../../../.vitepress/theme/components/LinkedHeroCard.vue'
+import { LinkedHeroCard } from '../../../.vitepress/theme/components/index.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
@@ -281,6 +281,7 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    }
     lastRun.value = { toolId, ok, summary, root, boundary, facets }
     panel.value = quantumAppsPanelComputes()
     encryption.value = encryptionPanelComputes()

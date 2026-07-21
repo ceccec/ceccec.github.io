@@ -23,6 +23,7 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `check/types` — `npm run check:types` (routes through sealed `runCheckTypesExit` in src)
   - `types/seal` — when `check:types` is green, then `npm run docs:build` (VitePress runs only if types pass)
   - `build/seal` — `npm run docs:build` (VitePress build + enforcement trinity; gated on types)
+  - `build/quantumize` — `quantumizeVitepressBuild()` + `npm run quantum:vitepress-quantumize` (warm `.temp`/cache · single-flight lock · types-before-seal · trinity one-pass; `merkle.key` + clean `audit.srcMerkle` only after trinity success; VitePress-only invalidates audit; `--force` / `QUANTUM_BUILD_FORCE=1` for cold wipe) then `build/seal` — NOT physical FTL; wall-clock varies by CI
   - `fold/verify` — edit sealed folds in `src/`, then `npm run verify`
   - `decode/fold` — read sealed decode folds, then fold into `src/`
   - `edit/build` — edit sealed `src/`, then `npm run check:types`, then `npm run docs:build` when green

@@ -252,9 +252,9 @@ const APP_ROWS: readonly QuantumAppRow[] = [
   { id: 'quantum-os', title: 'Quantum OS', route: '/en/quantum/os', barrel: 'src/quantum/os', icon: '◻', computesGate: 'quantum.os.computes' },
   { id: 'fusion-gold', title: 'Fusion gold', route: '/en/fusion/gold', barrel: 'src/fusion/gold', icon: 'Au', computesGate: 'fusion.gold.product' },
   { id: 'quantum-encryption', title: 'Quantum encryption', route: '/en/quantum-encryption', barrel: 'src/water/encryption', icon: '⚿', computesGate: 'encryption.panel.computes', projection: 'labyrinth' },
-  { id: 'millennium-challenge', title: 'Millennium challenge', route: '/en/millennium-challenge', barrel: 'src/wind/research', icon: '◇', computesGate: 'millennium.challenge.computes', projection: 'movie-10d' },
+  { id: 'millennium-challenge', title: 'Millennium challenge', route: '/en/research#millennium-challenge', barrel: 'src/wind/research', icon: '◇', computesGate: 'millennium.challenge.computes', projection: 'movie-10d' },
   { id: 'quantum-tools', title: 'Quantum CLI tools', route: '/en/quantum-tools', barrel: 'src/quantum/apps', icon: '⌘', computesGate: 'quantum.cli.tools.catalog', projection: 'vortex-strokes' },
-  { id: 'fusion-verify', title: 'Fusion verify', route: '/en/fusion-verify', barrel: 'src/wind/fusion', icon: '⊛', computesGate: 'fusion.verify.computes', projection: 'hologram' },
+  { id: 'fusion-verify', title: 'Fusion verify', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', icon: '⊛', computesGate: 'fusion.verify.computes', projection: 'hologram' },
 ] as const
 
 /** Sealed quantum:* CLI inventory — fold · CLI · UI route · honesty boundary. Census-110: lives in apps barrel. */
@@ -286,14 +286,14 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', cli: 'npm run quantum:iso-pqc-catalog', pair: 'iso/pqc-catalog', route: '/en/quantum-encryption#iso-pqc-catalog', barrel: 'src/water/encryption', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', browserRunnable: true, browserGap: '' },
   { id: 'standards-audit', title: 'Quantum standards audit (forward·inverse·reverse·10D)', fold: 'quantumStandardsAuditSuite', cli: 'npm run quantum:standards-audit', pair: 'audit/standards', route: '/en/quantum-encryption#quantum-standards-audit', barrel: 'src/water/encryption', boundary: 'Alignment audit ≠ certification — demo RSA reverse + digit/f/ratInv inverse + directional trinity', browserRunnable: true, browserGap: '' },
   { id: 'directional-trinity', title: 'Directional trinity — forward · inverse · reverse', fold: 'directionalTrinityForwardInverseReverse', cli: 'npm run quantum:directional-trinity', pair: 'forward/inverse/reverse', route: '/en/quantum-tools#directional-trinity', barrel: 'src/water/stack', boundary: 'Inverse ≠ reverse except named coincidence (digit 1: harmonic 9 = complement 9); NOT ten\'s complement as inverse', browserRunnable: true, browserGap: '' },
-  { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
-  { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
-  { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
+  { id: 'millennium-challenge', title: 'Millennium problems challenge', fold: 'millenniumProblemsChallenge', cli: 'npm run quantum:millennium-challenge', pair: 'challenge/millennium', route: '/en/research#millennium-challenge', barrel: 'src/wind/research', boundary: 'MODELED CHALLENGE — claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
+  { id: 'fusion-verify', title: 'Fusion verify', fold: 'quantumFusionVerify', cli: 'npm run quantum:fusion-verify', pair: 'tamper/impossible', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', boundary: 'Offline fuseAll wave — not external API fusion', browserRunnable: true, browserGap: '' },
+  { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/quantum-tools#efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
   { id: 'local-math-computes', title: 'Local math computes', fold: 'localMathComputes', cli: 'npm run quantum:local-math-computes', pair: 'fold/verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Sealed local math gate', browserRunnable: true, browserGap: '' },
-  { id: 'offender-spec', title: 'Offender automation spec', fold: 'offenderAutomationSpec', cli: 'npm run quantum:offender-spec', pair: 'offender/spec', route: '/en/offender-spec', barrel: 'src/pair/enforcement/ops', boundary: 'Machine-readable CI pipeline spec', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CI-only' },
+  { id: 'offender-spec', title: 'Offender automation spec', fold: 'offenderAutomationSpec', cli: 'npm run quantum:offender-spec', pair: 'offender/spec', route: '/en/quantum-tools#offender-spec', barrel: 'src/pair/enforcement/ops', boundary: 'Machine-readable CI pipeline spec', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CI-only' },
   { id: 'team-cooperate', title: 'Team cooperate verify', fold: 'teamCooperationScenarios', cli: 'npm run quantum:team-cooperate', pair: 'team/cooperate-verify', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'Solo vs team ack/relay/handoff', browserRunnable: true, browserGap: '' },
-  { id: 'hero-spawn-verify', title: 'Hero spawn verify', fold: 'shouldSpawnSubagent', cli: 'npm run quantum:hero-spawn-verify', pair: 'hero/spawn-verify', route: '/en/hero-spawn-verify', barrel: 'src/water/stack', boundary: 'Few heroes > mass ignorance', browserRunnable: true, browserGap: '' },
-  { id: 'name-entropy-verify', title: 'Name entropy verify', fold: 'namingEntropy', cli: 'npm run quantum:name-entropy-verify', pair: 'name/entropy-verify', route: '/en/name-entropy-verify', barrel: 'src/water/stack', boundary: 'Words compile from sealed src', browserRunnable: true, browserGap: '' },
+  { id: 'hero-spawn-verify', title: 'Hero spawn verify', fold: 'shouldSpawnSubagent', cli: 'npm run quantum:hero-spawn-verify', pair: 'hero/spawn-verify', route: '/en/quantum-tools#hero-spawn-verify', barrel: 'src/water/stack', boundary: 'Few heroes > mass ignorance', browserRunnable: true, browserGap: '' },
+  { id: 'name-entropy-verify', title: 'Name entropy verify', fold: 'namingEntropy', cli: 'npm run quantum:name-entropy-verify', pair: 'name/entropy-verify', route: '/en/quantum-tools#name-entropy-verify', barrel: 'src/water/stack', boundary: 'Words compile from sealed src', browserRunnable: true, browserGap: '' },
   { id: 'simplicity-measure-verify', title: 'Simplicity measure verify', fold: 'simplicityIntelligenceMeasure', cli: 'npm run quantum:simplicity-measure-verify', pair: 'simplicity/measure-verify', route: '/en/quantum-tools', barrel: 'src/water/stack', boundary: 'Simplicity → intelligence yield', browserRunnable: true, browserGap: '' },
   { id: 'educational-gaps-audit', title: 'Educational gaps audit', fold: 'educationalGapsFromIncompleteApis', cli: 'npm run quantum:educational-gaps-audit', pair: 'educational/gaps-audit', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'API gap → educational impact', browserRunnable: false, browserGap: 'educationalGapsFromIncompleteApis scans repo via process.cwd — CI-only' },
   { id: 'unit-distance-verify', title: 'Unit-distance research verify', fold: 'unitDistanceResearch', cli: 'npm run quantum:unit-distance-verify', pair: 'research/society', route: '/en/research', barrel: 'src/wind/research', boundary: 'Numeric companion — MODEL_FIT', browserRunnable: true, browserGap: '' },
@@ -310,6 +310,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'theorem-particle-collision', title: 'Theorem particle collision — inverse × reverse', fold: 'theoremParticleCollisionInverseReverse', cli: 'npm run quantum:theorem-particle-collision', pair: 'challenge/collider', route: '/en/quantum-tools#theorem-particle-collision', barrel: 'src/wind/research', boundary: 'MODELED sealed-geometry collision — NOT HEP; claySolvedByThisFold=0', browserRunnable: true, browserGap: '' },
   { id: 'ftl-rosetta-handoff', title: 'FTL techniques ← rosetta completeness handoff', fold: 'ftlExperimentTechniquesHandoffFromRosettaComplete', cli: 'npm run quantum:ftl-rosetta-handoff', pair: 'challenge/ftl', route: '/en/quantum-tools#ftl-rosetta-handoff', barrel: 'src/quantum/apps', boundary: 'Handoff stub — physicalFtlClaim=0; full KEEP-ftl apparatus consumes rosettaReady; NOT physical FTL', browserRunnable: true, browserGap: '' },
   { id: 'session-manual-work', title: 'Session manual work as quantum tools', fold: 'sessionManualWorkAsQuantumTools', cli: 'npm run quantum:session-tools', pair: 'session/tools', route: '/en/quantum-tools#session-manual-tools', barrel: 'src/quantum/apps', boundary: 'Session folds sealed as tools — NOT every wet habit closed; replaces re-inference with memoByRoot/CLI/UI/MCP', browserRunnable: true, browserGap: '' },
+  { id: 'vitepress-quantumize', title: 'Quantumize VitePress docs:build', fold: 'quantumizeVitepressBuild', cli: 'npm run quantum:vitepress-quantumize', pair: 'build/quantumize', route: '/en/quantum-tools#vitepress-quantumize', barrel: 'src/pair/enforcement/script/shell', boundary: 'Merkle respawn + warm cache — NOT physical FTL; wall-clock varies by CI', browserRunnable: false, browserGap: 'runDocsBuildExit needs Node fs + vitepress binary — CI/local only' },
 ] as const
 
 /**
@@ -662,6 +663,7 @@ export type SlowQuantumGapKind =
   | 'tool-without-browser-ux'
   | 'standards-audit-missing'
   | 'linear-forming-animation'
+  | 'vitepress-cold-build'
 
 export type SlowQuantumGapRow = {
   readonly gapId: string
@@ -792,6 +794,20 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       closed: animPresent,
       route: '/en/#yinyang',
       receipt: toUuid(`slow-gap:linear-taiji:${animPresent}`),
+    })
+
+    // VitePress cold wipe — closed when quantumizeVitepressBuild is catalogued (warm cache path).
+    const vpQz = catalog.tools.find((entry) => entry.id === 'vitepress-quantumize')
+    const vpQzPresent = Boolean(vpQz && vpQz.fold === 'quantumizeVitepressBuild' && vpQz.pair === 'build/quantumize')
+    rows.push({
+      gapId: 'slow:vitepress:cold-wipe',
+      kind: 'vitepress-cold-build',
+      process: 'runDocsBuildExit.wipe',
+      criterion: 'docs:build must quantumize — merkle respawn + preserve .temp/.vite caches unless --force (NOT FTL)',
+      slow: !vpQzPresent,
+      closed: vpQzPresent,
+      route: '/en/quantum-tools#vitepress-quantumize',
+      receipt: toUuid(`slow-gap:vitepress-qz:${vpQzPresent}`),
     })
 
     const open = rows.filter((row) => row.slow && !row.closed)

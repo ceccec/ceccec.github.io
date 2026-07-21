@@ -19,6 +19,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'check/types',
   'types/seal',
   'build/seal',
+  'build/quantumize',
   'fold/verify',
   'decode/fold',
   'edit/build',

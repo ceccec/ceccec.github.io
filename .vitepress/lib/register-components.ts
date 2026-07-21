@@ -1,17 +1,20 @@
 // Register componentGraph names globally — DecodedCard folds, LivingTorus canvas, or thin gate fallback.
+// Shared mounts come from the one VitePress component set (.vitepress/theme/components).
 import { defineAsyncComponent, defineComponent, h, ref, watch, type App, type Component } from 'vue'
 import { useRoute } from 'vitepress'
-import DecodedCard from '../theme/components/DecodedCard.vue'
-import UiCardShell from '../theme/components/UiCardShell.vue'
-import LinkedHeroCard from '../theme/components/LinkedHeroCard.vue'
-import HubCardGrid from '../theme/components/HubCardGrid.vue'
-import TagBrowser from '../theme/components/TagBrowser.vue'
-import TrinityGateways from '../theme/components/TrinityGateways.vue'
-import GlobalHelp from '../theme/components/GlobalHelp.vue'
-import CollectiveMind from '../theme/components/CollectiveMind.vue'
-import RevolutAside from '../theme/components/RevolutAside.vue'
-import TheoremSupport from '../theme/components/TheoremSupport.vue'
-import VitePressPossibilities from '../theme/components/VitePressPossibilities.vue'
+import {
+  DecodedCard,
+  UiCardShell,
+  LinkedHeroCard,
+  HubCardGrid,
+  TagBrowser,
+  TrinityGateways,
+  GlobalHelp,
+  CollectiveMind,
+  RevolutAside,
+  TheoremSupport,
+  VitePressPossibilities,
+} from '../theme/components/index.ts'
 import { componentDisplayName, useSiteLocale } from './mounts'
 import { componentProjectionFor } from './hero-movie-paint'
 import { COMPONENT_FOLD_LOADERS, invokeFoldLoader, withCrosslinks, type DecodedFoldView } from './component-folds'
@@ -81,6 +84,9 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   ResearchIndex: () => import('../../src/wind/research/index.vue'),
   QuantumTools: () => import('../../src/quantum/apps/index.vue'),
   FusionVerify: () => import('../../src/wind/fusion/index.vue'),
+  // society/HD domain — sealed governance panels (display duals)
+  Society: () => import('../../src/earth/governance/index.vue'),
+  GovernanceVote: () => import('../../src/earth/governance/index.vue'),
 }
 
 // Layout.vue mounts these on every page, so they live in the theme entry chunk already —

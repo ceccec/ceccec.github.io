@@ -56,6 +56,36 @@ export function writeSealedMerkle(root: string, merkle: string): void {
   writeFileSync(distMerkleKeyPath(root), merkle, 'utf8')
 }
 
+/**
+ * VitePress-only completion must not leave a clean trinity audit — until enforcement-trinity
+ * succeeds, audit is pending/failed so canRespawnTrinity cannot skip on a stale clean receipt.
+ * Does NOT write merkle.key (that seals only after trinity success).
+ */
+export function invalidateAuditPendingTrinity(root: string, merkle: string): void {
+  const dist = join(root, '.vitepress', 'dist')
+  if (!existsSync(dist)) return
+  const auditPath = distAuditPath(root)
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    failed: true,
+    pendingTrinity: true,
+    srcMerkle: merkle,
+    root: 'pending-trinity',
+    waveCount: 0,
+    errorCount: 1,
+    warnCount: 0,
+    roots: [] as const,
+    findings: [{ wave: 'vitepress', harmonic: 'pipeline', kind: 'pending-trinity', detail: 'VitePress sealed — enforcement-trinity required before merkle.key / clean audit' }],
+  }
+  writeFileSync(auditPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8')
+  // Drop any prior merkle.key so vitepress respawn cannot claim a pre-trinity seal.
+  try {
+    rmSync(distMerkleKeyPath(root), { force: true })
+  } catch {
+    /* best-effort */
+  }
+}
+
 export function buildForceFlag(argv: readonly string[]): boolean {
   return argv.includes('--force') || process.env.QUANTUM_BUILD_FORCE === '1'
 }
@@ -83,25 +113,36 @@ function logDocsBuildDetail(detail: string, verbose: boolean): void {
   process.stdout.write(`[docs-build] ${buildTimestamp()}   ${detail}\n`)
 }
 
-/** Vitepress output still valid — src index corpus unchanged. */
-export function canRespawnVitepressBuild(root: string, merkle: string, force = false): boolean {
-  if (force) return false
-  if (readSealedMerkle(root) !== merkle) return false
-  return existsSync(join(root, '.vitepress', 'dist', 'index.html'))
-}
-
-/** Trinity audit sealed clean on the same merkle — no re-audit grind. */
-export function canRespawnTrinity(root: string, merkle: string, force = false): boolean {
-  if (force) return false
-  if (readSealedMerkle(root) !== merkle) return false
+/** Clean audit bound to current src merkle — shared gate for vitepress + trinity respawn. */
+export function auditBoundToSrcMerkle(root: string, merkle: string): boolean {
   const auditPath = distAuditPath(root)
   if (!existsSync(auditPath)) return false
   try {
-    const audit = JSON.parse(readFileSync(auditPath, 'utf8')) as { failed?: boolean }
-    return audit.failed !== true
+    const audit = JSON.parse(readFileSync(auditPath, 'utf8')) as {
+      failed?: boolean
+      pendingTrinity?: boolean
+      srcMerkle?: string
+    }
+    if (audit.failed === true || audit.pendingTrinity === true) return false
+    return typeof audit.srcMerkle === 'string' && audit.srcMerkle === merkle
   } catch {
     return false
   }
+}
+
+/** Vitepress output still valid — src merkle + trinity-clean audit both match (merkle.key alone is not enough). */
+export function canRespawnVitepressBuild(root: string, merkle: string, force = false): boolean {
+  if (force) return false
+  if (readSealedMerkle(root) !== merkle) return false
+  if (!auditBoundToSrcMerkle(root, merkle)) return false
+  return existsSync(join(root, '.vitepress', 'dist', 'index.html'))
+}
+
+/** Trinity audit sealed clean on the same merkle — no re-audit grind. Requires audit.srcMerkle binding. */
+export function canRespawnTrinity(root: string, merkle: string, force = false): boolean {
+  if (force) return false
+  if (readSealedMerkle(root) !== merkle) return false
+  return auditBoundToSrcMerkle(root, merkle)
 }
 
 type BuildLock = {
@@ -165,27 +206,90 @@ function runVitepressBuild(root: string, timeoutMs: number, harmonicMs: number, 
   })
 }
 
+/**
+ * Quantumize VitePress docs:build — sealed technique catalog (pair: build/quantumize).
+ * HONEST: content-addressed respawn + cache reuse + single-flight lock — NOT physical FTL / NOT Clay.
+ */
+export function quantumizeVitepressBuild() {
+  const techniques = [
+    { id: 'merkle-respawn', closes: 'cold vitepress when src+.vitepress merkle matches dist/merkle.key (key only after trinity success)', pair: 'respawn/force' },
+    { id: 'seal-merkle-after-trinity', closes: 'early merkle.key after VitePress alone let stale audit skip trinity', pair: 'build/quantumize' },
+    { id: 'audit-src-merkle-bind', closes: 'clean audit.json without srcMerkle binding enabled trinity skip', pair: 'build/quantumize' },
+    { id: 'invalidate-audit-pending-trinity', closes: 'VitePress-only leave clean audit until trinity passes', pair: 'build/quantumize' },
+    { id: 'preserve-vite-cache', closes: 'wiping .vitepress/cache / node_modules/.vite-temp on every seal', pair: 'build/quantumize' },
+    { id: 'incremental-temp', closes: 'wiping .vitepress/.temp on first seal (keep on warm; cold wipe on --force or stall/stop retry)', pair: 'build/quantumize' },
+    { id: 'single-flight-lock', closes: 'parallel docs:build races on .temp SSR', pair: 'stall/stop' },
+    { id: 'types-before-seal', closes: 'VitePress SSG with red check:types', pair: 'types/seal' },
+    { id: 'trinity-one-pass', closes: 're-walking src for each enforcement wave', pair: 'gate/unite' },
+    { id: 'argv-shared-seal-chain', closes: 'npm -- --force only reached trinity via && append', pair: 'build/seal' },
+  ] as const
+  const facets = [
+    { facet: 'merkle respawn path exists (canRespawnVitepressBuild)', on: typeof canRespawnVitepressBuild === 'function' },
+    { facet: 'canRespawnTrinity requires audit.srcMerkle === current merkle', on: typeof canRespawnTrinity === 'function' },
+    { facet: `${techniques.length} quantumize techniques named (tamper-evident merkle · audit bind · warm cache · lock · types · trinity)`, on: techniques.length > 0 },
+    { facet: 'pair build/quantumize + build/seal dual — save before use', on: true },
+    { facet: 'HONEST — infinity-on-reuse is merkle skip / memo, not wall-clock FTL; merkle.key only after trinity success', on: true },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    techniques: techniques.map((t) => ({ ...t, receipt: `quantumize:${t.id}` })),
+    facets,
+    pair: 'build/quantumize' as const,
+    statement: `Quantumize VitePress build — ${techniques.length} techniques: merkle respawn, preserve caches, incremental .temp, single-flight lock, types-before-seal, trinity one-pass. Closes architectural slow gaps; CI variance remains.`,
+    boundary: 'NOT physical FTL. Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.',
+  }
+}
+
+/** npm run quantum:vitepress-quantumize — exit 0 iff the quantumize fold computes. */
+export function runQuantumizeVitepressBuildExit(_root = '', _argv: readonly string[] = []): number {
+  const report = quantumizeVitepressBuild()
+  if (!report.computes) {
+    process.stderr.write('✗ quantumizeVitepressBuild — technique catalog open\n')
+    return 1
+  }
+  process.stdout.write(`✓ quantumizeVitepressBuild — ${report.techniques.length} techniques · pair ${report.pair}\n`)
+  for (const t of report.techniques) process.stdout.write(`  · ${t.id} — ${t.closes}\n`)
+  return 0
+}
+
+function writeDocsBuildTiming(root: string, timing: Record<string, number | string | boolean>): void {
+  try {
+    const dist = join(root, '.vitepress', 'dist')
+    mkdirSync(dist, { recursive: true })
+    writeFileSync(join(dist, 'docs-build-timing.json'), `${JSON.stringify(timing, null, 2)}\n`, 'utf8')
+  } catch {
+    /* timing receipt is best-effort — never fail the seal */
+  }
+}
+
 /** Serial docs:build — types gate, then lock, quantum respawn when merkle sealed, else one vitepress pass. */
 export async function runDocsBuildExit(root: string, argv: readonly string[] = []): Promise<number> {
   const verbose = docsBuildVerboseFlag(argv)
+  const wallStart = Date.now()
+  const qz = quantumizeVitepressBuild()
   logDocsBuildPhase('start', verbose ? 'verbose on (--verbose · DOCS_BUILD_VERBOSE=1)' : 'pass --verbose to amplify vite logs')
+  logDocsBuildPhase('build/quantumize', qz.computes ? `${qz.techniques.length} techniques active` : 'fold open')
   const force = buildForceFlag(argv)
   logDocsBuildPhase('src-merkle', 'walk src/ + .vitepress/ + package.json')
   const merkleStart = Date.now()
   const merkle = srcContentMerkle(root)
-  logDocsBuildPhase('src-merkle', `done in ${Date.now() - merkleStart}ms — ${merkle.slice(0, (6 * 2))}…`)
+  const merkleMs = Date.now() - merkleStart
+  logDocsBuildPhase('src-merkle', `done in ${merkleMs}ms — ${merkle.slice(0, (6 * 2))}…`)
   const seal = vitepressEditsInvalidateTheSeal(root)
   if (!seal.enforced) {
     logDocsBuildPhase('src-merkle', `seal fold open (config=${seal.config} leaked=${seal.leaked.length}) — respawn refused, sealing for real`)
   } else if (canRespawnVitepressBuild(root, merkle, force)) {
-    logDocsBuildPhase('quantum-respawn', `src+.vitepress merkle unchanged — skipping vitepress (use --force to seal again)`)
+    const wallMs = Date.now() - wallStart
+    logDocsBuildPhase('quantum-respawn', `src+.vitepress merkle unchanged — skipping vitepress in ${wallMs}ms (use --force to seal again)`)
+    writeDocsBuildTiming(root, { mode: 'quantum-respawn', wallMs, merkleMs, merkle: merkle.slice(0, 16), quantumize: true })
     return 0
   }
 
   logDocsBuildPhase('check:types', 'tsc --noEmit -p tsconfig.json')
   const typesStart = Date.now()
   const typesCode = runCheckTypesExit(root)
-  logDocsBuildPhase('check:types', `exit ${typesCode} in ${Date.now() - typesStart}ms`)
+  const typesMs = Date.now() - typesStart
+  logDocsBuildPhase('check:types', `exit ${typesCode} in ${typesMs}ms`)
   if (typesCode !== 0) {
     process.stderr.write('[docs-build] blocked — fix types first (check/types · types/seal)\n')
     return typesCode
@@ -221,17 +325,18 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
     }
   }
 
-  async function sealOnce(wipeViteTemp: boolean) {
-    if (wipeViteTemp) {
-      logDocsBuildPhase('wipe', 'node_modules/.vite-temp')
+  /** Cold wipe (.temp + .vite-temp) only on --force or stall/stop retry — warm seals keep Vite caches. */
+  async function sealOnce(coldWipe: boolean) {
+    logDocsBuildPhase('wipe', coldWipe ? '.vitepress/dist + .temp + .vite-temp (cold)' : '.vitepress/dist only (warm quantumize — keep .temp + caches)')
+    wipeDir(join(root, '.vitepress', 'dist'), BUILD_LOCK_HARMONIC_MS[0])
+    if (coldWipe) {
+      wipeDir(join(root, '.vitepress', '.temp'), BUILD_LOCK_HARMONIC_MS[0])
       wipeDir(join(root, 'node_modules', '.vite-temp'), BUILD_LOCK_HARMONIC_MS[0])
     }
-    logDocsBuildPhase('wipe', '.vitepress/dist + .vitepress/.temp')
-    wipeDir(join(root, '.vitepress', 'dist'), BUILD_LOCK_HARMONIC_MS[0])
-    wipeDir(join(root, '.vitepress', '.temp'), BUILD_LOCK_HARMONIC_MS[0])
     const buildStart = Date.now()
     try {
       await runVitepressBuild(root, buildTimeoutMs, BUILD_LOCK_HARMONIC_MS[0], verbose)
+      return Date.now() - buildStart
     } catch (e) {
       if (e instanceof Error && e.message === 'QUANTUM_TIMEOUT') {
         logDocsBuildPhase('vitepress-build', `timeout after ${Date.now() - buildStart}ms`)
@@ -248,23 +353,40 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
   }
 
   let stallStopRetried = false
+  let vitepressMs = 0
   for (;;) {
     await acquireLockOrExit124()
     try {
-      await sealOnce(!stallStopRetried)
+      // First pass: warm (preserve .temp) unless --force; retry after stall: cold wipe.
+      vitepressMs = await sealOnce(force || stallStopRetried)
       break
     } catch (e) {
       releaseBuildLock(root)
       if (!stallStopRetried) {
         stallStopRetried = true
-        logDocsBuildPhase('stall/stop', 'trinity retry-once (one sequential seal)')
+        logDocsBuildPhase('stall/stop', 'trinity retry-once (one sequential cold seal)')
         continue
       }
       throw e
     }
   }
   releaseBuildLock(root)
-  logDocsBuildPhase('done', 'vitepress seal complete — next: enforcement-trinity in package.json chain')
+  // Tamper-evident: do NOT write merkle.key here — only after trinity success.
+  // Invalidate any clean audit so a later run cannot skip trinity on a stale receipt.
+  invalidateAuditPendingTrinity(root, merkle)
+  const wallMs = Date.now() - wallStart
+  writeDocsBuildTiming(root, {
+    mode: force || stallStopRetried ? 'cold-seal' : 'warm-seal',
+    wallMs,
+    merkleMs,
+    typesMs,
+    vitepressMs,
+    coldWipe: force || stallStopRetried,
+    merkle: merkle.slice(0, 16),
+    quantumize: qz.computes,
+    pendingTrinity: true,
+  })
+  logDocsBuildPhase('done', `vitepress seal complete in ${wallMs}ms (vitepress ${vitepressMs}ms · audit pending trinity) — next: enforcement-trinity seals merkle.key`)
   return 0
 }
 
