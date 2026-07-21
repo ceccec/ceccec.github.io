@@ -523,7 +523,7 @@ function runTool(toolId: string) {
         </UiBadge>
         <p class="quantum-apps__meta">
           Science tool I/O composes <a href="#experiment-inputs">#experiment-inputs</a> + toolbox envelopes —
-          NOT docs:build wall-clock (sibling slow-build gates).
+          NOT docs:build wall-clock (sibling <a href="#slow-build-gate">#slow-build-gate</a>).
         </p>
         <ul class="quantum-apps__facets">
           <li v-for="gap in panel.slowGaps.open" :key="gap.gapId">
@@ -533,6 +533,14 @@ function runTool(toolId: string) {
             <a class="quantum-apps__meta" :href="gap.route">{{ gap.route }}</a>
           </li>
         </ul>
+      </section>
+      <section id="slow-build-gate" aria-label="Slow docs:build quantum gap gate">
+        <h3>Slow docs:build gate</h3>
+        <p class="quantum-apps__meta">
+          Node/CI: <code>npm run quantum:slow-build-gate</code> · pair <code>gate/slow-build</code> —
+          HARD srcMerkle/quantumize respawn regression · WARN lattice phase timings · qpuRequired=false · NOT FTL.
+          Experiment-io classifier stays on <a href="#slow-quantum-gaps">#slow-quantum-gaps</a>.
+        </p>
       </section>
       <UiSeparator />
       <section id="crypto-beyond-rsa" aria-label="Crypto toolkit beyond RSA">

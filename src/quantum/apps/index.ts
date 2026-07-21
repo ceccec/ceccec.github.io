@@ -330,6 +330,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'ftl-rosetta-handoff', title: 'FTL techniques ← rosetta completeness handoff', fold: 'ftlExperimentTechniquesHandoffFromRosettaComplete', cli: 'npm run quantum:ftl-rosetta-handoff', pair: 'challenge/ftl', route: '/en/quantum-tools#ftl-rosetta-handoff', barrel: 'src/quantum/apps', boundary: 'Handoff stub — physicalFtlClaim=0; full KEEP-ftl apparatus consumes rosettaReady; NOT physical FTL', browserRunnable: true, browserGap: '' },
   { id: 'session-manual-work', title: 'Session manual work as quantum tools', fold: 'sessionManualWorkAsQuantumTools', cli: 'npm run quantum:session-tools', pair: 'session/tools', route: '/en/quantum-tools#session-manual-tools', barrel: 'src/quantum/apps', boundary: 'Session folds sealed as tools — NOT every wet habit closed; replaces re-inference with memoByRoot/CLI/UI/MCP', browserRunnable: true, browserGap: '' },
   { id: 'vitepress-quantumize', title: 'Quantumize VitePress docs:build', fold: 'quantumizeVitepressBuild', cli: 'npm run quantum:vitepress-quantumize', pair: 'build/quantumize', route: '/en/quantum-tools#vitepress-quantumize', barrel: 'src/pair/enforcement/script/shell', boundary: 'Merkle respawn + warm cache — NOT physical FTL; wall-clock varies by CI', browserRunnable: false, browserGap: 'runDocsBuildExit needs Node fs + vitepress binary — CI/local only' },
+  { id: 'slow-build-gate', title: 'Slow docs:build = quantum gap gate', fold: 'slowBuildIsQuantumGapGate', cli: 'npm run quantum:slow-build-gate', pair: 'gate/slow-build', route: '/en/quantum-tools#slow-build-gate', barrel: 'src/pair/enforcement/script/shell', boundary: 'HARD srcMerkle/quantumize regression · WARN phase wall-clock vs lattice — NOT physical FTL · qpuRequired=false', browserRunnable: false, browserGap: 'slowBuildIsQuantumGapGate reads docs-build-timing.json + canRespawn* via Node fs — CI/local only' },
   { id: 'toolbox-standard-io', title: 'Standard tool envelope · I/O · import/export', fold: 'standardToolboxIoCatalog', cli: 'npm run quantum:toolbox-standard-io', pair: 'tool/envelope', route: '/en/quantum-tools#toolbox-standard-io', barrel: 'src/quantum/apps', boundary: 'Capacity = amortized memoByRoot + federated identical roots — NOT physical qubit speedup / NOT FTL / NOT FLOPS', browserRunnable: true, browserGap: '' },
   { id: 'document-session-experiments', title: 'Document session crypto experiments · update theorems', fold: 'documentSessionCryptoExperimentsUpdateTheorems', cli: 'npm run quantum:document-session-experiments', pair: 'document/experiments', route: '/en/quantum-tools#document-session-experiments', barrel: 'src/quantum/apps', boundary: 'Sealed chain receipts · ISO covered/partial/gap · overallWireClaimProved=false · strongerThanNistPqc=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
   { id: 'session-quantum-bits', title: 'Session manual work as quantum bits', fold: 'sessionManualWorkAsQuantumBits', cli: 'npm run quantum:session-quantum-bits', pair: 'session/quantum-bits', route: '/en/quantum-tools#session-quantum-bits', barrel: 'src/quantum/apps', boundary: 'Content-addressed sealed receipts · combinable under forward|inverse|reverse|collide|envelope-merge — NOT physical qubits · qpuRequired=false · clay=0 · certified=false', browserRunnable: true, browserGap: '' },
@@ -855,6 +856,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'local-reverse-timed-vs-standards', saves: 'replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits' },
   { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
   { id: 'vitepress-quantumize', saves: 'replaces wet re-tuning of VitePress warm/respawn quantumize techniques' },
+  { id: 'slow-build-gate', saves: 'replaces wet re-diagnosis of slow docs:build — lattice phase gates + srcMerkle respawn HARD' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -1765,6 +1767,7 @@ export type SlowQuantumGapKind =
   | 'standards-audit-missing'
   | 'linear-forming-animation'
   | 'vitepress-cold-build'
+  | 'slow-build-phase'
 
 export type SlowQuantumGapRow = {
   readonly gapId: string
@@ -1940,6 +1943,22 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       closed: vpQzPresent,
       route: '/en/quantum-tools#vitepress-quantumize',
       receipt: toUuid(`slow-gap:vitepress-qz:${vpQzPresent}`),
+    })
+
+    // Slow docs:build wall-clock gate — catalog witness only; Node CLI owns HARD/WARN timings (do not regress experiment-io).
+    const slowBuildTool = catalog.tools.find((entry) => entry.id === 'slow-build-gate')
+    const slowBuildPresent = Boolean(
+      slowBuildTool && slowBuildTool.fold === 'slowBuildIsQuantumGapGate' && slowBuildTool.pair === 'gate/slow-build',
+    )
+    rows.push({
+      gapId: 'slow:build:gate-catalogued',
+      kind: 'slow-build-phase',
+      process: 'slowBuildIsQuantumGapGate',
+      criterion: 'docs:build phase/srcMerkle gate must be catalogued (pair gate/slow-build) — wall-clock HARD/WARN via npm run quantum:slow-build-gate',
+      slow: !slowBuildPresent,
+      closed: slowBuildPresent,
+      route: '/en/quantum-tools#slow-build-gate',
+      receipt: toUuid(`slow-gap:slow-build-gate:${slowBuildPresent}`),
     })
 
     const open = rows.filter((row) => row.slow && !row.closed)
