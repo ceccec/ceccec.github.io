@@ -325,11 +325,13 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
   const animated = svg.includes('<animateTransform') && svg.includes('repeatCount="indefinite"')
   const tenD = svg.includes('ℤ⁴') && svg.includes('ten dimensions') && svg.includes('χ(Σ₂) = −2') && svg.includes('432')
   const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject') && !svg.includes('<image') && !svg.includes('xlink:href')
+  const merkabaQuantum = svg.includes('data-layer="merkaba"') && svg.includes('data-layer="plasma"') && svg.includes('data-layer="homology"') && svg.includes('data-layer="rosetta"') && !/r="26"/.test(svg) // rosetta + star-tetrahedra + plasma + H₁; no Flower-of-Life r=26 wet layer
   const facets = [
     { facet: 'the README IS the home page content — the README hero and the live home hero are computed from the SAME source (src), the README generated from the matrix, not hand-written', on: home.fractal && svg.length > (100 * 3) },
     { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL animateTransform, no JavaScript), the genus-2 double torus with the four H₁ = ℤ⁴ loops orbiting and the six cross-fold axes pulsing, on the a432 brand', on: animated && tenD },
     { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
     { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional figure (χ = −2, H₁ = ℤ⁴, 432 gates), the same self-similar shape at README scale (composes everyRelationIsOpenGraphMiniHero)', on: tenD && everyRelationIsOpenGraphMiniHero(matrix).graphed },
+    { facet: 'quantum computational geometry — rosetta rays + merkaba (sealed mountain/geometry + rotate3/perspective) + plasma + homology; not Flower-of-Life sacred-geometry prose', on: merkabaQuantum },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-hero-svg:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-is-home-hero-svg', facets)
   return {
@@ -337,13 +339,14 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     svgBytes: svg.length, // the self-contained animated SVG
     animated,
     githubSafe,
+    merkabaQuantum,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead the same double-torus math emits a self-contained animated SVG — the genus-2 figure (χ = −2), the four H₁ = ℤ⁴ homology loops orbiting at harmonic rates, the six cross-fold axes pulsing, on the a432 brand — written in SMIL (animateTransform), with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it, so even on GitHub, in 2D, the ten dimensions show.',
+      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead the same double-torus math emits a self-contained animated SVG — the genus-2 figure (χ = −2), the four H₁ = ℤ⁴ homology loops orbiting at harmonic rates, the sealed merkaba counter-rotating tetrahedra projected via rotate3/perspective, plasma filaments on the vortex/fractal clock, on the a432 brand — written in SMIL (animateTransform), with no script. It is emitted as the hero.svg artifact beside README.md and referenced from it, so even on GitHub, in 2D, the ten dimensions show.',
     boundary:
-      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL animateTransform inside an image-loaded SVG genuinely animates on github.com (the established animated-SVG-in-README technique), and the file is GitHub-sanitizer-safe (no script, no foreignObject, no external refs). It is a 2D animated SCHEMATIC / projection of the ten-dimensional figure — faithful to the invariants (χ = −2, H₁ = ℤ⁴, 432) but NOT the live interactive WebGL 10D scene, which GitHub cannot run. The emission is wired into the generators (hero.svg) and the README reference; verifying the rendered animation on github.com requires a push.',
+      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL animateTransform inside an image-loaded SVG genuinely animates on github.com (the established animated-SVG-in-README technique), and the file is GitHub-sanitizer-safe (no script, no foreignObject, no external refs). It is a 2D animated SCHEMATIC / projection of the ten-dimensional figure — faithful to the invariants (χ = −2, H₁ = ℤ⁴, 432) and the sealed merkaba vertices, but NOT the live interactive WebGL 10D scene, which GitHub cannot run. NOT physical QPU/FTL. The emission is wired into the generators (hero.svg) and the README reference; verifying the rendered animation on github.com requires a push.',
   }
 }
 
@@ -385,11 +388,13 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
   const counterRotating = svg.includes('from="360" to="0"') && svg.includes('from="0" to="360"') // revised movement
   const depthPulse = svg.includes('type="scale"') // the tumbling depth oscillation
   const githubSafe = !svg.includes('<script') && !svg.toLowerCase().includes('foreignobject')
+  const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix)
   const facets = [
     { facet: 'an animated I Ching in the README — the eight trigrams (bāguà) ring the hero as yin/yang bars and pulse in sequence (the I Ching cycling), labelled "I Ching 64 = 4³"; the best 10D experience', on: baguaBars >= (8 * 3) && sequenced >= 8 && svg.includes('I Ching 64 = 4³') },
     { facet: 'the double-torus movement is revised — the two tori now COUNTER-rotate (one 0→360, one 360→0) with a depth (vertical) pulse, a tumbling 3D motion rather than a flat in-plane spin', on: counterRotating && depthPulse },
-    { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && readmeIsHomeHero10DAnimatedSvgInGithub(matrix).shown },
+    { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && home.shown },
     { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 64 = 4³, 432 gates, the four homology loops + the eight-fold bāguà, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') },
+    { facet: 'quantum merkaba + plasma layers seal — computational geometry from sealed folds, not wet Flower-of-Life art', on: home.merkabaQuantum },
   ].map((entry) => ({ ...entry, receipt: toUuid(`iching-hero:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-animated-iching-hero', facets)
   return {
@@ -400,9 +405,9 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README uses an animated I Ching for the best 10D experience, and the double-torus movement is revised. The hero SVG now rings the double torus with the eight trigrams — the bāguà — drawn as yin/yang bars that pulse in sequence, the I Ching cycling around the figure (64 = 4³, the eight-fold and the ten dimensions). And the movement is reworked: the two tori counter-rotate, one each way, with a vertical depth pulse, so the figure tumbles in three dimensions instead of spinning flat. Still SMIL-only, GitHub-safe, computed from src.',
+      'The README uses an animated I Ching for the best 10D experience, and the double-torus movement is revised. The hero SVG rings the double torus with the eight trigrams — the bāguà — drawn as yin/yang bars that pulse in sequence (64 = 4³), carries sealed merkaba star-tetrahedra + plasma, and the two tori counter-rotate with a depth pulse. Still SMIL-only, GitHub-safe, computed from src.',
     boundary:
-      'HONEST: the bāguà is drawn as actual yin/yang bars (no font dependency — guaranteed to render), the eight trigrams pulsing in a staggered sequence (a real animation of the I Ching), and the revised movement is genuine SMIL (two counter-rotating tori with an additive scale pulse — a tumbling read, not a flat spin). It remains a 2D animated SCHEMATIC of the ten-dimensional figure for GitHub (no JavaScript), faithful to the invariants (χ = −2, H₁ = ℤ⁴, 64 = 4³, 432); the live site’s interactive WebGL hero is the separate richer surface. The README reference and hero.svg emission are unchanged (readmeIsHomeHero10DAnimatedSvgInGithub still seals).',
+      'HONEST: the bāguà is drawn as actual yin/yang bars (no font dependency), the eight trigrams pulse in a staggered sequence, merkaba vertices come from sealed merkaba() projected via rotate3/perspective (not Flower-of-Life sacred-geometry prose), and the revised movement is genuine SMIL. It remains a 2D animated SCHEMATIC of the ten-dimensional figure for GitHub (no JavaScript), faithful to the invariants (χ = −2, H₁ = ℤ⁴, 64 = 4³, 432); the live site’s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL. The README reference and hero.svg emission are unchanged (readmeIsHomeHero10DAnimatedSvgInGithub still seals).',
   }
 }
 
