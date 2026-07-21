@@ -17,10 +17,6 @@ defineProps<{
       <p>{{ paper.statement }}</p>
     </section>
     <section>
-      <h2>{{ SCIENCE_PAPER_SECTION_LABELS.explanation }}</h2>
-      <p>{{ paper.explanation }}</p>
-    </section>
-    <section>
       <h2>{{ SCIENCE_PAPER_SECTION_LABELS.formulas }}</h2>
       <pre class="scientific-paper-body__formula"><code>{{ paper.formulas }}</code></pre>
       <p class="scientific-paper-body__meta">

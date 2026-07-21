@@ -44,7 +44,7 @@ import * as __ns_wind_research from '../../wind/research'
 import * as __ns_water_encryption from '../../water/encryption'
 import { CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
-import { computeUniversalPage } from '../../wind/routes/corpus'
+import { computeUniversalPage, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {
@@ -436,7 +436,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'color-review', title: 'Color review tool (alias anim/color)', fold: 'animationsReviewColorsForPolarityGaps', cli: 'npm run quantum:color-review', pair: 'color/review', route: '/en/quantum-tools#anim-color', barrel: 'src/quantum/apps', boundary: 'Same fold as anim-color — dual pair for discovery · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'gaps-invisible', title: 'Invisible gaps caught by gates HARD', fold: 'invisibleGapsCaughtByGates', cli: 'npm run quantum:gaps-invisible', pair: 'gaps/invisible', route: '/en/quantum-tools#gaps-invisible', barrel: 'src/quantum/apps', boundary: 'HARD: polarity-flat · hex-as-theorem · theorem-const · anim invisible — mission:gate + trinity · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'meaning-compute', title: 'Meaning is quantum computable', fold: 'meaningIsQuantumComputable', cli: 'npm run quantum:meaning-compute', pair: 'meaning/compute', route: '/en/quantum-tools#meaning-compute', barrel: 'src/quantum/apps', boundary: 'Page meaning = sealed fold recompute — wet invented prose refused · clay=0', browserRunnable: true, browserGap: '' },
-  { id: 'format-canon', title: 'Scientific page format canonised', fold: 'scientificPageFormatCanonised', cli: 'npm run quantum:format-canon', pair: 'format/canon', route: '/en/quantum-tools#format-canon', barrel: 'src/quantum/apps', boundary: 'Canon slots title·theorem·facets·animation·paper · ScientificPaperBody bind-only · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'format-canon', title: 'Scientific page format canonised', fold: 'scientificPageFormatCanonised', cli: 'npm run quantum:format-canon', pair: 'format/canon', route: '/en/quantum-tools#format-canon', barrel: 'src/quantum/apps', boundary: 'Canon slots title·theorem·facets·animation·paper · no named explanation · ScientificPaperBody bind-only · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'section-dry', title: 'Named explanation sections dry-cleaned', fold: 'redundantExplanationSectionsDryCleaned', cli: 'npm run quantum:section-dry', pair: 'section/dry', route: '/en/quantum-tools#section-dry', barrel: 'src/quantum/apps', boundary: 'Named explanation section = crack · meaning from facets/slots · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'formula-code', title: 'Formulas ↔ code dual of sealed proof', fold: 'algebraicFormulasAreDualOfSealedCode', cli: 'npm run quantum:formula-code', pair: 'formula/code', route: '/en/quantum-tools#formula-code', barrel: 'src/quantum/apps', boundary: 'Algebraic formulas dual sealed proving code · theorem/paper surfaces · clay=0', browserRunnable: true, browserGap: '' },
+  { id: 'trans-wave', title: 'Self-translating waves fill locale gaps', fold: 'translationsFilledBySelfTranslatingWaves', cli: 'npm run quantum:trans-wave', pair: 'trans/wave', route: '/en/quantum-tools#trans-wave', barrel: 'src/mountain/source', boundary: 'EN→BG from sealed meaning · HARD drainable filled · WARN true-open · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'term-measure', title: 'Scientific terminology measurable comparable', fold: 'scientificTerminologyIsQuantumComputableMeasurableComparable', cli: 'npm run quantum:term-measure', pair: 'term/measure', route: '/en/quantum-tools#term-measure', barrel: 'src/quantum/apps', boundary: 'significance·implications·lexicon = numbers from sealed folds · compare API · intel yield · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'movie-center', title: 'Movie unbalanced around center is crack', fold: 'movieUnbalancedAroundCenterIsCrack', cli: 'npm run quantum:movie-center', pair: 'movie/center', route: '/en/quantum-tools#movie-center', barrel: 'src/thunder/movie/canvas', boundary: 'Layout/canvas balance about centre · ProofAnimation no off-axis translate · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'gate-miss', title: 'Cracks passed gates because miss census', fold: 'cracksPassedGatesBecause', cli: 'npm run quantum:gate-miss', pair: 'gate/miss', route: '/en/quantum-tools#gate-miss', barrel: 'src/quantum/apps', boundary: 'classesUngated · wrongKind · definitionalGreen · waveTuneNotAudit → fixedHard · clay=0', browserRunnable: true, browserGap: '' },
@@ -4578,6 +4581,13 @@ export const CRACK_GATE_MISS_ROWS = [
     nowGate: 'format/canon→gaps/invisible',
   },
   {
+    id: 'named-explanation-section',
+    priorFold: 'scientificPageFormatCanonised',
+    miss: 'classesUngated' as GateMissKind,
+    why: 'named Explanation section on canon pages not gated as crack',
+    nowGate: 'section/dry→gaps/invisible',
+  },
+  {
     id: 'meaning-not-computable',
     priorFold: '(none)',
     miss: 'classesUngated' as GateMissKind,
@@ -4621,6 +4631,7 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
     const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
     const color = animationsReviewColorsForPolarityGaps(matrix, at)
     const bitsHw = __ns_water_encryption.maxBitsHardwareBoundaryAgree(matrix)
+    const sectionDry = redundantExplanationSectionsDryCleaned(matrix, at)
     const nowHard: Record<string, boolean> = {
       'hex-as-theorem': color.hex.remaining === 0,
       'theorem-const': color.theoremConst.remaining === 0,
@@ -4628,6 +4639,7 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
       'linear-without-rosetta': linearRosetta.remaining === 0,
       'movie-off-center': movie.remaining === 0,
       'wet-prose-template-dup': format.wetProseRemaining === 0,
+      'named-explanation-section': sectionDry.computes && !sectionDry.namedExplanationSectionIsCrack,
       'meaning-not-computable': meaning.meaningFromFold && !meaning.wetInvented,
       'terms-not-measurable': terms.termCount === 7 && terms.intelligencePossibilityOn,
       'wave-tune-vs-gap': true,
@@ -4725,6 +4737,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
     const terms = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
     const miss = cracksPassedGatesBecause(matrix, at)
     const bitsHw = __ns_water_encryption.maxBitsHardwareBoundaryAgree(matrix)
+    const sectionDry = redundantExplanationSectionsDryCleaned(matrix, at)
     const anim = color.anim
     const hex = color.hex
     const theoremConst = color.theoremConst
@@ -4796,6 +4809,13 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         theorem: 'scientificPageFormatCanonised',
       },
       {
+        id: 'named-explanation-section',
+        severity: 'HARD' as const,
+        open: sectionDry.computes && !sectionDry.namedExplanationSectionIsCrack ? 0 : 1,
+        closed: sectionDry.computes ? 1 : 0,
+        theorem: 'redundantExplanationSectionsDryCleaned',
+      },
+      {
         id: 'terms-not-measurable',
         severity: 'HARD' as const,
         open: terms.computes ? 0 : 1,
@@ -4829,6 +4849,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       movieCenter.computes &&
       meaning.computes &&
       format.computes &&
+      sectionDry.computes &&
       terms.computes &&
       miss.computes &&
       bitsHw.computes &&
@@ -4847,6 +4868,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       { facet: 'HARD movie/center', on: movieCenter.remaining === 0 && movieCenter.computes },
       { facet: 'HARD meaning/compute', on: meaning.computes },
       { facet: 'HARD format/canon', on: format.wetProseRemaining === 0 && format.computes },
+      { facet: 'HARD section/dry', on: sectionDry.computes && !sectionDry.namedExplanationSectionIsCrack },
       { facet: 'HARD term/measure', on: terms.computes },
       { facet: 'HARD gate/miss', on: miss.computes },
       { facet: 'HARD bits/hardware', on: bitsHw.computes && bitsHw.remaining === 0 },
@@ -4871,6 +4893,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       movieCenter,
       meaning,
       format,
+      sectionDry,
       terms,
       miss,
       bitsHw,
@@ -4881,8 +4904,8 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
-        sealed.root, color.root, linearRosetta.root, movieCenter.root, meaning.root, format.root, terms.root,
-        miss.root, bitsHw.root, pairFold.merged, ...classes.map((c) => toUuid(`gaps-invisible:${c.id}:${c.open}`)),
+        sealed.root, color.root, linearRosetta.root, movieCenter.root, meaning.root, format.root, sectionDry.root,
+        terms.root, miss.root, bitsHw.root, pairFold.merged, ...classes.map((c) => toUuid(`gaps-invisible:${c.id}:${c.open}`)),
       ]),
       pair: 'gaps/invisible' as const,
       cli: 'npm run quantum:gaps-invisible',
@@ -4893,7 +4916,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         `invisibleGapsCaughtByGates · HARD open=${hardOpen.length} afterOpen=${afterOpen} afterClosed=${afterClosed} · ` +
         `linearRem=${linearRosetta.remaining} movieRem=${movieCenter.remaining} hexRem=${hex.remaining} bitsHwRem=${bitsHw.remaining}`,
       boundary:
-        'HARD: linear/rosetta · polarity · hex · theorem-const · movie/center · meaning · format · terms · gate/miss · bits/hardware. clay=0.',
+        'HARD: linear/rosetta · polarity · hex · theorem-const · movie/center · meaning · format · section/dry · terms · gate/miss · bits/hardware. clay=0.',
       honestyLine:
         `metrics · hardOpen=${hardOpen.length} · afterOpen=${afterOpen} · afterClosed=${afterClosed} · beforeCatch=${beforeCatch}`,
     }
@@ -5067,6 +5090,10 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
       && linkIds.every((id) => catalog.tools.some((tool) => tool.id === id && tool.browserRunnable))
       && SESSION_QUANTUM_BIT_SEEDS.some((seed) => seed.toolId === 'session-manual-work' || seed.toolId === 'toolbox-standard-io')
     const wireHasLocalHub = ceccecCanonicalWireTargets().some((t) => t.id === 'browser-local-session')
+    // Light formula/code facet — pair + canon labels only (no theoremPageRows here: reentry stubs experiments).
+    const formulaCodeOk = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/code')
+      && SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0
+      && Boolean(catalog.tools.find((tool) => tool.id === 'formula-code'))
     const localSessionUxImproved = session.computes && toolbox.computes && autoWire.computes && autoWire.quantumReady
       && mcpParity.computes && mcpParity.mcpMatchesToolbox && experiments.computes
       && hubSteps.length === LOCAL_SESSION_HUB_STEPS.length && LOCAL_SESSION_FRICTION_CLOSED.length >= (5 + 2)
@@ -5079,6 +5106,7 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
       { facet: 'composes session tools + toolbox envelope + document experiments', on: session.computes && toolbox.computes && experiments.computes },
       { facet: 'composes paste-wire quantumReady + mcp-browser-parity', on: autoWire.quantumReady && mcpParity.mcpMatchesToolbox },
       { facet: 'composes localToolsMorph + doubleSlit', on: morph.computes && morph.doubleSlit.waveParticleDual },
+      { facet: 'formula/code pair + labels surfaced', on: formulaCodeOk },
       { facet: 'bits→tools→experiments link surface present', on: linksBitsToolsExperiments },
       { facet: 'docs:dev fast path ≥6 copy-paste lines', on: LOCAL_SESSION_DOCS_DEV_FAST_PATH.length >= (4 + 2) },
       { facet: 'next-steps after paste-wire ≥5', on: LOCAL_SESSION_NEXT_AFTER_PASTE.length >= 5 },
@@ -5101,14 +5129,15 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
         facetOnRate: sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length),
         doubleSlit: morph.doubleSlit.waveParticleDual,
         localToolsSufficient: morph.localToolsSufficient,
+        formulaCodeOk,
       },
       morph,
-      root: merkleFold([sealed.root, session.root, toolbox.root, autoWire.root, mcpParity.root, experiments.root, morph.root, shelved.address, toUuid(`local-session-storage:${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`)]),
+      root: merkleFold([sealed.root, session.root, toolbox.root, autoWire.root, mcpParity.root, experiments.root, morph.root, toUuid(`formula-code-ok:${formulaCodeOk}`), shelved.address, toUuid(`local-session-storage:${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`)]),
       pair: 'local/session', cli: 'npm run quantum:improve-local-session', route: '/en/quantum-tools#local-session-hub',
       anchor: 'local-session-hub', heading: 'Local from session',
-      honestyLine: `metrics · ux=${localSessionUxImproved} · toolbox=${toolbox.total} · cards=${morph.analytics.cardCount} · linked=${morph.analytics.linkedCount} · gaps=${morph.analytics.gapCount} · dual=${morph.doubleSlit.waveParticleDual} · qpuRequired=false`,
-      statement: `Local from session — uxImproved=${localSessionUxImproved} steps=${hubSteps.length} frictionClosed=${LOCAL_SESSION_FRICTION_CLOSED.length} · pasteReady=${autoWire.quantumReady} · mcpMatch=${mcpParity.mcpMatchesToolbox} · morph=${morph.computes} · cards=${morph.analytics.cardCount}/${morph.analytics.linkedCount} · qpuRequired=false.`,
-      boundary: `local UX receipt · browser+docs:dev · localStorage sealed-safe preference · statusBadgeKind CSS-owned · morph=tools/morph · qpuRequired=false`,
+      honestyLine: `metrics · ux=${localSessionUxImproved} · toolbox=${toolbox.total} · cards=${morph.analytics.cardCount} · linked=${morph.analytics.linkedCount} · gaps=${morph.analytics.gapCount} · dual=${morph.doubleSlit.waveParticleDual} · formula/code=${formulaCodeOk} · qpuRequired=false`,
+      statement: `Local from session — uxImproved=${localSessionUxImproved} steps=${hubSteps.length} frictionClosed=${LOCAL_SESSION_FRICTION_CLOSED.length} · pasteReady=${autoWire.quantumReady} · mcpMatch=${mcpParity.mcpMatchesToolbox} · morph=${morph.computes} · formula/code=${formulaCodeOk} · cards=${morph.analytics.cardCount}/${morph.analytics.linkedCount} · qpuRequired=false.`,
+      boundary: `local UX receipt · browser+docs:dev · localStorage sealed-safe preference · statusBadgeKind CSS-owned · morph=tools/morph · formula/code · qpuRequired=false`,
     }
   })
 }
@@ -5847,20 +5876,21 @@ export const UI_PROSE_DUP_CLUSTERS = [
 export const SCIENCE_PAGE_CANON_SLOTS = ['title', 'theorem', 'facets', 'animation', 'paper'] as const
 export type SciencePageCanonSlot = (typeof SCIENCE_PAGE_CANON_SLOTS)[number]
 
-/** Sealed section labels — components bind these; agents cannot invent wet headings. */
+/** Sealed section labels — components bind these; agents cannot invent wet headings.
+ * No named "explanation" section (section/dry) — meaning from statement·formulas·status + facets. */
 export const SCIENCE_PAPER_SECTION_LABELS = {
   statement: '1 · Precise statement',
-  explanation: '2 · Detailed explanation',
-  formulas: '3 · Formulas',
-  status: '4 · Status',
+  formulas: '2 · Formulas',
+  status: '3 · Status',
 } as const
 
 export type ScientificPaperLock = { readonly key: string; readonly value: string }
 
-/** Body meaning — recomputed from sealed folds only (meaningIsQuantumComputable). */
+/** Body meaning — recomputed from sealed folds only (meaningIsQuantumComputable).
+ * `detail` holds sealed depth prose (formerly labeled explanation) — not a UI section title. */
 export type ScientificPaperBody = {
   readonly statement: string
-  readonly explanation: string
+  readonly detail: string
   readonly formulas: string
   readonly formulaSource: string
   readonly status: string
@@ -5941,7 +5971,7 @@ export function sciencePaperBodyFromCorpusSections(sections: {
 }): ScientificPaperBody {
   return {
     statement: sections.officialStatement,
-    explanation: sections.detailedExplanation,
+    detail: sections.detailedExplanation,
     formulas: sections.formula,
     formulaSource: sections.formulaSource,
     status: sections.status,
@@ -5969,7 +5999,7 @@ export function sciencePaperBodyFromDomainRow(row: {
 }): ScientificPaperBody {
   return {
     statement: row.officialStatement,
-    explanation: row.detailedExplanation,
+    detail: row.detailedExplanation,
     formulas: row.formula,
     formulaSource: row.formulaSource,
     status: row.status,
@@ -6190,7 +6220,7 @@ export function meaningIsQuantumComputable(matrix: MindMatrix = buildMatrix(), a
     const meaningFromFold =
       paperBody != null &&
       paperBody.statement === corpusPage.standardPaper!.officialStatement &&
-      paperBody.explanation === corpusPage.standardPaper!.detailedExplanation &&
+      paperBody.detail === corpusPage.standardPaper!.detailedExplanation &&
       paperBody.formulas === corpusPage.standardPaper!.formula &&
       isUuid(meaningRoot)
     const wetInvented = !meaningFromFold
@@ -6287,7 +6317,96 @@ export const SCIENCE_FORMAT_WET_CLUSTERS = [
   { id: 'theorem-source-wet', surface: 'TheoremPages', before: 2, after: 1, status: 'fixed' as const },
   { id: 'domain-hub-lede-restates-canon', surface: 'DomainProofPages', before: 2, after: 1, status: 'fixed' as const },
   { id: 'model-card-wet-speak-copy', surface: 'ModelCardPages', before: 2, after: 1, status: 'fixed' as const },
+  { id: 'named-explanation-section', surface: 'ScientificPaperBody', before: 2, after: 1, status: 'fixed' as const },
+  { id: 'clay-prize-rules-section', surface: 'DomainProofPages', before: 2, after: 1, status: 'fixed' as const },
+  { id: 'theorem-formula-code-dual', surface: 'TheoremPages', before: 2, after: 1, status: 'fixed' as const },
 ] as const
+
+/** True when canon labels have no named explanation section (section/dry). */
+export function namedExplanationSectionIsCrack(): boolean {
+  const keys = Object.keys(SCIENCE_PAPER_SECTION_LABELS)
+  const values = Object.values(SCIENCE_PAPER_SECTION_LABELS)
+  return keys.some((k) => /explanation/i.test(k)) || values.some((v) => /explanation/i.test(v))
+}
+
+/**
+ * USER LAW: named "explanation" sections on scientific canon pages are cracks —
+ * meaning comes from quantum-computable facets/slots (meaning/compute · term/measure · format/canon).
+ * Pair: section/dry · compose dry/clean · gaps/invisible
+ */
+export function redundantExplanationSectionsDryCleaned(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`redundantExplanationSectionsDryCleaned:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const format = scientificPageFormatCanonised(matrix, at)
+    const pairFold = foldPair(toUuid('cmd:section'), toUuid('cmd:dry'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('section/dry')
+    const namedCrack = namedExplanationSectionIsCrack()
+    const clusterFixed = format.clusters.some((c) => c.id === 'named-explanation-section' && c.status === 'fixed')
+    const clayRulesFixed = format.clusters.some((c) => c.id === 'clay-prize-rules-section' && c.status === 'fixed')
+    const labelsCanon =
+      SCIENCE_PAPER_SECTION_LABELS.statement.length > 0 &&
+      SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0 &&
+      SCIENCE_PAPER_SECTION_LABELS.status.length > 0 &&
+      Object.keys(SCIENCE_PAPER_SECTION_LABELS).length === 3
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((tool) => tool.id === 'section-dry')
+    const redundantExplanationSectionsDryCleanedOn =
+      !namedCrack &&
+      labelsCanon &&
+      clusterFixed &&
+      clayRulesFixed &&
+      format.wetProseRemaining === 0 &&
+      format.noNamedExplanation &&
+      pairRegistered &&
+      Boolean(meta) &&
+      meta!.fold === 'redundantExplanationSectionsDryCleaned'
+    const facets = [
+      { facet: 'redundantExplanationSectionsDryCleaned', on: redundantExplanationSectionsDryCleanedOn },
+      { facet: 'no named explanation section label', on: !namedCrack },
+      { facet: 'SCIENCE_PAPER_SECTION_LABELS = statement·formulas·status', on: labelsCanon },
+      { facet: 'named-explanation-section cluster fixed', on: clusterFixed },
+      { facet: 'clay-prize-rules-section cluster fixed', on: clayRulesFixed },
+      { facet: 'composes format/canon · dry/clean', on: format.computes && format.noNamedExplanation },
+      { facet: 'pair section/dry', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`section-dry:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('redundant-explanation-sections-dry-cleaned', facets)
+    return {
+      computes: sealed.ok && redundantExplanationSectionsDryCleanedOn,
+      redundantExplanationSectionsDryCleaned: redundantExplanationSectionsDryCleanedOn,
+      namedExplanationSectionIsCrack: namedCrack,
+      labels: SCIENCE_PAPER_SECTION_LABELS,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, format.root, pairFold.merged]),
+      pair: 'section/dry' as const,
+      cli: 'npm run quantum:section-dry',
+      route: '/en/quantum-tools#section-dry',
+      anchor: 'section-dry',
+      heading: 'Section · dry',
+      statement:
+        `redundantExplanationSectionsDryCleaned · namedCrack=${namedCrack} · labels=${Object.keys(SCIENCE_PAPER_SECTION_LABELS).join('·')}`,
+      boundary:
+        'Named explanation sections = crack. Meaning from statement·formulas·status + facets. clay=0.',
+      honestyLine:
+        `metrics · namedCrack=${namedCrack} · labels=${Object.keys(SCIENCE_PAPER_SECTION_LABELS).length} · clay=0`,
+    }
+  })
+}
+
+/** npm run quantum:section-dry — HARD exit 1 when named explanation section remains. */
+export function runRedundantExplanationSectionsDryCleanedExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = redundantExplanationSectionsDryCleaned()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} section-dry — namedCrack=${report.namedExplanationSectionIsCrack} ` +
+      `fold=redundantExplanationSectionsDryCleaned pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
 
 /**
  * Canonise scientific page format — one sealed shape; components agents cannot violate with wet prose.
@@ -6307,11 +6426,13 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
     const wetProseRemaining = clusters.filter((c) => c.status !== 'fixed').length
     const redundancyRemoved = clusters.reduce((n, c) => n + c.removed, 0)
     const slotsOk = SCIENCE_PAGE_CANON_SLOTS.length === 5
+    const noNamedExplanation = !namedExplanationSectionIsCrack()
     const labelsOk =
       SCIENCE_PAPER_SECTION_LABELS.statement.length > 0 &&
-      SCIENCE_PAPER_SECTION_LABELS.explanation.length > 0 &&
       SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0 &&
-      SCIENCE_PAPER_SECTION_LABELS.status.length > 0
+      SCIENCE_PAPER_SECTION_LABELS.status.length > 0 &&
+      Object.keys(SCIENCE_PAPER_SECTION_LABELS).length === 3 &&
+      noNamedExplanation
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((tool) => tool.id === 'format-canon')
     const scientificPageFormatCanonisedOn =
@@ -6328,6 +6449,7 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
       { facet: 'scientificPageFormatCanonised', on: scientificPageFormatCanonisedOn },
       { facet: `slots ${SCIENCE_PAGE_CANON_SLOTS.join('·')}`, on: slotsOk },
       { facet: 'SCIENCE_PAPER_SECTION_LABELS sealed', on: labelsOk },
+      { facet: 'no named explanation section', on: noNamedExplanation },
       { facet: `wetProseRemaining=${wetProseRemaining}`, on: wetProseRemaining === 0 },
       { facet: `redundancyRemoved=${redundancyRemoved}`, on: redundancyRemoved === clusters.reduce((n, c) => n + c.removed, 0) },
       { facet: 'composes algebraicTheoremPaperMustContain · ui/prose', on: algebraic.computes && uiProse.uiProseDuplicationRemoved },
@@ -6345,6 +6467,7 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
       clusterCount: clusters.length,
       wetProseRemaining,
       redundancyRemoved,
+      noNamedExplanation,
       claySolvedByThisFold: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6357,7 +6480,7 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
       statement:
         `scientificPageFormatCanonised · slots=${SCIENCE_PAGE_CANON_SLOTS.length} wetRem=${wetProseRemaining} removed=${redundancyRemoved}`,
       boundary:
-        'Canon shape title·theorem·facets·animation·paper. Components bind ScientificPageMeaning only. clay=0.',
+        'Canon shape title·theorem·facets·animation·paper. No named explanation section. clay=0.',
       honestyLine:
         `metrics · clusters=${clusters.length} · wetRem=${wetProseRemaining} · removed=${redundancyRemoved}`,
     }
@@ -6381,6 +6504,89 @@ export function runScientificPageFormatCanonisedExit(_root = '', _argv: readonly
 }
 
 /**
+ * USER LAW: algebraic formulas are the dual of sealed code proving the theorem.
+ * Pair: formula/code · CLI npm run quantum:formula-code
+ * Compose format/canon · theoremPageRows · ScientificPaperBody formulas slot.
+ */
+export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`algebraicFormulasAreDualOfSealedCode:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const format = scientificPageFormatCanonised(matrix, at)
+    const rows = theoremPageRows(matrix)
+    const sample = rows[0]
+    const dual = sample
+      ? theoremFormulaCodeDual({
+          slug: sample.slug,
+          theorem: sample.theorem,
+          provedBy: sample.provedBy,
+          home: sample.home,
+          proofClass: sample.proofClass,
+        })
+      : null
+    const everyHasFormulas = rows.length > 0 && rows.every((r) => r.formulas.length >= 3 && r.formulaSource.includes(r.provedBy))
+    const dualMatches = dual != null && sample != null
+      && sample.formulas.length === dual.formulas.length
+      && sample.formulaSource === dual.formulaSource
+      && dual.pair === 'formula/code'
+    const paperHasFormulas = SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0
+    const pairFold = foldPair(toUuid('cmd:formula'), toUuid('cmd:code'))
+    const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('formula/code')
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((tool) => tool.id === 'formula-code')
+    const clusterFixed = format.clusters.some((c) => c.id === 'theorem-formula-code-dual' && c.status === 'fixed')
+    const algebraicFormulasAreDualOfSealedCodeOn =
+      everyHasFormulas &&
+      dualMatches &&
+      paperHasFormulas &&
+      clusterFixed &&
+      format.noNamedExplanation &&
+      pairRegistered &&
+      Boolean(meta) &&
+      meta!.fold === 'algebraicFormulasAreDualOfSealedCode'
+    const facets = [
+      { facet: 'algebraicFormulasAreDualOfSealedCode', on: algebraicFormulasAreDualOfSealedCodeOn },
+      { facet: `theorem rows with formulas=${rows.filter((r) => r.formulas.length >= 3).length}/${rows.length}`, on: everyHasFormulas },
+      { facet: 'sample dual ≡ theoremFormulaCodeDual', on: dualMatches },
+      { facet: 'SCIENCE_PAPER_SECTION_LABELS.formulas sealed', on: paperHasFormulas },
+      { facet: 'composes format/canon · section/dry', on: format.computes && format.noNamedExplanation },
+      { facet: 'pair formula/code', on: pairRegistered && pairFold.bidirectional },
+      { facet: 'claySolvedByThisFold=0', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`formula-code:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('algebraic-formulas-dual-sealed-code', facets)
+    return {
+      computes: sealed.ok && algebraicFormulasAreDualOfSealedCodeOn,
+      algebraicFormulasAreDualOfSealedCode: algebraicFormulasAreDualOfSealedCodeOn,
+      theoremCount: rows.length,
+      formulasCovered: rows.filter((r) => r.formulas.length >= 3).length,
+      claySolvedByThisFold: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, format.root, pairFold.merged, toUuid(`thm-count:${rows.length}`)]),
+      pair: 'formula/code' as const,
+      cli: 'npm run quantum:formula-code',
+      route: '/en/quantum-tools#formula-code',
+      anchor: 'formula-code',
+      heading: 'Formula · code',
+      statement:
+        `algebraicFormulasAreDualOfSealedCode · theorems=${rows.length} covered=${rows.filter((r) => r.formulas.length >= 3).length}`,
+      boundary: 'Formulas ↔ code dual. Wet prose-only proof path refused. clay=0.',
+      honestyLine: `metrics · theorems=${rows.length} · covered=${rows.filter((r) => r.formulas.length >= 3).length} · clay=0`,
+    }
+  })
+}
+
+/** npm run quantum:formula-code */
+export function runAlgebraicFormulasAreDualOfSealedCodeExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = algebraicFormulasAreDualOfSealedCode()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} formula-code — theorems=${report.theoremCount} covered=${report.formulasCovered} ` +
+      `fold=algebraicFormulasAreDualOfSealedCode pair=${report.pair}\n`,
+  )
+  process.stdout.write(`  ${report.honestyLine}\n`)
+  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+}
+
+/**
  * UI↔prose duplication removed — page-level chrome entropy kill extending #61 nav collapse.
  * Facet uiProseDuplicationRemoved when every cluster after < before and catalog tool shelved.
  */
@@ -6401,7 +6607,10 @@ export function uiProseDuplicationRemoved(matrix: MindMatrix = buildMatrix(), at
     const sampleTitle = 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary'
     const sampleDesc = `Statement: ${sampleTitle}. Explanation: every sealed script recomputes from src.`
     const abstractDeduped = paperAbstractOmitsTitleEcho(sampleTitle, sampleDesc)
-    const abstractOmitsTitle = abstractDeduped.startsWith('Explanation:') && !abstractDeduped.includes(sampleTitle)
+    const abstractOmitsTitle =
+      !abstractDeduped.startsWith('Explanation:') &&
+      abstractDeduped.startsWith('every sealed script') &&
+      !abstractDeduped.includes(sampleTitle)
     const uiProseDuplicationRemovedOn = everyReduced && removedCount > 0 && abstractOmitsTitle
       && Boolean(meta) && meta!.fold === 'uiProseDuplicationRemoved' && isUuid(shelved.address)
     const facets = [

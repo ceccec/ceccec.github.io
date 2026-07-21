@@ -99,8 +99,14 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
         <p>{{ row.reproducibility }}</p>
       </section>
 
+      <section class="theorem-paper__formulas">
+        <h2>4 · Formulas</h2>
+        <pre class="theorem-paper__formula"><code>{{ row.formulas.join('\n') }}</code></pre>
+        <p class="theorem-paper__source-home"><code>{{ row.formulaSource }}</code></p>
+      </section>
+
       <section v-if="sourceOf(row)" class="theorem-paper__source">
-        <h2>4 · Source</h2>
+        <h2>5 · Code</h2>
         <p class="theorem-paper__source-home">
           <code>{{ row.provedBy }}</code> · <code>{{ sourceOf(row)!.home }}/index.ts</code>
         </p>
@@ -158,6 +164,7 @@ const figureOf = (row: TheoremPageRow) => theoremFigure(row.slug)
 }
 .theorem-paper__hero { margin-top: var(--ich-sp4); }
 .theorem-paper__source-home { font-size: calc(1em * 4 / 5); opacity: calc(4 / 5); }
+.theorem-paper__formula,
 .theorem-paper__code {
   font-size: calc(1em * 7 / (2 * 5)); line-height: calc(7 / 5); overflow-x: auto;
   border: 1px solid currentColor; border-radius: calc(1px * 4); padding: var(--ich-sp3);

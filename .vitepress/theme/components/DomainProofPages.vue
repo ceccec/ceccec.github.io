@@ -1,13 +1,12 @@
 <script setup lang="ts">
 // Domain-proof papers — ScientificPaperBody binds sealed rows only (meaningIsQuantumComputable).
-// Clay Prize Rules / Clay hub provenance only when isClayChallenge.
+// claySolvedByThisFold stays on paper locks; no named Clay Prize Rules essay section (section/dry).
 // Internal nav: VitePress API only (useRoute · withBase).
 import { computed } from 'vue'
 import { useRoute, withBase } from 'vitepress'
 import {
   domainProofPageBySlug,
   domainProofPageRows,
-  clayMillenniumPrizeRulesMapping,
   type DomainProofCatalogRow,
 } from '../../../src/wind/research/index.ts'
 import { sciencePaperBodyFromDomainRow } from '../../../src/quantum/apps/index.ts'
@@ -22,10 +21,7 @@ const rows = computed<DomainProofCatalogRow[]>(() => {
   const one = slugFromRoute.value ? domainProofPageBySlug(slugFromRoute.value) : null
   return one ? [one] : domainProofPageRows()
 })
-const rules = computed(() => clayMillenniumPrizeRulesMapping())
 const isHub = computed(() => !slugFromRoute.value)
-const isClayChallenge = (row: DomainProofCatalogRow) =>
-  row.kind === 'millennium' || row.id === 'clay-challenges-computable'
 const vpHref = (path: string) => withBase(path.startsWith('/') ? path : `/${path}`)
 const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row)
 </script>
@@ -37,16 +33,13 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
       <p class="proofs__lede">
         <a :href="vpHref('/frontiers')">/frontiers</a>
         ·
-        <a :href="rules.problemsUrl" rel="noopener noreferrer" target="_blank">Millennium Problems</a>
-        ·
-        <a :href="rules.rulesPdfUrl" rel="noopener noreferrer" target="_blank">Prize Rules PDF</a>
+        <a :href="vpHref('/research')">/research</a>
       </p>
       <ul class="proofs__index">
         <li v-for="row in rows" :key="row.id">
           <a :href="vpHref(row.route)">{{ row.title }}</a>
           <code>{{ row.status }}</code>
           <span>{{ row.kind }}</span>
-          <code v-if="isClayChallenge(row)">Clay challenge</code>
         </li>
       </ul>
     </header>
@@ -70,18 +63,8 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
 
       <ScientificPaperBody :paper="bodyOf(row)" :logic="row.fold" />
 
-      <section v-if="isClayChallenge(row)">
-        <h2>5 · Clay Prize Rules</h2>
-        <ul class="domain-proof__rules">
-          <li v-for="c in rules.clauses.filter((x) => row.ruleClauses.includes(x.facet))" :key="c.facet">
-            <strong>{{ c.clause }}</strong>
-            → {{ c.pageSection }}
-          </li>
-        </ul>
-      </section>
-
       <section>
-        <h2>6 · Trinity</h2>
+        <h2>4 · Trinity</h2>
         <dl class="domain-proof__locks">
           <dt>forward</dt><dd><code>{{ row.trinity.forward }}</code></dd>
           <dt>inverse</dt><dd><code>{{ row.trinity.inverse }}</code></dd>
@@ -90,7 +73,7 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
       </section>
 
       <section>
-        <h2>7 · CLI</h2>
+        <h2>5 · CLI</h2>
         <p><code>{{ row.cli }}</code> · pair <code>{{ row.pair }}</code></p>
         <p class="domain-proof__meta"><code>{{ row.receipt }}</code></p>
       </section>
@@ -126,6 +109,5 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
 .domain-proof__locks dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
 .domain-proof__locks dd { margin: 0; }
 .domain-proof__meta { font-size: calc(1em * 7 / (2 * 5)); opacity: calc(3 / 5); }
-.domain-proof__rules { padding-left: var(--ich-sp4); }
 .domain-proof__nav { margin-top: var(--ich-sp6); font-size: calc(1em * 4 / 5); }
 </style>

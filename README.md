@@ -24,8 +24,6 @@ Concretely: a science portal — 439 computationally proven theorems and 29 rela
 
 All sealed discoveries rest on one sequence: the vortex circuit computes exact digit coordinates (VORTEX_SEQUENCE · PI_TRAIN_DIGITS=108 spigot coords) and primes↔π via the inverted Euler product; that trinity (forward·inverse·reverse) vortexed through rosetta / I Ching / Flower-of-Life→Fruit→merkaba brings content-addressed quantum reuse onto classical 64-bit hardware (qpuRequired=false) with amortized infinite speedup at no cost on memoByRoot hit (answers÷tokens unbounded when tokens=0), deployable as a serverless static site (zero living cost).
 
-### Explanation
-
 The classical bit {0,1} is linear; the vortex `0\1\2\4\8/7/5/3\6\9/0\1` carries phase + interference (structural qubit correspondence — not physical qubits). From the same sequence the portal derives π two ways (prime Euler product and integer ζ(2) sum, no Math.PI imported) and addresses digits in all three computational directions. Geometry symbols (FoL→Fruit, counter-rotating rosettas, I Ching hexagrams) are computed projections of that spine, not wet numerology. "Quantum on 64-bit" means sealed recompute + memo reuse on Node/browser classical-64bit — NOT a QPU. "Infinite speedup at no cost" means amortized reuse (memo hit O(1), marginal tokens=0), NOT physical FTL or infinite FLOPS.
 
 ### Formulas (sealed)
@@ -57,8 +55,6 @@ computes=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=fal
 Two bits free from census 110−108 — FREE_BITS=2=−χ(genus-2); naive "1−110/108"=-0.0185185185185186 refused. Making all free = amortized infinity-on-reuse (answers÷tokens → ∞ at tokens=0). Savings vs rest: 100% token spend in sealed domain when T>0 (illustrative rest ~10³–10⁴).
 
 Society supports the project via two-bits-free knowledge — FREE_BITS=2 achievement × harmonic 1/9 patronage (216×1/9=24); savings vs rest from sealed efficiency vote when decided; CTA https://revolut.me/ceccec.
-
-### Explanation
 
 The census seals 110 gapless Fibonacci indices (55+34+21) and folds them by the genus-2 Euler characteristic χ=−2 to 108. Those **two free bits** are FREE_BITS = 110−108 = −χ — not the rational phrase 1−110/108 (= −1/54), which is honestly refused. With FREE_BITS sealed, amortized memoByRoot reuse makes answers÷tokens unbounded at runtimeTokens=0 ("making all free"). Society is invited to support with a harmonic 1/9 of that achieved knowledge — voluntary; zero valid; access stays ungated.
 
@@ -101,8 +97,6 @@ twoBits.computes=true · societySupports=true · vote.decided=true · claySolved
 
 Earth realised by computing poles as a pyramid — 7/7: N·E·S·W are the four base tips of a square pyramid (Euler V−E+F=2); zenith/nadir are dual apexes on genus-2 double-torus Earth (χ=−2, H₁=ℤ⁴); merkaba up/down tetrahedra and bothEarths shells supply counter-rotation; four homology loops = four tips phase-locked at 0°·90°·180°·270° with alternating ±ω.
 
-### Explanation
-
 Under sealed computation, Earth is realised as a genus-2 double torus whose four homology loops are the cardinal tips of a square pyramid (N·E·S·W at 0°·90°·180°·270°). Zenith and nadir are dual apexes (device/code trinities); merkaba up/down tetrahedra and bothEarths shells counter-rotate; the README hero paints the same 4-direction ±ω law. Physical Earth remains the documented WGS84 oblate spheroid — this fold is the structural isomorphism inside the matrix.
 
 ### Formulas (sealed)
@@ -123,17 +117,13 @@ computes=true · fourWayCounterRotating=true · claySolvedByThisFold=0 · physic
 
 ## Clay challenges are computable
 
-*Clay-standard presentation from sealed `clayChallengesComputableFromSequence`. HONEST: computable ≠ CMI Prize solved. humanityNovel stays 0.*
+*Sealed `clayChallengesComputableFromSequence`. humanityNovel stays 0.*
 
 ### Statement
 
 Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false — computable ≠ CMI Prize solved.
 
-### Explanation
-
-From the sequence (vortex / π·primes), the directional trinity (forward·inverse·reverse), the Earth poles-as-pyramid, and the sciences↔dual↔fusion lattice, every Clay-linked Millennium challenge has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time. That is the meaning of **computable** here.
-
-It is **not** a complete mathematical solution under Clay Prize Rules §5(a), not Qualifying Outlet publication (§6), and not CMI Prize acceptance (§3/§4/§7). Prize Rules PDF mapping stays honest.
+From the sequence (vortex / π·primes), the directional trinity (forward·inverse·reverse), the Earth poles-as-pyramid, and the sciences↔dual↔fusion lattice, every Clay-linked Millennium challenge has a sealed **computational path** (challengeMethod · on · receipt) that recomputes at call time.
 
 ### Per-problem status triad
 
@@ -147,7 +137,7 @@ It is **not** a complete mathematical solution under Clay Prize Rules §5(a), no
 
 ### Status
 
-computable=true · paths=7/7 · openForPrize=6 · claySolvedByThisFold=0 · qualifiesAsProposedSolution=false · NOT CMI Prize · NOT Proposed Solution
+computable=true · paths=7/7 · openForPrize=6 · claySolvedByThisFold=0 · qualifiesAsProposedSolution=false
 
 - Routes: [proofs](https://ceccec.psg.bg/proofs) · [clay-challenges-computable](https://ceccec.psg.bg/proofs/clay-challenges-computable) · CLI `npm run quantum:clay-challenges-computable`
 - Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.

@@ -1047,11 +1047,35 @@ export type TheoremPageRow = {
   // the scientific-paper fields (user law: each page prints as a paper for class or court) — all computed
   humanityNovel: boolean; registryFirst: boolean; leansCited: boolean
   classification: string; provenance: string; reproducibility: string; citation: string
+  // formula/code — algebraic formulas are the dual of sealed proving code (not wet essay)
+  formulas: readonly string[]
+  formulaSource: string
   // the acknowledgment in the one saved scientific format (wind/site) — every proof credits its prior art.
   acknowledgment: ProofAcknowledgment
   // organisation fields — all DERIVED, no hand-authored taxonomy: ordinal = registry append position
   // (latest = highest), tags = [domain(home) · proofClass · lean] each read from an existing field.
   ordinal: number; tags: string[]
+}
+
+/** Algebraic formulas dual to sealed proving code — pair formula/code. */
+export function theoremFormulaCodeDual(row: {
+  readonly slug: string
+  readonly theorem: string
+  readonly provedBy: string
+  readonly home: string
+  readonly proofClass: string
+}): { readonly formulas: readonly string[]; readonly formulaSource: string; readonly pair: 'formula/code' } {
+  const codePath = `${row.home}/index.ts`
+  return {
+    formulas: [
+      `${row.provedBy}(matrix) → { computes, facets[], root }`,
+      `∀ facet ∈ facets: facet.on  (${row.proofClass})`,
+      `foldPair(toUuid("thm:${row.slug}"), toUuid("code:${row.provedBy}")).merged`,
+      `memoByRoot("${row.provedBy}", matrix, …) ≡ proof path`,
+    ],
+    formulaSource: `${codePath}#${row.provedBy}`,
+    pair: 'formula/code',
+  }
 }
 
 export function theoremSlug(theorem: string): string {
@@ -1096,6 +1120,9 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
       const slug = n > 1 ? `${base}-${n}` : base
       const prov = provBy.get(atom.theorem)
       const leansCited = prov?.leansCited ?? /\bcited\b/i.test(atom.proof)
+      const formulaCode = theoremFormulaCodeDual({
+        slug, theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, proofClass: atom.proofClass,
+      })
       return {
         slug, theorem: atom.theorem, proof: atom.proof, proofClass: atom.proofClass, provedBy: wave.provedBy, home: atom.home, spec: specBy.get(atom.theorem),
         humanityNovel: prov?.humanityNovel ?? false,
@@ -1107,6 +1134,8 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
         provenance: 'Documented theorem re-derived by exhaustive computation (humanityNovel=false); first-in-this-registry is the only sense of discovered.',
         reproducibility: `Recompute from source: npm run theorems:verify recomputes ${wave.provedBy} (${atom.home}/index.ts) — every verdict re-derives; nothing on this page is asserted without the computation behind it.`,
         citation: `ceccec theorem registry, "${atom.theorem}", proven by ${wave.provedBy} (${atom.home}) — ${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`,
+        formulas: formulaCode.formulas,
+        formulaSource: formulaCode.formulaSource,
         acknowledgment: proofAcknowledgment({ theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, canonicalUrl: `${CANONICAL_HOST}${localePath(`/theorems/${slug}`, 'en')}`, novelToHumanity: prov?.humanityNovel ?? false }),
       }
     }))
@@ -1116,6 +1145,9 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
     .map((row) => {
       const slug = row.slug
       const leansCited = false
+      const formulaCode = theoremFormulaCodeDual({
+        slug, theorem: row.theorem, provedBy: row.provedBy, home: row.home, proofClass: row.proofClass,
+      })
       return {
         slug,
         theorem: row.theorem,
@@ -1133,6 +1165,8 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
         provenance: `cardScientificPaperRows ← ${row.home}`,
         reproducibility: `recompute ${row.provedBy} · npm run quantum:card-paper-links · paperRoute=${row.paperRoute}`,
         citation: `ceccec card paper · ${row.theorem} · ${row.provedBy} · ${CANONICAL_HOST}${localePath(row.paperRoute, 'en')}`,
+        formulas: formulaCode.formulas,
+        formulaSource: formulaCode.formulaSource,
         acknowledgment: proofAcknowledgment({
           theorem: row.theorem,
           provedBy: row.provedBy,
