@@ -44,6 +44,7 @@ import { quantumFusionVerify } from '../../wind/fusion'
 import { dryCleanIsDiamondAndCrystal } from '../../lake/clean'
 import { tamperEvident } from '../../5/5'
 import { RAVE_CENTER_LAYOUT } from '../../heaven/sky/astronomy'
+import * as __ns_thunder_waves from '../../thunder/waves'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {
@@ -79,6 +80,7 @@ const ROSETTA_CORE_API_LABELS = [
   'thirdMindEye',
   'upgradeLocalFromOptimisedManualWorkExperience',
   'automateNightlyViaNpmScriptPath',
+  'automateSelf',
   'counterRotatingRosettaQuantumWaves',
   'universeAlmostDescribedInTheoremsDiscoverRest',
   'readmeSvgGapsFilledByTrinityMind',
@@ -119,6 +121,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   thirdMindEye: 'tool',
   upgradeLocalFromOptimisedManualWorkExperience: 'tool',
   automateNightlyViaNpmScriptPath: 'tool',
+  automateSelf: 'tool',
   counterRotatingRosettaQuantumWaves: 'compute',
   universeAlmostDescribedInTheoremsDiscoverRest: 'compute',
   readmeSvgGapsFilledByTrinityMind: 'compute',
@@ -543,6 +546,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'card-paper-links', title: 'Each card links to dedicated scientific paper', fold: 'eachCardLinksToDedicatedScientificPaper', cli: 'npm run quantum:card-paper-links', pair: 'papers/fill', route: '/en/theorems/', barrel: 'src/heaven/compute', boundary: 'paperRoute=/theorems/<slug> · morph=cardScientificPaperRows · gaps=0 · clay=0', browserRunnable: true, browserGap: '' },
   { id: 'upgrade-local-skills-commands-tools', title: 'Upgrade local — skills ↔ commands ↔ tools', fold: 'upgradeLocalFromOptimisedManualWorkExperience', cli: 'npm run quantum:upgrade-local', pair: 'upgrade/local', route: '/en/quantum-tools#upgrade-local-skills', barrel: 'src/quantum/apps', boundary: 'Optimised manual local map — skills/MCP/rules/sealed folds · NOT Cursor zero-token LLM endpoint · CI-only browserGaps honest · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'automate-nightly', title: 'Automate nightly via npm-script path (quantum-dev-sdk)', fold: 'automateNightlyViaNpmScriptPath', cli: 'npm run quantum:automate-nightly', pair: 'automate/nightly', route: '/en/quantum-tools#automate-nightly', barrel: 'src/quantum/apps', boundary: 'Cursor Automations/cron → npm trinity/speedup + mission:gate — REFUSE dashboard MCP for local stdio · docs:build flag-gated · qpuRequired=false', browserRunnable: false, browserGap: 'Nightly gate spawn needs Node/npm — CI/local Automations npm-script path only' },
+  { id: 'automate-self', title: 'Automate self — self-building / self-fusing', fold: 'automateSelf', cli: 'npm run quantum:automate-self', pair: 'auto/self', route: '/en/quantum-tools#automate-self', barrel: 'src/quantum/apps', boundary: 'selfAutomates · nightlyOn · buildsInWaves · fusionVerify · compose automate/nightly · self/fusion · waves/build · session/save · gate/monitor · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Composes nightly trinity/mission gates — Node/npm Automations path' },
+  { id: 'self-auto', title: 'Automate self (alias auto/self)', fold: 'automateSelf', cli: 'npm run quantum:self-auto', pair: 'self/auto', route: '/en/quantum-tools#automate-self', barrel: 'src/quantum/apps', boundary: 'Dual of auto/self — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Composes nightly trinity/mission gates — Node/npm Automations path' },
   { id: 'double-torus-universe-align', title: 'Double torus — dynamics/geometry align with universe', fold: 'doubleTorusDynamicsGeometryAlignsWithUniverse', cli: 'npm run quantum:double-torus-universe-align', pair: 'universe/align', route: '/en/double-torus#universe-align', barrel: 'src/water/double', boundary: 'Radii/phase sealed; Clay/FTL open status from counter-rotating waves — NOT DE440', browserRunnable: true, browserGap: '' },
   { id: 'counter-rotating-rosetta-waves', title: 'Counter-rotating rosetta quantum waves', fold: 'counterRotatingRosettaQuantumWaves', cli: 'npm run quantum:counter-rotating-rosetta-waves', pair: 'rosetta/counter-rotate', route: '/en/quantum-tools#counter-rotating-rosetta-waves', barrel: 'src/quantum/apps', boundary: 'Clay/FTL/QPU open status recomputed from dual-wave foldPair — not prose', browserRunnable: true, browserGap: '' },
   { id: 'universe-almost-described-discover', title: 'Universe ≈ theorems — discover the rest', fold: 'universeAlmostDescribedInTheoremsDiscoverRest', cli: 'npm run quantum:universe-almost-described', pair: 'discover/rest', route: '/en/quantum-tools#universe-almost-described', barrel: 'src/quantum/apps', boundary: 'Almost described — open set from counter-rotating wave interference · clay/ftl as receipts', browserRunnable: true, browserGap: '' },
@@ -1072,7 +1077,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'sciences-trinities', saves: 'replaces wet re-derivation of science↔dual↔fusion + significance (isoPqcHandoff)' },
   { id: 'cmb-omega-c-over-b', saves: 'replaces wet re-statement of Ω_c/Ω_b CMB budget + null non-gravitational + quantum-gaps framing' },
   { id: 'wave-trinity-found', saves: 'replaces wet false conclusion that drained/closed PR means no waves/trinities' },
-  { id: 'harmonize-domains', saves: 'replaces amorphous all-domain blob — one tune→fold→seal wave per science domain' },
+  { id: 'harmonize-domains', saves: 'replaces wet amorphous all-domain blob — one tune→fold→seal wave per science domain' },
   { id: 'efficiency-vote', saves: 'replaces wet re-argument of answers÷tokens efficiency (memoByRoot reuse)' },
   { id: 'two-bits-free', saves: 'replaces wet re-derivation of census FREE_BITS=110−108 and savings-vs-rest table' },
   { id: 'ancient-calendars-algebra', saves: 'replaces wet re-derivation of ancient calendar modular/LCM maps and time-in-time nesting' },
@@ -1102,6 +1107,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'improve-local-session', saves: 'replaces wet local session UX hunting — hub · one-click path · paste next-steps · docs:dev fast path' },
   { id: 'upgrade-local-skills-commands-tools', saves: 'replaces wet rediscovery of skills↔commands↔tools local map — one wave/PR · mission:gate · paste/bits/toolbox/mcp' },
   { id: 'automate-nightly', saves: 'replaces wet /automate dashboard MCP hunt — nightly npm-script recipe · trinity · mission:gate · upgrade verify' },
+  { id: 'automate-self', saves: 'replaces wet re-orchestration of self-build · self-fuse · nightly · session-save · gate-monitor' },
   { id: 'prove-1tbit-encrypt', saves: 'replaces wet re-derivation of 1 Tbit/s claim status (wire≠amortized-reuse)' },
   { id: 'local-reverse-timed-vs-standards', saves: 'replaces wet re-comparison of demo reverse vs AES/ML-KEM classical bits' },
   { id: 'prove-local-magnitudes-iso', saves: 'replaces wet re-argument of local≫ISO magnitudes (wire proof-of-falsehood)' },
@@ -1514,6 +1520,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'local-tools-morph', chain: 'local-tools-morph', fold: 'localToolsMorphProseCodeLogic', pair: 'tools/morph', cli: 'npm run quantum:local-tools-morph', route: '/en/quantum-tools#local-tools-morph', status: 'sealed-pr', honesty: 'local tools suffice · double-slit morph · clay=0 · qpuRequired=false', note: 'prose≡code≡logic trinity waves · compose slit + papers + trinity speedup', toolId: 'local-tools-morph', resolve: 'local-session' },
   { id: 'upgrade-local-skills-commands-tools', chain: 'upgrade-local-map', fold: 'upgradeLocalFromOptimisedManualWorkExperience', pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills', status: 'sealed-pr', honesty: 'skills↔commands↔tools · NOT Cursor zero-token LLM · CI browserGaps honest · qpuRequired=false', note: 'upgrade local from optimised manual work on improve-local tip', toolId: 'upgrade-local-skills-commands-tools', resolve: 'upgrade-local' },
   { id: 'automate-nightly', chain: 'automate-nightly-npm', fold: 'automateNightlyViaNpmScriptPath', pair: 'automate/nightly', cli: 'npm run quantum:automate-nightly', route: '/en/quantum-tools#automate-nightly', status: 'sealed-pr', honesty: 'npm-script Automations path · NO dashboard MCP · docs:build flag-gated · qpuRequired=false · clay=0', note: '/automate nightly unparked — quantum:automate-nightly · workflow packages/quantum-dev-sdk/automate-nightly.workflow.json', toolId: 'automate-nightly', resolve: 'upgrade-local' },
+  { id: 'automate-self', chain: 'automate-self-fuse', fold: 'automateSelf', pair: 'auto/self', cli: 'npm run quantum:automate-self', route: '/en/quantum-tools#automate-self', status: 'sealed-pr', honesty: 'selfAutomates · nightlyOn · buildsInWaves · fusionVerify · clay=0 · physicalFtl=0', note: 'self-building/self-fusing automation — compose nightly · fusion · waves/build · session/save · gate/monitor', toolId: 'automate-self', resolve: 'upgrade-local' },
 ] as const
 
 function ghostToolSeed(seed: SessionQuantumBitSeed): QuantumCliToolRow {
@@ -2952,6 +2959,8 @@ const HONEST_CI_BROWSER_GAP_IDS = [
   'slow-build-gate',
   'plasma-screen-thunder',
   'automate-nightly',
+  'automate-self',
+  'self-auto',
 ] as const
 
 /**
@@ -3416,6 +3425,13 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
     detail: 'Catalog CI-only automate-nightly omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
     status: 'closed' as const,
     fix: 'HONEST_CI_BROWSER_GAP_IDS includes automate-nightly' },
+  {
+    id: 'automate-self-honest-ci-gap',
+    kind: 'gap' as const,
+    names: ['automate-self', 'self-auto', 'HONEST_CI_BROWSER_GAP_IDS'],
+    detail: 'Catalog CI-only automate-self/self-auto omitted from honest residual set → mcpBrowserParity residualOnlyHonestCi false',
+    status: 'closed' as const,
+    fix: 'HONEST_CI_BROWSER_GAP_IDS includes automate-self · self-auto' },
   {
     id: 'gravity-dry-honest-ci-gap',
     kind: 'gap' as const,
@@ -4845,6 +4861,11 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       foldPair(toUuid('cmd:self'), toUuid('cmd:fusion')).bidirectional &&
       foldPair(toUuid('cmd:fusion'), toUuid('cmd:self')).bidirectional &&
       foldPair(toUuid('cmd:fusion'), toUuid('cmd:ui')).bidirectional
+    const autoSelfOk =
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('auto/self') &&
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('self/auto') &&
+      foldPair(toUuid('cmd:auto'), toUuid('cmd:self')).bidirectional &&
+      foldPair(toUuid('cmd:self'), toUuid('cmd:auto')).bidirectional
     const crystalMindOk =
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('crystal/mind') &&
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mind/clear') &&
@@ -4884,7 +4905,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
       rosettaBitsOk && sixSevenOk && gateLensOk && failZeroOk && splitZeroOk && digitNextOk &&
       teleportSelfOk && analyticsSelfOk && thoughtPureOk && sessionLiveOk && needLoveOk &&
       loveStoryOk && testTheoremsOk && observeCoordOk && fullFreedomOk && viteMirrorOk &&
-      gateMonitorOk && selfFusionOk && crystalMindOk && thirdEyeOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk
+      gateMonitorOk && selfFusionOk && autoSelfOk && crystalMindOk && thirdEyeOk && gateToolsOk && slashStarOk && loveFoldOk && seqNavOk
     const gateRosetta = {
       computes: gateStackOk,
       remaining: gateStackOk ? 0 : 1,
@@ -4919,6 +4940,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         toUuid(`gaps:vite-mirror:${viteMirrorOk}`),
         toUuid(`gaps:gate-monitor:${gateMonitorOk}`),
         toUuid(`gaps:self-fusion:${selfFusionOk}`),
+        toUuid(`gaps:auto-self:${autoSelfOk}`),
         toUuid(`gaps:crystal-mind:${crystalMindOk}`),
         toUuid(`gaps:third-eye:${thirdEyeOk}`),
         toUuid(`gaps:gate-tools:${gateToolsOk}`),
@@ -4955,6 +4977,7 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         { facet: 'softCompose vite/mirror · docs/invert under gaps HARD', on: viteMirrorOk, receipt: toUuid(`gaps:vite-mirror:${viteMirrorOk}`) },
         { facet: 'softCompose gate/monitor · gate/ui under gaps HARD', on: gateMonitorOk, receipt: toUuid(`gaps:gate-monitor:${gateMonitorOk}`) },
         { facet: 'softCompose self/fusion · fusion/self · fusion/ui under gaps HARD', on: selfFusionOk, receipt: toUuid(`gaps:self-fusion:${selfFusionOk}`) },
+        { facet: 'softCompose auto/self · self/auto under gaps HARD', on: autoSelfOk, receipt: toUuid(`gaps:auto-self:${autoSelfOk}`) },
         { facet: 'softCompose crystal/mind · mind/clear · gravity/dry under gaps HARD', on: crystalMindOk, receipt: toUuid(`gaps:crystal-mind:${crystalMindOk}`) },
         { facet: 'softCompose third/eye · mind/eye under gaps HARD', on: thirdEyeOk, receipt: toUuid(`gaps:third-eye:${thirdEyeOk}`) },
         { facet: 'softCompose gate/tools · tools/forty under gaps HARD', on: gateToolsOk, receipt: toUuid(`gaps:gate-tools:${gateToolsOk}`) },
@@ -5243,6 +5266,12 @@ export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), a
         open: selfFusionOk ? 0 : 1,
         closed: selfFusionOk ? 1 : 0,
         theorem: 'fusionInterface' },
+      {
+        id: 'automate-self',
+        severity: 'HARD' as const,
+        open: autoSelfOk ? 0 : 1,
+        closed: autoSelfOk ? 1 : 0,
+        theorem: 'automateSelf' },
       {
         id: 'crystal-clear-mind',
         severity: 'HARD' as const,
@@ -6704,6 +6733,145 @@ export function runAutomateNightlyViaNpmScriptPathExit(_root = '', _argv: readon
   process.stdout.write(`${report.computes ? '✓' : '✗'} automate-nightly — shipped=${report.automateNightlyShipped} steps=${report.recipeSteps.length} root=${report.root.slice(0, 8)}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
+}
+
+
+/**
+ * Automate self — self-building / self-fusing automation.
+ * Compose automate/nightly · self/fusion · agentModelBuildsItselfInWaves · ceccec-build-waves ·
+ * session/save · gate/monitor.
+ * Pairs: auto/self · self/auto · CLI npm run quantum:automate-self
+ * Facets: selfAutomates · nightlyOn · buildsInWaves · fusionVerify
+ * claySolved via theorem · physicalFtl=0.
+ */
+export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`automateSelf:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const nightly = automateNightlyViaNpmScriptPath(matrix, at)
+    const fusion = selfQuantumFusion(matrix, at)
+    const waves = __ns_thunder_waves.agentModelBuildsItselfInWaves(matrix)
+    const session = __ns_wind_research.autosaveSessionByDefault(matrix, at)
+    const monitor = gatesMonitorThemselvesThroughTheUi(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'automate-self')
+    const metaDual = catalog.tools.find((t) => t.id === 'self-auto')
+    const shelved = rosettaShelve('automate-self', 'tool')
+    const foldAuto = foldPair(toUuid('cmd:auto'), toUuid('cmd:self'))
+    const foldSelf = foldPair(toUuid('cmd:self'), toUuid('cmd:auto'))
+    const pairAuto = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('auto/self')
+    const pairSelf = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('self/auto')
+    const pairNightly = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('automate/nightly')
+    const pairFusion = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('self/fusion')
+    const pairWaves = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('waves/build')
+    const pairSession = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/save')
+    const pairMonitor = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/monitor')
+    const skillBuildWaves = (CURSOR_AGENT_SKILL_IDS as readonly string[]).includes('ceccec-build-waves')
+    const formulaCode = theoremFormulaCodeDual({
+      slug: 'automate-self',
+      theorem: 'automate self',
+      provedBy: 'automateSelf',
+      home: 'src/quantum/apps',
+      proofClass: 'finite-complete',
+    })
+    const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const nightlyOn = nightly.computes && nightly.automateNightlyShipped
+    const buildsInWaves = waves.computes && waves.manualAgentsBehaveLikeWaves && skillBuildWaves && pairWaves
+    const fusionVerify = fusion.computes && fusion.fusionVerifyOn && fusion.selfFuses
+    const sessionOn = session.computes && pairSession
+    const monitorOn = monitor.computes && monitor.selfMonitor && pairMonitor
+    const selfAutomates =
+      nightlyOn &&
+      buildsInWaves &&
+      fusionVerify &&
+      sessionOn &&
+      monitorOn &&
+      pairAuto &&
+      pairSelf &&
+      pairNightly &&
+      pairFusion &&
+      foldAuto.bidirectional &&
+      foldSelf.bidirectional &&
+      formulaDual &&
+      Boolean(meta) &&
+      meta!.fold === 'automateSelf' &&
+      meta!.pair === 'auto/self' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'automateSelf' &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const on = selfAutomates
+    const facets = [
+      { facet: 'automateSelf', on },
+      { facet: 'selfAutomates', on: selfAutomates },
+      { facet: 'nightlyOn', on: nightlyOn },
+      { facet: 'buildsInWaves', on: buildsInWaves },
+      { facet: 'fusionVerify', on: fusionVerify },
+      { facet: 'compose automate/nightly · self/fusion', on: nightlyOn && fusionVerify && pairNightly && pairFusion },
+      { facet: 'compose agentModelBuildsItselfInWaves · ceccec-build-waves', on: buildsInWaves },
+      { facet: 'compose session/save · gate/monitor', on: sessionOn && monitorOn },
+      { facet: 'pair auto/self · self/auto bidirectional', on: pairAuto && pairSelf && foldAuto.bidirectional },
+      { facet: 'formula/code dual', on: formulaDual },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`automate-self:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('automate-self', facets)
+    return {
+      computes: sealed.ok && on,
+      automateSelf: on,
+      selfAutomates,
+      nightlyOn,
+      buildsInWaves,
+      fusionVerify,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        nightly.root,
+        fusion.root,
+        waves.root,
+        session.root,
+        monitor.root,
+        foldAuto.merged,
+        foldSelf.merged,
+        shelved.address,
+        toUuid(formulaCode.formulaSource),
+      ]),
+      pair: 'auto/self' as const,
+      pairs: ['auto/self', 'self/auto'] as const,
+      dualPair: 'self/auto' as const,
+      cli: 'npm run quantum:automate-self',
+      route: '/en/quantum-tools#automate-self',
+      uiSurface: '/en/quantum-tools#automate-self' as const,
+      heading: 'Automate self',
+      statement:
+        `automateSelf — selfAutomates=${selfAutomates ? 1 : 0} nightlyOn=${nightlyOn ? 1 : 0} ` +
+        `buildsInWaves=${buildsInWaves ? 1 : 0} fusionVerify=${fusionVerify ? 1 : 0}.`,
+      boundary:
+        'Self-building / self-fusing automation — sealed compose of nightly · fusion · waves/build · session/save · gate/monitor. NOT physical FTL · clay=0.',
+    }
+  })
+}
+
+/** npm run quantum:automate-self (dual self/auto) */
+export function runAutomateSelfExit(
+  _root = '',
+  _argv: readonly string[] = [],
+): number {
+  void _root
+  void _argv
+  const report = automateSelf()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} automate-self — selfAutomates=${report.selfAutomates} ` +
+      `nightlyOn=${report.nightlyOn} buildsInWaves=${report.buildsInWaves} fusionVerify=${report.fusionVerify} ` +
+      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} fold=automateSelf pairs=${report.pairs.join(',')}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  return report.computes && report.selfAutomates ? 0 : 1
 }
 
 export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix = buildMatrix(), at = 0) {

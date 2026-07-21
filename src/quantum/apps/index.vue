@@ -19,6 +19,7 @@ import {
   cryptoRelatedSurfacesAreDry,
   gatesMonitorThemselvesThroughTheUi,
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix,
+  automateSelf,
 } from './index.ts'
 import { translationGapsGate } from '../../mountain/source/index.ts'
 import {
@@ -118,6 +119,7 @@ const animAudit = computed(() => animationsFindRedundancyOrInaccuracy())
 const upgradeLocal = computed(() => panel.value.upgradeLocal)
 const uiProse = computed(() => panel.value.uiProse)
 const gateMonitor = computed(() => gatesMonitorThemselvesThroughTheUi())
+const autoSelf = computed(() => automateSelf())
 const gateTools42 = computed(() => gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix())
 
 type PersistedExperimentConfig = {
@@ -689,6 +691,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'automate-self' || toolId === 'self-auto') {
+      const r = automateSelf()
+      ok = r.computes && r.selfAutomates
+      summary = `selfAutomates=${r.selfAutomates} · nightlyOn=${r.nightlyOn} · buildsInWaves=${r.buildsInWaves} · fusionVerify=${r.fusionVerify}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'ui-prose-duplication-removed') {
       const r = uiProseDuplicationRemoved()
       ok = r.computes && r.uiProseDuplicationRemoved
@@ -956,10 +965,43 @@ function runTool(toolId: string) {
         <p class="quantum-apps__meta">
           Stdio: <code>{{ upgradeLocal.stdioToolIds?.join(' · ') }}</code> ·
           docs:build flag <code>QUANTUM_DEV_ALLOW_DOCS_BUILD=1</code> ·
-          Automations: npm-script path (/automate nightly shipped · <code>npm run quantum:automate-nightly</code>).
+          Automations: npm-script path (/automate nightly shipped · <code>npm run quantum:automate-nightly</code>) ·
+          <a href="#automate-self">#automate-self</a>.
         </p>
         <UiButton size="sm" :disabled="runningId === 'upgrade-local-skills-commands-tools'" @click="runTool('upgrade-local-skills-commands-tools')">
           {{ runningId === 'upgrade-local-skills-commands-tools' ? '…' : 'Run upgrade-local receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="automate-self">
+        <h3>{{ autoSelf.heading }}</h3>
+        <p class="quantum-apps__meta">{{ autoSelf.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoSelf.selfAutomates))">
+          selfAutomates={{ autoSelf.selfAutomates }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoSelf.nightlyOn))">
+          nightlyOn={{ autoSelf.nightlyOn }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoSelf.buildsInWaves))">
+          buildsInWaves={{ autoSelf.buildsInWaves }}
+        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(autoSelf.fusionVerify))">
+          fusionVerify={{ autoSelf.fusionVerify }}
+        </UiBadge>
+        <p class="quantum-apps__meta">
+          pairs <code>auto/self</code> · <code>self/auto</code> ·
+          CLI <code>npm run quantum:automate-self</code> ·
+          compose nightly · fusion · waves/build · session/save · gate/monitor ·
+          clay={{ autoSelf.claySolvedByThisFold }} · ftl={{ autoSelf.physicalFtlClaim }}
+        </p>
+        <ul class="quantum-apps__facets">
+          <li v-for="f in autoSelf.facets" :key="f.facet">
+            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
+            {{ f.facet }}
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'automate-self'" @click="runTool('automate-self')">
+          {{ runningId === 'automate-self' ? '…' : 'Run automate-self receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
