@@ -94,6 +94,7 @@
     "quantum:domain-proof-catalog": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runDomainProofCatalogExit",
     "quantum:prose-gaps-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runProseGapsAuditExit",
     "quantum:prose-clay-standard": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runProseClayStandardExit",
+    "quantum:incomplete-papers-fill": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runIncompletePapersGapsFillExit",
     "quantum:vitepress-docs-research": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/site/index.ts runVitepressDocsResearchImprovementsExit",
     "quantum:folder-migration-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/site/index.ts runFolderMigrationDedupWavesExit",
     "quantum:rosetta-complete": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runRosettaCompleteExit",

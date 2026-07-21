@@ -827,7 +827,7 @@ export function computedWebManifest(matrix: MindMatrix = buildMatrix()): string 
       ],
       shortcuts: [
         { name: 'Theorem registry', short_name: 'Registry', description: 'Every proven theorem — waves, gaps, open frontiers', url: '/frontiers' },
-        { name: 'Domain proofs', short_name: 'Proofs', description: 'Clay-standard domain proof catalog · clay=0', url: '/proofs' },
+        { name: 'Domain proofs', short_name: 'Proofs', description: 'Canonical domain proofs · Clay marks Millennium only · clay=0', url: '/proofs' },
         { name: 'The vortex', short_name: 'Vortex', description: 'The sequence 1-2-4-8-7-5, proven live', url: '/vortex' },
       ],
     },

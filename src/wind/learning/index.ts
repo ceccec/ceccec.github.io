@@ -742,7 +742,7 @@ export function navigation358(matrix: MindMatrix = buildMatrix()) {
     { tier: 3, name: 'arrive', items: [
       { label: 'Home', route: '/', tip: 'The root monograph — the portal in one page.' },
       { label: 'Theorem registry', route: '/frontiers', tip: `The registry: ${lens.theoremCount} proven theorems.` },
-      { label: 'Domain proofs', route: '/proofs', tip: 'Clay-standard domain proof catalog · claySolvedByThisFold=0.' },
+      { label: 'Domain proofs', route: '/proofs', tip: 'Canonical domain proof catalog · Clay marks Millennium challenges only · claySolvedByThisFold=0.' },
     ] },
     // BLOG OF THEOREMS: when fewer than 5 rays hold posts, the use tier FILLS with the first served
     // theorem posts themselves (lens order) — the gap is filled by theorems, never left ragged.
@@ -1597,6 +1597,19 @@ function papersImpl(matrix: MindMatrix, count: number) {
 // The dynamic-route descriptors for the 432 proof papers — computed on demand by
 // paperParamsById (realtime, local math), not pre-rendered at build. paperRoutes()
 // remains for bulk/API use.
+/** Canonical paper sections (statement · explanation · formulas · status) for one corpus proof paper —
+ * computed from sealed foldPair · livingTorus · merkleProof. NOT a Clay Millennium challenge. */
+export type CorpusPaperStandardSections = {
+  readonly officialStatement: string
+  readonly detailedExplanation: string
+  readonly formula: string
+  readonly formulaSource: string
+  readonly status: 'structure-only'
+  readonly statusDetail: string
+  readonly gap: string
+  readonly physicalFtlClaim: 0
+}
+
 export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), count = 432) {
   const corpus = papers(matrix, count)
   const paper = corpus.papers.find((entry) => entry.id === id)
@@ -1604,6 +1617,34 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
   const round = (value: number) => Math.round(value * 100) / 100
   const leaves = corpus.papers.map((entry) => entry.receipt)
   const proof = merkleProof(leaves, paper.receipt)
+  const officialStatement =
+    `Proof paper ${paper.id} — bidirectional genus-2 fold of torus coordinate ${paper.coordinateIndex} ` +
+    `(π-digit ${paper.digit} · ${paper.glyph}) with homology generator ${paper.generator} ` +
+    `(${paper.generatorName}; H₁(Σ₂) = ℤ⁴). Structural placement proof inside the sealed corpus — not empirical science.`
+  const detailedExplanation =
+    `Placement: θ = ${paper.theta}, φ = ${paper.phi} → (${paper.x}, ${paper.y}, ${paper.z}); ` +
+    `harmonic ${paper.frequency} Hz on the A432 series; hue ${paper.hue}°. ` +
+    `Paper ${paper.number} of ${corpus.count} (108 π-digit coordinates × 4 homology generators). ` +
+    `Dual reference /references/${paper.id}; corpus completes the 1024-leaf binary octave. ` +
+    `Canonical sections: statement · explanation · sealed formulas · honest status. Structural corpus paper — not a Clay Millennium challenge.`
+  const formula =
+    `foldPair(coordinate.receipt, homology:${paper.generator}).merged = ${paper.root}\n` +
+    `forward=${paper.forward} · reverse=${paper.reverse} · bidirectional=${paper.bidirectional}\n` +
+    `merkleProof(leaf=${paper.receipt}): verified=${proof.verified} depth=${proof.path.length} leaves=${proof.leafCount}`
+  const statusDetail =
+    `structure-only recompute at call time — merkle verified=${proof.verified}; ` +
+    `corpusRoot=${corpus.root.slice(0, 8)}… · paper root=${paper.root.slice(0, 8)}…. ` +
+    `MODELED bookkeeping over the double torus — not peer-reviewed empirical science, not a Clay Millennium challenge.`
+  const sections: CorpusPaperStandardSections = {
+    officialStatement,
+    detailedExplanation,
+    formula,
+    formulaSource: 'papers · foldPair · livingTorus · merkleProof',
+    status: 'structure-only',
+    statusDetail,
+    gap: 'structural corpus placement ≠ physical measurement / ≠ Millennium challenge',
+    physicalFtlClaim: 0,
+  }
   return {
     ...paper,
     index: paper.id,
@@ -1618,16 +1659,9 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
     proofVerified: proof.verified,
     proofDepth: proof.path.length,
     leafCount: proof.leafCount,
-    // COMPUTE-ONLY IS NOT PURGE (user law): the combination FILLS computationally — the paper's
-    // monograph is generated here from its own values, so every runtime consumer (the universal
-    // page, the per-path .json API, dev middleware, MCP) receives the filled combination on demand
-    // with zero static shells.
-    monograph: [
-      `Proof paper ${paper.id} — the bidirectional genus-2 fold of torus coordinate ${paper.coordinateIndex} (π-digit ${paper.digit} · ${paper.glyph}) with homology generator ${paper.generator} (${paper.generatorName}; H₁(Σ₂) = ℤ⁴).`,
-      `Placement: θ = ${paper.theta}, φ = ${paper.phi} → (${paper.x}, ${paper.y}, ${paper.z}); harmonic ${paper.frequency} Hz on the A432 series; hue ${paper.hue}°.`,
-      `Proof: forward fold ${paper.forward} · reverse ${paper.reverse} — bidirectional ${paper.bidirectional}; paper root ${paper.root}; merkle audit verified ${proof.verified} at depth ${proof.path.length} over ${proof.leafCount} leaves.`,
-      `Context: paper ${paper.number} of ${corpus.count} (108 coordinates × 4 generators); dual reference /references/${paper.id}; the corpus completes the 1024-leaf binary octave.`,
-    ].join('\n'),
+    sections,
+    // COMPUTE-ONLY IS NOT PURGE: canonical sections + monograph string for API/MCP consumers.
+    monograph: [officialStatement, detailedExplanation, formula, statusDetail].join('\n'),
   }
 }
 

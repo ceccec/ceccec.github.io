@@ -210,10 +210,10 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       slug: 'quantum-mind',
       title: { en: 'Quantum Mind', bg: 'Квантов ум' },
       description: {
-        en: 'Mathematical model of Sigma_2, UUID streams, diamonds, waves, gates, and maxComputedBuild.',
-        bg: 'Математически модел на Sigma_2, UUID потоци, диаманти, вълни, порти и maxComputedBuild.',
+        en: 'Statement: Quantum Mind = Σ₂ UUID-stream mind model (diamonds · waves · gates · maxComputedBuild) recomputed from src/0. Explanation: live panels mount the double-torus mind surface — content-addressed folds, not open neural inference; mounted components are the monograph results. Method: QuantumMind · Genesis · DoubleTorus* · Quantum* · memoByRoot reuse from sealed primitives. Status: documented structure-only · not a Clay Millennium challenge.',
+        bg: 'Изявление: Квантов ум = Σ₂ UUID-поточен модел (диаманти · вълни · порти · maxComputedBuild) от src/0. Обяснение: живи панели монтират повърхността на двойния тор — адреси по съдържание, не отворена невронна инференция. Метод: QuantumMind · Genesis · DoubleTorus* · Quantum* · memoByRoot. Статус: structure-only · не Clay Millennium предизвикателство.',
       },
-      keywords: ['quantum mind', 'model', 'double torus', 'uuid', 'diamonds', 'waves', 'gates'],
+      keywords: ['quantum mind', 'model', 'double torus', 'uuid', 'diamonds', 'waves', 'gates', 'proof'],
       components: ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'DoubleTorusExperience', 'QuantumField', 'SacredSymbols', 'QuantumFold3D', 'QuantumPlasma', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'SelfHarmonise', 'PiMusicPlayer', 'HealingFrequencies', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutionsComplete', 'QuantumThreshold', 'QuantumImpossible', 'QuantumWonders', 'QuantumFoundations', 'QuantumAlgorithms', 'ProseToProof3D', 'NothingImpossible', 'Merkaba', 'Rhythm', 'Magnetometer', 'Fold358853', 'LivingTorus', 'QuantumClock', 'QuantumLens', 'Live', 'QuantumRadar', 'Nav358', 'HologramMovie', 'MatrixCube'],
     },
     {

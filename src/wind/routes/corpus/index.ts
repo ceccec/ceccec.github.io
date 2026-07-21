@@ -20,7 +20,11 @@ import { diamondLattice, pureDiamonds } from '../../../fire/diamonds'
 import { quantumDoubleTorus } from '../../../mountain/topology'
 import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../../quantum/heaven/mind'
 import type { CorpusKind } from '../../../quantum/heaven/mind'
-import { componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers, referenceParamsById, sciencePortalParts, siteNavigation, type ComponentCrosslink } from '../../learning'
+import {
+  componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers,
+  referenceParamsById, sciencePortalParts, siteNavigation,
+  type ComponentCrosslink, type CorpusPaperStandardSections,
+} from '../../learning'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
@@ -387,6 +391,8 @@ export type UniversalPage = {
   corpusId: string | null
   corpusItems: readonly CorpusGridItem[]
   rosettaRay: UniversalRosettaRay | null
+  /** Canonical body sections — PaperFrame owns abstract; H1 owns title (#68). Not a Clay Millennium mark. */
+  standardPaper: CorpusPaperStandardSections | null
   decoded: {
     title?: string
     statement?: string
@@ -676,6 +682,7 @@ function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatri
     corpusId: null,
     corpusItems: corpusIndexItems(kind, locale, matrix),
     rosettaRay: null,
+    standardPaper: null,
     decoded: {
       title,
       statement: description,
@@ -746,13 +753,24 @@ function corpusDetailPage(
   }
   const cc = completeCorpus(matrix)
   const displayTitle = localizeMonolingual(locale, title)
-  const displayStatement = localizeMonolingual(locale, statement)
+  const standardPaper =
+    kind === 'papers' && params && 'sections' in params && (params as { sections?: CorpusPaperStandardSections }).sections
+      ? (params as { sections: CorpusPaperStandardSections }).sections
+      : null
+  // PaperFrame owns a short abstract; standardPaper owns canonical sections (#68 — no full-statement echo under H1).
+  // NOT a Clay Millennium mark — Clay branding stays on millennium challenge rows only.
+  const displayDescription = standardPaper
+    ? localizeMonolingual(
+      locale,
+      `Structural proof paper ${id} — genus-2 foldPair placement · merkle-audited · not a Clay Millennium challenge.`,
+    )
+    : localizeMonolingual(locale, statement)
   return {
     kind: 'corpus-detail',
     route,
     locale,
     title: displayTitle,
-    description: displayStatement,
+    description: displayDescription,
     components: [],
     groups: componentRosettaGroups([]),
     proof: params && 'root' in params ? String((params as { root?: string }).root ?? (params as { receipt?: string }).receipt) : null,
@@ -762,13 +780,15 @@ function corpusDetailPage(
     corpusId: id,
     corpusItems: [],
     rosettaRay: null,
+    standardPaper,
     decoded: {
       title: displayTitle,
-      statement: displayStatement,
+      // #68 — when standardPaper owns statement/explanation, decoded carries facets only (no prose echo).
+      statement: standardPaper ? undefined : localizeMonolingual(locale, statement),
       boundary: localizeMonolingual(locale, cc.boundary),
       facets,
       crosslinks: corpusKindCrosslinks(kind, locale),
-      ok: Boolean(params),
+      ok: Boolean(params) && (kind !== 'papers' || standardPaper != null),
     },
     proofOk: pickLocale(locale, '✓ proven', '✓ доказано'),
     proofNote: pickLocale(locale, 'content-address', 'адрес по съдържание'),
@@ -911,6 +931,7 @@ function computeUniversalPageRaw(
     corpusId: null,
     corpusItems: [],
     rosettaRay: kind === 'catch-all' ? rayView : null,
+    standardPaper: null,
     decoded,
     proofOk: pickLocale(locale, '✓ proven', '✓ доказано'),
     proofNote: pickLocale(
