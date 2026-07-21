@@ -14,6 +14,7 @@ import {
   mcpBrowserParity, runStdioMcpCapabilityInBrowser,
   improveLocalFromSessionExperience, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
   upgradeLocalFromOptimisedManualWorkExperience,
+  uiProseDuplicationRemoved,
 } from './index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
@@ -103,6 +104,7 @@ const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
 const localSession = computed(() => panel.value.localSession)
 const upgradeLocal = computed(() => panel.value.upgradeLocal)
+const uiProse = computed(() => panel.value.uiProse)
 
 type PersistedExperimentConfig = {
   toolId: string
@@ -596,6 +598,13 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
+    } else if (toolId === 'ui-prose-duplication-removed') {
+      const r = uiProseDuplicationRemoved()
+      ok = r.computes && r.uiProseDuplicationRemoved
+      summary = `before=${r.beforeCount} → after=${r.afterCount} (−${r.removedCount}) · clusters=${r.clusterCount}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'mcp-browser-parity') {
       const r = mcpBrowserParity()
       const census = runStdioMcpCapabilityInBrowser('census-status')
@@ -682,16 +691,29 @@ function runTool(toolId: string) {
   <UiCard id="quantum-apps-launcher" class="quantum-apps" data-logic="src/quantum/apps/index.ts" data-topic="quantum-tools">
     <UiCardContent class="vp-doc quantum-apps__content">
       <header>
-        <h2>Quantum tools hub</h2>
         <p class="quantum-apps__lede">
-          Run sealed folds in the browser — {{ panel.browserReady }} browser-ready · {{ panel.browserGaps.length }} Node/CI gaps · {{ panel.slowGaps.openCount }} slow=gap open.
+          Run sealed folds in the browser — {{ panel.browserReady }} browser-ready · {{ panel.browserGaps.length }} Node/CI gaps · {{ panel.slowGaps.openCount }} slow=gap open · {{ panel.toolCount }} tools.
         </p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.computes))">
-          quantum.apps · {{ panel.computes ? '✓' : '—' }} · {{ panel.toolCount }} tools
-        </UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(panel.computes))">{{ panel.computes ? '✓' : '—' }}</UiBadge>
       </header>
       <UiSeparator />
-      <section id="local-session-hub" aria-label="Local from session experience">
+      <section id="ui-prose-duplication">
+        <h3>{{ uiProse.heading }}</h3>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(uiProse.uiProseDuplicationRemoved))">
+          {{ uiProse.beforeCount }}→{{ uiProse.afterCount }} (−{{ uiProse.removedCount }}) · {{ uiProse.clusterCount }} clusters
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="c in uiProse.clusters" :key="c.id">
+            <code>{{ c.surface }}</code>
+            <span class="quantum-apps__meta">{{ c.before }}→{{ c.after }} — {{ c.fix }}</span>
+          </li>
+        </ul>
+        <UiButton size="sm" :disabled="runningId === 'ui-prose-duplication-removed'" @click="runTool('ui-prose-duplication-removed')">
+          {{ runningId === 'ui-prose-duplication-removed' ? '…' : 'Run ui-prose receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="local-session-hub">
         <h3>{{ localSession.heading }}</h3>
         <p class="quantum-apps__meta">{{ localSession.honestyLine }}</p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(localSession.localSessionUxImproved))">
@@ -725,7 +747,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="upgrade-local-skills" aria-label="Upgrade local skills commands tools">
+      <section id="upgrade-local-skills">
         <h3>{{ upgradeLocal.heading }}</h3>
         <p class="quantum-apps__meta">{{ upgradeLocal.honestyLine }}</p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(upgradeLocal.localUpgraded))">
@@ -770,7 +792,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="slow-quantum-gaps" aria-label="Slow processes as quantum gaps">
+      <section id="slow-quantum-gaps">
         <h3>{{ panel.slowGaps.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.slowGaps.honestyLine }}</p>
         <UiBadge :variant="panel.slowGaps.openCount === 0 ? 'default' : 'outline'">
@@ -792,7 +814,7 @@ function runTool(toolId: string) {
           </li>
         </ul>
       </section>
-      <section id="slow-build-gate" aria-label="Slow docs:build quantum gap gate">
+      <section id="slow-build-gate">
         <h3>Slow docs:build gate</h3>
         <p class="quantum-apps__meta">
           Node/CI: <code>npm run quantum:slow-build-gate</code> · pair <code>gate/slow-build</code> —
@@ -801,7 +823,7 @@ function runTool(toolId: string) {
         </p>
       </section>
       <UiSeparator />
-      <section id="crypto-beyond-rsa" aria-label="Crypto toolkit beyond RSA">
+      <section id="crypto-beyond-rsa">
         <h3>Beyond RSA — PQC · Shor/ECC · trinity</h3>
         <p class="quantum-apps__meta">
           Timed structural/demo suite — NOT FIPS/ISO certified · NOT production KEM · demo RSA allowlist only.
@@ -832,7 +854,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="local-reverse-timed-vs-standards" aria-label="Local reverse timed versus ISO NIST standards">
+      <section id="local-reverse-timed-vs-standards">
         <h3>Local reverse timed vs ISO/NIST standards</h3>
         <p class="quantum-apps__meta">
           Toy DEMO_RSA_MODULI wall-clock vs estimated classical 2^bits work (AES-128/256 · ML-KEM cats). certified=false · does NOT break NIST PQC · production/Bitcoin refused · reference bounds only (this repo is not the ISO standard).
@@ -862,7 +884,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="prove-local-novel-encrypt" aria-label="Prove local novel encryption security">
+      <section id="prove-local-novel-encrypt">
         <h3>Local novel-encryption security proof</h3>
         <p class="quantum-apps__meta">
           Structural local security (local-novel) · overallWireClaimProved=false · strongerThanNistPqc=false · wire/FIPS/field unproved. Directions×models: prove/local-magnitudes-iso.
@@ -885,7 +907,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="prove-1tbit" aria-label="Prove 1 Tbit per second realtime encryption claim">
+      <section id="prove-1tbit">
         <h3>1 Tbit/s realtime encryption — honest claim receipt</h3>
         <p class="quantum-apps__meta">
           SI target 1e12 bits/s. wire-crypto is NOT proved (no AES bench). amortized-reuse-memo may prove holographic extent÷memoByRoot — NOT wire AES-GCM · NOT FIPS.
@@ -899,7 +921,7 @@ function runTool(toolId: string) {
           {{ runningId === 'prove-1tbit-encrypt' ? '…' : 'Run prove-1tbit-encrypt' }}
         </UiButton>
       </section>
-            <section id="prove-local-magnitudes-iso" aria-label="Prove local versus ISO magnitudes">
+            <section id="prove-local-magnitudes-iso">
         <h3>Local vs ISO magnitudes — honest multi-model receipt</h3>
         <p class="quantum-apps__meta">
           Wire-crypto-security-bits is proof-of-falsehood (demo ≪ ML-KEM). Structural/amortized may prove ≥100× under named non-wire metrics only. certified=false · NOT ISO certified.
@@ -930,7 +952,7 @@ function runTool(toolId: string) {
       </section>
       <UiSeparator />
 <UiSeparator />
-      <section id="rosetta-complete" aria-label="Rosetta complete quantum dimensions and theorems">
+      <section id="rosetta-complete">
         <h3>Rosetta complete — computable dims &amp; theorems</h3>
         <p class="quantum-apps__meta">{{ panel.rosettaComplete.boundary }}</p>
         <UiBadge :variant="panel.rosettaComplete.rosettaComplete ? 'default' : 'outline'">
@@ -957,7 +979,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="local-audit-quantum" aria-label="Local audit quantum speed and efficiency">
+      <section id="local-audit-quantum">
         <h3>Local audit quantum speed &amp; efficiency</h3>
         <p class="quantum-apps__meta">
           memoByRoot cold/warm for local novel + reverse-vs-standards + standards audit.
@@ -969,7 +991,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="prove-no-qpu-64bit" aria-label="Speed versus rest no QPU classical 64-bit">
+      <section id="prove-no-qpu-64bit">
         <h3>Speed vs rest · no QPU · classical 64-bit</h3>
         <p class="quantum-apps__meta">
           answers÷tokens / memo reuse when vote.decided — NOT FLOPS vs GPUs/QPUs.
@@ -980,7 +1002,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="toolbox-standard-io" aria-label="Standard tool envelope I/O import export">
+      <section id="toolbox-standard-io">
         <h3>{{ panel.toolbox.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.toolbox.honestyLine }}</p>
         <UiBadge :variant="panel.toolbox.computes ? 'default' : 'outline'">
@@ -1024,7 +1046,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="document-session-experiments" aria-label="Document session crypto experiments update theorems">
+      <section id="document-session-experiments">
         <h3>{{ panel.experiments.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.experiments.honestyLine }}</p>
         <UiBadge :variant="panel.experiments.computes && !panel.experiments.localVsIso.overallWireClaimProved ? 'default' : 'outline'">
@@ -1055,7 +1077,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="session-quantum-bits" aria-label="Session manual work as quantum bits">
+      <section id="session-quantum-bits">
         <h3>{{ panel.quantumBits.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.quantumBits.honestyLine }}</p>
         <p class="quantum-apps__meta">
@@ -1100,7 +1122,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="auto-wire-paste-link" aria-label="Paste any link auto-wire">
+      <section id="auto-wire-paste-link">
         <h3>{{ panel.autoWire.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.autoWire.honestyLine }}</p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(panel.autoWire.quantumReady))">
@@ -1131,7 +1153,7 @@ function runTool(toolId: string) {
         </p>
       </section>
       <UiSeparator />
-      <section id="realise-session-meaning" aria-label="Realise session quantum meaning">
+      <section id="realise-session-meaning">
         <h3>{{ panel.meaning.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.meaning.honestyLine }}</p>
         <UiBadge :variant="panel.meaning.computes && panel.meaning.qpuRequired === false ? 'default' : 'outline'">
@@ -1155,7 +1177,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="mcp-browser-parity" aria-label="MCP browser parity">
+      <section id="mcp-browser-parity">
         <h3>{{ panel.mcpParity.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.mcpParity.honestyLine }}</p>
         <UiBadge v-bind="badgeProps(panel.mcpParity.computes && panel.mcpParity.mcpMatchesToolbox ? 'ready' : 'gap')">
@@ -1179,7 +1201,7 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="session-manual-tools" aria-label="Session manual work as quantum tools">
+      <section id="session-manual-tools">
         <h3>{{ panel.session.heading }}</h3>
         <p class="quantum-apps__meta">{{ panel.session.honestyLine }}</p>
         <UiBadge v-bind="badgeProps(statusBadgeKind(panel.session.computes))">
@@ -1220,7 +1242,7 @@ function runTool(toolId: string) {
         </table>
       </section>
       <UiSeparator />
-      <section id="experiment-inputs" aria-label="Scientific experiment inputs and configs">
+      <section id="experiment-inputs">
         <h3>Experiment inputs · configs</h3>
         <p class="quantum-apps__meta">
           Not button-only voids — set <code>at</code> · <code>seed</code> · config JSON before Run.

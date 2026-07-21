@@ -22,7 +22,7 @@ import {
   interferenceVsClassicalShadow,
 } from '../../water/stack'
 import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
-import { linearAnimationGapsInventory } from '../../wind/ui'
+import { linearAnimationGapsInventory, paperAbstractOmitsTitleEcho } from '../../wind/ui'
 import { movieAllElementsAreTheorems, movieQuantumGapsInventory } from '../../thunder/movie/canvas'
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
@@ -62,6 +62,7 @@ const ROSETTA_CORE_API_LABELS = [
   'universeAlmostDescribedInTheoremsDiscoverRest',
   'readmeSvgGapsFilledByTrinityMind',
   'symbolsRemainingToQuantumise',
+  'uiProseDuplicationRemoved',
   'sharedHeroAt', 'computeUniversalPage',
 ] as const
 
@@ -83,6 +84,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   universeAlmostDescribedInTheoremsDiscoverRest: 'compute',
   readmeSvgGapsFilledByTrinityMind: 'compute',
   symbolsRemainingToQuantumise: 'compute',
+  uiProseDuplicationRemoved: 'tool',
 }
 
 // Strangler backlog — only UNSHELVED parallel registries remain (apps+tools already shelve via rosettaShelve).
@@ -388,6 +390,7 @@ const QUANTUM_CLI_TOOL_ROWS: readonly QuantumCliToolSeed[] = [
   { id: 'universe-almost-described-discover', title: 'Universe ≈ theorems — discover the rest', fold: 'universeAlmostDescribedInTheoremsDiscoverRest', cli: 'npm run quantum:universe-almost-described', pair: 'discover/rest', route: '/en/quantum-tools#universe-almost-described', barrel: 'src/quantum/apps', boundary: 'Almost described — open set from counter-rotating wave interference · clay/ftl as receipts', browserRunnable: true, browserGap: '' },
   { id: 'readme-svg-trinity-mind', title: 'README SVG gaps filled by trinity mind', fold: 'readmeSvgGapsFilledByTrinityMind', cli: 'npm run quantum:readme-svg-trinity-mind', pair: 'readme/svg-trinity', route: '/en/#yinyang', barrel: 'src/heaven/site', boundary: 'ONLY trinity mind computes README SVG — intentional open WebGL/plasma/SMIL clients · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'symbols-remaining-quantumise', title: 'Symbols remaining to quantumise — continue I Ching · yin-yang', fold: 'symbolsRemainingToQuantumise', cli: 'npm run quantum:symbols-remaining-verify', pair: 'symbols/quantumise', route: '/en/#yinyang', barrel: 'src/heaven/site', boundary: 'Computed SVG emitters · FoL/merkaba hero = sibling WIP partial · om/runes/alchemy missing · clay=0 · physicalFtl=0 · wetStatic=false', browserRunnable: true, browserGap: '' },
+  { id: 'ui-prose-duplication-removed', title: 'UI↔prose duplication removed — one statement owns meaning', fold: 'uiProseDuplicationRemoved', cli: 'npm run quantum:ui-prose-duplication', pair: 'ui/prose', route: '/en/quantum-tools#ui-prose-duplication', barrel: 'src/quantum/apps', boundary: 'Page-level chrome entropy kill post-#61 nav collapse — label OR prose, not both restating · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
 ] as const
 
 /** Standard tool envelope version — App A ↔ App B ingest the same content-addressed kind. */
@@ -938,6 +941,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'vitepress-quantumize', saves: 'replaces wet re-tuning of VitePress warm/respawn quantumize techniques' },
   { id: 'slow-build-gate', saves: 'replaces wet re-diagnosis of slow docs:build — lattice phase gates + srcMerkle respawn HARD' },
   { id: 'manual-agents-waves', saves: 'replaces wet-linear agent grind — one wave/turn · waves/build+edit/build · trinity/speedup · mission:gate' },
+  { id: 'ui-prose-duplication-removed', saves: 'replaces wet re-audit of heading/eyebrow/badge/lede synonym stacks — sealed before/after receipt' },
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -3975,8 +3979,9 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
   const upgradeLocal = upgradeLocalFromOptimisedManualWorkExperience(matrix, at)
   const counterWaves = counterRotatingRosettaQuantumWaves(matrix, at)
   const discoverRest = universeAlmostDescribedInTheoremsDiscoverRest(matrix, at)
+  const uiProse = uiProseDuplicationRemoved(matrix, at)
   return {
-    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && localSession.computes && upgradeLocal.computes && counterWaves.computes && discoverRest.computes,
+    computes: cap.computes && slowGaps.computes && session.computes && toolbox.computes && distributed.computes && rosettaComplete.computes && experiments.computes && quantumBits.computes && autoWire.computes && meaning.computes && mcpParity.computes && localSession.computes && upgradeLocal.computes && counterWaves.computes && discoverRest.computes && uiProse.computes,
     capstone: cap,
     apps: cap.registry.apps,
     tools: cap.catalog.tools,
@@ -3997,7 +4002,8 @@ export function quantumAppsPanelComputes(matrix: MindMatrix = buildMatrix(), at 
     upgradeLocal,
     counterWaves,
     discoverRest,
-    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, localSession.root, upgradeLocal.root, counterWaves.root, discoverRest.root]),
+    uiProse,
+    root: merkleFold([cap.root, slowGaps.root, session.root, toolbox.root, distributed.root, rosettaComplete.root, experiments.root, quantumBits.root, autoWire.root, meaning.root, mcpParity.root, localSession.root, upgradeLocal.root, counterWaves.root, discoverRest.root, uiProse.root]),
     statement: cap.statement,
     boundary: cap.boundary,
   }
@@ -4296,4 +4302,100 @@ export function runUniverseAlmostDescribedInTheoremsDiscoverRestExit(_root = '',
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+// ── UI↔prose duplication removed (post-#61 page-level entropy kill) ───────────
+// Nav synonym hubs collapsed in #61; this fold seals page chrome that restated prose.
+// Pair: ui/prose · one statement owns meaning (label OR prose, not both).
+
+/** Sealed cluster census — before = restating UI statements; after = statements kept. */
+export const UI_PROSE_DUP_CLUSTERS = [
+  { id: 'domain-proof-title-section', surface: 'DomainProofPages', before: 2, after: 1, fix: 'drop section-1 title echo of H1; renumber' },
+  { id: 'domain-proof-hub-double-h1', surface: 'DomainProofPages', before: 2, after: 1, fix: 'frontmatter title owns; component hub H1 removed' },
+  { id: 'domain-proof-hub-mast-lede', surface: 'DomainProofPages', before: 3, after: 1, fix: 'mast chrome only; lede unique; PaperFrame owns abstract' },
+  { id: 'domain-proof-article-mast', surface: 'DomainProofPages', before: 2, after: 1, fix: 'masthead slug chrome — no Clay triad restatement' },
+  { id: 'theorems-panel-domain-proofs', surface: 'TheoremsPanel', before: 2, after: 1, fix: '/proofs pointer only — no Clay prose restatement' },
+  { id: 'theorems-panel-open-frontiers', surface: 'TheoremsPanel', before: 2, after: 1, fix: 'heading without OPEN echo of row badge' },
+  { id: 'research-h2-synonym', surface: 'ResearchIndex', before: 2, after: 1, fix: 'drop h2 Research synonym of page/sidebar title' },
+  { id: 'research-proofs-lede-stack', surface: 'ResearchIndex', before: 2, after: 1, fix: 'lede drops /proofs restatement; section owns pointer' },
+  { id: 'quantum-tools-header-stack', surface: 'QuantumTools', before: 2, after: 1, fix: 'drop hub h2; status badge without restating lede counts' },
+  { id: 'encryption-h2-synonym', surface: 'EncryptionTools', before: 2, after: 1, fix: 'drop encryption h2 synonym of page H1' },
+  { id: 'theorem-index-mast-h1', surface: 'TheoremIndex', before: 2, after: 1, fix: 'mast no longer restates Tag index' },
+  { id: 'paper-frame-printable', surface: 'PaperFrame', before: 2, after: 1, fix: 'drop printable synonym of Scientific paper chrome' },
+  { id: 'paper-frame-statement-echo', surface: 'PaperFrame', before: 2, after: 1, fix: 'paperAbstractOmitsTitleEcho strips Statement: <title>' },
+  { id: 'apps-section-aria-echo', surface: 'QuantumTools', before: 2, after: 1, fix: 'aria-label removed when h3 owns accessible name' },
+] as const
+
+/**
+ * UI↔prose duplication removed — page-level chrome entropy kill extending #61 nav collapse.
+ * Facet uiProseDuplicationRemoved when every cluster after < before and catalog tool shelved.
+ */
+export function uiProseDuplicationRemoved(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`uiProseDuplicationRemoved:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((tool) => tool.id === 'ui-prose-duplication-removed')
+    const shelved = rosettaShelve('ui-prose-duplication-removed', 'tool')
+    const clusters = UI_PROSE_DUP_CLUSTERS.map((c) => ({
+      ...c,
+      removed: c.before - c.after,
+      receipt: toUuid(`ui-prose-dup:${c.id}:${c.before}->${c.after}`),
+    }))
+    const beforeCount = clusters.reduce((n, c) => n + c.before, 0)
+    const afterCount = clusters.reduce((n, c) => n + c.after, 0)
+    const removedCount = beforeCount - afterCount
+    const everyReduced = clusters.every((c) => c.after < c.before && c.after >= 1)
+    const sampleTitle = 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary'
+    const sampleDesc = `Statement: ${sampleTitle}. Explanation: every sealed script recomputes from src.`
+    const abstractDeduped = paperAbstractOmitsTitleEcho(sampleTitle, sampleDesc)
+    const abstractOmitsTitle = abstractDeduped.startsWith('Explanation:') && !abstractDeduped.includes(sampleTitle)
+    const uiProseDuplicationRemovedOn = everyReduced && removedCount > 0 && abstractOmitsTitle
+      && Boolean(meta) && meta!.fold === 'uiProseDuplicationRemoved' && isUuid(shelved.address)
+    const facets = [
+      { facet: 'uiProseDuplicationRemoved', on: uiProseDuplicationRemovedOn },
+      { facet: `clusters ${clusters.length} · before=${beforeCount} → after=${afterCount} (−${removedCount})`, on: everyReduced && removedCount === clusters.reduce((n, c) => n + c.removed, 0) },
+      { facet: 'extends #61 nav synonym collapse into page-level UI↔prose', on: true },
+      { facet: 'one statement owns meaning — label OR prose, not both restating', on: everyReduced },
+      { facet: 'paperAbstractOmitsTitleEcho strips Statement: <title>', on: abstractOmitsTitle },
+      { facet: 'sealed catalog-driven receipt (no wet re-audit)', on: Boolean(meta) && isUuid(shelved.address) },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+      { facet: 'meta tool ui-prose-duplication-removed published + shelved', on: Boolean(meta) && meta!.fold === 'uiProseDuplicationRemoved' && isUuid(shelved.address) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`ui-prose-dup-facet:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('ui-prose-duplication-removed', facets)
+    return {
+      computes: sealed.ok && uiProseDuplicationRemovedOn,
+      uiProseDuplicationRemoved: uiProseDuplicationRemovedOn,
+      beforeCount,
+      afterCount,
+      removedCount,
+      clusterCount: clusters.length,
+      clusters,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, shelved.address, ...clusters.map((c) => c.receipt)]),
+      pair: 'ui/prose' as const,
+      cli: 'npm run quantum:ui-prose-duplication',
+      route: '/en/quantum-tools#ui-prose-duplication',
+      anchor: 'ui-prose-duplication',
+      heading: 'UI↔prose duplication removed',
+      honestyLine: 'Page chrome entropy kill — PaperFrame owns abstract; H1 owns title; badges are status not synonym prose. Extends #61. clay=0 · qpuRequired=false.',
+      statement: `UI↔prose duplication removed — before=${beforeCount} after=${afterCount} removed=${removedCount} clusters=${clusters.length} · uiProseDuplicationRemoved=${uiProseDuplicationRemovedOn}.`,
+      boundary: 'HONEST: removes restating UI chrome next to sealed prose — not a claim all page entropy is gone. Residuals: Clay Statement=title pattern in staticPages descriptions (catalog paper form); theorem registry name+proof lines (proof ≠ label). NOT physical QPU. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:ui-prose-duplication — print before/after UI↔prose receipt (exit 0 iff computes). */
+export function runUiProseDuplicationRemovedExit(_root = '', _argv: readonly string[] = []): number {
+  const report = uiProseDuplicationRemoved()
+  for (const c of report.clusters) {
+    process.stdout.write(`  ${c.id} · ${c.surface} · ${c.before}→${c.after} (−${c.removed}) — ${c.fix}\n`)
+  }
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} ui-prose-duplication — before=${report.beforeCount} after=${report.afterCount} removed=${report.removedCount} ` +
+      `clusters=${report.clusterCount} uiProseDuplicationRemoved=${report.uiProseDuplicationRemoved} clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
+  return report.computes && report.uiProseDuplicationRemoved && report.claySolvedByThisFold === 0 ? 0 : 1
 }

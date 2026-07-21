@@ -37,14 +37,11 @@ runMillennium()
   <UiCard id="research-index" class="research-index" data-logic="src/wind/research/index.ts" data-target="src/wind/research/index.ts#millenniumPanelComputes" data-topic="research">
     <UiCardContent class="vp-doc research-index__content">
       <header class="research-index__header">
-        <h2>Research</h2>
         <p class="research-index__lede">
-          Apparatus index — sciences, standards, reproducibility. Domain proofs live in one catalog:
-          <a href="/proofs">/proofs</a>
-          (Clay-standard · claySolvedByThisFold=0).
+          Apparatus index — sciences, standards, reproducibility.
         </p>
         <div class="research-index__actions">
-          <UiBadge :status="statusBadgeKind(panel.computes)">research.computes · {{ panel.computes ? '✓' : '—' }}</UiBadge>
+          <UiBadge :status="statusBadgeKind(panel.computes)">{{ panel.computes ? '✓' : '—' }}</UiBadge>
           <UiButton size="sm" :disabled="running" @click="runMillennium">{{ running ? 'Running…' : 'Recompute' }}</UiButton>
         </div>
       </header>
@@ -52,23 +49,16 @@ runMillennium()
       <p v-if="error" class="research-index__error" role="alert">{{ error }}</p>
 
       <section id="proofs" class="research-index__hub-link">
-        <h3>Domain proofs</h3>
+        <h3><a href="/proofs">Domain proofs</a></h3>
         <UiBadge :status="domainProofs.computes && domainProofs.claySolvedByThisFold === 0 ? 'ready' : 'warn'">
           rows={{ domainProofs.rows.length }} · clay={{ domainProofs.claySolvedByThisFold }} ·
           gaps closed={{ domainProofs.closedGaps }} / open={{ domainProofs.openGaps }}
         </UiBadge>
         <p class="research-index__meta">
-          Canonical catalog only — no parallel tables here.
-          <a href="/proofs">Open /proofs</a>
-          ·
           <a :href="domainProofs.problemsUrl" rel="noopener noreferrer" target="_blank">Millennium Problems</a>
           ·
           <a :href="domainProofs.rulesPdfUrl" rel="noopener noreferrer" target="_blank">Prize Rules PDF</a>
-        </p>
-        <p class="research-index__meta">
-          Prose→Clay:
-          audited={{ clayProse.auditedCount }} · pass={{ clayProse.passedCount }} · fail={{ clayProse.failedCount }}
-          · <code>npm run quantum:prose-clay-standard</code>
+          · prose→Clay audited={{ clayProse.auditedCount }} · pass={{ clayProse.passedCount }} · fail={{ clayProse.failedCount }}
         </p>
         <ul v-if="clayProse.failedCount > 0" class="research-index__list">
           <li v-for="f in clayProse.failed" :key="f.id">

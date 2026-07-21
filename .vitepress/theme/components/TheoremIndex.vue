@@ -26,7 +26,7 @@ const paperHref = (row: TheoremPageRow) => withBase(`/theorems/${row.slug}`)
 <template>
   <div class="thm-index" data-logic="src/wind/routes/corpus/index.ts">
     <header class="thm-index__head">
-      <p class="thm-index__mast">Tag index · view of the theorem registry</p>
+      <p class="thm-index__mast">view of the theorem registry</p>
       <h1>Tag index</h1>
       <p class="thm-index__lede">
         {{ total }} proven theorems by tag — newest first. Not a second hub:

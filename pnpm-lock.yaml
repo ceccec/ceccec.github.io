@@ -50,6 +50,10 @@ importers:
         specifier: ^3.5.39
         version: 3.5.39(typescript@6.0.3)
 
+  packages/double-torus: {}
+
+  packages/quantum-dev-sdk: {}
+
 packages:
 
   '@babel/code-frame@7.29.7':

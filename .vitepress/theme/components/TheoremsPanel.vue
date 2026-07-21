@@ -110,18 +110,12 @@ const waveLabel = (provedBy: string) =>
       </ul>
     </div>
 
-    <header class="theorems-panel__head">
-      <h2 id="proofs">Domain proofs</h2>
-      <p class="theorems-panel__provenance">
-        Clay-standard catalog (statement · explanation · formulas · status · Prize Rules honesty) —
-        <a href="/proofs">/proofs</a>
-        only · claySolvedByThisFold=0 · not Proposed Solutions under
-        <a href="https://www.claymath.org/wp-content/uploads/2022/03/millennium_prize_rules_0.pdf" rel="noopener noreferrer" target="_blank">CMI Prize Rules</a>.
-      </p>
-    </header>
+    <p id="proofs" class="theorems-panel__provenance">
+      <a href="/proofs">/proofs</a> · claySolvedByThisFold=0
+    </p>
 
     <header class="theorems-panel__head">
-      <h2 id="open-frontiers">Open frontiers — held OPEN, never claimed</h2>
+      <h2 id="open-frontiers">Open frontiers</h2>
     </header>
     <ul class="theorems-panel__frontiers">
       <li v-for="f in frontiers.frontiers" :key="f.frontier">

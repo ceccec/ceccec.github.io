@@ -4,21 +4,28 @@
 // the sealed model): an abstract block and a keywords line above the content, print-first. The thin-shell
 // law holds: no logic here beyond reading the already-computed frontmatter; the paper DATA is the fold
 // (monographAsScientificPaper / everyPageIsAPrintableScientificPaper in src/wind/site).
+// Abstract omits Statement: <title> echo — page H1 owns the title (uiProseDuplicationRemoved).
 import { computed } from 'vue'
 import { useData } from 'vitepress'
+import { paperAbstractOmitsTitleEcho } from '../../../src/wind/ui/index.ts'
 
-const { frontmatter } = useData()
+const { frontmatter, page } = useData()
 
 const abstract = computed(() => {
   const description = frontmatter.value.description
-  return typeof description === 'string' && description.length > 0 ? description : ''
+  if (typeof description !== 'string' || description.length === 0) return ''
+  const title =
+    (typeof frontmatter.value.title === 'string' && frontmatter.value.title) ||
+    (typeof page.value?.title === 'string' && page.value.title) ||
+    ''
+  return paperAbstractOmitsTitleEcho(title, description)
 })
 const keywords = computed(() => {
   const tags = frontmatter.value.tags ?? frontmatter.value.keywords
   return Array.isArray(tags) ? tags.filter((tag): tag is string => typeof tag === 'string') : []
 })
 const category = computed(() => (typeof frontmatter.value.category === 'string' ? frontmatter.value.category : ''))
-const show = computed(() => abstract.value.length > 0)
+const show = computed(() => abstract.value.length > 0 || keywords.value.length > 0)
 </script>
 
 <template>
@@ -26,9 +33,8 @@ const show = computed(() => abstract.value.length > 0)
     <p class="paper-frame__eyebrow">
       <span class="paper-frame__kind">Scientific paper</span>
       <span v-if="category" class="paper-frame__category">· {{ category }}</span>
-      <span class="paper-frame__print">· printable</span>
     </p>
-    <p class="paper-frame__abstract"><strong>Abstract.</strong> {{ abstract }}</p>
+    <p v-if="abstract" class="paper-frame__abstract"><strong>Abstract.</strong> {{ abstract }}</p>
     <p v-if="keywords.length" class="paper-frame__keywords"><strong>Keywords.</strong> {{ keywords.join(' · ') }}</p>
   </section>
 </template>

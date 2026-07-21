@@ -105,6 +105,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'symbols/quantumise',
   'wire/paste-link',
   'mcp/browser-parity',
+  'ui/prose',
   'tool/envelope',
   'import/export',
   'string/quantumize',
