@@ -165,7 +165,11 @@ Toolbox recomputes 11 related sciences in trinity waves (forward·inverse·rever
 computes=true · waves=11 · clayChallengesComputable=true · claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false
 
 - Routes: [toolbox sciences waves](https://ceccec.psg.bg/quantum-tools#toolbox-sciences-trinity-waves) · [sciences-trinities](https://ceccec.psg.bg/research#sciences-trinities) · CLI `npm run quantum:toolbox-sciences-trinity-waves`
+<<<<<<< HEAD
 - Receipt: `1836637c` · fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
+=======
+- Receipt: `31fe9f67` · fold `toolboxRecomputesRelatedSciencesInTrinityWaves`.
+>>>>>>> 22d5da04 (feat(research): seal algebraic proof law + paper checklist; fill theorem gaps in waves)
 
 ## 2. Model
 

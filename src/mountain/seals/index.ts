@@ -44,6 +44,9 @@ import {
   clayMillenniumPrizeRulesMapping,
   proseStandardisedToClay,
   incompletePapersGapsFill,
+  proveAlgebraicTheoremMeans,
+  algebraicTheoremPaperMustContain,
+  theoremGapsFilledInWaves,
 } from '../../wind/research'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
@@ -729,6 +732,9 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'prose-gaps-audit-domain-trinity', title: 'Prose gaps audit by domain trinity — Clay UX fill · clay=0', proof: proseGapsAuditByDomainTrinity(matrix) },
     { slug: 'prose-standardised-to-clay', title: 'All prose standardised to Clay template — pass/fail by surface · clay=0', proof: proseStandardisedToClay(matrix) },
     { slug: 'incomplete-papers-gaps-fill', title: 'Incomplete papers → canonical sections · corpus 432 + quantum-mind template · clay=0 · not Clay-marked', proof: incompletePapersGapsFill(matrix) },
+    { slug: 'prove-algebraic-theorem-means', title: 'Prove algebraic theorem — statement·defs·finite proof chain · clay=0', proof: proveAlgebraicTheoremMeans(matrix) },
+    { slug: 'algebraic-theorem-paper-must-contain', title: 'Algebraic paper checklist — title·abstract·statement·defs·theorems·proofs·formulas·status·refs', proof: algebraicTheoremPaperMustContain(matrix) },
+    { slug: 'theorem-gaps-filled-in-waves', title: 'Theorem gaps filled in waves — corpus·millennium·algebra surfaces · clay=0', proof: theoremGapsFilledInWaves(matrix) },
     { slug: 'waves-auto-scale', title: 'Waves auto-scale capacity at no cost on reuse · !separated', proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
     { slug: 'theorem-algebra-first-sealed', title: 'First-in-corpus algebra inventory · humanityNovel=0', proof: theoremAlgebraFirstSealedInCorpus(matrix) },
     { slug: 'theorem-10d-projections', title: 'Theorem→10D projections prove algebra roots', proof: theoremTenDProjectionsProveAlgebraRoots(matrix) },
