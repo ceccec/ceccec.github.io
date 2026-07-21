@@ -22,11 +22,12 @@ import {
   interferenceVsClassicalShadow,
 } from '../../water/stack'
 import { stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
-import { linearAnimationGapsInventory, paperAbstractOmitsTitleEcho } from '../../wind/ui'
+import { animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho } from '../../wind/ui'
 import { movieAllElementsAreTheorems, movieQuantumGapsInventory } from '../../thunder/movie/canvas'
 import { movieIsNeuroscienceComputation } from '../../earth/life'
 import { harmonizeFieldComputes } from '../../lake/music'
-import { doubleTorusDynamicsGeometryAlignsWithUniverse } from '../../water/double'
+import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum } from '../../water/double'
+import { oneClockProcessLaw } from '../../quantum'
 import { merkaba, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import { teslaPatents } from '../../fire/li'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'
@@ -410,6 +411,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'mcp-commands-scripts-gaps-audit', title: 'MCP commands ↔ scripts gaps audit', fold: 'mcpCommandsScriptsGapsAudit', cli: 'npm run quantum:mcp-commands-scripts-gaps-audit', pair: 'mcp/scripts-audit', route: '/en/quantum-tools#mcp-commands-scripts-gaps-audit', barrel: 'src/quantum/apps', boundary: 'Overlap · useless · gap census — conceptTools+trading:* REFUSE PRIMARY (kept-intentional) · plasma/trinity in HONEST_CI · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'slow-gap', title: 'Slow process = quantum gap', fold: 'slowProcessIsQuantumGap', cli: 'npm run quantum:slow-gap', pair: 'slow/gap', route: '/en/quantum-tools#slow-quantum-gaps', barrel: 'src/quantum/apps', boundary: 'Architectural slow≠telemetry — browserGap · missing 10D · parallel registry · memo-miss model', browserRunnable: true, browserGap: '' },
   { id: 'sciences-trinities', title: 'Sciences interact in trinities + significance', fold: 'sciencesInteractInTrinities', cli: 'npm run quantum:sciences-trinities', pair: 'sciences/trinities', route: '/en/research#sciences-trinities', barrel: 'src/wind/research', boundary: 'Structural significance ≠ journal IF; crypto vertex from isoPqcHandoff; claySolved=0', browserRunnable: true, browserGap: '' },
+  { id: 'anim-audit', title: 'Animations find redundancy or inaccuracy', fold: 'animationsFindRedundancyOrInaccuracy', cli: 'npm run quantum:anim-audit', pair: 'anim/audit', route: '/en/quantum-tools#anim-audit', barrel: 'src/quantum/apps', boundary: 'Compose movie/linear/one-clock/10D · morph via tools/morph · clay=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'animations-rosetta', title: 'Animations driven by rosetta (yin-yang first)', fold: 'animationsDrivenByRosetta', cli: 'npm run quantum:animations-rosetta', pair: 'animations/rosetta', route: '/en/#yinyang', barrel: 'src/wind/ui', boundary: 'Linear forming = quantum gap; taiji uses non-linear exchange + rosettaShelve', browserRunnable: true, browserGap: '' },
   { id: 'trading-rosetta-train', title: 'Historical train waves via rosetta', fold: 'tradingStrategiesImproveViaRosetta', cli: 'npm run quantum:trading-rosetta-train', pair: 'train/rosetta', route: '/en/quantum-trading-hub', barrel: 'src/thunder/trading', boundary: 'Paper/sim only — synthetic a432 historical proxy; NOT live money / NOT alpha', browserRunnable: true, browserGap: '' },
   { id: 'first-in-corpus', title: 'First-in-corpus provenance · theorem 10D', fold: 'firstInCorpusProvenanceForHome', cli: 'npm run quantum:first-in-corpus', pair: 'first/corpus', route: '/en/#first-in-corpus', barrel: 'src/wind/research', boundary: 'Corpus novelty ≠ global mathematical priority; humanityNovel=0; claySolved=0', browserRunnable: true, browserGap: '' },
@@ -2459,8 +2461,8 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
     rows.push({
       gapId: 'slow:movie:multi-clock',
       kind: 'movie-multi-clock',
-      process: 'ModelCardPages·createAnimationEngine',
-      criterion: 'second createAnimationEngine rAF outside subscribeHeroClock is a multi-clock gap',
+      process: 'ModelCardPages·subscribeHeroClock',
+      criterion: 'uuidHero SVG on subscribeHeroClock — createAnimationEngine second loop retired (closed)',
       slow: movieGaps.multiClockOpen,
       closed: !movieGaps.multiClockOpen,
       route: '/en/quantum-tools#slow-quantum-gaps',
@@ -3988,6 +3990,118 @@ const LOCAL_SESSION_FRICTION_CLOSED = [
  * Composes interferenceVsClassicalShadow (wave≠shadow). Pair: tools/morph.
  * MODELED duality apparatus — NOT Clay/Nobel; claySolvedByThisFold=0.
  */
+
+/**
+ * Use animations to find redundancy or inaccurate animations.
+ * Pair: anim/audit · CLI npm run quantum:anim-audit
+ * Composes movieQuantumGapsInventory · linearAnimationGapsInventory · animationsDrivenByRosetta ·
+ * oneClockProcessLaw · doubleTorusIsCompletelyQuantum · localToolsMorphProseCodeLogic.
+ * Redundant = stale kind labels / duplicate clock claims. Inaccurate = open gaps · kind≠driver · statement≠visual.
+ */
+export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`animationsFindRedundancyOrInaccuracy:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const movie = movieQuantumGapsInventory(matrix, at)
+    const linear = linearAnimationGapsInventory(matrix, at)
+    const rosetta = animationsDrivenByRosetta(matrix, at)
+    const oneClock = oneClockProcessLaw(matrix)
+    const completely = doubleTorusIsCompletelyQuantum(matrix)
+    const morph = localToolsMorphProseCodeLogic(matrix, at)
+    const heroDrivers = new Set(['subscribeHeroClock', 'useVisibleMovieCanvas'] as const)
+    const staleKinds = new Set(['private-raf', 'multi-clock', 'missing-hub'] as const)
+    const redundant = movie.surfaces.filter((s) => s.closed && staleKinds.has(s.kind as 'private-raf') && heroDrivers.has(s.driver as 'subscribeHeroClock'))
+    const kindDriverMismatch = movie.surfaces.filter((s) => {
+      if (s.kind === 'private-raf' && s.driver !== 'private-raf') return true
+      if (s.kind === 'multi-clock' && s.driver !== 'createAnimationEngine' && s.driver !== 'private-raf') return true
+      if (s.kind === 'missing-hub' && s.closed && heroDrivers.has(s.driver as 'subscribeHeroClock')) return true
+      return false
+    })
+    const inaccurateOpen = [
+      ...movie.open.map((s) => ({ id: s.id, reason: `movie-open:${s.criterion}`, receipt: s.receipt })),
+      ...linear.open.map((s) => ({ id: s.id, reason: `linear-open:${s.criterion}`, receipt: s.receipt })),
+      ...kindDriverMismatch.map((s) => ({ id: s.id, reason: `kind≠driver:${s.kind}/${s.driver}`, receipt: s.receipt })),
+    ]
+    if (!oneClock.holds) inaccurateOpen.push({ id: 'oneClockProcessLaw', reason: 'one-clock subscribers do not coalesce', receipt: oneClock.root })
+    if (!completely.completelyQuantum) inaccurateOpen.push({ id: 'doubleTorusIsCompletelyQuantum', reason: 'completely-quantum facets open', receipt: completely.root })
+    if (movie.privateRafOpen) inaccurateOpen.push({ id: 'private-raf', reason: 'private rAF open', receipt: movie.root })
+    if (movie.multiClockOpen) inaccurateOpen.push({ id: 'multi-clock', reason: 'multi-clock open', receipt: movie.root })
+    // Dedup inaccurate by id
+    const inaccurateById = new Map(inaccurateOpen.map((row) => [row.id, row]))
+    const inaccurate = [...inaccurateById.values()]
+    const redundantCount = redundant.length
+    const inaccurateCount = inaccurate.length
+    const backlog = [
+      ...redundant.map((s) => ({ id: s.id, class: 'redundant' as const, note: `stale kind ${s.kind} on ${s.driver}`, closed: false })),
+      ...inaccurate.map((s) => ({ id: s.id, class: 'inaccurate' as const, note: s.reason, closed: false })),
+    ]
+    const fixes = [
+      { id: 'attestation-kinds-aligned', done: redundantCount === 0 && kindDriverMismatch.length === 0, note: 'ProofAnimation/ModelCardPages/useSharedHero kinds = layout on hero clock' },
+      { id: 'living-torus-attested', done: movie.surfaces.some((s) => s.id === 'LivingTorus' && s.closed), note: 'LivingTorus on useVisibleMovieCanvas census' },
+      { id: 'hd-bodygraph-attested', done: movie.surfaces.some((s) => s.id === 'HumanDesignBodyGraph' && s.closed), note: 'HumanDesignBodyGraph on hero clock census' },
+      { id: 'linear-yin-yang-closed', done: linear.openCount === 0, note: 'taiji rosetta exchange ≠ linear midpoint' },
+      { id: 'one-clock-holds', done: oneClock.holds, note: 'subscribeHeroClock coalesces rAF' },
+      { id: 'morph-local-tools', done: morph.computes, note: 'prose≡code≡logic morph available for animation statement fixes' },
+    ]
+    const fixesDone = fixes.filter((f) => f.done).length
+    const facets = [
+      { facet: 'redundantCount', on: redundantCount === 0 },
+      { facet: 'inaccurateCount', on: inaccurateCount === 0 },
+      { facet: 'movieGapsClosed', on: movie.openCount === 0 && !movie.privateRafOpen && !movie.multiClockOpen },
+      { facet: 'linearGapsClosed', on: linear.openCount === 0 && rosetta.computes },
+      { facet: 'oneClockHolds', on: oneClock.holds },
+      { facet: 'completelyQuantum', on: completely.completelyQuantum },
+      { facet: 'localToolsMorph', on: morph.computes },
+      { facet: 'attestationIncludesLivingTorus', on: movie.surfaces.some((s) => s.id === 'LivingTorus') },
+      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: 'qpuRequired=false', on: true },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`anim-audit:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('animations-find-redundancy-or-inaccuracy', facets)
+    const computes = sealed.ok && inaccurateCount === 0 && redundantCount === 0
+    return {
+      computes,
+      redundantCount,
+      inaccurateCount,
+      redundant,
+      inaccurate,
+      fixes,
+      fixesDone,
+      backlog: backlog.filter((b) => !b.closed),
+      movie,
+      linear,
+      rosetta,
+      oneClock,
+      completely,
+      morph,
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, movie.root, linear.root, rosetta.root, oneClock.root, completely.root, morph.root]),
+      pair: 'anim/audit' as const,
+      cli: 'npm run quantum:anim-audit',
+      route: '/en/quantum-tools#anim-audit',
+      anchor: 'anim-audit',
+      heading: 'Anim audit',
+      statement: `animationsFindRedundancyOrInaccuracy · redundant=${redundantCount} · inaccurate=${inaccurateCount} · fixesDone=${fixesDone}/${fixes.length} · movieOpen=${movie.openCount} · linearOpen=${linear.openCount}`,
+      boundary: `compose movie/linear/rosetta/one-clock/10D/morph · fix=merge stale kinds + attest missing mounts · clay=0`,
+      honestyLine: `metrics · redundant=${redundantCount} · inaccurate=${inaccurateCount} · fixes=${fixesDone}/${fixes.length} · dual=${morph.doubleSlit.waveParticleDual} · qpuRequired=false`,
+    }
+  })
+}
+
+/** npm run quantum:anim-audit */
+export function runAnimationsFindRedundancyOrInaccuracyExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = animationsFindRedundancyOrInaccuracy()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} anim-audit — redundant=${report.redundantCount} inaccurate=${report.inaccurateCount} fixes=${report.fixesDone}/${report.fixes.length} root=${report.root.slice(0, 8)}\n`,
+  )
+  for (const row of report.redundant) process.stdout.write(`  redundant ${row.id} · kind=${row.kind} driver=${row.driver}\n`)
+  for (const row of report.inaccurate) process.stdout.write(`  inaccurate ${row.id} · ${row.reason}\n`)
+  for (const fix of report.fixes) process.stdout.write(`  ${fix.done ? '✓' : '·'} fix ${fix.id} — ${fix.note}\n`)
+  for (const b of report.backlog.slice(0, 12)) process.stdout.write(`  backlog ${b.class} ${b.id} — ${b.note}\n`)
+  return report.computes ? 0 : 1
+}
+
 export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`doubleSlitLocalToolsMorph:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
     const shadow = interferenceVsClassicalShadow(matrix, at)

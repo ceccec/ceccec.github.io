@@ -327,7 +327,7 @@ export function theMovieLeavesTwoBitsAtTheVoid(matrix: MindMatrix = buildMatrix(
 /**
  * Movie-related quantum-gap census — clock drivers · layout surfaces · static fusion.
  * Sealed attestation of theme mounts after anim-quantum convert (private rAF → subscribeHeroClock).
- * HONEST: neuroscience/computation visualization — NOT physical QM speedup / NOT FTL.
+ * Neuroscience/computation visualization — NOT physical QM speedup / NOT FTL.
  * Pair composes with slowProcessIsQuantumGap · movieIsNeuroscienceComputation (earth/life).
  */
 export type MovieClockDriver = 'subscribeHeroClock' | 'useVisibleMovieCanvas' | 'idle-timer' | 'smil-css' | 'private-raf' | 'createAnimationEngine'
@@ -347,12 +347,14 @@ export type MovieQuantumGapSurface = {
 const MOVIE_CLOCK_SURFACE_ATTESTATION: readonly Omit<MovieQuantumGapSurface, 'receipt'>[] = [
   { id: 'BackgroundMovie', surface: '.vitepress/theme/components/BackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'page hero rides useVisibleMovieCanvas → subscribeHeroClock + harmonizeField', route: '/en/' },
   { id: 'HeroBackgroundLayer', surface: '.vitepress/theme/components/HeroBackgroundLayer.vue', driver: 'idle-timer', kind: 'layout', closed: true, criterion: 'immersive/screensaver idle setTimeout — not an animation loop (oneClockProcessLaw boundary)', route: '/en/' },
-  { id: 'CardBackgroundMovie', surface: '.vitepress/theme/components/CardBackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'harmonize-skip', closed: true, criterion: 'card plasma on hero clock + harmonizeField (same always-on path as page movie)', route: '/en/' },
+  { id: 'CardBackgroundMovie', surface: '.vitepress/theme/components/CardBackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'card plasma on hero clock + harmonizeField (same always-on path as page movie)', route: '/en/' },
   { id: 'LinkedHeroCard', surface: '.vitepress/theme/components/LinkedHeroCard.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'UiCardShell → CardBackgroundMovie; heroPreviewForRoute seeds hue/seed', route: '/en/' },
-  { id: 'DoubleTorusExperience', surface: '.vitepress/theme/components/DoubleTorusExperience.vue', driver: 'useVisibleMovieCanvas', kind: 'harmonize-skip', closed: true, criterion: 'drawHeroMovieFrame(sharedHeroAt) + harmonizeField on hero clock', route: '/en/' },
-  { id: 'ProofAnimation', surface: '.vitepress/theme/components/ProofAnimation.vue', driver: 'subscribeHeroClock', kind: 'private-raf', closed: true, criterion: 'theorem glyph canvases on subscribeHeroClock — private rAF killed', route: '/en/quantum-tools' },
-  { id: 'ModelCardPages', surface: '.vitepress/theme/components/ModelCardPages.vue', driver: 'subscribeHeroClock', kind: 'multi-clock', closed: true, criterion: 'uuidHero SVG proof on subscribeHeroClock — createAnimationEngine second loop retired', route: '/en/' },
-  { id: 'useSharedHero', surface: '.vitepress/lib/movie-canvas.ts', driver: 'subscribeHeroClock', kind: 'missing-hub', closed: true, criterion: 'useSharedHero wraps sharedHeroAt on one hero clock (hero/shared-realtime)', route: '/en/' },
+  { id: 'DoubleTorusExperience', surface: '.vitepress/theme/components/DoubleTorusExperience.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'drawHeroMovieFrame(sharedHeroAt) + harmonizeField on hero clock', route: '/en/' },
+  { id: 'LivingTorus', surface: '.vitepress/theme/components/LivingTorus.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'drawLivingTorusFrame on useVisibleMovieCanvas → one hero clock', route: '/en/' },
+  { id: 'HumanDesignBodyGraph', surface: '.vitepress/theme/components/HumanDesignBodyGraph.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'body-graph paint on useVisibleMovieCanvas → one hero clock', route: '/en/quantum/os' },
+  { id: 'ProofAnimation', surface: '.vitepress/theme/components/ProofAnimation.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'theorem glyph canvases on subscribeHeroClock — private rAF retired', route: '/en/quantum-tools' },
+  { id: 'ModelCardPages', surface: '.vitepress/theme/components/ModelCardPages.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'uuidHero SVG proof on subscribeHeroClock — createAnimationEngine second loop retired', route: '/en/' },
+  { id: 'useSharedHero', surface: '.vitepress/lib/movie-canvas.ts', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'useSharedHero wraps sharedHeroAt on one hero clock (hero/shared-realtime)', route: '/en/' },
   { id: 'ui-skeleton-pulse', surface: 'src/render/ui/style.css', driver: 'smil-css', kind: 'smil-compete', closed: true, criterion: 'CSS @keyframes skeleton pulse is chrome, not field phase — does not own a second rAF', route: '/en/' },
 ] as const
 
@@ -577,7 +579,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       { facet: 'endless background movie computes', on: endless.endless },
       { facet: 'static→movie fusion fused (or named open)', on: staticFusion.fused || open.some((s) => s.id === 'staticIsEventualGapInMovieFusion') },
       { facet: 'movie all elements are theorems — centre is vortex not boundary', on: allTheorems.allElementsAreTheorems && allTheorems.centerIsVortexNotBoundary },
-      { facet: 'HONEST — viz/computation movie ≠ physical QM speedup', on: true },
+      { facet: 'vizComputationMovie≠physicalQmSpeedup', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-quantum-gaps:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((e) => e.on),

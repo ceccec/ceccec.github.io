@@ -94,6 +94,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'moment/prove',
   'prove/no-qpu-64bit',
   'animations/rosetta',
+  'anim/audit',
   'train/rosetta',
   'challenge/millennium',
   'domain/proof',

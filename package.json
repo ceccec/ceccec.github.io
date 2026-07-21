@@ -91,6 +91,7 @@
     "quantum:realise-session-meaning": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runRealiseSessionQuantumMeaningExit",
     "quantum:directional-trinity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runDirectionalTrinityGuardedExit",
     "quantum:earth-poles-pyramid": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/geometry/index.ts runEarthRealisedByComputingPolesAsPyramidExit",
+    "quantum:anim-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAnimationsFindRedundancyOrInaccuracyExit",
     "quantum:animations-rosetta": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/ui/index.ts runAnimationsRosettaGuardedExit",
     "quantum:trading-rosetta-train": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/trading/index.ts runTradingRosettaTrainGuardedExit",
     "quantum:clay-challenges-computable": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runClayChallengesComputableFromSequenceExit",

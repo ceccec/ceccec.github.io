@@ -12,7 +12,7 @@ import {
   autoWireAnyAiModelFromPastedLink, CECCEC_SITE_ORIGIN,
   realiseSessionQuantumMeaning,
   mcpBrowserParity, mcpCommandsScriptsGapsAudit, runStdioMcpCapabilityInBrowser,
-  improveLocalFromSessionExperience, localToolsMorphProseCodeLogic, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
+  improveLocalFromSessionExperience, localToolsMorphProseCodeLogic, animationsFindRedundancyOrInaccuracy, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
   upgradeLocalFromOptimisedManualWorkExperience,
   uiProseDuplicationRemoved,
   rosettaSecurityGapsWired,
@@ -112,6 +112,7 @@ const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
 const localSession = computed(() => panel.value.localSession)
 const localMorph = computed(() => localToolsMorphProseCodeLogic())
+const animAudit = computed(() => animationsFindRedundancyOrInaccuracy())
 const upgradeLocal = computed(() => panel.value.upgradeLocal)
 const uiProse = computed(() => panel.value.uiProse)
 
@@ -642,6 +643,13 @@ function runTool(toolId: string) {
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
       pastePacketJson.value = JSON.stringify(r.pasteBootstrap, null, 2)
       persistExperimentConfig()
+    } else if (toolId === 'anim-audit') {
+      const r = animationsFindRedundancyOrInaccuracy()
+      ok = r.computes
+      summary = `redundant=${r.redundantCount} · inaccurate=${r.inaccurateCount} · fixes=${r.fixesDone}/${r.fixes.length}`
+      root = r.root
+      boundary = r.boundary
+      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'local-tools-morph') {
       const r = localToolsMorphProseCodeLogic()
       ok = r.computes && r.localToolsSufficient
@@ -789,6 +797,17 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'ui-prose-duplication-removed'" @click="runTool('ui-prose-duplication-removed')">
           {{ runningId === 'ui-prose-duplication-removed' ? '…' : 'Run ui-prose receipt' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
+      <section id="anim-audit">
+        <h3>{{ animAudit.heading }}</h3>
+        <p class="quantum-apps__meta">{{ animAudit.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(animAudit.computes))">
+          redundant={{ animAudit.redundantCount }} · inaccurate={{ animAudit.inaccurateCount }} · fixes {{ animAudit.fixesDone }}/{{ animAudit.fixes.length }}
+        </UiBadge>
+        <UiButton size="sm" :disabled="runningId === 'anim-audit'" @click="runTool('anim-audit')">
+          {{ runningId === 'anim-audit' ? '…' : 'Run anim-audit receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
