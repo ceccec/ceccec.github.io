@@ -417,7 +417,10 @@ function drawDeathCounterFlow(
   ctx.restore()
 }
 
-/** Centre plasma ball — wired UUID streams orbit inside the void; rays scale with stream count. */
+/**
+ * Plasma screen (not a ball) — the display holding thunder + plasma streams.
+ * Centre is void/vortex confluence; no sphere ornament in the middle (plasmaBallIsScreenHoldingThunderAndPlasma).
+ */
 function drawPlasmaBall(
   ctx: CanvasRenderingContext2D,
   cx: number,
@@ -429,8 +432,8 @@ function drawPlasmaBall(
   streams: readonly PlasmaWiredStream[],
   palette: PlasmaMoviePalette,
 ): void {
-  // Soft throat confluence via fillRect — no arc path (a circular path was a wet boundary disk).
-  // The vortex is the rays + UUID streams; the centre is transparent confluence, not a frame circle.
+  // Soft throat confluence via fillRect — screen geometry, no arc path (a circular path was a wet boundary disk).
+  // The vortex is the rays + UUID streams; the centre is transparent confluence, not a frame circle / ball.
   const voidExtent = voidR * (7 * 2 / 5)
   const voidGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, voidExtent)
   voidGlow.addColorStop(0, palette.canvas.voidCore(hueShift))

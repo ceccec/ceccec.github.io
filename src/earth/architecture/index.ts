@@ -9,7 +9,7 @@ import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrai
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry'
 import { vortexMath } from '../../mountain/vortex'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE, ICHING_NUMBERS, digitalRoot, prng } from '../../0'
+import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE, ICHING_NUMBERS, digitalRoot, prng, STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../0'
 import { addressed, covers } from '../../5/5'
 import { methodNameFromFolderTail } from '../../9/1'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2'
@@ -2243,9 +2243,8 @@ export function scanVueForHardcoded(vue: string): string[] {
 // the major-third type, and the colour built from the hexagram wheel (brand = 101010, the alternation; dark =
 // the line-complement). The seal is the Merkle fold of every (token → value) pair, so any drift in any value
 // changes the root. Joins hexagramIsHexColorDuality (the wheel this colour rides) in the census.
-/** Status badge kinds — sealed status→colour mapping (A432 / hexagram wheel). Badges use --status-* only. */
-export const STATUS_BADGE_KINDS = ['ready', 'ok', 'gap', 'warn', 'partial', 'error', 'refused', 'ci'] as const
-export type StatusBadgeKind = (typeof STATUS_BADGE_KINDS)[number]
+/** Status badge kinds — re-export from src/0 (cycle-free leaf). Badges use --status-* only. */
+export { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../0'
 
 /** Map coverage / boolean / keyword → status kind for UiBadge. */
 export function statusBadgeKind(
