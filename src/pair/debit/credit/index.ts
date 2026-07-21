@@ -1,11 +1,13 @@
 // ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) · upper·yang · spread — double-entry ledger primitives: transact/balance/balanced + cryptoReview maps every security claim to a debit/credit pair so honesty IS the balance
+import { DIGEST_BITS } from '../../../0'
 
+/** Ledger row — named away from src/0 `Entry` (URL catalog) to kill type-name synonym sprawl. */
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export type Entry = { readonly account: string; readonly debit: number; readonly credit: number }
+export type LedgerEntry = { readonly account: string; readonly debit: number; readonly credit: number }
 
 // A transaction: move `amount` from one account to another — a debit and its matching credit.
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export function transact(from: string, to: string, amount: number): Entry[] {
+export function transact(from: string, to: string, amount: number): LedgerEntry[] {
   return [
     { account: from, debit: 0, credit: amount },
     { account: to, debit: amount, credit: 0 },
@@ -14,12 +16,12 @@ export function transact(from: string, to: string, amount: number): Entry[] {
 
 // The ledger balance: total debits minus total credits. A balanced ledger sums to exactly zero.
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export function balance(entries: readonly Entry[]): number {
+export function balance(entries: readonly LedgerEntry[]): number {
   return entries.reduce((sum, e) => sum + e.debit - e.credit, 0)
 }
 
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export function balanced(entries: readonly Entry[]): boolean {
+export function balanced(entries: readonly LedgerEntry[]): boolean {
   return balance(entries) === 0
 }
 
@@ -35,15 +37,16 @@ export function balanced(entries: readonly Entry[]): boolean {
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export function cryptoReview() {
   // account = the security property; debit = delivered capability bits, credit = honestly claimed bits.
-  const today: Entry[] = [
+  const today: LedgerEntry[] = [
     { account: 'integrity (tamper-evidence)', debit: 1, credit: 1 }, // delivered AND claimed: any edit cascades through the FNV fold, caught on an honest recompute
     { account: 'unforgeability', debit: 0, credit: 0 }, // FNV ≈ 0 adversarial bits ⇒ honestly claim 0 (tamper-EVIDENT, not unforgeable)
     { account: 'confidentiality', debit: 0, credit: 0 }, // the model is public by design ⇒ claim none, deliver none
   ]
-  // What the phrase "maximum tampering cost" credits: cryptographic unforgeability (128) against the FNV capability (0).
-  const overclaim: Entry[] = today.map((e) => (e.account === 'unforgeability' ? { ...e, credit: (64 * 2) } : e))
+  // What the phrase "maximum tampering cost" credits: cryptographic unforgeability (DIGEST_BITS×2=128) against the FNV capability (0).
+  const collisionBits = DIGEST_BITS * 2
+  const overclaim: LedgerEntry[] = today.map((e) => (e.account === 'unforgeability' ? { ...e, credit: collisionBits } : e))
   // After the DELIBERATE cutover the built capability funds the claim: the SHA-256 content-address delivers the 128.
-  const afterCutover: Entry[] = today.map((e) => (e.account === 'unforgeability' ? { account: e.account, debit: (64 * 2), credit: (64 * 2) } : e))
+  const afterCutover: LedgerEntry[] = today.map((e) => (e.account === 'unforgeability' ? { account: e.account, debit: collisionBits, credit: collisionBits } : e))
   return {
     today,
     overclaim,
@@ -63,21 +66,21 @@ export const dual = 'src/pair/credit/debit'
 
 // Credit-side fusion — folded from dissolved src/pair/credit/debit at call time.
 /** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
-export function fuse(entries: readonly Entry[]): Map<string, number> {
+export function fuse(entries: readonly LedgerEntry[]): Map<string, number> {
   const net = new Map<string, number>()
   for (const e of entries) net.set(e.account, (net.get(e.account) ?? 0) + e.debit - e.credit)
   return net
 }
 
 /** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
-export function fused(entries: readonly Entry[]): boolean {
+export function fused(entries: readonly LedgerEntry[]): boolean {
   let total = 0
   for (const v of fuse(entries).values()) total += v
   return total === 0
 }
 
 /** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
-export function cryptoReviewNet(ledger: readonly Entry[]): { net: Record<string, number>; balanced: boolean } {
+export function cryptoReviewNet(ledger: readonly LedgerEntry[]): { net: Record<string, number>; balanced: boolean } {
   return { net: Object.fromEntries(fuse(ledger)), balanced: fused(ledger) }
 }
 

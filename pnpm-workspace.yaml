@@ -5,6 +5,3 @@ allowBuilds:
   vue-demi: true
 overrides:
   vite: 8.1.0
-  # shadcn-vue pulls undici <7.28.0 (7 advisories: TLS-validation bypass, WebSocket DoS, header injection);
-  # pin the transitive dep to the patched line.
-  undici: '>=7.28.0'

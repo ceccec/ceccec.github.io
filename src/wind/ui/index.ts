@@ -1714,20 +1714,12 @@ export function uiWidgetsFuseReveal(matrix: MindMatrix = buildMatrix()) {
 // SHADCN_IMPLEMENTED lives at its domain home (src/mountain/shadcn) — logic:hunt mirror #2 (23 shared
 // verbatim) dissolved: read at call time through the cycle-safe namespace edge, never re-typed here.
 
-/** cva variant axes carried by the implemented primitives (variant/size enumerations). */
-export const SHADCN_VARIANTS = {
-  Button: { variant: ['default', 'secondary', 'outline', 'ghost', 'destructive', 'link'], size: ['default', 'sm', 'lg', 'icon'] },
-  Badge: { variant: ['default', 'secondary', 'outline', 'destructive'] },
-  Alert: { variant: ['default', 'destructive'] },
-} as const
+/** cva / cn registry — single source mountain/shadcn via cycle-safe namespace (no wet re-export). */
+export const SHADCN_VARIANTS = __ns_up_up_mountain_shadcn.SHADCN_VARIANTS
+export const CN_PATTERN = __ns_up_up_mountain_shadcn.CN_PATTERN
+export const cn = __ns_up_up_mountain_shadcn.cn
 /** Design-system CSS-variable tokens (oklch new-york), bridged to VitePress --vp-* and .dark. */
 // SHADCN_TOKENS lives at its domain home (src/mountain/shadcn) — verbatim mirror dissolved; call-time edge reads.
-/** The cn() pattern the theme mount re-exports — tailwind-merge over clsx, the one class composer. */
-export const CN_PATTERN = 'cn(...inputs) = twMerge(clsx(inputs)) — single class-name composer; theme re-exports from .vitepress/lib/cn.ts' as const
-/** Pure, dependency-free class join — the deterministic shadow of cn() for sealed callers (no twMerge dedupe). */
-export function cn(...inputs: Array<string | false | null | undefined>): string {
-  return inputs.filter((value): value is string => typeof value === 'string' && value.length > 0).join(' ')
-}
 /** The design-system research surface — sources, integration paths, the implemented-vs-graph delta. */
 export function shadcnResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('shadcnResearch', matrix, () => {

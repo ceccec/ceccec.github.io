@@ -13,10 +13,10 @@ import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import { dash, folderLaw, payload } from '../../../earth/architecture'
 import { textToMovie } from '../../../earth/world'
-import { foldPair, isUuid, merge, merkleFold, seedFromText, toUuid, uuidPoint } from '../../../0'
+import { foldPair, isUuid, merge, merkleFold, seedFromText, toUuid, uuidPoint, type Uuid } from '../../../0'
 import { DIMENSIONS } from '../../mountain/dimensions'
 
-export type Uuid = string
+export type { Uuid }
 
 // Compute the UUID a path needs: fold its word-steps in order from a fixed root via sealed toUuid/merge.
 export function uuidForPath(path: string): Uuid {

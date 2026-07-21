@@ -4,7 +4,9 @@
 // Browse/display helpers inlined (formerly src/render/heritage/quantum). Pure, zero matrix dependency.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — core content-addressing primitives (toUuid, merkleFold)
-import { toUuid, merkleFold } from '../../../0'
+import { toUuid, merkleFold, type Entry } from '../../../0'
+
+export type { Entry }
 
 /** @rosetta ✦₄ · Earth · receptive */
 export function bulgarianHeritage() {
@@ -249,8 +251,6 @@ export function isFibonacciGapless(bands: readonly number[]): boolean {
   }
   return true
 }
-
-export type Entry = { url: string; uuid: string; host: string; path: string }
 
 export function shelve(entries: readonly Entry[]): Entry[] {
   return [...entries].sort((a, b) => (a.uuid < b.uuid ? -1 : a.uuid > b.uuid ? 1 : 0))
