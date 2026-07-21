@@ -808,6 +808,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'hd.w4.meeus.ephemeris', on: humanDesignEphemerisCore(matrix).computes },
     { d: 'hd.w5.channels.chart', on: humanDesignChartStructureAt(matrix).computes },
     { d: 'hd.bodygraph.vue.ux', on: humanDesignBodyGraphPanelComputes(matrix).computes },
+    { d: 'honest.revolution.w2.interference', on: __ns_up_up_stack_overflow.interferenceVsClassicalShadow(matrix).holds },
     { d: 'astronomy.decoded.with.sequence', on: astronomyDecodedWithTheSequence(0, matrix).decoded },
     { d: 'astronomy.sequence.decode.research', on: astronomySequenceDecodeResearch(matrix).researched },
     { d: 'decode.bitten.apple', on: decodeTheBittenApple(matrix).decoded },

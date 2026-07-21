@@ -17,6 +17,8 @@ import * as __ns_up_up_quantum_science from '../../quantum/science'
 import * as __ns_up_up_quantum_application from '../../quantum/application'
 import * as __ns_up_up_quantum_os from '../../quantum/os'
 import * as __ns_up_up_quantum_apps from '../../quantum/apps'
+import * as __ns_up_up_digit_two_eight from '../../2/8'
+import * as __ns_up_up_fire_physics from '../../fire/physics'
 import * as __ns_up_up_resonance from '../../thunder/resonance'
 import * as __ns_up_up_quantum_dynamics from '../../quantum/dynamics'
 import * as __ns_up_up_quantum_widgets from '../../lake/widgets'
@@ -34,7 +36,10 @@ import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
 import { congruence, markovStep } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
-import { addressEntropyBits, computesGate, digitalRoot, foldPair, humanEase, isUuid, memoByRoot, merge, merkleFold, resourceCooperationPolicy, sealFacets, toUuid } from '../../0'
+import {
+  addressEntropyBits, applyGate, computesGate, digitalRoot, foldPair, GATES, humanEase, isUuid,
+  memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid,
+} from '../../0'
 import { discoverSrcIndexes } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
@@ -1575,6 +1580,80 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
       boundary: 'Revolutionary in reproducibility/verifiability/amortized-reuse/efficiency; NOT physical-QM speedup (benchmark-refuted). Every clause recomputes at call time. HARMONY ≠ TRUTH.',
     }
   })
+}
+
+/**
+ * Honest-revolution W2 — interference vs classical-shadow receipt.
+ * Amplitudes cancel (interference); classical probability shadows cannot.
+ * Composes W1 `honestRevolutionClaim` + parallelism≠speedup + simulatorsLiveInZero + tracks-classical-no-speedup.
+ * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /en/quantum-tools#honest-revolution-w2
+ */
+export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`interferenceVsClassicalShadow:${Math.floor(at / 1e3)}`, matrix, () => {
+    const w1 = honestRevolutionClaim(matrix, at)
+    const parallel = __ns_up_up_digit_two_eight.quantumParallelismIsNotTheSpeedupInterferenceIs()
+    const sims = __ns_up_up_fire_physics.simulatorsLiveInZero(matrix)
+    const bloch = w1.honest.bloch
+    const bench = w1.honest.bench
+    // Local H² constructive peak vs pflip classical shadow (src/0) — amplitudes cancel; probabilities spread.
+    const afterH2 = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0)
+    const ampProbs = probabilities(afterH2)
+    const ampCancel = Math.abs(ampProbs[0]! - 1) < 1e-9 && Math.abs(ampProbs[1]!) < 1e-9
+    const shadow = pflip(pbits(1), 0, 1 / 2).p
+    const shadowNoCancel = Math.abs(shadow[0]! - 1 / 2) < 1e-9 && Math.abs(shadow[1]! - 1 / 2) < 1e-9
+    const tracksClassical = bench.verdict === 'tracks-classical-no-speedup' && !bench.separated && w1.honest.noSpeedup
+    const facets = [
+      { facet: 'W1 honestRevolutionClaim holds at call time', on: w1.holds },
+      { facet: 'interference is the speedup shape (parallelism ≠ readout advantage)', on: parallel.computes },
+      { facet: 'classical shadow: probabilities never interfere (simulatorsLiveInZero)', on: sims.homed },
+      { facet: 'H² constructive interference → |0⟩ (amplitudes cancel |1⟩)', on: ampCancel },
+      { facet: 'pflip(½) shadow stays [½,½] — no cancellation', on: shadowNoCancel },
+      { facet: 'blochQubitFaithful — amplitude math is faithful', on: bloch.faithful },
+      { facet: 'engine tracks-classical-no-speedup (honesty, not FLOPS claim)', on: tracksClassical },
+      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+    ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w2:${e.facet}:${e.on}`) }))
+    const sealed = sealFacets('interference-vs-classical-shadow', facets)
+    const holds = sealed.ok && facets.every((f) => f.on)
+    return {
+      holds,
+      computes: holds,
+      verified: holds,
+      w1,
+      parallel,
+      sims,
+      ampProbs,
+      shadow,
+      visibilityContrast: { amplitudesCancel: ampCancel, probabilitiesCannot: shadowNoCancel },
+      claySolvedByThisFold: 0 as const,
+      qpuRequired: false as const,
+      physicalFtlClaim: 0 as const,
+      facets: sealed.facets,
+      root: merkleFold([w1.root, parallel.root, sims.root, sealed.root, toUuid(`honest-rev-w2:${holds}`)]),
+      cli: 'npm run quantum:honest-revolution-w2',
+      pair: 'moment/prove',
+      route: '/en/quantum-tools#honest-revolution-w2',
+      statement: holds
+        ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine quantumAdvantageBenchmark → tracks-classical-no-speedup (no physical QM speedup).'
+        : 'UNPROVEN — interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.',
+      boundary:
+        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false. HARMONY ≠ TRUTH.',
+    }
+  })
+}
+
+/** npm run quantum:honest-revolution-w2 — W2 interference vs classical-shadow receipt. */
+export function runHonestRevolutionW2Exit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const receipt = interferenceVsClassicalShadow()
+  for (const f of receipt.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(
+    `${receipt.holds ? '✓' : '✗'} honest-revolution-w2 — holds=${receipt.holds} ` +
+      `w1=${receipt.w1.holds} root=${receipt.root.slice(0, 8)} ` +
+      `(interference≠shadow · tracks-classical-no-speedup · clay=0)\n`,
+  )
+  process.stdout.write(`  boundary: ${receipt.boundary}\n`)
+  return receipt.holds ? 0 : 1
 }
 
 /**
