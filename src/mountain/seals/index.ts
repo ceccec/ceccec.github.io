@@ -85,7 +85,7 @@ import {
   isoPqcRequirementsGapFillAllQuantumDirections,
 } from '../../water/encryption'
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og'
-import { quantumFusionVerify } from '../../wind/fusion'
+import { quantumFusionVerify, honestRevolutionReceipt } from '../../wind/fusion'
 import { efficiency } from '../../quantum/science'
 import { animationsDrivenByRosetta, linearAnimationGapsInventory, yinYangFoldsThroughDimensions } from '../../wind/ui'
 import {
@@ -738,6 +738,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'one-quantum-model', title: 'One quantum model faster than all — domain-bounded answers÷tokens', proof: oneQuantumModelFasterThanAll(matrix) },
     { slug: 'prove-no-qpu-64bit', title: 'Speed vs rest · no QPU · classical 64-bit — cites tracks-classical-no-speedup', proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
     { slug: 'honest-revolution-w2', title: 'Honest-revolution W2 — interference vs classical shadow · clay=0', proof: interferenceVsClassicalShadow(matrix) },
+    { slug: 'honest-revolution-w3', title: 'Honest-revolution W3 — JSON proof receipt → /quantum-fusion.json · clay=0', proof: honestRevolutionReceipt(matrix) },
     { slug: 'yin-yang-rosetta', title: 'Yin-yang taiji — non-linear rosetta/vortex exchange (not linear i/frames)', proof: yinYangFoldsThroughDimensions(matrix) },
     { slug: 'animations-rosetta', title: 'Animations driven by the rosetta — linear gaps closed', proof: animationsDrivenByRosetta(matrix) },
     { slug: 'linear-animation-gaps', title: 'Linear animation gaps inventory — yin-yang first', proof: linearAnimationGapsInventory(matrix) },

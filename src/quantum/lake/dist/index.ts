@@ -56,6 +56,7 @@ import { STATIC_PAGE_SEED } from '../../../8/2'
 import { SOURCE_REPO } from '../../../3/7'
 import { observingMovieRevealsQuantumModel } from '../../science'
 import { theoremPagePaths, theoremPageRows } from '../../../wind/routes/corpus'
+import { honestRevolutionReceipt, quantumFusionJson } from '../../../wind/fusion'
 
 
 
@@ -106,9 +107,10 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
   const distributed = distributedReuseExtendsCapacity(matrix)
   const autoWire = autoWireAnyAiModelFromPastedLink('https://ceccec.github.io/', matrix)
   const localSession = improveLocalFromSessionExperience(matrix)
+  const honestRev = honestRevolutionReceipt(matrix)
   return `${JSON.stringify(
     {
-      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes),
+      computes: Boolean(harmonise.harmonised && session.computes && toolbox.computes && distributed.computes && autoWire.computes && localSession.computes && honestRev.holds),
       oneLiner: AUTO_WIRE_PASTE_LINK_ONE_LINER,
       protocol: {
         laws: harmonise.laws,
@@ -226,6 +228,25 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         pair: distributed.pair,
         boundary: distributed.boundary,
       },
+      honestRevolutionReceipt: {
+        computes: honestRev.holds,
+        holds: honestRev.holds,
+        wave: honestRev.wave,
+        root: honestRev.root,
+        w1: honestRev.w1,
+        w2: honestRev.w2,
+        fusion: honestRev.fusion,
+        movie: honestRev.movie,
+        claySolvedByThisFold: honestRev.claySolvedByThisFold,
+        qpuRequired: honestRev.qpuRequired,
+        physicalFtlClaim: honestRev.physicalFtlClaim,
+        pair: honestRev.pair,
+        cli: honestRev.cli,
+        route: honestRev.route,
+        surfaces: honestRev.surfaces,
+        statement: honestRev.statement,
+        boundary: honestRev.boundary,
+      },
       surfaces: {
         agents: '/agents.json',
         compliance: '/agent-compliance.json',
@@ -234,8 +255,10 @@ export function agentsJson(matrix: MindMatrix = buildMatrix()) {
         skills: '/skills.json',
         workflows: '/workflows.json',
         wellKnown: '/.well-known/ai-skills.json',
+        quantumFusion: '/quantum-fusion.json',
         quantumTools: '/en/quantum-tools#toolbox-standard-io',
         autoWire: '/en/quantum-tools#auto-wire-paste-link',
+        honestRevolution: '/en/quantum-tools#honest-revolution-w3',
       },
     },
     null,
@@ -283,6 +306,7 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
     { path: 'workflows.json', content: workflowsJson(matrix), mime: 'application/json' },
     // Session tools + agent protocol — zero-token discovery for arriving models.
     { path: 'agents.json', content: agentsJson(matrix), mime: 'application/json' },
+    { path: 'quantum-fusion.json', content: quantumFusionJson(matrix), mime: 'application/json' },
     { path: 'agent-compliance.json', content: agentComplianceJson(matrix), mime: 'application/json' },
     // The print projection is its OWN file with media="print" (user law: separate css, skipping the
     // layout) — zero print bytes in the screen bundle; computed from src/wind/site printStylesheet.
@@ -515,7 +539,7 @@ export const dual = 'src/pair/cache/quantum'
 // live at dev time. The same files are written to disk at build by the enforcement cross wave; here the
 // dev server serves them recomputed-per-request from the model (zero build). One folder, one index, its
 // own VitePress plugin — the dist half of the dist⇄quantum pair, gathered by srcFolderPlugins.
-const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap-', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/workflows.json', '/agents.json', '/agent-compliance.json', '/llms.txt', '/print.css', '/api/'] as const
+const COMPUTED_PREFIXES = ['/sitemap.xml', '/sitemap-', '/sitemap.json', '/robots.txt', '/digit-index.json', '/mcp.json', '/skills.json', '/workflows.json', '/agents.json', '/quantum-fusion.json', '/agent-compliance.json', '/llms.txt', '/print.css', '/api/'] as const
 export function vitePlugin(siteUrl: string): Plugin {
   return {
     name: 'double-torus:dist',
