@@ -17,7 +17,7 @@ import { conceptCommands } from '../../heaven/atoms'
 import { multidimensionalSummaries, navigation358, skillAtoms } from '../learning'
 import { analogSpeech, lawfulHarmonise, openGraph } from '../../quantum/lake/icons'
 import { moviesNativeFormat, oneOpenGraphAll, taxonomyIcons } from '../../fire/li'
-import { ancientCalendars } from '../../thunder/decode'
+import { ancientCalendars, ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime } from '../../thunder/decode'
 import { babelFold, textToMovie } from '../../earth/world'
 import { areaPairs, bothEarthsRotateWithinEachOther, cardinalPyramidTipsProvenByMath, doubleTorus3D, earthRealisedByComputingPolesAsPyramid, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../../mountain/geometry'
 import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../../quantum/mountain/dimensions'
@@ -571,6 +571,7 @@ export function heroLeadsTheWaves(matrix: MindMatrix = buildMatrix()) {
   const led = [
     { wave: 'the merkaba trace (the harmonograph)', on: merkabaTrace(matrix).manifest },
     { wave: 'the ancient calendars (the coupled cycles)', on: ancientCalendars(matrix).decoded },
+    { wave: 'ancient calendars as algebraic theorems mapping time in time', on: ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix).decoded },
     { wave: 'the holographic dot → cube → dot', on: dotIsCubeIsDot(matrix).proven },
     { wave: 'the development waves (the next decode)', on: developmentWaves(matrix).developing },
     { wave: 'the hero aligned to the law', on: heroLawAlignment(matrix).aligned },

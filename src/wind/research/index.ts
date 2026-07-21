@@ -3209,7 +3209,7 @@ export type DomainProofCatalogRow = {
   readonly id: string
   readonly slug: string
   readonly title: string
-  readonly kind: 'millennium' | 'science-trinity' | 'encryption' | 'efficiency' | 'honesty' | 'rosetta' | 'hd-structure' | 'collider' | 'society'
+  readonly kind: 'millennium' | 'science-trinity' | 'encryption' | 'efficiency' | 'honesty' | 'rosetta' | 'hd-structure' | 'collider' | 'society' | 'calendar'
   readonly officialStatement: string
   readonly detailedExplanation: string
   readonly formula: string
@@ -3244,6 +3244,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const eff = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
     const twoBits = twoBitsFreeFromCensus110Minus108(matrix)
     const societySupport = societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
+    // Calendar algebra fold lives in thunder/decode — catalog uses canonical section literals (no decode import; breaks apps↔decode TDZ).
     const formulaByName = new Map(defined.formulas.map((line) => {
       const i = line.indexOf(': ')
       return i < 0 ? [line, line] as const : [line.slice(0, i), line.slice(i + 2)] as const
@@ -3564,6 +3565,33 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         ruleClauses: ['relatedScienceNotPrizeSolution', 'notAProposedSolution'],
         receipt: toUuid('domain-proof:plasma-thunder-phenomena'),
       },
+      {
+        id: 'ancient-calendars',
+        slug: 'ancient-calendars',
+        title: 'Ancient calendars — algebraic theorems mapping time in time',
+        kind: 'calendar',
+        officialStatement:
+          'Ancient calendars decode as algebraic theorems mapping time in time: each tradition is a modular/product/epoch map; nested scales and LCM meshes place phase inside phase (calendar↔calendar · hero rung inside hero cycle).',
+        detailedExplanation:
+          'Nine sealed maps recompute via ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime from mayaLongCount/mayaDays · sexagesimal · coupledCalendarTori · ancientCalendars · FOLDED_CENSUS×1e3 hero · A432_OCTAVES · digitalRoot. Canonical sections only — NOT a Clay Millennium challenge (claySolvedByThisFold=0).',
+        formula:
+          'lcm(260,365)=18980 · lcm(10,12)=60 · 819=7×9×13 · 235=19×12+7 · mayaDays∘mayaLongCount=id · sexagesimal⇄fromSexagesimal · φ_outer=(t mod HERO)/HERO · φ_inner=(t mod HERO/d)/(HERO/d)',
+        formulaSource: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime',
+        status: 'structure-only',
+        statusDetail: 'maps=9 · clay=0 · physicalFtl=0 · CLI npm run quantum:ancient-calendars-algebra',
+        gap: 'civil Vedic calendar tables absent — mod-9 square only; structural algebra ≠ ephemeris',
+        fold: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime',
+        cli: 'npm run quantum:ancient-calendars-algebra',
+        pair: 'calendars/decode',
+        route: '/proofs/ancient-calendars',
+        claySolvedByThisFold: 0,
+        physicalFtlClaim: 0,
+        qualifiesAsProposedSolutionUnderClayRules: false,
+        publishedInQualifyingOutlet: false,
+        trinity: { forward: 'modular-map', inverse: 'calendar↔calendar-lcm', reverse: 'phase-in-phase' },
+        ruleClauses: ['relatedScienceNotPrizeSolution'],
+        receipt: toUuid('domain-proof:ancient-calendars-algebra'),
+      },
     ]
 
     const rows = [...millenniumRows, ...scienceRows, ...honestyRows]
@@ -3571,7 +3599,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const allClayZero = rows.every((r) => r.claySolvedByThisFold === 0)
     const noneProposed = rows.every((r) => r.qualifiesAsProposedSolutionUnderClayRules === false && r.publishedInQualifyingOutlet === false)
     const facets = [
-      { facet: `catalog rows ≥ 7 millennium + sciences + honesty (${rows.length})`, on: rows.length >= (2 * 3 + 1) + SCIENCE_DOMAIN_SEEDS.length + (2 * 2 + 1) },
+      { facet: `catalog rows ≥ 7 millennium + sciences + honesty (${rows.length})`, on: rows.length >= (2 * 3 + 1) + SCIENCE_DOMAIN_SEEDS.length + (2 * 3) },
       { facet: 'seven millennium dedicated routes', on: millenniumRows.length === (2 * 3 + 1) },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} on every row`, on: allClayZero && claySolvedByThisFold === 0 },
       { facet: 'qualifiesAsProposedSolutionUnderClayRules=false on every row (§5)', on: noneProposed },

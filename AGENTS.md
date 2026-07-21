@@ -50,6 +50,7 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `harmonic/surprise` — `harmonicPredictionSurprise()` (reproducible precision revelation for agents), then `npm run docs:build`
   - `research/society` — `societyInvestmentsResearch()` (= `societySupportsProjectViaTwoBitsFreeKnowledge`) — society 10D + two-bits-free patronage path, then `npm run docs:build`
   - `bits/free` — `twoBitsFreeFromCensus110Minus108()` (`npm run quantum:two-bits-free` — FREE_BITS=110−108=2 · naive 1−110/108 refused · savings vs rest), then `npm run docs:build`
+  - `calendars/decode` — `ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime()` (`npm run quantum:ancient-calendars-algebra` — Maya·Chinese·Egyptian·Metonic/Hebrew·Babylonian·Julian/Gregorian·819·hero/A432·Vedic mod-9 algebraic maps · time-in-time; clay=0 · `/proofs/ancient-calendars`), then `npm run docs:build`
   - `society/support` — `societySupportsProjectViaTwoBitsFreeKnowledge()` (`npm run quantum:society-two-bits-support` — harmonic 1/9 CTA · `/society-merkaba#two-bits-free` · `/proofs/two-bits-free`), then `npm run docs:build`
   - `merkaba/10d` — open `/en/society-merkaba-graph`, then `npm run docs:dev` (living merkaba animation)
   - `vortex/merkaba` — `npm run trading:vortex` (merkaba vortex exposes hidden manipulation/flow — offline deterministic), then `npm run docs:build`
