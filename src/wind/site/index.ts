@@ -349,7 +349,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
     }
     const residuals = [
       'composed-after #68 uiProseDuplicationRemoved — residual Clay Statement=title catalog pattern in staticPages descriptions',
-      'compose-with feat/mcp-commands-scripts-gaps-audit (stdio/script synonym exits — parallel; do not clobber)',
+      'composed-after #70 mcp-commands-scripts-gaps-audit (MCP/script synonym census landed; residual conceptTools + trading:* outside PRIMARY)',
       'thin-mount alias leaves still served (efficiency-vote… · learn-developer) — intentional census fold',
     ] as const
 
