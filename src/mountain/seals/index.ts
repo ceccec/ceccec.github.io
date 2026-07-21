@@ -61,7 +61,11 @@ import {
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
   interferenceVsClassicalShadow,
 } from '../../water/stack'
-import { stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
+import {
+  stringTheoryQuantumizedOnA432RosettaMerkleSubstrate,
+  stringTheoryMillenniumTheoremGapsInventory,
+  omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems,
+} from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
@@ -732,6 +736,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'science-apparatus', title: 'Science tools/apparatus trinity — rosettaShelve surfaces', proof: scienceToolsApparatusTrinity(matrix) },
     { slug: 'sciences-trinities', title: 'Sciences interact in trinities — science↔dual↔fusion lattice', proof: sciencesInteractInTrinities(matrix) },
     { slug: 'sciences-standards-quantum', title: 'Sciences standards coverage — covered|partial|gap · quantum only · certified=false', proof: completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix) },
+    { slug: 'cmb-omega-c-over-b', title: 'Ω_c/Ω_b ≈ 5.41 CMB budget · null non-gravitational · quantum gaps · clay=0 · certified=false', proof: omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix) },
     { slug: 'millennium-challenge', title: 'Clay Millennium Problems = MODELED CHALLENGE apparatus · claySolvedByThisFold = 0', proof: millenniumProblemsChallenge(matrix) },
     { slug: 'clay-prize-rules-mapping', title: 'Clay Millennium Prize Rules §1–§8 → page sections/facets · clay=0 · NOT Prize claim', proof: clayMillenniumPrizeRulesMapping() },
     { slug: 'domain-proof-catalog', title: 'Domain proof catalog — Clay-standard pages · proposedSolution=false · clay=0', proof: domainProofCatalog(matrix) },

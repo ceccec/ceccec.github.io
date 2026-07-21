@@ -95,6 +95,7 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'hex/crack',
   'theorem/const',
   'clay/gravity',
+  'cmb/budget',
   'forward/inverse/reverse',
   'learn/best',
   'moment/prove',
